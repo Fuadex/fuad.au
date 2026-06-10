@@ -58,6 +58,37 @@ function StoriesView({ t, go }) {
           </section>
         )}
 
+        {/* underground index */}
+        {I.UNDERGROUND && I.UNDERGROUND.deepCuts && I.UNDERGROUND.deepCuts.length > 0 && (() => {
+          const U = I.UNDERGROUND;
+          const deepest = U.deepCuts[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">How deep it goes</div>
+              <div className="st-big" data-link={clickable(deepest.artist)} onClick={() => goIf(deepest.artist)}>
+                <em style={{ color: `oklch(0.78 0.14 ${deepest.hue})` }}>{deepest.artist}</em> has {fmt(deepest.listeners)} listeners
+                in the entire world. You've played them <em>{fmt(deepest.plays)}</em> times.
+              </div>
+              <div className="st-sub">
+                Your charts lean on giants — a typical play is a ~{fmt(U.medianListeners)}-listener artist — but the edges run deep:
+                {" "}{Math.round(U.share50k * 100)}% of everything you play is from acts under 50k listeners, {Math.round(U.share10k * 100)}% under 10k.
+                The deepest cuts in your rotation:
+              </div>
+              <div className="st-ug-cuts">
+                {U.deepCuts.map(c => (
+                  <div key={c.artist} className="st-ug-cut" data-link={clickable(c.artist)} onClick={() => goIf(c.artist)}>
+                    <GenCover hue={c.hue} name={c.artist} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{c.artist}</div>
+                      <div className="st-row-sub">{fmt(c.listeners)} listeners · {fmt(c.plays)} of yours</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* streak */}
         <section className="st-card st-hero">
           <div className="st-label">The streak</div>
@@ -205,6 +236,11 @@ function StoriesView({ t, go }) {
         .st-obs .st-row-name { margin-top: 12px; }
         .st-obs-bar { height: 3px; background: var(--bg-3); border-radius: 2px; margin-top: 10px; overflow: hidden; }
         .st-obs-bar i { display: block; height: 100%; border-radius: 2px; }
+        .st-ug-cuts { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; margin-top: 18px; }
+        .st-ug-cut { display: flex; gap: 12px; align-items: center; padding: 8px 10px; border: 1px solid var(--rule);
+          border-radius: 6px; transition: border-color .15s; }
+        .st-ug-cut[data-link="true"] { cursor: pointer; }
+        .st-ug-cut[data-link="true"]:hover { border-color: var(--accent-dim); }
         .st-miles { display: grid; gap: 10px; }
         .st-mile { display: flex; gap: 13px; align-items: center; padding: 6px 8px; margin: 0 -8px; border-radius: 6px; }
         .st-mile[data-link="true"] { cursor: pointer; }

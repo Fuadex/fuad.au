@@ -104,6 +104,14 @@ const hasTags = Object.keys(TAG_CACHE).length > 0;
 const cachedTags = (name) => (TAG_CACHE[name] && TAG_CACHE[name].tags) || []; // [[tag, count 0–100], …]
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 
+// ─────────── global last.fm stats (artist-stats.json, built by enrich-stats.js) ───────────
+// Per artist: { listeners, playcount, mbid }. Powers the obscurity index; mbid
+// seeds the future MusicBrainz / AcousticBrainz / Discogs enrichment layer.
+const STATS_PATH = path.join(__dirname, "artist-stats.json");
+const STATS = fs.existsSync(STATS_PATH) ? JSON.parse(fs.readFileSync(STATS_PATH, "utf8")) : {};
+const hasStats = Object.keys(STATS).length > 0;
+const listenersOf = (name) => { const s = STATS[name]; return s && s.listeners > 0 ? s.listeners : null; };
+
 // tag → audio-DNA vector. Tag-DERIVED, not measured (last.fm has no audio features);
 // an artist's axes are the play-weighted average of its tags. First bucket wins.
 function tagAxis(t) {
@@ -262,6 +270,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
       : tagAudio(cachedTags(name)),
     era: counts.map(c => c === 0 ? 0 : Math.max(1, Math.round(9 * c / max))),
     firstYear: new Date(firstSeen.get(name)).getUTCFullYear(),
+    listeners: listenersOf(name),
   };
 });
 const byName = Object.fromEntries(ARTISTS.map(a => [a.name, a]));
@@ -462,9 +471,38 @@ for (const [k, O] of otd) {
   ON_THIS_DAY[k] = { artist, plays, total: O.total, hue: hueFor(artist) };
 }
 
+// ─────────── UNDERGROUND INDEX (how obscure the taste is) ───────────
+// Play-weighted over every artist we have a global listener count for.
+let UNDERGROUND = null;
+if (hasStats) {
+  let covered = 0, under50k = 0, under10k = 0;
+  const wl = []; // [listeners, plays] for artists with stats
+  for (const [name, plays] of artistPlays) {
+    const L = listenersOf(name);
+    if (L == null) continue;
+    covered += plays; wl.push([L, plays]);
+    if (L < 50000) under50k += plays;
+    if (L < 10000) under10k += plays;
+  }
+  wl.sort((a, b) => a[0] - b[0]);
+  let acc = 0, medianListeners = 0;
+  for (const [L, p] of wl) { acc += p; if (acc >= covered / 2) { medianListeners = L; break; } }
+  // deep cuts: your kept artists with the fewest global listeners (favourites almost nobody else plays)
+  const deepCuts = ARTISTS.filter(a => a.listeners != null).slice()
+    .sort((a, b) => a.listeners - b.listeners).slice(0, 8)
+    .map(a => ({ artist: a.name, hue: a.hue, listeners: a.listeners, plays: a.plays }));
+  UNDERGROUND = {
+    coverage: Math.round(covered / lines.length * 100) / 100,
+    share50k: covered ? Math.round(under50k / covered * 100) / 100 : 0,
+    share10k: covered ? Math.round(under10k / covered * 100) / 100 : 0,
+    medianListeners, deepCuts,
+  };
+}
+
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
   STREAK: { best, start: bestStart, end: bestEnd, current },
+  UNDERGROUND,
 };
 
 // ─────────── SEARCH INDEX (separate lazy-loaded file) ───────────
