@@ -1003,54 +1003,45 @@ const GENRES_CURATED = [
 ];
 const GENRES = (hasTags && GENRES_REAL.length) ? GENRES_REAL : GENRES_CURATED;
 
-const CITY = {
-  "Tokyo": [
-    ["Ocean Grove", "Shibuya WWW X", "2026-06-20"],
-    ["Haru Nemuri", "Daikanyama UNIT", "2026-06-28"],
-    ["Coaltar of the Deepers", "Shindaita Fever", "2026-07-05"],
-    ["HANABIE.", "Shinjuku Loft", "2026-07-12"],
-    ["Maximum the Hormone", "Zepp Haneda", "2026-07-19"],
-    ["Crossfaith", "Spotify O-East", "2026-08-01"],
-    ["Babymetal", "Makuhari Messe", "2026-08-16"],
-    ["Machine Girl", "Shibuya Cyclone", "2026-08-23"],
-    ["Otoboke Beaver", "Shimokitazawa Shelter", "2026-09-06"],
-  ],
-  "London": [
-    ["Bring Me the Horizon", "The O2", "2026-06-22"],
-    ["Architects", "Alexandra Palace", "2026-07-03"],
-    ["Northlane", "Electric Ballroom", "2026-07-15"],
-    ["Wargasm", "Heaven", "2026-07-26"],
-    ["Machine Girl", "EartH, Hackney", "2026-08-09"],
-    ["The Prodigy", "Finsbury Park", "2026-08-22"],
-    ["Pendulum", "O2 Academy Brixton", "2026-09-12"],
-  ],
-  "Warsaw": [
-    ["PRO8L3M", "Stodoła", "2026-06-25"],
-    ["Pezet", "Klub Hydrozagadka", "2026-07-08"],
-    ["Rammstein", "PGE Narodowy", "2026-08-01"],
-    ["Slipknot", "Tauron Arena (Kraków)", "2026-08-14"],
-    ["Korn", "COS Torwar", "2026-09-20"],
-  ],
-  "Berlin": [
-    ["Nine Inch Nails", "Velodrom", "2026-06-28"],
-    ["deadmau5", "Kraftwerk", "2026-07-12"],
-    ["Crystal Castles", "Berghain", "2026-07-29"],
-    ["Rammstein", "Olympiastadion", "2026-08-18"],
-    ["Celldweller", "SO36", "2026-09-06"],
-  ],
-};
+// ─────────── CONCERTS: real upcoming events from Ticketmaster (concerts-cache.json) ───────────
+// Built by enrich-concerts.js. If the cache is missing, CONCERTS+CITIES are empty
+// and the LiveView / ArtistView gigs card show "no upcoming dates" empty states.
+// Cities auto-derived from real event data — top 6 cities by event count become picker chips.
+const CONCERTS_PATH = path.join(__dirname, "concerts-cache.json");
+const CONCERT_CACHE = fs.existsSync(CONCERTS_PATH) ? JSON.parse(fs.readFileSync(CONCERTS_PATH, "utf8")) : {};
 const CONCERTS = {};
-for (const [city, list] of Object.entries(CITY)) {
-  CONCERTS[city] = list.map((r, i) => ({
-    id: city.toLowerCase() + i, city, artistId: slug(r[0]), artist: r[0], hue: hueFor(r[0]),
-    venue: r[1], date: r[2], inLibrary: !!byName[r[0]],
-  })).sort((a, b) => a.date.localeCompare(b.date));
+let CITIES = [];
+if (Object.keys(CONCERT_CACHE).length > 0) {
+  const todayISO = new Date().toISOString().slice(0, 10);
+  const byCity = new Map();
+  for (const [artist, info] of Object.entries(CONCERT_CACHE)) {
+    for (const e of (info.events || [])) {
+      if (!e.date || !e.city) continue;
+      if (e.date < todayISO) continue; // skip dates in the past (cache may be stale)
+      if (!byCity.has(e.city)) byCity.set(e.city, []);
+      byCity.get(e.city).push({
+        artistId: slug(artist), artist, hue: hueFor(artist),
+        venue: e.venue || "", city: e.city, country: e.country || "",
+        date: e.date, url: e.url || "", inLibrary: !!byName[artist],
+      });
+    }
+  }
+  // Top 8 cities by event count → picker chips, default to "your-artist" density when tied
+  CITIES = [...byCity.entries()]
+    .map(([city, evs]) => ({ city, count: evs.length, yours: evs.filter(g => g.inLibrary).length }))
+    .sort((a, b) => b.yours - a.yours || b.count - a.count)
+    .slice(0, 8).map(x => x.city);
+  for (const city of CITIES) {
+    CONCERTS[city] = byCity.get(city)
+      .sort((a, b) => a.date.localeCompare(b.date))
+      .map((ev, i) => ({ id: city.toLowerCase().replace(/\s+/g, "-") + "-" + i, ...ev }));
+  }
 }
 
 // ─────────── emit ───────────
 const DATA = {
   ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
-  CITIES: Object.keys(CITY), TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS,
+  CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)
