@@ -16,7 +16,7 @@ const ACCENTS = [
   { h: 28,  name: "Ember" },
 ];
 
-const NAV = [
+const NAV_FULL = [
   ["overview", "Overview"],
   ["stories", "Stories"],
   ["charts", "Charts"],
@@ -25,6 +25,8 @@ const NAV = [
   ["eras", "Eras"],
   ["live", "Live"],
 ];
+// Hide "Live" entirely when no concerts have been enriched — avoids a dead-end tab.
+const NAV = NAV_FULL.filter(([k]) => k !== "live" || ((window.ROTATION && window.ROTATION.CITIES) || []).length > 0);
 
 function RotationApp() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);

@@ -838,7 +838,7 @@ if (hasDiscogs) {
   const byNameKept = new Set(ARTISTS.map(a => a.name));
   let artistsCovered = 0;
   for (const [name, plays] of artistPlays) {
-    if (plays < 10) continue;
+    if (plays < 3) continue; // require ≥3 plays to count as real (not a one-off scrobble)
     const d = DISCOGS[name];
     if (!d || !d.styles || d.styles.length === 0) continue;
     artistsCovered++;
