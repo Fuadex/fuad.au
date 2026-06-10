@@ -30,7 +30,10 @@ function RotationApp() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [route, setRoute] = React.useState({ view: "overview", id: null });
   const [pop, setPop] = React.useState(null);
-  const [city, setCity] = React.useState("Tokyo");
+  const [city, setCity] = React.useState(() => {
+    const cs = (window.ROTATION && window.ROTATION.CITIES) || [];
+    return cs[0] || "";
+  });
   const [searchOpen, setSearchOpen] = React.useState(false);
   const R = window.ROTATION;
   const live = useLiveNow();
@@ -114,7 +117,7 @@ function RotationApp() {
       <footer className="r-foot">
         <div>rotation · a companion to <a className="r-link" href="Culture v2.html">Culture</a> · fuad.design / 2026</div>
         <div className="r-foot-links">
-          <span>real scrobbles — last.fm/fuadex · concerts &amp; genres curated</span>
+          <span>real scrobbles — last.fm/fuadex</span>
         </div>
       </footer>
 
