@@ -112,6 +112,17 @@ const STATS = fs.existsSync(STATS_PATH) ? JSON.parse(fs.readFileSync(STATS_PATH,
 const hasStats = Object.keys(STATS).length > 0;
 const listenersOf = (name) => { const s = STATS[name]; return s && s.listeners > 0 ? s.listeners : null; };
 
+// ─────────── MusicBrainz origins (artist-origins.json, built by enrich-origins.js) ───────────
+// Per artist: { country (ISO), area, beginArea, type }. Used for "taste geography".
+const ORIGINS_PATH = path.join(__dirname, "artist-origins.json");
+const ORIGINS = fs.existsSync(ORIGINS_PATH) ? JSON.parse(fs.readFileSync(ORIGINS_PATH, "utf8")) : {};
+const hasOrigins = Object.keys(ORIGINS).length > 0;
+const originOf = (name) => {
+  const o = ORIGINS[name];
+  if (!o || !o.country) return null;
+  return { country: o.country, area: o.area || "", city: o.beginArea || "" };
+};
+
 // ─────────── Discogs styles/genres (discogs-cache.json, built by enrich-discogs.js) ───────────
 // Per artist: { id, styles: [[name,count],…], genres: [[name,count],…], releases, ambiguous }.
 // Finer-grained than last.fm tags (e.g. "Breakcore", "Synthwave", "Nu Metal", "Drum n Bass").
@@ -279,7 +290,6 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
   return {
     id: slug(name), rank: i + 1, name, plays,
     hue: meta.hue !== undefined ? meta.hue : hueOf(name),
-    country: meta.country || "",
     tags: meta.tags || niceTags(name),
     similar: (meta.similar || []).map(slug), similarNames: meta.similar || [],
     audio: meta.audio
@@ -290,6 +300,8 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     listeners: listenersOf(name),
     styles: stylesOf(name),
     discogsGenres: dGenresOf(name),
+    origin: originOf(name),
+    country: meta.country || (originOf(name) ? originOf(name).country.toLowerCase() : ""),
   };
 });
 const byName = Object.fromEntries(ARTISTS.map(a => [a.name, a]));
@@ -592,10 +604,58 @@ if (hasStats) {
   };
 }
 
+// ─────────── GEOGRAPHY (where your taste comes from, MusicBrainz origins) ───────────
+// Play-weighted over every artist that resolved to a country in artist-origins.json.
+let GEOGRAPHY = null;
+if (hasOrigins) {
+  const COUNTRY_NAMES = { US: "United States", GB: "United Kingdom", JP: "Japan", AU: "Australia",
+    DE: "Germany", FR: "France", CA: "Canada", SE: "Sweden", NO: "Norway", FI: "Finland",
+    RU: "Russia", PL: "Poland", NL: "Netherlands", BE: "Belgium", IT: "Italy", ES: "Spain",
+    BR: "Brazil", AR: "Argentina", MX: "Mexico", KR: "South Korea", CN: "China", TW: "Taiwan",
+    DK: "Denmark", IE: "Ireland", IS: "Iceland", NZ: "New Zealand", CH: "Switzerland",
+    AT: "Austria", CZ: "Czechia", UA: "Ukraine", HU: "Hungary", IL: "Israel", IN: "India",
+    ID: "Indonesia", PT: "Portugal", GR: "Greece", TR: "Turkey", ZA: "South Africa",
+    XW: "Worldwide", "": "" };
+  const flagOf = (cc) => {
+    if (!cc || cc.length !== 2 || cc === "XW") return "";
+    return String.fromCodePoint(...cc.toUpperCase().split("").map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
+  };
+  const ctry = new Map(); // code → { plays, artists:Set }
+  const cit = new Map();  // "country|city" → { plays, artists:Set, country, city }
+  let totalCovered = 0;
+  for (const [name, plays] of artistPlays) {
+    const o = originOf(name);
+    if (!o) continue;
+    totalCovered += plays;
+    const cc = o.country;
+    if (!ctry.has(cc)) ctry.set(cc, { plays: 0, artists: new Set() });
+    const c = ctry.get(cc); c.plays += plays; c.artists.add(name);
+    if (o.city) {
+      const k = cc + "|" + o.city;
+      if (!cit.has(k)) cit.set(k, { plays: 0, artists: new Set(), country: cc, city: o.city });
+      const ci = cit.get(k); ci.plays += plays; ci.artists.add(name);
+    }
+  }
+  const countries = [...ctry.entries()]
+    .map(([code, v]) => ({ code, name: COUNTRY_NAMES[code] || code, flag: flagOf(code),
+      plays: v.plays, artists: v.artists.size, share: totalCovered ? v.plays / totalCovered : 0 }))
+    .sort((a, b) => b.plays - a.plays);
+  const cities = [...cit.values()]
+    .map(c => ({ country: c.country, city: c.city, flag: flagOf(c.country),
+      plays: c.plays, artists: c.artists.size }))
+    .sort((a, b) => b.plays - a.plays).slice(0, 12);
+  GEOGRAPHY = {
+    coverage: Math.round(totalCovered / lines.length * 100) / 100,
+    countries: countries.slice(0, 20),
+    cities,
+    totalCountries: countries.length,
+  };
+}
+
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
   STREAK: { best, start: bestStart, end: bestEnd, current },
-  UNDERGROUND,
+  UNDERGROUND, GEOGRAPHY,
 };
 
 // ─────────── SEARCH INDEX (separate lazy-loaded file) ───────────

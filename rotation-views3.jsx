@@ -170,6 +170,54 @@ function StoriesView({ t, go }) {
           </section>
         )}
 
+        {/* taste geography */}
+        {I.GEOGRAPHY && I.GEOGRAPHY.coverage > 0.3 && (() => {
+          const G = I.GEOGRAPHY;
+          const top = G.countries[0];
+          const restShare = G.countries.slice(1, 6).reduce((s, c) => s + c.share, 0);
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Where the taste comes from</div>
+              <div className="st-big">
+                <em>{Math.round(top.share * 100)}%</em> {top.flag} <em>{top.name}</em>
+                <span style={{ color: "var(--ink-soft)", fontSize: ".55em", fontStyle: "normal", marginLeft: 14 }}>
+                  · {G.totalCountries} countries on the map
+                </span>
+              </div>
+              <div className="st-sub">
+                Of the {Math.round(G.coverage * 100)}% of plays we can place on a map, the rest scatter:&nbsp;
+                {G.countries.slice(1, 6).map((c, i) => (
+                  <React.Fragment key={c.code}>{i > 0 ? ", " : ""}{c.flag} <b style={{ color: "var(--ink)" }}>{c.name}</b> ({Math.round(c.share * 100)}%)</React.Fragment>
+                ))}.
+              </div>
+              <div className="st-geo-grid">
+                {G.countries.slice(0, 12).map(c => (
+                  <div key={c.code} className="st-geo-c">
+                    <div className="st-geo-flag">{c.flag || c.code}</div>
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{c.name}</div>
+                      <div className="st-row-sub">{fmt(c.plays)} plays · {c.artists} artists</div>
+                    </div>
+                    <div className="st-geo-pct">{Math.round(c.share * 100)}%</div>
+                  </div>
+                ))}
+              </div>
+              {G.cities && G.cities.length > 0 && (
+                <div style={{ marginTop: 16 }}>
+                  <div className="st-yir-h">Cities you tap into</div>
+                  <div className="st-geo-cities">
+                    {G.cities.slice(0, 8).map(c => (
+                      <span key={c.country + c.city} className="r-chip" style={{ fontSize: 11 }}>
+                        {c.flag} {c.city} <span style={{ color: "var(--ink-faint)", fontSize: 10 }}>· {c.artists}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          );
+        })()}
+
         {/* streak */}
         <section className="st-card st-hero">
           <div className="st-label">The streak</div>
@@ -340,6 +388,11 @@ function StoriesView({ t, go }) {
         .st-yir-jump { margin-top: 16px; padding: 11px 14px; background: var(--bg-3); border-radius: 5px; font-size: 13.5px; cursor: default; }
         .st-yir-jump[data-link="true"] { cursor: pointer; }
         .st-yir-jump[data-link="true"]:hover { background: var(--bg-4, var(--bg-3)); }
+        .st-geo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; margin-top: 22px; }
+        .st-geo-c { display: flex; gap: 12px; align-items: center; padding: 9px 11px; border: 1px solid var(--rule); border-radius: 6px; }
+        .st-geo-flag { font-size: 22px; line-height: 1; flex: none; width: 30px; text-align: center; }
+        .st-geo-pct { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--accent); margin-left: auto; flex: none; }
+        .st-geo-cities { display: flex; gap: 6px; flex-wrap: wrap; }
         @media (max-width: 640px) {
           .st-yir-stats { grid-template-columns: repeat(2, 1fr); gap: 14px 18px; }
           .st-yir-grid { grid-template-columns: 1fr; gap: 18px; }
