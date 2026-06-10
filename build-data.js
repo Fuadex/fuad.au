@@ -112,6 +112,13 @@ const STATS = fs.existsSync(STATS_PATH) ? JSON.parse(fs.readFileSync(STATS_PATH,
 const hasStats = Object.keys(STATS).length > 0;
 const listenersOf = (name) => { const s = STATS[name]; return s && s.listeners > 0 ? s.listeners : null; };
 
+// ─────────── last.fm bios + REAL similar-artists (artist-bios.json, by enrich-bios.js) ───────────
+const BIOS_PATH = path.join(__dirname, "artist-bios.json");
+const BIOS = fs.existsSync(BIOS_PATH) ? JSON.parse(fs.readFileSync(BIOS_PATH, "utf8")) : {};
+const hasBios = Object.keys(BIOS).length > 0;
+const bioOf = (name) => (BIOS[name] && BIOS[name].bio) || "";
+const realSimilar = (name) => (BIOS[name] && BIOS[name].similar) || null;
+
 // ─────────── MusicBrainz origins (artist-origins.json, built by enrich-origins.js) ───────────
 // Per artist: { country (ISO), area, beginArea, type }. Used for "taste geography".
 const ORIGINS_PATH = path.join(__dirname, "artist-origins.json");
@@ -291,7 +298,13 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     id: slug(name), rank: i + 1, name, plays,
     hue: meta.hue !== undefined ? meta.hue : hueOf(name),
     tags: meta.tags || niceTags(name),
-    similar: (meta.similar || []).map(slug), similarNames: meta.similar || [],
+    // similar: prefer REAL last.fm similar-artists when we have them, else fall back to curated META
+    ...(() => {
+      const real = realSimilar(name);
+      const names = (real && real.length > 0) ? real.slice(0, 8) : (meta.similar || []);
+      return { similar: names.map(slug), similarNames: names };
+    })(),
+    bio: bioOf(name),
     audio: meta.audio
       ? { energy: meta.audio[0], valence: meta.audio[1], acoustic: meta.audio[2], tempo: meta.audio[3], dance: meta.audio[4], instr: meta.audio[5] }
       : tagAudio(cachedTags(name)),

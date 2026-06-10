@@ -357,6 +357,18 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         </div>
       </div>
 
+      {/* bio — last.fm summary, rendered only when present */}
+      {a.bio && a.bio.length > 40 && (
+        <div className="r-card" style={{ padding: "18px 22px", marginBottom: "var(--gap)" }}>
+          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 10 }}>
+            About · last.fm
+          </div>
+          <p style={{ fontFamily: "var(--serif)", fontSize: 15.5, lineHeight: 1.55, color: "var(--ink-soft)", margin: 0 }}>
+            {a.bio.length > 520 ? a.bio.slice(0, 520).replace(/\s+\S*$/, "") + "…" : a.bio}
+          </p>
+        </div>
+      )}
+
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "260px 1fr", gap: "var(--gap)", alignItems: "start" }}>
         {/* sound DNA */}
         <div className="r-card" style={{ padding: 18 }}>
