@@ -730,6 +730,26 @@ if (hasOrigins) {
     }),
     years: arc,
   };
+
+  // Gateways: for each top country, the EARLIEST artist you ever played from there.
+  // "Japan arrived March 2018 via X" — the discovery moment for each lane in your library.
+  const gateways = countries.slice(0, 10).map(c => {
+    let earliest = null;
+    for (const [name, ms] of firstSeen) {
+      const o = originOf(name);
+      if (!o || o.country !== c.code) continue;
+      if (ms < UNDATED_REMAP_START + 86400e3) continue; // skip remapped pre-scrobbling
+      if (!earliest || ms < earliest.ms) earliest = { name, ms, plays: artistPlays.get(name) || 0 };
+    }
+    if (!earliest) return null;
+    return {
+      code: c.code, country: c.name, flag: c.flag,
+      artist: earliest.name, firstHeard: iso(earliest.ms),
+      plays: earliest.plays, hue: hueFor(earliest.name), artistId: slug(earliest.name),
+      kept: !!byName[earliest.name],
+    };
+  }).filter(Boolean).sort((a, b) => a.firstHeard.localeCompare(b.firstHeard));
+  GEOGRAPHY.gateways = gateways;
 }
 
 // ─────────── STYLE ATLAS (Discogs styles unique-in-library) ───────────
