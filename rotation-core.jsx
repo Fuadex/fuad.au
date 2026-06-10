@@ -196,6 +196,16 @@ a.r-link:hover { color: var(--ink); }
 @media (max-width: 760px) {
   .r-head { height: auto; flex-wrap: wrap; padding: 10px var(--pad); gap: 10px; }
   .r-nav { order: 3; width: 100%; overflow-x: auto; flex-wrap: nowrap; }
+  .r-head .right { flex: 1; justify-content: flex-end; min-width: 0; }
+  .r-head .r-live { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+}
+
+/* mobile grid utilities — inline grid styles win over plain rules, so !important */
+@media (max-width: 860px) {
+  .m-stack { display: grid; grid-template-columns: 1fr !important; }
+  .m-stack > * { grid-column: auto !important; grid-row: auto !important; }
+  .m-2col { grid-template-columns: 1fr 1fr !important; }
+  .m-2col > * { grid-column: auto !important; }
 }
 `;
 

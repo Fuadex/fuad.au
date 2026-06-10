@@ -227,13 +227,14 @@ let topDayKey = dayKeys[0];
 for (const k of dayKeys) if (dayCounts.get(k) > dayCounts.get(topDayKey)) topDayKey = k;
 const topDayArtist = [...dayTopArtist.get(topDayKey).entries()].sort((a, b) => b[1] - a[1])[0];
 
-let best = 0, cur = 0, prev = null;
+let best = 0, cur = 0, prev = null, bestEnd = null;
 const daySet = new Set(dayKeys);
 for (const k of dayKeys) {
   if (prev && (new Date(k) - new Date(prev)) === 86400e3) cur++; else cur = 1;
-  if (cur > best) best = cur;
+  if (cur > best) { best = cur; bestEnd = k; }
   prev = k;
 }
+const bestStart = new Date(new Date(bestEnd).getTime() - (best - 1) * 86400e3).toISOString().slice(0, 10);
 let current = 0;
 for (let d = new Date(newestMs); ; d = new Date(d.getTime() - 86400e3)) {
   if (daySet.has(d.toISOString().slice(0, 10))) current++; else break;
@@ -283,6 +284,129 @@ const NOW = { artistId: slug(scrobbles[0][0]), artist: scrobbles[0][0], track: s
 const RECENT = scrobbles.slice(0, 8).map((s, i) => ({
   id: "rc" + i, artistId: slug(s[0]), artist: s[0], track: s[2], when: fmtWhen(s[3]), hue: hueFor(s[0]),
 }));
+
+// ─────────── INSIGHTS ───────────
+const iso = (ms) => new Date(ms).toISOString().slice(0, 10);
+const asc = [...scrobbles].reverse(); // oldest-first, timestamped only
+
+// milestones: every 50,000th timestamped scrobble
+const MILESTONES = [];
+for (let n = 50000; n <= asc.length; n += 50000) {
+  const s = asc[n - 1];
+  MILESTONES.push({ n, artist: s[0], track: s[2], date: iso(s[3]), hue: hueFor(s[0]) });
+}
+
+// obsessions: weeks dominated by a single artist (best week per artist)
+const WEEK0 = Date.UTC(2006, 0, 2); // a Monday
+const weeks = new Map();
+for (const [artist, , , ms] of scrobbles) {
+  const w = Math.floor((ms - WEEK0) / (7 * 86400e3));
+  if (!weeks.has(w)) weeks.set(w, { total: 0, art: new Map() });
+  const W = weeks.get(w); W.total++; W.art.set(artist, (W.art.get(artist) || 0) + 1);
+}
+const obsByArtist = new Map();
+for (const [w, W] of weeks) {
+  if (W.total < 70) continue;
+  const [artist, plays] = [...W.art.entries()].sort((a, b) => b[1] - a[1])[0];
+  const share = plays / W.total;
+  if (share < 0.5) continue;
+  const o = { weekStart: iso(WEEK0 + w * 7 * 86400e3), total: W.total, artist, plays, share: Math.round(share * 100) / 100, hue: hueFor(artist) };
+  if (!obsByArtist.has(artist) || obsByArtist.get(artist).plays < plays) obsByArtist.set(artist, o);
+}
+const OBSESSIONS = [...obsByArtist.values()].sort((a, b) => b.plays - a.plays).slice(0, 10);
+
+// comebacks: big artists dropped for 18+ months, then 50+ plays after returning
+const bigArtists = new Set([...artistPlays.entries()].filter(([, c]) => c >= 300).map(([n]) => n));
+const times = new Map();
+for (const s of asc) if (bigArtists.has(s[0])) {
+  if (!times.has(s[0])) times.set(s[0], []);
+  times.get(s[0]).push(s[3]);
+}
+const COMEBACKS = [];
+for (const [artist, ts] of times) {
+  let gi = 0, gap = 0;
+  for (let i = 1; i < ts.length; i++) { const g = ts[i] - ts[i - 1]; if (g > gap) { gap = g; gi = i; } }
+  const gapDays = Math.round(gap / 86400e3), playsAfter = ts.length - gi;
+  if (gapDays >= 540 && playsAfter >= 50)
+    COMEBACKS.push({ artist, gapDays, left: iso(ts[gi - 1]), back: iso(ts[gi]), playsAfter, hue: hueFor(artist) });
+}
+COMEBACKS.sort((a, b) => b.gapDays - a.gapDays).splice(8);
+
+// one-day wonders: 15+ plays inside 48h, then never (or barely) again
+const span = new Map();
+for (const [artist, , , ms] of scrobbles) {
+  const s = span.get(artist);
+  if (!s) span.set(artist, [ms, ms]); else { if (ms < s[0]) s[0] = ms; if (ms > s[1]) s[1] = ms; }
+}
+const WONDERS = [];
+for (const [artist, [f, l]] of span) {
+  const plays = artistPlays.get(artist);
+  if (plays >= 15 && l - f <= 2 * 86400e3) WONDERS.push({ artist, plays, date: iso(f), hue: hueFor(artist) });
+}
+WONDERS.sort((a, b) => b.plays - a.plays).splice(8);
+
+// night owls: artists that live in the 12am–5am window
+const nightSet = new Set([...artistPlays.entries()].filter(([, c]) => c >= 150).map(([n]) => n));
+const night = new Map();
+for (const [artist, , , ms] of scrobbles) if (nightSet.has(artist)) {
+  if (!night.has(artist)) night.set(artist, { n: 0, t: 0 });
+  const N = night.get(artist); N.t++;
+  if (new Date(ms).getUTCHours() < 5) N.n++;
+}
+const NIGHT_OWLS = [...night.entries()]
+  .map(([artist, N]) => ({ artist, plays: N.t, nightShare: Math.round(N.n / N.t * 100) / 100, hue: hueFor(artist) }))
+  .filter(x => x.nightShare >= 0.3).sort((a, b) => b.nightShare - a.nightShare).slice(0, 6);
+
+// discoveries: first-ever scrobble of the all-time top artists
+const firstScrobble = new Map();
+for (const s of asc) if (!firstScrobble.has(s[0])) firstScrobble.set(s[0], s);
+const DISCOVERIES = ARTISTS.slice(0, 15)
+  .map(a => { const s = firstScrobble.get(a.name); return s ? { artist: a.name, hue: a.hue, date: iso(s[3]), track: s[2], plays: a.plays } : null; })
+  .filter(Boolean);
+
+// heaviest day of each year
+const YEAR_PEAKS = years.filter(y => y >= new Date(oldestMs).getUTCFullYear()).map(y => {
+  let bk = null;
+  for (const k of dayKeys) if (k.startsWith(y) && (!bk || dayCounts.get(k) > dayCounts.get(bk))) bk = k;
+  if (!bk) return null;
+  const top = [...dayTopArtist.get(bk).entries()].sort((a, b) => b[1] - a[1])[0];
+  return { year: y, date: bk, count: dayCounts.get(bk), artist: top[0], artistPlays: top[1], hue: hueFor(top[0]) };
+}).filter(Boolean);
+
+// on this day: all-time top artist for each calendar day
+const otd = new Map();
+for (const [artist, , , ms] of scrobbles) {
+  const d = new Date(ms);
+  const k = String(d.getUTCMonth() + 1).padStart(2, "0") + "-" + String(d.getUTCDate()).padStart(2, "0");
+  if (!otd.has(k)) otd.set(k, { total: 0, art: new Map() });
+  const O = otd.get(k); O.total++; O.art.set(artist, (O.art.get(artist) || 0) + 1);
+}
+const ON_THIS_DAY = {};
+for (const [k, O] of otd) {
+  const [artist, plays] = [...O.art.entries()].sort((a, b) => b[1] - a[1])[0];
+  ON_THIS_DAY[k] = { artist, plays, total: O.total, hue: hueFor(artist) };
+}
+
+const INSIGHTS = {
+  MILESTONES, OBSESSIONS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
+  STREAK: { best, start: bestStart, end: bestEnd, current },
+};
+
+// ─────────── SEARCH INDEX (separate lazy-loaded file) ───────────
+const searchRows = [];
+for (const [artist, plays] of rankedArtists) {
+  if (plays < 3) break;
+  const s = span.get(artist);
+  if (!s) continue; // undated-only artists
+  const yc = artistYear.get(artist) || new Map();
+  let peakYear = 0, peakPlays = 0;
+  for (const [y, c] of yc) if (c > peakPlays) { peakPlays = c; peakYear = y; }
+  searchRows.push([artist, plays, iso(s[0]), iso(s[1]), peakYear, peakPlays]);
+}
+const searchOut = `// GENERATED by build-data.js — artist search index ([name, plays, first, last, peakYear, peakPlays])
+window.ROTATION_SEARCH = ${JSON.stringify(searchRows)};
+`;
+fs.writeFileSync(path.join(__dirname, "search-index.js"), searchOut, "utf8");
 
 // ─────────── GENRES + CONCERTS (still curated/mock — pending tag enrichment) ───────────
 const GENRES = [
@@ -389,7 +513,7 @@ for (const [city, list] of Object.entries(CITY)) {
 // ─────────── emit ───────────
 const DATA = {
   ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, CONCERTS,
-  CITIES: Object.keys(CITY), TOTALS, NOW, RECENT, ERA_START, TREND,
+  CITIES: Object.keys(CITY), TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)
@@ -412,3 +536,5 @@ console.log(`scrobbles: ${totalScrobbles} (${undated} undated) · artists: ${art
 console.log(`span: ${TOTALS.since} → ${new Date(newestMs).toISOString().slice(0, 10)} · perDay: ${TOTALS.perDay}`);
 console.log(`topDay: ${TOTALS.topDay.date} (${TOTALS.topDay.count}) · streak best: ${best}, current: ${current}`);
 console.log(`eras: ${ERA_START}–${ERA_END} · ARTISTS kept: ${ARTISTS.length} · ALBUMS kept: ${ALBUMS.length}`);
+console.log(`insights: ${OBSESSIONS.length} obsessions · ${COMEBACKS.length} comebacks · ${WONDERS.length} wonders · ${NIGHT_OWLS.length} night owls · ${MILESTONES.length} milestones`);
+console.log(`search index: ${searchRows.length} artists (${(searchOut.length / 1024).toFixed(0)} KB)`);
