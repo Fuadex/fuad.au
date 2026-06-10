@@ -170,6 +170,33 @@ function StoriesView({ t, go }) {
           </section>
         )}
 
+        {/* top scenes — Discogs styles you've gone deepest on */}
+        {I.STYLE_ATLAS && I.STYLE_ATLAS.scenes && I.STYLE_ATLAS.scenes.length >= 6 && (
+          <section className="st-card">
+            <div className="st-label">Top of each scene</div>
+            <div className="st-title-sm">Where you went deepest.</div>
+            <div className="st-scenes">
+              {I.STYLE_ATLAS.scenes.map(sc => (
+                <div key={sc.style} className="st-scene">
+                  <div className="st-scene-name">{sc.style}</div>
+                  <div className="st-scene-n">{fmt(sc.plays)} plays</div>
+                  <div className="st-scene-via">
+                    {sc.artists.map((a, i) => (
+                      <div key={a.name} className="st-scene-a" data-link={clickable(a.name)} onClick={() => goIf(a.name)}>
+                        <GenCover hue={a.hue} name={a.name} size={32} radius={3} />
+                        <div style={{ minWidth: 0 }}>
+                          <div className="st-row-name" style={{ fontSize: 13 }}>{a.name}</div>
+                          <div className="st-row-sub" style={{ fontSize: 11 }}>{fmt(a.plays)} plays</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* style atlas — discogs styles only you (or 1-2 artists) keep alive in this library */}
         {I.STYLE_ATLAS && I.STYLE_ATLAS.rarest && I.STYLE_ATLAS.rarest.length > 3 && (() => {
           const S = I.STYLE_ATLAS;
@@ -436,6 +463,15 @@ function StoriesView({ t, go }) {
         .st-atlas-style { font-family: var(--serif); font-style: italic; font-size: 17px; }
         .st-atlas-via { font-size: 12.5px; color: var(--ink-soft); }
         .st-atlas-n { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
+        .st-scenes { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+        .st-scene { border: 1px solid var(--rule); border-radius: 6px; padding: 14px 14px 12px; }
+        .st-scene-name { font-family: var(--serif); font-style: italic; font-size: 19px; line-height: 1; }
+        .st-scene-n { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: .12em;
+          text-transform: uppercase; margin-top: 5px; margin-bottom: 10px; }
+        .st-scene-via { display: grid; gap: 7px; }
+        .st-scene-a { display: flex; gap: 9px; align-items: center; padding: 4px 0; }
+        .st-scene-a[data-link="true"] { cursor: pointer; }
+        .st-scene-a[data-link="true"]:hover .st-row-name { color: var(--accent); }
         @media (max-width: 640px) {
           .st-atlas-row { grid-template-columns: 1fr auto; gap: 6px 12px; }
           .st-atlas-via { grid-column: 1 / -1; font-size: 12px; }

@@ -677,10 +677,30 @@ if (hasDiscogs) {
     .map(([style, v]) => ({ style, plays: v.plays, artists: v.artists }))
     .sort((a, b) => b.plays - a.plays)
     .slice(0, 8);
+  // top scenes = the Discogs styles you've gone deepest on (most total plays via your artists).
+  // Filter to those with ≥ 2 artists so it reads as a "scene" not a one-artist style;
+  // pick a diverse top by skipping near-duplicate label families (Hip-Hop / Hip Hop, etc).
+  const topScenes = [...styleMap.entries()]
+    .filter(([, v]) => v.artists.length >= 2)
+    .map(([style, v]) => ({ style, plays: v.plays,
+      artists: v.artists.slice().sort((a, b) => b.plays - a.plays).slice(0, 2) }))
+    .sort((a, b) => b.plays - a.plays);
+  const seenKey = new Set();
+  const scenes = [];
+  for (const sc of topScenes) {
+    const k = sc.style.toLowerCase().replace(/[^a-z]/g, "");
+    let dup = false;
+    for (const s of seenKey) if (k.startsWith(s) || s.startsWith(k)) { dup = true; break; }
+    if (dup) continue;
+    seenKey.add(k);
+    scenes.push(sc);
+    if (scenes.length >= 8) break;
+  }
   STYLE_ATLAS = {
     uniqueStyles: styleMap.size,
     artistsCovered,
     rarest,
+    scenes,
   };
 }
 
