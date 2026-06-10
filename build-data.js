@@ -737,17 +737,24 @@ if (hasOrigins) {
 // via just 1 or 2 artists. Counts how many distinct styles you've touched overall.
 let STYLE_ATLAS = null;
 if (hasDiscogs) {
-  // style → { artists: [{name, plays, hue}], plays: total }
+  // style → { artists: [{name, plays, hue}], plays: total }.
+  // Iterate ALL artists with Discogs data + meaningful plays (≥ 10) — not just the kept
+  // top 118 ARTISTS. This lets the deeper Discogs enrichment actually deepen the atlas:
+  // a Breakcore artist at rank #800 with 60 plays still contributes to uniqueStyles + rarest.
   const styleMap = new Map();
+  const byNameKept = new Set(ARTISTS.map(a => a.name));
   let artistsCovered = 0;
-  for (const a of ARTISTS) {
-    if (!a.styles || a.styles.length === 0) continue;
+  for (const [name, plays] of artistPlays) {
+    if (plays < 10) continue;
+    const d = DISCOGS[name];
+    if (!d || !d.styles || d.styles.length === 0) continue;
     artistsCovered++;
-    for (const s of a.styles) {
+    const topStyles = d.styles.slice(0, 5).map(s => s[0]);
+    for (const s of topStyles) {
       if (!styleMap.has(s)) styleMap.set(s, { artists: [], plays: 0 });
       const m = styleMap.get(s);
-      m.artists.push({ name: a.name, plays: a.plays, hue: a.hue });
-      m.plays += a.plays;
+      m.artists.push({ name, plays, hue: hueFor(name), kept: byNameKept.has(name) });
+      m.plays += plays;
     }
   }
   // rarest = styles with ≤ 2 artists in YOUR library, ranked by your play volume.
