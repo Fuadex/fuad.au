@@ -70,9 +70,9 @@ function StoriesView({ t, go }) {
                 in the entire world. You've played them <em>{fmt(deepest.plays)}</em> times.
               </div>
               <div className="st-sub">
-                Your charts lean on giants — a typical play is a ~{fmt(U.medianListeners)}-listener artist — but the edges run deep:
-                {" "}{Math.round(U.share50k * 100)}% of everything you play is from acts under 50k listeners, {Math.round(U.share10k * 100)}% under 10k.
-                The deepest cuts in your rotation:
+                That's volume, not taste — your charts lean on a few giants (a typical <em>play</em> is a ~{fmt(U.medianListeners)}-listener artist).
+                But of the {fmt(U.artistsCovered)} artists you actually play, <b style={{ color: "var(--ink)" }}>{Math.round(U.artistShare50k * 100)}% sit under 50k listeners</b> and {Math.round(U.artistShare10k * 100)}% under 10k —
+                the median one has just {fmt(U.medianArtistListeners)}. The depth is in the breadth. Your deepest cuts:
               </div>
               <div className="st-ug-cuts">
                 {U.deepCuts.map(c => (
