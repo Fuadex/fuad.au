@@ -33,6 +33,7 @@ function RotationApp() {
   const [city, setCity] = React.useState("Tokyo");
   const [searchOpen, setSearchOpen] = React.useState(false);
   const R = window.ROTATION;
+  const live = useLiveNow();
 
   const go = React.useCallback((view, id) => {
     setPop(null);
@@ -85,8 +86,9 @@ function RotationApp() {
             </svg>
             <span>Search</span>
           </button>
-          <div className="r-live" onClick={() => go("artist", R.NOW.artistId)} style={{ cursor: "pointer" }}>
-            <span className="dot" /> <b>{R.NOW.artist}</b> — {R.NOW.track}
+          <div className="r-live" onClick={() => go("artist", live.artistId)} style={{ cursor: "pointer" }}>
+            <span className="dot" /> <b>{live.artist}</b> — {live.track}
+            {live.nowplaying && <span className="r-np-tag">live</span>}
           </div>
         </div>
       </header>
@@ -142,6 +144,8 @@ function RotationApp() {
           color: var(--ink-dim); font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
           text-transform: uppercase; cursor: pointer; transition: color .15s, border-color .15s; }
         .r-search-btn:hover { color: var(--ink); border-color: var(--ink-faint); }
+        .r-np-tag { font-family: var(--mono); font-size: 8px; letter-spacing: .14em; text-transform: uppercase;
+          color: #0c0a08; background: var(--accent); border-radius: 3px; padding: 1px 4px; margin-left: 7px; vertical-align: 1px; }
         .r-foot { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
           padding: 24px var(--pad); border-top: 1px solid var(--rule); font-family: var(--mono);
           font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }

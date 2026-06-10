@@ -1,0 +1,32 @@
+name: Sync last.fm live data
+
+on:
+  schedule:
+    - cron: "17 6 * * *"   # daily ~06:17 UTC
+  workflow_dispatch: {}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Generate live snapshot
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+        run: node sync-live.js
+      - name: Commit if changed
+        run: |
+          git config user.name "rotation-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add live-data.js
+          if git diff --staged --quiet; then
+            echo "no change"
+          else
+            git commit -m "chore: daily last.fm live sync"
+            git push
+          fi

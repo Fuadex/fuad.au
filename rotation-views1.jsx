@@ -25,9 +25,10 @@ function OverviewView({ t, go }) {
   const R = window.ROTATION;
   const T = R.TOTALS;
   const [ref, seen] = useInView();
-  const scrob = useCountUp(T.scrobbles, 1400, seen);
+  const liveTotal = (window.ROTATION_LIVE && window.ROTATION_LIVE.total) || T.scrobbles;
+  const scrob = useCountUp(liveTotal, 1400, seen);
   const hrs = useCountUp(T.listeningHours, 1400, seen);
-  const now = R.NOW; const nowArtist = R.byId[now.artistId] || { hue: 200, tags: [] };
+  const now = useLiveNow(); const nowArtist = R.byId[now.artistId] || { hue: 200, tags: [] };
 
   // 26-week scrobble trend (real if the build provides it)
   const trend = React.useMemo(() => R.TREND || Array.from({ length: 26 }, (_, i) =>
@@ -65,7 +66,7 @@ function OverviewView({ t, go }) {
             </div>
           </div>
           <div style={{ minWidth: 0 }}>
-            <div className="r-live" style={{ marginBottom: 9 }}><span className="dot" /> Now playing</div>
+            <div className="r-live" style={{ marginBottom: 9 }}><span className="dot" /> {now.nowplaying ? "Now playing" : "Last played"}</div>
             <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22, lineHeight: 1.05 }}>{now.track}</div>
             <div style={{ color: "var(--ink-soft)", fontSize: 13, marginTop: 4 }}>{now.artist} — <span style={{ color: "var(--ink-faint)" }}>{now.album}</span></div>
             <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
