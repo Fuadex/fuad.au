@@ -18,6 +18,7 @@ const ACCENTS = [
 
 const NAV = [
   ["overview", "Overview"],
+  ["stories", "Stories"],
   ["charts", "Charts"],
   ["clock", "Clock"],
   ["sound", "Sound Map"],
@@ -30,6 +31,7 @@ function RotationApp() {
   const [route, setRoute] = React.useState({ view: "overview", id: null });
   const [pop, setPop] = React.useState(null);
   const [city, setCity] = React.useState("Tokyo");
+  const [searchOpen, setSearchOpen] = React.useState(false);
   const R = window.ROTATION;
 
   const go = React.useCallback((view, id) => {
@@ -43,6 +45,19 @@ function RotationApp() {
     const clr = () => setPop(null);
     window.addEventListener("scroll", clr, { passive: true });
     return () => window.removeEventListener("scroll", clr);
+  }, []);
+
+  // "/" opens artist search (unless typing in a field)
+  React.useEffect(() => {
+    const onKey = (e) => {
+      const tag = (e.target.tagName || "").toLowerCase();
+      if (e.key === "/" && tag !== "input" && tag !== "textarea") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
 
   const v = route.view;
@@ -64,6 +79,12 @@ function RotationApp() {
           ))}
         </nav>
         <div className="right">
+          <button className="r-search-btn" onClick={() => setSearchOpen(true)} title="Search artists ( / )">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
+              <circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" />
+            </svg>
+            <span>Search</span>
+          </button>
           <div className="r-live" onClick={() => go("artist", R.NOW.artistId)} style={{ cursor: "pointer" }}>
             <span className="dot" /> <b>{R.NOW.artist}</b> — {R.NOW.track}
           </div>
@@ -71,6 +92,7 @@ function RotationApp() {
       </header>
 
       {v === "overview" && <OverviewView t={t} go={go} />}
+      {v === "stories" && <StoriesView t={t} go={go} />}
       {v === "charts" && <ChartsView t={t} go={go} setPop={setPop} />}
       {v === "clock" && <ClockView t={t} setPop={setPop} />}
       {v === "sound" && <SoundMapView t={t} setPop={setPop} />}
@@ -86,6 +108,7 @@ function RotationApp() {
       </footer>
 
       <Popover data={pop} />
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} go={go} />
 
       <TweaksPanel>
         <TweakSection label="Identity" />
@@ -113,6 +136,12 @@ function RotationApp() {
       </TweaksPanel>
 
       <style>{`
+        .r-head .right { display: flex; align-items: center; gap: 10px; }
+        .r-search-btn { display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px;
+          background: transparent; border: 1px solid var(--rule); border-radius: 999px;
+          color: var(--ink-dim); font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+          text-transform: uppercase; cursor: pointer; transition: color .15s, border-color .15s; }
+        .r-search-btn:hover { color: var(--ink); border-color: var(--ink-faint); }
         .r-foot { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
           padding: 24px var(--pad); border-top: 1px solid var(--rule); font-family: var(--mono);
           font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }

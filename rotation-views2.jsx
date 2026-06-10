@@ -29,7 +29,7 @@ function SoundMapView({ t, setPop }) {
       </div>
 
       {mode === "map" && (
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 210px", gap: "var(--gap)", alignItems: "start" }}>
+        <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 210px", gap: "var(--gap)", alignItems: "start" }}>
           <div className="r-card" style={{ padding: 0, position: "relative", overflow: "hidden" }}>
             <SoundScatter subs={allSubs} maxW={maxW} seen={seen} activeFam={activeFam}
               expressive={t.chart === "expressive"} setPop={setPop} />
@@ -290,7 +290,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "260px 1fr", gap: "var(--gap)", alignItems: "start" }}>
+      <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "260px 1fr", gap: "var(--gap)", alignItems: "start" }}>
         {/* sound DNA */}
         <div className="r-card" style={{ padding: 18 }}>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
@@ -331,7 +331,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           </div>
 
           {/* top tracks + albums */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--gap)" }}>
+          <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--gap)" }}>
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Top tracks</b></span></div>
               {(tracks.length ? tracks : [{ id: "x", title: "—", plays: 0 }]).map((tr, i) => (
@@ -431,7 +431,7 @@ function LiveView({ t, go, city, setCity }) {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(380px,1fr))", gap: "var(--gap)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(380px,100%),1fr))", gap: "var(--gap)" }}>
         <div className="r-card" style={{ padding: "8px 18px 14px" }}>
           <div className="r-card-h" style={{ padding: "12px 0 8px" }}><span className="lbl"><b>From your library</b></span>
             <span className="meta">{yours.length} dates</span></div>

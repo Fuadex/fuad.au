@@ -54,7 +54,7 @@ function OverviewView({ t, go }) {
       </div>
 
       {/* bento */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
+      <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
         {/* now playing */}
         <div className="r-card" style={{ gridColumn: "span 5", padding: 18, display: "flex", gap: 16, alignItems: "center", minWidth: 0 }}>
           <div style={{ position: "relative" }}>
@@ -97,7 +97,7 @@ function OverviewView({ t, go }) {
         </div>
 
         {/* stat strip */}
-        <div className="r-card" style={{ gridColumn: "span 8", padding: 20, display: "grid",
+        <div className="r-card m-2col" style={{ gridColumn: "span 8", padding: 20, display: "grid",
           gridTemplateColumns: "repeat(4,1fr)", gap: 18, alignItems: "center" }}>
           <Stat n={fmt(Math.round(hrs))} sub="hours listened" />
           <Stat n={fmt(T.artists)} sub="distinct artists" />
@@ -342,7 +342,7 @@ function ClockView({ t, setPop }) {
           <b> {peakDay} nights</b> and the small hours run deepest.</p>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 240px", gap: "var(--gap)", alignItems: "start" }}>
+      <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 240px", gap: "var(--gap)", alignItems: "start" }}>
         <div className="r-card" style={{ padding: "20px 22px 16px" }}>
           {/* hour axis */}
           <div style={{ display: "grid", gridTemplateColumns: "34px repeat(24, 1fr)", gap: 3, marginBottom: 5 }}>
