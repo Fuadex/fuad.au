@@ -160,6 +160,18 @@ const FAMILIES = [
 ];
 function classifyTag(tag) { for (const f of FAMILIES) if (f.kw.test(tag)) return f; return null; }
 
+// umbrella tags too broad to be interesting — kept out of the Sound Map + artist chips
+const GENERIC = new Set([
+  "rock", "metal", "pop", "electronic", "electronica", "alternative", "alternative rock",
+  "indie", "indie rock", "hard rock", "classic rock", "pop rock", "rock and roll",
+  "british", "american", "uk", "usa", "german", "polish", "australian",
+]);
+const niceTags = (name) => {
+  const all = cachedTags(name).map(t => t[0]);
+  const specific = all.filter(t => !GENERIC.has(t));
+  return (specific.length ? specific : all).slice(0, 4);
+};
+
 // ─────────── read + aggregate ───────────
 const raw = fs.readFileSync(CSV_PATH, "utf8");
 const lines = raw.split(/\r?\n/).filter(l => l.trim());
@@ -243,7 +255,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     id: slug(name), rank: i + 1, name, plays,
     hue: meta.hue !== undefined ? meta.hue : hueOf(name),
     country: meta.country || "",
-    tags: meta.tags || cachedTags(name).map(t => t[0]).slice(0, 4),
+    tags: meta.tags || niceTags(name),
     similar: (meta.similar || []).map(slug), similarNames: meta.similar || [],
     audio: meta.audio
       ? { energy: meta.audio[0], valence: meta.audio[1], acoustic: meta.audio[2], tempo: meta.audio[3], dance: meta.audio[4], instr: meta.audio[5] }
@@ -475,6 +487,7 @@ fs.writeFileSync(path.join(__dirname, "search-index.js"), searchOut, "utf8");
 const tagWeight = new Map(); // tag → play-weighted total across all artists
 for (const [name, plays] of rankedArtists) {
   for (const [tag, count] of cachedTags(name)) {
+    if (GENERIC.has(tag)) continue;
     tagWeight.set(tag, (tagWeight.get(tag) || 0) + plays * ((count || 0) / 100));
   }
 }
@@ -483,7 +496,7 @@ for (const [tag, w] of [...tagWeight.entries()].sort((a, b) => b[1] - a[1])) {
   const f = classifyTag(tag);
   if (!f) continue;
   const arr = famSubs.get(f.family);
-  if (arr.length < 6) arr.push({ name: tag, w: Math.round(w) });
+  if (arr.length < 8) arr.push({ name: tag, w: Math.round(w) });
 }
 const tagHash = (s) => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h; };
 const GENRES_REAL = FAMILIES.map(f => ({
