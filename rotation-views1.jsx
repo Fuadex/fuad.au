@@ -345,6 +345,7 @@ function ClockView({ t, setPop }) {
 
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 240px", gap: "var(--gap)", alignItems: "start" }}>
         <div className="r-card" style={{ padding: "20px 22px 16px" }}>
+         <div className="clk-scroll">
           {/* hour axis */}
           <div style={{ display: "grid", gridTemplateColumns: "34px repeat(24, 1fr)", gap: 3, marginBottom: 5 }}>
             <div />
@@ -378,6 +379,7 @@ function ClockView({ t, setPop }) {
               ))}
             </div>
           </div>
+         </div>
         </div>
 
         {/* side stats */}
@@ -407,7 +409,14 @@ function ClockView({ t, setPop }) {
           </div>
         </div>
       </div>
-      <style>{`@media (max-width: 860px){ .r-view > div[style*="240px"]{ grid-template-columns: 1fr !important; } }`}</style>
+      <style>{`
+        .clk-scroll > div { min-width: 0; }
+        @media (max-width: 860px){ .r-view > div[style*="240px"]{ grid-template-columns: 1fr !important; } }
+        @media (max-width: 560px){
+          .clk-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+          .clk-scroll::-webkit-scrollbar { display: none; }
+          .clk-scroll > div { min-width: 430px; }
+        }`}</style>
     </div>
   );
 }

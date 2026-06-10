@@ -177,9 +177,9 @@ function ErasView({ t, go }) {
           <b> watch the taste migrate</b> from rave-era nu-metal to Tokyo's underground.</p>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "300px 1fr", gap: "var(--gap)", alignItems: "start" }}>
+      <div className="era-grid" style={{ display: "grid", gridTemplateColumns: "300px 1fr", gap: "var(--gap)", alignItems: "start" }}>
         {/* year + headline */}
-        <div className="r-card" style={{ padding: 24, position: "sticky", top: 84 }}>
+        <div className="r-card era-year" style={{ padding: 24, position: "sticky", top: 84 }}>
           <div className="r-stat-n" style={{ fontSize: 76, lineHeight: .9 }}>{era.year}</div>
           <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22, marginTop: 14, lineHeight: 1.1 }}>{headline[0]}</div>
           <div style={{ color: "var(--ink-soft)", fontSize: 13.5, marginTop: 8, lineHeight: 1.5 }}>{headline[1]}</div>
@@ -242,7 +242,11 @@ function ErasView({ t, go }) {
           text-transform: uppercase; padding: 12px; border-radius: 6px; border: 1px solid var(--accent);
           background: var(--accent-bg); color: var(--accent-ink); cursor: pointer; transition: .15s; }
         .r-playbtn:hover { background: var(--accent); color: #0c0a08; }
-        @media (max-width: 860px){ .r-view > div[style*="300px 1fr"]{ grid-template-columns: 1fr !important; } }
+        @media (max-width: 860px){
+          .era-grid { grid-template-columns: 1fr !important; }
+          .era-year { position: static !important; top: auto !important; }
+          .era-year .r-stat-n[style*="76"] { font-size: 58px !important; }
+        }
       `}</style>
     </div>
   );
