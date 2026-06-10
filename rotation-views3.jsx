@@ -497,6 +497,32 @@ function StoriesView({ t, go }) {
           </div>
         </section>
 
+        {/* flameouts — songs that owned a single week and were never replayed (pair with constants) */}
+        {I.FLAMEOUTS && I.FLAMEOUTS.length >= 5 && (
+          <section className="st-card">
+            <div className="st-label">Flameouts</div>
+            <div className="st-title-sm">Songs that owned one week, then vanished.</div>
+            <div className="st-sub" style={{ marginBottom: 14 }}>
+              The opposite of the constants — tracks where 40%+ of every play you ever gave them
+              happened in a single week. A one-off obsession, then silence.
+            </div>
+            <div className="st-life">
+              {I.FLAMEOUTS.map((t, i) => (
+                <div key={t.artist + t.title} className="st-life-row"
+                  data-link={t.kept} onClick={() => t.kept && go("artist", t.artistId)}>
+                  <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)", width: 24 }}>{String(i + 1).padStart(2, "0")}</span>
+                  <GenCover hue={t.hue} name={t.artist} size={36} radius={3} />
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div className="st-row-name" style={{ fontStyle: "italic" }}>{t.title}</div>
+                    <div className="st-row-sub">{t.artist} · {t.peakPlays} of {t.plays} plays in the week of {fmtDate(t.peakWeek)}</div>
+                  </div>
+                  <div className="st-flame-pct" style={{ color: `oklch(0.78 0.14 ${t.hue})` }}>{Math.round(t.peakShare * 100)}%</div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* lifetime tracks — songs that survived every era (year-span first sort, plays tiebreak) */}
         {I.LIFETIME_TRACKS && I.LIFETIME_TRACKS.length >= 5 && (() => {
           const L = I.LIFETIME_TRACKS;
@@ -737,6 +763,7 @@ function StoriesView({ t, go }) {
         .st-geo-flag { font-size: 22px; line-height: 1; flex: none; width: 30px; text-align: center; }
         .st-geo-pct { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--accent); margin-left: auto; flex: none; }
         .st-geo-cities { display: flex; gap: 6px; flex-wrap: wrap; }
+        .st-flame-pct { font-family: var(--serif); font-style: italic; font-size: 18px; flex: none; }
         .st-turn { display: grid; gap: 10px; margin-top: 22px; }
         .st-turn-row { display: grid; grid-template-columns: 160px 1fr 60px; gap: 18px; align-items: center; }
         .st-turn-label { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); letter-spacing: .1em; text-transform: uppercase; }

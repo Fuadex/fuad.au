@@ -515,6 +515,35 @@ for (const [w, W] of albumWeeks) {
 }
 const ALBUM_OBSESSIONS = [...obsByAlbum.values()].sort((a, b) => b.plays - a.plays).slice(0, 8);
 
+// flameouts: tracks where 40%+ of lifetime plays happened in a single week — the songs
+// that exploded then disappeared (opposite of LIFETIME_TRACKS).
+const trackWeekCounts = new Map();
+for (const [artist, , track, ms] of scrobbles) {
+  if (!track) continue;
+  const k = artist + "\x00" + track;
+  const w = Math.floor((ms - WEEK0) / (7 * 86400e3));
+  if (!trackWeekCounts.has(k)) trackWeekCounts.set(k, new Map());
+  const m = trackWeekCounts.get(k);
+  m.set(w, (m.get(w) || 0) + 1);
+}
+const FLAMEOUTS = [...trackPlays.entries()]
+  .filter(([k, p]) => p >= 40 && trackWeekCounts.has(k))
+  .map(([k, plays]) => {
+    const [artist, title] = k.split("\x00");
+    const m = trackWeekCounts.get(k);
+    let peakW = null, peakP = 0;
+    for (const [w, p] of m) if (p > peakP) { peakP = p; peakW = w; }
+    return { artist, title, plays, peakPlays: peakP,
+      peakShare: Math.round(peakP / plays * 1000) / 1000,
+      peakWeek: iso(WEEK0 + peakW * 7 * 86400e3),
+      hue: hueFor(artist), artistId: slug(artist), kept: !!byName[artist] };
+  })
+  // require ≥ 12 weeks past peak — otherwise we surface this-week's discoveries as "flameouts"
+  // that simply haven't had time to be replayed yet (Ecca Vandal trap from 2026-05).
+  .filter(t => t.peakShare >= 0.4 && (newestMs - new Date(t.peakWeek).getTime()) > 84 * 86400e3)
+  .sort((a, b) => b.peakShare - a.peakShare || b.peakPlays - a.peakPlays)
+  .slice(0, 10);
+
 // lifetime tracks: songs played across the most distinct years (the constant companions
 // that survived every era shift). yearSpan = how many calendar years this track was active.
 const trackYears = new Map();
@@ -869,7 +898,7 @@ if (hasDiscogs) {
 }
 
 const INSIGHTS = {
-  MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, INCUBATION, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
+  MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
 };
