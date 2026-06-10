@@ -97,6 +97,69 @@ const META = {};
   ["Crossfaith", 206, "jp", ["metalcore","electronicore","japanese","trance metal"], ["coldrain","Northlane","Bring Me the Horizon","Maximum the Hormone"], [.90,.50,.10,.76,.58,.28]],
 ].forEach(r => { META[r[0]] = { hue: r[1], country: r[2], tags: r[3], similar: r[4], audio: r[5] }; });
 
+// ─────────── real last.fm tags (tag-cache.json, built by enrich-tags.js) ───────────
+const TAG_CACHE_PATH = path.join(__dirname, "tag-cache.json");
+const TAG_CACHE = fs.existsSync(TAG_CACHE_PATH) ? JSON.parse(fs.readFileSync(TAG_CACHE_PATH, "utf8")) : {};
+const hasTags = Object.keys(TAG_CACHE).length > 0;
+const cachedTags = (name) => (TAG_CACHE[name] && TAG_CACHE[name].tags) || []; // [[tag, count 0–100], …]
+const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
+
+// tag → audio-DNA vector. Tag-DERIVED, not measured (last.fm has no audio features);
+// an artist's axes are the play-weighted average of its tags. First bucket wins.
+function tagAxis(t) {
+  if (/thrash|speed metal|death metal|grindcore|grind|black metal|deathcore|powerviolence/.test(t)) return { energy: .96, valence: .28, acoustic: .07, tempo: .9, dance: .15, instr: .35 };
+  if (/breakcore|digital hardcore|gabber|hardcore techno|speedcore/.test(t)) return { energy: .97, valence: .4, acoustic: .05, tempo: .95, dance: .55, instr: .4 };
+  if (/metalcore|post-hardcore|mathcore|screamo|electronicore|deathcore/.test(t)) return { energy: .9, valence: .35, acoustic: .1, tempo: .82, dance: .25, instr: .3 };
+  if (/nu-metal|nu metal|rap metal|funk metal|alternative metal|groove metal|rapcore/.test(t)) return { energy: .85, valence: .42, acoustic: .12, tempo: .7, dance: .3, instr: .25 };
+  if (/industrial|ebm|neue deutsche|aggrotech/.test(t)) return { energy: .82, valence: .35, acoustic: .1, tempo: .68, dance: .42, instr: .4 };
+  if (/djent|progressive metal|post-metal|sludge|doom|drone/.test(t)) return { energy: .72, valence: .3, acoustic: .15, tempo: .5, dance: .12, instr: .55 };
+  if (/heavy metal|power metal|symphonic metal|metal$|^metal/.test(t)) return { energy: .8, valence: .4, acoustic: .12, tempo: .68, dance: .2, instr: .35 };
+  if (/drum and bass|drum n bass|dnb|jungle|breakbeat|big beat/.test(t)) return { energy: .85, valence: .55, acoustic: .07, tempo: .92, dance: .8, instr: .55 };
+  if (/techno|house|trance|electro|edm|rave|hardstyle|dubstep/.test(t)) return { energy: .78, valence: .6, acoustic: .06, tempo: .82, dance: .9, instr: .55 };
+  if (/hyperpop|witch house|glitch|idm|vaporwave/.test(t)) return { energy: .6, valence: .55, acoustic: .12, tempo: .6, dance: .7, instr: .5 };
+  if (/hip-hop|hip hop|rap|boom bap|trap|grime/.test(t)) return { energy: .62, valence: .5, acoustic: .18, tempo: .55, dance: .6, instr: .15 };
+  if (/punk|garage|post-punk|emo|riot grrrl/.test(t)) return { energy: .82, valence: .45, acoustic: .18, tempo: .78, dance: .3, instr: .25 };
+  if (/shoegaze|dream pop|nu-gaze|noise rock|noise/.test(t)) return { energy: .58, valence: .42, acoustic: .25, tempo: .5, dance: .25, instr: .5 };
+  if (/ambient|post-rock|drone|instrumental|classical|soundtrack/.test(t)) return { energy: .35, valence: .45, acoustic: .55, tempo: .35, dance: .1, instr: .9 };
+  if (/folk|acoustic|singer-songwriter|country|americana/.test(t)) return { energy: .35, valence: .5, acoustic: .85, tempo: .4, dance: .2, instr: .35 };
+  if (/synth-pop|synthpop|new wave|art pop|indie pop|electropop|pop$|^pop/.test(t)) return { energy: .55, valence: .68, acoustic: .25, tempo: .6, dance: .65, instr: .3 };
+  if (/alternative rock|indie rock|art rock|grunge|stoner|rock$|^rock/.test(t)) return { energy: .65, valence: .48, acoustic: .3, tempo: .6, dance: .3, instr: .35 };
+  return null; // unknown → neutral
+}
+const NEUTRAL = { energy: .5, valence: .5, acoustic: .5, tempo: .5, dance: .5, instr: .5 };
+function tagAudio(tags) {
+  if (!tags.length) return { ...NEUTRAL };
+  const acc = { energy: 0, valence: 0, acoustic: 0, tempo: 0, dance: 0, instr: 0 };
+  let wsum = 0;
+  for (const [name, count] of tags) {
+    const w = (count || 0) / 100 || 0.01;
+    const v = tagAxis(name) || NEUTRAL;
+    for (const k in acc) acc[k] += v[k] * w;
+    wsum += w;
+  }
+  const out = {};
+  for (const k in acc) out[k] = Math.round(clamp01(acc[k] / wsum) * 100) / 100;
+  return out;
+}
+
+// tag → Sound-Map family. Membership + weights are REAL; x/y is a curated layout
+// (organic↔electronic × calm↔violent) so the scatter stays legible. First match wins.
+const FAMILIES = [
+  { family: "Nu-metal / alt-metal", hue: 24,  cx: .28, cy: .74, kw: /nu-metal|nu metal|rap metal|funk metal|alternative metal|rapcore/ },
+  { family: "Metalcore / -core",    hue: 346, cx: .42, cy: .9,  kw: /metalcore|post-hardcore|deathcore|djent|mathcore|electronicore|screamo/ },
+  { family: "Industrial",           hue: 214, cx: .6,  cy: .76, kw: /industrial|ebm|neue deutsche|aggrotech|cyber/ },
+  { family: "Thrash / heavy",       hue: 4,   cx: .22, cy: .9,  kw: /thrash|heavy metal|groove metal|speed metal|death metal|black metal|doom|sludge|grind|power metal|symphonic metal|metal$|^metal/ },
+  { family: "Prog / alt rock",      hue: 282, cx: .3,  cy: .54, kw: /progressive metal|progressive rock|art rock|alternative rock|post-metal|stoner|grunge|indie rock|psychedelic|hard rock|rock$|^rock/ },
+  { family: "Japanese",             hue: 332, cx: .46, cy: .64, kw: /japanese|j-rock|j-pop|jpop|jrock|visual kei|kawaii|city pop|shibuya/ },
+  { family: "Electronic / DnB",     hue: 190, cx: .84, cy: .64, kw: /drum and bass|drum n bass|dnb|jungle|breakbeat|big beat|techno|house|trance|electro|edm|rave|hardstyle|electronic|idm|downtempo|dubstep/ },
+  { family: "Digital hardcore / hyperpop", hue: 308, cx: .86, cy: .9, kw: /digital hardcore|breakcore|gabber|speedcore|witch house|hyperpop|glitch|vaporwave/ },
+  { family: "Hip-hop",              hue: 46,  cx: .62, cy: .42, kw: /hip-hop|hip hop|rap|boom bap|trap|grime|polish hip/ },
+  { family: "Punk / garage",        hue: 96,  cx: .26, cy: .8,  kw: /punk|garage|post-punk|emo|riot grrrl|hardcore punk/ },
+  { family: "Shoegaze / noise",     hue: 252, cx: .5,  cy: .56, kw: /shoegaze|dream pop|nu-gaze|noise rock|noise|post-rock|ambient/ },
+  { family: "Pop / indie",          hue: 60,  cx: .72, cy: .4,  kw: /synth-pop|synthpop|new wave|art pop|indie pop|electropop|dance-pop|pop$|^pop/ },
+];
+function classifyTag(tag) { for (const f of FAMILIES) if (f.kw.test(tag)) return f; return null; }
+
 // ─────────── read + aggregate ───────────
 const raw = fs.readFileSync(CSV_PATH, "utf8");
 const lines = raw.split(/\r?\n/).filter(l => l.trim());
@@ -180,11 +243,11 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     id: slug(name), rank: i + 1, name, plays,
     hue: meta.hue !== undefined ? meta.hue : hueOf(name),
     country: meta.country || "",
-    tags: meta.tags || [],
+    tags: meta.tags || cachedTags(name).map(t => t[0]).slice(0, 4),
     similar: (meta.similar || []).map(slug), similarNames: meta.similar || [],
     audio: meta.audio
       ? { energy: meta.audio[0], valence: meta.audio[1], acoustic: meta.audio[2], tempo: meta.audio[3], dance: meta.audio[4], instr: meta.audio[5] }
-      : { energy: .5, valence: .5, acoustic: .5, tempo: .5, dance: .5, instr: .5 },
+      : tagAudio(cachedTags(name)),
     era: counts.map(c => c === 0 ? 0 : Math.max(1, Math.round(9 * c / max))),
     firstYear: new Date(firstSeen.get(name)).getUTCFullYear(),
   };
@@ -408,8 +471,32 @@ window.ROTATION_SEARCH = ${JSON.stringify(searchRows)};
 `;
 fs.writeFileSync(path.join(__dirname, "search-index.js"), searchOut, "utf8");
 
-// ─────────── GENRES + CONCERTS (still curated/mock — pending tag enrichment) ───────────
-const GENRES = [
+// ─────────── GENRES — real play-weighted tag aggregation (falls back to curated below) ───────────
+const tagWeight = new Map(); // tag → play-weighted total across all artists
+for (const [name, plays] of rankedArtists) {
+  for (const [tag, count] of cachedTags(name)) {
+    tagWeight.set(tag, (tagWeight.get(tag) || 0) + plays * ((count || 0) / 100));
+  }
+}
+const famSubs = new Map(FAMILIES.map(f => [f.family, []]));
+for (const [tag, w] of [...tagWeight.entries()].sort((a, b) => b[1] - a[1])) {
+  const f = classifyTag(tag);
+  if (!f) continue;
+  const arr = famSubs.get(f.family);
+  if (arr.length < 6) arr.push({ name: tag, w: Math.round(w) });
+}
+const tagHash = (s) => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h; };
+const GENRES_REAL = FAMILIES.map(f => ({
+  family: f.family, hue: f.hue,
+  subs: (famSubs.get(f.family) || []).map(s => ({
+    name: s.name, w: s.w,
+    x: Math.round(clamp01(f.cx + ((tagHash(s.name) % 1000) / 1000 - .5) * 0.16) * 100) / 100,
+    y: Math.round(clamp01(f.cy + ((tagHash(s.name + "y") % 1000) / 1000 - .5) * 0.16) * 100) / 100,
+  })),
+})).filter(f => f.subs.length);
+
+// ─────────── GENRES_CURATED (fallback when tag-cache.json is absent) + CONCERTS ───────────
+const GENRES_CURATED = [
   { family: "Nu-metal", hue: 24, subs: [
     { name: "nu-metal", x: .30, y: .80, w: 2890 },
     { name: "rap metal", x: .36, y: .78, w: 1490 },
@@ -465,6 +552,7 @@ const GENRES = [
     { name: "boom bap", x: .60, y: .40, w: 760 },
   ]},
 ];
+const GENRES = (hasTags && GENRES_REAL.length) ? GENRES_REAL : GENRES_CURATED;
 
 const CITY = {
   "Tokyo": [
@@ -519,7 +607,7 @@ const out = `// ─────────────────────�
 // Rotation — Fuad's listening data (last.fm/user/fuadex)
 // GENERATED by build-data.js from fuadex.csv — do not edit by hand.
 // ${totalScrobbles.toLocaleString("en-US")} scrobbles · ${new Date(oldestMs).toISOString().slice(0, 10)} → ${new Date(newestMs).toISOString().slice(0, 10)} · built ${new Date().toISOString().slice(0, 10)}
-// GENRES + CONCERTS are still curated (pending last.fm tag enrichment).
+// GENRES + per-artist tags/audio-DNA from last.fm tags (${hasTags ? Object.keys(TAG_CACHE).length + " artists cached" : "curated fallback"}). CONCERTS still curated.
 // ────────────────────────────────────────────────────────────────
 window.ROTATION = (function () {
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -538,3 +626,4 @@ console.log(`topDay: ${TOTALS.topDay.date} (${TOTALS.topDay.count}) · streak be
 console.log(`eras: ${ERA_START}–${ERA_END} · ARTISTS kept: ${ARTISTS.length} · ALBUMS kept: ${ALBUMS.length}`);
 console.log(`insights: ${OBSESSIONS.length} obsessions · ${COMEBACKS.length} comebacks · ${WONDERS.length} wonders · ${NIGHT_OWLS.length} night owls · ${MILESTONES.length} milestones`);
 console.log(`search index: ${searchRows.length} artists (${(searchOut.length / 1024).toFixed(0)} KB)`);
+console.log(`genres: ${GENRES === GENRES_REAL ? `REAL from ${Object.keys(TAG_CACHE).length} tagged artists (${GENRES.length} families)` : "curated fallback"}`);
