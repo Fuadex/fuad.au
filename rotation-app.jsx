@@ -81,7 +81,7 @@ function RotationApp() {
       <footer className="r-foot">
         <div>rotation · a companion to <a className="r-link" href="Culture v2.html">Culture</a> · fuad.design / 2026</div>
         <div className="r-foot-links">
-          <span>mock data, real shapes — last.fm · spotify · songkick</span>
+          <span>real scrobbles — last.fm/fuadex · concerts &amp; genres curated</span>
         </div>
       </footer>
 

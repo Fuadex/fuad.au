@@ -27,10 +27,10 @@ function OverviewView({ t, go }) {
   const [ref, seen] = useInView();
   const scrob = useCountUp(T.scrobbles, 1400, seen);
   const hrs = useCountUp(T.listeningHours, 1400, seen);
-  const now = R.NOW; const nowArtist = R.byId[now.artistId];
+  const now = R.NOW; const nowArtist = R.byId[now.artistId] || { hue: 200, tags: [] };
 
-  // believable 26-week scrobble trend
-  const trend = React.useMemo(() => Array.from({ length: 26 }, (_, i) =>
+  // 26-week scrobble trend (real if the build provides it)
+  const trend = React.useMemo(() => R.TREND || Array.from({ length: 26 }, (_, i) =>
     180 + Math.round(Math.sin(i / 3) * 60 + (hashInt("wk" + i, 5) % 90) + i * 3)), []);
   const sinceYears = ((Date.now() - new Date(T.since)) / 3.156e10).toFixed(1);
 
@@ -49,7 +49,7 @@ function OverviewView({ t, go }) {
           <div className="r-kicker">Rotation · since {new Date(T.since).getFullYear()}</div>
           <h1 className="r-title">A life, <em>counted</em><span className="dot">.</span></h1>
         </div>
-        <p className="r-lede">Every track I've played, since a March afternoon eleven years ago —
+        <p className="r-lede">Every track I've played, since the mid-2000s —
           turned into something I can actually <b>look at</b>.</p>
       </div>
 

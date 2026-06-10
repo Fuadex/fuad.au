@@ -170,7 +170,7 @@ function ErasView({ t, go }) {
     <div className="r-view">
       <div className="r-viewhead">
         <div>
-          <div className="r-kicker">Eras · 2014 — 2025</div>
+          <div className="r-kicker">Eras · {eras[0].year} — {eras[eras.length - 1].year}</div>
           <h1 className="r-title">How it <em>changed</em><span className="dot">.</span></h1>
         </div>
         <p className="r-lede">Scrub a decade of scrobbles. The same person at fifteen and at twenty-six —
@@ -260,7 +260,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   }, []);
   const dna = [a.audio.energy, a.audio.valence, a.audio.acoustic, a.audio.tempo, a.audio.dance, a.audio.instr];
   const peakIdx = a.era.indexOf(Math.max(...a.era));
-  const peakYear = 2014 + peakIdx;
+  const peakYear = (R.ERA_START || 2014) + peakIdx;
   const albums = R.ALBUMS.filter(x => x.artistId === a.id).slice(0, 4);
   const tracks = R.TRACKS.filter(x => x.artistId === a.id).slice(0, 5);
   const gigs = R.CONCERTS[city] ? R.CONCERTS[city].filter(g => g.artistId === a.id) : [];
