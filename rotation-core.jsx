@@ -194,10 +194,24 @@ a.r-link:hover { color: var(--ink); }
 @keyframes rFade  { from { opacity: 0; } to { opacity: 1; } }
 
 @media (max-width: 760px) {
-  .r-head { height: auto; flex-wrap: wrap; padding: 10px var(--pad); gap: 10px; }
-  .r-nav { order: 3; width: 100%; overflow-x: auto; flex-wrap: nowrap; }
+  /* reclaim the gutter — 34px eats ~19% of a 360px screen */
+  :root, [data-density="compact"], [data-density="comfy"] { --pad: 16px; --gap: 12px; }
+
+  .r-head { height: auto; flex-wrap: wrap; padding: 9px var(--pad); gap: 9px; }
+  .r-nav { order: 3; width: 100%; overflow-x: auto; flex-wrap: nowrap;
+    margin-left: 0; -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12px, #000 calc(100% - 18px), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 12px, #000 calc(100% - 18px), transparent 100%); }
+  .r-nav button { padding: 9px 11px; }
   .r-head .right { flex: 1; justify-content: flex-end; min-width: 0; }
   .r-head .r-live { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+  .r-wordmark { font-size: 22px; }
+
+  .r-view { padding-top: 22px; padding-bottom: 88px; }
+  .r-viewhead { margin-bottom: 22px; gap: 12px 20px; align-items: flex-start; }
+  .r-title { font-size: clamp(30px, 8.5vw, 42px); }
+  .r-lede { font-size: 14.5px; max-width: none; }
+  .r-seg button { padding: 7px 10px; }
 }
 
 /* mobile grid utilities — inline grid styles win over plain rules, so !important */
