@@ -112,6 +112,23 @@ const STATS = fs.existsSync(STATS_PATH) ? JSON.parse(fs.readFileSync(STATS_PATH,
 const hasStats = Object.keys(STATS).length > 0;
 const listenersOf = (name) => { const s = STATS[name]; return s && s.listeners > 0 ? s.listeners : null; };
 
+// ─────────── Discogs styles/genres (discogs-cache.json, built by enrich-discogs.js) ───────────
+// Per artist: { id, styles: [[name,count],…], genres: [[name,count],…], releases, ambiguous }.
+// Finer-grained than last.fm tags (e.g. "Breakcore", "Synthwave", "Nu Metal", "Drum n Bass").
+const DISCOGS_PATH = path.join(__dirname, "discogs-cache.json");
+const DISCOGS = fs.existsSync(DISCOGS_PATH) ? JSON.parse(fs.readFileSync(DISCOGS_PATH, "utf8")) : {};
+const hasDiscogs = Object.keys(DISCOGS).length > 0;
+function stylesOf(name) {
+  const d = DISCOGS[name];
+  if (!d || !d.styles || d.styles.length === 0) return [];
+  return d.styles.slice(0, 5).map(s => s[0]);
+}
+function dGenresOf(name) {
+  const d = DISCOGS[name];
+  if (!d || !d.genres || d.genres.length === 0) return [];
+  return d.genres.slice(0, 3).map(g => g[0]);
+}
+
 // tag → audio-DNA vector. Tag-DERIVED, not measured (last.fm has no audio features);
 // an artist's axes are the play-weighted average of its tags. First bucket wins.
 function tagAxis(t) {
@@ -271,6 +288,8 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     era: counts.map(c => c === 0 ? 0 : Math.max(1, Math.round(9 * c / max))),
     firstYear: new Date(firstSeen.get(name)).getUTCFullYear(),
     listeners: listenersOf(name),
+    styles: stylesOf(name),
+    discogsGenres: dGenresOf(name),
   };
 });
 const byName = Object.fromEntries(ARTISTS.map(a => [a.name, a]));
@@ -304,6 +323,68 @@ const ERAS = erasRaw.map(({ year, top }) => ({
   year, total: yearTotals.get(year),
   top: top.map(x => ({ id: slug(x.name), name: x.name, hue: hueFor(x.name), plays: x.plays })),
 }));
+
+// ─────────── YEARS (per-year deep aggregates for Year-in-Review) ───────────
+// Second pass over dated scrobbles; only counts the real ones (undated/1970 excluded).
+const _yTracks = new Map(), _yAlbums = new Map(), _yArtistsSet = new Map();
+for (const [artist, album, track, ms] of scrobbles) {
+  const y = new Date(ms).getUTCFullYear();
+  if (!_yTracks.has(y)) { _yTracks.set(y, new Map()); _yAlbums.set(y, new Map()); _yArtistsSet.set(y, new Set()); }
+  if (track) { const k = artist + "\x00" + track; const m = _yTracks.get(y); m.set(k, (m.get(k) || 0) + 1); }
+  if (album) { const k = artist + "\x00" + album; const m = _yAlbums.get(y); m.set(k, (m.get(k) || 0) + 1); }
+  _yArtistsSet.get(y).add(artist);
+}
+function _topEntry(map) {
+  let bestK = null, bestV = 0;
+  for (const [k, v] of map) if (v > bestV) { bestV = v; bestK = k; }
+  return bestK ? [bestK, bestV] : null;
+}
+const YEARS = years.filter(y => _yTracks.has(y)).map(year => {
+  const tt = _topEntry(_yTracks.get(year));
+  const ta = _topEntry(_yAlbums.get(year));
+  // top artist that year
+  const ranked = [...(artistYear.entries())]
+    .map(([n, m]) => [n, m.get(year) || 0]).filter(x => x[1] > 0).sort((a, b) => b[1] - a[1]);
+  const topArt = ranked[0] || [null, 0];
+  // peak day in this year
+  let peakDate = null, peakPlays = 0, activeDays = 0;
+  for (const [date, n] of dayCounts) {
+    if (date.slice(0, 4) !== String(year)) continue;
+    activeDays++;
+    if (n > peakPlays) { peakPlays = n; peakDate = date; }
+  }
+  // discoveries: artists whose firstSeen falls in this year, ranked by their plays this year
+  const disc = [];
+  for (const [n, ms] of firstSeen) {
+    if (new Date(ms).getUTCFullYear() !== year) continue;
+    const p = (artistYear.get(n) || new Map()).get(year) || 0;
+    if (p > 0) disc.push({ name: n, plays: p, hue: hueFor(n) });
+  }
+  disc.sort((a, b) => b.plays - a.plays);
+  // biggest YoY gainer: artists with the largest +Δ vs prior year (require ≥ 30 plays this year)
+  let gainer = null;
+  for (const [n, m] of artistYear) {
+    const cur = m.get(year) || 0;
+    const prev = m.get(year - 1) || 0;
+    if (cur < 30) continue;
+    const delta = cur - prev;
+    if (!gainer || delta > gainer.delta) gainer = { name: n, plays: cur, prev, delta, hue: hueFor(n) };
+  }
+  return {
+    year,
+    plays: yearTotals.get(year),
+    artists: _yArtistsSet.get(year).size,
+    tracks: _yTracks.get(year).size,
+    hours: Math.round(yearTotals.get(year) * 3.5 / 60),
+    activeDays,
+    peakDay: peakDate ? { date: peakDate, plays: peakPlays } : null,
+    topTrack: tt ? (() => { const [a, t] = tt[0].split("\x00"); return { artist: a, title: t, plays: tt[1], hue: hueFor(a) }; })() : null,
+    topAlbum: ta ? (() => { const [a, t] = ta[0].split("\x00"); return { artist: a, title: t, plays: ta[1], hue: hueFor(a) }; })() : null,
+    topArtist: topArt[0] ? { name: topArt[0], plays: topArt[1], hue: hueFor(topArt[0]) } : null,
+    discoveries: disc.slice(0, 3),
+    gainer,
+  };
+});
 
 // ─────────── TOTALS ───────────
 const dayKeys = [...dayCounts.keys()].sort();
@@ -663,7 +744,7 @@ for (const [city, list] of Object.entries(CITY)) {
 
 // ─────────── emit ───────────
 const DATA = {
-  ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, CONCERTS,
+  ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
   CITIES: Object.keys(CITY), TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS,
 };
 const out = `// ────────────────────────────────────────────────────────────────
