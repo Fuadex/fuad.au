@@ -17,6 +17,11 @@ function StoriesView({ t, go }) {
   const goIf = (name) => { const id = R.slug(name); if (R.byId[id]) go("artist", id); };
   const clickable = (name) => !!R.byId[R.slug(name)];
 
+  // year-in-review state — default to most recent year with real listening volume
+  const realYears = (R.YEARS || []).filter(y => y.plays > 500);
+  const [yi, setYi] = React.useState(realYears.length - 1);
+  const yr = realYears[yi];
+
   const today = new Date();
   const todayKey = String(today.getMonth() + 1).padStart(2, "0") + "-" + String(today.getDate()).padStart(2, "0");
   const otd = I.ON_THIS_DAY[todayKey];
@@ -88,6 +93,82 @@ function StoriesView({ t, go }) {
             </section>
           );
         })()}
+
+        {/* year in review */}
+        {yr && (
+          <section className="st-card st-hero">
+            <div className="st-yir-head">
+              <div className="st-label" style={{ marginBottom: 0 }}>A year in review</div>
+              <div className="st-yir-nav">
+                <button onClick={() => setYi(Math.max(0, yi - 1))} disabled={yi === 0} aria-label="previous year">‹</button>
+                <span className="st-yir-y">{yr.year}</span>
+                <button onClick={() => setYi(Math.min(realYears.length - 1, yi + 1))} disabled={yi === realYears.length - 1} aria-label="next year">›</button>
+              </div>
+            </div>
+            {yr.topArtist && (
+              <div className="st-big" data-link={clickable(yr.topArtist.name)} onClick={() => goIf(yr.topArtist.name)}>
+                <em style={{ color: `oklch(0.78 0.14 ${yr.topArtist.hue})` }}>{yr.topArtist.name}</em>'s year.
+              </div>
+            )}
+            <div className="st-sub">
+              {yr.topArtist ? <>You played them <em>{fmt(yr.topArtist.plays)}</em> times in {yr.year} — more than anyone else. </> : null}
+              {yr.activeDays} active days · roughly <em>{fmt(yr.hours)} hours</em> of music.
+            </div>
+
+            <div className="st-yir-stats">
+              <div><div className="st-yir-n">{fmt(yr.plays)}</div><div className="st-yir-l">plays</div></div>
+              <div><div className="st-yir-n">{fmt(yr.artists)}</div><div className="st-yir-l">artists</div></div>
+              <div><div className="st-yir-n">{fmt(yr.tracks)}</div><div className="st-yir-l">tracks</div></div>
+              {yr.peakDay && <div><div className="st-yir-n">{yr.peakDay.plays}</div><div className="st-yir-l">peak · {fmtDate(yr.peakDay.date)}</div></div>}
+            </div>
+
+            <div className="st-yir-grid">
+              <div>
+                <div className="st-yir-h">On rotation</div>
+                {yr.topTrack && (
+                  <div className="st-row" data-link={clickable(yr.topTrack.artist)} onClick={() => goIf(yr.topTrack.artist)} style={{ marginBottom: 8 }}>
+                    <GenCover hue={yr.topTrack.hue} name={yr.topTrack.artist} size={40} radius={4} />
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div className="st-row-name">{yr.topTrack.title}</div>
+                      <div className="st-row-sub">{yr.topTrack.artist} · {yr.topTrack.plays} plays · top track</div>
+                    </div>
+                  </div>
+                )}
+                {yr.topAlbum && (
+                  <div className="st-row" data-link={clickable(yr.topAlbum.artist)} onClick={() => goIf(yr.topAlbum.artist)}>
+                    <GenCover hue={yr.topAlbum.hue} name={yr.topAlbum.artist} size={40} radius={4} />
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div className="st-row-name">{yr.topAlbum.title}</div>
+                      <div className="st-row-sub">{yr.topAlbum.artist} · {yr.topAlbum.plays} plays · top album</div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div>
+                <div className="st-yir-h">New that year</div>
+                {yr.discoveries.length === 0 && <div className="st-row-sub">No new artists ranked this year.</div>}
+                {yr.discoveries.map(d => (
+                  <div key={d.name} className="st-row" data-link={clickable(d.name)} onClick={() => goIf(d.name)} style={{ marginBottom: 6 }}>
+                    <GenCover hue={d.hue} name={d.name} size={36} radius={4} />
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div className="st-row-name">{d.name}</div>
+                      <div className="st-row-sub">{d.plays} plays — first heard this year</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {yr.gainer && yr.gainer.delta > 50 && (
+              <div className="st-yir-jump" data-link={clickable(yr.gainer.name)} onClick={() => goIf(yr.gainer.name)}>
+                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>Biggest jump</span>
+                &nbsp;&nbsp;
+                <b style={{ color: `oklch(0.78 0.14 ${yr.gainer.hue})` }}>{yr.gainer.name}</b>
+                <span style={{ color: "var(--ink-soft)" }}> · {yr.gainer.prev} → <em>{yr.gainer.plays}</em> plays (+{yr.gainer.delta} YoY)</span>
+              </div>
+            )}
+          </section>
+        )}
 
         {/* streak */}
         <section className="st-card st-hero">
@@ -241,6 +322,28 @@ function StoriesView({ t, go }) {
           border-radius: 6px; transition: border-color .15s; }
         .st-ug-cut[data-link="true"] { cursor: pointer; }
         .st-ug-cut[data-link="true"]:hover { border-color: var(--accent-dim); }
+        .st-yir-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+        .st-yir-nav { display: flex; align-items: center; gap: 6px; }
+        .st-yir-nav button { width: 28px; height: 28px; border: 1px solid var(--line); background: transparent; color: var(--ink-soft);
+          border-radius: 5px; font-size: 16px; line-height: 1; cursor: pointer; transition: .15s; }
+        .st-yir-nav button:hover:not(:disabled) { border-color: var(--accent-dim); color: var(--ink); }
+        .st-yir-nav button:disabled { opacity: .3; cursor: default; }
+        .st-yir-y { font-family: var(--serif); font-style: italic; font-size: 22px; min-width: 64px; text-align: center; }
+        .st-yir-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 22px;
+          padding: 14px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+        .st-yir-n { font-family: var(--serif); font-size: clamp(20px, 2.4vw, 28px); line-height: 1; }
+        .st-yir-l { font-family: var(--mono); font-size: 9.5px; color: var(--ink-faint); letter-spacing: .12em;
+          text-transform: uppercase; margin-top: 6px; }
+        .st-yir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 18px; }
+        .st-yir-h { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: .12em;
+          text-transform: uppercase; margin-bottom: 10px; }
+        .st-yir-jump { margin-top: 16px; padding: 11px 14px; background: var(--bg-3); border-radius: 5px; font-size: 13.5px; cursor: default; }
+        .st-yir-jump[data-link="true"] { cursor: pointer; }
+        .st-yir-jump[data-link="true"]:hover { background: var(--bg-4, var(--bg-3)); }
+        @media (max-width: 640px) {
+          .st-yir-stats { grid-template-columns: repeat(2, 1fr); gap: 14px 18px; }
+          .st-yir-grid { grid-template-columns: 1fr; gap: 18px; }
+        }
         .st-miles { display: grid; gap: 10px; }
         .st-mile { display: flex; gap: 13px; align-items: center; padding: 6px 8px; margin: 0 -8px; border-radius: 6px; }
         .st-mile[data-link="true"] { cursor: pointer; }
