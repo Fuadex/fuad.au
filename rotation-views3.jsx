@@ -265,6 +265,48 @@ function StoriesView({ t, go }) {
           );
         })()}
 
+        {/* gateways — for each top country, the first artist that brought it into the library */}
+        {I.GEOGRAPHY && I.GEOGRAPHY.gateways && I.GEOGRAPHY.gateways.length >= 5 && (() => {
+          const G = I.GEOGRAPHY.gateways;
+          // pick a hero: latest gateway with substantial follow-on plays (the "lane that exploded")
+          const hero = G.slice().filter(g => g.plays >= 50)
+            .sort((a, b) => b.firstHeard.localeCompare(a.firstHeard))[0] || G[G.length - 1];
+          const fmtMonth = (iso) => {
+            const d = new Date(iso);
+            return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getUTCMonth()] + " " + d.getUTCFullYear();
+          };
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Gateways</div>
+              <div className="st-big">
+                {hero.flag} <em>{hero.country}</em> arrived <em>{fmtMonth(hero.firstHeard)}</em> via
+                {" "}<span data-link={hero.kept} onClick={() => hero.kept && go("artist", hero.artistId)}
+                  style={{ color: `oklch(0.78 0.14 ${hero.hue})`, cursor: hero.kept ? "pointer" : "default", fontStyle: "italic" }}>{hero.artist}</span>.
+              </div>
+              <div className="st-sub">
+                For each lane in the library, the first artist who opened the door. Some gateways stayed quiet
+                (one-offs like {G.find(g => g.plays < 50) ? `${G.find(g => g.plays < 50).artist} for ${G.find(g => g.plays < 50).flag}` : "passing visitors"}),
+                others kicked off years of obsession.
+              </div>
+              <div className="st-gates">
+                {G.map(g => (
+                  <div key={g.code} className="st-gate" data-link={g.kept} onClick={() => g.kept && go("artist", g.artistId)}>
+                    <div className="st-gate-stamp">
+                      <span className="st-gate-flag">{g.flag}</span>
+                      <span className="st-gate-date">{fmtMonth(g.firstHeard)}</span>
+                    </div>
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div className="st-gate-country">{g.country}</div>
+                      <div className="st-row-name" style={{ fontSize: 14, marginTop: 2 }}>via {g.artist}</div>
+                    </div>
+                    <div className="st-gate-n">{fmt(g.plays)} <small style={{ color: "var(--ink-faint)" }}>plays since</small></div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* taste arc — how the geography moved across years (origins × years) */}
         {I.GEOGRAPHY && I.GEOGRAPHY.arc && I.GEOGRAPHY.arc.years.length >= 10 && (() => {
           const A = I.GEOGRAPHY.arc;
@@ -615,6 +657,20 @@ function StoriesView({ t, go }) {
         .st-geo-flag { font-size: 22px; line-height: 1; flex: none; width: 30px; text-align: center; }
         .st-geo-pct { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--accent); margin-left: auto; flex: none; }
         .st-geo-cities { display: flex; gap: 6px; flex-wrap: wrap; }
+        .st-gates { display: grid; gap: 4px; margin-top: 18px; }
+        .st-gate { display: grid; grid-template-columns: 110px 1fr auto; gap: 16px; align-items: center;
+          padding: 10px 12px; margin: 0 -12px; border-radius: 5px; }
+        .st-gate[data-link="true"] { cursor: pointer; }
+        .st-gate[data-link="true"]:hover { background: var(--bg-3); }
+        .st-gate-stamp { display: flex; align-items: center; gap: 8px; }
+        .st-gate-flag { font-size: 20px; line-height: 1; }
+        .st-gate-date { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); letter-spacing: .08em; text-transform: uppercase; }
+        .st-gate-country { font-family: var(--serif); font-style: italic; font-size: 16px; }
+        .st-gate-n { font-family: var(--serif); font-size: 15px; flex: none; }
+        @media (max-width: 640px) {
+          .st-gate { grid-template-columns: auto 1fr auto; gap: 10px; }
+          .st-gate-stamp { flex-direction: column; align-items: flex-start; gap: 2px; }
+        }
         .st-bridges { display: grid; gap: 8px; }
         .st-bridge { display: flex; gap: 12px; align-items: center; padding: 9px 11px; border: 1px solid var(--rule); border-radius: 6px; transition: border-color .15s; }
         .st-bridge[data-link="true"] { cursor: pointer; }
