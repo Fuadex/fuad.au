@@ -280,11 +280,18 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
       <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 30 }}>
         <GenCover hue={a.hue} name={a.name} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
-          <div className="r-kicker">#{String(a.rank).padStart(2, "0")} all time · {a.country.toUpperCase()}</div>
+          <div className="r-kicker">#{String(a.rank).padStart(2, "0")} all time
+            {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
           <div style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap" }}>
             {a.tags.map(g => <span key={g} className="r-chip">{g}</span>)}
           </div>
+          {a.styles && a.styles.length > 0 && (
+            <div style={{ display: "flex", gap: 7, marginTop: 8, flexWrap: "wrap", alignItems: "center" }}>
+              <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>discogs</span>
+              {a.styles.map(s => <span key={s} className="r-chip" style={{ fontSize: 10.5, padding: "3px 8px", background: "transparent", borderColor: "var(--line)" }}>{s}</span>)}
+            </div>
+          )}
         </div>
         <div style={{ display: "flex", gap: 26 }}>
           <div><div className="r-stat-n" style={{ fontSize: 38 }}>{fmt(a.plays)}</div>
