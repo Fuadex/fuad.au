@@ -170,6 +170,42 @@ function StoriesView({ t, go }) {
           </section>
         )}
 
+        {/* style atlas — discogs styles only you (or 1-2 artists) keep alive in this library */}
+        {I.STYLE_ATLAS && I.STYLE_ATLAS.rarest && I.STYLE_ATLAS.rarest.length > 3 && (() => {
+          const S = I.STYLE_ATLAS;
+          const sole = S.rarest.filter(r => r.artists.length === 1).length;
+          return (
+            <section className="st-card">
+              <div className="st-label">Style atlas · {fmt(S.uniqueStyles)} distinct Discogs styles</div>
+              <div className="st-title-sm">Only one or two artists hold these for you.</div>
+              <div className="st-sub" style={{ marginBottom: 14 }}>
+                Across {S.artistsCovered} of your artists indexed on Discogs, <em>{S.uniqueStyles}</em> distinct styles —
+                {sole > 0 && <> and <em>{sole}</em> of these top ones live on a single artist in your library. </>}
+                The styles you've gone deepest on with the narrowest set of carriers:
+              </div>
+              <div className="st-atlas">
+                {S.rarest.map(r => (
+                  <div key={r.style} className="st-atlas-row">
+                    <div className="st-atlas-style">{r.style}</div>
+                    <div className="st-atlas-via">
+                      via {r.artists.map((a, i) => (
+                        <React.Fragment key={a.name}>
+                          {i > 0 ? <span style={{ color: "var(--ink-faint)" }}> + </span> : null}
+                          <span data-link={clickable(a.name)} onClick={() => goIf(a.name)}
+                            style={{ color: `oklch(0.78 0.14 ${a.hue})`, cursor: clickable(a.name) ? "pointer" : "default", fontWeight: 500 }}>
+                            {a.name}
+                          </span>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                    <div className="st-atlas-n">{fmt(r.plays)}</div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* taste geography */}
         {I.GEOGRAPHY && I.GEOGRAPHY.coverage > 0.3 && (() => {
           const G = I.GEOGRAPHY;
@@ -393,6 +429,17 @@ function StoriesView({ t, go }) {
         .st-geo-flag { font-size: 22px; line-height: 1; flex: none; width: 30px; text-align: center; }
         .st-geo-pct { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--accent); margin-left: auto; flex: none; }
         .st-geo-cities { display: flex; gap: 6px; flex-wrap: wrap; }
+        .st-atlas { display: grid; gap: 4px; }
+        .st-atlas-row { display: grid; grid-template-columns: minmax(140px, 1fr) 2fr auto; gap: 16px;
+          align-items: baseline; padding: 9px 10px; margin: 0 -10px; border-radius: 5px; font-size: 13px; }
+        .st-atlas-row:hover { background: var(--bg-3); }
+        .st-atlas-style { font-family: var(--serif); font-style: italic; font-size: 17px; }
+        .st-atlas-via { font-size: 12.5px; color: var(--ink-soft); }
+        .st-atlas-n { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
+        @media (max-width: 640px) {
+          .st-atlas-row { grid-template-columns: 1fr auto; gap: 6px 12px; }
+          .st-atlas-via { grid-column: 1 / -1; font-size: 12px; }
+        }
         @media (max-width: 640px) {
           .st-yir-stats { grid-template-columns: repeat(2, 1fr); gap: 14px 18px; }
           .st-yir-grid { grid-template-columns: 1fr; gap: 18px; }

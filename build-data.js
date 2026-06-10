@@ -652,10 +652,42 @@ if (hasOrigins) {
   };
 }
 
+// ─────────── STYLE ATLAS (Discogs styles unique-in-library) ───────────
+// "Only-in-your-library" styles — Discogs styles that exist in your collection
+// via just 1 or 2 artists. Counts how many distinct styles you've touched overall.
+let STYLE_ATLAS = null;
+if (hasDiscogs) {
+  // style → { artists: [{name, plays, hue}], plays: total }
+  const styleMap = new Map();
+  let artistsCovered = 0;
+  for (const a of ARTISTS) {
+    if (!a.styles || a.styles.length === 0) continue;
+    artistsCovered++;
+    for (const s of a.styles) {
+      if (!styleMap.has(s)) styleMap.set(s, { artists: [], plays: 0 });
+      const m = styleMap.get(s);
+      m.artists.push({ name: a.name, plays: a.plays, hue: a.hue });
+      m.plays += a.plays;
+    }
+  }
+  // rarest = styles with ≤ 2 artists in YOUR library, ranked by your play volume.
+  // (signal: you went deep on a niche style only 1-2 artists carry for you.)
+  const rarest = [...styleMap.entries()]
+    .filter(([, v]) => v.artists.length <= 2)
+    .map(([style, v]) => ({ style, plays: v.plays, artists: v.artists }))
+    .sort((a, b) => b.plays - a.plays)
+    .slice(0, 8);
+  STYLE_ATLAS = {
+    uniqueStyles: styleMap.size,
+    artistsCovered,
+    rarest,
+  };
+}
+
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
   STREAK: { best, start: bestStart, end: bestEnd, current },
-  UNDERGROUND, GEOGRAPHY,
+  UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
 };
 
 // ─────────── SEARCH INDEX (separate lazy-loaded file) ───────────
