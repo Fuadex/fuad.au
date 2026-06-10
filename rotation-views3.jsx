@@ -197,6 +197,38 @@ function StoriesView({ t, go }) {
           </section>
         )}
 
+        {/* bridges — artists carrying ≥ 2 of your top scenes */}
+        {I.STYLE_ATLAS && I.STYLE_ATLAS.bridges && I.STYLE_ATLAS.bridges.length >= 4 && (
+          <section className="st-card">
+            <div className="st-label">Bridge artists</div>
+            <div className="st-title-sm">Who connects your scenes.</div>
+            <div className="st-sub" style={{ marginBottom: 14 }}>
+              The connector nodes — artists whose Discogs styles span ≥ 2 of your top scenes.
+              These are the records that make the rest of the library cohere.
+            </div>
+            <div className="st-bridges">
+              {I.STYLE_ATLAS.bridges.map(b => (
+                <div key={b.artist} className="st-bridge" data-link={!!R.byId[b.artistId]}
+                  onClick={() => R.byId[b.artistId] && go("artist", b.artistId)}>
+                  <GenCover hue={b.hue} name={b.artist} size={44} radius={4} />
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div className="st-row-name">{b.artist}</div>
+                    <div className="st-bridge-scenes">
+                      {b.scenes.map((s, i) => (
+                        <React.Fragment key={s}>
+                          {i > 0 ? <span className="st-bridge-plus">+</span> : null}
+                          <span className="st-bridge-scene" style={{ color: `oklch(0.78 0.13 ${b.hue + i * 18})` }}>{s}</span>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="st-bridge-n">{fmt(b.plays)} <small style={{ color: "var(--ink-faint)" }}>plays</small></div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* style atlas — discogs styles only you (or 1-2 artists) keep alive in this library */}
         {I.STYLE_ATLAS && I.STYLE_ATLAS.rarest && I.STYLE_ATLAS.rarest.length > 3 && (() => {
           const S = I.STYLE_ATLAS;
@@ -378,6 +410,79 @@ function StoriesView({ t, go }) {
           </div>
         </section>
 
+        {/* incubation — how long from first-play to peak-week, per top artist */}
+        {I.INCUBATION && I.INCUBATION.length >= 6 && (() => {
+          const N = I.INCUBATION;
+          const slow = N.slice(0, 5);
+          const fast = N.slice().reverse().slice(0, 5);
+          const maxDays = slow[0].incubDays;
+          const fmtIncub = (d) => d < 30 ? `${d || 0} day${d === 1 ? "" : "s"}` :
+            d < 365 ? `${Math.round(d / 30)} months` : `${(d / 365).toFixed(1)} years`;
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">The incubation</div>
+              <div className="st-big">
+                <em>{slow[0].artist}</em> took <em>{(slow[0].incubDays / 365).toFixed(1)} years</em> to peak.
+                <em> {fast[0].artist}</em> took <em>{fast[0].incubDays || "zero"} {fast[0].incubDays === 1 ? "day" : "days"}</em>.
+              </div>
+              <div className="st-sub">
+                For each top artist, the gap between the first time you played them and the week they peaked.
+                Western mainstream marinates; the deeper cuts tend to land instantly.
+              </div>
+              <div className="st-incub">
+                <div>
+                  <div className="st-yir-h">Slow burners</div>
+                  {slow.map(a => (
+                    <div key={a.artist} className="st-incub-row" data-link={!!R.byId[a.artistId]} onClick={() => R.byId[a.artistId] && go("artist", a.artistId)}>
+                      <GenCover hue={a.hue} name={a.artist} size={32} radius={3} />
+                      <div className="st-incub-main">
+                        <div className="st-row-name">{a.artist}</div>
+                        <div className="st-incub-bar"><i style={{ width: (a.incubDays / maxDays * 100) + "%", background: `oklch(0.62 0.16 ${a.hue})` }} /></div>
+                        <div className="st-row-sub">{fmtDate(a.firstHeard)} → {fmtDate(a.peakWeek)}</div>
+                      </div>
+                      <div className="st-incub-n">{fmtIncub(a.incubDays)}</div>
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <div className="st-yir-h">Instant addictions</div>
+                  {fast.map(a => (
+                    <div key={a.artist} className="st-incub-row" data-link={!!R.byId[a.artistId]} onClick={() => R.byId[a.artistId] && go("artist", a.artistId)}>
+                      <GenCover hue={a.hue} name={a.artist} size={32} radius={3} />
+                      <div className="st-incub-main">
+                        <div className="st-row-name">{a.artist}</div>
+                        <div className="st-incub-bar"><i style={{ width: Math.max(2, a.incubDays / maxDays * 100) + "%", background: `oklch(0.62 0.16 ${a.hue})` }} /></div>
+                        <div className="st-row-sub">discovered {fmtDate(a.firstHeard)} · peaked {fmtDate(a.peakWeek)}</div>
+                      </div>
+                      <div className="st-incub-n">{fmtIncub(a.incubDays)}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* album obsessions — the same lens, one album-deep */}
+        {I.ALBUM_OBSESSIONS && I.ALBUM_OBSESSIONS.length > 0 && (
+          <section className="st-card">
+            <div className="st-label">Album weeks</div>
+            <div className="st-title-sm">Weeks one record ate everything.</div>
+            <div className="st-grid">
+              {I.ALBUM_OBSESSIONS.map(o => (
+                <div key={o.artist + o.album + o.weekStart} className="st-obs"
+                  data-link={!!R.byId[o.artistId]} onClick={() => R.byId[o.artistId] && go("artist", o.artistId)}>
+                  <GenCover hue={o.hue} name={o.album} size={56} radius={4} />
+                  <div className="st-obs-share" style={{ color: `oklch(0.78 0.14 ${o.hue})` }}>{Math.round(o.share * 100)}%</div>
+                  <div className="st-row-name" style={{ fontStyle: "italic" }}>{o.album}</div>
+                  <div className="st-row-sub">{o.artist} · {o.plays} plays, week of {fmtDate(o.weekStart)}</div>
+                  <div className="st-obs-bar"><i style={{ width: (o.share * 100) + "%", background: `oklch(0.62 0.15 ${o.hue})` }} /></div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* comebacks */}
         <section className="st-card">
           <div className="st-label">Comebacks</div>
@@ -510,6 +615,25 @@ function StoriesView({ t, go }) {
         .st-geo-flag { font-size: 22px; line-height: 1; flex: none; width: 30px; text-align: center; }
         .st-geo-pct { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--accent); margin-left: auto; flex: none; }
         .st-geo-cities { display: flex; gap: 6px; flex-wrap: wrap; }
+        .st-bridges { display: grid; gap: 8px; }
+        .st-bridge { display: flex; gap: 12px; align-items: center; padding: 9px 11px; border: 1px solid var(--rule); border-radius: 6px; transition: border-color .15s; }
+        .st-bridge[data-link="true"] { cursor: pointer; }
+        .st-bridge[data-link="true"]:hover { border-color: var(--accent-dim); }
+        .st-bridge-scenes { display: flex; gap: 8px; flex-wrap: wrap; align-items: baseline; margin-top: 4px; font-size: 12.5px; }
+        .st-bridge-scene { font-family: var(--serif); font-style: italic; font-weight: 500; }
+        .st-bridge-plus { color: var(--ink-faint); font-family: var(--mono); font-size: 11px; }
+        .st-bridge-n { font-family: var(--serif); font-size: 17px; flex: none; margin-left: auto; }
+        .st-incub { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 22px; }
+        .st-incub-row { display: grid; grid-template-columns: 32px 1fr auto; gap: 10px; align-items: center;
+          padding: 7px 8px; margin: 0 -8px; border-radius: 5px; }
+        .st-incub-row[data-link="true"] { cursor: pointer; }
+        .st-incub-row[data-link="true"]:hover { background: var(--bg-3); }
+        .st-incub-main { min-width: 0; }
+        .st-incub-bar { height: 3px; background: var(--bg-3); border-radius: 2px; margin: 4px 0 3px; overflow: hidden; }
+        .st-incub-bar i { display: block; height: 100%; border-radius: 2px; transition: width .8s; }
+        .st-incub-n { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--accent);
+          white-space: nowrap; flex: none; }
+        @media (max-width: 640px) { .st-incub { grid-template-columns: 1fr; gap: 18px; } }
         .st-arc { display: grid; gap: 14px; margin-top: 22px; }
         .st-arc-row { display: grid; grid-template-columns: 200px 1fr 110px; gap: 18px; align-items: center; }
         .st-arc-head { display: flex; gap: 9px; align-items: baseline; min-width: 0; }
