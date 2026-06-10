@@ -515,6 +515,28 @@ for (const [w, W] of albumWeeks) {
 }
 const ALBUM_OBSESSIONS = [...obsByAlbum.values()].sort((a, b) => b.plays - a.plays).slice(0, 8);
 
+// lifetime tracks: songs played across the most distinct years (the constant companions
+// that survived every era shift). yearSpan = how many calendar years this track was active.
+const trackYears = new Map();
+for (const [artist, , track, ms] of scrobbles) {
+  if (!track) continue;
+  const k = artist + "\x00" + track;
+  const y = new Date(ms).getUTCFullYear();
+  if (!trackYears.has(k)) trackYears.set(k, new Set());
+  trackYears.get(k).add(y);
+}
+const LIFETIME_TRACKS = [...trackPlays.entries()]
+  .filter(([k, p]) => p >= 50 && trackYears.has(k) && trackYears.get(k).size >= 7)
+  .map(([k, plays]) => {
+    const [artist, title] = k.split("\x00");
+    const ys = [...trackYears.get(k)].sort((a, b) => a - b);
+    return { artist, title, plays, yearSpan: ys.length,
+      firstYr: ys[0], lastYr: ys[ys.length - 1],
+      hue: hueFor(artist), artistId: slug(artist), kept: !!byName[artist] };
+  })
+  .sort((a, b) => b.yearSpan - a.yearSpan || b.plays - a.plays)
+  .slice(0, 10);
+
 // incubation: for each top artist, the gap from first-play to peak-week.
 // Reveals slow burners (Linkin Park ~4yr to peak) vs instant addictions (daine in days).
 const peakWeekByArtist = new Map(); // artist → { weekIdx, plays }
@@ -825,7 +847,7 @@ if (hasDiscogs) {
 }
 
 const INSIGHTS = {
-  MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, INCUBATION, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
+  MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, INCUBATION, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
 };
