@@ -120,6 +120,8 @@ function SoundScatter({ subs, maxW, seen, activeFam, expressive, setPop }) {
             transition: `opacity .4s, transform .6s cubic-bezier(.3,1.4,.5,1) ${i * 0.018}s` }}
             onMouseEnter={() => setPop({ x: px(s.x) / W * (window.innerWidth - 230), y: 280, title: s.name, pip: s.hue,
               meta: s.family, rows: [["plays", fmt(s.w)], ["texture", s.x < .5 ? "organic" : "electronic"], ["intensity", Math.round(s.y * 100) + "%"]] })}
+            onClick={() => setPop({ x: Math.min(Math.max(px(s.x) / W * window.innerWidth, 140), window.innerWidth - 140), y: 280, title: s.name, pip: s.hue,
+              meta: s.family, rows: [["plays", fmt(s.w)], ["texture", s.x < .5 ? "organic" : "electronic"], ["intensity", Math.round(s.y * 100) + "%"]] })}
             onMouseLeave={() => setPop(null)}>
             <circle cx={px(s.x)} cy={py(s.y)} r={r} fill={col} fillOpacity={expressive ? .28 : .14} stroke={col} strokeWidth="1.4" />
             {r > 18 && <text x={px(s.x)} y={py(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)"

@@ -48,6 +48,15 @@ function RotationApp() {
     return () => window.removeEventListener("scroll", clr);
   }, []);
 
+  // touch: tap anywhere dismisses an open popover (fires before the next
+  // element's click, so tapping a new cell clears-then-reopens cleanly)
+  React.useEffect(() => {
+    if (!pop) return;
+    const clr = () => setPop(null);
+    window.addEventListener("pointerdown", clr, { passive: true });
+    return () => window.removeEventListener("pointerdown", clr);
+  }, [pop]);
+
   // "/" opens artist search (unless typing in a field)
   React.useEffect(() => {
     const onKey = (e) => {
