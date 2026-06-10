@@ -452,6 +452,41 @@ function StoriesView({ t, go }) {
           </div>
         </section>
 
+        {/* lifetime tracks — songs that survived every era (year-span first sort, plays tiebreak) */}
+        {I.LIFETIME_TRACKS && I.LIFETIME_TRACKS.length >= 5 && (() => {
+          const L = I.LIFETIME_TRACKS;
+          const hero = L[0];
+          return (
+            <section className="st-card">
+              <div className="st-label">The constants</div>
+              <div className="st-title-sm">Songs that survived every era.</div>
+              <div className="st-sub" style={{ marginBottom: 14 }}>
+                Tracks you've played across <em>{hero.yearSpan} different years</em>. They were there before the
+                Tokyo phase, before Ocean Grove, before any of it — and they're still in rotation.
+                "<i>{hero.title}</i>" leads with {hero.plays} plays from {hero.firstYr} to {hero.lastYr}.
+              </div>
+              <div className="st-life">
+                {L.map((t, i) => (
+                  <div key={t.artist + t.title} className="st-life-row"
+                    data-link={t.kept} onClick={() => t.kept && go("artist", t.artistId)}>
+                    <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)", width: 24 }}>{String(i + 1).padStart(2, "0")}</span>
+                    <GenCover hue={t.hue} name={t.artist} size={36} radius={3} />
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div className="st-row-name" style={{ fontStyle: "italic" }}>{t.title}</div>
+                      <div className="st-row-sub">{t.artist} · {t.plays} plays across {t.yearSpan} years</div>
+                    </div>
+                    <div className="st-life-span">
+                      <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>'{String(t.firstYr).slice(2)}</span>
+                      <div className="st-life-bar" style={{ background: `oklch(0.6 0.16 ${t.hue})` }} />
+                      <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>'{String(t.lastYr).slice(2)}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* incubation — how long from first-play to peak-week, per top artist */}
         {I.INCUBATION && I.INCUBATION.length >= 6 && (() => {
           const N = I.INCUBATION;
@@ -657,6 +692,17 @@ function StoriesView({ t, go }) {
         .st-geo-flag { font-size: 22px; line-height: 1; flex: none; width: 30px; text-align: center; }
         .st-geo-pct { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--accent); margin-left: auto; flex: none; }
         .st-geo-cities { display: flex; gap: 6px; flex-wrap: wrap; }
+        .st-life { display: grid; gap: 4px; }
+        .st-life-row { display: grid; grid-template-columns: 24px 36px 1fr 110px; gap: 12px; align-items: center;
+          padding: 7px 8px; margin: 0 -8px; border-radius: 5px; }
+        .st-life-row[data-link="true"] { cursor: pointer; }
+        .st-life-row[data-link="true"]:hover { background: var(--bg-3); }
+        .st-life-span { display: flex; align-items: center; gap: 6px; }
+        .st-life-bar { flex: 1; height: 2px; border-radius: 1px; opacity: .65; }
+        @media (max-width: 640px) {
+          .st-life-row { grid-template-columns: 20px 32px 1fr; }
+          .st-life-span { grid-column: 1 / -1; padding-left: 64px; }
+        }
         .st-gates { display: grid; gap: 4px; margin-top: 18px; }
         .st-gate { display: grid; grid-template-columns: 110px 1fr auto; gap: 16px; align-items: center;
           padding: 10px 12px; margin: 0 -12px; border-radius: 5px; }
