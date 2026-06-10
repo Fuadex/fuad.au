@@ -233,6 +233,60 @@ function StoriesView({ t, go }) {
           );
         })()}
 
+        {/* taste arc — how the geography moved across years (origins × years) */}
+        {I.GEOGRAPHY && I.GEOGRAPHY.arc && I.GEOGRAPHY.arc.years.length >= 10 && (() => {
+          const A = I.GEOGRAPHY.arc;
+          // hue per country code — distinct, oklch chroma 0.16
+          const huesByCC = { US: 30, GB: 240, AU: 50, CA: 0, DE: 110, JP: 340 };
+          // mover narrative: country that gained the most share between first year and the last 3 yrs avg
+          const firstYears = A.years.slice(0, 3), lastYears = A.years.slice(-3);
+          const mover = A.countries.map(c => {
+            const before = firstYears.reduce((s, y) => s + (y[c.code] || 0), 0) / firstYears.length;
+            const after = lastYears.reduce((s, y) => s + (y[c.code] || 0), 0) / lastYears.length;
+            return { ...c, delta: after - before, after };
+          }).sort((a, b) => b.delta - a.delta)[0];
+          const moverYear = A.years.find(y => (y[mover.code] || 0) >= mover.after * 0.4);
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">How the map moved</div>
+              <div className="st-big">
+                <em>{mover.flag} {mover.name}</em> crept in around <em>{moverYear ? moverYear.year : "—"}</em> —
+                now <em>{Math.round(mover.after * 100)}%</em> of what we can place on a map.
+              </div>
+              <div className="st-sub">
+                Each line is a country's share of your plays over time. {A.years[0].year} was {Math.round(A.years[0].US * 100)}% American;
+                today the lines tangle. {A.countries.length} countries shown, the rest folded into "elsewhere."
+              </div>
+              <div className="st-arc">
+                {A.countries.map(c => {
+                  const series = A.years.map(y => y[c.code] || 0);
+                  const now = series[series.length - 1];
+                  const peak = Math.max(...series);
+                  const peakYr = A.years[series.indexOf(peak)].year;
+                  const hue = huesByCC[c.code] || 200;
+                  return (
+                    <div key={c.code} className="st-arc-row">
+                      <div className="st-arc-head">
+                        <span className="st-arc-flag">{c.flag}</span>
+                        <span className="st-arc-name">{c.name}</span>
+                        <span className="st-arc-now" style={{ color: `oklch(0.7 0.16 ${hue})` }}>{Math.round(now * 100)}%</span>
+                      </div>
+                      <Spark data={series} w={420} h={32} run={true}
+                        stroke={`oklch(0.7 0.16 ${hue})`} fill={`oklch(0.7 0.16 ${hue} / .12)`} />
+                      <div className="st-arc-peak">peak {Math.round(peak * 100)}% in '{String(peakYr).slice(2)}</div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="st-arc-axis">
+                <span>{A.years[0].year}</span>
+                <span>{A.years[Math.floor(A.years.length / 2)].year}</span>
+                <span>{A.years[A.years.length - 1].year}</span>
+              </div>
+            </section>
+          );
+        })()}
+
         {/* taste geography */}
         {I.GEOGRAPHY && I.GEOGRAPHY.coverage > 0.3 && (() => {
           const G = I.GEOGRAPHY;
@@ -456,6 +510,20 @@ function StoriesView({ t, go }) {
         .st-geo-flag { font-size: 22px; line-height: 1; flex: none; width: 30px; text-align: center; }
         .st-geo-pct { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--accent); margin-left: auto; flex: none; }
         .st-geo-cities { display: flex; gap: 6px; flex-wrap: wrap; }
+        .st-arc { display: grid; gap: 14px; margin-top: 22px; }
+        .st-arc-row { display: grid; grid-template-columns: 200px 1fr 110px; gap: 18px; align-items: center; }
+        .st-arc-head { display: flex; gap: 9px; align-items: baseline; min-width: 0; }
+        .st-arc-flag { font-size: 18px; line-height: 1; flex: none; }
+        .st-arc-name { font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .st-arc-now { font-family: var(--serif); font-style: italic; font-size: 17px; margin-left: auto; }
+        .st-arc-peak { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); text-align: right; }
+        .st-arc-axis { display: flex; justify-content: space-between; margin: 8px 0 0; padding-left: 218px;
+          font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: .1em; }
+        @media (max-width: 760px) {
+          .st-arc-row { grid-template-columns: 1fr; gap: 4px; }
+          .st-arc-peak { text-align: left; }
+          .st-arc-axis { padding-left: 0; }
+        }
         .st-atlas { display: grid; gap: 4px; }
         .st-atlas-row { display: grid; grid-template-columns: minmax(140px, 1fr) 2fr auto; gap: 16px;
           align-items: baseline; padding: 9px 10px; margin: 0 -10px; border-radius: 5px; font-size: 13px; }
