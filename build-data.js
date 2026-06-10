@@ -661,6 +661,27 @@ if (hasStats) {
   const deepCuts = ARTISTS.filter(a => a.listeners != null).slice()
     .sort((a, b) => a.listeners - b.listeners).slice(0, 8)
     .map(a => ({ artist: a.name, hue: a.hue, listeners: a.listeners, plays: a.plays }));
+  // discovery shape: per year, the count of newly-discovered artists at each listener tier.
+  // Reveals "when the taste turned underground" — the year discoveries shifted to obscure.
+  const shape = [];
+  for (const year of years) {
+    if ((yearTotals.get(year) || 0) < 500) continue;
+    let total = 0, sUnder50k = 0, sUnder10k = 0, sUnder1k = 0, withStats = 0;
+    for (const [name, ms] of firstSeen) {
+      if (new Date(ms).getUTCFullYear() !== year) continue;
+      if (ms < UNDATED_REMAP_START + 86400e3) continue;
+      const yp = (artistYear.get(name) || new Map()).get(year) || 0;
+      if (yp < 3) continue; // require ≥3 plays in discovery year to count as real
+      total++;
+      const L = listenersOf(name);
+      if (L == null) continue;
+      withStats++;
+      if (L < 50000) sUnder50k++;
+      if (L < 10000) sUnder10k++;
+      if (L < 1000) sUnder1k++;
+    }
+    shape.push({ year, total, withStats, under50k: sUnder50k, under10k: sUnder10k, under1k: sUnder1k });
+  }
   UNDERGROUND = {
     coverage: Math.round(covered / lines.length * 100) / 100,
     share50k: covered ? Math.round(under50k / covered * 100) / 100 : 0,
@@ -672,6 +693,7 @@ if (hasStats) {
     artistShare1k: nA ? Math.round(aUnder1k / nA * 100) / 100 : 0,
     medianArtistListeners,
     deepCuts,
+    discoveryShape: shape,
   };
 }
 
