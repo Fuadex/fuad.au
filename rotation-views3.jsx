@@ -307,6 +307,62 @@ function StoriesView({ t, go }) {
           );
         })()}
 
+        {/* audio DNA drift — how the play-weighted average sound profile shifted year over year */}
+        {I.AUDIO_DRIFT && I.AUDIO_DRIFT.years && I.AUDIO_DRIFT.years.length >= 12 && (() => {
+          // skip pre-scrobbling synthetic years (undated remapped scrobbles)
+          const Y = I.AUDIO_DRIFT.years.filter(y => y.coverage >= 1500);
+          if (Y.length < 8) return null;
+          const labels = {
+            energy: "Energy",
+            valence: "Mood",
+            acoustic: "Acoustic",
+            dance: "Danceable",
+            tempo: "Tempo",
+            instr: "Instrumental",
+          };
+          // deltas: last-3-year avg minus first-3-year avg, pick biggest absolute mover
+          const first3 = Y.slice(0, 3), last3 = Y.slice(-3);
+          const avg = (arr, ax) => arr.reduce((s, y) => s + y[ax], 0) / arr.length;
+          const order = Object.keys(labels)
+            .map(ax => ({ ax, delta: avg(last3, ax) - avg(first3, ax) }))
+            .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
+          const hue = { energy: 18, valence: 60, acoustic: 140, dance: 280, tempo: 200, instr: 340 };
+          const top = order[0], second = order[1];
+          const dir = d => d > 0 ? "climbed" : "dropped";
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">How the sound drifted</div>
+              <div className="st-big">
+                <em>{labels[top.ax]}</em> {dir(top.delta)} {Math.round(Math.abs(top.delta) * 100)} pts.
+                {" "}<em>{labels[second.ax]}</em> {dir(second.delta)} {Math.round(Math.abs(second.delta) * 100)}.
+              </div>
+              <div className="st-sub">
+                Play-weighted average sound profile per year, across artists with audio data
+                ({Math.round(Y[Y.length - 1].coverage / 1000)}k plays/yr coverage).
+                The taste shifted away from pure intensity toward brighter, more danceable, more textured material.
+              </div>
+              <div className="st-turn">
+                {order.map(({ ax }) => {
+                  const series = Y.map(y => y[ax]);
+                  return (
+                    <div key={ax} className="st-turn-row">
+                      <div className="st-turn-label">{labels[ax]}</div>
+                      <Spark data={series} w={520} h={32} run={true}
+                        stroke={`oklch(0.7 0.16 ${hue[ax]})`} fill={`oklch(0.7 0.16 ${hue[ax]} / .12)`} />
+                      <div className="st-turn-n">{Math.round(Y[Y.length - 1][ax] * 100)}</div>
+                    </div>
+                  );
+                })}
+                <div className="st-turn-axis">
+                  <span>{Y[0].year}</span>
+                  <span>{Y[Math.floor(Y.length / 2)].year}</span>
+                  <span>{Y[Y.length - 1].year}</span>
+                </div>
+              </div>
+            </section>
+          );
+        })()}
+
         {/* when the taste turned — share of yearly discoveries that were underground */}
         {I.UNDERGROUND && I.UNDERGROUND.discoveryShape && I.UNDERGROUND.discoveryShape.length >= 10 && (() => {
           const D = I.UNDERGROUND.discoveryShape.filter(y => y.withStats >= 10);
@@ -551,6 +607,44 @@ function StoriesView({ t, go }) {
                       <div className="st-life-bar" style={{ background: `oklch(0.6 0.16 ${t.hue})` }} />
                       <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>'{String(t.lastYr).slice(2)}</span>
                     </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* their era — the calendar month each top artist owned the listening (share %) */}
+        {I.ARTIST_ERAS && I.ARTIST_ERAS.length >= 6 && (() => {
+          const E = I.ARTIST_ERAS;
+          const top = E[0];
+          const monthLabel = (mk) => {
+            const d = new Date(mk + "-15");
+            return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getUTCMonth()] + " " + d.getUTCFullYear();
+          };
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Their era</div>
+              <div className="st-big">
+                <em>{monthLabel(top.month)}</em> was <em>{Math.round(top.share * 100)}%</em>
+                {" "}<span data-link={!!R.byId[top.artistId]} onClick={() => R.byId[top.artistId] && go("artist", top.artistId)}
+                  style={{ color: `oklch(0.78 0.14 ${top.hue})`, cursor: R.byId[top.artistId] ? "pointer" : "default", fontStyle: "italic" }}>{top.artist}</span>.
+              </div>
+              <div className="st-sub">
+                For each top artist, the single month where they owned the highest <em>share</em> of your listening.
+                Not the month with the most plays — the month where everyone else got pushed out.
+              </div>
+              <div className="st-life">
+                {E.map((e, i) => (
+                  <div key={e.artist + e.month} className="st-life-row"
+                    data-link={!!R.byId[e.artistId]} onClick={() => R.byId[e.artistId] && go("artist", e.artistId)}>
+                    <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)", width: 24 }}>{String(i + 1).padStart(2, "0")}</span>
+                    <GenCover hue={e.hue} name={e.artist} size={36} radius={3} />
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div className="st-row-name">{e.artist}</div>
+                      <div className="st-row-sub">{monthLabel(e.month)} · {e.plays} of the {e.total} plays that month</div>
+                    </div>
+                    <div className="st-flame-pct" style={{ color: `oklch(0.78 0.14 ${e.hue})` }}>{Math.round(e.share * 100)}%</div>
                   </div>
                 ))}
               </div>
