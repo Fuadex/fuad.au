@@ -475,18 +475,24 @@ for (const [k, O] of otd) {
 // Play-weighted over every artist we have a global listener count for.
 let UNDERGROUND = null;
 if (hasStats) {
-  let covered = 0, under50k = 0, under10k = 0;
-  const wl = []; // [listeners, plays] for artists with stats
+  let covered = 0, under50k = 0, under10k = 0;        // play-weighted
+  let aUnder50k = 0, aUnder10k = 0, aUnder1k = 0;     // catalogue-breadth (per artist)
+  const wl = [];        // [listeners, plays] for play-weighted median
+  const listenerList = []; // listeners only, for the unweighted artist median
   for (const [name, plays] of artistPlays) {
     const L = listenersOf(name);
     if (L == null) continue;
-    covered += plays; wl.push([L, plays]);
-    if (L < 50000) under50k += plays;
-    if (L < 10000) under10k += plays;
+    covered += plays; wl.push([L, plays]); listenerList.push(L);
+    if (L < 50000) { under50k += plays; aUnder50k++; }
+    if (L < 10000) { under10k += plays; aUnder10k++; }
+    if (L < 1000) aUnder1k++;
   }
+  const nA = listenerList.length;
   wl.sort((a, b) => a[0] - b[0]);
   let acc = 0, medianListeners = 0;
   for (const [L, p] of wl) { acc += p; if (acc >= covered / 2) { medianListeners = L; break; } }
+  listenerList.sort((a, b) => a - b);
+  const medianArtistListeners = nA ? listenerList[Math.floor(nA / 2)] : 0;
   // deep cuts: your kept artists with the fewest global listeners (favourites almost nobody else plays)
   const deepCuts = ARTISTS.filter(a => a.listeners != null).slice()
     .sort((a, b) => a.listeners - b.listeners).slice(0, 8)
@@ -495,7 +501,13 @@ if (hasStats) {
     coverage: Math.round(covered / lines.length * 100) / 100,
     share50k: covered ? Math.round(under50k / covered * 100) / 100 : 0,
     share10k: covered ? Math.round(under10k / covered * 100) / 100 : 0,
-    medianListeners, deepCuts,
+    medianListeners,
+    artistsCovered: nA,
+    artistShare50k: nA ? Math.round(aUnder50k / nA * 100) / 100 : 0,
+    artistShare10k: nA ? Math.round(aUnder10k / nA * 100) / 100 : 0,
+    artistShare1k: nA ? Math.round(aUnder1k / nA * 100) / 100 : 0,
+    medianArtistListeners,
+    deepCuts,
   };
 }
 
