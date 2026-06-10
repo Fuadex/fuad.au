@@ -196,26 +196,63 @@ function ErasView({ t, go }) {
           </button>
         </div>
 
-        {/* racing bars */}
-        <div className="r-card" style={{ padding: "22px 24px" }}>
-          <div style={{ display: "grid", gap: 9 }}>
-            {era.top.map((a, i) => (
-              <div key={a.id} style={{ display: "grid", gridTemplateColumns: "26px 30px 1fr auto", gap: 11, alignItems: "center",
-                cursor: "pointer", transition: "transform .5s cubic-bezier(.3,.8,.3,1)" }}
-                onClick={() => go("artist", a.id)}>
-                <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>{String(i + 1).padStart(2, "0")}</span>
-                <GenCover hue={a.hue} name={a.name} size={30} radius={3} />
-                <div style={{ position: "relative", height: 28, background: "var(--bg-3)", borderRadius: 3, overflow: "hidden" }}>
-                  <div style={{ position: "absolute", inset: 0, width: (a.plays / maxPlays * 100) + "%",
-                    background: t.chart === "expressive" ? `oklch(0.58 0.16 ${a.hue})` : "var(--accent-dim)", opacity: .85,
-                    borderRadius: 3, transition: "width .8s cubic-bezier(.3,.8,.3,1)" }} />
-                  <span style={{ position: "absolute", left: 11, top: 0, height: 28, display: "flex", alignItems: "center",
-                    fontSize: 12.5, fontWeight: 600, textShadow: "0 1px 4px rgba(0,0,0,.6)", whiteSpace: "nowrap" }}>{a.name}</span>
+        {/* racing bars + year detail */}
+        <div style={{ display: "grid", gap: "var(--gap)" }}>
+          <div className="r-card" style={{ padding: "22px 24px" }}>
+            <div style={{ display: "grid", gap: 9 }}>
+              {era.top.map((a, i) => (
+                <div key={a.id} style={{ display: "grid", gridTemplateColumns: "26px 30px 1fr auto", gap: 11, alignItems: "center",
+                  cursor: "pointer", transition: "transform .5s cubic-bezier(.3,.8,.3,1)" }}
+                  onClick={() => go("artist", a.id)}>
+                  <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>{String(i + 1).padStart(2, "0")}</span>
+                  <GenCover hue={a.hue} name={a.name} size={30} radius={3} />
+                  <div style={{ position: "relative", height: 28, background: "var(--bg-3)", borderRadius: 3, overflow: "hidden" }}>
+                    <div style={{ position: "absolute", inset: 0, width: (a.plays / maxPlays * 100) + "%",
+                      background: t.chart === "expressive" ? `oklch(0.58 0.16 ${a.hue})` : "var(--accent-dim)", opacity: .85,
+                      borderRadius: 3, transition: "width .8s cubic-bezier(.3,.8,.3,1)" }} />
+                    <span style={{ position: "absolute", left: 11, top: 0, height: 28, display: "flex", alignItems: "center",
+                      fontSize: 12.5, fontWeight: 600, textShadow: "0 1px 4px rgba(0,0,0,.6)", whiteSpace: "nowrap" }}>{a.name}</span>
+                  </div>
+                  <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>{fmt(a.plays)}</span>
                 </div>
-                <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>{fmt(a.plays)}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+          {(() => {
+            const yr = (R.YEARS || []).find(y => y.year === era.year);
+            if (!yr || yr.plays < 500) return null;
+            const Stat = ({ k, v, sub, onClick }) => (
+              <div className="era-d-stat" data-link={!!onClick} onClick={onClick}>
+                <div className="r-mono era-d-k">{k}</div>
+                <div className="era-d-v">{v}</div>
+                {sub && <div className="era-d-sub">{sub}</div>}
+              </div>
+            );
+            return (
+              <div className="r-card era-detail" style={{ padding: "18px 22px" }}>
+                <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 14 }}>
+                  {yr.year} in detail
+                </div>
+                <div className="era-d-grid">
+                  {yr.topTrack && <Stat k="Top track" v={yr.topTrack.title}
+                    sub={`${yr.topTrack.artist} · ${yr.topTrack.plays} plays`}
+                    onClick={() => go("artist", R.slug(yr.topTrack.artist))} />}
+                  {yr.topAlbum && <Stat k="Top album" v={yr.topAlbum.title}
+                    sub={`${yr.topAlbum.artist} · ${yr.topAlbum.plays} plays`}
+                    onClick={() => go("artist", R.slug(yr.topAlbum.artist))} />}
+                  {yr.peakDay && <Stat k="Peak day" v={yr.peakDay.plays + " plays"} sub={yr.peakDay.date} />}
+                  <Stat k="Hours" v={fmt(yr.hours)} sub={`${yr.activeDays} active days`} />
+                  <Stat k="Artists touched" v={fmt(yr.artists)} sub={`${fmt(yr.tracks)} tracks`} />
+                  {yr.discoveries[0] && <Stat k="Top discovery" v={yr.discoveries[0].name}
+                    sub={`${yr.discoveries[0].plays} plays · first heard ${yr.year}`}
+                    onClick={() => go("artist", R.slug(yr.discoveries[0].name))} />}
+                  {yr.gainer && yr.gainer.delta > 50 && <Stat k="Biggest jump" v={yr.gainer.name}
+                    sub={`${yr.gainer.prev} → ${yr.gainer.plays} (+${yr.gainer.delta})`}
+                    onClick={() => go("artist", R.slug(yr.gainer.name))} />}
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </div>
 
@@ -244,10 +281,20 @@ function ErasView({ t, go }) {
           text-transform: uppercase; padding: 12px; border-radius: 6px; border: 1px solid var(--accent);
           background: var(--accent-bg); color: var(--accent-ink); cursor: pointer; transition: .15s; }
         .r-playbtn:hover { background: var(--accent); color: #0c0a08; }
+        .era-d-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 18px 22px; }
+        .era-d-stat { min-width: 0; }
+        .era-d-stat[data-link="true"] { cursor: pointer; }
+        .era-d-stat[data-link="true"]:hover .era-d-v { color: var(--accent); }
+        .era-d-k { font-size: 9.5px; color: var(--ink-faint); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+        .era-d-v { font-family: var(--serif); font-style: italic; font-size: 18px; line-height: 1.15;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .era-d-sub { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         @media (max-width: 860px){
           .era-grid { grid-template-columns: 1fr !important; }
           .era-year { position: static !important; top: auto !important; }
           .era-year .r-stat-n[style*="76"] { font-size: 58px !important; }
+          .era-d-grid { grid-template-columns: 1fr 1fr; }
         }
       `}</style>
     </div>
