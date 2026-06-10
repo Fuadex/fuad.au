@@ -182,7 +182,8 @@ function ChartsView({ t, go, setPop }) {
 
   // scale plays believably by period (shorter window → fewer plays)
   const scale = { "7day": 0.012, "1month": 0.05, "3month": 0.16, "12month": 0.52, "overall": 1 }[period];
-  const base = kind === "artists" ? R.ARTISTS.map(a => ({ id: a.id, label: a.name, value: a.plays, hue: a.hue, sub: a.tags[0] }))
+  const base = kind === "artists" ? R.ARTISTS.map(a => ({ id: a.id, label: a.name, value: a.plays, hue: a.hue,
+    sub: (a.styles && a.styles[0]) || a.tags[0] }))
     : kind === "albums" ? R.ALBUMS.map(a => ({ id: a.id, aid: a.artistId, label: a.title, value: a.plays, hue: a.hue, sub: a.artist }))
     : R.TRACKS.map(a => ({ id: a.id, aid: a.artistId, label: a.title, value: a.plays, hue: a.hue, sub: a.artist }));
   const items = base.map(b => ({ ...b, value: Math.max(1, Math.round(b.value * scale)) }))
