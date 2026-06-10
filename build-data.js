@@ -650,6 +650,37 @@ if (hasOrigins) {
     cities,
     totalCountries: countries.length,
   };
+
+  // Taste arc: per-year share by top countries. Cross of origins × years.
+  // Reveals "Japan crept in around 2018", "Australia spiked in 2024" etc.
+  const TOP_ARC_COUNTRIES = countries.slice(0, 6).map(c => c.code);
+  const arc = [];
+  for (const year of years) {
+    if ((yearTotals.get(year) || 0) < 500) continue; // skip near-empty years
+    const byCC = {}; let knownInYear = 0;
+    for (const [name, m] of artistYear) {
+      const n = m.get(year) || 0;
+      if (!n) continue;
+      const o = originOf(name);
+      if (!o) continue;
+      const cc = TOP_ARC_COUNTRIES.includes(o.country) ? o.country : "OTHER";
+      byCC[cc] = (byCC[cc] || 0) + n;
+      knownInYear += n;
+    }
+    if (knownInYear < 200) continue;
+    const e = { year, knownPlays: knownInYear };
+    for (const cc of [...TOP_ARC_COUNTRIES, "OTHER"]) {
+      e[cc] = knownInYear ? Math.round((byCC[cc] || 0) / knownInYear * 1000) / 1000 : 0;
+    }
+    arc.push(e);
+  }
+  GEOGRAPHY.arc = {
+    countries: TOP_ARC_COUNTRIES.map(code => {
+      const meta = countries.find(c => c.code === code);
+      return { code, name: meta.name, flag: meta.flag };
+    }),
+    years: arc,
+  };
 }
 
 // ─────────── STYLE ATLAS (Discogs styles unique-in-library) ───────────
