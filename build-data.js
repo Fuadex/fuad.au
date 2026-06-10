@@ -492,6 +492,55 @@ for (const [w, W] of weeks) {
 }
 const OBSESSIONS = [...obsByArtist.values()].sort((a, b) => b.plays - a.plays).slice(0, 10);
 
+// album obsessions: weeks one ALBUM ate everything (the "Flip Phone Fantasy week")
+const albumWeeks = new Map();
+for (const [artist, album, , ms] of scrobbles) {
+  if (!album) continue;
+  const w = Math.floor((ms - WEEK0) / (7 * 86400e3));
+  if (!albumWeeks.has(w)) albumWeeks.set(w, { total: 0, alb: new Map() });
+  const W = albumWeeks.get(w); W.total++;
+  const k = artist + "\x00" + album;
+  W.alb.set(k, (W.alb.get(k) || 0) + 1);
+}
+const obsByAlbum = new Map();
+for (const [w, W] of albumWeeks) {
+  if (W.total < 70) continue;
+  const [key, plays] = [...W.alb.entries()].sort((a, b) => b[1] - a[1])[0];
+  const share = plays / W.total;
+  if (share < 0.35) continue;
+  const [artist, title] = key.split("\x00");
+  const o = { weekStart: iso(WEEK0 + w * 7 * 86400e3), total: W.total, artist, album: title,
+    plays, share: Math.round(share * 100) / 100, hue: hueFor(artist), artistId: slug(artist) };
+  if (!obsByAlbum.has(key) || obsByAlbum.get(key).plays < plays) obsByAlbum.set(key, o);
+}
+const ALBUM_OBSESSIONS = [...obsByAlbum.values()].sort((a, b) => b.plays - a.plays).slice(0, 8);
+
+// incubation: for each top artist, the gap from first-play to peak-week.
+// Reveals slow burners (Linkin Park ~4yr to peak) vs instant addictions (daine in days).
+const peakWeekByArtist = new Map(); // artist → { weekIdx, plays }
+for (const [w, W] of weeks) {
+  for (const [artist, n] of W.art) {
+    const cur = peakWeekByArtist.get(artist);
+    if (!cur || n > cur.plays) peakWeekByArtist.set(artist, { weekIdx: w, plays: n });
+  }
+}
+const INCUBATION = ARTISTS.slice(0, 20)
+  .filter(a => peakWeekByArtist.has(a.name) && firstSeen.has(a.name))
+  .map(a => {
+    const fs = firstSeen.get(a.name);
+    if (fs < UNDATED_REMAP_START + 86400e3) return null; // skip pre-scrobbling remapped
+    const pk = peakWeekByArtist.get(a.name);
+    const peakMs = WEEK0 + pk.weekIdx * 7 * 86400e3;
+    const incubDays = Math.max(0, Math.round((peakMs - fs) / 86400e3));
+    return {
+      artist: a.name, hue: a.hue, plays: a.plays,
+      firstHeard: iso(fs), peakWeek: iso(peakMs), peakPlays: pk.plays,
+      incubDays, artistId: a.id,
+    };
+  })
+  .filter(Boolean)
+  .sort((a, b) => b.incubDays - a.incubDays);
+
 // comebacks: big artists dropped for 18+ months, then 50+ plays after returning
 const bigArtists = new Set([...artistPlays.entries()].filter(([, c]) => c >= 300).map(([n]) => n));
 const times = new Map();
@@ -727,16 +776,29 @@ if (hasDiscogs) {
     scenes.push(sc);
     if (scenes.length >= 8) break;
   }
+  // bridges: artists who carry styles from ≥ 2 of your top scenes —
+  // the connector nodes between scene clusters (e.g. Northlane = Metalcore + Synthwave).
+  const sceneStyleSet = new Set(scenes.map(sc => sc.style));
+  const bridges = ARTISTS
+    .filter(a => a.styles && a.styles.length > 0)
+    .map(a => {
+      const carried = a.styles.filter(s => sceneStyleSet.has(s));
+      return { artist: a.name, hue: a.hue, plays: a.plays, artistId: a.id, scenes: carried };
+    })
+    .filter(b => b.scenes.length >= 2)
+    .sort((a, b) => (b.scenes.length - a.scenes.length) || (b.plays - a.plays))
+    .slice(0, 8);
   STYLE_ATLAS = {
     uniqueStyles: styleMap.size,
     artistsCovered,
     rarest,
     scenes,
+    bridges,
   };
 }
 
 const INSIGHTS = {
-  MILESTONES, OBSESSIONS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
+  MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, INCUBATION, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
 };
