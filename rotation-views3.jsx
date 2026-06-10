@@ -783,8 +783,12 @@ function StoriesView({ t, go }) {
         .st-life-span { display: flex; align-items: center; gap: 6px; }
         .st-life-bar { flex: 1; height: 2px; border-radius: 1px; opacity: .65; }
         @media (max-width: 640px) {
-          .st-life-row { grid-template-columns: 20px 32px 1fr; }
-          .st-life-span { grid-column: 1 / -1; padding-left: 64px; }
+          /* 4 cols on mobile: 4th col is auto so Flameouts %ages still fit. Lifetime's span moves to row 2. */
+          .st-life-row { grid-template-columns: 20px 32px 1fr auto; gap: 9px; padding: 6px 6px; }
+          .st-life-span { grid-column: 1 / -1; padding-left: 60px; }
+          .st-flame-pct { font-size: 15px; }
+          .st-row-name { font-size: 13.5px; }
+          .st-row-sub { font-size: 11.5px; }
         }
         .st-gates { display: grid; gap: 4px; margin-top: 18px; }
         .st-gate { display: grid; grid-template-columns: 110px 1fr auto; gap: 16px; align-items: center;

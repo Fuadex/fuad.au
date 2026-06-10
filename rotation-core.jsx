@@ -318,7 +318,8 @@ function Spark({ data, w, h, run, stroke, fill }) {
   const area = dPath + ` L${W} ${H} L0 ${H} Z`;
   const len = 1200;
   return (
-    <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ display: "block", overflow: "visible" }}>
+    <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`}
+      style={{ display: "block", overflow: "visible", maxWidth: "100%", height: "auto" }}>
       {fill && <path d={area} fill={fill} className="r-spark-fill" />}
       <path d={dPath} fill="none" stroke={stroke || "var(--accent)"} strokeWidth="1.6"
         strokeLinecap="round" strokeLinejoin="round" className="r-spark-line"
