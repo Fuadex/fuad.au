@@ -579,6 +579,38 @@ const LIFETIME_TRACKS = [...trackPlays.entries()]
   .sort((a, b) => b.yearSpan - a.yearSpan || b.plays - a.plays)
   .slice(0, 10);
 
+// "Their era" — for each top artist, the single calendar MONTH where they owned the
+// highest SHARE of your listening. Pairs with INCUBATION: incubation = how long until
+// they peaked, this = the specific month that became them.
+const monthPlays = new Map();
+const monthByArtist = new Map();
+for (const [artist, , , ms] of scrobbles) {
+  const mk = new Date(ms).toISOString().slice(0, 7);
+  monthPlays.set(mk, (monthPlays.get(mk) || 0) + 1);
+  if (!monthByArtist.has(mk)) monthByArtist.set(mk, new Map());
+  const m = monthByArtist.get(mk);
+  m.set(artist, (m.get(artist) || 0) + 1);
+}
+const ARTIST_ERAS = ARTISTS.slice(0, 40)
+  .map(a => {
+    let peak = null;
+    for (const [mk, total] of monthPlays) {
+      if (total < 200) continue; // require a substantively-listened month
+      const plays = (monthByArtist.get(mk).get(a.name)) || 0;
+      if (plays < 40) continue;
+      const share = plays / total;
+      if (!peak || share > peak.share) peak = { month: mk, plays, total, share };
+    }
+    return peak ? {
+      artist: a.name, hue: a.hue, artistId: a.id,
+      month: peak.month, plays: peak.plays,
+      total: peak.total, share: Math.round(peak.share * 1000) / 1000,
+    } : null;
+  })
+  .filter(Boolean)
+  .sort((a, b) => b.share - a.share)
+  .slice(0, 10);
+
 // incubation: for each top artist, the gap from first-play to peak-week.
 // Reveals slow burners (Linkin Park ~4yr to peak) vs instant addictions (daine in days).
 const peakWeekByArtist = new Map(); // artist → { weekIdx, plays }
@@ -910,8 +942,36 @@ if (hasDiscogs) {
   };
 }
 
+// Audio DNA drift: per-year play-weighted average audio profile across artists that
+// have audio data (the kept 118). Reveals "energy went up", "danceability climbed", etc.
+let AUDIO_DRIFT = null;
+{
+  const axes = ["energy", "valence", "acoustic", "tempo", "dance", "instr"];
+  const byNameAudio = new Map(ARTISTS.map(a => [a.name, a.audio]));
+  const drift = [];
+  for (const year of years) {
+    if ((yearTotals.get(year) || 0) < 500) continue;
+    const sum = { energy: 0, valence: 0, acoustic: 0, tempo: 0, dance: 0, instr: 0 };
+    let totalCov = 0;
+    for (const [name, m] of artistYear) {
+      const p = m.get(year) || 0;
+      if (!p) continue;
+      const aud = byNameAudio.get(name);
+      if (!aud) continue;
+      totalCov += p;
+      for (const ax of axes) sum[ax] += aud[ax] * p;
+    }
+    if (totalCov < 100) continue;
+    const e = { year, coverage: totalCov };
+    for (const ax of axes) e[ax] = Math.round(sum[ax] / totalCov * 1000) / 1000;
+    drift.push(e);
+  }
+  AUDIO_DRIFT = { axes, years: drift };
+}
+
 const INSIGHTS = {
-  MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
+  MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
+  AUDIO_DRIFT,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
 };
