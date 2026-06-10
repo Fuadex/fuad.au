@@ -307,6 +307,51 @@ function StoriesView({ t, go }) {
           );
         })()}
 
+        {/* when the taste turned — share of yearly discoveries that were underground */}
+        {I.UNDERGROUND && I.UNDERGROUND.discoveryShape && I.UNDERGROUND.discoveryShape.length >= 10 && (() => {
+          const D = I.UNDERGROUND.discoveryShape.filter(y => y.withStats >= 10);
+          // headline year: max under-10k count
+          const peak = D.slice().sort((a, b) => b.under10k - a.under10k)[0];
+          // turning year: first year where ≥ 50% of new discoveries were under 50k
+          const turn = D.find(y => y.under50k / y.withStats >= 0.5);
+          const series50 = D.map(y => y.under50k / y.withStats);
+          const series10 = D.map(y => y.under10k / y.withStats);
+          const last = D[D.length - 1];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">When the taste turned</div>
+              <div className="st-big">
+                In <em>{peak.year}</em> you discovered <em>{peak.under10k}</em> artists with
+                under <em>10k listeners</em> worldwide.
+              </div>
+              <div className="st-sub">
+                The crossover happened in <em>{turn ? turn.year : "—"}</em> — the first year more than half of
+                your new artists were under 50k listeners. Now it's the default: {last.year} sits at <em>{Math.round(last.under50k / last.withStats * 100)}% under 50k</em>,
+                {" "}{Math.round(last.under10k / last.withStats * 100)}% under 10k.
+              </div>
+              <div className="st-turn">
+                <div className="st-turn-row">
+                  <div className="st-turn-label">under 50k listeners</div>
+                  <Spark data={series50} w={520} h={36} run={true}
+                    stroke="var(--accent)" fill="var(--accent-bg)" />
+                  <div className="st-turn-n">{Math.round(last.under50k / last.withStats * 100)}%</div>
+                </div>
+                <div className="st-turn-row">
+                  <div className="st-turn-label">under 10k listeners</div>
+                  <Spark data={series10} w={520} h={36} run={true}
+                    stroke="oklch(0.75 0.16 320)" fill="oklch(0.75 0.16 320 / .15)" />
+                  <div className="st-turn-n">{Math.round(last.under10k / last.withStats * 100)}%</div>
+                </div>
+                <div className="st-turn-axis">
+                  <span>{D[0].year}</span>
+                  <span>{D[Math.floor(D.length / 2)].year}</span>
+                  <span>{last.year}</span>
+                </div>
+              </div>
+            </section>
+          );
+        })()}
+
         {/* taste arc — how the geography moved across years (origins × years) */}
         {I.GEOGRAPHY && I.GEOGRAPHY.arc && I.GEOGRAPHY.arc.years.length >= 10 && (() => {
           const A = I.GEOGRAPHY.arc;
@@ -692,6 +737,17 @@ function StoriesView({ t, go }) {
         .st-geo-flag { font-size: 22px; line-height: 1; flex: none; width: 30px; text-align: center; }
         .st-geo-pct { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--accent); margin-left: auto; flex: none; }
         .st-geo-cities { display: flex; gap: 6px; flex-wrap: wrap; }
+        .st-turn { display: grid; gap: 10px; margin-top: 22px; }
+        .st-turn-row { display: grid; grid-template-columns: 160px 1fr 60px; gap: 18px; align-items: center; }
+        .st-turn-label { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); letter-spacing: .1em; text-transform: uppercase; }
+        .st-turn-n { font-family: var(--serif); font-style: italic; font-size: 17px; text-align: right; }
+        .st-turn-axis { display: flex; justify-content: space-between; padding-left: 178px;
+          font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: .1em; margin-top: 4px; }
+        @media (max-width: 640px) {
+          .st-turn-row { grid-template-columns: 1fr; gap: 2px; }
+          .st-turn-n { text-align: left; }
+          .st-turn-axis { padding-left: 0; }
+        }
         .st-life { display: grid; gap: 4px; }
         .st-life-row { display: grid; grid-template-columns: 24px 36px 1fr 110px; gap: 12px; align-items: center;
           padding: 7px 8px; margin: 0 -8px; border-radius: 5px; }
