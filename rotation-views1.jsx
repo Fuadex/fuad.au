@@ -364,6 +364,9 @@ function ClockView({ t, setPop }) {
                     const r = e.currentTarget.getBoundingClientRect();
                     setPop({ x: r.left + r.width / 2, y: r.top, title: `${d}, ${hr(h)}`, pip: "var(--acc-h)",
                       meta: "listening", rows: [["plays", fmt(v)], ["of peak", Math.round(v / max * 100) + "%"]] }); }}
+                  onClick={(e) => { const r = e.currentTarget.getBoundingClientRect();
+                    setPop({ x: r.left + r.width / 2, y: r.top, title: `${d}, ${hr(h)}`, pip: "var(--acc-h)",
+                      meta: "listening", rows: [["plays", fmt(v)], ["of peak", Math.round(v / max * 100) + "%"]] }); }}
                   onMouseLeave={(e) => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; setPop(null); }} />
               ))}
             </div>
