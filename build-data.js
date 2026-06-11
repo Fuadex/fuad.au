@@ -168,6 +168,15 @@ function dGenresOf(name) {
   return d.genres.slice(0, 3).map(g => g[0]);
 }
 
+// ─────────── MusicBrainz deep (artist-mb.json, by enrich-mb.js) ───────────
+// Per artist: { debut, latest, rgCount, releases:[[title,year,type]], rels:[[type,name,mbid]] }.
+// Powers adoption-lag ("how old the music was when you found it") + the connection graph.
+const MB_PATH = path.join(__dirname, "artist-mb.json");
+const MB = fs.existsSync(MB_PATH) ? JSON.parse(fs.readFileSync(MB_PATH, "utf8")) : {};
+const hasMB = Object.keys(MB).length > 0;
+const debutOf = (name) => (MB[name] && MB[name].debut) || null;
+const membersOf = (name) => ((MB[name] && MB[name].rels) || []).filter(r => r[0] === "member of band").map(r => r[1]);
+
 // tag → audio-DNA vector. Tag-DERIVED, not measured (last.fm has no audio features);
 // an artist's axes are the play-weighted average of its tags. First bucket wins.
 function tagAxis(t) {
@@ -375,6 +384,8 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     yp: Object.fromEntries(years.map(y => [y, yc.get(y) || 0]).filter(e => e[1] > 0)),
     fam: familyIdxByName(name),
     firstYear: new Date(firstSeen.get(name)).getUTCFullYear(),
+    debut: debutOf(name),
+    members: membersOf(name).slice(0, 8),
     listeners: listenersOf(name),
     styles: stylesOf(name),
     discogsGenres: dGenresOf(name),
@@ -1081,9 +1092,80 @@ let AUDIO_DRIFT = null;
   AUDIO_DRIFT = { axes, years: drift };
 }
 
+// ─────────── ADOPTION LAG (how old the music was when you found it, MusicBrainz debut) ───────────
+// lag = (first-listen year) − (artist debut year). ~0 = caught them near release; large = you
+// dug deep into back-catalogue. Also a play-weighted breakdown of which release-DECADE your
+// listening comes from (when the MUSIC is from, not when you played it).
+let ADOPTION = null;
+if (hasMB) {
+  const rows = [];
+  const decadePlays = new Map();
+  let covered = 0;
+  for (const [name, plays] of artistPlays) {
+    if (plays < 5) continue;
+    const deb = debutOf(name);
+    if (!deb) continue;
+    const sp = span.get(name);                  // dated first/last play
+    if (!sp) continue;
+    const foundYear = new Date(sp[0]).getUTCFullYear();
+    const lag = foundYear - deb;
+    if (lag < 0 || lag > 70) continue;          // skip data errors / impossible
+    covered += plays;
+    const dec = Math.floor(deb / 10) * 10;
+    decadePlays.set(dec, (decadePlays.get(dec) || 0) + plays);
+    rows.push({ name, plays, debut: deb, foundYear, lag, hue: hueFor(name), artistId: slug(name), kept: !!byName[name] });
+  }
+  rows.sort((a, b) => a.lag - b.lag);
+  const lagArr = rows.map(r => r.lag).sort((a, b) => a - b);
+  const medianLag = lagArr.length ? lagArr[Math.floor(lagArr.length / 2)] : 0;
+  const decades = [...decadePlays.entries()].sort((a, b) => a[0] - b[0])
+    .map(([decade, p]) => ({ decade, plays: p, share: covered ? Math.round(p / covered * 1000) / 1000 : 0 }));
+  // caught-early: smallest lag among well-played artists; digs: oldest music when found
+  const early = rows.filter(r => r.plays >= 30).slice(0, 8);
+  const digs = rows.filter(r => r.plays >= 20).slice().sort((a, b) => b.lag - a.lag).slice(0, 8);
+  ADOPTION = { coverage: Math.round(covered / lines.length * 100) / 100, artists: rows.length, medianLag, decades, early, digs };
+}
+
+// ─────────── CONNECTIONS (shared band members — the "same drummer" graph) ───────────
+// A person who is a "member of band" for ≥2 artists in your library links those artists.
+let CONNECTIONS = null;
+if (hasMB) {
+  const personBands = new Map();
+  for (const [name, plays] of artistPlays) {
+    if (plays < 5) continue;
+    const mb = MB[name];
+    if (!mb || !mb.rels) continue;
+    for (const [type, rn] of mb.rels) {
+      if (type !== "member of band") continue;
+      if (!personBands.has(rn)) personBands.set(rn, new Set());
+      personBands.get(rn).add(name);
+    }
+  }
+  const mbidOf = (name) => (STATS[name] && STATS[name].mbid) || null;
+  const links = [];
+  for (const [person, bandSet] of personBands) {
+    if (bandSet.size < 2) continue;
+    // collapse scrobble-name variants of one artist (NIN / Nine Inch Nails / nineinchnails)
+    // by shared MusicBrainz id, keeping the highest-play spelling.
+    const byKey = new Map();
+    for (const n of bandSet) {
+      const key = mbidOf(n) || slug(n);
+      const cur = byKey.get(key);
+      if (!cur || (artistPlays.get(n) || 0) > (artistPlays.get(cur) || 0)) byKey.set(key, n);
+    }
+    const names = [...byKey.values()];
+    if (names.length < 2) continue;
+    const arr = names.map(n => ({ name: n, hue: hueFor(n), plays: artistPlays.get(n) || 0, artistId: slug(n), kept: !!byName[n] }))
+      .sort((a, b) => b.plays - a.plays);
+    links.push({ person, artists: arr, plays: arr.reduce((s, a) => s + a.plays, 0) });
+  }
+  links.sort((a, b) => b.plays - a.plays);
+  CONNECTIONS = { links: links.slice(0, 12), totalLinks: links.length };
+}
+
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
-  AUDIO_DRIFT,
+  AUDIO_DRIFT, ADOPTION, CONNECTIONS,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
 };

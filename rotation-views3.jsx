@@ -96,6 +96,80 @@ function StoriesView({ t, go }) {
           );
         })()}
 
+        {/* adoption lag — how old the music was when you found it */}
+        {I.ADOPTION && I.ADOPTION.decades && I.ADOPTION.decades.length > 0 && (() => {
+          const A = I.ADOPTION;
+          const peakDec = A.decades.slice().sort((a, b) => b.share - a.share)[0];
+          const dig = A.digs[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">How old the music was</div>
+              <div className="st-big">
+                The median artist you found was <em>{A.medianLag} years</em> past their debut when you pressed play.
+              </div>
+              <div className="st-sub">
+                You don't chase new releases — you dig. Most of what you play was made in the
+                <b style={{ color: "var(--ink)" }}> {peakDec.decade}s</b> ({Math.round(peakDec.share * 100)}% of plays){dig ? <>, and you went {dig.lag} years deep into <em>{dig.name}</em>'s back-catalogue</> : null}.
+              </div>
+              <div style={{ display: "flex", alignItems: "flex-end", gap: 6, height: 96, margin: "18px 0 6px" }}>
+                {A.decades.filter(d => d.share >= 0.005).map(d => (
+                  <div key={d.decade} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 5 }}>
+                    <div style={{ fontFamily: "var(--mono)", fontSize: 9.5, color: "var(--ink-faint)" }}>{Math.round(d.share * 100)}%</div>
+                    <div style={{ width: "100%", maxWidth: 40, height: Math.max(3, d.share / peakDec.share * 64), borderRadius: "3px 3px 0 0",
+                      background: d.decade === peakDec.decade ? "var(--accent)" : "var(--rule-2)" }} />
+                    <div style={{ fontFamily: "var(--mono)", fontSize: 9.5, color: "var(--ink-soft)" }}>'{String(d.decade).slice(2)}s</div>
+                  </div>
+                ))}
+              </div>
+              <div className="st-ug-cuts">
+                {A.digs.slice(0, 4).map(c => (
+                  <div key={c.name} className="st-ug-cut" data-link={clickable(c.name)} onClick={() => goIf(c.name)}>
+                    <GenCover hue={c.hue} name={c.name} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{c.name}</div>
+                      <div className="st-row-sub">debut {c.debut} · found {c.foundYear} · {c.lag}yr later</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* connections — shared members / side-projects threading the library */}
+        {I.CONNECTIONS && I.CONNECTIONS.links && I.CONNECTIONS.links.length > 0 && (() => {
+          const C = I.CONNECTIONS;
+          const top = C.links[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Connected by blood</div>
+              <div className="st-big" data-link={clickable(top.artists[0].name)} onClick={() => goIf(top.artists[0].name)}>
+                <em>{top.person}</em> ties together {top.artists.length} acts you play.
+              </div>
+              <div className="st-sub">
+                {fmt(C.totalLinks)} hidden threads run through your library — shared members, side-projects,
+                the same hands on different records. The bloodlines that run deepest:
+              </div>
+              <div style={{ display: "grid", gap: 12, marginTop: 6 }}>
+                {C.links.slice(0, 6).map(l => (
+                  <div key={l.person} style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+                    <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 14, color: "var(--ink)", minWidth: 120 }}>{l.person}</span>
+                    {l.artists.map(a => (
+                      <span key={a.name} data-link={a.kept} onClick={() => a.kept && goIf(a.name)}
+                        style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 9px", borderRadius: 999,
+                          border: "1px solid var(--rule)", fontSize: 11.5, cursor: a.kept ? "pointer" : "default",
+                          color: a.kept ? "var(--ink)" : "var(--ink-soft)" }}>
+                        <span style={{ width: 8, height: 8, borderRadius: 2, background: `oklch(0.62 0.16 ${a.hue})` }} />
+                        {a.name}
+                      </span>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* year in review */}
         {yr && (
           <section className="st-card st-hero">
