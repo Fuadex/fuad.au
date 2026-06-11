@@ -236,6 +236,20 @@ const niceTags = (name) => {
   return (specific.length ? specific : all).slice(0, 4);
 };
 
+// artist → primary Sound-Map family INDEX (aligns with FAMILIES order, the cube's famIdx).
+// First classifiable tag wins; Discogs styles as fallback. Memoised — the clock cube calls
+// this once per scrobble (315k), so it must not re-classify per call.
+const _famCache = new Map();
+function familyIdxByName(name) {
+  if (_famCache.has(name)) return _famCache.get(name);
+  const tags = (META[name] && META[name].tags) || niceTags(name);
+  let idx = -1;
+  for (const tg of tags) { const f = classifyTag(tg); if (f) { idx = FAMILIES.indexOf(f); break; } }
+  if (idx < 0) for (const s of stylesOf(name)) { const f = classifyTag(s.toLowerCase()); if (f) { idx = FAMILIES.indexOf(f); break; } }
+  _famCache.set(name, idx);
+  return idx;
+}
+
 // ─────────── read + aggregate ───────────
 const raw = fs.readFileSync(CSV_PATH, "utf8");
 const lines = raw.split(/\r?\n/).filter(l => l.trim());
@@ -357,6 +371,9 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
       ? { energy: meta.audio[0], valence: meta.audio[1], acoustic: meta.audio[2], tempo: meta.audio[3], dance: meta.audio[4], instr: meta.audio[5] }
       : tagAudio(cachedTags(name)),
     era: counts.map(c => c === 0 ? 0 : Math.max(1, Math.round(9 * c / max))),
+    // raw per-year plays (sparse) + primary family index — powers the Explore ranking filter
+    yp: Object.fromEntries(years.map(y => [y, yc.get(y) || 0]).filter(e => e[1] > 0)),
+    fam: familyIdxByName(name),
     firstYear: new Date(firstSeen.get(name)).getUTCFullYear(),
     listeners: listenersOf(name),
     styles: stylesOf(name),
@@ -412,6 +429,13 @@ function _topEntry(map) {
   for (const [k, v] of map) if (v > bestV) { bestV = v; bestK = k; }
   return bestK ? [bestK, bestV] : null;
 }
+// top-N items from a "artist\x00title" → plays map, for per-year Explore ranking
+function _topItems(map, n) {
+  return [...map.entries()].sort((a, b) => b[1] - a[1]).slice(0, n).map(([k, p]) => {
+    const ix = k.indexOf("\x00"); const a = k.slice(0, ix), title = k.slice(ix + 1);
+    return { artist: a, title, plays: p, hue: hueFor(a), artistId: slug(a) };
+  });
+}
 const YEARS = years.filter(y => _yTracks.has(y)).map(year => {
   const tt = _topEntry(_yTracks.get(year));
   const ta = _topEntry(_yAlbums.get(year));
@@ -456,8 +480,31 @@ const YEARS = years.filter(y => _yTracks.has(y)).map(year => {
     topArtist: topArt[0] ? { name: topArt[0], plays: topArt[1], hue: hueFor(topArt[0]) } : null,
     discoveries: disc.slice(0, 3),
     gainer,
+    // per-year ranking lists for the Explore "Ranking" tab when a single year is selected
+    albums: _topItems(_yAlbums.get(year), 18),
+    tracks: _topItems(_yTracks.get(year), 18),
   };
 });
+
+// ─────────── CLOCK CROSS-TABS (year × family) for the Explore "Rhythm" tab ───────────
+// CLOCK_BY_YEAR[y] = real per-year hour-grid (all plays, including untagged artists).
+// CLOCK_CUBE[y][famIdx] = per-year-per-family hour-grid (only artists with a known family).
+// Grids are FLAT length-168 arrays: cell = ((day+6)%7)*24 + hour. The client inflates to 7×24
+// and rolls up: family-only = Σ years; year-only = CLOCK_BY_YEAR; both = direct cube lookup.
+const CLOCK_BY_YEAR = {};
+const CLOCK_CUBE = {};
+for (const [artist, , , ms] of scrobbles) {
+  const d = new Date(ms);
+  const y = d.getUTCFullYear();
+  const cell = ((d.getUTCDay() + 6) % 7) * 24 + d.getUTCHours();
+  if (!CLOCK_BY_YEAR[y]) CLOCK_BY_YEAR[y] = new Array(168).fill(0);
+  CLOCK_BY_YEAR[y][cell]++;
+  const fi = familyIdxByName(artist);
+  if (fi < 0) continue;
+  if (!CLOCK_CUBE[y]) CLOCK_CUBE[y] = {};
+  if (!CLOCK_CUBE[y][fi]) CLOCK_CUBE[y][fi] = new Array(168).fill(0);
+  CLOCK_CUBE[y][fi][cell]++;
+}
 
 // ─────────── TOTALS ───────────
 const dayKeys = [...dayCounts.keys()].sort();
@@ -1124,6 +1171,28 @@ const GENRES_CURATED = [
 ];
 const GENRES = (hasTags && GENRES_REAL.length) ? GENRES_REAL : GENRES_CURATED;
 
+// ─────────── SOUND_BY_YEAR — per-year weight for each Sound-Map subgenre ───────────
+// Lets the Explore "Sound" tab reshape bubble sizes for a single selected year (positions
+// stay from GENRES; only the weight changes). { [year]: { [subName]: weight } }, sparse.
+const SOUND_BY_YEAR = {};
+if (hasTags && GENRES_REAL.length) {
+  const subNames = new Set();
+  for (const f of GENRES) for (const s of f.subs) subNames.add(s.name);
+  for (const year of years) {
+    if ((yearTotals.get(year) || 0) < 500) continue;
+    const w = new Map();
+    for (const [name, m] of artistYear) {
+      const p = m.get(year) || 0;
+      if (!p) continue;
+      for (const [tag, count] of cachedTags(name)) {
+        if (!subNames.has(tag)) continue;
+        w.set(tag, (w.get(tag) || 0) + p * ((count || 0) / 100));
+      }
+    }
+    if (w.size) { const o = {}; for (const [k, v] of w) o[k] = Math.round(v); SOUND_BY_YEAR[year] = o; }
+  }
+}
+
 // ─────────── CONCERTS: real upcoming events from Ticketmaster (concerts-cache.json) ───────────
 // Built by enrich-concerts.js. If the cache is missing, CONCERTS+CITIES are empty
 // and the LiveView / ArtistView gigs card show "no upcoming dates" empty states.
@@ -1181,9 +1250,16 @@ for (const a of ARTISTS) {
   for (const alias of aka) if (!ALIAS_TO_ID[alias]) ALIAS_TO_ID[alias] = a.id;
 }
 
+// FAMILIES — lightweight {i, family, hue} aligned to the cube's famIdx, for Explore chips.
+// Only the families that actually carry weight in GENRES are surfaced (keeps the chip row honest).
+const _famWithData = new Set(GENRES.map(g => g.family));
+const FAMILIES_OUT = FAMILIES.map((f, i) => ({ i, family: f.family, hue: f.hue }))
+  .filter(f => _famWithData.has(f.family));
+
 const DATA = {
   ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
   CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
+  CLOCK_BY_YEAR, CLOCK_CUBE, SOUND_BY_YEAR, FAMILIES: FAMILIES_OUT,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)

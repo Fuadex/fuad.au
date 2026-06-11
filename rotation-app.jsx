@@ -19,14 +19,13 @@ const ACCENTS = [
 const NAV_FULL = [
   ["overview", "Overview"],
   ["stories", "Stories"],
-  ["charts", "Charts"],
-  ["clock", "Clock"],
-  ["sound", "Sound Map"],
-  ["eras", "Eras"],
+  ["explore", "Explore"],
   ["live", "Live"],
 ];
 // Hide "Live" entirely when no concerts have been enriched — avoids a dead-end tab.
 const NAV = NAV_FULL.filter(([k]) => k !== "live" || ((window.ROTATION && window.ROTATION.CITIES) || []).length > 0);
+// legacy view names (old Charts/Clock/Sound/Eras tabs) now resolve into the unified Explore view
+const LEGACY = { charts: "explore", clock: "explore", sound: "explore", eras: "explore" };
 
 function RotationApp() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
@@ -75,7 +74,7 @@ function RotationApp() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const v = route.view;
+  const v = LEGACY[route.view] || route.view;
   return (
     <div className="r-app" data-density={t.density} data-font={t.font}
       style={{ "--acc-h": t.accH }}>
@@ -88,7 +87,7 @@ function RotationApp() {
         </div>
         <nav className="r-nav">
           {NAV.map(([k, lbl]) => (
-            <button key={k} data-on={v === k || (k === "charts" && v === "artist")} onClick={() => go(k)}>
+            <button key={k} data-on={v === k || (k === "explore" && v === "artist")} onClick={() => go(k)}>
               <span className="gl" />{lbl}
             </button>
           ))}
@@ -109,10 +108,7 @@ function RotationApp() {
 
       {v === "overview" && <OverviewView t={t} go={go} />}
       {v === "stories" && <StoriesView t={t} go={go} />}
-      {v === "charts" && <ChartsView t={t} go={go} setPop={setPop} />}
-      {v === "clock" && <ClockView t={t} setPop={setPop} />}
-      {v === "sound" && <SoundMapView t={t} setPop={setPop} />}
-      {v === "eras" && <ErasView t={t} go={go} />}
+      {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} />}
       {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
       {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
 

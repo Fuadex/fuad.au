@@ -326,7 +326,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
 
   return (
     <div className="r-view" ref={ref}>
-      <button className="r-back" onClick={() => go("charts")}>← charts</button>
+      <button className="r-back" onClick={() => go("explore")}>← explore</button>
 
       {/* header */}
       <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 30 }}>
