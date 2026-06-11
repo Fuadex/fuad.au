@@ -14,8 +14,10 @@ const hueOfName = (name) => (window.ROTATION.byId[window.ROTATION.slug(name)] ||
 function StoriesView({ t, go }) {
   const R = window.ROTATION;
   const I = R.INSIGHTS;
-  const goIf = (name) => { const id = R.slug(name); if (R.byId[id]) go("artist", id); };
-  const clickable = (name) => !!R.byId[R.slug(name)];
+  // Alias-aware: "Midori" resolves through R.idForName → ミドリ's id when applicable.
+  const resolveId = (name) => (R.idForName && R.idForName(name)) || R.slug(name);
+  const goIf = (name) => { const id = resolveId(name); if (R.byId[id]) go("artist", id); };
+  const clickable = (name) => !!R.byId[resolveId(name)];
 
   // year-in-review state — default to most recent year with real listening volume
   const realYears = (R.YEARS || []).filter(y => y.plays > 500);
