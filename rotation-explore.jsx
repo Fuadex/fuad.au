@@ -325,13 +325,20 @@ function ExploreView({ t, go, setPop }) {
         .xp-sub-row { display: flex; justify-content: space-between; align-items: center; padding: 2px 4px; border-radius: 4px; cursor: pointer; transition: .12s; }
         .xp-sub-row:hover { background: var(--bg-3); }
         .xp-sub-row[data-on="true"] { background: var(--accent-bg); box-shadow: inset 0 0 0 1px var(--accent); }
-        @media (max-width: 640px) {
+        /* clock heatmap needs horizontal scroll on phones — the rule lived in the old ClockView
+           style block which no longer mounts, so it's restated here for the persistent Rhythm. */
+        .clk-scroll > div { min-width: 0; }
+        @media (max-width: 760px) {
           .xp-frow { grid-template-columns: 1fr; gap: 6px; }
           .xp-flabel { padding-top: 0; }
-          .xp-chiprow { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+          .xp-chiprow { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+          .xp-chiprow::-webkit-scrollbar { display: none; }
           .xp-tabs { align-self: stretch; }
           .xp-head-right { width: 100%; }
           .xp-search { min-width: 0; width: 100%; order: -1; }
+          .clk-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+          .clk-scroll::-webkit-scrollbar { display: none; }
+          .clk-scroll > div { min-width: 430px; }
           .era-d-grid { grid-template-columns: 1fr 1fr; }
         }
       `}</style>
