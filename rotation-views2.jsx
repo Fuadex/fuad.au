@@ -340,7 +340,8 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         <GenCover hue={a.hue} name={a.name} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
           <div className="r-kicker">#{String(a.rank).padStart(2, "0")} all time
-            {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}</div>
+            {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}
+            {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
           <div style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap" }}>
             {a.tags.map(g => <span key={g} className="r-chip">{g}</span>)}
@@ -370,7 +371,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
       {a.bio && a.bio.length > 40 && (
         <div className="r-card" style={{ padding: "18px 22px", marginBottom: "var(--gap)" }}>
           <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 10 }}>
-            About · last.fm
+            About
           </div>
           <p style={{ fontFamily: "var(--serif)", fontSize: 15.5, lineHeight: 1.55, color: "var(--ink-soft)", margin: 0 }}>
             {a.bio.length > 520 ? a.bio.slice(0, 520).replace(/\s+\S*$/, "") + "…" : a.bio}
@@ -421,6 +422,48 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               })}
             </div>
           </div>
+
+          {/* family tree — members + shared-member lineage (MusicBrainz + Discogs) */}
+          {((a.members && a.members.length > 0) || (a.connections && a.connections.length > 0)) && (
+            <div className="r-card" style={{ padding: 18 }}>
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
+                <span className="lbl"><b>Family tree</b></span>
+                <span className="meta">musicbrainz · discogs</span></div>
+              {a.members && a.members.length > 0 && (
+                <div style={{ marginBottom: (a.connections && a.connections.length) ? 16 : 0 }}>
+                  <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 8 }}>Members</div>
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                    {a.members.map(m => <span key={m} className="r-chip" style={{ fontSize: 11 }}>{m}</span>)}
+                  </div>
+                </div>
+              )}
+              {a.connections && a.connections.length > 0 && (
+                <div>
+                  <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 10 }}>Shares members with</div>
+                  <div style={{ display: "grid", gap: 9 }}>
+                    {a.connections.map((l, i) => (
+                      <div key={l.person + i} style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+                        <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13, color: "var(--ink-soft)", minWidth: 104 }}>{l.person}</span>
+                        <span style={{ color: "var(--ink-faint)" }}>→</span>
+                        {l.others.map(o => {
+                          const oid = (R.idForName && R.idForName(o.name)) || o.artistId;
+                          const kept = !!R.byId[oid];
+                          return (
+                            <span key={o.name} onClick={() => kept && go("artist", oid)}
+                              style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 9px", borderRadius: 999,
+                                border: "1px solid var(--rule)", fontSize: 11.5, cursor: kept ? "pointer" : "default",
+                                color: kept ? "var(--ink)" : "var(--ink-soft)" }}>
+                              <span style={{ width: 8, height: 8, borderRadius: 2, background: `oklch(0.62 0.16 ${o.hue})` }} />{o.name}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           {/* top tracks + albums */}
           <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--gap)" }}>

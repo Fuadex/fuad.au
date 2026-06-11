@@ -1168,6 +1168,19 @@ if (hasMB || Object.keys(DGA).length > 0) {
     links.push({ person, artists: arr, plays: arr.reduce((s, a) => s + a.plays, 0) });
   }
   links.sort((a, b) => b.plays - a.plays);
+  // per-kept-artist lineage: for each kept artist, the persons that link them to other acts.
+  // Attached onto ARTISTS (mutated here, before serialization) so ArtistView can show a tree.
+  const connByArtist = new Map();
+  for (const l of links) {
+    for (const m of l.artists) {
+      if (!byName[m.name]) continue; // only kept artists get a page
+      const others = l.artists.filter(x => x.name !== m.name).slice(0, 4);
+      if (!others.length) continue;
+      if (!connByArtist.has(m.name)) connByArtist.set(m.name, []);
+      connByArtist.get(m.name).push({ person: l.person, others });
+    }
+  }
+  for (const a of ARTISTS) a.connections = (connByArtist.get(a.name) || []).slice(0, 5);
   CONNECTIONS = { links: links.slice(0, 12), totalLinks: links.length };
 }
 
