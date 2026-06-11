@@ -295,6 +295,29 @@ const erasRaw = years.map(year => {
   return { year, top };
 });
 
+// Per-artist top tracks + albums computed from the FULL trackPlays/albumPlays maps,
+// not from the globally-capped TRACKS (top 24) / ALBUMS (top 472). Previously ArtistView
+// filtered globals and an artist like Midori showed zero tracks even though they're scrobbled.
+const TRACKS_PER_ARTIST = 15;
+const ALBUMS_PER_ARTIST_VIEW = 15;
+const _tBy = new Map(), _aBy = new Map();
+for (const [k, plays] of trackPlays) {
+  const ix = k.indexOf("\x00"); if (ix < 0) continue;
+  const artist = k.slice(0, ix), title = k.slice(ix + 1);
+  if (!include.has(artist)) continue;
+  if (!_tBy.has(artist)) _tBy.set(artist, []);
+  _tBy.get(artist).push({ title, plays });
+}
+for (const [k, plays] of albumPlays) {
+  const ix = k.indexOf("\x00"); if (ix < 0) continue;
+  const artist = k.slice(0, ix), title = k.slice(ix + 1);
+  if (!include.has(artist)) continue;
+  if (!_aBy.has(artist)) _aBy.set(artist, []);
+  _aBy.get(artist).push({ title, plays });
+}
+for (const m of _tBy.values()) m.sort((a, b) => b.plays - a.plays);
+for (const m of _aBy.values()) m.sort((a, b) => b.plays - a.plays);
+
 const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, plays], i) => {
   const meta = META[name] || {};
   const yc = artistYear.get(name) || new Map();
@@ -313,6 +336,8 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     bio: bioOf(name),
     image: imageOf(name),
     thumb: thumbOf(name),
+    topTracks: (_tBy.get(name) || []).slice(0, TRACKS_PER_ARTIST),
+    topAlbums: (_aBy.get(name) || []).slice(0, ALBUMS_PER_ARTIST_VIEW),
     audio: meta.audio
       ? { energy: meta.audio[0], valence: meta.audio[1], acoustic: meta.audio[2], tempo: meta.audio[3], dance: meta.audio[4], instr: meta.audio[5] }
       : tagAudio(cachedTags(name)),
@@ -1120,9 +1145,13 @@ if (Object.keys(CONCERT_CACHE).length > 0) {
 }
 
 // ─────────── emit ───────────
+// PLAYED — every artist with ≥3 scrobbles. Powers the Sounds-Like "in library" check
+// for artists that aren't in the kept-118 ARTISTS list (Otoboke Beaver, Midori, etc.).
+const PLAYED = [...artistPlays.entries()].filter(([, n]) => n >= 3).map(([n]) => n);
+
 const DATA = {
   ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
-  CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS,
+  CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)
@@ -1135,6 +1164,11 @@ window.ROTATION = (function () {
   const D = ${JSON.stringify(DATA)};
   D.byId = Object.fromEntries(D.ARTISTS.map(a => [a.id, a]));
   D.slug = slug;
+  // played(name) — kept artist OR scrobbled ≥3 times. Covers the long tail (Otoboke Beaver,
+  // Midori, etc.) so "Sounds like" shows "in library" instead of "not yet scrobbled".
+  const _played = new Set(D.PLAYED || []);
+  D.played = (name) => _played.has(name) || !!D.byId[slug(name)];
+  delete D.PLAYED;
   return D;
 })();
 `;
