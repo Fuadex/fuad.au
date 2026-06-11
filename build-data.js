@@ -130,8 +130,14 @@ const ALIASES = fs.existsSync(ALIASES_PATH) ? JSON.parse(fs.readFileSync(ALIASES
 // ─────────── Discogs artist images (artist-images.json, by enrich-images.js) ───────────
 const IMAGES_PATH = path.join(__dirname, "artist-images.json");
 const IMAGES = fs.existsSync(IMAGES_PATH) ? JSON.parse(fs.readFileSync(IMAGES_PATH, "utf8")) : {};
-const imageOf = (name) => (IMAGES[name] && IMAGES[name].image) || "";
-const thumbOf = (name) => (IMAGES[name] && IMAGES[name].thumb) || "";
+// discogs-artist.json (enrich-discogs-artist.js) — ONE /artists/{id} call captured image +
+// profile (bio) + members/groups (connections) + urls. Preferred over the older image-only cache.
+const DGA_PATH = path.join(__dirname, "discogs-artist.json");
+const DGA = fs.existsSync(DGA_PATH) ? JSON.parse(fs.readFileSync(DGA_PATH, "utf8")) : {};
+const imageOf = (name) => (DGA[name] && DGA[name].image) || (IMAGES[name] && IMAGES[name].image) || "";
+const thumbOf = (name) => (DGA[name] && DGA[name].thumb) || (IMAGES[name] && IMAGES[name].thumb) || "";
+const dgProfileOf = (name) => (DGA[name] && DGA[name].profile) || "";
+const dgMembersOf = (name) => (DGA[name] && DGA[name].members) || [];
 
 // ─────────── last.fm bios + REAL similar-artists (artist-bios.json, by enrich-bios.js) ───────────
 const BIOS_PATH = path.join(__dirname, "artist-bios.json");
@@ -371,7 +377,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
       const names = (real && real.length > 0) ? real.slice(0, 8) : (meta.similar || []);
       return { similar: names.map(slug), similarNames: names };
     })(),
-    bio: bioOf(name),
+    bio: bioOf(name) || dgProfileOf(name),  // last.fm bio, else Discogs profile (covers underground)
     image: imageOf(name),
     thumb: thumbOf(name),
     topTracks: (_tBy.get(name) || []).slice(0, TRACKS_PER_ARTIST),
@@ -385,7 +391,8 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     fam: familyIdxByName(name),
     firstYear: new Date(firstSeen.get(name)).getUTCFullYear(),
     debut: debutOf(name),
-    members: membersOf(name).slice(0, 8),
+    members: [...new Set([...membersOf(name), ...dgMembersOf(name)])].slice(0, 10), // MB + Discogs members
+
     listeners: listenersOf(name),
     styles: stylesOf(name),
     discogsGenres: dGenresOf(name),
@@ -1129,17 +1136,18 @@ if (hasMB) {
 // ─────────── CONNECTIONS (shared band members — the "same drummer" graph) ───────────
 // A person who is a "member of band" for ≥2 artists in your library links those artists.
 let CONNECTIONS = null;
-if (hasMB) {
+if (hasMB || Object.keys(DGA).length > 0) {
   const personBands = new Map();
+  const addEdge = (person, band) => {
+    if (!personBands.has(person)) personBands.set(person, new Set());
+    personBands.get(person).add(band);
+  };
   for (const [name, plays] of artistPlays) {
     if (plays < 5) continue;
     const mb = MB[name];
-    if (!mb || !mb.rels) continue;
-    for (const [type, rn] of mb.rels) {
-      if (type !== "member of band") continue;
-      if (!personBands.has(rn)) personBands.set(rn, new Set());
-      personBands.get(rn).add(name);
-    }
+    if (mb && mb.rels) for (const [type, rn] of mb.rels) if (type === "member of band") addEdge(rn, name);
+    // Discogs members fill the gap for artists MusicBrainz has no relations for (underground)
+    for (const p of dgMembersOf(name)) addEdge(p, name);
   }
   const mbidOf = (name) => (STATS[name] && STATS[name].mbid) || null;
   const links = [];
