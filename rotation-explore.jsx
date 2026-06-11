@@ -63,6 +63,99 @@ function soundSubs(R, year) {
   return base.map(s => ({ ...s, w: wy[s.name] || 0 })); // keep zeros so the scatter morphs
 }
 
+// ── faceted search: map a typed query to navigations (artist/album/track) or filter-sets
+// (genre / subgenre / year / time-of-day). Each category is capped so the dropdown stays tight.
+function timeMatches(R, q) {
+  if (q.length < 2) return [];
+  const days = R.CLOCK.days, all7 = [0, 1, 2, 3, 4, 5, 6], allH = Array.from({ length: 24 }, (_, h) => h);
+  const cellsFrom = (ds, hs) => { const c = []; for (const d of ds) for (const h of hs) c.push(d * 24 + h); return c; };
+  const out = [];
+  const defs = [
+    [["late night", "night", "late"], "Late night · 12–5 AM", all7, [0, 1, 2, 3, 4]],
+    [["morning"], "Morning · 6–11 AM", all7, [6, 7, 8, 9, 10, 11]],
+    [["afternoon", "arvo"], "Afternoon · 12–5 PM", all7, [12, 13, 14, 15, 16, 17]],
+    [["evening"], "Evening · 6–11 PM", all7, [18, 19, 20, 21, 22, 23]],
+    [["weekend"], "Weekend", [5, 6], allH],
+    [["weekday", "weekdays", "week day"], "Weekdays", [0, 1, 2, 3, 4], allH],
+  ];
+  for (const [kws, label, ds, hs] of defs) if (kws.some(k => k.startsWith(q) || k.includes(q))) out.push({ type: "time", label, cells: cellsFrom(ds, hs) });
+  ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].forEach((dn, i) => {
+    if (dn.startsWith(q)) out.push({ type: "time", label: days[i], cells: cellsFrom([i], allH) });
+  });
+  const m = /^(\d{1,2})\s*(am|pm)$/.exec(q);
+  if (m) { let h = parseInt(m[1], 10) % 12; if (m[2] === "pm") h += 12; out.push({ type: "time", label: `${m[1]} ${m[2].toUpperCase()}`, cells: cellsFrom(all7, [h]) }); }
+  if ("midnight".startsWith(q) && q.length >= 3) out.push({ type: "time", label: "Midnight", cells: cellsFrom(all7, [0]) });
+  if ("noon".startsWith(q) && q.length >= 2) out.push({ type: "time", label: "Noon", cells: cellsFrom(all7, [12]) });
+  return out.slice(0, 4);
+}
+
+function computeResults(R, yearKeys, subIndex, raw) {
+  const q = (raw || "").trim().toLowerCase();
+  if (q.length < 2) return [];
+  const inc = (s) => s && s.toLowerCase().includes(q);
+  return [
+    { type: "artist", label: "Artists", items: R.ARTISTS.filter(a => inc(a.name)).slice(0, 5).map(a => ({ type: "artist", label: a.name, id: a.id, dot: a.hue })) },
+    { type: "genre", label: "Genres", items: R.FAMILIES.filter(f => inc(f.family)).slice(0, 3).map(f => ({ type: "genre", label: f.family, famIdx: f.i, dot: f.hue })) },
+    { type: "sub", label: "Subgenres", items: [...subIndex.keys()].filter(inc).slice(0, 5).map(n => ({ type: "sub", label: n, name: n, famIdx: subIndex.get(n) })) },
+    { type: "album", label: "Albums", items: R.ALBUMS.filter(a => inc(a.title)).slice(0, 3).map(a => ({ type: "album", label: a.title, sub: a.artist, id: a.artistId, dot: a.hue })) },
+    { type: "track", label: "Tracks", items: R.TRACKS.filter(a => inc(a.title)).slice(0, 3).map(a => ({ type: "track", label: a.title, sub: a.artist, id: a.artistId, dot: a.hue })) },
+    { type: "year", label: "Years", items: yearKeys.filter(y => String(y).includes(q)).slice(0, 4).map(y => ({ type: "year", label: String(y), year: y })) },
+    { type: "time", label: "Times", items: timeMatches(R, q) },
+  ];
+}
+
+function ExploreSearch({ R, yearKeys, onArtist, onFam, onSub, onYear, onCells }) {
+  const [q, setQ] = React.useState("");
+  const [open, setOpen] = React.useState(false);
+  const boxRef = React.useRef(null);
+  const subIndex = React.useMemo(() => {
+    const m = new Map(), famByName = {};
+    R.FAMILIES.forEach(f => famByName[f.family] = f.i);
+    for (const f of R.GENRES) for (const s of f.subs) if (!m.has(s.name)) m.set(s.name, famByName[f.family]);
+    return m;
+  }, [R]);
+  const groups = React.useMemo(() => computeResults(R, yearKeys, subIndex, q), [R, yearKeys, subIndex, q]);
+  const flat = groups.flatMap(g => g.items);
+
+  const pick = (it) => {
+    setQ(""); setOpen(false);
+    if (it.type === "artist" || it.type === "album" || it.type === "track") onArtist(it.id);
+    else if (it.type === "genre") onFam(it.famIdx);
+    else if (it.type === "sub") onSub(it.name, it.famIdx);
+    else if (it.type === "year") onYear(it.year);
+    else if (it.type === "time") onCells(it.cells);
+  };
+
+  return (
+    <div className="xp-search" ref={boxRef}
+      onBlur={(e) => { if (!boxRef.current || !boxRef.current.contains(e.relatedTarget)) setOpen(false); }}>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
+        <circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" />
+      </svg>
+      <input value={q} placeholder="Search artists, genres, years, times…"
+        onChange={(e) => { setQ(e.target.value); setOpen(true); }} onFocus={() => setOpen(true)}
+        onKeyDown={(e) => { if (e.key === "Enter" && flat[0]) pick(flat[0]); if (e.key === "Escape") setOpen(false); }} />
+      {open && q.trim().length >= 2 && (
+        <div className="xp-search-pop">
+          {flat.length === 0 ? <div className="xp-search-empty">No matches for “{q.trim()}”</div> :
+            groups.filter(g => g.items.length).map(g => (
+              <div key={g.type} className="xp-search-grp">
+                <div className="xp-search-gl">{g.label}</div>
+                {g.items.map((it, i) => (
+                  <button key={it.type + i} className="xp-search-item" onMouseDown={(e) => e.preventDefault()} onClick={() => pick(it)}>
+                    {it.dot != null && <span className="xp-dot" style={{ background: `oklch(0.62 0.16 ${it.dot})` }} />}
+                    <span className="xp-search-lbl">{it.label}</span>
+                    {it.sub && <span className="xp-search-sub">{it.sub}</span>}
+                  </button>
+                ))}
+              </div>
+            ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ExploreView({ t, go, setPop }) {
   const R = window.ROTATION;
   const [tab, setTab] = React.useState("ranking");   // ranking | sound
@@ -100,9 +193,17 @@ function ExploreView({ t, go, setPop }) {
           <div className="r-kicker">Explore{chips.length ? "" : " · all time"}</div>
           <h1 className="r-title">Dig <em>through</em><span className="dot">.</span></h1>
         </div>
-        <div className="r-seg xp-tabs">
-          {[["ranking", "Ranking"], ["sound", "Sound"]].map(([k, lbl]) =>
-            <button key={k} data-on={tab === k} onClick={() => setTab(k)}>{lbl}</button>)}
+        <div className="xp-head-right">
+          <ExploreSearch R={R} yearKeys={yearKeys}
+            onArtist={(id) => go("artist", id)}
+            onFam={(i) => { setFam(i); setSub(null); }}
+            onSub={(name, fi) => { setSub(name); if (fi != null) setFam(fi); }}
+            onYear={(y) => setYear(y)}
+            onCells={(arr) => setCells(new Set(arr))} />
+          <div className="r-seg xp-tabs">
+            {[["ranking", "Ranking"], ["sound", "Sound"]].map(([k, lbl]) =>
+              <button key={k} data-on={tab === k} onClick={() => setTab(k)}>{lbl}</button>)}
+          </div>
         </div>
       </div>
 
@@ -154,7 +255,25 @@ function ExploreView({ t, go, setPop }) {
       {year != null && <YearDetail R={R} go={go} year={year} />}
 
       <style>{`
+        .xp-head-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
         .xp-tabs { align-self: flex-end; }
+        .xp-search { position: relative; display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px;
+          border: 1px solid var(--rule); border-radius: 999px; color: var(--ink-dim); min-width: 230px; transition: border-color .15s; }
+        .xp-search:focus-within { border-color: var(--ink-faint); }
+        .xp-search svg { flex: none; color: var(--ink-faint); }
+        .xp-search input { flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; color: var(--ink);
+          font-family: var(--sans); font-size: 12.5px; }
+        .xp-search input::placeholder { color: var(--ink-faint); }
+        .xp-search-pop { position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 60; max-height: 360px; overflow-y: auto;
+          background: var(--bg-2); border: 1px solid var(--rule-2); border-radius: 10px; padding: 6px; box-shadow: 0 18px 44px -12px rgba(0,0,0,.7); }
+        .xp-search-grp { padding: 4px 0; }
+        .xp-search-gl { font-family: var(--mono); font-size: 8.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); padding: 2px 8px 4px; }
+        .xp-search-item { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 7px 8px; border: 0;
+          background: transparent; border-radius: 6px; cursor: pointer; color: var(--ink); font-family: var(--sans); font-size: 12.5px; }
+        .xp-search-item:hover, .xp-search-item:focus { background: var(--bg-3); outline: 0; }
+        .xp-search-lbl { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .xp-search-sub { margin-left: auto; padding-left: 10px; color: var(--ink-faint); font-size: 11px; white-space: nowrap; }
+        .xp-search-empty { padding: 14px 10px; color: var(--ink-faint); font-family: var(--mono); font-size: 11px; }
         .xp-filters { padding: 14px 16px; margin-bottom: var(--gap); display: grid; gap: 10px; }
         .xp-frow { display: grid; grid-template-columns: 56px 1fr; gap: 10px; align-items: start; }
         .xp-flabel { font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); padding-top: 7px; }
@@ -190,6 +309,8 @@ function ExploreView({ t, go, setPop }) {
           .xp-flabel { padding-top: 0; }
           .xp-chiprow { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
           .xp-tabs { align-self: stretch; }
+          .xp-head-right { width: 100%; }
+          .xp-search { min-width: 0; width: 100%; order: -1; }
           .era-d-grid { grid-template-columns: 1fr 1fr; }
         }
       `}</style>
