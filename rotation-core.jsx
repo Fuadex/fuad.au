@@ -261,7 +261,16 @@ function useInView() {
 }
 
 // ─────────── generative cover ───────────
-function GenCover({ hue, name, size, radius, style }) {
+function GenCover({ hue, name, size, radius, style, image, thumb }) {
+  // Auto-resolve: if no image passed, try looking up the artist in window.ROTATION.
+  // This lights up every existing GenCover usage automatically once artist-images.json exists.
+  if (!image && name && typeof window !== "undefined" && window.ROTATION) {
+    const R = window.ROTATION;
+    if (R.byId && R.slug) {
+      const a = R.byId[R.slug(name)];
+      if (a && a.image) { image = a.image; thumb = a.thumb; }
+    }
+  }
   const h = hashInt(name || "x", 7);
   const variant = h % 4; // 0 wave · 1 rings · 2 strata · 3 split
   const hue2 = (hue + 30 + (h % 40)) % 360;
@@ -296,12 +305,23 @@ function GenCover({ hue, name, size, radius, style }) {
   }
   const px = size || 96;
   const npx = typeof px === "number" ? px : 96;
+  // Real image when available: small sizes use the 150x thumb, large use the full uri.
+  // The generated gradient stays underneath as a load-fallback (and shows if the img 404s).
+  const imgUrl = (npx <= 100 ? (thumb || image) : (image || thumb)) || "";
+  const [imgOk, setImgOk] = React.useState(true);
+  React.useEffect(() => { setImgOk(true); }, [imgUrl]);
+  const showImg = imgUrl && imgOk;
   return (
     <div className="gc" style={{ width: px, height: px, borderRadius: radius != null ? radius : 3, ...style }}>
       <div className="gc-fill" style={fill} />
       {extra}
       <div className="gc-grain" />
-      <span className="gc-init" style={{ fontSize: Math.max(9, npx * 0.16) }}>{initials}</span>
+      {!showImg && <span className="gc-init" style={{ fontSize: Math.max(9, npx * 0.16) }}>{initials}</span>}
+      {showImg && (
+        <img src={imgUrl} alt="" loading="lazy" onError={() => setImgOk(false)}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%",
+            objectFit: "cover", borderRadius: "inherit", display: "block" }} />
+      )}
     </div>
   );
 }
