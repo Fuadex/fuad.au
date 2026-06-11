@@ -111,21 +111,28 @@ function SoundScatter({ subs, maxW, seen, activeFam, expressive, setPop }) {
       <text x={20} y={H - pad} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" transform={`rotate(-90 20 ${H - pad})`} style={{ letterSpacing: ".1em" }}>CALM</text>
       <text x={20} y={pad + 56} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" transform={`rotate(-90 20 ${pad + 56})`} textAnchor="end" style={{ letterSpacing: ".1em" }}>VIOLENT</text>
       {subs.map((s, i) => {
-        const r = 10 + (s.w / maxW) * 40;
+        // present = has weight in the current slice. Absent subs animate their radius to 0
+        // (and fade) rather than unmounting, so the field morphs smoothly between year filters.
+        const present = s.w > 0;
+        const r = present ? 10 + (s.w / maxW) * 40 : 0;
         const dim = activeFam && activeFam !== s.family;
         const col = expressive ? `oklch(0.62 0.17 ${s.hue})` : "var(--accent)";
         return (
-          <g key={s.name} style={{ cursor: "default", opacity: seen ? (dim ? 0.16 : 1) : 0,
+          <g key={s.name} style={{ cursor: present ? "default" : "default",
+            opacity: seen ? (present ? (dim ? 0.16 : 1) : 0) : 0,
             transform: seen ? "scale(1)" : "scale(0)", transformOrigin: `${px(s.x)}px ${py(s.y)}px`,
-            transition: `opacity .4s, transform .6s cubic-bezier(.3,1.4,.5,1) ${i * 0.018}s` }}
+            transition: `opacity .45s cubic-bezier(.3,.8,.3,1) ${i * 0.012}s, transform .6s cubic-bezier(.3,1.4,.5,1) ${i * 0.018}s`,
+            pointerEvents: present ? "auto" : "none" }}
             onMouseEnter={() => setPop({ x: px(s.x) / W * (window.innerWidth - 230), y: 280, title: s.name, pip: s.hue,
               meta: s.family, rows: [["plays", fmt(s.w)], ["texture", s.x < .5 ? "organic" : "electronic"], ["intensity", Math.round(s.y * 100) + "%"]] })}
             onClick={() => setPop({ x: Math.min(Math.max(px(s.x) / W * window.innerWidth, 140), window.innerWidth - 140), y: 280, title: s.name, pip: s.hue,
               meta: s.family, rows: [["plays", fmt(s.w)], ["texture", s.x < .5 ? "organic" : "electronic"], ["intensity", Math.round(s.y * 100) + "%"]] })}
             onMouseLeave={() => setPop(null)}>
-            <circle cx={px(s.x)} cy={py(s.y)} r={r} fill={col} fillOpacity={expressive ? .28 : .14} stroke={col} strokeWidth="1.4" />
+            <circle cx={px(s.x)} cy={py(s.y)} r={r} fill={col} fillOpacity={expressive ? .28 : .14} stroke={col} strokeWidth="1.4"
+              style={{ transition: "r .55s cubic-bezier(.3,.8,.3,1)" }} />
             {r > 18 && <text x={px(s.x)} y={py(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)"
-              fontSize={Math.min(13, r / 3)} fontFamily="var(--sans)" fontWeight="500">
+              fontSize={Math.min(13, r / 3)} fontFamily="var(--sans)" fontWeight="500"
+              style={{ transition: "font-size .55s" }}>
               {s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
           </g>
         );
