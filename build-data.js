@@ -14,9 +14,9 @@ const TZ_OFFSET_HOURS = 10;
 // toward eras/years/discovery but not the clock, streaks, or top-day stats.
 const UNDATED_REMAP_START = Date.UTC(2006, 0, 1);
 
-const TOP_ARTISTS = 60;
-const TOP_ALBUMS = 60;
-const TOP_TRACKS = 24;
+const TOP_ARTISTS = 200;       // bumped from 60 — ミドリ (#124) + Yellow Machinegun (#166)
+const TOP_ALBUMS = 120;        // bumped from 60 — wider Charts coverage
+const TOP_TRACKS = 50;         // bumped from 24 — wider Charts coverage
 const ALBUMS_PER_ARTIST = 4;
 
 // ─────────── CSV parsing ───────────
@@ -45,7 +45,15 @@ function parseDate(s) {
   return new Date(ms); // read with getUTC* = local listening time
 }
 
-const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || "unknown";
+function _slugHash(s) {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = (((h << 5) + h) ^ s.charCodeAt(i)) >>> 0;
+  return h.toString(36);
+}
+const slug = (s) => {
+  const t = (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  return t || ("a-" + _slugHash(s || "x").slice(0, 7));
+};
 const hueOf = (name) => { let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
 
 // ─────────── mock-curated artist metadata (name → hue, country, tags, similar, audio) ───────────
@@ -111,6 +119,13 @@ const STATS_PATH = path.join(__dirname, "artist-stats.json");
 const STATS = fs.existsSync(STATS_PATH) ? JSON.parse(fs.readFileSync(STATS_PATH, "utf8")) : {};
 const hasStats = Object.keys(STATS).length > 0;
 const listenersOf = (name) => { const s = STATS[name]; return s && s.listeners > 0 ? s.listeners : null; };
+
+// ─────────── MusicBrainz aliases (artist-aliases.json, by enrich-aliases.js) ───────────
+// Cross-script identity: ミドリ ↔ Midori, Боevsky ↔ Boevsky, etc. Folded into PLAYED
+// so the Sounds-Like "in library" check works for similar-artist names in Latin script
+// even when we've only scrobbled the native-script form.
+const ALIASES_PATH = path.join(__dirname, "artist-aliases.json");
+const ALIASES = fs.existsSync(ALIASES_PATH) ? JSON.parse(fs.readFileSync(ALIASES_PATH, "utf8")) : {};
 
 // ─────────── Discogs artist images (artist-images.json, by enrich-images.js) ───────────
 const IMAGES_PATH = path.join(__dirname, "artist-images.json");
@@ -1145,13 +1160,30 @@ if (Object.keys(CONCERT_CACHE).length > 0) {
 }
 
 // ─────────── emit ───────────
-// PLAYED — every artist with ≥3 scrobbles. Powers the Sounds-Like "in library" check
-// for artists that aren't in the kept-118 ARTISTS list (Otoboke Beaver, Midori, etc.).
-const PLAYED = [...artistPlays.entries()].filter(([, n]) => n >= 3).map(([n]) => n);
+// PLAYED — every artist with ≥3 scrobbles + their MusicBrainz aliases (cross-script).
+// Powers the Sounds-Like "in library" check. ミドリ's aliases include "Midori" so a similar
+// list mentioning "Midori" resolves to true even though we scrobbled the Japanese form.
+const _playedSet = new Set();
+for (const [name, n] of artistPlays) {
+  if (n < 3) continue;
+  _playedSet.add(name);
+  const aka = (ALIASES[name] && ALIASES[name].aliases) || [];
+  for (const alias of aka) _playedSet.add(alias);
+}
+const PLAYED = [..._playedSet];
+
+// ALIAS_TO_ID — for each kept artist, register every alias → that artist's slug-id.
+// Lets a click on "Midori" in a similar-artists list route to ミドリ's actual page.
+const ALIAS_TO_ID = {};
+for (const a of ARTISTS) {
+  ALIAS_TO_ID[a.name] = a.id;
+  const aka = (ALIASES[a.name] && ALIASES[a.name].aliases) || [];
+  for (const alias of aka) if (!ALIAS_TO_ID[alias]) ALIAS_TO_ID[alias] = a.id;
+}
 
 const DATA = {
   ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
-  CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED,
+  CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)
@@ -1160,15 +1192,35 @@ const out = `// ─────────────────────�
 // GENRES + per-artist tags/audio-DNA from last.fm tags (${hasTags ? Object.keys(TAG_CACHE).length + " artists cached" : "curated fallback"}). CONCERTS still curated.
 // ────────────────────────────────────────────────────────────────
 window.ROTATION = (function () {
-  const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  // slug — match build-time slug() so route IDs work for kept artists even when their
+  // names are entirely non-Latin (ミドリ → "a-3kf2e1" etc.).
+  function _slugHash(s) {
+    let h = 5381;
+    for (let i = 0; i < s.length; i++) h = (((h << 5) + h) ^ s.charCodeAt(i)) >>> 0;
+    return h.toString(36);
+  }
+  const slug = (s) => {
+    const t = (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    return t || ("a-" + _slugHash(s || "x").slice(0, 7));
+  };
   const D = ${JSON.stringify(DATA)};
   D.byId = Object.fromEntries(D.ARTISTS.map(a => [a.id, a]));
   D.slug = slug;
-  // played(name) — kept artist OR scrobbled ≥3 times. Covers the long tail (Otoboke Beaver,
-  // Midori, etc.) so "Sounds like" shows "in library" instead of "not yet scrobbled".
+  // played(name) — kept artist OR scrobbled ≥3 times (plus aliases). Covers the long tail
+  // (Otoboke Beaver) AND cross-script (ミドリ ↔ "Midori" via MusicBrainz aliases).
   const _played = new Set(D.PLAYED || []);
   D.played = (name) => _played.has(name) || !!D.byId[slug(name)];
   delete D.PLAYED;
+  // idForName(name) — resolve a name to a kept-artist id. Tries direct slug first, then the
+  // alias map (so a similar-link click on "Midori" lands on ミドリ's page).
+  const _aliasMap = D.ALIAS_TO_ID || {};
+  D.idForName = (name) => {
+    if (!name) return null;
+    const direct = slug(name);
+    if (D.byId[direct]) return direct;
+    return _aliasMap[name] || null;
+  };
+  delete D.ALIAS_TO_ID;
   return D;
 })();
 `;

@@ -389,11 +389,13 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               <span className="meta">last.fm similar</span></div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(120px,1fr))", gap: 12 }}>
               {a.similar.map((sid, i) => {
-                const sim = R.byId[sid];                     // kept-118 artist (clickable, rich data)
                 const name = a.similarNames[i];
-                const played = sim || (R.played && R.played(name));  // any scrobbled artist
+                // Resolve to a kept-artist id via the alias map ("Midori" → ミドリ's id)
+                const realId = (R.idForName && R.idForName(name)) || sid;
+                const sim = R.byId[realId];
+                const played = sim || (R.played && R.played(name));
                 return (
-                  <div key={sid + i} onClick={() => sim && go("artist", sid)}
+                  <div key={sid + i} onClick={() => sim && go("artist", realId)}
                     style={{ display: "flex", flexDirection: "column", gap: 8, cursor: sim ? "pointer" : "default",
                       opacity: played ? 1 : 0.62 }}
                     onMouseEnter={(e) => { if (sim) e.currentTarget.style.transform = "translateY(-3px)"; }}
