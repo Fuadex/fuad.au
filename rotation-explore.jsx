@@ -41,8 +41,9 @@ function rankingItems(R, kind, year, fam) {
 function soundSubs(R, year) {
   const base = R.GENRES.flatMap(f => f.subs.map(s => ({ ...s, family: f.family, hue: f.hue })));
   if (year == null) return base;
+  // keep every sub (even at w=0) so the scatter morphs radius→0 instead of unmounting
   const wy = R.SOUND_BY_YEAR[year] || {};
-  return base.map(s => ({ ...s, w: wy[s.name] || 0 })).filter(s => s.w > 0);
+  return base.map(s => ({ ...s, w: wy[s.name] || 0 }));
 }
 
 function ExploreView({ t, go, setPop }) {
@@ -98,6 +99,8 @@ function ExploreView({ t, go, setPop }) {
         </div>
       </div>
 
+      {year != null && <YearDetail R={R} go={go} year={year} />}
+
       {tab === "ranking" && <RankingPanel R={R} t={t} go={go} setPop={setPop} kind={kind} setKind={setKind} year={year} fam={fam} seen={seen} />}
       {tab === "sound" && <SoundPanel R={R} t={t} setPop={setPop} year={year} fam={fam} famName={famName} setFam={setFam} seen={seen} />}
       {tab === "rhythm" && <RhythmPanel R={R} year={year} fam={fam} setPop={setPop} seen={seen} />}
@@ -118,13 +121,68 @@ function ExploreView({ t, go, setPop }) {
         .xp-dot { width: 9px; height: 9px; border-radius: 3px; flex: none; }
         .xp-empty { padding: 60px 20px; text-align: center; color: var(--ink-faint);
           font-family: var(--mono); font-size: 12px; letter-spacing: .04em; }
+        .xp-yeardetail { padding: 18px 22px; margin-bottom: var(--gap); }
+        .xp-yd-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+        .xp-yd-year { font-size: 40px; line-height: .9; }
+        .xp-yd-title { font-family: var(--serif); font-style: italic; font-size: 19px; line-height: 1.1; }
+        .xp-yd-sub { color: var(--ink-soft); font-size: 12.5px; margin-top: 3px; }
+        .era-d-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px 22px; }
+        .era-d-stat { min-width: 0; }
+        .era-d-stat[data-link="true"] { cursor: pointer; }
+        .era-d-stat[data-link="true"]:hover .era-d-v { color: var(--accent); }
+        .era-d-k { font-size: 9.5px; color: var(--ink-faint); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+        .era-d-v { font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.15;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .era-d-sub { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         @media (max-width: 640px) {
           .xp-frow { grid-template-columns: 1fr; gap: 6px; }
           .xp-flabel { padding-top: 0; }
           .xp-chiprow { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
           .xp-tabs { align-self: stretch; }
+          .era-d-grid { grid-template-columns: 1fr 1fr; }
         }
       `}</style>
+    </div>
+  );
+}
+
+// ── YEAR DETAIL ── the editorial strip that lived in the old Eras view: headline +
+// top track/album/peak day/discovery/jump for the selected year (data from R.YEARS).
+function YearDetail({ R, go, year }) {
+  const yr = (R.YEARS || []).find(y => y.year === year);
+  if (!yr || yr.plays < 300) return null;
+  const headline = (typeof ERA_HEADLINE !== "undefined" && ERA_HEADLINE[year]) || ["", ""];
+  const open = (name) => go("artist", R.idForName(name) || R.slug(name));
+  const Stat = ({ k, v, sub, onClick }) => (
+    <div className="era-d-stat" data-link={!!onClick} onClick={onClick}>
+      <div className="r-mono era-d-k">{k}</div>
+      <div className="era-d-v">{v}</div>
+      {sub && <div className="era-d-sub">{sub}</div>}
+    </div>
+  );
+  return (
+    <div className="r-card xp-yeardetail">
+      <div className="xp-yd-head">
+        <div className="r-stat-n xp-yd-year">{year}</div>
+        {headline[0] && <div>
+          <div className="xp-yd-title">{headline[0]}</div>
+          <div className="xp-yd-sub">{headline[1]}</div>
+        </div>}
+      </div>
+      <div className="era-d-grid">
+        {yr.topTrack && <Stat k="Top track" v={yr.topTrack.title}
+          sub={`${yr.topTrack.artist} · ${yr.topTrack.plays} plays`} onClick={() => open(yr.topTrack.artist)} />}
+        {yr.topAlbum && <Stat k="Top album" v={yr.topAlbum.title}
+          sub={`${yr.topAlbum.artist} · ${yr.topAlbum.plays} plays`} onClick={() => open(yr.topAlbum.artist)} />}
+        {yr.peakDay && <Stat k="Peak day" v={yr.peakDay.plays + " plays"} sub={yr.peakDay.date} />}
+        <Stat k="Hours" v={fmt(yr.hours)} sub={`${yr.activeDays} active days`} />
+        <Stat k="Artists touched" v={fmt(yr.artists)} sub={`${fmt(yr.tracks)} tracks`} />
+        {yr.discoveries[0] && <Stat k="Top discovery" v={yr.discoveries[0].name}
+          sub={`${yr.discoveries[0].plays} plays · first heard ${year}`} onClick={() => open(yr.discoveries[0].name)} />}
+        {yr.gainer && yr.gainer.delta > 50 && <Stat k="Biggest jump" v={yr.gainer.name}
+          sub={`${yr.gainer.prev} → ${yr.gainer.plays} (+${yr.gainer.delta})`} onClick={() => open(yr.gainer.name)} />}
+      </div>
     </div>
   );
 }
@@ -158,35 +216,97 @@ function RankingPanel({ R, t, go, setPop, kind, setKind, year, fam, seen }) {
   );
 }
 
-// ── SOUND ── reuses SoundScatter from rotation-views2; year reshapes weights, genre highlights
+// ── SOUND ── reuses SoundScatter from rotation-views2; year reshapes weights, genre highlights.
+// Two modes: "map" (scatter + family rail) and "families" (per-family subgenre breakdown cards).
 function SoundPanel({ R, t, setPop, year, fam, famName, setFam, seen }) {
+  const [mode, setMode] = React.useState("map");
   const subs = soundSubs(R, year);
+  const live = subs.filter(s => s.w > 0);
   const maxW = Math.max(1, ...subs.map(s => s.w));
-  const totalW = subs.reduce((s, x) => s + x.w, 0) || 1;
-  const famTotals = R.FAMILIES.map(f => ({ ...f, w: subs.filter(s => s.family === f.family).reduce((a, s) => a + s.w, 0) }))
+  const totalW = live.reduce((s, x) => s + x.w, 0) || 1;
+  const famTotals = R.FAMILIES.map(f => ({ ...f, w: live.filter(s => s.family === f.family).reduce((a, s) => a + s.w, 0) }))
     .filter(f => f.w > 0).sort((a, b) => b.w - a.w);
+
   return (
-    <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 210px", gap: "var(--gap)", alignItems: "start" }}>
-      <div className="r-card" style={{ padding: 0, position: "relative", overflow: "hidden", minHeight: 200 }}>
-        {subs.length === 0
-          ? <div className="xp-empty">No tagged listening in {year}.</div>
-          : <SoundScatter subs={subs} maxW={maxW} seen={seen} activeFam={famName}
-              expressive={t.chart === "expressive"} setPop={setPop} />}
+    <div>
+      <div className="r-seg" style={{ marginBottom: "var(--gap)" }}>
+        {["map", "families"].map(m => <button key={m} data-on={mode === m} onClick={() => setMode(m)}>{m}</button>)}
       </div>
-      <div style={{ display: "grid", gap: 8 }}>
-        <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 2 }}>Families {year ? "· " + year : ""}</div>
-        {famTotals.map(f => (
-          <div key={f.family} onClick={() => setFam(fam === f.i ? null : f.i)}
-            style={{ display: "flex", alignItems: "center", gap: 10, padding: "7px 9px", borderRadius: 5, cursor: "pointer",
-              background: fam === f.i ? "var(--bg-3)" : "transparent", transition: ".15s" }}>
-            <span style={{ width: 10, height: 10, borderRadius: 3, background: `oklch(0.62 0.16 ${f.hue})`, flex: "none" }} />
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{f.family}</div>
-              <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{(f.w / totalW * 100).toFixed(0)}% · {fmtK(f.w)}</div>
+
+      {mode === "map" && (
+        <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 210px", gap: "var(--gap)", alignItems: "start" }}>
+          <div className="r-card" style={{ padding: 0, position: "relative", overflow: "hidden", minHeight: 200 }}>
+            {live.length === 0
+              ? <div className="xp-empty">No tagged listening in {year}.</div>
+              : <SoundScatter subs={subs} maxW={maxW} seen={seen} activeFam={famName}
+                  expressive={t.chart === "expressive"} setPop={setPop} />}
+          </div>
+          <div style={{ display: "grid", gap: 8 }}>
+            <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 2 }}>Families {year ? "· " + year : ""}</div>
+            {famTotals.map(f => (
+              <div key={f.family} onClick={() => setFam(fam === f.i ? null : f.i)}
+                style={{ display: "flex", alignItems: "center", gap: 10, padding: "7px 9px", borderRadius: 5, cursor: "pointer",
+                  background: fam === f.i ? "var(--bg-3)" : "transparent", transition: ".15s" }}>
+                <span style={{ width: 10, height: 10, borderRadius: 3, background: `oklch(0.62 0.16 ${f.hue})`, flex: "none" }} />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{f.family}</div>
+                  <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{(f.w / totalW * 100).toFixed(0)}% · {fmtK(f.w)}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {mode === "families" && (
+        <SoundFamilies R={R} live={live} totalW={totalW} expressive={t.chart === "expressive"} seen={seen} fam={fam} setFam={setFam} year={year} />
+      )}
+    </div>
+  );
+}
+
+// per-family subgenre breakdown — bars sized within each family, year-aware via `live` subs
+function SoundFamilies({ R, live, totalW, expressive, seen, fam, setFam, year }) {
+  const groups = R.FAMILIES.map(f => ({
+    ...f,
+    subs: live.filter(s => s.family === f.family).sort((a, b) => b.w - a.w),
+    w: live.filter(s => s.family === f.family).reduce((a, s) => a + s.w, 0),
+  })).filter(g => g.subs.length).sort((a, b) => b.w - a.w);
+
+  if (groups.length === 0) return <div className="r-card xp-empty">No tagged listening in {year}.</div>;
+
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(290px,1fr))", gap: "var(--gap)" }}>
+      {groups.map((f, fi) => {
+        const fmax = Math.max(1, ...f.subs.map(s => s.w));
+        const on = fam === f.i;
+        return (
+          <div key={f.family} className="r-card" style={{ padding: 18, cursor: "pointer",
+            boxShadow: on ? "inset 0 0 0 1px var(--accent)" : "none", transition: ".15s" }}
+            onClick={() => setFam(on ? null : f.i)}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={{ width: 12, height: 12, borderRadius: 3, background: `oklch(0.62 0.16 ${f.hue})` }} />
+              <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 20 }}>{f.family}</div>
+              <span className="r-mono" style={{ marginLeft: "auto", fontSize: 10, color: "var(--ink-faint)" }}>{fmtK(f.w)} · {(f.w / totalW * 100).toFixed(0)}%</span>
+            </div>
+            <div style={{ display: "grid", gap: 8 }}>
+              {f.subs.map((s, si) => (
+                <div key={s.name}>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
+                    <span style={{ fontSize: 11.5, color: "var(--ink-soft)" }}>{s.name}</span>
+                    <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(s.w)}</span>
+                  </div>
+                  <div style={{ height: 6, background: "var(--bg-3)", borderRadius: 3, overflow: "hidden" }}>
+                    <div style={{ height: "100%", width: (seen ? s.w / fmax * 100 : 0) + "%",
+                      background: expressive ? `oklch(0.6 0.16 ${f.hue})` : "var(--accent)", opacity: .85,
+                      borderRadius: 3, transition: `width .8s cubic-bezier(.3,.8,.3,1) ${(fi * 0.03 + si * 0.05)}s` }} />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
+        );
+      })}
     </div>
   );
 }
