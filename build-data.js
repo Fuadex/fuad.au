@@ -506,6 +506,23 @@ for (const [artist, , , ms] of scrobbles) {
   CLOCK_CUBE[y][fi][cell]++;
 }
 
+// ARTIST_CLOCK — per kept artist, sparse [[cell, count]] hour-grid (cell = ((day+6)%7)*24+hour).
+// Powers time-of-day / day-of-week filtering of the ranking: select clock cells → re-rank artists
+// by plays inside those slots. Sparse keeps it compact (only the cells an artist actually played).
+const ARTIST_CLOCK = {};
+{
+  const acc = new Map();
+  for (const [artist, , , ms] of scrobbles) {
+    const a = byName[artist];
+    if (!a) continue;
+    const d = new Date(ms);
+    const cell = ((d.getUTCDay() + 6) % 7) * 24 + d.getUTCHours();
+    if (!acc.has(a.id)) acc.set(a.id, new Map());
+    const m = acc.get(a.id); m.set(cell, (m.get(cell) || 0) + 1);
+  }
+  for (const [id, m] of acc) ARTIST_CLOCK[id] = [...m.entries()].sort((x, y) => x[0] - y[0]);
+}
+
 // ─────────── TOTALS ───────────
 const dayKeys = [...dayCounts.keys()].sort();
 let topDayKey = dayKeys[0];
@@ -1193,6 +1210,19 @@ if (hasTags && GENRES_REAL.length) {
   }
 }
 
+// ─────────── SUB_ARTISTS — subgenre → kept-artist ids (for the Explore subgenre filter) ───────────
+// Lets a click on a subgenre row in the Sound "families" pane filter the ranking to exactly the
+// artists who carry that tag. Built from each kept artist's FULL last.fm tag list (not just top-4).
+const SUB_ARTISTS = {};
+{
+  const subNames = new Set();
+  for (const f of GENRES) for (const s of f.subs) subNames.add(s.name);
+  for (const a of ARTISTS) {
+    const tset = new Set([...cachedTags(a.name).map(t => t[0]), ...(a.tags || [])]);
+    for (const tag of tset) if (subNames.has(tag)) (SUB_ARTISTS[tag] = SUB_ARTISTS[tag] || []).push(a.id);
+  }
+}
+
 // ─────────── CONCERTS: real upcoming events from Ticketmaster (concerts-cache.json) ───────────
 // Built by enrich-concerts.js. If the cache is missing, CONCERTS+CITIES are empty
 // and the LiveView / ArtistView gigs card show "no upcoming dates" empty states.
@@ -1260,6 +1290,7 @@ const DATA = {
   ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
   CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
   CLOCK_BY_YEAR, CLOCK_CUBE, SOUND_BY_YEAR, FAMILIES: FAMILIES_OUT,
+  SUB_ARTISTS, ARTIST_CLOCK,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)
