@@ -314,8 +314,10 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   const dna = [a.audio.energy, a.audio.valence, a.audio.acoustic, a.audio.tempo, a.audio.dance, a.audio.instr];
   const peakIdx = a.era.indexOf(Math.max(...a.era));
   const peakYear = (R.ERA_START || 2014) + peakIdx;
-  const albums = R.ALBUMS.filter(x => x.artistId === a.id).slice(0, 4);
-  const tracks = R.TRACKS.filter(x => x.artistId === a.id).slice(0, 5);
+  // Per-artist top tracks/albums computed in build-data.js — full top per artist, not
+  // globally-capped lists. NIN gets all their top tracks, Midori gets theirs, etc.
+  const albums = a.topAlbums || [];
+  const tracks = a.topTracks || [];
   // Search ALL real concerts (not just the chosen city) for this artist's upcoming dates.
   const upcoming = Object.values(R.CONCERTS || {}).flat().filter(g => g.artistId === a.id)
     .sort((a, b) => a.date.localeCompare(b.date)).slice(0, 4);
@@ -387,22 +389,24 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               <span className="meta">last.fm similar</span></div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(120px,1fr))", gap: 12 }}>
               {a.similar.map((sid, i) => {
-                const sim = R.byId[sid];
+                const sim = R.byId[sid];                     // kept-118 artist (clickable, rich data)
                 const name = a.similarNames[i];
+                const played = sim || (R.played && R.played(name));  // any scrobbled artist
                 return (
-                  <div key={sid} onClick={() => sim && go("artist", sid)}
+                  <div key={sid + i} onClick={() => sim && go("artist", sid)}
                     style={{ display: "flex", flexDirection: "column", gap: 8, cursor: sim ? "pointer" : "default",
-                      opacity: sim ? 1 : 0.62 }}
+                      opacity: played ? 1 : 0.62 }}
                     onMouseEnter={(e) => { if (sim) e.currentTarget.style.transform = "translateY(-3px)"; }}
                     onMouseLeave={(e) => e.currentTarget.style.transform = ""}>
                     <div style={{ position: "relative", transition: "transform .2s" }}>
                       <GenCover hue={sim ? sim.hue : (a.hue + 40 + i * 25) % 360} name={name} size={"100%"}
                         style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
-                      {sim && <span className="r-mono r-inlib">in library</span>}
+                      {played && <span className="r-mono r-inlib">in library</span>}
                     </div>
                     <div style={{ fontSize: 12, lineHeight: 1.2 }}>{name}</div>
                     {sim ? <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(sim.plays)} plays →</div>
-                      : <div className="r-mono" style={{ fontSize: 9, color: "var(--accent-dim)" }}>not yet scrobbled</div>}
+                      : played ? <div className="r-mono" style={{ fontSize: 9, color: "var(--accent-dim)" }}>scrobbled · deeper cut</div>
+                      : <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>not yet scrobbled</div>}
                   </div>
                 );
               })}
@@ -412,24 +416,30 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           {/* top tracks + albums */}
           <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--gap)" }}>
             <div className="r-card" style={{ padding: 18 }}>
-              <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Top tracks</b></span></div>
-              {(tracks.length ? tracks : [{ id: "x", title: "—", plays: 0 }]).map((tr, i) => (
-                <div key={tr.id} style={{ display: "flex", alignItems: "center", gap: 10, padding: "6px 0",
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
+                <span className="lbl"><b>Top tracks</b></span>
+                <span className="meta">{tracks.length} listed</span></div>
+              {(tracks.length ? tracks : [{ title: "—", plays: 0 }]).map((tr, i) => (
+                <div key={tr.title + i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "6px 0",
                   borderBottom: i < tracks.length - 1 ? "1px solid var(--rule)" : "none" }}>
-                  <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 16 }}>{i + 1}</span>
-                  <span style={{ fontSize: 13, flex: 1 }}>{tr.title}</span>
+                  <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 18 }}>{String(i + 1).padStart(2, "0")}</span>
+                  <span style={{ fontSize: 13, flex: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{tr.title}</span>
                   <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{tr.plays ? fmt(tr.plays) : "—"}</span>
                 </div>
               ))}
             </div>
             <div className="r-card" style={{ padding: 18 }}>
-              <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Top albums</b></span></div>
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
+                <span className="lbl"><b>Top albums</b></span>
+                <span className="meta">{albums.length} listed</span></div>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                {(albums.length ? albums : []).map(al => (
-                  <div key={al.id} style={{ width: 78 }}>
-                    <GenCover hue={al.hue} name={al.title} size={78} radius={3} />
-                    <div style={{ fontSize: 10.5, marginTop: 6, lineHeight: 1.2 }}>{al.title}</div>
-                    <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{al.year} · {fmt(al.plays)}</div>
+                {(albums.length ? albums : []).map((al, i) => (
+                  <div key={al.title + i} style={{ width: 78 }}>
+                    <GenCover hue={a.hue} name={a.name} size={78} radius={3} />
+                    <div style={{ fontSize: 10.5, marginTop: 6, lineHeight: 1.2,
+                      display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
+                      overflow: "hidden" }}>{al.title}</div>
+                    <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(al.plays)} plays</div>
                   </div>
                 ))}
               </div>
