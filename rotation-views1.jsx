@@ -143,7 +143,7 @@ function OverviewView({ t, go }) {
         <div className="r-card" style={{ gridColumn: "span 7", padding: 18 }}>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
             <span className="lbl"><b>Top artists</b> · all time</span>
-            <span className="meta" style={{ cursor: "pointer" }} onClick={() => go("charts")}>open charts ↗</span></div>
+            <span className="meta" style={{ cursor: "pointer" }} onClick={() => go("explore")}>explore ↗</span></div>
           <div className="r-xscroll">
             {R.ARTISTS.slice(0, 12).map((a, i) => (
               <div key={a.id} onClick={() => go("artist", a.id)} style={{ cursor: "pointer", flex: "none", width: 96 }}>
