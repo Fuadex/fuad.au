@@ -164,9 +164,25 @@ function ExploreView({ t, go, setPop }) {
   const [fam, setFam] = React.useState(null);
   const [sub, setSub] = React.useState(null);        // selected subgenre name
   const [cells, setCells] = React.useState(() => new Set()); // selected clock slots
+  const [playing, setPlaying] = React.useState(false);
   const [ref, seen] = useInView();
 
   const yearKeys = React.useMemo(() => Object.keys(R.CLOCK_BY_YEAR).map(Number).sort((a, b) => a - b), [R]);
+
+  // "play the decade" — auto-advance the year filter; every lens animates along (sound morphs)
+  React.useEffect(() => {
+    if (!playing) return;
+    const tmr = setInterval(() => setYear(y => {
+      const i = y == null ? -1 : yearKeys.indexOf(y);
+      if (i >= yearKeys.length - 1) { setPlaying(false); return yearKeys[yearKeys.length - 1]; }
+      return yearKeys[i + 1];
+    }), 1600);
+    return () => clearInterval(tmr);
+  }, [playing, yearKeys]);
+  const togglePlay = () => {
+    if (!playing && (year == null || yearKeys.indexOf(year) >= yearKeys.length - 1)) setYear(yearKeys[0]);
+    setPlaying(p => !p);
+  };
   const famName = fam == null ? null : (R.FAMILIES.find(f => f.i === fam) || {}).family;
   const filter = { year, fam, sub, cells };
 
@@ -212,9 +228,12 @@ function ExploreView({ t, go, setPop }) {
         <div className="xp-frow">
           <span className="xp-flabel">Time</span>
           <div className="xp-chiprow">
-            <button className="xp-chip" data-on={year == null} onClick={() => setYear(null)}>All</button>
+            <button className="xp-chip xp-play" data-on={playing} onClick={togglePlay} title="Play the decade — watch every year animate">
+              {playing ? "❚❚" : "▶"} decade
+            </button>
+            <button className="xp-chip" data-on={year == null} onClick={() => { setPlaying(false); setYear(null); }}>All</button>
             {yearKeys.map(y => (
-              <button key={y} className="xp-chip" data-on={year === y} onClick={() => setYear(year === y ? null : y)}>{"'" + String(y).slice(2)}</button>
+              <button key={y} className="xp-chip" data-on={year === y} onClick={() => { setPlaying(false); setYear(year === y ? null : y); }}>{"'" + String(y).slice(2)}</button>
             ))}
           </div>
         </div>
@@ -284,6 +303,8 @@ function ExploreView({ t, go, setPop }) {
         .xp-chip:hover { border-color: var(--ink-faint); color: var(--ink); }
         .xp-chip[data-on="true"] { background: var(--accent); border-color: var(--accent); color: #0c0a08; }
         .xp-chip[data-on="true"] .xp-dot { box-shadow: 0 0 0 1.5px #0c0a08; }
+        .xp-play { border-color: var(--accent); color: var(--accent); letter-spacing: .08em; }
+        .xp-play[data-on="true"] { background: var(--accent); color: #0c0a08; }
         .xp-dot { width: 9px; height: 9px; border-radius: 3px; flex: none; }
         .xp-chip-active { border-color: var(--accent); color: var(--ink); }
         .xp-chip-active .xp-ck { color: var(--ink-faint); text-transform: uppercase; letter-spacing: .1em; font-size: 8.5px; }
