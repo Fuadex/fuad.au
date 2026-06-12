@@ -34,13 +34,15 @@ function mapWeights(R, year) {
 }
 
 function exploreRank(R, kind, f) {
-  const { year, subIdx, cells } = f;
+  const { year, fam, subIdx, cells } = f;
   const hasCells = cells && cells.size > 0;
+  const inFam = (s) => fam == null || s.some(si => R.SUBS[si].fam === fam); // inclusive: any sub in family
   if (kind === "artists") {
     const arr = [];
     for (const a of R.EXPLORE) {
       if (year != null && !(a.yp && a.yp[year])) continue;
-      if (subIdx >= 0 && a.s.indexOf(subIdx) < 0) continue;
+      if (subIdx >= 0) { if (a.s.indexOf(subIdx) < 0) continue; }
+      else if (!inFam(a.s)) continue;
       let value;
       if (hasCells) { value = tsPlays(R, a.id, cells); if (!value) continue; }
       else value = year != null ? a.yp[year] : a.plays;
@@ -58,6 +60,7 @@ function exploreRank(R, kind, f) {
     src = (yr[kind] || []).map((it, i) => ({ id: kind + year + i, aid: it.artistId, label: it.title, value: it.plays, hue: it.hue, sub: it.artist }));
   }
   if (subIdx >= 0) src = src.filter(it => { const e = R.expById[it.aid]; return e && e.s.indexOf(subIdx) >= 0; });
+  else if (fam != null) src = src.filter(it => { const e = R.expById[it.aid]; return e && e.s.some(si => R.SUBS[si].fam === fam); });
   if (hasCells) src = src.filter(it => tsPlays(R, it.aid, cells) > 0);
   return src.map(it => ({ ...it, kept: !!R.byId[it.aid] })).sort((a, b) => b.value - a.value).slice(0, 40);
 }
@@ -141,6 +144,7 @@ function ExploreView({ t, go, setPop }) {
   const R = window.ROTATION;
   const [kind, setKind] = React.useState("artists");
   const [year, setYear] = React.useState(null);
+  const [fam, setFam] = React.useState(null);             // family index, or null
   const [sub, setSub] = React.useState(null);             // subgenre NAME, or null
   const [cells, setCells] = React.useState(() => new Set());
   const [playing, setPlaying] = React.useState(false);
@@ -165,14 +169,28 @@ function ExploreView({ t, go, setPop }) {
   };
 
   const weights = React.useMemo(() => mapWeights(R, year), [R, year]);
-  const items = exploreRank(R, kind, { year, subIdx, cells });
-  const pickSub = (name) => setSub(s => s === name ? null : name);
+  // stable all-time grouping (families + their subgenres) so the breakdown never reflows on year-scrub
+  const order = React.useMemo(() => {
+    const allW = mapWeights(R, null);
+    const byFam = new Map();
+    R.SUBS.forEach((s, i) => {
+      if (!byFam.has(s.fam)) byFam.set(s.fam, { fam: s.fam, family: (R.FAMILIES.find(f => f.i === s.fam) || {}).family || "—", hue: s.hue, subs: [], total: 0 });
+      const g = byFam.get(s.fam); g.subs.push({ idx: i, name: s.name }); g.total += allW[i].w;
+    });
+    const arr = [...byFam.values()];
+    arr.forEach(g => g.subs.sort((a, b) => allW[b.idx].w - allW[a.idx].w));
+    return arr.sort((a, b) => b.total - a.total);
+  }, [R]);
+  const items = exploreRank(R, kind, { year, fam, subIdx, cells });
+  const pickSub = (name) => { setFam(null); setSub(s => s === name ? null : name); };
+  const pickFam = (f) => { setSub(null); setFam(x => x === f ? null : f); };
   const toggleCell = (c) => setCells(prev => { const n = new Set(prev); n.has(c) ? n.delete(c) : n.add(c); return n; });
   const toggleMany = (list) => setCells(prev => { const n = new Set(prev); const all = list.every(c => n.has(c)); list.forEach(c => all ? n.delete(c) : n.add(c)); return n; });
 
   const chips = [];
   if (year != null) chips.push(["time", year, () => { setPlaying(false); setYear(null); }]);
   if (sub) chips.push(["subgenre", sub, () => setSub(null)]);
+  else if (fam != null) chips.push(["genre", (R.FAMILIES.find(f => f.i === fam) || {}).family, () => setFam(null)]);
   if (cells.size) chips.push(["clock", cells.size + " slot" + (cells.size > 1 ? "s" : ""), () => setCells(new Set())]);
 
   return (
@@ -203,7 +221,7 @@ function ExploreView({ t, go, setPop }) {
             <span className="xp-flabel">Active</span>
             <div className="xp-chiprow">
               {chips.map(([k, v, clr]) => <button key={k} className="xp-chip xp-chip-active" onClick={clr}><span className="xp-ck">{k}</span> {v} <span className="xp-x">✕</span></button>)}
-              <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYear(null); setSub(null); setCells(new Set()); }}>clear all</button>
+              <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYear(null); setFam(null); setSub(null); setCells(new Set()); }}>clear all</button>
             </div>
           </div>
         )}
@@ -213,9 +231,8 @@ function ExploreView({ t, go, setPop }) {
       <div className="xp-main m-stack">
         <div className="xp-left">
           <div className="r-card" style={{ padding: 0, overflow: "hidden" }}>
-            <ExploreScatter subs={weights} seen={seen} activeSub={sub} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
+            <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
           </div>
-          <SubgenreRail subs={weights} sub={sub} pick={pickSub} year={year} />
         </div>
         <div className="xp-right">
           <div className="r-seg" style={{ marginBottom: "var(--gap)" }}>
@@ -227,6 +244,9 @@ function ExploreView({ t, go, setPop }) {
             : <RankRows items={items} go={go} />}
         </div>
       </div>
+
+      {/* genres grouped under families — tap a family or a subgenre to filter (stable order) */}
+      <FamiliesGrid order={order} weights={weights} fam={fam} sub={sub} pickFam={pickFam} pickSub={pickSub} year={year} seen={seen} expressive={t.chart === "expressive"} />
 
       <RhythmBar R={R} year={year} cells={cells} toggleCell={toggleCell} toggleMany={toggleMany} clear={() => setCells(new Set())} setPop={setPop} seen={seen} />
       {year != null && <YearDetail R={R} go={go} year={year} />}
@@ -273,6 +293,9 @@ function ExploreView({ t, go, setPop }) {
         .xp-bar { height: 7px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
         .xp-bar > div { height: 100%; border-radius: 4px; transition: width .5s cubic-bezier(.3,.8,.3,1); }
         .xp-val { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); text-align: right; }
+        .xp-fam-head { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 2px; border-radius: 5px; transition: .12s; }
+        .xp-fam-head:hover { opacity: .85; }
+        .xp-fam-head[data-on="true"] span:nth-child(2) { color: var(--accent); }
         .xp-railrow { display: flex; align-items: center; gap: 8px; padding: 4px 6px; border-radius: 5px; cursor: pointer; transition: .12s; }
         .xp-railrow:hover { background: var(--bg-3); }
         .xp-railrow[data-on="true"] { background: var(--accent-bg); box-shadow: inset 0 0 0 1px var(--accent); }
@@ -307,7 +330,7 @@ function ExploreView({ t, go, setPop }) {
 }
 
 // scatter where bubbles ARE subgenres; click selects/filters; radius morphs with the year
-function ExploreScatter({ subs, seen, activeSub, onPick, expressive, setPop }) {
+function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, setPop }) {
   const W = 1000, H = 560, pad = 46;
   const maxW = Math.max(1, ...subs.map(s => s.w));
   const px = (x) => pad + x * (W - pad * 2);
@@ -326,8 +349,8 @@ function ExploreScatter({ subs, seen, activeSub, onPick, expressive, setPop }) {
       {subs.map((s, i) => {
         const present = s.w > 0;
         const r = present ? 9 + (s.w / maxW) * 42 : 0;
-        const dim = activeSub && activeSub !== s.name;
-        const on = activeSub === s.name;
+        const on = activeSub ? activeSub === s.name : (activeFam != null && s.fam === activeFam);
+        const dim = activeSub ? activeSub !== s.name : (activeFam != null && s.fam !== activeFam);
         const col = expressive ? `oklch(0.62 0.17 ${s.hue})` : "var(--accent)";
         return (
           <g key={s.name} style={{ cursor: present ? "pointer" : "default", opacity: seen ? (present ? (dim ? 0.14 : 1) : 0) : 0,
@@ -343,24 +366,44 @@ function ExploreScatter({ subs, seen, activeSub, onPick, expressive, setPop }) {
   );
 }
 
-// flat ranked subgenre list under the map — pick the small ones the scatter can't label
-function SubgenreRail({ subs, sub, pick, year }) {
-  const live = subs.filter(s => s.w > 0).sort((a, b) => b.w - a.w).slice(0, 16);
-  const max = Math.max(1, ...live.map(s => s.w));
+// genres grouped under families — the breakdown you liked, restored. Family header filters by
+// family; each subgenre row filters by subgenre. Order is stable (all-time); only the bars move
+// when you scrub years, so play-the-decade animates instead of reflowing.
+function FamiliesGrid({ order, weights, fam, sub, pickFam, pickSub, year, seen, expressive }) {
   return (
-    <div className="r-card" style={{ padding: 14 }}>
-      <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 10 }}>Subgenres {year ? "· " + year : ""}</div>
-      <div style={{ display: "grid", gap: 2 }}>
-        {live.map(s => (
-          <div key={s.name} className="xp-railrow" data-on={sub === s.name} onClick={() => pick(s.name)}>
-            <span style={{ width: 9, height: 9, borderRadius: 3, background: `oklch(0.62 0.16 ${s.hue})`, flex: "none" }} />
-            <span style={{ flex: 1, minWidth: 0, fontSize: 12, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.name}</span>
-            <div style={{ width: 60, height: 5, background: "var(--bg-3)", borderRadius: 3, overflow: "hidden" }}>
-              <div style={{ height: "100%", width: (s.w / max * 100) + "%", background: `oklch(0.6 0.16 ${s.hue})`, borderRadius: 3 }} />
+    <div style={{ marginTop: "var(--gap)" }}>
+      <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", margin: "4px 0 10px" }}>
+        Genres — tap a family or subgenre to filter {year ? "· " + year : ""}
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(290px,1fr))", gap: "var(--gap)" }}>
+        {order.map((g, gi) => {
+          const fw = g.subs.reduce((s, su) => s + (weights[su.idx].w || 0), 0);
+          const fmax = Math.max(1, ...g.subs.map(su => weights[su.idx].w || 0));
+          const onFam = fam === g.fam;
+          return (
+            <div key={g.fam} className="r-card" style={{ padding: 16, boxShadow: onFam ? "inset 0 0 0 1px var(--accent)" : "none", transition: ".15s" }}>
+              <div className="xp-fam-head" data-on={onFam} onClick={() => pickFam(g.fam)}>
+                <span style={{ width: 12, height: 12, borderRadius: 3, background: `oklch(0.62 0.16 ${g.hue})`, flex: "none" }} />
+                <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 18, flex: 1, minWidth: 0 }}>{g.family}</span>
+                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{fmtK(fw)}</span>
+              </div>
+              <div style={{ display: "grid", gap: 6, marginTop: 12 }}>
+                {g.subs.map((su, si) => {
+                  const w = weights[su.idx].w || 0;
+                  return (
+                    <div key={su.name} className="xp-sub-row" data-on={sub === su.name} onClick={() => pickSub(su.name)} style={{ opacity: w === 0 ? 0.4 : 1 }}>
+                      <span style={{ fontSize: 11.5, color: "var(--ink-soft)", flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{su.name}</span>
+                      <div style={{ width: 80, height: 5, background: "var(--bg-3)", borderRadius: 3, overflow: "hidden", margin: "0 8px" }}>
+                        <div style={{ height: "100%", width: (seen ? w / fmax * 100 : 0) + "%", background: expressive ? `oklch(0.6 0.16 ${g.hue})` : "var(--accent)", borderRadius: 3, transition: `width .7s cubic-bezier(.3,.8,.3,1) ${(gi * 0.02 + si * 0.03)}s` }} />
+                      </div>
+                      <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", width: 34, textAlign: "right" }}>{fmtK(w)}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-            <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", width: 34, textAlign: "right" }}>{fmtK(s.w)}</span>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
