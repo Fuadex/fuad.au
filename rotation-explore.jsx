@@ -1,8 +1,8 @@
 // rotation-explore.jsx — the converged explorer. One filter set {time · subgenre · clock-slots}
 // over a SINGLE side-by-side surface: the sound map (left, sticky) and the ranked results
 // (right) are the same universe (window.ROTATION.EXPLORE — every tagged artist), so clicking a
-// subgenre bubble filters the list and a click is never empty. Families are gone as a filter
-// (kept only as bubble colour); subgenres morph smoothly as you scrub years.
+// subgenre bubble filters the list and a click is never empty. Genres are grouped under families
+// (FamiliesGrid) — filter by family or subgenre; subgenres morph smoothly as you scrub years.
 
 const _inflate = (flat) => Array.from({ length: 7 }, (_, r) => flat.slice(r * 24, r * 24 + 24));
 const _zeros = () => Array.from({ length: 7 }, () => new Array(24).fill(0));
@@ -357,6 +357,8 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
             transition: `opacity .45s cubic-bezier(.3,.8,.3,1) ${i * 0.008}s`, pointerEvents: present ? "auto" : "none" }}
             onMouseEnter={() => setPop({ x: px(s.x) / W * (window.innerWidth - 460), y: 300, title: s.name, pip: s.hue, meta: "subgenre", rows: [["plays", fmt(s.w)]], hint: "click to filter" })}
             onClick={() => onPick(s.name)} onMouseLeave={() => setPop(null)}>
+            {/* transparent min-size hit target so even tiny subgenres are clickable/hoverable */}
+            <circle cx={px(s.x)} cy={py(s.y)} r={Math.max(r, 14)} fill="transparent" />
             <circle cx={px(s.x)} cy={py(s.y)} r={r} fill={col} fillOpacity={on ? .5 : (expressive ? .28 : .14)} stroke={col} strokeWidth={on ? 2.2 : 1.4} style={{ transition: "r .55s cubic-bezier(.3,.8,.3,1), fill-opacity .2s" }} />
             {r > 17 && <text x={px(s.x)} y={py(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontSize={Math.min(13, r / 3.2)} fontFamily="var(--sans)" fontWeight="500" style={{ pointerEvents: "none", transition: "font-size .55s" }}>{s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
           </g>
