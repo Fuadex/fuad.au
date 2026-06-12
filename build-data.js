@@ -269,6 +269,34 @@ function familyIdxByName(name) {
 const raw = fs.readFileSync(CSV_PATH, "utf8");
 const lines = raw.split(/\r?\n/).filter(l => l.trim());
 
+// ─────────── canonicalise scrobble-name variants ───────────
+// last.fm scrobbles the same artist under many spellings (NIN / Nine Inch Nails;
+// "Trent Reznor & Atticus Ross" / "…and…"). Group by MusicBrainz id when known, else by a
+// normalised name (case/punctuation/&/and-insensitive), and remap every variant to the most-
+// played spelling BEFORE aggregating, so no list shows duplicates. mbid grouping is safe (a
+// shared id means last.fm already calls them one artist); name grouping only touches no-mbid acts.
+const _rawCount = new Map();
+for (const line of lines) { const a = parseLine(line)[0]; if (a) _rawCount.set(a, (_rawCount.get(a) || 0) + 1); }
+const _normName = (s) => s.toLowerCase().replace(/&/g, " ").replace(/[^a-z0-9]+/g, " ").replace(/\band\b/g, " ").replace(/\s+/g, " ").trim();
+const CANON = new Map();
+{
+  const groups = new Map();
+  for (const name of _rawCount.keys()) {
+    const mb = STATS[name] && STATS[name].mbid;
+    const key = mb ? "mb:" + mb : "nm:" + _normName(name);
+    if (!key || key === "nm:") continue;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(name);
+  }
+  for (const names of groups.values()) {
+    if (names.length < 2) continue;
+    let rep = names[0];
+    for (const n of names) if ((_rawCount.get(n) || 0) > (_rawCount.get(rep) || 0)) rep = n;
+    for (const n of names) if (n !== rep) CANON.set(n, rep);
+  }
+}
+const canon = (name) => CANON.get(name) || name;
+
 const artistPlays = new Map();           // name → count
 const albumPlays = new Map();            // artist\x00album → count
 const trackPlays = new Map();            // artist\x00track → count
@@ -282,8 +310,9 @@ const scrobbles = [];                    // [artist, album, track, ms] newest-fi
 const undatedArtists = [];
 
 for (const line of lines) {
-  const [artist, album, track, ts] = parseLine(line);
-  if (!artist) continue;
+  const [rawArtist, album, track, ts] = parseLine(line);
+  if (!rawArtist) continue;
+  const artist = canon(rawArtist);   // merge scrobble-name variants
   artistPlays.set(artist, (artistPlays.get(artist) || 0) + 1);
   if (album) albumPlays.set(artist + "\x00" + album, (albumPlays.get(artist + "\x00" + album) || 0) + 1);
   if (track) trackPlays.set(artist + "\x00" + track, (trackPlays.get(artist + "\x00" + track) || 0) + 1);
