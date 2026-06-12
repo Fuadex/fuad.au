@@ -1326,6 +1326,46 @@ const SUB_ARTISTS = {};
   }
 }
 
+// ─────────── SUBS + EXPLORE — the converged Explore universe ───────────
+// SUBS: every taxonomy subgenre with a fixed scatter position (family hue + jittered x/y).
+// EXPLORE: a lightweight rankable/filterable record for EVERY tagged artist (not just the kept
+// 205) — id, plays, hue, the subgenres it carries (membership → inclusive filtering), per-year
+// plays. Map bubbles AND the ranking are computed client-side from this ONE set, so every bubble
+// has artists behind it and a click is never empty. Cap is generous and raisable as tags grow.
+const EXPLORE_CAP = 2000;
+const SUBS = [];
+{
+  const perFam = new Map();
+  for (const [tag, w] of [...tagWeight.entries()].sort((a, b) => b[1] - a[1])) {
+    if (GENERIC.has(tag)) continue;
+    const f = classifyTag(tag);
+    if (!f) continue;
+    const fi = FAMILIES.indexOf(f);
+    const n = perFam.get(fi) || 0;
+    if (n >= 16) continue;            // cap per family so the scatter doesn't choke
+    perFam.set(fi, n + 1);
+    SUBS.push({
+      name: tag, fam: fi, hue: f.hue,
+      x: Math.round(clamp01(f.cx + ((tagHash(tag) % 1000) / 1000 - .5) * 0.18) * 100) / 100,
+      y: Math.round(clamp01(f.cy + ((tagHash(tag + "y") % 1000) / 1000 - .5) * 0.18) * 100) / 100,
+    });
+  }
+}
+const subIdxByName = new Map(SUBS.map((s, i) => [s.name, i]));
+const EXPLORE = [];
+for (const [name, plays] of rankedArtists) {
+  if (plays < 5) continue;
+  const meta = META[name];
+  const tagNames = [...((meta && meta.tags) || []), ...cachedTags(name).map(t => t[0])];
+  const seen = new Set(), s = [];
+  for (const tg of tagNames) { const i = subIdxByName.get(tg); if (i != null && !seen.has(i)) { seen.add(i); s.push(i); } }
+  if (!s.length) continue;            // no taxonomy subgenre → can't place / filter it
+  const yc = artistYear.get(name) || new Map();
+  const yp = {}; for (const [y, c] of yc) if (c > 0) yp[y] = c;
+  EXPLORE.push({ id: slug(name), name, plays, hue: hueFor(name), s, yp });
+  if (EXPLORE.length >= EXPLORE_CAP) break;
+}
+
 // ─────────── CONCERTS: real upcoming events from Ticketmaster (concerts-cache.json) ───────────
 // Built by enrich-concerts.js. If the cache is missing, CONCERTS+CITIES are empty
 // and the LiveView / ArtistView gigs card show "no upcoming dates" empty states.
@@ -1393,7 +1433,7 @@ const DATA = {
   ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
   CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
   CLOCK_BY_YEAR, CLOCK_CUBE, SOUND_BY_YEAR, FAMILIES: FAMILIES_OUT,
-  SUB_ARTISTS, ARTIST_CLOCK,
+  SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)
