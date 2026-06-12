@@ -1210,6 +1210,62 @@ if (hasBios) {
   if (list.length) RECOMMENDATIONS = { artists: list };
 }
 
+// ─────────── CONSTELLATION (force-laid graph of the kept library) ───────────
+// Nodes = kept artists; edges = shared band members (per-artist connections) + last.fm
+// similarity. Positions are pre-computed with a small force sim here so the buildless client
+// only has to render. Clustered by family (each family pulled toward its own point on a ring).
+let CONSTELLATION = null;
+{
+  const nodes = ARTISTS.map((a, i) => ({ i, id: a.id, name: a.name, hue: a.hue, plays: a.plays, fam: a.fam, x: 0, y: 0, vx: 0, vy: 0 }));
+  const idIndex = new Map(nodes.map(n => [n.id, n.i]));
+  const edgeSet = new Set(), edges = [];
+  const addEdge = (i, j) => {
+    if (i == null || j == null || i === j) return;
+    const k = i < j ? i + "_" + j : j + "_" + i;
+    if (edgeSet.has(k)) return; edgeSet.add(k); edges.push([i, j]);
+  };
+  for (const a of ARTISTS) {
+    const ai = idIndex.get(a.id);
+    for (const c of (a.connections || [])) for (const o of c.others) addEdge(ai, idIndex.get(o.artistId));
+    for (const sname of (realSimilar(a.name) || [])) addEdge(ai, idIndex.get(slug(sname)));
+  }
+  const N = nodes.length, FAMN = FAMILIES.length;
+  const famCenter = (f) => { const ang = ((f >= 0 ? f : 0) / FAMN) * Math.PI * 2; return [Math.cos(ang) * 320, Math.sin(ang) * 320]; };
+  const rng = (s) => { let h = 5381; for (const c of s) h = ((h << 5) + h + c.charCodeAt(0)) >>> 0; return (h % 1000) / 1000; };
+  nodes.forEach(n => { const fc = famCenter(n.fam); n.x = fc[0] + (rng(n.id) - .5) * 150; n.y = fc[1] + (rng(n.id + "y") - .5) * 150; });
+  for (let iter = 0; iter < 320; iter++) {
+    const cool = 1 - iter / 320;
+    for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
+      let dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y, d2 = dx * dx + dy * dy + 0.01, d = Math.sqrt(d2), rep = 950 / d2;
+      const fx = dx / d * rep, fy = dy / d * rep;
+      nodes[i].vx += fx; nodes[i].vy += fy; nodes[j].vx -= fx; nodes[j].vy -= fy;
+    }
+    for (const [i, j] of edges) {
+      let dx = nodes[j].x - nodes[i].x, dy = nodes[j].y - nodes[i].y, d = Math.sqrt(dx * dx + dy * dy) + 0.01, f = (d - 58) * 0.02;
+      const fx = dx / d * f, fy = dy / d * f;
+      nodes[i].vx += fx; nodes[i].vy += fy; nodes[j].vx -= fx; nodes[j].vy -= fy;
+    }
+    for (const n of nodes) {
+      const fc = famCenter(n.fam);
+      n.vx += (fc[0] - n.x) * 0.008 - n.x * 0.002; n.vy += (fc[1] - n.y) * 0.008 - n.y * 0.002;
+      n.x += n.vx * 0.85 * cool; n.y += n.vy * 0.85 * cool; n.vx *= 0.6; n.vy *= 0.6;
+    }
+  }
+  const xs = nodes.map(n => n.x), ys = nodes.map(n => n.y);
+  const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+  const W = 1000, H = 720, pad = 44;
+  const sc = Math.min((W - 2 * pad) / (maxX - minX || 1), (H - 2 * pad) / (maxY - minY || 1));
+  const offX = (W - (maxX - minX) * sc) / 2, offY = (H - (maxY - minY) * sc) / 2;
+  const maxPlays = Math.max(...nodes.map(n => n.plays));
+  const outNodes = nodes.map(n => ({
+    id: n.id, name: n.name, hue: n.hue, fam: n.fam,
+    x: Math.round((offX + (n.x - minX) * sc) * 10) / 10,
+    y: Math.round((offY + (n.y - minY) * sc) * 10) / 10,
+    r: Math.round((4 + Math.sqrt(n.plays / maxPlays) * 17) * 10) / 10,
+  }));
+  CONSTELLATION = { w: W, h: H, nodes: outNodes, edges };
+}
+
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
   AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS,
@@ -1466,7 +1522,7 @@ const DATA = {
   ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
   CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
   CLOCK_BY_YEAR, CLOCK_CUBE, SOUND_BY_YEAR, FAMILIES: FAMILIES_OUT,
-  SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE,
+  SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE, CONSTELLATION,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)
