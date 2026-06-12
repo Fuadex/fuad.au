@@ -26,7 +26,7 @@ function tsPlays(R, id, cells) {
 function mapWeights(R, year) {
   const w = new Array(R.SUBS.length).fill(0);
   for (const a of R.EXPLORE) {
-    const p = year == null ? a.plays : (a.yp[year] || 0);
+    const p = year == null ? a.plays : ((a.yp && a.yp[year]) || 0);
     if (!p) continue;
     for (const si of a.s) w[si] += p;
   }
@@ -39,7 +39,7 @@ function exploreRank(R, kind, f) {
   if (kind === "artists") {
     const arr = [];
     for (const a of R.EXPLORE) {
-      if (year != null && !a.yp[year]) continue;
+      if (year != null && !(a.yp && a.yp[year])) continue;
       if (subIdx >= 0 && a.s.indexOf(subIdx) < 0) continue;
       let value;
       if (hasCells) { value = tsPlays(R, a.id, cells); if (!value) continue; }
@@ -57,7 +57,7 @@ function exploreRank(R, kind, f) {
     const yr = R.YEARS.find(y => y.year === year) || {};
     src = (yr[kind] || []).map((it, i) => ({ id: kind + year + i, aid: it.artistId, label: it.title, value: it.plays, hue: it.hue, sub: it.artist }));
   }
-  if (subIdx >= 0) src = src.filter(it => { const e = R._exp.get(it.aid); return e && e.s.indexOf(subIdx) >= 0; });
+  if (subIdx >= 0) src = src.filter(it => { const e = R.expById[it.aid]; return e && e.s.indexOf(subIdx) >= 0; });
   if (hasCells) src = src.filter(it => tsPlays(R, it.aid, cells) > 0);
   return src.map(it => ({ ...it, kept: !!R.byId[it.aid] })).sort((a, b) => b.value - a.value).slice(0, 40);
 }
@@ -146,8 +146,6 @@ function ExploreView({ t, go, setPop }) {
   const [playing, setPlaying] = React.useState(false);
   const [ref, seen] = useInView();
 
-  // one-time: a name→record index over EXPLORE for album/track subgenre lookups
-  if (!R._exp) R._exp = new Map(R.EXPLORE.map(a => [a.id, a]));
   const yearKeys = React.useMemo(() => Object.keys(R.CLOCK_BY_YEAR).map(Number).sort((a, b) => a - b), [R]);
   const subNames = React.useMemo(() => R.SUBS.map(s => s.name), [R]);
   const subIdx = sub == null ? -1 : R.SUBS.findIndex(s => s.name === sub);

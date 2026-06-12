@@ -310,14 +310,63 @@ function ErasView({ t, go }) {
 
 // ════════════════════════ ARTIST DRILLDOWN ════════════════════════
 const DNA_AXES = ["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"];
+
+// Lightweight page for an explorable artist that isn't in the kept top-205 (no full per-artist
+// build). Shows what the EXPLORE record carries: plays, subgenres, listeners, debut, year shape.
+function MiniArtistView({ a, go }) {
+  const R = window.ROTATION;
+  const subs = (a.s || []).map(i => R.SUBS[i] && R.SUBS[i].name).filter(Boolean);
+  const years = React.useMemo(() => Object.keys(R.CLOCK_BY_YEAR).map(Number).sort((x, y) => x - y), []);
+  const spark = a.yp ? years.map(y => a.yp[y] || 0) : null;
+  const L = a.l ? (a.l >= 1e6 ? (a.l / 1e6).toFixed(1) + "M" : a.l >= 1000 ? Math.round(a.l / 1000) + "k" : a.l) : null;
+  return (
+    <div className="r-view">
+      <button className="r-back" onClick={() => go("explore")}>← explore</button>
+      <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 24 }}>
+        <GenCover hue={a.hue} name={a.name} size={120} radius={6} />
+        <div style={{ flex: 1, minWidth: 240 }}>
+          <div className="r-kicker">explore{a.d ? ` · est. ${a.d}` : ""}</div>
+          <h1 className="r-title" style={{ fontSize: "clamp(32px,4.5vw,54px)" }}>{a.name}<span className="dot">.</span></h1>
+          <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
+            {subs.slice(0, 6).map(s => <span key={s} className="r-chip">{s}</span>)}
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: 26 }}>
+          <div><div className="r-stat-n" style={{ fontSize: 34 }}>{fmt(a.plays)}</div>
+            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
+          {L && <div><div className="r-stat-n" style={{ fontSize: 34 }}>{L}</div>
+            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>listeners ww</div></div>}
+        </div>
+      </div>
+      {spark && spark.some(v => v > 0) && (
+        <div className="r-card" style={{ padding: 18, marginBottom: "var(--gap)" }}>
+          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 12 }}>Plays by year</div>
+          <Spark data={spark} w={620} h={70} run={true} stroke="var(--accent)" fill="var(--accent-bg)" />
+          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+            <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{years[0]}</span>
+            <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{years[years.length - 1]}</span>
+          </div>
+        </div>
+      )}
+      <div className="r-card" style={{ padding: "16px 20px", fontSize: 13, color: "var(--ink-soft)", lineHeight: 1.5 }}>
+        A quick view — <b style={{ color: "var(--ink)" }}>{a.name}</b> sits outside your top 205, so the full
+        breakdown (tracks, albums, similar, sound DNA) isn't built for them yet.
+      </div>
+    </div>
+  );
+}
 function ArtistView({ t, id, go, setPop, city, setCity }) {
   const R = window.ROTATION;
-  const a = R.byId[id] || R.ARTISTS[0];
+  const full = R.byId[id];
+  const a = full || R.ARTISTS[0];
   const [ref, seen] = useInView();
   const avg = React.useMemo(() => {
     const ks = ["energy", "valence", "acoustic", "tempo", "dance", "instr"];
     return ks.map(k => R.ARTISTS.reduce((s, x) => s + x.audio[k], 0) / R.ARTISTS.length);
   }, []);
+  // artists outside the kept 205 still rank in Explore — give them a lightweight page
+  // (return AFTER hooks so hook order stays stable across navigations).
+  if (!full && R.expById && R.expById[id]) return <MiniArtistView a={R.expById[id]} go={go} />;
   const dna = [a.audio.energy, a.audio.valence, a.audio.acoustic, a.audio.tempo, a.audio.dance, a.audio.instr];
   const peakIdx = a.era.indexOf(Math.max(...a.era));
   const peakYear = (R.ERA_START || 2014) + peakIdx;
