@@ -1332,7 +1332,8 @@ const SUB_ARTISTS = {};
 // 205) — id, plays, hue, the subgenres it carries (membership → inclusive filtering), per-year
 // plays. Map bubbles AND the ranking are computed client-side from this ONE set, so every bubble
 // has artists behind it and a click is never empty. Cap is generous and raisable as tags grow.
-const EXPLORE_CAP = 2000;
+const EXPLORE_CAP = 6000;
+const EXPLORE_YP_TOP = 3000;   // only the top-by-plays carry per-year detail (file-size control)
 const SUBS = [];
 {
   const perFam = new Map();
@@ -1356,13 +1357,19 @@ const EXPLORE = [];
 for (const [name, plays] of rankedArtists) {
   if (plays < 5) continue;
   const meta = META[name];
-  const tagNames = [...((meta && meta.tags) || []), ...cachedTags(name).map(t => t[0])];
+  // subgenre membership from last.fm tags AND Discogs styles — the latter reaches the ~6000
+  // artists we have Discogs data for, well past last.fm's tag coverage.
+  const vocab = [...((meta && meta.tags) || []), ...cachedTags(name).map(t => t[0]), ...stylesOf(name).map(s => s.toLowerCase())];
   const seen = new Set(), s = [];
-  for (const tg of tagNames) { const i = subIdxByName.get(tg); if (i != null && !seen.has(i)) { seen.add(i); s.push(i); } }
-  if (!s.length) continue;            // no taxonomy subgenre → can't place / filter it
-  const yc = artistYear.get(name) || new Map();
-  const yp = {}; for (const [y, c] of yc) if (c > 0) yp[y] = c;
-  EXPLORE.push({ id: slug(name), name, plays, hue: hueFor(name), s, yp });
+  for (const tg of vocab) { const i = subIdxByName.get(tg); if (i != null && !seen.has(i)) { seen.add(i); s.push(i); } }
+  if (!s.length) continue;            // no placeable subgenre at all → skip
+  const rec = { id: slug(name), name, plays, hue: hueFor(name), s, l: listenersOf(name) || 0, d: debutOf(name) || 0 };
+  if (EXPLORE.length < EXPLORE_YP_TOP) {
+    const yc = artistYear.get(name) || new Map();
+    const yp = {}; for (const [y, c] of yc) if (c > 0) yp[y] = c;
+    rec.yp = yp;
+  }
+  EXPLORE.push(rec);
   if (EXPLORE.length >= EXPLORE_CAP) break;
 }
 
@@ -1455,6 +1462,8 @@ window.ROTATION = (function () {
   };
   const D = ${JSON.stringify(DATA)};
   D.byId = Object.fromEntries(D.ARTISTS.map(a => [a.id, a]));
+  // lightweight lookup over the whole explorable universe (kept artists keep their full byId record)
+  D.expById = Object.fromEntries((D.EXPLORE || []).map(a => [a.id, a]));
   D.slug = slug;
   // played(name) — kept artist OR scrobbled ≥3 times (plus aliases). Covers the long tail
   // (Otoboke Beaver) AND cross-script (ミドリ ↔ "Midori" via MusicBrainz aliases).
