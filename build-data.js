@@ -1184,9 +1184,35 @@ if (hasMB || Object.keys(DGA).length > 0) {
   CONNECTIONS = { links: links.slice(0, 12), totalLinks: links.length };
 }
 
+// ─────────── RECOMMENDATIONS (taste-gap / blind spots) ───────────
+// Artists frequently listed as last.fm "similar" to your favourites that you barely play.
+// Weighted by how high in the similar list + how much you love the source artist.
+let RECOMMENDATIONS = null;
+if (hasBios) {
+  const rec = new Map();
+  for (const a of ARTISTS.slice(0, 100)) {
+    const sims = realSimilar(a.name) || [];
+    sims.forEach((simName, idx) => {
+      if (byName[simName]) return;                 // already one of your kept artists
+      if ((artistPlays.get(simName) || 0) >= 15) return; // you already play them enough
+      if (!rec.has(simName)) rec.set(simName, { name: simName, count: 0, via: [], weight: 0 });
+      const r = rec.get(simName);
+      r.count++;
+      r.weight += (8 - Math.min(idx, 7)) * a.plays;
+      if (r.via.length < 3) r.via.push({ name: a.name, hue: a.hue, artistId: a.id });
+    });
+  }
+  const list = [...rec.values()]
+    .filter(r => r.count >= 2)                      // recommended by ≥2 of your favourites
+    .sort((x, y) => y.weight - x.weight).slice(0, 12)
+    .map(r => ({ name: r.name, count: r.count, via: r.via, hue: hueOf(r.name),
+      listeners: listenersOf(r.name), plays: artistPlays.get(r.name) || 0 }));
+  if (list.length) RECOMMENDATIONS = { artists: list };
+}
+
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
-  AUDIO_DRIFT, ADOPTION, CONNECTIONS,
+  AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
 };

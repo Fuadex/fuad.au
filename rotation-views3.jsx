@@ -170,6 +170,35 @@ function StoriesView({ t, go }) {
           );
         })()}
 
+        {/* blind spots — taste-gap recommendations */}
+        {I.RECOMMENDATIONS && I.RECOMMENDATIONS.artists.length > 0 && (() => {
+          const RC = I.RECOMMENDATIONS;
+          const top = RC.artists[0];
+          const fmtL = (n) => n ? ((n >= 1e6 ? (n / 1e6).toFixed(1) + "M" : n >= 1000 ? Math.round(n / 1000) + "k" : n) + " listeners") : "";
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Blind spots</div>
+              <div className="st-big">
+                Your favourites keep pointing to <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.name}</em> — and you've barely pressed play.
+              </div>
+              <div className="st-sub">
+                Artists your most-played acts are repeatedly compared to, that you haven't really explored. The most overdue:
+              </div>
+              <div className="st-ug-cuts">
+                {RC.artists.slice(0, 6).map(r => (
+                  <div key={r.name} className="st-ug-cut" style={{ cursor: "default" }}>
+                    <GenCover hue={r.hue} name={r.name} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{r.name}</div>
+                      <div className="st-row-sub">via {r.via.map(v => v.name).join(", ")}{r.listeners ? ` · ${fmtL(r.listeners)}` : ""}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* year in review */}
         {yr && (
           <section className="st-card st-hero">
