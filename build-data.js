@@ -1247,16 +1247,17 @@ let CONSTELLATION = null;
 {
   const nodes = ARTISTS.map((a, i) => ({ i, id: a.id, name: a.name, hue: a.hue, plays: a.plays, fam: a.fam, x: 0, y: 0, vx: 0, vy: 0 }));
   const idIndex = new Map(nodes.map(n => [n.id, n.i]));
-  const edgeSet = new Set(), edges = [];
-  const addEdge = (i, j) => {
+  const edgeKey = new Map(); const edges = [];
+  const addEdge = (i, j, via) => {
     if (i == null || j == null || i === j) return;
     const k = i < j ? i + "_" + j : j + "_" + i;
-    if (edgeSet.has(k)) return; edgeSet.add(k); edges.push([i, j]);
+    if (edgeKey.has(k)) { if (via && !edgeKey.get(k)) edgeKey.set(k, via); return; }
+    edgeKey.set(k, via || ""); edges.push([i, j, k]);
   };
   for (const a of ARTISTS) {
     const ai = idIndex.get(a.id);
-    for (const c of (a.connections || [])) for (const o of c.others) addEdge(ai, idIndex.get(o.artistId));
-    for (const sname of (realSimilar(a.name) || [])) addEdge(ai, idIndex.get(slug(sname)));
+    for (const c of (a.connections || [])) for (const o of c.others) addEdge(ai, idIndex.get(o.artistId), c.person);
+    for (const sname of (realSimilar(a.name) || [])) addEdge(ai, idIndex.get(slug(sname)), "");
   }
   const N = nodes.length, FAMN = FAMILIES.length;
   const famCenter = (f) => { const ang = ((f >= 0 ? f : 0) / FAMN) * Math.PI * 2; return [Math.cos(ang) * 320, Math.sin(ang) * 320]; };
@@ -1292,7 +1293,9 @@ let CONSTELLATION = null;
     y: Math.round((offY + (n.y - minY) * sc) * 10) / 10,
     r: Math.round((4 + Math.sqrt(n.plays / maxPlays) * 17) * 10) / 10,
   }));
-  CONSTELLATION = { w: W, h: H, nodes: outNodes, edges };
+  // edges as [i, j, via] — via = shared band member's name, or "" for last.fm similarity
+  const outEdges = edges.map(([i, j, k]) => [i, j, edgeKey.get(k) || ""]);
+  CONSTELLATION = { w: W, h: H, nodes: outNodes, edges: outEdges };
 }
 
 const INSIGHTS = {
