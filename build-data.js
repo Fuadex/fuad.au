@@ -1513,6 +1513,24 @@ for (const [name, plays] of rankedArtists) {
   if (EXPLORE.length >= EXPLORE_CAP) break;
 }
 
+// ─────────── GENRE_FLOW — per-year family weight, for the taste-journey streamgraph ───────────
+// Each artist's yearly plays go to its PRIMARY family (first/strongest subgenre's family), so
+// the stacked totals stay honest. Covers the top-3000 EXPLORE artists that carry per-year data.
+let GENRE_FLOW = null;
+{
+  const flowYears = years.filter(y => y >= 2010 && (yearTotals.get(y) || 0) >= 500);
+  const rows = flowYears.map(year => {
+    const fw = new Array(FAMILIES.length).fill(0);
+    for (const a of EXPLORE) {
+      const p = a.yp ? (a.yp[year] || 0) : 0;
+      if (!p) continue;
+      fw[SUBS[a.s[0]].fam] += p;
+    }
+    return { year, fams: fw };
+  });
+  GENRE_FLOW = { families: FAMILIES.map((f, i) => ({ i, family: f.family, hue: f.hue })), years: rows };
+}
+
 // ─────────── CONCERTS: real upcoming events from Ticketmaster (concerts-cache.json) ───────────
 // Built by enrich-concerts.js. If the cache is missing, CONCERTS+CITIES are empty
 // and the LiveView / ArtistView gigs card show "no upcoming dates" empty states.
@@ -1580,7 +1598,7 @@ const DATA = {
   ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
   CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
   CLOCK_BY_YEAR, CLOCK_CUBE, SOUND_BY_YEAR, FAMILIES: FAMILIES_OUT,
-  SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE, CONSTELLATION,
+  SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE, CONSTELLATION, GENRE_FLOW,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)
