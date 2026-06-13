@@ -54,6 +54,31 @@ function OverviewView({ t, go }) {
           turned into something I can actually <b>look at</b>.</p>
       </div>
 
+      {/* portrait — a generated verdict assembled from the insights; the thing you actually learn */}
+      {(() => {
+        const U = R.INSIGHTS.UNDERGROUND, A = R.INSIGHTS.ADOPTION, G = R.INSIGHTS.GEOGRAPHY, GF = R.GENRE_FLOW;
+        const grid = R.CLOCK.grid, hourTot = Array.from({ length: 24 }, (_, h) => grid.reduce((s, r) => s + r[h], 0));
+        const tot = hourTot.reduce((a, b) => a + b, 0) || 1, night = Math.round(hourTot.slice(0, 5).reduce((a, b) => a + b, 0) / tot * 100);
+        const em = (txt, hue) => <b style={{ color: hue != null ? `oklch(0.8 0.13 ${hue})` : "var(--ink)" }}>{txt}</b>;
+        const acc = (txt) => <b style={{ color: "var(--accent)" }}>{txt}</b>;
+        let thenG, nowG;
+        if (GF && GF.years.length) { const domOf = (y) => { let bi = 0; y.fams.forEach((v, i) => { if (v > y.fams[bi]) bi = i; }); return GF.families[bi]; }; thenG = domOf(GF.years[0]); nowG = domOf(GF.years[GF.years.length - 1]); }
+        const peakDec = A && A.decades.length ? A.decades.slice().sort((a, b) => b.share - a.share)[0] : null;
+        return (
+          <div className="r-card" style={{ padding: "22px 26px", marginBottom: "var(--gap)" }}>
+            <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 12 }}>Your portrait</div>
+            <p style={{ fontFamily: "var(--serif)", fontSize: "clamp(16px,1.9vw,21px)", lineHeight: 1.62, color: "var(--ink-soft)", margin: 0 }}>
+              {night >= 18 && <>A {acc(night + "%")}-before-5AM night owl with {em("genuinely underground")} taste — </>}
+              {U && <>{acc(Math.round(U.artistShare50k * 100) + "%")} of the artists you play sit under 50k listeners worldwide, the median just {em(fmt(U.medianArtistListeners))}. </>}
+              {A && <>You don't chase new releases, you {em("dig")}: the typical artist was {acc(A.medianLag + " years")} past their debut when you found them{peakDec ? <>, most of it made in the {em(peakDec.decade + "s")}</> : null}. </>}
+              {G && G.countries[0] && <>Rooted in {em(G.countries[0].name)} but reaching across {acc(G.totalCountries + " countries")}. </>}
+              {thenG && nowG && thenG.family !== nowG.family && <>And the taste {em("migrated")} — from {em(thenG.family, thenG.hue)} to {em(nowG.family, nowG.hue)} across {GF.years.length} years.</>}
+            </p>
+            <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginTop: 14, cursor: "pointer" }} onClick={() => go("journey")}>see the journey ↗</div>
+          </div>
+        );
+      })()}
+
       {/* bento */}
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
         {/* now playing */}
