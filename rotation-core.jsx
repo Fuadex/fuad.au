@@ -267,8 +267,11 @@ function GenCover({ hue, name, size, radius, style, image, thumb }) {
   if (!image && name && typeof window !== "undefined" && window.ROTATION) {
     const R = window.ROTATION;
     if (R.byId && R.slug) {
-      const a = R.byId[R.slug(name)];
+      const id = R.slug(name);
+      const a = R.byId[id];
       if (a && a.image) { image = a.image; thumb = a.thumb; }
+      // explorable (non-kept) artists carry only a Discogs thumbnail in R.THUMBS
+      else if (R.THUMBS && R.THUMBS[id]) { image = R.THUMBS[id]; thumb = R.THUMBS[id]; }
     }
   }
   const h = hashInt(name || "x", 7);
