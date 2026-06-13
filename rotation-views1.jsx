@@ -160,7 +160,44 @@ function OverviewView({ t, go }) {
         </div>
       </div>
 
+      {/* hub — teasers into every deeper view */}
+      {(() => {
+        const I = R.INSIGHTS, U = I.UNDERGROUND, G = I.GEOGRAPHY, C = R.CONSTELLATION;
+        const cards = [];
+        cards.push({ k: "Explore", h: `${fmt(R.EXPLORE.length)} artists`, s: `${R.SUBS.length} subgenres · filter any slice`, on: () => go("explore") });
+        if (C) cards.push({ k: "The web", h: `${C.nodes.length} stars · ${C.edges.length} links`, s: "shared members & similarity", on: () => go("web") });
+        if (U) cards.push({ k: "How deep it goes", h: `${Math.round(U.artistShare50k * 100)}% under 50k`, s: "the depth is in the breadth", on: () => go("stories") });
+        if (I.RECOMMENDATIONS && I.RECOMMENDATIONS.artists[0]) { const r = I.RECOMMENDATIONS.artists[0]; cards.push({ k: "Blind spots", h: r.name, s: `you'd love them — via ${r.via.map(v => v.name).join(", ")}`, on: () => go("stories") }); }
+        if (I.REVISIT && I.REVISIT.artists[0]) { const r = I.REVISIT.artists[0]; cards.push({ k: "Gathering dust", h: r.name, s: `${r.monthsSince} months since you played them`, on: () => go("stories") }); }
+        if (G && G.countries[0]) cards.push({ k: "Taste geography", h: G.countries[0].name, s: `${G.totalCountries} countries deep`, on: () => go("stories") });
+        if (I.ADOPTION) cards.push({ k: "How old the music was", h: `${I.ADOPTION.medianLag}yr median`, s: "you dig back-catalogue, not new releases", on: () => go("stories") });
+        return (
+          <div style={{ marginTop: "calc(var(--gap)*1.6)" }}>
+            <div className="r-mono hub-lbl">Where to dig</div>
+            <div className="hub-grid">
+              {cards.map((c, i) => (
+                <div key={i} className="r-card hub-card" onClick={c.on}>
+                  <div className="r-mono hub-k">{c.k}</div>
+                  <div className="hub-h">{c.h}</div>
+                  <div className="hub-s">{c.s}</div>
+                  <div className="hub-go">open ↗</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
       <style>{`
+        .hub-lbl { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
+        .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: var(--gap); }
+        .hub-card { padding: 16px 18px; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+        .hub-card:hover { transform: translateY(-3px); box-shadow: 0 16px 34px -16px rgba(0,0,0,.6); }
+        .hub-card:hover .hub-go { color: var(--accent); }
+        .hub-k { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+        .hub-h { font-family: var(--serif); font-style: italic; font-size: 21px; margin: 10px 0 4px; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .hub-s { font-size: 12px; color: var(--ink-soft); line-height: 1.35; }
+        .hub-go { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: var(--ink-faint); margin-top: 12px; transition: color .15s; }
         .eqbar { width: 4px; height: 10px; background: var(--accent); border-radius: 2px;
           animation: eq .9s ease-in-out infinite alternate; box-shadow: 0 0 6px var(--accent-bg); }
         @keyframes eq { from { height: 6px; } to { height: 26px; } }
