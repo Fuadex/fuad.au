@@ -66,33 +66,37 @@ function JourneyView({ go }) {
   const R = window.ROTATION;
   const GF = R.GENRE_FLOW, SF = R.SUB_FLOW;
   const yearsArr = GF.years.map(y => y.year);
-  const [mode, setMode] = React.useState("genres"); // genres | artists
-  const [drill, setDrill] = React.useState(null);    // family index when drilled into subgenres
+  const [fam, setFam] = React.useState(null);   // family idx context
+  const [sub, setSub] = React.useState(null);   // subgenre idx context
+  const [view, setView] = React.useState("genre"); // genre | artist
   const [hi, setHi] = React.useState(-1);
+  const famName = (i) => (GF.families.find(f => f.i === i) || {}).family || "";
 
   const series = React.useMemo(() => {
-    if (mode === "artists") {
-      return R.EXPLORE.slice().sort((a, b) => b.plays - a.plays).slice(0, 12)
-        .map(a => ({ key: a.id, name: a.name, hue: a.hue, id: a.id, vals: yearsArr.map(y => a.yp ? (a.yp[y] || 0) : 0) }));
+    if (view === "artist") {
+      const fn = sub != null ? (a => a.s.indexOf(sub) >= 0)
+        : fam != null ? (a => a.s.some(si => R.SUBS[si].fam === fam)) : (() => true);
+      return R.EXPLORE.filter(a => a.yp && fn(a)).sort((a, b) => b.plays - a.plays).slice(0, 12)
+        .map(a => ({ key: a.id, name: a.name, hue: a.hue, id: a.id, vals: yearsArr.map(y => a.yp[y] || 0) }));
     }
-    if (drill != null) {
-      const fhue = (GF.families.find(f => f.i === drill) || {}).hue || 0;
-      const subs = R.SUBS.map((s, i) => ({ s, i })).filter(o => o.s.fam === drill);
-      return subs.map((o, idx) => ({
-        key: o.i, name: o.s.name, hue: (fhue + (idx - (subs.length - 1) / 2) * 17 + 360) % 360,
-        vals: SF.rows.map(r => r[o.i]),
-      })).filter(se => se.vals.some(v => v > 0));
+    if (fam != null) {
+      const fhue = (GF.families.find(f => f.i === fam) || {}).hue || 0;
+      const subs = R.SUBS.map((s, i) => ({ s, i })).filter(o => o.s.fam === fam);
+      return subs.map((o, idx) => ({ key: o.i, name: o.s.name, hue: (fhue + (idx - (subs.length - 1) / 2) * 17 + 360) % 360, vals: SF.rows.map(r => r[o.i]) }))
+        .filter(se => se.vals.some(v => v > 0));
     }
-    return GF.families.map(f => ({ key: f.i, name: f.family, hue: f.hue, fam: f.i, vals: GF.years.map(y => y.fams[f.i]) }))
+    return GF.families.map(f => ({ key: f.i, name: f.family, hue: f.hue, vals: GF.years.map(y => y.fams[f.i]) }))
       .filter(se => se.vals.some(v => v > 0));
-  }, [mode, drill, R]);
+  }, [view, fam, sub, R]);
 
+  // click a ribbon: families → subgenres → artists; artists open the page
   const onPick = (s) => {
-    if (mode === "artists") go("artist", s.id);
-    else if (drill == null) { setDrill(s.fam); setHi(-1); }   // genre → drill into its subgenres
+    if (view === "artist") { go("artist", s.id); return; }
+    if (fam == null) { setFam(s.key); setHi(-1); }            // family → its subgenres
+    else { setSub(s.key); setView("artist"); setHi(-1); }     // subgenre → its bands
   };
 
-  const drillName = drill != null ? (GF.families.find(f => f.i === drill) || {}).family : null;
+  const ctxLabel = sub != null ? R.SUBS[sub].name : fam != null ? famName(fam) : null;
 
   return (
     <div className="r-view">
@@ -102,29 +106,38 @@ function JourneyView({ go }) {
           <h1 className="r-title">How it <em>flowed</em><span className="dot">.</span></h1>
         </div>
         <div className="r-seg" style={{ alignSelf: "flex-end" }}>
-          {[["genres", "Genres"], ["artists", "Artists"]].map(([k, lbl]) =>
-            <button key={k} data-on={mode === k} onClick={() => { setMode(k); setDrill(null); setHi(-1); }}>{lbl}</button>)}
+          {[["genre", fam != null ? "Subgenres" : "Genres"], ["artist", "Artists"]].map(([k, lbl]) =>
+            <button key={k} data-on={view === k} onClick={() => { setView(k); setHi(-1); }}>{lbl}</button>)}
         </div>
       </div>
 
-      <p className="r-lede" style={{ marginTop: "-8px", marginBottom: "var(--gap)" }}>
-        {mode === "artists"
-          ? <>Your twelve most-played artists as ribbons over time — who carried which years.</>
-          : drill != null
-            ? <>Inside <b style={{ color: "var(--ink)" }}>{drillName}</b> — its subgenres flowing year by year. <span className="jy-back" onClick={() => { setDrill(null); setHi(-1); }}>‹ all genres</span></>
-            : <>Each ribbon is a genre family; thickness is how much you played it that year. <b>Click any genre to break it into its subgenres.</b></>}
+      {/* breadcrumb path */}
+      <div className="jy-crumbs">
+        <span className="jy-crumb" data-cur={fam == null} onClick={() => { setFam(null); setSub(null); setView("genre"); setHi(-1); }}>All genres</span>
+        {fam != null && <><span className="jy-sep">›</span>
+          <span className="jy-crumb" data-cur={sub == null && view === "genre"} onClick={() => { setSub(null); setView("genre"); setHi(-1); }}>{famName(fam)}</span></>}
+        {sub != null && <><span className="jy-sep">›</span>
+          <span className="jy-crumb" data-cur={true} onClick={() => { setView("artist"); setHi(-1); }}>{R.SUBS[sub].name}</span></>}
+      </div>
+
+      <p className="r-lede" style={{ marginTop: 4, marginBottom: "var(--gap)" }}>
+        {view === "artist"
+          ? <>The bands behind <b style={{ color: "var(--ink)" }}>{ctxLabel || "your whole library"}</b> — your most-played, as ribbons over time. Click one to open it.</>
+          : fam != null
+            ? <>Inside <b style={{ color: "var(--ink)" }}>{famName(fam)}</b> — its subgenres year by year. <b>Click a subgenre to see the bands</b> behind it.</>
+            : <>Each ribbon is a genre family; thickness is how much you played it that year. <b>Click a genre to drill in.</b></>}
       </p>
 
       <div className="r-card" style={{ padding: "10px 8px 4px", overflow: "hidden" }}>
         {series.length === 0
-          ? <div style={{ padding: 60, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>Nothing to flow here.</div>
-          : <StreamGraph series={series} years={yearsArr} hi={hi} setHi={setHi} onPick={onPick} clickable={mode === "artists" || drill == null} />}
+          ? <div style={{ padding: 60, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>No per-year data for this slice.</div>
+          : <StreamGraph series={series} years={yearsArr} hi={hi} setHi={setHi} onPick={onPick} clickable={true} />}
       </div>
 
       <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 16 }}>
         {series.map((s, i) => (
-          <div key={s.key} onMouseEnter={() => setHi(i)} onMouseLeave={() => setHi(-1)}
-            onClick={() => onPick(s)} style={{ display: "inline-flex", alignItems: "center", gap: 7, cursor: (mode === "artists" || drill == null) ? "pointer" : "default", opacity: hi < 0 || hi === i ? 1 : 0.36, transition: ".15s" }}>
+          <div key={s.key} onMouseEnter={() => setHi(i)} onMouseLeave={() => setHi(-1)} onClick={() => onPick(s)}
+            style={{ display: "inline-flex", alignItems: "center", gap: 7, cursor: "pointer", opacity: hi < 0 || hi === i ? 1 : 0.36, transition: ".15s" }}>
             <span style={{ width: 11, height: 11, borderRadius: 3, background: `oklch(0.62 0.16 ${s.hue})` }} />
             <span style={{ fontSize: 12, color: "var(--ink-soft)" }}>{s.name}</span>
           </div>
@@ -132,8 +145,11 @@ function JourneyView({ go }) {
       </div>
 
       <style>{`
-        .jy-back { color: var(--accent); cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; margin-left: 8px; }
-        .jy-back:hover { text-decoration: underline; }
+        .jy-crumbs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+        .jy-crumb { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--ink-faint); cursor: pointer; transition: color .12s; }
+        .jy-crumb:hover { color: var(--ink); }
+        .jy-crumb[data-cur="true"] { color: var(--accent); }
+        .jy-sep { color: var(--ink-faint); font-size: 11px; }
       `}</style>
     </div>
   );
