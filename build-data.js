@@ -1513,6 +1513,21 @@ for (const [name, plays] of rankedArtists) {
   if (EXPLORE.length >= EXPLORE_CAP) break;
 }
 
+// ─────────── THUMBS — Discogs cover thumbnail per explorable artist id (covers everywhere) ───────────
+// Shipped as a compact { id → 150px url } map so the ranking rows and MiniArtist pages show real
+// art, not just generative covers. Only thumbnails (bios/members stay build-side to keep payload sane).
+// Capped to the top ~1200 NON-kept artists by plays (kept artists already carry full images in
+// their ARTISTS record). The niche tail keeps generative covers — not worth the payload.
+const THUMBS = {};
+{
+  let n = 0;
+  for (const a of EXPLORE) {
+    if (byName[a.name]) continue;            // kept artists resolve via byId already
+    const t = (DGA[a.name] && DGA[a.name].thumb) || "";
+    if (t) { THUMBS[a.id] = t; if (++n >= 1200) break; }
+  }
+}
+
 // ─────────── GENRE_FLOW — per-year family weight, for the taste-journey streamgraph ───────────
 // Each artist's yearly plays go to its PRIMARY family (first/strongest subgenre's family), so
 // the stacked totals stay honest. Covers the top-3000 EXPLORE artists that carry per-year data.
@@ -1598,7 +1613,7 @@ const DATA = {
   ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
   CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
   CLOCK_BY_YEAR, CLOCK_CUBE, SOUND_BY_YEAR, FAMILIES: FAMILIES_OUT,
-  SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE, CONSTELLATION, GENRE_FLOW,
+  SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE, CONSTELLATION, GENRE_FLOW, THUMBS,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)
