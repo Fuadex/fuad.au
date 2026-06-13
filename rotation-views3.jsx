@@ -199,6 +199,35 @@ function StoriesView({ t, go }) {
           );
         })()}
 
+        {/* revisit — favourites gone quiet */}
+        {I.REVISIT && I.REVISIT.artists.length > 0 && (() => {
+          const RV = I.REVISIT;
+          const top = RV.artists[0];
+          const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+          const monthName = (ym) => { if (!ym) return ""; const [y, m] = ym.split("-"); return MON[+m - 1] + " " + y; };
+          const ago = (mo) => mo >= 12 ? (mo / 12).toFixed(mo >= 24 ? 0 : 1) + " years" : mo + " months";
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Gathering dust</div>
+              <div className="st-big" data-link={clickable(top.name)} onClick={() => goIf(top.name)}>
+                You played <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.name}</em> {fmt(top.plays)} times — and haven't pressed play in {ago(top.monthsSince)}.
+              </div>
+              <div className="st-sub">Artists you once lived in, now gone quiet. Maybe it's time:</div>
+              <div className="st-ug-cuts">
+                {RV.artists.slice(0, 6).map(a => (
+                  <div key={a.name} className="st-ug-cut" data-link={clickable(a.name)} onClick={() => goIf(a.name)}>
+                    <GenCover hue={a.hue} name={a.name} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{a.name}</div>
+                      <div className="st-row-sub">{fmt(a.plays)} plays · peak {monthName(a.peakMonth)} · {ago(a.monthsSince)} ago</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* year in review */}
         {yr && (
           <section className="st-card st-hero">
