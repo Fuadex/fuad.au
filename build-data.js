@@ -1298,9 +1298,35 @@ let CONSTELLATION = null;
   CONSTELLATION = { w: W, h: H, nodes: outNodes, edges: outEdges };
 }
 
+// ─────────── REVISIT (decay — favourites you've drifted from) ───────────
+// Artists that once carried real weight but you haven't played in a long while. Scored by
+// how big they were × how long they've been gone — the rediscovery flip-side of RECOMMENDATIONS.
+let REVISIT = null;
+{
+  const MONTH = 30 * 86400e3;
+  const list = [];
+  for (const [name, plays] of artistPlays) {
+    if (plays < 120 || !byName[name]) continue;        // significant + has a page to open
+    const sp = span.get(name);
+    if (!sp) continue;
+    const monthsSince = (newestMs - sp[1]) / MONTH;
+    if (monthsSince < 10) continue;                    // still in rotation — not "drifted"
+    const pk = peakWeekByArtist.get(name);
+    const peakMs = pk ? WEEK0 + pk.weekIdx * 7 * 86400e3 : null;
+    list.push({
+      name, plays, hue: hueFor(name), artistId: slug(name),
+      lastHeard: iso(sp[1]), monthsSince: Math.round(monthsSince),
+      peakMonth: peakMs ? iso(peakMs).slice(0, 7) : null, peakPlays: pk ? pk.plays : 0,
+      score: plays * Math.log(1 + monthsSince),
+    });
+  }
+  list.sort((a, b) => b.score - a.score);
+  if (list.length) REVISIT = { artists: list.slice(0, 10) };
+}
+
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
-  AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS,
+  AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
 };
