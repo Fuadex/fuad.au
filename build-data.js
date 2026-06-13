@@ -1528,22 +1528,21 @@ const THUMBS = {};
   }
 }
 
-// ─────────── GENRE_FLOW — per-year family weight, for the taste-journey streamgraph ───────────
-// Each artist's yearly plays go to its PRIMARY family (first/strongest subgenre's family), so
-// the stacked totals stay honest. Covers the top-3000 EXPLORE artists that carry per-year data.
-let GENRE_FLOW = null;
+// ─────────── GENRE_FLOW + SUB_FLOW — per-year weights for the taste-journey streamgraph ───────────
+// Each artist's yearly plays go to its PRIMARY subgenre (s[0]); family weight = that subgenre's
+// family. GENRE_FLOW drives the default view; SUB_FLOW lets clicking a family drill into its
+// subgenres over time. Covers the top-3000 EXPLORE artists that carry per-year data.
+let GENRE_FLOW = null, SUB_FLOW = null;
 {
   const flowYears = years.filter(y => y >= 2010 && (yearTotals.get(y) || 0) >= 500);
-  const rows = flowYears.map(year => {
-    const fw = new Array(FAMILIES.length).fill(0);
-    for (const a of EXPLORE) {
-      const p = a.yp ? (a.yp[year] || 0) : 0;
-      if (!p) continue;
-      fw[SUBS[a.s[0]].fam] += p;
-    }
-    return { year, fams: fw };
+  const subRows = flowYears.map(year => {
+    const sw = new Array(SUBS.length).fill(0);
+    for (const a of EXPLORE) { const p = a.yp ? (a.yp[year] || 0) : 0; if (p) sw[a.s[0]] += p; }
+    return sw;
   });
-  GENRE_FLOW = { families: FAMILIES.map((f, i) => ({ i, family: f.family, hue: f.hue })), years: rows };
+  const famRows = subRows.map(sw => { const fw = new Array(FAMILIES.length).fill(0); sw.forEach((v, si) => { if (v) fw[SUBS[si].fam] += v; }); return fw; });
+  GENRE_FLOW = { families: FAMILIES.map((f, i) => ({ i, family: f.family, hue: f.hue })), years: flowYears.map((y, i) => ({ year: y, fams: famRows[i] })) };
+  SUB_FLOW = { years: flowYears, rows: subRows };
 }
 
 // ─────────── CONCERTS: real upcoming events from Ticketmaster (concerts-cache.json) ───────────
@@ -1613,7 +1612,7 @@ const DATA = {
   ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
   CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
   CLOCK_BY_YEAR, CLOCK_CUBE, SOUND_BY_YEAR, FAMILIES: FAMILIES_OUT,
-  SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE, CONSTELLATION, GENRE_FLOW, THUMBS,
+  SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE, CONSTELLATION, GENRE_FLOW, SUB_FLOW, THUMBS,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)
