@@ -1516,16 +1516,14 @@ for (const [name, plays] of rankedArtists) {
 // ─────────── THUMBS — Discogs cover thumbnail per explorable artist id (covers everywhere) ───────────
 // Shipped as a compact { id → 150px url } map so the ranking rows and MiniArtist pages show real
 // art, not just generative covers. Only thumbnails (bios/members stay build-side to keep payload sane).
-// Capped to the top ~1200 NON-kept artists by plays (kept artists already carry full images in
-// their ARTISTS record). The niche tail keeps generative covers — not worth the payload.
+// Ship a 150px Discogs cover for every explorable non-kept artist that has one (kept artists
+// already carry full images in their ARTISTS record). ~+215KB over the old 1200 cap, but the
+// user wanted covers everywhere — generative tiles only remain where Discogs has no image.
 const THUMBS = {};
-{
-  let n = 0;
-  for (const a of EXPLORE) {
-    if (byName[a.name]) continue;            // kept artists resolve via byId already
-    const t = (DGA[a.name] && DGA[a.name].thumb) || "";
-    if (t) { THUMBS[a.id] = t; if (++n >= 1200) break; }
-  }
+for (const a of EXPLORE) {
+  if (byName[a.name]) continue;              // kept artists resolve via byId already
+  const t = (DGA[a.name] && DGA[a.name].thumb) || "";
+  if (t) THUMBS[a.id] = t;
 }
 
 // ─────────── GENRE_FLOW + SUB_FLOW — per-year weights for the taste-journey streamgraph ───────────
