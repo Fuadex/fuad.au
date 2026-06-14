@@ -1550,56 +1550,63 @@ let ARTIST_FLOW = null;
 {
   const fy = GENRE_FLOW.years.map(y => y.year);
   const yIdx = new Map(fy.map((y, i) => [y, i]));
-  const acc = new Map(); // artist → { alb: Map(title→Int[fy]), trk: Map(title→Int[fy]) }
+  const total = (vals) => vals.reduce((s, v) => s + v, 0);
+  const norm = (s) => s.toLowerCase().replace(/\[[^\]]*\]/g, "").replace(/\([^)]*\)/g, "")
+    .replace(/\b(deluxe|remaster(ed)?|edition|version|disc\s*\d*|bonus|expanded|anniversary|mastered|audiophile|left|right|reissue|special|limited)\b/g, "")
+    .replace(/[^a-z0-9]+/g, " ").trim();
+  // artist → { albYear: Map(album→arr), albSong: Map(album→Map(song→arr)), songYear: Map(song→arr) }
+  const acc = new Map();
   for (const [artist, album, track, ms] of scrobbles) {
     if (!byName[artist]) continue;
     const yi = yIdx.get(new Date(ms).getUTCFullYear());
     if (yi == null) continue;
-    if (!acc.has(artist)) acc.set(artist, { alb: new Map(), trk: new Map() });
+    if (!acc.has(artist)) acc.set(artist, { albYear: new Map(), albSong: new Map(), songYear: new Map() });
     const A = acc.get(artist);
-    if (album) { if (!A.alb.has(album)) A.alb.set(album, new Array(fy.length).fill(0)); A.alb.get(album)[yi]++; }
-    if (track) { if (!A.trk.has(track)) A.trk.set(track, new Array(fy.length).fill(0)); A.trk.get(track)[yi]++; }
+    if (track) { if (!A.songYear.has(track)) A.songYear.set(track, new Array(fy.length).fill(0)); A.songYear.get(track)[yi]++; }
+    if (album) {
+      if (!A.albYear.has(album)) A.albYear.set(album, new Array(fy.length).fill(0)); A.albYear.get(album)[yi]++;
+      if (track) {
+        if (!A.albSong.has(album)) A.albSong.set(album, new Map());
+        const sm = A.albSong.get(album);
+        if (!sm.has(track)) sm.set(track, new Array(fy.length).fill(0)); sm.get(track)[yi]++;
+      }
+    }
   }
-  // merge album editions/discs into one record (The Fragile / [Left] / Disc 1 → The Fragile),
-  // keeping the most-played spelling. Albums only — track parentheticals are often real remixes.
-  const mergeAlbums = (m) => {
-    const norm = (s) => s.toLowerCase().replace(/\[[^\]]*\]/g, "").replace(/\([^)]*\)/g, "")
-      .replace(/\b(deluxe|remaster(ed)?|edition|version|disc\s*\d*|bonus|expanded|anniversary|mastered|audiophile|left|right|reissue|special|limited)\b/g, "")
-      .replace(/[^a-z0-9]+/g, " ").trim();
-    const g = new Map();
-    for (const [title, vals] of m) {
-      const k = norm(title) || title.toLowerCase();
-      const t = vals.reduce((s, v) => s + v, 0);
-      if (!g.has(k)) g.set(k, { title, vals: vals.slice(), best: t });
-      else { const e = g.get(k); for (let i = 0; i < vals.length; i++) e.vals[i] += vals[i]; if (t > e.best) { e.best = t; e.title = title; } }
-    }
-    const out = new Map();
-    for (const e of g.values()) out.set(e.title, e.vals);
-    return out;
-  };
-  // top N by total + an "everything else" rollup so the stream's total height stays honest
-  const buildSeries = (m, n) => {
-    const all = [...m.entries()].map(([name, vals]) => ({ name, vals, t: vals.reduce((s, v) => s + v, 0) }))
-      .filter(s => s.t > 0).sort((x, y) => y.t - x.t);
-    const top = all.slice(0, n);
-    if (all.length > n) {
-      const others = new Array(fy.length).fill(0);
-      for (const r of all.slice(n)) r.vals.forEach((v, i) => others[i] += v);
-      top.push({ name: "everything else", vals: others, other: true });
-    }
+  const span = (arrs) => { let lo = fy.length, hi = -1; for (const v of arrs) v.forEach((x, i) => { if (x) { if (i < lo) lo = i; if (i > hi) hi = i; } }); return [lo, hi]; };
+  // top N from Map(name→arr) over [lo,hi] + an "everything else" rollup
+  const seriesFromMap = (m, n, lo, hi) => {
+    const all = [...m.entries()].map(([name, vals]) => ({ name, vals, t: total(vals) })).filter(s => s.t > 0).sort((a, b) => b.t - a.t);
+    const top = all.slice(0, n).map(s => ({ name: s.name, vals: s.vals.slice(lo, hi + 1) }));
+    if (all.length > n) { const o = new Array(fy.length).fill(0); for (const r of all.slice(n)) r.vals.forEach((v, i) => o[i] += v); top.push({ name: "everything else", vals: o.slice(lo, hi + 1), other: 1 }); }
     return top;
+  };
+  // merge album editions/discs (The Fragile / [Left] / Disc 1 → The Fragile) incl. their songs
+  const mergeAlb = (albYear, albSong) => {
+    const g = new Map();
+    for (const [title, vals] of albYear) {
+      const k = norm(title) || title.toLowerCase(), t = total(vals);
+      if (!g.has(k)) g.set(k, { title, vals: new Array(fy.length).fill(0), best: -1, songs: new Map() });
+      const e = g.get(k);
+      for (let i = 0; i < fy.length; i++) e.vals[i] += vals[i];
+      if (t > e.best) { e.best = t; e.title = title; }
+      const sm = albSong.get(title);
+      if (sm) for (const [song, sv] of sm) { if (!e.songs.has(song)) e.songs.set(song, new Array(fy.length).fill(0)); const d = e.songs.get(song); for (let i = 0; i < fy.length; i++) d[i] += sv[i]; }
+    }
+    return [...g.values()];
   };
   const byId = {};
   for (const a of ARTISTS) {
     const A = acc.get(a.name);
     if (!A) continue;
-    const albums = buildSeries(mergeAlbums(A.alb), 15), tracks = buildSeries(A.trk, 15);
-    // trim to the artist's active year span (across both album + track series)
-    let lo = fy.length, hi = 0;
-    for (const s of [...albums, ...tracks]) s.vals.forEach((v, i) => { if (v) { if (i < lo) lo = i; if (i > hi) hi = i; } });
+    const [lo, hi] = span([...A.albYear.values(), ...A.songYear.values()]);
     if (hi < lo) continue;
-    const slice = (arr) => arr.map(s => ({ name: s.name, vals: s.vals.slice(lo, hi + 1), ...(s.other ? { other: 1 } : {}) }));
-    byId[a.id] = { years: fy.slice(lo, hi + 1), albums: slice(albums), tracks: slice(tracks) };
+    const merged = mergeAlb(A.albYear, A.albSong).map(e => ({ ...e, t: total(e.vals) })).sort((x, y) => y.t - x.t);
+    const albums = merged.slice(0, 15).map(e => {
+      const [alo, ahi] = span([...e.songs.values(), e.vals]);
+      return { name: e.title, vals: e.vals.slice(lo, hi + 1), tyears: fy.slice(alo, ahi + 1), tracks: seriesFromMap(e.songs, 20, alo, ahi) };
+    });
+    if (merged.length > 15) { const o = new Array(fy.length).fill(0); for (const e of merged.slice(15)) e.vals.forEach((v, i) => o[i] += v); albums.push({ name: "everything else", vals: o.slice(lo, hi + 1), other: 1, tyears: fy.slice(lo, hi + 1), tracks: [] }); }
+    byId[a.id] = { years: fy.slice(lo, hi + 1), albums, tracks: seriesFromMap(A.songYear, 20, lo, hi) };
   }
   ARTIST_FLOW = { byId };
 }
