@@ -25,6 +25,14 @@ function CalendarView({ go }) {
     if (!s) { s = document.createElement("script"); s.id = "rotation-cal-detail-js"; s.src = "calendar-detail.js"; document.head.appendChild(s); s.addEventListener("load", () => setDetail(window.ROTATION_CAL_DETAIL)); }
   };
   const avg = React.useMemo(() => { const ks = ["energy", "valence", "acoustic", "tempo", "dance", "instr"]; return ks.map(k => R.ARTISTS.reduce((s, x) => s + x.audio[k], 0) / R.ARTISTS.length); }, []);
+  // selected period → ms range, for highlighting cells cheaply. MUST be above the early return
+  // below (otherwise the hook count changes once the calendar loads → React crash).
+  const selRange = React.useMemo(() => {
+    if (!sel) return null;
+    if (gran === "month") { const [y, m] = sel.split("-").map(Number); return [Date.UTC(y, m - 1, 1), Date.UTC(y, m, 1) - 86400e3]; }
+    const start = new Date(sel + "T00:00:00Z").getTime();
+    return gran === "week" ? [start, start + 6 * 86400e3] : [start, start];
+  }, [sel, gran]);
 
   const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const MONF = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -45,14 +53,6 @@ function CalendarView({ go }) {
   const years = cal.years;
   const W = leftPad + 53 * step + 6;
   const H = topPad + years.length * (rowH + yearGap);
-
-  // selected period → ms range, for highlighting cells cheaply
-  const selRange = React.useMemo(() => {
-    if (!sel) return null;
-    if (gran === "month") { const [y, m] = sel.split("-").map(Number); return [Date.UTC(y, m - 1, 1), Date.UTC(y, m, 1) - 86400e3]; }
-    const start = new Date(sel + "T00:00:00Z").getTime();
-    return gran === "week" ? [start, start + 6 * 86400e3] : [start, start];
-  }, [sel, gran]);
 
   const pick = (y, d) => { const k = keyFor(gran, dateOf(y, d)); setSel(k); setPane("artists"); ensureDetail(); };
 
