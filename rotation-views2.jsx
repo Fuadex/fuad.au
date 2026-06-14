@@ -316,7 +316,8 @@ const DNA_AXES = ["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"];
 function ArtistFlow({ id, hue }) {
   const get = () => (window.ROTATION_FLOW && window.ROTATION_FLOW.byId[id]) || (window.ROTATION_FLOW ? false : null);
   const [flow, setFlow] = React.useState(get);
-  const [tab, setTab] = React.useState("albums");
+  const [mode, setMode] = React.useState("albums");  // albums | songs
+  const [drill, setDrill] = React.useState(null);    // album index when drilled into its songs
   const [hi, setHi] = React.useState(-1);
   React.useEffect(() => {
     if (window.ROTATION_FLOW) { setFlow(get()); return; }
@@ -326,24 +327,51 @@ function ArtistFlow({ id, hue }) {
     s.addEventListener("load", onLoad);
     return () => s.removeEventListener("load", onLoad);
   }, [id]);
-  if (!flow) return null;                     // loading or no data for this artist
+  React.useEffect(() => { setMode("albums"); setDrill(null); setHi(-1); }, [id]);  // reset on artist change
+  if (!flow) return null;
   if ((flow.albums || []).length < 1 && (flow.tracks || []).length < 1) return null;
-  const items = flow[tab] || [];
-  const series = items.map((it, i) => ({ key: it.name, name: it.name, hue: (hue + (i - (items.length - 1) / 2) * 15 + 360) % 360, vals: it.vals, mute: !!it.other }));
+
+  let items, years, drillAlbum = null;
+  if (mode === "songs") { items = flow.tracks; years = flow.years; }
+  else if (drill != null && flow.albums[drill]) { drillAlbum = flow.albums[drill]; items = drillAlbum.tracks; years = drillAlbum.tyears; }
+  else { items = flow.albums; years = flow.years; }
+  const series = items.map((it, i) => ({ key: it.name + i, name: it.name, hue: (hue + (i - (items.length - 1) / 2) * 15 + 360) % 360, vals: it.vals, mute: !!it.other }));
+  const canDrill = mode === "albums" && drill == null;
+  const onPick = canDrill ? ((s, i) => { if (!s.mute && (flow.albums[i].tracks || []).length) { setDrill(i); setHi(-1); } }) : null;
+
   return (
     <div className="r-card" style={{ padding: 18 }}>
-      <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}>
         <span className="lbl"><b>How they played out</b></span>
         <div className="r-seg">
-          {[["albums", "albums"], ["tracks", "songs"]].map(([k, lbl]) =>
-            <button key={k} data-on={tab === k} onClick={() => { setTab(k); setHi(-1); }}>{lbl}</button>)}
+          {[["albums", "albums"], ["songs", "songs"]].map(([k, lbl]) =>
+            <button key={k} data-on={mode === k} onClick={() => { setMode(k); setDrill(null); setHi(-1); }}>{lbl}</button>)}
         </div>
       </div>
+      {drillAlbum && (
+        <div className="r-mono" style={{ fontSize: 11, marginBottom: 8 }}>
+          <span style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => { setDrill(null); setHi(-1); }}>‹ albums</span>
+          <span style={{ margin: "0 8px", color: "var(--ink-faint)" }}>›</span>
+          <span style={{ color: "var(--ink)" }}>{drillAlbum.name}</span>
+        </div>
+      )}
       {series.length < 1
-        ? <div style={{ padding: 28, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>No {tab === "tracks" ? "song" : "album"} data tagged over time.</div>
-        : <StreamGraph series={series} years={flow.years} hi={hi} setHi={setHi} clickable={false} />}
-      <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>
-        each ribbon = a {tab === "tracks" ? "song" : "record"} · thickness = plays that year · hover to isolate
+        ? <div style={{ padding: 26, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>Nothing tagged over time here.</div>
+        : <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={!!onPick} />}
+      {series.length >= 1 && (
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 14px", marginTop: 12 }}>
+          {series.map((s, i) => (
+            <div key={s.key} onMouseEnter={() => setHi(i)} onMouseLeave={() => setHi(-1)} onClick={() => onPick && onPick(s, i)}
+              style={{ display: "inline-flex", alignItems: "center", gap: 7, transition: ".15s", opacity: hi < 0 || hi === i ? 1 : 0.34, cursor: onPick && !s.mute ? "pointer" : "default" }}>
+              <span style={{ width: 9, height: 9, borderRadius: 2, background: s.mute ? "oklch(0.55 0.02 270)" : `oklch(0.62 0.16 ${s.hue})`, flex: "none" }} />
+              <span style={{ fontSize: 11, color: "var(--ink-soft)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: 180 }}>{s.name}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 10 }}>
+        {canDrill ? "thickness = plays that year · click an album to break it into its songs"
+          : drillAlbum ? "the songs on this record, over time" : "your top songs across the years"}
       </div>
     </div>
   );
@@ -486,6 +514,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         </div>
 
         <div style={{ display: "grid", gap: "var(--gap)" }}>
+          {/* how they played out — album/song streamgraph (lazy-loaded), right after the Sound DNA */}
+          <ArtistFlow id={a.id} hue={a.hue} />
+
           {/* sounds like */}
           <div className="r-card" style={{ padding: 18 }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
@@ -593,9 +624,6 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               </div>
             </div>
           </div>
-
-          {/* how they played out — album/song streamgraph over the years (lazy-loaded) */}
-          <ArtistFlow id={a.id} hue={a.hue} />
 
           {/* live near you */}
           {hasConcertData && (
