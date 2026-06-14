@@ -311,6 +311,44 @@ function ErasView({ t, go }) {
 // ════════════════════════ ARTIST DRILLDOWN ════════════════════════
 const DNA_AXES = ["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"];
 
+// Per-artist album/song streamgraph (reuses the Journey StreamGraph). Flow data lives in a
+// separate artist-flow.js, lazy-loaded on the first artist-page visit so first paint stays lean.
+function ArtistFlow({ id, hue }) {
+  const get = () => (window.ROTATION_FLOW && window.ROTATION_FLOW.byId[id]) || (window.ROTATION_FLOW ? false : null);
+  const [flow, setFlow] = React.useState(get);
+  const [tab, setTab] = React.useState("albums");
+  const [hi, setHi] = React.useState(-1);
+  React.useEffect(() => {
+    if (window.ROTATION_FLOW) { setFlow(get()); return; }
+    let s = document.getElementById("rotation-flow-js");
+    if (!s) { s = document.createElement("script"); s.id = "rotation-flow-js"; s.src = "artist-flow.js"; document.head.appendChild(s); }
+    const onLoad = () => setFlow(get());
+    s.addEventListener("load", onLoad);
+    return () => s.removeEventListener("load", onLoad);
+  }, [id]);
+  if (!flow) return null;                     // loading or no data for this artist
+  if ((flow.albums || []).length < 1 && (flow.tracks || []).length < 1) return null;
+  const items = flow[tab] || [];
+  const series = items.map((it, i) => ({ key: it.name, name: it.name, hue: (hue + (i - (items.length - 1) / 2) * 15 + 360) % 360, vals: it.vals, mute: !!it.other }));
+  return (
+    <div className="r-card" style={{ padding: 18 }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
+        <span className="lbl"><b>How they played out</b></span>
+        <div className="r-seg">
+          {[["albums", "albums"], ["tracks", "songs"]].map(([k, lbl]) =>
+            <button key={k} data-on={tab === k} onClick={() => { setTab(k); setHi(-1); }}>{lbl}</button>)}
+        </div>
+      </div>
+      {series.length < 1
+        ? <div style={{ padding: 28, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>No {tab === "tracks" ? "song" : "album"} data tagged over time.</div>
+        : <StreamGraph series={series} years={flow.years} hi={hi} setHi={setHi} clickable={false} />}
+      <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>
+        each ribbon = a {tab === "tracks" ? "song" : "record"} · thickness = plays that year · hover to isolate
+      </div>
+    </div>
+  );
+}
+
 // Lightweight page for an explorable artist that isn't in the kept top-205 (no full per-artist
 // build). Shows what the EXPLORE record carries: plays, subgenres, listeners, debut, year shape.
 function MiniArtistView({ a, go }) {
@@ -555,6 +593,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               </div>
             </div>
           </div>
+
+          {/* how they played out — album/song streamgraph over the years (lazy-loaded) */}
+          <ArtistFlow id={a.id} hue={a.hue} />
 
           {/* live near you */}
           {hasConcertData && (

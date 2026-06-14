@@ -34,9 +34,11 @@ function StreamGraph({ series, years, hi, setHi, onPick, clickable }) {
     <svg viewBox={`0 0 ${L.W} ${L.H}`} style={{ width: "100%", height: "auto", display: "block" }} onMouseLeave={() => setHi(-1)}>
       {L.order.map(i => {
         const on = hi < 0 || hi === i, s = series[i];
+        const fill = s.mute ? "oklch(0.5 0.02 270)" : `oklch(0.62 0.17 ${s.hue})`;
+        const strk = s.mute ? "oklch(0.62 0.02 270)" : `oklch(0.72 0.16 ${s.hue})`;
         return (
-          <path key={s.key} d={L.area(i)} fill={`oklch(0.62 0.17 ${s.hue})`} fillOpacity={on ? (hi === i ? 0.96 : 0.82) : 0.15}
-            stroke={`oklch(0.72 0.16 ${s.hue})`} strokeWidth={hi === i ? 1.4 : 0.5} strokeOpacity={on ? 0.5 : 0.12}
+          <path key={s.key} d={L.area(i)} fill={fill} fillOpacity={on ? (hi === i ? 0.96 : 0.82) : 0.15}
+            stroke={strk} strokeWidth={hi === i ? 1.4 : 0.5} strokeOpacity={on ? 0.5 : 0.12}
             style={{ cursor: clickable ? "pointer" : "default", transition: "fill-opacity .15s" }}
             onMouseEnter={() => setHi(i)} onClick={() => onPick && onPick(s, i)}>
             <title>{s.name} · peak {L.peak[i].year} ({Math.round(L.peak[i].share * 100)}%)</title>
