@@ -21,6 +21,7 @@ const NAV_FULL = [
   ["stories", "Stories"],
   ["explore", "Explore"],
   ["journey", "Journey"],
+  ["calendar", "Calendar"],
   ["live", "Live"],
 ];
 // Hide "Live" entirely when no concerts have been enriched — avoids a dead-end tab.
@@ -111,6 +112,7 @@ function RotationApp() {
       {v === "stories" && <StoriesView t={t} go={go} />}
       {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} />}
       {v === "journey" && <JourneyView go={go} />}
+      {v === "calendar" && <CalendarView go={go} />}
       {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
       {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
 
