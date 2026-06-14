@@ -54,31 +54,6 @@ function OverviewView({ t, go }) {
           turned into something I can actually <b>look at</b>.</p>
       </div>
 
-      {/* portrait — a generated verdict assembled from the insights; the thing you actually learn */}
-      {(() => {
-        const U = R.INSIGHTS.UNDERGROUND, A = R.INSIGHTS.ADOPTION, G = R.INSIGHTS.GEOGRAPHY, GF = R.GENRE_FLOW;
-        const grid = R.CLOCK.grid, hourTot = Array.from({ length: 24 }, (_, h) => grid.reduce((s, r) => s + r[h], 0));
-        const tot = hourTot.reduce((a, b) => a + b, 0) || 1, night = Math.round(hourTot.slice(0, 5).reduce((a, b) => a + b, 0) / tot * 100);
-        const em = (txt, hue) => <b style={{ color: hue != null ? `oklch(0.8 0.13 ${hue})` : "var(--ink)" }}>{txt}</b>;
-        const acc = (txt) => <b style={{ color: "var(--accent)" }}>{txt}</b>;
-        let thenG, nowG;
-        if (GF && GF.years.length) { const domOf = (y) => { let bi = 0; y.fams.forEach((v, i) => { if (v > y.fams[bi]) bi = i; }); return GF.families[bi]; }; thenG = domOf(GF.years[0]); nowG = domOf(GF.years[GF.years.length - 1]); }
-        const peakDec = A && A.decades.length ? A.decades.slice().sort((a, b) => b.share - a.share)[0] : null;
-        return (
-          <div className="r-card" style={{ padding: "22px 26px", marginBottom: "var(--gap)" }}>
-            <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 12 }}>Your portrait</div>
-            <p style={{ fontFamily: "var(--serif)", fontSize: "clamp(16px,1.9vw,21px)", lineHeight: 1.62, color: "var(--ink-soft)", margin: 0 }}>
-              {night >= 18 && <>A {acc(night + "%")}-before-5AM night owl with {em("genuinely underground")} taste — </>}
-              {U && <>{acc(Math.round(U.artistShare50k * 100) + "%")} of the artists you play sit under 50k listeners worldwide, the median just {em(fmt(U.medianArtistListeners))}. </>}
-              {A && <>You don't chase new releases, you {em("dig")}: the typical artist was {acc(A.medianLag + " years")} past their debut when you found them{peakDec ? <>, most of it made in the {em(peakDec.decade + "s")}</> : null}. </>}
-              {G && G.countries[0] && <>Rooted in {em(G.countries[0].name)} but reaching across {acc(G.totalCountries + " countries")}. </>}
-              {thenG && nowG && thenG.family !== nowG.family && <>And the taste {em("migrated")} — from {em(thenG.family, thenG.hue)} to {em(nowG.family, nowG.hue)} across {GF.years.length} years.</>}
-            </p>
-            <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginTop: 14, cursor: "pointer" }} onClick={() => go("journey")}>see the journey ↗</div>
-          </div>
-        );
-      })()}
-
       {/* bento */}
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
         {/* now playing */}
@@ -187,25 +162,26 @@ function OverviewView({ t, go }) {
 
       {/* hub — teasers into every deeper view */}
       {(() => {
-        const I = R.INSIGHTS, U = I.UNDERGROUND, G = I.GEOGRAPHY, C = R.CONSTELLATION;
+        const I = R.INSIGHTS, U = I.UNDERGROUND, G = I.GEOGRAPHY, GF = R.GENRE_FLOW;
         const cards = [];
-        cards.push({ k: "Explore", h: `${fmt(R.EXPLORE.length)} artists`, s: `${R.SUBS.length} subgenres · filter any slice`, on: () => go("explore") });
-        if (C) cards.push({ k: "The web", h: `${C.nodes.length} stars · ${C.edges.length} links`, s: "shared members & similarity", on: () => go("web") });
-        if (U) cards.push({ k: "How deep it goes", h: `${Math.round(U.artistShare50k * 100)}% under 50k`, s: "the depth is in the breadth", on: () => go("stories") });
-        if (I.RECOMMENDATIONS && I.RECOMMENDATIONS.artists[0]) { const r = I.RECOMMENDATIONS.artists[0]; cards.push({ k: "Blind spots", h: r.name, s: `you'd love them — via ${r.via.map(v => v.name).join(", ")}`, on: () => go("stories") }); }
-        if (I.REVISIT && I.REVISIT.artists[0]) { const r = I.REVISIT.artists[0]; cards.push({ k: "Gathering dust", h: r.name, s: `${r.monthsSince} months since you played them`, on: () => go("stories") }); }
-        if (G && G.countries[0]) cards.push({ k: "Taste geography", h: G.countries[0].name, s: `${G.totalCountries} countries deep`, on: () => go("stories") });
-        if (I.ADOPTION) cards.push({ k: "How old the music was", h: `${I.ADOPTION.medianLag}yr median`, s: "you dig back-catalogue, not new releases", on: () => go("stories") });
+        cards.push({ k: "Explore", h: `${fmt(R.EXPLORE.length)} artists`, s: `${R.SUBS.length} subgenres · filter any slice`, hue: 255, on: () => go("explore") });
+        if (GF) cards.push({ k: "The journey", h: `${GF.years.length} years of drift`, s: "watch genres hand off over time", hue: 330, on: () => go("journey") });
+        if (U) cards.push({ k: "How deep it goes", h: `${Math.round(U.artistShare50k * 100)}% under 50k`, s: "the depth is in the breadth", hue: 188, on: () => go("stories") });
+        if (I.RECOMMENDATIONS && I.RECOMMENDATIONS.artists[0]) { const r = I.RECOMMENDATIONS.artists[0]; cards.push({ k: "Blind spots", h: r.name, s: `you'd love them — via ${r.via.map(v => v.name).join(", ")}`, hue: r.hue, on: () => go("stories") }); }
+        if (I.REVISIT && I.REVISIT.artists[0]) { const r = I.REVISIT.artists[0]; cards.push({ k: "Gathering dust", h: r.name, s: `${r.monthsSince} months since you played them`, hue: r.hue, on: () => go("stories") }); }
+        if (G && G.countries[0]) cards.push({ k: "Taste geography", h: `${G.countries[0].flag || ""} ${G.countries[0].name}`, s: `${G.totalCountries} countries deep`, hue: 140, on: () => go("stories") });
+        if (I.ADOPTION) cards.push({ k: "How old the music was", h: `${I.ADOPTION.medianLag}yr median`, s: "you dig back-catalogue, not new releases", hue: 28, on: () => go("stories") });
         return (
           <div style={{ marginTop: "calc(var(--gap)*1.6)" }}>
             <div className="r-mono hub-lbl">Where to dig</div>
             <div className="hub-grid">
               {cards.map((c, i) => (
-                <div key={i} className="r-card hub-card" onClick={c.on}>
+                <div key={i} className="r-card hub-card" onClick={c.on} style={{ "--c": `oklch(0.7 0.16 ${c.hue})` }}>
+                  <div className="hub-accent" />
                   <div className="r-mono hub-k">{c.k}</div>
                   <div className="hub-h">{c.h}</div>
                   <div className="hub-s">{c.s}</div>
-                  <div className="hub-go">open ↗</div>
+                  <div className="hub-go">open <span className="hub-arrow">→</span></div>
                 </div>
               ))}
             </div>
@@ -213,7 +189,40 @@ function OverviewView({ t, go }) {
         );
       })()}
 
+      {/* portrait — a generated verdict; sits at the end, after you've seen the numbers */}
+      {(() => {
+        const U = R.INSIGHTS.UNDERGROUND, A = R.INSIGHTS.ADOPTION, G = R.INSIGHTS.GEOGRAPHY, GF = R.GENRE_FLOW;
+        const grid = R.CLOCK.grid, hourTot = Array.from({ length: 24 }, (_, h) => grid.reduce((s, r) => s + r[h], 0));
+        const tot = hourTot.reduce((a, b) => a + b, 0) || 1, night = Math.round(hourTot.slice(0, 5).reduce((a, b) => a + b, 0) / tot * 100);
+        const em = (txt, hue) => <b style={{ color: hue != null ? `oklch(0.8 0.13 ${hue})` : "var(--ink)" }}>{txt}</b>;
+        const link = (txt, dest, hue) => <b className="pt-link" onClick={() => go(dest)} style={{ color: hue != null ? `oklch(0.8 0.13 ${hue})` : "var(--accent)" }}>{txt}</b>;
+        let thenG, nowG;
+        if (GF && GF.years.length) { const domOf = (y) => { let bi = 0; y.fams.forEach((v, i) => { if (v > y.fams[bi]) bi = i; }); return GF.families[bi]; }; thenG = domOf(GF.years[0]); nowG = domOf(GF.years[GF.years.length - 1]); }
+        const peakDec = A && A.decades.length ? A.decades.slice().sort((a, b) => b.share - a.share)[0] : null;
+        return (
+          <div className="r-card" style={{ padding: "22px 26px", marginTop: "calc(var(--gap)*1.6)" }}>
+            <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 12 }}>Your portrait</div>
+            <p style={{ fontFamily: "var(--serif)", fontSize: "clamp(16px,1.9vw,21px)", lineHeight: 1.62, color: "var(--ink-soft)", margin: 0 }}>
+              {night >= 18 && <>A {em(night + "%")}-before-5AM night owl with {em("genuinely underground")} taste — </>}
+              {U && <>{link(Math.round(U.artistShare50k * 100) + "%", "stories")} of the artists you play sit under 50k listeners worldwide, the median just {em(fmt(U.medianArtistListeners))}. </>}
+              {A && <>You don't chase new releases, you {link("dig", "stories")}: the typical artist was {em(A.medianLag + " years")} past their debut when you found them{peakDec ? <>, most of it made in the {em(peakDec.decade + "s")}</> : null}. </>}
+              {G && G.countries[0] && <>Rooted in {link(G.countries[0].name, "stories")} but reaching across {em(G.totalCountries + " countries")}. </>}
+              {thenG && nowG && thenG.family !== nowG.family && <>And the taste {link("migrated", "journey")} — from {link(thenG.family, "journey", thenG.hue)} to {link(nowG.family, "journey", nowG.hue)} across {GF.years.length} years.</>}
+            </p>
+            <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginTop: 14, cursor: "pointer" }} onClick={() => go("journey")}>see the journey ↗</div>
+          </div>
+        );
+      })()}
+
       <style>{`
+        .pt-link { cursor: pointer; border-bottom: 1px solid currentColor; }
+        .pt-link:hover { opacity: .8; }
+        .hub-card { position: relative; overflow: hidden; }
+        .hub-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--c); opacity: .85; }
+        .hub-arrow { display: inline-block; transition: transform .15s; }
+        .hub-card:hover .hub-arrow { transform: translateX(3px); }
+        .hub-card:hover { border-color: color-mix(in oklch, var(--c) 50%, var(--rule-2)); }
+        .hub-h { color: var(--ink); }
         .hub-lbl { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
         .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: var(--gap); }
         .hub-card { padding: 16px 18px; cursor: pointer; transition: transform .15s, box-shadow .15s; }

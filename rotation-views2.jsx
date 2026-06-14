@@ -367,6 +367,15 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   // artists outside the kept 205 still rank in Explore — give them a lightweight page
   // (return AFTER hooks so hook order stays stable across navigations).
   if (!full && R.expById && R.expById[id]) return <MiniArtistView a={R.expById[id]} go={go} />;
+  // unknown id (e.g. a connection to an artist not in the explorable set) — graceful, not the #1 artist
+  if (!full) return (
+    <div className="r-view">
+      <button className="r-back" onClick={() => go("explore")}>← explore</button>
+      <div className="r-card" style={{ padding: "44px 24px", textAlign: "center", color: "var(--ink-soft)", fontFamily: "var(--serif)", fontSize: 15 }}>
+        This artist isn't in your library's profiled set — no page to show yet.
+      </div>
+    </div>
+  );
   const dna = [a.audio.energy, a.audio.valence, a.audio.acoustic, a.audio.tempo, a.audio.dance, a.audio.instr];
   const peakIdx = a.era.indexOf(Math.max(...a.era));
   const peakYear = (R.ERA_START || 2014) + peakIdx;
@@ -496,12 +505,12 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                         <span style={{ color: "var(--ink-faint)" }}>→</span>
                         {l.others.map(o => {
                           const oid = (R.idForName && R.idForName(o.name)) || o.artistId;
-                          const kept = !!R.byId[oid];
+                          const openable = !!R.byId[oid] || !!(R.expById && R.expById[oid]); // kept OR explorable
                           return (
-                            <span key={o.name} onClick={() => kept && go("artist", oid)}
+                            <span key={o.name} onClick={() => openable && go("artist", oid)}
                               style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 9px", borderRadius: 999,
-                                border: "1px solid var(--rule)", fontSize: 11.5, cursor: kept ? "pointer" : "default",
-                                color: kept ? "var(--ink)" : "var(--ink-soft)" }}>
+                                border: "1px solid var(--rule)", fontSize: 11.5, cursor: openable ? "pointer" : "default",
+                                color: openable ? "var(--ink)" : "var(--ink-soft)" }}>
                               <span style={{ width: 8, height: 8, borderRadius: 2, background: `oklch(0.62 0.16 ${o.hue})` }} />{o.name}
                             </span>
                           );
