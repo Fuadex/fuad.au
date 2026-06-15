@@ -150,6 +150,9 @@ const realSimilar = (name) => (BIOS[name] && BIOS[name].similar) || null;
 // Per artist: { country (ISO), area, beginArea, type }. Used for "taste geography".
 const ORIGINS_PATH = path.join(__dirname, "artist-origins.json");
 const ORIGINS = fs.existsSync(ORIGINS_PATH) ? JSON.parse(fs.readFileSync(ORIGINS_PATH, "utf8")) : {};
+// city-coords.json: "ISO|City" → [lat, lng], from the one-time gazetteer geocode. For the world map.
+const CITYCOORDS_PATH = path.join(__dirname, "city-coords.json");
+const CITYCOORDS = fs.existsSync(CITYCOORDS_PATH) ? JSON.parse(fs.readFileSync(CITYCOORDS_PATH, "utf8")) : {};
 const hasOrigins = Object.keys(ORIGINS).length > 0;
 const originOf = (name) => {
   const o = ORIGINS[name];
@@ -970,10 +973,17 @@ if (hasOrigins) {
     .map(c => ({ country: c.country, city: c.city, flag: flagOf(c.country),
       plays: c.plays, artists: c.artists.size }))
     .sort((a, b) => b.plays - a.plays).slice(0, 12);
+  // city points for the world map — only cities geocoded in city-coords.json (built by the
+  // gazetteer match). Capped to the top 300 by plays; the rest fall back to their country bubble.
+  const cityPoints = [...cit.values()].map(c => {
+    const ll = CITYCOORDS[c.country + "|" + c.city];
+    return ll ? { city: c.city, country: c.country, flag: flagOf(c.country), plays: c.plays, artists: c.artists.size, lat: ll[0], lng: ll[1] } : null;
+  }).filter(Boolean).sort((a, b) => b.plays - a.plays).slice(0, 300);
   GEOGRAPHY = {
     coverage: Math.round(totalCovered / lines.length * 100) / 100,
     countries: countries.slice(0, 20),
     cities,
+    cityPoints,
     totalCountries: countries.length,
   };
 
