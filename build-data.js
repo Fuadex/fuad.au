@@ -949,25 +949,32 @@ if (hasOrigins) {
     if (!cc || cc.length !== 2 || cc === "XW") return "";
     return String.fromCodePoint(...cc.toUpperCase().split("").map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
   };
-  const ctry = new Map(); // code → { plays, artists:Set }
-  const cit = new Map();  // "country|city" → { plays, artists:Set, country, city }
+  const ctry = new Map(); // code → { plays, artists:Set, fam:Map, top:{plays,fam} }
+  const cit = new Map();  // "country|city" → { plays, artists:Set, country, city, fam:Map, top }
   let totalCovered = 0;
+  const bumpFam = (e, fi, plays, name) => {
+    if (fi >= 0) e.fam.set(fi, (e.fam.get(fi) || 0) + plays);
+    if (plays > e.top.plays) { e.top = { plays, fam: fi }; }
+  };
   for (const [name, plays] of artistPlays) {
     const o = originOf(name);
     if (!o) continue;
     totalCovered += plays;
+    const fi = familyIdxByName(name);
     const cc = o.country;
-    if (!ctry.has(cc)) ctry.set(cc, { plays: 0, artists: new Set() });
-    const c = ctry.get(cc); c.plays += plays; c.artists.add(name);
+    if (!ctry.has(cc)) ctry.set(cc, { plays: 0, artists: new Set(), fam: new Map(), top: { plays: 0, fam: -1 } });
+    const c = ctry.get(cc); c.plays += plays; c.artists.add(name); bumpFam(c, fi, plays, name);
     if (o.city) {
       const k = cc + "|" + o.city;
-      if (!cit.has(k)) cit.set(k, { plays: 0, artists: new Set(), country: cc, city: o.city });
-      const ci = cit.get(k); ci.plays += plays; ci.artists.add(name);
+      if (!cit.has(k)) cit.set(k, { plays: 0, artists: new Set(), country: cc, city: o.city, fam: new Map(), top: { plays: 0, fam: -1 } });
+      const ci = cit.get(k); ci.plays += plays; ci.artists.add(name); bumpFam(ci, fi, plays, name);
     }
   }
+  // df = family with the most plays here; tf = family of the single most-played artist here
+  const domFam = (e) => { let bi = -1, bv = 0; for (const [f, v] of e.fam) if (v > bv) { bv = v; bi = f; } return bi; };
   const countries = [...ctry.entries()]
     .map(([code, v]) => ({ code, name: COUNTRY_NAMES[code] || code, flag: flagOf(code),
-      plays: v.plays, artists: v.artists.size, share: totalCovered ? v.plays / totalCovered : 0 }))
+      plays: v.plays, artists: v.artists.size, share: totalCovered ? v.plays / totalCovered : 0, df: domFam(v), tf: v.top.fam }))
     .sort((a, b) => b.plays - a.plays);
   const cities = [...cit.values()]
     .map(c => ({ country: c.country, city: c.city, flag: flagOf(c.country),
@@ -977,7 +984,7 @@ if (hasOrigins) {
   // gazetteer match). Capped to the top 300 by plays; the rest fall back to their country bubble.
   const cityPoints = [...cit.values()].map(c => {
     const ll = CITYCOORDS[c.country + "|" + c.city];
-    return ll ? { city: c.city, country: c.country, flag: flagOf(c.country), plays: c.plays, artists: c.artists.size, lat: ll[0], lng: ll[1] } : null;
+    return ll ? { city: c.city, country: c.country, flag: flagOf(c.country), plays: c.plays, artists: c.artists.size, lat: ll[0], lng: ll[1], df: domFam(c), tf: c.top.fam } : null;
   }).filter(Boolean).sort((a, b) => b.plays - a.plays).slice(0, 300);
   GEOGRAPHY = {
     coverage: Math.round(totalCovered / lines.length * 100) / 100,
@@ -986,6 +993,28 @@ if (hasOrigins) {
     cityPoints,
     totalCountries: countries.length,
   };
+
+  // play-the-years: per-place plays-by-year (yr) + dominant family per year (yf), from a scrobble pass
+  {
+    const gy = years.filter(y => y >= 2010);
+    const yIdx = new Map(gy.map((y, i) => [y, i]));
+    const F = FAMILIES.length;
+    const cityKeys = new Set(GEOGRAPHY.cityPoints.map(c => c.country + "|" + c.city));
+    const mkA = () => ({ p: new Array(gy.length).fill(0), f: Array.from({ length: gy.length }, () => new Array(F).fill(0)) });
+    const cAcc = new Map(), ctAcc = new Map();
+    for (const [artist, , , ms] of scrobbles) {
+      const o = originOf(artist); if (!o) continue;
+      const yi = yIdx.get(new Date(ms).getUTCFullYear()); if (yi == null) continue;
+      const fi = familyIdxByName(artist);
+      let A = cAcc.get(o.country); if (!A) { A = mkA(); cAcc.set(o.country, A); }
+      A.p[yi]++; if (fi >= 0) A.f[yi][fi]++;
+      if (o.city) { const k = o.country + "|" + o.city; if (cityKeys.has(k)) { let B = ctAcc.get(k); if (!B) { B = mkA(); ctAcc.set(k, B); } B.p[yi]++; if (fi >= 0) B.f[yi][fi]++; } }
+    }
+    const domY = (A) => A.f.map(fr => { let bi = -1, bv = 0; fr.forEach((v, i) => { if (v > bv) { bv = v; bi = i; } }); return bi; });
+    for (const c of GEOGRAPHY.countries) { const A = cAcc.get(c.code); if (A) { c.yr = A.p; c.yf = domY(A); } }
+    for (const c of GEOGRAPHY.cityPoints) { const A = ctAcc.get(c.country + "|" + c.city); if (A) { c.yr = A.p; c.yf = domY(A); } }
+    GEOGRAPHY.geoYears = gy;
+  }
 
   // Taste arc: per-year share by top countries. Cross of origins × years.
   // Reveals "Japan crept in around 2018", "Australia spiked in 2024" etc.
