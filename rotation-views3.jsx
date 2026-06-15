@@ -616,6 +616,7 @@ function StoriesView({ t, go }) {
                   <React.Fragment key={c.code}>{i > 0 ? ", " : ""}{c.flag} <b style={{ color: "var(--ink)" }}>{c.name}</b> ({Math.round(c.share * 100)}%)</React.Fragment>
                 ))}.
               </div>
+              <WorldMap countries={G.countries} />
               <div className="st-geo-grid">
                 {G.countries.slice(0, 12).map(c => (
                   <div key={c.code} className="st-geo-c">
