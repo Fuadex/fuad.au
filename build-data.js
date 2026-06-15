@@ -1696,6 +1696,32 @@ console.log(`artist-flow.js written (${(fs.statSync(path.join(__dirname, "artist
   console.log(`calendar.js ${(fs.statSync(path.join(__dirname, "calendar.js")).size / 1024).toFixed(0)}KB · calendar-detail.js ${(fs.statSync(path.join(__dirname, "calendar-detail.js")).size / 1024).toFixed(0)}KB (${Object.keys(periods.day).length}d/${Object.keys(periods.week).length}w/${Object.keys(periods.month).length}m · ${pool.length} names)`);
 }
 
+// ─────────── GEO DETAIL — per-country/city top artists/albums/songs + DNA (lazy file) ───────────
+{
+  const pool = [], poolIdx = new Map();
+  const intern = (s) => { let i = poolIdx.get(s); if (i == null) { i = pool.length; pool.push(s); poolIdx.set(s, i); } return i; };
+  const audioMemo = new Map();
+  const DAX = ["energy", "valence", "acoustic", "tempo", "dance", "instr"];
+  const audioOf = (name) => { if (audioMemo.has(name)) return audioMemo.get(name); const m = META[name]; const a = (m && m.audio) ? { energy: m.audio[0], valence: m.audio[1], acoustic: m.audio[2], tempo: m.audio[3], dance: m.audio[4], instr: m.audio[5] } : tagAudio(cachedTags(name)); audioMemo.set(name, a); return a; };
+  const mk = () => ({ tot: 0, art: new Map(), alb: new Map(), trk: new Map() });
+  const cc = new Map(), ct = new Map();
+  const bump = (P, artist, album, track) => { P.tot++; P.art.set(artist, (P.art.get(artist) || 0) + 1); if (album) { const k = album + "\x00" + artist; P.alb.set(k, (P.alb.get(k) || 0) + 1); } if (track) { const k = track + "\x00" + artist; P.trk.set(k, (P.trk.get(k) || 0) + 1); } };
+  const get = (m, k) => { let P = m.get(k); if (!P) { P = mk(); m.set(k, P); } return P; };
+  for (const [artist, album, track, ms] of scrobbles) {
+    const o = originOf(artist);
+    if (!o) continue;
+    bump(get(cc, o.country), artist, album, track);
+    if (o.city && CITYCOORDS[o.country + "|" + o.city]) bump(get(ct, o.country + "|" + o.city), artist, album, track);
+  }
+  const topArt = (m, n) => [...m.entries()].sort((a, b) => b[1] - a[1]).slice(0, n).map(([nm, p]) => [intern(nm), p]);
+  const topItem = (m, n) => [...m.entries()].sort((a, b) => b[1] - a[1]).slice(0, n).map(([k, p]) => { const ix = k.indexOf("\x00"); return [intern(k.slice(0, ix)), intern(k.slice(ix + 1)), p]; });
+  const dnaOf = (am, tot) => { const s = { energy: 0, valence: 0, acoustic: 0, tempo: 0, dance: 0, instr: 0 }; for (const [nm, p] of am) { const a = audioOf(nm); for (const ax of DAX) s[ax] += a[ax] * p; } return DAX.map(ax => Math.round(s[ax] / (tot || 1) * 100) / 100); };
+  const emit = (m) => { const o = {}; for (const [k, P] of m) o[k] = { t: P.tot, a: topArt(P.art, 6), al: topItem(P.alb, 5), s: topItem(P.trk, 10), d: dnaOf(P.art, P.tot) }; return o; };
+  const GEO = { country: emit(cc), city: emit(ct), names: pool };
+  fs.writeFileSync(path.join(__dirname, "geo-detail.js"), "// GENERATED — per-country/city overview (lazy-loaded on first map selection)\nwindow.ROTATION_GEO = " + JSON.stringify(GEO) + ";\n");
+  console.log(`geo-detail.js written (${(fs.statSync(path.join(__dirname, "geo-detail.js")).size / 1024).toFixed(0)}KB · ${Object.keys(GEO.country).length} countries / ${Object.keys(GEO.city).length} cities)`);
+}
+
 // ─────────── CONCERTS: real upcoming events from Ticketmaster (concerts-cache.json) ───────────
 // Built by enrich-concerts.js. If the cache is missing, CONCERTS+CITIES are empty
 // and the LiveView / ArtistView gigs card show "no upcoming dates" empty states.
