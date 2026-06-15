@@ -23,6 +23,9 @@ function MapView({ go }) {
   const [view, setView] = React.useState({ s: 1, x: 0, y: 0 });
   const svgRef = React.useRef(null);
   const drag = React.useRef(null);
+  const ptrs = React.useRef(new Map());
+  const pinch = React.useRef(null);
+  const moved = React.useRef(false);
 
   React.useEffect(() => {
     if (window.ROTATION_WORLD) { setWorld(window.ROTATION_WORLD); return; }
@@ -52,9 +55,28 @@ function MapView({ go }) {
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
   }, [world]);
-  const onDown = (e) => { drag.current = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y, moved: false }; };
-  const onMove = (e) => { if (!drag.current) return; const r = svgRef.current.getBoundingClientRect(); const dx = (e.clientX - drag.current.x) / r.width * W, dy = (e.clientY - drag.current.y) / r.height * Hh; if (Math.abs(dx) + Math.abs(dy) > 3) drag.current.moved = true; setView(v => ({ ...v, x: drag.current.vx + dx, y: drag.current.vy + dy })); };
-  const onUp = () => { drag.current = null; };
+  const onDown = (e) => {
+    ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY }); moved.current = false;
+    if (e.pointerType === "mouse") drag.current = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y };
+  };
+  const onMove = (e) => {
+    if (ptrs.current.has(e.pointerId)) ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    const pts = [...ptrs.current.values()];
+    if (pts.length >= 2) {                    // two-finger pinch-zoom (one finger still scrolls the page)
+      e.preventDefault(); moved.current = true;
+      const [a, b] = pts, dist = Math.hypot(a.x - b.x, a.y - b.y), mx2 = (a.x + b.x) / 2, my2 = (a.y + b.y) / 2;
+      if (pinch.current) { const [sx, sy] = toSvg(mx2, my2), ratio = dist / pinch.current; setView(v => { const ns = clamp(v.s * ratio, 1, 14); return { s: ns, x: sx - (sx - v.x) / v.s * ns, y: sy - (sy - v.y) / v.s * ns }; }); }
+      pinch.current = dist; drag.current = null; return;
+    }
+    pinch.current = null;
+    if (drag.current && e.pointerType === "mouse") {
+      const r = svgRef.current.getBoundingClientRect(), dx = (e.clientX - drag.current.x) / r.width * W, dy = (e.clientY - drag.current.y) / r.height * Hh;
+      if (Math.abs(dx) + Math.abs(dy) > 3) moved.current = true;
+      setView(v => ({ ...v, x: drag.current.vx + dx, y: drag.current.vy + dy }));
+    }
+  };
+  const onUp = (e) => { if (e && e.pointerId != null) ptrs.current.delete(e.pointerId); if (ptrs.current.size < 2) pinch.current = null; if (ptrs.current.size === 0) drag.current = null; };
+  const onLeave = () => { ptrs.current.clear(); pinch.current = null; drag.current = null; setHi(null); };
   const frame = (bb) => { if (!bb) return; const [x0, y0, x1, y1] = bb, bw = Math.max(8, x1 - x0), bh = Math.max(8, y1 - y0), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2; const s = clamp(Math.min(W / (bw * 1.6), Hh / (bh * 1.6)), 1, 12); setView({ s, x: W / 2 - cx * s, y: Hh / 2 - cy * s }); };
   const reset = () => { setFocus(null); setSel(null); setView({ s: 1, x: 0, y: 0 }); };
 
@@ -124,15 +146,15 @@ function MapView({ go }) {
       </div>
 
       <div className="r-card" style={{ padding: 0, overflow: "hidden", background: "var(--bg-2)" }}>
-        <svg ref={svgRef} viewBox={`0 0 ${world.w} ${world.h}`} style={{ width: "100%", height: "auto", display: "block", cursor: drag.current ? "grabbing" : "grab", touchAction: "none" }}
-          onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerLeave={() => { onUp(); setHi(null); }}>
+        <svg ref={svgRef} viewBox={`0 0 ${world.w} ${world.h}`} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "pan-y" }}
+          onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp} onPointerLeave={onLeave}>
           <g transform={`translate(${view.x} ${view.y}) scale(${view.s})`}>
             {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" stroke="var(--rule-2)" strokeWidth={0.4 / view.s} />)}
-            {bubbles.slice().sort((a, b) => b.r - a.r).map(b => {
+            {bubbles.slice().sort((a, b) => b.c.plays - a.c.plays).map(b => {
               const on = hi === b.key, col = placeHue(b.c);
               return <circle key={b.key} cx={b.x} cy={b.y} r={b.r / Math.sqrt(view.s)} fill={col} fillOpacity={on ? 0.72 : 0.34}
                 stroke={col} strokeWidth={(on ? 1.6 : 0.7) / view.s} style={{ cursor: "pointer", transition: "r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s" }}
-                onMouseEnter={() => setHi(b.key)} onClick={(e) => { e.stopPropagation(); if (!drag.current || !drag.current.moved) openBubble(b); }} />;
+                onMouseEnter={() => setHi(b.key)} onClick={(e) => { e.stopPropagation(); if (!moved.current) openBubble(b); }} />;
             })}
           </g>
         </svg>

@@ -1745,7 +1745,7 @@ console.log(`artist-flow.js written (${(fs.statSync(path.join(__dirname, "artist
   const topArt = (m, n) => [...m.entries()].sort((a, b) => b[1] - a[1]).slice(0, n).map(([nm, p]) => [intern(nm), p]);
   const topItem = (m, n) => [...m.entries()].sort((a, b) => b[1] - a[1]).slice(0, n).map(([k, p]) => { const ix = k.indexOf("\x00"); return [intern(k.slice(0, ix)), intern(k.slice(ix + 1)), p]; });
   const dnaOf = (am, tot) => { const s = { energy: 0, valence: 0, acoustic: 0, tempo: 0, dance: 0, instr: 0 }; for (const [nm, p] of am) { const a = audioOf(nm); for (const ax of DAX) s[ax] += a[ax] * p; } return DAX.map(ax => Math.round(s[ax] / (tot || 1) * 100) / 100); };
-  const emit = (m) => { const o = {}; for (const [k, P] of m) o[k] = { t: P.tot, a: topArt(P.art, 6), al: topItem(P.alb, 5), s: topItem(P.trk, 10), d: dnaOf(P.art, P.tot) }; return o; };
+  const emit = (m) => { const o = {}; for (const [k, P] of m) o[k] = { t: P.tot, a: topArt(P.art, 10), al: topItem(P.alb, 10), s: topItem(P.trk, 10), d: dnaOf(P.art, P.tot) }; return o; };
   const GEO = { country: emit(cc), city: emit(ct), names: pool };
   fs.writeFileSync(path.join(__dirname, "geo-detail.js"), "// GENERATED — per-country/city overview (lazy-loaded on first map selection)\nwindow.ROTATION_GEO = " + JSON.stringify(GEO) + ";\n");
   console.log(`geo-detail.js written (${(fs.statSync(path.join(__dirname, "geo-detail.js")).size / 1024).toFixed(0)}KB · ${Object.keys(GEO.country).length} countries / ${Object.keys(GEO.city).length} cities)`);
