@@ -1543,6 +1543,8 @@ for (const [name, plays] of rankedArtists) {
   for (const tg of vocab) { const i = subIdxByName.get(tg); if (i != null && !seen.has(i)) { seen.add(i); s.push(i); } }
   if (!s.length) continue;            // no placeable subgenre at all → skip
   const rec = { id: slug(name), name, plays, hue: hueFor(name), s, l: listenersOf(name) || 0, d: debutOf(name) || 0 };
+  const _o = originOf(name);            // country/city tag → lets the Journey scope to a place
+  if (_o) { rec.co = _o.country; if (_o.city) rec.ci = _o.city; }
   if (EXPLORE.length < EXPLORE_YP_TOP) {
     const yc = artistYear.get(name) || new Map();
     const yp = {}; for (const [y, c] of yc) if (c > 0) yp[y] = c;

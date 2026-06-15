@@ -64,6 +64,80 @@ function StreamGraph({ series, years, hi, setHi, onPick, clickable }) {
   );
 }
 
+// PlaceFlow — the Journey, scoped to a set of EXPLORE artists (e.g. a country or city). Same
+// genre → subgenre → artist drill + StreamGraph, but the flow is computed client-side from the
+// subset's per-year plays (a.yp) + subgenre membership (a.s). Used inside the Map's detail blob.
+function PlaceFlow({ artists, go }) {
+  const R = window.ROTATION;
+  const years = React.useMemo(() => R.GENRE_FLOW.years.map(y => y.year), [R]);
+  const [fam, setFam] = React.useState(null);
+  const [sub, setSub] = React.useState(null);
+  const [view, setView] = React.useState("genre");
+  const [hi, setHi] = React.useState(-1);
+  React.useEffect(() => { setFam(null); setSub(null); setView("genre"); setHi(-1); }, [artists]);
+
+  const series = React.useMemo(() => {
+    const sumBy = (keyOf) => {
+      const m = new Map();
+      for (const a of artists) {
+        if (!a.yp) continue;
+        const k = keyOf(a); if (k == null) continue;
+        if (!m.has(k)) m.set(k, new Array(years.length).fill(0));
+        const arr = m.get(k);
+        years.forEach((y, i) => { arr[i] += a.yp[y] || 0; });
+      }
+      return m;
+    };
+    if (view === "artist") {
+      const fn = sub != null ? (a => a.s.indexOf(sub) >= 0) : fam != null ? (a => a.s.some(si => R.SUBS[si].fam === fam)) : (() => true);
+      return artists.filter(a => a.yp && fn(a)).sort((a, b) => b.plays - a.plays).slice(0, 12)
+        .map(a => ({ key: a.id, name: a.name, hue: a.hue, id: a.id, vals: years.map(y => a.yp[y] || 0) }));
+    }
+    if (fam != null) {
+      const m = sumBy(a => (a.s.length && R.SUBS[a.s[0]].fam === fam) ? a.s[0] : null);
+      const fhue = (R.FAMILIES.find(f => f.i === fam) || {}).hue || 0;
+      const arr = [...m.entries()];
+      return arr.map(([si, vals], idx) => ({ key: si, name: R.SUBS[si].name, hue: (fhue + (idx - (arr.length - 1) / 2) * 17 + 360) % 360, vals })).filter(s => s.vals.some(v => v > 0));
+    }
+    const m = sumBy(a => a.s.length ? R.SUBS[a.s[0]].fam : null);
+    return R.FAMILIES.map(f => ({ key: f.i, name: f.family, hue: f.hue, fam: f.i, vals: m.get(f.i) || new Array(years.length).fill(0) })).filter(s => s.vals.some(v => v > 0));
+  }, [artists, fam, sub, view, R]);
+
+  const onPick = (s) => {
+    if (view === "artist") { go("artist", s.id); return; }
+    if (fam == null) { setFam(s.key); setHi(-1); }
+    else { setSub(s.key); setView("artist"); setHi(-1); }
+  };
+  const famName = fam != null ? (R.FAMILIES.find(f => f.i === fam) || {}).family : null;
+
+  if ((artists || []).filter(a => a.yp).length < 2) return <div style={{ padding: 24, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>not enough placed artists here for a flow.</div>;
+
+  return (
+    <div>
+      <div className="r-mono" style={{ fontSize: 11, marginBottom: 8 }}>
+        <span style={{ cursor: "pointer", color: fam == null ? "var(--ink)" : "var(--accent)" }} onClick={() => { setFam(null); setSub(null); setView("genre"); setHi(-1); }}>genres</span>
+        {fam != null && <><span style={{ margin: "0 7px", color: "var(--ink-faint)" }}>›</span><span style={{ cursor: "pointer", color: sub == null && view === "genre" ? "var(--ink)" : "var(--accent)" }} onClick={() => { setSub(null); setView("genre"); setHi(-1); }}>{famName}</span></>}
+        {sub != null && <><span style={{ margin: "0 7px", color: "var(--ink-faint)" }}>›</span><span style={{ color: "var(--ink)" }}>{R.SUBS[sub].name}</span></>}
+      </div>
+      {series.length < 1
+        ? <div style={{ padding: 20, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>nothing to flow here.</div>
+        : <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={true} />}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 12px", marginTop: 10 }}>
+        {series.map((s, i) => (
+          <div key={s.key} onMouseEnter={() => setHi(i)} onMouseLeave={() => setHi(-1)} onClick={() => onPick(s)}
+            style={{ display: "inline-flex", alignItems: "center", gap: 6, cursor: "pointer", opacity: hi < 0 || hi === i ? 1 : 0.35, transition: ".15s" }}>
+            <span style={{ width: 9, height: 9, borderRadius: 2, background: `oklch(0.62 0.16 ${s.hue})` }} />
+            <span style={{ fontSize: 11, color: "var(--ink-soft)" }}>{s.name.length > 22 ? s.name.slice(0, 20) + "…" : s.name}</span>
+          </div>
+        ))}
+      </div>
+      <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 8 }}>
+        {view === "artist" ? "the bands, over time · click to open" : fam == null ? "genres here over time · click one to drill in" : "subgenres of " + famName + " · click one for its bands"}
+      </div>
+    </div>
+  );
+}
+
 function JourneyView({ go }) {
   const R = window.ROTATION;
   const GF = R.GENRE_FLOW, SF = R.SUB_FLOW;

@@ -190,34 +190,40 @@ function MapView({ go }) {
       </div>
 
       {/* selection detail blob */}
-      {sel && (
-        <div className="r-card" style={{ marginTop: "var(--gap)", padding: 22 }}>
-          {!geo ? <div style={{ color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12, padding: "8px 0" }}>loading the detail…</div>
-            : !period ? <div style={{ color: "var(--ink-soft)" }}>No breakdown for {selName}.</div>
-              : <>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
-                  <div><div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>{sel.kind} scene</div>
-                    <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 24 }}>{selFlag} {selName}</div></div>
-                  <div><div className="r-stat-n" style={{ fontSize: 26 }}>{fmt(period.t)}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>plays</div></div>
-                </div>
-                <div className="r-seg" style={{ margin: "16px 0 14px" }}>
-                  {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => setPane(k)}>{l}</button>)}
-                </div>
-                {pane === "artists" && <div className="cal-rows">{period.a.map(([ix, p], i) => { const nm = NM[ix], kept = !!R.byId[R.slug(nm)]; return (
-                  <div key={nm} className="cal-row" data-link={kept} onClick={() => kept && go("artist", R.slug(nm))}>
-                    <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={(R.byId[R.slug(nm)] || {}).hue || 210} name={nm} size={34} radius={3} />
-                    <span className="cal-nm">{nm}</span><span className="cal-pl">{fmt(p)}</span></div>); })}</div>}
-                {(pane === "albums" || pane === "songs") && <div className="cal-rows">{(pane === "albums" ? period.al : period.s).map(([ti, ai, p], i) => { const t = NM[ti], a = NM[ai], kept = !!R.byId[R.slug(a)]; return (
-                  <div key={t + i} className="cal-row" data-link={kept} onClick={() => kept && go("artist", R.slug(a))}>
-                    <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={(R.byId[R.slug(a)] || {}).hue || 210} name={a} size={34} radius={3} />
-                    <div style={{ minWidth: 0, flex: 1 }}><div className="cal-nm" style={{ fontStyle: "italic" }}>{t}</div><div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{a}</div></div>
-                    <span className="cal-pl">{fmt(p)}</span></div>); })}</div>}
-                {pane === "dna" && <div style={{ display: "flex", justifyContent: "center", padding: "6px 0" }}><div style={{ maxWidth: 340, width: "100%" }}>
-                  <Radar axes={["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"]} values={period.d} values2={avg} run={true} size={300} />
-                  <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 6 }}>solid = {selName} · dashed = your average</div></div></div>}
-              </>}
-        </div>
-      )}
+      {sel && (() => {
+        const placeArtists = sel.kind === "country" ? R.EXPLORE.filter(a => a.co === sel.key)
+          : (() => { const [iso, city] = sel.key.split("|"); return R.EXPLORE.filter(a => a.co === iso && a.ci === city); })();
+        const selPlays = sel.kind === "country" ? ((G.countries.find(c => c.code === sel.key) || {}).plays || 0) : ((cityPts.find(c => c.country + "|" + c.city === sel.key) || {}).plays || 0);
+        return (
+          <div className="r-card" style={{ marginTop: "var(--gap)", padding: 22 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
+              <div><div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>{sel.kind} scene</div>
+                <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 24 }}>{selFlag} {selName}</div></div>
+              <div><div className="r-stat-n" style={{ fontSize: 26 }}>{fmt(selPlays)}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>plays</div></div>
+            </div>
+            <div className="r-seg" style={{ margin: "16px 0 14px" }}>
+              {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"], ["flow", "flow"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => setPane(k)}>{l}</button>)}
+            </div>
+            {pane === "flow" ? <PlaceFlow artists={placeArtists} go={go} />
+              : !geo ? <div style={{ color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12, padding: "8px 0" }}>loading the detail…</div>
+                : !period ? <div style={{ color: "var(--ink-soft)" }}>No breakdown for {selName}.</div>
+                  : <>
+                    {pane === "artists" && <div className="cal-rows">{period.a.map(([ix, p], i) => { const nm = NM[ix], kept = !!R.byId[R.slug(nm)]; return (
+                      <div key={nm} className="cal-row" data-link={kept} onClick={() => kept && go("artist", R.slug(nm))}>
+                        <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={(R.byId[R.slug(nm)] || {}).hue || 210} name={nm} size={34} radius={3} />
+                        <span className="cal-nm">{nm}</span><span className="cal-pl">{fmt(p)}</span></div>); })}</div>}
+                    {(pane === "albums" || pane === "songs") && <div className="cal-rows">{(pane === "albums" ? period.al : period.s).map(([ti, ai, p], i) => { const t = NM[ti], a = NM[ai], kept = !!R.byId[R.slug(a)]; return (
+                      <div key={t + i} className="cal-row" data-link={kept} onClick={() => kept && go("artist", R.slug(a))}>
+                        <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={(R.byId[R.slug(a)] || {}).hue || 210} name={a} size={34} radius={3} />
+                        <div style={{ minWidth: 0, flex: 1 }}><div className="cal-nm" style={{ fontStyle: "italic" }}>{t}</div><div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{a}</div></div>
+                        <span className="cal-pl">{fmt(p)}</span></div>); })}</div>}
+                    {pane === "dna" && <div style={{ display: "flex", justifyContent: "center", padding: "6px 0" }}><div style={{ maxWidth: 340, width: "100%" }}>
+                      <Radar axes={["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"]} values={period.d} values2={avg} run={true} size={300} />
+                      <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 6 }}>solid = {selName} · dashed = your average</div></div></div>}
+                  </>}
+          </div>
+        );
+      })()}
 
       <style>{`.map-ctl { display: flex; gap: 14px 18px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
         .map-years { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
