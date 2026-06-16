@@ -1,1 +1,5 @@
 fuadex.csv
+
+# large local datasets — never commit
+*.parquet
+spotify-cache.json
