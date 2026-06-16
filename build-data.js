@@ -394,6 +394,9 @@ for (const [k, plays] of albumPlays) {
 for (const m of _tBy.values()) m.sort((a, b) => b.plays - a.plays);
 for (const m of _aBy.values()) m.sort((a, b) => b.plays - a.plays);
 
+// measured Sound DNA from the Spotify audio-features dump (built by extract-audio.js); falls back to
+// inferred tag-derived DNA where an artist didn't match (~98% are measured).
+const AUDIO = (() => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, "audio-features.json"), "utf8")); } catch (e) { return {}; } })();
 const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, plays], i) => {
   const meta = META[name] || {};
   const yc = artistYear.get(name) || new Map();
@@ -414,9 +417,12 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     thumb: thumbOf(name),
     topTracks: (_tBy.get(name) || []).slice(0, TRACKS_PER_ARTIST),
     topAlbums: (_aBy.get(name) || []).slice(0, ALBUMS_PER_ARTIST_VIEW),
-    audio: meta.audio
-      ? { energy: meta.audio[0], valence: meta.audio[1], acoustic: meta.audio[2], tempo: meta.audio[3], dance: meta.audio[4], instr: meta.audio[5] }
-      : tagAudio(cachedTags(name)),
+    audio: AUDIO[name]
+      ? { energy: AUDIO[name].energy, valence: AUDIO[name].valence, acoustic: AUDIO[name].acoustic, tempo: AUDIO[name].tempo, dance: AUDIO[name].dance, instr: AUDIO[name].instr }
+      : meta.audio
+        ? { energy: meta.audio[0], valence: meta.audio[1], acoustic: meta.audio[2], tempo: meta.audio[3], dance: meta.audio[4], instr: meta.audio[5] }
+        : tagAudio(cachedTags(name)),
+    am: AUDIO[name] ? 1 : 0,   // 1 = measured DNA (Spotify), 0 = inferred from tags
     era: counts.map(c => c === 0 ? 0 : Math.max(1, Math.round(9 * c / max))),
     // raw per-year plays (sparse) + primary family index — powers the Explore ranking filter
     yp: Object.fromEntries(years.map(y => [y, yc.get(y) || 0]).filter(e => e[1] > 0)),
