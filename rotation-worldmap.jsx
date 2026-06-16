@@ -168,6 +168,9 @@ function MapView({ go }) {
     return set.map(a => ({ a, p: yr != null ? (a.yp ? (a.yp[yr] || 0) : 0) : a.plays }))
       .filter(e => e.p > 0).sort((x, y) => y.p - x.p).slice(0, 24);
   }, [flowArtists, filt, yearIdx]);
+  // an album/song belongs to the active genre if ITS ARTIST does — resolved client-side, no rebuild
+  const exByName = React.useMemo(() => new Map(R.EXPLORE.map(a => [a.name, a])), [R]);
+  const passGenre = (artistName) => { if (filt.fam == null && filt.sub == null) return true; const rec = exByName.get(artistName); return rec ? matchGenre(rec) : false; };
   const bubbles = React.useMemo(() => {
     if (!world) return [];
     const proj = (c) => [(c.lng + 180) / 360 * world.w, (90 - c.lat) / 180 * world.h];
@@ -305,12 +308,17 @@ function MapView({ go }) {
                 : !geo ? <div style={{ color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12, padding: "8px 0" }}>loading the detail…</div>
                   : !period ? <div style={{ color: "var(--ink-soft)" }}>No breakdown for {selName}.</div>
                     : <>
-                      {filtered && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 8 }}>album &amp; song detail is place-level — the genre filter narrows the artists tab.</div>}
-                      {(pane === "albums" || pane === "songs") && <div className="cal-rows">{(pane === "albums" ? period.al : period.s).map(([ti, ai, p], i) => { const t = NM[ti], a = NM[ai], kept = !!R.byId[R.slug(a)]; return (
-                        <div key={t + i} className="cal-row" data-link={kept} onClick={() => kept && go("artist", R.slug(a))}>
-                          <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={(R.byId[R.slug(a)] || {}).hue || 210} name={a} size={34} radius={3} />
-                          <div style={{ minWidth: 0, flex: 1 }}><div className="cal-nm" style={{ fontStyle: "italic" }}>{t}</div><div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{a}</div></div>
-                          <span className="cal-pl">{fmt(p)}</span></div>); })}</div>}
+                      {yearIdx != null && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 8 }}>album &amp; song detail isn't split by year yet — showing all-time for this place{filtered ? " + genre" : ""}.</div>}
+                      {(pane === "albums" || pane === "songs") && (() => {
+                        const rows = (pane === "albums" ? period.al : period.s).filter(([ti, ai]) => passGenre(NM[ai]));
+                        return rows.length
+                          ? <div className="cal-rows">{rows.map(([ti, ai, p], i) => { const t = NM[ti], a = NM[ai], kept = !!R.byId[R.slug(a)]; return (
+                            <div key={t + i} className="cal-row" data-link={kept} onClick={() => kept && go("artist", R.slug(a))}>
+                              <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={(R.byId[R.slug(a)] || {}).hue || 210} name={a} size={34} radius={3} />
+                              <div style={{ minWidth: 0, flex: 1 }}><div className="cal-nm" style={{ fontStyle: "italic" }}>{t}</div><div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{a}</div></div>
+                              <span className="cal-pl">{fmt(p)}</span></div>); })}</div>
+                          : <div style={{ color: "var(--ink-soft)" }}>No {pane} from this genre here.</div>;
+                      })()}
                       {pane === "dna" && <div style={{ display: "flex", justifyContent: "center", padding: "6px 0" }}><div style={{ maxWidth: 340, width: "100%" }}>
                         <Radar axes={["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"]} values={period.d} values2={avg} run={true} size={300} />
                         <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 6 }}>solid = {selName} · dashed = your average</div></div></div>}
