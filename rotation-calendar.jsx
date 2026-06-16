@@ -54,7 +54,7 @@ function CalendarView({ go }) {
   const W = leftPad + 53 * step + 6;
   const H = topPad + years.length * (rowH + yearGap);
 
-  const pick = (y, d) => { const k = keyFor(gran, dateOf(y, d)); setSel(k); setPane("artists"); ensureDetail(); };
+  const pick = (y, d) => { const k = keyFor(gran, dateOf(y, d)); setSel(k); ensureDetail(); };  // keep the current pane so you can track e.g. DNA across days
 
   const hov = hover ? { date: fmtDate(dateOf(hover.y, hover.d)), count: hover.count, top: hover.top } : null;
   const NM = detail && detail.names;

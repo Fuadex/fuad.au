@@ -238,17 +238,11 @@ function MapView({ go }) {
             return <button key={k} data-on={sonic ? colorBy === k : (yearIdx == null && !filtSums && colorBy === k)} disabled={!sonic && (yearIdx != null || !!filtSums)} onClick={() => setColorBy(k)}>{l}</button>;
           })}
         </div>
-        {(colorBy === "energy" || colorBy === "valence") && <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>cool = calm/low · warm = {colorBy === "energy" ? "high-energy" : "happy"}</span>}
         <div className="map-years">
           <button className="map-play" data-on={playing} onClick={() => { if (!playing && (yearIdx == null || yearIdx >= geoYears.length - 1)) setYearIdx(0); setPlaying(p => !p); }}>{playing ? "❚❚" : "▶"} years</button>
           <button className="map-yr" data-on={yearIdx == null} onClick={() => { setPlaying(false); setYearIdx(null); }}>all</button>
           {geoYears.map((y, i) => <button key={y} className="map-yr" data-on={yearIdx === i} onClick={() => { setPlaying(false); setYearIdx(i); }}>{"'" + String(y).slice(2)}</button>)}
         </div>
-      </div>
-
-      {/* the flow IS the filter — pick a band to scope the map; picking a place rescopes the flow */}
-      <div style={{ marginTop: 10 }}>
-        <MapFlow artists={flowArtists} filt={filt} setFilt={setFilt} years={geoYears} markYi={yearIdx} />
       </div>
 
       <div style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink-soft)", margin: "10px 0", minHeight: 22 }}>
@@ -273,6 +267,24 @@ function MapView({ go }) {
             })}
           </g>
         </svg>
+      </div>
+
+      {/* legend — genre families by default, or the sonic gradient when colouring by energy/mood (always shown, no layout shift) */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 14px", marginTop: 10, alignItems: "center", minHeight: 20 }}>
+        {(colorBy === "energy" || colorBy === "valence")
+          ? <><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{colorBy === "energy" ? "calm" : "dark"}</span>
+            <span style={{ width: 130, height: 9, borderRadius: 3, background: "linear-gradient(90deg, oklch(0.66 0.15 250), oklch(0.66 0.15 135), oklch(0.66 0.15 30))" }} />
+            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{colorBy === "energy" ? "intense" : "bright"}</span></>
+          : R.FAMILIES.map(f => (
+            <div key={f.i} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+              <span style={{ width: 10, height: 10, borderRadius: 3, background: `oklch(0.63 0.17 ${f.hue})` }} />
+              <span style={{ fontSize: 11, color: "var(--ink-soft)" }}>{f.family}</span>
+            </div>))}
+      </div>
+
+      {/* the flow doubles as filter — pick a band to scope the map; picking a place rescopes the flow */}
+      <div style={{ marginTop: "var(--gap)" }}>
+        <MapFlow artists={flowArtists} filt={filt} setFilt={setFilt} years={geoYears} markYi={yearIdx} />
       </div>
 
       {/* breakdown list */}

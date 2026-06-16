@@ -162,7 +162,8 @@ function MoodView({ go }) {
     const all = R.EXPLORE.filter(a => A[a.id]); const n = all.length || 1;
     let se = 0, sv = 0, sd = 0, smaj = 0, sbpm = 0;
     for (const a of all) { const af = A[a.id]; se += af[0]; sv += af[1]; sd += af[4]; smaj += af[6]; sbpm += 50 + af[3] * 140; }
-    const top = (idx, dir) => all.slice().sort((x, y) => dir * (A[y.id][idx] - A[x.id][idx]))[0];
+    const strong = all.filter(a => a.plays >= 30); const pool = strong.length ? strong : all;  // recognisable picks, not 1-play noise
+    const top = (idx, dir) => pool.slice().sort((x, y) => dir * (A[y.id][idx] - A[x.id][idx]))[0];
     return { n, energy: se / n, valence: sv / n, dance: sd / n, major: smaj / n, bpm: Math.round(sbpm / n),
       danceArtist: top(4, 1), sadArtist: top(1, -1), happyArtist: top(1, 1), obscureArtist: top(7, -1) };
   }, [R]);
@@ -201,6 +202,7 @@ function MoodView({ go }) {
           <path d={"M " + line("valence")} fill="none" stroke="oklch(0.66 0.16 250)" strokeWidth="2.4" />
           {years.map((y, i) => <text key={y} x={xAt(i)} y={H - 8} textAnchor="middle" fontFamily="var(--mono)" fontSize="10" fill="var(--ink-faint)" opacity={i % 2 === 0 || i === years.length - 1 ? 1 : 0}>{"'" + String(y).slice(2)}</text>)}
         </svg>
+        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 4 }}>each year averaged across what you actually played that year, weighted by plays · midline = 50%</div>
       </div>
 
       <div className="r-card" style={{ padding: "16px 18px" }}>
@@ -215,7 +217,7 @@ function MoodView({ go }) {
               stroke={on ? "#fff" : "none"} strokeWidth="1.3" style={{ cursor: "pointer", transition: "fill-opacity .12s" }}
               onMouseEnter={() => setHi(p.id)} onClick={() => go("artist", p.id)}><title>{p.name}</title></circle>); })}
         </svg>
-        {hi && <div style={{ textAlign: "center", fontFamily: "var(--serif)", fontSize: 15, marginTop: 6 }}>{(pts.find(p => p.id === hi) || {}).name}</div>}
+        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>{hi ? (pts.find(p => p.id === hi) || {}).name : "each dot an artist · right = brighter, up = more intense · size = plays · click to open"}</div>
       </div>
     </div>
   );

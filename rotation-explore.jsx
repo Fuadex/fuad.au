@@ -38,7 +38,7 @@ function exploreRank(R, kind, f) {
   const hasCells = cells && cells.size > 0;
   const inFam = (s) => fam == null || s.some(si => R.SUBS[si].fam === fam); // inclusive: any sub in family
   if (kind === "artists") {
-    const AXI = { energy: 0, valence: 1, acoustic: 2, tempo: 3, dance: 4 }, snd = f.sound;
+    const AXI = { energy: 0, valence: 1, acoustic: 2, tempo: 3, dance: 4 }, snd = f.sound, dir = f.dir || 1;
     const arr = [];
     for (const a of R.EXPLORE) {
       if (year != null && !(a.yp && a.yp[year])) continue;
@@ -49,14 +49,13 @@ function exploreRank(R, kind, f) {
       let value = plays, disp;
       if (snd) {                                   // sort by measured sound instead of plays
         const af = R.AUDIO[a.id]; if (!af || plays < 15) continue;   // floor keeps it meaningful
-        if (snd === "obscure") { value = 100 - af[7]; disp = af[7] + " pop"; }
-        else if (snd === "popular") { value = af[7]; disp = af[7] + " pop"; }
+        if (snd === "pop") { value = af[7]; disp = af[7] + "/100"; }
         else { value = af[AXI[snd]]; disp = Math.round(value * 100) + "%"; }
       }
       arr.push({ id: a.id, label: a.name, value, disp, plays, hue: a.hue, kept: !!R.byId[a.id],
         sub: (R.SUBS[a.s[0]] || {}).name || "" });
     }
-    return arr.sort((x, y) => y.value - x.value).slice(0, 40);
+    return arr.sort((x, y) => (y.value - x.value) * (snd ? dir : 1)).slice(0, 40);
   }
   let src;
   if (year == null) {
@@ -189,7 +188,8 @@ function ExploreView({ t, go, setPop }) {
     return arr.sort((a, b) => b.total - a.total);
   }, [R]);
   const [sound, setSound] = React.useState(null);
-  const items = exploreRank(R, kind, { year, fam, subIdx, cells, sound });
+  const [sndDir, setSndDir] = React.useState(1);
+  const items = exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir });
   const pickSub = (name) => { setFam(null); setSub(s => s === name ? null : name); };
   const pickFam = (f) => { setSub(null); setFam(x => x === f ? null : f); };
   const toggleCell = (c) => setCells(prev => { const n = new Set(prev); n.has(c) ? n.delete(c) : n.add(c); return n; });
@@ -247,14 +247,16 @@ function ExploreView({ t, go, setPop }) {
             {["artists", "albums", "tracks"].map(k => <button key={k} data-on={kind === k} onClick={() => setKind(k)}>{k}</button>)}
           </div>
           {kind === "artists" && (
-            <div className="xp-frow" style={{ marginBottom: "var(--gap)" }}>
+            <div className="xp-frow" style={{ marginBottom: sound ? 4 : "var(--gap)" }}>
               <span className="xp-flabel">Sort</span>
               <div className="xp-chiprow">
-                {[["", "plays"], ["energy", "energy"], ["valence", "mood"], ["dance", "dance"], ["acoustic", "acoustic"], ["tempo", "tempo"], ["obscure", "obscure"], ["popular", "popular"]].map(([k, l]) =>
+                {[["", "plays"], ["energy", "energy"], ["valence", "mood"], ["dance", "dance"], ["acoustic", "acoustic"], ["tempo", "tempo"], ["pop", "popularity"]].map(([k, l]) =>
                   <button key={k || "p"} className="xp-chip" data-on={(sound || "") === k} onClick={() => setSound(k || null)}>{l}</button>)}
+                {sound && <button className="xp-chip" onClick={() => setSndDir(d => -d)} title="flip direction">{sndDir === 1 ? "▼ high→low" : "▲ low→high"}</button>}
               </div>
             </div>
           )}
+          {kind === "artists" && sound && <div className="r-mono xp-note" style={{ marginBottom: "var(--gap)" }}>{sound === "pop" ? "Spotify popularity 0–100 · flip for most-obscure first" : "share of that trait, 0–100% · artists with ≥15 plays"}</div>}
           {cells.size > 0 && kind !== "artists" && <div className="r-mono xp-note">filtered to {kind} by artists active in the selected slots</div>}
           {items.length === 0
             ? <div className="r-card xp-empty">Nothing in this slice — loosen a filter.</div>
