@@ -20,6 +20,7 @@ function MapView({ go }) {
   const [hi, setHi] = React.useState(null);
   const [sel, setSel] = React.useState(null);
   const [pane, setPane] = React.useState("artists");
+  const [filt, setFilt] = React.useState({ fam: null, sub: null }); // genre pivot: size every place by this genre
   const [view, setView] = React.useState({ s: 1, x: 0, y: 0 });
   const svgRef = React.useRef(null);
   const drag = React.useRef(null);
@@ -79,8 +80,25 @@ function MapView({ go }) {
   const onLeave = () => { ptrs.current.clear(); pinch.current = null; drag.current = null; setHi(null); };
   const frame = (bb) => { if (!bb) return; const [x0, y0, x1, y1] = bb, bw = Math.max(8, x1 - x0), bh = Math.max(8, y1 - y0), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2; const s = clamp(Math.min(W / (bw * 1.6), Hh / (bh * 1.6)), 1, 12); setView({ s, x: W / 2 - cx * s, y: Hh / 2 - cy * s }); };
   const reset = () => { setFocus(null); setSel(null); setView({ s: 1, x: 0, y: 0 }); };
+  // genre pivot and play-the-years are mutually exclusive (both drive bubble size)
+  const pickFam = (fi) => { setPlaying(false); setYearIdx(null); setFilt(p => (p.fam === fi && p.sub == null) ? { fam: null, sub: null } : { fam: fi, sub: null }); };
+  const pickSub = (si) => { setPlaying(false); setYearIdx(null); setFilt(p => ({ fam: R.SUBS[si].fam, sub: p.sub === si ? null : si })); };
+  const clearFilt = () => setFilt({ fam: null, sub: null });
 
-  const sizeOf = (c) => yearIdx != null ? (c.yr ? c.yr[yearIdx] : 0) : c.plays;
+  // genre pivot — sum every place's plays for the selected family/subgenre (membership-based, like Explore)
+  const matchGenre = (a) => filt.sub != null ? a.s.includes(filt.sub) : a.s.some(si => R.SUBS[si] && R.SUBS[si].fam === filt.fam);
+  const filtSums = React.useMemo(() => {
+    if (filt.sub == null && filt.fam == null) return null;
+    const country = {}, city = {};
+    for (const a of R.EXPLORE) {
+      if (!matchGenre(a)) continue;
+      if (a.co) country[a.co] = (country[a.co] || 0) + a.plays;
+      if (a.co && a.ci) { const k = a.co + "|" + a.ci; city[k] = (city[k] || 0) + a.plays; }
+    }
+    return { country, city };
+  }, [filt, R]);
+  const gval = (c) => !filtSums ? 0 : (c.code ? filtSums.country[c.code] : filtSums.city[c.country + "|" + c.city]) || 0;
+  const sizeOf = (c) => filtSums ? gval(c) : (yearIdx != null ? (c.yr ? c.yr[yearIdx] : 0) : c.plays);
   const bubbles = React.useMemo(() => {
     if (!world) return [];
     const proj = (c) => [(c.lng + 180) / 360 * world.w, (90 - c.lat) / 180 * world.h];
@@ -89,10 +107,13 @@ function MapView({ go }) {
     else if (mode === "city") { set = cityPts; kind = "city"; base = 2.5; scale = 24; project = proj; }
     else { const C = world.centroids; set = G.countries.filter(c => C[c.code]); kind = "country"; base = 4; scale = 28; project = (c) => C[c.code]; }
     const mx = Math.max(1, ...set.map(sizeOf));
-    return set.map((c, i) => { const [x, y] = project(c); const sv = sizeOf(c); const r = (yearIdx != null && sv === 0) ? 0 : base + Math.sqrt(sv / mx) * scale; return { key: kind === "country" ? c.code : "c" + i, kind, x, y, r, c }; });
-  }, [world, mode, focus, yearIdx, R]);
+    return set.map((c, i) => { const [x, y] = project(c); const sv = sizeOf(c); const r = ((yearIdx != null || filtSums) && sv === 0) ? 0 : base + Math.sqrt(sv / mx) * scale; return { key: kind === "country" ? c.code : "c" + i, kind, x, y, r, c }; });
+  }, [world, mode, focus, yearIdx, filtSums, R]);
 
-  const placeHue = (c) => { let fi; if (yearIdx != null) fi = c.yf ? c.yf[yearIdx] : -1; else fi = colorBy === "top" ? c.tf : c.df; return (fi >= 0 && FAMHUE[fi] != null) ? `oklch(0.63 0.17 ${FAMHUE[fi]})` : "var(--accent)"; };
+  const placeHue = (c) => {
+    if (filtSums) { const fi = filt.sub != null ? (R.SUBS[filt.sub] && R.SUBS[filt.sub].fam) : filt.fam; return (fi != null && FAMHUE[fi] != null) ? `oklch(0.63 0.17 ${FAMHUE[fi]})` : "var(--accent)"; }
+    let fi; if (yearIdx != null) fi = c.yf ? c.yf[yearIdx] : -1; else fi = colorBy === "top" ? c.tf : c.df; return (fi >= 0 && FAMHUE[fi] != null) ? `oklch(0.63 0.17 ${FAMHUE[fi]})` : "var(--accent)";
+  };
   const openBubble = (b) => {
     if (b.kind === "country") { setFocus(b.c.code); frame(world.bbox[b.c.code]); setSel({ kind: "country", key: b.c.code }); }
     else setSel({ kind: "city", key: b.c.country + "|" + b.c.city });
@@ -100,8 +121,11 @@ function MapView({ go }) {
   };
 
   const hb = hi != null ? bubbles.find(b => b.key === hi) : null;
-  const list = focus ? cityPts.filter(c => c.country === focus).slice(0, 20) : (mode === "city" ? cityPts : G.countries).slice(0, 20);
-  const listMax = Math.max(1, ...list.map(t => t.plays));
+  const listBase = focus ? cityPts.filter(c => c.country === focus) : (mode === "city" ? cityPts : G.countries);
+  const list = filtSums
+    ? listBase.map(t => [t, gval(t)]).filter(e => e[1] > 0).sort((a, b) => b[1] - a[1]).slice(0, 20).map(e => e[0])
+    : listBase.slice(0, 20);
+  const listMax = Math.max(1, ...list.map(t => filtSums ? gval(t) : t.plays));
   const NM = geo && geo.names;
   const period = (geo && sel) ? (geo[sel.kind] || {})[sel.key] : null;
   const selName = sel ? (sel.kind === "country" ? ((G.countries.find(c => c.code === sel.key) || {}).name || sel.key) : sel.key.split("|")[1]) : "";
@@ -128,20 +152,40 @@ function MapView({ go }) {
       {/* colour-by + play-the-years controls */}
       <div className="map-ctl">
         <div className="r-seg" title="how the bubbles are coloured">
-          {[["dominant", "dominant genre"], ["top", "top artist's genre"]].map(([k, l]) => <button key={k} data-on={yearIdx == null && colorBy === k} disabled={yearIdx != null} onClick={() => setColorBy(k)}>{l}</button>)}
+          {[["dominant", "dominant genre"], ["top", "top artist's genre"]].map(([k, l]) => <button key={k} data-on={yearIdx == null && !filtSums && colorBy === k} disabled={yearIdx != null || !!filtSums} onClick={() => setColorBy(k)}>{l}</button>)}
         </div>
         <div className="map-years">
-          <button className="map-play" data-on={playing} onClick={() => { if (!playing && (yearIdx == null || yearIdx >= geoYears.length - 1)) setYearIdx(0); setPlaying(p => !p); }}>{playing ? "❚❚" : "▶"} years</button>
-          <button className="map-yr" data-on={yearIdx == null} onClick={() => { setPlaying(false); setYearIdx(null); }}>all</button>
-          {geoYears.map((y, i) => <button key={y} className="map-yr" data-on={yearIdx === i} onClick={() => { setPlaying(false); setYearIdx(i); }}>{"'" + String(y).slice(2)}</button>)}
+          <button className="map-play" data-on={playing} onClick={() => { clearFilt(); if (!playing && (yearIdx == null || yearIdx >= geoYears.length - 1)) setYearIdx(0); setPlaying(p => !p); }}>{playing ? "❚❚" : "▶"} years</button>
+          <button className="map-yr" data-on={yearIdx == null && !filtSums} onClick={() => { clearFilt(); setPlaying(false); setYearIdx(null); }}>all</button>
+          {geoYears.map((y, i) => <button key={y} className="map-yr" data-on={yearIdx === i} onClick={() => { clearFilt(); setPlaying(false); setYearIdx(i); }}>{"'" + String(y).slice(2)}</button>)}
         </div>
       </div>
+
+      {/* genre pivot — size every place by how big a family / subgenre is there */}
+      <div className="map-filter">
+        <span className="map-flabel">by genre</span>
+        {R.FAMILIES.map(f => (
+          <button key={f.i} className="map-chip" data-on={filt.fam === f.i && filt.sub == null}
+            style={{ "--ch": `oklch(0.63 0.17 ${f.hue})` }} onClick={() => pickFam(f.i)}>{f.family}</button>
+        ))}
+        {(filt.fam != null || filt.sub != null) && <button className="map-chip map-clear" onClick={clearFilt}>✕ clear</button>}
+      </div>
+      {filt.fam != null && (
+        <div className="map-filter map-filter-sub">
+          <span className="map-flabel">↳ {R.FAMILIES[filt.fam].family}</span>
+          {R.SUBS.map((s, si) => s.fam === filt.fam ? (
+            <button key={si} className="map-chip" data-on={filt.sub === si}
+              style={{ "--ch": `oklch(0.63 0.17 ${s.hue})` }} onClick={() => pickSub(si)}>{s.name}</button>
+          ) : null)}
+        </div>
+      )}
 
       <div style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink-soft)", margin: "10px 0", minHeight: 22 }}>
         {focus ? <><span style={{ cursor: "pointer", color: "var(--accent)", fontFamily: "var(--mono)", fontSize: 12 }} onClick={reset}>‹ world</span> &nbsp; cities of <b style={{ color: "var(--ink)" }}>{focusName}</b> — click one for its scene</>
           : hb ? (hb.kind === "city"
             ? <><span style={{ fontSize: 18 }}>{hb.c.flag}</span> <b style={{ color: "var(--ink)" }}>{hb.c.city}</b>, {hb.c.country} — {fmt(yearIdx != null ? sizeOf(hb.c) : hb.c.plays)} plays{yearIdx != null ? " in " + geoYears[yearIdx] : " · " + hb.c.artists + " artists"}</>
             : <><span style={{ fontSize: 18 }}>{hb.c.flag}</span> <b style={{ color: "var(--ink)" }}>{hb.c.name}</b> — {fmt(yearIdx != null ? sizeOf(hb.c) : hb.c.plays)} plays{yearIdx != null ? " in " + geoYears[yearIdx] : " · " + hb.c.artists + " artists"} <span style={{ color: "var(--ink-faint)", fontSize: 12 }}>(click to zoom in)</span></>)
+            : filtSums ? <>showing <b style={{ color: "var(--ink)" }}>{filt.sub != null ? R.SUBS[filt.sub].name : R.FAMILIES[filt.fam].family}</b> across {mode === "city" ? "cities" : "the world"} — bigger means it ran deeper there{list[0] ? <> · led by <b style={{ color: "var(--ink)" }}>{list[0].flag} {list[0].code ? list[0].name : list[0].city}</b></> : null}</>
             : <span style={{ color: "var(--ink-faint)" }}>{mode === "city" ? "every dot a city — hover to read, click for its scene" : "click a country to zoom into its cities · scroll to zoom, drag to pan"}</span>}
       </div>
 
@@ -181,9 +225,9 @@ function MapView({ go }) {
               <span style={{ width: 11, height: 11, borderRadius: 3, background: placeHue(t), flex: "none" }} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.flag} {t.code ? t.name : t.city} <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>· {t.artists}a</span></div>
-                <div style={{ height: 4, background: "var(--bg-3)", borderRadius: 3, overflow: "hidden", marginTop: 3 }}><div style={{ height: "100%", width: (t.plays / listMax * 100) + "%", background: "var(--accent-dim)", borderRadius: 3 }} /></div>
+                <div style={{ height: 4, background: "var(--bg-3)", borderRadius: 3, overflow: "hidden", marginTop: 3 }}><div style={{ height: "100%", width: ((filtSums ? gval(t) : t.plays) / listMax * 100) + "%", background: "var(--accent-dim)", borderRadius: 3 }} /></div>
               </div>
-              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{fmtK(t.plays)}</span>
+              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{fmtK(filtSums ? gval(t) : t.plays)}</span>
             </div>
           ))}
         </div>
@@ -191,8 +235,9 @@ function MapView({ go }) {
 
       {/* selection detail blob */}
       {sel && (() => {
-        const placeArtists = sel.kind === "country" ? R.EXPLORE.filter(a => a.co === sel.key)
-          : (() => { const [iso, city] = sel.key.split("|"); return R.EXPLORE.filter(a => a.co === iso && a.ci === city); })();
+        const placeArtists = (sel.kind === "country" ? R.EXPLORE.filter(a => a.co === sel.key)
+          : (() => { const [iso, city] = sel.key.split("|"); return R.EXPLORE.filter(a => a.co === iso && a.ci === city); })())
+          .filter(a => !filtSums || matchGenre(a));
         const selPlays = sel.kind === "country" ? ((G.countries.find(c => c.code === sel.key) || {}).plays || 0) : ((cityPts.find(c => c.country + "|" + c.city === sel.key) || {}).plays || 0);
         return (
           <div className="r-card" style={{ marginTop: "var(--gap)", padding: 22 }}>
@@ -226,6 +271,14 @@ function MapView({ go }) {
       })()}
 
       <style>{`.map-ctl { display: flex; gap: 14px 18px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+        .map-filter { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
+        .map-filter-sub { margin-top: 6px; padding-left: 6px; }
+        .map-flabel { font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); margin-right: 4px; }
+        .map-chip { --ch: var(--accent); font-family: var(--mono); font-size: 10px; padding: 4px 9px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink-soft); background: transparent; cursor: pointer; transition: .12s; }
+        .map-chip:hover { border-color: var(--ch); color: var(--ink); }
+        .map-chip[data-on="true"] { background: var(--ch); border-color: var(--ch); color: #0c0a08; }
+        .map-clear { border-color: var(--rule-2); color: var(--ink-faint); }
+        .map-clear:hover { border-color: var(--ink-faint); color: var(--ink); }
         .map-years { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
         .map-play { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
         .map-play[data-on="true"] { background: var(--accent); color: #0c0a08; }
