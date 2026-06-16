@@ -182,7 +182,16 @@ function MapView({ go }) {
     return set.map((c, i) => { const [x, y] = project(c); const sv = sizeOf(c); const r = ((yearIdx != null || filtSums) && sv === 0) ? 0 : base + Math.sqrt(sv / mx) * scale; return { key: kind === "country" ? c.code : "c" + i, kind, x, y, r, c }; });
   }, [world, mode, focus, yearIdx, filtSums, R]);
 
+  // sonic colouring — average a place's measured energy/valence (play-weighted) → a temperature hue
+  const audioPlace = React.useMemo(() => {
+    if (colorBy !== "energy" && colorBy !== "valence") return null;
+    const idx = colorBy === "energy" ? 0 : 1, country = {}, city = {};
+    const acc = (m, k, v, w) => { if (!m[k]) m[k] = [0, 0]; m[k][0] += v * w; m[k][1] += w; };
+    for (const a of R.EXPLORE) { const af = R.AUDIO[a.id]; if (!af) continue; const v = af[idx], w = a.plays; if (a.co) acc(country, a.co, v, w); if (a.co && a.ci) acc(city, a.co + "|" + a.ci, v, w); }
+    return { country, city };
+  }, [colorBy, R]);
   const placeHue = (c) => {
+    if (audioPlace) { const e = c.code ? audioPlace.country[c.code] : audioPlace.city[c.country + "|" + c.city]; if (!e || !e[1]) return "var(--bg-3)"; const avg = e[0] / e[1]; return `oklch(0.66 0.15 ${(250 - avg * 230).toFixed(0)})`; }
     if (filtSums) { const fi = filt.sub != null ? (R.SUBS[filt.sub] && R.SUBS[filt.sub].fam) : filt.fam; return (fi != null && FAMHUE[fi] != null) ? `oklch(0.63 0.17 ${FAMHUE[fi]})` : "var(--accent)"; }
     let fi; if (yearIdx != null) fi = c.yf ? c.yf[yearIdx] : -1; else fi = colorBy === "top" ? c.tf : c.df; return (fi >= 0 && FAMHUE[fi] != null) ? `oklch(0.63 0.17 ${FAMHUE[fi]})` : "var(--accent)";
   };
@@ -224,8 +233,12 @@ function MapView({ go }) {
       {/* colour-by + play-the-years controls */}
       <div className="map-ctl">
         <div className="r-seg" title="how the bubbles are coloured">
-          {[["dominant", "dominant genre"], ["top", "top artist's genre"]].map(([k, l]) => <button key={k} data-on={yearIdx == null && !filtSums && colorBy === k} disabled={yearIdx != null || !!filtSums} onClick={() => setColorBy(k)}>{l}</button>)}
+          {[["dominant", "genre"], ["top", "top artist"], ["energy", "energy"], ["valence", "mood"]].map(([k, l]) => {
+            const sonic = k === "energy" || k === "valence";
+            return <button key={k} data-on={sonic ? colorBy === k : (yearIdx == null && !filtSums && colorBy === k)} disabled={!sonic && (yearIdx != null || !!filtSums)} onClick={() => setColorBy(k)}>{l}</button>;
+          })}
         </div>
+        {(colorBy === "energy" || colorBy === "valence") && <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>cool = calm/low · warm = {colorBy === "energy" ? "high-energy" : "happy"}</span>}
         <div className="map-years">
           <button className="map-play" data-on={playing} onClick={() => { if (!playing && (yearIdx == null || yearIdx >= geoYears.length - 1)) setYearIdx(0); setPlaying(p => !p); }}>{playing ? "❚❚" : "▶"} years</button>
           <button className="map-yr" data-on={yearIdx == null} onClick={() => { setPlaying(false); setYearIdx(null); }}>all</button>

@@ -1822,11 +1822,18 @@ const _famWithData = new Set(GENRES.map(g => g.family));
 const FAMILIES_OUT = FAMILIES.map((f, i) => ({ i, family: f.family, hue: f.hue }))
   .filter(f => _famWithData.has(f.family));
 
+// compact measured audio per explorable/kept artist id →
+// [energy, valence, acoustic, tempo(0-1), dance, instr, major-key share, popularity, followers]
+const AUDIO_OUT = {};
+const _afRow = (af) => [af.energy, af.valence, af.acoustic, af.tempo, af.dance, af.instr, af.major, af.pop, af.followers];
+for (const a of EXPLORE) { const af = AUDIO[a.name]; if (af) AUDIO_OUT[a.id] = _afRow(af); }
+for (const a of ARTISTS) { if (!AUDIO_OUT[a.id]) { const af = AUDIO[a.name]; if (af) AUDIO_OUT[a.id] = _afRow(af); } }
+
 const DATA = {
   ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
   CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
   CLOCK_BY_YEAR, CLOCK_CUBE, SOUND_BY_YEAR, FAMILIES: FAMILIES_OUT,
-  SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE, CONSTELLATION, GENRE_FLOW, SUB_FLOW, THUMBS,
+  SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE, CONSTELLATION, GENRE_FLOW, SUB_FLOW, THUMBS, AUDIO: AUDIO_OUT,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)
