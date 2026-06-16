@@ -55,7 +55,8 @@ function exploreRank(R, kind, f) {
       arr.push({ id: a.id, label: a.name, value, disp, plays, hue: a.hue, kept: !!R.byId[a.id],
         sub: (R.SUBS[a.s[0]] || {}).name || "" });
     }
-    return arr.sort((x, y) => (y.value - x.value) * (snd ? dir : 1)).slice(0, 40);
+    const _seen = new Set();   // distinct artists can share a slug id (✝✝✝/Crosses) — keep one, avoids key collisions
+    return arr.sort((x, y) => (y.value - x.value) * (snd ? dir : 1)).filter(x => _seen.has(x.id) ? false : _seen.add(x.id)).slice(0, 40);
   }
   let src;
   if (year == null) {
@@ -436,7 +437,7 @@ function RankRows({ items, go }) {
   return (
     <div className="xp-rows">
       {items.map((it, i) => (
-        <div key={it.id} className="xp-row" data-link={it.kept !== false} onClick={() => (it.kept !== false) && go("artist", it.aid || it.id)}>
+        <div key={(it.aid || it.id) + "-" + i} className="xp-row" data-link={it.kept !== false} onClick={() => (it.kept !== false) && go("artist", it.aid || it.id)}>
           <span className="xp-rank">{String(i + 1).padStart(2, "0")}</span>
           <GenCover hue={it.hue} name={it.aid ? it.sub : it.label} size={34} radius={3} />
           <div className="xp-row-main">
