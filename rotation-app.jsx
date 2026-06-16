@@ -21,6 +21,7 @@ const NAV_FULL = [
   ["stories", "Stories"],
   ["explore", "Explore"],
   ["journey", "Journey"],
+  ["mood", "Mood"],
   ["calendar", "Calendar"],
   ["map", "Map"],
   ["live", "Live"],
@@ -113,6 +114,7 @@ function RotationApp() {
       {v === "stories" && <StoriesView t={t} go={go} />}
       {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} />}
       {v === "journey" && <JourneyView go={go} />}
+      {v === "mood" && <MoodView go={go} />}
       {v === "calendar" && <CalendarView go={go} />}
       {v === "map" && <MapView go={go} />}
       {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
