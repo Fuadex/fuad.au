@@ -434,6 +434,13 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     const ks = ["energy", "valence", "acoustic", "tempo", "dance", "instr"];
     return ks.map(k => R.ARTISTS.reduce((s, x) => s + x.audio[k], 0) / R.ARTISTS.length);
   }, []);
+  // nearest neighbours by measured sound (6-axis euclidean over the whole audio map)
+  const soundAlike = React.useMemo(() => {
+    const me = R.AUDIO && R.AUDIO[a.id]; if (!me) return [];
+    const out = [];
+    for (const sid in R.AUDIO) { if (sid === a.id) continue; const v = R.AUDIO[sid]; let d = 0; for (let k = 0; k < 6; k++) { const dd = me[k] - v[k]; d += dd * dd; } out.push([sid, d]); }
+    return out.sort((x, y) => x[1] - y[1]).slice(0, 6).map(e => e[0]);
+  }, [a.id]);
   // artists outside the kept 205 still rank in Explore — give them a lightweight page
   // (return AFTER hooks so hook order stays stable across navigations).
   if (!full && R.expById && R.expById[id]) return <MiniArtistView a={R.expById[id]} go={go} />;
@@ -447,6 +454,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     </div>
   );
   const dna = [a.audio.energy, a.audio.valence, a.audio.acoustic, a.audio.tempo, a.audio.dance, a.audio.instr];
+  const af = R.AUDIO && R.AUDIO[a.id];   // [..,6 major, 7 popularity, 8 followers]
   const peakIdx = a.era.indexOf(Math.max(...a.era));
   const peakYear = (R.ERA_START || 2014) + peakIdx;
   // Per-artist top tracks/albums computed in build-data.js — full top per artist, not
@@ -517,8 +525,20 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
           <Radar axes={DNA_AXES} values={dna} values2={avg} run={seen} size={224} />
           <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>
-            solid = {a.name.split(" ")[0]} · dashed = your average
+            solid = {a.name.split(" ")[0]} · dashed = your average · {a.am ? "measured" : "inferred"}
           </div>
+          {af && <div style={{ marginTop: 14, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "9px 10px" }}>
+            {[["tempo", Math.round(50 + a.audio.tempo * 140) + " bpm"], ["key", af[6] >= 0.5 ? "major-key" : "minor-key"], ["popularity", af[7] + "/100"], ["followers", fmtK(af[8])]].map(([k, v]) => (
+              <div key={k}><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{k}</div><div style={{ fontSize: 13 }}>{v}</div></div>
+            ))}
+          </div>}
+          {soundAlike.length > 0 && <div style={{ marginTop: 16 }}>
+            <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 7 }}>sounds alike</div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+              {soundAlike.map(sid => { const s = R.byId[sid] || (R.expById && R.expById[sid]); if (!s) return null; return (
+                <button key={sid} onClick={() => go("artist", sid)} style={{ fontFamily: "var(--mono)", fontSize: 10, padding: "3px 8px", borderRadius: 999, border: "1px solid var(--rule)", color: "var(--ink-soft)", background: "transparent", cursor: "pointer" }}>{s.name}</button>); })}
+            </div>
+          </div>}
         </div>
 
         <div style={{ display: "grid", gap: "var(--gap)" }}>
