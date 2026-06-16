@@ -15,7 +15,7 @@ function _segs(pts) {
 }
 
 // generic streamgraph over `series` ([{key,name,hue,vals:[per year]}]) and `years` ([nums])
-function StreamGraph({ series, years, hi, setHi, onPick, clickable }) {
+function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi }) {
   const L = React.useMemo(() => {
     const com = series.map(s => { let n = 0, d = 0; s.vals.forEach((v, i) => { n += v * years[i]; d += v; }); return d ? n / d : 9999; });
     const order = series.map((s, i) => i).sort((a, b) => com[a] - com[b]);
@@ -56,9 +56,13 @@ function StreamGraph({ series, years, hi, setHi, onPick, clickable }) {
           </text>
         );
       })}
+      {markYi != null && markYi >= 0 && (
+        <line x1={L.xAt(markYi)} y1={6} x2={L.xAt(markYi)} y2={L.H - 30} stroke="var(--accent)" strokeWidth="1.4" strokeDasharray="3 3" opacity="0.85" style={{ pointerEvents: "none" }} />
+      )}
       {years.map((y, yi) => (
         <text key={"y" + yi} x={L.xAt(yi)} y={L.H - 16} textAnchor="middle" fontFamily="var(--mono)" fontSize="10"
-          fill="var(--ink-faint)" opacity={yi % 2 === 0 || yi === years.length - 1 ? 1 : 0}>{"'" + String(y).slice(2)}</text>
+          fill={markYi === yi ? "var(--accent)" : "var(--ink-faint)"} fontWeight={markYi === yi ? 700 : 400}
+          opacity={yi % 2 === 0 || yi === years.length - 1 || markYi === yi ? 1 : 0}>{"'" + String(y).slice(2)}</text>
       ))}
     </svg>
   );
