@@ -159,9 +159,17 @@ async function pullArtist(name, existing) {
   const tag = MODE ? ` · mode=${MODE}${MODE === "covers" ? " top" + TOP : ""}` : "";
   console.log(`EXPLORE: ${arts.length} · pool: ${pool.length}${tag} · this run: ${todo.length}${skipAlbums ? " (identity only)" : ""}`);
   const t0 = Date.now();
+  let added = 0;   // new photos/albums landed this run — drives the "all done" signal
   for (let i = 0; i < todo.length; i++) {
     const name = todo[i];
-    try { const r = await pullArtist(name, cache[name]); if (r && (r.id || r.miss)) cache[name] = r; }   // keep hits + confirmed misses; abort leaves the rest untouched for next run
+    try {
+      const before = cache[name];
+      const r = await pullArtist(name, before);
+      if (r && (r.id || r.miss)) {
+        if ((r.id && !(before && before.id)) || (r.albums && r.albums.length && !(before && before.albums && before.albums.length))) added++;
+        cache[name] = r;   // keep hits + confirmed misses; abort leaves the rest untouched for next run
+      }
+    }
     catch (e) { cache[name] = { err: String(e).slice(0, 80) }; }
     if (aborted) { fs.writeFileSync(CACHE_PATH, JSON.stringify(cache)); console.log(`  stopped at ${i + 1}/${todo.length} — resume tomorrow`); break; }
     if ((i + 1) % 25 === 0 || i === todo.length - 1) {
@@ -173,5 +181,8 @@ async function pullArtist(name, existing) {
   }
   fs.writeFileSync(CACHE_PATH, JSON.stringify(cache));
   const hits = Object.values(cache).filter(c => c.id).length, miss = Object.values(cache).filter(c => c.miss).length;
-  console.log(`done · ${hits} matched · ${miss} missed · cache → spotify-cache.json`);
+  console.log(`done · ${hits} matched · ${miss} missed · +${added} new this run · cache → spotify-cache.json`);
+  // exit code is the completion signal for the daily routine: 4 = quota-paused (retry), 3 = nothing
+  // left to pull (this mode is complete), 0 = made progress (keep going).
+  process.exitCode = aborted ? 4 : (added === 0 ? 3 : 0);
 })();
