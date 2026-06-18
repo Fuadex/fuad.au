@@ -1,0 +1,39 @@
+name: Sync Spotify art
+
+# Pulls a small daily batch of Spotify artist photos (gap fill) then album covers,
+# accumulating into spotify-cache.json. Small because a Development-Mode app has a low
+# daily quota — the enricher aborts+saves when it's spent, and resumes the next day.
+
+on:
+  schedule:
+    - cron: "37 7 * * *"   # daily ~07:37 UTC (offset from the last.fm sync)
+  workflow_dispatch: {}
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Pull a Spotify batch (photos first, then covers)
+        env:
+          SPOTIFY: ${{ secrets.SPOTIFY }}
+          SPOTIFY_SECRET: ${{ secrets.SPOTIFY_SECRET }}
+        run: |
+          node enrich-spotify.js --mode=images --limit=400 || true
+          node enrich-spotify.js --mode=covers --top=150 || true
+      - name: Commit cache if changed
+        run: |
+          git config user.name "rotation-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add spotify-cache.json
+          if git diff --staged --quiet; then
+            echo "no change"
+          else
+            git commit -m "chore: daily spotify art batch"
+            git push
+          fi

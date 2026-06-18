@@ -37,8 +37,8 @@ const ALBUM_CAP = 40;              // covers per artist (deduped by name)
 let aborted = false;
 
 // ── keys ──────────────────────────────────────────────────────────────────────
-const env = fs.readFileSync(ENV_PATH, "utf8");
-const getv = (k) => { const m = env.match(new RegExp("^" + k + "=(.*)$", "m")); return m ? m[1].trim() : ""; };
+let env = ""; try { env = fs.readFileSync(ENV_PATH, "utf8"); } catch (e) {}   // local .env optional — CI passes keys via env vars
+const getv = (k) => { if (process.env[k]) return process.env[k].trim(); const m = env.match(new RegExp("^" + k + "=(.*)$", "m")); return m ? m[1].trim() : ""; };
 const CLIENT_ID = getv("SPOTIFY"), CLIENT_SECRET = getv("SPOTIFY_SECRET");
 if (!CLIENT_ID || !CLIENT_SECRET) { console.error("Missing SPOTIFY / SPOTIFY_SECRET in .env"); process.exit(1); }
 
