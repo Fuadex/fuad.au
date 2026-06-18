@@ -25,8 +25,9 @@ if ($cacheChanged) {
     Log "no new art (img=$img cov=$cov)"
 }
 
-# self-terminate: once photos report complete (exit 3) and a run adds nothing new, all pullable art is in
-if ($img -eq 3 -and -not $cacheChanged) {
+# self-terminate only when BOTH photos and covers report nothing left (exit 3) — a quota-paused
+# day is exit 4, which keeps the task alive so it resumes tomorrow.
+if ($img -eq 3 -and $cov -eq 3) {
     Log "all pullable art complete - unregistering RotationSpotifyArt"
     Unregister-ScheduledTask -TaskName "RotationSpotifyArt" -Confirm:$false
 }
