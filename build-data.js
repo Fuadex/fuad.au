@@ -1627,9 +1627,10 @@ let ARTIST_FLOW = null;
     .replace(/\b(deluxe|remaster(ed)?|edition|version|disc\s*\d*|bonus|expanded|anniversary|mastered|audiophile|left|right|reissue|special|limited)\b/g, "")
     .replace(/[^a-z0-9]+/g, " ").trim();
   // artist → { albYear: Map(album→arr), albSong: Map(album→Map(song→arr)), songYear: Map(song→arr) }
+  const exploreNames = new Set(EXPLORE.map(a => a.name));   // carry the flow to the long tail too
   const acc = new Map();
   for (const [artist, album, track, ms] of scrobbles) {
-    if (!byName[artist]) continue;
+    if (!byName[artist] && !exploreNames.has(artist)) continue;
     const yi = yIdx.get(new Date(ms).getUTCFullYear());
     if (yi == null) continue;
     if (!acc.has(artist)) acc.set(artist, { albYear: new Map(), albSong: new Map(), songYear: new Map() });
@@ -1667,19 +1668,24 @@ let ARTIST_FLOW = null;
     return [...g.values()];
   };
   const byId = {};
-  for (const a of ARTISTS) {
-    const A = acc.get(a.name);
-    if (!A) continue;
+  const emit = (id, name, kept) => {
+    if (byId[id]) return;
+    const A = acc.get(name); if (!A) return;
     const [lo, hi] = span([...A.albYear.values(), ...A.songYear.values()]);
-    if (hi < lo) continue;
+    if (hi < lo) return;
+    if (!kept && hi === lo) return;            // long tail: skip single-year artists (no meaningful flow)
+    const albCap = kept ? 15 : 10, songCap = kept ? 20 : 12;
     const merged = mergeAlb(A.albYear, A.albSong).map(e => ({ ...e, t: total(e.vals) })).sort((x, y) => y.t - x.t);
-    const albums = merged.slice(0, 15).map(e => {
+    const albums = merged.slice(0, albCap).map(e => {
       const [alo, ahi] = span([...e.songs.values(), e.vals]);
-      return { name: e.title, vals: e.vals.slice(lo, hi + 1), tyears: fy.slice(alo, ahi + 1), tracks: seriesFromMap(e.songs, 20, alo, ahi) };
+      return { name: e.title, vals: e.vals.slice(lo, hi + 1), tyears: fy.slice(alo, ahi + 1), tracks: seriesFromMap(e.songs, songCap, alo, ahi) };
     });
-    if (merged.length > 15) { const o = new Array(fy.length).fill(0); for (const e of merged.slice(15)) e.vals.forEach((v, i) => o[i] += v); albums.push({ name: "everything else", vals: o.slice(lo, hi + 1), other: 1, tyears: fy.slice(lo, hi + 1), tracks: [] }); }
-    byId[a.id] = { years: fy.slice(lo, hi + 1), albums, tracks: seriesFromMap(A.songYear, 20, lo, hi) };
-  }
+    if (merged.length > albCap) { const o = new Array(fy.length).fill(0); for (const e of merged.slice(albCap)) e.vals.forEach((v, i) => o[i] += v); albums.push({ name: "everything else", vals: o.slice(lo, hi + 1), other: 1, tyears: fy.slice(lo, hi + 1), tracks: [] }); }
+    byId[id] = { years: fy.slice(lo, hi + 1), albums, tracks: seriesFromMap(A.songYear, songCap, lo, hi) };
+  };
+  for (const a of ARTISTS) emit(a.id, a.name, true);
+  // long tail: only artists with enough history for a meaningful flow (keeps the lazy file lean)
+  for (const a of EXPLORE) if (!byName[a.name] && a.plays >= 30) emit(a.id, a.name, false);
   ARTIST_FLOW = { byId };
 }
 // lazy-loaded on the first artist-page visit — kept OUT of music-data.js so first paint stays lean

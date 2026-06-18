@@ -431,7 +431,9 @@ function MiniArtistView({ a, go }) {
     <div className="r-view">
       <button className="r-back" onClick={() => go("explore")}>← explore</button>
       <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 24 }}>
-        <GenCover hue={a.hue} name={a.name} size={120} radius={6} />
+        {R.THUMBS && R.THUMBS[a.id]
+          ? <img src={R.THUMBS[a.id]} alt={a.name} width={120} height={120} style={{ borderRadius: 6, objectFit: "cover", display: "block" }} />
+          : <GenCover hue={a.hue} name={a.name} size={120} radius={6} />}
         <div style={{ flex: 1, minWidth: 240 }}>
           <div className="r-kicker">explore{a.d ? ` · est. ${a.d}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(32px,4.5vw,54px)" }}>{a.name}<span className="dot">.</span></h1>
@@ -494,6 +496,7 @@ function MiniArtistView({ a, go }) {
           </div>}
         </div>
       )}
+      <div style={{ marginBottom: "var(--gap)" }}><ArtistFlow id={a.id} hue={a.hue} /></div>
       <MiniArtistDetail id={a.id} hue={a.hue} go={go} />
     </div>
   );
