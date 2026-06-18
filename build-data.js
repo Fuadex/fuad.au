@@ -134,8 +134,12 @@ const IMAGES = fs.existsSync(IMAGES_PATH) ? JSON.parse(fs.readFileSync(IMAGES_PA
 // profile (bio) + members/groups (connections) + urls. Preferred over the older image-only cache.
 const DGA_PATH = path.join(__dirname, "discogs-artist.json");
 const DGA = fs.existsSync(DGA_PATH) ? JSON.parse(fs.readFileSync(DGA_PATH, "utf8")) : {};
-const imageOf = (name) => (DGA[name] && DGA[name].image) || (IMAGES[name] && IMAGES[name].image) || "";
-const thumbOf = (name) => (DGA[name] && DGA[name].thumb) || (IMAGES[name] && IMAGES[name].thumb) || "";
+// Spotify photos (built by enrich-spotify.js, pulled daily) — fallback only, where Discogs/last.fm
+// had no image. img is 640px; reused for both the full image and the thumbnail.
+const SPOT = (() => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, "spotify-cache.json"), "utf8")); } catch (e) { return {}; } })();
+const spotImg = (name) => (SPOT[name] && SPOT[name].img) || "";
+const imageOf = (name) => (DGA[name] && DGA[name].image) || (IMAGES[name] && IMAGES[name].image) || spotImg(name) || "";
+const thumbOf = (name) => (DGA[name] && DGA[name].thumb) || (IMAGES[name] && IMAGES[name].thumb) || spotImg(name) || "";
 const dgProfileOf = (name) => (DGA[name] && DGA[name].profile) || "";
 const dgMembersOf = (name) => (DGA[name] && DGA[name].members) || [];
 
@@ -1569,7 +1573,7 @@ for (const [name, plays] of rankedArtists) {
 const THUMBS = {};
 for (const a of EXPLORE) {
   if (byName[a.name]) continue;              // kept artists resolve via byId already
-  const t = (DGA[a.name] && DGA[a.name].thumb) || "";
+  const t = thumbOf(a.name);   // Discogs thumb, else last.fm, else Spotify photo
   if (t) THUMBS[a.id] = t;
 }
 
