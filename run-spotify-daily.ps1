@@ -10,8 +10,9 @@ function Log($m) { "$(Get-Date -Format s) $m" | Out-File -Append -Encoding utf8 
 Log "--- start ---"
 node enrich-spotify.js --mode=images --limit=400  *>> $log
 node enrich-spotify.js --mode=covers --top=150     *>> $log
+node build-data.js                                 *>> $log   # fold the new art into music-data.js
 
-git add spotify-cache.json
+git add spotify-cache.json music-data.js search-index.js
 git diff --staged --quiet
 if ($LASTEXITCODE -ne 0) {
     git commit -m "chore: daily spotify art batch" *>> $log
