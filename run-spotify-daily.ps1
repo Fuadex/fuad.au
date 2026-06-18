@@ -17,7 +17,7 @@ git diff --staged --quiet
 $cacheChanged = ($LASTEXITCODE -ne 0)
 if ($cacheChanged) {
     node build-data.js *>> $log                                # fold the new photos into music-data.js
-    git add music-data.js search-index.js
+    git add music-data.js search-index.js artist-detail.js
     git commit -m "chore: daily spotify photo batch" *>> $log
     git push *>> $log
     Log "pushed (img=$img)"
