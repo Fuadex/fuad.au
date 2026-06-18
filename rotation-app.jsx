@@ -31,9 +31,21 @@ const NAV = NAV_FULL.filter(([k]) => k !== "live" || ((window.ROTATION && window
 // legacy view names (old Charts/Clock/Sound/Eras tabs) now resolve into the unified Explore view
 const LEGACY = { charts: "explore", clock: "explore", sound: "explore", eras: "explore" };
 
+// URL state — a lightweight hash handle per view/artist (e.g. #artist/nine-inch-nails) so pages are
+// deep-linkable and the browser back/forward works. No router lib, no separate pages.
+function parseHash() {
+  const h = (window.location.hash || "").replace(/^#\/?/, "");
+  if (!h) return { view: "overview", id: null };
+  const i = h.indexOf("/");
+  const view = i < 0 ? h : h.slice(0, i);
+  const id = i < 0 ? null : decodeURIComponent(h.slice(i + 1));
+  return { view: LEGACY[view] || view, id: id || null };
+}
+const routeHash = (v, id) => (v === "overview" && !id) ? "" : "#" + v + (id ? "/" + encodeURIComponent(id) : "");
+
 function RotationApp() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [route, setRoute] = React.useState({ view: "overview", id: null });
+  const [route, setRoute] = React.useState(parseHash);
   const [pop, setPop] = React.useState(null);
   const [city, setCity] = React.useState(() => {
     const cs = (window.ROTATION && window.ROTATION.CITIES) || [];
@@ -45,8 +57,19 @@ function RotationApp() {
 
   const go = React.useCallback((view, id) => {
     setPop(null);
-    setRoute({ view, id: id || null });
+    const v = LEGACY[view] || view;
+    setRoute({ view: v, id: id || null });
+    const target = routeHash(v, id);
+    if ((window.location.hash || "") !== target) window.history.pushState(null, "", target || (location.pathname + location.search));
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // back/forward + manual hash edits → sync the in-memory route (pushState above doesn't fire these)
+  React.useEffect(() => {
+    const onPop = () => { setPop(null); setRoute(parseHash()); };
+    window.addEventListener("popstate", onPop);
+    window.addEventListener("hashchange", onPop);
+    return () => { window.removeEventListener("popstate", onPop); window.removeEventListener("hashchange", onPop); };
   }, []);
 
   // keep popover from sticking when scrolling

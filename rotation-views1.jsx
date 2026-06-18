@@ -29,17 +29,18 @@ function OverviewView({ t, go }) {
   const scrob = useCountUp(liveTotal, 1400, seen);
   const hrs = useCountUp(T.listeningHours, 1400, seen);
   const now = useLiveNow(); const nowArtist = R.byId[now.artistId] || { hue: 200, tags: [] };
+  const npKnown = !!(R.byId[now.artistId] || (R.expById && R.expById[now.artistId]) || (R.played && R.played(now.artist)));
 
   // 26-week scrobble trend (real if the build provides it)
   const trend = React.useMemo(() => R.TREND || Array.from({ length: 26 }, (_, i) =>
     180 + Math.round(Math.sin(i / 3) * 60 + (hashInt("wk" + i, 5) % 90) + i * 3)), []);
   const sinceYears = ((Date.now() - new Date(T.since)) / 3.156e10).toFixed(1);
 
-  const Stat = ({ n, sub, big }) => (
-    <div>
+  const Stat = ({ n, sub, big, onClick }) => (
+    <div onClick={onClick} style={onClick ? { cursor: "pointer" } : null} className={onClick ? "ov-stat-link" : ""}>
       <div className="r-stat-n" style={{ fontSize: big ? "clamp(30px,4vw,46px)" : 30 }}>{n}</div>
       <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase",
-        color: "var(--ink-faint)", marginTop: 7 }}>{sub}</div>
+        color: "var(--ink-faint)", marginTop: 7 }}>{sub}{onClick ? " ↗" : ""}</div>
     </div>
   );
 
@@ -58,7 +59,7 @@ function OverviewView({ t, go }) {
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
         {/* now playing */}
         <div className="r-card" style={{ gridColumn: "span 5", padding: 18, display: "flex", gap: 16, alignItems: "center", minWidth: 0 }}>
-          <div style={{ position: "relative" }}>
+          <div style={{ position: "relative", cursor: npKnown ? "pointer" : "default" }} onClick={() => npKnown && go("artist", now.artistId)}>
             <GenCover hue={nowArtist.hue} name={now.artist} size={104} radius={4} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "flex-end", justifyContent: "center",
               gap: 3, padding: "0 0 9px" }}>
@@ -68,7 +69,8 @@ function OverviewView({ t, go }) {
           <div style={{ minWidth: 0 }}>
             <div className="r-live" style={{ marginBottom: 9 }}><span className="dot" /> {now.nowplaying ? "Now playing" : "Last played"}</div>
             <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22, lineHeight: 1.05 }}>{now.track}</div>
-            <div style={{ color: "var(--ink-soft)", fontSize: 13, marginTop: 4 }}>{now.artist} — <span style={{ color: "var(--ink-faint)" }}>{now.album}</span></div>
+            <div style={{ color: "var(--ink-soft)", fontSize: 13, marginTop: 4 }}>
+              {npKnown ? <b onClick={() => go("artist", now.artistId)} style={{ cursor: "pointer", color: "var(--ink)", fontWeight: 600 }}>{now.artist}</b> : now.artist} — <span style={{ color: "var(--ink-faint)" }}>{now.album}</span></div>
             <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
               {nowArtist.tags.slice(0, 3).map(g => <span key={g} className="r-chip">{g}</span>)}
             </div>
@@ -101,15 +103,15 @@ function OverviewView({ t, go }) {
         <div className="r-card m-2col" style={{ gridColumn: "span 8", padding: 20, display: "grid",
           gridTemplateColumns: "repeat(4,1fr)", gap: 18, alignItems: "center" }}>
           <Stat n={fmt(Math.round(hrs))} sub="hours listened" />
-          <Stat n={fmt(T.artists)} sub="distinct artists" />
+          <Stat n={fmt(T.artists)} sub="distinct artists" onClick={() => go("explore")} />
           <Stat n={T.perDay} sub="avg / day" />
           <Stat n={sinceYears + " yr"} sub="of history" />
         </div>
 
         {/* peak day */}
-        <div className="r-card" style={{ gridColumn: "span 4", padding: 18 }}>
+        <div className="r-card ov-stat-link" style={{ gridColumn: "span 4", padding: 18, cursor: "pointer" }} onClick={() => go("calendar")}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Heaviest day</b></span>
-            <span className="meta">{R.TOTALS.topDay.date}</span></div>
+            <span className="meta">{R.TOTALS.topDay.date} ↗</span></div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 8, margin: "10px 0 6px" }}>
             <div className="r-stat-n" style={{ fontSize: 40 }}>{R.TOTALS.topDay.count}</div>
             <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>plays</span>
@@ -232,6 +234,7 @@ function OverviewView({ t, go }) {
         .hub-h { font-family: var(--serif); font-style: italic; font-size: 21px; margin: 10px 0 4px; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .hub-s { font-size: 12px; color: var(--ink-soft); line-height: 1.35; }
         .hub-go { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: var(--ink-faint); margin-top: 12px; transition: color .15s; }
+        .ov-stat-link { transition: color .15s; } .ov-stat-link:hover .r-stat-n { color: var(--accent); } .ov-stat-link:hover { color: var(--accent); }
         .eqbar { width: 4px; height: 10px; background: var(--accent); border-radius: 2px;
           animation: eq .9s ease-in-out infinite alternate; box-shadow: 0 0 6px var(--accent-bg); }
         @keyframes eq { from { height: 6px; } to { height: 26px; } }
