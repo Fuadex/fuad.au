@@ -379,12 +379,54 @@ function ArtistFlow({ id, hue }) {
 
 // Lightweight page for an explorable artist that isn't in the kept top-205 (no full per-artist
 // build). Shows what the EXPLORE record carries: plays, subgenres, listeners, debut, year shape.
+// MiniArtistDetail — top tracks/albums for a long-tail artist, lazy-loaded from artist-detail.js
+// (interned, fetched once on first mini-page visit so the main payload stays lean).
+function MiniArtistDetail({ id, go }) {
+  const [d, setD] = React.useState(window.ROTATION_ADETAIL || null);
+  React.useEffect(() => {
+    if (window.ROTATION_ADETAIL) { setD(window.ROTATION_ADETAIL); return; }
+    let s = document.getElementById("rotation-adetail-js");
+    if (!s) { s = document.createElement("script"); s.id = "rotation-adetail-js"; s.src = "artist-detail.js"; document.head.appendChild(s); }
+    const on = () => setD(window.ROTATION_ADETAIL);
+    s.addEventListener("load", on);
+    return () => s.removeEventListener("load", on);
+  }, []);
+  if (!d) return <div className="r-card" style={{ padding: "16px 20px", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>loading tracks &amp; albums…</div>;
+  const rec = d.d[id], NM = d.names;
+  if (!rec || (!rec.t.length && !rec.al.length)) return null;
+  const Col = ({ title, rows }) => rows.length ? (
+    <div className="r-card" style={{ padding: 18 }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}><span className="lbl"><b>{title}</b></span></div>
+      {rows.map(([ti, p], i) => (
+        <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "5px 2px", borderBottom: "1px solid var(--rule)" }}>
+          <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 18 }}>{String(i + 1).padStart(2, "0")}</span>
+          <span style={{ flex: 1, minWidth: 0, fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{NM[ti]}</span>
+          <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>{fmt(p)}</span>
+        </div>))}
+    </div>) : null;
+  return (
+    <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--gap)" }}>
+      <Col title="Top tracks" rows={rec.t} />
+      <Col title="Top albums" rows={rec.al} />
+    </div>
+  );
+}
+
 function MiniArtistView({ a, go }) {
   const R = window.ROTATION;
   const subs = (a.s || []).map(i => R.SUBS[i] && R.SUBS[i].name).filter(Boolean);
   const years = React.useMemo(() => Object.keys(R.CLOCK_BY_YEAR).map(Number).sort((x, y) => x - y), []);
   const spark = a.yp ? years.map(y => a.yp[y] || 0) : null;
   const L = a.l ? (a.l >= 1e6 ? (a.l / 1e6).toFixed(1) + "M" : a.l >= 1000 ? Math.round(a.l / 1000) + "k" : a.l) : null;
+  const af = R.AUDIO && R.AUDIO[a.id];   // measured audio is shipped for the long tail too
+  const dna = af ? [af[0], af[1], af[2], af[3], af[4], af[5]] : null;
+  const avg = React.useMemo(() => { const ks = ["energy", "valence", "acoustic", "tempo", "dance", "instr"]; return ks.map(k => R.ARTISTS.reduce((s, x) => s + x.audio[k], 0) / R.ARTISTS.length); }, []);
+  const soundAlike = React.useMemo(() => {
+    const me = R.AUDIO && R.AUDIO[a.id]; if (!me) return [];
+    const out = [];
+    for (const sid in R.AUDIO) { if (sid === a.id) continue; const v = R.AUDIO[sid]; let d = 0; for (let k = 0; k < 6; k++) { const dd = me[k] - v[k]; d += dd * dd; } out.push([sid, d]); }
+    return out.sort((x, y) => x[1] - y[1]).slice(0, 6).map(e => e[0]);
+  }, [a.id]);
   return (
     <div className="r-view">
       <button className="r-back" onClick={() => go("explore")}>← explore</button>
@@ -418,10 +460,41 @@ function MiniArtistView({ a, go }) {
           </div>
         </div>
       )}
-      <div className="r-card" style={{ padding: "16px 20px", fontSize: 13, color: "var(--ink-soft)", lineHeight: 1.5 }}>
-        A quick view — <b style={{ color: "var(--ink)" }}>{a.name}</b> sits outside your top 205, so the full
-        breakdown (tracks, albums, similar, sound DNA) isn't built for them yet.
-      </div>
+      {dna && (
+        <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "260px 1fr", gap: "var(--gap)", alignItems: "start", marginBottom: "var(--gap)" }}>
+          <div className="r-card" style={{ padding: 18 }}>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
+            <Radar axes={DNA_AXES} values={dna} values2={avg} run={true} size={224} />
+            <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>solid = {a.name.split(" ")[0]} · dashed = your average · measured</div>
+            <div style={{ marginTop: 14, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 9 }}>
+              {[
+                { k: "tempo", v: Math.round(50 + af[3] * 140), u: " bpm", f: af[3] },
+                { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
+                { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
+                { k: "followers", v: fmtK(af[8]), f: null },
+              ].map(s => (
+                <div key={s.k}>
+                  <div className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</div>
+                  <div style={{ fontSize: 13, marginTop: 1, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 9, color: "var(--ink-faint)" }}>{s.u}</span>}</div>
+                  {s.f != null && <div style={{ height: 3, background: "var(--bg-3)", borderRadius: 2, marginTop: 5, overflow: "hidden" }}><div style={{ height: "100%", width: (s.f * 100) + "%", background: `oklch(0.62 0.15 ${a.hue})` }} /></div>}
+                </div>
+              ))}
+            </div>
+          </div>
+          {soundAlike.length > 0 && <div className="r-card" style={{ padding: 18 }}>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}><span className="lbl"><b>Sounds alike</b></span><span className="meta">by sound</span></div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(110px,1fr))", gap: 12 }}>
+              {soundAlike.map(sid => { const s = R.byId[sid] || (R.expById && R.expById[sid]); if (!s) return null; return (
+                <div key={sid} onClick={() => go("artist", sid)} style={{ cursor: "pointer" }}>
+                  <GenCover hue={s.hue} name={s.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
+                  <div style={{ fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{s.name}</div>
+                  <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays →</div>
+                </div>); })}
+            </div>
+          </div>}
+        </div>
+      )}
+      <MiniArtistDetail id={a.id} hue={a.hue} go={go} />
     </div>
   );
 }
