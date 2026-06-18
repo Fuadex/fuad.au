@@ -391,10 +391,10 @@ function MiniArtistDetail({ id, go }) {
     s.addEventListener("load", on);
     return () => s.removeEventListener("load", on);
   }, []);
-  if (!d) return <div className="r-card" style={{ padding: "16px 20px", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>loading tracks &amp; albums…</div>;
-  const rec = d.d[id], NM = d.names;
-  if (!rec || (!rec.t.length && !rec.al.length)) return null;
-  const Col = ({ title, rows }) => rows.length ? (
+  if (!d) return <div className="r-card" style={{ padding: "16px 20px", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>loading the rest…</div>;
+  const R = window.ROTATION, rec = d.d[id], NM = d.names;
+  if (!rec) return null;
+  const Col = ({ title, rows }) => (rows && rows.length) ? (
     <div className="r-card" style={{ padding: 18 }}>
       <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}><span className="lbl"><b>{title}</b></span></div>
       {rows.map(([ti, p], i) => (
@@ -405,9 +405,27 @@ function MiniArtistDetail({ id, go }) {
         </div>))}
     </div>) : null;
   return (
-    <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--gap)" }}>
-      <Col title="Top tracks" rows={rec.t} />
-      <Col title="Top albums" rows={rec.al} />
+    <div style={{ display: "grid", gap: "var(--gap)" }}>
+      {rec.bio && <div className="r-card" style={{ padding: "16px 20px", fontSize: 13.5, lineHeight: 1.6, color: "var(--ink-soft)" }}>{rec.bio}</div>}
+      {(rec.t || rec.al) && <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--gap)" }}>
+        <Col title="Top tracks" rows={rec.t} />
+        <Col title="Top albums" rows={rec.al} />
+      </div>}
+      {rec.sim && rec.sim.length > 0 && <div className="r-card" style={{ padding: 18 }}>
+        <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}><span className="lbl"><b>Sounds like</b></span><span className="meta">last.fm</span></div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(110px,1fr))", gap: 12 }}>
+          {rec.sim.map((name, i) => { const rid = (R.idForName && R.idForName(name)) || R.slug(name); const s = R.byId[rid] || (R.expById && R.expById[rid]); const played = !!s || (R.played && R.played(name)); return (
+            <div key={name + i} onClick={() => s && go("artist", rid)} style={{ cursor: s ? "pointer" : "default", opacity: played ? 1 : 0.62 }}>
+              <GenCover hue={s ? s.hue : 210} name={name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
+              <div style={{ fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{name}</div>
+              {s ? <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays →</div> : played ? <div className="r-mono" style={{ fontSize: 9, color: "var(--accent-dim)" }}>scrobbled</div> : <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>not yet</div>}
+            </div>); })}
+        </div>
+      </div>}
+      {rec.mem && rec.mem.length > 0 && <div className="r-card" style={{ padding: 18 }}>
+        <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Members</b></span><span className="meta">musicbrainz · discogs</span></div>
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>{rec.mem.map(m => <span key={m} className="r-chip" style={{ fontSize: 11 }}>{m}</span>)}</div>
+      </div>}
     </div>
   );
 }
