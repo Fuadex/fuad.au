@@ -156,7 +156,7 @@ function MoodView({ go }) {
     return years.map((y, i) => ({ y, energy: e[i][1] ? e[i][0] / e[i][1] : null, valence: v[i][1] ? v[i][0] / v[i][1] : null }));
   }, [R, years]);
 
-  const pts = React.useMemo(() => R.EXPLORE.filter(a => A[a.id]).slice(0, 260).map(a => ({ id: a.id, name: a.name, hue: a.hue, x: A[a.id][1], y: A[a.id][0], plays: a.plays })), [R]);
+  const pts = React.useMemo(() => R.EXPLORE.filter(a => A[a.id]).slice(0, 600).map(a => ({ id: a.id, name: a.name, hue: a.hue, x: A[a.id][1], y: A[a.id][0], plays: a.plays })), [R]);
 
   const facts = React.useMemo(() => {
     const all = R.EXPLORE.filter(a => A[a.id]); const n = all.length || 1;

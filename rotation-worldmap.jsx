@@ -67,7 +67,6 @@ function MapView({ go }) {
   const FAMHUE = React.useMemo(() => { const m = {}; R.FAMILIES.forEach(f => m[f.i] = f.hue); return m; }, [R]);
 
   const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
-  const [geo, setGeo] = React.useState(window.ROTATION_GEO || null);
   const [mode, setMode] = React.useState("country");
   const [colorBy, setColorBy] = React.useState("dominant"); // dominant | top
   const [focus, setFocus] = React.useState(null);
@@ -77,6 +76,8 @@ function MapView({ go }) {
   const [sel, setSel] = React.useState(null);
   const [pane, setPane] = React.useState("artists");
   const [filt, setFilt] = React.useState({ fam: null, sub: null }); // genre pivot: size every place by this genre
+  const [limit, setLimit] = React.useState(5);                      // results list length
+  const [adetail, setADetail] = React.useState(window.ROTATION_ADETAIL || null); // lazy tracks/albums for the long tail
   const [view, setView] = React.useState({ s: 1, x: 0, y: 0 });
   const svgRef = React.useRef(null);
   const drag = React.useRef(null);
@@ -92,11 +93,12 @@ function MapView({ go }) {
     s.addEventListener("load", on);
     return () => s.removeEventListener("load", on);
   }, []);
-  const ensureGeo = () => {
-    if (window.ROTATION_GEO) { setGeo(window.ROTATION_GEO); return; }
-    let s = document.getElementById("rotation-geo-js");
-    if (!s) { s = document.createElement("script"); s.id = "rotation-geo-js"; s.src = "geo-detail.js"; document.head.appendChild(s); s.addEventListener("load", () => setGeo(window.ROTATION_GEO)); }
+  const ensureADetail = () => {   // long-tail tracks/albums, so the results work without picking a place
+    if (window.ROTATION_ADETAIL) { setADetail(window.ROTATION_ADETAIL); return; }
+    let s = document.getElementById("rotation-adetail-js");
+    if (!s) { s = document.createElement("script"); s.id = "rotation-adetail-js"; s.src = "artist-detail.js"; document.head.appendChild(s); s.addEventListener("load", () => setADetail(window.ROTATION_ADETAIL)); }
   };
+  React.useEffect(() => { ensureADetail(); }, []);
   const avg = React.useMemo(() => { const ks = ["energy", "valence", "acoustic", "tempo", "dance", "instr"]; return ks.map(k => R.ARTISTS.reduce((s, x) => s + x.audio[k], 0) / R.ARTISTS.length); }, []);
   React.useEffect(() => {
     if (!playing) return;
@@ -114,7 +116,7 @@ function MapView({ go }) {
   }, [world]);
   const onDown = (e) => {
     ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY }); moved.current = false;
-    if (e.pointerType === "mouse") drag.current = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y };
+    if (ptrs.current.size === 1) drag.current = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y }; // mouse, or one finger when zoomed
   };
   const onMove = (e) => {
     if (ptrs.current.has(e.pointerId)) ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
@@ -126,7 +128,9 @@ function MapView({ go }) {
       pinch.current = dist; drag.current = null; return;
     }
     pinch.current = null;
-    if (drag.current && e.pointerType === "mouse") {
+    // mouse pans always; a single finger pans only when zoomed in (otherwise the page scrolls)
+    if (drag.current && (e.pointerType === "mouse" || view.s > 1)) {
+      if (e.pointerType !== "mouse") e.preventDefault();
       const r = svgRef.current.getBoundingClientRect(), dx = (e.clientX - drag.current.x) / r.width * W, dy = (e.clientY - drag.current.y) / r.height * Hh;
       if (Math.abs(dx) + Math.abs(dy) > 3) moved.current = true;
       setView(v => ({ ...v, x: drag.current.vx + dx, y: drag.current.vy + dy }));
@@ -161,16 +165,41 @@ function MapView({ go }) {
     if (sel.kind === "country") return R.EXPLORE.filter(a => a.co === sel.key);
     const [iso, city] = sel.key.split("|"); return R.EXPLORE.filter(a => a.co === iso && a.ci === city);
   }, [sel, R]);
-  const resultArtists = React.useMemo(() => {
-    const yr = yearIdx != null ? geoYears[yearIdx] : null;
+  const filteredArtists = React.useMemo(() => {
     let set = flowArtists;
     if (filt.fam != null || filt.sub != null) set = set.filter(matchGenre);
-    return set.map(a => ({ a, p: yr != null ? (a.yp ? (a.yp[yr] || 0) : 0) : a.plays }))
-      .filter(e => e.p > 0).sort((x, y) => y.p - x.p).slice(0, 24);
-  }, [flowArtists, filt, yearIdx]);
-  // an album/song belongs to the active genre if ITS ARTIST does — resolved client-side, no rebuild
-  const exByName = React.useMemo(() => new Map(R.EXPLORE.map(a => [a.name, a])), [R]);
-  const passGenre = (artistName) => { if (filt.fam == null && filt.sub == null) return true; const rec = exByName.get(artistName); return rec ? matchGenre(rec) : false; };
+    return set;
+  }, [flowArtists, filt]);
+  const resultArtists = React.useMemo(() => {
+    const yr = yearIdx != null ? geoYears[yearIdx] : null;
+    return filteredArtists.map(a => ({ a, p: yr != null ? (a.yp ? (a.yp[yr] || 0) : 0) : a.plays }))
+      .filter(e => e.p > 0).sort((x, y) => y.p - x.p).slice(0, 25);
+  }, [filteredArtists, yearIdx]);
+  // albums/songs aggregated from each filtered artist's own top lists (kept records + lazy detail) —
+  // so the results work without picking a place. all-time (per-artist lists aren't year-split).
+  const resultMedia = React.useMemo(() => {
+    const set = filteredArtists.slice().sort((a, b) => b.plays - a.plays).slice(0, 160);
+    const albums = [], songs = [];
+    for (const a of set) {
+      const kept = R.byId[a.id];
+      if (kept) {
+        for (const t of (kept.topAlbums || [])) albums.push({ title: t.title, artist: a.name, aid: a.id, plays: t.plays });
+        for (const t of (kept.topTracks || [])) songs.push({ title: t.title, artist: a.name, aid: a.id, plays: t.plays });
+      } else if (adetail && adetail.d[a.id]) {
+        const rec = adetail.d[a.id], NMx = adetail.names;
+        for (const [ti, p] of (rec.al || [])) albums.push({ title: NMx[ti], artist: a.name, aid: a.id, plays: p });
+        for (const [ti, p] of (rec.t || [])) songs.push({ title: NMx[ti], artist: a.name, aid: a.id, plays: p });
+      }
+    }
+    albums.sort((x, y) => y.plays - x.plays); songs.sort((x, y) => y.plays - x.plays);
+    return { albums, songs };
+  }, [filteredArtists, adetail]);
+  const resultDNA = React.useMemo(() => {
+    const yr = yearIdx != null ? geoYears[yearIdx] : null;
+    const acc = [0, 0, 0, 0, 0, 0]; let w = 0;
+    for (const a of filteredArtists) { const af = R.AUDIO[a.id]; if (!af) continue; const ww = yr != null ? (a.yp ? (a.yp[yr] || 0) : 0) : a.plays; if (!ww) continue; for (let k = 0; k < 6; k++) acc[k] += af[k] * ww; w += ww; }
+    return w ? acc.map(x => x / w) : null;
+  }, [filteredArtists, yearIdx]);
   const bubbles = React.useMemo(() => {
     if (!world) return [];
     const proj = (c) => [(c.lng + 180) / 360 * world.w, (90 - c.lat) / 180 * world.h];
@@ -182,13 +211,15 @@ function MapView({ go }) {
     return set.map((c, i) => { const [x, y] = project(c); const sv = sizeOf(c); const r = ((yearIdx != null || filtSums) && sv === 0) ? 0 : base + Math.sqrt(sv / mx) * scale; return { key: kind === "country" ? c.code : "c" + i, kind, x, y, r, c }; });
   }, [world, mode, focus, yearIdx, filtSums, R]);
 
-  // sonic colouring — average a place's measured energy/valence (play-weighted) → a temperature hue
+  // sonic colouring — average any measured dimension per place (play-weighted) → a temperature hue
+  const SONIC = { energy: [0, "low", "high"], valence: [1, "dark", "bright"], acoustic: [2, "electric", "acoustic"], dance: [4, "still", "danceable"], instr: [5, "vocal", "instr."], tempo: [3, "slow", "fast"], major: [6, "minor", "major"], pop: [7, "obscure", "mainstream"] };
+  const SONIC_LABEL = { energy: "energy", valence: "mood", acoustic: "acousticness", dance: "danceability", instr: "instrumentalness", tempo: "tempo (bpm)", major: "major-key", pop: "popularity" };
   const audioPlace = React.useMemo(() => {
-    if (colorBy !== "energy" && colorBy !== "valence") return null;
-    const idx = colorBy === "energy" ? 0 : 1, country = {}, city = {};
+    const dim = SONIC[colorBy]; if (!dim) return null;
+    const idx = dim[0], country = {}, city = {};
     const acc = (m, k, v, w) => { if (!m[k]) m[k] = [0, 0]; m[k][0] += v * w; m[k][1] += w; };
-    for (const a of R.EXPLORE) { const af = R.AUDIO[a.id]; if (!af) continue; const v = af[idx], w = a.plays; if (a.co) acc(country, a.co, v, w); if (a.co && a.ci) acc(city, a.co + "|" + a.ci, v, w); }
-    return { country, city };
+    for (const a of R.EXPLORE) { const af = R.AUDIO[a.id]; if (!af) continue; let v = af[idx]; if (idx === 7) v = v / 100; const w = a.plays; if (a.co) acc(country, a.co, v, w); if (a.co && a.ci) acc(city, a.co + "|" + a.ci, v, w); }
+    return { country, city, lo: dim[1], hi: dim[2] };
   }, [colorBy, R]);
   const placeHue = (c) => {
     if (audioPlace) { const e = c.code ? audioPlace.country[c.code] : audioPlace.city[c.country + "|" + c.city]; if (!e || !e[1]) return "var(--bg-3)"; const avg = e[0] / e[1]; return `oklch(0.66 0.15 ${(250 - avg * 230).toFixed(0)})`; }
@@ -198,7 +229,7 @@ function MapView({ go }) {
   const openBubble = (b) => {
     if (b.kind === "country") { setFocus(b.c.code); frame(world.bbox[b.c.code]); setSel({ kind: "country", key: b.c.code }); }
     else setSel({ kind: "city", key: b.c.country + "|" + b.c.city });
-    setPane("artists"); ensureGeo();
+    setPane("artists");
   };
 
   const hb = hi != null ? bubbles.find(b => b.key === hi) : null;
@@ -207,8 +238,6 @@ function MapView({ go }) {
     ? listBase.map(t => [t, gval(t)]).filter(e => e[1] > 0).sort((a, b) => b[1] - a[1]).slice(0, 20).map(e => e[0])
     : listBase.slice(0, 20);
   const listMax = Math.max(1, ...list.map(t => filtSums ? gval(t) : t.plays));
-  const NM = geo && geo.names;
-  const period = (geo && sel) ? (geo[sel.kind] || {})[sel.key] : null;
   const selName = sel ? (sel.kind === "country" ? ((G.countries.find(c => c.code === sel.key) || {}).name || sel.key) : sel.key.split("|")[1]) : "";
   const selFlag = sel ? (sel.kind === "country" ? (G.countries.find(c => c.code === sel.key) || {}).flag : (cityPts.find(c => c.country + "|" + c.city === sel.key) || {}).flag) : "";
   const focusName = focus ? ((G.countries.find(c => c.code === focus) || {}).name || focus) : null;
@@ -230,18 +259,21 @@ function MapView({ go }) {
         </div>}
       </div>
 
-      {/* colour-by + play-the-years controls */}
+      {/* colour-by + year controls */}
       <div className="map-ctl">
         <div className="r-seg" title="how the bubbles are coloured">
-          {[["dominant", "genre"], ["top", "top artist"], ["energy", "energy"], ["valence", "mood"]].map(([k, l]) => {
-            const sonic = k === "energy" || k === "valence";
-            return <button key={k} data-on={sonic ? colorBy === k : (yearIdx == null && !filtSums && colorBy === k)} disabled={!sonic && (yearIdx != null || !!filtSums)} onClick={() => setColorBy(k)}>{l}</button>;
-          })}
+          <button data-on={colorBy === "dominant" && yearIdx == null && !filtSums} disabled={yearIdx != null || !!filtSums} onClick={() => setColorBy("dominant")}>genre</button>
+          <button data-on={colorBy === "top" && yearIdx == null && !filtSums} disabled={yearIdx != null || !!filtSums} onClick={() => setColorBy("top")}>top artist</button>
+          <select className="map-soundsel" data-on={!!SONIC[colorBy]} value={SONIC[colorBy] ? colorBy : ""} onChange={(e) => setColorBy(e.target.value || "dominant")} title="colour by a measured sound dimension">
+            <option value="">sound…</option>
+            {Object.keys(SONIC).map(k => <option key={k} value={k}>{SONIC_LABEL[k]}</option>)}
+          </select>
         </div>
         <div className="map-years">
-          <button className="map-play" data-on={playing} onClick={() => { if (!playing && (yearIdx == null || yearIdx >= geoYears.length - 1)) setYearIdx(0); setPlaying(p => !p); }}>{playing ? "❚❚" : "▶"} years</button>
-          <button className="map-yr" data-on={yearIdx == null} onClick={() => { setPlaying(false); setYearIdx(null); }}>all</button>
-          {geoYears.map((y, i) => <button key={y} className="map-yr" data-on={yearIdx === i} onClick={() => { setPlaying(false); setYearIdx(i); }}>{"'" + String(y).slice(2)}</button>)}
+          <button className="map-play" data-on={playing} onClick={() => { if (!playing && (yearIdx == null || yearIdx >= geoYears.length - 1)) setYearIdx(0); setPlaying(p => !p); }}>{playing ? "❚❚" : "▶"}</button>
+          <input className="map-slider" type="range" min="0" max={geoYears.length} value={yearIdx == null ? 0 : yearIdx + 1}
+            onChange={(e) => { setPlaying(false); const v = +e.target.value; setYearIdx(v === 0 ? null : v - 1); }} />
+          <span className="map-yrlabel">{yearIdx == null ? "all years" : geoYears[yearIdx]}</span>
         </div>
       </div>
 
@@ -255,7 +287,7 @@ function MapView({ go }) {
       </div>
 
       <div className="r-card" style={{ padding: 0, overflow: "hidden", background: "var(--bg-2)" }}>
-        <svg ref={svgRef} viewBox={`0 0 ${world.w} ${world.h}`} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "pan-y" }}
+        <svg ref={svgRef} viewBox={`0 0 ${world.w} ${world.h}`} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: view.s > 1 ? "none" : "pan-y" }}
           onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp} onPointerLeave={onLeave}>
           <g transform={`translate(${view.x} ${view.y}) scale(${view.s})`}>
             {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" stroke="var(--rule-2)" strokeWidth={0.4 / view.s} />)}
@@ -271,10 +303,11 @@ function MapView({ go }) {
 
       {/* legend — genre families by default, or the sonic gradient when colouring by energy/mood (always shown, no layout shift) */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 14px", marginTop: 10, alignItems: "center", minHeight: 20 }}>
-        {(colorBy === "energy" || colorBy === "valence")
-          ? <><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{colorBy === "energy" ? "calm" : "dark"}</span>
+        {audioPlace
+          ? <><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{SONIC_LABEL[colorBy]}:</span>
+            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{audioPlace.lo}</span>
             <span style={{ width: 130, height: 9, borderRadius: 3, background: "linear-gradient(90deg, oklch(0.66 0.15 250), oklch(0.66 0.15 135), oklch(0.66 0.15 30))" }} />
-            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{colorBy === "energy" ? "intense" : "bright"}</span></>
+            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{audioPlace.hi}</span></>
           : R.FAMILIES.map(f => (
             <div key={f.i} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
               <span style={{ width: 10, height: 10, borderRadius: 3, background: `oklch(0.63 0.17 ${f.hue})` }} />
@@ -294,7 +327,7 @@ function MapView({ go }) {
           {list.map((t, i) => (
             <div key={(t.code || t.city) + i} className="map-listrow"
               onMouseEnter={() => setHi(t.code ? t.code : "c" + cityPts.filter(c => !focus || c.country === focus).indexOf(t))} onMouseLeave={() => setHi(null)}
-              onClick={() => { if (t.code) openBubble({ kind: "country", c: t }); else { setSel({ kind: "city", key: t.country + "|" + t.city }); setPane("artists"); ensureGeo(); } }}>
+              onClick={() => { if (t.code) openBubble({ kind: "country", c: t }); else { setSel({ kind: "city", key: t.country + "|" + t.city }); setPane("artists"); } }}>
               <span style={{ width: 11, height: 11, borderRadius: 3, background: placeHue(t), flex: "none" }} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.flag} {t.code ? t.name : t.city} <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>· {t.artists}a</span></div>
@@ -306,12 +339,11 @@ function MapView({ go }) {
         </div>
       </div>
 
-      {/* results — artists are place ∩ genre ∩ year; albums/songs/dna are place-level (from geo-detail) */}
+      {/* results — top artists + albums + songs + DNA for the current place ∩ genre ∩ year (no place needed) */}
       {(() => {
         const gName = filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? R.FAMILIES[filt.fam].family : null;
         const parts = [sel ? (selFlag + " " + selName) : "everywhere", gName || "all genres", yearIdx != null ? geoYears[yearIdx] : "all years"];
         const totalPlays = resultArtists.reduce((s, e) => s + e.p, 0);
-        const filtered = filt.fam != null || filt.sub != null;
         return (
           <div className="r-card" style={{ marginTop: "var(--gap)", padding: 22 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
@@ -319,46 +351,50 @@ function MapView({ go }) {
                 <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22 }}>{parts.join("  ·  ")}</div></div>
               <div><div className="r-stat-n" style={{ fontSize: 26 }}>{fmt(totalPlays)}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>plays</div></div>
             </div>
-            <div className="r-seg" style={{ margin: "16px 0 14px" }}>
-              {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => setPane(k)}>{l}</button>)}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "10px 14px", flexWrap: "wrap", margin: "16px 0 14px" }}>
+              <div className="r-seg">
+                {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => { setPane(k); if (k === "albums" || k === "songs") ensureADetail(); }}>{l}</button>)}
+              </div>
+              {pane !== "dna" && <div className="r-seg map-limseg">
+                {[5, 10, 15, 20, 25].map(n => <button key={n} data-on={limit === n} onClick={() => setLimit(n)}>{n}</button>)}
+              </div>}
             </div>
-            {pane === "artists"
-              ? (resultArtists.length
-                ? <div className="cal-rows">{resultArtists.map((e, i) => { const a = e.a, kept = !!R.byId[a.id]; return (
-                    <div key={a.id} className="cal-row" data-link={kept} onClick={() => kept && go("artist", a.id)}>
-                      <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={a.hue || 210} name={a.name} size={34} radius={3} />
-                      <span className="cal-nm">{a.name}</span><span className="cal-pl">{fmt(e.p)}</span></div>); })}</div>
-                : <div style={{ color: "var(--ink-soft)" }}>Nothing matches this filter.</div>)
-              : !sel ? <div style={{ color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12, padding: "8px 0" }}>pick a place on the map for album, song &amp; DNA detail.</div>
-                : !geo ? <div style={{ color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12, padding: "8px 0" }}>loading the detail…</div>
-                  : !period ? <div style={{ color: "var(--ink-soft)" }}>No breakdown for {selName}.</div>
-                    : <>
-                      {yearIdx != null && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 8 }}>album &amp; song detail isn't split by year yet — showing all-time for this place{filtered ? " + genre" : ""}.</div>}
-                      {(pane === "albums" || pane === "songs") && (() => {
-                        const rows = (pane === "albums" ? period.al : period.s).filter(([ti, ai]) => passGenre(NM[ai]));
-                        return rows.length
-                          ? <div className="cal-rows">{rows.map(([ti, ai, p], i) => { const t = NM[ti], a = NM[ai], kept = !!R.byId[R.slug(a)]; return (
-                            <div key={t + i} className="cal-row" data-link={kept} onClick={() => kept && go("artist", R.slug(a))}>
-                              <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={(R.byId[R.slug(a)] || {}).hue || 210} name={a} size={34} radius={3} />
-                              <div style={{ minWidth: 0, flex: 1 }}><div className="cal-nm" style={{ fontStyle: "italic" }}>{t}</div><div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{a}</div></div>
-                              <span className="cal-pl">{fmt(p)}</span></div>); })}</div>
-                          : <div style={{ color: "var(--ink-soft)" }}>No {pane} from this genre here.</div>;
-                      })()}
-                      {pane === "dna" && <div style={{ display: "flex", justifyContent: "center", padding: "6px 0" }}><div style={{ maxWidth: 340, width: "100%" }}>
-                        <Radar axes={["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"]} values={period.d} values2={avg} run={true} size={300} />
-                        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 6 }}>solid = {selName} · dashed = your average</div></div></div>}
-                    </>}
+            {yearIdx != null && (pane === "albums" || pane === "songs") && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 8 }}>albums &amp; songs aren't split by year — showing all-time for this slice.</div>}
+            {pane === "artists" && (resultArtists.length
+              ? <div className="cal-rows">{resultArtists.slice(0, limit).map((e, i) => { const a = e.a, kept = !!R.byId[a.id]; return (
+                  <div key={a.id} className="cal-row" data-link={kept} onClick={() => kept && go("artist", a.id)}>
+                    <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={a.hue || 210} name={a.name} size={34} radius={3} />
+                    <span className="cal-nm">{a.name}</span><span className="cal-pl">{fmt(e.p)}</span></div>); })}</div>
+              : <div style={{ color: "var(--ink-soft)" }}>Nothing matches this filter.</div>)}
+            {(pane === "albums" || pane === "songs") && (() => {
+              const rows = pane === "albums" ? resultMedia.albums : resultMedia.songs;
+              if (!rows.length) return <div style={{ color: "var(--ink-soft)", fontFamily: "var(--mono)", fontSize: 12 }}>{adetail ? "Nothing here." : "loading…"}</div>;
+              return <div className="cal-rows">{rows.slice(0, limit).map((r, i) => { const kept = !!R.byId[r.aid]; return (
+                <div key={r.aid + "|" + r.title + i} className="cal-row" data-link={kept} onClick={() => kept && go("artist", r.aid)}>
+                  <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={(R.byId[r.aid] || {}).hue || 210} name={r.artist} size={34} radius={3} />
+                  <div style={{ minWidth: 0, flex: 1 }}><div className="cal-nm" style={{ fontStyle: "italic" }}>{r.title}</div><div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{r.artist}</div></div>
+                  <span className="cal-pl">{fmt(r.plays)}</span></div>); })}</div>;
+            })()}
+            {pane === "dna" && (resultDNA
+              ? <div style={{ display: "flex", justifyContent: "center", padding: "6px 0" }}><div style={{ maxWidth: 340, width: "100%" }}>
+                  <Radar axes={["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"]} values={resultDNA} values2={avg} run={true} size={300} />
+                  <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 6 }}>solid = this slice · dashed = your average</div></div></div>
+              : <div style={{ color: "var(--ink-soft)" }}>No DNA for this slice.</div>)}
           </div>
         );
       })()}
 
       <style>{`.map-ctl { display: flex; gap: 14px 18px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
-        .map-years { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
-        .map-play { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+        .map-years { display: flex; gap: 10px; align-items: center; flex: 1 1 260px; min-width: 200px; }
+        .map-play { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; flex: none; }
         .map-play[data-on="true"] { background: var(--accent); color: #0c0a08; }
-        .map-yr { font-family: var(--mono); font-size: 10px; padding: 4px 7px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink-soft); background: transparent; cursor: pointer; transition: .12s; }
-        .map-yr:hover { border-color: var(--ink-faint); }
-        .map-yr[data-on="true"] { background: var(--accent); border-color: var(--accent); color: #0c0a08; }
+        .map-slider { flex: 1; min-width: 90px; height: 4px; -webkit-appearance: none; appearance: none; background: var(--bg-3); border-radius: 3px; outline: none; cursor: pointer; }
+        .map-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 15px; height: 15px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid var(--bg-2); }
+        .map-slider::-moz-range-thumb { width: 15px; height: 15px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid var(--bg-2); }
+        .map-yrlabel { font-family: var(--mono); font-size: 10px; color: var(--ink-soft); flex: none; min-width: 56px; text-align: right; }
+        .map-soundsel { font-family: var(--mono); font-size: 10px; padding: 4px 6px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink-soft); background: var(--bg-2); cursor: pointer; }
+        .map-soundsel[data-on="true"] { border-color: var(--accent); color: var(--accent); }
+        .map-limseg button { font-size: 10px; padding: 4px 8px; }
         .map-listrow { display: flex; align-items: center; gap: 10px; padding: 3px 4px; border-radius: 5px; cursor: pointer; transition: background .12s; }
         .map-listrow:hover { background: var(--bg-3); }
         .cal-rows { display: grid; gap: 2px; }
