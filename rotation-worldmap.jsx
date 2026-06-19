@@ -211,18 +211,51 @@ function MapView({ go }) {
     return set.map((c, i) => { const [x, y] = project(c); const sv = sizeOf(c); const r = ((yearIdx != null || filtSums) && sv === 0) ? 0 : base + Math.sqrt(sv / mx) * scale; return { key: kind === "country" ? c.code : "c" + i, kind, x, y, r, c }; });
   }, [world, mode, focus, yearIdx, filtSums, R]);
 
-  // sonic colouring — average any measured dimension per place (play-weighted) → a temperature hue
-  const SONIC = { energy: [0, "low", "high"], valence: [1, "dark", "bright"], acoustic: [2, "electric", "acoustic"], dance: [4, "still", "danceable"], instr: [5, "vocal", "instr."], tempo: [3, "slow", "fast"], major: [6, "minor", "major"], pop: [7, "obscure", "mainstream"] };
-  const SONIC_LABEL = { energy: "energy", valence: "mood", acoustic: "acousticness", dance: "danceability", instr: "instrumentalness", tempo: "tempo (bpm)", major: "major-key", pop: "popularity" };
-  const audioPlace = React.useMemo(() => {
-    const dim = SONIC[colorBy]; if (!dim) return null;
-    const idx = dim[0], country = {}, city = {};
-    const acc = (m, k, v, w) => { if (!m[k]) m[k] = [0, 0]; m[k][0] += v * w; m[k][1] += w; };
-    for (const a of R.EXPLORE) { const af = R.AUDIO[a.id]; if (!af) continue; let v = af[idx]; if (idx === 7) v = v / 100; const w = a.plays; if (a.co) acc(country, a.co, v, w); if (a.co && a.ci) acc(city, a.co + "|" + a.ci, v, w); }
-    return { country, city, lo: dim[1], hi: dim[2] };
+  // metrics you can colour the map by — measured audio dims + a few derived place metrics.
+  // each returns a 0-1 normalised value per place → a cool→warm temperature hue.
+  const METRICS = {
+    energy: { kind: "audio", idx: 0, lo: "low", hi: "high", label: "energy" },
+    valence: { kind: "audio", idx: 1, lo: "dark", hi: "bright", label: "mood" },
+    acoustic: { kind: "audio", idx: 2, lo: "electric", hi: "acoustic", label: "acousticness" },
+    dance: { kind: "audio", idx: 4, lo: "still", hi: "danceable", label: "danceability" },
+    instr: { kind: "audio", idx: 5, lo: "vocal", hi: "instr.", label: "instrumentalness" },
+    tempo: { kind: "audio", idx: 3, lo: "slow", hi: "fast", label: "tempo (bpm)" },
+    major: { kind: "audio", idx: 6, lo: "minor", hi: "major", label: "major-key" },
+    loud: { kind: "audio", idx: 9, xf: (v) => clamp((v + 60) / 60, 0, 1), lo: "quiet", hi: "loud", label: "loudness" },
+    speech: { kind: "audio", idx: 10, lo: "sung", hi: "spoken", label: "speechiness" },
+    live: { kind: "audio", idx: 11, lo: "studio", hi: "live", label: "liveness" },
+    pop: { kind: "audio", idx: 7, xf: (v) => v / 100, lo: "obscure", hi: "mainstream", label: "popularity" },
+    followers: { kind: "audio", idx: 8, xf: (v) => clamp(Math.log10(v + 1) / 7, 0, 1), lo: "cult", hi: "famous", label: "followers" },
+    vintage: { kind: "debut", lo: "classic", hi: "recent", label: "vintage (debut yr)" },
+    diversity: { kind: "diversity", lo: "focused", hi: "eclectic", label: "diversity" },
+    depth: { kind: "depth", lo: "wide", hi: "deep", label: "depth (plays/artist)" },
+  };
+  const placeMetric = React.useMemo(() => {
+    const M = METRICS[colorBy]; if (!M) return null;
+    let C = {}, Ci = {};
+    if (M.kind === "audio" || M.kind === "debut") {
+      const cc = {}, cic = {}, acc = (m, k, v, w) => { if (!m[k]) m[k] = [0, 0]; m[k][0] += v * w; m[k][1] += w; };
+      for (const a of R.EXPLORE) {
+        let v; if (M.kind === "audio") { const af = R.AUDIO[a.id]; if (!af) continue; v = M.xf ? M.xf(af[M.idx]) : af[M.idx]; } else { if (!a.d) continue; v = a.d; }
+        const w = a.plays; if (a.co) acc(cc, a.co, v, w); if (a.co && a.ci) acc(cic, a.co + "|" + a.ci, v, w);
+      }
+      const red = (m) => { const o = {}; for (const k in m) o[k] = m[k][1] ? m[k][0] / m[k][1] : null; return o; };
+      C = red(cc); Ci = red(cic);
+      if (M.kind === "debut") { const all = [...Object.values(C), ...Object.values(Ci)].filter(x => x != null); const lo = Math.min(...all), hi = Math.max(...all); const nz = (x) => x == null ? null : (hi > lo ? (x - lo) / (hi - lo) : 0.5); for (const k in C) C[k] = nz(C[k]); for (const k in Ci) Ci[k] = nz(Ci[k]); }
+    } else if (M.kind === "diversity") {
+      const cs = {}, cis = {};
+      for (const a of R.EXPLORE) { if (a.co) { (cs[a.co] = cs[a.co] || new Set()); a.s.forEach(si => cs[a.co].add(si)); } if (a.co && a.ci) { const k = a.co + "|" + a.ci; (cis[k] = cis[k] || new Set()); a.s.forEach(si => cis[k].add(si)); } }
+      for (const k in cs) C[k] = cs[k].size; for (const k in cis) Ci[k] = cis[k].size;
+      const mx = Math.max(1, ...Object.values(C), ...Object.values(Ci)); for (const k in C) C[k] /= mx; for (const k in Ci) Ci[k] /= mx;
+    } else if (M.kind === "depth") {
+      for (const c of G.countries) if (c.artists) C[c.code] = c.plays / c.artists;
+      for (const c of cityPts) if (c.artists) Ci[c.country + "|" + c.city] = c.plays / c.artists;
+      const mx = Math.max(1, ...Object.values(C), ...Object.values(Ci)); for (const k in C) C[k] /= mx; for (const k in Ci) Ci[k] /= mx;
+    }
+    return { country: C, city: Ci, lo: M.lo, hi: M.hi };
   }, [colorBy, R]);
   const placeHue = (c) => {
-    if (audioPlace) { const e = c.code ? audioPlace.country[c.code] : audioPlace.city[c.country + "|" + c.city]; if (!e || !e[1]) return "var(--bg-3)"; const avg = e[0] / e[1]; return `oklch(0.66 0.15 ${(250 - avg * 230).toFixed(0)})`; }
+    if (placeMetric) { const e = c.code ? placeMetric.country[c.code] : placeMetric.city[c.country + "|" + c.city]; if (e == null) return "var(--bg-3)"; return `oklch(0.66 0.15 ${(250 - e * 230).toFixed(0)})`; }
     if (filtSums) { const fi = filt.sub != null ? (R.SUBS[filt.sub] && R.SUBS[filt.sub].fam) : filt.fam; return (fi != null && FAMHUE[fi] != null) ? `oklch(0.63 0.17 ${FAMHUE[fi]})` : "var(--accent)"; }
     let fi; if (yearIdx != null) fi = c.yf ? c.yf[yearIdx] : -1; else fi = colorBy === "top" ? c.tf : c.df; return (fi >= 0 && FAMHUE[fi] != null) ? `oklch(0.63 0.17 ${FAMHUE[fi]})` : "var(--accent)";
   };
@@ -264,9 +297,9 @@ function MapView({ go }) {
         <div className="r-seg" title="how the bubbles are coloured">
           <button data-on={colorBy === "dominant" && yearIdx == null && !filtSums} disabled={yearIdx != null || !!filtSums} onClick={() => setColorBy("dominant")}>genre</button>
           <button data-on={colorBy === "top" && yearIdx == null && !filtSums} disabled={yearIdx != null || !!filtSums} onClick={() => setColorBy("top")}>top artist</button>
-          <select className="map-soundsel" data-on={!!SONIC[colorBy]} value={SONIC[colorBy] ? colorBy : ""} onChange={(e) => setColorBy(e.target.value || "dominant")} title="colour by a measured sound dimension">
-            <option value="">sound…</option>
-            {Object.keys(SONIC).map(k => <option key={k} value={k}>{SONIC_LABEL[k]}</option>)}
+          <select className="map-soundsel" data-on={!!METRICS[colorBy]} value={METRICS[colorBy] ? colorBy : ""} onChange={(e) => setColorBy(e.target.value || "dominant")} title="colour by a measured dimension">
+            <option value="">by sound / metric…</option>
+            {Object.keys(METRICS).map(k => <option key={k} value={k}>{METRICS[k].label}</option>)}
           </select>
         </div>
         <div className="map-years">
@@ -303,11 +336,11 @@ function MapView({ go }) {
 
       {/* legend — genre families by default, or the sonic gradient when colouring by energy/mood (always shown, no layout shift) */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 14px", marginTop: 10, alignItems: "center", minHeight: 20 }}>
-        {audioPlace
-          ? <><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{SONIC_LABEL[colorBy]}:</span>
-            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{audioPlace.lo}</span>
+        {placeMetric
+          ? <><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{METRICS[colorBy].label}:</span>
+            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{placeMetric.lo}</span>
             <span style={{ width: 130, height: 9, borderRadius: 3, background: "linear-gradient(90deg, oklch(0.66 0.15 250), oklch(0.66 0.15 135), oklch(0.66 0.15 30))" }} />
-            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{audioPlace.hi}</span></>
+            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{placeMetric.hi}</span></>
           : R.FAMILIES.map(f => (
             <div key={f.i} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
               <span style={{ width: 10, height: 10, borderRadius: 3, background: `oklch(0.63 0.17 ${f.hue})` }} />
