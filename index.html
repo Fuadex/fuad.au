@@ -51,9 +51,16 @@
 <div id="root">
   <div id="boot">
     <div class="boot-mark">Rotation<span>.</span></div>
-    <div class="boot-sub">reading 315k scrobbles…</div>
+    <div class="boot-sub" id="boot-sub">reading scrobbles…</div>
   </div>
 </div>
+<script>
+  // dynamic count — prefer the daily live total, else the CSV total (data scripts already loaded above)
+  (function () { try {
+    var t = (window.ROTATION_LIVE && window.ROTATION_LIVE.total) || (window.ROTATION && window.ROTATION.TOTALS && window.ROTATION.TOTALS.scrobbles) || 0;
+    if (t) document.getElementById("boot-sub").textContent = "reading " + Math.round(t / 1000) + "k scrobbles…";
+  } catch (e) {} })();
+</script>
 <style>
   #boot { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
     font-family: 'Source Serif 4', Georgia, serif; background: #0b0a0f; }
