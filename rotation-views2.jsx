@@ -490,6 +490,9 @@ function MiniArtistView({ a, go }) {
               {[
                 { k: "tempo", v: Math.round(50 + af[3] * 140), u: " bpm", f: af[3] },
                 { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
+                { k: "loud", v: Math.round(af[9]), u: " dB", f: Math.max(0, Math.min(1, (af[9] + 60) / 60)) },
+                { k: "speech", v: Math.round(af[10] * 100), u: "%", f: af[10] },
+                { k: "live", v: Math.round(af[11] * 100), u: "%", f: af[11] },
                 { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
                 { k: "followers", v: fmtK(af[8]), f: null },
               ].map(s => (
@@ -626,6 +629,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {[
               { k: "tempo", v: Math.round(50 + a.audio.tempo * 140), u: " bpm", f: a.audio.tempo },
               { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
+              { k: "loud", v: Math.round(af[9]), u: " dB", f: Math.max(0, Math.min(1, (af[9] + 60) / 60)) },
+              { k: "speech", v: Math.round(af[10] * 100), u: "%", f: af[10] },
+              { k: "live", v: Math.round(af[11] * 100), u: "%", f: af[11] },
               { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
               { k: "followers", v: fmtK(af[8]), f: null },
             ].map(s => (

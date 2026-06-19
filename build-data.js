@@ -1863,9 +1863,10 @@ const FAMILIES_OUT = FAMILIES.map((f, i) => ({ i, family: f.family, hue: f.hue }
   .filter(f => _famWithData.has(f.family));
 
 // compact measured audio per explorable/kept artist id →
-// [energy, valence, acoustic, tempo(0-1), dance, instr, major-key share, popularity, followers]
+// [0 energy, 1 valence, 2 acoustic, 3 tempo(0-1), 4 dance, 5 instr, 6 major-key, 7 popularity,
+//  8 followers, 9 loudness(dB), 10 speechiness, 11 liveness]
 const AUDIO_OUT = {};
-const _afRow = (af) => [af.energy, af.valence, af.acoustic, af.tempo, af.dance, af.instr, af.major, af.pop, af.followers];
+const _afRow = (af) => [af.energy, af.valence, af.acoustic, af.tempo, af.dance, af.instr, af.major, af.pop, af.followers, af.loud, af.speech, af.live];
 for (const a of EXPLORE) { const af = AUDIO[a.name]; if (af) AUDIO_OUT[a.id] = _afRow(af); }
 for (const a of ARTISTS) { if (!AUDIO_OUT[a.id]) { const af = AUDIO[a.name]; if (af) AUDIO_OUT[a.id] = _afRow(af); } }
 

@@ -223,6 +223,59 @@ function MoodView({ go }) {
   );
 }
 
+// ArtistShare — a donut of your top artists by share of plays; click "everything else" to drill into
+// the next tier, ‹ back to climb out. Sits at the foot of the Journey tab.
+function ArtistShare({ go }) {
+  const R = window.ROTATION;
+  const arts = React.useMemo(() => R.EXPLORE.slice().sort((a, b) => b.plays - a.plays), [R]);
+  const total = React.useMemo(() => arts.reduce((s, a) => s + a.plays, 0) || 1, [arts]);
+  const [start, setStart] = React.useState(0);
+  const [hi, setHi] = React.useState(null);
+  const N = 9;
+  const shown = arts.slice(start, start + N);
+  const restPlays = arts.slice(start + N).reduce((s, a) => s + a.plays, 0);
+  const segs = [...shown.map(a => ({ id: a.id, name: a.name, hue: a.hue, plays: a.plays, kept: !!R.byId[a.id] })),
+    ...(restPlays > 0 ? [{ id: "__others", name: "everything else", hue: 250, plays: restPlays, others: true }] : [])];
+  const ringTotal = segs.reduce((s, x) => s + x.plays, 0) || 1;
+  const cx = 150, cy = 150, r = 132, ir = 80;
+  let ang = -Math.PI / 2;
+  const arcs = segs.map(s => {
+    const frac = s.plays / ringTotal, a0 = ang, a1 = ang + frac * 2 * Math.PI; ang = a1;
+    const P = (a, rr) => `${(cx + rr * Math.cos(a)).toFixed(1)} ${(cy + rr * Math.sin(a)).toFixed(1)}`;
+    const large = a1 - a0 > Math.PI ? 1 : 0;
+    const d = `M ${P(a0, r)} A ${r} ${r} 0 ${large} 1 ${P(a1, r)} L ${P(a1, ir)} A ${ir} ${ir} 0 ${large} 0 ${P(a0, ir)} Z`;
+    return { ...s, d, pct: s.plays / total };
+  });
+  const hov = hi != null ? arcs.find(a => a.id === hi) : null;
+  const onClick = (s) => { if (s.others) { setStart(start + N); setHi(null); } else if (s.kept) go("artist", s.id); };
+
+  return (
+    <div className="r-card" style={{ marginTop: "var(--gap)", padding: "18px 20px" }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl"><b>Top-artist share</b></span>
+        <span className="meta">{start > 0 ? <span style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => { setStart(Math.max(0, start - N)); setHi(null); }}>‹ back</span> : "click ‘everything else’ to drill in"}</span></div>
+      <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "300px 1fr", gap: "var(--gap)", alignItems: "center" }}>
+        <svg viewBox="0 0 300 300" style={{ width: "100%", maxWidth: 300, height: "auto", display: "block", margin: "0 auto" }} onMouseLeave={() => setHi(null)}>
+          {arcs.map(s => (
+            <path key={s.id} d={s.d} fill={`oklch(0.63 0.16 ${s.hue})`} fillOpacity={hi == null || hi === s.id ? (s.others ? 0.5 : 0.85) : 0.25}
+              stroke="var(--bg-2)" strokeWidth="1.5" style={{ cursor: (s.others || s.kept) ? "pointer" : "default", transition: "fill-opacity .12s" }}
+              onMouseEnter={() => setHi(s.id)} onClick={() => onClick(s)}><title>{s.name}</title></path>))}
+          <text x="150" y="143" textAnchor="middle" fontFamily="var(--serif)" fontStyle="italic" fontSize="16" fill="var(--ink)">{hov ? (hov.name.length > 16 ? hov.name.slice(0, 15) + "…" : hov.name) : (start > 0 ? "tier " + (start / N + 1) : "your top")}</text>
+          <text x="150" y="167" textAnchor="middle" fontFamily="var(--mono)" fontSize="15" fill="var(--accent)">{hov ? (hov.pct * 100).toFixed(1) + "%" : (arcs.filter(a => !a.others).reduce((s, a) => s + a.pct, 0) * 100).toFixed(0) + "%"}</text>
+        </svg>
+        <div style={{ display: "grid", gap: 3 }}>
+          {arcs.map(s => (
+            <div key={s.id} onMouseEnter={() => setHi(s.id)} onMouseLeave={() => setHi(null)} onClick={() => onClick(s)}
+              style={{ display: "flex", alignItems: "center", gap: 9, padding: "4px 6px", borderRadius: 5, cursor: (s.others || s.kept) ? "pointer" : "default", background: hi === s.id ? "var(--bg-3)" : "transparent", opacity: hi == null || hi === s.id ? 1 : 0.5 }}>
+              <span style={{ width: 10, height: 10, borderRadius: 3, background: `oklch(0.63 0.16 ${s.hue})`, flex: "none" }} />
+              <span style={{ flex: 1, minWidth: 0, fontSize: 13, fontStyle: s.others ? "italic" : "normal", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: s.others ? "var(--ink-soft)" : "var(--ink)" }}>{s.name}{s.others ? " ›" : ""}</span>
+              <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>{(s.pct * 100).toFixed(1)}%</span>
+            </div>))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function JourneyView({ go }) {
   const R = window.ROTATION;
   const GF = R.GENRE_FLOW, SF = R.SUB_FLOW;
@@ -304,6 +357,8 @@ function JourneyView({ go }) {
           </div>
         ))}
       </div>
+
+      <ArtistShare go={go} />
 
       <style>{`
         .jy-crumbs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
