@@ -107,7 +107,7 @@ function MapView({ go }) {
   }, [playing, geoYears]);
   const W = world ? world.w : 1000, Hh = world ? world.h : 500;
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-  const toSvg = (cx, cy) => { const r = svgRef.current.getBoundingClientRect(); return [(cx - r.left) / r.width * W, (cy - r.top) / r.height * Hh]; };
+  const toSvg = (cx, cy) => { const el = svgRef.current; if (!el) return [W / 2, Hh / 2]; const r = el.getBoundingClientRect(); if (!r.width || !r.height) return [W / 2, Hh / 2]; return [(cx - r.left) / r.width * W, (cy - r.top) / r.height * Hh]; };
   React.useEffect(() => {
     const el = svgRef.current; if (!el) return;
     const onWheel = (e) => { e.preventDefault(); const [sx, sy] = toSvg(e.clientX, e.clientY); setView(v => { const ns = clamp(v.s * (e.deltaY < 0 ? 1.15 : 1 / 1.15), 1, 14); return { s: ns, x: sx - (sx - v.x) / v.s * ns, y: sy - (sy - v.y) / v.s * ns }; }); };
@@ -130,14 +130,22 @@ function MapView({ go }) {
     pinch.current = null;
     // mouse pans always; a single finger pans only when zoomed in (otherwise the page scrolls)
     if (drag.current && (e.pointerType === "mouse" || view.s > 1)) {
-      if (e.pointerType !== "mouse") e.preventDefault();
-      const r = svgRef.current.getBoundingClientRect(), dx = (e.clientX - drag.current.x) / r.width * W, dy = (e.clientY - drag.current.y) / r.height * Hh;
+      const el = svgRef.current; if (!el) return;
+      if (e.pointerType !== "mouse" && e.cancelable) e.preventDefault();
+      const r = el.getBoundingClientRect(); if (!r.width || !r.height) return;
+      const dx = (e.clientX - drag.current.x) / r.width * W, dy = (e.clientY - drag.current.y) / r.height * Hh;
       if (Math.abs(dx) + Math.abs(dy) > 3) moved.current = true;
       setView(v => ({ ...v, x: drag.current.vx + dx, y: drag.current.vy + dy }));
     }
   };
   const onUp = (e) => { if (e && e.pointerId != null) ptrs.current.delete(e.pointerId); if (ptrs.current.size < 2) pinch.current = null; if (ptrs.current.size === 0) drag.current = null; };
   const onLeave = () => { ptrs.current.clear(); pinch.current = null; drag.current = null; setHi(null); };
+  // a gesture can end off the map (finger/mouse released outside its bounds) — clear drag state globally
+  React.useEffect(() => {
+    const up = (e) => { if (e && e.pointerId != null) ptrs.current.delete(e.pointerId); if (ptrs.current.size < 2) pinch.current = null; if (ptrs.current.size === 0) drag.current = null; };
+    window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+    return () => { window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up); };
+  }, []);
   const frame = (bb) => { if (!bb) return; const [x0, y0, x1, y1] = bb, bw = Math.max(8, x1 - x0), bh = Math.max(8, y1 - y0), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2; const s = clamp(Math.min(W / (bw * 1.6), Hh / (bh * 1.6)), 1, 12); setView({ s, x: W / 2 - cx * s, y: Hh / 2 - cy * s }); };
   const reset = () => { setFocus(null); setSel(null); setView({ s: 1, x: 0, y: 0 }); };
 
