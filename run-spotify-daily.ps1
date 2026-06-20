@@ -1,8 +1,8 @@
-# run-spotify-daily.ps1 — local daily Spotify PHOTO pull for Rotation (fuad.au).
-# Pulls artist photos using the keys in Fuad-Soudah/Culture_2/.env, folds them into the dataset,
-# commits/pushes, and once every gap is filled it notifies + unregisters its own scheduled task.
-# Album covers are paused for now (that endpoint is quota-blocked) — photos first.
-# Scheduled via Windows Task Scheduler (task "RotationSpotifyArt"). Logs to spotify-sync.log.
+# run-spotify-daily.ps1 — local daily Spotify art pull for Rotation (fuad.au).
+# Phase 1: artist photos (folded into the site). Phase 2: once photos are complete, album covers
+# (accumulated into spotify-cache.json for a future cover wall — not yet shown on the site).
+# Album calls only run AFTER photos are done, so they can't trip the daily ban mid photo-pull.
+# Self-unregisters once BOTH photos and covers report nothing left. Scheduled task "RotationSpotifyArt".
 $ErrorActionPreference = "Continue"
 Set-Location "C:\Users\Fuad\Documents\GitHub\fuad.au"
 $log = "C:\Users\Fuad\Documents\GitHub\fuad.au\spotify-sync.log"
@@ -10,28 +10,35 @@ function Log($m) { "$(Get-Date -Format s) $m" | Out-File -Append -Encoding utf8 
 
 Log "--- start ---"
 node enrich-spotify.js --mode=images --limit=400 *>> $log; $img = $LASTEXITCODE
+$cov = 0
+if ($img -eq 3) {
+    # photos are complete → spend the day's quota on album covers
+    node enrich-spotify.js --mode=covers --top=300 *>> $log; $cov = $LASTEXITCODE
+}
 
-# rebuild + commit only when the cache actually gained photos (avoids timestamp-only commits)
 git add spotify-cache.json
 git diff --staged --quiet
 $cacheChanged = ($LASTEXITCODE -ne 0)
 if ($cacheChanged) {
-    node build-data.js *>> $log                                # fold the new photos into music-data.js
-    git add music-data.js search-index.js artist-detail.js
-    git commit -m "chore: daily spotify photo batch" *>> $log
+    # only rebuild/fold when PHOTOS changed — album covers aren't folded into the build yet
+    if ($img -ne 3) {
+        node build-data.js *>> $log
+        git add music-data.js search-index.js artist-detail.js
+    }
+    git commit -m "chore: daily spotify art batch" *>> $log
     git push *>> $log
-    Log "pushed (img=$img)"
+    Log "pushed (img=$img cov=$cov)"
 } else {
-    Log "no new photos (img=$img)"
+    Log "no new art (img=$img cov=$cov)"
 }
 
-# done when photos report complete (exit 3); exit 4 = quota-paused → stay alive and resume tomorrow.
-if ($img -eq 3) {
-    Log "all artist photos complete - notifying + unregistering"
-    Set-Content -Path "C:\Users\Fuad\Documents\GitHub\fuad.au\PHOTOS-COMPLETE.txt" -Value "All artist photos pulled: $(Get-Date -Format s)" -Encoding utf8
-    git add PHOTOS-COMPLETE.txt
-    git commit -m "Artist photos complete - Spotify photo routine finished" *>> $log
+# done only when BOTH photos (img) and covers (cov) report nothing left (exit 3); exit 4 = quota-paused.
+if ($img -eq 3 -and $cov -eq 3) {
+    Log "all artwork complete - notifying + unregistering"
+    Set-Content -Path "C:\Users\Fuad\Documents\GitHub\fuad.au\ART-COMPLETE.txt" -Value "All artist photos + album covers pulled: $(Get-Date -Format s)" -Encoding utf8
+    git add ART-COMPLETE.txt
+    git commit -m "Spotify art complete - photos + album covers finished" *>> $log
     git push *>> $log
-    try { msg.exe * "Rotation: all artist photos are in - the Spotify photo routine has finished." } catch {}
+    try { msg.exe * "Rotation: all artist photos and album covers are in - the Spotify routine has finished." } catch {}
     Unregister-ScheduledTask -TaskName "RotationSpotifyArt" -Confirm:$false
 }
