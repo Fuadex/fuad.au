@@ -1870,11 +1870,16 @@ const _afRow = (af) => [af.energy, af.valence, af.acoustic, af.tempo, af.dance, 
 for (const a of EXPLORE) { const af = AUDIO[a.name]; if (af) AUDIO_OUT[a.id] = _afRow(af); }
 for (const a of ARTISTS) { if (!AUDIO_OUT[a.id]) { const af = AUDIO[a.name]; if (af) AUDIO_OUT[a.id] = _afRow(af); } }
 
+// Spotify photo per artist id — alternate/backup image (GenCover falls back to it if the primary 404s)
+const SPOTIMG_OUT = {};
+for (const a of EXPLORE) { const s = SPOT[a.name]; if (s && s.img) SPOTIMG_OUT[a.id] = s.img; }
+for (const a of ARTISTS) { if (!SPOTIMG_OUT[a.id]) { const s = SPOT[a.name]; if (s && s.img) SPOTIMG_OUT[a.id] = s.img; } }
+
 const DATA = {
   ARTISTS, ALBUMS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
   CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
   CLOCK_BY_YEAR, CLOCK_CUBE, SOUND_BY_YEAR, FAMILIES: FAMILIES_OUT,
-  SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE, CONSTELLATION, GENRE_FLOW, SUB_FLOW, THUMBS, AUDIO: AUDIO_OUT,
+  SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE, CONSTELLATION, GENRE_FLOW, SUB_FLOW, THUMBS, AUDIO: AUDIO_OUT, SPOTIMG: SPOTIMG_OUT,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)

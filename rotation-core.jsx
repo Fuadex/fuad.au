@@ -311,9 +311,15 @@ function GenCover({ hue, name, size, radius, style, image, thumb }) {
   // Real image when available: small sizes use the 150x thumb, large use the full uri.
   // The generated gradient stays underneath as a load-fallback (and shows if the img 404s).
   const imgUrl = (npx <= 100 ? (thumb || image) : (image || thumb)) || "";
-  const [imgOk, setImgOk] = React.useState(true);
-  React.useEffect(() => { setImgOk(true); }, [imgUrl]);
-  const showImg = imgUrl && imgOk;
+  // backup image source: the Spotify alternate (R.SPOTIMG) — tried if the primary fails, before falling
+  // back to the generated cover. Lets a dead Discogs/last.fm hotlink recover automatically.
+  const R0 = (typeof window !== "undefined" && window.ROTATION) || null;
+  const spotAlt = (R0 && R0.SPOTIMG && name && R0.slug) ? (R0.SPOTIMG[R0.slug(name)] || "") : "";
+  const chain = [imgUrl, spotAlt].filter((u, i, a) => u && a.indexOf(u) === i);
+  const [srcIdx, setSrcIdx] = React.useState(0);
+  React.useEffect(() => { setSrcIdx(0); }, [imgUrl, spotAlt]);
+  const cur = chain[srcIdx] || "";
+  const showImg = !!cur;
   return (
     <div className="gc" style={{ width: px, height: px, borderRadius: radius != null ? radius : 3, ...style }}>
       <div className="gc-fill" style={fill} />
@@ -321,7 +327,7 @@ function GenCover({ hue, name, size, radius, style, image, thumb }) {
       <div className="gc-grain" />
       {!showImg && <span className="gc-init" style={{ fontSize: Math.max(9, npx * 0.16) }}>{initials}</span>}
       {showImg && (
-        <img src={imgUrl} alt="" loading="lazy" onError={() => setImgOk(false)}
+        <img src={cur} alt="" loading="lazy" onError={() => setSrcIdx(i => i + 1)}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%",
             objectFit: "cover", borderRadius: "inherit", display: "block" }} />
       )}

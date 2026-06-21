@@ -26,10 +26,10 @@ const DATA_PATH = path.join(ROOT, "music-data.js");
 const CACHE_PATH = path.join(ROOT, "spotify-cache.json");
 const arg = (k, d) => { const m = process.argv.find(a => a.startsWith(k + "=")); return m ? m.slice(k.length + 1) : d; };
 const RETRY_MISSES = process.argv.includes("--retry");
-const MODE = arg("--mode", "");        // "images" (gap fill, identity only) | "covers" (album walls, top-N) | "" (full)
+const MODE = arg("--mode", "");        // "images" (gap fill) | "photos" (ALL artists, for Spotify alternates) | "covers" (album walls) | "" (full)
 const TOP = parseInt(arg("--top", "100"), 10);
 const LIMIT = parseInt(arg("--limit", "Infinity"), 10) || Infinity;
-let skipAlbums = process.argv.includes("--no-albums") || MODE === "images"; // images mode never needs album calls
+let skipAlbums = process.argv.includes("--no-albums") || MODE === "images" || MODE === "photos"; // photo modes never need album calls
 
 const MIN_INTERVAL = 400;          // ms between calls (~2.5/s ≈ 80% of Spotify's ~180/min ceiling)
 const MAX_BACKOFF = 120;           // seconds — a longer Retry-After means the daily quota is spent → abort
@@ -145,6 +145,7 @@ async function pullArtist(name, existing) {
   //   (full) → everyone
   let pool = arts;
   if (MODE === "images") pool = arts.filter(a => !a.hasImage);
+  else if (MODE === "photos") pool = arts;                  // every artist — Spotify alternate for all
   else if (MODE === "covers") pool = arts.slice(0, TOP);
   const names = pool.map(a => a.name);
   let todo = names.filter(n => {
