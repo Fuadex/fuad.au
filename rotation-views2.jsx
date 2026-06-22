@@ -479,40 +479,33 @@ function MiniArtistView({ a, go }) {
         </div>
       )}
       {dna && (
-        <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "260px 1fr", gap: "var(--gap)", alignItems: "start", marginBottom: "var(--gap)" }}>
-          <div className="r-card" style={{ padding: 18 }}>
-            <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
-            <Radar axes={DNA_AXES} values={dna} values2={avg} run={true} size={224} />
-            <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>solid = {a.name.split(" ")[0]} · dashed = your average · measured</div>
-            <div style={{ marginTop: 14, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 9 }}>
-              {[
-                { k: "tempo", v: Math.round(50 + af[3] * 140), u: " bpm", f: af[3] },
-                { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
-                { k: "loud", v: Math.round(af[9]), u: " dB", f: Math.max(0, Math.min(1, (af[9] + 60) / 60)) },
-                { k: "speech", v: Math.round(af[10] * 100), u: "%", f: af[10] },
-                { k: "live", v: Math.round(af[11] * 100), u: "%", f: af[11] },
-                { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
-                { k: "followers", v: fmtK(af[8]), f: null },
-              ].map(s => (
-                <div key={s.k}>
-                  <div className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</div>
-                  <div style={{ fontSize: 13, marginTop: 1, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 9, color: "var(--ink-faint)" }}>{s.u}</span>}</div>
-                  {s.f != null && <div style={{ height: 3, background: "var(--bg-3)", borderRadius: 2, marginTop: 5, overflow: "hidden" }}><div style={{ height: "100%", width: (s.f * 100) + "%", background: `oklch(0.62 0.15 ${a.hue})` }} /></div>}
-                </div>
-              ))}
-            </div>
+        <div className="r-card" style={{ padding: 18, marginBottom: "var(--gap)", maxWidth: 380 }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
+          <Radar axes={DNA_AXES} values={dna} values2={avg} run={true} size={224} />
+          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>solid = {a.name.split(" ")[0]} · dashed = your average · measured</div>
+          <div style={{ marginTop: 14, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 9 }}>
+            {[
+              { k: "tempo", v: Math.round(50 + af[3] * 140), u: " bpm", f: af[3] },
+              { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
+              { k: "loud", v: Math.round(af[9]), u: " dB", f: Math.max(0, Math.min(1, (af[9] + 60) / 60)) },
+              { k: "speech", v: Math.round(af[10] * 100), u: "%", f: af[10] },
+              { k: "live", v: Math.round(af[11] * 100), u: "%", f: af[11] },
+              { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
+              { k: "followers", v: fmtK(af[8]), f: null },
+            ].map(s => (
+              <div key={s.k}>
+                <div className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</div>
+                <div style={{ fontSize: 13, marginTop: 1, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 9, color: "var(--ink-faint)" }}>{s.u}</span>}</div>
+                {s.f != null && <div style={{ height: 3, background: "var(--bg-3)", borderRadius: 2, marginTop: 5, overflow: "hidden" }}><div style={{ height: "100%", width: (s.f * 100) + "%", background: `oklch(0.62 0.15 ${a.hue})` }} /></div>}
+              </div>
+            ))}
           </div>
-          {soundAlike.length > 0 && <div className="r-card" style={{ padding: 18 }}>
-            <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}><span className="lbl"><b>Sounds alike</b></span><span className="meta">by sound</span></div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(110px,1fr))", gap: 12 }}>
-              {soundAlike.map(sid => { const s = R.byId[sid] || (R.expById && R.expById[sid]); if (!s) return null; return (
-                <div key={sid} onClick={() => go("artist", sid)} style={{ cursor: "pointer" }}>
-                  <GenCover hue={s.hue} name={s.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
-                  <div style={{ fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{s.name}</div>
-                  <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays →</div>
-                </div>); })}
-            </div>
-          </div>}
+        </div>
+      )}
+      {R.AUDIO && R.AUDIO[a.id] && (
+        <div className="r-card" style={{ padding: 18, marginBottom: "var(--gap)" }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}><span className="lbl"><b>Sounds like</b></span><span className="meta">by sound</span></div>
+          <SoundSimilar id={a.id} go={go} />
         </div>
       )}
       <div style={{ marginBottom: "var(--gap)" }}><ArtistFlow id={a.id} hue={a.hue} /></div>
@@ -520,6 +513,79 @@ function MiniArtistView({ a, go }) {
     </div>
   );
 }
+// SoundSimilar — weighted nearest-neighbour discovery. Distance over the measured audio axes (each
+// user-weightable), plus a subgenre-overlap term and an obscure↔famous lean. Shows 6/10/20.
+function SoundSimilar({ id, go }) {
+  const R = window.ROTATION;
+  const clamp = (v) => Math.max(0, Math.min(1, v));
+  const AX = React.useMemo(() => [
+    { i: 0, k: "energy", n: v => v }, { i: 1, k: "mood", n: v => v }, { i: 2, k: "acoustic", n: v => v },
+    { i: 3, k: "tempo", n: v => v }, { i: 4, k: "dance", n: v => v }, { i: 5, k: "instr", n: v => v },
+    { i: 9, k: "loud", n: v => clamp((v + 60) / 60) }, { i: 10, k: "speech", n: v => v }, { i: 11, k: "live", n: v => v },
+    { i: 6, k: "key", n: v => v }, { i: 12, k: "length", n: v => clamp((v - 60) / 300) },
+  ], []);
+  const cand = React.useMemo(() => {
+    const ex = R.expById || {}, out = [];
+    for (const cid in (R.AUDIO || {})) { const af = R.AUDIO[cid]; const rec = ex[cid] || R.byId[cid]; out.push({ id: cid, vec: AX.map(a => a.n(af[a.i])), s: (rec && rec.s) || [], pop: (af[7] || 0) / 100, rec }); }
+    return out;
+  }, [R, AX]);
+  const meEntry = cand.find(c => c.id === id);
+  const [w, setW] = React.useState(() => Object.fromEntries(AX.map(a => [a.k, 1])));
+  const [genreW, setGenreW] = React.useState(1.2);
+  const [lean, setLean] = React.useState(0);
+  const [count, setCount] = React.useState(6);
+  const [open, setOpen] = React.useState(false);
+
+  const results = React.useMemo(() => {
+    if (!meEntry) return [];
+    const meS = new Set(meEntry.s), wArr = AX.map(a => w[a.k]);
+    return cand.filter(c => c.id !== id).map(c => {
+      let dist = 0; for (let k = 0; k < wArr.length; k++) { const d = meEntry.vec[k] - c.vec[k]; dist += wArr[k] * d * d; }
+      let inter = 0; for (const x of c.s) if (meS.has(x)) inter++;
+      const jac = (meS.size + c.s.length - inter) ? inter / (meS.size + c.s.length - inter) : 0;
+      return { c, score: -(dist + genreW * (1 - jac) * 3) + lean * c.pop * 2 };
+    }).sort((a, b) => b.score - a.score).slice(0, count);
+  }, [meEntry, cand, w, genreW, lean, count, id, AX]);
+
+  if (!meEntry) return <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>no measured audio for this artist.</div>;
+  const reset = () => { setW(Object.fromEntries(AX.map(a => [a.k, 1]))); setGenreW(1.2); setLean(0); };
+
+  return (
+    <div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 12 }}>
+        <div className="r-seg r-seg-sm">{[6, 10, 20].map(n => <button key={n} data-on={count === n} onClick={() => setCount(n)}>{n}</button>)}</div>
+        <button onClick={() => setOpen(o => !o)} className="r-mono" style={{ fontSize: 10, padding: "4px 10px", borderRadius: 999, border: "1px solid var(--rule)", background: open ? "var(--bg-3)" : "transparent", color: "var(--ink-soft)", cursor: "pointer" }}>tune {open ? "▴" : "▾"}</button>
+      </div>
+      {open && (
+        <div className="r-card" style={{ padding: "12px 14px", marginBottom: 12, background: "var(--bg-2)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(116px,1fr))", gap: "8px 14px" }}>
+            {AX.map(a => (
+              <label key={a.k}><span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: w[a.k] == 0 ? "var(--ink-faint)" : "var(--ink-soft)" }}>{a.k}</span>
+                <input type="range" min="0" max="2" step="0.1" value={w[a.k]} onChange={e => setW(p => ({ ...p, [a.k]: +e.target.value }))} className="ss-slider" /></label>
+            ))}
+            <label><span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--accent)" }}>genre</span>
+              <input type="range" min="0" max="3" step="0.1" value={genreW} onChange={e => setGenreW(+e.target.value)} className="ss-slider" /></label>
+            <label><span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--accent)" }}>obscure→famous</span>
+              <input type="range" min="-1" max="1" step="0.1" value={lean} onChange={e => setLean(+e.target.value)} className="ss-slider" /></label>
+          </div>
+          <div style={{ textAlign: "right", marginTop: 8 }}><button onClick={reset} className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", background: "none", border: "none", cursor: "pointer" }}>reset weights</button></div>
+        </div>
+      )}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(108px,1fr))", gap: 12 }}>
+        {results.map(({ c }) => { const s = c.rec, name = (s && s.name) || c.id, nav = !!(R.byId[c.id] || (R.expById && R.expById[c.id])); return (
+          <div key={c.id} onClick={() => nav && go("artist", c.id)} style={{ cursor: nav ? "pointer" : "default" }}>
+            <GenCover hue={(s && s.hue) || 210} name={name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
+            <div style={{ fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{name}</div>
+            {s && s.plays != null && <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays →</div>}
+          </div>); })}
+      </div>
+      <style>{`.ss-slider { width: 100%; height: 3px; -webkit-appearance: none; appearance: none; background: var(--bg-3); border-radius: 3px; outline: none; cursor: pointer; margin-top: 3px; }
+        .ss-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); cursor: pointer; }
+        .ss-slider::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); cursor: pointer; border: none; }`}</style>
+    </div>
+  );
+}
+
 function ArtistView({ t, id, go, setPop, city, setCity }) {
   const R = window.ROTATION;
   const full = R.byId[id];
@@ -653,11 +719,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               <div className="r-seg r-seg-sm">
                 {[["lastfm", "last.fm"], ["sound", "by sound"]].map(([k, l]) => <button key={k} data-on={simTab === k} onClick={() => setSimTab(k)}>{l}</button>)}
               </div></div>
-            {(() => {
-              const items = simTab === "sound"
-                ? soundAlike.slice(0, 6).map(sid => { const s = R.byId[sid] || (R.expById && R.expById[sid]); return s ? { name: s.name, navId: sid, hue: s.hue, plays: s.plays, played: true } : null; }).filter(Boolean)
-                : a.similar.slice(0, 6).map((sid, i) => { const name = a.similarNames[i]; const rid = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[rid] || (R.expById && R.expById[rid]); return { name, navId: rec ? rid : null, hue: rec ? rec.hue : (a.hue + 40 + i * 25) % 360, plays: rec ? rec.plays : null, played: !!rec || (R.played && R.played(name)) }; });
-              if (!items.length) return <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>no {simTab === "sound" ? "audio" : "last.fm"} matches here.</div>;
+            {simTab === "sound" ? <SoundSimilar id={a.id} go={go} /> : (() => {
+              const items = a.similar.slice(0, 6).map((sid, i) => { const name = a.similarNames[i]; const rid = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[rid] || (R.expById && R.expById[rid]); return { name, navId: rec ? rid : null, hue: rec ? rec.hue : (a.hue + 40 + i * 25) % 360, plays: rec ? rec.plays : null, played: !!rec || (R.played && R.played(name)) }; });
+              if (!items.length) return <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>no last.fm matches here.</div>;
               return <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(120px,1fr))", gap: 12 }}>
                 {items.map((it, i) => (
                   <div key={it.name + i} onClick={() => it.navId && go("artist", it.navId)}
