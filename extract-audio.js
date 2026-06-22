@@ -26,7 +26,7 @@ const sql = `
       avg(tempo) tempo, avg(danceability) dance, avg(instrumentalness) instr,
       avg(speechiness) speech, avg(liveness) live, avg(loudness) loud,
       avg(case when mode = 1 then 1.0 else 0.0 end) major,
-      max(artist_popularity) pop, max(artist_followers) followers, count(*) n
+      max(artist_popularity) pop, max(artist_followers) followers, avg(duration_ms) dur, count(*) n
     FROM read_parquet('spotify-audio-features.parquet') t
     JOIN ours o ON lower(t.artist_name) = o.lname
     GROUP BY o.name;`;
@@ -43,7 +43,7 @@ db.exec(sql, (err) => {
       out[r.name] = {
         energy: f(r.energy), valence: f(r.valence), acoustic: f(r.acoustic), tempo: +norm(r.tempo).toFixed(3),
         dance: f(r.dance), instr: f(r.instr), speech: f(r.speech), live: f(r.live), loud: +num(r.loud).toFixed(1),
-        major: f(r.major), pop: Math.round(num(r.pop)), followers: Math.round(num(r.followers)), n: num(r.n),
+        major: f(r.major), pop: Math.round(num(r.pop)), followers: Math.round(num(r.followers)), dur: Math.round(num(r.dur)), n: num(r.n),
       };
     }
     fs.writeFileSync("audio-features.json", JSON.stringify(out));

@@ -50,7 +50,15 @@ async function fetchBio(artist) {
   const a = j && j.artist;
   if (!a) return { bio: "", similar: [] };
   const bio = cleanBio((a.bio && a.bio.summary) || "");
-  const similar = ((a.similar && a.similar.artist) || []).map(x => x.name).filter(Boolean).slice(0, 12);
+  // dedicated getsimilar returns up to `limit`; getinfo's embedded similar is capped at ~5 by last.fm
+  let similar = [];
+  try {
+    await sleep(DELAY_MS);
+    const su = `https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${encodeURIComponent(artist)}&api_key=${API_KEY}&format=json&autocorrect=1&limit=10`;
+    const sj = await getJSON(su);
+    similar = ((sj && sj.similarartists && sj.similarartists.artist) || []).map(x => x.name).filter(Boolean).slice(0, 10);
+  } catch (e) {}
+  if (!similar.length) similar = ((a.similar && a.similar.artist) || []).map(x => x.name).filter(Boolean).slice(0, 10);
   return { bio, similar };
 }
 
@@ -62,7 +70,7 @@ async function fetchBio(artist) {
   const artists = rows.slice(0, TOP_N).map(r => r[0]);
 
   const cache = fs.existsSync(CACHE_PATH) ? JSON.parse(fs.readFileSync(CACHE_PATH, "utf8")) : {};
-  const todo = artists.filter(a => !(a in cache));
+  const todo = artists.filter(a => !(a in cache) || ((cache[a].similar || []).length < 6 && !cache[a].error));
   console.log(`${artists.length} target artists · ${todo.length} to fetch · ${Object.keys(cache).length} cached`);
 
   let done = 0, failed = 0;
