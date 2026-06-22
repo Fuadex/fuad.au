@@ -513,17 +513,47 @@ function MiniArtistView({ a, go }) {
     </div>
   );
 }
-// SoundSimilar — weighted nearest-neighbour discovery. Distance over the measured audio axes (each
-// user-weightable), plus a subgenre-overlap term and an obscure↔famous lean. Shows 6/10/20.
+// WeightRadar — the Sound DNA hexagon, but draggable: pull each axis out to weight it more, in to
+// weight it less. The artist's actual DNA shows dashed underneath for reference.
+function WeightRadar({ axes, weights, setWeight, dna }) {
+  const size = 234, cx = size / 2, cy = size / 2, maxR = size / 2 - 32, N = axes.length;
+  const ref = React.useRef(null);
+  const [drag, setDrag] = React.useState(-1);
+  const ang = (i) => (-Math.PI / 2) + i * 2 * Math.PI / N;
+  const P = (i, r) => [cx + r * Math.cos(ang(i)), cy + r * Math.sin(ang(i))];
+  const poly = (pts) => pts.map(p => p.map(n => n.toFixed(1)).join(",")).join(" ");
+  const update = (i, e) => { const r = ref.current.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width * size, y = (e.clientY - r.top) / r.height * size; const a = ang(i); const proj = (x - cx) * Math.cos(a) + (y - cy) * Math.sin(a); setWeight(axes[i].k, Math.max(0, Math.min(2, Math.round(proj / maxR * 2 * 20) / 20))); };
+  const onMove = (e) => { if (drag >= 0) { e.preventDefault(); update(drag, e); } };
+  const wPoly = axes.map((a, i) => P(i, (weights[a.k] / 2) * maxR));
+  const dPoly = dna ? axes.map((a, i) => P(i, Math.max(0, Math.min(1, dna[i])) * maxR)) : null;
+  return (
+    <svg ref={ref} viewBox={`0 0 ${size} ${size}`} style={{ width: "100%", maxWidth: size, height: "auto", display: "block", margin: "0 auto", touchAction: "none" }}
+      onPointerMove={onMove} onPointerUp={() => setDrag(-1)} onPointerLeave={() => setDrag(-1)} onPointerCancel={() => setDrag(-1)}>
+      {[0.5, 1].map(f => <polygon key={f} points={poly(axes.map((a, i) => P(i, f * maxR)))} fill="none" stroke="var(--rule)" strokeWidth="0.5" />)}
+      {axes.map((a, i) => { const [x, y] = P(i, maxR); return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="var(--rule)" strokeWidth="0.5" />; })}
+      {dPoly && <polygon points={poly(dPoly)} fill="var(--accent)" fillOpacity="0.07" stroke="var(--accent)" strokeOpacity="0.35" strokeWidth="1" strokeDasharray="3 3" />}
+      <polygon points={poly(wPoly)} fill="var(--accent)" fillOpacity="0.16" stroke="var(--accent)" strokeWidth="1.5" />
+      {axes.map((a, i) => { const [x, y] = wPoly[i]; return <circle key={i} cx={x} cy={y} r={drag === i ? 8 : 6} fill="var(--accent)" stroke="var(--bg-2)" strokeWidth="2" style={{ cursor: "grab" }}
+        onPointerDown={(e) => { e.preventDefault(); setDrag(i); try { ref.current.setPointerCapture(e.pointerId); } catch (x) {} }} />; })}
+      {axes.map((a, i) => { const [x, y] = P(i, maxR + 16); return <text key={i} x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontFamily="var(--mono)" fontSize="9" fill={weights[a.k] == 0 ? "var(--ink-faint)" : "var(--ink-soft)"}>{a.label}</text>; })}
+    </svg>
+  );
+}
+
+// SoundSimilar — weighted nearest-neighbour discovery. Distance over the measured audio axes (the 6
+// main weighted via a draggable DNA radar, the rest via sliders), a genre-overlap term, an
+// obscure↔famous lean. Shows 6/10/20.
 function SoundSimilar({ id, go }) {
   const R = window.ROTATION;
   const clamp = (v) => Math.max(0, Math.min(1, v));
   const AX = React.useMemo(() => [
-    { i: 0, k: "energy", n: v => v }, { i: 1, k: "mood", n: v => v }, { i: 2, k: "acoustic", n: v => v },
-    { i: 3, k: "tempo", n: v => v }, { i: 4, k: "dance", n: v => v }, { i: 5, k: "instr", n: v => v },
+    { i: 0, k: "energy", l: "NRG", n: v => v }, { i: 1, k: "mood", l: "MOOD", n: v => v }, { i: 2, k: "acoustic", l: "ACOU", n: v => v },
+    { i: 3, k: "tempo", l: "BPM", n: v => v }, { i: 4, k: "dance", l: "DANCE", n: v => v }, { i: 5, k: "instr", l: "INSTR", n: v => v },
     { i: 9, k: "loud", n: v => clamp((v + 60) / 60) }, { i: 10, k: "speech", n: v => v }, { i: 11, k: "live", n: v => v },
     { i: 6, k: "key", n: v => v }, { i: 12, k: "length", n: v => clamp((v - 60) / 300) },
   ], []);
+  const MAIN = AX.slice(0, 6).map(a => ({ k: a.k, label: a.l }));
+  const EXTRA = AX.slice(6);
   const cand = React.useMemo(() => {
     const ex = R.expById || {}, out = [];
     for (const cid in (R.AUDIO || {})) { const af = R.AUDIO[cid]; const rec = ex[cid] || R.byId[cid]; out.push({ id: cid, vec: AX.map(a => a.n(af[a.i])), s: (rec && rec.s) || [], pop: (af[7] || 0) / 100, rec }); }
@@ -557,18 +587,28 @@ function SoundSimilar({ id, go }) {
         <button onClick={() => setOpen(o => !o)} className="r-mono" style={{ fontSize: 10, padding: "4px 10px", borderRadius: 999, border: "1px solid var(--rule)", background: open ? "var(--bg-3)" : "transparent", color: "var(--ink-soft)", cursor: "pointer" }}>tune {open ? "▴" : "▾"}</button>
       </div>
       {open && (
-        <div className="r-card" style={{ padding: "12px 14px", marginBottom: 12, background: "var(--bg-2)" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(116px,1fr))", gap: "8px 14px" }}>
-            {AX.map(a => (
-              <label key={a.k}><span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: w[a.k] == 0 ? "var(--ink-faint)" : "var(--ink-soft)" }}>{a.k}</span>
-                <input type="range" min="0" max="2" step="0.1" value={w[a.k]} onChange={e => setW(p => ({ ...p, [a.k]: +e.target.value }))} className="ss-slider" /></label>
-            ))}
-            <label><span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--accent)" }}>genre</span>
-              <input type="range" min="0" max="3" step="0.1" value={genreW} onChange={e => setGenreW(+e.target.value)} className="ss-slider" /></label>
-            <label><span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--accent)" }}>obscure→famous</span>
-              <input type="range" min="-1" max="1" step="0.1" value={lean} onChange={e => setLean(+e.target.value)} className="ss-slider" /></label>
+        <div className="r-card" style={{ padding: "14px 16px", marginBottom: 12, background: "var(--bg-2)" }}>
+          <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "minmax(0,234px) 1fr", gap: "var(--gap)", alignItems: "center" }}>
+            <div>
+              <WeightRadar axes={MAIN} weights={w} setWeight={(k, v) => setW(p => ({ ...p, [k]: v }))} dna={meEntry.vec.slice(0, 6)} />
+              <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>drag an axis · out = matters more · dashed = this artist</div>
+            </div>
+            <div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(104px,1fr))", gap: "8px 12px" }}>
+                {EXTRA.map(a => (
+                  <label key={a.k}><span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: w[a.k] == 0 ? "var(--ink-faint)" : "var(--ink-soft)" }}>{a.k}</span>
+                    <input type="range" min="0" max="2" step="0.1" value={w[a.k]} onChange={e => setW(p => ({ ...p, [a.k]: +e.target.value }))} className="ss-slider" /></label>
+                ))}
+              </div>
+              <div style={{ display: "flex", gap: "10px 18px", flexWrap: "wrap", alignItems: "center", marginTop: 14 }}>
+                <div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>same genre</div>
+                  <div className="r-seg r-seg-sm">{[["off", 0], ["soft", 1.2], ["strong", 2.5]].map(([l, v]) => <button key={l} data-on={genreW === v} onClick={() => setGenreW(v)}>{l}</button>)}</div></div>
+                <label style={{ flex: 1, minWidth: 150 }}><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>obscure → famous</div>
+                  <input type="range" min="-1" max="1" step="0.1" value={lean} onChange={e => setLean(+e.target.value)} className="ss-slider" /></label>
+              </div>
+              <div style={{ textAlign: "right", marginTop: 10 }}><button onClick={reset} className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", background: "none", border: "none", cursor: "pointer" }}>reset</button></div>
+            </div>
           </div>
-          <div style={{ textAlign: "right", marginTop: 8 }}><button onClick={reset} className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", background: "none", border: "none", cursor: "pointer" }}>reset weights</button></div>
         </div>
       )}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(108px,1fr))", gap: 12 }}>
