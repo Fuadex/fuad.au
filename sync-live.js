@@ -24,7 +24,7 @@ const getRetry = async (url, tries = 4) => { let last; for (let i = 0; i < tries
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 (async () => {
-  const j = await getRetry(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${USER}&api_key=${KEY}&format=json&limit=12`);
+  const j = await getRetry(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${USER}&api_key=${KEY}&format=json&limit=25`);
   if (j && j.error) { console.error(`last.fm error ${j.error}: ${j.message}`); process.exit(1); }
   const rt = j && j.recenttracks;
   if (!rt || !rt.track || !rt["@attr"]) { console.error("unexpected response", JSON.stringify(j).slice(0, 200)); process.exit(1); }
@@ -35,7 +35,7 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)
     nowplaying: !!(t["@attr"] && t["@attr"].nowplaying), uts: t.date ? +t.date.uts : null,
   }));
   const np = tracks.find(t => t.nowplaying) || tracks[0];
-  const recent = tracks.filter(t => !t.nowplaying).slice(0, 8).map((t, i) => ({
+  const recent = tracks.filter(t => !t.nowplaying).slice(0, 20).map((t, i) => ({
     id: "lv" + i, artistId: slug(t.artist), artist: t.artist, track: t.track, uts: t.uts,
   }));
 
