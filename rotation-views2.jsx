@@ -539,6 +539,31 @@ function WeightRadar({ axes, weights, setWeight, dna }) {
     </svg>
   );
 }
+// TouchSlider — a pointer-capture range control. Native <input type=range> drops the drag the moment
+// a finger slides off the 3px track; here setPointerCapture keeps tracking the finger anywhere on
+// screen until release. Big invisible vertical hit area, optional centre-anchored fill (for bipolar
+// sliders like obscure↔famous).
+function TouchSlider({ min, max, step, value, onChange, center }) {
+  const ref = React.useRef(null);
+  const drag = React.useRef(false);
+  const set = (clientX) => {
+    const el = ref.current; if (!el) return;
+    const r = el.getBoundingClientRect(); if (!r.width) return;
+    let t = Math.max(0, Math.min(1, (clientX - r.left) / r.width));
+    let v = Math.round((min + t * (max - min)) / step) * step;
+    onChange(Math.max(min, Math.min(max, +v.toFixed(4))));
+  };
+  const pct = ((value - min) / (max - min)) * 100;
+  const fill = center ? { left: Math.min(50, pct) + "%", width: Math.abs(pct - 50) + "%" } : { left: 0, width: pct + "%" };
+  return (
+    <div ref={ref} className="ts-hit"
+      onPointerDown={(e) => { e.preventDefault(); drag.current = true; try { ref.current.setPointerCapture(e.pointerId); } catch (x) {} set(e.clientX); }}
+      onPointerMove={(e) => { if (drag.current) { e.preventDefault(); set(e.clientX); } }}
+      onPointerUp={() => { drag.current = false; }} onPointerLeave={() => {}} onPointerCancel={() => { drag.current = false; }}>
+      <div className="ts-track"><div className="ts-fill" style={fill} /><div className="ts-thumb" style={{ left: pct + "%" }} /></div>
+    </div>
+  );
+}
 
 // SoundSimilar — weighted nearest-neighbour discovery. Distance over the measured audio axes (the 6
 // main weighted via a draggable DNA radar, the rest via sliders), a genre-overlap term, an
@@ -579,6 +604,7 @@ function SoundSimilar({ id, go }) {
 
   if (!meEntry) return <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>no measured audio for this artist.</div>;
   const reset = () => { setW(Object.fromEntries(AX.map(a => [a.k, 1]))); setGenreW(1.2); setLean(0); };
+  const genreLabel = genreW == 0 ? "ignored" : genreW < 0.9 ? "loose" : genreW < 1.8 ? "balanced" : "strict";
 
   return (
     <div>
@@ -596,15 +622,22 @@ function SoundSimilar({ id, go }) {
             <div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(104px,1fr))", gap: "8px 12px" }}>
                 {EXTRA.map(a => (
-                  <label key={a.k}><span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: w[a.k] == 0 ? "var(--ink-faint)" : "var(--ink-soft)" }}>{a.k}</span>
-                    <input type="range" min="0" max="2" step="0.1" value={w[a.k]} onChange={e => setW(p => ({ ...p, [a.k]: +e.target.value }))} className="ss-slider" /></label>
+                  <div key={a.k}><span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: w[a.k] == 0 ? "var(--ink-faint)" : "var(--ink-soft)" }}>{a.k}</span>
+                    <TouchSlider min={0} max={2} step={0.1} value={w[a.k]} onChange={v => setW(p => ({ ...p, [a.k]: v }))} /></div>
                 ))}
               </div>
-              <div style={{ display: "flex", gap: "10px 18px", flexWrap: "wrap", alignItems: "center", marginTop: 14 }}>
-                <div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>same genre</div>
-                  <div className="r-seg r-seg-sm">{[["off", 0], ["soft", 1.2], ["strong", 2.5]].map(([l, v]) => <button key={l} data-on={genreW === v} onClick={() => setGenreW(v)}>{l}</button>)}</div></div>
-                <label style={{ flex: 1, minWidth: 150 }}><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>obscure → famous</div>
-                  <input type="range" min="-1" max="1" step="0.1" value={lean} onChange={e => setLean(+e.target.value)} className="ss-slider" /></label>
+              <div style={{ display: "flex", gap: "12px 22px", flexWrap: "wrap", alignItems: "flex-start", marginTop: 16 }}>
+                <div style={{ flex: 1, minWidth: 160 }}>
+                  <div className="r-mono" style={{ display: "flex", justifyContent: "space-between", fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>
+                    <span>weight by shared genre</span><span style={{ color: genreW == 0 ? "var(--ink-faint)" : "var(--accent)" }}>{genreLabel}</span></div>
+                  <TouchSlider min={0} max={2.5} step={0.1} value={genreW} onChange={setGenreW} />
+                  <div className="r-mono" style={{ display: "flex", justifyContent: "space-between", fontSize: 8, color: "var(--ink-faint)", marginTop: 2 }}><span>any sound</span><span>same scene</span></div>
+                </div>
+                <div style={{ flex: 1, minWidth: 160 }}>
+                  <div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>lean</div>
+                  <TouchSlider min={-1} max={1} step={0.1} value={lean} onChange={setLean} center />
+                  <div className="r-mono" style={{ display: "flex", justifyContent: "space-between", fontSize: 8, color: "var(--ink-faint)", marginTop: 2 }}><span>obscure</span><span>famous</span></div>
+                </div>
               </div>
               <div style={{ textAlign: "right", marginTop: 10 }}><button onClick={reset} className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", background: "none", border: "none", cursor: "pointer" }}>reset</button></div>
             </div>
@@ -619,9 +652,10 @@ function SoundSimilar({ id, go }) {
             {s && s.plays != null && <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays →</div>}
           </div>); })}
       </div>
-      <style>{`.ss-slider { width: 100%; height: 3px; -webkit-appearance: none; appearance: none; background: var(--bg-3); border-radius: 3px; outline: none; cursor: pointer; margin-top: 3px; }
-        .ss-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); cursor: pointer; }
-        .ss-slider::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); cursor: pointer; border: none; }`}</style>
+      <style>{`.ts-hit { position: relative; padding: 9px 0; margin-top: 1px; cursor: pointer; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+        .ts-track { position: relative; height: 4px; border-radius: 4px; background: var(--bg-3); }
+        .ts-fill { position: absolute; top: 0; height: 100%; border-radius: 4px; background: var(--accent); }
+        .ts-thumb { position: absolute; top: 50%; width: 15px; height: 15px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg-2); transform: translate(-50%, -50%); box-shadow: 0 1px 3px rgba(0,0,0,.3); }`}</style>
     </div>
   );
 }
