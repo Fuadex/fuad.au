@@ -114,7 +114,7 @@ function OverviewView({ t, go }) {
         {/* stat strip */}
         <div className="r-card m-2col" style={{ gridColumn: "span 8", padding: 20, display: "grid",
           gridTemplateColumns: "repeat(4,1fr)", gap: 18, alignItems: "center" }}>
-          <Stat n={fmt(Math.round(hrs))} sub="hours listened" />
+          <Stat n={fmt(Math.round(hrs))} sub="hours listened" onClick={() => go("calendar")} />
           <Stat n={fmt(T.artists)} sub="distinct artists" onClick={() => go("explore")} />
           <Stat n={T.perDay} sub="avg / day" />
           <Stat n={sinceYears + " yr"} sub="of history" />
