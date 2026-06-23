@@ -173,6 +173,8 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
   white-space: nowrap; transition: .15s; cursor: default; }
 .r-chip:hover { color: var(--ink); border-color: var(--accent-dim); }
 .r-chip.solid { background: var(--accent-bg); color: var(--accent-ink); border-color: transparent; }
+.r-chip.link { cursor: pointer; }
+.r-chip.link:hover { color: var(--accent-ink); background: var(--accent-bg); border-color: transparent; }
 
 /* skinny scroller utility */
 .r-xscroll { display: flex; gap: var(--gap); overflow-x: auto; scrollbar-width: none; padding-bottom: 6px; }

@@ -135,7 +135,7 @@ function RotationApp() {
 
       {v === "overview" && <OverviewView t={t} go={go} />}
       {v === "stories" && <StoriesView t={t} go={go} />}
-      {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} />}
+      {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} seed={route.id} />}
       {v === "journey" && <JourneyView go={go} />}
       {v === "mood" && <MoodView go={go} />}
       {v === "calendar" && <CalendarView go={go} />}
