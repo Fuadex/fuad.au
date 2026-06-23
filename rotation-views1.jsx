@@ -31,6 +31,17 @@ function OverviewView({ t, go }) {
   const now = useLiveNow(); const nowArtist = R.byId[now.artistId] || { hue: 200, tags: [] };
   const npKnown = !!(R.byId[now.artistId] || (R.expById && R.expById[now.artistId]) || (R.played && R.played(now.artist)));
 
+  // Recently played: prefer the daily last.fm snapshot (live-data.js) so the feed stays fresh between
+  // full CSV re-exports; fall back to the baked R.RECENT if the snapshot hasn't loaded.
+  const recent = React.useMemo(() => {
+    const LV = window.ROTATION_LIVE;
+    if (!LV || !LV.recent || !LV.recent.length) return R.RECENT.slice(0, 6);
+    const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const when = (uts) => { if (!uts) return ""; const d = new Date(uts * 1000); return d.getUTCDate() + " " + MON[d.getUTCMonth()]; };
+    const hueOf = (id) => { const e = R.byId[id] || (R.expById && R.expById[id]); return e && e.hue != null ? e.hue : 210; };
+    return LV.recent.slice(0, 6).map((r, i) => ({ id: "lv" + i, artistId: r.artistId, artist: r.artist, track: r.track, when: when(r.uts), hue: hueOf(r.artistId) }));
+  }, [R]);
+
   // 26-week scrobble trend (real if the build provides it)
   const trend = React.useMemo(() => R.TREND || Array.from({ length: 26 }, (_, i) =>
     180 + Math.round(Math.sin(i / 3) * 60 + (hashInt("wk" + i, 5) % 90) + i * 3)), []);
@@ -125,7 +136,7 @@ function OverviewView({ t, go }) {
           <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Recently played</b></span>
             <span className="meta">last.fm</span></div>
           <div style={{ display: "grid", gap: 2 }}>
-            {R.RECENT.slice(0, 6).map(r => (
+            {recent.map(r => (
               <div key={r.id} onClick={() => go("artist", r.artistId)} style={{ display: "flex", alignItems: "center", gap: 11,
                 padding: "7px 6px", borderRadius: 4, cursor: "pointer" }}
                 onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
