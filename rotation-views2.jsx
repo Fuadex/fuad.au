@@ -721,7 +721,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           {a.styles && a.styles.length > 0 && (
             <div style={{ display: "flex", gap: 7, marginTop: 8, flexWrap: "wrap", alignItems: "center" }}>
               <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>discogs</span>
-              {a.styles.map(s => <span key={s} className="r-chip" style={{ fontSize: 10.5, padding: "3px 8px", background: "transparent", borderColor: "var(--line)" }}>{s}</span>)}
+              {a.styles.map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)} style={{ fontSize: 10.5, padding: "3px 8px", borderColor: "var(--line)" }}>{s}</span>)}
             </div>
           )}
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap" }}>
