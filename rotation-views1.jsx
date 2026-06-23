@@ -35,12 +35,13 @@ function OverviewView({ t, go }) {
   // full CSV re-exports; fall back to the baked R.RECENT if the snapshot hasn't loaded.
   const recent = React.useMemo(() => {
     const LV = window.ROTATION_LIVE;
-    if (!LV || !LV.recent || !LV.recent.length) return R.RECENT.slice(0, 6);
+    if (!LV || !LV.recent || !LV.recent.length) return R.RECENT;
     const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const when = (uts) => { if (!uts) return ""; const d = new Date(uts * 1000); return d.getUTCDate() + " " + MON[d.getUTCMonth()]; };
     const hueOf = (id) => { const e = R.byId[id] || (R.expById && R.expById[id]); return e && e.hue != null ? e.hue : 210; };
-    return LV.recent.slice(0, 6).map((r, i) => ({ id: "lv" + i, artistId: r.artistId, artist: r.artist, track: r.track, when: when(r.uts), hue: hueOf(r.artistId) }));
+    return LV.recent.map((r, i) => ({ id: "lv" + i, artistId: r.artistId, artist: r.artist, track: r.track, when: when(r.uts), hue: hueOf(r.artistId) }));
   }, [R]);
+  const [recentN, setRecentN] = React.useState(6);
 
   // 26-week scrobble trend (real if the build provides it)
   const trend = React.useMemo(() => R.TREND || Array.from({ length: 26 }, (_, i) =>
@@ -83,7 +84,7 @@ function OverviewView({ t, go }) {
             <div style={{ color: "var(--ink-soft)", fontSize: 13, marginTop: 4 }}>
               {npKnown ? <b onClick={() => go("artist", now.artistId)} style={{ cursor: "pointer", color: "var(--ink)", fontWeight: 600 }}>{now.artist}</b> : now.artist} — <span style={{ color: "var(--ink-faint)" }}>{now.album}</span></div>
             <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
-              {nowArtist.tags.slice(0, 3).map(g => <span key={g} className="r-chip">{g}</span>)}
+              {nowArtist.tags.slice(0, 3).map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
             </div>
           </div>
         </div>
@@ -134,9 +135,10 @@ function OverviewView({ t, go }) {
         {/* recent ticker */}
         <div className="r-card" style={{ gridColumn: "span 5", padding: 18 }}>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Recently played</b></span>
-            <span className="meta">last.fm</span></div>
+            <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
+              style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
           <div style={{ display: "grid", gap: 2 }}>
-            {recent.map(r => (
+            {recent.slice(0, recentN).map(r => (
               <div key={r.id} onClick={() => go("artist", r.artistId)} style={{ display: "flex", alignItems: "center", gap: 11,
                 padding: "7px 6px", borderRadius: 4, cursor: "pointer" }}
                 onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
@@ -149,6 +151,11 @@ function OverviewView({ t, go }) {
                 <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{r.when}</span>
               </div>
             ))}
+          </div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 12, flexWrap: "wrap", gap: 8 }}>
+            <div className="r-seg">{[6, 10, 20].map(n => <button key={n} data-on={recentN === n} onClick={() => setRecentN(n)}
+              disabled={n > recent.length} style={n > recent.length ? { opacity: .35, cursor: "default" } : null}>{n}</button>)}</div>
+            <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>showing {Math.min(recentN, recent.length)} latest</span>
           </div>
         </div>
 
