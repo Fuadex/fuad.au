@@ -454,7 +454,7 @@ function MiniArtistView({ a, go }) {
           <div className="r-kicker">explore{a.d ? ` · est. ${a.d}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(32px,4.5vw,54px)" }}>{a.name}<span className="dot">.</span></h1>
           <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
-            {subs.slice(0, 6).map(s => <span key={s} className="r-chip">{s}</span>)}
+            {subs.slice(0, 6).map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)}>{s}</span>)}
           </div>
           <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
             {[["last.fm", `https://www.last.fm/music/${encodeURIComponent(a.name)}`], ["Spotify", `https://open.spotify.com/search/${encodeURIComponent(a.name)}`]].map(([l, h]) =>
@@ -716,7 +716,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
           <div style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap" }}>
-            {a.tags.map(g => <span key={g} className="r-chip">{g}</span>)}
+            {a.tags.map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
           </div>
           {a.styles && a.styles.length > 0 && (
             <div style={{ display: "flex", gap: 7, marginTop: 8, flexWrap: "wrap", alignItems: "center" }}>

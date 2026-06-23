@@ -52,7 +52,7 @@ function exploreRank(R, kind, f) {
         if (snd === "pop") { value = af[7]; disp = af[7] + "/100"; }
         else { value = af[AXI[snd]]; disp = Math.round(value * 100) + "%"; }
       }
-      arr.push({ id: a.id, label: a.name, value, disp, plays, hue: a.hue, kept: !!R.byId[a.id],
+      arr.push({ id: a.id, label: a.name, value, disp, plays, hue: a.hue, kept: !!(R.byId[a.id] || (R.expById && R.expById[a.id])),
         sub: (R.SUBS[a.s[0]] || {}).name || "" });
     }
     const _seen = new Set();   // distinct artists can share a slug id (✝✝✝/Crosses) — keep one, avoids key collisions
@@ -69,7 +69,7 @@ function exploreRank(R, kind, f) {
   if (subIdx >= 0) src = src.filter(it => { const e = R.expById[it.aid]; return e && e.s.indexOf(subIdx) >= 0; });
   else if (fam != null) src = src.filter(it => { const e = R.expById[it.aid]; return e && e.s.some(si => R.SUBS[si].fam === fam); });
   if (hasCells) src = src.filter(it => tsPlays(R, it.aid, cells) > 0);
-  return src.map(it => ({ ...it, kept: !!R.byId[it.aid] })).sort((a, b) => b.value - a.value).slice(0, 40);
+  return src.map(it => ({ ...it, kept: !!(R.byId[it.aid] || (R.expById && R.expById[it.aid])) })).sort((a, b) => b.value - a.value).slice(0, 40);
 }
 
 // ── search ──
@@ -147,7 +147,7 @@ function ExploreSearch({ R, yearKeys, subNames, onArtist, onSub, onYear, onCells
   );
 }
 
-function ExploreView({ t, go, setPop }) {
+function ExploreView({ t, go, setPop, seed }) {
   const R = window.ROTATION;
   const [kind, setKind] = React.useState("artists");
   const [year, setYear] = React.useState(null);
@@ -156,6 +156,18 @@ function ExploreView({ t, go, setPop }) {
   const [cells, setCells] = React.useState(() => new Set());
   const [playing, setPlaying] = React.useState(false);
   const [ref, seen] = useInView();
+
+  // deep-link: arriving via #explore/<tag> (e.g. from an artist-page genre chip) preselects that
+  // subgenre, or its family if the tag names a family rather than a leaf subgenre.
+  React.useEffect(() => {
+    if (!seed) return;
+    const norm = (x) => (x || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const q = norm(seed);
+    const s = R.SUBS.find(x => norm(x.name) === q);
+    if (s) { setFam(null); setSub(s.name); return; }
+    const fm = R.FAMILIES.find(f => norm(f.family) === q);
+    if (fm) { setSub(null); setFam(fm.i); }
+  }, [seed, R]);
 
   const yearKeys = React.useMemo(() => Object.keys(R.CLOCK_BY_YEAR).map(Number).sort((a, b) => a - b), [R]);
   const subNames = React.useMemo(() => R.SUBS.map(s => s.name), [R]);
