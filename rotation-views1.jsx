@@ -132,8 +132,8 @@ function OverviewView({ t, go }) {
             “{R.TOTALS.topDay.note}”</div>
         </div>
 
-        {/* dynamic insight feed — milestones, anniversaries, evergreen facts, ranked + rotating */}
-        <InsightRow go={go} n={3} />
+        {/* dynamic insight feed — week/month/mood/year/clock + milestones, ranked + rotating */}
+        <InsightRow go={go} n={6} />
 
         {/* recent ticker */}
         <div className="r-card" style={{ gridColumn: "span 5", padding: 18 }}>
