@@ -211,6 +211,53 @@ const PROVIDERS = [
     };
   },
 
+  // ── on this day, through the years (build data) ──
+  (ctx) => {
+    const otd = ctx.R.INSIGHTS && ctx.R.INSIGHTS.ON_THIS_DAY; if (!otd) return null;
+    const p2 = (x) => String(x).padStart(2, "0");
+    const key = (d) => p2(d.getUTCMonth() + 1) + "-" + p2(d.getUTCDate());
+    let entry = otd[key(ctx.now)], used = ctx.now;
+    for (let off = 1; (!entry || !(entry.byYear || []).length) && off <= 3; off++) {
+      for (const s of [off, -off]) { const d = new Date(ctx.now.getTime() + s * 86400e3); const e = otd[key(d)]; if (e && (e.byYear || []).length) { entry = e; used = d; break; } }
+    }
+    const rows = (entry && entry.byYear) || []; if (!rows.length) return null;
+    const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const sameDay = used.getUTCDate() === ctx.now.getUTCDate() && used.getUTCMonth() === ctx.now.getUTCMonth();
+    const label = sameDay ? "On this day" : `On ${used.getUTCDate()} ${MON[used.getUTCMonth()]}`;
+    const standout = rows.slice().sort((a, b) => b.plays - a.plays)[0];
+    return {
+      id: "otd", category: "on-this-day", score: 0.68, label, meta: `${_fmtN(entry.total)} plays all-time`,
+      render: (
+        <div>
+          <div style={{ display: "grid", gap: 5 }}>
+            {rows.slice(0, 4).map(r => (
+              <div key={r.y} onClick={(e) => { e.stopPropagation(); ctx.go("artist", r.artistId); }} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
+                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 28 }}>{r.y}</span>
+                <GenCover hue={r.hue} name={r.artist} size={20} radius={2} />
+                <div style={{ flex: 1, minWidth: 0, fontSize: 12, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.artist}</div>
+                <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{r.plays}</span>
+              </div>
+            ))}
+          </div>
+          {standout && <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.35, marginTop: 9 }}>Biggest: {standout.y}, {standout.plays} plays — {standout.artist}.</div>}
+        </div>
+      ),
+    };
+  },
+
+  // ── back from the dead — a historical comeback, rotating across days (build data) ──
+  (ctx) => {
+    const cb = ctx.R.INSIGHTS && ctx.R.INSIGHTS.COMEBACKS; if (!cb || !cb.length) return null;
+    const pick = cb[_hash("cb" + _dayKey(ctx.now)) % cb.length];
+    const yrs = Math.round(pick.gapDays / 365 * 10) / 10;
+    return {
+      id: "comeback", category: "comeback", score: 0.4 + _jitter("comeback", ctx.now),
+      label: "Back from the dead", meta: pick.artist, onClick: () => ctx.go("artist", _id(pick.artist)),
+      big: yrs + " yr", bigUnit: "gone, then back", sub: pick.artist.toLowerCase(),
+      note: `Quiet after ${String(pick.left).slice(0, 4)}, then ${_fmtN(pick.playsAfter)} more plays.`,
+    };
+  },
+
   // ── evergreen: how much of everything is your #1 ──
   (ctx) => {
     const a = ctx.R.ARTISTS[0]; if (!a) return null;

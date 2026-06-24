@@ -867,18 +867,28 @@ const YEAR_PEAKS = years.filter(y => y >= new Date(oldestMs).getUTCFullYear()).m
   return { year: y, date: bk, count: dayCounts.get(bk), artist: top[0], artistPlays: top[1], hue: hueFor(top[0]) };
 }).filter(Boolean);
 
-// on this day: all-time top artist for each calendar day
+// on this day: all-time top artist for each calendar day, plus a per-year breakdown (this date
+// "through the years") for the Overview's dynamic on-this-day card.
 const otd = new Map();
 for (const [artist, , , ms] of scrobbles) {
   const d = new Date(ms);
   const k = String(d.getUTCMonth() + 1).padStart(2, "0") + "-" + String(d.getUTCDate()).padStart(2, "0");
-  if (!otd.has(k)) otd.set(k, { total: 0, art: new Map() });
+  const y = d.getUTCFullYear();
+  if (!otd.has(k)) otd.set(k, { total: 0, art: new Map(), years: new Map() });
   const O = otd.get(k); O.total++; O.art.set(artist, (O.art.get(artist) || 0) + 1);
+  if (!O.years.has(y)) O.years.set(y, { total: 0, art: new Map() });
+  const Y = O.years.get(y); Y.total++; Y.art.set(artist, (Y.art.get(artist) || 0) + 1);
 }
+const _top1 = (m) => [...m.entries()].sort((a, b) => b[1] - a[1])[0];
 const ON_THIS_DAY = {};
 for (const [k, O] of otd) {
-  const [artist, plays] = [...O.art.entries()].sort((a, b) => b[1] - a[1])[0];
-  ON_THIS_DAY[k] = { artist, plays, total: O.total, hue: hueFor(artist) };
+  const [artist, plays] = _top1(O.art);
+  // up to 5 years for this date — the biggest by that day's play count, shown newest-first
+  const byYear = [...O.years.entries()].map(([y, Y]) => {
+    const [ta] = _top1(Y.art);
+    return { y, plays: Y.total, artist: ta, artistId: slug(ta), hue: hueFor(ta) };
+  }).sort((a, b) => b.plays - a.plays).slice(0, 5).sort((a, b) => b.y - a.y);
+  ON_THIS_DAY[k] = { artist, plays, total: O.total, hue: hueFor(artist), artistId: slug(artist), byYear };
 }
 
 // ─────────── UNDERGROUND INDEX (how obscure the taste is) ───────────
