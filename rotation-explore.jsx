@@ -72,6 +72,116 @@ function exploreRank(R, kind, f) {
   return src.map(it => ({ ...it, kept: !!(R.byId[it.aid] || (R.expById && R.expById[it.aid])) })).sort((a, b) => b.value - a.value).slice(0, 40);
 }
 
+// ── mood lens (the former Mood page, folded in as a filter) ──
+// Zones split the valence (af[1], x) × energy (af[0], y) plane into quadrants around the midline.
+const MOOD_ZONES = ["dark-intense", "bright-intense", "dark-calm", "bright-calm"];
+const MOOD_LABELS = { "dark-intense": "dark · intense", "bright-intense": "bright · intense", "dark-calm": "dark · calm", "bright-calm": "bright · calm" };
+const zoneOf = (x, y) => (x >= 0.5 ? "bright" : "dark") + "-" + (y >= 0.5 ? "intense" : "calm");
+const inMoodZone = (af, z) => !z || zoneOf(af[1], af[0]) === z;
+
+// EXPLORE artists (with measured audio) passing the genre/time filters; moodZone applied only when
+// applyZone is set (the quadrant shows the whole slice; facts/results reflect the chosen zone too).
+function sliceArtists(R, f, applyZone) {
+  const A = R.AUDIO || {}, { year, fam, subIdx, cells, moodZone } = f;
+  const hasCells = cells && cells.size > 0;
+  const inFam = (s) => fam == null || s.some(si => R.SUBS[si].fam === fam);
+  const out = [];
+  for (const a of R.EXPLORE) {
+    const af = A[a.id]; if (!af) continue;
+    if (year != null && !(a.yp && a.yp[year])) continue;
+    if (subIdx >= 0) { if (a.s.indexOf(subIdx) < 0) continue; } else if (!inFam(a.s)) continue;
+    if (hasCells && !tsPlays(R, a.id, cells)) continue;
+    if (applyZone && moodZone && !inMoodZone(af, moodZone)) continue;
+    out.push(a);
+  }
+  return out;
+}
+
+// MoodQuadrant — valence × energy scatter that doubles as a filter: click a quadrant to scope the
+// ranked results to that mood zone; click a dot to open the artist.
+function MoodQuadrant({ pts, go, moodZone, setMoodZone }) {
+  const [hi, setHi] = React.useState(null);
+  const QS = 560, qp = 36;
+  const qx = (v) => qp + v * (QS - 2 * qp), qy = (e) => qp + (1 - e) * (QS - 2 * qp);
+  const maxPlays = Math.max(...pts.map(p => p.plays), 1);
+  const mid = 0.5;
+  const zones = [
+    { z: "dark-intense", x: qp, y: qp, w: qx(mid) - qp, h: qy(mid) - qp },
+    { z: "bright-intense", x: qx(mid), y: qp, w: QS - qp - qx(mid), h: qy(mid) - qp },
+    { z: "dark-calm", x: qp, y: qy(mid), w: qx(mid) - qp, h: QS - qp - qy(mid) },
+    { z: "bright-calm", x: qx(mid), y: qy(mid), w: QS - qp - qx(mid), h: QS - qp - qy(mid) },
+  ];
+  return (
+    <div style={{ padding: "14px 16px 10px" }}>
+      <svg viewBox={`0 0 ${QS} ${QS}`} style={{ width: "100%", height: "auto", display: "block" }} onMouseLeave={() => setHi(null)}>
+        {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
+          fill={moodZone === zn.z ? "var(--accent-bg)" : "transparent"} stroke="none"
+          style={{ cursor: "pointer" }} onClick={() => setMoodZone(moodZone === zn.z ? null : zn.z)}><title>{MOOD_LABELS[zn.z]}</title></rect>)}
+        <line x1={qx(.5)} y1={qp} x2={qx(.5)} y2={QS - qp} stroke="var(--rule)" strokeWidth="1" />
+        <line x1={qp} y1={qy(.5)} x2={QS - qp} y2={qy(.5)} stroke="var(--rule)" strokeWidth="1" />
+        {[["intense", qx(.5), qp - 4, "middle"], ["calm", qx(.5), QS - qp + 16, "middle"], ["dark", qp - 8, qy(.5), "end"], ["bright", QS - qp + 8, qy(.5), "start"]].map(([t, x, y, anc]) =>
+          <text key={t} x={x} y={y} textAnchor={anc} fontFamily="var(--mono)" fontSize="10" fill="var(--ink-faint)">{t}</text>)}
+        {pts.map(p => { const on = hi === p.id; const dim = moodZone && zoneOf(p.x, p.y) !== moodZone; return (
+          <circle key={p.id} cx={qx(p.x)} cy={qy(p.y)} r={(on ? 7 : 3 + Math.sqrt(p.plays / maxPlays) * 9)} fill={`oklch(0.64 0.16 ${p.hue})`}
+            fillOpacity={on ? 0.9 : dim ? 0.12 : (hi ? 0.2 : 0.62)} stroke={on ? "#fff" : "none"} strokeWidth="1.3"
+            style={{ cursor: "pointer", transition: "fill-opacity .12s" }}
+            onMouseEnter={() => setHi(p.id)} onClick={(e) => { e.stopPropagation(); go("artist", p.id); }}><title>{p.name}</title></circle>); })}
+      </svg>
+      <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>
+        {hi ? (pts.find(p => p.id === hi) || {}).name : moodZone ? `${MOOD_LABELS[moodZone]} — tap again to clear` : "tap a quadrant to filter · tap a dot to open · size = plays"}</div>
+    </div>
+  );
+}
+
+// MoodContext — the facts strip + mood-over-years arc, recomputed for whatever slice is active.
+function MoodContext({ R, arts, go }) {
+  const A = R.AUDIO || {};
+  const years = React.useMemo(() => R.GENRE_FLOW.years.map(y => y.year), [R]);
+  const facts = React.useMemo(() => {
+    const all = arts; const n = all.length || 1;
+    let se = 0, sv = 0, sd = 0, smaj = 0, sbpm = 0;
+    for (const a of all) { const af = A[a.id]; se += af[0]; sv += af[1]; sd += af[4]; smaj += af[6]; sbpm += 50 + af[3] * 140; }
+    const strong = all.filter(a => a.plays >= 30); const pool = strong.length ? strong : all;
+    const top = (idx, dir) => pool.slice().sort((x, y) => dir * (A[y.id][idx] - A[x.id][idx]))[0];
+    return { n: all.length, energy: se / n, valence: sv / n, dance: sd / n, major: smaj / n, bpm: Math.round(sbpm / n),
+      danceArtist: top(4, 1), sadArtist: top(1, -1), obscureArtist: top(7, -1) };
+  }, [arts]);
+  const arc = React.useMemo(() => {
+    const e = years.map(() => [0, 0]), v = years.map(() => [0, 0]);
+    for (const a of arts) { const af = A[a.id]; if (!af || !a.yp) continue; years.forEach((y, i) => { const w = a.yp[y] || 0; if (!w) return; e[i][0] += af[0] * w; e[i][1] += w; v[i][0] += af[1] * w; v[i][1] += w; }); }
+    return years.map((y, i) => ({ y, energy: e[i][1] ? e[i][0] / e[i][1] : null, valence: v[i][1] ? v[i][0] / v[i][1] : null }));
+  }, [arts, years]);
+  const W = 1000, H = 240, pad = 30;
+  const xAt = (i) => pad + (years.length === 1 ? 0 : i / (years.length - 1)) * (W - 2 * pad);
+  const yAt = (val) => pad + (1 - val) * (H - 2 * pad);
+  const line = (key) => arc.map((d, i) => d[key] == null ? null : `${xAt(i).toFixed(1)} ${yAt(d[key]).toFixed(1)}`).filter(Boolean).join(" L ");
+  const Fact = ({ k, v, sub }) => (<div className="r-card" style={{ padding: "13px 15px" }}><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{k}</div><div style={{ fontFamily: "var(--serif)", fontSize: 21, marginTop: 2 }}>{v}</div>{sub && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 2 }}>{sub}</div>}</div>);
+  if (!arts.length) return <div className="r-card xp-empty" style={{ marginTop: "var(--gap)" }}>No measured audio in this slice — loosen a filter.</div>;
+  return (
+    <div style={{ marginTop: "var(--gap)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px,1fr))", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
+        <Fact k="avg energy" v={Math.round(facts.energy * 100) + "%"} sub={facts.bpm + " bpm median"} />
+        <Fact k="avg mood" v={Math.round(facts.valence * 100) + "%"} sub={facts.valence < .45 ? "leans dark" : facts.valence > .55 ? "leans bright" : "balanced"} />
+        <Fact k="key" v={Math.round(facts.major * 100) + "% major"} sub={facts.major < .5 ? "minor-leaning" : "mostly major"} />
+        <Fact k="most danceable" v={facts.danceArtist ? facts.danceArtist.name : "—"} sub="by audio" />
+        <Fact k="darkest" v={facts.sadArtist ? facts.sadArtist.name : "—"} sub="lowest valence" />
+        <Fact k="most obscure" v={facts.obscureArtist ? facts.obscureArtist.name : "—"} sub="lowest popularity" />
+      </div>
+      <div className="r-card" style={{ padding: "16px 18px" }}>
+        <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Mood over the years</b></span>
+          <span className="meta"><span style={{ color: "oklch(0.66 0.18 30)" }}>● energy</span> &nbsp; <span style={{ color: "oklch(0.66 0.16 250)" }}>● mood</span> · {fmt(facts.n)} artists</span></div>
+        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto", display: "block" }}>
+          <line x1={pad} y1={yAt(.5)} x2={W - pad} y2={yAt(.5)} stroke="var(--rule)" strokeDasharray="3 4" />
+          <path d={"M " + line("energy")} fill="none" stroke="oklch(0.66 0.18 30)" strokeWidth="2.4" />
+          <path d={"M " + line("valence")} fill="none" stroke="oklch(0.66 0.16 250)" strokeWidth="2.4" />
+          {years.map((y, i) => <text key={y} x={xAt(i)} y={H - 8} textAnchor="middle" fontFamily="var(--mono)" fontSize="10" fill="var(--ink-faint)" opacity={i % 2 === 0 || i === years.length - 1 ? 1 : 0}>{"'" + String(y).slice(2)}</text>)}
+        </svg>
+        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 4 }}>each year averaged across what you played in this slice that year, weighted by plays · midline = 50%</div>
+      </div>
+    </div>
+  );
+}
+
 // ── search ──
 function timeMatches(R, q) {
   if (q.length < 2) return [];
@@ -155,6 +265,8 @@ function ExploreView({ t, go, setPop, seed }) {
   const [sub, setSub] = React.useState(null);             // subgenre NAME, or null
   const [cells, setCells] = React.useState(() => new Set());
   const [playing, setPlaying] = React.useState(false);
+  const [lens, setLens] = React.useState("texture");      // left surface: "texture" map or "mood" quadrant
+  const [moodZone, setMoodZone] = React.useState(null);   // active valence×energy quadrant filter, or null
   const [ref, seen] = useInView();
 
   // deep-link: arriving via #explore/<tag> (e.g. from an artist-page genre chip) preselects that
@@ -202,7 +314,12 @@ function ExploreView({ t, go, setPop, seed }) {
   }, [R]);
   const [sound, setSound] = React.useState(null);
   const [sndDir, setSndDir] = React.useState(1);
-  const items = exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir });
+  const items = exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone });
+  // mood-lens slices: quadrant shows the whole genre/time slice; facts/arc reflect the chosen zone too
+  const moodPts = React.useMemo(() => sliceArtists(R, { year, fam, subIdx, cells }, false)
+    .slice(0, 600).map(a => { const af = R.AUDIO[a.id]; return { id: a.id, name: a.name, hue: a.hue, x: af[1], y: af[0], plays: a.plays }; }),
+    [R, year, fam, subIdx, cells]);
+  const moodSet = React.useMemo(() => sliceArtists(R, { year, fam, subIdx, cells, moodZone }, true), [R, year, fam, subIdx, cells, moodZone]);
   const pickSub = (name) => { setFam(null); setSub(s => s === name ? null : name); };
   const pickFam = (f) => { setSub(null); setFam(x => x === f ? null : f); };
   const toggleCell = (c) => setCells(prev => { const n = new Set(prev); n.has(c) ? n.delete(c) : n.add(c); return n; });
@@ -212,6 +329,7 @@ function ExploreView({ t, go, setPop, seed }) {
   if (year != null) chips.push(["time", year, () => { setPlaying(false); setYear(null); }]);
   if (sub) chips.push(["subgenre", sub, () => setSub(null)]);
   else if (fam != null) chips.push(["genre", (R.FAMILIES.find(f => f.i === fam) || {}).family, () => setFam(null)]);
+  if (moodZone) chips.push(["mood", MOOD_LABELS[moodZone], () => setMoodZone(null)]);
   if (cells.size) chips.push(["clock", cells.size + " slot" + (cells.size > 1 ? "s" : ""), () => setCells(new Set())]);
 
   return (
@@ -242,7 +360,7 @@ function ExploreView({ t, go, setPop, seed }) {
             <span className="xp-flabel">Active</span>
             <div className="xp-chiprow">
               {chips.map(([k, v, clr]) => <button key={k} className="xp-chip xp-chip-active" onClick={clr}><span className="xp-ck">{k}</span> {v} <span className="xp-x">✕</span></button>)}
-              <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYear(null); setFam(null); setSub(null); setCells(new Set()); }}>clear all</button>
+              <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYear(null); setFam(null); setSub(null); setCells(new Set()); setMoodZone(null); }}>clear all</button>
             </div>
           </div>
         )}
@@ -252,7 +370,16 @@ function ExploreView({ t, go, setPop, seed }) {
       <div className="xp-main m-stack">
         <div className="xp-left">
           <div className="r-card" style={{ padding: 0, overflow: "hidden" }}>
-            <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
+            <div className="xp-lens">
+              <div className="r-seg xp-lens-seg">
+                <button data-on={lens === "texture"} onClick={() => setLens("texture")}>texture</button>
+                <button data-on={lens === "mood"} onClick={() => setLens("mood")}>mood</button>
+              </div>
+              <span className="xp-lens-cap">{lens === "texture" ? "organic ↔ electronic" : "valence × energy"}</span>
+            </div>
+            {lens === "texture"
+              ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
+              : <MoodQuadrant pts={moodPts} go={go} moodZone={moodZone} setMoodZone={setMoodZone} />}
           </div>
         </div>
         <div className="xp-right">
@@ -276,6 +403,9 @@ function ExploreView({ t, go, setPop, seed }) {
             : <RankRows items={items} go={go} />}
         </div>
       </div>
+
+      {/* mood lens: contextual facts + the energy/mood arc for whatever slice is active */}
+      {lens === "mood" && <MoodContext R={R} arts={moodSet} go={go} />}
 
       {/* genres grouped under families — tap a family or a subgenre to filter (stable order) */}
       <FamiliesGrid order={order} weights={weights} fam={fam} sub={sub} pickFam={pickFam} pickSub={pickSub} year={year} seen={seen} expressive={t.chart === "expressive"} />
@@ -312,6 +442,9 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-dot { width: 9px; height: 9px; border-radius: 3px; flex: none; }
         .xp-empty { padding: 56px 20px; text-align: center; color: var(--ink-faint); font-family: var(--mono); font-size: 12px; }
         .xp-note { font-size: 10px; color: var(--ink-faint); margin-bottom: 10px; }
+        .xp-lens { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 14px 0; }
+        .xp-lens-seg button { font-size: 9px; padding: 4px 10px; }
+        .xp-lens-cap { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
         .xp-main { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: var(--gap); align-items: start; }
         .xp-left { position: sticky; top: 76px; display: grid; gap: var(--gap); }
         .xp-rows { display: grid; gap: 2px; }
