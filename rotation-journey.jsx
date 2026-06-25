@@ -142,86 +142,8 @@ function PlaceFlow({ artists, go }) {
   );
 }
 
-// MoodView — the measured-sound lens. Library facts, a play-weighted energy/valence arc over the
-// years, and a valence×energy mood quadrant of your artists. All from the shipped AUDIO map
-// ([0]energy [1]valence [2]acoustic [3]tempo [4]dance [5]instr [6]major [7]popularity [8]followers).
-function MoodView({ go }) {
-  const R = window.ROTATION, A = R.AUDIO || {};
-  const years = React.useMemo(() => R.GENRE_FLOW.years.map(y => y.year), [R]);
-  const [hi, setHi] = React.useState(null);
-
-  const arc = React.useMemo(() => {
-    const e = years.map(() => [0, 0]), v = years.map(() => [0, 0]);
-    for (const a of R.EXPLORE) { const af = A[a.id]; if (!af || !a.yp) continue; years.forEach((y, i) => { const w = a.yp[y] || 0; if (!w) return; e[i][0] += af[0] * w; e[i][1] += w; v[i][0] += af[1] * w; v[i][1] += w; }); }
-    return years.map((y, i) => ({ y, energy: e[i][1] ? e[i][0] / e[i][1] : null, valence: v[i][1] ? v[i][0] / v[i][1] : null }));
-  }, [R, years]);
-
-  const pts = React.useMemo(() => R.EXPLORE.filter(a => A[a.id]).slice(0, 600).map(a => ({ id: a.id, name: a.name, hue: a.hue, x: A[a.id][1], y: A[a.id][0], plays: a.plays })), [R]);
-
-  const facts = React.useMemo(() => {
-    const all = R.EXPLORE.filter(a => A[a.id]); const n = all.length || 1;
-    let se = 0, sv = 0, sd = 0, smaj = 0, sbpm = 0;
-    for (const a of all) { const af = A[a.id]; se += af[0]; sv += af[1]; sd += af[4]; smaj += af[6]; sbpm += 50 + af[3] * 140; }
-    const strong = all.filter(a => a.plays >= 30); const pool = strong.length ? strong : all;  // recognisable picks, not 1-play noise
-    const top = (idx, dir) => pool.slice().sort((x, y) => dir * (A[y.id][idx] - A[x.id][idx]))[0];
-    return { n, energy: se / n, valence: sv / n, dance: sd / n, major: smaj / n, bpm: Math.round(sbpm / n),
-      danceArtist: top(4, 1), sadArtist: top(1, -1), happyArtist: top(1, 1), obscureArtist: top(7, -1) };
-  }, [R]);
-
-  const W = 1000, H = 300, pad = 30;
-  const xAt = (i) => pad + (years.length === 1 ? 0 : i / (years.length - 1)) * (W - 2 * pad);
-  const yAt = (val) => pad + (1 - val) * (H - 2 * pad);
-  const line = (key) => arc.map((d, i) => d[key] == null ? null : `${xAt(i).toFixed(1)} ${yAt(d[key]).toFixed(1)}`).filter(Boolean).join(" L ");
-  const QS = 560, qp = 36;
-  const qx = (v) => qp + v * (QS - 2 * qp), qy = (e) => qp + (1 - e) * (QS - 2 * qp);
-  const maxPlays = Math.max(...pts.map(p => p.plays), 1);
-  const Fact = ({ k, v, sub }) => (<div className="r-card" style={{ padding: "13px 15px" }}><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{k}</div><div style={{ fontFamily: "var(--serif)", fontSize: 21, marginTop: 2 }}>{v}</div>{sub && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 2 }}>{sub}</div>}</div>);
-
-  return (
-    <div className="r-view">
-      <div className="r-viewhead"><div>
-        <div className="r-kicker">Mood · measured from {fmt(facts.n)} artists' audio</div>
-        <h1 className="r-title">The <em>feel</em> of it<span className="dot">.</span></h1>
-      </div></div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px,1fr))", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
-        <Fact k="avg energy" v={Math.round(facts.energy * 100) + "%"} sub={facts.bpm + " bpm median"} />
-        <Fact k="avg mood" v={Math.round(facts.valence * 100) + "%"} sub={facts.valence < .45 ? "leans dark" : facts.valence > .55 ? "leans bright" : "balanced"} />
-        <Fact k="key" v={Math.round(facts.major * 100) + "% major"} sub={facts.major < .5 ? "a minor-key library" : "mostly major"} />
-        <Fact k="most danceable" v={facts.danceArtist ? facts.danceArtist.name : "—"} sub="by audio" />
-        <Fact k="darkest" v={facts.sadArtist ? facts.sadArtist.name : "—"} sub="lowest valence" />
-        <Fact k="most obscure" v={facts.obscureArtist ? facts.obscureArtist.name : "—"} sub="lowest popularity" />
-      </div>
-
-      <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
-        <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Mood over the years</b></span>
-          <span className="meta"><span style={{ color: "oklch(0.66 0.18 30)" }}>● energy</span> &nbsp; <span style={{ color: "oklch(0.66 0.16 250)" }}>● mood</span></span></div>
-        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto", display: "block" }}>
-          <line x1={pad} y1={yAt(.5)} x2={W - pad} y2={yAt(.5)} stroke="var(--rule)" strokeDasharray="3 4" />
-          <path d={"M " + line("energy")} fill="none" stroke="oklch(0.66 0.18 30)" strokeWidth="2.4" />
-          <path d={"M " + line("valence")} fill="none" stroke="oklch(0.66 0.16 250)" strokeWidth="2.4" />
-          {years.map((y, i) => <text key={y} x={xAt(i)} y={H - 8} textAnchor="middle" fontFamily="var(--mono)" fontSize="10" fill="var(--ink-faint)" opacity={i % 2 === 0 || i === years.length - 1 ? 1 : 0}>{"'" + String(y).slice(2)}</text>)}
-        </svg>
-        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 4 }}>each year averaged across what you actually played that year, weighted by plays · midline = 50%</div>
-      </div>
-
-      <div className="r-card" style={{ padding: "16px 18px" }}>
-        <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Mood quadrant</b></span><span className="meta">valence × energy · {pts.length} artists</span></div>
-        <svg viewBox={`0 0 ${QS} ${QS}`} style={{ width: "100%", maxWidth: 560, height: "auto", display: "block", margin: "0 auto" }} onMouseLeave={() => setHi(null)}>
-          <line x1={qx(.5)} y1={qp} x2={qx(.5)} y2={QS - qp} stroke="var(--rule)" strokeWidth="1" />
-          <line x1={qp} y1={qy(.5)} x2={QS - qp} y2={qy(.5)} stroke="var(--rule)" strokeWidth="1" />
-          {[["intense", qx(.5), qp + 4, "middle"], ["calm", qx(.5), QS - qp + 14, "middle"], ["dark", qp - 6, qy(.5), "end"], ["bright", QS - qp + 6, qy(.5), "start"]].map(([t, x, y, anc]) =>
-            <text key={t} x={x} y={y} textAnchor={anc} fontFamily="var(--mono)" fontSize="10" fill="var(--ink-faint)">{t}</text>)}
-          {pts.map(p => { const on = hi === p.id; return (
-            <circle key={p.id} cx={qx(p.x)} cy={qy(p.y)} r={(on ? 7 : 3 + Math.sqrt(p.plays / maxPlays) * 9)} fill={`oklch(0.64 0.16 ${p.hue})`} fillOpacity={hi && !on ? 0.2 : 0.66}
-              stroke={on ? "#fff" : "none"} strokeWidth="1.3" style={{ cursor: "pointer", transition: "fill-opacity .12s" }}
-              onMouseEnter={() => setHi(p.id)} onClick={() => go("artist", p.id)}><title>{p.name}</title></circle>); })}
-        </svg>
-        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>{hi ? (pts.find(p => p.id === hi) || {}).name : "each dot an artist · right = brighter, up = more intense · size = plays · click to open"}</div>
-      </div>
-    </div>
-  );
-}
+// (MoodView removed — the measured-sound lens now lives inside Explore as the "mood" filter lens:
+// see rotation-explore.jsx → MoodQuadrant + MoodContext.)
 
 // ArtistShare — a donut of your top artists by share of plays; click "everything else" to drill into
 // the next tier, ‹ back to climb out. Sits at the foot of the Journey tab.
