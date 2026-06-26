@@ -98,12 +98,15 @@ function sliceArtists(R, f, applyZone) {
 }
 
 // MoodQuadrant — valence × energy scatter that doubles as a filter: click a quadrant to scope the
-// ranked results to that mood zone; click a dot to open the artist.
-function MoodQuadrant({ pts, go, moodZone, setMoodZone }) {
+// ranked results to that mood zone; click a dot to open the artist. It renders a stable universe of
+// dots and animates each dot's opacity/size as the active slice (activeIds) changes, so filter
+// changes elsewhere on the page ripple in smoothly rather than popping.
+function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
   const [hi, setHi] = React.useState(null);
   const QS = 560, qp = 36;
   const qx = (v) => qp + v * (QS - 2 * qp), qy = (e) => qp + (1 - e) * (QS - 2 * qp);
-  const maxPlays = Math.max(...pts.map(p => p.plays), 1);
+  const maxPlays = React.useMemo(() => { let m = 1; for (const p of pts) if (activeIds.has(p.id) && p.plays > m) m = p.plays; return m; }, [pts, activeIds]);
+  const nActive = activeIds.size;
   const mid = 0.5;
   const zones = [
     { z: "dark-intense", x: qp, y: qp, w: qx(mid) - qp, h: qy(mid) - qp },
@@ -116,19 +119,25 @@ function MoodQuadrant({ pts, go, moodZone, setMoodZone }) {
       <svg viewBox={`0 0 ${QS} ${QS}`} style={{ width: "100%", height: "auto", display: "block" }} onMouseLeave={() => setHi(null)}>
         {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
           fill={moodZone === zn.z ? "var(--accent-bg)" : "transparent"} stroke="none"
-          style={{ cursor: "pointer" }} onClick={() => setMoodZone(moodZone === zn.z ? null : zn.z)}><title>{MOOD_LABELS[zn.z]}</title></rect>)}
+          style={{ cursor: "pointer", transition: "fill .35s ease" }} onClick={() => setMoodZone(moodZone === zn.z ? null : zn.z)}><title>{MOOD_LABELS[zn.z]}</title></rect>)}
         <line x1={qx(.5)} y1={qp} x2={qx(.5)} y2={QS - qp} stroke="var(--rule)" strokeWidth="1" />
         <line x1={qp} y1={qy(.5)} x2={QS - qp} y2={qy(.5)} stroke="var(--rule)" strokeWidth="1" />
         {[["intense", qx(.5), qp - 4, "middle"], ["calm", qx(.5), QS - qp + 16, "middle"], ["dark", qp - 8, qy(.5), "end"], ["bright", QS - qp + 8, qy(.5), "start"]].map(([t, x, y, anc]) =>
           <text key={t} x={x} y={y} textAnchor={anc} fontFamily="var(--mono)" fontSize="10" fill="var(--ink-faint)">{t}</text>)}
-        {pts.map(p => { const on = hi === p.id; const dim = moodZone && zoneOf(p.x, p.y) !== moodZone; return (
-          <circle key={p.id} cx={qx(p.x)} cy={qy(p.y)} r={(on ? 7 : 3 + Math.sqrt(p.plays / maxPlays) * 9)} fill={`oklch(0.64 0.16 ${p.hue})`}
-            fillOpacity={on ? 0.9 : dim ? 0.12 : (hi ? 0.2 : 0.62)} stroke={on ? "#fff" : "none"} strokeWidth="1.3"
-            style={{ cursor: "pointer", transition: "fill-opacity .12s" }}
-            onMouseEnter={() => setHi(p.id)} onClick={(e) => { e.stopPropagation(); go("artist", p.id); }}><title>{p.name}</title></circle>); })}
+        {pts.map(p => {
+          const active = activeIds.has(p.id), on = hi === p.id;
+          const dimZone = active && moodZone && zoneOf(p.x, p.y) !== moodZone;
+          const op = !active ? 0 : on ? 0.95 : dimZone ? 0.1 : 0.62;
+          const r = on ? 7 : 3 + Math.sqrt(p.plays / maxPlays) * 9;
+          return (
+            <circle key={p.id} cx={qx(p.x)} cy={qy(p.y)} r={r} fill={`oklch(0.64 0.16 ${p.hue})`}
+              fillOpacity={op} stroke={on ? "#fff" : "none"} strokeWidth="1.3"
+              style={{ cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: "fill-opacity .45s ease, r .25s ease" }}
+              onMouseEnter={() => active && setHi(p.id)} onClick={(e) => { e.stopPropagation(); active && go("artist", p.id); }}><title>{p.name}</title></circle>);
+        })}
       </svg>
       <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>
-        {hi ? (pts.find(p => p.id === hi) || {}).name : moodZone ? `${MOOD_LABELS[moodZone]} — tap again to clear` : "tap a quadrant to filter · tap a dot to open · size = plays"}</div>
+        {hi ? (pts.find(p => p.id === hi) || {}).name : moodZone ? `${MOOD_LABELS[moodZone]} — tap again to clear` : `${fmt(nActive)} artists · tap a quadrant to filter · tap a dot to open`}</div>
     </div>
   );
 }
@@ -315,10 +324,13 @@ function ExploreView({ t, go, setPop, seed }) {
   const [sound, setSound] = React.useState(null);
   const [sndDir, setSndDir] = React.useState(1);
   const items = exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone });
-  // mood-lens slices: quadrant shows the whole genre/time slice; facts/arc reflect the chosen zone too
-  const moodPts = React.useMemo(() => sliceArtists(R, { year, fam, subIdx, cells }, false)
-    .slice(0, 600).map(a => { const af = R.AUDIO[a.id]; return { id: a.id, name: a.name, hue: a.hue, x: af[1], y: af[0], plays: a.plays }; }),
-    [R, year, fam, subIdx, cells]);
+  // mood-lens slices. The quadrant renders a STABLE universe of points (so dots persist across filter
+  // changes and can transition opacity/size) and toggles which are "active" for the current slice;
+  // facts/arc reflect the chosen zone too.
+  const moodUniverse = React.useMemo(() => R.EXPLORE.filter(a => R.AUDIO[a.id]).slice()
+    .sort((a, b) => b.plays - a.plays).slice(0, 1000)
+    .map(a => { const af = R.AUDIO[a.id]; return { id: a.id, name: a.name, hue: a.hue, x: af[1], y: af[0], plays: a.plays }; }), [R]);
+  const moodActive = React.useMemo(() => new Set(sliceArtists(R, { year, fam, subIdx, cells }, false).map(a => a.id)), [R, year, fam, subIdx, cells]);
   const moodSet = React.useMemo(() => sliceArtists(R, { year, fam, subIdx, cells, moodZone }, true), [R, year, fam, subIdx, cells, moodZone]);
   const pickSub = (name) => { setFam(null); setSub(s => s === name ? null : name); };
   const pickFam = (f) => { setSub(null); setFam(x => x === f ? null : f); };
@@ -379,7 +391,7 @@ function ExploreView({ t, go, setPop, seed }) {
             </div>
             {lens === "texture"
               ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
-              : <MoodQuadrant pts={moodPts} go={go} moodZone={moodZone} setMoodZone={setMoodZone} />}
+              : <MoodQuadrant pts={moodUniverse} activeIds={moodActive} go={go} moodZone={moodZone} setMoodZone={setMoodZone} />}
           </div>
         </div>
         <div className="xp-right">
