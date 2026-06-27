@@ -1121,27 +1121,28 @@ function SearchOverlay({ open, onClose, go }) {
   const R = window.ROTATION;
   const [q, setQ] = React.useState("");
   const [ready, setReady] = React.useState(!!window.ROTATION_SEARCH);
+  const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
   const [sel, setSel] = React.useState(null);
   const inputRef = React.useRef(null);
 
   React.useEffect(() => {
     if (!open) return;
     setQ(""); setSel(null);
-    if (!window.ROTATION_SEARCH) {
-      const s = document.createElement("script");
-      s.src = "search-index.js";
-      s.onload = () => setReady(true);
-      document.head.appendChild(s);
-    }
+    const load = (src, has, done) => { if (window[has]) return; const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
+    load("search-index.js", "ROTATION_SEARCH", () => setReady(true));
+    load("media-index.js", "ROTATION_MEDIA", () => setMediaReady(true));   // albums + songs (big, lazy)
     setTimeout(() => inputRef.current && inputRef.current.focus(), 40);
   }, [open]);
 
+  // accent-insensitive so "americain" finds "à l'américaine", "bjork" finds "Björk", etc.
+  const deAccent = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+
   const results = React.useMemo(() => {
     if (!ready || !q.trim()) return [];
-    const needle = q.trim().toLowerCase();
+    const needle = deAccent(q.trim());
     const starts = [], contains = [];
     for (const row of window.ROTATION_SEARCH) {
-      const lo = row[0].toLowerCase();
+      const lo = deAccent(row[0]);
       if (lo.startsWith(needle)) starts.push(row);
       else if (lo.includes(needle)) contains.push(row);
       if (starts.length > 60) break;
@@ -1149,12 +1150,28 @@ function SearchOverlay({ open, onClose, go }) {
     return starts.concat(contains).slice(0, 30);
   }, [q, ready]);
 
+  // songs + albums by title (the lazy media index; rows = [title, artistIdx, plays], sorted by plays)
+  const media = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA;
+    if (!q.trim() || !M) return { tracks: [], albums: [] };
+    const needle = deAccent(q.trim());
+    const scan = (rows) => { const out = []; for (const r of rows) { if (deAccent(r[0]).includes(needle)) { out.push(r); if (out.length >= 10) break; } } return out; };
+    return { tracks: scan(M.tracks), albums: scan(M.albums) };
+  }, [q, mediaReady]);
+
   if (!open) return null;
 
+  const resolveId = (name) => { const s = R.slug(name); if (R.byId[s]) return s; const a = R.idForName && R.idForName(name); if (a) return a; if (R.expById && R.expById[s]) return s; return null; };
   const pick = (row) => {
     const id = R.slug(row[0]);
     if (R.byId[id]) { onClose(); go("artist", id); }
     else setSel(sel && sel[0] === row[0] ? null : row);
+  };
+  // song/album row → open the artist's page if we have one, else their last.fm page
+  const pickMedia = (artist) => {
+    const id = resolveId(artist);
+    if (id) { onClose(); go("artist", id); }
+    else window.open(`https://www.last.fm/music/${encodeURIComponent(artist)}`, "_blank", "noopener");
   };
 
   return (
@@ -1163,21 +1180,24 @@ function SearchOverlay({ open, onClose, go }) {
         <div className="se-bar">
           <span className="se-glyph">⌕</span>
           <input ref={inputRef} value={q} onChange={e => { setQ(e.target.value); setSel(null); }}
-            placeholder={ready ? `search ${fmt(window.ROTATION_SEARCH.length)} artists you've played…` : "loading your library…"}
+            placeholder={ready ? `search artists, albums & songs you've played…` : "loading your library…"}
             spellCheck={false} />
           <button className="se-x" onClick={onClose}>esc</button>
         </div>
-        {q.trim() && (
+        {q.trim() && (() => {
+          const mArt = (window.ROTATION_MEDIA && window.ROTATION_MEDIA.artists) || [];
+          const nothing = ready && mediaReady && results.length === 0 && media.tracks.length === 0 && media.albums.length === 0;
+          return (
           <div className="se-results">
-            {results.length === 0 && ready && (
-              <div className="se-empty">Nothing. You've truly never played “{q.trim()}”.</div>
-            )}
+            {nothing && <div className="se-empty">Nothing. You've truly never played “{q.trim()}”.</div>}
+
+            {results.length > 0 && <div className="se-group">Artists</div>}
             {results.map(row => {
               const [name, plays, first, last, peakYear, peakPlays] = row;
               const inLib = !!R.byId[R.slug(name)];
               const isSel = sel && sel[0] === name;
               return (
-                <div key={name}>
+                <div key={"a-" + name}>
                   <div className="se-row" onClick={() => pick(row)}>
                     <GenCover hue={hueOfName(name)} name={name} size={36} radius={3} />
                     <div style={{ minWidth: 0, flex: 1 }}>
@@ -1195,8 +1215,33 @@ function SearchOverlay({ open, onClose, go }) {
                 </div>
               );
             })}
+
+            {media.tracks.length > 0 && <div className="se-group">Songs</div>}
+            {media.tracks.map(([title, ai, plays], i) => { const name = mArt[ai] || ""; const known = !!resolveId(name); return (
+              <div key={"s-" + i} className="se-row" onClick={() => pickMedia(name)}>
+                <GenCover hue={hueOfName(name)} name={name} size={36} radius={3} />
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div className="se-name">{title}</div>
+                  <div className="se-sub">{name}{known ? "" : " · last.fm ↗"}</div>
+                </div>
+                <span className="se-plays">{fmt(plays)}<small>plays</small></span>
+              </div>); })}
+
+            {media.albums.length > 0 && <div className="se-group">Albums</div>}
+            {media.albums.map(([title, ai, plays], i) => { const name = mArt[ai] || ""; const known = !!resolveId(name); return (
+              <div key={"al-" + i} className="se-row" onClick={() => pickMedia(name)}>
+                <GenCover hue={hueOfName(name)} name={name} size={36} radius={3} />
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div className="se-name">{title}</div>
+                  <div className="se-sub">{name}{known ? "" : " · last.fm ↗"}</div>
+                </div>
+                <span className="se-plays">{fmt(plays)}<small>plays</small></span>
+              </div>); })}
+
+            {results.length > 0 && !mediaReady && <div className="se-loading">searching songs & albums…</div>}
           </div>
-        )}
+          );
+        })()}
       </div>
       <style>{`
         .se-veil { position: fixed; inset: 0; z-index: 900; background: rgba(8,7,12,.78);
@@ -1214,6 +1259,10 @@ function SearchOverlay({ open, onClose, go }) {
           background: var(--bg-3); color: var(--ink-faint); border: 1px solid var(--rule); border-radius: 5px;
           padding: 5px 8px; cursor: pointer; }
         .se-results { max-height: 56vh; overflow-y: auto; border-top: 1px solid var(--rule); padding: 8px; }
+        .se-group { font-family: var(--mono); font-size: 8.5px; letter-spacing: .16em; text-transform: uppercase;
+          color: var(--ink-faint); padding: 10px 10px 4px; }
+        .se-group:first-child { padding-top: 4px; }
+        .se-loading { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); padding: 10px; text-align: center; }
         .se-empty { padding: 22px 14px; font-family: var(--serif); font-style: italic; color: var(--ink-soft); }
         .se-row { display: flex; gap: 12px; align-items: center; padding: 9px 10px; border-radius: 6px; cursor: pointer; }
         .se-row:hover { background: var(--bg-3); }
