@@ -140,6 +140,7 @@ function RotationApp() {
       {v === "map" && <MapView go={go} />}
       {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
       {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
+      {v === "album" && <AlbumView id={route.id} go={go} />}
 
       <footer className="r-foot">
         <div>rotation · a companion to <a className="r-link" href="Culture v2.html">Culture</a> · fuad.design / 2026</div>

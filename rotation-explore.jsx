@@ -412,7 +412,7 @@ function ExploreView({ t, go, setPop, seed }) {
           {cells.size > 0 && kind !== "artists" && <div className="r-mono xp-note">filtered to {kind} by artists active in the selected slots</div>}
           {items.length === 0
             ? <div className="r-card xp-empty">Nothing in this slice — loosen a filter.</div>
-            : <RankRows items={items} go={go} />}
+            : <RankRows items={items} go={go} kind={kind} />}
         </div>
       </div>
 
@@ -588,15 +588,22 @@ function FamiliesGrid({ order, weights, fam, sub, pickFam, pickSub, year, seen, 
   );
 }
 
-// compact ranked rows for the right column (kept artists navigate; others show but don't)
-function RankRows({ items, go }) {
+// compact ranked rows for the right column. Albums open their own page; artists/tracks navigate to
+// the artist (kept artists/long-tail with a page only).
+function RankRows({ items, go, kind }) {
+  const R = window.ROTATION;
   const max = Math.max(1, ...items.map(i => i.value));
+  const isAlbum = kind === "albums";
+  const onClick = (it) => {
+    if (isAlbum) { go("album", R.slug(it.sub) + "~" + R.slug(it.label)); return; }
+    if (it.kept !== false) go("artist", it.aid || it.id);
+  };
   return (
     <div className="xp-rows">
       {items.map((it, i) => (
-        <div key={(it.aid || it.id) + "-" + i} className="xp-row" data-link={it.kept !== false} onClick={() => (it.kept !== false) && go("artist", it.aid || it.id)}>
+        <div key={(it.aid || it.id) + "-" + i} className="xp-row" data-link={isAlbum || it.kept !== false} onClick={() => onClick(it)}>
           <span className="xp-rank">{String(i + 1).padStart(2, "0")}</span>
-          <GenCover hue={it.hue} name={it.aid ? it.sub : it.label} size={34} radius={3} />
+          <GenCover hue={it.hue} name={isAlbum ? it.label : (it.aid ? it.sub : it.label)} size={34} radius={3} />
           <div className="xp-row-main">
             <div className="xp-row-name">{it.label}</div>
             <div className="xp-row-sub">{it.sub}</div>

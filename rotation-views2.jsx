@@ -879,8 +879,8 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                 <span className="meta">{albums.length} listed</span></div>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 {(albums.length ? albums : []).map((al, i) => (
-                  <div key={al.title + i} style={{ width: 78 }}>
-                    <GenCover hue={a.hue} name={a.name} size={78} radius={3} />
+                  <div key={al.title + i} style={{ width: 78, cursor: "pointer" }} onClick={() => go("album", R.slug(a.name) + "~" + R.slug(al.title))}>
+                    <GenCover hue={a.hue} name={al.title} size={78} radius={3} />
                     <div style={{ fontSize: 10.5, marginTop: 6, lineHeight: 1.2,
                       display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
                       overflow: "hidden" }}>{al.title}</div>
@@ -1022,4 +1022,85 @@ function LiveView({ t, go, city, setCity }) {
   );
 }
 
-Object.assign(window, { SoundMapView, ErasView, ArtistView, LiveView, ConcertRow });
+// AlbumView — your history with one album: the tracks you've played from it (with per-song plays),
+// when you played it, and the artist's genre/mood (joined from the inline universe). The album's
+// identity is "artistSlug~titleSlug"; data comes from the lazy media-index, loaded on demand.
+function AlbumView({ id, go }) {
+  const R = window.ROTATION;
+  const [ready, setReady] = React.useState(!!window.ROTATION_MEDIA);
+  React.useEffect(() => {
+    if (window.ROTATION_MEDIA) { setReady(true); return; }
+    const s = document.createElement("script"); s.src = "media-index.js"; s.onload = () => setReady(true); document.head.appendChild(s);
+  }, []);
+  const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
+
+  const data = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA; if (!M || !id) return null;
+    const sep = id.indexOf("~"); const aSlug = id.slice(0, sep), tSlug = id.slice(sep + 1);
+    let bestIdx = -1, bestPlays = -1;
+    for (let i = 0; i < M.albums.length; i++) { const al = M.albums[i]; if (al[2] > bestPlays && R.slug(M.artists[al[1]]) === aSlug && R.slug(al[0]) === tSlug) { bestIdx = i; bestPlays = al[2]; } }
+    if (bestIdx < 0) return null;
+    const al = M.albums[bestIdx], artist = M.artists[al[1]];
+    const tracks = [];
+    for (const t of M.tracks) if (t[3] === bestIdx) tracks.push({ title: t[0], plays: t[2] });
+    tracks.sort((x, y) => y.plays - x.plays);
+    return { title: al[0], artist, plays: al[2], firstY: al[3], lastY: al[4], tracks, trackPlays: tracks.reduce((s, t) => s + t.plays, 0) };
+  }, [ready, id]);
+
+  if (!ready) return <div className="r-view"><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 40 }}>loading album…</div></div>;
+  if (!data) return <div className="r-view"><button className="r-back" onClick={() => go("explore")}>← explore</button><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 24 }}>Album not found.</div></div>;
+
+  const artistId = R.idForName(data.artist) || R.slug(data.artist);
+  const rec = R.byId[artistId] || (R.expById && R.expById[artistId]);
+  const known = !!rec;
+  const hue = rec ? rec.hue : hueOf(data.artist);
+  const subs = rec && rec.s ? rec.s.map(i => R.SUBS[i] && R.SUBS[i].name).filter(Boolean).slice(0, 6) : [];
+  const af = R.AUDIO && R.AUDIO[artistId];
+  const maxT = Math.max(...data.tracks.map(t => t.plays), 1);
+  const yr = data.firstY ? (data.firstY === data.lastY ? `${data.firstY}` : `${data.firstY}–${data.lastY}`) : "";
+
+  return (
+    <div className="r-view">
+      <button className="r-back" onClick={() => go("explore")}>← explore</button>
+      <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 26 }}>
+        <GenCover hue={hue} name={data.title} size={150} radius={6} />
+        <div style={{ flex: 1, minWidth: 240 }}>
+          <div className="r-kicker">Album{yr ? ` · ${yr}` : ""}{data.tracks.length ? ` · ${data.tracks.length} track${data.tracks.length !== 1 ? "s" : ""} played` : ""}</div>
+          <h1 className="r-title" style={{ fontSize: "clamp(30px,4.4vw,54px)" }}>{data.title}<span className="dot">.</span></h1>
+          <div style={{ color: "var(--ink-soft)", fontSize: 15, marginTop: 6 }}>
+            by {known ? <b onClick={() => go("artist", artistId)} style={{ cursor: "pointer", color: "var(--ink)" }}>{data.artist}</b> : data.artist}</div>
+          {subs.length > 0 && <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
+            {subs.map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)}>{s}</span>)}</div>}
+          <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap" }}>
+            <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(data.artist)}/${encodeURIComponent(data.title)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
+            <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(data.artist + " " + data.title)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: 26 }}>
+          <div><div className="r-stat-n" style={{ fontSize: 38 }}>{fmt(data.plays)}</div>
+            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
+          {af && <div><div className="r-stat-n" style={{ fontSize: 38, color: "var(--accent)" }}>{Math.round(af[1] * 100)}%</div>
+            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>mood</div></div>}
+        </div>
+      </div>
+
+      <div className="r-card" style={{ padding: "16px 18px" }}>
+        <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}><span className="lbl"><b>Tracks you've played</b></span>
+          <span className="meta">{fmt(data.trackPlays)} plays across {data.tracks.length}</span></div>
+        <div style={{ display: "grid", gap: 2 }}>
+          {data.tracks.map((t, i) => (
+            <div key={t.title + i} style={{ display: "grid", gridTemplateColumns: "26px 1fr 120px 52px", gap: 12, alignItems: "center", padding: "6px 4px" }}>
+              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{String(i + 1).padStart(2, "0")}</span>
+              <div style={{ fontSize: 13.5, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.title}</div>
+              <div className="xp-bar"><div style={{ width: (t.plays / maxT * 100) + "%", background: `oklch(0.6 0.14 ${hue})` }} /></div>
+              <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", textAlign: "right" }}>{fmt(t.plays)}</span>
+            </div>
+          ))}
+        </div>
+        {known && <div style={{ marginTop: 14 }}><button className="r-back" style={{ margin: 0 }} onClick={() => go("artist", artistId)}>more from {data.artist} →</button></div>}
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { SoundMapView, ErasView, ArtistView, AlbumView, LiveView, ConcertRow });
