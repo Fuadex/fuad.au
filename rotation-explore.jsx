@@ -97,6 +97,35 @@ function sliceArtists(R, f, applyZone) {
   return out;
 }
 
+// hue for a media artist with no profiled record (deterministic from the name)
+const _hueHash = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
+
+// mediaRank — rank albums/tracks from the lazy media-index at FULL depth, applying the same filter
+// set as the inline ranking. `meta` is the precomputed per-artist resolution (id/record/hue). Returns
+// the top `limit` rows + whether more exist. Genre/mood/clock reach as far as the artist data does;
+// year/plays reach the whole library. Rows are pre-sorted by plays, so all-time queries break early.
+function mediaRank(M, R, meta, kind, f, limit) {
+  const rows = kind === "albums" ? M.albums : M.tracks;
+  const tailIdx = kind === "albums" ? 5 : 4;
+  const { year, fam, subIdx, cells, moodZone } = f;
+  const hasCells = cells && cells.size > 0, noYear = year == null;
+  const playsInYear = (row, y) => { const t = row[tailIdx]; if (t == null) return 0; if (typeof t === "number") return t === y ? row[2] : 0; for (let i = 0; i < t.length; i += 2) if (t[i] === y) return t[i + 1]; return 0; };
+  const out = []; let more = false;
+  for (const row of rows) {
+    const m = meta[row[1]], rec = m.rec;
+    if (subIdx >= 0) { if (!rec || !rec.s || rec.s.indexOf(subIdx) < 0) continue; }
+    else if (fam != null) { if (!rec || !rec.s || !rec.s.some(si => R.SUBS[si].fam === fam)) continue; }
+    if (moodZone) { const af = R.AUDIO[m.aid]; if (!af || !inMoodZone(af, moodZone)) continue; }
+    if (hasCells && !tsPlays(R, m.aid, cells)) continue;
+    let value = row[2];
+    if (!noYear) { value = playsInYear(row, year); if (!value) continue; }
+    out.push({ id: (kind === "albums" ? "ma" : "mt") + row[1], aid: m.aid, label: row[0], sub: M.artists[row[1]], value, hue: m.hue, kept: kind === "albums" ? true : !!rec });
+    if (noYear && out.length > limit) { more = true; break; }   // pre-sorted → top `limit` already
+  }
+  if (!noYear) { out.sort((a, b) => b.value - a.value); more = out.length > limit; }
+  return { items: out.slice(0, limit), more };
+}
+
 // MoodQuadrant — valence × energy scatter that doubles as a filter: click a quadrant to scope the
 // ranked results to that mood zone; click a dot to open the artist. It renders a stable universe of
 // dots and animates each dot's opacity/size as the active slice (activeIds) changes, so filter
@@ -276,7 +305,16 @@ function ExploreView({ t, go, setPop, seed }) {
   const [playing, setPlaying] = React.useState(false);
   const [lens, setLens] = React.useState("texture");      // left surface: "texture" map or "mood" quadrant
   const [moodZone, setMoodZone] = React.useState(null);   // active valence×energy quadrant filter, or null
+  const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
+  const [limit, setLimit] = React.useState(40);           // album/track list depth (load-more grows it)
   const [ref, seen] = useInView();
+
+  // albums/tracks now rank from the lazy media-index (full library depth) — load it the first time
+  // one of those tabs is opened.
+  React.useEffect(() => {
+    if (kind === "artists" || window.ROTATION_MEDIA) { if (window.ROTATION_MEDIA && !mediaReady) setMediaReady(true); return; }
+    const s = document.createElement("script"); s.src = "media-index.js"; s.onload = () => setMediaReady(true); document.head.appendChild(s);
+  }, [kind]);
 
   // deep-link: arriving via #explore/<tag> (e.g. from an artist-page genre chip) preselects that
   // subgenre, or its family if the tag names a family rather than a leaf subgenre.
@@ -323,7 +361,21 @@ function ExploreView({ t, go, setPop, seed }) {
   }, [R]);
   const [sound, setSound] = React.useState(null);
   const [sndDir, setSndDir] = React.useState(1);
-  const items = exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone });
+
+  // per-media-artist resolution (id / profiled record / hue), computed once the index is loaded
+  const mediaArtMeta = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA; if (!M) return null;
+    // prefer the EXPLORE record (it carries subgenres .s); fall back to the kept-artist record for hue
+    return M.artists.map(name => { const aid = R.idForName(name) || R.slug(name); const rec = (R.expById && R.expById[aid]) || R.byId[aid]; return { aid, rec, hue: rec ? rec.hue : _hueHash(name) }; });
+  }, [R, mediaReady]);
+  const mediaItems = React.useMemo(() => {
+    if (kind === "artists" || !mediaReady || !mediaArtMeta) return null;
+    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { year, fam, subIdx, cells, moodZone }, limit);
+  }, [kind, mediaReady, mediaArtMeta, year, fam, subIdx, cells, moodZone, limit, R]);
+  const items = (kind !== "artists" && mediaItems) ? mediaItems.items : exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone });
+  const more = !!(mediaItems && mediaItems.more);
+  // reset depth when the slice changes
+  React.useEffect(() => { setLimit(40); }, [kind, year, fam, subIdx, cells, moodZone]);
   // mood-lens slices. The quadrant renders a STABLE universe of points (so dots persist across filter
   // changes and can transition opacity/size) and toggles which are "active" for the current slice;
   // facts/arc reflect the chosen zone too.
@@ -413,6 +465,8 @@ function ExploreView({ t, go, setPop, seed }) {
           {items.length === 0
             ? <div className="r-card xp-empty">Nothing in this slice — loosen a filter.</div>
             : <RankRows items={items} go={go} kind={kind} />}
+          {more && <button className="xp-loadmore" onClick={() => setLimit(l => l + 40)}>load more {kind} ↓</button>}
+          {kind !== "artists" && mediaItems && <div className="r-mono xp-note" style={{ marginTop: 8, textAlign: "center" }}>full library · {fmt(items.length)} shown</div>}
         </div>
       </div>
 
@@ -454,6 +508,10 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-dot { width: 9px; height: 9px; border-radius: 3px; flex: none; }
         .xp-empty { padding: 56px 20px; text-align: center; color: var(--ink-faint); font-family: var(--mono); font-size: 12px; }
         .xp-note { font-size: 10px; color: var(--ink-faint); margin-bottom: 10px; }
+        .xp-loadmore { display: block; width: 100%; margin-top: 10px; padding: 9px; font-family: var(--mono); font-size: 10px;
+          letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); background: transparent;
+          border: 1px dashed var(--rule-2); border-radius: 8px; cursor: pointer; transition: .15s; }
+        .xp-loadmore:hover { color: var(--ink); border-color: var(--ink-faint); }
         .xp-lens { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 14px 0; }
         .xp-lens-seg button { font-size: 9px; padding: 4px 10px; }
         .xp-lens-cap { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
