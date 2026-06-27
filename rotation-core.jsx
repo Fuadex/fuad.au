@@ -234,6 +234,50 @@ function hashInt(str, seed) {
 const fmt = (n) => n == null ? "—" : n.toLocaleString("en-US");
 const fmtK = (n) => n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1) + "k" : "" + n;
 
+// ── romaji transliteration so Latin typing finds kana names (e.g. "midori" → ミドリ) ──
+// Hepburn-ish; katakana is folded to hiragana first (codepoint −0x60). Handles yōon (small や/ゆ/よ),
+// foreign small-vowel combos (フ＋ァ→fa), sokuon (っ → doubled consonant) and the long mark ー.
+// Kanji can't be romanised without a dictionary, so kanji names stay Latin-unsearchable (honest gap).
+const KANA_RE = /[぀-ヿｦ-ﾟ]/;
+const _KMAP = {
+  "あ": "a", "い": "i", "う": "u", "え": "e", "お": "o",
+  "か": "ka", "き": "ki", "く": "ku", "け": "ke", "こ": "ko", "が": "ga", "ぎ": "gi", "ぐ": "gu", "げ": "ge", "ご": "go",
+  "さ": "sa", "し": "shi", "す": "su", "せ": "se", "そ": "so", "ざ": "za", "じ": "ji", "ず": "zu", "ぜ": "ze", "ぞ": "zo",
+  "た": "ta", "ち": "chi", "つ": "tsu", "て": "te", "と": "to", "だ": "da", "ぢ": "ji", "づ": "zu", "で": "de", "ど": "do",
+  "な": "na", "に": "ni", "ぬ": "nu", "ね": "ne", "の": "no",
+  "は": "ha", "ひ": "hi", "ふ": "fu", "へ": "he", "ほ": "ho", "ば": "ba", "び": "bi", "ぶ": "bu", "べ": "be", "ぼ": "bo",
+  "ぱ": "pa", "ぴ": "pi", "ぷ": "pu", "ぺ": "pe", "ぽ": "po",
+  "ま": "ma", "み": "mi", "む": "mu", "め": "me", "も": "mo", "や": "ya", "ゆ": "yu", "よ": "yo",
+  "ら": "ra", "り": "ri", "る": "ru", "れ": "re", "ろ": "ro", "わ": "wa", "ゐ": "wi", "ゑ": "we", "を": "wo", "ん": "n",
+  "ゔ": "vu", "ぁ": "a", "ぃ": "i", "ぅ": "u", "ぇ": "e", "ぉ": "o", "ゃ": "ya", "ゅ": "yu", "ょ": "yo",
+};
+const _smallY = { "ゃ": "ya", "ゅ": "yu", "ょ": "yo" };
+const _smallV = { "ぁ": "a", "ぃ": "i", "ぅ": "u", "ぇ": "e", "ぉ": "o" };
+function kanaToRomaji(str) {
+  const toH = (ch) => { const c = ch.codePointAt(0); return (c >= 0x30A1 && c <= 0x30FA) ? String.fromCodePoint(c - 0x60) : ch; };
+  const chars = [...str];
+  let out = "", lastVowel = "", sokuon = false;
+  const emit = (rom) => { if (sokuon && rom && /^[a-z]/.test(rom)) { out += rom[0]; sokuon = false; } out += rom; if (rom) lastVowel = rom.slice(-1); };
+  for (let i = 0; i < chars.length; i++) {
+    const raw = chars[i];
+    if (raw === "ー" || raw === "ｰ") { out += lastVowel; continue; }
+    const h = toH(raw);
+    if (h === "っ") { sokuon = true; continue; }
+    const next = chars[i + 1] ? toH(chars[i + 1]) : "";
+    const base = _KMAP[h];
+    if (base && _smallY[next] && /i$/.test(base)) {            // yōon: きゃ→kya, しゃ→sha …
+      const y = _smallY[next], cons = base.slice(0, -1);
+      emit(base === "shi" ? "sh" + y.slice(1) : base === "chi" ? "ch" + y.slice(1) : base === "ji" ? "j" + y.slice(1) : cons + y);
+      i++; continue;
+    }
+    if (base && base.length >= 2 && _smallV[next]) {           // foreign combo: フ＋ァ→fa, テ＋ィ→ti …
+      emit(base.slice(0, -1) + _smallV[next]); i++; continue;
+    }
+    emit(base !== undefined ? base : (KANA_RE.test(raw) ? "" : raw.toLowerCase()));
+  }
+  return out;
+}
+
 // Count-up: animates from 0→target via CSS-less rAF in the foreground, but
 // the RESTING value is always `target`, so a frozen/hidden iframe (preview
 // capture, PDF export, reduced-motion) shows the correct final number.
@@ -421,4 +465,4 @@ function Radar({ axes, values, values2, run, size }) {
   );
 }
 
-Object.assign(window, { cssRotation, fmt, fmtK, hashInt, useCountUp, useInView, GenCover, Spark, Bars, Radar });
+Object.assign(window, { cssRotation, fmt, fmtK, hashInt, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE });
