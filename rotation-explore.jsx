@@ -245,7 +245,7 @@ function timeMatches(R, q) {
 function computeResults(R, yearKeys, subNames, raw) {
   const q = (raw || "").trim().toLowerCase();
   if (q.length < 2) return [];
-  const inc = (s) => s && s.toLowerCase().includes(q);
+  const inc = (s) => s && (s.toLowerCase().includes(q) || (KANA_RE.test(s) && kanaToRomaji(s).includes(q)));
   return [
     { type: "artist", label: "Artists", items: R.ARTISTS.filter(a => inc(a.name)).slice(0, 6).map(a => ({ type: "artist", label: a.name, id: a.id, dot: a.hue })) },
     { type: "sub", label: "Subgenres", items: subNames.filter(inc).slice(0, 6).map(n => ({ type: "sub", label: n, name: n })) },

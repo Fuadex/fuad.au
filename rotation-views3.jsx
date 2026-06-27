@@ -1137,6 +1137,9 @@ function SearchOverlay({ open, onClose, go }) {
   // accent-insensitive so "americain" finds "à l'américaine", "bjork" finds "Björk", etc.
   const deAccent = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 
+  // also match the romanised form of kana names, so "midori" finds ミドリ, "boris" finds ボリス
+  const romaMatch = (name, needle) => KANA_RE.test(name) && deAccent(kanaToRomaji(name)).includes(needle);
+
   const results = React.useMemo(() => {
     if (!ready || !q.trim()) return [];
     const needle = deAccent(q.trim());
@@ -1144,7 +1147,7 @@ function SearchOverlay({ open, onClose, go }) {
     for (const row of window.ROTATION_SEARCH) {
       const lo = deAccent(row[0]);
       if (lo.startsWith(needle)) starts.push(row);
-      else if (lo.includes(needle)) contains.push(row);
+      else if (lo.includes(needle) || romaMatch(row[0], needle)) contains.push(row);
       if (starts.length > 60) break;
     }
     return starts.concat(contains).slice(0, 30);
@@ -1155,7 +1158,7 @@ function SearchOverlay({ open, onClose, go }) {
     const M = window.ROTATION_MEDIA;
     if (!q.trim() || !M) return { tracks: [], albums: [] };
     const needle = deAccent(q.trim());
-    const scan = (rows) => { const out = []; for (const r of rows) { if (deAccent(r[0]).includes(needle)) { out.push(r); if (out.length >= 10) break; } } return out; };
+    const scan = (rows) => { const out = []; for (const r of rows) { if (deAccent(r[0]).includes(needle) || romaMatch(r[0], needle)) { out.push(r); if (out.length >= 10) break; } } return out; };
     return { tracks: scan(M.tracks), albums: scan(M.albums) };
   }, [q, mediaReady]);
 
