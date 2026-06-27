@@ -176,6 +176,18 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 .r-chip.link { cursor: pointer; }
 .r-chip.link:hover { color: var(--accent-ink); background: var(--accent-bg); border-color: transparent; }
 
+/* back button + external links — shared across artist / album / mini pages */
+.r-back { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
+  background: transparent; border: 1px solid var(--rule-2); color: var(--ink-soft); padding: 8px 14px;
+  border-radius: 999px; cursor: pointer; margin-bottom: 22px; transition: .15s; }
+.r-back:hover { color: var(--ink); border-color: var(--accent-dim); }
+.r-extlink { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
+  text-transform: uppercase; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink-soft);
+  text-decoration: none; transition: .15s; }
+.r-extlink:hover { color: var(--ink); border-color: var(--ink-faint); }
+.r-extlink-sp:hover { color: oklch(0.72 0.17 150); border-color: oklch(0.72 0.17 150); }
+.r-extlink-lf:hover { color: oklch(0.62 0.21 25); border-color: oklch(0.62 0.21 25); }
+
 /* skinny scroller utility */
 .r-xscroll { display: flex; gap: var(--gap); overflow-x: auto; scrollbar-width: none; padding-bottom: 6px; }
 .r-xscroll::-webkit-scrollbar { display: none; }

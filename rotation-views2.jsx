@@ -908,16 +908,6 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         </div>
       </div>
       <style>{`
-        .r-back { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
-          background: transparent; border: 1px solid var(--rule-2); color: var(--ink-soft); padding: 8px 14px;
-          border-radius: 999px; cursor: pointer; margin-bottom: 22px; transition: .15s; }
-        .r-back:hover { color: var(--ink); border-color: var(--accent-dim); }
-        .r-extlink { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
-          text-transform: uppercase; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink-soft);
-          text-decoration: none; transition: .15s; }
-        .r-extlink:hover { color: var(--ink); border-color: var(--ink-faint); }
-        .r-extlink-sp:hover { color: oklch(0.72 0.17 150); border-color: oklch(0.72 0.17 150); }
-        .r-extlink-lf:hover { color: oklch(0.62 0.21 25); border-color: oklch(0.62 0.21 25); }
         .r-seg-sm button { font-size: 9px; padding: 3px 7px; }
         .r-inlib { position: absolute; bottom: 6px; left: 6px; font-size: 7.5px; letter-spacing: .08em; text-transform: uppercase;
           background: var(--accent); color: #0c0a08; padding: 2px 5px; border-radius: 3px; }
@@ -1089,10 +1079,10 @@ function AlbumView({ id, go }) {
           <span className="meta">{fmt(data.trackPlays)} plays across {data.tracks.length}</span></div>
         <div style={{ display: "grid", gap: 2 }}>
           {data.tracks.map((t, i) => (
-            <div key={t.title + i} style={{ display: "grid", gridTemplateColumns: "26px 1fr 120px 52px", gap: 12, alignItems: "center", padding: "6px 4px" }}>
+            <div key={t.title + i} style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px" }}>
               <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{String(i + 1).padStart(2, "0")}</span>
-              <div style={{ fontSize: 13.5, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.title}</div>
-              <div className="xp-bar"><div style={{ width: (t.plays / maxT * 100) + "%", background: `oklch(0.6 0.14 ${hue})` }} /></div>
+              <div style={{ fontSize: 13, lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>{t.title}</div>
+              <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: (t.plays / maxT * 100) + "%", background: `oklch(0.6 0.14 ${hue})` }} /></div>
               <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", textAlign: "right" }}>{fmt(t.plays)}</span>
             </div>
           ))}
