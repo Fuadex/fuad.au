@@ -3,13 +3,16 @@
 // ▶ play the years to watch the map shift; click a country to zoom into its cities; click any
 // place for a detail blob (top artists/albums/songs + Sound DNA, from the lazy geo-detail.js).
 
-// MapFlow — the taste-flow that doubles as the Map's genre filter + legend. Computed from the
-// currently place-scoped EXPLORE set (a.yp over the years), it shows families over time; clicking a
-// band filters the map to that family (then drills to its subgenres). markYi draws the active year.
-function MapFlow({ artists, filt, setFilt, years, markYi }) {
+// MapFlow — the taste-flow that doubles as the Map's genre filter, legend AND full taste-journey.
+// Computed from the place-scoped EXPLORE set (a.yp over the years). Three lenses over the same river:
+// genre families → a family's subgenres (both drive the map filter via setFilt) → the bands behind
+// the current slice as ribbons (artist view; click opens the artist). markYi marks the active year.
+function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   const R = window.ROTATION;
   const [hi, setHi] = React.useState(-1);
+  const [view, setView] = React.useState("genre");   // genre | artist
   const { fam, sub } = filt;
+  React.useEffect(() => { setHi(-1); }, [fam, sub, view]);
   const series = React.useMemo(() => {
     const sumBy = (keyOf) => {
       const m = new Map();
@@ -21,6 +24,11 @@ function MapFlow({ artists, filt, setFilt, years, markYi }) {
       }
       return m;
     };
+    if (view === "artist") {   // the bands behind the current place ∩ genre slice
+      const fn = sub != null ? (a => a.s.indexOf(sub) >= 0) : fam != null ? (a => a.s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam)) : (() => true);
+      return artists.filter(a => a.yp && fn(a)).sort((a, b) => b.plays - a.plays).slice(0, 12)
+        .map(a => ({ key: a.id, name: a.name, hue: a.hue, id: a.id, vals: years.map(y => a.yp[y] || 0) })).filter(s => s.vals.some(v => v > 0));
+    }
     if (fam != null) {
       const m = sumBy(a => (a.s.length && R.SUBS[a.s[0]] && R.SUBS[a.s[0]].fam === fam) ? a.s[0] : null);
       const fhue = (R.FAMILIES.find(f => f.i === fam) || {}).hue || 0;
@@ -29,32 +37,47 @@ function MapFlow({ artists, filt, setFilt, years, markYi }) {
     }
     const m = sumBy(a => a.s.length ? (R.SUBS[a.s[0]] && R.SUBS[a.s[0]].fam) : null);
     return R.FAMILIES.map(f => ({ key: f.i, name: f.family, hue: f.hue, fam: f.i, vals: m.get(f.i) || new Array(years.length).fill(0) })).filter(s => s.vals.some(v => v > 0));
-  }, [artists, fam, years, R]);
+  }, [artists, fam, sub, view, years, R]);
 
-  const onPick = (s) => { if (fam == null) setFilt({ fam: s.fam, sub: null }); else setFilt(p => ({ fam, sub: p.sub === s.sub ? null : s.sub })); };
+  // genre/subgenre bands drive the map filter; artist ribbons open the artist
+  const onPick = (s) => {
+    if (view === "artist") { go && go("artist", s.id); return; }
+    if (fam == null) setFilt({ fam: s.fam, sub: null });
+    else setFilt(p => ({ fam, sub: p.sub === s.sub ? null : s.sub }));
+  };
   const famName = fam != null ? (R.FAMILIES.find(f => f.i === fam) || {}).family : null;
   const hasFlow = artists.filter(a => a.yp).length >= 2 && series.length >= 1;
+  const hint = view === "artist" ? "the bands behind this slice · click one to open"
+    : fam == null ? "click a band → filter the map" : "click a subgenre to narrow";
 
   return (
     <div className="r-card" style={{ padding: "13px 16px 11px", background: "var(--bg-2)" }}>
-      <div className="r-mono" style={{ fontSize: 11, marginBottom: 6, display: "flex", alignItems: "center", flexWrap: "wrap", gap: 2 }}>
-        <span style={{ cursor: "pointer", color: fam == null ? "var(--ink)" : "var(--accent)" }} onClick={() => setFilt({ fam: null, sub: null })}>all genres</span>
-        {fam != null && <><span style={{ margin: "0 7px", color: "var(--ink-faint)" }}>›</span><span style={{ cursor: "pointer", color: sub == null ? "var(--ink)" : "var(--accent)" }} onClick={() => setFilt({ fam, sub: null })}>{famName}</span></>}
-        {sub != null && <><span style={{ margin: "0 7px", color: "var(--ink-faint)" }}>›</span><span style={{ color: "var(--ink)" }}>{R.SUBS[sub].name}</span></>}
-        <span style={{ marginLeft: "auto", color: "var(--ink-faint)" }}>{fam == null ? "click a band → filter the map" : "click a subgenre to narrow"}</span>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6, flexWrap: "wrap" }}>
+        <div className="r-mono" style={{ fontSize: 11, display: "flex", alignItems: "center", flexWrap: "wrap", gap: 2, flex: 1, minWidth: 0 }}>
+          <span style={{ cursor: "pointer", color: fam == null ? "var(--ink)" : "var(--accent)" }} onClick={() => { setFilt({ fam: null, sub: null }); setView("genre"); }}>all genres</span>
+          {fam != null && <><span style={{ margin: "0 7px", color: "var(--ink-faint)" }}>›</span><span style={{ cursor: "pointer", color: sub == null && view === "genre" ? "var(--ink)" : "var(--accent)" }} onClick={() => { setFilt({ fam, sub: null }); setView("genre"); }}>{famName}</span></>}
+          {sub != null && <><span style={{ margin: "0 7px", color: "var(--ink-faint)" }}>›</span><span style={{ cursor: "pointer", color: view === "genre" ? "var(--ink)" : "var(--accent)" }} onClick={() => setView("genre")}>{R.SUBS[sub].name}</span></>}
+        </div>
+        <div className="r-seg r-seg-sm">
+          {[["genre", fam != null ? "subgenres" : "genres"], ["artist", "bands"]].map(([k, lbl]) =>
+            <button key={k} data-on={view === k} onClick={() => setView(k)}>{lbl}</button>)}
+        </div>
       </div>
       {hasFlow
         ? <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={true} markYi={markYi} />
         : <div style={{ padding: 18, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>not enough placed artists here for a flow.</div>}
-      {hasFlow && <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 12px", marginTop: 8 }}>
-        {series.map((s, i) => (
-          <div key={s.key} onMouseEnter={() => setHi(i)} onMouseLeave={() => setHi(-1)} onClick={() => onPick(s)}
-            style={{ display: "inline-flex", alignItems: "center", gap: 6, cursor: "pointer", opacity: hi < 0 || hi === i ? 1 : 0.4, transition: ".15s" }}>
-            <span style={{ width: 9, height: 9, borderRadius: 2, background: `oklch(0.62 0.16 ${s.hue})` }} />
-            <span style={{ fontSize: 11, color: "var(--ink-soft)" }}>{s.name.length > 22 ? s.name.slice(0, 20) + "…" : s.name}</span>
-          </div>
-        ))}
-      </div>}
+      {hasFlow && <>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 12px", marginTop: 8 }}>
+          {series.map((s, i) => (
+            <div key={s.key} onMouseEnter={() => setHi(i)} onMouseLeave={() => setHi(-1)} onClick={() => onPick(s)}
+              style={{ display: "inline-flex", alignItems: "center", gap: 6, cursor: "pointer", opacity: hi < 0 || hi === i ? 1 : 0.4, transition: ".15s" }}>
+              <span style={{ width: 9, height: 9, borderRadius: 2, background: `oklch(0.62 0.16 ${s.hue})` }} />
+              <span style={{ fontSize: 11, color: "var(--ink-soft)" }}>{s.name.length > 22 ? s.name.slice(0, 20) + "…" : s.name}</span>
+            </div>
+          ))}
+        </div>
+        <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 7 }}>{hint}</div>
+      </>}
     </div>
   );
 }
@@ -371,7 +394,7 @@ function MapView({ go }) {
 
       {/* the flow doubles as filter — pick a band to scope the map; picking a place rescopes the flow */}
       <div style={{ marginTop: "var(--gap)" }}>
-        <MapFlow artists={flowArtists} filt={filt} setFilt={setFilt} years={geoYears} markYi={yearIdx} />
+        <MapFlow artists={flowArtists} filt={filt} setFilt={setFilt} years={geoYears} markYi={yearIdx} go={go} />
       </div>
 
       {/* breakdown list */}
