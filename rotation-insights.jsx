@@ -91,7 +91,7 @@ const PROVIDERS = [
     const delta = w.weekAvg ? Math.round((w.plays7 - w.weekAvg) / w.weekAvg * 100) : 0, up = delta >= 0;
     const ta = w.topArtists && w.topArtists[0];
     return {
-      id: "week", category: "week", score: 0.74, label: "This week", meta: "journey", onClick: () => ctx.go("journey"),
+      id: "week", category: "week", score: 0.74, label: "This week", meta: "map", onClick: () => ctx.go("map"),
       render: (
         <div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 7, margin: "2px 0 7px" }}>
@@ -174,7 +174,7 @@ const PROVIDERS = [
     const y = ys.find(x => x.year === cy) || ys[ys.length - 1];
     if (!y || !y.topArtist) return null;
     return {
-      id: "top-year", category: "top-year", score: 0.6 + _jitter("top-year", ctx.now), label: `${y.year} so far`, meta: "journey", onClick: () => ctx.go("journey"),
+      id: "top-year", category: "top-year", score: 0.6 + _jitter("top-year", ctx.now), label: `${y.year} so far`, meta: "map", onClick: () => ctx.go("map"),
       render: (
         <div>
           <div onClick={(e) => { e.stopPropagation(); ctx.go("artist", _id(y.topArtist.name)); }} style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
