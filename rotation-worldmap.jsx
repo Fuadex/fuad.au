@@ -118,11 +118,14 @@ function MapView({ go }) {
     ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY }); moved.current = false;
     if (ptrs.current.size === 1) drag.current = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y }; // mouse, or one finger when zoomed
   };
+  // grab the pointer once a real drag/pinch starts (not on a tap — that would steal the bubble's click);
+  // capture keeps moves flowing and suppresses pointerleave once the gesture crosses the map's edge
+  const capture = (e) => { if (!moved.current) { try { e.currentTarget.setPointerCapture(e.pointerId); } catch (x) {} } };
   const onMove = (e) => {
     if (ptrs.current.has(e.pointerId)) ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
     const pts = [...ptrs.current.values()];
     if (pts.length >= 2) {                    // two-finger pinch-zoom (one finger still scrolls the page)
-      e.preventDefault(); moved.current = true;
+      e.preventDefault(); capture(e); moved.current = true;
       const [a, b] = pts, dist = Math.hypot(a.x - b.x, a.y - b.y), mx2 = (a.x + b.x) / 2, my2 = (a.y + b.y) / 2;
       if (pinch.current) { const [sx, sy] = toSvg(mx2, my2), ratio = dist / pinch.current; setView(v => { const ns = clamp(v.s * ratio, 1, 14); return { s: ns, x: sx - (sx - v.x) / v.s * ns, y: sy - (sy - v.y) / v.s * ns }; }); }
       pinch.current = dist; drag.current = null; return;
@@ -134,12 +137,14 @@ function MapView({ go }) {
       if (e.pointerType !== "mouse" && e.cancelable) e.preventDefault();
       const r = el.getBoundingClientRect(); if (!r.width || !r.height) return;
       const dx = (e.clientX - drag.current.x) / r.width * W, dy = (e.clientY - drag.current.y) / r.height * Hh;
-      if (Math.abs(dx) + Math.abs(dy) > 3) moved.current = true;
+      if (Math.abs(dx) + Math.abs(dy) > 3) { capture(e); moved.current = true; }
       setView(v => ({ ...v, x: drag.current.vx + dx, y: drag.current.vy + dy }));
     }
   };
   const onUp = (e) => { if (e && e.pointerId != null) ptrs.current.delete(e.pointerId); if (ptrs.current.size < 2) pinch.current = null; if (ptrs.current.size === 0) drag.current = null; };
-  const onLeave = () => { ptrs.current.clear(); pinch.current = null; drag.current = null; setHi(null); };
+  // only clear hover on leave — never drop an active drag/pinch (pointer capture keeps the gesture
+  // alive past the edge; the window pointerup/cancel handler below does the real cleanup on release)
+  const onLeave = () => { setHi(null); };
   // a gesture can end off the map (finger/mouse released outside its bounds) — clear drag state globally
   React.useEffect(() => {
     const up = (e) => { if (e && e.pointerId != null) ptrs.current.delete(e.pointerId); if (ptrs.current.size < 2) pinch.current = null; if (ptrs.current.size === 0) drag.current = null; };
