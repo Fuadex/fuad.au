@@ -39,16 +39,17 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
     return R.FAMILIES.map(f => ({ key: f.i, name: f.family, hue: f.hue, fam: f.i, vals: m.get(f.i) || new Array(years.length).fill(0) })).filter(s => s.vals.some(v => v > 0));
   }, [artists, fam, sub, view, years, R]);
 
-  // genre/subgenre bands drive the map filter; artist ribbons open the artist
+  // families → their subgenres → the bands within (drilling a subgenre also scopes the map to it);
+  // artist ribbons open the artist
   const onPick = (s) => {
     if (view === "artist") { go && go("artist", s.id); return; }
-    if (fam == null) setFilt({ fam: s.fam, sub: null });
-    else setFilt(p => ({ fam, sub: p.sub === s.sub ? null : s.sub }));
+    if (fam == null) setFilt({ fam: s.fam, sub: null });        // family → its subgenres
+    else { setFilt({ fam, sub: s.sub }); setView("artist"); }   // subgenre → its bands (+ scope the map)
   };
   const famName = fam != null ? (R.FAMILIES.find(f => f.i === fam) || {}).family : null;
   const hasFlow = artists.filter(a => a.yp).length >= 2 && series.length >= 1;
   const hint = view === "artist" ? "the bands behind this slice · click one to open"
-    : fam == null ? "click a band → filter the map" : "click a subgenre to narrow";
+    : fam == null ? "click a genre to drill into its subgenres" : "click a subgenre to see its bands";
 
   return (
     <div className="r-card" style={{ padding: "13px 16px 11px", background: "var(--bg-2)" }}>
