@@ -80,10 +80,18 @@ function MapView({ go }) {
   const [adetail, setADetail] = React.useState(window.ROTATION_ADETAIL || null); // lazy tracks/albums for the long tail
   const [view, setView] = React.useState({ s: 1, x: 0, y: 0 });
   const svgRef = React.useRef(null);
+  const gRef = React.useRef(null);
+  const viewRef = React.useRef(view);   // live view during a gesture (avoids a React re-render per frame)
   const drag = React.useRef(null);
   const ptrs = React.useRef(new Map());
   const pinch = React.useRef(null);
   const moved = React.useRef(false);
+  React.useEffect(() => { viewRef.current = view; }, [view]);
+  // Pan/zoom by writing the <g> transform directly each frame — re-rendering the whole map (land +
+  // bubbles) on every pointermove crashes mobile browsers (GPU/memory). We commit to React state once
+  // on gesture end so bubble sizes (r/√s) and stroke widths re-derive.
+  const applyView = (v) => { viewRef.current = v; const g = gRef.current; if (g) g.setAttribute("transform", `translate(${v.x} ${v.y}) scale(${v.s})`); };
+  const commitView = () => { if (moved.current) setView(viewRef.current); };
 
   React.useEffect(() => {
     if (window.ROTATION_WORLD) { setWorld(window.ROTATION_WORLD); return; }
@@ -116,7 +124,7 @@ function MapView({ go }) {
   }, [world]);
   const onDown = (e) => {
     ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY }); moved.current = false;
-    if (ptrs.current.size === 1) drag.current = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y }; // mouse, or one finger when zoomed
+    if (ptrs.current.size === 1) drag.current = { x: e.clientX, y: e.clientY, vx: viewRef.current.x, vy: viewRef.current.y }; // mouse, or one finger when zoomed
   };
   // grab the pointer once a real drag/pinch starts (not on a tap — that would steal the bubble's click);
   // capture keeps moves flowing and suppresses pointerleave once the gesture crosses the map's edge
@@ -127,27 +135,27 @@ function MapView({ go }) {
     if (pts.length >= 2) {                    // two-finger pinch-zoom (one finger still scrolls the page)
       e.preventDefault(); capture(e); moved.current = true;
       const [a, b] = pts, dist = Math.hypot(a.x - b.x, a.y - b.y), mx2 = (a.x + b.x) / 2, my2 = (a.y + b.y) / 2;
-      if (pinch.current) { const [sx, sy] = toSvg(mx2, my2), ratio = dist / pinch.current; setView(v => { const ns = clamp(v.s * ratio, 1, 14); return { s: ns, x: sx - (sx - v.x) / v.s * ns, y: sy - (sy - v.y) / v.s * ns }; }); }
+      if (pinch.current) { const [sx, sy] = toSvg(mx2, my2), ratio = dist / pinch.current; const v = viewRef.current; const ns = clamp(v.s * ratio, 1, 14); applyView({ s: ns, x: sx - (sx - v.x) / v.s * ns, y: sy - (sy - v.y) / v.s * ns }); }
       pinch.current = dist; drag.current = null; return;
     }
     pinch.current = null;
     // mouse pans always; a single finger pans only when zoomed in (otherwise the page scrolls)
-    if (drag.current && (e.pointerType === "mouse" || view.s > 1)) {
+    if (drag.current && (e.pointerType === "mouse" || viewRef.current.s > 1)) {
       const el = svgRef.current; if (!el) return;
       if (e.pointerType !== "mouse" && e.cancelable) e.preventDefault();
       const r = el.getBoundingClientRect(); if (!r.width || !r.height) return;
       const dx = (e.clientX - drag.current.x) / r.width * W, dy = (e.clientY - drag.current.y) / r.height * Hh;
       if (Math.abs(dx) + Math.abs(dy) > 3) { capture(e); moved.current = true; }
-      setView(v => ({ ...v, x: drag.current.vx + dx, y: drag.current.vy + dy }));
+      applyView({ s: viewRef.current.s, x: drag.current.vx + dx, y: drag.current.vy + dy });
     }
   };
-  const onUp = (e) => { if (e && e.pointerId != null) ptrs.current.delete(e.pointerId); if (ptrs.current.size < 2) pinch.current = null; if (ptrs.current.size === 0) drag.current = null; };
+  const onUp = (e) => { if (e && e.pointerId != null) ptrs.current.delete(e.pointerId); if (ptrs.current.size < 2) pinch.current = null; if (ptrs.current.size === 0) { drag.current = null; commitView(); } };
   // only clear hover on leave — never drop an active drag/pinch (pointer capture keeps the gesture
   // alive past the edge; the window pointerup/cancel handler below does the real cleanup on release)
   const onLeave = () => { setHi(null); };
   // a gesture can end off the map (finger/mouse released outside its bounds) — clear drag state globally
   React.useEffect(() => {
-    const up = (e) => { if (e && e.pointerId != null) ptrs.current.delete(e.pointerId); if (ptrs.current.size < 2) pinch.current = null; if (ptrs.current.size === 0) drag.current = null; };
+    const up = (e) => { if (e && e.pointerId != null) ptrs.current.delete(e.pointerId); if (ptrs.current.size < 2) pinch.current = null; if (ptrs.current.size === 0) { drag.current = null; commitView(); } };
     window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
     return () => { window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up); };
   }, []);
@@ -335,7 +343,7 @@ function MapView({ go }) {
       <div className="r-card" style={{ padding: 0, overflow: "hidden", background: "var(--bg-2)" }}>
         <svg ref={svgRef} viewBox={`0 0 ${world.w} ${world.h}`} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: view.s > 1 ? "none" : "pan-y" }}
           onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp} onPointerLeave={onLeave}>
-          <g transform={`translate(${view.x} ${view.y}) scale(${view.s})`}>
+          <g ref={gRef} transform={`translate(${view.x} ${view.y}) scale(${view.s})`}>
             {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" stroke="var(--rule-2)" strokeWidth={0.4 / view.s} />)}
             {bubbles.slice().sort((a, b) => b.c.plays - a.c.plays).map(b => {
               const on = hi === b.key, col = placeHue(b.c);
