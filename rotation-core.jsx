@@ -118,6 +118,7 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
   cursor: pointer; transition: .15s; white-space: nowrap; }
 .r-seg button:hover { color: var(--ink); }
 .r-seg button[data-on="true"] { background: var(--accent); color: #0c0a08; }
+.r-seg-sm button { font-size: 9px; padding: 3px 7px; }
 
 /* card */
 .r-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; position: relative; }

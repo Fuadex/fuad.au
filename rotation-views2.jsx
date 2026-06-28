@@ -908,7 +908,6 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         </div>
       </div>
       <style>{`
-        .r-seg-sm button { font-size: 9px; padding: 3px 7px; }
         .r-inlib { position: absolute; bottom: 6px; left: 6px; font-size: 7.5px; letter-spacing: .08em; text-transform: uppercase;
           background: var(--accent); color: #0c0a08; padding: 2px 5px; border-radius: 3px; }
         .r-alert { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
