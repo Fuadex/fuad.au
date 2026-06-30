@@ -453,6 +453,7 @@ function MiniArtistView({ a, go }) {
         <div style={{ flex: 1, minWidth: 240 }}>
           <div className="r-kicker">explore{a.d ? ` · est. ${a.d}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(32px,4.5vw,54px)" }}>{a.name}<span className="dot">.</span></h1>
+          <ArtistMeta gender={a.g} life={a.ty ? { type: a.ty, ended: !!a.ed, end: a.en } : null} size={16} />
           <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
             {subs.slice(0, 6).map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)}>{s}</span>)}
           </div>
@@ -660,6 +661,33 @@ function SoundSimilar({ id, go }) {
   );
 }
 
+// gender glyph (solo artists) + active/disbanded/deceased badge, from MusicBrainz. Accepts either the
+// kept-artist shape (gender "Female", life {type,ended,end}) or the mini shape (g "f", ty/ed/en).
+function genderGlyph(g) {
+  const c = g ? g[0].toLowerCase() : "";
+  if (c === "f") return { ch: "♀", label: "Female" };
+  if (c === "m") return { ch: "♂", label: "Male" };
+  if (c === "o") return { ch: "⚧", label: "Other / non-binary" };
+  return null;
+}
+function lifeBadge(life) {
+  if (!life || !life.type) return null;
+  const t = life.type[0].toLowerCase();
+  if (life.ended) return { txt: t === "p" ? (life.end ? "Died " + life.end : "Deceased") : (life.end ? "Disbanded " + life.end : "Disbanded"), tone: "muted" };
+  if (t === "g") return { txt: "Active", tone: "active" };   // living solo artists get no badge (noise)
+  return null;
+}
+function ArtistMeta({ gender, life, size }) {
+  const g = genderGlyph(gender), b = lifeBadge(life);
+  if (!g && !b) return null;
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 9, marginTop: 9, flexWrap: "wrap" }}>
+      {g && <span title={g.label} style={{ fontSize: size || 16, lineHeight: 1, color: "var(--ink-soft)" }}>{g.ch}</span>}
+      {b && <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid " + (b.tone === "active" ? "oklch(0.6 0.13 150 / .5)" : "var(--rule-2)"), color: b.tone === "active" ? "oklch(0.72 0.15 150)" : "var(--ink-faint)" }}>{b.txt}</span>}
+    </div>
+  );
+}
+
 function ArtistView({ t, id, go, setPop, city, setCity }) {
   const R = window.ROTATION;
   const full = R.byId[id];
@@ -715,6 +743,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}
             {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
+          <ArtistMeta gender={a.gender} life={a.life} size={18} />
           <div style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap" }}>
             {a.tags.map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
           </div>

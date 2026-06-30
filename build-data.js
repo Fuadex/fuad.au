@@ -163,6 +163,9 @@ const originOf = (name) => {
   if (!o || !o.country) return null;
   return { country: o.country, area: o.area || "", city: o.beginArea || "" };
 };
+// gender (Person artists only) → glyph; life-span → active / disbanded / deceased on artist pages
+const genderOf = (name) => (ORIGINS[name] && ORIGINS[name].gender) || "";
+const lifeOf = (name) => { const o = ORIGINS[name]; if (!o || !o.type || !("ended" in o)) return null; return { type: o.type, ended: !!o.ended, end: (o.end || "").slice(0, 4) }; };
 
 // ─────────── Discogs styles/genres (discogs-cache.json, built by enrich-discogs.js) ───────────
 // Per artist: { id, styles: [[name,count],…], genres: [[name,count],…], releases, ambiguous }.
@@ -447,6 +450,8 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     discogsGenres: dGenresOf(name),
     origin: originOf(name),
     country: meta.country || (originOf(name) ? originOf(name).country.toLowerCase() : ""),
+    gender: genderOf(name),     // "Male"/"Female"/"Other"/"" — solo artists only
+    life: lifeOf(name),         // { type, ended, end } → active/disbanded/deceased badge
   };
 });
 const byName = Object.fromEntries(ARTISTS.map(a => [a.name, a]));
@@ -1609,6 +1614,8 @@ for (const [name, plays] of rankedArtists) {
   const rec = { id: slug(name), name, plays, hue: hueFor(name), s, l: listenersOf(name) || 0, d: debutOf(name) || 0 };
   const _o = originOf(name);            // country/city tag → lets the Journey scope to a place
   if (_o) { rec.co = _o.country; if (_o.city) rec.ci = _o.city; }
+  const _g = genderOf(name); if (_g) rec.g = _g[0].toLowerCase();   // m/f/o glyph (mini pages)
+  const _lf = lifeOf(name); if (_lf) { rec.ty = _lf.type[0].toLowerCase(); if (_lf.ended) { rec.ed = 1; if (_lf.end) rec.en = +_lf.end || 0; } }
   if (EXPLORE.length < EXPLORE_YP_TOP) {
     const yc = artistYear.get(name) || new Map();
     const yp = {}; for (const [y, c] of yc) if (c > 0) yp[y] = c;
