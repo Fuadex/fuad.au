@@ -1166,8 +1166,8 @@ function SearchOverlay({ open, onClose, go }) {
 
   const resolveId = (name) => { const s = R.slug(name); if (R.byId[s]) return s; const a = R.idForName && R.idForName(name); if (a) return a; if (R.expById && R.expById[s]) return s; return null; };
   const pick = (row) => {
-    const id = R.slug(row[0]);
-    if (R.byId[id]) { onClose(); go("artist", id); }
+    const id = resolveId(row[0]);   // kept OR explore (mini) page — only fall back to the blurb if neither
+    if (id) { onClose(); go("artist", id); }
     else setSel(sel && sel[0] === row[0] ? null : row);
   };
   // song row → open the artist's page if we have one, else their last.fm page
