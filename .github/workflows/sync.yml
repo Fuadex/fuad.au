@@ -1,4 +1,4 @@
-name: Sync last.fm live data
+name: Sync last.fm + rebuild dataset
 
 on:
   schedule:
@@ -15,18 +15,32 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+
+      # 1) append new scrobbles to fuadex.csv (cheap delta since the last build)
+      - name: Pull new scrobbles into fuadex.csv
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+        run: node sync-csv.js
+
+      # 2) regenerate the full dataset from the now-current CSV (~11s)
+      - name: Rebuild dataset
+        run: node build-data.js
+
+      # 3) refresh the live snapshot (total / now-playing / recent feed / rolling windows)
       - name: Generate live snapshot
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: node sync-live.js
+
+      # 4) commit everything that changed
       - name: Commit if changed
         run: |
           git config user.name "rotation-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add live-data.js
+          git add -A
           if git diff --staged --quiet; then
             echo "no change"
           else
-            git commit -m "chore: daily last.fm live sync"
-            git push
+            git commit -m "chore: daily last.fm sync + dataset rebuild"
+            git push || (git pull --rebase --autostash && git push)
           fi
