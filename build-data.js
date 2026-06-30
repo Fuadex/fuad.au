@@ -1614,7 +1614,7 @@ for (const [name, plays] of rankedArtists) {
   const rec = { id: slug(name), name, plays, hue: hueFor(name), s, l: listenersOf(name) || 0, d: debutOf(name) || 0 };
   const _o = originOf(name);            // country/city tag → lets the Journey scope to a place
   if (_o) { rec.co = _o.country; if (_o.city) rec.ci = _o.city; }
-  const _g = genderOf(name); if (_g) rec.g = _g[0].toLowerCase();   // m/f/o glyph (mini pages)
+  const _g = genderOf(name); const _gc = _g === "Female" ? "f" : _g === "Male" ? "m" : (_g === "Non-binary" || _g === "Other") ? "x" : ""; if (_gc) rec.g = _gc;   // f/m/x glyph (mini); "Not applicable" → none
   const _lf = lifeOf(name); if (_lf) { rec.ty = _lf.type[0].toLowerCase(); if (_lf.ended) { rec.ed = 1; if (_lf.end) rec.en = +_lf.end || 0; } }
   if (EXPLORE.length < EXPLORE_YP_TOP) {
     const yc = artistYear.get(name) || new Map();

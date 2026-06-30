@@ -664,11 +664,11 @@ function SoundSimilar({ id, go }) {
 // gender glyph (solo artists) + active/disbanded/deceased badge, from MusicBrainz. Accepts either the
 // kept-artist shape (gender "Female", life {type,ended,end}) or the mini shape (g "f", ty/ed/en).
 function genderGlyph(g) {
-  const c = g ? g[0].toLowerCase() : "";
-  if (c === "f") return { ch: "♀", label: "Female" };
-  if (c === "m") return { ch: "♂", label: "Male" };
-  if (c === "o") return { ch: "⚧", label: "Other / non-binary" };
-  return null;
+  const s = (g || "").toLowerCase();   // accepts full MB strings or the mini codes f/m/x
+  if (s === "f" || s === "female") return { ch: "♀", label: "Female" };
+  if (s === "m" || s === "male") return { ch: "♂", label: "Male" };
+  if (s === "x" || s === "non-binary" || s === "other") return { ch: "⚧", label: s === "other" ? "Other" : "Non-binary" };
+  return null;   // "Not applicable" / unknown → no glyph
 }
 function lifeBadge(life) {
   if (!life || !life.type) return null;
