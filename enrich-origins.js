@@ -29,14 +29,20 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 async function fetchOrigin(mbid) {
   const u = `https://musicbrainz.org/ws/2/artist/${encodeURIComponent(mbid)}?fmt=json`;
   const { json } = await getJSON(u);
-  if (!json) return { country: "", area: "", type: "" };
+  if (!json) return { country: "", area: "", beginArea: "", type: "", gender: "", begin: "", end: "", ended: false };
   // `country` is the ISO code (e.g. "JP", "AU"); `area.name` is the human form ("Japan");
   // `begin-area.name` is finer when it exists (e.g. "Tokyo"). type is "Group"/"Person".
+  // gender is set for Person artists only. life-span.{begin,end,ended} → active/disbanded(/deceased).
+  const ls = json["life-span"] || {};
   return {
     country: json.country || "",
     area: (json.area && json.area.name) || "",
     beginArea: (json["begin-area"] && json["begin-area"].name) || "",
     type: json.type || "",
+    gender: json.gender || "",
+    begin: ls.begin || "",
+    end: ls.end || "",
+    ended: !!ls.ended,
   };
 }
 
@@ -50,7 +56,8 @@ async function fetchOrigin(mbid) {
   const ranked = rows.slice(0, TOP_N).map(r => r[0]);
 
   const cache = fs.existsSync(CACHE_PATH) ? JSON.parse(fs.readFileSync(CACHE_PATH, "utf8")) : {};
-  const todo = ranked.filter(name => !(name in cache) && stats[name] && stats[name].mbid);
+  // fetch new artists AND backfill cached entries missing the newer fields (gender/life-span)
+  const todo = ranked.filter(name => (!(name in cache) || !("gender" in cache[name])) && stats[name] && stats[name].mbid);
   const noMbid = ranked.filter(name => !stats[name] || !stats[name].mbid).length;
   console.log(`${ranked.length} target artists · ${todo.length} to fetch · ${Object.keys(cache).length} cached · ${noMbid} no-mbid skipped`);
 
@@ -60,7 +67,7 @@ async function fetchOrigin(mbid) {
     try {
       cache[name] = { ...await fetchOrigin(stats[name].mbid), fetched: today };
     } catch (e) {
-      cache[name] = { country: "", area: "", beginArea: "", type: "", fetched: today, error: true };
+      cache[name] = { country: "", area: "", beginArea: "", type: "", gender: "", begin: "", end: "", ended: false, fetched: today, error: true };
       failed++;
     }
     done++;
