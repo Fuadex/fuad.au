@@ -329,6 +329,19 @@ const ALBUM_REMAP = {
 };
 const albumRemap = (artist, album, track) => { const m = ALBUM_REMAP[artist + "\x00" + album]; return (m && m[track]) || album; };
 
+// strip junk tags from album titles so fragmented variants merge onto one release:
+//   [FLAC] / [Deluxe] / [Left] / [Explicit] … bracket tags, "Disc 1" / "(Disc 1 of 2)" / "CD1"
+//   multi-disc markers, and a leading "YYYY - ". Parens are otherwise left alone (soundtracks etc.).
+const cleanAlbum = (name) => {
+  if (!name) return name;
+  const s = name
+    .replace(/\s*\[[^\]]*\]/g, "")
+    .replace(/\s*\(?\s*(?:disc|cd|disk)\s*\d+(?:\s*of\s*\d+)?\s*\)?/ig, "")
+    .replace(/^\s*\d{4}\s*[-–—]\s*/, "")
+    .replace(/\s{2,}/g, " ").trim().replace(/[\s:–—-]+$/, "").trim();
+  return s || name;
+};
+
 const artistPlays = new Map();           // name → count
 const albumPlays = new Map();            // artist\x00album → count
 const trackPlays = new Map();            // artist\x00track → count
@@ -349,7 +362,7 @@ for (const line of lines) {
   const [rawArtist, rawAlbum, track, ts] = parseLine(line);
   if (!rawArtist) continue;
   const artist = canon(rawArtist);   // merge scrobble-name variants
-  const album = albumRemap(artist, rawAlbum, track);   // scatter bogus placeholder albums to real ones
+  const album = cleanAlbum(albumRemap(artist, rawAlbum, track));   // scatter placeholders + strip junk tags
   artistPlays.set(artist, (artistPlays.get(artist) || 0) + 1);
   if (album) albumPlays.set(artist + "\x00" + album, (albumPlays.get(artist + "\x00" + album) || 0) + 1);
   if (track) trackPlays.set(artist + "\x00" + track, (trackPlays.get(artist + "\x00" + track) || 0) + 1);
