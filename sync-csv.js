@@ -37,7 +37,21 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 function parseLine(line) { const o = []; let c = "", q = false; for (let i = 0; i < line.length; i++) { const ch = line[i]; if (q) { if (ch === '"') { if (line[i + 1] === '"') { c += '"'; i++; } else q = false; } else c += ch; } else if (ch === '"') q = true; else if (ch === ",") { o.push(c); c = ""; } else c += ch; } o.push(c); return o; }
 const fmtUTC = (uts) => { const d = new Date(uts * 1000), p = (n) => String(n).padStart(2, "0"); return `${p(d.getUTCDate())} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()} ${p(d.getUTCHours())}:${p(d.getUTCMinutes())}`; };
 const csvEsc = (s) => { s = s == null ? "" : String(s); return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
-const rowOf = (t) => { const artist = (t.artist && (t.artist["#text"] || t.artist.name)) || "", album = (t.album && t.album["#text"]) || "", track = t.name || "", uts = t.date ? +t.date.uts : 0; return { uts, artist, album, track }; };
+// Data overrides applied as rows are written to fuadex.csv (durable — re-applied on every pull).
+// last.fm stored a batch of scrobbles under the literal artist "<Unknown>"; we identified them and
+// rewrite artist/album/track to the real values here rather than soft-remapping downstream.
+const cleanTrack = (t) => { const s = (t || "").replace(/_-_www\.[^\s]+/ig, "").replace(/_+/g, " ").replace(/^\d{1,3}\s*[-.\s]+/, "").trim(); return s || t; };
+function fixUnknown(artist, album, track) {
+  if (artist !== "<Unknown>") return [artist, album, track];
+  const a = album || "";
+  if (/sounds of violence/i.test(a) || a === "Onslaught") return ["Onslaught", "Sounds of Violence", cleanTrack(track)];
+  if (a === "Sepultura") return ["Sepultura", "", cleanTrack(track)];
+  if (/^cd\s*\d/i.test(a)) return ["deadmau5", "", cleanTrack(track)];
+  if (a === "Him" || /greatest lovesongs|greatest love songs|screamworks|venus doom|this is only the beginning/i.test(a))
+    return ["HIM", a === "Him" ? "" : a.replace(/^\s*\d{4}\s*-\s*/, ""), cleanTrack(track)];
+  return [artist, album, track];
+}
+const rowOf = (t) => { let artist = (t.artist && (t.artist["#text"] || t.artist.name)) || "", album = (t.album && t.album["#text"]) || "", track = t.name || ""; const uts = t.date ? +t.date.uts : 0; [artist, album, track] = fixUnknown(artist, album, track); return { uts, artist, album, track }; };
 const lineOf = (s) => [s.artist, s.album, s.track, fmtUTC(s.uts)].map(csvEsc).join(",");
 
 // page through user.getrecenttracks; from=0 → entire history. Returns {rows, total}.
@@ -59,6 +73,21 @@ async function pull(from) {
 function writeFull(rows) {
   rows.sort((a, b) => b.uts - a.uts);   // newest-first, like the export
   fs.writeFileSync(CSV, rows.map(lineOf).join("\n") + "\n", "utf8");
+}
+
+// --fixcsv: apply the data overrides (fixUnknown) to the CSV we already have, in place — no network.
+// Durable because the same fix also runs on every pull via rowOf.
+if (process.argv.includes("--fixcsv")) {
+  const lines = fs.readFileSync(CSV, "utf8").split(/\r?\n/).filter(l => l.trim());
+  let changed = 0;
+  const out = lines.map(l => {
+    const p = parseLine(l), [a, al, tr] = fixUnknown(p[0], p[1], p[2]);
+    if (a !== p[0] || al !== p[1] || tr !== p[2]) { changed++; return [a, al, tr, p[3]].map(csvEsc).join(","); }
+    return l;
+  });
+  fs.writeFileSync(CSV, out.join("\n") + "\n", "utf8");
+  console.log(`fixcsv: rewrote ${changed} rows in place`);
+  process.exit(0);
 }
 
 (async () => {
