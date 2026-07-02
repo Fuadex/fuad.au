@@ -1,0 +1,25 @@
+# GitHub Pages config for a BUILDLESS static site (raw index.html + *.jsx via @babel/standalone).
+# The files below are BUILD INPUTS ONLY — read by build-data.js / sync-*.js / enrich-*.js at build
+# time and baked into the generated *.js (music-data.js, media-index.js, track-audio.js, …). They are
+# never fetched by the browser. Publishing them (a) bloated the Pages artifact to ~57MB and made the
+# deploy step time out ("Timeout reached, aborting!"), and (b) needlessly exposed the raw scrobble
+# history + API-derived caches. Excluding them keeps them in git (CI still builds from them) but off
+# the live site, shrinking the deploy to ~19MB.
+#
+# Runtime .js the site DOES need are kept: music-data.js, live-data.js, media-index.js, track-audio.js,
+# calendar.js, calendar-detail.js, artist-flow.js, artist-detail.js, geo-detail.js, search-index.js,
+# world-map.js — none match the excludes below.
+
+exclude:
+  - fuadex.csv
+  - "*.json"          # all enrichment/cache inputs (spotify-*, discogs-*, artist-mb, audio-features, …); none loaded at runtime
+  - build-data.js
+  - "sync-*.js"
+  - "enrich-*.js"
+  - "*.md"
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - .sptmp
+  - .dtmp
+  - .babelcheck
