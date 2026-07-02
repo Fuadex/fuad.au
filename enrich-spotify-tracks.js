@@ -6,8 +6,11 @@
 //   NODE_PATH=../.dtmp/node_modules node enrich-spotify-tracks.js   (needs the 4 parquets extracted)
 //
 // Out: spotify-track-data.json { "artistSlug~trackSlug": [durSec, pop, explicit, trackNo,
-//        energy, valence, acoustic, tempo, dance, instr] }  — features are 0..100 ints; entries are
-//      length 4 when no audio features were found, length 10 with. tempo is remapped 50..190 → 0..100.
+//        energy, valence, acoustic, tempo, dance, instr, loud, live, speech, key, mode, timeSig] }
+//      Stats+features are ints; entry is length 4 when no audio features were found, length 16 with.
+//      energy/valence/acoustic/dance/instr/live/speech are 0..100; tempo is remapped 50..190bpm → 0..100;
+//      loud = dB×10 (e.g. -62 = -6.2dB); key = 0..11 pitch class (-1 unknown); mode = 1 major/0 minor/-1;
+//      timeSig = 3..7 (0 unknown).
 //
 // Track identity = slug(artist)+"~"+slug(track) — mirrors AlbumView's album id so TrackView can route.
 // Matching strategy: resolve our artists to Spotify artist rowids (via spotify-cache ids), walk their
@@ -82,11 +85,17 @@ console.log(`${ours.length} artists with a Spotify id · ${ourset.length} distin
   const rows = await run(`
     SELECT b.key, b.dur, b.pop, b.exp, b.trackno,
            af.energy, af.valence, af.acousticness AS acoustic, af.tempo,
-           af.danceability AS dance, af.instrumentalness AS instr
+           af.danceability AS dance, af.instrumentalness AS instr,
+           af.loudness AS loud, af.liveness AS live, af.speechiness AS speech,
+           af.key AS mkey, af.mode AS mode, af.time_signature AS tsig
     FROM best b
     LEFT JOIN ${P("track_audio_features")} af
       ON af.track_id = b.sid AND (af.null_response IS NULL OR af.null_response = false);`);
 
+  // extended per-track entry (features present) — indices:
+  //  0 durSec 1 popularity 2 explicit 3 trackNo | 4 energy 5 valence 6 acoustic 7 tempo(0..100) 8 dance 9 instr
+  //  10 loud(dB×10, e.g. -62) 11 liveness 12 speechiness 13 key(0..11 pitch class, -1 unknown) 14 mode(1=major,0=minor,-1=?) 15 timeSig(3..7,0=?)
+  const iv = (v, d) => (v == null ? d : Math.round(Number(v)));
   const out = {}; let withFeat = 0;
   for (const r of rows) {
     const durSec = Math.round((Number(r.dur) || 0) / 1000);
@@ -94,7 +103,11 @@ console.log(`${ours.length} artists with a Spotify id · ${ourset.length} distin
     if (r.energy != null || r.valence != null || r.tempo != null) {
       withFeat++;
       const tempo = i100(clamp((Number(r.tempo) - 50) / 140));   // 50..190 bpm → 0..100
-      out[r.key] = base.concat([i100(r.energy), i100(r.valence), i100(r.acoustic), tempo, i100(r.dance), i100(r.instr)]);
+      out[r.key] = base.concat([
+        i100(r.energy), i100(r.valence), i100(r.acoustic), tempo, i100(r.dance), i100(r.instr),
+        r.loud == null ? 0 : Math.round(Number(r.loud) * 10), i100(r.live), i100(r.speech),
+        iv(r.mkey, -1), iv(r.mode, -1), iv(r.tsig, 0),
+      ]);
     } else {
       out[r.key] = base;
     }
