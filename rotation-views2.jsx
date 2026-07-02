@@ -1166,7 +1166,7 @@ function AlbumView({ id, go }) {
   return (
     <div className="r-view">
       <button className="r-back" onClick={() => go("explore")}>← explore</button>
-      <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 26 }}>
+      <div className="tv-head" style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 26 }}>
         <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
           <div className="r-kicker">{typeName}{relYear ? ` · ${relYear}` : ""}{data.tracks.length ? ` · ${data.tracks.length} track${data.tracks.length !== 1 ? "s" : ""} played` : ""}</div>
@@ -1233,8 +1233,11 @@ function AlbumView({ id, go }) {
       )}
 
       <div className="r-card" style={{ padding: "16px 18px" }}>
-        <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}><span className="lbl"><b>Tracks you've played</b></span>
+        <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Tracks you've played</b></span>
           <span className="meta">{fmt(data.trackPlays)} plays across {data.tracks.length}</span></div>
+        {data.tracks.some(t => t.e != null) && <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginBottom: 8, display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+          <span style={{ width: 8, height: 8, borderRadius: "50%", background: `oklch(0.7 0.16 ${moodHue(15)})` }} /> dark
+          <span style={{ width: 8, height: 8, borderRadius: "50%", background: `oklch(0.7 0.16 ${moodHue(85)})` }} /> upbeat · brighter = more energy</div>}
         <div style={{ display: "grid", gap: 2 }}>
           {data.tracks.map((t, i) => (
             <div key={t.title + i} className="r-track-row" onClick={() => go("track", R.slug(data.artist) + "~" + R.slug(t.title))} title={`${t.title} →`} style={{ display: "grid", gridTemplateColumns: "24px 14px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px", cursor: "pointer", borderRadius: 4 }}>
@@ -1316,12 +1319,22 @@ function TrackView({ id, go }) {
   const eP = f ? tastePctl("energy", f[4]) : null, vP = f ? tastePctl("valence", f[5]) : null;
   const sr = data.series, first = sr[0], last = sr[sr.length - 1], peak = sr.reduce((a, b) => b.p > (a ? a.p : 0) ? b : a, null);
   const kName = f ? keyName(f[13], f[14]) : "";
-  const chips = f ? [bpm ? bpm + " BPM" : "", kName, f[10] ? (f[10] / 10).toFixed(1) + " dB" : "", f[15] ? f[15] + "/4 time" : "", f[11] >= 60 ? "live take" : ""].filter(Boolean) : [];
+  const artAF = R.AUDIO && R.AUDIO[artistId];   // artist-level: [..7 pop, 8 followers ..]
+  // mirror the artist "Sound DNA" stat grid — tempo → followers (7), but per-song where it differs.
+  const attrs = f ? [
+    { k: "tempo", v: bpm || "—", u: bpm ? " bpm" : "" },
+    { k: "key", v: kName || "—" },
+    { k: "loud", v: f[10] ? (f[10] / 10).toFixed(1) : "—", u: f[10] ? " dB" : "" },
+    { k: "speech", v: f[12], u: "%" },
+    { k: "live", v: f[11], u: "%" },
+    { k: "pop", v: data.pop, u: "/100" },
+    { k: "followers", v: artAF ? fmtK(artAF[8]) : "—", t: "the artist's Spotify followers" },
+  ] : [];
 
   return (
     <div className="r-view">
       <button className="r-back" onClick={() => go(data.albumId ? "album" : "explore", data.albumId || undefined)}>← {data.album || "explore"}</button>
-      <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 24 }}>
+      <div className="tv-head" style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 24 }}>
         <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={132} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
           <div className="r-kicker">Song{data.trackNo ? ` · track ${data.trackNo}` : ""}{data.dur ? ` · ${mmss(data.dur)}` : ""}{data.explicit ? " · explicit" : ""}</div>
@@ -1363,8 +1376,14 @@ function TrackView({ id, go }) {
                 ))}
               </div>
             </div>
-            {chips.length > 0 && <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
-              {chips.map(c => <span key={c} className="r-chip" style={{ cursor: "default" }}>{c}</span>)}</div>}
+            {attrs.length > 0 && <div style={{ marginTop: 13, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(62px, 1fr))", gap: 9, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
+              {attrs.map(s => (
+                <div key={s.k} title={s.t || ""}>
+                  <div className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</div>
+                  <div style={{ fontSize: 13, marginTop: 1, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 9, color: "var(--ink-faint)" }}>{s.u}</span>}</div>
+                </div>
+              ))}
+            </div>}
           </div>
 
           <div className="r-card" style={{ padding: "16px 18px", display: "flex", flexDirection: "column", gap: 14 }}>
