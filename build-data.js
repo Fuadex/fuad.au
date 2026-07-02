@@ -141,9 +141,11 @@ const SPOT = (() => { try { return JSON.parse(fs.readFileSync(path.join(__dirnam
 // artist images (fallback), Spotify genres.
 const _readJson = (f) => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, f), "utf8")); } catch (e) { return {}; } };
 const ALBART = _readJson("spotify-albumart.json");   // "artistSlug~titleSlug" → cover url
+const ALBMETA = _readJson("spotify-albummeta.json"); // "artistSlug~titleSlug" → [releaseYear, typeChar, label]
 const ARTIMG = _readJson("spotify-artist-img.json");  // name → 640px artist image
 const SPOTGEN = _readJson("spotify-genres.json");     // name → [genre, …]
 const albArt = (artist, title) => ALBART[slug(artist) + "~" + slug(title)] || "";
+const albMeta = (artist, title) => ALBMETA[slug(artist) + "~" + slug(title)] || 0;
 const spotImg = (name) => (SPOT[name] && SPOT[name].img) || ARTIMG[name] || "";
 const imageOf = (name) => (DGA[name] && DGA[name].image) || (IMAGES[name] && IMAGES[name].image) || spotImg(name) || "";
 const thumbOf = (name) => (DGA[name] && DGA[name].thumb) || (IMAGES[name] && IMAGES[name].thumb) || spotImg(name) || "";
@@ -1447,7 +1449,7 @@ const mediaAlbums = _albumEntries.map(([key, plays], i) => {
   albumKeyIdx.set(key, i);
   const ix = key.indexOf("\x00"), artist = key.slice(0, ix), title = key.slice(ix + 1);
   const sp = albumSpan.get(key);
-  return [title, _ai(artist), plays, sp ? sp[0] : 0, sp ? sp[1] : 0, _tail(albumYear.get(key)), albArt(artist, title) || 0];   // [6] = Spotify cover url
+  return [title, _ai(artist), plays, sp ? sp[0] : 0, sp ? sp[1] : 0, _tail(albumYear.get(key)), albArt(artist, title) || 0, albMeta(artist, title)];   // [6]=cover url, [7]=[releaseYear,typeChar,label]
 });
 const mediaTracks = [...trackPlays.entries()].sort((a, b) => b[1] - a[1]).map(([key, plays]) => {
   const ix = key.indexOf("\x00"), artist = key.slice(0, ix), title = key.slice(ix + 1);

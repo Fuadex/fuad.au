@@ -1068,7 +1068,7 @@ function AlbumView({ id, go }) {
     const tracks = [];
     for (const t of M.tracks) if (t[3] === bestIdx) tracks.push({ title: t[0], plays: t[2] });
     tracks.sort((x, y) => y.plays - x.plays);
-    return { title: al[0], artist, plays: al[2], firstY: al[3], lastY: al[4], cover: al[6] || "", tracks, trackPlays: tracks.reduce((s, t) => s + t.plays, 0) };
+    return { title: al[0], artist, plays: al[2], firstY: al[3], lastY: al[4], cover: al[6] || "", meta: al[7] || null, tracks, trackPlays: tracks.reduce((s, t) => s + t.plays, 0) };
   }, [ready, id]);
 
   if (!ready) return <div className="r-view"><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 40 }}>loading album…</div></div>;
@@ -1081,7 +1081,10 @@ function AlbumView({ id, go }) {
   const subs = rec && rec.s ? rec.s.map(i => R.SUBS[i] && R.SUBS[i].name).filter(Boolean).slice(0, 6) : [];
   const af = R.AUDIO && R.AUDIO[artistId];
   const maxT = Math.max(...data.tracks.map(t => t.plays), 1);
-  const yr = data.firstY ? (data.firstY === data.lastY ? `${data.firstY}` : `${data.firstY}–${data.lastY}`) : "";
+  const heardYr = data.firstY ? (data.firstY === data.lastY ? `${data.firstY}` : `${data.firstY}–${data.lastY}`) : "";
+  const typeName = data.meta ? ({ a: "Album", s: "Single", c: "Compilation" }[data.meta[1]] || "Album") : "Album";
+  const relYear = data.meta && data.meta[0] ? data.meta[0] : "";
+  const label = data.meta && data.meta[2] ? data.meta[2] : "";
 
   return (
     <div className="r-view">
@@ -1089,10 +1092,11 @@ function AlbumView({ id, go }) {
       <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 26 }}>
         <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
-          <div className="r-kicker">Album{yr ? ` · ${yr}` : ""}{data.tracks.length ? ` · ${data.tracks.length} track${data.tracks.length !== 1 ? "s" : ""} played` : ""}</div>
+          <div className="r-kicker">{typeName}{relYear ? ` · ${relYear}` : ""}{data.tracks.length ? ` · ${data.tracks.length} track${data.tracks.length !== 1 ? "s" : ""} played` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(30px,4.4vw,54px)" }}>{data.title}<span className="dot">.</span></h1>
           <div style={{ color: "var(--ink-soft)", fontSize: 15, marginTop: 6 }}>
             by {known ? <b onClick={() => go("artist", artistId)} style={{ cursor: "pointer", color: "var(--ink)" }}>{data.artist}</b> : data.artist}</div>
+          {label && <div className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-faint)", marginTop: 4 }}>{label}{heardYr ? ` · you played it ${heardYr}` : ""}</div>}
           {subs.length > 0 && <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
             {subs.map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)}>{s}</span>)}</div>}
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap" }}>
