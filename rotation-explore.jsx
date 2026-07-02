@@ -119,7 +119,7 @@ function mediaRank(M, R, meta, kind, f, limit) {
     if (hasCells && !tsPlays(R, m.aid, cells)) continue;
     let value = row[2];
     if (!noYear) { value = playsInYear(row, year); if (!value) continue; }
-    out.push({ id: (kind === "albums" ? "ma" : "mt") + row[1], aid: m.aid, label: row[0], sub: M.artists[row[1]], value, hue: m.hue, kept: kind === "albums" ? true : !!rec });
+    out.push({ id: (kind === "albums" ? "ma" : "mt") + row[1], aid: m.aid, label: row[0], sub: M.artists[row[1]], value, hue: m.hue, kept: kind === "albums" ? true : !!rec, cover: kind === "albums" ? (row[6] || "") : "" });
     if (noYear && out.length > limit) { more = true; break; }   // pre-sorted → top `limit` already
   }
   if (!noYear) { out.sort((a, b) => b.value - a.value); more = out.length > limit; }
@@ -661,7 +661,7 @@ function RankRows({ items, go, kind }) {
       {items.map((it, i) => (
         <div key={(it.aid || it.id) + "-" + i} className="xp-row" data-link={isAlbum || it.kept !== false} onClick={() => onClick(it)}>
           <span className="xp-rank">{String(i + 1).padStart(2, "0")}</span>
-          <GenCover hue={it.hue} name={isAlbum ? it.label : (it.aid ? it.sub : it.label)} size={34} radius={3} />
+          <GenCover hue={it.hue} name={isAlbum ? it.label : (it.aid ? it.sub : it.label)} image={it.cover} thumb={it.cover} size={34} radius={3} />
           <div className="xp-row-main">
             <div className="xp-row-name">{it.label}</div>
             <div className="xp-row-sub">{it.sub}</div>
