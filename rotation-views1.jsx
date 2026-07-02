@@ -142,14 +142,15 @@ function OverviewView({ t, go }) {
               style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
           <div style={{ display: "grid", gap: 2 }}>
             {recent.slice(0, recentN).map(r => (
-              <div key={r.id} onClick={() => go("artist", r.artistId)} style={{ display: "flex", alignItems: "center", gap: 11,
+              <div key={r.id} onClick={() => go("track", R.slug(r.artist) + "~" + R.slug(r.track))} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 11,
                 padding: "7px 6px", borderRadius: 4, cursor: "pointer" }}
                 onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
                 onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
                 <GenCover hue={r.hue} name={r.artist} size={30} radius={2} />
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div style={{ fontSize: 13, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
-                  <div style={{ fontSize: 11, color: "var(--ink-faint)" }}>{r.artist}</div>
+                  <div style={{ fontSize: 11, color: "var(--ink-faint)", cursor: "pointer" }} title={`${r.artist} →`}
+                    onClick={e => { e.stopPropagation(); go("artist", r.artistId); }}>{r.artist}</div>
                 </div>
                 <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{r.when}</span>
               </div>
