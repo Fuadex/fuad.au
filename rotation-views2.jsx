@@ -753,6 +753,12 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               {a.styles.map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)} style={{ fontSize: 10.5, padding: "3px 8px", borderColor: "var(--line)" }}>{s}</span>)}
             </div>
           )}
+          {a.spotGenres && a.spotGenres.length > 0 && (
+            <div style={{ display: "flex", gap: 7, marginTop: 8, flexWrap: "wrap", alignItems: "center" }}>
+              <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>spotify</span>
+              {a.spotGenres.map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)} style={{ fontSize: 10.5, padding: "3px 8px", borderColor: "var(--line)" }}>{s}</span>)}
+            </div>
+          )}
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap" }}>
             <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
@@ -909,7 +915,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 {(albums.length ? albums : []).map((al, i) => (
                   <div key={al.title + i} style={{ width: 78, cursor: "pointer" }} onClick={() => go("album", R.slug(a.name) + "~" + R.slug(al.title))}>
-                    <GenCover hue={a.hue} name={al.title} size={78} radius={3} />
+                    <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={78} radius={3} />
                     <div style={{ fontSize: 10.5, marginTop: 6, lineHeight: 1.2,
                       display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
                       overflow: "hidden" }}>{al.title}</div>
@@ -1062,7 +1068,7 @@ function AlbumView({ id, go }) {
     const tracks = [];
     for (const t of M.tracks) if (t[3] === bestIdx) tracks.push({ title: t[0], plays: t[2] });
     tracks.sort((x, y) => y.plays - x.plays);
-    return { title: al[0], artist, plays: al[2], firstY: al[3], lastY: al[4], tracks, trackPlays: tracks.reduce((s, t) => s + t.plays, 0) };
+    return { title: al[0], artist, plays: al[2], firstY: al[3], lastY: al[4], cover: al[6] || "", tracks, trackPlays: tracks.reduce((s, t) => s + t.plays, 0) };
   }, [ready, id]);
 
   if (!ready) return <div className="r-view"><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 40 }}>loading album…</div></div>;
@@ -1081,7 +1087,7 @@ function AlbumView({ id, go }) {
     <div className="r-view">
       <button className="r-back" onClick={() => go("explore")}>← explore</button>
       <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 26 }}>
-        <GenCover hue={hue} name={data.title} size={150} radius={6} />
+        <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
           <div className="r-kicker">Album{yr ? ` · ${yr}` : ""}{data.tracks.length ? ` · ${data.tracks.length} track${data.tracks.length !== 1 ? "s" : ""} played` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(30px,4.4vw,54px)" }}>{data.title}<span className="dot">.</span></h1>
