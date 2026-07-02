@@ -3,3 +3,7 @@
 *.zip
 archive.zip
 spotify-sync.log
+
+# local notes
+CSV-OVERRIDES.md
+IDEAS.md
