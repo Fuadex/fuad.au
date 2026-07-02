@@ -315,32 +315,8 @@ const CANON = new Map();
   }
 }
 const canon = (name) => CANON.get(name) || name;
-
-// Album cleanup — scatter a bogus placeholder "album" (a bad local-file/import tag scrobbled with
-// lost 1970 timestamps) back onto the real releases its tracks belong to. Keyed by artist\x00album,
-// then per-track → real album; only rewrites within the named junk block, so it's safe/idempotent.
-const ALBUM_REMAP = {
-  ["Linkin Park\x00Mój Album"]: {
-    "Numb": "Meteora", "From the Inside": "Meteora", "Somewhere I Belong": "Meteora",
-    "Faint": "Meteora", "Breaking the Habbit": "Meteora",
-    "In the End": "Hybrid Theory", "Points of Authority (remix)": "Hybrid Theory",
-    "Points of Authority (Cristal Remix)": "Reanimation", "By My Self (Remix)": "Reanimation",
-  },
-};
-const albumRemap = (artist, album, track) => { const m = ALBUM_REMAP[artist + "\x00" + album]; return (m && m[track]) || album; };
-
-// strip junk tags from album titles so fragmented variants merge onto one release:
-//   [FLAC] / [Deluxe] / [Left] / [Explicit] … bracket tags, "Disc 1" / "(Disc 1 of 2)" / "CD1"
-//   multi-disc markers, and a leading "YYYY - ". Parens are otherwise left alone (soundtracks etc.).
-const cleanAlbum = (name) => {
-  if (!name) return name;
-  const s = name
-    .replace(/\s*\[[^\]]*\]/g, "")
-    .replace(/\s*\(?\s*(?:disc|cd|disk)\s*\d+(?:\s*of\s*\d+)?\s*\)?/ig, "")
-    .replace(/^\s*\d{4}\s*[-–—]\s*/, "")
-    .replace(/\s{2,}/g, " ").trim().replace(/[\s:–—-]+$/, "").trim();
-  return s || name;
-};
+// (album hygiene — placeholder remaps + tag stripping — now lives in sync-csv.js as data overrides,
+// so fuadex.csv already holds clean album titles by the time we read it here.)
 
 const artistPlays = new Map();           // name → count
 const albumPlays = new Map();            // artist\x00album → count
@@ -359,10 +335,9 @@ const scrobbles = [];                    // [artist, album, track, ms] newest-fi
 const undatedArtists = [];
 
 for (const line of lines) {
-  const [rawArtist, rawAlbum, track, ts] = parseLine(line);
+  const [rawArtist, album, track, ts] = parseLine(line);
   if (!rawArtist) continue;
-  const artist = canon(rawArtist);   // merge scrobble-name variants
-  const album = cleanAlbum(albumRemap(artist, rawAlbum, track));   // scatter placeholders + strip junk tags
+  const artist = canon(rawArtist);   // merge scrobble-name variants (album hygiene done in the CSV)
   artistPlays.set(artist, (artistPlays.get(artist) || 0) + 1);
   if (album) albumPlays.set(artist + "\x00" + album, (albumPlays.get(artist + "\x00" + album) || 0) + 1);
   if (track) trackPlays.set(artist + "\x00" + track, (trackPlays.get(artist + "\x00" + track) || 0) + 1);
