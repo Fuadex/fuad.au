@@ -1050,6 +1050,68 @@ function LiveView({ t, go, city, setCity }) {
   );
 }
 
+// ─────────── shared audio-viz helpers (Album + Track panes) ───────────
+// expand a media yearTail (0 | year | [year,plays,…]) + the row's total plays into [{y, p}] sorted by year.
+function yearSeries(tail, total) {
+  if (tail == null || tail === 0) return [];
+  if (typeof tail === "number") return [{ y: tail, p: total }];
+  const out = []; for (let i = 0; i < tail.length; i += 2) out.push({ y: tail[i], p: tail[i + 1] });
+  return out.sort((a, b) => a.y - b.y);
+}
+// share of your play-weighted library at or below `value` on an axis (0..100) → percent, via R.AUDIO_DIST.
+function tastePctl(axis, value) {
+  const D = window.ROTATION && window.ROTATION.AUDIO_DIST; if (!D) return null;
+  const ai = D.axes.indexOf(axis); if (ai < 0 || value == null) return null;
+  const v = Math.max(0, Math.min(100, Math.round(value)));
+  return D.cdf[ai][v] / 10;   // permille → percent
+}
+// radar / spider chart for N audio axes (each {label, value 0..100}).
+function AudioRadar({ axes, hue, size = 188 }) {
+  const n = axes.length, cx = size / 2, cy = size / 2, R = size / 2 - 30;
+  const pt = (i, r) => { const a = -Math.PI / 2 + i * 2 * Math.PI / n; return [cx + Math.cos(a) * r, cy + Math.sin(a) * r]; };
+  const poly = (r, sc) => axes.map((_, i) => pt(i, typeof r === "function" ? r(i) : r * sc).join(",")).join(" ");
+  const col = `oklch(0.64 0.16 ${hue})`;
+  return (
+    <svg viewBox={`0 0 ${size} ${size}`} style={{ width: "100%", maxWidth: size, height: "auto", display: "block" }}>
+      {[0.25, 0.5, 0.75, 1].map(f => <polygon key={f} points={poly(R * f, 1)} fill="none" stroke="var(--rule)" strokeWidth="1" />)}
+      {axes.map((_, i) => { const [x, y] = pt(i, R); return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="var(--rule)" strokeWidth="1" />; })}
+      <polygon points={poly(i => R * Math.max(0, Math.min(100, axes[i].value)) / 100, 1)} fill={col} fillOpacity="0.22" stroke={col} strokeWidth="1.7" />
+      {axes.map((ax, i) => { const [x, y] = pt(i, R + 15); return (
+        <text key={i} x={x} y={y} textAnchor={Math.abs(x - cx) < 6 ? "middle" : x > cx ? "start" : "end"}
+          dominantBaseline="middle" fontFamily="var(--mono)" fontSize="8.5" fill="var(--ink-faint)">{ax.label}</text>); })}
+      {axes.map((ax, i) => { const [x, y] = pt(i, R * Math.max(2, Math.min(100, ax.value)) / 100); return <circle key={i} cx={x} cy={y} r="2.1" fill={col} />; })}
+    </svg>
+  );
+}
+// tiny per-year play sparkline (bars).
+function Sparkline({ series, hue, height = 34 }) {
+  if (!series.length) return null;
+  const max = Math.max(...series.map(s => s.p), 1);
+  const y0 = series[0].y, y1 = series[series.length - 1].y, span = Math.max(1, y1 - y0);
+  return (
+    <div style={{ display: "flex", alignItems: "flex-end", gap: 2, height, marginTop: 2 }} title={`${y0}–${y1}`}>
+      {series.map(s => (
+        <div key={s.y} title={`${s.y}: ${fmt(s.p)}`} style={{ flex: 1, minWidth: 3,
+          height: Math.max(2, s.p / max * height), background: `oklch(0.62 0.14 ${hue})`, borderRadius: "2px 2px 0 0", opacity: 0.55 + 0.45 * (s.p / max) }} />
+      ))}
+    </div>
+  );
+}
+// tiny valence×energy quadrant with a single dot (where this track/album sits).
+function MiniQuadrant({ valence, energy, hue, size = 96 }) {
+  const p = 8, x = p + (valence / 100) * (size - 2 * p), y = p + (1 - energy / 100) * (size - 2 * p);
+  return (
+    <svg viewBox={`0 0 ${size} ${size}`} style={{ width: size, height: size, display: "block" }}>
+      <rect x="1" y="1" width={size - 2} height={size - 2} rx="5" fill="var(--bg-3)" stroke="var(--rule)" />
+      <line x1={size / 2} y1={p} x2={size / 2} y2={size - p} stroke="var(--rule)" strokeWidth="1" />
+      <line x1={p} y1={size / 2} x2={size - p} y2={size / 2} stroke="var(--rule)" strokeWidth="1" />
+      <circle cx={x} cy={y} r="4.5" fill={`oklch(0.66 0.17 ${hue})`} stroke="#fff" strokeWidth="1.2" />
+    </svg>
+  );
+}
+const PITCH = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"];
+const keyName = (k, m) => (k == null || k < 0) ? "" : PITCH[k] + (m === 0 ? " min" : m === 1 ? " maj" : "");
+
 // AlbumView — your history with one album: the tracks you've played from it (with per-song plays),
 // when you played it, and the artist's genre/mood (joined from the inline universe). The album's
 // identity is "artistSlug~titleSlug"; data comes from the lazy media-index, loaded on demand.
@@ -1070,9 +1132,12 @@ function AlbumView({ id, go }) {
     if (bestIdx < 0) return null;
     const al = M.albums[bestIdx], artist = M.artists[al[1]];
     const tracks = [];
-    for (const t of M.tracks) if (t[3] === bestIdx) tracks.push({ title: t[0], plays: t[2] });
-    tracks.sort((x, y) => y.plays - x.plays);
-    return { title: al[0], artist, plays: al[2], firstY: al[3], lastY: al[4], cover: al[6] || "", meta: al[7] || null, tracks, trackPlays: tracks.reduce((s, t) => s + t.plays, 0) };
+    for (const t of M.tracks) if (t[3] === bestIdx) tracks.push({ title: t[0], plays: t[2], no: t[5] || 0, e: t.length >= 8 ? t[6] : null, v: t.length >= 8 ? t[7] : null });
+    const hasNos = tracks.some(t => t.no);
+    tracks.sort((x, y) => hasNos ? ((x.no || 999) - (y.no || 999)) || (y.plays - x.plays) : y.plays - x.plays);
+    return { title: al[0], artist, plays: al[2], firstY: al[3], lastY: al[4], cover: al[6] || "", meta: al[7] || null,
+      tracks, trackPlays: tracks.reduce((s, t) => s + t.plays, 0), dna: al[8] || null,
+      series: yearSeries(al[5], al[2]), rank: bestIdx + 1, albumCount: M.albums.length };
   }, [ready, id]);
 
   if (!ready) return <div className="r-view"><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 40 }}>loading album…</div></div>;
@@ -1083,12 +1148,20 @@ function AlbumView({ id, go }) {
   const known = !!rec;
   const hue = rec ? rec.hue : hueOf(data.artist);
   const subs = rec && rec.s ? rec.s.map(i => R.SUBS[i] && R.SUBS[i].name).filter(Boolean).slice(0, 6) : [];
-  const af = R.AUDIO && R.AUDIO[artistId];
   const maxT = Math.max(...data.tracks.map(t => t.plays), 1);
+  const standout = data.tracks.reduce((a, b) => b.plays > (a ? a.plays : 0) ? b : a, null);
   const heardYr = data.firstY ? (data.firstY === data.lastY ? `${data.firstY}` : `${data.firstY}–${data.lastY}`) : "";
   const typeName = data.meta ? ({ a: "Album", s: "Single", c: "Compilation" }[data.meta[1]] || "Album") : "Album";
   const relYear = data.meta && data.meta[0] ? data.meta[0] : "";
   const label = data.meta && data.meta[2] ? data.meta[2] : "";
+  const dna = data.dna;   // [energy, valence, dance, acoustic, instr, tempo]
+  const radar = dna ? [{ label: "Energy", value: dna[0] }, { label: "Tempo", value: dna[5] }, { label: "Dance", value: dna[2] }, { label: "Positive", value: dna[1] }, { label: "Acoustic", value: dna[3] }, { label: "Instr.", value: dna[4] }] : null;
+  const eP = dna ? tastePctl("energy", dna[0]) : null, vP = dna ? tastePctl("valence", dna[1]) : null;
+  const bpm = dna ? Math.round(50 + dna[5] / 100 * 140) : 0;
+  const avgSec = (R.TOTALS && R.TOTALS.avgTrackSec) || 216;
+  const listenedMin = Math.round(avgSec * data.trackPlays / 60);
+  const sr = data.series, sFirst = sr[0], sLast = sr[sr.length - 1], sPeak = sr.reduce((a, b) => b.p > (a ? a.p : 0) ? b : a, null);
+  const moodHue = (v) => 250 - (Math.max(0, Math.min(100, v)) / 100) * 220;   // low valence → cool, high → warm
 
   return (
     <div className="r-view">
@@ -1108,22 +1181,68 @@ function AlbumView({ id, go }) {
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(data.artist + " " + data.title)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
         </div>
-        <div style={{ display: "flex", gap: 26 }}>
-          <div><div className="r-stat-n" style={{ fontSize: 38 }}>{fmt(data.plays)}</div>
+        <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+          <div><div className="r-stat-n" style={{ fontSize: 36 }}>{fmt(data.plays)}</div>
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
-          {af && <div><div className="r-stat-n" style={{ fontSize: 38, color: "var(--accent)" }}>{Math.round(af[1] * 100)}%</div>
-            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>mood</div></div>}
+          {listenedMin > 0 && <div><div className="r-stat-n" style={{ fontSize: 36 }}>{listenedMin >= 60 ? Math.round(listenedMin / 60) + "h" : listenedMin + "m"}</div>
+            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>~listened</div></div>}
+          <div><div className="r-stat-n" style={{ fontSize: 36, color: "var(--accent)" }}>#{fmt(data.rank)}</div>
+            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>your albums</div></div>
         </div>
       </div>
+
+      {dna && (
+        <div className="tv-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
+          <div className="r-card" style={{ padding: "16px 18px" }}>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Album Audio DNA</b></span>
+              <span className="meta">{bpm ? `~${bpm} BPM` : ""}</span></div>
+            <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
+              <div style={{ flex: "0 0 auto", width: 188, maxWidth: "100%" }}><AudioRadar axes={radar} hue={hue} /></div>
+              <div style={{ flex: 1, minWidth: 170, display: "grid", gap: 8 }}>
+                {[["Energy", dna[0]], ["Positivity", dna[1]], ["Danceability", dna[2]], ["Acousticness", dna[3]], ["Instrumental", dna[4]]].map(([label, v]) => (
+                  <div key={label} style={{ display: "grid", gridTemplateColumns: "94px minmax(0,1fr) 26px", gap: 10, alignItems: "center" }}>
+                    <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)" }}>{label}</span>
+                    <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: v + "%", background: `oklch(0.62 0.15 ${hue})` }} /></div>
+                    <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="r-card" style={{ padding: "16px 18px", display: "flex", flexDirection: "column", gap: 14 }}>
+            <div>
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl"><b>Where it sits</b></span></div>
+              <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
+                <MiniQuadrant valence={dna[1]} energy={dna[0]} hue={hue} />
+                <div style={{ fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.5 }}>
+                  {eP != null && <div>More <b style={{ color: "var(--ink)" }}>intense</b> than {Math.round(eP)}% of your plays.</div>}
+                  {vP != null && <div>More <b style={{ color: "var(--ink)" }}>upbeat</b> than {Math.round(vP)}% of them.</div>}
+                  <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 5 }}>album mood vs your library</div>
+                </div>
+              </div>
+            </div>
+            {sr.length > 0 && <div>
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Your history</b></span>
+                <span className="meta">{sFirst.y === sLast.y ? sFirst.y : `${sFirst.y}–${sLast.y}`}</span></div>
+              <Sparkline series={sr} hue={hue} />
+              <div style={{ fontSize: 12, color: "var(--ink-soft)", marginTop: 6 }}>
+                {sFirst.y === sLast.y ? `All ${fmt(data.plays)} plays in ${sFirst.y}.` : `First in ${sFirst.y}, peaked ${sPeak.y} (${fmt(sPeak.p)}).`}</div>
+            </div>}
+          </div>
+        </div>
+      )}
 
       <div className="r-card" style={{ padding: "16px 18px" }}>
         <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}><span className="lbl"><b>Tracks you've played</b></span>
           <span className="meta">{fmt(data.trackPlays)} plays across {data.tracks.length}</span></div>
         <div style={{ display: "grid", gap: 2 }}>
           {data.tracks.map((t, i) => (
-            <div key={t.title + i} className="r-track-row" onClick={() => go("track", R.slug(data.artist) + "~" + R.slug(t.title))} title={`${t.title} →`} style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px", cursor: "pointer", borderRadius: 4 }}>
-              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{String(i + 1).padStart(2, "0")}</span>
-              <div style={{ fontSize: 13, lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>{t.title}</div>
+            <div key={t.title + i} className="r-track-row" onClick={() => go("track", R.slug(data.artist) + "~" + R.slug(t.title))} title={`${t.title} →`} style={{ display: "grid", gridTemplateColumns: "24px 14px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px", cursor: "pointer", borderRadius: 4 }}>
+              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{t.no ? String(t.no).padStart(2, "0") : String(i + 1).padStart(2, "0")}</span>
+              <span title={t.e != null ? `energy ${t.e} · positivity ${t.v}` : ""} style={{ width: 9, height: 9, borderRadius: "50%", justifySelf: "center",
+                background: t.e != null ? `oklch(${0.5 + t.e / 100 * 0.28} 0.16 ${moodHue(t.v)})` : "var(--bg-3)" }} />
+              <div style={{ fontSize: 13, lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>
+                {t.title}{standout && t === standout ? <span title="your most-played from this album" style={{ color: "var(--accent)", marginLeft: 5 }}>★</span> : null}</div>
               <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: (t.plays / maxT * 100) + "%", background: `oklch(0.6 0.14 ${hue})` }} /></div>
               <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", textAlign: "right" }}>{fmt(t.plays)}</span>
             </div>
@@ -1136,16 +1255,9 @@ function AlbumView({ id, go }) {
 }
 
 // TrackView — one song's story: your play history joined with its Spotify audio DNA (energy, mood,
-// acousticness, tempo, danceability, instrumentalness) + stats (duration, popularity, explicit, track #).
-// Identity is "artistSlug~trackSlug" (mirrors AlbumView). Needs media-index (plays/album) + the lazy
-// track-audio.js (features), both loaded on demand — features cost nothing until you open a track.
-const TRACK_FEATURES = [
-  ["Energy", 4, "how intense & active"],
-  ["Positivity", 5, "musical valence"],
-  ["Danceability", 8, "how danceable"],
-  ["Acoustic", 6, "acousticness"],
-  ["Instrumental", 9, "lack of vocals"],
-];
+// acousticness, tempo, danceability, instrumentalness, key/mode, loudness, liveness, time signature) +
+// stats (duration, popularity, explicit, track #, ranks). Identity is "artistSlug~trackSlug" (mirrors
+// AlbumView). Needs media-index (plays/album) + the lazy track-audio.js (features), loaded on demand.
 function TrackView({ id, go }) {
   const R = window.ROTATION;
   const [ready, setReady] = React.useState(!!(window.ROTATION_MEDIA && window.ROTATION_TRACKAUDIO));
@@ -1165,14 +1277,26 @@ function TrackView({ id, go }) {
     const feat = A[id] || null;
     if (bestIdx < 0 && !feat) return null;
     const t = bestIdx >= 0 ? M.tracks[bestIdx] : null;
-    const artist = t ? M.artists[t[1]] : R.nameForId ? R.nameForId(aSlug) : aSlug;
+    const artist = t ? M.artists[t[1]] : aSlug;
     const albIdx = t ? t[3] : -1; const alb = albIdx >= 0 ? M.albums[albIdx] : null;
+    const plays = t ? t[2] : 0;
+    // ranks + siblings (from the media index)
+    let artistRank = 0, artistTracks = 0, globalRank = bestIdx >= 0 ? bestIdx + 1 : 0;
+    const siblings = [];
+    if (t) {
+      const aIx = t[1];
+      for (let i = 0; i < M.tracks.length; i++) { const o = M.tracks[i]; if (o[1] === aIx) { artistTracks++; if (o[2] > plays || (o[2] === plays && i < bestIdx)) artistRank++; } }
+      if (albIdx >= 0) for (let i = 0; i < M.tracks.length && siblings.length < 20; i++) { const o = M.tracks[i]; if (i !== bestIdx && o[3] === albIdx) siblings.push({ title: o[0], plays: o[2], no: o[5] || 0, id: R.slug(artist) + "~" + R.slug(o[0]) }); }
+      siblings.sort((x, y) => (x.no && y.no) ? x.no - y.no : y.plays - x.plays);
+    }
     return {
-      title: t ? t[0] : tSlug, artist, plays: t ? t[2] : 0,
+      title: t ? t[0] : tSlug, artist, plays,
       album: alb ? alb[0] : "", albumId: alb ? R.slug(M.artists[alb[1]]) + "~" + R.slug(alb[0]) : "",
       cover: alb && alb[6] ? alb[6] : "", trackNo: (t && t[5]) || (feat && feat[3]) || 0,
       dur: feat ? feat[0] : 0, pop: feat ? feat[1] : 0, explicit: feat ? !!feat[2] : false,
-      tempo: feat && feat.length >= 10 ? feat[7] : 0, feat: feat && feat.length >= 10 ? feat : null,
+      feat: feat && feat.length >= 16 ? feat : null,
+      series: t ? yearSeries(t[4], plays) : [], artistRank: artistRank + 1, artistTracks, globalRank,
+      siblings: siblings.slice(0, 8),
     };
   }, [ready, id]);
 
@@ -1184,8 +1308,15 @@ function TrackView({ id, go }) {
   const known = !!rec;
   const hue = rec ? rec.hue : hueOf(data.artist);
   const mmss = (s) => s ? Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0") : "";
-  const bpm = data.tempo ? Math.round(50 + data.tempo / 100 * 140) : 0;   // undo build-time 50..190 remap
+  const f = data.feat;
+  const bpm = f ? Math.round(50 + f[7] / 100 * 140) : 0;   // undo build-time 50..190 remap
   const totalMin = data.dur && data.plays ? Math.round(data.dur * data.plays / 60) : 0;
+  const radar = f ? [{ label: "Energy", value: f[4] }, { label: "Tempo", value: f[7] }, { label: "Dance", value: f[8] }, { label: "Positive", value: f[5] }, { label: "Acoustic", value: f[6] }, { label: "Instr.", value: f[9] }] : null;
+  const bars = f ? [["Energy", f[4]], ["Positivity", f[5]], ["Danceability", f[8]], ["Acousticness", f[6]], ["Liveness", f[11]], ["Instrumental", f[9]]] : null;
+  const eP = f ? tastePctl("energy", f[4]) : null, vP = f ? tastePctl("valence", f[5]) : null;
+  const sr = data.series, first = sr[0], last = sr[sr.length - 1], peak = sr.reduce((a, b) => b.p > (a ? a.p : 0) ? b : a, null);
+  const kName = f ? keyName(f[13], f[14]) : "";
+  const chips = f ? [bpm ? bpm + " BPM" : "", kName, f[10] ? (f[10] / 10).toFixed(1) + " dB" : "", f[15] ? f[15] + "/4 time" : "", f[11] >= 60 ? "live take" : ""].filter(Boolean) : [];
 
   return (
     <div className="r-view">
@@ -1203,36 +1334,83 @@ function TrackView({ id, go }) {
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(data.artist + " " + data.title)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
         </div>
-        <div style={{ display: "flex", gap: 22 }}>
-          <div><div className="r-stat-n" style={{ fontSize: 36 }}>{fmt(data.plays)}</div>
+        <div style={{ display: "flex", gap: 22, flexWrap: "wrap" }}>
+          <div><div className="r-stat-n" style={{ fontSize: 34 }}>{fmt(data.plays)}</div>
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
-          {totalMin > 0 && <div><div className="r-stat-n" style={{ fontSize: 36 }}>{totalMin >= 60 ? Math.round(totalMin / 60) + "h" : totalMin + "m"}</div>
+          {totalMin > 0 && <div><div className="r-stat-n" style={{ fontSize: 34 }}>{totalMin >= 60 ? Math.round(totalMin / 60) + "h" : totalMin + "m"}</div>
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>listened</div></div>}
-          {data.pop > 0 && <div><div className="r-stat-n" style={{ fontSize: 36, color: "var(--accent)" }}>{data.pop}</div>
+          {data.artistTracks > 1 && <div><div className="r-stat-n" style={{ fontSize: 34, color: "var(--accent)" }}>#{data.artistRank}</div>
+            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>of {data.artistTracks} by artist</div></div>}
+          {data.pop > 0 && <div><div className="r-stat-n" style={{ fontSize: 34 }}>{data.pop}</div>
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>popularity</div></div>}
         </div>
       </div>
 
-      {data.feat ? (
-        <div className="r-card" style={{ padding: "16px 18px" }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Audio DNA</b></span>
-            <span className="meta">{bpm ? `${bpm} BPM` : ""}</span></div>
-          <div style={{ display: "grid", gap: 11 }}>
-            {TRACK_FEATURES.map(([label, idx, hint]) => {
-              const v = data.feat[idx];
-              return (
-                <div key={label} style={{ display: "grid", gridTemplateColumns: "116px minmax(0,1fr) 34px", gap: 12, alignItems: "center" }}>
-                  <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }} title={hint}>{label}</span>
-                  <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: v + "%", background: `oklch(0.62 0.15 ${hue})` }} /></div>
-                  <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
+      {f ? (
+        <div className="tv-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
+          <div className="r-card" style={{ padding: "16px 18px" }}>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Audio DNA</b></span>
+              <span className="meta">Spotify features</span></div>
+            <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
+              <div style={{ flex: "0 0 auto", width: 188, maxWidth: "100%" }}><AudioRadar axes={radar} hue={hue} /></div>
+              <div style={{ flex: 1, minWidth: 180, display: "grid", gap: 8 }}>
+                {bars.map(([label, v]) => (
+                  <div key={label} style={{ display: "grid", gridTemplateColumns: "96px minmax(0,1fr) 26px", gap: 10, alignItems: "center" }}>
+                    <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)" }}>{label}</span>
+                    <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: v + "%", background: `oklch(0.62 0.15 ${hue})` }} /></div>
+                    <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {chips.length > 0 && <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
+              {chips.map(c => <span key={c} className="r-chip" style={{ cursor: "default" }}>{c}</span>)}</div>}
+          </div>
+
+          <div className="r-card" style={{ padding: "16px 18px", display: "flex", flexDirection: "column", gap: 14 }}>
+            <div>
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl"><b>Where it sits</b></span></div>
+              <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
+                <MiniQuadrant valence={f[5]} energy={f[4]} hue={hue} />
+                <div style={{ fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.5 }}>
+                  {eP != null && <div>More <b style={{ color: "var(--ink)" }}>intense</b> than {Math.round(eP)}% of your plays.</div>}
+                  {vP != null && <div>More <b style={{ color: "var(--ink)" }}>upbeat</b> than {Math.round(vP)}% of them.</div>}
+                  <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 5 }}>valence × energy vs your library</div>
                 </div>
-              );
-            })}
+              </div>
+            </div>
+            {sr.length > 0 && <div>
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Your history</b></span>
+                <span className="meta">{first.y === last.y ? first.y : `${first.y}–${last.y}`}</span></div>
+              <Sparkline series={sr} hue={hue} />
+              <div style={{ fontSize: 12, color: "var(--ink-soft)", marginTop: 6 }}>
+                {first.y === last.y ? `All ${fmt(data.plays)} plays in ${first.y}.` : `First in ${first.y}, peaked ${peak.y} (${fmt(peak.p)}).`}
+                {data.globalRank ? <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}> · #{fmt(data.globalRank)} track all-time</span> : null}
+              </div>
+            </div>}
           </div>
         </div>
       ) : (
-        <div className="r-card" style={{ padding: "16px 18px" }}>
+        <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
           <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>No Spotify audio features matched for this track.</div>
+          {data.series.length > 0 && <div style={{ marginTop: 10 }}><Sparkline series={data.series} hue={hue} /></div>}
+        </div>
+      )}
+
+      {data.siblings.length > 0 && (
+        <div className="r-card" style={{ padding: "16px 18px" }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl">More from <b>{data.album}</b></span>
+            <span className="meta">{data.siblings.length} more you've played</span></div>
+          <div style={{ display: "grid", gap: 2 }}>
+            {data.siblings.map((s, i) => (
+              <div key={s.id + i} className="r-track-row" onClick={() => go("track", s.id)} title={`${s.title} →`}
+                style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 46px", gap: 10, alignItems: "center", padding: "6px 4px", cursor: "pointer", borderRadius: 4 }}>
+                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{s.no ? String(s.no).padStart(2, "0") : "·"}</span>
+                <span style={{ fontSize: 13, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.title}</span>
+                <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", textAlign: "right" }}>{fmt(s.plays)}</span>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 

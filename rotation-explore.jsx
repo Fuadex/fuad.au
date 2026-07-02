@@ -530,6 +530,7 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-bar { height: 7px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
         .xp-bar > div { height: 100%; border-radius: 4px; transition: width .5s cubic-bezier(.3,.8,.3,1); }
         .r-track-row { transition: background .15s; } .r-track-row:hover { background: var(--bg-3); }
+        @media (max-width: 760px) { .tv-grid { grid-template-columns: 1fr !important; } }
         .xp-val { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); text-align: right; }
         .xp-fam-head { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 2px; border-radius: 5px; transition: .12s; }
         .xp-fam-head:hover { opacity: .85; }
