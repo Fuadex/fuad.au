@@ -255,7 +255,7 @@ function computeResults(R, yearKeys, subNames, raw) {
     { type: "time", label: "Times", items: timeMatches(R, q) },
   ];
 }
-function ExploreSearch({ R, yearKeys, subNames, onArtist, onSub, onYear, onCells }) {
+function ExploreSearch({ R, yearKeys, subNames, onArtist, onSub, onYear, onCells, go }) {
   const [q, setQ] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const boxRef = React.useRef(null);
@@ -263,7 +263,9 @@ function ExploreSearch({ R, yearKeys, subNames, onArtist, onSub, onYear, onCells
   const flat = groups.flatMap(g => g.items);
   const pick = (it) => {
     setQ(""); setOpen(false);
-    if (it.type === "artist" || it.type === "album" || it.type === "track") onArtist(it.id);
+    if (it.type === "track") go("track", R.slug(it.sub) + "~" + R.slug(it.label));
+    else if (it.type === "album") go("album", R.slug(it.sub) + "~" + R.slug(it.label));
+    else if (it.type === "artist") onArtist(it.id);
     else if (it.type === "sub") onSub(it.name);
     else if (it.type === "year") onYear(it.year);
     else if (it.type === "time") onCells(it.cells);
@@ -404,7 +406,7 @@ function ExploreView({ t, go, setPop, seed }) {
           <h1 className="r-title">Dig <em>through</em><span className="dot">.</span></h1>
         </div>
         <div className="xp-head-right">
-          <ExploreSearch R={R} yearKeys={yearKeys} subNames={subNames}
+          <ExploreSearch R={R} yearKeys={yearKeys} subNames={subNames} go={go}
             onArtist={(id) => go("artist", id)} onSub={setSub} onYear={setYear} onCells={(arr) => setCells(new Set(arr))} />
         </div>
       </div>
@@ -527,6 +529,7 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-row-sub { font-family: var(--mono); font-size: 9px; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .xp-bar { height: 7px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
         .xp-bar > div { height: 100%; border-radius: 4px; transition: width .5s cubic-bezier(.3,.8,.3,1); }
+        .r-track-row { transition: background .15s; } .r-track-row:hover { background: var(--bg-3); }
         .xp-val { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); text-align: right; }
         .xp-fam-head { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 2px; border-radius: 5px; transition: .12s; }
         .xp-fam-head:hover { opacity: .85; }
@@ -651,15 +654,16 @@ function FamiliesGrid({ order, weights, fam, sub, pickFam, pickSub, year, seen, 
 function RankRows({ items, go, kind }) {
   const R = window.ROTATION;
   const max = Math.max(1, ...items.map(i => i.value));
-  const isAlbum = kind === "albums";
+  const isAlbum = kind === "albums", isTrack = kind === "tracks";
   const onClick = (it) => {
     if (isAlbum) { go("album", R.slug(it.sub) + "~" + R.slug(it.label)); return; }
+    if (isTrack) { go("track", R.slug(it.sub) + "~" + R.slug(it.label)); return; }
     if (it.kept !== false) go("artist", it.aid || it.id);
   };
   return (
     <div className="xp-rows">
       {items.map((it, i) => (
-        <div key={(it.aid || it.id) + "-" + i} className="xp-row" data-link={isAlbum || it.kept !== false} onClick={() => onClick(it)}>
+        <div key={(it.aid || it.id) + "-" + i} className="xp-row" data-link={isAlbum || isTrack || it.kept !== false} onClick={() => onClick(it)}>
           <span className="xp-rank">{String(i + 1).padStart(2, "0")}</span>
           <GenCover hue={it.hue} name={isAlbum ? it.label : (it.aid ? it.sub : it.label)} image={it.cover} thumb={it.cover} size={34} radius={3} />
           <div className="xp-row-main">

@@ -1170,12 +1170,8 @@ function SearchOverlay({ open, onClose, go }) {
     if (id) { onClose(); go("artist", id); }
     else setSel(sel && sel[0] === row[0] ? null : row);
   };
-  // song row → open the artist's page if we have one, else their last.fm page
-  const pickMedia = (artist) => {
-    const id = resolveId(artist);
-    if (id) { onClose(); go("artist", id); }
-    else window.open(`https://www.last.fm/music/${encodeURIComponent(artist)}`, "_blank", "noopener");
-  };
+  // song row → the track's own page (audio DNA + your play history), works for any song
+  const pickMedia = (artist, title) => { onClose(); go("track", R.slug(artist) + "~" + R.slug(title)); };
   // album row → the album's own page (works for any album)
   const pickAlbum = (artist, title) => { onClose(); go("album", R.slug(artist) + "~" + R.slug(title)); };
 
@@ -1222,12 +1218,12 @@ function SearchOverlay({ open, onClose, go }) {
             })}
 
             {media.tracks.length > 0 && <div className="se-group">Songs</div>}
-            {media.tracks.map(([title, ai, plays], i) => { const name = mArt[ai] || ""; const known = !!resolveId(name); return (
-              <div key={"s-" + i} className="se-row" onClick={() => pickMedia(name)}>
+            {media.tracks.map(([title, ai, plays], i) => { const name = mArt[ai] || ""; return (
+              <div key={"s-" + i} className="se-row" onClick={() => pickMedia(name, title)}>
                 <GenCover hue={hueOfName(name)} name={name} size={36} radius={3} />
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div className="se-name">{title}</div>
-                  <div className="se-sub">{name}{known ? "" : " · last.fm ↗"}</div>
+                  <div className="se-sub">{name}</div>
                 </div>
                 <span className="se-plays">{fmt(plays)}<small>plays</small></span>
               </div>); })}
