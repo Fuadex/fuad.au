@@ -20,15 +20,19 @@ const P = (f) => `read_parquet('${path.join(TMP, f + ".parquet").replace(/\\/g, 
 const OURS = `read_json_auto('${path.join(TMP, "ours.json").replace(/\\/g, "/")}')`;
 const has = (f) => fs.existsSync(path.join(TMP, f + ".parquet"));
 
-const slug = (s) => (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-// symmetric normaliser: drops bracketed/qualifier noise, disc/vol numbers, a leading "YYYY - " and a
-// leading "the ", so "2007 - Elect The Dead" ≡ "Elect the Dead" and "The Burning Red" ≡ "Burning Red".
+// slug MUST match build-data.js exactly (incl. the hash fallback) or non-Latin keys (ミドリ → a-xxxx)
+// won't line up with the build's cover lookup.
+const _slugHash = (s) => { let h = 5381; for (let i = 0; i < s.length; i++) h = (((h << 5) + h) ^ s.charCodeAt(i)) >>> 0; return h.toString(36); };
+const slug = (s) => { const t = (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""); return t || ("a-" + _slugHash(s || "x").slice(0, 7)); };
+// symmetric normaliser for album-title matching: drops bracketed/qualifier noise, disc/vol numbers,
+// a leading "YYYY - " and "the ". Keeps letters/numbers of ANY script (\p{L}\p{N}) so Japanese/etc.
+// titles stay distinguishable (stripping to a-z0-9 collapsed them all to "").
 const norm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
   .replace(/\(.*?\)|\[.*?\]/g, "")
   .replace(/\b(deluxe|remaster(ed)?|expanded|edition|anniversary|mono|stereo|bonus|explicit|version|remix|reissue)\b/g, "")
   .replace(/\b(disc|cd|disk|pt|part|vol|volume)\s*\d+\b/g, "")
   .replace(/^\s*\d{4}\s*[-–—]\s*/, "").replace(/^\s*the\s+/, "")
-  .replace(/[^a-z0-9]+/g, "");
+  .replace(/[^\p{L}\p{N}]+/gu, "");
 
 const SPOT = JSON.parse(fs.readFileSync(path.join(ROOT, "spotify-cache.json"), "utf8"));
 const ours = Object.entries(SPOT).filter(([, v]) => v && v.id).map(([name, v]) => ({ name, sid: v.id }));
