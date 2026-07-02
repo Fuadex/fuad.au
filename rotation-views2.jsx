@@ -1065,8 +1065,17 @@ function tastePctl(axis, value) {
   const v = Math.max(0, Math.min(100, Math.round(value)));
   return D.cdf[ai][v] / 10;   // permille → percent
 }
-// radar / spider chart for N audio axes (each {label, value 0..100}).
-function AudioRadar({ axes, hue, size = 188 }) {
+// play-weighted mean of an audio axis across your whole library (0..100), derived from R.AUDIO_DIST's CDF.
+function libMean(axis) {
+  const D = window.ROTATION && window.ROTATION.AUDIO_DIST; if (!D) return null;
+  const ai = D.axes.indexOf(axis); if (ai < 0) return null;
+  const c = D.cdf[ai]; let m = 0, prev = 0;
+  for (let v = 0; v <= 100; v++) { m += v * (c[v] - prev) / 1000; prev = c[v]; }
+  return m;
+}
+// radar / spider chart for N audio axes (each {label, value 0..100}). `avg` (same order/length) draws a
+// dashed reference shape — your library average — so the solid shape's deviation reads at a glance.
+function AudioRadar({ axes, hue, size = 188, avg = null }) {
   const n = axes.length, cx = size / 2, cy = size / 2, R = size / 2 - 30;
   const pt = (i, r) => { const a = -Math.PI / 2 + i * 2 * Math.PI / n; return [cx + Math.cos(a) * r, cy + Math.sin(a) * r]; };
   const poly = (r, sc) => axes.map((_, i) => pt(i, typeof r === "function" ? r(i) : r * sc).join(",")).join(" ");
@@ -1075,6 +1084,7 @@ function AudioRadar({ axes, hue, size = 188 }) {
     <svg viewBox={`0 0 ${size} ${size}`} style={{ width: "100%", maxWidth: size, height: "auto", display: "block" }}>
       {[0.25, 0.5, 0.75, 1].map(f => <polygon key={f} points={poly(R * f, 1)} fill="none" stroke="var(--rule)" strokeWidth="1" />)}
       {axes.map((_, i) => { const [x, y] = pt(i, R); return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="var(--rule)" strokeWidth="1" />; })}
+      {avg && <polygon points={poly(i => R * Math.max(0, Math.min(100, avg[i] || 0)) / 100, 1)} fill="none" stroke="var(--ink-faint)" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.85" />}
       <polygon points={poly(i => R * Math.max(0, Math.min(100, axes[i].value)) / 100, 1)} fill={col} fillOpacity="0.22" stroke={col} strokeWidth="1.7" />
       {axes.map((ax, i) => { const [x, y] = pt(i, R + 15); return (
         <text key={i} x={x} y={y} textAnchor={Math.abs(x - cx) < 6 ? "middle" : x > cx ? "start" : "end"}
@@ -1083,6 +1093,8 @@ function AudioRadar({ axes, hue, size = 188 }) {
     </svg>
   );
 }
+// library average in the radar's axis order: Energy, Tempo, Dance, Positive(valence), Acoustic, Instr.
+function radarLibAvg() { return ["energy", "tempo", "dance", "valence", "acoustic", "instr"].map(a => libMean(a)); }
 // tiny per-year play sparkline (bars).
 function Sparkline({ series, hue, height = 34 }) {
   if (!series.length) return null;
@@ -1197,7 +1209,10 @@ function AlbumView({ id, go }) {
             <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Album Audio DNA</b></span>
               <span className="meta">{bpm ? `~${bpm} BPM` : ""}</span></div>
             <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-              <div style={{ flex: "0 0 auto", width: 188, maxWidth: "100%" }}><AudioRadar axes={radar} hue={hue} /></div>
+              <div style={{ flex: "0 0 auto", width: 188, maxWidth: "100%" }}>
+                <AudioRadar axes={radar} hue={hue} avg={radarLibAvg()} />
+                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = this album · dashed = your average</div>
+              </div>
               <div style={{ flex: 1, minWidth: 170, display: "grid", gap: 8 }}>
                 {[["Energy", dna[0]], ["Positivity", dna[1]], ["Danceability", dna[2]], ["Acousticness", dna[3]], ["Instrumental", dna[4]]].map(([label, v]) => (
                   <div key={label} style={{ display: "grid", gridTemplateColumns: "94px minmax(0,1fr) 26px", gap: 10, alignItems: "center" }}>
@@ -1365,7 +1380,10 @@ function TrackView({ id, go }) {
             <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Audio DNA</b></span>
               <span className="meta">Spotify features</span></div>
             <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-              <div style={{ flex: "0 0 auto", width: 188, maxWidth: "100%" }}><AudioRadar axes={radar} hue={hue} /></div>
+              <div style={{ flex: "0 0 auto", width: 188, maxWidth: "100%" }}>
+                <AudioRadar axes={radar} hue={hue} avg={radarLibAvg()} />
+                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = this song · dashed = your average</div>
+              </div>
               <div style={{ flex: 1, minWidth: 180, display: "grid", gap: 8 }}>
                 {bars.map(([label, v]) => (
                   <div key={label} style={{ display: "grid", gridTemplateColumns: "96px minmax(0,1fr) 26px", gap: 10, alignItems: "center" }}>
