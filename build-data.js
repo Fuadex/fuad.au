@@ -323,9 +323,8 @@ const ALBUM_REMAP = {
   ["Linkin Park\x00Mój Album"]: {
     "Numb": "Meteora", "From the Inside": "Meteora", "Somewhere I Belong": "Meteora",
     "Faint": "Meteora", "Breaking the Habbit": "Meteora",
-    "In the End": "Hybrid Theory",
+    "In the End": "Hybrid Theory", "Points of Authority (remix)": "Hybrid Theory",
     "Points of Authority (Cristal Remix)": "Reanimation", "By My Self (Remix)": "Reanimation",
-    "Points of Authority (remix)": "Reanimation",
   },
 };
 const albumRemap = (artist, album, track) => { const m = ALBUM_REMAP[artist + "\x00" + album]; return (m && m[track]) || album; };
