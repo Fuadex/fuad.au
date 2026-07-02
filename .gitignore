@@ -1,3 +1,5 @@
 # large local datasets — never commit
 *.parquet
+*.zip
+archive.zip
 spotify-sync.log
