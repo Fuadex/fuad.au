@@ -51,7 +51,29 @@ function fixUnknown(artist, album, track) {
     return ["HIM", a === "Him" ? "" : a.replace(/^\s*\d{4}\s*-\s*/, ""), cleanTrack(track)];
   return [artist, album, track];
 }
-const rowOf = (t) => { let artist = (t.artist && (t.artist["#text"] || t.artist.name)) || "", album = (t.album && t.album["#text"]) || "", track = t.name || ""; const uts = t.date ? +t.date.uts : 0; [artist, album, track] = fixUnknown(artist, album, track); return { uts, artist, album, track }; };
+// scatter a bogus placeholder album onto the real releases its tracks belong to (per-track)
+const ALBUM_REMAP = {
+  ["Linkin Park\x00Mój Album"]: {
+    "Numb": "Meteora", "From the Inside": "Meteora", "Somewhere I Belong": "Meteora",
+    "Faint": "Meteora", "Breaking the Habbit": "Meteora",
+    "In the End": "Hybrid Theory", "Points of Authority (remix)": "Hybrid Theory",
+    "Points of Authority (Cristal Remix)": "Reanimation", "By My Self (Remix)": "Reanimation",
+  },
+};
+// strip junk tags so fragmented variants merge: [FLAC]/[Deluxe]/[Left]…, "Disc 1"/"(Disc 1 of 2)"/"CD1", leading "YYYY - "
+const cleanAlbum = (name) => {
+  if (!name) return name;
+  const s = name.replace(/\s*\[[^\]]*\]/g, "").replace(/\s*\(?\s*(?:disc|cd|disk)\s*\d+(?:\s*of\s*\d+)?\s*\)?/ig, "")
+    .replace(/^\s*\d{4}\s*[-–—]\s*/, "").replace(/\s{2,}/g, " ").trim().replace(/[\s:–—-]+$/, "").trim();
+  return s || name;
+};
+// all data-hygiene overrides in one place; applied on every pulled row AND to the existing CSV (--fixcsv)
+function fixRow(artist, album, track) {
+  [artist, album, track] = fixUnknown(artist, album, track);
+  const m = ALBUM_REMAP[artist + "\x00" + album]; if (m && m[track]) album = m[track];
+  return [artist, cleanAlbum(album), track];
+}
+const rowOf = (t) => { const artist = (t.artist && (t.artist["#text"] || t.artist.name)) || "", album = (t.album && t.album["#text"]) || "", track = t.name || "", uts = t.date ? +t.date.uts : 0; const [a, al, tr] = fixRow(artist, album, track); return { uts, artist: a, album: al, track: tr }; };
 const lineOf = (s) => [s.artist, s.album, s.track, fmtUTC(s.uts)].map(csvEsc).join(",");
 
 // page through user.getrecenttracks; from=0 → entire history. Returns {rows, total}.
@@ -81,7 +103,7 @@ if (process.argv.includes("--fixcsv")) {
   const lines = fs.readFileSync(CSV, "utf8").split(/\r?\n/).filter(l => l.trim());
   let changed = 0;
   const out = lines.map(l => {
-    const p = parseLine(l), [a, al, tr] = fixUnknown(p[0], p[1], p[2]);
+    const p = parseLine(l), [a, al, tr] = fixRow(p[0], p[1], p[2]);
     if (a !== p[0] || al !== p[1] || tr !== p[2]) { changed++; return [a, al, tr, p[3]].map(csvEsc).join(","); }
     return l;
   });
