@@ -899,14 +899,18 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
                 <span className="lbl"><b>Top tracks</b></span>
                 <span className="meta">{tracks.length} listed</span></div>
-              {(tracks.length ? tracks : [{ title: "—", plays: 0 }]).map((tr, i) => (
-                <div key={tr.title + i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "6px 0",
+              {(tracks.length ? tracks : [{ title: "—", plays: 0 }]).map((tr, i) => {
+                const clickable = !!tr.plays;
+                return (
+                <div key={tr.title + i} className={clickable ? "r-track-row" : undefined} onClick={clickable ? () => go("track", R.slug(a.name) + "~" + R.slug(tr.title)) : undefined} title={clickable ? `${tr.title} →` : undefined}
+                  style={{ display: "flex", alignItems: "center", gap: 10, padding: "6px 0",
+                  cursor: clickable ? "pointer" : "default",
                   borderBottom: i < tracks.length - 1 ? "1px solid var(--rule)" : "none" }}>
                   <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 18 }}>{String(i + 1).padStart(2, "0")}</span>
                   <span style={{ fontSize: 13, flex: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{tr.title}</span>
                   <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{tr.plays ? fmt(tr.plays) : "—"}</span>
                 </div>
-              ))}
+              );})}
             </div>
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
