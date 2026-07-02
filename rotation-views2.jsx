@@ -1117,7 +1117,7 @@ function AlbumView({ id, go }) {
           <span className="meta">{fmt(data.trackPlays)} plays across {data.tracks.length}</span></div>
         <div style={{ display: "grid", gap: 2 }}>
           {data.tracks.map((t, i) => (
-            <div key={t.title + i} style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px" }}>
+            <div key={t.title + i} className="r-track-row" onClick={() => go("track", R.slug(data.artist) + "~" + R.slug(t.title))} title={`${t.title} →`} style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px", cursor: "pointer", borderRadius: 4 }}>
               <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{String(i + 1).padStart(2, "0")}</span>
               <div style={{ fontSize: 13, lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>{t.title}</div>
               <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: (t.plays / maxT * 100) + "%", background: `oklch(0.6 0.14 ${hue})` }} /></div>
@@ -1131,4 +1131,110 @@ function AlbumView({ id, go }) {
   );
 }
 
-Object.assign(window, { SoundMapView, ErasView, ArtistView, AlbumView, LiveView, ConcertRow });
+// TrackView — one song's story: your play history joined with its Spotify audio DNA (energy, mood,
+// acousticness, tempo, danceability, instrumentalness) + stats (duration, popularity, explicit, track #).
+// Identity is "artistSlug~trackSlug" (mirrors AlbumView). Needs media-index (plays/album) + the lazy
+// track-audio.js (features), both loaded on demand — features cost nothing until you open a track.
+const TRACK_FEATURES = [
+  ["Energy", 4, "how intense & active"],
+  ["Positivity", 5, "musical valence"],
+  ["Danceability", 8, "how danceable"],
+  ["Acoustic", 6, "acousticness"],
+  ["Instrumental", 9, "lack of vocals"],
+];
+function TrackView({ id, go }) {
+  const R = window.ROTATION;
+  const [ready, setReady] = React.useState(!!(window.ROTATION_MEDIA && window.ROTATION_TRACKAUDIO));
+  React.useEffect(() => {
+    let need = 0; const done = () => { if (--need <= 0) setReady(true); };
+    const load = (src, glob) => { if (window[glob]) return; need++; const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
+    load("media-index.js", "ROTATION_MEDIA"); load("track-audio.js", "ROTATION_TRACKAUDIO");
+    if (need === 0) setReady(true);
+  }, []);
+  const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
+
+  const data = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA, A = window.ROTATION_TRACKAUDIO; if (!M || !A || !id) return null;
+    const sep = id.indexOf("~"); const aSlug = id.slice(0, sep), tSlug = id.slice(sep + 1);
+    let bestIdx = -1, bestPlays = -1;
+    for (let i = 0; i < M.tracks.length; i++) { const t = M.tracks[i]; if (t[2] > bestPlays && R.slug(M.artists[t[1]]) === aSlug && R.slug(t[0]) === tSlug) { bestIdx = i; bestPlays = t[2]; } }
+    const feat = A[id] || null;
+    if (bestIdx < 0 && !feat) return null;
+    const t = bestIdx >= 0 ? M.tracks[bestIdx] : null;
+    const artist = t ? M.artists[t[1]] : R.nameForId ? R.nameForId(aSlug) : aSlug;
+    const albIdx = t ? t[3] : -1; const alb = albIdx >= 0 ? M.albums[albIdx] : null;
+    return {
+      title: t ? t[0] : tSlug, artist, plays: t ? t[2] : 0,
+      album: alb ? alb[0] : "", albumId: alb ? R.slug(M.artists[alb[1]]) + "~" + R.slug(alb[0]) : "",
+      cover: alb && alb[6] ? alb[6] : "", trackNo: (t && t[5]) || (feat && feat[3]) || 0,
+      dur: feat ? feat[0] : 0, pop: feat ? feat[1] : 0, explicit: feat ? !!feat[2] : false,
+      tempo: feat && feat.length >= 10 ? feat[7] : 0, feat: feat && feat.length >= 10 ? feat : null,
+    };
+  }, [ready, id]);
+
+  if (!ready) return <div className="r-view"><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 40 }}>loading track…</div></div>;
+  if (!data) return <div className="r-view"><button className="r-back" onClick={() => go("explore")}>← explore</button><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 24 }}>Track not found.</div></div>;
+
+  const artistId = R.idForName(data.artist) || R.slug(data.artist);
+  const rec = R.byId[artistId] || (R.expById && R.expById[artistId]);
+  const known = !!rec;
+  const hue = rec ? rec.hue : hueOf(data.artist);
+  const mmss = (s) => s ? Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0") : "";
+  const bpm = data.tempo ? Math.round(50 + data.tempo / 100 * 140) : 0;   // undo build-time 50..190 remap
+  const totalMin = data.dur && data.plays ? Math.round(data.dur * data.plays / 60) : 0;
+
+  return (
+    <div className="r-view">
+      <button className="r-back" onClick={() => go(data.albumId ? "album" : "explore", data.albumId || undefined)}>← {data.album || "explore"}</button>
+      <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 24 }}>
+        <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={132} radius={6} />
+        <div style={{ flex: 1, minWidth: 240 }}>
+          <div className="r-kicker">Song{data.trackNo ? ` · track ${data.trackNo}` : ""}{data.dur ? ` · ${mmss(data.dur)}` : ""}{data.explicit ? " · explicit" : ""}</div>
+          <h1 className="r-title" style={{ fontSize: "clamp(28px,4.2vw,50px)" }}>{data.title}<span className="dot">.</span></h1>
+          <div style={{ color: "var(--ink-soft)", fontSize: 15, marginTop: 6 }}>
+            by {known ? <b onClick={() => go("artist", artistId)} style={{ cursor: "pointer", color: "var(--ink)" }}>{data.artist}</b> : data.artist}
+            {data.album && <> · <span onClick={() => go("album", data.albumId)} style={{ cursor: "pointer", color: "var(--ink-soft)" }}>{data.album}</span></>}</div>
+          <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap" }}>
+            <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(data.artist)}/_/${encodeURIComponent(data.title)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
+            <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(data.artist + " " + data.title)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: 22 }}>
+          <div><div className="r-stat-n" style={{ fontSize: 36 }}>{fmt(data.plays)}</div>
+            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
+          {totalMin > 0 && <div><div className="r-stat-n" style={{ fontSize: 36 }}>{totalMin >= 60 ? Math.round(totalMin / 60) + "h" : totalMin + "m"}</div>
+            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>listened</div></div>}
+          {data.pop > 0 && <div><div className="r-stat-n" style={{ fontSize: 36, color: "var(--accent)" }}>{data.pop}</div>
+            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>popularity</div></div>}
+        </div>
+      </div>
+
+      {data.feat ? (
+        <div className="r-card" style={{ padding: "16px 18px" }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Audio DNA</b></span>
+            <span className="meta">{bpm ? `${bpm} BPM` : ""}</span></div>
+          <div style={{ display: "grid", gap: 11 }}>
+            {TRACK_FEATURES.map(([label, idx, hint]) => {
+              const v = data.feat[idx];
+              return (
+                <div key={label} style={{ display: "grid", gridTemplateColumns: "116px minmax(0,1fr) 34px", gap: 12, alignItems: "center" }}>
+                  <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }} title={hint}>{label}</span>
+                  <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: v + "%", background: `oklch(0.62 0.15 ${hue})` }} /></div>
+                  <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ) : (
+        <div className="r-card" style={{ padding: "16px 18px" }}>
+          <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>No Spotify audio features matched for this track.</div>
+        </div>
+      )}
+
+      {known && <div style={{ marginTop: 14 }}><button className="r-back" style={{ margin: 0 }} onClick={() => go("artist", artistId)}>more from {data.artist} →</button></div>}
+    </div>
+  );
+}
+
+Object.assign(window, { SoundMapView, ErasView, ArtistView, AlbumView, TrackView, LiveView, ConcertRow });
