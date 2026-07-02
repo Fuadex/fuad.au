@@ -316,6 +316,20 @@ const CANON = new Map();
 }
 const canon = (name) => CANON.get(name) || name;
 
+// Album cleanup — scatter a bogus placeholder "album" (a bad local-file/import tag scrobbled with
+// lost 1970 timestamps) back onto the real releases its tracks belong to. Keyed by artist\x00album,
+// then per-track → real album; only rewrites within the named junk block, so it's safe/idempotent.
+const ALBUM_REMAP = {
+  ["Linkin Park\x00Mój Album"]: {
+    "Numb": "Meteora", "From the Inside": "Meteora", "Somewhere I Belong": "Meteora",
+    "Faint": "Meteora", "Breaking the Habbit": "Meteora",
+    "In the End": "Hybrid Theory",
+    "Points of Authority (Cristal Remix)": "Reanimation", "By My Self (Remix)": "Reanimation",
+    "Points of Authority (remix)": "Reanimation",
+  },
+};
+const albumRemap = (artist, album, track) => { const m = ALBUM_REMAP[artist + "\x00" + album]; return (m && m[track]) || album; };
+
 const artistPlays = new Map();           // name → count
 const albumPlays = new Map();            // artist\x00album → count
 const trackPlays = new Map();            // artist\x00track → count
@@ -333,9 +347,10 @@ const scrobbles = [];                    // [artist, album, track, ms] newest-fi
 const undatedArtists = [];
 
 for (const line of lines) {
-  const [rawArtist, album, track, ts] = parseLine(line);
+  const [rawArtist, rawAlbum, track, ts] = parseLine(line);
   if (!rawArtist) continue;
   const artist = canon(rawArtist);   // merge scrobble-name variants
+  const album = albumRemap(artist, rawAlbum, track);   // scatter bogus placeholder albums to real ones
   artistPlays.set(artist, (artistPlays.get(artist) || 0) + 1);
   if (album) albumPlays.set(artist + "\x00" + album, (albumPlays.get(artist + "\x00" + album) || 0) + 1);
   if (track) trackPlays.set(artist + "\x00" + track, (trackPlays.get(artist + "\x00" + track) || 0) + 1);
