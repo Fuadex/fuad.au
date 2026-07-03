@@ -137,7 +137,7 @@ function RotationApp() {
 
       <Boundary resetKey={v + "/" + (route.id || "")}>
         {v === "overview" && <OverviewView t={t} go={go} />}
-        {v === "stories" && <StoriesView t={t} go={go} />}
+        {v === "stories" && <StoriesView t={t} go={go} seed={route.id} />}
         {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} seed={route.id} />}
         {v === "calendar" && <CalendarView go={go} />}
         {v === "map" && <MapView go={go} />}

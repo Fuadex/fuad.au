@@ -11,9 +11,41 @@ const hueOfName = (name) => (window.ROTATION.byId[window.ROTATION.slug(name)] ||
   : hashInt(name, 0) % 360;
 
 // ════════════════════════ STORIES ════════════════════════
-function StoriesView({ t, go }) {
+function StoriesView({ t, go, seed }) {
   const R = window.ROTATION;
   const I = R.INSIGHTS;
+  // ── TOC / chapters / deep links ──
+  // Sections self-register: after render we read each card's .st-label from the DOM (conditional
+  // cards are handled for free), assign stable ids, build the sticky TOC, and scrollspy it.
+  const feedRef = React.useRef(null);
+  const [toc, setToc] = React.useState([]);
+  const [active, setActive] = React.useState("");
+  const _slugify = (s) => (s || "").toLowerCase().split("·")[0].trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  React.useEffect(() => {
+    const feed = feedRef.current; if (!feed) return;
+    const items = [];
+    for (const sec of feed.querySelectorAll("section")) {
+      const lbl = sec.querySelector(".st-label"); if (!lbl) continue;
+      const label = lbl.textContent.split("·")[0].trim();
+      const id = "st-" + _slugify(label);
+      sec.id = id;
+      items.push({ id, label });
+    }
+    setToc(items);
+    if (seed) {
+      const el = document.getElementById("st-" + _slugify(decodeURIComponent(seed)));
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+    }
+    const obs = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting) setActive(e.target.id); },
+      { rootMargin: "-12% 0px -72% 0px" });
+    for (const it of items) { const el = document.getElementById(it.id); if (el) obs.observe(el); }
+    return () => obs.disconnect();
+  }, [seed]);
+  const jump = (id) => {
+    const el = document.getElementById(id); if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", "#stories/" + id.replace(/^st-/, ""));
+  };
   // Alias-aware: "Midori" resolves through R.idForName → ミドリ's id when applicable.
   // Kept AND explore artists are clickable — non-kept ids get a MiniArtistView, so fully
   // enriched non-top-206 artists (Yoko Kanno) are reachable from every story.
@@ -54,7 +86,15 @@ function StoriesView({ t, go }) {
           and the songs that own particular hours of the night.</p>
       </div>
 
-      <div className="st-feed">
+      {toc.length > 3 && (
+        <nav className="st-toc" aria-label="stories">
+          {toc.map(it => (
+            <button key={it.id} data-on={active === it.id} onClick={() => jump(it.id)}>{it.label}</button>
+          ))}
+        </nav>
+      )}
+
+      <div className="st-feed" ref={feedRef}>
 
         {/* on this day */}
         {otd && (
@@ -67,6 +107,8 @@ function StoriesView({ t, go }) {
               more than any other artist.</div>
           </section>
         )}
+
+        <div className="st-chapter"><span>I</span> Depth &amp; taste</div>
 
         {/* underground index */}
         {I.UNDERGROUND && I.UNDERGROUND.deepCuts && I.UNDERGROUND.deepCuts.length > 0 && (() => {
@@ -231,6 +273,8 @@ function StoriesView({ t, go }) {
           );
         })()}
 
+        <div className="st-chapter"><span>II</span> Lives &amp; years</div>
+
         {/* lifespan — bands that ended while you were listening, graves you dug up, the elders */}
         {I.LIFESPAN && I.LIFESPAN.whileListening.length > 0 && (() => {
           const L = I.LIFESPAN;
@@ -347,6 +391,8 @@ function StoriesView({ t, go }) {
             )}
           </section>
         )}
+
+        <div className="st-chapter"><span>III</span> Scenes &amp; places</div>
 
         {/* top scenes — Discogs styles you've gone deepest on */}
         {I.STYLE_ATLAS && I.STYLE_ATLAS.scenes && I.STYLE_ATLAS.scenes.length >= 6 && (
@@ -687,6 +733,8 @@ function StoriesView({ t, go }) {
             </section>
           );
         })()}
+
+        <div className="st-chapter"><span>IV</span> Rhythms &amp; records</div>
 
         {/* streak */}
         <section className="st-card st-hero">
@@ -1154,6 +1202,36 @@ function StoriesView({ t, go }) {
           .st-grid { grid-template-columns: 1fr 1fr; }
           .st-peak { grid-template-columns: 42px 44px 1fr; }
           .st-peak-d { display: none; }
+        }
+
+        /* ── TOC + chapters (Stories overhaul v1) ── */
+        .st-toc { position: sticky; top: 0; z-index: 30; display: flex; gap: 6px; overflow-x: auto;
+          padding: 10px 2px; margin: -6px 0 16px; background: rgba(11,10,15,.86);
+          backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+          scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .st-toc::-webkit-scrollbar { display: none; }
+        .st-toc button { flex: none; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--rule);
+          background: transparent; color: var(--ink-faint); font-family: var(--mono); font-size: 9px;
+          letter-spacing: .1em; text-transform: uppercase; cursor: pointer; white-space: nowrap;
+          transition: color .15s, border-color .15s; }
+        .st-toc button:hover { color: var(--ink); border-color: var(--rule-2); }
+        .st-toc button[data-on="true"] { color: var(--accent); border-color: var(--accent-dim); }
+        .st-chapter { display: flex; align-items: baseline; gap: 12px; margin: 26px 2px 2px;
+          font-family: var(--serif); font-style: italic; font-size: 24px; color: var(--ink); }
+        .st-chapter span { font-family: var(--mono); font-style: normal; font-size: 10px;
+          letter-spacing: .2em; color: var(--accent); }
+        .st-chapter::after { content: ""; flex: 1; height: 1px; background: var(--rule); align-self: center; }
+
+        /* ── mobile pass ── */
+        @media (max-width: 640px) {
+          .st-ug-cuts { grid-template-columns: 1fr 1fr; gap: 6px; }
+          .st-ug-cut { padding: 8px; }
+          .st-big { font-size: 19px; line-height: 1.45; }
+          .st-chapter { font-size: 20px; margin-top: 18px; }
+          .st-row-right { font-size: 12px; }
+        }
+        @media (max-width: 420px) {
+          .st-ug-cuts { grid-template-columns: 1fr; }
         }
       `}</style>
     </div>
