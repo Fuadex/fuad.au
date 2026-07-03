@@ -27,6 +27,11 @@ jobs:
         with:
           node-version: "20"
 
+      # generated files (search-index.js — the enrichers' artist list) are not in git;
+      # rebuild them from the committed CSV first
+      - name: Build dataset (generates search-index.js)
+        run: node build-data.js
+
       - name: last.fm tags (new artists only)
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
