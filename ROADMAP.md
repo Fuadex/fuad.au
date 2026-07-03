@@ -80,7 +80,7 @@
 | Source | Status | Notes |
 |---|---|---|
 | last.fm API | ✅ core | scrobbles, tags, bios, similar, global stats. **Unused freebies: `user.getLovedTracks` (a "loved" signal!), `track.getTopTags`** |
-| MusicBrainz | ✅ integrated | origins, aliases, relations, release-groups. **Unstored freebies in responses we already fetch: `gender` (Person artists), `life-span.ended/end` (disbanded!), release-group secondary types (live/comp/remix), release-group IDs (→ CAA covers)** |
+| MusicBrainz | ✅ integrated | origins, aliases, relations, release-groups, gender + life-span (stored since 06-30, shown via `ArtistMeta`). **Still-unstored freebies: release-group secondary types (live/comp/remix), release-group IDs (→ CAA covers)** |
 | Cover Art Archive | ✅ verified 07-01 | `coverartarchive.org/release-group/{id}/front` — free, keyed by the release-group ids we currently discard. THE album-art unlock |
 | Discogs | ✅ integrated | styles, members, profiles, images, **official URLs (2,937 artists, stored but unused)** |
 | Spotify Web API | ⚠ limited | post-2026: id/photos/genres only for catalogue; **user-scoped endpoints still alive: /me/tracks (liked), /me/top, recently-played, playlists** — dev-mode app on own account is fine |
@@ -128,21 +128,26 @@ correlation layer that feeds on all of it.
 6. Explore/Map filter state → URL hash.
 7. OG/social meta + favicon.
 
-### M1 · Use what we already have (zero new API calls) — ~1–2 sessions
-1. **Real album covers**: store release-group ids in `enrich-mb.js`, batch-fetch CAA covers →
-   `album-art` cache → media-index `[6]`. Transforms Album pages + Explore instantly.
-2. **Official URLs** on artist pages (Bandcamp/site/Wikipedia from discogs-artist.json).
-3. **Band status**: store `life-span`/`gender` from responses enrich-origins already fetches →
-   "disbanded 2011" badges, solo-artist gender glyphs, sets up M3's centrepiece.
-4. **Loved tracks** (`user.getLovedTracks`) → ★ layer on tracklists/TrackView + "loved but
-   never played lately" insight.
-5. Discogs bios as fallback where last.fm bio is empty.
+### M1 · Use what we already have (zero new-source integrations) — ~1–2 sessions
+1. **Fill the cover-art gap**: the Spotify archive already supplies 17,726 covers; ~half the
+   album library still renders generative. Store release-group ids in `enrich-mb.js`, batch-fetch
+   **Cover Art Archive** for the misses only, merge into the same cache.
+2. **Official URLs** on artist pages (Bandcamp/site/Wikipedia from discogs-artist.json —
+   2,937 stored, unused).
+3. **Deepen band status** (glyphs + disbanded badges already shipped 06-30): backfill origins
+   coverage (4,764 → full explore universe), and *exploit* `ended` — a "bands that ended while
+   you were listening" story, disbanded-share stat, feeds M2's "caught them in time".
+4. Discogs bios as fallback where last.fm bio is empty.
+   *(last.fm loved tracks: dropped — Fuad's loved data is uncurated/unreliable; the real
+   "liked" signal arrives with Spotify in M3.)*
 
 ### M2 · Gigs & live module (the concert thread) — ~2–3 sessions
-*Spine:* mark attended shows on **setlist.fm** (fastest structured entry; covers setlists too) +
-a manual `gigs.json` for festivals/shows setlist.fm lacks
-(`{artist|festival, date, venue, city, rating, favorite, note}`).
-1. `enrich-gigs.js`: pull attended shows + setlists (setlist.fm), merge gigs.json.
+*Spine:* a manual **`gigs.json`** — Fuad doesn't use setlist.fm, so entries are hand-logged
+(`{artist|festival, date, venue, city, rating, favorite, note}`); we build schema + entry
+workflow and seed it together. setlist.fm still helps *without an account*: given artist+date,
+`enrich-gigs.js` can look up the actual setlist played that night.
+1. `enrich-gigs.js`: read gigs.json, auto-attach setlists (setlist.fm artist+date search),
+   venue/city geo.
 2. **Gigs tab**: timeline + map (reuse world-map + streamgraph infra), per-gig cards.
 3. Correlations: gig ↔ scrobble history ("you played them 3× more the month after"),
    **seen vs never-seen coverage** of top artists, setlist ↔ your-top-tracks overlap
@@ -162,6 +167,12 @@ a manual `gigs.json` for festivals/shows setlist.fm lacks
    counts. Reconciliation story ("the mobile era last.fm missed").
 
 ### M4 · Correlation lab (the "learn about myself" engine) — ongoing
+**Prerequisite: `residences.json`** — Fuad has lived all over the world, so any
+location-dependent correlation (weather, local time-of-day before ~2016, "local scene" effects)
+needs a simple personal timeline: `[{from, to, city, country, tz}]`. Ten minutes of manual
+entry unlocks a whole lens: *eras by home city* ("what Warsaw sounded like vs Sydney"),
+correct local-time clocks per era, gig proximity. Build this first.
+
 The payoff layer; each item is a build-data export + a Story/insight card:
 - **Sound × time**: energy by hour-of-day/day-of-week; tempo of 3 AM vs 3 PM; season × valence
   (do Sydney winters darken the palette?); year × key/mode drift.

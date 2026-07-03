@@ -107,13 +107,13 @@ never committed** (last.fm + Spotify keys live in `Fuad-Soudah/Culture_2/.env`).
 | `enrich-bios.js` | last.fm | `artist-bios.json` | bios + **real** similar-artists lists |
 | `enrich-mb.js` | MusicBrainz | `artist-mb.json` | mbid, relations (member-of), release-groups |
 | `enrich-aliases.js` | MusicBrainz | `artist-aliases.json` | aliases (cross-script: ミドリ ↔ Midori) |
-| `enrich-origins.js` | MusicBrainz | `artist-origins.json` | origin country/city, type Group/Person |
+| `enrich-origins.js` | MusicBrainz | `artist-origins.json` | origin country/city, type Group/Person, **gender** (928), **life-span/ended** (358 disbanded) — 4,764 artists |
 | — (manual) | — | `city-coords.json` | city → lat/lng for the map |
 | `enrich-discogs.js` | Discogs | `discogs-cache.json` | weighted styles/genres per artist |
 | `enrich-discogs-artist.js` | Discogs | `discogs-artist.json` | profile, members, URLs, images |
 | `enrich-images.js` | Discogs | `artist-images.json` | primary artist images |
 | `enrich-spotify.js` | Spotify API | `spotify-cache.json` | artist id/img/genres (post-2026 API gives little more) |
-| `enrich-spotify-archive.js` | **local catalogue dataset** (`archive.zip`, large local, local-only) | `spotify-albumart.json`, `spotify-albummeta.json`, `spotify-artist-img.json`, `spotify-genres.json` | album covers, release year/type/label, artist imgs, genres |
+| `enrich-spotify-archive.js` | **local catalogue dataset** (`archive.zip`, large local, local-only) | `spotify-albumart.json` (17,726 covers), `spotify-albummeta.json`, `spotify-artist-img.json`, `spotify-genres.json` | album covers, release year/type/label, artist imgs, genres |
 | `enrich-spotify-tracks.js` | local catalogue dataset | `spotify-track-data.json` | per-track audio features (36.9k tracks; §6) |
 | `extract-audio.js` | (aggregates track data) | `audio-features.json` | artist-level Sound DNA |
 | `enrich-concerts.js` | Ticketmaster Discovery | `concerts-cache.json` | upcoming events, top-200 artists — **cache currently absent → Live tab hidden** |
@@ -247,7 +247,8 @@ artists), rescoped by map selection. Click a country/city → detail blob (top a
 songs + Sound DNA for that place, lazy geo-detail.js). Breakdown list with flags.
 
 ### Artist page (kept top-200)
-Rank/est/origin header, bio (last.fm), genre chips (→ Explore), stats; **Sound DNA radar**
+Rank/est/origin header with **gender glyph (solo artists) + active/disbanded/deceased badge**
+(`ArtistMeta`, MusicBrainz), bio (last.fm), genre chips (→ Explore), stats; **Sound DNA radar**
 (vs library average, + key/loudness/speech/liveness/popularity/followers attribute grid);
 **How they played out** (album/song streamgraph, lazy artist-flow.js); **Sounds like** (real
 last.fm similar + by-sound neighbours, alias-aware, in-library badges); **Family tree** (members,
