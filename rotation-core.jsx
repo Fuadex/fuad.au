@@ -236,6 +236,16 @@ a.r-link:hover { color: var(--ink); }
   .m-2col { grid-template-columns: 1fr 1fr !important; }
   .m-2col > * { grid-column: auto !important; }
 }
+
+/* Album/Track page rules — GLOBAL (these pages are deep-linkable; component-scoped styles in
+   Explore never load unless Explore mounts, which made the sidebar column clip on mobile). */
+.r-track-row { transition: background .15s; } .r-track-row:hover { background: var(--bg-3); }
+@media (max-width: 760px) { .tv-grid { grid-template-columns: 1fr !important; } }
+@media (max-width: 600px) {
+  .tv-head { gap: 16px !important; }
+  .tv-head .r-stat-n { font-size: 26px !important; }
+  .tv-head > div:last-child { gap: 16px !important; width: 100%; }
+}
 `;
 
 // ─────────── helpers ───────────
