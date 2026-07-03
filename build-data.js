@@ -140,8 +140,10 @@ const SPOT = (() => { try { return JSON.parse(fs.readFileSync(path.join(__dirnam
 // enrichment pulled from the local Spotify catalogue dataset (enrich-spotify-archive.js): album covers,
 // artist images (fallback), Spotify genres.
 const _readJson = (f) => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, f), "utf8")); } catch (e) { return {}; } };
-const ALBART = _readJson("spotify-albumart.json");   // "artistSlug~titleSlug" → cover url
-const ALBMETA = _readJson("spotify-albummeta.json"); // "artistSlug~titleSlug" → [releaseYear, typeChar, label]
+// -extra files hold conservatively fuzzy-matched additions (cover-audit tiers) + future CAA
+// fills; kept separate so an enrich-spotify-archive --rematch can't clobber them. Base wins.
+const ALBART = { ..._readJson("spotify-albumart-extra.json"), ..._readJson("spotify-albumart.json") };   // "artistSlug~titleSlug" → cover url
+const ALBMETA = { ..._readJson("spotify-albummeta-extra.json"), ..._readJson("spotify-albummeta.json") }; // "artistSlug~titleSlug" → [releaseYear, typeChar, label]
 const ARTIMG = _readJson("spotify-artist-img.json");  // name → 640px artist image
 const SPOTGEN = _readJson("spotify-genres.json");     // name → [genre, …]
 const TRACKDATA = _readJson("spotify-track-data.json"); // "artistSlug~trackSlug" → [durSec, pop, explicit, trackNo, (energy, valence, acoustic, tempo, dance, instr)]  (features 0..100)
@@ -1265,6 +1267,58 @@ if (hasMB) {
   ADOPTION = { coverage: Math.round(covered / lines.length * 100) / 100, artists: rows.length, medianLag, decades, early, digs };
 }
 
+// ─────────── LIFESPAN (MusicBrainz life-spans × your listening timeline) ───────────
+// Who ended while you were a fan, who was long gone before you arrived, who's still going after
+// decades. Uses ORIGINS (begin/end/ended/type) against each artist's first-play date. ≥5 plays
+// keeps it meaningful (same lean threshold as the rest of the enrichment layer).
+let LIFESPAN = null;
+{
+  const yearOf = (s) => { const y = parseInt(String(s || "").slice(0, 4), 10); return y >= 1900 && y <= 2100 ? y : 0; };
+  let known = 0, endedCount = 0;
+  const whileListening = [], graves = [], elders = [], endYears = new Map(), lives = [];
+  for (const [name, plays] of artistPlays) {
+    if (plays < 5) continue;
+    const o = ORIGINS[name];
+    if (!o || (!o.begin && !o.end && !o.ended)) continue;
+    known++;
+    const sp = span.get(name);
+    const firstYear = sp ? new Date(sp[0]).getUTCFullYear() : 0;
+    const beginY = yearOf(o.begin), endY = yearOf(o.end);
+    const person = o.type === "Person";
+    if (o.ended) {
+      endedCount++;
+      if (endY && beginY && endY > beginY) lives.push(endY - beginY);
+      if (endY) endYears.set(endY, (endYears.get(endY) || 0) + 1);
+      if (endY && firstYear && endY >= firstYear) {
+        // they ended while (or after) you were listening — split plays at the end year
+        let before = 0, after = 0;
+        const ym = artistYear.get(name);
+        if (ym) for (const [y, c] of ym) (y <= endY ? before += c : after += c);
+        if (before >= 8) whileListening.push({ name, artistId: slug(name), hue: hueFor(name), plays,
+          end: endY, endFull: String(o.end || "").slice(0, 10), person: person ? 1 : 0, before, after, found: firstYear });
+      } else if (endY && firstYear && endY < firstYear && plays >= 15) {
+        graves.push({ name, artistId: slug(name), hue: hueFor(name), plays, end: endY, found: firstYear, gap: firstYear - endY, person: person ? 1 : 0 });
+      }
+    } else if (beginY && plays >= 20 && !person) {
+      elders.push({ name, artistId: slug(name), hue: hueFor(name), plays, begin: beginY, years: new Date().getUTCFullYear() - beginY });
+    }
+  }
+  whileListening.sort((a, b) => b.before - a.before);
+  graves.sort((a, b) => b.gap - a.gap);
+  elders.sort((a, b) => a.begin - b.begin);
+  lives.sort((a, b) => a - b);
+  let worstYear = null, worstN = 0;
+  for (const [y, n] of endYears) if (n > worstN || (n === worstN && worstYear != null && y > worstYear)) { worstYear = y; worstN = n; }
+  if (known >= 50) LIFESPAN = {
+    known, endedCount, endedShare: Math.round(endedCount / known * 100) / 100,
+    medianLife: lives.length ? lives[Math.floor(lives.length / 2)] : 0,
+    worstYear, worstYearCount: worstN,
+    whileListening: whileListening.slice(0, 8),
+    graves: graves.slice(0, 6),
+    elders: elders.slice(0, 5),
+  };
+}
+
 // ─────────── CONNECTIONS (shared band members — the "same drummer" graph) ───────────
 // A person who is a "member of band" for ≥2 artists in your library links those artists.
 let CONNECTIONS = null;
@@ -1370,7 +1424,7 @@ let REVISIT = null;
 
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
-  AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT,
+  AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
 };
