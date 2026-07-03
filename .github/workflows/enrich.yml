@@ -1,0 +1,61 @@
+name: Weekly enrichment refresh
+
+# Keeps the metadata caches from rotting: new artists that entered the library since the last
+# run get last.fm tags/stats/bios + MusicBrainz origins/aliases automatically. Every script is
+# incremental (cached artists are skipped), so a normal week costs a handful of API calls.
+# Archive-based enrichment (per-track audio features, album art) stays local — it needs the
+# large local dump. Discogs is also left local (token + ambiguity pins live there).
+
+on:
+  schedule:
+    - cron: "40 7 * * 1"   # Mondays ~07:40 UTC, after the daily sync
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rotation-enrich
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: last.fm tags (new artists only)
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+        run: node enrich-tags.js 6000
+
+      - name: last.fm global stats
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+        run: node enrich-stats.js 6000
+
+      - name: last.fm bios + similar
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+        run: node enrich-bios.js 3000
+
+      - name: MusicBrainz origins (gender / life-span)
+        run: node enrich-origins.js 6000
+
+      - name: MusicBrainz aliases
+        run: node enrich-aliases.js 3000
+
+      - name: Commit refreshed caches
+        run: |
+          git config user.name "rotation-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add tag-cache.json artist-stats.json artist-bios.json artist-origins.json artist-aliases.json
+          if git diff --staged --quiet; then
+            echo "caches already fresh"
+          else
+            git commit -m "chore: weekly enrichment refresh (new artists)"
+            git push || (git pull --rebase --autostash && git push)
+          fi

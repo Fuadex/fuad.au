@@ -1,46 +1,93 @@
-name: Sync last.fm + rebuild dataset
+name: Build & deploy Rotation
+
+# Two triggers, one pipeline:
+#   - daily cron: pull new scrobbles → commit ONLY fuadex.csv → rebuild → deploy
+#   - push to main (code/data edits): rebuild → deploy
+# Generated files (music-data.js, media-index.js, …) are built HERE and shipped straight to
+# Pages as an artifact — they never enter git (repo stays lean; see ROADMAP A2).
+# Requires repo Settings → Pages → Source = "GitHub Actions".
 
 on:
   schedule:
     - cron: "17 6 * * *"   # daily ~06:17 UTC
+  push:
+    branches: [main]
   workflow_dispatch: {}
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: rotation-deploy
+  cancel-in-progress: false
+
 jobs:
-  sync:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      # 1) append new scrobbles to fuadex.csv (cheap delta since the last build)
+      # 1) append new scrobbles (cheap delta since last build)
       - name: Pull new scrobbles into fuadex.csv
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: node sync-csv.js
 
-      # 2) regenerate the full dataset from the now-current CSV (~11s)
+      # 2) regenerate the full dataset (~11 s)
       - name: Rebuild dataset
         run: node build-data.js
 
-      # 3) refresh the live snapshot (total / now-playing / recent feed / rolling windows)
+      # 3) refresh the live snapshot (now-playing / weekly windows / mood)
       - name: Generate live snapshot
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: node sync-live.js
 
-      # 4) commit everything that changed
-      - name: Commit if changed
+      # 4) sanity gate — a broken dataset never deploys
+      - name: Smoke test
+        run: node smoke.js
+
+      # 5) persist ONLY the source-of-truth delta (CSV). Generated files stay out of git.
+      - name: Commit CSV if changed
         run: |
           git config user.name "rotation-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -A
+          git add fuadex.csv
           if git diff --staged --quiet; then
-            echo "no change"
+            echo "no new scrobbles"
           else
-            git commit -m "chore: daily last.fm sync + dataset rebuild"
+            git commit -m "chore: daily last.fm sync"
             git push || (git pull --rebase --autostash && git push)
           fi
+
+      # 6) stage exactly what the browser needs
+      - name: Stage site
+        run: |
+          mkdir -p _site
+          cp index.html favicon.svg og.png CNAME _site/
+          cp rotation-live.jsx tweaks-panel.jsx rotation-core.jsx rotation-insights.jsx \
+             rotation-views1.jsx rotation-views2.jsx rotation-worldmap.jsx rotation-views3.jsx \
+             rotation-explore.jsx rotation-journey.jsx rotation-calendar.jsx rotation-app.jsx _site/
+          cp music-data.js live-data.js search-index.js media-index.js track-audio.js \
+             artist-flow.js artist-detail.js calendar.js calendar-detail.js geo-detail.js \
+             world-map.js _site/
+          du -sh _site
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

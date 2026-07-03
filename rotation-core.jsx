@@ -478,4 +478,28 @@ function Radar({ axes, values, values2, run, size }) {
   );
 }
 
-Object.assign(window, { cssRotation, fmt, fmtK, hashInt, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE });
+// Boundary — catches a crash inside one routed view so the shell (nav/search/other tabs)
+// survives. Essential with test-in-production: a bad record breaks a card, not the site.
+class Boundary extends React.Component {
+  constructor(props) { super(props); this.state = { err: null }; }
+  static getDerivedStateFromError(err) { return { err }; }
+  componentDidCatch(err, info) { try { console.error("[rotation] view crashed:", err, info); } catch (e) {} }
+  componentDidUpdate(prev) { if (prev.resetKey !== this.props.resetKey && this.state.err) this.setState({ err: null }); }
+  render() {
+    if (!this.state.err) return this.props.children;
+    return (
+      <div className="r-view" style={{ padding: "60px var(--pad)" }}>
+        <div className="r-card" style={{ padding: 26, maxWidth: 560 }}>
+          <div className="r-mono" style={{ fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 10 }}>Something broke</div>
+          <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 19, lineHeight: 1.45 }}>
+            This page hit an error — the rest of the site is fine.
+          </div>
+          <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", margin: "12px 0 16px", wordBreak: "break-all" }}>{String(this.state.err && this.state.err.message || this.state.err)}</div>
+          <button className="r-search-btn" onClick={() => { this.setState({ err: null }); window.location.hash = ""; }}>← back to overview</button>
+        </div>
+      </div>
+    );
+  }
+}
+
+Object.assign(window, { cssRotation, fmt, fmtK, hashInt, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE, Boundary });

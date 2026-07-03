@@ -131,15 +131,17 @@ function RotationApp() {
         </div>
       </header>
 
-      {v === "overview" && <OverviewView t={t} go={go} />}
-      {v === "stories" && <StoriesView t={t} go={go} />}
-      {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} seed={route.id} />}
-      {v === "calendar" && <CalendarView go={go} />}
-      {v === "map" && <MapView go={go} />}
-      {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
-      {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
-      {v === "album" && <AlbumView id={route.id} go={go} />}
-      {v === "track" && <TrackView id={route.id} go={go} />}
+      <Boundary resetKey={v + "/" + (route.id || "")}>
+        {v === "overview" && <OverviewView t={t} go={go} />}
+        {v === "stories" && <StoriesView t={t} go={go} />}
+        {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} seed={route.id} />}
+        {v === "calendar" && <CalendarView go={go} />}
+        {v === "map" && <MapView go={go} />}
+        {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
+        {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
+        {v === "album" && <AlbumView id={route.id} go={go} />}
+        {v === "track" && <TrackView id={route.id} go={go} />}
+      </Boundary>
 
       <footer className="r-foot">
         <div>rotation · a companion to <a className="r-link" href="Culture v2.html">Culture</a> · fuad.design / 2026</div>
