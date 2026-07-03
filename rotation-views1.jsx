@@ -1,4 +1,4 @@
-// rotation-views1.jsx â€” Overview Â· Charts Â· Clock
+// rotation-views1.jsx — Overview · Charts · Clock
 // exports: OverviewView, Popover (shared) + WallGrid/BubbleField (used by Overview)
 
 // shared hover popover (paper card following cursor)
@@ -20,7 +20,7 @@ function Popover({ data }) {
   );
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• OVERVIEW â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ════════════════════════ OVERVIEW ════════════════════════
 function OverviewView({ t, go }) {
   const R = window.ROTATION;
   const T = R.TOTALS;
@@ -52,7 +52,7 @@ function OverviewView({ t, go }) {
     <div onClick={onClick} style={onClick ? { cursor: "pointer" } : null} className={onClick ? "ov-stat-link" : ""}>
       <div className="r-stat-n" style={{ fontSize: big ? "clamp(30px,4vw,46px)" : 30 }}>{n}</div>
       <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase",
-        color: "var(--ink-faint)", marginTop: 7 }}>{sub}{onClick ? " â†—" : ""}</div>
+        color: "var(--ink-faint)", marginTop: 7 }}>{sub}{onClick ? " ↗" : ""}</div>
     </div>
   );
 
@@ -60,10 +60,10 @@ function OverviewView({ t, go }) {
     <div className="r-view" ref={ref}>
       <div className="r-viewhead">
         <div>
-          <div className="r-kicker">Rotation Â· since {new Date(T.since).getFullYear()}</div>
+          <div className="r-kicker">Rotation · since {new Date(T.since).getFullYear()}</div>
           <h1 className="r-title">A life, <em>counted</em><span className="dot">.</span></h1>
         </div>
-        <p className="r-lede">Every track I've played, since the mid-2000s â€”
+        <p className="r-lede">Every track I've played, since the mid-2000s —
           turned into something I can actually <b>look at</b>.</p>
       </div>
 
@@ -82,9 +82,9 @@ function OverviewView({ t, go }) {
             <div className="r-live" style={{ marginBottom: 9 }}><span className="dot" /> {now.nowplaying ? "Now playing" : "Last played"}</div>
             <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22, lineHeight: 1.05 }}>{now.track}</div>
             <div style={{ color: "var(--ink-soft)", fontSize: 13, marginTop: 4 }}>
-              {npKnown ? <b onClick={() => go("artist", now.artistId)} style={{ cursor: "pointer", color: "var(--ink)", fontWeight: 600 }}>{now.artist}</b> : now.artist} â€” <span style={{ color: "var(--ink-faint)" }}>{now.album}</span></div>
+              {npKnown ? <b onClick={() => go("artist", now.artistId)} style={{ cursor: "pointer", color: "var(--ink)", fontWeight: 600 }}>{now.artist}</b> : now.artist} — <span style={{ color: "var(--ink-faint)" }}>{now.album}</span></div>
             <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
-              {nowArtist.tags.slice(0, 3).map(g => <span key={g} className="r-chip link" title={`Explore ${g} â†’`} onClick={() => go("explore", g)}>{g}</span>)}
+              {nowArtist.tags.slice(0, 3).map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
             </div>
           </div>
         </div>
@@ -107,7 +107,7 @@ function OverviewView({ t, go }) {
             <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>days</span>
           </div>
           <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", letterSpacing: ".1em" }}>
-            best <span style={{ color: "var(--accent)" }}>{T.streak.best}</span> Â· every day this month
+            best <span style={{ color: "var(--accent)" }}>{T.streak.best}</span> · every day this month
           </div>
         </div>
 
@@ -123,33 +123,33 @@ function OverviewView({ t, go }) {
         {/* peak day */}
         <div className="r-card ov-stat-link" style={{ gridColumn: "span 4", padding: 18, cursor: "pointer" }} onClick={() => go("calendar")}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Heaviest day</b></span>
-            <span className="meta">{R.TOTALS.topDay.date} â†—</span></div>
+            <span className="meta">{R.TOTALS.topDay.date} ↗</span></div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 8, margin: "10px 0 6px" }}>
             <div className="r-stat-n" style={{ fontSize: 40 }}>{R.TOTALS.topDay.count}</div>
             <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>plays</span>
           </div>
           <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13, color: "var(--ink-soft)", lineHeight: 1.4 }}>
-            â€œ{R.TOTALS.topDay.note}â€</div>
+            “{R.TOTALS.topDay.note}”</div>
         </div>
 
-        {/* dynamic insight feed â€” week/month/mood/year/clock + milestones, ranked + rotating */}
+        {/* dynamic insight feed — week/month/mood/year/clock + milestones, ranked + rotating */}
         <InsightRow go={go} n={6} />
 
         {/* recent ticker */}
         <div className="r-card" style={{ gridColumn: "span 5", padding: 18 }}>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Recently played</b></span>
             <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
-              style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex â†—</a></div>
+              style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
           <div style={{ display: "grid", gap: 2 }}>
             {recent.slice(0, recentN).map(r => (
-              <div key={r.id} onClick={() => go("track", R.slug(r.artist) + "~" + R.slug(r.track))} title={`${r.track} â†’`} style={{ display: "flex", alignItems: "center", gap: 11,
+              <div key={r.id} onClick={() => go("track", R.slug(r.artist) + "~" + R.slug(r.track))} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 11,
                 padding: "7px 6px", borderRadius: 4, cursor: "pointer" }}
                 onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
                 onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
                 <GenCover hue={r.hue} name={r.artist} size={30} radius={2} />
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div style={{ fontSize: 13, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
-                  <div style={{ fontSize: 11, color: "var(--ink-faint)", cursor: "pointer" }} title={`${r.artist} â†’`}
+                  <div style={{ fontSize: 11, color: "var(--ink-faint)", cursor: "pointer" }} title={`${r.artist} →`}
                     onClick={e => { e.stopPropagation(); go("artist", r.artistId); }}>{r.artist}</div>
                 </div>
                 <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{r.when}</span>
@@ -166,8 +166,8 @@ function OverviewView({ t, go }) {
         {/* top artists peek */}
         <div className="r-card" style={{ gridColumn: "span 7", padding: 18 }}>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
-            <span className="lbl"><b>Top artists</b> Â· all time</span>
-            <span className="meta" style={{ cursor: "pointer" }} onClick={() => go("explore")}>explore â†—</span></div>
+            <span className="lbl"><b>Top artists</b> · all time</span>
+            <span className="meta" style={{ cursor: "pointer" }} onClick={() => go("explore")}>explore ↗</span></div>
           <div className="r-xscroll">
             {R.ARTISTS.slice(0, 12).map((a, i) => (
               <div key={a.id} onClick={() => go("artist", a.id)} style={{ cursor: "pointer", flex: "none", width: 96 }}>
@@ -184,14 +184,14 @@ function OverviewView({ t, go }) {
         </div>
       </div>
 
-      {/* hub â€” teasers into every deeper view */}
+      {/* hub — teasers into every deeper view */}
       {(() => {
         const I = R.INSIGHTS, U = I.UNDERGROUND, G = I.GEOGRAPHY, GF = R.GENRE_FLOW;
         const cards = [];
-        cards.push({ k: "Explore", h: `${fmt(R.EXPLORE.length)} artists`, s: `${R.SUBS.length} subgenres Â· filter any slice`, hue: 255, on: () => go("explore") });
+        cards.push({ k: "Explore", h: `${fmt(R.EXPLORE.length)} artists`, s: `${R.SUBS.length} subgenres · filter any slice`, hue: 255, on: () => go("explore") });
         if (GF) cards.push({ k: "The journey", h: `${GF.years.length} years of drift`, s: "watch genres hand off over time", hue: 330, on: () => go("journey") });
         if (U) cards.push({ k: "How deep it goes", h: `${Math.round(U.artistShare50k * 100)}% under 50k`, s: "the depth is in the breadth", hue: 188, on: () => go("stories") });
-        if (I.RECOMMENDATIONS && I.RECOMMENDATIONS.artists[0]) { const r = I.RECOMMENDATIONS.artists[0]; cards.push({ k: "Blind spots", h: r.name, s: `you'd love them â€” via ${r.via.map(v => v.name).join(", ")}`, hue: r.hue, on: () => go("stories") }); }
+        if (I.RECOMMENDATIONS && I.RECOMMENDATIONS.artists[0]) { const r = I.RECOMMENDATIONS.artists[0]; cards.push({ k: "Blind spots", h: r.name, s: `you'd love them — via ${r.via.map(v => v.name).join(", ")}`, hue: r.hue, on: () => go("stories") }); }
         if (I.REVISIT && I.REVISIT.artists[0]) { const r = I.REVISIT.artists[0]; cards.push({ k: "Gathering dust", h: r.name, s: `${r.monthsSince} months since you played them`, hue: r.hue, on: () => go("stories") }); }
         if (G && G.countries[0]) cards.push({ k: "Taste geography", h: `${G.countries[0].flag || ""} ${G.countries[0].name}`, s: `${G.totalCountries} countries deep`, hue: 140, on: () => go("stories") });
         if (I.ADOPTION) cards.push({ k: "How old the music was", h: `${I.ADOPTION.medianLag}yr median`, s: "you dig back-catalogue, not new releases", hue: 28, on: () => go("stories") });
@@ -205,7 +205,7 @@ function OverviewView({ t, go }) {
                   <div className="r-mono hub-k">{c.k}</div>
                   <div className="hub-h">{c.h}</div>
                   <div className="hub-s">{c.s}</div>
-                  <div className="hub-go">open <span className="hub-arrow">â†’</span></div>
+                  <div className="hub-go">open <span className="hub-arrow">→</span></div>
                 </div>
               ))}
             </div>
@@ -213,7 +213,7 @@ function OverviewView({ t, go }) {
         );
       })()}
 
-      {/* portrait â€” a generated verdict; sits at the end, after you've seen the numbers */}
+      {/* portrait — a generated verdict; sits at the end, after you've seen the numbers */}
       {(() => {
         const U = R.INSIGHTS.UNDERGROUND, A = R.INSIGHTS.ADOPTION, G = R.INSIGHTS.GEOGRAPHY, GF = R.GENRE_FLOW;
         const grid = R.CLOCK.grid, hourTot = Array.from({ length: 24 }, (_, h) => grid.reduce((s, r) => s + r[h], 0));
@@ -227,13 +227,13 @@ function OverviewView({ t, go }) {
           <div className="r-card" style={{ padding: "22px 26px", marginTop: "calc(var(--gap)*1.6)" }}>
             <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 12 }}>Your portrait</div>
             <p style={{ fontFamily: "var(--serif)", fontSize: "clamp(16px,1.9vw,21px)", lineHeight: 1.62, color: "var(--ink-soft)", margin: 0 }}>
-              {night >= 18 && <>A {em(night + "%")}-before-5AM night owl with {em("genuinely underground")} taste â€” </>}
+              {night >= 18 && <>A {em(night + "%")}-before-5AM night owl with {em("genuinely underground")} taste — </>}
               {U && <>{link(Math.round(U.artistShare50k * 100) + "%", "stories")} of the artists you play sit under 50k listeners worldwide, the median just {em(fmt(U.medianArtistListeners))}. </>}
               {A && <>You don't chase new releases, you {link("dig", "stories")}: the typical artist was {em(A.medianLag + " years")} past their debut when you found them{peakDec ? <>, most of it made in the {em(peakDec.decade + "s")}</> : null}. </>}
               {G && G.countries[0] && <>Rooted in {link(G.countries[0].name, "stories")} but reaching across {em(G.totalCountries + " countries")}. </>}
-              {thenG && nowG && thenG.family !== nowG.family && <>And the taste {link("migrated", "journey")} â€” from {link(thenG.family, "journey", thenG.hue)} to {link(nowG.family, "journey", nowG.hue)} across {GF.years.length} years.</>}
+              {thenG && nowG && thenG.family !== nowG.family && <>And the taste {link("migrated", "journey")} — from {link(thenG.family, "journey", thenG.hue)} to {link(nowG.family, "journey", nowG.hue)} across {GF.years.length} years.</>}
             </p>
-            <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginTop: 14, cursor: "pointer" }} onClick={() => go("journey")}>see the journey â†—</div>
+            <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginTop: 14, cursor: "pointer" }} onClick={() => go("journey")}>see the journey ↗</div>
           </div>
         );
       })()}
@@ -281,7 +281,7 @@ function WallGrid({ items, kind, seen, setPop, onClick }) {
             setHover(i);
             const r = e.currentTarget.getBoundingClientRect();
             setPop({ x: r.left + r.width / 2, y: r.top, title: it.label, pip: it.hue, meta: kind.slice(0, -1),
-              rows: [["plays", fmt(it.value)], [kind === "artists" ? "tag" : "by", it.sub]], hint: "click to open â†—" });
+              rows: [["plays", fmt(it.value)], [kind === "artists" ? "tag" : "by", it.sub]], hint: "click to open ↗" });
           }}
           onClick={() => onClick(it)}>
           <GenCover hue={it.hue} name={it.label} size={"100%"} radius={3} style={{ aspectRatio: "1", width: "100%", height: "auto" }} />
@@ -337,13 +337,13 @@ function BubbleField({ items, seen, setPop, onClick, expressive }) {
               transform: seen ? "scale(1)" : "scale(0)", transformOrigin: `${p.x}px ${p.y}px`,
               transition: `all .6s cubic-bezier(.3,1.4,.5,1) ${i * 0.03}s` }}
               onMouseEnter={(e) => setPop({ x: p.x / W * window.innerWidth, y: 260, title: p.label, pip: p.hue,
-                meta: "plays", rows: [["plays", fmt(p.value)], ["Â·", p.sub]], hint: "click to open â†—" })}
+                meta: "plays", rows: [["plays", fmt(p.value)], ["·", p.sub]], hint: "click to open ↗" })}
               onMouseLeave={() => setPop(null)} onClick={() => onClick(p)}>
               <circle cx={p.x} cy={p.y} r={p.rad} fill={col} fillOpacity={expressive ? 0.32 : 0.16}
                 stroke={col} strokeWidth="1.4" />
               <text x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)"
                 fontFamily="var(--sans)" fontWeight="600" fontSize={Math.max(8, Math.min(14, p.rad / 3.6))}>
-                {p.label.length > 14 ? p.label.slice(0, 12) + "â€¦" : p.label}</text>
+                {p.label.length > 14 ? p.label.slice(0, 12) + "…" : p.label}</text>
             </g>
           );
         })}
