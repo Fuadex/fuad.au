@@ -9,60 +9,45 @@
 
 ## ① Audit findings
 
-### A1 · Performance (high impact, low effort)
-- **Shipping React *development* builds.** `react.development.js` + `react-dom.development.js`
-  are ~5× the size of production builds and much slower (extra checks, no minification).
-  Swap to `react.production.min.js` / `react-dom.production.min.js` (~140 KB total). Single-line
-  change, biggest single perf win available.
-- **In-browser Babel compiles ~450 KB of JSX on every load** (phones pay ~1–3 s). Option worth
-  prototyping: a `precompile.js` step (Babel via `../.dtmp`) emitting `*.compiled.js`, with
-  index.html loading those and a `?dev=1` flag keeping the buildless path for editing. Keeps the
-  no-bundler philosophy; deploys stay plain static files.
-- **music-data.js (3.7 MB) blocks first paint** and contains provably dead keys
-  (`CONSTELLATION`, `CLOCK_CUBE`, `SOUND_BY_YEAR`, `SUB_FLOW` — ARCHITECTURE §9). Dropping them
-  + auditing `EXPLORE`/`INSIGHTS` fat could plausibly cut 20–30%.
-- No `defer` on data scripts; boot screen masks this but Time-to-Interactive is real.
+### A1 · Performance — ✅ largely RESOLVED 2026-07-03 (`06f9f1e`)
+- ~~Shipping React development builds~~ → production builds, SRI-pinned (−1.4 MB runtime).
+- ~~Dead keys in music-data.js~~ → CONSTELLATION/CLOCK_CUBE/SOUND_BY_YEAR/SUB_FLOW dropped
+  (3.74 → 3.52 MB). Further `EXPLORE`/`INSIGHTS` fat-trimming still possible.
+- **Open:** in-browser Babel still compiles ~450 KB of JSX per load — *by explicit choice*
+  (buildless philosophy; Fuad opted to keep it, 2026-07-03). A `precompile.js` option remains
+  on the table if phones ever feel it. No `defer` on data scripts either.
 
-### A2 · Repo & operations
-- **Daily commits rewrite ~19 MB of generated single-line JS** (media-index 6.8 MB + music-data
-  3.7 + artist-flow 2.8 + track-audio 2.7 + calendar-detail 2.1 + …). Single-line JSON diffs
-  poorly → git history will balloon over months. Industry fix: **stop committing generated
-  files** — switch Pages source to "GitHub Actions", have the daily workflow build and deploy
-  the artifact directly. Generated files leave git entirely; CSV history stays. (Local `.git` is
-  ~55 MB already with only weeks of dailies.)
-- **Enrichment staleness:** the daily action rebuilds from caches but never *refreshes* them —
-  new artists appear with no tags/origin/images until a manual enrich run. Add a weekly
-  `enrich-tags/-stats/-origins --missing-only` job (last.fm + MB are keyless/free-keyed).
-- `enrich-discogs.js` is untracked (now committed); `concerts-cache.json` was never committed —
-  Live tab has silently disappeared. Concert data is time-sensitive: it *needs* automation
-  (see M3) or it will always rot.
-- No smoke test. An 8-line `node --check` + "build-data runs + music-data.js parses + required
-  keys exist" script in the workflow would catch the classic "site boots to a black screen"
-  class of regression before deploy.
+### A2 · Repo & operations — ✅ RESOLVED 2026-07-03
+- ~~Daily commits of ~19 MB generated JS~~ → **CI-built deploys**: Pages source = "GitHub
+  Actions", generated files gitignored, workflow commits only the CSV delta and ships `_site/`
+  as an artifact. `smoke.js` gates every deploy.
+- ~~Enrichment staleness~~ → `enrich.yml` weekly incremental refresh (last.fm + MusicBrainz).
+- **Open:** concert data still needs its own automation once M2 lands.
 
-### A3 · Resilience & correctness
-- **No React error boundary** — one throw in any view = blank site (test-in-prod makes this
-  likelier). A tiny boundary per-view with a "this card broke" fallback matches the insight
-  engine's swallow-per-provider philosophy.
-- **Explore/Map filter state isn't in the URL** — deep links share only view/id; a year+genre+
-  mood slice is unshareable and lost on refresh. Serialize chips into the hash
-  (`#explore/y=2019&f=industrial`).
-- **unpkg is a single point of failure** (SRI-pinned, good, but if unpkg is down the site is
-  down). Consider self-hosting the three runtime files in-repo.
-- Name-ambiguity pins (Bleach-class bugs) are manual and fragile — a `pins.json` the enrichers
-  consult (name → forced mbid/spotify id) would make them durable instead of tribal knowledge.
+### A3 · Resilience & correctness — mostly resolved
+- ~~No error boundary~~ → `<Boundary>` wraps every routed view.
+- ~~Explore state unshareable~~ → full slice serialized into the hash. **Map filter state is
+  still not in the URL** (mode/focus/year/genre) — do when Map is next touched.
+- **Open:** unpkg is a single point of failure (SRI-pinned but availability-coupled). Consider
+  self-hosting the three runtime files.
+- **Open:** name-ambiguity pins (Bleach-class) are manual — a `pins.json` the enrichers consult
+  (name → forced mbid/spotify/discogs id) would make them durable. **Required before the CAA
+  cover run** (Fuad explicitly wants no Bleach repeats).
 
 ### A4 · UX / product
-- **Overview ≠ mobile-cheap:** it renders fine but pulls the full 3.7 MB dataset for what is
-  mostly TOTALS + live snapshot. (Solved by A1/A2 payload work rather than redesign.)
-- **The Stories feed is now ~27 cards long** — brilliant content, but it's one giant scroll with
-  no index. A sticky mini-TOC (chip per story) would make it a destination rather than a scroll.
+- ~~No favicon/social meta/OG image~~ → shipped 2026-07-03 (favicon.svg + og.png + OG/twitter meta).
+- **Stories + Overview overhaul wanted** (Fuad, 2026-07-03): both could be "much more dynamic
+  and more interesting" — future iterations welcome *pending approval per iteration*. Stories
+  is ~27 cards of strong content in one giant scroll: sticky mini-TOC / per-story deep links /
+  more live rotation of which cards surface.
+- **Design overhaul wanted** (Fuad, 2026-07-03): built mobile-first via phone sessions, but
+  mobile responsiveness is still patchy in places and **desktop "doesn't look that great"** —
+  a dedicated desktop-layout pass is on the table.
+- **Bug:** Stories renders a literal `[object Object]` somewhere (Fuad saw it; not yet
+  reproduced — hunt it during the Stories pass).
 - Tracks without Spotify features (~0.5%) and artists without AUDIO rows silently lose radar/
-  quadrant cards — consider a subtle "no audio data" note instead of missing sections, so absence
-  reads as data, not bugs.
-- Generative covers are lovely but **real album art exists for only part of the library** —
-  Cover Art Archive fills the rest (M2).
-- No favicon/social meta/OG image — trivially shareable site that unfurls as nothing.
+  quadrant cards — a subtle "no audio data" note would read as data, not bugs.
+- Real album art exists for ~17.7k albums; the rest render generative — CAA fills the gap (M1).
 
 ### A5 · Code health
 - Dead views (Charts/Clock/SoundMap/Eras/Constellation) — delete or archive; they confuse every
@@ -119,19 +104,18 @@ Each module is independently shippable. Suggested order: **M0 → M1 → M2 → 
 foundations first, then the two big new data domains (gigs, personal Spotify), then the
 correlation layer that feeds on all of it.
 
-### M0 · Foundations (protect the platform) — ~1 session
-1. Production React builds; self-host runtime files.
-2. Error boundary around each routed view.
-3. Drop dead data keys + dead view files; split views2 opportunistically.
-4. Smoke-test step in sync.yml; commit `enrich-discogs.js` ✅ (done with this doc).
-5. Decide the generated-files strategy (Actions-built Pages artifact vs keep committing).
-6. Explore/Map filter state → URL hash.
-7. OG/social meta + favicon.
+### M0 · Foundations — ✅ SHIPPED 2026-07-03 (`06f9f1e`)
+Production React · error boundary · dead-code purge · smoke.js gate · CI-built Pages deploys
+(generated files out of git) · weekly enrich.yml · Explore→URL state · OG meta + favicon.
+Left open, deliberately: Babel stays in-browser (Fuad's call); runtime files still on unpkg;
+Map URL state pending; views2 split opportunistic.
 
-### M1 · Use what we already have (zero new-source integrations) — ~1–2 sessions
-1. **Fill the cover-art gap**: the Spotify archive already supplies 17,726 covers; ~half the
-   album library still renders generative. Store release-group ids in `enrich-mb.js`, batch-fetch
-   **Cover Art Archive** for the misses only, merge into the same cache.
+### M1 · Use what we already have (zero new-source integrations) — ~1–2 sessions — **NEXT UP**
+1. **Fill the cover-art gap** (approved as *fallback + audit run*, 2026-07-03): the Spotify
+   archive supplies 17,726 covers; ~half the album library renders generative. Store
+   release-group ids from `enrich-mb.js` data, build **`pins.json`** first (ambiguity guard —
+   no Bleach repeats), batch-probe **Cover Art Archive** for the misses only, then produce a
+   **hit-rate report vs what we have** before wiring into media-index `[6]`.
 2. **Official URLs** on artist pages (Bandcamp/site/Wikipedia from discogs-artist.json —
    2,937 stored, unused).
 3. **Deepen band status** (glyphs + disbanded badges already shipped 06-30): backfill origins
@@ -142,12 +126,12 @@ correlation layer that feeds on all of it.
    "liked" signal arrives with Spotify in M3.)*
 
 ### M2 · Gigs & live module (the concert thread) — ~2–3 sessions
-*Spine:* a manual **`gigs.json`** — Fuad doesn't use setlist.fm, so entries are hand-logged
-(`{artist|festival, date, venue, city, rating, favorite, note}`); we build schema + entry
-workflow and seed it together. setlist.fm still helps *without an account*: given artist+date,
-`enrich-gigs.js` can look up the actual setlist played that night.
-1. `enrich-gigs.js`: read gigs.json, auto-attach setlists (setlist.fm artist+date search),
-   venue/city geo.
+*Spine:* **setlist.fm attended list** — Fuad decided (2026-07-03) to create a setlist.fm
+account and mark his concerts there (`GET /user/{id}/attended`, free key, setlists included) —
+plus a manual **`gigs.json`** for festivals/shows setlist.fm lacks
+(`{artist|festival, date, venue, city, rating, favorite, note}`).
+1. `enrich-gigs.js`: pull attended shows + setlists from setlist.fm, merge gigs.json,
+   venue/city geo. **Blocked on: Fuad's setlist.fm username + populated attendance.**
 2. **Gigs tab**: timeline + map (reuse world-map + streamgraph infra), per-gig cards.
 3. Correlations: gig ↔ scrobble history ("you played them 3× more the month after"),
    **seen vs never-seen coverage** of top artists, setlist ↔ your-top-tracks overlap
@@ -186,11 +170,23 @@ The payoff layer; each item is a build-data export + a Story/insight card:
 - Insight-engine expansion: providers for gigs (M2), liked (M3), weather, language —
   the Overview feed gets deeper automatically.
 
-### M5 · Platform polish — opportunistic
-- PWA manifest + service-worker caching of data files (instant repeat visits, offline).
-- Shareable story cards (SVG → PNG export of a stat card).
-- Year-in-review "wrapped" mode (December auto-feature).
-- Stories mini-TOC; per-story deep links (`#stories/adoption`).
+### M5 · Platform polish — partially approved 2026-07-03
+- **Wrapped mode — APPROVED**: per **year and month**, likely integrated with/entered from the
+  Calendar (click a year/month → full-screen swipeable card-by-card reveal built from
+  YEARS/calendar-detail data). Prototype and see where it takes us.
+- **Shareable stat cards — APPROVED as a test**: one story card → PNG export first, judge, then
+  generalize.
+- PWA/offline: explained to Fuad, awaiting his verdict.
+- Stories mini-TOC; per-story deep links (`#stories/adoption`) — folds into the Stories overhaul (A4).
+
+### M6 · Open-source "build your own Rotation" — exploratory (Fuad, 2026-07-03)
+Friends showed interest; nothing this deep exists as a product. Direction: keep fuad.au as the
+personal instance, extract a template repo (`rotation-template`): fork → add your last.fm
+username + API key secret → Actions builds your CSV + caches → your own Pages site. Needs:
+config file instead of hard-coded fuadex/TZ/genre-families, secrets-only keys, personal data
+(CSV/caches/gigs) split from code, docs. Monetization judged flaky (hosted SaaS = API ToS +
+infra + support burden); realistic paths are GitHub Sponsors / donations, or a paid "set it up
+for me" concierge. Decision pending — design new features template-aware from now on.
 
 ---
 
