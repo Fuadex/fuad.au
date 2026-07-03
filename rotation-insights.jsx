@@ -291,6 +291,63 @@ const PROVIDERS = [
       sub: "lifetime average", note: `That's roughly ${Math.round(pd * 3.6 / 60 * 10) / 10} hours of music a day.`,
     };
   },
+
+  // ── riser of the week — this week's plays vs the artist's own lifetime weekly pace ──
+  (ctx) => {
+    const w = window.ROTATION_LIVE && window.ROTATION_LIVE.week;
+    if (!w || !w.topArtists) return null;
+    const cy = ctx.now.getUTCFullYear();
+    let best = null;
+    for (const ta of w.topArtists) {
+      if (ta.plays < 15) continue;
+      const a = ctx.R.byId[ta.artistId]; if (!a || !a.firstYear) continue;
+      const weeks = Math.max(26, (cy - a.firstYear + 1) * 52);
+      const pace = a.plays / weeks;                       // lifetime plays-per-week
+      const ratio = pace > 0 ? ta.plays / pace : 0;
+      if (ratio >= 2.5 && (!best || ratio > best.ratio)) best = { ...ta, ratio, pace };
+    }
+    if (!best) return null;
+    return {
+      id: "riser", category: "riser", score: 0.72, accent: true,
+      label: "Riser of the week", meta: best.name, onClick: () => ctx.go("artist", best.artistId),
+      big: "×" + (best.ratio >= 10 ? Math.round(best.ratio) : best.ratio.toFixed(1)),
+      bigUnit: "usual pace", sub: best.name.toLowerCase(),
+      note: `${best.plays} plays this week — their lifetime average is ~${Math.max(1, Math.round(best.pace))}/wk.`,
+    };
+  },
+
+  // ── story of the day — promotes one Stories card, deep-linked, rotating daily ──
+  (ctx) => {
+    const I = ctx.R.INSIGHTS; if (!I) return null;
+    const cands = [];
+    if (I.UNDERGROUND) cands.push({ id: "how-deep-it-goes", t: "How deep it goes",
+      teaser: `${Math.round(I.UNDERGROUND.artistShare50k * 100)}% of the artists you play sit under 50k listeners.` });
+    if (I.LIFESPAN && I.LIFESPAN.whileListening[0]) cands.push({ id: "the-ones-that-ended", t: "The ones that ended",
+      teaser: `${I.LIFESPAN.whileListening[0].name} ended in ${I.LIFESPAN.whileListening[0].end} — you'd played them ${_fmtN(I.LIFESPAN.whileListening[0].before)} times.` });
+    if (I.ADOPTION) cands.push({ id: "how-old-the-music-was", t: "How old the music was",
+      teaser: `The median artist was ${I.ADOPTION.medianLag} years past their debut when you found them.` });
+    if (I.RECOMMENDATIONS && I.RECOMMENDATIONS.artists[0]) cands.push({ id: "blind-spots", t: "Blind spots",
+      teaser: `${I.RECOMMENDATIONS.artists[0].name} — you'd love them, and you've never pressed play.` });
+    if (I.REVISIT && I.REVISIT.artists[0]) cands.push({ id: "gathering-dust", t: "Gathering dust",
+      teaser: `${I.REVISIT.artists[0].name}: ${_fmtN(I.REVISIT.artists[0].plays)} plays, quiet for ${Math.round(I.REVISIT.artists[0].monthsSince)} months.` });
+    if (I.STYLE_ATLAS && I.STYLE_ATLAS.rarest && I.STYLE_ATLAS.rarest[1]) cands.push({ id: "style-atlas", t: "Style atlas",
+      teaser: `Some styles survive in this library through a single artist.` });
+    if (I.GEOGRAPHY && I.GEOGRAPHY.gateways && I.GEOGRAPHY.gateways[0]) cands.push({ id: "gateways", t: "Gateways",
+      teaser: `Every country in your library had a first artist who opened the door.` });
+    if (!cands.length) return null;
+    const pick = cands[_hash("story" + _dayKey(ctx.now)) % cands.length];
+    return {
+      id: "story-day", category: "story", score: 0.76,
+      label: "Story of the day", meta: "stories ↗", onClick: () => ctx.go("stories", pick.id),
+      render: (
+        <div>
+          <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 17, lineHeight: 1.3, marginBottom: 7 }}>{pick.t}</div>
+          <div style={{ fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.5 }}>{pick.teaser}</div>
+          <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)", marginTop: 10 }}>read the story →</div>
+        </div>
+      ),
+    };
+  },
 ];
 
 function runInsights(ctx, n) {
