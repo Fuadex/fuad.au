@@ -245,6 +245,12 @@ a.r-link:hover { color: var(--ink); }
   .tv-head { gap: 16px !important; }
   .tv-head .r-stat-n { font-size: 26px !important; }
   .tv-head > div:last-child { gap: 16px !important; width: 100%; }
+  /* radar above, bars below — the side-by-side row clips at phone width */
+  .tv-dna-row { flex-direction: column; align-items: stretch !important; }
+  .tv-dna-row > div:first-child { margin: 0 auto; }
+  .tv-dna-row > div:last-child { min-width: 0 !important; }
+  /* card-header meta labels ("8 more you've played") ellipsise instead of clipping */
+  .r-card-h .meta { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 45%; }
 }
 `;
 
@@ -255,7 +261,8 @@ function hashInt(str, seed) {
   return h;
 }
 const fmt = (n) => n == null ? "—" : n.toLocaleString("en-US");
-const fmtK = (n) => n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1) + "k" : "" + n;
+const fmtK = (n) => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 1) + "M"
+  : n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1) + "k" : "" + n;
 
 // ── romaji transliteration so Latin typing finds kana names (e.g. "midori" → ミドリ) ──
 // Hepburn-ish; katakana is folded to hiragana first (codepoint −0x60). Handles yōon (small や/ゆ/よ),

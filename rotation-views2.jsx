@@ -908,7 +908,7 @@ function AlbumView({ id, go }) {
           <div className="r-card" style={{ padding: "16px 18px" }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Album Audio DNA</b></span>
               <span className="meta">{bpm ? `~${bpm} BPM` : ""}</span></div>
-            <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
+            <div className="tv-dna-row" style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
               <div style={{ flex: "0 0 auto", width: 188, maxWidth: "100%" }}>
                 <AudioRadar axes={radar} hue={hue} avg={radarLibAvg()} />
                 <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = this album · dashed = your average</div>
@@ -1127,7 +1127,7 @@ function TrackView({ id, go }) {
           <div className="r-card" style={{ padding: "16px 18px" }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Audio DNA</b></span>
               <span className="meta">Spotify features</span></div>
-            <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
+            <div className="tv-dna-row" style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
               <div style={{ flex: "0 0 auto", width: 188, maxWidth: "100%" }}>
                 <AudioRadar axes={radar} hue={hue} avg={radarLibAvg()} />
                 <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = this song · dashed = your average</div>
