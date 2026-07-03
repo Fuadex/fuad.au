@@ -27,7 +27,7 @@ vm.runInContext(fs.readFileSync(here("live-data.js"), "utf8"), lctx, { filename:
 ok(lctx.window.ROTATION_LIVE && lctx.window.ROTATION_LIVE.total > 0, "live-data.js evaluates, total > 0");
 
 // 3) every lazy generated file exists, is non-trivial, and parses as JS
-for (const [f, min] of [["media-index.js", 3000], ["track-audio.js", 1000], ["artist-flow.js", 1000],
+for (const [f, min] of [["media-index.js", 3000], ["track-audio.js", 1000], ["track-previews.js", 500], ["artist-flow.js", 1000],
   ["artist-detail.js", 500], ["calendar.js", 50], ["calendar-detail.js", 500], ["geo-detail.js", 100],
   ["search-index.js", 100], ["world-map.js", 50]]) {
   const p = here(f);
