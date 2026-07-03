@@ -15,9 +15,12 @@ function StoriesView({ t, go }) {
   const R = window.ROTATION;
   const I = R.INSIGHTS;
   // Alias-aware: "Midori" resolves through R.idForName → ミドリ's id when applicable.
+  // Kept AND explore artists are clickable — non-kept ids get a MiniArtistView, so fully
+  // enriched non-top-206 artists (Yoko Kanno) are reachable from every story.
   const resolveId = (name) => (R.idForName && R.idForName(name)) || R.slug(name);
-  const goIf = (name) => { const id = resolveId(name); if (R.byId[id]) go("artist", id); };
-  const clickable = (name) => !!R.byId[resolveId(name)];
+  const hasPage = (id) => !!(R.byId[id] || (R.expById && R.expById[id]));
+  const goIf = (name) => { const id = resolveId(name); if (hasPage(id)) go("artist", id); };
+  const clickable = (name) => hasPage(resolveId(name));
 
   // year-in-review state — default to most recent year with real listening volume
   const realYears = (R.YEARS || []).filter(y => y.plays > 500);

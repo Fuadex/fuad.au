@@ -36,15 +36,21 @@
 
 ### A4 · UX / product
 - ~~No favicon/social meta/OG image~~ → shipped 2026-07-03 (favicon.svg + og.png + OG/twitter meta).
-- **Stories + Overview overhaul wanted** (Fuad, 2026-07-03): both could be "much more dynamic
-  and more interesting" — future iterations welcome *pending approval per iteration*. Stories
-  is ~27 cards of strong content in one giant scroll: sticky mini-TOC / per-story deep links /
-  more live rotation of which cards surface.
-- **Design overhaul wanted** (Fuad, 2026-07-03): built mobile-first via phone sessions, but
-  mobile responsiveness is still patchy in places and **desktop "doesn't look that great"** —
-  a dedicated desktop-layout pass is on the table.
-- **Bug:** Stories renders a literal `[object Object]` somewhere (Fuad saw it; not yet
-  reproduced — hunt it during the Stories pass).
+- **Overview overhaul — GREENLIT** (Fuad, 2026-07-03) with constraints: **keep current features
+  as they are**, except "Where to dig" and "Your portrait" which may be changed/reworked.
+  Approved direction: expand/dynamize (risers–fallers strip vs baseline, lately⇄all-time toggle
+  on the top wall, story-of-the-day big bento card, live count-up). Any *substantial* change or
+  purge of other existing cards → ask first, Fuad reviews.
+- **Stories overhaul — GREENLIT**: chapters (Depth&Taste / Time&Rhythm / Geography&Scenes /
+  Life&Death) + sticky TOC + per-story deep links, freshness-based ordering, more interactive
+  cards (Their Era / Flameouts / Constants get controls like Year-in-Review).
+- **Design overhaul wanted**: mobile responsiveness still patchy, desktop needs a real pass.
+- **Bug:** literal `[object Object]` — Fuad reports it near **Daine**. Hunted 2026-07-03 without
+  a hit: comebacks, style-atlas, gateways, search overlay, ArtistMeta, artist-flow, adetail all
+  render clean; her record fields are sane (React would throw on object children, so it must be
+  string/attribute coercion). **Need a screenshot/page pointer.** Side-catch: daine's Discogs
+  match is a wrong classical "Daine" (styles Baroque/Organ — she leads the Style-Atlas "Organ"
+  row) → pins.json case.
 - Tracks without Spotify features (~0.5%) and artists without AUDIO rows silently lose radar/
   quadrant cards — a subtle "no audio data" note would read as data, not bugs.
 - Real album art exists for ~17.7k albums; the rest render generative — CAA fills the gap (M1).
@@ -129,15 +135,28 @@ Map URL state pending; views2 split opportunistic.
 4. Discogs bios as fallback where last.fm bio is empty.
    *(last.fm loved tracks: dropped — Fuad's loved data is uncurated/unreliable; the real
    "liked" signal arrives with Spotify in M3.)*
-5. **NEW — Archive pass 2** (one big local extraction session, batches everything untapped):
-   - **name+title-corroborated artist matching** for the 13.8k cover-less albums whose artists
-     have no Spotify id (accept a name match only when ≥2 album titles agree, or 1 + unique name)
-   - **tracks.parquet extras**: ISRC (→ exact MusicBrainz recording joins — kills name-matching
-     fuzz), `preview_url` (30-sec hover-preview audio on the site), disc numbers
-   - **albums.parquet**: `total_tracks` → per-album completeness ("played 7 of 12")
-   - **track_artists.parquet**: real collaboration graph (feat. credits between your artists)
-   - **playlists sample**: per-track public-playlist counts + co-occurrence (crowd-context)
-   - `spotify_artist_redirects.json` → feed pins.json
+5. **Archive pass 2 — APPROVED 2026-07-03, staged for the ≤30–40 GB disk budget** (~50 GB free):
+   - **Stage 1 (running)**: artists + artist_albums + albums + album_images + artist_genres
+     (~8.5 GB) → name+title-corroborated artist matching (≥2 title agreements) for the 13.8k
+     cover-less albums / missing Spotify ids (Hyper, Bowie, Stones), `total_tracks` → per-album
+     completeness ("played 7 of 12" — approved), artist_genres re-pull (PRO8L3M/Gorillaz gaps).
+   - **Stage 2**: tracks.parquet (23.8 GB, alone) + track_artists (1.75 GB) → **ISRC** (exact MB
+     recording joins — approved), **`preview_url`** (30-s hover-preview per song — approved,
+     "killer feature"), disc numbers, **collaboration graph** from full multi-artist credits
+     (approved). Delete parquets after each stage.
+   - ~~playlists crowd-context~~ — **dropped** (Fuad: "global playlists is meaningless to me").
+   - `spotify_artist_redirects.json` → feed pins.json.
+6. **NEW — enrichment bug classes** (from enrich-coverage.js, 2026-07-03):
+   - **comma-in-name artists get ZERO enrichment** ("Time, The Valuator" 228 plays / 0 caches;
+     "Fear, and Loathing in Las Vegas") — enricher artist-list CSV parsing splits on commas;
+   - **variant names not canonicalized for enrichment** (Motorhead vs Motörhead, "Trent Reznor,
+     Atticus Ross" vs "…and…", Smashing Pumpkins ±The) — share build-data's CANON with enrichers;
+   - **origins/MB missing when last.fm has no mbid** (Ling Tosite Sigure 2,681 plays!, Haru
+     Nemuri, Melt-Banana) — add MB *search* fallback;
+   - bios cap historicaly 250 → weekly job now backfills to 3000.
+7. **Undated scrobbles (3,134, smeared 2006–2010)**: investigate options — real dates are gone
+   from last.fm (1970-stamped import); candidates: exclude from year-level lenses entirely,
+   label the synthetic era in UI, or try recovering rough dates from the original import context.
 
 ### M2 · Gigs & live module (the concert thread) — ~2–3 sessions
 *Spine:* **setlist.fm attended list** — Fuad decided (2026-07-03) to create a setlist.fm
