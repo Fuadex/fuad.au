@@ -89,9 +89,11 @@ last.fm API ──sync-csv.js──▶ fuadex.csv (20 MB, one row per scrobble, 
 last.fm API ──sync-live.js──▶ live-data.js (now playing, week/month windows, mood-lately, 72h clock)
 ```
 
-- **Daily automation:** `.github/workflows/sync.yml` (cron 06:17 UTC + every push to main):
-  `sync-csv` → `build-data` → `sync-live` → **`smoke.js` gate** → commit *only the CSV delta* →
-  stage `_site/` → `upload-pages-artifact` → `deploy-pages`. Secrets: `LASTFM_API_KEY`.
+- **Daily automation:** `.github/workflows/sync.yml` (cron 06:17 UTC + every push to main),
+  three jobs: **build** (`sync-csv` → `build-data` → `sync-live` → `smoke.js` gate → stage
+  `_site/`) → **deploy** (`deploy-pages`) → **persist** (commits the CSV delta *after* deploy —
+  committing mid-build advanced HEAD and made Pages reject the deployment; fixed 2026-07-03).
+  Secrets: `LASTFM_API_KEY`.
 - **Weekly enrichment:** `.github/workflows/enrich.yml` (Mondays 07:40 UTC) incrementally
   refreshes last.fm tags/stats/bios + MusicBrainz origins/aliases for artists new to the
   library, committing the caches. Archive-based and Discogs enrichment stay local.

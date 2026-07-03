@@ -115,9 +115,11 @@ Map URL state pending; views2 split opportunistic.
    play-weighted** (misses are the 1–2-play tail). Fuzzy tiers (id-anchored, conservative)
    added +183. Residue: **13.8k albums whose artists lack a pinned Spotify id** (→ archive
    pass 2 below) and **1.8k title-mismatches** → CAA probe (per-artist MB release-group browse
-   + front-250 HEAD) ran with ~90% hit rate on matched titles. Fills live in
-   `spotify-album*(art|meta)-extra.json` (additive; base wins). **`pins.json` still to build**
-   before any name-keyed enrichment (Brutus-1966 elder = live example of ambiguity).
+   + front-250 HEAD) **completed: 735 found of 1,768 targets (719 exact / 16 contain / 1
+   rejected on eyeball), 8.4k plays re-covered — shipped**. Extra cache now 917 covers;
+   play-weighted coverage ~87%. Fills live in `spotify-album*(art|meta)-extra.json` (additive;
+   base wins). **`pins.json` still to build** before any name-keyed enrichment (Brutus-1966
+   elder = live example of ambiguity).
 2. **Official URLs** on artist pages (Bandcamp/site/Wikipedia from discogs-artist.json —
    2,937 stored, unused).
 3. ~~Exploit `ended`~~ → ✅ **INSIGHTS.LIFESPAN + "The ones that ended" Stories card shipped**
