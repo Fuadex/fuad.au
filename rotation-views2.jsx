@@ -874,7 +874,6 @@ function AlbumView({ id, go }) {
   const avgSec = (R.TOTALS && R.TOTALS.avgTrackSec) || 216;
   const listenedMin = Math.round(avgSec * data.trackPlays / 60);
   const sr = data.series, sFirst = sr[0], sLast = sr[sr.length - 1], sPeak = sr.reduce((a, b) => b.p > (a ? a.p : 0) ? b : a, null);
-  const moodHue = (v) => 250 - (Math.max(0, Math.min(100, v)) / 100) * 220;   // low valence → cool, high → warm
 
   return (
     <div className="r-view">
@@ -951,15 +950,10 @@ function AlbumView({ id, go }) {
       <div className="r-card" style={{ padding: "16px 18px" }}>
         <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Tracks you've played</b></span>
           <span className="meta">{fmt(data.trackPlays)} plays across {data.tracks.length}</span></div>
-        {data.tracks.some(t => t.e != null) && <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginBottom: 8, display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
-          <span style={{ width: 8, height: 8, borderRadius: "50%", background: `oklch(0.7 0.16 ${moodHue(15)})` }} /> dark
-          <span style={{ width: 8, height: 8, borderRadius: "50%", background: `oklch(0.7 0.16 ${moodHue(85)})` }} /> upbeat · brighter = more energy</div>}
         <div style={{ display: "grid", gap: 2 }}>
           {data.tracks.map((t, i) => (
-            <div key={t.title + i} className="r-track-row" onClick={() => go("track", R.slug(data.artist) + "~" + R.slug(t.title))} title={`${t.title} →`} style={{ display: "grid", gridTemplateColumns: "24px 14px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px", cursor: "pointer", borderRadius: 4 }}>
+            <div key={t.title + i} className="r-track-row" onClick={() => go("track", R.slug(data.artist) + "~" + R.slug(t.title))} title={`${t.title} →${t.e != null ? ` · energy ${t.e} · positivity ${t.v}` : ""}`} style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px", cursor: "pointer", borderRadius: 4 }}>
               <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{t.no ? String(t.no).padStart(2, "0") : String(i + 1).padStart(2, "0")}</span>
-              <span title={t.e != null ? `energy ${t.e} · positivity ${t.v}` : ""} style={{ width: 9, height: 9, borderRadius: "50%", justifySelf: "center",
-                background: t.e != null ? `oklch(${0.5 + t.e / 100 * 0.28} 0.16 ${moodHue(t.v)})` : "var(--bg-3)" }} />
               <div style={{ fontSize: 13, lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>
                 {t.title}{standout && t === standout ? <span title="your most-played from this album" style={{ color: "var(--accent)", marginLeft: 5 }}>★</span> : null}</div>
               <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: (t.plays / maxT * 100) + "%", background: `oklch(0.6 0.14 ${hue})` }} /></div>

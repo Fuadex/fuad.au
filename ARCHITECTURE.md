@@ -36,7 +36,7 @@ with `pushState` + `popstate`/`hashchange` sync. Components communicate via `win
 | File | Role |
 |---|---|
 | `react(-dom).production.min.js`, `babel.min.js` | runtime (production React since 2026-07-03; JSX still compiles in-browser by design) |
-| `music-data.js` (~3.7 MB) | `window.ROTATION` — the core dataset |
+| `music-data.js` (~4.4 MB) | `window.ROTATION` — the core dataset |
 | `live-data.js` (~4 KB) | `window.ROTATION_LIVE` — daily live snapshot |
 | `rotation-live.jsx` | `useLiveNow()` — now-playing from the snapshot (no client API calls, ever) |
 | `tweaks-panel.jsx` | design-tweaks drawer (accent hue, font, chart style, layout, density) |
@@ -153,8 +153,8 @@ pin in CSV-OVERRIDES.md — re-running photo/discogs enrichers can silently re-b
   DnB/electronic 190 cyan, prog 282 purple, Japanese 332 pink, digital-hardcore 308, hip-hop 46,
   punk 96, shoegaze 252, pop/indie 60), falling back to a name-hash hue. Consistent everywhere
   (bars, covers, radars).
-- **Colour system 2 — track mood dots** (album tracklists): hue = valence (blue dark → orange-red
-  upbeat), lightness = energy. Independent of artist hue.
+- ~~Colour system 2 — track mood dots~~ removed 2026-07-04 (hue-as-scale unreadable; Fuad:
+  "bloated"). Track mood now lives only in tooltips + the track page's quadrant.
 - **`GenCover`:** generative cover art from name+hue, auto-upgrading to Discogs thumb (`THUMBS`)
   or Spotify image (`SPOTIMG`) when available. Real album covers exist only where the archive had
   them (`spotify-albumart.json`); otherwise generative.
@@ -165,8 +165,10 @@ pin in CSV-OVERRIDES.md — re-running photo/discogs enrichers can silently re-b
 ## 6. Data model (compact formats — check before consuming)
 
 **`window.ROTATION`** (music-data.js) keys:
-`ARTISTS` (top 200 kept, full records: name/id/plays/hue/tags/country/members/bio/similar/…),
-`ALBUMS` (top 120), `TRACKS` (top 50), `GENRES`, `FAMILIES`, `SUBS` + `SUB_ARTISTS` + `EXPLORE`
+`ARTISTS` (kept = **top 400 by plays** (~100-play cutoff, raised from 200 on 2026-07-04:
+206→3.5 MB, 400→4.4 MB, 1000→6.5 MB — 400 chosen) + per-year top-10 union; full records:
+name/id/plays/hue/tags/country/members/bio/similar/…),
+`ALBUMS` (top 120 + 4/kept-artist ≈ 1,572), `TRACKS` (top 50), `GENRES`, `FAMILIES`, `SUBS` + `SUB_ARTISTS` + `EXPLORE`
 (~6,000-artist universe: `{id, name, plays, hue, s:[subIdx], co, ci, yp:{year:plays}(top 3k)}`),
 `CLOCK` + `CLOCK_BY_YEAR` + `ARTIST_CLOCK`, `YEARS` (per-year top artists/albums/tracks),
 `ERAS`, `TREND` (26 wk), `TOTALS` (incl. `exactHours`, `explicitPct`, `avgTrackSec`,
@@ -275,7 +277,8 @@ shares-members-with); top tracks (→ TrackView) + top albums (→ AlbumView); l
 Cover (real or generative), release year/type/label (Spotify archive), stats (plays, ~hours,
 library rank), **Album Audio DNA** radar (dashed = your average) + bars, **Where it sits**
 (mood MiniQuadrant + taste percentiles), **Your history** (year sparkline), tracklist ordered by
-real track numbers with per-track **mood dots** + ★ standout + play bars; sibling albums.
+real track numbers with ★ standout + play bars (per-track mood dots removed 2026-07-04 —
+energy/positivity live in the row tooltip); sibling albums.
 
 ### Track page
 Header (track no, duration, explicit), **Audio DNA** radar (6 axes + dashed library average) +

@@ -14,7 +14,7 @@ const TZ_OFFSET_HOURS = 10;
 // toward eras/years/discovery but not the clock, streaks, or top-day stats.
 const UNDATED_REMAP_START = Date.UTC(2006, 0, 1);
 
-const TOP_ARTISTS = 200;       // bumped from 60 — ミドリ (#124) + Yellow Machinegun (#166)
+const TOP_ARTISTS = 400;       // ~100-play cutoff (rank 400 = 99 plays) — full pages for everyone played ~100+ times
 const TOP_ALBUMS = 120;        // bumped from 60 — wider Charts coverage
 const TOP_TRACKS = 50;         // bumped from 24 — wider Charts coverage
 const ALBUMS_PER_ARTIST = 4;
