@@ -89,18 +89,23 @@
 | Spotify audio-features/recommendations API | ❌ deprecated Nov 2024 for new apps (archive dump replaces it) |
 | Generic third-party cover dumps | ❌ no join key to our library |
 
-### Candidates worth a spike (not yet committed to)
-- **Spotify "Download your data" export** — account data (~days): Liked Songs, playlists, follows;
-  **extended streaming history** (~weeks): complete play log with `ms_played`, platform, skips →
-  reconciles last.fm gaps, adds *skip behaviour* nobody else has. Request early; it's slow.
-- **Wikidata** (via MB links): hiatus/reunion dates, awards, band member genders at scale.
-- **ListenBrainz**: open scrobble mirror + their stats/similar-users API; also a hedge against
-  last.fm API mortality (import once, sync forever).
-- **Open-Meteo historical weather** (Sydney, keyless): plays × weather/temperature correlations —
-  gimmicky but genuinely novel insight material ("your DnB days are 3° hotter").
-- **MusicBrainz recording rels**: "cover of" → how much of the library is covers; work language
-  → singing-language over time (formalizes the Japanese-music thread).
-- **Genius API**: writers/producers per song (session-musician web beyond band members).
+### Candidates — triaged 2026-07-03 (Fuad's calls)
+- **Spotify "Download your data" export** — unchanged, waiting on Fuad's request.
+- **Wikidata — APPROVED for a planned pull** (batch SPARQL, NOT scraping: one query covers
+  100s of artists via the MB→Wikidata links we hold; whole library ≈ a dozen requests).
+  **Pull plan (next enrichment stage):** per artist QID (from MB relations): ① band **member
+  genders** (P527 members → P21 gender) → band-level vocal/gender approximation; ② **hiatus /
+  reunion** (P2032 work-period end + start again); ③ precise **origin city** (P740 formation
+  location) where MB beginArea is empty (daine's Melbourne case); ④ awards (P166, low priority).
+  Output: `wikidata-cache.json` keyed by artist name, enricher `enrich-wikidata.js`.
+- **MusicBrainz "cover of" + work language — APPROVED** ("fantastic addition"): now unblocked
+  by ISRC (stage 2) — recording-level lookups become exact. Plan with the Wikidata stage.
+- **iTunes Search — APPROVED as tier-3 cover fallback** (keyless, high-res art). Deezer —
+  dropped ("very niche").
+- **ListenBrainz** — interesting, unscheduled.
+- **Genius lyrics (local dump ~5M songs, local batch analysis) — BACKBURNER by choice**:
+  "super powerful for later stages." Not the API (no lyrics in it) — the dump.
+- **Open-Meteo** — backburner until residences.json exists.
 
 ---
 
@@ -154,9 +159,10 @@ Map URL state pending; views2 split opportunistic.
    - **origins/MB missing when last.fm has no mbid** (Ling Tosite Sigure 2,681 plays!, Haru
      Nemuri, Melt-Banana) — add MB *search* fallback;
    - bios cap historicaly 250 → weekly job now backfills to 3000.
-7. **Undated scrobbles (3,134, smeared 2006–2010)**: investigate options — real dates are gone
-   from last.fm (1970-stamped import); candidates: exclude from year-level lenses entirely,
-   label the synthetic era in UI, or try recovering rough dates from the original import context.
+7. **Undated scrobbles (3,134) — DECIDED 2026-07-03**: keep the current behaviour — smear them
+   across 2006 → the first dated scrobble (2010-04-11). No exclusion, no recovery attempt.
+   (Cards that must not be polluted by the synthetic era already filter on
+   `UNDATED_REMAP_START`; keep doing that for new year-sensitive insights.)
 
 ### M2 · Gigs & live module (the concert thread) — ~2–3 sessions
 *Spine:* **setlist.fm attended list** — Fuad decided (2026-07-03) to create a setlist.fm

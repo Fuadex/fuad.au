@@ -965,6 +965,37 @@ function AlbumView({ id, go }) {
   );
 }
 
+// PreviewBtn — plays the 30-second Spotify preview (hash from the lazy track-previews.js; the
+// cid query param is constant across the whole dump). One Audio element, toggled; cleaned on nav.
+const PREVIEW_CID = "65b708073fc0480ea92a077233ca87bd";
+function PreviewBtn({ id, hue }) {
+  const [playing, setPlaying] = React.useState(false);
+  const ref = React.useRef(null);
+  React.useEffect(() => () => { if (ref.current) { ref.current.pause(); ref.current = null; } }, [id]);
+  const hash = window.ROTATION_PREVIEWS && window.ROTATION_PREVIEWS[id];
+  if (!hash) return null;
+  const toggle = () => {
+    if (ref.current && !ref.current.paused) { ref.current.pause(); setPlaying(false); return; }
+    if (!ref.current) {
+      ref.current = new Audio(`https://p.scdn.co/mp3-preview/${hash}?cid=${PREVIEW_CID}`);
+      ref.current.addEventListener("ended", () => setPlaying(false));
+      ref.current.addEventListener("error", () => setPlaying(false));
+    }
+    ref.current.play().catch(() => setPlaying(false));
+    setPlaying(true);
+  };
+  return (
+    <button onClick={toggle} title="30-second preview (Spotify)"
+      style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "6px 14px", borderRadius: 999,
+        border: `1px solid ${playing ? `oklch(0.6 0.14 ${hue} / .8)` : "var(--rule-2)"}`,
+        background: playing ? `oklch(0.6 0.14 ${hue} / .16)` : "transparent",
+        color: playing ? `oklch(0.82 0.12 ${hue})` : "var(--ink-soft)", cursor: "pointer",
+        fontFamily: "var(--mono)", fontSize: 10, letterSpacing: ".12em", textTransform: "uppercase" }}>
+      {playing ? "❚❚ playing" : "▶ preview"}
+    </button>
+  );
+}
+
 // TrackView — one song's story: your play history joined with its Spotify audio DNA (energy, mood,
 // acousticness, tempo, danceability, instrumentalness, key/mode, loudness, liveness, time signature) +
 // stats (duration, popularity, explicit, track #, ranks). Identity is "artistSlug~trackSlug" (mirrors
@@ -976,6 +1007,7 @@ function TrackView({ id, go }) {
     let need = 0; const done = () => { if (--need <= 0) setReady(true); };
     const load = (src, glob) => { if (window[glob]) return; need++; const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
     load("media-index.js", "ROTATION_MEDIA"); load("track-audio.js", "ROTATION_TRACKAUDIO");
+    load("track-previews.js", "ROTATION_PREVIEWS");
     if (need === 0) setReady(true);
   }, []);
   const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
@@ -1050,7 +1082,8 @@ function TrackView({ id, go }) {
           <div style={{ color: "var(--ink-soft)", fontSize: 15, marginTop: 6 }}>
             by {known ? <b onClick={() => go("artist", artistId)} style={{ cursor: "pointer", color: "var(--ink)" }}>{data.artist}</b> : data.artist}
             {data.album && <> · <span onClick={() => go("album", data.albumId)} style={{ cursor: "pointer", color: "var(--ink-soft)" }}>{data.album}</span></>}</div>
-          <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap", alignItems: "center" }}>
+            <PreviewBtn id={id} hue={hue} />
             <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(data.artist)}/_/${encodeURIComponent(data.title)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(data.artist + " " + data.title)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
