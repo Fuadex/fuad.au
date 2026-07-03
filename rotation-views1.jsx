@@ -21,6 +21,44 @@ function Popover({ data }) {
 }
 
 // ════════════════════════ OVERVIEW ════════════════════════
+// Top-artists strip with an all-time ⇄ this-year toggle (this-year ranks kept artists by their
+// current-year plays from the per-year yp map).
+function TopArtistsPeek({ R, go }) {
+  const [span, setSpan] = React.useState("all");
+  const cy = new Date().getUTCFullYear();
+  const items = React.useMemo(() => {
+    if (span === "all") return R.ARTISTS.slice(0, 12).map(a => ({ ...a, n: a.plays }));
+    return R.ARTISTS.map(a => ({ ...a, n: (a.yp && a.yp[cy]) || 0 })).filter(a => a.n > 0)
+      .sort((x, y) => y.n - x.n).slice(0, 12);
+  }, [R, span]);
+  return (
+    <div className="r-card" style={{ gridColumn: "span 7", padding: 18 }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
+        <span className="lbl"><b>Top artists</b></span>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
+          <span className="r-seg">
+            <button data-on={span === "all"} onClick={() => setSpan("all")}>all time</button>
+            <button data-on={span === "year"} onClick={() => setSpan("year")}>'{String(cy).slice(2)}</button>
+          </span>
+          <span className="meta" style={{ cursor: "pointer" }} onClick={() => go("explore")}>explore ↗</span>
+        </span></div>
+      <div className="r-xscroll">
+        {items.map((a, i) => (
+          <div key={a.id} onClick={() => go("artist", a.id)} style={{ cursor: "pointer", flex: "none", width: 96 }}>
+            <div style={{ position: "relative" }}>
+              <GenCover hue={a.hue} name={a.name} size={96} />
+              <span className="r-mono" style={{ position: "absolute", top: 5, left: 6, fontSize: 9,
+                color: "rgba(255,255,255,.85)", textShadow: "0 1px 2px #000" }}>{String(i + 1).padStart(2, "0")}</span>
+            </div>
+            <div style={{ fontSize: 11.5, marginTop: 7, lineHeight: 1.25, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</div>
+            <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(a.n)} plays{span === "year" ? ` in '${String(cy).slice(2)}` : ""}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function OverviewView({ t, go }) {
   const R = window.ROTATION;
   const T = R.TOTALS;
@@ -163,25 +201,8 @@ function OverviewView({ t, go }) {
           </div>
         </div>
 
-        {/* top artists peek */}
-        <div className="r-card" style={{ gridColumn: "span 7", padding: 18 }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
-            <span className="lbl"><b>Top artists</b> · all time</span>
-            <span className="meta" style={{ cursor: "pointer" }} onClick={() => go("explore")}>explore ↗</span></div>
-          <div className="r-xscroll">
-            {R.ARTISTS.slice(0, 12).map((a, i) => (
-              <div key={a.id} onClick={() => go("artist", a.id)} style={{ cursor: "pointer", flex: "none", width: 96 }}>
-                <div style={{ position: "relative" }}>
-                  <GenCover hue={a.hue} name={a.name} size={96} />
-                  <span className="r-mono" style={{ position: "absolute", top: 5, left: 6, fontSize: 9,
-                    color: "rgba(255,255,255,.85)", textShadow: "0 1px 2px #000" }}>{String(i + 1).padStart(2, "0")}</span>
-                </div>
-                <div style={{ fontSize: 11.5, marginTop: 7, lineHeight: 1.25, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</div>
-                <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(a.plays)} plays</div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* top artists peek — all-time ⇄ this year */}
+        <TopArtistsPeek R={R} go={go} />
       </div>
 
       {/* hub — teasers into every deeper view */}

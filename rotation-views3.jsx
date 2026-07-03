@@ -46,6 +46,20 @@ function StoriesView({ t, go, seed }) {
     el.scrollIntoView({ behavior: "smooth", block: "start" });
     window.history.replaceState(null, "", "#stories/" + id.replace(/^st-/, ""));
   };
+  // freshness — stories whose underlying data changed recently get a pulse dot in the TOC
+  const fresh = React.useMemo(() => {
+    const now = Date.now(), d30 = 30 * 86400e3, d60 = 60 * 86400e3, cy = new Date().getUTCFullYear();
+    const recent = (iso, win) => iso && (now - new Date(iso).getTime()) < win;
+    const f = {};
+    if ((I.COMEBACKS || []).some(c => recent(c.back, d60))) f["st-comebacks"] = 1;
+    if (I.LIFESPAN && (I.LIFESPAN.whileListening || []).some(w => w.end >= cy)) f["st-the-ones-that-ended"] = 1;
+    if ((I.DISCOVERIES || []).some(x => recent(x.date, d30))) f["st-first-contact"] = 1;
+    if ((I.OBSESSIONS || []).some(o => recent(o.weekStart, d60))) f["st-obsessions"] = 1;
+    if ((I.ALBUM_OBSESSIONS || []).some(o => recent(o.weekStart, d60))) f["st-album-weeks"] = 1;
+    if ((I.WONDERS || []).some(w => recent(w.date, d60))) f["st-one-day-wonders"] = 1;
+    if (I.STREAK && I.STREAK.current >= 30) f["st-the-streak"] = 1;
+    return f;
+  }, []);
   // Alias-aware: "Midori" resolves through R.idForName → ミドリ's id when applicable.
   // Kept AND explore artists are clickable — non-kept ids get a MiniArtistView, so fully
   // enriched non-top-206 artists (Yoko Kanno) are reachable from every story.
@@ -89,7 +103,10 @@ function StoriesView({ t, go, seed }) {
       {toc.length > 3 && (
         <nav className="st-toc" aria-label="stories">
           {toc.map(it => (
-            <button key={it.id} data-on={active === it.id} onClick={() => jump(it.id)}>{it.label}</button>
+            <button key={it.id} data-on={active === it.id} onClick={() => jump(it.id)}
+              title={fresh[it.id] ? "changed recently" : undefined}>
+              {fresh[it.id] ? <i className="st-fresh" /> : null}{it.label}
+            </button>
           ))}
         </nav>
       )}
@@ -1216,6 +1233,8 @@ function StoriesView({ t, go, seed }) {
           transition: color .15s, border-color .15s; }
         .st-toc button:hover { color: var(--ink); border-color: var(--rule-2); }
         .st-toc button[data-on="true"] { color: var(--accent); border-color: var(--accent-dim); }
+        .st-fresh { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+          margin-right: 6px; vertical-align: 1px; }
         .st-chapter { display: flex; align-items: baseline; gap: 12px; margin: 26px 2px 2px;
           font-family: var(--serif); font-style: italic; font-size: 24px; color: var(--ink); }
         .st-chapter span { font-family: var(--mono); font-style: normal; font-size: 10px;
