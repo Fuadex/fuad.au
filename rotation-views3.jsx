@@ -228,6 +228,47 @@ function StoriesView({ t, go }) {
           );
         })()}
 
+        {/* lifespan — bands that ended while you were listening, graves you dug up, the elders */}
+        {I.LIFESPAN && I.LIFESPAN.whileListening.length > 0 && (() => {
+          const L = I.LIFESPAN;
+          const top = L.whileListening[0];
+          const verb = (w) => w.person ? "died" : "disbanded";
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">The ones that ended</div>
+              <div className="st-big" data-link={clickable(top.name)} onClick={() => goIf(top.name)}>
+                <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.name}</em> {verb(top)} in {top.end} —
+                you'd already played them <em>{fmt(top.before)}</em> times.
+              </div>
+              <div className="st-sub">
+                Of the {fmt(L.known)} artists here with a documented life-span, <b style={{ color: "var(--ink)" }}>{L.endedCount} have ended</b> ({Math.round(L.endedShare * 100)}%).
+                The median band you play lasted {L.medianLife} years{L.worstYear ? <>, and {L.worstYear} alone took {L.worstYearCount} of yours</> : null}.
+                These ended <i>while you were listening</i> — you were there for the last records:
+              </div>
+              <div className="st-ug-cuts">
+                {L.whileListening.map(w => (
+                  <div key={w.name} className="st-ug-cut" data-link={clickable(w.name)} onClick={() => goIf(w.name)}>
+                    <GenCover hue={w.hue} name={w.name} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{w.name}</div>
+                      <div className="st-row-sub">{verb(w)} {w.end} · {fmt(w.before)} plays while alive{w.after >= 20 ? ` · ${fmt(w.after)} since` : ""}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {L.graves.length > 0 && (
+                <div className="st-sub" style={{ marginTop: 18 }}>
+                  And the graves you dug up: {L.graves.map((g, i) => (
+                    <span key={g.name}>{i > 0 ? " · " : ""}<b className="st-inline-link" data-link={clickable(g.name)} onClick={() => goIf(g.name)}
+                      style={{ color: "var(--ink)", cursor: clickable(g.name) ? "pointer" : "default" }}>{g.name}</b> ({g.gap} yrs after the end)</span>
+                  ))}.
+                  {L.elders.length > 0 && <> Still standing after everything: <b style={{ color: "var(--ink)" }}>{L.elders[0].name}</b>, going since {L.elders[0].begin}.</>}
+                </div>
+              )}
+            </section>
+          );
+        })()}
+
         {/* year in review */}
         {yr && (
           <section className="st-card st-hero">
