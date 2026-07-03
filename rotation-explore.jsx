@@ -319,16 +319,44 @@ function ExploreView({ t, go, setPop, seed }) {
   }, [kind]);
 
   // deep-link: arriving via #explore/<tag> (e.g. from an artist-page genre chip) preselects that
-  // subgenre, or its family if the tag names a family rather than a leaf subgenre.
+  // subgenre, or its family if the tag names a family rather than a leaf subgenre. A seed with
+  // "=" is instead a full serialized filter slice (see the hash-writer effect below).
   React.useEffect(() => {
     if (!seed) return;
     const norm = (x) => (x || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    if (seed.includes("=")) {   // restore a shared/bookmarked slice (";"-separated; parseHash already url-decoded)
+      const p = {}; for (const kv of seed.split(";")) { const i = kv.indexOf("="); if (i > 0) p[kv.slice(0, i)] = kv.slice(i + 1); }
+      if (p.y && !isNaN(+p.y)) setYear(+p.y);
+      if (p.s) { const s = R.SUBS.find(x => norm(x.name) === norm(p.s)); if (s) { setFam(null); setSub(s.name); } }
+      else if (p.f) { const fm = R.FAMILIES.find(f => norm(f.family) === norm(p.f)); if (fm) { setSub(null); setFam(fm.i); } }
+      if (p.m && MOOD_ZONES.includes(p.m)) setMoodZone(p.m);
+      if (p.c) setCells(new Set(p.c.split(".").map(Number).filter(n => n >= 0 && n < 168)));
+      if (p.k === "albums" || p.k === "tracks") setKind(p.k);
+      return;
+    }
     const q = norm(seed);
     const s = R.SUBS.find(x => norm(x.name) === q);
     if (s) { setFam(null); setSub(s.name); return; }
     const fm = R.FAMILIES.find(f => norm(f.family) === q);
     if (fm) { setSub(null); setFam(fm.i); }
   }, [seed, R]);
+
+  // keep the active slice in the URL (replaceState — no history spam, no popstate loops) so any
+  // Explore state is bookmarkable/shareable and survives refresh.
+  const _mounted = React.useRef(false);
+  React.useEffect(() => {
+    if (!_mounted.current) { _mounted.current = true; if (seed) return; }   // don't clobber an incoming seed on first render
+    if (!(window.location.hash || "").startsWith("#explore")) return;      // only while Explore owns the URL
+    const parts = [];
+    if (year != null) parts.push("y=" + year);
+    if (sub) parts.push("s=" + encodeURIComponent(sub));
+    else if (fam != null) { const fm = R.FAMILIES.find(f => f.i === fam); if (fm) parts.push("f=" + encodeURIComponent(fm.family)); }
+    if (moodZone) parts.push("m=" + moodZone);
+    if (cells.size) parts.push("c=" + [...cells].sort((a, b) => a - b).join("."));
+    if (kind !== "artists") parts.push("k=" + kind);
+    const target = "#explore" + (parts.length ? "/" + parts.join(";") : "");
+    if ((window.location.hash || "") !== target) window.history.replaceState(null, "", target);
+  }, [kind, year, fam, sub, moodZone, cells, R]);
 
   const yearKeys = React.useMemo(() => Object.keys(R.CLOCK_BY_YEAR).map(Number).sort((a, b) => a - b), [R]);
   const subNames = React.useMemo(() => R.SUBS.map(s => s.name), [R]);
