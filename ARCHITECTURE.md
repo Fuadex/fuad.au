@@ -120,6 +120,7 @@ never committed** (last.fm + Spotify keys live in `Fuad-Soudah/Culture_2/.env`).
 | `enrich-images.js` | Discogs | `artist-images.json` | primary artist images |
 | `enrich-spotify.js` | Spotify API | `spotify-cache.json` | artist id/img/genres (post-2026 API gives little more) |
 | `enrich-spotify-archive.js` | **local catalogue dataset** (`archive.zip`, large local, local-only) | `spotify-albumart.json` (17,726 covers), `spotify-albummeta.json`, `spotify-artist-img.json`, `spotify-genres.json` | album covers, release year/type/label, artist imgs, genres |
+| `.sptmp/cover-audit.js` + `caa-probe.js` (local) | dump raw join + MusicBrainz/CAA | `spotify-albumart-extra.json`, `spotify-albummeta-extra.json` | conservative fuzzy + Cover-Art-Archive cover fills; merged additively (base wins), safe from `--rematch` |
 | `enrich-spotify-tracks.js` | local catalogue dataset | `spotify-track-data.json` | per-track audio features (36.9k tracks; §6) |
 | `extract-audio.js` | (aggregates track data) | `audio-features.json` | artist-level Sound DNA |
 | `enrich-concerts.js` | Ticketmaster Discovery | `concerts-cache.json` | upcoming events, top-200 artists — **cache currently absent → Live tab hidden** |
@@ -171,7 +172,8 @@ pin in CSV-OVERRIDES.md — re-running photo/discogs enrichers can silently re-b
 **`INSIGHTS`** sub-keys: `MILESTONES`, `OBSESSIONS`, `ALBUM_OBSESSIONS`, `FLAMEOUTS`,
 `LIFETIME_TRACKS`, `ARTIST_ERAS`, `INCUBATION`, `COMEBACKS`, `WONDERS`, `NIGHT_OWLS`,
 `DISCOVERIES`, `YEAR_PEAKS`, `ON_THIS_DAY`, `UNDERGROUND`, `GEOGRAPHY`, `STYLE_ATLAS`,
-`ADOPTION`, `CONNECTIONS`, `RECOMMENDATIONS`, `REVISIT`.
+`ADOPTION`, `CONNECTIONS`, `RECOMMENDATIONS`, `REVISIT`, `LIFESPAN` (MB life-spans × your
+timeline: ended-while-listening, graves, elders, median band life, worst year).
 
 **Artist audio row** — `R.AUDIO[artistId]` =
 `[energy, valence, acoustic, tempo, dance, instr (0–1), major, popularity 0–100, followers, loudness dB, speechiness, liveness, avgTrackSec]`.
@@ -226,9 +228,10 @@ On this day · How deep it goes (underground index + deepest cuts) · How old th
 (adoption lag by decade + deepest digs) · Connected by blood (shared-member web) · Blind spots
 (taste-gap recommendations) · Gathering dust (revisit/decay) · **A year in review** (scrubbable
 per-year deep dive) · Top of each scene (Discogs styles) · Bridge artists · Style atlas
-(styles only this library keeps alive) · Gateways (first artist per country) · How the sound
-drifted (yearly DNA drift) · When the taste turned (underground share of discoveries) · How the
-map moved · Where the taste comes from · The streak · Milestones · Obsessions · Flameouts ·
+(styles only this library keeps alive) · Gateways (first artist per country) · **The ones that
+ended** (disbanded/died while you listened, graves dug up, elders — INSIGHTS.LIFESPAN) · How the
+sound drifted (yearly DNA drift) · When the taste turned (underground share of discoveries) ·
+How the map moved · Where the taste comes from · The streak · Milestones · Obsessions · Flameouts ·
 The constants · Their era · The incubation · Album weeks · Comebacks · One-day wonders ·
 After midnight · First contact · Heaviest day of every year.
 

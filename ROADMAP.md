@@ -110,20 +110,32 @@ Production React · error boundary · dead-code purge · smoke.js gate · CI-bui
 Left open, deliberately: Babel stays in-browser (Fuad's call); runtime files still on unpkg;
 Map URL state pending; views2 split opportunistic.
 
-### M1 · Use what we already have (zero new-source integrations) — ~1–2 sessions — **NEXT UP**
-1. **Fill the cover-art gap** (approved as *fallback + audit run*, 2026-07-03): the Spotify
-   archive supplies 17,726 covers; ~half the album library renders generative. Store
-   release-group ids from `enrich-mb.js` data, build **`pins.json`** first (ambiguity guard —
-   no Bleach repeats), batch-probe **Cover Art Archive** for the misses only, then produce a
-   **hit-rate report vs what we have** before wiring into media-index `[6]`.
+### M1 · Use what we already have — IN PROGRESS (audit run 2026-07-03)
+1. **Cover-art gap — audited.** Numbers: 33.7k albums, 53% covered raw but **84.5%
+   play-weighted** (misses are the 1–2-play tail). Fuzzy tiers (id-anchored, conservative)
+   added +183. Residue: **13.8k albums whose artists lack a pinned Spotify id** (→ archive
+   pass 2 below) and **1.8k title-mismatches** → CAA probe (per-artist MB release-group browse
+   + front-250 HEAD) ran with ~90% hit rate on matched titles. Fills live in
+   `spotify-album*(art|meta)-extra.json` (additive; base wins). **`pins.json` still to build**
+   before any name-keyed enrichment (Brutus-1966 elder = live example of ambiguity).
 2. **Official URLs** on artist pages (Bandcamp/site/Wikipedia from discogs-artist.json —
    2,937 stored, unused).
-3. **Deepen band status** (glyphs + disbanded badges already shipped 06-30): backfill origins
-   coverage (4,764 → full explore universe), and *exploit* `ended` — a "bands that ended while
-   you were listening" story, disbanded-share stat, feeds M2's "caught them in time".
+3. ~~Exploit `ended`~~ → ✅ **INSIGHTS.LIFESPAN + "The ones that ended" Stories card shipped**
+   (2026-07-03): ended-while-listening with plays before/after, graves dug up, elders, median
+   band life, worst year. Still open: origins backfill 4,764 → full universe; feed M2's
+   "caught them in time"; an insight-engine provider.
 4. Discogs bios as fallback where last.fm bio is empty.
    *(last.fm loved tracks: dropped — Fuad's loved data is uncurated/unreliable; the real
    "liked" signal arrives with Spotify in M3.)*
+5. **NEW — Archive pass 2** (one big local extraction session, batches everything untapped):
+   - **name+title-corroborated artist matching** for the 13.8k cover-less albums whose artists
+     have no Spotify id (accept a name match only when ≥2 album titles agree, or 1 + unique name)
+   - **tracks.parquet extras**: ISRC (→ exact MusicBrainz recording joins — kills name-matching
+     fuzz), `preview_url` (30-sec hover-preview audio on the site), disc numbers
+   - **albums.parquet**: `total_tracks` → per-album completeness ("played 7 of 12")
+   - **track_artists.parquet**: real collaboration graph (feat. credits between your artists)
+   - **playlists sample**: per-track public-playlist counts + co-occurrence (crowd-context)
+   - `spotify_artist_redirects.json` → feed pins.json
 
 ### M2 · Gigs & live module (the concert thread) — ~2–3 sessions
 *Spine:* **setlist.fm attended list** — Fuad decided (2026-07-03) to create a setlist.fm
