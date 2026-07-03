@@ -324,6 +324,11 @@ remains dormant until a concerts cache exists (ROADMAP M2).
    CSV-OVERRIDES.md (cache pins, fragile).
 8. `archive.zip` (large local) and `spotify-audio-features.parquet` (a large) are local-only;
    never commit, never re-download casually.
+9. **Mobile/visual verification tooling** (local): headless Edge screenshots
+   (`msedge --headless --screenshot --window-size=390,H <url>` — beware: this mode reserves
+   scrollbar width and produces phantom right-edge clipping) and, authoritative,
+   `.sptmp/overflow-audit.js` (puppeteer-core in `../.dtmp`, real viewport emulation — lists
+   every element extending past 390px). Screenshot + audit BEFORE and AFTER design changes.
 
 ## 11. External accounts / identities
 
