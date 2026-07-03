@@ -35,15 +35,15 @@ with `pushState` + `popstate`/`hashchange` sync. Components communicate via `win
 **Tier 0 — eager (in `index.html`, blocking first paint):**
 | File | Role |
 |---|---|
-| `react(-dom).development.js`, `babel.min.js` | runtime (⚠ dev builds — see ROADMAP A1) |
+| `react(-dom).production.min.js`, `babel.min.js` | runtime (production React since 2026-07-03; JSX still compiles in-browser by design) |
 | `music-data.js` (~3.7 MB) | `window.ROTATION` — the core dataset |
 | `live-data.js` (~4 KB) | `window.ROTATION_LIVE` — daily live snapshot |
 | `rotation-live.jsx` | `useLiveNow()` — now-playing from the snapshot (no client API calls, ever) |
 | `tweaks-panel.jsx` | design-tweaks drawer (accent hue, font, chart style, layout, density) |
 | `rotation-core.jsx` | CSS + shared primitives: `GenCover`, `Spark`, `Bars`, `Radar`, hooks, `fmt` |
 | `rotation-insights.jsx` | insight-engine (PROVIDERS array) + `InsightRow` |
-| `rotation-views1.jsx` | `OverviewView`, `Popover` (+ dead: `ChartsView`, `ClockView`) |
-| `rotation-views2.jsx` | `ArtistView`, `AlbumView`, `TrackView`, `LiveView`, shared audio widgets (+ dead: `SoundMapView`, `ErasView`) |
+| `rotation-views1.jsx` | `OverviewView`, `Popover`, `WallGrid`/`BubbleField` |
+| `rotation-views2.jsx` | `ArtistView`, `AlbumView`, `TrackView`, `LiveView`, shared audio widgets |
 | `rotation-worldmap.jsx` | `MapView` + `MapFlow` |
 | `rotation-views3.jsx` | `StoriesView`, `SearchOverlay` |
 | `rotation-explore.jsx` | `ExploreView` + filter machinery |
@@ -64,8 +64,13 @@ with `pushState` + `popstate`/`hashchange` sync. Components communicate via `win
 | `calendar.js` | `ROTATION_CAL` | ~128 KB | Calendar view |
 | `calendar-detail.js` | `ROTATION_CAL_DETAIL` | ~2.1 MB | first day/week/month click |
 
-`_config.yml` excludes build inputs (CSV, `*.json` caches, enrich/sync scripts, `*.md`) from the
-published Pages artifact — keeps deploys ~6 MB and avoids the 10-min deploy timeout we hit once.
+Every routed view is wrapped in a `<Boundary>` (rotation-core) — a crash inside one page renders
+a fallback card instead of blanking the site.
+
+**Deploys are CI-built (since 2026-07-03):** Pages source = "GitHub Actions". The workflow builds
+the dataset and uploads an explicit `_site/` staging list — generated data files are **not in
+git** (`.gitignore`d; only `fuadex.csv`, caches, code, and the static `world-map.js` are
+committed). `_config.yml` is a leftover from the Jekyll era, kept only as a rollback path.
 
 ## 3. Data pipeline
 
@@ -84,11 +89,12 @@ last.fm API ──sync-csv.js──▶ fuadex.csv (20 MB, one row per scrobble, 
 last.fm API ──sync-live.js──▶ live-data.js (now playing, week/month windows, mood-lately, 72h clock)
 ```
 
-- **Daily automation:** `.github/workflows/sync.yml` (cron 06:17 UTC): `sync-csv` → `build-data`
-  → `sync-live` → commit-if-changed. Secrets: `LASTFM_API_KEY` (repo secret).
-- **Pages deploy:** every push to `main` triggers the "pages build and deployment" workflow
-  (Jekyll pass-through + CDN). Deploy status is authoritative via check-runs API, not the legacy
-  `/pages/builds` endpoint.
+- **Daily automation:** `.github/workflows/sync.yml` (cron 06:17 UTC + every push to main):
+  `sync-csv` → `build-data` → `sync-live` → **`smoke.js` gate** → commit *only the CSV delta* →
+  stage `_site/` → `upload-pages-artifact` → `deploy-pages`. Secrets: `LASTFM_API_KEY`.
+- **Weekly enrichment:** `.github/workflows/enrich.yml` (Mondays 07:40 UTC) incrementally
+  refreshes last.fm tags/stats/bios + MusicBrainz origins/aliases for artists new to the
+  library, committing the caches. Archive-based and Discogs enrichment stay local.
 - **`sync-csv.js` `fixRow()`** applies durable manual corrections on every pull (see
   CSV-OVERRIDES.md): `<Unknown>`-artist recovery, Linkin Park "Mój Album" remap, bracket-tag /
   disc-number album merging.
@@ -159,10 +165,8 @@ pin in CSV-OVERRIDES.md — re-running photo/discogs enrichers can silently re-b
 `CLOCK` + `CLOCK_BY_YEAR` + `ARTIST_CLOCK`, `YEARS` (per-year top artists/albums/tracks),
 `ERAS`, `TREND` (26 wk), `TOTALS` (incl. `exactHours`, `explicitPct`, `avgTrackSec`,
 `discoveryRate`, `perDay`, `streak`, `topDay`), `NOW`/`RECENT`, `INSIGHTS` (see below),
-`CONCERTS`/`CITIES` (empty unless concerts cache exists), `GENRE_FLOW`/`SUB_FLOW`,
-`CONSTELLATION` (⚠ currently unconsumed), `CLOCK_CUBE`, `SOUND_BY_YEAR` (⚠ consumers are dead
-views), `THUMBS`, `SPOTIMG`, `AUDIO`, `AUDIO_DIST`, plus runtime helpers `slug`, `byId`,
-`expById`, `idForName`, `played`.
+`CONCERTS`/`CITIES` (empty unless concerts cache exists), `GENRE_FLOW`, `THUMBS`, `SPOTIMG`,
+`AUDIO`, `AUDIO_DIST`, plus runtime helpers `slug`, `byId`, `expById`, `idForName`, `played`.
 
 **`INSIGHTS`** sub-keys: `MILESTONES`, `OBSESSIONS`, `ALBUM_OBSESSIONS`, `FLAMEOUTS`,
 `LIFETIME_TRACKS`, `ARTIST_ERAS`, `INCUBATION`, `COMEBACKS`, `WONDERS`, `NIGHT_OWLS`,
@@ -191,8 +195,11 @@ views), `THUMBS`, `SPOTIMG`, `AUDIO`, `AUDIO_DIST`, plus runtime helpers `slug`,
 
 Nav: **Overview · Stories · Explore · Calendar · Map · (Live)** — Live auto-hides when
 `R.CITIES` is empty (it currently is). Detail routes: `#artist/id`, `#album/id`, `#track/id`,
-`#explore/tag` (seeds a genre filter). Legacy routes (charts/clock/sound/eras/mood → explore,
-journey → map) still resolve. Global: `/` opens search; popover layer; tweaks drawer.
+`#explore/tag` (seeds a genre filter). **Explore also serializes its full active slice into the
+hash** (`#explore/y=2019;s=Industrial;m=dark-intense;c=1.5.9;k=albums`) — bookmarkable and
+refresh-proof; `;`-separated because parseHash url-decodes once. Legacy routes
+(charts/clock/sound/eras/mood → explore, journey → map) still resolve. Global: `/` opens search;
+popover layer; tweaks drawer.
 
 ## 8. Feature inventory (what is SHIPPED today)
 
@@ -279,18 +286,16 @@ enricher works; needs a refresh run + ideally automation. See ROADMAP M3).
 Overlay over search-index (artists: name/plays/span/peak-year) + media-index (songs + albums)
 → artist / album / track pages.
 
-## 9. Dead code & dormant surfaces (verified 2026-07-03)
+## 9. Dead code & dormant surfaces
 
-- `ChartsView`, `ClockView` (views1), `SoundMapView`, `ErasView` (views2): defined + window-
-  exported but unroutable (legacy routes fold into Explore). Their functionality was absorbed
-  into Explore. Candidates for deletion.
-- `rotation-constellation.jsx`: **not loaded in index.html at all**; its data (`CONSTELLATION`,
-  in music-data.js) ships eagerly but is never consumed → dead payload.
-- `CLOCK_CUBE`, `SOUND_BY_YEAR`, `SUB_FLOW`: no references from any *loaded* view (only from the
-  dead views above). Verify then drop from the DATA export to slim music-data.js.
-- `design-canvas.jsx`, `variant-*.jsx`, `Shader Wallpapers.html`, `.design-canvas.state.json`:
-  design-tool artifacts, not part of the app.
-- `run-spotify-daily.ps1` + `spotify-sync.log`: an older local Spotify sync loop (pre-archive).
+**Purged 2026-07-03** (commit `06f9f1e`): `ChartsView`/`ClockView`/`SoundMapView`/`ErasView`
+(absorbed into Explore long ago), `rotation-constellation.jsx`, and the unconsumed data keys
+`CONSTELLATION`/`CLOCK_CUBE`/`SOUND_BY_YEAR`/`SUB_FLOW` (music-data.js 3.74 → 3.52 MB).
+
+Still around, intentionally: `design-canvas.jsx`, `variant-*.jsx`, `Shader Wallpapers.html`
+(design-tool artifacts, not deployed — the CI staging list skips them); `run-spotify-daily.ps1`
+(pre-archive local Spotify loop); `_config.yml` (Jekyll-era, rollback path only). The Live tab
+remains dormant until a concerts cache exists (ROADMAP M2).
 
 ## 10. Conventions & constraints (do not violate)
 
