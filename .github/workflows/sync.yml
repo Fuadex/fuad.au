@@ -85,7 +85,13 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # Pages intermittently rejects deployments ("Deployment failed, try again later")
+      # even with a clean HEAD — one automatic retry absorbs the flake.
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - id: retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
 
   # commit the CSV delta only after the deployment is settled (see note in build step 5);
