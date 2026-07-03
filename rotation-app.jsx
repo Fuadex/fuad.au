@@ -124,8 +124,12 @@ function RotationApp() {
             </svg>
             <span>Search</span>
           </button>
-          <div className="r-live" onClick={() => go("artist", live.artistId)} style={{ cursor: "pointer" }}>
-            <span className="dot" /> <b>{live.artist}</b> — {live.track}
+          <div className="r-live">
+            <span className="dot" />{" "}
+            <b onClick={() => go("artist", live.artistId)} style={{ cursor: "pointer" }}>{live.artist}</b>
+            {" — "}
+            <span onClick={() => go("track", (window.ROTATION ? window.ROTATION.slug(live.artist) + "~" + window.ROTATION.slug(live.track) : ""))}
+              style={{ cursor: "pointer" }} title="open this song's page">{live.track}</span>
             {live.nowplaying && <span className="r-np-tag">live</span>}
           </div>
         </div>

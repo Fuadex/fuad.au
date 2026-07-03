@@ -560,7 +560,7 @@ const YEARS = years.filter(y => _yTracks.has(y)).map(year => {
     year,
     plays: yearTotals.get(year),
     artists: _yArtistsSet.get(year).size,
-    tracks: _yTracks.get(year).size,
+    distinctTracks: _yTracks.get(year).size,   // NB: `tracks` below is the per-year ranking ARRAY (they used to collide → "[object Object]" in YiR)
     hours: Math.round(yearTotals.get(year) * 3.5 / 60),
     activeDays,
     peakDay: peakDate ? { date: peakDate, plays: peakPlays } : null,

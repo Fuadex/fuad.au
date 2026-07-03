@@ -296,7 +296,7 @@ function StoriesView({ t, go }) {
             <div className="st-yir-stats">
               <div><div className="st-yir-n">{fmt(yr.plays)}</div><div className="st-yir-l">plays</div></div>
               <div><div className="st-yir-n">{fmt(yr.artists)}</div><div className="st-yir-l">artists</div></div>
-              <div><div className="st-yir-n">{fmt(yr.tracks)}</div><div className="st-yir-l">tracks</div></div>
+              <div><div className="st-yir-n">{fmt(yr.distinctTracks || 0)}</div><div className="st-yir-l">tracks</div></div>
               {yr.peakDay && <div><div className="st-yir-n">{yr.peakDay.plays}</div><div className="st-yir-l">peak · {fmtDate(yr.peakDay.date)}</div></div>}
             </div>
 

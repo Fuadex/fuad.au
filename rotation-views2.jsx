@@ -6,7 +6,7 @@ const DNA_AXES = ["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"];
 
 // Per-artist album/song streamgraph (reuses the Journey StreamGraph). Flow data lives in a
 // separate artist-flow.js, lazy-loaded on the first artist-page visit so first paint stays lean.
-function ArtistFlow({ id, hue }) {
+function ArtistFlow({ id, hue, go }) {
   const get = () => (window.ROTATION_FLOW && window.ROTATION_FLOW.byId[id]) || (window.ROTATION_FLOW ? false : null);
   const [flow, setFlow] = React.useState(get);
   const [mode, setMode] = React.useState("albums");  // albums | songs
@@ -30,7 +30,10 @@ function ArtistFlow({ id, hue }) {
   else { items = flow.albums; years = flow.years; }
   const series = items.map((it, i) => ({ key: it.name + i, name: it.name, hue: (hue + (i - (items.length - 1) / 2) * 15 + 360) % 360, vals: it.vals, mute: !!it.other }));
   const canDrill = mode === "albums" && drill == null;
-  const onPick = canDrill ? ((s, i) => { if (!s.mute && (flow.albums[i].tracks || []).length) { setDrill(i); setHi(-1); } }) : null;
+  // albums drill into their songs; songs (top-songs mode OR inside a drilled album) open the track page
+  const onPick = canDrill
+    ? ((s, i) => { if (!s.mute && (flow.albums[i].tracks || []).length) { setDrill(i); setHi(-1); } })
+    : (go ? ((s) => { if (!s.mute) go("track", id + "~" + window.ROTATION.slug(s.name)); }) : null);
 
   return (
     <div className="r-card" style={{ padding: 18 }}>
@@ -64,7 +67,7 @@ function ArtistFlow({ id, hue }) {
       )}
       <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 10 }}>
         {canDrill ? "thickness = plays that year · click an album to break it into its songs"
-          : drillAlbum ? "the songs on this record, over time" : "your top songs across the years"}
+          : drillAlbum ? "the songs on this record, over time — click one for its page" : "your top songs across the years — click one for its page"}
       </div>
     </div>
   );
@@ -74,8 +77,9 @@ function ArtistFlow({ id, hue }) {
 // build). Shows what the EXPLORE record carries: plays, subgenres, listeners, debut, year shape.
 // MiniArtistDetail — top tracks/albums for a long-tail artist, lazy-loaded from artist-detail.js
 // (interned, fetched once on first mini-page visit so the main payload stays lean).
-function MiniArtistDetail({ id, go }) {
+function MiniArtistDetail({ id, name, go }) {
   const [d, setD] = React.useState(window.ROTATION_ADETAIL || null);
+  const [simTab, setSimTab] = React.useState("lastfm");
   React.useEffect(() => {
     if (window.ROTATION_ADETAIL) { setD(window.ROTATION_ADETAIL); return; }
     let s = document.getElementById("rotation-adetail-js");
@@ -87,11 +91,14 @@ function MiniArtistDetail({ id, go }) {
   if (!d) return <div className="r-card" style={{ padding: "16px 20px", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>loading the rest…</div>;
   const R = window.ROTATION, rec = d.d[id], NM = d.names;
   if (!rec) return null;
-  const Col = ({ title, rows }) => (rows && rows.length) ? (
+  const artistName = name || (R.expById && R.expById[id] && R.expById[id].name) || "";
+  // rows link to the real track/album pages — same routes the kept-artist page uses
+  const Col = ({ title, rows, kind }) => (rows && rows.length) ? (
     <div className="r-card" style={{ padding: 18 }}>
       <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}><span className="lbl"><b>{title}</b></span></div>
       {rows.map(([ti, p], i) => (
-        <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "5px 2px", borderBottom: "1px solid var(--rule)" }}>
+        <div key={i} className="r-track-row" onClick={() => go(kind, R.slug(artistName) + "~" + R.slug(NM[ti]))}
+          style={{ display: "flex", alignItems: "center", gap: 10, padding: "5px 2px", borderBottom: "1px solid var(--rule)", cursor: "pointer" }}>
           <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 18 }}>{String(i + 1).padStart(2, "0")}</span>
           <span style={{ flex: 1, minWidth: 0, fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{NM[ti]}</span>
           <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>{fmt(p)}</span>
@@ -101,11 +108,18 @@ function MiniArtistDetail({ id, go }) {
     <div style={{ display: "grid", gap: "var(--gap)" }}>
       {rec.bio && <div className="r-card" style={{ padding: "16px 20px", fontSize: 13.5, lineHeight: 1.6, color: "var(--ink-soft)" }}>{rec.bio}</div>}
       {(rec.t || rec.al) && <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--gap)" }}>
-        <Col title="Top tracks" rows={rec.t} />
-        <Col title="Top albums" rows={rec.al} />
+        <Col title="Top tracks" rows={rec.t} kind="track" />
+        <Col title="Top albums" rows={rec.al} kind="album" />
       </div>}
-      {rec.sim && rec.sim.length > 0 && <div className="r-card" style={{ padding: 18 }}>
-        <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}><span className="lbl"><b>Sounds like</b></span><span className="meta">last.fm</span></div>
+      {((rec.sim && rec.sim.length > 0) || (R.AUDIO && R.AUDIO[id])) && <div className="r-card" style={{ padding: 18 }}>
+        <div className="r-card-h" style={{ padding: 0, marginBottom: 14, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span className="lbl"><b>Sounds like</b></span>
+          <div className="r-seg">
+            {rec.sim && rec.sim.length > 0 && <button data-on={simTab === "lastfm"} onClick={() => setSimTab("lastfm")}>last.fm</button>}
+            {R.AUDIO && R.AUDIO[id] && <button data-on={simTab === "sound"} onClick={() => setSimTab("sound")}>by sound</button>}
+          </div>
+        </div>
+        {(simTab === "sound" || !(rec.sim && rec.sim.length)) && R.AUDIO && R.AUDIO[id] ? <SoundSimilar id={id} go={go} /> : (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(110px,1fr))", gap: 12 }}>
           {rec.sim.map((name, i) => { const rid = (R.idForName && R.idForName(name)) || R.slug(name); const s = R.byId[rid] || (R.expById && R.expById[rid]); const played = !!s || (R.played && R.played(name)); return (
             <div key={name + i} onClick={() => s && go("artist", rid)} style={{ cursor: s ? "pointer" : "default", opacity: played ? 1 : 0.62 }}>
@@ -113,7 +127,7 @@ function MiniArtistDetail({ id, go }) {
               <div style={{ fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{name}</div>
               {s ? <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays →</div> : played ? <div className="r-mono" style={{ fontSize: 9, color: "var(--accent-dim)" }}>scrobbled</div> : <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>not yet</div>}
             </div>); })}
-        </div>
+        </div>)}
       </div>}
       {rec.mem && rec.mem.length > 0 && <div className="r-card" style={{ padding: 18 }}>
         <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Members</b></span><span className="meta">musicbrainz · discogs</span></div>
@@ -196,14 +210,8 @@ function MiniArtistView({ a, go }) {
           </div>
         </div>
       )}
-      {R.AUDIO && R.AUDIO[a.id] && (
-        <div className="r-card" style={{ padding: 18, marginBottom: "var(--gap)" }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}><span className="lbl"><b>Sounds like</b></span><span className="meta">by sound</span></div>
-          <SoundSimilar id={a.id} go={go} />
-        </div>
-      )}
-      <div style={{ marginBottom: "var(--gap)" }}><ArtistFlow id={a.id} hue={a.hue} /></div>
-      <MiniArtistDetail id={a.id} hue={a.hue} go={go} />
+      <div style={{ marginBottom: "var(--gap)" }}><ArtistFlow id={a.id} hue={a.hue} go={go} /></div>
+      <MiniArtistDetail id={a.id} name={a.name} hue={a.hue} go={go} />
     </div>
   );
 }
@@ -512,7 +520,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
 
         <div style={{ display: "grid", gap: "var(--gap)" }}>
           {/* how they played out — album/song streamgraph (lazy-loaded), right after the Sound DNA */}
-          <ArtistFlow id={a.id} hue={a.hue} />
+          <ArtistFlow id={a.id} hue={a.hue} go={go} />
 
           {/* sounds like — last.fm + by-sound; both link to kept OR explorable (mini) pages */}
           <div className="r-card" style={{ padding: 18 }}>
@@ -966,18 +974,38 @@ function AlbumView({ id, go }) {
 }
 
 // PreviewBtn — plays the 30-second Spotify preview (hash from the lazy track-previews.js; the
-// cid query param is constant across the whole dump). One Audio element, toggled; cleaned on nav.
+// cid query param is constant across the whole dump). When the dump has no preview (e.g. much
+// of NIN's catalog), falls back to the keyless iTunes Search API — accepted only when BOTH the
+// artist and title match after normalisation, so it can't play the wrong song. One Audio
+// element, toggled; cleaned on nav.
 const PREVIEW_CID = "65b708073fc0480ea92a077233ca87bd";
-function PreviewBtn({ id, hue }) {
+const _itCache = new Map();   // id → url | null (session-level, avoids repeat lookups)
+function PreviewBtn({ id, hue, artist, title }) {
   const [playing, setPlaying] = React.useState(false);
+  const [itUrl, setItUrl] = React.useState(() => _itCache.has(id) ? _itCache.get(id) : undefined);
   const ref = React.useRef(null);
   React.useEffect(() => () => { if (ref.current) { ref.current.pause(); ref.current = null; } }, [id]);
   const hash = window.ROTATION_PREVIEWS && window.ROTATION_PREVIEWS[id];
-  if (!hash) return null;
+  React.useEffect(() => {
+    if (hash || !artist || !title || _itCache.has(id)) return;
+    const nrm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\(.*?\)|\[.*?\]/g, "").replace(/[^a-z0-9ぁ-んァ-ヶ一-龠]/gu, "");
+    fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artist + " " + title)}&media=music&entity=song&limit=5`)
+      .then(r => r.json())
+      .then(j => {
+        const tN = nrm(title), aN = nrm(artist);
+        const hit = (j.results || []).find(r => r.previewUrl && nrm(r.trackName) === tN &&
+          (nrm(r.artistName).includes(aN) || aN.includes(nrm(r.artistName))));
+        const url = hit ? hit.previewUrl : null;
+        _itCache.set(id, url); setItUrl(url);
+      })
+      .catch(() => { _itCache.set(id, null); setItUrl(null); });
+  }, [id, hash]);
+  const src = hash ? `https://p.scdn.co/mp3-preview/${hash}?cid=${PREVIEW_CID}` : itUrl;
+  if (!src) return null;
   const toggle = () => {
     if (ref.current && !ref.current.paused) { ref.current.pause(); setPlaying(false); return; }
     if (!ref.current) {
-      ref.current = new Audio(`https://p.scdn.co/mp3-preview/${hash}?cid=${PREVIEW_CID}`);
+      ref.current = new Audio(src);
       ref.current.addEventListener("ended", () => setPlaying(false));
       ref.current.addEventListener("error", () => setPlaying(false));
     }
@@ -1083,7 +1111,7 @@ function TrackView({ id, go }) {
             by {known ? <b onClick={() => go("artist", artistId)} style={{ cursor: "pointer", color: "var(--ink)" }}>{data.artist}</b> : data.artist}
             {data.album && <> · <span onClick={() => go("album", data.albumId)} style={{ cursor: "pointer", color: "var(--ink-soft)" }}>{data.album}</span></>}</div>
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap", alignItems: "center" }}>
-            <PreviewBtn id={id} hue={hue} />
+            <PreviewBtn id={id} hue={hue} artist={data.artist} title={data.title} />
             <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(data.artist)}/_/${encodeURIComponent(data.title)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(data.artist + " " + data.title)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
