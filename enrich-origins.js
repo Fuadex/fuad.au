@@ -26,6 +26,20 @@ function getJSON(url) {
 }
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
+// mbid fallback for artists last.fm has no mbid for (Ling Tosite Sigure class): MB name search,
+// accepted ONLY on a score-100 hit whose name or alias matches exactly (case-insensitive) —
+// ambiguity is rejected outright (no Bleach repeats).
+async function searchMbid(name) {
+  const q = `https://musicbrainz.org/ws/2/artist/?query=artist:${encodeURIComponent(JSON.stringify(name))}&fmt=json&limit=3`;
+  const { json } = await getJSON(q);
+  const arts = (json && json.artists) || [];
+  const hit = arts.filter(a => a.score === 100);
+  if (hit.length !== 1) return null;
+  const a = hit[0], lo = name.toLowerCase();
+  const names = [a.name, a["sort-name"], ...((a.aliases || []).map(x => x.name))].filter(Boolean).map(s => s.toLowerCase());
+  return names.includes(lo) ? a.id : null;
+}
+
 async function fetchOrigin(mbid) {
   const u = `https://musicbrainz.org/ws/2/artist/${encodeURIComponent(mbid)}?fmt=json`;
   const { json } = await getJSON(u);
@@ -56,13 +70,25 @@ async function fetchOrigin(mbid) {
   const ranked = rows.slice(0, TOP_N).map(r => r[0]);
 
   const cache = fs.existsSync(CACHE_PATH) ? JSON.parse(fs.readFileSync(CACHE_PATH, "utf8")) : {};
-  // fetch new artists AND backfill cached entries missing the newer fields (gender/life-span)
+  // fetch new artists AND backfill cached entries missing the newer fields (gender/life-span).
+  // Artists without a last.fm mbid go through the exact-match MB name search (2 requests each).
   const todo = ranked.filter(name => (!(name in cache) || !("gender" in cache[name])) && stats[name] && stats[name].mbid);
-  const noMbid = ranked.filter(name => !stats[name] || !stats[name].mbid).length;
-  console.log(`${ranked.length} target artists · ${todo.length} to fetch · ${Object.keys(cache).length} cached · ${noMbid} no-mbid skipped`);
+  const noMbid = ranked.filter(name => (!(name in cache) || cache[name].error) && (!stats[name] || !stats[name].mbid));
+  console.log(`${ranked.length} target artists · ${todo.length} to fetch · ${Object.keys(cache).length} cached · ${noMbid.length} no-mbid → search fallback`);
 
   let done = 0, failed = 0;
   const today = new Date().toISOString().slice(0, 10);
+  for (const name of noMbid) {
+    const mbid = await searchMbid(name);
+    await sleep(DELAY_MS);
+    if (!mbid) { done++; continue; }
+    try { cache[name] = { ...await fetchOrigin(mbid), mbidVia: "search", fetched: today }; }
+    catch (e) { failed++; }
+    done++;
+    if (done % 25 === 0) { fs.writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 0), "utf8"); console.log(`  search ${done}/${noMbid.length}…`); }
+    await sleep(DELAY_MS);
+  }
+  done = 0;
   for (const name of todo) {
     try {
       cache[name] = { ...await fetchOrigin(stats[name].mbid), fetched: today };
