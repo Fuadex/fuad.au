@@ -52,18 +52,14 @@ jobs:
       - name: Smoke test
         run: node smoke.js
 
-      # 5) persist ONLY the source-of-truth delta (CSV). Generated files stay out of git.
-      - name: Commit CSV if changed
-        run: |
-          git config user.name "rotation-bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add fuadex.csv
-          if git diff --staged --quiet; then
-            echo "no new scrobbles"
-          else
-            git commit -m "chore: daily last.fm sync"
-            git push || (git pull --rebase --autostash && git push)
-          fi
+      # 5) hand the updated CSV to the persist job — committing it HERE advances the branch
+      #    mid-run, which makes the subsequent Pages deployment fail ("deployment_failed":
+      #    the run's SHA is no longer HEAD). Persist runs strictly AFTER deploy.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: csv-delta
+          path: fuadex.csv
+          retention-days: 2
 
       # 6) stage exactly what the browser needs
       - name: Stage site
@@ -91,3 +87,26 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # commit the CSV delta only after the deployment is settled (see note in build step 5);
+  # runs even if deploy failed so scrobbles are never lost.
+  persist:
+    needs: [build, deploy]
+    if: ${{ always() && needs.build.result == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: csv-delta
+      - name: Commit CSV if changed
+        run: |
+          git config user.name "rotation-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add fuadex.csv
+          if git diff --staged --quiet; then
+            echo "no new scrobbles"
+          else
+            git commit -m "chore: daily last.fm sync"
+            git push || (git pull --rebase --autostash && git push)
+          fi
