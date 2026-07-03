@@ -557,13 +557,8 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-row-sub { font-family: var(--mono); font-size: 9px; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .xp-bar { height: 7px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
         .xp-bar > div { height: 100%; border-radius: 4px; transition: width .5s cubic-bezier(.3,.8,.3,1); }
-        .r-track-row { transition: background .15s; } .r-track-row:hover { background: var(--bg-3); }
-        @media (max-width: 760px) { .tv-grid { grid-template-columns: 1fr !important; } }
-        @media (max-width: 600px) {
-          .tv-head { gap: 16px !important; }
-          .tv-head .r-stat-n { font-size: 26px !important; }
-          .tv-head > div:last-child { gap: 16px !important; width: 100%; }
-        }
+        /* tv-grid/tv-head/r-track-row rules moved to cssRotation (rotation-core) — they style the
+           Album/Track pages, which can be deep-linked WITHOUT Explore ever mounting. */
         .xp-val { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); text-align: right; }
         .xp-fam-head { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 2px; border-radius: 5px; transition: .12s; }
         .xp-fam-head:hover { opacity: .85; }
