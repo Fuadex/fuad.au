@@ -57,6 +57,7 @@ with `pushState` + `popstate`/`hashchange` sync. Components communicate via `win
 | `search-index.js` | `ROTATION_SEARCH` | ~360 KB | search overlay opens (`/`) |
 | `media-index.js` | `ROTATION_MEDIA` | ~6.8 MB | Explore albums/tracks tab, Album/Track view, song search |
 | `track-audio.js` | `ROTATION_TRACKAUDIO` | ~2.7 MB | TrackView |
+| `track-previews.js` | `ROTATION_PREVIEWS` | ~2.4 MB | TrackView (30-s Spotify preview hashes; `PreviewBtn` rebuilds `p.scdn.co/mp3-preview/<hash>?cid=…`, constant cid) |
 | `artist-flow.js` | `ROTATION_FLOW` | ~2.8 MB | first artist page ("How they played out") |
 | `artist-detail.js` | `ROTATION_ADETAIL` | ~1.9 MB | long-tail mini artist page, Map lists |
 | `world-map.js` | (topology + centroids) | ~98 KB | Map view |
@@ -123,6 +124,8 @@ never committed** (last.fm + Spotify keys live in `Fuad-Soudah/Culture_2/.env`).
 | `enrich-spotify.js` | Spotify API | `spotify-cache.json` | artist id/img/genres (post-2026 API gives little more) |
 | `enrich-spotify-archive.js` | **local catalogue dataset** (`archive.zip`, large local, local-only) | `spotify-albumart.json` (17,726 covers), `spotify-albummeta.json`, `spotify-artist-img.json`, `spotify-genres.json` | album covers, release year/type/label, artist imgs, genres |
 | `.sptmp/cover-audit.js` + `caa-probe.js` (local) | dump raw join + MusicBrainz/CAA | `spotify-albumart-extra.json`, `spotify-albummeta-extra.json` | conservative fuzzy + Cover-Art-Archive cover fills; merged additively (base wins), safe from `--rematch` |
+| `.sptmp/stage1-query.js` + `stage2-query.js` (local, archive pass 2) | dump parquets | `spotify-ids-derived.json` (462 name+title-corroborated artist ids), `spotify-albtracks.json` (total_tracks → media `[9]`), `spotify-genres-extra.json`, `spotify-track-links.json` (**39k ISRCs** + preview hashes + disc), `spotify-track-extra.json`, `spotify-collabs.json` (5,730 credit edges, unfiltered — play-filter at build when the feature ships) |
+| `enrich-coverage.js` | (local caches + CSV) | console report | per-cache coverage by play-band + head-gap offenders — run before deciding any enrichment expansion |
 | `enrich-spotify-tracks.js` | local catalogue dataset | `spotify-track-data.json` | per-track audio features (36.9k tracks; §6) |
 | `extract-audio.js` | (aggregates track data) | `audio-features.json` | artist-level Sound DNA |
 | `enrich-concerts.js` | Ticketmaster Discovery | `concerts-cache.json` | upcoming events, top-200 artists — **cache currently absent → Live tab hidden** |
