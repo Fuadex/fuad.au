@@ -202,8 +202,10 @@ timeline: ended-while-listening, graves, elders, median band life, worst year).
 
 ## 7. Views & navigation
 
-Nav: **Overview · Stories · Explore · Shelves · Calendar · Map · (Live)** — Live auto-hides when
-`R.CITIES` is empty (it currently is). Detail routes: `#artist/id`, `#album/id`, `#track/id`,
+Nav: **Overview · Stories · Explore · Shelves · Calendar · (Live)** — Live auto-hides when
+`R.CITIES` is empty (it currently is). The Map page was **ported wholesale into Overview**
+(2026-07-05, `OvMapBand` lazy-mounts the full `MapView embedded` on scroll; `#map`/`#journey`
+legacy-route to Overview). `#calendar/YYYY-MM-DD` deep-opens a specific day. Detail routes: `#artist/id`, `#album/id`, `#track/id`,
 `#explore/tag` (seeds a genre filter). **Explore also serializes its full active slice into the
 hash** (`#explore/y=2019;s=Industrial;m=dark-intense;c=1.5.9;k=albums`) — bookmarkable and
 refresh-proof; `;`-separated because parseHash url-decodes once. Legacy routes
@@ -256,7 +258,7 @@ slices. Everything cross-filters; active-chip row with clear-all.
 GitHub-style **every-day heatmap** for 20 years (calendar.js), click any day/week/month → lazy
 period summary (top artists/albums/tracks for that slice, calendar-detail.js).
 
-### Map (Geography)
+### Map (Geography — lives INSIDE Overview since 2026-07-05; defaults to cities)
 World map (countries ⇄ city dots) sized by plays; colour by dominant genre / top artist's
 genre / **sonic gradient** (energy/mood/debut-era). Year scrubber animates the geography.
 **MapFlow**: a streamgraph that doubles as genre filter AND drill-path (families → subgenres →
