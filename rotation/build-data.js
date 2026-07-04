@@ -1387,8 +1387,23 @@ let LANGUAGE = null;
     const byYearO = {};
     for (const [y, m] of [...byYear.entries()].sort((a, b) => a[0] - b[0])) { if (m.size) byYearO[y] = Object.fromEntries([...m.entries()].sort((a, b) => b[1] - a[1])); }
     const enPlays = shares.get("en") || 0;
+    // Language arc: per-year non-English share, plus the top non-EN languages' slice of each
+    // year. English is ~97% so a raw streamgraph is a flat English band — the arc instead tracks
+    // the non-English fraction over time (when Polish crept in, when Japanese spiked) and which
+    // language carried it. Fraction is of that YEAR's detectable-lyric plays.
+    const arcLangs = sharesArr.filter(s => s.lang !== "en").slice(0, 5).map(s => s.lang);
+    const arcYears = [];
+    for (const [y, m] of [...byYear.entries()].sort((a, b) => a[0] - b[0])) {
+      let tot = 0; for (const v of m.values()) tot += v;
+      if (tot < 150) continue;                       // skip thin years
+      const en = m.get("en") || 0;
+      const e = { year: y, plays: tot, nonEnPct: Math.round((tot - en) / tot * 1000) / 1000, byLang: {} };
+      for (const l of arcLangs) e.byLang[l] = Math.round((m.get(l) || 0) / tot * 1000) / 1000;
+      arcYears.push(e);
+    }
+    const arc = arcYears.length >= 6 ? { langs: arcLangs.map(l => ({ lang: l, name: LANG_NAMES[l] || l })), years: arcYears } : null;
     LANGUAGE = {
-      shares: sharesArr, byYear: byYearO, topNonEn: nonEn.slice(0, 12),
+      shares: sharesArr, byYear: byYearO, topNonEn: nonEn.slice(0, 12), arc,
       covered, coveredPlays, totalPlays, langs: sharesArr.length,
       nonEnPct: coveredPlays ? Math.round((coveredPlays - enPlays) / coveredPlays * 100) : 0,
     };
