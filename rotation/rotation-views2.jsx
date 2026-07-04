@@ -389,6 +389,18 @@ function ArtistMeta({ gender, life, size }) {
   );
 }
 
+// Shared "seen live" lookup — a track id (artistSlug~trackSlug) that appears in a setlist
+// from a show Fuad attended. Built once from ROTATION.GIGS.liveSongs, reused across the
+// artist top-tracks, album tracklist and track-page siblings so the 🎤 marker is consistent.
+let _liveSet = null;
+function seenLiveKey(trackId) {
+  if (_liveSet === null) { const R = window.ROTATION; _liveSet = new Set((R && R.GIGS && R.GIGS.liveSongs) || []); }
+  return _liveSet.has(trackId);
+}
+const LiveMark = ({ on }) => on
+  ? <span className="r-livemark" title="You've watched this performed live">🎤</span>
+  : null;
+
 function ArtistView({ t, id, go, setPop, city, setCity }) {
   const R = window.ROTATION;
   const full = R.byId[id];
@@ -540,6 +552,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   borderBottom: i < tracks.length - 1 ? "1px solid var(--rule)" : "none" }}>
                   <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 18 }}>{String(i + 1).padStart(2, "0")}</span>
                   <span style={{ fontSize: 13, flex: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{tr.title}</span>
+                  <LiveMark on={clickable && seenLiveKey(R.slug(a.name) + "~" + R.slug(tr.title))} />
                   <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{tr.plays ? fmt(tr.plays) : "—"}</span>
                 </div>
               );})}
@@ -1040,7 +1053,8 @@ function AlbumView({ id, go }) {
             <div key={t.title + i} className="r-track-row" onClick={() => go("track", R.slug(data.artist) + "~" + R.slug(t.title))} title={`${t.title} →${t.e != null ? ` · energy ${t.e} · positivity ${t.v}` : ""}`} style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px", cursor: "pointer", borderRadius: 4 }}>
               <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{t.no ? String(t.no).padStart(2, "0") : String(i + 1).padStart(2, "0")}</span>
               <div style={{ fontSize: 13, lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>
-                {t.title}{standout && t === standout ? <span title="your most-played from this album" style={{ color: "var(--accent)", marginLeft: 5 }}>★</span> : null}</div>
+                {t.title}{standout && t === standout ? <span title="your most-played from this album" style={{ color: "var(--accent)", marginLeft: 5 }}>★</span> : null}
+                <LiveMark on={seenLiveKey(R.slug(data.artist) + "~" + R.slug(t.title))} /></div>
               <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: (t.plays / maxT * 100) + "%", background: `oklch(0.6 0.14 ${hue})` }} /></div>
               <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", textAlign: "right" }}>{fmt(t.plays)}</span>
             </div>
@@ -1307,7 +1321,9 @@ function TrackView({ id, go }) {
               <div key={s.id + i} className="r-track-row" onClick={() => go("track", s.id)} title={`${s.title} →`}
                 style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 46px", gap: 10, alignItems: "center", padding: "6px 4px", cursor: "pointer", borderRadius: 4 }}>
                 <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{s.no ? String(s.no).padStart(2, "0") : "·"}</span>
-                <span style={{ fontSize: 13, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.title}</span>
+                <span style={{ fontSize: 13, minWidth: 0, display: "flex", alignItems: "center", gap: 6, overflow: "hidden" }}>
+                  <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.title}</span>
+                  <LiveMark on={seenLiveKey(s.id)} /></span>
                 <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", textAlign: "right" }}>{fmt(s.plays)}</span>
               </div>
             ))}

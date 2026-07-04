@@ -192,6 +192,8 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 .tv-seen { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
   text-transform: uppercase; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--accent-dim);
   color: var(--accent); background: var(--accent-bg); }
+/* per-row "seen live" marker in track lists (🎤) — small, inline, doesn't shift layout */
+.r-livemark { font-size: 11px; line-height: 1; flex: none; cursor: help; filter: saturate(.9); }
 /* mood strip: how it SOUNDS (Spotify valence) vs how it READS (NRC lyric sentiment) */
 .tv-mood { display: grid; gap: 8px; max-width: 520px; margin: 0 0 var(--gap); padding: 14px 16px;
   border: 1px solid var(--rule); border-radius: 8px; }
