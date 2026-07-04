@@ -19,3 +19,11 @@ _enrich_out.txt
 # Network captures (HAR exports may contain personal/session data)
 *.har
 www.filmweb.pl.txt
+
+# Large local enrichment dumps (Local script/transcript corpora — never commit)
+*.zip
+*.parquet
+*.tar
+*.tar.gz
+*.gz
+*.7z
