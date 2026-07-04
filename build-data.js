@@ -405,7 +405,7 @@ const erasRaw = years.map(year => {
 // not from the globally-capped TRACKS (top 24) / ALBUMS (top 472). Previously ArtistView
 // filtered globals and an artist like Midori showed zero tracks even though they're scrobbled.
 const TRACKS_PER_ARTIST = 15;
-const ALBUMS_PER_ARTIST_VIEW = 15;
+const ALBUMS_PER_ARTIST_VIEW = 40;   // artist page lists them all in a compact scrolling column
 const _tBy = new Map(), _aBy = new Map();
 for (const [k, plays] of trackPlays) {
   const ix = k.indexOf("\x00"); if (ix < 0) continue;

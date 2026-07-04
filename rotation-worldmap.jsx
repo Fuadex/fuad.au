@@ -83,7 +83,7 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   );
 }
 
-function MapView({ go, embedded, extYear }) {
+function MapView({ go, embedded, extYear, calPeriod }) {
   const R = window.ROTATION;
   const G = R.INSIGHTS.GEOGRAPHY;
   const cityPts = G.cityPoints || [];
@@ -106,7 +106,8 @@ function MapView({ go, embedded, extYear }) {
   const [sel, setSel] = React.useState(null);
   const [pane, setPane] = React.useState("artists");
   const [filt, setFilt] = React.useState({ fam: null, sub: null }); // genre pivot: size every place by this genre
-  const [limit, setLimit] = React.useState(5);                      // results list length
+  const [limit, setLimit] = React.useState(embedded ? 12 : 5);      // results list length
+  const [disp, setDisp] = React.useState(embedded ? "grid" : "list"); // results display: list ⇄ cover grid (grid = the dissolved Top Artists wall)
   const [adetail, setADetail] = React.useState(window.ROTATION_ADETAIL || null); // lazy tracks/albums for the long tail
   const [view, setView] = React.useState({ s: 1, x: 0, y: 0 });
   const svgRef = React.useRef(null);
@@ -221,14 +222,28 @@ function MapView({ go, embedded, extYear }) {
     if (filt.fam != null || filt.sub != null) set = set.filter(matchGenre);
     return set;
   }, [flowArtists, filt]);
+  // calendar-rail period override: when a day/week is picked, results come from calendar-detail
+  // (top artists/albums/songs for that exact period) instead of the geography slice.
+  const periodData = React.useMemo(() => {
+    if (!calPeriod || !window.ROTATION_CAL_DETAIL) return null;
+    const CD = window.ROTATION_CAL_DETAIL, P = CD[calPeriod.gran] && CD[calPeriod.gran][calPeriod.key];
+    if (!P) return null;
+    const NM = CD.names;
+    const arts = (P.a || []).map(([ni, p]) => { const name = NM[ni]; const id = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[id] || (R.expById && R.expById[id]); return { a: { id, name, hue: rec ? rec.hue : 210 }, p }; });
+    const albums = (P.al || []).map(([ti, ai, p]) => { const artist = NM[ai]; const id = (R.idForName && R.idForName(artist)) || R.slug(artist); return { title: NM[ti], artist, aid: id, plays: p }; });
+    const songs = (P.s || []).map(([ti, ai, p]) => { const artist = NM[ai]; const id = (R.idForName && R.idForName(artist)) || R.slug(artist); return { title: NM[ti], artist, aid: id, plays: p }; });
+    return { arts, albums, songs, label: calPeriod.key + (calPeriod.gran === "week" ? " (week)" : "") };
+  }, [calPeriod, R]);
   const resultArtists = React.useMemo(() => {
+    if (periodData) return periodData.arts;
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
     return filteredArtists.map(a => ({ a, p: yr != null ? (a.yp ? (a.yp[yr] || 0) : 0) : a.plays }))
       .filter(e => e.p > 0).sort((x, y) => y.p - x.p).slice(0, 25);
-  }, [filteredArtists, yearIdx]);
+  }, [filteredArtists, yearIdx, periodData]);
   // albums/songs aggregated from each filtered artist's own top lists (kept records + lazy detail) —
   // so the results work without picking a place. all-time (per-artist lists aren't year-split).
   const resultMedia = React.useMemo(() => {
+    if (periodData) return { albums: periodData.albums, songs: periodData.songs };
     const set = filteredArtists.slice().sort((a, b) => b.plays - a.plays).slice(0, 160);
     const albums = [], songs = [];
     for (const a of set) {
@@ -244,7 +259,7 @@ function MapView({ go, embedded, extYear }) {
     }
     albums.sort((x, y) => y.plays - x.plays); songs.sort((x, y) => y.plays - x.plays);
     return { albums, songs };
-  }, [filteredArtists, adetail]);
+  }, [filteredArtists, adetail, periodData]);
   const resultDNA = React.useMemo(() => {
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
     const acc = [0, 0, 0, 0, 0, 0]; let w = 0;
@@ -431,29 +446,41 @@ function MapView({ go, embedded, extYear }) {
       {/* results — top artists + albums + songs + DNA for the current place ∩ genre ∩ year (no place needed) */}
       {(() => {
         const gName = filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? R.FAMILIES[filt.fam].family : null;
-        const parts = [sel ? (selFlag + " " + selName) : "everywhere", gName || "all genres", yearIdx != null ? geoYears[yearIdx] : "all years"];
+        const parts = periodData ? ["on " + periodData.label] : [sel ? (selFlag + " " + selName) : "everywhere", gName || "all genres", yearIdx != null ? geoYears[yearIdx] : "all years"];
         const totalPlays = resultArtists.reduce((s, e) => s + e.p, 0);
         return (
           <div className="r-card mp-results" style={{ marginTop: "var(--gap)", padding: 22 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
-              <div><div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>results</div>
+              <div><div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>{periodData ? "on this " + calPeriod.gran : "results"}</div>
                 <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22 }}>{parts.join("  ·  ")}</div></div>
               <div><div className="r-stat-n" style={{ fontSize: 26 }}>{fmt(totalPlays)}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>plays</div></div>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "10px 14px", flexWrap: "wrap", margin: "16px 0 14px" }}>
-              <div className="r-seg">
-                {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => { setPane(k); if (k === "albums" || k === "songs") ensureADetail(); }}>{l}</button>)}
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <div className="r-seg">
+                  {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => { setPane(k); if (k === "albums" || k === "songs") ensureADetail(); }}>{l}</button>)}
+                </div>
+                {pane !== "dna" && <div className="r-seg" title="list ⇄ cover grid">
+                  <button data-on={disp === "list"} onClick={() => setDisp("list")}>list</button>
+                  <button data-on={disp === "grid"} onClick={() => setDisp("grid")}>grid</button>
+                </div>}
               </div>
               {pane !== "dna" && <div className="r-seg map-limseg">
                 {[5, 10, 15, 20, 25].map(n => <button key={n} data-on={limit === n} onClick={() => setLimit(n)}>{n}</button>)}
               </div>}
             </div>
-            {yearIdx != null && (pane === "albums" || pane === "songs") && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 8 }}>albums &amp; songs aren't split by year — showing all-time for this slice.</div>}
+            {!periodData && yearIdx != null && (pane === "albums" || pane === "songs") && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 8 }}>albums &amp; songs aren't split by year — showing all-time for this slice.</div>}
             {pane === "artists" && (resultArtists.length
-              ? <div className="cal-rows">{resultArtists.slice(0, limit).map((e, i) => { const a = e.a, kept = !!R.byId[a.id]; return (
-                  <div key={a.id} className="cal-row" data-link={kept} onClick={() => kept && go("artist", a.id)}>
-                    <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={a.hue || 210} name={a.name} size={34} radius={3} />
-                    <span className="cal-nm">{a.name}</span><span className="cal-pl">{fmt(e.p)}</span></div>); })}</div>
+              ? (disp === "grid"
+                ? <div className="mp-covergrid">{resultArtists.slice(0, limit).map((e, i) => { const a = e.a, kept = !!R.byId[a.id]; return (
+                    <div key={a.id} className="mp-coveritem" data-link={kept} onClick={() => kept && go("artist", a.id)}>
+                      <div style={{ position: "relative" }}><GenCover hue={a.hue || 210} name={a.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
+                        <span className="r-mono" style={{ position: "absolute", top: 4, left: 5, fontSize: 8.5, color: "rgba(255,255,255,.85)", textShadow: "0 1px 2px #000" }}>{String(i + 1).padStart(2, "0")}</span></div>
+                      <div className="mp-covernm">{a.name}</div><div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(e.p)}</div></div>); })}</div>
+                : <div className="cal-rows">{resultArtists.slice(0, limit).map((e, i) => { const a = e.a, kept = !!R.byId[a.id]; return (
+                    <div key={a.id} className="cal-row" data-link={kept} onClick={() => kept && go("artist", a.id)}>
+                      <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={a.hue || 210} name={a.name} size={34} radius={3} />
+                      <span className="cal-nm">{a.name}</span><span className="cal-pl">{fmt(e.p)}</span></div>); })}</div>)
               : <div style={{ color: "var(--ink-soft)" }}>Nothing matches this filter.</div>)}
             {(pane === "albums" || pane === "songs") && (() => {
               const rows = pane === "albums" ? resultMedia.albums : resultMedia.songs;
@@ -484,6 +511,10 @@ function MapView({ go, embedded, extYear }) {
           .mp-list > div:last-child { max-height: 300px !important; }
           .mp-results { grid-column: 8 / -1; margin-top: 0 !important; }
         }
+        .mp-covergrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(74px, 1fr)); gap: 12px; }
+        .mp-coveritem { cursor: pointer; min-width: 0; }
+        .mp-coveritem[data-link="false"] { cursor: default; }
+        .mp-covernm { font-size: 10.5px; margin-top: 6px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .map-years { display: flex; gap: 10px; align-items: center; flex: 1 1 260px; min-width: 200px; }
         .map-play { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; flex: none; }
         .map-play[data-on="true"] { background: var(--accent); color: #0c0a08; }
