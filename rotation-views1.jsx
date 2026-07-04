@@ -27,9 +27,9 @@ function TopArtistsPeek({ R, go }) {
   const [span, setSpan] = React.useState("all");
   const cy = new Date().getUTCFullYear();
   const items = React.useMemo(() => {
-    if (span === "all") return R.ARTISTS.slice(0, 24).map(a => ({ ...a, n: a.plays }));
+    if (span === "all") return R.ARTISTS.slice(0, 12).map(a => ({ ...a, n: a.plays }));
     return R.ARTISTS.map(a => ({ ...a, n: (a.yp && a.yp[cy]) || 0 })).filter(a => a.n > 0)
-      .sort((x, y) => y.n - x.n).slice(0, 24);
+      .sort((x, y) => y.n - x.n).slice(0, 12);
   }, [R, span]);
   return (
     <div className="r-card ov-wall" style={{ gridColumn: "span 7", padding: 18 }}>
@@ -59,10 +59,16 @@ function TopArtistsPeek({ R, go }) {
   );
 }
 
-// OvMiniCal — the current year as a tiny heatmap strip; hotlinks into the full Calendar.
-// Lazy-loads calendar.js (the same tier-1 file the Calendar tab uses, ~125 KB).
-function OvMiniCal({ go }) {
+// OvCalRail — the calendar as a NARROW vertical filter rail beside the map: pick year + month,
+// day ⇄ week granularity, click a cell. What it drives today: the map/flow scrub to that year,
+// and the cell deep-opens its day/week in the full Calendar. (Day-level geography needs a new
+// build export — the tandem deepens next iteration.)
+function OvCalRail({ go, onYear }) {
   const [cal, setCal] = React.useState(window.ROTATION_CAL || null);
+  const now = new Date();
+  const [yr, setYr] = React.useState(now.getUTCFullYear());
+  const [mo, setMo] = React.useState(now.getUTCMonth());   // 0-11
+  const [gran, setGran] = React.useState("day");           // day | week
   React.useEffect(() => {
     if (window.ROTATION_CAL) return;
     let s = document.getElementById("rotation-cal-js");
@@ -71,43 +77,76 @@ function OvMiniCal({ go }) {
     s.addEventListener("load", on);
     return () => s.removeEventListener("load", on);
   }, []);
-  const cy = new Date().getUTCFullYear();
-  const y = cal && cal.byYear && (cal.byYear[cy] || cal.byYear[cy - 1]);
-  const yr = cal && cal.byYear && cal.byYear[cy] ? cy : cy - 1;
-  if (!y) return null;
+  const years = cal ? Object.keys(cal.byYear).map(Number).sort((a, b) => b - a) : [];
+  const y = cal && cal.byYear[yr];
+  const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  if (!y) return <div className="r-card" style={{ padding: 16, fontFamily: "var(--mono)", fontSize: 10, color: "var(--ink-faint)" }}>calendar…</div>;
   const counts = y.counts || [];
   const mx = Math.max(1, ...counts);
-  const jan1 = new Date(Date.UTC(yr, 0, 1));
-  const pad = (jan1.getUTCDay() + 6) % 7;   // Monday-first column offset
-  const total = counts.reduce((a, b) => a + (b || 0), 0);
+  const first = Date.UTC(yr, mo, 1), dim = new Date(Date.UTC(yr, mo + 1, 0)).getUTCDate();
+  const jan1 = Date.UTC(yr, 0, 1);
+  const doy = (d) => Math.round((Date.UTC(yr, mo, d) - jan1) / 86400e3);
+  const pad = (new Date(first).getUTCDay() + 6) % 7;
+  // weeks of the month as rows of day indices (nulls pad)
+  const cells = [...Array(pad).fill(null), ...Array.from({ length: dim }, (_, i) => i + 1)];
+  while (cells.length % 7) cells.push(null);
+  const weeks = []; for (let i = 0; i < cells.length; i += 7) weeks.push(cells.slice(i, i + 7));
+  const pick = (d) => {
+    const iso = new Date(Date.UTC(yr, mo, d)).toISOString().slice(0, 10);
+    if (gran === "week") { const dow = (new Date(Date.UTC(yr, mo, d)).getUTCDay() + 6) % 7; const mon = new Date(Date.UTC(yr, mo, d) - dow * 86400e3).toISOString().slice(0, 10); go("calendar", mon); }
+    else go("calendar", iso);
+  };
   return (
-    <div className="r-card ov-minical" style={{ gridColumn: "span 12", padding: "12px 16px" }}>
-      <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
-        <span className="lbl"><b>{yr}, day by day</b></span>
-        <span className="meta" style={{ cursor: "pointer" }} onClick={() => go("calendar")}>{fmt(total)} plays · full calendar ↗</span></div>
-      <div className="ov-minical-grid">
-        {Array.from({ length: pad }, (_, i) => <i key={"p" + i} style={{ opacity: 0 }} />)}
-        {counts.map((v, i) => {
-          const key = new Date(Date.UTC(yr, 0, 1 + i)).toISOString().slice(0, 10);
-          return <i key={i} title={`${key} · ${v || 0} plays — open this day →`}
-            onClick={() => go("calendar", key)}
-            style={{ background: v ? `oklch(${0.32 + (v / mx) * 0.45} ${0.05 + (v / mx) * 0.12} var(--acc-h))` : "var(--bg-3)",
-              opacity: v ? 1 : 0.55, cursor: "pointer" }} />;
-        })}
+    <div className="r-card ov-calrail" style={{ padding: "14px 14px 12px" }}>
+      <div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 9 }}>Calendar</div>
+      <div style={{ display: "grid", gap: 6, marginBottom: 9 }}>
+        <select className="ov-calsel" value={yr} onChange={(e) => { const v = +e.target.value; setYr(v); onYear && onYear(v); }}>
+          {years.map(v => <option key={v} value={v}>{v}</option>)}
+        </select>
+        <select className="ov-calsel" value={mo} onChange={(e) => setMo(+e.target.value)}>
+          {MON.map((m, i) => <option key={m} value={i}>{m}</option>)}
+        </select>
+        <div className="r-seg r-seg-sm" style={{ display: "flex" }}>
+          <button data-on={gran === "day"} onClick={() => setGran("day")} style={{ flex: 1 }}>day</button>
+          <button data-on={gran === "week"} onClick={() => setGran("week")} style={{ flex: 1 }}>week</button>
+        </div>
+      </div>
+      <div style={{ display: "grid", gap: 2 }}>
+        {weeks.map((w, wi) => (
+          <div key={wi} className="ov-calweek" data-gran={gran} style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 2, borderRadius: 3 }}>
+            {w.map((d, di) => {
+              if (!d) return <i key={di} style={{ opacity: 0 }} />;
+              const v = counts[doy(d)] || 0;
+              return <i key={di} title={`${yr}-${String(mo + 1).padStart(2, "0")}-${String(d).padStart(2, "0")} · ${v} plays → open`}
+                onClick={() => pick(d)}
+                style={{ background: v ? `oklch(${0.32 + (v / mx) * 0.45} ${0.05 + (v / mx) * 0.12} var(--acc-h))` : "var(--bg-3)",
+                  opacity: v ? 1 : 0.5, cursor: "pointer", aspectRatio: "1", borderRadius: 2 }} />;
+            })}
+          </div>
+        ))}
+      </div>
+      <div className="r-mono" style={{ fontSize: 8, color: "var(--ink-faint)", marginTop: 9, lineHeight: 1.5 }}>
+        year scrubs the map · a cell opens its {gran} <span style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => go("calendar")}>full calendar ↗</span>
       </div>
     </div>
   );
 }
 
-// OvMapBand — mounts the FULL MapView (all filters/scrubbers/detail panes) once the user
-// scrolls near it, so Overview's first paint doesn't pay for world-map.js.
+// OvMapBand — the geography band: calendar rail (narrow) + the FULL MapView. Mounts once the
+// user scrolls near, so Overview's first paint doesn't pay for world-map.js.
 function OvMapBand({ go }) {
   const [ref, seen] = useInView();
   const [on, setOn] = React.useState(false);
+  const [extYear, setExtYear] = React.useState(null);
   React.useEffect(() => { if (seen) setOn(true); }, [seen]);
   return (
     <div ref={ref} style={{ marginTop: "calc(var(--gap)*1.6)", minHeight: on ? 0 : 220 }}>
-      {on ? <MapView go={go} embedded /> : (
+      {on ? (
+        <div className="ov-band">
+          <OvCalRail go={go} onYear={setExtYear} />
+          <div style={{ minWidth: 0 }}><MapView go={go} embedded extYear={extYear} /></div>
+        </div>
+      ) : (
         <div className="r-card" style={{ padding: 40, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>
           the world map loads as you scroll…
         </div>
@@ -227,9 +266,6 @@ function OverviewView({ t, go }) {
             “{R.TOTALS.topDay.note}”</div>
         </div>
 
-        {/* dynamic insight feed — week/month/mood/year/clock + milestones, ranked + rotating */}
-        <InsightRow go={go} n={6} />
-
         {/* recent ticker */}
         <div className="r-card ov-recent" style={{ gridColumn: "span 5", padding: 18 }}>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Recently played</b></span>
@@ -261,11 +297,11 @@ function OverviewView({ t, go }) {
         {/* top artists peek — all-time ⇄ this year */}
         <TopArtistsPeek R={R} go={go} />
 
-        {/* the current year, day by day — every cell opens that day in the full Calendar */}
-        <OvMiniCal go={go} />
+        {/* dynamic insight feed — flows around the wall (week/mood/story-of-day/riser/…) */}
+        <InsightRow go={go} n={6} />
       </div>
 
-      {/* THE MAP — the full Geography instrument lives here now (tab retired 2026-07-05).
+      {/* THE MAP — the full Geography instrument + the calendar rail as its left-hand filter.
           Mounts when scrolled near so the landing paint stays untouched. */}
       <OvMapBand go={go} />
 
@@ -331,13 +367,16 @@ function OverviewView({ t, go }) {
           .ov-recent { grid-column: 9 / -1 !important; grid-row: 1 / span 3; }
           .ov-strip  { grid-column: 1 / span 5 !important; grid-template-columns: repeat(2, 1fr) !important; gap: 12px 18px !important; }
           .ov-heavy  { grid-column: 6 / span 3 !important; }
-          .ov-wall   { grid-column: 1 / span 8 !important; }
-          /* 24 artists fill the card's own space — denser 12-across grid, smaller covers,
-             NOT a taller card (Fuad: "populate the blank space within that window") */
-          .ov-wallgrid { grid-template-columns: repeat(12, 1fr) !important; gap: 9px !important; }
-          .ov-wallgrid > div { width: auto !important; }
-          .ov-wallgrid > div > div:nth-child(2) { font-size: 9.5px !important; margin-top: 4px !important; }
-          .ov-wallgrid > div > .r-mono { display: none; }   /* hide the plays line, keep the rank overlay */
+          /* half-width module, 12 artists in a 4×3 grid, plays visible; covers FORCED square
+             (mixed image/generative covers were rendering at different heights on ~1200px screens) */
+          .ov-wall   { grid-column: 1 / span 4 !important; }
+          .ov-wallgrid { display: grid !important; grid-template-columns: repeat(4, 1fr) !important;
+            gap: 10px !important; overflow: visible !important; }
+          .ov-wallgrid > div { width: auto !important; min-width: 0; }
+          .ov-wallgrid > div > div:first-child { aspect-ratio: 1; overflow: hidden; border-radius: 4px; }
+          .ov-wallgrid > div > div:first-child > *:first-child { width: 100% !important; height: 100% !important; object-fit: cover; }
+          .ov-wallgrid > div > div:nth-child(2) { font-size: 10px !important; margin-top: 5px !important; }
+          .ov-wallgrid > div > .r-mono { font-size: 8.5px !important; }
           .ov-scrob .r-stat-n { font-size: 30px !important; }
           .ov-streak .r-stat-n { font-size: 30px !important; }
           .ov-heavy .r-stat-n { font-size: 28px !important; }
@@ -346,12 +385,13 @@ function OverviewView({ t, go }) {
           .ov-wallgrid { display: grid !important; grid-template-columns: repeat(8, 1fr); gap: 12px; overflow: visible !important; }
           .ov-wallgrid > div { width: auto !important; }
         }
-        .ov-minical-grid { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 1fr);
-          gap: 1.5px; overflow-x: auto; scrollbar-width: none; justify-content: start; }
-        .ov-minical-grid::-webkit-scrollbar { display: none; }
-        .ov-minical-grid i { width: 8px; height: 8px; border-radius: 1.5px; display: block;
-          transition: transform .1s; }
-        .ov-minical-grid i:hover { transform: scale(1.6); outline: 1px solid var(--accent); }
+        .ov-band { display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: var(--gap); align-items: start; }
+        @media (max-width: 900px) { .ov-band { grid-template-columns: 1fr; } .ov-calrail { max-width: 240px; } }
+        .ov-calsel { width: 100%; background: var(--bg-3); border: 1px solid var(--rule); color: var(--ink);
+          border-radius: 6px; padding: 5px 7px; font-family: var(--mono); font-size: 10px; }
+        .ov-calweek[data-gran="week"]:hover { outline: 1px solid var(--accent-dim); outline-offset: 1px; }
+        .ov-calrail i { transition: transform .1s; display: block; }
+        .ov-calrail [data-gran="day"] i:hover { transform: scale(1.45); outline: 1px solid var(--accent); }
         .hub-chips { display: flex; gap: 8px; flex-wrap: wrap; }
         .hub-chip { display: inline-flex; align-items: baseline; gap: 8px; padding: 8px 14px; border-radius: 999px;
           border: 1px solid var(--rule); background: none; cursor: pointer; transition: border-color .15s, transform .15s; }
