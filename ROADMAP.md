@@ -7,7 +7,20 @@
 
 ---
 
-## ⓪ Status snapshot — 2026-07-05
+## ⓪ Status snapshot — 2026-07-05 (evening)
+
+**Latest PC/layout pass shipped:** Overview command centre finalised (compact calendar in the
+pulse row; full map band at 2:3, height-matched, one legend, clear-filters button, results
+list⇄grid; stats under the flow & **filter-reactive** hours/artists). Artist page recomposed
+(bio → DNA-left-half+tracks+albums → sounds-like/timeline/family-tree; albums covers⇄list;
+sounds-like 8/16 + by-sound 8/16/24). Calendar gained a **vertical Rhythm clock** (moved from
+Explore). Explore reflowed (sort row + mood-arc below the module; **2×6 genre grid**,
+scrollable). **Subgenre spelling variants merged** (`SUB_CANON`). Genius dump (`archive_genius.zip`
+~3 GB) is local + gitignored, ready to ingest.
+
+---
+
+## (earlier) Status snapshot — 2026-07-05
 
 ### Shipped (see ARCHITECTURE §8 for details)
 Platform: prod React · error boundary · CI-built Pages deploys w/ smoke gate + auto-retry +

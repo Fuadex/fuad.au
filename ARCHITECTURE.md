@@ -221,11 +221,16 @@ popover layer; tweaks drawer.
   mixed image/generative heights broke ~1200px screens), all-time ⇄ current-year toggle.
   Insight cards flow around it (Story of the day → deep-links a Stories card; Riser of the
   week → live plays vs lifetime weekly pace).
-- **THE MAP BAND** (`OvMapBand`, lazy-mounts on scroll): a narrow **calendar rail** (year +
-  month dropdowns, day⇄week, month cell grid — year selection scrubs the map/flow in tandem;
-  a cell deep-opens `#calendar/YYYY-MM-DD`) beside the **full MapView** in Fuad's 3:2 grid —
-  map | taste-flow on one row, deepest places | results below. ⚠ day-level map filtering
-  needs a per-day geography export (not built yet).
+- **Calendar** lives compact in the pulse row's top-right (a single day-strip; `OvCalRail`).
+  Year selection scrubs the map/flow; a day/week click **filters the map Results** (via
+  calendar-detail); state is lifted to `OverviewView` so calendar and map stay in sync though
+  they're not adjacent.
+- **THE MAP BAND** (`OvMapBand`, lazy-mounts on scroll): the **full MapView** in a **2:3 grid** —
+  map | taste-flow (height-matched) on one row, deepest places | Results below; single genre
+  legend under the flow; a **"clear filters"** button. Results has a **list⇄grid** toggle
+  (grid = the dissolved Top-Artists wall). MapView reports filtered totals up so the **stat
+  strip (hours + distinct artists) reacts to the active filter**. ⚠ day-level map *dots*
+  filtering still needs a per-day geography export.
 - **"Where to dig"** chip strip · **"Your portrait"** prose verdict.
 
 ### Insight engine (rotation-insights.jsx)
@@ -248,21 +253,22 @@ How the map moved · Where the taste comes from · The streak · Milestones · O
 The constants · Their era · The incubation · Album weeks · Comebacks · One-day wonders ·
 After midnight · First contact · Heaviest day of every year.
 
-### Explore (the converged digger)
-One filter set — **time** (year chips + "play the decade" animation), **genre**
-(families → subgenres, stable grouping), **mood quadrant** (valence×energy zones), **clock cells**
-(7×24 rhythm grid, per-year) — over one universe (~6,000 artists). Left surface toggles
-**texture map** (subgenre bubble scatter) ⇄ **mood lens** (1,000-artist quadrant + contextual
-facts + "mood over the years" arc). Right: ranked artists/albums/tracks (albums/tracks rank the
-full library via lazy media-index, load-more paging; **10/20/40 selector**; PC list scrolls in
-a fixed-height window). Artists can also be ranked **by sound**
-(energy/valence/acoustic/tempo/dance/pop). Explore search box jumps to artist/subgenre/year/clock
-slices. Everything cross-filters; active-chip row with clear-all. ⚠ mood-lens first paint is
-slow (open bug).
+### Explore (the converged digger; reflowed 2026-07-05)
+One filter set — **time** (year chips + "play the decade"), **genre** (families → subgenres),
+**mood quadrant** (valence×energy zones) — over one universe (~6,000 artists). Left surface
+toggles **texture map** (subgenre scatter) ⇄ **mood lens** (quadrant + facts). Right: ranked
+artists/albums/tracks (full-library media-index, **10/20/40 selector**, PC fixed-height scroll
+window). **Below the module**: the by-sound **sort row** (plays → energy/mood/…/most obscure),
+then the "mood over the years" arc, then the **genre families as a 2-column grid** (each family's
+subgenre list capped + scrollable). The Rhythm clock-cell filter was **removed** (clock moved to
+Calendar). Subgenre spelling variants (hip hop/hip-hop, nu metal, dnb…) merge via `SUB_CANON` in
+build-data. ⚠ mood-lens first paint is slow (open bug).
 
-### Calendar
+### Calendar (heatmap + vertical Rhythm clock)
 GitHub-style **every-day heatmap** for 20 years (calendar.js), click any day/week/month → lazy
-period summary (top artists/albums/tracks for that slice, calendar-detail.js).
+period summary (calendar-detail.js). Beside it (sticky right rail) the **Rhythm clock** — a
+**vertical hour-of-day histogram** (all-time or per-year, moved here from Explore 2026-07-05).
+⚠ selecting an hour can't filter the heatmap yet (no per-day-hour export).
 
 ### Map (Geography — lives INSIDE Overview since 2026-07-05; defaults to cities)
 World map (countries ⇄ city dots) sized by plays; colour by dominant genre / top artist's
@@ -271,17 +277,14 @@ genre / **sonic gradient** (energy/mood/debut-era). Year scrubber animates the g
 artists), rescoped by map selection. Click a country/city → detail blob (top artists/albums/
 songs + Sound DNA for that place, lazy geo-detail.js). Breakdown list with flags.
 
-### Artist page (kept top-400; PC composition final 2026-07-05)
+### Artist page (kept top-400; PC composition 2026-07-05)
 Rank/est/origin header with **gender glyph + active/disbanded/deceased badge** (`ArtistMeta`);
-on PC: **bio + Sound DNA share row 1** (1fr/340px) → **top tracks + top albums row 2** →
-**one compact 3-col row: timeline | sounds-like (6⇄12 toggle) | family tree**, each ≤⅓ width,
-always visible (the earlier expand-cover was rejected). Mobile stacks. Details: **Sound DNA radar**
-(vs library average, + key/loudness/speech/liveness/popularity/followers attribute grid);
-**How they played out** (album/song streamgraph, lazy artist-flow.js); **Sounds like** (real
-last.fm similar + by-sound neighbours, alias-aware, in-library badges); **Family tree** (members,
-shares-members-with); top tracks (→ TrackView) + top albums (→ AlbumView); listening clock;
-**live near you** block when concert data exists. Long-tail artists get **MiniArtistView**
-(explore record + Sound DNA + similar + lazy top tracks/albums via artist-detail.js).
+on PC: **bio full-width** → **row 2: Sound DNA (left, half width — radar + tempo→followers
+attribute LIST side by side) · Top tracks · Albums** → **row 3: Sounds-like · timeline · family
+tree** (each ≤⅓, always visible). **Albums** = covers⇄list toggle (covers default, plays shown,
+all ~40 listed). **Sounds-like**: last.fm default 8 (⇄16), by-sound 8/16/24 (SoundSimilar's own
+selector). Mobile stacks. **How they played out** = album/song streamgraph (lazy artist-flow.js).
+Long-tail artists get **MiniArtistView** (explore record + Sound DNA + similar + lazy detail).
 
 ### Album page
 Cover (real or generative), release year/type/label (Spotify archive), stats (plays, ~hours,
