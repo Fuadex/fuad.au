@@ -13,7 +13,8 @@
 //  · cover URLs are downscaled via CDN variants (Spotify hash swap · CAA front-250 · iTunes size swap).
 
 const SH_MIN_PLAYS = 3;
-const SH_CAP = 90;            // spines initially visible per shelf ("dig deeper" reveals more)
+const SH_CAP = 180;           // spines initially visible per shelf ("dig deeper" reveals more)
+const SH_STEP = 240;          // per dig
 
 // — CDN size variants: small for the fan-open (≈300px), big for the Reader —
 const shSmall = (url) => !url ? "" :
@@ -83,6 +84,10 @@ function ShReader({ al, onClose, go }) {
           <div className="sh-reader-actions">
             <ShNeedle trackKey={al.topTrackKey} hue={al.hue} onState={setSpin} />
             <button className="sh-open" onClick={() => { onClose(); go("album", key); }}>full page →</button>
+            <a className="sh-open" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer"
+              href={`https://www.last.fm/music/${encodeURIComponent(al.artist)}/${encodeURIComponent(al.title)}`}>last.fm ↗</a>
+            <a className="sh-open" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer"
+              href={`https://open.spotify.com/search/${encodeURIComponent(al.artist + " " + al.title)}`}>Spotify ↗</a>
           </div>
         </div>
         <button className="sh-x" onClick={onClose}>✕</button>
@@ -106,6 +111,33 @@ function ShSpine({ al, expanded, onExpand, onOpen }) {
           : <GenCover hue={al.hue} name={al.title} size={"100%"} radius={2} style={{ width: "100%", height: "100%" }} />)
         : <span className="sh-label">{al.title}</span>}
     </div>
+  );
+}
+
+// ShShelf — TOP-LEVEL component on purpose: defining it inside ShelvesView gave it a new
+// identity every render, so any tap remounted the row and reset its horizontal scroll (the
+// mobile "position jumps back" bug). Stable identity = React keeps the DOM (and scrollLeft).
+function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitOn, onSplit, expanded, setExpanded, setReader }) {
+  const visible = albums.slice(0, cap);
+  return (
+    <section className="sh-shelf" data-depth={depth || 0}>
+      <div className="sh-shelf-h">
+        <span className="sh-shelf-name" style={{ "--h": hue }}>{name}</span>
+        <span className="sh-shelf-n">{fmt(albums.length)} records · {fmt(albums.reduce((s, a) => s + a.plays, 0))} plays</span>
+        {splittable && (
+          <button className="sh-split" onClick={onSplit}>{splitOn ? "merge ▴" : "split into subgenres ▾"}</button>
+        )}
+      </div>
+      <div className="sh-row" onMouseLeave={() => setExpanded(null)}>
+        {visible.map(al => (
+          <ShSpine key={al.key} al={al} expanded={expanded === al.key}
+            onExpand={setExpanded} onOpen={setReader} />
+        ))}
+        {albums.length > cap && (
+          <button className="sh-more" onClick={onMore}>+{fmt(albums.length - cap)}<br />dig<br />deeper</button>
+        )}
+      </div>
+    </section>
   );
 }
 
@@ -182,35 +214,6 @@ function ShelvesView({ go }) {
       b[1].reduce((s2, x) => s2 + x.plays, 0) - a[1].reduce((s2, x) => s2 + x.plays, 0));
   };
 
-  const Shelf = ({ id, name, hue, albums, depth }) => {
-    const cap = SH_CAP + (caps[id] || 0);
-    const visible = albums.slice(0, cap);
-    return (
-      <section className="sh-shelf" data-depth={depth || 0}>
-        <div className="sh-shelf-h">
-          <span className="sh-shelf-name" style={{ "--h": hue }}>{name}</span>
-          <span className="sh-shelf-n">{fmt(albums.length)} records · {fmt(albums.reduce((s, a) => s + a.plays, 0))} plays</span>
-          {!depth && albums.length > 6 && (
-            <button className="sh-split" onClick={() => setSplit(p => ({ ...p, [id]: !p[id] }))}>
-              {split[id] ? "merge ▴" : "split into subgenres ▾"}
-            </button>
-          )}
-        </div>
-        <div className="sh-row" onMouseLeave={() => setExpanded(null)}>
-          {visible.map(al => (
-            <ShSpine key={al.key} al={al} expanded={expanded === al.key}
-              onExpand={setExpanded} onOpen={setReader} />
-          ))}
-          {albums.length > cap && (
-            <button className="sh-more" onClick={() => setCaps(p => ({ ...p, [id]: (p[id] || 0) + 120 }))}>
-              +{fmt(albums.length - cap)}<br />dig<br />deeper
-            </button>
-          )}
-        </div>
-      </section>
-    );
-  };
-
   const dig = () => {
     const pool = data.albums.filter(a => a.plays >= 20);
     const pick = pool[Math.floor(Math.random() * pool.length)];
@@ -231,7 +234,7 @@ function ShelvesView({ go }) {
       <p className="r-lede" style={{ marginTop: -8, marginBottom: 22 }}>Every album you've played, racked by genre.
         Brush a spine to fan it open{" "}<span className="r-mono" style={{ fontSize: 10 }}>(tap once on touch)</span> — click the cover for the counter.</p>
 
-      {data.shelves.map(g => split[String(g.fam)] || split[g.fam]
+      {data.shelves.map(g => split[g.fam]
         ? (
           <div key={g.fam} className="sh-famgroup">
             <div className="sh-shelf-h" style={{ marginBottom: 2 }}>
@@ -239,11 +242,19 @@ function ShelvesView({ go }) {
               <button className="sh-split" onClick={() => setSplit(p => ({ ...p, [g.fam]: false }))}>merge ▴</button>
             </div>
             {subRows(g).map(([sname, arr]) => (
-              <Shelf key={g.fam + sname} id={g.fam + ":" + sname} name={sname} hue={g.hue} albums={arr} depth={1} />
+              <ShShelf key={g.fam + sname} id={g.fam + ":" + sname} name={sname} hue={g.hue} albums={arr} depth={1}
+                cap={SH_CAP + (caps[g.fam + ":" + sname] || 0)}
+                onMore={() => setCaps(p => ({ ...p, [g.fam + ":" + sname]: (p[g.fam + ":" + sname] || 0) + SH_STEP }))}
+                expanded={expanded} setExpanded={setExpanded} setReader={setReader} />
             ))}
           </div>
         )
-        : <Shelf key={g.fam} id={g.fam} name={g.name} hue={g.hue} albums={g.albums} />)}
+        : <ShShelf key={g.fam} id={g.fam} name={g.name} hue={g.hue} albums={g.albums}
+            cap={SH_CAP + (caps[g.fam] || 0)}
+            onMore={() => setCaps(p => ({ ...p, [g.fam]: (p[g.fam] || 0) + SH_STEP }))}
+            splittable={g.albums.length > 6} splitOn={!!split[g.fam]}
+            onSplit={() => setSplit(p => ({ ...p, [g.fam]: !p[g.fam] }))}
+            expanded={expanded} setExpanded={setExpanded} setReader={setReader} />)}
 
       {reader && <ShReader al={reader} onClose={() => setReader(null)} go={go} />}
 
@@ -260,18 +271,26 @@ function ShelvesView({ go }) {
         .sh-split:hover { color: var(--accent); }
         .sh-row { display: flex; align-items: flex-end; gap: 2px; overflow-x: auto; padding: 6px 2px 0;
           border-bottom: 3px solid var(--rule-2); scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
-        .sh-spine { flex: none; width: 17px; height: 128px; border-radius: 2px 2px 0 0; cursor: pointer;
+        /* spine = muted cardboard sleeve; the genre-family hue lives in a LABEL BAND at the top
+           (less rainbow, more record shop). Wear = the band brightens + glows with plays. */
+        .sh-spine { flex: none; width: 18px; height: 128px; border-radius: 2px 2px 0 0; cursor: pointer;
           position: relative; overflow: hidden;
-          background: linear-gradient(180deg, oklch(0.46 0.11 var(--h)), oklch(0.3 0.08 var(--h)));
-          box-shadow: inset -2px 0 3px rgba(0,0,0,.35);
+          background: linear-gradient(180deg, #242129, #17151c);
+          box-shadow: inset -2px 0 3px rgba(0,0,0,.42);
           transition: width .22s cubic-bezier(.3,.8,.3,1), box-shadow .22s; }
-        .sh-spine[data-worn="2"] { filter: saturate(1.15) brightness(1.06); }
-        .sh-spine[data-worn="3"] { filter: saturate(1.3) brightness(1.14); }
-        .sh-spine:hover { box-shadow: inset -2px 0 3px rgba(0,0,0,.35), 0 -3px 14px oklch(0.6 0.14 var(--h) / .35); }
+        .sh-spine::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 20px;
+          background: linear-gradient(180deg, oklch(0.55 0.12 var(--h)), oklch(0.44 0.1 var(--h))); }
+        .sh-spine[data-worn="1"]::before { height: 24px; }
+        .sh-spine[data-worn="2"]::before { height: 28px; filter: brightness(1.18); }
+        .sh-spine[data-worn="3"]::before { height: 32px; filter: brightness(1.35);
+          box-shadow: 0 2px 10px oklch(0.6 0.14 var(--h) / .55); }
+        .sh-spine:hover { box-shadow: inset -2px 0 3px rgba(0,0,0,.42), 0 -3px 14px oklch(0.6 0.14 var(--h) / .35); }
         .sh-spine.on { width: 128px; }
-        .sh-label { position: absolute; inset: 6px 0 6px; writing-mode: vertical-rl; font-family: var(--mono);
-          font-size: 8.2px; letter-spacing: .04em; color: rgba(255,255,255,.82); white-space: nowrap;
+        .sh-spine.on::before { display: none; }
+        .sh-label { position: absolute; inset: 26px 0 6px; writing-mode: vertical-rl; font-family: var(--sans, Inter, sans-serif);
+          font-size: 9px; font-weight: 500; letter-spacing: .02em; color: rgba(255,255,255,.66); white-space: nowrap;
           overflow: hidden; text-overflow: ellipsis; text-align: left; pointer-events: none; }
+        .sh-spine[data-worn="3"] .sh-label { color: rgba(255,255,255,.85); }
         .sh-cover { width: 128px; height: 128px; object-fit: cover; display: block; }
         .sh-more { flex: none; width: 44px; height: 128px; border: 1px dashed var(--rule-2); border-bottom: none;
           border-radius: 2px 2px 0 0; background: none; color: var(--ink-faint); cursor: pointer;

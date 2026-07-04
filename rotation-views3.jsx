@@ -1107,7 +1107,7 @@ function StoriesView({ t, go, seed }) {
         .st-turn-n { font-family: var(--serif); font-style: italic; font-size: 17px; text-align: right; }
         .st-turn-axis { display: flex; justify-content: space-between; padding-left: 178px;
           font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: .1em; margin-top: 4px; }
-        @media (max-width: 640px) {
+        @media (max-width: 700px) {
           .st-turn-row { grid-template-columns: 1fr; gap: 2px; }
           .st-turn-n { text-align: left; }
           .st-turn-axis { padding-left: 0; }
@@ -1119,7 +1119,7 @@ function StoriesView({ t, go, seed }) {
         .st-life-row[data-link="true"]:hover { background: var(--bg-3); }
         .st-life-span { display: flex; align-items: center; gap: 6px; }
         .st-life-bar { flex: 1; height: 2px; border-radius: 1px; opacity: .65; }
-        @media (max-width: 640px) {
+        @media (max-width: 700px) {
           /* 4 cols on mobile: 4th col is auto so Flameouts %ages still fit. Lifetime's span moves to row 2. */
           .st-life-row { grid-template-columns: 20px 32px 1fr auto; gap: 9px; padding: 6px 6px; }
           .st-life-span { grid-column: 1 / -1; padding-left: 60px; }
@@ -1137,7 +1137,7 @@ function StoriesView({ t, go, seed }) {
         .st-gate-date { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); letter-spacing: .08em; text-transform: uppercase; }
         .st-gate-country { font-family: var(--serif); font-style: italic; font-size: 16px; }
         .st-gate-n { font-family: var(--serif); font-size: 15px; flex: none; }
-        @media (max-width: 640px) {
+        @media (max-width: 700px) {
           .st-gate { grid-template-columns: auto 1fr auto; gap: 10px; }
           .st-gate-stamp { flex-direction: column; align-items: flex-start; gap: 2px; }
         }
@@ -1159,7 +1159,7 @@ function StoriesView({ t, go, seed }) {
         .st-incub-bar i { display: block; height: 100%; border-radius: 2px; transition: width .8s; }
         .st-incub-n { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--accent);
           white-space: nowrap; flex: none; }
-        @media (max-width: 640px) { .st-incub { grid-template-columns: 1fr; gap: 18px; } }
+        @media (max-width: 700px) { .st-incub { grid-template-columns: 1fr; gap: 18px; } }
         .st-arc { display: grid; gap: 14px; margin-top: 22px; }
         .st-arc-row { display: grid; grid-template-columns: 200px 1fr 110px; gap: 18px; align-items: center; }
         .st-arc-head { display: flex; gap: 9px; align-items: baseline; min-width: 0; }
@@ -1190,11 +1190,11 @@ function StoriesView({ t, go, seed }) {
         .st-scene-a { display: flex; gap: 9px; align-items: center; padding: 4px 0; }
         .st-scene-a[data-link="true"] { cursor: pointer; }
         .st-scene-a[data-link="true"]:hover .st-row-name { color: var(--accent); }
-        @media (max-width: 640px) {
+        @media (max-width: 700px) {
           .st-atlas-row { grid-template-columns: 1fr auto; gap: 6px 12px; }
           .st-atlas-via { grid-column: 1 / -1; font-size: 12px; }
         }
-        @media (max-width: 640px) {
+        @media (max-width: 700px) {
           .st-yir-stats { grid-template-columns: repeat(2, 1fr); gap: 14px 18px; }
           .st-yir-grid { grid-template-columns: 1fr; gap: 18px; }
         }
@@ -1213,7 +1213,7 @@ function StoriesView({ t, go, seed }) {
         .st-peak-n { font-family: var(--serif); font-size: 18px; }
         .st-peak-a { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .st-peak-d { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); }
-        @media (max-width: 640px) {
+        @media (max-width: 700px) {
           .st-card { padding: 20px 18px; }
           .st-hero { padding: 24px 20px; }
           .st-grid { grid-template-columns: 1fr 1fr; }
@@ -1242,7 +1242,7 @@ function StoriesView({ t, go, seed }) {
         .st-chapter::after { content: ""; flex: 1; height: 1px; background: var(--rule); align-self: center; }
 
         /* ── mobile pass ── */
-        @media (max-width: 640px) {
+        @media (max-width: 700px) {
           .st-ug-cuts { grid-template-columns: 1fr 1fr; gap: 6px; }
           .st-ug-cut { padding: 8px; }
           .st-big { font-size: 19px; line-height: 1.45; }
