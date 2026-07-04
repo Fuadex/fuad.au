@@ -202,7 +202,7 @@ timeline: ended-while-listening, graves, elders, median band life, worst year).
 
 ## 7. Views & navigation
 
-Nav: **Overview · Stories · Explore · Calendar · Map · (Live)** — Live auto-hides when
+Nav: **Overview · Stories · Explore · Shelves · Calendar · Map · (Live)** — Live auto-hides when
 `R.CITIES` is empty (it currently is). Detail routes: `#artist/id`, `#album/id`, `#track/id`,
 `#explore/tag` (seeds a genre filter). **Explore also serializes its full active slice into the
 hash** (`#explore/y=2019;s=Industrial;m=dark-intense;c=1.5.9;k=albums`) — bookmarkable and
@@ -287,6 +287,19 @@ followers), key + mode spelled out, **Where it sits** (quadrant + percentiles), 
 (sparkline + narrative + #rank within artist and all-time), sibling tracks. Mobile-responsive
 grid. Entry points: album tracklists, artist top-tracks, Explore tracks tab, search songs,
 Recently-played rows.
+
+### Shelves (the record shop — shipped 2026-07-04, rotation-shelves.jsx)
+Positioning: **Explore is the database, Shelves is the record shop.** Every album ≥3 plays
+(~11.5k) racked as thin colored **spines** on genre shelves (family rows, Misc last); hover /
+first tap **fans a spine open** into its cover (300px CDN variant; collapsed spines are pure
+divs — images mount only when fanned; rows use `content-visibility`); click opens the
+**Reader** bottom-sheet (big cover, stats incl. n/N track completeness, **needle drop** = the
+album's top track's 30-s preview with a **vinyl that slides out and spins while playing**,
+→ full AlbumView). Per-shelf "dig deeper" pagination (90 + 120 steps), **split into
+subgenres** per family row, 🎲 **crate dig** random pull. Wear tiers brighten heavy-play
+spines. Zero own data files — derives from media-index + track-previews + EXPLORE at runtime.
+Queued V2/V3: re-shelving lenses (decade/era/mood/label/completeness), tag-source filter,
+dust from REVISIT, the Unplayed Shelf (archive export). Mobile grammar: tap=fan, tap again=Reader.
 
 ### Live (dormant)
 Full UI exists (`LiveView`, `ConcertRow`, city picker, "from your library" vs "also in town")
