@@ -512,7 +512,7 @@ function ExploreView({ t, go, setPop, seed }) {
       {/* genres grouped under families — tap a family or a subgenre to filter (stable order) */}
       <FamiliesGrid order={order} weights={weights} fam={fam} sub={sub} pickFam={pickFam} pickSub={pickSub} year={year} seen={seen} expressive={t.chart === "expressive"} />
 
-      <RhythmBar R={R} year={year} cells={cells} toggleCell={toggleCell} toggleMany={toggleMany} clear={() => setCells(new Set())} setPop={setPop} seen={seen} />
+      {/* Rhythm (the 7×24 clock) moved to the Calendar page (2026-07-05) — time-of-day lives with time. */}
       {year != null && <YearDetail R={R} go={go} year={year} />}
 
       <style>{`

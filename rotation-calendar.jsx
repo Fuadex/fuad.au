@@ -1,6 +1,51 @@
 // rotation-calendar.jsx — the listening calendar. Tier 1: a contributions-style heatmap of daily
 // plays (calendar.js). Tier 2: click a Day/Week/Month to load period summaries (calendar-detail.js,
 // only fetched on first drill) and show a bottom overview — top artists/albums/songs + Sound DNA.
+// Also hosts the Rhythm clock (moved from Explore 2026-07-05).
+
+// ClockCard — 7×24 hour×weekday listening heatmap (all-time or a single year). Pure viz.
+function ClockCard({ R, years }) {
+  const [yr, setYr] = React.useState("all");
+  const days = R.CLOCK.days;
+  const grid = React.useMemo(() => {
+    if (yr === "all" || !R.CLOCK_BY_YEAR || !R.CLOCK_BY_YEAR[yr]) return R.CLOCK.grid;
+    const flat = R.CLOCK_BY_YEAR[yr];   // length 168, cell = ((day+6)%7)*24 + hour
+    return Array.from({ length: 7 }, (_, r) => flat.slice(r * 24, r * 24 + 24));
+  }, [R, yr]);
+  const max = Math.max(1, ...grid.flat());
+  const total = grid.flat().reduce((a, b) => a + b, 0);
+  const hourTot = Array.from({ length: 24 }, (_, h) => days.reduce((s, _, di) => s + grid[di][h], 0));
+  const peakHour = hourTot.indexOf(Math.max(...hourTot));
+  const nightShare = total ? (hourTot.slice(0, 5).reduce((a, b) => a + b, 0) / total * 100) : 0;
+  const hr = (h) => (h % 12 === 0 ? 12 : h % 12) + (h < 12 ? "a" : "p");
+  return (
+    <div className="r-card" style={{ padding: "16px 18px 14px", marginTop: "var(--gap)" }}>
+      <div style={{ display: "flex", alignItems: "baseline", gap: 14, flexWrap: "wrap", marginBottom: 12 }}>
+        <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)" }}>Rhythm</div>
+        <div style={{ fontSize: 12, color: "var(--ink-soft)" }}>Peak <b style={{ color: "var(--ink)" }}>{hr(peakHour).replace("a", " AM").replace("p", " PM")}</b><span style={{ color: "var(--ink-faint)" }}> · </span><b style={{ color: "var(--accent)" }}>{nightShare.toFixed(0)}%</b> before 5 AM</div>
+        <select style={{ marginLeft: "auto", background: "var(--bg-3)", border: "1px solid var(--rule)", color: "var(--ink)", borderRadius: 6, padding: "4px 8px", fontFamily: "var(--mono)", fontSize: 10 }} value={yr} onChange={(e) => setYr(e.target.value === "all" ? "all" : +e.target.value)}>
+          <option value="all">all time</option>
+          {years.slice().reverse().map(y => <option key={y} value={y}>{y}</option>)}
+        </select>
+      </div>
+      <div className="clk-scroll">
+        <div style={{ display: "grid", gridTemplateColumns: "34px repeat(24, 1fr)", gap: 3, marginBottom: 5 }}>
+          <div />
+          {Array.from({ length: 24 }, (_, h) => <div key={h} className="r-mono" style={{ fontSize: 7.5, color: "var(--ink-faint)", textAlign: "center" }}>{h % 3 === 0 ? hr(h) : ""}</div>)}
+        </div>
+        {days.map((d, di) => (
+          <div key={d} style={{ display: "grid", gridTemplateColumns: "34px repeat(24, 1fr)", gap: 3, marginBottom: 3 }}>
+            <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)", display: "flex", alignItems: "center" }}>{d}</div>
+            {grid[di].map((v, h) => { const x = v / max; return (
+              <div key={h} title={`${d} ${hr(h)} · ${v} plays`} style={{ aspectRatio: "1", borderRadius: 2,
+                background: x < 0.04 ? "var(--bg-3)" : `oklch(${0.28 + x * 0.5} ${0.05 + x * 0.12} var(--acc-h))` }} />
+            ); })}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function CalendarView({ go, seed }) {
   const R = window.ROTATION;
@@ -116,6 +161,9 @@ function CalendarView({ go, seed }) {
         less{[0, 0.18, 0.4, 0.68, 1].map((f, i) => <span key={i} style={{ width: 11, height: 11, borderRadius: 2, background: f === 0 ? "var(--bg-3)" : color(f * max) }} />)}more
         <span style={{ marginLeft: "auto" }}>click the grid to open a {gran} ↓</span>
       </div>
+
+      {/* rhythm — the 7×24 clock, moved here from Explore (time-of-day lives with time) */}
+      <ClockCard R={R} years={years} />
 
       {/* period overview */}
       {sel && (
