@@ -64,7 +64,7 @@ function CalendarView({ go }) {
   const iRow = ([t, a, p]) => ({ title: NM[t], artist: NM[a], plays: p });
 
   return (
-    <div className="r-view">
+    <div className="r-view tv-page">
       <div className="r-viewhead">
         <div>
           <div className="r-kicker">Calendar · {years[0]}—{years[years.length - 1]} · {fmt(max)} in a single day</div>
