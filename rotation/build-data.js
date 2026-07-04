@@ -1410,6 +1410,44 @@ let LANGUAGE = null;
   }
 }
 
+// ─────────── MOOD (sounds happy / reads dark — Spotify valence × NRC lyric valence) ───────────
+// Two independent 0–100 axes per track: how it SOUNDS (Spotify audio valence, in TRACKDATA[5])
+// and how it READS (NRC multilingual lyric valence = positive vs negative share, genius-mood.json
+// by .sptmp/genius-sentiment.py). The interesting tracks are where they diverge — an upbeat tune
+// carrying bleak words, or a dirge with hopeful ones. Play-weighted; needs ≥3 emotive words to
+// have been scored. NRC emotion index: 0 anger 1 anticipation 2 disgust 3 fear 4 joy 5 sadness
+// 6 surprise 7 trust.
+const GENIUS_MOOD = _readJson("genius-mood.json"); // key → [lyricValence0-100, domEmotionIdx, emotiveWords]
+const MOOD_EMO = ["anger", "anticipation", "disgust", "fear", "joy", "sadness", "surprise", "trust"];
+let MOOD = null;
+{
+  const rows = [];
+  for (const [key, plays] of trackPlays) {
+    const ix = key.indexOf("\x00"); const artist = key.slice(0, ix), title = key.slice(ix + 1);
+    const sk = slug(artist) + "~" + slug(title);
+    const m = GENIUS_MOOD[sk], td = TRACKDATA[sk];
+    if (!m || m[0] == null || !td || td.length < 6 || typeof td[5] !== "number") continue;
+    rows.push({ artist, title, id: sk, artistId: slug(artist), hue: hueFor(artist), plays,
+      aud: td[5], lyr: m[0], emo: m[1] >= 0 ? MOOD_EMO[m[1]] : null });
+  }
+  if (rows.length >= 50) {
+    const totPlays = rows.reduce((s, r) => s + r.plays, 0);
+    const wavg = (f) => Math.round(rows.reduce((s, r) => s + f(r) * r.plays, 0) / totPlays);
+    const trim = (arr) => arr.map(r => ({ id: r.id, artist: r.artist, title: r.title, artistId: r.artistId, hue: r.hue, plays: r.plays, aud: r.aud, lyr: r.lyr, emo: r.emo }));
+    // sounds happy / reads dark = high audio valence, low lyric valence (and the inverse)
+    const happyDark = rows.filter(r => r.aud >= 58 && r.lyr <= 38 && r.plays >= 8).sort((a, b) => (b.aud - b.lyr) - (a.aud - a.lyr) || b.plays - a.plays);
+    const darkHappy = rows.filter(r => r.aud <= 38 && r.lyr >= 58 && r.plays >= 8).sort((a, b) => (b.lyr - b.aud) - (a.lyr - a.aud) || b.plays - a.plays);
+    const emoC = {};
+    for (const r of rows) if (r.emo) emoC[r.emo] = (emoC[r.emo] || 0) + r.plays;
+    MOOD = {
+      tracks: rows.length, avgAud: wavg(r => r.aud), avgLyr: wavg(r => r.lyr),
+      happyDark: trim(happyDark.slice(0, 10)), darkHappy: trim(darkHappy.slice(0, 10)),
+      happyDarkCount: happyDark.length, darkHappyCount: darkHappy.length,
+      emotions: Object.entries(emoC).sort((a, b) => b[1] - a[1]).map(([emo, plays]) => ({ emo, plays })),
+    };
+  }
+}
+
 // ─────────── LINEUPS (Wikidata band-member gender — enrich-wikidata.js) ───────────
 // The layer MusicBrainz can't give us: MB's `gender` is null for Groups, so at the artist
 // level a band is genderless. Wikidata's P527→P21 exposes the members and their gender, so
@@ -1558,7 +1596,7 @@ let REVISIT = null;
 
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
-  AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN, LANGUAGE, LINEUPS,
+  AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN, LANGUAGE, LINEUPS, MOOD,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
 };
