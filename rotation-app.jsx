@@ -20,6 +20,7 @@ const NAV_FULL = [
   ["overview", "Overview"],
   ["stories", "Stories"],
   ["explore", "Explore"],
+  ["shelves", "Shelves"],
   ["calendar", "Calendar"],
   ["map", "Map"],
   ["live", "Live"],
@@ -139,6 +140,7 @@ function RotationApp() {
         {v === "overview" && <OverviewView t={t} go={go} />}
         {v === "stories" && <StoriesView t={t} go={go} seed={route.id} />}
         {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} seed={route.id} />}
+        {v === "shelves" && <ShelvesView go={go} />}
         {v === "calendar" && <CalendarView go={go} />}
         {v === "map" && <MapView go={go} />}
         {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
