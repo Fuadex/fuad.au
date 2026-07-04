@@ -1320,6 +1320,40 @@ let LIFESPAN = null;
   };
 }
 
+// ─────────── LANGUAGE (Genius lyrics language layer — .sptmp/genius-match.py) ───────────
+// Play-weighted: what languages you actually listen in, and how the mix shifted over the years.
+const GENIUS = _readJson("genius-lyrics.json");   // "artistSlug~trackSlug" → [lang, tag, year, wc, uniq]
+const LANG_NAMES = { en: "English", pl: "Polish", ja: "Japanese", de: "German", sv: "Swedish", fr: "French", es: "Spanish", fi: "Finnish", pt: "Portuguese", is: "Icelandic", ko: "Korean", it: "Italian", ru: "Russian", nl: "Dutch", no: "Norwegian", da: "Danish", zh: "Chinese", cs: "Czech" };
+let LANGUAGE = null;
+{
+  const shares = new Map(), byYear = new Map(), nonEn = [];
+  let coveredPlays = 0, totalPlays = 0, covered = 0;
+  for (const [key, plays] of trackPlays) {
+    totalPlays += plays;
+    const ix = key.indexOf("\x00"); const artist = key.slice(0, ix), title = key.slice(ix + 1);
+    const g = GENIUS[slug(artist) + "~" + slug(title)];
+    if (!g || !g[0]) continue;
+    const lang = g[0];
+    covered++; coveredPlays += plays;
+    shares.set(lang, (shares.get(lang) || 0) + plays);
+    const ym = trackYear.get(key);
+    if (ym) for (const [y, c] of ym) { if (!byYear.has(y)) byYear.set(y, new Map()); const m = byYear.get(y); m.set(lang, (m.get(lang) || 0) + c); }
+    if (lang !== "en") nonEn.push({ artist, title, lang, langName: LANG_NAMES[lang] || lang, plays, id: slug(artist) + "~" + slug(title), artistId: slug(artist), hue: hueFor(artist) });
+  }
+  if (covered >= 30) {
+    nonEn.sort((a, b) => b.plays - a.plays);
+    const sharesArr = [...shares.entries()].sort((a, b) => b[1] - a[1]).map(([l, p]) => ({ lang: l, name: LANG_NAMES[l] || l, plays: p }));
+    const byYearO = {};
+    for (const [y, m] of [...byYear.entries()].sort((a, b) => a[0] - b[0])) { if (m.size) byYearO[y] = Object.fromEntries([...m.entries()].sort((a, b) => b[1] - a[1])); }
+    const enPlays = shares.get("en") || 0;
+    LANGUAGE = {
+      shares: sharesArr, byYear: byYearO, topNonEn: nonEn.slice(0, 12),
+      covered, coveredPlays, totalPlays, langs: sharesArr.length,
+      nonEnPct: coveredPlays ? Math.round((coveredPlays - enPlays) / coveredPlays * 100) : 0,
+    };
+  }
+}
+
 // ─────────── CONNECTIONS (shared band members — the "same drummer" graph) ───────────
 // A person who is a "member of band" for ≥2 artists in your library links those artists.
 let CONNECTIONS = null;
@@ -1425,7 +1459,7 @@ let REVISIT = null;
 
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
-  AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN,
+  AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN, LANGUAGE,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
 };

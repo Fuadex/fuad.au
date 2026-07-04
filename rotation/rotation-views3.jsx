@@ -417,6 +417,52 @@ function StoriesView({ t, go, seed }) {
 
         <div className="st-chapter"><span>III</span> Scenes &amp; places</div>
 
+        {/* the languages you listen in — from Genius lyrics language detection */}
+        {I.LANGUAGE && I.LANGUAGE.shares.length > 1 && (() => {
+          const L = I.LANGUAGE;
+          const max = L.shares[0].plays;
+          const top = L.shares.slice(0, 8);
+          const topNon = L.topNonEn[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">What you listen in</div>
+              <div className="st-big">
+                {L.nonEnPct >= 4
+                  ? <><em>{L.nonEnPct}%</em> of your listening isn't in English.</>
+                  : <>You listen across <em>{L.langs}</em> languages.</>}
+              </div>
+              <div className="st-sub">
+                Across the {fmt(L.covered)} songs with detectable lyrics, {L.shares[1] ? <>the biggest non-English voice is <b style={{ color: "var(--ink)" }}>{L.shares[1].name}</b>{L.shares[2] ? <>, then {L.shares[2].name}</> : null}. </> : null}
+                {topNon ? <>Your most-played non-English track: <b className="st-inline-link" data-link={clickable(topNon.artist)} onClick={() => go("track", topNon.id)} style={{ color: "var(--ink)", cursor: "pointer" }}>{topNon.title}</b> ({topNon.langName}, {fmt(topNon.plays)} plays).</> : null}
+              </div>
+              <div style={{ display: "grid", gap: 7, marginTop: 18, maxWidth: 520 }}>
+                {top.map(s => (
+                  <div key={s.lang} style={{ display: "grid", gridTemplateColumns: "84px 1fr 54px", gap: 10, alignItems: "center" }}>
+                    <span style={{ fontSize: 12.5, color: s.lang === "en" ? "var(--ink-soft)" : "var(--ink)" }}>{s.name}</span>
+                    <div style={{ height: 7, background: "var(--bg-3)", borderRadius: 4, overflow: "hidden" }}>
+                      <div style={{ height: "100%", width: (s.plays / max * 100) + "%", background: s.lang === "en" ? "var(--rule-2)" : "var(--accent)", borderRadius: 4 }} />
+                    </div>
+                    <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{fmt(s.plays)}</span>
+                  </div>
+                ))}
+              </div>
+              {L.topNonEn.length > 1 && (
+                <div className="st-ug-cuts" style={{ marginTop: 18 }}>
+                  {L.topNonEn.slice(0, 6).map(t => (
+                    <div key={t.id} className="st-ug-cut" data-link={clickable(t.artist)} onClick={() => go("track", t.id)}>
+                      <GenCover hue={t.hue} name={t.artist} size={40} radius={4} />
+                      <div style={{ minWidth: 0 }}>
+                        <div className="st-row-name">{t.title}</div>
+                        <div className="st-row-sub">{t.artist} · {t.langName} · {fmt(t.plays)} plays</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
+          );
+        })()}
+
         {/* top scenes — Discogs styles you've gone deepest on */}
         {I.STYLE_ATLAS && I.STYLE_ATLAS.scenes && I.STYLE_ATLAS.scenes.length >= 6 && (
           <section className="st-card">
