@@ -239,6 +239,7 @@ a.r-link:hover { color: var(--ink); }
 
 /* Album/Track page rules — GLOBAL (these pages are deep-linkable; component-scoped styles in
    Explore never load unless Explore mounts, which made the sidebar column clip on mobile). */
+.tv-page { max-width: 1150px; margin: 0 auto; }   /* detail pages read as a sheet, not a smear, on wide screens */
 .r-track-row { transition: background .15s; } .r-track-row:hover { background: var(--bg-3); }
 @media (max-width: 760px) { .tv-grid { grid-template-columns: 1fr !important; } }
 @media (max-width: 600px) {

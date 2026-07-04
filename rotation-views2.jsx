@@ -876,7 +876,7 @@ function AlbumView({ id, go }) {
   const sr = data.series, sFirst = sr[0], sLast = sr[sr.length - 1], sPeak = sr.reduce((a, b) => b.p > (a ? a.p : 0) ? b : a, null);
 
   return (
-    <div className="r-view">
+    <div className="r-view tv-page">
       <button className="r-back" onClick={() => go("explore")}>← explore</button>
       <div className="tv-head" style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 26 }}>
         <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={150} radius={6} />
@@ -1094,7 +1094,7 @@ function TrackView({ id, go }) {
   ] : [];
 
   return (
-    <div className="r-view">
+    <div className="r-view tv-page">
       <button className="r-back" onClick={() => go(data.albumId ? "album" : "explore", data.albumId || undefined)}>← {data.album || "explore"}</button>
       <div className="tv-head" style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 24 }}>
         <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={132} radius={6} />

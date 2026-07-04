@@ -1044,6 +1044,12 @@ function StoriesView({ t, go, seed }) {
 
       <style>{`
         .st-feed { max-width: 780px; margin: 0 auto; display: grid; gap: var(--gap); }
+        /* desktop: two-column magazine flow — chapters span both columns, cards never split */
+        @media (min-width: 1150px) {
+          .st-feed { display: block; columns: 2; column-gap: var(--gap); max-width: 1520px; }
+          .st-feed > section { break-inside: avoid; margin-bottom: var(--gap); }
+          .st-feed > .st-chapter { column-span: all; break-inside: avoid; margin-bottom: var(--gap); }
+        }
         .st-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 26px 28px; }
         .st-hero { padding: 34px 32px; }
         .st-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase;
