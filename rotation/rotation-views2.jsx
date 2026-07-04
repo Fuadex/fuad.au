@@ -619,17 +619,40 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               })()}
             </div>
 
-          {/* family tree — members + shared-member lineage (MusicBrainz + Discogs) */}
-          {((a.members && a.members.length > 0) || (a.connections && a.connections.length > 0)) && (
+          {/* family tree — members + shared-member lineage (MusicBrainz + Discogs + Wikidata) */}
+          {((a.members && a.members.length > 0) || (a.wd && a.wd.lineup) || (a.connections && a.connections.length > 0)) && (() => {
+            // Wikidata lineup carries gender MB can't (its `gender` is null for Groups). Merge it
+            // in: colour a member's dot by gender, and surface Wikidata-only members (e.g. a new
+            // vocalist) the MB/Discogs lists haven't caught up to.
+            const wdLine = (a.wd && a.wd.lineup) || [];
+            const genderOf = {}; wdLine.forEach(m => { genderOf[m.n] = m.g; });
+            const base = a.members || [];
+            const extra = wdLine.map(m => m.n).filter(n => !base.includes(n));
+            const roster = [...base, ...extra];
+            const dot = (g) => g && /female|woman/i.test(g) ? "var(--accent)" : g ? "var(--rule-2)" : "transparent";
+            const wCity = a.wd && a.wd.city, wInc = a.wd && a.wd.inception, wDis = a.wd && a.wd.dissolved;
+            return (
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
                 <span className="lbl"><b>Family tree</b></span>
-                <span className="meta">musicbrainz · discogs</span></div>
-              {a.members && a.members.length > 0 && (
+                <span className="meta">musicbrainz · discogs{a.wd ? " · wikidata" : ""}</span></div>
+              {(wCity || wInc) && (
+                <div style={{ fontSize: 12, color: "var(--ink-soft)", marginBottom: 14 }}>
+                  Formed{wCity ? <> in <b style={{ color: "var(--ink)" }}>{wCity}</b></> : null}
+                  {wInc ? <>, <span className="r-mono">{wInc}{wDis ? `–${wDis}` : ""}</span></> : null}
+                  {wDis ? <span style={{ color: "var(--ink-faint)" }}> · disbanded</span> : null}
+                </div>
+              )}
+              {roster.length > 0 && (
                 <div style={{ marginBottom: (a.connections && a.connections.length) ? 16 : 0 }}>
                   <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 8 }}>Members</div>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                    {a.members.map(m => <span key={m} className="r-chip" style={{ fontSize: 11 }}>{m}</span>)}
+                    {roster.map(m => (
+                      <span key={m} className="r-chip" style={{ fontSize: 11, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                        {genderOf[m] ? <span style={{ width: 6, height: 6, borderRadius: 999, background: dot(genderOf[m]) }} /> : null}
+                        {m}
+                      </span>
+                    ))}
                   </div>
                 </div>
               )}
@@ -659,7 +682,8 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                 </div>
               )}
             </div>
-          )}
+            );
+          })()}
           </div>
 
           {/* live near you */}

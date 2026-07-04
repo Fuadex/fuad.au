@@ -193,6 +193,26 @@ const lifeOf = (name) => {
   const o = ORIGINS[name]; if (!o || !o.type || !("ended" in o)) return null; return { type: o.type, ended: !!o.ended, end: (o.end || "").slice(0, 4) };
 };
 
+// ─────────── Wikidata (wikidata-cache.json, by enrich-wikidata.js) ───────────
+// Per artist: { wd, inception, dissolved, formCity, coords:[lon,lat], country, countryCode,
+// members:[{name,gender}], memberCount, femaleShare }. Adds the member-level gender + exact
+// formation city MB doesn't carry. wdOf() shapes the slice that rides on the artist page.
+const WIKIDATA_PATH = path.join(__dirname, "wikidata-cache.json");
+const WIKIDATA = fs.existsSync(WIKIDATA_PATH) ? JSON.parse(fs.readFileSync(WIKIDATA_PATH, "utf8")) : {};
+function wdOf(name) {
+  const w = WIKIDATA[name];
+  if (!w) return null;
+  const r = {};
+  if (w.formCity) r.city = w.formCity;                       // exact formation city ("Bergen", "Gothenburg")
+  if (w.coords) r.coords = w.coords;                         // [lon, lat] of that city
+  if (w.dissolved) r.dissolved = w.dissolved.slice(0, 4);    // year the band dissolved (P576)
+  if (w.inception) r.inception = w.inception.slice(0, 4);    // year formed (P571)
+  // lineup with known gender — drives the member-gender chips on the page
+  const lineup = (w.members || []).filter(m => m.name && m.gender).map(m => ({ n: m.name, g: m.gender }));
+  if (lineup.length) { r.lineup = lineup.slice(0, 12); r.femaleShare = w.femaleShare; }
+  return Object.keys(r).length ? r : null;
+}
+
 // ─────────── Discogs styles/genres (discogs-cache.json, built by enrich-discogs.js) ───────────
 // Per artist: { id, styles: [[name,count],…], genres: [[name,count],…], releases, ambiguous }.
 // Finer-grained than last.fm tags (e.g. "Breakcore", "Synthwave", "Nu Metal", "Drum n Bass").
@@ -485,6 +505,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     country: meta.country || (originOf(name) ? originOf(name).country.toLowerCase() : ""),
     gender: genderOf(name),     // "Male"/"Female"/"Other"/"" — solo artists only
     life: lifeOf(name),         // { type, ended, end } → active/disbanded/deceased badge
+    wd: wdOf(name),             // Wikidata slice: formation city+coords, dissolved, lineup+gender
   };
 });
 const byName = Object.fromEntries(ARTISTS.map(a => [a.name, a]));
@@ -1380,7 +1401,6 @@ let LANGUAGE = null;
 // we can finally ask "how much of my band-listening involves women musicians?" — play-weighted
 // over groups whose lineup gender is actually known. Solo artists (no members) are excluded
 // here on purpose; their gender lives in the MB origins layer.
-const WIKIDATA = _readJson("wikidata-cache.json"); // name → { members:[{name,gender}], femaleShare, formCity, coords, ... }
 let LINEUPS = null;
 {
   let bandsAnalyzed = 0, bandsWithWomen = 0, playsWithWomen = 0, playsAllMale = 0;
