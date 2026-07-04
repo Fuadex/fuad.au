@@ -513,7 +513,7 @@ function ExploreView({ t, go, setPop, seed }) {
       {/* mood over the years — the energy/mood arc, right under the sort row */}
       {lens === "mood" && <MoodContext R={R} arts={moodSet} go={go} />}
 
-      {/* genres grouped under families — 2×6 columns, each row half-height + scrollable (Fuad) */}
+      {/* genres grouped under families — 6 columns per row, each card scrollable (Fuad) */}
       <FamiliesGrid order={order} weights={weights} fam={fam} sub={sub} pickFam={pickFam} pickSub={pickSub} year={year} seen={seen} expressive={t.chart === "expressive"} />
 
       {/* Rhythm (the 7×24 clock) moved to the Calendar page (2026-07-05) — time-of-day lives with time. */}
@@ -575,6 +575,7 @@ function ExploreView({ t, go, setPop, seed }) {
             scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
         }
         .xp-val { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); text-align: right; }
+        @media (max-width: 1250px) { .xp-famgrid { grid-template-columns: repeat(3, 1fr) !important; } }
         @media (max-width: 760px) { .xp-famgrid { grid-template-columns: 1fr !important; } }
         .xp-fam-head { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 2px; border-radius: 5px; transition: .12s; }
         .xp-fam-head:hover { opacity: .85; }
@@ -660,7 +661,7 @@ function FamiliesGrid({ order, weights, fam, sub, pickFam, pickSub, year, seen, 
       <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", margin: "4px 0 10px" }}>
         Genres — tap a family or subgenre to filter {year ? "· " + year : ""}
       </div>
-      <div className="xp-famgrid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--gap)" }}>
+      <div className="xp-famgrid" style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: "var(--gap)" }}>
         {order.map((g, gi) => {
           const fw = g.subs.reduce((s, su) => s + (weights[su.idx].w || 0), 0);
           const fmax = Math.max(1, ...g.subs.map(su => weights[su.idx].w || 0));

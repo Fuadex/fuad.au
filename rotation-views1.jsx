@@ -212,9 +212,9 @@ function OverviewView({ t, go }) {
 
       {/* bento */}
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
-        {/* now playing — top-right corner of the pulse row, half the width (DOM-first so mobile
-            still leads with it; the ≥981px block pins it to cols 7-12) */}
-        <div className="r-card ov-np" style={{ gridColumn: "span 6", padding: 18, display: "flex", gap: 16, alignItems: "center", minWidth: 0 }}>
+        {/* now playing — top-right corner of the pulse row (DOM-first so mobile still leads
+            with it; the ≥981px block pins it to cols 9-12) */}
+        <div className="r-card ov-np" style={{ gridColumn: "span 4", padding: 18, display: "flex", gap: 16, alignItems: "center", minWidth: 0 }}>
           <div style={{ position: "relative", cursor: npKnown ? "pointer" : "default" }} onClick={() => npKnown && go("artist", now.artistId)}>
             <GenCover hue={nowArtist.hue} name={now.artist} size={116} radius={4} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "flex-end", justifyContent: "center",
@@ -233,8 +233,8 @@ function OverviewView({ t, go }) {
           </div>
         </div>
 
-        {/* scrobble counter + trend — half the row */}
-        <div className="r-card ov-scrob" style={{ gridColumn: "span 6", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        {/* scrobble counter + trend — left anchor of the pulse row */}
+        <div className="r-card ov-scrob" style={{ gridColumn: "span 3", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Scrobbles</b></span>
             <span className="meta">26-wk trend</span></div>
           <div className="r-stat-n" style={{ fontSize: "clamp(34px,4.6vw,52px)", margin: "6px 0 2px" }}>{fmt(Math.round(scrob))}</div>
@@ -243,8 +243,8 @@ function OverviewView({ t, go }) {
           </div>
         </div>
 
-        {/* streak ring — a third of the row */}
-        <div className="r-card ov-streak" style={{ gridColumn: "span 4", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
+        {/* streak — squeezed centrally beside the recent list */}
+        <div className="r-card ov-streak" style={{ gridColumn: "span 2", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Streak</b></span></div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 6 }}>
             <div className="r-stat-n" style={{ fontSize: 46 }}>{T.streak.current}</div>
@@ -255,9 +255,9 @@ function OverviewView({ t, go }) {
           </div>
         </div>
 
-        {/* recent ticker — lives in the pulse row (streak's right), height-matched to the row:
-            the list runs 3-up at PC widths so 6 items fit in two shallow rows */}
-        <div className="r-card ov-recent" style={{ gridColumn: "span 8", padding: 18, display: "flex", flexDirection: "column" }}>
+        {/* recent ticker — squeezed centrally between streak and now-playing; the list is a
+            capped scroll well at PC widths so the pulse row stays shallow */}
+        <div className="r-card ov-recent" style={{ gridColumn: "span 3", padding: 18, display: "flex", flexDirection: "column" }}>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}><span className="lbl"><b>Recently played</b></span>
             <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
               style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
@@ -378,15 +378,19 @@ function OverviewView({ t, go }) {
       })()}
 
       <style>{`
-        /* ── PC bento (≥981px, Fuad's redesign 2026-07-04): pulse row 1 = scrobbles(½) ·
-           now-playing(½, top-right); row 2 = streak(⅓) · recently-played (height-matched,
-           list runs 3-up). Calendar rail moved into the map band's left column. ── */
+        /* ── PC bento (≥981px, Fuad's redesign 2026-07-04): ONE pulse row — scrobbles ·
+           streak · recently-played squeezed centrally · now-playing top-right. The recent
+           list scrolls inside a capped well so the row stays shallow. Calendar rail lives
+           in the map band's left column. ── */
         @media (min-width: 981px) {
-          .ov-scrob   { grid-column: 1 / span 6 !important; grid-row: 1; }
-          .ov-np      { grid-column: 7 / span 6 !important; grid-row: 1; }
-          .ov-streak  { grid-column: 1 / span 4 !important; grid-row: 2; }
-          .ov-recent  { grid-column: 5 / -1 !important; grid-row: 2; }
-          .ov-recent .ov-rl { grid-template-columns: repeat(3, 1fr); gap: 2px 16px; }
+          .ov-scrob   { grid-column: 1 / span 3 !important; grid-row: 1; }
+          .ov-streak  { grid-column: 4 / span 2 !important; grid-row: 1; }
+          .ov-recent  { grid-column: 6 / span 3 !important; grid-row: 1; }
+          .ov-np      { grid-column: 9 / -1 !important; grid-row: 1; }
+          .ov-recent .ov-rl { max-height: 168px; overflow-y: auto; align-content: start;
+            scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
+          .ov-scrob .r-stat-n { font-size: clamp(28px, 2.6vw, 38px) !important; }
+          .ov-streak .r-stat-n { font-size: 38px !important; }
           /* row 3 = map band (1/-1 inline); row 4 — the four stats (left, they react to the
              map/calendar filter) + heaviest day (right) */
           .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(4, 1fr) !important; gap: 18px !important; }

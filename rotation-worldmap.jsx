@@ -339,6 +339,8 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
     let fi; if (yearIdx != null) fi = c.yf ? c.yf[yearIdx] : -1; else fi = colorBy === "top" ? c.tf : c.df; return (fi >= 0 && FAMHUE[fi] != null) ? `oklch(0.63 0.17 ${FAMHUE[fi]})` : "var(--accent)";
   };
   const openBubble = (b) => {
+    // clicking the already-selected place again clears it (Fuad: needs an obvious way out)
+    if (b.kind === "city" && sel && sel.kind === "city" && sel.key === b.c.country + "|" + b.c.city) { setSel(null); return; }
     if (b.kind === "country") { setFocus(b.c.code); frame(world.bbox[b.c.code]); setSel({ kind: "country", key: b.c.code }); }
     else setSel({ kind: "city", key: b.c.country + "|" + b.c.city });
     setPane("artists");
@@ -425,21 +427,16 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
       </div>
 
       {/* the flow doubles as filter — pick a band to scope the map; picking a place rescopes the flow.
-          The single genre legend lives under it (map's legend removed — one legend, Fuad). */}
+          MapFlow's own interactive legend is THE genre legend (static FAMILIES strip removed, Fuad
+          2026-07-04); only the metric gradient shows when colouring by a measured dimension. */}
       <div className="mp-flow" style={{ marginTop: "var(--gap)" }}>
         <MapFlow artists={flowArtists} filt={filt} setFilt={setFilt} years={geoYears} markYi={yearIdx} go={go} />
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 14px", marginTop: 10, alignItems: "center", minHeight: 20 }}>
-          {placeMetric
-            ? <><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{METRICS[colorBy].label}:</span>
-              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{placeMetric.lo}</span>
-              <span style={{ width: 130, height: 9, borderRadius: 3, background: "linear-gradient(90deg, oklch(0.66 0.15 250), oklch(0.66 0.15 135), oklch(0.66 0.15 30))" }} />
-              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{placeMetric.hi}</span></>
-            : R.FAMILIES.map(f => (
-              <div key={f.i} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-                <span style={{ width: 10, height: 10, borderRadius: 3, background: `oklch(0.63 0.17 ${f.hue})` }} />
-                <span style={{ fontSize: 11, color: "var(--ink-soft)" }}>{f.family}</span>
-              </div>))}
-        </div>
+        {placeMetric && <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 14px", marginTop: 10, alignItems: "center", minHeight: 20 }}>
+          <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{METRICS[colorBy].label}:</span>
+          <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{placeMetric.lo}</span>
+          <span style={{ width: 130, height: 9, borderRadius: 3, background: "linear-gradient(90deg, oklch(0.66 0.15 250), oklch(0.66 0.15 135), oklch(0.66 0.15 30))" }} />
+          <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{placeMetric.hi}</span>
+        </div>}
       </div>
 
       {/* breakdown list */}
@@ -461,8 +458,8 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
         </div>
       </div>
 
-      {/* the calendar rail (slotted in from Overview) — under the deepest places, left column;
-          picking a day/week swaps the results over to that exact period */}
+      {/* the calendar rail (slotted in from Overview) — row 2 right, under the results, beside
+          the stretched deepest-places list; picking a day/week swaps the results to that period */}
       {calSlot && <div className="mp-cal" style={{ marginTop: "var(--gap)" }}>{calSlot}</div>}
 
       {/* results — top artists + albums + songs + DNA for the current place ∩ genre ∩ year (no place needed) */}
@@ -474,7 +471,9 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
           <div className="r-card mp-results" style={{ marginTop: "var(--gap)", padding: 22 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
               <div style={{ minWidth: 0 }}><div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>{periodData ? "on this " + calPeriod.gran : "results"}</div>
-                <div className="mp-restitle" style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22 }}>{parts.join("  ·  ")}</div></div>
+                <div className="mp-restitle" style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22 }}>{parts.join("  ·  ")}
+                  {(sel || focus) && <button className="mp-clear" style={{ marginLeft: 10, verticalAlign: "middle" }} title="clear the place filter"
+                    onClick={() => { setSel(null); setFocus(null); setView({ s: 1, x: 0, y: 0 }); }}>✕ place</button>}</div></div>
               <div><div className="r-stat-n" style={{ fontSize: 26 }}>{fmt(totalPlays)}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>plays</div></div>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "10px 14px", flexWrap: "wrap", margin: "16px 0 14px" }}>
@@ -527,9 +526,9 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
 
       <style>{`.map-ctl { display: flex; gap: 14px 18px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
         /* PC composition (Fuad, 2026-07-04): map · flow · results at 3:3:2, height-matched on
-           one row; deepest places + the calendar rail stack under the map in the left column.
-           The results body is a flexed scroll well (height:0 + grow) so a long list can never
-           inflate the shared row height — map/flow set it. */
+           one row; row 2 = deepest places stretched under map+flow, calendar squeezed to its
+           right under the results. The results body is a flexed scroll well (height:0 + grow)
+           so a long list can never inflate the shared row height — map/flow set it. */
         @media (min-width: 1150px) {
           .mp-grid { display: grid; grid-template-columns: 3fr 3fr 2fr; gap: var(--gap); align-items: stretch; }
           .mp-map { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; }
@@ -541,9 +540,9 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
           .mp-restitle { font-size: 15px !important; line-height: 1.3; }
           .mp-resbody { flex: 1 1 0; height: 0; min-height: 0; overflow-y: auto; padding-right: 4px; }
           .mp-results .mp-covergrid { grid-template-columns: repeat(2, 1fr); }
-          .mp-list { grid-column: 1; grid-row: 2; margin-top: 0 !important; }
-          .mp-list > div:last-child { max-height: 260px !important; }
-          .mp-cal { grid-column: 1; grid-row: 3; margin-top: 0 !important; }
+          .mp-list { grid-column: 1 / span 2; grid-row: 2; margin-top: 0 !important; }
+          .mp-list > div:last-child { max-height: 220px !important; }
+          .mp-cal { grid-column: 3; grid-row: 2; margin-top: 0 !important; }
         }
         .mp-clear { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase;
           padding: 6px 11px; border-radius: 999px; border: 1px solid var(--accent-dim); color: var(--accent);
