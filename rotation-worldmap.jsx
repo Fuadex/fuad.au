@@ -83,7 +83,7 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   );
 }
 
-function MapView({ go }) {
+function MapView({ go, embedded }) {
   const R = window.ROTATION;
   const G = R.INSIGHTS.GEOGRAPHY;
   const cityPts = G.cityPoints || [];
@@ -321,16 +321,18 @@ function MapView({ go }) {
   const focusName = focus ? ((G.countries.find(c => c.code === focus) || {}).name || focus) : null;
 
   if (!world) return (
-    <div className="r-view"><div className="r-viewhead"><div><div className="r-kicker">Geography</div><h1 className="r-title">Where it <em>comes from</em><span className="dot">.</span></h1></div></div>
-      <div style={{ padding: 60, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>loading the map…</div></div>
+    <div className={embedded ? "map-embed" : "r-view"}><div className="r-viewhead"><div><div className="r-kicker">Geography</div>{!embedded && <h1 className="r-title">Where it <em>comes from</em><span className="dot">.</span></h1>}</div></div>
+      <div style={{ padding: embedded ? 30 : 60, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>loading the map…</div></div>
   );
 
   return (
-    <div className="r-view tv-page" style={{ maxWidth: 1360 }}>
-      <div className="r-viewhead">
+    <div className={embedded ? "map-embed" : "r-view tv-page"} style={embedded ? undefined : { maxWidth: 1360 }}>
+      <div className="r-viewhead" style={embedded ? { marginBottom: 16 } : undefined}>
         <div>
           <div className="r-kicker">Geography · {G.totalCountries} countries · {fmt(cityPts.length)} cities{yearIdx != null ? " · " + geoYears[yearIdx] : ""}</div>
-          <h1 className="r-title">Where it <em>comes from</em><span className="dot">.</span></h1>
+          {embedded
+            ? <h2 style={{ fontFamily: "var(--serif)", fontWeight: 400, fontStyle: "italic", fontSize: 26, margin: "4px 0 0" }}>Where it comes from<span className="dot" style={{ color: "var(--accent)" }}>.</span></h2>
+            : <h1 className="r-title">Where it <em>comes from</em><span className="dot">.</span></h1>}
         </div>
         {!focus && <div className="r-seg" style={{ alignSelf: "flex-end" }}>
           {[["country", "countries"], ["city", "cities"]].map(([k, l]) => <button key={k} data-on={mode === k} onClick={() => { setMode(k); setHi(null); }}>{l}</button>)}
