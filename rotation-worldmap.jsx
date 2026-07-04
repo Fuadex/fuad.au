@@ -91,7 +91,7 @@ function MapView({ go }) {
   const FAMHUE = React.useMemo(() => { const m = {}; R.FAMILIES.forEach(f => m[f.i] = f.hue); return m; }, [R]);
 
   const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
-  const [mode, setMode] = React.useState("country");
+  const [mode, setMode] = React.useState("city");   // cities are the default lens (Fuad, 2026-07-05)
   const [colorBy, setColorBy] = React.useState("dominant"); // dominant | top
   const [focus, setFocus] = React.useState(null);
   const [yearIdx, setYearIdx] = React.useState(null);       // null = all-time
