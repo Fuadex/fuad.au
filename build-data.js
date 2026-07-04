@@ -1638,10 +1638,33 @@ const SUB_ARTISTS = {};
 // has artists behind it and a click is never empty. Cap is generous and raisable as tags grow.
 const EXPLORE_CAP = 6000;
 const EXPLORE_YP_TOP = 3000;   // only the top-by-plays carry per-year detail (file-size control)
+// merge spelling variants of the same subgenre so "hip hop"/"hip-hop" etc. are ONE row (Fuad).
+const SUB_CANON = new Map([
+  ["hip hop", "hip-hop"], ["hiphop", "hip-hop"],
+  ["drum n bass", "drum and bass"], ["drum'n'bass", "drum and bass"], ["dnb", "drum and bass"], ["drum & bass", "drum and bass"], ["drumandbass", "drum and bass"],
+  ["nu metal", "nu-metal"], ["numetal", "nu-metal"],
+  ["post hardcore", "post-hardcore"], ["posthardcore", "post-hardcore"],
+  ["j rock", "j-rock"], ["jrock", "j-rock"], ["j pop", "j-pop"], ["jpop", "j-pop"], ["j-metal", "j-rock"],
+  ["synth pop", "synthpop"], ["synth-pop", "synthpop"],
+  ["lo fi", "lo-fi"], ["lofi", "lo-fi"],
+  ["trip hop", "trip-hop"], ["triphop", "trip-hop"],
+  ["post rock", "post-rock"], ["postrock", "post-rock"],
+  ["post punk", "post-punk"], ["postpunk", "post-punk"],
+  ["post metal", "post-metal"], ["postmetal", "post-metal"],
+  ["dark wave", "darkwave"], ["dark-wave", "darkwave"],
+  ["electro pop", "electropop"], ["electro-pop", "electropop"],
+  ["dream pop", "dream-pop"], ["dreampop", "dream-pop"],
+  ["new wave", "new-wave"], ["hard rock", "hard-rock"],
+  ["black metal", "black-metal"], ["death metal", "death-metal"], ["doom metal", "doom-metal"],
+  ["power metal", "power-metal"], ["thrash metal", "thrash-metal"], ["heavy metal", "heavy-metal"],
+]);
+const canonSub = (t) => SUB_CANON.get(t) || t;
 const SUBS = [];
 {
+  const canonWeight = new Map();   // fold variant tags into their canonical form before ranking
+  for (const [tag, w] of tagWeight.entries()) { const c = canonSub(tag); canonWeight.set(c, (canonWeight.get(c) || 0) + w); }
   const perFam = new Map();
-  for (const [tag, w] of [...tagWeight.entries()].sort((a, b) => b[1] - a[1])) {
+  for (const [tag, w] of [...canonWeight.entries()].sort((a, b) => b[1] - a[1])) {
     if (GENERIC.has(tag)) continue;
     const f = classifyTag(tag);
     if (!f) continue;
@@ -1665,7 +1688,7 @@ for (const [name, plays] of rankedArtists) {
   // artists we have Discogs data for, well past last.fm's tag coverage.
   const vocab = [...((meta && meta.tags) || []), ...cachedTags(name).map(t => t[0]), ...stylesOf(name).map(s => s.toLowerCase())];
   const seen = new Set(), s = [];
-  for (const tg of vocab) { const i = subIdxByName.get(tg); if (i != null && !seen.has(i)) { seen.add(i); s.push(i); } }
+  for (const tg of vocab) { const i = subIdxByName.get(canonSub(tg)); if (i != null && !seen.has(i)) { seen.add(i); s.push(i); } }
   if (!s.length) continue;            // no placeable subgenre at all → skip
   const rec = { id: slug(name), name, plays, hue: hueFor(name), s, l: listenersOf(name) || 0, d: debutOf(name) || 0 };
   const _o = originOf(name);            // country/city tag → lets the Journey scope to a place

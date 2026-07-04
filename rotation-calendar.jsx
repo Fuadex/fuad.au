@@ -3,45 +3,44 @@
 // only fetched on first drill) and show a bottom overview — top artists/albums/songs + Sound DNA.
 // Also hosts the Rhythm clock (moved from Explore 2026-07-05).
 
-// ClockCard — 7×24 hour×weekday listening heatmap (all-time or a single year). Pure viz.
-function ClockCard({ R, years }) {
+// ClockCard — VERTICAL hour-of-day histogram (00→23 as rows), all-time or a single year.
+// Lives to the RIGHT of the calendar as a sticky rail. Clicking an hour selects it (future:
+// filters the heatmap once per-day-hour data exists — see ROADMAP).
+function ClockCard({ R, years, selHour, setSelHour }) {
   const [yr, setYr] = React.useState("all");
   const days = R.CLOCK.days;
-  const grid = React.useMemo(() => {
-    if (yr === "all" || !R.CLOCK_BY_YEAR || !R.CLOCK_BY_YEAR[yr]) return R.CLOCK.grid;
-    const flat = R.CLOCK_BY_YEAR[yr];   // length 168, cell = ((day+6)%7)*24 + hour
-    return Array.from({ length: 7 }, (_, r) => flat.slice(r * 24, r * 24 + 24));
+  const hourTot = React.useMemo(() => {
+    let grid = R.CLOCK.grid;
+    if (yr !== "all" && R.CLOCK_BY_YEAR && R.CLOCK_BY_YEAR[yr]) { const flat = R.CLOCK_BY_YEAR[yr]; grid = Array.from({ length: 7 }, (_, r) => flat.slice(r * 24, r * 24 + 24)); }
+    return Array.from({ length: 24 }, (_, h) => days.reduce((s, _, di) => s + grid[di][h], 0));
   }, [R, yr]);
-  const max = Math.max(1, ...grid.flat());
-  const total = grid.flat().reduce((a, b) => a + b, 0);
-  const hourTot = Array.from({ length: 24 }, (_, h) => days.reduce((s, _, di) => s + grid[di][h], 0));
-  const peakHour = hourTot.indexOf(Math.max(...hourTot));
+  const max = Math.max(1, ...hourTot);
+  const total = hourTot.reduce((a, b) => a + b, 0);
+  const peakHour = hourTot.indexOf(max);
   const nightShare = total ? (hourTot.slice(0, 5).reduce((a, b) => a + b, 0) / total * 100) : 0;
-  const hr = (h) => (h % 12 === 0 ? 12 : h % 12) + (h < 12 ? "a" : "p");
+  const hr = (h) => (h % 12 === 0 ? 12 : h % 12) + (h < 12 ? "am" : "pm");
   return (
-    <div className="r-card" style={{ padding: "16px 18px 14px", marginTop: "var(--gap)" }}>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 14, flexWrap: "wrap", marginBottom: 12 }}>
-        <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)" }}>Rhythm</div>
-        <div style={{ fontSize: 12, color: "var(--ink-soft)" }}>Peak <b style={{ color: "var(--ink)" }}>{hr(peakHour).replace("a", " AM").replace("p", " PM")}</b><span style={{ color: "var(--ink-faint)" }}> · </span><b style={{ color: "var(--accent)" }}>{nightShare.toFixed(0)}%</b> before 5 AM</div>
-        <select style={{ marginLeft: "auto", background: "var(--bg-3)", border: "1px solid var(--rule)", color: "var(--ink)", borderRadius: 6, padding: "4px 8px", fontFamily: "var(--mono)", fontSize: 10 }} value={yr} onChange={(e) => setYr(e.target.value === "all" ? "all" : +e.target.value)}>
-          <option value="all">all time</option>
-          {years.slice().reverse().map(y => <option key={y} value={y}>{y}</option>)}
-        </select>
-      </div>
-      <div className="clk-scroll">
-        <div style={{ display: "grid", gridTemplateColumns: "34px repeat(24, 1fr)", gap: 3, marginBottom: 5 }}>
-          <div />
-          {Array.from({ length: 24 }, (_, h) => <div key={h} className="r-mono" style={{ fontSize: 7.5, color: "var(--ink-faint)", textAlign: "center" }}>{h % 3 === 0 ? hr(h) : ""}</div>)}
-        </div>
-        {days.map((d, di) => (
-          <div key={d} style={{ display: "grid", gridTemplateColumns: "34px repeat(24, 1fr)", gap: 3, marginBottom: 3 }}>
-            <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)", display: "flex", alignItems: "center" }}>{d}</div>
-            {grid[di].map((v, h) => { const x = v / max; return (
-              <div key={h} title={`${d} ${hr(h)} · ${v} plays`} style={{ aspectRatio: "1", borderRadius: 2,
-                background: x < 0.04 ? "var(--bg-3)" : `oklch(${0.28 + x * 0.5} ${0.05 + x * 0.12} var(--acc-h))` }} />
-            ); })}
-          </div>
-        ))}
+    <div className="r-card cal-clock" style={{ padding: "14px 14px 12px" }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Rhythm</b></span></div>
+      <div style={{ fontSize: 11.5, color: "var(--ink-soft)", marginBottom: 4 }}>Peak <b style={{ color: "var(--ink)" }}>{hr(peakHour)}</b> · <b style={{ color: "var(--accent)" }}>{nightShare.toFixed(0)}%</b> pre-5AM</div>
+      <select style={{ width: "100%", background: "var(--bg-3)", border: "1px solid var(--rule)", color: "var(--ink)", borderRadius: 6, padding: "4px 8px", fontFamily: "var(--mono)", fontSize: 10, marginBottom: 10 }} value={yr} onChange={(e) => setYr(e.target.value === "all" ? "all" : +e.target.value)}>
+        <option value="all">all time</option>
+        {years.slice().reverse().map(y => <option key={y} value={y}>{y}</option>)}
+      </select>
+      <div style={{ display: "grid", gap: 2 }}>
+        {hourTot.map((v, h) => {
+          const on = selHour === h;
+          return (
+            <div key={h} onClick={() => setSelHour && setSelHour(on ? null : h)} title={`${hr(h)} · ${fmt(v)} plays`}
+              style={{ display: "grid", gridTemplateColumns: "30px 1fr 30px", gap: 6, alignItems: "center", cursor: "pointer", opacity: selHour != null && !on ? 0.4 : 1 }}>
+              <span className="r-mono" style={{ fontSize: 8.5, color: h === peakHour ? "var(--accent)" : "var(--ink-faint)", textAlign: "right" }}>{hr(h)}</span>
+              <div style={{ height: 8, background: "var(--bg-3)", borderRadius: 2, overflow: "hidden" }}>
+                <div style={{ height: "100%", width: (v / max * 100) + "%", background: h === peakHour ? "var(--accent)" : `oklch(0.5 0.1 var(--acc-h))`, outline: on ? "1px solid var(--accent)" : "none" }} />
+              </div>
+              <span className="r-mono" style={{ fontSize: 8, color: "var(--ink-faint)" }}>{fmtK(v)}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -57,6 +56,7 @@ function CalendarView({ go, seed }) {
   const [gran, setGran] = React.useState(seedDay ? "day" : "month");    // day | week | month
   const [sel, setSel] = React.useState(seedDay);      // selected period key (string)
   const [pane, setPane] = React.useState("artists");  // artists | albums | songs | dna
+  const [selHour, setSelHour] = React.useState(null); // vertical clock selection
   React.useEffect(() => { if (seedDay) ensureDetail(); }, []);
 
   React.useEffect(() => {
@@ -130,7 +130,9 @@ function CalendarView({ go, seed }) {
           : <span style={{ color: "var(--ink-faint)" }}>hover a day, or click to open the {gran} overview below…</span>}
       </div>
 
-      <div className="r-card" style={{ padding: "12px 10px", overflowX: "auto" }}>
+      <div className="cal-heatwrap">
+      <div className="cal-heatleft" style={{ minWidth: 0 }}>
+      <div className="r-card cal-heatcard" style={{ padding: "12px 10px", overflowX: "auto" }}>
         <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", maxWidth: W, minWidth: 660, height: "auto", display: "block" }} onMouseLeave={() => setHover(null)}>
           {(() => { const y = years[0], jd = new Date(Date.UTC(y, 0, 1)).getUTCDay();
             return MON.map((m, mi) => { const fom = Math.round((Date.UTC(y, mi, 1) - Date.UTC(y, 0, 1)) / 86400e3); const col = Math.floor((fom + jd) / 7);
@@ -161,9 +163,10 @@ function CalendarView({ go, seed }) {
         less{[0, 0.18, 0.4, 0.68, 1].map((f, i) => <span key={i} style={{ width: 11, height: 11, borderRadius: 2, background: f === 0 ? "var(--bg-3)" : color(f * max) }} />)}more
         <span style={{ marginLeft: "auto" }}>click the grid to open a {gran} ↓</span>
       </div>
-
-      {/* rhythm — the 7×24 clock, moved here from Explore (time-of-day lives with time) */}
-      <ClockCard R={R} years={years} />
+      </div>
+      {/* rhythm — the vertical hour clock (moved from Explore), sitting to the right of the calendar */}
+      <ClockCard R={R} years={years} selHour={selHour} setSelHour={setSelHour} />
+      </div>
 
       {/* period overview */}
       {sel && (
@@ -227,6 +230,9 @@ function CalendarView({ go, seed }) {
       )}
 
       <style>{`
+        .cal-heatwrap { display: grid; grid-template-columns: minmax(0,1fr) 210px; gap: var(--gap); align-items: start; }
+        .cal-clock { position: sticky; top: 12px; }
+        @media (max-width: 900px) { .cal-heatwrap { grid-template-columns: 1fr; } .cal-clock { position: static; } }
         .cal-detail { font-family: var(--serif); font-size: 15px; color: var(--ink-soft); margin-bottom: 12px; min-height: 22px; }
         .cal-art { color: var(--accent); cursor: pointer; border-bottom: 1px solid currentColor; }
         .cal-art:hover { opacity: .8; }
