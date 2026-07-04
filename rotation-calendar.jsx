@@ -2,14 +2,17 @@
 // plays (calendar.js). Tier 2: click a Day/Week/Month to load period summaries (calendar-detail.js,
 // only fetched on first drill) and show a bottom overview — top artists/albums/songs + Sound DNA.
 
-function CalendarView({ go }) {
+function CalendarView({ go, seed }) {
   const R = window.ROTATION;
   const [cal, setCal] = React.useState(window.ROTATION_CAL || null);
   const [detail, setDetail] = React.useState(window.ROTATION_CAL_DETAIL || null);
   const [hover, setHover] = React.useState(null);     // { y, d, count, top }
-  const [gran, setGran] = React.useState("month");    // day | week | month
-  const [sel, setSel] = React.useState(null);         // selected period key (string)
+  // deep link: #calendar/YYYY-MM-DD opens straight onto that day (the Overview mini-cal uses it)
+  const seedDay = seed && /^\d{4}-\d{2}-\d{2}$/.test(seed) ? seed : null;
+  const [gran, setGran] = React.useState(seedDay ? "day" : "month");    // day | week | month
+  const [sel, setSel] = React.useState(seedDay);      // selected period key (string)
   const [pane, setPane] = React.useState("artists");  // artists | albums | songs | dna
+  React.useEffect(() => { if (seedDay) ensureDetail(); }, []);
 
   React.useEffect(() => {
     if (window.ROTATION_CAL) { setCal(window.ROTATION_CAL); return; }

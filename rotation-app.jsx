@@ -22,13 +22,13 @@ const NAV_FULL = [
   ["explore", "Explore"],
   ["shelves", "Shelves"],
   ["calendar", "Calendar"],
-  ["map", "Map"],
   ["live", "Live"],
 ];
 // Hide "Live" entirely when no concerts have been enriched — avoids a dead-end tab.
 const NAV = NAV_FULL.filter(([k]) => k !== "live" || ((window.ROTATION && window.ROTATION.CITIES) || []).length > 0);
-// legacy view names (old Charts/Clock/Sound/Eras tabs) now resolve into the unified Explore view
-const LEGACY = { charts: "explore", clock: "explore", sound: "explore", eras: "explore", mood: "explore", journey: "map" };
+// legacy view names (old Charts/Clock/Sound/Eras tabs) now resolve into the unified Explore view;
+// the Map page moved INTO Overview (2026-07-05) — #map deep links land there.
+const LEGACY = { charts: "explore", clock: "explore", sound: "explore", eras: "explore", mood: "explore", journey: "overview", map: "overview" };
 
 // URL state — a lightweight hash handle per view/artist (e.g. #artist/nine-inch-nails) so pages are
 // deep-linkable and the browser back/forward works. No router lib, no separate pages.
@@ -141,8 +141,7 @@ function RotationApp() {
         {v === "stories" && <StoriesView t={t} go={go} seed={route.id} />}
         {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} seed={route.id} />}
         {v === "shelves" && <ShelvesView go={go} />}
-        {v === "calendar" && <CalendarView go={go} />}
-        {v === "map" && <MapView go={go} />}
+        {v === "calendar" && <CalendarView go={go} seed={route.id} />}
         {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
         {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
         {v === "album" && <AlbumView id={route.id} go={go} />}

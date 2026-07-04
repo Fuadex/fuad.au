@@ -81,19 +81,37 @@ function OvMiniCal({ go }) {
   const pad = (jan1.getUTCDay() + 6) % 7;   // Monday-first column offset
   const total = counts.reduce((a, b) => a + (b || 0), 0);
   return (
-    <div className="r-card ov-minical ov-stat-link" style={{ gridColumn: "span 12", padding: "14px 18px", cursor: "pointer" }}
-      onClick={() => go("calendar")}>
-      <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}>
+    <div className="r-card ov-minical" style={{ gridColumn: "span 12", padding: "12px 16px" }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
         <span className="lbl"><b>{yr}, day by day</b></span>
-        <span className="meta">{fmt(total)} plays · full calendar ↗</span></div>
+        <span className="meta" style={{ cursor: "pointer" }} onClick={() => go("calendar")}>{fmt(total)} plays · full calendar ↗</span></div>
       <div className="ov-minical-grid">
         {Array.from({ length: pad }, (_, i) => <i key={"p" + i} style={{ opacity: 0 }} />)}
-        {counts.map((v, i) => (
-          <i key={i} title={`${new Date(Date.UTC(yr, 0, 1 + i)).toISOString().slice(0, 10)} · ${v || 0} plays`}
+        {counts.map((v, i) => {
+          const key = new Date(Date.UTC(yr, 0, 1 + i)).toISOString().slice(0, 10);
+          return <i key={i} title={`${key} · ${v || 0} plays — open this day →`}
+            onClick={() => go("calendar", key)}
             style={{ background: v ? `oklch(${0.32 + (v / mx) * 0.45} ${0.05 + (v / mx) * 0.12} var(--acc-h))` : "var(--bg-3)",
-              opacity: v ? 1 : 0.55 }} />
-        ))}
+              opacity: v ? 1 : 0.55, cursor: "pointer" }} />;
+        })}
       </div>
+    </div>
+  );
+}
+
+// OvMapBand — mounts the FULL MapView (all filters/scrubbers/detail panes) once the user
+// scrolls near it, so Overview's first paint doesn't pay for world-map.js.
+function OvMapBand({ go }) {
+  const [ref, seen] = useInView();
+  const [on, setOn] = React.useState(false);
+  React.useEffect(() => { if (seen) setOn(true); }, [seen]);
+  return (
+    <div ref={ref} style={{ marginTop: "calc(var(--gap)*1.6)", minHeight: on ? 0 : 220 }}>
+      {on ? <MapView go={go} embedded /> : (
+        <div className="r-card" style={{ padding: 40, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>
+          the world map loads as you scroll…
+        </div>
+      )}
     </div>
   );
 }
@@ -243,9 +261,13 @@ function OverviewView({ t, go }) {
         {/* top artists peek — all-time ⇄ this year */}
         <TopArtistsPeek R={R} go={go} />
 
-        {/* the current year, day by day — hotlink into the full Calendar */}
+        {/* the current year, day by day — every cell opens that day in the full Calendar */}
         <OvMiniCal go={go} />
       </div>
+
+      {/* THE MAP — the full Geography instrument lives here now (tab retired 2026-07-05).
+          Mounts when scrolled near so the landing paint stays untouched. */}
+      <OvMapBand go={go} />
 
       {/* hub — teasers into every deeper view */}
       {(() => {
@@ -325,12 +347,11 @@ function OverviewView({ t, go }) {
           .ov-wallgrid > div { width: auto !important; }
         }
         .ov-minical-grid { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 1fr);
-          gap: 2px; overflow-x: auto; scrollbar-width: none; }
+          gap: 1.5px; overflow-x: auto; scrollbar-width: none; justify-content: start; }
         .ov-minical-grid::-webkit-scrollbar { display: none; }
-        .ov-minical-grid i { width: 100%; min-width: 7px; aspect-ratio: 1; border-radius: 1.5px; display: block; }
-        /* spans 12 for now; drops to span 8 when the map module takes cols 9-12 (approved injection) */
-        @media (min-width: 1100px) { .ov-minical { grid-column: 1 / -1 !important; } }
-        .ov-minical-grid i { max-width: 14px; }
+        .ov-minical-grid i { width: 8px; height: 8px; border-radius: 1.5px; display: block;
+          transition: transform .1s; }
+        .ov-minical-grid i:hover { transform: scale(1.6); outline: 1px solid var(--accent); }
         .hub-chips { display: flex; gap: 8px; flex-wrap: wrap; }
         .hub-chip { display: inline-flex; align-items: baseline; gap: 8px; padding: 8px 14px; border-radius: 999px;
           border: 1px solid var(--rule); background: none; cursor: pointer; transition: border-color .15s, transform .15s; }
