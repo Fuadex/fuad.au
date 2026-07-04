@@ -480,49 +480,19 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         </div>
       </div>
 
-      {/* bio — last.fm summary, rendered only when present */}
-      {/* row 1 on PC: bio (left) + Sound DNA (right) share the fold — the flow no longer leads */}
-      <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) 340px", gap: "var(--gap)", alignItems: "start", marginBottom: "var(--gap)" }}>
-        {a.bio && a.bio.length > 40 ? (
-          <div className="r-card" style={{ padding: "18px 22px" }}>
-            <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 10 }}>
-              About
-            </div>
-            <p style={{ fontFamily: "var(--serif)", fontSize: 15.5, lineHeight: 1.55, color: "var(--ink-soft)", margin: 0 }}>
-              {a.bio.length > 520 ? a.bio.slice(0, 520).replace(/\s+\S*$/, "") + "…" : a.bio}
-            </p>
-          </div>
-        ) : <div />}
-        {/* sound DNA */}
-        <div className="r-card" style={{ padding: 18 }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
-          <Radar axes={DNA_AXES} values={dna} values2={avg} run={seen} size={224} />
-          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>
-            solid = {a.name.split(" ")[0]} · dashed = your average · {a.am ? "measured" : "inferred"}
-          </div>
-          {af && <div style={{ marginTop: 14, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 9 }}>
-            {[
-              { k: "tempo", v: Math.round(50 + a.audio.tempo * 140), u: " bpm", f: a.audio.tempo },
-              { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
-              { k: "loud", v: Math.round(af[9]), u: " dB", f: Math.max(0, Math.min(1, (af[9] + 60) / 60)) },
-              { k: "speech", v: Math.round(af[10] * 100), u: "%", f: af[10] },
-              { k: "live", v: Math.round(af[11] * 100), u: "%", f: af[11] },
-              { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
-              { k: "followers", v: fmtK(af[8]), f: null },
-            ].map(s => (
-              <div key={s.k}>
-                <div className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</div>
-                <div style={{ fontSize: 13, marginTop: 1, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 9, color: "var(--ink-faint)" }}>{s.u}</span>}</div>
-                {s.f != null && <div style={{ height: 3, background: "var(--bg-3)", borderRadius: 2, marginTop: 5, overflow: "hidden" }}><div style={{ height: "100%", width: (s.f * 100) + "%", background: `oklch(0.62 0.15 ${a.hue})` }} /></div>}
-              </div>
-            ))}
-          </div>}
+      {/* bio — full-width; Sound DNA moved down into the tracks/albums row (Fuad, 2026-07-05) */}
+      {a.bio && a.bio.length > 40 && (
+        <div className="r-card" style={{ padding: "18px 22px", marginBottom: "var(--gap)" }}>
+          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 10 }}>About</div>
+          <p style={{ fontFamily: "var(--serif)", fontSize: 15.5, lineHeight: 1.55, color: "var(--ink-soft)", margin: 0 }}>
+            {a.bio.length > 620 ? a.bio.slice(0, 620).replace(/\s+\S*$/, "") + "…" : a.bio}
+          </p>
         </div>
-      </div>
+      )}
 
       <div style={{ display: "grid", gap: "var(--gap)" }}>
-          {/* top tracks + albums */}
-          <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--gap)" }}>
+          {/* row 2 on PC: top tracks · top albums (narrow, ALL of them) · Sound DNA */}
+          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "1.05fr 0.8fr 1.05fr", gap: "var(--gap)", alignItems: "start" }}>
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
                 <span className="lbl"><b>Top tracks</b></span>
@@ -540,29 +510,52 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                 </div>
               );})}
             </div>
+            {/* all albums, compact list (narrow column) with a leading cover thumbnail */}
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
-                <span className="lbl"><b>Top albums</b></span>
-                <span className="meta">{albums.length} listed</span></div>
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <span className="lbl"><b>Albums</b></span>
+                <span className="meta">{albums.length} played</span></div>
+              <div className="av-albumlist" style={{ display: "grid", gap: 2, maxHeight: 396, overflowY: "auto", paddingRight: 4 }}>
                 {(albums.length ? albums : []).map((al, i) => (
-                  <div key={al.title + i} style={{ width: 78, cursor: "pointer" }} onClick={() => go("album", R.slug(a.name) + "~" + R.slug(al.title))}>
-                    <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={78} radius={3} />
-                    <div style={{ fontSize: 10.5, marginTop: 6, lineHeight: 1.2,
-                      display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
-                      overflow: "hidden" }}>{al.title}</div>
-                    <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(al.plays)} plays</div>
+                  <div key={al.title + i} className="r-track-row" onClick={() => go("album", R.slug(a.name) + "~" + R.slug(al.title))} title={`${al.title} →`}
+                    style={{ display: "flex", alignItems: "center", gap: 9, padding: "5px 4px", cursor: "pointer", borderRadius: 4 }}>
+                    <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={30} radius={2} />
+                    <span style={{ flex: 1, minWidth: 0, fontSize: 12, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{al.title}</span>
+                    <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(al.plays)}</span>
                   </div>
                 ))}
               </div>
             </div>
+            {/* sound DNA — radar + measured attribute grid */}
+            <div className="r-card" style={{ padding: 18 }}>
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
+              <Radar axes={DNA_AXES} values={dna} values2={avg} run={seen} size={200} />
+              <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>
+                solid = {a.name.split(" ")[0]} · dashed = your average · {a.am ? "measured" : "inferred"}
+              </div>
+              {af && <div style={{ marginTop: 14, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 9 }}>
+                {[
+                  { k: "tempo", v: Math.round(50 + a.audio.tempo * 140), u: " bpm", f: a.audio.tempo },
+                  { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
+                  { k: "loud", v: Math.round(af[9]), u: " dB", f: Math.max(0, Math.min(1, (af[9] + 60) / 60)) },
+                  { k: "speech", v: Math.round(af[10] * 100), u: "%", f: af[10] },
+                  { k: "live", v: Math.round(af[11] * 100), u: "%", f: af[11] },
+                  { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
+                  { k: "followers", v: fmtK(af[8]), f: null },
+                ].map(s => (
+                  <div key={s.k}>
+                    <div className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</div>
+                    <div style={{ fontSize: 13, marginTop: 1, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 9, color: "var(--ink-faint)" }}>{s.u}</span>}</div>
+                    {s.f != null && <div style={{ height: 3, background: "var(--bg-3)", borderRadius: 2, marginTop: 5, overflow: "hidden" }}><div style={{ height: "100%", width: (s.f * 100) + "%", background: `oklch(0.62 0.15 ${a.hue})` }} /></div>}
+                  </div>
+                ))}
+              </div>}
+            </div>
           </div>
 
-          {/* one compact PC row: timeline · sounds-like · family tree — each ≤⅓ width, all
-             always visible (no expand-cover), stacking on mobile */}
+          {/* one compact PC row: sounds-like · timeline · family tree — each ≤⅓ width, all
+             always visible, stacking on mobile (sounds-like ↔ timeline swapped per Fuad) */}
           <div className="m-stack av-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0,1fr))", gap: "var(--gap)", alignItems: "start" }}>
-          <ArtistFlow id={a.id} hue={a.hue} go={go} />
-
           {/* sounds like — last.fm + by-sound; both link to kept OR explorable (mini) pages */}
           <div className="r-card" style={{ padding: 18 }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
@@ -597,6 +590,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               </div>;
             })()}
           </div>
+
+          {/* how they played out — the timeline streamgraph (2nd column now) */}
+          <ArtistFlow id={a.id} hue={a.hue} go={go} />
 
           {/* family tree — members + shared-member lineage (MusicBrainz + Discogs) */}
           {((a.members && a.members.length > 0) || (a.connections && a.connections.length > 0)) && (

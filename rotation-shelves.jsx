@@ -115,9 +115,9 @@ function ShReader({ al, onClose, go }) {
           <div className="sh-reader-actions">
             <ShNeedle trackKey={al.topTrackKey} artist={al.artist} album={al.title} hue={al.hue} onState={setSpin} />
             {!al.unplayed && <button className="sh-open" onClick={() => { onClose(); go("album", key); }}>full page →</button>}
-            <a className="sh-open" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer"
+            <a className="r-extlink r-extlink-lf" target="_blank" rel="noopener noreferrer"
               href={`https://www.last.fm/music/${encodeURIComponent(al.artist)}/${encodeURIComponent(al.title)}`}>last.fm ↗</a>
-            <a className="sh-open" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer"
+            <a className="r-extlink r-extlink-sp" target="_blank" rel="noopener noreferrer"
               href={`https://open.spotify.com/search/${encodeURIComponent(al.artist + " " + al.title)}`}>Spotify ↗</a>
           </div>
         </div>

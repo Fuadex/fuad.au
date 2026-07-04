@@ -2,6 +2,7 @@
 *.parquet
 *.zip
 archive.zip
+archive_genius.zip   # Local Genius lyrics dump (~3 GB) — local-only, matched into a small cache
 spotify-sync.log
 
 # local notes

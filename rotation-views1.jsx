@@ -63,7 +63,15 @@ function TopArtistsPeek({ R, go }) {
 // day ⇄ week granularity, click a cell. What it drives today: the map/flow scrub to that year,
 // and the cell deep-opens its day/week in the full Calendar. (Day-level geography needs a new
 // build export — the tandem deepens next iteration.)
-function OvCalRail({ go, onYear }) {
+function OvCalRail({ go, onYear, onPeriod }) {
+  const [detReady, setDetReady] = React.useState(!!window.ROTATION_CAL_DETAIL);
+  React.useEffect(() => {   // period → results filtering needs the detail file; fetch it lazily
+    if (window.ROTATION_CAL_DETAIL) return;
+    let s = document.getElementById("rotation-cal-detail-js");
+    if (!s) { s = document.createElement("script"); s.id = "rotation-cal-detail-js"; s.src = "calendar-detail.js"; document.head.appendChild(s); }
+    const on = () => setDetReady(true); s.addEventListener("load", on);
+    return () => s.removeEventListener("load", on);
+  }, []);
   const [cal, setCal] = React.useState(window.ROTATION_CAL || null);
   const now = new Date();
   const [yr, setYr] = React.useState(now.getUTCFullYear());
@@ -91,10 +99,13 @@ function OvCalRail({ go, onYear }) {
   const cells = [...Array(pad).fill(null), ...Array.from({ length: dim }, (_, i) => i + 1)];
   while (cells.length % 7) cells.push(null);
   const weeks = []; for (let i = 0; i < cells.length; i += 7) weeks.push(cells.slice(i, i + 7));
+  const [selDay, setSelDay] = React.useState(null);
   const pick = (d) => {
     const iso = new Date(Date.UTC(yr, mo, d)).toISOString().slice(0, 10);
-    if (gran === "week") { const dow = (new Date(Date.UTC(yr, mo, d)).getUTCDay() + 6) % 7; const mon = new Date(Date.UTC(yr, mo, d) - dow * 86400e3).toISOString().slice(0, 10); go("calendar", mon); }
-    else go("calendar", iso);
+    let key = iso;
+    if (gran === "week") { const dow = (new Date(Date.UTC(yr, mo, d)).getUTCDay() + 6) % 7; key = new Date(Date.UTC(yr, mo, d) - dow * 86400e3).toISOString().slice(0, 10); }
+    setSelDay(key === selDay ? null : key);
+    onPeriod && onPeriod(key === selDay ? null : { gran, key });   // filters the map's results (stays on page)
   };
   return (
     <div className="r-card ov-calrail" style={{ padding: "14px 14px 12px" }}>
@@ -117,16 +128,19 @@ function OvCalRail({ go, onYear }) {
             {w.map((d, di) => {
               if (!d) return <i key={di} style={{ opacity: 0 }} />;
               const v = counts[doy(d)] || 0;
-              return <i key={di} title={`${yr}-${String(mo + 1).padStart(2, "0")}-${String(d).padStart(2, "0")} · ${v} plays → open`}
+              const iso = `${yr}-${String(mo + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+              const isSel = selDay && (gran === "day" ? selDay === iso : (new Date(iso) >= new Date(selDay) && new Date(iso) < new Date(new Date(selDay).getTime() + 7 * 86400e3)));
+              return <i key={di} title={`${iso} · ${v} plays — filter results`}
                 onClick={() => pick(d)}
                 style={{ background: v ? `oklch(${0.32 + (v / mx) * 0.45} ${0.05 + (v / mx) * 0.12} var(--acc-h))` : "var(--bg-3)",
-                  opacity: v ? 1 : 0.5, cursor: "pointer", aspectRatio: "1", borderRadius: 2 }} />;
+                  opacity: v ? 1 : 0.5, cursor: "pointer", aspectRatio: "1", borderRadius: 2,
+                  outline: isSel ? "1.5px solid var(--accent)" : "none" }} />;
             })}
           </div>
         ))}
       </div>
       <div className="r-mono" style={{ fontSize: 8, color: "var(--ink-faint)", marginTop: 9, lineHeight: 1.5 }}>
-        year scrubs the map · a cell opens its {gran} <span style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => go("calendar")}>full calendar ↗</span>
+        year scrubs the map · a {gran} filters results{selDay ? " · " : ""}{selDay && <span style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => { setSelDay(null); onPeriod && onPeriod(null); }}>clear ✕</span>} · <span style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => go("calendar")}>full ↗</span>
       </div>
     </div>
   );
@@ -138,13 +152,14 @@ function OvMapBand({ go }) {
   const [ref, seen] = useInView();
   const [on, setOn] = React.useState(false);
   const [extYear, setExtYear] = React.useState(null);
+  const [calPeriod, setCalPeriod] = React.useState(null);   // {gran, key} from the calendar rail
   React.useEffect(() => { if (seen) setOn(true); }, [seen]);
   return (
-    <div ref={ref} style={{ marginTop: "calc(var(--gap)*1.6)", minHeight: on ? 0 : 220 }}>
+    <div ref={ref} style={{ minHeight: on ? 0 : 220 }}>
       {on ? (
         <div className="ov-band">
-          <OvCalRail go={go} onYear={setExtYear} />
-          <div style={{ minWidth: 0 }}><MapView go={go} embedded extYear={extYear} /></div>
+          <OvCalRail go={go} onYear={setExtYear} onPeriod={setCalPeriod} />
+          <div style={{ minWidth: 0 }}><MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} /></div>
         </div>
       ) : (
         <div className="r-card" style={{ padding: 40, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>
@@ -245,6 +260,10 @@ function OverviewView({ t, go }) {
           </div>
         </div>
 
+        {/* THE MAP BAND — right below the pulse row (Fuad); calendar rail + full map in 3:2 grid.
+            Its Results pane in cover-grid mode is now the "top artists" view (module dissolved). */}
+        <div className="ov-mapslot" style={{ gridColumn: "1 / -1" }}><OvMapBand go={go} /></div>
+
         {/* stat strip */}
         <div className="r-card m-2col ov-strip" style={{ gridColumn: "span 8", padding: 20, display: "grid",
           gridTemplateColumns: "repeat(4,1fr)", gap: 18, alignItems: "center" }}>
@@ -294,16 +313,16 @@ function OverviewView({ t, go }) {
           </div>
         </div>
 
-        {/* top artists peek — all-time ⇄ this year */}
-        <TopArtistsPeek R={R} go={go} />
-
-        {/* dynamic insight feed — flows around the wall (week/mood/story-of-day/riser/…) */}
-        <InsightRow go={go} n={6} />
+        {/* dynamic insight feed — consolidated into ONE module (milestone/tip-over/week/riser/
+            new-this-month/story-of-day merged, per Fuad) */}
+        <div className="r-card ov-insights" style={{ gridColumn: "1 / -1", padding: 18 }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}><span className="lbl"><b>Right now</b></span>
+            <span className="meta">what's moving in your library</span></div>
+          <div className="ov-insgrid" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
+            <InsightRow go={go} n={6} />
+          </div>
+        </div>
       </div>
-
-      {/* THE MAP — the full Geography instrument + the calendar rail as its left-hand filter.
-          Mounts when scrolled near so the landing paint stays untouched. */}
-      <OvMapBand go={go} />
 
       {/* hub — teasers into every deeper view */}
       {(() => {
@@ -361,29 +380,22 @@ function OverviewView({ t, go }) {
         /* ── PC bento (≥1100px): everything halved, recently-played becomes the right rail,
            top artists become a real 8×3 wall (Fuad's redesign, 2026-07-05) ── */
         @media (min-width: 1100px) {
-          .ov-np     { grid-column: 1 / span 4 !important; }
-          .ov-scrob  { grid-column: 5 / span 2 !important; }
-          .ov-streak { grid-column: 7 / span 2 !important; }
-          .ov-recent { grid-column: 9 / -1 !important; grid-row: 1 / span 3; }
-          .ov-strip  { grid-column: 1 / span 5 !important; grid-template-columns: repeat(2, 1fr) !important; gap: 12px 18px !important; }
-          .ov-heavy  { grid-column: 6 / span 3 !important; }
-          /* half-width module, 12 artists in a 4×3 grid, plays visible; covers FORCED square
-             (mixed image/generative covers were rendering at different heights on ~1200px screens) */
-          .ov-wall   { grid-column: 1 / span 4 !important; }
-          .ov-wallgrid { display: grid !important; grid-template-columns: repeat(4, 1fr) !important;
-            gap: 10px !important; overflow: visible !important; }
-          .ov-wallgrid > div { width: auto !important; min-width: 0; }
-          .ov-wallgrid > div > div:first-child { aspect-ratio: 1; overflow: hidden; border-radius: 4px; }
-          .ov-wallgrid > div > div:first-child > *:first-child { width: 100% !important; height: 100% !important; object-fit: cover; }
-          .ov-wallgrid > div > div:nth-child(2) { font-size: 10px !important; margin-top: 5px !important; }
-          .ov-wallgrid > div > .r-mono { font-size: 8.5px !important; }
-          .ov-scrob .r-stat-n { font-size: 30px !important; }
-          .ov-streak .r-stat-n { font-size: 30px !important; }
-          .ov-heavy .r-stat-n { font-size: 28px !important; }
-          .ov-strip .r-stat-n { font-size: 26px !important; }
-          .ov-np > div:first-child > .r-cover, .ov-np img { }
-          .ov-wallgrid { display: grid !important; grid-template-columns: repeat(8, 1fr); gap: 12px; overflow: visible !important; }
-          .ov-wallgrid > div { width: auto !important; }
+          /* row 1 — the pulse */
+          .ov-np     { grid-column: 1 / span 5 !important; }
+          .ov-scrob  { grid-column: 6 / span 4 !important; }
+          .ov-streak { grid-column: 10 / span 3 !important; }
+          /* row 2 = map band (1/-1 inline) */
+          /* row 3 — the four lifetime stats, ONE row, full width */
+          .ov-strip  { grid-column: 1 / -1 !important; grid-template-columns: repeat(4, 1fr) !important; gap: 18px !important; }
+          /* row 4 — heaviest day (half) + recently played (half) */
+          .ov-heavy  { grid-column: 1 / span 6 !important; }
+          .ov-recent { grid-column: 7 / span 6 !important; }
+          .ov-scrob .r-stat-n { font-size: 34px !important; }
+          .ov-streak .r-stat-n { font-size: 34px !important; }
+          .ov-heavy .r-stat-n { font-size: 30px !important; }
+          .ov-strip .r-stat-n { font-size: 28px !important; }
+          /* consolidated insight cards: 3 per row inside the module */
+          .ov-insgrid > .r-card { grid-column: span 4 !important; }
         }
         .ov-band { display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: var(--gap); align-items: start; }
         @media (max-width: 900px) { .ov-band { grid-template-columns: 1fr; } .ov-calrail { max-width: 240px; } }
