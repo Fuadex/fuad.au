@@ -46,13 +46,52 @@ function TopArtistsPeek({ R, go }) {
         {items.map((a, i) => (
           <div key={a.id} onClick={() => go("artist", a.id)} style={{ cursor: "pointer", flex: "none", width: 96 }}>
             <div style={{ position: "relative" }}>
-              <GenCover hue={a.hue} name={a.name} size={96} />
+              <GenCover hue={a.hue} name={a.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} />
               <span className="r-mono" style={{ position: "absolute", top: 5, left: 6, fontSize: 9,
                 color: "rgba(255,255,255,.85)", textShadow: "0 1px 2px #000" }}>{String(i + 1).padStart(2, "0")}</span>
             </div>
             <div style={{ fontSize: 11.5, marginTop: 7, lineHeight: 1.25, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</div>
             <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(a.n)} plays{span === "year" ? ` in '${String(cy).slice(2)}` : ""}</div>
           </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// OvMiniCal — the current year as a tiny heatmap strip; hotlinks into the full Calendar.
+// Lazy-loads calendar.js (the same tier-1 file the Calendar tab uses, ~125 KB).
+function OvMiniCal({ go }) {
+  const [cal, setCal] = React.useState(window.ROTATION_CAL || null);
+  React.useEffect(() => {
+    if (window.ROTATION_CAL) return;
+    let s = document.getElementById("rotation-cal-js");
+    if (!s) { s = document.createElement("script"); s.id = "rotation-cal-js"; s.src = "calendar.js"; document.head.appendChild(s); }
+    const on = () => setCal(window.ROTATION_CAL);
+    s.addEventListener("load", on);
+    return () => s.removeEventListener("load", on);
+  }, []);
+  const cy = new Date().getUTCFullYear();
+  const y = cal && cal.byYear && (cal.byYear[cy] || cal.byYear[cy - 1]);
+  const yr = cal && cal.byYear && cal.byYear[cy] ? cy : cy - 1;
+  if (!y) return null;
+  const counts = y.counts || [];
+  const mx = Math.max(1, ...counts);
+  const jan1 = new Date(Date.UTC(yr, 0, 1));
+  const pad = (jan1.getUTCDay() + 6) % 7;   // Monday-first column offset
+  const total = counts.reduce((a, b) => a + (b || 0), 0);
+  return (
+    <div className="r-card ov-minical ov-stat-link" style={{ gridColumn: "span 12", padding: "14px 18px", cursor: "pointer" }}
+      onClick={() => go("calendar")}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}>
+        <span className="lbl"><b>{yr}, day by day</b></span>
+        <span className="meta">{fmt(total)} plays · full calendar ↗</span></div>
+      <div className="ov-minical-grid">
+        {Array.from({ length: pad }, (_, i) => <i key={"p" + i} style={{ opacity: 0 }} />)}
+        {counts.map((v, i) => (
+          <i key={i} title={`${new Date(Date.UTC(yr, 0, 1 + i)).toISOString().slice(0, 10)} · ${v || 0} plays`}
+            style={{ background: v ? `oklch(${0.32 + (v / mx) * 0.45} ${0.05 + (v / mx) * 0.12} var(--acc-h))` : "var(--bg-3)",
+              opacity: v ? 1 : 0.55 }} />
         ))}
       </div>
     </div>
@@ -203,6 +242,9 @@ function OverviewView({ t, go }) {
 
         {/* top artists peek — all-time ⇄ this year */}
         <TopArtistsPeek R={R} go={go} />
+
+        {/* the current year, day by day — hotlink into the full Calendar */}
+        <OvMiniCal go={go} />
       </div>
 
       {/* hub — teasers into every deeper view */}
@@ -268,6 +310,12 @@ function OverviewView({ t, go }) {
           .ov-strip  { grid-column: 1 / span 5 !important; grid-template-columns: repeat(2, 1fr) !important; gap: 12px 18px !important; }
           .ov-heavy  { grid-column: 6 / span 3 !important; }
           .ov-wall   { grid-column: 1 / span 8 !important; }
+          /* 24 artists fill the card's own space — denser 12-across grid, smaller covers,
+             NOT a taller card (Fuad: "populate the blank space within that window") */
+          .ov-wallgrid { grid-template-columns: repeat(12, 1fr) !important; gap: 9px !important; }
+          .ov-wallgrid > div { width: auto !important; }
+          .ov-wallgrid > div > div:nth-child(2) { font-size: 9.5px !important; margin-top: 4px !important; }
+          .ov-wallgrid > div > .r-mono { display: none; }   /* hide the plays line, keep the rank overlay */
           .ov-scrob .r-stat-n { font-size: 30px !important; }
           .ov-streak .r-stat-n { font-size: 30px !important; }
           .ov-heavy .r-stat-n { font-size: 28px !important; }
@@ -276,6 +324,11 @@ function OverviewView({ t, go }) {
           .ov-wallgrid { display: grid !important; grid-template-columns: repeat(8, 1fr); gap: 12px; overflow: visible !important; }
           .ov-wallgrid > div { width: auto !important; }
         }
+        .ov-minical-grid { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 1fr);
+          gap: 2px; overflow-x: auto; scrollbar-width: none; }
+        .ov-minical-grid::-webkit-scrollbar { display: none; }
+        .ov-minical-grid i { width: 100%; min-width: 7px; aspect-ratio: 1; border-radius: 1.5px; display: block; }
+        @media (min-width: 1100px) { .ov-minical { grid-column: 1 / span 8 !important; } }
         .hub-chips { display: flex; gap: 8px; flex-wrap: wrap; }
         .hub-chip { display: inline-flex; align-items: baseline; gap: 8px; padding: 8px 14px; border-radius: 999px;
           border: 1px solid var(--rule); background: none; cursor: pointer; transition: border-color .15s, transform .15s; }
