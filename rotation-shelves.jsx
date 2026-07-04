@@ -75,15 +75,23 @@ function ShReader({ al, onClose, go }) {
           <div className="r-kicker">{typeName}{meta && meta[0] ? ` · ${meta[0]}` : ""}{meta && meta[2] ? ` · ${meta[2]}` : ""}</div>
           <div className="sh-reader-title">{al.title}</div>
           <div className="sh-reader-artist" onClick={() => { onClose(); go("artist", al.artistId); }}>{al.artist} →</div>
-          <div className="sh-reader-stats">
-            <span><b>{fmt(al.plays)}</b> plays</span>
-            {al.firstYear ? <span>first <b>{al.firstYear}</b></span> : null}
-            {al.lastYear && al.lastYear !== al.firstYear ? <span>last <b>{al.lastYear}</b></span> : null}
-            {al.tt ? <span><b>{Math.min(al.played || 0, al.tt) || "?"}/{al.tt}</b> tracks</span> : null}
-          </div>
+          {al.unplayed ? (
+            <div className="sh-reader-stats">
+              <span style={{ color: "var(--accent)" }}><b>still in shrinkwrap</b></span>
+              {al.year ? <span>released <b>{al.year}</b></span> : null}
+              {al.artistPlays ? <span>you've played {al.artist.split(" ")[0]} <b>{fmt(al.artistPlays)}</b>×</span> : null}
+            </div>
+          ) : (
+            <div className="sh-reader-stats">
+              <span><b>{fmt(al.plays)}</b> plays</span>
+              {al.firstYear ? <span>first <b>{al.firstYear}</b></span> : null}
+              {al.lastYear && al.lastYear !== al.firstYear ? <span>last <b>{al.lastYear}</b></span> : null}
+              {al.tt ? <span><b>{Math.min(al.played || 0, al.tt) || "?"}/{al.tt}</b> tracks</span> : null}
+            </div>
+          )}
           <div className="sh-reader-actions">
             <ShNeedle trackKey={al.topTrackKey} hue={al.hue} onState={setSpin} />
-            <button className="sh-open" onClick={() => { onClose(); go("album", key); }}>full page →</button>
+            {!al.unplayed && <button className="sh-open" onClick={() => { onClose(); go("album", key); }}>full page →</button>}
             <a className="sh-open" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer"
               href={`https://www.last.fm/music/${encodeURIComponent(al.artist)}/${encodeURIComponent(al.title)}`}>last.fm ↗</a>
             <a className="sh-open" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer"
@@ -100,7 +108,7 @@ function ShReader({ al, onClose, go }) {
 function ShSpine({ al, expanded, onExpand, onOpen }) {
   const worn = al.plays >= 300 ? 3 : al.plays >= 100 ? 2 : al.plays >= 25 ? 1 : 0;
   return (
-    <div className={"sh-spine" + (expanded ? " on" : "")} data-worn={worn}
+    <div className={"sh-spine" + (expanded ? " on" : "")} data-worn={worn} data-wrap={al.unplayed ? 1 : 0}
       style={{ "--h": al.hue }}
       onMouseEnter={() => onExpand(al.key)}
       onClick={(e) => { e.stopPropagation(); expanded ? onOpen(al) : onExpand(al.key); }}
@@ -112,6 +120,20 @@ function ShSpine({ al, expanded, onExpand, onOpen }) {
         : <span className="sh-label">{al.title}</span>}
     </div>
   );
+}
+
+// group album records into genre shelves (family rows), Misc last — shared by both modes
+function shGroupShelves(albums, R) {
+  const byFam = new Map();
+  for (const al of albums) {
+    const f = al.fam != null ? al.fam : -1;
+    if (!byFam.has(f)) byFam.set(f, { fam: f, albums: [], plays: 0 });
+    const g = byFam.get(f); g.albums.push(al); g.plays += al.plays;
+  }
+  const famName = (f) => f === -1 ? "Misc / uncharted" : ((R.FAMILIES.find(x => x.i === f) || {}).family || "—");
+  const famHue = (f) => f === -1 ? 260 : ((R.FAMILIES.find(x => x.i === f) || {}).hue || 260);
+  return [...byFam.values()].sort((a, b) => (a.fam === -1) - (b.fam === -1) || b.plays - a.plays)
+    .map(g => ({ ...g, name: famName(g.fam), hue: famHue(g.fam) }));
 }
 
 // ShShelf — TOP-LEVEL component on purpose: defining it inside ShelvesView gave it a new
@@ -148,12 +170,18 @@ function ShelvesView({ go }) {
   const [reader, setReader] = React.useState(null);       // album in the Reader
   const [caps, setCaps] = React.useState({});             // shelfKey → extra visibility
   const [split, setSplit] = React.useState({});           // famIdx → split into subgenre rows
+  const [mode, setMode] = React.useState("racks");        // racks | wrap (the Unplayed Shelf)
+  const [unReady, setUnReady] = React.useState(!!window.ROTATION_UNPLAYED);
   React.useEffect(() => {
     let need = 0; const done = () => { if (--need <= 0) setReady(true); };
     const load = (src, glob) => { if (window[glob]) return; need++; const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
     load("media-index.js", "ROTATION_MEDIA"); load("track-previews.js", "ROTATION_PREVIEWS");
     if (need === 0) setReady(true);
   }, []);
+  React.useEffect(() => {   // shrinkwrap data loads only when the mode is first opened
+    if (mode !== "wrap" || window.ROTATION_UNPLAYED) { if (window.ROTATION_UNPLAYED && !unReady) setUnReady(true); return; }
+    const s = document.createElement("script"); s.src = "shelves-unplayed.js"; s.onload = () => setUnReady(true); document.head.appendChild(s);
+  }, [mode]);
 
   // one pass over the media index → album records with family/sub + top-track preview key
   const data = React.useMemo(() => {
@@ -186,19 +214,29 @@ function ShelvesView({ go }) {
       });
     }
     albums.sort((x, y) => y.plays - x.plays);
-    // genre shelves (family rows), Misc last
-    const byFam = new Map();
-    for (const al of albums) {
-      const f = al.fam != null ? al.fam : -1;
-      if (!byFam.has(f)) byFam.set(f, { fam: f, albums: [], plays: 0 });
-      const g = byFam.get(f); g.albums.push(al); g.plays += al.plays;
-    }
-    const famName = (f) => f === -1 ? "Misc / uncharted" : ((R.FAMILIES.find(x => x.i === f) || {}).family || "—");
-    const famHue = (f) => f === -1 ? 260 : ((R.FAMILIES.find(x => x.i === f) || {}).hue || 260);
-    const shelves = [...byFam.values()].sort((a, b) => (a.fam === -1) - (b.fam === -1) || b.plays - a.plays)
-      .map(g => ({ ...g, name: famName(g.fam), hue: famHue(g.fam) }));
-    return { albums, shelves };
+    return { albums, shelves: shGroupShelves(albums, R) };
   }, [ready, R]);
+
+  // the shrinkwrap wall — LPs by well-played artists that were never pressed play on
+  const unData = React.useMemo(() => {
+    const UN = window.ROTATION_UNPLAYED; if (!UN) return null;
+    const albums = [];
+    let i = 0;
+    for (const [artist, list] of Object.entries(UN)) {
+      const id = (R.idForName && R.idForName(artist)) || R.slug(artist);
+      const rec = (R.expById && R.expById[id]) || R.byId[id];
+      const hue = rec ? rec.hue : 210;
+      const fam = rec && rec.fam != null ? rec.fam : (rec && rec.s && rec.s.length ? (R.SUBS[rec.s[0]] || {}).fam : null);
+      const sub = rec && rec.s && rec.s.length ? rec.s[0] : null;
+      const aPlays = rec ? rec.plays : 0;
+      for (const [title, year, cover] of list) {
+        albums.push({ key: "u" + (i++), title, artist, artistId: id, plays: aPlays, artistPlays: aPlays,
+          unplayed: true, year, cover, hue, fam, sub, meta: [year, "a", ""], firstYear: 0, lastYear: 0, tt: 0, played: 0, topTrackKey: null });
+      }
+    }
+    albums.sort((x, y) => y.artistPlays - x.artistPlays || (y.year || 0) - (x.year || 0));
+    return { albums, shelves: shGroupShelves(albums, R) };
+  }, [unReady, R]);
 
   if (!ready || !data) return <div className="r-view"><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 40 }}>stocking the shelves…</div></div>;
 
@@ -215,7 +253,7 @@ function ShelvesView({ go }) {
   };
 
   const dig = () => {
-    const pool = data.albums.filter(a => a.plays >= 20);
+    const pool = mode === "wrap" && unData ? unData.albums : data.albums.filter(a => a.plays >= 20);
     const pick = pool[Math.floor(Math.random() * pool.length)];
     if (pick) setReader(pick);
   };
@@ -224,17 +262,29 @@ function ShelvesView({ go }) {
     <div className="r-view">
       <div className="r-viewhead">
         <div>
-          <div className="r-kicker">Shelves · {fmt(data.albums.length)} records racked</div>
-          <h1 className="r-title">The record <em>shop</em><span className="dot">.</span></h1>
+          <div className="r-kicker">Shelves · {mode === "wrap"
+            ? (unData ? `${fmt(unData.albums.length)} LPs still in shrinkwrap` : "…")
+            : `${fmt(data.albums.length)} records racked`}</div>
+          <h1 className="r-title">{mode === "wrap" ? <>Still <em>sealed</em></> : <>The record <em>shop</em></>}<span className="dot">.</span></h1>
         </div>
-        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+        <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+          <span className="r-seg">
+            <button data-on={mode === "racks"} onClick={() => setMode("racks")}>the racks</button>
+            <button data-on={mode === "wrap"} onClick={() => setMode("wrap")}>shrinkwrapped</button>
+          </span>
           <button className="sh-dig" onClick={dig}>🎲 crate dig</button>
         </div>
       </div>
-      <p className="r-lede" style={{ marginTop: -8, marginBottom: 22 }}>Every album you've played, racked by genre.
-        Brush a spine to fan it open{" "}<span className="r-mono" style={{ fontSize: 10 }}>(tap once on touch)</span> — click the cover for the counter.</p>
+      <p className="r-lede" style={{ marginTop: -8, marginBottom: 22 }}>
+        {mode === "wrap"
+          ? <>Records by artists you love (20+ plays) that you've <b>never pressed play on</b>. The blind-spot wall.</>
+          : <>Every album you've played, racked by genre. Brush a spine to fan it open{" "}
+            <span className="r-mono" style={{ fontSize: 10 }}>(tap once on touch)</span> — click the cover for the counter.</>}
+      </p>
 
-      {data.shelves.map(g => split[g.fam]
+      {mode === "wrap" && !unData && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 30 }}>unwrapping…</div>}
+
+      {(mode === "wrap" ? (unData ? unData.shelves : []) : data.shelves).map(g => split[g.fam] && mode === "racks"
         ? (
           <div key={g.fam} className="sh-famgroup">
             <div className="sh-shelf-h" style={{ marginBottom: 2 }}>
@@ -249,10 +299,10 @@ function ShelvesView({ go }) {
             ))}
           </div>
         )
-        : <ShShelf key={g.fam} id={g.fam} name={g.name} hue={g.hue} albums={g.albums}
-            cap={SH_CAP + (caps[g.fam] || 0)}
-            onMore={() => setCaps(p => ({ ...p, [g.fam]: (p[g.fam] || 0) + SH_STEP }))}
-            splittable={g.albums.length > 6} splitOn={!!split[g.fam]}
+        : <ShShelf key={mode + g.fam} id={mode + g.fam} name={g.name} hue={g.hue} albums={g.albums}
+            cap={SH_CAP + (caps[mode + g.fam] || 0)}
+            onMore={() => setCaps(p => ({ ...p, [mode + g.fam]: (p[mode + g.fam] || 0) + SH_STEP }))}
+            splittable={mode === "racks" && g.albums.length > 6} splitOn={!!split[g.fam]}
             onSplit={() => setSplit(p => ({ ...p, [g.fam]: !p[g.fam] }))}
             expanded={expanded} setExpanded={setExpanded} setReader={setReader} />)}
 
@@ -271,26 +321,26 @@ function ShelvesView({ go }) {
         .sh-split:hover { color: var(--accent); }
         .sh-row { display: flex; align-items: flex-end; gap: 2px; overflow-x: auto; padding: 6px 2px 0;
           border-bottom: 3px solid var(--rule-2); scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
-        /* spine = muted cardboard sleeve; the genre-family hue lives in a LABEL BAND at the top
-           (less rainbow, more record shop). Wear = the band brightens + glows with plays. */
+        /* spine = ONE flat, muted tone of the artist's genre hue, full height — no gradients,
+           no bands (Fuad, 2026-07-04). Wear = slightly lighter/richer tone with plays. */
         .sh-spine { flex: none; width: 18px; height: 128px; border-radius: 2px 2px 0 0; cursor: pointer;
           position: relative; overflow: hidden;
-          background: linear-gradient(180deg, #242129, #17151c);
-          box-shadow: inset -2px 0 3px rgba(0,0,0,.42);
+          background: oklch(0.37 0.055 var(--h));
+          box-shadow: inset -2px 0 3px rgba(0,0,0,.35);
           transition: width .22s cubic-bezier(.3,.8,.3,1), box-shadow .22s; }
-        .sh-spine::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 20px;
-          background: linear-gradient(180deg, oklch(0.55 0.12 var(--h)), oklch(0.44 0.1 var(--h))); }
-        .sh-spine[data-worn="1"]::before { height: 24px; }
-        .sh-spine[data-worn="2"]::before { height: 28px; filter: brightness(1.18); }
-        .sh-spine[data-worn="3"]::before { height: 32px; filter: brightness(1.35);
-          box-shadow: 0 2px 10px oklch(0.6 0.14 var(--h) / .55); }
-        .sh-spine:hover { box-shadow: inset -2px 0 3px rgba(0,0,0,.42), 0 -3px 14px oklch(0.6 0.14 var(--h) / .35); }
+        .sh-spine[data-worn="1"] { background: oklch(0.41 0.07 var(--h)); }
+        .sh-spine[data-worn="2"] { background: oklch(0.46 0.09 var(--h)); }
+        .sh-spine[data-worn="3"] { background: oklch(0.52 0.11 var(--h));
+          box-shadow: inset -2px 0 3px rgba(0,0,0,.35), 0 -2px 12px oklch(0.6 0.13 var(--h) / .4); }
+        .sh-spine:hover { box-shadow: inset -2px 0 3px rgba(0,0,0,.35), 0 -3px 14px oklch(0.6 0.14 var(--h) / .35); }
         .sh-spine.on { width: 128px; }
-        .sh-spine.on::before { display: none; }
-        .sh-label { position: absolute; inset: 26px 0 6px; writing-mode: vertical-rl; font-family: var(--sans, Inter, sans-serif);
-          font-size: 9px; font-weight: 500; letter-spacing: .02em; color: rgba(255,255,255,.66); white-space: nowrap;
+        .sh-label { position: absolute; inset: 8px 0 6px; writing-mode: vertical-rl; font-family: var(--sans, Inter, sans-serif);
+          font-size: 9px; font-weight: 500; letter-spacing: .02em; color: rgba(255,255,255,.72); white-space: nowrap;
           overflow: hidden; text-overflow: ellipsis; text-align: left; pointer-events: none; }
-        .sh-spine[data-worn="3"] .sh-label { color: rgba(255,255,255,.85); }
+        .sh-spine[data-worn="3"] .sh-label { color: rgba(255,255,255,.9); }
+        /* shrinkwrap gloss — a diagonal sheen on never-played records */
+        .sh-spine[data-wrap="1"]::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+          background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,.16) 46%, transparent 58%); }
         .sh-cover { width: 128px; height: 128px; object-fit: cover; display: block; }
         .sh-more { flex: none; width: 44px; height: 128px; border: 1px dashed var(--rule-2); border-bottom: none;
           border-radius: 2px 2px 0 0; background: none; color: var(--ink-faint); cursor: pointer;
