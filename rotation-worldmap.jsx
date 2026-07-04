@@ -366,6 +366,8 @@ function MapView({ go, embedded }) {
             : <span style={{ color: "var(--ink-faint)" }}>{mode === "city" ? "every dot a city — hover to read, click for its scene" : "click a country to zoom into its cities · scroll to zoom, drag to pan"}</span>}
       </div>
 
+      <div className="mp-grid">
+      <div className="mp-map">
       <div className="r-card" style={{ padding: 0, overflow: "hidden", background: "var(--bg-2)" }}>
         <svg ref={svgRef} viewBox={`0 0 ${world.w} ${world.h}`} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: view.s > 1 ? "none" : "pan-y" }}
           onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp} onPointerLeave={onLeave}>
@@ -394,14 +396,15 @@ function MapView({ go, embedded }) {
               <span style={{ fontSize: 11, color: "var(--ink-soft)" }}>{f.family}</span>
             </div>))}
       </div>
+      </div>
 
       {/* the flow doubles as filter — pick a band to scope the map; picking a place rescopes the flow */}
-      <div style={{ marginTop: "var(--gap)" }}>
+      <div className="mp-flow" style={{ marginTop: "var(--gap)" }}>
         <MapFlow artists={flowArtists} filt={filt} setFilt={setFilt} years={geoYears} markYi={yearIdx} go={go} />
       </div>
 
       {/* breakdown list */}
-      <div style={{ marginTop: "var(--gap)" }}>
+      <div className="mp-list" style={{ marginTop: "var(--gap)" }}>
         <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 10 }}>{focus ? "Cities in " + focusName : mode === "city" ? "Deepest cities" : "Deepest countries"}</div>
         <div style={{ maxHeight: 230, overflowY: "auto", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px,1fr))", gap: "5px 22px", paddingRight: 4 }}>
           {list.map((t, i) => (
@@ -425,7 +428,7 @@ function MapView({ go, embedded }) {
         const parts = [sel ? (selFlag + " " + selName) : "everywhere", gName || "all genres", yearIdx != null ? geoYears[yearIdx] : "all years"];
         const totalPlays = resultArtists.reduce((s, e) => s + e.p, 0);
         return (
-          <div className="r-card" style={{ marginTop: "var(--gap)", padding: 22 }}>
+          <div className="r-card mp-results" style={{ marginTop: "var(--gap)", padding: 22 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
               <div><div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>results</div>
                 <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22 }}>{parts.join("  ·  ")}</div></div>
@@ -463,8 +466,18 @@ function MapView({ go, embedded }) {
           </div>
         );
       })()}
+      </div>
 
       <style>{`.map-ctl { display: flex; gap: 14px 18px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+        /* PC composition (Fuad): map(3):flow(2) on one row, deepest-places(3):results(2) below */
+        @media (min-width: 1150px) {
+          .mp-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap); align-items: start; }
+          .mp-map { grid-column: 1 / span 7; }
+          .mp-flow { grid-column: 8 / -1; margin-top: 0 !important; }
+          .mp-list { grid-column: 1 / span 7; margin-top: 0 !important; }
+          .mp-list > div:last-child { max-height: 300px !important; }
+          .mp-results { grid-column: 8 / -1; margin-top: 0 !important; }
+        }
         .map-years { display: flex; gap: 10px; align-items: center; flex: 1 1 260px; min-width: 200px; }
         .map-play { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; flex: none; }
         .map-play[data-on="true"] { background: var(--accent); color: #0c0a08; }
