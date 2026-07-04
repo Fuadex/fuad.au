@@ -906,6 +906,11 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 .reader-mood-bar i { display: block; height: 100%; border-radius: 4px; }
 .reader-mood-v { font-weight: 600; }
 .reader-mood-emo { color: var(--ink-faint); text-transform: capitalize; }
+.reader-mood-wrap { margin: -6px 0 16px; }
+.reader-mood-wrap .reader-mood { margin: 0; }
+.reader-mood-stats { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 5px;
+  font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); }
+.reader-mood-stats b { color: var(--ink-soft); font-weight: 600; }
 /* Parsed award chips share the scores line; full OMDb sentence on hover. */
 .reader-scores .reader-awards {
   display: inline-flex; flex-wrap: wrap; gap: 6px; align-items: center;

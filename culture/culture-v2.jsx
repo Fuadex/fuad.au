@@ -1857,12 +1857,23 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
           {item.scriptMood && (() => {
             const m = item.scriptMood;
             const col = m.v >= 62 ? 'oklch(0.7 0.15 145)' : m.v <= 42 ? 'oklch(0.64 0.17 25)' : 'oklch(0.72 0.12 85)';
+            const wpm = (m.w && item.runtime) ? Math.round(m.w / item.runtime) : null;
+            const rich = (m.w && m.u) ? Math.round(100 * m.u / m.w) : null;
             return (
-              <div className="reader-mood" title="How the dialogue reads — NRC sentiment over the film's transcript. This measures the words characters say, not the film's overall tone.">
-                <span className="reader-mood-label">Dialogue reads</span>
-                <span className="reader-mood-bar"><i style={{ width: m.v + '%', background: col }} /></span>
-                <span className="reader-mood-v" style={{ color: col }}>{m.v}</span>
-                {m.e && m.e.length > 0 && <span className="reader-mood-emo">{m.e.join(' · ')}</span>}
+              <div className="reader-mood-wrap">
+                <div className="reader-mood" title="How the dialogue reads — NRC sentiment over the film's transcript. This measures the words characters say, not the film's overall tone.">
+                  <span className="reader-mood-label">Dialogue reads</span>
+                  <span className="reader-mood-bar"><i style={{ width: m.v + '%', background: col }} /></span>
+                  <span className="reader-mood-v" style={{ color: col }}>{m.v}</span>
+                  {m.e && m.e.length > 0 && <span className="reader-mood-emo">{m.e.join(' · ')}</span>}
+                </div>
+                {m.w && (
+                  <div className="reader-mood-stats" title="Dialogue stats from the transcript">
+                    <span><b>{m.w.toLocaleString()}</b> words</span>
+                    {wpm && <span><b>{wpm}</b>/min</span>}
+                    {rich && <span><b>{rich}%</b> unique</span>}
+                  </div>
+                )}
               </div>
             );
           })()}
