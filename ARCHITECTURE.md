@@ -212,15 +212,15 @@ popover layer; tweaks drawer.
 
 ## 8. Feature inventory (what is SHIPPED today)
 
-### Overview
-- Stat cards: scrobbles (+26-week spark), streak (best/current), heaviest day.
-- **Recently played** (live snapshot; rows link to TrackView, artist sub-link).
-- **Top artists** wall — layout tweakable (Wall / Bars / Bubbles).
-- **Insight row**: 6 daily-rotating cards from the provider engine (§ below).
-- **"Where to dig" hub**: teaser cards into Explore / Journey / Stories (underground, blind
-  spots, gathering dust, geography, adoption lag).
-- **"Your portrait"**: generated prose verdict (night-owl %, underground %, adoption lag, top
-  country, genre migration) with inline links.
+### Overview (PC bento redesigned 2026-07-05, Fuad-approved)
+- ≥1100px: now-playing(4) · scrobbles(2) · streak(2) top row with **Recently played as a
+  right rail** (spans 3 rows); 2×2 stat strip + heaviest day; stat numbers halved.
+- **Top artists**: 8×3 wall of 24 covers (grid on PC, x-scroll on mobile), all-time ⇄
+  current-year toggle.
+- **Insight row**: daily-rotating provider cards incl. Story of the day (deep-links a Stories
+  card) and Riser of the week (live plays vs lifetime weekly pace).
+- **"Where to dig"**: compressed to a chip strip (was six teaser cards).
+- **"Your portrait"**: generated prose verdict with inline links.
 
 ### Insight engine (rotation-insights.jsx)
 Providers (score-ranked, de-duped, day-jittered): first-scrobble anniversary countdown, next
@@ -263,9 +263,11 @@ genre / **sonic gradient** (energy/mood/debut-era). Year scrubber animates the g
 artists), rescoped by map selection. Click a country/city → detail blob (top artists/albums/
 songs + Sound DNA for that place, lazy geo-detail.js). Breakdown list with flags.
 
-### Artist page (kept top-200)
+### Artist page (kept top-400; PC order reworked 2026-07-05)
 Rank/est/origin header with **gender glyph (solo artists) + active/disbanded/deceased badge**
-(`ArtistMeta`, MusicBrainz), bio (last.fm), genre chips (→ Explore), stats; **Sound DNA radar**
+(`ArtistMeta`, MusicBrainz); on PC **bio + Sound DNA share the first row**, top tracks/albums
+sit above the timeline, and "How they played out" is **collapsed to 300px with an
+expand-timeline toggle** (full height on mobile). Details: **Sound DNA radar**
 (vs library average, + key/loudness/speech/liveness/popularity/followers attribute grid);
 **How they played out** (album/song streamgraph, lazy artist-flow.js); **Sounds like** (real
 last.fm similar + by-sound neighbours, alias-aware, in-library badges); **Family tree** (members,
