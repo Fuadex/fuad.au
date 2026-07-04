@@ -406,6 +406,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     return out.sort((x, y) => x[1] - y[1]).slice(0, 6).map(e => e[0]);
   }, [a.id]);
   const [simTab, setSimTab] = React.useState("lastfm");
+  const [flowOpen, setFlowOpen] = React.useState(false);   // PC: the timeline starts collapsed
   // artists outside the kept 205 still rank in Explore — give them a lightweight page
   // (return AFTER hooks so hook order stays stable across navigations).
   if (!full && R.expById && R.expById[id]) return <MiniArtistView a={R.expById[id]} go={go} />;
@@ -480,18 +481,18 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
       </div>
 
       {/* bio — last.fm summary, rendered only when present */}
-      {a.bio && a.bio.length > 40 && (
-        <div className="r-card" style={{ padding: "18px 22px", marginBottom: "var(--gap)" }}>
-          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 10 }}>
-            About
+      {/* row 1 on PC: bio (left) + Sound DNA (right) share the fold — the flow no longer leads */}
+      <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) 340px", gap: "var(--gap)", alignItems: "start", marginBottom: "var(--gap)" }}>
+        {a.bio && a.bio.length > 40 ? (
+          <div className="r-card" style={{ padding: "18px 22px" }}>
+            <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 10 }}>
+              About
+            </div>
+            <p style={{ fontFamily: "var(--serif)", fontSize: 15.5, lineHeight: 1.55, color: "var(--ink-soft)", margin: 0 }}>
+              {a.bio.length > 520 ? a.bio.slice(0, 520).replace(/\s+\S*$/, "") + "…" : a.bio}
+            </p>
           </div>
-          <p style={{ fontFamily: "var(--serif)", fontSize: 15.5, lineHeight: 1.55, color: "var(--ink-soft)", margin: 0 }}>
-            {a.bio.length > 520 ? a.bio.slice(0, 520).replace(/\s+\S*$/, "") + "…" : a.bio}
-          </p>
-        </div>
-      )}
-
-      <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "260px 1fr", gap: "var(--gap)", alignItems: "start" }}>
+        ) : <div />}
         {/* sound DNA */}
         <div className="r-card" style={{ padding: 18 }}>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
@@ -517,10 +518,52 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             ))}
           </div>}
         </div>
+      </div>
 
-        <div style={{ display: "grid", gap: "var(--gap)" }}>
-          {/* how they played out — album/song streamgraph (lazy-loaded), right after the Sound DNA */}
-          <ArtistFlow id={a.id} hue={a.hue} go={go} />
+      <div style={{ display: "grid", gap: "var(--gap)" }}>
+          {/* top tracks + albums */}
+          <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--gap)" }}>
+            <div className="r-card" style={{ padding: 18 }}>
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
+                <span className="lbl"><b>Top tracks</b></span>
+                <span className="meta">{tracks.length} listed</span></div>
+              {(tracks.length ? tracks : [{ title: "—", plays: 0 }]).map((tr, i) => {
+                const clickable = !!tr.plays;
+                return (
+                <div key={tr.title + i} className={clickable ? "r-track-row" : undefined} onClick={clickable ? () => go("track", R.slug(a.name) + "~" + R.slug(tr.title)) : undefined} title={clickable ? `${tr.title} →` : undefined}
+                  style={{ display: "flex", alignItems: "center", gap: 10, padding: "6px 0",
+                  cursor: clickable ? "pointer" : "default",
+                  borderBottom: i < tracks.length - 1 ? "1px solid var(--rule)" : "none" }}>
+                  <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 18 }}>{String(i + 1).padStart(2, "0")}</span>
+                  <span style={{ fontSize: 13, flex: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{tr.title}</span>
+                  <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{tr.plays ? fmt(tr.plays) : "—"}</span>
+                </div>
+              );})}
+            </div>
+            <div className="r-card" style={{ padding: 18 }}>
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
+                <span className="lbl"><b>Top albums</b></span>
+                <span className="meta">{albums.length} listed</span></div>
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                {(albums.length ? albums : []).map((al, i) => (
+                  <div key={al.title + i} style={{ width: 78, cursor: "pointer" }} onClick={() => go("album", R.slug(a.name) + "~" + R.slug(al.title))}>
+                    <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={78} radius={3} />
+                    <div style={{ fontSize: 10.5, marginTop: 6, lineHeight: 1.2,
+                      display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
+                      overflow: "hidden" }}>{al.title}</div>
+                    <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(al.plays)} plays</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* how they played out — collapsed to a glance on PC, expandable; full height on mobile */}
+          <div className={"av-flow" + (flowOpen ? " open" : "")}>
+            <ArtistFlow id={a.id} hue={a.hue} go={go} />
+            {!flowOpen && <div className="av-flow-fade" />}
+            <button className="av-flow-btn" onClick={() => setFlowOpen(o => !o)}>{flowOpen ? "collapse timeline ▴" : "expand timeline ⤢"}</button>
+          </div>
 
           {/* sounds like — last.fm + by-sound; both link to kept OR explorable (mini) pages */}
           <div className="r-card" style={{ padding: 18 }}>
@@ -594,43 +637,6 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             </div>
           )}
 
-          {/* top tracks + albums */}
-          <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--gap)" }}>
-            <div className="r-card" style={{ padding: 18 }}>
-              <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
-                <span className="lbl"><b>Top tracks</b></span>
-                <span className="meta">{tracks.length} listed</span></div>
-              {(tracks.length ? tracks : [{ title: "—", plays: 0 }]).map((tr, i) => {
-                const clickable = !!tr.plays;
-                return (
-                <div key={tr.title + i} className={clickable ? "r-track-row" : undefined} onClick={clickable ? () => go("track", R.slug(a.name) + "~" + R.slug(tr.title)) : undefined} title={clickable ? `${tr.title} →` : undefined}
-                  style={{ display: "flex", alignItems: "center", gap: 10, padding: "6px 0",
-                  cursor: clickable ? "pointer" : "default",
-                  borderBottom: i < tracks.length - 1 ? "1px solid var(--rule)" : "none" }}>
-                  <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 18 }}>{String(i + 1).padStart(2, "0")}</span>
-                  <span style={{ fontSize: 13, flex: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{tr.title}</span>
-                  <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{tr.plays ? fmt(tr.plays) : "—"}</span>
-                </div>
-              );})}
-            </div>
-            <div className="r-card" style={{ padding: 18 }}>
-              <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
-                <span className="lbl"><b>Top albums</b></span>
-                <span className="meta">{albums.length} listed</span></div>
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                {(albums.length ? albums : []).map((al, i) => (
-                  <div key={al.title + i} style={{ width: 78, cursor: "pointer" }} onClick={() => go("album", R.slug(a.name) + "~" + R.slug(al.title))}>
-                    <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={78} radius={3} />
-                    <div style={{ fontSize: 10.5, marginTop: 6, lineHeight: 1.2,
-                      display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
-                      overflow: "hidden" }}>{al.title}</div>
-                    <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(al.plays)} plays</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
           {/* live near you */}
           {hasConcertData && (
             <div className="r-card" style={{ padding: 18 }}>
@@ -645,15 +651,25 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               )}
             </div>
           )}
-        </div>
       </div>
       <style>{`
         .r-inlib { position: absolute; bottom: 6px; left: 6px; font-size: 7.5px; letter-spacing: .08em; text-transform: uppercase;
           background: var(--accent); color: #0c0a08; padding: 2px 5px; border-radius: 3px; }
         .r-alert { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
           background: var(--accent-bg); border: 0; color: var(--accent-ink); padding: 8px 12px; border-radius: 5px; cursor: pointer; white-space: nowrap; }
-        @media (max-width: 860px){ .r-view > div[style*="260px 1fr"]{ grid-template-columns: 1fr !important; }
+        @media (max-width: 860px){ .r-view > div[style*="340px"]{ grid-template-columns: 1fr !important; }
           .r-view div[style*="1fr 1fr"]{ grid-template-columns: 1fr !important; } }
+        .av-flow { position: relative; }
+        @media (min-width: 1100px) {
+          .av-flow:not(.open) > .r-card { max-height: 300px; overflow: hidden; }
+          .av-flow:not(.open) .av-flow-fade { position: absolute; left: 1px; right: 1px; bottom: 30px; height: 90px;
+            background: linear-gradient(transparent, var(--panel)); pointer-events: none; border-radius: 0 0 8px 8px; }
+        }
+        .av-flow-btn { display: none; margin-top: 8px; background: none; border: 1px solid var(--rule); border-radius: 999px;
+          padding: 5px 13px; color: var(--ink-faint); cursor: pointer; font-family: var(--mono); font-size: 9px;
+          letter-spacing: .12em; text-transform: uppercase; }
+        .av-flow-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
+        @media (min-width: 1100px) { .av-flow-btn { display: inline-block; } }
       `}</style>
     </div>
   );
