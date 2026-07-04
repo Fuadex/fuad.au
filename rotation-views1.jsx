@@ -328,7 +328,9 @@ function OverviewView({ t, go }) {
           gap: 2px; overflow-x: auto; scrollbar-width: none; }
         .ov-minical-grid::-webkit-scrollbar { display: none; }
         .ov-minical-grid i { width: 100%; min-width: 7px; aspect-ratio: 1; border-radius: 1.5px; display: block; }
-        @media (min-width: 1100px) { .ov-minical { grid-column: 1 / span 8 !important; } }
+        /* spans 12 for now; drops to span 8 when the map module takes cols 9-12 (approved injection) */
+        @media (min-width: 1100px) { .ov-minical { grid-column: 1 / -1 !important; } }
+        .ov-minical-grid i { max-width: 14px; }
         .hub-chips { display: flex; gap: 8px; flex-wrap: wrap; }
         .hub-chip { display: inline-flex; align-items: baseline; gap: 8px; padding: 8px 14px; border-radius: 999px;
           border: 1px solid var(--rule); background: none; cursor: pointer; transition: border-color .15s, transform .15s; }
