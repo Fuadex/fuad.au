@@ -27,12 +27,12 @@ function TopArtistsPeek({ R, go }) {
   const [span, setSpan] = React.useState("all");
   const cy = new Date().getUTCFullYear();
   const items = React.useMemo(() => {
-    if (span === "all") return R.ARTISTS.slice(0, 12).map(a => ({ ...a, n: a.plays }));
+    if (span === "all") return R.ARTISTS.slice(0, 24).map(a => ({ ...a, n: a.plays }));
     return R.ARTISTS.map(a => ({ ...a, n: (a.yp && a.yp[cy]) || 0 })).filter(a => a.n > 0)
-      .sort((x, y) => y.n - x.n).slice(0, 12);
+      .sort((x, y) => y.n - x.n).slice(0, 24);
   }, [R, span]);
   return (
-    <div className="r-card" style={{ gridColumn: "span 7", padding: 18 }}>
+    <div className="r-card ov-wall" style={{ gridColumn: "span 7", padding: 18 }}>
       <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
         <span className="lbl"><b>Top artists</b></span>
         <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
@@ -42,7 +42,7 @@ function TopArtistsPeek({ R, go }) {
           </span>
           <span className="meta" style={{ cursor: "pointer" }} onClick={() => go("explore")}>explore ↗</span>
         </span></div>
-      <div className="r-xscroll">
+      <div className="r-xscroll ov-wallgrid">
         {items.map((a, i) => (
           <div key={a.id} onClick={() => go("artist", a.id)} style={{ cursor: "pointer", flex: "none", width: 96 }}>
             <div style={{ position: "relative" }}>
@@ -108,7 +108,7 @@ function OverviewView({ t, go }) {
       {/* bento */}
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
         {/* now playing */}
-        <div className="r-card" style={{ gridColumn: "span 5", padding: 18, display: "flex", gap: 16, alignItems: "center", minWidth: 0 }}>
+        <div className="r-card ov-np" style={{ gridColumn: "span 5", padding: 18, display: "flex", gap: 16, alignItems: "center", minWidth: 0 }}>
           <div style={{ position: "relative", cursor: npKnown ? "pointer" : "default" }} onClick={() => npKnown && go("artist", now.artistId)}>
             <GenCover hue={nowArtist.hue} name={now.artist} size={104} radius={4} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "flex-end", justifyContent: "center",
@@ -128,7 +128,7 @@ function OverviewView({ t, go }) {
         </div>
 
         {/* scrobble counter + trend */}
-        <div className="r-card" style={{ gridColumn: "span 4", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        <div className="r-card ov-scrob" style={{ gridColumn: "span 4", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Scrobbles</b></span>
             <span className="meta">26-wk trend</span></div>
           <div className="r-stat-n" style={{ fontSize: "clamp(34px,4.6vw,52px)", margin: "6px 0 2px" }}>{fmt(Math.round(scrob))}</div>
@@ -138,7 +138,7 @@ function OverviewView({ t, go }) {
         </div>
 
         {/* streak ring */}
-        <div className="r-card" style={{ gridColumn: "span 3", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div className="r-card ov-streak" style={{ gridColumn: "span 3", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Streak</b></span></div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 6 }}>
             <div className="r-stat-n" style={{ fontSize: 46 }}>{T.streak.current}</div>
@@ -150,7 +150,7 @@ function OverviewView({ t, go }) {
         </div>
 
         {/* stat strip */}
-        <div className="r-card m-2col" style={{ gridColumn: "span 8", padding: 20, display: "grid",
+        <div className="r-card m-2col ov-strip" style={{ gridColumn: "span 8", padding: 20, display: "grid",
           gridTemplateColumns: "repeat(4,1fr)", gap: 18, alignItems: "center" }}>
           <Stat n={fmt(Math.round(hrs))} sub="hours listened" onClick={() => go("calendar")} />
           <Stat n={fmt(T.artists)} sub="distinct artists" onClick={() => go("explore")} />
@@ -159,7 +159,7 @@ function OverviewView({ t, go }) {
         </div>
 
         {/* peak day */}
-        <div className="r-card ov-stat-link" style={{ gridColumn: "span 4", padding: 18, cursor: "pointer" }} onClick={() => go("calendar")}>
+        <div className="r-card ov-stat-link ov-heavy" style={{ gridColumn: "span 4", padding: 18, cursor: "pointer" }} onClick={() => go("calendar")}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Heaviest day</b></span>
             <span className="meta">{R.TOTALS.topDay.date} ↗</span></div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 8, margin: "10px 0 6px" }}>
@@ -174,7 +174,7 @@ function OverviewView({ t, go }) {
         <InsightRow go={go} n={6} />
 
         {/* recent ticker */}
-        <div className="r-card" style={{ gridColumn: "span 5", padding: 18 }}>
+        <div className="r-card ov-recent" style={{ gridColumn: "span 5", padding: 18 }}>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Recently played</b></span>
             <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
               style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
@@ -217,17 +217,15 @@ function OverviewView({ t, go }) {
         if (G && G.countries[0]) cards.push({ k: "Taste geography", h: `${G.countries[0].flag || ""} ${G.countries[0].name}`, s: `${G.totalCountries} countries deep`, hue: 140, on: () => go("stories") });
         if (I.ADOPTION) cards.push({ k: "How old the music was", h: `${I.ADOPTION.medianLag}yr median`, s: "you dig back-catalogue, not new releases", hue: 28, on: () => go("stories") });
         return (
-          <div style={{ marginTop: "calc(var(--gap)*1.6)" }}>
+          <div style={{ marginTop: "calc(var(--gap)*1.4)" }}>
             <div className="r-mono hub-lbl">Where to dig</div>
-            <div className="hub-grid">
+            <div className="hub-chips">
               {cards.map((c, i) => (
-                <div key={i} className="r-card hub-card" onClick={c.on} style={{ "--c": `oklch(0.7 0.16 ${c.hue})` }}>
-                  <div className="hub-accent" />
-                  <div className="r-mono hub-k">{c.k}</div>
-                  <div className="hub-h">{c.h}</div>
-                  <div className="hub-s">{c.s}</div>
-                  <div className="hub-go">open <span className="hub-arrow">→</span></div>
-                </div>
+                <button key={i} className="hub-chip" onClick={c.on} style={{ "--c": `oklch(0.7 0.16 ${c.hue})` }} title={c.s}>
+                  <span className="hub-chip-k">{c.k}</span>
+                  <span className="hub-chip-h">{c.h}</span>
+                  <span className="hub-arrow">→</span>
+                </button>
               ))}
             </div>
           </div>
@@ -260,6 +258,31 @@ function OverviewView({ t, go }) {
       })()}
 
       <style>{`
+        /* ── PC bento (≥1100px): everything halved, recently-played becomes the right rail,
+           top artists become a real 8×3 wall (Fuad's redesign, 2026-07-05) ── */
+        @media (min-width: 1100px) {
+          .ov-np     { grid-column: 1 / span 4 !important; }
+          .ov-scrob  { grid-column: 5 / span 2 !important; }
+          .ov-streak { grid-column: 7 / span 2 !important; }
+          .ov-recent { grid-column: 9 / -1 !important; grid-row: 1 / span 3; }
+          .ov-strip  { grid-column: 1 / span 5 !important; grid-template-columns: repeat(2, 1fr) !important; gap: 12px 18px !important; }
+          .ov-heavy  { grid-column: 6 / span 3 !important; }
+          .ov-wall   { grid-column: 1 / span 8 !important; }
+          .ov-scrob .r-stat-n { font-size: 30px !important; }
+          .ov-streak .r-stat-n { font-size: 30px !important; }
+          .ov-heavy .r-stat-n { font-size: 28px !important; }
+          .ov-strip .r-stat-n { font-size: 26px !important; }
+          .ov-np > div:first-child > .r-cover, .ov-np img { }
+          .ov-wallgrid { display: grid !important; grid-template-columns: repeat(8, 1fr); gap: 12px; overflow: visible !important; }
+          .ov-wallgrid > div { width: auto !important; }
+        }
+        .hub-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+        .hub-chip { display: inline-flex; align-items: baseline; gap: 8px; padding: 8px 14px; border-radius: 999px;
+          border: 1px solid var(--rule); background: none; cursor: pointer; transition: border-color .15s, transform .15s; }
+        .hub-chip:hover { border-color: color-mix(in oklch, var(--c) 55%, var(--rule-2)); transform: translateY(-2px); }
+        .hub-chip-k { font-family: var(--mono); font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); }
+        .hub-chip-h { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink); }
+        .hub-chip .hub-arrow { color: var(--c); font-size: 12px; }
         .pt-link { cursor: pointer; border-bottom: 1px solid currentColor; }
         .pt-link:hover { opacity: .8; }
         .hub-card { position: relative; overflow: hidden; }
