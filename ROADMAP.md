@@ -23,10 +23,12 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
 `#stories/x` deep links.
 
 ### Open — build queue (rough order)
-0. **Move Rhythm (clock grid) Explore → Calendar** — DEFERRED from the 07-05 batch: it's a shared
-   filter (Explore's clock-cell selection depends on it), needs the filter state untangled first.
-0b. Calendar rail now filters the map's *Results* by day/week (calendar-detail per-period); the
-   map *dots* still can't (no per-day geography export — item 5 below).
+0. ~~Rhythm clock Explore → Calendar~~ ✅ DONE — now a `ClockCard` (all-time + per-year) at the
+   bottom of Calendar; the clock-cell *filter* was retired from Explore.
+0b. Overview command centre finalised: calendar in the pulse row's top-right (cross-filters the
+   full-width map band below); lifetime stats one row under the map; Top Artists dissolved into
+   the map Results (list⇄grid). Calendar day/week filters the *Results* (calendar-detail); the
+   map *dots* still need a per-day geography export (item 5).
 1. **Genius lyrics dump ingest** (local carlosgdcj, ~9 GB local `archive_genius.zip` — language
    layer first; Fuad wants it)
 2. **Wrapped mode** (year+month, Calendar entry) + **share-card PNG test** — approved, unstarted
