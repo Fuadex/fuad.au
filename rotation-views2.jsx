@@ -290,7 +290,7 @@ function SoundSimilar({ id, go }) {
   const [w, setW] = React.useState(() => Object.fromEntries(AX.map(a => [a.k, 1])));
   const [genreW, setGenreW] = React.useState(1.2);
   const [lean, setLean] = React.useState(0);
-  const [count, setCount] = React.useState(6);
+  const [count, setCount] = React.useState(8);
   const [open, setOpen] = React.useState(false);
 
   const results = React.useMemo(() => {
@@ -311,7 +311,7 @@ function SoundSimilar({ id, go }) {
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 12 }}>
-        <div className="r-seg r-seg-sm">{[6, 10, 20].map(n => <button key={n} data-on={count === n} onClick={() => setCount(n)}>{n}</button>)}</div>
+        <div className="r-seg r-seg-sm">{[8, 16, 24].map(n => <button key={n} data-on={count === n} onClick={() => setCount(n)}>{n}</button>)}</div>
         <button onClick={() => setOpen(o => !o)} className="r-mono" style={{ fontSize: 10, padding: "4px 10px", borderRadius: 999, border: "1px solid var(--rule)", background: open ? "var(--bg-3)" : "transparent", color: "var(--ink-soft)", cursor: "pointer" }}>tune {open ? "▴" : "▾"}</button>
       </div>
       {open && (
@@ -406,7 +406,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     return out.sort((x, y) => x[1] - y[1]).slice(0, 6).map(e => e[0]);
   }, [a.id]);
   const [simTab, setSimTab] = React.useState("lastfm");
-  const [simN, setSimN] = React.useState(6);   // sounds-like depth (6 ⇄ 12)
+  const [simN, setSimN] = React.useState(8);      // last.fm sounds-like depth (8 ⇄ 16)
+  const [albMode, setAlbMode] = React.useState("covers");   // albums: covers (default) ⇄ list
+  // NB: by-sound depth (8/16/24) is SoundSimilar's own internal `count` selector.
   // artists outside the kept 205 still rank in Explore — give them a lightweight page
   // (return AFTER hooks so hook order stays stable across navigations).
   if (!full && R.expById && R.expById[id]) return <MiniArtistView a={R.expById[id]} go={go} />;
@@ -510,21 +512,40 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                 </div>
               );})}
             </div>
-            {/* all albums, compact list (narrow column) with a leading cover thumbnail */}
+            {/* all albums — covers (default) ⇄ compact list */}
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
                 <span className="lbl"><b>Albums</b></span>
-                <span className="meta">{albums.length} played</span></div>
-              <div className="av-albumlist" style={{ display: "grid", gap: 2, maxHeight: 396, overflowY: "auto", paddingRight: 4 }}>
-                {(albums.length ? albums : []).map((al, i) => (
-                  <div key={al.title + i} className="r-track-row" onClick={() => go("album", R.slug(a.name) + "~" + R.slug(al.title))} title={`${al.title} →`}
-                    style={{ display: "flex", alignItems: "center", gap: 9, padding: "5px 4px", cursor: "pointer", borderRadius: 4 }}>
-                    <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={30} radius={2} />
-                    <span style={{ flex: 1, minWidth: 0, fontSize: 12, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{al.title}</span>
-                    <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(al.plays)}</span>
+                <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
+                  <div className="r-seg r-seg-sm">
+                    <button data-on={albMode === "covers"} onClick={() => setAlbMode("covers")}>covers</button>
+                    <button data-on={albMode === "list"} onClick={() => setAlbMode("list")}>list</button>
                   </div>
-                ))}
-              </div>
+                  <span className="meta">{albums.length}</span>
+                </span></div>
+              {albMode === "covers" ? (
+                <div className="av-albumcovers" style={{ maxHeight: 420, overflowY: "auto", paddingRight: 4,
+                  display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: 10 }}>
+                  {(albums.length ? albums : []).map((al, i) => (
+                    <div key={al.title + i} style={{ cursor: "pointer", minWidth: 0 }} onClick={() => go("album", R.slug(a.name) + "~" + R.slug(al.title))} title={`${al.title} →`}>
+                      <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
+                      <div style={{ fontSize: 10, marginTop: 5, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{al.title}</div>
+                      <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(al.plays)} plays</div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div style={{ display: "grid", gap: 2, maxHeight: 420, overflowY: "auto", paddingRight: 4 }}>
+                  {(albums.length ? albums : []).map((al, i) => (
+                    <div key={al.title + i} className="r-track-row" onClick={() => go("album", R.slug(a.name) + "~" + R.slug(al.title))} title={`${al.title} →`}
+                      style={{ display: "flex", alignItems: "center", gap: 9, padding: "5px 4px", cursor: "pointer", borderRadius: 4 }}>
+                      <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={30} radius={2} />
+                      <span style={{ flex: 1, minWidth: 0, fontSize: 12, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{al.title}</span>
+                      <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(al.plays)}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             {/* sound DNA — radar + measured attribute grid */}
             <div className="r-card" style={{ padding: 18 }}>
@@ -557,12 +578,12 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
              always visible, stacking on mobile (sounds-like ↔ timeline swapped per Fuad) */}
           <div className="m-stack av-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0,1fr))", gap: "var(--gap)", alignItems: "start" }}>
           {/* sounds like — last.fm + by-sound; both link to kept OR explorable (mini) pages */}
-          <div className="r-card" style={{ padding: 18 }}>
+          <div className="r-card av-simcard" style={{ padding: 18 }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
               <span className="lbl"><b>Sounds like</b></span>
               <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
-                {simTab === "lastfm" && a.similar.length > 6 && (
-                  <button className="av-more" onClick={() => setSimN(n => n === 6 ? 12 : 6)}>{simN === 6 ? "12 ▾" : "6 ▴"}</button>
+                {simTab === "lastfm" && a.similar.length > 8 && (
+                  <button className="av-more" onClick={() => setSimN(n => n === 8 ? 16 : 8)}>{simN === 8 ? "16 ▾" : "8 ▴"}</button>
                 )}
                 <div className="r-seg r-seg-sm">
                   {[["lastfm", "last.fm"], ["sound", "by sound"]].map(([k, l]) => <button key={k} data-on={simTab === k} onClick={() => setSimTab(k)}>{l}</button>)}
@@ -571,7 +592,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {simTab === "sound" ? <SoundSimilar id={a.id} go={go} /> : (() => {
               const items = a.similar.slice(0, simN).map((sid, i) => { const name = a.similarNames[i]; const rid = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[rid] || (R.expById && R.expById[rid]); return { name, navId: rec ? rid : null, hue: rec ? rec.hue : (a.hue + 40 + i * 25) % 360, plays: rec ? rec.plays : null, played: !!rec || (R.played && R.played(name)) }; });
               if (!items.length) return <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>no last.fm matches here.</div>;
-              return <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(120px,1fr))", gap: 12 }}>
+              return <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(80px,1fr))", gap: 10 }}>
                 {items.map((it, i) => (
                   <div key={it.name + i} onClick={() => it.navId && go("artist", it.navId)}
                     style={{ display: "flex", flexDirection: "column", gap: 8, cursor: it.navId ? "pointer" : "default", opacity: it.played ? 1 : 0.62 }}

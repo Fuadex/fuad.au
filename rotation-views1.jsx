@@ -148,24 +148,14 @@ function OvCalRail({ go, onYear, onPeriod }) {
 
 // OvMapBand — the geography band: calendar rail (narrow) + the FULL MapView. Mounts once the
 // user scrolls near, so Overview's first paint doesn't pay for world-map.js.
-function OvMapBand({ go }) {
+function OvMapBand({ go, extYear, calPeriod }) {
   const [ref, seen] = useInView();
   const [on, setOn] = React.useState(false);
-  const [extYear, setExtYear] = React.useState(null);
-  const [calPeriod, setCalPeriod] = React.useState(null);   // {gran, key} from the calendar rail
   React.useEffect(() => { if (seen) setOn(true); }, [seen]);
   return (
     <div ref={ref} style={{ minHeight: on ? 0 : 220 }}>
-      {on ? (
-        <div className="ov-band">
-          <OvCalRail go={go} onYear={setExtYear} onPeriod={setCalPeriod} />
-          <div style={{ minWidth: 0 }}><MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} /></div>
-        </div>
-      ) : (
-        <div className="r-card" style={{ padding: 40, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>
-          the world map loads as you scroll…
-        </div>
-      )}
+      {on ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} />
+        : <div className="r-card" style={{ padding: 40, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>the world map loads as you scroll…</div>}
     </div>
   );
 }
@@ -174,6 +164,10 @@ function OverviewView({ t, go }) {
   const R = window.ROTATION;
   const T = R.TOTALS;
   const [ref, seen] = useInView();
+  // map/calendar filter state lives here so the calendar (pulse row) and the map band (below)
+  // stay in sync — the calendar is its cross-filter even though they're no longer adjacent.
+  const [mapYear, setMapYear] = React.useState(null);
+  const [mapPeriod, setMapPeriod] = React.useState(null);
   const liveTotal = (window.ROTATION_LIVE && window.ROTATION_LIVE.total) || T.scrobbles;
   const scrob = useCountUp(liveTotal, 1400, seen);
   const hrs = useCountUp(T.listeningHours, 1400, seen);
@@ -260,11 +254,15 @@ function OverviewView({ t, go }) {
           </div>
         </div>
 
-        {/* THE MAP BAND — right below the pulse row (Fuad); calendar rail + full map in 3:2 grid.
-            Its Results pane in cover-grid mode is now the "top artists" view (module dissolved). */}
-        <div className="ov-mapslot" style={{ gridColumn: "1 / -1" }}><OvMapBand go={go} /></div>
+        {/* calendar — top-right corner of the pulse row; still cross-filters the map below */}
+        <div className="ov-calslot"><OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} /></div>
 
-        {/* stat strip */}
+        {/* THE MAP BAND — full width, right below the pulse row (calendar now lives above). */}
+        <div className="ov-mapslot" style={{ gridColumn: "1 / -1" }}>
+          <OvMapBand go={go} extYear={mapYear} calPeriod={mapPeriod} />
+        </div>
+
+        {/* the four lifetime stats — one row, underneath the map/flow */}
         <div className="r-card m-2col ov-strip" style={{ gridColumn: "span 8", padding: 20, display: "grid",
           gridTemplateColumns: "repeat(4,1fr)", gap: 18, alignItems: "center" }}>
           <Stat n={fmt(Math.round(hrs))} sub="hours listened" onClick={() => go("calendar")} />
@@ -380,10 +378,11 @@ function OverviewView({ t, go }) {
         /* ── PC bento (≥1100px): everything halved, recently-played becomes the right rail,
            top artists become a real 8×3 wall (Fuad's redesign, 2026-07-05) ── */
         @media (min-width: 1100px) {
-          /* row 1 — the pulse */
-          .ov-np     { grid-column: 1 / span 5 !important; }
-          .ov-scrob  { grid-column: 6 / span 4 !important; }
-          .ov-streak { grid-column: 10 / span 3 !important; }
+          /* row 1 — the pulse (now-playing · scrobbles · streak · calendar top-right) */
+          .ov-np      { grid-column: 1 / span 4 !important; }
+          .ov-scrob   { grid-column: 5 / span 3 !important; }
+          .ov-streak  { grid-column: 8 / span 2 !important; }
+          .ov-calslot { grid-column: 10 / span 3 !important; }
           /* row 2 = map band (1/-1 inline) */
           /* row 3 — the four lifetime stats, ONE row, full width */
           .ov-strip  { grid-column: 1 / -1 !important; grid-template-columns: repeat(4, 1fr) !important; gap: 18px !important; }
@@ -397,8 +396,8 @@ function OverviewView({ t, go }) {
           /* consolidated insight cards: 3 per row inside the module */
           .ov-insgrid > .r-card { grid-column: span 4 !important; }
         }
-        .ov-band { display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: var(--gap); align-items: start; }
-        @media (max-width: 900px) { .ov-band { grid-template-columns: 1fr; } .ov-calrail { max-width: 240px; } }
+        .ov-calslot { min-width: 0; }
+        @media (max-width: 1099px) { .ov-calslot { max-width: 260px; } }
         .ov-calsel { width: 100%; background: var(--bg-3); border: 1px solid var(--rule); color: var(--ink);
           border-radius: 6px; padding: 5px 7px; font-family: var(--mono); font-size: 10px; }
         .ov-calweek[data-gran="week"]:hover { outline: 1px solid var(--accent-dim); outline-offset: 1px; }
