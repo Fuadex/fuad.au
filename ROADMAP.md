@@ -218,6 +218,16 @@ The payoff layer; each item is a build-data export + a Story/insight card:
 - PWA/offline: explained to Fuad, awaiting his verdict.
 - Stories mini-TOC; per-story deep links (`#stories/adoption`) — folds into the Stories overhaul (A4).
 
+### M7 · SHELVES — the record shop (Fuad's flagship idea, greenlit + V1 SHIPPED 2026-07-04)
+V1 live: spine-stacks fan open on hover/tap, Reader bottom-sheet with spinning-vinyl needle
+drop, subgenre splitting, dig-deeper pagination, crate dig, Misc shelf. Decisions: sound on
+CLICK inside the Reader (not hover); spine-first aesthetic; evolutionary/modular build.
+- **V2**: re-shelving lenses (genre/decade/the-year-you-lived-in-them/mood/label/completeness),
+  tag-source filter (last.fm ⇄ Discogs ⇄ Spotify genres), dust (REVISIT) + richer wear,
+  needle-drop polish, deep links (#shelves/<fam>).
+- **V3**: **the Unplayed Shelf** — shrinkwrapped records you've never played, per artist/genre
+  (needs a small archive-side export of unplayed albums per matched artist from albums-raw).
+
 ### M6 · Open-source "build your own Rotation" — exploratory (Fuad, 2026-07-03)
 Friends showed interest; nothing this deep exists as a product. Direction: keep fuad.au as the
 personal instance, extract a template repo (`rotation-template`): fork → add your last.fm
