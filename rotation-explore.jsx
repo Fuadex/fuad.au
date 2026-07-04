@@ -486,17 +486,6 @@ function ExploreView({ t, go, setPop, seed }) {
               {[10, 20, 40].map(n => <button key={n} data-on={showN === n} onClick={() => setShowN(n)}>{n}</button>)}
             </div>
           </div>
-          {kind === "artists" && (
-            <div className="xp-frow" style={{ marginBottom: sound ? 4 : "var(--gap)" }}>
-              <span className="xp-flabel">Sort</span>
-              <div className="xp-chiprow">
-                {[["", "plays"], ["energy", "energy"], ["valence", "mood"], ["dance", "dance"], ["acoustic", "acoustic"], ["tempo", "tempo"], ["pop", "popularity"]].map(([k, l]) =>
-                  <button key={k || "p"} className="xp-chip" data-on={(sound || "") === k} onClick={() => setSound(k || null)}>{l}</button>)}
-                {sound && <button className="xp-chip" onClick={() => setSndDir(d => -d)} title="flip direction">{sndDir === 1 ? "▼ high→low" : "▲ low→high"}</button>}
-              </div>
-            </div>
-          )}
-          {kind === "artists" && sound && <div className="r-mono xp-note" style={{ marginBottom: "var(--gap)" }}>{sound === "pop" ? "Spotify popularity 0–100 · flip for most-obscure first" : "share of that trait, 0–100% · artists with ≥15 plays"}</div>}
           {cells.size > 0 && kind !== "artists" && <div className="r-mono xp-note">filtered to {kind} by artists active in the selected slots</div>}
           {items.length === 0
             ? <div className="r-card xp-empty">Nothing in this slice — loosen a filter.</div>
@@ -506,10 +495,25 @@ function ExploreView({ t, go, setPop, seed }) {
         </div>
       </div>
 
-      {/* mood lens: contextual facts + the energy/mood arc for whatever slice is active */}
+      {/* sort row — moved BELOW the artists/tracks module (Fuad): plays → most obscure */}
+      {kind === "artists" && (
+        <div className="r-card" style={{ padding: "10px 14px", marginTop: "var(--gap)" }}>
+          <div className="xp-frow" style={{ marginBottom: 0 }}>
+            <span className="xp-flabel">Sort</span>
+            <div className="xp-chiprow">
+              {[["", "plays"], ["energy", "energy"], ["valence", "mood"], ["dance", "dance"], ["acoustic", "acoustic"], ["tempo", "tempo"], ["pop", "popularity"]].map(([k, l]) =>
+                <button key={k || "p"} className="xp-chip" data-on={(sound || "") === k} onClick={() => setSound(k || null)}>{l}</button>)}
+              {sound && <button className="xp-chip" onClick={() => setSndDir(d => -d)} title="flip direction">{sndDir === 1 ? "▼ high→low" : "▲ low→high"}</button>}
+            </div>
+          </div>
+          {sound && <div className="r-mono xp-note" style={{ marginTop: 6 }}>{sound === "pop" ? "Spotify popularity 0–100 · flip for most-obscure first" : "share of that trait, 0–100% · artists with ≥15 plays"}</div>}
+        </div>
+      )}
+
+      {/* mood over the years — the energy/mood arc, right under the sort row */}
       {lens === "mood" && <MoodContext R={R} arts={moodSet} go={go} />}
 
-      {/* genres grouped under families — tap a family or a subgenre to filter (stable order) */}
+      {/* genres grouped under families — 2×6 columns, each row half-height + scrollable (Fuad) */}
       <FamiliesGrid order={order} weights={weights} fam={fam} sub={sub} pickFam={pickFam} pickSub={pickSub} year={year} seen={seen} expressive={t.chart === "expressive"} />
 
       {/* Rhythm (the 7×24 clock) moved to the Calendar page (2026-07-05) — time-of-day lives with time. */}
@@ -571,6 +575,7 @@ function ExploreView({ t, go, setPop, seed }) {
             scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
         }
         .xp-val { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); text-align: right; }
+        @media (max-width: 760px) { .xp-famgrid { grid-template-columns: 1fr !important; } }
         .xp-fam-head { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 2px; border-radius: 5px; transition: .12s; }
         .xp-fam-head:hover { opacity: .85; }
         .xp-fam-head[data-on="true"] span:nth-child(2) { color: var(--accent); }
@@ -655,7 +660,7 @@ function FamiliesGrid({ order, weights, fam, sub, pickFam, pickSub, year, seen, 
       <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", margin: "4px 0 10px" }}>
         Genres — tap a family or subgenre to filter {year ? "· " + year : ""}
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(290px,1fr))", gap: "var(--gap)" }}>
+      <div className="xp-famgrid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--gap)" }}>
         {order.map((g, gi) => {
           const fw = g.subs.reduce((s, su) => s + (weights[su.idx].w || 0), 0);
           const fmax = Math.max(1, ...g.subs.map(su => weights[su.idx].w || 0));
@@ -667,7 +672,7 @@ function FamiliesGrid({ order, weights, fam, sub, pickFam, pickSub, year, seen, 
                 <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 18, flex: 1, minWidth: 0 }}>{g.family}</span>
                 <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{fmtK(fw)}</span>
               </div>
-              <div style={{ display: "grid", gap: 6, marginTop: 12 }}>
+              <div style={{ display: "grid", gap: 6, marginTop: 12, maxHeight: 148, overflowY: "auto", paddingRight: 4 }}>
                 {g.subs.map((su, si) => {
                   const w = weights[su.idx].w || 0;
                   return (
