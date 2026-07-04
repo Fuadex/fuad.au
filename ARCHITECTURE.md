@@ -214,15 +214,19 @@ popover layer; tweaks drawer.
 
 ## 8. Feature inventory (what is SHIPPED today)
 
-### Overview (PC bento redesigned 2026-07-05, Fuad-approved)
-- ≥1100px: now-playing(4) · scrobbles(2) · streak(2) top row with **Recently played as a
-  right rail** (spans 3 rows); 2×2 stat strip + heaviest day; stat numbers halved.
-- **Top artists**: 8×3 wall of 24 covers (grid on PC, x-scroll on mobile), all-time ⇄
-  current-year toggle.
-- **Insight row**: daily-rotating provider cards incl. Story of the day (deep-links a Stories
-  card) and Riser of the week (live plays vs lifetime weekly pace).
-- **"Where to dig"**: compressed to a chip strip (was six teaser cards).
-- **"Your portrait"**: generated prose verdict with inline links.
+### Overview (the command centre — bento + full Map, iterated through 2026-07-05)
+- ≥1100px bento: now-playing(4) · scrobbles(2) · streak(2) with **Recently played as a right
+  rail** (3 rows); 2×2 stat strip + heaviest day; stat numbers halved.
+- **Top artists**: half-width module, **4×3 grid of 12** (plays shown, covers forced square —
+  mixed image/generative heights broke ~1200px screens), all-time ⇄ current-year toggle.
+  Insight cards flow around it (Story of the day → deep-links a Stories card; Riser of the
+  week → live plays vs lifetime weekly pace).
+- **THE MAP BAND** (`OvMapBand`, lazy-mounts on scroll): a narrow **calendar rail** (year +
+  month dropdowns, day⇄week, month cell grid — year selection scrubs the map/flow in tandem;
+  a cell deep-opens `#calendar/YYYY-MM-DD`) beside the **full MapView** in Fuad's 3:2 grid —
+  map | taste-flow on one row, deepest places | results below. ⚠ day-level map filtering
+  needs a per-day geography export (not built yet).
+- **"Where to dig"** chip strip · **"Your portrait"** prose verdict.
 
 ### Insight engine (rotation-insights.jsx)
 Providers (score-ranked, de-duped, day-jittered): first-scrobble anniversary countdown, next
@@ -250,9 +254,11 @@ One filter set — **time** (year chips + "play the decade" animation), **genre*
 (7×24 rhythm grid, per-year) — over one universe (~6,000 artists). Left surface toggles
 **texture map** (subgenre bubble scatter) ⇄ **mood lens** (1,000-artist quadrant + contextual
 facts + "mood over the years" arc). Right: ranked artists/albums/tracks (albums/tracks rank the
-full library via lazy media-index, load-more paging). Artists can also be ranked **by sound**
+full library via lazy media-index, load-more paging; **10/20/40 selector**; PC list scrolls in
+a fixed-height window). Artists can also be ranked **by sound**
 (energy/valence/acoustic/tempo/dance/pop). Explore search box jumps to artist/subgenre/year/clock
-slices. Everything cross-filters; active-chip row with clear-all.
+slices. Everything cross-filters; active-chip row with clear-all. ⚠ mood-lens first paint is
+slow (open bug).
 
 ### Calendar
 GitHub-style **every-day heatmap** for 20 years (calendar.js), click any day/week/month → lazy
@@ -265,11 +271,11 @@ genre / **sonic gradient** (energy/mood/debut-era). Year scrubber animates the g
 artists), rescoped by map selection. Click a country/city → detail blob (top artists/albums/
 songs + Sound DNA for that place, lazy geo-detail.js). Breakdown list with flags.
 
-### Artist page (kept top-400; PC order reworked 2026-07-05)
-Rank/est/origin header with **gender glyph (solo artists) + active/disbanded/deceased badge**
-(`ArtistMeta`, MusicBrainz); on PC **bio + Sound DNA share the first row**, top tracks/albums
-sit above the timeline, and "How they played out" is **collapsed to 300px with an
-expand-timeline toggle** (full height on mobile). Details: **Sound DNA radar**
+### Artist page (kept top-400; PC composition final 2026-07-05)
+Rank/est/origin header with **gender glyph + active/disbanded/deceased badge** (`ArtistMeta`);
+on PC: **bio + Sound DNA share row 1** (1fr/340px) → **top tracks + top albums row 2** →
+**one compact 3-col row: timeline | sounds-like (6⇄12 toggle) | family tree**, each ≤⅓ width,
+always visible (the earlier expand-cover was rejected). Mobile stacks. Details: **Sound DNA radar**
 (vs library average, + key/loudness/speech/liveness/popularity/followers attribute grid);
 **How they played out** (album/song streamgraph, lazy artist-flow.js); **Sounds like** (real
 last.fm similar + by-sound neighbours, alias-aware, in-library badges); **Family tree** (members,
@@ -292,18 +298,24 @@ followers), key + mode spelled out, **Where it sits** (quadrant + percentiles), 
 grid. Entry points: album tracklists, artist top-tracks, Explore tracks tab, search songs,
 Recently-played rows.
 
-### Shelves (the record shop — shipped 2026-07-04, rotation-shelves.jsx)
-Positioning: **Explore is the database, Shelves is the record shop.** Every album ≥3 plays
-(~11.5k) racked as thin colored **spines** on genre shelves (family rows, Misc last); hover /
-first tap **fans a spine open** into its cover (300px CDN variant; collapsed spines are pure
-divs — images mount only when fanned; rows use `content-visibility`); click opens the
-**Reader** bottom-sheet (big cover, stats incl. n/N track completeness, **needle drop** = the
-album's top track's 30-s preview with a **vinyl that slides out and spins while playing**,
-→ full AlbumView). Per-shelf "dig deeper" pagination (90 + 120 steps), **split into
-subgenres** per family row, 🎲 **crate dig** random pull. Wear tiers brighten heavy-play
-spines. Zero own data files — derives from media-index + track-previews + EXPLORE at runtime.
-Queued V2/V3: re-shelving lenses (decade/era/mood/label/completeness), tag-source filter,
-dust from REVISIT, the Unplayed Shelf (archive export). Mobile grammar: tap=fan, tap again=Reader.
+### Shelves (the record shop — V1+V2+V3 all live, rotation-shelves.jsx)
+Positioning: **Explore is the database, Shelves is the record shop.**
+- **Spines**: every album ≥3 plays (~11.5k) as flat single-tone spines (deeper/richer palette
+  after the pastel round was rejected); wear = lighter tone + glow at 25/100/300 plays.
+  Collapsed spines are pure divs; hover/first-tap fans open a **progressive cover** (64px CDN
+  variant instantly → 300px swap). Rows **drag-to-pan** (Culture-style, hidden scrollbar) with
+  a progress line + % underneath; caps 540/+720 per dig; `content-visibility` on rows.
+- **Reader** bottom-sheet: big cover, stats (incl. n/N completeness), **needle drop** (vinyl
+  slides out *behind* the text and spins while playing; guarded **iTunes fallback** covers
+  unplayed/preview-less records), last.fm/Spotify links, → AlbumView.
+- **Lenses** ("shelve by"): genre (subgenre split) · decade (**5-year split**) · when-you-found
+  -them · mood quadrant (**depth split**: deepest vs on-the-edge) · completeness. Splits
+  animate (staggered reveal).
+- **Shrinkwrapped mode**: 6,565 unplayed LPs by 20+-play artists (archive diff,
+  `spotify-unplayed.json` → lazy `shelves-unplayed.js`), sheen on spines, adapted Reader,
+  crate-dig digs the sealed wall.
+- Mobile grammar: tap=fan, tap again=Reader. Still open: deep links, tag-source filter, dust
+  (REVISIT), artist-page shrinkwrap strip, comp-noise flag.
 
 ### Live (dormant)
 Full UI exists (`LiveView`, `ConcertRow`, city picker, "from your library" vs "also in town")
