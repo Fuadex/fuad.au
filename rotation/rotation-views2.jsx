@@ -686,6 +686,31 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           })()}
           </div>
 
+          {/* seen live — from Fuad's attended setlist.fm shows (ROTATION.GIGS) */}
+          {a.seenLive && (
+            <div className="r-card" style={{ padding: 18 }}>
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
+                <span className="lbl">Seen <b>live</b></span>
+                <span className="meta" style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => go("gigs")}>gigs ↗</span></div>
+              <div style={{ fontSize: 13, color: "var(--ink-soft)", marginBottom: a.seenLive.songs.length ? 12 : 0 }}>
+                You've seen {a.name} <b style={{ color: "var(--ink)" }}>{a.seenLive.count === 1 ? "once" : a.seenLive.count + " times"}</b>
+                {a.seenLive.first ? <> · <span className="r-mono">{a.seenLive.first.slice(0, 4) === a.seenLive.last.slice(0, 4) ? a.seenLive.first.slice(0, 4) : a.seenLive.first.slice(0, 4) + "–" + a.seenLive.last.slice(0, 4)}</span></> : null}.
+                {a.seenLive.songs.length ? <> {a.seenLive.songs.length} songs performed{a.seenLive.songs.some(s => s.played) ? <> — <span style={{ color: "var(--accent)" }}>highlighted</span> ones you also play</> : null}:</> : null}
+              </div>
+              {a.seenLive.songs.length > 0 && (
+                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                  {a.seenLive.songs.map(s => (
+                    <span key={s.title} className="r-chip" style={{ fontSize: 11,
+                      color: s.played ? "var(--accent)" : "var(--ink-soft)",
+                      borderColor: s.played ? "var(--accent-dim)" : "var(--rule)" }}>
+                      {s.title}{s.times > 1 ? <span style={{ color: "var(--ink-faint)" }}> ×{s.times}</span> : null}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
           {/* live near you */}
           {hasConcertData && (
             <div className="r-card" style={{ padding: 18 }}>
@@ -1089,7 +1114,7 @@ function TrackView({ id, go }) {
     let need = 0; const done = () => { if (--need <= 0) setReady(true); };
     const load = (src, glob) => { if (window[glob]) return; need++; const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
     load("media-index.js", "ROTATION_MEDIA"); load("track-audio.js", "ROTATION_TRACKAUDIO");
-    load("track-previews.js", "ROTATION_PREVIEWS");
+    load("track-previews.js", "ROTATION_PREVIEWS"); load("genius-mood-lazy.js", "ROTATION_MOOD");
     if (need === 0) setReady(true);
   }, []);
   const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
@@ -1134,6 +1159,14 @@ function TrackView({ id, go }) {
   const hue = rec ? rec.hue : hueOf(data.artist);
   const mmss = (s) => s ? Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0") : "";
   const f = data.feat;
+  // lyric mood (NRC) + "seen live" — both keyed by the same slug id TrackView routes by
+  const EMO_NAMES = ["anger", "anticipation", "disgust", "fear", "joy", "sadness", "surprise", "trust"];
+  const mood = (window.ROTATION_MOOD && window.ROTATION_MOOD[id]) || null; // [lyrValence, emoIdx, matched]
+  const audVal = f ? f[5] : null;    // Spotify audio valence ("sounds")
+  const lyrVal = mood ? mood[0] : null;  // NRC lyric valence ("reads")
+  const lyrEmo = mood && mood[1] >= 0 ? EMO_NAMES[mood[1]] : null;
+  const seenLive = !!(R.GIGS && R.GIGS.liveSongs && R.GIGS.liveSongs.indexOf(id) >= 0);
+  const divergent = (audVal != null && lyrVal != null && Math.abs(audVal - lyrVal) >= 30);
   const bpm = f ? Math.round(50 + f[7] / 100 * 140) : 0;   // undo build-time 50..190 remap
   const totalMin = data.dur && data.plays ? Math.round(data.dur * data.plays / 60) : 0;
   const radar = f ? [{ label: "Energy", value: f[4] }, { label: "Tempo", value: f[7] }, { label: "Dance", value: f[8] }, { label: "Positive", value: f[5] }, { label: "Acoustic", value: f[6] }, { label: "Instr.", value: f[9] }] : null;
@@ -1166,6 +1199,7 @@ function TrackView({ id, go }) {
             {data.album && <> · <span onClick={() => go("album", data.albumId)} style={{ cursor: "pointer", color: "var(--ink-soft)" }}>{data.album}</span></>}</div>
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap", alignItems: "center" }}>
             <PreviewBtn id={id} hue={hue} artist={data.artist} title={data.title} />
+            {seenLive && <span className="tv-seen" title="You've watched this performed live — it's in a setlist from a show you attended">🎤 Seen live</span>}
             <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(data.artist)}/_/${encodeURIComponent(data.title)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(data.artist + " " + data.title)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
@@ -1181,6 +1215,28 @@ function TrackView({ id, go }) {
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>popularity</div></div>}
         </div>
       </div>
+
+      {/* mood — how it SOUNDS (Spotify valence) vs how it READS (NRC lyric sentiment) */}
+      {(audVal != null && lyrVal != null) && (
+        <div className="tv-mood">
+          <div className="tv-mood-axis">
+            <span className="tv-mood-k">Sounds</span>
+            <div className="tv-mood-bar"><i style={{ width: audVal + "%", background: "oklch(0.72 0.15 145)" }} /></div>
+            <span className="tv-mood-v">{audVal}</span>
+          </div>
+          <div className="tv-mood-axis">
+            <span className="tv-mood-k">Reads</span>
+            <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: "oklch(0.68 0.16 25)" }} /></div>
+            <span className="tv-mood-v">{lyrVal}</span>
+          </div>
+          <div className="tv-mood-note">
+            {divergent
+              ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
+              : <>Sound and words agree.</>}
+            {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
+          </div>
+        </div>
+      )}
 
       {f ? (
         <div className="tv-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
