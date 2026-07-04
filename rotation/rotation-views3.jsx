@@ -463,6 +463,36 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+        {/* lineups — Wikidata band-member gender (the layer MB can't give us) */}
+        {I.LINEUPS && I.LINEUPS.featured && I.LINEUPS.featured.length >= 4 && (() => {
+          const L = I.LINEUPS;
+          return (
+            <section className="st-card">
+              <div className="st-label">Who's in the bands · Wikidata lineups</div>
+              <div className="st-big">
+                <em>{Math.round(L.womenBandShare * 100)}%</em> of your band-listening has women in the lineup.
+              </div>
+              <div className="st-sub">
+                Of the {L.bandsAnalyzed} groups whose members Wikidata knows by name, <b style={{ color: "var(--ink)" }}>{L.bandsWithWomen}</b> have
+                at least one woman on stage — a cut MusicBrainz can't make, since it marks a band itself as genderless.
+                {L.allWomen.length > 0 ? <> {L.allWomen.length} of them are all-women.</> : null}
+              </div>
+              <div className="st-ug-cuts" style={{ marginTop: 18 }}>
+                {L.featured.slice(0, 6).map(b => (
+                  <div key={b.artistId} className="st-ug-cut" data-link={!!R.byId[b.artistId]}
+                    onClick={() => R.byId[b.artistId] && go("artist", b.artistId)}>
+                    <GenCover hue={b.hue} name={b.name} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{b.name}</div>
+                      <div className="st-row-sub">{b.women.join(", ")}{b.memberCount > b.women.length ? ` · ${b.women.length}/${b.memberCount}` : ""} · {fmt(b.plays)} plays</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* top scenes — Discogs styles you've gone deepest on */}
         {I.STYLE_ATLAS && I.STYLE_ATLAS.scenes && I.STYLE_ATLAS.scenes.length >= 6 && (
           <section className="st-card">

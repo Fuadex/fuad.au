@@ -6,6 +6,7 @@
 archive.zip
 archive_genius.zip   # Local Genius lyrics dump (~3 GB) — local-only
 spotify-sync.log
+*-run.log        # scratch logs from background enrichment runs
 
 # local notes
 CSV-OVERRIDES.md

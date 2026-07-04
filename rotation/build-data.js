@@ -1374,6 +1374,50 @@ let LANGUAGE = null;
   }
 }
 
+// ─────────── LINEUPS (Wikidata band-member gender — enrich-wikidata.js) ───────────
+// The layer MusicBrainz can't give us: MB's `gender` is null for Groups, so at the artist
+// level a band is genderless. Wikidata's P527→P21 exposes the members and their gender, so
+// we can finally ask "how much of my band-listening involves women musicians?" — play-weighted
+// over groups whose lineup gender is actually known. Solo artists (no members) are excluded
+// here on purpose; their gender lives in the MB origins layer.
+const WIKIDATA = _readJson("wikidata-cache.json"); // name → { members:[{name,gender}], femaleShare, formCity, coords, ... }
+let LINEUPS = null;
+{
+  let bandsAnalyzed = 0, bandsWithWomen = 0, playsWithWomen = 0, playsAllMale = 0;
+  const featured = [], allWomen = [], biggestLineups = [];
+  for (const [name, plays] of artistPlays) {
+    if (plays < 20) continue;
+    const w = WIKIDATA[name];
+    if (!w || !w.members || w.members.length === 0) continue;
+    const gendered = w.members.filter(m => m.gender);
+    biggestLineups.push({ name, artistId: slug(name), hue: hueFor(name), plays, memberCount: w.members.length });
+    if (gendered.length < 2) continue;                 // need a knowable lineup to judge
+    bandsAnalyzed++;
+    const women = gendered.filter(m => /female|trans woman/i.test(m.gender));
+    if (women.length > 0) {
+      bandsWithWomen++; playsWithWomen += plays;
+      const rec = { name, artistId: slug(name), hue: hueFor(name), plays,
+        femaleShare: Math.round(women.length / gendered.length * 100) / 100,
+        women: women.slice(0, 4).map(m => m.name), memberCount: gendered.length };
+      featured.push(rec);
+      if (women.length === gendered.length) allWomen.push(rec);
+    } else {
+      playsAllMale += plays;
+    }
+  }
+  featured.sort((a, b) => b.plays - a.plays);
+  allWomen.sort((a, b) => b.plays - a.plays);
+  biggestLineups.sort((a, b) => b.memberCount - a.memberCount);
+  const denom = playsWithWomen + playsAllMale;
+  if (bandsAnalyzed >= 20) LINEUPS = {
+    bandsAnalyzed, bandsWithWomen,
+    womenBandShare: denom ? Math.round(playsWithWomen / denom * 100) / 100 : 0,
+    featured: featured.slice(0, 10),
+    allWomen: allWomen.slice(0, 6),
+    biggestLineups: biggestLineups.filter(b => b.memberCount >= 8).slice(0, 6),
+  };
+}
+
 // ─────────── CONNECTIONS (shared band members — the "same drummer" graph) ───────────
 // A person who is a "member of band" for ≥2 artists in your library links those artists.
 let CONNECTIONS = null;
@@ -1479,7 +1523,7 @@ let REVISIT = null;
 
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
-  AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN, LANGUAGE,
+  AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN, LANGUAGE, LINEUPS,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
 };
