@@ -56,9 +56,9 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
    companion for semantic clustering.
 
 1e. **Language arc + "sounds happy / reads dark" — data-weight assessment (2026-07-05).**
-   *Language arc:* **~free.** `INSIGHTS.LANGUAGE.byYear` already ships in music-data.js (a handful
-   of langs × ~17 years). It only needs a *streamgraph card* — no new data, no new file. Low-risk;
-   the obvious next thing to actually build.
+   *Language arc:* ~~~free, needs a card~~ ✅ **SHIPPED** — `LANGUAGE.arc` (per-year non-EN share +
+   top-5 non-EN languages' slice) → "How the languages moved" Stories card (reuses `<Spark>`).
+   Surfaces the 2015 German spike, 2018 Polish peak, Japanese climbing to ~9.5% by 2025.
    *Sentiment ("sounds happy / reads dark"):* also **light — no dicing needed.** Two per-track
    scalars only:
      • *audio valence* ("sounds happy"): already have it **per-artist** (`audio-features.json`,
@@ -90,9 +90,16 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
    all-women set + biggest lineups; "Who's in the bands" Stories card. **Unused so far** (cheap
    follow-ups): formation-city coords could sharpen `GEOGRAPHY.cityPoints` (exact vs gazetteer);
    `dissolved`/`inception` could backfill LIFESPAN; `P737 influenced-by` → a future lineage graph.
-1d. **setlist.fm Gigs page** — Fuad has an account w/ concerts. Blocked on: username + free API
-   key (→ culture/.env `SETLISTFM_API_KEY`). Then `enrich-gigs.js` (GET /user/{u}/attended +
-   setlists) + `gigs.json` fallback → Gigs page (timeline/map, seen-vs-never-seen, setlist×tops).
+   **NEW: Wikidata now also on artist pages** — the Family-tree card shows "Formed in {city},
+   {year}(–{diss})" + gender-dotted member chips (accent = woman) + Wikidata-only members merged
+   in (`wdOf` in build-data; 217/400 kept artists carry it).
+1d. ~~**setlist.fm Gigs page**~~ ✅ **SHIPPED** — key `SETLIST_FM_API` in `fuad.au/.env`, user
+   `fuadex`. `enrich-gigs.js` → `gigs.json` (88 attended shows, committed like other caches);
+   build-data joins → `ROTATION.GIGS` (in-library depth, setlist×rotation overlap, "pre-fan"
+   catches). New **Gigs** nav tab (gated on `ROTATION.GIGS`) + GigsView: hero stats, Seen&loved,
+   Before-you-were-a-fan, Passed-through, city breakdown, newest-first timeline. **Follow-ups:**
+   a proper gigs map layer (coords are in `gigs.json`; only ~7 cities so a bar list ships for now);
+   re-run `enrich-gigs.js` to refresh after new shows (not in the daily CI job — manual).
 2. **Wrapped mode** — **PARKED by Fuad** (keep for later). share-card PNG test still open.
 3. Explore **mood-lens slowness** (bug) · **pins.json enforcement** (Brutus-1966 elder + daine's
    classical Discogs styles still live) · canon-aware coverage census re-run
