@@ -83,7 +83,7 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   );
 }
 
-function MapView({ go, embedded }) {
+function MapView({ go, embedded, extYear }) {
   const R = window.ROTATION;
   const G = R.INSIGHTS.GEOGRAPHY;
   const cityPts = G.cityPoints || [];
@@ -95,6 +95,12 @@ function MapView({ go, embedded }) {
   const [colorBy, setColorBy] = React.useState("dominant"); // dominant | top
   const [focus, setFocus] = React.useState(null);
   const [yearIdx, setYearIdx] = React.useState(null);       // null = all-time
+  // the Overview calendar rail scrubs the map's year from outside
+  React.useEffect(() => {
+    if (extYear == null) return;
+    const i = geoYears.indexOf(extYear);
+    if (i >= 0) setYearIdx(i);
+  }, [extYear]);
   const [playing, setPlaying] = React.useState(false);
   const [hi, setHi] = React.useState(null);
   const [sel, setSel] = React.useState(null);

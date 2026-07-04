@@ -406,7 +406,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     return out.sort((x, y) => x[1] - y[1]).slice(0, 6).map(e => e[0]);
   }, [a.id]);
   const [simTab, setSimTab] = React.useState("lastfm");
-  const [flowOpen, setFlowOpen] = React.useState(false);   // PC: the timeline starts collapsed
+  const [simN, setSimN] = React.useState(6);   // sounds-like depth (6 ⇄ 12)
   // artists outside the kept 205 still rank in Explore — give them a lightweight page
   // (return AFTER hooks so hook order stays stable across navigations).
   if (!full && R.expById && R.expById[id]) return <MiniArtistView a={R.expById[id]} go={go} />;
@@ -558,22 +558,25 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             </div>
           </div>
 
-          {/* how they played out — collapsed to a glance on PC, expandable; full height on mobile */}
-          <div className={"av-flow" + (flowOpen ? " open" : "")}>
-            <ArtistFlow id={a.id} hue={a.hue} go={go} />
-            {!flowOpen && <div className="av-flow-fade" />}
-            <button className="av-flow-btn" onClick={() => setFlowOpen(o => !o)}>{flowOpen ? "collapse timeline ▴" : "expand timeline ⤢"}</button>
-          </div>
+          {/* one compact PC row: timeline · sounds-like · family tree — each ≤⅓ width, all
+             always visible (no expand-cover), stacking on mobile */}
+          <div className="m-stack av-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0,1fr))", gap: "var(--gap)", alignItems: "start" }}>
+          <ArtistFlow id={a.id} hue={a.hue} go={go} />
 
           {/* sounds like — last.fm + by-sound; both link to kept OR explorable (mini) pages */}
           <div className="r-card" style={{ padding: 18 }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
               <span className="lbl"><b>Sounds like</b></span>
-              <div className="r-seg r-seg-sm">
-                {[["lastfm", "last.fm"], ["sound", "by sound"]].map(([k, l]) => <button key={k} data-on={simTab === k} onClick={() => setSimTab(k)}>{l}</button>)}
-              </div></div>
+              <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
+                {simTab === "lastfm" && a.similar.length > 6 && (
+                  <button className="av-more" onClick={() => setSimN(n => n === 6 ? 12 : 6)}>{simN === 6 ? "12 ▾" : "6 ▴"}</button>
+                )}
+                <div className="r-seg r-seg-sm">
+                  {[["lastfm", "last.fm"], ["sound", "by sound"]].map(([k, l]) => <button key={k} data-on={simTab === k} onClick={() => setSimTab(k)}>{l}</button>)}
+                </div>
+              </span></div>
             {simTab === "sound" ? <SoundSimilar id={a.id} go={go} /> : (() => {
-              const items = a.similar.slice(0, 6).map((sid, i) => { const name = a.similarNames[i]; const rid = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[rid] || (R.expById && R.expById[rid]); return { name, navId: rec ? rid : null, hue: rec ? rec.hue : (a.hue + 40 + i * 25) % 360, plays: rec ? rec.plays : null, played: !!rec || (R.played && R.played(name)) }; });
+              const items = a.similar.slice(0, simN).map((sid, i) => { const name = a.similarNames[i]; const rid = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[rid] || (R.expById && R.expById[rid]); return { name, navId: rec ? rid : null, hue: rec ? rec.hue : (a.hue + 40 + i * 25) % 360, plays: rec ? rec.plays : null, played: !!rec || (R.played && R.played(name)) }; });
               if (!items.length) return <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>no last.fm matches here.</div>;
               return <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(120px,1fr))", gap: 12 }}>
                 {items.map((it, i) => (
@@ -636,6 +639,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               )}
             </div>
           )}
+          </div>
 
           {/* live near you */}
           {hasConcertData && (
@@ -659,17 +663,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           background: var(--accent-bg); border: 0; color: var(--accent-ink); padding: 8px 12px; border-radius: 5px; cursor: pointer; white-space: nowrap; }
         @media (max-width: 860px){ .r-view > div[style*="340px"]{ grid-template-columns: 1fr !important; }
           .r-view div[style*="1fr 1fr"]{ grid-template-columns: 1fr !important; } }
-        .av-flow { position: relative; }
-        @media (min-width: 1100px) {
-          .av-flow:not(.open) > .r-card { max-height: 300px; overflow: hidden; }
-          .av-flow:not(.open) .av-flow-fade { position: absolute; left: 1px; right: 1px; bottom: 30px; height: 90px;
-            background: linear-gradient(transparent, var(--panel)); pointer-events: none; border-radius: 0 0 8px 8px; }
-        }
-        .av-flow-btn { display: none; margin-top: 8px; background: none; border: 1px solid var(--rule); border-radius: 999px;
-          padding: 5px 13px; color: var(--ink-faint); cursor: pointer; font-family: var(--mono); font-size: 9px;
-          letter-spacing: .12em; text-transform: uppercase; }
-        .av-flow-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
-        @media (min-width: 1100px) { .av-flow-btn { display: inline-block; } }
+        .av-more { background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px;
+          color: var(--ink-faint); cursor: pointer; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; }
+        .av-more:hover { color: var(--accent); border-color: var(--accent-dim); }
       `}</style>
     </div>
   );
