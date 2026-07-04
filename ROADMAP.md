@@ -1,9 +1,41 @@
 # Rotation — Audit & Roadmap
 
 > Companion to **ARCHITECTURE.md** (read that first — it defines what already exists).
-> This file = ① audit findings, ② evaluated API/data-source catalogue, ③ the modular build plan.
-> When a module ships: mark it, move its feature description into ARCHITECTURE.md §8.
-> Absorbed and replaced the old IDEAS.md on 2026-07-03. Audit date: **2026-07-03**.
+> This file = ⓪ status snapshot, ① audit findings, ② evaluated API/data-source catalogue,
+> ③ the modular build plan. When a module ships: mark it, move its feature description into
+> ARCHITECTURE.md §8. Absorbed and replaced the old IDEAS.md on 2026-07-03.
+
+---
+
+## ⓪ Status snapshot — 2026-07-05
+
+### Shipped (see ARCHITECTURE §8 for details)
+Platform: prod React · error boundary · CI-built Pages deploys w/ smoke gate + auto-retry +
+post-deploy CSV persist · weekly enrichment (build-first fix) · headless screenshot + overflow
+audit tooling. **Data**: kept artists 200→400 · covers 17.7k base + ~2.9k recovered (fuzzy +
+CAA + iTunes + 462 name-corroborated artists) · total_tracks (19k albums) · **39k ISRCs** ·
+34.5k preview hashes · 5.7k collab edges · unplayed-LP diff (6.5k) · LIFESPAN insights ·
+MB origins search-fallback. **Features**: Shelves V1+V2+V3 complete (spines/lenses/needle
+drop/shrinkwrap/drag-pan) · 30-s previews on TrackView w/ iTunes fallback · Stories chapters +
+scrollspy TOC + deep links + fresh dots + 2-col PC magazine · Overview command centre (bento,
+12-artist wall, calendar rail, FULL map in 3:2 grid, Map tab retired) · Artist PC 3-col
+composition · Explore 10/20/40 window · mini-page track/album links · `#calendar/day` +
+`#stories/x` deep links.
+
+### Open — build queue (rough order)
+1. **Genius lyrics dump ingest** (local carlosgdcj, ~9 GB — language layer first; Fuad wants it)
+2. **Wrapped mode** (year+month, Calendar entry) + **share-card PNG test** — approved, unstarted
+3. Explore **mood-lens slowness** (bug) · **pins.json enforcement** (Brutus-1966 elder + daine's
+   classical Discogs styles still live) · canon-aware coverage census re-run
+4. Shelves follow-ups: deep links, tag-source filter, dust (REVISIT), artist-page shrinkwrap
+   strip, comp-noise flag (archive query)
+5. **Per-day geography export** → calendar rail filters the map/results for real
+6. MusicBrainz full-dump stage: cover-of + work language (ISRC joins) · `enrich-wikidata.js`
+7. iTunes probe residue ~880 albums · Discogs-dump formats lens · M6 template extraction
+
+### Waiting on Fuad
+setlist.fm account + gigs (M2) · Spotify extended-history request (M3) · `residences.json`
+(M4 location features) · responsiveness re-test verdicts · PWA yes/no.
 
 ---
 
@@ -103,8 +135,16 @@
 - **iTunes Search — APPROVED as tier-3 cover fallback** (keyless, high-res art). Deezer —
   dropped ("very niche").
 - **ListenBrainz** — interesting, unscheduled.
-- **Genius lyrics (local dump ~5M songs, local batch analysis) — BACKBURNER by choice**:
-  "super powerful for later stages." Not the API (no lyrics in it) — the dump.
+- **Genius lyrics — PROMOTED to the build queue (Fuad, 2026-07-05)**: local
+  `a local lyrics dump` (~5M songs, ~unzipped,
+  **language column included**); companion `a local embeddings dump`
+  for semantic/mood clustering without local NLP. Pipeline: download → match our 60k tracks
+  (normalizers + artist) → language layer first, themes/sentiment after. Not the API (no
+  lyrics in it) — the dump.
+- **Other dumps catalogued 2026-07-05**: MusicBrainz weekly full dump (~6 GB, bulk cover-of/
+  language via our 39k ISRCs), Discogs monthly XML (credits/formats), ListenBrainz dumps
+  (percentile context + name→MBID mapping), Spotify Million Playlist (optional co-occurrence
+  similarity). All fit the ≤30–40 GB one-at-a-time processing budget.
 - **Open-Meteo** — backburner until residences.json exists.
 
 ---
@@ -126,11 +166,12 @@ Map URL state pending; views2 split opportunistic.
    play-weighted** (misses are the 1–2-play tail). Fuzzy tiers (id-anchored, conservative)
    added +183. Residue: **13.8k albums whose artists lack a pinned Spotify id** (→ archive
    pass 2 below) and **1.8k title-mismatches** → CAA probe (per-artist MB release-group browse
-   + front-250 HEAD) **completed: 735 found of 1,768 targets (719 exact / 16 contain / 1
-   rejected on eyeball), 8.4k plays re-covered — shipped**. Extra cache now 917 covers;
-   play-weighted coverage ~87%. Fills live in `spotify-album*(art|meta)-extra.json` (additive;
-   base wins). **`pins.json` still to build** before any name-keyed enrichment (Brutus-1966
-   elder = live example of ambiguity).
+   + front-250 HEAD) completed: 735 covers; then **iTunes tier-3 probe** added 775 more and
+   the stage-1 **name-corroboration pass** (462 recovered artists) another 1,461. Extra cache
+   now **~2,940 covers** on top of the 17.7k base; residue ≥3 plays ≈ 880 albums (mostly
+   bootlegs/fan-club). Fills live in `spotify-album*(art|meta)-extra.json` (additive; base
+   wins). **`pins.json` still to build** before more name-keyed enrichment (Brutus-1966 elder
+   and daine's classical Discogs styles = live offenders).
 2. **Official URLs** on artist pages (Bandcamp/site/Wikipedia from discogs-artist.json —
    2,937 stored, unused).
 3. ~~Exploit `ended`~~ → ✅ **INSIGHTS.LIFESPAN + "The ones that ended" Stories card shipped**
@@ -218,13 +259,14 @@ The payoff layer; each item is a build-data export + a Story/insight card:
 - PWA/offline: explained to Fuad, awaiting his verdict.
 - Stories mini-TOC; per-story deep links (`#stories/adoption`) — folds into the Stories overhaul (A4).
 
-### M7 · SHELVES — the record shop (Fuad's flagship idea, greenlit + V1 SHIPPED 2026-07-04)
-V1 live: spine-stacks fan open on hover/tap, Reader bottom-sheet with spinning-vinyl needle
-drop, subgenre splitting, dig-deeper pagination, crate dig, Misc shelf. Decisions: sound on
-CLICK inside the Reader (not hover); spine-first aesthetic; evolutionary/modular build.
-- **V2**: re-shelving lenses (genre/decade/the-year-you-lived-in-them/mood/label/completeness),
-  tag-source filter (last.fm ⇄ Discogs ⇄ Spotify genres), dust (REVISIT) + richer wear,
-  needle-drop polish, deep links (#shelves/<fam>).
+### M7 · SHELVES — the record shop (Fuad's flagship; V1+V2+V3 SHIPPED 2026-07-04/05)
+Live: flat-tone spines (pastel + gradient rounds rejected) with wear tiers · drag-to-pan rows
++ progress % · progressive covers (64→300px) · caps 540/+720 · lenses (genre/decade+5yr/
+found/mood+depth/completeness) with animated splits · Reader (vinyl spins behind text, iTunes
+needle fallback, lastfm/Spotify links) · shrinkwrapped mode (6.5k unplayed LPs) · crate dig.
+- **Still open**: deep links (#shelves/<lens>), tag-source filter (last.fm ⇄ Discogs ⇄ Spotify
+  genres — needs client exports), dust (REVISIT), artist-page shrinkwrap strip, comp-noise
+  flag, "rack everything" perf toggle.
 - ~~V3: the Unplayed Shelf~~ → ✅ **SHIPPED 2026-07-04**: "shrinkwrapped" mode — 6,565 LPs by
   20+-play artists never pressed play on (archive diff, junk-filtered; `spotify-unplayed.json`
   cache → lazy `shelves-unplayed.js`). Sheen on spines, adapted Reader, crate-dig digs the wall.
