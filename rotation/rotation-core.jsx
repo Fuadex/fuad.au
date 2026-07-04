@@ -188,6 +188,20 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 .r-extlink:hover { color: var(--ink); border-color: var(--ink-faint); }
 .r-extlink-sp:hover { color: oklch(0.72 0.17 150); border-color: oklch(0.72 0.17 150); }
 .r-extlink-lf:hover { color: oklch(0.62 0.21 25); border-color: oklch(0.62 0.21 25); }
+/* "seen live" pill on TrackView (song is in a setlist from a show Fuad attended) */
+.tv-seen { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
+  text-transform: uppercase; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--accent-dim);
+  color: var(--accent); background: var(--accent-bg); }
+/* mood strip: how it SOUNDS (Spotify valence) vs how it READS (NRC lyric sentiment) */
+.tv-mood { display: grid; gap: 8px; max-width: 520px; margin: 0 0 var(--gap); padding: 14px 16px;
+  border: 1px solid var(--rule); border-radius: 8px; }
+.tv-mood-axis { display: grid; grid-template-columns: 58px 1fr 30px; gap: 12px; align-items: center; }
+.tv-mood-k { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+.tv-mood-bar { height: 7px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
+.tv-mood-bar i { display: block; height: 100%; border-radius: 4px; }
+.tv-mood-v { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); text-align: right; }
+.tv-mood-note { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+.tv-mood-note b { color: var(--ink); }
 
 /* skinny scroller utility */
 .r-xscroll { display: flex; gap: var(--gap); overflow-x: auto; scrollbar-width: none; padding-bottom: 6px; }
