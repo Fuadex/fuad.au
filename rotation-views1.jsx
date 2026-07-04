@@ -64,6 +64,7 @@ function TopArtistsPeek({ R, go }) {
 // and the cell deep-opens its day/week in the full Calendar. (Day-level geography needs a new
 // build export — the tandem deepens next iteration.)
 function OvCalRail({ go, onYear, onPeriod }) {
+  const [selDay, setSelDay] = React.useState(null);
   const [detReady, setDetReady] = React.useState(!!window.ROTATION_CAL_DETAIL);
   React.useEffect(() => {   // period → results filtering needs the detail file; fetch it lazily
     if (window.ROTATION_CAL_DETAIL) return;
@@ -99,7 +100,6 @@ function OvCalRail({ go, onYear, onPeriod }) {
   const cells = [...Array(pad).fill(null), ...Array.from({ length: dim }, (_, i) => i + 1)];
   while (cells.length % 7) cells.push(null);
   const weeks = []; for (let i = 0; i < cells.length; i += 7) weeks.push(cells.slice(i, i + 7));
-  const [selDay, setSelDay] = React.useState(null);
   const pick = (d) => {
     const iso = new Date(Date.UTC(yr, mo, d)).toISOString().slice(0, 10);
     let key = iso;
