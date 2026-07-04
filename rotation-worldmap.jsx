@@ -326,7 +326,7 @@ function MapView({ go }) {
   );
 
   return (
-    <div className="r-view">
+    <div className="r-view tv-page" style={{ maxWidth: 1360 }}>
       <div className="r-viewhead">
         <div>
           <div className="r-kicker">Geography · {G.totalCountries} countries · {fmt(cityPts.length)} cities{yearIdx != null ? " · " + geoYears[yearIdx] : ""}</div>

@@ -13,10 +13,13 @@
 //  · cover URLs are downscaled via CDN variants (Spotify hash swap · CAA front-250 · iTunes size swap).
 
 const SH_MIN_PLAYS = 3;
-const SH_CAP = 180;           // spines initially visible per shelf ("dig deeper" reveals more)
-const SH_STEP = 240;          // per dig
+const SH_CAP = 540;           // spines initially visible per shelf ("dig deeper" reveals more)
+const SH_STEP = 720;          // per dig
 
-// — CDN size variants: small for the fan-open (≈300px), big for the Reader —
+// — CDN size variants: tiny (instant, 64px) → small (sharp, ≈300px) for the fan-open; big for the Reader —
+const shTiny = (url) => !url ? "" :
+  url.includes("i.scdn.co/image/ab67616d0000b273") ? url.replace("ab67616d0000b273", "ab67616d00004851")
+  : url.includes("600x600") ? url.replace("600x600", "100x100") : url;
 const shSmall = (url) => !url ? "" :
   url.includes("i.scdn.co/image/ab67616d0000b273") ? url.replace("ab67616d0000b273", "ab67616d00001e02")
   : url.includes("600x600") ? url.replace("600x600", "300x300") : url;
@@ -124,6 +127,20 @@ function ShReader({ al, onClose, go }) {
   );
 }
 
+// progressive fan-open cover: the 64px CDN variant paints near-instantly (blurry for a beat),
+// the 300px version swaps in as soon as it's downloaded — kills the "hover then wait" feel.
+function ShFanCover({ cover }) {
+  const [src, setSrc] = React.useState(() => shTiny(cover));
+  React.useEffect(() => {
+    let dead = false;
+    const im = new Image();
+    im.src = shSmall(cover);
+    im.onload = () => { if (!dead) setSrc(im.src); };
+    return () => { dead = true; };
+  }, [cover]);
+  return <img className="sh-cover" src={src} alt="" onError={(e) => { if (cover && e.target.src !== cover) e.target.src = cover; }} />;
+}
+
 // — one spine. Collapsed: a colored slab. Expanded: the cover slides out. —
 function ShSpine({ al, expanded, onExpand, onOpen }) {
   const worn = al.plays >= 300 ? 3 : al.plays >= 100 ? 2 : al.plays >= 25 ? 1 : 0;
@@ -135,7 +152,7 @@ function ShSpine({ al, expanded, onExpand, onOpen }) {
       title={`${al.title} — ${al.artist} · ${al.plays} plays`}>
       {expanded
         ? (al.cover
-          ? <img className="sh-cover" src={shSmall(al.cover)} alt="" loading="lazy" onError={(e) => { if (al.cover && e.target.src !== al.cover) e.target.src = al.cover; }} />
+          ? <ShFanCover cover={al.cover} />
           : <GenCover hue={al.hue} name={al.title} size={"100%"} radius={2} style={{ width: "100%", height: "100%" }} />)
         : <span className="sh-label">{al.title}</span>}
     </div>
@@ -198,18 +215,42 @@ function shGroupShelves(albums, R) {
 // ShShelf — TOP-LEVEL component on purpose: defining it inside ShelvesView gave it a new
 // identity every render, so any tap remounted the row and reset its horizontal scroll (the
 // mobile "position jumps back" bug). Stable identity = React keeps the DOM (and scrollLeft).
-function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitOn, onSplit, expanded, setExpanded, setReader }) {
+// Desktop rows drag-to-pan (Culture-style); the scrollbar is replaced by a progress line + %.
+// Progress updates go straight to the DOM (refs) — a 500-spine row must not re-render per frame.
+function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitLabel, splitOn, onSplit, expanded, setExpanded, setReader }) {
   const visible = albums.slice(0, cap);
+  const rowRef = React.useRef(null), barRef = React.useRef(null), pctRef = React.useRef(null), progRef = React.useRef(null);
+  const drag = React.useRef(null);
+  const syncProg = () => {
+    const el = rowRef.current; if (!el) return;
+    const m = el.scrollWidth - el.clientWidth;
+    if (progRef.current) progRef.current.style.display = m > 4 ? "" : "none";
+    if (m <= 4) return;
+    const p = el.scrollLeft / m;
+    if (barRef.current) barRef.current.style.width = (p * 100).toFixed(1) + "%";
+    if (pctRef.current) pctRef.current.textContent = Math.round(p * 100) + "%";
+  };
+  React.useEffect(() => { syncProg(); }, [cap, albums.length]);
+  const onDown = (e) => { if (e.pointerType !== "mouse" || e.button !== 0) return; drag.current = { x: e.clientX, sl: rowRef.current.scrollLeft, moved: false }; };
+  const onMove = (e) => {
+    const d = drag.current; if (!d) return;
+    const dx = e.clientX - d.x;
+    if (Math.abs(dx) > 4) d.moved = true;
+    if (d.moved) rowRef.current.scrollLeft = d.sl - dx;
+  };
+  const onUp = () => { const d = drag.current; if (d) setTimeout(() => { drag.current = null; }, 0); };
+  const onClickCapture = (e) => { if (drag.current && drag.current.moved) { e.stopPropagation(); e.preventDefault(); } };
   return (
     <section className="sh-shelf" data-depth={depth || 0}>
       <div className="sh-shelf-h">
         <span className="sh-shelf-name" style={{ "--h": hue }}>{name}</span>
         <span className="sh-shelf-n">{fmt(albums.length)} records · {fmt(albums.reduce((s, a) => s + a.plays, 0))} plays</span>
         {splittable && (
-          <button className="sh-split" onClick={onSplit}>{splitOn ? "merge ▴" : "split into subgenres ▾"}</button>
+          <button className="sh-split" onClick={onSplit}>{splitOn ? "merge ▴" : `${splitLabel || "split"} ▾`}</button>
         )}
       </div>
-      <div className="sh-row" onMouseLeave={() => setExpanded(null)}>
+      <div className="sh-row" ref={rowRef} onScroll={syncProg} onMouseLeave={() => { setExpanded(null); onUp(); }}
+        onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onClickCapture={onClickCapture}>
         {visible.map(al => (
           <ShSpine key={al.key} al={al} expanded={expanded === al.key}
             onExpand={setExpanded} onOpen={setReader} />
@@ -218,6 +259,7 @@ function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitO
           <button className="sh-more" onClick={onMore}>+{fmt(albums.length - cap)}<br />dig<br />deeper</button>
         )}
       </div>
+      <div className="sh-prog" ref={progRef}><div className="sh-prog-track"><i ref={barRef} style={{ "--h": hue }} /></div><span ref={pctRef} className="r-mono">0%</span></div>
     </section>
   );
 }
@@ -301,14 +343,29 @@ function ShelvesView({ go }) {
 
   if (!ready || !data) return <div className="r-view"><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 40 }}>stocking the shelves…</div></div>;
 
-  // split a family shelf into its subgenre rows (albums keyed by their artist's primary sub)
+  // lens-aware shelf splitting: genre → subgenre rows · decade → 5-year bins · mood → by depth
+  const SPLIT_LABELS = { genre: "split into subgenres", decade: "split into 5-year bins", mood: "split by depth" };
   const subRows = (g) => {
     const by = new Map();
-    for (const al of g.albums) {
-      const s = al.sub != null && R.SUBS[al.sub] && R.SUBS[al.sub].fam === g.fam ? R.SUBS[al.sub].name : "other";
-      if (!by.has(s)) by.set(s, []);
-      by.get(s).push(al);
+    const push = (k, al) => { if (!by.has(k)) by.set(k, []); by.get(k).push(al); };
+    if (lens === "decade") {
+      for (const al of g.albums) {
+        const y = (al.meta && al.meta[0]) || 0;
+        push(y ? `${Math.floor(y / 5) * 5}–${Math.floor(y / 5) * 5 + 4}` : "year unknown", al);
+      }
+      return [...by.entries()].sort((a, b) => b[0].localeCompare(a[0]));
     }
+    if (lens === "mood") {
+      for (const al of g.albums) {
+        const d = al.dna || [50, 50];
+        const depth = Math.max(Math.abs((d[0] || 50) - 50), Math.abs((d[1] || 50) - 50));
+        push(depth >= 30 ? `deepest ${g.name.replace(" · ", "-")}` : `${g.name.replace(" · ", "-")} — on the edge`, al);
+      }
+      return [...by.entries()].sort((a, b) => a[0].startsWith("deepest") ? -1 : 1);
+    }
+    // genre: albums keyed by their artist's primary sub within this family
+    for (const al of g.albums)
+      push(al.sub != null && R.SUBS[al.sub] && R.SUBS[al.sub].fam === g.fam ? R.SUBS[al.sub].name : "other", al);
     return [...by.entries()].sort((a, b) => (a[0] === "other") - (b[0] === "other") ||
       b[1].reduce((s2, x) => s2 + x.plays, 0) - a[1].reduce((s2, x) => s2 + x.plays, 0));
   };
@@ -354,25 +411,28 @@ function ShelvesView({ go }) {
 
       {mode === "wrap" && !unData && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 30 }}>unwrapping…</div>}
 
-      {(mode === "wrap" ? (unData ? unData.shelves : []) : rackShelves).map(g => split[g.fam] && mode === "racks" && lens === "genre"
+      {(mode === "wrap" ? (unData ? unData.shelves : []) : rackShelves).map(g => split[g.fam] && mode === "racks" && SPLIT_LABELS[lens]
         ? (
           <div key={g.fam} className="sh-famgroup">
             <div className="sh-shelf-h" style={{ marginBottom: 2 }}>
               <span className="sh-shelf-name" style={{ "--h": g.hue, fontSize: 17 }}>{g.name}</span>
               <button className="sh-split" onClick={() => setSplit(p => ({ ...p, [g.fam]: false }))}>merge ▴</button>
             </div>
-            {subRows(g).map(([sname, arr]) => (
-              <ShShelf key={g.fam + sname} id={g.fam + ":" + sname} name={sname} hue={g.hue} albums={arr} depth={1}
-                cap={SH_CAP + (caps[g.fam + ":" + sname] || 0)}
-                onMore={() => setCaps(p => ({ ...p, [g.fam + ":" + sname]: (p[g.fam + ":" + sname] || 0) + SH_STEP }))}
-                expanded={expanded} setExpanded={setExpanded} setReader={setReader} />
+            {subRows(g).map(([sname, arr], si) => (
+              <div key={g.fam + sname} className="sh-reveal" style={{ animationDelay: (si * 45) + "ms" }}>
+                <ShShelf id={g.fam + ":" + sname} name={sname} hue={g.hue} albums={arr} depth={1}
+                  cap={SH_CAP + (caps[g.fam + ":" + sname] || 0)}
+                  onMore={() => setCaps(p => ({ ...p, [g.fam + ":" + sname]: (p[g.fam + ":" + sname] || 0) + SH_STEP }))}
+                  expanded={expanded} setExpanded={setExpanded} setReader={setReader} />
+              </div>
             ))}
           </div>
         )
         : <ShShelf key={mode + lens + g.fam} id={mode + lens + g.fam} name={g.name} hue={g.hue} albums={g.albums}
             cap={SH_CAP + (caps[mode + lens + g.fam] || 0)}
             onMore={() => setCaps(p => ({ ...p, [mode + lens + g.fam]: (p[mode + lens + g.fam] || 0) + SH_STEP }))}
-            splittable={mode === "racks" && lens === "genre" && g.albums.length > 6} splitOn={!!split[g.fam]}
+            splittable={mode === "racks" && !!SPLIT_LABELS[lens] && g.albums.length > 6 && g.fam !== "Lzz"}
+            splitLabel={SPLIT_LABELS[lens]} splitOn={!!split[g.fam]}
             onSplit={() => setSplit(p => ({ ...p, [g.fam]: !p[g.fam] }))}
             expanded={expanded} setExpanded={setExpanded} setReader={setReader} />)}
 
@@ -396,18 +456,27 @@ function ShelvesView({ go }) {
           font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
         .sh-split:hover { color: var(--accent); }
         .sh-row { display: flex; align-items: flex-end; gap: 2px; overflow-x: auto; padding: 6px 2px 0;
-          border-bottom: 3px solid var(--rule-2); scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
-        /* spine = ONE flat, muted tone of the artist's genre hue, full height — no gradients,
-           no bands (Fuad, 2026-07-04). Wear = slightly lighter/richer tone with plays. */
+          border-bottom: 3px solid var(--rule-2); -webkit-overflow-scrolling: touch;
+          scrollbar-width: none; cursor: grab; user-select: none; }
+        .sh-row::-webkit-scrollbar { display: none; }
+        .sh-row:active { cursor: grabbing; }
+        .sh-prog { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+        .sh-prog-track { flex: 1; height: 2px; background: var(--bg-3); border-radius: 2px; overflow: hidden; }
+        .sh-prog-track i { display: block; height: 100%; width: 0; background: oklch(0.55 0.11 var(--h, 260) / .8); }
+        .sh-prog > span { font-size: 8.5px; color: var(--ink-faint); width: 30px; text-align: right; }
+        .sh-reveal { animation: shReveal .32s cubic-bezier(.25,.8,.35,1) both; }
+        @keyframes shReveal { from { opacity: 0; transform: translateY(-10px); } }
+        /* spine = ONE flat tone of the artist's genre hue, tuned DEEPER + RICHER to sit in the
+           site's palette (the earlier lighter mix read pastel/detached — Fuad). */
         .sh-spine { flex: none; width: 18px; height: 128px; border-radius: 2px 2px 0 0; cursor: pointer;
           position: relative; overflow: hidden;
-          background: oklch(0.37 0.055 var(--h));
-          box-shadow: inset -2px 0 3px rgba(0,0,0,.35);
+          background: oklch(0.31 0.075 var(--h));
+          box-shadow: inset -2px 0 3px rgba(0,0,0,.4);
           transition: width .22s cubic-bezier(.3,.8,.3,1), box-shadow .22s; }
-        .sh-spine[data-worn="1"] { background: oklch(0.41 0.07 var(--h)); }
-        .sh-spine[data-worn="2"] { background: oklch(0.46 0.09 var(--h)); }
-        .sh-spine[data-worn="3"] { background: oklch(0.52 0.11 var(--h));
-          box-shadow: inset -2px 0 3px rgba(0,0,0,.35), 0 -2px 12px oklch(0.6 0.13 var(--h) / .4); }
+        .sh-spine[data-worn="1"] { background: oklch(0.35 0.095 var(--h)); }
+        .sh-spine[data-worn="2"] { background: oklch(0.4 0.115 var(--h)); }
+        .sh-spine[data-worn="3"] { background: oklch(0.46 0.135 var(--h));
+          box-shadow: inset -2px 0 3px rgba(0,0,0,.4), 0 -2px 12px oklch(0.6 0.14 var(--h) / .45); }
         .sh-spine:hover { box-shadow: inset -2px 0 3px rgba(0,0,0,.35), 0 -3px 14px oklch(0.6 0.14 var(--h) / .35); }
         .sh-spine.on { width: 128px; }
         .sh-label { position: absolute; inset: 8px 0 6px; writing-mode: vertical-rl; font-family: var(--sans, Inter, sans-serif);
@@ -435,7 +504,9 @@ function ShelvesView({ go }) {
           padding: 22px 24px calc(22px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 22px; align-items: center;
           animation: shUp .24s cubic-bezier(.2,.8,.3,1); }
         @keyframes shUp { from { transform: translateY(40px); opacity: 0; } }
-        .sh-sleeve { position: relative; flex: none; width: 168px; height: 168px; }
+        .sh-sleeve { position: relative; flex: none; width: 168px; height: 168px; z-index: 0; }
+        .sh-reader-body { position: relative; z-index: 1; }
+        .sh-x { z-index: 2; }
         .sh-vinyl { position: absolute; top: 6px; left: 26px; width: 156px; height: 156px; border-radius: 50%;
           background: repeating-radial-gradient(circle, #0c0b0e 0 2px, #17161b 2px 4px);
           box-shadow: 0 0 0 1px #000; transition: transform .5s ease, left .4s ease; }

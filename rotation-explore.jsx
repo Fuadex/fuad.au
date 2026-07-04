@@ -309,6 +309,7 @@ function ExploreView({ t, go, setPop, seed }) {
   const [moodZone, setMoodZone] = React.useState(null);   // active valence×energy quadrant filter, or null
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
   const [limit, setLimit] = React.useState(40);           // album/track list depth (load-more grows it)
+  const [showN, setShowN] = React.useState(20);           // visible rows (10/20/40) — window scrolls past ~12
   const [ref, seen] = useInView();
 
   // albums/tracks now rank from the lazy media-index (full library depth) — load it the first time
@@ -477,8 +478,13 @@ function ExploreView({ t, go, setPop, seed }) {
           </div>
         </div>
         <div className="xp-right">
-          <div className="r-seg" style={{ marginBottom: "var(--gap)" }}>
-            {["artists", "albums", "tracks"].map(k => <button key={k} data-on={kind === k} onClick={() => setKind(k)}>{k}</button>)}
+          <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap", marginBottom: "var(--gap)" }}>
+            <div className="r-seg">
+              {["artists", "albums", "tracks"].map(k => <button key={k} data-on={kind === k} onClick={() => setKind(k)}>{k}</button>)}
+            </div>
+            <div className="r-seg">
+              {[10, 20, 40].map(n => <button key={n} data-on={showN === n} onClick={() => setShowN(n)}>{n}</button>)}
+            </div>
           </div>
           {kind === "artists" && (
             <div className="xp-frow" style={{ marginBottom: sound ? 4 : "var(--gap)" }}>
@@ -494,7 +500,7 @@ function ExploreView({ t, go, setPop, seed }) {
           {cells.size > 0 && kind !== "artists" && <div className="r-mono xp-note">filtered to {kind} by artists active in the selected slots</div>}
           {items.length === 0
             ? <div className="r-card xp-empty">Nothing in this slice — loosen a filter.</div>
-            : <RankRows items={items} go={go} kind={kind} />}
+            : <div className="xp-rank-win"><RankRows items={items.slice(0, showN)} go={go} kind={kind} /></div>}
           {more && <button className="xp-loadmore" onClick={() => setLimit(l => l + 40)}>load more {kind} ↓</button>}
           {kind !== "artists" && mediaItems && <div className="r-mono xp-note" style={{ marginTop: 8, textAlign: "center" }}>full library · {fmt(items.length)} shown</div>}
         </div>
@@ -559,6 +565,11 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-bar > div { height: 100%; border-radius: 4px; transition: width .5s cubic-bezier(.3,.8,.3,1); }
         /* tv-grid/tv-head/r-track-row rules moved to cssRotation (rotation-core) — they style the
            Album/Track pages, which can be deep-linked WITHOUT Explore ever mounting. */
+        /* PC: the ranked list lives in a fixed-height scrolling window instead of blowing the page up */
+        @media (min-width: 980px) {
+          .xp-rank-win { max-height: 660px; overflow-y: auto; padding-right: 4px;
+            scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
+        }
         .xp-val { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); text-align: right; }
         .xp-fam-head { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 2px; border-radius: 5px; transition: .12s; }
         .xp-fam-head:hover { opacity: .85; }
