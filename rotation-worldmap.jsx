@@ -1,4 +1,4 @@
-// rotation-worldmap.jsx — the Map tab. A pan/zoomable bubble map of where the music comes from
+// rotation-worldmap.jsx — the Map band (lives inside Overview). A pan/zoomable bubble map of where the music comes from
 // (world-map.js). Toggle countries ⇄ cities; colour by dominant genre or the top artist's genre;
 // ▶ play the years to watch the map shift; click a country to zoom into its cities; click any
 // place for a detail blob (top artists/albums/songs + Sound DNA, from the lazy geo-detail.js).
@@ -83,7 +83,7 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   );
 }
 
-function MapView({ go, embedded, extYear, calPeriod, onStats }) {
+function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
   const R = window.ROTATION;
   const G = R.INSIGHTS.GEOGRAPHY;
   const cityPts = G.cityPoints || [];
@@ -106,8 +106,8 @@ function MapView({ go, embedded, extYear, calPeriod, onStats }) {
   const [sel, setSel] = React.useState(null);
   const [pane, setPane] = React.useState("artists");
   const [filt, setFilt] = React.useState({ fam: null, sub: null }); // genre pivot: size every place by this genre
-  const [limit, setLimit] = React.useState(embedded ? 12 : 5);      // results list length
-  const [disp, setDisp] = React.useState(embedded ? "grid" : "list"); // results display: list ⇄ cover grid (grid = the dissolved Top Artists wall)
+  const [limit, setLimit] = React.useState(embedded ? 10 : 5);      // results list length
+  const [disp, setDisp] = React.useState("list"); // results display: list ⇄ cover grid (grid = the dissolved Top Artists wall; list default — the 2-unit column reads better as rows)
   const [adetail, setADetail] = React.useState(window.ROTATION_ADETAIL || null); // lazy tracks/albums for the long tail
   const [view, setView] = React.useState({ s: 1, x: 0, y: 0 });
   const svgRef = React.useRef(null);
@@ -461,6 +461,10 @@ function MapView({ go, embedded, extYear, calPeriod, onStats }) {
         </div>
       </div>
 
+      {/* the calendar rail (slotted in from Overview) — under the deepest places, left column;
+          picking a day/week swaps the results over to that exact period */}
+      {calSlot && <div className="mp-cal" style={{ marginTop: "var(--gap)" }}>{calSlot}</div>}
+
       {/* results — top artists + albums + songs + DNA for the current place ∩ genre ∩ year (no place needed) */}
       {(() => {
         const gName = filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? R.FAMILIES[filt.fam].family : null;
@@ -469,8 +473,8 @@ function MapView({ go, embedded, extYear, calPeriod, onStats }) {
         return (
           <div className="r-card mp-results" style={{ marginTop: "var(--gap)", padding: 22 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
-              <div><div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>{periodData ? "on this " + calPeriod.gran : "results"}</div>
-                <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22 }}>{parts.join("  ·  ")}</div></div>
+              <div style={{ minWidth: 0 }}><div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>{periodData ? "on this " + calPeriod.gran : "results"}</div>
+                <div className="mp-restitle" style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22 }}>{parts.join("  ·  ")}</div></div>
               <div><div className="r-stat-n" style={{ fontSize: 26 }}>{fmt(totalPlays)}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>plays</div></div>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "10px 14px", flexWrap: "wrap", margin: "16px 0 14px" }}>
@@ -488,6 +492,7 @@ function MapView({ go, embedded, extYear, calPeriod, onStats }) {
               </div>}
             </div>
             {!periodData && yearIdx != null && (pane === "albums" || pane === "songs") && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 8 }}>albums &amp; songs aren't split by year — showing all-time for this slice.</div>}
+            <div className="mp-resbody">
             {pane === "artists" && (resultArtists.length
               ? (disp === "grid"
                 ? <div className="mp-covergrid">{resultArtists.slice(0, limit).map((e, i) => { const a = e.a, kept = !!R.byId[a.id]; return (
@@ -514,23 +519,31 @@ function MapView({ go, embedded, extYear, calPeriod, onStats }) {
                   <Radar axes={["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"]} values={resultDNA} values2={avg} run={true} size={300} />
                   <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 6 }}>solid = this slice · dashed = your average</div></div></div>
               : <div style={{ color: "var(--ink-soft)" }}>No DNA for this slice.</div>)}
+            </div>
           </div>
         );
       })()}
       </div>
 
       <style>{`.map-ctl { display: flex; gap: 14px 18px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
-        /* PC composition (Fuad): map(2):flow(3) on one row, deepest-places(2):results(3) below;
-           map & flow height-matched */
+        /* PC composition (Fuad, 2026-07-04): map · flow · results at 3:3:2, height-matched on
+           one row; deepest places + the calendar rail stack under the map in the left column.
+           The results body is a flexed scroll well (height:0 + grow) so a long list can never
+           inflate the shared row height — map/flow set it. */
         @media (min-width: 1150px) {
-          .mp-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap); align-items: stretch; }
-          .mp-map { grid-column: 1 / span 5; display: flex; flex-direction: column; }
+          .mp-grid { display: grid; grid-template-columns: 3fr 3fr 2fr; gap: var(--gap); align-items: stretch; }
+          .mp-map { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; }
           .mp-map > .r-card { flex: 1; display: flex; align-items: center; }
-          .mp-flow { grid-column: 6 / -1; margin-top: 0 !important; }
-          .mp-flow > .r-card { height: 100%; }
-          .mp-list { grid-column: 1 / span 5; margin-top: 0 !important; }
-          .mp-list > div:last-child { max-height: 300px !important; }
-          .mp-results { grid-column: 6 / -1; margin-top: 0 !important; }
+          .mp-flow { grid-column: 2; grid-row: 1; margin-top: 0 !important; display: flex; flex-direction: column; }
+          .mp-flow > .r-card { flex: 1; }
+          .mp-results { grid-column: 3; grid-row: 1; margin-top: 0 !important; padding: 16px 16px 12px !important;
+            display: flex; flex-direction: column; min-height: 0; }
+          .mp-restitle { font-size: 15px !important; line-height: 1.3; }
+          .mp-resbody { flex: 1 1 0; height: 0; min-height: 0; overflow-y: auto; padding-right: 4px; }
+          .mp-results .mp-covergrid { grid-template-columns: repeat(2, 1fr); }
+          .mp-list { grid-column: 1; grid-row: 2; margin-top: 0 !important; }
+          .mp-list > div:last-child { max-height: 260px !important; }
+          .mp-cal { grid-column: 1; grid-row: 3; margin-top: 0 !important; }
         }
         .mp-clear { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase;
           padding: 6px 11px; border-radius: 999px; border: 1px solid var(--accent-dim); color: var(--accent);

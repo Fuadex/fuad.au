@@ -214,22 +214,23 @@ popover layer; tweaks drawer.
 
 ## 8. Feature inventory (what is SHIPPED today)
 
-### Overview (the command centre — bento + full Map, iterated through 2026-07-05)
-- ≥1100px bento: now-playing(4) · scrobbles(2) · streak(2) with **Recently played as a right
-  rail** (3 rows); 2×2 stat strip + heaviest day; stat numbers halved.
-- **Top artists**: half-width module, **4×3 grid of 12** (plays shown, covers forced square —
-  mixed image/generative heights broke ~1200px screens), all-time ⇄ current-year toggle.
-  Insight cards flow around it (Story of the day → deep-links a Stories card; Riser of the
-  week → live plays vs lifetime weekly pace).
-- **Calendar** lives compact in the pulse row's top-right (a single day-strip; `OvCalRail`).
-  Year selection scrubs the map/flow; a day/week click **filters the map Results** (via
-  calendar-detail); state is lifted to `OverviewView` so calendar and map stay in sync though
-  they're not adjacent.
-- **THE MAP BAND** (`OvMapBand`, lazy-mounts on scroll): the **full MapView** in a **2:3 grid** —
-  map | taste-flow (height-matched) on one row, deepest places | Results below; single genre
-  legend under the flow; a **"clear filters"** button. Results has a **list⇄grid** toggle
-  (grid = the dissolved Top-Artists wall). MapView reports filtered totals up so the **stat
-  strip (hours + distinct artists) reacts to the active filter**. ⚠ day-level map *dots*
+### Overview (the command centre — bento + full Map, redesigned 2026-07-04)
+- ≥981px pulse (2 rows): **scrobbles(½) · now-playing(½, top-right)** on row 1;
+  **streak(⅓) · Recently played (⅔, height-matched — list runs 3-up, 6/12/18 selector)** on
+  row 2. Fixed the 981–1099px break (the old `.ov-calslot` had no base grid-column and
+  collapsed to a 1/12 sliver; slot removed).
+- **Top artists** module is dissolved — lives on as the map Results' grid display.
+  (`TopArtistsPeek` in rotation-views1 is currently dead code.)
+- **Calendar rail** (`OvCalRail`) now rides inside the map band's left column, under deepest
+  places. Year selection scrubs the map/flow; a day/week click **filters the map Results**
+  (via calendar-detail); state stays lifted to `OverviewView`.
+- **THE MAP BAND** (`OvMapBand`, lazy-mounts on scroll): the **full MapView** as a
+  **3:3:2 height-matched row — map | taste-flow | Results** — with deepest places + the
+  calendar rail stacked under the map. Results is a flexed scroll well (can't inflate the row;
+  list default, list⇄grid toggle, 2-col cover grid); single genre legend under the flow; a
+  **"clear filters"** button. MapView reports filtered totals up so the **stat strip (hours +
+  distinct artists, span 8) reacts to the active filter**; heaviest day beside it (span 4);
+  the "Right now" insight feed runs full-width below, 4 cards across. ⚠ day-level map *dots*
   filtering still needs a per-day geography export.
 - **"Where to dig"** chip strip · **"Your portrait"** prose verdict.
 
