@@ -225,8 +225,12 @@ CLICK inside the Reader (not hover); spine-first aesthetic; evolutionary/modular
 - **V2**: re-shelving lenses (genre/decade/the-year-you-lived-in-them/mood/label/completeness),
   tag-source filter (last.fm ⇄ Discogs ⇄ Spotify genres), dust (REVISIT) + richer wear,
   needle-drop polish, deep links (#shelves/<fam>).
-- **V3**: **the Unplayed Shelf** — shrinkwrapped records you've never played, per artist/genre
-  (needs a small archive-side export of unplayed albums per matched artist from albums-raw).
+- ~~V3: the Unplayed Shelf~~ → ✅ **SHIPPED 2026-07-04**: "shrinkwrapped" mode — 6,565 LPs by
+  20+-play artists never pressed play on (archive diff, junk-filtered; `spotify-unplayed.json`
+  cache → lazy `shelves-unplayed.js`). Sheen on spines, adapted Reader, crate-dig digs the wall.
+  Known noise: multi-artist comps (WWF/Chef Aid class) survive — killing them needs a per-album
+  "artist owns ≥half the tracks" flag from a future archive query.
+- Spines: flat uniform tone (Fuad 2026-07-04) — no gradients/bands, wear = lighter tone + glow.
 
 ### M6 · Open-source "build your own Rotation" — exploratory (Fuad, 2026-07-03)
 Friends showed interest; nothing this deep exists as a product. Direction: keep fuad.au as the
