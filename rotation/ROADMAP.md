@@ -59,8 +59,15 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
    *Language arc:* ~~~free, needs a card~~ ✅ **SHIPPED** — `LANGUAGE.arc` (per-year non-EN share +
    top-5 non-EN languages' slice) → "How the languages moved" Stories card (reuses `<Spark>`).
    Surfaces the 2015 German spike, 2018 Polish peak, Japanese climbing to ~9.5% by 2025.
-   *Sentiment ("sounds happy / reads dark"):* also **light — no dicing needed.** Two per-track
-   scalars only:
+   *Sentiment ("sounds happy / reads dark"):* ✅ **SHIPPED** — decided NRC + multilingual.
+   `.sptmp/genius-sentiment.py` streams the local Genius corpus, scores each lyric in its own
+   language's NRC EmoLex (space-token for Latin scripts, char n-gram for JA/ZH — no word
+   boundaries), emits `genius-mood.json` (25,286 tracks, committed). `INSIGHTS.MOOD` crosses it
+   with Spotify per-track valence (`TRACKDATA[5]`) over 18,991 tracks: library sounds 34 / reads
+   44; 222 bright-sound/bleak-words (How to Destroy Angels, Rammstein, SOAD), 746 reverse.
+   "Sounds happy, reads dark" Stories card. **CJK caveat:** n-gram lexicon match, no context
+   model, so JA/ZH are best-effort. **Follow-up:** per-track mood badge on TrackView (data's in
+   `genius-mood.json`, just needs a lazy export + render). Original weight note below still holds:
      • *audio valence* ("sounds happy"): already have it **per-artist** (`audio-features.json`,
        3,905 artists, `valence` 0–1). Per-*track* lives in the local a large
        `spotify-audio-features.parquet` — extractable exactly like `extract-audio.js` does now.
