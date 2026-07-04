@@ -1,0 +1,76 @@
+/* fuad.au — diagonal split launcher. Two apps behind glass; hover to clear + expand. */
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#050507;overflow:hidden;
+  font-family:'Space Grotesk',system-ui,sans-serif;color:#fff;
+  -webkit-font-smoothing:antialiased}
+
+/* the skewed stage: oversized + shifted so the skew never exposes viewport corners */
+.split{position:fixed;inset:0;display:flex;overflow:hidden;
+  transform:skewX(-9deg);transform-origin:center;width:132%;left:-16%}
+
+.pane{position:relative;flex:1 1 0;overflow:hidden;text-decoration:none;color:#fff;
+  cursor:pointer;transition:flex-grow .8s cubic-bezier(.72,0,.18,1)}
+.pane + .pane{border-left:1.5px solid rgba(255,255,255,.6);
+  box-shadow:-2px 0 40px rgba(0,0,0,.65)}
+.pane--l{--accent:oklch(0.74 0.13 330)}
+.pane--r{--accent:#d8a94a}
+
+/* snapshot — counter-skewed so it sits upright, scaled to cover, blurred like frosted glass */
+.content{position:absolute;inset:-3%;transform:skewX(9deg) scale(1.16);transform-origin:center}
+.shot{position:absolute;inset:0;filter:blur(7px) brightness(.62) saturate(.9);
+  transform:scale(1.04);transition:filter .7s ease,transform .8s cubic-bezier(.72,0,.18,1)}
+.shot svg{width:100%;height:100%;display:block}
+
+/* the glass sheen sitting over the snapshot */
+.glass{position:absolute;inset:0;transition:opacity .6s ease;
+  background:linear-gradient(115deg,rgba(255,255,255,.10),rgba(255,255,255,0) 42%),
+             linear-gradient(0deg,rgba(5,5,8,.5),rgba(5,5,8,.2))}
+
+/* label — counter-skewed upright */
+.label{position:absolute;inset:0;transform:skewX(9deg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;text-align:center;padding:0 9%;pointer-events:none}
+.wm{font-size:clamp(30px,4.6vw,66px);font-weight:600;letter-spacing:-.025em;line-height:1;
+  transition:transform .5s ease,opacity .5s ease}
+.pane--l .wm{color:#f3eef4}
+.pane--r .wm{color:#f5efe4}
+.wm .dot{color:var(--accent)}
+
+.reveal{max-width:380px;opacity:0;transform:translateY(16px);pointer-events:none;
+  transition:opacity .55s ease .04s,transform .55s cubic-bezier(.72,0,.18,1) .04s}
+.desc{margin:0;font-family:'Source Serif 4',Georgia,serif;font-size:16px;line-height:1.55;color:#cdc7d4}
+.meta{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.enter{display:inline-block;margin-top:22px;font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);border:1px solid color-mix(in oklab,var(--accent) 45%,transparent);
+  padding:9px 18px;border-radius:100px;transition:color .35s ease,border-color .35s ease}
+.enter:hover{color:#fff;border-color:rgba(255,255,255,.85)}
+
+/* hover: expand hovered, shrink the other; clear its glass + snapshot; reveal copy */
+.pane:hover{flex-grow:1.75}
+.split:hover .pane:not(:hover){flex-grow:.7}
+.pane:hover .shot{filter:blur(0) brightness(1) saturate(1.05);transform:scale(1)}
+.pane:hover .glass{opacity:.12}
+.pane:hover .wm{transform:translateY(-6px)}
+.pane:hover .reveal{opacity:1;transform:translateY(0);pointer-events:auto}
+.split:hover .pane:not(:hover) .shot{filter:blur(10px) brightness(.42) saturate(.8)}
+.split:hover .pane:not(:hover) .wm{opacity:.45}
+
+/* chrome */
+.brand{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:5;
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.34em;
+  text-transform:uppercase;color:rgba(255,255,255,.6);pointer-events:none}
+.brand b{font-weight:600;color:#fff}
+.hint{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:5;
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.26em;
+  text-transform:uppercase;color:rgba(255,255,255,.3);pointer-events:none}
+
+@media (max-width:640px){
+  .split{flex-direction:column;transform:skewY(-8deg);width:100%;left:0;height:132%;top:-16%}
+  .content{transform:skewY(8deg) scale(1.16)}
+  .label{transform:skewY(8deg)}
+  .pane + .pane{border-left:none;border-top:1.5px solid rgba(255,255,255,.6)}
+  .pane:hover{flex-grow:1.5}
+  .reveal{max-width:80vw}
+}

@@ -1,0 +1,834 @@
+{
+ "1984": [
+  "ahead"
+ ],
+ "2001-space": [
+  "cerebral",
+  "score"
+ ],
+ "age-of-success": [
+  "satire"
+ ],
+ "angels-egg": [
+  "atmosphere",
+  "singular"
+ ],
+ "animal-farm": [
+  "ahead",
+  "cerebral"
+ ],
+ "aot": [
+  "horrifying"
+ ],
+ "apocalypse-now": [
+  "acting",
+  "intense"
+ ],
+ "atlanta": [
+  "absurdist",
+  "funny",
+  "satire"
+ ],
+ "avatar-tla": [
+  "funny",
+  "worldbuilding"
+ ],
+ "band-of-brothers": [
+  "devastating",
+  "impact"
+ ],
+ "belladonna": [
+  "horrifying"
+ ],
+ "berserk": [
+  "worldbuilding",
+  "writing"
+ ],
+ "better-call-saul": [
+  "gem",
+  "slowburn"
+ ],
+ "bioshock": [
+  "singular",
+  "worldbuilding",
+  "writing"
+ ],
+ "black-lagoon": [
+  "intense"
+ ],
+ "black-mirror": [
+  "ahead",
+  "horrifying"
+ ],
+ "blade-runner-2049": [
+  "impact",
+  "score",
+  "singular"
+ ],
+ "bojack": [
+  "funny",
+  "satire",
+  "visuals"
+ ],
+ "breaking-bad": [
+  "intense",
+  "slowburn"
+ ],
+ "burning": [
+  "intense"
+ ],
+ "chernobyl": [
+  "acting",
+  "devastating",
+  "intense"
+ ],
+ "cinema-paradiso": [
+  "bittersweet",
+  "devastating"
+ ],
+ "clockwork-orange": [
+  "ahead",
+  "cerebral",
+  "score"
+ ],
+ "come-and-see": [
+  "horrifying"
+ ],
+ "corpus-christi": [
+  "devastating",
+  "impact"
+ ],
+ "cosmos": [
+  "singular"
+ ],
+ "cowboy-bebop": [
+  "atmosphere",
+  "worldbuilding",
+  "writing"
+ ],
+ "cyberpunk-edge": [
+  "thrilling",
+  "visuals"
+ ],
+ "dark": [
+  "cerebral",
+  "devastating",
+  "worldbuilding"
+ ],
+ "dead-set": [
+  "horrifying"
+ ],
+ "deer-hunter": [
+  "intense",
+  "slowburn"
+ ],
+ "dekalog": [
+  "acting",
+  "cerebral"
+ ],
+ "eizouken": [
+  "funny",
+  "visuals",
+  "worldbuilding"
+ ],
+ "elfen-lied": [
+  "devastating"
+ ],
+ "ernest-celestine": [
+  "funny"
+ ],
+ "escape-cinema": [
+  "funny",
+  "satire"
+ ],
+ "eva": [
+  "impact",
+  "mindbending"
+ ],
+ "face-of-another": [
+  "horrifying"
+ ],
+ "fallout": [
+  "funny",
+  "satire",
+  "visuals"
+ ],
+ "fargo": [
+  "acting",
+  "funny",
+  "intense"
+ ],
+ "fight-club": [
+  "cerebral",
+  "mindbending"
+ ],
+ "firewatch": [
+  "bittersweet"
+ ],
+ "flcl": [
+  "absurdist",
+  "funny",
+  "singular",
+  "visuals"
+ ],
+ "fleabag": [
+  "bittersweet",
+  "devastating",
+  "funny"
+ ],
+ "fma-brotherhood": [
+  "cerebral",
+  "devastating",
+  "impact"
+ ],
+ "galactic-railroad": [
+  "devastating"
+ ],
+ "ghost-hound": [
+  "horrifying"
+ ],
+ "gits-movie": [
+  "atmosphere",
+  "worldbuilding"
+ ],
+ "gits-sac": [
+  "atmosphere",
+  "cognitive",
+  "worldbuilding"
+ ],
+ "green-planet": [
+  "cerebral"
+ ],
+ "gta-iv": [
+  "impact"
+ ],
+ "gunnm": [
+  "atmosphere",
+  "visuals"
+ ],
+ "gurren-lagann": [
+  "visuals"
+ ],
+ "haibane": [
+  "bittersweet",
+  "devastating"
+ ],
+ "heavy-rain": [
+  "thrilling"
+ ],
+ "human-condition": [
+  "acting",
+  "devastating",
+  "intense"
+ ],
+ "ico": [
+  "devastating"
+ ],
+ "illustrated-man": [
+  "ahead",
+  "cerebral"
+ ],
+ "imp-f-10026657": [
+  "horrifying"
+ ],
+ "imp-f-107201": [
+  "cinematography",
+  "devastating",
+  "direction"
+ ],
+ "imp-f-28-days-later": [
+  "horrifying"
+ ],
+ "imp-f-32090": [
+  "thrilling"
+ ],
+ "imp-f-35459": [
+  "cerebral"
+ ],
+ "imp-f-3808": [
+  "cerebral"
+ ],
+ "imp-f-512263": [
+  "horrifying"
+ ],
+ "imp-f-686419": [
+  "cerebral"
+ ],
+ "imp-f-868513": [
+  "mindbending"
+ ],
+ "imp-f-annie-hall": [
+  "bittersweet"
+ ],
+ "imp-f-children-of-men": [
+  "cinematography"
+ ],
+ "imp-f-corpse-bride": [
+  "absurdist",
+  "intense",
+  "visuals"
+ ],
+ "imp-f-dr-strangelove-or-how-i-learned-to-stop-worrying-and-love-th": [
+  "satire"
+ ],
+ "imp-f-duck-amuck": [
+  "absurdist"
+ ],
+ "imp-f-edge-of-tomorrow": [
+  "intense",
+  "mindbending",
+  "thrilling"
+ ],
+ "imp-f-ex-machina": [
+  "cerebral"
+ ],
+ "imp-f-fa-yeung-nin-wa": [
+  "cinematography"
+ ],
+ "imp-f-gake-no-ue-no-ponyo": [
+  "visuals"
+ ],
+ "imp-f-h-hokekyo-tonari-no-yamada-kun": [
+  "satire"
+ ],
+ "imp-f-happy-feet": [
+  "funny"
+ ],
+ "imp-f-heavy-metal": [
+  "intense",
+  "visuals"
+ ],
+ "imp-f-inception": [
+  "thrilling"
+ ],
+ "imp-f-inglourious-basterds": [
+  "intense"
+ ],
+ "imp-f-innocence": [
+  "cinematography",
+  "impact"
+ ],
+ "imp-f-j-i-uchi-hairy-tsuma-shimatsu": [
+  "devastating"
+ ],
+ "imp-f-life-of-brian": [
+  "absurdist"
+ ],
+ "imp-f-monty-python-and-the-holy-grail": [
+  "absurdist"
+ ],
+ "imp-f-nie-wiem": [
+  "cerebral"
+ ],
+ "imp-f-once-upon-a-time-in-america": [
+  "intense"
+ ],
+ "imp-f-perfect-blue": [
+  "horrifying"
+ ],
+ "imp-f-refren": [
+  "cerebral"
+ ],
+ "imp-f-seksmisja": [
+  "absurdist",
+  "satire"
+ ],
+ "imp-f-seppuku": [
+  "devastating"
+ ],
+ "imp-f-szpital": [
+  "cerebral"
+ ],
+ "imp-f-the-bridge-on-the-river-kwai": [
+  "intense"
+ ],
+ "imp-f-the-gold-rush": [
+  "bittersweet"
+ ],
+ "imp-f-the-great-dictator": [
+  "satire"
+ ],
+ "imp-g-608591": [
+  "mindbending"
+ ],
+ "imp-g-611176": [
+  "mindbending"
+ ],
+ "imp-g-611366": [
+  "atmosphere",
+  "devastating",
+  "score",
+  "worldbuilding"
+ ],
+ "imp-s-10034646": [
+  "funny"
+ ],
+ "imp-s-10038044": [
+  "visuals"
+ ],
+ "imp-s-10042461": [
+  "funny",
+  "intense",
+  "visuals"
+ ],
+ "imp-s-10049575": [
+  "funny"
+ ],
+ "imp-s-324560": [
+  "horrifying"
+ ],
+ "imp-s-329991": [
+  "cerebral"
+ ],
+ "imp-s-363435": [
+  "absurdist",
+  "funny",
+  "satire",
+  "visuals"
+ ],
+ "imp-s-427201": [
+  "impact"
+ ],
+ "imp-s-469752": [
+  "absurdist",
+  "funny",
+  "visuals"
+ ],
+ "imp-s-662876": [
+  "funny"
+ ],
+ "imp-s-680486": [
+  "intense"
+ ],
+ "imp-s-747022": [
+  "funny"
+ ],
+ "imp-s-767241": [
+  "absurdist"
+ ],
+ "imp-s-843529": [
+  "funny"
+ ],
+ "imp-s-871671": [
+  "funny"
+ ],
+ "in-the-fall": [
+  "devastating"
+ ],
+ "in-this-corner": [
+  "bittersweet"
+ ],
+ "invincible": [
+  "devastating",
+  "impact"
+ ],
+ "jin-roh": [
+  "writing"
+ ],
+ "kaguya": [
+  "singular"
+ ],
+ "kino-journey": [
+  "atmosphere",
+  "cerebral"
+ ],
+ "lain": [
+  "atmosphere"
+ ],
+ "laputa": [
+  "score"
+ ],
+ "ldr": [
+  "horrifying"
+ ],
+ "life-is-strange": [
+  "bittersweet"
+ ],
+ "limelight": [
+  "bittersweet",
+  "funny"
+ ],
+ "limes-inferior": [
+  "worldbuilding"
+ ],
+ "lost": [
+  "gem",
+  "mindbending"
+ ],
+ "macross-plus": [
+  "score"
+ ],
+ "mad-men": [
+  "acting",
+  "slowburn"
+ ],
+ "made-in-abyss": [
+  "horrifying",
+  "score",
+  "visuals",
+  "worldbuilding"
+ ],
+ "mary-and-max": [
+  "bittersweet",
+  "funny",
+  "visuals"
+ ],
+ "mass-effect": [
+  "worldbuilding"
+ ],
+ "memories": [
+  "singular"
+ ],
+ "metropolis": [
+  "score"
+ ],
+ "midnight-gospel": [
+  "absurdist",
+  "cerebral",
+  "funny",
+  "visuals"
+ ],
+ "mirrors-edge": [
+  "atmosphere",
+  "style",
+  "visuals"
+ ],
+ "mononoke": [
+  "horrifying"
+ ],
+ "mononoke-hime": [
+  "atmosphere",
+  "score",
+  "worldbuilding"
+ ],
+ "mr-robot": [
+  "acting",
+  "atmosphere",
+  "mindbending"
+ ],
+ "nausicaa": [
+  "worldbuilding"
+ ],
+ "network": [
+  "satire"
+ ],
+ "no-country": [
+  "acting",
+  "atmosphere",
+  "cinematography"
+ ],
+ "odrzucone": [
+  "absurdist",
+  "funny",
+  "singular"
+ ],
+ "oldboy": [
+  "devastating"
+ ],
+ "opm": [
+  "satire"
+ ],
+ "paradyzja": [
+  "ahead",
+  "cerebral",
+  "worldbuilding"
+ ],
+ "paranoia-agent": [
+  "horrifying"
+ ],
+ "pierwsza-milosc": [
+  "cerebral"
+ ],
+ "pitbull": [
+  "cerebral"
+ ],
+ "plague-dogs": [
+  "intense"
+ ],
+ "planet-earth-ii": [
+  "cerebral"
+ ],
+ "platoon": [
+  "acting",
+  "devastating"
+ ],
+ "pom-poko": [
+  "bittersweet",
+  "funny",
+  "visuals"
+ ],
+ "porco-rosso": [
+  "funny",
+  "visuals",
+  "writing"
+ ],
+ "possession": [
+  "horrifying"
+ ],
+ "premier-automne": [
+  "bittersweet"
+ ],
+ "psycho-pass": [
+  "horrifying"
+ ],
+ "punpun": [
+  "bittersweet",
+  "writing"
+ ],
+ "pygmalion": [
+  "funny",
+  "satire"
+ ],
+ "red-desert": [
+  "impact"
+ ],
+ "rick-and-morty": [
+  "absurdist",
+  "mindbending",
+  "satire"
+ ],
+ "robot": [
+  "cerebral"
+ ],
+ "samurai-champloo": [
+  "funny"
+ ],
+ "scavengers-reign": [
+  "cerebral",
+  "devastating",
+  "impact",
+  "worldbuilding",
+  "writing"
+ ],
+ "severance": [
+  "atmosphere",
+  "cerebral"
+ ],
+ "silent-voice": [
+  "bittersweet"
+ ],
+ "six-feet-under": [
+  "bittersweet",
+  "funny"
+ ],
+ "sonny-boy": [
+  "mindbending"
+ ],
+ "sopranos": [
+  "funny",
+  "gem",
+  "satire",
+  "slowburn"
+ ],
+ "soul": [
+  "bittersweet",
+  "funny",
+  "visuals"
+ ],
+ "spider-verse": [
+  "impact",
+  "singular"
+ ],
+ "squid-game": [
+  "intense"
+ ],
+ "steins-gate": [
+  "devastating",
+  "worldbuilding"
+ ],
+ "subnautica": [
+  "singular",
+  "worldbuilding"
+ ],
+ "tar": [
+  "direction",
+  "slowburn"
+ ],
+ "tatami-galaxy": [
+  "absurdist",
+  "funny",
+  "mindbending",
+  "visuals"
+ ],
+ "tekkonkinkreet": [
+  "atmosphere",
+  "style"
+ ],
+ "terror-resonance": [
+  "devastating",
+  "impact",
+  "thrilling"
+ ],
+ "the-expanse": [
+  "worldbuilding",
+  "writing"
+ ],
+ "the-idiot": [
+  "devastating"
+ ],
+ "the-shield": [
+  "acting",
+  "gem"
+ ],
+ "the-shining": [
+  "horrifying",
+  "mindbending",
+  "singular"
+ ],
+ "the-wire": [
+  "acting",
+  "singular",
+  "slowburn"
+ ],
+ "the-witcher": [
+  "worldbuilding"
+ ],
+ "there-will-be-blood": [
+  "direction"
+ ],
+ "tlou": [
+  "horrifying"
+ ],
+ "tlou2": [
+  "horrifying"
+ ],
+ "tokyo-godfathers": [
+  "bittersweet",
+  "funny",
+  "visuals"
+ ],
+ "trigun": [
+  "worldbuilding"
+ ],
+ "true-detective": [
+  "cerebral",
+  "cinematography",
+  "writing"
+ ],
+ "twin-peaks": [
+  "mindbending",
+  "score",
+  "singular"
+ ],
+ "undertale": [
+  "cognitive"
+ ],
+ "urzad": [
+  "cerebral"
+ ],
+ "utopia": [
+  "singular"
+ ],
+ "vietnam-war": [
+  "cerebral"
+ ],
+ "walkabout": [
+  "impact"
+ ],
+ "waltz-bashir": [
+  "cerebral"
+ ],
+ "watership-down": [
+  "devastating",
+  "intense"
+ ],
+ "westworld": [
+  "acting",
+  "visuals",
+  "worldbuilding"
+ ],
+ "wic": [
+  "writing"
+ ],
+ "wl-f-1103": [
+  "horrifying"
+ ],
+ "wl-f-128404": [
+  "horrifying"
+ ],
+ "wl-f-136123": [
+  "horrifying"
+ ],
+ "wl-f-166290": [
+  "cognitive"
+ ],
+ "wl-f-30950": [
+  "cinematography"
+ ],
+ "wl-f-33184": [
+  "horrifying"
+ ],
+ "wl-f-34004": [
+  "cognitive"
+ ],
+ "wl-f-34651": [
+  "horrifying"
+ ],
+ "wl-f-349764": [
+  "horrifying"
+ ],
+ "wl-f-35952": [
+  "horrifying"
+ ],
+ "wl-f-479704": [
+  "horrifying"
+ ],
+ "wl-f-603930": [
+  "horrifying"
+ ],
+ "wl-f-669566": [
+  "horrifying",
+  "singular"
+ ],
+ "wl-f-718529": [
+  "horrifying"
+ ],
+ "wl-f-760272": [
+  "horrifying"
+ ],
+ "wl-f-807718": [
+  "horrifying"
+ ],
+ "wl-f-817414": [
+  "horrifying"
+ ],
+ "wl-f-9330": [
+  "horrifying"
+ ],
+ "wl-f-9982": [
+  "cerebral"
+ ],
+ "wl-g-729768": [
+  "cognitive"
+ ],
+ "wl-g-784009": [
+  "cognitive",
+  "worldbuilding"
+ ],
+ "wl-s-201352": [
+  "horrifying"
+ ],
+ "wl-s-655013": [
+  "horrifying"
+ ],
+ "wolfs-rain": [
+  "atmosphere",
+  "devastating",
+  "score"
+ ],
+ "woman-under": [
+  "horrifying"
+ ],
+ "wonder-egg": [
+  "devastating"
+ ],
+ "yamadas": [
+  "funny",
+  "satire",
+  "visuals"
+ ],
+ "your-name": [
+  "bittersweet",
+  "score"
+ ]
+}

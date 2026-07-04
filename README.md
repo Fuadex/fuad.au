@@ -1,2 +1,9 @@
 # fuad.au
-fuad.au website
+
+A small hub of personal data apps.
+
+- **Rotation** (`/rotation/`) — 20 years of last.fm listening, mined for patterns.
+- **Culture** (`/culture/`) — a personal film / TV / games / books canon.
+
+A static launcher at the root picks between them. See `HUB.md` for the architecture and how
+to add an app; `MIGRATION.md` for how the hub was assembled.
