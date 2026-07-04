@@ -54,14 +54,42 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
    card). **Next Genius passes:** per-year language *arc* (streamgraph), themes/sentiment vs
    audio-valence ("sounds happy / reads dark"), lyric stats on the track page, the embeddings
    companion for semantic clustering.
-1b. **pins.json** — name→forced {mbid, spotify, discogs} id map the enrichers/build consult, so
-   ambiguous names stop mis-resolving. Live offenders to seed: **Bleach** (JP punk, mbid
-   `3e79249f-f1fb-4d0b-b451-0fe1086b459f`, spotify `5gRsPZZNgrkagQnDlyFZUC`), **Brutus**
-   (Belgian, not the 1966 elder), **daine** (wrong classical Discogs → Baroque/Organ Style-Atlas
-   pollution). NEXT.
-1c. **Wikidata — READY** (we hold 4,764 mbids; Wikidata indexes MBID via P434 → no QID step).
-   Batch SPARQL `enrich-wikidata.js`: band-member gender composition (P527→P21), hiatus/reunion
-   (P571/P576/P2032), precise formation city (P740), country (P495). Sequence right after pins.
+
+1e. **Language arc + "sounds happy / reads dark" — data-weight assessment (2026-07-05).**
+   *Language arc:* **~free.** `INSIGHTS.LANGUAGE.byYear` already ships in music-data.js (a handful
+   of langs × ~17 years). It only needs a *streamgraph card* — no new data, no new file. Low-risk;
+   the obvious next thing to actually build.
+   *Sentiment ("sounds happy / reads dark"):* also **light — no dicing needed.** Two per-track
+   scalars only:
+     • *audio valence* ("sounds happy"): already have it **per-artist** (`audio-features.json`,
+       3,905 artists, `valence` 0–1). Per-*track* lives in the local a large
+       `spotify-audio-features.parquet` — extractable exactly like `extract-audio.js` does now.
+     • *lyric valence* ("reads dark"): **new pass needed.** `genius-lyrics.json` stored only
+       `[lang, tag, year, wc, uniq]`, not sentiment. Score the matched lyrics from the local 9 GB
+       `song_lyrics.csv` (a VADER / NRC-VAD lexicon pass in `.sptmp`, English-only to start), emit
+       one 0–100 int per track.
+   *Weight:* ~25.7 k matched tracks × two small ints → a single lazy file `track-mood.js`
+   (~150–400 KB, same pattern as `track-audio.js`). **Well under any need to "dice" the data
+   files.** Dicing only becomes relevant if we go per-track *embeddings* or store full lyric text.
+   *Insight:* cross the two — high audio valence × low lyric valence = "sounds happy / reads dark"
+   (and the inverse); surface the sharpest divergences as a Stories card + a badge on the track
+   page. **Open design choices for Fuad:** which lyric-sentiment lexicon (VADER vs NRC-VAD vs a
+   small model), and English-only v1 vs multilingual (Polish/German/Japanese need per-lang
+   lexicons). Recommend: ship the language arc first (free), then v1 sentiment English-only.
+1b. ~~**pins.json**~~ ✅ **SHIPPED** — name→forced `{mbid, spotify, discogs}` + `clearStyles`/
+   `clearLife` override map, consulted by build-data at read time (and by enrichers going
+   forward). Seeded **Bleach** (JP punk ids), **daine** (`clearStyles` → out of the Baroque/Organ
+   Style-Atlas row), **Brutus** (`clearLife` → out of the 1966 elders). NOTE the gotcha: pins had
+   to be wired at the *actual* read-points — STYLE_ATLAS read `DISCOGS[name]` and LIFESPAN read
+   `ORIGINS[name]` directly, bypassing the `stylesOf`/`lifeOf` helpers. Add new offenders here.
+1c. ~~**Wikidata**~~ ✅ **SHIPPED** — `enrich-wikidata.js` (keyless batched SPARQL, MBID via P434).
+   2,443 mbids → 1,474 matched → `wikidata-cache.json` (committed like the other build caches):
+   formation city+coords (P740/P625, 816 artists), country (P495), dissolution (P576), band
+   members+gender (P527/P21, 497 artists). **`INSIGHTS.LINEUPS`** = the layer MB can't give (its
+   `gender` is null for Groups): 22% of band-listening has women in the lineup, 40/213 bands,
+   all-women set + biggest lineups; "Who's in the bands" Stories card. **Unused so far** (cheap
+   follow-ups): formation-city coords could sharpen `GEOGRAPHY.cityPoints` (exact vs gazetteer);
+   `dissolved`/`inception` could backfill LIFESPAN; `P737 influenced-by` → a future lineage graph.
 1d. **setlist.fm Gigs page** — Fuad has an account w/ concerts. Blocked on: username + free API
    key (→ culture/.env `SETLISTFM_API_KEY`). Then `enrich-gigs.js` (GET /user/{u}/attended +
    setlists) + `gigs.json` fallback → Gigs page (timeline/map, seen-vs-never-seen, setlist×tops).
