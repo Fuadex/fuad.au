@@ -1,4 +1,4 @@
-// rotation-views1.jsx — Overview · Charts · Clock
+// rotation-views1.jsx — Overview
 // exports: OverviewView, Popover (shared) + WallGrid/BubbleField (used by Overview)
 
 // shared hover popover (paper card following cursor)
@@ -144,15 +144,16 @@ function OvCalRail({ go, onYear, onPeriod }) {
   );
 }
 
-// OvMapBand — the geography band: calendar rail (narrow) + the FULL MapView. Mounts once the
-// user scrolls near, so Overview's first paint doesn't pay for world-map.js.
-function OvMapBand({ go, extYear, calPeriod, onStats }) {
+// OvMapBand — the geography band: the FULL MapView (+ the calendar rail slotted into its left
+// column, under deepest places). Mounts once the user scrolls near, so Overview's first paint
+// doesn't pay for world-map.js.
+function OvMapBand({ go, extYear, calPeriod, onStats, calRail }) {
   const [ref, seen] = useInView();
   const [on, setOn] = React.useState(false);
   React.useEffect(() => { if (seen) setOn(true); }, [seen]);
   return (
     <div ref={ref} style={{ minHeight: on ? 0 : 220 }}>
-      {on ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} onStats={onStats} />
+      {on ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} onStats={onStats} calSlot={calRail} />
         : <div className="r-card" style={{ padding: 40, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>the world map loads as you scroll…</div>}
     </div>
   );
@@ -211,10 +212,11 @@ function OverviewView({ t, go }) {
 
       {/* bento */}
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
-        {/* now playing */}
-        <div className="r-card ov-np" style={{ gridColumn: "span 5", padding: 18, display: "flex", gap: 16, alignItems: "center", minWidth: 0 }}>
+        {/* now playing — top-right corner of the pulse row, half the width (DOM-first so mobile
+            still leads with it; the ≥981px block pins it to cols 7-12) */}
+        <div className="r-card ov-np" style={{ gridColumn: "span 6", padding: 18, display: "flex", gap: 16, alignItems: "center", minWidth: 0 }}>
           <div style={{ position: "relative", cursor: npKnown ? "pointer" : "default" }} onClick={() => npKnown && go("artist", now.artistId)}>
-            <GenCover hue={nowArtist.hue} name={now.artist} size={104} radius={4} />
+            <GenCover hue={nowArtist.hue} name={now.artist} size={116} radius={4} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "flex-end", justifyContent: "center",
               gap: 3, padding: "0 0 9px" }}>
               {[0, 1, 2, 3, 4].map(i => <span key={i} className="eqbar" style={{ animationDelay: i * 0.13 + "s" }} />)}
@@ -231,8 +233,8 @@ function OverviewView({ t, go }) {
           </div>
         </div>
 
-        {/* scrobble counter + trend */}
-        <div className="r-card ov-scrob" style={{ gridColumn: "span 4", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        {/* scrobble counter + trend — half the row */}
+        <div className="r-card ov-scrob" style={{ gridColumn: "span 6", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Scrobbles</b></span>
             <span className="meta">26-wk trend</span></div>
           <div className="r-stat-n" style={{ fontSize: "clamp(34px,4.6vw,52px)", margin: "6px 0 2px" }}>{fmt(Math.round(scrob))}</div>
@@ -241,8 +243,8 @@ function OverviewView({ t, go }) {
           </div>
         </div>
 
-        {/* streak ring */}
-        <div className="r-card ov-streak" style={{ gridColumn: "span 3", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
+        {/* streak ring — a third of the row */}
+        <div className="r-card ov-streak" style={{ gridColumn: "span 4", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Streak</b></span></div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 6 }}>
             <div className="r-stat-n" style={{ fontSize: 46 }}>{T.streak.current}</div>
@@ -253,12 +255,40 @@ function OverviewView({ t, go }) {
           </div>
         </div>
 
-        {/* calendar — top-right corner of the pulse row; still cross-filters the map below */}
-        <div className="ov-calslot"><OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} /></div>
+        {/* recent ticker — lives in the pulse row (streak's right), height-matched to the row:
+            the list runs 3-up at PC widths so 6 items fit in two shallow rows */}
+        <div className="r-card ov-recent" style={{ gridColumn: "span 8", padding: 18, display: "flex", flexDirection: "column" }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}><span className="lbl"><b>Recently played</b></span>
+            <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
+              style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
+          <div className="ov-rl" style={{ display: "grid", gap: 2, flex: 1, alignContent: "center" }}>
+            {recent.slice(0, recentN).map(r => (
+              <div key={r.id} onClick={() => go("track", R.slug(r.artist) + "~" + R.slug(r.track))} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 11,
+                padding: "5px 6px", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
+                onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
+                onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                <GenCover hue={r.hue} name={r.artist} size={30} radius={2} />
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div style={{ fontSize: 13, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
+                  <div style={{ fontSize: 11, color: "var(--ink-faint)", cursor: "pointer", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={`${r.artist} →`}
+                    onClick={e => { e.stopPropagation(); go("artist", r.artistId); }}>{r.artist}</div>
+                </div>
+                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", flex: "none" }}>{r.when}</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 10, flexWrap: "wrap", gap: 8 }}>
+            <div className="r-seg">{[6, 12, 18].map(n => <button key={n} data-on={recentN === n} onClick={() => setRecentN(n)}
+              disabled={n > recent.length} style={n > recent.length ? { opacity: .35, cursor: "default" } : null}>{n}</button>)}</div>
+            <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>showing {Math.min(recentN, recent.length)} latest</span>
+          </div>
+        </div>
 
-        {/* THE MAP BAND — full width, right below the pulse row (calendar now lives above). */}
+        {/* THE MAP BAND — full width, right below the pulse row. The calendar rail rides along as
+            a slot: it renders under the map's deepest-places column and cross-filters the results. */}
         <div className="ov-mapslot" style={{ gridColumn: "1 / -1" }}>
-          <OvMapBand go={go} extYear={mapYear} calPeriod={mapPeriod} onStats={setFStats} />
+          <OvMapBand go={go} extYear={mapYear} calPeriod={mapPeriod} onStats={setFStats}
+            calRail={<OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} />} />
         </div>
 
         {/* the four lifetime stats — one row, directly under the map/flow; hours + distinct
@@ -283,37 +313,10 @@ function OverviewView({ t, go }) {
             “{R.TOTALS.topDay.note}”</div>
         </div>
 
-        {/* recent ticker */}
-        <div className="r-card ov-recent" style={{ gridColumn: "span 5", padding: 18 }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Recently played</b></span>
-            <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
-              style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
-          <div style={{ display: "grid", gap: 2 }}>
-            {recent.slice(0, recentN).map(r => (
-              <div key={r.id} onClick={() => go("track", R.slug(r.artist) + "~" + R.slug(r.track))} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 11,
-                padding: "7px 6px", borderRadius: 4, cursor: "pointer" }}
-                onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
-                onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
-                <GenCover hue={r.hue} name={r.artist} size={30} radius={2} />
-                <div style={{ minWidth: 0, flex: 1 }}>
-                  <div style={{ fontSize: 13, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
-                  <div style={{ fontSize: 11, color: "var(--ink-faint)", cursor: "pointer" }} title={`${r.artist} →`}
-                    onClick={e => { e.stopPropagation(); go("artist", r.artistId); }}>{r.artist}</div>
-                </div>
-                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{r.when}</span>
-              </div>
-            ))}
-          </div>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 12, flexWrap: "wrap", gap: 8 }}>
-            <div className="r-seg">{[6, 10, 20].map(n => <button key={n} data-on={recentN === n} onClick={() => setRecentN(n)}
-              disabled={n > recent.length} style={n > recent.length ? { opacity: .35, cursor: "default" } : null}>{n}</button>)}</div>
-            <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>showing {Math.min(recentN, recent.length)} latest</span>
-          </div>
-        </div>
-
         {/* dynamic insight feed — consolidated into ONE module (milestone/tip-over/week/riser/
-            new-this-month/story-of-day merged, per Fuad) */}
-        <div className="r-card ov-insights" style={{ padding: 18 }}>
+            new-this-month/story-of-day merged, per Fuad); full-width now that recently-played
+            lives in the pulse row, so the four cards run in a single rank */}
+        <div className="r-card ov-insights" style={{ gridColumn: "1 / -1", padding: 18 }}>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}><span className="lbl"><b>Right now</b></span>
             <span className="meta">what's moving</span></div>
           <div className="ov-insgrid" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
@@ -375,30 +378,24 @@ function OverviewView({ t, go }) {
       })()}
 
       <style>{`
-        /* ── PC bento (≥1100px): everything halved, recently-played becomes the right rail,
-           top artists become a real 8×3 wall (Fuad's redesign, 2026-07-05) ── */
-        @media (min-width: 1100px) {
-          /* row 1 — the pulse (now-playing · scrobbles · streak · calendar top-right) */
-          .ov-np      { grid-column: 1 / span 4 !important; }
-          .ov-scrob   { grid-column: 5 / span 3 !important; }
-          .ov-streak  { grid-column: 8 / span 2 !important; }
-          .ov-calslot { grid-column: 10 / span 3 !important; }
-          /* row 2 = map band (1/-1 inline) */
-          /* row 3 — heaviest day (under the map, left) + the four stats (under the flowmap, right) */
-          .ov-heavy    { grid-column: 1 / span 5 !important; }
-          .ov-strip    { grid-column: 6 / -1 !important; grid-template-columns: repeat(4, 1fr) !important; gap: 18px !important; }
-          /* row 4 — recently played (left) + "Right now" insights (right) */
-          .ov-recent   { grid-column: 1 / span 5 !important; }
-          .ov-insights { grid-column: 6 / -1 !important; }
-          .ov-scrob .r-stat-n { font-size: 34px !important; }
-          .ov-streak .r-stat-n { font-size: 34px !important; }
+        /* ── PC bento (≥981px, Fuad's redesign 2026-07-04): pulse row 1 = scrobbles(½) ·
+           now-playing(½, top-right); row 2 = streak(⅓) · recently-played (height-matched,
+           list runs 3-up). Calendar rail moved into the map band's left column. ── */
+        @media (min-width: 981px) {
+          .ov-scrob   { grid-column: 1 / span 6 !important; grid-row: 1; }
+          .ov-np      { grid-column: 7 / span 6 !important; grid-row: 1; }
+          .ov-streak  { grid-column: 1 / span 4 !important; grid-row: 2; }
+          .ov-recent  { grid-column: 5 / -1 !important; grid-row: 2; }
+          .ov-recent .ov-rl { grid-template-columns: repeat(3, 1fr); gap: 2px 16px; }
+          /* row 3 = map band (1/-1 inline); row 4 — the four stats (left, they react to the
+             map/calendar filter) + heaviest day (right) */
+          .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(4, 1fr) !important; gap: 18px !important; }
+          .ov-heavy    { grid-column: 9 / -1 !important; }
           .ov-heavy .r-stat-n { font-size: 30px !important; }
           .ov-strip .r-stat-n { font-size: 26px !important; }
-          /* insight cards: 2 per row inside the (now narrower) module */
-          .ov-insgrid > .r-card { grid-column: span 6 !important; }
+          /* insights module is full-width → its four cards run in one rank */
+          .ov-insgrid > .r-card { grid-column: span 3 !important; }
         }
-        .ov-calslot { min-width: 0; }
-        @media (max-width: 1099px) { .ov-calslot { max-width: 260px; } }
         .ov-calsel { width: 100%; background: var(--bg-3); border: 1px solid var(--rule); color: var(--ink);
           border-radius: 6px; padding: 5px 7px; font-family: var(--mono); font-size: 10px; }
         .ov-calweek[data-gran="week"]:hover { outline: 1px solid var(--accent-dim); outline-offset: 1px; }
