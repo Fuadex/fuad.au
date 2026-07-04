@@ -2126,6 +2126,65 @@ if (Object.keys(CONCERT_CACHE).length > 0) {
   }
 }
 
+// ─────────── GIGS (attended concerts — setlist.fm, enrich-gigs.js) ───────────
+// Fuad's real attended shows w/ setlists. Joined to the listening data: which acts are in the
+// library and how deep, which songs you saw live you also play, and whether you saw an artist
+// before or after you became a fan (gig date vs first scrobble). Powers the Gigs page + a card.
+const GIGS_PATH = path.join(__dirname, "gigs.json");
+const GIGS_RAW = fs.existsSync(GIGS_PATH) ? JSON.parse(fs.readFileSync(GIGS_PATH, "utf8")) : null;
+let GIGS = null;
+if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
+  const gigs = GIGS_RAW.gigs.map(g => {
+    const plays = artistPlays.get(g.artist) || 0;
+    const sp = span.get(g.artist);
+    const firstPlay = sp ? iso(sp[0]).slice(0, 10) : null;
+    // setlist × your library: songs from this show you also have scrobbles for
+    const known = [];
+    for (const s of (g.songs || [])) {
+      const p = trackPlays.get(g.artist + "\x00" + s.name) || 0;
+      if (p > 0) known.push({ title: s.name, plays: p });
+    }
+    known.sort((a, b) => b.plays - a.plays);
+    return {
+      date: g.date, year: +String(g.date).slice(0, 4),
+      artist: g.artist, artistId: slug(g.artist), hue: hueFor(g.artist),
+      inLibrary: plays > 0, plays,
+      venue: g.venue, city: g.city, country: g.country, countryCode: g.countryCode,
+      lat: g.lat, lng: g.lng, tour: g.tour || "",
+      songCount: (g.songs || []).length,
+      knownSongs: known.slice(0, 6), knownCount: known.length,
+      // "before you were a fan": saw them ≥120 days before your first scrobble of them
+      preFan: (firstPlay && g.date && g.date < firstPlay && plays >= 10) ? 1 : 0,
+    };
+  });
+  const seenArtists = new Map();  // artist → best (highest-plays) gig record
+  for (const g of gigs) { const e = seenArtists.get(g.artist); if (!e || g.plays > e.plays) seenArtists.set(g.artist, g); }
+  const cityMap = new Map();
+  for (const g of gigs) { const k = g.countryCode + "|" + g.city; if (!cityMap.has(k)) cityMap.set(k, { city: g.city, country: g.country, countryCode: g.countryCode, lat: g.lat, lng: g.lng, count: 0 }); cityMap.get(k).count++; }
+  const byYear = {};
+  for (const g of gigs) byYear[g.year] = (byYear[g.year] || 0) + 1;
+  const uniqArtists = [...seenArtists.values()];
+  GIGS = {
+    fetched: GIGS_RAW.fetched, total: gigs.length,
+    artists: seenArtists.size,
+    inLibrary: uniqArtists.filter(a => a.inLibrary).length,
+    cities: cityMap.size,
+    countries: new Set(gigs.map(g => g.countryCode).filter(Boolean)).size,
+    songsSeen: gigs.reduce((s, g) => s + g.songCount, 0),
+    firstGig: gigs.reduce((m, g) => g.date < m ? g.date : m, gigs[0].date),
+    lastGig: gigs.reduce((m, g) => g.date > m ? g.date : m, gigs[0].date),
+    gigs, // already newest-first from the enricher
+    byYear,
+    // acts you saw AND love — ranked by how much you play them
+    seenTop: uniqArtists.filter(a => a.inLibrary).sort((a, b) => b.plays - a.plays).slice(0, 12),
+    // saw live but (almost) never played — festival discoveries / support acts
+    strangers: uniqArtists.filter(a => !a.inLibrary).slice(0, 12),
+    // artists you saw before you were a fan
+    preFans: uniqArtists.filter(a => a.preFan).sort((a, b) => b.plays - a.plays).slice(0, 8),
+    cityList: [...cityMap.values()].sort((a, b) => b.count - a.count),
+  };
+}
+
 // ─────────── emit ───────────
 // PLAYED — every artist with ≥3 scrobbles + their MusicBrainz aliases (cross-script).
 // Powers the Sounds-Like "in library" check. ミドリ's aliases include "Midori" so a similar
@@ -2172,7 +2231,7 @@ const DATA = {
   CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
   CLOCK_BY_YEAR, FAMILIES: FAMILIES_OUT,
   SUB_ARTISTS, ARTIST_CLOCK, SUBS, EXPLORE, GENRE_FLOW, THUMBS, AUDIO: AUDIO_OUT, SPOTIMG: SPOTIMG_OUT,
-  AUDIO_DIST,
+  AUDIO_DIST, GIGS,
 };
 const out = `// ────────────────────────────────────────────────────────────────
 // Rotation — Fuad's listening data (last.fm/user/fuadex)
