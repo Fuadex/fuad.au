@@ -22,10 +22,16 @@ const NAV_FULL = [
   ["explore", "Explore"],
   ["shelves", "Shelves"],
   ["calendar", "Calendar"],
+  ["gigs", "Gigs"],
   ["live", "Live"],
 ];
-// Hide "Live" entirely when no concerts have been enriched — avoids a dead-end tab.
-const NAV = NAV_FULL.filter(([k]) => k !== "live" || ((window.ROTATION && window.ROTATION.CITIES) || []).length > 0);
+// Hide tabs with no data behind them — avoids a dead-end. "Live" needs upcoming-concert cities;
+// "Gigs" needs the attended-shows dataset (setlist.fm → gigs.json → ROTATION.GIGS).
+const NAV = NAV_FULL.filter(([k]) => {
+  if (k === "live") return ((window.ROTATION && window.ROTATION.CITIES) || []).length > 0;
+  if (k === "gigs") return !!(window.ROTATION && window.ROTATION.GIGS);
+  return true;
+});
 // legacy view names (old Charts/Clock/Sound/Eras tabs) now resolve into the unified Explore view;
 // the Map page moved INTO Overview (2026-07-05) — #map deep links land there.
 const LEGACY = { charts: "explore", clock: "explore", sound: "explore", eras: "explore", mood: "explore", journey: "overview", map: "overview" };
@@ -142,6 +148,7 @@ function RotationApp() {
         {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} seed={route.id} />}
         {v === "shelves" && <ShelvesView go={go} />}
         {v === "calendar" && <CalendarView go={go} seed={route.id} />}
+        {v === "gigs" && <GigsView go={go} />}
         {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
         {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
         {v === "album" && <AlbumView id={route.id} go={go} />}

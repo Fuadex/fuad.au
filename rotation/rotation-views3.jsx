@@ -1430,6 +1430,191 @@ function StoriesView({ t, go, seed }) {
   );
 }
 
+// ════════════════════════ GIGS ════════════════════════
+// Attended concerts (setlist.fm → ROTATION.GIGS), joined to the listening data.
+function GigsView({ go }) {
+  const R = window.ROTATION, G = R.GIGS;
+  if (!G || !G.gigs || !G.gigs.length) return (
+    <div style={{ maxWidth: 720, margin: "60px auto", textAlign: "center", color: "var(--ink-soft)" }}>No attended concerts yet.</div>
+  );
+  const openArtist = (id) => R.byId[id] && go("artist", id);
+  const years = [...new Set(G.gigs.map(g => g.year))].sort((a, b) => b - a);
+  const span = G.firstGig.slice(0, 4) + "–" + G.lastGig.slice(0, 4);
+  const maxCity = Math.max(...G.cityList.map(c => c.count));
+  const Tile = ({ a, sub }) => (
+    <div className="gv-tile" data-link={!!R.byId[a.artistId]} onClick={() => openArtist(a.artistId)}>
+      <GenCover hue={a.hue} name={a.artist} size={40} radius={4} />
+      <div style={{ minWidth: 0 }}>
+        <div className="gv-tile-name">{a.artist}</div>
+        <div className="gv-tile-sub">{sub(a)}</div>
+      </div>
+    </div>
+  );
+  return (
+    <div className="gv">
+      <header className="gv-hero">
+        <div className="gv-kicker">Attended · setlist.fm</div>
+        <h1 className="gv-h1">You've stood in the crowd for <em>{G.total}</em> shows.</h1>
+        <p className="gv-lead">
+          {G.artists} artists across {G.cities} cities in {G.countries} countries, {span}.
+          {" "}{fmt(G.songsSeen)} songs played to you live — <b>{G.inLibrary}</b> of these acts are in your rotation.
+        </p>
+        <div className="gv-stats">
+          {[["shows", G.total], ["artists", G.artists], ["cities", G.cities], ["songs seen", G.songsSeen]].map(([l, n]) => (
+            <div key={l} className="gv-stat"><div className="gv-stat-n">{fmt(n)}</div><div className="gv-stat-l">{l}</div></div>
+          ))}
+        </div>
+      </header>
+
+      {G.seenTop.length > 0 && (
+        <section className="gv-sec">
+          <div className="gv-label">Seen &amp; loved</div>
+          <div className="gv-title">The acts you play the most, live in the room.</div>
+          <div className="gv-tiles">
+            {G.seenTop.map(a => <Tile key={a.artistId} a={a} sub={(x) => `${fmt(x.plays)} plays`} />)}
+          </div>
+        </section>
+      )}
+
+      {G.preFans.length > 0 && (
+        <section className="gv-sec">
+          <div className="gv-label">Before you were a fan</div>
+          <div className="gv-title">You saw them first — the obsession came later.</div>
+          <div className="gv-tiles">
+            {G.preFans.map(a => <Tile key={a.artistId} a={a} sub={(x) => `saw ${fmtDate(x.date)} · now ${fmt(x.plays)} plays`} />)}
+          </div>
+        </section>
+      )}
+
+      {G.strangers.length > 0 && (
+        <section className="gv-sec">
+          <div className="gv-label">Passed through</div>
+          <div className="gv-title">Caught live — festival stages, support slots — but never in rotation.</div>
+          <div className="gv-tiles">
+            {G.strangers.map(a => (
+              <div key={a.artistId} className="gv-tile" style={{ cursor: "default" }}>
+                <GenCover hue={a.hue} name={a.artist} size={40} radius={4} />
+                <div style={{ minWidth: 0 }}>
+                  <div className="gv-tile-name">{a.artist}</div>
+                  <div className="gv-tile-sub">{a.city} · {a.songCount} songs</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {G.cityList.length > 1 && (
+        <section className="gv-sec">
+          <div className="gv-label">Where</div>
+          <div className="gv-title">The cities that put you in a crowd.</div>
+          <div className="gv-cities">
+            {G.cityList.map(c => (
+              <div key={c.countryCode + c.city} className="gv-city">
+                <span className="gv-city-name">{c.city} <small>{c.country}</small></span>
+                <div className="gv-city-bar"><i style={{ width: (c.count / maxCity * 100) + "%" }} /></div>
+                <span className="gv-city-n">{c.count}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section className="gv-sec">
+        <div className="gv-label">The timeline</div>
+        <div className="gv-title">Every night, newest first.</div>
+        {years.map(y => (
+          <div key={y} className="gv-year-block">
+            <div className="gv-year">{y}<span>{G.byYear[y]} {G.byYear[y] === 1 ? "show" : "shows"}</span></div>
+            <div className="gv-gigs">
+              {G.gigs.filter(g => g.year === y).map((g, i) => (
+                <div key={g.artist + g.date + i} className="gv-gig" data-link={!!R.byId[g.artistId]} onClick={() => openArtist(g.artistId)}>
+                  <div className="gv-gig-date">{fmtDate(g.date).replace(/ (\d{4})$/, "")}</div>
+                  <span className="gv-gig-dot" style={{ background: `oklch(0.68 0.16 ${g.hue})` }} />
+                  <div className="gv-gig-main">
+                    <div className="gv-gig-artist">{g.artist}{g.tour ? <span className="gv-gig-tour"> · {g.tour}</span> : null}</div>
+                    <div className="gv-gig-venue">{g.venue}{g.city ? ` · ${g.city}` : ""}</div>
+                    {g.knownSongs.length > 0 && (
+                      <div className="gv-gig-songs">
+                        heard live, in your rotation: {g.knownSongs.map((s, j) => (
+                          <React.Fragment key={s.title}>{j > 0 ? ", " : ""}<b>{s.title}</b></React.Fragment>
+                        ))}{g.knownCount > g.knownSongs.length ? ` +${g.knownCount - g.knownSongs.length}` : ""}
+                      </div>
+                    )}
+                  </div>
+                  <div className="gv-gig-meta">
+                    {g.plays > 0 ? <span className="gv-gig-plays">{fmt(g.plays)}<small>plays</small></span> : null}
+                    {g.songCount > 0 ? <span className="gv-gig-set">{g.songCount}<small>songs</small></span> : null}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <div className="gv-foot">Attended-show data from your setlist.fm profile · {G.fetched}</div>
+
+      <style>{`
+        .gv { max-width: 900px; margin: 0 auto; }
+        .gv-hero { padding: 12px 2px 26px; }
+        .gv-kicker { font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+        .gv-h1 { font-family: var(--serif); font-size: clamp(26px, 4vw, 42px); line-height: 1.1; letter-spacing: -.02em; margin: 0; }
+        .gv-h1 em { font-style: italic; }
+        .gv-lead { color: var(--ink-soft); font-size: 15px; line-height: 1.6; margin: 14px 0 0; max-width: 620px; }
+        .gv-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 24px; max-width: 560px; }
+        .gv-stat { border: 1px solid var(--rule); border-radius: 8px; padding: 14px 12px; }
+        .gv-stat-n { font-family: var(--serif); font-size: 26px; font-variant-numeric: tabular-nums; }
+        .gv-stat-l { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); margin-top: 4px; }
+        .gv-sec { margin-top: 40px; }
+        .gv-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+        .gv-title { font-family: var(--serif); font-style: italic; font-size: 21px; margin-bottom: 16px; }
+        .gv-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+        .gv-tile { display: flex; gap: 12px; align-items: center; padding: 8px 10px; border: 1px solid var(--rule); border-radius: 6px; transition: border-color .15s; }
+        .gv-tile[data-link="true"] { cursor: pointer; }
+        .gv-tile[data-link="true"]:hover { border-color: var(--rule-2); }
+        .gv-tile-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .gv-tile-sub { font-size: 11.5px; color: var(--ink-faint); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .gv-cities { display: grid; gap: 8px; max-width: 560px; }
+        .gv-city { display: grid; grid-template-columns: 150px 1fr 34px; gap: 12px; align-items: center; }
+        .gv-city-name { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .gv-city-name small { color: var(--ink-faint); font-size: 11px; }
+        .gv-city-bar { height: 7px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
+        .gv-city-bar i { display: block; height: 100%; background: var(--accent); border-radius: 4px; }
+        .gv-city-n { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); text-align: right; }
+        .gv-year-block { margin-bottom: 6px; }
+        .gv-year { display: flex; align-items: baseline; gap: 12px; font-family: var(--serif); font-size: 24px; margin: 22px 2px 8px; }
+        .gv-year span { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); }
+        .gv-year::after { content: ""; flex: 1; height: 1px; background: var(--rule); align-self: center; }
+        .gv-gigs { display: grid; gap: 2px; }
+        .gv-gig { display: grid; grid-template-columns: 88px 10px 1fr auto; gap: 12px; align-items: start; padding: 10px; margin: 0 -10px; border-radius: 6px; transition: background .15s; }
+        .gv-gig[data-link="true"] { cursor: pointer; }
+        .gv-gig[data-link="true"]:hover { background: var(--bg-3); }
+        .gv-gig-date { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); padding-top: 3px; white-space: nowrap; }
+        .gv-gig-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; }
+        .gv-gig-artist { font-size: 14.5px; font-weight: 600; }
+        .gv-gig-tour { font-weight: 400; font-style: italic; color: var(--ink-faint); font-size: 12.5px; }
+        .gv-gig-venue { font-size: 12px; color: var(--ink-soft); margin-top: 1px; }
+        .gv-gig-songs { font-size: 11.5px; color: var(--ink-faint); margin-top: 5px; line-height: 1.5; }
+        .gv-gig-songs b { color: var(--ink-soft); font-weight: 500; }
+        .gv-gig-meta { display: flex; gap: 12px; align-items: baseline; text-align: right; }
+        .gv-gig-plays, .gv-gig-set { font-family: var(--serif); font-size: 16px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+        .gv-gig-set { color: var(--ink-soft); }
+        .gv-gig-meta small { font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-left: 4px; }
+        .gv-foot { margin: 40px 0 20px; font-family: var(--mono); font-size: 10px; color: var(--ink-faint); text-align: center; letter-spacing: .05em; }
+        @media (max-width: 700px) {
+          .gv-stats { grid-template-columns: 1fr 1fr; }
+          .gv-tiles { grid-template-columns: 1fr; }
+          .gv-city { grid-template-columns: 110px 1fr 30px; }
+          .gv-gig { grid-template-columns: 64px 8px 1fr; }
+          .gv-gig-meta { grid-column: 3; justify-content: flex-start; margin-top: 4px; }
+          .gv-gig-date { font-size: 10px; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 // ════════════════════════ SEARCH ════════════════════════
 function SearchOverlay({ open, onClose, go }) {
   const R = window.ROTATION;
