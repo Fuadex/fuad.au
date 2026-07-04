@@ -48,9 +48,24 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
    full-width map band below); lifetime stats one row under the map; Top Artists dissolved into
    the map Results (list⇄grid). Calendar day/week filters the *Results* (calendar-detail); the
    map *dots* still need a per-day geography export (item 5).
-1. **Genius lyrics dump ingest** (local carlosgdcj, ~9 GB local `archive_genius.zip` — language
-   layer first; Fuad wants it)
-2. **Wrapped mode** (year+month, Calendar entry) + **share-card PNG test** — approved, unstarted
+1. ~~Genius lyrics ingest — language layer~~ ✅ **SHIPPED** (`.sptmp/genius-match.py` streams the
+   local dump → `rotation/genius-lyrics.json`, 25,904 tracks matched, 37 languages;
+   `INSIGHTS.LANGUAGE` play-weighted shares/per-year/top-non-EN; "What you listen in" Stories
+   card). **Next Genius passes:** per-year language *arc* (streamgraph), themes/sentiment vs
+   audio-valence ("sounds happy / reads dark"), lyric stats on the track page, the embeddings
+   companion for semantic clustering.
+1b. **pins.json** — name→forced {mbid, spotify, discogs} id map the enrichers/build consult, so
+   ambiguous names stop mis-resolving. Live offenders to seed: **Bleach** (JP punk, mbid
+   `3e79249f-f1fb-4d0b-b451-0fe1086b459f`, spotify `5gRsPZZNgrkagQnDlyFZUC`), **Brutus**
+   (Belgian, not the 1966 elder), **daine** (wrong classical Discogs → Baroque/Organ Style-Atlas
+   pollution). NEXT.
+1c. **Wikidata — READY** (we hold 4,764 mbids; Wikidata indexes MBID via P434 → no QID step).
+   Batch SPARQL `enrich-wikidata.js`: band-member gender composition (P527→P21), hiatus/reunion
+   (P571/P576/P2032), precise formation city (P740), country (P495). Sequence right after pins.
+1d. **setlist.fm Gigs page** — Fuad has an account w/ concerts. Blocked on: username + free API
+   key (→ culture/.env `SETLISTFM_API_KEY`). Then `enrich-gigs.js` (GET /user/{u}/attended +
+   setlists) + `gigs.json` fallback → Gigs page (timeline/map, seen-vs-never-seen, setlist×tops).
+2. **Wrapped mode** — **PARKED by Fuad** (keep for later). share-card PNG test still open.
 3. Explore **mood-lens slowness** (bug) · **pins.json enforcement** (Brutus-1966 elder + daine's
    classical Discogs styles still live) · canon-aware coverage census re-run
 4. Shelves follow-ups: deep links, tag-source filter, dust (REVISIT), artist-page shrinkwrap
