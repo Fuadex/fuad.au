@@ -107,40 +107,38 @@ function OvCalRail({ go, onYear, onPeriod }) {
     setSelDay(key === selDay ? null : key);
     onPeriod && onPeriod(key === selDay ? null : { gran, key });   // filters the map's results (stays on page)
   };
+  // COMPACT: fits the pulse-row height — a single horizontal strip of the month's days.
+  const dayStrip = Array.from({ length: dim }, (_, i) => i + 1);
   return (
-    <div className="r-card ov-calrail" style={{ padding: "14px 14px 12px" }}>
-      <div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 9 }}>Calendar</div>
-      <div style={{ display: "grid", gap: 6, marginBottom: 9 }}>
-        <select className="ov-calsel" value={yr} onChange={(e) => { const v = +e.target.value; setYr(v); onYear && onYear(v); }}>
+    <div className="r-card ov-calrail" style={{ padding: "12px 14px" }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
+        <span className="lbl"><b>Calendar</b></span>
+        <span className="meta" style={{ cursor: "pointer" }} onClick={() => go("calendar")}>full ↗</span>
+      </div>
+      <div style={{ display: "flex", gap: 5, marginBottom: 8, alignItems: "center" }}>
+        <select className="ov-calsel" style={{ flex: "0 0 auto", width: "auto" }} value={yr} onChange={(e) => { const v = +e.target.value; setYr(v); onYear && onYear(v); }}>
           {years.map(v => <option key={v} value={v}>{v}</option>)}
         </select>
-        <select className="ov-calsel" value={mo} onChange={(e) => setMo(+e.target.value)}>
+        <select className="ov-calsel" style={{ flex: "0 0 auto", width: "auto" }} value={mo} onChange={(e) => setMo(+e.target.value)}>
           {MON.map((m, i) => <option key={m} value={i}>{m}</option>)}
         </select>
-        <div className="r-seg r-seg-sm" style={{ display: "flex" }}>
-          <button data-on={gran === "day"} onClick={() => setGran("day")} style={{ flex: 1 }}>day</button>
-          <button data-on={gran === "week"} onClick={() => setGran("week")} style={{ flex: 1 }}>week</button>
+        <div className="r-seg r-seg-sm" style={{ display: "flex", marginLeft: "auto" }}>
+          <button data-on={gran === "day"} onClick={() => setGran("day")}>d</button>
+          <button data-on={gran === "week"} onClick={() => setGran("week")}>w</button>
         </div>
       </div>
-      <div style={{ display: "grid", gap: 2 }}>
-        {weeks.map((w, wi) => (
-          <div key={wi} className="ov-calweek" data-gran={gran} style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 2, borderRadius: 3 }}>
-            {w.map((d, di) => {
-              if (!d) return <i key={di} style={{ opacity: 0 }} />;
-              const v = counts[doy(d)] || 0;
-              const iso = `${yr}-${String(mo + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
-              const isSel = selDay && (gran === "day" ? selDay === iso : (new Date(iso) >= new Date(selDay) && new Date(iso) < new Date(new Date(selDay).getTime() + 7 * 86400e3)));
-              return <i key={di} title={`${iso} · ${v} plays — filter results`}
-                onClick={() => pick(d)}
-                style={{ background: v ? `oklch(${0.32 + (v / mx) * 0.45} ${0.05 + (v / mx) * 0.12} var(--acc-h))` : "var(--bg-3)",
-                  opacity: v ? 1 : 0.5, cursor: "pointer", aspectRatio: "1", borderRadius: 2,
-                  outline: isSel ? "1.5px solid var(--accent)" : "none" }} />;
-            })}
-          </div>
-        ))}
+      <div style={{ display: "grid", gridTemplateColumns: `repeat(${dim}, 1fr)`, gap: 2 }}>
+        {dayStrip.map((d) => {
+          const v = counts[doy(d)] || 0;
+          const iso = `${yr}-${String(mo + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+          const isSel = selDay && (gran === "day" ? selDay === iso : (new Date(iso) >= new Date(selDay) && new Date(iso) < new Date(new Date(selDay).getTime() + 7 * 86400e3)));
+          return <i key={d} title={`${iso} · ${v} plays — filter results`} onClick={() => pick(d)}
+            style={{ height: 22, borderRadius: 2, background: v ? `oklch(${0.32 + (v / mx) * 0.45} ${0.05 + (v / mx) * 0.12} var(--acc-h))` : "var(--bg-3)",
+              opacity: v ? 1 : 0.5, cursor: "pointer", outline: isSel ? "1.5px solid var(--accent)" : "none" }} />;
+        })}
       </div>
-      <div className="r-mono" style={{ fontSize: 8, color: "var(--ink-faint)", marginTop: 9, lineHeight: 1.5 }}>
-        year scrubs the map · a {gran} filters results{selDay ? " · " : ""}{selDay && <span style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => { setSelDay(null); onPeriod && onPeriod(null); }}>clear ✕</span>} · <span style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => go("calendar")}>full ↗</span>
+      <div className="r-mono" style={{ fontSize: 8, color: "var(--ink-faint)", marginTop: 7 }}>
+        {selDay ? <>filtering {gran} · <span style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => { setSelDay(null); onPeriod && onPeriod(null); }}>clear ✕</span></> : "click a " + gran + " to filter the map"}
       </div>
     </div>
   );
@@ -148,13 +146,13 @@ function OvCalRail({ go, onYear, onPeriod }) {
 
 // OvMapBand — the geography band: calendar rail (narrow) + the FULL MapView. Mounts once the
 // user scrolls near, so Overview's first paint doesn't pay for world-map.js.
-function OvMapBand({ go, extYear, calPeriod }) {
+function OvMapBand({ go, extYear, calPeriod, onStats }) {
   const [ref, seen] = useInView();
   const [on, setOn] = React.useState(false);
   React.useEffect(() => { if (seen) setOn(true); }, [seen]);
   return (
     <div ref={ref} style={{ minHeight: on ? 0 : 220 }}>
-      {on ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} />
+      {on ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} onStats={onStats} />
         : <div className="r-card" style={{ padding: 40, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>the world map loads as you scroll…</div>}
     </div>
   );
@@ -168,6 +166,7 @@ function OverviewView({ t, go }) {
   // stay in sync — the calendar is its cross-filter even though they're no longer adjacent.
   const [mapYear, setMapYear] = React.useState(null);
   const [mapPeriod, setMapPeriod] = React.useState(null);
+  const [fStats, setFStats] = React.useState(null);   // filtered totals reported by the map band
   const liveTotal = (window.ROTATION_LIVE && window.ROTATION_LIVE.total) || T.scrobbles;
   const scrob = useCountUp(liveTotal, 1400, seen);
   const hrs = useCountUp(T.listeningHours, 1400, seen);
@@ -259,14 +258,15 @@ function OverviewView({ t, go }) {
 
         {/* THE MAP BAND — full width, right below the pulse row (calendar now lives above). */}
         <div className="ov-mapslot" style={{ gridColumn: "1 / -1" }}>
-          <OvMapBand go={go} extYear={mapYear} calPeriod={mapPeriod} />
+          <OvMapBand go={go} extYear={mapYear} calPeriod={mapPeriod} onStats={setFStats} />
         </div>
 
-        {/* the four lifetime stats — one row, underneath the map/flow */}
+        {/* the four lifetime stats — one row, directly under the map/flow; hours + distinct
+            artists react to the active map/calendar filter (Fuad). */}
         <div className="r-card m-2col ov-strip" style={{ gridColumn: "span 8", padding: 20, display: "grid",
           gridTemplateColumns: "repeat(4,1fr)", gap: 18, alignItems: "center" }}>
-          <Stat n={fmt(Math.round(hrs))} sub="hours listened" onClick={() => go("calendar")} />
-          <Stat n={fmt(T.artists)} sub="distinct artists" onClick={() => go("explore")} />
+          <Stat n={fStats && fStats.active ? fmt(fStats.hours) : fmt(Math.round(hrs))} sub={fStats && fStats.active ? "hours · " + fStats.label : "hours listened"} onClick={() => go("calendar")} />
+          <Stat n={fStats && fStats.active ? fmt(fStats.artists) : fmt(T.artists)} sub={fStats && fStats.active ? "artists · filtered" : "distinct artists"} onClick={() => go("explore")} />
           <Stat n={T.perDay} sub="avg / day" />
           <Stat n={sinceYears + " yr"} sub="of history" />
         </div>
@@ -313,11 +313,11 @@ function OverviewView({ t, go }) {
 
         {/* dynamic insight feed — consolidated into ONE module (milestone/tip-over/week/riser/
             new-this-month/story-of-day merged, per Fuad) */}
-        <div className="r-card ov-insights" style={{ gridColumn: "1 / -1", padding: 18 }}>
+        <div className="r-card ov-insights" style={{ padding: 18 }}>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}><span className="lbl"><b>Right now</b></span>
-            <span className="meta">what's moving in your library</span></div>
+            <span className="meta">what's moving</span></div>
           <div className="ov-insgrid" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
-            <InsightRow go={go} n={6} />
+            <InsightRow go={go} n={4} />
           </div>
         </div>
       </div>
@@ -384,17 +384,18 @@ function OverviewView({ t, go }) {
           .ov-streak  { grid-column: 8 / span 2 !important; }
           .ov-calslot { grid-column: 10 / span 3 !important; }
           /* row 2 = map band (1/-1 inline) */
-          /* row 3 — the four lifetime stats, ONE row, full width */
-          .ov-strip  { grid-column: 1 / -1 !important; grid-template-columns: repeat(4, 1fr) !important; gap: 18px !important; }
-          /* row 4 — heaviest day (half) + recently played (half) */
-          .ov-heavy  { grid-column: 1 / span 6 !important; }
-          .ov-recent { grid-column: 7 / span 6 !important; }
+          /* row 3 — heaviest day (under the map, left) + the four stats (under the flowmap, right) */
+          .ov-heavy    { grid-column: 1 / span 5 !important; }
+          .ov-strip    { grid-column: 6 / -1 !important; grid-template-columns: repeat(4, 1fr) !important; gap: 18px !important; }
+          /* row 4 — recently played (left) + "Right now" insights (right) */
+          .ov-recent   { grid-column: 1 / span 5 !important; }
+          .ov-insights { grid-column: 6 / -1 !important; }
           .ov-scrob .r-stat-n { font-size: 34px !important; }
           .ov-streak .r-stat-n { font-size: 34px !important; }
           .ov-heavy .r-stat-n { font-size: 30px !important; }
-          .ov-strip .r-stat-n { font-size: 28px !important; }
-          /* consolidated insight cards: 3 per row inside the module */
-          .ov-insgrid > .r-card { grid-column: span 4 !important; }
+          .ov-strip .r-stat-n { font-size: 26px !important; }
+          /* insight cards: 2 per row inside the (now narrower) module */
+          .ov-insgrid > .r-card { grid-column: span 6 !important; }
         }
         .ov-calslot { min-width: 0; }
         @media (max-width: 1099px) { .ov-calslot { max-width: 260px; } }
