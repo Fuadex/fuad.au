@@ -31,7 +31,14 @@ All keyed by `id`, all merged at runtime. See the table in `docs/DATA_PIPELINE.m
 which script + API produces each.
 
 `cast_data.js` · `wishlist_cast.js` · `omdb_data.js` · `tmdb_data.js` · `books_data.js`
-· `game_imdb.js` · `filmweb_notes.js` · `notes_en.js` · `badges.js`
+· `game_imdb.js` · `filmweb_notes.js` · `notes_en.js` · `badges.js` · `script_mood.js`
+
+`script_mood.js` (`item.scriptMood = {v,e,m}`) = per-film **dialogue** mood from the local
+transcripts dump, NRC-scored. Built by `build_script_mood.py` (reads the gitignored 860 MB
+`archive_transcripts.zip` + `.film-index.json` from `node dump_films.js`; needs the NRC lexicon
+in `../../.sptmp/nrc/`). Local-only build, committed output. `v` = valence 0–100 (low = reads
+dark); it measures what characters *say*, not the film's tone (Requiem reads ~60), so label it
+"dialogue reads", not "how dark the film is".
 
 Two of these compile from **hand-edited source JSON**: `badges.js ← badges_source.json`
 (via `build_badges.py`) and `notes_en.js ← notes_en_source.json` (via `build_notes_en.py`).
