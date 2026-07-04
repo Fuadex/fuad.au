@@ -493,18 +493,20 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
       )}
 
       <div style={{ display: "grid", gap: "var(--gap)" }}>
-          {/* row 2 on PC: Sound DNA (left, radar + attr list) · top tracks · albums */}
-          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr 0.85fr", gap: "var(--gap)", alignItems: "start" }}>
-            {/* sound DNA — radar (left) + attribute list (right); half the row, sits at the page-left */}
+          {/* row 2 on PC: Sound DNA (narrow — radar with the attr list stacked beneath) ·
+             Sounds like (fills the freed space) · top tracks · albums (Fuad, 2026-07-04) */}
+          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "224px 1.3fr 1fr 0.85fr", gap: "var(--gap)", alignItems: "start" }}>
+            {/* sound DNA — radar on top, tempo→followers beneath at radar width */}
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl"><b>Sound DNA</b></span>
                 <span className="meta">{a.am ? "measured" : "inferred"}</span></div>
-              <div className="av-dna" style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
+              <div className="av-dna" style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "center" }}>
                 <div style={{ flex: "0 0 auto", width: 176, maxWidth: "100%" }}>
                   <Radar axes={DNA_AXES} values={dna} values2={avg} run={seen} size={176} />
                   <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = {a.name.split(" ")[0]} · dashed = your avg</div>
                 </div>
-                {af && <div style={{ flex: 1, minWidth: 130, display: "grid", gap: 7 }}>
+                {/* tempo → followers, stacked UNDER the radar at the radar's own width (Fuad) */}
+                {af && <div style={{ width: 176, maxWidth: "100%", display: "grid", gap: 7 }}>
                   {[
                     { k: "tempo", v: Math.round(50 + a.audio.tempo * 140), u: " bpm", f: a.audio.tempo },
                     { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
@@ -522,6 +524,40 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   ))}
                 </div>}
               </div>
+            </div>
+            {/* sounds like — last.fm + by-sound; moved up beside the (now narrow) DNA card */}
+            <div className="r-card av-simcard" style={{ padding: 18 }}>
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
+                <span className="lbl"><b>Sounds like</b></span>
+                <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
+                  {simTab === "lastfm" && a.similar.length > 8 && (
+                    <button className="av-more" onClick={() => setSimN(n => n === 8 ? 16 : 8)}>{simN === 8 ? "16 ▾" : "8 ▴"}</button>
+                  )}
+                  <div className="r-seg r-seg-sm">
+                    {[["lastfm", "last.fm"], ["sound", "by sound"]].map(([k, l]) => <button key={k} data-on={simTab === k} onClick={() => setSimTab(k)}>{l}</button>)}
+                  </div>
+                </span></div>
+              {simTab === "sound" ? <SoundSimilar id={a.id} go={go} /> : (() => {
+                const items = a.similar.slice(0, simN).map((sid, i) => { const name = a.similarNames[i]; const rid = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[rid] || (R.expById && R.expById[rid]); return { name, navId: rec ? rid : null, hue: rec ? rec.hue : (a.hue + 40 + i * 25) % 360, plays: rec ? rec.plays : null, played: !!rec || (R.played && R.played(name)) }; });
+                if (!items.length) return <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>no last.fm matches here.</div>;
+                return <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(80px,1fr))", gap: 10 }}>
+                  {items.map((it, i) => (
+                    <div key={it.name + i} onClick={() => it.navId && go("artist", it.navId)}
+                      style={{ display: "flex", flexDirection: "column", gap: 8, cursor: it.navId ? "pointer" : "default", opacity: it.played ? 1 : 0.62 }}
+                      onMouseEnter={(e) => { if (it.navId) e.currentTarget.style.transform = "translateY(-3px)"; }}
+                      onMouseLeave={(e) => e.currentTarget.style.transform = ""}>
+                      <div style={{ position: "relative", transition: "transform .2s" }}>
+                        <GenCover hue={it.hue} name={it.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
+                        {it.played && <span className="r-mono r-inlib">in library</span>}
+                      </div>
+                      <div style={{ fontSize: 12, lineHeight: 1.2 }}>{it.name}</div>
+                      {it.plays != null ? <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(it.plays)} plays →</div>
+                        : it.played ? <div className="r-mono" style={{ fontSize: 9, color: "var(--accent-dim)" }}>scrobbled · deeper cut</div>
+                          : <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>not yet scrobbled</div>}
+                    </div>
+                  ))}
+                </div>;
+              })()}
             </div>
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
@@ -577,45 +613,10 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             </div>
           </div>
 
-          {/* one compact PC row: sounds-like · timeline · family tree — each ≤⅓ width, all
-             always visible, stacking on mobile (sounds-like ↔ timeline swapped per Fuad) */}
-          <div className="m-stack av-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0,1fr))", gap: "var(--gap)", alignItems: "start" }}>
-          {/* sounds like — last.fm + by-sound; both link to kept OR explorable (mini) pages */}
-          <div className="r-card av-simcard" style={{ padding: 18 }}>
-            <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
-              <span className="lbl"><b>Sounds like</b></span>
-              <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
-                {simTab === "lastfm" && a.similar.length > 8 && (
-                  <button className="av-more" onClick={() => setSimN(n => n === 8 ? 16 : 8)}>{simN === 8 ? "16 ▾" : "8 ▴"}</button>
-                )}
-                <div className="r-seg r-seg-sm">
-                  {[["lastfm", "last.fm"], ["sound", "by sound"]].map(([k, l]) => <button key={k} data-on={simTab === k} onClick={() => setSimTab(k)}>{l}</button>)}
-                </div>
-              </span></div>
-            {simTab === "sound" ? <SoundSimilar id={a.id} go={go} /> : (() => {
-              const items = a.similar.slice(0, simN).map((sid, i) => { const name = a.similarNames[i]; const rid = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[rid] || (R.expById && R.expById[rid]); return { name, navId: rec ? rid : null, hue: rec ? rec.hue : (a.hue + 40 + i * 25) % 360, plays: rec ? rec.plays : null, played: !!rec || (R.played && R.played(name)) }; });
-              if (!items.length) return <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>no last.fm matches here.</div>;
-              return <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(80px,1fr))", gap: 10 }}>
-                {items.map((it, i) => (
-                  <div key={it.name + i} onClick={() => it.navId && go("artist", it.navId)}
-                    style={{ display: "flex", flexDirection: "column", gap: 8, cursor: it.navId ? "pointer" : "default", opacity: it.played ? 1 : 0.62 }}
-                    onMouseEnter={(e) => { if (it.navId) e.currentTarget.style.transform = "translateY(-3px)"; }}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = ""}>
-                    <div style={{ position: "relative", transition: "transform .2s" }}>
-                      <GenCover hue={it.hue} name={it.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
-                      {it.played && <span className="r-mono r-inlib">in library</span>}
-                    </div>
-                    <div style={{ fontSize: 12, lineHeight: 1.2 }}>{it.name}</div>
-                    {it.plays != null ? <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(it.plays)} plays →</div>
-                      : it.played ? <div className="r-mono" style={{ fontSize: 9, color: "var(--accent-dim)" }}>scrobbled · deeper cut</div>
-                        : <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>not yet scrobbled</div>}
-                  </div>
-                ))}
-              </div>;
-            })()}
-          </div>
-
-          {/* how they played out — the timeline streamgraph (2nd column now) */}
+          {/* bottom row: how-they-played-out + family tree — kept at their ⅓ widths but
+             CENTERED in the row rather than stretched across it (Fuad, 2026-07-04) */}
+          <div className="m-stack av-endrow" style={{ display: "flex", gap: "var(--gap)", justifyContent: "center", alignItems: "flex-start", flexWrap: "wrap" }}>
+          {/* how they played out — the timeline streamgraph */}
           <ArtistFlow id={a.id} hue={a.hue} go={go} />
 
           {/* family tree — members + shared-member lineage (MusicBrainz + Discogs) */}
@@ -686,6 +687,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         .av-more { background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px;
           color: var(--ink-faint); cursor: pointer; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; }
         .av-more:hover { color: var(--accent); border-color: var(--accent-dim); }
+        /* bottom row: each card keeps its ~⅓ width and the pair sits centered; the m-stack
+           class turns this into a 1-col grid on mobile (flex props are then inert) */
+        .av-endrow > * { flex: 0 1 calc((100% - 2 * var(--gap)) / 3); min-width: 300px; }
       `}</style>
     </div>
   );

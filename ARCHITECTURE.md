@@ -215,23 +215,25 @@ popover layer; tweaks drawer.
 ## 8. Feature inventory (what is SHIPPED today)
 
 ### Overview (the command centre — bento + full Map, redesigned 2026-07-04)
-- ≥981px pulse (2 rows): **scrobbles(½) · now-playing(½, top-right)** on row 1;
-  **streak(⅓) · Recently played (⅔, height-matched — list runs 3-up, 6/12/18 selector)** on
-  row 2. Fixed the 981–1099px break (the old `.ov-calslot` had no base grid-column and
-  collapsed to a 1/12 sliver; slot removed).
+- ≥981px pulse (ONE row): **scrobbles(3) · streak(2) · Recently played (3, capped scroll
+  well, 6/12/18 selector) · now-playing(4, top-right)** — streak+recent squeezed centrally.
+  Fixed the 981–1099px break (the old `.ov-calslot` had no base grid-column and collapsed
+  to a 1/12 sliver; slot removed).
 - **Top artists** module is dissolved — lives on as the map Results' grid display.
   (`TopArtistsPeek` in rotation-views1 is currently dead code.)
-- **Calendar rail** (`OvCalRail`) now rides inside the map band's left column, under deepest
-  places. Year selection scrubs the map/flow; a day/week click **filters the map Results**
-  (via calendar-detail); state stays lifted to `OverviewView`.
 - **THE MAP BAND** (`OvMapBand`, lazy-mounts on scroll): the **full MapView** as a
-  **3:3:2 height-matched row — map | taste-flow | Results** — with deepest places + the
-  calendar rail stacked under the map. Results is a flexed scroll well (can't inflate the row;
-  list default, list⇄grid toggle, 2-col cover grid); single genre legend under the flow; a
-  **"clear filters"** button. MapView reports filtered totals up so the **stat strip (hours +
-  distinct artists, span 8) reacts to the active filter**; heaviest day beside it (span 4);
-  the "Right now" insight feed runs full-width below, 4 cards across. ⚠ day-level map *dots*
-  filtering still needs a per-day geography export.
+  **3:3:2 height-matched row — map | taste-flow | Results**; **row 2 = deepest places
+  stretched under map+flow, calendar rail (`OvCalRail`, slotted via `calSlot`) squeezed to
+  its right under the Results**. Results is a flexed scroll well (can't inflate the row;
+  list default, list⇄grid toggle, 2-col cover grid) with a **"✕ place" clear chip** in its
+  header; clicking a selected city bubble again also deselects. MapFlow's interactive legend
+  is the only genre legend (static FAMILIES strip removed 2026-07-04; metric gradient still
+  shows for by-sound colouring). Global "clear filters" button stays in the band head.
+  MapView reports filtered totals up so the **stat strip (hours + distinct artists, span 8)
+  reacts to the active filter**; heaviest day beside it (span 4); the "Right now" insight
+  feed runs full-width below, 4 cards across. Calendar year-scrub still drives the map;
+  day/week click filters Results via calendar-detail. ⚠ day-level map *dots* filtering
+  still needs a per-day geography export.
 - **"Where to dig"** chip strip · **"Your portrait"** prose verdict.
 
 ### Insight engine (rotation-insights.jsx)
@@ -260,8 +262,8 @@ One filter set — **time** (year chips + "play the decade"), **genre** (familie
 toggles **texture map** (subgenre scatter) ⇄ **mood lens** (quadrant + facts). Right: ranked
 artists/albums/tracks (full-library media-index, **10/20/40 selector**, PC fixed-height scroll
 window). **Below the module**: the by-sound **sort row** (plays → energy/mood/…/most obscure),
-then the "mood over the years" arc, then the **genre families as a 2-column grid** (each family's
-subgenre list capped + scrollable). The Rhythm clock-cell filter was **removed** (clock moved to
+then the "mood over the years" arc, then the **genre families as a 6-column grid** (3-col ≤1250px,
+1-col ≤760px; each family's subgenre list capped + scrollable). The Rhythm clock-cell filter was **removed** (clock moved to
 Calendar). Subgenre spelling variants (hip hop/hip-hop, nu metal, dnb…) merge via `SUB_CANON` in
 build-data. ⚠ mood-lens first paint is slow (open bug).
 
@@ -278,11 +280,12 @@ genre / **sonic gradient** (energy/mood/debut-era). Year scrubber animates the g
 artists), rescoped by map selection. Click a country/city → detail blob (top artists/albums/
 songs + Sound DNA for that place, lazy geo-detail.js). Breakdown list with flags.
 
-### Artist page (kept top-400; PC composition 2026-07-05)
+### Artist page (kept top-400; PC composition 2026-07-04)
 Rank/est/origin header with **gender glyph + active/disbanded/deceased badge** (`ArtistMeta`);
-on PC: **bio full-width** → **row 2: Sound DNA (left, half width — radar + tempo→followers
-attribute LIST side by side) · Top tracks · Albums** → **row 3: Sounds-like · timeline · family
-tree** (each ≤⅓, always visible). **Albums** = covers⇄list toggle (covers default, plays shown,
+on PC: **bio full-width** → **row 2: Sound DNA (narrow 224px — radar with the tempo→followers
+list stacked BENEATH at radar width) · Sounds-like (fills the freed slot) · Top tracks ·
+Albums** → **bottom row: How-they-played-out + family tree at their ~⅓ widths, CENTERED
+(not stretched; `av-endrow` flex)**. **Albums** = covers⇄list toggle (covers default, plays shown,
 all ~40 listed). **Sounds-like**: last.fm default 8 (⇄16), by-sound 8/16/24 (SoundSimilar's own
 selector). Mobile stacks. **How they played out** = album/song streamgraph (lazy artist-flow.js).
 Long-tail artists get **MiniArtistView** (explore record + Sound DNA + similar + lazy detail).

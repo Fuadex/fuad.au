@@ -9,6 +9,12 @@
 
 ## ⓪ Status snapshot — 2026-07-05 (evening)
 
+> **2026-07-04 update:** second layout pass shipped (one-row Overview pulse, 3:3:2 map band
+> w/ places+calendar row 2, Explore 6-col genre grid, artist page: metrics-under-radar +
+> Sounds-like in row 2, centered bottom pair). Full grounding audit + forward plan written to
+> **AUDIT-2026-07.md** (perf priorities: CI precompile → music-data split; API deltas:
+> Spotify Feb-2026 tightening, ListenBrainz/Odesli/Wikimedia-pageviews adopted as candidates).
+
 **Latest PC/layout pass shipped:** Overview command centre finalised (compact calendar in the
 pulse row; full map band at 2:3, height-matched, one legend, clear-filters button, results
 list⇄grid; stats under the flow & **filter-reactive** hours/artists). Artist page recomposed
