@@ -23,7 +23,12 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
 `#stories/x` deep links.
 
 ### Open — build queue (rough order)
-1. **Genius lyrics dump ingest** (local carlosgdcj, ~9 GB — language layer first; Fuad wants it)
+0. **Move Rhythm (clock grid) Explore → Calendar** — DEFERRED from the 07-05 batch: it's a shared
+   filter (Explore's clock-cell selection depends on it), needs the filter state untangled first.
+0b. Calendar rail now filters the map's *Results* by day/week (calendar-detail per-period); the
+   map *dots* still can't (no per-day geography export — item 5 below).
+1. **Genius lyrics dump ingest** (local carlosgdcj, ~9 GB local `archive_genius.zip` — language
+   layer first; Fuad wants it)
 2. **Wrapped mode** (year+month, Calendar entry) + **share-card PNG test** — approved, unstarted
 3. Explore **mood-lens slowness** (bug) · **pins.json enforcement** (Brutus-1966 elder + daine's
    classical Discogs styles still live) · canon-aware coverage census re-run
