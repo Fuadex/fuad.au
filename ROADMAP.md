@@ -40,6 +40,13 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
 6. MusicBrainz full-dump stage: cover-of + work language (ISRC joins) · `enrich-wikidata.js`
 7. iTunes probe residue ~880 albums · Discogs-dump formats lens · M6 template extraction
 
+### Known data-limited tandems (need a new export)
+- Overview calendar day/week filters the map **Results** but not the map **dots** — per-day
+  geography export needed.
+- Calendar vertical hour-clock: selecting an hour can't yet filter the heatmap (no per-day
+  hour-of-day data; only all-time/per-year `CLOCK`/`CLOCK_BY_YEAR` exist). A per-day hourly
+  export would unlock both.
+
 ### Waiting on Fuad
 setlist.fm account + gigs (M2) · Spotify extended-history request (M3) · `residences.json`
 (M4 location features) · responsiveness re-test verdicts · PWA yes/no.
