@@ -83,7 +83,7 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   );
 }
 
-function MapView({ go, embedded, extYear, calPeriod }) {
+function MapView({ go, embedded, extYear, calPeriod, onStats }) {
   const R = window.ROTATION;
   const G = R.INSIGHTS.GEOGRAPHY;
   const cityPts = G.cityPoints || [];
@@ -266,6 +266,19 @@ function MapView({ go, embedded, extYear, calPeriod }) {
     for (const a of filteredArtists) { const af = R.AUDIO[a.id]; if (!af) continue; const ww = yr != null ? (a.yp ? (a.yp[yr] || 0) : 0) : a.plays; if (!ww) continue; for (let k = 0; k < 6; k++) acc[k] += af[k] * ww; w += ww; }
     return w ? acc.map(x => x / w) : null;
   }, [filteredArtists, yearIdx]);
+  // report the current filtered totals so the Overview stat strip (hours / distinct artists)
+  // reflects whatever slice is active. period > place/genre/year > lifetime.
+  React.useEffect(() => {
+    if (!onStats) return;
+    const active = !!(sel || focus || filt.fam != null || filt.sub != null || yearIdx != null || periodData);
+    if (!active) { onStats(null); return; }
+    const avgSec = (R.TOTALS && R.TOTALS.avgTrackSec) || 216;
+    if (periodData) { const plays = periodData.arts.reduce((s, e) => s + e.p, 0); onStats({ active: true, plays, artists: periodData.arts.length, hours: Math.round(plays * avgSec / 3600), label: periodData.label }); return; }
+    const yr = yearIdx != null ? geoYears[yearIdx] : null;
+    let plays = 0, artists = 0;
+    for (const a of filteredArtists) { const p = yr != null ? (a.yp ? (a.yp[yr] || 0) : 0) : a.plays; if (p > 0) { plays += p; artists++; } }
+    onStats({ active: true, plays, artists, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? R.FAMILIES[filt.fam].family : null, yr].filter(Boolean).join(" · ") || "filtered" });
+  }, [filteredArtists, yearIdx, periodData, sel, focus, filt, onStats]);
   const bubbles = React.useMemo(() => {
     if (!world) return [];
     const proj = (c) => [(c.lng + 180) / 360 * world.w, (90 - c.lat) / 180 * world.h];
@@ -355,9 +368,14 @@ function MapView({ go, embedded, extYear, calPeriod }) {
             ? <h2 style={{ fontFamily: "var(--serif)", fontWeight: 400, fontStyle: "italic", fontSize: 26, margin: "4px 0 0" }}>Where it comes from<span className="dot" style={{ color: "var(--accent)" }}>.</span></h2>
             : <h1 className="r-title">Where it <em>comes from</em><span className="dot">.</span></h1>}
         </div>
-        {!focus && <div className="r-seg" style={{ alignSelf: "flex-end" }}>
-          {[["country", "countries"], ["city", "cities"]].map(([k, l]) => <button key={k} data-on={mode === k} onClick={() => { setMode(k); setHi(null); }}>{l}</button>)}
-        </div>}
+        <div style={{ display: "flex", gap: 10, alignItems: "flex-end", flexWrap: "wrap" }}>
+          {(sel || focus || filt.fam != null || filt.sub != null) && (
+            <button className="mp-clear" onClick={() => { reset(); setFilt({ fam: null, sub: null }); }}>✕ clear filters</button>
+          )}
+          {!focus && <div className="r-seg" style={{ alignSelf: "flex-end" }}>
+            {[["country", "countries"], ["city", "cities"]].map(([k, l]) => <button key={k} data-on={mode === k} onClick={() => { setMode(k); setHi(null); }}>{l}</button>)}
+          </div>}
+        </div>
       </div>
 
       {/* colour-by + year controls */}
@@ -404,24 +422,24 @@ function MapView({ go, embedded, extYear, calPeriod }) {
         </svg>
       </div>
 
-      {/* legend — genre families by default, or the sonic gradient when colouring by energy/mood (always shown, no layout shift) */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 14px", marginTop: 10, alignItems: "center", minHeight: 20 }}>
-        {placeMetric
-          ? <><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{METRICS[colorBy].label}:</span>
-            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{placeMetric.lo}</span>
-            <span style={{ width: 130, height: 9, borderRadius: 3, background: "linear-gradient(90deg, oklch(0.66 0.15 250), oklch(0.66 0.15 135), oklch(0.66 0.15 30))" }} />
-            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{placeMetric.hi}</span></>
-          : R.FAMILIES.map(f => (
-            <div key={f.i} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-              <span style={{ width: 10, height: 10, borderRadius: 3, background: `oklch(0.63 0.17 ${f.hue})` }} />
-              <span style={{ fontSize: 11, color: "var(--ink-soft)" }}>{f.family}</span>
-            </div>))}
-      </div>
       </div>
 
-      {/* the flow doubles as filter — pick a band to scope the map; picking a place rescopes the flow */}
+      {/* the flow doubles as filter — pick a band to scope the map; picking a place rescopes the flow.
+          The single genre legend lives under it (map's legend removed — one legend, Fuad). */}
       <div className="mp-flow" style={{ marginTop: "var(--gap)" }}>
         <MapFlow artists={flowArtists} filt={filt} setFilt={setFilt} years={geoYears} markYi={yearIdx} go={go} />
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 14px", marginTop: 10, alignItems: "center", minHeight: 20 }}>
+          {placeMetric
+            ? <><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{METRICS[colorBy].label}:</span>
+              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{placeMetric.lo}</span>
+              <span style={{ width: 130, height: 9, borderRadius: 3, background: "linear-gradient(90deg, oklch(0.66 0.15 250), oklch(0.66 0.15 135), oklch(0.66 0.15 30))" }} />
+              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{placeMetric.hi}</span></>
+            : R.FAMILIES.map(f => (
+              <div key={f.i} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                <span style={{ width: 10, height: 10, borderRadius: 3, background: `oklch(0.63 0.17 ${f.hue})` }} />
+                <span style={{ fontSize: 11, color: "var(--ink-soft)" }}>{f.family}</span>
+              </div>))}
+        </div>
       </div>
 
       {/* breakdown list */}
@@ -502,16 +520,24 @@ function MapView({ go, embedded, extYear, calPeriod }) {
       </div>
 
       <style>{`.map-ctl { display: flex; gap: 14px 18px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
-        /* PC composition (Fuad): map(3):flow(2) on one row, deepest-places(3):results(2) below */
+        /* PC composition (Fuad): map(2):flow(3) on one row, deepest-places(2):results(3) below;
+           map & flow height-matched */
         @media (min-width: 1150px) {
-          .mp-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap); align-items: start; }
-          .mp-map { grid-column: 1 / span 7; }
-          .mp-flow { grid-column: 8 / -1; margin-top: 0 !important; }
-          .mp-list { grid-column: 1 / span 7; margin-top: 0 !important; }
+          .mp-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap); align-items: stretch; }
+          .mp-map { grid-column: 1 / span 5; display: flex; flex-direction: column; }
+          .mp-map > .r-card { flex: 1; display: flex; align-items: center; }
+          .mp-flow { grid-column: 6 / -1; margin-top: 0 !important; }
+          .mp-flow > .r-card { height: 100%; }
+          .mp-list { grid-column: 1 / span 5; margin-top: 0 !important; }
           .mp-list > div:last-child { max-height: 300px !important; }
-          .mp-results { grid-column: 8 / -1; margin-top: 0 !important; }
+          .mp-results { grid-column: 6 / -1; margin-top: 0 !important; }
         }
-        .mp-covergrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(74px, 1fr)); gap: 12px; }
+        .mp-clear { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase;
+          padding: 6px 11px; border-radius: 999px; border: 1px solid var(--accent-dim); color: var(--accent);
+          background: var(--accent-bg); cursor: pointer; align-self: flex-end; }
+        .mp-clear:hover { background: transparent; }
+        /* cover grid: fixed columns so a lone last item doesn't stretch into an orphan */
+        .mp-covergrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
         .mp-coveritem { cursor: pointer; min-width: 0; }
         .mp-coveritem[data-link="false"] { cursor: default; }
         .mp-covernm { font-size: 10.5px; margin-top: 6px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

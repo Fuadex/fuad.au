@@ -493,8 +493,36 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
       )}
 
       <div style={{ display: "grid", gap: "var(--gap)" }}>
-          {/* row 2 on PC: top tracks · top albums (narrow, ALL of them) · Sound DNA */}
-          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "1.05fr 0.8fr 1.05fr", gap: "var(--gap)", alignItems: "start" }}>
+          {/* row 2 on PC: Sound DNA (left, radar + attr list) · top tracks · albums */}
+          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr 0.85fr", gap: "var(--gap)", alignItems: "start" }}>
+            {/* sound DNA — radar (left) + attribute list (right); half the row, sits at the page-left */}
+            <div className="r-card" style={{ padding: 18 }}>
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl"><b>Sound DNA</b></span>
+                <span className="meta">{a.am ? "measured" : "inferred"}</span></div>
+              <div className="av-dna" style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
+                <div style={{ flex: "0 0 auto", width: 176, maxWidth: "100%" }}>
+                  <Radar axes={DNA_AXES} values={dna} values2={avg} run={seen} size={176} />
+                  <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = {a.name.split(" ")[0]} · dashed = your avg</div>
+                </div>
+                {af && <div style={{ flex: 1, minWidth: 130, display: "grid", gap: 7 }}>
+                  {[
+                    { k: "tempo", v: Math.round(50 + a.audio.tempo * 140), u: " bpm", f: a.audio.tempo },
+                    { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
+                    { k: "loud", v: Math.round(af[9]), u: " dB", f: Math.max(0, Math.min(1, (af[9] + 60) / 60)) },
+                    { k: "speech", v: Math.round(af[10] * 100), u: "%", f: af[10] },
+                    { k: "live", v: Math.round(af[11] * 100), u: "%", f: af[11] },
+                    { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
+                    { k: "followers", v: fmtK(af[8]), f: null },
+                  ].map(s => (
+                    <div key={s.k} style={{ display: "grid", gridTemplateColumns: "52px 1fr auto", gap: 8, alignItems: "center" }}>
+                      <span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</span>
+                      <div style={{ height: 3, background: "var(--bg-3)", borderRadius: 2, overflow: "hidden" }}>{s.f != null && <div style={{ height: "100%", width: (s.f * 100) + "%", background: `oklch(0.62 0.15 ${a.hue})` }} />}</div>
+                      <span style={{ fontSize: 12, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{s.u}</span>}</span>
+                    </div>
+                  ))}
+                </div>}
+              </div>
+            </div>
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
                 <span className="lbl"><b>Top tracks</b></span>
@@ -546,31 +574,6 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   ))}
                 </div>
               )}
-            </div>
-            {/* sound DNA — radar + measured attribute grid */}
-            <div className="r-card" style={{ padding: 18 }}>
-              <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
-              <Radar axes={DNA_AXES} values={dna} values2={avg} run={seen} size={200} />
-              <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>
-                solid = {a.name.split(" ")[0]} · dashed = your average · {a.am ? "measured" : "inferred"}
-              </div>
-              {af && <div style={{ marginTop: 14, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 9 }}>
-                {[
-                  { k: "tempo", v: Math.round(50 + a.audio.tempo * 140), u: " bpm", f: a.audio.tempo },
-                  { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
-                  { k: "loud", v: Math.round(af[9]), u: " dB", f: Math.max(0, Math.min(1, (af[9] + 60) / 60)) },
-                  { k: "speech", v: Math.round(af[10] * 100), u: "%", f: af[10] },
-                  { k: "live", v: Math.round(af[11] * 100), u: "%", f: af[11] },
-                  { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
-                  { k: "followers", v: fmtK(af[8]), f: null },
-                ].map(s => (
-                  <div key={s.k}>
-                    <div className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</div>
-                    <div style={{ fontSize: 13, marginTop: 1, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 9, color: "var(--ink-faint)" }}>{s.u}</span>}</div>
-                    {s.f != null && <div style={{ height: 3, background: "var(--bg-3)", borderRadius: 2, marginTop: 5, overflow: "hidden" }}><div style={{ height: "100%", width: (s.f * 100) + "%", background: `oklch(0.62 0.15 ${a.hue})` }} /></div>}
-                  </div>
-                ))}
-              </div>}
             </div>
           </div>
 
