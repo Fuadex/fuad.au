@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Rotation · fuad.design</title>
+<meta name="description" content="Rotation — a personal listening observatory. 20 years and 319,000+ real last.fm scrobbles, mined for patterns: obsessions, comebacks, taste geography, sound DNA.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="fuad.design">
+<meta property="og:title" content="Rotation — 319,000 scrobbles, mapped">
+<meta property="og:description" content="20 years of listening mined for patterns: obsessions, flameouts, taste geography, sound DNA. Real last.fm data.">
+<meta property="og:url" content="https://fuad.au/">
+<meta property="og:image" content="https://fuad.au/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rotation — 319,000 scrobbles, mapped">
+<meta name="twitter:image" content="https://fuad.au/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  html, body { margin: 0; padding: 0; background: #0b0a0f; }
+  #root { min-height: 100vh; }
+</style>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#0b0a0f"/>
+    <g transform="translate(30 30)">
+      <rect width="40" height="40" rx="4" fill="oklch(0.4 0.12 330)"/>
+      <g fill="oklch(0.82 0.13 330)">
+        <rect x="6" y="22" width="4" height="12" rx="1"/>
+        <rect x="13" y="14" width="4" height="20" rx="1"/>
+        <rect x="20" y="8" width="4" height="26" rx="1"/>
+        <rect x="27" y="17" width="4" height="17" rx="1"/>
+      </g>
+    </g>
+  </svg>
+</template>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="music-data.js"></script>
+<script src="live-data.js"></script>
+<script type="text/babel" src="rotation-live.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="rotation-core.jsx"></script>
+<script type="text/babel" src="rotation-insights.jsx"></script>
+<script type="text/babel" src="rotation-views1.jsx"></script>
+<script type="text/babel" src="rotation-views2.jsx"></script>
+<script type="text/babel" src="rotation-worldmap.jsx"></script>
+<script type="text/babel" src="rotation-views3.jsx"></script>
+<script type="text/babel" src="rotation-explore.jsx"></script>
+<script type="text/babel" src="rotation-journey.jsx"></script>
+<script type="text/babel" src="rotation-calendar.jsx"></script>
+<script type="text/babel" src="rotation-shelves.jsx"></script>
+</head>
+<body>
+<div id="root">
+  <div id="boot">
+    <div class="boot-mark">Rotation<span>.</span></div>
+    <div class="boot-sub" id="boot-sub">reading scrobbles…</div>
+  </div>
+</div>
+<script>
+  // dynamic count — prefer the daily live total, else the CSV total (data scripts already loaded above)
+  (function () { try {
+    var t = (window.ROTATION_LIVE && window.ROTATION_LIVE.total) || (window.ROTATION && window.ROTATION.TOTALS && window.ROTATION.TOTALS.scrobbles) || 0;
+    if (t) document.getElementById("boot-sub").textContent = "reading " + Math.round(t / 1000) + "k scrobbles…";
+  } catch (e) {} })();
+</script>
+<style>
+  #boot { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+    font-family: 'Source Serif 4', Georgia, serif; background: #0b0a0f; }
+  .boot-mark { font-style: italic; font-weight: 600; font-size: 44px; letter-spacing: -.02em; color: #f1eef6; }
+  .boot-mark span { font-style: normal; color: oklch(0.74 0.13 330); }
+  .boot-sub { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+    color: #665f78; animation: bootpulse 1.6s ease-in-out infinite; }
+  @keyframes bootpulse { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
+</style>
+<script type="text/babel" data-presets="env,react" src="rotation-app.jsx"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@ name: Weekly enrichment refresh
 # Keeps the metadata caches from rotting: new artists that entered the library since the last
 # run get last.fm tags/stats/bios + MusicBrainz origins/aliases automatically. Every script is
 # incremental (cached artists are skipped), so a normal week costs a handful of API calls.
-# Archive-based enrichment (per-track audio features, album art) stays local — it needs the
+# Archive-based enrichment (per-track audio features, album art) stays local -- it needs the
 # large local dump. Discogs is also left local (token + ambiguity pins live there).
 
 on:
@@ -21,13 +21,17 @@ concurrency:
 jobs:
   enrich:
     runs-on: ubuntu-latest
+    # Rotation lives in rotation/; run every script (and the git add of its caches) from there.
+    defaults:
+      run:
+        working-directory: rotation
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      # generated files (search-index.js — the enrichers' artist list) are not in git;
+      # generated files (search-index.js -- the enrichers' artist list) are not in git;
       # rebuild them from the committed CSV first
       - name: Build dataset (generates search-index.js)
         run: node build-data.js

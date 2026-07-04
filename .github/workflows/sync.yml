@@ -1,11 +1,13 @@
-name: Build & deploy Rotation
+name: Build & deploy fuad.au
 
 # Two triggers, one pipeline:
-#   - daily cron: pull new scrobbles → commit ONLY fuadex.csv → rebuild → deploy
-#   - push to main (code/data edits): rebuild → deploy
-# Generated files (music-data.js, media-index.js, …) are built HERE and shipped straight to
-# Pages as an artifact — they never enter git (repo stays lean; see ROADMAP A2).
-# Requires repo Settings → Pages → Source = "GitHub Actions".
+#   - daily cron: pull new scrobbles -> commit ONLY rotation/fuadex.csv -> rebuild -> deploy
+#   - push to main (code/data edits): rebuild -> deploy
+# Rotation is one app under this hub (rotation/); Culture (culture/) ships committed files as-is.
+# Rotation's generated files (music-data.js, media-index.js, ...) are built HERE inside rotation/
+# and shipped straight to Pages as an artifact -- they never enter git (repo stays lean).
+# Staging is manifest-driven: `node stage-site.js` reads apps.json and assembles _site/.
+# Requires repo Settings -> Pages -> Source = "GitHub Actions".
 
 on:
   schedule:
@@ -34,46 +36,40 @@ jobs:
 
       # 1) append new scrobbles (cheap delta since last build)
       - name: Pull new scrobbles into fuadex.csv
+        working-directory: rotation
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: node sync-csv.js
 
-      # 2) regenerate the full dataset (~11 s)
+      # 2) regenerate the full dataset (~11 s) -- outputs land in rotation/
       - name: Rebuild dataset
+        working-directory: rotation
         run: node build-data.js
 
       # 3) refresh the live snapshot (now-playing / weekly windows / mood)
       - name: Generate live snapshot
+        working-directory: rotation
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: node sync-live.js
 
-      # 4) sanity gate — a broken dataset never deploys
+      # 4) sanity gate -- a broken dataset never deploys
       - name: Smoke test
+        working-directory: rotation
         run: node smoke.js
 
-      # 5) hand the updated CSV to the persist job — committing it HERE advances the branch
+      # 5) hand the updated CSV to the persist job -- committing it HERE advances the branch
       #    mid-run, which makes the subsequent Pages deployment fail ("deployment_failed":
       #    the run's SHA is no longer HEAD). Persist runs strictly AFTER deploy.
       - uses: actions/upload-artifact@v4
         with:
           name: csv-delta
-          path: fuadex.csv
+          path: rotation/fuadex.csv
           retention-days: 2
 
-      # 6) stage exactly what the browser needs
+      # 6) stage the whole hub (root launcher + every app in apps.json) into _site/
       - name: Stage site
-        run: |
-          mkdir -p _site
-          cp index.html favicon.svg og.png CNAME _site/
-          cp rotation-live.jsx tweaks-panel.jsx rotation-core.jsx rotation-insights.jsx \
-             rotation-views1.jsx rotation-views2.jsx rotation-worldmap.jsx rotation-views3.jsx \
-             rotation-explore.jsx rotation-journey.jsx rotation-calendar.jsx rotation-shelves.jsx \
-             rotation-app.jsx _site/
-          cp music-data.js live-data.js search-index.js media-index.js track-audio.js \
-             track-previews.js shelves-unplayed.js artist-flow.js artist-detail.js calendar.js \
-             calendar-detail.js geo-detail.js world-map.js _site/
-          du -sh _site
+        run: node stage-site.js
 
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -87,7 +83,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       # Pages intermittently rejects deployments ("Deployment failed, try again later")
-      # even with a clean HEAD — one automatic retry absorbs the flake.
+      # even with a clean HEAD -- one automatic retry absorbs the flake.
       - id: deployment
         uses: actions/deploy-pages@v4
         continue-on-error: true
@@ -106,11 +102,12 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: csv-delta
+          path: rotation
       - name: Commit CSV if changed
         run: |
           git config user.name "rotation-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add fuadex.csv
+          git add rotation/fuadex.csv
           if git diff --staged --quiet; then
             echo "no new scrobbles"
           else

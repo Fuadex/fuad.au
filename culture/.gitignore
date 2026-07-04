@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+
+# Machine-generated enrichment caches (regenerable; kept local, not committed)
+*_cache.json
+# …except the OMDb cache: it tracks fetch progress + misses across daily
+# quota-limited runs, so losing it would burn API calls re-fetching everything
+!omdb_cache.json
+
+# Scratch / backups / one-off output
+_tmp_*.py
+_enrich_out.txt
+*.bak
+
+# Secrets — TMDB / Twitch / OMDb keys
+.env
+
+# Network captures (HAR exports may contain personal/session data)
+*.har
+www.filmweb.pl.txt

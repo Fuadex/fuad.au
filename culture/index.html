@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Culture · fuad.design</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  html, body { margin: 0; padding: 0; background: #14110d; }
+  #root { min-height: 100vh; }
+</style>
+
+<!-- App styles extracted from culture-v2.jsx. Bump ?v= to force a fresh load. -->
+<link rel="stylesheet" href="culture.css?v=90">
+
+<!-- Production React builds: smaller + faster, no dev warnings. (SRI integrity
+     hashes were for the development builds, so they're dropped on the prod URLs.) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<!-- Local data + app. Bump ?v= on any of these to bypass the browser cache. -->
+<script src="data.js?v=90"></script>
+<script src="imports.js?v=90"></script>
+<script src="cast_data.js?v=90"></script>
+<script src="wishlist.js?v=90"></script>
+<script src="wishlist_cast.js?v=90"></script>
+<script src="omdb_data.js?v=90"></script>
+<script src="books_data.js?v=90"></script>
+<script src="game_imdb.js?v=90"></script>
+<script src="filmweb_notes.js?v=90"></script>
+<script src="notes_en.js?v=90"></script>
+<script src="tmdb_data.js?v=90"></script>
+<script src="badges.js?v=90"></script>
+<script type="text/babel" src="culture-v2.jsx?v=90"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="env,react">
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<App/>);
+</script>
+</body>
+</html>
