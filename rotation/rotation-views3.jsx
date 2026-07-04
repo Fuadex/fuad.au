@@ -463,6 +463,61 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+        {/* language arc — how the non-English share moved across years */}
+        {I.LANGUAGE && I.LANGUAGE.arc && I.LANGUAGE.arc.years.length >= 6 && (() => {
+          const A = I.LANGUAGE.arc;
+          const huesByLang = { pl: 15, de: 110, ja: 340, sv: 210, es: 40, fr: 260, ko: 300, fi: 190, ru: 350, pt: 60 };
+          // mover: the non-English language that gained the most share, early years → last 3 avg
+          const firstYears = A.years.slice(0, 3), lastYears = A.years.slice(-3);
+          const mover = A.langs.map(l => {
+            const before = firstYears.reduce((s, y) => s + (y.byLang[l.lang] || 0), 0) / firstYears.length;
+            const after = lastYears.reduce((s, y) => s + (y.byLang[l.lang] || 0), 0) / lastYears.length;
+            return { ...l, delta: after - before, after };
+          }).sort((a, b) => b.delta - a.delta)[0];
+          const moverYear = A.years.find(y => (y.byLang[mover.lang] || 0) >= mover.after * 0.5);
+          const nonEnSeries = A.years.map(y => y.nonEnPct);
+          const peakNonEn = A.years[nonEnSeries.indexOf(Math.max(...nonEnSeries))];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">How the languages moved</div>
+              <div className="st-big">
+                <em>{mover.name}</em> crept in around <em>{moverYear ? moverYear.year : "—"}</em> —
+                now <em>{Math.round(mover.after * 100)}%</em> of a year's lyrics.
+              </div>
+              <div className="st-sub">
+                Each line is a language's share of that year's detectable-lyric plays. Your most non-English
+                year was <b style={{ color: "var(--ink)" }}>{peakNonEn.year}</b> at {Math.round(peakNonEn.nonEnPct * 100)}% —
+                the rest is English underneath.
+              </div>
+              <div className="st-arc">
+                {A.langs.map(l => {
+                  const series = A.years.map(y => y.byLang[l.lang] || 0);
+                  const now = series[series.length - 1];
+                  const peak = Math.max(...series);
+                  const peakYr = A.years[series.indexOf(peak)].year;
+                  const hue = huesByLang[l.lang] || 200;
+                  return (
+                    <div key={l.lang} className="st-arc-row">
+                      <div className="st-arc-head">
+                        <span className="st-arc-name">{l.name}</span>
+                        <span className="st-arc-now" style={{ color: `oklch(0.7 0.16 ${hue})` }}>{Math.round(now * 100)}%</span>
+                      </div>
+                      <Spark data={series} w={420} h={32} run={true}
+                        stroke={`oklch(0.7 0.16 ${hue})`} fill={`oklch(0.7 0.16 ${hue} / .12)`} />
+                      <div className="st-arc-peak">peak {Math.round(peak * 100)}% in '{String(peakYr).slice(2)}</div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="st-arc-axis">
+                <span>{A.years[0].year}</span>
+                <span>{A.years[Math.floor(A.years.length / 2)].year}</span>
+                <span>{A.years[A.years.length - 1].year}</span>
+              </div>
+            </section>
+          );
+        })()}
+
         {/* lineups — Wikidata band-member gender (the layer MB can't give us) */}
         {I.LINEUPS && I.LINEUPS.featured && I.LINEUPS.featured.length >= 4 && (() => {
           const L = I.LINEUPS;
