@@ -4,6 +4,11 @@
 # deploy staging, assembled by stage-site.js on every build
 _site/
 
+# secrets — never commit (hub-level .env + any nested app .env)
+.env
+*.env
+**/.env
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db
