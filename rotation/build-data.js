@@ -172,14 +172,26 @@ const ORIGINS = fs.existsSync(ORIGINS_PATH) ? JSON.parse(fs.readFileSync(ORIGINS
 const CITYCOORDS_PATH = path.join(__dirname, "city-coords.json");
 const CITYCOORDS = fs.existsSync(CITYCOORDS_PATH) ? JSON.parse(fs.readFileSync(CITYCOORDS_PATH, "utf8")) : {};
 const hasOrigins = Object.keys(ORIGINS).length > 0;
+// ─────────── PINS (name-ambiguity overrides, pins.json) ───────────
+// Durable corrections for wrong entity matches (Bleach/Brutus/daine class). Consulted at read
+// time here; enrichers should prefer a pinned id over a blind name search. See pins.json._doc.
+const PINS = (() => { try { const p = JSON.parse(fs.readFileSync(path.join(__dirname, "pins.json"), "utf8")); delete p._doc; return p; } catch (e) { return {}; } })();
+const pinOf = (name) => PINS[name] || null;
 const originOf = (name) => {
+  const pn = pinOf(name);
+  if (pn && pn.origin) return { country: pn.origin.country || "", area: pn.origin.area || "", city: pn.origin.city || "" };
   const o = ORIGINS[name];
   if (!o || !o.country) return null;
   return { country: o.country, area: o.area || "", city: o.beginArea || "" };
 };
 // gender (Person artists only) → glyph; life-span → active / disbanded / deceased on artist pages
-const genderOf = (name) => (ORIGINS[name] && ORIGINS[name].gender) || "";
-const lifeOf = (name) => { const o = ORIGINS[name]; if (!o || !o.type || !("ended" in o)) return null; return { type: o.type, ended: !!o.ended, end: (o.end || "").slice(0, 4) }; };
+const genderOf = (name) => { const pn = pinOf(name); if (pn && "gender" in pn) return pn.gender; return (ORIGINS[name] && ORIGINS[name].gender) || ""; };
+const lifeOf = (name) => {
+  const pn = pinOf(name);
+  if (pn && pn.clearLife) return null;
+  if (pn && pn.life) return { type: pn.life.type || "Group", ended: !!pn.life.ended, end: (pn.life.end || "").slice(0, 4) };
+  const o = ORIGINS[name]; if (!o || !o.type || !("ended" in o)) return null; return { type: o.type, ended: !!o.ended, end: (o.end || "").slice(0, 4) };
+};
 
 // ─────────── Discogs styles/genres (discogs-cache.json, built by enrich-discogs.js) ───────────
 // Per artist: { id, styles: [[name,count],…], genres: [[name,count],…], releases, ambiguous }.
@@ -188,11 +200,15 @@ const DISCOGS_PATH = path.join(__dirname, "discogs-cache.json");
 const DISCOGS = fs.existsSync(DISCOGS_PATH) ? JSON.parse(fs.readFileSync(DISCOGS_PATH, "utf8")) : {};
 const hasDiscogs = Object.keys(DISCOGS).length > 0;
 function stylesOf(name) {
+  const pn = pinOf(name);
+  if (pn && pn.clearStyles) return pn.styles || [];   // wrong-entity Discogs match → drop (or use pinned styles)
   const d = DISCOGS[name];
   if (!d || !d.styles || d.styles.length === 0) return [];
   return d.styles.slice(0, 5).map(s => s[0]);
 }
 function dGenresOf(name) {
+  const pn = pinOf(name);
+  if (pn && pn.clearStyles) return pn.genres || [];
   const d = DISCOGS[name];
   if (!d || !d.genres || d.genres.length === 0) return [];
   return d.genres.slice(0, 3).map(g => g[0]);
@@ -1149,10 +1165,12 @@ if (hasDiscogs) {
   let artistsCovered = 0;
   for (const [name, plays] of artistPlays) {
     if (plays < 3) continue; // require ≥3 plays to count as real (not a one-off scrobble)
-    const d = DISCOGS[name];
-    if (!d || !d.styles || d.styles.length === 0) continue;
+    const pn = pinOf(name);
+    if (pn && pn.clearStyles && !(pn.styles && pn.styles.length)) continue; // pinned: wrong Discogs match, no styles to contribute
+    const styles = (pn && pn.clearStyles && pn.styles) ? pn.styles.map(s => Array.isArray(s) ? s : [s]) : (DISCOGS[name] && DISCOGS[name].styles);
+    if (!styles || styles.length === 0) continue;
     artistsCovered++;
-    const topStyles = d.styles.slice(0, 5).map(s => s[0]);
+    const topStyles = styles.slice(0, 5).map(s => s[0]);
     for (const s of topStyles) {
       if (!styleMap.has(s)) styleMap.set(s, { artists: [], plays: 0 });
       const m = styleMap.get(s);
@@ -1279,7 +1297,9 @@ let LIFESPAN = null;
   const whileListening = [], graves = [], elders = [], endYears = new Map(), lives = [];
   for (const [name, plays] of artistPlays) {
     if (plays < 5) continue;
-    const o = ORIGINS[name];
+    const pn = pinOf(name);
+    if (pn && pn.clearLife) continue; // pinned: MB matched a wrong entity, drop its life-span
+    const o = (pn && pn.life) || ORIGINS[name];
     if (!o || (!o.begin && !o.end && !o.ended)) continue;
     known++;
     const sp = span.get(name);

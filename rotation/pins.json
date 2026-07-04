@@ -1,0 +1,17 @@
+{
+  "_doc": "Name-ambiguity pins — the durable fix for wrong entity matches. build-data consults these at read time; enrichers should prefer a pinned id over a name search. Keys are the scrobble artist name. Fields: mbid/spotify/discogs = canonical ids; clearStyles = drop this artist's (wrong) Discogs styles; clearLife = drop its (wrong) MB life-span; origin/life/gender = hard overrides; note = why.",
+
+  "Bleach": {
+    "mbid": "3e79249f-f1fb-4d0b-b451-0fe1086b459f",
+    "spotify": "5gRsPZZNgrkagQnDlyFZUC",
+    "note": "Japanese punk band (Okinawa, 1998–2009). Name collides with German house + shoegaze Bleach."
+  },
+  "daine": {
+    "clearStyles": true,
+    "note": "Melbourne hyperpop artist. Discogs matched a wrong classical 'Daine' (Baroque/Organ) — was polluting the Style-Atlas Organ row."
+  },
+  "Brutus": {
+    "clearLife": true,
+    "note": "Belgian post-hardcore trio (formed ~2013). MB matched an unrelated 1960s act → bogus 'since 1966' elder."
+  }
+}
