@@ -46,19 +46,25 @@ WORD_RE = re.compile(r"[a-z']+")
 def score(text):
     acc = [0] * 10
     matched = 0
+    total = 0
+    uniq = set()
     for w in WORD_RE.findall(text.lower()):
+        total += 1
+        uniq.add(w)
         row = LEX.get(w)
         if row:
             for k in range(10):
                 acc[k] += row[k]
             matched += 1
     pos, neg = acc[POS_I], acc[NEG_I]
-    if pos + neg < 20:  # too few emotive words to trust a whole film
+    if pos + neg < 20 or total < 200:  # too thin to trust a whole film
         return None
     valence = round(100 * pos / (pos + neg))
     emo_counts = sorted(((acc[i], EMO[j]) for j, i in enumerate(EMO_I)), reverse=True)
     top = [e for c, e in emo_counts[:2] if c > 0]
-    return {"v": valence, "e": top, "m": matched}
+    # w = spoken words, u = unique words. Vocabulary richness (u/w) + talk-density
+    # (w ÷ runtime) are derived in the view where the item's runtime is available.
+    return {"v": valence, "e": top, "m": matched, "w": total, "u": len(uniq)}
 
 # film index: normalized "title|year" -> id
 def norm(s):
