@@ -518,6 +518,54 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+        {/* mood — Spotify audio valence × NRC lyric valence ("sounds happy / reads dark") */}
+        {I.MOOD && (I.MOOD.happyDark.length >= 3 || I.MOOD.darkHappy.length >= 3) && (() => {
+          const M = I.MOOD;
+          const Cut = ({ t }) => (
+            <div className="st-ug-cut" data-link={true} onClick={() => go("track", t.id)}>
+              <GenCover hue={t.hue} name={t.artist} size={40} radius={4} />
+              <div style={{ minWidth: 0 }}>
+                <div className="st-row-name">{t.title}</div>
+                <div className="st-row-sub">{t.artist} · <span style={{ color: "oklch(0.72 0.15 145)" }}>sounds {t.aud}</span> · <span style={{ color: "oklch(0.68 0.16 25)" }}>reads {t.lyr}</span></div>
+              </div>
+            </div>
+          );
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Sounds happy, reads dark</div>
+              <div className="st-big">
+                Your library <em>sounds {M.avgAud}</em> but <em>reads {M.avgLyr}</em>
+                <span style={{ color: "var(--ink-soft)", fontSize: ".5em", fontStyle: "normal", display: "block", marginTop: 6 }}>
+                  0–100 — how it sounds (Spotify) vs what the words say (NRC lyric sentiment)
+                </span>
+              </div>
+              <div className="st-sub">
+                Across {fmt(M.tracks)} tracks scored on both axes, {M.happyDarkCount} are bright melodies wrapped
+                around bleak words{M.darkHappyCount ? <>, and {M.darkHappyCount} are the reverse — heavy sound, hopeful text</> : null}.
+              </div>
+              {M.happyDark.length >= 3 && (
+                <>
+                  <div className="st-title-sm" style={{ marginTop: 20, marginBottom: 10 }}>Bright sound, bleak words</div>
+                  <div className="st-ug-cuts" style={{ marginTop: 0 }}>{M.happyDark.slice(0, 6).map(t => <Cut key={t.id} t={t} />)}</div>
+                </>
+              )}
+              {M.darkHappy.length >= 3 && (
+                <>
+                  <div className="st-title-sm" style={{ marginTop: 20, marginBottom: 10 }}>Heavy sound, hopeful words</div>
+                  <div className="st-ug-cuts" style={{ marginTop: 0 }}>{M.darkHappy.slice(0, 6).map(t => <Cut key={t.id} t={t} />)}</div>
+                </>
+              )}
+              {M.emotions.length > 0 && (
+                <div className="st-sub" style={{ marginTop: 18 }}>
+                  Dominant lyric emotion across your plays: {M.emotions.slice(0, 4).map((e, i) => (
+                    <React.Fragment key={e.emo}>{i > 0 ? ", " : ""}<b style={{ color: "var(--ink)" }}>{e.emo}</b></React.Fragment>
+                  ))}.
+                </div>
+              )}
+            </section>
+          );
+        })()}
+
         {/* lineups — Wikidata band-member gender (the layer MB can't give us) */}
         {I.LINEUPS && I.LINEUPS.featured && I.LINEUPS.featured.length >= 4 && (() => {
           const L = I.LINEUPS;
