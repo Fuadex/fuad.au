@@ -23,19 +23,39 @@ const shSmall = (url) => !url ? "" :
 const shBig = (url) => !url ? "" :
   url.includes("front-250") ? url.replace("front-250", "front-500") : url;
 
-// — needle drop: plays the album's top track's 30s preview; reports state so the vinyl spins —
-function ShNeedle({ trackKey, hue, onState }) {
+// — needle drop: plays the album's top track's 30s preview; reports state so the vinyl spins.
+// Unplayed (shrinkwrapped) records have no track in our library → fall back to the keyless
+// iTunes Search API (guarded: normalized album title must match exactly + artist must match).
+const _shItCache = new Map();   // "artist~album" → previewUrl | null
+function ShNeedle({ trackKey, artist, album, hue, onState }) {
   const [playing, setPlaying] = React.useState(false);
+  const ck = (artist || "") + "~" + (album || "");
+  const [itUrl, setItUrl] = React.useState(() => _shItCache.has(ck) ? _shItCache.get(ck) : undefined);
   const ref = React.useRef(null);
   const set = (p) => { setPlaying(p); onState && onState(p); };
-  React.useEffect(() => () => { if (ref.current) { ref.current.pause(); ref.current = null; } onState && onState(false); }, [trackKey]);
+  React.useEffect(() => () => { if (ref.current) { ref.current.pause(); ref.current = null; } onState && onState(false); }, [trackKey, ck]);
   const hash = trackKey && window.ROTATION_PREVIEWS && window.ROTATION_PREVIEWS[trackKey];
-  if (!hash) return null;
+  React.useEffect(() => {
+    if (hash || !artist || !album || _shItCache.has(ck)) return;
+    const nrm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\(.*?\)|\[.*?\]/g, "").replace(/[^a-z0-9ぁ-んァ-ヶ一-龠]/gu, "");
+    fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artist + " " + album)}&media=music&entity=song&limit=8`)
+      .then(r => r.json())
+      .then(j => {
+        const aN = nrm(artist), cN = nrm(album);
+        const hit = (j.results || []).find(r => r.previewUrl && nrm(r.collectionName) === cN &&
+          (nrm(r.artistName).includes(aN) || aN.includes(nrm(r.artistName))));
+        const url = hit ? hit.previewUrl : null;
+        _shItCache.set(ck, url); setItUrl(url);
+      })
+      .catch(() => { _shItCache.set(ck, null); setItUrl(null); });
+  }, [ck, hash]);
+  const src = hash ? `https://p.scdn.co/mp3-preview/${hash}?cid=65b708073fc0480ea92a077233ca87bd` : itUrl;
+  if (!src) return null;
   const toggle = (e) => {
     e.stopPropagation();
     if (ref.current && !ref.current.paused) { ref.current.pause(); set(false); return; }
     if (!ref.current) {
-      ref.current = new Audio(`https://p.scdn.co/mp3-preview/${hash}?cid=65b708073fc0480ea92a077233ca87bd`);
+      ref.current = new Audio(src);
       ref.current.addEventListener("ended", () => set(false));
       ref.current.addEventListener("error", () => set(false));
     }
@@ -90,7 +110,7 @@ function ShReader({ al, onClose, go }) {
             </div>
           )}
           <div className="sh-reader-actions">
-            <ShNeedle trackKey={al.topTrackKey} hue={al.hue} onState={setSpin} />
+            <ShNeedle trackKey={al.topTrackKey} artist={al.artist} album={al.title} hue={al.hue} onState={setSpin} />
             {!al.unplayed && <button className="sh-open" onClick={() => { onClose(); go("album", key); }}>full page →</button>}
             <a className="sh-open" style={{ textDecoration: "none" }} target="_blank" rel="noopener noreferrer"
               href={`https://www.last.fm/music/${encodeURIComponent(al.artist)}/${encodeURIComponent(al.title)}`}>last.fm ↗</a>
@@ -120,6 +140,45 @@ function ShSpine({ al, expanded, onExpand, onOpen }) {
         : <span className="sh-label">{al.title}</span>}
     </div>
   );
+}
+
+// ── RE-SHELVING LENSES — same records, different walls ──
+const SH_LENSES = [["genre", "genre"], ["decade", "decade"], ["found", "when you found them"], ["mood", "mood"], ["done", "completeness"]];
+function shGroupBy(lens, albums, R) {
+  if (lens === "genre" || !lens) return shGroupShelves(albums, R);
+  const groups = new Map();
+  const put = (k, name, hue, order, al) => {
+    if (!groups.has(k)) groups.set(k, { fam: "L" + k, name, hue, order, albums: [], plays: 0 });
+    const g = groups.get(k); g.albums.push(al); g.plays += al.plays;
+  };
+  for (const al of albums) {
+    if (lens === "decade") {
+      const y = (al.meta && al.meta[0]) || 0;
+      if (!y) put("zz", "year unknown", 260, -1, al);
+      else { const d = Math.floor(y / 10) * 10; put(String(d), `${d}s`, (200 + (d / 10) * 37) % 360, d, al); }
+    } else if (lens === "found") {
+      const y = al.firstYear || 0;
+      if (!y) put("zz", "undated", 260, -1, al);
+      else put(String(y), `${y} — when you found them`, (120 + (y - 2006) * 17) % 360, y, al);
+    } else if (lens === "mood") {
+      const d = al.dna;
+      if (!d || !d.length) put("zz", "unmeasured", 260, -1, al);
+      else {
+        const e = d[0], v = d[1];
+        const z = e >= 50 ? (v < 50 ? ["di", "dark · intense", 8, 4] : ["bi", "bright · intense", 60, 3])
+          : (v < 50 ? ["dc", "dark · calm", 250, 2] : ["bc", "bright · calm", 150, 1]);
+        put(z[0], z[1], z[2], z[3], al);
+      }
+    } else if (lens === "done") {
+      if (!al.tt) put("zz", "length unknown", 260, -1, al);
+      else {
+        const pct = Math.min(1, (al.played || 0) / al.tt);
+        const z = pct >= 0.9 ? ["a", "finished — every track", 150, 3] : pct >= 0.34 ? ["b", "half-heard", 60, 2] : ["c", "barely opened", 8, 1];
+        put(z[0], z[1], z[2], z[3], al);
+      }
+    }
+  }
+  return [...groups.values()].sort((a, b) => b.order - a.order);
 }
 
 // group album records into genre shelves (family rows), Misc last — shared by both modes
@@ -171,6 +230,7 @@ function ShelvesView({ go }) {
   const [caps, setCaps] = React.useState({});             // shelfKey → extra visibility
   const [split, setSplit] = React.useState({});           // famIdx → split into subgenre rows
   const [mode, setMode] = React.useState("racks");        // racks | wrap (the Unplayed Shelf)
+  const [lens, setLens] = React.useState("genre");        // re-shelving lens (racks mode)
   const [unReady, setUnReady] = React.useState(!!window.ROTATION_UNPLAYED);
   React.useEffect(() => {
     let need = 0; const done = () => { if (--need <= 0) setReady(true); };
@@ -214,8 +274,9 @@ function ShelvesView({ go }) {
       });
     }
     albums.sort((x, y) => y.plays - x.plays);
-    return { albums, shelves: shGroupShelves(albums, R) };
+    return { albums };
   }, [ready, R]);
+  const rackShelves = React.useMemo(() => data ? shGroupBy(lens, data.albums, R) : null, [data, lens, R]);
 
   // the shrinkwrap wall — LPs by well-played artists that were never pressed play on
   const unData = React.useMemo(() => {
@@ -282,9 +343,18 @@ function ShelvesView({ go }) {
             <span className="r-mono" style={{ fontSize: 10 }}>(tap once on touch)</span> — click the cover for the counter.</>}
       </p>
 
+      {mode === "racks" && (
+        <div className="sh-lensbar">
+          <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)" }}>shelve by</span>
+          {SH_LENSES.map(([k, lbl]) => (
+            <button key={k} className="sh-lens" data-on={lens === k} onClick={() => { setLens(k); setSplit({}); }}>{lbl}</button>
+          ))}
+        </div>
+      )}
+
       {mode === "wrap" && !unData && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 30 }}>unwrapping…</div>}
 
-      {(mode === "wrap" ? (unData ? unData.shelves : []) : data.shelves).map(g => split[g.fam] && mode === "racks"
+      {(mode === "wrap" ? (unData ? unData.shelves : []) : rackShelves).map(g => split[g.fam] && mode === "racks" && lens === "genre"
         ? (
           <div key={g.fam} className="sh-famgroup">
             <div className="sh-shelf-h" style={{ marginBottom: 2 }}>
@@ -299,16 +369,22 @@ function ShelvesView({ go }) {
             ))}
           </div>
         )
-        : <ShShelf key={mode + g.fam} id={mode + g.fam} name={g.name} hue={g.hue} albums={g.albums}
-            cap={SH_CAP + (caps[mode + g.fam] || 0)}
-            onMore={() => setCaps(p => ({ ...p, [mode + g.fam]: (p[mode + g.fam] || 0) + SH_STEP }))}
-            splittable={mode === "racks" && g.albums.length > 6} splitOn={!!split[g.fam]}
+        : <ShShelf key={mode + lens + g.fam} id={mode + lens + g.fam} name={g.name} hue={g.hue} albums={g.albums}
+            cap={SH_CAP + (caps[mode + lens + g.fam] || 0)}
+            onMore={() => setCaps(p => ({ ...p, [mode + lens + g.fam]: (p[mode + lens + g.fam] || 0) + SH_STEP }))}
+            splittable={mode === "racks" && lens === "genre" && g.albums.length > 6} splitOn={!!split[g.fam]}
             onSplit={() => setSplit(p => ({ ...p, [g.fam]: !p[g.fam] }))}
             expanded={expanded} setExpanded={setExpanded} setReader={setReader} />)}
 
       {reader && <ShReader al={reader} onClose={() => setReader(null)} go={go} />}
 
       <style>{`
+        .sh-lensbar { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin: -6px 0 20px; }
+        .sh-lens { padding: 5px 12px; border-radius: 999px; border: 1px solid var(--rule); background: none;
+          color: var(--ink-faint); cursor: pointer; font-family: var(--mono); font-size: 9px;
+          letter-spacing: .1em; text-transform: uppercase; transition: color .15s, border-color .15s; }
+        .sh-lens:hover { color: var(--ink); }
+        .sh-lens[data-on="true"] { color: var(--accent); border-color: var(--accent-dim); }
         .sh-shelf { margin-bottom: 26px; content-visibility: auto; contain-intrinsic-size: auto 190px; }
         .sh-shelf[data-depth="1"] { margin: 0 0 16px 14px; }
         .sh-famgroup { margin-bottom: 30px; }
