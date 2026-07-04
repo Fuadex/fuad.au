@@ -1010,8 +1010,10 @@ function enrichExtras(item) {
   const noteEn = (window.CULTURE_NOTES_EN || {})[item.id];   // interpretive EN redraft
   const tmdb = (window.CULTURE_TMDB || {})[item.id];         // TMDB synopsis (toggle source)
   const addBadges = (window.CULTURE_BADGES || {})[item.id];  // curated badge additions
-  if (!omdb && !book && !gameTt && !fwNote && !noteEn && !tmdb && !addBadges) return item;
+  const scriptMood = (window.CULTURE_SCRIPT_MOOD || {})[item.id]; // NRC dialogue mood {v,e,m}
+  if (!omdb && !book && !gameTt && !fwNote && !noteEn && !tmdb && !addBadges && !scriptMood) return item;
   const out = book ? { ...item, ...book } : { ...item };
+  if (scriptMood) out.scriptMood = scriptMood;
   if (omdb) {
     out.omdb = omdb;
     if (omdb.imdbID) out.imdbUrl = `https://www.imdb.com/title/${omdb.imdbID}/`;
@@ -1849,6 +1851,18 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
                 {mc && <span className="score" title="Metacritic"><b>Metacritic</b> {mc}</span>}
                 {fw && <span className="score" title="Filmweb community average"><b>Filmweb</b> ⌀ {fw}</span>}
                 {a && <span className="reader-awards" title={a.original}>{a.chips.map((c, i) => <span className="award-chip" key={i}>{c}</span>)}</span>}
+              </div>
+            );
+          })()}
+          {item.scriptMood && (() => {
+            const m = item.scriptMood;
+            const col = m.v >= 62 ? 'oklch(0.7 0.15 145)' : m.v <= 42 ? 'oklch(0.64 0.17 25)' : 'oklch(0.72 0.12 85)';
+            return (
+              <div className="reader-mood" title="How the dialogue reads — NRC sentiment over the film's transcript. This measures the words characters say, not the film's overall tone.">
+                <span className="reader-mood-label">Dialogue reads</span>
+                <span className="reader-mood-bar"><i style={{ width: m.v + '%', background: col }} /></span>
+                <span className="reader-mood-v" style={{ color: col }}>{m.v}</span>
+                {m.e && m.e.length > 0 && <span className="reader-mood-emo">{m.e.join(' · ')}</span>}
               </div>
             );
           })()}

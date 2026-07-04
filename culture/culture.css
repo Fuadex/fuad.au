@@ -895,6 +895,17 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   color: var(--ink-soft); background: rgba(255,255,255,.02);
 }
 .reader-scores .score b { font-weight: 600; color: var(--ink-faint); letter-spacing: .04em; }
+/* dialogue mood — NRC sentiment over the transcript (what the words say, not the film's tone) */
+.reader-mood {
+  display: flex; align-items: center; gap: 10px; cursor: help;
+  margin: -6px 0 16px; font-family: var(--mono); font-size: 11px; color: var(--ink-soft);
+}
+.reader-mood-label { letter-spacing: .04em; color: var(--ink-faint); white-space: nowrap; }
+.reader-mood-bar { flex: 0 1 120px; height: 6px; border-radius: 4px; overflow: hidden;
+  background: rgba(255,255,255,.06); }
+.reader-mood-bar i { display: block; height: 100%; border-radius: 4px; }
+.reader-mood-v { font-weight: 600; }
+.reader-mood-emo { color: var(--ink-faint); text-transform: capitalize; }
 /* Parsed award chips share the scores line; full OMDb sentence on hover. */
 .reader-scores .reader-awards {
   display: inline-flex; flex-wrap: wrap; gap: 6px; align-items: center;
