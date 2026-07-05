@@ -1011,6 +1011,12 @@ function AlbumView({ id, go }) {
     if (window.ROTATION_MEDIA) { setReady(true); return; }
     const s = document.createElement("script"); s.src = "media-index.js"; s.onload = () => setReady(true); document.head.appendChild(s);
   }, []);
+  // 30-second "needle drop" previews (same as Shelves) — load the hash index on demand
+  const [, setPrevReady] = React.useState(!!window.ROTATION_PREVIEWS);
+  React.useEffect(() => {
+    if (window.ROTATION_PREVIEWS) return;
+    const s = document.createElement("script"); s.src = "track-previews.js"; s.onload = () => setPrevReady(true); document.head.appendChild(s);
+  }, []);
   // per-track themes for the "mostly about…" roll-up — tiny extra render when it arrives
   const [themesReady, setThemesReady] = React.useState(!!window.ROTATION_TRACKTHEMES);
   React.useEffect(() => {
@@ -1091,7 +1097,8 @@ function AlbumView({ id, go }) {
           )}
           {subs.length > 0 && <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
             {subs.map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)}>{s}</span>)}</div>}
-          <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap", alignItems: "center" }}>
+            {standout && <ShNeedle trackKey={R.slug(data.artist) + "~" + R.slug(standout.title)} artist={data.artist} album={data.title} hue={hue} />}
             <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(data.artist)}/${encodeURIComponent(data.title)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(data.artist + " " + data.title)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
