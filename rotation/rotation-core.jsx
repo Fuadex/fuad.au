@@ -194,6 +194,13 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
   color: var(--accent); background: var(--accent-bg); }
 /* per-row "seen live" marker in track lists (🎤) — small, inline, doesn't shift layout */
 .r-livemark { font-size: 11px; line-height: 1; flex: none; cursor: help; filter: saturate(.9); }
+/* "what it's about" blurb on TrackView — Genius About excerpt, community-written */
+.tv-about { max-width: 680px; margin: 0 0 var(--gap); padding: 14px 18px; border-left: 2px solid var(--accent-dim);
+  background: var(--panel); border-radius: 0 8px 8px 0; }
+.tv-about-txt { font-family: var(--serif); font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
+.tv-about-src { display: inline-block; margin-left: 10px; font-family: var(--mono); font-size: 9px;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); text-decoration: none; white-space: nowrap; }
+.tv-about-src:hover { color: var(--accent); }
 /* mood strip: how it SOUNDS (Spotify valence) vs how it READS (NRC lyric sentiment) */
 .tv-mood { display: grid; gap: 8px; max-width: 520px; margin: 0 0 var(--gap); padding: 14px 16px;
   border: 1px solid var(--rule); border-radius: 8px; }
