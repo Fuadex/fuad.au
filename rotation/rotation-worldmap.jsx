@@ -546,8 +546,8 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
             {(pane === "albums" || pane === "songs") && (() => {
               const rows = pane === "albums" ? resultMedia.albums : resultMedia.songs;
               if (!rows.length) return <div style={{ color: "var(--ink-soft)", fontFamily: "var(--mono)", fontSize: 12 }}>{adetail ? "Nothing here." : "loading…"}</div>;
-              return <div className="cal-rows">{rows.slice(0, limit).map((r, i) => { const kept = !!R.byId[r.aid]; return (
-                <div key={r.aid + "|" + r.title + i} className="cal-row" data-link={kept} onClick={() => kept && go("artist", r.aid)}>
+              return <div className="cal-rows">{rows.slice(0, limit).map((r, i) => { const mid = R.slug(r.artist) + "~" + R.slug(r.title); return (
+                <div key={r.aid + "|" + r.title + i} className="cal-row" data-link={true} onClick={() => go(pane === "albums" ? "album" : "track", mid)} title={`${r.title} →`}>
                   <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={(R.byId[r.aid] || {}).hue || 210} name={r.artist} size={34} radius={3} />
                   <div style={{ minWidth: 0, flex: 1 }}><div className="cal-nm" style={{ fontStyle: "italic" }}>{r.title}</div><div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{r.artist}</div></div>
                   <span className="cal-pl">{fmt(r.plays)}</span></div>); })}</div>;
@@ -580,7 +580,8 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
             display: flex; flex-direction: column; min-height: 0; }
           .mp-restitle { font-size: 15px !important; line-height: 1.3; }
           .mp-resbody { flex: 1 1 0; height: 0; min-height: 0; overflow-y: auto; padding-right: 4px; }
-          .mp-results .mp-covergrid { grid-template-columns: repeat(2, 1fr); }
+          .mp-results .mp-covergrid { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+          .mp-results .mp-covergrid .mp-covernm { font-size: 8.5px; }
           .mp-list { grid-column: 1 / span 2; grid-row: 2; margin-top: 0 !important; }
           .mp-list > div:last-child { max-height: 220px !important; }
           .mp-cal { grid-column: 3; grid-row: 2; margin-top: 0 !important; }
