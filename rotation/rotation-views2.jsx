@@ -1257,18 +1257,24 @@ function PreviewBtn({ id, hue, artist, title }) {
 // intentionally omitted. Reads come from blurb-reads (bake-off data today; the real pipeline later).
 const BLURB_ORDER = [["haiku", "Haiku"], ["fable", "Fable"], ["opus", "Opus"]];
 function BlurbSwitcher({ id, about }) {
-  const [ready, setReady] = React.useState(!!window.ROTATION_BLURB_DEMO);
+  const [, bump] = React.useReducer(x => x + 1, 0);   // re-render when a lazy data file lands
   React.useEffect(() => {
-    if (window.ROTATION_BLURB_DEMO) { setReady(true); return; }
-    const s = document.createElement("script"); s.src = "blurb-demo.js";
-    s.onload = () => setReady(true); s.onerror = () => setReady(true); document.head.appendChild(s);
+    const load = (src, glob) => { if (window[glob]) return; const s = document.createElement("script"); s.src = src; s.onload = bump; s.onerror = bump; document.head.appendChild(s); };
+    load("llm-about.js", "ROTATION_LLM_ABOUT"); load("blurb-demo.js", "ROTATION_BLURB_DEMO");
   }, []);
   const [pick, setPick] = React.useState(null);
   React.useEffect(() => { setPick(null); }, [id]);   // new song → default read; clicks never clobbered
-  const reads = (ready && window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null;
-  // Haiku gist first (the default), then Fable / Opus deeper reads, then the human Genius blurb.
+  const llm = (window.ROTATION_LLM_ABOUT && window.ROTATION_LLM_ABOUT[id]) || null;   // real pipeline read
+  const reads = (window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null; // bake-off multi-model
+  // primary = the shipped gist (Haiku, or Sonnet where it sharpened/recovered) → Opus deeper read →
+  // Genius (human). Bake-off songs still expose the full Haiku/Fable/Opus set.
   const sources = [];
-  if (reads) for (const [m, label] of BLURB_ORDER) if (reads[m]) sources.push({ m, label, text: reads[m] });
+  if (llm) {
+    sources.push({ m: llm.src, label: llm.src === "sonnet" ? "Sonnet" : "Haiku", text: llm.about });
+    if (llm.opus) sources.push({ m: "opus", label: "Opus", text: llm.opus });
+  } else if (reads) {
+    for (const [m, label] of BLURB_ORDER) if (reads[m]) sources.push({ m, label, text: reads[m] });
+  }
   const geniusText = (about && about[0]) || (reads && reads.genius);
   if (geniusText) sources.push({ m: "genius", label: "Genius", text: geniusText, link: about && about[1] ? `https://genius.com/songs/${about[1]}` : null });
   if (!sources.length) return null;
