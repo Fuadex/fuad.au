@@ -104,6 +104,7 @@ function OvCalRail({ go, onYear, onPeriod }) {
     const iso = new Date(Date.UTC(yr, mo, d)).toISOString().slice(0, 10);
     let key = iso;
     if (gran === "week") { const dow = (new Date(Date.UTC(yr, mo, d)).getUTCDay() + 6) % 7; key = new Date(Date.UTC(yr, mo, d) - dow * 86400e3).toISOString().slice(0, 10); }
+    if (gran === "month") key = `${yr}-${String(mo + 1).padStart(2, "0")}`;   // whole selected month
     setSelDay(key === selDay ? null : key);
     onPeriod && onPeriod(key === selDay ? null : { gran, key });   // filters the map's results (stays on page)
   };
@@ -123,15 +124,19 @@ function OvCalRail({ go, onYear, onPeriod }) {
           {MON.map((m, i) => <option key={m} value={i}>{m}</option>)}
         </select>
         <div className="r-seg r-seg-sm" style={{ display: "flex", marginLeft: "auto" }}>
-          <button data-on={gran === "day"} onClick={() => setGran("day")}>d</button>
-          <button data-on={gran === "week"} onClick={() => setGran("week")}>w</button>
+          {["day", "week", "month"].map(g => (
+            <button key={g} data-on={gran === g} title={g === "month" ? "filter by the whole selected month" : undefined}
+              onClick={() => { setGran(g); setSelDay(null); onPeriod && onPeriod(null); }}>{g[0]}</button>
+          ))}
         </div>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: `repeat(${dim}, 1fr)`, gap: 2 }}>
         {dayStrip.map((d) => {
           const v = counts[doy(d)] || 0;
           const iso = `${yr}-${String(mo + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
-          const isSel = selDay && (gran === "day" ? selDay === iso : (new Date(iso) >= new Date(selDay) && new Date(iso) < new Date(new Date(selDay).getTime() + 7 * 86400e3)));
+          const isSel = selDay && (gran === "day" ? selDay === iso
+            : gran === "month" ? iso.slice(0, 7) === selDay
+            : (new Date(iso) >= new Date(selDay) && new Date(iso) < new Date(new Date(selDay).getTime() + 7 * 86400e3)));
           return <i key={d} title={`${iso} · ${v} plays — filter results`} onClick={() => pick(d)}
             style={{ height: 22, borderRadius: 2, background: v ? `oklch(${0.32 + (v / mx) * 0.45} ${0.05 + (v / mx) * 0.12} var(--acc-h))` : "var(--bg-3)",
               opacity: v ? 1 : 0.5, cursor: "pointer", outline: isSel ? "1.5px solid var(--accent)" : "none" }} />;
@@ -201,7 +206,16 @@ function OverviewView({ t, go }) {
 
   return (
     <div className="r-view" ref={ref}>
-      {/* header title/lede removed (Fuad 2026-07-05: taking space) — straight into the bento */}
+      {/* header restored (Fuad 2026-07-05: "it looked better back then after all") */}
+      <div className="r-viewhead">
+        <div>
+          <div className="r-kicker">Rotation · since {new Date(T.since).getFullYear()}</div>
+          <h1 className="r-title">A life, <em>counted</em><span className="dot">.</span></h1>
+        </div>
+        <p className="r-lede">Every track I've played, since the mid-2000s —
+          turned into something I can actually <b>look at</b>.</p>
+      </div>
+
       {/* bento */}
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
         {/* now playing — top-right corner of the pulse row (DOM-first so mobile still leads
@@ -235,16 +249,29 @@ function OverviewView({ t, go }) {
           </div>
         </div>
 
-        {/* streak — squeezed centrally beside the recent list */}
+        {/* streak — current run + when the all-time best happened (INSIGHTS.STREAK carries the range) */}
         <div className="r-card ov-streak" style={{ gridColumn: "span 2", padding: 14, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
-          <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Streak</b></span></div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 4 }}>
-            <div className="r-stat-n" style={{ fontSize: 38 }}>{T.streak.current}</div>
-            <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>days</span>
+          <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Streak</b></span>
+            {T.streak.current >= T.streak.best ? <span className="meta" style={{ color: "var(--accent)" }}>record!</span> : null}</div>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 2 }}>
+            <div className="r-stat-n" style={{ fontSize: 34 }}>{T.streak.current}</div>
+            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>days</span>
           </div>
-          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".08em" }}>
-            best <span style={{ color: "var(--accent)" }}>{T.streak.best}</span>
-          </div>
+          {(() => {
+            const S = R.INSIGHTS && R.INSIGHTS.STREAK;
+            const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const f = (d) => { const x = new Date(d + "T00:00:00Z"); return MON[x.getUTCMonth()] + " '" + String(x.getUTCFullYear()).slice(2); };
+            return (
+              <div>
+                <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".08em" }}>
+                  best <span style={{ color: "var(--accent)" }}>{T.streak.best}</span>{S && S.start ? <> · {f(S.start)}–{f(S.end)}</> : null}
+                </div>
+                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 3 }}>
+                  {T.streak.best > T.streak.current ? (T.streak.best - T.streak.current) + " days from the record" : "longest run ever — keep going"}
+                </div>
+              </div>
+            );
+          })()}
         </div>
 
         {/* this week — promoted from the insight deck into the pulse row (Fuad 2026-07-05);
@@ -259,17 +286,22 @@ function OverviewView({ t, go }) {
             <div className="r-card ov-week" style={{ gridColumn: "span 3", padding: 14, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>This week</b></span>
                 <span className="meta" style={{ color: up ? "var(--accent)" : "var(--ink-faint)" }}>{up ? "▲" : "▼"} {Math.abs(delta)}%</span></div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 4 }}>
-                <div className="r-stat-n" style={{ fontSize: 38 }}>{fmt(w.plays7)}</div>
-                <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>plays</span>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 2 }}>
+                <div className="r-stat-n" style={{ fontSize: 34 }}>{fmt(w.plays7)}</div>
+                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>plays</span>
               </div>
               {ta ? (
                 <div style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", minWidth: 0 }} onClick={() => go("artist", ta.artistId)}>
-                  <GenCover hue={(R.byId[ta.artistId] || (R.expById && R.expById[ta.artistId]) || { hue: 210 }).hue} name={ta.name} size={22} radius={2} />
-                  <span style={{ fontSize: 11.5, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{ta.name}</span>
-                  <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", flex: "none" }}>#1</span>
+                  <GenCover hue={(R.byId[ta.artistId] || (R.expById && R.expById[ta.artistId]) || { hue: 210 }).hue} name={ta.name} size={26} radius={2} />
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ fontSize: 11.5, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{ta.name}</div>
+                    <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>#1 · {ta.plays} plays</div>
+                  </div>
                 </div>
               ) : <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>vs your weekly average</div>}
+              {w.newArtistsThisWeek > 0
+                ? <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".06em", textTransform: "uppercase", marginTop: 6 }}>{w.newArtistsThisWeek} new artist{w.newArtistsThisWeek !== 1 ? "s" : ""} this week</div>
+                : <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 6 }}>no new artists yet</div>}
             </div>
           );
         })()}
@@ -313,24 +345,46 @@ function OverviewView({ t, go }) {
         {/* the four lifetime stats — one row, directly under the map/flow; hours + distinct
             artists react to the active map/calendar filter (Fuad). */}
         <div className="r-card m-2col ov-strip" style={{ gridColumn: "span 8", padding: 20, display: "grid",
-          gridTemplateColumns: "repeat(4,1fr)", gap: 18, alignItems: "center" }}>
+          gridTemplateColumns: "repeat(5,1fr)", gap: 16, alignItems: "center" }}>
           <Stat n={fStats && fStats.active ? fmt(fStats.hours) : fmt(Math.round(hrs))} sub={fStats && fStats.active ? "hours · " + fStats.label : "hours listened"} onClick={() => go("calendar")} />
           <Stat n={fStats && fStats.active ? fmt(fStats.artists) : fmt(T.artists)} sub={fStats && fStats.active ? "artists · filtered" : "distinct artists"} onClick={() => go("explore")} />
           <Stat n={T.perDay} sub="avg / day" />
           <Stat n={sinceYears + " yr"} sub="of history" />
+          <Stat n={R.TOTALS.topDay.count} sub={"heaviest day · " + R.TOTALS.topDay.date.slice(2)} onClick={() => go("calendar")} />
         </div>
 
-        {/* peak day */}
-        <div className="r-card ov-stat-link ov-heavy" style={{ gridColumn: "span 4", padding: 18, cursor: "pointer" }} onClick={() => go("calendar")}>
-          <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Heaviest day</b></span>
-            <span className="meta">{R.TOTALS.topDay.date} ↗</span></div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 8, margin: "10px 0 6px" }}>
-            <div className="r-stat-n" style={{ fontSize: 40 }}>{R.TOTALS.topDay.count}</div>
-            <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>plays</span>
-          </div>
-          <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13, color: "var(--ink-soft)", lineHeight: 1.4 }}>
-            “{R.TOTALS.topDay.note}”</div>
-        </div>
+        {/* emotional weather now — last 90 days' sounds/reads vs the library baseline */}
+        {(() => {
+          const M = R.INSIGHTS && R.INSIGHTS.MOOD, N = M && M.now;
+          if (!N) return null;
+          const d = (v, avg) => v - avg;
+          const word = (dv) => dv >= 4 ? "brighter" : dv <= -4 ? "darker" : "steady";
+          const Bar = ({ label, v, avg, col }) => (
+            <div style={{ display: "grid", gridTemplateColumns: "52px 1fr 26px", gap: 9, alignItems: "center" }}>
+              <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-soft)" }}>{label}</span>
+              <div style={{ position: "relative", height: 7, background: "var(--bg-3)", borderRadius: 4 }}>
+                <div style={{ position: "absolute", inset: "0 auto 0 0", width: v + "%", background: col, borderRadius: 4 }} />
+                <div title={"library average " + avg} style={{ position: "absolute", top: -2, bottom: -2, left: avg + "%", width: 2, background: "var(--ink-faint)", borderRadius: 1 }} />
+              </div>
+              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
+            </div>
+          );
+          return (
+            <div className="r-card ov-weather" style={{ gridColumn: "span 4", padding: 18, cursor: "pointer" }} onClick={() => go("stories", "emotional-weather")}>
+              <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}><span className="lbl"><b>Emotional weather</b></span>
+                <span className="meta">last {N.days} days ↗</span></div>
+              <div style={{ display: "grid", gap: 8 }}>
+                <Bar label="Sounds" v={N.aud} avg={M.avgAud} col="oklch(0.72 0.15 145)" />
+                <Bar label="Reads" v={N.lyr} avg={M.avgLyr} col="oklch(0.68 0.16 25)" />
+              </div>
+              <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13, color: "var(--ink-soft)", marginTop: 10 }}>
+                {word(d(N.aud, M.avgAud)) === "steady" && word(d(N.lyr, M.avgLyr)) === "steady"
+                  ? <>Right on your baseline{N.emo ? <> — reading <b style={{ color: "var(--ink)" }}>{N.emo}</b></> : null}.</>
+                  : <>Sounding {word(d(N.aud, M.avgAud))}, reading {word(d(N.lyr, M.avgLyr))}{N.emo ? <> — mostly <b style={{ color: "var(--ink)" }}>{N.emo}</b></> : null}.</>}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* dynamic insight feed — consolidated into ONE module (milestone/tip-over/week/riser/
             new-this-month/story-of-day merged, per Fuad); full-width now that recently-played
@@ -420,10 +474,9 @@ function OverviewView({ t, go }) {
           .ov-week .spark, .ov-scrob .spark { max-height: 30px; }
           /* row 3 = map band (1/-1 inline); row 4 — the four stats (left, they react to the
              map/calendar filter) + heaviest day (right) */
-          .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(4, 1fr) !important; gap: 18px !important; }
-          .ov-heavy    { grid-column: 9 / -1 !important; }
-          .ov-heavy .r-stat-n { font-size: 30px !important; }
-          .ov-strip .r-stat-n { font-size: 26px !important; }
+          .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(5, 1fr) !important; gap: 14px !important; }
+          .ov-weather  { grid-column: 9 / -1 !important; }
+          .ov-strip .r-stat-n { font-size: 24px !important; }
           /* insights module is full-width → its four cards run in one rank */
           .ov-insgrid > .r-card { grid-column: span 3 !important; }
         }

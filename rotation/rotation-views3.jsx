@@ -1538,12 +1538,16 @@ function StoriesView({ t, go, seed }) {
           padding: 10px 2px; margin: -6px 0 16px; background: var(--bg);
           scrollbar-width: none; -webkit-overflow-scrolling: touch; }
         .st-toc::-webkit-scrollbar { display: none; }
-        .st-toc button { flex: none; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--rule);
-          background: transparent; color: var(--ink-faint); font-family: var(--mono); font-size: 9px;
+        /* plain text crumbs — no pills/ellipsoids (Fuad 2026-07-05); active = accent + underbar */
+        .st-toc button { flex: none; padding: 6px 4px 8px; border: none; border-radius: 0;
+          background: transparent; color: var(--ink-faint); font-family: var(--mono); font-size: 9.5px;
           letter-spacing: .1em; text-transform: uppercase; cursor: pointer; white-space: nowrap;
-          transition: color .15s, border-color .15s; }
-        .st-toc button:hover { color: var(--ink); border-color: var(--rule-2); }
-        .st-toc button[data-on="true"] { color: var(--accent); border-color: var(--accent-dim); }
+          position: relative; transition: color .15s; }
+        .st-toc button::after { content: ""; position: absolute; left: 4px; right: 4px; bottom: 3px;
+          height: 2px; border-radius: 2px; background: transparent; transition: background .15s; }
+        .st-toc button:hover { color: var(--ink); }
+        .st-toc button[data-on="true"] { color: var(--accent); }
+        .st-toc button[data-on="true"]::after { background: var(--accent-dim); }
         .st-fresh { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
           margin-right: 6px; vertical-align: 1px; }
         .st-chapter { display: flex; align-items: baseline; gap: 12px; margin: 26px 2px 2px;
@@ -1566,6 +1570,7 @@ function StoriesView({ t, go, seed }) {
             text-align: left; color: var(--ink-faint); white-space: nowrap; }
           .st-toc button::before { content: ""; position: absolute; left: 3.25px; top: -50%; height: 100%;
             width: 1.5px; background: var(--rule); z-index: 0; }
+          .st-toc button::after { display: none; }  /* the horizontal-bar underline doesn't apply to the rail */
           .st-toc button:first-child::before { display: none; }
           .st-toc button[data-reached="true"]::before { background: var(--accent-dim); }
           .st-node { position: relative; z-index: 1; width: 8px; height: 8px; flex: none; border-radius: 50%;

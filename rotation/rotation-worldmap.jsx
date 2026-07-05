@@ -66,9 +66,12 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
       </div>
       {hasFlow
         ? <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={true} markYi={markYi} />
-        : <div style={{ padding: 18, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>not enough placed artists here for a flow.</div>}
+        : <div style={{ padding: 18, minHeight: 224, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>not enough placed artists here for a flow.</div>}
       {hasFlow && <>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 12px", marginTop: 8 }}>
+        {/* fixed-height legend well (scrolls if crowded) — fewer series can't shrink the
+            whole map/flow row anymore (Fuad 2026-07-05) */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 12px", marginTop: 8, height: 46, overflowY: "auto",
+          alignContent: "flex-start", scrollbarWidth: "thin" }}>
           {series.map((s, i) => (
             <div key={s.key} onMouseEnter={() => setHi(i)} onMouseLeave={() => setHi(-1)} onClick={() => onPick(s)}
               style={{ display: "inline-flex", alignItems: "center", gap: 6, cursor: "pointer", opacity: hi < 0 || hi === i ? 1 : 0.4, transition: ".15s" }}>
@@ -445,13 +448,14 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
             {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" stroke="var(--rule-2)" strokeWidth={0.4 / view.s} />)}
             {bubbles.slice().sort((a, b) => b.c.plays - a.c.plays).map(b => {
               const on = hi === b.key, col = placeHue(b.c);
-              // calendar-period highlight: ring the origins of that period's top artists, dim the rest
+              // calendar-period filter: only the origins of that period's top artists REMAIN
+              // on the map (Fuad 2026-07-05 — hiding beats dimming, visually)
               const inPeriod = periodPlaces
                 ? (b.kind === "country" ? periodPlaces.cc.has(b.c.code) : periodPlaces.ci.has(b.c.country + "|" + b.c.city))
                 : null;
-              const dim = inPeriod === false;
-              return <circle key={b.key} cx={b.x} cy={b.y} r={b.r / Math.sqrt(view.s)} fill={col} fillOpacity={on ? 0.72 : dim ? 0.1 : 0.34}
-                stroke={inPeriod ? "var(--accent)" : col} strokeWidth={((inPeriod ? 2.2 : on ? 1.6 : 0.7)) / view.s}
+              if (inPeriod === false) return null;
+              return <circle key={b.key} cx={b.x} cy={b.y} r={b.r / Math.sqrt(view.s)} fill={col} fillOpacity={on ? 0.72 : 0.34}
+                stroke={inPeriod ? "var(--accent)" : col} strokeWidth={((inPeriod ? 1.8 : on ? 1.6 : 0.7)) / view.s}
                 style={{ cursor: "pointer", transition: "r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s" }}
                 onMouseEnter={() => setHi(b.key)} onClick={(e) => { e.stopPropagation(); if (!moved.current) openBubble(b); }} />;
             })}
