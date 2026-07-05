@@ -214,8 +214,21 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 .tv-mood-bar { height: 7px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
 .tv-mood-bar i { display: block; height: 100%; border-radius: 4px; }
 .tv-mood-v { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); text-align: right; }
-.tv-mood-note { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+.tv-mood-note { font-size: 12px; color: var(--ink-soft); margin-top: 2px; display: flex; align-items: center; gap: 8px; }
 .tv-mood-note b { color: var(--ink); }
+.tv-mood-note .txt { flex: 1; }
+/* hover-? explaining the two axes (Fuad 2026-07-05) — works on tap too via tabIndex focus */
+.tv-mood-help { position: relative; flex: none; }
+.tv-mood-help > i { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px;
+  border-radius: 50%; border: 1px solid var(--rule); font-family: var(--mono); font-style: normal; font-size: 9.5px;
+  color: var(--ink-faint); cursor: help; user-select: none; }
+.tv-mood-help:hover > i, .tv-mood-help:focus-within > i { color: var(--accent); border-color: var(--accent-dim); }
+.tv-mood-tip { position: absolute; bottom: calc(100% + 9px); right: -6px; width: 252px; padding: 11px 13px;
+  background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; font-size: 11.5px; line-height: 1.55;
+  color: var(--ink-soft); box-shadow: 0 8px 24px rgba(0,0,0,.4); opacity: 0; pointer-events: none;
+  transform: translateY(3px); transition: opacity .12s ease, transform .12s ease; z-index: 30; }
+.tv-mood-help:hover .tv-mood-tip, .tv-mood-help:focus-within .tv-mood-tip { opacity: 1; pointer-events: auto; transform: none; }
+.tv-mood-tip b { color: var(--ink); }
 
 /* skinny scroller utility */
 .r-xscroll { display: flex; gap: var(--gap); overflow-x: auto; scrollbar-width: none; padding-bottom: 6px; }

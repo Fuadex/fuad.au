@@ -378,15 +378,18 @@ function lifeBadge(life) {
   if (t === "g") return { txt: "Active", tone: "active" };   // living solo artists get no badge (noise)
   return null;
 }
-function ArtistMeta({ gender, life, size, seenLive }) {
+function ArtistMeta({ gender, life, size, seenLive, onTour }) {
   const g = genderGlyph(gender), b = lifeBadge(life);
-  if (!g && !b && !seenLive) return null;
+  if (!g && !b && !seenLive && !onTour) return null;
+  // on-tour badge: amber — upcoming Ticketmaster dates around the configured markets
+  const ot = onTour ? { txt: "On tour" + (onTour[0] > 1 ? " ×" + onTour[0] : ""), tip: `${onTour[0]} upcoming date${onTour[0] !== 1 ? "s" : ""} around your markets · next: ${onTour[1]}${onTour[2] ? " · " + onTour[2] : ""}` } : null;
   // seen-live badge: purple, so it doesn't fight the green "Active" badge sitting next to it
   const sl = seenLive ? { txt: "Seen live" + (seenLive.count > 1 ? " ×" + seenLive.count : ""), tip: `you attended ${seenLive.count} show${seenLive.count !== 1 ? "s" : ""}${seenLive.first ? " · " + seenLive.first.slice(0, 4) + (seenLive.last && seenLive.last.slice(0, 4) !== seenLive.first.slice(0, 4) ? "–" + seenLive.last.slice(0, 4) : "") : ""}` } : null;
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 9, marginTop: 9, flexWrap: "wrap" }}>
       {g && <span title={g.label} style={{ fontSize: size || 16, lineHeight: 1, color: "var(--ink-soft)" }}>{g.ch}</span>}
       {b && <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid " + (b.tone === "active" ? "oklch(0.6 0.13 150 / .5)" : "var(--rule-2)"), color: b.tone === "active" ? "oklch(0.72 0.15 150)" : "var(--ink-faint)" }}>{b.txt}</span>}
+      {ot && <span className="r-mono" title={ot.tip} style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid oklch(0.68 0.14 70 / .55)", color: "oklch(0.79 0.13 75)", cursor: "help" }}>{ot.txt}</span>}
       {sl && <span className="r-mono" title={sl.tip} style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid oklch(0.6 0.16 305 / .55)", color: "oklch(0.74 0.14 305)", cursor: "help" }}>🎤 {sl.txt}</span>}
     </div>
   );
@@ -462,7 +465,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}
             {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
-          <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} />
+          <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} onTour={a.onTour} />
           <div style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap" }}>
             {a.tags.map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
           </div>
@@ -1285,10 +1288,20 @@ function TrackView({ id, go }) {
                 <span className="tv-mood-v">{lyrVal}</span>
               </div>
               <div className="tv-mood-note">
-                {divergent
-                  ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
-                  : <>Sound and words agree.</>}
-                {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
+                <span className="txt">
+                  {divergent
+                    ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
+                    : <>Sound and words agree.</>}
+                  {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
+                </span>
+                <span className="tv-mood-help" tabIndex={0}>
+                  <i>?</i>
+                  <span className="tv-mood-tip">
+                    <b>Sounds</b> — how upbeat the music itself is: Spotify&#8217;s audio positivity, 0 gloomy &#8594; 100 euphoric.<br />
+                    <b>Reads</b> — how positive the lyrics are on the page, scored word-by-word against an emotion lexicon in the song&#8217;s language.<br />
+                    A wide gap is the classic trick: music that smiles while the words don&#8217;t.
+                  </span>
+                </span>
               </div>
             </div>
           )}
