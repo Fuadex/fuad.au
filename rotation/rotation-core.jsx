@@ -308,6 +308,9 @@ a.r-link:hover { color: var(--ink); }
 .tv-switch-txt { font-family: var(--serif); font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
 .tv-switch-brand { position: absolute; right: 0; bottom: 0; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
 .tv-switch-brand[data-m="genius"] { color: oklch(0.7 0.12 330); }
+.tv-switch-brand[data-m="haiku"] { color: oklch(0.66 0.11 145); }
+.tv-switch-brand[data-m="sonnet"] { color: oklch(0.64 0.12 235); }
+.tv-switch-brand[data-m="opus"] { color: oklch(0.66 0.13 295); }
 .tv-switch-brand[data-m="fable"] { color: oklch(0.73 0.12 60); }
 .tv-switch-note { font-size: 8.5px; color: var(--ink-faint); margin-top: 8px; letter-spacing: .05em; }
 /* needle-drop preview button (Shelves + Album pages) — global so it's styled off the Shelves view too */
