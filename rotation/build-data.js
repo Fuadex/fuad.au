@@ -1422,14 +1422,39 @@ const MOOD_EMO = ["anger", "anticipation", "disgust", "fear", "joy", "sadness", 
 let MOOD = null;
 {
   const rows = [];
+  // emotional weather: per-year play-weighted lyric valence (reads), audio valence (sounds)
+  // and the emotion mix — the listening-mood arc over the years.
+  const yAcc = new Map(); // year → { p, lyrW, lyrP, audW, audP, emo: [8 counts] }
   for (const [key, plays] of trackPlays) {
     const ix = key.indexOf("\x00"); const artist = key.slice(0, ix), title = key.slice(ix + 1);
     const sk = slug(artist) + "~" + slug(title);
     const m = GENIUS_MOOD[sk], td = TRACKDATA[sk];
-    if (!m || m[0] == null || !td || td.length < 6 || typeof td[5] !== "number") continue;
+    const hasLyr = m && m[0] != null, hasAud = td && td.length >= 6 && typeof td[5] === "number";
+    if (hasLyr || hasAud) {
+      const ym = trackYear.get(key);
+      if (ym) for (const [y, c] of ym) {
+        let a = yAcc.get(y);
+        if (!a) { a = { p: 0, lyrW: 0, lyrP: 0, audW: 0, audP: 0, emo: new Array(8).fill(0) }; yAcc.set(y, a); }
+        a.p += c;
+        if (hasLyr) { a.lyrW += m[0] * c; a.lyrP += c; if (m[1] >= 0) a.emo[m[1]] += c; }
+        if (hasAud) { a.audW += td[5] * c; a.audP += c; }
+      }
+    }
+    if (!hasLyr || !hasAud) continue;
     rows.push({ artist, title, id: sk, artistId: slug(artist), hue: hueFor(artist), plays,
       aud: td[5], lyr: m[0], emo: m[1] >= 0 ? MOOD_EMO[m[1]] : null });
   }
+  // arc rows (skip thin years)
+  const MOOD_ARC = [...yAcc.entries()].sort((a, b) => a[0] - b[0])
+    .filter(([, a]) => a.lyrP >= 300 && a.audP >= 300)
+    .map(([year, a]) => {
+      const mix = a.emo.map((c, i) => [c, i]).sort((x, y) => y[0] - x[0]);
+      const emoTot = a.emo.reduce((s, c) => s + c, 0);
+      return { year, plays: a.p,
+        lyr: Math.round(a.lyrW / a.lyrP), aud: Math.round(a.audW / a.audP),
+        topEmo: emoTot ? MOOD_EMO[mix[0][1]] : null,
+        topEmoShare: emoTot ? Math.round(mix[0][0] / emoTot * 100) / 100 : 0 };
+    });
   if (rows.length >= 50) {
     const totPlays = rows.reduce((s, r) => s + r.plays, 0);
     const wavg = (f) => Math.round(rows.reduce((s, r) => s + f(r) * r.plays, 0) / totPlays);
@@ -1444,6 +1469,7 @@ let MOOD = null;
       happyDark: trim(happyDark.slice(0, 10)), darkHappy: trim(darkHappy.slice(0, 10)),
       happyDarkCount: happyDark.length, darkHappyCount: darkHappy.length,
       emotions: Object.entries(emoC).sort((a, b) => b[1] - a[1]).map(([emo, plays]) => ({ emo, plays })),
+      arc: MOOD_ARC.length >= 6 ? MOOD_ARC : null,
     };
   }
 }
