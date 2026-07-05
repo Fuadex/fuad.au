@@ -1616,51 +1616,50 @@ function StoriesView({ t, go, seed }) {
 // path), and a D/W/M CALENDAR strip. Each vis shows the distribution within the OTHER two
 // filters; the artist list underneath honours all three.
 
-function GenreCascade({ R, arts, fam, sub, setFam, setSub }) {
-  // arts carry a primary-subgenre famI/prim, so segment sizes match filter results exactly
-  const fams = React.useMemo(() => {
+// Genre filter as legible PILLS (was a cramped proportional bar). Each artist carries a resolved
+// gkey: a real library family ("f"+i, expandable to subgenres) or — when we can't place them from
+// our own tags — a Ticketmaster-classification pseudo-genre ("t:Metal"), so "unplaced" shrinks to
+// only the truly untagged. Picking a real family unfolds its subgenres beneath.
+function GenreCascade({ R, arts, gkey, sub, setGkey, setSub }) {
+  const gens = React.useMemo(() => {
     const m = new Map();
     for (const a of arts) {
-      if (!m.has(a.famI)) {
-        const f = a.famI >= 0 ? R.FAMILIES.find(x => x.i === a.famI) : null;
-        m.set(a.famI, { i: a.famI, name: f ? f.family : "unplaced", hue: f ? f.hue : null, n: 0 });
-      }
-      m.get(a.famI).n++;
+      if (!m.has(a.gkey)) m.set(a.gkey, { key: a.gkey, name: a.gname, hue: a.ghue, real: a.famI >= 0, n: 0 });
+      m.get(a.gkey).n++;
     }
-    return [...m.values()].sort((x, y) => y.n - x.n);
+    return [...m.values()].sort((x, y) => (x.key === "?") - (y.key === "?") || y.n - x.n);
   }, [arts]);
   const subs = React.useMemo(() => {
-    if (fam == null) return [];
+    if (!gkey || gkey[0] !== "f") return [];
+    const fi = +gkey.slice(1);
     const m = new Map();
     for (const a of arts) {
-      if (a.famI !== fam || a.prim < 0) continue;
+      if (a.famI !== fi || a.prim < 0) continue;
       const s = R.SUBS[a.prim];
       if (!m.has(a.prim)) m.set(a.prim, { i: a.prim, name: s ? s.name : "?", hue: s ? s.hue : null, n: 0 });
       m.get(a.prim).n++;
     }
     return [...m.values()].sort((x, y) => y.n - x.n);
-  }, [arts, fam]);
-  const Seg = ({ s, on, dim, pick }) => (
-    <div className="gv-casc-seg" data-on={on} data-dim={dim} onClick={pick}
-      title={`${s.name} — ${s.n} artist${s.n !== 1 ? "s" : ""} on tour · click to ${on ? "clear" : "filter"}`}
-      style={{ flexGrow: s.n, background: s.hue != null ? `oklch(${on ? 0.44 : 0.31} ${on ? 0.12 : 0.06} ${s.hue})` : "var(--bg-3)" }}>
-      <span className="gv-casc-lbl">{s.name}</span><span className="gv-casc-n">{s.n}</span>
-    </div>
+  }, [arts, gkey]);
+  const Pill = ({ name, hue, n, on, dim, pick, small }) => (
+    <button className="gv-gpill" data-on={on} data-dim={dim} data-sm={small} onClick={pick} style={{ "--gh": hue != null ? hue : 265 }}>
+      <span className="gv-gpill-dot" />{name}<span className="gv-gpill-n">{n}</span>
+    </button>
   );
-  if (!fams.length) return null;
+  if (!gens.length) return null;
   return (
     <div className="gv-casc">
-      <div className="gv-casc-row">
-        {fams.map(f => <Seg key={f.i} s={f} on={fam === f.i} dim={fam != null && fam !== f.i}
-          pick={() => { setSub(null); setFam(fam === f.i ? null : f.i); }} />)}
+      <div className="r-mono gv-casc-cap">Genre — {gens.length} in this slice{gkey && gkey[0] === "f" ? " · pick unfolds subgenres" : ""}</div>
+      <div className="gv-gpills">
+        {gens.map(g => <Pill key={g.key} name={g.name} hue={g.hue} n={g.n} on={gkey === g.key} dim={gkey != null && gkey !== g.key}
+          pick={() => { setSub(null); setGkey(gkey === g.key ? null : g.key); }} />)}
       </div>
-      {fam != null && subs.length > 1 && (
-        <div className="gv-casc-row gv-casc-subrow">
-          {subs.map(s => <Seg key={s.i} s={s} on={sub === s.i} dim={sub != null && sub !== s.i}
+      {subs.length > 1 && (
+        <div className="gv-gpills gv-gpills-sub">
+          {subs.map(s => <Pill key={s.i} small name={s.name} hue={s.hue} n={s.n} on={sub === s.i} dim={sub != null && sub !== s.i}
             pick={() => setSub(sub === s.i ? null : s.i)} />)}
         </div>
       )}
-      <div className="r-mono gv-casc-hint">{fam == null ? "genres of everyone on tour · click one to unfold its subgenres" : "subgenres — click to filter · click the genre again to fold"}</div>
     </div>
   );
 }
@@ -1717,8 +1716,14 @@ function TourCal({ events, gran, setGran, selKey, setSelKey, keyOf }) {
   );
 }
 
+// Equirectangular event map — pan/zoom, dots colored by the dominant genre in each city,
+// sized by event count. Hovering an artist row below traces their tour path as a numbered route.
 function TourMap({ events, city, setCity, hiPath, hiHue }) {
   const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
+  const [tf, setTf] = React.useState({ k: 1, x: 0, y: 0 });   // g transform: translate(x,y) scale(k)
+  const svgRef = React.useRef(null);
+  const drag = React.useRef(null);
+  const moved = React.useRef(false);   // true if the last gesture panned — suppresses the dot click
   React.useEffect(() => {
     if (window.ROTATION_WORLD) return;
     const on = () => setWorld(window.ROTATION_WORLD);
@@ -1732,30 +1737,66 @@ function TourMap({ events, city, setCity, hiPath, hiHue }) {
     for (const x of events) {
       if (!x.e.ll) continue;
       const k = x.e.cc + "|" + x.e.city;
-      if (!m.has(k)) m.set(k, { k, x: (x.e.ll[1] + 180) / 360 * 1000, y: (90 - x.e.ll[0]) / 180 * 500, n: 0, city: x.e.city, cc: x.e.cc });
-      m.get(k).n++;
+      if (!m.has(k)) m.set(k, { k, x: (x.e.ll[1] + 180) / 360 * 1000, y: (90 - x.e.ll[0]) / 180 * 500, n: 0, city: x.e.city, cc: x.e.cc, hues: new Map() });
+      const c = m.get(k); c.n++;
+      if (x.a.ghue != null) c.hues.set(x.a.ghue, (c.hues.get(x.a.ghue) || 0) + 1);
     }
-    return [...m.values()].sort((a, b) => b.n - a.n);
+    const arr = [...m.values()];
+    for (const c of arr) c.hue = c.hues.size ? [...c.hues.entries()].sort((a, b) => b[1] - a[1])[0][0] : null;
+    return arr.sort((a, b) => b.n - a.n);
   }, [events]);
+  const toVB = (cx, cy) => { const r = svgRef.current.getBoundingClientRect(); return [(cx - r.left) / r.width * 1000, 70 + (cy - r.top) / r.height * 315]; };
+  const onWheel = (e) => {
+    e.preventDefault(); const [vx, vy] = toVB(e.clientX, e.clientY);
+    setTf(t => { const k1 = Math.min(14, Math.max(1, t.k * (e.deltaY < 0 ? 1.22 : 1 / 1.22)));
+      const px = (vx - t.x) / t.k, py = (vy - t.y) / t.k; return k1 === 1 ? { k: 1, x: 0, y: 0 } : { k: k1, x: vx - px * k1, y: vy - py * k1 }; });
+  };
+  const onDown = (e) => { drag.current = { x: e.clientX, y: e.clientY, tx: tf.x, ty: tf.y }; moved.current = false; e.currentTarget.setPointerCapture(e.pointerId); };
+  const onMove = (e) => {
+    const d = drag.current; if (!d) return;
+    const r = svgRef.current.getBoundingClientRect();
+    const dx = (e.clientX - d.x) / r.width * 1000, dy = (e.clientY - d.y) / r.height * 315;
+    if (Math.abs(e.clientX - d.x) + Math.abs(e.clientY - d.y) > 3) moved.current = true;
+    setTf(t => ({ ...t, x: d.tx + dx, y: d.ty + dy }));
+  };
+  const onUp = () => { drag.current = null; };
+  const zoom = (f) => setTf(t => { const k1 = Math.min(14, Math.max(1, t.k * f)); if (k1 === 1) return { k: 1, x: 0, y: 0 };
+    const px = (500 - t.x) / t.k, py = (227 - t.y) / t.k; return { k: k1, x: 500 - px * k1, y: 227 - py * k1 }; });
   if (!world) return <div className="gv-tmap-empty r-mono">the map loads…</div>;
+  const rk = tf.k, base = 2;
   return (
-    <svg className="gv-tmap" viewBox="0 70 1000 315" role="img" aria-label="upcoming events map — click a city to filter">
-      {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" />)}
-      {cities.map(c => (
-        <circle key={c.k} className="gv-tmap-dot" data-on={city === c.k}
-          cx={c.x} cy={c.y} r={2 + Math.sqrt(c.n) * 1.15}
-          onClick={() => setCity(city === c.k ? null : c.k)}>
-          <title>{c.city} ({c.cc}) · {c.n} event{c.n !== 1 ? "s" : ""} — click to filter</title>
-        </circle>
-      ))}
-      {hiPath && hiPath.length > 1 && (
-        <polyline points={hiPath.map(p => p.join(",")).join(" ")} fill="none"
-          stroke={`oklch(0.74 0.16 ${hiHue})`} strokeWidth="1.4" strokeDasharray="4 2.5" opacity="0.9" />
-      )}
-      {hiPath && hiPath.map((p, i) => (
-        <circle key={"hp" + i} cx={p[0]} cy={p[1]} r="3.4" fill={`oklch(0.74 0.16 ${hiHue})`} stroke="#0e0c13" strokeWidth="0.9" />
-      ))}
-    </svg>
+    <div className="gv-tmap-wrap">
+      <svg ref={svgRef} className="gv-tmap" viewBox="0 70 1000 315" role="img" aria-label="upcoming events map — scroll to zoom, drag to pan, click a city to filter"
+        onWheel={onWheel} onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerLeave={onUp}
+        style={{ cursor: drag.current ? "grabbing" : "grab", touchAction: "none" }}>
+        <g transform={`translate(${tf.x} ${tf.y}) scale(${tf.k})`}>
+          {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" />)}
+          {cities.map(c => (
+            <circle key={c.k} className="gv-tmap-dot" data-on={city === c.k}
+              cx={c.x} cy={c.y} r={(base + Math.sqrt(c.n) * 1.15) / rk} strokeWidth={1.2 / rk}
+              fill={c.hue != null ? `oklch(0.64 0.15 ${c.hue})` : "var(--accent)"}
+              onClick={(e) => { if (!moved.current) setCity(city === c.k ? null : c.k); e.stopPropagation(); }}>
+              <title>{c.city} ({c.cc}) · {c.n} event{c.n !== 1 ? "s" : ""} — click to filter</title>
+            </circle>
+          ))}
+          {hiPath && hiPath.length > 1 && (
+            <polyline points={hiPath.map(p => p.join(",")).join(" ")} fill="none"
+              stroke={`oklch(0.8 0.16 ${hiHue})`} strokeWidth={1.6 / rk} strokeDasharray={`${5 / rk} ${3 / rk}`} opacity="0.95" />
+          )}
+          {hiPath && hiPath.map((p, i) => (
+            <g key={"hp" + i}>
+              <circle cx={p[0]} cy={p[1]} r={3.6 / rk} fill={`oklch(0.8 0.16 ${hiHue})`} stroke="#0e0c13" strokeWidth={0.9 / rk} />
+              {rk >= 2 && <text x={p[0]} y={p[1] + 1.2 / rk} textAnchor="middle" fontSize={4 / rk} fill="#0e0c13" style={{ pointerEvents: "none", fontWeight: 700 }}>{i + 1}</text>}
+            </g>
+          ))}
+        </g>
+      </svg>
+      <div className="gv-tmap-zoom">
+        <button onClick={() => zoom(1.4)} title="zoom in">+</button>
+        <button onClick={() => zoom(1 / 1.4)} title="zoom out">−</button>
+        {tf.k > 1 && <button onClick={() => setTf({ k: 1, x: 0, y: 0 })} title="reset view">⟲</button>}
+      </div>
+    </div>
   );
 }
 
@@ -1766,8 +1807,8 @@ function TourSection({ go, gigDate }) {
   const [gran, setGran] = React.useState("m");
   const [selKey, setSelKey] = React.useState(null);   // calendar bucket ("2026-08" / week-start / day)
   const [city, setCity] = React.useState(null);       // "CC|City" from a map dot
-  const [fam, setFam] = React.useState(null);         // genre-cascade family
-  const [sub, setSub] = React.useState(null);         // genre-cascade subgenre
+  const [gkey, setGkey] = React.useState(null);       // genre-cascade key ("f"+famI | "t:Metal" | "?")
+  const [sub, setSub] = React.useState(null);         // genre-cascade subgenre index
   const [hi, setHi] = React.useState(null);           // hovered artist id → tour path on the map
   React.useEffect(() => {
     if (window.ROTATION_TOUR || !R.TOUR) return;
@@ -1777,23 +1818,29 @@ function TourSection({ go, gigDate }) {
   const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
   const wkOf = (d) => { const t = new Date(d + "T00:00:00Z"); t.setUTCDate(t.getUTCDate() - (t.getUTCDay() + 6) % 7); return t.toISOString().slice(0, 10); };
   const keyOf = (d) => gran === "m" ? d.slice(0, 7) : gran === "w" ? wkOf(d) : d;
-  // flat [artist, event] pairs with genre resolved once (primary subgenre → family)
+  // flat [artist, event] pairs; genre resolved once. Real library family → "f"+i (has subgenres);
+  // else fall back to the Ticketmaster classification → "t:<genre>"; else truly unplaced → "?".
   const flat = React.useMemo(() => {
     const out = [];
     for (const a of ((tour && tour.artists) || [])) {
       const rec = R.byId[a.id] || (R.expById && R.expById[a.id]) || null;
       const prim = rec && rec.s && rec.s.length ? rec.s[0] : -1;
-      const aug = { ...a, prim, famI: prim >= 0 && R.SUBS[prim] ? R.SUBS[prim].fam : -1, hue: rec ? rec.hue : hueOf(a.name) };
+      const famI = prim >= 0 && R.SUBS[prim] ? R.SUBS[prim].fam : -1;
+      let gkey, gname, ghue;
+      if (famI >= 0) { const f = R.FAMILIES.find(x => x.i === famI); gkey = "f" + famI; gname = f ? f.family : "—"; ghue = f ? f.hue : null; }
+      else if (a.tmGenre) { gkey = "t:" + a.tmGenre; gname = a.tmGenre; ghue = hueOf("tm" + a.tmGenre); }
+      else { gkey = "?"; gname = "genre unknown"; ghue = null; }
+      const aug = { ...a, prim, famI, gkey, gname, ghue, hue: rec ? rec.hue : hueOf(a.name) };
       for (const e of a.events) out.push({ a: aug, e });
     }
     return out;
   }, [tour]);
-  const byGenre = (x) => sub != null ? x.a.prim === sub : fam != null ? x.a.famI === fam : true;
+  const byGenre = (x) => sub != null ? x.a.prim === sub : gkey != null ? x.a.gkey === gkey : true;
   const byCity = (x) => city == null || (x.e.cc + "|" + x.e.city) === city;
   const byTime = (x) => selKey == null || keyOf(x.e.d) === selKey;
   // each vis sees the OTHER two filters; the list sees all three
-  const calEvents = React.useMemo(() => flat.filter(x => byGenre(x) && byCity(x)), [flat, fam, sub, city]);
-  const mapEvents = React.useMemo(() => flat.filter(x => byGenre(x) && byTime(x)), [flat, fam, sub, selKey, gran]);
+  const calEvents = React.useMemo(() => flat.filter(x => byGenre(x) && byCity(x)), [flat, gkey, sub, city]);
+  const mapEvents = React.useMemo(() => flat.filter(x => byGenre(x) && byTime(x)), [flat, gkey, sub, selKey, gran]);
   const cascArts = React.useMemo(() => {
     const seen = new Map();
     for (const x of flat) if (byCity(x) && byTime(x) && !seen.has(x.a.id)) seen.set(x.a.id, x.a);
@@ -1809,18 +1856,18 @@ function TourSection({ go, gigDate }) {
     const arr = [...m.values()];
     for (const r of arr) r.events.sort((p, q) => (p.d < q.d ? -1 : 1));
     return arr.sort((p, q) => q.plays - p.plays);
-  }, [flat, fam, sub, city, selKey, gran]);
+  }, [flat, gkey, sub, city, selKey, gran]);
   const T = R.TOUR;
   if (!T) return null;
   const hiArt = hi ? artists.find(a => a.id === hi) : null;
   const hiPath = hiArt ? hiArt.events.filter(e => e.ll).map(e => [(e.ll[1] + 180) / 360 * 1000, (90 - e.ll[0]) / 180 * 500]) : null;
-  const anyFilt = fam != null || sub != null || city != null || selKey != null;
+  const anyFilt = gkey != null || sub != null || city != null || selKey != null;
   const shown = showAll ? artists : artists.slice(0, 20);
   const chips = [];
   if (selKey) chips.push([selKey, () => setSelKey(null)]);
   if (city) chips.push([city.split("|")[1], () => setCity(null)]);
   if (sub != null) chips.push([(R.SUBS[sub] || {}).name, () => setSub(null)]);
-  else if (fam != null) chips.push([(R.FAMILIES.find(f => f.i === fam) || {}).family, () => { setFam(null); setSub(null); }]);
+  else if (gkey != null) { const g = cascArts.find(a => a.gkey === gkey); chips.push([g ? g.gname : gkey, () => { setGkey(null); setSub(null); }]); }
   return (
     <section className="gv-sec">
       <div className="gv-label">On tour now · Ticketmaster</div>
@@ -1837,16 +1884,16 @@ function TourSection({ go, gigDate }) {
         {chips.map(([lbl, clear], i) => (
           <span key={lbl + i} className="gv-tour-chip" onClick={clear}>{lbl} ✕</span>
         ))}
-        {anyFilt && <span className="gv-tour-chip gv-tour-chip-all" onClick={() => { setFam(null); setSub(null); setCity(null); setSelKey(null); }}>clear all</span>}
+        {anyFilt && <span className="gv-tour-chip gv-tour-chip-all" onClick={() => { setGkey(null); setSub(null); setCity(null); setSelKey(null); }}>clear all</span>}
       </div>
       {!tour && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 16 }}>loading tour dates…</div>}
       {tour && <>
-        <GenreCascade R={R} arts={cascArts} fam={fam} sub={sub} setFam={setFam} setSub={setSub} />
         <div className="r-card gv-tmap-card">
           <TourMap events={mapEvents} city={city} setCity={setCity} hiPath={hiPath} hiHue={hiArt ? hiArt.hue : 40} />
-          <div className="r-mono gv-tmap-hint">{hiArt ? <>tracing <b>{hiArt.name}</b>'s route</> : "where — click a city dot to filter · hover an artist below to trace their tour path"}</div>
+          <div className="r-mono gv-tmap-hint">{hiArt ? <>tracing <b>{hiArt.name}</b>'s route — dots numbered in date order</> : "where — scroll to zoom · drag to pan · click a city to filter · hover an artist below to trace their route · dots colored by genre"}</div>
           <TourCal events={calEvents} gran={gran} setGran={setGran} selKey={selKey} setSelKey={setSelKey} keyOf={keyOf} />
         </div>
+        <GenreCascade R={R} arts={cascArts} gkey={gkey} sub={sub} setGkey={setGkey} setSub={setSub} />
         <div className="gv-tour">
           {shown.map(a => {
             const known = !!R.byId[a.id];
@@ -2136,20 +2183,30 @@ function GigsView({ go }) {
         .gv-tour-chip { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: var(--accent); border: 1px solid var(--accent-dim); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
         .gv-tour-chip-all { color: var(--ink-faint); border-color: var(--rule); }
         .gv-tour-row[data-hi="true"] { border-color: var(--rule-2); background: var(--bg-2); }
-        /* genre cascade — families as a proportional bar; a picked family unfolds its subgenres */
-        .gv-casc { margin-bottom: 10px; }
-        .gv-casc-row { display: flex; gap: 2px; height: 30px; border-radius: 6px; overflow: hidden; }
-        .gv-casc-subrow { margin-top: 3px; height: 26px; }
-        .gv-casc-seg { display: flex; align-items: center; gap: 6px; padding: 0 8px; min-width: 0; flex-basis: 0; cursor: pointer; transition: flex-grow .25s ease, background .15s, opacity .15s; }
-        .gv-casc-seg[data-dim="true"] { opacity: .45; }
-        .gv-casc-seg[data-on="true"] { box-shadow: inset 0 0 0 1px var(--accent); }
-        .gv-casc-seg:hover { opacity: 1; filter: brightness(1.25); }
-        .gv-casc-lbl { font-size: 10.5px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-        .gv-casc-n { font-family: var(--mono); font-size: 9px; color: var(--ink-soft); flex: none; }
-        .gv-casc-hint { font-size: 8.5px; color: var(--ink-faint); margin-top: 5px; letter-spacing: .05em; }
+        /* genre filter — legible pills (sits UNDER the map); a real family unfolds its subgenres */
+        .gv-casc { margin: 2px 0 12px; }
+        .gv-casc-cap { font-size: 8.5px; color: var(--ink-faint); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 7px; }
+        .gv-gpills { display: flex; flex-wrap: wrap; gap: 6px; }
+        .gv-gpills-sub { margin-top: 6px; padding-top: 8px; border-top: 1px dashed var(--rule); }
+        .gv-gpill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px;
+          border: 1px solid var(--rule); background: none; color: var(--ink-soft); cursor: pointer;
+          font-size: 11.5px; transition: border-color .15s, opacity .15s, background .15s; }
+        .gv-gpill-dot { width: 8px; height: 8px; border-radius: 2px; background: oklch(0.62 0.15 var(--gh)); flex: none; }
+        .gv-gpill-n { font-family: var(--mono); font-size: 9px; color: var(--ink-faint); }
+        .gv-gpill[data-sm="true"] { font-size: 10.5px; padding: 3px 9px; }
+        .gv-gpill[data-dim="true"] { opacity: .42; }
+        .gv-gpill:hover { opacity: 1; border-color: var(--rule-2); }
+        .gv-gpill[data-on="true"] { border-color: oklch(0.6 0.14 var(--gh)); background: oklch(0.6 0.14 var(--gh) / .14); color: var(--ink); }
+        .gv-gpill[data-on="true"] .gv-gpill-n { color: var(--ink-soft); }
         /* event map + calendar card */
         .gv-tmap-card { padding: 10px 12px 8px; margin-bottom: 10px; }
+        .gv-tmap-wrap { position: relative; }
         .gv-tmap { display: block; width: 100%; height: auto; }
+        .gv-tmap-zoom { position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column; gap: 4px; }
+        .gv-tmap-zoom button { width: 26px; height: 26px; border-radius: 6px; border: 1px solid var(--rule-2);
+          background: var(--panel); color: var(--ink-soft); cursor: pointer; font-size: 15px; line-height: 1;
+          display: flex; align-items: center; justify-content: center; }
+        .gv-tmap-zoom button:hover { color: var(--accent); border-color: var(--accent-dim); }
         .gv-tmap-empty { padding: 60px 0; text-align: center; color: var(--ink-faint); font-size: 11px; }
         .gv-tmap-dot { fill: var(--accent); fill-opacity: .7; cursor: pointer; transition: fill-opacity .15s; }
         .gv-tmap-dot:hover { fill-opacity: 1; }

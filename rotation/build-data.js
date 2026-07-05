@@ -2442,16 +2442,23 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
           // disbanded on record, yet touring. Groups only — a deceased Person with events is a
           // tribute/orchestra billing (Morricone, Bill Evans), not a reactivation.
           react: (lf && lf.ended && lf.type !== "Person") || (wd && wd.dissolved) ? 1 : 0,
+          _genres: new Map(),   // TM classification genre → count (fallback taxonomy for unplaced artists)
           events: [],
         });
       }
       if (viaMb) r.mb = 1;
+      if (e.genre && e.genre !== "Undefined") r._genres.set(e.genre, (r._genres.get(e.genre) || 0) + 1);
       r.events.push({ d: e.date, ev: e.name, v: e.venue, city: e.city, cc: e.cc, url: e.url, mkt: e.mkt, status: e.status,
         ll: (e.lat != null && e.lng != null) ? [Math.round(e.lat * 100) / 100, Math.round(e.lng * 100) / 100] : null });
     }
   }
   const _tourArtists = [..._tour.values()].sort((x, y) => y.plays - x.plays);
-  for (const r of _tourArtists) r.events.sort((x, y) => (x.d < y.d ? -1 : x.d > y.d ? 1 : 0));
+  for (const r of _tourArtists) {
+    r.events.sort((x, y) => (x.d < y.d ? -1 : x.d > y.d ? 1 : 0));
+    // most-frequent Ticketmaster genre — resolves artists we can't place from our own tags
+    r.tmGenre = r._genres.size ? [...r._genres.entries()].sort((a, b) => b[1] - a[1])[0][0] : "";
+    delete r._genres;
+  }
   TOUR = {
     fetched: TM_RAW.fetched,
     markets: TM_RAW.markets.map(m => ({ id: m.id, label: m.label, radiusKm: m.radiusKm, scanned: m.scanned, matched: m.matched })),
