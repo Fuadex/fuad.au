@@ -1474,6 +1474,71 @@ let MOOD = null;
   }
 }
 
+// ─────────── THEMES (what the lyrics are ABOUT — .sptmp/genius-themes.py) ───────────
+// Multilingual embedding themes, not sentiment: each matched track carries up to 3 themes from
+// an 18-theme taxonomy ("madness & the mind", "faith & the occult", "war & battle", …), scored
+// 0-100 (anchor cosine). Validated: Numb→alienation .61, Teardrop→love .58, KAT(pl)→occult .48,
+// Gimme Chocolate(ja)→party .46. Aggregated play-weighted by PRIMARY theme.
+const GENIUS_THEMES = _readJson("genius-themes.json"); // "_themes": [names], key → [[themeIdx, score], …]
+let THEMES = null;
+if (GENIUS_THEMES._themes) {
+  const TN = GENIUS_THEMES._themes;
+  const shares = new Array(TN.length).fill(0);
+  const byYear = new Map();            // year → per-theme plays
+  const exemplars = TN.map(() => []);  // per theme: top played tracks
+  const artistAcc = new Map();         // artist → per-theme plays (for profiles)
+  let coveredPlays = 0, totalPlays = 0, covered = 0;
+  for (const [key, plays] of trackPlays) {
+    totalPlays += plays;
+    const ix = key.indexOf("\x00"); const artist = key.slice(0, ix), title = key.slice(ix + 1);
+    const sk = slug(artist) + "~" + slug(title);
+    const th = GENIUS_THEMES[sk];
+    if (!th || !th.length) continue;
+    covered++; coveredPlays += plays;
+    const prim = th[0][0];
+    shares[prim] += plays;
+    exemplars[prim].push({ artist, title, id: sk, artistId: slug(artist), hue: hueFor(artist), plays, score: th[0][1] });
+    const ym = trackYear.get(key);
+    if (ym) for (const [y, c] of ym) {
+      let a = byYear.get(y); if (!a) { a = new Array(TN.length).fill(0); byYear.set(y, a); }
+      a[prim] += c;
+    }
+    let aa = artistAcc.get(artist); if (!aa) { aa = { plays: 0, t: new Array(TN.length).fill(0) }; artistAcc.set(artist, aa); }
+    aa.plays += plays; aa.t[prim] += plays;
+  }
+  if (covered >= 500) {
+    const order = shares.map((p, i) => [p, i]).sort((a, b) => b[0] - a[0]);
+    const sharesArr = order.filter(([p]) => p > 0).map(([p, i]) => ({ theme: TN[i], plays: p, share: Math.round(p / coveredPlays * 1000) / 1000 }));
+    for (const ex of exemplars) ex.sort((a, b) => b.plays - a.plays);
+    // arc: top-6 themes' share of each year's themed plays (LANGUAGE.arc pattern)
+    const arcThemes = order.slice(0, 6).map(([, i]) => i);
+    const arcYears = [];
+    for (const [y, a] of [...byYear.entries()].sort((x, z) => x[0] - z[0])) {
+      const tot = a.reduce((s, c) => s + c, 0);
+      if (tot < 400) continue;
+      const e = { year: y, plays: tot, byTheme: {} };
+      for (const ti of arcThemes) e.byTheme[TN[ti]] = Math.round(a[ti] / tot * 1000) / 1000;
+      arcYears.push(e);
+    }
+    // artist theme profiles: top artists (≥300 themed plays) → their top-2 themes with shares
+    const artistProfiles = [...artistAcc.entries()]
+      .filter(([, v]) => v.plays >= 300)
+      .map(([name, v]) => {
+        const top = v.t.map((p, i) => [p, i]).sort((a, b) => b[0] - a[0]).slice(0, 2)
+          .filter(([p]) => p > 0).map(([p, i]) => ({ theme: TN[i], share: Math.round(p / v.plays * 100) / 100 }));
+        return { name, artistId: slug(name), hue: hueFor(name), plays: v.plays, themes: top };
+      })
+      .sort((a, b) => b.plays - a.plays).slice(0, 14);
+    THEMES = {
+      names: TN, covered, coveredPlays, totalPlays,
+      shares: sharesArr,
+      exemplars: Object.fromEntries(order.slice(0, 8).map(([, i]) => [TN[i], exemplars[i].slice(0, 3)])),
+      arc: arcYears.length >= 6 ? { themes: arcThemes.map(i => TN[i]), years: arcYears } : null,
+      artists: artistProfiles,
+    };
+  }
+}
+
 // ─────────── LINEUPS (Wikidata band-member gender — enrich-wikidata.js) ───────────
 // The layer MusicBrainz can't give us: MB's `gender` is null for Groups, so at the artist
 // level a band is genderless. Wikidata's P527→P21 exposes the members and their gender, so
@@ -1622,7 +1687,7 @@ let REVISIT = null;
 
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
-  AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN, LANGUAGE, LINEUPS, MOOD,
+  AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN, LANGUAGE, LINEUPS, MOOD, THEMES,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
 };
