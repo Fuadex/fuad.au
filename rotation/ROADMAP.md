@@ -95,6 +95,19 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
    emotion transformer validated on transcripts (fixes NRC's Requiem-reads-hopeful failure;
    0.6 s/film). **Direction per Fuad: emotion arcs alone read superficial — go deeper: themes
    ("what it's about"), semantic structure, cross-corpus (lyrics × scripts) correlations.**
+   → **SHIPPED same evening:** (a) **THEMES layer** — `.sptmp/genius-themes.py` multilingual
+   embeddings × 18-anchor taxonomy → `genius-themes.json` (25,472 tracks) → `INSIGHTS.THEMES`
+   + "What it's all about" Stories card (madness&mind 22% and rising, anger/occult fading;
+   embeddings cached in `.sptmp/lyric-embs.npy` for lyrical-twins / cross-corpus next).
+   (b) **Track blurbs** — `.sptmp/fetch-abouts.py` harvests Genius "About" by song id
+   (public endpoint, play-ranked +1000/batch chain) → `genius-about.json` (top 1000: 656
+   blurbs, 66%) → lazy `genius-about-lazy.js` → TrackView blurb w/ via-Genius link.
+   (c) **Album roll-ups** — lazy `genius-themes-lazy.js`; AlbumView "Mostly about X, with Y".
+   Taxonomy rule per Fuad: coarse labels ONLY under graphs/aggregates; per-song = specific text.
+   Local-LLM gap-filler (Qwen 1.5B) tested: agrees w/ ground truth on EN, weak PL, hallucinates
+   on garbled lyrics — parked as gated EN-only v2 until the Genius chain's real gap is known.
+   **NEXT enrichment chain: `python fetch-abouts.py 1000` (needs `.sptmp/genius-ids.json` +
+   `track-ranks.json`, both present) then rebuild + commit genius-about.json.**
 1b. ~~**pins.json**~~ ✅ **SHIPPED** — name→forced `{mbid, spotify, discogs}` + `clearStyles`/
    `clearLife` override map, consulted by build-data at read time (and by enrichers going
    forward). Seeded **Bleach** (JP punk ids), **daine** (`clearStyles` → out of the Baroque/Organ
