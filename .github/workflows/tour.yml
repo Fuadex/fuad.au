@@ -1,0 +1,50 @@
+name: Weekly tour-dates pull
+
+# Pulls upcoming Ticketmaster events around the configured markets (see rotation/enrich-tm.js),
+# intersects lineups with the library, and commits rotation/tm-events.json when it changed.
+# The push then triggers sync.yml, which rebuilds the dataset (TOUR block + tm-tour-lazy.js)
+# and deploys. build-data.js runs first here only because enrich-tm.js needs the generated
+# search-index.js for library names/ranks.
+
+on:
+  schedule:
+    - cron: "40 5 * * 1"   # Mondays ~05:40 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tour-pull
+  cancel-in-progress: false
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build dataset (for search-index.js)
+        working-directory: rotation
+        run: node build-data.js
+
+      - name: Pull Ticketmaster events
+        working-directory: rotation
+        env:
+          TICKETMASTER_API: ${{ secrets.TICKETMASTER_API }}
+        run: node enrich-tm.js
+
+      - name: Commit cache if changed
+        run: |
+          git config user.name "rotation-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add rotation/tm-events.json
+          if git diff --staged --quiet; then
+            echo "no tour changes"
+          else
+            git commit -m "chore: weekly Ticketmaster tour pull"
+            git push || (git pull --rebase --autostash && git push)
+          fi

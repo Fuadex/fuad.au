@@ -1609,6 +1609,76 @@ function StoriesView({ t, go, seed }) {
 
 // ════════════════════════ GIGS ════════════════════════
 // Attended concerts (setlist.fm → ROTATION.GIGS), joined to the listening data.
+// "On tour now" — library artists with upcoming Ticketmaster dates around the configured
+// markets (tm-tour-lazy.js, produced by build-data's TOUR block from enrich-tm.js's weekly pull).
+function TourSection({ go, gigDate }) {
+  const R = window.ROTATION;
+  const [tour, setTour] = React.useState(window.ROTATION_TOUR || null);
+  const [showAll, setShowAll] = React.useState(false);
+  React.useEffect(() => {
+    if (window.ROTATION_TOUR || !R.TOUR) return;
+    const s = document.createElement("script"); s.src = "tm-tour-lazy.js";
+    s.onload = () => setTour(window.ROTATION_TOUR); document.head.appendChild(s);
+  }, []);
+  const T = R.TOUR;
+  if (!T) return null;
+  const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
+  const list = (tour && tour.artists) || [];
+  const shown = showAll ? list : list.slice(0, 20);
+  return (
+    <section className="gv-sec">
+      <div className="gv-label">On tour now · Ticketmaster</div>
+      <div className="gv-title">{T.artistCount} artists from your rotation have upcoming dates.</div>
+      <div className="gv-tour-meta">
+        {T.markets.map(m => (
+          <span key={m.id} className="gv-tour-mkt" title={`${m.scanned} events scanned within ${m.radiusKm} km of ${m.label}${m.id === "tokyo" && !m.scanned ? " — Ticketmaster carries no Japan inventory (that circuit lives on eplus/Pia, no public API)" : ""}`}>
+            {m.label} <b>{m.matched}</b>
+          </span>
+        ))}
+        <span className="gv-tour-fetched">checked {T.fetched} · refreshed weekly</span>
+      </div>
+      {!tour && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 16 }}>loading tour dates…</div>}
+      <div className="gv-tour">
+        {shown.map(a => {
+          const known = !!R.byId[a.id];
+          const hue = known ? R.byId[a.id].hue : hueOf(a.name);
+          return (
+            <div key={a.id + a.name} className="gv-tour-row">
+              <div className="gv-tour-a" data-link={known} onClick={() => known && go("artist", a.id)}>
+                <GenCover hue={hue} name={a.name} size={40} radius={4} />
+                <div style={{ minWidth: 0 }}>
+                  <div className="gv-tile-name">{a.name}</div>
+                  <div className="gv-tile-sub">
+                    {a.plays > 0 ? `${fmt(a.plays)} plays` : "on your radar"}
+                    {a.seen ? ` · 🎤 seen ×${a.seen}` : ""}
+                  </div>
+                </div>
+                {a.react ? <span className="gv-react" title="listed as disbanded on MusicBrainz/Wikidata — yet here they are with fresh dates">reactivated</span> : null}
+              </div>
+              <div className="gv-tour-ev">
+                {a.events.slice(0, 3).map((e, i) => (
+                  <a key={(e.url || e.d) + i} href={e.url || undefined} target="_blank" rel="noopener noreferrer"
+                    onClick={(ev) => ev.stopPropagation()} data-dead={!e.url}>
+                    <span className="gv-tour-d">{gigDate(e.d, false)}</span>
+                    <span className="gv-tour-w">{e.v}{e.city ? `, ${e.city}` : ""}{e.cc ? ` (${e.cc})` : ""}{e.ev && e.ev.toLowerCase().indexOf(a.name.toLowerCase()) < 0 ? ` — ${e.ev}` : ""}</span>
+                    {e.url ? <span className="gv-tour-out">↗</span> : null}
+                  </a>
+                ))}
+                {a.events.length > 3 && <div className="gv-tour-more">+{a.events.length - 3} more dates</div>}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {list.length > 20 && (
+        <button className="gv-tour-all" onClick={() => setShowAll(!showAll)}>
+          {showAll ? "show fewer" : `show all ${list.length} artists on tour`}
+        </button>
+      )}
+    </section>
+  );
+}
+
 function GigsView({ go }) {
   const R = window.ROTATION, G = R.GIGS;
   if (!G || !G.gigs || !G.gigs.length) return (
@@ -1647,6 +1717,8 @@ function GigsView({ go }) {
           ))}
         </div>
       </header>
+
+      <TourSection go={go} gigDate={gigDate} />
 
       {G.seenTop.length > 0 && (
         <section className="gv-sec">
@@ -1784,11 +1856,32 @@ function GigsView({ go }) {
         .gv-gig-set { color: var(--ink-soft); }
         .gv-gig-meta small { font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-left: 4px; }
         .gv-foot { margin: 40px 0 20px; font-family: var(--mono); font-size: 10px; color: var(--ink-faint); text-align: center; letter-spacing: .05em; }
+        .gv-tour-meta { display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; margin: -6px 0 14px; }
+        .gv-tour-mkt { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px; cursor: help; }
+        .gv-tour-mkt b { color: var(--accent); }
+        .gv-tour-fetched { font-family: var(--mono); font-size: 9.5px; color: var(--ink-faint); letter-spacing: .05em; }
+        .gv-tour { display: grid; gap: 8px; }
+        .gv-tour-row { display: grid; grid-template-columns: minmax(200px, 270px) 1fr; gap: 6px 18px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 8px; align-items: start; }
+        .gv-tour-a { display: flex; gap: 12px; align-items: center; min-width: 0; }
+        .gv-tour-a[data-link="true"] { cursor: pointer; }
+        .gv-tour-a[data-link="true"]:hover .gv-tile-name { color: var(--accent); }
+        .gv-react { font-family: var(--mono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase; color: oklch(0.75 0.16 45); border: 1px solid oklch(0.62 0.16 45 / .5); border-radius: 999px; padding: 2px 7px; margin-left: 6px; flex: none; cursor: help; }
+        .gv-tour-ev { display: grid; gap: 3px; min-width: 0; padding-top: 2px; }
+        .gv-tour-ev a { display: flex; gap: 10px; align-items: baseline; font-size: 12px; color: var(--ink-soft); text-decoration: none; min-width: 0; }
+        .gv-tour-ev a:hover { color: var(--accent); }
+        .gv-tour-ev a[data-dead="true"] { pointer-events: none; }
+        .gv-tour-d { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); white-space: nowrap; flex: none; }
+        .gv-tour-w { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .gv-tour-out { flex: none; font-size: 10px; color: var(--ink-faint); }
+        .gv-tour-more { font-family: var(--mono); font-size: 9.5px; color: var(--ink-faint); letter-spacing: .06em; }
+        .gv-tour-all { margin-top: 12px; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; background: none; border: 1px solid var(--rule); color: var(--ink-soft); border-radius: 999px; padding: 7px 16px; cursor: pointer; }
+        .gv-tour-all:hover { border-color: var(--accent-dim); color: var(--accent); }
         @media (max-width: 700px) {
           .gv-stats { grid-template-columns: 1fr 1fr; }
           .gv-tiles { grid-template-columns: 1fr; }
           .gv-city { grid-template-columns: 110px 1fr 30px; }
           .gv-gig { grid-template-columns: 64px 8px 1fr; }
+          .gv-tour-row { grid-template-columns: 1fr; }
           .gv-gig-meta { grid-column: 3; justify-content: flex-start; margin-top: 4px; }
           .gv-gig-date { font-size: 10px; }
         }

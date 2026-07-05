@@ -122,10 +122,12 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
    `track-ranks.json`, both present) then rebuild + commit genius-about.json.**
 1g. **OPEN QUEUE — handoff snapshot (2026-07-05 end of session).** Everything below is designed
    and unblocked; ordered roughly by closeness-to-done:
-   • **Genius About chain** — top 2,000 fetched (full texts cached in `../../.sptmp/genius-about-full.json`
-     so excerpt logic can be re-derived offline free, `python fetch-abouts.py 0`). Continue:
-     `python ../../.sptmp/fetch-abouts.py 1000` → rebuild → commit `genius-about.json`.
-     484 meaning-blurbs shipped; context-only ones cached but hidden (aboutness scorer, m flag).
+   • **Genius About chain** — top 3,000 fetched as of 2026-07-05 evening (full texts cached in
+     `../../.sptmp/genius-about-full.json` so excerpt logic re-derives offline free,
+     `python fetch-abouts.py 0`). Continue: `python ../../.sptmp/fetch-abouts.py 1000` →
+     rebuild → commit `genius-about.json`. 681 meaning-blurbs shipped / 1,041 context-only
+     cached-but-hidden / 1,274 no About. Next per Fuad: once populated, figure out how to
+     navigate the trivia-only entries and drill deeper (LLM gap-filler still parked).
    • **Gig corrections awaiting Fuad**: Coaltar of the Deepers correct date+venue (setlist.fm
      a marking may be a stand-in); NO WORDS NEEDED exact May-2025 day; was the
      Haru Nemuri 2026-06-06 ANTIKNOCK show ALSO attended (if so: two entries, drop override);
@@ -266,7 +268,7 @@ setlist.fm account + gigs (M2) · Spotify extended-history request (M3) · `resi
 | Discogs | ✅ integrated | styles, members, profiles, images, **official URLs (2,937 artists, stored but unused)** |
 | Spotify Web API | ⚠ limited | post-2026: id/photos/genres only for catalogue; **user-scoped endpoints still alive: /me/tracks (liked), /me/top, recently-played, playlists** — dev-mode app on own account is fine |
 | local Spotify catalogue dataset | ✅ local | large local zip; per-track features + album art + meta already extracted. Re-query for anything track-level |
-| Ticketmaster Discovery | ✅ works, dormant | 5k req/day free. `enrich-concerts.js` ready; needs a scheduled run |
+| Ticketmaster Discovery | ✅ LIVE weekly | 5k req/day free. `enrich-tm.js` + tour.yml (Mondays) → TOUR block. Attraction `externalLinks.musicbrainz` = exact library join; `attractions?id=a,b,c` batching verified. `enrich-concerts.js` is the older dormant per-artist keyword variant |
 | setlist.fm | ✅ verified 07-03 | free key; `GET /user/{userId}/attended` returns concerts you marked attended (paginated) + full setlists → **the gig-history spine** |
 
 ### Evaluated & rejected (don't re-litigate without new evidence)
@@ -376,8 +378,17 @@ plus a manual **`gigs.json`** for festivals/shows setlist.fm lacks
    ("they played 7 of your top 10").
 4. **"Caught them in time"** (emotional centrepiece): MB end-dates × gig dates — bands you saw
    before they ended vs ones that got away.
-5. Revive Ticketmaster upcoming-events on a weekly schedule → Live tab returns, now with
-   "never seen, playing near you" framing.
+5. ✅ SHIPPED 2026-07-05 (superseding the old Live-tab idea): **location-first tour pull** —
+   `enrich-tm.js` (Sydney/Tokyo/Warsaw, 1200 km, longest window, date-cursor past the
+   1000-item paging cap) → `tm-events.json` (committed, matched events only; joins lineup
+   `attractions[]` to the library by MusicBrainz id first, normalized name second) →
+   build-data `TOUR` block → Gigs "On tour now" section (reactivated badge for disbanded-yet-
+   touring GROUPS, per-event outlet links) + amber "On tour" badge in ArtistMeta (`a.onTour`)
+   + `tm-tour-lazy.js` (in apps.json deploy[]). Weekly `.github/workflows/tour.yml`
+   (TICKETMASTER_API secret set). Known limits: TM has zero Japan inventory (Tokyo market kept
+   as a canary); name-only joins can collide (Bill Evans case) — genre cross-check is the
+   open refinement; artist-first batched `upcomingEvents` sweep (attractions?id=a,b,c — verified
+   working) is the future "on tour anywhere, not just near your markets" extension.
 
 ### M3 · Personal Spotify module — ~2 sessions + waiting on export
 1. **Request the extended streaming history export now** (up to 30 days' wait).
