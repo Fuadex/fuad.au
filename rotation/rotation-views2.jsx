@@ -378,13 +378,16 @@ function lifeBadge(life) {
   if (t === "g") return { txt: "Active", tone: "active" };   // living solo artists get no badge (noise)
   return null;
 }
-function ArtistMeta({ gender, life, size }) {
+function ArtistMeta({ gender, life, size, seenLive }) {
   const g = genderGlyph(gender), b = lifeBadge(life);
-  if (!g && !b) return null;
+  if (!g && !b && !seenLive) return null;
+  // seen-live badge: purple, so it doesn't fight the green "Active" badge sitting next to it
+  const sl = seenLive ? { txt: "Seen live" + (seenLive.count > 1 ? " ×" + seenLive.count : ""), tip: `you attended ${seenLive.count} show${seenLive.count !== 1 ? "s" : ""}${seenLive.first ? " · " + seenLive.first.slice(0, 4) + (seenLive.last && seenLive.last.slice(0, 4) !== seenLive.first.slice(0, 4) ? "–" + seenLive.last.slice(0, 4) : "") : ""}` } : null;
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 9, marginTop: 9, flexWrap: "wrap" }}>
       {g && <span title={g.label} style={{ fontSize: size || 16, lineHeight: 1, color: "var(--ink-soft)" }}>{g.ch}</span>}
       {b && <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid " + (b.tone === "active" ? "oklch(0.6 0.13 150 / .5)" : "var(--rule-2)"), color: b.tone === "active" ? "oklch(0.72 0.15 150)" : "var(--ink-faint)" }}>{b.txt}</span>}
+      {sl && <span className="r-mono" title={sl.tip} style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid oklch(0.6 0.16 305 / .55)", color: "oklch(0.74 0.14 305)", cursor: "help" }}>🎤 {sl.txt}</span>}
     </div>
   );
 }
@@ -448,7 +451,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   const shareOfTotal = (a.plays / R.TOTALS.scrobbles * 100);
 
   return (
-    <div className="r-view tv-page" ref={ref}>
+    <div className="r-view tv-page av-page" ref={ref}>
       <button className="r-back" onClick={() => go("explore")}>← explore</button>
 
       {/* header */}
@@ -459,7 +462,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}
             {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
-          <ArtistMeta gender={a.gender} life={a.life} size={18} />
+          <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} />
           <div style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap" }}>
             {a.tags.map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
           </div>

@@ -268,6 +268,7 @@ a.r-link:hover { color: var(--ink); }
 /* Album/Track page rules — GLOBAL (these pages are deep-linkable; component-scoped styles in
    Explore never load unless Explore mounts, which made the sidebar column clip on mobile). */
 .tv-page { max-width: 1150px; margin: 0 auto; }   /* detail pages read as a sheet, not a smear, on wide screens */
+.av-page { max-width: 1540px; }                   /* artist pages: +⅓ wider — 3-col composition needs the room (Fuad) */
 .clk-scroll > div { min-width: 0; }
 @media (max-width: 560px) {
   .clk-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
