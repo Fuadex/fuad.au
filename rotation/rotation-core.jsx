@@ -282,6 +282,25 @@ a.r-link:hover { color: var(--ink); }
    Explore never load unless Explore mounts, which made the sidebar column clip on mobile). */
 .tv-page { max-width: 1150px; margin: 0 auto; }   /* detail pages read as a sheet, not a smear, on wide screens */
 .av-page { max-width: 1540px; }                   /* artist pages: +⅓ wider — 3-col composition needs the room (Fuad) */
+/* DEMO — multi-model "what it's about" switcher on TrackView */
+.tv-switch { margin: 0 0 var(--gap); padding: 14px 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--panel); }
+.tv-switch-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.tv-switch-lbl { font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+.tv-switch-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.tv-switch-btns button { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-soft); cursor: pointer; transition: color .12s, border-color .12s; }
+.tv-switch-btns button:hover { border-color: var(--rule-2); color: var(--ink); }
+.tv-switch-btns button[data-on="true"] { border-color: currentColor; }
+.tv-switch-btns button[data-m="genius"][data-on="true"] { color: oklch(0.74 0.13 330); }
+.tv-switch-btns button[data-m="haiku"][data-on="true"] { color: oklch(0.75 0.14 145); }
+.tv-switch-btns button[data-m="sonnet"][data-on="true"] { color: oklch(0.72 0.15 235); }
+.tv-switch-btns button[data-m="opus"][data-on="true"] { color: oklch(0.73 0.16 295); }
+.tv-switch-btns button[data-m="fable"][data-on="true"] { color: oklch(0.78 0.14 60); }
+.tv-switch-body { position: relative; padding-bottom: 20px; }
+.tv-switch-txt { font-family: var(--serif); font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
+.tv-switch-brand { position: absolute; right: 0; bottom: 0; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+.tv-switch-brand[data-m="genius"] { color: oklch(0.7 0.12 330); }
+.tv-switch-brand[data-m="fable"] { color: oklch(0.73 0.12 60); }
+.tv-switch-note { font-size: 8.5px; color: var(--ink-faint); margin-top: 8px; letter-spacing: .05em; }
 /* needle-drop preview button (Shelves + Album pages) — global so it's styled off the Shelves view too */
 .sh-needle { padding: 7px 12px; border-radius: 999px; cursor: pointer; font-family: var(--mono); font-size: 10px;
   letter-spacing: .1em; text-transform: uppercase; text-align: center; border: 1px solid var(--rule-2);
