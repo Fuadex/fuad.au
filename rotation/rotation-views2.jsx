@@ -1252,15 +1252,10 @@ function PreviewBtn({ id, hue, artist, title }) {
 // acousticness, tempo, danceability, instrumentalness, key/mode, loudness, liveness, time signature) +
 // stats (duration, popularity, explicit, track #, ranks). Identity is "artistSlug~trackSlug" (mirrors
 // AlbumView). Needs media-index (plays/album) + the lazy track-audio.js (features), loaded on demand.
-// DEMO — flick between the "what it's about" reads from Genius + Haiku/Sonnet/Opus/Fable, so we
-// can feel the model-switcher UX in-site before building the real pipeline. Data: blurb-demo.js.
-const BLURB_MODELS = [
-  ["genius", "Genius", "human · community-written"],
-  ["haiku", "Haiku", "AI · quick gist"],
-  ["sonnet", "Sonnet", "AI · balanced"],
-  ["opus", "Opus", "AI · factual read"],
-  ["fable", "Fable", "AI · interpretive read"],
-];
+// "What it's about" — the Haiku gist is the default read; flick to Fable / Opus (deeper reads) or
+// Genius (human, community-written) where present. Order Haiku → Fable → Opus → Genius; Sonnet is
+// intentionally omitted. Reads come from blurb-reads (bake-off data today; the real pipeline later).
+const BLURB_ORDER = [["haiku", "Haiku"], ["fable", "Fable"], ["opus", "Opus"]];
 function BlurbSwitcher({ id, about }) {
   const [ready, setReady] = React.useState(!!window.ROTATION_BLURB_DEMO);
   React.useEffect(() => {
@@ -1270,13 +1265,12 @@ function BlurbSwitcher({ id, about }) {
   }, []);
   const [pick, setPick] = React.useState(null);
   React.useEffect(() => { setPick(null); }, [id]);   // new song → default read; clicks never clobbered
-  const demo = (ready && window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null;
-  // sources: real Genius blurb (always, when present) + the bake-off model reads where we have them
+  const reads = (ready && window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null;
+  // Haiku gist first (the default), then Fable / Opus deeper reads, then the human Genius blurb.
   const sources = [];
-  const geniusText = (about && about[0]) || (demo && demo.genius);
+  if (reads) for (const [m, label] of BLURB_ORDER) if (reads[m]) sources.push({ m, label, text: reads[m] });
+  const geniusText = (about && about[0]) || (reads && reads.genius);
   if (geniusText) sources.push({ m: "genius", label: "Genius", text: geniusText, link: about && about[1] ? `https://genius.com/songs/${about[1]}` : null });
-  if (demo) for (const [m, label] of [["haiku", "Haiku"], ["sonnet", "Sonnet"], ["opus", "Opus"], ["fable", "Fable"]])
-    if (demo[m]) sources.push({ m, label, text: demo[m] });
   if (!sources.length) return null;
   const cur = sources.find(s => s.m === pick) || sources[0];
   const multi = sources.length > 1;
@@ -1298,7 +1292,7 @@ function BlurbSwitcher({ id, about }) {
           ? <a className="tv-switch-brand" data-m="genius" href={cur.link} target="_blank" rel="noopener noreferrer">via Genius ↗</a>
           : <span className="tv-switch-brand" data-m={cur.m}>via {cur.label}</span>}
       </div>
-      {multi && <div className="tv-switch-note r-mono">comparing how different sources read the song{demo ? " · AI reads are a demo" : ""}</div>}
+      {multi && <div className="tv-switch-note r-mono">different reads of what the song is about</div>}
     </div>
   );
 }
