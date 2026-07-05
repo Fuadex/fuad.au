@@ -189,11 +189,8 @@ function OverviewView({ t, go }) {
     const hueOf = (id) => { const e = R.byId[id] || (R.expById && R.expById[id]); return e && e.hue != null ? e.hue : 210; };
     return LV.recent.map((r, i) => ({ id: "lv" + i, artistId: r.artistId, artist: r.artist, track: r.track, when: when(r.uts), hue: hueOf(r.artistId) }));
   }, [R]);
-  // just the last 3 played, minus whatever's in the now-playing card above (Fuad 2026-07-06 —
-  // the 6/12/18 selector was too tight for the row)
-  const recent3 = React.useMemo(
-    () => recent.filter(r => !(r.artist === now.artist && r.track === now.track)).slice(0, 3),
-    [recent, now.artist, now.track]);
+  // just the last 3 played (the 6/12/18 selector was too tight for the row — Fuad 2026-07-06)
+  const recent3 = React.useMemo(() => recent.slice(0, 3), [recent]);
 
   // 26-week scrobble trend (real if the build provides it)
   const trend = React.useMemo(() => R.TREND || Array.from({ length: 26 }, (_, i) =>
