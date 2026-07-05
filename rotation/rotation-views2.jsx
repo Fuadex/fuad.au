@@ -1017,6 +1017,14 @@ function AlbumView({ id, go }) {
     if (window.ROTATION_PREVIEWS) return;
     const s = document.createElement("script"); s.src = "track-previews.js"; s.onload = () => setPrevReady(true); document.head.appendChild(s);
   }, []);
+  // album "what it's about" blurb (Wikipedia themes section) — lazy + optional (404s harmlessly
+  // if the build has no album-about layer yet)
+  const [, setAaReady] = React.useState(!!window.ROTATION_ALBUM_ABOUT);
+  React.useEffect(() => {
+    if (window.ROTATION_ALBUM_ABOUT) return;
+    const s = document.createElement("script"); s.src = "album-about-lazy.js";
+    s.onload = () => setAaReady(true); s.onerror = () => setAaReady(true); document.head.appendChild(s);
+  }, []);
   // per-track themes for the "mostly about…" roll-up — tiny extra render when it arrives
   const [themesReady, setThemesReady] = React.useState(!!window.ROTATION_TRACKTHEMES);
   React.useEffect(() => {
@@ -1076,6 +1084,8 @@ function AlbumView({ id, go }) {
     return [...acc.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2)
       .map(([i, p]) => ({ theme: TT._themes[i], share: Math.round(p / tot * 100) }));
   })();
+  // album "what it's about" (Wikipedia themes) — id is artistSlug~albumSlug, same key the pull uses
+  const albumAbout = (window.ROTATION_ALBUM_ABOUT && window.ROTATION_ALBUM_ABOUT[id]) || null; // [excerpt, wikiTitle]
 
   return (
     <div className="r-view tv-page">
@@ -1112,6 +1122,15 @@ function AlbumView({ id, go }) {
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>your albums</div></div>
         </div>
       </div>
+
+      {/* what it's about — Wikipedia themes/content section (album-about-lazy.js) */}
+      {albumAbout && (
+        <div className="tv-about" style={{ maxWidth: "none", marginBottom: "var(--gap)" }}>
+          <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginRight: 8 }}>What it's about</span>
+          <span className="tv-about-txt">{albumAbout[0]}</span>
+          {albumAbout[1] ? <a className="tv-about-src" href={`https://en.wikipedia.org/wiki/${encodeURIComponent(albumAbout[1].replace(/ /g, "_"))}`} target="_blank" rel="noopener noreferrer">via Wikipedia ↗</a> : null}
+        </div>
+      )}
 
       {dna && (
         <div className="tv-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
