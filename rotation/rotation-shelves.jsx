@@ -219,8 +219,9 @@ function shGroupShelves(albums, R) {
 // Progress updates go straight to the DOM (refs) — a 500-spine row must not re-render per frame.
 function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitLabel, splitOn, onSplit, expanded, setExpanded, setReader }) {
   const visible = albums.slice(0, cap);
-  const rowRef = React.useRef(null), barRef = React.useRef(null), pctRef = React.useRef(null), progRef = React.useRef(null);
+  const rowRef = React.useRef(null), barRef = React.useRef(null), pctRef = React.useRef(null), progRef = React.useRef(null), trackRef = React.useRef(null);
   const drag = React.useRef({ down: false, moved: false });
+  const progDrag = React.useRef(false);
   const syncProg = () => {
     const el = rowRef.current; if (!el) return;
     const max = el.scrollWidth - el.clientWidth;
@@ -232,6 +233,18 @@ function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitL
     if (pctRef.current) pctRef.current.textContent = String(Math.round(pct * 100)).padStart(2, "0") + "%";
   };
   React.useEffect(() => { syncProg(); }, [cap, albums.length]);
+  // arrows (Culture-style) — scroll a screenful; appear only on row hover via CSS
+  const arrow = (dir) => { const el = rowRef.current; if (el) el.scrollBy({ left: dir * el.clientWidth * 0.82, behavior: "smooth" }); };
+  // the progress bar itself is a scrubber: click or drag anywhere on the track to seek the row
+  const seek = (clientX) => {
+    const t = trackRef.current, el = rowRef.current; if (!t || !el) return;
+    const r = t.getBoundingClientRect();
+    const frac = Math.max(0, Math.min(1, (clientX - r.left) / r.width));
+    el.scrollLeft = frac * (el.scrollWidth - el.clientWidth); syncProg();
+  };
+  const onProgDown = (e) => { progDrag.current = true; try { e.currentTarget.setPointerCapture(e.pointerId); } catch (_) {} seek(e.clientX); e.preventDefault(); };
+  const onProgMove = (e) => { if (progDrag.current) seek(e.clientX); };
+  const onProgUp = () => { progDrag.current = false; };
   const onDown = (e) => { if (e.button !== 0) return; drag.current = { down: true, x: e.clientX, sl: rowRef.current.scrollLeft, moved: false }; };
   React.useEffect(() => {
     const onMove = (e) => {
@@ -261,17 +274,23 @@ function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitL
           <button className="sh-split" onClick={onSplit}>{splitOn ? "merge ▴" : `${splitLabel || "split"} ▾`}</button>
         )}
       </div>
-      <div className="sh-row" ref={rowRef} onScroll={syncProg} onMouseLeave={() => setExpanded(null)}
-        onMouseDown={onDown} onClickCapture={onClickCapture}>
-        {visible.map(al => (
-          <ShSpine key={al.key} al={al} expanded={expanded === al.key}
-            onExpand={setExpanded} onOpen={setReader} />
-        ))}
-        {albums.length > cap && (
-          <button className="sh-more" onClick={onMore}>+{fmt(albums.length - cap)}<br />dig<br />deeper</button>
-        )}
+      <div className="sh-rowwrap">
+        <button className="sh-arrow sh-arrow-l" onClick={() => arrow(-1)} aria-label="scroll left" tabIndex={-1}>‹</button>
+        <div className="sh-row" ref={rowRef} onScroll={syncProg} onMouseLeave={() => setExpanded(null)}
+          onMouseDown={onDown} onClickCapture={onClickCapture}>
+          {visible.map(al => (
+            <ShSpine key={al.key} al={al} expanded={expanded === al.key}
+              onExpand={setExpanded} onOpen={setReader} />
+          ))}
+          {albums.length > cap && (
+            <button className="sh-more" onClick={onMore}>+{fmt(albums.length - cap)}<br />dig<br />deeper</button>
+          )}
+        </div>
+        <button className="sh-arrow sh-arrow-r" onClick={() => arrow(1)} aria-label="scroll right" tabIndex={-1}>›</button>
       </div>
-      <div className="sh-prog" ref={progRef}><div className="sh-prog-track"><i ref={barRef} style={{ "--h": hue }} /></div><span ref={pctRef} className="r-mono">0%</span></div>
+      <div className="sh-prog" ref={progRef}>
+        <div className="sh-prog-track" ref={trackRef} onPointerDown={onProgDown} onPointerMove={onProgMove} onPointerUp={onProgUp} onPointerCancel={onProgUp} title="drag to scan the shelf"><i ref={barRef} style={{ "--h": hue }} /></div>
+        <span ref={pctRef} className="r-mono">0%</span></div>
     </section>
   );
 }
@@ -471,15 +490,28 @@ function ShelvesView({ go }) {
         .sh-split { margin-left: auto; background: none; border: none; color: var(--ink-faint); cursor: pointer;
           font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
         .sh-split:hover { color: var(--accent); }
+        .sh-rowwrap { position: relative; }
         .sh-row { display: flex; align-items: flex-end; gap: 2px; overflow-x: auto; padding: 6px 2px 0;
           border-bottom: 3px solid var(--rule-2); -webkit-overflow-scrolling: touch;
           scrollbar-width: none; cursor: grab; user-select: none; }
         .sh-row::-webkit-scrollbar { display: none; }
         .sh-row:active, .sh-row.dragging { cursor: grabbing; }
         .sh-cover { -webkit-user-drag: none; user-drag: none; }
+        /* Culture-style edge arrows — hidden until the row is hovered (desktop nicety) */
+        .sh-arrow { position: absolute; top: 6px; bottom: 3px; width: 38px; z-index: 4; border: none; cursor: pointer;
+          display: flex; align-items: center; justify-content: center; font-size: 24px; line-height: 1;
+          color: var(--ink); opacity: 0; transition: opacity .15s; pointer-events: none; }
+        .sh-arrow-l { left: 0; justify-content: flex-start; padding-left: 4px; background: linear-gradient(90deg, var(--bg) 34%, transparent); }
+        .sh-arrow-r { right: 0; justify-content: flex-end; padding-right: 4px; background: linear-gradient(270deg, var(--bg) 34%, transparent); }
+        .sh-rowwrap:hover .sh-arrow { opacity: .8; pointer-events: auto; }
+        .sh-arrow:hover { opacity: 1; color: var(--accent); }
+        @media (hover: none) { .sh-arrow { display: none; } }
         .sh-prog { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
-        .sh-prog-track { flex: 1; height: 2px; background: var(--bg-3); border-radius: 2px; overflow: hidden; }
-        .sh-prog-track i { display: block; height: 100%; width: 0; background: oklch(0.55 0.11 var(--h, 260) / .8); border-radius: 2px; }
+        /* the track is a scrubber: 12px hit area (via padding) around a 2px visual line */
+        .sh-prog-track { flex: 1; height: 2px; background: var(--bg-3); border-radius: 2px; position: relative;
+          padding: 6px 0; background-clip: content-box; cursor: pointer; touch-action: none; }
+        .sh-prog-track i { display: block; height: 2px; width: 0; background: oklch(0.55 0.11 var(--h, 260) / .8); border-radius: 2px; }
+        .sh-prog-track:hover i { background: oklch(0.65 0.13 var(--h, 260)); }
         .sh-prog > span { font-size: 8.5px; color: var(--ink-faint); width: 30px; text-align: right; }
         .sh-reveal { animation: shReveal .32s cubic-bezier(.25,.8,.35,1) both; }
         @keyframes shReveal { from { opacity: 0; transform: translateY(-10px); } }

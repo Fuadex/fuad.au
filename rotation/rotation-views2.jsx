@@ -412,6 +412,47 @@ const LiveMark = ({ on }) => on
   ? <span className="r-livemark" title="You've watched this performed live">🎤</span>
   : null;
 
+// Upcoming Ticketmaster dates for this artist (a.onTour is baked in; the full event list rides
+// on the lazy tm-tour-lazy.js, loaded on demand). Sits above the Seen-live card on the page.
+function ArtistTourCard({ a, go }) {
+  const R = window.ROTATION;
+  const [tour, setTour] = React.useState(window.ROTATION_TOUR || null);
+  React.useEffect(() => {
+    if (!a.onTour || window.ROTATION_TOUR) return;
+    const s = document.createElement("script"); s.src = "tm-tour-lazy.js";
+    s.onload = () => setTour(window.ROTATION_TOUR); document.head.appendChild(s);
+  }, []);
+  if (!a.onTour) return null;
+  const MONS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const dfmt = (d) => { const [y, m, dd] = d.split("-"); return `${+dd} ${MONS[+m - 1]} ${y}`; };
+  const rec = tour && tour.artists.find(x => x.id === a.id);
+  const n = a.onTour[0];
+  return (
+    <div className="r-card" style={{ padding: 18 }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
+        <span className="lbl">On <b>tour</b></span>
+        <span className="meta" style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => go("gigs")}>tour explorer ↗</span></div>
+      <div style={{ fontSize: 13, color: "var(--ink-soft)", marginBottom: rec ? 12 : 0 }}>
+        {a.react
+          ? <><b style={{ color: "oklch(0.75 0.16 45)" }}>Reactivated</b> — on record as disbanded, yet </>
+          : <>{a.name} has </>}
+        <b style={{ color: "var(--ink)" }}>{n}</b> upcoming date{n !== 1 ? "s" : ""} around your markets{a.seenLive ? <> · you've already seen them <b style={{ color: "var(--ink)" }}>{a.seenLive.count === 1 ? "once" : a.seenLive.count + "×"}</b></> : null}.
+      </div>
+      {!rec ? <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>loading dates…</div> : (
+        <div style={{ display: "grid", gap: 2 }}>
+          {rec.events.map((e, i) => (
+            <a key={(e.url || e.d) + i} className="av-tourrow" href={e.url || undefined} target="_blank" rel="noopener noreferrer" data-dead={!e.url}>
+              <span className="r-mono av-tourrow-d">{dfmt(e.d)}</span>
+              <span className="av-tourrow-w">{e.v}{e.city ? `, ${e.city}` : ""}{e.cc ? ` (${e.cc})` : ""}</span>
+              {e.url ? <span className="av-tourrow-out">↗</span> : null}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ArtistView({ t, id, go, setPop, city, setCity }) {
   const R = window.ROTATION;
   const full = R.byId[id];
@@ -518,9 +559,8 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
       <div style={{ display: "grid", gap: "var(--gap)" }}>
           {/* row 2 on PC: flow (wide — Sound DNA moved to the bottom row for breathing room,
              Fuad 2026-07-06) · top tracks · albums */}
-          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 0.9fr", gap: "var(--gap)", alignItems: "start" }}>
-            {/* how they played out — swapped up from the bottom row */}
-            <ArtistFlow id={a.id} hue={a.hue} go={go} />
+          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr 0.9fr", gap: "var(--gap)", alignItems: "start" }}>
+            {/* top tracks · how they played out (flow now in the MIDDLE — Fuad 2026-07-06) · albums */}
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
                 <span className="lbl"><b>Top tracks</b></span>
@@ -539,6 +579,8 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                 </div>
               );})}
             </div>
+            {/* how they played out — flow, in the middle */}
+            <ArtistFlow id={a.id} hue={a.hue} go={go} />
             {/* all albums — covers (default) ⇄ compact list */}
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
@@ -579,8 +621,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           {/* bottom row: how-they-played-out + family tree — kept at their ⅓ widths but
              CENTERED in the row rather than stretched across it (Fuad, 2026-07-04) */}
           <div className="m-stack av-endrow" style={{ display: "flex", gap: "var(--gap)", justifyContent: "center", alignItems: "flex-start", flexWrap: "wrap" }}>
-          {/* sound DNA — collapsed down from row 2 so flow + albums breathe (Fuad, 2026-07-06) */}
-          <div className="r-card" style={{ padding: 18 }}>
+          {/* sound DNA — collapsed down from row 2, kept COMPACT (~224px) so it doesn't stretch
+              wide; flow + albums breathe in row 2 instead (Fuad, 2026-07-06) */}
+          <div className="r-card av-dnacard" style={{ padding: 18 }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl"><b>Sound DNA</b></span>
               <span className="meta">{a.am ? "measured" : "inferred"}</span></div>
             <div className="av-dna" style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "center" }}>
@@ -710,6 +753,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           })()}
           </div>
 
+          {/* on tour — upcoming Ticketmaster dates, above Seen live (Fuad 2026-07-06) */}
+          <ArtistTourCard a={a} go={go} />
+
           {/* seen live — from Fuad's attended setlist.fm shows (ROTATION.GIGS) */}
           {a.seenLive && (
             <div className="r-card" style={{ padding: 18 }}>
@@ -763,6 +809,18 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         /* bottom row: each card keeps its ~⅓ width and the pair sits centered; the m-stack
            class turns this into a 1-col grid on mobile (flex props are then inert) */
         .av-endrow > * { flex: 0 1 calc((100% - 2 * var(--gap)) / 3); min-width: 300px; }
+        /* Sound DNA stays compact (radar-width) rather than stretching to a full third */
+        .av-endrow > .av-dnacard { flex: 0 0 236px; min-width: 236px; }
+        @media (max-width: 980px){ .av-endrow > .av-dnacard { flex: 1 1 100%; } }
+        /* on-tour date rows */
+        .av-tourrow { display: flex; align-items: baseline; gap: 10px; padding: 6px 4px; border-radius: 4px;
+          text-decoration: none; color: var(--ink-soft); border-bottom: 1px solid var(--rule); }
+        .av-tourrow:last-child { border-bottom: none; }
+        .av-tourrow:hover { color: var(--accent); background: var(--bg-3); }
+        .av-tourrow[data-dead="true"] { pointer-events: none; }
+        .av-tourrow-d { font-size: 10.5px; color: var(--ink-faint); white-space: nowrap; flex: none; width: 92px; }
+        .av-tourrow-w { flex: 1; min-width: 0; font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .av-tourrow-out { flex: none; font-size: 10px; color: var(--ink-faint); }
       `}</style>
     </div>
   );

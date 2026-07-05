@@ -454,7 +454,7 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
                 ? (b.kind === "country" ? periodPlaces.cc.has(b.c.code) : periodPlaces.ci.has(b.c.country + "|" + b.c.city))
                 : null;
               if (inPeriod === false) return null;
-              return <circle key={b.key} cx={b.x} cy={b.y} r={b.r / Math.sqrt(view.s)} fill={col} fillOpacity={on ? 0.72 : 0.34}
+              return <circle key={b.key} cx={b.x} cy={b.y} r={b.r / Math.pow(view.s, 0.8)} fill={col} fillOpacity={on ? 0.72 : 0.34}
                 stroke={inPeriod ? "var(--accent)" : col} strokeWidth={((inPeriod ? 1.8 : on ? 1.6 : 0.7)) / view.s}
                 style={{ cursor: "pointer", transition: "r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s" }}
                 onMouseEnter={() => setHi(b.key)} onClick={(e) => { e.stopPropagation(); if (!moved.current) openBubble(b); }} />;
