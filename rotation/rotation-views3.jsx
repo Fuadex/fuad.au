@@ -620,6 +620,73 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+        {/* themes — what the lyrics are ABOUT (embedding themes, not sentiment) */}
+        {I.THEMES && I.THEMES.shares.length >= 6 && (() => {
+          const T = I.THEMES;
+          const top = T.shares[0];
+          const max = top.plays;
+          // movers: biggest riser/faller between the first 3 and last 3 arc years
+          let riser = null, faller = null;
+          if (T.arc) {
+            const A = T.arc.years, f3 = A.slice(0, 3), l3 = A.slice(-3);
+            const deltas = T.arc.themes.map(th => {
+              const before = f3.reduce((s, y) => s + (y.byTheme[th] || 0), 0) / f3.length;
+              const after = l3.reduce((s, y) => s + (y.byTheme[th] || 0), 0) / l3.length;
+              return { th, delta: after - before, after };
+            }).sort((a, b) => b.delta - a.delta);
+            riser = deltas[0]; faller = deltas[deltas.length - 1];
+          }
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">What it's all about · lyric themes</div>
+              <div className="st-big">
+                <em>{Math.round(top.share * 100)}%</em> of what you play is about <em>{top.theme}</em>.
+              </div>
+              <div className="st-sub">
+                Not how it sounds — what the words are <i>about</i>, read from the lyrics of {fmt(T.covered)} tracks
+                ({Math.round(T.coveredPlays / T.totalPlays * 100)}% of your plays, all languages).
+                {riser && faller && riser.delta > 0.02 ? <> Over the years <b style={{ color: "var(--ink)" }}>{riser.th}</b> has been rising while <b style={{ color: "var(--ink)" }}>{faller.th}</b> fades.</> : null}
+              </div>
+              <div style={{ display: "grid", gap: 7, marginTop: 18, maxWidth: 560 }}>
+                {T.shares.slice(0, 8).map(s => (
+                  <div key={s.theme} style={{ display: "grid", gridTemplateColumns: "170px 1fr 44px", gap: 10, alignItems: "center" }}>
+                    <span style={{ fontSize: 12.5, color: "var(--ink)" }}>{s.theme}</span>
+                    <div style={{ height: 7, background: "var(--bg-3)", borderRadius: 4, overflow: "hidden" }}>
+                      <div style={{ height: "100%", width: (s.plays / max * 100) + "%", background: "var(--accent)", borderRadius: 4 }} />
+                    </div>
+                    <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{Math.round(s.share * 100)}%</span>
+                  </div>
+                ))}
+              </div>
+              {T.exemplars[top.theme] && (
+                <div className="st-ug-cuts" style={{ marginTop: 18 }}>
+                  {T.shares.slice(0, 3).flatMap(s => (T.exemplars[s.theme] || []).slice(0, 2).map(e => (
+                    <div key={e.id} className="st-ug-cut" data-link={true} onClick={() => go("track", e.id)}>
+                      <GenCover hue={e.hue} name={e.artist} size={40} radius={4} />
+                      <div style={{ minWidth: 0 }}>
+                        <div className="st-row-name">{e.title}</div>
+                        <div className="st-row-sub">{e.artist} · {s.theme} · {fmt(e.plays)} plays</div>
+                      </div>
+                    </div>
+                  )))}
+                </div>
+              )}
+              {T.artists.length >= 5 && (
+                <div className="st-sub" style={{ marginTop: 18 }}>
+                  Signature obsessions: {T.artists.slice(0, 6).map((a, i) => (
+                    <React.Fragment key={a.artistId}>{i > 0 ? " · " : ""}
+                      <b className="st-inline-link" data-link={!!R.byId[a.artistId]}
+                        onClick={() => R.byId[a.artistId] && go("artist", a.artistId)}
+                        style={{ color: "var(--ink)", cursor: R.byId[a.artistId] ? "pointer" : "default" }}>{a.name}</b>
+                      {a.themes[0] ? <span style={{ color: "var(--ink-faint)" }}> ({a.themes[0].theme})</span> : null}
+                    </React.Fragment>
+                  ))}.
+                </div>
+              )}
+            </section>
+          );
+        })()}
+
         {/* lineups — Wikidata band-member gender (the layer MB can't give us) */}
         {I.LINEUPS && I.LINEUPS.featured && I.LINEUPS.featured.length >= 4 && (() => {
           const L = I.LINEUPS;
