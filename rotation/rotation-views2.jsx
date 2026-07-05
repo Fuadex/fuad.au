@@ -1266,19 +1266,18 @@ function BlurbSwitcher({ id, about }) {
   React.useEffect(() => { setPick(null); }, [id]);   // new song → default read; clicks never clobbered
   const llm = (window.ROTATION_LLM_ABOUT && window.ROTATION_LLM_ABOUT[id]) || null;   // real pipeline read
   const reads = (window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null; // bake-off multi-model
-  // primary = the shipped gist (Haiku, or Sonnet where it sharpened/recovered) → Opus deeper read →
-  // Genius (human). Bake-off songs still expose the full Haiku/Fable/Opus set.
+  // buttons: the three reads we ran (Haiku · Sonnet · Opus) then Genius (human). Default = the
+  // chosen source (Haiku gist, or Sonnet where it recovered/sharpened). Bake-off songs keep their set.
   const sources = [];
   if (llm) {
-    sources.push({ m: llm.src, label: llm.src === "sonnet" ? "Sonnet" : "Haiku", text: llm.about });
-    if (llm.opus) sources.push({ m: "opus", label: "Opus", text: llm.opus });
+    for (const [m, label] of [["haiku", "Haiku"], ["sonnet", "Sonnet"], ["opus", "Opus"]]) if (llm[m]) sources.push({ m, label, text: llm[m] });
   } else if (reads) {
     for (const [m, label] of BLURB_ORDER) if (reads[m]) sources.push({ m, label, text: reads[m] });
   }
   const geniusText = (about && about[0]) || (reads && reads.genius);
   if (geniusText) sources.push({ m: "genius", label: "Genius", text: geniusText, link: about && about[1] ? `https://genius.com/songs/${about[1]}` : null });
   if (!sources.length) return null;
-  const cur = sources.find(s => s.m === pick) || sources[0];
+  const cur = sources.find(s => s.m === pick) || sources.find(s => llm && s.m === llm.src) || sources[0];
   const multi = sources.length > 1;
   return (
     <div className="tv-switch">
