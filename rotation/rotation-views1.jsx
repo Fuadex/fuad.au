@@ -189,7 +189,11 @@ function OverviewView({ t, go }) {
     const hueOf = (id) => { const e = R.byId[id] || (R.expById && R.expById[id]); return e && e.hue != null ? e.hue : 210; };
     return LV.recent.map((r, i) => ({ id: "lv" + i, artistId: r.artistId, artist: r.artist, track: r.track, when: when(r.uts), hue: hueOf(r.artistId) }));
   }, [R]);
-  const [recentN, setRecentN] = React.useState(6);
+  // just the last 3 played, minus whatever's in the now-playing card above (Fuad 2026-07-06 —
+  // the 6/12/18 selector was too tight for the row)
+  const recent3 = React.useMemo(
+    () => recent.filter(r => !(r.artist === now.artist && r.track === now.track)).slice(0, 3),
+    [recent, now.artist, now.track]);
 
   // 26-week scrobble trend (real if the build provides it)
   const trend = React.useMemo(() => R.TREND || Array.from({ length: 26 }, (_, i) =>
@@ -313,7 +317,7 @@ function OverviewView({ t, go }) {
             <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
               style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
           <div className="ov-rl" style={{ display: "grid", gap: 2, flex: 1, alignContent: "center" }}>
-            {recent.slice(0, recentN).map(r => (
+            {recent3.map(r => (
               <div key={r.id} onClick={() => go("track", R.slug(r.artist) + "~" + R.slug(r.track))} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 11,
                 padding: "5px 6px", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
                 onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
@@ -327,11 +331,6 @@ function OverviewView({ t, go }) {
                 <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", flex: "none" }}>{r.when}</span>
               </div>
             ))}
-          </div>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 7, flexWrap: "wrap", gap: 8 }}>
-            <div className="r-seg">{[6, 12, 18].map(n => <button key={n} data-on={recentN === n} onClick={() => setRecentN(n)}
-              disabled={n > recent.length} style={n > recent.length ? { opacity: .35, cursor: "default" } : null}>{n}</button>)}</div>
-            <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>showing {Math.min(recentN, recent.length)} latest</span>
           </div>
         </div>
 

@@ -1718,7 +1718,7 @@ function TourCal({ events, gran, setGran, selKey, setSelKey, keyOf }) {
 
 // Equirectangular event map — pan/zoom, dots colored by the dominant genre in each city,
 // sized by event count. Hovering an artist row below traces their tour path as a numbered route.
-function TourMap({ events, city, setCity, hiPath, hiHue }) {
+function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
   const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
   const [tf, setTf] = React.useState({ k: 1, x: 0, y: 0 });   // g transform: translate(x,y) scale(k)
   const svgRef = React.useRef(null);
@@ -1786,6 +1786,11 @@ function TourMap({ events, city, setCity, hiPath, hiHue }) {
         style={{ cursor: "grab", touchAction: "none" }}>
         <g transform={`translate(${tf.x} ${tf.y}) scale(${tf.k})`}>
           {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" />)}
+          {/* all touring artists' routes (the "link tour dates" toggle) — faint, under the dots */}
+          {routes && routes.map(r => (
+            <polyline key={r.id} points={r.pts.map(p => p.join(",")).join(" ")} fill="none"
+              stroke={`oklch(0.6 0.14 ${r.hue})`} strokeWidth={0.7 / rk} opacity={hiPath ? 0.18 : 0.4} />
+          ))}
           {cities.map(c => (
             <circle key={c.k} className="gv-tmap-dot" data-on={city === c.k}
               cx={c.x} cy={c.y} r={(base + Math.sqrt(c.n) * 1.15) / rk} strokeWidth={1.2 / rk}
@@ -1825,6 +1830,7 @@ function TourSection({ go, gigDate }) {
   const [gkey, setGkey] = React.useState(null);       // genre-cascade key ("f"+famI | "t:Metal" | "?")
   const [sub, setSub] = React.useState(null);         // genre-cascade subgenre index
   const [hi, setHi] = React.useState(null);           // hovered artist id → tour path on the map
+  const [showRoutes, setShowRoutes] = React.useState(false);  // draw every multi-stop artist's route
   React.useEffect(() => {
     if (window.ROTATION_TOUR || !R.TOUR) return;
     const s = document.createElement("script"); s.src = "tm-tour-lazy.js";
@@ -1876,6 +1882,17 @@ function TourSection({ go, gigDate }) {
   if (!T) return null;
   const hiArt = hi ? artists.find(a => a.id === hi) : null;
   const hiPath = hiArt ? hiArt.events.filter(e => e.ll).map(e => [(e.ll[1] + 180) / 360 * 1000, (90 - e.ll[0]) / 180 * 500]) : null;
+  // every touring artist that plays 2+ located cities → a route to draw when "link routes" is on
+  const allRoutes = React.useMemo(() => {
+    if (!showRoutes) return null;
+    const out = [];
+    for (const a of artists) {
+      const pts = a.events.filter(e => e.ll).map(e => [(e.ll[1] + 180) / 360 * 1000, (90 - e.ll[0]) / 180 * 500]);
+      if (pts.length >= 2) out.push({ id: a.id, hue: a.hue, pts });
+    }
+    return out;
+  }, [artists, showRoutes]);
+  const routeCount = showRoutes && allRoutes ? allRoutes.length : artists.filter(a => a.events.filter(e => e.ll).length >= 2).length;
   const anyFilt = gkey != null || sub != null || city != null || selKey != null;
   const shown = showAll ? artists : artists.slice(0, 20);
   const chips = [];
@@ -1909,8 +1926,16 @@ function TourSection({ go, gigDate }) {
       {!tour && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 16 }}>loading tour dates…</div>}
       {tour && <>
         <div className="r-card gv-tmap-card">
-          <TourMap events={mapEvents} city={city} setCity={setCity} hiPath={hiPath} hiHue={hiArt ? hiArt.hue : 40} />
-          <div className="r-mono gv-tmap-hint">{hiArt ? <>tracing <b>{hiArt.name}</b>'s route — dots numbered in date order</> : "where — scroll to zoom · drag to pan · click a city to filter · hover an artist below to trace their route · dots colored by genre"}</div>
+          <TourMap events={mapEvents} city={city} setCity={setCity} hiPath={hiPath} hiHue={hiArt ? hiArt.hue : 40} routes={allRoutes} />
+          <div className="gv-tmap-foot">
+            <span className="r-mono gv-tmap-hint">{hiArt ? <>tracing <b>{hiArt.name}</b>'s route — dots numbered in date order</> : "where — scroll to zoom · drag to pan · click a city to filter · hover an artist to trace their route"}</span>
+            {routeCount > 0 && (
+              <button className="gv-routes-btn" data-on={showRoutes} onClick={() => setShowRoutes(v => !v)}
+                title="draw a line between each artist's tour stops">
+                {showRoutes ? "hide" : "🔗 link"} tour routes{showRoutes ? "" : ` (${routeCount})`}
+              </button>
+            )}
+          </div>
           <TourCal events={calEvents} gran={gran} setGran={setGran} selKey={selKey} setSelKey={setSelKey} keyOf={keyOf} />
         </div>
         <GenreCascade R={R} arts={cascArts} gkey={gkey} sub={sub} setGkey={setGkey} setSub={setSub} />
@@ -2236,7 +2261,12 @@ function GigsView({ go }) {
         .gv-tmap-dot { fill-opacity: .72; cursor: pointer; transition: fill-opacity .15s; }
         .gv-tmap-dot:hover { fill-opacity: 1; }
         .gv-tmap-dot[data-on="true"] { fill-opacity: 1; stroke: var(--ink); }
-        .gv-tmap-hint { font-size: 8.5px; color: var(--ink-faint); margin: 4px 2px 10px; letter-spacing: .05em; }
+        .gv-tmap-foot { display: flex; align-items: center; gap: 10px; margin: 4px 2px 10px; flex-wrap: wrap; }
+        .gv-tmap-hint { font-size: 8.5px; color: var(--ink-faint); letter-spacing: .05em; flex: 1; min-width: 160px; }
+        .gv-routes-btn { flex: none; font-family: var(--mono); font-size: 9.5px; letter-spacing: .06em; padding: 4px 10px;
+          border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-soft); cursor: pointer; }
+        .gv-routes-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
+        .gv-routes-btn[data-on="true"] { border-color: var(--accent-dim); color: var(--accent); background: var(--accent-bg); }
         .gv-tmap-hint b { color: var(--ink-soft); }
         /* calendar strip — D/W/M buckets, bottom-aligned bars */
         .gv-tcal-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
