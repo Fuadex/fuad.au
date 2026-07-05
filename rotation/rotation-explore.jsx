@@ -309,7 +309,7 @@ function ExploreView({ t, go, setPop, seed }) {
   const [moodZone, setMoodZone] = React.useState(null);   // active valence×energy quadrant filter, or null
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
   const [limit, setLimit] = React.useState(40);           // album/track list depth (load-more grows it)
-  const [showN, setShowN] = React.useState(20);           // visible rows (10/20/40) — window scrolls past ~12
+  const [showN, setShowN] = React.useState(15);           // visible rows (10/15/20; default 15 — Fuad 2026-07-05)
   const [ref, seen] = useInView();
 
   // albums/tracks now rank from the lazy media-index (full library depth) — load it the first time
@@ -483,7 +483,7 @@ function ExploreView({ t, go, setPop, seed }) {
               {["artists", "albums", "tracks"].map(k => <button key={k} data-on={kind === k} onClick={() => setKind(k)}>{k}</button>)}
             </div>
             <div className="r-seg">
-              {[10, 20, 40].map(n => <button key={n} data-on={showN === n} onClick={() => setShowN(n)}>{n}</button>)}
+              {[10, 15, 20].map(n => <button key={n} data-on={showN === n} onClick={() => setShowN(n)}>{n}</button>)}
             </div>
           </div>
           {cells.size > 0 && kind !== "artists" && <div className="r-mono xp-note">filtered to {kind} by artists active in the selected slots</div>}
@@ -576,9 +576,16 @@ function ExploreView({ t, go, setPop, seed }) {
             scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
         }
         .xp-val { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); text-align: right; }
-        @media (max-width: 1500px) { .xp-famgrid { grid-template-columns: repeat(4, 1fr) !important; } }
-        @media (max-width: 1100px) { .xp-famgrid { grid-template-columns: repeat(3, 1fr) !important; } }
-        @media (max-width: 760px) { .xp-famgrid { grid-template-columns: 1fr !important; } }
+        /* xp-sub-row was never defined → block layout, so a long nowrap subgenre name set the
+           column's min-content width ("second wave of…" widened Nu-metal). Flex + min-width:0
+           lets the name actually truncate; minmax(0,1fr) columns stop content-driven widening. */
+        .xp-sub-row { display: flex; align-items: center; min-width: 0; cursor: pointer; border-radius: 4px; padding: 1px 2px; }
+        .xp-sub-row:hover { background: var(--bg-3); }
+        .xp-sub-row[data-on="true"] { background: var(--accent-bg); }
+        .xp-famgrid { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; }
+        @media (max-width: 1500px) { .xp-famgrid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } }
+        @media (max-width: 1100px) { .xp-famgrid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; } }
+        @media (max-width: 760px) { .xp-famgrid { grid-template-columns: minmax(0, 1fr) !important; } }
         .xp-fam-head { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 2px; border-radius: 5px; transition: .12s; }
         .xp-fam-resize { display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 8px; padding: 6px; cursor: ns-resize; user-select: none; color: var(--ink-faint); }
         .xp-fam-resize:hover { color: var(--ink-soft); }

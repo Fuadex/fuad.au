@@ -1259,33 +1259,36 @@ function TrackView({ id, go }) {
         </div>
       </div>
 
-      {/* what it's about — Genius About excerpt (community-written, specific) */}
-      {about && (
-        <div className="tv-about">
-          <span className="tv-about-txt">{about[0]}</span>
-          {about[1] ? <a className="tv-about-src" href={`https://genius.com/songs/${about[1]}`} target="_blank" rel="noopener noreferrer">via Genius ↗</a> : null}
-        </div>
-      )}
-
-      {/* mood — how it SOUNDS (Spotify valence) vs how it READS (NRC lyric sentiment) */}
-      {(audVal != null && lyrVal != null) && (
-        <div className="tv-mood">
-          <div className="tv-mood-axis">
-            <span className="tv-mood-k">Sounds</span>
-            <div className="tv-mood-bar"><i style={{ width: audVal + "%", background: "oklch(0.72 0.15 145)" }} /></div>
-            <span className="tv-mood-v">{audVal}</span>
-          </div>
-          <div className="tv-mood-axis">
-            <span className="tv-mood-k">Reads</span>
-            <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: "oklch(0.68 0.16 25)" }} /></div>
-            <span className="tv-mood-v">{lyrVal}</span>
-          </div>
-          <div className="tv-mood-note">
-            {divergent
-              ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
-              : <>Sound and words agree.</>}
-            {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
-          </div>
+      {/* blurb + mood row — description LEFT, sounds/reads RIGHT (under the header stats),
+          per Fuad 2026-07-05. Single column when only one of the two exists. */}
+      {(about || (audVal != null && lyrVal != null)) && (
+        <div className="tv-subrow" data-both={!!(about && audVal != null && lyrVal != null)}>
+          {about && (
+            <div className="tv-about">
+              <span className="tv-about-txt">{about[0]}</span>
+              {about[1] ? <a className="tv-about-src" href={`https://genius.com/songs/${about[1]}`} target="_blank" rel="noopener noreferrer">via Genius ↗</a> : null}
+            </div>
+          )}
+          {(audVal != null && lyrVal != null) && (
+            <div className="tv-mood">
+              <div className="tv-mood-axis">
+                <span className="tv-mood-k">Sounds</span>
+                <div className="tv-mood-bar"><i style={{ width: audVal + "%", background: "oklch(0.72 0.15 145)" }} /></div>
+                <span className="tv-mood-v">{audVal}</span>
+              </div>
+              <div className="tv-mood-axis">
+                <span className="tv-mood-k">Reads</span>
+                <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: "oklch(0.68 0.16 25)" }} /></div>
+                <span className="tv-mood-v">{lyrVal}</span>
+              </div>
+              <div className="tv-mood-note">
+                {divergent
+                  ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
+                  : <>Sound and words agree.</>}
+                {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
+              </div>
+            </div>
+          )}
         </div>
       )}
 

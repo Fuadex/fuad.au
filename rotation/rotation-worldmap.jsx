@@ -211,12 +211,26 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
   }, [filt, yearIdx, R]);
   const gval = (c) => !filtSums ? 0 : (c.code ? filtSums.country[c.code] : filtSums.city[c.country + "|" + c.city]) || 0;
   const sizeOf = (c) => filtSums ? gval(c) : (yearIdx != null ? (c.yr ? c.yr[yearIdx] : 0) : c.plays);
-  // the flow rescopes to the selected place (or the whole world); the results list is the place ∩ genre ∩ year set
+  // the flow rescopes to the selected place (or the whole world); the results list is the place ∩ genre ∩ year set.
+  // When a calendar period is active, the flow narrows to THAT period's top artists (calendar-detail
+  // keeps 5-6 per day/week — thin, but honest: "the journey of what you played that day").
   const flowArtists = React.useMemo(() => {
+    if (calPeriod && window.ROTATION_CAL_DETAIL) {
+      const CD = window.ROTATION_CAL_DETAIL, P = CD[calPeriod.gran] && CD[calPeriod.gran][calPeriod.key];
+      if (P && P.a && P.a.length) {
+        const byIdSet = [];
+        for (const [ni] of P.a) {
+          const name = CD.names[ni]; const id = (R.idForName && R.idForName(name)) || R.slug(name);
+          const rec = R.EXPLORE.find(a => a.id === id);
+          if (rec) byIdSet.push(rec);
+        }
+        if (byIdSet.length >= 2) return byIdSet;
+      }
+    }
     if (!sel) return R.EXPLORE;
     if (sel.kind === "country") return R.EXPLORE.filter(a => a.co === sel.key);
     const [iso, city] = sel.key.split("|"); return R.EXPLORE.filter(a => a.co === iso && a.ci === city);
-  }, [sel, R]);
+  }, [sel, R, calPeriod]);
   const filteredArtists = React.useMemo(() => {
     let set = flowArtists;
     if (filt.fam != null || filt.sub != null) set = set.filter(matchGenre);
@@ -279,6 +293,20 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
     for (const a of filteredArtists) { const p = yr != null ? (a.yp ? (a.yp[yr] || 0) : 0) : a.plays; if (p > 0) { plays += p; artists++; } }
     onStats({ active: true, plays, artists, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? R.FAMILIES[filt.fam].family : null, yr].filter(Boolean).join(" · ") || "filtered" });
   }, [filteredArtists, yearIdx, periodData, sel, focus, filt, onStats]);
+  // calendar-period → the places its top artists come from. calendar-detail only stores the
+  // top 5-6 artists per day/week, so a full dot re-weight would be dishonest — instead we
+  // RING those artists' origins and dim the rest ("where that day's music came from").
+  const periodPlaces = React.useMemo(() => {
+    if (!periodData) return null;
+    const cc = new Set(), ci = new Set();
+    for (const e of periodData.arts) {
+      const rec = R.byId[e.a.id] || (R.expById && R.expById[e.a.id]);
+      const co = rec && (rec.co || (rec.origin && rec.origin.country));
+      const cty = rec && (rec.ci || (rec.origin && rec.origin.city));
+      if (co) { cc.add(co); if (cty) ci.add(co + "|" + cty); }
+    }
+    return cc.size ? { cc, ci } : null;
+  }, [periodData, R]);
   const bubbles = React.useMemo(() => {
     if (!world) return [];
     const proj = (c) => [(c.lng + 180) / 360 * world.w, (90 - c.lat) / 180 * world.h];
@@ -398,7 +426,8 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
         </div>
       </div>
 
-      <div style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink-soft)", margin: "10px 0", minHeight: 22 }}>
+      {/* fixed-height + nowrap so hover text (with its taller flag glyph) can NEVER reflow the map below */}
+      <div style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink-soft)", margin: "10px 0", height: 26, lineHeight: "26px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
         {focus ? <><span style={{ cursor: "pointer", color: "var(--accent)", fontFamily: "var(--mono)", fontSize: 12 }} onClick={reset}>‹ world</span> &nbsp; cities of <b style={{ color: "var(--ink)" }}>{focusName}</b> — click one for its scene</>
           : hb ? (hb.kind === "city"
             ? <><span style={{ fontSize: 18 }}>{hb.c.flag}</span> <b style={{ color: "var(--ink)" }}>{hb.c.city}</b>, {hb.c.country} — {fmt(yearIdx != null ? sizeOf(hb.c) : hb.c.plays)} plays{yearIdx != null ? " in " + geoYears[yearIdx] : " · " + hb.c.artists + " artists"}</>
@@ -416,8 +445,14 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
             {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" stroke="var(--rule-2)" strokeWidth={0.4 / view.s} />)}
             {bubbles.slice().sort((a, b) => b.c.plays - a.c.plays).map(b => {
               const on = hi === b.key, col = placeHue(b.c);
-              return <circle key={b.key} cx={b.x} cy={b.y} r={b.r / Math.sqrt(view.s)} fill={col} fillOpacity={on ? 0.72 : 0.34}
-                stroke={col} strokeWidth={(on ? 1.6 : 0.7) / view.s} style={{ cursor: "pointer", transition: "r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s" }}
+              // calendar-period highlight: ring the origins of that period's top artists, dim the rest
+              const inPeriod = periodPlaces
+                ? (b.kind === "country" ? periodPlaces.cc.has(b.c.code) : periodPlaces.ci.has(b.c.country + "|" + b.c.city))
+                : null;
+              const dim = inPeriod === false;
+              return <circle key={b.key} cx={b.x} cy={b.y} r={b.r / Math.sqrt(view.s)} fill={col} fillOpacity={on ? 0.72 : dim ? 0.1 : 0.34}
+                stroke={inPeriod ? "var(--accent)" : col} strokeWidth={((inPeriod ? 2.2 : on ? 1.6 : 0.7)) / view.s}
+                style={{ cursor: "pointer", transition: "r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s" }}
                 onMouseEnter={() => setHi(b.key)} onClick={(e) => { e.stopPropagation(); if (!moved.current) openBubble(b); }} />;
             })}
           </g>

@@ -283,6 +283,8 @@ function ShelvesView({ go }) {
   const [reader, setReader] = React.useState(null);       // album in the Reader
   const [caps, setCaps] = React.useState({});             // shelfKey → extra visibility
   const [split, setSplit] = React.useState({});           // famIdx → split into subgenre rows
+  const [justMerged, setJustMerged] = React.useState(null); // fam that just merged back → gets the reveal animation too
+  const mergeFam = (fam) => { setSplit(p => ({ ...p, [fam]: false })); setJustMerged(fam); setTimeout(() => setJustMerged(null), 450); };
   const [mode, setMode] = React.useState("racks");        // racks | wrap (the Unplayed Shelf)
   const [lens, setLens] = React.useState("genre");        // re-shelving lens (racks mode)
   const [unReady, setUnReady] = React.useState(!!window.ROTATION_UNPLAYED);
@@ -428,7 +430,7 @@ function ShelvesView({ go }) {
           <div key={g.fam} className="sh-famgroup">
             <div className="sh-shelf-h" style={{ marginBottom: 2 }}>
               <span className="sh-shelf-name" style={{ "--h": g.hue, fontSize: 17 }}>{g.name}</span>
-              <button className="sh-split" onClick={() => setSplit(p => ({ ...p, [g.fam]: false }))}>merge ▴</button>
+              <button className="sh-split" onClick={() => mergeFam(g.fam)}>merge ▴</button>
             </div>
             {subRows(g).map(([sname, arr], si) => (
               <div key={g.fam + sname} className="sh-reveal" style={{ animationDelay: (si * 45) + "ms" }}>
@@ -440,13 +442,15 @@ function ShelvesView({ go }) {
             ))}
           </div>
         )
-        : <ShShelf key={mode + lens + g.fam} id={mode + lens + g.fam} name={g.name} hue={g.hue} albums={g.albums}
-            cap={SH_CAP + (caps[mode + lens + g.fam] || 0)}
-            onMore={() => setCaps(p => ({ ...p, [mode + lens + g.fam]: (p[mode + lens + g.fam] || 0) + SH_STEP }))}
-            splittable={mode === "racks" && !!SPLIT_LABELS[lens] && g.albums.length > 6 && g.fam !== "Lzz"}
-            splitLabel={SPLIT_LABELS[lens]} splitOn={!!split[g.fam]}
-            onSplit={() => setSplit(p => ({ ...p, [g.fam]: !p[g.fam] }))}
-            expanded={expanded} setExpanded={setExpanded} setReader={setReader} />)}
+        : <div key={mode + lens + g.fam} className={justMerged === g.fam ? "sh-reveal" : undefined}>
+            <ShShelf id={mode + lens + g.fam} name={g.name} hue={g.hue} albums={g.albums}
+              cap={SH_CAP + (caps[mode + lens + g.fam] || 0)}
+              onMore={() => setCaps(p => ({ ...p, [mode + lens + g.fam]: (p[mode + lens + g.fam] || 0) + SH_STEP }))}
+              splittable={mode === "racks" && !!SPLIT_LABELS[lens] && g.albums.length > 6 && g.fam !== "Lzz"}
+              splitLabel={SPLIT_LABELS[lens]} splitOn={!!split[g.fam]}
+              onSplit={() => split[g.fam] ? mergeFam(g.fam) : setSplit(p => ({ ...p, [g.fam]: true }))}
+              expanded={expanded} setExpanded={setExpanded} setReader={setReader} />
+          </div>)}
 
       {reader && <ShReader al={reader} onClose={() => setReader(null)} go={go} />}
 
@@ -537,9 +541,11 @@ function ShelvesView({ go }) {
         .sh-reader-stats { display: flex; gap: 14px; flex-wrap: wrap; font-family: var(--mono); font-size: 10px;
           letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
         .sh-reader-stats b { color: var(--ink); font-size: 12px; }
-        .sh-reader-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .sh-reader-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+        /* fixed min-width: "▶ needle drop" and "❚❚ lift the needle" occupy the SAME footprint,
+           so toggling playback can't rewrap the row and orphan the Spotify link */
         .sh-needle { padding: 7px 14px; border-radius: 999px; cursor: pointer; font-family: var(--mono);
-          font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+          font-size: 10px; letter-spacing: .1em; text-transform: uppercase; min-width: 152px; text-align: center;
           border: 1px solid var(--rule-2); background: none; color: var(--ink-soft); }
         .sh-needle[data-on="true"] { color: oklch(0.82 0.12 var(--h)); border-color: oklch(0.6 0.14 var(--h) / .7);
           background: oklch(0.6 0.14 var(--h) / .13); }

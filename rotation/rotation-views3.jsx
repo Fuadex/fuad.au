@@ -1535,8 +1535,7 @@ function StoriesView({ t, go, seed }) {
 
         /* ── TOC + chapters (Stories overhaul v1) ── */
         .st-toc { position: sticky; top: 0; z-index: 30; display: flex; gap: 6px; overflow-x: auto;
-          padding: 10px 2px; margin: -6px 0 16px; background: rgba(11,10,15,.86);
-          backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+          padding: 10px 2px; margin: -6px 0 16px; background: var(--bg);
           scrollbar-width: none; -webkit-overflow-scrolling: touch; }
         .st-toc::-webkit-scrollbar { display: none; }
         .st-toc button { flex: none; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--rule);
@@ -1554,8 +1553,10 @@ function StoriesView({ t, go, seed }) {
         .st-chapter::after { content: ""; flex: 1; height: 1px; background: var(--rule); align-self: center; }
 
         /* Stories TOC as a vertical breadcrumb rail pinned to the left edge (wide screens).
-           Dots-only by default so it never sits over content; labels reveal on hover only. */
-        @media (min-width: 1240px) {
+           Dots-only by default so it never sits over content; labels reveal on hover only.
+           Breakpoint 1420px (was 1240): Windows-scaled laptops (e.g. P16 at 200% ≈ 1280 CSS px)
+           get the horizontal chip bar instead — the rail's hover labels were illegible there. */
+        @media (min-width: 1420px) {
           .st-toc { position: fixed; left: 16px; top: 50%; transform: translateY(-50%);
             flex-direction: column; gap: 0; overflow: visible; margin: 0; padding: 0;
             background: none; backdrop-filter: none; -webkit-backdrop-filter: none;
@@ -1573,11 +1574,13 @@ function StoriesView({ t, go, seed }) {
           .st-toc button[data-reached="true"] .st-node { border-color: var(--accent-dim); }
           .st-toc button[data-on="true"] .st-node { background: var(--accent); border-color: var(--accent);
             transform: scale(1.25); box-shadow: 0 0 0 4px var(--accent-bg); }
-          /* label chip: hidden until you hover the rail, then floats over content readably */
-          .st-toc-lbl { max-width: 0; overflow: hidden; opacity: 0; border-radius: 4px;
+          /* label chip: hidden until you hover the rail, then floats over content readably.
+             SOLID surface + real border (no rgba/backdrop tricks) so Dark Reader doesn't
+             render it as a boxy table, and text stays legible at any zoom. */
+          .st-toc-lbl { max-width: 0; overflow: hidden; opacity: 0; border-radius: 5px;
             transition: max-width .3s ease, opacity .2s ease, padding .3s ease; }
-          .st-toc:hover .st-toc-lbl { max-width: 260px; opacity: 1; padding: 3px 9px;
-            background: rgba(11,10,15,.94); box-shadow: 0 6px 18px -8px rgba(0,0,0,.8); }
+          .st-toc:hover .st-toc-lbl { max-width: 260px; opacity: 1; padding: 4px 10px;
+            background: var(--panel); border: 1px solid var(--rule-2); font-size: 10px; }
           .st-toc button[data-on="true"] { color: var(--accent); }
           .st-toc button[data-on="true"] .st-toc-lbl { color: var(--accent); }
           .st-toc button:hover { color: var(--ink); }
