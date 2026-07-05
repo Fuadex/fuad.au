@@ -7,7 +7,19 @@
 
 ---
 
-## ⓪ Status snapshot — 2026-07-05 (evening)
+## ⓪ Status snapshot — 2026-07-05 (END OF SESSION — read §1g for the open queue)
+
+> **2026-07-05 (late) shipped, in order:** Genius language layer · pins.json · Wikidata
+> (cache + LINEUPS + artist-page Family-tree) · language arc · Gigs page (+ gigs-manual.json
+> corrections layer, 132 shows) · seen-live (artist card + 🎤 track rows + purple header badge) ·
+> NRC sentiment ("sounds happy / reads dark" + track mood badge + emotional weather arc & NOW
+> module) · THEMES layer ("what it's about", 18-anchor multilingual embeddings + Stories card +
+> album roll-ups) · Genius About blurbs (meaning-only excerpts, top-2000) · two QoL rounds
+> (pulse row + This-week/Streak/On-repeat, breadcrumbs, calendar bottom-sheet, calendar×map
+> month filter, artist page width 1540). **ML env** lives in `../../.sptmp/mlenv`
+> (torch/transformers/sentence-transformers); Genius pipeline scripts in `../../.sptmp/`.
+
+## (superseded) Status snapshot — 2026-07-05 (evening)
 
 > **2026-07-04 update:** second layout pass shipped (one-row Overview pulse, 3:3:2 map band
 > w/ places+calendar row 2, Explore 6-col genre grid, artist page: metrics-under-radar +
@@ -108,6 +120,37 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
    on garbled lyrics — parked as gated EN-only v2 until the Genius chain's real gap is known.
    **NEXT enrichment chain: `python fetch-abouts.py 1000` (needs `.sptmp/genius-ids.json` +
    `track-ranks.json`, both present) then rebuild + commit genius-about.json.**
+1g. **OPEN QUEUE — handoff snapshot (2026-07-05 end of session).** Everything below is designed
+   and unblocked; ordered roughly by closeness-to-done:
+   • **Genius About chain** — top 2,000 fetched (full texts cached in `../../.sptmp/genius-about-full.json`
+     so excerpt logic can be re-derived offline free, `python fetch-abouts.py 0`). Continue:
+     `python ../../.sptmp/fetch-abouts.py 1000` → rebuild → commit `genius-about.json`.
+     484 meaning-blurbs shipped; context-only ones cached but hidden (aboutness scorer, m flag).
+   • **Gig corrections awaiting Fuad**: Coaltar of the Deepers correct date+venue (setlist.fm
+     a marking may be a stand-in); NO WORDS NEEDED exact May-2025 day; was the
+     Haru Nemuri 2026-06-06 ANTIKNOCK show ALSO attended (if so: two entries, drop override);
+     venues for Mariko Goto/DHMHTHP/Bleach/Zinchikurandan (≈-dated Tokyo shows). All go in
+     `gigs-manual.json` (add/override; month-precision + approx:1 + copySongsFrom supported).
+   • **Lyrical twins** — embeddings ALREADY CACHED (`../../.sptmp/lyric-embs.npy` + `lyric-keys.json`,
+     25,741 tracks): same-theme/different-sound pairs = cosine-near lyrics × distant audio DNA.
+     Pure computation, no re-streaming.
+   • **Film themes from synopses + film↔music cross-corpus kinship** — designed: embed Culture's
+     OMDb/TMDB plot texts in the SAME anchor space as lyrics (transcripts proven WRONG for themes —
+     dialogue ≠ theme); then cross-domain neighbours ("Come and See ↔ your war-metal shelf").
+   • **Transformer upgrades** (mlenv ready, validated): re-score lyric mood (v2 genius-mood, fixes
+     NRC bag-of-words) ~40 min CPU; film emotional-arc sparklines 20-segment (~1 h) + story-shape
+     clustering — was Fable's #1; Fuad called plain arcs superficial, so ship WITH themes, not alone.
+   • **Culture texture bundle** (proposed, liked): one pass → `script_texture.js` = per-film arc +
+     TF-IDF vocab fingerprint + texture stats (questions/exclaim/profanity/first-F-bomb). Also
+     parked ideas: title drops, cliché census (7+-word shared lines), language-of-decades essay.
+     LLM blurb gap-filler parked (EN-only + gates); Wikiquote PINNED (needs year/director validation).
+   • **Per-day geography export** — the real fix for calendar×map (current: period top-5-artist
+     origins only). New build export: per-period place plays → full dot re-weight.
+   • **Module reader pattern** (Fuad idea, liked): pulse-row modules click-open an overlay reader
+     (Recently played → history, This week → risers, Streak → streak history). Do as ONE component.
+   • **Gigs map layer** (coords in gigs.json); **Wikidata follow-ups**: exact formation coords →
+     GEOGRAPHY.cityPoints, dissolved/inception → LIFESPAN backfill, P737 influenced-by graph.
+
 1b. ~~**pins.json**~~ ✅ **SHIPPED** — name→forced `{mbid, spotify, discogs}` + `clearStyles`/
    `clearLife` override map, consulted by build-data at read time (and by enrichers going
    forward). Seeded **Bleach** (JP punk ids), **daine** (`clearStyles` → out of the Baroque/Organ
