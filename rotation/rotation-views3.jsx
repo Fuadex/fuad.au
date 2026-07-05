@@ -1786,10 +1786,11 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
         style={{ cursor: "grab", touchAction: "none" }}>
         <g transform={`translate(${tf.x} ${tf.y}) scale(${tf.k})`}>
           {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" />)}
-          {/* all touring artists' routes (the "link tour dates" toggle) — faint, under the dots */}
+          {/* routes for the selected city's bands — links the clicked circle to their other dates */}
           {routes && routes.map(r => (
             <polyline key={r.id} points={r.pts.map(p => p.join(",")).join(" ")} fill="none"
-              stroke={`oklch(0.6 0.14 ${r.hue})`} strokeWidth={0.7 / rk} opacity={hiPath ? 0.18 : 0.4} />
+              stroke={`oklch(0.66 0.15 ${r.hue})`} strokeWidth={1 / rk} strokeLinejoin="round"
+              opacity={hiPath ? 0.2 : 0.6} />
           ))}
           {cities.map(c => (
             <circle key={c.k} className="gv-tmap-dot" data-on={city === c.k}
@@ -1830,7 +1831,6 @@ function TourSection({ go, gigDate }) {
   const [gkey, setGkey] = React.useState(null);       // genre-cascade key ("f"+famI | "t:Metal" | "?")
   const [sub, setSub] = React.useState(null);         // genre-cascade subgenre index
   const [hi, setHi] = React.useState(null);           // hovered artist id → tour path on the map
-  const [showRoutes, setShowRoutes] = React.useState(false);  // draw every multi-stop artist's route
   React.useEffect(() => {
     if (window.ROTATION_TOUR || !R.TOUR) return;
     const s = document.createElement("script"); s.src = "tm-tour-lazy.js";
@@ -1882,17 +1882,22 @@ function TourSection({ go, gigDate }) {
   if (!T) return null;
   const hiArt = hi ? artists.find(a => a.id === hi) : null;
   const hiPath = hiArt ? hiArt.events.filter(e => e.ll).map(e => [(e.ll[1] + 180) / 360 * 1000, (90 - e.ll[0]) / 180 * 500]) : null;
-  // every touring artist that plays 2+ located cities → a route to draw when "link routes" is on
-  const allRoutes = React.useMemo(() => {
-    if (!showRoutes) return null;
-    const out = [];
-    for (const a of artists) {
-      const pts = a.events.filter(e => e.ll).map(e => [(e.ll[1] + 180) / 360 * 1000, (90 - e.ll[0]) / 180 * 500]);
-      if (pts.length >= 2) out.push({ id: a.id, hue: a.hue, pts });
+  // routes tie a SELECTED city to the rest of each of its bands' tour dates (Fuad: only for the
+  // selected circle, else it's a mess). Built from the genre/time-filtered events (not city-
+  // filtered) so an artist's full itinerary is drawn, highlighting the ones that pass through
+  // the clicked city.
+  const cityRoutes = React.useMemo(() => {
+    if (!city) return null;
+    const byA = new Map();
+    for (const x of mapEvents) {
+      if (!x.e.ll) continue;
+      if (!byA.has(x.a.id)) byA.set(x.a.id, { id: x.a.id, hue: x.a.hue, pts: [], here: false });
+      const r = byA.get(x.a.id);
+      r.pts.push([(x.e.ll[1] + 180) / 360 * 1000, (90 - x.e.ll[0]) / 180 * 500]);
+      if (x.e.cc + "|" + x.e.city === city) r.here = true;
     }
-    return out;
-  }, [artists, showRoutes]);
-  const routeCount = showRoutes && allRoutes ? allRoutes.length : artists.filter(a => a.events.filter(e => e.ll).length >= 2).length;
+    return [...byA.values()].filter(r => r.here && r.pts.length >= 2);
+  }, [mapEvents, city]);
   const anyFilt = gkey != null || sub != null || city != null || selKey != null;
   const shown = showAll ? artists : artists.slice(0, 20);
   const chips = [];
@@ -1926,15 +1931,11 @@ function TourSection({ go, gigDate }) {
       {!tour && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 16 }}>loading tour dates…</div>}
       {tour && <>
         <div className="r-card gv-tmap-card">
-          <TourMap events={mapEvents} city={city} setCity={setCity} hiPath={hiPath} hiHue={hiArt ? hiArt.hue : 40} routes={allRoutes} />
+          <TourMap events={mapEvents} city={city} setCity={setCity} hiPath={hiPath} hiHue={hiArt ? hiArt.hue : 40} routes={cityRoutes} />
           <div className="gv-tmap-foot">
-            <span className="r-mono gv-tmap-hint">{hiArt ? <>tracing <b>{hiArt.name}</b>'s route — dots numbered in date order</> : "where — scroll to zoom · drag to pan · click a city to filter · hover an artist to trace their route"}</span>
-            {routeCount > 0 && (
-              <button className="gv-routes-btn" data-on={showRoutes} onClick={() => setShowRoutes(v => !v)}
-                title="draw a line between each artist's tour stops">
-                {showRoutes ? "hide" : "🔗 link"} tour routes{showRoutes ? "" : ` (${routeCount})`}
-              </button>
-            )}
+            <span className="r-mono gv-tmap-hint">{hiArt ? <>tracing <b>{hiArt.name}</b>'s route — dots numbered in date order</>
+              : cityRoutes && cityRoutes.length ? <>routes of the <b>{cityRoutes.length}</b> band{cityRoutes.length !== 1 ? "s" : ""} touring through {city.split("|")[1]} — click the city again to clear</>
+              : "where — scroll to zoom · drag to pan · click a city to link its bands to their other tour dates · hover an artist to trace one route"}</span>
           </div>
           <TourCal events={calEvents} gran={gran} setGran={setGran} selKey={selKey} setSelKey={setSelKey} keyOf={keyOf} />
         </div>

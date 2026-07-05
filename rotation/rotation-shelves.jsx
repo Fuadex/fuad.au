@@ -490,20 +490,19 @@ function ShelvesView({ go }) {
         .sh-split { margin-left: auto; background: none; border: none; color: var(--ink-faint); cursor: pointer;
           font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
         .sh-split:hover { color: var(--accent); }
-        .sh-rowwrap { position: relative; }
-        .sh-row { display: flex; align-items: flex-end; gap: 2px; overflow-x: auto; padding: 6px 2px 0;
-          border-bottom: 3px solid var(--rule-2); -webkit-overflow-scrolling: touch;
-          scrollbar-width: none; cursor: grab; user-select: none; }
+        /* row + arrows sit side by side; the arrows own a gutter and never cover the albums */
+        .sh-rowwrap { display: flex; align-items: stretch; border-bottom: 3px solid var(--rule-2); }
+        .sh-row { flex: 1; min-width: 0; display: flex; align-items: flex-end; gap: 2px; overflow-x: auto; padding: 6px 2px 0;
+          -webkit-overflow-scrolling: touch; scrollbar-width: none; cursor: grab; user-select: none; }
         .sh-row::-webkit-scrollbar { display: none; }
         .sh-row:active, .sh-row.dragging { cursor: grabbing; }
         .sh-cover { -webkit-user-drag: none; user-drag: none; }
-        /* Culture-style edge arrows — hidden until the row is hovered (desktop nicety) */
-        .sh-arrow { position: absolute; top: 6px; bottom: 3px; width: 38px; z-index: 4; border: none; cursor: pointer;
-          display: flex; align-items: center; justify-content: center; font-size: 24px; line-height: 1;
-          color: var(--ink); opacity: 0; transition: opacity .15s; pointer-events: none; }
-        .sh-arrow-l { left: 0; justify-content: flex-start; padding-left: 4px; background: linear-gradient(90deg, var(--bg) 34%, transparent); }
-        .sh-arrow-r { right: 0; justify-content: flex-end; padding-right: 4px; background: linear-gradient(270deg, var(--bg) 34%, transparent); }
-        .sh-rowwrap:hover .sh-arrow { opacity: .8; pointer-events: auto; }
+        /* Culture-style arrows — BESIDE the row in their own 24px gutter (reserved even when hidden,
+           so nothing shifts and the edge albums are never obscured); fade in on hover */
+        .sh-arrow { flex: none; width: 24px; align-self: stretch; border: none; background: none; cursor: pointer;
+          display: flex; align-items: center; justify-content: center; font-size: 22px; line-height: 1;
+          color: var(--ink-faint); opacity: 0; transition: opacity .15s; padding: 0 0 3px; }
+        .sh-rowwrap:hover .sh-arrow { opacity: .7; }
         .sh-arrow:hover { opacity: 1; color: var(--accent); }
         @media (hover: none) { .sh-arrow { display: none; } }
         .sh-prog { display: flex; align-items: center; gap: 8px; margin-top: 5px; }

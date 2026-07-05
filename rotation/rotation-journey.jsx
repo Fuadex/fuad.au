@@ -22,7 +22,9 @@ function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi }) {
     const order = series.map((s, i) => i).sort((a, b) => com[a] - com[b]);
     const totals = years.map((y, yi) => order.reduce((acc, i) => acc + series[i].vals[yi], 0));
     const maxTotal = Math.max(...totals, 1);
-    const W = 1000, H = 500, padX = 26, padTop = 22, padBot = 42, innerH = H - padTop - padBot, midY = padTop + innerH / 2, yScale = innerH / maxTotal;
+    // height grows past ~10 series so a family with many subgenres expands to fill the module
+    // container instead of squashing into unreadable slivers (Fuad 2026-07-06)
+    const W = 1000, H = Math.min(920, 500 + Math.max(0, series.length - 10) * 30), padX = 26, padTop = 22, padBot = 42, innerH = H - padTop - padBot, midY = padTop + innerH / 2, yScale = innerH / maxTotal;
     const xAt = (yi) => padX + (years.length === 1 ? 0 : yi / (years.length - 1)) * (W - 2 * padX);
     const bands = series.map(() => []);
     years.forEach((y, yi) => { let acc = -totals[yi] / 2; order.forEach(i => { const v = series[i].vals[yi]; bands[i].push({ x: xAt(yi), yTop: midY - (acc + v) * yScale, yBot: midY - acc * yScale }); acc += v; }); });
