@@ -629,13 +629,14 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           <div className="r-card av-dnacard" style={{ padding: 18 }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl"><b>Sound DNA</b></span>
               <span className="meta">{a.am ? "measured" : "inferred"}</span></div>
-            <div className="av-dna" style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "center" }}>
-              <div style={{ flex: "0 0 auto", width: 176, maxWidth: "100%" }}>
-                <Radar axes={DNA_AXES} values={dna} values2={avg} run={seen} size={176} />
+            <div className="av-dna" style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
+              <div style={{ flex: "0 0 auto", width: 156, maxWidth: "100%" }}>
+                <Radar axes={DNA_AXES} values={dna} values2={avg} run={seen} size={156} />
                 <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = {a.name.split(" ")[0]} · dashed = your avg</div>
               </div>
-              {/* tempo → followers, stacked UNDER the radar at the radar's own width (Fuad) */}
-              {af && <div style={{ width: 176, maxWidth: "100%", display: "grid", gap: 7 }}>
+              {/* tempo → followers — two-column so the seven measures fit the module height rather
+                  than stacking into a tall single strip (Fuad, 2026-07-06) */}
+              {af && <div style={{ width: "100%", display: "grid", gridTemplateColumns: "1fr 1fr", columnGap: 12, rowGap: 8 }}>
                 {[
                   { k: "tempo", v: Math.round(50 + a.audio.tempo * 140), u: " bpm", f: a.audio.tempo },
                   { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
@@ -645,10 +646,12 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
                   { k: "followers", v: fmtK(af[8]), f: null },
                 ].map(s => (
-                  <div key={s.k} style={{ display: "grid", gridTemplateColumns: "52px 1fr auto", gap: 8, alignItems: "center" }}>
-                    <span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</span>
-                    <div style={{ height: 3, background: "var(--bg-3)", borderRadius: 2, overflow: "hidden" }}>{s.f != null && <div style={{ height: "100%", width: (s.f * 100) + "%", background: `oklch(0.62 0.15 ${a.hue})` }} />}</div>
-                    <span style={{ fontSize: 12, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{s.u}</span>}</span>
+                  <div key={s.k} style={{ minWidth: 0 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 6 }}>
+                      <span className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</span>
+                      <span style={{ fontSize: 11.5, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 8, color: "var(--ink-faint)" }}>{s.u}</span>}</span>
+                    </div>
+                    <div style={{ height: 3, background: "var(--bg-3)", borderRadius: 2, marginTop: 3, overflow: "hidden" }}>{s.f != null && <div style={{ height: "100%", width: (s.f * 100) + "%", background: `oklch(0.62 0.15 ${a.hue})` }} />}</div>
                   </div>
                 ))}
               </div>}

@@ -315,14 +315,14 @@ function OverviewView({ t, go }) {
               style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
           <div className="ov-rl" style={{ display: "grid", gap: 2, flex: 1, alignContent: "center" }}>
             {recent3.map(r => (
-              <div key={r.id} onClick={() => go("track", R.slug(r.artist) + "~" + R.slug(r.track))} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 11,
-                padding: "5px 6px", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
+              <div key={r.id} onClick={() => go("track", R.slug(r.artist) + "~" + R.slug(r.track))} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 10,
+                padding: "4px 6px", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
                 onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
                 onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
-                <GenCover hue={r.hue} name={r.artist} size={30} radius={2} />
+                <GenCover hue={r.hue} name={r.artist} size={26} radius={2} />
                 <div style={{ minWidth: 0, flex: 1 }}>
-                  <div style={{ fontSize: 13, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
-                  <div style={{ fontSize: 11, color: "var(--ink-faint)", cursor: "pointer", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={`${r.artist} →`}
+                  <div style={{ fontSize: 12.5, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
+                  <div style={{ fontSize: 10.5, color: "var(--ink-faint)", cursor: "pointer", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={`${r.artist} →`}
                     onClick={e => { e.stopPropagation(); go("artist", r.artistId); }}>{r.artist}</div>
                 </div>
                 <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", flex: "none" }}>{r.when}</span>
@@ -463,8 +463,7 @@ function OverviewView({ t, go }) {
           .m-stack:has(.ov-week) .ov-week   { grid-column: 5 / span 2 !important; grid-row: 1; }
           .m-stack:has(.ov-week) .ov-recent { grid-column: 7 / span 3 !important; }
           .m-stack:has(.ov-week) .ov-np     { grid-column: 10 / -1 !important; }
-          .ov-recent .ov-rl { max-height: 64px; overflow-y: auto; align-content: start;
-            scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
+          .ov-recent .ov-rl { max-height: none; overflow: visible; align-content: start; }
           .ov-scrob .r-stat-n { font-size: clamp(20px, 1.9vw, 27px) !important; }
           .ov-streak .r-stat-n, .ov-week .r-stat-n { font-size: 27px !important; }
           .ov-week .spark, .ov-scrob .spark { max-height: 30px; }
