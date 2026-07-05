@@ -197,8 +197,17 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 /* blurb + mood row on TrackView: description left, sounds/reads right (stacks < 860px) */
 .tv-subrow { margin: 0 0 var(--gap); }
 .tv-subrow[data-both="true"] { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--gap); align-items: start; }
-.tv-subrow .tv-about, .tv-subrow .tv-mood { margin: 0; max-width: none; }
+.tv-subrow .tv-about, .tv-subrow .tv-mood, .tv-subrow .tv-taste { margin: 0; max-width: none; }
 @media (max-width: 860px) { .tv-subrow[data-both="true"] { grid-template-columns: 1fr; } }
+/* "In your rotation, this track is…" — audio-feature outliers vs YOUR library (percentiles) */
+.tv-taste { max-width: 680px; margin: 0 0 var(--gap); padding: 14px 18px; border-left: 2px solid var(--rule-2); background: var(--panel); border-radius: 0 8px 8px 0; }
+.tv-taste-h { font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
+.tv-taste-list { display: grid; gap: 9px; }
+.tv-taste-row { display: grid; grid-template-columns: 88px 1fr 50px; gap: 10px; align-items: center; }
+.tv-taste-adj { font-size: 13.5px; color: var(--ink); text-transform: capitalize; }
+.tv-taste-bar { height: 5px; background: var(--bg-3); border-radius: 3px; overflow: hidden; }
+.tv-taste-bar i { display: block; height: 100%; border-radius: 3px; }
+.tv-taste-pct { font-family: var(--mono); font-size: 10px; color: var(--ink-soft); text-align: right; }
 /* "what it's about" blurb on TrackView — Genius About excerpt, community-written */
 .tv-about { max-width: 680px; margin: 0 0 var(--gap); padding: 14px 18px; border-left: 2px solid var(--accent-dim);
   background: var(--panel); border-radius: 0 8px 8px 0; }

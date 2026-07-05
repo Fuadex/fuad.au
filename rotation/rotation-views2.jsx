@@ -1261,7 +1261,7 @@ const BLURB_MODELS = [
   ["opus", "Opus", "AI · factual read"],
   ["fable", "Fable", "AI · interpretive read"],
 ];
-function BlurbSwitcher({ id }) {
+function BlurbSwitcher({ id, about }) {
   const [ready, setReady] = React.useState(!!window.ROTATION_BLURB_DEMO);
   React.useEffect(() => {
     if (window.ROTATION_BLURB_DEMO) { setReady(true); return; }
@@ -1269,27 +1269,36 @@ function BlurbSwitcher({ id }) {
     s.onload = () => setReady(true); s.onerror = () => setReady(true); document.head.appendChild(s);
   }, []);
   const [pick, setPick] = React.useState(null);
-  React.useEffect(() => { setPick(null); }, [id]);   // new song → back to the default read; clicks never clobbered
-  const d = (ready && window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null;
-  if (!d) return null;
-  const avail = BLURB_MODELS.filter(m => d[m[0]]);
-  if (!avail.length) return null;
-  const cur = avail.find(m => m[0] === pick) || avail[0];
+  React.useEffect(() => { setPick(null); }, [id]);   // new song → default read; clicks never clobbered
+  const demo = (ready && window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null;
+  // sources: real Genius blurb (always, when present) + the bake-off model reads where we have them
+  const sources = [];
+  const geniusText = (about && about[0]) || (demo && demo.genius);
+  if (geniusText) sources.push({ m: "genius", label: "Genius", text: geniusText, link: about && about[1] ? `https://genius.com/songs/${about[1]}` : null });
+  if (demo) for (const [m, label] of [["haiku", "Haiku"], ["sonnet", "Sonnet"], ["opus", "Opus"], ["fable", "Fable"]])
+    if (demo[m]) sources.push({ m, label, text: demo[m] });
+  if (!sources.length) return null;
+  const cur = sources.find(s => s.m === pick) || sources[0];
+  const multi = sources.length > 1;
   return (
     <div className="tv-switch">
       <div className="tv-switch-head">
         <span className="tv-switch-lbl">What it's about</span>
-        <div className="tv-switch-btns">
-          {avail.map(m => (
-            <button key={m[0]} data-on={cur[0] === m[0]} data-m={m[0]} onClick={() => setPick(m[0])} title={m[2]}>{m[1]}</button>
-          ))}
-        </div>
+        {multi && (
+          <div className="tv-switch-btns">
+            {sources.map(s => (
+              <button key={s.m} data-on={cur.m === s.m} data-m={s.m} onClick={() => setPick(s.m)}>{s.label}</button>
+            ))}
+          </div>
+        )}
       </div>
       <div className="tv-switch-body">
-        <span className="tv-switch-txt">{d[cur[0]]}</span>
-        <span className="tv-switch-brand" data-m={cur[0]}>via {cur[1]}</span>
+        <span className="tv-switch-txt">{cur.text}</span>
+        {cur.m === "genius" && cur.link
+          ? <a className="tv-switch-brand" data-m="genius" href={cur.link} target="_blank" rel="noopener noreferrer">via Genius ↗</a>
+          : <span className="tv-switch-brand" data-m={cur.m}>via {cur.label}</span>}
       </div>
-      <div className="tv-switch-note r-mono">demo · {avail.length} read{avail.length !== 1 ? "s" : ""} · comparing how models read the lyrics</div>
+      {multi && <div className="tv-switch-note r-mono">comparing how different sources read the song{demo ? " · AI reads are a demo" : ""}</div>}
     </div>
   );
 }
@@ -1362,6 +1371,27 @@ function TrackView({ id, go }) {
   const radar = f ? [{ label: "Energy", value: f[4] }, { label: "Tempo", value: f[7] }, { label: "Dance", value: f[8] }, { label: "Positive", value: f[5] }, { label: "Acoustic", value: f[6] }, { label: "Instr.", value: f[9] }] : null;
   const bars = f ? [["Energy", f[4]], ["Positivity", f[5]], ["Danceability", f[8]], ["Acousticness", f[6]], ["Liveness", f[11]], ["Instrumental", f[9]]] : null;
   const eP = f ? tastePctl("energy", f[4]) : null, vP = f ? tastePctl("valence", f[5]) : null;
+  // "In your rotation, this track is…" — only the audio axes where THIS song is an outlier for
+  // YOUR library (percentiles vs your own distribution). Replaces the now-redundant Genius blurb
+  // left of Sounds/Reads (Fuad 2026-07-06). Zero new data — reuses tastePctl.
+  const tasteStandouts = (() => {
+    if (!f) return [];
+    const DIMS = [
+      { k: "energy", i: 4, hi: "intense", lo: "mellow" },
+      { k: "valence", i: 5, hi: "upbeat", lo: "downbeat" },
+      { k: "tempo", i: 7, hi: "fast", lo: "slow" },
+      { k: "acoustic", i: 6, hi: "acoustic", lo: null },
+      { k: "dance", i: 8, hi: "danceable", lo: null },
+      { k: "instr", i: 9, hi: "instrumental", lo: null },
+    ];
+    const out = [];
+    for (const d of DIMS) {
+      const p = tastePctl(d.k, f[d.i]); if (p == null) continue;
+      if (p >= 72 && d.hi) out.push({ adj: d.hi, topPct: Math.max(1, Math.round(100 - p)), ex: p - 50 });
+      else if (p <= 28 && d.lo) out.push({ adj: d.lo, topPct: Math.max(1, Math.round(p)), ex: 50 - p });
+    }
+    return out.sort((a, b) => b.ex - a.ex).slice(0, 4);
+  })();
   const sr = data.series, first = sr[0], last = sr[sr.length - 1], peak = sr.reduce((a, b) => b.p > (a ? a.p : 0) ? b : a, null);
   const kName = f ? keyName(f[13], f[14]) : "";
   const artAF = R.AUDIO && R.AUDIO[artistId];   // artist-level: [..7 pop, 8 followers ..]
@@ -1406,14 +1436,22 @@ function TrackView({ id, go }) {
         </div>
       </div>
 
-      {/* blurb + mood row — description LEFT, sounds/reads RIGHT (under the header stats),
-          per Fuad 2026-07-05. Single column when only one of the two exists. */}
-      {(about || (audVal != null && lyrVal != null)) && (
-        <div className="tv-subrow" data-both={!!(about && audVal != null && lyrVal != null)}>
-          {about && (
-            <div className="tv-about">
-              <span className="tv-about-txt">{about[0]}</span>
-              {about[1] ? <a className="tv-about-src" href={`https://genius.com/songs/${about[1]}`} target="_blank" rel="noopener noreferrer">via Genius ↗</a> : null}
+      {/* "in your rotation" outliers LEFT · sounds/reads RIGHT (the Genius blurb moved into the
+          switcher below, so this slot now carries a personal audio read — Fuad 2026-07-06). */}
+      {(tasteStandouts.length > 0 || (audVal != null && lyrVal != null)) && (
+        <div className="tv-subrow" data-both={!!(tasteStandouts.length > 0 && audVal != null && lyrVal != null)}>
+          {tasteStandouts.length > 0 && (
+            <div className="tv-taste">
+              <div className="tv-taste-h">In your rotation, this track is…</div>
+              <div className="tv-taste-list">
+                {tasteStandouts.map(s => (
+                  <div className="tv-taste-row" key={s.adj}>
+                    <span className="tv-taste-adj">{s.adj}</span>
+                    <div className="tv-taste-bar"><i style={{ width: (100 - s.topPct) + "%", background: `oklch(0.62 0.15 ${hue})` }} /></div>
+                    <span className="tv-taste-pct">top {s.topPct}%</span>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
           {(audVal != null && lyrVal != null) && (
@@ -1449,8 +1487,8 @@ function TrackView({ id, go }) {
         </div>
       )}
 
-      {/* DEMO: multi-model "what it's about" — flick between Genius + Haiku/Sonnet/Opus/Fable */}
-      <BlurbSwitcher id={id} />
+      {/* "what it's about" — real Genius blurb always; the bake-off model reads where present */}
+      <BlurbSwitcher id={id} about={about} />
 
       {f ? (
         <div className="tv-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
