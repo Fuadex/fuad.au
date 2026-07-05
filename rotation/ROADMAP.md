@@ -83,6 +83,18 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
    page. **Open design choices for Fuad:** which lyric-sentiment lexicon (VADER vs NRC-VAD vs a
    small model), and English-only v1 vs multilingual (Polish/German/Japanese need per-lang
    lexicons). Recommend: ship the language arc first (free), then v1 sentiment English-only.
+
+1f. **Deep text layer — status 2026-07-05 (evening).** Also shipped since: per-track mood badge
+   (TrackView Sounds-vs-Reads strip, `genius-mood-lazy.js`), 🎤 seen-live on track rows, and
+   **MOOD.arc "Emotional weather"** (per-year sounds/reads + dominant lyric emotion — fear ruled
+   2010–2025, 2026 flips to trust). **Wikiquote: PINNED by Fuad** — probe verdict: good for
+   canonical EN films (Apocalypse Now 37 / Clockwork 36 / Shining 30 quote lines), no page or
+   empty for art-house/non-EN (Come and See, Possession, La Haine mis-resolves to "Laraine Day"),
+   so it needs strict year/director validation if ever revived. **ML env now local**:
+   `../../.sptmp/mlenv` (torch 2.12 CPU + transformers 5.13 + sentence-transformers 5.6);
+   emotion transformer validated on transcripts (fixes NRC's Requiem-reads-hopeful failure;
+   0.6 s/film). **Direction per Fuad: emotion arcs alone read superficial — go deeper: themes
+   ("what it's about"), semantic structure, cross-corpus (lyrics × scripts) correlations.**
 1b. ~~**pins.json**~~ ✅ **SHIPPED** — name→forced `{mbid, spotify, discogs}` + `clearStyles`/
    `clearLife` override map, consulted by build-data at read time (and by enrichers going
    forward). Seeded **Bleach** (JP punk ids), **daine** (`clearStyles` → out of the Baroque/Organ
