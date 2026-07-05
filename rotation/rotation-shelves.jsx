@@ -67,7 +67,7 @@ function ShNeedle({ trackKey, artist, album, hue, onState }) {
   };
   return (
     <button className="sh-needle" data-on={playing} onClick={toggle} style={{ "--h": hue }}>
-      {playing ? "❚❚ lift the needle" : "▶ needle drop"}
+      {playing ? "❚❚ lift needle" : "▶ needle drop"}
     </button>
   );
 }
@@ -541,12 +541,17 @@ function ShelvesView({ go }) {
         .sh-reader-stats { display: flex; gap: 14px; flex-wrap: wrap; font-family: var(--mono); font-size: 10px;
           letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
         .sh-reader-stats b { color: var(--ink); font-size: 12px; }
-        .sh-reader-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-        /* fixed min-width: "▶ needle drop" and "❚❚ lift the needle" occupy the SAME footprint,
-           so toggling playback can't rewrap the row and orphan the Spotify link */
-        .sh-needle { padding: 7px 14px; border-radius: 999px; cursor: pointer; font-family: var(--mono);
-          font-size: 10px; letter-spacing: .1em; text-transform: uppercase; min-width: 152px; text-align: center;
+        /* ONE row, always — even mid-playback. nowrap + shrinkable pills; labels are
+           equal width ("▶ needle drop" ⇄ "❚❚ lift needle") so nothing ever rewraps. */
+        .sh-reader-actions { display: flex; gap: 8px; flex-wrap: nowrap; align-items: center; min-width: 0; }
+        .sh-reader-actions > * { flex: 0 1 auto; min-width: 0; white-space: nowrap; }
+        .sh-needle { padding: 7px 12px; border-radius: 999px; cursor: pointer; font-family: var(--mono);
+          font-size: 10px; letter-spacing: .1em; text-transform: uppercase; text-align: center;
           border: 1px solid var(--rule-2); background: none; color: var(--ink-soft); }
+        @media (max-width: 520px) {
+          .sh-reader-actions { gap: 6px; }
+          .sh-reader-actions .sh-needle, .sh-reader-actions .sh-open, .sh-reader-actions .r-extlink { padding: 6px 9px; font-size: 9px; letter-spacing: .06em; }
+        }
         .sh-needle[data-on="true"] { color: oklch(0.82 0.12 var(--h)); border-color: oklch(0.6 0.14 var(--h) / .7);
           background: oklch(0.6 0.14 var(--h) / .13); }
         .sh-open { padding: 7px 14px; border-radius: 999px; cursor: pointer; font-family: var(--mono);

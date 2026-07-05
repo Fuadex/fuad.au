@@ -132,26 +132,28 @@ function mediaRank(M, R, meta, kind, f, limit) {
 // changes elsewhere on the page ripple in smoothly rather than popping.
 function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
   const [hi, setHi] = React.useState(null);
-  const QS = 560, qp = 36;
-  const qx = (v) => qp + v * (QS - 2 * qp), qy = (e) => qp + (1 - e) * (QS - 2 * qp);
+  // same 1000×560 canvas as the texture scatter so switching lenses doesn't change the
+  // module height (Fuad 2026-07-05); quadrants are simply rectangles now.
+  const QW = 1000, QH = 560, qp = 40;
+  const qx = (v) => qp + v * (QW - 2 * qp), qy = (e) => qp + (1 - e) * (QH - 2 * qp);
   const maxPlays = React.useMemo(() => { let m = 1; for (const p of pts) if (activeIds.has(p.id) && p.plays > m) m = p.plays; return m; }, [pts, activeIds]);
   const nActive = activeIds.size;
   const mid = 0.5;
   const zones = [
     { z: "dark-intense", x: qp, y: qp, w: qx(mid) - qp, h: qy(mid) - qp },
-    { z: "bright-intense", x: qx(mid), y: qp, w: QS - qp - qx(mid), h: qy(mid) - qp },
-    { z: "dark-calm", x: qp, y: qy(mid), w: qx(mid) - qp, h: QS - qp - qy(mid) },
-    { z: "bright-calm", x: qx(mid), y: qy(mid), w: QS - qp - qx(mid), h: QS - qp - qy(mid) },
+    { z: "bright-intense", x: qx(mid), y: qp, w: QW - qp - qx(mid), h: qy(mid) - qp },
+    { z: "dark-calm", x: qp, y: qy(mid), w: qx(mid) - qp, h: QH - qp - qy(mid) },
+    { z: "bright-calm", x: qx(mid), y: qy(mid), w: QW - qp - qx(mid), h: QH - qp - qy(mid) },
   ];
   return (
     <div style={{ padding: "14px 16px 10px" }}>
-      <svg viewBox={`0 0 ${QS} ${QS}`} style={{ width: "100%", height: "auto", display: "block" }} onMouseLeave={() => setHi(null)}>
+      <svg viewBox={`0 0 ${QW} ${QH}`} style={{ width: "100%", height: "auto", display: "block" }} onMouseLeave={() => setHi(null)}>
         {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
           fill={moodZone === zn.z ? "var(--accent-bg)" : "transparent"} stroke="none"
           style={{ cursor: "pointer", transition: "fill .35s ease" }} onClick={() => setMoodZone(moodZone === zn.z ? null : zn.z)}><title>{MOOD_LABELS[zn.z]}</title></rect>)}
-        <line x1={qx(.5)} y1={qp} x2={qx(.5)} y2={QS - qp} stroke="var(--rule)" strokeWidth="1" />
-        <line x1={qp} y1={qy(.5)} x2={QS - qp} y2={qy(.5)} stroke="var(--rule)" strokeWidth="1" />
-        {[["intense", qx(.5), qp - 4, "middle"], ["calm", qx(.5), QS - qp + 16, "middle"], ["dark", qp - 8, qy(.5), "end"], ["bright", QS - qp + 8, qy(.5), "start"]].map(([t, x, y, anc]) =>
+        <line x1={qx(.5)} y1={qp} x2={qx(.5)} y2={QH - qp} stroke="var(--rule)" strokeWidth="1" />
+        <line x1={qp} y1={qy(.5)} x2={QW - qp} y2={qy(.5)} stroke="var(--rule)" strokeWidth="1" />
+        {[["intense", qx(.5), qp - 4, "middle"], ["calm", qx(.5), QH - qp + 16, "middle"], ["dark", qp - 8, qy(.5), "end"], ["bright", QW - qp + 8, qy(.5), "start"]].map(([t, x, y, anc]) =>
           <text key={t} x={x} y={y} textAnchor={anc} fontFamily="var(--mono)" fontSize="10" fill="var(--ink-faint)">{t}</text>)}
         {pts.map(p => {
           const active = activeIds.has(p.id), on = hi === p.id;
@@ -695,7 +697,7 @@ function FamiliesGrid({ order, weights, fam, sub, pickFam, pickSub, year, seen, 
                 {g.subs.map((su, si) => {
                   const w = weights[su.idx].w || 0;
                   return (
-                    <div key={su.name} className="xp-sub-row" data-on={sub === su.name} onClick={() => pickSub(su.name)} style={{ opacity: w === 0 ? 0.4 : 1 }}>
+                    <div key={su.name} className="xp-sub-row" data-on={sub === su.name} onClick={() => pickSub(su.name)} style={{ opacity: w === 0 ? 0.4 : 1 }} title={su.name}>
                       <span style={{ fontSize: 11.5, color: "var(--ink-soft)", flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{su.name}</span>
                       <div style={{ width: 80, height: 5, background: "var(--bg-3)", borderRadius: 3, overflow: "hidden", margin: "0 8px" }}>
                         <div style={{ height: "100%", width: (seen ? w / fmax * 100 : 0) + "%", background: expressive ? `oklch(0.6 0.16 ${g.hue})` : "var(--accent)", borderRadius: 3, transition: `width .7s cubic-bezier(.3,.8,.3,1) ${(gi * 0.02 + si * 0.03)}s` }} />

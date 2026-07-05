@@ -1464,12 +1464,32 @@ let MOOD = null;
     const darkHappy = rows.filter(r => r.aud <= 38 && r.lyr >= 58 && r.plays >= 8).sort((a, b) => (b.lyr - b.aud) - (a.lyr - a.aud) || b.plays - a.plays);
     const emoC = {};
     for (const r of rows) if (r.emo) emoC[r.emo] = (emoC[r.emo] || 0) + r.plays;
+    // "emotional weather NOW" — last 90 days of scrobbles, mean sounds/reads + dominant
+    // emotion, to sit against the library averages on the Overview. CI rebuilds daily.
+    let NOW_MOOD = null;
+    {
+      const cutoff = newestMs - 90 * 86400e3;
+      let audW = 0, audP = 0, lyrW = 0, lyrP = 0; const emoN = new Array(8).fill(0);
+      for (const [artist, , track, ms] of scrobbles) {
+        if (ms < cutoff) continue;
+        const sk = slug(artist) + "~" + slug(track);
+        const m = GENIUS_MOOD[sk], td = TRACKDATA[sk];
+        if (m && m[0] != null) { lyrW += m[0]; lyrP++; if (m[1] >= 0) emoN[m[1]]++; }
+        if (td && td.length >= 6 && typeof td[5] === "number") { audW += td[5]; audP++; }
+      }
+      if (audP >= 100 && lyrP >= 100) {
+        const mix = emoN.map((c, i) => [c, i]).sort((x, y) => y[0] - x[0]);
+        NOW_MOOD = { aud: Math.round(audW / audP), lyr: Math.round(lyrW / lyrP),
+          emo: mix[0][0] > 0 ? MOOD_EMO[mix[0][1]] : null, plays: audP, days: 90 };
+      }
+    }
     MOOD = {
       tracks: rows.length, avgAud: wavg(r => r.aud), avgLyr: wavg(r => r.lyr),
       happyDark: trim(happyDark.slice(0, 10)), darkHappy: trim(darkHappy.slice(0, 10)),
       happyDarkCount: happyDark.length, darkHappyCount: darkHappy.length,
       emotions: Object.entries(emoC).sort((a, b) => b[1] - a[1]).map(([emo, plays]) => ({ emo, plays })),
       arc: MOOD_ARC.length >= 6 ? MOOD_ARC : null,
+      now: NOW_MOOD,
     };
   }
 }

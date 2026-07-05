@@ -114,6 +114,32 @@ const PROVIDERS = [
     };
   },
 
+  // ── on repeat (live sync) — the tracks you can't stop playing this week ──
+  (ctx) => {
+    const w = window.ROTATION_LIVE && window.ROTATION_LIVE.week;
+    const tt = w && w.topTracks && w.topTracks.filter(t => t.plays >= 3);
+    if (!tt || !tt.length) return null;
+    const R = ctx.R;
+    return {
+      id: "on-repeat", category: "on-repeat", score: 0.78, label: "On repeat", meta: "this week",
+      render: (
+        <div style={{ display: "grid", gap: 6 }}>
+          {tt.slice(0, 3).map((t, i) => (
+            <div key={t.name + t.artist} onClick={(e) => { e.stopPropagation(); ctx.go("track", R.slug(t.artist) + "~" + R.slug(t.name)); }}
+              style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}>
+              <GenCover hue={_hue(t.artist)} name={t.artist} size={i === 0 ? 30 : 22} radius={2} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: i === 0 ? 13 : 12, fontWeight: i === 0 ? 600 : 400, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.name}</div>
+                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.artist}</div>
+              </div>
+              <span className="r-mono" style={{ fontSize: 9.5, color: i === 0 ? "var(--accent)" : "var(--ink-faint)", flex: "none" }}>{t.plays}×</span>
+            </div>
+          ))}
+        </div>
+      ),
+    };
+  },
+
   // ── new this month (live sync) — fresh obsessions + the deepest dive ──
   (ctx) => {
     const mo = window.ROTATION_LIVE && window.ROTATION_LIVE.month; if (!mo) return null;

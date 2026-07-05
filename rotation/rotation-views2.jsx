@@ -448,7 +448,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   const shareOfTotal = (a.plays / R.TOTALS.scrobbles * 100);
 
   return (
-    <div className="r-view" ref={ref}>
+    <div className="r-view tv-page" ref={ref}>
       <button className="r-back" onClick={() => go("explore")}>← explore</button>
 
       {/* header */}
