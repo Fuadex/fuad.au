@@ -1268,11 +1268,12 @@ function BlurbSwitcher({ id }) {
     const s = document.createElement("script"); s.src = "blurb-demo.js";
     s.onload = () => setReady(true); s.onerror = () => setReady(true); document.head.appendChild(s);
   }, []);
-  const d = (ready && window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null;
-  const avail = d ? BLURB_MODELS.filter(m => d[m[0]]) : [];
   const [pick, setPick] = React.useState(null);
-  React.useEffect(() => { setPick(avail.length ? avail[0][0] : null); }, [id, avail.length]);
-  if (!d || !avail.length) return null;
+  React.useEffect(() => { setPick(null); }, [id]);   // new song → back to the default read; clicks never clobbered
+  const d = (ready && window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null;
+  if (!d) return null;
+  const avail = BLURB_MODELS.filter(m => d[m[0]]);
+  if (!avail.length) return null;
   const cur = avail.find(m => m[0] === pick) || avail[0];
   return (
     <div className="tv-switch">
