@@ -1252,6 +1252,47 @@ function PreviewBtn({ id, hue, artist, title }) {
 // acousticness, tempo, danceability, instrumentalness, key/mode, loudness, liveness, time signature) +
 // stats (duration, popularity, explicit, track #, ranks). Identity is "artistSlug~trackSlug" (mirrors
 // AlbumView). Needs media-index (plays/album) + the lazy track-audio.js (features), loaded on demand.
+// DEMO — flick between the "what it's about" reads from Genius + Haiku/Sonnet/Opus/Fable, so we
+// can feel the model-switcher UX in-site before building the real pipeline. Data: blurb-demo.js.
+const BLURB_MODELS = [
+  ["genius", "Genius", "human · community-written"],
+  ["haiku", "Haiku", "AI · quick gist"],
+  ["sonnet", "Sonnet", "AI · balanced"],
+  ["opus", "Opus", "AI · factual read"],
+  ["fable", "Fable", "AI · interpretive read"],
+];
+function BlurbSwitcher({ id }) {
+  const [ready, setReady] = React.useState(!!window.ROTATION_BLURB_DEMO);
+  React.useEffect(() => {
+    if (window.ROTATION_BLURB_DEMO) { setReady(true); return; }
+    const s = document.createElement("script"); s.src = "blurb-demo.js";
+    s.onload = () => setReady(true); s.onerror = () => setReady(true); document.head.appendChild(s);
+  }, []);
+  const d = (ready && window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null;
+  const avail = d ? BLURB_MODELS.filter(m => d[m[0]]) : [];
+  const [pick, setPick] = React.useState(null);
+  React.useEffect(() => { setPick(avail.length ? avail[0][0] : null); }, [id, avail.length]);
+  if (!d || !avail.length) return null;
+  const cur = avail.find(m => m[0] === pick) || avail[0];
+  return (
+    <div className="tv-switch">
+      <div className="tv-switch-head">
+        <span className="tv-switch-lbl">What it's about</span>
+        <div className="tv-switch-btns">
+          {avail.map(m => (
+            <button key={m[0]} data-on={cur[0] === m[0]} data-m={m[0]} onClick={() => setPick(m[0])} title={m[2]}>{m[1]}</button>
+          ))}
+        </div>
+      </div>
+      <div className="tv-switch-body">
+        <span className="tv-switch-txt">{d[cur[0]]}</span>
+        <span className="tv-switch-brand" data-m={cur[0]}>via {cur[1]}</span>
+      </div>
+      <div className="tv-switch-note r-mono">demo · {avail.length} read{avail.length !== 1 ? "s" : ""} · comparing how models read the lyrics</div>
+    </div>
+  );
+}
+
 function TrackView({ id, go }) {
   const R = window.ROTATION;
   const [ready, setReady] = React.useState(!!(window.ROTATION_MEDIA && window.ROTATION_TRACKAUDIO));
@@ -1261,6 +1302,7 @@ function TrackView({ id, go }) {
     load("media-index.js", "ROTATION_MEDIA"); load("track-audio.js", "ROTATION_TRACKAUDIO");
     load("track-previews.js", "ROTATION_PREVIEWS"); load("genius-mood-lazy.js", "ROTATION_MOOD");
     load("genius-about-lazy.js", "ROTATION_ABOUT");
+    load("blurb-demo.js", "ROTATION_BLURB_DEMO");   // DEMO: multi-model "what it's about" reads
     if (need === 0) setReady(true);
   }, []);
   const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
@@ -1405,6 +1447,9 @@ function TrackView({ id, go }) {
           )}
         </div>
       )}
+
+      {/* DEMO: multi-model "what it's about" — flick between Genius + Haiku/Sonnet/Opus/Fable */}
+      <BlurbSwitcher id={id} />
 
       {f ? (
         <div className="tv-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
