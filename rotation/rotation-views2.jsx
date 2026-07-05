@@ -933,6 +933,12 @@ function AlbumView({ id, go }) {
     if (window.ROTATION_MEDIA) { setReady(true); return; }
     const s = document.createElement("script"); s.src = "media-index.js"; s.onload = () => setReady(true); document.head.appendChild(s);
   }, []);
+  // per-track themes for the "mostly about…" roll-up — tiny extra render when it arrives
+  const [themesReady, setThemesReady] = React.useState(!!window.ROTATION_TRACKTHEMES);
+  React.useEffect(() => {
+    if (window.ROTATION_TRACKTHEMES) return;
+    const s = document.createElement("script"); s.src = "genius-themes-lazy.js"; s.onload = () => setThemesReady(true); document.head.appendChild(s);
+  }, []);
   const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
 
   const data = React.useMemo(() => {
@@ -972,6 +978,20 @@ function AlbumView({ id, go }) {
   const avgSec = (R.TOTALS && R.TOTALS.avgTrackSec) || 216;
   const listenedMin = Math.round(avgSec * data.trackPlays / 60);
   const sr = data.series, sFirst = sr[0], sLast = sr[sr.length - 1], sPeak = sr.reduce((a, b) => b.p > (a ? a.p : 0) ? b : a, null);
+  // album theme roll-up: play-weighted primary themes across this album's tracks (≥2 themed)
+  const albThemes = (() => {
+    const TT = window.ROTATION_TRACKTHEMES; if (!TT || !TT._themes) return null;
+    const acc = new Map(); let themed = 0, tot = 0;
+    for (const t of data.tracks) {
+      const th = TT[R.slug(data.artist) + "~" + R.slug(t.title)];
+      if (!th || !th.length) continue;
+      themed++; tot += t.plays;
+      acc.set(th[0][0], (acc.get(th[0][0]) || 0) + t.plays);
+    }
+    if (themed < 2 || !tot) return null;
+    return [...acc.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2)
+      .map(([i, p]) => ({ theme: TT._themes[i], share: Math.round(p / tot * 100) }));
+  })();
 
   return (
     <div className="r-view tv-page">
@@ -984,6 +1004,13 @@ function AlbumView({ id, go }) {
           <div style={{ color: "var(--ink-soft)", fontSize: 15, marginTop: 6 }}>
             by {known ? <b onClick={() => go("artist", artistId)} style={{ cursor: "pointer", color: "var(--ink)" }}>{data.artist}</b> : data.artist}</div>
           {label && <div className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-faint)", marginTop: 4 }}>{label}{heardYr ? ` · you played it ${heardYr}` : ""}</div>}
+          {albThemes && (
+            <div style={{ fontSize: 12.5, color: "var(--ink-soft)", marginTop: 8 }} title="Play-weighted lyric themes across the tracks you've played from this album">
+              Mostly about <b style={{ color: "var(--ink)" }}>{albThemes[0].theme}</b>
+              {albThemes[1] ? <>, with <b style={{ color: "var(--ink)" }}>{albThemes[1].theme}</b></> : null}
+              <span style={{ color: "var(--ink-faint)" }}> · lyric themes</span>
+            </div>
+          )}
           {subs.length > 0 && <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
             {subs.map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)}>{s}</span>)}</div>}
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap" }}>
@@ -1129,6 +1156,7 @@ function TrackView({ id, go }) {
     const load = (src, glob) => { if (window[glob]) return; need++; const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
     load("media-index.js", "ROTATION_MEDIA"); load("track-audio.js", "ROTATION_TRACKAUDIO");
     load("track-previews.js", "ROTATION_PREVIEWS"); load("genius-mood-lazy.js", "ROTATION_MOOD");
+    load("genius-about-lazy.js", "ROTATION_ABOUT");
     if (need === 0) setReady(true);
   }, []);
   const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
@@ -1176,6 +1204,7 @@ function TrackView({ id, go }) {
   // lyric mood (NRC) + "seen live" — both keyed by the same slug id TrackView routes by
   const EMO_NAMES = ["anger", "anticipation", "disgust", "fear", "joy", "sadness", "surprise", "trust"];
   const mood = (window.ROTATION_MOOD && window.ROTATION_MOOD[id]) || null; // [lyrValence, emoIdx, matched]
+  const about = (window.ROTATION_ABOUT && window.ROTATION_ABOUT[id]) || null; // [excerpt, geniusId]
   const audVal = f ? f[5] : null;    // Spotify audio valence ("sounds")
   const lyrVal = mood ? mood[0] : null;  // NRC lyric valence ("reads")
   const lyrEmo = mood && mood[1] >= 0 ? EMO_NAMES[mood[1]] : null;
@@ -1229,6 +1258,14 @@ function TrackView({ id, go }) {
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>popularity</div></div>}
         </div>
       </div>
+
+      {/* what it's about — Genius About excerpt (community-written, specific) */}
+      {about && (
+        <div className="tv-about">
+          <span className="tv-about-txt">{about[0]}</span>
+          {about[1] ? <a className="tv-about-src" href={`https://genius.com/songs/${about[1]}`} target="_blank" rel="noopener noreferrer">via Genius ↗</a> : null}
+        </div>
+      )}
 
       {/* mood — how it SOUNDS (Spotify valence) vs how it READS (NRC lyric sentiment) */}
       {(audVal != null && lyrVal != null) && (

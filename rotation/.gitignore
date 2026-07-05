@@ -17,6 +17,8 @@ IDEAS.md
 # artifact, never committed (see ROADMAP A2). world-map.js is static and STAYS committed.
 music-data.js
 genius-mood-lazy.js
+genius-about-lazy.js
+genius-themes-lazy.js
 live-data.js
 search-index.js
 media-index.js
