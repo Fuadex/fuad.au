@@ -2461,7 +2461,9 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
   }
   TOUR = {
     fetched: TM_RAW.fetched,
-    markets: TM_RAW.markets.map(m => ({ id: m.id, label: m.label, radiusKm: m.radiusKm, scanned: m.scanned, matched: m.matched })),
+    checked: TM_RAW.checked || TM_RAW.fetched,     // last pull attempt (may be newer than fetched if stale)
+    warn: TM_RAW.warn || null,                     // {reason, at, markets} when the last pull looked broken
+    markets: TM_RAW.markets.map(m => ({ id: m.id, label: m.label, radiusKm: m.radiusKm, scanned: m.scanned, matched: m.matched, stale: !!m.stale })),
     artistCount: _tourArtists.length, eventCount: TM_RAW.events.length,
     reactivated: _tourArtists.filter(r => r.react).length,
   };

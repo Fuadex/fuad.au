@@ -1,14 +1,14 @@
-// enrich-tm.js — location-first upcoming-events pull from the Ticketmaster Discovery API.
+﻿// enrich-tm.js â€” location-first upcoming-events pull from the Ticketmaster Discovery API.
 // For each configured market: pull EVERY music event in the radius (longest window TM has),
-// then intersect each event's lineup (attractions) against the library — by MusicBrainz id
+// then intersect each event's lineup (attractions) against the library â€” by MusicBrainz id
 // when TM carries one (externalLinks.musicbrainz), by normalized name otherwise. Only events
 // featuring library artists are kept, so the committed cache stays small.
 //
 // Design notes (probed 2026-07-05):
-//   - radius max is 19,999 km but paging caps at 1,000 items per query — we date-cursor past it.
+//   - radius max is 19,999 km but paging caps at 1,000 items per query â€” we date-cursor past it.
 //   - Tokyo returns 0 at any radius (TM has no Japan inventory; eplus/Pia have no API). Kept in
 //     the market list anyway: costs 1 call/week and lights up if TM JP ever gets stock.
-//   - event.url points at the actual outlet (TM, Moshtix, …) — that's the ticket link we ship.
+//   - event.url points at the actual outlet (TM, Moshtix, â€¦) â€” that's the ticket link we ship.
 //
 // Usage: node enrich-tm.js            (key: env TICKETMASTER_API, or ../.env)
 // Output: tm-events.json (committed). Weekly via .github/workflows/tour.yml.
@@ -25,22 +25,26 @@ if (!KEY) {
 if (!KEY) { console.error("no TICKETMASTER_API key (env or ../.env)"); process.exit(1); }
 KEY = KEY.trim();
 
+// Berlin @ 1200 km is the single European hub that covers ALL of Poland (RzeszÃ³w in the far SE
+// corner is 660 km) plus the UK (London 930, Edinburgh 1140), France, Benelux, Scandinavia's
+// south, central Europe and Italy down to Rome â€” the widest "Poland + most of Europe incl. UK"
+// a 1200 km circle can reach. (Hamburg would add Ireland but lose Rome.) Supersedes Warsaw.
 const MARKETS = [
   { id: "sydney", label: "Sydney", ll: "-33.87,151.21", radiusKm: 1200 },
   { id: "tokyo",  label: "Tokyo",  ll: "35.68,139.69",  radiusKm: 1200 },
-  { id: "warsaw", label: "Warsaw", ll: "52.23,21.01",   radiusKm: 1200 },
+  { id: "berlin", label: "Berlin", ll: "52.52,13.405",  radiusKm: 1200 },
 ];
 const OUT = path.join(__dirname, "tm-events.json");
 const DELAY_MS = 260; // < 5 req/s
 
-// ── library: display name + rank (search-index.js) and name → mbid (artist-stats.json)
+// â”€â”€ library: display name + rank (search-index.js) and name â†’ mbid (artist-stats.json)
 const idxSrc = fs.readFileSync(path.join(__dirname, "search-index.js"), "utf8");
 const rows = JSON.parse(idxSrc.slice(idxSrc.indexOf("[", idxSrc.indexOf("ROTATION_SEARCH")), idxSrc.lastIndexOf("]") + 1));
 const norm = (s) => (s || "").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]/g, "");
-const byNorm = new Map(); // norm(name) → [name, rank]
+const byNorm = new Map(); // norm(name) â†’ [name, rank]
 rows.forEach((r, i) => { const n = norm(r[0]); if (n && !byNorm.has(n)) byNorm.set(n, [r[0], i + 1]); });
 const STATS = JSON.parse(fs.readFileSync(path.join(__dirname, "artist-stats.json"), "utf8"));
-const byMbid = new Map(); // mbid → name (only names we actually play)
+const byMbid = new Map(); // mbid â†’ name (only names we actually play)
 for (const [name, s] of Object.entries(STATS)) if (s && s.mbid && byNorm.has(norm(name))) byMbid.set(s.mbid, name);
 console.log(`library: ${byNorm.size} names, ${byMbid.size} with mbid`);
 
@@ -113,19 +117,58 @@ async function pullMarket(mkt) {
     if (got >= totalElements || !lastDate) break;
     cursor = lastDate + "T00:00:00Z";
   }
-  console.log(`${mkt.label}: ${scanned} events scanned · ${events.length} feature library artists · ${calls} calls`);
+  console.log(`${mkt.label}: ${scanned} events scanned Â· ${events.length} feature library artists Â· ${calls} calls`);
   return { scanned, calls, events };
 }
 
+// Sanity gate: a weekly pull is an UPDATE, never a destructive overhaul. We compare against last
+// week's tm-events.json and, if a pull looks broken, KEEP the previous data + flag `warn` so the
+// site can show a banner instead of silently wiping the tour list. Two failure shapes:
+//   Â· per-market collapse â€” a market that carried real inventory last week now scans 0 (its
+//     endpoint failed): freeze THAT market's events, refresh the healthy ones.
+//   Â· matched-collapse â€” events fell under 40% of last week with the same markets (library-join
+//     bug or API-wide glitch): freeze wholesale.
+const COLLAPSE_MIN = 150;   // "real inventory" threshold; below this a market is treated as legit-empty (Tokyo)
+
 (async () => {
-  const out = { fetched: new Date().toISOString().slice(0, 10), markets: [], events: [] };
+  const today = new Date().toISOString().slice(0, 10);
+  let prev = null;
+  try { if (fs.existsSync(OUT)) prev = JSON.parse(fs.readFileSync(OUT, "utf8")); } catch { prev = null; }
+  const prevByMkt = {}, prevMkt = {};
+  if (prev) {
+    for (const e of (prev.events || [])) (prevByMkt[e.mkt] = prevByMkt[e.mkt] || []).push(e);
+    for (const m of (prev.markets || [])) prevMkt[m.id] = m;
+  }
+
+  const markets = [], events = [], stale = [];
   for (const mkt of MARKETS) {
     const r = await pullMarket(mkt);
-    out.markets.push({ id: mkt.id, label: mkt.label, ll: mkt.ll, radiusKm: mkt.radiusKm, scanned: r.scanned, matched: r.events.length });
-    out.events.push(...r.events);
+    const pm = prevMkt[mkt.id], kept = prevByMkt[mkt.id] || [];
+    if (pm && pm.scanned >= COLLAPSE_MIN && r.scanned === 0 && kept.length) {
+      stale.push({ id: mkt.id, label: mkt.label, was: pm.scanned });
+      markets.push({ id: mkt.id, label: mkt.label, ll: mkt.ll, radiusKm: mkt.radiusKm, scanned: pm.scanned, matched: kept.length, stale: true });
+      events.push(...kept);
+      console.log(`  âš  ${mkt.label} scanned 0 (was ${pm.scanned}) â€” kept last week's ${kept.length} events`);
+    } else {
+      markets.push({ id: mkt.id, label: mkt.label, ll: mkt.ll, radiusKm: mkt.radiusKm, scanned: r.scanned, matched: r.events.length, stale: false });
+      events.push(...r.events);
+    }
   }
-  out.events.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+  events.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+
+  let warn = null, outEvents = events, outMarkets = markets, fetched = today;
+  if (stale.length) {
+    warn = { reason: `${stale.map(s => s.label).join(" & ")} returned no events this week (had ${stale.map(s => s.was).join(", ")} last week) â€” kept last week's dates for ${stale.length > 1 ? "those markets" : "that market"}.`, at: today, markets: stale.map(s => s.id) };
+  }
+  const sameSet = prev && prev.markets && prev.markets.map(m => m.id).sort().join() === MARKETS.map(m => m.id).sort().join();
+  if (!stale.length && sameSet && (prev.events || []).length >= 50 && events.length < prev.events.length * 0.4) {
+    warn = { reason: `only ${events.length} matched events this week vs ${prev.events.length} last week (under 40%) â€” kept last week's data pending review.`, at: today, markets: MARKETS.map(m => m.id) };
+    outEvents = prev.events; outMarkets = prev.markets.map(m => ({ ...m, stale: true })); fetched = prev.fetched || today;
+  }
+
+  const out = { fetched, checked: today, warn, markets: outMarkets, events: outEvents };
   fs.writeFileSync(OUT, JSON.stringify(out, null, 0), "utf8");
-  const artists = new Set(); for (const e of out.events) for (const h of e.hits) artists.add(h[0]);
-  console.log(`tm-events.json: ${out.events.length} events · ${artists.size} library artists on tour`);
+  const artists = new Set(); for (const e of outEvents) for (const h of e.hits) artists.add(h[0]);
+  if (warn) console.error(`WARN â€” ${warn.reason}`);
+  console.log(`tm-events.json: ${outEvents.length} events Â· ${artists.size} library artists on tour Â· checked ${today}${warn ? " Â· KEPT PRIOR DATA (warn set)" : " Â· healthy"}`);
 })();
