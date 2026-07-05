@@ -569,7 +569,9 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
            right under the results. The results body is a flexed scroll well (height:0 + grow)
            so a long list can never inflate the shared row height — map/flow set it. */
         @media (min-width: 1150px) {
-          .mp-grid { display: grid; grid-template-columns: 3fr 3fr 2fr; gap: var(--gap); align-items: stretch; }
+          /* map column widened (was 3fr:3fr:2fr) so the world fills its container instead of
+             sitting small and letterboxed in a narrow cell (Fuad 2026-07-06) */
+          .mp-grid { display: grid; grid-template-columns: 7fr 5fr 4fr; gap: var(--gap); align-items: stretch; }
           .mp-map { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; }
           .mp-map > .r-card { flex: 1; display: flex; align-items: center; }
           .mp-flow { grid-column: 2; grid-row: 1; margin-top: 0 !important; display: flex; flex-direction: column; }
