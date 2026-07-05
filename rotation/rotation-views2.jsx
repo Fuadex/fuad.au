@@ -346,7 +346,7 @@ function SoundSimilar({ id, go }) {
           </div>
         </div>
       )}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(108px,1fr))", gap: 12 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(80px,1fr))", gap: 10 }}>
         {results.map(({ c }) => { const s = c.rec, name = (s && s.name) || c.id, nav = !!(R.byId[c.id] || (R.expById && R.expById[c.id])); return (
           <div key={c.id} onClick={() => nav && go("artist", c.id)} style={{ cursor: nav ? "pointer" : "default" }}>
             <GenCover hue={(s && s.hue) || 210} name={name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
@@ -512,9 +512,12 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
           <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} onTour={a.onTour} />
-          <div style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap" }}>
-            {a.tags.map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
-          </div>
+          {a.tags && a.tags.length > 0 && (
+            <div style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap", alignItems: "center" }}>
+              <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>last.fm</span>
+              {a.tags.map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
+            </div>
+          )}
           {a.styles && a.styles.length > 0 && (
             <div style={{ display: "flex", gap: 7, marginTop: 8, flexWrap: "wrap", alignItems: "center" }}>
               <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>discogs</span>
@@ -698,8 +701,12 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             const roster = [...base, ...extra];
             const dot = (g) => g && /female|woman/i.test(g) ? "var(--accent)" : g ? "var(--rule-2)" : "transparent";
             const wCity = a.wd && a.wd.city, wInc = a.wd && a.wd.inception, wDis = a.wd && a.wd.dissolved;
+            // widen the card once the members' other bands ("rotated to") start filling it, so
+            // those orphan chips get room instead of wrapping into a tall column (Fuad 2026-07-06)
+            const otherBands = (a.connections || []).reduce((n, l) => n + (l.others ? l.others.length : 0), 0);
+            const famWide = otherBands >= 6 || roster.length >= 10;
             return (
-            <div className="r-card" style={{ padding: 18 }}>
+            <div className={`r-card av-famcard${famWide ? " wide" : ""}`} style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
                 <span className="lbl"><b>Family tree</b></span>
                 <span className="meta">musicbrainz · discogs{a.wd ? " · wikidata" : ""}</span></div>
@@ -812,6 +819,8 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         /* Sound DNA stays compact (radar-width) rather than stretching to a full third */
         .av-endrow > .av-dnacard { flex: 0 0 236px; min-width: 236px; }
         @media (max-width: 980px){ .av-endrow > .av-dnacard { flex: 1 1 100%; } }
+        /* family tree grows wider when a band's members have rotated through many other bands */
+        .av-endrow > .av-famcard.wide { flex: 1.5 1 400px; }
         /* on-tour date rows */
         .av-tourrow { display: flex; align-items: baseline; gap: 10px; padding: 6px 4px; border-radius: 4px;
           text-decoration: none; color: var(--ink-soft); border-bottom: 1px solid var(--rule); }
