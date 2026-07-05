@@ -379,7 +379,12 @@ function lifeBadge(life) {
   return null;
 }
 function ArtistMeta({ gender, life, size, seenLive, onTour }) {
-  const g = genderGlyph(gender), b = lifeBadge(life);
+  const g = genderGlyph(gender);
+  let b = lifeBadge(life);
+  // a "disbanded" GROUP with fresh tour dates isn't disbanded — it reactivated (the Bleach
+  // case). Deceased Persons keep their badge: their events are tribute billings, not comebacks.
+  if (b && onTour && life && life.ended && life.type[0].toLowerCase() !== "p")
+    b = { txt: "Reactivated", tone: "react", tip: `on record as disbanded${life.end ? " " + life.end : ""} — yet they have upcoming dates` };
   if (!g && !b && !seenLive && !onTour) return null;
   // on-tour badge: amber — upcoming Ticketmaster dates around the configured markets
   const ot = onTour ? { txt: "On tour" + (onTour[0] > 1 ? " ×" + onTour[0] : ""), tip: `${onTour[0]} upcoming date${onTour[0] !== 1 ? "s" : ""} around your markets · next: ${onTour[1]}${onTour[2] ? " · " + onTour[2] : ""}` } : null;
@@ -388,7 +393,7 @@ function ArtistMeta({ gender, life, size, seenLive, onTour }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 9, marginTop: 9, flexWrap: "wrap" }}>
       {g && <span title={g.label} style={{ fontSize: size || 16, lineHeight: 1, color: "var(--ink-soft)" }}>{g.ch}</span>}
-      {b && <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid " + (b.tone === "active" ? "oklch(0.6 0.13 150 / .5)" : "var(--rule-2)"), color: b.tone === "active" ? "oklch(0.72 0.15 150)" : "var(--ink-faint)" }}>{b.txt}</span>}
+      {b && <span className="r-mono" title={b.tip} style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid " + (b.tone === "active" ? "oklch(0.6 0.13 150 / .5)" : b.tone === "react" ? "oklch(0.62 0.16 45 / .5)" : "var(--rule-2)"), color: b.tone === "active" ? "oklch(0.72 0.15 150)" : b.tone === "react" ? "oklch(0.75 0.16 45)" : "var(--ink-faint)", cursor: b.tip ? "help" : undefined }}>{b.txt}</span>}
       {ot && <span className="r-mono" title={ot.tip} style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid oklch(0.68 0.14 70 / .55)", color: "oklch(0.79 0.13 75)", cursor: "help" }}>{ot.txt}</span>}
       {sl && <span className="r-mono" title={sl.tip} style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid oklch(0.6 0.16 305 / .55)", color: "oklch(0.74 0.14 305)", cursor: "help" }}>🎤 {sl.txt}</span>}
     </div>
@@ -511,38 +516,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
       )}
 
       <div style={{ display: "grid", gap: "var(--gap)" }}>
-          {/* row 2 on PC: Sound DNA (narrow — radar with the attr list stacked beneath) ·
-             Sounds like (fills the freed space) · top tracks · albums (Fuad, 2026-07-04) */}
-          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "224px 1.3fr 1fr 0.85fr", gap: "var(--gap)", alignItems: "start" }}>
-            {/* sound DNA — radar on top, tempo→followers beneath at radar width */}
-            <div className="r-card" style={{ padding: 18 }}>
-              <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl"><b>Sound DNA</b></span>
-                <span className="meta">{a.am ? "measured" : "inferred"}</span></div>
-              <div className="av-dna" style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "center" }}>
-                <div style={{ flex: "0 0 auto", width: 176, maxWidth: "100%" }}>
-                  <Radar axes={DNA_AXES} values={dna} values2={avg} run={seen} size={176} />
-                  <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = {a.name.split(" ")[0]} · dashed = your avg</div>
-                </div>
-                {/* tempo → followers, stacked UNDER the radar at the radar's own width (Fuad) */}
-                {af && <div style={{ width: 176, maxWidth: "100%", display: "grid", gap: 7 }}>
-                  {[
-                    { k: "tempo", v: Math.round(50 + a.audio.tempo * 140), u: " bpm", f: a.audio.tempo },
-                    { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
-                    { k: "loud", v: Math.round(af[9]), u: " dB", f: Math.max(0, Math.min(1, (af[9] + 60) / 60)) },
-                    { k: "speech", v: Math.round(af[10] * 100), u: "%", f: af[10] },
-                    { k: "live", v: Math.round(af[11] * 100), u: "%", f: af[11] },
-                    { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
-                    { k: "followers", v: fmtK(af[8]), f: null },
-                  ].map(s => (
-                    <div key={s.k} style={{ display: "grid", gridTemplateColumns: "52px 1fr auto", gap: 8, alignItems: "center" }}>
-                      <span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</span>
-                      <div style={{ height: 3, background: "var(--bg-3)", borderRadius: 2, overflow: "hidden" }}>{s.f != null && <div style={{ height: "100%", width: (s.f * 100) + "%", background: `oklch(0.62 0.15 ${a.hue})` }} />}</div>
-                      <span style={{ fontSize: 12, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{s.u}</span>}</span>
-                    </div>
-                  ))}
-                </div>}
-              </div>
-            </div>
+          {/* row 2 on PC: flow (wide — Sound DNA moved to the bottom row for breathing room,
+             Fuad 2026-07-06) · top tracks · albums */}
+          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 0.9fr", gap: "var(--gap)", alignItems: "start" }}>
             {/* how they played out — swapped up from the bottom row */}
             <ArtistFlow id={a.id} hue={a.hue} go={go} />
             <div className="r-card" style={{ padding: 18 }}>
@@ -603,6 +579,35 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           {/* bottom row: how-they-played-out + family tree — kept at their ⅓ widths but
              CENTERED in the row rather than stretched across it (Fuad, 2026-07-04) */}
           <div className="m-stack av-endrow" style={{ display: "flex", gap: "var(--gap)", justifyContent: "center", alignItems: "flex-start", flexWrap: "wrap" }}>
+          {/* sound DNA — collapsed down from row 2 so flow + albums breathe (Fuad, 2026-07-06) */}
+          <div className="r-card" style={{ padding: 18 }}>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl"><b>Sound DNA</b></span>
+              <span className="meta">{a.am ? "measured" : "inferred"}</span></div>
+            <div className="av-dna" style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "center" }}>
+              <div style={{ flex: "0 0 auto", width: 176, maxWidth: "100%" }}>
+                <Radar axes={DNA_AXES} values={dna} values2={avg} run={seen} size={176} />
+                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = {a.name.split(" ")[0]} · dashed = your avg</div>
+              </div>
+              {/* tempo → followers, stacked UNDER the radar at the radar's own width (Fuad) */}
+              {af && <div style={{ width: 176, maxWidth: "100%", display: "grid", gap: 7 }}>
+                {[
+                  { k: "tempo", v: Math.round(50 + a.audio.tempo * 140), u: " bpm", f: a.audio.tempo },
+                  { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
+                  { k: "loud", v: Math.round(af[9]), u: " dB", f: Math.max(0, Math.min(1, (af[9] + 60) / 60)) },
+                  { k: "speech", v: Math.round(af[10] * 100), u: "%", f: af[10] },
+                  { k: "live", v: Math.round(af[11] * 100), u: "%", f: af[11] },
+                  { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
+                  { k: "followers", v: fmtK(af[8]), f: null },
+                ].map(s => (
+                  <div key={s.k} style={{ display: "grid", gridTemplateColumns: "52px 1fr auto", gap: 8, alignItems: "center" }}>
+                    <span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</span>
+                    <div style={{ height: 3, background: "var(--bg-3)", borderRadius: 2, overflow: "hidden" }}>{s.f != null && <div style={{ height: "100%", width: (s.f * 100) + "%", background: `oklch(0.62 0.15 ${a.hue})` }} />}</div>
+                    <span style={{ fontSize: 12, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{s.u}</span>}</span>
+                  </div>
+                ))}
+              </div>}
+            </div>
+          </div>
           {/* sounds like — swapped down from row 2 */}
           <div className="r-card av-simcard" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>

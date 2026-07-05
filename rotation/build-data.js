@@ -2446,7 +2446,8 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
         });
       }
       if (viaMb) r.mb = 1;
-      r.events.push({ d: e.date, ev: e.name, v: e.venue, city: e.city, cc: e.cc, url: e.url, mkt: e.mkt, status: e.status });
+      r.events.push({ d: e.date, ev: e.name, v: e.venue, city: e.city, cc: e.cc, url: e.url, mkt: e.mkt, status: e.status,
+        ll: (e.lat != null && e.lng != null) ? [Math.round(e.lat * 100) / 100, Math.round(e.lng * 100) / 100] : null });
     }
   }
   const _tourArtists = [..._tour.values()].sort((x, y) => y.plays - x.plays);
@@ -2466,6 +2467,33 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
     + "window.ROTATION_TOUR = " + JSON.stringify({ fetched: TOUR.fetched, markets: TOUR.markets, artists: _tourArtists }) + ";\n";
   fs.writeFileSync(path.join(__dirname, "tm-tour-lazy.js"), _tourOut, "utf8");
   console.log(`tm-tour-lazy: ${_tourArtists.length} artists on tour (${(_tourOut.length / 1024).toFixed(0)} KB) · ${TOUR.reactivated} reactivated`);
+}
+
+// ─────────── coverage ledger: kept artists × seen-live × life-status × tour dates ───────────
+// "How many of my top artists have I seen, how many haven't I, how many CAN'T I anymore?"
+// Four buckets over the kept ARTISTS: seen · still possible (open) · gone for good (ended,
+// no comeback in the tour data; deceased Persons always) · second chances (disbanded groups
+// with fresh dates you never saw). caught = seen AND since ended ("caught them in time").
+if (GIGS) {
+  const cov = { total: ARTISTS.length, seen: 0, caught: 0, gone: 0, chance: 0, open: 0,
+    goneList: [], caughtList: [], chanceList: [] };
+  for (const a of ARTISTS) {
+    const ended = a.life && a.life.ended;
+    const isPerson = !!(a.life && a.life.type && a.life.type[0].toLowerCase() === "p");
+    const react = !!(ended && !isPerson && a.onTour);   // disbanded group, fresh dates
+    if (a.seenLive) {
+      cov.seen++;
+      if (ended && !react) { cov.caught++; cov.caughtList.push([a.name, a.id, a.plays, (a.life.end || ""), isPerson ? 1 : 0]); }
+    } else if (react) { cov.chance++; cov.chanceList.push([a.name, a.id, a.plays, a.onTour[1]]); }
+    else if (ended) { cov.gone++; cov.goneList.push([a.name, a.id, a.plays, (a.life.end || ""), isPerson ? 1 : 0]); }
+    else cov.open++;
+  }
+  for (const k of ["goneList", "caughtList", "chanceList"]) cov[k].sort((x, y) => y[2] - x[2]);
+  cov.goneList = cov.goneList.slice(0, 14);
+  cov.caughtList = cov.caughtList.slice(0, 14);
+  cov.chanceList = cov.chanceList.slice(0, 10);
+  GIGS.coverage = cov;
+  console.log(`gig coverage: ${cov.seen} seen (${cov.caught} caught in time) · ${cov.open} open · ${cov.gone} gone · ${cov.chance} second chances — of ${cov.total}`);
 }
 
 // ─────────── emit ───────────

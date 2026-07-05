@@ -378,6 +378,20 @@ plus a manual **`gigs.json`** for festivals/shows setlist.fm lacks
    ("they played 7 of your top 10").
 4. **"Caught them in time"** (emotional centrepiece): MB end-dates × gig dates — bands you saw
    before they ended vs ones that got away.
+5b. ✅ SHIPPED 2026-07-06 on top of 5: **tour explorer + ledger.** Gigs "On tour now" gained
+   three composing cross-filters — GENRE CASCADE (families as a proportional flex bar;
+   picking one unfolds its subgenres; primary-subgenre semantics so segment sizes = filter
+   results), event MAP (equirectangular SVG reusing world-map.js land paths; city dots sized
+   by event count, click = city filter; hovering an artist row traces their tour path as a
+   dashed polyline), and D/W/M CALENDAR strip (gap-preserving buckets). Each vis shows the
+   distribution within the other two filters. Events carry `ll` [lat,lng] in tm-tour-lazy.
+   Plus GIGS.coverage ledger (seen / still-possible / gone-for-good / second-chances over
+   kept ARTISTS + caught-in-time, goneList/caughtList/chanceList chips section) and the
+   artist-page "Reactivated" badge (replaces Disbanded when a group has fresh dates; deceased
+   Persons keep Died — tribute billings). Sound DNA moved to the artist page's bottom row
+   (flow + albums breathe). Refinement queue: genre cross-check on name-only TM joins
+   (Bleach/Verviers is probably a different Bleach than the Okinawa one Fuad saw — right
+   badge, possibly wrong evidence).
 5. ✅ SHIPPED 2026-07-05 (superseding the old Live-tab idea): **location-first tour pull** —
    `enrich-tm.js` (Sydney/Tokyo/Warsaw, 1200 km, longest window, date-cursor past the
    1000-item paging cap) → `tm-events.json` (committed, matched events only; joins lineup
