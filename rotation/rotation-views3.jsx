@@ -566,6 +566,60 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+        {/* emotional weather — per-year listening mood (sounds vs reads + dominant emotion) */}
+        {I.MOOD && I.MOOD.arc && I.MOOD.arc.length >= 6 && (() => {
+          const A = I.MOOD.arc;
+          const last = A[A.length - 1], first = A[0];
+          // most recent year the dominant emotion changed
+          let flipYear = null;
+          for (let i = A.length - 1; i > 0; i--) if (A[i].topEmo !== A[i - 1].topEmo) { flipYear = A[i]; break; }
+          const darkest = A.reduce((m, y) => y.aud < m.aud ? y : m, A[0]);
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Emotional weather</div>
+              <div className="st-big">
+                {flipYear === null
+                  ? <>Every year of your listening reads <em>{last.topEmo}</em>.</>
+                  : flipYear === last
+                    ? <>After years of <em>{A[A.length - 2].topEmo}</em>, {last.year} reads <em>{last.topEmo}</em>.</>
+                    : <>Your listening's mood, year by year — now reading <em>{last.topEmo}</em>.</>}
+              </div>
+              <div className="st-sub">
+                Play-weighted mood of everything you heard — how it <span style={{ color: "oklch(0.72 0.15 145)" }}>sounds</span> (Spotify)
+                vs what the words <span style={{ color: "oklch(0.68 0.16 25)" }}>say</span> (NRC).
+                Your darkest-sounding year was <b style={{ color: "var(--ink)" }}>{darkest.year}</b> ({darkest.aud})
+                {last.aud > darkest.aud + 3 ? <>; since then it's brightened to {last.aud}.</> : <>.</>}
+              </div>
+              <div className="st-arc" style={{ marginTop: 16 }}>
+                <div className="st-arc-row">
+                  <div className="st-arc-head"><span className="st-arc-name">Sounds</span>
+                    <span className="st-arc-now" style={{ color: "oklch(0.72 0.15 145)" }}>{last.aud}</span></div>
+                  <Spark data={A.map(y => y.aud)} w={420} h={32} run={true}
+                    stroke="oklch(0.72 0.15 145)" fill="oklch(0.72 0.15 145 / .12)" />
+                </div>
+                <div className="st-arc-row">
+                  <div className="st-arc-head"><span className="st-arc-name">Reads</span>
+                    <span className="st-arc-now" style={{ color: "oklch(0.68 0.16 25)" }}>{last.lyr}</span></div>
+                  <Spark data={A.map(y => y.lyr)} w={420} h={32} run={true}
+                    stroke="oklch(0.68 0.16 25)" fill="oklch(0.68 0.16 25 / .12)" />
+                </div>
+              </div>
+              <div style={{ display: "flex", gap: 4, marginTop: 14, flexWrap: "wrap" }}>
+                {A.map(y => (
+                  <span key={y.year} className="r-mono" title={`${y.year}: ${y.topEmo} (${Math.round(y.topEmoShare * 100)}% of scored plays)`}
+                    style={{ fontSize: 9, padding: "3px 7px", borderRadius: 999, border: "1px solid var(--rule)",
+                      color: flipYear && y.year >= flipYear.year ? "var(--accent)" : "var(--ink-faint)" }}>
+                    '{String(y.year).slice(2)} {y.topEmo}
+                  </span>
+                ))}
+              </div>
+              <div className="st-arc-axis">
+                <span>{first.year}</span><span>{A[Math.floor(A.length / 2)].year}</span><span>{last.year}</span>
+              </div>
+            </section>
+          );
+        })()}
+
         {/* lineups — Wikidata band-member gender (the layer MB can't give us) */}
         {I.LINEUPS && I.LINEUPS.featured && I.LINEUPS.featured.length >= 4 && (() => {
           const L = I.LINEUPS;
