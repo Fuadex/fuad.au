@@ -1169,21 +1169,18 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
     return mode === 'spines' ? arr : centerOrder(arr);
   }, [items, mode, sort, sortDir]);
 
-  // Mix mode = size-aware: a category (this shelf, after any active filter/search) with fewer
-  // than MIX_COVER_MAX plain "spine" objects shows them ALL as covers — nicer to scan a handful
-  // — while a bigger category keeps them as compact spines. Curated art (favorite/poster) is
-  // always a cover. Because ShelfRow receives the *filtered* items, narrowing a search flips a
-  // shelf to covers the moment it drops under the threshold.
-  const MIX_COVER_MAX = 20;
-  const spineObjCount = React.useMemo(
-    () => items.reduce((n, i) => n + ((!i.favorite && !i.poster) ? 1 : 0), 0),
-    [items]);
+  // Mix mode = size-aware & UNIFORM: a shelf (after any active filter/search) with fewer than
+  // MIX_COVER_MAX items shows them ALL as covers — nicer to scan a handful — while a bigger shelf
+  // shows them ALL as spines. Favourites/posters are no longer force-promoted to covers in mix:
+  // that scattered "random covers among the spines" look is phased off (Fuad 2026-07-06); covers
+  // mode still shows curated art. Because ShelfRow gets the *filtered* items, narrowing a search
+  // flips a shelf to covers the moment it drops under the threshold.
+  const MIX_COVER_MAX = 30;
   const isSpineFor = React.useCallback((item) => {
     if (mode === 'spines') return true;
     if (mode === 'covers') return false;
-    if (item.favorite || item.poster) return false;   // curated art → always a cover
-    return spineObjCount >= MIX_COVER_MAX;             // small category → covers; large → spines
-  }, [mode, spineObjCount]);
+    return items.length >= MIX_COVER_MAX;             // small shelf → all covers; large → all spines
+  }, [mode, items.length]);
 
   // ── Drag-scroll: window-tracked, with click suppression ──
   // Move/up live on `window` so a drag keeps going even when the cursor leaves

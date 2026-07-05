@@ -1745,21 +1745,36 @@ function TourMap({ events, city, setCity, hiPath, hiHue }) {
     for (const c of arr) c.hue = c.hues.size ? [...c.hues.entries()].sort((a, b) => b[1] - a[1])[0][0] : null;
     return arr.sort((a, b) => b.n - a.n);
   }, [events]);
-  const toVB = (cx, cy) => { const r = svgRef.current.getBoundingClientRect(); return [(cx - r.left) / r.width * 1000, 70 + (cy - r.top) / r.height * 315]; };
-  const onWheel = (e) => {
-    e.preventDefault(); const [vx, vy] = toVB(e.clientX, e.clientY);
-    setTf(t => { const k1 = Math.min(14, Math.max(1, t.k * (e.deltaY < 0 ? 1.22 : 1 / 1.22)));
-      const px = (vx - t.x) / t.k, py = (vy - t.y) / t.k; return k1 === 1 ? { k: 1, x: 0, y: 0 } : { k: k1, x: vx - px * k1, y: vy - py * k1 }; });
-  };
-  const onDown = (e) => { drag.current = { x: e.clientX, y: e.clientY, tx: tf.x, ty: tf.y }; moved.current = false; e.currentTarget.setPointerCapture(e.pointerId); };
-  const onMove = (e) => {
-    const d = drag.current; if (!d) return;
-    const r = svgRef.current.getBoundingClientRect();
-    const dx = (e.clientX - d.x) / r.width * 1000, dy = (e.clientY - d.y) / r.height * 315;
-    if (Math.abs(e.clientX - d.x) + Math.abs(e.clientY - d.y) > 3) moved.current = true;
-    setTf(t => ({ ...t, x: d.tx + dx, y: d.ty + dy }));
-  };
-  const onUp = () => { drag.current = null; };
+  const tfRef = React.useRef(tf);
+  React.useEffect(() => { tfRef.current = tf; }, [tf]);
+  // wheel + pan are attached natively: React's onWheel is passive, so its preventDefault is
+  // ignored and the page scrolls on zoom; a non-passive listener fixes that. Panning lives on
+  // window (no pointer capture on the svg) so a genuine tap still reaches the city dots' onClick.
+  React.useEffect(() => {
+    const svg = svgRef.current; if (!svg) return;
+    const toVB = (cx, cy) => { const r = svg.getBoundingClientRect(); return [(cx - r.left) / r.width * 1000, 70 + (cy - r.top) / r.height * 315]; };
+    const onWheel = (e) => {
+      e.preventDefault();
+      const [vx, vy] = toVB(e.clientX, e.clientY), t = tfRef.current;
+      const k1 = Math.min(14, Math.max(1, t.k * (e.deltaY < 0 ? 1.22 : 1 / 1.22)));
+      if (k1 === 1) { setTf({ k: 1, x: 0, y: 0 }); return; }
+      const px = (vx - t.x) / t.k, py = (vy - t.y) / t.k;
+      setTf({ k: k1, x: vx - px * k1, y: vy - py * k1 });
+    };
+    const onMove = (e) => {
+      const d = drag.current; if (!d) return;
+      const r = svg.getBoundingClientRect();
+      const dx = (e.clientX - d.x) / r.width * 1000, dy = (e.clientY - d.y) / r.height * 315;
+      if (Math.abs(e.clientX - d.x) + Math.abs(e.clientY - d.y) > 3) moved.current = true;
+      setTf({ k: d.tk, x: d.tx + dx, y: d.ty + dy });
+    };
+    const onUp = () => { drag.current = null; };
+    svg.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    return () => { svg.removeEventListener("wheel", onWheel); window.removeEventListener("pointermove", onMove); window.removeEventListener("pointerup", onUp); };
+  }, []);
+  const onDown = (e) => { const t = tfRef.current; drag.current = { x: e.clientX, y: e.clientY, tx: t.x, ty: t.y, tk: t.k }; moved.current = false; };
   const zoom = (f) => setTf(t => { const k1 = Math.min(14, Math.max(1, t.k * f)); if (k1 === 1) return { k: 1, x: 0, y: 0 };
     const px = (500 - t.x) / t.k, py = (227 - t.y) / t.k; return { k: k1, x: 500 - px * k1, y: 227 - py * k1 }; });
   if (!world) return <div className="gv-tmap-empty r-mono">the map loads…</div>;
@@ -1767,8 +1782,8 @@ function TourMap({ events, city, setCity, hiPath, hiHue }) {
   return (
     <div className="gv-tmap-wrap">
       <svg ref={svgRef} className="gv-tmap" viewBox="0 70 1000 315" role="img" aria-label="upcoming events map — scroll to zoom, drag to pan, click a city to filter"
-        onWheel={onWheel} onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerLeave={onUp}
-        style={{ cursor: drag.current ? "grabbing" : "grab", touchAction: "none" }}>
+        onPointerDown={onDown}
+        style={{ cursor: "grab", touchAction: "none" }}>
         <g transform={`translate(${tf.x} ${tf.y}) scale(${tf.k})`}>
           {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" />)}
           {cities.map(c => (
@@ -2208,9 +2223,10 @@ function GigsView({ go }) {
           display: flex; align-items: center; justify-content: center; }
         .gv-tmap-zoom button:hover { color: var(--accent); border-color: var(--accent-dim); }
         .gv-tmap-empty { padding: 60px 0; text-align: center; color: var(--ink-faint); font-size: 11px; }
-        .gv-tmap-dot { fill: var(--accent); fill-opacity: .7; cursor: pointer; transition: fill-opacity .15s; }
+        /* NB: no fill here — a CSS fill would override the per-dot genre color set inline */
+        .gv-tmap-dot { fill-opacity: .72; cursor: pointer; transition: fill-opacity .15s; }
         .gv-tmap-dot:hover { fill-opacity: 1; }
-        .gv-tmap-dot[data-on="true"] { fill-opacity: 1; stroke: var(--ink); stroke-width: 1.2; }
+        .gv-tmap-dot[data-on="true"] { fill-opacity: 1; stroke: var(--ink); }
         .gv-tmap-hint { font-size: 8.5px; color: var(--ink-faint); margin: 4px 2px 10px; letter-spacing: .05em; }
         .gv-tmap-hint b { color: var(--ink-soft); }
         /* calendar strip — D/W/M buckets, bottom-aligned bars */
