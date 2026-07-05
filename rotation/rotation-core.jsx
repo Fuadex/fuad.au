@@ -282,6 +282,12 @@ a.r-link:hover { color: var(--ink); }
    Explore never load unless Explore mounts, which made the sidebar column clip on mobile). */
 .tv-page { max-width: 1150px; margin: 0 auto; }   /* detail pages read as a sheet, not a smear, on wide screens */
 .av-page { max-width: 1540px; }                   /* artist pages: +⅓ wider — 3-col composition needs the room (Fuad) */
+/* needle-drop preview button (Shelves + Album pages) — global so it's styled off the Shelves view too */
+.sh-needle { padding: 7px 12px; border-radius: 999px; cursor: pointer; font-family: var(--mono); font-size: 10px;
+  letter-spacing: .1em; text-transform: uppercase; text-align: center; border: 1px solid var(--rule-2);
+  background: none; color: var(--ink-soft); white-space: nowrap; }
+.sh-needle:hover { color: var(--ink); }
+.sh-needle[data-on="true"] { color: oklch(0.82 0.12 var(--h)); border-color: oklch(0.6 0.14 var(--h) / .7); background: oklch(0.6 0.14 var(--h) / .13); }
 .clk-scroll > div { min-width: 0; }
 @media (max-width: 560px) {
   .clk-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
