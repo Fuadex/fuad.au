@@ -1831,6 +1831,8 @@ function TourSection({ go, gigDate }) {
   const [gkey, setGkey] = React.useState(null);       // genre-cascade key ("f"+famI | "t:Metal" | "?")
   const [sub, setSub] = React.useState(null);         // genre-cascade subgenre index
   const [hi, setHi] = React.useState(null);           // hovered artist id → tour path on the map
+  const [checked, setChecked] = React.useState(() => new Set());  // artists whose routes are mapped
+  const toggleCheck = (id) => setChecked(s => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
   React.useEffect(() => {
     if (window.ROTATION_TOUR || !R.TOUR) return;
     const s = document.createElement("script"); s.src = "tm-tour-lazy.js";
@@ -1882,22 +1884,18 @@ function TourSection({ go, gigDate }) {
   if (!T) return null;
   const hiArt = hi ? artists.find(a => a.id === hi) : null;
   const hiPath = hiArt ? hiArt.events.filter(e => e.ll).map(e => [(e.ll[1] + 180) / 360 * 1000, (90 - e.ll[0]) / 180 * 500]) : null;
-  // routes tie a SELECTED city to the rest of each of its bands' tour dates (Fuad: only for the
-  // selected circle, else it's a mess). Built from the genre/time-filtered events (not city-
-  // filtered) so an artist's full itinerary is drawn, highlighting the ones that pass through
-  // the clicked city.
-  const cityRoutes = React.useMemo(() => {
-    if (!city) return null;
+  // routes are opt-in per artist via the row checkboxes (drawing every band at once was a mess —
+  // Fuad). Each checked artist's FULL itinerary (within the genre/time filter, all cities) is drawn.
+  const checkedRoutes = React.useMemo(() => {
+    if (!checked.size) return null;
     const byA = new Map();
     for (const x of mapEvents) {
-      if (!x.e.ll) continue;
-      if (!byA.has(x.a.id)) byA.set(x.a.id, { id: x.a.id, hue: x.a.hue, pts: [], here: false });
-      const r = byA.get(x.a.id);
-      r.pts.push([(x.e.ll[1] + 180) / 360 * 1000, (90 - x.e.ll[0]) / 180 * 500]);
-      if (x.e.cc + "|" + x.e.city === city) r.here = true;
+      if (!x.e.ll || !checked.has(x.a.id)) continue;
+      if (!byA.has(x.a.id)) byA.set(x.a.id, { id: x.a.id, hue: x.a.hue, pts: [] });
+      byA.get(x.a.id).pts.push([(x.e.ll[1] + 180) / 360 * 1000, (90 - x.e.ll[0]) / 180 * 500]);
     }
-    return [...byA.values()].filter(r => r.here && r.pts.length >= 2);
-  }, [mapEvents, city]);
+    return [...byA.values()].filter(r => r.pts.length >= 2);
+  }, [mapEvents, checked]);
   const anyFilt = gkey != null || sub != null || city != null || selKey != null;
   const shown = showAll ? artists : artists.slice(0, 20);
   const chips = [];
@@ -1931,11 +1929,11 @@ function TourSection({ go, gigDate }) {
       {!tour && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 16 }}>loading tour dates…</div>}
       {tour && <>
         <div className="r-card gv-tmap-card">
-          <TourMap events={mapEvents} city={city} setCity={setCity} hiPath={hiPath} hiHue={hiArt ? hiArt.hue : 40} routes={cityRoutes} />
+          <TourMap events={mapEvents} city={city} setCity={setCity} hiPath={hiPath} hiHue={hiArt ? hiArt.hue : 40} routes={checkedRoutes} />
           <div className="gv-tmap-foot">
             <span className="r-mono gv-tmap-hint">{hiArt ? <>tracing <b>{hiArt.name}</b>'s route — dots numbered in date order</>
-              : cityRoutes && cityRoutes.length ? <>routes of the <b>{cityRoutes.length}</b> band{cityRoutes.length !== 1 ? "s" : ""} touring through {city.split("|")[1]} — click the city again to clear</>
-              : "where — scroll to zoom · drag to pan · click a city to link its bands to their other tour dates · hover an artist to trace one route"}</span>
+              : checked.size ? <>mapping <b>{(checkedRoutes || []).length}</b> route{(checkedRoutes || []).length !== 1 ? "s" : ""} — tick artists below to add · <em style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => setChecked(new Set())}>clear ✕</em></>
+              : "where — scroll to zoom · drag to pan · click a city to filter · tick artists below to draw their tour routes"}</span>
           </div>
           <TourCal events={calEvents} gran={gran} setGran={setGran} selKey={selKey} setSelKey={setSelKey} keyOf={keyOf} />
         </div>
@@ -1943,9 +1941,13 @@ function TourSection({ go, gigDate }) {
         <div className="gv-tour">
           {shown.map(a => {
             const known = !!R.byId[a.id];
+            const multi = a.events.filter(e => e.ll).length >= 2;   // has a route to draw
             return (
-              <div key={a.id + a.name} className="gv-tour-row" data-hi={hi === a.id}
+              <div key={a.id + a.name} className="gv-tour-row" data-hi={hi === a.id} data-checked={checked.has(a.id)}
                 onMouseEnter={() => setHi(a.id)} onMouseLeave={() => setHi(null)}>
+                <label className="gv-check" title={multi ? "map this artist's tour route on the map above" : "only one mapped date — no route to draw"} onClick={(e) => e.stopPropagation()}>
+                  {multi ? <input type="checkbox" checked={checked.has(a.id)} onChange={() => toggleCheck(a.id)} /> : <span className="gv-check-dot" />}
+                </label>
                 <div className="gv-tour-a" data-link={known} onClick={() => known && go("artist", a.id)}>
                   <GenCover hue={a.hue} name={a.name} size={40} radius={4} />
                   <div style={{ minWidth: 0 }}>
@@ -2215,7 +2217,11 @@ function GigsView({ go }) {
         .gv-tour-warn b { color: oklch(0.82 0.15 60); }
         .gv-tour-fetched { font-family: var(--mono); font-size: 9.5px; color: var(--ink-faint); letter-spacing: .05em; }
         .gv-tour { display: grid; gap: 8px; }
-        .gv-tour-row { display: grid; grid-template-columns: minmax(200px, 270px) 1fr; gap: 6px 18px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 8px; align-items: start; }
+        .gv-tour-row { display: grid; grid-template-columns: 22px minmax(190px, 260px) 1fr; gap: 6px 16px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 8px; align-items: start; }
+        .gv-tour-row[data-checked="true"] { border-color: var(--accent-dim); background: var(--accent-bg); }
+        .gv-check { display: flex; align-items: center; justify-content: center; padding-top: 3px; cursor: pointer; }
+        .gv-check input { width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; }
+        .gv-check-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rule-2); }
         .gv-tour-a { display: flex; gap: 12px; align-items: center; min-width: 0; }
         .gv-tour-a[data-link="true"] { cursor: pointer; }
         .gv-tour-a[data-link="true"]:hover .gv-tile-name { color: var(--accent); }
@@ -2293,7 +2299,8 @@ function GigsView({ go }) {
           .gv-tiles { grid-template-columns: 1fr; }
           .gv-city { grid-template-columns: 110px 1fr 30px; }
           .gv-gig { grid-template-columns: 64px 8px 1fr; }
-          .gv-tour-row { grid-template-columns: 1fr; }
+          .gv-tour-row { grid-template-columns: 22px 1fr; }
+          .gv-tour-row .gv-tour-ev { grid-column: 2; }
           .gv-gig-meta { grid-column: 3; justify-content: flex-start; margin-top: 4px; }
           .gv-gig-date { font-size: 10px; }
         }
