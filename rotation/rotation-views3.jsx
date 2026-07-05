@@ -1889,13 +1889,18 @@ function TourSection({ go, gigDate }) {
       <div className="gv-title">
         {anyFilt ? <>{artists.length} of {T.artistCount} artists match.</> : <>{T.artistCount} artists from your rotation have upcoming dates.</>}
       </div>
+      {T.warn && (
+        <div className="gv-tour-warn" role="status">
+          <b>⚠ Tour data may be stale.</b> The last pull ({T.warn.at || T.checked}) looked wrong — {T.warn.reason} Showing the last good data from {T.fetched}.
+        </div>
+      )}
       <div className="gv-tour-meta">
         {T.markets.map(m => (
-          <span key={m.id} className="gv-tour-mkt" title={`${m.scanned} events scanned within ${m.radiusKm} km of ${m.label}${m.id === "tokyo" && !m.scanned ? " — Ticketmaster carries no Japan inventory (that circuit lives on eplus/Pia, no public API)" : ""}`}>
-            {m.label} <b>{m.matched}</b>
+          <span key={m.id} className="gv-tour-mkt" data-stale={!!m.stale} title={`${m.scanned} events scanned within ${m.radiusKm} km of ${m.label}${m.stale ? " — this market returned nothing on the last pull; showing last good data" : ""}${m.id === "tokyo" && !m.scanned ? " — Ticketmaster carries no Japan inventory (that circuit lives on eplus/Pia, no public API)" : ""}`}>
+            {m.label} <b>{m.matched}</b>{m.stale ? " ⚠" : ""}
           </span>
         ))}
-        <span className="gv-tour-fetched">checked {T.fetched} · refreshed weekly</span>
+        <span className="gv-tour-fetched">{T.warn ? <>checked {T.checked} · data from {T.fetched}</> : <>checked {T.fetched} · refreshed weekly</>}</span>
         {chips.map(([lbl, clear], i) => (
           <span key={lbl + i} className="gv-tour-chip" onClick={clear}>{lbl} ✕</span>
         ))}
@@ -2178,6 +2183,10 @@ function GigsView({ go }) {
         .gv-tour-meta { display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; margin: -6px 0 14px; }
         .gv-tour-mkt { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px; cursor: help; }
         .gv-tour-mkt b { color: var(--accent); }
+        .gv-tour-mkt[data-stale="true"] { border-color: oklch(0.62 0.16 45 / .6); color: oklch(0.78 0.14 55); }
+        .gv-tour-warn { margin: 2px 0 12px; padding: 10px 14px; border-radius: 8px; font-size: 12.5px; line-height: 1.5;
+          color: oklch(0.85 0.06 60); background: oklch(0.6 0.13 55 / .12); border: 1px solid oklch(0.62 0.16 55 / .4); }
+        .gv-tour-warn b { color: oklch(0.82 0.15 60); }
         .gv-tour-fetched { font-family: var(--mono); font-size: 9.5px; color: var(--ink-faint); letter-spacing: .05em; }
         .gv-tour { display: grid; gap: 8px; }
         .gv-tour-row { display: grid; grid-template-columns: minmax(200px, 270px) 1fr; gap: 6px 18px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 8px; align-items: start; }
