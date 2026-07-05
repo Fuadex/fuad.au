@@ -85,8 +85,10 @@ const PROVIDERS = [
     };
   },
 
-  // ── week in review (live sync) — plays vs your weekly average, this week's #1, new artists ──
+  // ── week in review (live sync) — PROMOTED to the Overview pulse row (Fuad 2026-07-05);
+  // returns null here so the deck doesn't duplicate it. Kept for reference/rollback.
   (ctx) => {
+    if (true) return null;
     const w = window.ROTATION_LIVE && window.ROTATION_LIVE.week; if (!w) return null;
     const delta = w.weekAvg ? Math.round((w.plays7 - w.weekAvg) / w.weekAvg * 100) : 0, up = delta >= 0;
     const ta = w.topArtists && w.topArtists[0];

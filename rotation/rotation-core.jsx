@@ -194,6 +194,11 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
   color: var(--accent); background: var(--accent-bg); }
 /* per-row "seen live" marker in track lists (🎤) — small, inline, doesn't shift layout */
 .r-livemark { font-size: 11px; line-height: 1; flex: none; cursor: help; filter: saturate(.9); }
+/* blurb + mood row on TrackView: description left, sounds/reads right (stacks < 860px) */
+.tv-subrow { margin: 0 0 var(--gap); }
+.tv-subrow[data-both="true"] { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--gap); align-items: start; }
+.tv-subrow .tv-about, .tv-subrow .tv-mood { margin: 0; max-width: none; }
+@media (max-width: 860px) { .tv-subrow[data-both="true"] { grid-template-columns: 1fr; } }
 /* "what it's about" blurb on TrackView — Genius About excerpt, community-written */
 .tv-about { max-width: 680px; margin: 0 0 var(--gap); padding: 14px 18px; border-left: 2px solid var(--accent-dim);
   background: var(--panel); border-radius: 0 8px 8px 0; }

@@ -201,30 +201,22 @@ function OverviewView({ t, go }) {
 
   return (
     <div className="r-view" ref={ref}>
-      <div className="r-viewhead">
-        <div>
-          <div className="r-kicker">Rotation · since {new Date(T.since).getFullYear()}</div>
-          <h1 className="r-title">A life, <em>counted</em><span className="dot">.</span></h1>
-        </div>
-        <p className="r-lede">Every track I've played, since the mid-2000s —
-          turned into something I can actually <b>look at</b>.</p>
-      </div>
-
+      {/* header title/lede removed (Fuad 2026-07-05: taking space) — straight into the bento */}
       {/* bento */}
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
         {/* now playing — top-right corner of the pulse row (DOM-first so mobile still leads
             with it; the ≥981px block pins it to cols 9-12) */}
-        <div className="r-card ov-np" style={{ gridColumn: "span 4", padding: 18, display: "flex", gap: 16, alignItems: "center", minWidth: 0 }}>
+        <div className="r-card ov-np" style={{ gridColumn: "span 4", padding: 14, display: "flex", gap: 14, alignItems: "center", minWidth: 0 }}>
           <div style={{ position: "relative", cursor: npKnown ? "pointer" : "default" }} onClick={() => npKnown && go("artist", now.artistId)}>
-            <GenCover hue={nowArtist.hue} name={now.artist} size={116} radius={4} />
+            <GenCover hue={nowArtist.hue} name={now.artist} size={92} radius={4} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "flex-end", justifyContent: "center",
               gap: 3, padding: "0 0 9px" }}>
               {[0, 1, 2, 3, 4].map(i => <span key={i} className="eqbar" style={{ animationDelay: i * 0.13 + "s" }} />)}
             </div>
           </div>
           <div style={{ minWidth: 0 }}>
-            <div className="r-live" style={{ marginBottom: 9 }}><span className="dot" /> {now.nowplaying ? "Now playing" : "Last played"}</div>
-            <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22, lineHeight: 1.05 }}>{now.track}</div>
+            <div className="r-live" style={{ marginBottom: 7 }}><span className="dot" /> {now.nowplaying ? "Now playing" : "Last played"}</div>
+            <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 19, lineHeight: 1.05 }}>{now.track}</div>
             <div style={{ color: "var(--ink-soft)", fontSize: 13, marginTop: 4 }}>
               {npKnown ? <b onClick={() => go("artist", now.artistId)} style={{ cursor: "pointer", color: "var(--ink)", fontWeight: 600 }}>{now.artist}</b> : now.artist} — <span style={{ color: "var(--ink-faint)" }}>{now.album}</span></div>
             <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
@@ -234,31 +226,58 @@ function OverviewView({ t, go }) {
         </div>
 
         {/* scrobble counter + trend — left anchor of the pulse row */}
-        <div className="r-card ov-scrob" style={{ gridColumn: "span 3", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        <div className="r-card ov-scrob" style={{ gridColumn: "span 3", padding: 14, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Scrobbles</b></span>
-            <span className="meta">26-wk trend</span></div>
-          <div className="r-stat-n" style={{ fontSize: "clamp(34px,4.6vw,52px)", margin: "6px 0 2px" }}>{fmt(Math.round(scrob))}</div>
-          <div style={{ marginTop: 10 }}>
-            <Spark data={trend} w={300} h={46} run={seen} fill="var(--accent-bg)" />
+            <span className="meta">26-wk</span></div>
+          <div className="r-stat-n" style={{ fontSize: "clamp(30px,4vw,44px)", margin: "4px 0 2px" }}>{fmt(Math.round(scrob))}</div>
+          <div style={{ marginTop: 6 }}>
+            <Spark data={trend} w={300} h={34} run={seen} fill="var(--accent-bg)" />
           </div>
         </div>
 
         {/* streak — squeezed centrally beside the recent list */}
-        <div className="r-card ov-streak" style={{ gridColumn: "span 2", padding: 18, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div className="r-card ov-streak" style={{ gridColumn: "span 2", padding: 14, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Streak</b></span></div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 6 }}>
-            <div className="r-stat-n" style={{ fontSize: 46 }}>{T.streak.current}</div>
-            <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>days</span>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 4 }}>
+            <div className="r-stat-n" style={{ fontSize: 38 }}>{T.streak.current}</div>
+            <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>days</span>
           </div>
-          <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", letterSpacing: ".1em" }}>
-            best <span style={{ color: "var(--accent)" }}>{T.streak.best}</span> · every day this month
+          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".08em" }}>
+            best <span style={{ color: "var(--accent)" }}>{T.streak.best}</span>
           </div>
         </div>
 
+        {/* this week — promoted from the insight deck into the pulse row (Fuad 2026-07-05);
+            live-data dependent, so it only renders when the weekly sync is present. The
+            :has(.ov-week) CSS below re-splits the row 2+2+2+3+3 when it's here. */}
+        {(() => {
+          const w = window.ROTATION_LIVE && window.ROTATION_LIVE.week;
+          if (!w) return null;
+          const delta = w.weekAvg ? Math.round((w.plays7 - w.weekAvg) / w.weekAvg * 100) : 0, up = delta >= 0;
+          const ta = w.topArtists && w.topArtists[0];
+          return (
+            <div className="r-card ov-week" style={{ gridColumn: "span 3", padding: 14, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+              <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>This week</b></span>
+                <span className="meta" style={{ color: up ? "var(--accent)" : "var(--ink-faint)" }}>{up ? "▲" : "▼"} {Math.abs(delta)}%</span></div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 4 }}>
+                <div className="r-stat-n" style={{ fontSize: 38 }}>{fmt(w.plays7)}</div>
+                <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>plays</span>
+              </div>
+              {ta ? (
+                <div style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", minWidth: 0 }} onClick={() => go("artist", ta.artistId)}>
+                  <GenCover hue={(R.byId[ta.artistId] || (R.expById && R.expById[ta.artistId]) || { hue: 210 }).hue} name={ta.name} size={22} radius={2} />
+                  <span style={{ fontSize: 11.5, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{ta.name}</span>
+                  <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", flex: "none" }}>#1</span>
+                </div>
+              ) : <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>vs your weekly average</div>}
+            </div>
+          );
+        })()}
+
         {/* recent ticker — squeezed centrally between streak and now-playing; the list is a
             capped scroll well at PC widths so the pulse row stays shallow */}
-        <div className="r-card ov-recent" style={{ gridColumn: "span 3", padding: 13, display: "flex", flexDirection: "column" }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}><span className="lbl"><b>Recently played</b></span>
+        <div className="r-card ov-recent" style={{ gridColumn: "span 3", padding: 11, display: "flex", flexDirection: "column" }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 7 }}><span className="lbl"><b>Recently played</b></span>
             <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
               style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
           <div className="ov-rl" style={{ display: "grid", gap: 2, flex: 1, alignContent: "center" }}>
@@ -277,7 +296,7 @@ function OverviewView({ t, go }) {
               </div>
             ))}
           </div>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 10, flexWrap: "wrap", gap: 8 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 7, flexWrap: "wrap", gap: 8 }}>
             <div className="r-seg">{[6, 12, 18].map(n => <button key={n} data-on={recentN === n} onClick={() => setRecentN(n)}
               disabled={n > recent.length} style={n > recent.length ? { opacity: .35, cursor: "default" } : null}>{n}</button>)}</div>
             <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>showing {Math.min(recentN, recent.length)} latest</span>
@@ -387,10 +406,18 @@ function OverviewView({ t, go }) {
           .ov-streak  { grid-column: 4 / span 2 !important; grid-row: 1; }
           .ov-recent  { grid-column: 6 / span 3 !important; grid-row: 1; }
           .ov-np      { grid-column: 9 / -1 !important; grid-row: 1; }
-          .ov-recent .ov-rl { max-height: 70px; overflow-y: auto; align-content: start;
+          /* when the live weekly sync is present, "This week" joins the pulse row:
+             scrobbles 2 · streak 2 · week 2 · recent 3 · now-playing 3 (Fuad 2026-07-05) */
+          .m-stack:has(.ov-week) .ov-scrob  { grid-column: 1 / span 2 !important; }
+          .m-stack:has(.ov-week) .ov-streak { grid-column: 3 / span 2 !important; }
+          .m-stack:has(.ov-week) .ov-week   { grid-column: 5 / span 2 !important; grid-row: 1; }
+          .m-stack:has(.ov-week) .ov-recent { grid-column: 7 / span 3 !important; }
+          .m-stack:has(.ov-week) .ov-np     { grid-column: 10 / -1 !important; }
+          .ov-recent .ov-rl { max-height: 64px; overflow-y: auto; align-content: start;
             scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
           .ov-scrob .r-stat-n { font-size: clamp(20px, 1.9vw, 27px) !important; }
-          .ov-streak .r-stat-n { font-size: 27px !important; }
+          .ov-streak .r-stat-n, .ov-week .r-stat-n { font-size: 27px !important; }
+          .ov-week .spark, .ov-scrob .spark { max-height: 30px; }
           /* row 3 = map band (1/-1 inline); row 4 — the four stats (left, they react to the
              map/calendar filter) + heaviest day (right) */
           .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(4, 1fr) !important; gap: 18px !important; }

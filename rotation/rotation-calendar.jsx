@@ -72,10 +72,22 @@ function DraggablePanel({ storageKey, title, onClose, children }) {
     window.addEventListener("mousemove", move); window.addEventListener("mouseup", up);
     e.preventDefault();
   };
-  const style = pos ? { left: pos.x, top: pos.y, right: "auto", bottom: "auto" } : {};
+  // Mobile: the panel becomes a bottom sheet (CSS below overrides the fixed pos). Dragging the
+  // bar with a finger RESIZES it (24–90 vh), so it can be shrunk to a peek strip instead of
+  // overshadowing the calendar behind it (Fuad 2026-07-05).
+  const [sheetH, setSheetH] = React.useState(40);
+  const onBarTouchStart = () => {
+    const move = (ev) => {
+      const t = ev.touches[0]; if (!t) return;
+      setSheetH(Math.round(Math.max(24, Math.min(90, (window.innerHeight - t.clientY) / window.innerHeight * 100))));
+    };
+    const end = () => { window.removeEventListener("touchmove", move); window.removeEventListener("touchend", end); };
+    window.addEventListener("touchmove", move, { passive: true }); window.addEventListener("touchend", end);
+  };
+  const style = { ...(pos ? { left: pos.x, top: pos.y, right: "auto", bottom: "auto" } : {}), "--sheet-h": sheetH + "vh" };
   return (
     <div ref={ref} className="cal-float" style={style}>
-      <div className="cal-float-bar" onMouseDown={startDrag}>
+      <div className="cal-float-bar" onMouseDown={startDrag} onTouchStart={onBarTouchStart}>
         <span className="cal-float-grip">⠿</span>
         <span className="cal-float-title">{title}</span>
         <button className="cal-float-x" onClick={onClose} title="close">✕</button>
@@ -316,6 +328,17 @@ function CalendarView({ go, seed }) {
         .cal-float-x { background: none; border: none; color: var(--ink-faint); cursor: pointer; font-size: 12px; line-height: 1; }
         .cal-float-x:hover { color: var(--ink); }
         .cal-float-body { padding: 18px 20px; overflow-y: auto; }
+        /* mobile: bottom sheet — full width, finger-resizable via the bar (see onBarTouchStart).
+           !important defeats any stored PC drag position. Default 40vh = calendar stays visible. */
+        @media (max-width: 760px) {
+          .cal-float { left: 0 !important; right: 0 !important; bottom: 0 !important; top: auto !important;
+            width: 100% !important; height: var(--sheet-h, 40vh); max-height: 92vh;
+            border-radius: 14px 14px 0 0; border-left: none; border-right: none; border-bottom: none; }
+          .cal-float-bar { padding: 12px; touch-action: none; justify-content: center; position: relative; }
+          .cal-float-bar::before { content: ""; position: absolute; top: 5px; left: 50%; transform: translateX(-50%);
+            width: 44px; height: 4px; border-radius: 999px; background: var(--rule-2); }
+          .cal-float-body { flex: 1; }
+        }
       `}</style>
     </div>
   );
