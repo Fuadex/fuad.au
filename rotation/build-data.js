@@ -2309,9 +2309,31 @@ if (Object.keys(CONCERT_CACHE).length > 0) {
 // before or after you became a fan (gig date vs first scrobble). Powers the Gigs page + a card.
 const GIGS_PATH = path.join(__dirname, "gigs.json");
 const GIGS_RAW = fs.existsSync(GIGS_PATH) ? JSON.parse(fs.readFileSync(GIGS_PATH, "utf8")) : null;
+// gigs-manual.json — hand-maintained corrections: `override` fixes a setlist.fm entry's fields
+// in place (some markings are stand-ins for undocumented shows); `add` appends shows setlist.fm
+// doesn't have (festival lineups, small Tokyo club nights). Month-precision dates ("YYYY-MM")
+// + approx:1 are allowed; copySongsFrom clones another gig's setlist (same act, repeated set).
+const GIGS_MANUAL = _readJson("gigs-manual.json");
 let GIGS = null;
 if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
-  const gigs = GIGS_RAW.gigs.map(g => {
+  const rawGigs = GIGS_RAW.gigs.slice();
+  for (const o of (GIGS_MANUAL.override || [])) {
+    const hit = rawGigs.find(g => g.artist.toLowerCase() === o.match.artist.toLowerCase() && (!o.match.date || g.date === o.match.date));
+    if (hit) Object.assign(hit, o.set);
+    else console.warn(`gigs-manual: override target not found — ${o.match.artist} ${o.match.date || ""}`);
+  }
+  for (const a of (GIGS_MANUAL.add || [])) {
+    const g = { songs: [], venue: "", city: "", country: "", countryCode: "", lat: null, lng: null, tour: "", url: "", id: "manual-" + slug(a.artist) + "-" + a.date, ...a };
+    if (g.copySongsFrom) {
+      const src = rawGigs.find(x => x.artist.toLowerCase() === g.copySongsFrom.artist.toLowerCase() && (!g.copySongsFrom.date || x.date === g.copySongsFrom.date));
+      if (src) g.songs = src.songs.slice();
+      delete g.copySongsFrom;
+    }
+    g.songs = (g.songs || []).map(s => typeof s === "string" ? { name: s, encore: 0, cover: null, tape: 0, with: null } : s);
+    rawGigs.push(g);
+  }
+  rawGigs.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+  const gigs = rawGigs.map(g => {
     const plays = artistPlays.get(g.artist) || 0;
     const sp = span.get(g.artist);
     const firstPlay = sp ? iso(sp[0]).slice(0, 10) : null;
@@ -2328,16 +2350,17 @@ if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
       inLibrary: plays > 0, plays,
       venue: g.venue, city: g.city, country: g.country, countryCode: g.countryCode,
       lat: g.lat, lng: g.lng, tour: g.tour || "",
+      approx: g.approx ? 1 : 0,   // month-precision manual entry — UI shows "May 2025" style
       songCount: (g.songs || []).length,
       knownSongs: known.slice(0, 6), knownCount: known.length,
       // "before you were a fan": saw them ≥120 days before your first scrobble of them
       preFan: (firstPlay && g.date && g.date < firstPlay && plays >= 10) ? 1 : 0,
     };
   });
-  const seenArtists = new Map();  // artist → best (highest-plays) gig record
-  for (const g of gigs) { const e = seenArtists.get(g.artist); if (!e || g.plays > e.plays) seenArtists.set(g.artist, g); }
+  const seenArtists = new Map();  // artistId → best gig record (slug key: "Paranoid Void" ≡ "paranoid void")
+  for (const g of gigs) { const e = seenArtists.get(g.artistId); if (!e || g.plays > e.plays) seenArtists.set(g.artistId, g); }
   const cityMap = new Map();
-  for (const g of gigs) { const k = g.countryCode + "|" + g.city; if (!cityMap.has(k)) cityMap.set(k, { city: g.city, country: g.country, countryCode: g.countryCode, lat: g.lat, lng: g.lng, count: 0 }); cityMap.get(k).count++; }
+  for (const g of gigs) { if (!g.city) continue; const k = g.countryCode + "|" + g.city; if (!cityMap.has(k)) cityMap.set(k, { city: g.city, country: g.country, countryCode: g.countryCode, lat: g.lat, lng: g.lng, count: 0 }); cityMap.get(k).count++; }
   const byYear = {};
   for (const g of gigs) byYear[g.year] = (byYear[g.year] || 0) + 1;
   const uniqArtists = [...seenArtists.values()];
@@ -2366,7 +2389,7 @@ if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
   // set of "artistSlug~songSlug" performed live, for the TrackView "seen live" mark.
   const perArtist = new Map();
   const liveSongKeys = new Set();
-  for (const g of GIGS_RAW.gigs) {
+  for (const g of rawGigs) {   // merged: setlist.fm + gigs-manual adds/overrides
     const aid = slug(g.artist);
     let e = perArtist.get(aid);
     if (!e) { e = { count: 0, dates: [], songs: new Map() }; perArtist.set(aid, e); }

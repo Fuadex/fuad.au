@@ -1614,6 +1614,11 @@ function GigsView({ go }) {
   if (!G || !G.gigs || !G.gigs.length) return (
     <div style={{ maxWidth: 720, margin: "60px auto", textAlign: "center", color: "var(--ink-soft)" }}>No attended concerts yet.</div>
   );
+  // manual entries can be month-precision ("2026-03", approx:1) → "≈ Mar" instead of a fake day
+  const MONS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const gigDate = (d, noYear) => d.length === 7
+    ? "≈ " + MONS[+d.slice(5, 7) - 1] + (noYear ? "" : " " + d.slice(0, 4))
+    : noYear ? fmtDate(d).replace(/ (\d{4})$/, "") : fmtDate(d);
   const openArtist = (id) => R.byId[id] && go("artist", id);
   const years = [...new Set(G.gigs.map(g => g.year))].sort((a, b) => b - a);
   const span = G.firstGig.slice(0, 4) + "–" + G.lastGig.slice(0, 4);
@@ -1658,7 +1663,7 @@ function GigsView({ go }) {
           <div className="gv-label">Before you were a fan</div>
           <div className="gv-title">You saw them first — the obsession came later.</div>
           <div className="gv-tiles">
-            {G.preFans.map(a => <Tile key={a.artistId} a={a} sub={(x) => `saw ${fmtDate(x.date)} · now ${fmt(x.plays)} plays`} />)}
+            {G.preFans.map(a => <Tile key={a.artistId} a={a} sub={(x) => `saw ${gigDate(x.date)} · now ${fmt(x.plays)} plays`} />)}
           </div>
         </section>
       )}
@@ -1706,7 +1711,7 @@ function GigsView({ go }) {
             <div className="gv-gigs">
               {G.gigs.filter(g => g.year === y).map((g, i) => (
                 <div key={g.artist + g.date + i} className="gv-gig" data-link={!!R.byId[g.artistId]} onClick={() => openArtist(g.artistId)}>
-                  <div className="gv-gig-date">{fmtDate(g.date).replace(/ (\d{4})$/, "")}</div>
+                  <div className="gv-gig-date" title={g.approx ? "approximate — exact day unknown" : undefined}>{gigDate(g.date, true)}</div>
                   <span className="gv-gig-dot" style={{ background: `oklch(0.68 0.16 ${g.hue})` }} />
                   <div className="gv-gig-main">
                     <div className="gv-gig-artist">{g.artist}{g.tour ? <span className="gv-gig-tour"> · {g.tour}</span> : null}</div>
