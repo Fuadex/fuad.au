@@ -311,7 +311,8 @@ function ExploreView({ t, go, setPop, seed }) {
   const [moodZone, setMoodZone] = React.useState(null);   // active valence×energy quadrant filter, or null
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
   const [limit, setLimit] = React.useState(40);           // album/track list depth (load-more grows it)
-  const [showN, setShowN] = React.useState(15);           // visible rows (10/15/20; default 15 — Fuad 2026-07-05)
+  const [showN, setShowN] = React.useState(15);           // visible rows (10/15/20/25; default 15 — Fuad 2026-07-05)
+  const [disp, setDisp] = React.useState("list");         // ranked results: list ⇄ cover grid (Fuad 2026-07-07)
   const [ref, seen] = useInView();
 
   // albums/tracks now rank from the lazy media-index (full library depth) — load it the first time
@@ -474,9 +475,11 @@ function ExploreView({ t, go, setPop, seed }) {
               </div>
               <span className="xp-lens-cap">{lens === "texture" ? "organic ↔ electronic" : "valence × energy"}</span>
             </div>
+            <div className="xp-chartwrap">
             {lens === "texture"
               ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
               : <MoodQuadrant pts={moodUniverse} activeIds={moodActive} go={go} moodZone={moodZone} setMoodZone={setMoodZone} />}
+            </div>
           </div>
         </div>
         <div className="xp-right">
@@ -484,14 +487,18 @@ function ExploreView({ t, go, setPop, seed }) {
             <div className="r-seg">
               {["artists", "albums", "tracks"].map(k => <button key={k} data-on={kind === k} onClick={() => setKind(k)}>{k}</button>)}
             </div>
+            <div className="r-seg" title="list ⇄ cover grid">
+              <button data-on={disp === "list"} onClick={() => setDisp("list")}>list</button>
+              <button data-on={disp === "grid"} onClick={() => setDisp("grid")}>grid</button>
+            </div>
             <div className="r-seg">
-              {[10, 15, 20].map(n => <button key={n} data-on={showN === n} onClick={() => setShowN(n)}>{n}</button>)}
+              {[10, 15, 20, 25].map(n => <button key={n} data-on={showN === n} onClick={() => setShowN(n)}>{n}</button>)}
             </div>
           </div>
           {cells.size > 0 && kind !== "artists" && <div className="r-mono xp-note">filtered to {kind} by artists active in the selected slots</div>}
           {items.length === 0
             ? <div className="r-card xp-empty">Nothing in this slice — loosen a filter.</div>
-            : <div className="xp-rank-win"><RankRows items={items.slice(0, showN)} go={go} kind={kind} /></div>}
+            : <div className="xp-rank-win"><RankRows items={items.slice(0, showN)} go={go} kind={kind} disp={disp} /></div>}
           {more && <button className="xp-loadmore" onClick={() => setLimit(l => l + 40)}>load more {kind} ↓</button>}
           {kind !== "artists" && mediaItems && <div className="r-mono xp-note" style={{ marginTop: 8, textAlign: "center" }}>full library · {fmt(items.length)} shown</div>}
         </div>
@@ -557,8 +564,22 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-lens { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 14px 0; }
         .xp-lens-seg button { font-size: 9px; padding: 4px 10px; }
         .xp-lens-cap { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
-        .xp-main { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: var(--gap); align-items: start; }
+        /* stretch both columns to the taller one and let the chart card fill + center its SVG, so the
+           sound map ≈ the artists module height beside it (mirrors Overview's map card — Fuad 2026-07-07) */
+        .xp-main { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: var(--gap); align-items: stretch; }
         .xp-left { position: sticky; top: 76px; display: grid; gap: var(--gap); }
+        .xp-left > .r-card { height: 100%; display: flex; flex-direction: column; }
+        .xp-chartwrap { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 0; }
+        .xp-chartwrap > svg { width: 100%; }
+        /* ranked results — cover/artist grid mode (list ⇄ grid toggle) */
+        .xp-cardgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+        @media (max-width: 1200px) { .xp-cardgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        @media (max-width: 520px) { .xp-cardgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        .xp-carditem { cursor: pointer; min-width: 0; }
+        .xp-carditem[data-link="false"] { cursor: default; opacity: .6; }
+        .xp-cardrk { position: absolute; top: 4px; left: 5px; font-family: var(--mono); font-size: 8.5px; color: rgba(255,255,255,.85); text-shadow: 0 1px 2px #000; }
+        .xp-cardnm { font-size: 11px; margin-top: 6px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .xp-cardsub { font-family: var(--mono); font-size: 8.5px; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .xp-mood svg { max-height: 330px; margin: 0 auto; }
         .xp-rows { display: grid; gap: 2px; }
         .xp-row { display: grid; grid-template-columns: 24px 34px 1fr 90px 46px; gap: 10px; align-items: center; padding: 5px 6px; border-radius: 6px; transition: background .12s; }
@@ -720,7 +741,7 @@ function FamiliesGrid({ order, weights, fam, sub, pickFam, pickSub, year, seen, 
 
 // compact ranked rows for the right column. Albums open their own page; artists/tracks navigate to
 // the artist (kept artists/long-tail with a page only).
-function RankRows({ items, go, kind }) {
+function RankRows({ items, go, kind, disp }) {
   const R = window.ROTATION;
   const max = Math.max(1, ...items.map(i => i.value));
   const isAlbum = kind === "albums", isTrack = kind === "tracks";
@@ -729,6 +750,23 @@ function RankRows({ items, go, kind }) {
     if (isTrack) { go("track", R.slug(it.sub) + "~" + R.slug(it.label)); return; }
     if (it.kept !== false) go("artist", it.aid || it.id);
   };
+  if (disp === "grid") return (
+    <div className="xp-cardgrid">
+      {items.map((it, i) => {
+        const link = isAlbum || isTrack || it.kept !== false;
+        return (
+          <div key={(it.aid || it.id) + "-" + i} className="xp-carditem" data-link={link} onClick={() => onClick(it)}>
+            <div style={{ position: "relative" }}>
+              <GenCover hue={it.hue} name={isAlbum ? it.label : (it.aid ? it.sub : it.label)} image={it.cover} thumb={it.cover} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
+              <span className="xp-cardrk">{String(i + 1).padStart(2, "0")}</span>
+            </div>
+            <div className="xp-cardnm">{it.label}</div>
+            <div className="xp-cardsub">{it.sub}</div>
+          </div>
+        );
+      })}
+    </div>
+  );
   return (
     <div className="xp-rows">
       {items.map((it, i) => (

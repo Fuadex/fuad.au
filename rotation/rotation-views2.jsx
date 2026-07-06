@@ -270,7 +270,7 @@ function TouchSlider({ min, max, step, value, onChange, center }) {
 // SoundSimilar — weighted nearest-neighbour discovery. Distance over the measured audio axes (the 6
 // main weighted via a draggable DNA radar, the rest via sliders), a genre-overlap term, an
 // obscure↔famous lean. Shows 6/10/20.
-function SoundSimilar({ id, go }) {
+function SoundSimilar({ id, go, ctl }) {
   const R = window.ROTATION;
   const clamp = (v) => Math.max(0, Math.min(1, v));
   const AX = React.useMemo(() => [
@@ -290,8 +290,12 @@ function SoundSimilar({ id, go }) {
   const [w, setW] = React.useState(() => Object.fromEntries(AX.map(a => [a.k, 1])));
   const [genreW, setGenreW] = React.useState(1.2);
   const [lean, setLean] = React.useState(0);
-  const [count, setCount] = React.useState(8);
-  const [open, setOpen] = React.useState(false);
+  // count + tune-panel toggle can be lifted to the parent (Artist page renders them inline with the
+  // last.fm/by-sound switch); fall back to internal state when uncontrolled (Fuad 2026-07-07)
+  const [countI, setCountI] = React.useState(8);
+  const [openI, setOpenI] = React.useState(false);
+  const count = ctl ? ctl.count : countI, setCount = ctl ? ctl.setCount : setCountI;
+  const open = ctl ? ctl.open : openI, setOpen = ctl ? ctl.setOpen : setOpenI;
 
   const results = React.useMemo(() => {
     if (!meEntry) return [];
@@ -310,10 +314,10 @@ function SoundSimilar({ id, go }) {
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 12 }}>
+      {!ctl && <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 12 }}>
         <div className="r-seg r-seg-sm">{[8, 16, 24].map(n => <button key={n} data-on={count === n} onClick={() => setCount(n)}>{n}</button>)}</div>
         <button onClick={() => setOpen(o => !o)} className="r-mono" style={{ fontSize: 10, padding: "4px 10px", borderRadius: 999, border: "1px solid var(--rule)", background: open ? "var(--bg-3)" : "transparent", color: "var(--ink-soft)", cursor: "pointer" }}>tune {open ? "▴" : "▾"}</button>
-      </div>
+      </div>}
       {open && (
         <div className="r-card" style={{ padding: "14px 16px", marginBottom: 12, background: "var(--bg-2)" }}>
           <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "minmax(0,234px) 1fr", gap: "var(--gap)", alignItems: "center" }}>
@@ -472,7 +476,10 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   const [simTab, setSimTab] = React.useState("lastfm");
   const [simN, setSimN] = React.useState(8);      // last.fm sounds-like depth (8 ⇄ 16)
   const [albMode, setAlbMode] = React.useState("covers");   // albums: covers (default) ⇄ list
-  // NB: by-sound depth (8/16/24) is SoundSimilar's own internal `count` selector.
+  // by-sound depth (8/16/24) + tune-panel toggle lifted here so they sit inline with the
+  // last.fm/by-sound switch in the header (Fuad 2026-07-07)
+  const [soundCount, setSoundCount] = React.useState(8);
+  const [soundOpen, setSoundOpen] = React.useState(false);
   // artists outside the kept 205 still rank in Explore — give them a lightweight page
   // (return AFTER hooks so hook order stays stable across navigations).
   if (!full && R.expById && R.expById[id]) return <MiniArtistView a={R.expById[id]} go={go} />;
@@ -661,15 +668,19 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           <div className="r-card av-simcard" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
                 <span className="lbl"><b>Sounds like</b></span>
-                <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
+                <span style={{ display: "inline-flex", gap: 8, alignItems: "center", flexWrap: "wrap", justifyContent: "flex-end" }}>
                   {simTab === "lastfm" && a.similar.length > 8 && (
                     <button className="av-more" onClick={() => setSimN(n => n === 8 ? 16 : 8)}>{simN === 8 ? "16 ▾" : "8 ▴"}</button>
                   )}
+                  {simTab === "sound" && <React.Fragment>
+                    <div className="r-seg r-seg-sm">{[8, 16, 24].map(n => <button key={n} data-on={soundCount === n} onClick={() => setSoundCount(n)}>{n}</button>)}</div>
+                    <button onClick={() => setSoundOpen(o => !o)} className="r-mono" style={{ fontSize: 10, padding: "4px 10px", borderRadius: 999, border: "1px solid var(--rule)", background: soundOpen ? "var(--bg-3)" : "transparent", color: "var(--ink-soft)", cursor: "pointer" }}>tune {soundOpen ? "▴" : "▾"}</button>
+                  </React.Fragment>}
                   <div className="r-seg r-seg-sm">
                     {[["lastfm", "last.fm"], ["sound", "by sound"]].map(([k, l]) => <button key={k} data-on={simTab === k} onClick={() => setSimTab(k)}>{l}</button>)}
                   </div>
                 </span></div>
-              {simTab === "sound" ? <SoundSimilar id={a.id} go={go} /> : (() => {
+              {simTab === "sound" ? <SoundSimilar id={a.id} go={go} ctl={{ count: soundCount, setCount: setSoundCount, open: soundOpen, setOpen: setSoundOpen }} /> : (() => {
                 const items = a.similar.slice(0, simN).map((sid, i) => { const name = a.similarNames[i]; const rid = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[rid] || (R.expById && R.expById[rid]); return { name, navId: rec ? rid : null, hue: rec ? rec.hue : (a.hue + 40 + i * 25) % 360, plays: rec ? rec.plays : null, played: !!rec || (R.played && R.played(name)) }; });
                 if (!items.length) return <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>no last.fm matches here.</div>;
                 return <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(80px,1fr))", gap: 10 }}>

@@ -514,21 +514,17 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot 
           <div className="r-card mp-results" style={{ marginTop: "var(--gap)", padding: 22 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
               <div style={{ minWidth: 0 }}><div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>{periodData ? "on this " + calPeriod.gran : "results"}</div>
-                <div className="mp-restitle" style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22 }}>{parts.join("  ·  ")}
-                  {(sel || focus) && <button className="mp-clear" style={{ marginLeft: 10, verticalAlign: "middle" }} title="clear the place filter"
-                    onClick={() => { setSel(null); setFocus(null); setView({ s: 1, x: 0, y: 0 }); }}>✕ place</button>}</div></div>
+                <div className="mp-restitle" style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22 }}>{parts.join("  ·  ")}</div></div>
               <div><div className="r-stat-n" style={{ fontSize: 26 }}>{fmt(totalPlays)}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>plays</div></div>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "10px 14px", flexWrap: "wrap", margin: "16px 0 14px" }}>
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <div className="r-seg">
-                  {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => { setPane(k); if (k === "albums" || k === "songs") ensureADetail(); }}>{l}</button>)}
-                </div>
-                {pane !== "dna" && <div className="r-seg" title="list ⇄ cover grid">
-                  <button data-on={disp === "list"} onClick={() => setDisp("list")}>list</button>
-                  <button data-on={disp === "grid"} onClick={() => setDisp("grid")}>grid</button>
-                </div>}
+            <div className="mp-resctl" style={{ display: "flex", alignItems: "center", gap: "8px 10px", flexWrap: "wrap", margin: "16px 0 14px" }}>
+              <div className="r-seg">
+                {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => { setPane(k); if (k === "albums" || k === "songs") ensureADetail(); }}>{l}</button>)}
               </div>
+              {pane !== "dna" && <div className="r-seg" title="list ⇄ cover grid">
+                <button data-on={disp === "list"} onClick={() => setDisp("list")}>list</button>
+                <button data-on={disp === "grid"} onClick={() => setDisp("grid")}>grid</button>
+              </div>}
               {pane !== "dna" && <div className="r-seg map-limseg">
                 {[5, 10, 15, 20, 25].map(n => <button key={n} data-on={limit === n} onClick={() => setLimit(n)}>{n}</button>)}
               </div>}
@@ -613,6 +609,10 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot 
         .map-soundsel { font-family: var(--mono); font-size: 10px; padding: 4px 6px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink-soft); background: var(--bg-2); cursor: pointer; }
         .map-soundsel[data-on="true"] { border-color: var(--accent); color: var(--accent); }
         .map-limseg button { font-size: 10px; padding: 4px 8px; }
+        /* results controls: keep pane · list/grid · counts compact and grouped so they don't eat
+           half the panel width on a laptop; tighten further as the panel narrows (Fuad P16, 2026-07-07) */
+        .mp-resctl .r-seg button { font-size: 10.5px; padding: 4px 9px; }
+        @media (max-width: 1500px) { .mp-resctl .r-seg button { font-size: 9.5px; padding: 3px 7px; letter-spacing: .02em; } .mp-resctl { gap: 6px 8px; } }
         .map-listrow { display: flex; align-items: center; gap: 10px; padding: 3px 4px; border-radius: 5px; cursor: pointer; transition: background .12s; }
         .map-listrow:hover { background: var(--bg-3); }
         .cal-rows { display: grid; gap: 2px; }
