@@ -586,9 +586,11 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot 
           .mp-resbody { flex: 1 1 0; height: 0; min-height: 0; overflow-y: auto; padding-right: 4px; }
           .mp-results .mp-covergrid { grid-template-columns: repeat(5, 1fr); gap: 6px; }
           .mp-results .mp-covergrid .mp-covernm { font-size: 8.5px; }
-          .mp-list { grid-column: 1; grid-row: 2; margin-top: 0 !important; }
-          .mp-list > div:last-child { max-height: 220px !important; }
-          .mp-stats { grid-column: 2; grid-row: 2; margin-top: 0 !important; display: flex; }
+          /* deepest-cities + stat strip sit ~2/3 the calendar's height: stop them stretching
+             the shared row and cap the list well (Fuad 2026-07-06) */
+          .mp-list { grid-column: 1; grid-row: 2; margin-top: 0 !important; align-self: start; }
+          .mp-list > div:last-child { max-height: 147px !important; }
+          .mp-stats { grid-column: 2; grid-row: 2; margin-top: 0 !important; display: flex; align-self: start; }
           .mp-stats > .r-card { flex: 1; }
           .mp-cal { grid-column: 3; grid-row: 2; margin-top: 0 !important; }
         }
