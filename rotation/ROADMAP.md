@@ -80,10 +80,17 @@ also template prep. **Net cold-first-paint win: −700 KB gz (Babel gone) − ~4
      Re-run after scrobbles accrue; process the queue locally; the snapshot advances.
    - Still to do: run the backlog through Claude on real lyrics · 5% spot-check-vs-lyrics as
      the batch norm · style gate (no "explores themes of…") · shard the file when it next grows.
+
+**⏸ PARKED — rest of Phase 2 (2026-07-07, picked up after Phase 3):**
 3. **Surface the text layer**: "read of the day" insight provider on Overview + 📖 marker on
-   track rows that have reads; blurb coverage meter.
+   track rows that have reads; blurb coverage meter. *(Highest-visibility of the parked lot —
+   the reads are invisible until you open a track page.)*
 4. Honesty notes: "no audio data" line where radar/quadrant cards silently vanish.
-5. Rework "Where to dig" + "Your portrait" (greenlit A4) — or hold for the era card (3.4).
+5. Rework "Where to dig" + "Your portrait" (greenlit A4) — or hold for the era card (Phase 3.4,
+   which is designed to absorb "Your portrait").
+6. **Fold blurb-demo's 22 non-llm-about tracks into llm-about**, then retire blurb-demo.js
+   (the Phase 0 de-bloat that was deferred because it would drop those reads).
+7. Run the 270-track actionable promotion backlog locally through Claude.
 
 ### Phase 3 · The sessions layer — richest untouched signal (~2–3 sessions, pure CSV)
 1. **Session reconstruction** (gap-threshold) + **album front-to-back detection** ("played

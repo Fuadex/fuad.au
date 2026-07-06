@@ -1706,11 +1706,80 @@ let REVISIT = null;
   if (list.length) REVISIT = { artists: list.slice(0, 10) };
 }
 
+// ─────────── SESSIONS — how you actually listen (Phase 3; pure timestamps) ───────────
+// Group dated scrobbles into listening sessions (a gap > 30 min starts a new one). Derives the
+// richest untouched signal: session-length distribution, your longest sittings, binge-vs-shuffle,
+// and the albums you play in one sitting (front-to-back). Dated range only (undated 2006–2010
+// have no usable timestamps and are excluded from `scrobbles`).
+let SESSIONS = null;
+{
+  const GAP = 30 * 60 * 1000;                       // 30 min silence = a new session
+  const chron = scrobbles.slice().reverse();        // oldest → newest
+  const avgTrackMs = (_avgSec || 216) * 1000;
+  // distinct tracks ever seen per album — to tell a "whole album" run from a couple of tracks
+  const albTrackSet = new Map();
+  for (const [artist, album, track] of scrobbles) { if (album && track) { const ak = artist + "\x00" + album; let s = albTrackSet.get(ak); if (!s) { s = new Set(); albTrackSet.set(ak, s); } s.add(track); } }
+
+  const sessions = [];
+  let cur = null;
+  for (const [artist, album, track, ms] of chron) {
+    if (!cur || ms - cur.endMs > GAP) { cur = { startMs: ms, endMs: ms, items: [] }; sessions.push(cur); }
+    cur.items.push({ artist, album, track, ms });
+    cur.endMs = ms;
+  }
+  if (sessions.length) {
+    const summ = sessions.map(s => {
+      const art = new Map();
+      for (const it of s.items) art.set(it.artist, (art.get(it.artist) || 0) + 1);
+      let topArt = null, topN = 0; for (const [a, n] of art) if (n > topN) { topN = n; topArt = a; }
+      return { startMs: s.startMs, n: s.items.length, durMs: s.endMs - s.startMs + avgTrackMs, topArt, topShare: topN / s.items.length };
+    });
+    const lens = summ.map(s => s.n).sort((a, b) => a - b);
+    const median = lens[Math.floor(lens.length / 2)];
+    // your longest sittings (by track count), top 8
+    const longest = summ.slice().sort((a, b) => b.n - a.n).slice(0, 8).map(s => ({
+      date: iso(s.startMs), tracks: s.n, hours: Math.round(s.durMs / 3.6e6 * 10) / 10,
+      artist: s.topArt, artistId: slug(s.topArt), hue: hueFor(s.topArt), share: Math.round(s.topShare * 100),
+    }));
+    // binge vs shuffle: of sessions ≥5 tracks, share dominated (≥70%) by a single artist
+    const big = summ.filter(s => s.n >= 5);
+    const bingeShare = big.length ? Math.round(big.filter(s => s.topShare >= 0.7).length / big.length * 100) : 0;
+
+    // album front-to-back: a run of same-album tracks inside one session that covers most of the album
+    const runs = new Map();
+    for (const s of sessions) {
+      let i = 0;
+      while (i < s.items.length) {
+        const { artist, album } = s.items[i];
+        if (!album) { i++; continue; }
+        let j = i; const seen = new Set();
+        while (j < s.items.length && s.items[j].album === album && s.items[j].artist === artist) { if (s.items[j].track) seen.add(s.items[j].track); j++; }
+        const runLen = j - i;
+        const ak = artist + "\x00" + album;
+        const size = (albTrackSet.get(ak) || seen).size || runLen;
+        if (runLen >= 5 && seen.size >= Math.max(5, Math.round(size * 0.6))) runs.set(ak, (runs.get(ak) || 0) + 1);
+        i = j;
+      }
+    }
+    const top = [...runs.entries()].sort((a, b) => b[1] - a[1]).slice(0, 12).map(([ak, count]) => {
+      const ix = ak.indexOf("\x00"); const artist = ak.slice(0, ix), album = ak.slice(ix + 1);
+      return { artist, album, count, aid: slug(artist) + "~" + slug(album), hue: hueFor(artist) };
+    });
+    const totalRuns = [...runs.values()].reduce((a, b) => a + b, 0);
+
+    SESSIONS = {
+      total: sessions.length, median, mean: Math.round(chron.length / sessions.length * 10) / 10,
+      longest, bingeShare, sittings: { total: totalRuns, albums: runs.size, top },
+    };
+    console.log(`sessions: ${sessions.length} · median ${median} tracks · binge ${bingeShare}% · album sittings ${totalRuns} across ${runs.size} albums`);
+  }
+}
+
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
   AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN, LANGUAGE, LINEUPS, MOOD, THEMES,
   STREAK: { best, start: bestStart, end: bestEnd, current },
-  UNDERGROUND, GEOGRAPHY, STYLE_ATLAS,
+  UNDERGROUND, GEOGRAPHY, STYLE_ATLAS, SESSIONS,
 };
 
 // ─────────── SEARCH INDEX (separate lazy-loaded file) ───────────
