@@ -2345,20 +2345,27 @@ if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
     rawGigs.push(g);
   }
   rawGigs.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+  // setlist.fm names can differ from library names by case or unicode punctuation (e.g. "Melt‐Banana"
+  // with a U+2010 hyphen, "KNEECAP", "Ling tosite sigure"). Match each gig to its library artist by
+  // slug so inLibrary / plays / known-songs reflect the real record, not the raw concert name
+  // (Fuad, 2026-07-06 — Melt-Banana/Ling Tosite Sigure showed "never in rotation", Kneecap plays 0).
+  const nameBySlug = new Map();
+  for (const [nm, p] of artistPlays) { const s = slug(nm); if (!nameBySlug.has(s) || p > (artistPlays.get(nameBySlug.get(s)) || 0)) nameBySlug.set(s, nm); }
   const gigs = rawGigs.map(g => {
-    const plays = artistPlays.get(g.artist) || 0;
-    const sp = span.get(g.artist);
+    const canon = nameBySlug.get(slug(g.artist)) || g.artist;   // canonical library name for this gig
+    const plays = artistPlays.get(canon) || 0;
+    const sp = span.get(canon);
     const firstPlay = sp ? iso(sp[0]).slice(0, 10) : null;
     // setlist × your library: songs from this show you also have scrobbles for
     const known = [];
     for (const s of (g.songs || [])) {
-      const p = trackPlays.get(g.artist + "\x00" + s.name) || 0;
+      const p = trackPlays.get(canon + "\x00" + s.name) || 0;
       if (p > 0) known.push({ title: s.name, plays: p });
     }
     known.sort((a, b) => b.plays - a.plays);
     return {
       date: g.date, year: +String(g.date).slice(0, 4),
-      artist: g.artist, artistId: slug(g.artist), hue: hueFor(g.artist),
+      artist: g.artist, artistId: slug(g.artist), hue: hueFor(canon),
       inLibrary: plays > 0, plays,
       venue: g.venue, city: g.city, country: g.country, countryCode: g.countryCode,
       lat: g.lat, lng: g.lng, tour: g.tour || "",
