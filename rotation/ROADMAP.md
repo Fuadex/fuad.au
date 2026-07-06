@@ -7,6 +7,107 @@
 
 ---
 
+## ⓪ ROLLOUT PHASES — 2026-07-07 (the current master plan)
+
+> Distilled from AUDIT-2026-07.md Part II. This supersedes all earlier orderings in this file
+> (the M-modules and section §③ remain as reference detail for individual items). Rule:
+> phases 0–2 before new weight; the template (phase 5) is the destination, so every phase
+> is built template-aware (no new hardcoded `fuadex`/TZ/paths).
+
+### Phase 0 · Platform hardening — perf + resilience (~2–3 sessions) ✦ do first
+The site's biggest UX cost and its only critical SPOF, plus cheap de-bloat. All of it is
+also template prep.
+1. **CI precompile**: babel-transform each `.jsx` → `.js` in the staged `_site/` only
+   (stage-site.js step); local authoring stays 100% buildless. Kills the ~700 KB gz babel
+   download AND the per-load compile.
+2. **Self-host runtime** (react, react-dom — babel becomes CI-only after #1): copies into
+   the repo, unpkg dependency gone. React 18.3.1 UMD is frozen upstream, so the pin is final.
+3. **music-data split**: `music-core.js` (TOTALS/NOW/TREND/INSIGHTS-lite/ARTISTS-lite,
+   ~1 MB) eager + `music-rest.js` fetched post-first-paint. `defer` on data scripts.
+4. **TourMap render fix**: imperative pan/zoom transform on the `<g>` ref (commit state on
+   gesture end) + `React.memo` land layer + `vector-effect: non-scaling-stroke`; then audit
+   MapView for the same state-per-frame idiom.
+5. De-bloat: retire blurb-demo.js (fold winners into llm-about, drop both loaders) ·
+   cover-URL prefix table (`S:` → `https://i.scdn.co/image/`, decoder in GenCover).
+6. Resilience hour: **ListenBrainz mirror import** (second copy of the history — insurance
+   against last.fm) · last.fm bio attribution line · vendor the four Google-Fonts families.
+
+### Phase 1 · Dynamism kernel (~1–2 sessions)
+One small export unlocks the "stats follow the filter" behaviour everywhere.
+1. **`day-series.js`** — per-day play counts (~30 KB gz): avg/day, heaviest day, streak,
+   %-of-history become client-computable under any date filter (Overview stat strip first).
+2. **day × family matrix** (~150 KB lazy): the same stats under genre filters.
+3. **Per-day geography export** → calendar day/week finally re-weights the map *dots*
+   (ROADMAP §5, long-standing). **Per-day hour export** → clock↔heatmap tandem.
+4. URL state parity: map band (mode/focus/sel/year/genre) + Shelves lens serialize into the
+   hash like Explore does.
+
+### Phase 2 · Content quality pass (~1–2 sessions)
+1. **Taste-standouts tighten**: gate ≥85/≤15 (from 72/28) + comparative wording ("slower
+   than 9 of 10 songs you play"); module hides when nothing clears the bar.
+2. **llm-about ops**: promotion job (track climbs into top-1000 → queue Sonnet+Opus reads) ·
+   5% spot-check-vs-lyrics as the batch norm · style gate (no "explores themes of…") ·
+   shard the file by artist first-letter when it next grows.
+3. **Surface the text layer**: "read of the day" insight provider on Overview + 📖 marker on
+   track rows that have reads; blurb coverage meter.
+4. Honesty notes: "no audio data" line where radar/quadrant cards silently vanish.
+5. Rework "Where to dig" + "Your portrait" (greenlit A4) — or hold for the era card (3.4).
+
+### Phase 3 · The sessions layer — richest untouched signal (~2–3 sessions, pure CSV)
+1. **Session reconstruction** (gap-threshold) + **album front-to-back detection** ("played
+   this album start-to-finish 14×"; longest sessions ledger) → album pages + Stories.
+2. **Segue graph**: within-session song adjacency — "after X you play Y 31% of the time";
+   top segues on artist pages + a Stories card.
+3. **Personal seasonality**: month-of-year fingerprints ("a winter band") + Shelves lens.
+4. **Era auto-segmentation**: change-point detection on monthly family/DNA vectors → your
+   taste's real chapters, as a Stories centrepiece (absorbs "Your portrait").
+5. **Obsession lifecycle curves**: classify discovery→peak→decay shapes; "current obsessions
+   most likely to flame out, on your own historical curve shapes".
+
+### Phase 4 · External enrichment expansions (data-PC / API sessions, cherry-pick order)
+MB full dump: cover-of + work language via 39k ISRCs (approved) · Wikipedia pageviews
+momentum join ("you were early") · ListenBrainz Fresh-Releases feed ("new records from
+artists you play") · dig-list generator (weekly five-records card) · collab-graph shipping
+(5.7k edges cached) · lyrical twins (embeddings cached) · JP lyric-DB retry for the 8
+offline NONEs · "Mood over the years" into Stories (parked candidate) · wrapped mode +
+share cards (parked, Fuad's call).
+
+### Phase 5 · THE TEMPLATE — "Rotation for anyone" (open-source, ~3–4 sessions)
+The packaging plan (expands M6; every earlier phase feeds it):
+1. **Extract `rotation-template`** (new public repo): code only — build-data.js, sync
+   scripts, enrichers, JSX, workflows, stage-site. **Excluded**: fuadex.csv, every cache,
+   gigs*, llm-about/genius-*/blurb data, tweaks state. License: MIT.
+2. **`config.json`**: `{ lastfmUser, displayName, tz, timezoneOffsetHours, markets[],
+   families{} (hue taxonomy, shipped as overridable default), accent }` — de-hardcode
+   build-data.js / sync-csv.js / sync-live.js / enrich-* against it. CI reads the username
+   from config, the key from a repo secret.
+3. **Capability levels, documented honestly** (the fork works at every level):
+   - **L0 — last.fm key only**: full core site (scrobbles, genres, bios, insights, stories,
+     explore, calendar, shelves w/ generative covers).
+   - **L1 — free keyless**: MusicBrainz, Wikidata, Cover Art Archive, iTunes fallback
+     (origins, family trees, lifespans, real covers).
+   - **L2 — keyed APIs**: Discogs, Ticketmaster, setlist.fm (styles, tours, gigs).
+   - **L3 — bring the dumps**: Spotify catalogue archive + Genius corpus (audio DNA,
+     previews, lyrics-derived layers) — power users only; everything degrades without.
+   - **Blurb pipeline ships as scripts** (bring-your-own-LLM-key), never as data.
+4. **Setup path** (the README of the template): fork → add `LASTFM_API_KEY` secret → edit
+   config.json → enable Actions + Pages → first build backfills the full scrobble history
+   (sync-csv full mode) → site live. Plus `node setup.js` interactive wizard (writes config,
+   validates the key, kicks the first workflow) as the friendly front door.
+5. **Verification**: create a throwaway last.fm account / borrow a friend's, run the fork
+   end-to-end, fix what breaks (the real test of every hardcode found).
+6. **Legal hygiene baked in**: no Genius excerpts in the template · lyric text never stored ·
+   attribution lines required · data-source ToS summary in the docs.
+7. Distribution: GitHub topic tags, a screenshots-heavy README (reuse rotation/README.md),
+   optionally a Show HN / r/lastfm post when stable. Monetization stays as judged (M6):
+   Sponsors link at most.
+
+**Decision points for Fuad along the way:** PWA (still open) · wrapped mode/share cards
+(parked) · template repo name + go-public timing · whether fuad.au itself converts to
+consume config.json (recommended — it makes the personal site the template's first tester).
+
+---
+
 ## ⓪ Status snapshot — 2026-07-05 (END OF SESSION — read §1g for the open queue)
 
 > **2026-07-05 (late) shipped, in order:** Genius language layer · pins.json · Wikidata
