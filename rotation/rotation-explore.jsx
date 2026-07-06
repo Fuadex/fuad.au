@@ -569,8 +569,12 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-main { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: var(--gap); align-items: stretch; }
         .xp-left { position: sticky; top: 76px; display: grid; gap: var(--gap); }
         .xp-left > .r-card { height: 100%; display: flex; flex-direction: column; }
-        .xp-chartwrap { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 0; }
-        .xp-chartwrap > svg { width: 100%; }
+        /* fill the card width (children stretch) and centre vertically, so BOTH charts — the bare
+           <svg> texture scatter and the <div>-wrapped mood quadrant — scale with the container/screen
+           instead of collapsing (Fuad 2026-07-07: mood had gone tiny under align-items:center) */
+        .xp-chartwrap { flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0; }
+        .xp-chartwrap > svg, .xp-chartwrap > div { width: 100%; }
+        .xp-chartwrap svg { width: 100%; height: auto; max-height: 68vh; }
         /* ranked results — cover/artist grid mode (list ⇄ grid toggle) */
         /* grid: 8 tiles per row (smaller covers), stepping down on narrower widths (Fuad 2026-07-07) */
         .xp-cardgrid { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 9px; }
