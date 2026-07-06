@@ -9,6 +9,9 @@
 // the current slice as ribbons (artist view; click opens the artist). markYi marks the active year.
 function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   const R = window.ROTATION;
+  // pin the streamgraph height to the families-view size so drilling into a genre (whose subgenre
+  // count differs) never changes the flow's height and shoves row-2 of the map band down.
+  const FLOW_H = Math.min(920, 500 + Math.max(0, R.FAMILIES.length - 10) * 30);
   const [hi, setHi] = React.useState(-1);
   const [view, setView] = React.useState("genre");   // genre | artist
   const { fam, sub } = filt;
@@ -65,7 +68,7 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
         </div>
       </div>
       {hasFlow
-        ? <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={true} markYi={markYi} />
+        ? <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={true} markYi={markYi} fixedH={FLOW_H} />
         : <div style={{ padding: 18, minHeight: 224, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>not enough placed artists here for a flow.</div>}
       {hasFlow && <>
         {/* fixed-height legend well (scrolls if crowded) — fewer series can't shrink the

@@ -16,22 +16,24 @@ function _segs(pts) {
 }
 
 // generic streamgraph over `series` ([{key,name,hue,vals:[per year]}]) and `years` ([nums])
-function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi }) {
+function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixedH }) {
   const L = React.useMemo(() => {
     const com = series.map(s => { let n = 0, d = 0; s.vals.forEach((v, i) => { n += v * years[i]; d += v; }); return d ? n / d : 9999; });
     const order = series.map((s, i) => i).sort((a, b) => com[a] - com[b]);
     const totals = years.map((y, yi) => order.reduce((acc, i) => acc + series[i].vals[yi], 0));
     const maxTotal = Math.max(...totals, 1);
     // height grows past ~10 series so a family with many subgenres expands to fill the module
-    // container instead of squashing into unreadable slivers (Fuad 2026-07-06)
-    const W = 1000, H = Math.min(920, 500 + Math.max(0, series.length - 10) * 30), padX = 26, padTop = 22, padBot = 42, innerH = H - padTop - padBot, midY = padTop + innerH / 2, yScale = innerH / maxTotal;
+    // container instead of squashing into unreadable slivers (Fuad 2026-07-06). `fixedH` pins it
+    // (the Overview map band passes it) so drilling genres of different subgenre counts doesn't
+    // change the flow's height and shove the whole row-2 down (Fuad 2026-07-07).
+    const W = 1000, H = fixedH || Math.min(920, 500 + Math.max(0, series.length - 10) * 30), padX = 26, padTop = 22, padBot = 42, innerH = H - padTop - padBot, midY = padTop + innerH / 2, yScale = innerH / maxTotal;
     const xAt = (yi) => padX + (years.length === 1 ? 0 : yi / (years.length - 1)) * (W - 2 * padX);
     const bands = series.map(() => []);
     years.forEach((y, yi) => { let acc = -totals[yi] / 2; order.forEach(i => { const v = series[i].vals[yi]; bands[i].push({ x: xAt(yi), yTop: midY - (acc + v) * yScale, yBot: midY - acc * yScale }); acc += v; }); });
     const area = (i) => { const b = bands[i]; const top = b.map(p => [p.x, p.yTop]), bot = b.map(p => [p.x, p.yBot]).reverse(); return `M ${top[0][0].toFixed(1)} ${top[0][1].toFixed(1)}` + _segs(top) + ` L ${bot[0][0].toFixed(1)} ${bot[0][1].toFixed(1)}` + _segs(bot) + " Z"; };
     const peak = {}; order.forEach(i => { let by = 0; series[i].vals.forEach((v, yi) => { if (v > series[i].vals[by]) by = yi; }); peak[i] = { yi: by, year: years[by], share: totals[by] ? series[i].vals[by] / totals[by] : 0 }; });
     return { order, bands, area, peak, W, H, xAt };
-  }, [series, years]);
+  }, [series, years, fixedH]);
 
   return (
     <svg viewBox={`0 0 ${L.W} ${L.H}`} style={{ width: "100%", height: "auto", display: "block" }} onMouseLeave={() => setHi(-1)}>
