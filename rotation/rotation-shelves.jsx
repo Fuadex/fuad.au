@@ -295,8 +295,15 @@ function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitL
   );
 }
 
-function ShelvesView({ go }) {
+function ShelvesView({ go, seed }) {
   const R = window.ROTATION;
+  // restore mode/lens from the hash (#shelves/l=mood, #shelves/m=wrap) — bookmarkable like Explore.
+  const _seed = React.useRef((() => {
+    const o = { mode: "racks", lens: "genre" };
+    for (const kv of (seed || "").split(";")) { const i = kv.indexOf("="); if (i < 0) continue; const k = kv.slice(0, i), v = kv.slice(i + 1);
+      if (k === "m" && v === "wrap") o.mode = "wrap"; else if (k === "l" && SH_LENSES.some(l => l[0] === v)) o.lens = v; }
+    return o;
+  })()).current;
   const [ready, setReady] = React.useState(!!(window.ROTATION_MEDIA && window.ROTATION_PREVIEWS));
   const [expanded, setExpanded] = React.useState(null);   // fanned-open spine key
   const [reader, setReader] = React.useState(null);       // album in the Reader
@@ -304,8 +311,19 @@ function ShelvesView({ go }) {
   const [split, setSplit] = React.useState({});           // famIdx → split into subgenre rows
   const [justMerged, setJustMerged] = React.useState(null); // fam that just merged back → gets the reveal animation too
   const mergeFam = (fam) => { setSplit(p => ({ ...p, [fam]: false })); setJustMerged(fam); setTimeout(() => setJustMerged(null), 450); };
-  const [mode, setMode] = React.useState("racks");        // racks | wrap (the Unplayed Shelf)
-  const [lens, setLens] = React.useState("genre");        // re-shelving lens (racks mode)
+  const [mode, setMode] = React.useState(_seed.mode);     // racks | wrap (the Unplayed Shelf)
+  const [lens, setLens] = React.useState(_seed.lens);     // re-shelving lens (racks mode)
+  // mirror mode/lens into the URL (replaceState — no history spam)
+  const _shMounted = React.useRef(false);
+  React.useEffect(() => {
+    if (!_shMounted.current) { _shMounted.current = true; if (seed) return; }
+    if (!(window.location.hash || "").startsWith("#shelves")) return;
+    const parts = [];
+    if (mode === "wrap") parts.push("m=wrap");
+    if (lens !== "genre") parts.push("l=" + lens);
+    const target = "#shelves" + (parts.length ? "/" + parts.join(";") : "");
+    if ((window.location.hash || "") !== target) window.history.replaceState(null, "", target);
+  }, [mode, lens]);
   const [unReady, setUnReady] = React.useState(!!window.ROTATION_UNPLAYED);
   React.useEffect(() => {
     let need = 0; const done = () => { if (--need <= 0) setReady(true); };
