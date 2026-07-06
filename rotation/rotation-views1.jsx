@@ -63,8 +63,10 @@ function TopArtistsPeek({ R, go }) {
 // day ⇄ week granularity, click a cell. What it drives today: the map/flow scrub to that year,
 // and the cell deep-opens its day/week in the full Calendar. (Day-level geography needs a new
 // build export — the tandem deepens next iteration.)
-function OvCalRail({ go, onYear, onPeriod }) {
-  const [selDay, setSelDay] = React.useState(null);
+function OvCalRail({ go, onYear, onPeriod, init }) {
+  // init = {year, period} restored from the URL — preselect the cell/year so the rail's highlight
+  // matches the filtered map on a deep-link/refresh.
+  const [selDay, setSelDay] = React.useState((init && init.period && init.period.key) || null);
   const [detReady, setDetReady] = React.useState(!!window.ROTATION_CAL_DETAIL);
   React.useEffect(() => {   // period → results filtering needs the detail file; fetch it lazily
     if (window.ROTATION_CAL_DETAIL) return;
@@ -75,9 +77,10 @@ function OvCalRail({ go, onYear, onPeriod }) {
   }, []);
   const [cal, setCal] = React.useState(window.ROTATION_CAL || null);
   const now = new Date();
-  const [yr, setYr] = React.useState(now.getUTCFullYear());
-  const [mo, setMo] = React.useState(now.getUTCMonth());   // 0-11
-  const [gran, setGran] = React.useState("day");           // day | week
+  const _ip = init && init.period, _ik = _ip && init.period.key;
+  const [yr, setYr] = React.useState((_ik && +_ik.slice(0, 4)) || (init && init.year) || now.getUTCFullYear());
+  const [mo, setMo] = React.useState((_ik && _ik.length >= 7 ? +_ik.slice(5, 7) - 1 : now.getUTCMonth()));   // 0-11
+  const [gran, setGran] = React.useState((_ip && init.period.gran) || "day");   // day | week | month
   React.useEffect(() => {
     if (window.ROTATION_CAL) return;
     let s = document.getElementById("rotation-cal-js");
@@ -167,15 +170,41 @@ function OvMapBand({ go, extYear, calPeriod, onStats, calRail, statSlot, restRea
   );
 }
 
-function OverviewView({ t, go, restReady }) {
+// parse an Overview date-filter seed from the hash id (`#overview/y=2019` / `p=month~2019-06`).
+function parseOvSeed(seed) {
+  const out = { year: null, period: null };
+  if (!seed) return out;
+  for (const kv of seed.split(";")) {
+    const i = kv.indexOf("="); if (i < 0) continue;
+    const k = kv.slice(0, i), v = kv.slice(i + 1);
+    if (k === "y") out.year = +v || null;
+    else if (k === "p") { const j = v.indexOf("~"); if (j > 0) out.period = { gran: v.slice(0, j), key: v.slice(j + 1) }; }
+  }
+  return out;
+}
+
+function OverviewView({ t, go, restReady, seed }) {
   const R = window.ROTATION;
   const T = R.TOTALS;
   const [ref, seen] = useInView();
   // map/calendar filter state lives here so the calendar (pulse row) and the map band (below)
   // stay in sync — the calendar is its cross-filter even though they're no longer adjacent.
-  const [mapYear, setMapYear] = React.useState(null);
-  const [mapPeriod, setMapPeriod] = React.useState(null);
+  // Seeded from the hash so a filtered Overview is bookmarkable / refresh-proof (like Explore).
+  const _seed = React.useRef(parseOvSeed(seed)).current;
+  const [mapYear, setMapYear] = React.useState(_seed.year);
+  const [mapPeriod, setMapPeriod] = React.useState(_seed.period);
   const [fStats, setFStats] = React.useState(null);   // filtered totals reported by the map band
+  // mirror the active date filter into the URL (replaceState — no history spam / popstate loop)
+  const _ovMounted = React.useRef(false);
+  React.useEffect(() => {
+    if (!_ovMounted.current) { _ovMounted.current = true; if (seed) return; }   // don't clobber the incoming seed
+    if (!/^#(overview|$)/.test(window.location.hash || "#")) return;            // only while Overview owns the URL
+    const parts = [];
+    if (mapYear != null) parts.push("y=" + mapYear);
+    if (mapPeriod) parts.push("p=" + mapPeriod.gran + "~" + mapPeriod.key);
+    const target = parts.length ? "#overview/" + parts.join(";") : "";
+    if ((window.location.hash || "") !== target) window.history.replaceState(null, "", target || (location.pathname + location.search));
+  }, [mapYear, mapPeriod]);
 
   // Phase 1 — flat per-day play counts make avg/day, heaviest-day and share-of-history react to
   // the active date filter (year scrub or calendar day/week/month). Loaded lazily; tiny (~10 KB gz).
@@ -367,7 +396,7 @@ function OverviewView({ t, go, restReady }) {
             a slot: it renders under the map's deepest-places column and cross-filters the results. */}
         <div className="ov-mapslot" style={{ gridColumn: "1 / -1" }}>
           <OvMapBand go={go} restReady={restReady} extYear={mapYear} calPeriod={mapPeriod} onStats={setFStats}
-            calRail={<OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} />}
+            calRail={<OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} init={_seed} />}
             statSlot={
               /* lifetime stats, now nested under the flowmap (Fuad 2026-07-06); hours + distinct
                  artists react to the active map/calendar filter, the rest are lifetime. */
