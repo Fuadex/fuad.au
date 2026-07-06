@@ -311,7 +311,7 @@ function ExploreView({ t, go, setPop, seed }) {
   const [moodZone, setMoodZone] = React.useState(null);   // active valence×energy quadrant filter, or null
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
   const [limit, setLimit] = React.useState(40);           // album/track list depth (load-more grows it)
-  const [showN, setShowN] = React.useState(15);           // visible rows (10/15/20/25; default 15 — Fuad 2026-07-05)
+  const [showN, setShowN] = React.useState(16);           // visible rows (8/16/24/32; default 16 — Fuad 2026-07-07)
   const [disp, setDisp] = React.useState("list");         // ranked results: list ⇄ cover grid (Fuad 2026-07-07)
   const [ref, seen] = useInView();
 
@@ -492,7 +492,7 @@ function ExploreView({ t, go, setPop, seed }) {
               <button data-on={disp === "grid"} onClick={() => setDisp("grid")}>grid</button>
             </div>
             <div className="r-seg">
-              {[10, 15, 20, 25].map(n => <button key={n} data-on={showN === n} onClick={() => setShowN(n)}>{n}</button>)}
+              {[8, 16, 24, 32].map(n => <button key={n} data-on={showN === n} onClick={() => setShowN(n)}>{n}</button>)}
             </div>
           </div>
           {cells.size > 0 && kind !== "artists" && <div className="r-mono xp-note">filtered to {kind} by artists active in the selected slots</div>}
@@ -572,14 +572,16 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-chartwrap { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 0; }
         .xp-chartwrap > svg { width: 100%; }
         /* ranked results — cover/artist grid mode (list ⇄ grid toggle) */
-        .xp-cardgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-        @media (max-width: 1200px) { .xp-cardgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-        @media (max-width: 520px) { .xp-cardgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        /* grid: 8 tiles per row (smaller covers), stepping down on narrower widths (Fuad 2026-07-07) */
+        .xp-cardgrid { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 9px; }
+        @media (max-width: 1200px) { .xp-cardgrid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+        @media (max-width: 900px) { .xp-cardgrid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+        @media (max-width: 520px) { .xp-cardgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
         .xp-carditem { cursor: pointer; min-width: 0; }
         .xp-carditem[data-link="false"] { cursor: default; opacity: .6; }
-        .xp-cardrk { position: absolute; top: 4px; left: 5px; font-family: var(--mono); font-size: 8.5px; color: rgba(255,255,255,.85); text-shadow: 0 1px 2px #000; }
-        .xp-cardnm { font-size: 11px; margin-top: 6px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .xp-cardsub { font-family: var(--mono); font-size: 8.5px; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .xp-cardrk { position: absolute; top: 3px; left: 4px; font-family: var(--mono); font-size: 8px; color: rgba(255,255,255,.85); text-shadow: 0 1px 2px #000; }
+        .xp-cardnm { font-size: 10px; margin-top: 5px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .xp-cardsub { font-family: var(--mono); font-size: 8px; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .xp-mood svg { max-height: 330px; margin: 0 auto; }
         .xp-rows { display: grid; gap: 2px; }
         .xp-row { display: grid; grid-template-columns: 24px 34px 1fr 90px 46px; gap: 10px; align-items: center; padding: 5px 6px; border-radius: 6px; transition: background .12s; }
