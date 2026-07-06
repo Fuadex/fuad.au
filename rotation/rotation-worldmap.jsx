@@ -86,7 +86,7 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   );
 }
 
-function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
+function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot }) {
   const R = window.ROTATION;
   const G = R.INSIGHTS.GEOGRAPHY;
   const cityPts = G.cityPoints || [];
@@ -497,8 +497,12 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
         </div>
       </div>
 
-      {/* the calendar rail (slotted in from Overview) — row 2 right, under the results, beside
-          the stretched deepest-places list; picking a day/week swaps the results to that period */}
+      {/* lifetime stat strip (slotted in from Overview) — row 2 centre, under the flow (Fuad
+          2026-07-06). hours + distinct artists react to the active filter; the rest are lifetime. */}
+      {statSlot && <div className="mp-stats" style={{ marginTop: "var(--gap)" }}>{statSlot}</div>}
+
+      {/* the calendar rail (slotted in from Overview) — row 2 right, under the results; picking a
+          day/week swaps the results to that period */}
       {calSlot && <div className="mp-cal" style={{ marginTop: "var(--gap)" }}>{calSlot}</div>}
 
       {/* results — top artists + albums + songs + DNA for the current place ∩ genre ∩ year (no place needed) */}
@@ -582,8 +586,10 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot }) {
           .mp-resbody { flex: 1 1 0; height: 0; min-height: 0; overflow-y: auto; padding-right: 4px; }
           .mp-results .mp-covergrid { grid-template-columns: repeat(5, 1fr); gap: 6px; }
           .mp-results .mp-covergrid .mp-covernm { font-size: 8.5px; }
-          .mp-list { grid-column: 1 / span 2; grid-row: 2; margin-top: 0 !important; }
+          .mp-list { grid-column: 1; grid-row: 2; margin-top: 0 !important; }
           .mp-list > div:last-child { max-height: 220px !important; }
+          .mp-stats { grid-column: 2; grid-row: 2; margin-top: 0 !important; display: flex; }
+          .mp-stats > .r-card { flex: 1; }
           .mp-cal { grid-column: 3; grid-row: 2; margin-top: 0 !important; }
         }
         .mp-clear { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase;
