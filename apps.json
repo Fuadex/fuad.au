@@ -10,6 +10,7 @@
       "precompile": true,
       "deploy": [
         "index.html", "favicon.svg", "og.png",
+        "react.production.min.js", "react-dom.production.min.js",
         "rotation-live.jsx", "tweaks-panel.jsx", "rotation-core.jsx", "rotation-insights.jsx",
         "rotation-views1.jsx", "rotation-views2.jsx", "rotation-worldmap.jsx", "rotation-views3.jsx",
         "rotation-explore.jsx", "rotation-journey.jsx", "rotation-calendar.jsx", "rotation-shelves.jsx",

@@ -41,8 +41,13 @@
   </svg>
 </template>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+<!-- React runtime is self-hosted (identical UMD bytes to unpkg, SRI-verified) so production
+     has no third-party runtime dependency. React 18.3.1 UMD is the final UMD release (React 19
+     dropped UMD), so this pin never changes. Babel below is DEV-ONLY: it compiles the .jsx in
+     the browser during local authoring; the CI precompile step strips this tag and swaps the
+     .jsx for compiled .js in the shipped bundle (see stage-site.js), so it never reaches prod. -->
+<script src="react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z"></script>
+<script src="react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
 <script src="music-data.js"></script>
