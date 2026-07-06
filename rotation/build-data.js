@@ -1767,9 +1767,46 @@ let SESSIONS = null;
     });
     const totalRuns = [...runs.values()].reduce((a, b) => a + b, 0);
 
+    // segue graph: what you play RIGHT AFTER what (consecutive X→Y inside a session, Y≠X). Keep
+    // only strong, reliable rituals — X seen in ≥12 transitions and followed by the same Y ≥35%.
+    const trans = new Map(), outTot = new Map();
+    for (const s of sessions) {
+      for (let i = 0; i + 1 < s.items.length; i++) {
+        const a = s.items[i], b = s.items[i + 1];
+        if (!a.track || !b.track) continue;
+        const xk = a.artist + "\x00" + a.track, yk = b.artist + "\x00" + b.track;
+        if (xk === yk) continue;
+        let m = trans.get(xk); if (!m) { m = new Map(); trans.set(xk, m); }
+        m.set(yk, (m.get(yk) || 0) + 1);
+        outTot.set(xk, (outTot.get(xk) || 0) + 1);
+      }
+    }
+    // A same-artist 100% segue is usually just album track-order; the SURPRISING ones cross artists
+    // (a genuine "after X I always cue up Y" ritual). Give cross-artist a lower bar and rank it first.
+    const segues = [];
+    for (const [xk, m] of trans) {
+      const tot = outTot.get(xk); if (tot < 8) continue;
+      let bestY = null, bestN = 0;
+      for (const [yk, n] of m) if (n > bestN) { bestN = n; bestY = yk; }
+      const share = bestN / tot;
+      const xa = xk.slice(0, xk.indexOf("\x00")), ya = bestY.slice(0, bestY.indexOf("\x00"));
+      const sameArtist = xa === ya;
+      if (sameArtist) { if (tot < 12 || bestN < 6 || share < 0.45) continue; }   // album-order: strict
+      else { if (bestN < 4 || share < 0.30) continue; }                          // cross-artist: rarer, gentler
+      segues.push({ xk, yk: bestY, n: bestN, share, sameArtist });
+    }
+    // cross-artist first, then by strength
+    segues.sort((a, b) => (Number(a.sameArtist) - Number(b.sameArtist)) || (b.share - a.share) || (b.n - a.n));
+    const segList = segues.slice(0, 14).map(s => {
+      const xi = s.xk.indexOf("\x00"), yi = s.yk.indexOf("\x00");
+      const xa = s.xk.slice(0, xi), xt = s.xk.slice(xi + 1), ya = s.yk.slice(0, yi), yt = s.yk.slice(yi + 1);
+      return { fromArtist: xa, fromTrack: xt, toArtist: ya, toTrack: yt, pct: Math.round(s.share * 100), n: s.n,
+        fromId: slug(xa) + "~" + slug(xt), toId: slug(ya) + "~" + slug(yt), hue: hueFor(xa), sameArtist: s.sameArtist };
+    });
+
     SESSIONS = {
       total: sessions.length, median, mean: Math.round(chron.length / sessions.length * 10) / 10,
-      longest, bingeShare, sittings: { total: totalRuns, albums: runs.size, top },
+      longest, bingeShare, sittings: { total: totalRuns, albums: runs.size, top }, segues: segList,
     };
     console.log(`sessions: ${sessions.length} · median ${median} tracks · binge ${bingeShare}% · album sittings ${totalRuns} across ${runs.size} albums`);
   }

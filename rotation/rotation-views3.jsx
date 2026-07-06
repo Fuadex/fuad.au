@@ -1089,6 +1089,39 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+        {/* segue graph — what you play right after what (Phase 3) */}
+        {I.SESSIONS && I.SESSIONS.segues && I.SESSIONS.segues.length >= 3 && (() => {
+          const segs = I.SESSIONS.segues, top = segs[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">What follows what</div>
+              <div className="st-big">
+                Put on <em style={{ color: `oklch(0.78 0.14 ${top.hue})`, cursor: "pointer" }} onClick={() => go("track", top.fromId)}>{top.fromTrack}</em> and,
+                {" "}<em>{top.pct}%</em> of the time, <span data-link={true} onClick={() => go("track", top.toId)}>{top.toTrack}</span> comes next.
+              </div>
+              <div className="st-sub">
+                The songs your listening chains together — one play, then almost always the same next one.
+                Your strongest segues, mostly rituals that cross artists entirely:
+              </div>
+              <div style={{ display: "grid", gap: 9, marginTop: 4 }}>
+                {segs.slice(0, 10).map((s, i) => (
+                  <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 12, alignItems: "center" }}>
+                    <div style={{ textAlign: "right", minWidth: 0 }} data-link={true} onClick={() => go("track", s.fromId)}>
+                      <div className="st-row-name" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.fromTrack}</div>
+                      <div className="st-row-sub" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.fromArtist}</div>
+                    </div>
+                    <div className="r-mono" style={{ fontSize: 10, color: `oklch(0.74 0.14 ${s.hue})`, whiteSpace: "nowrap" }}>{s.pct}% →</div>
+                    <div style={{ minWidth: 0 }} data-link={true} onClick={() => go("track", s.toId)}>
+                      <div className="st-row-name" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.toTrack}</div>
+                      <div className="st-row-sub" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.toArtist}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* streak */}
         <section className="st-card st-hero">
           <div className="st-label">The streak</div>
