@@ -1214,6 +1214,43 @@ function StoriesView({ t, go, seed }) {
           </div>
         </section>
 
+        {/* lifecycle — the shape of an obsession, and the ones burning now (Phase 3) */}
+        {I.LIFECYCLE && (I.LIFECYCLE.burningNow.length >= 2 || I.LIFECYCLE.flameout.length >= 2) && (() => {
+          const L = I.LIFECYCLE, hot = L.burningNow[0];
+          const MO = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+          const moL = (ym) => { const p = (ym || "").split("-"); return p.length === 2 ? MO[+p[1] - 1] + " " + p[0] : ym; };
+          const names = (arr) => arr.slice(0, 4).map(a => a.name).join(", ");
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">The shape of an obsession</div>
+              <div className="st-big">
+                {hot
+                  ? <>Right now it's <em style={{ color: `oklch(0.78 0.14 ${hot.hue})` }} onClick={() => go("artist", hot.id)}>{hot.name}</em> — {fmt(hot.recentPlays)} plays since {moL(hot.since)}, <em>{hot.flarePct}%</em> of everything you've ever played by them.</>
+                  : <>Every obsession has an arc — some burn fast, some never leave.</>}
+              </div>
+              <div className="st-sub">
+                Burning brightest now — most of these plays crammed into the last four months. That's
+                the shape a flameout makes, mid-flight; history says some of these won't last the year:
+              </div>
+              <div className="st-ug-cuts">
+                {L.burningNow.map(a => (
+                  <div key={a.id} className="st-ug-cut" data-link={true} onClick={() => go("artist", a.id)}>
+                    <GenCover hue={a.hue} name={a.name} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{a.name}</div>
+                      <div className="st-row-sub">{fmt(a.recentPlays)} in 4 months · {a.flarePct}% of all-time · since {moL(a.since)}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="st-sub" style={{ marginTop: 14 }}>
+                {L.flameout.length >= 2 && <>Ones that already burned out: <b style={{ color: "var(--ink)" }}>{names(L.flameout)}</b> — each 55%+ of their plays in a single six-month window, long gone quiet. </>}
+                {L.perennial.length >= 2 && <>The constants that never faded: <b style={{ color: "var(--ink)" }}>{names(L.perennial)}</b>, steady across {L.perennial[0].years}+ years.</>}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* obsessions */}
         <section className="st-card">
           <div className="st-label">Obsessions</div>
