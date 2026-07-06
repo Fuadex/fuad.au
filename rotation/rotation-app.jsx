@@ -171,7 +171,7 @@ function RotationApp() {
             : (<React.Fragment>
                 {v === "stories" && <StoriesView t={t} go={go} seed={route.id} />}
                 {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} seed={route.id} />}
-                {v === "shelves" && <ShelvesView go={go} />}
+                {v === "shelves" && <ShelvesView go={go} seed={route.id} />}
                 {v === "calendar" && <CalendarView go={go} seed={route.id} />}
                 {v === "gigs" && <GigsView go={go} />}
                 {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
