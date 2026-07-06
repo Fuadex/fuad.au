@@ -165,7 +165,7 @@ function RotationApp() {
             waits for music-rest — gated views mount FRESH once ready, so their useMemos run
             with populated data (no stale-empty caching). */}
         {v === "overview"
-          ? <OverviewView t={t} go={go} restReady={restReady} />
+          ? <OverviewView t={t} go={go} restReady={restReady} seed={route.id} />
           : !restReady
             ? <div className="r-rest-wait r-mono">loading your library…</div>
             : (<React.Fragment>
