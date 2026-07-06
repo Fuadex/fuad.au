@@ -233,9 +233,10 @@ legacy-route to Overview). `#calendar/YYYY-MM-DD` deep-opens a specific day. Det
 hash** (`#explore/y=2019;s=Industrial;m=dark-intense;c=1.5.9;k=albums`) — bookmarkable and
 refresh-proof; `;`-separated because parseHash url-decodes once. Legacy routes
 (charts/clock/sound/eras/mood → explore, journey → map) still resolve. **The Overview date +
-map genre/mode filter (`#overview/y=2019`, `p=month~2019-06`, `f=5`, `s=<sub>`, `md=country`)
-and the Shelves mode/lens (`#shelves/l=mood`, `m=wrap`) also serialize into the hash** (Phase 1)
-— bookmarkable/refresh-proof like Explore. (Map place-selection isn't serialized yet.)
+map genre/mode filter (`#overview/y=2019`, `p=month~2019-06`, `f=Japanese`, `s=<subgenre>`,
+`md=country`) and the Shelves mode/lens (`#shelves/l=mood`, `m=wrap`) also serialize into the
+hash** (Phase 1) — genre by NAME (reorder-proof, matches Explore). (Map place-selection isn't
+serialized yet.)
 Global: `/` opens search;
 popover layer; tweaks drawer.
 
