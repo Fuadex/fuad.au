@@ -101,6 +101,22 @@ artists you play") · dig-list generator (weekly five-records card) · collab-gr
 offline NONEs · "Mood over the years" into Stories (parked candidate) · wrapped mode +
 share cards (parked, Fuad's call).
 
+**◆ Tier-2/3 long-tail enrichment (Fuad idea 2026-07-07) — make the tail first-class.**
+Today only the EXPLORE universe (~4,064 artists = 90.3% of plays) carries genre/geo metadata,
+so place/genre slice stats undercount and the long tail is invisible in filters (LIMITATIONS
+§1). Idea: derive **tiered, load-on-request** data for the *full* played tail (every artist ≥3
+plays, ~30k):
+- **Tier 2** — a compact per-artist `{familyIdx, country, plays}` for the whole tail
+  (~30k × a few bytes ≈ 150–250 KB gz), lazy-loaded only when a filter needs exactness or the
+  user opts into "include the long tail". Makes place/genre avg/day + share + heaviest **exact**,
+  and lets the tail appear in Explore/map results. This is the direct fix for LIMITATIONS §1.
+- **Tier 3** — richer per-tail-artist detail (top tracks/albums, tags, similar) fetched
+  per-artist on demand (like `artist-detail.js` already does for long-tail artist pages) —
+  extend that pattern so ANY played artist has a real page, not just the top 400.
+Design notes: keep it **behind a toggle/opt-in** so first paint never pays for it; build it
+from data already in the CSV + tag caches (no new API); size-gate each tier (build-data prints
+sizes). Sequence after the Phase 3 sessions layer. A neat "richer on request" win, not urgent.
+
 ### Phase 5 · THE TEMPLATE — "Rotation for anyone" (open-source, ~3–4 sessions)
 The packaging plan (expands M6; every earlier phase feeds it):
 1. **Extract `rotation-template`** (new public repo): code only — build-data.js, sync

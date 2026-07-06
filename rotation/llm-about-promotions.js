@@ -42,6 +42,23 @@ for (const t of MEDIA.tracks) {
 }
 const ranked = [...best.values()].sort((a, b) => b.plays - a.plays).slice(0, N);
 
+// consult the NONE ledgers (../../.sptmp) — tracks already tested and found to have no meaningful
+// read (instrumentals, no lyrics online). These shouldn't clutter the actionable work list.
+const knownNone = new Map();   // key -> reason
+function loadLedger(file, kind) {
+  try {
+    const j = JSON.parse(fs.readFileSync(path.join(OUT_DIR, file), "utf8"));
+    if (Array.isArray(j)) for (const k of j) { if (!knownNone.has(k)) knownNone.set(k, kind); }
+    else for (const [k, v] of Object.entries(j)) { if (!knownNone.has(k)) knownNone.set(k, (v && v.reason) || kind); }
+  } catch (_) {}
+}
+loadLedger("jp-nones.json", "none (jp)");
+loadLedger("blurb-drops.json", "instrumental / no-meaning");
+loadLedger("haiku-none.json", "haiku returned NONE");
+// the canonical, forward-looking ledger — APPEND confirmed-NONE keys here as you work the
+// backlog (array of "artist~track", or {key:{reason}}), and they drop out of future runs.
+loadLedger("llm-none-ledger.json", "recorded none");
+
 // classify each against the current reads
 const rows = ranked.map((r, i) => {
   const e = LLM[r.key] || null;
@@ -49,9 +66,12 @@ const rows = ranked.map((r, i) => {
   const need = [];
   if (!has.sonnet) need.push("sonnet");
   if (!has.opus) need.push("opus");
-  return { rank: i + 1, key: r.key, artist: r.artist, title: r.title, plays: r.plays, has, need, haiku: (e && e.haiku) || null };
+  return { rank: i + 1, key: r.key, artist: r.artist, title: r.title, plays: r.plays, has, need,
+    haiku: (e && e.haiku) || null, noneReason: knownNone.get(r.key) || null };
 });
 const backlog = rows.filter(r => r.need.length);
+const knownBacklog = backlog.filter(r => r.noneReason);           // already tested → NONE; skip
+const actionable = backlog.filter(r => !r.noneReason);            // worth a read pass
 
 // diff against the previous run's top-N key set → what newly entered
 fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -61,13 +81,15 @@ try { prev = JSON.parse(fs.readFileSync(SNAP, "utf8")).keys || []; } catch (_) {
 const prevSet = new Set(prev);
 const newlyIn = prev.length ? rows.filter(r => !prevSet.has(r.key)) : [];
 
-// write the work queue (backlog with haiku context for the local read pass) + refresh snapshot
+// write the work queue (ACTIONABLE backlog with haiku context for the local read pass) +
+// refresh snapshot. known-NONE tracks are listed separately so they're on record but skipped.
 const queue = {
   generated: new Date().toISOString(), topN: N,
   summary: { ranked: rows.length, covered: rows.length - backlog.length, backlog: backlog.length,
-    noReadAtAll: backlog.filter(r => !r.has.haiku && !r.has.web).length, newlyInTopN: newlyIn.length },
-  newlyInTopN: newlyIn.map(r => ({ rank: r.rank, key: r.key, artist: r.artist, title: r.title, plays: r.plays, need: r.need })),
-  backlog: backlog.map(r => ({ rank: r.rank, key: r.key, artist: r.artist, title: r.title, plays: r.plays, need: r.need, haiku: r.haiku })),
+    knownNone: knownBacklog.length, actionable: actionable.length, newlyInTopN: newlyIn.length },
+  newlyInTopN: newlyIn.map(r => ({ rank: r.rank, key: r.key, artist: r.artist, title: r.title, plays: r.plays, need: r.need, noneReason: r.noneReason })),
+  actionable: actionable.map(r => ({ rank: r.rank, key: r.key, artist: r.artist, title: r.title, plays: r.plays, need: r.need, haiku: r.haiku })),
+  knownNone: knownBacklog.map(r => ({ rank: r.rank, key: r.key, artist: r.artist, title: r.title, plays: r.plays, reason: r.noneReason })),
 };
 fs.writeFileSync(path.join(OUT_DIR, "llm-promo-queue.json"), JSON.stringify(queue, null, 2));
 fs.writeFileSync(SNAP, JSON.stringify({ generated: new Date().toISOString(), topN: N, keys: ranked.map(r => r.key) }, null, 2));
@@ -75,17 +97,24 @@ fs.writeFileSync(SNAP, JSON.stringify({ generated: new Date().toISOString(), top
 // report
 console.log(`\nllm-about promotions — top ${N} played tracks (${rows.length} found)`);
 console.log(`  fully covered (haiku+sonnet+opus): ${rows.length - backlog.length}`);
-console.log(`  backlog (missing sonnet and/or opus): ${backlog.length}` +
-  `  ·  no read at all: ${backlog.filter(r => !r.has.haiku && !r.has.web).length}`);
+console.log(`  backlog (missing sonnet and/or opus): ${backlog.length}`);
+console.log(`    · known-NONE (already tested — instrumental / no lyrics): ${knownBacklog.length}  → skip`);
+console.log(`    · ACTIONABLE (worth a read pass): ${actionable.length}`);
 if (prev.length) {
-  console.log(`  NEWLY entered top ${N} since last run: ${newlyIn.length}` +
-    (newlyIn.length ? "  →  " + newlyIn.slice(0, 8).map(r => `${r.artist} – ${r.title}`).join(" · ") + (newlyIn.length > 8 ? " …" : "") : ""));
+  const newAct = newlyIn.filter(r => !r.noneReason);
+  console.log(`  NEWLY entered top ${N} since last run: ${newlyIn.length} (${newAct.length} actionable)` +
+    (newAct.length ? "  →  " + newAct.slice(0, 8).map(r => `${r.artist} – ${r.title}`).join(" · ") + (newAct.length > 8 ? " …" : "") : ""));
 } else {
   console.log(`  (first run — snapshot saved; re-run after future scrobbles to see new promotions)`);
 }
-console.log(`\n  top 25 of the backlog (rank · plays · needs):`);
-for (const r of backlog.slice(0, 25)) {
+console.log(`\n  top 25 ACTIONABLE (rank · plays · needs):`);
+for (const r of actionable.slice(0, 25)) {
   console.log(`   #${String(r.rank).padStart(4)}  ${String(r.plays).padStart(5)}  ${r.need.join("+").padEnd(13)}  ${r.artist} – ${r.title}`);
 }
-console.log(`\n  full queue (with haiku context) → ../../.sptmp/llm-promo-queue.json`);
+if (knownBacklog.length) {
+  console.log(`\n  known-NONE in the top ${N} (on record, skipped): ${knownBacklog.length}`);
+  for (const r of knownBacklog.slice(0, 8)) console.log(`   #${String(r.rank).padStart(4)}  ${String(r.plays).padStart(5)}  [${r.noneReason}]  ${r.artist} – ${r.title}`);
+  if (knownBacklog.length > 8) console.log(`   … +${knownBacklog.length - 8} more`);
+}
+console.log(`\n  full queue → ../../.sptmp/llm-promo-queue.json (actionable + knownNone lists)`);
 console.log(`  snapshot advanced → next run diffs against this top-${N}.\n`);
