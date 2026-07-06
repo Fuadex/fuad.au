@@ -171,21 +171,27 @@ function OvMapBand({ go, extYear, calPeriod, onStats, calRail, statSlot, restRea
 }
 
 // parse an Overview filter seed from the hash id: date (`y=2019`, `p=month~2019-06`) + the map's
-// genre/mode (`f=<famIdx>`, `s=<subIdx>`, `md=country`). ";"-separated, like Explore.
+// genre/mode by NAME (`f=<family>`, `s=<subgenre>`, `md=country`) — names, not array indices, so
+// bookmarks survive a genre reorder (matches Explore's convention). ";"-separated.
 function parseOvSeed(seed) {
   const out = { year: null, period: null, filter: null };
   if (!seed) return out;
-  let fam = null, sub = null, mode = null;
+  const norm = (s) => (s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  let famName = null, subName = null, mode = null;
   for (const kv of seed.split(";")) {
     const i = kv.indexOf("="); if (i < 0) continue;
     const k = kv.slice(0, i), v = kv.slice(i + 1);
     if (k === "y") out.year = +v || null;
     else if (k === "p") { const j = v.indexOf("~"); if (j > 0) out.period = { gran: v.slice(0, j), key: v.slice(j + 1) }; }
-    else if (k === "f") fam = +v;
-    else if (k === "s") sub = +v;
+    else if (k === "f") famName = v;
+    else if (k === "s") subName = v;
     else if (k === "md") mode = v;
   }
-  if (fam != null || sub != null || mode) out.filter = { mode: mode || "city", filt: { fam: fam != null ? fam : null, sub: sub != null ? sub : null } };
+  const R = window.ROTATION;
+  let fam = null, sub = null;
+  if (R && subName) { const si = R.SUBS.findIndex(x => norm(x.name) === norm(subName)); if (si >= 0) { sub = si; if (R.SUBS[si].fam != null) fam = R.SUBS[si].fam; } }
+  if (R && famName && fam == null) { const fm = R.FAMILIES.find(f => norm(f.family) === norm(famName)); if (fm) fam = fm.i; }
+  if (fam != null || sub != null || mode) out.filter = { mode: mode || "city", filt: { fam, sub } };
   return out;
 }
 
@@ -210,8 +216,8 @@ function OverviewView({ t, go, restReady, seed }) {
     if (mapYear != null) parts.push("y=" + mapYear);
     if (mapPeriod) parts.push("p=" + mapPeriod.gran + "~" + mapPeriod.key);
     const mf = mapFilter && mapFilter.filt;
-    if (mf && mf.fam != null) parts.push("f=" + mf.fam);
-    if (mf && mf.sub != null) parts.push("s=" + mf.sub);
+    if (mf && mf.fam != null) { const fm = R.FAMILIES.find(f => f.i === mf.fam); if (fm) parts.push("f=" + encodeURIComponent(fm.family)); }
+    if (mf && mf.sub != null && R.SUBS[mf.sub]) parts.push("s=" + encodeURIComponent(R.SUBS[mf.sub].name));
     if (mapFilter && mapFilter.mode && mapFilter.mode !== "city") parts.push("md=" + mapFilter.mode);
     const target = parts.length ? "#overview/" + parts.join(";") : "";
     if ((window.location.hash || "") !== target) window.history.replaceState(null, "", target || (location.pathname + location.search));

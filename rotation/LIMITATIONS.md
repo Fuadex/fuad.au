@@ -28,33 +28,18 @@ matters:** (a) show a subtle "~" / "of tagged plays" hint on slice stats so it r
 not wrong; (b) ship a compact per-artist {country, familyIdx, plays} for the full tail to make
 slices exact (heaviest cost); (c) leave as-is (recommended — 90% coverage, tiny per-artist tail).
 
-## 2. Hash filter codes are index-based and terse (`f=5`, `s=<n>`, `c=1.5.9`)
+## 2. Hash filter codes — ✅ RESOLVED 2026-07-07 (now name-based, matches Explore)
 
-**What.** The Overview map genre filter serialises the **family/subgenre array index**
-(`#overview/f=5` = "Japanese" = `FAMILIES[5]`). Explore's cell filter (`c=1.5.9`) is likewise
-index-based.
+The Overview map genre filter used to serialise the **array index** (`#overview/f=5`), which
+would silently break if the `FAMILIES`/`SUBS` order ever changed. **Fixed:** it now serialises
+the **name** (`#overview/f=Japanese`, `s=<subgenre>`) and resolves back via a normalised match
+(lowercase-alphanumeric), exactly like Explore (`#explore/f=Industrial`). Verified: `f=Japanese`
+restores identically to the old `f=5`.
 
-**The risk you flagged — it's real.** These indices come from the `FAMILIES` / `SUBS` arrays in
-`build-data.js`. If that order ever changes (add / remove / reorder a family or subgenre), **old
-bookmarks silently point at a different genre** — `f=5` might become "Hip-hop". There's no
-version guard.
-
-**Inconsistency to note:** Explore's *family* filter already uses the **name**
-(`#explore/f=Industrial`, stable) while the Overview map uses the **index** (`f=5`, brittle).
-So the codebase is of two minds.
-
-**Options (for a later call — not fixed yet):**
-- **(a) Use names everywhere** — `#overview/g=japanese` (family) / `g=japanese.shoegaze`
-  (sub). Stable across reorders, human-readable, matches Explore. Restore = look up by name.
-  *Recommended.* Cost: a small name↔index map on read; slightly longer URLs.
-- **(b) Keep indices but freeze the order** — pin `FAMILIES`/`SUBS` order in build-data with a
-  "never reorder, only append" rule + a comment. Cheap, but a landmine for future edits.
-- **(c) Version the hash** — prefix a schema version and migrate. Overkill for a personal site.
-
-**Current family index map (for reference, 2026-07-07):**
-`0 Nu-metal/alt-metal · 1 Metalcore/-core · 2 Industrial · 3 Thrash/heavy · 4 Prog/alt rock ·
-5 Japanese · 6 Electronic/DnB · 7 Digital hardcore/hyperpop · 8 Hip-hop · 9 Punk/garage ·
-10 Shoegaze/noise · 11 Pop/indie`
+**Residual (shared with Explore, low risk):** a **rename** of a family/subgenre still breaks old
+bookmarks (a *reorder* no longer does). Renames are rare and the norm-match tolerates
+case/punctuation drift. `Explore` cell filter (`c=1.5.9`, clock cells) is still index-based but
+those indices are structural (168 hour×day cells), not reorderable.
 
 ## 3. Heaviest-day doesn't react to a place/genre slice
 
