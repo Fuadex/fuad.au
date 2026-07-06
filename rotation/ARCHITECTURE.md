@@ -62,6 +62,7 @@ library — hash routing (`#view/id`) in `rotation-app.jsx` with `pushState` +
 **Tier 1 — lazy (injected `<script>` on first need):**
 | File | Global | Size | Loaded when |
 |---|---|---|---|
+| `day-series.js` | `ROTATION_DAYS` | ~18 KB / 7 KB gz | Overview mount — flat per-day play counts; powers the filter-reactive stat strip |
 | `search-index.js` | `ROTATION_SEARCH` | ~360 KB | search overlay opens (`/`) |
 | `media-index.js` | `ROTATION_MEDIA` | ~6.8 MB | Explore albums/tracks tab, Album/Track view, song search |
 | `track-audio.js` | `ROTATION_TRACKAUDIO` | ~2.7 MB | TrackView |
@@ -231,7 +232,10 @@ legacy-route to Overview). `#calendar/YYYY-MM-DD` deep-opens a specific day. Det
 `#explore/tag` (seeds a genre filter). **Explore also serializes its full active slice into the
 hash** (`#explore/y=2019;s=Industrial;m=dark-intense;c=1.5.9;k=albums`) — bookmarkable and
 refresh-proof; `;`-separated because parseHash url-decodes once. Legacy routes
-(charts/clock/sound/eras/mood → explore, journey → map) still resolve. Global: `/` opens search;
+(charts/clock/sound/eras/mood → explore, journey → map) still resolve. **The Overview date
+filter (`#overview/y=2019`, `p=month~2019-06`) and the Shelves mode/lens (`#shelves/l=mood`,
+`m=wrap`) also serialize into the hash** (Phase 1) — bookmarkable/refresh-proof like Explore.
+Global: `/` opens search;
 popover layer; tweaks drawer.
 
 ## 8. Feature inventory (what is SHIPPED today)
@@ -252,7 +256,8 @@ popover layer; tweaks drawer.
   is the only genre legend (static FAMILIES strip removed 2026-07-04; metric gradient still
   shows for by-sound colouring). Global "clear filters" button stays in the band head.
   MapView reports filtered totals up so the **stat strip (hours + distinct artists, span 8)
-  reacts to the active filter**; heaviest day beside it (span 4); the "Right now" insight
+  reacts to the active filter**; **avg/day, share-of-history and heaviest-day recompute for the
+  active date filter too** (Phase 1, from `day-series.js`); heaviest day beside it (span 4); the "Right now" insight
   feed runs full-width below, 4 cards across. Calendar year-scrub still drives the map;
   day/week click filters Results via calendar-detail. ⚠ day-level map *dots* filtering
   still needs a per-day geography export.
@@ -293,7 +298,8 @@ build-data. ⚠ mood-lens first paint is slow (open bug).
 GitHub-style **every-day heatmap** for 20 years (calendar.js), click any day/week/month → lazy
 period summary (calendar-detail.js). Beside it (sticky right rail) the **Rhythm clock** — a
 **vertical hour-of-day histogram** (all-time or per-year, moved here from Explore 2026-07-05).
-⚠ selecting an hour can't filter the heatmap yet (no per-day-hour export).
+Selecting hours on the clock **re-weights the heatmap** to just those hours (from the per-day
+`Y.hours` histograms in calendar.js) — the clock↔heatmap tandem is live.
 
 ### Map (Geography — lives INSIDE Overview since 2026-07-05; defaults to cities)
 World map (countries ⇄ city dots) sized by plays; colour by dominant genre / top artist's
