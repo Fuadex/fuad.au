@@ -42,27 +42,28 @@ also template prep. **Net cold-first-paint win: −700 KB gz (Babel gone) − ~4
    fonts — deferred** (cosmetic-only failure mode, ~15 woff2 files; low priority vs the SPOF,
    which is already fixed).
 
-### Phase 1 · Dynamism kernel — ✅ CORE SHIPPED 2026-07-07
-One small export unlocks the "stats follow the filter" behaviour.
+### Phase 1 · Dynamism kernel — ✅ SHIPPED 2026-07-07 (two small remainders)
 1. ✅ **`day-series.js`** (7 KB gz — flat per-day play counts): the Overview stat strip's
-   avg/day, heaviest-day and share-of-history now recompute for the active date filter (year
-   scrub or calendar day/week/month), client-side. Verified: window math matches TOTALS.topDay;
-   `#overview/y=2019` shows the 2019 window (avg/day 50.4, 5.8% of plays, heaviest 464).
-4. ✅ **URL state parity** — the Overview date filter (`#overview/y=2019`, `p=month~2019-06`,
-   calendar-cell highlight restored) and Shelves mode/lens (`#shelves/l=mood`, `m=wrap`)
-   serialize into the hash and restore on load, like Explore.
-   *(Full MapView-internal state — mode/sel/focus/genre — still not serialized; needs the
-   state lift in item 2/§next.)*
-3b. ✅ **Per-day-hour → heatmap** tandem is **already live** (calendar recomputes heatmap cells
-   from the selected rhythm-clock hours via `Y.hours`) — the old "can't filter yet" note was stale.
+   avg/day, heaviest-day and share-of-history recompute for the active date filter (year scrub
+   or calendar day/week/month). Verified: window math matches TOTALS.topDay; `#overview/y=2019`
+   → avg/day 50.4, 5.8% of plays, heaviest 464.
+2. ✅ **avg/day + share follow the map place/genre filter too** — the map already reports the
+   fully place×genre×year-filtered count (`fStats.plays`), folded with day-series via a `slice`
+   flag (a pure time filter keeps the exact day-series total; a place/genre slice uses the map's
+   count). Verified: `#overview/f=5` (Japanese) → avg/day 3.9, 6.3% of all plays. **This closes
+   the gap Fuad flagged** — no `day × family` matrix needed after all (fStats already carries
+   the slice count for place, family AND subgenre).
+4. ✅ **URL state** — Overview date filter + **map genre/mode** (`#overview/y=2019`,
+   `p=month~2019-06`, `f=5`, `s=<sub>`, `md=country`) and Shelves mode/lens (`#shelves/l=mood`,
+   `m=wrap`) serialize into the hash and restore on load, like Explore.
+3b. ✅ **Per-day-hour → heatmap** tandem was **already live** (stale note corrected).
 
-**Remaining (both need the map/flow internal-state lift — treat as one focused "map state" task):**
-2. **day × family matrix** (~150 KB lazy) → avg/day etc. under a GENRE filter. Blocked on
-   lifting MapFlow's genre selection up to OverviewView (same lift full map URL state needs).
-3a. **Per-day geography export** (days × places) → a calendar day/week re-weights the map
-   *dots* (not just Results). Heavier export + the same state lift.
-→ **Recommendation:** do item 2 + 3a + full map-band URL state together as a small "map state"
-   increment, since they share the MapView-internal-state lift.
+**Two small remainders (lower value now that the headline stats react — deferred, not blocking):**
+- **Heaviest-day per slice** — the one stat still time-scoped only (reads lifetime under a
+  place/genre-only filter). Making it place/genre-specific needs a per-day × place/family export
+  (heavy, days×places ≈ 300 KB gz) for one stat — not worth it yet.
+- **Map *dots* re-weight by a calendar day** (per-day geography export) + **place-selection URL
+  state** (needs geo-load coordination). Both nice-to-haves; neither blocks the dynamism goal.
 
 ### Phase 2 · Content quality pass (~1–2 sessions)
 1. **Taste-standouts tighten**: gate ≥85/≤15 (from 72/28) + comparative wording ("slower
