@@ -152,13 +152,13 @@ function OvCalRail({ go, onYear, onPeriod }) {
 // OvMapBand — the geography band: the FULL MapView (+ the calendar rail slotted into its left
 // column, under deepest places). Mounts once the user scrolls near, so Overview's first paint
 // doesn't pay for world-map.js.
-function OvMapBand({ go, extYear, calPeriod, onStats, calRail }) {
+function OvMapBand({ go, extYear, calPeriod, onStats, calRail, statSlot }) {
   const [ref, seen] = useInView();
   const [on, setOn] = React.useState(false);
   React.useEffect(() => { if (seen) setOn(true); }, [seen]);
   return (
     <div ref={ref} style={{ minHeight: on ? 0 : 220 }}>
-      {on ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} onStats={onStats} calSlot={calRail} />
+      {on ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} onStats={onStats} calSlot={calRail} statSlot={statSlot} />
         : <div className="r-card" style={{ padding: 40, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>the world map loads as you scroll…</div>}
     </div>
   );
@@ -335,18 +335,29 @@ function OverviewView({ t, go }) {
             a slot: it renders under the map's deepest-places column and cross-filters the results. */}
         <div className="ov-mapslot" style={{ gridColumn: "1 / -1" }}>
           <OvMapBand go={go} extYear={mapYear} calPeriod={mapPeriod} onStats={setFStats}
-            calRail={<OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} />} />
+            calRail={<OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} />}
+            statSlot={
+              /* lifetime stats, now nested under the flowmap (Fuad 2026-07-06); hours + distinct
+                 artists react to the active map/calendar filter, the rest are lifetime. */
+              <div className="r-card ov-strip" style={{ padding: 16, display: "grid",
+                gridTemplateColumns: "repeat(2,1fr)", gap: "14px 16px", alignContent: "center" }}>
+                <Stat n={fStats && fStats.active ? fmt(fStats.hours) : fmt(Math.round(hrs))} sub={fStats && fStats.active ? "hrs · " + fStats.label : "hours listened"} onClick={() => go("calendar")} />
+                <Stat n={fStats && fStats.active ? fmt(fStats.artists) : fmt(T.artists)} sub={fStats && fStats.active ? "artists · filtered" : "distinct artists"} onClick={() => go("explore")} />
+                <Stat n={T.perDay} sub="avg / day" />
+                <Stat n={sinceYears + " yr"} sub="of history" />
+                <Stat n={R.TOTALS.topDay.count} sub={"heaviest · " + R.TOTALS.topDay.date.slice(2)} onClick={() => go("calendar")} />
+              </div>
+            } />
         </div>
 
-        {/* the four lifetime stats — one row, directly under the map/flow; hours + distinct
-            artists react to the active map/calendar filter (Fuad). */}
-        <div className="r-card m-2col ov-strip" style={{ gridColumn: "span 8", padding: 20, display: "grid",
-          gridTemplateColumns: "repeat(5,1fr)", gap: 16, alignItems: "center" }}>
-          <Stat n={fStats && fStats.active ? fmt(fStats.hours) : fmt(Math.round(hrs))} sub={fStats && fStats.active ? "hours · " + fStats.label : "hours listened"} onClick={() => go("calendar")} />
-          <Stat n={fStats && fStats.active ? fmt(fStats.artists) : fmt(T.artists)} sub={fStats && fStats.active ? "artists · filtered" : "distinct artists"} onClick={() => go("explore")} />
-          <Stat n={T.perDay} sub="avg / day" />
-          <Stat n={sinceYears + " yr"} sub="of history" />
-          <Stat n={R.TOTALS.topDay.count} sub={"heaviest day · " + R.TOTALS.topDay.date.slice(2)} onClick={() => go("calendar")} />
+        {/* Right now — the live insight feed, promoted directly under the map (Fuad 2026-07-06),
+            paired with emotional weather on its row (was full-width lower down). */}
+        <div className="r-card ov-insights" style={{ gridColumn: "span 8", padding: 18 }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}><span className="lbl"><b>Right now</b></span>
+            <span className="meta">what's moving</span></div>
+          <div className="ov-insgrid" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
+            <InsightRow go={go} n={4} />
+          </div>
         </div>
 
         {/* emotional weather now — last 90 days' sounds/reads vs the library baseline */}
@@ -382,16 +393,6 @@ function OverviewView({ t, go }) {
           );
         })()}
 
-        {/* dynamic insight feed — consolidated into ONE module (milestone/tip-over/week/riser/
-            new-this-month/story-of-day merged, per Fuad); full-width now that recently-played
-            lives in the pulse row, so the four cards run in a single rank */}
-        <div className="r-card ov-insights" style={{ gridColumn: "1 / -1", padding: 18 }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}><span className="lbl"><b>Right now</b></span>
-            <span className="meta">what's moving</span></div>
-          <div className="ov-insgrid" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
-            <InsightRow go={go} n={4} />
-          </div>
-        </div>
       </div>
 
       {/* hub — teasers into every deeper view */}
