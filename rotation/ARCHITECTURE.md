@@ -203,7 +203,11 @@ name/id/plays/hue/tags/country/members/bio/similar/…),
 `LIFETIME_TRACKS`, `ARTIST_ERAS`, `INCUBATION`, `COMEBACKS`, `WONDERS`, `NIGHT_OWLS`,
 `DISCOVERIES`, `YEAR_PEAKS`, `ON_THIS_DAY`, `UNDERGROUND`, `GEOGRAPHY`, `STYLE_ATLAS`,
 `ADOPTION`, `CONNECTIONS`, `RECOMMENDATIONS`, `REVISIT`, `LIFESPAN` (MB life-spans × your
-timeline: ended-while-listening, graves, elders, median band life, worst year).
+timeline: ended-while-listening, graves, elders, median band life, worst year), plus the
+**Phase 3 (2026-07-07) sessions layer**: `SESSIONS` (total/median/longest sittings/bingeShare +
+`sittings`{top,byAlbum} album front-to-back + `segues` X→Y), `SEASONALITY` (monthly + top
+seasonal artists), `TASTE_ERAS` (auto-segmented chapters w/ topFams + shift diffs),
+`LIFECYCLE` (flameout/perennial/slow-burn classes + `burningNow` w/ flare%).
 
 **Artist audio row** — `R.AUDIO[artistId]` =
 `[energy, valence, acoustic, tempo, dance, instr (0–1), major, popularity 0–100, followers, loudness dB, speechiness, liveness, avgTrackSec]`.
@@ -285,14 +289,19 @@ ended** (disbanded/died while you listened, graves dug up, elders — INSIGHTS.L
 sound drifted (yearly DNA drift) · When the taste turned (underground share of discoveries) ·
 How the map moved · Where the taste comes from · The streak · Milestones · Obsessions · Flameouts ·
 The constants · Their era · The incubation · Album weeks · Comebacks · One-day wonders ·
-After midnight · First contact · Heaviest day of every year.
+After midnight · First contact · Heaviest day of every year. **Phase 3 (2026-07-07):** How you
+listen (sessions/sittings/binge + album front-to-back) · What follows what (segue graph) · Music
+for a season (seasonality) · The chapters of your taste (auto-segmented eras) · The shape of an
+obsession (lifecycle: flameout/perennial + "burning now" flameout prediction).
 
 ### Explore (the converged digger; reflowed 2026-07-05)
 One filter set — **time** (year chips + "play the decade"), **genre** (families → subgenres),
 **mood quadrant** (valence×energy zones) — over one universe (~6,000 artists). Left surface
 toggles **texture map** (subgenre scatter) ⇄ **mood lens** (quadrant + facts). Right: ranked
-artists/albums/tracks (full-library media-index, **10/20/40 selector**, PC fixed-height scroll
-window). **Below the module**: the by-sound **sort row** (plays → energy/mood/…/most obscure),
+artists/albums/tracks (full-library media-index; **8/16/24/32 count buttons + a "load more" that
+reveals rows *beyond* the base** — visible = base+extra; buttons set the base & reset the
+expansion, load-more adds +24 and grows the media pool, works for all three tabs; unified
+2026-07-07). PC fixed-height scroll window. **Below the module**: the by-sound **sort row** (plays → energy/mood/…/most obscure),
 then the "mood over the years" arc, then the **genre families as a 6-column grid** (3-col ≤1250px,
 1-col ≤760px; each family's subgenre list capped + scrollable). The Rhythm clock-cell filter was **removed** (clock moved to
 Calendar). Subgenre spelling variants (hip hop/hip-hop, nu metal, dnb…) merge via `SUB_CANON` in
@@ -313,7 +322,9 @@ artists), rescoped by map selection. Click a country/city → detail blob (top a
 songs + Sound DNA for that place, lazy geo-detail.js). Breakdown list with flags.
 
 ### Artist page (kept top-400; PC composition 2026-07-04)
-Rank/est/origin header with **gender glyph + active/disbanded/deceased badge** (`ArtistMeta`);
+Rank/est/origin header with **gender glyph + active/disbanded/deceased badge** (`ArtistMeta`) +
+a **Needle Drop button** (2026-07-07 — plays the artist's most-played track that has a preview
+hash, falling through to the next; reuses `ShNeedle` + lazy `track-previews.js`);
 on PC: **bio full-width** → **row 2: Sound DNA (narrow 224px — radar with the tempo→followers
 list stacked BENEATH at radar width) · Sounds-like (fills the freed slot) · Top tracks ·
 Albums** → **bottom row: How-they-played-out + family tree at their ~⅓ widths, CENTERED
@@ -327,7 +338,9 @@ Cover (real or generative), release year/type/label (Spotify archive), stats (pl
 library rank), **Album Audio DNA** radar (dashed = your average) + bars, **Where it sits**
 (mood MiniQuadrant + taste percentiles), **Your history** (year sparkline), tracklist ordered by
 real track numbers with ★ standout + play bars (per-track mood dots removed 2026-07-04 —
-energy/positivity live in the row tooltip); sibling albums.
+energy/positivity live in the row tooltip); sibling albums. Stats also show **"N× front-to-back"**
+(sessions layer, `SESSIONS.sittings.byAlbum`). The **back button goes UP to the album's artist**
+("← <artist>"), not out to Explore (2026-07-07).
 
 ### Track page
 Header (track no, duration, explicit), **Audio DNA** radar (6 axes + dashed library average) +

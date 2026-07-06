@@ -80,6 +80,21 @@ also template prep. **Net cold-first-paint win: −700 KB gz (Babel gone) − ~4
      Re-run after scrobbles accrue; process the queue locally; the snapshot advances.
    - Still to do: run the backlog through Claude on real lyrics · 5% spot-check-vs-lyrics as
      the batch norm · style gate (no "explores themes of…") · shard the file when it next grows.
+   - **⏳ FABLE INTERPRETATION ANALYSIS — IN PROGRESS, circle back (Fuad, 2026-07-07).** Fuad wants
+     to generate lyric "what-it's-about" reads with **Fable 5** and weigh it against Opus.
+     **Token finding (measured on the existing bake-off):** token use is a **wash** — the task is
+     input-dominated (~253 tok/track of lyrics, *identical* for both models) and outputs are
+     near-equal (Opus ~34 vs Fable ~35 tok/read on the 9-track overlap; input:output ≈ 7:1, ~88%
+     input). So it's a **pricing + quality** call, NOT an efficiency one. Caveat: the bake-off
+     Fable run used **direct generation, no extended thinking** — turning thinking on would add
+     output tokens for harder lyrics.
+     **Assets already in `../../.sptmp`:** `bakeoff-batch.json` (40 tracks + lyrics),
+     `bakeoff-out-{fable,opus,sonnet,haiku}.json`, `gen-fable.js` (Fable gen script),
+     `blurb-fable-candidates.md`, `compare-bakeoff.py`.
+     **Next step when we circle back:** run a fresh Fable pass on a slice of the 270-track
+     promotion backlog (real, Fuad-relevant tracks) for a head-to-head QUALITY comparison vs
+     Opus/Sonnet, then decide the model for the pipeline going forward. (Quality on the bake-off
+     sample looked comparable to Opus — concise, faithful.)
 
 **⏸ PARKED — rest of Phase 2 (2026-07-07). Items 3–5 are GATED on the design deliberations
 below (LIMITATIONS §6b) — decide the layout/structure BEFORE building:**
@@ -109,6 +124,10 @@ below (LIMITATIONS §6b) — decide the layout/structure BEFORE building:**
 - ✅ Fixed the **Overview map-band row-shift on genre filter** — the taste-flow streamgraph grew
   with its series count (families vs a genre's subgenres), inflating grid row 1 and shoving the
   deepest-places/stats/calendar row down. Pinned the flow height (`fixedH`) in the map band.
+- ✅ **Explore "load more" unified with the 8/16/24/32 count buttons** — visible count = base
+  (button) + extra (load-more, +24/click, can exceed 32); buttons set the base and reset the
+  expansion (reversible); now works for artists too; pool fetches `visN + 40` lookahead. *(Load-
+  more step is +24 — trivially tunable if Fuad wants bigger/smaller jumps.)*
 
 ### Phase 3 · The sessions layer — ✅ COMPLETE 2026-07-07 (pure CSV, all live)
 1. ✅ **Session reconstruction** (>30-min gap) + **album front-to-back** → INSIGHTS.SESSIONS
