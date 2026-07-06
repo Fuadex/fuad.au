@@ -232,9 +232,10 @@ legacy-route to Overview). `#calendar/YYYY-MM-DD` deep-opens a specific day. Det
 `#explore/tag` (seeds a genre filter). **Explore also serializes its full active slice into the
 hash** (`#explore/y=2019;s=Industrial;m=dark-intense;c=1.5.9;k=albums`) — bookmarkable and
 refresh-proof; `;`-separated because parseHash url-decodes once. Legacy routes
-(charts/clock/sound/eras/mood → explore, journey → map) still resolve. **The Overview date
-filter (`#overview/y=2019`, `p=month~2019-06`) and the Shelves mode/lens (`#shelves/l=mood`,
-`m=wrap`) also serialize into the hash** (Phase 1) — bookmarkable/refresh-proof like Explore.
+(charts/clock/sound/eras/mood → explore, journey → map) still resolve. **The Overview date +
+map genre/mode filter (`#overview/y=2019`, `p=month~2019-06`, `f=5`, `s=<sub>`, `md=country`)
+and the Shelves mode/lens (`#shelves/l=mood`, `m=wrap`) also serialize into the hash** (Phase 1)
+— bookmarkable/refresh-proof like Explore. (Map place-selection isn't serialized yet.)
 Global: `/` opens search;
 popover layer; tweaks drawer.
 
@@ -255,9 +256,11 @@ popover layer; tweaks drawer.
   header; clicking a selected city bubble again also deselects. MapFlow's interactive legend
   is the only genre legend (static FAMILIES strip removed 2026-07-04; metric gradient still
   shows for by-sound colouring). Global "clear filters" button stays in the band head.
-  MapView reports filtered totals up so the **stat strip (hours + distinct artists, span 8)
-  reacts to the active filter**; **avg/day, share-of-history and heaviest-day recompute for the
-  active date filter too** (Phase 1, from `day-series.js`); heaviest day beside it (span 4); the "Right now" insight
+  MapView reports filtered totals up (`fStats`, incl. a `slice` flag) so the **stat strip
+  reacts to the active filter**: hours + distinct artists, and **avg/day + share-of-history
+  follow the place/genre slice as well as the date filter** (Phase 1 — `fStats.plays` folded
+  with `day-series.js`); **heaviest-day** recomputes for a date window but stays lifetime under
+  a place/genre-only filter (per-slice heaviest needs a heavier export); the "Right now" insight
   feed runs full-width below, 4 cards across. Calendar year-scrub still drives the map;
   day/week click filters Results via calendar-detail. ⚠ day-level map *dots* filtering
   still needs a per-day geography export.
