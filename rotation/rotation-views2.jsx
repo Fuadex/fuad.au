@@ -480,6 +480,12 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   // last.fm/by-sound switch in the header (Fuad 2026-07-07)
   const [soundCount, setSoundCount] = React.useState(8);
   const [soundOpen, setSoundOpen] = React.useState(false);
+  // 30-s preview hashes for the header "needle drop" (plays the artist's most-played playable song)
+  const [prevReady, setPrevReady] = React.useState(!!window.ROTATION_PREVIEWS);
+  React.useEffect(() => {
+    if (window.ROTATION_PREVIEWS) { setPrevReady(true); return; }
+    const s = document.createElement("script"); s.src = "track-previews.js"; s.onload = () => setPrevReady(true); document.head.appendChild(s);
+  }, []);
   // artists outside the kept 205 still rank in Explore — give them a lightweight page
   // (return AFTER hooks so hook order stays stable across navigations).
   if (!full && R.expById && R.expById[id]) return <MiniArtistView a={R.expById[id]} go={go} />;
@@ -500,6 +506,15 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   // globally-capped lists. NIN gets all their top tracks, Midori gets theirs, etc.
   const albums = a.topAlbums || [];
   const tracks = a.topTracks || [];
+  // "needle drop" for the artist: the most-played track that actually has a playable preview
+  // (fall through to the next if the top one has no hash). prevReady re-renders on load.
+  const needleKey = (() => {
+    const P = window.ROTATION_PREVIEWS; if (!P || !tracks.length) return null;
+    for (const tr of tracks.slice().sort((x, y) => y.plays - x.plays)) {
+      const k = R.slug(a.name) + "~" + R.slug(tr.title); if (P[k]) return k;
+    }
+    return null;
+  })();
   // Search ALL real concerts (not just the chosen city) for this artist's upcoming dates.
   const upcoming = Object.values(R.CONCERTS || {}).flat().filter(g => g.artistId === a.id)
     .sort((a, b) => a.date.localeCompare(b.date)).slice(0, 4);
@@ -537,7 +552,8 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               {a.spotGenres.map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)} style={{ fontSize: 10.5, padding: "3px 8px", borderColor: "var(--line)" }}>{s}</span>)}
             </div>
           )}
-          <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap", alignItems: "center" }}>
+            {needleKey && <ShNeedle trackKey={needleKey} hue={a.hue} />}
             <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
@@ -1114,7 +1130,8 @@ function AlbumView({ id, go }) {
 
   return (
     <div className="r-view tv-page">
-      <button className="r-back" onClick={() => go("explore")}>← explore</button>
+      {/* an album's natural parent is its artist — go up to them, not back out to Explore */}
+      <button className="r-back" onClick={() => (known ? go("artist", artistId) : go("explore"))}>← {known ? data.artist : "explore"}</button>
       <div className="tv-head" style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 26 }}>
         <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
