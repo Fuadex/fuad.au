@@ -310,8 +310,9 @@ function ExploreView({ t, go, setPop, seed }) {
   const [lens, setLens] = React.useState("texture");      // left surface: "texture" map or "mood" quadrant
   const [moodZone, setMoodZone] = React.useState(null);   // active valence×energy quadrant filter, or null
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
-  const [limit, setLimit] = React.useState(40);           // album/track list depth (load-more grows it)
-  const [showN, setShowN] = React.useState(16);           // visible rows (8/16/24/32; default 16 — Fuad 2026-07-07)
+  const [showN, setShowN] = React.useState(16);           // base visible rows (8/16/24/32 buttons; default 16)
+  const [extra, setExtra] = React.useState(0);            // extra rows revealed by "load more" beyond the base;
+  const visN = showN + extra;                             //   reset by the count buttons and by any filter change
   const [disp, setDisp] = React.useState("list");         // ranked results: list ⇄ cover grid (Fuad 2026-07-07)
   const [ref, seen] = useInView();
 
@@ -404,12 +405,15 @@ function ExploreView({ t, go, setPop, seed }) {
   }, [R, mediaReady]);
   const mediaItems = React.useMemo(() => {
     if (kind === "artists" || !mediaReady || !mediaArtMeta) return null;
-    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { year, fam, subIdx, cells, moodZone }, limit);
-  }, [kind, mediaReady, mediaArtMeta, year, fam, subIdx, cells, moodZone, limit, R]);
+    // fetch a lookahead past what's visible so "load more" has rows ready and `more` is detectable
+    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { year, fam, subIdx, cells, moodZone }, visN + 40);
+  }, [kind, mediaReady, mediaArtMeta, year, fam, subIdx, cells, moodZone, visN, R]);
   const items = (kind !== "artists" && mediaItems) ? mediaItems.items : exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone });
-  const more = !!(mediaItems && mediaItems.more);
-  // reset depth when the slice changes
-  React.useEffect(() => { setLimit(40); }, [kind, year, fam, subIdx, cells, moodZone]);
+  // more rows to reveal? true whenever the ranked pool has more than we're currently showing —
+  // works for artists (full list) AND albums/tracks (media pool), so load-more applies to all three.
+  const more = items.length > visN;
+  // a new slice resets the load-more expansion (the chosen 8/16/24/32 base stays)
+  React.useEffect(() => { setExtra(0); }, [kind, year, fam, subIdx, cells, moodZone]);
   // mood-lens slices. The quadrant renders a STABLE universe of points (so dots persist across filter
   // changes and can transition opacity/size) and toggles which are "active" for the current slice;
   // facts/arc reflect the chosen zone too.
@@ -492,15 +496,15 @@ function ExploreView({ t, go, setPop, seed }) {
               <button data-on={disp === "grid"} onClick={() => setDisp("grid")}>grid</button>
             </div>
             <div className="r-seg">
-              {[8, 16, 24, 32].map(n => <button key={n} data-on={showN === n} onClick={() => setShowN(n)}>{n}</button>)}
+              {[8, 16, 24, 32].map(n => <button key={n} data-on={extra === 0 && showN === n} onClick={() => { setShowN(n); setExtra(0); }}>{n}</button>)}
             </div>
           </div>
           {cells.size > 0 && kind !== "artists" && <div className="r-mono xp-note">filtered to {kind} by artists active in the selected slots</div>}
           {items.length === 0
             ? <div className="r-card xp-empty">Nothing in this slice — loosen a filter.</div>
-            : <div className="xp-rank-win"><RankRows items={items.slice(0, showN)} go={go} kind={kind} disp={disp} /></div>}
-          {more && <button className="xp-loadmore" onClick={() => setLimit(l => l + 40)}>load more {kind} ↓</button>}
-          {kind !== "artists" && mediaItems && <div className="r-mono xp-note" style={{ marginTop: 8, textAlign: "center" }}>full library · {fmt(items.length)} shown</div>}
+            : <div className="xp-rank-win"><RankRows items={items.slice(0, visN)} go={go} kind={kind} disp={disp} /></div>}
+          {more && <button className="xp-loadmore" onClick={() => setExtra(e => e + 24)}>load more {kind} ↓</button>}
+          {kind !== "artists" && mediaItems && <div className="r-mono xp-note" style={{ marginTop: 8, textAlign: "center" }}>full library · {fmt(Math.min(visN, items.length))} shown</div>}
         </div>
       </div>
 
