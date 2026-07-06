@@ -304,6 +304,7 @@ a.r-link:hover { color: var(--ink); }
 .tv-switch-btns button[data-m="sonnet"][data-on="true"] { color: oklch(0.72 0.15 235); }
 .tv-switch-btns button[data-m="opus"][data-on="true"] { color: oklch(0.73 0.16 295); }
 .tv-switch-btns button[data-m="fable"][data-on="true"] { color: oklch(0.78 0.14 60); }
+.tv-switch-btns button[data-m="web"][data-on="true"] { color: oklch(0.72 0.06 200); }
 .tv-switch-body { position: relative; padding-bottom: 20px; }
 .tv-switch-txt { font-family: var(--serif); font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
 .tv-switch-brand { position: absolute; right: 0; bottom: 0; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
@@ -312,6 +313,7 @@ a.r-link:hover { color: var(--ink); }
 .tv-switch-brand[data-m="sonnet"] { color: oklch(0.64 0.12 235); }
 .tv-switch-brand[data-m="opus"] { color: oklch(0.66 0.13 295); }
 .tv-switch-brand[data-m="fable"] { color: oklch(0.73 0.12 60); }
+.tv-switch-brand[data-m="web"] { color: oklch(0.62 0.05 200); }
 .tv-switch-note { font-size: 8.5px; color: var(--ink-faint); margin-top: 8px; letter-spacing: .05em; }
 /* needle-drop preview button (Shelves + Album pages) — global so it's styled off the Shelves view too */
 .sh-needle { padding: 7px 12px; border-radius: 999px; cursor: pointer; font-family: var(--mono); font-size: 10px;
