@@ -65,12 +65,18 @@ also template prep. **Net cold-first-paint win: −700 KB gz (Babel gone) − ~4
 - **Map *dots* re-weight by a calendar day** (per-day geography export) + **place-selection URL
   state** (needs geo-load coordination). Both nice-to-haves; neither blocks the dynamism goal.
 
-### Phase 2 · Content quality pass (~1–2 sessions)
+### Phase 2 · Content quality pass (~1–2 sessions) — IN PROGRESS
 1. **Taste-standouts tighten**: gate ≥85/≤15 (from 72/28) + comparative wording ("slower
    than 9 of 10 songs you play"); module hides when nothing clears the bar.
-2. **llm-about ops**: promotion job (track climbs into top-1000 → queue Sonnet+Opus reads) ·
-   5% spot-check-vs-lyrics as the batch norm · style gate (no "explores themes of…") ·
-   shard the file by artist first-letter when it next grows.
+2. **llm-about ops**:
+   - ✅ **Promotion queue automated** (`llm-about-promotions.js`, 2026-07-07): lists the top-N
+     played tracks missing the Sonnet/Opus tier and diffs a snapshot to show which tracks
+     NEWLY climbed in ("promotions that happened"). Writes `../../.sptmp/llm-promo-queue.json`
+     (backlog + haiku context) for the **local Claude read pass** — the read *text* can't be
+     scripted, but the work list now is. First run: 728/1000 covered, **272 backlog**.
+     Re-run after scrobbles accrue; process the queue locally; the snapshot advances.
+   - Still to do: run the backlog through Claude on real lyrics · 5% spot-check-vs-lyrics as
+     the batch norm · style gate (no "explores themes of…") · shard the file when it next grows.
 3. **Surface the text layer**: "read of the day" insight provider on Overview + 📖 marker on
    track rows that have reads; blurb coverage meter.
 4. Honesty notes: "no audio data" line where radar/quadrant cards silently vanish.
