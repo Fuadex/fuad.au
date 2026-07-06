@@ -1269,11 +1269,12 @@ function BlurbSwitcher({ id, about }) {
   React.useEffect(() => { setPick(null); }, [id]);   // new song → default read; clicks never clobbered
   const llm = (window.ROTATION_LLM_ABOUT && window.ROTATION_LLM_ABOUT[id]) || null;   // real pipeline read
   const reads = (window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null; // bake-off multi-model
-  // buttons: the three reads we ran (Haiku · Sonnet · Opus) then Genius (human). Default = the
-  // chosen source (Haiku gist, or Sonnet where it recovered/sharpened). Bake-off songs keep their set.
+  // buttons: the model reads (Haiku · Sonnet · Opus), a Web read (researched from web sources when
+  // the lyrics dump had none), then Genius (human). Default = the chosen source (llm.src). Bake-off
+  // songs keep their set.
   const sources = [];
   if (llm) {
-    for (const [m, label] of [["haiku", "Haiku"], ["sonnet", "Sonnet"], ["opus", "Opus"]]) if (llm[m]) sources.push({ m, label, text: llm[m] });
+    for (const [m, label] of [["haiku", "Haiku"], ["sonnet", "Sonnet"], ["opus", "Opus"], ["web", "Web"]]) if (llm[m]) sources.push({ m, label, text: llm[m] });
   } else if (reads) {
     for (const [m, label] of BLURB_ORDER) if (reads[m]) sources.push({ m, label, text: reads[m] });
   }
