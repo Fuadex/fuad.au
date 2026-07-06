@@ -60,6 +60,24 @@ function RotationApp() {
   const R = window.ROTATION;
   const live = useLiveNow();
 
+  // Deferred data (Phase 0): music-core.js paints the Overview; the rest of the dataset
+  // (EXPLORE universe, albums, audio DNA, per-artist clocks) is injected AFTER first paint
+  // so cold loads are ~445 KB gz lighter. Every non-Overview view reads a deferred key, so
+  // it's gated below until rest lands (in practice always loaded before the user navigates;
+  // a direct deep-link to a secondary view on a cold load sees a brief loader).
+  const [restReady, setRestReady] = React.useState(() => !!(window.ROTATION && window.ROTATION._restLoaded));
+  React.useEffect(() => {
+    if (!R || R._restLoaded) { setRestReady(true); return; }
+    window.__rotRest = () => setRestReady(true);
+    const s = document.createElement("script");
+    s.src = "music-rest.js";
+    s.onerror = () => setRestReady(true);   // fail-open: mount views (deferred reads are guarded) rather than hang
+    document.head.appendChild(s);
+    // safety net in case onload/callback never fire
+    const tid = setTimeout(() => setRestReady(r => r || !!(window.ROTATION && window.ROTATION._restLoaded)), 8000);
+    return () => clearTimeout(tid);
+  }, []);
+
   const go = React.useCallback((view, id) => {
     setPop(null);
     const v = LEGACY[view] || view;
@@ -143,16 +161,24 @@ function RotationApp() {
       </header>
 
       <Boundary resetKey={v + "/" + (route.id || "")}>
-        {v === "overview" && <OverviewView t={t} go={go} />}
-        {v === "stories" && <StoriesView t={t} go={go} seed={route.id} />}
-        {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} seed={route.id} />}
-        {v === "shelves" && <ShelvesView go={go} />}
-        {v === "calendar" && <CalendarView go={go} seed={route.id} />}
-        {v === "gigs" && <GigsView go={go} />}
-        {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
-        {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
-        {v === "album" && <AlbumView id={route.id} go={go} />}
-        {v === "track" && <TrackView id={route.id} go={go} />}
+        {/* Overview paints on music-core alone. Every other view reads a deferred key, so it
+            waits for music-rest — gated views mount FRESH once ready, so their useMemos run
+            with populated data (no stale-empty caching). */}
+        {v === "overview"
+          ? <OverviewView t={t} go={go} restReady={restReady} />
+          : !restReady
+            ? <div className="r-rest-wait r-mono">loading your library…</div>
+            : (<React.Fragment>
+                {v === "stories" && <StoriesView t={t} go={go} seed={route.id} />}
+                {v === "explore" && <ExploreView t={t} go={go} setPop={setPop} seed={route.id} />}
+                {v === "shelves" && <ShelvesView go={go} />}
+                {v === "calendar" && <CalendarView go={go} seed={route.id} />}
+                {v === "gigs" && <GigsView go={go} />}
+                {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
+                {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
+                {v === "album" && <AlbumView id={route.id} go={go} />}
+                {v === "track" && <TrackView id={route.id} go={go} />}
+              </React.Fragment>)}
       </Boundary>
 
       <footer className="r-foot">
@@ -207,6 +233,9 @@ function RotationApp() {
           cursor: pointer; transition: transform .15s, border-color .15s; }
         .tw-accents button:hover { transform: scale(1.1); }
         .tw-accents button[data-on="true"] { border-color: var(--ink); }
+        .r-rest-wait { min-height: 60vh; display: flex; align-items: center; justify-content: center;
+          color: var(--ink-faint); font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+          animation: bootpulse 1.6s ease-in-out infinite; }
       `}</style>
     </div>
   );

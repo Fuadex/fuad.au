@@ -5,12 +5,19 @@ const here = (f) => path.join(__dirname, f);
 let failed = 0;
 const ok = (cond, msg) => { if (cond) console.log("  ok  " + msg); else { console.error("  FAIL " + msg); failed++; } };
 
-// 1) music-data.js evaluates and carries every key the views consume
+// 1) music-core.js + music-rest.js evaluate and, merged, carry every key the views consume.
+//    (The runtime loads core eagerly and injects rest after first paint; evaluating both in one
+//    context reconstitutes the full window.ROTATION, since rest Object.assigns into it.)
 const ctx = { window: {} };
 vm.createContext(ctx);
-vm.runInContext(fs.readFileSync(here("music-data.js"), "utf8"), ctx, { filename: "music-data.js" });
+vm.runInContext(fs.readFileSync(here("music-core.js"), "utf8"), ctx, { filename: "music-core.js" });
+const core = ctx.window.ROTATION;
+ok(!!core, "music-core.js evaluates → window.ROTATION");
+ok(core && core._restLoaded === false && core.EXPLORE.length === 0 && core.EXPLORE_N > 0,
+  "core paints alone: rest stubbed empty, EXPLORE_N present");
+vm.runInContext(fs.readFileSync(here("music-rest.js"), "utf8"), ctx, { filename: "music-rest.js" });
 const R = ctx.window.ROTATION;
-ok(!!R, "music-data.js evaluates → window.ROTATION");
+ok(!!R && R._restLoaded === true, "music-rest.js merges → _restLoaded");
 for (const k of ["ARTISTS", "ALBUMS", "TRACKS", "GENRES", "YEARS", "TOTALS", "INSIGHTS", "EXPLORE", "SUBS",
   "FAMILIES", "CLOCK", "CLOCK_BY_YEAR", "ARTIST_CLOCK", "SUB_ARTISTS", "AUDIO", "AUDIO_DIST", "GENRE_FLOW",
   "THUMBS", "SPOTIMG", "TREND", "NOW", "RECENT", "ERAS"])

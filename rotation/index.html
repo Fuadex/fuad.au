@@ -50,7 +50,10 @@
 <script src="react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-<script src="music-data.js"></script>
+<!-- music-core.js = window.ROTATION with everything first paint needs; the deferred rest
+     (EXPLORE universe, albums, audio, per-artist clocks) is injected by rotation-app after
+     mount via music-rest.js, which merges in and flips ROTATION._restLoaded. -->
+<script src="music-core.js"></script>
 <script src="live-data.js"></script>
 <script type="text/babel" src="rotation-live.jsx"></script>
 <script type="text/babel" src="tweaks-panel.jsx"></script>

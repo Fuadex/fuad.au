@@ -40,9 +40,11 @@ const slugFallback = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(
 let R = null;
 try {
   const ctx = { window: {}, console: { log() {}, error() {} } };
-  vm.runInNewContext(fs.readFileSync(path.join(__dirname, "music-data.js"), "utf8"), ctx);
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "music-core.js"), "utf8"), ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "music-rest.js"), "utf8"), ctx);   // merges EXPLORE/AUDIO/expById
   R = ctx.window.ROTATION;
-} catch (e) { console.error("could not load music-data.js (degrading): " + e.message); }
+} catch (e) { console.error("could not load music-core/rest (degrading): " + e.message); }
 
 const idFor = (name) => (R && (R.idForName(name) || R.slug(name))) || slugFallback(name);
 const hueFor = (name) => { if (!R) return 210; const e = R.byId[idFor(name)] || (R.expById && R.expById[idFor(name)]); return e && e.hue != null ? e.hue : 210; };

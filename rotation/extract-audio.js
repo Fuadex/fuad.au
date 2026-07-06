@@ -12,7 +12,9 @@
 const duckdb = require("duckdb"), fs = require("fs"), vm = require("vm");
 
 const ctx = { window: {}, console };
-vm.runInNewContext(fs.readFileSync("music-data.js", "utf8"), ctx);
+vm.createContext(ctx);
+vm.runInContext(fs.readFileSync("music-core.js", "utf8"), ctx);
+vm.runInContext(fs.readFileSync("music-rest.js", "utf8"), ctx);   // merges EXPLORE (used below)
 const R = ctx.window.ROTATION;
 const names = [...new Set([...R.ARTISTS.map(a => a.name), ...R.EXPLORE.map(a => a.name)])];
 fs.writeFileSync(".names.tmp.json", JSON.stringify(names.map(n => ({ name: n }))));
