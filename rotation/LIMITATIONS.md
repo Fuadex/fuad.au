@@ -73,6 +73,20 @@ map view isn't bookmarkable yet. Deferred.
 - `blurb-demo.js` still ships (22 tracks' reads not yet folded into `llm-about`).
 - Tracks/artists without audio data silently drop the radar/quadrant cards (no "no data" note).
 
+## 6b. Design decisions to deliberate before building (Fuad, 2026-07-07)
+
+Surfacing the deep features is wanted, but needs design thought first — don't just bolt on:
+- **Surface the text layer (Phase 2 items 1–3)** — a "read of the day" on Overview + 📖 markers
+  on track rows + a coverage meter. **Blocked on: how to rearrange the Overview** to fit new
+  modules (it's already dense). Decide the Overview layout before adding.
+- **"No audio data" honesty note (Phase 2 item 4)** — needs a deliberate implementation (where/how
+  it reads as data, not an error) rather than a quick line.
+- **Stories is getting large** — it's fine to keep adding, but Stories itself wants a
+  **restructure**, possibly into a quasi-**book** (chapters/table-of-contents/paging, a real
+  reading experience) rather than one long feed. Do this thinking before piling on more cards.
+- **Artist-page Phase-3 strips (item 5)** — surfacing per-artist segues / lifecycle shape /
+  seasonality on the artist page. Cool, but future — pairs with the Stories restructure.
+
 ## 7. Platform nice-to-haves (deferred from Phase 0)
 
 - **ListenBrainz mirror** of the scrobble history (insurance) — needs Fuad's LB account/token.
