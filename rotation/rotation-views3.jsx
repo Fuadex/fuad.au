@@ -1059,6 +1059,36 @@ function StoriesView({ t, go, seed }) {
 
         <div className="st-chapter"><span>IV</span> Rhythms &amp; records</div>
 
+        {/* sessions — how you actually listen (Phase 3): sittings, binge-vs-shuffle, album runs */}
+        {I.SESSIONS && (() => {
+          const S = I.SESSIONS, L = S.longest[0], topAlb = S.sittings.top[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">How you listen</div>
+              <div className="st-big" data-link={L.artistId ? true : undefined} onClick={() => L.artistId && go("artist", L.artistId)}>
+                Your longest sitting: <em style={{ color: `oklch(0.78 0.14 ${L.hue})` }}>{fmt(L.tracks)} tracks</em> in one go —
+                {" "}{L.hours}h on {fmtDate(L.date)}{L.share >= 55 ? <>, almost all {L.artist}</> : null}.
+              </div>
+              <div className="st-sub">
+                {fmt(S.total)} listening sessions in all, a typical one {S.median} tracks long. <b style={{ color: "var(--ink)" }}>{S.bingeShare}%</b> of
+                your real sittings lock onto a single artist{topAlb ? <> — and you've played <b style={{ color: "var(--ink)" }}>{topAlb.album}</b> start-to-finish <b style={{ color: "var(--ink)" }}>{topAlb.count} times</b></> : null}.
+                The records you sit all the way through:
+              </div>
+              <div className="st-ug-cuts">
+                {S.sittings.top.slice(0, 8).map(a => (
+                  <div key={a.aid} className="st-ug-cut" data-link={true} onClick={() => go("album", a.aid)}>
+                    <GenCover hue={a.hue} name={a.album} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{a.album}</div>
+                      <div className="st-row-sub">{a.artist} · {a.count}× front-to-back</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* streak */}
         <section className="st-card st-hero">
           <div className="st-label">The streak</div>
