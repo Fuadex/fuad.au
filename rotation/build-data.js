@@ -1849,11 +1849,52 @@ let SEASONALITY = null;
   console.log(`seasonality: ${seasonal.length} artists ≥150 plays/2+ yrs · ${top.length} strongly seasonal (≥50% in a 3-mo window)`);
 }
 
+// ─────────── LIFECYCLE — the shape of each obsession (Phase 3) ───────────
+// Per-artist monthly play curves, classified by trajectory: a fast burst that ended (flameout),
+// a long steady presence (perennial), or a slow climb (slow-burn). Plus the predictive twist —
+// artists burning brightest right now, most of their plays crammed into the last few months
+// (the flameout shape, mid-flight).
+let LIFECYCLE = null;
+{
+  const monthIdx = (ms) => { const d = new Date(ms); return d.getUTCFullYear() * 12 + d.getUTCMonth(); };
+  const fmtMo = (mi) => Math.floor(mi / 12) + "-" + String(mi % 12 + 1).padStart(2, "0");
+  const newestMo = monthIdx(newestMs), cutoff = newestMs - 120 * 86400e3;
+  const art = new Map();
+  for (const [artist, , , ms] of scrobbles) {
+    let a = art.get(artist); if (!a) { a = { m: new Map(), tot: 0, first: ms, last: ms, recent: 0 }; art.set(artist, a); }
+    const mi = monthIdx(ms); a.m.set(mi, (a.m.get(mi) || 0) + 1); a.tot++;
+    if (ms < a.first) a.first = ms; if (ms > a.last) a.last = ms;
+    if (ms >= cutoff) a.recent++;
+  }
+  const flameout = [], perennial = [], slowburn = [], burning = [];
+  for (const [name, a] of art) {
+    if (a.tot < 120) continue;
+    const firstMo = monthIdx(a.first), lastMo = monthIdx(a.last), span = lastMo - firstMo + 1;
+    let peakMo = firstMo, peakN = 0;
+    for (const [mi, n] of a.m) if (n > peakN) { peakN = n; peakMo = mi; }
+    let bestWin = 0;   // biggest 6-month window's share of all plays = concentration
+    for (let s = firstMo; s <= lastMo; s++) { let w = 0; for (let k = s; k < s + 6; k++) w += (a.m.get(k) || 0); if (w > bestWin) bestWin = w; }
+    const conc = bestWin / a.tot, sincePeak = newestMo - peakMo, t2p = span > 1 ? (peakMo - firstMo) / (span - 1) : 0;
+    const base = { name, id: slug(name), hue: hueFor(name), plays: a.tot, peakM: fmtMo(peakMo) };
+    if (conc >= 0.55 && sincePeak >= 12) flameout.push({ ...base, conc: Math.round(conc * 100) });
+    else if (span >= 48 && (newestMo - lastMo) <= 12 && conc < 0.4) perennial.push({ ...base, years: Math.round(span / 12) });
+    else if (t2p >= 0.6 && span >= 18) slowburn.push({ ...base });
+    if (a.recent >= 35) burning.push({ name, id: slug(name), hue: hueFor(name), recentPlays: a.recent, plays: a.tot, flarePct: Math.round(a.recent / a.tot * 100), since: iso(a.first).slice(0, 7) });
+  }
+  const byPlays = (arr) => arr.sort((x, y) => y.plays - x.plays);
+  burning.sort((x, y) => y.recentPlays - x.recentPlays);
+  LIFECYCLE = {
+    flameout: byPlays(flameout).slice(0, 5), perennial: byPlays(perennial).slice(0, 5), slowburn: byPlays(slowburn).slice(0, 4),
+    burningNow: burning.slice(0, 6),
+  };
+  console.log(`lifecycle: ${flameout.length} flameouts · ${perennial.length} perennials · ${slowburn.length} slow-burns · ${burning.length} burning now`);
+}
+
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
   AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN, LANGUAGE, LINEUPS, MOOD, THEMES,
   STREAK: { best, start: bestStart, end: bestEnd, current },
-  UNDERGROUND, GEOGRAPHY, STYLE_ATLAS, SESSIONS, SEASONALITY,
+  UNDERGROUND, GEOGRAPHY, STYLE_ATLAS, SESSIONS, SEASONALITY, LIFECYCLE,
 };
 
 // ─────────── SEARCH INDEX (separate lazy-loaded file) ───────────
