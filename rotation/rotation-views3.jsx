@@ -854,6 +854,43 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+        {/* taste eras — auto-segmented chapters (Phase 3): where the genre mix actually shifted */}
+        {I.TASTE_ERAS && I.TASTE_ERAS.eras && I.TASTE_ERAS.eras.length >= 3 && (() => {
+          const eras = I.TASTE_ERAS.eras;
+          const yr = (m) => m.slice(0, 4);
+          const big = eras.slice(1).filter(e => e.shift && e.shift.up).sort((a, b) => b.shift.up.d - a.shift.up.d)[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">The chapters of your taste</div>
+              <div className="st-big">
+                {big
+                  ? <>Around {yr(big.start)}, <em style={{ color: `oklch(0.78 0.14 ${big.shift.up.hue})` }}>{big.shift.up.fam}</em> took over — up {big.shift.up.d} points in one turn.</>
+                  : <>Your taste falls into <em>{eras.length} distinct chapters</em>.</>}
+              </div>
+              <div className="st-sub">
+                Not hand-drawn — found by watching your genre mix month by month and marking where it
+                genuinely shifted. {eras.length} chapters:
+              </div>
+              <div style={{ display: "grid", gap: 13, marginTop: 6 }}>
+                {eras.map((e, i) => (
+                  <div key={i} style={{ display: "grid", gridTemplateColumns: "88px 1fr", gap: 14, alignItems: "start" }}>
+                    <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", paddingTop: 2, whiteSpace: "nowrap" }}>{yr(e.start)}–{yr(e.end)}</div>
+                    <div style={{ minWidth: 0 }}>
+                      <div style={{ display: "flex", height: 9, borderRadius: 5, overflow: "hidden", background: "var(--bg-3)", marginBottom: 6 }}>
+                        {e.topFams.map((f, j) => <div key={j} title={`${f.fam} ${f.share}%`} style={{ width: f.share + "%", background: `oklch(0.62 0.15 ${f.hue})` }} />)}
+                      </div>
+                      <div style={{ fontSize: 12, color: "var(--ink-soft)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        {e.topFams.map(f => f.fam).join(" · ")}
+                        {e.shift && e.shift.up && <span style={{ color: `oklch(0.8 0.13 ${e.shift.up.hue})`, marginLeft: 8 }}>↑ {e.shift.up.fam}</span>}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* audio DNA drift — how the play-weighted average sound profile shifted year over year */}
         {I.AUDIO_DRIFT && I.AUDIO_DRIFT.years && I.AUDIO_DRIFT.years.length >= 12 && (() => {
           // skip pre-scrobbling synthetic years (undated remapped scrobbles)

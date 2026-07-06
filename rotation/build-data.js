@@ -2228,6 +2228,76 @@ let GENRE_FLOW = null;
   GENRE_FLOW = { families: FAMILIES.map((f, i) => ({ i, family: f.family, hue: f.hue })), years: flowYears.map((y, i) => ({ year: y, fams: famRows[i] })) };
 }
 
+// ─────────── TASTE_ERAS — auto-segmented chapters of your taste (Phase 3) ───────────
+// Build monthly genre-family mix vectors, then binary-segment the timeline at the points where
+// the mix shifts most (change-point detection). Each era = a stretch where your taste held a
+// shape; the boundaries + "what rose / what faded" are found, not hand-drawn. (Needs EXPLORE.s —
+// computed here, after EXPLORE is built, and attached to the already-assembled INSIGHTS.)
+{
+  const F = FAMILIES.length;
+  const artFam = new Map();
+  for (const a of EXPLORE) { if (a.s && a.s.length && SUBS[a.s[0]]) artFam.set(a.name, SUBS[a.s[0]].fam); }
+  const monthFam = new Map();   // "YYYY-MM" -> [F] covered plays
+  for (const [artist, , , ms] of scrobbles) {
+    const f = artFam.get(artist); if (f == null) continue;
+    const d = new Date(ms), key = d.getUTCFullYear() + "-" + String(d.getUTCMonth() + 1).padStart(2, "0");
+    let v = monthFam.get(key); if (!v) { v = new Array(F).fill(0); monthFam.set(key, v); }
+    v[f]++;
+  }
+  const pts = [];   // chronological normalized vectors with enough coverage
+  for (const key of [...monthFam.keys()].sort()) {
+    const v = monthFam.get(key), tot = v.reduce((a, b) => a + b, 0);
+    if (tot < 80) continue;
+    pts.push({ month: key, vec: v.map(x => x / tot), w: tot });
+  }
+  const MINLEN = 4, MAXERAS = 7;
+  const cost = (a, b) => {
+    let W = 0; const mean = new Array(F).fill(0);
+    for (let k = a; k <= b; k++) { const p = pts[k]; W += p.w; for (let f = 0; f < F; f++) mean[f] += p.vec[f] * p.w; }
+    for (let f = 0; f < F; f++) mean[f] /= W;
+    let c = 0;
+    for (let k = a; k <= b; k++) { const p = pts[k]; let d = 0; for (let f = 0; f < F; f++) { const e = p.vec[f] - mean[f]; d += e * e; } c += p.w * d; }
+    return c;
+  };
+  const bestSplit = (a, b) => {
+    const base = cost(a, b); let m = -1, gain = 0;
+    for (let s = a + MINLEN; s <= b - MINLEN + 1; s++) { const g = base - cost(a, s - 1) - cost(s, b); if (g > gain) { gain = g; m = s; } }
+    return { m, gain };
+  };
+  if (pts.length >= 2 * MINLEN) {
+    const total = cost(0, pts.length - 1);
+    const segs = [{ a: 0, b: pts.length - 1 }];
+    while (segs.length < MAXERAS) {
+      let pick = null, pi = -1;
+      for (let s = 0; s < segs.length; s++) { const { a, b } = segs[s]; if (b - a + 1 < 2 * MINLEN) continue; const sp = bestSplit(a, b); if (sp.m > 0 && (!pick || sp.gain > pick.gain)) { pick = sp; pi = s; } }
+      if (!pick || pick.gain < total * 0.04) break;   // stop when the best remaining split is marginal
+      const { a, b } = segs[pi]; segs.splice(pi, 1, { a, b: pick.m - 1 }, { a: pick.m, b });
+    }
+    segs.sort((x, y) => x.a - y.a);
+    const famName = (f) => (FAMILIES[f] || {}).family, famHue = (f) => (FAMILIES[f] || {}).hue || 0;
+    const eras = segs.map(s => {
+      const mean = new Array(F).fill(0); let W = 0, plays = 0;
+      for (let k = s.a; k <= s.b; k++) { const p = pts[k]; W += p.w; plays += p.w; for (let f = 0; f < F; f++) mean[f] += p.vec[f] * p.w; }
+      for (let f = 0; f < F; f++) mean[f] /= W;
+      const topFams = mean.map((v, f) => ({ f, v })).sort((a, b) => b.v - a.v).slice(0, 3).filter(x => x.v > 0.07)
+        .map(x => ({ fam: famName(x.f), hue: famHue(x.f), share: Math.round(x.v * 100) }));
+      return { start: pts[s.a].month, end: pts[s.b].month, plays, _mean: mean, topFams };
+    });
+    for (let i = 1; i < eras.length; i++) {
+      const prev = eras[i - 1]._mean, cur = eras[i]._mean;
+      const dz = cur.map((v, f) => ({ f, d: v - prev[f] }));
+      const up = dz.slice().sort((a, b) => b.d - a.d)[0], down = dz.slice().sort((a, b) => a.d - b.d)[0];
+      eras[i].shift = {
+        up: up.d > 0.05 ? { fam: famName(up.f), hue: famHue(up.f), d: Math.round(up.d * 100) } : null,
+        down: down.d < -0.05 ? { fam: famName(down.f), d: Math.round(-down.d * 100) } : null,
+      };
+    }
+    eras.forEach(e => delete e._mean);
+    INSIGHTS.TASTE_ERAS = { eras };
+    console.log(`taste eras: ${eras.length} chapters — ${eras.map(e => e.start.slice(0, 4) + (e.topFams[0] ? "/" + e.topFams[0].fam.split(" ")[0] : "")).join(" · ")}`);
+  }
+}
+
 // ─────────── ARTIST_FLOW — per kept artist, top albums/songs flowing over their active years ───────────
 // Powers a Journey-style streamgraph on each artist page. Per-album-per-year and per-song-per-year
 // counts from the dated scrobbles; trimmed to the artist's active span so the chart isn't padded.
