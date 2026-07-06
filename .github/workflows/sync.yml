@@ -67,8 +67,14 @@ jobs:
           path: rotation/fuadex.csv
           retention-days: 2
 
-      # 6) stage the whole hub (root launcher + every app in apps.json) into _site/
+      # 6) stage the whole hub (root launcher + every app in apps.json) into _site/.
+      #    Babel is needed to precompile rotation's .jsx → .js in the staged copy
+      #    (see stage-site.js). Installed here, in CI only — never committed.
+      - name: Install Babel (precompile only)
+        run: npm install --no-save @babel/standalone@7.29.0
       - name: Stage site
+        env:
+          CI: "true"
         run: node stage-site.js
 
       - uses: actions/upload-pages-artifact@v3

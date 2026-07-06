@@ -7,6 +7,7 @@
       "tagline": "20 years of listening, mapped.",
       "accent": "oklch(0.74 0.13 330)",
       "path": "/rotation/",
+      "precompile": true,
       "deploy": [
         "index.html", "favicon.svg", "og.png",
         "rotation-live.jsx", "tweaks-panel.jsx", "rotation-core.jsx", "rotation-insights.jsx",
