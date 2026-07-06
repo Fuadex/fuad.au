@@ -563,6 +563,11 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           <p style={{ fontFamily: "var(--serif)", fontSize: 15.5, lineHeight: 1.55, color: "var(--ink-soft)", margin: 0 }}>
             {a.bio.length > 620 ? a.bio.slice(0, 620).replace(/\s+\S*$/, "") + "…" : a.bio}
           </p>
+          {/* attribution — last.fm's API terms ask that wiki/bio text credit + link back to them */}
+          <a href={`https://www.last.fm/music/${encodeURIComponent(a.name)}/+wiki`} target="_blank" rel="noopener noreferrer"
+            style={{ display: "inline-block", marginTop: 10, fontFamily: "var(--mono)", fontSize: 9.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)", textDecoration: "none" }}>
+            via last.fm ↗
+          </a>
         </div>
       )}
 

@@ -97,6 +97,13 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 /* ───── view scaffolding ───── */
 .r-view { padding: calc(var(--pad) * 1.1) var(--pad) 120px; animation: rViewIn .5s cubic-bezier(.2,.7,.3,1); }
 @keyframes rViewIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+/* Accessibility: honour the OS "reduce motion" setting — neutralises the infinite animations
+   (boot pulse, live-dot pulse, spinning vinyl needle-drop) and long transitions for users who
+   opted out. useCountUp already snaps to the final value under this preference. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
 .r-viewhead { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px 40px;
   flex-wrap: wrap; margin-bottom: calc(var(--pad)*1.35); }
 .r-viewhead > div:first-child { flex: 1 1 auto; min-width: 0; }
