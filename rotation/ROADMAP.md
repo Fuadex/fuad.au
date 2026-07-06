@@ -92,16 +92,24 @@ also template prep. **Net cold-first-paint win: −700 KB gz (Babel gone) − ~4
    (the Phase 0 de-bloat that was deferred because it would drop those reads).
 7. Run the 270-track actionable promotion backlog locally through Claude.
 
-### Phase 3 · The sessions layer — richest untouched signal (~2–3 sessions, pure CSV)
-1. **Session reconstruction** (gap-threshold) + **album front-to-back detection** ("played
-   this album start-to-finish 14×"; longest sessions ledger) → album pages + Stories.
-2. **Segue graph**: within-session song adjacency — "after X you play Y 31% of the time";
-   top segues on artist pages + a Stories card.
-3. **Personal seasonality**: month-of-year fingerprints ("a winter band") + Shelves lens.
-4. **Era auto-segmentation**: change-point detection on monthly family/DNA vectors → your
-   taste's real chapters, as a Stories centrepiece (absorbs "Your portrait").
-5. **Obsession lifecycle curves**: classify discovery→peak→decay shapes; "current obsessions
-   most likely to flame out, on your own historical curve shapes".
+### Phase 3 · The sessions layer — ✅ COMPLETE 2026-07-07 (pure CSV, all live)
+1. ✅ **Session reconstruction** (>30-min gap) + **album front-to-back** → INSIGHTS.SESSIONS
+   (25,496 sessions, median 7; 437-track/13.6h longest; Machine Head *Blackening* 68× front-to-
+   back). Stories "How you listen" + album-page "N× front-to-back" badge (byAlbum, 733 albums).
+2. ✅ **Segue graph** — within-session X→Y, cross-artist rituals ranked first (Spider-Verse
+   soundtrack chains, Trent Reznor→Santaolalla). Stories "What follows what".
+3. ✅ **Personal seasonality** — month-of-year, ≥2-yr artists (Viagra Boys 92% May–Jul, Aimer
+   86% Dec–Feb). Stories "Music for a season". *(Shelves lens still open — see below.)*
+4. ✅ **Era auto-segmentation** — change-point (binary segmentation) on monthly genre-family mix
+   → 5 chapters w/ boundaries + shift diffs (thrash→electronic pivot→metalcore takeover). Stories
+   "The chapters of your taste". *(Absorbing "Your portrait" on Overview still open.)*
+5. ✅ **Obsession lifecycle** — trajectory classes (flameout/perennial/slow-burn) + predictive
+   "burning now" (flare% = recent share of all-time plays; Ninajirachi 88%, Chalk 100%). Stories
+   "The shape of an obsession".
+
+**Phase 3 follow-ups (small, deferred):** seasonality Shelves lens · move the era timeline into
+the Overview "Your portrait" slot · a per-artist-page segue/lifecycle strip · surface these on
+the artist page (currently Stories-only).
 
 ### Phase 4 · External enrichment expansions (data-PC / API sessions, cherry-pick order)
 MB full dump: cover-of + work language via 39k ISRCs (approved) · Wikipedia pageviews
