@@ -961,6 +961,12 @@ function tastePctl(axis, value) {
   const v = Math.max(0, Math.min(100, Math.round(value)));
   return D.cdf[ai][v] / 10;   // permille → percent
 }
+// direction-aware "sits" phrase: a BELOW-median percentile reads as the low adjective, not
+// "more <hi> than 10%" (which misleads — 10% means it's low). → { word, pct } for "More {word} than {pct}%".
+function sitsWord(p, hi, lo) {
+  if (p == null) return null;
+  return p >= 50 ? { word: hi, pct: Math.round(p) } : { word: lo, pct: Math.round(100 - p) };
+}
 // play-weighted mean of an audio axis across your whole library (0..100), derived from R.AUDIO_DIST's CDF.
 function libMean(axis) {
   const D = window.ROTATION && window.ROTATION.AUDIO_DIST; if (!D) return null;
@@ -1178,8 +1184,8 @@ function AlbumView({ id, go }) {
               <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
                 <MiniQuadrant valence={dna[1]} energy={dna[0]} hue={hue} />
                 <div style={{ fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.5 }}>
-                  {eP != null && <div>More <b style={{ color: "var(--ink)" }}>intense</b> than {Math.round(eP)}% of your plays.</div>}
-                  {vP != null && <div>More <b style={{ color: "var(--ink)" }}>upbeat</b> than {Math.round(vP)}% of them.</div>}
+                  {(() => { const e = sitsWord(eP, "intense", "mellow"); return e && <div>More <b style={{ color: "var(--ink)" }}>{e.word}</b> than {e.pct}% of your plays.</div>; })()}
+                  {(() => { const v = sitsWord(vP, "upbeat", "downbeat"); return v && <div>More <b style={{ color: "var(--ink)" }}>{v.word}</b> than {v.pct}% of them.</div>; })()}
                   <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 5 }}>album mood vs your library</div>
                 </div>
               </div>
@@ -1390,26 +1396,27 @@ function TrackView({ id, go }) {
   const radar = f ? [{ label: "Energy", value: f[4] }, { label: "Tempo", value: f[7] }, { label: "Dance", value: f[8] }, { label: "Positive", value: f[5] }, { label: "Acoustic", value: f[6] }, { label: "Instr.", value: f[9] }] : null;
   const bars = f ? [["Energy", f[4]], ["Positivity", f[5]], ["Danceability", f[8]], ["Acousticness", f[6]], ["Liveness", f[11]], ["Instrumental", f[9]]] : null;
   const eP = f ? tastePctl("energy", f[4]) : null, vP = f ? tastePctl("valence", f[5]) : null;
-  // "In your rotation, this track is…" — only the audio axes where THIS song is an outlier for
-  // YOUR library (percentiles vs your own distribution). Replaces the now-redundant Genius blurb
-  // left of Sounds/Reads (Fuad 2026-07-06). Zero new data — reuses tastePctl.
+  // "In your rotation, this track is…" — the audio axes where THIS song is a genuine outlier
+  // against YOUR own distribution. Reworked 2026-07-07 (Fuad: a bare "top 26%" meant nothing):
+  // tighter gate (≥85 / ≤15 pctile, so only real standouts speak) + comparative wording
+  // ("faster than 88% of what you play"). `p` = share of your plays with a lower value on the axis.
   const tasteStandouts = (() => {
     if (!f) return [];
     const DIMS = [
-      { k: "energy", i: 4, hi: "intense", lo: "mellow" },
-      { k: "valence", i: 5, hi: "upbeat", lo: "downbeat" },
-      { k: "tempo", i: 7, hi: "fast", lo: "slow" },
-      { k: "acoustic", i: 6, hi: "acoustic", lo: null },
-      { k: "dance", i: 8, hi: "danceable", lo: null },
-      { k: "instr", i: 9, hi: "instrumental", lo: null },
+      { k: "energy", i: 4, hi: "more intense", lo: "more mellow" },
+      { k: "valence", i: 5, hi: "brighter", lo: "darker" },
+      { k: "tempo", i: 7, hi: "faster", lo: "slower" },
+      { k: "acoustic", i: 6, hi: "more acoustic", lo: null },
+      { k: "dance", i: 8, hi: "more danceable", lo: null },
+      { k: "instr", i: 9, hi: "more instrumental", lo: null },
     ];
     const out = [];
     for (const d of DIMS) {
       const p = tastePctl(d.k, f[d.i]); if (p == null) continue;
-      if (p >= 72 && d.hi) out.push({ adj: d.hi, topPct: Math.max(1, Math.round(100 - p)), ex: p - 50 });
-      else if (p <= 28 && d.lo) out.push({ adj: d.lo, topPct: Math.max(1, Math.round(p)), ex: 50 - p });
+      if (p >= 85 && d.hi) out.push({ phrase: d.hi, pct: p, ex: p - 50 });        // above most of your rotation
+      else if (p <= 15 && d.lo) out.push({ phrase: d.lo, pct: 100 - p, ex: 50 - p }); // below most of it
     }
-    return out.sort((a, b) => b.ex - a.ex).slice(0, 4);
+    return out.sort((a, b) => b.ex - a.ex).slice(0, 3);
   })();
   const sr = data.series, first = sr[0], last = sr[sr.length - 1], peak = sr.reduce((a, b) => b.p > (a ? a.p : 0) ? b : a, null);
   const kName = f ? keyName(f[13], f[14]) : "";
@@ -1461,13 +1468,13 @@ function TrackView({ id, go }) {
         <div className="tv-subrow" data-both={!!(tasteStandouts.length > 0 && audVal != null && lyrVal != null)}>
           {tasteStandouts.length > 0 && (
             <div className="tv-taste">
-              <div className="tv-taste-h">In your rotation, this track is…</div>
+              <div className="tv-taste-h">Next to everything you play, it's…</div>
               <div className="tv-taste-list">
                 {tasteStandouts.map(s => (
-                  <div className="tv-taste-row" key={s.adj}>
-                    <span className="tv-taste-adj">{s.adj}</span>
-                    <div className="tv-taste-bar"><i style={{ width: (100 - s.topPct) + "%", background: `oklch(0.62 0.15 ${hue})` }} /></div>
-                    <span className="tv-taste-pct">top {s.topPct}%</span>
+                  <div className="tv-taste-row" key={s.phrase}>
+                    <span className="tv-taste-adj">{s.phrase}</span>
+                    <div className="tv-taste-bar"><i style={{ width: s.pct + "%", background: `oklch(0.62 0.15 ${hue})` }} /></div>
+                    <span className="tv-taste-pct">than {Math.round(s.pct)}%</span>
                   </div>
                 ))}
               </div>
@@ -1545,8 +1552,8 @@ function TrackView({ id, go }) {
               <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
                 <MiniQuadrant valence={f[5]} energy={f[4]} hue={hue} />
                 <div style={{ fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.5 }}>
-                  {eP != null && <div>More <b style={{ color: "var(--ink)" }}>intense</b> than {Math.round(eP)}% of your plays.</div>}
-                  {vP != null && <div>More <b style={{ color: "var(--ink)" }}>upbeat</b> than {Math.round(vP)}% of them.</div>}
+                  {(() => { const e = sitsWord(eP, "intense", "mellow"); return e && <div>More <b style={{ color: "var(--ink)" }}>{e.word}</b> than {e.pct}% of your plays.</div>; })()}
+                  {(() => { const v = sitsWord(vP, "upbeat", "downbeat"); return v && <div>More <b style={{ color: "var(--ink)" }}>{v.word}</b> than {v.pct}% of them.</div>; })()}
                   <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 5 }}>valence × energy vs your library</div>
                 </div>
               </div>

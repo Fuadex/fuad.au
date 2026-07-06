@@ -66,8 +66,11 @@ also template prep. **Net cold-first-paint win: −700 KB gz (Babel gone) − ~4
   state** (needs geo-load coordination). Both nice-to-haves; neither blocks the dynamism goal.
 
 ### Phase 2 · Content quality pass (~1–2 sessions) — IN PROGRESS
-1. **Taste-standouts tighten**: gate ≥85/≤15 (from 72/28) + comparative wording ("slower
-   than 9 of 10 songs you play"); module hides when nothing clears the bar.
+1. ✅ **Taste-standouts tightened** (2026-07-07): "In your rotation, this track is…" → "Next to
+   everything you play, it's…" with gate ≥85/≤15 (from 72/28), comparative wording ("more
+   danceable than 96%"), capped at 3, hides when nothing clears the bar. Also fixed the adjacent
+   **"Where it sits"** module — it now flips direction below the median ("more mellow than 90%"
+   instead of the misleading "more intense than 10%"). Verified on deadmau5 – Maths.
 2. **llm-about ops**:
    - ✅ **Promotion queue automated** (`llm-about-promotions.js`, 2026-07-07): lists the top-N
      played tracks missing the Sonnet/Opus tier and diffs a snapshot to show which tracks
