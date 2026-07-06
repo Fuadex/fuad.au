@@ -20,7 +20,10 @@ enter EXPLORE) are **not counted** in a place/genre slice.
 
 **Why.** EXPLORE is the tagged/kept universe the map is built from; the long tail has no
 genre/geo metadata to filter on. Fixing it would mean shipping per-artist geo+genre for the
-full ~30k-artist tail — large, for a small accuracy gain.
+full ~30k-artist tail — large, for a small accuracy gain. **→ The planned fix is the Tier-2/3
+long-tail enrichment in ROADMAP Phase 4** (a compact, load-on-request `{familyIdx, country,
+plays}` for the whole tail behind an opt-in) — makes these slices exact when someone wants it,
+without taxing first paint.
 
 **So, to answer directly:** date-filtered and lifetime numbers are *actual totals*; place/genre
 numbers are *based on the ~4,000-artist EXPLORE set* and read a touch low. **Options if it ever
