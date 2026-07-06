@@ -519,8 +519,8 @@ function ExploreView({ t, go, setPop, seed }) {
         </div>
       )}
 
-      {/* mood over the years — the energy/mood arc, right under the sort row */}
-      {lens === "mood" && <MoodContext R={R} arts={moodSet} go={go} />}
+      {/* "Mood over the years" arc removed from Explore (Fuad 2026-07-07) — candidate to move into
+          Stories as a lifetime section. MoodContext (above) + moodSet are kept for that follow-up. */}
 
       {/* genres grouped under families — 6 columns per row, each card scrollable (Fuad) */}
       <FamiliesGrid order={order} weights={weights} fam={fam} sub={sub} pickFam={pickFam} pickSub={pickSub} year={year} seen={seen} expressive={t.chart === "expressive"} />
