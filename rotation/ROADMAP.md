@@ -14,23 +14,33 @@
 > phases 0–2 before new weight; the template (phase 5) is the destination, so every phase
 > is built template-aware (no new hardcoded `fuadex`/TZ/paths).
 
-### Phase 0 · Platform hardening — perf + resilience (~2–3 sessions) ✦ do first
+### Phase 0 · Platform hardening — perf + resilience — ✅ MOSTLY SHIPPED 2026-07-07
 The site's biggest UX cost and its only critical SPOF, plus cheap de-bloat. All of it is
-also template prep.
-1. **CI precompile**: babel-transform each `.jsx` → `.js` in the staged `_site/` only
-   (stage-site.js step); local authoring stays 100% buildless. Kills the ~700 KB gz babel
-   download AND the per-load compile.
-2. **Self-host runtime** (react, react-dom — babel becomes CI-only after #1): copies into
-   the repo, unpkg dependency gone. React 18.3.1 UMD is frozen upstream, so the pin is final.
-3. **music-data split**: `music-core.js` (TOTALS/NOW/TREND/INSIGHTS-lite/ARTISTS-lite,
-   ~1 MB) eager + `music-rest.js` fetched post-first-paint. `defer` on data scripts.
-4. **TourMap render fix**: imperative pan/zoom transform on the `<g>` ref (commit state on
-   gesture end) + `React.memo` land layer + `vector-effect: non-scaling-stroke`; then audit
-   MapView for the same state-per-frame idiom.
-5. De-bloat: retire blurb-demo.js (fold winners into llm-about, drop both loaders) ·
-   cover-URL prefix table (`S:` → `https://i.scdn.co/image/`, decoder in GenCover).
-6. Resilience hour: **ListenBrainz mirror import** (second copy of the history — insurance
-   against last.fm) · last.fm bio attribution line · vendor the four Google-Fonts families.
+also template prep. **Net cold-first-paint win: −700 KB gz (Babel gone) − ~445 KB gz
+(music-data split) + no in-browser compile.**
+1. ✅ **CI precompile** — `stage-site.js` babel-transforms `.jsx` → `.js` in `_site/` only,
+   gated on `apps.json "precompile":true`; local authoring stays buildless. Verified: staged
+   site renders full Overview in headless Edge. Babel gone from prod (~700 KB gz + compile).
+2. ✅ **Self-host runtime** — react + react-dom vendored (byte-identical to unpkg, SRI-verified);
+   prod has no third-party runtime dependency. Babel is dev-only. React 18.3.1 UMD is the final
+   UMD release (19 dropped UMD) → pin is permanent.
+3. ✅ **music-data split** — `music-core.js` (989 KB gz) eager + `music-rest.js` (404 KB gz)
+   injected after first paint, merges into `window.ROTATION`. Defensive: deferred keys stubbed
+   empty, `EXPLORE_N` in core, non-Overview views gated behind `restReady` (mount fresh once
+   ready), map band gated too, Node consumers load both. Smoke green; Overview + cold
+   `#explore` deep-link both verified in headless Edge.
+4. ✅ **TourMap render fix** — imperative pan (no setState/frame) + memoized land/dots/routes;
+   a pan now only updates the `<g>` transform. *(MapView same-idiom audit still open — it uses
+   a similar pattern; do when Map is next touched.)*
+5. ⏸ **De-bloat — measured, mostly not worth it:** the cover-URL prefix table saves only
+   **~10 KB gz** (gzip already dedupes the repeated `https://i.scdn.co/image/` prefixes — the
+   audit's "~500 KB" was a raw-byte miscalc), so **skipped**. Retiring blurb-demo.js would strip
+   reads from **22 tracks** not in llm-about (Rammstein/Amenra/The HU/Karel Kryl…) → **deferred
+   to Phase 2** as a proper content fold (schema differs: fable vs sonnet), not a de-bloat.
+6. **Resilience:** ✅ last.fm bio attribution line · ✅ global `prefers-reduced-motion` block.
+   ⏳ **ListenBrainz mirror — needs Fuad** (his LB account + token; one-time import). ⏳ **Vendor
+   fonts — deferred** (cosmetic-only failure mode, ~15 woff2 files; low priority vs the SPOF,
+   which is already fixed).
 
 ### Phase 1 · Dynamism kernel (~1–2 sessions)
 One small export unlocks the "stats follow the filter" behaviour everywhere.

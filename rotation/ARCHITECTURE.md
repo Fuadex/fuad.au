@@ -6,7 +6,8 @@
 > - **ROADMAP.md** — audit findings, API catalogue, and the modular plan for what's next.
 > - **CSV-OVERRIDES.md** — manual data corrections (gitignored, local only).
 >
-> Last full audit of this document: **2026-07-03**.
+> Last full audit of this document: **2026-07-03**. Phase 0 platform work (precompile,
+> self-hosted React, music-core/rest split, TourMap fix) folded in **2026-07-07** — see §2, §6.
 
 ---
 
@@ -24,10 +25,16 @@ the raw data doesn't state directly. Mobile-first. The site doubles as a design 
 
 ## 2. Runtime architecture
 
-Buildless **React 18.3.1 UMD + @babel/standalone** from unpkg (SRI-pinned in `index.html`).
-Every `.jsx` file is loaded as `<script type="text/babel">` and compiled *in the visitor's
-browser* on every page load. No router library — hash routing (`#view/id`) in `rotation-app.jsx`
-with `pushState` + `popstate`/`hashchange` sync. Components communicate via `window` globals
+Buildless **authoring**, precompiled **deploy** (Phase 0, 2026-07-07). React 18.3.1 UMD is
+**self-hosted** (`react(-dom).production.min.js` in `rotation/`, byte-identical to unpkg,
+SRI-pinned) — production has **no third-party runtime dependency**. Locally, every `.jsx` still
+loads as `<script type="text/babel">` and compiles in-browser via `@babel/standalone` (dev-only,
+still from unpkg); the CI staging step (`stage-site.js`, gated on `apps.json` `"precompile":true`)
+**Babel-transforms each `.jsx` → `.js` in the staged `_site/` only** and rewrites `index.html`
+to drop the Babel tag and load `defer` compiled scripts. So prod ships finished JS — no ~700 KB
+Babel download, no per-load compile — while the local workflow stays 100% buildless. No router
+library — hash routing (`#view/id`) in `rotation-app.jsx` with `pushState` +
+`popstate`/`hashchange` sync. Components communicate via `window` globals
 (`Object.assign(window, {...})` at the bottom of each file).
 
 ### Script tiers
@@ -35,8 +42,9 @@ with `pushState` + `popstate`/`hashchange` sync. Components communicate via `win
 **Tier 0 — eager (in `index.html`, blocking first paint):**
 | File | Role |
 |---|---|
-| `react(-dom).production.min.js`, `babel.min.js` | runtime (production React since 2026-07-03; JSX still compiles in-browser by design) |
-| `music-data.js` (~4.4 MB) | `window.ROTATION` — the core dataset |
+| `react(-dom).production.min.js` | runtime — **self-hosted** (Phase 0); Babel is dev-only + CI-only, absent from prod |
+| `music-core.js` (~3.3 MB / 989 KB gz) | `window.ROTATION` — everything first paint reads (see split below) |
+| `music-rest.js` (~1.4 MB / 404 KB gz) | deferred dataset — **injected by `rotation-app` after first paint**, `Object.assign`s into `window.ROTATION`, flips `_restLoaded` |
 | `live-data.js` (~4 KB) | `window.ROTATION_LIVE` — daily live snapshot |
 | `rotation-live.jsx` | `useLiveNow()` — now-playing from the snapshot (no client API calls, ever) |
 | `tweaks-panel.jsx` | design-tweaks drawer (accent hue, font, chart style, layout, density) |
@@ -84,8 +92,9 @@ last.fm API ──sync-csv.js──▶ fuadex.csv (20 MB, one row per scrobble, 
                                    │
         ┌──────────────────────────┼─────────────────────────────┐
         ▼                          ▼                             ▼
-  music-data.js            9 lazy data files              console stats
- (window.ROTATION)   (media-index, track-audio, …)
+  music-core.js +          9 lazy data files              console stats
+  music-rest.js       (media-index, track-audio, …)
+ (window.ROTATION)
 
 last.fm API ──sync-live.js──▶ live-data.js (now playing, week/month windows, mood-lately, 72h clock)
 ```
@@ -164,7 +173,20 @@ pin in CSV-OVERRIDES.md — re-running photo/discogs enrichers can silently re-b
 
 ## 6. Data model (compact formats — check before consuming)
 
-**`window.ROTATION`** (music-data.js) keys:
+**Core/rest split (Phase 0, 2026-07-07):** `window.ROTATION` is assembled from **`music-core.js`**
+(eager) + **`music-rest.js`** (deferred, injected after Overview's first paint). Core carries
+everything the Overview first paint reads (ARTISTS, TOTALS, NOW, RECENT, TREND, INSIGHTS, YEARS,
+THUMBS, SPOTIMG, GIGS, TOUR, SUBS, GENRE_FLOW, FAMILIES, helpers) plus **`EXPLORE_N`** (the
+EXPLORE count, since that's the only EXPLORE read on first paint). Rest carries the deferred
+keys: **EXPLORE, ALBUMS, AUDIO, ARTIST_CLOCK, SUB_ARTISTS, CLOCK_BY_YEAR**. Core stubs those
+empty and sets `_restLoaded=false`; rest merges them, rebuilds `expById`, flips `_restLoaded=true`,
+and calls `window.__rotRest`. **Guard rule:** every non-Overview view reads a deferred key, so
+`rotation-app` gates them behind `restReady` (a "loading your library…" card) and mounts them
+FRESH once rest lands — so their `useMemo`s never cache empty. The Overview map band is gated the
+same way. Node consumers (smoke, sync-live, extract-audio, enrich-spotify) evaluate both files in
+one context to reconstitute the whole object.
+
+**`window.ROTATION`** (music-core.js + music-rest.js) keys:
 `ARTISTS` (kept = **top 400 by plays** (~100-play cutoff, raised from 200 on 2026-07-04:
 206→3.5 MB, 400→4.4 MB, 1000→6.5 MB — 400 chosen) + per-year top-10 union; full records:
 name/id/plays/hue/tags/country/members/bio/similar/…),
