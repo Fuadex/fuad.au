@@ -1722,6 +1722,8 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
   const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
   const [tf, setTf] = React.useState({ k: 1, x: 0, y: 0 });   // g transform: translate(x,y) scale(k)
   const svgRef = React.useRef(null);
+  const gRef = React.useRef(null);       // the transformed <g> — panned imperatively (no setState/frame)
+  const pending = React.useRef(null);    // last transform during a drag, committed to state on release
   const drag = React.useRef(null);
   const moved = React.useRef(false);   // true if the last gesture panned — suppresses the dot click
   React.useEffect(() => {
@@ -1766,9 +1768,13 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
       const r = svg.getBoundingClientRect();
       const dx = (e.clientX - d.x) / r.width * 1000, dy = (e.clientY - d.y) / r.height * 315;
       if (Math.abs(e.clientX - d.x) + Math.abs(e.clientY - d.y) > 3) moved.current = true;
-      setTf({ k: d.tk, x: d.tx + dx, y: d.ty + dy });
+      // pan imperatively: k is fixed during a drag, so update the <g> transform directly rather
+      // than a 60 Hz setState that re-rendered the whole map (~150 paths + dots) every frame.
+      const nx = d.tx + dx, ny = d.ty + dy;
+      pending.current = { k: d.tk, x: nx, y: ny };
+      if (gRef.current) gRef.current.setAttribute("transform", `translate(${nx} ${ny}) scale(${d.tk})`);
     };
-    const onUp = () => { drag.current = null; };
+    const onUp = () => { if (drag.current && pending.current) { setTf(pending.current); pending.current = null; } drag.current = null; };
     svg.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
@@ -1777,39 +1783,49 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
   const onDown = (e) => { const t = tfRef.current; drag.current = { x: e.clientX, y: e.clientY, tx: t.x, ty: t.y, tk: t.k }; moved.current = false; };
   const zoom = (f) => setTf(t => { const k1 = Math.min(14, Math.max(1, t.k * f)); if (k1 === 1) return { k: 1, x: 0, y: 0 };
     const px = (500 - t.x) / t.k, py = (227 - t.y) / t.k; return { k: k1, x: 500 - px * k1, y: 227 - py * k1 }; });
-  if (!world) return <div className="gv-tmap-empty r-mono">the map loads…</div>;
   const rk = tf.k, base = 2;
+  // Memoize the three layers so a pan/zoom re-render only updates the <g> transform, not the
+  // ~150 land paths + dots + routes as vnodes. Land never changes; dots/routes depend on zoom
+  // (rk) and selection, NOT on pan (x/y) — so dragging rebuilds nothing. (Hooks stay above the
+  // early return below to satisfy the rules of hooks.)
+  const landEls = React.useMemo(() => world ? world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" />) : null, [world]);
+  const routeEls = React.useMemo(() => routes ? routes.map(r => (
+    <polyline key={r.id} points={r.pts.map(p => p.join(",")).join(" ")} fill="none"
+      stroke={`oklch(0.66 0.15 ${r.hue})`} strokeWidth={1 / rk} strokeLinejoin="round" opacity={hiPath ? 0.2 : 0.6} />
+  )) : null, [routes, rk, hiPath]);
+  const dotEls = React.useMemo(() => cities.map(c => (
+    <circle key={c.k} className="gv-tmap-dot" data-on={city === c.k}
+      cx={c.x} cy={c.y} r={(base + Math.sqrt(c.n) * 1.15) / rk} strokeWidth={1.2 / rk}
+      fill={c.hue != null ? `oklch(0.64 0.15 ${c.hue})` : "var(--accent)"}
+      onClick={(e) => { if (!moved.current) setCity(city === c.k ? null : c.k); e.stopPropagation(); }}>
+      <title>{c.city} ({c.cc}) · {c.n} event{c.n !== 1 ? "s" : ""} — click to filter</title>
+    </circle>
+  )), [cities, city, rk]);
+  const hiEls = React.useMemo(() => {
+    if (!hiPath) return null;
+    return (<React.Fragment>
+      {hiPath.length > 1 && <polyline points={hiPath.map(p => p.join(",")).join(" ")} fill="none"
+        stroke={`oklch(0.8 0.16 ${hiHue})`} strokeWidth={1.6 / rk} strokeDasharray={`${5 / rk} ${3 / rk}`} opacity="0.95" />}
+      {hiPath.map((p, i) => (
+        <g key={"hp" + i}>
+          <circle cx={p[0]} cy={p[1]} r={3.6 / rk} fill={`oklch(0.8 0.16 ${hiHue})`} stroke="#0e0c13" strokeWidth={0.9 / rk} />
+          {rk >= 2 && <text x={p[0]} y={p[1] + 1.2 / rk} textAnchor="middle" fontSize={4 / rk} fill="#0e0c13" style={{ pointerEvents: "none", fontWeight: 700 }}>{i + 1}</text>}
+        </g>
+      ))}
+    </React.Fragment>);
+  }, [hiPath, hiHue, rk]);
+  if (!world) return <div className="gv-tmap-empty r-mono">the map loads…</div>;
   return (
     <div className="gv-tmap-wrap">
       <svg ref={svgRef} className="gv-tmap" viewBox="0 70 1000 315" role="img" aria-label="upcoming events map — scroll to zoom, drag to pan, click a city to filter"
         onPointerDown={onDown}
         style={{ cursor: "grab", touchAction: "none" }}>
-        <g transform={`translate(${tf.x} ${tf.y}) scale(${tf.k})`}>
-          {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" />)}
+        <g ref={gRef} transform={`translate(${tf.x} ${tf.y}) scale(${tf.k})`}>
+          {landEls}
           {/* routes for the selected city's bands — links the clicked circle to their other dates */}
-          {routes && routes.map(r => (
-            <polyline key={r.id} points={r.pts.map(p => p.join(",")).join(" ")} fill="none"
-              stroke={`oklch(0.66 0.15 ${r.hue})`} strokeWidth={1 / rk} strokeLinejoin="round"
-              opacity={hiPath ? 0.2 : 0.6} />
-          ))}
-          {cities.map(c => (
-            <circle key={c.k} className="gv-tmap-dot" data-on={city === c.k}
-              cx={c.x} cy={c.y} r={(base + Math.sqrt(c.n) * 1.15) / rk} strokeWidth={1.2 / rk}
-              fill={c.hue != null ? `oklch(0.64 0.15 ${c.hue})` : "var(--accent)"}
-              onClick={(e) => { if (!moved.current) setCity(city === c.k ? null : c.k); e.stopPropagation(); }}>
-              <title>{c.city} ({c.cc}) · {c.n} event{c.n !== 1 ? "s" : ""} — click to filter</title>
-            </circle>
-          ))}
-          {hiPath && hiPath.length > 1 && (
-            <polyline points={hiPath.map(p => p.join(",")).join(" ")} fill="none"
-              stroke={`oklch(0.8 0.16 ${hiHue})`} strokeWidth={1.6 / rk} strokeDasharray={`${5 / rk} ${3 / rk}`} opacity="0.95" />
-          )}
-          {hiPath && hiPath.map((p, i) => (
-            <g key={"hp" + i}>
-              <circle cx={p[0]} cy={p[1]} r={3.6 / rk} fill={`oklch(0.8 0.16 ${hiHue})`} stroke="#0e0c13" strokeWidth={0.9 / rk} />
-              {rk >= 2 && <text x={p[0]} y={p[1] + 1.2 / rk} textAnchor="middle" fontSize={4 / rk} fill="#0e0c13" style={{ pointerEvents: "none", fontWeight: 700 }}>{i + 1}</text>}
-            </g>
-          ))}
+          {routeEls}
+          {dotEls}
+          {hiEls}
         </g>
       </svg>
       <div className="gv-tmap-zoom">
