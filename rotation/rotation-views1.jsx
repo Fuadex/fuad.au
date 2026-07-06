@@ -176,6 +176,35 @@ function OverviewView({ t, go, restReady }) {
   const [mapYear, setMapYear] = React.useState(null);
   const [mapPeriod, setMapPeriod] = React.useState(null);
   const [fStats, setFStats] = React.useState(null);   // filtered totals reported by the map band
+
+  // Phase 1 — flat per-day play counts make avg/day, heaviest-day and share-of-history react to
+  // the active date filter (year scrub or calendar day/week/month). Loaded lazily; tiny (~10 KB gz).
+  const [days, setDays] = React.useState(window.ROTATION_DAYS || null);
+  React.useEffect(() => {
+    if (window.ROTATION_DAYS) { setDays(window.ROTATION_DAYS); return; }
+    const s = document.createElement("script"); s.src = "day-series.js";
+    s.onload = () => setDays(window.ROTATION_DAYS); document.head.appendChild(s);
+  }, []);
+  const dyn = React.useMemo(() => {
+    if (!days || (mapYear == null && !mapPeriod)) return null;   // lifetime → static stats
+    const startMs = new Date(days.start + "T00:00:00Z").getTime();
+    const idxOf = (iso) => Math.round((new Date(iso + "T00:00:00Z").getTime() - startMs) / 86400e3);
+    let from, to, label;
+    if (mapPeriod) {
+      const { gran, key } = mapPeriod;
+      if (gran === "month") { const [Y, M] = key.split("-").map(Number); from = idxOf(key + "-01"); to = from + new Date(Date.UTC(Y, M, 0)).getUTCDate() - 1; label = key; }
+      else if (gran === "week") { from = idxOf(key); to = from + 6; label = "wk " + key.slice(2); }
+      else { from = to = idxOf(key); label = key.slice(2); }
+    } else { from = idxOf(mapYear + "-01-01"); to = idxOf(mapYear + "-12-31"); label = "" + mapYear; }
+    from = Math.max(0, from); to = Math.min(days.counts.length - 1, to);
+    if (to < from) return null;
+    let plays = 0, active = 0, hiC = -1, hiI = from;
+    for (let i = from; i <= to; i++) { const c = days.counts[i]; plays += c; if (c > 0) active++; if (c > hiC) { hiC = c; hiI = i; } }
+    const spanDays = to - from + 1;
+    const hiDate = new Date(startMs + hiI * 86400e3).toISOString().slice(0, 10);
+    return { plays, active, spanDays, label, avgDay: Math.round(plays / spanDays * 10) / 10,
+      hiCount: hiC, hiDate, sharePct: Math.round(plays / (days.total || 1) * 1000) / 10 };
+  }, [days, mapYear, mapPeriod]);
   const liveTotal = (window.ROTATION_LIVE && window.ROTATION_LIVE.total) || T.scrobbles;
   const scrob = useCountUp(liveTotal, 1400, seen);
   const hrs = useCountUp(T.listeningHours, 1400, seen);
@@ -346,9 +375,9 @@ function OverviewView({ t, go, restReady }) {
                 gridTemplateColumns: "repeat(2,1fr)", gap: "14px 16px", alignContent: "center" }}>
                 <Stat n={fStats && fStats.active ? fmt(fStats.hours) : fmt(Math.round(hrs))} sub={fStats && fStats.active ? "hrs · " + fStats.label : "hours listened"} onClick={() => go("calendar")} />
                 <Stat n={fStats && fStats.active ? fmt(fStats.artists) : fmt(T.artists)} sub={fStats && fStats.active ? "artists · filtered" : "distinct artists"} onClick={() => go("explore")} />
-                <Stat n={T.perDay} sub="avg / day" />
-                <Stat n={sinceYears + " yr"} sub="of history" />
-                <Stat n={R.TOTALS.topDay.count} sub={"heaviest · " + R.TOTALS.topDay.date.slice(2)} onClick={() => go("calendar")} />
+                <Stat n={dyn ? dyn.avgDay : T.perDay} sub={dyn ? "avg/day · " + dyn.label : "avg / day"} />
+                <Stat n={dyn ? dyn.sharePct + "%" : sinceYears + " yr"} sub={dyn ? "of all plays" : "of history"} />
+                <Stat n={dyn ? fmt(dyn.hiCount) : R.TOTALS.topDay.count} sub={"heaviest · " + (dyn ? dyn.hiDate : R.TOTALS.topDay.date).slice(2)} onClick={() => go("calendar")} />
               </div>
             } />
         </div>
