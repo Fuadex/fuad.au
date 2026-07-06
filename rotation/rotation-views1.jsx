@@ -152,19 +152,22 @@ function OvCalRail({ go, onYear, onPeriod }) {
 // OvMapBand — the geography band: the FULL MapView (+ the calendar rail slotted into its left
 // column, under deepest places). Mounts once the user scrolls near, so Overview's first paint
 // doesn't pay for world-map.js.
-function OvMapBand({ go, extYear, calPeriod, onStats, calRail, statSlot }) {
+function OvMapBand({ go, extYear, calPeriod, onStats, calRail, statSlot, restReady }) {
   const [ref, seen] = useInView();
   const [on, setOn] = React.useState(false);
   React.useEffect(() => { if (seen) setOn(true); }, [seen]);
+  // MapView reads the deferred EXPLORE/AUDIO — only mount it once music-rest has landed
+  // (in practice always true by the time the map scrolls into view).
+  const ready = on && restReady;
   return (
-    <div ref={ref} style={{ minHeight: on ? 0 : 220 }}>
-      {on ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} onStats={onStats} calSlot={calRail} statSlot={statSlot} />
+    <div ref={ref} style={{ minHeight: ready ? 0 : 220 }}>
+      {ready ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} onStats={onStats} calSlot={calRail} statSlot={statSlot} />
         : <div className="r-card" style={{ padding: 40, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>the world map loads as you scroll…</div>}
     </div>
   );
 }
 
-function OverviewView({ t, go }) {
+function OverviewView({ t, go, restReady }) {
   const R = window.ROTATION;
   const T = R.TOTALS;
   const [ref, seen] = useInView();
@@ -334,7 +337,7 @@ function OverviewView({ t, go }) {
         {/* THE MAP BAND — full width, right below the pulse row. The calendar rail rides along as
             a slot: it renders under the map's deepest-places column and cross-filters the results. */}
         <div className="ov-mapslot" style={{ gridColumn: "1 / -1" }}>
-          <OvMapBand go={go} extYear={mapYear} calPeriod={mapPeriod} onStats={setFStats}
+          <OvMapBand go={go} restReady={restReady} extYear={mapYear} calPeriod={mapPeriod} onStats={setFStats}
             calRail={<OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} />}
             statSlot={
               /* lifetime stats, now nested under the flowmap (Fuad 2026-07-06); hours + distinct
@@ -399,7 +402,7 @@ function OverviewView({ t, go }) {
       {(() => {
         const I = R.INSIGHTS, U = I.UNDERGROUND, G = I.GEOGRAPHY, GF = R.GENRE_FLOW;
         const cards = [];
-        cards.push({ k: "Explore", h: `${fmt(R.EXPLORE.length)} artists`, s: `${R.SUBS.length} subgenres · filter any slice`, hue: 255, on: () => go("explore") });
+        cards.push({ k: "Explore", h: `${fmt(R.EXPLORE_N || R.EXPLORE.length)} artists`, s: `${R.SUBS.length} subgenres · filter any slice`, hue: 255, on: () => go("explore") });
         if (GF) cards.push({ k: "The journey", h: `${GF.years.length} years of drift`, s: "watch genres hand off over time", hue: 330, on: () => go("journey") });
         if (U) cards.push({ k: "How deep it goes", h: `${Math.round(U.artistShare50k * 100)}% under 50k`, s: "the depth is in the breadth", hue: 188, on: () => go("stories") });
         if (I.RECOMMENDATIONS && I.RECOMMENDATIONS.artists[0]) { const r = I.RECOMMENDATIONS.artists[0]; cards.push({ k: "Blind spots", h: r.name, s: `you'd love them — via ${r.via.map(v => v.name).join(", ")}`, hue: r.hue, on: () => go("stories") }); }

@@ -22,7 +22,8 @@ const https = require("https"), fs = require("fs"), path = require("path"), vm =
 
 const ROOT = __dirname;
 const ENV_PATH = path.join(ROOT, "..", "culture", ".env");
-const DATA_PATH = path.join(ROOT, "music-data.js");
+const CORE_PATH = path.join(ROOT, "music-core.js");
+const REST_PATH = path.join(ROOT, "music-rest.js");   // holds EXPLORE (merged in below)
 const CACHE_PATH = path.join(ROOT, "spotify-cache.json");
 const arg = (k, d) => { const m = process.argv.find(a => a.startsWith(k + "=")); return m ? m.slice(k.length + 1) : d; };
 const RETRY_MISSES = process.argv.includes("--retry");
@@ -45,7 +46,9 @@ if (!CLIENT_ID || !CLIENT_SECRET) { console.error("Missing SPOTIFY / SPOTIFY_SEC
 // ── artist universe — EXPLORE in plays-desc order, flagged for whether the build already has art ──
 function loadArtists() {
   const ctx = { window: {}, console };
-  vm.runInNewContext(fs.readFileSync(DATA_PATH, "utf8"), ctx);
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(CORE_PATH, "utf8"), ctx);
+  if (fs.existsSync(REST_PATH)) vm.runInContext(fs.readFileSync(REST_PATH, "utf8"), ctx);
   const R = ctx.window.ROTATION || {};
   const byId = R.byId || {}, THUMBS = R.THUMBS || {}, slug = R.slug || (s => s);
   const seen = new Set(), out = [];
