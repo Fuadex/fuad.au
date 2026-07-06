@@ -1122,6 +1122,35 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+        {/* seasonality — artists you only reach for at one time of year (Phase 3) */}
+        {I.SEASONALITY && I.SEASONALITY.top && I.SEASONALITY.top.length >= 4 && (() => {
+          const S = I.SEASONALITY, top = S.top[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Music for a season</div>
+              <div className="st-big" data-link={true} onClick={() => go("artist", top.id)}>
+                You play <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.name}</em> almost only in {top.window} —
+                {" "}<em>{top.share}%</em> of every spin lands in those three months.
+              </div>
+              <div className="st-sub">
+                Some artists you reach for at just one time of year — the same window, across the years.
+                Your most seasonal:
+              </div>
+              <div className="st-ug-cuts">
+                {S.top.slice(0, 8).map(a => (
+                  <div key={a.id} className="st-ug-cut" data-link={true} onClick={() => go("artist", a.id)}>
+                    <GenCover hue={a.hue} name={a.name} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{a.name}</div>
+                      <div className="st-row-sub">{a.share}% in {a.window} · {fmt(a.plays)} plays</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* streak */}
         <section className="st-card st-hero">
           <div className="st-label">The streak</div>

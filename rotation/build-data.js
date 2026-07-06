@@ -1766,6 +1766,9 @@ let SESSIONS = null;
       return { artist, album, count, aid: slug(artist) + "~" + slug(album), hue: hueFor(artist) };
     });
     const totalRuns = [...runs.values()].reduce((a, b) => a + b, 0);
+    // per-album count (aid → sittings) so any album page can show "played front-to-back N times"
+    const byAlbum = {};
+    for (const [ak, count] of runs) { if (count >= 2) { const ix = ak.indexOf("\x00"); byAlbum[slug(ak.slice(0, ix)) + "~" + slug(ak.slice(ix + 1))] = count; } }
 
     // segue graph: what you play RIGHT AFTER what (consecutive X→Y inside a session, Y≠X). Keep
     // only strong, reliable rituals — X seen in ≥12 transitions and followed by the same Y ≥35%.
@@ -1806,17 +1809,51 @@ let SESSIONS = null;
 
     SESSIONS = {
       total: sessions.length, median, mean: Math.round(chron.length / sessions.length * 10) / 10,
-      longest, bingeShare, sittings: { total: totalRuns, albums: runs.size, top }, segues: segList,
+      longest, bingeShare, sittings: { total: totalRuns, albums: runs.size, top, byAlbum }, segues: segList,
     };
     console.log(`sessions: ${sessions.length} · median ${median} tracks · binge ${bingeShare}% · album sittings ${totalRuns} across ${runs.size} albums`);
   }
+}
+
+// ─────────── SEASONALITY — month-of-year fingerprints (Phase 3) ───────────
+// Aggregate each artist's plays across the 12 months of the year (all years combined). Artists
+// whose plays cluster into a 3-month window are "seasonal" — you reach for them at the same time
+// of year. Requires ≥2 distinct years so a single binge doesn't masquerade as a season.
+let SEASONALITY = null;
+{
+  const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const monthly = new Array(12).fill(0);
+  const artMonth = new Map();   // artist -> { m:[12], years:Set }
+  for (const [artist, , , ms] of scrobbles) {
+    const d = new Date(ms), mo = d.getUTCMonth();
+    monthly[mo]++;
+    let a = artMonth.get(artist); if (!a) { a = { m: new Array(12).fill(0), years: new Set() }; artMonth.set(artist, a); }
+    a.m[mo]++; a.years.add(d.getUTCFullYear());
+  }
+  const seasonal = [];
+  for (const [artist, { m, years }] of artMonth) {
+    const tot = m.reduce((a, b) => a + b, 0);
+    if (tot < 150 || years.size < 2) continue;
+    let best = 0, start = 0;
+    for (let s = 0; s < 12; s++) { const w = m[s] + m[(s + 1) % 12] + m[(s + 2) % 12]; if (w > best) { best = w; start = s; } }
+    const share = best / tot;
+    let pm = 0; for (let i = 1; i < 12; i++) if (m[i] > m[pm]) pm = i;
+    seasonal.push({ name: artist, id: slug(artist), hue: hueFor(artist), plays: tot, share, start, peak: pm });
+  }
+  seasonal.sort((a, b) => b.share - a.share);
+  const top = seasonal.filter(s => s.share >= 0.5).slice(0, 12).map(s => ({
+    name: s.name, id: s.id, hue: s.hue, plays: s.plays, share: Math.round(s.share * 100),
+    window: MON[s.start] + "–" + MON[(s.start + 2) % 12], peak: MON[s.peak],
+  }));
+  SEASONALITY = { monthly, top };
+  console.log(`seasonality: ${seasonal.length} artists ≥150 plays/2+ yrs · ${top.length} strongly seasonal (≥50% in a 3-mo window)`);
 }
 
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
   AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN, LANGUAGE, LINEUPS, MOOD, THEMES,
   STREAK: { best, start: bestStart, end: bestEnd, current },
-  UNDERGROUND, GEOGRAPHY, STYLE_ATLAS, SESSIONS,
+  UNDERGROUND, GEOGRAPHY, STYLE_ATLAS, SESSIONS, SEASONALITY,
 };
 
 // ─────────── SEARCH INDEX (separate lazy-loaded file) ───────────

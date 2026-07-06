@@ -1145,6 +1145,11 @@ function AlbumView({ id, go }) {
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>~listened</div></div>}
           <div><div className="r-stat-n" style={{ fontSize: 36, color: "var(--accent)" }}>#{fmt(data.rank)}</div>
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>your albums</div></div>
+          {(() => {   // "front-to-back" sittings for this album (Phase 3 sessions layer), if any
+            const SESS = R.INSIGHTS.SESSIONS, ft = SESS && SESS.sittings && SESS.sittings.byAlbum && SESS.sittings.byAlbum[id];
+            return ft ? <div title="times you played this album start-to-finish in one sitting"><div className="r-stat-n" style={{ fontSize: 36 }}>{ft}×</div>
+              <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>front-to-back</div></div> : null;
+          })()}
         </div>
       </div>
 
