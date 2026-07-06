@@ -81,16 +81,34 @@ also template prep. **Net cold-first-paint win: −700 KB gz (Babel gone) − ~4
    - Still to do: run the backlog through Claude on real lyrics · 5% spot-check-vs-lyrics as
      the batch norm · style gate (no "explores themes of…") · shard the file when it next grows.
 
-**⏸ PARKED — rest of Phase 2 (2026-07-07, picked up after Phase 3):**
+**⏸ PARKED — rest of Phase 2 (2026-07-07). Items 3–5 are GATED on the design deliberations
+below (LIMITATIONS §6b) — decide the layout/structure BEFORE building:**
 3. **Surface the text layer**: "read of the day" insight provider on Overview + 📖 marker on
    track rows that have reads; blurb coverage meter. *(Highest-visibility of the parked lot —
-   the reads are invisible until you open a track page.)*
-4. Honesty notes: "no audio data" line where radar/quadrant cards silently vanish.
+   the reads are invisible until you open a track page.)* **⚠ GATED on rearranging the Overview**
+   (it's already dense — decide where the module goes first).
+4. Honesty notes: "no audio data" line where radar/quadrant cards silently vanish. **⚠ needs a
+   deliberate implementation** (reads as data, not an error), not a quick line.
 5. Rework "Where to dig" + "Your portrait" (greenlit A4) — or hold for the era card (Phase 3.4,
    which is designed to absorb "Your portrait").
 6. **Fold blurb-demo's 22 non-llm-about tracks into llm-about**, then retire blurb-demo.js
-   (the Phase 0 de-bloat that was deferred because it would drop those reads).
-7. Run the 270-track actionable promotion backlog locally through Claude.
+   (the Phase 0 de-bloat that was deferred because it would drop those reads). *(Not gated.)*
+7. Run the 270-track actionable promotion backlog locally through Claude. *(Not gated.)*
+
+### ✎ Design deliberations — DECIDE BEFORE BUILDING (Fuad, 2026-07-07; full text in LIMITATIONS §6b)
+- **Overview rearrangement** — it's dense; decide the layout before adding the read-of-the-day /
+  surfacing modules (Phase 2 items 3–5 wait on this).
+- **Stories → a "quasi-book"** — Stories is getting large (~30 cards). It's fine to keep adding,
+  but it wants a **restructure** (chapters / table-of-contents / paging, a real reading
+  experience) rather than one long feed. Do this thinking before piling on more cards — and the
+  Phase-3 artist-page strips (below) pair with it.
+
+### 🔧 Loose UX fixes shipped this session (2026-07-07, not tied to a phase)
+- ✅ Album back-button now goes UP to the album's artist ("← Nine Inch Nails"), not out to Explore.
+- ✅ Artist page gained a **Needle Drop** button (plays the most-played track that has a preview).
+- ✅ Fixed the **Overview map-band row-shift on genre filter** — the taste-flow streamgraph grew
+  with its series count (families vs a genre's subgenres), inflating grid row 1 and shoving the
+  deepest-places/stats/calendar row down. Pinned the flow height (`fixedH`) in the map band.
 
 ### Phase 3 · The sessions layer — ✅ COMPLETE 2026-07-07 (pure CSV, all live)
 1. ✅ **Session reconstruction** (>30-min gap) + **album front-to-back** → INSIGHTS.SESSIONS
