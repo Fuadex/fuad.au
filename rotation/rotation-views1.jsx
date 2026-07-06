@@ -155,7 +155,7 @@ function OvCalRail({ go, onYear, onPeriod, init }) {
 // OvMapBand — the geography band: the FULL MapView (+ the calendar rail slotted into its left
 // column, under deepest places). Mounts once the user scrolls near, so Overview's first paint
 // doesn't pay for world-map.js.
-function OvMapBand({ go, extYear, calPeriod, onStats, calRail, statSlot, restReady }) {
+function OvMapBand({ go, extYear, calPeriod, onStats, calRail, statSlot, restReady, initFilter, onFilter }) {
   const [ref, seen] = useInView();
   const [on, setOn] = React.useState(false);
   React.useEffect(() => { if (seen) setOn(true); }, [seen]);
@@ -164,22 +164,28 @@ function OvMapBand({ go, extYear, calPeriod, onStats, calRail, statSlot, restRea
   const ready = on && restReady;
   return (
     <div ref={ref} style={{ minHeight: ready ? 0 : 220 }}>
-      {ready ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} onStats={onStats} calSlot={calRail} statSlot={statSlot} />
+      {ready ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} onStats={onStats} calSlot={calRail} statSlot={statSlot} initFilter={initFilter} onFilter={onFilter} />
         : <div className="r-card" style={{ padding: 40, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>the world map loads as you scroll…</div>}
     </div>
   );
 }
 
-// parse an Overview date-filter seed from the hash id (`#overview/y=2019` / `p=month~2019-06`).
+// parse an Overview filter seed from the hash id: date (`y=2019`, `p=month~2019-06`) + the map's
+// genre/mode (`f=<famIdx>`, `s=<subIdx>`, `md=country`). ";"-separated, like Explore.
 function parseOvSeed(seed) {
-  const out = { year: null, period: null };
+  const out = { year: null, period: null, filter: null };
   if (!seed) return out;
+  let fam = null, sub = null, mode = null;
   for (const kv of seed.split(";")) {
     const i = kv.indexOf("="); if (i < 0) continue;
     const k = kv.slice(0, i), v = kv.slice(i + 1);
     if (k === "y") out.year = +v || null;
     else if (k === "p") { const j = v.indexOf("~"); if (j > 0) out.period = { gran: v.slice(0, j), key: v.slice(j + 1) }; }
+    else if (k === "f") fam = +v;
+    else if (k === "s") sub = +v;
+    else if (k === "md") mode = v;
   }
+  if (fam != null || sub != null || mode) out.filter = { mode: mode || "city", filt: { fam: fam != null ? fam : null, sub: sub != null ? sub : null } };
   return out;
 }
 
@@ -193,8 +199,9 @@ function OverviewView({ t, go, restReady, seed }) {
   const _seed = React.useRef(parseOvSeed(seed)).current;
   const [mapYear, setMapYear] = React.useState(_seed.year);
   const [mapPeriod, setMapPeriod] = React.useState(_seed.period);
+  const [mapFilter, setMapFilter] = React.useState(_seed.filter);   // {mode, filt:{fam,sub}} from the map band
   const [fStats, setFStats] = React.useState(null);   // filtered totals reported by the map band
-  // mirror the active date filter into the URL (replaceState — no history spam / popstate loop)
+  // mirror the active filter (date + map genre/mode) into the URL (replaceState — no history spam)
   const _ovMounted = React.useRef(false);
   React.useEffect(() => {
     if (!_ovMounted.current) { _ovMounted.current = true; if (seed) return; }   // don't clobber the incoming seed
@@ -202,9 +209,13 @@ function OverviewView({ t, go, restReady, seed }) {
     const parts = [];
     if (mapYear != null) parts.push("y=" + mapYear);
     if (mapPeriod) parts.push("p=" + mapPeriod.gran + "~" + mapPeriod.key);
+    const mf = mapFilter && mapFilter.filt;
+    if (mf && mf.fam != null) parts.push("f=" + mf.fam);
+    if (mf && mf.sub != null) parts.push("s=" + mf.sub);
+    if (mapFilter && mapFilter.mode && mapFilter.mode !== "city") parts.push("md=" + mapFilter.mode);
     const target = parts.length ? "#overview/" + parts.join(";") : "";
     if ((window.location.hash || "") !== target) window.history.replaceState(null, "", target || (location.pathname + location.search));
-  }, [mapYear, mapPeriod]);
+  }, [mapYear, mapPeriod, mapFilter]);
 
   // Phase 1 — flat per-day play counts make avg/day, heaviest-day and share-of-history react to
   // the active date filter (year scrub or calendar day/week/month). Loaded lazily; tiny (~10 KB gz).
@@ -234,6 +245,28 @@ function OverviewView({ t, go, restReady, seed }) {
     return { plays, active, spanDays, label, avgDay: Math.round(plays / spanDays * 10) / 10,
       hiCount: hiC, hiDate, sharePct: Math.round(plays / (days.total || 1) * 1000) / 10 };
   }, [days, mapYear, mapPeriod]);
+  // Combine the temporal window (day-series) with the map's reported filtered plays (place + genre
+  // + year, from fStats) so avg/day and share-of-history follow ANY filter — not just the date one.
+  // The map already intersects place×genre×year, so fStats.plays IS the fully-filtered count; divide
+  // by the temporal window's span (or the whole span). Heaviest-day still needs a per-day×slice export
+  // to be place/genre-specific, so it stays scoped to the time window (day-series) and reads lifetime
+  // when only a place/genre filter is set.
+  const flt = React.useMemo(() => {
+    if (!days) return null;
+    const slice = !!(fStats && fStats.active && fStats.slice);   // a place/genre slice is active
+    // filtered play count: for a place/genre slice only the map has it; for a pure time filter the
+    // exact day-series total is right (fStats counts EXPLORE artists only, so it slightly undercounts).
+    const fp = slice ? fStats.plays : (dyn ? dyn.plays : null);
+    if (fp == null) return null;   // no filter → lifetime static stats
+    const spanDays = dyn ? dyn.spanDays : days.counts.length;   // temporal window, or the whole span
+    const rawLabel = slice ? (fStats.label || "filtered") : (dyn ? dyn.label : "");
+    return {
+      avgDay: Math.round(fp / Math.max(1, spanDays) * 10) / 10,
+      sharePct: Math.round(fp / (days.total || 1) * 1000) / 10,
+      hi: dyn ? { count: dyn.hiCount, date: dyn.hiDate } : null,   // heaviest stays time-scoped (per-slice needs a heavier export)
+      label: rawLabel.length > 18 ? rawLabel.slice(0, 17) + "…" : rawLabel,
+    };
+  }, [fStats, dyn, days]);
   const liveTotal = (window.ROTATION_LIVE && window.ROTATION_LIVE.total) || T.scrobbles;
   const scrob = useCountUp(liveTotal, 1400, seen);
   const hrs = useCountUp(T.listeningHours, 1400, seen);
@@ -396,6 +429,7 @@ function OverviewView({ t, go, restReady, seed }) {
             a slot: it renders under the map's deepest-places column and cross-filters the results. */}
         <div className="ov-mapslot" style={{ gridColumn: "1 / -1" }}>
           <OvMapBand go={go} restReady={restReady} extYear={mapYear} calPeriod={mapPeriod} onStats={setFStats}
+            initFilter={_seed.filter} onFilter={setMapFilter}
             calRail={<OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} init={_seed} />}
             statSlot={
               /* lifetime stats, now nested under the flowmap (Fuad 2026-07-06); hours + distinct
@@ -404,9 +438,9 @@ function OverviewView({ t, go, restReady, seed }) {
                 gridTemplateColumns: "repeat(2,1fr)", gap: "14px 16px", alignContent: "center" }}>
                 <Stat n={fStats && fStats.active ? fmt(fStats.hours) : fmt(Math.round(hrs))} sub={fStats && fStats.active ? "hrs · " + fStats.label : "hours listened"} onClick={() => go("calendar")} />
                 <Stat n={fStats && fStats.active ? fmt(fStats.artists) : fmt(T.artists)} sub={fStats && fStats.active ? "artists · filtered" : "distinct artists"} onClick={() => go("explore")} />
-                <Stat n={dyn ? dyn.avgDay : T.perDay} sub={dyn ? "avg/day · " + dyn.label : "avg / day"} />
-                <Stat n={dyn ? dyn.sharePct + "%" : sinceYears + " yr"} sub={dyn ? "of all plays" : "of history"} />
-                <Stat n={dyn ? fmt(dyn.hiCount) : R.TOTALS.topDay.count} sub={"heaviest · " + (dyn ? dyn.hiDate : R.TOTALS.topDay.date).slice(2)} onClick={() => go("calendar")} />
+                <Stat n={flt ? flt.avgDay : T.perDay} sub={flt ? "avg/day · " + flt.label : "avg / day"} />
+                <Stat n={flt ? flt.sharePct + "%" : sinceYears + " yr"} sub={flt ? "of all plays" : "of history"} />
+                <Stat n={flt && flt.hi ? fmt(flt.hi.count) : R.TOTALS.topDay.count} sub={"heaviest · " + ((flt && flt.hi ? flt.hi.date : R.TOTALS.topDay.date)).slice(2)} onClick={() => go("calendar")} />
               </div>
             } />
         </div>
