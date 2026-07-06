@@ -86,15 +86,16 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   );
 }
 
-function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot }) {
+function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot, initFilter, onFilter }) {
   const R = window.ROTATION;
   const G = R.INSIGHTS.GEOGRAPHY;
   const cityPts = G.cityPoints || [];
   const geoYears = G.geoYears || [];
   const FAMHUE = React.useMemo(() => { const m = {}; R.FAMILIES.forEach(f => m[f.i] = f.hue); return m; }, [R]);
+  const _if = initFilter || {};   // seeded from the Overview hash (genre + mode); place-select is transient
 
   const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
-  const [mode, setMode] = React.useState("city");   // cities are the default lens (Fuad, 2026-07-05)
+  const [mode, setMode] = React.useState(_if.mode || "city");   // cities are the default lens (Fuad, 2026-07-05)
   const [colorBy, setColorBy] = React.useState("dominant"); // dominant | top
   const [focus, setFocus] = React.useState(null);
   const [yearIdx, setYearIdx] = React.useState(null);       // null = all-time
@@ -108,7 +109,9 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot 
   const [hi, setHi] = React.useState(null);
   const [sel, setSel] = React.useState(null);
   const [pane, setPane] = React.useState("artists");
-  const [filt, setFilt] = React.useState({ fam: null, sub: null }); // genre pivot: size every place by this genre
+  const [filt, setFilt] = React.useState(_if.filt || { fam: null, sub: null }); // genre pivot: size every place by this genre
+  // report the serializable filter (genre + mode) up so the Overview can put it in the URL
+  React.useEffect(() => { if (onFilter) onFilter({ mode, filt }); }, [mode, filt]);
   const [limit, setLimit] = React.useState(embedded ? 10 : 5);      // results list length
   const [disp, setDisp] = React.useState("list"); // results display: list ⇄ cover grid (grid = the dissolved Top Artists wall; list default — the 2-unit column reads better as rows)
   const [adetail, setADetail] = React.useState(window.ROTATION_ADETAIL || null); // lazy tracks/albums for the long tail
@@ -290,11 +293,15 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot 
     const active = !!(sel || focus || filt.fam != null || filt.sub != null || yearIdx != null || periodData);
     if (!active) { onStats(null); return; }
     const avgSec = (R.TOTALS && R.TOTALS.avgTrackSec) || 216;
-    if (periodData) { const plays = periodData.arts.reduce((s, e) => s + e.p, 0); onStats({ active: true, plays, artists: periodData.arts.length, hours: Math.round(plays * avgSec / 3600), label: periodData.label }); return; }
+    // `slice` = a place/genre filter is active (not just a year/period). The Overview stat strip uses
+    // it to decide whether to size avg/day from this (EXPLORE-scoped) count or from the exact day-series
+    // total (which is right for a pure time filter). periodData is a time filter → slice:false.
+    if (periodData) { const plays = periodData.arts.reduce((s, e) => s + e.p, 0); onStats({ active: true, slice: false, plays, artists: periodData.arts.length, hours: Math.round(plays * avgSec / 3600), label: periodData.label }); return; }
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
     let plays = 0, artists = 0;
     for (const a of filteredArtists) { const p = yr != null ? (a.yp ? (a.yp[yr] || 0) : 0) : a.plays; if (p > 0) { plays += p; artists++; } }
-    onStats({ active: true, plays, artists, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? R.FAMILIES[filt.fam].family : null, yr].filter(Boolean).join(" · ") || "filtered" });
+    const slice = !!(sel || focus || filt.fam != null || filt.sub != null);
+    onStats({ active: true, slice, plays, artists, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? R.FAMILIES[filt.fam].family : null, yr].filter(Boolean).join(" · ") || "filtered" });
   }, [filteredArtists, yearIdx, periodData, sel, focus, filt, onStats]);
   // calendar-period → the places its top artists come from. calendar-detail only stores the
   // top 5-6 artists per day/week, so a full dot re-weight would be dishonest — instead we
