@@ -260322,5 +260322,5777 @@
     }
    ]
   }
+ },
+ "search:Österreichische Galerie Belvedere": [
+  {
+   "id": "Q303139",
+   "label": "Belvedere",
+   "desc": "museum housed in the Belvedere palace, Vienna, Austria"
+  },
+  {
+   "id": "Q132303526",
+   "label": "Belvedere online collection",
+   "desc": ""
+  },
+  {
+   "id": "Q87193291",
+   "label": "Upper Belvedere",
+   "desc": "Palace in Vienna, Austria"
+  },
+  {
+   "id": "Q87193289",
+   "label": "Lower Belvedere",
+   "desc": "Palace in Austria"
+  }
+ ],
+ "ent:Q303139": {
+  "type": "item",
+  "id": "Q303139",
+  "labels": {
+   "en": {
+    "language": "en",
+    "value": "Belvedere"
+   }
+  },
+  "descriptions": {
+   "en": {
+    "language": "en",
+    "value": "museum housed in the Belvedere palace, Vienna, Austria"
+   }
+  },
+  "claims": {
+   "P856": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P856",
+      "hash": "4bbe6cad4b03900d49ee0ef3b9bcd523c1cb53b0",
+      "datavalue": {
+       "value": "https://www.belvedere.at/",
+       "type": "string"
+      },
+      "datatype": "url"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P407": [
+       {
+        "snaktype": "value",
+        "property": "P407",
+        "hash": "46bfd327b830f66f7061ea92d1be430c135fa91f",
+        "datavalue": {
+         "value": {
+          "entity-type": "item",
+          "numeric-id": 188,
+          "id": "Q188"
+         },
+         "type": "wikibase-entityid"
+        },
+        "datatype": "wikibase-item"
+       },
+       {
+        "snaktype": "value",
+        "property": "P407",
+        "hash": "daf1c4fcb58181b02dff9cc89deb084004ddae4b",
+        "datavalue": {
+         "value": {
+          "entity-type": "item",
+          "numeric-id": 1860,
+          "id": "Q1860"
+         },
+         "type": "wikibase-entityid"
+        },
+        "datatype": "wikibase-item"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P407"
+     ],
+     "id": "Q303139$7e8f4519-440e-c0ec-3545-558d757a2ba3",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "d5847b9b6032aa8b13dae3c2dfd9ed5d114d21b3",
+       "snaks": {
+        "P143": [
+         {
+          "snaktype": "value",
+          "property": "P143",
+          "hash": "5a343e7e758a4282a01316d3e959b6e653b767fc",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 11920,
+            "id": "Q11920"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P143"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P856",
+      "hash": "3e11b735f593a7a9a97e90f258c464ee854567b7",
+      "datavalue": {
+       "value": "https://www.belvedere.at/en",
+       "type": "string"
+      },
+      "datatype": "url"
+     },
+     "type": "statement",
+     "id": "Q303139$CA773DF1-139C-4C0E-AA20-1AB69EA6C4DB",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "5a801cfa2931902d4309e7c2f004af5ba0104799",
+       "snaks": {
+        "P143": [
+         {
+          "snaktype": "value",
+          "property": "P143",
+          "hash": "de9173306cbafe9b1deaee2a61813ed2dceffd43",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 24731821,
+            "id": "Q24731821"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "8867684b19663eba034be4cbeefa19bebe0bb6ac",
+          "datavalue": {
+           "value": {
+            "time": "+2021-07-27T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ],
+        "P4656": [
+         {
+          "snaktype": "value",
+          "property": "P4656",
+          "hash": "83b37f924cad61a7bd51c0dc37cdae8c75ce0c4c",
+          "datavalue": {
+           "value": "https://commons.wikimedia.org/wiki/Institution:Belvedere",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P143",
+        "P813",
+        "P4656"
+       ]
+      }
+     ]
+    }
+   ],
+   "P373": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P373",
+      "hash": "ea1e1037966bb8d853e8ad27e091981361357dc4",
+      "datavalue": {
+       "value": "Österreichische Galerie Belvedere",
+       "type": "string"
+      },
+      "datatype": "string"
+     },
+     "type": "statement",
+     "id": "q303139$BC6EA8B2-F7F9-4E5E-BE85-B8EFFA278F91",
+     "rank": "normal"
+    }
+   ],
+   "P17": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P17",
+      "hash": "ccf8f871ebe392004c66ed37b78dd30d341cc949",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 40,
+        "id": "Q40"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "id": "Q303139$E26B9B37-BBE8-4636-A77F-EF395522549B",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "9a24f7c0208b05d6be97077d855671d1dfdbc0dd",
+       "snaks": {
+        "P143": [
+         {
+          "snaktype": "value",
+          "property": "P143",
+          "hash": "d38375ffe6fe142663ff55cd783aa4df4301d83d",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 48183,
+            "id": "Q48183"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P143"
+       ]
+      }
+     ]
+    }
+   ],
+   "P646": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P646",
+      "hash": "9d5dddc6c8e37d73cd296b0ab5882444287ad5c2",
+      "datavalue": {
+       "value": "/m/07262y",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$ED31E129-887A-48CF-8178-F1FD4496DCC4",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "2b00cb481cddcac7623114367489b5c194901c4a",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "a94b740202b097dd33355e0e6c00e54b9395e5e0",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 15241312,
+            "id": "Q15241312"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P577": [
+         {
+          "snaktype": "value",
+          "property": "P577",
+          "hash": "fde79ecb015112d2f29229ccc1ec514ed3e71fa2",
+          "datavalue": {
+           "value": {
+            "time": "+2013-10-28T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P577"
+       ]
+      }
+     ]
+    }
+   ],
+   "P18": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P18",
+      "hash": "c1fba5434455e01ab6b51e93c7b99d7258622773",
+      "datavalue": {
+       "value": "Wien - Schloss Belvedere, oberes (1).JPG",
+       "type": "string"
+      },
+      "datatype": "commonsMedia"
+     },
+     "type": "statement",
+     "id": "Q303139$d84a48d7-4b8b-834b-29b7-f47006b66d63",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "4ac05232d132a87c034d83e84faa16a84eb2212c",
+       "snaks": {
+        "P4656": [
+         {
+          "snaktype": "value",
+          "property": "P4656",
+          "hash": "652393ae9091d0e654ddc6a0343c21bd0338889b",
+          "datavalue": {
+           "value": "https://commons.wikimedia.org/wiki/File:Wien_-_Schloss_Belvedere,_oberes_(1).JPG",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P4656"
+       ]
+      }
+     ]
+    }
+   ],
+   "P571": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P571",
+      "hash": "7002bb1d0a70c7054c96c4b7491638a0a12e2d5a",
+      "datavalue": {
+       "value": {
+        "time": "+1907-01-01T00:00:00Z",
+        "timezone": 0,
+        "before": 0,
+        "after": 0,
+        "precision": 9,
+        "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+       },
+       "type": "time"
+      },
+      "datatype": "time"
+     },
+     "type": "statement",
+     "id": "Q303139$e24327e4-424b-c404-346e-64268ffa6e9f",
+     "rank": "normal"
+    }
+   ],
+   "P31": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P31",
+      "hash": "7fefa4b3e606d66399d31548c31343017fecd4d2",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 3196771,
+        "id": "Q3196771"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "id": "Q303139$76add30c-49ae-73b1-cea9-7cd73adf4b59",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "153c82eb91e53a27492b7ae1b6c58faa13a1c159",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "4099f3164e562d8c9bdd3b0e330e96a16097df1a",
+          "datavalue": {
+           "value": "https://www.belvedere.at/en/museum",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854"
+       ]
+      }
+     ]
+    }
+   ],
+   "P1612": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1612",
+      "hash": "9ae296f9290af1bbaec8ce6b2850b8d765d3b530",
+      "datavalue": {
+       "value": "Belvedere",
+       "type": "string"
+      },
+      "datatype": "string"
+     },
+     "type": "statement",
+     "id": "Q303139$37C25087-DC77-4DD0-B979-6C9C9669C435",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "e71a7903858496c67eea189a7084d5559f788edb",
+       "snaks": {
+        "P143": [
+         {
+          "snaktype": "value",
+          "property": "P143",
+          "hash": "5d3b16d350189b0a81818758208505444c86c127",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 565,
+            "id": "Q565"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P143"
+       ]
+      }
+     ]
+    }
+   ],
+   "P214": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P214",
+      "hash": "6c10f67a8e8fcf3a9a7a51e734b58e998d328c28",
+      "datavalue": {
+       "value": "172476334",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$EF6CD260-ED22-4EB3-A6C4-9C54674BD073",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "ffb7008c3b41d9efd69c450e837f49eebb1b6dce",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "6b7d4330c4aac4caec4ede9de0311ce273f88ecd",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 54919,
+            "id": "Q54919"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "76142c1ac740096f18ea230da7fb62353d1c531f",
+          "datavalue": {
+           "value": {
+            "time": "+2015-08-03T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P813"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P214",
+      "hash": "2ac1ddfb5757ab4ffdbdff1b411d3bfefd2734a8",
+      "datavalue": {
+       "value": "130931678",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$b967edee-47cf-0184-db58-34419a4e3802",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "7f81f24a4148728c2eb8e030140bb2808f105296",
+       "snaks": {
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "e73dd89adce10dab0b48e5883a5620c401edea3e",
+          "datavalue": {
+           "value": {
+            "time": "+2020-04-20T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P269": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P269",
+      "hash": "67d701b54c04211add265afbc5b72aab0d96ec66",
+      "datavalue": {
+       "value": "032148712",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$7FB3EDDD-BB2E-477B-8DD5-986A03EF9278",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "4533e325b4161189dcba02b6a92f6c4533327637",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "6b7d4330c4aac4caec4ede9de0311ce273f88ecd",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 54919,
+            "id": "Q54919"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "a5fb6c3872e96e7c068b0826ff7393eaba0e8fc3",
+          "datavalue": {
+           "value": {
+            "time": "+2015-10-06T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P910": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P910",
+      "hash": "e6ddf80be3b3c1af5760c53789550476d4d7755c",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 101645985,
+        "id": "Q101645985"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "id": "Q303139$61DF76DF-EB27-4DFA-B300-886A7C95A8F6",
+     "rank": "normal"
+    }
+   ],
+   "P2002": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P2002",
+      "hash": "6e3eb7e62f76d6efc4a7e7a3cc4ed69a884f5d81",
+      "datavalue": {
+       "value": "belvederewien",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P6552": [
+       {
+        "snaktype": "somevalue",
+        "property": "P6552",
+        "hash": "45d00a899a31bb1b56b0a255a5521ff443d681b9",
+        "datatype": "external-id"
+       }
+      ],
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "6555864657f5a4381c4d9f2613a6b2444d6d68b6",
+        "datavalue": {
+         "value": {
+          "time": "+2020-03-07T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 11,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P6552",
+      "P585"
+     ],
+     "id": "Q303139$A5002CA9-AE31-4C37-878B-C38207010AEE",
+     "rank": "normal"
+    }
+   ],
+   "P213": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P213",
+      "hash": "67114b8a29159e9c7a94927ee355adac6df345c6",
+      "datavalue": {
+       "value": "0000000417837317",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$240AA06A-97D9-43CD-B0BC-1C933F2407B0",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "fe30c3d8276dce76f79eeb1b32fe76c537a259fa",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "8a10589baea5bee9f0ab02319d7da5e45bef3ca0",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 28527677,
+            "id": "Q28527677"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248"
+       ]
+      }
+     ]
+    }
+   ],
+   "P1174": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1174",
+      "hash": "dc3b977f36ef8f36eccb1631ef0239465a995639",
+      "datavalue": {
+       "value": {
+        "amount": "+1126954",
+        "unit": "1"
+       },
+       "type": "quantity"
+      },
+      "datatype": "quantity"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "b6849eb7f635c6ee36b75d8adf7e3f89c6624101",
+        "datavalue": {
+         "value": {
+          "time": "+2015-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$876ca7c9-4909-94b4-503e-1aafb7932993",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "cce1a609a7b7a624978faa498aaac33649025f45",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "f0756b27fd3296bfc556027fa822c125a3fe980a",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 26838786,
+            "id": "Q26838786"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1174",
+      "hash": "32c1c2f3e7e6c917d5bcedce2a684b7a9876033b",
+      "datavalue": {
+       "value": {
+        "amount": "+1154031",
+        "unit": "1"
+       },
+       "type": "quantity"
+      },
+      "datatype": "quantity"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "f4e1bbc6e9b3a72c2e1fd3e6061f4c7e7f5acad9",
+        "datavalue": {
+         "value": {
+          "time": "+2016-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$bd5e409d-4eff-9f36-752c-ae38d0f048ac",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "9ed94a7f120a85e5c05ce5b97deada6dfc5be09b",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "9ca67ac1762d3c451f98abaa67e881365daa0fef",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 29908205,
+            "id": "Q29908205"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1174",
+      "hash": "72d49431d15c3459abc122e5a6b52b9ff4c99140",
+      "datavalue": {
+       "value": {
+        "amount": "+888633",
+        "unit": "1"
+       },
+       "type": "quantity"
+      },
+      "datatype": "quantity"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "1277780215cd5ca03e85ca9c50830783b4fedfe1",
+        "datavalue": {
+         "value": {
+          "time": "+2011-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$e29b1d45-4575-2226-c041-32d49cf8c8bf",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "34f382f9268a64f99bc45f52be7b294752bc4c33",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "e1f3d53cf9c5851671e008c725e2f912e19b68a1",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 29911292,
+            "id": "Q29911292"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1174",
+      "hash": "7dabc3c30034fbee6cc1936973f6322c477960b3",
+      "datavalue": {
+       "value": {
+        "amount": "+752588",
+        "unit": "1"
+       },
+       "type": "quantity"
+      },
+      "datatype": "quantity"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "e4ce1ad4d6c6d0289a402c42bf392b7c735cbc30",
+        "datavalue": {
+         "value": {
+          "time": "+2009-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$d4bc9e69-429e-a89b-9b33-4a3299491b16",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "da82d70c37200eace20e59389ae05a232a8eb438",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "1e35fcc76d6fb06bf9d421f5d16313a8049ee245",
+          "datavalue": {
+           "value": "http://www.kunstkultur.bka.gv.at/Docs/kuku/medienpool/20912/kulturbericht2010.pdf",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1174",
+      "hash": "3d14853679dbe0836a70b1adedb278f0fe27dd41",
+      "datavalue": {
+       "value": {
+        "amount": "+812522",
+        "unit": "1"
+       },
+       "type": "quantity"
+      },
+      "datatype": "quantity"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "3c2d510317e0fcbe8582afb1d706a4b6eb08d233",
+        "datavalue": {
+         "value": {
+          "time": "+2010-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$9f89a84c-4dfd-026d-ea5a-c1036acccf64",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "da82d70c37200eace20e59389ae05a232a8eb438",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "1e35fcc76d6fb06bf9d421f5d16313a8049ee245",
+          "datavalue": {
+           "value": "http://www.kunstkultur.bka.gv.at/Docs/kuku/medienpool/20912/kulturbericht2010.pdf",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1174",
+      "hash": "c0b7df6c70470ad227289125d1d4acd3f90de9f3",
+      "datavalue": {
+       "value": {
+        "amount": "+1510468",
+        "unit": "1"
+       },
+       "type": "quantity"
+      },
+      "datatype": "quantity"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "6174553681261aeec411766adf691fdeec1dee47",
+        "datavalue": {
+         "value": {
+          "time": "+2018-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$3c05c872-4327-6b04-5f3d-309c0778359a",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "40ee6b3825e514a935d175f2a78af063b51b16f2",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "7a1104fe46b098a8fa4a73eaa5ac9a1310ec6fdb",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 98930822,
+            "id": "Q98930822"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1174",
+      "hash": "b8de2acb378c28bdcb5b3566b24d18d5f2f2f5ef",
+      "datavalue": {
+       "value": {
+        "amount": "+1721399",
+        "unit": "1"
+       },
+       "type": "quantity"
+      },
+      "datatype": "quantity"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "77f348fcb49110a0de3c2faf4865527dc30dcbc9",
+        "datavalue": {
+         "value": {
+          "time": "+2019-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$a35b70aa-4c75-778d-f82e-9376dfdb7901",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "854b1ad2c346f37d89feafd2bd007806f1465151",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "01a745f26b508efa06fa69ce63dac370ee5fe0a4",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 98930825,
+            "id": "Q98930825"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1174",
+      "hash": "15e0e1ca554d536542a5a67a22736e54c4b08fed",
+      "datavalue": {
+       "value": {
+        "amount": "+343064",
+        "unit": "1"
+       },
+       "type": "quantity"
+      },
+      "datatype": "quantity"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "09f85c089438e099c1cd33998f5c59a57729afd2",
+        "datavalue": {
+         "value": {
+          "time": "+2020-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$090fcc95-47bf-7c1d-3842-21d13b5cabea",
+     "rank": "preferred",
+     "references": [
+      {
+       "hash": "8dee20f30f6138d040b77df942350c75be0d9cb1",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "3509501ed29141eb2dd716adc600b8c85a5b11b6",
+          "datavalue": {
+           "value": "https://www.vienna.at/so-viele-besucher-besuchten-die-bundesmuseen-2020/6880531",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "cc1d7dbdf22792ae235b4d4040ca1aefab95667c",
+          "datavalue": {
+           "value": {
+            "time": "+2021-05-13T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P1037": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1037",
+      "hash": "66093775f619c17bb7e2c39db730591e7c531754",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 394549,
+        "id": "Q394549"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P580": [
+       {
+        "snaktype": "value",
+        "property": "P580",
+        "hash": "2ff980d429ca62a9f912808fc44b6488fe02ca1c",
+        "datavalue": {
+         "value": {
+          "time": "+2007-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ],
+      "P582": [
+       {
+        "snaktype": "value",
+        "property": "P582",
+        "hash": "c8a8b6cf4694be0f395a71ea8e237ded39daaac0",
+        "datavalue": {
+         "value": {
+          "time": "+2016-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P580",
+      "P582"
+     ],
+     "id": "Q303139$308c7594-48dd-1d87-21a5-a6fd2a184530",
+     "rank": "normal"
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1037",
+      "hash": "6c7627ce6b019b642ace187a81e1ed8c27936ff7",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 6536296,
+        "id": "Q6536296"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P580": [
+       {
+        "snaktype": "value",
+        "property": "P580",
+        "hash": "4f0734ede67b08f83eae7bc0f8cbbfb619a20f53",
+        "datavalue": {
+         "value": {
+          "time": "+2017-01-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 10,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P580"
+     ],
+     "id": "Q303139$57178822-4ce4-6103-d492-0f70e6df5259",
+     "rank": "preferred",
+     "references": [
+      {
+       "hash": "07008a1e927898c6d38a0b4aa38ff73dee143261",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "ec135e1d6a865b580203d5d1f0a3360d0c694282",
+          "datavalue": {
+           "value": "https://kurier.at/kultur/stella-rollig-wird-neue-direktorin-im-belvedere/225.829.393",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ],
+        "P1476": [
+         {
+          "snaktype": "value",
+          "property": "P1476",
+          "hash": "906c2796843b84a82ea2ff2c813fbd470717b251",
+          "datavalue": {
+           "value": {
+            "text": "Stella Rollig wird neue Direktorin im Belvedere",
+            "language": "de"
+           },
+           "type": "monolingualtext"
+          },
+          "datatype": "monolingualtext"
+         }
+        ],
+        "P1433": [
+         {
+          "snaktype": "value",
+          "property": "P1433",
+          "hash": "c7635ca12ea58009f5cbc6ee1506d2c5ce8550d7",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 360136,
+            "id": "Q360136"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P577": [
+         {
+          "snaktype": "value",
+          "property": "P577",
+          "hash": "c1787308104e5ee12e29d4e5c45855624c4efc4e",
+          "datavalue": {
+           "value": {
+            "time": "+2016-10-17T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854",
+        "P1476",
+        "P1433",
+        "P577"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1037",
+      "hash": "e7c0ba161155eb4c387f59c7b7f20c6cf2cafa95",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 27485712,
+        "id": "Q27485712"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P580": [
+       {
+        "snaktype": "value",
+        "property": "P580",
+        "hash": "4f0734ede67b08f83eae7bc0f8cbbfb619a20f53",
+        "datavalue": {
+         "value": {
+          "time": "+2017-01-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 10,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ],
+      "P39": [
+       {
+        "snaktype": "value",
+        "property": "P39",
+        "hash": "62e89e1c0fe00d847d7dcf4ec1e36696d507d104",
+        "datavalue": {
+         "value": {
+          "entity-type": "item",
+          "numeric-id": 3029403,
+          "id": "Q3029403"
+         },
+         "type": "wikibase-entityid"
+        },
+        "datatype": "wikibase-item"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P580",
+      "P39"
+     ],
+     "id": "Q303139$09ce10f9-4fba-10ce-1f19-4216a6943644",
+     "rank": "preferred"
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1037",
+      "hash": "244e4932a9185ff6ad86cfca1502a138eecf134c",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 88695679,
+        "id": "Q88695679"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P580": [
+       {
+        "snaktype": "value",
+        "property": "P580",
+        "hash": "ed730e4c258f94d6bf2b86c50e53de07ad209ae2",
+        "datavalue": {
+         "value": {
+          "time": "+1992-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ],
+      "P582": [
+       {
+        "snaktype": "value",
+        "property": "P582",
+        "hash": "460b1b2fb2394fae690a345123b9cdc15bc1afa7",
+        "datavalue": {
+         "value": {
+          "time": "+2006-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P580",
+      "P582"
+     ],
+     "id": "Q303139$a00da642-40e4-594c-4f55-b23e7c91a249",
+     "rank": "normal"
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1037",
+      "hash": "74658ca056220bf18969713585666814c3aeab9d",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 24084801,
+        "id": "Q24084801"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P580": [
+       {
+        "snaktype": "value",
+        "property": "P580",
+        "hash": "209aae6183d5a39e233d3a0139742486b9f5671f",
+        "datavalue": {
+         "value": {
+          "time": "+1939-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ],
+      "P582": [
+       {
+        "snaktype": "value",
+        "property": "P582",
+        "hash": "ca1e73ddfb5d87521a2232a3c43d879db89824f4",
+        "datavalue": {
+         "value": {
+          "time": "+1945-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P580",
+      "P582"
+     ],
+     "id": "Q303139$8855420a-4b7f-eb69-bfbe-fcc4419dbfef",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "d55e3920ee1852d62f39679cdc711871edebb153",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "bda7b19a51ea42e4661715c74e0756201f3208a5",
+          "datavalue": {
+           "value": "https://www.lexikon-provenienzforschung.org/en/grimschitz-bruno",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854"
+       ]
+      }
+     ]
+    }
+   ],
+   "P1687": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1687",
+      "hash": "060324c3e78140f0fe7cc0e7bfc9cf6f2f350fc2",
+      "datavalue": {
+       "value": {
+        "entity-type": "property",
+        "numeric-id": 3421,
+        "id": "P3421"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-property"
+     },
+     "type": "statement",
+     "id": "Q303139$D2190E87-FF43-4EDC-8D3C-295F3F5420AD",
+     "rank": "normal"
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1687",
+      "hash": "ca0494570eb656675fa2e2b2b83a10bbc7e45d90",
+      "datavalue": {
+       "value": {
+        "entity-type": "property",
+        "numeric-id": 5823,
+        "id": "P5823"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-property"
+     },
+     "type": "statement",
+     "id": "Q303139$094bded5-4e6c-5c7a-e696-8d5b338b671f",
+     "rank": "normal"
+    }
+   ],
+   "P227": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P227",
+      "hash": "822a71af2ceff1a99e7d9a8857c7758d9a26513f",
+      "datavalue": {
+       "value": "2165327-6",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$1EBB7823-DFA5-47DE-ABD8-968AA58D1610",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "9a24f7c0208b05d6be97077d855671d1dfdbc0dd",
+       "snaks": {
+        "P143": [
+         {
+          "snaktype": "value",
+          "property": "P143",
+          "hash": "d38375ffe6fe142663ff55cd783aa4df4301d83d",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 48183,
+            "id": "Q48183"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P143"
+       ]
+      }
+     ]
+    }
+   ],
+   "P159": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P159",
+      "hash": "d8f539573bf9013e97512ade9724f0c77b53d2a0",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 1741,
+        "id": "Q1741"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P625": [
+       {
+        "snaktype": "value",
+        "property": "P625",
+        "hash": "caac2796a896aa0c6207e36031e848cd80e80bab",
+        "datavalue": {
+         "value": {
+          "latitude": 48.19138888888889,
+          "longitude": 16.380833333333335,
+          "altitude": null,
+          "precision": 0.0002777777777777778,
+          "globe": "http://www.wikidata.org/entity/Q2"
+         },
+         "type": "globecoordinate"
+        },
+        "datatype": "globe-coordinate"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P625"
+     ],
+     "id": "Q303139$4CF052B5-6C3B-4642-9209-13B3D1D089A7",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "fa278ebfc458360e5aed63d5058cca83c46134f1",
+       "snaks": {
+        "P143": [
+         {
+          "snaktype": "value",
+          "property": "P143",
+          "hash": "e4f6d9441d0600513c4533c672b5ab472dc73694",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 328,
+            "id": "Q328"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P143"
+       ]
+      }
+     ]
+    }
+   ],
+   "P268": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P268",
+      "hash": "25b14dedb92f73cac730f0e489679d6be588b21d",
+      "datavalue": {
+       "value": "118798653",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$D21C7DB1-95FB-4AAC-8AD9-A1E1C5364155",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "e441857a35b42c1777531d1dc486fb73de7ac4e2",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "6b7d4330c4aac4caec4ede9de0311ce273f88ecd",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 54919,
+            "id": "Q54919"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P214": [
+         {
+          "snaktype": "value",
+          "property": "P214",
+          "hash": "f6dea17b70134477f98df2c3b90c37420ac2b88b",
+          "datavalue": {
+           "value": "131942987",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "a1b98b5c8bb6eca02829acaf6200c3e4a45b4dd0",
+          "datavalue": {
+           "value": {
+            "time": "+2018-10-07T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P214",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P131": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P131",
+      "hash": "7f57ec7cdb45f16b96a8533dc43ebe929ee18a3c",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 519552,
+        "id": "Q519552"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "id": "Q303139$e685fdeb-461e-7fbb-1a7b-645f2bc995c0",
+     "rank": "normal"
+    }
+   ],
+   "P154": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P154",
+      "hash": "bb4f87e08ff317a7eff518ccd05c83ceb137a00f",
+      "datavalue": {
+       "value": "Österreichische Galerie Belvedere.png",
+       "type": "string"
+      },
+      "datatype": "commonsMedia"
+     },
+     "type": "statement",
+     "id": "Q303139$39A2772D-2991-4D60-B12B-B915723CDF19",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "3bd8568211a5172515625da60ebe57e8a06d3e47",
+       "snaks": {
+        "P4656": [
+         {
+          "snaktype": "value",
+          "property": "P4656",
+          "hash": "03737b36954aa5e742c93c3120c497a17c789161",
+          "datavalue": {
+           "value": "https://commons.wikimedia.org/wiki/File:%C3%96sterreichische_Galerie_Belvedere.png",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P4656"
+       ]
+      }
+     ]
+    }
+   ],
+   "P691": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P691",
+      "hash": "3e07f2ecb2c36d4b15a9721956e6ab3f036ce284",
+      "datavalue": {
+       "value": "ko2004218712",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P1810": [
+       {
+        "snaktype": "value",
+        "property": "P1810",
+        "hash": "027d15d15751fc1f4d9788d0fd7a539a25c5931d",
+        "datavalue": {
+         "value": "Österreichische Galerie Belvedere",
+         "type": "string"
+        },
+        "datatype": "string"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P1810"
+     ],
+     "id": "Q303139$DB6F07C7-2979-47E5-902D-EC3BD4DE0D5F",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "58a9aeb6551e29109e6e06b9bc34c40fc18cd88a",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "80047f9d5b0d2daf06989e71bd5f4ba15b215fd6",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 13550863,
+            "id": "Q13550863"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "3756277ea3db3c5c7ee5523dd3aae9aa81b396b6",
+          "datavalue": {
+           "value": {
+            "time": "+2018-12-20T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P813"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P691",
+      "hash": "0ebacbf95f9c1b53e1733c0fdfc8f8de4887f3e4",
+      "datavalue": {
+       "value": "ko2004218711",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P1810": [
+       {
+        "snaktype": "value",
+        "property": "P1810",
+        "hash": "3e3be82b5de23619da1920a985f4ff1f943263d5",
+        "datavalue": {
+         "value": "Österreichische Galerie",
+         "type": "string"
+        },
+        "datatype": "string"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P1810"
+     ],
+     "id": "Q303139$2ACE11CB-01F2-4C87-8B21-431E6D8E3FD2",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "1b894f1245228e04c380f23da9628a2ac3743b3b",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "80047f9d5b0d2daf06989e71bd5f4ba15b215fd6",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 13550863,
+            "id": "Q13550863"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P691": [
+         {
+          "snaktype": "value",
+          "property": "P691",
+          "hash": "3e07f2ecb2c36d4b15a9721956e6ab3f036ce284",
+          "datavalue": {
+           "value": "ko2004218712",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "3a7d57960b34ff5454897da1ef07bb3668eaadee",
+          "datavalue": {
+           "value": {
+            "time": "+2023-05-23T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P691",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P1417": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1417",
+      "hash": "9723e690a629b9bf1a17aeb1509035df3d37f0c1",
+      "datavalue": {
+       "value": "topic/Osterreichische-Gallery",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P1810": [
+       {
+        "snaktype": "value",
+        "property": "P1810",
+        "hash": "96f8c8669b1239d4f93babfa7eb8b751d084846d",
+        "datavalue": {
+         "value": "Belvedere Museum",
+         "type": "string"
+        },
+        "datatype": "string"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P1810"
+     ],
+     "id": "Q303139$1BD4E5EC-B48E-44DB-963B-F6AFD53389D4",
+     "rank": "normal"
+    }
+   ],
+   "P1619": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1619",
+      "hash": "4538c5fbc379ed2888d55f360bd1ea2ca95b93a5",
+      "datavalue": {
+       "value": {
+        "time": "+1903-00-00T00:00:00Z",
+        "timezone": 0,
+        "before": 0,
+        "after": 0,
+        "precision": 9,
+        "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+       },
+       "type": "time"
+      },
+      "datatype": "time"
+     },
+     "type": "statement",
+     "id": "Q303139$FFE679AE-292F-47EB-A967-B962D14D636E",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "c70f60234282c9a325607e00910c09966d266b30",
+       "snaks": {
+        "P143": [
+         {
+          "snaktype": "value",
+          "property": "P143",
+          "hash": "e17507043402fe54ae6c4d65cc51f46cec987de9",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 8449,
+            "id": "Q8449"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P4656": [
+         {
+          "snaktype": "value",
+          "property": "P4656",
+          "hash": "60446a628ddcbbc87d77a9bffd046929cb1b6413",
+          "datavalue": {
+           "value": "https://es.wikipedia.org/w/index.php?title=Galería_Belvedere&oldid=119302350",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P143",
+        "P4656"
+       ]
+      }
+     ]
+    }
+   ],
+   "P7446": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P7446",
+      "hash": "7cc41cb59150f457fe7ad02a070b21b2aa0411f0",
+      "datavalue": {
+       "value": "11783",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$54F46C57-59A8-4FE6-A0B3-D17E1BD8B8E5",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "548d2a1811bed09c9acbbcba0782fa74eb4e3de6",
+       "snaks": {
+        "P4656": [
+         {
+          "snaktype": "value",
+          "property": "P4656",
+          "hash": "f17a88a613b1787bb870f6b5b047c3d1bbfbb408",
+          "datavalue": {
+           "value": "https://www.wikidata.org/w/index.php?title=Wikidata:Property_proposal/Basis_Wien&oldid=1034025392",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P4656"
+       ]
+      }
+     ]
+    }
+   ],
+   "P625": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P625",
+      "hash": "caac2796a896aa0c6207e36031e848cd80e80bab",
+      "datavalue": {
+       "value": {
+        "latitude": 48.19138888888889,
+        "longitude": 16.380833333333335,
+        "altitude": null,
+        "precision": 0.0002777777777777778,
+        "globe": "http://www.wikidata.org/entity/Q2"
+       },
+       "type": "globecoordinate"
+      },
+      "datatype": "globe-coordinate"
+     },
+     "type": "statement",
+     "id": "Q303139$E64FACFE-8E25-475F-B036-04BB5BCD9D9E",
+     "rank": "normal"
+    }
+   ],
+   "P1343": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1343",
+      "hash": "a5ccf2b856ef5e568206838540e70908ad8293ee",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 73357989,
+        "id": "Q73357989"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "5a3f2a7491006129e04514010a00e7810907eb5a",
+        "datavalue": {
+         "value": {
+          "time": "+2019-10-31T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 11,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       },
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "c98efba799e1769013d5e0763a46d1af854063d9",
+        "datavalue": {
+         "value": {
+          "time": "+2020-04-30T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 11,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       },
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "8c551a45665c151dbfe7cfb1a51049526a994b31",
+        "datavalue": {
+         "value": {
+          "time": "+2021-08-03T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 11,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       },
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "cc204b5b4738cf214a068d626dc55342010de10f",
+        "datavalue": {
+         "value": {
+          "time": "+2022-03-01T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 11,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       },
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "a950ae483cf1983c91258f423fff9ff548bf17c8",
+        "datavalue": {
+         "value": {
+          "time": "+2023-07-02T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 11,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       },
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "4cdec145bbd2554305a3c937f1aab833dfdb3608",
+        "datavalue": {
+         "value": {
+          "time": "+2023-06-27T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 11,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       },
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "e5dcc2ce337e0f4dfe71a248d375ddad670a4cc7",
+        "datavalue": {
+         "value": {
+          "time": "+2024-05-16T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 11,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$E836A3D5-2519-44B0-B2F9-38B351B9D1FE",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "0e3b48ffd16176acaf88177cd865f1e389084c77",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "3d8fc8c97ae24fbb2ec80db137e7ae641395aa26",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 76889548,
+            "id": "Q76889548"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "8c1eb401c82fe0167bafc1a85ef81683b2ebfb82",
+          "datavalue": {
+           "value": "https://archive.org/details/OpenGLAM_Survey_20191031",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "aa1194ec38a8ad3dcf0baa6a642fcba401531639",
+          "datavalue": {
+           "value": {
+            "time": "+2019-11-30T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P854",
+        "P813"
+       ]
+      },
+      {
+       "hash": "1f94b9fc199ff31be06b906fd8ec1e9043866ba2",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "394a58554bd87ce384834b9bb1532fa99d53b4dc",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 97730483,
+            "id": "Q97730483"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "629fa9d9a1abd9f9739ff796cd903e03159fed60",
+          "datavalue": {
+           "value": "https://archive.org/details/OpenGLAM_Survey_20200430",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "b0f6bb067ff8b54402546beac8ba2c00020bd410",
+          "datavalue": {
+           "value": {
+            "time": "+2020-07-27T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P854",
+        "P813"
+       ]
+      },
+      {
+       "hash": "5119aea74673e8aa798b0743e236d70ba0a0e644",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "6948da10cd13c9b6c233c9a30ebcc9e38eff45a5",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 107866137,
+            "id": "Q107866137"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "594d4a8c8fb7eed6756bd73ec1427a0cc6d53bad",
+          "datavalue": {
+           "value": "https://archive.org/details/OpenGLAM_Survey_20210803",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "b1ddced2819c88072cc5f9c3e5cb044e1175bb63",
+          "datavalue": {
+           "value": {
+            "time": "+2021-08-04T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P854",
+        "P813"
+       ]
+      },
+      {
+       "hash": "1d34556840a0fe2beb0f2e4ec4660b1730dd78ff",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "4bc7dab1464d317397d34fbabd8cc81bf0f87e45",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 110951835,
+            "id": "Q110951835"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "8fe7aeec210b62d5681170f00cf0c29b9cde76e8",
+          "datavalue": {
+           "value": "https://archive.org/details/OpenGLAM_Survey_20220217",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "b2ad08910940cafbe24537b40cf2cd06bef73cac",
+          "datavalue": {
+           "value": {
+            "time": "+2022-03-01T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P854",
+        "P813"
+       ]
+      },
+      {
+       "hash": "13bdd17c55a0a13286b08735386b43ea90a43261",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "060756ca7a2aa855d34ed7f61e39ed7623c90ca5",
+          "datavalue": {
+           "value": "https://docs.google.com/spreadsheets/d/1WPS-KJptUJ-o8SXtg00llcxq0IKJu8eO6Ege_GrLaNc",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "d86d4a017b0eefe2db781afe2b6a69c9613c3e72",
+          "datavalue": {
+           "value": {
+            "time": "+2023-07-02T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854",
+        "P813"
+       ]
+      },
+      {
+       "hash": "142479aa7c3917dfb63e150b9a5b19dca9aad240",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "fa4def8cbd2ff185af4ecf8daad54c2f7c80dd55",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 120041313,
+            "id": "Q120041313"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "073c073b85e3a834b020c5b880c1da2fffd3f76f",
+          "datavalue": {
+           "value": "https://archive.org/details/open-glam-survey-backup-20230627",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "91bd86c290f31c8503829dfb580f4d39440e4daf",
+          "datavalue": {
+           "value": {
+            "time": "+2023-06-27T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P854",
+        "P813"
+       ]
+      },
+      {
+       "hash": "6c44b9d62586b93bda3b1e30b4d6af3421c76022",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "560d794f5f90caa1dcc537e17fbcfb7cdc023d93",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 125946211,
+            "id": "Q125946211"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "4826ecbacd3f788f6914b9f03e620d972f12ac49",
+          "datavalue": {
+           "value": {
+            "time": "+2024-05-16T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ],
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "8419423faa682837198722e6907892b93e963892",
+          "datavalue": {
+           "value": "https://archive.org/details/open-glam-survey-backup-20240516",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P813",
+        "P854"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1343",
+      "hash": "96d7b819eef0bcddaa368e36e014c1f202c24347",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 97579095,
+        "id": "Q97579095"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "fc3bafbedd95aebbff82feeca6a57f389bc036e6",
+        "datavalue": {
+         "value": {
+          "time": "+1783-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$3b0d68ff-4251-bd81-361f-c9c2b43d194f",
+     "rank": "normal"
+    }
+   ],
+   "P361": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P361",
+      "hash": "bf7654feeff2f2e6086e3c13d27e3258bac1f702",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 211818,
+        "id": "Q211818"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "id": "Q303139$906f3719-480a-b259-53e2-1c57ce01b7e5",
+     "rank": "normal"
+    }
+   ],
+   "P527": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P527",
+      "hash": "d2a619461a463428466f39f34f6a59a5a66ef68e",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 87193289,
+        "id": "Q87193289"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "id": "Q303139$7f77cdc3-4d6f-1b58-066b-e4b32e1d8a45",
+     "rank": "normal"
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P527",
+      "hash": "03a1cc230ba6ae153414fb3df79a87e53b09d8fd",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 87193291,
+        "id": "Q87193291"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "id": "Q303139$3a9ff3e4-439a-8fed-0be6-c8aa0831795a",
+     "rank": "normal"
+    }
+   ],
+   "P3500": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P3500",
+      "hash": "57ebb9c6849ba65666766e34bc7a4bf5b4a95272",
+      "datavalue": {
+       "value": "360639",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$95BC8A8D-2AB3-4B08-BF93-E805553FB3CB",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "2834ac5da275724a6354a73d2d2a89ae956042a9",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "654ac97d41e766b6860b1b7acd87f11a6b00c4f9",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 64159407,
+            "id": "Q64159407"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248"
+       ]
+      }
+     ]
+    }
+   ],
+   "P9037": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P9037",
+      "hash": "795ca2095153964b2e734f2c5093d2631bd58d8b",
+      "datavalue": {
+       "value": "d9c48f6e-c041-48c7-bc5c-3f57ef9a4128",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$39D68F31-5605-47FC-BCDB-9D20A584A4AD",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "fe9c02b22f6abce8fed34bd25dfbf19a3d9fd5d1",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "36652acb3b591d852e55294ce860131f9cd71787",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 63411600,
+            "id": "Q63411600"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P9037": [
+         {
+          "snaktype": "value",
+          "property": "P9037",
+          "hash": "795ca2095153964b2e734f2c5093d2631bd58d8b",
+          "datavalue": {
+           "value": "d9c48f6e-c041-48c7-bc5c-3f57ef9a4128",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P691": [
+         {
+          "snaktype": "value",
+          "property": "P691",
+          "hash": "3e07f2ecb2c36d4b15a9721956e6ab3f036ce284",
+          "datavalue": {
+           "value": "ko2004218712",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "d99ce66406ac00ee48c86201063135f62c6be7c4",
+          "datavalue": {
+           "value": {
+            "time": "+2020-12-22T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P9037",
+        "P691",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P9434": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P9434",
+      "hash": "4d9b00bff9347151bbacafcec1515995b7ae6e0a",
+      "datavalue": {
+       "value": "act10002382",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$F10283C3-1326-4234-B59F-2DC4F3DC4BA2",
+     "rank": "normal"
+    }
+   ],
+   "P9585": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P9585",
+      "hash": "11111cf0445268a9764c7cd6ce52ee959555a371",
+      "datavalue": {
+       "value": "österreichische-galerie",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$1FABBA9F-DEB0-46BE-819C-D32B9E6F17F9",
+     "rank": "normal"
+    }
+   ],
+   "P7014": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P7014",
+      "hash": "8236bdfd1c21057995324a8331c43af0c38e21d0",
+      "datavalue": {
+       "value": "https://www.belvedere.at/en/opencontent",
+       "type": "string"
+      },
+      "datatype": "url"
+     },
+     "type": "statement",
+     "id": "Q303139$28906B95-EB11-48CF-881C-1A674114C31B",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "a73243e27f42de75ca85e1ac6b082e8f3c7e89f9",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "9b0d750098599d5676d3c353e484f2a99cb468f9",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 73357989,
+            "id": "Q73357989"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "060756ca7a2aa855d34ed7f61e39ed7623c90ca5",
+          "datavalue": {
+           "value": "https://docs.google.com/spreadsheets/d/1WPS-KJptUJ-o8SXtg00llcxq0IKJu8eO6Ege_GrLaNc",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "e4bc0a82e70f427616002c04018553bb3b3c9fad",
+          "datavalue": {
+           "value": {
+            "time": "+2021-05-19T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P854",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P8768": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P8768",
+      "hash": "507f5e00290bb22f4cfb6169ba6b103a316a74db",
+      "datavalue": {
+       "value": "https://sammlung.belvedere.at/",
+       "type": "string"
+      },
+      "datatype": "url"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P31": [
+       {
+        "snaktype": "value",
+        "property": "P31",
+        "hash": "bded63e394523eb8ffbf4bed868af44ef97f9248",
+        "datavalue": {
+         "value": {
+          "entity-type": "item",
+          "numeric-id": 107400920,
+          "id": "Q107400920"
+         },
+         "type": "wikibase-entityid"
+        },
+        "datatype": "wikibase-item"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P31"
+     ],
+     "id": "Q303139$0bc48acd-4bbf-75ed-c73c-8689991783b2",
+     "rank": "normal"
+    }
+   ],
+   "P1329": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1329",
+      "hash": "f4bb53b9c7a3d586fab45248ef87d35de1f15763",
+      "datavalue": {
+       "value": "+43 1 795 57-0",
+       "type": "string"
+      },
+      "datatype": "string"
+     },
+     "type": "statement",
+     "id": "Q303139$2D63EE50-572C-46DB-BA46-787D9DA2BD83",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "609293eedd283219fa00e37177b5932f3b0fe9bd",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "5132e33c01791f7e2a9c5e250f34ca76a79dc1c1",
+          "datavalue": {
+           "value": "https://www.belvedere.at/en/visit",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854"
+       ]
+      }
+     ]
+    }
+   ],
+   "P112": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P112",
+      "hash": "3e9a49dc40fa7ec250c6ec61a1e90d1484431aa9",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 152428,
+        "id": "Q152428"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "id": "Q303139$3AB46230-B386-456C-A7D8-4E50E4C2C111",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "12b5d7bc4c69971402c80d64c476af29df16143c",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "a308e677d4ceb46b706629199ac51e43c18a3a24",
+          "datavalue": {
+           "value": "https://www.belvedere.at/en/history-belvedere",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854"
+       ]
+      }
+     ]
+    }
+   ],
+   "P84": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P84",
+      "hash": "ce8ff5c1899069060d2f3ae76eb8eab7a0af70ab",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 84507,
+        "id": "Q84507"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "id": "Q303139$7A7A02A4-559F-4684-9951-AD75614773D2",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "153c82eb91e53a27492b7ae1b6c58faa13a1c159",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "4099f3164e562d8c9bdd3b0e330e96a16097df1a",
+          "datavalue": {
+           "value": "https://www.belvedere.at/en/museum",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854"
+       ]
+      }
+     ]
+    }
+   ],
+   "P8093": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P8093",
+      "hash": "f715ad183d84b845b8827d831d174307d2a446eb",
+      "datavalue": {
+       "value": {
+        "amount": "+1120000",
+        "unit": "http://www.wikidata.org/entity/Q4916"
+       },
+       "type": "quantity"
+      },
+      "datatype": "quantity"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "09f85c089438e099c1cd33998f5c59a57729afd2",
+        "datavalue": {
+         "value": {
+          "time": "+2020-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$35CB20FE-88C1-4A23-9107-DCDE75E013C6",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "5ebdf18295eca1361cb4927807d106f2c05a4b20",
+       "snaks": {
+        "P1476": [
+         {
+          "snaktype": "value",
+          "property": "P1476",
+          "hash": "fba6ae191ce484098b8e95b72439a053a6b7007f",
+          "datavalue": {
+           "value": {
+            "text": "Spendenbericht 2021 – Fundraising Verband Austria",
+            "language": "de"
+           },
+           "type": "monolingualtext"
+          },
+          "datatype": "monolingualtext"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "08529d064baad71a9df22dc3308e931aca9bd537",
+          "datavalue": {
+           "value": {
+            "time": "+2022-01-25T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P1476",
+        "P813"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P8093",
+      "hash": "e64161411704e07c1cfe233f3b9159d8bb6d68d8",
+      "datavalue": {
+       "value": {
+        "amount": "+1480000",
+        "unit": "http://www.wikidata.org/entity/Q4916"
+       },
+       "type": "quantity"
+      },
+      "datatype": "quantity"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "77f348fcb49110a0de3c2faf4865527dc30dcbc9",
+        "datavalue": {
+         "value": {
+          "time": "+2019-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$1D188879-1D2E-4ED1-8039-F8D41439724A",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "5ebdf18295eca1361cb4927807d106f2c05a4b20",
+       "snaks": {
+        "P1476": [
+         {
+          "snaktype": "value",
+          "property": "P1476",
+          "hash": "fba6ae191ce484098b8e95b72439a053a6b7007f",
+          "datavalue": {
+           "value": {
+            "text": "Spendenbericht 2021 – Fundraising Verband Austria",
+            "language": "de"
+           },
+           "type": "monolingualtext"
+          },
+          "datatype": "monolingualtext"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "08529d064baad71a9df22dc3308e931aca9bd537",
+          "datavalue": {
+           "value": {
+            "time": "+2022-01-25T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P1476",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P4839": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P4839",
+      "hash": "344942bd2b967d5282bb4e49302ac78c305b4f13",
+      "datavalue": {
+       "value": "Entity[\"Museum\", \"OstervilleHistoricalSociety::766nv\"]",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$A882089A-2938-4E24-B424-A169FF63F9AD",
+     "rank": "normal"
+    }
+   ],
+   "P5019": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P5019",
+      "hash": "2aa91ed7b10add7b2aa0b0ea5437360fd37f407b",
+      "datavalue": {
+       "value": "österreichische-galerie-belvedere",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$A2C73210-F82B-4E45-B02D-45047F33B748",
+     "rank": "normal"
+    }
+   ],
+   "P8189": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P8189",
+      "hash": "c828033cceed62cdcd53a909cb486a85df353f9b",
+      "datavalue": {
+       "value": "987007427934805171",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$A75D6451-F74E-4CF1-8DB1-89BA1F395AA1",
+     "rank": "normal"
+    }
+   ],
+   "P396": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P396",
+      "hash": "d76e5709881cf7273c497de963004020c67e0d0f",
+      "datavalue": {
+       "value": "TO0V421476",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P1810": [
+       {
+        "snaktype": "value",
+        "property": "P1810",
+        "hash": "027d15d15751fc1f4d9788d0fd7a539a25c5931d",
+        "datavalue": {
+         "value": "Österreichische Galerie Belvedere",
+         "type": "string"
+        },
+        "datatype": "string"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P1810"
+     ],
+     "id": "Q303139$0B4DBE5B-B2F5-497C-A5DA-2054704F182E",
+     "rank": "normal"
+    }
+   ],
+   "P9984": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P9984",
+      "hash": "c89ba9305172823905167f5d37ccfab65e50c0d4",
+      "datavalue": {
+       "value": "981058617995506706",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P1810": [
+       {
+        "snaktype": "value",
+        "property": "P1810",
+        "hash": "027d15d15751fc1f4d9788d0fd7a539a25c5931d",
+        "datavalue": {
+         "value": "Österreichische Galerie Belvedere",
+         "type": "string"
+        },
+        "datatype": "string"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P1810"
+     ],
+     "id": "q303139$0f8a2bde-4f89-038b-2fa3-af3269c52f2c",
+     "rank": "preferred",
+     "references": [
+      {
+       "hash": "4cda87ac40899cf23fd7f178569ffaefa5be5822",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "6b7d4330c4aac4caec4ede9de0311ce273f88ecd",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 54919,
+            "id": "Q54919"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P214": [
+         {
+          "snaktype": "value",
+          "property": "P214",
+          "hash": "6c10f67a8e8fcf3a9a7a51e734b58e998d328c28",
+          "datavalue": {
+           "value": "172476334",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "a33d8c1d22a022f9944e4da6fbbce2353b8f109d",
+          "datavalue": {
+           "value": {
+            "time": "+2022-05-04T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P214",
+        "P813"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P9984",
+      "hash": "614f4c279085e2f9954e0c4a1627a361fda0fc8f",
+      "datavalue": {
+       "value": "981058598976506706",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P1810": [
+       {
+        "snaktype": "value",
+        "property": "P1810",
+        "hash": "3e3be82b5de23619da1920a985f4ff1f943263d5",
+        "datavalue": {
+         "value": "Österreichische Galerie",
+         "type": "string"
+        },
+        "datatype": "string"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P1810"
+     ],
+     "id": "Q303139$FD4AC5FA-A73E-461B-BC4F-4E055D59BE79",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "c615306f9f3d8b388eb4ef09e929c4fc04c7cb11",
+       "snaks": {
+        "P214": [
+         {
+          "snaktype": "value",
+          "property": "P214",
+          "hash": "2ac1ddfb5757ab4ffdbdff1b411d3bfefd2734a8",
+          "datavalue": {
+           "value": "130931678",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P214"
+       ]
+      }
+     ]
+    }
+   ],
+   "P950": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P950",
+      "hash": "77e0bbd408014fcc239e1a01a48037d6284d4ef1",
+      "datavalue": {
+       "value": "XX231089",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "q303139$16568e91-4810-a010-6a14-8a3730e71ea2",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "4cda87ac40899cf23fd7f178569ffaefa5be5822",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "6b7d4330c4aac4caec4ede9de0311ce273f88ecd",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 54919,
+            "id": "Q54919"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P214": [
+         {
+          "snaktype": "value",
+          "property": "P214",
+          "hash": "6c10f67a8e8fcf3a9a7a51e734b58e998d328c28",
+          "datavalue": {
+           "value": "172476334",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "a33d8c1d22a022f9944e4da6fbbce2353b8f109d",
+          "datavalue": {
+           "value": {
+            "time": "+2022-05-04T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P214",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P8179": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P8179",
+      "hash": "2b546b769fcbdf8f1d05a2017c0228a44915a68d",
+      "datavalue": {
+       "value": "ncf11098111",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "q303139$f2c6d983-49d7-adf0-9138-4dcdfb11bfdf",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "4cda87ac40899cf23fd7f178569ffaefa5be5822",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "6b7d4330c4aac4caec4ede9de0311ce273f88ecd",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 54919,
+            "id": "Q54919"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P214": [
+         {
+          "snaktype": "value",
+          "property": "P214",
+          "hash": "6c10f67a8e8fcf3a9a7a51e734b58e998d328c28",
+          "datavalue": {
+           "value": "172476334",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "a33d8c1d22a022f9944e4da6fbbce2353b8f109d",
+          "datavalue": {
+           "value": {
+            "time": "+2022-05-04T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P214",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P6394": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P6394",
+      "hash": "06a946351da1be5d66f060ffaf35429d12edb642",
+      "datavalue": {
+       "value": "a11856579",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "q303139$c9da82e8-4abd-398b-aa8d-c23bc3988f1b",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "4cda87ac40899cf23fd7f178569ffaefa5be5822",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "6b7d4330c4aac4caec4ede9de0311ce273f88ecd",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 54919,
+            "id": "Q54919"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P214": [
+         {
+          "snaktype": "value",
+          "property": "P214",
+          "hash": "6c10f67a8e8fcf3a9a7a51e734b58e998d328c28",
+          "datavalue": {
+           "value": "172476334",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "a33d8c1d22a022f9944e4da6fbbce2353b8f109d",
+          "datavalue": {
+           "value": {
+            "time": "+2022-05-04T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P214",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P1368": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1368",
+      "hash": "46f097a5fd7070ec34c7dd4c96e0512d625e2e00",
+      "datavalue": {
+       "value": "000064583",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "q303139$59e9c760-4ce4-7649-0a70-ddfaba88ecd9",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "4cda87ac40899cf23fd7f178569ffaefa5be5822",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "6b7d4330c4aac4caec4ede9de0311ce273f88ecd",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 54919,
+            "id": "Q54919"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P214": [
+         {
+          "snaktype": "value",
+          "property": "P214",
+          "hash": "6c10f67a8e8fcf3a9a7a51e734b58e998d328c28",
+          "datavalue": {
+           "value": "172476334",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "a33d8c1d22a022f9944e4da6fbbce2353b8f109d",
+          "datavalue": {
+           "value": {
+            "time": "+2022-05-04T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P214",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P271": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P271",
+      "hash": "54812d65dc182f61f51cbdbaf436f8b2c33e4900",
+      "datavalue": {
+       "value": "DA15945910",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "q303139$1e098223-46d5-8bd2-688d-2596ee9216bc",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "4cda87ac40899cf23fd7f178569ffaefa5be5822",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "6b7d4330c4aac4caec4ede9de0311ce273f88ecd",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 54919,
+            "id": "Q54919"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P214": [
+         {
+          "snaktype": "value",
+          "property": "P214",
+          "hash": "6c10f67a8e8fcf3a9a7a51e734b58e998d328c28",
+          "datavalue": {
+           "value": "172476334",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "a33d8c1d22a022f9944e4da6fbbce2353b8f109d",
+          "datavalue": {
+           "value": {
+            "time": "+2022-05-04T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P214",
+        "P813"
+       ]
+      },
+      {
+       "hash": "ebedf1295b9f665dcf79b52edce10cf411e04f85",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "b09baac32eb0d06cecfd287182405f4371d8c4a2",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 115920372,
+            "id": "Q115920372"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P11496": [
+         {
+          "snaktype": "value",
+          "property": "P11496",
+          "hash": "297d29a691800a74bb6960ae9c3f49852a13a5ae",
+          "datavalue": {
+           "value": "1140845216630166784",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "2d8ed19d4d5d6b1c50ae084152ee243ba7bb1026",
+          "datavalue": {
+           "value": {
+            "time": "+2023-02-17T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P11496",
+        "P813"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P271",
+      "hash": "2c5276106277aa655d029ace6bcaf2a68613a4fe",
+      "datavalue": {
+       "value": "DA05138956",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$059309B9-B856-453A-8E2D-10F048F0B890",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "c02631bb5b3ebc8aff401771e23343b623146349",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "b09baac32eb0d06cecfd287182405f4371d8c4a2",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 115920372,
+            "id": "Q115920372"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P11496": [
+         {
+          "snaktype": "value",
+          "property": "P11496",
+          "hash": "2d1c01817c6f41c0a1507ef8c51e1005b10652f4",
+          "datavalue": {
+           "value": "1140000791619724928",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "8cb20e9624d6ad996b6a2eef3fd4ca48c636539a",
+          "datavalue": {
+           "value": {
+            "time": "+2023-03-20T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P11496",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P1207": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1207",
+      "hash": "d644d7c58918789e1f85f2ad9081308a06388cb5",
+      "datavalue": {
+       "value": "n2005052782",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "q303139$2e736683-403a-b3af-be7c-292034d13df8",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "4cda87ac40899cf23fd7f178569ffaefa5be5822",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "6b7d4330c4aac4caec4ede9de0311ce273f88ecd",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 54919,
+            "id": "Q54919"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P214": [
+         {
+          "snaktype": "value",
+          "property": "P214",
+          "hash": "6c10f67a8e8fcf3a9a7a51e734b58e998d328c28",
+          "datavalue": {
+           "value": "172476334",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "a33d8c1d22a022f9944e4da6fbbce2353b8f109d",
+          "datavalue": {
+           "value": {
+            "time": "+2022-05-04T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P214",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P7293": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P7293",
+      "hash": "071d16a146bc068169d635cc137ce597e4bb4d36",
+      "datavalue": {
+       "value": "9810536369705606",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "q303139$fc0e8b94-4361-dbfe-5d06-a4e8a208f231",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "4cda87ac40899cf23fd7f178569ffaefa5be5822",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "6b7d4330c4aac4caec4ede9de0311ce273f88ecd",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 54919,
+            "id": "Q54919"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P214": [
+         {
+          "snaktype": "value",
+          "property": "P214",
+          "hash": "6c10f67a8e8fcf3a9a7a51e734b58e998d328c28",
+          "datavalue": {
+           "value": "172476334",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "a33d8c1d22a022f9944e4da6fbbce2353b8f109d",
+          "datavalue": {
+           "value": {
+            "time": "+2022-05-04T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P214",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P6782": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P6782",
+      "hash": "5b7f724fbd12748c628b6cde1187c1f2b5c88118",
+      "datavalue": {
+       "value": "036mhzk54",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$DB7E50B2-B3B9-4948-AAEE-552B9A9F7BF3",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "f1540ec24c34446698098f9f7fd4bc6e08c3eff4",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "7e403c4174be03c7819e30b85154097b58cc8c21",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 113551108,
+            "id": "Q113551108"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248"
+       ]
+      }
+     ]
+    }
+   ],
+   "P11496": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P11496",
+      "hash": "297d29a691800a74bb6960ae9c3f49852a13a5ae",
+      "datavalue": {
+       "value": "1140845216630166784",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$1604FBAB-8520-4B90-B11F-AD440782AF26",
+     "rank": "normal"
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P11496",
+      "hash": "2d1c01817c6f41c0a1507ef8c51e1005b10652f4",
+      "datavalue": {
+       "value": "1140000791619724928",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$6F3BBA51-0990-471D-9A44-A106FAA19F0F",
+     "rank": "normal"
+    }
+   ],
+   "P11686": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P11686",
+      "hash": "24bbd5af51e7c0d15b6d2c525f39743e2236911d",
+      "datavalue": {
+       "value": "981058617995506706",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P1810": [
+       {
+        "snaktype": "value",
+        "property": "P1810",
+        "hash": "027d15d15751fc1f4d9788d0fd7a539a25c5931d",
+        "datavalue": {
+         "value": "Österreichische Galerie Belvedere",
+         "type": "string"
+        },
+        "datatype": "string"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P1810"
+     ],
+     "id": "Q303139$89AA5381-5CCA-4ACB-B191-E462D830F643",
+     "rank": "preferred",
+     "references": [
+      {
+       "hash": "4cda87ac40899cf23fd7f178569ffaefa5be5822",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "6b7d4330c4aac4caec4ede9de0311ce273f88ecd",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 54919,
+            "id": "Q54919"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P214": [
+         {
+          "snaktype": "value",
+          "property": "P214",
+          "hash": "6c10f67a8e8fcf3a9a7a51e734b58e998d328c28",
+          "datavalue": {
+           "value": "172476334",
+           "type": "string"
+          },
+          "datatype": "external-id"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "a33d8c1d22a022f9944e4da6fbbce2353b8f109d",
+          "datavalue": {
+           "value": {
+            "time": "+2022-05-04T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P214",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P1830": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1830",
+      "hash": "d1dcd6383d82191485ff97a53132b596d8400ae5",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 60629195,
+        "id": "Q60629195"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P580": [
+       {
+        "snaktype": "value",
+        "property": "P580",
+        "hash": "90032636701919ff0ee48883cba878a6303fefb7",
+        "datavalue": {
+         "value": {
+          "time": "+1948-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ],
+      "P582": [
+       {
+        "snaktype": "value",
+        "property": "P582",
+        "hash": "460b1b2fb2394fae690a345123b9cdc15bc1afa7",
+        "datavalue": {
+         "value": {
+          "time": "+2006-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ],
+      "P828": [
+       {
+        "snaktype": "value",
+        "property": "P828",
+        "hash": "4d77143930486f36b0ae9601f1dddbb1ac0393de",
+        "datavalue": {
+         "value": {
+          "entity-type": "item",
+          "numeric-id": 2146005,
+          "id": "Q2146005"
+         },
+         "type": "wikibase-entityid"
+        },
+        "datatype": "wikibase-item"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P580",
+      "P582",
+      "P828"
+     ],
+     "id": "Q303139$3224bf36-43b2-b30c-5d64-674a469c0ccf",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "c771558430c48e9331f7f89ade1c71b65bf8f608",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "b65bed9c100cef765a0a6bfe73b30e8bc4a6f663",
+          "datavalue": {
+           "value": "https://www.christies.com/en/lot/lot-4807503",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1830",
+      "hash": "bcb3e015ef3f65242feaf0787185313b1e2efe03",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 113951917,
+        "id": "Q113951917"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P580": [
+       {
+        "snaktype": "value",
+        "property": "P580",
+        "hash": "5ecce4ccf3a2a0e81ca97ed7c325b2e9f269cd0d",
+        "datavalue": {
+         "value": {
+          "time": "+1961-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ],
+      "P582": [
+       {
+        "snaktype": "value",
+        "property": "P582",
+        "hash": "21223f87fb708457f98a20c67e7c7e4eafbd0ff3",
+        "datavalue": {
+         "value": {
+          "time": "+2000-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ],
+      "P828": [
+       {
+        "snaktype": "value",
+        "property": "P828",
+        "hash": "4d77143930486f36b0ae9601f1dddbb1ac0393de",
+        "datavalue": {
+         "value": {
+          "entity-type": "item",
+          "numeric-id": 2146005,
+          "id": "Q2146005"
+         },
+         "type": "wikibase-entityid"
+        },
+        "datatype": "wikibase-item"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P580",
+      "P582",
+      "P828"
+     ],
+     "id": "Q303139$fae8630a-4c80-41b0-bcc1-4fa45097b7cf",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "2fe9e602cb5727d6aed4a8d892ad0515564c5f93",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "010d1c5bd885a82f45cf69e8dce3ff59434047ce",
+          "datavalue": {
+           "value": "https://www.sothebys.com/en/auctions/ecatalogue/2004/impressionist-and-modern-art-evening-sale-l04007/lot.37.html",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1830",
+      "hash": "5628d745d0ccd3be1ec1101f8bb6be06118d790c",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 113637987,
+        "id": "Q113637987"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P580": [
+       {
+        "snaktype": "value",
+        "property": "P580",
+        "hash": "683886e7dcf167bf46c8b0d7b65b3ce52bc7496e",
+        "datavalue": {
+         "value": {
+          "time": "+1945-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ],
+      "P582": [
+       {
+        "snaktype": "value",
+        "property": "P582",
+        "hash": "460b1b2fb2394fae690a345123b9cdc15bc1afa7",
+        "datavalue": {
+         "value": {
+          "time": "+2006-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ],
+      "P828": [
+       {
+        "snaktype": "value",
+        "property": "P828",
+        "hash": "4d77143930486f36b0ae9601f1dddbb1ac0393de",
+        "datavalue": {
+         "value": {
+          "entity-type": "item",
+          "numeric-id": 2146005,
+          "id": "Q2146005"
+         },
+         "type": "wikibase-entityid"
+        },
+        "datatype": "wikibase-item"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P580",
+      "P582",
+      "P828"
+     ],
+     "id": "Q303139$4df053f3-4f13-f7fb-e0ad-e9f65c83aaf6",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "7f914d3f8ccfa687aa646f13ca2d1d9f18026c97",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "c1424c329814950de9933f7065457ba40b2c2b2a",
+          "datavalue": {
+           "value": "https://www.christies.com/en/lot/lot-4807502",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1830",
+      "hash": "9e5d00802d690ca5e7f7f48faa9fa06a4693df9a",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 28002788,
+        "id": "Q28002788"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P580": [
+       {
+        "snaktype": "value",
+        "property": "P580",
+        "hash": "25227d54052a5ff44309ae086b45ccc8cdb8aba6",
+        "datavalue": {
+         "value": {
+          "time": "+1950-05-04T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 11,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P580"
+     ],
+     "id": "Q303139$c1a822f3-493e-c994-135b-ae9a67995832",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "951ccea5bf2896bfbf62df368d1832861d235600",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "533b9a7acd32ec2f3255d7073ae20d6ff098ff27",
+          "datavalue": {
+           "value": "https://provenienzforschung.gv.at/beiratsbeschluesse/Kellner_Kaethe_2017-10-05.pdf",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "06215e635befe2be67841275b8aaa96ce3e6761b",
+          "datavalue": {
+           "value": {
+            "time": "+2025-10-19T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854",
+        "P813"
+       ]
+      }
+     ]
+    }
+   ],
+   "P2003": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P2003",
+      "hash": "439bafb8a58289424a797fd7d76d9eb70b89ca0c",
+      "datavalue": {
+       "value": "belvederemuseum",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$B5D2319F-279D-4BDB-8E8B-B99C30BEC0A4",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "cabf26c75a00fd2efd9dc289e0ccfb442d218417",
+       "snaks": {
+        "P143": [
+         {
+          "snaktype": "value",
+          "property": "P143",
+          "hash": "c6f1777471211df31724ac60175786f3872c83e9",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 177837,
+            "id": "Q177837"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P4656": [
+         {
+          "snaktype": "value",
+          "property": "P4656",
+          "hash": "6828b8829aa8476c79d099bdc39b9d2ec06fb027",
+          "datavalue": {
+           "value": "https://ja.wikipedia.org/w/index.php?title=オーストリア・ギャラリー&oldid=84742221",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P143",
+        "P4656"
+       ]
+      }
+     ]
+    }
+   ],
+   "P793": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P793",
+      "hash": "1abe9a044cad978410ba5254ce6d9a113f8ef87d",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 2146005,
+        "id": "Q2146005"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "eb0ebdca65f8a80fa9de530d9f3efd91003c1544",
+        "datavalue": {
+         "value": {
+          "time": "+2001-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$b54dde4e-45c4-8ab6-0da1-cbdccc96b92b",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "f0d4df5d8b6e4aebdd687677ec680373fcd4de74",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "554a93e290c02fea76bcf931e31a71435b81adb3",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 118189556,
+            "id": "Q118189556"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "4ba2ccd907a7a7f7950dfc3300fc1e6b1bced4f0",
+          "datavalue": {
+           "value": "https://www.theartnewspaper.com/2018/11/13/austria-returns-wrong-klimt-to-wrong-family",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P854"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P793",
+      "hash": "1abe9a044cad978410ba5254ce6d9a113f8ef87d",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 2146005,
+        "id": "Q2146005"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "a910853afc29ee98ebd8b5f67a02ff08aea299d2",
+        "datavalue": {
+         "value": {
+          "time": "+2006-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$53a9191c-4a79-f17e-2187-51074225284f",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "5b7b6b0f8b89e6aa4257df1b698ff2973d3fead6",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "95a89901baa2199f08cff773acf4b79ac861425e",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 31197510,
+            "id": "Q31197510"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P793",
+      "hash": "971a923ddbc89d94836b9a8de4a111e6c4b9acfd",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 136461151,
+        "id": "Q136461151"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "2c189c7c872983bd10a28e2acfc03f5c3738d76d",
+        "datavalue": {
+         "value": {
+          "time": "+2003-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585"
+     ],
+     "id": "Q303139$53914075-4f9d-e260-2451-596069051e74",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "a4b0f72d40dab888721b12df6729667f6f0cdb8a",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "3ba7a2f433a53a2341ffa5bb60043064ae1668ac",
+          "datavalue": {
+           "value": "https://provenienzforschung.gv.at/beiratsbeschluesse/Altmann_Bernhard_2003-06-18.pdf",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "71c979b73792afc7a2df39f917b7903e81127a3a",
+          "datavalue": {
+           "value": {
+            "time": "+2025-10-18T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ],
+        "P1683": [
+         {
+          "snaktype": "value",
+          "property": "P1683",
+          "hash": "5bed82e8391e184300bf438038be80ad5de8bd5c",
+          "datavalue": {
+           "value": {
+            "text": "\"BESCHLUSS gefasst:Der Bundesministerin für Bildung, Wissenschaft und Kultur wird nicht empfohlen, nachstehendenKunstgegenstand aus der Österreichischen Galerie Belvedere,Gustav Klimt,Bildnis einer DameÖl auf Karton, 43 x 34 cmseitl. rechts: Gustav/KlimtInv.Nr. 5449an die Erben nach Bernhard Altmann auszufolgen.\"",
+            "language": "de"
+           },
+           "type": "monolingualtext"
+          },
+          "datatype": "monolingualtext"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854",
+        "P813",
+        "P1683"
+       ]
+      },
+      {
+       "hash": "e7b8870a4fed226a323530e250e9d66d9af78d28",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "955b8b0d5d6c2501df41e9374514114a816776e8",
+          "datavalue": {
+           "value": "https://provenienzforschung.gv.at/beiratsbeschluesse/Altmann_Bernhard_2003-11-20.pdf",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "71c979b73792afc7a2df39f917b7903e81127a3a",
+          "datavalue": {
+           "value": {
+            "time": "+2025-10-18T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ],
+        "P1683": [
+         {
+          "snaktype": "value",
+          "property": "P1683",
+          "hash": "0a8012d2c8966ea9e2ab2954ff05842876eb49bf",
+          "datavalue": {
+           "value": {
+            "text": "\"BESCHLUSS gefasst:Der Bundesministerin für Bildung, Wissenschaft und Kultur wird empfohlen, nachstehendenKunstgegenstand aus der Österreichischen Galerie Belvedere, nämlichGustav Klimt,Bildnis einer DameÖl auf Karton, 43 x 34 cmseitl. rechts: Gustav/KlimtInv.Nr. 5449sowie die Druckschrift aus der Österreichischen NationalbibliothekRepond: Le costume de la garde Suisse pontificale et la renaissance italienne,Rom, 1917,Signatur 683569 Dan die Erben nach Bernhard Altmann auszufolgen.\"",
+            "language": "de"
+           },
+           "type": "monolingualtext"
+          },
+          "datatype": "monolingualtext"
+         }
+        ],
+        "P50": [
+         {
+          "snaktype": "value",
+          "property": "P50",
+          "hash": "8ea5de50e44d35c845309320bbb70a76c791d087",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 136385333,
+            "id": "Q136385333"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854",
+        "P813",
+        "P1683",
+        "P50"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P793",
+      "hash": "971a923ddbc89d94836b9a8de4a111e6c4b9acfd",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 136461151,
+        "id": "Q136461151"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P585": [
+       {
+        "snaktype": "value",
+        "property": "P585",
+        "hash": "c34a8cfb745b0cda47dffa6967839b8f92bcb653",
+        "datavalue": {
+         "value": {
+          "time": "+2017-00-00T00:00:00Z",
+          "timezone": 0,
+          "before": 0,
+          "after": 0,
+          "precision": 9,
+          "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+         },
+         "type": "time"
+        },
+        "datatype": "time"
+       }
+      ],
+      "P921": [
+       {
+        "snaktype": "value",
+        "property": "P921",
+        "hash": "ecfbc1e0cd596018ffdee5cad52083312aab3397",
+        "datavalue": {
+         "value": {
+          "entity-type": "item",
+          "numeric-id": 28002788,
+          "id": "Q28002788"
+         },
+         "type": "wikibase-entityid"
+        },
+        "datatype": "wikibase-item"
+       },
+       {
+        "snaktype": "value",
+        "property": "P921",
+        "hash": "ab8c56e9738fca99d5894c9f6ba5705adc06a8b3",
+        "datavalue": {
+         "value": {
+          "entity-type": "item",
+          "numeric-id": 115959327,
+          "id": "Q115959327"
+         },
+         "type": "wikibase-entityid"
+        },
+        "datatype": "wikibase-item"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P585",
+      "P921"
+     ],
+     "id": "Q303139$80371c46-40bb-fcbf-9137-d1e89915187e",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "20e6aed19f8e1cbb208f7c8294fb004d2be8f1c3",
+       "snaks": {
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "533b9a7acd32ec2f3255d7073ae20d6ff098ff27",
+          "datavalue": {
+           "value": "https://provenienzforschung.gv.at/beiratsbeschluesse/Kellner_Kaethe_2017-10-05.pdf",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ],
+        "P1683": [
+         {
+          "snaktype": "value",
+          "property": "P1683",
+          "hash": "81a5489c1bc3c3deaebffd11c7daadadfdd375ea",
+          "datavalue": {
+           "value": {
+            "text": "BESCHLUSS gefasst:Dem Bundesminister für Kunst und Kultur, Verfassung und Medien wird empfohlen, das im Dossier der Kommission für Provenienzforschung „Käthe Kellner“ (10/2017) angeführte GemäldeMichael NederDer Kutscherstreit, 1828 Inv. Nr. 4392aus der österreichischen Galerie Belvedere an die RechtsnachfolgerInnen von Todes wegen nach Käthe Kellner zu übereignen.",
+            "language": "de"
+           },
+           "type": "monolingualtext"
+          },
+          "datatype": "monolingualtext"
+         }
+        ],
+        "P50": [
+         {
+          "snaktype": "value",
+          "property": "P50",
+          "hash": "8ea5de50e44d35c845309320bbb70a76c791d087",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 136385333,
+            "id": "Q136385333"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P854",
+        "P1683",
+        "P50"
+       ]
+      }
+     ]
+    },
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P793",
+      "hash": "512995f7bac353781ea05d9fee79601ad73e6cce",
+      "datavalue": {
+       "value": {
+        "entity-type": "item",
+        "numeric-id": 107614552,
+        "id": "Q107614552"
+       },
+       "type": "wikibase-entityid"
+      },
+      "datatype": "wikibase-item"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P921": [
+       {
+        "snaktype": "value",
+        "property": "P921",
+        "hash": "264eec191eb26939611da0f6285f7996bf51c14e",
+        "datavalue": {
+         "value": {
+          "entity-type": "item",
+          "numeric-id": 156898,
+          "id": "Q156898"
+         },
+         "type": "wikibase-entityid"
+        },
+        "datatype": "wikibase-item"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P921"
+     ],
+     "id": "Q303139$a0ad4ad8-4d30-b4f9-0aff-d2ceceb51014",
+     "rank": "normal",
+     "references": [
+      {
+       "hash": "b30b5b1b7d78919c200b7506669b5bba7a267c92",
+       "snaks": {
+        "P248": [
+         {
+          "snaktype": "value",
+          "property": "P248",
+          "hash": "745895f27728fed17fc12535117140508409b48c",
+          "datavalue": {
+           "value": {
+            "entity-type": "item",
+            "numeric-id": 136512400,
+            "id": "Q136512400"
+           },
+           "type": "wikibase-entityid"
+          },
+          "datatype": "wikibase-item"
+         }
+        ],
+        "P813": [
+         {
+          "snaktype": "value",
+          "property": "P813",
+          "hash": "3d21605b87615535eaf0341ea79b513fb58aed39",
+          "datavalue": {
+           "value": {
+            "time": "+2026-05-04T00:00:00Z",
+            "timezone": 0,
+            "before": 0,
+            "after": 0,
+            "precision": 11,
+            "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+           },
+           "type": "time"
+          },
+          "datatype": "time"
+         }
+        ],
+        "P854": [
+         {
+          "snaktype": "value",
+          "property": "P854",
+          "hash": "fffedb80f201f892cb508bc6bece7276e8da295e",
+          "datavalue": {
+           "value": "https://web.archive.org/web/20160406231947if_/http://restitution.or.at/downloads/ARTNEWS_LEGACY-of-SHAME.pdf",
+           "type": "string"
+          },
+          "datatype": "url"
+         }
+        ]
+       },
+       "snaks-order": [
+        "P248",
+        "P813",
+        "P854"
+       ]
+      }
+     ]
+    }
+   ],
+   "P12361": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P12361",
+      "hash": "482f87177021ad7fa42331f1ba0d99302b0208a2",
+      "datavalue": {
+       "value": "belvederemuseum.bsky.social",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P12409": [
+       {
+        "snaktype": "value",
+        "property": "P12409",
+        "hash": "14b97c8985d6e55cffc4a4916250f4159f0bd04b",
+        "datavalue": {
+         "value": "did:plc:uo3u55ahx7zg2qwl6id2fqus",
+         "type": "string"
+        },
+        "datatype": "external-id"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P12409"
+     ],
+     "id": "Q303139$ff962013-41ac-cce7-fb2f-7246c75d01ca",
+     "rank": "normal"
+    }
+   ],
+   "P9964": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P9964",
+      "hash": "1aa9d0ae8fc1f604e72bd65cc21a28ca6323d21b",
+      "datavalue": {
+       "value": "2165327-6",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$4830BA0E-5D66-4984-ADD7-21A10E24AAC5",
+     "rank": "normal"
+    }
+   ],
+   "P7842": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P7842",
+      "hash": "1e228d522188b7997c76b3071f9780222e2d908b",
+      "datavalue": {
+       "value": "4728",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "qualifiers": {
+      "P1810": [
+       {
+        "snaktype": "value",
+        "property": "P1810",
+        "hash": "027d15d15751fc1f4d9788d0fd7a539a25c5931d",
+        "datavalue": {
+         "value": "Österreichische Galerie Belvedere",
+         "type": "string"
+        },
+        "datatype": "string"
+       }
+      ]
+     },
+     "qualifiers-order": [
+      "P1810"
+     ],
+     "id": "Q303139$515E7EA7-FDC7-4838-8917-0B40EE52399A",
+     "rank": "normal"
+    }
+   ],
+   "P13591": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P13591",
+      "hash": "2d06d59ea9c788cc13cda3140f67a9ff157c9588",
+      "datavalue": {
+       "value": "group/aabe2c7f-cc50-4c2b-8547-c0c6a21d7475",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$0CFF3415-139E-4671-8906-5B86F8ABF467",
+     "rank": "normal"
+    }
+   ],
+   "P1705": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P1705",
+      "hash": "d9b283cce8474c0a7c43642eaa26f8f26ee4cd9c",
+      "datavalue": {
+       "value": {
+        "text": "Österreichische Galerie Belvedere",
+        "language": "de"
+       },
+       "type": "monolingualtext"
+      },
+      "datatype": "monolingualtext"
+     },
+     "type": "statement",
+     "id": "Q303139$925e65ce-4216-caaf-496e-6faf5631af64",
+     "rank": "normal"
+    }
+   ],
+   "P13337": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P13337",
+      "hash": "668b579ca14685e2c72e3e26bad4dc1fbc912e83",
+      "datavalue": {
+       "value": "belvedere.at",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$5429B460-A61C-4EC6-9E0D-578A21C48C62",
+     "rank": "normal"
+    }
+   ],
+   "P14075": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P14075",
+      "hash": "54304cf3041ed9c34d78c091ddadf80e1d0489f0",
+      "datavalue": {
+       "value": "102808",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$3B1E5331-D447-4611-8168-2F877646FB83",
+     "rank": "normal"
+    }
+   ],
+   "P6295": [
+    {
+     "mainsnak": {
+      "snaktype": "value",
+      "property": "P6295",
+      "hash": "70eda8ef60baa323de8ddf08da9dc9fa177a5326",
+      "datavalue": {
+       "value": "76915",
+       "type": "string"
+      },
+      "datatype": "external-id"
+     },
+     "type": "statement",
+     "id": "Q303139$89D97FC7-17F9-4A45-9842-3E8E79AE1C2A",
+     "rank": "normal"
+    }
+   ]
+  }
  }
 }
