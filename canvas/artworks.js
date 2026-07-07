@@ -196,6 +196,14 @@ window.CANVAS_ARTWORKS = [
   { id: "an-interesting-story", title: "An interesting story", artist: "James Tissot", artistId: "tissot", qid: "Q20416827", qidTrusted: true, year: 1872, seenAt: "ngv", seenConfidence: "unsure", liked: true, note: "Deck pick — ngv-2026-07-07." },
   { id: "mrs-campbell-mcinnes-later-angela-thirkell", title: "Mrs Campbell McInnes (later Angela Thirkell)", artist: "John Collier", artistId: "collier", qid: "Q20418845", qidTrusted: true, year: 1914, seenAt: "ngv", seenConfidence: "unsure", liked: true, note: "Deck pick — ngv-2026-07-07." },
   { id: "mount-st-michael-cornwall", title: "Mount St Michael, Cornwall", artist: "Clarkson Frederick Stanfield", artistId: "stanfield", qid: "Q20421229", qidTrusted: true, year: 1830, seenAt: "ngv", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — ngv-2026-07-07." },
+  // ——— deck-folded picks (fold-deck.js) ———
+  { id: "aboriginal-memorial", title: "Aboriginal Memorial", artist: "Ramingining artists", artistId: "artists", qid: "Q3652436", qidTrusted: true, year: 1987, seenAt: "nga-canberra", seenConfidence: "sure", note: "Deck pick — nga-canberra-2026-07-07." },
+  { id: "golden-summer-eaglemont", title: "Golden Summer, Eaglemont", artist: "Arthur Streeton", artistId: "streeton", qid: "Q18165620", qidTrusted: true, year: 1889, seenAt: "nga-canberra", seenConfidence: "unsure", liked: true, note: "Deck pick — nga-canberra-2026-07-07." },
+  { id: "lodgepole-pines-lyell-fork-of-the-merced-river", title: "Lodgepole Pines, Lyell Fork of the Merced River", artist: "Ansel Adams", artistId: "adams", qid: "Q97356851", qidTrusted: true, year: 1921, seenAt: "nga-canberra", seenConfidence: "unsure", liked: true, note: "Deck pick — nga-canberra-2026-07-07." },
+  { id: "in-a-corner-on-the-macintyre", title: "In a corner on the Macintyre", artist: "Tom Roberts", artistId: "roberts", qid: "Q17007560", qidTrusted: true, year: 1895, seenAt: "nga-canberra", seenConfidence: "unsure", liked: true, note: "Deck pick — nga-canberra-2026-07-07." },
+  { id: "man-with-horse", title: "Man with Horse", artist: "Edvard Munch", artistId: "munch", qid: "Q18890450", qidTrusted: true, year: 1918, seenAt: "nga-canberra", seenConfidence: "unsure", liked: true, note: "Deck pick — nga-canberra-2026-07-07." },
+  { id: "haystacks-midday", title: "Haystacks, midday", artist: "Claude Monet", artistId: "monet", qid: "Q48610629", qidTrusted: true, year: 1890, seenAt: "nga-canberra", seenConfidence: "unsure", liked: true, note: "Deck pick — nga-canberra-2026-07-07." },
+  { id: "study-for-le-bec-du-hoc-grandcamp", title: "Study for Le Bec du Hoc, Grandcamp", artist: "Georges Seurat", artistId: "seurat", qid: "Q50734518", qidTrusted: true, year: 1885, seenAt: "nga-canberra", seenConfidence: "unsure", liked: true, note: "Deck pick — nga-canberra-2026-07-07." },
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
