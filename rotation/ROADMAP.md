@@ -134,6 +134,11 @@ below (LIMITATIONS §6b) — decide the layout/structure BEFORE building:**
   Phase-3 artist-page strips (below) pair with it.
 
 ### 🔧 Loose UX fixes shipped this session (2026-07-07, not tied to a phase)
+- ✅ **Lyric-gap fill (2026-07-08)** — read coverage to 80%/78% of top-500/1000 (7,156).
+  Symmetric archive rematch (fixed asymmetric-parenthetical bug) recovered 54 vs 7; **33** dug
+  reads processed via haiku/sonnet/opus subagents (multi-tier), **28** src:web reads for
+  post-archive modern tracks, **3** classics upgraded web→multi-tier (Wolf Moon, Be Quiet and
+  Drive, NIN Burning Bright). Rule: archive lyrics → 3-model tiers; recent → web research.
 - ✅ **Thematic song search (2026-07-08)** — SearchOverlay gained a **Names / Themes** toggle;
   Themes mode scans the llm-about blurbs (~7k tracks, already deployed) for what songs are
   ABOUT, matching the query, ranking a whole-word hit over a substring then by plays, joining
