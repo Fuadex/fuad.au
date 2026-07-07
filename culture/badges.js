@@ -95,7 +95,8 @@ window.CULTURE_BADGES = {
  "chernobyl": [
   "acting",
   "devastating",
-  "intense"
+  "intense",
+  "haunting"
  ],
  "cinema-paradiso": [
   "bittersweet",
@@ -110,7 +111,8 @@ window.CULTURE_BADGES = {
   "gem"
  ],
  "come-and-see": [
-  "horrifying"
+  "horrifying",
+  "haunting"
  ],
  "corpus-christi": [
   "devastating",
@@ -206,7 +208,8 @@ window.CULTURE_BADGES = {
  ],
  "galactic-railroad": [
   "devastating",
-  "gem"
+  "gem",
+  "haunting"
  ],
  "ghost-hound": [
   "horrifying"
@@ -243,7 +246,8 @@ window.CULTURE_BADGES = {
   "acting",
   "devastating",
   "gem",
-  "intense"
+  "intense",
+  "haunting"
  ],
  "ico": [
   "devastating"
@@ -279,7 +283,8 @@ window.CULTURE_BADGES = {
   "cerebral"
  ],
  "imp-f-512263": [
-  "horrifying"
+  "horrifying",
+  "haunting"
  ],
  "imp-f-686419": [
   "cerebral"
@@ -428,7 +433,8 @@ window.CULTURE_BADGES = {
   "gem"
  ],
  "imp-f-voskhozhdeniye": [
-  "gem"
+  "gem",
+  "haunting"
  ],
  "imp-f-wake-in-fright": [
   "gem"
@@ -629,6 +635,9 @@ window.CULTURE_BADGES = {
   "atmosphere",
   "cinematography"
  ],
+ "norwegian-wood": [
+  "haunting"
+ ],
  "odrzucone": [
   "absurdist",
   "funny",
@@ -656,7 +665,8 @@ window.CULTURE_BADGES = {
  ],
  "plague-dogs": [
   "gem",
-  "intense"
+  "intense",
+  "haunting"
  ],
  "planet-earth-ii": [
   "cerebral"
@@ -721,6 +731,9 @@ window.CULTURE_BADGES = {
  "severance": [
   "atmosphere",
   "cerebral"
+ ],
+ "short-film-killing": [
+  "haunting"
  ],
  "silent-voice": [
   "bittersweet"
@@ -824,7 +837,8 @@ window.CULTURE_BADGES = {
   "horrifying"
  ],
  "tlou2": [
-  "horrifying"
+  "horrifying",
+  "haunting"
  ],
  "tokyo-godfathers": [
   "bittersweet",
@@ -838,6 +852,9 @@ window.CULTURE_BADGES = {
   "cerebral",
   "cinematography",
   "writing"
+ ],
+ "twd-game": [
+  "haunting"
  ],
  "twin-peaks": [
   "mindbending",
@@ -864,7 +881,8 @@ window.CULTURE_BADGES = {
  ],
  "watership-down": [
   "devastating",
-  "intense"
+  "intense",
+  "haunting"
  ],
  "weather-forecast": [
   "gem"
@@ -1544,7 +1562,8 @@ window.CULTURE_BADGES = {
   "horrifying"
  ],
  "wonder-egg": [
-  "devastating"
+  "devastating",
+  "haunting"
  ],
  "yamadas": [
   "funny",

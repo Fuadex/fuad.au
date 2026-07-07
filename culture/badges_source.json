@@ -91,7 +91,8 @@
  "chernobyl": [
   "acting",
   "devastating",
-  "intense"
+  "intense",
+  "haunting"
  ],
  "cinema-paradiso": [
   "bittersweet",
@@ -106,7 +107,8 @@
   "gem"
  ],
  "come-and-see": [
-  "horrifying"
+  "horrifying",
+  "haunting"
  ],
  "corpus-christi": [
   "devastating",
@@ -202,7 +204,8 @@
  ],
  "galactic-railroad": [
   "devastating",
-  "gem"
+  "gem",
+  "haunting"
  ],
  "ghost-hound": [
   "horrifying"
@@ -239,7 +242,8 @@
   "acting",
   "devastating",
   "gem",
-  "intense"
+  "intense",
+  "haunting"
  ],
  "ico": [
   "devastating"
@@ -275,7 +279,8 @@
   "cerebral"
  ],
  "imp-f-512263": [
-  "horrifying"
+  "horrifying",
+  "haunting"
  ],
  "imp-f-686419": [
   "cerebral"
@@ -424,7 +429,8 @@
   "gem"
  ],
  "imp-f-voskhozhdeniye": [
-  "gem"
+  "gem",
+  "haunting"
  ],
  "imp-f-wake-in-fright": [
   "gem"
@@ -625,6 +631,9 @@
   "atmosphere",
   "cinematography"
  ],
+ "norwegian-wood": [
+  "haunting"
+ ],
  "odrzucone": [
   "absurdist",
   "funny",
@@ -652,7 +661,8 @@
  ],
  "plague-dogs": [
   "gem",
-  "intense"
+  "intense",
+  "haunting"
  ],
  "planet-earth-ii": [
   "cerebral"
@@ -717,6 +727,9 @@
  "severance": [
   "atmosphere",
   "cerebral"
+ ],
+ "short-film-killing": [
+  "haunting"
  ],
  "silent-voice": [
   "bittersweet"
@@ -820,7 +833,8 @@
   "horrifying"
  ],
  "tlou2": [
-  "horrifying"
+  "horrifying",
+  "haunting"
  ],
  "tokyo-godfathers": [
   "bittersweet",
@@ -834,6 +848,9 @@
   "cerebral",
   "cinematography",
   "writing"
+ ],
+ "twd-game": [
+  "haunting"
  ],
  "twin-peaks": [
   "mindbending",
@@ -860,7 +877,8 @@
  ],
  "watership-down": [
   "devastating",
-  "intense"
+  "intense",
+  "haunting"
  ],
  "weather-forecast": [
   "gem"
@@ -1540,7 +1558,8 @@
   "horrifying"
  ],
  "wonder-egg": [
-  "devastating"
+  "devastating",
+  "haunting"
  ],
  "yamadas": [
   "funny",
