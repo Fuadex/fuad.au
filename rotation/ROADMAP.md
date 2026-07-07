@@ -95,7 +95,11 @@ also template prep. **Net cold-first-paint win: −700 KB gz (Babel gone) − ~4
      promotion backlog (real, Fuad-relevant tracks) for a head-to-head QUALITY comparison vs
      Opus/Sonnet, then decide the model for the pipeline going forward. (Quality on the bake-off
      sample looked comparable to Opus — concise, faithful.)
-   - **✅ Fable dual-tier reads SHIPPING (2026-07-07):** top-30 played lyric tracks now carry
+   - **✅ Fable dual-tier reads SHIPPING (2026-07-07):** 52 tracks with fable / 50 dual-tier —
+     the top-30 played lyric tracks + the 20 hardest from the gen-fable divergence queue
+     (`.sptmp/fable-hard20.json`, commit 5d462f4; Dear Diary gained a lockdown-journal layer
+     in e32f7b4). Remaining queue: `blurb-fable-candidates.md` ranks ~85 more with mean ≤0.06.
+     Original note: top-30 played lyric tracks carry
      `fable` (plain what-it's-about) + `fableDeep` (close-reading) in `llm-about.js`, rendered
      on TrackView as a Fable flick button + an **Info / Interpretation toggle** at the
      What-it's-about module's top right (`BlurbSwitcher`, commits 1d6a0a3 + 407f50a). Fuad's
