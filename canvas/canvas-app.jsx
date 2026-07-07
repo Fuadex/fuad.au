@@ -115,6 +115,7 @@ function Reader({ id, go }) {
 }
 
 function Museums() {
+  const HL = window.CANVAS_HIGHLIGHTS || {};
   const rows = useMemo(() => {
     const counts = {};
     for (const w of WORKS) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt])) if (id) counts[id] = (counts[id] || 0) + 1;
@@ -131,12 +132,93 @@ function Museums() {
             <div className="cv-mus-row" key={m.id} data-kind={m.kind}>
               <span className="cv-mus-name">{m.name.replace(/\s*\(.*\)$/, "")}</span>
               <span className="cv-mus-city">{m.city}{m.visits && m.visits[0] !== "TBC" ? ` · ${m.visits.join(", ")}` : ""}</span>
-              <span className="cv-mus-count">{m.works ? `${m.works} work${m.works > 1 ? "s" : ""} in the canon` : "—"}</span>
+              <span className="cv-mus-count">
+                {m.works ? `${m.works} in the canon · ` : ""}
+                {HL[m.id] ? <a className="cv-deal" href={"#/deck/" + m.id}>deal the deck ({HL[m.id].length}) →</a> : "—"}
+              </span>
               {m.note && <span className="cv-mus-note">{m.note}</span>}
             </div>
           ))}
         </React.Fragment>
       ))}
+    </div>
+  );
+}
+
+// ——— Phase 2: the recall deck — "did you see this?" per museum. Verdicts persist in
+// localStorage (canvas-deck-<museumId>); the summary's "copy picks" JSON is what gets
+// folded into artworks.js. Recognition beats recall: this is how the canon grows.
+const VERDICTS = [["no", "didn't see it"], ["unsure", "not sure"], ["yes", "saw it"], ["floored", "floored me ★"]];
+function Deck({ museumId, go }) {
+  const HL = window.CANVAS_HIGHLIGHTS || {};
+  const mus = MUS_BY_ID[museumId];
+  const canonQids = useMemo(() => new Set(WORKS.map(w => (AD.artworks[w.id] || {}).qid).filter(Boolean)), []);
+  const deck = useMemo(() => (HL[museumId] || []).filter(w => !canonQids.has(w.qid)), [museumId]);
+  const storeKey = "canvas-deck-" + museumId;
+  const [verdicts, setVerdicts] = useState(() => { try { return JSON.parse(localStorage.getItem(storeKey)) || {}; } catch (e) { return {}; } });
+  const firstOpen = deck.findIndex(w => !verdicts[w.qid]);
+  const [i, setI] = useState(firstOpen < 0 ? deck.length : firstOpen);
+  const [copied, setCopied] = useState(false);
+
+  const judge = (v) => {
+    if (i >= deck.length) return;
+    const next = { ...verdicts, [deck[i].qid]: v };
+    setVerdicts(next);
+    localStorage.setItem(storeKey, JSON.stringify(next));
+    setI(i + 1);
+  };
+  useEffect(() => {
+    const on = (e) => {
+      if (e.key >= "1" && e.key <= "4") judge(VERDICTS[+e.key - 1][0]);
+      if (e.key === "Backspace" && i > 0) setI(i - 1);
+      if (e.key === "Escape") go("museums");
+    };
+    window.addEventListener("keydown", on);
+    return () => window.removeEventListener("keydown", on);
+  }, [i, verdicts]);
+
+  if (!mus || !deck.length) return <div className="cv-mus"><p>No deck for this museum (yet).</p></div>;
+
+  if (i >= deck.length) {
+    const picks = deck.filter(w => verdicts[w.qid] === "yes" || verdicts[w.qid] === "floored")
+      .map(w => ({ qid: w.qid, title: w.title, artist: w.artist, year: w.year, verdict: verdicts[w.qid], museum: museumId }));
+    const unsure = deck.filter(w => verdicts[w.qid] === "unsure").length;
+    const json = JSON.stringify(picks, null, 1);
+    return (
+      <div className="cv-deck">
+        <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")} — deck complete</div>
+        <p className="cv-deck-sum">{picks.length} recognised ({picks.filter(p => p.verdict === "floored").length} floored) · {unsure} unsure · {deck.length - picks.length - unsure} not seen.</p>
+        {picks.length > 0 && (
+          <React.Fragment>
+            <ul className="cv-deck-picks">{picks.map(p => <li key={p.qid}>{p.verdict === "floored" ? "★ " : ""}{p.title}{p.artist ? " — " + p.artist : ""}</li>)}</ul>
+            <button className="cv-deck-btn" onClick={() => { navigator.clipboard.writeText(json).then(() => setCopied(true)); }}>
+              {copied ? "copied ✓" : "copy picks as JSON"}</button>
+            <textarea className="cv-deck-json" readOnly value={json} rows={6} />
+          </React.Fragment>
+        )}
+        <button className="cv-deck-btn" onClick={() => { setI(0); }}>re-deal from the top</button>
+        <a className="cv-deal" href="#/museums">← back to museums</a>
+      </div>
+    );
+  }
+
+  const w = deck[i];
+  return (
+    <div className="cv-deck">
+      <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")} · did you see this?</div>
+      <div className="cv-deck-prog">{i + 1} / {deck.length}{i > 0 ? " · Backspace = back" : ""} · keys 1–4</div>
+      <div className="cv-deck-card">
+        <img src={w.img} alt={w.title} loading="eager" />
+        <div className="cv-deck-label">
+          <div className="cv-title">{w.title}</div>
+          <div className="cv-artist">{w.artist || "—"}{w.year ? " · " + w.year : ""}</div>
+        </div>
+      </div>
+      <div className="cv-deck-btns">
+        {VERDICTS.map(([v, label], k) => (
+          <button key={v} data-v={v} onClick={() => judge(v)}><span className="key">{k + 1}</span>{label}</button>
+        ))}
+      </div>
     </div>
   );
 }
@@ -152,8 +234,8 @@ function App() {
       <header className="cv-head">
         <a className="cv-brand" href="#/">Canvas<i>.</i></a>
         <nav className="cv-nav">
-          <a href="#/" data-on={view === "wall"}>The Wall</a>
-          <a href="#/museums" data-on={view === "museums"}>Museums</a>
+          <a href="#/" data-on={view === "wall" && route.view !== "deck"}>The Wall</a>
+          <a href="#/museums" data-on={view === "museums" || route.view === "deck"}>Museums</a>
         </nav>
         {view === "wall" && (
           <div className="cv-mode">
@@ -162,7 +244,8 @@ function App() {
           </div>
         )}
       </header>
-      {view === "museums" ? <Museums /> : <Wall go={go} />}
+      {route.view === "deck" ? <Deck museumId={route.id} go={go} key={route.id} />
+        : view === "museums" ? <Museums /> : <Wall go={go} />}
       {route.view === "work" && <Reader id={route.id} go={go} />}
       <footer className="cv-foot">
         canvas · a personal gallery, reconstructed from memory · images via <a href="https://commons.wikimedia.org" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> / <a href="https://www.wikidata.org" target="_blank" rel="noopener noreferrer">Wikidata</a> · part of <a href="/">fuad.au</a>
