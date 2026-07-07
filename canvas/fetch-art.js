@@ -93,11 +93,16 @@ const ARTY = /painting|drawing|sculpture|artwork|series|cycle|canvas/i;
   for (const a of ARTWORKS) {
     if (a.noResolve) continue;
     if (/^TBC/.test(a.title)) { report.push(`artwork ${a.id}: TBC title — skipped (recall-deck material)`); continue; }
-    const q = a.searchAs || (a.title.replace(/\s*\(.*\)$/, "") + " " + a.artist);
-    let hits = await search(q);
-    if (!hits.length) hits = await search(a.title.replace(/\s*\(.*\)$/, ""));
-    let pick = hits.find(h => ARTY.test(h.desc)) || hits[0] || null;
-    if (!pick) { report.push(`artwork ${a.id}: NO MATCH for "${q}"`); continue; }
+    let pick = null;
+    if (a.qid && a.qidTrusted) {
+      pick = { id: a.qid, label: a.title, desc: "(trusted deck qid)" };   // deck qids came FROM Wikidata
+    } else {
+      const q = a.searchAs || (a.title.replace(/\s*\(.*\)$/, "") + " " + a.artist);
+      let hits = await search(q);
+      if (!hits.length) hits = await search(a.title.replace(/\s*\(.*\)$/, ""));
+      pick = hits.find(h => ARTY.test(h.desc)) || hits[0] || null;
+      if (!pick) { report.push(`artwork ${a.id}: NO MATCH for "${q}"`); continue; }
+    }
     const ent = (await entities([pick.id]))[pick.id];
     const img = claim(ent, "P18");
     const coll = claimAll(ent, "P195").map(v => v.id);       // collection(s)

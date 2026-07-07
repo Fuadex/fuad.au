@@ -44,7 +44,7 @@ function Card({ w, go }) {
   return (
     <div className={"cv-card" + (img ? "" : " cv-text")} data-conf={w.seenConfidence}
       onClick={() => go("work", w.id)} title={w.title}>
-      {w.favorite && <span className="cv-fav">★</span>}
+      {(w.favorite || w.floored) ? <span className="cv-fav">★</span> : w.liked ? <span className="cv-fav">♡</span> : null}
       {img && <img src={img} alt={w.title} loading="lazy" />}
       <div className="cv-label">
         <div className="cv-title">{w.label && !/^TBC/.test(w.title) ? w.title : w.title.replace(/^TBC — /, "")}</div>
@@ -94,6 +94,8 @@ function Reader({ id, go }) {
             <ConfChip conf={w.seenConfidence} />
             {w.floored && <span className="cv-chip" data-k="floored">★ floored me</span>}
             {w.favorite && <span className="cv-chip" data-k="floored">★ favorite</span>}
+            {w.liked && !w.floored && <span className="cv-chip" data-k="floored">♡ liked</span>}
+            {w.wish && <span className="cv-chip">pilgrimage — not yet seen</span>}
             {w.via === "exhibition" && <span className="cv-chip">temporary exhibition</span>}
           </div>
           {w.venues.length > 0 && (
