@@ -222,7 +222,7 @@ function Reader({ id, go }) {
             {w.via === "exhibition" && <span className="cv-chip">temporary exhibition</span>}
           </div>
           {w.venues.length > 0 && (
-            <div className="cv-r-sec"><span className="lbl">Where I saw it</span>
+            <div className="cv-r-sec"><span className="lbl">Where I saw it{w.venues.length > 1 ? " — an impression at each" : ""}</span>
               {w.venues.map(v => `${v.name.replace(/\s*\(.*\)$/, "")}, ${v.city}`).join(" · ")}
               {w.exhibition ? ` — ${w.exhibition}` : ""}
             </div>
