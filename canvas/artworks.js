@@ -39,8 +39,6 @@ window.CANVAS_ARTWORKS = [
   { id: "sergel-drawings", title: "TBC — Sergel drawings (incl. a dancing couple) + sculptures", artist: "Johan Tobias Sergel", artistId: "sergel", qid: null, year: null,
     seenAt: "nationalmuseum", seenConfidence: "sure", floored: true, note: "CONFIRMED Sergel. The standout: \"just beautiful sketch of two people dancing\" — identify the exact drawing via deck (his dance studies are famous)." },
 
-  { id: "rodin-sculptures", title: "TBC — Rodin works at Musée Rodin", artist: "Auguste Rodin", artistId: "rodin", qid: null, year: null,
-    seenAt: "rodin", seenConfidence: "sure", floored: true, note: "CONFIRMED Rodin — \"best with expressions and such, incredible.\" Which works stood out: recall deck (The Thinker, The Kiss, Gates of Hell, Burghers of Calais…). Bourdelle rated \"good\" — possible second museum visit, TBC." },
 
   { id: "beksinski-works", title: "Beksiński paintings (three venues)", artist: "Zdzisław Beksiński", artistId: "beksinski", qid: null, year: null, noResolve: true,
     seenAt: ["beksinski-krakow", "beksinski-praga", "czestochowa-mgs"], seenConfidence: "sure",
@@ -112,6 +110,28 @@ window.CANVAS_ARTWORKS = [
   { id: "the-water-lily-pond", title: "The Water-Lily Pond", artist: "Claude Monet", artistId: "monet", qid: "Q63952033", qidTrusted: true, year: 1918, seenAt: "marmottan", seenConfidence: "sure", liked: true, note: "Deck pick — marmottan-2026-07-07." },
   { id: "the-pont-neuf-and-the-samaritaine-at-night", title: "The Pont Neuf and the Samaritaine at night", artist: "Albert Marquet", artistId: "marquet", qid: "Q47157012", qidTrusted: true, year: 1937, seenAt: "pompidou", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — pompidou-2026-07-07." },
   { id: "la-ville-de-paris", title: "La Ville de Paris", artist: "Robert Delaunay", artistId: "delaunay", qid: "Q131747322", qidTrusted: true, year: null, seenAt: "pompidou", seenConfidence: "unsure", liked: true, note: "Deck pick — pompidou-2026-07-07." },
+  // ——— deck-folded picks (fold-deck.js) ———
+  { id: "the-thinker", title: "The Thinker", artist: "Auguste Rodin", artistId: "rodin", qid: "Q18003128", qidTrusted: true, year: 1882, seenAt: "rodin", seenConfidence: "sure", floored: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "portrait-of-pere-tanguy", title: "Portrait of Père Tanguy", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q13528770", qidTrusted: true, year: 1887, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "the-kiss", title: "The Kiss", artist: "Auguste Rodin", artistId: "rodin", qid: "Q2418237", qidTrusted: true, year: 1880, seenAt: "rodin", seenConfidence: "sure", floored: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "arles-view-from-the-wheat-fields", title: "Arles: View from the Wheat Fields", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q4792194", qidTrusted: true, year: 1888, seenAt: "rodin", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "the-eternal-springtime", title: "The Eternal Springtime", artist: "Auguste Rodin", artistId: "rodin", qid: "Q3205458", qidTrusted: true, year: 1884, seenAt: "rodin", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "the-mature-age", title: "The Mature Age", artist: "Camille Claudel", artistId: "claudel", qid: "Q3205060", qidTrusted: true, year: 1898, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "the-waltz", title: "The Waltz", artist: "Camille Claudel", artistId: "claudel", qid: "Q19945289", qidTrusted: true, year: 1883, seenAt: "rodin", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "danaid", title: "Danaid", artist: "Auguste Rodin", artistId: "rodin", qid: "Q11855751", qidTrusted: true, year: 1885, seenAt: "rodin", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "the-cathedral", title: "The cathedral", artist: "Auguste Rodin", artistId: "rodin", qid: "Q26834197", qidTrusted: true, year: 1908, seenAt: "rodin", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "sakuntala-claudel", title: "Sakuntala (Claudel)", artist: "Camille Claudel", artistId: "claudel", qid: "Q31842466", qidTrusted: true, year: 1888, seenAt: "rodin", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "torso-of-adele", title: "Torso of Adèle", artist: "Auguste Rodin", artistId: "rodin", qid: "Q24943473", qidTrusted: true, year: 1882, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "ugolino-and-sons", title: "Ugolino and sons", artist: "Auguste Rodin", artistId: "rodin", qid: "Q24569617", qidTrusted: true, year: 1881, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "la-vague-by-camille-claudel", title: "La Vague by Camille Claudel", artist: "Camille Claudel", artistId: "claudel", qid: "Q106265262", qidTrusted: true, year: 1900, seenAt: "rodin", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "clotho", title: "Clotho", artist: "Camille Claudel", artistId: "claudel", qid: "Q106314799", qidTrusted: true, year: 1893, seenAt: "rodin", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "rodin-s-le-penseur-in-dr-linde-s-garden", title: "Rodin's \"Le Penseur\" in Dr. Linde's Garden", artist: "Edvard Munch", artistId: "munch", qid: "Q18890731", qidTrusted: true, year: 1907, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "vertumnus-and-pomona", title: "Vertumnus and Pomona", artist: "Camille Claudel", artistId: "claudel", qid: "Q24531364", qidTrusted: true, year: 1905, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "auguste-rodin", title: "Auguste Rodin", artist: "John Singer Sargent", artistId: "sargent", qid: "Q106357103", qidTrusted: true, year: 1884, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "dancer-with-veils", title: "Dancer with Veils", artist: "Auguste Rodin", artistId: "rodin", qid: "Q14849952", qidTrusted: true, year: 1900, seenAt: "rodin", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "avenue-of-plane-trees-near-arles-station", title: "Avenue of Plane Trees near Arles Station", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q26220257", qidTrusted: true, year: 1888, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "le-penseur-reduction", title: "Le Penseur, réduction", artist: "Auguste Rodin", artistId: "rodin", qid: "Q117543852", qidTrusted: true, year: null, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "portrait-de-rodin", title: "Portrait de Rodin", artist: "Jacques-Émile Blanche", artistId: "blanche", qid: "Q139007272", qidTrusted: true, year: 1904, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
