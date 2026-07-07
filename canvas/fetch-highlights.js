@@ -38,7 +38,7 @@ async function highlights(mqid) {
     FILTER(?links > 0)
     OPTIONAL { ?item wdt:P170 ?creator . }
     OPTIONAL { ?item wdt:P571 ?date . }
-    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en,fr,de,pl,ja,sv". }
   } ORDER BY DESC(?links) LIMIT ${PER_MUSEUM * 2}`;
   let rows = [];
   try { rows = (await sparql(q)).results.bindings; }
