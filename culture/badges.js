@@ -1001,6 +1001,11 @@ window.CULTURE_BADGES = {
   "visuals",
   "writing"
  ],
+ "wl-b-fbl2-blindness": [
+  "social-xray",
+  "devastating",
+  "intense"
+ ],
  "wl-f-1103": [
   "horrifying"
  ],
@@ -1369,6 +1374,61 @@ window.CULTURE_BADGES = {
   "devastating",
   "formal-exec"
  ],
+ "wl-f-fbl2-barking-dogs": [
+  "satire",
+  "social-xray",
+  "funny"
+ ],
+ "wl-f-fbl2-blow-out": [
+  "style",
+  "devastating",
+  "cinematography"
+ ],
+ "wl-f-fbl2-columbus": [
+  "gentle",
+  "cinematography",
+  "atmosphere"
+ ],
+ "wl-f-fbl2-festen": [
+  "squirm",
+  "social-xray",
+  "devastating"
+ ],
+ "wl-f-fbl2-hard-to-be-a-god": [
+  "singular",
+  "intense",
+  "worldbuilding"
+ ],
+ "wl-f-fbl2-man-bites-dog": [
+  "squirm",
+  "cognitive",
+  "satire"
+ ],
+ "wl-f-fbl2-oasis": [
+  "devastating",
+  "acting",
+  "social-xray"
+ ],
+ "wl-f-fbl2-painted-bird": [
+  "devastating",
+  "intense",
+  "cinematography"
+ ],
+ "wl-f-fbl2-petite-maman": [
+  "gentle",
+  "bittersweet",
+  "writing"
+ ],
+ "wl-f-fbl2-riders-of-justice": [
+  "funny",
+  "devastating",
+  "writing"
+ ],
+ "wl-f-fbl2-vast-of-night": [
+  "formal-exec",
+  "atmosphere",
+  "gem"
+ ],
  "wl-g-729768": [
   "cognitive"
  ],
@@ -1452,6 +1512,16 @@ window.CULTURE_BADGES = {
  ],
  "wl-g-fbl-to-the-moon": [
   "devastating",
+  "writing"
+ ],
+ "wl-g-fbl2-citizen-sleeper": [
+  "writing",
+  "social-xray",
+  "worldbuilding"
+ ],
+ "wl-g-fbl2-slay-the-princess": [
+  "cognitive",
+  "mindbending",
   "writing"
  ],
  "wl-s-201352": [
@@ -1552,6 +1622,16 @@ window.CULTURE_BADGES = {
  "wl-s-fbl-zerozerozero": [
   "intense",
   "social-xray"
+ ],
+ "wl-s-fbl2-review": [
+  "squirm",
+  "formal-exec",
+  "devastating"
+ ],
+ "wl-s-fbl2-twin-peaks-return": [
+  "singular",
+  "cognitive",
+  "atmosphere"
  ],
  "wolfs-rain": [
   "atmosphere",
