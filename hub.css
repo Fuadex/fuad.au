@@ -14,6 +14,7 @@ html,body{margin:0;height:100%;background:#050507;overflow:hidden;
   box-shadow:-2px 0 40px rgba(0,0,0,.65)}
 .pane--l{--accent:oklch(0.74 0.13 330)}
 .pane--r{--accent:#d8a94a}
+.pane--c{--accent:oklch(0.66 0.14 46)}
 
 /* snapshot — counter-skewed so it sits upright, scaled to cover, blurred like frosted glass */
 .content{position:absolute;inset:-3%;transform:skewX(9deg) scale(1.16);transform-origin:center}
@@ -34,6 +35,7 @@ html,body{margin:0;height:100%;background:#050507;overflow:hidden;
   transition:transform .5s ease,opacity .5s ease}
 .pane--l .wm{color:#f3eef4}
 .pane--r .wm{color:#f5efe4}
+.pane--c .wm{color:#f2e9dc}
 .wm .dot{color:var(--accent)}
 
 .reveal{max-width:380px;opacity:0;transform:translateY(16px);pointer-events:none;
