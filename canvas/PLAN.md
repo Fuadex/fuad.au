@@ -152,8 +152,8 @@ Louvre-only.
 
 | Phase | What | Needs |
 |---|---|---|
-| **0 · Memory seed** | The museum-list conversation → `museums.js`; first ~30 obviously-remembered works → `artworks.js`. A session of talking, not coding. | nothing |
-| **1 · The wall** | Collage home + Reader with Wikidata/Commons images for the seed canon; hub launcher card. | no keys |
+| **0 · Memory seed** ✅ 2026-07-07 | DONE (sessions 1–2, ongoing): 23 museums, 14 works, memory-seed.md log. More trips to mine. | nothing |
+| **1 · The wall** ✅ 2026-07-07 | SHIPPED (commit 278c223, live at fuad.au/canvas/): Collage+Salon wall, Reader, Museums view, fetch-art.js (name-resolving, cache-committed), hub pane + precompile. | no keys |
 | **2 · Recall decks** | `fetch_museum_highlights.py` → per-museum decks → grow the canon museum by museum. The app becomes the tool that builds its own data. | no keys |
 | **3 · Learning layer** | Artist pages, similar artists, movement context, where-it-hangs. | no keys |
 | **4 · Map + Pilgrimage** | The painterly map, trips, wishlist → trip planner. | no keys |
