@@ -538,6 +538,113 @@ function MapView({ go }) {
   );
 }
 
+// ——— Portrait: reads your taste back to you (Canvas's answer to Rotation's Stories).
+// Everything computed client-side from the loaded canon + overlays — no new data.
+const hexHue = (hex) => {
+  const m = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex); if (!m) return 0;
+  const r = parseInt(m[1], 16) / 255, g = parseInt(m[2], 16) / 255, b = parseInt(m[3], 16) / 255;
+  const mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn;
+  if (!d) return -1;   // grey → sorts to the end
+  let h; if (mx === r) h = ((g - b) / d) % 6; else if (mx === g) h = (b - r) / d + 2; else h = (r - g) / d + 4;
+  return (h * 60 + 360) % 360;
+};
+const AFFINITY = new Set(window.CANVAS_AFFINITY || []);
+
+function Portrait({ go }) {
+  const PAL = window.CANVAS_PALETTE || {};
+  const data = useMemo(() => {
+    const works = WORKS.map(enrich);
+    const loved = works.filter(w => w.floored || w.favorite || w.liked);
+    const museums = new Set(), countries = new Set();
+    for (const w of works) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) { const m = MUS_BY_ID[id]; if (m) { museums.add(m.id); countries.add(m.country); } }
+    // artists ranked by impact
+    const byArtist = {};
+    for (const w of works) { if (!w.artistId) continue; const r = byArtist[w.artistId] = byArtist[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (w.floored || w.favorite) r.love += 3; if (w.liked) r.love += 1; }
+    const artists = Object.values(byArtist).sort((a, b) => b.love - a.love || b.n - a.n);
+    const found = artists.filter(a => !AFFINITY.has(a.id) && a.love >= 4).slice(0, 8);
+    // movements (loved)
+    const movCount = {};
+    for (const w of loved) { const a = AD.artists[w.artistId]; if (!a) continue; for (const q of (a.movementQids || [])) { const m = (AD.movements || {})[q]; if (m) movCount[m] = (movCount[m] || 0) + 1; } }
+    const movements = Object.entries(movCount).sort((a, b) => b[1] - a[1]).slice(0, 8);
+    // centuries
+    const cent = {};
+    for (const w of works) { if (!w.year) continue; const c = Math.floor((w.year - 1) / 100) + 1; cent[c] = (cent[c] || 0) + 1; }
+    const centuries = Object.entries(cent).map(([c, n]) => ({ c: +c, n })).sort((a, b) => a.c - b.c);
+    // palette spectrum — dominant swatch of every work that has one, sorted by hue
+    const swatches = [];
+    for (const w of works) { const p = PAL[w.qid ? w.id : w.id]; if (p && p[0]) swatches.push(p[0]); }
+    swatches.sort((a, b) => hexHue(a) - hexHue(b));
+    return {
+      total: works.length, loved: loved.length,
+      floored: works.filter(w => w.floored || w.favorite).length,
+      museums: museums.size, countries: countries.size,
+      artists, found, movements, centuries, swatches,
+      topMovement: movements[0], favArtist: artists[0],
+    };
+  }, []);
+
+  const cy = (c) => c >= 1 ? c + (["th", "st", "nd", "rd"][((c % 100 - c % 10 !== 10) && c % 10 < 4) ? c % 10 : 0] || "th") : "";
+  const maxCent = Math.max(...data.centuries.map(c => c.n), 1);
+  const maxMov = data.movements.length ? data.movements[0][1] : 1;
+
+  return (
+    <div className="cv-portrait">
+      <p className="cv-p-read">
+        You've stood in front of <b>{data.total}</b> works across <b>{data.museums}</b> museums in <b>{data.countries}</b> countries —
+        {" "}<b>{data.loved}</b> of them moved you, <b>{data.floored}</b> stopped you cold.
+        {data.favArtist && <> The artist you return to most is <b onClick={() => go("artist", data.favArtist.id)} style={{ cursor: "pointer", color: "var(--accent)" }}>{data.favArtist.name}</b>.</>}
+        {data.topMovement && <> Your eye lives in <b>{data.topMovement[0]}</b> — it accounts for more of what you love than any other movement, by far.</>}
+      </p>
+
+      <div className="cv-p-sec">
+        <div className="cv-p-lbl">The palette of your taste</div>
+        <div className="cv-p-spectrum">{data.swatches.map((c, i) => <i key={i} style={{ background: c }} />)}</div>
+        <div className="cv-p-note">every work's dominant colour, {data.swatches.length} of them, sorted across the spectrum</div>
+      </div>
+
+      <div className="cv-p-cols">
+        <div className="cv-p-sec">
+          <div className="cv-p-lbl">Where your love lives — movements</div>
+          {data.movements.map(([m, n]) => (
+            <div className="cv-p-bar" key={m}>
+              <span className="cv-p-barlbl">{m}</span>
+              <span className="cv-p-bartrack"><i style={{ width: (n / maxMov * 100) + "%" }} /></span>
+              <span className="cv-p-barn">{n}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="cv-p-sec">
+          <div className="cv-p-lbl">Across the centuries</div>
+          <div className="cv-p-cent">
+            {data.centuries.map(({ c, n }) => (
+              <div className="cv-p-centcol" key={c} title={`${cy(c)} century — ${n} works`}>
+                <span className="cv-p-centbar" style={{ height: (n / maxCent * 100) + "%" }} />
+                <span className="cv-p-centlbl">{c}00s</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {data.found.length > 0 && (
+        <div className="cv-p-sec">
+          <div className="cv-p-lbl">Who your eye chose</div>
+          <div className="cv-p-note" style={{ marginTop: 0, marginBottom: 12 }}>your most-loved artists beyond the handful you walked in naming — ranked by how hard they hit</div>
+          <div className="cv-p-found">
+            {data.found.map(a => (
+              <div className="cv-p-foundchip" key={a.id} onClick={() => go("artist", a.id)}>
+                {AD.artists[a.id] && AD.artists[a.id].image && <img src={AD.artists[a.id].image} alt="" />}
+                <div><b>{a.name}</b><span>{a.n} work{a.n > 1 ? "s" : ""} · {a.love} pts</span></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function App() {
   const route = useRoute();
   const [salon, setSalon] = useState(false);
@@ -550,6 +657,7 @@ function App() {
         <a className="cv-brand" href="#/">Canvas<i>.</i></a>
         <nav className="cv-nav">
           <a href="#/" data-on={view === "wall" && route.view !== "deck"}>The Wall</a>
+          <a href="#/portrait" data-on={view === "portrait"}>Portrait</a>
           <a href="#/museums" data-on={view === "museums" || route.view === "deck"}>Museums</a>
           <a href="#/artists" data-on={view === "artists" || route.view === "artist"}>Artists</a>
           <a href="#/map" data-on={view === "map"}>Map</a>
@@ -564,6 +672,7 @@ function App() {
       </header>
       {route.view === "deck" ? <Deck museumId={route.id} go={go} key={route.id} />
         : view === "museums" ? <Museums />
+        : view === "portrait" ? <Portrait go={go} />
         : view === "pilgrimage" ? <Pilgrimage go={go} />
         : route.view === "artist" ? <ArtistView artistId={route.id} go={go} key={route.id} />
         : view === "map" ? <MapView go={go} />
