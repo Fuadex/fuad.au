@@ -134,6 +134,13 @@ below (LIMITATIONS §6b) — decide the layout/structure BEFORE building:**
   Phase-3 artist-page strips (below) pair with it.
 
 ### 🔧 Loose UX fixes shipped this session (2026-07-07, not tied to a phase)
+- ✅ **Thematic song search (2026-07-08)** — SearchOverlay gained a **Names / Themes** toggle;
+  Themes mode scans the llm-about blurbs (~7k tracks, already deployed) for what songs are
+  ABOUT, matching the query, ranking a whole-word hit over a substring then by plays, joining
+  to a slug→track map for display. Zero new data/backend — pure client-side over shipped
+  reads. "betrayal" → Hit the Floor/In the End; "isolation" → Wish/Dear Diary; "defiance" →
+  Let Me Hear You Scream. (This was the "screams power" ask — the keyword tier; semantic/
+  embeddings tier remains a future upgrade.)
 - ✅ **Artist-page flow drill now scopes Top tracks + Sound DNA** — clicking an album in
   "How they played out" filters the track list to that album (with a ✕ to clear) and
   recomputes the DNA radar as the mean of the album's per-track features (track-audio

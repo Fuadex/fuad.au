@@ -2498,16 +2498,39 @@ function SearchOverlay({ open, onClose, go }) {
   const [ready, setReady] = React.useState(!!window.ROTATION_SEARCH);
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
   const [sel, setSel] = React.useState(null);
+  // mode: "names" (artists/songs/albums by title) | "theme" (songs by what they're ABOUT,
+  // over the llm-about blurbs). A toggle keeps the two intents from muddling (Fuad, 2026-07-08).
+  const [mode, setMode] = React.useState("names");
+  const [llmReady, setLlmReady] = React.useState(!!window.ROTATION_LLM_ABOUT);
   const inputRef = React.useRef(null);
 
   React.useEffect(() => {
     if (!open) return;
-    setQ(""); setSel(null);
+    setQ(""); setSel(null); setMode("names");
     const load = (src, has, done) => { if (window[has]) return; const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
     load("search-index.js", "ROTATION_SEARCH", () => setReady(true));
     load("media-index.js", "ROTATION_MEDIA", () => setMediaReady(true));   // albums + songs (big, lazy)
     setTimeout(() => inputRef.current && inputRef.current.focus(), 40);
   }, [open]);
+
+  // theme mode pulls in the "what it's about" reads (llm-about.js) on demand
+  React.useEffect(() => {
+    if (mode !== "theme" || window.ROTATION_LLM_ABOUT) { if (window.ROTATION_LLM_ABOUT) setLlmReady(true); return; }
+    const s = document.createElement("script"); s.src = "llm-about.js"; s.onload = () => setLlmReady(true); document.head.appendChild(s);
+  }, [mode]);
+
+  // slug-keyed track lookup (artistSlug~trackSlug → {title, artist, plays}) so a blurb key can be
+  // resolved to a display row. Built ONCE when the media index lands. The blurb keys are ~7k, so
+  // we index only what we need to join against.
+  const slugMap = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA; if (!M) return null;
+    const map = {};
+    for (const t of M.tracks) {
+      const k = R.slug(M.artists[t[1]]) + "~" + R.slug(t[0]);
+      if (!(k in map) || t[2] > map[k].plays) map[k] = { title: t[0], artist: M.artists[t[1]], plays: t[2] };
+    }
+    return map;
+  }, [mediaReady]);
 
   // accent-insensitive so "americain" finds "à l'américaine", "bjork" finds "Björk", etc.
   const deAccent = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -2537,6 +2560,29 @@ function SearchOverlay({ open, onClose, go }) {
     return { tracks: scan(M.tracks), albums: scan(M.albums) };
   }, [q, mediaReady]);
 
+  // THEME search — songs by what they're about, scanning the llm-about blurbs. Concatenate every
+  // present read (haiku gist + sonnet/opus/fable/web where richer), match the query, rank a
+  // whole-word hit above a substring, then by plays. Join to slugMap for a display row.
+  const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const themeResults = React.useMemo(() => {
+    const LLM = window.ROTATION_LLM_ABOUT;
+    if (mode !== "theme" || !q.trim() || !LLM || !slugMap) return [];
+    const needle = deAccent(q.trim());
+    if (needle.length < 3) return [];
+    const wb = new RegExp("\\b" + esc(needle));
+    const out = [];
+    for (const key in LLM) {
+      const e = LLM[key];
+      const text = deAccent([e.haiku, e.sonnet, e.opus, e.fable, e.web].filter(Boolean).join(" · "));
+      if (!text.includes(needle)) continue;
+      const t = slugMap[key]; if (!t) continue;
+      out.push({ key, title: t.title, artist: t.artist, plays: t.plays,
+        blurb: e.fable || e.opus || e.sonnet || e.haiku || "", score: wb.test(text) ? 1 : 0 });
+    }
+    out.sort((a, b) => (b.score - a.score) || (b.plays - a.plays));
+    return out.slice(0, 40);
+  }, [q, mode, llmReady, slugMap]);
+
   if (!open) return null;
 
   const resolveId = (name) => { const s = R.slug(name); if (R.byId[s]) return s; const a = R.idForName && R.idForName(name); if (a) return a; if (R.expById && R.expById[s]) return s; return null; };
@@ -2556,11 +2602,37 @@ function SearchOverlay({ open, onClose, go }) {
         <div className="se-bar">
           <span className="se-glyph">⌕</span>
           <input ref={inputRef} value={q} onChange={e => { setQ(e.target.value); setSel(null); }}
-            placeholder={ready ? `search artists, albums & songs you've played…` : "loading your library…"}
+            placeholder={mode === "theme"
+              ? (llmReady ? "what are they about — grief, defiance, isolation…" : "loading the reads…")
+              : (ready ? "search artists, albums & songs you've played…" : "loading your library…")}
             spellCheck={false} />
           <button className="se-x" onClick={onClose}>esc</button>
         </div>
-        {q.trim() && (() => {
+        <div className="se-modes">
+          <button data-on={mode === "names"} onClick={() => { setMode("names"); setSel(null); }}>Names</button>
+          <button data-on={mode === "theme"} onClick={() => { setMode("theme"); setSel(null); }}>Themes</button>
+          <span className="se-modehint">{mode === "theme" ? "songs by what they're about" : "artists · albums · songs"}</span>
+        </div>
+        {mode === "theme" && q.trim() && (
+          <div className="se-results">
+            {themeResults.length === 0 && llmReady && slugMap && q.trim().length >= 3 &&
+              <div className="se-empty">No songs read as being about “{q.trim()}”.</div>}
+            {q.trim().length < 3 && <div className="se-loading">keep typing…</div>}
+            {(!llmReady || !slugMap) && q.trim().length >= 3 && <div className="se-loading">reading your library…</div>}
+            {themeResults.length > 0 && <div className="se-group">Songs about “{q.trim()}” · {themeResults.length}</div>}
+            {themeResults.map((r) => (
+              <div key={"t-" + r.key} className="se-row se-themerow" onClick={() => pickMedia(r.artist, r.title)}>
+                <GenCover hue={hueOfName(r.artist)} name={r.artist} size={36} radius={3} />
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div className="se-name">{r.title} <span className="se-sub" style={{ display: "inline", marginLeft: 4 }}>— {r.artist}</span></div>
+                  <div className="se-blurb">{r.blurb}</div>
+                </div>
+                <span className="se-plays">{fmt(r.plays)}<small>plays</small></span>
+              </div>
+            ))}
+          </div>
+        )}
+        {mode === "names" && q.trim() && (() => {
           const mArt = (window.ROTATION_MEDIA && window.ROTATION_MEDIA.artists) || [];
           const nothing = ready && mediaReady && results.length === 0 && media.tracks.length === 0 && media.albums.length === 0;
           return (
@@ -2631,6 +2703,18 @@ function SearchOverlay({ open, onClose, go }) {
         .se-bar input { flex: 1; background: transparent; border: 0; outline: 0; color: var(--ink);
           font-family: var(--sans); font-size: 17px; }
         .se-bar input::placeholder { color: var(--ink-faint); }
+        .se-modes { display: flex; align-items: center; gap: 6px; padding: 0 18px 12px; }
+        .se-modes button { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
+          padding: 5px 12px; border-radius: 999px; border: 1px solid var(--rule); background: transparent;
+          color: var(--ink-faint); cursor: pointer; transition: color .12s, border-color .12s; }
+        .se-modes button:hover { color: var(--ink); }
+        .se-modes button[data-on="true"] { border-color: var(--accent-dim); color: var(--accent); }
+        .se-modehint { margin-left: auto; font-family: var(--mono); font-size: 8.5px; letter-spacing: .06em;
+          text-transform: uppercase; color: var(--ink-faint); }
+        .se-blurb { font-family: var(--serif); font-size: 12px; line-height: 1.45; color: var(--ink-soft);
+          margin-top: 3px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .se-themerow { align-items: flex-start; }
+        .se-themerow .se-plays { margin-top: 2px; }
         .se-x { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
           background: var(--bg-3); color: var(--ink-faint); border: 1px solid var(--rule); border-radius: 5px;
           padding: 5px 8px; cursor: pointer; }
