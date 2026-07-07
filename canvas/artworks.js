@@ -300,6 +300,9 @@ window.CANVAS_ARTWORKS = [
   { id: "portrait-of-lady-elizabeth-foster-later-duchess-of-devonshire", title: "Portrait of Lady Elizabeth Foster, later Duchess of Devonshire", artist: "Thomas Lawrence", artistId: "lawrence", qid: "Q77982114", qidTrusted: true, year: 1805, seenAt: "ngi", seenConfidence: "unsure", liked: true, note: "Deck pick — ngi-2026-07-07." },
   { id: "banks-of-a-canal-near-naples", title: "Banks of a Canal, near Naples", artist: "Gustave Caillebotte", artistId: "caillebotte", qid: "Q78000123", qidTrusted: true, year: 1872, seenAt: "ngi", seenConfidence: "unsure", liked: true, note: "Deck pick — ngi-2026-07-07." },
   { id: "children-on-the-sand-dunes-grandcamp", title: "Children on the Sand Dunes, Grandcamp", artist: "Eva Gonzalès", artistId: "gonzales", qid: "Q77949964", qidTrusted: true, year: 1877, seenAt: "ngi", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — ngi-2026-07-07." },
+  // ——— deck-folded picks (fold-deck.js) ———
+  { id: "line-describing-a-cone", title: "Line Describing a Cone", artist: "Anthony McCall", artistId: "mccall", qid: "Q11931961", qidTrusted: true, year: 1973, seenAt: "tate-modern", seenConfidence: "unsure", liked: true, note: "Deck pick — tate-modern-2026-07-07." },
+  { id: "banks-of-the-seine-with-the-pont-de-clichy", title: "Banks of the Seine with the Pont de Clichy", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q26220221", qidTrusted: true, year: 1887, seenAt: "tate-modern", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — tate-modern-2026-07-07." },
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
