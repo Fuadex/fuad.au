@@ -6,12 +6,20 @@ const DNA_AXES = ["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"];
 
 // Per-artist album/song streamgraph (reuses the Journey StreamGraph). Flow data lives in a
 // separate artist-flow.js, lazy-loaded on the first artist-page visit so first paint stays lean.
-function ArtistFlow({ id, hue, go }) {
+function ArtistFlow({ id, hue, go, drill: drillProp, setDrill: setDrillProp, onAlbum }) {
   const get = () => (window.ROTATION_FLOW && window.ROTATION_FLOW.byId[id]) || (window.ROTATION_FLOW ? false : null);
   const [flow, setFlow] = React.useState(get);
   const [mode, setMode] = React.useState("albums");  // albums | songs
-  const [drill, setDrill] = React.useState(null);    // album index when drilled into its songs
+  // drill (album index when broken into its songs) can be CONTROLLED by the parent, so the
+  // selection also scopes the artist page's Top-tracks + Sound-DNA cards (Fuad, 2026-07-07)
+  const [drillS, setDrillS] = React.useState(null);
+  const drill = drillProp !== undefined ? drillProp : drillS;
+  const setDrill = setDrillProp || setDrillS;
   const [hi, setHi] = React.useState(-1);
+  // report the drilled album object (name + per-track year series) upward
+  React.useEffect(() => {
+    if (onAlbum) onAlbum(drill != null && flow && flow.albums && flow.albums[drill] ? flow.albums[drill] : null);
+  }, [drill, flow]);
   React.useEffect(() => {
     if (window.ROTATION_FLOW) { setFlow(get()); return; }
     let s = document.getElementById("rotation-flow-js");
@@ -486,6 +494,32 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     if (window.ROTATION_PREVIEWS) { setPrevReady(true); return; }
     const s = document.createElement("script"); s.src = "track-previews.js"; s.onload = () => setPrevReady(true); document.head.appendChild(s);
   }, []);
+  // flowmap album selection (drill lifted OUT of ArtistFlow) scopes Top tracks + Sound DNA
+  // to that album (Fuad, 2026-07-07). selAlbum = the flow album object {name, tracks:[{name,vals}]}.
+  const [flowDrill, setFlowDrill] = React.useState(null);
+  const [selAlbum, setSelAlbum] = React.useState(null);
+  React.useEffect(() => { setFlowDrill(null); setSelAlbum(null); }, [id]);
+  const clearAlbumSel = () => { setFlowDrill(null); setSelAlbum(null); };
+  // per-track audio features load lazily the first time an album is drilled
+  const [taReady, setTaReady] = React.useState(!!window.ROTATION_TRACKAUDIO);
+  React.useEffect(() => {
+    if (!selAlbum || window.ROTATION_TRACKAUDIO) { if (window.ROTATION_TRACKAUDIO) setTaReady(true); return; }
+    const s = document.createElement("script"); s.src = "track-audio.js"; s.onload = () => setTaReady(true); document.head.appendChild(s);
+  }, [selAlbum]);
+  // album DNA = mean of the drilled album's per-track features (0–100 → radar's 0–1).
+  // Kept ABOVE the early returns like every other hook here (hook order must stay stable).
+  const albumDna = React.useMemo(() => {
+    if (!selAlbum || !taReady || !window.ROTATION_TRACKAUDIO) return null;
+    const TA = window.ROTATION_TRACKAUDIO, vs = [];
+    for (const tr of (selAlbum.tracks || [])) {
+      const f = TA[R.slug(a.name) + "~" + R.slug(tr.name)];
+      if (f && f.length >= 10) vs.push([f[4], f[5], f[6], f[7], f[8], f[9]]);
+    }
+    if (!vs.length) return null;
+    const m = [0, 0, 0, 0, 0, 0];
+    for (const v of vs) for (let k = 0; k < 6; k++) m[k] += v[k];
+    return { vec: m.map(x => x / vs.length / 100), n: vs.length, of: (selAlbum.tracks || []).length };
+  }, [selAlbum, taReady, a.id]);
   // artists outside the kept 205 still rank in Explore — give them a lightweight page
   // (return AFTER hooks so hook order stays stable across navigations).
   if (!full && R.expById && R.expById[id]) return <MiniArtistView a={R.expById[id]} go={go} />;
@@ -506,6 +540,13 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   // globally-capped lists. NIN gets all their top tracks, Midori gets theirs, etc.
   const albums = a.topAlbums || [];
   const tracks = a.topTracks || [];
+  // album-scoped views (active while an album is drilled in the flow):
+  // tracks from the flow's per-album series; DNA = mean of per-track features (0–100 → 0–1)
+  const albTracks = selAlbum
+    ? (selAlbum.tracks || []).map(t => ({ title: t.name, plays: (t.vals || []).reduce((s, v) => s + v, 0) }))
+        .sort((x, y) => y.plays - x.plays)
+    : null;
+  const shownTracks = albTracks || tracks;
   // "needle drop" for the artist: the most-played track that actually has a playable preview
   // (fall through to the next if the top one has no hash). prevReady re-renders on load.
   const needleKey = (() => {
@@ -594,15 +635,21 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {/* top tracks · how they played out (flow now in the MIDDLE — Fuad 2026-07-06) · albums */}
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
-                <span className="lbl"><b>Top tracks</b></span>
-                <span className="meta">{tracks.length} listed</span></div>
-              {(tracks.length ? tracks : [{ title: "—", plays: 0 }]).map((tr, i) => {
+                <span className="lbl"><b>Top tracks</b>{selAlbum && (
+                  <span className="r-mono" style={{ fontSize: 9.5, color: `oklch(0.66 0.14 ${a.hue})`, marginLeft: 8 }}>
+                    · {selAlbum.name}
+                    <button onClick={clearAlbumSel} title="back to all tracks"
+                      style={{ marginLeft: 6, border: "none", background: "none", color: "var(--ink-faint)", cursor: "pointer", fontSize: 10, padding: 0 }}>✕</button>
+                  </span>
+                )}</span>
+                <span className="meta">{shownTracks.length} listed</span></div>
+              {(shownTracks.length ? shownTracks : [{ title: "—", plays: 0 }]).map((tr, i) => {
                 const clickable = !!tr.plays;
                 return (
                 <div key={tr.title + i} className={clickable ? "r-track-row" : undefined} onClick={clickable ? () => go("track", R.slug(a.name) + "~" + R.slug(tr.title)) : undefined} title={clickable ? `${tr.title} →` : undefined}
                   style={{ display: "flex", alignItems: "center", gap: 10, padding: "6px 0",
                   cursor: clickable ? "pointer" : "default",
-                  borderBottom: i < tracks.length - 1 ? "1px solid var(--rule)" : "none" }}>
+                  borderBottom: i < shownTracks.length - 1 ? "1px solid var(--rule)" : "none" }}>
                   <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 18 }}>{String(i + 1).padStart(2, "0")}</span>
                   <span style={{ fontSize: 13, flex: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{tr.title}</span>
                   <LiveMark on={clickable && seenLiveKey(R.slug(a.name) + "~" + R.slug(tr.title))} />
@@ -610,8 +657,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                 </div>
               );})}
             </div>
-            {/* how they played out — flow, in the middle */}
-            <ArtistFlow id={a.id} hue={a.hue} go={go} />
+            {/* how they played out — flow, in the middle; drill is lifted so the album
+                selection scopes Top tracks + Sound DNA too */}
+            <ArtistFlow id={a.id} hue={a.hue} go={go} drill={flowDrill} setDrill={setFlowDrill} onAlbum={setSelAlbum} />
             {/* all albums — covers (default) ⇄ compact list */}
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
@@ -656,11 +704,14 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               wide; flow + albums breathe in row 2 instead (Fuad, 2026-07-06) */}
           <div className="r-card av-dnacard" style={{ padding: 18 }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl"><b>Sound DNA</b></span>
-              <span className="meta">{a.am ? "measured" : "inferred"}</span></div>
+              <span className="meta">{albumDna
+                ? `${selAlbum.name.length > 22 ? selAlbum.name.slice(0, 21) + "…" : selAlbum.name} · ${albumDna.n}/${albumDna.of} tracks measured`
+                : selAlbum ? "no per-track audio for this album" : (a.am ? "measured" : "inferred")}</span></div>
             <div className="av-dna" style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
               <div style={{ flex: "0 0 auto", width: 156, maxWidth: "100%" }}>
-                <Radar axes={DNA_AXES} values={dna} values2={avg} run={seen} size={156} />
-                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = {a.name.split(" ")[0]} · dashed = your avg</div>
+                <Radar axes={DNA_AXES} values={albumDna ? albumDna.vec : dna} values2={albumDna ? dna : avg} run={seen} size={156} />
+                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>
+                  {albumDna ? `solid = album · dashed = ${a.name.split(" ")[0]}` : `solid = ${a.name.split(" ")[0]} · dashed = your avg`}</div>
               </div>
               {/* tempo → followers — two-column so the seven measures fit the module height rather
                   than stacking into a tall single strip (Fuad, 2026-07-06) */}

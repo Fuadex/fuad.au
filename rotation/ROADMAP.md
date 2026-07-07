@@ -134,6 +134,11 @@ below (LIMITATIONS §6b) — decide the layout/structure BEFORE building:**
   Phase-3 artist-page strips (below) pair with it.
 
 ### 🔧 Loose UX fixes shipped this session (2026-07-07, not tied to a phase)
+- ✅ **Artist-page flow drill now scopes Top tracks + Sound DNA** — clicking an album in
+  "How they played out" filters the track list to that album (with a ✕ to clear) and
+  recomputes the DNA radar as the mean of the album's per-track features (track-audio
+  lazy-loads; honest "n/m tracks measured"; solid = album, dashed = artist). This was
+  Fuad's actual flowmap-reactivity ask — the Overview-level reactivity list stays PROPOSED.
 - ✅ Album back-button now goes UP to the album's artist ("← Nine Inch Nails"), not out to Explore.
 - ✅ Artist page gained a **Needle Drop** button (plays the most-played track that has a preview).
 - ✅ Fixed the **Overview map-band row-shift on genre filter** — the taste-flow streamgraph grew
