@@ -248,6 +248,8 @@ window.CANVAS_ARTWORKS = [
   { id: "the-source", title: "The Source", artist: "Gustave Courbet", artistId: "courbet", qid: "Q4891521", qidTrusted: true, year: 1862, seenAt: "met-nyc", seenConfidence: "unsure", liked: true, note: "Deck pick — met-nyc-2026-07-07." },
   { id: "regatta-at-sainte-adresse", title: "Regatta at Sainte-Adresse", artist: "Claude Monet", artistId: "monet", qid: "Q734082", qidTrusted: true, year: 1867, seenAt: "met-nyc", seenConfidence: "unsure", liked: true, note: "Deck pick — met-nyc-2026-07-07." },
   { id: "two-tahitian-women", title: "Two Tahitian Women", artist: "Paul Gauguin", artistId: "gauguin", qid: "Q3235403", qidTrusted: true, year: 1899, seenAt: "met-nyc", seenConfidence: "unsure", liked: true, note: "Deck pick — met-nyc-2026-07-07." },
+  // ——— deck-folded picks (fold-deck.js) ———
+  { id: "lion-attacking-a-dromedary", title: "Lion Attacking a Dromedary", artist: "Édouard Verreaux", artistId: "verreaux", qid: "Q60055433", qidTrusted: true, year: 1867, seenAt: "amnh", seenConfidence: "sure", liked: true, note: "Deck pick — amnh-2026-07-07." },
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
