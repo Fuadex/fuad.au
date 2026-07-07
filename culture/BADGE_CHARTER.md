@@ -44,19 +44,28 @@ neighbours (the cerebral/mindbending/cognitive trio especially).
     Mind, Spec Ops: The Line.
   - **medium-lens** — changed what you think *the form itself* can do: Antichamber, Undertale,
     The Witness, One Cut of the Dead.
-  - **close-lens** *(proposed third)* — changed how you look at *one concrete thing* forever:
-    a technique, an object, a place, a person-type. Narrower aperture than world-lens: not
-    "reality," but "I cannot see X the same way." Candidates: Jaws (open water), Whiplash (a
-    metronome / a mentor), Psycho (a shower), Uncut Gems (a buzzer), Koyaanisqatsi (traffic),
-    The Act of Killing (a perpetrator's smile). Open question — see BADGE_IDEAS.md.
+  - **close-lens** *(defined 2026-07-08, no confirmed holders yet)* — changed how you look at
+    *one concrete thing* forever: a technique, an object, a place, a person-type. Narrower
+    aperture than world-lens: not "reality," but "I cannot see X the same way." Test: **can
+    you name the one thing?** (If the answer is "everything," it's world-lens; if it's "the
+    form," it's medium-lens.) Kept in the taxonomy as the third slot even though Fuad can't
+    yet point to a personal instance — it's a *watch-for* category: the day a title ruins one
+    concrete thing, it has a home. Textbook non-library exemplars: Jaws (open water), Psycho
+    (a shower), Uncut Gems (a buzzer), The Act of Killing (a perpetrator's smile).
 
 ## Effect family
 
 - **💔 devastating** — *earned emotional demolition* (earned by craft — devastation without
   control doesn't qualify). e.g. Come and See, Grave of the Fireflies, Kiwi! · band ≈ 90.
 - **💥 impact** — *visceral in-the-moment force — a gut-punch or a face-punch.* Strictly the
-  moment, not the afterglow (afterglow is the proposed 🌫️ haunting — see IDEAS). e.g. La Haine,
-  Come and See, CoD4 · band ≈ 50 (tighten from current 63).
+  moment, not the afterglow (afterglow is 🌫️ haunting). e.g. La Haine, Come and See, CoD4
+  · band ≈ 50 (tighten from current 63 — demotion shortlist in BADGE_IDEAS).
+- **🌫️ haunting** *(new, 2026-07-08)* — *it kept working on you for weeks — uninvited return
+  visits, thematic residue.* **Hand-curated only, never auto-applied**, and explicitly NOT
+  "it was scary" (dread-by-design is 💀). Correlated with 🪞 but not identical: a shift is
+  *kept*, a haunt eventually fades; a haunt can also carry no new lens at all, just weight.
+  Test: **weeks later, did it come back to you when nothing prompted it?** Founders (named
+  by Fuad): Spec Ops: The Line, Black Mirror, Antichamber · band ≈ 12–15.
 - **💀 horrifying** — *designed to disturb / dread.* e.g. Possession, Made in Abyss, Hereditary.
 - **🩸 intense** — *sustained brutality / pressure* (a state, not a jolt). e.g. Uncut Gems,
   Whiplash, Come and See.
@@ -97,10 +106,13 @@ neighbours (the cerebral/mindbending/cognitive trio especially).
 
 ## Status / meta family
 
-- **💎 gem** — *a gem* (label simplified from "hidden gem — floored me"; the "hidden/underseen"
-  requirement was dropped 2026-07-08 — Fuad is reworking the exact meaning). `audit_gems.py`
-  still surfaces high-rating / low-reach candidates as a discovery aid, but reach is no longer a
-  gate. No demotions applied.
+- **💎 gem** — *a personal treasure: loved far beyond its fame — the ones you press into
+  people's hands.* Provisional definition (2026-07-08, pending Fuad's taxonomy rework): the
+  common thread across the current 72 holders is **advocacy** — not "underseen" as a hard
+  gate (Se7en, The Sopranos qualify) but "my rating is way ahead of how often this gets
+  brought up / how it's remembered." Test: *would you push it on someone unprompted?*
+  `audit_gems.py` still surfaces high-rating / low-reach candidates as a discovery aid, but
+  reach is a signal, not a gate. No demotions applied.
 - **🕰️ ahead** — *ahead of its time.* e.g. Network, Blade Runner, RoboCop.
 - **🃏 singular** — *an unrepeatable object, no formula, no genre slot.* e.g. Belladonna, Kiwi!,
   Holy Motors. (Tightened away from formal-execution: 🃏 = *sui generis*; 📐 = *constraint

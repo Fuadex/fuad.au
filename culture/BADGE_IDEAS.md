@@ -16,37 +16,38 @@ earmarked for a Fable 5 pass — plus the build roadmap for the new taste layer.
 - **Ponyo / funny:** no action — Ponyo was never actually tagged `funny` in the data (the
   `funny_taxonomy.md` DROP list was a proposal, not applied). Nothing to remove.
 
-## Still to crack (Fable 5)
+## Settled 2026-07-08 (second Fable pass)
 
-### 🪞 close-lens — the third cognitive sub-flavour
-world-lens (see reality/self anew) and medium-lens (see the form anew) are settled. The third,
-**close-lens**, = *changed how you look at one concrete thing forever* — narrower aperture:
-a technique, an object, a place, a person-type; not "reality" but "I can't see X the same."
-Candidates: Jaws (open water), Whiplash (a metronome / a mentor's approval), Psycho (a shower),
-Uncut Gems (a buzzer), Koyaanisqatsi (traffic/cities), The Act of Killing (a perpetrator's
-smile), There Will Be Blood (a milkshake), Funny Games (the remote). **Open:** is close-lens a
-real third axis or a subset of world-lens? Name candidates if we keep it: *object-lens*,
-*fixation*, *"ruined-forever"*. Decide with Fable.
+### 🪞 close-lens — IN the taxonomy, zero confirmed holders
+Kept as the third cognitive sub-flavour (charter updated; Cognitive Hall subtitle and the 🪞
+legend desc now name all three lenses). Fuad can't currently point to a personal instance —
+that's fine: it's a *watch-for* slot, not a quota. One-line test in the charter: "can you name
+the one thing?" Assign the moment a title genuinely ruins one concrete thing.
 
-### 🌫️ haunting — the afterglow badge, carefully scoped
-Splitting `impact` into **💥 impact** (visceral in-the-moment, gut/face-punch) + **🌫️ haunting**
-(stayed for weeks) is agreed in principle — BUT the trap: most horror is *designed* to haunt,
-so a naive rule floods the badge. Fuad's intent is the opposite — reserve 🌫️ for titles that
-lingered **because of a cognitive/thematic residue, not a scare**: Spec Ops: The Line, Black
-Mirror, Antichamber all stayed for weeks, and a big part of *why* was the 🪞 shift entangled in
-them. So haunting and cognitive are correlated but not identical (a 🪞 can fade; a 🌫️ can lack a
-shift). **Proposed rule:** 🌫️ is *hand-curated only* (never auto-applied), explicitly excludes
-"it was scary," and is meant for the handful that genuinely occupied you afterward. Needs a
-Fable pass to seed the founder set and write the one-line test. Do NOT ship until scoped.
+### 🌫️ haunting — SHIPPED, scoped
+Now in the charter (Effect family) + HIGHLIGHTS. Hand-curated only; excludes "it was scary";
+test = *weeks later, did it come back uninvited?* Founders (Fuad-named): Spec Ops: The Line,
+Black Mirror, Antichamber. **Expansion candidates awaiting Fuad's yes/no** (only he knows what
+actually returned): TLOU2, Come and See, The Human Condition I, A Short Film About Killing,
+Incendies, Norwegian Wood (book), Watership Down, The Plague Dogs, Night on the Galactic
+Railroad, The Walking Dead S1, Chernobyl, Wonder Egg Priority, Voskhozhdeniye/The Ascent.
 
-### 💎 gem — make it computable
-Keep the label "hidden gem" (moving to plain "gem" loses the *underseen* weight). Definition to
-implement: **high personal rating AND low popular reach.** We have the signals in the overlays —
-`item.fwAvg`, `voteCount`, and OMDb `imdbVotes`. Proposed rule:
-`gem = rating >= 9 && (imdbVotes < ~25k || fwVoteCount < ~5k)`, tunable. A script can then:
-(a) FLAG current 💎 holders that fail the reach test for demotion — Sopranos, Se7en, The Wire
-are not hidden by any measure; (b) SURFACE unbadged imports rated ≥8–9 with tiny vote counts as
-gem candidates (e.g. O-bal-tan has 106 votes). Build as `audit_gems.py`, review, then curate.
+### 💎 gem — provisional definition written
+Charter now reads: *a personal treasure, loved far beyond its fame — the ones you press into
+people's hands* (advocacy test, reach a signal not a gate). Legend desc populated. Still
+Fuad's call whether this sticks or the taxonomy splits again; `audit_gems.py` remains the
+discovery aid.
+
+## Still to crack
+
+### 💥 impact — tighten 63 → ≈50
+Demotion shortlist (impact reads as blanket/mislabeled; each keeps its other badges):
+Innocence (6 — cinematography carries it), Chilsu wa Mansu (cerebral, not visceral),
+Terror in Resonance, Steins;Gate, Cyberpunk: Edgerunners (all 7s — thrilling/devastating
+already cover them), Gurren Lagann (thrilling covers it), Life is Strange (bittersweet is
+the truth of it), GTA IV (atmosphere), Skins (social-xray). Several current 💥 holders are
+really 🌫️ candidates instead: Norwegian Wood, Watership Down, Incendies, Night on the
+Galactic Railroad. Awaiting Fuad's approval before applying.
 
 ### "floored me" — the orphaned half of old gem
 Old 💎 conflated *underseen* with *personal maximum*. Once 💎 = underseen, the "floored me"
