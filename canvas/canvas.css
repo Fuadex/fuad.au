@@ -29,12 +29,13 @@ a { color: inherit; }
 .cv-mode button[data-on="true"] { border-color: var(--ink); color: var(--ink); }
 .cv-sub { padding: 10px 34px 0; font: 400 13px/1.5 var(--serif); font-style: italic; color: var(--ink-faint); }
 
-/* ——— the wall (collage) ——— */
-.cv-wall { column-count: 4; column-gap: 14px; padding: 22px 34px 60px; }
-@media (max-width: 1200px) { .cv-wall { column-count: 3; } }
-@media (max-width: 860px)  { .cv-wall { column-count: 2; } }
-@media (max-width: 540px)  { .cv-wall { column-count: 1; } }
-.cv-card { break-inside: avoid; margin: 0 0 14px; cursor: pointer; position: relative; border-radius: 4px; overflow: hidden; background: #d8cbb8; transition: transform .15s ease; }
+/* ——— the wall (collage) — tighter 6-column packed hang (Fuad, 2026-07-08) ——— */
+.cv-wall { column-count: 6; column-gap: 8px; padding: 18px 24px 60px; }
+@media (max-width: 1500px) { .cv-wall { column-count: 5; } }
+@media (max-width: 1200px) { .cv-wall { column-count: 4; } }
+@media (max-width: 900px)  { .cv-wall { column-count: 3; } }
+@media (max-width: 620px)  { .cv-wall { column-count: 2; } }
+.cv-card { break-inside: avoid; margin: 0 0 8px; cursor: pointer; position: relative; border-radius: 3px; overflow: hidden; background: #d8cbb8; transition: transform .15s ease; }
 .cv-card:hover { transform: translateY(-2px); }
 .cv-card img { width: 100%; display: block; }
 .cv-card .cv-label { padding: 9px 12px 11px; }
