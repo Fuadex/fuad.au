@@ -135,3 +135,19 @@ body[data-salon="true"] .cv-card.cv-text { border-color: #2c2117; background: va
 
 /* ——— pilgrimage ——— */
 .cv-pil-thumb { width: 52px; height: 52px; object-fit: cover; border-radius: 4px; cursor: pointer; box-shadow: 0 3px 10px rgba(40,28,14,.25); }
+
+/* ——— artist pages (charcoal editorial, mockup 1c) ——— */
+.cv-artist { max-width: 1100px; margin: 0 auto; padding: 26px 34px 60px; }
+.cv-a-head { display: flex; gap: 22px; align-items: flex-start; background: #24201a; color: #e8ddcc; border-radius: 10px; padding: 26px 30px; }
+.cv-a-face { width: 92px; height: 92px; object-fit: cover; border-radius: 6px; filter: grayscale(.35); }
+.cv-a-name { font: 600 32px/1.1 var(--serif); margin: 0; color: #f2e9dc; }
+.cv-a-meta { font: 500 11px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: rgba(232,221,204,.6); margin-top: 7px; }
+.cv-a-mov { font: italic 400 13.5px/1.5 var(--serif); color: oklch(0.78 0.12 60); margin-top: 6px; }
+.cv-a-stats { font: 500 11px/1.6 var(--mono); color: rgba(232,221,204,.75); margin-top: 10px; }
+.cv-a-secl { font: 600 10.5px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin: 26px 0 12px; }
+.cv-a-wall { padding: 0; column-count: 3; }
+@media (max-width: 900px) { .cv-a-wall { column-count: 2; } }
+.cv-a-unmet { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.cv-a-unmet a { display: block; text-decoration: none; }
+.cv-a-unmet img { width: 100%; height: 120px; object-fit: cover; border-radius: 5px; box-shadow: 0 4px 14px rgba(40,28,14,.22); }
+.cv-a-unmet span { display: block; font: 400 11px/1.4 var(--serif); color: var(--ink-soft); margin-top: 5px; }
