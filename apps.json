@@ -22,6 +22,19 @@
       ]
     },
     {
+      "id": "canvas",
+      "name": "Canvas",
+      "tagline": "The art I've stood in front of.",
+      "accent": "oklch(0.66 0.14 46)",
+      "path": "/canvas/",
+      "precompile": true,
+      "deploy": [
+        "index.html", "favicon.svg", "canvas.css", "canvas-app.jsx",
+        "react.production.min.js", "react-dom.production.min.js",
+        "museums.js", "artworks.js", "art_data.js"
+      ]
+    },
+    {
       "id": "culture",
       "name": "Culture",
       "tagline": "Films, games, books — a personal canon.",

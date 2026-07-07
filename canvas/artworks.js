@@ -6,7 +6,7 @@ window.CANVAS_ARTWORKS = [
   { id: "monet-woman-with-a-parasol", title: "Woman with a Parasol — Madame Monet and Her Son", artist: "Claude Monet", artistId: "monet", qid: "Q3244303", year: 1875,
     seenAt: "nga-dc", seenConfidence: "sure", favorite: true, note: "\"Beautiful.\" The DC Monet." },
 
-  { id: "monet-nympheas-orangerie", title: "The Water Lilies cycle (Nymphéas)", artist: "Claude Monet", artistId: "monet", qid: "Q3329731", year: 1926,
+  { id: "monet-nympheas-orangerie", title: "The Water Lilies cycle (Nymphéas)", searchAs: "Water Lilies", artist: "Claude Monet", artistId: "monet", qid: null, year: 1926,
     seenAt: "orangerie", seenConfidence: "sure", favorite: true, note: "The panoramic rooms." },
 
   { id: "monet-water-lilies-marmottan", title: "Water Lilies (Marmottan canvases)", artist: "Claude Monet", artistId: "monet", qid: null, year: null,
@@ -44,7 +44,7 @@ window.CANVAS_ARTWORKS = [
   { id: "rodin-sculptures", title: "TBC — Rodin works at Musée Rodin", artist: "Auguste Rodin", artistId: "rodin", qid: null, year: null,
     seenAt: "rodin", seenConfidence: "sure", floored: true, note: "CONFIRMED Rodin — \"best with expressions and such, incredible.\" Which works stood out: recall deck (The Thinker, The Kiss, Gates of Hell, Burghers of Calais…). Bourdelle rated \"good\" — possible second museum visit, TBC." },
 
-  { id: "beksinski-works", title: "Beksiński paintings (three venues)", artist: "Zdzisław Beksiński", artistId: "beksinski", qid: null, year: null,
+  { id: "beksinski-works", title: "Beksiński paintings (three venues)", artist: "Zdzisław Beksiński", artistId: "beksinski", qid: null, year: null, noResolve: true,
     seenAt: ["beksinski-krakow", "beksinski-praga", "czestochowa-mgs"], seenConfidence: "sure",
     note: "Seen in person: Kraków (permanent gallery, venue TBC), a temporary show in Warsaw-Praga, and Częstochowa's collection. Possibly a fourth city, unrecalled. NOTE: in-copyright artist — text-forward cards, museum link-outs (see PLAN §3)." },
 ];
