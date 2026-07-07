@@ -56,18 +56,111 @@ function Card({ w, go }) {
   );
 }
 
+// ——— the Wall: filter chips × museum select × sort, capped at 48 with reversible load-more.
+// Sorts: "hang" (floored → loved → the rest, images first) · year · artist · museum.
+const CAP = 48;
+const FILTERS = [["all", "all"], ["floored", "★ floored"], ["loved", "♥ loved"], ["sure", "seen — sure"], ["unsure", "unsure"], ["wish", "pilgrimage"]];
+const weight = (w) => (w.floored || w.favorite) ? 0 : (w.liked ? 1 : 2);
 function Wall({ go }) {
-  const works = useMemo(() => {
-    const all = WORKS.map(enrich);
-    // hang order: images first (favorites up top), then the text-forward cards
-    return [...all.filter(w => w.imgGrid).sort((a, b) => (b.favorite || 0) - (a.favorite || 0)),
-            ...all.filter(w => !w.imgGrid)];
-  }, []);
+  const all = useMemo(() => WORKS.map(enrich), []);
+  const [filt, setFilt] = useState("all");
+  const [mus, setMus] = useState("");
+  const [sort, setSort] = useState("hang");
+  const [extra, setExtra] = useState(0);
+  useEffect(() => { setExtra(0); }, [filt, mus, sort]);
+
+  const shown = useMemo(() => {
+    let list = all;
+    if (filt === "floored") list = list.filter(w => w.floored || w.favorite);
+    if (filt === "loved") list = list.filter(w => w.floored || w.favorite || w.liked);
+    if (filt === "sure") list = list.filter(w => w.seenConfidence === "sure");
+    if (filt === "unsure") list = list.filter(w => w.seenConfidence !== "sure");
+    if (filt === "wish") list = list.filter(w => w.wish);
+    if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
+    const arr = [...list];
+    if (sort === "hang") arr.sort((a, b) => (b.imgGrid ? 1 : 0) - (a.imgGrid ? 1 : 0) || weight(a) - weight(b));
+    if (sort === "year") arr.sort((a, b) => (a.year || 9999) - (b.year || 9999));
+    if (sort === "artist") arr.sort((a, b) => a.artist.localeCompare(b.artist) || (a.year || 0) - (b.year || 0));
+    if (sort === "museum") arr.sort((a, b) => String(a.seenAt).localeCompare(String(b.seenAt)) || weight(a) - weight(b));
+    return arr;
+  }, [all, filt, mus, sort]);
+  const visN = CAP + extra;
+  const musOpts = useMemo(() => {
+    const counts = {};
+    for (const w of all) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) if (id) counts[id] = (counts[id] || 0) + 1;
+    return MUSEUMS.filter(m => counts[m.id]).map(m => ({ id: m.id, label: m.name.replace(/\s*\(.*\)$/, "") + " (" + counts[m.id] + ")" }));
+  }, [all]);
+
   return (
     <React.Fragment>
-      <div className="cv-sub">The art I've stood in front of — {works.length} works and counting, reconstructed from memory. ? marks the uncertain ones; that's honest.</div>
-      <div className="cv-wall">{works.map(w => <Card key={w.id} w={w} go={go} />)}</div>
+      <div className="cv-filters">
+        {FILTERS.map(([v, label]) => (
+          <button key={v} data-on={filt === v} onClick={() => setFilt(v)}>{label}</button>
+        ))}
+        <select value={mus} onChange={e => setMus(e.target.value)}>
+          <option value="">every museum</option>
+          {musOpts.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
+        </select>
+        <select value={sort} onChange={e => setSort(e.target.value)}>
+          <option value="hang">hang order</option>
+          <option value="year">by year</option>
+          <option value="artist">by artist</option>
+          <option value="museum">by museum</option>
+        </select>
+        <span className="cv-count">{Math.min(visN, shown.length)} of {shown.length}</span>
+      </div>
+      <div className="cv-wall">{shown.slice(0, visN).map(w => <Card key={w.id} w={w} go={go} />)}</div>
+      {shown.length > visN && (
+        <div className="cv-more"><button onClick={() => setExtra(e => e + CAP)}>hang {Math.min(CAP, shown.length - visN)} more</button></div>
+      )}
     </React.Fragment>
+  );
+}
+
+// ——— Pilgrimage: deck-derived wishes (artworks.js wish:true) grouped by holding museum,
+// plus hand-authored places (pilgrimage.js) the decks can't know — the trip planner seed.
+function Pilgrimage({ go }) {
+  const PL = window.CANVAS_PILGRIMAGE || [];
+  const groups = useMemo(() => {
+    const wishes = WORKS.map(enrich).filter(w => w.wish);
+    const by = {};
+    for (const w of wishes) {
+      const mid = (Array.isArray(w.seenAt) ? w.seenAt[0] : w.seenAt) || w.at;
+      const m = MUS_BY_ID[mid];
+      const key = m ? m.city + " — " + m.name.replace(/\s*\(.*\)$/, "") : "location TBC";
+      (by[key] = by[key] || []).push(w);
+    }
+    return Object.entries(by).sort((a, b) => b[1].length - a[1].length);
+  }, []);
+  const total = groups.reduce((s, [, l]) => s + l.length, 0);
+  return (
+    <div className="cv-mus">
+      <p className="cv-deck-sum">{total} works you'd love to stand in front of (deliberately, this time) · grows with every deck you deal.</p>
+      {groups.map(([key, list]) => (
+        <React.Fragment key={key}>
+          <div className="cv-mus-country">{key}</div>
+          {list.map(w => (
+            <div className="cv-mus-row" key={w.id}>
+              {w.imgGrid && <img className="cv-pil-thumb" src={w.imgGrid} alt="" loading="lazy" onClick={() => go("work", w.id)} />}
+              <span className="cv-mus-name" style={{ cursor: "pointer" }} onClick={() => go("work", w.id)}>{w.floored || (w.liked && w.wish) ? "♥ " : "♡ "}{w.title}</span>
+              <span className="cv-mus-city">{w.artist.replace(/\s*\(.*\)$/, "")}{w.year ? " · " + w.year : ""}</span>
+            </div>
+          ))}
+        </React.Fragment>
+      ))}
+      {PL.length > 0 && (
+        <React.Fragment>
+          <div className="cv-mus-country">Places</div>
+          {PL.map(p => (
+            <div className="cv-mus-row" key={p.id}>
+              <span className="cv-mus-name">{p.title}</span>
+              <span className="cv-mus-city">{p.city}</span>
+              {p.note && <span className="cv-mus-note">{p.note}</span>}
+            </div>
+          ))}
+        </React.Fragment>
+      )}
+    </div>
   );
 }
 
@@ -274,6 +367,7 @@ function App() {
         <nav className="cv-nav">
           <a href="#/" data-on={view === "wall" && route.view !== "deck"}>The Wall</a>
           <a href="#/museums" data-on={view === "museums" || route.view === "deck"}>Museums</a>
+          <a href="#/pilgrimage" data-on={view === "pilgrimage"}>Pilgrimage</a>
         </nav>
         {view === "wall" && (
           <div className="cv-mode">
@@ -283,7 +377,8 @@ function App() {
         )}
       </header>
       {route.view === "deck" ? <Deck museumId={route.id} go={go} key={route.id} />
-        : view === "museums" ? <Museums /> : <Wall go={go} />}
+        : view === "museums" ? <Museums />
+        : view === "pilgrimage" ? <Pilgrimage go={go} /> : <Wall go={go} />}
       {route.view === "work" && <Reader id={route.id} go={go} />}
       <footer className="cv-foot">
         canvas · a personal gallery, reconstructed from memory · images via <a href="https://commons.wikimedia.org" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> / <a href="https://www.wikidata.org" target="_blank" rel="noopener noreferrer">Wikidata</a> · part of <a href="/">fuad.au</a>

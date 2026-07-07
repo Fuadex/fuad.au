@@ -31,7 +31,7 @@
       "deploy": [
         "index.html", "favicon.svg", "canvas.css", "canvas-app.jsx",
         "react.production.min.js", "react-dom.production.min.js",
-        "museums.js", "artworks.js", "art_data.js", "museum_highlights.js"
+        "museums.js", "artworks.js", "art_data.js", "museum_highlights.js", "pilgrimage.js"
       ]
     },
     {
