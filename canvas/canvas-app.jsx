@@ -145,52 +145,82 @@ function Museums() {
   );
 }
 
-// ——— Phase 2: the recall deck — "did you see this?" per museum. Verdicts persist in
-// localStorage (canvas-deck-<museumId>); the summary's "copy picks" JSON is what gets
-// folded into artworks.js. Recognition beats recall: this is how the canon grows.
-const VERDICTS = [["no", "didn't see it"], ["unsure", "not sure"], ["yes", "saw it"], ["floored", "floored me ★"]];
+// ——— Phase 2: the recall deck — a core Canvas instrument. Two independent axes per card:
+// SEEN (memory: didn't see / not sure / saw it — the tap that advances) and FEELING
+// (♡ like / ♥ love — optional toggle, set before the seen-tap). Floored = saw it + ♥.
+// "Didn't see it + ♥" is the most valuable answer of all: it builds the Pilgrimage list.
+// Verdicts persist in localStorage as {seen, love}; the summary exports JSON for folding
+// into artworks.js / pilgrimage.js. Old-format string verdicts are migrated on load.
+const SEEN_OPTS = [["no", "didn't see it"], ["unsure", "not sure"], ["yes", "saw it"]];
+const LOVE_OPTS = [[0, "○ nothing special"], [1, "♡ like it"], [2, "♥ love it"]];
+const migrateVerdict = (v) => typeof v === "string"
+  ? { seen: v === "floored" ? "yes" : v, love: v === "floored" ? 2 : 0 } : v;
 function Deck({ museumId, go }) {
   const HL = window.CANVAS_HIGHLIGHTS || {};
   const mus = MUS_BY_ID[museumId];
   const canonQids = useMemo(() => new Set(WORKS.map(w => (AD.artworks[w.id] || {}).qid).filter(Boolean)), []);
   const deck = useMemo(() => (HL[museumId] || []).filter(w => !canonQids.has(w.qid)), [museumId]);
   const storeKey = "canvas-deck-" + museumId;
-  const [verdicts, setVerdicts] = useState(() => { try { return JSON.parse(localStorage.getItem(storeKey)) || {}; } catch (e) { return {}; } });
+  const [verdicts, setVerdicts] = useState(() => {
+    try {
+      const raw = JSON.parse(localStorage.getItem(storeKey)) || {};
+      const out = {}; for (const q of Object.keys(raw)) out[q] = migrateVerdict(raw[q]);
+      return out;
+    } catch (e) { return {}; }
+  });
   const firstOpen = deck.findIndex(w => !verdicts[w.qid]);
   const [i, setI] = useState(firstOpen < 0 ? deck.length : firstOpen);
+  const [love, setLove] = useState(0);
   const [copied, setCopied] = useState(false);
+  useEffect(() => {   // returning to an answered card (Backspace) restores its feeling
+    const w = deck[i]; setLove(w && verdicts[w.qid] ? verdicts[w.qid].love : 0);
+  }, [i]);
 
-  const judge = (v) => {
+  const judge = (seenV) => {
     if (i >= deck.length) return;
-    const next = { ...verdicts, [deck[i].qid]: v };
+    const next = { ...verdicts, [deck[i].qid]: { seen: seenV, love } };
     setVerdicts(next);
     localStorage.setItem(storeKey, JSON.stringify(next));
     setI(i + 1);
   };
   useEffect(() => {
     const on = (e) => {
-      if (e.key >= "1" && e.key <= "4") judge(VERDICTS[+e.key - 1][0]);
+      if (e.key >= "1" && e.key <= "3") judge(SEEN_OPTS[+e.key - 1][0]);
+      if (e.key === "4") setLove(love === 1 ? 0 : 1);
+      if (e.key === "5") setLove(love === 2 ? 0 : 2);
       if (e.key === "Backspace" && i > 0) setI(i - 1);
       if (e.key === "Escape") go("museums");
     };
     window.addEventListener("keydown", on);
     return () => window.removeEventListener("keydown", on);
-  }, [i, verdicts]);
+  }, [i, verdicts, love]);
 
   if (!mus || !deck.length) return <div className="cv-mus"><p>No deck for this museum (yet).</p></div>;
 
   if (i >= deck.length) {
-    const picks = deck.filter(w => verdicts[w.qid] === "yes" || verdicts[w.qid] === "floored")
-      .map(w => ({ qid: w.qid, title: w.title, artist: w.artist, year: w.year, verdict: verdicts[w.qid], museum: museumId }));
-    const unsure = deck.filter(w => verdicts[w.qid] === "unsure").length;
-    const json = JSON.stringify(picks, null, 1);
+    const rows = deck.filter(w => verdicts[w.qid] && (verdicts[w.qid].seen !== "no" || verdicts[w.qid].love > 0))
+      .map(w => ({ qid: w.qid, title: w.title, artist: w.artist, year: w.year, museum: museumId, ...verdicts[w.qid] }));
+    const seen = rows.filter(r => r.seen === "yes");
+    const discoveries = rows.filter(r => r.seen !== "yes" && r.love > 0);
+    const json = JSON.stringify(rows, null, 1);
     return (
       <div className="cv-deck">
         <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")} — deck complete</div>
-        <p className="cv-deck-sum">{picks.length} recognised ({picks.filter(p => p.verdict === "floored").length} floored) · {unsure} unsure · {deck.length - picks.length - unsure} not seen.</p>
-        {picks.length > 0 && (
+        <p className="cv-deck-sum">{seen.length} recognised ({seen.filter(r => r.love === 2).length} floored) · {rows.filter(r => r.seen === "unsure").length} unsure · {discoveries.length} discoveries you'd love to see.</p>
+        {seen.length > 0 && (
           <React.Fragment>
-            <ul className="cv-deck-picks">{picks.map(p => <li key={p.qid}>{p.verdict === "floored" ? "★ " : ""}{p.title}{p.artist ? " — " + p.artist : ""}</li>)}</ul>
+            <div className="cv-deck-secl">Seen</div>
+            <ul className="cv-deck-picks">{seen.map(p => <li key={p.qid}>{p.love === 2 ? "★ " : p.love === 1 ? "♡ " : ""}{p.title}{p.artist ? " — " + p.artist : ""}</li>)}</ul>
+          </React.Fragment>
+        )}
+        {discoveries.length > 0 && (
+          <React.Fragment>
+            <div className="cv-deck-secl">Discoveries → pilgrimage</div>
+            <ul className="cv-deck-picks">{discoveries.map(p => <li key={p.qid}>{p.love === 2 ? "♥ " : "♡ "}{p.title}{p.artist ? " — " + p.artist : ""}</li>)}</ul>
+          </React.Fragment>
+        )}
+        {rows.length > 0 && (
+          <React.Fragment>
             <button className="cv-deck-btn" onClick={() => { navigator.clipboard.writeText(json).then(() => setCopied(true)); }}>
               {copied ? "copied ✓" : "copy picks as JSON"}</button>
             <textarea className="cv-deck-json" readOnly value={json} rows={6} />
@@ -206,19 +236,25 @@ function Deck({ museumId, go }) {
   return (
     <div className="cv-deck">
       <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")} · did you see this?</div>
-      <div className="cv-deck-prog">{i + 1} / {deck.length}{i > 0 ? " · Backspace = back" : ""} · keys 1–4</div>
-      <div className="cv-deck-card">
+      <div className="cv-deck-prog">{i + 1} / {deck.length} · 1–3 seen · 4 ♡ · 5 ♥{i > 0 ? " · Backspace = back" : ""}</div>
+      <div className="cv-deck-card" key={w.qid}>{/* remount per card: stale image must not linger under the next label */}
         <img src={w.img} alt={w.title} loading="eager" />
         <div className="cv-deck-label">
           <div className="cv-title">{w.title}</div>
           <div className="cv-artist">{w.artist || "—"}{w.year ? " · " + w.year : ""}</div>
         </div>
       </div>
+      <div className="cv-deck-love">
+        {LOVE_OPTS.map(([v, label]) => (
+          <button key={v} data-on={love === v} data-love={v} onClick={() => setLove(v)}>{label}</button>
+        ))}
+      </div>
       <div className="cv-deck-btns">
-        {VERDICTS.map(([v, label], k) => (
+        {SEEN_OPTS.map(([v, label], k) => (
           <button key={v} data-v={v} onClick={() => judge(v)}><span className="key">{k + 1}</span>{label}</button>
         ))}
       </div>
+      <div className="cv-deck-hint">feeling first (optional), then the seen answer deals the next card — "didn't see it" + ♥ builds your pilgrimage list</div>
     </div>
   );
 }

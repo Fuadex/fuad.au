@@ -111,3 +111,13 @@ body[data-salon="true"] .cv-card.cv-text { border-color: #2c2117; background: va
 .cv-deck-picks { text-align: left; font: 400 14px/1.7 var(--serif); color: var(--ink-soft); max-width: 480px; margin: 14px auto; }
 .cv-deck-btn { display: inline-block; margin: 10px 8px; font: 500 11.5px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; padding: 11px 18px; border-radius: 999px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); cursor: pointer; }
 .cv-deck-json { width: 100%; font: 400 10.5px/1.5 var(--mono); color: var(--ink-soft); background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 10px; margin-top: 8px; }
+
+/* deck v2: the feeling row (like/love, independent of seen) + summary sections */
+.cv-deck-love { display: flex; gap: 8px; justify-content: center; margin: 18px 0 0; }
+.cv-deck-love button { font: 500 11.5px/1 var(--mono); letter-spacing: .05em; padding: 10px 16px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-faint); cursor: pointer; }
+.cv-deck-love button[data-on="true"] { border-color: currentColor; color: var(--ink); }
+.cv-deck-love button[data-love="1"][data-on="true"] { color: oklch(0.55 0.14 20); }
+.cv-deck-love button[data-love="2"][data-on="true"] { color: oklch(0.5 0.19 20); background: oklch(0.5 0.19 20 / .08); }
+.cv-deck-btns { margin-top: 12px; }
+.cv-deck-hint { margin-top: 16px; font: italic 400 11.5px/1.5 var(--serif); color: var(--ink-faint); }
+.cv-deck-secl { font: 600 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin: 18px 0 4px; }
