@@ -1,0 +1,8 @@
+# wikidata_cache.json — the big (~54 MB and growing) resumable SPARQL/entity cache.
+# NOT committed: it's rebuildable from scratch (keyless Wikidata, a few minutes) and the
+# ENRICHED OUTPUTS that the site actually needs (art_data.js, museum_highlights.js,
+# palette.js) ARE committed. Keeping it local stops the repo bloating one blob per fold.
+# highlights_cache.json (116 KB) + palette_cache.json (16 KB) stay committed — small, and
+# they save the pricier per-museum / image passes across machines.
+wikidata_cache.json
+edge-tmp*/
