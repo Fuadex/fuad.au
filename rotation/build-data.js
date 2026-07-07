@@ -1,4 +1,6 @@
-// build-data.js — regenerates music-data.js from fuadex.csv (last.fm export)
+// build-data.js — regenerates music-core.js + music-rest.js (the split music data) from
+// fuadex.csv (last.fm export). NOTE: pre-split checkouts wrote a single music-data.js — if
+// that file reappears in the repo it's a stale build from an old machine; delete it.
 // Usage: node build-data.js
 // CSV format (no header): artist,album,track,"DD MMM YYYY HH:MM" (UTC)
 
