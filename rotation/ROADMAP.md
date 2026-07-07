@@ -95,6 +95,17 @@ also template prep. **Net cold-first-paint win: −700 KB gz (Babel gone) − ~4
      promotion backlog (real, Fuad-relevant tracks) for a head-to-head QUALITY comparison vs
      Opus/Sonnet, then decide the model for the pipeline going forward. (Quality on the bake-off
      sample looked comparable to Opus — concise, faithful.)
+   - **✅ Fable dual-tier reads SHIPPING (2026-07-07):** top-30 played lyric tracks now carry
+     `fable` (plain what-it's-about) + `fableDeep` (close-reading) in `llm-about.js`, rendered
+     on TrackView as a Fable flick button + an **Info / Interpretation toggle** at the
+     What-it's-about module's top right (`BlurbSwitcher`, commits 1d6a0a3 + 407f50a). Fuad's
+     verdict on the reads: keep both tiers — the deep read is the differentiator.
+     **Convention going forward: a "Fable promotion" = both tiers.** Instrumentals and
+     tracks without archive lyrics are skipped (4 Ghosts I, Maths, Tsunami (11:11), Xen…).
+     Also **unshadowed the bake-off reads**: llm-about entries used to hide blurb-demo's
+     richer sets — the 8 affected tracks (incl. La Mer + Intimate Alien Fable one-liners)
+     are folded into llm-about now. Workshop lists: `.sptmp/fable-top10.json`,
+     `.sptmp/fable-next20.json` (+ `verify-lamer2.js` cache-proof pane check harness).
 
 **⏸ PARKED — rest of Phase 2 (2026-07-07). Items 3–5 are GATED on the design deliberations
 below (LIMITATIONS §6b) — decide the layout/structure BEFORE building:**
