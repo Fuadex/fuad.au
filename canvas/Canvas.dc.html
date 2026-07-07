@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#e3d8c8;font-family:'Inter',system-ui,sans-serif}
+  .dv-turn{padding:44px 48px 36px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+  .dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 22px}
+  .dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a140e;color:#fff;border-radius:4px;text-decoration:none}
+  .dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#3a2f22}
+  .dv-opts{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}
+  .dv-opt{flex:none;display:flex;flex-direction:column;gap:11px;scroll-margin-top:16px}
+  .dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.09);color:#3a2f22;border-radius:5px;text-decoration:none}
+  .dv-olabel{display:flex;align-items:baseline;gap:9px;font:400 11.5px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+  .dv-olabel b{color:#3a2f22;font-weight:600}
+  .dv-card{background:#fff;border-radius:6px;box-shadow:0 12px 40px rgba(40,28,14,.16);overflow:hidden}
+  .dv-opt:target .dv-oid{background:oklch(0.66 0.14 46);color:#fff}
+  .dv-next{margin:26px 0 0;font:12.5px/1.6 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+  .dv-next a{color:#7a5a2e;text-decoration:none;border-bottom:1px solid rgba(122,90,46,.3)}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t2">
+  <div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Collage home (the new default) + a painterly map — riffing on <a class="dv-oid" href="#1a" style="text-decoration:none">1a</a>, keeping <a class="dv-oid" href="#1c" style="text-decoration:none">1c</a></span></div>
+  <div class="dv-opts">
+
+    <!-- ============ 2a — COLLAGE HOME (default) ============ -->
+    <div class="dv-opt" id="2a">
+      <div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a><b>Collage</b> · the default landing — favorites packed edge-to-edge · Salon becomes a toggle</div>
+      <div class="dv-card" style="width:1180px;height:820px;position:relative;background:#e4d8c4;overflow:hidden;font-family:'Inter',sans-serif">
+        <!-- collage grid -->
+        <div style="position:absolute;inset:0;display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;grid-auto-flow:dense;gap:5px;padding:5px">
+          <!-- 1 Nymphéas -->
+          <div style="grid-column:span 3;grid-row:span 3;position:relative;overflow:hidden;background:linear-gradient(160deg,#6f8f86,#9db6ad 38%,#c9b9d0 66%,#7d9a94)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(26deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div>
+            <div style="position:absolute;left:38px;bottom:70px;width:70px;height:18px;border-radius:50%;background:rgba(235,180,192,.4);filter:blur(3px)"></div>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:14px 15px;background:linear-gradient(0deg,rgba(20,12,6,.7),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:15px;color:#fff">Nymphéas</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;color:oklch(0.85 0.1 60);margin-top:3px">MONET · L'ORANGERIE, PARIS</div></div>
+          </div>
+          <!-- 2 Szał -->
+          <div style="grid-column:span 2;grid-row:span 4;position:relative;overflow:hidden;background:radial-gradient(80% 60% at 55% 30%,#7a1f22,#3a0f14 62%,#160608)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(-22deg,rgba(255,255,255,.05) 0 2px,transparent 2px 8px)"></div>
+            <div style="position:absolute;left:42%;top:22%;width:64px;height:130px;border-radius:50% 50% 45% 45%;background:linear-gradient(#e8c9a0,#b98a63);opacity:.5;filter:blur(1px)"></div>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:14px 15px;background:linear-gradient(0deg,rgba(10,4,4,.78),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:15px;color:#fff">Szał uniesień</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;color:oklch(0.8 0.11 40);margin-top:3px">PODKOWIŃSKI · KRAKÓW</div></div>
+          </div>
+          <!-- 3 Sunshade -->
+          <div style="grid-column:span 1;grid-row:span 3;position:relative;overflow:hidden;background:linear-gradient(160deg,#c7c46a,#8fa24a 42%,#d8b24e 74%,#6d7e3a)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(24deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div>
+            <div style="position:absolute;left:50%;top:20%;transform:translateX(-50%);width:56px;height:56px;border-radius:50%;background:radial-gradient(circle,rgba(245,232,180,.6),transparent 70%)"></div>
+          </div>
+          <!-- 4 Rouen -->
+          <div style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(160deg,#e0c98f,#c49a5a 50%,#7a5a34)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 2px,transparent 2px 12px)"></div>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(0deg,rgba(20,12,6,.6),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12px;color:#fff">Rouen Cathedral</div></div>
+          </div>
+          <!-- 5 Haystacks -->
+          <div style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(160deg,#e8c877,#c99a4a 45%,#8a6a3a)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(20deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div>
+          </div>
+          <!-- 6 Tanaka Isson -->
+          <div style="grid-column:span 2;grid-row:span 3;position:relative;overflow:hidden;background:linear-gradient(155deg,#3c6b52,#6fa06e 44%,#c7d18a 80%,#2f5a44)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(30deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:12px 13px;background:linear-gradient(0deg,rgba(12,20,12,.7),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13px;color:#fff">Amami woodland</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.14em;color:oklch(0.85 0.09 130);margin-top:2px">TANAKA ISSON · seen TOKYO</div></div>
+          </div>
+          <!-- 7 Impression -->
+          <div style="grid-column:span 3;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(170deg,#89a3ce,#b7c8dd 40%,#e0d4c0 78%,#7f96bd)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(26deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div>
+            <div style="position:absolute;left:40px;top:24px;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle,rgba(240,140,90,.55),transparent 70%)"></div>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:11px 13px;background:linear-gradient(0deg,rgba(20,16,30,.6),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13px;color:#fff">Impression, Soleil Levant</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.14em;color:oklch(0.85 0.09 60);margin-top:2px">MONET · MARMOTTAN</div></div>
+          </div>
+          <!-- 8 Zorn -->
+          <div style="grid-column:span 1;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(150deg,#c9a77e,#8a6242 55%,#4a3524)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 6px)"></div>
+          </div>
+          <!-- 9 Beksiński -->
+          <div style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(160deg,#8a7a4a,#5a4a2a 50%,#2a2016)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(-18deg,rgba(255,255,255,.04) 0 2px,transparent 2px 9px)"></div>
+            <div style="position:absolute;right:18px;top:16px;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,rgba(240,224,170,.5),transparent 70%)"></div>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(0deg,rgba(20,14,8,.7),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12px;color:#fff">Untitled · Beksiński</div></div>
+          </div>
+          <!-- 10 Footbridge -->
+          <div style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(150deg,#4a7a5a,#7fa96e 46%,#c3c07a 80%)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(24deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div>
+          </div>
+          <!-- 11 Renoir -->
+          <div style="grid-column:span 1;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(155deg,#e8b89a,#c98a6a 50%,#8a4f3a)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(30deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div>
+          </div>
+          <!-- 12 Sisley -->
+          <div style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(165deg,#9ab6cf,#c7d4dd 45%,#e2d8c4 80%,#7f96ad)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(22deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div>
+          </div>
+          <!-- 13 Pissarro -->
+          <div style="grid-column:span 1;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(155deg,#9caf6a,#6a7f42 55%,#3f4f2a)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(28deg,rgba(255,255,255,.05) 0 2px,transparent 2px 9px)"></div>
+          </div>
+          <!-- 14 Gare -->
+          <div style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(160deg,#9aa4ac,#6a747c 55%,#3a4249)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 2px,transparent 2px 11px)"></div>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(0deg,rgba(14,16,18,.66),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12px;color:#fff">Gare Saint-Lazare</div></div>
+          </div>
+          <!-- 15 Rodin -->
+          <div style="grid-column:span 1;grid-row:span 3;position:relative;overflow:hidden;background:linear-gradient(160deg,#b8ac98,#847660 55%,#4c4234)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 2px,transparent 2px 10px)"></div>
+          </div>
+          <!-- 16 Poplars -->
+          <div style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(170deg,#c7b86a,#8a9a4a 50%,#4a6b3a)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 2px,transparent 2px 12px)"></div>
+          </div>
+          <!-- 17 Water Lily Pond -->
+          <div style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(150deg,#5a8a6a,#8fb08a 45%,#c7c9a0 80%)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(26deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div>
+          </div>
+          <!-- 18 Larsson -->
+          <div style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(155deg,#e8c9a0,#c99a6a 50%,#8a6a4a)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(20deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(0deg,rgba(20,12,6,.55),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12px;color:#fff">Interior · Swedish Masters</div></div>
+          </div>
+        </div>
+
+        <!-- floating top bar -->
+        <div style="position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:20px 26px;background:linear-gradient(180deg,rgba(228,216,196,.92),rgba(228,216,196,0))">
+          <div>
+            <div style="font-family:'Source Serif 4',serif;font-style:italic;font-weight:600;font-size:26px;letter-spacing:-.02em;color:#241b12;text-shadow:0 1px 6px rgba(228,216,196,.9)">Canvas<span style="font-style:normal;color:oklch(0.6 0.15 44)">.</span></div>
+          </div>
+          <div style="display:flex;gap:6px;background:rgba(255,255,255,.5);backdrop-filter:blur(4px);border:1px solid rgba(90,60,30,.16);border-radius:100px;padding:5px 6px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase">
+            <span style="background:#241b12;color:#f3ead8;border-radius:100px;padding:6px 13px">Collage</span>
+            <span style="color:#5a4630;padding:6px 13px">Wall</span>
+            <span style="color:#5a4630;padding:6px 13px">Map</span>
+            <span style="color:#5a4630;padding:6px 13px">Artists</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 2b — PAINTERLY MAP ============ -->
+    <div class="dv-opt" id="2b">
+      <div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a><b>Map</b> · redone warm — each work pinned to where it found you</div>
+      <div class="dv-card" style="width:1180px;height:820px;position:relative;overflow:hidden;background:radial-gradient(120% 100% at 40% 20%,#efe6d3,#e2d4bb 60%,#d3c2a2);font-family:'Inter',sans-serif;color:#2a2018">
+        <!-- sepia graticule -->
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(120,86,44,.07) 0 1px,transparent 1px 58px),repeating-linear-gradient(90deg,rgba(120,86,44,.07) 0 1px,transparent 1px 58px)"></div>
+        <!-- faint continents wash -->
+        <div style="position:absolute;left:8%;top:24%;width:52%;height:46%;border-radius:48% 52% 55% 45%;background:rgba(150,120,74,.1);filter:blur(30px)"></div>
+        <div style="position:absolute;left:66%;top:30%;width:26%;height:36%;border-radius:52% 48% 45% 55%;background:rgba(150,120,74,.1);filter:blur(30px)"></div>
+
+        <!-- routes -->
+        <svg viewBox="0 0 1180 820" style="position:absolute;inset:0;width:100%;height:100%">
+          <path d="M470 360 Q 360 240 300 250" fill="none" stroke="rgba(122,86,44,.4)" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round"></path>
+          <path d="M470 360 Q 520 320 556 300" fill="none" stroke="rgba(122,86,44,.4)" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round"></path>
+          <path d="M556 300 Q 720 210 940 300" fill="none" stroke="rgba(122,86,44,.4)" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round"></path>
+          <path d="M470 360 Q 320 480 210 470" fill="none" stroke="rgba(122,86,44,.4)" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round"></path>
+          <path d="M556 300 Q 560 220 566 190" fill="none" stroke="rgba(122,86,44,.4)" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round"></path>
+        </svg>
+
+        <!-- header -->
+        <div style="position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:22px 28px;z-index:6">
+          <div style="font-family:'Source Serif 4',serif;font-style:italic;font-weight:600;font-size:26px;letter-spacing:-.02em;color:#241b12">Canvas<span style="font-style:normal;color:oklch(0.6 0.15 44)">.</span></div>
+          <div style="display:flex;gap:6px;background:rgba(255,255,255,.5);border:1px solid rgba(90,60,30,.16);border-radius:100px;padding:5px 6px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase">
+            <span style="color:#5a4630;padding:6px 13px">Collage</span><span style="color:#5a4630;padding:6px 13px">Wall</span><span style="background:#241b12;color:#f3ead8;border-radius:100px;padding:6px 13px">Map</span><span style="color:#5a4630;padding:6px 13px">Artists</span>
+          </div>
+        </div>
+        <div style="position:absolute;top:72px;left:28px;font-family:'Source Serif 4',serif;font-style:italic;font-size:15px;color:#6b5a40;z-index:5">Every work, pinned to where it found me.</div>
+
+        <!-- PIN: reusable = tilted frame + thumb + label + anchor dot -->
+        <!-- Paris - Nymphéas (hub) -->
+        <div style="position:absolute;left:470px;top:360px;transform:translate(-50%,-100%) rotate(-3deg);z-index:4">
+          <div style="padding:7px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 12px 24px rgba(40,28,14,.3)"><div style="width:132px;height:88px;background:linear-gradient(160deg,#6f8f86,#9db6ad 40%,#c9b9d0 70%,#7d9a94)"></div></div>
+          <div style="margin-top:6px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12px;color:#241b12">Nymphéas · Monet</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:#8a7659">L'ORANGERIE · PARIS · 6 WORKS</div></div>
+        </div>
+        <div style="position:absolute;left:470px;top:360px;transform:translate(-50%,-50%);width:15px;height:15px;border-radius:50%;background:oklch(0.62 0.16 44);box-shadow:0 0 0 5px oklch(0.62 0.16 44 / 0.2);z-index:5"></div>
+
+        <!-- Dublin - Sunshade -->
+        <div style="position:absolute;left:300px;top:250px;transform:translate(-50%,-100%) rotate(2.5deg);z-index:4">
+          <div style="padding:6px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 10px 20px rgba(40,28,14,.28)"><div style="width:104px;height:74px;background:linear-gradient(160deg,#c7c46a,#8fa24a 44%,#d8b24e 76%,#6d7e3a)"></div></div>
+          <div style="margin-top:5px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:11.5px;color:#241b12">The Sunshade · Leech</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:#8a7659">IRELAND</div></div>
+        </div>
+        <div style="position:absolute;left:300px;top:250px;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:oklch(0.66 0.14 46);box-shadow:0 0 0 4px oklch(0.66 0.14 46 / 0.18);z-index:5"></div>
+
+        <!-- Kraków - Szał -->
+        <div style="position:absolute;left:556px;top:300px;transform:translate(-50%,-100%) rotate(-2deg);z-index:4">
+          <div style="padding:6px;background:linear-gradient(135deg,#3a2418,#1c0f09);box-shadow:0 10px 20px rgba(40,28,14,.32)"><div style="width:80px;height:96px;background:radial-gradient(80% 60% at 55% 30%,#7a1f22,#3a0f14 62%,#160608)"></div></div>
+          <div style="margin-top:5px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:11.5px;color:#241b12">Szał uniesień</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:#8a7659">KRAKÓW</div></div>
+        </div>
+        <div style="position:absolute;left:556px;top:300px;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:oklch(0.66 0.14 46);box-shadow:0 0 0 4px oklch(0.66 0.14 46 / 0.18);z-index:5"></div>
+
+        <!-- Stockholm - Zorn -->
+        <div style="position:absolute;left:566px;top:190px;transform:translate(-50%,-100%) rotate(3deg);z-index:4">
+          <div style="padding:6px;background:linear-gradient(135deg,#e2ddd2,#bdb4a2);box-shadow:0 10px 20px rgba(40,28,14,.24)"><div style="width:82px;height:82px;background:linear-gradient(150deg,#c9a77e,#8a6242 55%,#4a3524)"></div></div>
+          <div style="margin-top:5px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:11.5px;color:#241b12">Etching · Zorn</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:#8a7659">STOCKHOLM</div></div>
+        </div>
+        <div style="position:absolute;left:566px;top:190px;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:oklch(0.66 0.14 46);box-shadow:0 0 0 4px oklch(0.66 0.14 46 / 0.18);z-index:5"></div>
+
+        <!-- Washington DC - Footbridge -->
+        <div style="position:absolute;left:210px;top:470px;transform:translate(-50%,-100%) rotate(-2.5deg);z-index:4">
+          <div style="padding:6px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 10px 20px rgba(40,28,14,.28)"><div style="width:110px;height:76px;background:linear-gradient(150deg,#4a7a5a,#7fa96e 46%,#c3c07a 82%)"></div></div>
+          <div style="margin-top:5px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:11.5px;color:#241b12">Japanese Footbridge · Monet</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:#8a7659">NAT'L GALLERY · WASHINGTON DC</div></div>
+        </div>
+        <div style="position:absolute;left:210px;top:470px;transform:translate(-50%,-50%);width:12px;height:12px;border-radius:50%;background:oklch(0.66 0.14 46);box-shadow:0 0 0 4px oklch(0.66 0.14 46 / 0.18);z-index:5"></div>
+
+        <!-- Tokyo - Monet show / Tanaka (hub) -->
+        <div style="position:absolute;left:940px;top:300px;transform:translate(-50%,-100%) rotate(2deg);z-index:4">
+          <div style="padding:7px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 12px 24px rgba(40,28,14,.3)"><div style="width:128px;height:86px;background:linear-gradient(155deg,#3c6b52,#6fa06e 44%,#c7d18a 80%,#2f5a44)"></div></div>
+          <div style="margin-top:6px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12px;color:#241b12">Water Lilies + Swedish Masters</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:oklch(0.55 0.15 44)">TOKYO METROPOLITAN · FEB 2026 · 3</div></div>
+        </div>
+        <div style="position:absolute;left:940px;top:300px;transform:translate(-50%,-50%);width:15px;height:15px;border-radius:50%;background:oklch(0.62 0.16 44);box-shadow:0 0 0 5px oklch(0.62 0.16 44 / 0.2);z-index:5"></div>
+
+        <!-- legend -->
+        <div style="position:absolute;left:28px;bottom:22px;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:#8a7659;z-index:5">◍ pins matched from your location history · bigger = more works seen there</div>
+      </div>
+    </div>
+
+  </div>
+  <p class="dv-next">Try next: “make <a class="dv-oid" href="#2a">2a</a> hover-reveal labels + click into <a class="dv-oid" href="#1c">1c</a>” · “build <a class="dv-oid" href="#2a">2a</a> as the real landing with all my works” · “tune <a class="dv-oid" href="#2b">2b</a>'s pin styling” · “make the whole thing one clickable prototype: collage → artist → map” · “wire in real open-access scans”</p>
+</section>
+
+<section class="dv-turn" id="t1">
+  <div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Canvas. — three directions: a painterly hub, a data observatory, an artist deep-page</span></div>
+  <div class="dv-opts">
+
+    <!-- ============ 1a — SALON (light, painterly museum wall) ============ -->
+    <div class="dv-opt" id="1a">
+      <div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a><b>Salon</b> · home as a museum wall-hang · warm plaster, most painterly</div>
+      <div class="dv-card" style="width:1180px;height:820px;background:radial-gradient(120% 90% at 50% -10%,#efe7d8,#e4d8c4 60%,#d8c8b0);position:relative;font-family:'Inter',sans-serif;color:#2a2018">
+        <!-- top molding + rail -->
+        <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(#c9b48c,#a98f60)"></div>
+        <div style="position:absolute;top:5px;left:0;right:0;height:22px;background:linear-gradient(#e9dfcd,#ddd0b8)"></div>
+        <!-- header -->
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:40px 52px 0">
+          <div>
+            <div style="font-family:'Source Serif 4',serif;font-style:italic;font-weight:600;font-size:34px;letter-spacing:-.02em;color:#241b12">Canvas<span style="font-style:normal;color:oklch(0.62 0.15 44)">.</span></div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:#8a7659;margin-top:7px">A personal canon of the art that stopped me</div>
+          </div>
+          <div style="display:flex;gap:26px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#7a6748">
+            <span style="color:#241b12;border-bottom:1.5px solid oklch(0.62 0.15 44);padding-bottom:4px">Rooms</span><span>Artists</span><span>Map</span><span>Timeline</span>
+          </div>
+        </div>
+        <!-- room caption -->
+        <div style="text-align:center;margin-top:26px;font-family:'Source Serif 4',serif;font-style:italic;font-size:15px;color:#6b5a40">Room I — the ones I keep returning to</div>
+
+        <!-- salon hang: two rows, center-line aligned -->
+        <div style="display:flex;flex-direction:column;gap:34px;padding:30px 56px 0;align-items:center">
+          <!-- row 1 -->
+          <div style="display:flex;gap:38px;align-items:center;justify-content:center">
+            <!-- frame: Monet Nymphéas -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:9px">
+              <div style="padding:11px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 14px 30px rgba(40,28,14,.28)">
+                <div style="width:236px;height:150px;background:linear-gradient(165deg,#6f8f86 0%,#9db6ad 32%,#c9b9d0 62%,#7d9a94 100%);position:relative;overflow:hidden">
+                  <div style="position:absolute;inset:0;background:repeating-linear-gradient(28deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div>
+                  <div style="position:absolute;left:22px;bottom:26px;width:60px;height:16px;border-radius:50%;background:rgba(230,180,190,.45);filter:blur(2px)"></div>
+                  <div style="position:absolute;left:120px;bottom:52px;width:44px;height:12px;border-radius:50%;background:rgba(240,210,120,.4);filter:blur(2px)"></div>
+                </div>
+              </div>
+              <div style="text-align:center;max-width:236px">
+                <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Nymphéas</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">MONET · L'ORANGERIE, PARIS</div>
+              </div>
+            </div>
+            <!-- frame: Podkowiński Szał (tall) -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:9px">
+              <div style="padding:12px;background:linear-gradient(135deg,#3a2418,#1c0f09);box-shadow:0 16px 34px rgba(40,28,14,.34)">
+                <div style="width:170px;height:214px;background:radial-gradient(80% 60% at 55% 30%,#7a1f22,#3a0f14 60%,#160608);position:relative;overflow:hidden">
+                  <div style="position:absolute;inset:0;background:repeating-linear-gradient(-22deg,rgba(255,255,255,.05) 0 2px,transparent 2px 8px)"></div>
+                  <div style="position:absolute;left:44%;top:26%;width:60px;height:120px;border-radius:50% 50% 45% 45%;background:linear-gradient(#e8c9a0,#b98a63);opacity:.5;filter:blur(1px)"></div>
+                </div>
+              </div>
+              <div style="text-align:center;max-width:170px">
+                <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Szał uniesień</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">PODKOWIŃSKI · KRAKÓW</div>
+              </div>
+            </div>
+            <!-- frame: The Sunshade -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:9px">
+              <div style="padding:11px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 14px 30px rgba(40,28,14,.28)">
+                <div style="width:172px;height:210px;background:linear-gradient(160deg,#c7c46a 0%,#8fa24a 40%,#d8b24e 72%,#6d7e3a 100%);position:relative;overflow:hidden">
+                  <div style="position:absolute;inset:0;background:repeating-linear-gradient(24deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div>
+                  <div style="position:absolute;left:50%;top:16%;transform:translateX(-50%);width:96px;height:96px;border-radius:50%;background:radial-gradient(circle,rgba(245,232,180,.6),transparent 70%)"></div>
+                </div>
+              </div>
+              <div style="text-align:center;max-width:172px">
+                <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">The Sunshade</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">JOHN LEECH · IRELAND</div>
+              </div>
+            </div>
+            <!-- frame: Zorn -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:9px">
+              <div style="padding:10px;background:linear-gradient(135deg,#e2ddd2,#bdb4a2);box-shadow:0 12px 26px rgba(40,28,14,.24)">
+                <div style="width:150px;height:150px;background:linear-gradient(150deg,#c9a77e,#8a6242 55%,#4a3524);position:relative;overflow:hidden">
+                  <div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 5px)"></div>
+                </div>
+              </div>
+              <div style="text-align:center;max-width:150px">
+                <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Etching, no. 12</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">ZORN · STOCKHOLM</div>
+              </div>
+            </div>
+          </div>
+          <!-- row 2 -->
+          <div style="display:flex;gap:38px;align-items:center;justify-content:center">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:9px">
+              <div style="padding:10px;background:linear-gradient(135deg,#3a2418,#1c0f09);box-shadow:0 12px 26px rgba(40,28,14,.3)">
+                <div style="width:190px;height:130px;background:linear-gradient(160deg,#8a7a4a,#5a4a2a 50%,#2a2016);position:relative;overflow:hidden">
+                  <div style="position:absolute;inset:0;background:repeating-linear-gradient(-18deg,rgba(255,255,255,.04) 0 2px,transparent 2px 9px)"></div>
+                  <div style="position:absolute;right:20px;top:22px;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle,rgba(240,224,170,.55),transparent 70%)"></div>
+                </div>
+              </div>
+              <div style="text-align:center;max-width:190px">
+                <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Untitled (dystopia)</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">BEKSIŃSKI · SANOK</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:9px">
+              <div style="padding:11px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 14px 30px rgba(40,28,14,.28)">
+                <div style="width:150px;height:190px;background:linear-gradient(155deg,#3c6b52 0%,#6fa06e 42%,#c7d18a 78%,#2f5a44 100%);position:relative;overflow:hidden">
+                  <div style="position:absolute;inset:0;background:repeating-linear-gradient(30deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div>
+                </div>
+              </div>
+              <div style="text-align:center;max-width:150px">
+                <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Amami woodland</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">TANAKA ISSON · seen TOKYO</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:9px">
+              <div style="padding:12px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 14px 30px rgba(40,28,14,.28)">
+                <div style="width:230px;height:150px;background:linear-gradient(170deg,#89a3ce 0%,#b7c8dd 40%,#e0d4c0 78%,#7f96bd 100%);position:relative;overflow:hidden">
+                  <div style="position:absolute;inset:0;background:repeating-linear-gradient(26deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div>
+                  <div style="position:absolute;left:34px;top:30px;width:52px;height:52px;border-radius:50%;background:radial-gradient(circle,rgba(240,140,90,.5),transparent 70%)"></div>
+                </div>
+              </div>
+              <div style="text-align:center;max-width:230px">
+                <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Impression, Soleil Levant</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">MONET · MARMOTTAN, PARIS</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:9px">
+              <div style="padding:10px;background:linear-gradient(135deg,#c8c2b6,#9a9284);box-shadow:0 12px 26px rgba(40,28,14,.26)">
+                <div style="width:118px;height:190px;background:linear-gradient(160deg,#b8ac98,#847660 55%,#4c4234);position:relative;overflow:hidden">
+                  <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 2px,transparent 2px 10px)"></div>
+                </div>
+              </div>
+              <div style="text-align:center;max-width:118px">
+                <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Bronze figure</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">RODIN · PARIS</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1b — OBSERVATORY (dark, data/map) ============ -->
+    <div class="dv-opt" id="1b">
+      <div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a><b>Observatory</b> · map of encounters + trip timeline · dark, most Rotation-like</div>
+      <div class="dv-card" style="width:1180px;height:820px;background:#17110b;position:relative;font-family:'Inter',sans-serif;color:#e8dccb">
+        <!-- header -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:34px 44px 0">
+          <div style="font-family:'Source Serif 4',serif;font-style:italic;font-weight:600;font-size:26px;color:#f1e7d6">Canvas<span style="font-style:normal;color:oklch(0.7 0.14 46)">.</span></div>
+          <div style="display:flex;gap:24px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8a7a63">
+            <span>Rooms</span><span>Artists</span><span style="color:#f1e7d6;border-bottom:1.5px solid oklch(0.7 0.14 46);padding-bottom:4px">Map</span><span>Timeline</span>
+          </div>
+        </div>
+        <!-- stat strip -->
+        <div style="display:flex;gap:0;padding:24px 44px 0;border-bottom:1px solid rgba(255,255,255,.07);margin:20px 44px 0">
+        </div>
+        <div style="display:flex;padding:22px 44px 0;gap:44px">
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:30px;color:oklch(0.78 0.13 48)">14</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;color:#8a7a63;text-transform:uppercase">museums</div></div>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:30px;color:oklch(0.78 0.13 48)">8</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;color:#8a7a63;text-transform:uppercase">cities</div></div>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:30px;color:oklch(0.78 0.13 48)">47</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;color:#8a7a63;text-transform:uppercase">works logged</div></div>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:30px;color:oklch(0.78 0.13 48)">2011–26</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;color:#8a7a63;text-transform:uppercase">from location history</div></div>
+        </div>
+
+        <!-- map band -->
+        <div style="position:relative;margin:24px 44px 0;height:322px;border-radius:8px;overflow:hidden;background:radial-gradient(120% 130% at 30% 20%,#231a12,#150f09)">
+          <!-- graticule -->
+          <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.045) 0 1px,transparent 1px 46px),repeating-linear-gradient(90deg,rgba(255,255,255,.045) 0 1px,transparent 1px 46px)"></div>
+          <!-- connecting arcs -->
+          <svg viewBox="0 0 1092 322" style="position:absolute;inset:0;width:100%;height:100%" preserveAspectRatio="none">
+            <path d="M470 150 Q 400 60 300 96" fill="none" stroke="oklch(0.7 0.14 46 / 0.4)" stroke-width="1.4" stroke-dasharray="3 5"></path>
+            <path d="M470 150 Q 520 130 546 138" fill="none" stroke="oklch(0.7 0.14 46 / 0.4)" stroke-width="1.4" stroke-dasharray="3 5"></path>
+            <path d="M470 150 Q 300 200 176 208" fill="none" stroke="oklch(0.7 0.14 46 / 0.4)" stroke-width="1.4" stroke-dasharray="3 5"></path>
+            <path d="M546 138 Q 750 90 936 150" fill="none" stroke="oklch(0.7 0.14 46 / 0.4)" stroke-width="1.4" stroke-dasharray="3 5"></path>
+          </svg>
+          <!-- pins -->
+          <div style="position:absolute;left:41%;top:44%;transform:translate(-50%,-50%)"><div style="width:16px;height:16px;border-radius:50%;background:oklch(0.72 0.15 44);box-shadow:0 0 0 5px oklch(0.72 0.15 44 / 0.22),0 0 22px oklch(0.72 0.15 44 / 0.7)"></div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;color:#f1e7d6;margin-top:6px;white-space:nowrap;transform:translateX(-42%)">PARIS · 6</div></div>
+          <div style="position:absolute;left:27%;top:28%;transform:translate(-50%,-50%)"><div style="width:9px;height:9px;border-radius:50%;background:oklch(0.66 0.13 46);box-shadow:0 0 14px oklch(0.66 0.13 46 / 0.6)"></div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;color:#bfae95;margin-top:5px;white-space:nowrap;transform:translateX(-40%)">DUBLIN</div></div>
+          <div style="position:absolute;left:50%;top:41%;transform:translate(-50%,-50%)"><div style="width:11px;height:11px;border-radius:50%;background:oklch(0.68 0.13 46);box-shadow:0 0 16px oklch(0.68 0.13 46 / 0.6)"></div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;color:#bfae95;margin-top:5px;white-space:nowrap;transform:translateX(-40%)">KRAKÓW</div></div>
+          <div style="position:absolute;left:16%;top:64%;transform:translate(-50%,-50%)"><div style="width:12px;height:12px;border-radius:50%;background:oklch(0.68 0.13 46);box-shadow:0 0 16px oklch(0.68 0.13 46 / 0.6)"></div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;color:#bfae95;margin-top:5px;white-space:nowrap;transform:translateX(-42%)">WASHINGTON DC · 2</div></div>
+          <div style="position:absolute;left:56%;top:24%;transform:translate(-50%,-50%)"><div style="width:10px;height:10px;border-radius:50%;background:oklch(0.68 0.13 46);box-shadow:0 0 16px oklch(0.68 0.13 46 / 0.6)"></div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;color:#bfae95;margin-top:5px;white-space:nowrap;transform:translateX(-42%)">STOCKHOLM</div></div>
+          <div style="position:absolute;left:85%;top:46%;transform:translate(-50%,-50%)"><div style="width:15px;height:15px;border-radius:50%;background:oklch(0.72 0.15 44);box-shadow:0 0 0 5px oklch(0.72 0.15 44 / 0.22),0 0 22px oklch(0.72 0.15 44 / 0.7)"></div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;color:#f1e7d6;margin-top:6px;white-space:nowrap;transform:translateX(-40%)">TOKYO · 3</div></div>
+          <div style="position:absolute;left:11%;top:47%;transform:translate(-50%,-50%)"><div style="width:9px;height:9px;border-radius:50%;background:oklch(0.66 0.13 46);box-shadow:0 0 14px oklch(0.66 0.13 46 / 0.6)"></div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;color:#bfae95;margin-top:5px;white-space:nowrap;transform:translateX(-30%)">NEW YORK</div></div>
+          <div style="position:absolute;left:16px;bottom:12px;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.18em;color:#6f6250;text-transform:uppercase">◍ each pin = a place your location history matched to a museum</div>
+        </div>
+
+        <!-- timeline rail -->
+        <div style="padding:20px 44px 0">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8a7a63;margin-bottom:14px">Recent encounters</div>
+          <div style="display:flex;gap:14px">
+            <div style="flex:1;background:rgba(255,255,255,.03);border-left:2px solid oklch(0.7 0.14 46);border-radius:0 6px 6px 0;padding:11px 13px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;color:oklch(0.75 0.13 48)">FEB 2026 · TOKYO</div>
+              <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13px;margin-top:4px;color:#f1e7d6">Monet: Water Lilies</div>
+              <div style="font-size:11px;color:#a4937b;margin-top:2px">Tokyo Metropolitan · exhibition</div>
+            </div>
+            <div style="flex:1;background:rgba(255,255,255,.03);border-left:2px solid rgba(255,255,255,.14);border-radius:0 6px 6px 0;padding:11px 13px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;color:#8a7a63">FEB 2026 · TOKYO</div>
+              <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13px;margin-top:4px;color:#f1e7d6">Swedish Masters</div>
+              <div style="font-size:11px;color:#a4937b;margin-top:2px">Tokyo Metropolitan · Zorn et al.</div>
+            </div>
+            <div style="flex:1;background:rgba(255,255,255,.03);border-left:2px solid rgba(255,255,255,.14);border-radius:0 6px 6px 0;padding:11px 13px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;color:#8a7a63">2024 · WASHINGTON DC</div>
+              <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13px;margin-top:4px;color:#f1e7d6">The Japanese Footbridge</div>
+              <div style="font-size:11px;color:#a4937b;margin-top:2px">National Gallery of Art</div>
+            </div>
+            <div style="flex:1;background:rgba(255,255,255,.03);border-left:2px solid rgba(255,255,255,.14);border-radius:0 6px 6px 0;padding:11px 13px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;color:#8a7a63">2019 · KRAKÓW</div>
+              <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13px;margin-top:4px;color:#f1e7d6">Szał uniesień</div>
+              <div style="font-size:11px;color:#a4937b;margin-top:2px">National Museum</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1c — ARTIST DEEP PAGE (Monet) ============ -->
+    <div class="dv-opt" id="1c">
+      <div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a><b>Artist page</b> · Monet · where you saw it, where else, who's next · charcoal editorial</div>
+      <div class="dv-card" style="width:1180px;height:920px;background:#141210;position:relative;font-family:'Inter',sans-serif;color:#e9e2d6;overflow-y:auto">
+        <!-- hero -->
+        <div style="position:relative;height:360px;background:linear-gradient(150deg,#4a6f66 0%,#7fa196 34%,#c3b6cc 64%,#456b62 100%);overflow:hidden">
+          <div style="position:absolute;inset:0;background:repeating-linear-gradient(28deg,rgba(255,255,255,.05) 0 3px,transparent 3px 11px)"></div>
+          <div style="position:absolute;left:120px;bottom:110px;width:120px;height:26px;border-radius:50%;background:rgba(235,180,192,.4);filter:blur(3px)"></div>
+          <div style="position:absolute;left:320px;bottom:150px;width:90px;height:22px;border-radius:50%;background:rgba(242,214,124,.36);filter:blur(3px)"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(0deg,#141210 4%,transparent 60%)"></div>
+          <div style="position:absolute;left:44px;top:30px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75)">← Artists</div>
+          <div style="position:absolute;left:44px;bottom:30px;right:44px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:oklch(0.82 0.11 50)">Your #1 · seen at 5 institutions</div>
+            <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:58px;line-height:1;letter-spacing:-.02em;color:#fff;margin-top:8px">Claude Monet</div>
+            <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:16px;color:#d8cfc0;margin-top:8px">1840–1926 · French · Impressionism</div>
+          </div>
+        </div>
+
+        <!-- where you've seen him -->
+        <div style="padding:34px 44px 0">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:oklch(0.72 0.13 48);margin-bottom:15px">Where you've seen him</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+            <div style="background:#1e1a15;border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:14px">
+              <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:14px;color:#f1e7d6">Musée de l'Orangerie</div>
+              <div style="font-size:11.5px;color:#a2917a;margin-top:3px">Paris · the Nymphéas rooms</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;color:#6f6250;margin-top:9px">SEEN 2018, 2023</div>
+            </div>
+            <div style="background:#1e1a15;border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:14px">
+              <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:14px;color:#f1e7d6">Musée d'Orsay</div>
+              <div style="font-size:11.5px;color:#a2917a;margin-top:3px">Paris</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;color:#6f6250;margin-top:9px">SEEN 2018</div>
+            </div>
+            <div style="background:#1e1a15;border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:14px">
+              <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:14px;color:#f1e7d6">Musée Marmottan Monet</div>
+              <div style="font-size:11.5px;color:#a2917a;margin-top:3px">Paris · Impression, Soleil Levant</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;color:#6f6250;margin-top:9px">SEEN 2018</div>
+            </div>
+            <div style="background:#1e1a15;border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:14px">
+              <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:14px;color:#f1e7d6">National Gallery of Art</div>
+              <div style="font-size:11.5px;color:#a2917a;margin-top:3px">Washington DC</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;color:#6f6250;margin-top:9px">SEEN 2024</div>
+            </div>
+            <div style="background:linear-gradient(#241d14,#1e1a15);border:1px solid oklch(0.7 0.14 46 / 0.4);border-radius:7px;padding:14px">
+              <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:14px;color:#f1e7d6">Tokyo Metropolitan</div>
+              <div style="font-size:11.5px;color:#a2917a;margin-top:3px">“Monet: Water Lilies” show</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;color:oklch(0.78 0.12 50);margin-top:9px">SEEN FEB 2026 · LATEST</div>
+            </div>
+            <div style="background:#1e1a15;border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:14px">
+              <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:14px;color:#f1e7d6">The Met</div>
+              <div style="font-size:11.5px;color:#a2917a;margin-top:3px">New York · likely, from location log</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;color:#6f6250;margin-top:9px">UNCONFIRMED — TAP TO VERIFY</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- see more of Monet -->
+        <div style="padding:30px 44px 0">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:oklch(0.72 0.13 48);margin-bottom:6px">See more of him · from Wikidata holdings</div>
+          <div style="font-size:12px;color:#8a7a63;margin-bottom:14px;font-family:'Source Serif 4',serif;font-style:italic">Where his work hangs that you haven't been yet</div>
+          <div style="display:flex;flex-wrap:wrap;gap:9px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;background:#1e1a15;border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:8px 14px;color:#cbbca4">Fondation Beyeler, Basel</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;background:#1e1a15;border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:8px 14px;color:#cbbca4">Museum of Modern Art, NY</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;background:#1e1a15;border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:8px 14px;color:#cbbca4">Art Institute of Chicago</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;background:#1e1a15;border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:8px 14px;color:#cbbca4">National Gallery, London</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;background:#1e1a15;border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:8px 14px;color:#cbbca4">Giverny (the gardens)</span>
+          </div>
+        </div>
+
+        <!-- similar artists + chase -->
+        <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:28px;padding:30px 44px 40px">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:oklch(0.72 0.13 48);margin-bottom:14px">Similar artists to explore</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:center;gap:12px"><div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#8a9c6a,#5a6b3a);flex:none"></div><div><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13.5px;color:#f1e7d6">Camille Pissarro</div><div style="font-size:11px;color:#8a7a63">shared the Impressionist circle</div></div></div>
+              <div style="display:flex;align-items:center;gap:12px"><div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#7a92b0,#455a78);flex:none"></div><div><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13.5px;color:#f1e7d6">Alfred Sisley</div><div style="font-size:11px;color:#8a7a63">closest to his light & water</div></div></div>
+              <div style="display:flex;align-items:center;gap:12px"><div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#c08a6a,#8a4f3a);flex:none"></div><div><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13.5px;color:#f1e7d6">Pierre-Auguste Renoir</div><div style="font-size:11px;color:#8a7a63">painted alongside him at La Grenouillère</div></div></div>
+              <div style="display:flex;align-items:center;gap:12px"><div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#a0b0c0,#6a7a8a);flex:none"></div><div><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13.5px;color:#f1e7d6">Eugène Boudin</div><div style="font-size:11px;color:#8a7a63">his early mentor by the sea</div></div></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:oklch(0.72 0.13 48);margin-bottom:14px">Masterpieces to chase</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;gap:12px;background:#1e1a15;border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:10px">
+                <div style="width:56px;height:44px;flex:none;border-radius:4px;background:linear-gradient(150deg,#c98a5a,#6a3f2a)"></div>
+                <div><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13px;color:#f1e7d6">Impression, Sunrise</div><div style="font-size:10.5px;color:#8a7a63;margin-top:2px">✓ you've seen this one — Marmottan</div></div>
+              </div>
+              <div style="display:flex;gap:12px;background:#1e1a15;border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:10px">
+                <div style="width:56px;height:44px;flex:none;border-radius:4px;background:linear-gradient(150deg,#6a8fb0,#2f4a66)"></div>
+                <div><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13px;color:#f1e7d6">Rouen Cathedral series</div><div style="font-size:10.5px;color:oklch(0.72 0.12 50);margin-top:2px">not yet · Orsay & Rouen hold these</div></div>
+              </div>
+              <div style="display:flex;gap:12px;background:#1e1a15;border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:10px">
+                <div style="width:56px;height:44px;flex:none;border-radius:4px;background:linear-gradient(150deg,#8aa06a,#4a5f34)"></div>
+                <div><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13px;color:#f1e7d6">Haystacks (Meules)</div><div style="font-size:10.5px;color:oklch(0.72 0.12 50);margin-top:2px">not yet · Chicago, Zürich</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <p class="dv-next">Try next: “build out <a class="dv-oid" href="#1a">1a</a> as the real home with my full canon” · “make <a class="dv-oid" href="#1b">1b</a>'s map an actual world map with my location history” · “turn <a class="dv-oid" href="#1c">1c</a> into a clickable prototype” · “a fourth direction: browse by trip, like a travel journal” · “wire in real open-access scans from the Met + Wikimedia”</p>
+</section>
+</x-dc>
+</body>
+</html>
