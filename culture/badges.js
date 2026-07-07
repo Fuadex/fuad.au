@@ -225,11 +225,7 @@ window.CULTURE_BADGES = {
   "impact"
  ],
  "gunnm": [
-  "atmosphere",
-  "visuals"
- ],
- "gurren-lagann": [
-  "visuals"
+  "atmosphere"
  ],
  "haibane": [
   "bittersweet",
@@ -312,8 +308,7 @@ window.CULTURE_BADGES = {
  ],
  "imp-f-corpse-bride": [
   "absurdist",
-  "intense",
-  "visuals"
+  "intense"
  ],
  "imp-f-die-nash-rner": [
   "gem"
@@ -351,8 +346,7 @@ window.CULTURE_BADGES = {
   "funny"
  ],
  "imp-f-heavy-metal": [
-  "intense",
-  "visuals"
+  "intense"
  ],
  "imp-f-inception": [
   "thrilling"
@@ -455,13 +449,9 @@ window.CULTURE_BADGES = {
  "imp-s-10034646": [
   "funny"
  ],
- "imp-s-10038044": [
-  "visuals"
- ],
  "imp-s-10042461": [
   "funny",
-  "intense",
-  "visuals"
+  "intense"
  ],
  "imp-s-10049575": [
   "funny"
@@ -485,16 +475,14 @@ window.CULTURE_BADGES = {
  "imp-s-363435": [
   "absurdist",
   "funny",
-  "satire",
-  "visuals"
+  "satire"
  ],
  "imp-s-427201": [
   "impact"
  ],
  "imp-s-469752": [
   "absurdist",
-  "funny",
-  "visuals"
+  "funny"
  ],
  "imp-s-662876": [
   "funny"
@@ -590,8 +578,7 @@ window.CULTURE_BADGES = {
  ],
  "mary-and-max": [
   "bittersweet",
-  "funny",
-  "visuals"
+  "funny"
  ],
  "mass-effect": [
   "worldbuilding"
@@ -605,8 +592,7 @@ window.CULTURE_BADGES = {
  "midnight-gospel": [
   "absurdist",
   "cerebral",
-  "funny",
-  "visuals"
+  "funny"
  ],
  "mirrors-edge": [
   "atmosphere",
@@ -679,12 +665,10 @@ window.CULTURE_BADGES = {
  ],
  "pom-poko": [
   "bittersweet",
-  "funny",
-  "visuals"
+  "funny"
  ],
  "porco-rosso": [
   "funny",
-  "visuals",
   "writing"
  ],
  "possession": [
@@ -1560,8 +1544,7 @@ window.CULTURE_BADGES = {
  "yamadas": [
   "funny",
   "gentle",
-  "satire",
-  "visuals"
+  "satire"
  ],
  "your-name": [
   "bittersweet",
