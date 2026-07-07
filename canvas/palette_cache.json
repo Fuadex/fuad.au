@@ -1,0 +1,950 @@
+{
+"monet-woman-with-a-parasol": [
+"#839095",
+"#444c39",
+"#a9b1b2",
+"#737767"
+],
+"monet-nympheas-orangerie": [
+"#6d6a55",
+"#575849",
+"#797b77",
+"#868781"
+],
+"podkowinski-szal-uniesien": [
+"#353622",
+"#0c0e0b",
+"#9e996c",
+"#1c1e16"
+],
+"klimt-kiss": [
+"#897744",
+"#9a8d56",
+"#6d5a30",
+"#b4a560"
+],
+"luncheon-on-the-grass": [
+"#2b2a1c",
+"#1c1b14",
+"#3f3e29",
+"#626044"
+],
+"bal-du-moulin-de-la-galette": [
+"#5d6752",
+"#a8a790",
+"#06151d",
+"#192425"
+],
+"starry-night-over-the-rhone": [
+"#1f2727",
+"#2a3333",
+"#131817",
+"#37413d"
+],
+"the-church-at-auvers": [
+"#686968",
+"#b5b08f",
+"#181f57",
+"#29306b"
+],
+"a-burial-at-ornans": [
+"#565141",
+"#979077",
+"#272628",
+"#201d1e"
+],
+"the-birth-of-venus": [
+"#dcd1d9",
+"#bca3a1",
+"#492f2b",
+"#ab7f6a"
+],
+"whistler-s-mother": [
+"#1b1a11",
+"#333126",
+"#7d7b6a",
+"#5b5843"
+],
+"the-painter-s-studio": [
+"#332a25",
+"#1b1919",
+"#5d4d3d",
+"#826b56"
+],
+"l-absinthe": [
+"#201314",
+"#8e8563",
+"#a69e79",
+"#4b4031"
+],
+"the-balcony": [
+"#a9aeab",
+"#171717",
+"#53645a",
+"#1f2422"
+],
+"the-gleaners": [
+"#2e2424",
+"#a09376",
+"#685b46",
+"#beb2a1"
+],
+"the-gates-of-hell": [
+"#ebeced",
+"#1a1e1b",
+"#444947",
+"#686e6e"
+],
+"la-balancoire": [
+"#5d5d5e",
+"#32313a",
+"#837f73",
+"#a9a08b"
+],
+"dante-and-virgil-in-hell": [
+"#4d2f14",
+"#2e1b0c",
+"#714e2c",
+"#94724b"
+],
+"women-in-the-garden": [
+"#261b15",
+"#4a4032",
+"#8b8472",
+"#bdbbb1"
+],
+"the-birth-of-venus-cabanel": [
+"#5e6980",
+"#2c3335",
+"#9093a0",
+"#b0acb1"
+],
+"girls-at-the-piano": [
+"#7c6b4e",
+"#90805e",
+"#5a4a38",
+"#a39375"
+],
+"the-angelus": [
+"#524938",
+"#bcb185",
+"#191210",
+"#352a20"
+],
+"self-portrait": [
+"#839a8a",
+"#8fa899",
+"#9ab5a6",
+"#6b7865"
+],
+"the-magpie": [
+"#b0b6b3",
+"#cacfca",
+"#8c959f",
+"#9da2a3"
+],
+"les-raboteurs-de-parquet": [
+"#544e3f",
+"#8b7e6e",
+"#1b170b",
+"#322c1b"
+],
+"the-circus": [
+"#a19278",
+"#bdae91",
+"#625249",
+"#d4cdb9"
+],
+"dance-in-the-country": [
+"#282f45",
+"#53585b",
+"#a59e84",
+"#c9c3ac"
+],
+"berthe-morisot-with-a-bouquet-of-violets": [
+"#afb09b",
+"#12110d",
+"#1d1c16",
+"#171612"
+],
+"le-dejeuner-sur-l-herbe": [
+"#414220",
+"#201d11",
+"#676942",
+"#93927b"
+],
+"the-wounded-man": [
+"#211c1c",
+"#100f10",
+"#161415",
+"#1c1615"
+],
+"the-age-of-bronze": [
+"#825d29",
+"#e1caa0",
+"#422b12",
+"#b39b72"
+],
+"regates-a-argenteuil": [
+"#8c9187",
+"#999f97",
+"#787050",
+"#a6aa9f"
+],
+"the-clouds": [
+"#545f66",
+"#383a3c",
+"#788189",
+"#97999e"
+],
+"impression-sunrise": [
+"#6b776b",
+"#6a6c60",
+"#5c5d4f",
+"#847767"
+],
+"pont-de-l-europe-gare-saint-lazare": [
+"#d2d1cd",
+"#37342f",
+"#989694",
+"#716863"
+],
+"eugene-manet-on-isle-of-wight": [
+"#82895e",
+"#595c3e",
+"#a6ae81",
+"#bec89e"
+],
+"train-in-the-snow": [
+"#969491",
+"#b3b1b2",
+"#50524b",
+"#c0bdbd"
+],
+"monet-that-reads": [
+"#323833",
+"#0d0f11",
+"#686857",
+"#212423"
+],
+"white-and-yellow-chrysanthemums-petit-gennevilliers-garden": [
+"#141d12",
+"#7e7f65",
+"#4b543e",
+"#a6a286"
+],
+"diogenes": [
+"#62503d",
+"#38261b",
+"#816d55",
+"#988369"
+],
+"berthe-morisot": [
+"#141210",
+"#3f2f2b",
+"#533a36",
+"#29211e"
+],
+"the-row-boat": [
+"#2e483d",
+"#0a2620",
+"#213932",
+"#1b2e2b"
+],
+"eugene-manet-et-sa-fille-dans-le-jardin-de-bougival": [
+"#6e705a",
+"#928970",
+"#42453b",
+"#aa9e85"
+],
+"bergere-couchee": [
+"#868362",
+"#9f9a76",
+"#5d5c42",
+"#b0ae85"
+],
+"julie-manet-and-her-greyhound-laertes": [
+"#928354",
+"#a89e78",
+"#3e3c2b",
+"#bab086"
+],
+"paule-gobillard-peignant": [
+"#8e8171",
+"#9d9380",
+"#4f4d4c",
+"#676968"
+],
+"au-bal": [
+"#6a6040",
+"#242318",
+"#8b8772",
+"#aeac9e"
+],
+"portrait-de-mademoiselle-victorine-de-bellio": [
+"#6d736c",
+"#291d1e",
+"#7b3336",
+"#79867e"
+],
+"portrait-de-julie-manet": [
+"#291f1a",
+"#4f3a2e",
+"#6d5a4d",
+"#867161"
+],
+"portrait-de-madame-claude-monet": [
+"#5d5c40",
+"#777143",
+"#2d2f2e",
+"#8c865e"
+],
+"bassin-aux-nympheas": [
+"#a65244",
+"#693e2e",
+"#b8957a",
+"#f6eed8"
+],
+"nympheas": [
+"#44645c",
+"#344f49",
+"#507471",
+"#60868d"
+],
+"water-lilies": [
+"#727d8e",
+"#a9b3b6",
+"#465c61",
+"#273543"
+],
+"nympheas-monet": [
+"#9ca498",
+"#cdd5cc",
+"#3f4445",
+"#637770"
+],
+"nympheas-monet-2": [
+"#72797d",
+"#515647",
+"#8e95a3",
+"#a6acbc"
+],
+"water-lilies-reflection-of-a-weeping-willow": [
+"#4d6382",
+"#667a99",
+"#293e5a",
+"#7d8dad"
+],
+"saule-pleureur-et-bassin-aux-nympheas": [
+"#796f5f",
+"#989281",
+"#493e35",
+"#b1b1ac"
+],
+"vetheuil-in-the-fog": [
+"#5d6e88",
+"#76869e",
+"#313c4f",
+"#515a6c"
+],
+"michel-monet-with-a-pompon": [
+"#674e34",
+"#886b4c",
+"#363327",
+"#755c3f"
+],
+"the-tuileries-study": [
+"#605c4e",
+"#20201f",
+"#908971",
+"#b6af9f"
+],
+"walk-near-argenteuil": [
+"#4f4f38",
+"#2c3222",
+"#6d6e5b",
+"#989c94"
+],
+"sur-la-plage-a-trouville": [
+"#979086",
+"#a4a6a7",
+"#b0b3b5",
+"#4f4a49"
+],
+"autoportrait": [
+"#b8a883",
+"#6f5527",
+"#9f8a5d",
+"#c8be9b"
+],
+"le-cerisier": [
+"#596c56",
+"#838b74",
+"#2c3b2f",
+"#9b9e8b"
+],
+"nympheas-effect-in-the-evening": [
+"#6678a1",
+"#596b8c",
+"#435472",
+"#758ea9"
+],
+"nympheas-monet-3": [
+"#747680",
+"#7c818a",
+"#646476",
+"#838b92"
+],
+"the-water-lily-pond": [
+"#888978",
+"#a8a784",
+"#545841",
+"#687255"
+],
+"the-pont-neuf-and-the-samaritaine-at-night": [
+"#1f1f29",
+"#302e3b",
+"#0d0f16",
+"#4a4549"
+],
+"la-ville-de-paris": [
+"#6f6f6d",
+"#8b8b85",
+"#474241",
+"#a4a198"
+],
+"the-thinker": [
+"#7ea5c7",
+"#1f2f0d",
+"#ebe8e6",
+"#c7cad3"
+],
+"portrait-of-pere-tanguy": [
+"#787769",
+"#a9a892",
+"#283b43",
+"#595e60"
+],
+"the-kiss": [
+"#917d69",
+"#ceb89e",
+"#45382d",
+"#6c5b4b"
+],
+"arles-view-from-the-wheat-fields": [
+"#d7a55d",
+"#e3b562",
+"#b1814b",
+"#eac269"
+],
+"the-eternal-springtime": [
+"#7a693d",
+"#908b86",
+"#635c4f",
+"#73694f"
+],
+"the-mature-age": [
+"#1a1915",
+"#8e8674",
+"#554e3d",
+"#aaaba2"
+],
+"the-waltz": [
+"#15100a",
+"#ada9a1",
+"#665f53",
+"#d6d4d0"
+],
+"danaid": [
+"#415560",
+"#0d0e0b",
+"#cccbc6",
+"#deded9"
+],
+"the-cathedral": [
+"#c8cdcc",
+"#2c2b28",
+"#dfebec",
+"#959493"
+],
+"sakuntala-claudel": [
+"#574239",
+"#2d1a12",
+"#786b5e",
+"#aeaca4"
+],
+"torso-of-adele": [
+"#555555",
+"#d8d8d7",
+"#8a8a8a",
+"#5d5d5c"
+],
+"ugolino-and-sons": [
+"#bbbec0",
+"#837d75",
+"#1d160f",
+"#5e574c"
+],
+"la-vague-by-camille-claudel": [
+"#cccbcd",
+"#635d4c",
+"#a4a190",
+"#dfdedf"
+],
+"clotho": [
+"#9f928d",
+"#c9bab7",
+"#584d47",
+"#ddceca"
+],
+"rodin-s-le-penseur-in-dr-linde-s-garden": [
+"#6b614d",
+"#2e382f",
+"#958a6d",
+"#c4ad95"
+],
+"vertumnus-and-pomona": [
+"#635f60",
+"#5d595a",
+"#413d3d",
+"#afafb4"
+],
+"auguste-rodin": [
+"#24211f",
+"#151313",
+"#322f2a",
+"#3e3a32"
+],
+"dancer-with-veils": [
+"#d2c5ac",
+"#e6dac0",
+"#b1a58c",
+"#fbf6eb"
+],
+"avenue-of-plane-trees-near-arles-station": [
+"#b1a87c",
+"#8f8161",
+"#c6ba82",
+"#d0c581"
+],
+"le-penseur-reduction": [
+"#766553",
+"#583e23",
+"#977f63",
+"#ae9371"
+],
+"portrait-de-rodin": [
+"#17100a",
+"#090806",
+"#3c2818",
+"#291a0f"
+],
+"battle-of-grunwald": [
+"#54453c",
+"#716257",
+"#372620",
+"#8c7e71"
+],
+"stanczyk": [
+"#0b0402",
+"#1c0505",
+"#250f0c",
+"#3a1b16"
+],
+"jewess-with-oranges": [
+"#2e1e15",
+"#c1c4bc",
+"#79776c",
+"#5c422f"
+],
+"in-the-arbour": [
+"#152018",
+"#3c3724",
+"#5b573c",
+"#817a5c"
+],
+"the-hanging-of-the-sigismund-bell-at-the-cathedral-tower-in-1521-in-krakow": [
+"#72615a",
+"#a8a39e",
+"#1e1112",
+"#3f2d2b"
+],
+"skarga-s-sermon": [
+"#221611",
+"#483023",
+"#401d14",
+"#5f4330"
+],
+"black-woman": [
+"#2b2316",
+"#514c32",
+"#928c5d",
+"#b9b07a"
+],
+"adam-and-eve": [
+"#d8d1c2",
+"#272323",
+"#888178",
+"#403c3a"
+],
+"polish-hamlet-portrait-of-aleksander-wielopolski": [
+"#604024",
+"#2d2418",
+"#7c6b4c",
+"#94896b"
+],
+"scholar-at-his-desk": [
+"#341a0d",
+"#442814",
+"#1a0c08",
+"#5c3c1c"
+],
+"gossamer": [
+"#473d20",
+"#8c9180",
+"#a6a48d",
+"#6e694f"
+],
+"portrait-of-adam-mickiewicz-on-the-ayu-dag-cliff": [
+"#08101d",
+"#17161b",
+"#365656",
+"#2a2d25"
+],
+"saint-anne": [
+"#d0b291",
+"#dcc2a5",
+"#e6ceb2",
+"#8b6f57"
+],
+"at-the-seashore": [
+"#26211b",
+"#5c554c",
+"#8e8981",
+"#b6b6af"
+],
+"storks": [
+"#4b3a19",
+"#787f77",
+"#848e85",
+"#61603e"
+],
+"christian-dirce": [
+"#261c13",
+"#927546",
+"#5f422d",
+"#b39767"
+],
+"the-baptism-of-lithuania": [
+"#211714",
+"#483125",
+"#715c49",
+"#9c8872"
+],
+"peasant-coffin": [
+"#9b9395",
+"#b6aeae",
+"#5b4f58",
+"#bebfc7"
+],
+"union-of-lublin": [
+"#663e2a",
+"#2a0b0a",
+"#512415",
+"#805539"
+],
+"garden-in-kissingen": [
+"#808167",
+"#cfccb4",
+"#1e2019",
+"#595947"
+],
+"rzeczpospolita-babinska": [
+"#492c18",
+"#2d2012",
+"#5a432a",
+"#765f3f"
+],
+"the-raising-of-lazarus": [
+"#2f261b",
+"#372d21",
+"#241d15",
+"#433726"
+],
+"la-mort-de-barbara-radziwi-by-jozef-simmler": [
+"#24180c",
+"#150d04",
+"#372a1b",
+"#5d4a34"
+],
+"soil": [
+"#27190d",
+"#767972",
+"#494b49",
+"#95968c"
+],
+"introduction-of-christianity-in-poland": [
+"#4f2715",
+"#230e09",
+"#735139",
+"#a17f67"
+],
+"cymon-and-iphigenia": [
+"#311a13",
+"#623223",
+"#581c10",
+"#db894f"
+],
+"a-cavalier": [
+"#a79572",
+"#3e3938",
+"#24252b",
+"#665647"
+],
+"on-the-wallaby-track": [
+"#372923",
+"#493a31",
+"#251713",
+"#5e4e42"
+],
+"the-golden-fleece": [
+"#522f1a",
+"#200a07",
+"#a38b65",
+"#38190c"
+],
+"the-white-glove": [
+"#3b302c",
+"#140b0c",
+"#989180",
+"#291d1b"
+],
+"fire-s-on": [
+"#756b67",
+"#7d7f87",
+"#5b473b",
+"#95918f"
+],
+"nasturtiums": [
+"#a5a79d",
+"#344e3f",
+"#23382f",
+"#627562"
+],
+"spring-frost": [
+"#6e6a5d",
+"#3b3633",
+"#d8d1c4",
+"#ada693"
+],
+"the-beach": [
+"#787376",
+"#3b2f29",
+"#999a9e",
+"#8d8888"
+],
+"banks-of-the-marne": [
+"#656c46",
+"#353a2c",
+"#9da197",
+"#888d70"
+],
+"head-of-a-peasant": [
+"#19130e",
+"#0c0b0a",
+"#272014",
+"#362d1c"
+],
+"morning-light": [
+"#bdc2b9",
+"#5e5842",
+"#ccccbf",
+"#d3d2c5"
+],
+"almost-once": [
+"#1e4d8c",
+"#5d879c",
+"#455e78",
+"#c8bc9e"
+],
+"peasants-houses-eragny": [
+"#83956c",
+"#475c43",
+"#a6be8f",
+"#cfc5a5"
+],
+"the-boar-hunt": [
+"#190a06",
+"#796956",
+"#473121",
+"#9b8f7b"
+],
+"mucius-scaevola-in-the-presence-of-lars-porsenna": [
+"#201511",
+"#3a1c0f",
+"#592f14",
+"#825123"
+],
+"the-great-wave-off-kanagawa": [
+"#c5c7b3",
+"#a2ae9d",
+"#35454d",
+"#f8fcf5"
+],
+"melencolia-i": [
+"#7e7365",
+"#998d7e",
+"#584e42",
+"#b3a797"
+],
+"anguish": [
+"#7f6e58",
+"#352f2a",
+"#ab9980",
+"#c9bba6"
+],
+"the-rescue": [
+"#1f1716",
+"#371f19",
+"#4a2f24",
+"#714730"
+],
+"the-pioneer": [
+"#695641",
+"#78654d",
+"#88755b",
+"#54412d"
+],
+"scene-from-a-midsummer-night-s-dream": [
+"#332921",
+"#443629",
+"#272019",
+"#988169"
+],
+"shearing-the-rams": [
+"#2e1812",
+"#5b3824",
+"#836245",
+"#9d7f5e"
+],
+"the-victory-of-faith": [
+"#564032",
+"#6e5a48",
+"#8e7456",
+"#291d15"
+],
+"queen-esther": [
+"#847050",
+"#9e8867",
+"#5e4b33",
+"#b9a483"
+],
+"october-saison-d-octobre": [
+"#6d6145",
+"#b1a895",
+"#392916",
+"#4c432c"
+],
+"the-sunny-south": [
+"#6a583f",
+"#8e7b55",
+"#463529",
+"#d9ccb6"
+],
+"the-purple-noon-s-transparent-might": [
+"#676d78",
+"#918d87",
+"#bdb4a8",
+"#d4cdce"
+],
+"the-watermill": [
+"#888882",
+"#181711",
+"#342a1e",
+"#222119"
+],
+"two-old-men-disputing": [
+"#3f3016",
+"#18140c",
+"#2b2110",
+"#8c7347"
+],
+"the-cicada": [
+"#8c7766",
+"#ad9884",
+"#574437",
+"#c7b3a0"
+],
+"the-north-wind": [
+"#8eacb7",
+"#c8af94",
+"#867161",
+"#d4bfa5"
+],
+"the-quarters-behind-alresford-hall": [
+"#554825",
+"#837c66",
+"#2a230a",
+"#463815"
+],
+"an-interesting-story": [
+"#513828",
+"#261e18",
+"#6e5d4b",
+"#9d907f"
+],
+"mrs-campbell-mcinnes-later-angela-thirkell": [
+"#6b6c74",
+"#c4b8ae",
+"#393b4d",
+"#1b2c4b"
+],
+"mount-st-michael-cornwall": [
+"#6d6b63",
+"#413d32",
+"#8c8b82",
+"#a5a8a4"
+],
+"aboriginal-memorial": [
+"#a87d50",
+"#613518",
+"#d0af83",
+"#f5e0bc"
+],
+"golden-summer-eaglemont": [
+"#c9d8e3",
+"#806651",
+"#b59879",
+"#cbc5b5"
+],
+"lodgepole-pines-lyell-fork-of-the-merced-river": [
+"#4c4a4f",
+"#211f23",
+"#88868b",
+"#363439"
+],
+"in-a-corner-on-the-macintyre": [
+"#878179",
+"#94918c",
+"#6c655d",
+"#9e9f9c"
+],
+"man-with-horse": [
+"#6e665d",
+"#323033",
+"#99927d",
+"#b7b099"
+],
+"haystacks-midday": [
+"#726766",
+"#b2a991",
+"#8c8679",
+"#dcd6c7"
+],
+"study-for-le-bec-du-hoc-grandcamp": [
+"#938056",
+"#745c51",
+"#a7a185",
+"#bab6a3"
+]
+}

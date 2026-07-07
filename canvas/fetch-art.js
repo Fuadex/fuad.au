@@ -168,6 +168,32 @@ const ARTY = /painting|drawing|sculpture|artwork|series|cycle|canvas/i;
     art.notable = cache[key];
   }
 
+  // ---- similar artists ("who's next"): influence links (P737 both ways) + teacher/student
+  // (P1066 both ways) + shared-movement peers, fame-ranked. Feeds the artist-page strip. ----
+  for (const [id, art] of Object.entries(out.artists)) {
+    const key = "similar:" + art.qid;
+    if (FORCE || !cache[key]) {
+      const q = `SELECT DISTINCT ?a ?aLabel ?aDescription ?links WHERE {
+        { wd:${art.qid} wdt:P737 ?a } UNION { ?a wdt:P737 wd:${art.qid} }
+        UNION { wd:${art.qid} wdt:P1066 ?a } UNION { ?a wdt:P1066 wd:${art.qid} }
+        UNION { ?a wdt:P135 ?m . wd:${art.qid} wdt:P135 ?m . ?a wdt:P106 ?occ . VALUES ?occ { wd:Q1028181 wd:Q1281618 } }
+        ?a wikibase:sitelinks ?links . FILTER(?a != wd:${art.qid}) FILTER(?links > 25)
+        SERVICE wikibase:label { bd:serviceParam wikibase:language "en,fr,de,pl,ja,sv". }
+      } ORDER BY DESC(?links) LIMIT 10`;
+      try {
+        const rows = (await sparql(q)).results.bindings, seenQ = {}, list = [];
+        for (const b of rows) {
+          const qq = b.a.value.split("/").pop();
+          if (seenQ[qq]) continue; seenQ[qq] = 1;
+          list.push({ qid: qq, label: b.aLabel.value, desc: b.aDescription ? b.aDescription.value : "" });
+        }
+        cache[key] = list; saveCache();
+      } catch (e) { console.log(`  similar ${id}: ${e.message}`); cache[key] = []; saveCache(); }
+    }
+    // keep only visual artists — influence claims bring in poets and kings (Hesse, Bhumibol…)
+    art.similar = (cache[key] || []).filter(s => !s.desc || /paint|sculpt|artist|printmak|engrav|illustrat|ukiyo/i.test(s.desc));
+  }
+
   // ---- movement labels (artist context lines) ----
   const movQids = [...new Set(Object.values(out.artists).flatMap(a => a.movementQids || []))];
   const movEnts = await entities(movQids);
