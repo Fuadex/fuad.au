@@ -32,7 +32,10 @@ for (const f of files) {
     if (!signal) continue;
     if (haveQids.has(r.qid)) { console.log("skip (already in canon):", r.title); continue; }
     let id = slug(r.title);
-    if (haveIds.has(id) || out.some(o => o.id === id)) id = id + "-" + surname(r.artist);
+    const taken = (x) => haveIds.has(x) || out.some(o => o.id === x);
+    if (taken(id)) id = id + "-" + surname(r.artist);
+    for (let n = 2; taken(id); n++) id = id.replace(/-\d+$/, "") + "-" + n;
+    if (r.year && /^q\d+$/.test(slug(r.title))) id = surname(r.artist) + "-" + r.year;  // unlabeled leftovers
     haveIds.add(id);
     const e = {
       id, title: r.title, artist: r.artist, artistId: surname(r.artist), qid: r.qid, qidTrusted: true,
