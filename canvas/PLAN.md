@@ -163,6 +163,14 @@ Phase 2 is the special one: unlike rotation/culture, **the app itself is the dat
 instrument** — the recall deck turns browsing into cataloguing. Every phase through 4 runs
 without a single API key.
 
+**Deck v2 (2026-07-07, Fuad: "one of the core functionalities… an amazing tool to discover
+new art"):** verdicts are TWO independent axes — SEEN (didn't see / not sure / saw it; the
+tap that advances) × FEELING (♡ like / ♥ love, optional toggle). Floored = saw it + ♥.
+The key insight: **"didn't see it + ♥" is the discovery answer — it builds the Pilgrimage
+list** while the seen answers build the canon. A 0–100 slider was considered and rejected:
+it kills dealing rhythm and produces pseudo-precision; two axes × three levels captures
+everything actionable. Old string verdicts migrate on load.
+
 ## 7. Risks & mitigations
 
 - **Memory is incomplete** → recognition decks + confidence field + the canon framing
