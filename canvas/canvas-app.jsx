@@ -182,7 +182,7 @@ function Reader({ id, go }) {
         {w.img && <img className="hero" src={w.img} alt={w.title} />}
         <div className="cv-r-body">
           <h1 className="cv-r-title">{w.title.replace(/^TBC — /, "")}</h1>
-          <div className="cv-r-meta"><b>{w.artist.replace(/\s*\(.*\)$/, "")}</b>{life ? ` · ${life}` : ""}{w.year ? ` · ${w.year}` : ""}{a.desc ? ` · ${a.desc}` : ""}</div>
+          <div className="cv-r-meta"><b style={{ cursor: "pointer" }} title="artist page" onClick={() => go("artist", w.artistId)}>{w.artist.replace(/\s*\(.*\)$/, "")}</b>{life ? ` · ${life}` : ""}{w.year ? ` · ${w.year}` : ""}{a.desc ? ` · ${a.desc}` : ""}</div>
           <div className="cv-chips">
             <ConfChip conf={w.seenConfidence} />
             {w.floored && <span className="cv-chip" data-k="floored">★ floored me</span>}
@@ -354,6 +354,79 @@ function Deck({ museumId, go }) {
   );
 }
 
+// ——— Phase 3: artist pages (charcoal-editorial per mockup 1c) + an artists index.
+// Page = your history with them (canon works, floored/liked, venues) + their majors you
+// haven't met (fame-ranked notable works minus the canon) — the artist-direction seeder.
+function ArtistView({ artistId, go }) {
+  const AD2 = AD.artists[artistId] || {};
+  const works = useMemo(() => WORKS.map(enrich).filter(w => w.artistId === artistId), [artistId]);
+  if (!works.length && !AD2.qid) return <div className="cv-mus"><p>No artist here (yet).</p></div>;
+  const name = (works[0] && works[0].artist.replace(/\s*\(.*\)$/, "")) || AD2.label;
+  const canonQids = new Set(works.map(w => w.qid).filter(Boolean));
+  const unmet = (AD2.notable || []).filter(n => !canonQids.has(n.qid));
+  const movements = (AD2.movementQids || []).map(q => (AD.movements || {})[q]).filter(Boolean);
+  const venues = [...new Set(works.flatMap(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).filter(Boolean)))]
+    .map(id => MUS_BY_ID[id]).filter(Boolean);
+  const floored = works.filter(w => w.floored || w.favorite).length;
+  const liked = works.filter(w => w.liked).length;
+  return (
+    <div className="cv-artist">
+      <div className="cv-a-head">
+        {AD2.image && <img className="cv-a-face" src={AD2.image} alt={name} />}
+        <div>
+          <h1 className="cv-a-name">{name}</h1>
+          <div className="cv-a-meta">{AD2.born ? `${AD2.born}–${AD2.died || ""}` : ""}{AD2.desc ? ` · ${AD2.desc.replace(/\s*\(\d{4}[–-]?\d{0,4}\)$/, "")}` : ""}</div>
+          {movements.length > 0 && <div className="cv-a-mov">{movements.join(" · ")}</div>}
+          <div className="cv-a-stats">{works.length} in your canon{floored ? ` · ★ ${floored} floored` : ""}{liked ? ` · ♡ ${liked} liked` : ""}
+            {venues.length ? ` · met at ${venues.map(v => v.name.replace(/\s*\(.*\)$/, "")).join(", ")}` : ""}</div>
+        </div>
+      </div>
+      <div className="cv-a-secl">In your canon</div>
+      <div className="cv-wall cv-a-wall">{works.map(w => <Card key={w.id} w={w} go={go} />)}</div>
+      {unmet.length > 0 && (
+        <React.Fragment>
+          <div className="cv-a-secl">Their majors you haven't met</div>
+          <div className="cv-a-unmet">
+            {unmet.map(n => (
+              <a key={n.qid} href={`https://www.wikidata.org/wiki/${n.qid}`} target="_blank" rel="noopener noreferrer" title={n.title}>
+                <img src={n.img} alt={n.title} loading="lazy" />
+                <span>{n.title}{n.year ? ` · ${n.year}` : ""}</span>
+              </a>
+            ))}
+          </div>
+        </React.Fragment>
+      )}
+      {AD2.qid && <div className="cv-r-links" style={{ padding: "18px 0 0" }}>
+        <a href={`https://www.wikidata.org/wiki/${AD2.qid}`} target="_blank" rel="noopener noreferrer">Wikidata ↗</a>
+      </div>}
+    </div>
+  );
+}
+
+function Artists({ go }) {
+  const rows = useMemo(() => {
+    const by = {};
+    for (const w of WORKS.map(enrich)) {
+      if (!w.artistId) continue;
+      const r = (by[w.artistId] = by[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, fl: 0, lk: 0 });
+      r.n++; if (w.floored || w.favorite) r.fl++; if (w.liked) r.lk++;
+    }
+    return Object.values(by).sort((a, b) => (b.fl * 3 + b.lk) - (a.fl * 3 + a.lk) || b.n - a.n);
+  }, []);
+  return (
+    <div className="cv-mus">
+      <p className="cv-deck-sum">{rows.length} artists in the canon, ranked by how hard they hit.</p>
+      {rows.map(r => (
+        <div className="cv-mus-row" key={r.id} style={{ cursor: "pointer" }} onClick={() => go("artist", r.id)}>
+          <span className="cv-mus-name">{r.name}</span>
+          <span className="cv-mus-city">{(AD.artists[r.id] || {}).desc || ""}</span>
+          <span className="cv-mus-count">{r.n} work{r.n > 1 ? "s" : ""}{r.fl ? ` · ★${r.fl}` : ""}{r.lk ? ` · ♡${r.lk}` : ""}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function App() {
   const route = useRoute();
   const [salon, setSalon] = useState(false);
@@ -367,6 +440,7 @@ function App() {
         <nav className="cv-nav">
           <a href="#/" data-on={view === "wall" && route.view !== "deck"}>The Wall</a>
           <a href="#/museums" data-on={view === "museums" || route.view === "deck"}>Museums</a>
+          <a href="#/artists" data-on={view === "artists" || route.view === "artist"}>Artists</a>
           <a href="#/pilgrimage" data-on={view === "pilgrimage"}>Pilgrimage</a>
         </nav>
         {view === "wall" && (
@@ -378,7 +452,9 @@ function App() {
       </header>
       {route.view === "deck" ? <Deck museumId={route.id} go={go} key={route.id} />
         : view === "museums" ? <Museums />
-        : view === "pilgrimage" ? <Pilgrimage go={go} /> : <Wall go={go} />}
+        : view === "pilgrimage" ? <Pilgrimage go={go} />
+        : route.view === "artist" ? <ArtistView artistId={route.id} go={go} key={route.id} />
+        : view === "artists" ? <Artists go={go} /> : <Wall go={go} />}
       {route.view === "work" && <Reader id={route.id} go={go} />}
       <footer className="cv-foot">
         canvas · a personal gallery, reconstructed from memory · images via <a href="https://commons.wikimedia.org" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> / <a href="https://www.wikidata.org" target="_blank" rel="noopener noreferrer">Wikidata</a> · part of <a href="/">fuad.au</a>
