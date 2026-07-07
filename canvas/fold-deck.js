@@ -43,7 +43,7 @@ for (const f of files) {
       seenAt: r.seen === "no" ? null : r.museum,
       seenConfidence: r.seen === "yes" ? "sure" : r.seen,   // "unsure" stays unsure
     };
-    if (r.seen === "no") e.wish = true;                      // pilgrimage candidate
+    if (r.seen === "no") { e.wish = true; e.at = r.museum; } // pilgrimage candidate; keep holder
     if (r.love === 1) e.liked = true;
     if (r.love === 2) { if (r.seen === "yes") e.floored = true; else { e.liked = true; e.wish = true; } }
     e.note = "Deck pick — " + deckName + ".";
