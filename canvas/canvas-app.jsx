@@ -427,6 +427,56 @@ function Artists({ go }) {
   );
 }
 
+// ——— Phase 4a: the painterly map (mockup 2b) — every museum pinned where it stands,
+// sized by canon works; the trip strip below groups dated visits by year. Land geometry
+// is rotation's simplified equirect world, copied (apps stay self-contained).
+function MapView({ go }) {
+  const world = window.CANVAS_WORLD || null;
+  const P = (lat, lng) => [(lng + 180) / 360 * 1000, (90 - lat) / 180 * 500];
+  const pins = useMemo(() => {
+    const counts = {};
+    for (const w of WORKS) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) if (id) counts[id] = (counts[id] || 0) + 1;
+    return MUSEUMS.map(m => {
+      const d = AD.museums[m.id] || {};
+      if (d.lat == null) return null;
+      const [x, y] = P(d.lat, d.lng);
+      return { id: m.id, name: m.name.replace(/\s*\(.*\)$/, ""), city: m.city, x, y, n: counts[m.id] || 0, kind: m.kind, visits: m.visits || [] };
+    }).filter(Boolean);
+  }, []);
+  const trips = useMemo(() => {
+    const by = {};
+    for (const m of MUSEUMS) for (const v of (m.visits || [])) {
+      const y = String(v).match(/^(~?)(\d{4})/); if (!y) continue;
+      (by[y[2]] = by[y[2]] || new Set()).add(m.city);
+    }
+    return Object.entries(by).map(([y, s]) => [y, [...s]]).sort((a, b) => b[0] - a[0]);
+  }, []);
+  return (
+    <div className="cv-map">
+      <p className="cv-deck-sum">Every museum, pinned where it stands — sized by how much of the canon it gave you.</p>
+      <svg viewBox="60 40 880 380">
+        {world && <path d={world.land.join(" ")} fill="#d3c4ab" stroke="none" />}
+        {pins.map(p => (
+          <g key={p.id} className="cv-pin" onClick={() => go("museums")}>
+            <circle cx={p.x} cy={p.y} r={p.n ? 3 + Math.sqrt(p.n) * 1.9 : 2.2}
+              fill={p.n ? "oklch(0.55 0.13 46 / .82)" : "rgba(58,47,34,.45)"} stroke="#f4ecdf" strokeWidth="0.8" />
+            <title>{p.name}, {p.city} — {p.n ? p.n + " work" + (p.n > 1 ? "s" : "") + " in the canon" : "visited"}</title>
+            {p.n >= 4 && <text x={p.x} y={p.y - (4 + Math.sqrt(p.n) * 1.9)} textAnchor="middle">{p.city}</text>}
+          </g>
+        ))}
+      </svg>
+      <div className="cv-trips">
+        {trips.map(([y, cities]) => (
+          <div className="cv-trip-row" key={y}>
+            <span className="cv-trip-year">{y}</span>
+            <span className="cv-trip-cities">{cities.join(" · ")}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const route = useRoute();
   const [salon, setSalon] = useState(false);
@@ -441,6 +491,7 @@ function App() {
           <a href="#/" data-on={view === "wall" && route.view !== "deck"}>The Wall</a>
           <a href="#/museums" data-on={view === "museums" || route.view === "deck"}>Museums</a>
           <a href="#/artists" data-on={view === "artists" || route.view === "artist"}>Artists</a>
+          <a href="#/map" data-on={view === "map"}>Map</a>
           <a href="#/pilgrimage" data-on={view === "pilgrimage"}>Pilgrimage</a>
         </nav>
         {view === "wall" && (
@@ -454,6 +505,7 @@ function App() {
         : view === "museums" ? <Museums />
         : view === "pilgrimage" ? <Pilgrimage go={go} />
         : route.view === "artist" ? <ArtistView artistId={route.id} go={go} key={route.id} />
+        : view === "map" ? <MapView go={go} />
         : view === "artists" ? <Artists go={go} /> : <Wall go={go} />}
       {route.view === "work" && <Reader id={route.id} go={go} />}
       <footer className="cv-foot">

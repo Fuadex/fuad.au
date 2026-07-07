@@ -58,8 +58,8 @@ function precompileApp(app, babel) {
   if (fs.existsSync(idx)) {
     let html = fs.readFileSync(idx, "utf8");
     html = html.replace(/^[ \t]*<script[^>]*@babel\/standalone[^>]*><\/script>\r?\n/m, "");
-    html = html.replace(/<script\s+type="text\/babel"(?:\s+data-presets="[^"]*")?\s+src="([^"]+)\.jsx"><\/script>/g,
-      '<script defer src="$1.js"></script>');
+    html = html.replace(/<script\s+type="text\/babel"(?:\s+data-presets="[^"]*")?\s+src="([^"]+)\.jsx(\?v=\d+)?"><\/script>/g,
+      (m, base, q) => `<script defer src="${base}.js${q || ""}"></script>`);   // carry ?v= cache-busters through
     fs.writeFileSync(idx, html, "utf8");
   }
   console.log(`  precompiled ${jsxFiles.length} .jsx → .js (Babel stripped from prod)`);
