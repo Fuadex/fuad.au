@@ -217,6 +217,27 @@ the top three run **entirely on data already in the repo** (no new API risk):
 no general rec engine (post-2026 Spotify API too fragile — recommend from the user's OWN
 dormant/adjacent catalogue instead = dig-list done right), no real-time anything.
 
+
+**◆ PROPOSED — flowmap-reactive modules + page expansions (Fable analysis 2026-07-07; Fuad to pick):**
+*What else could react to the map/genre/place selection* (today: avg/day, share, heaviest-day-time,
+dots, flow, subgenres, places react): **(a) Top artists strip** — cheap (EXPLORE carries family/place
+per artist; client-side filter). **(b) Sound DNA radar** — cheap for genre/place (mean AUDIO features
+over the filtered artist set); date slices only at year granularity. **(c) Top tracks** — moderate
+(tracks inherit the artist's family/place via media-index join; honest label needed: 'tracks BY
+artists in this slice'); per-track date filtering limited to the year series. **(d) Hour heatmap /
+(e) discovery timeline per slice** — need new day x family exports (heavy; defer). Recommend a+b
+first, c behind the inheritance caveat. All inherit the EXPLORE-universe caveat (90.3% of plays).
+*Artist-page candidates:* segue partners strip ('what follows this artist') · seasonality chip ·
+lifecycle sparkline + class · discovery genealogy line ('found via X, led to Y') · era membership ·
+gig effect · dormancy status. *Album-page:* aggregate sound DNA from track features · lyrical-theme
+chips rolled up from track reads · listening-arc sparkline (first->peak->now) · front-to-back score
+(shipped) context · similar albums. *Track-page:* segue neighbours · first-heard story (date + what
+surrounded it) · time-of-day bias · era membership.
+*Upward convergence (tracks -> albums -> artists):* NOT crazy — it's a build-data rollup, the data
+already exists (track-audio features, llm-about/genius themes). Moderate difficulty: the cost is
+page real estate + honest denominators ('7/12 tracks have reads'), not computation. Phase it:
+album DNA + theme chips first, artist lyrical diet second (pairs with Phase 4+ item 2).
+
 **◆ Fable difficult-queue status (2026-07-07):** near-disjoint tier (mean ≤0.03) **cleared**
 (14/14). Strong-disagreement tier (≤0.06): 24/109 done → **85 remaining** (next up: Why Try,
 Sky is Over, Delete Rewind, Blood for Blood, Hacker, Angry Inch, Dystopia…). Broader ≤0.10

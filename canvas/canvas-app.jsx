@@ -164,22 +164,52 @@ function Pilgrimage({ go }) {
   );
 }
 
+// full-screen pan/zoom (Phase 5 "stand close to the brushwork" mode) — dependency-free:
+// scroll to zoom (1–8×), drag to pan, double-click resets, Esc closes. Uses a 3200px thumb.
+function Zoom({ src, onClose }) {
+  const [t, setT] = useState({ s: 1.6, x: 0, y: 0 });
+  const drag = React.useRef(null);
+  useEffect(() => {
+    const on = (e) => { if (e.key === "Escape") { e.stopPropagation(); onClose(); } };
+    window.addEventListener("keydown", on, true);
+    return () => window.removeEventListener("keydown", on, true);
+  }, []);
+  return (
+    <div className="cv-zoom"
+      onWheel={e => { e.preventDefault(); setT(v => ({ ...v, s: Math.min(8, Math.max(1, v.s * (e.deltaY < 0 ? 1.15 : 0.87))) })); }}
+      onMouseDown={e => { drag.current = { mx: e.clientX, my: e.clientY, x: t.x, y: t.y }; }}
+      onMouseMove={e => { if (drag.current) setT(v => ({ ...v, x: drag.current.x + e.clientX - drag.current.mx, y: drag.current.y + e.clientY - drag.current.my })); }}
+      onMouseUp={() => { drag.current = null; }}
+      onDoubleClick={() => setT({ s: 1.6, x: 0, y: 0 })}>
+      <img src={src.replace(/width=\d+/, "width=3200")} alt=""
+        style={{ transform: `translate(${t.x}px,${t.y}px) scale(${t.s})` }} draggable="false" />
+      <button className="cv-r-close cv-zoom-close" onClick={onClose}>✕</button>
+      <div className="cv-zoom-hint">scroll to zoom · drag to pan · double-click resets · Esc closes</div>
+    </div>
+  );
+}
+
 function Reader({ id, go }) {
   const w = useMemo(() => { const x = WORKS.find(x => x.id === id); return x ? enrich(x) : null; }, [id]);
+  const [zoom, setZoom] = useState(false);
+  const [tier, setTier] = useState("about");
+  useEffect(() => { setZoom(false); setTier("about"); }, [id]);
   useEffect(() => {
-    const on = (e) => { if (e.key === "Escape") go("wall"); };
+    const on = (e) => { if (e.key === "Escape" && !zoom) go("wall"); };
     window.addEventListener("keydown", on);
     return () => window.removeEventListener("keydown", on);
-  }, []);
+  }, [zoom]);
   if (!w) return null;
   const a = w.artistData;
   const life = a.born ? `${a.born}–${a.died || ""}` : null;
+  const pal = (window.CANVAS_PALETTE || {})[id];
+  const read = (window.CANVAS_ART_ABOUT || {})[id];
   return (
     <React.Fragment>
       <div className="cv-reader-bg" onClick={() => go("wall")} />
       <div className="cv-reader">
         <button className="cv-r-close" onClick={() => go("wall")}>✕</button>
-        {w.img && <img className="hero" src={w.img} alt={w.title} />}
+        {w.img && <img className="hero" src={w.img} alt={w.title} title="click to zoom" style={{ cursor: "zoom-in" }} onClick={() => setZoom(true)} />}
         <div className="cv-r-body">
           <h1 className="cv-r-title">{w.title.replace(/^TBC — /, "")}</h1>
           <div className="cv-r-meta"><b style={{ cursor: "pointer" }} title="artist page" onClick={() => go("artist", w.artistId)}>{w.artist.replace(/\s*\(.*\)$/, "")}</b>{life ? ` · ${life}` : ""}{w.year ? ` · ${w.year}` : ""}{a.desc ? ` · ${a.desc}` : ""}</div>
@@ -197,6 +227,23 @@ function Reader({ id, go }) {
               {w.exhibition ? ` — ${w.exhibition}` : ""}
             </div>
           )}
+          {read && (
+            <div className="cv-r-read">
+              <div className="cv-r-read-head">
+                <span className="lbl">The read</span>
+                <div className="cv-r-tiers">
+                  <button data-on={tier === "about"} onClick={() => setTier("about")}>Info</button>
+                  <button data-on={tier === "deep"} onClick={() => setTier("deep")}>Interpretation</button>
+                </div>
+              </div>
+              <div className="cv-r-read-txt">{tier === "deep" ? read.deep : read.about}</div>
+            </div>
+          )}
+          {pal && (
+            <div className="cv-r-sec"><span className="lbl">Palette</span>
+              <span className="cv-pal">{pal.map(c => <i key={c} style={{ background: c }} title={c} />)}</span>
+            </div>
+          )}
           {w.note && <div className="cv-r-note">{w.note}</div>}
           <div className="cv-r-links">
             {w.qid && <a href={`https://www.wikidata.org/wiki/${w.qid}`} target="_blank" rel="noopener noreferrer">Wikidata ↗</a>}
@@ -205,6 +252,7 @@ function Reader({ id, go }) {
           </div>
         </div>
       </div>
+      {zoom && w.imgZoom && <Zoom src={w.imgZoom} onClose={() => setZoom(false)} />}
     </React.Fragment>
   );
 }
@@ -393,6 +441,19 @@ function ArtistView({ artistId, go }) {
                 <span>{n.title}{n.year ? ` · ${n.year}` : ""}</span>
               </a>
             ))}
+          </div>
+        </React.Fragment>
+      )}
+      {(AD2.similar || []).length > 0 && (
+        <React.Fragment>
+          <div className="cv-a-secl">Who's next — kin, teachers, students</div>
+          <div className="cv-a-kin">
+            {AD2.similar.slice(0, 8).map(s2 => {
+              const inCanon = Object.entries(AD.artists).find(([k, v]) => v.qid === s2.qid);
+              return inCanon
+                ? <a key={s2.qid} className="cv-a-kin-chip" data-in="true" href={"#/artist/" + inCanon[0]}>{s2.label}<i>in your canon</i></a>
+                : <a key={s2.qid} className="cv-a-kin-chip" href={"https://www.wikidata.org/wiki/" + s2.qid} target="_blank" rel="noopener noreferrer">{s2.label}{s2.desc ? <i>{s2.desc.slice(0, 40)}</i> : null}</a>;
+            })}
           </div>
         </React.Fragment>
       )}
