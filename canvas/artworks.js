@@ -30,8 +30,6 @@ window.CANVAS_ARTWORKS = [
   { id: "klimt-kiss", title: "The Kiss", artist: "Gustav Klimt", artistId: "klimt", qid: "Q203890", year: 1908,
     seenAt: "belvedere", seenConfidence: "probably", note: "\"I think I saw The Kiss yes\" — long ago." },
 
-  { id: "klimt-golden-others", title: "TBC — the other golden Klimts", artist: "Gustav Klimt", artistId: "klimt", qid: null, year: null,
-    seenAt: "belvedere", seenConfidence: "probably", note: "\"More golden artworks\" beyond The Kiss — Judith I is the prime Belvedere candidate; recall deck." },
 
   { id: "pollock-tate", title: "TBC — Pollocks at Tate Modern", artist: "Jackson Pollock", artistId: "pollock", qid: null, year: null,
     seenAt: "tate-modern", seenConfidence: "probably", note: "\"Some cool Pollock works.\" Candidates: Summertime 9A, Yellow Islands." },
