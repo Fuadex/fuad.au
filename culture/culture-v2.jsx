@@ -811,6 +811,120 @@ function WishlistPicker({ items, seenItems, onOpenItem }) {
   );
 }
 
+// ─────────── MyTaste (Stats → "My Taste" tab) — the taste read, as prose ───────────
+function MyTaste({ items }) {
+  // A few live superlatives pulled from the current medium filter, to sit under the essay.
+  const stat = React.useMemo(() => {
+    const rated = items.filter(i => i.rating);
+    const tens = rated.filter(i => parseFloat(i.rating) >= 10).length;
+    const count = (key) => {
+      const c = {};
+      for (const i of items) { const v = i[key]; if (v) c[v] = (c[v] || 0) + 1; }
+      return Object.entries(c).sort((a, b) => b[1] - a[1])[0];
+    };
+    const topRegion = count('region');
+    const decs = {};
+    for (const i of items) if (i.year) { const d = Math.floor(i.year / 10) * 10; decs[d] = (decs[d] || 0) + 1; }
+    const topDec = Object.entries(decs).sort((a, b) => b[1] - a[1])[0];
+    return { total: items.length, tens,
+      region: topRegion ? (REGION_NAMES[topRegion[0]] || topRegion[0]) : null,
+      decade: topDec ? topDec[0] + 's' : null };
+  }, [items]);
+
+  const WALLS = [
+    ['Execution of a format is the supreme value',
+      "More than theme, more than beauty. Your own notes give it away — execution, exhaustion, vivisection. You reward work that picks a formal frame and drains it completely: one room and twelve jurors earns a 10 while sprawling consensus masterpieces settle at 8. A chosen constraint, pushed to its limit, is the thing you trust most."],
+    ['The cognitive shift is the summit',
+      "Not a twist for its own sake, but work where the experience reframes itself — where what you did or believed while watching or playing turns out to be part of the piece. It is the interactive-complicity version of the format obsession, which is exactly why games hold so many of your highest marks. There is no ceiling on it, so it sits above everything else."],
+    ['Social vivisection under pressure',
+      "Capitalism, media, institutions, class — dissected with teeth. The notes keep reaching for przekrój społeczny and naturalizm. La Haine, The Housemaid, Network, Squid Game, BioShock: society cut open while it is still moving. Satire is only the comic slice of this; the whole is wider and colder."],
+    ['Devastation, but only when earned',
+      "Emotional demolition is proof of seriousness — the war films anchor the whole canon — but devastation without formal control does not rank. A restraint-heavy prestige weepie lands at a 6 while three minutes of a perfectly built concept earns a 10. The feeling has to be engineered, not merely delivered."],
+    ['You rate the experience, not the reputation',
+      "No prestige bias in either direction. Revered classics that leave you cold sit at 6–7; a genre film that detonated something in you gets a 10. A 7 means good, correct, admired. A 9 or 10 means it did something to you. The only currency is force of execution — which is why you will defend intensity the mainstream flinches from, and shrug at monuments everyone else bows to."],
+  ];
+
+  return (
+    <div className="stats-section mytaste">
+      <div className="mytaste-lead">
+        A reading of the collection — the five things it is really about.
+      </div>
+      <div className="mytaste-strip">
+        {stat.total ? <span>{stat.total} in view</span> : null}
+        {stat.tens ? <span>{stat.tens} perfect scores</span> : null}
+        {stat.region ? <span>most from {stat.region}</span> : null}
+        {stat.decade ? <span>peak decade {stat.decade}</span> : null}
+      </div>
+      {WALLS.map(([h, body], n) => (
+        <div className="mytaste-wall" key={n}>
+          <div className="mytaste-wall-h"><span className="mytaste-num">{n + 1}</span>{h}</div>
+          <p>{body}</p>
+        </div>
+      ))}
+      <div className="mytaste-foot">
+        Secondary threads: a love of the concentrated short and the anthology; both dialogue extremes,
+        hyper-verbal and near-wordless; a Pacific triangle of Korean intensity, Japanese experiment and the
+        Polish home canon around the American spine; animation as fully first-class; and a book-and-game
+        shelf that is the cognitive shift translated into other forms. — read by Fable 5
+      </div>
+    </div>
+  );
+}
+
+// ─────────── Halls (Stats → "Halls" tab) — curated best-of by marquee badge + legend ───────────
+function Halls({ items, onOpenItem }) {
+  const HALLS = [
+    ['cognitive',   'The Cognitive Shift',  'Work that changed how you see the world — or the medium itself.'],
+    ['formal-exec', 'Formal Execution',     'A chosen constraint, pushed to its absolute limit.'],
+    ['singular',    'One of a Kind',        'Unrepeatable objects that fit no formula and no genre.'],
+    ['ahead',       'Ahead of Its Time',    'They saw it coming before everyone else did.'],
+    ['worldbuilding','A World Unto Itself',  'Places complete enough to live inside.'],
+  ];
+  const posterOf = (it) => it.poster || it.tmdbPoster || it.igdbCover || it.bookCover;
+  const withBadge = (b) => items.filter(it => (it.highlights || []).includes(b))
+    .sort((a, c) => (parseFloat(c.rating) || 0) - (parseFloat(a.rating) || 0) || displayTitle(a).localeCompare(displayTitle(c)));
+
+  return (
+    <div className="stats-section halls">
+      <div className="badge-legend">
+        <div className="stats-section-title">Badge legend — hover any badge anywhere for its meaning</div>
+        <div className="legend-grid">
+          {Object.entries(HIGHLIGHTS).map(([k, v]) => (
+            <div className="legend-item" key={k} title={v.desc}>
+              <span className="legend-emoji">{v.emoji}</span>
+              <span className="legend-text"><b>{v.label}</b><span className="legend-desc">{v.desc}</span></span>
+            </div>
+          ))}
+        </div>
+      </div>
+      {HALLS.map(([badge, title, sub]) => {
+        const list = withBadge(badge);
+        if (!list.length) return null;
+        return (
+          <div className="hall" key={badge}>
+            <div className="hall-head">
+              <span className="hall-emoji">{HIGHLIGHTS[badge].emoji}</span>
+              <span className="hall-title">{title}</span>
+              <span className="hall-count">{list.length}</span>
+            </div>
+            <div className="hall-sub">{sub}</div>
+            <div className="hall-grid">
+              {list.map(it => (
+                <button className="hall-card" key={it.id} onClick={() => onOpenItem(it)} title={displayTitle(it)}>
+                  {posterOf(it)
+                    ? <img src={posterOf(it)} alt="" loading="lazy"/>
+                    : <span className="hall-card-glyph">{displayTitle(it)}</span>}
+                  <span className="hall-card-t">{displayTitle(it)}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 // ─────────── StatsModal ───────────
 function StatsModal({ allItems, library, seenItemsForTaste, onClose, onOpenItem, selectedRatings, onToggleRating, selectedDirectors, onToggleDirector, selectedStudios, onToggleStudio, selectedWeeks, onToggleWeek, selectedCountries, onToggleCountry, selectedActors, onToggleActor, selectedWriters, onToggleWriter, selectedCinematographers, onToggleCinematographer, selectedHighlights, onToggleHighlight }) {
   const { MEDIA } = window.CULTURE;
@@ -852,7 +966,9 @@ function StatsModal({ allItems, library, seenItemsForTaste, onClose, onOpenItem,
         </div>
         <div className="stats-tabs">
           <button className={`stats-tab${tab === 'charts' ? ' active' : ''}`} onClick={() => setTab('charts')}>Charts</button>
-          <button className={`stats-tab${tab === 'taste' ? ' active' : ''}`} onClick={() => setTab('taste')}>Taste profile</button>
+          <button className={`stats-tab${tab === 'mytaste' ? ' active' : ''}`} onClick={() => setTab('mytaste')}>My Taste</button>
+          <button className={`stats-tab${tab === 'halls' ? ' active' : ''}`} onClick={() => setTab('halls')}>Halls</button>
+          <button className={`stats-tab${tab === 'taste' ? ' active' : ''}`} onClick={() => setTab('taste')}>Explore</button>
         </div>
 
         <div className="stats-medium-tabs">
@@ -861,6 +977,8 @@ function StatsModal({ allItems, library, seenItemsForTaste, onClose, onOpenItem,
           ))}
         </div>
 
+        {tab === 'mytaste' && <MyTaste items={statItems} />}
+        {tab === 'halls' && <Halls items={statItems} onOpenItem={onOpenItem} />}
         {tab === 'taste' && <TasteProfile items={statItems} onOpenItem={onOpenItem} />}
 
         {tab === 'charts' && <React.Fragment>
@@ -1011,9 +1129,11 @@ function enrichExtras(item) {
   const tmdb = (window.CULTURE_TMDB || {})[item.id];         // TMDB synopsis (toggle source)
   const addBadges = (window.CULTURE_BADGES || {})[item.id];  // curated badge additions
   const scriptMood = (window.CULTURE_SCRIPT_MOOD || {})[item.id]; // NRC dialogue mood {v,e,m}
-  if (!omdb && !book && !gameTt && !fwNote && !noteEn && !tmdb && !addBadges && !scriptMood) return item;
+  const pred = (window.CULTURE_PREDICT || {})[item.id];      // predicted rating + reasons (wishlist)
+  if (!omdb && !book && !gameTt && !fwNote && !noteEn && !tmdb && !addBadges && !scriptMood && !pred) return item;
   const out = book ? { ...item, ...book } : { ...item };
   if (scriptMood) out.scriptMood = scriptMood;
+  if (pred) { out.pred = pred.pred; out.predWhy = pred.why; }
   if (omdb) {
     out.omdb = omdb;
     if (omdb.imdbID) out.imdbUrl = `https://www.imdb.com/title/${omdb.imdbID}/`;
@@ -1066,6 +1186,7 @@ function sortItems(arr, sort, dir) {
   const byTitle = (a, b) => displayTitle(a).localeCompare(displayTitle(b));
   const list = [...arr];
   if (sort === 'az')           list.sort(byTitle);
+  else if (sort === 'pred')    list.sort((a, b) => (b.pred || -1) - (a.pred || -1) || (parseFloat(b.fwAvg) || 0) - (parseFloat(a.fwAvg) || 0) || byTitle(a, b));
   else if (sort === 'priority') list.sort((a, b) => {
     const pa = priorityRank(a.priority), pb = priorityRank(b.priority);
     if (pa !== pb) return pb - pa;                                   // higher priority first
@@ -1092,6 +1213,7 @@ function sortItems(arr, sort, dir) {
 // Sort-aware labels for the direction toggle [desc, asc]. The old tooltip was
 // hardcoded to "Newest/Oldest first", which was wrong for most sort keys.
 const SORT_DIR_LABEL = {
+  pred:     ['Best for you first', 'Least first'],
   priority: ['Most wanted first', 'Least wanted first'],
   year:     ['Newest first', 'Oldest first'],
   rated:    ['Most recent first', 'Earliest first'],
@@ -1107,31 +1229,35 @@ const SORT_DIR_LABEL = {
 // `highlights: ['direction', ...]` field; strictly, quality-based. Rendered as
 // emoji at the spine top and as labelled chips in the Reader.
 const HIGHLIGHTS = {
-  direction:    { emoji: '🎬', label: 'Masterful direction' },
-  writing:      { emoji: '✍️', label: 'Exceptional writing' },
-  cinematography: { emoji: '📷', label: 'Masterful cinematography' },
-  visuals:      { emoji: '🎨', label: 'Gorgeous visuals' },
-  acting:       { emoji: '🎭', label: 'Powerhouse performances' },
-  score:        { emoji: '🎵', label: 'Unforgettable score' },
-  mindbending:  { emoji: '🌀', label: 'Mind-bending' },
-  gem:          { emoji: '💎', label: 'Hidden gem — floored me' },
-  devastating:  { emoji: '💔', label: 'Emotionally devastating' },
-  impact:       { emoji: '💥', label: 'Impactful' },
-  funny:        { emoji: '😂', label: 'Genuinely funny' },
-  bittersweet:  { emoji: '🥲', label: 'Funny through tears' },
-  satire:       { emoji: '🗯️', label: 'Satire' },
-  absurdist:    { emoji: '🤪', label: 'Absurdist' },
-  cerebral:     { emoji: '🧠', label: 'Thought-provoking' },
-  style:        { emoji: '🕶️', label: 'Bold style' },
-  atmosphere:   { emoji: '🌌', label: 'Immersive atmosphere' },
-  slowburn:     { emoji: '⏳', label: 'Slow burn' },
-  intense:      { emoji: '🩸', label: 'Brutal' },
-  horrifying:   { emoji: '💀', label: 'Horrifying' },
-  thrilling:    { emoji: '⚡', label: 'Pure adrenaline' },
-  ahead:        { emoji: '🕰️', label: 'Ahead of its time' },
-  singular:     { emoji: '🃏', label: 'One-of-a-kind' },
-  cognitive:    { emoji: '🪞', label: 'A cognitive shift' },
-  worldbuilding:{ emoji: '🗺️', label: 'A world unto itself' },
+  direction:    { emoji: '🎬', label: 'Masterful direction', desc: 'The filmmaking itself is the achievement.' },
+  writing:      { emoji: '✍️', label: 'Exceptional writing', desc: 'Script, structure or prose at the highest level.' },
+  cinematography: { emoji: '📷', label: 'Masterful cinematography', desc: 'The lenswork — how it is shot — stands out.' },
+  visuals:      { emoji: '🎨', label: 'Gorgeous visuals', desc: 'Beauty of the image itself.' },
+  acting:       { emoji: '🎭', label: 'Powerhouse performances', desc: 'Carried by its performances.' },
+  score:        { emoji: '🎵', label: 'Unforgettable score', desc: 'The music you keep hearing after.' },
+  mindbending:  { emoji: '🌀', label: 'Mind-bending', desc: 'Disorients while you watch — structure, twist, reality games. The effect stays inside the work.' },
+  gem:          { emoji: '💎', label: 'Gem', desc: 'A gem.' },
+  devastating:  { emoji: '💔', label: 'Emotionally devastating', desc: 'Earned emotional demolition — devastation with craft behind it.' },
+  impact:       { emoji: '💥', label: 'Impactful', desc: 'Visceral in-the-moment force — a gut- or face-punch.' },
+  funny:        { emoji: '😂', label: 'Genuinely funny', desc: 'Made you laugh, repeatedly.' },
+  bittersweet:  { emoji: '🥲', label: 'Funny through tears', desc: 'Laughter laced with ache.' },
+  satire:       { emoji: '🗯️', label: 'Satire', desc: 'Pointed social or political bite — the comic edge of the social x-ray.' },
+  absurdist:    { emoji: '🤪', label: 'Absurdist', desc: 'Surreal, anarchic nonsense.' },
+  cerebral:     { emoji: '🧠', label: 'Thought-provoking', desc: 'Makes you think while watching — ideas on the screen.' },
+  style:        { emoji: '🕶️', label: 'Bold style', desc: 'A bold, distinct aesthetic identity.' },
+  atmosphere:   { emoji: '🌌', label: 'Immersive atmosphere', desc: 'Mood and world-feel over plot.' },
+  slowburn:     { emoji: '⏳', label: 'Slow burn', desc: 'Rewards patience; it accretes.' },
+  intense:      { emoji: '🩸', label: 'Brutal', desc: 'Sustained brutality or pressure.' },
+  horrifying:   { emoji: '💀', label: 'Horrifying', desc: 'Designed to disturb.' },
+  thrilling:    { emoji: '⚡', label: 'Pure adrenaline', desc: 'Propulsive, edge-of-seat.' },
+  ahead:        { emoji: '🕰️', label: 'Ahead of its time', desc: 'Saw it coming before everyone else.' },
+  singular:     { emoji: '🃏', label: 'One-of-a-kind', desc: 'An unrepeatable object — no formula, no genre slot.' },
+  cognitive:    { emoji: '🪞', label: 'A cognitive shift', desc: 'A shift you kept — you see the world, or the medium, differently a month later.' },
+  worldbuilding:{ emoji: '🗺️', label: 'A world unto itself', desc: 'A place complete enough to live in.' },
+  'social-xray':{ emoji: '🔬', label: 'Social x-ray', desc: 'Dissects a society, class or institution under pressure.' },
+  'formal-exec':{ emoji: '📐', label: 'Formal execution', desc: 'A chosen constraint, pushed to its limit — the format is the achievement.' },
+  squirm:       { emoji: '😬', label: 'Squirm comedy', desc: 'Comedy of discomfort — you laughed and flinched.' },
+  gentle:       { emoji: '🍵', label: 'Gentle', desc: 'Warm, low-stakes, restorative — kindness as the mode.' },
 };
 // One badge by default; only wide spines carry more (≥29px ≈ a movie ≥2.5h, or a
 // thick TV/game) so narrow titles don't get busy. The Reader shows all of them.
@@ -1469,7 +1595,7 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
           {item.highlights && item.highlights.length > 0 && (
             <span className="spine-highlights">
               {item.highlights.filter(h => HIGHLIGHTS[h]).slice(0, highlightCap(item)).map(h => (
-                <span key={h} className="spine-highlight" title={HIGHLIGHTS[h].label}>{HIGHLIGHTS[h].emoji}</span>
+                <span key={h} className="spine-highlight" title={`${HIGHLIGHTS[h].label} — ${HIGHLIGHTS[h].desc}`}>{HIGHLIGHTS[h].emoji}</span>
               ))}
             </span>
           )}
@@ -1811,6 +1937,7 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
             {item.episodes ? <React.Fragment><span className="sep"/><span>{item.episodes} eps</span></React.Fragment> : null}
             {item.totalMinutes ? <React.Fragment><span className="sep"/><span>{formatRuntime(item.totalMinutes)} total</span></React.Fragment> : null}
             {item.rating ? <React.Fragment><span className="sep"/><span>★ {item.rating}/10</span></React.Fragment> : null}
+            {!item.rating && item.pred ? <React.Fragment><span className="sep"/><span className="pred-chip" title={item.predWhy && item.predWhy.length ? 'Because: ' + item.predWhy.join('; ') : 'Fable-tuned prediction from your ratings'}>◇ predicted {item.pred}/10 for you</span></React.Fragment> : null}
             {item.genres && item.genres.length > 0 ? <React.Fragment><span className="sep"/><span>{item.genres.slice(0, 4).map((g, i) => <React.Fragment key={g}>{i > 0 && ' · '}<span className="meta-link" onClick={() => onFilter && onFilter(`genre:${g}`)}>{g}</span></React.Fragment>)}</span></React.Fragment> : null}
             {item.igdbFranchise ? <React.Fragment><span className="sep"/><span>Series: {item.igdbFranchise}</span></React.Fragment> : null}
             {item.watchedDate ? <React.Fragment><span className="sep"/><span>Rated {item.watchedDate}</span></React.Fragment> : null}
@@ -1901,7 +2028,7 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
           {item.highlights && item.highlights.filter(h => HIGHLIGHTS[h]).length > 0 && (
             <div className="reader-highlights">
               {item.highlights.filter(h => HIGHLIGHTS[h]).map(h => (
-                <span key={h} className="reader-highlight meta-link" onClick={() => onFilter && onFilter(`highlight:${h}`)}>
+                <span key={h} className="reader-highlight meta-link" title={HIGHLIGHTS[h].desc} onClick={() => onFilter && onFilter(`highlight:${h}`)}>
                   <span className="rh-emoji">{HIGHLIGHTS[h].emoji}</span>{HIGHLIGHTS[h].label}
                 </span>
               ))}
@@ -2053,7 +2180,7 @@ function App() {
     const [path, query] = raw.split('?');
     const params = new URLSearchParams(query || '');
     const lib = path === 'wishlist' ? 'wishlist' : 'library';
-    if (lib === 'wishlist') { setLibrary('wishlist'); setMode('spines'); setSort('priority'); }
+    if (lib === 'wishlist') { setLibrary('wishlist'); setMode('spines'); setSort('pred'); }
     const q = params.get('q'); if (q) setSearch(q);
     const openId = params.get('open');
     if (openId) {
@@ -2308,7 +2435,7 @@ function App() {
       selectedWriters.size || selectedCinematographers.size || selectedHighlights.size);
     if (lib === 'wishlist') {
       setSelectedRatings(new Set()); setSelectedWeeks(new Set()); setSelectedRatedYears(new Set());
-      setMode('spines'); setSort('priority');
+      setMode('spines'); setSort('pred');
     } else {
       setSelectedReleaseBuckets(new Set());
       setMode(sharedFilter ? 'spines' : 'covers'); setSort('curated');
@@ -2369,6 +2496,7 @@ function App() {
               </button>
             </div>
             <select className="sort-select" value={sort} onChange={(e) => setSort(e.target.value)} title="Sort titles">
+              {library === 'wishlist' && <option value="pred">For you (predicted)</option>}
               {library === 'wishlist' && <option value="priority">Priority</option>}
               <option value="curated">Curated</option>
               <option value="az">A–Z</option>
