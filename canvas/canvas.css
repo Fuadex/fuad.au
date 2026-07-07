@@ -41,7 +41,7 @@ a { color: inherit; }
 .cv-title { font: 600 13.5px/1.3 var(--serif); color: var(--ink); }
 .cv-artist { font: 500 10.5px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); margin-top: 3px; }
 .cv-card[data-conf="probably"] .cv-title::after { content: " ?"; color: var(--ink-faint); font-weight: 400; }
-.cv-card[data-conf="unsure"] { opacity: .78; }
+.cv-card[data-conf="unsure"] .cv-label { opacity: .82; }  /* honesty moved to the label; the art stays vivid */
 .cv-card[data-conf="unsure"] .cv-title::after { content: " ??"; color: var(--ink-faint); font-weight: 400; }
 .cv-fav { position: absolute; top: 8px; right: 9px; font-size: 12px; filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); }
 /* text-forward card (no image: copyright / TBC) */
@@ -151,3 +151,15 @@ body[data-salon="true"] .cv-card.cv-text { border-color: #2c2117; background: va
 .cv-a-unmet a { display: block; text-decoration: none; }
 .cv-a-unmet img { width: 100%; height: 120px; object-fit: cover; border-radius: 5px; box-shadow: 0 4px 14px rgba(40,28,14,.22); }
 .cv-a-unmet span { display: block; font: 400 11px/1.4 var(--serif); color: var(--ink-soft); margin-top: 5px; }
+
+/* ——— the painterly map (Phase 4a) ——— */
+.cv-map { max-width: 1200px; margin: 0 auto; padding: 20px 34px 60px; }
+.cv-map svg { width: 100%; background: #e9dfcd; border-radius: 12px; box-shadow: inset 0 0 60px rgba(120,90,50,.12); }
+.cv-pin { cursor: pointer; }
+.cv-pin circle { transition: r .12s; }
+.cv-pin:hover circle { stroke-width: 1.6; }
+.cv-pin text { font: 600 8.5px "JetBrains Mono", monospace; letter-spacing: .06em; fill: #3a2f22; text-transform: uppercase; }
+.cv-trips { margin-top: 18px; }
+.cv-trip-row { display: flex; gap: 14px; padding: 7px 2px; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.cv-trip-year { font: 600 12px/1 var(--mono); color: var(--accent); min-width: 44px; }
+.cv-trip-cities { font: 400 13.5px/1.5 var(--serif); color: var(--ink-soft); }

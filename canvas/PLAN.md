@@ -187,3 +187,5 @@ everything actionable. Old string verdicts migrate on load.
   The deck's "no" answers are never stored as data; only yeses enter the canon.
 
 > 2026-07-07 (later): **Phase 3 artist pages + Artists index SHIPPED** (charcoal header, canon works, majors-you-have-not-met via fame-ranked notable-works fetch, movement labels; Reader artist name links through). **Phase 4b Pilgrimage + wall filters/cap/sorts SHIPPED** the same day (chips x museum x 4 sorts, cap 48 + hang-more; pilgrimage.js hand file seeded with Sanok). Remaining: similar-artists graph, painterly Map + trip timeline (4a), Phase 5 polish (IIIF zoom, palette, Fable reads, Paris Musees depth).
+
+> 2026-07-07 (later still): **Phase 4a painterly Map SHIPPED** (#/map — equirect land from rotation geometry, museum pins sized by canon contribution, trip strip by year from Timeline-matched dates). **Matte fix**: unsure-card dimming moved off the artwork onto the label. **?v= cache-bust convention adopted** (culture golden rule; stage-site carries the query through jsx→js rewrite) — bump on every change.
