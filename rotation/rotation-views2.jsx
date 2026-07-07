@@ -1302,6 +1302,8 @@ function PreviewBtn({ id, hue, artist, title }) {
 // "What it's about" — the Haiku gist is the default read; flick to Fable / Opus (deeper reads) or
 // Genius (human, community-written) where present. Order Haiku → Fable → Opus → Genius; Sonnet is
 // intentionally omitted. Reads come from blurb-reads (bake-off data today; the real pipeline later).
+// Where the track carries a fableDeep close-reading, an Info / Interpretation toggle sits at the
+// module's top right: Info = the normal one-line reads, Interpretation = Fable's longer reading.
 const BLURB_ORDER = [["haiku", "Haiku"], ["fable", "Fable"], ["opus", "Opus"]];
 function BlurbSwitcher({ id, about }) {
   const [, bump] = React.useReducer(x => x + 1, 0);   // re-render when a lazy data file lands
@@ -1310,15 +1312,16 @@ function BlurbSwitcher({ id, about }) {
     load("llm-about.js", "ROTATION_LLM_ABOUT"); load("blurb-demo.js", "ROTATION_BLURB_DEMO");
   }, []);
   const [pick, setPick] = React.useState(null);
-  React.useEffect(() => { setPick(null); }, [id]);   // new song → default read; clicks never clobbered
+  const [mode, setMode] = React.useState("info");     // "info" | "deep" (Fable interpretation)
+  React.useEffect(() => { setPick(null); setMode("info"); }, [id]);   // new song → default read; clicks never clobbered
   const llm = (window.ROTATION_LLM_ABOUT && window.ROTATION_LLM_ABOUT[id]) || null;   // real pipeline read
   const reads = (window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null; // bake-off multi-model
-  // buttons: the model reads (Haiku · Sonnet · Opus), a Web read (researched from web sources when
-  // the lyrics dump had none), then Genius (human). Default = the chosen source (llm.src). Bake-off
-  // songs keep their set.
+  // buttons: the model reads (Haiku · Sonnet · Opus · Fable), a Web read (researched from web sources
+  // when the lyrics dump had none), then Genius (human). Default = the chosen source (llm.src).
+  // Bake-off songs keep their set.
   const sources = [];
   if (llm) {
-    for (const [m, label] of [["haiku", "Haiku"], ["sonnet", "Sonnet"], ["opus", "Opus"], ["web", "Web"]]) if (llm[m]) sources.push({ m, label, text: llm[m] });
+    for (const [m, label] of [["haiku", "Haiku"], ["sonnet", "Sonnet"], ["opus", "Opus"], ["fable", "Fable"], ["web", "Web"]]) if (llm[m]) sources.push({ m, label, text: llm[m] });
   } else if (reads) {
     for (const [m, label] of BLURB_ORDER) if (reads[m]) sources.push({ m, label, text: reads[m] });
   }
@@ -1327,25 +1330,37 @@ function BlurbSwitcher({ id, about }) {
   if (!sources.length) return null;
   const cur = sources.find(s => s.m === pick) || sources.find(s => llm && s.m === llm.src) || sources[0];
   const multi = sources.length > 1;
+  const deepText = llm && llm.fableDeep;              // Fable's close-reading, when it exists
+  const showDeep = mode === "deep" && !!deepText;
   return (
     <div className="tv-switch">
       <div className="tv-switch-head">
         <span className="tv-switch-lbl">What it's about</span>
         {multi && (
-          <div className="tv-switch-btns">
+          <div className="tv-switch-btns" data-dim={showDeep}>
             {sources.map(s => (
-              <button key={s.m} data-on={cur.m === s.m} data-m={s.m} onClick={() => setPick(s.m)}>{s.label}</button>
+              <button key={s.m} data-on={!showDeep && cur.m === s.m} data-m={s.m} onClick={() => { setPick(s.m); setMode("info"); }}>{s.label}</button>
             ))}
+          </div>
+        )}
+        {deepText && (
+          <div className="tv-switch-mode">
+            <button data-on={mode === "info"} onClick={() => setMode("info")}>Info</button>
+            <button data-on={mode === "deep"} data-m="fable" onClick={() => setMode("deep")}>Interpretation</button>
           </div>
         )}
       </div>
       <div className="tv-switch-body">
-        <span className="tv-switch-txt">{cur.text}</span>
-        {cur.m === "genius" && cur.link
-          ? <a className="tv-switch-brand" data-m="genius" href={cur.link} target="_blank" rel="noopener noreferrer">via Genius ↗</a>
-          : <span className="tv-switch-brand" data-m={cur.m}>via {cur.label}</span>}
+        <span className="tv-switch-txt">{showDeep ? deepText : cur.text}</span>
+        {showDeep
+          ? <span className="tv-switch-brand" data-m="fable">via Fable · interpretation</span>
+          : cur.m === "genius" && cur.link
+            ? <a className="tv-switch-brand" data-m="genius" href={cur.link} target="_blank" rel="noopener noreferrer">via Genius ↗</a>
+            : <span className="tv-switch-brand" data-m={cur.m}>via {cur.label}</span>}
       </div>
-      {multi && <div className="tv-switch-note r-mono">different reads of what the song is about</div>}
+      {showDeep
+        ? <div className="tv-switch-note r-mono">a closer reading of the lyric — how it works, not just what it says</div>
+        : multi && <div className="tv-switch-note r-mono">different reads of what the song is about</div>}
     </div>
   );
 }

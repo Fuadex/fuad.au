@@ -312,6 +312,12 @@ a.r-link:hover { color: var(--ink); }
 .tv-switch-btns button[data-m="opus"][data-on="true"] { color: oklch(0.73 0.16 295); }
 .tv-switch-btns button[data-m="fable"][data-on="true"] { color: oklch(0.78 0.14 60); }
 .tv-switch-btns button[data-m="web"][data-on="true"] { color: oklch(0.72 0.06 200); }
+.tv-switch-btns[data-dim="true"] button { opacity: .45; }
+.tv-switch-mode { display: flex; gap: 6px; margin-left: auto; }
+.tv-switch-mode button { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-faint); cursor: pointer; transition: color .12s, border-color .12s; }
+.tv-switch-mode button:hover { border-color: var(--rule-2); color: var(--ink); }
+.tv-switch-mode button[data-on="true"] { border-color: currentColor; color: var(--ink-soft); }
+.tv-switch-mode button[data-m="fable"][data-on="true"] { color: oklch(0.78 0.14 60); }
 .tv-switch-body { position: relative; padding-bottom: 20px; }
 .tv-switch-txt { font-family: var(--serif); font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
 .tv-switch-brand { position: absolute; right: 0; bottom: 0; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
