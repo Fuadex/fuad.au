@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0}
+  .cv-scroll::-webkit-scrollbar{width:9px}
+  .cv-scroll::-webkit-scrollbar-thumb{background:rgba(120,86,44,.35);border-radius:5px}
+  @keyframes cvpulse{0%,100%{opacity:.55}50%{opacity:1}}
+</style>
+</helmet>
+
+<div style="position:relative;height:100vh;display:flex;flex-direction:column;background:#e4d8c4;font-family:'Inter',system-ui,sans-serif;overflow:hidden" onClick="{{ onStageClick }}">
+
+  <!-- ===== global top bar ===== -->
+  <div style="flex:none;height:60px;display:flex;justify-content:space-between;align-items:center;padding:0 26px;background:#e8dfce;border-bottom:1px solid rgba(90,60,30,.14);z-index:20">
+    <div data-view="collage" style="cursor:pointer;font-family:'Source Serif 4',serif;font-style:italic;font-weight:600;font-size:25px;letter-spacing:-.02em;color:#241b12">Canvas<span style="font-style:normal;color:oklch(0.6 0.15 44)">.</span></div>
+    <div style="display:flex;gap:4px;background:rgba(255,255,255,.55);border:1px solid rgba(90,60,30,.14);border-radius:100px;padding:4px 5px">
+      <div data-view="collage" style="{{ nav.collage }}">Collage</div>
+      <div data-view="wall" style="{{ nav.wall }}">Wall</div>
+      <div data-view="map" style="{{ nav.map }}">Map</div>
+      <div data-view="artists" style="{{ nav.artists }}">Artists</div>
+    </div>
+  </div>
+
+  <!-- ===== content area ===== -->
+  <div style="position:relative;flex:1;min-height:0">
+
+    <!-- ---------- COLLAGE ---------- -->
+    <sc-if value="{{ showCollage }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:76px;grid-auto-flow:dense;gap:5px;padding:5px;background:#e4d8c4;overflow:hidden">
+      <div data-artist="monet" style="grid-column:span 3;grid-row:span 3;position:relative;overflow:hidden;cursor:pointer;background:linear-gradient(160deg,#6f8f86,#9db6ad 38%,#c9b9d0 66%,#7d9a94)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(26deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div><div style="position:absolute;left:38px;bottom:70px;width:70px;height:18px;border-radius:50%;background:rgba(235,180,192,.4);filter:blur(3px)"></div><div style="position:absolute;left:0;right:0;bottom:0;padding:14px 15px;background:linear-gradient(0deg,rgba(20,12,6,.7),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:15px;color:#fff">Nymphéas</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;color:oklch(0.85 0.1 60);margin-top:3px">MONET · L'ORANGERIE, PARIS</div></div></div>
+      <div data-artist="podkowinski" style="grid-column:span 2;grid-row:span 4;position:relative;overflow:hidden;cursor:pointer;background:radial-gradient(80% 60% at 55% 30%,#7a1f22,#3a0f14 62%,#160608)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(-22deg,rgba(255,255,255,.05) 0 2px,transparent 2px 8px)"></div><div style="position:absolute;left:42%;top:22%;width:64px;height:130px;border-radius:50% 50% 45% 45%;background:linear-gradient(#e8c9a0,#b98a63);opacity:.5;filter:blur(1px)"></div><div style="position:absolute;left:0;right:0;bottom:0;padding:14px 15px;background:linear-gradient(0deg,rgba(10,4,4,.78),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:15px;color:#fff">Szał uniesień</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;color:oklch(0.8 0.11 40);margin-top:3px">PODKOWIŃSKI · KRAKÓW</div></div></div>
+      <div data-artist="leech" style="grid-column:span 1;grid-row:span 3;position:relative;overflow:hidden;cursor:pointer;background:linear-gradient(160deg,#c7c46a,#8fa24a 42%,#d8b24e 74%,#6d7e3a)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(24deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div><div style="position:absolute;left:50%;top:20%;transform:translateX(-50%);width:56px;height:56px;border-radius:50%;background:radial-gradient(circle,rgba(245,232,180,.6),transparent 70%)"></div></div>
+      <div data-artist="monet" style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;cursor:pointer;background:linear-gradient(160deg,#e0c98f,#c49a5a 50%,#7a5a34)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 2px,transparent 2px 12px)"></div><div style="position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(0deg,rgba(20,12,6,.6),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12px;color:#fff">Rouen Cathedral</div></div></div>
+      <div data-artist="monet" style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;cursor:pointer;background:linear-gradient(160deg,#e8c877,#c99a4a 45%,#8a6a3a)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(20deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div></div>
+      <div data-artist="tanaka" style="grid-column:span 2;grid-row:span 3;position:relative;overflow:hidden;cursor:pointer;background:linear-gradient(155deg,#3c6b52,#6fa06e 44%,#c7d18a 80%,#2f5a44)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(30deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div><div style="position:absolute;left:0;right:0;bottom:0;padding:12px 13px;background:linear-gradient(0deg,rgba(12,20,12,.7),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13px;color:#fff">Amami woodland</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.14em;color:oklch(0.85 0.09 130);margin-top:2px">TANAKA ISSON · seen TOKYO</div></div></div>
+      <div data-artist="monet" style="grid-column:span 3;grid-row:span 2;position:relative;overflow:hidden;cursor:pointer;background:linear-gradient(170deg,#89a3ce,#b7c8dd 40%,#e0d4c0 78%,#7f96bd)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(26deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div><div style="position:absolute;left:40px;top:24px;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle,rgba(240,140,90,.55),transparent 70%)"></div><div style="position:absolute;left:0;right:0;bottom:0;padding:11px 13px;background:linear-gradient(0deg,rgba(20,16,30,.6),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13px;color:#fff">Impression, Soleil Levant</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.14em;color:oklch(0.85 0.09 60);margin-top:2px">MONET · MARMOTTAN</div></div></div>
+      <div data-artist="zorn" style="grid-column:span 1;grid-row:span 2;position:relative;overflow:hidden;cursor:pointer;background:linear-gradient(150deg,#c9a77e,#8a6242 55%,#4a3524)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 6px)"></div></div>
+      <div data-artist="beksinski" style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;cursor:pointer;background:linear-gradient(160deg,#8a7a4a,#5a4a2a 50%,#2a2016)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(-18deg,rgba(255,255,255,.04) 0 2px,transparent 2px 9px)"></div><div style="position:absolute;right:18px;top:16px;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,rgba(240,224,170,.5),transparent 70%)"></div><div style="position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(0deg,rgba(20,14,8,.7),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12px;color:#fff">Untitled · Beksiński</div></div></div>
+      <div data-artist="monet" style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;cursor:pointer;background:linear-gradient(150deg,#4a7a5a,#7fa96e 46%,#c3c07a 80%)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(24deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div></div>
+      <div style="grid-column:span 1;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(155deg,#e8b89a,#c98a6a 50%,#8a4f3a)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(30deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div></div>
+      <div style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(165deg,#9ab6cf,#c7d4dd 45%,#e2d8c4 80%,#7f96ad)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(22deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div></div>
+      <div style="grid-column:span 1;grid-row:span 2;position:relative;overflow:hidden;background:linear-gradient(155deg,#9caf6a,#6a7f42 55%,#3f4f2a)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(28deg,rgba(255,255,255,.05) 0 2px,transparent 2px 9px)"></div></div>
+      <div data-artist="monet" style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;cursor:pointer;background:linear-gradient(160deg,#9aa4ac,#6a747c 55%,#3a4249)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 2px,transparent 2px 11px)"></div><div style="position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(0deg,rgba(14,16,18,.66),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12px;color:#fff">Gare Saint-Lazare</div></div></div>
+      <div style="grid-column:span 1;grid-row:span 3;position:relative;overflow:hidden;background:linear-gradient(160deg,#b8ac98,#847660 55%,#4c4234)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 2px,transparent 2px 10px)"></div></div>
+      <div data-artist="monet" style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;cursor:pointer;background:linear-gradient(170deg,#c7b86a,#8a9a4a 50%,#4a6b3a)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 2px,transparent 2px 12px)"></div></div>
+      <div data-artist="zorn" style="grid-column:span 2;grid-row:span 2;position:relative;overflow:hidden;cursor:pointer;background:linear-gradient(155deg,#e8c9a0,#c99a6a 50%,#8a6a4a)"><div style="position:absolute;inset:0;background:repeating-linear-gradient(20deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div><div style="position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(0deg,rgba(20,12,6,.55),transparent)"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12px;color:#fff">Interior · Swedish Masters</div></div></div>
+    </div>
+    </sc-if>
+
+    <!-- ---------- WALL ---------- -->
+    <sc-if value="{{ showWall }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;overflow:auto;background:radial-gradient(120% 90% at 50% -10%,#efe7d8,#e4d8c4 60%,#d8c8b0)" class="cv-scroll">
+      <div style="position:sticky;top:0;height:5px;background:linear-gradient(#c9b48c,#a98f60)"></div>
+      <div style="text-align:center;margin-top:26px;font-family:'Source Serif 4',serif;font-style:italic;font-size:15px;color:#6b5a40">Room I — the ones I keep returning to</div>
+      <div style="display:flex;flex-direction:column;gap:34px;padding:30px 56px 50px;align-items:center">
+        <div style="display:flex;gap:38px;align-items:center;justify-content:center;flex-wrap:wrap">
+          <div data-artist="monet" style="display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer">
+            <div style="padding:11px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 14px 30px rgba(40,28,14,.28)"><div style="width:236px;height:150px;background:linear-gradient(165deg,#6f8f86 0%,#9db6ad 32%,#c9b9d0 62%,#7d9a94 100%);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:repeating-linear-gradient(28deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div><div style="position:absolute;left:22px;bottom:26px;width:60px;height:16px;border-radius:50%;background:rgba(230,180,190,.45);filter:blur(2px)"></div></div></div>
+            <div style="text-align:center;max-width:236px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Nymphéas</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">MONET · L'ORANGERIE, PARIS</div></div>
+          </div>
+          <div data-artist="podkowinski" style="display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer">
+            <div style="padding:12px;background:linear-gradient(135deg,#3a2418,#1c0f09);box-shadow:0 16px 34px rgba(40,28,14,.34)"><div style="width:170px;height:214px;background:radial-gradient(80% 60% at 55% 30%,#7a1f22,#3a0f14 60%,#160608);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:repeating-linear-gradient(-22deg,rgba(255,255,255,.05) 0 2px,transparent 2px 8px)"></div></div></div>
+            <div style="text-align:center;max-width:170px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Szał uniesień</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">PODKOWIŃSKI · KRAKÓW</div></div>
+          </div>
+          <div data-artist="leech" style="display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer">
+            <div style="padding:11px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 14px 30px rgba(40,28,14,.28)"><div style="width:172px;height:210px;background:linear-gradient(160deg,#c7c46a 0%,#8fa24a 40%,#d8b24e 72%,#6d7e3a 100%);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:repeating-linear-gradient(24deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div><div style="position:absolute;left:50%;top:16%;transform:translateX(-50%);width:96px;height:96px;border-radius:50%;background:radial-gradient(circle,rgba(245,232,180,.6),transparent 70%)"></div></div></div>
+            <div style="text-align:center;max-width:172px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">The Sunshade</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">JOHN LEECH · IRELAND</div></div>
+          </div>
+          <div data-artist="zorn" style="display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer">
+            <div style="padding:10px;background:linear-gradient(135deg,#e2ddd2,#bdb4a2);box-shadow:0 12px 26px rgba(40,28,14,.24)"><div style="width:150px;height:150px;background:linear-gradient(150deg,#c9a77e,#8a6242 55%,#4a3524);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 5px)"></div></div></div>
+            <div style="text-align:center;max-width:150px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Etching, no. 12</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">ZORN · STOCKHOLM</div></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:38px;align-items:center;justify-content:center;flex-wrap:wrap">
+          <div data-artist="beksinski" style="display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer">
+            <div style="padding:10px;background:linear-gradient(135deg,#3a2418,#1c0f09);box-shadow:0 12px 26px rgba(40,28,14,.3)"><div style="width:190px;height:130px;background:linear-gradient(160deg,#8a7a4a,#5a4a2a 50%,#2a2016);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:repeating-linear-gradient(-18deg,rgba(255,255,255,.04) 0 2px,transparent 2px 9px)"></div><div style="position:absolute;right:20px;top:22px;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle,rgba(240,224,170,.55),transparent 70%)"></div></div></div>
+            <div style="text-align:center;max-width:190px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Untitled (dystopia)</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">BEKSIŃSKI · SANOK</div></div>
+          </div>
+          <div data-artist="tanaka" style="display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer">
+            <div style="padding:11px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 14px 30px rgba(40,28,14,.28)"><div style="width:150px;height:190px;background:linear-gradient(155deg,#3c6b52 0%,#6fa06e 42%,#c7d18a 78%,#2f5a44 100%);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:repeating-linear-gradient(30deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div></div></div>
+            <div style="text-align:center;max-width:150px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Amami woodland</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">TANAKA ISSON · seen TOKYO</div></div>
+          </div>
+          <div data-artist="monet" style="display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer">
+            <div style="padding:12px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 14px 30px rgba(40,28,14,.28)"><div style="width:230px;height:150px;background:linear-gradient(170deg,#89a3ce 0%,#b7c8dd 40%,#e0d4c0 78%,#7f96bd 100%);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:repeating-linear-gradient(26deg,rgba(255,255,255,.06) 0 3px,transparent 3px 9px)"></div><div style="position:absolute;left:34px;top:30px;width:52px;height:52px;border-radius:50%;background:radial-gradient(circle,rgba(240,140,90,.5),transparent 70%)"></div></div></div>
+            <div style="text-align:center;max-width:230px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Impression, Soleil Levant</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">MONET · MARMOTTAN, PARIS</div></div>
+          </div>
+          <div data-artist="monet" style="display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer">
+            <div style="padding:10px;background:linear-gradient(135deg,#c8c2b6,#9a9284);box-shadow:0 12px 26px rgba(40,28,14,.26)"><div style="width:118px;height:190px;background:linear-gradient(160deg,#b8ac98,#847660 55%,#4c4234);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 2px,transparent 2px 10px)"></div></div></div>
+            <div style="text-align:center;max-width:118px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12.5px;color:#241b12">Bronze figure</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a7659;margin-top:3px">RODIN · PARIS</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ---------- MAP ---------- -->
+    <sc-if value="{{ showMap }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;overflow:hidden;background:radial-gradient(120% 100% at 40% 20%,#efe6d3,#e2d4bb 60%,#d3c2a2)">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(120,86,44,.07) 0 1px,transparent 1px 58px),repeating-linear-gradient(90deg,rgba(120,86,44,.07) 0 1px,transparent 1px 58px)"></div>
+      <div style="position:absolute;left:8%;top:24%;width:52%;height:46%;border-radius:48% 52% 55% 45%;background:rgba(150,120,74,.1);filter:blur(30px)"></div>
+      <div style="position:absolute;left:66%;top:30%;width:26%;height:36%;border-radius:52% 48% 45% 55%;background:rgba(150,120,74,.1);filter:blur(30px)"></div>
+      <svg viewBox="0 0 1180 772" style="position:absolute;inset:0;width:100%;height:100%">
+        <path d="M470 340 Q 360 230 300 240" fill="none" stroke="rgba(122,86,44,.4)" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round"></path>
+        <path d="M470 340 Q 520 300 556 285" fill="none" stroke="rgba(122,86,44,.4)" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round"></path>
+        <path d="M556 285 Q 720 200 940 285" fill="none" stroke="rgba(122,86,44,.4)" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round"></path>
+        <path d="M470 340 Q 320 460 210 450" fill="none" stroke="rgba(122,86,44,.4)" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round"></path>
+        <path d="M556 285 Q 620 215 672 172" fill="none" stroke="rgba(122,86,44,.4)" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round"></path>
+      </svg>
+      <div style="position:absolute;top:18px;left:28px;font-family:'Source Serif 4',serif;font-style:italic;font-size:15px;color:#6b5a40">Every work, pinned to where it found me.</div>
+
+      <div data-artist="monet" style="position:absolute;left:470px;top:340px;transform:translate(-50%,-100%) rotate(-3deg);cursor:pointer"><div style="padding:7px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 12px 24px rgba(40,28,14,.3)"><div style="width:132px;height:88px;background:linear-gradient(160deg,#6f8f86,#9db6ad 40%,#c9b9d0 70%,#7d9a94)"></div></div><div style="margin-top:6px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12px;color:#241b12">Nymphéas · Monet</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:#8a7659">L'ORANGERIE · PARIS · 6 WORKS</div></div></div>
+      <div style="position:absolute;left:470px;top:340px;transform:translate(-50%,-50%);width:15px;height:15px;border-radius:50%;background:oklch(0.62 0.16 44);box-shadow:0 0 0 5px oklch(0.62 0.16 44 / 0.2);animation:cvpulse 2.4s ease-in-out infinite"></div>
+
+      <div data-artist="leech" style="position:absolute;left:300px;top:240px;transform:translate(-50%,-100%) rotate(2.5deg);cursor:pointer"><div style="padding:6px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 10px 20px rgba(40,28,14,.28)"><div style="width:104px;height:74px;background:linear-gradient(160deg,#c7c46a,#8fa24a 44%,#d8b24e 76%,#6d7e3a)"></div></div><div style="margin-top:5px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:11.5px;color:#241b12">The Sunshade · Leech</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:#8a7659">IRELAND</div></div></div>
+      <div style="position:absolute;left:300px;top:240px;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:oklch(0.66 0.14 46);box-shadow:0 0 0 4px oklch(0.66 0.14 46 / 0.18)"></div>
+
+      <div data-artist="podkowinski" style="position:absolute;left:556px;top:285px;transform:translate(-50%,-100%) rotate(-2deg);cursor:pointer"><div style="padding:6px;background:linear-gradient(135deg,#3a2418,#1c0f09);box-shadow:0 10px 20px rgba(40,28,14,.32)"><div style="width:80px;height:96px;background:radial-gradient(80% 60% at 55% 30%,#7a1f22,#3a0f14 62%,#160608)"></div></div><div style="margin-top:5px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:11.5px;color:#241b12">Szał uniesień</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:#8a7659">KRAKÓW</div></div></div>
+      <div style="position:absolute;left:556px;top:285px;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:oklch(0.66 0.14 46);box-shadow:0 0 0 4px oklch(0.66 0.14 46 / 0.18)"></div>
+
+      <div data-artist="zorn" style="position:absolute;left:672px;top:172px;transform:translate(-50%,-100%) rotate(3deg);cursor:pointer"><div style="padding:6px;background:linear-gradient(135deg,#e2ddd2,#bdb4a2);box-shadow:0 10px 20px rgba(40,28,14,.24)"><div style="width:82px;height:82px;background:linear-gradient(150deg,#c9a77e,#8a6242 55%,#4a3524)"></div></div><div style="margin-top:5px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:11.5px;color:#241b12">Etching · Zorn</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:#8a7659">STOCKHOLM</div></div></div>
+      <div style="position:absolute;left:672px;top:172px;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:oklch(0.66 0.14 46);box-shadow:0 0 0 4px oklch(0.66 0.14 46 / 0.18)"></div>
+
+      <div data-artist="monet" style="position:absolute;left:210px;top:450px;transform:translate(-50%,-100%) rotate(-2.5deg);cursor:pointer"><div style="padding:6px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 10px 20px rgba(40,28,14,.28)"><div style="width:110px;height:76px;background:linear-gradient(150deg,#4a7a5a,#7fa96e 46%,#c3c07a 82%)"></div></div><div style="margin-top:5px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:11.5px;color:#241b12">Japanese Footbridge · Monet</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:#8a7659">NAT'L GALLERY · WASHINGTON DC</div></div></div>
+      <div style="position:absolute;left:210px;top:450px;transform:translate(-50%,-50%);width:12px;height:12px;border-radius:50%;background:oklch(0.66 0.14 46);box-shadow:0 0 0 4px oklch(0.66 0.14 46 / 0.18)"></div>
+
+      <div data-artist="tanaka" style="position:absolute;left:940px;top:285px;transform:translate(-50%,-100%) rotate(2deg);cursor:pointer"><div style="padding:7px;background:linear-gradient(135deg,#d8bf88,#a07f45);box-shadow:0 12px 24px rgba(40,28,14,.3)"><div style="width:128px;height:86px;background:linear-gradient(155deg,#3c6b52,#6fa06e 44%,#c7d18a 80%,#2f5a44)"></div></div><div style="margin-top:6px"><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:12px;color:#241b12">Water Lilies + Swedish Masters</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:oklch(0.55 0.15 44)">TOKYO METROPOLITAN · FEB 2026 · 3</div></div></div>
+      <div style="position:absolute;left:940px;top:285px;transform:translate(-50%,-50%);width:15px;height:15px;border-radius:50%;background:oklch(0.62 0.16 44);box-shadow:0 0 0 5px oklch(0.62 0.16 44 / 0.2);animation:cvpulse 2.4s ease-in-out infinite"></div>
+
+      <div style="position:absolute;left:28px;bottom:22px;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:#8a7659">◍ pins matched from your location history · bigger = more works seen there</div>
+    </div>
+    </sc-if>
+
+    <!-- ---------- ARTISTS INDEX ---------- -->
+    <sc-if value="{{ showArtists }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;overflow:auto;background:radial-gradient(120% 90% at 50% -10%,#efe7d8,#e4d8c4 60%,#d8c8b0);padding:40px 48px 50px" class="cv-scroll">
+      <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:24px;color:#241b12">Artists in the canon</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8a7659;margin-top:8px">6 tracked · from location history + hand-picked</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px">
+        <sc-for list="{{ artistsList }}" as="ar" hint-placeholder-count="6">
+          <div data-artist="{{ ar.id }}" style="cursor:pointer;background:#fff;border:1px solid rgba(90,60,30,.12);border-radius:9px;overflow:hidden;box-shadow:0 6px 18px rgba(40,28,14,.08)">
+            <div style="height:96px;background:{{ ar.palette }};position:relative"><div style="position:absolute;inset:0;background:repeating-linear-gradient(26deg,rgba(255,255,255,.06) 0 3px,transparent 3px 10px)"></div></div>
+            <div style="padding:14px 15px">
+              <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:16px;color:#241b12">{{ ar.name }}</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a7659;margin-top:5px">{{ ar.meta }}</div>
+              <div style="font-size:12px;color:#6b5a40;margin-top:9px">{{ ar.seenLine }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ---------- ARTIST DETAIL ---------- -->
+    <sc-if value="{{ showArtist }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;overflow-y:auto;background:#141210;color:#e9e2d6" class="cv-scroll">
+      <div style="position:relative;height:340px;background:{{ a.hero }};overflow:hidden">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(28deg,rgba(255,255,255,.05) 0 3px,transparent 3px 11px)"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(0deg,#141210 4%,transparent 60%)"></div>
+        <div data-view="artists" style="position:absolute;left:40px;top:26px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.8);cursor:pointer">← Artists</div>
+        <div style="position:absolute;left:44px;bottom:28px;right:44px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:oklch(0.82 0.11 50)">{{ a.rank }}</div>
+          <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:54px;line-height:1;letter-spacing:-.02em;color:#fff;margin-top:8px">{{ a.name }}</div>
+          <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:16px;color:#d8cfc0;margin-top:8px">{{ a.meta }}</div>
+        </div>
+      </div>
+
+      <div style="padding:32px 44px 0">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:oklch(0.72 0.13 48);margin-bottom:15px">Where you've seen {{ a.pronoun }}</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+          <sc-for list="{{ a.seen }}" as="s" hint-placeholder-count="3">
+            <div style="{{ s.style }}">
+              <div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:14px;color:#f1e7d6">{{ s.museum }}</div>
+              <div style="font-size:11.5px;color:#a2917a;margin-top:3px">{{ s.note }}</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;color:{{ s.tagColor }};margin-top:9px">{{ s.when }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="padding:30px 44px 0">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:oklch(0.72 0.13 48);margin-bottom:6px">See more · from Wikidata holdings</div>
+        <div style="font-size:12px;color:#8a7a63;margin-bottom:14px;font-family:'Source Serif 4',serif;font-style:italic">Where {{ a.possessive }} work hangs that you haven't been yet</div>
+        <div style="display:flex;flex-wrap:wrap;gap:9px">
+          <sc-for list="{{ a.holdings }}" as="h" hint-placeholder-count="4">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;background:#1e1a15;border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:8px 14px;color:#cbbca4">{{ h }}</span>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:28px;padding:30px 44px 44px">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:oklch(0.72 0.13 48);margin-bottom:14px">Similar artists to explore</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <sc-for list="{{ a.similar }}" as="sim" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:12px"><div style="width:38px;height:38px;border-radius:50%;flex:none;background:{{ sim.palette }}"></div><div><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13.5px;color:#f1e7d6">{{ sim.name }}</div><div style="font-size:11px;color:#8a7a63">{{ sim.note }}</div></div></div>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:oklch(0.72 0.13 48);margin-bottom:14px">Masterpieces to chase</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <sc-for list="{{ a.chase }}" as="c" hint-placeholder-count="3">
+              <div style="display:flex;gap:12px;background:#1e1a15;border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:10px">
+                <div style="width:56px;height:44px;flex:none;border-radius:4px;background:{{ c.palette }}"></div>
+                <div><div style="font-family:'Source Serif 4',serif;font-weight:600;font-size:13px;color:#f1e7d6">{{ c.title }}</div><div style="font-size:10.5px;color:{{ c.color }};margin-top:2px">{{ c.note }}</div></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:832},&quot;openTo&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;collage&quot;,&quot;wall&quot;,&quot;map&quot;,&quot;artists&quot;],&quot;default&quot;:&quot;collage&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Prototype&quot;}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { view: (props && props.openTo) || 'collage', artist: 'monet' };
+  }
+
+  G(){
+    return {
+      lily:'linear-gradient(160deg,#6f8f86,#9db6ad 38%,#c9b9d0 66%,#7d9a94)',
+      szal:'radial-gradient(80% 60% at 55% 30%,#7a1f22,#3a0f14 62%,#160608)',
+      sun:'linear-gradient(160deg,#c7c46a,#8fa24a 42%,#d8b24e 74%,#6d7e3a)',
+      zorn:'linear-gradient(150deg,#c9a77e,#8a6242 55%,#4a3524)',
+      beks:'linear-gradient(160deg,#8a7a4a,#5a4a2a 50%,#2a2016)',
+      tanaka:'linear-gradient(155deg,#3c6b52,#6fa06e 44%,#c7d18a 80%,#2f5a44)',
+      impression:'linear-gradient(170deg,#89a3ce,#b7c8dd 40%,#e0d4c0 78%,#7f96bd)',
+      rouen:'linear-gradient(160deg,#e0c98f,#c49a5a 50%,#7a5a34)',
+      hay:'linear-gradient(160deg,#e8c877,#c99a4a 45%,#8a6a3a)',
+      bridge:'linear-gradient(150deg,#4a7a5a,#7fa96e 46%,#c3c07a 82%)',
+      renoir:'linear-gradient(155deg,#e8b89a,#c98a6a 50%,#8a4f3a)',
+      sisley:'linear-gradient(165deg,#9ab6cf,#c7d4dd 45%,#e2d8c4 80%,#7f96ad)',
+      pissarro:'linear-gradient(155deg,#9caf6a,#6a7f42 55%,#3f4f2a)',
+      malczewski:'linear-gradient(150deg,#b0a06a,#7a6a3a 55%,#3f3620)',
+      higashiyama:'linear-gradient(155deg,#5a8faf,#8fb0c0 46%,#c7d1c0 80%)',
+      larsson:'linear-gradient(155deg,#e8c9a0,#c99a6a 50%,#8a6a4a)'
+    };
+  }
+
+  data(){
+    const g = this.G();
+    return {
+      monet: {
+        name:'Claude Monet', meta:'1840–1926 · French · Impressionism', rank:'Your #1 · seen at 5 institutions',
+        hero:g.lily, pronoun:'him', possessive:'his',
+        seen:[
+          {museum:"Musée de l'Orangerie", note:'Paris · the Nymphéas rooms', when:'SEEN 2018, 2023'},
+          {museum:"Musée d'Orsay", note:'Paris', when:'SEEN 2018'},
+          {museum:'Musée Marmottan Monet', note:'Paris · Impression, Soleil Levant', when:'SEEN 2018'},
+          {museum:'National Gallery of Art', note:'Washington DC', when:'SEEN 2024'},
+          {museum:'Tokyo Metropolitan', note:'“Monet: Water Lilies” show', when:'SEEN FEB 2026 · LATEST', latest:true},
+          {museum:'The Met', note:'New York · likely, from location log', when:'UNCONFIRMED — TAP TO VERIFY', unconfirmed:true}
+        ],
+        holdings:['Fondation Beyeler, Basel','Museum of Modern Art, NY','Art Institute of Chicago','National Gallery, London','Giverny (the gardens)'],
+        similar:[
+          {name:'Camille Pissarro', note:'shared the Impressionist circle', palette:g.pissarro},
+          {name:'Alfred Sisley', note:'closest to his light & water', palette:g.sisley},
+          {name:'Pierre-Auguste Renoir', note:'painted alongside him at La Grenouillère', palette:g.renoir}
+        ],
+        chase:[
+          {title:'Impression, Sunrise', note:'✓ seen — Marmottan', palette:g.impression, seen:true},
+          {title:'Rouen Cathedral series', note:'not yet · Orsay & Rouen', palette:g.rouen},
+          {title:'Haystacks (Meules)', note:'not yet · Chicago, Zürich', palette:g.hay}
+        ]
+      },
+      podkowinski: {
+        name:'Władysław Podkowiński', meta:'1866–1895 · Polish · Impressionism / Symbolism', rank:'Seen once · unforgettable',
+        hero:g.szal, pronoun:'him', possessive:'his',
+        seen:[{museum:'National Museum', note:'Kraków · Szał uniesień', when:'SEEN 2019', latest:true}],
+        holdings:['National Museum, Warsaw','National Museum, Poznań'],
+        similar:[
+          {name:'Jacek Malczewski', note:'the other pole of Polish Symbolism', palette:g.malczewski},
+          {name:'Józef Chełmoński', note:'same generation, Polish realism', palette:g.pissarro}
+        ],
+        chase:[{title:'Dzieci na łące', note:'not yet · National Museum, Warsaw', palette:g.sun}]
+      },
+      tanaka: {
+        name:'Tanaka Isson', meta:'1908–1977 · Japanese · Nihonga', rank:'Discovered in Tokyo, 2026',
+        hero:g.tanaka, pronoun:'him', possessive:'his',
+        seen:[{museum:'Tokyo Metropolitan', note:'seen among the collection, Feb 2026', when:'SEEN FEB 2026', latest:true}],
+        holdings:['Tanaka Isson Memorial Museum, Amami','Chiba City Museum of Art'],
+        similar:[{name:'Higashiyama Kaii', note:'lyrical postwar Nihonga', palette:g.higashiyama}],
+        chase:[{title:'Birds & plants of Amami', note:'not yet · the Amami museum', palette:g.tanaka}]
+      },
+      beksinski: {
+        name:'Zdzisław Beksiński', meta:'1929–2005 · Polish · Dystopian surrealism', rank:'On the list to see',
+        hero:g.beks, pronoun:'him', possessive:'his',
+        seen:[],
+        holdings:['Historical Museum, Sanok','Muzeum Beksińskiego'],
+        similar:[{name:'H. R. Giger', note:'shared the biomechanical dread', palette:g.beks}],
+        chase:[{title:'Untitled (the fortress)', note:'not yet · Sanok holds the largest set', palette:g.beks}]
+      },
+      zorn: {
+        name:'Anders Zorn', meta:'1860–1920 · Swedish · Naturalism', rank:'Swedish Masters, Tokyo 2026',
+        hero:g.zorn, pronoun:'him', possessive:'his',
+        seen:[{museum:'Tokyo Metropolitan', note:'“Swedish Masters” exhibition', when:'SEEN FEB 2026', latest:true}],
+        holdings:['Zornmuseet, Mora','Nationalmuseum, Stockholm'],
+        similar:[
+          {name:'Carl Larsson', note:'the other beloved Swedish master', palette:g.larsson},
+          {name:'John Singer Sargent', note:'kindred virtuoso of the brush', palette:g.renoir}
+        ],
+        chase:[{title:'Midsummer Dance', note:'not yet · Nationalmuseum, Stockholm', palette:g.sun}]
+      },
+      leech: {
+        name:'John Leech', meta:'Irish · Post-Impressionism', rank:'Ireland · the lady in green & yellow',
+        hero:g.sun, pronoun:'him', possessive:'his',
+        seen:[{museum:'Seen in Ireland', note:'The Sunshade', when:'SEEN — to pin exact gallery', latest:true}],
+        holdings:['National Gallery of Ireland, Dublin'],
+        similar:[{name:'Roderic O’Conor', note:'Irish post-impressionist', palette:g.renoir}],
+        chase:[]
+      }
+    };
+  }
+
+  pill(active){
+    const base='padding:7px 14px;border-radius:100px;cursor:pointer;transition:all .2s;font-family:\'JetBrains Mono\',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;';
+    return base + (active ? 'background:#241b12;color:#f3ead8' : 'background:transparent;color:#5a4630');
+  }
+
+  go(view, artist){
+    if (artist) this.setState({ view, artist });
+    else this.setState({ view });
+  }
+
+  onStageClick = (e) => {
+    const art = e.target.closest('[data-artist]');
+    if (art){ this.go('artist', art.getAttribute('data-artist')); return; }
+    const nav = e.target.closest('[data-view]');
+    if (nav){ this.go(nav.getAttribute('data-view')); return; }
+  }
+
+  buildArtist(){
+    const raw = this.data()[this.state.artist] || this.data().monet;
+    const a = Object.assign({}, raw);
+    a.seen = raw.seen.map(s => {
+      let style='background:#1e1a15;border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:14px';
+      let tagColor='#6f6250';
+      if (s.latest){ style='background:linear-gradient(#241d14,#1e1a15);border:1px solid oklch(0.7 0.14 46 / 0.4);border-radius:7px;padding:14px'; tagColor='oklch(0.78 0.12 50)'; }
+      return Object.assign({}, s, { style, tagColor });
+    });
+    a.chase = raw.chase.map(c => Object.assign({}, c, { color: c.seen ? '#8a7a63' : 'oklch(0.72 0.12 50)' }));
+    a.hasSimilar = raw.similar.length > 0;
+    a.hasChase = raw.chase.length > 0;
+    return a;
+  }
+
+  artistsList(){
+    const d = this.data();
+    const order = ['monet','podkowinski','tanaka','zorn','beksinski','leech'];
+    return order.map(id => {
+      const x = d[id];
+      const seenN = x.seen.length;
+      return {
+        id, name:x.name, palette:x.hero,
+        meta: x.meta.split(' · ').slice(1).join(' · ') || x.meta,
+        seenLine: seenN ? ('Seen at ' + seenN + (seenN===1?' place':' places')) : 'On the list to see'
+      };
+    });
+  }
+
+  renderVals(){
+    const v = this.state.view;
+    return {
+      onStageClick: this.onStageClick,
+      nav: {
+        collage: this.pill(v==='collage'),
+        wall: this.pill(v==='wall'),
+        map: this.pill(v==='map'),
+        artists: this.pill(v==='artists' || v==='artist')
+      },
+      showCollage: v==='collage',
+      showWall: v==='wall',
+      showMap: v==='map',
+      showArtists: v==='artists',
+      showArtist: v==='artist',
+      a: this.buildArtist(),
+      artistsList: this.artistsList()
+    };
+  }
+}
+</script>
+</body>
+</html>
