@@ -47,6 +47,11 @@ Memento deliberately left as `mindbending`.
   (see funny_taxonomy.md).
 
 ## Features (bigger)
+- **Insight expansions / narrative layer** — full proposal in `docs/AUDIT_2026-07.md` §8
+  (2026-07-07): Stories for Culture (watching eras, director-binge obsession curves,
+  on-this-day) · the notes corpus as data ("your critical voice") · mood & impact diet
+  (script_mood × ratings; badge impact-family timeline) · **hub-level Rotation × Culture
+  joins** (soundtrack bridge, binge × listening) · cross-medium thematic twins.
 - **Cover-colour sort + palette features** — full proposal parked in `color_sort_ideas.md`
   (gradient stack, colour-wheel stat, ambient tint, colour filter). MVP = precompute overlay.
 - **Outward Discovery tab** — Library / Wishlist / Discover, from TMDB recommendations minus
