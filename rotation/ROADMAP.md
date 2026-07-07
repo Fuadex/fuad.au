@@ -187,6 +187,42 @@ Design notes: keep it **behind a toggle/opt-in** so first paint never pays for i
 from data already in the CSV + tag caches (no new API); size-gate each tier (build-data prints
 sizes). Sequence after the Phase 3 sessions layer. A neat "richer on request" win, not urgent.
 
+**◆ Phase 4+ · INSIGHT EXPANSIONS (Fable proposal, accepted for the roadmap 2026-07-07).**
+The market gap Rotation already owns is *derived narrative* (sessions, eras, obsessions, reads)
+vs. everyone else's mirrored charts. These deepen that moat; ranked by insight-per-effort, and
+the top three run **entirely on data already in the repo** (no new API risk):
+1. **Discovery genealogy** — *"how did I get here?"* Every artist has a first-play date and
+   SESSIONS knows what surrounded it → infer who introduced whom ("found Ocean Grove 3/2021,
+   in a session that started with Northlane"), chainable into a family tree of taste. Gives
+   the eras story its missing *causal* layer. No platform on the market derives this. (cheap)
+2. **Lyrical diet** — *"what do I listen ABOUT?"* Aggregate the interpretive corpus (~7k haiku
+   gists + 52 Fable reads) into theme shares — self-liberation vs broken trust vs grief vs
+   defiance — and track the mix across eras/calendar (did the trust-betrayal cluster spike in
+   a given year?). Uniquely possible here: nobody else has interpretations. (cheap)
+3. **Taste fingerprint** — *"why do I like what I like?"* Distill audio features into explicit
+   sweet-spot bands (energy/valence/tempo/keys/modes), show it as a fingerprint, then score
+   any album page against it ("89% inside your comfort zone; the outliers are…"). Obscurify
+   gestures at this; 315k scrobbles can do it properly. (cheap-ish)
+4. **Time features** (one data pass covers all): **On this day** (what you were obsessed with
+   on this date in 2013/2017/2021 — a daily reason to return) · **Dormant favorites / time
+   capsule** (>200 plays, zero in 3 years → "worth a revisit"; seasonality can *predict*
+   returns: "Type O is a November artist for you — it's October") · **Year permalinks**
+   (`#/year/2019` as a full wrapped page, shareable any day of the year). (cheap)
+5. **Gig effect** (needs setlist.fm): join GIGS × scrobbles — how a concert bends the
+   play-curve before/after; which songs you heard live before you loved them.
+6. **Share cards** — any insight rendered to PNG (canvas/SVG). Wrapped's genius was the cards,
+   not the stats; portability is how better insights actually beat incumbents. (moderate;
+   overlaps the parked "wrapped mode" above.)
+**Anti-goals (deliberate):** no social/accounts (breaks static architecture, little insight),
+no general rec engine (post-2026 Spotify API too fragile — recommend from the user's OWN
+dormant/adjacent catalogue instead = dig-list done right), no real-time anything.
+
+**◆ Fable difficult-queue status (2026-07-07):** near-disjoint tier (mean ≤0.03) **cleared**
+(14/14). Strong-disagreement tier (≤0.06): 24/109 done → **85 remaining** (next up: Why Try,
+Sky is Over, Delete Rewind, Blood for Blood, Hacker, Angry Inch, Dystopia…). Broader ≤0.10
+band: 378 more. Caveat: divergence is only measurable on the ~1,005 batch-pool songs with all
+three reads — the 270-track promotion backlog is separate, unscored material.
+
 ### Phase 5 · THE TEMPLATE — "Rotation for anyone" (open-source, ~3–4 sessions)
 The packaging plan (expands M6; every earlier phase feeds it):
 1. **Extract `rotation-template`** (new public repo): code only — build-data.js, sync
