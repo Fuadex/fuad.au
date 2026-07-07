@@ -43,7 +43,7 @@
       "deploy": [
         "index.html", "culture-v2.jsx", "culture.css",
         "data.js", "imports.js", "wishlist.js",
-        "cast_data.js", "wishlist_cast.js", "wishlist_pred.js", "omdb_data.js", "books_data.js",
+        "cast_data.js", "wishlist_cast.js", "wishlist_pred.js", "wishlist_blurbs.js", "omdb_data.js", "books_data.js",
         "game_imdb.js", "filmweb_notes.js", "notes_en.js", "tmdb_data.js", "badges.js",
         "script_mood.js"
       ]

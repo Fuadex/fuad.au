@@ -26,7 +26,8 @@ window.CULTURE_BADGES = {
   "cerebral"
  ],
  "antichamber": [
-  "formal-exec"
+  "formal-exec",
+  "haunting"
  ],
  "aot": [
   "horrifying"
@@ -71,7 +72,8 @@ window.CULTURE_BADGES = {
  "black-mirror": [
   "ahead",
   "horrifying",
-  "social-xray"
+  "social-xray",
+  "haunting"
  ],
  "blade-runner-2049": [
   "impact",
@@ -743,6 +745,9 @@ window.CULTURE_BADGES = {
   "bittersweet",
   "funny",
   "visuals"
+ ],
+ "spec-ops": [
+  "haunting"
  ],
  "spider-verse": [
   "impact",

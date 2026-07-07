@@ -22,7 +22,8 @@
   "cerebral"
  ],
  "antichamber": [
-  "formal-exec"
+  "formal-exec",
+  "haunting"
  ],
  "aot": [
   "horrifying"
@@ -67,7 +68,8 @@
  "black-mirror": [
   "ahead",
   "horrifying",
-  "social-xray"
+  "social-xray",
+  "haunting"
  ],
  "blade-runner-2049": [
   "impact",
@@ -739,6 +741,9 @@
   "bittersweet",
   "funny",
   "visuals"
+ ],
+ "spec-ops": [
+  "haunting"
  ],
  "spider-verse": [
   "impact",

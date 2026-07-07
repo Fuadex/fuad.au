@@ -874,7 +874,7 @@ function MyTaste({ items }) {
 // ─────────── Halls (Stats → "Halls" tab) — curated best-of by marquee badge + legend ───────────
 function Halls({ items, onOpenItem }) {
   const HALLS = [
-    ['cognitive',   'The Cognitive Shift',  'Work that changed how you see the world — or the medium itself.'],
+    ['cognitive',   'The Cognitive Shift',  'Work that changed how you see the world, the medium itself — or one concrete thing, forever (world-lens · medium-lens · close-lens).'],
     ['formal-exec', 'Formal Execution',     'A chosen constraint, pushed to its absolute limit.'],
     ['singular',    'One of a Kind',        'Unrepeatable objects that fit no formula and no genre.'],
     ['ahead',       'Ahead of Its Time',    'They saw it coming before everyone else did.'],
@@ -1130,7 +1130,8 @@ function enrichExtras(item) {
   const addBadges = (window.CULTURE_BADGES || {})[item.id];  // curated badge additions
   const scriptMood = (window.CULTURE_SCRIPT_MOOD || {})[item.id]; // NRC dialogue mood {v,e,m}
   const pred = (window.CULTURE_PREDICT || {})[item.id];      // predicted rating + reasons (wishlist)
-  if (!omdb && !book && !gameTt && !fwNote && !noteEn && !tmdb && !addBadges && !scriptMood && !pred) return item;
+  const blurb = (window.CULTURE_WISHLIST_BLURBS || {})[item.id]; // Fable why-watch blurb (wishlist items without a note)
+  if (!omdb && !book && !gameTt && !fwNote && !noteEn && !tmdb && !addBadges && !scriptMood && !pred && !blurb) return item;
   const out = book ? { ...item, ...book } : { ...item };
   if (scriptMood) out.scriptMood = scriptMood;
   if (pred) { out.pred = pred.pred; out.predWhy = pred.why; }
@@ -1140,6 +1141,7 @@ function enrichExtras(item) {
   }
   if (gameTt && !out.imdbUrl) out.imdbUrl = `https://www.imdb.com/title/${gameTt}/`;
   if (fwNote && !out.note) out.note = fwNote;
+  if (blurb && !out.note) out.note = blurb;
   if (noteEn) out.noteEn = noteEn;
   if (tmdb && !out.summary) out.summary = tmdb;
   if (addBadges) out.highlights = [...new Set([...(out.highlights || []), ...addBadges])];
@@ -1236,9 +1238,10 @@ const HIGHLIGHTS = {
   acting:       { emoji: '🎭', label: 'Powerhouse performances', desc: 'Carried by its performances.' },
   score:        { emoji: '🎵', label: 'Unforgettable score', desc: 'The music you keep hearing after.' },
   mindbending:  { emoji: '🌀', label: 'Mind-bending', desc: 'Disorients while you watch — structure, twist, reality games. The effect stays inside the work.' },
-  gem:          { emoji: '💎', label: 'Gem', desc: 'A gem.' },
+  gem:          { emoji: '💎', label: 'Gem', desc: 'A personal treasure — loved far beyond its fame; the ones you press into people’s hands.' },
   devastating:  { emoji: '💔', label: 'Emotionally devastating', desc: 'Earned emotional demolition — devastation with craft behind it.' },
   impact:       { emoji: '💥', label: 'Impactful', desc: 'Visceral in-the-moment force — a gut- or face-punch.' },
+  haunting:     { emoji: '🌫️', label: 'Haunting', desc: 'It kept working on you for weeks after — thematic residue, not a scare.' },
   funny:        { emoji: '😂', label: 'Genuinely funny', desc: 'Made you laugh, repeatedly.' },
   bittersweet:  { emoji: '🥲', label: 'Funny through tears', desc: 'Laughter laced with ache.' },
   satire:       { emoji: '🗯️', label: 'Satire', desc: 'Pointed social or political bite — the comic edge of the social x-ray.' },
@@ -1252,7 +1255,7 @@ const HIGHLIGHTS = {
   thrilling:    { emoji: '⚡', label: 'Pure adrenaline', desc: 'Propulsive, edge-of-seat.' },
   ahead:        { emoji: '🕰️', label: 'Ahead of its time', desc: 'Saw it coming before everyone else.' },
   singular:     { emoji: '🃏', label: 'One-of-a-kind', desc: 'An unrepeatable object — no formula, no genre slot.' },
-  cognitive:    { emoji: '🪞', label: 'A cognitive shift', desc: 'A shift you kept — you see the world, or the medium, differently a month later.' },
+  cognitive:    { emoji: '🪞', label: 'A cognitive shift', desc: 'A shift you kept — you see the world, the medium, or one concrete thing differently a month later.' },
   worldbuilding:{ emoji: '🗺️', label: 'A world unto itself', desc: 'A place complete enough to live in.' },
   'social-xray':{ emoji: '🔬', label: 'Social x-ray', desc: 'Dissects a society, class or institution under pressure.' },
   'formal-exec':{ emoji: '📐', label: 'Formal execution', desc: 'A chosen constraint, pushed to its limit — the format is the achievement.' },
