@@ -74930,5 +74930,747 @@ window.CULTURE_WISHLIST_CAST = {
     "productionCompanies": [
       "Croteam"
     ]
+  },
+  "wl-f-fbl2-oasis": {
+    "cast": [
+      "Sul Kyung-gu",
+      "Moon So-ri",
+      "Ahn Nae-sang",
+      "Ryoo Seung-wan",
+      "Son Byung-ho",
+      "Kim Jin-goo",
+      "Chu Gwi-jeong",
+      "Yoon Ga-hyun",
+      "Park Myung-shin",
+      "Park Kyung-geun",
+      "Han Jin-seob",
+      "Han Dae-gwan",
+      "Go Seo-hee",
+      "Park Gil-su",
+      "Lee Byung-chul",
+      "Lee Jong-woo",
+      "Kang Joon-seok",
+      "Ra Jae-hoon",
+      "Kwon Hyeok-pung",
+      "Kim Do-young",
+      "Lee Yang-hee",
+      "Lee Hoo-yeon"
+    ],
+    "cinematographer": "Choi Yeong-taek",
+    "composer": "Lee Jae-jin",
+    "writer": "Lee Chang-dong",
+    "productionCompanies": [
+      "UniKorea Pictures",
+      "Dream Venture Capital",
+      "East Film",
+      "CJ Entertainment"
+    ],
+    "tags": [
+      "hit-and-run",
+      "disabled",
+      "cerebral palsy",
+      "abandoned",
+      "prison release"
+    ],
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/aaajiBpeBVbVwovpSQKaMfKRGKw.jpg",
+    "region": "kr",
+    "director": "Lee Chang-dong",
+    "runtime": 132,
+    "tmdbRating": 7.7,
+    "providers": [
+      "IndieFlix",
+      "Metrograph",
+      "Film Movement Plus",
+      "Film Movement Plus Amazon Channel"
+    ]
+  },
+  "wl-f-fbl2-festen": {
+    "cast": [
+      "Ulrich Thomsen",
+      "Henning Moritzen",
+      "Thomas Bo Larsen",
+      "Paprika Steen",
+      "Birthe Neumann",
+      "Trine Dyrholm",
+      "Helle Dolleris",
+      "Therese Glahn",
+      "Klaus Bondam",
+      "Bjarne Henriksen",
+      "Gbatokai Dakinah",
+      "Lasse Lunderskov",
+      "Lars Brygmann",
+      "Lene Laub Oksen",
+      "Linda Laursen",
+      "John Boas",
+      "Erna Boas",
+      "Bent Henningsen",
+      "Poul Kajbæk",
+      "Vibeke Dalset",
+      "Janne Thomsen",
+      "Anette Jakobsen"
+    ],
+    "cinematographer": "Anthony Dod Mantle",
+    "composer": "Lars Bo Jensen",
+    "writer": "Thomas Vinterberg, Mogens Rukov",
+    "productionCompanies": [
+      "DR",
+      "SVT",
+      "Nimbus Film"
+    ],
+    "tags": [
+      "daughter",
+      "depression",
+      "infidelity",
+      "child abuse",
+      "suicide",
+      "parent child relationship",
+      "birthday",
+      "country house",
+      "twin sister",
+      "trauma",
+      "racism",
+      "family reunion",
+      "denial",
+      "lecture",
+      "death of sister",
+      "drunkenness",
+      "dinner party",
+      "angry",
+      "kids",
+      "child sexual abuse",
+      "dramatic",
+      "dogme 95",
+      "intense",
+      "depressing"
+    ],
+    "genres": [
+      "Drama"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/2LRzNq41yrY8EjCnD1S8sCCPvKk.jpg",
+    "region": "dk",
+    "director": "Thomas Vinterberg",
+    "runtime": 101,
+    "tmdbRating": 7.7,
+    "providers": [
+      "Criterion Channel",
+      "MUBI Amazon Channel"
+    ]
+  },
+  "wl-f-fbl2-man-bites-dog": {
+    "cast": [
+      "Benoît Poelvoorde",
+      "Rémy Belvaux",
+      "André Bonzel",
+      "Jacqueline Poelvoorde-Pappaert",
+      "Valérie Parent",
+      "Édith Le Merdy",
+      "Jenny Drye",
+      "Malou Madou",
+      "Willy Vandenbroeck",
+      "Nelly Pappaert",
+      "Hector Pappaert",
+      "Rachel Deman",
+      "André Laime",
+      "Sylviane Godé",
+      "Zoltan Tobolik",
+      "Alexandra Fandango",
+      "Olivier Cotica",
+      "Benoît Mariage"
+    ],
+    "cinematographer": "André Bonzel",
+    "composer": "Jean-Marc Chenut",
+    "writer": "André Bonzel, Benoît Poelvoorde",
+    "productionCompanies": [
+      "Les Artistes Anonymes"
+    ],
+    "tags": [
+      "movie business",
+      "dark comedy",
+      "mockumentary",
+      "serial killer",
+      "brutality",
+      "found footage",
+      "arab",
+      "crime",
+      "found footage adjacent"
+    ],
+    "genres": [
+      "Comedy",
+      "Crime"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/uRVI98a6MxdLkpsXM8LqIM9W7XZ.jpg",
+    "region": "eu",
+    "director": "Rémy Belvaux",
+    "runtime": 96,
+    "tmdbRating": 7.2,
+    "providers": [
+      "YouTube TV",
+      "Criterion Channel",
+      "HBO Max"
+    ]
+  },
+  "wl-f-fbl2-blow-out": {
+    "cast": [
+      "John Travolta",
+      "Nancy Allen",
+      "John Lithgow",
+      "Dennis Franz",
+      "Peter Boyden",
+      "John Aquino",
+      "John McMartin",
+      "Deborah Everton",
+      "J. Patrick McNamara",
+      "Roger Wilson",
+      "Missy Cleveland",
+      "Curt May",
+      "Lori-Nan Engler",
+      "Barbara Sigel",
+      "David De Felice",
+      "Roberto Lombardi",
+      "Missy Crutchfield",
+      "Cindy Manion",
+      "Marcy Bigelman",
+      "Ann Kelly",
+      "Dean Bennett",
+      "John Coppolino Jr."
+    ],
+    "cinematographer": "Vilmos Zsigmond",
+    "composer": "Pino Donaggio",
+    "writer": "Brian De Palma, Bill Mesce Jr.",
+    "productionCompanies": [
+      "Cinema 77",
+      "Geria Productions",
+      "George Litto Productions",
+      "Viscount Associates"
+    ],
+    "tags": [
+      "philadelphia, pennsylvania",
+      "hitman",
+      "presidential election",
+      "politics",
+      "audio tape",
+      "paranoia",
+      "faithlessness",
+      "yell",
+      "conspiracy",
+      "tape recorder",
+      "whodunit",
+      "car accident",
+      "audio recording",
+      "sound effect",
+      "neo-noir",
+      "political thriller",
+      "noise",
+      "grand",
+      "giallo"
+    ],
+    "genres": [
+      "Crime",
+      "Mystery",
+      "Thriller"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/uFzMscVLDrTaYd6KXOXlr6dly7w.jpg",
+    "region": "us",
+    "director": "Brian De Palma",
+    "runtime": 108,
+    "tmdbRating": 7.4,
+    "providers": [
+      "MGM Amazon Channel"
+    ]
+  },
+  "wl-f-fbl2-barking-dogs": {
+    "cast": [
+      "Lee Sung-jae",
+      "Bae Doona",
+      "Kim Ho-jung",
+      "Byun Hee-bong",
+      "Koh Soo-hee",
+      "Kim Roi-ha",
+      "Kim Jin-goo",
+      "Im Sang-soo",
+      "Seong Jeong-seon",
+      "Jae-ha Jo",
+      "Chae-rin Hwang",
+      "Sookyung Lee",
+      "Kwon Hyeok-pung",
+      "Yeongi Lee",
+      "Yong-ok Kim",
+      "Se-Geum Oh",
+      "Seong-hae Kang",
+      "Jin-won Lee"
+    ],
+    "cinematographer": "Cho Yong-kyu",
+    "composer": "Cho Sung-woo",
+    "writer": "Bong Joon Ho, Song Ji-ho",
+    "productionCompanies": [
+      "CJ Entertainment",
+      "Cinema Service",
+      "Sidus"
+    ],
+    "tags": [
+      "dog",
+      "apartment complex",
+      "lost dog"
+    ],
+    "genres": [
+      "Comedy",
+      "Crime",
+      "Drama"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/msLr6T2RhqZNZtdCZScAA8nOWbU.jpg",
+    "region": "kr",
+    "director": "Bong Joon Ho",
+    "runtime": 110,
+    "tmdbRating": 6.8,
+    "providers": [
+      "Philo",
+      "Magnolia Selects Amazon Channel",
+      "Monsters and Nightmares Amazon Channel"
+    ]
+  },
+  "wl-f-fbl2-riders-of-justice": {
+    "cast": [
+      "Mads Mikkelsen",
+      "Nikolaj Lie Kaas",
+      "Lars Brygmann",
+      "Nicolas Bro",
+      "Andrea Heick Gadeberg",
+      "Gustav Lindh",
+      "Roland Møller",
+      "Albert Rudbeck Lindhardt",
+      "Morten Suurballe",
+      "Jesper Ole Feit Andersen",
+      "Jacob Lohmann",
+      "Rikke Louise Andersson",
+      "Gustav Dyekjær Giese",
+      "Klaus Messerschmidt Juhler",
+      "Henrik Noël Olesen",
+      "Anne Birgitte Lind",
+      "Omar Shargawi",
+      "Peder Holm Johansen",
+      "Christina Ibsen Meyer",
+      "Jesper Groth",
+      "Stine Schrøder Jensen",
+      "Natali Vallespir Sand"
+    ],
+    "cinematographer": "Kasper Tuxen",
+    "composer": "Jeppe Kaas",
+    "writer": "Anders Thomas Jensen",
+    "productionCompanies": [
+      "Zentropa International Sweden",
+      "Zentropa Entertainments",
+      "Film i Väst"
+    ],
+    "tags": [
+      "mathematics",
+      "train accident",
+      "revenge",
+      "train",
+      "father daughter relationship"
+    ],
+    "genres": [
+      "Action",
+      "Comedy",
+      "Drama",
+      "Thriller"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/sshNnwmQLk720iBQ0dZg3GVGKfK.jpg",
+    "region": "dk",
+    "director": "Anders Thomas Jensen",
+    "runtime": 116,
+    "tmdbRating": 7.3,
+    "providers": [
+      "CDA Premium",
+      "Polsat Box Go"
+    ]
+  },
+  "wl-f-fbl2-hard-to-be-a-god": {
+    "cast": [
+      "Leonid Yarmolnik",
+      "Yuriy Tsurilo",
+      "Natalya Moteva",
+      "Aleksandr Chutko",
+      "Evgeniy Gerchakov",
+      "Pyotr Merkuryev",
+      "Juris Lauciņš",
+      "Vytautas Paukste",
+      "Konstantin Vorobyov",
+      "Aleksandr Cherednik",
+      "Valentin Golubenko",
+      "Konstantin Bykov",
+      "Yuriy Dumchev",
+      "Aleksandr Karpukhov",
+      "Aleksandr Ronis",
+      "Anvar Libabov",
+      "Aleksandr Levit",
+      "Vladimir Rozygraev",
+      "Dmitri Karpov",
+      "Andrey Obarukhin",
+      "Ramis Ibragimov",
+      "Evgeniy Vazhenin"
+    ],
+    "cinematographer": "Yury Klimenko",
+    "composer": "Viktor Lebedev",
+    "writer": "Boris Strugatskiy, Arkadiy Strugatskiy",
+    "productionCompanies": [
+      "Sever Studio",
+      "Russia 1",
+      "Lenfilm"
+    ],
+    "tags": [
+      "based on novel or book",
+      "dystopia",
+      "murder",
+      "execution",
+      "planet",
+      "grimdark",
+      "medieval times"
+    ],
+    "genres": [
+      "Drama",
+      "Science Fiction"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/ivdmKR9K56nxfhWwA5k2UQnyeFK.jpg",
+    "region": "ru",
+    "director": "Aleksei German",
+    "runtime": 177,
+    "tmdbRating": 6.5
+  },
+  "wl-f-fbl2-columbus": {
+    "cast": [
+      "John Cho",
+      "Haley Lu Richardson",
+      "Michelle Forbes",
+      "Rory Culkin",
+      "Parker Posey",
+      "Erin Allegretti",
+      "Shani Salyers Stiles",
+      "Reen Vogel",
+      "Rosalyn R. Ross",
+      "Lindsey Shope",
+      "Jem Cohen",
+      "Caitlin Ewald",
+      "Jim Dougherty",
+      "Joseph Anthony Foronda",
+      "Alphaeus Green, Jr.",
+      "Wynn Reichert"
+    ],
+    "cinematographer": "Elisha Christian",
+    "composer": "Marc Byrd",
+    "writer": "Kogonada",
+    "productionCompanies": [
+      "Nonetheless Productions",
+      "Depth of Field",
+      "Superlative Films"
+    ],
+    "tags": [
+      "small town",
+      "indiana, usa",
+      "coma",
+      "library",
+      "heart attack",
+      "melancholy",
+      "hospital",
+      "architecture",
+      "east asian lead",
+      "intercultural relationship",
+      "meditative",
+      "candid",
+      "american midwest",
+      "korean american",
+      "addiction recovery",
+      "father son relationship",
+      "mother daughter relationship",
+      "serene",
+      "korean",
+      "asian american",
+      "wistful",
+      "intimate",
+      "admiring",
+      "appreciative",
+      "awestruck",
+      "earnest",
+      "gentle"
+    ],
+    "genres": [
+      "Drama"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/3ZE5Wl3CdfUH4BkWRmyMKPHkWHx.jpg",
+    "region": "us",
+    "director": "Kogonada",
+    "runtime": 104,
+    "tmdbRating": 7.1
+  },
+  "wl-f-fbl2-petite-maman": {
+    "cast": [
+      "Joséphine Sanz",
+      "Gabrielle Sanz",
+      "Nina Meurisse",
+      "Stéphane Varupenne",
+      "Margot Abascal",
+      "Florès Cardo",
+      "Josée Schuller",
+      "Guylène Péan"
+    ],
+    "cinematographer": "Claire Mathon",
+    "composer": "Para One",
+    "writer": "Céline Sciamma",
+    "productionCompanies": [
+      "Lilies Films",
+      "France 3 Cinéma"
+    ],
+    "tags": [
+      "grief",
+      "magic realism",
+      "childhood",
+      "woman director",
+      "mother daughter relationship"
+    ],
+    "genres": [
+      "Drama",
+      "Fantasy"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/fxl2ARZO2vRfUGDfqSz2bostauE.jpg",
+    "region": "fr",
+    "director": "Céline Sciamma",
+    "runtime": 72,
+    "tmdbRating": 7.1,
+    "providers": [
+      "Polsat Box Go",
+      "TVP"
+    ]
+  },
+  "wl-f-fbl2-vast-of-night": {
+    "cast": [
+      "Sierra McCormick",
+      "Jake Horowitz",
+      "Bruce Davis",
+      "Gail Cronauer",
+      "Cheyenne Barton",
+      "Mark Banik",
+      "Gregory Peyton",
+      "Adam Dietrich",
+      "Mallorie Rodak",
+      "Mollie Milligan",
+      "Ingrid Fease",
+      "Brandon Stewart",
+      "Kirk Griffith",
+      "Nika Sage McKenna",
+      "Brett Brock",
+      "Pam Dougherty",
+      "Lynn Blackburn",
+      "Richard Jackson",
+      "James Mayberry",
+      "Nicolette Doke",
+      "Grant James",
+      "Libby Villari"
+    ],
+    "cinematographer": "M.I. Littin-Menz",
+    "composer": "Jared Bulmer",
+    "productionCompanies": [
+      "GEO Media"
+    ],
+    "tags": [
+      "small town",
+      "new mexico",
+      "basketball",
+      "ufo",
+      "tape recorder",
+      "radio show",
+      "phone call",
+      "1950s",
+      "telephone switchboard operator",
+      "audio static"
+    ],
+    "genres": [
+      "Drama",
+      "Mystery",
+      "Science Fiction",
+      "Thriller"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/q2P9lYkctl5Ory71HEBMaFxbVlD.jpg",
+    "region": "us",
+    "director": "Andrew Patterson",
+    "runtime": 91,
+    "tmdbRating": 6.6,
+    "providers": [
+      "Amazon Prime Video"
+    ]
+  },
+  "wl-f-fbl2-painted-bird": {
+    "cast": [
+      "Petr Kotlár",
+      "Nina Šunevič",
+      "Alla Sokolova",
+      "Udo Kier",
+      "Michaela Doležalová",
+      "Stellan Skarsgård",
+      "Harvey Keitel",
+      "Julian Sands",
+      "Júlia Vidrnáková",
+      "Lech Dyblik",
+      "Aleksei Kravchenko",
+      "Barry Pepper",
+      "Petr Vaněk",
+      "Radim Fiala",
+      "Jitka Čvančarová",
+      "Tim Kalkhof",
+      "Alexander Leopold Schank",
+      "Filip Kaňkovský",
+      "Milan Šimáček",
+      "Pavel Kříž",
+      "Dominik Weber",
+      "Štěpán Havlín"
+    ],
+    "cinematographer": "Vladimír Smutný",
+    "writer": "Jerzy Kosiński, Václav Marhoul",
+    "productionCompanies": [
+      "Silver Screen",
+      "Česká televize",
+      "innogy Česká republika",
+      "Directory Films",
+      "PubRes",
+      "RTVS",
+      "CertiCon",
+      "Monte Rosso Production"
+    ],
+    "tags": [
+      "child abuse",
+      "based on novel or book",
+      "war crimes",
+      "fairy tale",
+      "jewish ghetto",
+      "holocaust (shoah)",
+      "world war ii",
+      "german-polish border",
+      "sexual violence",
+      "german occupation",
+      "brutal death",
+      "violent death",
+      "poland",
+      "nazi occupation",
+      "nazi invasion",
+      "historical drama",
+      "1940s",
+      "russian occupation",
+      "child protagonist",
+      "german history",
+      "20th century"
+    ],
+    "genres": [
+      "War",
+      "Drama",
+      "Thriller"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/wfuh6vTYLGspvkYoBy8GCaJx9Ur.jpg",
+    "region": "eu",
+    "director": "Václav Marhoul",
+    "runtime": 169,
+    "tmdbRating": 7.1,
+    "providers": [
+      "AMC Plus Apple TV Channel ",
+      "AMC+ Amazon Channel",
+      "AMC+",
+      "YouTube TV",
+      "Philo",
+      "Sundance Now"
+    ]
+  },
+  "wl-s-fbl2-review": {
+    "cast": [
+      "Andy Daly",
+      "Megan Stevenson",
+      "Jessica St. Clair",
+      "James Urbaniak",
+      "Tara Karsian",
+      "H. Michael Croner",
+      "Kaden Gibson",
+      "Max Gail",
+      "Fred Willard",
+      "Mason Dye",
+      "Hayley Huntley",
+      "Lennon Parham",
+      "Allison Tolman",
+      "Joseph Salazar",
+      "Darcy Shean",
+      "Christopher Wolfe",
+      "Ashley French",
+      "Julie Brister",
+      "Andy Richter",
+      "Emo Philips",
+      "Lance Bass",
+      "Mary Birdsong"
+    ],
+    "productionCompanies": [
+      "Abso Lutely Productions",
+      "Andrew Daly Productions",
+      "Comedy Central"
+    ],
+    "tags": [
+      "mockumentary",
+      "critic",
+      "tv host"
+    ],
+    "genres": [
+      "Comedy"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/igseZf0ClaW0kzqnAIORuXjNxkR.jpg",
+    "region": "us",
+    "director": "Andy Daly",
+    "runtime": 23,
+    "tmdbRating": 7.5
+  },
+  "wl-s-fbl2-twin-peaks-return": {
+    "region": "eu"
+  },
+  "wl-g-fbl2-citizen-sleeper": {
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4zl5.jpg",
+    "igdbGenres": "Role-playing (RPG), Adventure, Indie",
+    "igdbRating": 80,
+    "tags": [
+      "Science fiction",
+      "cyberpunk",
+      "futuristic",
+      "space",
+      "story rich",
+      "hand-drawn",
+      "choices matter",
+      "conversation",
+      "previously on - luna plus"
+    ],
+    "igdbSummary": "Roleplaying in the ruins of interplanetary capitalism. Live the life of an escaped worker, washed-up on a lawless station at the edge of an interstellar society. Inspired by the flexibility and freedom of TTRPGs, explore the station, choose your friends, escape your past and change your future.",
+    "igdbFranchise": "Citizen Sleeper",
+    "studio": "Jump Over the Age",
+    "productionCompanies": [
+      "Jump Over the Age"
+    ]
+  },
+  "wl-g-fbl2-slay-the-princess": {
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co501b.jpg",
+    "igdbGenres": "Point-and-click, Role-playing (RPG), Adventure, Indie, Visual Novel",
+    "igdbRating": 76,
+    "tags": [
+      "Horror",
+      "Thriller",
+      "Comedy",
+      "Drama",
+      "Mystery",
+      "Romance",
+      "choices matter",
+      "branching paths",
+      "narrative adventure",
+      "early branching plot",
+      "multi-selection choices",
+      "dynamic narrative"
+    ],
+    "igdbSummary": "You're here to slay the princess. Don't believe her lies.\n\nSlay the Princess is a choice-driven psychological horror visual novel with dramatic branching, light RPG elements, and hand-penciled art.",
+    "studio": "Black Tabby Games",
+    "productionCompanies": [
+      "Black Tabby Games"
+    ]
   }
 };
