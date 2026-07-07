@@ -3,6 +3,9 @@
 // `highlights` at runtime (enrichExtras). 🪞 cognitive · 💀 horrifying ·
 // 🧠 cerebral … Edit badges_source.json then re-run: python build_badges.py
 window.CULTURE_BADGES = {
+ "12-angry-men": [
+  "formal-exec"
+ ],
  "1984": [
   "ahead"
  ],
@@ -11,6 +14,7 @@ window.CULTURE_BADGES = {
   "score"
  ],
  "age-of-success": [
+  "gem",
   "satire"
  ],
  "angels-egg": [
@@ -20,6 +24,9 @@ window.CULTURE_BADGES = {
  "animal-farm": [
   "ahead",
   "cerebral"
+ ],
+ "antichamber": [
+  "formal-exec"
  ],
  "aot": [
   "horrifying"
@@ -31,7 +38,8 @@ window.CULTURE_BADGES = {
  "atlanta": [
   "absurdist",
   "funny",
-  "satire"
+  "satire",
+  "social-xray"
  ],
  "avatar-tla": [
   "funny",
@@ -62,7 +70,8 @@ window.CULTURE_BADGES = {
  ],
  "black-mirror": [
   "ahead",
-  "horrifying"
+  "horrifying",
+  "social-xray"
  ],
  "blade-runner-2049": [
   "impact",
@@ -95,12 +104,16 @@ window.CULTURE_BADGES = {
   "cerebral",
   "score"
  ],
+ "colorful": [
+  "gem"
+ ],
  "come-and-see": [
   "horrifying"
  ],
  "corpus-christi": [
   "devastating",
-  "impact"
+  "impact",
+  "social-xray"
  ],
  "cosmos": [
   "singular"
@@ -128,7 +141,8 @@ window.CULTURE_BADGES = {
  ],
  "dekalog": [
   "acting",
-  "cerebral"
+  "cerebral",
+  "formal-exec"
  ],
  "eizouken": [
   "funny",
@@ -139,9 +153,11 @@ window.CULTURE_BADGES = {
   "devastating"
  ],
  "ernest-celestine": [
-  "funny"
+  "funny",
+  "gentle"
  ],
  "escape-cinema": [
+  "formal-exec",
   "funny",
   "satire"
  ],
@@ -178,7 +194,8 @@ window.CULTURE_BADGES = {
  "fleabag": [
   "bittersweet",
   "devastating",
-  "funny"
+  "funny",
+  "squirm"
  ],
  "fma-brotherhood": [
   "cerebral",
@@ -186,7 +203,8 @@ window.CULTURE_BADGES = {
   "impact"
  ],
  "galactic-railroad": [
-  "devastating"
+  "devastating",
+  "gem"
  ],
  "ghost-hound": [
   "horrifying"
@@ -220,9 +238,13 @@ window.CULTURE_BADGES = {
  "heavy-rain": [
   "thrilling"
  ],
+ "hilda": [
+  "gentle"
+ ],
  "human-condition": [
   "acting",
   "devastating",
+  "gem",
   "intense"
  ],
  "ico": [
@@ -240,8 +262,14 @@ window.CULTURE_BADGES = {
   "devastating",
   "direction"
  ],
+ "imp-f-138782": [
+  "gem"
+ ],
  "imp-f-28-days-later": [
   "horrifying"
+ ],
+ "imp-f-30387": [
+  "gem"
  ],
  "imp-f-32090": [
   "thrilling"
@@ -261,16 +289,34 @@ window.CULTURE_BADGES = {
  "imp-f-868513": [
   "mindbending"
  ],
+ "imp-f-94612": [
+  "gem"
+ ],
+ "imp-f-a-king-in-new-york": [
+  "gem"
+ ],
  "imp-f-annie-hall": [
   "bittersweet"
  ],
+ "imp-f-bab-el-hadid": [
+  "gem"
+ ],
+ "imp-f-bad-boy-bubby": [
+  "gem"
+ ],
  "imp-f-children-of-men": [
   "cinematography"
+ ],
+ "imp-f-cidade-de-deus": [
+  "social-xray"
  ],
  "imp-f-corpse-bride": [
   "absurdist",
   "intense",
   "visuals"
+ ],
+ "imp-f-die-nash-rner": [
+  "gem"
  ],
  "imp-f-dr-strangelove-or-how-i-learned-to-stop-worrying-and-love-th": [
   "satire"
@@ -289,8 +335,14 @@ window.CULTURE_BADGES = {
  "imp-f-fa-yeung-nin-wa": [
   "cinematography"
  ],
+ "imp-f-faces": [
+  "gem"
+ ],
  "imp-f-gake-no-ue-no-ponyo": [
   "visuals"
+ ],
+ "imp-f-gi-saeng-chung": [
+  "social-xray"
  ],
  "imp-f-h-hokekyo-tonari-no-yamada-kun": [
   "satire"
@@ -315,8 +367,17 @@ window.CULTURE_BADGES = {
  "imp-f-j-i-uchi-hairy-tsuma-shimatsu": [
   "devastating"
  ],
+ "imp-f-jiang-hu-er-nu": [
+  "gem"
+ ],
  "imp-f-life-of-brian": [
   "absurdist"
+ ],
+ "imp-f-mayak": [
+  "gem"
+ ],
+ "imp-f-monsieur-verdoux": [
+  "gem"
  ],
  "imp-f-monty-python-and-the-holy-grail": [
   "absurdist"
@@ -327,11 +388,20 @@ window.CULTURE_BADGES = {
  "imp-f-once-upon-a-time-in-america": [
   "intense"
  ],
+ "imp-f-orfeu-negro": [
+  "gem"
+ ],
  "imp-f-perfect-blue": [
   "horrifying"
  ],
+ "imp-f-personel": [
+  "gem"
+ ],
  "imp-f-refren": [
   "cerebral"
+ ],
+ "imp-f-samog-oska": [
+  "gem"
  ],
  "imp-f-seksmisja": [
   "absurdist",
@@ -351,6 +421,24 @@ window.CULTURE_BADGES = {
  ],
  "imp-f-the-great-dictator": [
   "satire"
+ ],
+ "imp-f-the-last-wave": [
+  "gem"
+ ],
+ "imp-f-tren-zb-ja": [
+  "gem"
+ ],
+ "imp-f-ucho": [
+  "gem"
+ ],
+ "imp-f-voskhozhdeniye": [
+  "gem"
+ ],
+ "imp-f-wake-in-fright": [
+  "gem"
+ ],
+ "imp-f-west-beyrouth": [
+  "gem"
  ],
  "imp-g-608591": [
   "mindbending"
@@ -377,6 +465,16 @@ window.CULTURE_BADGES = {
  ],
  "imp-s-10049575": [
   "funny"
+ ],
+ "imp-s-10050192": [
+  "squirm"
+ ],
+ "imp-s-150481": [
+  "funny",
+  "squirm"
+ ],
+ "imp-s-153161": [
+  "squirm"
  ],
  "imp-s-324560": [
   "horrifying"
@@ -413,20 +511,28 @@ window.CULTURE_BADGES = {
  "imp-s-843529": [
   "funny"
  ],
+ "imp-s-870925": [
+  "gentle"
+ ],
  "imp-s-871671": [
   "funny"
+ ],
+ "imp-s-875459": [
+  "gentle"
  ],
  "in-the-fall": [
   "devastating"
  ],
  "in-this-corner": [
-  "bittersweet"
+  "bittersweet",
+  "gem"
  ],
  "invincible": [
   "devastating",
   "impact"
  ],
  "jin-roh": [
+  "gem",
   "writing"
  ],
  "kaguya": [
@@ -435,6 +541,12 @@ window.CULTURE_BADGES = {
  "kino-journey": [
   "atmosphere",
   "cerebral"
+ ],
+ "kite": [
+  "gem"
+ ],
+ "la-haine": [
+  "social-xray"
  ],
  "lain": [
   "atmosphere"
@@ -464,13 +576,17 @@ window.CULTURE_BADGES = {
  ],
  "mad-men": [
   "acting",
-  "slowburn"
+  "slowburn",
+  "social-xray"
  ],
  "made-in-abyss": [
   "horrifying",
   "score",
   "visuals",
   "worldbuilding"
+ ],
+ "manifold-garden": [
+  "formal-exec"
  ],
  "mary-and-max": [
   "bittersweet",
@@ -513,8 +629,12 @@ window.CULTURE_BADGES = {
  "nausicaa": [
   "worldbuilding"
  ],
+ "neo-tokyo": [
+  "gem"
+ ],
  "network": [
-  "satire"
+  "satire",
+  "social-xray"
  ],
  "no-country": [
   "acting",
@@ -547,6 +667,7 @@ window.CULTURE_BADGES = {
   "cerebral"
  ],
  "plague-dogs": [
+  "gem",
   "intense"
  ],
  "planet-earth-ii": [
@@ -572,6 +693,9 @@ window.CULTURE_BADGES = {
  "premier-automne": [
   "bittersweet"
  ],
+ "promare": [
+  "gem"
+ ],
  "psycho-pass": [
   "horrifying"
  ],
@@ -581,10 +705,14 @@ window.CULTURE_BADGES = {
  ],
  "pygmalion": [
   "funny",
+  "gem",
   "satire"
  ],
  "red-desert": [
   "impact"
+ ],
+ "redline": [
+  "gem"
  ],
  "rick-and-morty": [
   "absurdist",
@@ -615,6 +743,9 @@ window.CULTURE_BADGES = {
   "bittersweet",
   "funny"
  ],
+ "skins": [
+  "social-xray"
+ ],
  "sonny-boy": [
   "mindbending"
  ],
@@ -634,7 +765,8 @@ window.CULTURE_BADGES = {
   "singular"
  ],
  "squid-game": [
-  "intense"
+  "intense",
+  "social-xray"
  ],
  "steins-gate": [
   "devastating",
@@ -643,6 +775,9 @@ window.CULTURE_BADGES = {
  "subnautica": [
   "singular",
   "worldbuilding"
+ ],
+ "swallows-kabul": [
+  "gem"
  ],
  "tar": [
   "direction",
@@ -656,6 +791,7 @@ window.CULTURE_BADGES = {
  ],
  "tekkonkinkreet": [
   "atmosphere",
+  "gem",
   "style"
  ],
  "terror-resonance": [
@@ -666,6 +802,10 @@ window.CULTURE_BADGES = {
  "the-expanse": [
   "worldbuilding",
   "writing"
+ ],
+ "the-housemaid": [
+  "gem",
+  "social-xray"
  ],
  "the-idiot": [
   "devastating"
@@ -682,7 +822,8 @@ window.CULTURE_BADGES = {
  "the-wire": [
   "acting",
   "singular",
-  "slowburn"
+  "slowburn",
+  "social-xray"
  ],
  "the-witcher": [
   "worldbuilding"
@@ -736,12 +877,121 @@ window.CULTURE_BADGES = {
   "devastating",
   "intense"
  ],
+ "weather-forecast": [
+  "gem"
+ ],
  "westworld": [
   "acting",
   "visuals",
   "worldbuilding"
  ],
  "wic": [
+  "writing"
+ ],
+ "wl-b-fbl-a-perfect-vacuum": [
+  "cognitive",
+  "satire"
+ ],
+ "wl-b-fbl-blindsight": [
+  "cerebral",
+  "horrifying"
+ ],
+ "wl-b-fbl-blood-meridian": [
+  "intense",
+  "singular",
+  "writing"
+ ],
+ "wl-b-fbl-darkness-at-noon": [
+  "devastating",
+  "social-xray"
+ ],
+ "wl-b-fbl-dead-dead-demon-s-dededede-destruction": [
+  "bittersweet",
+  "social-xray"
+ ],
+ "wl-b-fbl-ficciones": [
+  "cognitive",
+  "mindbending",
+  "writing"
+ ],
+ "wl-b-fbl-hyperion": [
+  "worldbuilding",
+  "writing"
+ ],
+ "wl-b-fbl-invisible-cities": [
+  "singular",
+  "writing"
+ ],
+ "wl-b-fbl-no-longer-human": [
+  "devastating",
+  "writing"
+ ],
+ "wl-b-fbl-pedro-paramo": [
+  "atmosphere",
+  "singular"
+ ],
+ "wl-b-fbl-permutation-city": [
+  "cerebral",
+  "cognitive"
+ ],
+ "wl-b-fbl-roadside-picnic": [
+  "atmosphere",
+  "cerebral"
+ ],
+ "wl-b-fbl-slaughterhouse-five": [
+  "devastating",
+  "satire"
+ ],
+ "wl-b-fbl-stoner": [
+  "devastating",
+  "writing"
+ ],
+ "wl-b-fbl-stories-of-your-life-and-others": [
+  "cerebral",
+  "mindbending"
+ ],
+ "wl-b-fbl-the-box-man": [
+  "mindbending",
+  "singular"
+ ],
+ "wl-b-fbl-the-brothers-karamazov": [
+  "devastating",
+  "writing"
+ ],
+ "wl-b-fbl-the-city-the-city": [
+  "cognitive",
+  "worldbuilding"
+ ],
+ "wl-b-fbl-the-dispossessed": [
+  "cerebral",
+  "social-xray"
+ ],
+ "wl-b-fbl-the-fifth-head-of-cerberus": [
+  "mindbending",
+  "writing"
+ ],
+ "wl-b-fbl-the-futurological-congress": [
+  "mindbending",
+  "satire"
+ ],
+ "wl-b-fbl-the-remains-of-the-day": [
+  "devastating",
+  "writing"
+ ],
+ "wl-b-fbl-the-tartar-steppe": [
+  "atmosphere",
+  "devastating"
+ ],
+ "wl-b-fbl-the-woman-in-the-dunes": [
+  "horrifying",
+  "singular"
+ ],
+ "wl-b-fbl-uzumaki": [
+  "horrifying",
+  "singular"
+ ],
+ "wl-b-fbl-vagabond": [
+  "visuals",
   "writing"
  ],
  "wl-f-1103": [
@@ -802,6 +1052,316 @@ window.CULTURE_BADGES = {
  "wl-f-9982": [
   "cerebral"
  ],
+ "wl-f-fbl-3-women": [
+  "atmosphere",
+  "mindbending"
+ ],
+ "wl-f-fbl-a-bittersweet-life": [
+  "intense",
+  "style"
+ ],
+ "wl-f-fbl-a-face-in-the-crowd": [
+  "acting",
+  "ahead",
+  "social-xray"
+ ],
+ "wl-f-fbl-a-petal": [
+  "devastating",
+  "intense",
+  "social-xray"
+ ],
+ "wl-f-fbl-ace-in-the-hole": [
+  "ahead",
+  "social-xray",
+  "writing"
+ ],
+ "wl-f-fbl-all-of-us-strangers": [
+  "bittersweet",
+  "devastating"
+ ],
+ "wl-f-fbl-anatomy-of-a-murder": [
+  "formal-exec",
+  "writing"
+ ],
+ "wl-f-fbl-ashes-and-diamonds": [
+  "devastating",
+  "direction"
+ ],
+ "wl-f-fbl-autumn-sonata": [
+  "acting",
+  "devastating"
+ ],
+ "wl-f-fbl-balance": [
+  "formal-exec",
+  "singular"
+ ],
+ "wl-f-fbl-celine-and-julie-go-boating": [
+  "mindbending",
+  "singular"
+ ],
+ "wl-f-fbl-dead-ringers": [
+  "acting",
+  "atmosphere",
+  "horrifying"
+ ],
+ "wl-f-fbl-elevator-to-the-gallows": [
+  "atmosphere",
+  "score",
+  "style"
+ ],
+ "wl-f-fbl-eroica": [
+  "satire",
+  "social-xray"
+ ],
+ "wl-f-fbl-fail-safe": [
+  "formal-exec",
+  "intense",
+  "social-xray"
+ ],
+ "wl-f-fbl-fanny-and-alexander": [
+  "devastating",
+  "direction"
+ ],
+ "wl-f-fbl-father-and-daughter": [
+  "devastating",
+  "singular"
+ ],
+ "wl-f-fbl-first-reformed": [
+  "cerebral",
+  "devastating",
+  "formal-exec"
+ ],
+ "wl-f-fbl-flee": [
+  "devastating",
+  "formal-exec"
+ ],
+ "wl-f-fbl-force-majeure": [
+  "formal-exec",
+  "satire",
+  "social-xray"
+ ],
+ "wl-f-fbl-funny-games": [
+  "cognitive",
+  "formal-exec",
+  "horrifying"
+ ],
+ "wl-f-fbl-grizzly-man": [
+  "cerebral",
+  "devastating",
+  "singular"
+ ],
+ "wl-f-fbl-hereditary": [
+  "devastating",
+  "horrifying"
+ ],
+ "wl-f-fbl-holy-motors": [
+  "mindbending",
+  "singular",
+  "style"
+ ],
+ "wl-f-fbl-i-lost-my-body": [
+  "devastating",
+  "singular"
+ ],
+ "wl-f-fbl-institute-benjamenta": [
+  "atmosphere",
+  "singular"
+ ],
+ "wl-f-fbl-kanal": [
+  "devastating",
+  "intense"
+ ],
+ "wl-f-fbl-l-avventura": [
+  "atmosphere",
+  "formal-exec"
+ ],
+ "wl-f-fbl-l-eclisse": [
+  "atmosphere",
+  "cinematography"
+ ],
+ "wl-f-fbl-locke": [
+  "acting",
+  "formal-exec"
+ ],
+ "wl-f-fbl-man-of-marble": [
+  "formal-exec",
+  "social-xray"
+ ],
+ "wl-f-fbl-man-with-a-movie-camera": [
+  "ahead",
+  "formal-exec",
+  "singular"
+ ],
+ "wl-f-fbl-millennium-mambo": [
+  "atmosphere",
+  "style"
+ ],
+ "wl-f-fbl-night-and-fog": [
+  "devastating",
+  "formal-exec",
+  "impact"
+ ],
+ "wl-f-fbl-opening-night": [
+  "acting",
+  "devastating"
+ ],
+ "wl-f-fbl-pale-flower": [
+  "atmosphere",
+  "style"
+ ],
+ "wl-f-fbl-passenger": [
+  "devastating",
+  "formal-exec",
+  "singular"
+ ],
+ "wl-f-fbl-performance": [
+  "mindbending",
+  "style"
+ ],
+ "wl-f-fbl-prince-of-the-city": [
+  "acting",
+  "social-xray"
+ ],
+ "wl-f-fbl-secret-sunshine": [
+  "acting",
+  "devastating",
+  "social-xray"
+ ],
+ "wl-f-fbl-son-of-saul": [
+  "devastating",
+  "formal-exec",
+  "intense"
+ ],
+ "wl-f-fbl-sunrise": [
+  "ahead",
+  "cinematography",
+  "devastating"
+ ],
+ "wl-f-fbl-sweet-smell-of-success": [
+  "social-xray",
+  "style",
+  "writing"
+ ],
+ "wl-f-fbl-tampopo": [
+  "funny",
+  "singular"
+ ],
+ "wl-f-fbl-the-bad-sleep-well": [
+  "direction",
+  "social-xray"
+ ],
+ "wl-f-fbl-the-death-of-mr-lazarescu": [
+  "devastating",
+  "formal-exec",
+  "social-xray"
+ ],
+ "wl-f-fbl-the-devil": [
+  "horrifying",
+  "intense",
+  "singular"
+ ],
+ "wl-f-fbl-the-great-beauty": [
+  "atmosphere",
+  "cinematography",
+  "visuals"
+ ],
+ "wl-f-fbl-the-green-knight": [
+  "atmosphere",
+  "slowburn",
+  "visuals"
+ ],
+ "wl-f-fbl-the-guilty": [
+  "cognitive",
+  "formal-exec",
+  "intense"
+ ],
+ "wl-f-fbl-the-house": [
+  "atmosphere",
+  "singular"
+ ],
+ "wl-f-fbl-the-killing-of-a-chinese-bookie": [
+  "acting",
+  "atmosphere"
+ ],
+ "wl-f-fbl-the-life-of-oharu": [
+  "devastating",
+  "social-xray"
+ ],
+ "wl-f-fbl-the-man-from-earth": [
+  "cerebral",
+  "formal-exec"
+ ],
+ "wl-f-fbl-the-man-standing-next": [
+  "slowburn",
+  "social-xray"
+ ],
+ "wl-f-fbl-the-night-of-the-hunter": [
+  "atmosphere",
+  "cinematography",
+  "singular"
+ ],
+ "wl-f-fbl-the-passion-of-joan-of-arc": [
+  "acting",
+  "devastating",
+  "formal-exec"
+ ],
+ "wl-f-fbl-the-piano-teacher": [
+  "acting",
+  "devastating",
+  "intense"
+ ],
+ "wl-f-fbl-the-saragossa-manuscript": [
+  "formal-exec",
+  "mindbending",
+  "singular"
+ ],
+ "wl-f-fbl-the-secret-in-their-eyes": [
+  "social-xray",
+  "writing"
+ ],
+ "wl-f-fbl-the-seventh-continent": [
+  "devastating",
+  "formal-exec",
+  "intense"
+ ],
+ "wl-f-fbl-the-wages-of-fear": [
+  "intense",
+  "slowburn",
+  "thrilling"
+ ],
+ "wl-f-fbl-the-witch": [
+  "atmosphere",
+  "horrifying"
+ ],
+ "wl-f-fbl-the-zone-of-interest": [
+  "cinematography",
+  "devastating",
+  "formal-exec",
+  "horrifying"
+ ],
+ "wl-f-fbl-touch-of-evil": [
+  "cinematography",
+  "direction",
+  "style"
+ ],
+ "wl-f-fbl-trial-on-the-road": [
+  "devastating",
+  "intense"
+ ],
+ "wl-f-fbl-vengeance-is-mine": [
+  "horrifying",
+  "intense",
+  "social-xray"
+ ],
+ "wl-f-fbl-wings": [
+  "acting",
+  "devastating"
+ ],
+ "wl-f-fbl-winter-light": [
+  "cerebral",
+  "devastating",
+  "formal-exec"
+ ],
  "wl-g-729768": [
   "cognitive"
  ],
@@ -809,11 +1369,182 @@ window.CULTURE_BADGES = {
   "cognitive",
   "worldbuilding"
  ],
+ "wl-g-fbl-1000xresist": [
+  "cognitive",
+  "worldbuilding",
+  "writing"
+ ],
+ "wl-g-fbl-a-monster-s-expedition": [
+  "formal-exec"
+ ],
+ "wl-g-fbl-blue-prince": [
+  "formal-exec",
+  "mindbending"
+ ],
+ "wl-g-fbl-chants-of-sennaar": [
+  "cognitive",
+  "formal-exec"
+ ],
+ "wl-g-fbl-cocoon": [
+  "atmosphere",
+  "formal-exec"
+ ],
+ "wl-g-fbl-environmental-station-alpha": [
+  "singular",
+  "worldbuilding"
+ ],
+ "wl-g-fbl-ghost-trick": [
+  "singular",
+  "writing"
+ ],
+ "wl-g-fbl-kentucky-route-zero": [
+  "atmosphere",
+  "singular",
+  "writing"
+ ],
+ "wl-g-fbl-lorelei-and-the-laser-eyes": [
+  "mindbending",
+  "style"
+ ],
+ "wl-g-fbl-moon-remix-rpg-adventure": [
+  "cognitive",
+  "singular"
+ ],
+ "wl-g-fbl-mouthwashing": [
+  "cognitive",
+  "horrifying"
+ ],
+ "wl-g-fbl-norco": [
+  "atmosphere",
+  "writing"
+ ],
+ "wl-g-fbl-oneshot": [
+  "bittersweet",
+  "cognitive"
+ ],
+ "wl-g-fbl-pathologic-2": [
+  "atmosphere",
+  "devastating",
+  "singular",
+  "social-xray"
+ ],
+ "wl-g-fbl-signalis": [
+  "atmosphere",
+  "horrifying"
+ ],
+ "wl-g-fbl-stephen-s-sausage-roll": [
+  "formal-exec"
+ ],
+ "wl-g-fbl-the-case-of-the-golden-idol": [
+  "cognitive",
+  "writing"
+ ],
+ "wl-g-fbl-the-talos-principle-2": [
+  "cerebral",
+  "cognitive"
+ ],
+ "wl-g-fbl-to-the-moon": [
+  "devastating",
+  "writing"
+ ],
  "wl-s-201352": [
   "horrifying"
  ],
  "wl-s-655013": [
   "horrifying"
+ ],
+ "wl-s-fbl-casshern-sins": [
+  "atmosphere",
+  "visuals"
+ ],
+ "wl-s-fbl-deadwood": [
+  "acting",
+  "social-xray",
+  "writing"
+ ],
+ "wl-s-fbl-girls-last-tour": [
+  "atmosphere",
+  "bittersweet"
+ ],
+ "wl-s-fbl-halt-and-catch-fire": [
+  "devastating",
+  "writing"
+ ],
+ "wl-s-fbl-i-may-destroy-you": [
+  "cognitive",
+  "devastating",
+  "writing"
+ ],
+ "wl-s-fbl-kemonozume": [
+  "singular",
+  "style",
+  "visuals"
+ ],
+ "wl-s-fbl-land-of-the-lustrous": [
+  "atmosphere",
+  "devastating",
+  "visuals"
+ ],
+ "wl-s-fbl-les-revenants": [
+  "atmosphere",
+  "devastating"
+ ],
+ "wl-s-fbl-mr-inbetween": [
+  "formal-exec",
+  "funny",
+  "intense"
+ ],
+ "wl-s-fbl-mushishi": [
+  "atmosphere",
+  "singular"
+ ],
+ "wl-s-fbl-o-j-made-in-america": [
+  "devastating",
+  "formal-exec",
+  "social-xray"
+ ],
+ "wl-s-fbl-patriot": [
+  "atmosphere",
+  "bittersweet",
+  "singular"
+ ],
+ "wl-s-fbl-rectify": [
+  "atmosphere",
+  "devastating",
+  "slowburn"
+ ],
+ "wl-s-fbl-showa-genroku-rakugo-shinju": [
+  "devastating",
+  "formal-exec",
+  "writing"
+ ],
+ "wl-s-fbl-station-eleven": [
+  "atmosphere",
+  "devastating"
+ ],
+ "wl-s-fbl-the-americans": [
+  "devastating",
+  "slowburn",
+  "writing"
+ ],
+ "wl-s-fbl-the-curse": [
+  "horrifying",
+  "singular",
+  "squirm"
+ ],
+ "wl-s-fbl-the-jinx": [
+  "cognitive",
+  "mindbending",
+  "social-xray"
+ ],
+ "wl-s-fbl-the-terror": [
+  "atmosphere",
+  "horrifying",
+  "intense"
+ ],
+ "wl-s-fbl-zerozerozero": [
+  "intense",
+  "social-xray"
  ],
  "wolfs-rain": [
   "atmosphere",
@@ -828,6 +1559,7 @@ window.CULTURE_BADGES = {
  ],
  "yamadas": [
   "funny",
+  "gentle",
   "satire",
   "visuals"
  ],
