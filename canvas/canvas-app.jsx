@@ -9,7 +9,7 @@ const WORKS = window.CANVAS_ARTWORKS || [];
 const AD = window.CANVAS_ART_DATA || { museums: {}, artworks: {}, artists: {} };
 
 const MUS_BY_ID = {}; for (const m of MUSEUMS) MUS_BY_ID[m.id] = m;
-const COUNTRY = { jp: "Japan", us: "United States", fr: "France", ie: "Ireland", gb: "United Kingdom", at: "Austria", pl: "Poland", se: "Sweden", au: "Australia" };
+const COUNTRY = { jp: "Japan", us: "United States", fr: "France", ie: "Ireland", gb: "United Kingdom", at: "Austria", pl: "Poland", se: "Sweden", au: "Australia", nl: "Netherlands", ch: "Switzerland", de: "Germany", ca: "Canada", it: "Italy", gr: "Greece", kr: "South Korea" };
 
 // merged view of one work: hand canon ⊕ overlay
 function enrich(w) {
