@@ -631,7 +631,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
       <div style={{ display: "grid", gap: "var(--gap)" }}>
           {/* row 2 on PC: flow (wide — Sound DNA moved to the bottom row for breathing room,
              Fuad 2026-07-06) · top tracks · albums */}
-          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr 0.9fr", gap: "var(--gap)", alignItems: "start" }}>
+          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "var(--gap)", alignItems: "start" }}>
             {/* top tracks · how they played out (flow now in the MIDDLE — Fuad 2026-07-06) · albums */}
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
@@ -896,6 +896,10 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           background: var(--accent-bg); border: 0; color: var(--accent-ink); padding: 8px 12px; border-radius: 5px; cursor: pointer; white-space: nowrap; }
         @media (max-width: 860px){ .r-view > div[style*="340px"]{ grid-template-columns: 1fr !important; }
           .r-view div[style*="1fr 1fr"]{ grid-template-columns: 1fr !important; } }
+        /* av-row2 is a resilient auto-fit grid: 3 modules when wide, and if a module (e.g. the flow)
+           has no data and doesn't render, the survivors re-flow to fill instead of stranding a gap
+           or mis-sizing. children must be allowed to shrink inside their track. */
+        .av-row2 > * { min-width: 0; }
         .av-more { background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px;
           color: var(--ink-faint); cursor: pointer; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; }
         .av-more:hover { color: var(--accent); border-color: var(--accent-dim); }
