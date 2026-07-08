@@ -6,6 +6,10 @@ const fmtDate = (s) => {
   return d.getUTCDate() + " " + ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getUTCMonth()] + " " + d.getUTCFullYear();
 };
 const yearsOf = (days) => (days / 365.25).toFixed(1);
+// an artist id is navigable if it has EITHER a kept full page (byId) OR an EXPLORE record
+// (rendered via MiniArtistView). Use this for every artist click-gate so the long tail is
+// reachable from Stories/gigs too — not just the kept top-400 (matches the map fix).
+const artistHasPage = (id) => { const R = window.ROTATION; return !!(id && R && (R.byId[id] || (R.expById && R.expById[id]))); };
 const hueOfName = (name) => (window.ROTATION.byId[window.ROTATION.slug(name)] || {}).hue != null
   ? window.ROTATION.byId[window.ROTATION.slug(name)].hue
   : hashInt(name, 0) % 360;
@@ -223,10 +227,10 @@ function StoriesView({ t, go, seed }) {
                   <div key={l.person} style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
                     <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 14, color: "var(--ink)", minWidth: 120 }}>{l.person}</span>
                     {l.artists.map(a => (
-                      <span key={a.name} data-link={a.kept} onClick={() => a.kept && goIf(a.name)}
+                      <span key={a.name} data-link={clickable(a.name)} onClick={() => goIf(a.name)}
                         style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 9px", borderRadius: 999,
-                          border: "1px solid var(--rule)", fontSize: 11.5, cursor: a.kept ? "pointer" : "default",
-                          color: a.kept ? "var(--ink)" : "var(--ink-soft)" }}>
+                          border: "1px solid var(--rule)", fontSize: 11.5, cursor: clickable(a.name) ? "pointer" : "default",
+                          color: clickable(a.name) ? "var(--ink)" : "var(--ink-soft)" }}>
                         <span style={{ width: 8, height: 8, borderRadius: 2, background: `oklch(0.62 0.16 ${a.hue})` }} />
                         {a.name}
                       </span>
@@ -675,9 +679,9 @@ function StoriesView({ t, go, seed }) {
                 <div className="st-sub" style={{ marginTop: 18 }}>
                   Signature obsessions: {T.artists.slice(0, 6).map((a, i) => (
                     <React.Fragment key={a.artistId}>{i > 0 ? " · " : ""}
-                      <b className="st-inline-link" data-link={!!R.byId[a.artistId]}
-                        onClick={() => R.byId[a.artistId] && go("artist", a.artistId)}
-                        style={{ color: "var(--ink)", cursor: R.byId[a.artistId] ? "pointer" : "default" }}>{a.name}</b>
+                      <b className="st-inline-link" data-link={hasPage(a.artistId)}
+                        onClick={() => hasPage(a.artistId) && go("artist", a.artistId)}
+                        style={{ color: "var(--ink)", cursor: hasPage(a.artistId) ? "pointer" : "default" }}>{a.name}</b>
                       {a.themes[0] ? <span style={{ color: "var(--ink-faint)" }}> ({a.themes[0].theme})</span> : null}
                     </React.Fragment>
                   ))}.
@@ -703,8 +707,8 @@ function StoriesView({ t, go, seed }) {
               </div>
               <div className="st-ug-cuts" style={{ marginTop: 18 }}>
                 {L.featured.slice(0, 6).map(b => (
-                  <div key={b.artistId} className="st-ug-cut" data-link={!!R.byId[b.artistId]}
-                    onClick={() => R.byId[b.artistId] && go("artist", b.artistId)}>
+                  <div key={b.artistId} className="st-ug-cut" data-link={hasPage(b.artistId)}
+                    onClick={() => hasPage(b.artistId) && go("artist", b.artistId)}>
                     <GenCover hue={b.hue} name={b.name} size={40} radius={4} />
                     <div style={{ minWidth: 0 }}>
                       <div className="st-row-name">{b.name}</div>
@@ -755,7 +759,7 @@ function StoriesView({ t, go, seed }) {
             </div>
             <div className="st-bridges">
               {I.STYLE_ATLAS.bridges.map(b => (
-                <div key={b.artist} className="st-bridge" data-link={!!R.byId[b.artistId]}
+                <div key={b.artist} className="st-bridge" data-link={artistHasPage(b.artistId)}
                   onClick={() => R.byId[b.artistId] && go("artist", b.artistId)}>
                   <GenCover hue={b.hue} name={b.artist} size={44} radius={4} />
                   <div style={{ minWidth: 0, flex: 1 }}>
@@ -1342,7 +1346,7 @@ function StoriesView({ t, go, seed }) {
               <div className="st-label">Their era</div>
               <div className="st-big">
                 <em>{monthLabel(top.month)}</em> was <em>{Math.round(top.share * 100)}%</em>
-                {" "}<span data-link={!!R.byId[top.artistId]} onClick={() => R.byId[top.artistId] && go("artist", top.artistId)}
+                {" "}<span data-link={artistHasPage(top.artistId)} onClick={() => artistHasPage(top.artistId) && go("artist", top.artistId)}
                   style={{ color: `oklch(0.78 0.14 ${top.hue})`, cursor: R.byId[top.artistId] ? "pointer" : "default", fontStyle: "italic" }}>{top.artist}</span>.
               </div>
               <div className="st-sub">
@@ -1352,7 +1356,7 @@ function StoriesView({ t, go, seed }) {
               <div className="st-life">
                 {E.map((e, i) => (
                   <div key={e.artist + e.month} className="st-life-row"
-                    data-link={!!R.byId[e.artistId]} onClick={() => R.byId[e.artistId] && go("artist", e.artistId)}>
+                    data-link={artistHasPage(e.artistId)} onClick={() => artistHasPage(e.artistId) && go("artist", e.artistId)}>
                     <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)", width: 24 }}>{String(i + 1).padStart(2, "0")}</span>
                     <GenCover hue={e.hue} name={e.artist} size={36} radius={3} />
                     <div style={{ minWidth: 0, flex: 1 }}>
@@ -1390,7 +1394,7 @@ function StoriesView({ t, go, seed }) {
                 <div>
                   <div className="st-yir-h">Slow burners</div>
                   {slow.map(a => (
-                    <div key={a.artist} className="st-incub-row" data-link={!!R.byId[a.artistId]} onClick={() => R.byId[a.artistId] && go("artist", a.artistId)}>
+                    <div key={a.artist} className="st-incub-row" data-link={artistHasPage(a.artistId)} onClick={() => artistHasPage(a.artistId) && go("artist", a.artistId)}>
                       <GenCover hue={a.hue} name={a.artist} size={32} radius={3} />
                       <div className="st-incub-main">
                         <div className="st-row-name">{a.artist}</div>
@@ -1404,7 +1408,7 @@ function StoriesView({ t, go, seed }) {
                 <div>
                   <div className="st-yir-h">Instant addictions</div>
                   {fast.map(a => (
-                    <div key={a.artist} className="st-incub-row" data-link={!!R.byId[a.artistId]} onClick={() => R.byId[a.artistId] && go("artist", a.artistId)}>
+                    <div key={a.artist} className="st-incub-row" data-link={artistHasPage(a.artistId)} onClick={() => artistHasPage(a.artistId) && go("artist", a.artistId)}>
                       <GenCover hue={a.hue} name={a.artist} size={32} radius={3} />
                       <div className="st-incub-main">
                         <div className="st-row-name">{a.artist}</div>
@@ -1428,7 +1432,7 @@ function StoriesView({ t, go, seed }) {
             <div className="st-grid">
               {I.ALBUM_OBSESSIONS.map(o => (
                 <div key={o.artist + o.album + o.weekStart} className="st-obs"
-                  data-link={!!R.byId[o.artistId]} onClick={() => R.byId[o.artistId] && go("artist", o.artistId)}>
+                  data-link={artistHasPage(o.artistId)} onClick={() => artistHasPage(o.artistId) && go("artist", o.artistId)}>
                   <GenCover hue={o.hue} name={o.album} size={56} radius={4} />
                   <div className="st-obs-share" style={{ color: `oklch(0.78 0.14 ${o.hue})` }}>{Math.round(o.share * 100)}%</div>
                   <div className="st-row-name" style={{ fontStyle: "italic" }}>{o.album}</div>
@@ -2177,12 +2181,12 @@ function GigsView({ go }) {
   const gigDate = (d, noYear) => d.length === 7
     ? "≈ " + MONS[+d.slice(5, 7) - 1] + (noYear ? "" : " " + d.slice(0, 4))
     : noYear ? fmtDate(d).replace(/ (\d{4})$/, "") : fmtDate(d);
-  const openArtist = (id) => R.byId[id] && go("artist", id);
+  const openArtist = (id) => artistHasPage(id) && go("artist", id);
   const years = [...new Set(G.gigs.map(g => g.year))].sort((a, b) => b - a);
   const span = G.firstGig.slice(0, 4) + "–" + G.lastGig.slice(0, 4);
   const maxCity = Math.max(...G.cityList.map(c => c.count));
   const Tile = ({ a, sub }) => (
-    <div className="gv-tile" data-link={!!R.byId[a.artistId]} onClick={() => openArtist(a.artistId)}>
+    <div className="gv-tile" data-link={artistHasPage(a.artistId)} onClick={() => openArtist(a.artistId)}>
       <GenCover hue={a.hue} name={a.artist} size={40} radius={4} />
       <div style={{ minWidth: 0 }}>
         <div className="gv-tile-name">{a.artist}</div>
@@ -2212,9 +2216,9 @@ function GigsView({ go }) {
           chances (disbanded groups back with dates). caught = seen before they ended. */}
       {G.coverage && (() => {
         const c = G.coverage;
-        const openArt = (id) => R.byId[id] && go("artist", id);
+        const openArt = (id) => artistHasPage(id) && go("artist", id);
         const Chip = ({ e, sub }) => (
-          <span className="gv-led-chip" data-link={!!R.byId[e[1]]} onClick={() => openArt(e[1])} title={`${fmt(e[2])} plays`}>
+          <span className="gv-led-chip" data-link={artistHasPage(e[1])} onClick={() => openArt(e[1])} title={`${fmt(e[2])} plays`}>
             {e[0]}{sub ? <small> {sub}</small> : null}
           </span>
         );
@@ -2316,7 +2320,7 @@ function GigsView({ go }) {
             <div className="gv-year">{y}<span>{G.byYear[y]} {G.byYear[y] === 1 ? "show" : "shows"}</span></div>
             <div className="gv-gigs">
               {G.gigs.filter(g => g.year === y).map((g, i) => (
-                <div key={g.artist + g.date + i} className="gv-gig" data-link={!!R.byId[g.artistId]} onClick={() => openArtist(g.artistId)}>
+                <div key={g.artist + g.date + i} className="gv-gig" data-link={artistHasPage(g.artistId)} onClick={() => openArtist(g.artistId)}>
                   <div className="gv-gig-date" title={g.approx ? "approximate — exact day unknown" : undefined}>{gigDate(g.date, true)}</div>
                   <span className="gv-gig-dot" style={{ background: `oklch(0.68 0.16 ${g.hue})` }} />
                   <div className="gv-gig-main">
