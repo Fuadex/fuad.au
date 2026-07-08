@@ -132,7 +132,7 @@ never committed** (last.fm + Spotify keys live in `culture/.env`).
 | `enrich-discogs-artist.js` | Discogs | `discogs-artist.json` | profile, members, URLs, images |
 | `enrich-images.js` | Discogs | `artist-images.json` | primary artist images |
 | `enrich-spotify.js` | Spotify API | `spotify-cache.json` | artist id/img/genres (post-2026 API gives little more) |
-| `enrich-spotify-archive.js` | **local catalogue dataset** (`archive.zip`, large local, local-only) | `spotify-albumart.json` (17,726 covers), `spotify-albummeta.json`, `spotify-artist-img.json`, `spotify-genres.json` | album covers, release year/type/label, artist imgs, genres |
+| `enrich-spotify-archive.js` | **local catalogue dataset** (`archive.zip`, local-only) | `spotify-albumart.json` (17,726 covers), `spotify-albummeta.json`, `spotify-artist-img.json`, `spotify-genres.json` | album covers, release year/type/label, artist imgs, genres |
 | `.sptmp/cover-audit.js` + `caa-probe.js` (local) | dump raw join + MusicBrainz/CAA | `spotify-albumart-extra.json`, `spotify-albummeta-extra.json` | conservative fuzzy + Cover-Art-Archive cover fills; merged additively (base wins), safe from `--rematch` |
 | `.sptmp/stage1-query.js` + `stage2-query.js` (local, archive pass 2) | dump parquets | `spotify-ids-derived.json` (462 name+title-corroborated artist ids), `spotify-albtracks.json` (total_tracks → media `[9]`), `spotify-genres-extra.json`, `spotify-track-links.json` (**39k ISRCs** + preview hashes + disc), `spotify-track-extra.json`, `spotify-collabs.json` (5,730 credit edges, unfiltered — play-filter at build when the feature ships) |
 | `enrich-coverage.js` | (local caches + CSV) | console report | per-cache coverage by play-band + head-gap offenders — run before deciding any enrichment expansion |
@@ -403,8 +403,8 @@ remains dormant until a concerts cache exists (ROADMAP M2).
 6. **Insight, not mirrors:** features must derive something last.fm doesn't already show.
 7. Data corrections go through `sync-csv.js fixRow()` (durable) or are logged in
    CSV-OVERRIDES.md (cache pins, fragile).
-8. `archive.zip` (large local) and `spotify-audio-features.parquet` (a large) are local-only;
-   never commit, never re-download casually.
+8. `archive.zip` and `spotify-audio-features.parquet` are large local-only inputs;
+   never commit, keep them off the repo.
 9. **Mobile/visual verification tooling** (local): headless Edge screenshots
    (`msedge --headless --screenshot --window-size=390,H <url>` — beware: this mode reserves
    scrollbar width and produces phantom right-edge clipping) and, authoritative,

@@ -3,8 +3,8 @@ name: Weekly enrichment refresh
 # Keeps the metadata caches from rotting: new artists that entered the library since the last
 # run get last.fm tags/stats/bios + MusicBrainz origins/aliases automatically. Every script is
 # incremental (cached artists are skipped), so a normal week costs a handful of API calls.
-# Archive-based enrichment (per-track audio features, album art) stays local -- it needs the
-# large local dump. Discogs is also left local (token + ambiguity pins live there).
+# Dataset-based enrichment (per-track audio features, album art) stays local -- it needs the
+# large local catalogue dataset. Discogs is also left local (token + ambiguity pins live there).
 
 on:
   schedule:

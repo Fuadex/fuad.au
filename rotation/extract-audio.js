@@ -1,5 +1,5 @@
 // extract-audio.js — build audio-features.json (measured Sound DNA) from the local Spotify
-// audio-features parquet (a local track-analysis dataset, ~56M rows).
+// audio-features parquet (a local track-analysis dataset).
 //
 // The parquet (spotify-audio-features.parquet) is a large LOCAL file — gitignored, never
 // committed. Needs the duckdb node binding, which we install OUTSIDE the repo; run with:
