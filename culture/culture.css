@@ -870,6 +870,13 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   transition: opacity .2s;
 }
 .reader-quote.translatable:hover .quote-flip { opacity: .8; }
+/* Attribution chip for curated blurbs (e.g. "✦ Fable 5") — sits under the quote
+   as a small source caption, in the spirit of the IMDb/TMDB description flip. */
+.quote-by {
+  display: block; margin-top: 8px; font-style: normal;
+  font-family: var(--mono); font-size: 9px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-soft); opacity: .55;
+}
 .reader-summary {
   font-size: 13px; line-height: 1.55; color: var(--ink-faint);
   margin: -10px 0 22px; font-family: var(--mono);

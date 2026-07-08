@@ -1699,7 +1699,7 @@ function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave })
       )}
       <div className="t">{displayTitle(item)}</div>
       {(item.noteEn || item.note)
-        ? <div className="blurb">{item.noteEn || item.note}</div>
+        ? <div className="blurb">{splitNoteAttribution(item.noteEn || item.note).text}</div>
         : <div className="blurb empty">No note yet — add one in <code style={{ fontFamily:'var(--mono)', fontSize:11, background:'#eee5d3', padding:'1px 4px' }}>data.js</code>.</div>}
       <div className="hint">Click to open ↗ · middle-click → {service}</div>
     </div>
@@ -1790,6 +1790,16 @@ function ReaderSourceButton({ item }) {
 // IMDb plot first and a small IMDb·TMDB switch (the user finds TMDB synopses
 // flat); books/games show their single source with no toggle. Mounted with a
 // key={item.id} in the Reader so its active-source state resets per title.
+// Curated wishlist blurbs (and the Fable recs) end with a "— Fable 5" signature.
+// Split it off so the prose reads clean everywhere; the attribution is surfaced
+// separately as a source chip in the Reader (like the IMDb/TMDB description flip),
+// and dropped entirely from the cover-hover card.
+function splitNoteAttribution(note) {
+  if (!note) return { text: note, by: null };
+  const m = note.match(/^([\s\S]*?)\s*—\s*(Fable\s*5)\s*$/);
+  return m ? { text: m[1].trim(), by: 'Fable 5' } : { text: note, by: null };
+}
+
 function ReaderSummary({ item }) {
   const sources = [];
   const o = item.omdb;
@@ -1818,8 +1828,8 @@ function ReaderSummary({ item }) {
 // The personal-note blockquote. When an English redraft exists (item.noteEn),
 // clicking it toggles PL↔EN with a matrix-style vertical letter cascade.
 function ReaderQuote({ item }) {
-  const pl = item.note;
-  const en = item.noteEn;
+  const { text: pl, by } = splitNoteAttribution(item.note);
+  const { text: en } = splitNoteAttribution(item.noteEn);
   const [showEn, setShowEn] = React.useState(!!en);  // approved English shows by default
   const [busy, setBusy] = React.useState(false);
   if (!pl) {
@@ -1852,6 +1862,7 @@ function ReaderQuote({ item }) {
           : text}
       </span>
       {en && <span className="quote-flip" aria-hidden="true">{showEn ? 'EN' : 'PL'} ⇄</span>}
+      {by && <span className="quote-by">✦ {by}</span>}
     </blockquote>
   );
 }
