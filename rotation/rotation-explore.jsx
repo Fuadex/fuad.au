@@ -190,6 +190,19 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
   const qx = (v) => qp + v * (QW - 2 * qp), qy = (e) => qp + (1 - e) * (QH - 2 * qp);
   const maxPlays = React.useMemo(() => { let m = 1; for (const p of pts) if (activeIds.has(p.id) && p.plays > m) m = p.plays; return m; }, [pts, activeIds]);
   const nActive = activeIds.size;
+  // dots memoized without the zoom factor; radius rides the --zk CSS var so zoom rescales
+  // natively without re-reconciling the whole cloud (Fuad 2026-07-09).
+  const dots = React.useMemo(() => pts.slice(0, n).map(p => {
+    const active = activeIds.has(p.id), on = hi === p.id;
+    const dimZone = active && moodZone && zoneOf(p.x, p.y) !== moodZone;
+    const op = !active ? 0 : on ? 0.95 : dimZone ? 0.1 : 0.62;
+    const baseR = on ? 7 : 3 + Math.sqrt(p.plays / maxPlays) * 9;
+    return (
+      <circle key={p.id} cx={qx(p.x)} cy={qy(p.y)} fill={`oklch(0.64 0.16 ${p.hue})`}
+        fillOpacity={op} stroke={on ? "#fff" : "none"} strokeWidth={1.3} vectorEffect="non-scaling-stroke"
+        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: "fill-opacity .45s ease" }}
+        onMouseEnter={() => active && setHi(p.id)} onClick={(e) => { e.stopPropagation(); active && go("artist", p.id); }}><title>{p.name}</title></circle>);
+  }), [pts, n, activeIds, hi, maxPlays, moodZone, go]);
   const mid = 0.5;
   const zones = [
     { z: "dark-intense", x: qp, y: qp, w: qx(mid) - qp, h: qy(mid) - qp },
@@ -200,25 +213,15 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
   return (
     <div style={{ padding: "14px 16px 10px", position: "relative" }}>
       <ZoomReset z={z} />
-      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab" }} onMouseLeave={() => setHi(null)}>
+      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", "--zk": z.k }} onMouseLeave={() => setHi(null)}>
         {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
           fill={moodZone === zn.z ? "var(--accent-bg)" : "transparent"} stroke="none"
           style={{ cursor: "pointer", transition: "fill .35s ease" }} onClick={() => setMoodZone(moodZone === zn.z ? null : zn.z)}><title>{MOOD_LABELS[zn.z]}</title></rect>)}
-        <line x1={qx(.5)} y1={qp} x2={qx(.5)} y2={QH - qp} stroke="var(--rule)" strokeWidth={z.k} />
-        <line x1={qp} y1={qy(.5)} x2={QW - qp} y2={qy(.5)} stroke="var(--rule)" strokeWidth={z.k} />
+        <line x1={qx(.5)} y1={qp} x2={qx(.5)} y2={QH - qp} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
+        <line x1={qp} y1={qy(.5)} x2={QW - qp} y2={qy(.5)} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
         {[["intense", qx(.5), qp - 4, "middle"], ["calm", qx(.5), QH - qp + 16, "middle"], ["dark", qp - 8, qy(.5), "end"], ["bright", QW - qp + 8, qy(.5), "start"]].map(([t, x, y, anc]) =>
           <text key={t} x={x} y={y} textAnchor={anc} fontFamily="var(--mono)" fontSize={10 * z.k} fill="var(--ink-faint)">{t}</text>)}
-        {pts.slice(0, n).map(p => {
-          const active = activeIds.has(p.id), on = hi === p.id;
-          const dimZone = active && moodZone && zoneOf(p.x, p.y) !== moodZone;
-          const op = !active ? 0 : on ? 0.95 : dimZone ? 0.1 : 0.62;
-          const r = (on ? 7 : 3 + Math.sqrt(p.plays / maxPlays) * 9) * z.k;
-          return (
-            <circle key={p.id} cx={qx(p.x)} cy={qy(p.y)} r={r} fill={`oklch(0.64 0.16 ${p.hue})`}
-              fillOpacity={op} stroke={on ? "#fff" : "none"} strokeWidth={1.3 * z.k}
-              style={{ cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: "fill-opacity .45s ease" }}
-              onMouseEnter={() => active && setHi(p.id)} onClick={(e) => { e.stopPropagation(); active && go("artist", p.id); }}><title>{p.name}</title></circle>);
-        })}
+        {dots}
       </svg>
       <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>
         {n < pts.length ? `plotting ${fmt(n)} / ${fmt(pts.length)}…` : hi ? (pts.find(p => p.id === hi) || {}).name : moodZone ? `${MOOD_LABELS[moodZone]} — tap again to clear` : `${fmt(nActive)} artists · tap a quadrant to filter · tap a dot to open`}</div>
@@ -243,29 +246,32 @@ function ArtistCloud({ pts, activeIds, go }) {
   }, [pts]);
   const maxPlays = React.useMemo(() => Math.max(1, ...pts.map(p => p.plays)), [pts]);
   const z = useZoom(1000, 560);
+  // dots memoized WITHOUT the zoom factor — radius rides a CSS var (--zk) so zooming rescales
+  // marks natively without React re-reconciling the whole cloud (Fuad 2026-07-09).
+  const dots = React.useMemo(() => pts.slice(0, n).map(p => {
+    const active = activeIds.has(p.id), on = hi === p.id;
+    const op = !active ? 0.05 : on ? 0.95 : 0.6;
+    const baseR = on ? 7 : 2.4 + Math.sqrt(p.plays / maxPlays) * 8.5;
+    return (
+      <circle key={p.id} cx={px(p.x)} cy={py(p.y)} fill={`oklch(0.64 0.16 ${p.hue})`} fillOpacity={op}
+        stroke={on ? "#fff" : "none"} strokeWidth={1.3} vectorEffect="non-scaling-stroke"
+        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none" }}
+        onMouseEnter={() => active && setHi(p.id)} onClick={() => active && go("artist", p.id)}><title>{p.name}</title></circle>);
+  }), [pts, n, activeIds, hi, maxPlays, go]);
   return (
     <div style={{ padding: "14px 16px 10px", position: "relative" }}>
       <ZoomReset z={z} />
-      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab" }} onMouseLeave={() => setHi(null)}>
+      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", "--zk": z.k }} onMouseLeave={() => setHi(null)}>
         {[.25, .5, .75].map(g => (<g key={g}>
-          <line x1={px(g)} y1={pad} x2={px(g)} y2={H - pad} stroke="var(--rule)" strokeWidth={z.k} />
-          <line x1={pad} y1={py(g)} x2={W - pad} y2={py(g)} stroke="var(--rule)" strokeWidth={z.k} />
+          <line x1={px(g)} y1={pad} x2={px(g)} y2={H - pad} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
+          <line x1={pad} y1={py(g)} x2={W - pad} y2={py(g)} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
         </g>))}
-        <rect x={pad} y={pad} width={W - pad * 2} height={H - pad * 2} fill="none" stroke="var(--rule-2)" strokeWidth={z.k} />
+        <rect x={pad} y={pad} width={W - pad * 2} height={H - pad * 2} fill="none" stroke="var(--rule-2)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
         <text x={pad} y={H - 16} fill="var(--ink-faint)" fontSize={11 * z.k} fontFamily="var(--mono)" style={{ letterSpacing: ".1em" }}>ORGANIC</text>
         <text x={W - pad} y={H - 16} fill="var(--ink-faint)" fontSize={11 * z.k} fontFamily="var(--mono)" textAnchor="end" style={{ letterSpacing: ".1em" }}>ELECTRONIC</text>
         <text x={20} y={H - pad} fill="var(--ink-faint)" fontSize={11 * z.k} fontFamily="var(--mono)" transform={`rotate(-90 20 ${H - pad})`} style={{ letterSpacing: ".1em" }}>CALM</text>
         <text x={20} y={pad + 56} fill="var(--ink-faint)" fontSize={11 * z.k} fontFamily="var(--mono)" transform={`rotate(-90 20 ${pad + 56})`} textAnchor="end" style={{ letterSpacing: ".1em" }}>VIOLENT</text>
-        {pts.slice(0, n).map(p => {
-          const active = activeIds.has(p.id), on = hi === p.id;
-          const op = !active ? 0.05 : on ? 0.95 : 0.6;
-          const r = (on ? 7 : 2.4 + Math.sqrt(p.plays / maxPlays) * 8.5) * z.k;
-          return (
-            <circle key={p.id} cx={px(p.x)} cy={py(p.y)} r={r} fill={`oklch(0.64 0.16 ${p.hue})`} fillOpacity={op}
-              stroke={on ? "#fff" : "none"} strokeWidth={1.3 * z.k}
-              style={{ cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none" }}
-              onMouseEnter={() => active && setHi(p.id)} onClick={() => active && go("artist", p.id)}><title>{p.name}</title></circle>);
-        })}
+        {dots}
       </svg>
       <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>
         {n < pts.length ? `plotting ${fmt(n)} / ${fmt(pts.length)}…` : hi ? (pts.find(p => p.id === hi) || {}).name : `${fmt(activeIds.size)} artists in view · tap a dot to open`}</div>
@@ -283,6 +289,24 @@ function SubMoodScatter({ subs, activeSub, activeFam, onPick, moodZone, setMoodZ
   const QW = 1000, QH = 560, qp = 40;
   const qx = (v) => qp + v * (QW - 2 * qp), qy = (e) => qp + (1 - e) * (QH - 2 * qp);
   const maxW = Math.max(1, ...subs.map(s => s.w));
+  // bubbles memoized without the zoom factor; radius/label ride the --zk CSS var so zoom
+  // rescales them natively without re-reconciling every subgenre bubble (Fuad 2026-07-09).
+  const bubbles = React.useMemo(() => subs.map(s => {
+    const on = activeSub ? activeSub === s.name : (activeFam != null && s.fam === activeFam);
+    const dim = activeSub ? activeSub !== s.name : (activeFam != null && s.fam !== activeFam);
+    const foc = hi === s.name;
+    const baseR = 9 + (s.w / maxW) * 40;
+    const baseFs = Math.min(13, baseR / 3.2);
+    return (
+      <g key={s.name} style={{ cursor: "pointer" }}
+        onMouseEnter={() => setHi(s.name)} onClick={(e) => { e.stopPropagation(); onPick(s.name); }}>
+        <circle cx={qx(s.x)} cy={qy(s.y)} fill="transparent" style={{ r: `calc(${Math.max(baseR, 14).toFixed(2)}px * var(--zk))` }} />
+        <circle cx={qx(s.x)} cy={qy(s.y)} fill={`oklch(0.64 0.16 ${s.hue})`}
+          fillOpacity={on ? .55 : dim ? .12 : .28} stroke={`oklch(0.6 0.16 ${s.hue})`} strokeWidth={on || foc ? 2.2 : 1.3} vectorEffect="non-scaling-stroke"
+          style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk))`, transition: "fill-opacity .25s" }} />
+        {baseR > 16 && <text x={qx(s.x)} y={qy(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontFamily="var(--sans)" fontWeight="500" style={{ pointerEvents: "none", fontSize: `calc(${baseFs.toFixed(2)}px * var(--zk))` }}>{s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
+      </g>);
+  }), [subs, maxW, activeSub, activeFam, hi, onPick]);
   const mid = 0.5;
   const zones = [
     { z: "dark-intense", x: qp, y: qp, w: qx(mid) - qp, h: qy(mid) - qp },
@@ -293,29 +317,15 @@ function SubMoodScatter({ subs, activeSub, activeFam, onPick, moodZone, setMoodZ
   return (
     <div style={{ padding: "14px 16px 10px", position: "relative" }}>
       <ZoomReset z={z} />
-      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab" }} onMouseLeave={() => setHi(null)}>
+      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", "--zk": z.k }} onMouseLeave={() => setHi(null)}>
         {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
           fill={moodZone === zn.z ? "var(--accent-bg)" : "transparent"} stroke="none"
           style={{ cursor: "pointer", transition: "fill .35s ease" }} onClick={() => setMoodZone(moodZone === zn.z ? null : zn.z)}><title>{MOOD_LABELS[zn.z]}</title></rect>)}
-        <line x1={qx(.5)} y1={qp} x2={qx(.5)} y2={QH - qp} stroke="var(--rule)" strokeWidth={z.k} />
-        <line x1={qp} y1={qy(.5)} x2={QW - qp} y2={qy(.5)} stroke="var(--rule)" strokeWidth={z.k} />
+        <line x1={qx(.5)} y1={qp} x2={qx(.5)} y2={QH - qp} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
+        <line x1={qp} y1={qy(.5)} x2={QW - qp} y2={qy(.5)} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
         {[["intense", qx(.5), qp - 4, "middle"], ["calm", qx(.5), QH - qp + 16, "middle"], ["dark", qp - 8, qy(.5), "end"], ["bright", QW - qp + 8, qy(.5), "start"]].map(([t, x, y, anc]) =>
           <text key={t} x={x} y={y} textAnchor={anc} fontFamily="var(--mono)" fontSize={10 * z.k} fill="var(--ink-faint)">{t}</text>)}
-        {subs.map(s => {
-          const on = activeSub ? activeSub === s.name : (activeFam != null && s.fam === activeFam);
-          const dim = activeSub ? activeSub !== s.name : (activeFam != null && s.fam !== activeFam);
-          const foc = hi === s.name;
-          const r = (9 + (s.w / maxW) * 40) * z.k;
-          return (
-            <g key={s.name} style={{ cursor: "pointer" }}
-              onMouseEnter={() => setHi(s.name)} onClick={(e) => { e.stopPropagation(); onPick(s.name); }}>
-              <circle cx={qx(s.x)} cy={qy(s.y)} r={Math.max(r, 14 * z.k)} fill="transparent" />
-              <circle cx={qx(s.x)} cy={qy(s.y)} r={r} fill={`oklch(0.64 0.16 ${s.hue})`}
-                fillOpacity={on ? .55 : dim ? .12 : .28} stroke={`oklch(0.6 0.16 ${s.hue})`} strokeWidth={(on || foc ? 2.2 : 1.3) * z.k}
-                style={{ transition: "fill-opacity .25s" }} />
-              {r > 16 * z.k && <text x={qx(s.x)} y={qy(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontSize={Math.min(13, r / 3.2)} fontFamily="var(--sans)" fontWeight="500" style={{ pointerEvents: "none" }}>{s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
-            </g>);
-        })}
+        {bubbles}
       </svg>
       <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>
         {hi ? hi : moodZone ? `${MOOD_LABELS[moodZone]} — tap again to clear` : `${fmt(subs.length)} subgenres · tap to filter · tap a quadrant to scope`}</div>
@@ -842,20 +852,9 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
   const px = (x) => pad + x * (W - pad * 2);
   const py = (y) => H - pad - y * (H - pad * 2);
   const z = useZoom(W, H);
-  return (
-    <div style={{ position: "relative" }}>
-      <ZoomReset z={z} />
-    <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab" }}>
-      {[.25, .5, .75].map(g => (<g key={g}>
-        <line x1={px(g)} y1={pad} x2={px(g)} y2={H - pad} stroke="var(--rule)" strokeWidth="1" />
-        <line x1={pad} y1={py(g)} x2={W - pad} y2={py(g)} stroke="var(--rule)" strokeWidth="1" />
-      </g>))}
-      <rect x={pad} y={pad} width={W - pad * 2} height={H - pad * 2} fill="none" stroke="var(--rule-2)" strokeWidth="1" />
-      <text x={pad} y={H - 16} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" style={{ letterSpacing: ".1em" }}>ORGANIC</text>
-      <text x={W - pad} y={H - 16} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" textAnchor="end" style={{ letterSpacing: ".1em" }}>ELECTRONIC</text>
-      <text x={20} y={H - pad} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" transform={`rotate(-90 20 ${H - pad})`} style={{ letterSpacing: ".1em" }}>CALM</text>
-      <text x={20} y={pad + 56} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" transform={`rotate(-90 20 ${pad + 56})`} textAnchor="end" style={{ letterSpacing: ".1em" }}>VIOLENT</text>
-      {subs.map((s, i) => {
+  // bubbles don't ride the zoom factor, so memoizing them makes wheel-zoom (viewBox only)
+  // reconcile nothing — no per-frame rebuild of ~200 subgenre marks (Fuad 2026-07-09).
+  const bubbles = React.useMemo(() => subs.map((s, i) => {
         const present = s.w > 0;
         const r = present ? 9 + (s.w / maxW) * 42 : 0;
         const on = activeSub ? activeSub === s.name : (activeFam != null && s.fam === activeFam);
@@ -872,7 +871,21 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
             {r > 17 && <text x={px(s.x)} y={py(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontSize={Math.min(13, r / 3.2)} fontFamily="var(--sans)" fontWeight="500" style={{ pointerEvents: "none", transition: "font-size .55s" }}>{s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
           </g>
         );
-      })}
+      }), [subs, maxW, activeSub, activeFam, expressive, seen, setPop, onPick]);
+  return (
+    <div style={{ position: "relative" }}>
+      <ZoomReset z={z} />
+    <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab" }}>
+      {[.25, .5, .75].map(g => (<g key={g}>
+        <line x1={px(g)} y1={pad} x2={px(g)} y2={H - pad} stroke="var(--rule)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+        <line x1={pad} y1={py(g)} x2={W - pad} y2={py(g)} stroke="var(--rule)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+      </g>))}
+      <rect x={pad} y={pad} width={W - pad * 2} height={H - pad * 2} fill="none" stroke="var(--rule-2)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+      <text x={pad} y={H - 16} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" style={{ letterSpacing: ".1em" }}>ORGANIC</text>
+      <text x={W - pad} y={H - 16} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" textAnchor="end" style={{ letterSpacing: ".1em" }}>ELECTRONIC</text>
+      <text x={20} y={H - pad} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" transform={`rotate(-90 20 ${H - pad})`} style={{ letterSpacing: ".1em" }}>CALM</text>
+      <text x={20} y={pad + 56} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" transform={`rotate(-90 20 ${pad + 56})`} textAnchor="end" style={{ letterSpacing: ".1em" }}>VIOLENT</text>
+      {bubbles}
     </svg>
     </div>
   );
