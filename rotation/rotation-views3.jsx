@@ -1896,6 +1896,8 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
   const pending = React.useRef(null);    // last transform during a drag, committed to state on release
   const drag = React.useRef(null);
   const moved = React.useRef(false);   // true if the last gesture panned — suppresses the dot click
+  const ptrs = React.useRef(new Map()); // active pointers by id — enables two-finger pinch on touch
+  const pinch = React.useRef(null);     // last two-finger distance while pinching
   React.useEffect(() => {
     if (window.ROTATION_WORLD) return;
     const on = () => setWorld(window.ROTATION_WORLD);
@@ -1934,6 +1936,22 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
       setTf({ k: k1, x: vx - px * k1, y: vy - py * k1 });
     };
     const onMove = (e) => {
+      if (ptrs.current.has(e.pointerId)) ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      const pts = [...ptrs.current.values()];
+      if (pts.length >= 2) {                    // two-finger pinch-zoom (touch)
+        if (e.cancelable) e.preventDefault();
+        const [a, b] = pts, dist = Math.hypot(a.x - b.x, a.y - b.y);
+        const [vx, vy] = toVB((a.x + b.x) / 2, (a.y + b.y) / 2);
+        if (pinch.current) {
+          const t = pending.current || tfRef.current, k1 = Math.min(14, Math.max(1, t.k * (dist / pinch.current)));
+          const px = (vx - t.x) / t.k, py = (vy - t.y) / t.k;
+          const nx = k1 === 1 ? 0 : vx - px * k1, ny = k1 === 1 ? 0 : vy - py * k1;
+          pending.current = { k: k1, x: nx, y: ny }; moved.current = true;
+          if (gRef.current) gRef.current.setAttribute("transform", `translate(${nx} ${ny}) scale(${k1})`);
+        }
+        pinch.current = dist; drag.current = null; return;
+      }
+      pinch.current = null;
       const d = drag.current; if (!d) return;
       const r = svg.getBoundingClientRect();
       const dx = (e.clientX - d.x) / r.width * 1000, dy = (e.clientY - d.y) / r.height * 315;
@@ -1944,13 +1962,22 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
       pending.current = { k: d.tk, x: nx, y: ny };
       if (gRef.current) gRef.current.setAttribute("transform", `translate(${nx} ${ny}) scale(${d.tk})`);
     };
-    const onUp = () => { if (drag.current && pending.current) { setTf(pending.current); pending.current = null; } drag.current = null; };
+    const onUp = (e) => {
+      if (e && e.pointerId != null) ptrs.current.delete(e.pointerId);
+      if (ptrs.current.size < 2) pinch.current = null;
+      if (ptrs.current.size === 0) { if (pending.current) { setTf(pending.current); pending.current = null; } drag.current = null; }
+    };
     svg.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
     return () => { svg.removeEventListener("wheel", onWheel); window.removeEventListener("pointermove", onMove); window.removeEventListener("pointerup", onUp); };
   }, []);
-  const onDown = (e) => { const t = tfRef.current; drag.current = { x: e.clientX, y: e.clientY, tx: t.x, ty: t.y, tk: t.k }; moved.current = false; };
+  const onDown = (e) => {
+    ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY }); moved.current = false;
+    const t = tfRef.current;
+    if (ptrs.current.size === 1) drag.current = { x: e.clientX, y: e.clientY, tx: t.x, ty: t.y, tk: t.k };
+    else drag.current = null;   // a second finger landed → switch from pan to pinch
+  };
   const zoom = (f) => setTf(t => { const k1 = Math.min(14, Math.max(1, t.k * f)); if (k1 === 1) return { k: 1, x: 0, y: 0 };
     const px = (500 - t.x) / t.k, py = (227 - t.y) / t.k; return { k: k1, x: 500 - px * k1, y: 227 - py * k1 }; });
   const rk = tf.k, base = 2;
