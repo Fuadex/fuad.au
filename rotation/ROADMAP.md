@@ -585,12 +585,11 @@ setlist.fm account + gigs (M2) · Spotify extended-history request (M3) · `resi
 - **iTunes Search — APPROVED as tier-3 cover fallback** (keyless, high-res art). Deezer —
   dropped ("very niche").
 - **ListenBrainz** — interesting, unscheduled.
-- **Genius lyrics — PROMOTED to the build queue (Fuad, 2026-07-05)**: local
-  `a local lyrics dump` (~5M songs, ~unzipped,
-  **language column included**); companion `a local embeddings dump`
-  for semantic/mood clustering without local NLP. Pipeline: download → match our 60k tracks
-  (normalizers + artist) → language layer first, themes/sentiment after. Not the API (no
-  lyrics in it) — the dump.
+- **Genius lyrics — PROMOTED to the build queue (Fuad, 2026-07-05)**: a local lyrics
+  dump (~5M songs, ~unzipped, **language column included**); companion local
+  embeddings dump for semantic/mood clustering without local NLP. Pipeline: download →
+  match our 60k tracks (normalizers + artist) → language layer first, themes/sentiment
+  after. Not the API (no lyrics in it) — the dump. (Dataset provenance kept local.)
 - **Other dumps catalogued 2026-07-05**: MusicBrainz weekly full dump (~6 GB, bulk cover-of/
   language via our 39k ISRCs), Discogs monthly XML (credits/formats), ListenBrainz dumps
   (percentile context + name→MBID mapping), Spotify Million Playlist (optional co-occurrence
