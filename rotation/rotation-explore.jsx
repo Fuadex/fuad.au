@@ -132,6 +132,16 @@ function mediaRank(M, R, meta, kind, f, limit) {
 // changes elsewhere on the page ripple in smoothly rather than popping.
 function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
   const [hi, setHi] = React.useState(null);
+  // progressive render: mount the ~1000 dots a few hundred per animation frame so opening the
+  // lens never blocks the main thread (the chart "fills in" instead of freezing). Resets only
+  // when the point universe itself changes, not on every filter (activeIds handles those).
+  const [n, setN] = React.useState(0);
+  React.useEffect(() => {
+    setN(0); let raf, i = 0;
+    const step = () => { i = Math.min(pts.length, i + 180); setN(i); if (i < pts.length) raf = requestAnimationFrame(step); };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [pts]);
   // same 1000×560 canvas as the texture scatter so switching lenses doesn't change the
   // module height (Fuad 2026-07-05); quadrants are simply rectangles now.
   const QW = 1000, QH = 560, qp = 40;
@@ -155,7 +165,7 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
         <line x1={qp} y1={qy(.5)} x2={QW - qp} y2={qy(.5)} stroke="var(--rule)" strokeWidth="1" />
         {[["intense", qx(.5), qp - 4, "middle"], ["calm", qx(.5), QH - qp + 16, "middle"], ["dark", qp - 8, qy(.5), "end"], ["bright", QW - qp + 8, qy(.5), "start"]].map(([t, x, y, anc]) =>
           <text key={t} x={x} y={y} textAnchor={anc} fontFamily="var(--mono)" fontSize="10" fill="var(--ink-faint)">{t}</text>)}
-        {pts.map(p => {
+        {pts.slice(0, n).map(p => {
           const active = activeIds.has(p.id), on = hi === p.id;
           const dimZone = active && moodZone && zoneOf(p.x, p.y) !== moodZone;
           const op = !active ? 0 : on ? 0.95 : dimZone ? 0.1 : 0.62;
@@ -168,7 +178,100 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
         })}
       </svg>
       <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>
-        {hi ? (pts.find(p => p.id === hi) || {}).name : moodZone ? `${MOOD_LABELS[moodZone]} — tap again to clear` : `${fmt(nActive)} artists · tap a quadrant to filter · tap a dot to open`}</div>
+        {n < pts.length ? `plotting ${fmt(n)} / ${fmt(pts.length)}…` : hi ? (pts.find(p => p.id === hi) || {}).name : moodZone ? `${MOOD_LABELS[moodZone]} — tap again to clear` : `${fmt(nActive)} artists · tap a quadrant to filter · tap a dot to open`}</div>
+    </div>
+  );
+}
+
+// ArtistCloud — the "artists" granularity for the TEXTURE lens: every (top-played) artist plotted
+// at its primary subgenre's organic↔electronic / calm↔violent position (jittered so a shared
+// subgenre fans out). Progressive render (chunked) so 1000 dots never block; dims dots outside the
+// active slice. Clicking an active dot opens the artist.
+function ArtistCloud({ pts, activeIds, go }) {
+  const W = 1000, H = 560, pad = 46;
+  const px = (x) => pad + x * (W - pad * 2), py = (y) => H - pad - y * (H - pad * 2);
+  const [hi, setHi] = React.useState(null);
+  const [n, setN] = React.useState(0);
+  React.useEffect(() => {
+    setN(0); let raf, i = 0;
+    const step = () => { i = Math.min(pts.length, i + 180); setN(i); if (i < pts.length) raf = requestAnimationFrame(step); };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [pts]);
+  const maxPlays = React.useMemo(() => Math.max(1, ...pts.map(p => p.plays)), [pts]);
+  return (
+    <div style={{ padding: "14px 16px 10px" }}>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto", display: "block" }} onMouseLeave={() => setHi(null)}>
+        {[.25, .5, .75].map(g => (<g key={g}>
+          <line x1={px(g)} y1={pad} x2={px(g)} y2={H - pad} stroke="var(--rule)" strokeWidth="1" />
+          <line x1={pad} y1={py(g)} x2={W - pad} y2={py(g)} stroke="var(--rule)" strokeWidth="1" />
+        </g>))}
+        <rect x={pad} y={pad} width={W - pad * 2} height={H - pad * 2} fill="none" stroke="var(--rule-2)" strokeWidth="1" />
+        <text x={pad} y={H - 16} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" style={{ letterSpacing: ".1em" }}>ORGANIC</text>
+        <text x={W - pad} y={H - 16} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" textAnchor="end" style={{ letterSpacing: ".1em" }}>ELECTRONIC</text>
+        <text x={20} y={H - pad} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" transform={`rotate(-90 20 ${H - pad})`} style={{ letterSpacing: ".1em" }}>CALM</text>
+        <text x={20} y={pad + 56} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" transform={`rotate(-90 20 ${pad + 56})`} textAnchor="end" style={{ letterSpacing: ".1em" }}>VIOLENT</text>
+        {pts.slice(0, n).map(p => {
+          const active = activeIds.has(p.id), on = hi === p.id;
+          const op = !active ? 0.05 : on ? 0.95 : 0.6;
+          const r = on ? 7 : 2.4 + Math.sqrt(p.plays / maxPlays) * 8.5;
+          return (
+            <circle key={p.id} cx={px(p.x)} cy={py(p.y)} r={r} fill={`oklch(0.64 0.16 ${p.hue})`} fillOpacity={op}
+              stroke={on ? "#fff" : "none"} strokeWidth="1.3"
+              style={{ cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none" }}
+              onMouseEnter={() => active && setHi(p.id)} onClick={() => active && go("artist", p.id)}><title>{p.name}</title></circle>);
+        })}
+      </svg>
+      <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>
+        {n < pts.length ? `plotting ${fmt(n)} / ${fmt(pts.length)}…` : hi ? (pts.find(p => p.id === hi) || {}).name : `${fmt(activeIds.size)} artists in view · tap a dot to open`}</div>
+    </div>
+  );
+}
+
+// SubMoodScatter — the "subgenres" granularity for the MOOD lens: each subgenre bubbled at its
+// members' mean valence × energy (sized by plays), on the same quadrant canvas as MoodQuadrant.
+// Tap a bubble to filter by subgenre; tap a quadrant to scope by mood zone. Far fewer points than
+// the artist cloud, so it's the cheap default.
+function SubMoodScatter({ subs, activeSub, activeFam, onPick, moodZone, setMoodZone }) {
+  const [hi, setHi] = React.useState(null);
+  const QW = 1000, QH = 560, qp = 40;
+  const qx = (v) => qp + v * (QW - 2 * qp), qy = (e) => qp + (1 - e) * (QH - 2 * qp);
+  const maxW = Math.max(1, ...subs.map(s => s.w));
+  const mid = 0.5;
+  const zones = [
+    { z: "dark-intense", x: qp, y: qp, w: qx(mid) - qp, h: qy(mid) - qp },
+    { z: "bright-intense", x: qx(mid), y: qp, w: QW - qp - qx(mid), h: qy(mid) - qp },
+    { z: "dark-calm", x: qp, y: qy(mid), w: qx(mid) - qp, h: QH - qp - qy(mid) },
+    { z: "bright-calm", x: qx(mid), y: qy(mid), w: QW - qp - qx(mid), h: QH - qp - qy(mid) },
+  ];
+  return (
+    <div style={{ padding: "14px 16px 10px" }}>
+      <svg viewBox={`0 0 ${QW} ${QH}`} style={{ width: "100%", height: "auto", display: "block" }} onMouseLeave={() => setHi(null)}>
+        {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
+          fill={moodZone === zn.z ? "var(--accent-bg)" : "transparent"} stroke="none"
+          style={{ cursor: "pointer", transition: "fill .35s ease" }} onClick={() => setMoodZone(moodZone === zn.z ? null : zn.z)}><title>{MOOD_LABELS[zn.z]}</title></rect>)}
+        <line x1={qx(.5)} y1={qp} x2={qx(.5)} y2={QH - qp} stroke="var(--rule)" strokeWidth="1" />
+        <line x1={qp} y1={qy(.5)} x2={QW - qp} y2={qy(.5)} stroke="var(--rule)" strokeWidth="1" />
+        {[["intense", qx(.5), qp - 4, "middle"], ["calm", qx(.5), QH - qp + 16, "middle"], ["dark", qp - 8, qy(.5), "end"], ["bright", QW - qp + 8, qy(.5), "start"]].map(([t, x, y, anc]) =>
+          <text key={t} x={x} y={y} textAnchor={anc} fontFamily="var(--mono)" fontSize="10" fill="var(--ink-faint)">{t}</text>)}
+        {subs.map(s => {
+          const on = activeSub ? activeSub === s.name : (activeFam != null && s.fam === activeFam);
+          const dim = activeSub ? activeSub !== s.name : (activeFam != null && s.fam !== activeFam);
+          const foc = hi === s.name;
+          const r = 9 + (s.w / maxW) * 40;
+          return (
+            <g key={s.name} style={{ cursor: "pointer" }}
+              onMouseEnter={() => setHi(s.name)} onClick={(e) => { e.stopPropagation(); onPick(s.name); }}>
+              <circle cx={qx(s.x)} cy={qy(s.y)} r={Math.max(r, 14)} fill="transparent" />
+              <circle cx={qx(s.x)} cy={qy(s.y)} r={r} fill={`oklch(0.64 0.16 ${s.hue})`}
+                fillOpacity={on ? .55 : dim ? .12 : .28} stroke={`oklch(0.6 0.16 ${s.hue})`} strokeWidth={on || foc ? 2.2 : 1.3}
+                style={{ transition: "fill-opacity .25s" }} />
+              {r > 16 && <text x={qx(s.x)} y={qy(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontSize={Math.min(13, r / 3.2)} fontFamily="var(--sans)" fontWeight="500" style={{ pointerEvents: "none" }}>{s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
+            </g>);
+        })}
+      </svg>
+      <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>
+        {hi ? hi : moodZone ? `${MOOD_LABELS[moodZone]} — tap again to clear` : `${fmt(subs.length)} subgenres · tap to filter · tap a quadrant to scope`}</div>
     </div>
   );
 }
@@ -308,6 +411,7 @@ function ExploreView({ t, go, setPop, seed }) {
   const [cells, setCells] = React.useState(() => new Set());
   const [playing, setPlaying] = React.useState(false);
   const [lens, setLens] = React.useState("texture");      // left surface: "texture" map or "mood" quadrant
+  const [grain, setGrain] = React.useState("subs");       // plot granularity for either lens: "subs" or "artists"
   const [moodZone, setMoodZone] = React.useState(null);   // active valence×energy quadrant filter, or null
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
   const [showN, setShowN] = React.useState(16);           // base visible rows (8/16/24/32 buttons; default 16)
@@ -422,6 +526,20 @@ function ExploreView({ t, go, setPop, seed }) {
     .map(a => { const af = R.AUDIO[a.id]; return { id: a.id, name: a.name, hue: a.hue, x: af[1], y: af[0], plays: a.plays }; }), [R]);
   const moodActive = React.useMemo(() => new Set(sliceArtists(R, { year, fam, subIdx, cells }, false).map(a => a.id)), [R, year, fam, subIdx, cells]);
   const moodSet = React.useMemo(() => sliceArtists(R, { year, fam, subIdx, cells, moodZone }, true), [R, year, fam, subIdx, cells, moodZone]);
+  // ── granularity data (built once from the universe; independent of the active slice) ──
+  // subMood: each subgenre bubbled at its members' play-weighted mean valence × energy.
+  const subMood = React.useMemo(() => {
+    const acc = R.SUBS.map(s => ({ name: s.name, fam: s.fam, hue: s.hue, vs: 0, es: 0, w: 0 }));
+    for (const a of R.EXPLORE) { const af = R.AUDIO[a.id]; if (!af) continue; for (const si of (a.s || [])) { const m = acc[si]; if (!m) continue; m.vs += af[1] * a.plays; m.es += af[0] * a.plays; m.w += a.plays; } }
+    return acc.map(m => ({ name: m.name, fam: m.fam, hue: m.hue, w: m.w, x: m.w ? m.vs / m.w : .5, y: m.w ? m.es / m.w : .5 })).filter(m => m.w > 0);
+  }, [R]);
+  // artTexture: top-played artists placed at their primary subgenre's texture position (+ jitter).
+  const artTexture = React.useMemo(() => {
+    const jit = (id, k) => { let h = 0; const s = id + k; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 1000; return (h / 1000 - .5); };
+    return R.EXPLORE.filter(a => a.s && a.s.length).slice().sort((a, b) => b.plays - a.plays).slice(0, 1000)
+      .map(a => { const s = R.SUBS[a.s[0]]; if (!s || s.x == null) return null; return { id: a.id, name: a.name, hue: a.hue, plays: a.plays, x: Math.max(0, Math.min(1, s.x + jit(a.id, "x") * .09)), y: Math.max(0, Math.min(1, s.y + jit(a.id, "y") * .09)) }; })
+      .filter(Boolean);
+  }, [R]);
   const pickSub = (name) => { setFam(null); setSub(s => s === name ? null : name); };
   const pickFam = (f) => { setSub(null); setFam(x => x === f ? null : f); };
   const toggleCell = (c) => setCells(prev => { const n = new Set(prev); n.has(c) ? n.delete(c) : n.add(c); return n; });
@@ -477,12 +595,20 @@ function ExploreView({ t, go, setPop, seed }) {
                 <button data-on={lens === "texture"} onClick={() => setLens("texture")}>texture</button>
                 <button data-on={lens === "mood"} onClick={() => setLens("mood")}>mood</button>
               </div>
+              <div className="r-seg xp-lens-seg" title="plot subgenres or individual artists">
+                <button data-on={grain === "subs"} onClick={() => setGrain("subs")}>subgenres</button>
+                <button data-on={grain === "artists"} onClick={() => setGrain("artists")}>artists</button>
+              </div>
               <span className="xp-lens-cap">{lens === "texture" ? "organic ↔ electronic" : "valence × energy"}</span>
             </div>
             <div className="xp-chartwrap">
             {lens === "texture"
-              ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
-              : <MoodQuadrant pts={moodUniverse} activeIds={moodActive} go={go} moodZone={moodZone} setMoodZone={setMoodZone} />}
+              ? (grain === "subs"
+                ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
+                : <ArtistCloud pts={artTexture} activeIds={moodActive} go={go} />)
+              : (grain === "artists"
+                ? <MoodQuadrant pts={moodUniverse} activeIds={moodActive} go={go} moodZone={moodZone} setMoodZone={setMoodZone} />
+                : <SubMoodScatter subs={subMood} activeSub={sub} activeFam={fam} onPick={pickSub} moodZone={moodZone} setMoodZone={setMoodZone} />)}
             </div>
           </div>
         </div>
@@ -565,7 +691,7 @@ function ExploreView({ t, go, setPop, seed }) {
           letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); background: transparent;
           border: 1px dashed var(--rule-2); border-radius: 8px; cursor: pointer; transition: .15s; }
         .xp-loadmore:hover { color: var(--ink); border-color: var(--ink-faint); }
-        .xp-lens { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 14px 0; }
+        .xp-lens { display: flex; align-items: center; justify-content: space-between; gap: 10px 12px; padding: 11px 14px 0; flex-wrap: wrap; }
         .xp-lens-seg button { font-size: 9px; padding: 4px 10px; }
         .xp-lens-cap { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
         /* stretch both columns to the taller one and let the chart card fill + center its SVG, so the

@@ -13,6 +13,15 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
 
 ## 2026-07-09
 
+### Rotation
+- **Explore lenses gain a subgenres ⇄ artists toggle.** Both the Texture (organic ↔ electronic)
+  and Mood (valence × energy) charts can now plot either subgenres or individual artists. New
+  views: artists on the texture map (placed at their primary subgenre, fanned out) and subgenres
+  on the mood quadrant (bubbled at their members' mean valence × energy).
+- **Faster Mood chart.** The mood lens now defaults to the lightweight subgenre view, and the
+  ~1,000-dot artist cloud renders progressively (it fills in over a few frames instead of freezing
+  the page on open).
+
 ### Canvas
 - **Zoomable map.** The museum map now pans (drag) and zooms toward the cursor (wheel); pins,
   labels and strokes hold a constant on-screen size at any zoom, and a "reset view" appears once
