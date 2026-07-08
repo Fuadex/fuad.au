@@ -44,7 +44,7 @@ function ArtistFlow({ id, hue, go, drill: drillProp, setDrill: setDrillProp, onA
     : (go ? ((s) => { if (!s.mute) go("track", id + "~" + window.ROTATION.slug(s.name)); }) : null);
 
   return (
-    <div className="r-card" style={{ padding: 18 }}>
+    <div className="r-card" style={{ padding: 18, touchAction: "manipulation" }}>
       <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}>
         <span className="lbl"><b>How they played out</b></span>
         <div className="r-seg">

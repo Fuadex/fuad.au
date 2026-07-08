@@ -213,7 +213,7 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
   return (
     <div style={{ padding: "14px 16px 10px", position: "relative" }}>
       <ZoomReset z={z} />
-      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", "--zk": z.k }} onMouseLeave={() => setHi(null)}>
+      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }} onMouseLeave={() => setHi(null)}>
         {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
           fill={moodZone === zn.z ? "var(--accent-bg)" : "transparent"} stroke="none"
           style={{ cursor: "pointer", transition: "fill .35s ease" }} onClick={() => setMoodZone(moodZone === zn.z ? null : zn.z)}><title>{MOOD_LABELS[zn.z]}</title></rect>)}
@@ -261,7 +261,7 @@ function ArtistCloud({ pts, activeIds, go }) {
   return (
     <div style={{ padding: "14px 16px 10px", position: "relative" }}>
       <ZoomReset z={z} />
-      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", "--zk": z.k }} onMouseLeave={() => setHi(null)}>
+      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }} onMouseLeave={() => setHi(null)}>
         {[.25, .5, .75].map(g => (<g key={g}>
           <line x1={px(g)} y1={pad} x2={px(g)} y2={H - pad} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
           <line x1={pad} y1={py(g)} x2={W - pad} y2={py(g)} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
@@ -317,7 +317,7 @@ function SubMoodScatter({ subs, activeSub, activeFam, onPick, moodZone, setMoodZ
   return (
     <div style={{ padding: "14px 16px 10px", position: "relative" }}>
       <ZoomReset z={z} />
-      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", "--zk": z.k }} onMouseLeave={() => setHi(null)}>
+      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }} onMouseLeave={() => setHi(null)}>
         {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
           fill={moodZone === zn.z ? "var(--accent-bg)" : "transparent"} stroke="none"
           style={{ cursor: "pointer", transition: "fill .35s ease" }} onClick={() => setMoodZone(moodZone === zn.z ? null : zn.z)}><title>{MOOD_LABELS[zn.z]}</title></rect>)}
@@ -887,7 +887,7 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
   return (
     <div style={{ position: "relative" }}>
       <ZoomReset z={z} />
-    <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab" }}>
+    <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation" }}>
       {[.25, .5, .75].map(g => (<g key={g}>
         <line x1={px(g)} y1={pad} x2={px(g)} y2={H - pad} stroke="var(--rule)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
         <line x1={pad} y1={py(g)} x2={W - pad} y2={py(g)} stroke="var(--rule)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
