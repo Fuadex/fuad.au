@@ -2185,7 +2185,7 @@ const SUBS = [];
     if (!f) continue;
     const fi = FAMILIES.indexOf(f);
     const n = perFam.get(fi) || 0;
-    if (n >= 16) continue;            // cap per family so the scatter doesn't choke
+    if (n >= 20) continue;            // cap per family so the scatter doesn't choke
     perFam.set(fi, n + 1);
     SUBS.push({
       name: tag, fam: fi, hue: f.hue,
