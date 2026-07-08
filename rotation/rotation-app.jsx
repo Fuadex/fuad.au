@@ -182,10 +182,8 @@ function RotationApp() {
       </Boundary>
 
       <footer className="r-foot">
-        <div>rotation · a companion to <a className="r-link" href="Culture v2.html">Culture</a> · fuad.design / 2026</div>
-        <div className="r-foot-links">
-          <span>real scrobbles — last.fm/fuadex</span>
-        </div>
+        <div>rotation · real scrobbles — last.fm/fuadex · fuad.design / 2026</div>
+        <nav className="site-switch r-foot-links">part of <a href="/">fuad.au</a> · <a href="/rotation/">Rotation</a> · <a href="/canvas/">Canvas</a> · <a href="/culture/">Culture</a></nav>
       </footer>
 
       <Popover data={pop} />
@@ -228,6 +226,8 @@ function RotationApp() {
         .r-foot { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
           padding: 24px var(--pad); border-top: 1px solid var(--rule); font-family: var(--mono);
           font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+        .r-foot .site-switch a { color: var(--accent); text-decoration: none; }
+        .r-foot .site-switch a:hover { color: var(--ink); }
         .tw-accents { display: flex; gap: 8px; padding: 4px 0 10px; }
         .tw-accents button { width: 30px; height: 30px; border-radius: 8px; border: 2px solid transparent;
           cursor: pointer; transition: transform .15s, border-color .15s; }

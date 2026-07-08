@@ -194,4 +194,16 @@ everything actionable. Old string verdicts migrate on load.
 
 > 2026-07-08: **wikidata_cache.json (54 MB, growing) removed from git tracking** (canvas/.gitignore) — it is rebuildable (keyless SPARQL, ~minutes) and the enriched OUTPUTS the site needs (art_data.js/museum_highlights.js/palette.js) are committed, so nothing is lost. Confirmed NOT in the deploy list (never shipped to visitors). Stays on disk locally so folds here remain fast; a fresh clone rebuilds it on first fetch-art run. Small caches (highlights 116KB, palette 16KB) stay committed. The 54MB already in git HISTORY is inert (repo pack ~60MB, delta-compressed) and stops growing now; a one-time history shrink (git-filter-repo/BFG + force-push) is an OPTION if clone size ever bites — deferred, needs Fuad since it rewrites shared main.
 
+> 2026-07-09: **QoL pass (v6).** Map is now **zoom+pan** (wheel-to-cursor zoom, drag-pan, marker/
+> label sizes held constant via a k=vb.w/880 scale, reset-view button). **Pilgrimage folded into
+> the Map** — wish works pin to their holding city as ♥ markers (shared venue fans out by a
+> golden-angle jitter so they separate on zoom), hover→cursor-following preview card, click→work;
+> the grouped "to see" list + Places moved beneath the map; Pilgrimage nav/route removed
+> (#/pilgrimage now redirects to the map). **Artists index → circular photo blobs** (cv-artgrid /
+> cv-artblob, reusing AD.artists[id].image — 126/133 have photos; hsl-hash monogram fallback,
+> ★-count badge). **Reader hero capped at 80vh** (object-fit contain, centered) so detail stays
+> visible under tall works. **Cross-site footer nav** (part of fuad.au · Rotation · Canvas ·
+> Culture) added to all three apps (`.site-switch`). Version-level write-up started at the repo
+> root `CHANGELOG.md` (feature/architecture only; dataset provenance kept local). ?v=6.
+
 > 2026-07-08: **Portrait page SHIPPED** (#/portrait) — Canvas answer to Rotation Stories, all client-side from loaded canon: a generated read paragraph (313 works / 22 museums / 9 countries / fav artist / dominant movement), the palette-of-taste spectrum (every works dominant colour, hue-sorted), movements-by-loved bars (Impressionism 94, Symbolism 34...), a centuries histogram (8th-c Faras to 1900s), and "Who your eye chose" (most-loved artists beyond the named affinity — Morisot/Claudel/Zorn thread). Wall tightened to 6-col earlier same day; ?v=5.
