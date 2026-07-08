@@ -38,6 +38,15 @@ people's hands* (advocacy test, reach a signal not a gate). Legend desc populate
 Fuad's call whether this sticks or the taxonomy splits again; `audit_gems.py` remains the
 discovery aid.
 
+## Planned: a full badge re-audit ("what earns what")
+Fuad wants a future systematic pass over **every** title to decide precisely which badges each
+one earns — not incremental one-offs but a deliberate sweep, title by title, testing each against
+the charter's one-line tests. This is the big lever for making the taxonomy trustworthy (scarcity
+is the feature). Approach when it happens: dump every item with its current union of badges +
+key metadata, walk medium by medium, propose add/remove per title against the charter, review in
+batches. Ad-hoc corrections logged meanwhile (e.g. 2026-07-08: The Peasants += devastating,
+social-xray, style) are down-payments on this, not a substitute.
+
 ## Still to crack
 
 ### 💥 impact — tighten 63 → ≈50
