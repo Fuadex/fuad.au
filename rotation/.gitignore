@@ -5,6 +5,7 @@
 *.zip
 archive.zip
 archive_genius.zip   # Genius lyrics dump (~3 GB) — local-only
+my_spotify_data.zip  # personal Spotify data export — PRIVATE, local-only, never commit
 spotify-sync.log
 # scratch logs from background enrichment runs
 *-run.log
