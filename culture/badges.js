@@ -657,6 +657,11 @@ window.CULTURE_BADGES = {
  "paranoia-agent": [
   "horrifying"
  ],
+ "peasants": [
+  "devastating",
+  "social-xray",
+  "style"
+ ],
  "pierwsza-milosc": [
   "cerebral"
  ],
