@@ -2198,7 +2198,16 @@ for (const [name, plays] of rankedArtists) {
   const vocab = [...((meta && meta.tags) || []), ...cachedTags(name).map(t => t[0]), ...stylesOf(name).map(s => s.toLowerCase())];
   const seen = new Set(), s = [];
   for (const tg of vocab) { const i = subIdxByName.get(canonSub(tg)); if (i != null && !seen.has(i)) { seen.add(i); s.push(i); } }
-  if (!s.length) continue;            // no placeable subgenre at all → skip
+  if (!s.length) {
+    // family fallback: no SPECIFIC subgenre matched (the artist's tags are only generic umbrellas
+    // like "rock" / "alternative rock", which are deliberately excluded from the subgenre vocab),
+    // but those tags still classify to a Sound-Map FAMILY. Place the artist on that family's
+    // representative subgenre so it stays in Explore — filterable, clickable, map-counted — instead
+    // of being dropped from the universe entirely (Fuad: "not just Cranberries got nuked").
+    const fi = familyIdxByName(name);
+    if (fi >= 0) { const rep = SUBS.findIndex(su => su.fam === fi); if (rep >= 0) s.push(rep); }
+  }
+  if (!s.length) continue;            // truly no genre signal at all → skip
   const rec = { id: slug(name), name, plays, hue: hueFor(name), s, l: listenersOf(name) || 0, d: debutOf(name) || 0 };
   const _o = originOf(name);            // country/city tag → lets the Journey scope to a place
   if (_o) { rec.co = _o.country; if (_o.city) rec.ci = _o.city; }

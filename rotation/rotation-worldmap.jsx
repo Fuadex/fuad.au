@@ -543,12 +543,12 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
             <div className="mp-resbody">
             {pane === "artists" && (resultArtists.length
               ? (disp === "grid"
-                ? <div className="mp-covergrid">{resultArtists.slice(0, limit).map((e, i) => { const a = e.a, kept = !!R.byId[a.id]; return (
+                ? <div className="mp-covergrid">{resultArtists.slice(0, limit).map((e, i) => { const a = e.a, kept = !!R.byId[a.id] || !!(R.expById && R.expById[a.id]); return (
                     <div key={a.id} className="mp-coveritem" data-link={kept} onClick={() => kept && go("artist", a.id)}>
                       <div style={{ position: "relative" }}><GenCover hue={a.hue || 210} name={a.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
                         <span className="r-mono" style={{ position: "absolute", top: 4, left: 5, fontSize: 8.5, color: "rgba(255,255,255,.85)", textShadow: "0 1px 2px #000" }}>{String(i + 1).padStart(2, "0")}</span></div>
                       <div className="mp-covernm">{a.name}</div><div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(e.p)}</div></div>); })}</div>
-                : <div className="cal-rows">{resultArtists.slice(0, limit).map((e, i) => { const a = e.a, kept = !!R.byId[a.id]; return (
+                : <div className="cal-rows">{resultArtists.slice(0, limit).map((e, i) => { const a = e.a, kept = !!R.byId[a.id] || !!(R.expById && R.expById[a.id]); return (
                     <div key={a.id} className="cal-row" data-link={kept} onClick={() => kept && go("artist", a.id)}>
                       <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={a.hue || 210} name={a.name} size={34} radius={3} />
                       <span className="cal-nm">{a.name}</span><span className="cal-pl">{fmt(e.p)}</span></div>); })}</div>)
