@@ -468,15 +468,31 @@ function MapView({ go }) {
   const world = window.CANVAS_WORLD || null;
   const P = (lat, lng) => [(lng + 180) / 360 * 1000, (90 - lat) / 180 * 500];
   const coordOf = (id) => { const d = AD.museums[id] || {}; return d.lat == null ? null : P(d.lat, d.lng); };
+  const landPath = useMemo(() => (world && world.land ? world.land.join(" ") : ""), []);
   const pins = useMemo(() => {
     const counts = {};
     for (const w of WORKS) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) if (id) counts[id] = (counts[id] || 0) + 1;
-    return MUSEUMS.map(m => {
+    const raw = MUSEUMS.map(m => {
       const d = AD.museums[m.id] || {};
       if (d.lat == null) return null;
       const [x, y] = P(d.lat, d.lng);
       return { id: m.id, name: m.name.replace(/\s*\(.*\)$/, ""), city: m.city, x, y, n: counts[m.id] || 0, kind: m.kind, visits: m.visits || [] };
     }).filter(Boolean);
+    // decluster same-city museums that project to (nearly) the same point: fan the group out on a
+    // golden-angle spiral around its centroid and keep a thin connector back to it, so they read as
+    // one coagulated cluster that splits apart as you zoom in (offsets are fixed map units).
+    const groups = {};
+    for (const p of raw) { const key = Math.round(p.x / 5) + ":" + Math.round(p.y / 5); (groups[key] = groups[key] || []).push(p); }
+    const out = [];
+    for (const g of Object.values(groups)) {
+      if (g.length === 1) { out.push({ ...g[0], bx: g[0].x, by: g[0].y, split: false }); continue; }
+      const cx = g.reduce((s, p) => s + p.x, 0) / g.length, cy = g.reduce((s, p) => s + p.y, 0) / g.length;
+      g.sort((a, b) => b.n - a.n).forEach((p, i) => {
+        const ang = i * 2.399, rad = i === 0 ? 0 : 3 + 1.8 * Math.sqrt(i);
+        out.push({ ...p, x: cx + rad * Math.cos(ang), y: cy + rad * Math.sin(ang), bx: cx, by: cy, split: i !== 0 });
+      });
+    }
+    return out;
   }, []);
   // pilgrimage layer: wish works placed at their holding museum, fanned out so a shared venue spreads
   const { wishMarkers, wishList } = useMemo(() => {
@@ -505,22 +521,36 @@ function MapView({ go }) {
     return Object.entries(by).map(([y, s]) => [y, [...s]]).sort((a, b) => b[0] - a[0]);
   }, []);
 
-  // zoom + pan: the viewBox is state; wheel zooms toward the cursor, drag pans. Marker/label
-  // sizes are multiplied by k = vb.w/880 so they stay a constant size on screen at any zoom.
+  // zoom + pan: the viewBox is state; wheel zooms toward the cursor, drag pans. Marker/label sizes
+  // are multiplied by k = vb.w/880 so they stay a constant size on screen at any zoom. The wheel is
+  // bound NON-passively via the DOM (React's onWheel is passive → the page used to scroll instead)
+  // and every view change is coalesced to ONE state commit per animation frame (a wheel burst can't
+  // trigger a re-render storm on the big land path — the earlier crash/VRAM spike).
   const AR = 380 / 880;
+  const HOME = { x: 60, y: 40, w: 880, h: 380 };
   const svgRef = React.useRef(null);
   const drag = React.useRef(null);
-  const [vb, setVb] = useState({ x: 60, y: 40, w: 880, h: 380 });
+  const raf = React.useRef(0);
+  const [vb, setVb] = useState(HOME);
+  const vbRef = React.useRef(vb); vbRef.current = vb;
   const [hover, setHover] = useState(null);
   const k = vb.w / 880;
-  const zoomAt = (mx, my, f) => setVb(v => {
-    const w = Math.min(880, Math.max(70, v.w * f)), h = w * AR;
-    const px = v.x + mx * v.w, py = v.y + my * v.h;
-    return { x: px - mx * w, y: py - my * h, w, h };
-  });
-  const onWheel = (e) => { e.preventDefault(); const r = svgRef.current.getBoundingClientRect(); zoomAt((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height, e.deltaY < 0 ? 1 / 1.18 : 1.18); };
-  const onDown = (e) => { drag.current = { mx: e.clientX, my: e.clientY, x: vb.x, y: vb.y }; };
-  const onMove = (e) => { if (!drag.current) return; const r = svgRef.current.getBoundingClientRect(); setVb(v => ({ ...v, x: drag.current.x - (e.clientX - drag.current.mx) / r.width * v.w, y: drag.current.y - (e.clientY - drag.current.my) / r.height * v.h })); };
+  const commit = (next) => { vbRef.current = next; if (!raf.current) raf.current = requestAnimationFrame(() => { raf.current = 0; setVb(vbRef.current); }); };
+  React.useEffect(() => {
+    const el = svgRef.current; if (!el) return;
+    const onWheel = (e) => {
+      e.preventDefault();
+      const r = el.getBoundingClientRect();
+      const mx = (e.clientX - r.left) / r.width, my = (e.clientY - r.top) / r.height;
+      const f = e.deltaY < 0 ? 1 / 1.18 : 1.18, v = vbRef.current;
+      const w = Math.min(880, Math.max(70, v.w * f)), h = w * AR;
+      commit({ x: v.x + mx * v.w - mx * w, y: v.y + my * v.h - my * h, w, h });
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => { el.removeEventListener("wheel", onWheel); if (raf.current) cancelAnimationFrame(raf.current); };
+  }, []);
+  const onDown = (e) => { if (e.button !== 0) return; drag.current = { mx: e.clientX, my: e.clientY, v: vbRef.current }; };
+  const onMove = (e) => { if (!drag.current || !svgRef.current) return; const r = svgRef.current.getBoundingClientRect(), d = drag.current; commit({ ...d.v, x: d.v.x - (e.clientX - d.mx) / r.width * d.v.w, y: d.v.y - (e.clientY - d.my) / r.height * d.v.h }); };
   const stop = () => { drag.current = null; };
 
   return (
@@ -528,14 +558,15 @@ function MapView({ go }) {
       <p className="cv-deck-sum">Museums pinned where they stand, sized by how much of the canon they gave you; the <b style={{ color: "oklch(0.55 0.19 18)" }}>♥ markers</b> are works you're still chasing — hover for a look, click to open. Scroll to zoom, drag to pan.</p>
       <div className="cv-map-wrap" onMouseLeave={stop}>
         <svg ref={svgRef} viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
-          onWheel={onWheel} onMouseDown={onDown} onMouseMove={onMove} onMouseUp={stop}>
-          {world && <path d={world.land.join(" ")} fill="#d3c4ab" stroke="none" />}
+          onMouseDown={onDown} onMouseMove={onMove} onMouseUp={stop}>
+          {landPath && <path d={landPath} fill="#d3c4ab" stroke="none" />}
+          {pins.filter(p => p.split).map(p => <line key={"l" + p.id} x1={p.bx} y1={p.by} x2={p.x} y2={p.y} stroke="rgba(58,47,34,.35)" strokeWidth={0.4 * k} />)}
           {pins.map(p => (
             <g key={p.id} className="cv-pin" onClick={() => go("museums")}>
               <circle cx={p.x} cy={p.y} r={(p.n ? 3 + Math.sqrt(p.n) * 1.9 : 2.2) * k}
                 fill={p.n ? "oklch(0.55 0.13 46 / .82)" : "rgba(58,47,34,.45)"} stroke="#f4ecdf" strokeWidth={0.8 * k} />
               <title>{p.name}, {p.city} — {p.n ? p.n + " work" + (p.n > 1 ? "s" : "") + " in the canon" : "visited"}</title>
-              {p.n >= 4 && <text x={p.x} y={p.y - (4 + Math.sqrt(p.n) * 1.9) * k} textAnchor="middle" style={{ fontSize: 8.5 * k }}>{p.city}</text>}
+              {p.n >= 4 && !p.split && <text x={p.x} y={p.y - (4 + Math.sqrt(p.n) * 1.9) * k} textAnchor="middle" style={{ fontSize: 8.5 * k }}>{p.city}</text>}
             </g>
           ))}
           {wishMarkers.map((mk, i) => (

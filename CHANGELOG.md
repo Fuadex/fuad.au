@@ -11,6 +11,24 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
 
 ---
 
+## 2026-07-10
+
+### Canvas
+- **Map zoom hardened.** Wheel is now bound non-passively (scrolling over the map zooms it instead
+  of scrolling the whole page) and view changes are coalesced to one update per frame, fixing the
+  occasional crash/VRAM spike on rapid zoom. The land path is memoised so it isn't rebuilt each frame.
+- **Overlapping museums de-cluster.** Same-city museums that used to stack on one dot now fan out on
+  a small spiral around their shared point, each tethered by a thin line so the group still reads as
+  one place — and they spread further apart as you zoom in.
+
+### Rotation
+- **Explore charts get zoom + pan.** All four Explore scatters (texture/mood × subgenres/artists)
+  zoom to the cursor and pan; artist-cloud dots keep a constant on-screen size so dense regions
+  de-cluster as you zoom. Wheel is non-passive (no more page-scroll) and coalesced per frame.
+- **Texture-by-artists fixed** to derive straight from audio features (organic↔electronic from
+  acousticness, calm↔violent from energy), and both artist clouds now plot the full ~3,900-artist
+  audio universe, rendered progressively.
+
 ## 2026-07-09
 
 ### Rotation
