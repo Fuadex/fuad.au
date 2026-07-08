@@ -195,7 +195,7 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
   const dots = React.useMemo(() => pts.slice(0, n).map(p => {
     const active = activeIds.has(p.id), on = hi === p.id;
     const dimZone = active && moodZone && zoneOf(p.x, p.y) !== moodZone;
-    const op = !active ? 0 : on ? 0.95 : dimZone ? 0.1 : 0.62;
+    const op = !active ? 0.05 : on ? 0.95 : dimZone ? 0.1 : 0.62;
     const baseR = on ? 7 : 3 + Math.sqrt(p.plays / maxPlays) * 9;
     return (
       <circle key={p.id} cx={qx(p.x)} cy={qy(p.y)} fill={`oklch(0.64 0.16 ${p.hue})`}
@@ -255,7 +255,7 @@ function ArtistCloud({ pts, activeIds, go }) {
     return (
       <circle key={p.id} cx={px(p.x)} cy={py(p.y)} fill={`oklch(0.64 0.16 ${p.hue})`} fillOpacity={op}
         stroke={on ? "#fff" : "none"} strokeWidth={1.3} vectorEffect="non-scaling-stroke"
-        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none" }}
+        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: "fill-opacity .45s ease" }}
         onMouseEnter={() => active && setHi(p.id)} onClick={() => active && go("artist", p.id)}><title>{p.name}</title></circle>);
   }), [pts, n, activeIds, hi, maxPlays, go]);
   return (
@@ -621,25 +621,27 @@ function ExploreView({ t, go, setPop, seed }) {
         </div>
       </div>
 
-      {/* filter bar: time + active */}
+      {/* filter bar: Time on the left, Active filters pinned to the right of the SAME row — so
+         activating a filter fills the right side instead of adding a row that shoves the page
+         down (Fuad 2026-07-09). Collapses to stacked on mobile. */}
       <div className="xp-filters r-card">
-        <div className="xp-frow">
+        <div className="xp-frow xp-frow-main">
           <span className="xp-flabel">Time</span>
-          <div className="xp-chiprow">
+          <div className="xp-chiprow xp-chiprow-time">
             <button className="xp-chip xp-play" data-on={playing} onClick={togglePlay} title="Play the decade">{playing ? "❚❚" : "▶"} decade</button>
             <button className="xp-chip" data-on={year == null} onClick={() => { setPlaying(false); setYear(null); }}>All</button>
             {yearKeys.map(y => <button key={y} className="xp-chip" data-on={year === y} onClick={() => { setPlaying(false); setYear(year === y ? null : y); }}>{"'" + String(y).slice(2)}</button>)}
           </div>
-        </div>
-        {chips.length > 0 && (
-          <div className="xp-frow">
-            <span className="xp-flabel">Active</span>
-            <div className="xp-chiprow">
-              {chips.map(([k, v, clr]) => <button key={k} className="xp-chip xp-chip-active" onClick={clr}><span className="xp-ck">{k}</span> {v} <span className="xp-x">✕</span></button>)}
-              <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYear(null); setFam(null); setSub(null); setCells(new Set()); setMoodZone(null); }}>clear all</button>
+          {chips.length > 0 && (
+            <div className="xp-active">
+              <span className="xp-flabel">Active</span>
+              <div className="xp-chiprow">
+                {chips.map(([k, v, clr]) => <button key={k} className="xp-chip xp-chip-active" onClick={clr}><span className="xp-ck">{k}</span> {v} <span className="xp-x">✕</span></button>)}
+                <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYear(null); setFam(null); setSub(null); setCells(new Set()); setMoodZone(null); }}>clear all</button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       {/* converged surface: sound map (sticky left) + ranked results (right) */}
@@ -730,6 +732,13 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-search-empty { padding: 14px 10px; color: var(--ink-faint); font-family: var(--mono); font-size: 11px; }
         .xp-filters { padding: 14px 16px; margin-bottom: var(--gap); display: grid; gap: 10px; }
         .xp-frow { display: grid; grid-template-columns: 56px 1fr; gap: 10px; align-items: start; }
+        /* Time + Active share one flex row; Active pins right and the bar stays a fixed height,
+           so filtering never reflows the page below it. */
+        .xp-frow-main { display: flex; align-items: center; gap: 12px; }
+        .xp-chiprow-time { flex: 1 1 auto; min-width: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+        .xp-chiprow-time::-webkit-scrollbar { display: none; }
+        .xp-active { display: flex; align-items: center; gap: 8px; margin-left: auto; flex: 0 0 auto; }
+        .xp-active .xp-flabel { padding-top: 0; }
         .xp-flabel { font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); padding-top: 7px; }
         .xp-chiprow { display: flex; flex-wrap: wrap; gap: 6px; }
         .xp-chip { font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-soft); cursor: pointer; transition: .14s; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
@@ -830,6 +839,9 @@ function ExploreView({ t, go, setPop, seed }) {
         @media (max-width: 860px) { .xp-left { position: static; } }
         @media (max-width: 760px) {
           .xp-frow { grid-template-columns: 1fr; gap: 6px; }
+          /* stack Active under Time on narrow screens */
+          .xp-frow-main { flex-wrap: wrap; }
+          .xp-active { margin-left: 0; width: 100%; gap: 6px; }
           .xp-flabel { padding-top: 0; }
           .xp-chiprow { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
           .xp-chiprow::-webkit-scrollbar { display: none; }
