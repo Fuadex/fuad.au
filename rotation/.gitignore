@@ -4,7 +4,7 @@
 *.parquet
 *.zip
 archive.zip
-archive_genius.zip   # Local Genius lyrics dump (~3 GB) — local-only
+archive_genius.zip   # Genius lyrics dump (~3 GB) — local-only
 spotify-sync.log
 # scratch logs from background enrichment runs
 *-run.log

@@ -20,7 +20,7 @@ _enrich_out.txt
 *.har
 www.filmweb.pl.txt
 
-# Large local enrichment dumps (Local script/transcript corpora — never commit)
+# Large local enrichment dumps (script/transcript corpora — never commit)
 *.zip
 *.parquet
 *.tar
