@@ -110,8 +110,10 @@ Louvre-only.
 
 - **Collage** *(default home, per mockup 2a)* — favorites packed edge-to-edge, no chrome;
   the wall IS the navigation. Click → Reader.
-- **Salon** *(toggle, mockup 1a)* — the wall-hang mode: warm plaster, frames, museum-label
-  typography. Same data, more painterly hang.
+- **Spectrum / Timeline / Movements** *(wall arrangement toggles, 2026-07-09)* — replaced the
+  cosmetic Salon reskin (removed) with three meaningful re-hangs of the same works: Spectrum
+  orders by dominant palette hue, Timeline groups into century bands, Movements groups into
+  labelled art-movement sections. All client-side from CANVAS_PALETTE + AD movementQids + year.
 - **Map / Observatory** *(mockup 2b + 1b)* — the painterly map: each museum a pin sized by
   works seen there, each work pinned to *where it found you*; trip timeline underneath.
   (Rotation's worldmap idiom, re-skinned warm.)

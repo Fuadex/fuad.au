@@ -61,13 +61,19 @@ function Card({ w, go }) {
 const CAP = 48;
 const FILTERS = [["all", "all"], ["floored", "★ floored"], ["loved", "♥ loved"], ["sure", "seen — sure"], ["unsure", "unsure"], ["wish", "pilgrimage"]];
 const weight = (w) => (w.floored || w.favorite) ? 0 : (w.liked ? 1 : 2);
-function Wall({ go }) {
+// arrangement helpers — dominant-hue of a work (grey/no-palette sort last), primary movement,
+// and century band. All from data already loaded (CANVAS_PALETTE, AD.artists movementQids, year).
+const palHueOf = (w) => { const p = (window.CANVAS_PALETTE || {})[w.id]; if (!p || !p[0]) return 999; const h = hexHue(p[0]); return h < 0 ? 998 : h; };
+const movOf = (w) => { const a = AD.artists[w.artistId]; const q = a && a.movementQids && a.movementQids[0]; return (q && (AD.movements || {})[q]) || null; };
+const centuryOf = (w) => w.year ? Math.floor(w.year / 100) * 100 : null;
+
+function Wall({ go, mode = "collage" }) {
   const all = useMemo(() => WORKS.map(enrich), []);
   const [filt, setFilt] = useState("all");
   const [mus, setMus] = useState("");
   const [sort, setSort] = useState("hang");
   const [extra, setExtra] = useState(0);
-  useEffect(() => { setExtra(0); }, [filt, mus, sort]);
+  useEffect(() => { setExtra(0); }, [filt, mus, sort, mode]);
 
   const shown = useMemo(() => {
     let list = all;
@@ -78,18 +84,38 @@ function Wall({ go }) {
     if (filt === "wish") list = list.filter(w => w.wish);
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
     const arr = [...list];
-    if (sort === "hang") arr.sort((a, b) => (b.imgGrid ? 1 : 0) - (a.imgGrid ? 1 : 0) || weight(a) - weight(b));
-    if (sort === "year") arr.sort((a, b) => (a.year || 9999) - (b.year || 9999));
-    if (sort === "artist") arr.sort((a, b) => a.artist.localeCompare(b.artist) || (a.year || 0) - (b.year || 0));
-    if (sort === "museum") arr.sort((a, b) => String(a.seenAt).localeCompare(String(b.seenAt)) || weight(a) - weight(b));
+    if (mode === "spectrum") arr.sort((a, b) => palHueOf(a) - palHueOf(b) || weight(a) - weight(b));
+    else if (mode === "timeline") arr.sort((a, b) => (a.year || 9999) - (b.year || 9999) || weight(a) - weight(b));
+    else if (mode === "movements") arr.sort((a, b) => { const ma = movOf(a), mb = movOf(b); return (ma ? 0 : 1) - (mb ? 0 : 1) || String(ma).localeCompare(String(mb)) || (a.year || 0) - (b.year || 0); });
+    else { // collage — respect the sort dropdown
+      if (sort === "hang") arr.sort((a, b) => (b.imgGrid ? 1 : 0) - (a.imgGrid ? 1 : 0) || weight(a) - weight(b));
+      if (sort === "year") arr.sort((a, b) => (a.year || 9999) - (b.year || 9999));
+      if (sort === "artist") arr.sort((a, b) => a.artist.localeCompare(b.artist) || (a.year || 0) - (b.year || 0));
+      if (sort === "museum") arr.sort((a, b) => String(a.seenAt).localeCompare(String(b.seenAt)) || weight(a) - weight(b));
+    }
     return arr;
-  }, [all, filt, mus, sort]);
+  }, [all, filt, mus, sort, mode]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
     for (const w of all) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) if (id) counts[id] = (counts[id] || 0) + 1;
     return MUSEUMS.filter(m => counts[m.id]).map(m => ({ id: m.id, label: m.name.replace(/\s*\(.*\)$/, "") + " (" + counts[m.id] + ")" }));
   }, [all]);
+
+  // grouped modes (timeline/movements) break the visible slice into labelled sections; collage
+  // and spectrum are one continuous masonry.
+  const vis = shown.slice(0, visN);
+  const grouped = (mode === "timeline" || mode === "movements") && vis.length > 0;
+  const sections = useMemo(() => {
+    if (!grouped) return null;
+    const keyOf = mode === "timeline" ? centuryOf : movOf;
+    const labelOf = mode === "timeline"
+      ? (k) => k == null ? "Undated" : k + "s"
+      : (k) => k || "Other movements";
+    const out = []; let cur = null;
+    for (const w of vis) { const k = keyOf(w); if (!cur || cur.k !== k) { cur = { k: k == null ? "∅" : k, label: labelOf(k), items: [] }; out.push(cur); } cur.items.push(w); }
+    return out;
+  }, [vis, mode, grouped]);
 
   return (
     <React.Fragment>
@@ -101,15 +127,24 @@ function Wall({ go }) {
           <option value="">every museum</option>
           {musOpts.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
         </select>
-        <select value={sort} onChange={e => setSort(e.target.value)}>
-          <option value="hang">hang order</option>
-          <option value="year">by year</option>
-          <option value="artist">by artist</option>
-          <option value="museum">by museum</option>
-        </select>
+        {mode === "collage" && (
+          <select value={sort} onChange={e => setSort(e.target.value)}>
+            <option value="hang">hang order</option>
+            <option value="year">by year</option>
+            <option value="artist">by artist</option>
+            <option value="museum">by museum</option>
+          </select>
+        )}
         <span className="cv-count">{Math.min(visN, shown.length)} of {shown.length}</span>
       </div>
-      <div className="cv-wall">{shown.slice(0, visN).map(w => <Card key={w.id} w={w} go={go} />)}</div>
+      {grouped
+        ? sections.map(g => (
+          <section className="cv-section" key={g.k}>
+            <h3 className="cv-section-h">{g.label}<span className="cv-section-n">{g.items.length}</span></h3>
+            <div className="cv-wall">{g.items.map(w => <Card key={w.id} w={w} go={go} />)}</div>
+          </section>
+        ))
+        : <div className="cv-wall">{vis.map(w => <Card key={w.id} w={w} go={go} />)}</div>}
       {shown.length > visN && (
         <div className="cv-more"><button onClick={() => setExtra(e => e + CAP)}>hang {Math.min(CAP, shown.length - visN)} more</button></div>
       )}
@@ -740,8 +775,7 @@ function Portrait({ go }) {
 
 function App() {
   const route = useRoute();
-  const [salon, setSalon] = useState(false);
-  useEffect(() => { document.body.dataset.salon = salon; }, [salon]);
+  const [mode, setMode] = useState("collage");   // wall arrangement: collage | spectrum | timeline | movements
   const go = (view, id) => { location.hash = view === "wall" ? "/" : "/" + view + (id ? "/" + id : ""); };
   const view = route.view === "work" ? "wall" : route.view;   // reader overlays the wall
   return (
@@ -757,8 +791,8 @@ function App() {
         </nav>
         {view === "wall" && (
           <div className="cv-mode">
-            <button data-on={!salon} onClick={() => setSalon(false)}>Collage</button>
-            <button data-on={salon} onClick={() => setSalon(true)}>Salon</button>
+            {[["collage", "Collage"], ["spectrum", "Spectrum"], ["timeline", "Timeline"], ["movements", "Movements"]].map(([m, lbl]) =>
+              <button key={m} data-on={mode === m} onClick={() => setMode(m)}>{lbl}</button>)}
           </div>
         )}
       </header>
@@ -767,7 +801,7 @@ function App() {
         : view === "portrait" ? <Portrait go={go} />
         : (view === "map" || view === "pilgrimage") ? <MapView go={go} />
         : route.view === "artist" ? <ArtistView artistId={route.id} go={go} key={route.id} />
-        : view === "artists" ? <Artists go={go} /> : <Wall go={go} />}
+        : view === "artists" ? <Artists go={go} /> : <Wall go={go} mode={mode} />}
       {route.view === "work" && <Reader id={route.id} go={go} />}
       <footer className="cv-foot">
         <span className="cv-foot-main">canvas · a personal gallery, reconstructed from memory · images via <a href="https://commons.wikimedia.org" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> / <a href="https://www.wikidata.org" target="_blank" rel="noopener noreferrer">Wikidata</a></span>
