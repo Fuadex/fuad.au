@@ -125,6 +125,29 @@ below (LIMITATIONS §6b) — decide the layout/structure BEFORE building:**
    (the Phase 0 de-bloat that was deferred because it would drop those reads). *(Not gated.)*
 7. Run the 270-track actionable promotion backlog locally through Claude. *(Not gated.)*
 
+### 📈 Reads data file — scaling note (2026-07-10)
+The "what it's about" reads (haiku/sonnet/opus/web + fable/fableDeep in `llm-about.js`; Genius
+excerpts in `genius-about-lazy.js`) are **already isolated, lazy-loaded, and out of the main
+bundle** — they download only when a track/artist "about" view opens, then cache. So the reads
+can grow freely without touching first paint. Intent (Fuad, 2026-07-10): **grow Sonnet/Opus to
+cover as many songs as possible.**
+
+Measured 2026-07-10: `llm-about.js` raw 3.53 MB → **brotli ~0.90 MB** over the wire (GitHub Pages
+serves brotli; compresses only ~3.9× — unique prose). +3,876 haiku-only tail ≈ **~1.05 MB brotli**.
+
+**Do NOT hash-shard "loaded-together"** — same bytes + more round-trips = strictly worse on
+mobile/travel (latency, not bandwidth, is the constraint there). Decided against for now.
+
+**Future escape hatch when it gets big (exciting idea, deferred): access-aligned, load-on-demand
+sharding.** Shard the reads by **artist** (hash of artist id → bucket file), and each page fetches
+**only the shard(s) holding its songs** — a mobile user opening one artist pulls ~1/Nth of the
+data instead of the whole file. Cost: build emits N deterministic bucket files; a runtime
+per-bucket fetch cache keyed by artist; every read surface (artist page, TrackView, search,
+stories) must handle "bucket not loaded yet." Only worth it once the reads cross **~1.5 MB brotli
+transferred** — at ~1 MB, a single lazy file is the *most* mobile-friendly option (one request).
+Cheaper interim lever if fluidity is wanted sooner: idle-prefetch `llm-about.js` after first paint
+(or on artist-list hover) so the cache is warm before the user taps in.
+
 ### ✎ Design deliberations — DECIDE BEFORE BUILDING (Fuad, 2026-07-07; full text in LIMITATIONS §6b)
 - **Overview rearrangement** — it's dense; decide the layout before adding the read-of-the-day /
   surfacing modules (Phase 2 items 3–5 wait on this).
