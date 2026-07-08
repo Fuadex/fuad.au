@@ -34,7 +34,7 @@ which script + API produces each.
 · `game_imdb.js` · `filmweb_notes.js` · `notes_en.js` · `badges.js` · `script_mood.js`
 
 `script_mood.js` (`item.scriptMood = {v,e,m}`) = per-film **dialogue** mood from the local
-transcripts dump, NRC-scored. Built by `build_script_mood.py` (reads the gitignored 860 MB
+transcript dataset, NRC-scored. Built by `build_script_mood.py` (reads the gitignored local
 `archive_transcripts.zip` + `.film-index.json` from `node dump_films.js`; needs the NRC lexicon
 in `../../.sptmp/nrc/`). Local-only build, committed output. `v` = valence 0–100 (low = reads
 dark); it measures what characters *say*, not the film's tone (Requiem reads ~60), so label it

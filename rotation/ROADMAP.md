@@ -276,7 +276,7 @@ The packaging plan (expands M6; every earlier phase feeds it):
    - **L1 — free keyless**: MusicBrainz, Wikidata, Cover Art Archive, iTunes fallback
      (origins, family trees, lifespans, real covers).
    - **L2 — keyed APIs**: Discogs, Ticketmaster, setlist.fm (styles, tours, gigs).
-   - **L3 — bring the dumps**: Spotify catalogue archive + Genius corpus (audio DNA,
+   - **L3 — bring your own local datasets**: Spotify catalogue data + lyrics data (audio DNA,
      previews, lyrics-derived layers) — power users only; everything degrades without.
    - **Blurb pipeline ships as scripts** (bring-your-own-LLM-key), never as data.
 4. **Setup path** (the README of the template): fork → add `LASTFM_API_KEY` secret → edit
@@ -323,8 +323,8 @@ list⇄grid; stats under the flow & **filter-reactive** hours/artists). Artist p
 (bio → DNA-left-half+tracks+albums → sounds-like/timeline/family-tree; albums covers⇄list;
 sounds-like 8/16 + by-sound 8/16/24). Calendar gained a **vertical Rhythm clock** (moved from
 Explore). Explore reflowed (sort row + mood-arc below the module; **2×6 genre grid**,
-scrollable). **Subgenre spelling variants merged** (`SUB_CANON`). Genius dump (`archive_genius.zip`
-~3 GB) is local + gitignored, ready to ingest.
+scrollable). **Subgenre spelling variants merged** (`SUB_CANON`). Lyrics dataset (`archive_genius.zip`)
+is local + gitignored, ready to ingest.
 
 ---
 
@@ -351,7 +351,7 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
    the map Results (list⇄grid). Calendar day/week filters the *Results* (calendar-detail); the
    map *dots* still need a per-day geography export (item 5).
 1. ~~Genius lyrics ingest — language layer~~ ✅ **SHIPPED** (`.sptmp/genius-match.py` streams the
-   local dump → `rotation/genius-lyrics.json`, 25,904 tracks matched, 37 languages;
+   local lyrics dataset → `rotation/genius-lyrics.json`, 25,904 tracks matched, 37 languages;
    `INSIGHTS.LANGUAGE` play-weighted shares/per-year/top-non-EN; "What you listen in" Stories
    card). **Next Genius passes:** per-year language *arc* (streamgraph), themes/sentiment vs
    audio-valence ("sounds happy / reads dark"), lyric stats on the track page, the embeddings
@@ -362,7 +362,7 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
    top-5 non-EN languages' slice) → "How the languages moved" Stories card (reuses `<Spark>`).
    Surfaces the 2015 German spike, 2018 Polish peak, Japanese climbing to ~9.5% by 2025.
    *Sentiment ("sounds happy / reads dark"):* ✅ **SHIPPED** — decided NRC + multilingual.
-   `.sptmp/genius-sentiment.py` streams the local Genius corpus, scores each lyric in its own
+   `.sptmp/genius-sentiment.py` streams the local lyrics corpus, scores each lyric in its own
    language's NRC EmoLex (space-token for Latin scripts, char n-gram for JA/ZH — no word
    boundaries), emits `genius-mood.json` (25,286 tracks, committed). `INSIGHTS.MOOD` crosses it
    with Spotify per-track valence (`TRACKDATA[5]`) over 18,991 tracks: library sounds 34 / reads
@@ -371,10 +371,10 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
    model, so JA/ZH are best-effort. **Follow-up:** per-track mood badge on TrackView (data's in
    `genius-mood.json`, just needs a lazy export + render). Original weight note below still holds:
      • *audio valence* ("sounds happy"): already have it **per-artist** (`audio-features.json`,
-       3,905 artists, `valence` 0–1). Per-*track* lives in the local a large
+       3,905 artists, `valence` 0–1). Per-*track* lives in the local
        `spotify-audio-features.parquet` — extractable exactly like `extract-audio.js` does now.
      • *lyric valence* ("reads dark"): **new pass needed.** `genius-lyrics.json` stored only
-       `[lang, tag, year, wc, uniq]`, not sentiment. Score the matched lyrics from the local 9 GB
+       `[lang, tag, year, wc, uniq]`, not sentiment. Score the matched lyrics from the local
        `song_lyrics.csv` (a VADER / NRC-VAD lexicon pass in `.sptmp`, English-only to start), emit
        one 0–100 int per track.
    *Weight:* ~25.7 k matched tracks × two small ints → a single lazy file `track-mood.js`
@@ -557,7 +557,7 @@ setlist.fm account + gigs (M2) · Spotify extended-history request (M3) · `resi
 | Cover Art Archive | ✅ verified 07-01 | `coverartarchive.org/release-group/{id}/front` — free, keyed by the release-group ids we currently discard. THE album-art unlock |
 | Discogs | ✅ integrated | styles, members, profiles, images, **official URLs (2,937 artists, stored but unused)** |
 | Spotify Web API | ⚠ limited | post-2026: id/photos/genres only for catalogue; **user-scoped endpoints still alive: /me/tracks (liked), /me/top, recently-played, playlists** — dev-mode app on own account is fine |
-| local Spotify catalogue dataset | ✅ local | large local zip; per-track features + album art + meta already extracted. Re-query for anything track-level |
+| Spotify catalogue dataset (local) | ✅ local | large local input; per-track features + album art + meta already extracted. Re-query locally for anything track-level |
 | Ticketmaster Discovery | ✅ LIVE weekly | 5k req/day free. `enrich-tm.js` + tour.yml (Mondays) → TOUR block. Attraction `externalLinks.musicbrainz` = exact library join; `attractions?id=a,b,c` batching verified. `enrich-concerts.js` is the older dormant per-artist keyword variant |
 | setlist.fm | ✅ verified 07-03 | free key; `GET /user/{userId}/attended` returns concerts you marked attended (paginated) + full setlists → **the gig-history spine** |
 
@@ -567,8 +567,8 @@ setlist.fm account + gigs (M2) · Spotify extended-history request (M3) · `resi
 | AcousticBrainz | ❌ tested 2026-06: ~40% coverage, gender classifier is a coin-flip, genre_dortmund degenerate. Dead project |
 | Bandsintown API | ❌ keyless API killed (403); partner-only now |
 | Songkick API | ❌ partner-only since ~2020 |
-| a local dataset **metadata** SQLite | ❌ cover URLs locked in a single a large file; wrong tool (CAA wins) |
-| Spotify audio-features/recommendations API | ❌ deprecated Nov 2024 for new apps (archive dump replaces it) |
+| Bulk metadata SQLite source | ❌ cover URLs locked in a single very large file; wrong tool (CAA wins) |
+| Spotify audio-features/recommendations API | ❌ deprecated Nov 2024 for new apps (local dataset replaces it) |
 | Generic third-party cover dumps | ❌ no join key to our library |
 
 ### Candidates — triaged 2026-07-03 (Fuad's calls)
@@ -586,10 +586,10 @@ setlist.fm account + gigs (M2) · Spotify extended-history request (M3) · `resi
   dropped ("very niche").
 - **ListenBrainz** — interesting, unscheduled.
 - **Genius lyrics — PROMOTED to the build queue (Fuad, 2026-07-05)**: a local lyrics
-  dump (~5M songs, ~unzipped, **language column included**); companion local
-  embeddings dump for semantic/mood clustering without local NLP. Pipeline: download →
-  match our 60k tracks (normalizers + artist) → language layer first, themes/sentiment
-  after. Not the API (no lyrics in it) — the dump. (Dataset provenance kept local.)
+  dataset (**language column included**); companion local embeddings dataset for
+  semantic/mood clustering without local NLP. Pipeline: match our 60k tracks
+  (normalizers + artist) → language layer first, themes/sentiment after. Not the API
+  (no lyrics in it) — the local dataset. (Dataset provenance kept local.)
 - **Other dumps catalogued 2026-07-05**: MusicBrainz weekly full dump (~6 GB, bulk cover-of/
   language via our 39k ISRCs), Discogs monthly XML (credits/formats), ListenBrainz dumps
   (percentile context + name→MBID mapping), Spotify Million Playlist (optional co-occurrence
@@ -630,15 +630,15 @@ Map URL state pending; views2 split opportunistic.
 4. Discogs bios as fallback where last.fm bio is empty.
    *(last.fm loved tracks: dropped — Fuad's loved data is uncurated/unreliable; the real
    "liked" signal arrives with Spotify in M3.)*
-5. **Archive pass 2 — APPROVED 2026-07-03, staged for the ≤30–40 GB disk budget** (~50 GB free):
+5. **Local-dataset pass 2 — APPROVED 2026-07-03, staged within the local disk budget**:
    - **Stage 1 (running)**: artists + artist_albums + albums + album_images + artist_genres
-     (~8.5 GB) → name+title-corroborated artist matching (≥2 title agreements) for the 13.8k
+     → name+title-corroborated artist matching (≥2 title agreements) for the 13.8k
      cover-less albums / missing Spotify ids (Hyper, Bowie, Stones), `total_tracks` → per-album
      completeness ("played 7 of 12" — approved), artist_genres re-pull (PRO8L3M/Gorillaz gaps).
-   - **Stage 2**: tracks.parquet (23.8 GB, alone) + track_artists (1.75 GB) → **ISRC** (exact MB
+   - **Stage 2**: the tracks + track_artists tables → **ISRC** (exact MB
      recording joins — approved), **`preview_url`** (30-s hover-preview per song — approved,
      "killer feature"), disc numbers, **collaboration graph** from full multi-artist credits
-     (approved). Delete parquets after each stage.
+     (approved). Delete the local tables after each stage.
    - ~~playlists crowd-context~~ — **dropped** (Fuad: "global playlists is meaningless to me").
    - `spotify_artist_redirects.json` → feed pins.json.
 6. **NEW — enrichment bug classes** (from enrich-coverage.js, 2026-07-03):

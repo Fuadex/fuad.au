@@ -104,14 +104,14 @@ last.fm API ──sync-csv.js──▶ fuadex.csv  (one row per scrobble — the
 | Scrobbles | last.fm API | the spine — every play since 2006 |
 | Genres & bios | last.fm, Discogs | weighted tags → genre families, artist profiles |
 | Identity & origins | MusicBrainz, Wikidata | aliases, members, gender, formation/dissolution, city coordinates |
-| Audio DNA | Spotify catalogue archive (local dump) | per-track energy/valence/tempo/…, 30-s previews, album art, ISRCs |
-| Lyrics | Genius corpus (local dump) | language, sentiment (NRC, multilingual), 18-anchor theme embeddings — **derived stats only, no lyric text is ever republished** |
+| Audio DNA | Spotify catalogue data (local) | per-track energy/valence/tempo/…, 30-s previews, album art, ISRCs |
+| Lyrics | lyrics dataset (local) | language, sentiment (NRC, multilingual), 18-anchor theme embeddings — **derived stats only, no lyric text is ever republished** |
 | Interpretations | LLM pipeline + web research | tiered "what it's about" reads for 7,000+ songs |
 | Live music | setlist.fm, Ticketmaster | attended-gig history with setlists; who's on tour now |
-| Covers (fallback tiers) | Cover Art Archive, iTunes | fills where the archive had none |
+| Covers (fallback tiers) | Cover Art Archive, iTunes | fills where the primary source had none |
 
-Heavy sources (a large local Spotify catalogue dump, a local lyrics corpus) are processed locally
-and reduced to compact JSON caches; only the caches ship.
+Large source datasets are processed locally and reduced to compact JSON caches; only the
+caches ship.
 
 ## Philosophy
 
@@ -130,7 +130,7 @@ everything from a CSV + optional caches, secrets live in Actions, and every enri
 degrades gracefully when absent. An open-source template (fork → add your last.fm username +
 API key → Actions builds your own site) is on the roadmap; personal data (the CSV, caches,
 gigs, interpretations) would stay out of the template, and each enrichment tier would be
-opt-in, from "just a last.fm key" to "bring the big dumps".
+opt-in, from "just a last.fm key" to "bring your own local datasets".
 
 ## Repo docs
 
