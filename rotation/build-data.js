@@ -293,12 +293,18 @@ const FAMILIES = [
   { family: "Thrash / heavy",       hue: 4,   cx: .22, cy: .9,  kw: /thrash|heavy metal|groove metal|speed metal|death metal|black metal|doom|sludge|grind|power metal|symphonic metal|metal$|^metal/ },
   { family: "Prog / alt rock",      hue: 282, cx: .3,  cy: .54, kw: /progressive metal|progressive rock|art rock|alternative rock|post-metal|stoner|grunge|indie rock|psychedelic|hard rock|rock$|^rock/ },
   { family: "Japanese",             hue: 332, cx: .46, cy: .64, kw: /japanese|j-rock|j-pop|jpop|jrock|visual kei|kawaii|city pop|shibuya/ },
-  { family: "Electronic / DnB",     hue: 190, cx: .84, cy: .64, kw: /drum and bass|drum n bass|dnb|jungle|breakbeat|big beat|techno|house|trance|electro|edm|rave|hardstyle|electronic|idm|downtempo|dubstep|synthwave|darksynth|retrowave|outrun|chillwave|synthpop|synth-pop|ambient techno/ },
+  { family: "Electronic / DnB",     hue: 190, cx: .84, cy: .64, kw: /drum and bass|drum n bass|dnb|jungle|breakbeat|big beat|techno|house|trance|electro|edm|rave|hardstyle|electronic|idm|downtempo|dubstep|synthwave|darksynth|retrowave|outrun|chillwave|ambient techno/ },
   { family: "Digital hardcore / hyperpop", hue: 308, cx: .86, cy: .9, kw: /digital hardcore|breakcore|gabber|speedcore|witch house|hyperpop|glitch|vaporwave/ },
   { family: "Hip-hop",              hue: 46,  cx: .62, cy: .42, kw: /hip-hop|hip hop|rap|boom bap|trap|grime|polish hip/ },
   { family: "Punk / garage",        hue: 96,  cx: .26, cy: .8,  kw: /punk|garage|post-punk|emo|riot grrrl|hardcore punk/ },
   { family: "Shoegaze / noise",     hue: 252, cx: .5,  cy: .56, kw: /shoegaze|dream pop|nu-gaze|noise rock|noise|post-rock|ambient/ },
   { family: "Pop / indie",          hue: 60,  cx: .72, cy: .4,  kw: /synth-pop|synthpop|new wave|art pop|indie pop|electropop|dance-pop|pop$|^pop/ },
+  // Jazz — Soul/Funk/R&B fold in here (shared organic/groove corner; a defensible single family)
+  { family: "Jazz",                 hue: 40,  cx: .40, cy: .45, kw: /jazz|bebop|hard bop|big band|saxophone|trumpet|jazz fusion|nu jazz|vocal jazz|neo-soul|northern soul|motown|rhythm and blues|\bfunk\b|\bsoul\b/ },
+  { family: "Classical / Score",    hue: 150, cx: .18, cy: .22, kw: /classical|neoclassical|modern classical|contemporary classical|orchestral|soundtrack|film score|\bscore\b|cinematic|opera|baroque|chamber music|piano/ },
+  // Other — catch-all so nothing gets nuked; kw never matches (assigned as an explicit fallback).
+  // grey:true is a marker for the color pass (rendered with a placeholder hue until then).
+  { family: "Other",                hue: 72,  cx: .5,  cy: .5,  grey: true, kw: /(?!)/ },
 ];
 function classifyTag(tag) { for (const f of FAMILIES) if (f.kw.test(tag)) return f; return null; }
 
@@ -2188,6 +2194,13 @@ const SUBS = [];
     });
   }
 }
+// synthetic catch-all subgenre for the "Other" family — real tags never classify here (its kw
+// never matches), so artists reach it only via the explicit EXPLORE fallback below. Keeps the
+// long tail filterable/clickable instead of dropped. (Grey rendering: color pass.)
+{
+  const oi = FAMILIES.findIndex(f => f.family === "Other");
+  if (oi >= 0) SUBS.push({ name: "other", fam: oi, hue: FAMILIES[oi].hue, x: .5, y: .5, grey: true });
+}
 const subIdxByName = new Map(SUBS.map((s, i) => [s.name, i]));
 const EXPLORE = [];
 for (const [name, plays] of rankedArtists) {
@@ -2207,7 +2220,8 @@ for (const [name, plays] of rankedArtists) {
     const fi = familyIdxByName(name);
     if (fi >= 0) { const rep = SUBS.findIndex(su => su.fam === fi); if (rep >= 0) s.push(rep); }
   }
-  if (!s.length) continue;            // truly no genre signal at all → skip
+  if (!s.length) { const oi = subIdxByName.get("other"); if (oi != null) s.push(oi); }  // last resort → Other (never nuke)
+  if (!s.length) continue;            // (only if the Other sub is somehow missing)
   const rec = { id: slug(name), name, plays, hue: hueFor(name), s, l: listenersOf(name) || 0, d: debutOf(name) || 0 };
   const _o = originOf(name);            // country/city tag → lets the Journey scope to a place
   if (_o) { rec.co = _o.country; if (_o.city) rec.ci = _o.city; }
@@ -2845,9 +2859,12 @@ for (const a of ARTISTS) {
 }
 
 // FAMILIES — lightweight {i, family, hue} aligned to the cube's famIdx, for Explore chips.
-// Only the families that actually carry weight in GENRES are surfaced (keeps the chip row honest).
-const _famWithData = new Set(GENRES.map(g => g.family));
-const FAMILIES_OUT = FAMILIES.map((f, i) => ({ i, family: f.family, hue: f.hue }))
+// Only the families that actually carry weight are surfaced (keeps the chip row honest): those in
+// GENRES, PLUS any family a SUBS entry points at (covers the synthetic "Other" catch-all, whose
+// family has no tag-derived GENRES row but does carry assigned artists). Emit FAMILIES at their
+// ORIGINAL indices so SUBS[i].fam stays valid — never re-index a filtered subset.
+const _famWithData = new Set([...GENRES.map(g => g.family), ...SUBS.map(s => (FAMILIES[s.fam] || {}).family).filter(Boolean)]);
+const FAMILIES_OUT = FAMILIES.map((f, i) => ({ i, family: f.family, hue: f.hue, ...(f.grey ? { grey: true } : {}) }))
   .filter(f => _famWithData.has(f.family));
 
 // compact measured audio per explorable/kept artist id →
