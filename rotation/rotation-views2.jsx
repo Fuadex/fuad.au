@@ -184,8 +184,11 @@ function MiniArtistView({ a, go }) {
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>listeners ww</div></div>}
         </div>
       </div>
+      {/* secondary modules share a responsive grid — no lone full-width bands, and auto-fit
+         redistributes when a module is missing (long-tail artists lack some) — Fuad 2026-07-09 */}
+      <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: "var(--gap)", alignItems: "start", marginBottom: "var(--gap)" }}>
       {spark && spark.some(v => v > 0) && (
-        <div className="r-card" style={{ padding: 18, marginBottom: "var(--gap)" }}>
+        <div className="r-card" style={{ padding: 18 }}>
           <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 12 }}>Plays by year</div>
           <Spark data={spark} w={620} h={70} run={true} stroke="var(--accent)" fill="var(--accent-bg)" />
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
@@ -195,7 +198,7 @@ function MiniArtistView({ a, go }) {
         </div>
       )}
       {dna && (
-        <div className="r-card" style={{ padding: 18, marginBottom: "var(--gap)", maxWidth: 380 }}>
+        <div className="r-card" style={{ padding: 18 }}>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
           <Radar axes={DNA_AXES} values={dna} values2={avg} run={true} size={224} />
           <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>solid = {a.name.split(" ")[0]} · dashed = your average · measured</div>
@@ -218,7 +221,8 @@ function MiniArtistView({ a, go }) {
           </div>
         </div>
       )}
-      <div style={{ marginBottom: "var(--gap)" }}><ArtistFlow id={a.id} hue={a.hue} go={go} /></div>
+      <ArtistFlow id={a.id} hue={a.hue} go={go} />
+      </div>
       <MiniArtistDetail id={a.id} name={a.name} hue={a.hue} go={go} />
     </div>
   );
