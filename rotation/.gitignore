@@ -3,6 +3,9 @@
 # large local datasets — never commit
 *.parquet
 *.zip
+*.gz                 # compressed lyrics/data dumps (e.g. LRCLIB) — PRIVATE, local-only, never commit
+*.sqlite             # e.g. an LRCLIB DB dump if unpacked in place — local-only
+*.db
 archive.zip
 archive_genius.zip   # Genius lyrics dump (~3 GB) — local-only
 my_spotify_data*.zip # personal Spotify data exports (incl. "(2)" etc.) — PRIVATE, local-only, never commit
