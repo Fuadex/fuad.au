@@ -2711,6 +2711,7 @@ function App() {
 
       <footer className="site-foot">
         <div>fuad.design &nbsp;/&nbsp; Culture &nbsp;/&nbsp; 2026</div>
+        <nav className="site-switch">part of <a href="/">fuad.au</a> · <a href="/rotation/">Rotation</a> · <a href="/canvas/">Canvas</a> · <a href="/culture/">Culture</a></nav>
         <div className="links">
           <a href="https://www.filmweb.pl/user/FuadSoudah" target="_blank" rel="noopener noreferrer">Filmweb</a>
           <a href="https://www.goodreads.com/user/show/88387351-fuad-soudah" target="_blank" rel="noopener noreferrer">Goodreads</a>

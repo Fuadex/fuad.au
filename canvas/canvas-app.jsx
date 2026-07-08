@@ -119,50 +119,8 @@ function Wall({ go }) {
 
 // ——— Pilgrimage: deck-derived wishes (artworks.js wish:true) grouped by holding museum,
 // plus hand-authored places (pilgrimage.js) the decks can't know — the trip planner seed.
-function Pilgrimage({ go }) {
-  const PL = window.CANVAS_PILGRIMAGE || [];
-  const groups = useMemo(() => {
-    const wishes = WORKS.map(enrich).filter(w => w.wish);
-    const by = {};
-    for (const w of wishes) {
-      const mid = (Array.isArray(w.seenAt) ? w.seenAt[0] : w.seenAt) || w.at;
-      const m = MUS_BY_ID[mid];
-      const key = m ? m.city + " — " + m.name.replace(/\s*\(.*\)$/, "") : "location TBC";
-      (by[key] = by[key] || []).push(w);
-    }
-    return Object.entries(by).sort((a, b) => b[1].length - a[1].length);
-  }, []);
-  const total = groups.reduce((s, [, l]) => s + l.length, 0);
-  return (
-    <div className="cv-mus">
-      <p className="cv-deck-sum">{total} works you'd love to stand in front of (deliberately, this time) · grows with every deck you deal.</p>
-      {groups.map(([key, list]) => (
-        <React.Fragment key={key}>
-          <div className="cv-mus-country">{key}</div>
-          {list.map(w => (
-            <div className="cv-mus-row" key={w.id}>
-              {w.imgGrid && <img className="cv-pil-thumb" src={w.imgGrid} alt="" loading="lazy" onClick={() => go("work", w.id)} />}
-              <span className="cv-mus-name" style={{ cursor: "pointer" }} onClick={() => go("work", w.id)}>{w.floored || (w.liked && w.wish) ? "♥ " : "♡ "}{w.title}</span>
-              <span className="cv-mus-city">{w.artist.replace(/\s*\(.*\)$/, "")}{w.year ? " · " + w.year : ""}</span>
-            </div>
-          ))}
-        </React.Fragment>
-      ))}
-      {PL.length > 0 && (
-        <React.Fragment>
-          <div className="cv-mus-country">Places</div>
-          {PL.map(p => (
-            <div className="cv-mus-row" key={p.id}>
-              <span className="cv-mus-name">{p.title}</span>
-              <span className="cv-mus-city">{p.city}</span>
-              {p.note && <span className="cv-mus-note">{p.note}</span>}
-            </div>
-          ))}
-        </React.Fragment>
-      )}
-    </div>
-  );
-}
+// (The standalone Pilgrimage view was folded into the Map — the "to see" works now pin to
+//  their holding city on the map, with the grouped list beneath it. See MapView.)
 
 // full-screen pan/zoom (Phase 5 "stand close to the brushwork" mode) — dependency-free:
 // scroll to zoom (1–8×), drag to pan, double-click resets, Esc closes. Uses a 3200px thumb.
@@ -464,6 +422,10 @@ function ArtistView({ artistId, go }) {
   );
 }
 
+// deterministic hue from a string, for the fallback avatar when an artist has no web photo
+const strHue = (s) => { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 360; return h; };
+const initialsOf = (name) => name.split(/\s+/).map(s => s[0]).filter(c => /[A-Za-zÀ-ÿ]/.test(c || "")).slice(0, 2).join("").toUpperCase();
+
 function Artists({ go }) {
   const rows = useMemo(() => {
     const by = {};
@@ -475,15 +437,26 @@ function Artists({ go }) {
     return Object.values(by).sort((a, b) => (b.fl * 3 + b.lk) - (a.fl * 3 + a.lk) || b.n - a.n);
   }, []);
   return (
-    <div className="cv-mus">
+    <div className="cv-artists">
       <p className="cv-deck-sum">{rows.length} artists in the canon, ranked by how hard they hit.</p>
-      {rows.map(r => (
-        <div className="cv-mus-row" key={r.id} style={{ cursor: "pointer" }} onClick={() => go("artist", r.id)}>
-          <span className="cv-mus-name">{r.name}</span>
-          <span className="cv-mus-city">{(AD.artists[r.id] || {}).desc || ""}</span>
-          <span className="cv-mus-count">{r.n} work{r.n > 1 ? "s" : ""}{r.fl ? ` · ★${r.fl}` : ""}{r.lk ? ` · ♡${r.lk}` : ""}</span>
-        </div>
-      ))}
+      <div className="cv-artgrid">
+        {rows.map(r => {
+          const a = AD.artists[r.id] || {};
+          const life = a.born ? `${a.born}–${a.died || ""}` : (a.desc ? a.desc.replace(/\s*\(\d{4}[–-]?\d{0,4}\)$/, "") : "");
+          return (
+            <button className="cv-artblob" key={r.id} onClick={() => go("artist", r.id)} title={r.name}>
+              <span className="cv-artblob-face" data-empty={a.image ? "false" : "true"}
+                style={a.image ? { backgroundImage: `url("${a.image}")` } : { background: `hsl(${strHue(r.id)} 34% 52%)` }}>
+                {!a.image && <i>{initialsOf(r.name)}</i>}
+                {r.fl > 0 && <b className="cv-artblob-star">★{r.fl}</b>}
+              </span>
+              <span className="cv-artblob-name">{r.name}</span>
+              {life && <span className="cv-artblob-life">{life}</span>}
+              <span className="cv-artblob-n">{r.n} work{r.n > 1 ? "s" : ""}{r.lk ? ` · ♡${r.lk}` : ""}</span>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -494,6 +467,7 @@ function Artists({ go }) {
 function MapView({ go }) {
   const world = window.CANVAS_WORLD || null;
   const P = (lat, lng) => [(lng + 180) / 360 * 1000, (90 - lat) / 180 * 500];
+  const coordOf = (id) => { const d = AD.museums[id] || {}; return d.lat == null ? null : P(d.lat, d.lng); };
   const pins = useMemo(() => {
     const counts = {};
     for (const w of WORKS) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) if (id) counts[id] = (counts[id] || 0) + 1;
@@ -504,6 +478,24 @@ function MapView({ go }) {
       return { id: m.id, name: m.name.replace(/\s*\(.*\)$/, ""), city: m.city, x, y, n: counts[m.id] || 0, kind: m.kind, visits: m.visits || [] };
     }).filter(Boolean);
   }, []);
+  // pilgrimage layer: wish works placed at their holding museum, fanned out so a shared venue spreads
+  const { wishMarkers, wishList } = useMemo(() => {
+    const wishes = WORKS.map(enrich).filter(w => w.wish);
+    const byMus = {};
+    for (const w of wishes) { const mid = (Array.isArray(w.seenAt) ? w.seenAt[0] : w.seenAt) || w.at; (byMus[mid || "_tbc"] = byMus[mid || "_tbc"] || []).push(w); }
+    const markers = [], groups = {};
+    for (const [mid, list] of Object.entries(byMus)) {
+      const m = MUS_BY_ID[mid], base = mid !== "_tbc" ? coordOf(mid) : null;
+      groups[m ? m.city + " — " + m.name.replace(/\s*\(.*\)$/, "") : "location TBC"] = list;
+      if (!base) continue;
+      const venue = m ? m.name.replace(/\s*\(.*\)$/, "") : "";
+      list.forEach((w, i) => {
+        const ang = i * 2.399, rad = list.length === 1 ? 0 : 2 + 1.5 * Math.sqrt(i);
+        markers.push({ w, x: base[0] + rad * Math.cos(ang), y: base[1] + rad * Math.sin(ang), bx: base[0], by: base[1], city: m ? m.city : "", venue });
+      });
+    }
+    return { wishMarkers: markers, wishList: Object.entries(groups).sort((a, b) => b[1].length - a[1].length) };
+  }, []);
   const trips = useMemo(() => {
     const by = {};
     for (const m of MUSEUMS) for (const v of (m.visits || [])) {
@@ -512,20 +504,61 @@ function MapView({ go }) {
     }
     return Object.entries(by).map(([y, s]) => [y, [...s]]).sort((a, b) => b[0] - a[0]);
   }, []);
+
+  // zoom + pan: the viewBox is state; wheel zooms toward the cursor, drag pans. Marker/label
+  // sizes are multiplied by k = vb.w/880 so they stay a constant size on screen at any zoom.
+  const AR = 380 / 880;
+  const svgRef = React.useRef(null);
+  const drag = React.useRef(null);
+  const [vb, setVb] = useState({ x: 60, y: 40, w: 880, h: 380 });
+  const [hover, setHover] = useState(null);
+  const k = vb.w / 880;
+  const zoomAt = (mx, my, f) => setVb(v => {
+    const w = Math.min(880, Math.max(70, v.w * f)), h = w * AR;
+    const px = v.x + mx * v.w, py = v.y + my * v.h;
+    return { x: px - mx * w, y: py - my * h, w, h };
+  });
+  const onWheel = (e) => { e.preventDefault(); const r = svgRef.current.getBoundingClientRect(); zoomAt((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height, e.deltaY < 0 ? 1 / 1.18 : 1.18); };
+  const onDown = (e) => { drag.current = { mx: e.clientX, my: e.clientY, x: vb.x, y: vb.y }; };
+  const onMove = (e) => { if (!drag.current) return; const r = svgRef.current.getBoundingClientRect(); setVb(v => ({ ...v, x: drag.current.x - (e.clientX - drag.current.mx) / r.width * v.w, y: drag.current.y - (e.clientY - drag.current.my) / r.height * v.h })); };
+  const stop = () => { drag.current = null; };
+
   return (
     <div className="cv-map">
-      <p className="cv-deck-sum">Every museum, pinned where it stands — sized by how much of the canon it gave you.</p>
-      <svg viewBox="60 40 880 380">
-        {world && <path d={world.land.join(" ")} fill="#d3c4ab" stroke="none" />}
-        {pins.map(p => (
-          <g key={p.id} className="cv-pin" onClick={() => go("museums")}>
-            <circle cx={p.x} cy={p.y} r={p.n ? 3 + Math.sqrt(p.n) * 1.9 : 2.2}
-              fill={p.n ? "oklch(0.55 0.13 46 / .82)" : "rgba(58,47,34,.45)"} stroke="#f4ecdf" strokeWidth="0.8" />
-            <title>{p.name}, {p.city} — {p.n ? p.n + " work" + (p.n > 1 ? "s" : "") + " in the canon" : "visited"}</title>
-            {p.n >= 4 && <text x={p.x} y={p.y - (4 + Math.sqrt(p.n) * 1.9)} textAnchor="middle">{p.city}</text>}
-          </g>
-        ))}
-      </svg>
+      <p className="cv-deck-sum">Museums pinned where they stand, sized by how much of the canon they gave you; the <b style={{ color: "oklch(0.55 0.19 18)" }}>♥ markers</b> are works you're still chasing — hover for a look, click to open. Scroll to zoom, drag to pan.</p>
+      <div className="cv-map-wrap" onMouseLeave={stop}>
+        <svg ref={svgRef} viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
+          onWheel={onWheel} onMouseDown={onDown} onMouseMove={onMove} onMouseUp={stop}>
+          {world && <path d={world.land.join(" ")} fill="#d3c4ab" stroke="none" />}
+          {pins.map(p => (
+            <g key={p.id} className="cv-pin" onClick={() => go("museums")}>
+              <circle cx={p.x} cy={p.y} r={(p.n ? 3 + Math.sqrt(p.n) * 1.9 : 2.2) * k}
+                fill={p.n ? "oklch(0.55 0.13 46 / .82)" : "rgba(58,47,34,.45)"} stroke="#f4ecdf" strokeWidth={0.8 * k} />
+              <title>{p.name}, {p.city} — {p.n ? p.n + " work" + (p.n > 1 ? "s" : "") + " in the canon" : "visited"}</title>
+              {p.n >= 4 && <text x={p.x} y={p.y - (4 + Math.sqrt(p.n) * 1.9) * k} textAnchor="middle" style={{ fontSize: 8.5 * k }}>{p.city}</text>}
+            </g>
+          ))}
+          {wishMarkers.map((mk, i) => (
+            <g key={mk.w.id + "-" + i} className="cv-wishpin" onClick={() => go("work", mk.w.id)}
+              onMouseEnter={e => setHover({ w: mk.w, mx: e.clientX, my: e.clientY, venue: mk.venue, city: mk.city })}
+              onMouseMove={e => setHover(h => h && h.w === mk.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
+              onMouseLeave={() => setHover(null)}>
+              {(mk.x !== mk.bx || mk.y !== mk.by) && <line x1={mk.bx} y1={mk.by} x2={mk.x} y2={mk.y} stroke="oklch(0.55 0.19 18 / .4)" strokeWidth={0.5 * k} />}
+              <circle cx={mk.x} cy={mk.y} r={2.4 * k} fill="oklch(0.55 0.19 18 / .9)" stroke="#f7efe2" strokeWidth={0.7 * k} />
+            </g>
+          ))}
+        </svg>
+        {hover && (
+          <div className="cv-map-preview" style={{ left: hover.mx + 16, top: hover.my + 16 }}>
+            {hover.w.imgGrid && <img src={hover.w.imgGrid} alt="" />}
+            <div className="cv-map-preview-t">{hover.w.title}</div>
+            <div className="cv-map-preview-s">{hover.w.artist.replace(/\s*\(.*\)$/, "")}{hover.w.year ? " · " + hover.w.year : ""}</div>
+            {hover.venue && <div className="cv-map-preview-s">to see at {hover.venue}, {hover.city}</div>}
+          </div>
+        )}
+        {vb.w < 880 && <button className="cv-map-reset" onClick={() => setVb({ x: 60, y: 40, w: 880, h: 380 })}>reset view</button>}
+      </div>
+      <div className="cv-map-legend"><span><i className="lg-seen" /> museums you've walked</span><span><i className="lg-wish" /> works you're chasing</span></div>
       <div className="cv-trips">
         {trips.map(([y, cities]) => (
           <div className="cv-trip-row" key={y}>
@@ -534,6 +567,35 @@ function MapView({ go }) {
           </div>
         ))}
       </div>
+      {wishList.length > 0 && (
+        <div className="cv-map-tosee">
+          <div className="cv-a-secl">To see — the pilgrimage</div>
+          {wishList.map(([key, list]) => (
+            <React.Fragment key={key}>
+              <div className="cv-mus-country">{key} <span style={{ opacity: .55, fontWeight: 400 }}>· {list.length}</span></div>
+              {list.map(w => (
+                <div className="cv-mus-row" key={w.id} style={{ cursor: "pointer" }} onClick={() => go("work", w.id)}>
+                  {w.imgGrid && <img className="cv-pil-thumb" src={w.imgGrid} alt="" loading="lazy" />}
+                  <span className="cv-mus-name">{w.floored || (w.liked && w.wish) ? "♥ " : "♡ "}{w.title}</span>
+                  <span className="cv-mus-city">{w.artist.replace(/\s*\(.*\)$/, "")}{w.year ? " · " + w.year : ""}</span>
+                </div>
+              ))}
+            </React.Fragment>
+          ))}
+          {(window.CANVAS_PILGRIMAGE || []).length > 0 && (
+            <React.Fragment>
+              <div className="cv-mus-country">Places</div>
+              {(window.CANVAS_PILGRIMAGE || []).map(p => (
+                <div className="cv-mus-row" key={p.id}>
+                  <span className="cv-mus-name">{p.title}</span>
+                  <span className="cv-mus-city">{p.city}</span>
+                  {p.note && <span className="cv-mus-note">{p.note}</span>}
+                </div>
+              ))}
+            </React.Fragment>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -660,8 +722,7 @@ function App() {
           <a href="#/portrait" data-on={view === "portrait"}>Portrait</a>
           <a href="#/museums" data-on={view === "museums" || route.view === "deck"}>Museums</a>
           <a href="#/artists" data-on={view === "artists" || route.view === "artist"}>Artists</a>
-          <a href="#/map" data-on={view === "map"}>Map</a>
-          <a href="#/pilgrimage" data-on={view === "pilgrimage"}>Pilgrimage</a>
+          <a href="#/map" data-on={view === "map" || view === "pilgrimage"}>Map</a>
         </nav>
         {view === "wall" && (
           <div className="cv-mode">
@@ -673,13 +734,13 @@ function App() {
       {route.view === "deck" ? <Deck museumId={route.id} go={go} key={route.id} />
         : view === "museums" ? <Museums />
         : view === "portrait" ? <Portrait go={go} />
-        : view === "pilgrimage" ? <Pilgrimage go={go} />
+        : (view === "map" || view === "pilgrimage") ? <MapView go={go} />
         : route.view === "artist" ? <ArtistView artistId={route.id} go={go} key={route.id} />
-        : view === "map" ? <MapView go={go} />
         : view === "artists" ? <Artists go={go} /> : <Wall go={go} />}
       {route.view === "work" && <Reader id={route.id} go={go} />}
       <footer className="cv-foot">
-        canvas · a personal gallery, reconstructed from memory · images via <a href="https://commons.wikimedia.org" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> / <a href="https://www.wikidata.org" target="_blank" rel="noopener noreferrer">Wikidata</a> · part of <a href="/">fuad.au</a>
+        <span className="cv-foot-main">canvas · a personal gallery, reconstructed from memory · images via <a href="https://commons.wikimedia.org" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> / <a href="https://www.wikidata.org" target="_blank" rel="noopener noreferrer">Wikidata</a></span>
+        <nav className="site-switch">part of <a href="/">fuad.au</a> · <a href="/rotation/">Rotation</a> · <a href="/canvas/">Canvas</a> · <a href="/culture/">Culture</a></nav>
       </footer>
     </React.Fragment>
   );
