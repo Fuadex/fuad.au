@@ -20,7 +20,7 @@
         "genius-mood-lazy.js", "genius-about-lazy.js", "genius-themes-lazy.js", "album-about-lazy.js", "tm-tour-lazy.js", "blurb-demo.js", "llm-about.js",
         "track-previews.js", "shelves-unplayed.js", "artist-flow.js", "artist-detail.js",
         "calendar.js", "calendar-detail.js", "geo-detail.js", "world-map.js",
-        "spotify-insights.js", "spotify-liked.js"
+        "spotify-insights.js", "spotify-liked.js", "spotify-engagement.js"
       ]
     },
     {
