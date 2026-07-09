@@ -201,6 +201,11 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
   color: var(--accent); background: var(--accent-bg); }
 /* per-row "seen live" marker in track lists (🎤) — small, inline, doesn't shift layout */
 .r-livemark { font-size: 11px; line-height: 1; flex: none; cursor: help; filter: saturate(.9); }
+/* per-row "liked on Spotify" heart — sibling to the 🎤 marker */
+.r-likemark { font-size: 11px; line-height: 1; flex: none; cursor: help; color: oklch(0.66 0.2 15); }
+/* per-track Spotify engagement bar (share of plays listened through, not skipped) */
+.r-engbar { display: inline-block; width: 30px; height: 4px; border-radius: 2px; background: var(--bg-3); flex: none; overflow: hidden; cursor: help; }
+.r-engbar-fill { display: block; height: 100%; background: oklch(0.68 0.13 150); }
 /* blurb + mood row on TrackView: description left, sounds/reads right (stacks < 860px) */
 .tv-subrow { margin: 0 0 var(--gap); }
 .tv-subrow[data-both="true"] { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--gap); align-items: start; }

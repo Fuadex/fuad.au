@@ -427,6 +427,20 @@ function seenLiveKey(trackId) {
 const LiveMark = ({ on }) => on
   ? <span className="r-livemark" title="You've watched this performed live">🎤</span>
   : null;
+// "liked on Spotify" ♥ + per-track engagement bar — same track-row treatment as the 🎤 marker.
+// Both read committed, PII-free data (window.ROTATION_LIKED, window.ROTATION_ENGAGE) keyed by
+// artist~track slug. Engagement = [plays, skipPct]; the bar fills with the "listened through" share.
+const likedKey = (key) => !!(window.ROTATION_LIKED && window.ROTATION_LIKED[key]);
+const LikedMark = ({ on }) => on
+  ? <span className="r-likemark" title="You liked this on Spotify">♥</span>
+  : null;
+const engOf = (key) => (window.ROTATION_ENGAGE || {})[key] || null;
+const EngBar = ({ eng }) => {
+  if (!eng) return null;
+  const [plays, skipPct] = eng, keep = Math.max(0, 100 - skipPct);
+  return <span className="r-engbar" title={`Spotify · ${plays} plays · ${keep}% listened through · ${skipPct}% skipped`}>
+    <span className="r-engbar-fill" style={{ width: keep + "%" }} /></span>;
+};
 
 // Upcoming Ticketmaster dates for this artist (a.onTour is baked in; the full event list rides
 // on the lazy tm-tour-lazy.js, loaded on demand). Sits above the Seen-live card on the page.
@@ -656,6 +670,8 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   borderBottom: i < shownTracks.length - 1 ? "1px solid var(--rule)" : "none" }}>
                   <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 18 }}>{String(i + 1).padStart(2, "0")}</span>
                   <span style={{ fontSize: 13, flex: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{tr.title}</span>
+                  <LikedMark on={likedKey(R.slug(a.name) + "~" + R.slug(tr.title))} />
+                  <EngBar eng={engOf(R.slug(a.name) + "~" + R.slug(tr.title))} />
                   <LiveMark on={clickable && seenLiveKey(R.slug(a.name) + "~" + R.slug(tr.title))} />
                   <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{tr.plays ? fmt(tr.plays) : "—"}</span>
                 </div>
@@ -1291,7 +1307,9 @@ function AlbumView({ id, go }) {
               <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{t.no ? String(t.no).padStart(2, "0") : String(i + 1).padStart(2, "0")}</span>
               <div style={{ fontSize: 13, lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>
                 {t.title}{standout && t === standout ? <span title="your most-played from this album" style={{ color: "var(--accent)", marginLeft: 5 }}>★</span> : null}
-                <LiveMark on={seenLiveKey(R.slug(data.artist) + "~" + R.slug(t.title))} /></div>
+                {" "}<LikedMark on={likedKey(R.slug(data.artist) + "~" + R.slug(t.title))} />
+                {" "}<EngBar eng={engOf(R.slug(data.artist) + "~" + R.slug(t.title))} />
+                {" "}<LiveMark on={seenLiveKey(R.slug(data.artist) + "~" + R.slug(t.title))} /></div>
               <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: (t.plays / maxT * 100) + "%", background: `oklch(0.6 0.14 ${hue})` }} /></div>
               <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", textAlign: "right" }}>{fmt(t.plays)}</span>
             </div>
@@ -1683,6 +1701,8 @@ function TrackView({ id, go }) {
                 <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{s.no ? String(s.no).padStart(2, "0") : "·"}</span>
                 <span style={{ fontSize: 13, minWidth: 0, display: "flex", alignItems: "center", gap: 6, overflow: "hidden" }}>
                   <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.title}</span>
+                  <LikedMark on={likedKey(s.id)} />
+                  <EngBar eng={engOf(s.id)} />
                   <LiveMark on={seenLiveKey(s.id)} /></span>
                 <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", textAlign: "right" }}>{fmt(s.plays)}</span>
               </div>
