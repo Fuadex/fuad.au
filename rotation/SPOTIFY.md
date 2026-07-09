@@ -14,6 +14,14 @@ outputs `spotify-insights.js` (aggregates) + `spotify-liked.js` (matched keys), 
   plays-per-year with skip %, top artists by real hours, "you skip them most". A sandbox to feel the
   data before wiring it into the main modules.
 - **`spotify-liked.js`** — `window.ROTATION_LIKED` (`artist~track` slug → 1), plus liked albums/artists.
+- **`spotify-engagement.js`** — `window.ROTATION_ENGAGE` (`artist~track` → `[plays, skipPct]`, ≥3 plays).
+- **♥ + engagement bar** wired into all three track-row sites (artist top-tracks, album tracklist,
+  track-page siblings), mirroring the 🎤 seen-live marker.
+
+> **KEYING GOTCHA:** keys MUST use build-data's `slug()` — the one with the empty→`"a-"+_slugHash`
+> fallback (build-data.js:56). A plain slug mis-keys all CJK/non-latin content (ミドリ→`""` instead of
+> `a-2yw9ix`) and nothing matches the frontend's `R.slug`. Canonical pipeline: `.sptmp/emit-raw-spotify.py`
+> (raw names) → `.sptmp/key-spotify.js` (exact JS slug) → `spotify-liked.js` + `spotify-engagement.js`.
 
 ## Next (agreed direction, not yet built)
 - **♥ liked attribute** — mirror the live-gig microphone: a ♥ on liked tracks wherever track rows
