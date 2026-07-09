@@ -24,6 +24,7 @@ const NAV_FULL = [
   ["calendar", "Calendar"],
   ["gigs", "Gigs"],
   ["live", "Live"],
+  ["spotify", "Spotify"],
 ];
 // Hide tabs with no data behind them — avoids a dead-end. "Live" needs upcoming-concert cities;
 // "Gigs" needs the attended-shows dataset (setlist.fm → gigs.json → ROTATION.GIGS).
@@ -175,6 +176,7 @@ function RotationApp() {
                 {v === "calendar" && <CalendarView go={go} seed={route.id} />}
                 {v === "gigs" && <GigsView go={go} />}
                 {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
+                {v === "spotify" && <SpotifyView go={go} />}
                 {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
                 {v === "album" && <AlbumView id={route.id} go={go} />}
                 {v === "track" && <TrackView id={route.id} go={go} />}
