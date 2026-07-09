@@ -1,10 +1,13 @@
 # Rotation app — ignore rules (nested; paths relative to rotation/)
 
 # large local datasets — never commit
+# (.gitignore has NO inline comments — patterns must stand alone on their own line)
 *.parquet
 *.zip
-*.gz                 # compressed lyrics/data dumps (e.g. LRCLIB) — PRIVATE, local-only, never commit
-*.sqlite             # e.g. an LRCLIB DB dump if unpacked in place — local-only
+# compressed lyrics/data dumps + any DB unpacked from them (e.g. LRCLIB) — PRIVATE, local-only
+*.gz
+*.sqlite
+*.sqlite3
 *.db
 archive.zip
 archive_genius.zip   # Genius lyrics dump (~3 GB) — local-only
