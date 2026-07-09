@@ -192,16 +192,15 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
   const nActive = activeIds.size;
   // dots memoized without the zoom factor; radius rides the --zk CSS var so zoom rescales
   // natively without re-reconciling the whole cloud (Fuad 2026-07-09).
-  const dots = React.useMemo(() => pts.slice(0, n).map((p, i, arr) => {
+  const dots = React.useMemo(() => pts.slice(0, n).map(p => {
     const active = activeIds.has(p.id), on = hi === p.id;
     const dimZone = active && moodZone && zoneOf(p.x, p.y) !== moodZone;
     const op = !active ? 0.05 : on ? 0.95 : dimZone ? 0.1 : 0.62;
     const baseR = on ? 7 : 3 + Math.sqrt(p.plays / maxPlays) * 9;
-    const d = (i / arr.length * 0.8).toFixed(3);   // staggered cascade, spread across ~0.8s
     return (
       <circle key={p.id} cx={qx(p.x)} cy={qy(p.y)} fill={`oklch(0.64 0.16 ${p.hue})`}
         fillOpacity={op} stroke={on ? "#fff" : "none"} strokeWidth={1.3} vectorEffect="non-scaling-stroke"
-        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: `fill-opacity .45s cubic-bezier(.3,.8,.3,1) ${d}s` }}
+        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: "fill-opacity .45s ease" }}
         onMouseEnter={() => active && setHi(p.id)} onClick={(e) => { e.stopPropagation(); active && go("artist", p.id); }}><title>{p.name}</title></circle>);
   }), [pts, n, activeIds, hi, maxPlays, moodZone, go]);
   const mid = 0.5;
@@ -249,15 +248,14 @@ function ArtistCloud({ pts, activeIds, go }) {
   const z = useZoom(1000, 560);
   // dots memoized WITHOUT the zoom factor — radius rides a CSS var (--zk) so zooming rescales
   // marks natively without React re-reconciling the whole cloud (Fuad 2026-07-09).
-  const dots = React.useMemo(() => pts.slice(0, n).map((p, i, arr) => {
+  const dots = React.useMemo(() => pts.slice(0, n).map(p => {
     const active = activeIds.has(p.id), on = hi === p.id;
     const op = !active ? 0.05 : on ? 0.95 : 0.6;
     const baseR = on ? 7 : 2.4 + Math.sqrt(p.plays / maxPlays) * 8.5;
-    const d = (i / arr.length * 0.8).toFixed(3);   // staggered cascade, spread across ~0.8s
     return (
       <circle key={p.id} cx={px(p.x)} cy={py(p.y)} fill={`oklch(0.64 0.16 ${p.hue})`} fillOpacity={op}
         stroke={on ? "#fff" : "none"} strokeWidth={1.3} vectorEffect="non-scaling-stroke"
-        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: `fill-opacity .45s cubic-bezier(.3,.8,.3,1) ${d}s` }}
+        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: "fill-opacity .45s ease" }}
         onMouseEnter={() => active && setHi(p.id)} onClick={() => active && go("artist", p.id)}><title>{p.name}</title></circle>);
   }), [pts, n, activeIds, hi, maxPlays, go]);
   return (
