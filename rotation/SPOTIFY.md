@@ -60,6 +60,35 @@ classified trips / VPN noise / ambiguous. Details + the VPN-vs-travel classifier
 `TRAVEL.local.md` (local-only — date-level travel history stays out of the public repo).
 Its ambiguous list is the pending input for the map location-blanking override table.
 
+## v3 — the Account Data layer (2026-07-11 recon; beyond the extended history)
+The second zip carries far more than YourLibrary. Inventory (all local-only; extract
+aggregates the same way as v1/v2 — never raw rows, never account attributes):
+
+- **Marquee.json** — 2,599 artists × Spotify's own label-marketing segment for Fuad:
+  Super (21) / Moderate (69) / Light (86) / Previously Active (2,423). This is Spotify's
+  *external* judgement of his engagement — join it against our internal scrobble ranks for a
+  "do they know me?" dissonance read. The 21 Super Listeners list is instantly story-worthy.
+- **Inferences.json** — 236 ad-targeting segments (ArtistAffinity hashes + human-readable
+  interest/advertiser audiences). "What the ad machine thinks I am" is a page/Story of its
+  own: the profile is amusingly wrong in places (US-market lookalike audiences dominate).
+- **Wrapped2025.json** — structured Wrapped: topArtistRace (per-month rank trails — a real
+  bump-chart dataset), topFanLeaderboard (minutes + percentile vs other listeners), clubs,
+  party stats (skip %, multilinguist score), listeningAge (44, window from 1990, "late" phase).
+- **YourSoundCapsule.json** — recent daily stats + highlights incl. FIRST_TO_DISCOVER
+  (country-level early-listener position) and proportion-listening spikes.
+- **SearchQueries.json** — 1,487 queries (rolling ~3-month window) w/ platform + clicked URIs.
+- **Playlist1.json** — 15 playlists w/ items + lastModifiedDate (incl. 2013-era Moodagent
+  relics — playlist archaeology).
+- **Follow.json** — 254 followed artists/users. StreamingHistory_music_*.json — last-year
+  simplified history (~65k rows); podcast (42) + audiobook (125) rows.
+- **UserAttributes / Identifiers / Payments / MessageData** — pure account PII. Never read
+  beyond existence; never extract.
+
+Feature slate v3 (proposed, awaiting Fuad's picks): (a) "Spotify's picture of me" page —
+Marquee segments vs our scrobble ranks + the Inferences absurdities; (b) Wrapped cross-check —
+their topArtistRace vs our monthly ranks; (c) playlist archaeology; (d) search-intent vs
+listening (did searching lead to love?).
+
 ## PINNED — reconcile Spotify history with the last.fm core (needs deliberation)
 Spotify has 316k plays 2013→2026; last.fm core has ~320k scrobbles. They overlap but differ:
 different track identity (Spotify URI vs last.fm name-slug), different thresholds (last.fm scrobbles
