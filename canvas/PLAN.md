@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Canvas — architecture & plan (draft, 2026-07-07)
 
 > The third app of the hub: a **personal gallery** of the art Fuad loves and has stood in

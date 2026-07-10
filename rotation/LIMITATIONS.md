@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Rotation — known limitations & nice-to-haves
 
 > A running list of things that are approximate, brittle, or deferred — written down so they

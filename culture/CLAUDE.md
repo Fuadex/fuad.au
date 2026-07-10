@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Culture_2 — architecture & working notes
 
 A single-page, in-browser React app (Babel-in-the-browser, no build step) that renders

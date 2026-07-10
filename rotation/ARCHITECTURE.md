@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Rotation — Architecture & Feature Inventory
 
 > **The single source of truth for what this project is, how it works, and what it already has.**

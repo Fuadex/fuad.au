@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Scripts index
 
 Every Python script: what it does, what it reads/writes, and its status. Status legend:

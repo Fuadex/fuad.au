@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Backlog & session checkpoint — 2026-07-10
 
 Consolidated "what shipped recently + what's queued," written for a cold pickup after a context
@@ -68,9 +70,82 @@ built then HIDDEN** from nav (one-line uncomment in `rotation-app.jsx` NAV_FULL 
   still hues it; fold into a color-pipeline pass (avoid double-editing color sites).
 - **Jazz kw tuning** — funk/soul-rock leakage (RHCP, Bowie, Romes, Gramatik). Taste call w/ Fuad.
 
-### Culture (see `culture/` docs)
+### Culture
+
+**Open badge-taxonomy decisions (NOT yet applied — need Fuad's call)**
+
+- **Split `gem` into two axes.** 💎 currently means "Hidden gem — floored me", which conflates
+  two things. Plan: new `floored` badge = the in-the-moment knockout (emoji UNDECIDED — rejected
+  ⭐/😮/🏆/💫; open candidates 🤩/😲/😵/🎆/👏). Relabel 💎 `gem` → "Hidden gem" (drop "floored
+  me"); walk the ~36 current gems and sort each into hidden / floored / both / neither. Famous
+  titles (Fight Club, Se7en, The Wire, Black Mirror, …) move off `gem` → `floored`; obscure
+  discoveries stay `gem`. Done already: removed `gem` from Memento + Gone Girl (neither).
+- **The "impact family" model** (agreed in principle, labels pending): ⭐ `floored` (up/awe,
+  during) · 💔 `devastating` (grief, during) · 💥 `impact` (lingering, after). Relabel 💥
+  `impact` from "Impactful" to a lingering word (e.g. "Stays with you" / "Lingers"). UNDECIDED.
+  `bittersweet` 🥲 moved OUT of this family → tone badge (with funny/horrifying/satire).
+- **Settled (for reference):** `cognitive` 🪞 fully curated (~19 seen + wishlist bench).
+- Full badge re-audit; impact 63→50 demotions (see `culture/BADGE_IDEAS.md`).
+
+**Translations (PL → EN Reader-note redrafts)**
+
+- **Status: 260 redrafted, ~723 remaining.** Style: plain register, faithful wording, keep
+  emoticons. Workflow: `python list_untranslated.py 50` → review PL/EN pairs → add to
+  `notes_en_source.json` → `python build_notes_en.py` → bump `?v=`.
 - Blurb batches 09–14 (~542 tail wishlist items; resume `.sptmp/wl-nonote.ndjson` row 801).
-- Full badge re-audit; impact 63→50 demotions (BADGE_IDEAS).
+
+**Content / data passes**
+
+- **OMDb coverage** — many film/TV still un-fetched (older bulk imports). Rerun
+  `python update_omdb.py --limit N` over days; targeted `--force` re-check on false-misses.
+- **Poster gap** — ~291 items still show the glyph fallback (niche early-cinema shorts +
+  obscure bulk movies TMDB/OMDb don't index).
+- **Wishlist badge pass** — wishlist items largely un-badged; a knowledge pass would surface
+  them in the Explorer.
+- **OMDb short plots** — `PlotShort` backfill for the Reader's crisp IMDb synopsis.
+- **Books gaps** — some Polish titles lack summary / tags / cover.
+- **Worldbuilding / visuals re-curation** — standouts-only passes still partly unconfirmed
+  (see `culture/notes/funny_taxonomy.md`).
+
+**Features (bigger)**
+
+- **Insight expansions / narrative layer** — full proposal in `culture/docs/AUDIT_2026-07.md` §8
+  (2026-07-07): Stories for Culture (watching eras, director-binge obsession curves, on-this-day)
+  · the notes corpus as data ("your critical voice") · mood & impact diet (script_mood × ratings;
+  badge impact-family timeline) · hub-level Rotation × Culture joins (soundtrack bridge, binge ×
+  listening) · cross-medium thematic twins.
+- **Cover-colour sort + palette features** — full proposal in `culture/notes/color_sort_ideas.md`
+  (gradient stack, colour-wheel stat, ambient tint, colour filter). MVP = precompute overlay.
+- **Outward Discovery tab** — Library / Wishlist / Discover, from TMDB recommendations minus
+  dupes → review file. Deferred until enrichment settles.
+- **Explorer / Taste polish** — faint total line on growth chart; "Signature tags" insight;
+  chord/bubble viz (stretch from `culture/notes/taste_profile_plan.md`).
+- **Last.fm music variation** — separate site variation (top albums by lifetime playtime).
+
+**Housekeeping / future**
+
+- **Script naming pass** — standardize `fetch_*` / `build_*` / `edit_*` / `audit_*`. Update
+  `culture/docs/SCRIPTS.md`.
+- **De-dup the TMDB resolver** — `update_cast.py` + `update_tmdb_overview.py` both resolve
+  the same TMDB id per title; could share one resolver/cache.
+- **Self-host React/Babel/d3** instead of CDN, for offline/longevity.
+- **Wikidata structured awards** — richer per-award lists vs the current parsed-sentence chips.
+
+---
+
+## Pathways under consideration (2026-07-11)
+
+- **JSDoc + `// @ts-check` adoption** — editor-level type checking without a build step. Apply
+  opportunistically starting with `lib-slug`-adjacent and data-join code in rotation. Zero
+  tooling overhead: drop a `@ts-check` comment + JSDoc annotations, and editors (VS Code) give
+  inline type errors immediately.
+- **Tauri desktop packaging** — Rust-shelled webview (~5 MB binaries vs Electron ~100 MB) as
+  the deliverable format if the hub is ever packaged as a local app for other people's data.
+  PWA comes first; Tauri is the follow-on if a packaged install is needed.
+- **Essentia as the open-source audio-features base** — if Rotation is ever open-sourced,
+  per-track audio features must come from Essentia (open-source audio analysis; needs actual
+  audio files) instead of the current non-redistributable sources. Mark as the designated
+  replacement for redistribution-safe builds.
 
 ---
 

@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Predicted-rating model — design
 
 Goal: predict Fuad's personal rating for each **unseen wishlist** item, and use it to order
