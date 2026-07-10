@@ -822,6 +822,7 @@ window.CULTURE_BADGES = {
  ],
  "the-wire": [
   "acting",
+  "ahead",
   "singular",
   "slowburn",
   "social-xray"
