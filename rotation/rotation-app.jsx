@@ -24,7 +24,7 @@ const NAV_FULL = [
   ["calendar", "Calendar"],
   ["gigs", "Gigs"],
   ["live", "Live"],
-  ["spotify", "Spotify"],
+  // ["spotify", "Spotify"],  // hidden pending further dev — SpotifyView + #spotify route still work
 ];
 // Hide tabs with no data behind them — avoids a dead-end. "Live" needs upcoming-concert cities;
 // "Gigs" needs the attended-shows dataset (setlist.fm → gigs.json → ROTATION.GIGS).
