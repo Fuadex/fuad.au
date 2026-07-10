@@ -177,6 +177,7 @@ function RotationApp() {
                 {v === "gigs" && <GigsView go={go} />}
                 {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
                 {v === "spotify" && <SpotifyView go={go} />}
+                {v === "lab" && <LabView />}
                 {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
                 {v === "album" && <AlbumView id={route.id} go={go} />}
                 {v === "track" && <TrackView id={route.id} go={go} />}
