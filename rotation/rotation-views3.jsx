@@ -2532,7 +2532,11 @@ function SearchOverlay({ open, onClose, go }) {
   // mode: "names" (artists/songs/albums by title) | "theme" (songs by what they're ABOUT,
   // over the llm-about blurbs). A toggle keeps the two intents from muddling (Fuad, 2026-07-08).
   const [mode, setMode] = React.useState("names");
-  const [llmReady, setLlmReady] = React.useState(!!window.ROTATION_LLM_ABOUT);
+  // theme search no longer pulls the whole llm-about blob: it loads the inverted theme index
+  // (about/index.js), matches tokens → entry keys, then lazy-loads only the GIST shards holding
+  // the matched keys. `indexReady` gates the index; `shardTick` bumps as matched shards land.
+  const [indexReady, setIndexReady] = React.useState(!!window.ROTATION_ABOUT_INDEX);
+  const [shardTick, bumpShards] = React.useReducer(x => x + 1, 0);
   const inputRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -2544,10 +2548,14 @@ function SearchOverlay({ open, onClose, go }) {
     setTimeout(() => inputRef.current && inputRef.current.focus(), 40);
   }, [open]);
 
-  // theme mode pulls in the "what it's about" reads (llm-about.js) on demand
+  // theme mode pulls in the inverted theme INDEX (about/index.js) on demand — small, not the
+  // whole reads blob. Dev fallback (index 404s) loads llm-about.js whole and R.loadAboutIndex's
+  // onerror synthesises the blob; either way ROTATION_ABOUT_INDEX or ROTATION_LLM_ABOUT is present.
   React.useEffect(() => {
-    if (mode !== "theme" || window.ROTATION_LLM_ABOUT) { if (window.ROTATION_LLM_ABOUT) setLlmReady(true); return; }
-    const s = document.createElement("script"); s.src = "llm-about.js"; s.onload = () => setLlmReady(true); document.head.appendChild(s);
+    if (mode !== "theme") return;
+    const R = window.ROTATION;
+    if (window.ROTATION_ABOUT_INDEX) { setIndexReady(true); return; }
+    if (R && R.loadAboutIndex) R.loadAboutIndex(() => setIndexReady(true));
   }, [mode]);
 
   // slug-keyed track lookup (artistSlug~trackSlug → {title, artist, plays}) so a blurb key can be
@@ -2591,28 +2599,83 @@ function SearchOverlay({ open, onClose, go }) {
     return { tracks: scan(M.tracks), albums: scan(M.albums) };
   }, [q, mediaReady]);
 
-  // THEME search — songs by what they're about, scanning the llm-about blurbs. Concatenate every
-  // present read (haiku gist + sonnet/opus/fable/web where richer), match the query, rank a
-  // whole-word hit above a substring, then by plays. Join to slugMap for a display row.
+  // THEME search — songs by what they're about. Now index-driven: the inverted index
+  // (about/index.js) maps tokens → entry-key ids; we resolve the query's words to candidate keys,
+  // then lazy-load ONLY the gist shards holding them (R.loadAboutFor) and rank for display. A hit
+  // on a token that STARTS with the needle scores as a whole-word match. Dev fallback: if the index
+  // never loaded but the whole blob did (R.loadAboutIndex synthesised it), scan the blob directly.
   const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const themeResults = React.useMemo(() => {
-    const LLM = window.ROTATION_LLM_ABOUT;
-    if (mode !== "theme" || !q.trim() || !LLM || !slugMap) return [];
+
+  // 1) resolve query → candidate entry keys via the index (or blob-scan fallback).
+  const themeMatch = React.useMemo(() => {
+    if (mode !== "theme" || !q.trim()) return null;
     const needle = deAccent(q.trim());
-    if (needle.length < 3) return [];
-    const wb = new RegExp("\\b" + esc(needle));
-    const out = [];
+    if (needle.length < 3) return null;
+    const IDX = window.ROTATION_ABOUT_INDEX;
+    if (IDX && IDX.tok) {
+      // words of the query (len≥3). For each word, union all index tokens that CONTAIN it (keeps
+      // substring/prefix typing). Multi-word queries AND the per-word id sets. An id whose match
+      // came from a token EQUAL to a word is a true whole-word hit → ranks above substring-only.
+      const words = needle.split(/[^a-z0-9]+/).filter(w => w.length >= 3);
+      if (!words.length) return { keys: [], needle, wbIds: new Set() };
+      let acc = null;
+      const wbIds = new Set();
+      for (const w of words) {
+        const hit = new Set();
+        for (const tok in IDX.tok) {
+          if (tok.indexOf(w) < 0) continue;
+          const exact = tok === w;
+          for (const id of IDX.tok[tok]) { hit.add(id); if (exact) wbIds.add(id); }
+        }
+        acc = acc === null ? hit : new Set([...acc].filter(id => hit.has(id)));
+        if (!acc.size) break;
+      }
+      const keys = [], wbKeys = new Set();
+      for (const id of (acc || [])) { const k = IDX.keys[id]; if (!k) continue; keys.push(k); if (wbIds.has(id)) wbKeys.add(k); }
+      return { keys, needle, wbKeys };
+    }
+    // fallback: whole-blob scan (dev, no index built)
+    const LLM = window.ROTATION_LLM_ABOUT;
+    if (!LLM) return null;
+    const keys = [];
     for (const key in LLM) {
       const e = LLM[key];
       const text = deAccent([e.haiku, e.sonnet, e.opus, e.fable, e.web].filter(Boolean).join(" · "));
-      if (!text.includes(needle)) continue;
+      if (text.includes(needle)) keys.push(key);
+    }
+    return { keys, needle, wbKeys: null };   // null → per-entry whole-word test below (blob path)
+  }, [q, mode, indexReady]);
+
+  // 2) load the gist shards holding the matched keys (so their display text is available).
+  React.useEffect(() => {
+    const R = window.ROTATION;
+    if (!themeMatch || !themeMatch.keys.length || !R || !R.loadAboutFor) return;
+    R.loadAboutFor(themeMatch.keys, bumpShards);
+  }, [themeMatch]);
+
+  // 3) build ranked display rows from loaded gists (or the blob, in dev). shardTick re-runs this
+  // as matched shards land. Whole-word hit ranks above a bare substring, then by plays.
+  const themeResults = React.useMemo(() => {
+    if (!themeMatch || !slugMap) return [];
+    const R = window.ROTATION;
+    const { needle, keys, wbKeys } = themeMatch;
+    const wb = new RegExp("\\b" + esc(needle));
+    const out = [];
+    for (const key of keys) {
       const t = slugMap[key]; if (!t) continue;
-      out.push({ key, title: t.title, artist: t.artist, plays: t.plays,
-        blurb: e.fable || e.opus || e.sonnet || e.haiku || "", score: wb.test(text) ? 1 : 0 });
+      // prefer a loaded gist read for the visible blurb; fall back to the blob if that's the path.
+      const g = R && R.aboutGist ? R.aboutGist(key) : null;
+      const blob = window.ROTATION_LLM_ABOUT && window.ROTATION_LLM_ABOUT[key];
+      const blurb = (g && (g.haiku || g.web)) || (blob && (blob.fable || blob.opus || blob.sonnet || blob.haiku || blob.web)) || "";
+      // whole-word score: index path flags exact-token hits per key; blob path re-tests the text.
+      let score = 0;
+      if (wbKeys) score = wbKeys.has(key) ? 1 : 0;
+      else if (blob) score = wb.test(deAccent([blob.haiku, blob.sonnet, blob.opus, blob.fable, blob.web].filter(Boolean).join(" · "))) ? 1 : 0;
+      out.push({ key, title: t.title, artist: t.artist, plays: t.plays, blurb, score });
     }
     out.sort((a, b) => (b.score - a.score) || (b.plays - a.plays));
     return out.slice(0, 40);
-  }, [q, mode, llmReady, slugMap]);
+  }, [themeMatch, slugMap, indexReady, shardTick]);
 
   if (!open) return null;
 
@@ -2627,6 +2690,10 @@ function SearchOverlay({ open, onClose, go }) {
   // album row → the album's own page (works for any album)
   const pickAlbum = (artist, title) => { onClose(); go("album", R.slug(artist) + "~" + R.slug(title)); };
 
+  // theme mode is "ready" once the inverted index is loaded (or, in dev, the whole blob was
+  // synthesised as a fallback). Either satisfies the query path.
+  const themeReady = indexReady || !!window.ROTATION_ABOUT_INDEX || !!window.ROTATION_LLM_ABOUT;
+
   return (
     <div className="se-veil" onClick={onClose}>
       <div className="se-panel" onClick={e => e.stopPropagation()}>
@@ -2634,7 +2701,7 @@ function SearchOverlay({ open, onClose, go }) {
           <span className="se-glyph">⌕</span>
           <input ref={inputRef} value={q} onChange={e => { setQ(e.target.value); setSel(null); }}
             placeholder={mode === "theme"
-              ? (llmReady ? "what are they about — grief, defiance, isolation…" : "loading the reads…")
+              ? (themeReady ? "what are they about — grief, defiance, isolation…" : "loading the reads…")
               : (ready ? "search artists, albums & songs you've played…" : "loading your library…")}
             spellCheck={false} />
           <button className="se-x" onClick={onClose}>esc</button>
@@ -2646,10 +2713,10 @@ function SearchOverlay({ open, onClose, go }) {
         </div>
         {mode === "theme" && q.trim() && (
           <div className="se-results">
-            {themeResults.length === 0 && llmReady && slugMap && q.trim().length >= 3 &&
+            {themeResults.length === 0 && themeReady && slugMap && q.trim().length >= 3 &&
               <div className="se-empty">No songs read as being about “{q.trim()}”.</div>}
             {q.trim().length < 3 && <div className="se-loading">keep typing…</div>}
-            {(!llmReady || !slugMap) && q.trim().length >= 3 && <div className="se-loading">reading your library…</div>}
+            {(!themeReady || !slugMap) && q.trim().length >= 3 && <div className="se-loading">reading your library…</div>}
             {themeResults.length > 0 && <div className="se-group">Songs about “{q.trim()}” · {themeResults.length}</div>}
             {themeResults.map((r) => (
               <div key={"t-" + r.key} className="se-row se-themerow" onClick={() => pickMedia(r.artist, r.title)}>

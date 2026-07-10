@@ -46,6 +46,13 @@ jobs:
         working-directory: rotation
         run: node build-data.js
 
+      # 2a) shard the committed llm-about.js into about/ (gist + deep + theme index).
+      #     Runs BEFORE the smoke test so its shard/index invariants always have artifacts to
+      #     check. about/ is gitignored -- a Pages artifact like music-core.js.
+      - name: Shard llm-about
+        working-directory: rotation
+        run: node shard-about.js
+
       # 2b) smoke test -- invariant checks (slug contract, key joins, emit sanity).
       #     A failure here BLOCKS the deploy on purpose; see rotation/smoke-test.js.
       - name: Smoke test

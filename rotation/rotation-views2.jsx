@@ -1382,33 +1382,56 @@ function PreviewBtn({ id, hue, artist, title }) {
 // Where the track carries a fableDeep close-reading, an Info / Interpretation toggle sits at the
 // module's top right: Info = the normal one-line reads, Interpretation = Fable's longer reading.
 const BLURB_ORDER = [["haiku", "Haiku"], ["fable", "Fable"], ["opus", "Opus"]];
+// which READ sources live in the gist shard (light) vs the deep shard (mirrors shard-about.js).
+const GIST_SRC = { haiku: 1, web: 1 };
 function BlurbSwitcher({ id, about }) {
+  const R = window.ROTATION;
   const [, bump] = React.useReducer(x => x + 1, 0);   // re-render when a lazy data file lands
+  // GIST first (light default read); DEEP loads only when a deep source / Interpretation opens.
   React.useEffect(() => {
-    const load = (src, glob) => { if (window[glob]) return; const s = document.createElement("script"); s.src = src; s.onload = bump; s.onerror = bump; document.head.appendChild(s); };
-    load("llm-about.js", "ROTATION_LLM_ABOUT"); load("blurb-demo.js", "ROTATION_BLURB_DEMO");
-  }, []);
+    if (R && R.loadAbout) R.loadAbout(id, bump);
+    if (!window.ROTATION_BLURB_DEMO) { const s = document.createElement("script"); s.src = "blurb-demo.js"; s.onload = bump; s.onerror = bump; document.head.appendChild(s); }
+  }, [id]);
   const [pick, setPick] = React.useState(null);
   const [mode, setMode] = React.useState("info");     // "info" | "deep" (Fable interpretation)
   React.useEffect(() => { setPick(null); setMode("info"); }, [id]);   // new song → default read; clicks never clobbered
-  const llm = (window.ROTATION_LLM_ABOUT && window.ROTATION_LLM_ABOUT[id]) || null;   // real pipeline read
+  const gist0 = (R && R.aboutGist && R.aboutGist(id)) || null;   // read before deciding on deep load
+  // pull the deep shard when a deep read is being shown: a picked deep source, the Interpretation
+  // mode, OR when the DEFAULT source (gist.src) is itself a deep read (so it renders without a click).
+  const defaultDeep = !!(gist0 && gist0.src && !GIST_SRC[gist0.src]);
+  const needDeep = mode === "deep" || (pick && !GIST_SRC[pick]) || (!pick && defaultDeep);
+  React.useEffect(() => { if (needDeep && R && R.loadAboutDeep) R.loadAboutDeep(id, bump); }, [needDeep, id]);
+  const gist = gist0;                                            // src + haiku + web + has (deep markers)
+  const deep = (R && R.aboutDeep && R.aboutDeep(id)) || null;    // sonnet/opus/fable/fableDeep (once loaded)
+  const llm = (gist || deep) ? Object.assign({}, gist || {}, deep || {}) : null;   // merged, blob-shape
   const reads = (window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null; // bake-off multi-model
   // buttons: the model reads (Haiku · Sonnet · Opus · Fable), a Web read (researched from web sources
   // when the lyrics dump had none), then Genius (human). Default = the chosen source (llm.src).
-  // Bake-off songs keep their set.
+  // Bake-off songs keep their set. Deep buttons appear from the gist's `has` marker even before
+  // the deep shard lands; opening one triggers its load and re-render (text fills in).
   const sources = [];
-  if (llm) {
-    for (const [m, label] of [["haiku", "Haiku"], ["sonnet", "Sonnet"], ["opus", "Opus"], ["fable", "Fable"], ["web", "Web"]]) if (llm[m]) sources.push({ m, label, text: llm[m] });
+  if (gist) {
+    const hasMark = gist.has || "";
+    const present = { haiku: !!gist.haiku, web: !!gist.web,
+      sonnet: hasMark.includes("s"), opus: hasMark.includes("o"), fable: hasMark.includes("f") };
+    for (const [m, label] of [["haiku", "Haiku"], ["sonnet", "Sonnet"], ["opus", "Opus"], ["fable", "Fable"], ["web", "Web"]]) {
+      if (present[m]) sources.push({ m, label, text: llm[m] || null });   // text null until deep loads
+    }
   } else if (reads) {
     for (const [m, label] of BLURB_ORDER) if (reads[m]) sources.push({ m, label, text: reads[m] });
   }
   const geniusText = (about && about[0]) || (reads && reads.genius);
   if (geniusText) sources.push({ m: "genius", label: "Genius", text: geniusText, link: about && about[1] ? `https://genius.com/songs/${about[1]}` : null });
   if (!sources.length) return null;
-  const cur = sources.find(s => s.m === pick) || sources.find(s => llm && s.m === llm.src) || sources[0];
+  const cur = sources.find(s => s.m === pick) || sources.find(s => gist && s.m === gist.src) || sources[0];
   const multi = sources.length > 1;
-  const deepText = llm && llm.fableDeep;              // Fable's close-reading, when it exists
-  const showDeep = mode === "deep" && !!deepText;
+  // fableDeep lives in the deep shard; the gist `has` "I" marker tells us it EXISTS so the
+  // Interpretation toggle renders before the deep shard lands. Its text fills in on load.
+  const hasDeepRead = !!(gist && gist.has && gist.has.includes("I")) || !!(llm && llm.fableDeep);
+  const deepText = llm && llm.fableDeep;              // Fable's close-reading, once loaded
+  const showDeep = mode === "deep" && hasDeepRead;
+  // a deep model read (sonnet/opus/fable) is selected but its shard hasn't landed yet
+  const curLoading = !showDeep && cur.text == null && !GIST_SRC[cur.m] && cur.m !== "genius";
   return (
     <div className="tv-switch">
       <div className="tv-switch-head">
@@ -1420,7 +1443,7 @@ function BlurbSwitcher({ id, about }) {
             ))}
           </div>
         )}
-        {deepText && (
+        {hasDeepRead && (
           <div className="tv-switch-mode">
             <button data-on={mode === "info"} onClick={() => setMode("info")}>Info</button>
             <button data-on={mode === "deep"} data-m="fable" onClick={() => setMode("deep")}>Interpretation</button>
@@ -1428,7 +1451,7 @@ function BlurbSwitcher({ id, about }) {
         )}
       </div>
       <div className="tv-switch-body">
-        <span className="tv-switch-txt">{showDeep ? deepText : cur.text}</span>
+        <span className="tv-switch-txt">{showDeep ? (deepText || "…") : (curLoading ? "…" : cur.text)}</span>
         {showDeep
           ? <span className="tv-switch-brand" data-m="fable">via Fable · interpretation</span>
           : cur.m === "genius" && cur.link
