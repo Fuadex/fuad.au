@@ -626,3 +626,117 @@ class Boundary extends React.Component {
 }
 
 Object.assign(window, { cssRotation, fmt, fmtK, hashInt, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE, Boundary });
+
+// ─────────────────────────────────────────────────────────────────
+//  "What it's about" — lazy shard loader (llm-about split into about/g-NN.js gist +
+//  about/d-NN.js deep, 16 buckets by _slugHash(artistSlug) % 16; see shard-about.js).
+//  A track page loads exactly ONE gist shard for its artist; the deep reads (sonnet/opus/
+//  fable) load only when the reader asks for an Interpretation. Gist merges into
+//  window.ROTATION_ABOUT_G, deep into window.ROTATION_ABOUT_D (shards Object.assign, so
+//  concurrent loads never clobber). LOCAL-DEV FALLBACK: if a shard 404s (developer never ran
+//  shard-about.js), fall back to loading the whole committed llm-about.js and synthesise the
+//  same lookup — callers can't tell which path served them.
+// ─────────────────────────────────────────────────────────────────
+(function () {
+  const R = window.ROTATION;
+  if (!R || R.loadAbout) return;
+
+  const N = 16;
+  // reuse the canonical hash emitted onto ROTATION (build-data.js: D._slugHash). Never re-type it.
+  const bucket = (artistSlug) => {
+    const h = (R._slugHash ? R._slugHash(artistSlug) : artistSlug);   // base-36 string
+    let acc = 0;
+    for (let i = 0; i < h.length; i++) acc = (acc * 36 + parseInt(h[i], 36)) % N;
+    return acc;
+  };
+  const artistOf = (key) => { const i = key.indexOf("~"); return i < 0 ? key : key.slice(0, i); };
+  R.aboutBucket = (key) => bucket(artistOf(key));
+
+  // per-tier state: which buckets are loaded/in-flight, and whether we've fallen back to the blob.
+  const state = { g: { loaded: {}, waiting: {} }, d: { loaded: {}, waiting: {} }, blob: 0 };
+
+  // synthesise the shard globals from the whole-file blob (dev fallback). Idempotent.
+  function synthFromBlob() {
+    const O = window.ROTATION_LLM_ABOUT; if (!O) return false;
+    const G = (window.ROTATION_ABOUT_G = window.ROTATION_ABOUT_G || {});
+    const D = (window.ROTATION_ABOUT_D = window.ROTATION_ABOUT_D || {});
+    for (const k in O) {
+      const e = O[k];
+      if (G[k] === undefined) {
+        const g = {}; for (const f of ["src", "haiku", "web"]) if (e[f] != null) g[f] = e[f];
+        let has = ""; if (e.sonnet) has += "s"; if (e.opus) has += "o"; if (e.fable) has += "f"; if (e.fableDeep) has += "I";
+        if (has) g.has = has;
+        G[k] = g;
+      }
+      if (D[k] === undefined) { const d = {}; for (const f of ["sonnet", "opus", "fable", "fableDeep"]) if (e[f] != null) d[f] = e[f]; D[k] = d; }
+    }
+    // every bucket is now satisfied by the blob
+    for (let b = 0; b < N; b++) { state.g.loaded[b] = true; state.d.loaded[b] = true; }
+    return true;
+  }
+
+  // load the whole llm-about.js once, then synthesise + run all queued callbacks.
+  const blobWaiters = [];
+  function loadBlob(cb) {
+    if (window.ROTATION_LLM_ABOUT) { synthFromBlob(); cb && cb(); return; }
+    if (cb) blobWaiters.push(cb);
+    if (state.blob) return;   // already in flight
+    state.blob = 1;
+    const s = document.createElement("script");
+    s.src = "llm-about.js";
+    s.onload = () => { state.blob = 2; synthFromBlob(); const q = blobWaiters.splice(0); q.forEach(f => f && f()); };
+    s.onerror = () => { state.blob = 3; const q = blobWaiters.splice(0); q.forEach(f => f && f()); };   // nothing more we can do
+    document.head.appendChild(s);
+  }
+
+  // load one bucket's shard for a tier ("g" | "d"), falling back to the blob on 404.
+  function loadTier(tier, key, cb) {
+    if (state.blob >= 2) { cb && cb(); return; }   // blob already serves everything
+    const st = state[tier], b = bucket(artistOf(key));
+    if (st.loaded[b]) { cb && cb(); return; }
+    (st.waiting[b] = st.waiting[b] || []).push(cb);
+    if (st.waiting[b].length > 1) return;   // a load for this bucket is already in flight
+    const flush = () => { const q = st.waiting[b]; st.waiting[b] = []; q.forEach(f => f && f()); };
+    const bb = String(b).padStart(2, "0");
+    const s = document.createElement("script");
+    s.src = "about/" + tier + "-" + bb + ".js";
+    s.onload = () => { st.loaded[b] = true; flush(); };
+    s.onerror = () => { loadBlob(() => flush()); };   // dev fallback: whole file, synthesised
+    document.head.appendChild(s);
+  }
+
+  // public API — key is "artistSlug~trackSlug" (or a bare artistSlug for prefetch).
+  R.loadAbout = (key, cb) => loadTier("g", key, cb);            // light default read (haiku/web/src)
+  R.loadAboutDeep = (key, cb) => loadTier("d", key, cb);        // heavy reads (sonnet/opus/fable)
+  R.aboutGist = (key) => (window.ROTATION_ABOUT_G && window.ROTATION_ABOUT_G[key]) || null;
+  R.aboutDeep = (key) => (window.ROTATION_ABOUT_D && window.ROTATION_ABOUT_D[key]) || null;
+  // merged view for a track page (gist + deep fields, whichever are loaded) — mirrors the old
+  // ROTATION_LLM_ABOUT[key] shape so display code stays identical.
+  R.aboutEntry = (key) => {
+    const g = R.aboutGist(key), d = R.aboutDeep(key);
+    if (!g && !d) return null;
+    return Object.assign({}, g || {}, d || {});
+  };
+  // theme index (about/index.js) — inverted token→keys; whole-blob fallback for dev.
+  R.loadAboutIndex = (cb) => {
+    if (window.ROTATION_ABOUT_INDEX) { cb && cb(); return; }
+    const s = document.createElement("script");
+    s.src = "about/index.js";
+    s.onload = () => cb && cb();
+    s.onerror = () => loadBlob(() => cb && cb());   // dev: theme search scans the blob instead
+    document.head.appendChild(s);
+  };
+  // load every gist shard that holds one of `keys` (used by theme search after an index hit).
+  R.loadAboutFor = (keys, cb) => {
+    if (state.blob >= 2) { cb && cb(); return; }
+    const need = new Set();
+    for (const k of keys) { const b = bucket(artistOf(k)); if (!state.g.loaded[b]) need.add(b); }
+    if (!need.size) { cb && cb(); return; }
+    let pending = need.size;
+    const done = () => { if (--pending <= 0) cb && cb(); };
+    // pick any key per bucket to drive loadTier's bucket resolution
+    const repByBucket = {};
+    for (const k of keys) { const b = bucket(artistOf(k)); if (!repByBucket[b]) repByBucket[b] = k; }
+    need.forEach(b => loadTier("g", repByBucket[b], done));
+  };
+})();

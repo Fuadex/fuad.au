@@ -20,7 +20,12 @@
         "genius-mood-lazy.js", "genius-about-lazy.js", "genius-themes-lazy.js", "album-about-lazy.js", "tm-tour-lazy.js", "blurb-demo.js", "llm-about.js",
         "track-previews.js", "shelves-unplayed.js", "artist-flow.js", "artist-detail.js",
         "calendar.js", "calendar-detail.js", "geo-detail.js", "world-map.js",
-        "spotify-insights.js", "spotify-liked.js", "spotify-engagement.js"
+        "spotify-insights.js", "spotify-liked.js", "spotify-engagement.js",
+        "about/index.js",
+        "about/g-00.js", "about/g-01.js", "about/g-02.js", "about/g-03.js", "about/g-04.js", "about/g-05.js", "about/g-06.js", "about/g-07.js",
+        "about/g-08.js", "about/g-09.js", "about/g-10.js", "about/g-11.js", "about/g-12.js", "about/g-13.js", "about/g-14.js", "about/g-15.js",
+        "about/d-00.js", "about/d-01.js", "about/d-02.js", "about/d-03.js", "about/d-04.js", "about/d-05.js", "about/d-06.js", "about/d-07.js",
+        "about/d-08.js", "about/d-09.js", "about/d-10.js", "about/d-11.js", "about/d-12.js", "about/d-13.js", "about/d-14.js", "about/d-15.js"
       ]
     },
     {

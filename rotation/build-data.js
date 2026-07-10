@@ -2915,6 +2915,7 @@ window.ROTATION = (function () {
   D.expById = {}; D._restLoaded = false;
   D.byId = Object.fromEntries(D.ARTISTS.map(a => [a.id, a]));
   D.slug = slug;
+  D._slugHash = _slugHash;   // exposed so lazy loaders (llm-about shards) bucket via the canonical hash
   // played(name) — kept artist OR scrobbled ≥3 times (plus aliases). Covers the long tail
   // (Otoboke Beaver) AND cross-script (ミドリ ↔ "Midori" via MusicBrainz aliases).
   const _played = new Set(D.PLAYED || []);
