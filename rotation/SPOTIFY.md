@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Spotify export — integration plan
 
 Personal Spotify export (two gitignored zips in `rotation/`, **local-only, contain IP addresses**):

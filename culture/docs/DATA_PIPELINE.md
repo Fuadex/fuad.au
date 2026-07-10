@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Data pipeline & update runbook
 
 How the generated overlays are produced, and the exact order to run things when you

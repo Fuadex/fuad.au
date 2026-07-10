@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # PIPELINE.md — the reads / blurb wave process
 
 How Rotation's editorial layer (`llm-about.js`, ~9.9k per-song reads) is produced, and the

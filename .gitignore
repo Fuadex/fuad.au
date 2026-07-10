@@ -12,6 +12,9 @@ _site/
 # local-only working notes (audits, drafts) — *.local.md never commits
 *.local.md
 
+# dated snapshots / moved originals — kept for reference but not tracked
+notes/
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db

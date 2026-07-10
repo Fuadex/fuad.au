@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Rotation — Audit & Roadmap
 
 > Companion to **ARCHITECTURE.md** (read that first — it defines what already exists).

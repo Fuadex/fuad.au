@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # fuad.au — changelog
 
 A running, public-facing write-up of what shipped, per version. Feature- and architecture-level
@@ -8,6 +10,20 @@ third-party dataset provenance are deliberately kept out of the public record.
 The hub is three self-contained apps sharing one launcher and one deploy pipeline:
 **Rotation** (listening history), **Culture** (film / TV / games / books canon), and
 **Canvas** (a personal gallery of art seen in museums).
+
+---
+
+## 2026-07-08
+
+### Cross-app
+- **Fable-leverage plan agreed.** Cross-app priority ranking for Fable-quality generative
+  work (permanent, unique outputs): ⓪ discovery/recommendation (widest edge — Culture
+  Discover, Canvas pilgrimage curation, Rotation dig-list, all unbuilt); ① Canvas artwork
+  close-readings (Info + Interpretation per floored/loved work); ② Rotation hard-queue lyric
+  interpretations (85 remaining in the divergence queue); ③ Culture film/show reads (zero
+  currently, top ~20 films first). Mechanical work (deck-folding, data fetches, keyword
+  search, stats) reserved for Sonnet subagents or scripts. Full plan in
+  `notes/STATUS-2026-07.md` §3.
 
 ---
 

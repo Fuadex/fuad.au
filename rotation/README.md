@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Rotation
 
 **A personal listening observatory.** Twenty years and ~319,000 real last.fm scrobbles

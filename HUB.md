@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # fuad.au — the hub
 
 fuad.au is a launcher over a set of **self-contained personal apps**. The root is a static

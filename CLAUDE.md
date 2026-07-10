@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Claude session bootstrap — fuad.au (hub)
 
 fuad.au is a **hub** of self-contained personal apps. Each app is a top-level folder that owns

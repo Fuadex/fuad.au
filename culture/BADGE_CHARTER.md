@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Badge Charter
 
 The badges are the editorial voice of Culture. Each one is a *claim*, not a genre tag —

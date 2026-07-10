@@ -1,3 +1,5 @@
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
 # Badge & taste-layer ideas — open questions and roadmap
 
 Companion to `BADGE_CHARTER.md` (the settled definitions) and `taste_profile_plan.md`

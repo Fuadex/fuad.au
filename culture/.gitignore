@@ -30,3 +30,6 @@ www.filmweb.pl.txt
 
 # local scratch for build_script_mood.py
 .film-index.json
+
+# working notes and idea-file archive — not tracked
+notes/
