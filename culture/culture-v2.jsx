@@ -537,9 +537,15 @@ function TagBadgeExplorer({ items, onOpenItem }) {
     return [...prev, { kind, value, op }];
   });
   const click = (e, kind, value) => {
+    const k = keyOf(kind, value);
+    // AND/OR only means anything from the second chip on: the first selection (and a
+    // re-click of a lone selection) ignores the left/right halves.
+    if (!sel.length || (sel.length === 1 && selMap.has(k))) return choose(kind, value, selMap.get(k) || 'AND');
     const r = e.currentTarget.getBoundingClientRect();
     choose(kind, value, (e.clientX - r.left) > r.width / 2 ? 'OR' : 'AND');
   };
+  const opHint = sel.length ? 'Left half = AND · right half = OR' : undefined;
+  const showOps = sel.length > 1;
 
   const has = (it, c) => c.kind === 'badge'
     ? (it.highlights || []).includes(c.value)
@@ -552,18 +558,20 @@ function TagBadgeExplorer({ items, onOpenItem }) {
   const cls = op => `xchip${op ? ' sel ' + op.toLowerCase() : ''}`;
   return (
     <div className="explorer">
-      <div className="explorer-hint">Click a chip — <b>left = AND</b>, <b>right = OR</b>. Mix badges + subtags.</div>
+      <div className="explorer-hint">{sel.length
+        ? <span>Next chip: <b>left = AND</b>, <b>right = OR</b>. Mix badges + subtags.</span>
+        : <span>Pick a chip to start. Mix badges + subtags.</span>}</div>
       <div className="explorer-rail">
         {badges.map(([h, c]) => { const op = selMap.get('badge:' + h); return (
-          <button key={h} className={cls(op) + ' badge'} onClick={e => click(e, 'badge', h)} title="Left half = AND · right half = OR">
-            {op ? <span className="xop">{op === 'OR' ? '∨' : '∧'}</span> : null}{HIGHLIGHTS[h].emoji} {HIGHLIGHTS[h].label}<span className="xc">{c}</span>
+          <button key={h} className={cls(op) + ' badge'} onClick={e => click(e, 'badge', h)} title={opHint}>
+            {op && showOps ? <span className="xop">{op === 'OR' ? '∨' : '∧'}</span> : null}{HIGHLIGHTS[h].emoji} {HIGHLIGHTS[h].label}<span className="xc">{c}</span>
           </button>
         ); })}
       </div>
       {tags.length > 0 && <div className="explorer-cloud">
         {tags.map(([t, c]) => { const op = selMap.get('tag:' + t); return (
-          <button key={t} className={cls(op) + ' tag' + (notableSet.has(t) ? ' notable' : '')} onClick={e => click(e, 'tag', t)} title="Left half = AND · right half = OR">
-            {op ? <span className="xop">{op === 'OR' ? '∨' : '∧'}</span> : null}{t}<span className="xc">{c}</span>
+          <button key={t} className={cls(op) + ' tag' + (notableSet.has(t) ? ' notable' : '')} onClick={e => click(e, 'tag', t)} title={opHint}>
+            {op && showOps ? <span className="xop">{op === 'OR' ? '∨' : '∧'}</span> : null}{t}<span className="xc">{c}</span>
           </button>
         ); })}
       </div>}
@@ -2260,8 +2268,14 @@ function TonightView({ items, onOpenItem, onExit }) {
   const budgetMax = (TONIGHT_BUDGETS.find(b => b.key === budget) || {}).max || Infinity;
   const selMap = new Map(moodSel.map(c => [c.value, c.op]));
   const chooseMood = (e, value) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    const op = (e.clientX - r.left) > r.width / 2 ? 'OR' : 'AND';
+    // Same rule as the palette explorer: AND/OR halves only kick in from the second
+    // chip; the first pick (and a re-click of a lone pick) is a plain toggle.
+    let op;
+    if (!moodSel.length || (moodSel.length === 1 && selMap.has(value))) op = selMap.get(value) || 'AND';
+    else {
+      const r = e.currentTarget.getBoundingClientRect();
+      op = (e.clientX - r.left) > r.width / 2 ? 'OR' : 'AND';
+    }
     setMoodSel(prev => {
       const ex = prev.find(c => c.value === value);
       if (ex) return ex.op === op ? prev.filter(c => c.value !== value) : prev.map(c => c.value === value ? { ...c, op } : c);
@@ -2361,8 +2375,8 @@ function TonightView({ items, onOpenItem, onExit }) {
                 const op = selMap.get(h);
                 return (
                   <button key={h} className={`tonight-chip mood${op ? ' sel ' + op.toLowerCase() : ''}`}
-                    onClick={e => chooseMood(e, h)} title="Left half = AND · right half = OR">
-                    {op ? <span className="tonight-op">{op === 'OR' ? '∨' : '∧'}</span> : null}
+                    onClick={e => chooseMood(e, h)} title={moodSel.length ? 'Left half = AND · right half = OR' : undefined}>
+                    {op && moodSel.length > 1 ? <span className="tonight-op">{op === 'OR' ? '∨' : '∧'}</span> : null}
                     {HIGHLIGHTS[h].emoji} {HIGHLIGHTS[h].label}<span className="tonight-c">{c}</span>
                   </button>
                 );
