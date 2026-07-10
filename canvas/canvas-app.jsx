@@ -16,7 +16,9 @@ function enrich(w) {
   const d = AD.artworks[w.id] || {};
   const artist = AD.artists[w.artistId] || {};
   const venues = (Array.isArray(w.seenAt) ? w.seenAt : w.seenAt ? [w.seenAt] : []).map(id => MUS_BY_ID[id]).filter(Boolean);
-  return { ...w, ...d, artistData: artist, venues, year: w.year || d.year || null };
+  // hand-set images on the canon row (in-copyright works Wikidata can't supply) beat the overlay
+  return { ...w, ...d, artistData: artist, venues, year: w.year || d.year || null,
+    img: w.img || d.img || null, imgGrid: w.imgGrid || d.imgGrid || null, imgZoom: w.imgZoom || d.imgZoom || null };
 }
 
 function useRoute() {
