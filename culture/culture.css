@@ -1641,7 +1641,8 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 .tonight-chip .tonight-c { color: var(--ink-faint); font-size: 8.5px; }
 .tonight-chip.sel.and { background: var(--accent); color: #fff; border-color: var(--accent); }
 .tonight-chip.sel.and .tonight-c { color: rgba(255,255,255,.7); }
-.tonight-chip.sel.or { background: rgba(233,104,70,.14); color: var(--accent); border-color: var(--accent); }
+.tonight-chip.sel.or { background: #2f6f5e; color: #fff; border-color: #2f6f5e; }
+.tonight-chip.sel.or .tonight-c { color: rgba(255,255,255,.7); }
 .tonight-op { font-weight: 700; opacity: .85; }
 
 .tonight-budget { display: flex; align-items: center; gap: 14px; flex: 1; padding-top: 3px; }
