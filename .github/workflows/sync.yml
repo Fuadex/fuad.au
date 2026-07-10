@@ -46,6 +46,12 @@ jobs:
         working-directory: rotation
         run: node build-data.js
 
+      # 2b) smoke test -- invariant checks (slug contract, key joins, emit sanity).
+      #     A failure here BLOCKS the deploy on purpose; see rotation/smoke-test.js.
+      - name: Smoke test
+        working-directory: rotation
+        run: node smoke-test.js
+
       # 3) refresh the live snapshot (now-playing / weekly windows / mood)
       - name: Generate live snapshot
         working-directory: rotation
