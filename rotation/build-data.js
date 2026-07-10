@@ -48,15 +48,9 @@ function parseDate(s) {
   return new Date(ms); // read with getUTC* = local listening time
 }
 
-function _slugHash(s) {
-  let h = 5381;
-  for (let i = 0; i < s.length; i++) h = (((h << 5) + h) ^ s.charCodeAt(i)) >>> 0;
-  return h.toString(36);
-}
-const slug = (s) => {
-  const t = (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-  return t || ("a-" + _slugHash(s || "x").slice(0, 7));
-};
+// slug/_slugHash extracted to lib-slug.js — single source of truth; workshop scripts and
+// the smoke test require the same file (a hand-copied slug caused the 2026-07 CJK key bug)
+const { slug, _slugHash } = require("./lib-slug");
 const hueOf = (name) => { let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
 
 // ─────────── mock-curated artist metadata (name → hue, country, tags, similar, audio) ───────────

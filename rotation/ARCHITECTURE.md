@@ -151,6 +151,15 @@ pin in CSV-OVERRIDES.md — re-running photo/discogs enrichers can silently re-b
 
 ## 5. Identity & cross-cutting systems
 
+- **THE slug contract (load-bearing — read this before writing any keying script).** Every
+  dataset in Rotation joins on `slug()` from **`lib-slug.js`** (extracted 2026-07-11; build-data
+  requires it, the frontend mirror is `R.slug` in rotation-core.jsx, and `smoke-test.js` freezes
+  the contract in CI — e.g. `slug("ミドリ") === "a-2yw9ix"`). The empty→`"a-"+hash` fallback is
+  what keeps CJK/non-Latin names apart: a plain ascii slug maps ALL of them to `""` and every
+  key collides (this exact bug broke Spotify hearts/engagement for ミドリ in 2026-07). Rule:
+  **never re-type the slug into a new script — `require("./lib-slug")`** (workshop scripts under
+  `.sptmp/` included). Track/album keys are `artistSlug~titleSlug`; both halves must be non-empty
+  (smoke-tested).
 - **Artist id** = `slug(name)`: lowercase, non-alphanumerics → `-`; hash fallback `a-XXXXXXX` for
   fully non-Latin names. Same function at build time and runtime.
 - **Album id** = `slug(artist)~slug(title)`; **Track id** = `slug(artist)~slug(track)` (routes
