@@ -211,3 +211,16 @@ everything actionable. Old string verdicts migrate on load.
 > root `CHANGELOG.md` (feature/architecture only; dataset provenance kept local). ?v=6.
 
 > 2026-07-08: **Portrait page SHIPPED** (#/portrait) — Canvas answer to Rotation Stories, all client-side from loaded canon: a generated read paragraph (313 works / 22 museums / 9 countries / fav artist / dominant movement), the palette-of-taste spectrum (every works dominant colour, hue-sorted), movements-by-loved bars (Impressionism 94, Symbolism 34...), a centuries histogram (8th-c Faras to 1900s), and "Who your eye chose" (most-loved artists beyond the named affinity — Morisot/Claudel/Zorn thread). Wall tightened to 6-col earlier same day; ?v=5.
+
+> 2026-07-11: **API collection list locked** (keys → fuad.au/.env, never commit).
+> KEYS TO OBTAIN: Rijksmuseum (Rijksstudio account → advanced settings; high-res + toppieces) ·
+> Harvard Art Museums (instant signup; exhibition history) · Europeana (pro.europeana.eu; Polish
+> institutions via FBC — MNW/MNK gap-filler) · Smithsonian api.si.edu (CC0, 4.5M objects).
+> KEYLESS TO WIRE: The Met (metmuseum.github.io — isHighlight + full-res primaryImage) · AIC
+> (api.artic.edu — IIIF deep zoom source) · Cleveland (openaccess-api.clevelandart.org) ·
+> NGA-DC (github open data dump) · Paris Musees (GraphQL, free key) · Getty + ULAN/AAT
+> (data.getty.edu — artist authority IDs + accession numbers = the "find the exact work" fix) ·
+> Louvre (collections.louvre.fr per-work .json, scrape-lite) · WGA (wga.hu catalogue) ·
+> any IIIF institution (iiif.io/guides) once OpenSeadragon is vendored.
+> Priorities: image quality → Met primaryImage / AIC IIIF full-size / Rijks high-res replace
+> width-640 Commons thumbs; identification → ULAN + accession numbers over title search.

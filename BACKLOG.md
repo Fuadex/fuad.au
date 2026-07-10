@@ -58,6 +58,11 @@ built then HIDDEN** from nav (one-line uncomment in `rotation-app.jsx` NAV_FULL 
   scrobble-vs-play thresholds; source-of-truth per era. **Do not start until Fuad decides.**
 
 ### Reads / lyrics
+### Reads waves — methodology locked, launch ON HOLD (2026-07-11)
+Fuad: do NOT launch haiku/sonnet/opus wave subagents yet — he's reviewing the new features
+first. When launched: **100 entries per subagent** (up from ~50, for scale), phased 3–5
+agents per wave as before. Wave A (>=5 plays, 2,387 tracks) awaits his explicit go.
+
 - **LRCLIB ≥2 fetch DONE (2026-07-11)** — full sweep of the unmatched ≥2-play catalog: 12,756
   attempted, 39% hit; lyrics store now 15,319 keys. **Usable new lyric-matched tracks: 6,201**
   (132 short/instrumental-ish auto-excluded). Wave queue by floor, descending value:
