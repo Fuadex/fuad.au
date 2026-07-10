@@ -1697,7 +1697,9 @@ function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave })
           {item.studio && <span>{item.studio}</span>}
         </div>
       )}
-      <div className="t">{displayTitle(item)}</div>
+      <div className="t">{displayTitle(item)}
+        {item.source === 'fable' && <span className="fable-chip sm" title="added by Fable 5 with a why-watch note">✦ Fable</span>}
+      </div>
       {(item.noteEn || item.note)
         ? <div className="blurb">{splitNoteAttribution(item.noteEn || item.note).text}</div>
         : <div className="blurb empty">No note yet — add one in <code style={{ fontFamily:'var(--mono)', fontSize:11, background:'#eee5d3', padding:'1px 4px' }}>data.js</code>.</div>}
@@ -1971,7 +1973,14 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
               <span><span className="crew-role">Watch</span> {item.providers.map((p, i) => <React.Fragment key={p}>{i > 0 && ' · '}<span className="meta-link" onClick={() => onFilter && onFilter(`on:${p}`)}>{p}</span></React.Fragment>)}</span>
             </div>
           )}
-          <h2 className="reader-title">{displayTitle(item)}<span className="dot">.</span></h2>
+          <h2 className="reader-title">{displayTitle(item)}<span className="dot">.</span>
+            {item.source === 'fable' && (
+              <span className="fable-chip" title="added by Fable 5 with a why-watch note">✦ Fable</span>
+            )}
+            {item.fablePick && (
+              <span className="fable-chip conviction" title="Fable's conviction pick">✦ Fable's conviction</span>
+            )}
+          </h2>
           {(() => {
             const main = displayTitle(item);
             const alts = [item.title, item.polishTitle].filter(a => a && a !== main);
@@ -2119,6 +2128,284 @@ function SearchPalette({ initial, onApply, onClose }) {
   );
 }
 
+// ─────────── Tonight's Pick ───────────
+// Time-budget buckets. `max` in minutes; unknown-runtime items pass every budget
+// (they just render a "runtime?" flag). Uses itemDurationMinutes() so TV/games/
+// books map onto the same axis as film runtime.
+const TONIGHT_BUDGETS = [
+  { key: 'any', label: 'Any length',  max: Infinity },
+  { key: '90',  label: '≤ 90 min',    max: 90 },
+  { key: '120', label: '≤ 2 h',       max: 120 },
+  { key: '180', label: '≤ 3 h',       max: 180 },
+  { key: '240', label: 'One evening', max: 240 },
+];
+
+// Deal weight leans on the predicted score (quality) but stays surprising:
+// pred-squared over a floor. fablePick items get a hard floor so they always
+// float into the top of the pool regardless of model score ("Fable dissents").
+function tonightWeight(item) {
+  const p = typeof item.pred === 'number' ? item.pred : 5.5;   // neutral prior when unpredicted
+  const base = Math.pow(Math.max(p - 3.5, 0.5), 2);            // 3.5→0.25 … 9→30.25
+  return item.fablePick ? Math.max(base, 24) : base;           // conviction floor
+}
+
+// Weighted sample of `n` distinct items, excluding a set of ids. Falls back to
+// filling from the excluded pool if the fresh pool runs dry (so a Redeal always
+// deals a full hand even when few items remain).
+function weightedSample(pool, n, excludeIds) {
+  const fresh = pool.filter(it => !excludeIds.has(it.id));
+  const draw = (from, k) => {
+    const src = from.map(it => ({ it, w: tonightWeight(it) }));
+    const out = [];
+    while (out.length < k && src.length) {
+      let total = src.reduce((s, e) => s + e.w, 0);
+      let r = Math.random() * total, idx = 0;
+      for (; idx < src.length; idx++) { r -= src[idx].w; if (r <= 0) break; }
+      const chosen = src.splice(Math.min(idx, src.length - 1), 1)[0];
+      out.push(chosen.it);
+    }
+    return out;
+  };
+  const first = draw(fresh, n);
+  if (first.length < n) {
+    const got = new Set(first.map(i => i.id));
+    const rest = pool.filter(it => !got.has(it.id));
+    first.push(...draw(rest, n - first.length));
+  }
+  return first;
+}
+
+function TonightCard({ item, pinned, onPin, onOpen }) {
+  const { MEDIA_SHORT, MEDIA_GLYPH } = window.CULTURE;
+  const img = item.poster || item.tmdbPoster || item.igdbCover || item.bookCover;
+  const mins = itemDurationMinutes(item);
+  const runtimeStr = mins > 0 ? formatRuntime(Math.round(mins)) : 'runtime?';
+  const note = (item.noteEn || item.note) ? splitNoteAttribution(item.noteEn || item.note).text : (item.summary || null);
+  const why = (item.predWhy || []).slice(0, 2);
+  const badges = (item.highlights || []).filter(h => HIGHLIGHTS[h]).slice(0, 4);
+  const isConviction = !!item.fablePick;
+  return (
+    <div className={`tonight-card${isConviction ? ' conviction' : ''}`}>
+      <div className="tonight-card-poster" onClick={() => onOpen(item)}>
+        {img ? <img src={img} alt="" loading="lazy"/>
+             : <span className="tonight-poster-fallback" style={{ '--pf-bg': spineBodyColor(item) }}>{MEDIA_GLYPH[item.medium] || '•'}</span>}
+      </div>
+      <div className="tonight-card-body">
+        <div className="tonight-card-head">
+          <span className="tonight-glyph" title={item.medium}>{MEDIA_GLYPH[item.medium] || '•'}</span>
+          <span className="tonight-card-title" onClick={() => onOpen(item)}>{displayTitle(item)}</span>
+          <span className="tonight-card-year">{item.year}</span>
+        </div>
+        <div className="tonight-card-meta">
+          <span>{MEDIA_SHORT[item.medium]}</span>
+          <span className="sep"/>
+          <span className={mins > 0 ? '' : 'unknown'}>{runtimeStr}</span>
+          {typeof item.pred === 'number' && <React.Fragment><span className="sep"/><span className="tonight-pred">◇ {item.pred}/10</span></React.Fragment>}
+        </div>
+        {isConviction && (
+          <div className="tonight-conviction-label">
+            {typeof item.pred === 'number' && item.pred < 6.5
+              ? <React.Fragment>✦ Fable's conviction <span className="dissent">· model {item.pred} · Fable dissents</span></React.Fragment>
+              : <React.Fragment>✦ Fable's conviction</React.Fragment>}
+          </div>
+        )}
+        {why.length > 0 && (
+          <div className="tonight-why">
+            {why.map((w, i) => <span key={i} className="tonight-why-chip">{w}</span>)}
+          </div>
+        )}
+        {note && <div className="tonight-note">{note}</div>}
+        {badges.length > 0 && (
+          <div className="tonight-expect">
+            <span className="tonight-expect-label">expect</span>
+            {badges.map(h => <span key={h} className="tonight-expect-badge" title={HIGHLIGHTS[h].label}>{HIGHLIGHTS[h].emoji} {HIGHLIGHTS[h].label}</span>)}
+          </div>
+        )}
+        {item.source === 'fable' && <span className="fable-chip sm" title="added by Fable 5 with a why-watch note">✦ Fable</span>}
+        <div className="tonight-card-actions">
+          <button className={`tonight-pin${pinned ? ' active' : ''}`} onClick={() => onPin(item)} title={pinned ? 'Unpin' : 'Pin as up next'}>
+            {pinned ? '★ Pinned' : '☆ Pin for later'}
+          </button>
+          <button className="tonight-open" onClick={() => onOpen(item)}>Open ↗</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const TONIGHT_PIN_KEY = 'culture-tonight-pin';
+
+function TonightView({ items, onOpenItem, onExit }) {
+  const [mediums, setMediums] = React.useState(() => new Set());  // empty = all
+  const [budget, setBudget] = React.useState('any');
+  const [moodSel, setMoodSel] = React.useState([]);   // [{value, op:'AND'|'OR'}]
+  const [hook, setHook] = React.useState('');
+  const [strict, setStrict] = React.useState(false);
+  const [deal, setDeal] = React.useState([]);
+  const [prevIds, setPrevIds] = React.useState(() => new Set());
+  const [pin, setPin] = React.useState(() => {
+    try { return JSON.parse(localStorage.getItem(TONIGHT_PIN_KEY) || 'null'); } catch (e) { return null; }
+  });
+  const { MEDIA } = window.CULTURE;
+
+  // Mood vocabulary = standout badges present across the wishlist pool (these
+  // already include the wl-* prospect badges merged in enrichExtras), ranked by
+  // frequency. Reuses the palette's left=AND / right=OR chip idiom.
+  const moods = React.useMemo(() => {
+    const b = {};
+    items.forEach(it => (it.highlights || []).forEach(h => { if (HIGHLIGHTS[h]) b[h] = (b[h] || 0) + 1; }));
+    return Object.entries(b).sort((a, c) => c[1] - a[1]).slice(0, 24);
+  }, [items]);
+
+  const budgetMax = (TONIGHT_BUDGETS.find(b => b.key === budget) || {}).max || Infinity;
+  const selMap = new Map(moodSel.map(c => [c.value, c.op]));
+  const chooseMood = (e, value) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const op = (e.clientX - r.left) > r.width / 2 ? 'OR' : 'AND';
+    setMoodSel(prev => {
+      const ex = prev.find(c => c.value === value);
+      if (ex) return ex.op === op ? prev.filter(c => c.value !== value) : prev.map(c => c.value === value ? { ...c, op } : c);
+      return [...prev, { value, op }];
+    });
+  };
+
+  // The filtered pool given all constraints. fablePick items are floated: they
+  // survive filtering even if a mood/budget would drop them.
+  const pool = React.useMemo(() => {
+    const ands = moodSel.filter(c => c.op === 'AND'), ors = moodSel.filter(c => c.op === 'OR');
+    const hasBadge = (it, k) => (it.highlights || []).includes(k);
+    const hookLc = hook.trim().toLowerCase();
+    return items.filter(it => {
+      if (it.fablePick) return true;   // conviction always survives
+      if (mediums.size && !mediums.has(it.medium)) return false;
+      const mins = itemDurationMinutes(it);
+      if (budgetMax !== Infinity && mins > 0 && mins > budgetMax) return false;  // unknown runtime passes
+      if (ands.length && !ands.every(c => hasBadge(it, c.value))) return false;
+      if (ors.length && !ors.some(c => hasBadge(it, c.value))) return false;
+      if (hookLc) {
+        const text = ((it.note || '') + ' ' + (it.noteEn || '') + ' ' + (it.summary || '')).toLowerCase();
+        if (!text.includes(hookLc)) return false;
+      }
+      return true;
+    });
+  }, [items, mediums, budgetMax, moodSel, hook]);
+
+  const dealNow = React.useCallback((freshPrev) => {
+    if (!pool.length) { setDeal([]); return; }
+    let hand;
+    if (strict) {
+      hand = [...pool].sort((a, b) => tonightWeight(b) - tonightWeight(a)).slice(0, 3);
+    } else {
+      hand = weightedSample(pool, 3, freshPrev ? new Set() : prevIds);
+    }
+    setDeal(hand);
+    setPrevIds(new Set(hand.map(i => i.id)));
+  }, [pool, strict, prevIds]);
+
+  const toggleMedium = (m) => setMediums(prev => { const n = new Set(prev); n.has(m) ? n.delete(m) : n.add(m); return n; });
+
+  const savePin = (item) => {
+    if (pin && pin.id === item.id) {
+      setPin(null); try { localStorage.removeItem(TONIGHT_PIN_KEY); } catch (e) {}
+    } else {
+      const p = { id: item.id, ts: Date.now() };
+      setPin(p); try { localStorage.setItem(TONIGHT_PIN_KEY, JSON.stringify(p)); } catch (e) {}
+    }
+  };
+  const clearPin = () => { setPin(null); try { localStorage.removeItem(TONIGHT_PIN_KEY); } catch (e) {} };
+  const pinnedItem = pin ? items.find(i => i.id === pin.id) : null;
+
+  return (
+    <div className="tonight">
+      <div className="tonight-topbar">
+        <button className="tonight-back" onClick={onExit}>← Library</button>
+        <h1 className="tonight-h1">Tonight's Pick<span className="dot">.</span></h1>
+        <div className="tonight-sub">Deal three from what you want next — weighted for you, still a gamble.</div>
+      </div>
+
+      {pinnedItem && (
+        <div className="tonight-pinbanner">
+          <span className="tonight-pinbanner-label">Up next</span>
+          <span className="tonight-pinbanner-title" onClick={() => onOpenItem(pinnedItem)}>{displayTitle(pinnedItem)}</span>
+          <span className="tonight-pinbanner-year">{pinnedItem.year}</span>
+          <button className="tonight-pinbanner-btn" onClick={() => onOpenItem(pinnedItem)}>Open</button>
+          <button className="tonight-pinbanner-btn" onClick={clearPin}>Done / unpin</button>
+        </div>
+      )}
+
+      <div className="tonight-constraints">
+        <div className="tonight-row">
+          <span className="tonight-row-label">Medium</span>
+          <div className="tonight-chips">
+            {MEDIA.map(m => (
+              <button key={m} className={`tonight-chip${mediums.has(m) ? ' on' : ''}`} onClick={() => toggleMedium(m)}>{m}</button>
+            ))}
+          </div>
+        </div>
+
+        <div className="tonight-row">
+          <span className="tonight-row-label">Time</span>
+          <div className="tonight-budget">
+            <input type="range" min="0" max={TONIGHT_BUDGETS.length - 1} step="1"
+              value={TONIGHT_BUDGETS.findIndex(b => b.key === budget)}
+              onChange={e => setBudget(TONIGHT_BUDGETS[+e.target.value].key)} />
+            <span className="tonight-budget-val">{(TONIGHT_BUDGETS.find(b => b.key === budget) || {}).label}</span>
+          </div>
+        </div>
+
+        {moods.length > 0 && (
+          <div className="tonight-row">
+            <span className="tonight-row-label">Mood</span>
+            <div className="tonight-chips tonight-moods">
+              {moods.map(([h, c]) => {
+                const op = selMap.get(h);
+                return (
+                  <button key={h} className={`tonight-chip mood${op ? ' sel ' + op.toLowerCase() : ''}`}
+                    onClick={e => chooseMood(e, h)} title="Left half = AND · right half = OR">
+                    {op ? <span className="tonight-op">{op === 'OR' ? '∨' : '∧'}</span> : null}
+                    {HIGHLIGHTS[h].emoji} {HIGHLIGHTS[h].label}<span className="tonight-c">{c}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        <div className="tonight-row">
+          <span className="tonight-row-label">Hook</span>
+          <input className="tonight-hook" type="text" placeholder="a word in the note… e.g. heist, grief, samurai"
+            value={hook} onChange={e => setHook(e.target.value)} />
+        </div>
+
+        <div className="tonight-row tonight-deal-row">
+          <button className="tonight-deal-btn" onClick={() => dealNow(true)}>
+            {deal.length ? 'Redeal' : 'Deal three'} <span className="tonight-pool">{pool.length} in the deck</span>
+          </button>
+          {deal.length > 0 && <button className="tonight-redeal" onClick={() => dealNow(false)}>↻ Redeal (fresh three)</button>}
+          <label className="tonight-strict">
+            <input type="checkbox" checked={strict} onChange={e => setStrict(e.target.checked)} />
+            strict — deal my top 3
+          </label>
+        </div>
+      </div>
+
+      {deal.length > 0 ? (
+        <div className="tonight-deal">
+          {deal.map(it => (
+            <TonightCard key={it.id} item={it} pinned={pin && pin.id === it.id} onPin={savePin} onOpen={onOpenItem} />
+          ))}
+        </div>
+      ) : (
+        <div className="tonight-empty">
+          {pool.length === 0
+            ? 'Nothing matches those constraints — loosen a filter.'
+            : 'Set your constraints, then hit Deal three.'}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─────────── App ───────────
 function App() {
   const { MEDIA, PICKABLE_IDS } = window.CULTURE;
@@ -2145,6 +2432,16 @@ function App() {
   }, []);
   // Which collection is on screen. 'library' = seen, 'wishlist' = to-consume.
   const [library, setLibrary] = React.useState('library');
+  // Top-level route. 'main' = the shelves page; 'tonight' = the #tonight deal view.
+  const routeFor = (h) => (String(h || '').replace(/^#\/?/, '').split('?')[0] === 'tonight' ? 'tonight' : 'main');
+  const [route, setRoute] = React.useState(() => routeFor(window.location.hash));
+  React.useEffect(() => {
+    const onHash = () => setRoute(routeFor(window.location.hash));
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+  const goTonight = () => { window.location.hash = '#tonight'; setRoute('tonight'); };
+  const exitTonight = () => { window.location.hash = '#/library'; setRoute('main'); };
   const ITEMS = library === 'wishlist' ? wishlistItems : seenItems;
   // Foot-of-spine number: personal score in the Library, rounded Filmweb avg in
   // the Wishlist (which has no personal scores). Not user-toggleable on the main page.
@@ -2206,13 +2503,14 @@ function App() {
   const firstUrlWrite = React.useRef(true);
   React.useEffect(() => {
     if (firstUrlWrite.current) { firstUrlWrite.current = false; return; }  // don't clobber the restored hash
+    if (route === 'tonight') return;   // the #tonight route owns the hash while it's active
     const params = new URLSearchParams();
     if (search.trim()) params.set('q', search.trim());
     if (openItem) params.set('open', openItem.id);
     const qs = params.toString();
     const hash = `#/${library}${qs ? '?' + qs : ''}`;
     if (hash !== window.location.hash) history.replaceState(null, '', hash);
-  }, [library, search, openItem]);
+  }, [library, search, openItem, route]);
 
   // ── Summon search ── "/" or Cmd/Ctrl-K opens the palette from anywhere.
   React.useEffect(() => {
@@ -2469,6 +2767,21 @@ function App() {
     prevFilterRef.current = anyFilter;
   }, [anyFilter, mode]);
 
+  if (route === 'tonight') {
+    return (
+      <div className="page">
+        <TonightView items={wishlistItems} onOpenItem={setOpenItem} onExit={exitTonight} />
+        {openItem && (
+          <Reader item={openItem} onClose={() => setOpenItem(null)} onJump={(it) => setOpenItem(it)}
+            allItems={ITEMS}
+            otherItems={seenItems}
+            library="wishlist"
+            onFilter={() => setOpenItem(null)} />
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="page">
       <header className="site-head">
@@ -2493,6 +2806,9 @@ function App() {
               <button data-active={library === 'library'}  onClick={() => switchLibrary('library')}>Library</button>
               <button data-active={library === 'wishlist'} onClick={() => switchLibrary('wishlist')}>Wishlist</button>
             </div>
+            <button className="btn-tonight" onClick={goTonight} title="Tonight's Pick — deal three from your wishlist">
+              ✦ Tonight
+            </button>
             <div className="mode-toggle">
               <button data-active={mode === 'covers'} onClick={() => setModeAndAnimate('covers')}>Covers</button>
               <button data-active={mode === 'spines'} onClick={() => setModeAndAnimate('spines')}>Spines</button>

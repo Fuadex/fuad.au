@@ -1560,3 +1560,194 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   font-size: .74rem; line-height: 1.25; color: var(--ink-soft, var(--ink));
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
+
+/* ───── FABLE / PROVENANCE CHIP ───── */
+.fable-chip {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.08em;
+  display: inline-flex; align-items: center; gap: 3px; vertical-align: middle;
+  border: 1px solid var(--rule); border-radius: 999px;
+  color: var(--ink-soft); background: rgba(255,255,255,.03);
+  padding: 2px 8px; margin-left: 10px; white-space: nowrap;
+  text-transform: uppercase; font-weight: 500;
+}
+.fable-chip.sm { font-size: 8.5px; padding: 1px 6px; margin-left: 7px; }
+.fable-chip.conviction { color: var(--accent); border-color: var(--accent); }
+
+/* ───── TONIGHT'S PICK ───── */
+.tonight { max-width: 1100px; margin: 0 auto; padding: 40px 56px 80px; }
+.tonight-topbar { margin-bottom: 26px; }
+.tonight-back {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  background: none; border: 1px solid var(--rule); border-radius: 999px;
+  color: var(--ink-soft); padding: 5px 12px; cursor: pointer; transition: color .15s, border-color .15s;
+}
+.tonight-back:hover { color: var(--ink); border-color: var(--ink-soft); }
+.tonight-h1 {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: clamp(38px, 6vw, 66px); letter-spacing: -0.025em; line-height: 0.98;
+  margin: 18px 0 6px;
+}
+.tonight-h1 .dot { font-style: normal; color: var(--accent); }
+.tonight-sub {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.btn-tonight {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  background: transparent; border: 1px solid var(--accent); border-radius: 999px;
+  color: var(--accent); padding: 6px 13px; cursor: pointer; transition: background .15s, color .15s;
+}
+.btn-tonight:hover { background: var(--accent); color: #fff; }
+
+.tonight-pinbanner {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  border: 1px solid var(--accent); border-radius: 10px; padding: 10px 16px; margin-bottom: 22px;
+  background: rgba(233,104,70,.06);
+}
+.tonight-pinbanner-label {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
+}
+.tonight-pinbanner-title { font-family: var(--serif); font-size: 1.1rem; color: var(--ink); cursor: pointer; }
+.tonight-pinbanner-title:hover { text-decoration: underline; }
+.tonight-pinbanner-year { color: var(--ink-faint); font-family: var(--mono); font-size: 11px; }
+.tonight-pinbanner-btn {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  background: none; border: 1px solid var(--rule); border-radius: 999px; color: var(--ink-soft);
+  padding: 4px 10px; cursor: pointer; margin-left: auto;
+}
+.tonight-pinbanner-btn + .tonight-pinbanner-btn { margin-left: 0; }
+.tonight-pinbanner-btn:hover { color: var(--ink); border-color: var(--ink-soft); }
+
+.tonight-constraints {
+  border: 1px solid var(--rule); border-radius: 12px; padding: 18px 20px; margin-bottom: 30px;
+  background: var(--bg-2);
+}
+.tonight-row { display: flex; align-items: flex-start; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--rule); }
+.tonight-row:last-child { border-bottom: 0; }
+.tonight-row-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-faint); flex: 0 0 56px; padding-top: 5px;
+}
+.tonight-chips { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
+.tonight-moods { max-height: 132px; overflow-y: auto; }
+.tonight-chip {
+  font-family: var(--mono); font-size: 10px; color: var(--ink-soft); line-height: 1;
+  background: rgba(255,255,255,.04); border: 1px solid var(--rule); border-radius: 999px;
+  padding: 5px 11px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.tonight-chip:hover { color: var(--ink); border-color: var(--ink-soft); }
+.tonight-chip.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+.tonight-chip .tonight-c { color: var(--ink-faint); font-size: 8.5px; }
+.tonight-chip.sel.and { background: var(--accent); color: #fff; border-color: var(--accent); }
+.tonight-chip.sel.and .tonight-c { color: rgba(255,255,255,.7); }
+.tonight-chip.sel.or { background: rgba(233,104,70,.14); color: var(--accent); border-color: var(--accent); }
+.tonight-op { font-weight: 700; opacity: .85; }
+
+.tonight-budget { display: flex; align-items: center; gap: 14px; flex: 1; padding-top: 3px; }
+.tonight-budget input[type="range"] { flex: 1; max-width: 320px; accent-color: var(--accent); }
+.tonight-budget-val {
+  font-family: var(--mono); font-size: 11px; color: var(--ink); letter-spacing: 0.05em; min-width: 92px;
+}
+.tonight-hook {
+  flex: 1; font-family: var(--sans); font-size: 13px; color: var(--ink);
+  background: rgba(0,0,0,.2); border: 1px solid var(--rule); border-radius: 8px; padding: 7px 12px;
+}
+.tonight-hook::placeholder { color: var(--ink-faint); }
+
+.tonight-deal-row { align-items: center; flex-wrap: wrap; gap: 16px; }
+.tonight-deal-btn {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+  background: var(--accent); border: 0; border-radius: 999px; color: #fff;
+  padding: 10px 20px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+}
+.tonight-deal-btn:hover { filter: brightness(1.08); }
+.tonight-pool { font-size: 9px; letter-spacing: 0.08em; opacity: .85; font-weight: 400; text-transform: none; }
+.tonight-redeal {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  background: none; border: 1px solid var(--rule); border-radius: 999px; color: var(--ink-soft);
+  padding: 8px 14px; cursor: pointer;
+}
+.tonight-redeal:hover { color: var(--ink); border-color: var(--ink-soft); }
+.tonight-strict {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--ink-soft);
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer; margin-left: auto;
+}
+.tonight-strict input { accent-color: var(--accent); }
+
+.tonight-empty {
+  text-align: center; color: var(--ink-faint); font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.08em; padding: 48px 0;
+}
+
+.tonight-deal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.tonight-card {
+  display: flex; flex-direction: column; border: 1px solid var(--rule); border-radius: 12px;
+  overflow: hidden; background: var(--bg-2); animation: tonight-deal-in .32s ease both;
+}
+@keyframes tonight-deal-in { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
+.tonight-card.conviction { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+.tonight-card-poster { position: relative; aspect-ratio: 2/3; background: var(--rule); cursor: pointer; }
+.tonight-card-poster img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tonight-poster-fallback {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 2rem; color: rgba(255,255,255,.7);
+  background: var(--pf-bg, var(--rule));
+}
+.tonight-card-body { padding: 13px 14px 14px; display: flex; flex-direction: column; gap: 8px; }
+.tonight-card-head { display: flex; align-items: baseline; gap: 7px; }
+.tonight-glyph {
+  font-family: var(--mono); font-size: 10px; color: var(--ink-faint); border: 1px solid var(--rule);
+  border-radius: 4px; padding: 1px 5px;
+}
+.tonight-card-title { font-family: var(--serif); font-size: 1.02rem; color: var(--ink); line-height: 1.15; cursor: pointer; }
+.tonight-card-title:hover { text-decoration: underline; }
+.tonight-card-year { color: var(--ink-faint); font-family: var(--mono); font-size: 11px; margin-left: auto; }
+.tonight-card-meta {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; color: var(--ink-soft);
+  display: flex; align-items: center; gap: 7px;
+}
+.tonight-card-meta .sep { display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: .5; }
+.tonight-card-meta .unknown { color: var(--ink-faint); font-style: italic; }
+.tonight-pred { color: var(--accent); }
+.tonight-conviction-label {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.06em; color: var(--accent); font-weight: 600;
+}
+.tonight-conviction-label .dissent { color: var(--ink-faint); font-weight: 400; }
+.tonight-why { display: flex; flex-wrap: wrap; gap: 5px; }
+.tonight-why-chip {
+  font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; color: var(--ink-soft);
+  background: rgba(255,255,255,.04); border: 1px solid var(--rule); border-radius: 4px; padding: 2px 6px;
+}
+.tonight-note {
+  font-family: var(--serif); font-size: .86rem; line-height: 1.4; color: var(--ink-soft);
+  display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;
+}
+.tonight-expect { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.tonight-expect-label {
+  font-family: var(--mono); font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint);
+}
+.tonight-expect-badge {
+  font-family: var(--mono); font-size: 8.5px; color: var(--ink-soft);
+  background: rgba(255,255,255,.03); border: 1px solid var(--rule); border-radius: 999px; padding: 2px 7px;
+}
+.tonight-card-actions { display: flex; gap: 8px; margin-top: 2px; }
+.tonight-pin, .tonight-open {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase;
+  background: none; border: 1px solid var(--rule); border-radius: 999px; color: var(--ink-soft);
+  padding: 5px 11px; cursor: pointer; transition: color .15s, border-color .15s, background .15s;
+}
+.tonight-pin:hover, .tonight-open:hover { color: var(--ink); border-color: var(--ink-soft); }
+.tonight-pin.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.tonight-open { margin-left: auto; }
+
+@media (max-width: 900px) {
+  .tonight { padding: 28px 22px 64px; }
+  .tonight-deal { grid-template-columns: 1fr; gap: 14px; }
+  .tonight-card { flex-direction: row; }
+  .tonight-card-poster { flex: 0 0 108px; aspect-ratio: 2/3; }
+  .tonight-card-body { flex: 1; }
+  .tonight-row { flex-direction: column; gap: 8px; }
+  .tonight-row-label { padding-top: 0; }
+  .tonight-strict { margin-left: 0; }
+}
