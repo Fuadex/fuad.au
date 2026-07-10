@@ -43,10 +43,29 @@ built then HIDDEN** from nav (one-line uncomment in `rotation-app.jsx` NAV_FULL 
 
 ## Open backlog (queued, with context)
 
+### Lab chart verdicts (Fuad, 2026-07-11) — the promotion queue
+Testbed stays at `#lab`; charts graduate into real views in this order:
+1. **Decade treemap → Overview**, inside the emotional-weather tab (same module). Upgrade:
+   chronological ordering + click a decade to drill into its years w/ % shares + hover detail;
+   must stay fully dynamic against the Overview filter plumbing.
+2. **Slope graph → Stories** — year-pair selector (2025→26 default, scrub back in time), dynamic.
+3. **Horizon chart → Overview** — as a toggle alternate on the Scrobbles-module graph (simple
+   version stays the default; squeeze a small toggle in). Daily series via lazy `day-series.js`.
+4. **Ridgeline → Stories.**
+5. **Beeswarm → alternate view of the decade treemap.** Needs build-data to emit REAL per-artist
+   adoption dots (current jitter is synthesized) + a timeline-crop slider (youngest-bands end).
+   Using it as a filter mechanism = noted, deferred.
+6. **Spiral → keep developing in #lab**: make it interactive; candidate for the calendar page.
+7. **Barcode** — placement TBD (proposal pending: per-artist barcode on artist pages).
+8. **Arc diagram** — backburner (needs filtering ideas; Stories candidate). **Bump chart — tossed.**
+
 ### Spotify (data lives in gitignored zips in `rotation/`; IPs = PII, aggregates only)
-- **Map location-blanking** — some `conn_country` periods are wrong (VPN/region: was elsewhere,
-  data says X). Fix = a date-range→country/blank override table in the extraction. **Needs Fuad to
-  list which periods are wrong.**
+- **Map location-blanking — DONE (2026-07-11).** conn_country noise (VPN/region-switch, SIM
+  routing) corrected via a date-range override table in the local extraction; `spotify-insights.js`
+  re-emitted. Override details live in local notes only.
+- **Account Data zip recon done (2026-07-11)** — see SPOTIFY.md "v3" section: Marquee artist
+  segments, Inferences, Wrapped2025 (topArtistRace/leaderboard/clubs), Sound Capsule daily stats,
+  playlists, search queries, follows, podcast/audiobook history.
 - **Engagement → Stories + artist/album contexts** — bar shipped in rows (`ROTATION_ENGAGE =
   [plays, skipPct]`). Next: fold ms_played/skip into artist/album summaries + Story cards. Best
   angles: "scrobbles lie" (top-by-hours ≠ top-by-scrobbles), "songs you keep skipping but won't
