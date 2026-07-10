@@ -81,7 +81,7 @@ window.CULTURE_BADGES = {
   "singular"
  ],
  "bojack": [
-  "funny",
+  "bittersweet",
   "satire",
   "visuals"
  ],
@@ -157,7 +157,6 @@ window.CULTURE_BADGES = {
   "devastating"
  ],
  "ernest-celestine": [
-  "funny",
   "gentle"
  ],
  "escape-cinema": [
@@ -349,9 +348,6 @@ window.CULTURE_BADGES = {
  "imp-f-h-hokekyo-tonari-no-yamada-kun": [
   "satire"
  ],
- "imp-f-happy-feet": [
-  "funny"
- ],
  "imp-f-heavy-metal": [
   "intense"
  ],
@@ -430,7 +426,8 @@ window.CULTURE_BADGES = {
   "gem"
  ],
  "imp-f-ucho": [
-  "gem"
+  "gem",
+  "social-xray"
  ],
  "imp-f-voskhozhdeniye": [
   "gem",
@@ -468,7 +465,6 @@ window.CULTURE_BADGES = {
   "squirm"
  ],
  "imp-s-150481": [
-  "funny",
   "squirm"
  ],
  "imp-s-153161": [
@@ -523,6 +519,9 @@ window.CULTURE_BADGES = {
   "bittersweet",
   "gem"
  ],
+ "in-treatment": [
+  "formal-exec"
+ ],
  "invincible": [
   "devastating",
   "impact"
@@ -557,8 +556,7 @@ window.CULTURE_BADGES = {
   "bittersweet"
  ],
  "limelight": [
-  "bittersweet",
-  "funny"
+  "bittersweet"
  ],
  "limes-inferior": [
   "worldbuilding"
@@ -585,8 +583,7 @@ window.CULTURE_BADGES = {
   "formal-exec"
  ],
  "mary-and-max": [
-  "bittersweet",
-  "funny"
+  "bittersweet"
  ],
  "mass-effect": [
   "worldbuilding"
@@ -761,7 +758,6 @@ window.CULTURE_BADGES = {
  ],
  "soul": [
   "bittersweet",
-  "funny",
   "visuals"
  ],
  "spec-ops": [
@@ -780,7 +776,6 @@ window.CULTURE_BADGES = {
   "worldbuilding"
  ],
  "subnautica": [
-  "singular",
   "worldbuilding"
  ],
  "swallows-kabul": [
@@ -870,7 +865,8 @@ window.CULTURE_BADGES = {
   "cognitive"
  ],
  "urzad": [
-  "cerebral"
+  "cerebral",
+  "social-xray"
  ],
  "utopia": [
   "singular"
@@ -1651,7 +1647,6 @@ window.CULTURE_BADGES = {
   "haunting"
  ],
  "yamadas": [
-  "funny",
   "gentle",
   "satire"
  ],

@@ -77,7 +77,7 @@
   "singular"
  ],
  "bojack": [
-  "funny",
+  "bittersweet",
   "satire",
   "visuals"
  ],
@@ -153,7 +153,6 @@
   "devastating"
  ],
  "ernest-celestine": [
-  "funny",
   "gentle"
  ],
  "escape-cinema": [
@@ -345,9 +344,6 @@
  "imp-f-h-hokekyo-tonari-no-yamada-kun": [
   "satire"
  ],
- "imp-f-happy-feet": [
-  "funny"
- ],
  "imp-f-heavy-metal": [
   "intense"
  ],
@@ -426,7 +422,8 @@
   "gem"
  ],
  "imp-f-ucho": [
-  "gem"
+  "gem",
+  "social-xray"
  ],
  "imp-f-voskhozhdeniye": [
   "gem",
@@ -464,7 +461,6 @@
   "squirm"
  ],
  "imp-s-150481": [
-  "funny",
   "squirm"
  ],
  "imp-s-153161": [
@@ -553,8 +549,7 @@
   "bittersweet"
  ],
  "limelight": [
-  "bittersweet",
-  "funny"
+  "bittersweet"
  ],
  "limes-inferior": [
   "worldbuilding"
@@ -581,8 +576,7 @@
   "formal-exec"
  ],
  "mary-and-max": [
-  "bittersweet",
-  "funny"
+  "bittersweet"
  ],
  "mass-effect": [
   "worldbuilding"
@@ -757,7 +751,6 @@
  ],
  "soul": [
   "bittersweet",
-  "funny",
   "visuals"
  ],
  "spec-ops": [
@@ -776,7 +769,6 @@
   "worldbuilding"
  ],
  "subnautica": [
-  "singular",
   "worldbuilding"
  ],
  "swallows-kabul": [
@@ -866,7 +858,8 @@
   "cognitive"
  ],
  "urzad": [
-  "cerebral"
+  "cerebral",
+  "social-xray"
  ],
  "utopia": [
   "singular"
@@ -1647,12 +1640,14 @@
   "haunting"
  ],
  "yamadas": [
-  "funny",
   "gentle",
   "satire"
  ],
  "your-name": [
   "bittersweet",
   "score"
+ ],
+ "in-treatment": [
+  "formal-exec"
  ]
 }
