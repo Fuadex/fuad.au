@@ -9,6 +9,9 @@ _site/
 *.env
 **/.env
 
+# local-only working notes (audits, drafts) — *.local.md never commits
+*.local.md
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db
