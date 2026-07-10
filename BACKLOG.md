@@ -58,9 +58,12 @@ built then HIDDEN** from nav (one-line uncomment in `rotation-app.jsx` NAV_FULL 
   scrobble-vs-play thresholds; source-of-truth per era. **Do not start until Fuad decides.**
 
 ### Reads / lyrics
-- **Extend LRCLIB below 10 plays (latin catalog)** — ~15,319 tracks ≥2 plays still unmatched
-  (`.sptmp/targets-lrclib.json`). Same pipeline: `pick-lrclib`/`fetch-lrclib`/`build-batch-lrclib`/
-  `merge-lrclib`. Non-latin already done.
+- **LRCLIB ≥2 fetch DONE (2026-07-11)** — full sweep of the unmatched ≥2-play catalog: 12,756
+  attempted, 39% hit; lyrics store now 15,319 keys. **Usable new lyric-matched tracks: 6,201**
+  (132 short/instrumental-ish auto-excluded). Wave queue by floor, descending value:
+  **Wave A ≥5 plays: 2,387 · Wave B 3–4: 1,576 · Wave C =2: 2,238.** Each wave is a spend
+  checkpoint (Fuad's go per floor); Sonnet standard + Haiku bulk split, phased 3–5 subagents.
+  Sharding shipped first (R1) so llm-about can absorb the growth.
 - **Continue original lyric-matched reads waves** — `.sptmp/gen-targets.js` → Sonnet(+Opus) waves,
   frontier ~4 plays.
 - **Surface `instrumentals.json` to the site** — read-UI could show "instrumental" instead of blank.
