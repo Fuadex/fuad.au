@@ -95,8 +95,7 @@ window.CULTURE_BADGES = {
  "chernobyl": [
   "acting",
   "devastating",
-  "intense",
-  "haunting"
+  "intense"
  ],
  "cinema-paradiso": [
   "bittersweet",
