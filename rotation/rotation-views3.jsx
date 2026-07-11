@@ -419,6 +419,190 @@ function StoriesView({ t, go, seed }) {
           </section>
         )}
 
+        {/* ── Slope graph: rank crossings year over year ── */}
+        {R.ERAS && R.ERAS.length >= 2 && (() => {
+          const sortedEras = R.ERAS.slice().sort((a, b) => a.year - b.year);
+          // build list of valid pairs (consecutive years with real data)
+          const pairs = [];
+          for (let i = 1; i < sortedEras.length; i++) {
+            const prev = sortedEras[i - 1], cur = sortedEras[i];
+            if ((prev.top || []).length >= 3 || (cur.top || []).length >= 3) {
+              pairs.push({ prev, cur });
+            }
+          }
+          if (!pairs.length) return null;
+
+          const [pairIdx, setPairIdx] = React.useState(pairs.length - 1);
+          const pair = pairs[pairIdx];
+          const prevEra = pair.prev, curEra = pair.cur;
+          const prevYear = prevEra.year, curYear = curEra.year;
+
+          // union of both years' top 15
+          const nameSet = new Set();
+          for (const a of (prevEra.top || []).slice(0, 15)) nameSet.add(a.name);
+          for (const a of (curEra.top || []).slice(0, 15)) nameSet.add(a.name);
+
+          // plays from ARTISTS[].yp
+          const byName = {};
+          for (const a of R.ARTISTS) byName[a.name] = a;
+
+          const rows = [...nameSet].map(name => {
+            const a = byName[name];
+            const prevP = (a && a.yp && a.yp[prevYear]) || 0;
+            const curP = (a && a.yp && a.yp[curYear]) || 0;
+            return { name, prevP, curP, hue: a ? a.hue : (hueOfName ? hueOfName(name) : 200) };
+          }).filter(r => r.prevP > 0 || r.curP > 0);
+
+          // rank by plays in each column
+          const prevRanked = rows.slice().filter(r => r.prevP > 0).sort((a, b) => b.prevP - a.prevP);
+          const curRanked = rows.slice().filter(r => r.curP > 0).sort((a, b) => b.curP - a.curP);
+
+          // cap displayed artists — top 12 from union, prefer those present in both
+          const both = rows.filter(r => r.prevP > 0 && r.curP > 0);
+          const prevOnly = rows.filter(r => r.prevP > 0 && r.curP === 0);
+          const curOnly = rows.filter(r => r.prevP === 0 && r.curP > 0);
+          // sort each group by max plays descending, then assemble up to 14
+          const sortByMax = arr => arr.slice().sort((a, b) => Math.max(b.prevP, b.curP) - Math.max(a.prevP, a.curP));
+          const displayed = [
+            ...sortByMax(both),
+            ...sortByMax(prevOnly),
+            ...sortByMax(curOnly),
+          ].slice(0, 14);
+
+          const prevRankMap = new Map(prevRanked.map((r, i) => [r.name, i]));
+          const curRankMap = new Map(curRanked.map((r, i) => [r.name, i]));
+
+          // SVG layout
+          const N = displayed.length;
+          const W = 520, PAD_L = 140, PAD_R = 140, PAD_T = 38, PAD_B = 16;
+          const ROW_H = Math.max(22, Math.min(30, (340 - PAD_T - PAD_B) / Math.max(N - 1, 1)));
+          const H = PAD_T + ROW_H * Math.max(N - 1, 1) + PAD_B + 10;
+          const X_L = PAD_L - 6, X_R = W - PAD_R + 6;
+
+          // y position by rank index within the displayed set
+          // for each side, position by their rank within the full per-year ranking
+          // but constrain to displayed set positions to avoid overlap
+          const prevDisplayed = displayed.filter(r => r.prevP > 0).sort((a, b) => (prevRankMap.get(a.name) ?? 999) - (prevRankMap.get(b.name) ?? 999));
+          const curDisplayed = displayed.filter(r => r.curP > 0).sort((a, b) => (curRankMap.get(a.name) ?? 999) - (curRankMap.get(b.name) ?? 999));
+
+          const prevPosMap = new Map(prevDisplayed.map((r, i) => [r.name, i]));
+          const curPosMap = new Map(curDisplayed.map((r, i) => [r.name, i]));
+          const prevCount = prevDisplayed.length, curCount = curDisplayed.length;
+
+          const yOf = (posIdx, total) => PAD_T + (total <= 1 ? (H - PAD_T - PAD_B) / 2 : (posIdx / (total - 1)) * (H - PAD_T - PAD_B));
+
+          const pairLabel = `'${String(prevYear).slice(2)}→'${String(curYear).slice(2)}`;
+
+          return (
+            <section className="st-card st-hero">
+              <div className="st-sg-head">
+                <div className="st-label" style={{ marginBottom: 0 }}>Who rose, who fell</div>
+                <div className="st-yir-nav">
+                  <button onClick={() => setPairIdx(Math.max(0, pairIdx - 1))} disabled={pairIdx === 0} aria-label="earlier pair">‹</button>
+                  <span className="st-yir-y" style={{ fontSize: 16, minWidth: 56 }}>{pairLabel}</span>
+                  <button onClick={() => setPairIdx(Math.min(pairs.length - 1, pairIdx + 1))} disabled={pairIdx === pairs.length - 1} aria-label="later pair">›</button>
+                </div>
+              </div>
+              <div className="st-big">
+                {(() => {
+                  // find biggest riser: in curRanked but higher than in prevRanked (lower rank number = better)
+                  const risers = displayed.filter(r => r.prevP > 0 && r.curP > 0 && (prevRankMap.get(r.name) ?? 999) > (curRankMap.get(r.name) ?? 999));
+                  const fallers = displayed.filter(r => r.prevP > 0 && r.curP > 0 && (prevRankMap.get(r.name) ?? 999) < (curRankMap.get(r.name) ?? 999));
+                  const topRiser = risers.sort((a, b) => ((prevRankMap.get(b.name) ?? 999) - (curRankMap.get(b.name) ?? 999)) - ((prevRankMap.get(a.name) ?? 999) - (curRankMap.get(a.name) ?? 999)))[0];
+                  const topFaller = fallers.sort((a, b) => ((prevRankMap.get(b.name) ?? 999) - (curRankMap.get(b.name) ?? 999)) - ((prevRankMap.get(a.name) ?? 999) - (curRankMap.get(a.name) ?? 999)))[0];
+                  if (topRiser && topFaller) {
+                    return <><em style={{ color: `oklch(0.78 0.16 ${topRiser.hue})`, cursor: clickable(resolveId(topRiser.name)) ? "pointer" : "default" }}
+                      onClick={() => goIf(topRiser.name)}>{topRiser.name}</em> climbed. <em style={{ color: `oklch(0.65 0.12 ${topFaller.hue})`, cursor: clickable(resolveId(topFaller.name)) ? "pointer" : "default" }}
+                      onClick={() => goIf(topFaller.name)}>{topFaller.name}</em> slipped.</>;
+                  }
+                  if (topRiser) return <><em style={{ color: `oklch(0.78 0.16 ${topRiser.hue})` }}>{topRiser.name}</em> made the biggest move.</>;
+                  return <>The lines that crossed between <em>{prevYear}</em> and <em>{curYear}</em>.</>;
+                })()}
+              </div>
+              <div className="st-sub">
+                Each line connects an artist's rank in {prevYear} to their rank in {curYear} — the steeper the cross, the bigger the shift.
+                Artists new to the chart or gone from it anchor at the edge.
+              </div>
+              <div className="st-sg-wrap">
+                <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: "block", maxWidth: W, margin: "0 auto", overflow: "visible" }}>
+                  {/* column year headers */}
+                  <text x={X_L} y={22} fill="var(--ink-soft)" fontSize="10" fontFamily="var(--mono)"
+                    textAnchor="end" letterSpacing=".1em">{prevYear}</text>
+                  <text x={X_R} y={22} fill="var(--ink-soft)" fontSize="10" fontFamily="var(--mono)"
+                    textAnchor="start" letterSpacing=".1em">{curYear}</text>
+                  {/* center axis */}
+                  <line x1={X_L + 2} x2={X_R - 2} y1={PAD_T - 6} y2={PAD_T - 6} stroke="var(--rule)" strokeWidth="1" />
+                  {/* lines + dots per artist */}
+                  {displayed.map(r => {
+                    const hasPrev = r.prevP > 0, hasCur = r.curP > 0;
+                    const prevPos = prevPosMap.get(r.name);
+                    const curPos = curPosMap.get(r.name);
+                    const y1 = hasPrev ? yOf(prevPos, prevCount) : null;
+                    const y2 = hasCur ? yOf(curPos, curCount) : null;
+                    const col = `oklch(0.72 0.14 ${r.hue})`;
+                    // direction: rising = better rank (lower index) in cur; falling = worse
+                    const rising = y1 !== null && y2 !== null && y2 < y1;
+                    const falling = y1 !== null && y2 !== null && y2 > y1;
+                    const strokeW = rising ? 2.0 : 1.3;
+                    const op = rising ? 0.9 : falling ? 0.55 : 0.78;
+                    const truncName = n => n.length > 18 ? n.slice(0, 17) + "…" : n;
+                    const isClick = clickable(resolveId(r.name));
+                    return (
+                      <g key={r.name}>
+                        {y1 !== null && y2 !== null && (
+                          <line x1={X_L} y1={y1.toFixed(1)} x2={X_R} y2={y2.toFixed(1)}
+                            stroke={col} strokeWidth={strokeW} strokeLinecap="round" opacity={op} />
+                        )}
+                        {/* ghost "new" line from left edge if only in cur */}
+                        {!hasPrev && y2 !== null && (
+                          <line x1={X_L} y1={y2.toFixed(1)} x2={X_R} y2={y2.toFixed(1)}
+                            stroke={col} strokeWidth="1" strokeDasharray="3 3" opacity="0.35" />
+                        )}
+                        {/* ghost "gone" line to right edge if only in prev */}
+                        {hasPrev && !hasCur && y1 !== null && (
+                          <line x1={X_L} y1={y1.toFixed(1)} x2={X_R} y2={y1.toFixed(1)}
+                            stroke={col} strokeWidth="1" strokeDasharray="3 3" opacity="0.35" />
+                        )}
+                        {/* left dot + label */}
+                        {y1 !== null && (
+                          <g style={{ cursor: isClick ? "pointer" : "default" }} onClick={() => goIf(r.name)}>
+                            <circle cx={X_L} cy={y1.toFixed(1)} r="3.5" fill={col} opacity={op} />
+                            <text x={X_L - 8} y={(y1 + 3.8).toFixed(1)} fill={col} fontSize="9.5" opacity={op}
+                              fontFamily="var(--mono)" textAnchor="end">
+                              {truncName(r.name)}
+                              <tspan fill="var(--ink-faint)" fontSize="8.5"> {r.prevP}</tspan>
+                            </text>
+                          </g>
+                        )}
+                        {/* right dot + label */}
+                        {y2 !== null && (
+                          <g style={{ cursor: isClick ? "pointer" : "default" }} onClick={() => goIf(r.name)}>
+                            <circle cx={X_R} cy={y2.toFixed(1)} r="3.5" fill={col} opacity={op} />
+                            <text x={X_R + 8} y={(y2 + 3.8).toFixed(1)} fill={col} fontSize="9.5" opacity={op}
+                              fontFamily="var(--mono)" textAnchor="start">
+                              {truncName(r.name)}
+                              <tspan fill="var(--ink-faint)" fontSize="8.5"> {r.curP}</tspan>
+                            </text>
+                          </g>
+                        )}
+                        {/* "new" / "gone" badge */}
+                        {!hasPrev && y2 !== null && (
+                          <text x={X_L - 8} y={(y2 + 3.8).toFixed(1)} fill={col} fontSize="8" opacity="0.55"
+                            fontFamily="var(--mono)" textAnchor="end" fontStyle="italic">new</text>
+                        )}
+                        {hasPrev && !hasCur && y1 !== null && (
+                          <text x={X_R + 8} y={(y1 + 3.8).toFixed(1)} fill={col} fontSize="8" opacity="0.55"
+                            fontFamily="var(--mono)" textAnchor="start" fontStyle="italic">gone</text>
+                        )}
+                      </g>
+                    );
+                  })}
+                </svg>
+              </div>
+            </section>
+          );
+        })()}
+
         <div className="st-chapter"><span>III</span> Scenes &amp; places</div>
 
         {/* the languages you listen in — from Genius lyrics language detection */}
@@ -1771,6 +1955,14 @@ function StoriesView({ t, go, seed }) {
         }
         @media (max-width: 420px) {
           .st-ug-cuts { grid-template-columns: 1fr; }
+        }
+
+        /* ── slope graph ── */
+        .st-sg-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+        .st-sg-wrap { margin-top: 18px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        @media (max-width: 700px) {
+          /* on narrow screens allow horizontal scroll so nothing overflows */
+          .st-sg-wrap svg { min-width: 360px; }
         }
       `}</style>
     </div>

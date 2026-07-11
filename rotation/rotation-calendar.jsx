@@ -113,6 +113,160 @@ function mergeHours(period, hrs) {
   return { t, n: period.n, a: merge("a"), al: merge("al"), s: merge("s"), d: dsum.map(x => Math.round(x / (tw || 1) * 100) / 100) };
 }
 
+// ─────────────────────────────────────────────────────────────────
+//  BARCODE SCRUBBER — full-width strip at the bottom of the calendar page.
+//  Every active listening day as a hairline across all years; clicking a year
+//  segment sets the calendar's selYear highlight.
+// ─────────────────────────────────────────────────────────────────
+function BarcodeScrubber({ years, selYear, setSelYear }) {
+  const [days, setDays] = React.useState(window.ROTATION_DAYS || null);
+
+  React.useEffect(() => {
+    if (window.ROTATION_DAYS) { setDays(window.ROTATION_DAYS); return; }
+    // Reuse the lab's shared script tag id so we don't double-load.
+    let s = document.getElementById("lab-day-series-js");
+    if (!s) {
+      s = document.createElement("script");
+      s.id = "lab-day-series-js"; s.src = "day-series.js";
+      s.onload = () => setDays(window.ROTATION_DAYS);
+      s.onerror = () => setDays(null);
+      document.head.appendChild(s);
+    } else {
+      // Script tag exists but data may not be ready yet; poll.
+      const poll = setInterval(() => {
+        if (window.ROTATION_DAYS) { clearInterval(poll); setDays(window.ROTATION_DAYS); }
+      }, 80);
+      return () => clearInterval(poll);
+    }
+  }, []);
+
+  const STRIP_H = 52;   // total height of the strip (px in viewBox units)
+  const LABEL_H = 13;   // space below hairlines for year labels
+  const LINE_H = STRIP_H - LABEL_H;  // hairline area height
+
+  // Memoize the static hairlines — they never change when selYear changes.
+  const hairlines = React.useMemo(() => {
+    if (!days) return null;
+    const counts = days.counts;
+    const n = counts.length;
+    const sorted = counts.slice().sort((a, b) => a - b);
+    const p80 = sorted[Math.floor(sorted.length * 0.8)] || 1;
+    const p95 = sorted[Math.floor(sorted.length * 0.95)] || 1;
+    const lines = [];
+    for (let i = 0; i < n; i++) {
+      const v = counts[i];
+      if (!v) continue;
+      const x = (i / (n - 1)) * 1000;  // viewBox width = 1000
+      // Taller + brighter for heavier days, giving texture without cost.
+      const h = v >= p95 ? LINE_H : v >= p80 ? LINE_H * 0.72 : LINE_H * 0.42;
+      const op = v >= p95 ? 0.95 : v >= p80 ? 0.70 : 0.42;
+      const col = v >= p95 ? "var(--accent)"
+        : v >= p80 ? "oklch(0.62 0.13 var(--acc-h))"
+        : "oklch(0.44 0.08 var(--acc-h))";
+      lines.push(
+        <line key={i} x1={x.toFixed(2)} x2={x.toFixed(2)}
+          y1={(LINE_H - h).toFixed(2)} y2={LINE_H.toFixed(2)}
+          stroke={col} strokeWidth="0.55" opacity={op}
+          vectorEffect="non-scaling-stroke" shapeRendering="crispEdges" />
+      );
+    }
+    return lines;
+  }, [days]);
+
+  // Year segment boundaries: map each year → [xStart, xEnd] in viewBox (0–1000).
+  const yearSegs = React.useMemo(() => {
+    if (!days || !years || !years.length) return [];
+    const start = new Date(days.start + "T00:00:00Z").getTime();
+    const n = days.counts.length;
+    return years.map(y => {
+      const yStart = Date.UTC(y, 0, 1);
+      const yEnd   = Date.UTC(y + 1, 0, 1);
+      const i0 = Math.max(0, Math.round((yStart - start) / 86400e3));
+      const i1 = Math.min(n - 1, Math.round((yEnd   - start) / 86400e3) - 1);
+      const x0 = (i0 / (n - 1)) * 1000;
+      const x1 = (i1 / (n - 1)) * 1000;
+      return { y, x0, x1 };
+    }).filter(s => s.x1 >= s.x0);
+  }, [days, years]);
+
+  const placeholder = (
+    <div style={{
+      height: STRIP_H + 20, display: "flex", alignItems: "center",
+      fontFamily: "var(--mono)", fontSize: 10, color: "var(--ink-faint)",
+      letterSpacing: ".1em", background: "var(--bg-3)", borderRadius: 6,
+      padding: "0 16px"
+    }}>
+      loading history…
+    </div>
+  );
+
+  if (!days) return (
+    <div className="bc-scrubber-wrap">{placeholder}</div>
+  );
+
+  return (
+    <div className="bc-scrubber-wrap">
+      <svg
+        viewBox={`0 0 1000 ${STRIP_H}`}
+        preserveAspectRatio="none"
+        style={{ width: "100%", height: STRIP_H + 20, display: "block", overflow: "visible" }}
+        aria-label="Listening history barcode — click a year to highlight it"
+      >
+        {/* Year highlight bands — rendered below hairlines, only changes on selYear. */}
+        {yearSegs.map(({ y, x0, x1 }) => {
+          const on = y === selYear;
+          return (
+            <rect key={y + "-bg"}
+              x={x0.toFixed(2)} y="0"
+              width={Math.max(0, x1 - x0).toFixed(2)} height={LINE_H}
+              fill={on ? "oklch(0.35 0.07 var(--acc-h) / 0.55)" : "transparent"}
+              rx="0"
+            />
+          );
+        })}
+
+        {/* Hairlines — memoized, never re-renders on year change. */}
+        {hairlines}
+
+        {/* Year separator lines + labels + click targets. */}
+        {yearSegs.map(({ y, x0, x1 }, i) => {
+          const on = y === selYear;
+          const cx = ((x0 + x1) / 2).toFixed(2);
+          const label = "'" + String(y).slice(2);
+          return (
+            <g key={y} style={{ cursor: "pointer", touchAction: "manipulation" }}
+              onClick={() => setSelYear(on ? null : y)}>
+              {/* Invisible wide hit target for mobile-friendly tap. */}
+              <rect x={x0.toFixed(2)} y="0"
+                width={Math.max(0, x1 - x0).toFixed(2)} height={STRIP_H}
+                fill="transparent" />
+              {/* Separator tick at year boundary (skip first). */}
+              {i > 0 && (
+                <line x1={x0.toFixed(2)} x2={x0.toFixed(2)} y1="0" y2={LINE_H}
+                  stroke="var(--rule-2)" strokeWidth="0.8" opacity="0.6" />
+              )}
+              {/* Accent underline for selected year. */}
+              {on && (
+                <rect x={x0.toFixed(2)} y={(LINE_H - 2).toFixed(2)}
+                  width={Math.max(0, x1 - x0).toFixed(2)} height="2"
+                  fill="var(--accent)" rx="1" />
+              )}
+              {/* Year label. */}
+              <text
+                x={cx} y={(STRIP_H - 1).toFixed(2)}
+                fontFamily="var(--mono)" fontSize="7.5"
+                fill={on ? "var(--accent)" : "var(--ink-faint)"}
+                textAnchor="middle"
+                style={{ userSelect: "none" }}
+              >{label}</text>
+            </g>
+          );
+        })}
+      </svg>
+    </div>
+  );
+}
+
 function CalendarView({ go, seed }) {
   const R = window.ROTATION;
   const [cal, setCal] = React.useState(window.ROTATION_CAL || null);
@@ -122,6 +276,8 @@ function CalendarView({ go, seed }) {
   const seedDay = seed && /^\d{4}-\d{2}-\d{2}$/.test(seed) ? seed : null;
   const [gran, setGran] = React.useState(seedDay ? "day" : "month");    // day | week | month
   const [sel, setSel] = React.useState(seedDay);      // selected period key (string)
+  const [selYear, setSelYear] = React.useState(null); // barcode scrubber: highlighted year
+  const heatRef = React.useRef(null);                  // heatmap svg — scrub clicks scroll to the year's row
   const [pane, setPane] = React.useState("artists");  // artists | albums | songs | dna
   const [selHours, setSelHours] = React.useState(() => new Set()); // rhythm hour multi-select
   React.useEffect(() => { if (seedDay) ensureDetail(); }, []);
@@ -202,7 +358,7 @@ function CalendarView({ go, seed }) {
       <div className="cal-heatwrap">
       <div className="cal-heatleft" style={{ minWidth: 0 }}>
       <div className="r-card cal-heatcard" style={{ padding: "12px 10px", overflowX: "auto" }}>
-        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", maxWidth: W, minWidth: 660, height: "auto", display: "block" }} onMouseLeave={() => setHover(null)}>
+        <svg ref={heatRef} viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", maxWidth: W, minWidth: 660, height: "auto", display: "block" }} onMouseLeave={() => setHover(null)}>
           {(() => { const y = years[0], jd = new Date(Date.UTC(y, 0, 1)).getUTCDay();
             return MON.map((m, mi) => { const fom = Math.round((Date.UTC(y, mi, 1) - Date.UTC(y, 0, 1)) / 86400e3); const col = Math.floor((fom + jd) / 7);
               return <text key={m} x={leftPad + col * step} y={topPad - 12} fontFamily="var(--mono)" fontSize="9" fill="var(--ink-faint)">{m}</text>; });
@@ -211,7 +367,7 @@ function CalendarView({ go, seed }) {
             const Y = cal.byYear[y], jd = new Date(Date.UTC(y, 0, 1)).getUTCDay(), gy = topPad + yi * (rowH + yearGap), jan1 = Date.UTC(y, 0, 1);
             return (
               <g key={y}>
-                <text x={leftPad - 8} y={gy + rowH / 2 + 3} textAnchor="end" fontFamily="var(--mono)" fontSize="10" fill="var(--ink-soft)">{"'" + String(y).slice(2)}</text>
+                <text x={leftPad - 8} y={gy + rowH / 2 + 3} textAnchor="end" fontFamily="var(--mono)" fontSize="10" fill={selYear === y ? "var(--accent)" : "var(--ink-soft)"}>{"'" + String(y).slice(2)}</text>
                 {Y.counts.map((c, d) => {
                   const col = Math.floor((d + jd) / 7), row = (d + jd) % 7;
                   const cv = selArr ? sumHours(Y.hours && Y.hours[d], selArr) : c;
@@ -237,6 +393,25 @@ function CalendarView({ go, seed }) {
       {/* rhythm — the vertical hour clock (moved from Explore), sitting to the right of the calendar */}
       <ClockCard R={R} selHours={selHours} setSelHours={setSelHours} />
       </div>
+
+      {/* barcode year scrubber — full-width strip across all history */}
+      {cal && (
+        <div style={{ marginTop: 28 }}>
+          <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 6 }}>
+            listening history{selYear ? <> · <span style={{ color: "var(--accent)" }}>{selYear} highlighted</span></> : " · click a year to jump to it"}
+          </div>
+          <BarcodeScrubber years={years} selYear={selYear} setSelYear={(y) => {
+            setSelYear(y);
+            // jump the page to that year's heatmap row (the calendar shows all years stacked)
+            const el = heatRef.current;
+            if (y != null && el) {
+              const r = el.getBoundingClientRect();
+              const frac = (topPad + years.indexOf(y) * (rowH + yearGap)) / H;
+              window.scrollTo({ top: window.scrollY + r.top + frac * r.height - 110, behavior: "smooth" });
+            }
+          }} />
+        </div>
+      )}
 
       {/* period overview */}
       {sel && (
@@ -328,6 +503,7 @@ function CalendarView({ go, seed }) {
         .cal-float-x { background: none; border: none; color: var(--ink-faint); cursor: pointer; font-size: 12px; line-height: 1; }
         .cal-float-x:hover { color: var(--ink); }
         .cal-float-body { padding: 18px 20px; overflow-y: auto; }
+        .bc-scrubber-wrap { width: 100%; border-radius: 6px; overflow: hidden; background: var(--bg-3); }
         /* mobile: bottom sheet — full width, finger-resizable via the bar (see onBarTouchStart).
            !important defeats any stored PC drag position. Default 40vh = calendar stays visible. */
         @media (max-width: 760px) {

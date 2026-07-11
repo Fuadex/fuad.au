@@ -1644,6 +1644,14 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 .tonight-chip.sel.or { background: #2f6f5e; color: #fff; border-color: #2f6f5e; }
 .tonight-chip.sel.or .tonight-c { color: rgba(255,255,255,.7); }
 .tonight-op { font-weight: 700; opacity: .85; }
+.tonight-week-note {
+  font-family: var(--mono); font-size: 9.5px; color: var(--ink-faint);
+  align-self: center; letter-spacing: 0.04em;
+}
+.tonight-week-caption {
+  font-family: var(--mono); font-size: 10px; color: var(--ink-soft);
+  letter-spacing: 0.03em; padding: 2px 0 2px 66px; margin-top: -4px;
+}
 
 .tonight-budget { display: flex; align-items: center; gap: 14px; flex: 1; padding-top: 3px; }
 .tonight-budget input[type="range"] { flex: 1; max-width: 320px; accent-color: var(--accent); }

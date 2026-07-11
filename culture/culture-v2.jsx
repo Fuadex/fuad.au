@@ -2148,6 +2148,55 @@ const TONIGHT_BUDGETS = [
   { key: '240', label: 'One evening', max: 240 },
 ];
 
+// ─────────── Rotation crossover ───────────
+// Maps rotation's Sound-Map family names (see build-data.js FAMILIES) to culture
+// badge keys (see HIGHLIGHTS above). Only real keys on both sides — a listening week
+// nudges the deal toward titles whose badges share a "tone" with what's been spinning.
+const FAMILY_TONE = {
+  'Nu-metal / alt-metal':         ['impact', 'thrilling', 'intense', 'style'],
+  'Metalcore / -core':            ['impact', 'intense', 'thrilling', 'horrifying'],
+  'Industrial':                   ['intense', 'horrifying', 'atmosphere', 'style'],
+  'Thrash / heavy':               ['impact', 'thrilling', 'intense'],
+  'Prog / alt rock':              ['mindbending', 'cerebral', 'singular', 'slowburn'],
+  'Japanese':                     ['visuals', 'style', 'singular', 'atmosphere'],
+  'Electronic / DnB':             ['ahead', 'singular', 'thrilling', 'style'],
+  'Digital hardcore / hyperpop':  ['absurdist', 'singular', 'ahead', 'intense'],
+  'Hip-hop':                      ['social-xray', 'satire', 'writing', 'style'],
+  'Punk / garage':                ['satire', 'impact', 'absurdist', 'thrilling'],
+  'Shoegaze / noise':             ['atmosphere', 'haunting', 'slowburn', 'devastating'],
+  'Pop / indie':                  ['gem', 'gentle', 'funny', 'bittersweet'],
+  'Jazz':                         ['formal-exec', 'style', 'atmosphere', 'gentle'],
+  'Classical / Score':            ['score', 'slowburn', 'formal-exec', 'cerebral'],
+  'Other':                        [],
+};
+
+// Reads window.ROTATION_PULSE (lazy-injected) into a tone model:
+//   { families:[{name,share}], toneWeight:{badgeKey->weightedShare}, maxAffinity, label }
+// last7 is preferred; falls back to last30 if the 7-day window is thin (<50 plays).
+function buildWeekTone(pulse) {
+  if (!pulse) return null;
+  const w = (pulse.last7 && pulse.last7.plays >= 50) ? pulse.last7 : pulse.last30;
+  if (!w || !w.families || !w.families.length) return null;
+  const toneWeight = {};
+  w.families.forEach(f => {
+    (FAMILY_TONE[f.name] || []).forEach(k => { toneWeight[k] = (toneWeight[k] || 0) + f.share; });
+  });
+  const top = w.families.slice(0, 3);
+  return { families: w.families, top, toneWeight };
+}
+
+// Affinity of an item to the week = summed share of families whose tone keys hit its badges.
+function weekAffinity(item, tone) {
+  if (!tone) return 0;
+  const badges = item.highlights || [];
+  let a = 0;
+  tone.families.forEach(f => {
+    const keys = FAMILY_TONE[f.name] || [];
+    if (keys.some(k => badges.includes(k))) a += f.share;
+  });
+  return a;
+}
+
 // Deal weight leans on the predicted score (quality) but stays surprising:
 // pred-squared over a floor. fablePick items get a hard floor so they always
 // float into the top of the pool regardless of model score ("Fable dissents").
@@ -2160,10 +2209,11 @@ function tonightWeight(item) {
 // Weighted sample of `n` distinct items, excluding a set of ids. Falls back to
 // filling from the excluded pool if the fresh pool runs dry (so a Redeal always
 // deals a full hand even when few items remain).
-function weightedSample(pool, n, excludeIds) {
+function weightedSample(pool, n, excludeIds, weightFn) {
+  const wOf = weightFn || tonightWeight;
   const fresh = pool.filter(it => !excludeIds.has(it.id));
   const draw = (from, k) => {
-    const src = from.map(it => ({ it, w: tonightWeight(it) }));
+    const src = from.map(it => ({ it, w: wOf(it) }));
     const out = [];
     while (out.length < k && src.length) {
       let total = src.reduce((s, e) => s + e.w, 0);
@@ -2249,6 +2299,9 @@ function TonightView({ items, onOpenItem, onExit }) {
   const [moodSel, setMoodSel] = React.useState([]);   // [{value, op:'AND'|'OR'}]
   const [hook, setHook] = React.useState('');
   const [strict, setStrict] = React.useState(false);
+  const [week, setWeek] = React.useState('off');          // 'off' | 'match' | 'counter'
+  const [pulse, setPulse] = React.useState(() => window.ROTATION_PULSE || null);
+  const [pulseState, setPulseState] = React.useState(() => window.ROTATION_PULSE ? 'ready' : 'idle'); // idle|loading|ready|failed
   const [deal, setDeal] = React.useState([]);
   const [prevIds, setPrevIds] = React.useState(() => new Set());
   const [pin, setPin] = React.useState(() => {
@@ -2283,6 +2336,24 @@ function TonightView({ items, onOpenItem, onExit }) {
     });
   };
 
+  // Lazy-load rotation's pulse artifact on first activation of the Week chip.
+  // Injected as a sibling-app script (culture is at /culture/, rotation at /rotation/).
+  // If it never loads (local dev, offline), we mark it failed and treat Week as off.
+  const loadPulse = React.useCallback(() => {
+    if (window.ROTATION_PULSE) { setPulse(window.ROTATION_PULSE); setPulseState('ready'); return; }
+    if (pulseState === 'loading' || pulseState === 'failed') return;
+    setPulseState('loading');
+    const s = document.createElement('script');
+    s.src = '../rotation/pulse.js';
+    s.async = true;
+    s.onload = () => { if (window.ROTATION_PULSE) { setPulse(window.ROTATION_PULSE); setPulseState('ready'); } else setPulseState('failed'); };
+    s.onerror = () => setPulseState('failed');
+    document.head.appendChild(s);
+  }, [pulseState]);
+
+  const weekTone = React.useMemo(() => buildWeekTone(pulse), [pulse]);
+  const weekActive = week !== 'off' && pulseState === 'ready' && !!weekTone;
+
   // The filtered pool given all constraints. fablePick items are floated: they
   // survive filtering even if a mood/budget would drop them.
   const pool = React.useMemo(() => {
@@ -2304,17 +2375,33 @@ function TonightView({ items, onOpenItem, onExit }) {
     });
   }, [items, mediums, budgetMax, moodSel, hook]);
 
+  // Max affinity across the current deck — the ceiling for the "counter" inversion.
+  const maxAffinity = React.useMemo(() => {
+    if (!weekActive) return 0;
+    return pool.reduce((m, it) => it.fablePick ? m : Math.max(m, weekAffinity(it, weekTone)), 0);
+  }, [weekActive, weekTone, pool]);
+
+  // Week-aware weight: multiplies the base tonightWeight by an affinity factor.
+  // fablePick items keep their untouched float (they bypass the multiplier entirely).
+  const weekWeight = React.useCallback((item) => {
+    const base = tonightWeight(item);
+    if (item.fablePick || !weekActive) return base;
+    const aff = weekAffinity(item, weekTone);
+    if (week === 'match') return base * (1 + 1.5 * aff);
+    return base * (1 + 1.5 * (maxAffinity - aff) / Math.max(maxAffinity, 0.01));
+  }, [weekActive, weekTone, week, maxAffinity]);
+
   const dealNow = React.useCallback((freshPrev) => {
     if (!pool.length) { setDeal([]); return; }
     let hand;
     if (strict) {
-      hand = [...pool].sort((a, b) => tonightWeight(b) - tonightWeight(a)).slice(0, 3);
+      hand = [...pool].sort((a, b) => weekWeight(b) - weekWeight(a)).slice(0, 3);
     } else {
-      hand = weightedSample(pool, 3, freshPrev ? new Set() : prevIds);
+      hand = weightedSample(pool, 3, freshPrev ? new Set() : prevIds, weekWeight);
     }
     setDeal(hand);
     setPrevIds(new Set(hand.map(i => i.id)));
-  }, [pool, strict, prevIds]);
+  }, [pool, strict, prevIds, weekWeight]);
 
   const toggleMedium = (m) => setMediums(prev => { const n = new Set(prev); n.has(m) ? n.delete(m) : n.add(m); return n; });
 
@@ -2390,6 +2477,23 @@ function TonightView({ items, onOpenItem, onExit }) {
           <input className="tonight-hook" type="text" placeholder="a word in the note… e.g. heist, grief, samurai"
             value={hook} onChange={e => setHook(e.target.value)} />
         </div>
+
+        <div className="tonight-row">
+          <span className="tonight-row-label">Week</span>
+          <div className="tonight-chips">
+            <button className={`tonight-chip week${week === 'off' ? ' on' : ''}`} onClick={() => { setWeek('off'); }}>off</button>
+            <button className={`tonight-chip week${week === 'match' ? ' on' : ''}`} onClick={() => { setWeek('match'); loadPulse(); }}>match my week</button>
+            <button className={`tonight-chip week${week === 'counter' ? ' on' : ''}`} onClick={() => { setWeek('counter'); loadPulse(); }}>counter my week</button>
+            {week !== 'off' && pulseState === 'failed' && <span className="tonight-week-note">(rotation pulse unavailable)</span>}
+            {week !== 'off' && pulseState === 'loading' && <span className="tonight-week-note">loading…</span>}
+          </div>
+        </div>
+        {weekActive && (
+          <div className="tonight-week-caption">
+            your week: {weekTone.top.map(f => `${Math.round(f.share * 100)}% ${f.name.toLowerCase()}`).join(' · ')}
+            {' — '}{week === 'match' ? 'dealing to match' : 'dealing to counter'}
+          </div>
+        )}
 
         <div className="tonight-row tonight-deal-row">
           <button className="tonight-deal-btn" onClick={() => dealNow(true)}>

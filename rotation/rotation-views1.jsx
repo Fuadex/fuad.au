@@ -195,6 +195,169 @@ function parseOvSeed(seed) {
   return out;
 }
 
+// Emotional-weather card, now a 2-tab module: [Weather | Decades].
+//  · Weather = unchanged (baseline vs last-90d sounds/reads; whole card routes to the story).
+//  · Decades = chronological strip treemap of release decades (baked ADOPTION.decades, static —
+//    those shares can't react to the map/date filter, no per-decade dimension in day-series).
+//    Drill into a decade → per-year breakdown reconstructed live from EXPLORE artists' debut
+//    year × plays (same signal ADOPTION is built from), so shares within the decade are real.
+function OvWeatherCard({ R, go, restReady }) {
+  const [tab, setTab] = React.useState("weather");
+  const [zoom, setZoom] = React.useState(null);   // clicked decade (per-year drill-down) or null
+  const M = R.INSIGHTS && R.INSIGHTS.MOOD, N = M && M.now;
+  const ad = R.INSIGHTS && R.INSIGHTS.ADOPTION;
+  const decades = React.useMemo(() =>
+    ad && ad.decades ? ad.decades.filter(d => d.plays > 0).slice().sort((a, b) => a.decade - b.decade) : [],
+    [ad]);
+  const hasDec = decades.length > 0;
+  if (!N && !hasDec) return null;
+
+  // per-year plays inside a decade, reconstructed from EXPLORE debut years (needs the rest bundle)
+  const yearBreak = React.useMemo(() => {
+    if (zoom == null || !restReady || !R.EXPLORE) return null;
+    const buckets = new Map();
+    for (const a of R.EXPLORE) { const y = a.d; if (y >= zoom && y < zoom + 10 && a.plays > 0) buckets.set(y, (buckets.get(y) || 0) + a.plays); }
+    const rows = [...buckets.entries()].map(([year, plays]) => ({ year, plays })).sort((a, b) => a.year - b.year);
+    const tot = rows.reduce((s, r) => s + r.plays, 0);
+    return { rows, tot };
+  }, [zoom, restReady, R]);
+
+  const TAB_BTN = (id, label) => (
+    <button onClick={(e) => { e.stopPropagation(); setTab(id); setZoom(null); }}
+      className="ov-wtab" data-on={tab === id ? 1 : 0}>{label}</button>
+  );
+
+  // ── WEATHER (unchanged behaviour, incl. click-through to the story) ──
+  const weather = () => {
+    if (!N) return <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", padding: "8px 0" }}>no mood data</div>;
+    const d = (v, avg) => v - avg;
+    const word = (dv) => dv >= 4 ? "brighter" : dv <= -4 ? "darker" : "steady";
+    const Bar = ({ label, v, avg, col }) => (
+      <div style={{ display: "grid", gridTemplateColumns: "52px 1fr 26px", gap: 9, alignItems: "center" }}>
+        <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-soft)" }}>{label}</span>
+        <div style={{ position: "relative", height: 7, background: "var(--bg-3)", borderRadius: 4 }}>
+          <div style={{ position: "absolute", inset: "0 auto 0 0", width: v + "%", background: col, borderRadius: 4 }} />
+          <div title={"library average " + avg} style={{ position: "absolute", top: -2, bottom: -2, left: avg + "%", width: 2, background: "var(--ink-faint)", borderRadius: 1 }} />
+        </div>
+        <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
+      </div>
+    );
+    return (
+      <div onClick={() => go("stories", "emotional-weather")} style={{ cursor: "pointer" }}>
+        <div style={{ display: "grid", gap: 8 }}>
+          <Bar label="Sounds" v={N.aud} avg={M.avgAud} col="oklch(0.72 0.15 145)" />
+          <Bar label="Reads" v={N.lyr} avg={M.avgLyr} col="oklch(0.68 0.16 25)" />
+        </div>
+        <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13, color: "var(--ink-soft)", marginTop: 10 }}>
+          {word(d(N.aud, M.avgAud)) === "steady" && word(d(N.lyr, M.avgLyr)) === "steady"
+            ? <>Right on your baseline{N.emo ? <> — reading <b style={{ color: "var(--ink)" }}>{N.emo}</b></> : null}.</>
+            : <>Sounding {word(d(N.aud, M.avgAud))}, reading {word(d(N.lyr, M.avgLyr))}{N.emo ? <> — mostly <b style={{ color: "var(--ink)" }}>{N.emo}</b></> : null}.</>}
+        </div>
+        <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 8, letterSpacing: ".06em" }}>last {N.days} days ↗</div>
+      </div>
+    );
+  };
+
+  // ── DECADES (chronological strip treemap → drillable per-year) ──
+  const decadesTab = () => {
+    if (!hasDec) return <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", padding: "8px 0" }}>no decade data</div>;
+    const W = 100, H = 96;   // % width space; height in px
+
+    if (zoom != null) {
+      // per-year within the clicked decade
+      const dec = decades.find(x => x.decade === zoom);
+      if (!yearBreak) {
+        return (
+          <div>
+            <button onClick={() => setZoom(null)} className="ov-wback">← {zoom}s</button>
+            <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", padding: "18px 0" }}>
+              loading detail…
+            </div>
+          </div>
+        );
+      }
+      const { rows, tot } = yearBreak;
+      let cx = 0;
+      const rects = rows.map(r => { const w = tot ? (r.plays / tot) * W : 0; const rr = { x: cx, w, ...r }; cx += w; return rr; });
+      return (
+        <div>
+          <button onClick={() => setZoom(null)} className="ov-wback">← {zoom}s</button>
+          <svg viewBox={`0 0 ${W} ${H}`} width="100%" preserveAspectRatio="none" style={{ display: "block", borderRadius: 4, height: H }}>
+            {rects.map((r, i) => {
+              const pct = tot ? Math.round(r.plays / tot * 100) : 0;
+              const hue = 60 + ((r.year - zoom) * 20);
+              return (
+                <g key={r.year}>
+                  <title>{r.year} · {r.plays.toLocaleString("en-US")} plays · {pct}% of the {zoom}s</title>
+                  <rect x={r.x.toFixed(2)} y="0" width={Math.max(r.w - 0.4, 0).toFixed(2)} height={H}
+                    fill={`oklch(${0.34 + (i % 5) * 0.05} 0.13 ${hue % 360})`} />
+                  {r.w > 9 && <text x={(r.x + r.w / 2).toFixed(2)} y={H / 2 + 3}
+                    fill="rgba(255,255,255,0.9)" fontSize="6" fontFamily="var(--mono)" textAnchor="middle"
+                    style={{ pointerEvents: "none" }}>'{String(r.year).slice(2)}</text>}
+                </g>
+              );
+            })}
+          </svg>
+          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 8, lineHeight: 1.5 }}>
+            {dec ? Math.round(dec.share * 100) + "% of plays are " + zoom + "s music" : ""} — by artist debut year
+          </div>
+        </div>
+      );
+    }
+
+    // decade strip — chronological, area = play share
+    const tot = decades.reduce((s, d) => s + d.plays, 0);
+    let cx = 0;
+    const rects = decades.map(d => { const w = tot ? (d.plays / tot) * W : 0; const r = { x: cx, w, ...d }; cx += w; return r; });
+    return (
+      <div>
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" preserveAspectRatio="none" style={{ display: "block", borderRadius: 4, height: H }}>
+          {rects.map((r, i) => {
+            const pct = Math.round(r.share * 100);
+            const hue = 60 + i * 28;
+            return (
+              <g key={r.decade} style={{ cursor: "pointer" }} onClick={() => setZoom(r.decade)}>
+                <title>{r.decade}s · {r.plays.toLocaleString("en-US")} plays · {pct}% — click to drill in</title>
+                <rect x={r.x.toFixed(2)} y="0" width={Math.max(r.w - 0.4, 0).toFixed(2)} height={H}
+                  fill={`oklch(${0.32 + i * 0.055} 0.14 ${hue % 360})`} />
+                {r.w > 12 && <text x={(r.x + r.w / 2).toFixed(2)} y={H / 2 - 2}
+                  fill="rgba(255,255,255,0.92)" fontSize="7" fontFamily="var(--mono)" fontWeight="600" textAnchor="middle"
+                  style={{ pointerEvents: "none" }}>{String(r.decade).slice(2)}s</text>}
+                {r.w > 12 && <text x={(r.x + r.w / 2).toFixed(2)} y={H / 2 + 8}
+                  fill="rgba(255,255,255,0.62)" fontSize="6" fontFamily="var(--mono)" textAnchor="middle"
+                  style={{ pointerEvents: "none" }}>{pct}%</text>}
+              </g>
+            );
+          })}
+        </svg>
+        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 8 }}>
+          area = share of plays by release decade · click a decade to drill in
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="r-card ov-weather" style={{ padding: 18 }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}>
+        <span className="lbl"><b>{tab === "weather" ? "Emotional weather" : "Decades"}</b></span>
+        <span className="ov-wtabs">{TAB_BTN("weather", "Weather")}{hasDec && TAB_BTN("decades", "Decades")}</span>
+      </div>
+      {tab === "weather" ? weather() : decadesTab()}
+      <style>{`
+        .ov-wtabs { display: inline-flex; gap: 4px; }
+        .ov-wtab { font-family: var(--mono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase;
+          padding: 3px 8px; border-radius: 999px; border: 1px solid var(--rule); background: none;
+          color: var(--ink-faint); cursor: pointer; transition: color .12s, border-color .12s; }
+        .ov-wtab[data-on="1"] { color: var(--ink); border-color: var(--accent-dim); }
+        .ov-wback { font-family: var(--mono); font-size: 9px; letter-spacing: .06em; padding: 3px 9px; margin-bottom: 8px;
+          border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-soft); cursor: pointer; }
+        .ov-wback:hover { border-color: var(--accent-dim); color: var(--ink); }
+      `}</style>
+    </div>
+  );
+}
+
 function OverviewView({ t, go, restReady, seed }) {
   const R = window.ROTATION;
   const T = R.TOTALS;
@@ -461,38 +624,9 @@ function OverviewView({ t, go, restReady, seed }) {
           </div>
         </div>
 
-        {/* emotional weather now — last 90 days' sounds/reads vs the library baseline */}
-        {(() => {
-          const M = R.INSIGHTS && R.INSIGHTS.MOOD, N = M && M.now;
-          if (!N) return null;
-          const d = (v, avg) => v - avg;
-          const word = (dv) => dv >= 4 ? "brighter" : dv <= -4 ? "darker" : "steady";
-          const Bar = ({ label, v, avg, col }) => (
-            <div style={{ display: "grid", gridTemplateColumns: "52px 1fr 26px", gap: 9, alignItems: "center" }}>
-              <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-soft)" }}>{label}</span>
-              <div style={{ position: "relative", height: 7, background: "var(--bg-3)", borderRadius: 4 }}>
-                <div style={{ position: "absolute", inset: "0 auto 0 0", width: v + "%", background: col, borderRadius: 4 }} />
-                <div title={"library average " + avg} style={{ position: "absolute", top: -2, bottom: -2, left: avg + "%", width: 2, background: "var(--ink-faint)", borderRadius: 1 }} />
-              </div>
-              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
-            </div>
-          );
-          return (
-            <div className="r-card ov-weather" style={{ gridColumn: "span 4", padding: 18, cursor: "pointer" }} onClick={() => go("stories", "emotional-weather")}>
-              <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}><span className="lbl"><b>Emotional weather</b></span>
-                <span className="meta">last {N.days} days ↗</span></div>
-              <div style={{ display: "grid", gap: 8 }}>
-                <Bar label="Sounds" v={N.aud} avg={M.avgAud} col="oklch(0.72 0.15 145)" />
-                <Bar label="Reads" v={N.lyr} avg={M.avgLyr} col="oklch(0.68 0.16 25)" />
-              </div>
-              <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13, color: "var(--ink-soft)", marginTop: 10 }}>
-                {word(d(N.aud, M.avgAud)) === "steady" && word(d(N.lyr, M.avgLyr)) === "steady"
-                  ? <>Right on your baseline{N.emo ? <> — reading <b style={{ color: "var(--ink)" }}>{N.emo}</b></> : null}.</>
-                  : <>Sounding {word(d(N.aud, M.avgAud))}, reading {word(d(N.lyr, M.avgLyr))}{N.emo ? <> — mostly <b style={{ color: "var(--ink)" }}>{N.emo}</b></> : null}.</>}
-              </div>
-            </div>
-          );
-        })()}
+        {/* emotional weather now — a 2-tab module (Weather | Decades); Decades adds a chronological,
+            drillable release-decade treemap. Card footprint unchanged (ov-weather grid rules). */}
+        <OvWeatherCard R={R} go={go} restReady={restReady} />
 
       </div>
 
