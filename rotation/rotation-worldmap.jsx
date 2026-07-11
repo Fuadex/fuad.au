@@ -155,6 +155,44 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
   const applyView = (v) => { viewRef.current = v; const g = gRef.current; if (g) g.setAttribute("transform", `translate(${v.x} ${v.y}) scale(${v.s})`); };
   const commitView = () => { if (moved.current) setView(viewRef.current); };
 
+  // ── cursor FISHEYE ─────────────────────────────────────────────────────────
+  // Subtle proximity enlargement of the nearest bubbles, mirroring TourMap's useTourMapNav in
+  // rotation-views3.jsx (~L2160, the canonical copy): pointermove → rAF → for each bubble compute
+  // an eased k in [1, FISH_MAXK] within ~R_PX screen px, write the r attribute from the UNSCALED
+  // base (data-r0). Each bubble's on-screen radius already = r0 / s^0.8, so the fisheye writes
+  // r = (r0 / s^0.8) * k — growth stays constant on screen at any zoom. Paused during any pan/pinch
+  // gesture (drag/pinch/ptrs) so it never fights the transform write. No hover readout (that stays
+  // the existing hb text above the map). Reads live viewRef so it survives mid-gesture.
+  const fishRaf = React.useRef(0);
+  const FISH_R_PX = 55, FISH_MAXK = 1.35;
+  const resetFisheye = () => { const el = svgRef.current; if (!el) return; const s = viewRef.current.s; for (const c of el.querySelectorAll(".mp-bub")) { const r0 = +c.dataset.r0; if (r0) c.setAttribute("r", (r0 / Math.pow(s, 0.8)).toFixed(3)); } };
+  const runFisheye = (cx, cy) => {
+    const el = svgRef.current; if (!el) return;
+    // never during a gesture (pan/pinch) — the transform write owns the frame then
+    if (drag.current || pinch.current || ptrs.current.size > 0) return;
+    if (fishRaf.current) return;
+    fishRaf.current = requestAnimationFrame(() => {
+      fishRaf.current = 0;
+      const rect = el.getBoundingClientRect(); if (!rect.width || !rect.height) return;
+      if (cx < rect.left || cx > rect.right || cy < rect.top || cy > rect.bottom) { resetFisheye(); return; }
+      const v = viewRef.current;
+      // client px → svg viewBox units → model (pre-transform) units the data-cx/cy live in
+      const sx = (cx - rect.left) / rect.width * W, sy = (cy - rect.top) / rect.height * Hh;
+      const mvx = (sx - v.x) / v.s, mvy = (sy - v.y) / v.s;
+      // fisheye radius: FISH_R_PX screen px → viewBox units (W/rect.width) → model units (÷s)
+      const rr = FISH_R_PX * (W / rect.width) / v.s;
+      const inv = 1 / rr, sk = 1 / Math.pow(v.s, 0.8);
+      for (const c of el.querySelectorAll(".mp-bub")) {
+        const bx = +c.dataset.cx, by = +c.dataset.cy, r0 = +c.dataset.r0;
+        if (!r0) continue;
+        const dnorm = Math.hypot((bx - mvx) * inv, (by - mvy) * inv);   // 0 at cursor, 1 at edge
+        const k = dnorm >= 1 ? 1 : 1 + (FISH_MAXK - 1) * (1 - dnorm) * (1 - dnorm);
+        c.setAttribute("r", (r0 * sk * k).toFixed(3));
+      }
+    });
+  };
+  React.useEffect(() => () => { if (fishRaf.current) cancelAnimationFrame(fishRaf.current); }, []);
+
   React.useEffect(() => {
     if (window.ROTATION_WORLD) { setWorld(window.ROTATION_WORLD); return; }
     let s = document.getElementById("rotation-world-js");
@@ -209,12 +247,15 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
       const dx = (e.clientX - drag.current.x) / r.width * W, dy = (e.clientY - drag.current.y) / r.height * Hh;
       if (Math.abs(dx) + Math.abs(dy) > 3) { capture(e); moved.current = true; }
       applyView({ s: viewRef.current.s, x: drag.current.vx + dx, y: drag.current.vy + dy });
+      return;
     }
+    // no active gesture → the cursor fisheye owns the move (mouse only; touch has no hover)
+    if (e.pointerType === "mouse") runFisheye(e.clientX, e.clientY);
   };
   const onUp = (e) => { if (e && e.pointerId != null) ptrs.current.delete(e.pointerId); if (ptrs.current.size < 2) pinch.current = null; if (ptrs.current.size === 0) { drag.current = null; commitView(); } };
   // only clear hover on leave — never drop an active drag/pinch (pointer capture keeps the gesture
   // alive past the edge; the window pointerup/cancel handler below does the real cleanup on release)
-  const onLeave = () => { setHi(null); };
+  const onLeave = () => { setHi(null); resetFisheye(); };
   // a gesture can end off the map (finger/mouse released outside its bounds) — clear drag state globally
   React.useEffect(() => {
     const up = (e) => { if (e && e.pointerId != null) ptrs.current.delete(e.pointerId); if (ptrs.current.size < 2) pinch.current = null; if (ptrs.current.size === 0) { drag.current = null; commitView(); } };
@@ -486,9 +527,14 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
                 ? (b.kind === "country" ? periodPlaces.cc.has(b.c.code) : periodPlaces.ci.has(b.c.country + "|" + b.c.city))
                 : null;
               if (inPeriod === false) return null;
-              return <circle key={b.key} cx={b.x} cy={b.y} r={b.r / Math.pow(view.s, 0.8)} fill={col} fillOpacity={on ? 0.72 : 0.34}
+              // data-cx/cy/r0 feed the cursor fisheye (see runFisheye) — r0 is the UNSCALED base
+              // radius; the fisheye writes r from it each frame. `r` is dropped from the CSS
+              // transition so the per-frame fisheye writes land instantly (not smeared over .6s);
+              // year-morph resize re-renders from state, which is fine instant.
+              return <circle key={b.key} className="mp-bub" data-cx={b.x} data-cy={b.y} data-r0={b.r}
+                cx={b.x} cy={b.y} r={b.r / Math.pow(view.s, 0.8)} fill={col} fillOpacity={on ? 0.72 : 0.34}
                 stroke={inPeriod ? "var(--accent)" : col} strokeWidth={((inPeriod ? 1.8 : on ? 1.6 : 0.7)) / view.s}
-                style={{ cursor: "pointer", transition: "r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s" }}
+                style={{ cursor: "pointer", transition: "fill .5s, fill-opacity .12s" }}
                 onMouseEnter={() => setHi(b.key)} onClick={(e) => { e.stopPropagation(); if (!moved.current) openBubble(b); }} />;
             })}
           </g>

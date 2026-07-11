@@ -435,6 +435,7 @@ window.CANVAS_ARTWORKS = [
   { id: "don-pedro-duque-de-osuna", title: "Don Pedro, Duque de Osuna", artist: "Francisco Goya", artistId: "goya", qid: "Q19857281", qidTrusted: true, year: 1785, seenAt: "frick", seenConfidence: "unsure", liked: true, note: "Deck pick — frick-2026-07-12." },
   { id: "view-of-the-cannaregio-canal-in-venice", title: "View of the Cannaregio Canal in Venice", artist: "Francesco Guardi", artistId: "guardi", qid: "Q19857300", qidTrusted: true, year: 1770, seenAt: "frick", seenConfidence: "unsure", liked: true, note: "Deck pick — frick-2026-07-12." },
   { id: "femmes-arabes-a-la-promenade", title: "Femmes arabes à la promenade", artist: "Nasreddine Dinet", artistId: "dinet", qid: "Q138605820", qidTrusted: true, year: 1895, seenAt: "petit-palais", seenConfidence: "unsure", liked: true, note: "Deck pick — petit-palais-2026-07-12." },
+  { id: "the-milkmaid", title: "The Milkmaid", artist: "Johannes Vermeer", artistId: "vermeer", qid: "Q167605", qidTrusted: true, year: 1658, wish: true, liked: true, note: "Pilgrimage — and the site's first Rijksmuseum IIIF deep zoom (their open tile platform, keyless)." },
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 

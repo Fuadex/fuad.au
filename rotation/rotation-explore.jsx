@@ -158,13 +158,55 @@ function useZoom(W, H) {
   const onMove = (e) => { if (!drag.current || !ref.current) return; const r = ref.current.getBoundingClientRect(), d = drag.current; commit({ ...d.v, x: d.v.x - (e.clientX - d.mx) / r.width * d.v.w, y: d.v.y - (e.clientY - d.my) / r.height * d.v.h }); };
   const onUp = () => { drag.current = null; };
   const reset = () => commit({ x: 0, y: 0, w: W, h: H });
-  return { k: vb.w / W, zoomed: vb.w < W - 0.5, reset,
+  // live numeric viewBox [x,y,w,h] for the fisheye (mid-gesture-correct, reads vbRef not state);
+  // draggingRef lets a chart tell the fisheye to pause while the pan drag is active.
+  const vbArr = React.useRef([vb.x, vb.y, vb.w, vb.h]);
+  vbArr.current = [vbRef.current.x, vbRef.current.y, vbRef.current.w, vbRef.current.h];
+  return { k: vb.w / W, zoomed: vb.w < W - 0.5, reset, vbRef: vbArr, draggingRef: drag,
     bind: { ref, viewBox: `${vb.x} ${vb.y} ${vb.w} ${vb.h}`, onMouseDown: onDown, onMouseMove: onMove, onMouseUp: onUp } };
 }
 
 // a small floating "reset zoom" chip shown over a chart once it's been zoomed
 function ZoomReset({ z }) {
   return z.zoomed ? <button className="xp-zoomreset" onClick={z.reset} title="reset zoom">⤢ reset</button> : null;
+}
+
+// ── cursor FISHEYE for the Explore dot clouds ──────────────────────────────────
+// A small local port of TourMap's fisheye (canonical copy in rotation-views3.jsx ~L2160). These
+// charts keep every dot a CONSTANT on-screen size by riding a --zk CSS var (r = calc(Npx*var(--zk)));
+// so instead of writing the r attribute we multiply in a per-dot --fk variable and render
+// r = calc(Npx * var(--zk) * var(--fk,1)). Setting --fk imperatively on the DOM node's style never
+// re-renders the memoized cloud. pointermove → rAF → each dot in ~R_PX screen px gets an eased k in
+// [1,FISH_MAXK]; pointerleave / any active drag resets. The chart supplies its live viewBox (vbRef,
+// so a zoom/pan mid-hover still maps correctly) and marks its fisheye dots with `data-fk` + data-cx/cy
+// (the dots' base 1000×H coords, which ARE viewBox-base units). draggingRef pauses it during a pan.
+function useFisheye(svgRef, vbRef, sel, draggingRef) {
+  const raf = React.useRef(0);
+  const FISH_R_PX = 55, FISH_MAXK = 1.35;
+  const reset = React.useCallback(() => { const el = svgRef.current; if (!el) return; for (const c of el.querySelectorAll(sel)) c.style.setProperty("--fk", "1"); }, [sel]);
+  const run = React.useCallback((cx, cy) => {
+    const el = svgRef.current; if (!el) return;
+    if (draggingRef && draggingRef.current) return;   // paused during a pan/brush gesture
+    if (raf.current) return;
+    raf.current = requestAnimationFrame(() => {
+      raf.current = 0;
+      const rect = el.getBoundingClientRect(); if (!rect.width || !rect.height) return;
+      if (cx < rect.left || cx > rect.right || cy < rect.top || cy > rect.bottom) { reset(); return; }
+      const vb = vbRef.current;   // [x,y,w,h]
+      const mvx = vb[0] + (cx - rect.left) / rect.width * vb[2];   // cursor in viewBox-base units
+      const mvy = vb[1] + (cy - rect.top) / rect.height * vb[3];
+      const rr = FISH_R_PX * (vb[2] / rect.width);   // R_PX screen px → viewBox units
+      const inv = 1 / rr;
+      for (const c of el.querySelectorAll(sel)) {
+        const bx = +c.dataset.cx, by = +c.dataset.cy;
+        const dnorm = Math.hypot((bx - mvx) * inv, (by - mvy) * inv);   // 0 at cursor, 1 at edge
+        const k = dnorm >= 1 ? 1 : 1 + (FISH_MAXK - 1) * (1 - dnorm) * (1 - dnorm);
+        c.style.setProperty("--fk", k.toFixed(3));
+      }
+    });
+  }, [sel, reset, draggingRef]);
+  React.useEffect(() => () => { if (raf.current) cancelAnimationFrame(raf.current); }, []);
+  return { run, reset };
 }
 
 // MoodQuadrant — valence × energy scatter that doubles as a filter: click a quadrant to scope the
@@ -184,6 +226,7 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
     return () => cancelAnimationFrame(raf);
   }, [pts]);
   const z = useZoom(1000, 560);
+  const fish = useFisheye(z.bind.ref, z.vbRef, ".xp-fdot", z.draggingRef);
   // same 1000×560 canvas as the texture scatter so switching lenses doesn't change the
   // module height (Fuad 2026-07-05); quadrants are simply rectangles now.
   const QW = 1000, QH = 560, qp = 40;
@@ -198,9 +241,10 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
     const op = !active ? 0.05 : on ? 0.95 : dimZone ? 0.1 : 0.62;
     const baseR = on ? 7 : 3 + Math.sqrt(p.plays / maxPlays) * 9;
     return (
-      <circle key={p.id} cx={qx(p.x)} cy={qy(p.y)} fill={`oklch(0.64 0.16 ${p.hue})`}
+      <circle key={p.id} className="xp-fdot" data-cx={qx(p.x).toFixed(1)} data-cy={qy(p.y).toFixed(1)}
+        cx={qx(p.x)} cy={qy(p.y)} fill={`oklch(0.64 0.16 ${p.hue})`}
         fillOpacity={op} stroke={on ? "#fff" : "none"} strokeWidth={1.3} vectorEffect="non-scaling-stroke"
-        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: "fill-opacity .45s ease" }}
+        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: "fill-opacity .45s ease" }}
         onMouseEnter={() => active && setHi(p.id)} onClick={(e) => { e.stopPropagation(); active && go("artist", p.id); }}><title>{p.name}</title></circle>);
   }), [pts, n, activeIds, hi, maxPlays, moodZone, go]);
   const mid = 0.5;
@@ -213,7 +257,9 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
   return (
     <div style={{ padding: "14px 16px 10px", position: "relative" }}>
       <ZoomReset z={z} />
-      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }} onMouseLeave={() => setHi(null)}>
+      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }}
+        onMouseMove={(e) => { z.bind.onMouseMove(e); fish.run(e.clientX, e.clientY); }}
+        onMouseLeave={() => { setHi(null); z.bind.onMouseUp(); fish.reset(); }}>
         {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
           fill={moodZone === zn.z ? "var(--accent-bg)" : "transparent"} stroke="none"
           style={{ cursor: "pointer", transition: "fill .35s ease" }} onClick={() => setMoodZone(moodZone === zn.z ? null : zn.z)}><title>{MOOD_LABELS[zn.z]}</title></rect>)}
@@ -246,6 +292,7 @@ function ArtistCloud({ pts, activeIds, go }) {
   }, [pts]);
   const maxPlays = React.useMemo(() => Math.max(1, ...pts.map(p => p.plays)), [pts]);
   const z = useZoom(1000, 560);
+  const fish = useFisheye(z.bind.ref, z.vbRef, ".xp-fdot", z.draggingRef);
   // dots memoized WITHOUT the zoom factor — radius rides a CSS var (--zk) so zooming rescales
   // marks natively without React re-reconciling the whole cloud (Fuad 2026-07-09).
   const dots = React.useMemo(() => pts.slice(0, n).map(p => {
@@ -253,15 +300,18 @@ function ArtistCloud({ pts, activeIds, go }) {
     const op = !active ? 0.05 : on ? 0.95 : 0.6;
     const baseR = on ? 7 : 2.4 + Math.sqrt(p.plays / maxPlays) * 8.5;
     return (
-      <circle key={p.id} cx={px(p.x)} cy={py(p.y)} fill={`oklch(0.64 0.16 ${p.hue})`} fillOpacity={op}
+      <circle key={p.id} className="xp-fdot" data-cx={px(p.x).toFixed(1)} data-cy={py(p.y).toFixed(1)}
+        cx={px(p.x)} cy={py(p.y)} fill={`oklch(0.64 0.16 ${p.hue})`} fillOpacity={op}
         stroke={on ? "#fff" : "none"} strokeWidth={1.3} vectorEffect="non-scaling-stroke"
-        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: "fill-opacity .45s ease" }}
+        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: "fill-opacity .45s ease" }}
         onMouseEnter={() => active && setHi(p.id)} onClick={() => active && go("artist", p.id)}><title>{p.name}</title></circle>);
   }), [pts, n, activeIds, hi, maxPlays, go]);
   return (
     <div style={{ padding: "14px 16px 10px", position: "relative" }}>
       <ZoomReset z={z} />
-      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }} onMouseLeave={() => setHi(null)}>
+      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }}
+        onMouseMove={(e) => { z.bind.onMouseMove(e); fish.run(e.clientX, e.clientY); }}
+        onMouseLeave={() => { setHi(null); z.bind.onMouseUp(); fish.reset(); }}>
         {[.25, .5, .75].map(g => (<g key={g}>
           <line x1={px(g)} y1={pad} x2={px(g)} y2={H - pad} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
           <line x1={pad} y1={py(g)} x2={W - pad} y2={py(g)} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
@@ -289,6 +339,7 @@ function SubMoodScatter({ subs, activeSub, activeFam, onPick, moodZone, setMoodZ
   const QW = 1000, QH = 560, qp = 40;
   const qx = (v) => qp + v * (QW - 2 * qp), qy = (e) => qp + (1 - e) * (QH - 2 * qp);
   const maxW = Math.max(1, ...subs.map(s => s.w));
+  const fish = useFisheye(z.bind.ref, z.vbRef, ".xp-fdot", z.draggingRef);
   // bubbles memoized without the zoom factor; radius/label ride the --zk CSS var so zoom
   // rescales them natively without re-reconciling every subgenre bubble (Fuad 2026-07-09).
   const bubbles = React.useMemo(() => subs.map((s, i) => {
@@ -300,10 +351,10 @@ function SubMoodScatter({ subs, activeSub, activeFam, onPick, moodZone, setMoodZ
     return (
       <g key={s.name} style={{ cursor: "pointer" }}
         onMouseEnter={() => setHi(s.name)} onClick={(e) => { e.stopPropagation(); onPick(s.name); }}>
-        <circle cx={qx(s.x)} cy={qy(s.y)} fill="transparent" style={{ r: `calc(${Math.max(baseR, 14).toFixed(2)}px * var(--zk))` }} />
-        <circle cx={qx(s.x)} cy={qy(s.y)} fill={`oklch(0.64 0.16 ${s.hue})`}
+        <circle className="xp-fdot" data-cx={qx(s.x).toFixed(1)} data-cy={qy(s.y).toFixed(1)} cx={qx(s.x)} cy={qy(s.y)} fill="transparent" style={{ r: `calc(${Math.max(baseR, 14).toFixed(2)}px * var(--zk) * var(--fk, 1))` }} />
+        <circle className="xp-fdot" data-cx={qx(s.x).toFixed(1)} data-cy={qy(s.y).toFixed(1)} cx={qx(s.x)} cy={qy(s.y)} fill={`oklch(0.64 0.16 ${s.hue})`}
           fillOpacity={on ? .55 : dim ? .12 : .28} stroke={`oklch(0.6 0.16 ${s.hue})`} strokeWidth={on || foc ? 2.2 : 1.3} vectorEffect="non-scaling-stroke"
-          style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk))`, transition: `fill-opacity .45s cubic-bezier(.3,.8,.3,1) ${i * 0.008}s` }} />
+          style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, transition: `fill-opacity .45s cubic-bezier(.3,.8,.3,1) ${i * 0.008}s` }} />
         {baseR > 16 && <text x={qx(s.x)} y={qy(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontFamily="var(--sans)" fontWeight="500" style={{ pointerEvents: "none", fontSize: `calc(${baseFs.toFixed(2)}px * var(--zk))` }}>{s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
       </g>);
   }), [subs, maxW, activeSub, activeFam, hi, onPick]);
@@ -317,7 +368,9 @@ function SubMoodScatter({ subs, activeSub, activeFam, onPick, moodZone, setMoodZ
   return (
     <div style={{ padding: "14px 16px 10px", position: "relative" }}>
       <ZoomReset z={z} />
-      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }} onMouseLeave={() => setHi(null)}>
+      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }}
+        onMouseMove={(e) => { z.bind.onMouseMove(e); fish.run(e.clientX, e.clientY); }}
+        onMouseLeave={() => { setHi(null); z.bind.onMouseUp(); fish.reset(); }}>
         {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
           fill={moodZone === zn.z ? "var(--accent-bg)" : "transparent"} stroke="none"
           style={{ cursor: "pointer", transition: "fill .35s ease" }} onClick={() => setMoodZone(moodZone === zn.z ? null : zn.z)}><title>{MOOD_LABELS[zn.z]}</title></rect>)}
@@ -476,6 +529,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go }) {
   const dragRef = React.useRef(null);
   const z = useZoom(1000, 560);
   const svgRef = z.bind.ref; // share the element useZoom already tracks (wheel-zoom binds to it)
+  const fish = useFisheye(svgRef, z.vbRef, ".xp-fdot", dragRef);   // pause fisheye while brushing (dragRef)
 
   const W = 1000, H = 560;
   const PAD_L = 54, PAD_R = 24, PAD_T = 24, PAD_B = 46;
@@ -561,6 +615,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go }) {
     let best = null, bd = 26 * 26;
     for (const pt of pts) { const dx = pt.px - p.x, dy = pt.py - p.y, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = pt; } }
     setHover(best);
+    fish.run(evt.clientX, evt.clientY);   // proximity fisheye (paused while brushing via dragRef)
   };
   const onUp = () => {
     if (dragRef.current && brush) {
@@ -570,7 +625,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go }) {
     }
     dragRef.current = null; setBrush(null);
   };
-  const onLeave = () => { if (!dragRef.current) setHover(null); };
+  const onLeave = () => { if (!dragRef.current) { setHover(null); fish.reset(); } };
 
   const inBrush = React.useCallback((pt) => brushed ? (pt.px >= brushed.x0 && pt.px <= brushed.x1 && pt.py >= brushed.y0 && pt.py <= brushed.y1) : true, [brushed]);
   const isDimFam = React.useCallback((row) => famDim != null && row.fam !== famDim, [famDim]);
@@ -587,10 +642,11 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go }) {
     const op = dimF ? 0.06 : brushed ? (on ? 0.92 : 0.1) : (mode === "subgenres" ? 0.82 : 0.72);
     const baseR = isHover ? pt.radius + 2 : pt.radius;
     return (
-      <circle key={pt.row.id + "-" + i} cx={pt.px.toFixed(1)} cy={pt.py.toFixed(1)}
+      <circle key={pt.row.id + "-" + i} className="xp-fdot" data-cx={pt.px.toFixed(1)} data-cy={pt.py.toFixed(1)}
+        cx={pt.px.toFixed(1)} cy={pt.py.toFixed(1)}
         fill={fillFor(pt.row)} fillOpacity={op}
         stroke={isHover ? "#fff" : "none"} strokeWidth={1.4} vectorEffect="non-scaling-stroke"
-        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk))`, cursor: "pointer", transition: "fill-opacity .3s ease" }} />);
+        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: "pointer", transition: "fill-opacity .3s ease" }} />);
   }), [pts, hover, brushed, inBrush, isDimFam, fillFor, mode]);
 
   const subLabels = React.useMemo(() => mode !== "subgenres" ? null : pts.filter(pt => labelIds.has(pt.row.id) && !isDimFam(pt.row)).map(pt => (

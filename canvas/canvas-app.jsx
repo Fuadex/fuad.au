@@ -479,9 +479,10 @@ function Reader({ id, go }) {
   const [zoom, setZoom] = useState(false);       // plain Zoom overlay (fallback when OSD fails)
   const [deep, setDeep] = useState(false);       // DeepZoom (OSD) overlay
   const [tier, setTier] = useState("about");
+  const [inspOpen, setInspOpen] = useState(false);
   // close returns to the previous history entry (home or wall, depending where the card was clicked)
   const close = () => { history.back(); };
-  useEffect(() => { setZoom(false); setDeep(false); setTier("about"); }, [id]);
+  useEffect(() => { setZoom(false); setDeep(false); setTier("about"); setInspOpen(false); }, [id]);
   useEffect(() => {
     const on = (e) => { if (e.key === "Escape" && !zoom && !deep) close(); };
     window.addEventListener("keydown", on);
@@ -492,6 +493,7 @@ function Reader({ id, go }) {
   const life = a.born ? `${a.born}–${a.died || ""}` : null;
   const pal = (window.CANVAS_PALETTE || {})[id];
   const read = (window.CANVAS_ART_ABOUT || {})[id];
+  const inspect = (window.CANVAS_INSPECT || {})[id] || null;
 
   // Does this work have a usable OSD source? (IIIF, hires.img, or fallback imgZoom/img)
   const hasDeepZoom = !!resolveOSDSource(w);
@@ -551,6 +553,38 @@ function Reader({ id, go }) {
             </div>
           )}
           {w.note && <div className="cv-r-note">{w.note}</div>}
+          {inspect && (
+            <div className="cv-r-inspect">
+              <div className="cv-r-inspect-rule" />
+              <div className="cv-r-inspect-kicker">Inspection — a close reading by Fable</div>
+              <div className="cv-r-inspect-lens">
+                <span className="lbl">What you see</span>
+                <p className="cv-r-inspect-txt">{inspect.see}</p>
+              </div>
+              {inspOpen && (
+                <React.Fragment>
+                  <div className="cv-r-inspect-lens">
+                    <span className="lbl">What it's about</span>
+                    <p className="cv-r-inspect-txt">{inspect.about}</p>
+                  </div>
+                  <div className="cv-r-inspect-lens">
+                    <span className="lbl">Why it sings</span>
+                    <p className="cv-r-inspect-txt">{inspect.craft}</p>
+                  </div>
+                  <div className="cv-r-inspect-lens">
+                    <span className="lbl">The moment</span>
+                    <p className="cv-r-inspect-txt">{inspect.context}</p>
+                  </div>
+                  {w.hires && w.hires.details && w.hires.details.length > 0 && (
+                    <button type="button" className="cv-r-inspect-zoom" onClick={() => setDeep(true)}>⤢ walk the details in deep zoom</button>
+                  )}
+                </React.Fragment>
+              )}
+              {!inspOpen && (
+                <button type="button" className="cv-r-inspect-more" onClick={() => setInspOpen(true)}>continue the inspection ▾</button>
+              )}
+            </div>
+          )}
           <div className="cv-r-links">
             {hasDeepZoom && <button type="button" className="cv-r-deep" onClick={() => setDeep(true)}>⤢ Deep zoom</button>}
             {w.qid && <a href={`https://www.wikidata.org/wiki/${w.qid}`} target="_blank" rel="noopener noreferrer">Wikidata ↗</a>}

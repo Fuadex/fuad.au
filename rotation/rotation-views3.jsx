@@ -2358,15 +2358,7 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
           {tf.k > 1 && <button onClick={() => { setOff(new Set()); nav.resetView(cities); }} title="reset view">⟲</button>}
         </div>
       </div>
-      <div className="gv-cmap-chips">
-        {cities.map(c => (
-          <button key={c.k} className="gv-cmap-chip" data-on={!off.has(c.k)}
-            onClick={() => toggle(c.k)} title={`${!off.has(c.k) ? "hide" : "show"} ${c.city} — refits the view`}>
-            {c.city} <span>{c.n}</span>
-          </button>
-        ))}
-        {anyDrift && <button className="gv-cmap-chip gv-cmap-reset" onClick={() => { setOff(new Set()); nav.resetView(cities); }}>reset view</button>}
-      </div>
+      {/* city chips removed (Fuad 2026-07-12) — fisheye + map reset button remain */}
     </div>
   );
 }
