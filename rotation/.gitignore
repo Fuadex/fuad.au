@@ -29,6 +29,7 @@ IDEAS.md
 music-core.js
 music-rest.js
 day-series.js
+pulse.js
 genius-mood-lazy.js
 genius-about-lazy.js
 genius-themes-lazy.js
