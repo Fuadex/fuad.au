@@ -524,9 +524,9 @@ function ArtistBarcode({ artistId, daysReady }) {
   });
 
   return (
-    <div style={{ marginBottom: 10 }}>
+    <div style={{ marginBottom: 10, width: "100%", maxWidth: 560 }}>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" height={H}
-        style={{ display: "block", imageRendering: "crispEdges" }}
+        style={{ display: "block", imageRendering: "crispEdges", maxWidth: 560 }}
         preserveAspectRatio="none">
         {lines}
       </svg>
@@ -556,6 +556,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   const [simTab, setSimTab] = React.useState("lastfm");
   const [simN, setSimN] = React.useState(8);      // last.fm sounds-like depth (8 ⇄ 16)
   const [albMode, setAlbMode] = React.useState("covers");   // albums: covers (default) ⇄ list
+  const [compsOpen, setCompsOpen] = React.useState(false);  // comps/live/OSTs section — collapsed by default
   // by-sound depth (8/16/24) + tune-panel toggle lifted here so they sit inline with the
   // last.fm/by-sound switch in the header (Fuad 2026-07-07)
   const [soundCount, setSoundCount] = React.useState(8);
@@ -620,7 +621,13 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   const peakYear = (R.ERA_START || 2014) + peakIdx;
   // Per-artist top tracks/albums computed in build-data.js — full top per artist, not
   // globally-capped lists. NIN gets all their top tracks, Midori gets theirs, etc.
-  const albums = a.topAlbums || [];
+  const allAlbums = a.topAlbums || [];
+  // sectioned album taxonomy (build-data tags each entry with kind ∈ single/ep/album/comp/live/ost;
+  // kind=single may carry `on` = the canonical slug of the host album it appears on).
+  const albums = allAlbums.filter(al => !al.kind || al.kind === "album");     // LPs (+ anything unknown)
+  const epsSingles = allAlbums.filter(al => al.kind === "ep" || al.kind === "single");
+  const comps = allAlbums.filter(al => al.kind === "comp" || al.kind === "live" || al.kind === "ost");
+  const goAlbum = (title) => go("album", R.slug(a.name) + "~" + R.slug(title));
   const tracks = a.topTracks || [];
   // album-scoped views (active while an album is drilled in the flow):
   // tracks from the flow's per-album series; DNA = mean of per-track features (0–100 → 0–1)
@@ -681,7 +688,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 0, alignSelf: "flex-end" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 0, alignSelf: "flex-end", width: "fit-content", maxWidth: "100%" }}>
           <ArtistBarcode artistId={a.id} daysReady={daysReady} />
           <div style={{ display: "flex", gap: 26 }}>
             <div><div className="r-stat-n" style={{ fontSize: 38 }}>{fmt(a.plays)}</div>
@@ -747,8 +754,10 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {/* how they played out — flow, in the middle; drill is lifted so the album
                 selection scopes Top tracks + Sound DNA too */}
             <ArtistFlow id={a.id} hue={a.hue} go={go} drill={flowDrill} setDrill={setFlowDrill} onAlbum={setSelAlbum} />
-            {/* all albums — covers (default) ⇄ compact list */}
+            {/* releases — sectioned taxonomy: Albums (covers/list), EPs & singles (spine rows),
+                Comps/live/OSTs (collapsed). Each section renders only when non-empty. */}
             <div className="r-card" style={{ padding: 18 }}>
+              {albums.length > 0 && <React.Fragment>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
                 <span className="lbl"><b>Albums</b></span>
                 <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
@@ -761,8 +770,8 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               {albMode === "covers" ? (
                 <div className="av-albumcovers" style={{ maxHeight: 420, overflowY: "auto", paddingRight: 4,
                   display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: 10 }}>
-                  {(albums.length ? albums : []).map((al, i) => (
-                    <div key={al.title + i} style={{ cursor: "pointer", minWidth: 0 }} onClick={() => go("album", R.slug(a.name) + "~" + R.slug(al.title))} title={`${al.title} →`}>
+                  {albums.map((al, i) => (
+                    <div key={al.title + i} style={{ cursor: "pointer", minWidth: 0 }} onClick={() => goAlbum(al.title)} title={`${al.title} →`}>
                       <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
                       <div style={{ fontSize: 10, marginTop: 5, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{al.title}</div>
                       <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(al.plays)} plays</div>
@@ -771,14 +780,67 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                 </div>
               ) : (
                 <div style={{ display: "grid", gap: 2, maxHeight: 420, overflowY: "auto", paddingRight: 4 }}>
-                  {(albums.length ? albums : []).map((al, i) => (
-                    <div key={al.title + i} className="r-track-row" onClick={() => go("album", R.slug(a.name) + "~" + R.slug(al.title))} title={`${al.title} →`}
+                  {albums.map((al, i) => (
+                    <div key={al.title + i} className="r-track-row" onClick={() => goAlbum(al.title)} title={`${al.title} →`}
                       style={{ display: "flex", alignItems: "center", gap: 9, padding: "5px 4px", cursor: "pointer", borderRadius: 4 }}>
                       <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={30} radius={2} />
                       <span style={{ flex: 1, minWidth: 0, fontSize: 12, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{al.title}</span>
                       <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(al.plays)}</span>
                     </div>
                   ))}
+                </div>
+              )}
+              </React.Fragment>}
+
+              {/* EPs & singles — compact spine rows (no covers). A single with `on` links to its
+                  host album (same nav as the cover grid) and reads "→ appears on {Album}". */}
+              {epsSingles.length > 0 && (() => {
+                // resolve each single's `on` slug → a display title, from any release we know
+                const titleForSlug = (s) => { const hit = allAlbums.find(al => R.slug(al.title) === s); return hit ? hit.title : null; };
+                return (
+                <div style={{ marginTop: albums.length ? 16 : 0 }}>
+                  <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
+                    <span className="lbl"><b>EPs & singles</b></span><span className="meta">{epsSingles.length}</span></div>
+                  <div style={{ display: "grid", gap: 2, maxHeight: 300, overflowY: "auto", paddingRight: 4 }}>
+                    {epsSingles.map((al, i) => {
+                      const onTitle = al.on ? titleForSlug(al.on) : null;
+                      const nav = al.on ? () => go("album", R.slug(a.name) + "~" + al.on) : () => goAlbum(al.title);
+                      return (
+                        <div key={al.title + i} className="r-track-row" onClick={nav}
+                          title={onTitle ? `${onTitle} →` : `${al.title} →`}
+                          style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 4px", cursor: "pointer", borderRadius: 4 }}>
+                          <span style={{ flex: 1, minWidth: 0, fontSize: 12, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                            {al.title}
+                            {onTitle && <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginLeft: 7 }}>→ appears on {onTitle}</span>}
+                          </span>
+                          <span className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{al.kind}</span>
+                          <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(al.plays)}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );})()}
+
+              {/* Compilations, live & OSTs — same spine rows, collapsed behind "+ N more" */}
+              {comps.length > 0 && (
+                <div style={{ marginTop: (albums.length || epsSingles.length) ? 16 : 0 }}>
+                  <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
+                    <span className="lbl"><b>Compilations, live & OSTs</b></span>
+                    <button className="av-more" onClick={() => setCompsOpen(o => !o)}>{compsOpen ? "hide ▴" : `+ ${comps.length} more`}</button>
+                  </div>
+                  {compsOpen && (
+                    <div style={{ display: "grid", gap: 2, maxHeight: 300, overflowY: "auto", paddingRight: 4 }}>
+                      {comps.map((al, i) => (
+                        <div key={al.title + i} className="r-track-row" onClick={() => goAlbum(al.title)} title={`${al.title} →`}
+                          style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 4px", cursor: "pointer", borderRadius: 4 }}>
+                          <span style={{ flex: 1, minWidth: 0, fontSize: 12, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{al.title}</span>
+                          <span className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{al.kind}</span>
+                          <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(al.plays)}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -1214,6 +1276,17 @@ function AlbumView({ id, go }) {
     if (window.ROTATION_TRACKTHEMES) return;
     const s = document.createElement("script"); s.src = "genius-themes-lazy.js"; s.onload = () => setThemesReady(true); document.head.appendChild(s);
   }, []);
+  // album extras (deluxe/bonus tracks + absorbed-edition names) — lazy + optional (404 = feature off).
+  // shared script tag so every AlbumView reuses one load; graceful onerror keeps the page working.
+  const [, setExReady] = React.useState(!!window.ROTATION_ALBUM_EXTRAS);
+  React.useEffect(() => {
+    if (window.ROTATION_ALBUM_EXTRAS) return;
+    let s = document.getElementById("album-extras-js");
+    if (!s) { s = document.createElement("script"); s.id = "album-extras-js"; s.src = "album-extras.js"; document.head.appendChild(s); }
+    const done = () => setExReady(true);
+    s.addEventListener("load", done); s.addEventListener("error", done);
+    return () => { s.removeEventListener("load", done); s.removeEventListener("error", done); };
+  }, []);
   const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
 
   const data = React.useMemo(() => {
@@ -1269,6 +1342,12 @@ function AlbumView({ id, go }) {
   })();
   // album "what it's about" (Wikipedia themes) — id is artistSlug~albumSlug, same key the pull uses
   const albumAbout = (window.ROTATION_ALBUM_ABOUT && window.ROTATION_ALBUM_ABOUT[id]) || null; // [excerpt, wikiTitle]
+  // album extras (same id key): { bonus:[track titles], from:[edition names] }. When present, the
+  // bonus tracks are floated below a "deluxe / bonus" rule and the editions surface as a chip.
+  const extras = (window.ROTATION_ALBUM_EXTRAS && window.ROTATION_ALBUM_EXTRAS[id]) || null;
+  const bonusSet = extras && extras.bonus ? new Set(extras.bonus) : null;
+  const baseTracks = bonusSet ? data.tracks.filter(t => !bonusSet.has(t.title)) : data.tracks;
+  const bonusTracks = bonusSet ? data.tracks.filter(t => bonusSet.has(t.title)) : [];
 
   return (
     <div className="r-view tv-page">
@@ -1366,10 +1445,16 @@ function AlbumView({ id, go }) {
       )}
 
       <div className="r-card" style={{ padding: "16px 18px" }}>
-        <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Tracks you've played</b></span>
+        <div className="r-card-h" style={{ padding: 0, marginBottom: 6, flexWrap: "wrap", gap: 6 }}><span className="lbl"><b>Tracks you've played</b></span>
           <span className="meta">{fmt(data.trackPlays)} plays across {data.tracks.length}</span></div>
-        <div style={{ display: "grid", gap: 2 }}>
-          {data.tracks.map((t, i) => (
+        {/* absorbed edition chip — this canonical album merged one or more variant editions */}
+        {extras && extras.from && extras.from.length > 0 && (
+          <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".06em", textTransform: "uppercase", margin: "0 0 10px" }}>
+            also logged as: <span style={{ color: "var(--ink-soft)" }}>{extras.from.join(", ")}</span>
+          </div>
+        )}
+        {(() => {
+          const row = (t, i) => (
             <div key={t.title + i} className="r-track-row" onClick={() => go("track", R.slug(data.artist) + "~" + R.slug(t.title))} title={`${t.title} →${t.e != null ? ` · energy ${t.e} · positivity ${t.v}` : ""}`} style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px", cursor: "pointer", borderRadius: 4 }}>
               <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{t.no ? String(t.no).padStart(2, "0") : String(i + 1).padStart(2, "0")}</span>
               <div style={{ fontSize: 13, lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>
@@ -1380,8 +1465,20 @@ function AlbumView({ id, go }) {
               <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: (t.plays / maxT * 100) + "%", background: `oklch(0.6 0.14 ${hue})` }} /></div>
               <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", textAlign: "right" }}>{fmt(t.plays)}</span>
             </div>
-          ))}
-        </div>
+          );
+          return (
+            <div style={{ display: "grid", gap: 2 }}>
+              {baseTracks.map((t, i) => row(t, i))}
+              {bonusTracks.length > 0 && (
+                <div className="r-mono" style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", margin: "10px 4px 4px" }}>
+                  <span>deluxe / bonus</span>
+                  <span style={{ flex: 1, height: 1, background: "var(--rule)" }} />
+                </div>
+              )}
+              {bonusTracks.map((t, i) => row(t, baseTracks.length + i))}
+            </div>
+          );
+        })()}
         {known && <div style={{ marginTop: 14 }}><button className="r-back" style={{ margin: 0 }} onClick={() => go("artist", artistId)}>more from {data.artist} →</button></div>}
       </div>
     </div>

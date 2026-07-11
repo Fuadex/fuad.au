@@ -208,5 +208,39 @@ if (core && Array.isArray(core.ARTISTS)) {
   }
 }
 
+// (e) album-extras.js parses; when it has entries, each value has array bonus/from fields
+{
+  const r = loadGlobal("album-extras.js", "ROTATION_ALBUM_EXTRAS");
+  if (r.missing) ok(false, "album-extras.js exists");
+  else if (r.error) ok(false, "album-extras.js parses — " + r.error);
+  else {
+    const v = r.value || {};
+    const keys = Object.keys(v);
+    ok(true, `album-extras.js parses (${keys.length} albums)`);
+    if (keys.length > 0) {
+      let badShape = 0, empties = 0;
+      for (const k of keys) {
+        const e = v[k];
+        // present fields must be arrays; entries with neither bonus nor from should not be emitted
+        if ("bonus" in e && !Array.isArray(e.bonus)) badShape++;
+        if ("from" in e && !Array.isArray(e.from)) badShape++;
+        const nb = (e.bonus && e.bonus.length) || 0, nf = (e.from && e.from.length) || 0;
+        if (nb === 0 && nf === 0) empties++;
+      }
+      ok(badShape === 0, `album-extras: bonus/from are arrays where present (${badShape} bad)`);
+      ok(empties === 0, `album-extras: no empty entries (bonus.length||from.length > 0) (${empties} empty)`);
+    }
+  }
+}
+
+// (f) at least one kept-artist single carries `on` (host-album resolution)
+if (core && Array.isArray(core.ARTISTS)) {
+  let singles = 0, withOn = 0;
+  for (const a of core.ARTISTS) for (const al of (a.topAlbums || [])) {
+    if (al.kind === "single") { singles++; if (al.on) withOn++; }
+  }
+  ok(withOn >= 1, `at least one kept-artist single carries \`on\` (${withOn} of ${singles} singles)`);
+}
+
 console.log(failures ? `\n${failures} FAILURE(S) — deploy should be blocked.` : "\nall smoke checks passed");
 process.exit(failures ? 1 : 0);

@@ -401,6 +401,23 @@ function canonAlbum(name) {
 // at ingest whenever a variant title differs from its canonical base (emitted to album-alias.js).
 const ALBUM_ALIAS = {};
 
+// human-readable suffix that canonAlbum() peeled off "Mezzanine (Deluxe Edition)" → "Deluxe Edition".
+// Used to populate album-extras `from`. Returns "" when nothing was stripped or the tail is empty.
+function variantSuffix(raw, canon) {
+  if (!raw || raw === canon || !canon) return "";
+  if (raw.slice(0, canon.length) !== canon) return "";
+  // strip the leading bracket/dash/space that opened the edition segment, and any trailing bracket
+  return raw.slice(canon.length).replace(/^[\s([\-–—]+/, "").replace(/[)\]\s]+$/, "").trim();
+}
+// per canonical album, capture what the base vs the variants contributed — for album-extras.js:
+//   _albBaseTracks: artist\x00canonAlbum → Set(track titles that appeared under the BASE title)
+//   _albVarTracks:  artist\x00canonAlbum → Set(track titles that appeared under a VARIANT title)
+//   _albVarNames:   artist\x00canonAlbum → Set(distinct human-readable variant suffix names)
+const _albBaseTracks = new Map();
+const _albVarTracks = new Map();
+const _albVarNames = new Map();
+const _addTo = (map, key, val) => { let s = map.get(key); if (!s) { s = new Set(); map.set(key, s); } s.add(val); };
+
 const artistPlays = new Map();           // name → count
 const albumPlays = new Map();            // artist\x00album → count
 const trackPlays = new Map();            // artist\x00track → count
@@ -427,6 +444,14 @@ for (const line of lines) {
   if (album && rawAlbum !== album) {
     const aSlug = slug(artist);
     ALBUM_ALIAS[aSlug + "~" + slug(rawAlbum)] = aSlug + "~" + slug(album);
+    // this scrobble came in under a variant edition — remember its suffix + which track it carried
+    const ak = artist + "\x00" + album;
+    const suf = variantSuffix(rawAlbum, album);
+    if (suf) _addTo(_albVarNames, ak, suf);
+    if (track) _addTo(_albVarTracks, ak, track);
+  } else if (album && track) {
+    // base-title scrobble (nothing stripped) — records that this track lives on the base album
+    _addTo(_albBaseTracks, artist + "\x00" + album, track);
   }
   artistPlays.set(artist, (artistPlays.get(artist) || 0) + 1);
   if (album) albumPlays.set(artist + "\x00" + album, (albumPlays.get(artist + "\x00" + album) || 0) + 1);
@@ -526,6 +551,34 @@ function albumKind(artist, title) {
 }
 const _EMPTY_SET = new Set();
 
+// index of the albums each artist owns, so we can resolve a single onto its host LP/EP.
+// artist → [{ title, kind, plays }] (kind album/ep only — where a real tracklist lives).
+const _hostAlbumsBy = new Map();
+{
+  for (const [k, plays] of albumPlays) {
+    const ix = k.indexOf("\x00"); if (ix < 0) continue;
+    const artist = k.slice(0, ix), title = k.slice(ix + 1);
+    const kind = albumKind(artist, title);
+    if (kind !== "album" && kind !== "ep") continue;
+    if (!_hostAlbumsBy.has(artist)) _hostAlbumsBy.set(artist, []);
+    _hostAlbumsBy.get(artist).push({ title, kind, plays });
+  }
+}
+// For a kind=single titled `single`, find the most-played album/ep of the same artist whose
+// tracklist contains a track named exactly like the single. Returns that album's canonical slug,
+// or "" when none / ambiguous-but-resolvable (we pick the most-played, so never truly ambiguous).
+function singleHostSlug(artist, single) {
+  const hosts = _hostAlbumsBy.get(artist);
+  if (!hosts) return "";
+  let best = null;
+  for (const h of hosts) {
+    if (h.title === single) continue;   // don't point a single at an LP of the same name
+    const tracks = albumTracks.get(artist + "\x00" + h.title);
+    if (tracks && tracks.has(single) && (!best || h.plays > best.plays)) best = h;
+  }
+  return best ? slug(best.title) : "";
+}
+
 // measured Sound DNA from the Spotify audio-features dump (built by extract-audio.js); falls back to
 // inferred tag-derived DNA where an artist didn't match (~98% are measured).
 const AUDIO = (() => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, "audio-features.json"), "utf8")); } catch (e) { return {}; } })();
@@ -548,7 +601,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     image: imageOf(name),
     thumb: thumbOf(name),
     topTracks: (_tBy.get(name) || []).slice(0, TRACKS_PER_ARTIST),
-    topAlbums: (_aBy.get(name) || []).slice(0, ALBUMS_PER_ARTIST_VIEW).map(a => ({ ...a, cover: albArt(name, a.title), kind: albumKind(name, a.title) })),
+    topAlbums: (_aBy.get(name) || []).slice(0, ALBUMS_PER_ARTIST_VIEW).map(a => { const kind = albumKind(name, a.title); const rec = { ...a, cover: albArt(name, a.title), kind }; if (kind === "single") { const on = singleHostSlug(name, a.title); if (on) rec.on = on; } return rec; }),
     spotGenres: (SPOTGEN[name] || []).slice(0, 8),   // Spotify's own genre tags
     audio: AUDIO[name]
       ? { energy: AUDIO[name].energy, valence: AUDIO[name].valence, acoustic: AUDIO[name].acoustic, tempo: AUDIO[name].tempo, dance: AUDIO[name].dance, instr: AUDIO[name].instr }
@@ -2045,6 +2098,41 @@ const _aliasOut = "// GENERATED by build-data.js — album edition-variant → c
 fs.writeFileSync(path.join(__dirname, "album-alias.js"), _aliasOut, "utf8");
 console.log(`album-alias.js: ${Object.keys(ALBUM_ALIAS).length} variant→canonical aliases (${(_aliasOut.length / 1024).toFixed(0)} KB)`);
 
+// ─────────── ALBUM EXTRAS (generated lazy file) ───────────
+// Per canonical album that absorbed edition variants: what the variants added on top of the base.
+//   key = "<artistSlug>~<canonAlbumSlug>" → { bonus: [track titles ONLY ever seen under a variant],
+//   from: [distinct human-readable variant suffix names, e.g. "Deluxe Edition", "2012 Mix"] }.
+// Consumed lazily on the album view to (i) float deluxe/bonus tracks below a rule, (ii) chip the
+// "also logged as" editions. Only albums with bonus.length>0 || from.length>0 are emitted.
+const ALBUM_EXTRAS = {};
+{
+  const keys = new Set([..._albVarTracks.keys(), ..._albVarNames.keys()]);
+  for (const ak of keys) {
+    const ix = ak.indexOf("\x00"); if (ix < 0) continue;
+    const artist = ak.slice(0, ix), title = ak.slice(ix + 1);
+    const base = _albBaseTracks.get(ak) || _EMPTY_SET;
+    const varTracks = _albVarTracks.get(ak) || _EMPTY_SET;
+    // Variant editions often rename EVERY track ("Angel - Remastered 2019") — compare with
+    // remaster-ish suffixes stripped or the whole base tracklist reads as "bonus". Live/demo/
+    // acoustic variants stay distinct: those ARE genuine bonus content.
+    const cmp = (t) => t.toLowerCase()
+      .replace(/\s*[-–—(\[]\s*((\d{4}\s*)?remaster(ed)?(\s*\d{4})?|\d{4}\s*(mix|master)(\/(mix|master))?|(mix\/master))\s*[)\]]?\s*$/i, "")
+      .trim();
+    const baseCmp = new Set([...base].map(cmp));
+    const bonus = [...varTracks].filter(t => !base.has(t) && !baseCmp.has(cmp(t))).sort();
+    const from = [...(_albVarNames.get(ak) || _EMPTY_SET)].sort();
+    if (bonus.length === 0 && from.length === 0) continue;
+    const entry = {};
+    if (bonus.length) entry.bonus = bonus;
+    if (from.length) entry.from = from;
+    ALBUM_EXTRAS[slug(artist) + "~" + slug(title)] = entry;
+  }
+}
+const _extrasOut = "// GENERATED by build-data.js — per-canonical-album deluxe/bonus + absorbed-edition names (lazy).\n"
+  + "window.ROTATION_ALBUM_EXTRAS = " + JSON.stringify(ALBUM_EXTRAS) + ";\n";
+fs.writeFileSync(path.join(__dirname, "album-extras.js"), _extrasOut, "utf8");
+console.log(`album-extras.js: ${Object.keys(ALBUM_EXTRAS).length} albums with bonus/edition extras (${(_extrasOut.length / 1024).toFixed(0)} KB)`);
+
 // ─────────── ARTIST ACTIVE-DAYS (generated lazy file) ───────────
 // Per-artist barcode of active listening days for the artist page. Encoding (LOCKED — the UI
 // agent decodes exactly this): "start" = global first scrobble day (YYYY-MM-DD). Each artist's
@@ -2354,8 +2442,14 @@ for (const a of EXPLORE) {
   const NAMES = [], NI = new Map();
   const intern = (s) => { let i = NI.get(s); if (i == null) { i = NAMES.length; NI.set(s, i); NAMES.push(s); } return i; };
   const top = (arr) => (arr || []).sort((x, y) => y[1] - x[1]).slice(0, 12).map(([t, p]) => [intern(t), p]);
-  // albums carry a 3rd slot: the release-type kind (single/ep/album/comp/live/ost)
-  const topAlb = (arr, artist) => (arr || []).sort((x, y) => y[1] - x[1]).slice(0, 12).map(([t, p]) => [intern(t), p, albumKind(artist, t)]);
+  // albums carry a 3rd slot: the release-type kind (single/ep/album/comp/live/ost).
+  // singles that resolve onto a host album/ep carry a 4th slot: that host's canonical slug.
+  const topAlb = (arr, artist) => (arr || []).sort((x, y) => y[1] - x[1]).slice(0, 12).map(([t, p]) => {
+    const kind = albumKind(artist, t);
+    const tup = [intern(t), p, kind];
+    if (kind === "single") { const on = singleHostSlug(artist, t); if (on) tup.push(on); }
+    return tup;
+  });
   const DETAIL = {};
   for (const a of EXPLORE) {
     if (byName[a.name]) continue;

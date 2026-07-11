@@ -114,12 +114,33 @@ function mergeHours(period, hrs) {
 }
 
 // ─────────────────────────────────────────────────────────────────
-//  BARCODE SCRUBBER — full-width strip at the bottom of the calendar page.
-//  Every active listening day as a hairline across all years; clicking a year
-//  segment sets the calendar's selYear highlight.
+//  BARCODE SCRUBBER — full-bleed sticky-bottom strip on the calendar page.
+//  Every active listening day as a hairline across all years. The pane IS the
+//  time control: Day/Week/Month granularity, two Premiere-style range handles
+//  that clip a custom [start,end] day range (shared with the heatmap's selRange
+//  contract), a year-segment click that selects the whole year, and a toggle
+//  between the barcode view and a compact Horizon chart. All views share ONE
+//  overlay layer (handles + veils), so drag/year-select behave identically.
 // ─────────────────────────────────────────────────────────────────
-function BarcodeScrubber({ years, selYear, setSelYear }) {
+
+// Horizon banding — adapted from rotation-lab.jsx HorizonInner to the slim strip.
+const CAL_HORIZON_BANDS = 5;
+const CAL_HORIZON_COLORS = [
+  "oklch(0.28 0.08 260)",
+  "oklch(0.38 0.12 280)",
+  "oklch(0.48 0.15 300)",
+  "oklch(0.60 0.18 320)",
+  "oklch(0.74 0.18 340)",
+];
+
+const DAY_MS = 86400e3;
+
+function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, customRange, setCustomRange }) {
   const [days, setDays] = React.useState(window.ROTATION_DAYS || null);
+  const [view, setView] = React.useState(() => {
+    try { return localStorage.getItem("rot-cal-strip-view") === "horizon" ? "horizon" : "barcode"; } catch (e) { return "barcode"; }
+  });
+  const stripRef = React.useRef(null);   // the interactive strip element (for px↔day mapping)
 
   React.useEffect(() => {
     if (window.ROTATION_DAYS) { setDays(window.ROTATION_DAYS); return; }
@@ -140,16 +161,24 @@ function BarcodeScrubber({ years, selYear, setSelYear }) {
     }
   }, []);
 
-  const STRIP_H = 52;   // total height of the strip (px in viewBox units)
-  const LABEL_H = 13;   // space below hairlines for year labels
-  const LINE_H = STRIP_H - LABEL_H;  // hairline area height
+  const setViewPersist = (v) => { setView(v); try { localStorage.setItem("rot-cal-strip-view", v); } catch (e) {} };
+
+  const STRIP_H = 40;   // interactive strip height (px, viewBox units and CSS px)
 
   // Lab-matched color tiers (mirrors BarcodeStrip in rotation-lab.jsx exactly).
   const COL_PEAK   = "oklch(0.80 0.18 340)";  // top 5%
   const COL_HEAVY  = "oklch(0.62 0.15 320)";  // top 20%
   const COL_ACTIVE = "oklch(0.44 0.10 300)";  // active
 
-  // Memoize the static hairlines — they never change when selYear changes.
+  // Day-index → viewBox-x mapping (viewBox width = 1000). msStart = UTC ms of counts[0].
+  const meta = React.useMemo(() => {
+    if (!days) return null;
+    const n = days.counts.length;
+    const msStart = new Date(days.start + "T00:00:00Z").getTime();
+    return { n, msStart, msEnd: msStart + (n - 1) * DAY_MS };
+  }, [days]);
+
+  // Memoize the static hairlines — they never change with selection.
   const hairlines = React.useMemo(() => {
     if (!days) return null;
     const counts = days.counts;
@@ -165,7 +194,7 @@ function BarcodeScrubber({ years, selYear, setSelYear }) {
       const col = v >= p95 ? COL_PEAK : v >= p80 ? COL_HEAVY : COL_ACTIVE;
       lines.push(
         <line key={i} x1={x.toFixed(2)} x2={x.toFixed(2)}
-          y1="0" y2={LINE_H.toFixed(2)}
+          y1="0" y2={STRIP_H}
           stroke={col} strokeWidth="0.8" opacity="0.8"
           shapeRendering="crispEdges" />
       );
@@ -173,109 +202,204 @@ function BarcodeScrubber({ years, selYear, setSelYear }) {
     return lines;
   }, [days]);
 
-  // Year segment boundaries: map each year → [xStart, xEnd] in viewBox (0–1000).
+  // Horizon bars — memoized; adapted from HorizonInner banding, filling STRIP_H.
+  const horizonBars = React.useMemo(() => {
+    if (!days) return null;
+    const counts = days.counts;
+    const n = counts.length;
+    const max = Math.max(1, ...counts);
+    const dx = 1000 / n;
+    const bars = [];
+    for (let i = 0; i < n; i++) {
+      const v = counts[i];
+      if (!v) continue;
+      const norm = v / max;
+      for (let b = CAL_HORIZON_BANDS - 1; b >= 0; b--) {
+        const lo = b / CAL_HORIZON_BANDS;
+        if (norm > lo) {
+          const barH = Math.min(1, (norm - lo) / (1 / CAL_HORIZON_BANDS)) * STRIP_H;
+          bars.push(
+            <rect key={i} x={(i * dx).toFixed(2)} y={(STRIP_H - barH).toFixed(2)}
+              width={Math.max(0.8, dx).toFixed(2)} height={barH.toFixed(2)}
+              fill={CAL_HORIZON_COLORS[b]} shapeRendering="crispEdges" />
+          );
+          break;
+        }
+      }
+    }
+    return bars;
+  }, [days]);
+
+  // Year segments in viewBox-x space AND as fractional widths for the HTML label row.
   const yearSegs = React.useMemo(() => {
-    if (!days || !years || !years.length) return [];
-    const start = new Date(days.start + "T00:00:00Z").getTime();
-    const n = days.counts.length;
+    if (!days || !years || !years.length || !meta) return [];
+    const { n, msStart } = meta;
     return years.map(y => {
       const yStart = Date.UTC(y, 0, 1);
       const yEnd   = Date.UTC(y + 1, 0, 1);
-      const i0 = Math.max(0, Math.round((yStart - start) / 86400e3));
-      const i1 = Math.min(n - 1, Math.round((yEnd   - start) / 86400e3) - 1);
+      const i0 = Math.max(0, Math.round((yStart - msStart) / DAY_MS));
+      const i1 = Math.min(n - 1, Math.round((yEnd   - msStart) / DAY_MS) - 1);
       const x0 = (i0 / (n - 1)) * 1000;
       const x1 = (i1 / (n - 1)) * 1000;
-      return { y, x0, x1 };
+      return { y, x0, x1, yStart, yEnd: yEnd - DAY_MS };  // yEnd inclusive-last-day
     }).filter(s => s.x1 >= s.x0);
-  }, [days, years]);
+  }, [days, years, meta]);
 
-  // Fixed-position shell shared by both loading and loaded states.
-  const fixedShell = (children) => (
-    <div className="bc-scrubber-fixed">
-      {children}
-    </div>
-  );
+  // ── px ↔ ms mapping for drag. Reads the live strip width each drag start. ──
+  const clampMs = (ms) => Math.max(meta.msStart, Math.min(meta.msEnd, ms));
+  const dayAlign = (ms) => clampMs(Math.round((ms - meta.msStart) / DAY_MS) * DAY_MS + meta.msStart);
+  const msFromClientX = (clientX) => {
+    const r = stripRef.current.getBoundingClientRect();
+    const frac = Math.max(0, Math.min(1, (clientX - r.left) / r.width));
+    return dayAlign(meta.msStart + frac * (meta.msEnd - meta.msStart));
+  };
+  // ms → viewBox-x (0–1000)
+  const xOfMs = (ms) => ((ms - meta.msStart) / (meta.msEnd - meta.msStart)) * 1000;
 
-  if (!days) return fixedShell(
-    <div style={{
-      height: STRIP_H, display: "flex", alignItems: "center",
-      fontFamily: "var(--mono)", fontSize: 10, color: "var(--ink-faint)",
-      letterSpacing: ".1em", padding: "0 16px"
-    }}>
-      loading history…
-    </div>
-  );
+  // ── Pointer-based dragging (unified mouse + touch via Pointer Events + capture). ──
+  // Two drag modes share one move/end path:
+  //   • edge drag  — grabbing a handle: the OTHER edge is the fixed anchor.
+  //   • fresh drag — pressing empty strip with no range: the press point is the anchor,
+  //     and the pointer defines the moving edge (clip a range out of nothing).
+  const dragRef = React.useRef(null);   // { anchor: ms } — the fixed edge; pointer defines the other
+  const onDragMove = (e) => {
+    const d = dragRef.current; if (!d) return;
+    const ms = msFromClientX(e.clientX);
+    setCustomRange([Math.min(ms, d.anchor), Math.max(ms, d.anchor)]);
+  };
+  const endDrag = (e) => {
+    if (!dragRef.current) return;
+    dragRef.current = null;
+    try { e.currentTarget.releasePointerCapture(e.pointerId); } catch (err) {}
+  };
+  // Grab a handle → anchor is the opposite edge.
+  const beginHandle = (edge) => (e) => {
+    if (!customRange || !meta) return;
+    e.preventDefault(); e.stopPropagation();
+    dragRef.current = { anchor: edge === "start" ? customRange[1] : customRange[0] };
+    try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {}
+  };
+  // Press bare strip (in a gap between year targets) with no range → begin a fresh clip.
+  const beginStrip = (e) => {
+    if (!meta || customRange) return;
+    if (e.target.closest && e.target.closest("[data-bc-handle],[data-bc-year]")) return;
+    e.preventDefault();
+    const anchor = msFromClientX(e.clientX);
+    dragRef.current = { anchor };
+    setCustomRange([anchor, anchor]);
+    try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {}
+  };
 
-  return fixedShell(
-    <div style={{ width: "100%", padding: "4px 0 0" }}>
-      <div style={{ display: "flex", alignItems: "flex-end", gap: 0 }}>
-        {/* Barcode SVG — fills all remaining width */}
-        <svg
-          viewBox={`0 0 1000 ${STRIP_H}`}
-          preserveAspectRatio="none"
-          style={{ flex: 1, minWidth: 0, height: STRIP_H, display: "block" }}
-          aria-label="Listening history barcode — click a year to highlight it"
-        >
-          {/* Year highlight bands — rendered below hairlines, only changes on selYear. */}
-          {yearSegs.map(({ y, x0, x1 }) => {
-            const on = y === selYear;
-            return (
-              <rect key={y + "-bg"}
-                x={x0.toFixed(2)} y="0"
-                width={Math.max(0, x1 - x0).toFixed(2)} height={LINE_H}
-                fill={on ? "oklch(0.35 0.07 var(--acc-h) / 0.55)" : "transparent"}
-                rx="0"
-              />
-            );
-          })}
+  const shell = (children) => <div className="bc-scrubber">{children}</div>;
 
-          {/* Hairlines — memoized, never re-renders on year change. */}
-          {hairlines}
-
-          {/* Year separator lines + labels + click targets. */}
-          {yearSegs.map(({ y, x0, x1 }, i) => {
-            const on = y === selYear;
-            const cx = ((x0 + x1) / 2).toFixed(2);
-            const label = "'" + String(y).slice(2);
-            return (
-              <g key={y} style={{ cursor: "pointer", touchAction: "manipulation" }}
-                onClick={() => setSelYear(on ? null : y)}>
-                {/* Invisible wide hit target for mobile-friendly tap. */}
-                <rect x={x0.toFixed(2)} y="0"
-                  width={Math.max(0, x1 - x0).toFixed(2)} height={STRIP_H}
-                  fill="transparent" />
-                {/* Separator tick at year boundary (skip first). */}
-                {i > 0 && (
-                  <line x1={x0.toFixed(2)} x2={x0.toFixed(2)} y1="0" y2={LINE_H}
-                    stroke="var(--rule)" strokeWidth="0.8" opacity="0.4" />
-                )}
-                {/* Accent underline for selected year. */}
-                {on && (
-                  <rect x={x0.toFixed(2)} y={(LINE_H - 2).toFixed(2)}
-                    width={Math.max(0, x1 - x0).toFixed(2)} height="2"
-                    fill="var(--accent)" rx="1" />
-                )}
-                {/* Year label. */}
-                <text
-                  x={cx} y={(STRIP_H - 1).toFixed(2)}
-                  fontFamily="var(--mono)" fontSize="7.5"
-                  fill={on ? "var(--accent)" : "var(--ink-faint)"}
-                  textAnchor="middle"
-                  style={{ userSelect: "none" }}
-                >{label}</text>
-              </g>
-            );
-          })}
-        </svg>
-
-        {/* Inline legend — right-aligned, hidden on narrow screens via CSS */}
-        <div className="bc-legend">
-          <span><i style={{ background: COL_PEAK }} />peak (top 5%)</span>
-          <span><i style={{ background: COL_HEAVY }} />heavy (top 20%)</span>
-          <span><i style={{ background: COL_ACTIVE }} />active</span>
-        </div>
+  const header = (
+    <div className="bc-head">
+      <div className="r-seg bc-seg">
+        {[["day", "day"], ["week", "week"], ["month", "month"]].map(([k, l]) =>
+          <button key={k} data-on={gran === k} onClick={() => { setGran(k); setSel(null); }}>{l}</button>)}
+      </div>
+      <div className="bc-readout">
+        {customRange && meta ? (() => {
+          const [s, en] = customRange;
+          const i0 = Math.round((s - meta.msStart) / DAY_MS);
+          const i1 = Math.round((en - meta.msStart) / DAY_MS);
+          let plays = 0, active = 0, peak = 0;
+          for (let i = i0; i <= i1; i++) {
+            const v = days.counts[i] || 0;
+            plays += v; if (v) active++; if (v > peak) peak = v;
+          }
+          const fD = (ms) => { const dt = new Date(ms); return dt.getUTCDate() + " " + ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][dt.getUTCMonth()] + " " + String(dt.getUTCFullYear()).slice(2); };
+          return <><b>{fD(s)}</b> → <b>{fD(en)}</b> · {fmt(plays)} plays · {active} active days · peak {fmt(peak)}
+            <button className="bc-clear" onClick={() => setCustomRange(null)} title="clear range">✕</button></>;
+        })() : <span className="bc-hint">click a year to clip a range, then drag the edges</span>}
+      </div>
+      <div className="r-seg bc-seg bc-viewseg">
+        {[["barcode", "barcode"], ["horizon", "horizon"]].map(([k, l]) =>
+          <button key={k} data-on={view === k} onClick={() => setViewPersist(k)}>{l}</button>)}
       </div>
     </div>
+  );
+
+  if (!days || !meta) return shell(
+    <>
+      {header}
+      <div style={{
+        height: STRIP_H, display: "flex", alignItems: "center",
+        fontFamily: "var(--mono)", fontSize: 10, color: "var(--ink-faint)",
+        letterSpacing: ".1em"
+      }}>
+        loading history…
+      </div>
+    </>
+  );
+
+  const crX0 = customRange ? xOfMs(customRange[0]) : 0;
+  const crX1 = customRange ? xOfMs(customRange[1]) : 0;
+
+  return shell(
+    <>
+      {header}
+      <div className="bc-strip" ref={stripRef}
+        onPointerDown={beginStrip} onPointerMove={onDragMove}
+        onPointerUp={endDrag} onPointerCancel={endDrag}>
+        {/* Main render layer — barcode OR horizon; both memoized. */}
+        <svg viewBox={`0 0 1000 ${STRIP_H}`} preserveAspectRatio="none"
+          className="bc-svg" aria-label="Listening history — drag to clip a range">
+          {/* Year highlight band (selYear). */}
+          {yearSegs.map(({ y, x0, x1 }) => y === selYear && (
+            <rect key={y + "-bg"} x={x0.toFixed(2)} y="0"
+              width={Math.max(0, x1 - x0).toFixed(2)} height={STRIP_H}
+              fill="oklch(0.35 0.07 var(--acc-h) / 0.55)" />
+          ))}
+          {view === "barcode" ? hairlines : horizonBars}
+          {/* Year separator ticks. */}
+          {yearSegs.map(({ y, x0 }, i) => i > 0 && (
+            <line key={y + "-sep"} x1={x0.toFixed(2)} x2={x0.toFixed(2)} y1="0" y2={STRIP_H}
+              stroke="var(--rule)" strokeWidth="0.8" opacity="0.4" />
+          ))}
+        </svg>
+
+        {/* Year click targets — transparent HTML buttons over each segment. */}
+        <div className="bc-yearhits">
+          {yearSegs.map(({ y, x0, x1, yStart, yEnd }) => (
+            <button key={y} className="bc-yearhit" data-bc-year
+              style={{ left: (x0 / 10) + "%", width: ((x1 - x0) / 10) + "%" }}
+              onClick={(e) => { e.stopPropagation(); onYear(y, [yStart, yEnd]); }}
+              title={"select " + y} aria-label={"select " + y} />
+          ))}
+        </div>
+
+        {/* ── Shared overlay: veils + Premiere-style handles (only when a range is set).
+             Move/up are handled on the parent .bc-strip; pointer capture (set in
+             beginHandle) routes events there via bubbling. ── */}
+        {customRange && (
+          <>
+            <div className="bc-veil" style={{ left: 0, width: (crX0 / 10) + "%" }} />
+            <div className="bc-veil" style={{ left: (crX1 / 10) + "%", right: 0 }} />
+            <div className="bc-handle bc-handle-l" data-bc-handle
+              style={{ left: (crX0 / 10) + "%" }}
+              onPointerDown={beginHandle("start")}>
+              <span className="bc-grip" />
+            </div>
+            <div className="bc-handle bc-handle-r" data-bc-handle
+              style={{ left: (crX1 / 10) + "%" }}
+              onPointerDown={beginHandle("end")}>
+              <span className="bc-grip" />
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* HTML year label row — mono, one per segment, percentage-positioned (no glyph stretch). */}
+      <div className="bc-yearrow">
+        {yearSegs.map(({ y, x0, x1 }) => (
+          <span key={y} className="bc-yearlbl" data-on={y === selYear}
+            style={{ left: (x0 / 10) + "%", width: ((x1 - x0) / 10) + "%" }}>
+            {"'" + String(y).slice(2)}
+          </span>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -289,6 +413,7 @@ function CalendarView({ go, seed }) {
   const [gran, setGran] = React.useState(seedDay ? "day" : "month");    // day | week | month
   const [sel, setSel] = React.useState(seedDay);      // selected period key (string)
   const [selYear, setSelYear] = React.useState(null); // barcode scrubber: highlighted year
+  const [customRange, setCustomRange] = React.useState(null); // [startMs,endMs] UTC — Premiere-style clip on the strip
   const heatRef = React.useRef(null);                  // heatmap svg — scrub clicks scroll to the year's row
   const [pane, setPane] = React.useState("artists");  // artists | albums | songs | dna
   const [selHours, setSelHours] = React.useState(() => new Set()); // rhythm hour multi-select
@@ -311,11 +436,14 @@ function CalendarView({ go, seed }) {
   // selected period → ms range, for highlighting cells cheaply. MUST be above the early return
   // below (otherwise the hook count changes once the calendar loads → React crash).
   const selRange = React.useMemo(() => {
+    // A custom clip from the barcode strip wins — same [startMs,endMs] inclusive contract
+    // the heatmap consumes below (cms >= selRange[0] && cms <= selRange[1]).
+    if (customRange) return customRange;
     if (!sel) return null;
     if (gran === "month") { const [y, m] = sel.split("-").map(Number); return [Date.UTC(y, m - 1, 1), Date.UTC(y, m, 1) - 86400e3]; }
     const start = new Date(sel + "T00:00:00Z").getTime();
     return gran === "week" ? [start, start + 6 * 86400e3] : [start, start];
-  }, [sel, gran]);
+  }, [sel, gran, customRange]);
 
   const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const MONF = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -349,15 +477,11 @@ function CalendarView({ go, seed }) {
   const iRow = ([t, a, p]) => ({ title: NM[t], artist: NM[a], plays: p });
 
   return (
-    <div className="r-view tv-page" style={{ paddingBottom: 96 }}>
+    <div className="r-view tv-page">
       <div className="r-viewhead">
         <div>
           <div className="r-kicker">Calendar · {years[0]}—{years[years.length - 1]} · {fmt(max)} in a single day</div>
           <h1 className="r-title">Every <em>day</em><span className="dot">.</span></h1>
-        </div>
-        <div className="r-seg" style={{ alignSelf: "flex-end" }}>
-          {[["day", "day"], ["week", "week"], ["month", "month"]].map(([k, l]) =>
-            <button key={k} data-on={gran === k} onClick={() => { setGran(k); setSel(null); }}>{l}</button>)}
         </div>
       </div>
 
@@ -405,20 +529,6 @@ function CalendarView({ go, seed }) {
       {/* rhythm — the vertical hour clock (moved from Explore), sitting to the right of the calendar */}
       <ClockCard R={R} selHours={selHours} setSelHours={setSelHours} />
       </div>
-
-      {/* barcode year scrubber — fixed bottom strip across all history */}
-      {cal && (
-        <BarcodeScrubber years={years} selYear={selYear} setSelYear={(y) => {
-          setSelYear(y);
-          // jump the page to that year's heatmap row (the calendar shows all years stacked)
-          const el = heatRef.current;
-          if (y != null && el) {
-            const r = el.getBoundingClientRect();
-            const frac = (topPad + years.indexOf(y) * (rowH + yearGap)) / H;
-            window.scrollTo({ top: window.scrollY + r.top + frac * r.height - 110, behavior: "smooth" });
-          }
-        }} />
-      )}
 
       {/* period overview */}
       {sel && (
@@ -484,6 +594,27 @@ function CalendarView({ go, seed }) {
         </DraggablePanel>
       )}
 
+      {/* barcode / horizon time-control — sticky-bottom, LAST in the view flow so it
+          docks and reveals the footer at the page bottom instead of covering it. */}
+      {cal && (
+        <BarcodeScrubber
+          years={years} selYear={selYear}
+          gran={gran} setGran={setGran} setSel={setSel}
+          customRange={customRange} setCustomRange={setCustomRange}
+          onYear={(y, range) => {
+            setSelYear(y);
+            setCustomRange(range);  // year click also clips the heatmap to that whole year
+            // jump the page to that year's heatmap row (the calendar shows all years stacked)
+            const el = heatRef.current;
+            if (y != null && el) {
+              const r = el.getBoundingClientRect();
+              const frac = (topPad + years.indexOf(y) * (rowH + yearGap)) / H;
+              window.scrollTo({ top: window.scrollY + r.top + frac * r.height - 110, behavior: "smooth" });
+            }
+          }}
+        />
+      )}
+
       <style>{`
         .cal-heatwrap { display: grid; grid-template-columns: minmax(0,1fr) 210px; gap: var(--gap); align-items: start; }
         .cal-clock { position: sticky; top: 12px; }
@@ -510,30 +641,62 @@ function CalendarView({ go, seed }) {
         .cal-float-x { background: none; border: none; color: var(--ink-faint); cursor: pointer; font-size: 12px; line-height: 1; }
         .cal-float-x:hover { color: var(--ink); }
         .cal-float-body { padding: 18px 20px; overflow-y: auto; }
-        /* ── Barcode scrubber — fixed to viewport bottom ── */
-        .bc-scrubber-fixed {
-          position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
-          background: color-mix(in oklab, var(--bg) 86%, transparent);
-          -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+        /* ── Barcode / horizon time-control — sticky to the viewport bottom ──
+           Full-bleed: negative margins cancel the .r-view horizontal padding so the
+           strip spans edge-to-edge. Sticky-bottom pins it while the page continues
+           below the fold, then it docks at the end and the footer shows through. */
+        .bc-scrubber {
+          position: sticky; bottom: 0; z-index: 50;
+          margin: 18px calc(-1 * var(--pad, 24px)) 0;
+          background: color-mix(in oklab, var(--bg) 90%, transparent);
+          -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
           border-top: 1px solid var(--rule);
           padding: 6px 12px;
           padding-bottom: calc(6px + env(safe-area-inset-bottom));
           box-sizing: border-box;
         }
-        /* Legend — three labelled swatches, right-aligned */
-        .bc-legend {
-          display: flex; flex-direction: column; justify-content: center;
-          gap: 3px; padding-left: 10px; flex-shrink: 0;
-          font-family: var(--mono); font-size: 8px; color: var(--ink-faint);
-          white-space: nowrap;
+        /* Slim header row: granularity · readout · view toggle */
+        .bc-head { display: flex; align-items: center; gap: 12px; margin-bottom: 5px; flex-wrap: wrap; }
+        .bc-seg { flex-shrink: 0; }
+        .bc-seg button { font-size: 10px; padding: 2px 8px; }
+        .bc-viewseg { margin-left: auto; }
+        .bc-readout { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft);
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
+        .bc-readout b { color: var(--ink); }
+        .bc-hint { color: var(--ink-faint); }
+        .bc-clear { background: none; border: none; color: var(--ink-faint); cursor: pointer;
+          font-size: 11px; line-height: 1; margin-left: 8px; padding: 0 2px; }
+        .bc-clear:hover { color: var(--accent); }
+        /* The interactive strip — the render layer + the shared overlay stack here. */
+        .bc-strip { position: relative; width: 100%; height: 40px; touch-action: pan-y; cursor: crosshair; }
+        .bc-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+        /* Year click targets */
+        .bc-yearhits { position: absolute; inset: 0; }
+        .bc-yearhit { position: absolute; top: 0; bottom: 0; padding: 0; margin: 0;
+          background: transparent; border: none; cursor: pointer; }
+        .bc-yearhit:hover { background: color-mix(in oklab, var(--accent) 10%, transparent); }
+        /* Translucent veil over the clipped-out region */
+        .bc-veil { position: absolute; top: 0; bottom: 0;
+          background: color-mix(in oklab, var(--bg) 62%, transparent); pointer-events: none; }
+        /* Premiere-style range handles — slim accent grips, ≥14px invisible touch pad. */
+        .bc-handle { position: absolute; top: -2px; bottom: -2px; width: 16px;
+          transform: translateX(-8px); cursor: ew-resize; touch-action: none;
+          display: flex; align-items: center; justify-content: center; z-index: 3; }
+        .bc-grip { display: block; width: 4px; height: 100%;
+          background: var(--accent); border-radius: 2px;
+          box-shadow: 0 0 0 1px color-mix(in oklab, var(--bg) 50%, transparent); }
+        .bc-handle:hover .bc-grip { filter: brightness(1.15); width: 5px; }
+        /* HTML year label row (no SVG glyph stretch) */
+        .bc-yearrow { position: relative; height: 12px; margin-top: 2px; }
+        .bc-yearlbl { position: absolute; top: 0; text-align: center;
+          font-family: var(--mono); font-size: 8px; line-height: 12px;
+          color: var(--ink-faint); overflow: hidden; white-space: nowrap;
+          pointer-events: none; user-select: none; }
+        .bc-yearlbl[data-on="true"] { color: var(--accent); }
+        @media (max-width: 520px) {
+          .bc-readout { flex-basis: 100%; order: 3; }
+          .bc-viewseg { margin-left: auto; }
         }
-        .bc-legend span { display: flex; align-items: center; gap: 4px; }
-        .bc-legend i {
-          display: inline-block; width: 8px; height: 8px;
-          border-radius: 1px; flex-shrink: 0;
-        }
-        /* Hide legend on narrow screens to save space for the barcode */
-        @media (max-width: 520px) { .bc-legend { display: none; } }
         /* mobile: bottom sheet — full width, finger-resizable via the bar (see onBarTouchStart).
            !important defeats any stored PC drag position. Default 40vh = calendar stays visible. */
         @media (max-width: 760px) {
