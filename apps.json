@@ -120,6 +120,7 @@
         "artworks.js",
         "vendor/openseadragon",
         "art_data.js",
+        "art_hires.js",
         "museum_highlights.js",
         "pilgrimage.js",
         "canvas-world.js",

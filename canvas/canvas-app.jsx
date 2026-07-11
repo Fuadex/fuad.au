@@ -236,6 +236,8 @@ function Zoom({ src, onClose }) {
 
   const onPointerDown = (e) => {
     if (e.button !== 0) return;
+    // Don't capture/start pan when pressing the close button or hint — let their click fire normally.
+    if (e.target.closest(".cv-zoom-close") || e.target.closest(".cv-zoom-hint")) return;
     e.currentTarget.setPointerCapture(e.pointerId);
     drag.current = { pointerId: e.pointerId, startX: e.clientX, startY: e.clientY, baseX: live.current.x, baseY: live.current.y };
   };

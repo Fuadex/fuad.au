@@ -1530,7 +1530,13 @@ function PreviewBtn({ id, hue, artist, title }) {
   const [playing, setPlaying] = React.useState(false);
   const [itUrl, setItUrl] = React.useState(() => _itCache.has(id) ? _itCache.get(id) : undefined);
   const ref = React.useRef(null);
-  React.useEffect(() => () => { if (ref.current) { ref.current.pause(); ref.current = null; } }, [id]);
+  React.useEffect(() => {
+    // On id change (navigation) or unmount: stop playback and reset UI state.
+    return () => {
+      if (ref.current) { ref.current.pause(); ref.current = null; }
+      setPlaying(false);
+    };
+  }, [id]);
   const hash = window.ROTATION_PREVIEWS && window.ROTATION_PREVIEWS[id];
   React.useEffect(() => {
     if (hash || !artist || !title || _itCache.has(id)) return;

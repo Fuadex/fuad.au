@@ -217,7 +217,7 @@ a { color: inherit; }
 .cv-zoom { position: fixed; inset: 0; background: rgba(16,12,8,.96); z-index: 60; overflow: hidden; cursor: grab; }
 .cv-zoom:active { cursor: grabbing; }
 .cv-zoom img { position: absolute; left: 50%; top: 50%; margin: -40vh 0 0 -35vw; max-width: 70vw; max-height: 80vh; transform-origin: center; user-select: none; }
-.cv-zoom-close { position: fixed; top: 16px; right: 20px; margin: 0; }
+.cv-zoom-close { position: fixed; top: 16px; right: 20px; margin: 0; z-index: 2; }
 .cv-zoom-hint { position: fixed; bottom: 14px; left: 0; right: 0; text-align: center; font: 500 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(227,216,200,.5); }
 /* deep zoom (OpenSeadragon over IIIF) — a layer above the Reader/Zoom */
 .cv-r-deep { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: none; cursor: pointer; border: none; border-bottom: 1px solid oklch(0.66 0.14 46 / .35); padding: 0 0 2px; }

@@ -115,9 +115,31 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
   const [filt, setFilt] = React.useState(_if.filt || { fam: null, sub: null }); // genre pivot: size every place by this genre
   // report the serializable filter (genre + mode) up so the Overview can put it in the URL
   React.useEffect(() => { if (onFilter) onFilter({ mode, filt }); }, [mode, filt]);
-  const [limit, setLimit] = React.useState(embedded ? 10 : 5);      // results list length
-  const [disp, setDisp] = React.useState("list"); // results display: list ⇄ cover grid (grid = the dissolved Top Artists wall; list default — the 2-unit column reads better as rows)
+  const [limit, setLimit] = React.useState(() => {
+    try { const v = parseInt(localStorage.getItem("rot-ov-results-n"), 10); if (v === 10 || v === 25 || v === 50) return v; } catch (e) {}
+    return embedded ? 10 : 10;
+  });
+  const setLimitPersist = (v) => { setLimit(v); try { localStorage.setItem("rot-ov-results-n", String(v)); } catch (e) {} };
+  const [disp, setDisp] = React.useState("list"); // results display for artists: list ⇄ cover grid
+  // albums + songs list/grid toggle, persisted separately
+  const [resView, setResView] = React.useState(() => {
+    try { const v = localStorage.getItem("rot-ov-results-view"); if (v === "grid" || v === "list") return v; } catch (e) {}
+    return "list";
+  });
+  const setResViewPersist = (v) => { setResView(v); try { localStorage.setItem("rot-ov-results-view", v); } catch (e) {} };
   const [adetail, setADetail] = React.useState(window.ROTATION_ADETAIL || null); // lazy tracks/albums for the long tail
+  // song→album cover lookup: if ROTATION_MEDIA is already loaded, build a title+artist keyed map
+  // so each song row can show its album cover instead of the artist/generative cover. Falls back
+  // to artist art when the media-index isn't loaded or the track isn't found in it.
+  const songAlbumCover = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA; if (!M || !M.tracks || !M.albums || !M.artists) return {};
+    const out = {};
+    for (const t of M.tracks) {
+      const cover = M.albums[t[3]] && M.albums[t[3]][6];
+      if (cover) out[t[0] + "\x00" + M.artists[t[1]]] = cover;
+    }
+    return out;
+  }, [adetail]); // re-run when adetail loads (ROTATION_MEDIA may have arrived meanwhile)
   const [view, setView] = React.useState({ s: 1, x: 0, y: 0 });
   const svgRef = React.useRef(null);
   const gRef = React.useRef(null);
@@ -531,12 +553,28 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
               <div className="r-seg">
                 {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => { setPane(k); if (k === "albums" || k === "songs") ensureADetail(); }}>{l}</button>)}
               </div>
-              {pane !== "dna" && <div className="r-seg" title="list ⇄ cover grid">
+              {pane === "artists" && <div className="r-seg" title="list ⇄ cover grid">
                 <button data-on={disp === "list"} onClick={() => setDisp("list")}>list</button>
                 <button data-on={disp === "grid"} onClick={() => setDisp("grid")}>grid</button>
               </div>}
+              {(pane === "albums" || pane === "songs") && (
+                <div className="r-seg cal-view-seg" title="list / grid view">
+                  <button data-on={resView === "list"} onClick={() => setResViewPersist("list")} title="list view">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <line x1="4" y1="2" x2="12" y2="2"/><line x1="4" y1="6" x2="12" y2="6"/><line x1="4" y1="10" x2="12" y2="10"/>
+                      <rect x="0" y="0.5" width="2.5" height="2.5" rx="0.5"/><rect x="0" y="4.5" width="2.5" height="2.5" rx="0.5"/><rect x="0" y="8.5" width="2.5" height="2.5" rx="0.5"/>
+                    </svg>
+                  </button>
+                  <button data-on={resView === "grid"} onClick={() => setResViewPersist("grid")} title="grid view">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <rect x="0" y="0" width="5" height="5" rx="1"/><rect x="7" y="0" width="5" height="5" rx="1"/>
+                      <rect x="0" y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/>
+                    </svg>
+                  </button>
+                </div>
+              )}
               {pane !== "dna" && <div className="r-seg map-limseg">
-                {[5, 10, 15, 20, 25].map(n => <button key={n} data-on={limit === n} onClick={() => setLimit(n)}>{n}</button>)}
+                {[10, 25, 50].map(n => <button key={n} data-on={limit === n} onClick={() => setLimitPersist(n)}>{n}</button>)}
               </div>}
             </div>
             {!periodData && yearIdx != null && (pane === "albums" || pane === "songs") && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 8 }}>albums &amp; songs aren't split by year — showing all-time for this slice.</div>}
@@ -554,13 +592,39 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
                       <span className="cal-nm">{a.name}</span><span className="cal-pl">{fmt(e.p)}</span></div>); })}</div>)
               : <div style={{ color: "var(--ink-soft)" }}>Nothing matches this filter.</div>)}
             {(pane === "albums" || pane === "songs") && (() => {
-              const rows = pane === "albums" ? resultMedia.albums : resultMedia.songs;
+              const isSongs = pane === "songs";
+              const rows = isSongs ? resultMedia.songs : resultMedia.albums;
               if (!rows.length) return <div style={{ color: "var(--ink-soft)", fontFamily: "var(--mono)", fontSize: 12 }}>{adetail ? "Nothing here." : "loading…"}</div>;
-              return <div className="cal-rows">{rows.slice(0, limit).map((r, i) => { const mid = R.slug(r.artist) + "~" + R.slug(r.title); return (
-                <div key={r.aid + "|" + r.title + i} className="cal-row" data-link={true} onClick={() => go(pane === "albums" ? "album" : "track", mid)} title={`${r.title} →`}>
-                  <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={(R.byId[r.aid] || {}).hue || 210} name={r.artist} size={34} radius={3} />
-                  <div style={{ minWidth: 0, flex: 1 }}><div className="cal-nm" style={{ fontStyle: "italic" }}>{r.title}</div><div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{r.artist}</div></div>
-                  <span className="cal-pl">{fmt(r.plays)}</span></div>); })}</div>;
+              const shown = rows.slice(0, limit);
+              if (resView === "grid") return (
+                <div className="mp-medgrid">{shown.map((r, i) => {
+                  const hue = (R.byId[r.aid] || {}).hue || 210;
+                  const coverKey = isSongs ? (r.title + "\x00" + r.artist) : null;
+                  const albumCover = coverKey ? (songAlbumCover[coverKey] || "") : "";
+                  const mid = R.slug(r.artist) + "~" + R.slug(r.title);
+                  return (
+                    <div key={r.aid + "|" + r.title + i} className="mp-medtile" data-link={true} onClick={() => go(isSongs ? "track" : "album", mid)} title={r.title}>
+                      <GenCover hue={hue} name={isSongs ? r.artist : r.title} image={albumCover} thumb={albumCover} size="100%" style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
+                      <div className="mp-medtile-title">{r.title}</div>
+                      <div className="mp-medtile-plays">{isSongs ? r.artist + " · " : ""}{fmt(r.plays)}</div>
+                    </div>
+                  );
+                })}</div>
+              );
+              return <div className="cal-rows">{shown.map((r, i) => {
+                const hue = (R.byId[r.aid] || {}).hue || 210;
+                const coverKey = isSongs ? (r.title + "\x00" + r.artist) : null;
+                const albumCover = coverKey ? (songAlbumCover[coverKey] || "") : "";
+                const mid = R.slug(r.artist) + "~" + R.slug(r.title);
+                return (
+                  <div key={r.aid + "|" + r.title + i} className="cal-row" data-link={true} onClick={() => go(isSongs ? "track" : "album", mid)} title={`${r.title} →`}>
+                    <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span>
+                    <GenCover hue={hue} name={isSongs ? r.artist : r.title} image={albumCover} thumb={albumCover} size={34} radius={3} />
+                    <div style={{ minWidth: 0, flex: 1 }}><div className="cal-nm" style={{ fontStyle: "italic" }}>{r.title}</div><div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{r.artist}</div></div>
+                    <span className="cal-pl">{fmt(r.plays)}</span>
+                  </div>
+                );
+              })}</div>;
             })()}
             {pane === "dna" && (resultDNA
               ? <div style={{ display: "flex", justifyContent: "center", padding: "6px 0" }}><div style={{ maxWidth: 340, width: "100%" }}>
@@ -630,7 +694,15 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
         .cal-row[data-link="true"] { cursor: pointer; } .cal-row[data-link="true"]:hover { background: var(--bg-3); }
         .cal-rk { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); width: 18px; }
         .cal-nm { font-size: 13.5px; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .cal-pl { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }`}</style>
+        .cal-pl { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+        /* album/song cover grid in the results panel */
+        .mp-medgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 10px; margin-bottom: 4px; }
+        @media (min-width: 1150px) { .mp-results .mp-medgrid { grid-template-columns: repeat(auto-fill, minmax(62px, 1fr)); gap: 6px; } }
+        .mp-medtile { min-width: 0; cursor: pointer; }
+        .mp-medtile-title { font-size: 10px; margin-top: 5px; line-height: 1.2;
+          display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .mp-medtile-plays { font-family: var(--mono); font-size: 8.5px; color: var(--ink-faint);
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }`}</style>
     </div>
   );
 }
