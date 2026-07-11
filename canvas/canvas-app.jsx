@@ -306,8 +306,59 @@ function DeepZoom({ work, onClose }) {
   const elRef = React.useRef(null);
   const viewerRef = React.useRef(null);
   const [err, setErr] = useState(false);
+  const details = (work.hires && work.hires.details) || [];
+  // activeDetail: null = full view; number = index into details
+  const [activeDetail, setActiveDetail] = useState(null);
+
+  // Navigate to a detail via OSD viewport, or go home
+  const goToDetail = useCallback((idx) => {
+    const viewer = viewerRef.current;
+    if (!viewer) return;
+    if (idx === null) {
+      setActiveDetail(null);
+      viewer.viewport.goHome(false);
+      return;
+    }
+    const d = details[idx];
+    if (!d) return;
+    setActiveDetail(idx);
+    // Convert normalized-image coords to OSD viewport rect using the loaded image size.
+    // viewer.world.getItemAt(0).getContentSize() returns {x: imgW, y: imgH}.
+    try {
+      const item = viewer.world.getItemAt(0);
+      if (item) {
+        const size = item.getContentSize();
+        const rect = viewer.viewport.imageToViewportRectangle(
+          d.x * size.x, d.y * size.y, d.w * size.x, d.h * size.y
+        );
+        viewer.viewport.fitBounds(rect, false);
+      }
+    } catch (e2) {}
+  }, [details]);
+
   useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") { e.stopPropagation(); onClose(); } };
+    const onKey = (e) => {
+      if (e.key === "Escape") { e.stopPropagation(); onClose(); return; }
+      if (!details.length) return;
+      if (e.key === "ArrowRight") {
+        e.stopPropagation();
+        setActiveDetail(prev => {
+          const next = prev === null ? 0 : Math.min(prev + 1, details.length - 1);
+          // defer so goToDetail sees the viewer
+          setTimeout(() => goToDetail(next), 0);
+          return next;
+        });
+      }
+      if (e.key === "ArrowLeft") {
+        e.stopPropagation();
+        setActiveDetail(prev => {
+          if (prev === null || prev === 0) { setTimeout(() => goToDetail(null), 0); return null; }
+          const next = prev - 1;
+          setTimeout(() => goToDetail(next), 0);
+          return next;
+        });
+      }
+    };
     window.addEventListener("keydown", onKey, true);
     let cancelled = false;
     loadOSD().then(() => {
@@ -335,13 +386,49 @@ function DeepZoom({ work, onClose }) {
       if (viewerRef.current) { try { viewerRef.current.destroy(); } catch (e) {} viewerRef.current = null; }
     };
   }, []);
+
   const src = (work.hires.src || "").toUpperCase();
+  const activeDet = activeDetail !== null ? details[activeDetail] : null;
+
   return (
     <div className="cv-osd">
       <div className="cv-osd-view" ref={elRef} />
       {err && <div className="cv-osd-err">zoom unavailable — the tile source didn't load</div>}
       <button className="cv-r-close cv-osd-close" onClick={onClose}>✕</button>
-      <div className="cv-osd-cap">{work.title.replace(/^TBC — /, "")} · deep zoom{src ? ` via ${src}` : ""}</div>
+
+      {/* Annotation tour strip — only when details exist */}
+      {details.length > 0 && (
+        <div className="cv-osd-tour">
+          <button
+            className={"cv-osd-chip" + (activeDetail === null ? " cv-osd-chip-home" : "")}
+            onClick={() => goToDetail(null)}
+            title="Return to full view">
+            ⌂ full view
+          </button>
+          {details.map((d, i) => (
+            <button
+              key={i}
+              className={"cv-osd-chip" + (activeDetail === i ? " cv-osd-chip-on" : "")}
+              onClick={() => goToDetail(i)}
+              title={d.t}>
+              <span className="cv-osd-chip-n">{i + 1}</span>
+              <span className="cv-osd-chip-t">{d.t}</span>
+            </button>
+          ))}
+          {details.length > 1 && <span className="cv-osd-tour-hint">← → to step</span>}
+        </div>
+      )}
+
+      {/* Active detail caption card — bottom-left, replaces plain cap while a detail is active */}
+      {activeDet ? (
+        <div className="cv-osd-det-cap">
+          <span className="cv-osd-det-n">{activeDetail + 1}/{details.length}</span>
+          <span className="cv-osd-det-title">{activeDet.t}</span>
+          <span className="cv-osd-det-note">{activeDet.n}</span>
+        </div>
+      ) : (
+        <div className="cv-osd-cap">{work.title.replace(/^TBC — /, "")} · deep zoom{src ? ` via ${src}` : ""}{details.length ? " · click a detail below to explore" : ""}</div>
+      )}
     </div>
   );
 }

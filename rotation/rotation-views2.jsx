@@ -1376,12 +1376,34 @@ function AlbumView({ id, go }) {
   })();
   // album "what it's about" (Wikipedia themes) — id is artistSlug~albumSlug, same key the pull uses
   const albumAbout = (window.ROTATION_ALBUM_ABOUT && window.ROTATION_ALBUM_ABOUT[id]) || null; // [excerpt, wikiTitle]
-  // album extras (same id key): { bonus:[track titles], from:[edition names] }. When present, the
-  // bonus tracks are floated below a "deluxe / bonus" rule and the editions surface as a chip.
+  // album extras (same id key): { bonus:[track titles], from:[edition names], byEdition:{suffix:[…]} }.
+  // The base tracklist renders first (real Spotify track numbers, or sequential fallback). The bonus
+  // tracks — variant-only, marked live/demo/etc — split into one restart-numbered SUB-SECTION per
+  // edition below it, disc-style. This kills track-NUMBER COLLISIONS after edition-merging: e.g. NIN's
+  // "01 Mr. Self Destruct" (base) vs "01 Burn" (reissue) no longer share one flat number column — each
+  // section restarts at 01. (True CD1/CD2 disc splits need MusicBrainz release data — a later pass.)
   const extras = (window.ROTATION_ALBUM_EXTRAS && window.ROTATION_ALBUM_EXTRAS[id]) || null;
   const bonusSet = extras && extras.bonus ? new Set(extras.bonus) : null;
   const baseTracks = bonusSet ? data.tracks.filter(t => !bonusSet.has(t.title)) : data.tracks;
   const bonusTracks = bonusSet ? data.tracks.filter(t => bonusSet.has(t.title)) : [];
+  // build the per-edition sections from byEdition. Each section = { name, tracks[] }, tracks pulled
+  // from bonusTracks (so we keep plays/mood/no); ordered by track count descending. Any bonus track
+  // not attributable to a named edition (byEdition[""], or missing byEdition) falls into a final
+  // "bonus / other editions" catch-all.
+  const bonusSections = (() => {
+    if (!bonusTracks.length) return [];
+    const byTitle = new Map(bonusTracks.map(t => [t.title, t]));
+    const be = (extras && extras.byEdition) || null;
+    const named = [], leftover = new Set(byTitle.keys());
+    if (be) for (const suf in be) {
+      if (!suf) continue;   // "" handled as catch-all below
+      const rows = be[suf].map(ti => byTitle.get(ti)).filter(Boolean);
+      if (rows.length) { named.push({ name: suf, tracks: rows }); rows.forEach(r => leftover.delete(r.title)); }
+    }
+    named.sort((a, b) => b.tracks.length - a.tracks.length);   // biggest editions first
+    if (leftover.size) named.push({ name: "bonus / other editions", tracks: [...leftover].map(ti => byTitle.get(ti)) });
+    return named;
+  })();
 
   return (
     <div className="r-view tv-page">
@@ -1488,9 +1510,12 @@ function AlbumView({ id, go }) {
           </div>
         )}
         {(() => {
-          const row = (t, i) => (
+          // numLabel: for the base list, prefer the real Spotify track number (t.no); for edition
+          // sub-sections, force the section-local sequential number (nStr) — the merged Spotify nos
+          // collide across releases, so per-section restart is the whole point.
+          const row = (t, i, nStr) => (
             <div key={t.title + i} className="r-track-row" onClick={() => go("track", R.slug(data.artist) + "~" + R.slug(t.title))} title={`${t.title} →${t.e != null ? ` · energy ${t.e} · positivity ${t.v}` : ""}`} style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px", cursor: "pointer", borderRadius: 4 }}>
-              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{t.no ? String(t.no).padStart(2, "0") : String(i + 1).padStart(2, "0")}</span>
+              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{nStr != null ? nStr : (t.no ? String(t.no).padStart(2, "0") : String(i + 1).padStart(2, "0"))}</span>
               <div style={{ fontSize: 13, lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>
                 {t.title}{standout && t === standout ? <span title="your most-played from this album" style={{ color: "var(--accent)", marginLeft: 5 }}>★</span> : null}
                 {" "}<LikedMark on={likedKey(R.slug(data.artist) + "~" + R.slug(t.title))} />
@@ -1500,16 +1525,23 @@ function AlbumView({ id, go }) {
               <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", textAlign: "right" }}>{fmt(t.plays)}</span>
             </div>
           );
+          const secHead = (name) => (
+            <div key={"h~" + name} className="r-mono" style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", margin: "12px 4px 4px" }}>
+              <span>{name}</span>
+              <span style={{ flex: 1, height: 1, background: "var(--rule)" }} />
+            </div>
+          );
           return (
             <div style={{ display: "grid", gap: 2 }}>
+              {/* base tracklist — numbering as today (real Spotify no, else sequential) */}
               {baseTracks.map((t, i) => row(t, i))}
-              {bonusTracks.length > 0 && (
-                <div className="r-mono" style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", margin: "10px 4px 4px" }}>
-                  <span>deluxe / bonus</span>
-                  <span style={{ flex: 1, height: 1, background: "var(--rule)" }} />
-                </div>
-              )}
-              {bonusTracks.map((t, i) => row(t, baseTracks.length + i))}
+              {/* one restart-numbered sub-section per edition (disc-like), biggest first, catch-all last */}
+              {bonusSections.map(sec => (
+                <React.Fragment key={"sec~" + sec.name}>
+                  {secHead(sec.name)}
+                  {sec.tracks.map((t, i) => row(t, i, String(i + 1).padStart(2, "0")))}
+                </React.Fragment>
+              ))}
             </div>
           );
         })()}
