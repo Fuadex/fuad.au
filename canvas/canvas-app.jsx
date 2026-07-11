@@ -313,6 +313,7 @@ function loadOSD() {
 // Derive the OSD tileSource and caption label for any work.
 // Returns { tileSource, label } or null if no usable image exists.
 function resolveOSDSource(work) {
+  if (!work) return null;
   // cors: only claim Anonymous where the host actually sends ACAO (museum APIs, wikimedia);
   // for arbitrary hosts (reddit etc.) crossOriginPolicy must be FALSE or the tile load errors.
   if (work.hires && work.hires.iiif) {
@@ -333,15 +334,71 @@ function resolveOSDSource(work) {
   return null;
 }
 
-function DeepZoom({ work, onClose, onOsdFail }) {
-  const elRef = React.useRef(null);
-  const viewerRef = React.useRef(null);
+// Fly an OSD viewer to a normalized-image region {x,y,w,h} (all 0..1 fractions of the image).
+// immediately=false gives the gentle animated spring flight; true snaps. Shared by DeepZoom's
+// detail tour and Study mode's anchored zoom so the imageToViewportRectangle math lives once.
+function flyToAnchor(viewer, a, immediately) {
+  if (!viewer || !a) return;
+  try {
+    const item = viewer.world.getItemAt(0);
+    if (!item) return;
+    const size = item.getContentSize();
+    const rect = viewer.viewport.imageToViewportRectangle(
+      a.x * size.x, a.y * size.y, a.w * size.x, a.h * size.y
+    );
+    viewer.viewport.fitBounds(rect, !!immediately);
+  } catch (e) {}
+}
+
+// Mount an OpenSeadragon viewer for `work` into elRef, reusing loadOSD + resolveOSDSource.
+// Returns { viewerRef, err, ready }. onOsdFail (optional) fires if the OSD *script* won't load
+// (so callers can fall back to the plain Zoom overlay); otherwise a source/open failure sets err.
+// The viewer is created once and destroyed on unmount. `ready` flips true once world is loaded,
+// which is when imageToViewportRectangle math becomes valid (anchors can fly).
+function useOSDViewer(work, onOsdFail) {
+  const elRef = useRef(null);
+  const viewerRef = useRef(null);
   const [err, setErr] = useState(false);
+  const [ready, setReady] = useState(false);
+  const osdSrc = useMemo(() => resolveOSDSource(work), [work]);
+  useEffect(() => {
+    let cancelled = false;
+    if (!osdSrc) { setErr(true); return; }
+    loadOSD().then(() => {
+      if (cancelled || !elRef.current || !window.OpenSeadragon) return;
+      try {
+        const viewer = window.OpenSeadragon({
+          element: elRef.current,
+          prefixUrl: "vendor/openseadragon/images/",
+          tileSources: osdSrc.tileSource,
+          showNavigator: true,
+          navigatorPosition: "BOTTOM_RIGHT",
+          showRotationControl: true,
+          maxZoomPixelRatio: 2,
+          gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true },
+          crossOriginPolicy: osdSrc.cors,
+          ajaxWithCredentials: false,
+        });
+        viewer.addHandler("open-failed", () => { if (!cancelled) setErr(true); });
+        viewer.addHandler("open", () => { if (!cancelled) setReady(true); });
+        viewerRef.current = viewer;
+      } catch (e) { if (!cancelled) setErr(true); }
+    }).catch(() => {
+      if (!cancelled) { if (onOsdFail) onOsdFail(); else setErr(true); }
+    });
+    return () => {
+      cancelled = true;
+      if (viewerRef.current) { try { viewerRef.current.destroy(); } catch (e) {} viewerRef.current = null; }
+    };
+  }, [osdSrc]);
+  return { elRef, viewerRef, err, ready, osdSrc };
+}
+
+function DeepZoom({ work, onClose, onOsdFail }) {
+  const { elRef, viewerRef, err, osdSrc } = useOSDViewer(work, onOsdFail);
   const details = (work.hires && work.hires.details) || [];
   // activeDetail: null = full view; number = index into details
   const [activeDetail, setActiveDetail] = useState(null);
-
-  const osdSrc = resolveOSDSource(work);
 
   // Navigate to a detail via OSD viewport, or go home
   const goToDetail = useCallback((idx) => {
@@ -355,18 +412,7 @@ function DeepZoom({ work, onClose, onOsdFail }) {
     const d = details[idx];
     if (!d) return;
     setActiveDetail(idx);
-    // Convert normalized-image coords to OSD viewport rect using the loaded image size.
-    // viewer.world.getItemAt(0).getContentSize() returns {x: imgW, y: imgH}.
-    try {
-      const item = viewer.world.getItemAt(0);
-      if (item) {
-        const size = item.getContentSize();
-        const rect = viewer.viewport.imageToViewportRectangle(
-          d.x * size.x, d.y * size.y, d.w * size.x, d.h * size.y
-        );
-        viewer.viewport.fitBounds(rect, false);
-      }
-    } catch (e2) {}
+    flyToAnchor(viewer, d, false);
   }, [details]);
 
   useEffect(() => {
@@ -393,40 +439,8 @@ function DeepZoom({ work, onClose, onOsdFail }) {
       }
     };
     window.addEventListener("keydown", onKey, true);
-    let cancelled = false;
-    if (!osdSrc) {
-      // no usable image at all — nothing to show
-      if (!cancelled) setErr(true);
-      return () => { cancelled = true; window.removeEventListener("keydown", onKey, true); };
-    }
-    loadOSD().then(() => {
-      if (cancelled || !elRef.current || !window.OpenSeadragon) return;
-      try {
-        const viewer = window.OpenSeadragon({
-          element: elRef.current,
-          prefixUrl: "vendor/openseadragon/images/",
-          tileSources: osdSrc.tileSource,
-          showNavigator: true,
-          navigatorPosition: "BOTTOM_RIGHT",
-          showRotationControl: true,
-          maxZoomPixelRatio: 2,
-          gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true },
-          crossOriginPolicy: osdSrc.cors,   // Anonymous only for hosts that send ACAO; false otherwise
-          ajaxWithCredentials: false,
-        });
-        viewer.addHandler("open-failed", () => { if (!cancelled) setErr(true); });
-        viewerRef.current = viewer;
-      } catch (e) { if (!cancelled) setErr(true); }
-    }).catch(() => {
-      // OSD script failed to load — signal Reader to fall back to plain Zoom
-      if (!cancelled) { if (onOsdFail) onOsdFail(); else setErr(true); }
-    });
-    return () => {
-      cancelled = true;
-      window.removeEventListener("keydown", onKey, true);
-      if (viewerRef.current) { try { viewerRef.current.destroy(); } catch (e) {} viewerRef.current = null; }
-    };
-  }, []);
+    return () => window.removeEventListener("keydown", onKey, true);
+  }, [goToDetail, onClose]);
 
   const activeDet = activeDetail !== null ? details[activeDetail] : null;
   const capLabel = osdSrc ? osdSrc.label : work.title.replace(/^TBC — /, "");
@@ -470,6 +484,161 @@ function DeepZoom({ work, onClose, onOsdFail }) {
       ) : (
         <div className="cv-osd-cap">{capLabel}{details.length ? " · click a detail below to explore" : ""}</div>
       )}
+    </div>
+  );
+}
+
+// ——— Study mode (#/study/<id>): the flagship "tour guide who can talk for minutes, plus prose
+// bound to pixels". Full-screen two-pane: LEFT a persistent OSD viewer (reusing useOSDViewer +
+// the detail-tour chip strip), RIGHT a scrollable reading pane — the four lenses as sections,
+// then the long-form `deeper` study chapters. Any lens/chapter with an {x,y,w,h} anchor gets a
+// "⌖ look" button that flies the viewer there; when an anchored section scrolls into view (and
+// auto-follow is on) the viewer GENTLY flies there on its own — reading IS the tour.
+const STUDY_LENS_LABELS = { see: "What you see", about: "What it's about", craft: "Why it sings", context: "The moment" };
+const STUDY_LENS_ORDER = ["see", "about", "craft", "context"];
+
+function StudyView({ id, go }) {
+  const work = useMemo(() => { const x = WORKS.find(x => x.id === id); return x ? enrich(x) : null; }, [id]);
+  const inspect = (window.CANVAS_INSPECT || {})[id] || null;
+  const { elRef, viewerRef, err, ready } = useOSDViewer(work, null);
+  const details = (work && work.hires && work.hires.details) || [];
+  const [activeDetail, setActiveDetail] = useState(null);
+  const [autoFollow, setAutoFollow] = useState(true);
+  const autoRef = useRef(true); autoRef.current = autoFollow;
+  const paneRef = useRef(null);
+
+  // Build the ordered list of reading sections. Each: {key, label, body, anchor?}. Lenses first,
+  // then the `deeper` chapters. Only sections with an anchor participate in scroll-follow / look.
+  const sections = useMemo(() => {
+    if (!inspect) return [];
+    const out = [];
+    for (const k of STUDY_LENS_ORDER) {
+      if (inspect[k]) out.push({ key: "lens-" + k, label: STUDY_LENS_LABELS[k], body: inspect[k], anchor: null });
+    }
+    (inspect.deeper || []).forEach((c, i) => {
+      const anchor = (typeof c.x === "number" && typeof c.y === "number" && typeof c.w === "number" && typeof c.h === "number")
+        ? { x: c.x, y: c.y, w: c.w, h: c.h } : null;
+      out.push({ key: "deep-" + i, label: c.t, body: c.body, anchor, chapter: true });
+    });
+    return out;
+  }, [inspect]);
+  const firstDeep = sections.findIndex(s => s.chapter);
+
+  const flyTo = useCallback((anchor, immediately) => {
+    const viewer = viewerRef.current;
+    if (!viewer || !anchor) return;
+    flyToAnchor(viewer, anchor, immediately);
+  }, []);
+  const goHome = useCallback(() => {
+    setActiveDetail(null);
+    const viewer = viewerRef.current;
+    if (viewer) { try { viewer.viewport.goHome(false); } catch (e) {} }
+  }, []);
+  const goToDetail = useCallback((idx) => {
+    if (idx === null) { goHome(); return; }
+    setActiveDetail(idx);
+    flyTo(details[idx], false);
+  }, [details, flyTo, goHome]);
+
+  // ESC leaves study back to the previous hash.
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") { e.stopPropagation(); history.back(); } };
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
+  }, []);
+
+  // Bad/unknown artwork id: leave study (done in an effect so render stays side-effect-free).
+  useEffect(() => { if (!work) history.back(); }, [work]);
+
+  // Scroll-follow: observe every anchored section's heading; when one crosses ~0.6 visibility and
+  // auto-follow is on, gently fly there. Only (re)wired once the viewer is ready and sections exist.
+  useEffect(() => {
+    if (!ready || !paneRef.current) return;
+    const anchored = sections.filter(s => s.anchor);
+    if (!anchored.length) return;
+    const byKey = {};
+    for (const s of anchored) byKey[s.key] = s.anchor;
+    const obs = new IntersectionObserver((entries) => {
+      if (!autoRef.current) return;
+      // choose the most-visible anchored heading currently intersecting
+      let best = null;
+      for (const en of entries) {
+        if (en.isIntersecting && en.intersectionRatio >= 0.6) {
+          if (!best || en.intersectionRatio > best.intersectionRatio) best = en;
+        }
+      }
+      if (best) {
+        const key = best.target.getAttribute("data-skey");
+        if (byKey[key]) flyTo(byKey[key], false);
+      }
+    }, { root: paneRef.current, threshold: [0, 0.6, 1] });
+    for (const s of anchored) {
+      const el = paneRef.current.querySelector(`[data-skey="${s.key}"]`);
+      if (el) obs.observe(el);
+    }
+    return () => obs.disconnect();
+  }, [ready, sections, flyTo]);
+
+  if (!work) return null;
+  const a = work.artistData || {};
+  const life = a.born ? `${a.born}–${a.died || ""}` : null;
+
+  return (
+    <div className="cv-study">
+      <div className="cv-study-viewer">
+        <div className="cv-osd-view" ref={elRef} />
+        {err && <div className="cv-osd-err">zoom unavailable — the tile source didn't load</div>}
+        {details.length > 0 && (
+          <div className="cv-osd-tour cv-study-tour">
+            <button className={"cv-osd-chip" + (activeDetail === null ? " cv-osd-chip-home" : "")}
+              onClick={goHome} title="Return to full view">⌂ full view</button>
+            {details.map((d, i) => (
+              <button key={i} className={"cv-osd-chip" + (activeDetail === i ? " cv-osd-chip-on" : "")}
+                onClick={() => goToDetail(i)} title={d.t}>
+                <span className="cv-osd-chip-n">{i + 1}</span>
+                <span className="cv-osd-chip-t">{d.t}</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="cv-study-pane" ref={paneRef}>
+        <div className="cv-study-panehead">
+          <button className="cv-study-back" onClick={() => history.back()} title="Leave the study (Esc)">✕ close</button>
+          <label className="cv-study-follow" title="Let the viewer follow your reading">
+            <input type="checkbox" checked={autoFollow} onChange={e => setAutoFollow(e.target.checked)} />
+            auto-follow
+          </label>
+        </div>
+        <div className="cv-study-body">
+          <h1 className="cv-study-title">{work.title.replace(/^TBC — /, "")}</h1>
+          <div className="cv-study-meta">
+            <b onClick={() => go("artist", work.artistId)} style={{ cursor: "pointer" }}>{work.artist.replace(/\s*\(.*\)$/, "")}</b>
+            {life ? ` · ${life}` : ""}{work.year ? ` · ${work.year}` : ""}
+          </div>
+          {!inspect && <p className="cv-study-empty">No study written for this work yet.</p>}
+          {sections.map((s, i) => (
+            <React.Fragment key={s.key}>
+              {s.chapter && i === firstDeep && (
+                <div className="cv-study-chaprule"><span>The study</span></div>
+              )}
+              <section className={"cv-study-sec" + (s.chapter ? " cv-study-chapter" : "")}>
+                <h2 className="cv-study-sec-h" data-skey={s.key}>
+                  <span>{s.label}</span>
+                  {s.anchor && (
+                    <button className="cv-study-look" onClick={() => flyTo(s.anchor, false)}
+                      title="Fly the viewer to this detail">⌖ look</button>
+                  )}
+                </h2>
+                <p className="cv-study-sec-txt">{s.body}</p>
+              </section>
+            </React.Fragment>
+          ))}
+          <div className="cv-study-foot">
+            <button className="cv-study-home" onClick={goHome}>⌂ full view</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -578,6 +747,7 @@ function Reader({ id, go }) {
                   {w.hires && w.hires.details && w.hires.details.length > 0 && (
                     <button type="button" className="cv-r-inspect-zoom" onClick={() => setDeep(true)}>⤢ walk the details in deep zoom</button>
                   )}
+                  <button type="button" className="cv-r-inspect-study" onClick={() => go("study", w.id)}>Open the full study →</button>
                 </React.Fragment>
               )}
               {!inspOpen && (
@@ -1418,6 +1588,7 @@ function App() {
         : view === "wall" ? <Wall go={go} mode={mode} />
         : <HomeView go={go} />}
       {route.view === "work" && <Reader id={route.id} go={go} />}
+      {route.view === "study" && <StudyView id={route.id} go={go} key={route.id} />}
       <footer className="cv-foot">
         <span className="cv-foot-main">canvas · a personal gallery, reconstructed from memory · images via <a href="https://commons.wikimedia.org" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> / <a href="https://www.wikidata.org" target="_blank" rel="noopener noreferrer">Wikidata</a></span>
         <nav className="site-switch">part of <a href="/">fuad.au</a> · <a href="/rotation/">Rotation</a> · <a href="/canvas/">Canvas</a> · <a href="/culture/">Culture</a></nav>

@@ -164,8 +164,9 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
   // gesture (drag/pinch/ptrs) so it never fights the transform write. No hover readout (that stays
   // the existing hb text above the map). Reads live viewRef so it survives mid-gesture.
   const fishRaf = React.useRef(0);
-  const FISH_R_PX = 55, FISH_MAXK = 1.35;
-  const resetFisheye = () => { const el = svgRef.current; if (!el) return; const s = viewRef.current.s; for (const c of el.querySelectorAll(".mp-bub")) { const r0 = +c.dataset.r0; if (r0) c.setAttribute("r", (r0 / Math.pow(s, 0.8)).toFixed(3)); } };
+const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shrink further when deep-zoomed (Fuad 2026-07-12)
+  const FISH_R_PX = 45, FISH_MAXK = 1.22;
+  const resetFisheye = () => { const el = svgRef.current; if (!el) return; const s = viewRef.current.s; for (const c of el.querySelectorAll(".mp-bub")) { const r0 = +c.dataset.r0; if (r0) c.setAttribute("r", (r0 / Math.pow(s, mpRadExp(s))).toFixed(3)); } };
   const runFisheye = (cx, cy) => {
     const el = svgRef.current; if (!el) return;
     // never during a gesture (pan/pinch) — the transform write owns the frame then
@@ -181,7 +182,7 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
       const mvx = (sx - v.x) / v.s, mvy = (sy - v.y) / v.s;
       // fisheye radius: FISH_R_PX screen px → viewBox units (W/rect.width) → model units (÷s)
       const rr = FISH_R_PX * (W / rect.width) / v.s;
-      const inv = 1 / rr, sk = 1 / Math.pow(v.s, 0.8);
+      const inv = 1 / rr, sk = 1 / Math.pow(v.s, mpRadExp(v.s));
       for (const c of el.querySelectorAll(".mp-bub")) {
         const bx = +c.dataset.cx, by = +c.dataset.cy, r0 = +c.dataset.r0;
         if (!r0) continue;
@@ -532,7 +533,7 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
               // transition so the per-frame fisheye writes land instantly (not smeared over .6s);
               // year-morph resize re-renders from state, which is fine instant.
               return <circle key={b.key} className="mp-bub" data-cx={b.x} data-cy={b.y} data-r0={b.r}
-                cx={b.x} cy={b.y} r={b.r / Math.pow(view.s, 0.8)} fill={col} fillOpacity={on ? 0.72 : 0.34}
+                cx={b.x} cy={b.y} r={b.r / Math.pow(view.s, mpRadExp(view.s))} fill={col} fillOpacity={on ? 0.72 : 0.34}
                 stroke={inPeriod ? "var(--accent)" : col} strokeWidth={((inPeriod ? 1.8 : on ? 1.6 : 0.7)) / view.s}
                 style={{ cursor: "pointer", transition: "fill .5s, fill-opacity .12s" }}
                 onMouseEnter={() => setHi(b.key)} onClick={(e) => { e.stopPropagation(); if (!moved.current) openBubble(b); }} />;
