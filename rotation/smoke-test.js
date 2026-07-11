@@ -242,5 +242,41 @@ if (core && Array.isArray(core.ARTISTS)) {
   ok(withOn >= 1, `at least one kept-artist single carries \`on\` (${withOn} of ${singles} singles)`);
 }
 
+// (g) day-hours.js parses, v=1, ≥3000 rows; a sampled row decodes to hours 0–23 w/ counts ≥1;
+//     and the sum of a sampled day's counts equals that day's count in day-series (same day-0).
+console.log("── day × hour histogram (day-hours.js ↔ day-series.js)");
+{
+  const r = loadGlobal("day-hours.js", "ROTATION_DAY_HOURS");
+  const ds = loadGlobal("day-series.js", "ROTATION_DAYS");
+  if (r.missing) ok(false, "day-hours.js exists");
+  else if (r.error) ok(false, "day-hours.js parses — " + r.error);
+  else if (ds.missing || ds.error || !ds.value) ok(false, "day-series.js loads (needed to cross-check day-hours)");
+  else {
+    const v = r.value || {};
+    const rows = v.rows || {};
+    const offs = Object.keys(rows);
+    ok(v.v === 1, `day-hours: v=1 (${v.v})`);
+    ok(v.start === ds.value.start, `day-hours: same day-0 as day-series (${v.start} === ${ds.value.start})`);
+    ok(offs.length >= 3000, `day-hours: ≥3000 rows (${offs.length})`);
+    // decode a sampled non-trivial row: hours in 0–23, counts ≥1
+    const sample = offs.find(o => rows[o] && rows[o].indexOf(";") > 0) || offs[0];
+    const pairs = (rows[sample] || "").split(";").filter(Boolean);
+    let hourOk = true, sum = 0, lastH = -1;
+    for (const p of pairs) {
+      const [hs, cs] = p.split(":");
+      const h = parseInt(hs, 36), c = parseInt(cs, 36);
+      if (!(h >= 0 && h <= 23)) hourOk = false;
+      if (!(c >= 1)) hourOk = false;
+      if (h <= lastH) hourOk = false;   // hours ascending
+      lastH = h; sum += c;
+    }
+    ok(pairs.length > 0 && hourOk, `day-hours: sampled row "${sample}" decodes to hours 0–23, counts ≥1 (${pairs.length} hours)`);
+    // sum of the sampled day's counts must equal day-series counts[offset]
+    const off = parseInt(sample, 36);
+    const dsCount = (ds.value.counts || [])[off];
+    ok(sum === dsCount, `day-hours: sampled day sum === day-series count (offset ${off}: ${sum} === ${dsCount})`);
+  }
+}
+
 console.log(failures ? `\n${failures} FAILURE(S) — deploy should be blocked.` : "\nall smoke checks passed");
 process.exit(failures ? 1 : 0);

@@ -61,6 +61,12 @@ a { color: inherit; }
 .cv-section-n { font-size: 10px; color: var(--ink-faint); letter-spacing: .1em; }
 .cv-section .cv-wall { padding: 0; }
 
+/* ——— home (curated selection) ——— */
+.cv-home-intro { padding: 18px 24px 0; font: 400 13.5px/1.6 var(--serif, serif); color: var(--ink-soft); max-width: 640px; }
+.cv-home-intro a { color: var(--ink); }
+.cv-home-label { margin-left: 24px; margin-right: 24px; }
+.cv-home-featured { margin-bottom: 8px; }
+
 /* ——— reader ——— */
 .cv-reader-bg { position: fixed; inset: 0; background: rgba(26, 20, 14, .55); backdrop-filter: blur(3px); z-index: 40; }
 .cv-reader { position: fixed; inset: 4vh 0; margin: 0 auto; width: min(920px, 94vw); overflow-y: auto; background: var(--paper); border-radius: 8px; z-index: 41; box-shadow: 0 30px 90px rgba(0,0,0,.45); }

@@ -495,89 +495,16 @@ function OverviewView({ t, go, restReady, seed }) {
         </div>
 
         {/* scrobble counter + trend — left anchor of the pulse row */}
-        {(() => {
-          const OV_SCROB_KEY = "rot-ov-scrobbles-view";
-          const [scrobView, setScrobView] = React.useState(() => {
-            try { return localStorage.getItem(OV_SCROB_KEY) || "bars"; } catch(e) { return "bars"; }
-          });
-          const setAndPersist = (v) => {
-            setScrobView(v);
-            try { localStorage.setItem(OV_SCROB_KEY, v); } catch(e) {}
-          };
-          // Horizon view: 5 bands, dark→bright purple/pink ramp (adapted from rotation-lab.jsx HorizonInner)
-          const OV_HZ_BANDS = 5;
-          const OV_HZ_COLORS = [
-            "oklch(0.28 0.08 260)",
-            "oklch(0.38 0.12 280)",
-            "oklch(0.48 0.15 300)",
-            "oklch(0.60 0.18 320)",
-            "oklch(0.74 0.18 340)",
-          ];
-          const showHorizon = scrobView === "horizon" && !!days;
-          const BAND_H = 34;
-          let horizonSvg = null;
-          let horizonLabels = null;
-          if (showHorizon) {
-            const counts = days.counts;
-            const n = counts.length;
-            const max = Math.max(...counts, 1);
-            const W = 700;
-            const dx = W / n;
-            const endDate = new Date(new Date(days.start + "T00:00:00Z").getTime() + (days.days - 1) * 86400000).toISOString().slice(0, 10);
-            horizonSvg = (
-              <svg viewBox={`0 0 ${W} ${BAND_H}`} width="100%" height={BAND_H}
-                style={{ display: "block", imageRendering: "pixelated", overflow: "hidden" }}>
-                {counts.map((v, i) => {
-                  if (!v) return null;
-                  const norm = v / max;
-                  for (let b = OV_HZ_BANDS - 1; b >= 0; b--) {
-                    const lo = b / OV_HZ_BANDS;
-                    if (norm > lo) {
-                      const barH = Math.min(1, (norm - lo) / (1 / OV_HZ_BANDS)) * BAND_H;
-                      return (
-                        <rect key={i} x={(i * dx).toFixed(2)} y={(BAND_H - barH).toFixed(2)}
-                          width={Math.max(0.8, dx).toFixed(2)} height={barH.toFixed(2)}
-                          fill={OV_HZ_COLORS[b]} />
-                      );
-                    }
-                  }
-                  return null;
-                })}
-              </svg>
-            );
-            horizonLabels = (
-              <div style={{ display: "flex", justifyContent: "space-between", marginTop: 3,
-                fontFamily: "var(--mono)", fontSize: 8, color: "var(--ink-faint)", letterSpacing: ".06em" }}>
-                <span>'{days.start.slice(2, 4)}</span>
-                <span>'{endDate.slice(2, 4)}</span>
-              </div>
-            );
-          }
-          return (
-            <div className="r-card ov-scrob" style={{ gridColumn: "span 3", padding: 14, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-              {/* ensure ov-wtab styles are available even if OvWeatherCard hasn't rendered yet */}
-              <style>{`.ov-wtabs{display:inline-flex;gap:4px}.ov-wtab{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--rule);background:none;color:var(--ink-faint);cursor:pointer;transition:color .12s,border-color .12s}.ov-wtab[data-on="1"]{color:var(--ink);border-color:var(--accent-dim)}`}</style>
-              <div className="r-card-h" style={{ padding: 0 }}>
-                <span className="lbl"><b>Scrobbles</b></span>
-                <span className="ov-wtabs">
-                  <button className="ov-wtab" data-on={scrobView === "bars" ? 1 : 0} onClick={() => setAndPersist("bars")}>bars</button>
-                  <button className="ov-wtab" data-on={scrobView === "horizon" ? 1 : 0} onClick={() => setAndPersist("horizon")}>horizon</button>
-                </span>
-              </div>
-              <div className="r-stat-n" style={{ fontSize: "clamp(30px,4vw,44px)", margin: "4px 0 2px" }}>{fmt(Math.round(scrob))}</div>
-              <div style={{ marginTop: 6 }}>
-                {showHorizon ? (
-                  <div>
-                    {horizonSvg}
-                    {horizonLabels}
-                  </div>
-                ) : (
-                  <Spark data={trend} w={300} h={34} run={seen} fill="var(--accent-bg)" />
-                )}
-              </div>
-            </div>
-          );
-        })()}
+        <div className="r-card ov-scrob" style={{ gridColumn: "span 3", padding: 14, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+          <div className="r-card-h" style={{ padding: 0 }}>
+            <span className="lbl"><b>Scrobbles</b></span>
+            <span className="meta">26-wk</span>
+          </div>
+          <div className="r-stat-n" style={{ fontSize: "clamp(30px,4vw,44px)", margin: "4px 0 2px" }}>{fmt(Math.round(scrob))}</div>
+          <div style={{ marginTop: 6 }}>
+            <Spark data={trend} w={300} h={34} run={seen} fill="var(--accent-bg)" />
+          </div>
+        </div>
 
         {/* streak — current run + when the all-time best happened (INSIGHTS.STREAK carries the range) */}
         <div className="r-card ov-streak" style={{ gridColumn: "span 2", padding: 14, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>

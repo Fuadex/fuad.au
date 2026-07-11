@@ -14,12 +14,12 @@ window.CANVAS_ARTWORKS = [
     seenAt: "sukiennice", seenConfidence: "probably", favorite: true, note: "One canvas exists (slashed by the artist, restored) — hangs in Sukiennice; the Warsaw memory was likely a loan or another Podkowiński." },
 
   { id: "leech-the-sunshade", title: "The Sunshade", artist: "William John Leech", artistId: "leech", qid: null, year: 1913,
-    seenAt: "ngi", seenConfidence: "sure", favorite: true, note: "\"Gorgeous.\"",
+    seenAt: "ngi", seenConfidence: "sure", favorite: true, featured: true, note: "\"Gorgeous.\"",
     // hand-linked image (in-copyright artist — no Commons P18; hotlink, consider mirroring later)
     img: "https://i.redd.it/mnk7k7eypic91.jpg", imgGrid: "https://i.redd.it/mnk7k7eypic91.jpg", imgZoom: "https://i.redd.it/mnk7k7eypic91.jpg" },
 
   { id: "leech-convent-garden", title: "A Convent Garden, Brittany", artist: "William John Leech", artistId: "leech", qid: null, year: 1913,
-    seenAt: "ngi", seenConfidence: "probably", note: "Memory checked out — it is his, and it is NGI.",
+    seenAt: "ngi", seenConfidence: "probably", featured: true, note: "Memory checked out — it is his, and it is NGI.",
     // hand-linked image (en-wiki fair-use file — not on Commons; hotlink, consider mirroring later)
     img: "https://upload.wikimedia.org/wikipedia/en/a/a8/W1500-Leech-Convent-Garden.jpg", imgGrid: "https://upload.wikimedia.org/wikipedia/en/a/a8/W1500-Leech-Convent-Garden.jpg", imgZoom: "https://upload.wikimedia.org/wikipedia/en/a/a8/W1500-Leech-Convent-Garden.jpg" },
 
