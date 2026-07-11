@@ -2,7 +2,7 @@
 // Data: museums.js + artworks.js (hand canon) ⊕ art_data.js (Wikidata/Commons overlay, by id).
 // Routes: #/ (wall) · #/museums · #/work/<id>. Confidence renders honestly: "?" = probably,
 // "??" = unsure, faded card. No-image works (copyright/TBC) are text-forward cards by design.
-const { useState, useEffect, useMemo } = React;
+const { useState, useEffect, useMemo, useRef, useCallback } = React;
 
 const MUSEUMS = window.CANVAS_MUSEUMS || [];
 const WORKS = window.CANVAS_ARTWORKS || [];
@@ -170,23 +170,110 @@ function Wall({ go, mode = "collage" }) {
 
 // full-screen pan/zoom (Phase 5 "stand close to the brushwork" mode) — dependency-free:
 // scroll to zoom (1–8×), drag to pan, double-click resets, Esc closes. Uses a 3200px thumb.
+//
+// CRASH FIX (was: onMouseMove → setT → React re-render on every mousemove pixel → jank/crash):
+//   • Transform is written directly to img.style.transform via a ref on every pointermove event
+//     (no React re-render mid-drag).
+//   • State (scale+pan) is committed to React only on pointerup so React is only involved twice
+//     (mount + release). This eliminates the re-render storm that caused the jank/crash.
+//   • Pointer capture (setPointerCapture) keeps events coming even when the pointer leaves the
+//     div — previously drag would silently stall on a fast swipe out-of-bounds.
+//   • All listeners are on the overlay div (not window), cleaned up on unmount via the ref guard.
+//   • Pan is clamped to avoid runaway offsets at low zoom.
 function Zoom({ src, onClose }) {
-  const [t, setT] = useState({ s: 1.6, x: 0, y: 0 });
-  const drag = React.useRef(null);
+  const imgRef = useRef(null);
+  const overlayRef = useRef(null);
+  // committed state: only updated on release so React never re-renders mid-drag
+  const [committed, setCommitted] = useState({ s: 1.6, x: 0, y: 0 });
+  // live state kept in a ref so pointermove reads it without stale closures
+  const live = useRef({ s: 1.6, x: 0, y: 0 });
+  const drag = useRef(null); // { pointerId, startX, startY, baseX, baseY }
+  const raf = useRef(0);
+
+  const applyTransform = useCallback((s, x, y) => {
+    if (!imgRef.current) return;
+    imgRef.current.style.transform = `translate(${x}px,${y}px) scale(${s})`;
+  }, []);
+
+  // keep live ref in sync with committed (e.g. on double-click reset)
+  useEffect(() => {
+    live.current = { ...committed };
+    applyTransform(committed.s, committed.x, committed.y);
+  }, [committed]);
+
   useEffect(() => {
     const on = (e) => { if (e.key === "Escape") { e.stopPropagation(); onClose(); } };
     window.addEventListener("keydown", on, true);
-    return () => window.removeEventListener("keydown", on, true);
-  }, []);
+    return () => {
+      window.removeEventListener("keydown", on, true);
+      if (raf.current) cancelAnimationFrame(raf.current);
+    };
+  }, [onClose]);
+
+  // wheel handler — bound non-passively so we can preventDefault
+  useEffect(() => {
+    const el = overlayRef.current;
+    if (!el) return;
+    const onWheel = (e) => {
+      e.preventDefault();
+      const { s, x, y } = live.current;
+      const ns = Math.min(8, Math.max(1, s * (e.deltaY < 0 ? 1.15 : 0.87)));
+      // scale around cursor position
+      const rect = el.getBoundingClientRect();
+      const cx = e.clientX - rect.left - rect.width / 2;
+      const cy = e.clientY - rect.top - rect.height / 2;
+      const nx = cx + (x - cx) * (ns / s);
+      const ny = cy + (y - cy) * (ns / s);
+      live.current = { s: ns, x: nx, y: ny };
+      if (!raf.current) raf.current = requestAnimationFrame(() => {
+        raf.current = 0;
+        applyTransform(live.current.s, live.current.x, live.current.y);
+      });
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [applyTransform]);
+
+  const onPointerDown = (e) => {
+    if (e.button !== 0) return;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    drag.current = { pointerId: e.pointerId, startX: e.clientX, startY: e.clientY, baseX: live.current.x, baseY: live.current.y };
+  };
+
+  const onPointerMove = (e) => {
+    if (!drag.current || drag.current.pointerId !== e.pointerId) return;
+    const nx = drag.current.baseX + (e.clientX - drag.current.startX);
+    const ny = drag.current.baseY + (e.clientY - drag.current.startY);
+    live.current = { ...live.current, x: nx, y: ny };
+    if (!raf.current) raf.current = requestAnimationFrame(() => {
+      raf.current = 0;
+      if (!imgRef.current) return;
+      imgRef.current.style.transform = `translate(${live.current.x}px,${live.current.y}px) scale(${live.current.s})`;
+    });
+  };
+
+  const onPointerUp = (e) => {
+    if (!drag.current || drag.current.pointerId !== e.pointerId) return;
+    drag.current = null;
+    // commit to React state so a future double-click reset sees the right base
+    setCommitted({ ...live.current });
+  };
+
+  const onDoubleClick = () => {
+    drag.current = null;
+    setCommitted({ s: 1.6, x: 0, y: 0 });
+  };
+
   return (
-    <div className="cv-zoom"
-      onWheel={e => { e.preventDefault(); setT(v => ({ ...v, s: Math.min(8, Math.max(1, v.s * (e.deltaY < 0 ? 1.15 : 0.87))) })); }}
-      onMouseDown={e => { drag.current = { mx: e.clientX, my: e.clientY, x: t.x, y: t.y }; }}
-      onMouseMove={e => { if (drag.current) setT(v => ({ ...v, x: drag.current.x + e.clientX - drag.current.mx, y: drag.current.y + e.clientY - drag.current.my })); }}
-      onMouseUp={() => { drag.current = null; }}
-      onDoubleClick={() => setT({ s: 1.6, x: 0, y: 0 })}>
-      <img src={src.replace(/width=\d+/, "width=3200")} alt=""
-        style={{ transform: `translate(${t.x}px,${t.y}px) scale(${t.s})` }} draggable="false" />
+    <div className="cv-zoom" ref={overlayRef}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerUp}
+      onDoubleClick={onDoubleClick}>
+      <img ref={imgRef} src={src.replace(/width=\d+/, "width=3200")} alt=""
+        style={{ transform: `translate(${committed.x}px,${committed.y}px) scale(${committed.s})` }}
+        draggable="false" />
       <button className="cv-r-close cv-zoom-close" onClick={onClose}>✕</button>
       <div className="cv-zoom-hint">scroll to zoom · drag to pan · double-click resets · Esc closes</div>
     </div>
@@ -971,6 +1058,147 @@ function HomeView({ go }) {
   );
 }
 
+// ——— Search: live-filter across all enriched works (title + artist + museum name).
+// Results appear as a dropdown (max 12). Clicking a work opens its Reader directly.
+// Museum-name hits navigate to the museums view. ESC / click-outside closes.
+// Keyboard: Arrow up/down moves selection; Enter opens the highlighted hit.
+// Mobile: icon-only button expands to a full-width input.
+
+// fold: NFD + strip combining marks → case-insensitive diacritic-insensitive substring match
+const fold = (s) => (s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+
+// build the search index once at module level (enriched canon + museum name lookup)
+const SEARCH_INDEX = (() => {
+  const enriched = WORKS.map(enrich);
+  return enriched.map(w => {
+    const musNames = w.venues.map(v => v.name.replace(/\s*\(.*\)$/, "")).join(" ");
+    return {
+      id: w.id,
+      title: w.title.replace(/^TBC — /, ""),
+      artist: w.artist.replace(/\s*\(.*\)$/, ""),
+      musNames,
+      musIds: w.venues.map(v => v.id),
+      imgGrid: w.imgGrid || null,
+      // pre-folded haystack for fast matching
+      hay: fold(w.title + " " + w.artist + " " + musNames),
+    };
+  });
+})();
+
+function SearchBar({ go }) {
+  const [open, setOpen] = useState(false);
+  const [q, setQ] = useState("");
+  const [sel, setSel] = useState(0);
+  const inputRef = useRef(null);
+  const wrapRef = useRef(null);
+
+  const results = useMemo(() => {
+    const needle = fold(q);
+    if (!needle || needle.length < 1) return [];
+    const hits = [];
+    const musHits = new Map(); // museumId → museum name (deduped)
+    for (const it of SEARCH_INDEX) {
+      if (!it.hay.includes(needle)) continue;
+      // mark whether the match came from museum-name only
+      const inTitle = fold(it.title).includes(needle) || fold(it.artist).includes(needle);
+      const inMus = fold(it.musNames).includes(needle);
+      if (inTitle || inMus) {
+        hits.push({ kind: "work", ...it });
+        if (inMus && !inTitle) {
+          // surface museum as a dedicated result too
+          for (let i = 0; i < it.musIds.length; i++) {
+            const mid = it.musIds[i];
+            if (!musHits.has(mid)) musHits.set(mid, true);
+          }
+        }
+      }
+      if (hits.length >= 20) break;
+    }
+    // deduplicate museum hits and prepend them when search term matches a museum name directly
+    const musResults = [];
+    for (const [mid] of musHits) {
+      const mn = MUS_BY_ID[mid];
+      if (mn && fold(mn.name).includes(needle)) {
+        musResults.push({ kind: "museum", id: mid, title: mn.name.replace(/\s*\(.*\)$/, ""), artist: mn.city, imgGrid: null });
+      }
+    }
+    return [...musResults, ...hits].slice(0, 12);
+  }, [q]);
+
+  // reset selection when results change
+  useEffect(() => { setSel(0); }, [results]);
+
+  // close on click-outside
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target)) {
+        setOpen(false); setQ("");
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  const openResult = (r) => {
+    if (r.kind === "museum") { go("museums"); }
+    else { go("work", r.id); }
+    setOpen(false); setQ("");
+  };
+
+  const onKeyDown = (e) => {
+    if (e.key === "Escape") { setOpen(false); setQ(""); return; }
+    if (results.length === 0) return;
+    if (e.key === "ArrowDown") { e.preventDefault(); setSel(s => Math.min(s + 1, results.length - 1)); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); setSel(s => Math.max(s - 1, 0)); }
+    else if (e.key === "Enter") { e.preventDefault(); if (results[sel]) openResult(results[sel]); }
+  };
+
+  const expand = () => { setOpen(true); setTimeout(() => inputRef.current && inputRef.current.focus(), 0); };
+
+  return (
+    <div className="cv-search" ref={wrapRef}>
+      {!open
+        ? <button className="cv-search-icon" onClick={expand} aria-label="Search artworks">🔍</button>
+        : (
+          <div className="cv-search-box">
+            <input
+              ref={inputRef}
+              className="cv-search-input"
+              type="search"
+              placeholder="title, artist, museum…"
+              value={q}
+              onChange={e => setQ(e.target.value)}
+              onKeyDown={onKeyDown}
+              autoComplete="off"
+              autoCorrect="off"
+              spellCheck="false"
+            />
+            <button className="cv-search-dismiss" onClick={() => { setOpen(false); setQ(""); }}>✕</button>
+          </div>
+        )
+      }
+      {open && results.length > 0 && (
+        <div className="cv-search-drop">
+          {results.map((r, i) => (
+            <div key={r.kind + r.id} className={"cv-search-hit" + (i === sel ? " cv-search-hit-sel" : "")}
+              onMouseEnter={() => setSel(i)}
+              onMouseDown={e => { e.preventDefault(); openResult(r); }}>
+              {r.imgGrid
+                ? <img className="cv-search-thumb" src={r.imgGrid} alt="" />
+                : <span className="cv-search-thumb cv-search-thumb-empty" />}
+              <span className="cv-search-hit-text">
+                <span className="cv-search-hit-title">{r.title}</span>
+                <span className="cv-search-hit-sub">{r.kind === "museum" ? "Museum · " : ""}{r.artist}</span>
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function App() {
   const route = useRoute();
   const [mode, setMode] = useState("collage");   // wall arrangement: collage | spectrum | timeline | movements
@@ -997,6 +1225,7 @@ function App() {
               <button key={m} data-on={mode === m} onClick={() => setMode(m)}>{lbl}</button>)}
           </div>
         )}
+        <SearchBar go={go} />
       </header>
       {route.view === "deck" ? <Deck museumId={route.id} go={go} key={route.id} />
         : view === "museums" ? <Museums />
