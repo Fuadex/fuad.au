@@ -2404,6 +2404,7 @@ function GigsMap({ cityList, hueForCity, onCity }) {
   const [off, setOff] = React.useState(() => new Set());  // countryCode+city keys that are toggled OFF
   const svgRef = React.useRef(null);
   const vbRef = React.useRef(BASE);                 // current (animated) viewBox
+  const hovLineRef = React.useRef(null);            // imperative hover readout (fisheye liveness)
   const rafRef = React.useRef(0);
   const fisheyeRef = React.useRef(0);               // rAF handle for the pointermove fisheye
   // FREE NAVIGATION state (drag-pan + wheel/pinch zoom), all imperative like fit():
@@ -2517,11 +2518,19 @@ function GigsMap({ cityList, hueForCity, onCity }) {
       const pxToVx = vb.w / rect.width, pxToVy = vb.h / rect.height;
       const mvx = vb.x + (cx - rect.left) * pxToVx, mvy = vb.y + (cy - rect.top) * pxToVy;
       const rx = R_PX * pxToVx, ry = R_PX * pxToVy;
+      let bestD = Infinity, bestG = null;
       for (const g of svg.querySelectorAll(".gv-cmap-dot")) {
         const bx = +g.dataset.cx, by = +g.dataset.cy;
         const dnorm = Math.hypot((bx - mvx) / rx, (by - mvy) / ry);   // 0 at cursor, 1 at edge
         const k = dnorm >= 1 ? 1 : 1 + (MAXK - 1) * (1 - dnorm) * (1 - dnorm);   // eased falloff
         setK(g, k);
+        if (dnorm < bestD) { bestD = dnorm; bestG = g; }
+      }
+      // imperative hover readout (no React re-render — the fisheye's liveness indicator too)
+      if (hovLineRef.current) {
+        hovLineRef.current.textContent = (bestG && bestD < 1)
+          ? (bestG.dataset.city || "") + " · " + (bestG.dataset.count || "") + " show" + (bestG.dataset.count === "1" ? "" : "s")
+          : "hover the bubbles — they grow toward the cursor · drag to pan · wheel to zoom";
       }
     });
   };
@@ -2620,6 +2629,7 @@ function GigsMap({ cityList, hueForCity, onCity }) {
   if (!world) return <div className="gv-cmap-empty r-mono">the map loads…</div>;
   return (
     <div className="gv-cmap-wrap">
+      <div ref={hovLineRef} className="gv-cmap-hoverline r-mono">hover the bubbles — they grow toward the cursor · drag to pan · wheel to zoom</div>
       <svg ref={svgRef} className="gv-cmap"
         role="img" aria-label="concert map — the cities where you've been in a crowd"
         onPointerDown={onDown} onPointerMove={onMove} onPointerUp={endPtr} onPointerLeave={onLeave}
@@ -2628,7 +2638,7 @@ function GigsMap({ cityList, hueForCity, onCity }) {
         {dots.map(d => {
           const on = !off.has(d.key);
           return (
-            <g key={d.key} className="gv-cmap-dot" data-cx={d.cx} data-cy={d.cy}
+            <g key={d.key} className="gv-cmap-dot" data-cx={d.cx} data-cy={d.cy} data-city={d.city} data-count={d.count}
               style={{ opacity: on ? 1 : 0.14 }}>
               <circle cx={d.cx} cy={d.cy} r={d.r} className="gv-cmap-c" data-on={on}
                 fill={d.hue != null ? `oklch(0.64 0.15 ${d.hue})` : "var(--accent)"}
@@ -3030,6 +3040,7 @@ function GigsView({ go }) {
         .gv-cmap { cursor: crosshair; }
         .gv-cmap-c { fill-opacity: .78; transition: fill-opacity .15s; }
         .gv-cmap-c:hover { fill-opacity: 1; }
+        .gv-cmap-hoverline { font-size: 9.5px; color: var(--ink-faint); letter-spacing: .08em; margin-bottom: 5px; min-height: 13px; }
         .gv-cmap-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
         .gv-cmap-chip { display: inline-flex; align-items: baseline; gap: 6px; padding: 4px 10px; border-radius: 999px;
           border: 1px solid var(--rule); background: none; color: var(--ink-soft); cursor: pointer; font-size: 11.5px; transition: border-color .15s, opacity .15s, background .15s; }

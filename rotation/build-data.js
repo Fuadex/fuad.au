@@ -421,6 +421,10 @@ const FAMILY_OVERRIDES = {
 // Non-music scrobbles (YouTube shows etc.) — excluded from Explore / the genre map.
 // ("Corridor" ≠ "Corridor Crew" — the Montreal band stays.)
 const NONMUSIC = new Set(["Corridor Crew", "George Carlin"]);   // stand-up, not music
+// deliberately unclassified — kept in the library but off the genre map (Fuad's own releases:
+// "doesn't belong anywhere, this needs to be invalidated somehow", 2026-07-12)
+const UNCLASSIFIABLE = new Set(["Fuad Soudah"]);
+for (const n of UNCLASSIFIABLE) NONMUSIC.add(n);
 const canon = (name) => { const c = CANON.get(name) || name; return HAND_MERGE[c] || c; };
 // (album hygiene — placeholder remaps + tag stripping — now lives in sync-csv.js as data overrides,
 // so fuadex.csv already holds clean album titles by the time we read it here.)
