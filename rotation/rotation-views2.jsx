@@ -632,10 +632,12 @@ function ArtistBarcode({ artistId, daysReady }) {
     );
   });
 
+  // width:100% of the (now fit-content) stat column — no fixed 560 cap, so the barcode
+  // hugs the plays→listeners stat row's width (Fuad 2026-07-12).
   return (
-    <div style={{ marginBottom: 10, width: "100%", maxWidth: 560 }}>
+    <div style={{ marginBottom: 10, width: "100%", minWidth: 280 }}>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" height={H}
-        style={{ display: "block", imageRendering: "crispEdges", maxWidth: 560 }}
+        style={{ display: "block", imageRendering: "crispEdges" }}
         preserveAspectRatio="none">
         {lines}
       </svg>
@@ -723,6 +725,55 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     s.addEventListener("load", onLoad);
     return () => s.removeEventListener("load", onLoad);
   }, []);
+  // Instrument taxonomy strip — a compact "{N}-piece · {glyphs}" line derived from the
+  // MusicBrainz CURRENT lineup (t === ""), shown up near the header. Solo artists (type
+  // Person) and groups with no member data are skipped. Each member contributes up to 2
+  // glyphs when their instruments span groups; the sequence caps at 8 (+"…"). Kept ABOVE the
+  // early returns so hook order stays stable across navigations. (Fuad 2026-07-12)
+  const instrStrip = React.useMemo(() => {
+    const mb = mbReady && window.ROTATION_MB && window.ROTATION_MB[a.id];
+    if (!mb || mb.type === "Person" || !Array.isArray(mb.members)) return null;
+    const current = mb.members.filter(m => !m.t);
+    if (current.length === 0) return null;
+    // group key → glyph. bass uses the guitar glyph with a "b" superscript so it reads apart
+    // from a lead guitar (owner's-call: keep it readable, not a new emoji).
+    const glyphOf = (key) => key === "bass"
+      ? <span>🎸<sup style={{ fontSize: 7, verticalAlign: "super" }}>b</sup></span>
+      : ({ vocals: "🎤", guitar: "🎸", drums: "🥁", keys: "🎹", electronics: "🎛️", strings: "🎻", brass: "🎺", wind: "🪈" })[key];
+    // classify one instrument name into a group key (order matters — bass before guitar).
+    const classify = (raw) => {
+      const s = raw.toLowerCase();
+      if (/vocal|sing|voice/.test(s)) return "vocals";
+      if (/bass/.test(s)) return "bass";
+      if (/guitar/.test(s)) return "guitar";
+      if (/drum|percussion/.test(s)) return "drums";
+      if (/key|piano|synth|organ|mellotron/.test(s)) return "keys";
+      if (/program|electron|turntable|sampler|sequenc|machine/.test(s)) return "electronics";
+      if (/violin|viola|cello|string/.test(s)) return "strings";
+      if (/sax|trumpet|brass|horn|trombone/.test(s)) return "brass";
+      if (/flute|wind|clarinet|oboe|recorder/.test(s)) return "wind";
+      return null;   // other/unknown → skip
+    };
+    const LABELS = { vocals: "vocals", bass: "bass", guitar: "guitar", drums: "drums", keys: "keys", electronics: "electronics", strings: "strings", brass: "brass", wind: "wind" };
+    const seq = [];        // ordered group keys, one entry per glyph rendered
+    const counts = {};     // group key → count, for the tooltip expansion
+    for (const m of current) {
+      const groups = [];   // distinct groups THIS member contributes (cap 2)
+      for (const instr of (m.i || [])) {
+        const k = classify(instr);
+        if (k && !groups.includes(k)) groups.push(k);
+        if (groups.length >= 2) break;
+      }
+      for (const k of groups) { seq.push(k); counts[k] = (counts[k] || 0) + 1; }
+    }
+    if (seq.length === 0) return null;
+    const overflow = seq.length > 8;
+    const shown = overflow ? seq.slice(0, 8) : seq;
+    // tooltip: "2x vocals · 2x guitar · bass · drums", in the ORDER groups first appear
+    const order = []; seq.forEach(k => { if (!order.includes(k)) order.push(k); });
+    const tip = order.map(k => (counts[k] > 1 ? counts[k] + "x " : "") + LABELS[k]).join(" · ");
+    return { n: current.length, glyphs: shown.map(glyphOf), overflow, tip };
+  }, [a.id, mbReady]);
   // artists outside the kept 205 still rank in Explore — give them a lightweight page
   // (return AFTER hooks so hook order stays stable across navigations).
   if (!full && R.expById && R.expById[id]) return <MiniArtistView a={R.expById[id]} go={go} />;
@@ -784,6 +835,17 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
           <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} onTour={a.onTour} />
+          {instrStrip && (
+            <div title={instrStrip.tip} style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 12,
+              padding: "4px 10px", borderRadius: 999, border: "1px solid var(--rule)", cursor: "default" }}>
+              <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", letterSpacing: ".02em" }}>{instrStrip.n}-piece</span>
+              <span style={{ color: "var(--ink-faint)" }}>·</span>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 15, lineHeight: 1 }}>
+                {instrStrip.glyphs.map((g, i) => <span key={i}>{g}</span>)}
+                {instrStrip.overflow && <span style={{ fontSize: 12, color: "var(--ink-faint)" }}>…</span>}
+              </span>
+            </div>
+          )}
           {a.tags && a.tags.length > 0 && (
             <div style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap", alignItems: "center" }}>
               <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>last.fm</span>
@@ -808,7 +870,11 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 0, alignSelf: "flex-end", marginLeft: "auto", width: "min(560px, 100%)" }}>
+        {/* stat column hugs the stat ROW's intrinsic width (fit-content) instead of a fixed
+           560px, so the barcode squeezes down to just the plays→listeners block. Still
+           right-stuck via marginLeft:auto; min-width floor keeps it from collapsing on
+           narrow artists (Fuad 2026-07-12). */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 0, alignSelf: "flex-end", marginLeft: "auto", width: "fit-content", maxWidth: "100%", minWidth: 280 }}>
           <ArtistBarcode artistId={a.id} daysReady={daysReady} />
           <div style={{ display: "flex", gap: 26, justifyContent: "flex-end" }}>
             <div><div className="r-stat-n" style={{ fontSize: 38 }}>{fmt(a.plays)}</div>
@@ -843,8 +909,11 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
       <div style={{ display: "grid", gap: "var(--gap)" }}>
           {/* row 2 on PC: flow (wide — Sound DNA moved to the bottom row for breathing room,
              Fuad 2026-07-06) · top tracks · albums */}
-          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "var(--gap)", alignItems: "start" }}>
-            {/* top tracks · how they played out (flow now in the MIDDLE — Fuad 2026-07-06) · albums */}
+          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "var(--gap)", alignItems: "stretch" }}>
+            {/* top tracks · how they played out (flow now in the MIDDLE — Fuad 2026-07-06) · albums.
+               alignItems:stretch (was start) so the three modules share the tallest sibling's
+               height instead of the releases card ballooning — matters at the owner's 200-250%
+               laptop zoom, where the covers grid reflows tall (Fuad 2026-07-12). */}
             <div className="r-card" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
                 <span className="lbl"><b>Top tracks</b>{selAlbum && (
@@ -876,7 +945,11 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             <ArtistFlow id={a.id} hue={a.hue} go={go} drill={flowDrill} setDrill={setFlowDrill} onAlbum={setSelAlbum} />
             {/* releases — sectioned taxonomy: Albums (covers/list), EPs & singles (spine rows),
                 Comps/live/OSTs (collapsed). Each section renders only when non-empty. */}
-            <div className="r-card" style={{ padding: 18 }}>
+            {/* releases card — flex column so its body scrolls INSIDE a bounded height rather
+               than the whole card dictating the row's height at high zoom. maxHeight is a soft
+               cap; short release lists still shrink to fit (Fuad 2026-07-12). */}
+            <div className="r-card" style={{ padding: 18, display: "flex", flexDirection: "column", maxHeight: "min(820px, 100%)" }}>
+              <div style={{ overflowY: "auto", minHeight: 0, marginRight: -4, paddingRight: 4 }}>
               {albums.length > 0 && <React.Fragment>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
                 <span className="lbl"><b>Albums</b></span>
@@ -888,7 +961,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   <span className="meta">{albums.length}</span>
                 </span></div>
               {albMode === "covers" ? (
-                <div className="av-albumcovers" style={{ maxHeight: 420, overflowY: "auto", paddingRight: 4,
+                <div className="av-albumcovers" style={{
                   display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: 10 }}>
                   {albums.map((al, i) => (
                     <div key={al.title + i} style={{ cursor: "pointer", minWidth: 0 }} onClick={() => goAlbum(al.title)} title={`${al.title} →`}>
@@ -899,7 +972,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   ))}
                 </div>
               ) : (
-                <div style={{ display: "grid", gap: 2, maxHeight: 420, overflowY: "auto", paddingRight: 4 }}>
+                <div style={{ display: "grid", gap: 2 }}>
                   {albums.map((al, i) => (
                     <div key={al.title + i} className="r-track-row" onClick={() => goAlbum(al.title)} title={`${al.title} →`}
                       style={{ display: "flex", alignItems: "center", gap: 9, padding: "5px 4px", cursor: "pointer", borderRadius: 4 }}>
@@ -920,7 +993,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
                     <span className="lbl"><b>EPs & singles</b></span><span className="meta">{epsSingles.length}</span></div>
                   {albMode === "covers" ? (
-                    <div className="av-albumcovers" style={{ maxHeight: 300, overflowY: "auto", paddingRight: 4,
+                    <div className="av-albumcovers" style={{
                       display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: 10 }}>
                       {epsSingles.map((al, i) => {
                         const onTitle = al.on ? titleForSlug(al.on) : null;
@@ -940,7 +1013,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                       })}
                     </div>
                   ) : (
-                    <div style={{ display: "grid", gap: 2, maxHeight: 300, overflowY: "auto", paddingRight: 4 }}>
+                    <div style={{ display: "grid", gap: 2 }}>
                       {epsSingles.map((al, i) => {
                         const onTitle = al.on ? titleForSlug(al.on) : null;
                         const nav = al.on ? () => go("album", R.slug(a.name) + "~" + al.on) : () => goAlbum(al.title);
@@ -971,7 +1044,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                     <button className="av-more" onClick={() => setCompsOpen(o => !o)}>{compsOpen ? "hide ▴" : `+ ${comps.length} more`}</button>
                   </div>
                   {compsOpen && (albMode === "covers" ? (
-                    <div className="av-albumcovers" style={{ maxHeight: 300, overflowY: "auto", paddingRight: 4,
+                    <div className="av-albumcovers" style={{
                       display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: 10 }}>
                       {comps.map((al, i) => (
                         <div key={al.title + i} style={{ cursor: "pointer", minWidth: 0 }} onClick={() => goAlbum(al.title)} title={`${al.title} →`}>
@@ -983,7 +1056,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                       ))}
                     </div>
                   ) : (
-                    <div style={{ display: "grid", gap: 2, maxHeight: 300, overflowY: "auto", paddingRight: 4 }}>
+                    <div style={{ display: "grid", gap: 2 }}>
                       {comps.map((al, i) => (
                         <div key={al.title + i} className="r-track-row" onClick={() => goAlbum(al.title)} title={`${al.title} →`}
                           style={{ display: "flex", alignItems: "center", gap: 9, padding: "5px 4px", cursor: "pointer", borderRadius: 4 }}>
@@ -997,6 +1070,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   ))}
                 </div>
               )}
+              </div>
             </div>
           </div>
 
@@ -1167,22 +1241,33 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               );
             };
 
-            const hasTreeData = roster.length > 0 || (a.connections && a.connections.length > 0) || (wCity || wInc);
             const hasMb = !!mb;
+            // what actually renders ABOVE the MB block, so the MB border-top divider only
+            // draws when there's content over it (the flat member row + Formed line are now
+            // hidden in the MB case — don't count them then). (Fuad 2026-07-12)
+            const showFlatMembers = roster.length > 0 && mbMembers.length === 0;
+            const showFormed = (wCity || wInc) && !(mb && mbHeadBits.length > 0);
+            const hasTreeData = showFlatMembers || (a.connections && a.connections.length > 0) || showFormed;
 
             return (
             <div className={`r-card av-famcard${famWide ? " wide" : ""}`} style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
                 <span className="lbl"><b>Family tree</b></span>
                 <span className="meta">musicbrainz · discogs{a.wd ? " · wikidata" : ""}</span></div>
-              {(wCity || wInc) && (
+              {/* "Formed in {city}" — dropped when the MB header line (type · area · years)
+                 is present, since that's the preferred header and its area/years overlap
+                 this line's inception/dissolved (Fuad 2026-07-12). */}
+              {(wCity || wInc) && !(mb && mbHeadBits.length > 0) && (
                 <div style={{ fontSize: 12, color: "var(--ink-soft)", marginBottom: 14 }}>
                   Formed{wCity ? <> in <b style={{ color: "var(--ink)" }}>{wCity}</b></> : null}
                   {wInc ? <>, <span className="r-mono">{wInc}{wDis ? `-${wDis}` : ""}</span></> : null}
                   {wDis ? <span style={{ color: "var(--ink-faint)" }}> · disbanded</span> : null}
                 </div>
               )}
-              {roster.length > 0 && (
+              {/* legacy flat member chip-row — only a FALLBACK now; when the MB roster below
+                 exists it renders the same names (with tenure/instruments), so we drop this
+                 duplicate and keep MB as the source of truth (Fuad 2026-07-12). */}
+              {roster.length > 0 && mbMembers.length === 0 && (
                 <div style={{ marginBottom: (a.connections && a.connections.length) ? 16 : 0 }}>
                   <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 8 }}>Members</div>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
