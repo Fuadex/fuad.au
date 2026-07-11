@@ -62,6 +62,13 @@ function precompileApp(app, babel) {
     html = html.replace(/^[ \t]*<script[^>]*@babel\/standalone[^>]*><\/script>\r?\n/m, "");
     html = html.replace(/<script\s+type="text\/babel"(?:\s+data-presets="[^"]*")?\s+src="([^"]+)\.jsx(\?v=\d+)?"><\/script>/g,
       (m, base, q) => `<script defer src="${base}.js${q || ""}"></script>`);   // carry ?v= cache-busters through
+    // INLINE text/babel blocks (e.g. Culture's mount script) must be compiled too — with the
+    // Babel runtime stripped they otherwise never execute and the app silently fails to mount
+    // (the 2026-07-12 Culture outage). Wrap in DOMContentLoaded so they run after deferred bundles.
+    html = html.replace(/<script\s+type="text\/babel"(?:\s+data-presets="[^"]*")?\s*>([\s\S]*?)<\/script>/g, (m, body) => {
+      const compiled = babel.transform(body, { presets: ["env", "react"], compact: false, comments: false }).code;
+      return `<script>document.addEventListener("DOMContentLoaded", function () {\n${compiled}\n});</script>`;
+    });
     fs.writeFileSync(idx, html, "utf8");
   }
   console.log(`  precompiled ${jsxFiles.length} .jsx → .js (Babel stripped from prod)`);
