@@ -2078,18 +2078,192 @@ function TourCal({ events, gran, setGran, selKey, setSelKey, keyOf }) {
   );
 }
 
+// Shared map-navigation + fisheye engine, factored so TourMap owns exactly one coherent gesture
+// model. All navigation is a <g transform="translate(x,y) scale(k)"> driven imperatively (the <g>
+// attribute is written directly during a gesture — no 60 Hz setState re-rendering ~150 paths);
+// state (tf) is committed only on release. The engine also owns: fit() — an eased ANIMATION of the
+// transform to frame a set of dots' bounding box (the exact fit/clamp/ease math ported from the old
+// GigsMap, adapted from viewBox to transform units); a cursor FISHEYE that grows the nearest dots by
+// writing each circle's r attribute; and a hover readout. VB is the static viewBox this projection
+// lives in ("0 70 1000 315"). MINK/MAXK bound the zoom.
+const TMAP_VB = { x: 0, y: 70, w: 1000, h: 315 };
+const TMAP_MINK = 1, TMAP_MAXK = 14;
+function useTourMapNav(svgRef, gRef, dotSel) {
+  const [tf, setTf] = React.useState({ k: 1, x: 0, y: 0 });   // committed g transform
+  const tfRef = React.useRef(tf);
+  React.useEffect(() => { tfRef.current = tf; }, [tf]);
+  const pending = React.useRef(null);   // last transform mid-gesture, committed to state on release
+  const drag = React.useRef(null);      // {x,y,tx,ty,tk} anchor at pointerdown for a 1-pointer pan
+  const moved = React.useRef(false);    // true once a gesture panned/pinched — suppresses the dot click
+  const ptrs = React.useRef(new Map()); // active pointerId → {x,y} client coords (enables pinch)
+  const pinch = React.useRef(null);     // last two-finger distance while pinching
+  const rafRef = React.useRef(0);       // rAF handle for the fit() animation
+  const fishRef = React.useRef(0);      // rAF handle for the pointermove fisheye
+  const fitTf = React.useRef({ k: 1, x: 0, y: 0 });   // the transform the last fit() aimed at
+  const hovRef = React.useRef(null);    // imperative hover readout element
+  const [drifted, setDrifted] = React.useState(false); // panned/zoomed away from the fit target?
+  React.useEffect(() => () => { cancelAnimationFrame(rafRef.current); cancelAnimationFrame(fishRef.current); }, []);
+
+  const clampK = (k) => Math.min(TMAP_MAXK, Math.max(TMAP_MINK, k));
+  // write the transform to the <g> attribute (imperative) and flag drift vs the last fit target
+  const writeTf = (t) => {
+    if (gRef.current) gRef.current.setAttribute("transform", "translate(" + t.x + " " + t.y + ") scale(" + t.k + ")");
+    const f = fitTf.current;
+    const same = Math.abs(t.k - f.k) < 1e-3 && Math.abs(t.x - f.x) < 0.5 && Math.abs(t.y - f.y) < 0.5;
+    setDrifted(d => d === !same ? d : !same);
+  };
+  // zoom around a view-space point (vx,vy) so that point stays put; k clamped to [MINK,MAXK]
+  const zoomAround = (vx, vy, factor, from) => {
+    const t = from || tfRef.current, k1 = clampK(t.k * factor);
+    if (k1 === TMAP_MINK) return { k: 1, x: 0, y: 0 };
+    const px = (vx - t.x) / t.k, py = (vy - t.y) / t.k;
+    return { k: k1, x: vx - px * k1, y: vy - py * k1 };
+  };
+
+  // FIT — frame a set of dots (each {x,y,r}) by easing the transform. Ported from GigsMap.fit():
+  // same bbox+radius accumulation, 0.18/40 padding, aspect preservation, min-size guard, and the
+  // 420 ms easeOutCubic ramp — expressed as a transform (k,x,y) instead of a viewBox.
+  const fit = React.useCallback((targetDots, allDots) => {
+    const ds = (targetDots && targetDots.length) ? targetDots : allDots;
+    if (!ds || !ds.length) return;
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    for (const d of ds) { x0 = Math.min(x0, d.x - d.r); y0 = Math.min(y0, d.y - d.r); x1 = Math.max(x1, d.x + d.r); y1 = Math.max(y1, d.y + d.r); }
+    let w = x1 - x0, h = y1 - y0;
+    const padX = Math.max(w * 0.18, 40), padY = Math.max(h * 0.18, 40);
+    x0 -= padX; y0 -= padY; w += padX * 2; h += padY * 2;
+    const aspect = TMAP_VB.w / TMAP_VB.h;
+    if (w / h < aspect) { const nw = h * aspect; x0 -= (nw - w) / 2; w = nw; }
+    else { const nh = w / aspect; y0 -= (nh - h) / 2; h = nh; }
+    w = Math.max(w, 120); h = Math.max(h, 120 / aspect);   // don't over-zoom a single city
+    // the transform that maps that bbox onto the whole viewBox: k frames the box, translate centers it
+    const k1 = clampK(TMAP_VB.w / w);
+    const bcx = x0 + w / 2, bcy = y0 + h / 2;
+    const target = k1 === TMAP_MINK ? { k: 1, x: 0, y: 0 }
+      : { k: k1, x: (TMAP_VB.x + TMAP_VB.w / 2) - bcx * k1, y: (TMAP_VB.y + TMAP_VB.h / 2) - bcy * k1 };
+    fitTf.current = target; setDrifted(false);
+    cancelAnimationFrame(rafRef.current);
+    const from = pending.current || tfRef.current, t0 = performance.now(), dur = 420;
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);   // easeOutCubic
+      const t = { k: from.k + (target.k - from.k) * e, x: from.x + (target.x - from.x) * e, y: from.y + (target.y - from.y) * e };
+      pending.current = t;
+      if (gRef.current) gRef.current.setAttribute("transform", "translate(" + t.x + " " + t.y + ") scale(" + t.k + ")");
+      if (p < 1) rafRef.current = requestAnimationFrame(step);
+      else { pending.current = null; setTf(target); }
+    };
+    rafRef.current = requestAnimationFrame(step);
+  }, []);
+  const resetView = React.useCallback((allDots) => { cancelAnimationFrame(rafRef.current); fitTf.current = { k: 1, x: 0, y: 0 }; setDrifted(false); pending.current = null; setTf({ k: 1, x: 0, y: 0 }); if (gRef.current) gRef.current.setAttribute("transform", "translate(0 0) scale(1)"); }, []);
+
+  // client (cx,cy) → viewBox coords for this svg's static viewBox
+  const toVB = (cx, cy) => { const r = svgRef.current.getBoundingClientRect(); return [TMAP_VB.x + (cx - r.left) / r.width * TMAP_VB.w, TMAP_VB.y + (cy - r.top) / r.height * TMAP_VB.h]; };
+
+  // FISHEYE — grow the dots nearest the cursor by writing each circle's r attribute (transforms on
+  // SVG <g> proved unreliable across browsers). Ported from GigsMap: R_PX 110 / MAXK 2.6, eased
+  // falloff, imperative hover readout. Each hit-<g> carries data-cx/cy/city/count; data-r caches the
+  // base radius so React re-renders (which reset r to the base) never fight the hover.
+  const R_PX = 110, FISH_MAXK = 2.6;
+  const setK = (g, k) => {
+    const c = g.querySelector("circle"); if (!c) return;
+    const b = +c.dataset.r || +c.getAttribute("r");
+    if (!c.dataset.r) c.dataset.r = b;
+    c.setAttribute("r", (b * k).toFixed(2));
+  };
+  const resetAll = (svg) => { for (const g of svg.querySelectorAll(dotSel)) setK(g, 1); };
+  const runFisheye = (cx, cy) => {
+    const svg = svgRef.current; if (!svg) return;
+    if (fishRef.current) return;
+    fishRef.current = requestAnimationFrame(() => {
+      fishRef.current = 0;
+      const rect = svg.getBoundingClientRect();
+      if (cx < rect.left || cx > rect.right || cy < rect.top || cy > rect.bottom) { resetAll(svg); return; }
+      const t = pending.current || tfRef.current;
+      // px → viewBox units, then ÷k for model (pre-transform) units the dots' data-cx/cy live in
+      const pxToVx = TMAP_VB.w / rect.width, pxToVy = TMAP_VB.h / rect.height;
+      const vx = TMAP_VB.x + (cx - rect.left) * pxToVx, vy = TMAP_VB.y + (cy - rect.top) * pxToVy;
+      const mvx = (vx - t.x) / t.k, mvy = (vy - t.y) / t.k;
+      const rx = R_PX * pxToVx / t.k, ry = R_PX * pxToVy / t.k;   // fisheye radius stays ~constant on screen
+      let bestD = Infinity, bestG = null;
+      for (const g of svg.querySelectorAll(dotSel)) {
+        const bx = +g.dataset.cx, by = +g.dataset.cy;
+        const dnorm = Math.hypot((bx - mvx) / rx, (by - mvy) / ry);   // 0 at cursor, 1 at edge
+        const k = dnorm >= 1 ? 1 : 1 + (FISH_MAXK - 1) * (1 - dnorm) * (1 - dnorm);
+        setK(g, k);
+        if (dnorm < bestD) { bestD = dnorm; bestG = g; }
+      }
+      if (hovRef.current) hovRef.current.textContent = (bestG && bestD < 1)
+        ? (bestG.dataset.city || "") + " · " + (bestG.dataset.count || "") + " event" + (bestG.dataset.count === "1" ? "" : "s")
+        : "hover the bubbles — they grow toward the cursor · drag to pan · wheel to zoom";
+    });
+  };
+
+  // wheel is attached natively (React's onWheel is passive so its preventDefault no-ops and the page
+  // scrolls); pan/pinch listen on window so a genuine tap still reaches the dots' onClick.
+  React.useEffect(() => {
+    const svg = svgRef.current; if (!svg) return;
+    const onWheel = (e) => {
+      e.preventDefault(); cancelAnimationFrame(rafRef.current); pending.current = null;
+      const [vx, vy] = toVB(e.clientX, e.clientY);
+      setTf(writeAndReturn(zoomAround(vx, vy, e.deltaY < 0 ? 1.22 : 1 / 1.22)));
+    };
+    const onMove = (e) => {
+      if (ptrs.current.has(e.pointerId)) ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      const pts = [...ptrs.current.values()];
+      if (pts.length >= 2) {                    // two-finger pinch-zoom (touch)
+        if (e.cancelable) e.preventDefault();
+        cancelAnimationFrame(rafRef.current);
+        const [a, b] = pts, dist = Math.hypot(a.x - b.x, a.y - b.y);
+        const [vx, vy] = toVB((a.x + b.x) / 2, (a.y + b.y) / 2);
+        if (pinch.current) {
+          const t = zoomAround(vx, vy, dist / pinch.current, pending.current || tfRef.current);
+          pending.current = t; moved.current = true; writeTf(t);
+        }
+        pinch.current = dist; drag.current = null; return;
+      }
+      pinch.current = null;
+      const d = drag.current;
+      if (!d) { runFisheye(e.clientX, e.clientY); return; }   // no drag → fisheye owns the move
+      const r = svg.getBoundingClientRect();
+      const dx = (e.clientX - d.x) / r.width * TMAP_VB.w, dy = (e.clientY - d.y) / r.height * TMAP_VB.h;
+      if (Math.abs(e.clientX - d.x) + Math.abs(e.clientY - d.y) > 5) { if (!moved.current) resetAll(svg); moved.current = true; }
+      if (!moved.current) return;   // under the 5px threshold: still a potential dot CLICK
+      cancelAnimationFrame(rafRef.current);
+      const t = { k: d.tk, x: d.tx + dx, y: d.ty + dy };
+      pending.current = t; writeTf(t);
+    };
+    const onUp = (e) => {
+      if (e && e.pointerId != null) ptrs.current.delete(e.pointerId);
+      if (ptrs.current.size < 2) pinch.current = null;
+      if (ptrs.current.size === 0) { if (pending.current) { setTf(pending.current); pending.current = null; } drag.current = null; }
+    };
+    const writeAndReturn = (t) => { writeTf(t); return t; };
+    svg.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
+    return () => { svg.removeEventListener("wheel", onWheel); window.removeEventListener("pointermove", onMove); window.removeEventListener("pointerup", onUp); window.removeEventListener("pointercancel", onUp); };
+  }, []);
+  const onDown = (e) => {
+    ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY }); moved.current = false;
+    const t = pending.current || tfRef.current;
+    if (ptrs.current.size === 1) drag.current = { x: e.clientX, y: e.clientY, tx: t.x, ty: t.y, tk: t.k };
+    else drag.current = null;   // a second finger landed → switch from pan to pinch
+  };
+  const onLeave = () => { const svg = svgRef.current; if (svg) resetAll(svg); };
+  const zoom = (f) => { cancelAnimationFrame(rafRef.current); pending.current = null; const nt = zoomAround(TMAP_VB.x + TMAP_VB.w / 2, TMAP_VB.y + TMAP_VB.h / 2, f, tfRef.current); writeTf(nt); setTf(nt); };
+  return { tf, moved, hovRef, drifted, fit, resetView, zoom, onDown, onLeave };
+}
+
 // Equirectangular event map — pan/zoom, dots colored by the dominant genre in each city,
 // sized by event count. Hovering an artist row below traces their tour path as a numbered route.
+// City CHIPS toggle a city's bubble out and refit the view to what remains; a cursor fisheye grows
+// the nearest event bubbles; a hover readout names the bubble under the cursor. All of that lives in
+// useTourMapNav; this component supplies the dots and keeps its own city-select highlight/routes.
 function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
   const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
-  const [tf, setTf] = React.useState({ k: 1, x: 0, y: 0 });   // g transform: translate(x,y) scale(k)
+  const [off, setOff] = React.useState(() => new Set());   // "cc|city" keys toggled OFF via a chip
   const svgRef = React.useRef(null);
-  const gRef = React.useRef(null);       // the transformed <g> — panned imperatively (no setState/frame)
-  const pending = React.useRef(null);    // last transform during a drag, committed to state on release
-  const drag = React.useRef(null);
-  const moved = React.useRef(false);   // true if the last gesture panned — suppresses the dot click
-  const ptrs = React.useRef(new Map()); // active pointers by id — enables two-finger pinch on touch
-  const pinch = React.useRef(null);     // last two-finger distance while pinching
+  const gRef = React.useRef(null);       // the transformed <g>
   React.useEffect(() => {
     if (window.ROTATION_WORLD) return;
     const on = () => setWorld(window.ROTATION_WORLD);
@@ -2108,70 +2282,22 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
       if (x.a.ghue != null) c.hues.set(x.a.ghue, (c.hues.get(x.a.ghue) || 0) + 1);
     }
     const arr = [...m.values()];
-    for (const c of arr) c.hue = c.hues.size ? [...c.hues.entries()].sort((a, b) => b[1] - a[1])[0][0] : null;
+    for (const c of arr) { c.hue = c.hues.size ? [...c.hues.entries()].sort((a, b) => b[1] - a[1])[0][0] : null; c.r = 2 + Math.sqrt(c.n) * 1.15; }
     return arr.sort((a, b) => b.n - a.n);
   }, [events]);
-  const tfRef = React.useRef(tf);
-  React.useEffect(() => { tfRef.current = tf; }, [tf]);
-  // wheel + pan are attached natively: React's onWheel is passive, so its preventDefault is
-  // ignored and the page scrolls on zoom; a non-passive listener fixes that. Panning lives on
-  // window (no pointer capture on the svg) so a genuine tap still reaches the city dots' onClick.
-  React.useEffect(() => {
-    const svg = svgRef.current; if (!svg) return;
-    const toVB = (cx, cy) => { const r = svg.getBoundingClientRect(); return [(cx - r.left) / r.width * 1000, 70 + (cy - r.top) / r.height * 315]; };
-    const onWheel = (e) => {
-      e.preventDefault();
-      const [vx, vy] = toVB(e.clientX, e.clientY), t = tfRef.current;
-      const k1 = Math.min(14, Math.max(1, t.k * (e.deltaY < 0 ? 1.22 : 1 / 1.22)));
-      if (k1 === 1) { setTf({ k: 1, x: 0, y: 0 }); return; }
-      const px = (vx - t.x) / t.k, py = (vy - t.y) / t.k;
-      setTf({ k: k1, x: vx - px * k1, y: vy - py * k1 });
-    };
-    const onMove = (e) => {
-      if (ptrs.current.has(e.pointerId)) ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
-      const pts = [...ptrs.current.values()];
-      if (pts.length >= 2) {                    // two-finger pinch-zoom (touch)
-        if (e.cancelable) e.preventDefault();
-        const [a, b] = pts, dist = Math.hypot(a.x - b.x, a.y - b.y);
-        const [vx, vy] = toVB((a.x + b.x) / 2, (a.y + b.y) / 2);
-        if (pinch.current) {
-          const t = pending.current || tfRef.current, k1 = Math.min(14, Math.max(1, t.k * (dist / pinch.current)));
-          const px = (vx - t.x) / t.k, py = (vy - t.y) / t.k;
-          const nx = k1 === 1 ? 0 : vx - px * k1, ny = k1 === 1 ? 0 : vy - py * k1;
-          pending.current = { k: k1, x: nx, y: ny }; moved.current = true;
-          if (gRef.current) gRef.current.setAttribute("transform", `translate(${nx} ${ny}) scale(${k1})`);
-        }
-        pinch.current = dist; drag.current = null; return;
-      }
-      pinch.current = null;
-      const d = drag.current; if (!d) return;
-      const r = svg.getBoundingClientRect();
-      const dx = (e.clientX - d.x) / r.width * 1000, dy = (e.clientY - d.y) / r.height * 315;
-      if (Math.abs(e.clientX - d.x) + Math.abs(e.clientY - d.y) > 3) moved.current = true;
-      // pan imperatively: k is fixed during a drag, so update the <g> transform directly rather
-      // than a 60 Hz setState that re-rendered the whole map (~150 paths + dots) every frame.
-      const nx = d.tx + dx, ny = d.ty + dy;
-      pending.current = { k: d.tk, x: nx, y: ny };
-      if (gRef.current) gRef.current.setAttribute("transform", `translate(${nx} ${ny}) scale(${d.tk})`);
-    };
-    const onUp = (e) => {
-      if (e && e.pointerId != null) ptrs.current.delete(e.pointerId);
-      if (ptrs.current.size < 2) pinch.current = null;
-      if (ptrs.current.size === 0) { if (pending.current) { setTf(pending.current); pending.current = null; } drag.current = null; }
-    };
-    svg.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("pointermove", onMove);
-    window.addEventListener("pointerup", onUp);
-    return () => { svg.removeEventListener("wheel", onWheel); window.removeEventListener("pointermove", onMove); window.removeEventListener("pointerup", onUp); };
-  }, []);
-  const onDown = (e) => {
-    ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY }); moved.current = false;
-    const t = tfRef.current;
-    if (ptrs.current.size === 1) drag.current = { x: e.clientX, y: e.clientY, tx: t.x, ty: t.y, tk: t.k };
-    else drag.current = null;   // a second finger landed → switch from pan to pinch
-  };
-  const zoom = (f) => setTf(t => { const k1 = Math.min(14, Math.max(1, t.k * f)); if (k1 === 1) return { k: 1, x: 0, y: 0 };
-    const px = (500 - t.x) / t.k, py = (227 - t.y) / t.k; return { k: k1, x: 500 - px * k1, y: 227 - py * k1 }; });
+  const nav = useTourMapNav(svgRef, gRef, ".gv-tmap-hit");
+  const { tf } = nav;
+  // toggling a chip excludes that city AND animates the view to fit the remaining ones (reusing the
+  // exact fit/clamp/ease code). Never allow ALL off — keep the last city on.
+  const toggle = (k) => setOff(s => {
+    const n = new Set(s);
+    n.has(k) ? n.delete(k) : n.add(k);
+    if (n.size >= cities.length) n.delete(k);
+    nav.fit(cities.filter(c => !n.has(c.k)), cities);
+    return n;
+  });
+  // when the underlying event set changes (genre/time filter), drop chips for cities that vanished
+  React.useEffect(() => { setOff(s => { const keys = new Set(cities.map(c => c.k)); let ch = false; const n = new Set(); for (const k of s) if (keys.has(k)) n.add(k); else ch = true; return ch ? n : s; }); }, [cities]);
   const rk = tf.k, base = 2;
   // Memoize the three layers so a pan/zoom re-render only updates the <g> transform, not the
   // ~150 land paths + dots + routes as vnodes. Land never changes; dots/routes depend on zoom
@@ -2182,14 +2308,22 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
     <polyline key={r.id} points={r.pts.map(p => p.join(",")).join(" ")} fill="none"
       stroke={`oklch(0.66 0.15 ${r.hue})`} strokeWidth={1 / rk} strokeLinejoin="round" opacity={hiPath ? 0.2 : 0.6} />
   )) : null, [routes, rk, hiPath]);
-  const dotEls = React.useMemo(() => cities.map(c => (
-    <circle key={c.k} className="gv-tmap-dot" data-on={city === c.k}
-      cx={c.x} cy={c.y} r={(base + Math.sqrt(c.n) * 1.15) / rk} strokeWidth={1.2 / rk}
-      fill={c.hue != null ? `oklch(0.64 0.15 ${c.hue})` : "var(--accent)"}
-      onClick={(e) => { if (!moved.current) setCity(city === c.k ? null : c.k); e.stopPropagation(); }}>
-      <title>{c.city} ({c.cc}) · {c.n} event{c.n !== 1 ? "s" : ""} — click to filter</title>
-    </circle>
-  )), [cities, city, rk]);
+  // Each dot is a hit-<g> carrying the data-attrs the fisheye reads (data-cx/cy/city/count); the
+  // inner circle has a FIXED r (the <g> transform handles zoom) so the fisheye's data-r cache — set
+  // once on first hover — never goes stale. A chip-toggled-off city dims to 0.14 and stops filtering.
+  const dotEls = React.useMemo(() => cities.map(c => {
+    const on = !off.has(c.k);
+    return (
+      <g key={c.k} className="gv-tmap-hit" data-cx={c.x} data-cy={c.y} data-city={`${c.city} (${c.cc})`} data-count={c.n} style={{ opacity: on ? 1 : 0.14 }}>
+        <circle className="gv-tmap-dot" data-on={city === c.k}
+          cx={c.x} cy={c.y} r={base + Math.sqrt(c.n) * 1.15} strokeWidth={1.2 / rk}
+          fill={c.hue != null ? `oklch(0.64 0.15 ${c.hue})` : "var(--accent)"}
+          onClick={(e) => { if (!nav.moved.current && on) setCity(city === c.k ? null : c.k); e.stopPropagation(); }}>
+          <title>{c.city} ({c.cc}) · {c.n} event{c.n !== 1 ? "s" : ""} — click to filter</title>
+        </circle>
+      </g>
+    );
+  }), [cities, city, off, rk]);
   const hiEls = React.useMemo(() => {
     if (!hiPath) return null;
     return (<React.Fragment>
@@ -2204,23 +2338,36 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
     </React.Fragment>);
   }, [hiPath, hiHue, rk]);
   if (!world) return <div className="gv-tmap-empty r-mono">the map loads…</div>;
+  const anyDrift = off.size > 0 || nav.drifted || tf.k > 1;
   return (
     <div className="gv-tmap-wrap">
-      <svg ref={svgRef} className="gv-tmap" viewBox="0 70 1000 315" role="img" aria-label="upcoming events map — scroll to zoom, drag to pan, click a city to filter"
-        onPointerDown={onDown}
-        style={{ cursor: "grab", touchAction: "none" }}>
-        <g ref={gRef} transform={`translate(${tf.x} ${tf.y}) scale(${tf.k})`}>
-          {landEls}
-          {/* routes for the selected city's bands — links the clicked circle to their other dates */}
-          {routeEls}
-          {dotEls}
-          {hiEls}
-        </g>
-      </svg>
-      <div className="gv-tmap-zoom">
-        <button onClick={() => zoom(1.4)} title="zoom in">+</button>
-        <button onClick={() => zoom(1 / 1.4)} title="zoom out">−</button>
-        {tf.k > 1 && <button onClick={() => setTf({ k: 1, x: 0, y: 0 })} title="reset view">⟲</button>}
+      <div className="gv-tmap-svgwrap">
+        <svg ref={svgRef} className="gv-tmap" viewBox="0 70 1000 315" role="img" aria-label="upcoming events map — scroll to zoom, drag to pan, click a city to filter"
+          onPointerDown={nav.onDown} onPointerLeave={nav.onLeave}
+          style={{ cursor: "grab", touchAction: "none" }}>
+          <g ref={gRef} transform={`translate(${tf.x} ${tf.y}) scale(${tf.k})`}>
+            {landEls}
+            {/* routes for the selected city's bands — links the clicked circle to their other dates */}
+            {routeEls}
+            {dotEls}
+            {hiEls}
+          </g>
+        </svg>
+        <div className="gv-tmap-zoom">
+          <button onClick={() => nav.zoom(1.4)} title="zoom in">+</button>
+          <button onClick={() => nav.zoom(1 / 1.4)} title="zoom out">−</button>
+          {tf.k > 1 && <button onClick={() => { setOff(new Set()); nav.resetView(cities); }} title="reset view">⟲</button>}
+        </div>
+      </div>
+      <div ref={nav.hovRef} className="gv-cmap-hoverline r-mono">hover the bubbles — they grow toward the cursor · drag to pan · wheel to zoom</div>
+      <div className="gv-cmap-chips">
+        {cities.map(c => (
+          <button key={c.k} className="gv-cmap-chip" data-on={!off.has(c.k)}
+            onClick={() => toggle(c.k)} title={`${!off.has(c.k) ? "hide" : "show"} ${c.city} — refits the view`}>
+            {c.city} <span>{c.n}</span>
+          </button>
+        ))}
+        {anyDrift && <button className="gv-cmap-chip gv-cmap-reset" onClick={() => { setOff(new Set()); nav.resetView(cities); }}>reset view</button>}
       </div>
     </div>
   );
@@ -2390,278 +2537,6 @@ function TourSection({ go, gigDate }) {
   );
 }
 
-// Concert map — the cities where Fuad has stood in a crowd, on the shared equirectangular
-// projection (x = (lng+180)/360*1000, y = (90-lat)/180*500; viewBox "0 70 1000 315"), reusing
-// world-map.js land paths like TourMap above. Three owner features live here:
-//  · city CHIPS toggle a city's bubble in/out; the VIEW then fits to the bounding box of the
-//    still-enabled cities (so dropping Sydney zooms Europe/Japan). We animate the viewBox rather
-//    than a <g> transform — bubble radii are already in view-units, so fitting is pure geometry.
-//  · a cursor FISHEYE: on pointermove we scale each bubble by proximity (≈1.6 at the cursor,
-//    easing to 1 past ~80 screen-px), so a knot of nearby cities spreads out and stays clickable.
-function GigsMap({ cityList, hueForCity, onCity }) {
-  const BASE = { x: 0, y: 70, w: 1000, h: 315 };   // the whole-world viewBox this projection lives in
-  const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
-  const [off, setOff] = React.useState(() => new Set());  // countryCode+city keys that are toggled OFF
-  const svgRef = React.useRef(null);
-  const vbRef = React.useRef(BASE);                 // current (animated) viewBox
-  const hovLineRef = React.useRef(null);            // imperative hover readout (fisheye liveness)
-  const rafRef = React.useRef(0);
-  const fisheyeRef = React.useRef(0);               // rAF handle for the pointermove fisheye
-  // FREE NAVIGATION state (drag-pan + wheel/pinch zoom), all imperative like fit():
-  const ptrs = React.useRef(new Map());             // active pointerId → {x,y} client coords
-  const drag = React.useRef(null);                  // {x,y,vb} anchor at pointerdown for a 1-pointer pan
-  const pinch = React.useRef(null);                 // last two-pointer distance for pinch
-  const isPanning = React.useRef(false);            // true once a drag/pinch crosses the threshold — pauses fisheye
-  const didPan = React.useRef(false);               // survives past pointerup so the trailing click is swallowed
-  const fitTarget = React.useRef(BASE);             // the last viewBox fit() aimed at; drives the "reset view" chip
-  const [drifted, setDrifted] = React.useState(false); // has the user panned/zoomed away from fitTarget?
-  React.useEffect(() => {
-    if (window.ROTATION_WORLD) return;
-    const on = () => setWorld(window.ROTATION_WORLD);
-    let s = document.getElementById("rotation-world-js");
-    if (!s) { s = document.createElement("script"); s.id = "rotation-world-js"; s.src = "world-map.js"; document.head.appendChild(s); }
-    s.addEventListener("load", on);
-    return () => s.removeEventListener("load", on);
-  }, []);
-  // project every city once; keep only those with real coordinates
-  const dots = React.useMemo(() => {
-    const max = Math.max(1, ...cityList.map(c => c.count));
-    return cityList.filter(c => c.lat != null && c.lng != null).map(c => ({
-      key: c.countryCode + "|" + c.city,
-      city: c.city, country: c.country, count: c.count,
-      cx: (c.lng + 180) / 360 * 1000, cy: (90 - c.lat) / 180 * 500,
-      r: 3 + Math.sqrt(c.count / max) * 9,        // area ∝ shows
-      hue: hueForCity(c),
-    }));
-  }, [cityList, hueForCity]);
-
-  // fit the viewBox to the bounding box of the ENABLED bubbles (their radii included) + padding,
-  // clamped to the world box and to a sane min size; then ease the current viewBox toward it.
-  const fit = React.useCallback((targetDots) => {
-    const ds = targetDots.length ? targetDots : dots;   // never fit to nothing
-    if (!ds.length) return;
-    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
-    for (const d of ds) { x0 = Math.min(x0, d.cx - d.r); y0 = Math.min(y0, d.cy - d.r); x1 = Math.max(x1, d.cx + d.r); y1 = Math.max(y1, d.cy + d.r); }
-    let w = x1 - x0, h = y1 - y0;
-    const padX = Math.max(w * 0.18, 40), padY = Math.max(h * 0.18, 40);
-    x0 -= padX; y0 -= padY; w += padX * 2; h += padY * 2;
-    // preserve the base aspect ratio so land isn't stretched
-    const aspect = BASE.w / BASE.h;
-    if (w / h < aspect) { const nw = h * aspect; x0 -= (nw - w) / 2; w = nw; }
-    else { const nh = w / aspect; y0 -= (nh - h) / 2; h = nh; }
-    w = Math.max(w, 120); h = Math.max(h, 120 / aspect);   // don't over-zoom a single city
-    const target = { x: x0, y: y0, w, h };
-    fitTarget.current = target;      // remember where we aimed — the "reset view" chip compares against this
-    setDrifted(false);               // an in-progress fit is, by definition, back on-target
-    cancelAnimationFrame(rafRef.current);
-    const from = vbRef.current, t0 = performance.now(), dur = 420;
-    const step = (now) => {
-      const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);   // easeOutCubic
-      const vb = { x: from.x + (target.x - from.x) * e, y: from.y + (target.y - from.y) * e,
-        w: from.w + (target.w - from.w) * e, h: from.h + (target.h - from.h) * e };
-      vbRef.current = vb;
-      if (svgRef.current) svgRef.current.setAttribute("viewBox", `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
-      if (p < 1) rafRef.current = requestAnimationFrame(step);
-    };
-    rafRef.current = requestAnimationFrame(step);
-  }, [dots]);
-
-  const toggle = (k) => setOff(s => {
-    const n = new Set(s);
-    n.has(k) ? n.delete(k) : n.add(k);
-    if (n.size >= dots.length) n.delete(k);   // never allow ALL off — keep the last one on
-    fit(dots.filter(d => !n.has(d.key)));
-    return n;
-  });
-  React.useEffect(() => () => { cancelAnimationFrame(rafRef.current); cancelAnimationFrame(fisheyeRef.current); }, []);
-  // The viewBox is driven IMPERATIVELY by fit()'s animation (setAttribute). It must NOT also be a
-  // controlled JSX prop — React would re-apply the static BASE viewBox on every re-render (each chip
-  // toggle calls setOff → re-render), clobbering the animation and snapping the view back. So we set
-  // the initial viewBox exactly once here, after the SVG exists, and let only fit() touch it after.
-  React.useEffect(() => {
-    const svg = svgRef.current;
-    if (svg && !svg.getAttribute("viewBox")) {
-      const b = vbRef.current;
-      svg.setAttribute("viewBox", b.x + " " + b.y + " " + b.w + " " + b.h);
-    }
-  }, [world]);
-
-  // FISHEYE: one rAF-throttled pointermove maps the cursor to view-space, then scales each bubble by
-  // proximity. We write the scale to the <g>'s transform ATTRIBUTE as an explicit
-  // translate(cx cy) scale(k) translate(-cx -cy) — CSS transform + transform-origin on SVG <g> is
-  // unreliable (needs transform-box: fill-box, and a scale(var(--k)) CSS var silently no-ops in some
-  // browsers), whereas the attribute form scales around the bubble's own centre everywhere.
-  // scale by writing the circle's r attribute directly — no transforms at all (SVG transform
-  // scaling proved unreliable across two attempts: CSS-var transforms no-op, attribute
-  // transforms fought the CSS transition). r is universally supported and React never
-  // re-renders during hover, so nothing clobbers it.
-  const setK = (g, k) => {
-    const c = g.querySelector("circle"); if (!c) return;
-    const base = +c.dataset.r || +c.getAttribute("r");
-    if (!c.dataset.r) c.dataset.r = base;
-    c.setAttribute("r", (base * k).toFixed(2));
-  };
-  const resetAll = (svg) => { for (const g of svg.querySelectorAll(".gv-cmap-dot")) setK(g, 1); };
-  const onMove = (e) => {
-    if (onPan(e)) return;          // a drag/pinch owns this move — don't also run the fisheye
-    if (isPanning.current) return; // still mid-gesture (e.g. threshold just crossed): fisheye stays paused
-    if (fisheyeRef.current) return;
-    const cx = e.clientX, cy = e.clientY, svg = svgRef.current;
-    fisheyeRef.current = requestAnimationFrame(() => {
-      fisheyeRef.current = 0;
-      if (!svg) return;
-      const rect = svg.getBoundingClientRect();
-      if (cx < rect.left || cx > rect.right || cy < rect.top || cy > rect.bottom) { resetAll(svg); return; }
-      const R_PX = 110, MAXK = 2.6;   // was 80/1.6 — imperceptible on small dots at 4K; make it unmissable
-      const vb = vbRef.current;
-      // px → view units, so the radius stays ~80 SCREEN px whatever the zoom
-      const pxToVx = vb.w / rect.width, pxToVy = vb.h / rect.height;
-      const mvx = vb.x + (cx - rect.left) * pxToVx, mvy = vb.y + (cy - rect.top) * pxToVy;
-      const rx = R_PX * pxToVx, ry = R_PX * pxToVy;
-      let bestD = Infinity, bestG = null;
-      for (const g of svg.querySelectorAll(".gv-cmap-dot")) {
-        const bx = +g.dataset.cx, by = +g.dataset.cy;
-        const dnorm = Math.hypot((bx - mvx) / rx, (by - mvy) / ry);   // 0 at cursor, 1 at edge
-        const k = dnorm >= 1 ? 1 : 1 + (MAXK - 1) * (1 - dnorm) * (1 - dnorm);   // eased falloff
-        setK(g, k);
-        if (dnorm < bestD) { bestD = dnorm; bestG = g; }
-      }
-      // imperative hover readout (no React re-render — the fisheye's liveness indicator too)
-      if (hovLineRef.current) {
-        hovLineRef.current.textContent = (bestG && bestD < 1)
-          ? (bestG.dataset.city || "") + " · " + (bestG.dataset.count || "") + " show" + (bestG.dataset.count === "1" ? "" : "s")
-          : "hover the bubbles — they grow toward the cursor · drag to pan · wheel to zoom";
-      }
-    });
-  };
-  const onLeave = () => { const svg = svgRef.current; if (svg) resetAll(svg); };
-
-  // ---- FREE NAVIGATION (drag-pan + wheel/pinch zoom) ---------------------------------------
-  // Same imperative ownership as fit(): we mutate vbRef and write the svg viewBox attribute
-  // directly. React never controls the viewBox, so a drag never fights a re-render.
-  const clampVB = (vb) => {
-    // clamp size: no larger than the whole-world BASE box, no smaller than BASE/30 (~30x zoom-in)
-    const aspect = BASE.w / BASE.h;
-    let w = Math.min(vb.w, BASE.w), h = Math.min(vb.h, BASE.h);
-    const minW = BASE.w / 30, minH = BASE.h / 30;
-    w = Math.max(w, minW); h = Math.max(h, minH);
-    // keep base aspect so land isn't stretched (zoom math already preserves it; this is a guard)
-    if (w / h > aspect) h = w / aspect; else w = h * aspect;
-    return { x: vb.x, y: vb.y, w, h };
-  };
-  const applyVB = (vb) => {
-    vbRef.current = vb;
-    const svg = svgRef.current;
-    if (svg) svg.setAttribute("viewBox", vb.x + " " + vb.y + " " + vb.w + " " + vb.h);
-    // "drifted" once the view no longer matches the last fit target (any of the 4 numbers moved)
-    const t = fitTarget.current;
-    const same = Math.abs(vb.x - t.x) < 0.5 && Math.abs(vb.y - t.y) < 0.5 &&
-                 Math.abs(vb.w - t.w) < 0.5 && Math.abs(vb.h - t.h) < 0.5;
-    setDrifted(d => d === !same ? d : !same);
-  };
-  // zoom around a client point (cx,cy): the view-space point under the cursor stays put.
-  const zoomAt = (cx, cy, factor) => {
-    const svg = svgRef.current; if (!svg) return;
-    const rect = svg.getBoundingClientRect(); if (!rect.width || !rect.height) return;
-    cancelAnimationFrame(rafRef.current);   // a manual zoom cancels any in-flight fit animation
-    const vb = vbRef.current;
-    let nw = vb.w / factor, nh = vb.h / factor;
-    const clamped = clampVB({ x: vb.x, y: vb.y, w: nw, h: nh });
-    nw = clamped.w; nh = clamped.h;
-    const fx = (cx - rect.left) / rect.width, fy = (cy - rect.top) / rect.height;   // 0..1 across the svg
-    const mvx = vb.x + fx * vb.w, mvy = vb.y + fy * vb.h;   // view point under the cursor
-    applyVB({ x: mvx - fx * nw, y: mvy - fy * nh, w: nw, h: nh });
-  };
-  // Wheel zoom — non-passive so preventDefault() stops the page scrolling (same pattern as
-  // rotation-worldmap.jsx's onWheel useEffect). Registered via ref, re-bound when the svg mounts.
-  React.useEffect(() => {
-    const svg = svgRef.current; if (!svg) return;
-    const onWheel = (e) => { e.preventDefault(); zoomAt(e.clientX, e.clientY, e.deltaY < 0 ? 1.15 : 1 / 1.15); };
-    svg.addEventListener("wheel", onWheel, { passive: false });
-    return () => svg.removeEventListener("wheel", onWheel);
-  }, [world]);
-
-  const DRAG_PX = 5;   // movement threshold: under this a pointerup is still a bubble CLICK
-  const onDown = (e) => {
-    ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    didPan.current = false;   // a fresh press: assume a click until movement proves otherwise
-    if (ptrs.current.size === 1) drag.current = { x: e.clientX, y: e.clientY, vb: vbRef.current };
-  };
-  const capture = (e) => { try { e.currentTarget.setPointerCapture(e.pointerId); } catch (x) {} };
-  // returns true if it consumed the event as a pan/pinch (so the fisheye should stand down)
-  const onPan = (e) => {
-    if (ptrs.current.has(e.pointerId)) ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    const pts = [...ptrs.current.values()];
-    const svg = svgRef.current; if (!svg) return false;
-    const rect = svg.getBoundingClientRect(); if (!rect.width || !rect.height) return false;
-    if (pts.length >= 2) {                       // two-finger pinch-zoom, centred between the fingers
-      e.preventDefault(); capture(e); isPanning.current = true; didPan.current = true;
-      const [a, b] = pts, dist = Math.hypot(a.x - b.x, a.y - b.y);
-      const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
-      if (pinch.current) zoomAt(mx, my, dist / pinch.current);
-      pinch.current = dist; drag.current = null; return true;
-    }
-    pinch.current = null;
-    if (drag.current) {
-      const totdx = e.clientX - drag.current.x, totdy = e.clientY - drag.current.y;
-      if (!isPanning.current && Math.hypot(totdx, totdy) < DRAG_PX) return false;   // still a potential click
-      // crossed the threshold → it's a pan
-      if (!isPanning.current) { isPanning.current = true; didPan.current = true; capture(e); cancelAnimationFrame(rafRef.current); resetAll(svg); }
-      if (e.cancelable) e.preventDefault();
-      const dvx = totdx / rect.width * drag.current.vb.w, dvy = totdy / rect.height * drag.current.vb.h;
-      applyVB({ x: drag.current.vb.x - dvx, y: drag.current.vb.y - dvy, w: drag.current.vb.w, h: drag.current.vb.h });
-      return true;
-    }
-    return false;
-  };
-  const endPtr = (e) => {
-    if (e && e.pointerId != null) ptrs.current.delete(e.pointerId);
-    if (ptrs.current.size < 2) pinch.current = null;
-    if (ptrs.current.size === 0) { drag.current = null; isPanning.current = false; }
-  };
-  // a gesture can end off the map (pointer released outside its bounds) — clean up globally
-  React.useEffect(() => {
-    window.addEventListener("pointerup", endPtr); window.addEventListener("pointercancel", endPtr);
-    return () => { window.removeEventListener("pointerup", endPtr); window.removeEventListener("pointercancel", endPtr); };
-  }, []);
-
-  const landEls = React.useMemo(() => world ? world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" />) : null, [world]);
-  if (!world) return <div className="gv-cmap-empty r-mono">the map loads…</div>;
-  return (
-    <div className="gv-cmap-wrap">
-      <div ref={hovLineRef} className="gv-cmap-hoverline r-mono">hover the bubbles — they grow toward the cursor · drag to pan · wheel to zoom</div>
-      <svg ref={svgRef} className="gv-cmap"
-        role="img" aria-label="concert map — the cities where you've been in a crowd"
-        onPointerDown={onDown} onPointerMove={onMove} onPointerUp={endPtr} onPointerLeave={onLeave}
-        style={{ touchAction: "none" }}>
-        {landEls}
-        {dots.map(d => {
-          const on = !off.has(d.key);
-          return (
-            <g key={d.key} className="gv-cmap-dot" data-cx={d.cx} data-cy={d.cy} data-city={d.city} data-count={d.count}
-              style={{ opacity: on ? 1 : 0.14 }}>
-              <circle cx={d.cx} cy={d.cy} r={d.r} className="gv-cmap-c" data-on={on}
-                fill={d.hue != null ? `oklch(0.64 0.15 ${d.hue})` : "var(--accent)"}
-                onClick={() => { if (didPan.current) return; onCity && onCity(d); }} style={{ cursor: onCity ? "pointer" : "default" }}>
-                <title>{d.city} · {d.count} show{d.count !== 1 ? "s" : ""}</title>
-              </circle>
-            </g>
-          );
-        })}
-      </svg>
-      <div className="gv-cmap-chips">
-        {dots.map(d => (
-          <button key={d.key} className="gv-cmap-chip" data-on={!off.has(d.key)}
-            onClick={() => toggle(d.key)} title={`${!off.has(d.key) ? "hide" : "show"} ${d.city} — refits the view`}>
-            {d.city} <span>{d.count}</span>
-          </button>
-        ))}
-        {(off.size > 0 || drifted) && <button className="gv-cmap-chip gv-cmap-reset" onClick={() => { setOff(new Set()); fit(dots); }}>reset view</button>}
-      </div>
-    </div>
-  );
-}
-
 function GigsView({ go }) {
   const R = window.ROTATION, G = R.GIGS;
   if (!G || !G.gigs || !G.gigs.length) return (
@@ -2689,17 +2564,6 @@ function GigsView({ go }) {
       .slice(0, 12),
     [seenIds]
   );
-  // hue for a city bubble = the hue of the highest-played act seen there (falls back to a gig hue)
-  const cityHue = React.useMemo(() => {
-    const m = new Map();   // "cc|city" → { hue, plays }
-    for (const g of G.gigs) {
-      if (!g.city) continue;
-      const k = g.countryCode + "|" + g.city, cur = m.get(k);
-      if (!cur || (g.plays || 0) > cur.plays) m.set(k, { hue: g.hue, plays: g.plays || 0 });
-    }
-    return m;
-  }, []);
-  const hueForCity = React.useCallback((c) => { const e = cityHue.get(c.countryCode + "|" + c.city); return e ? e.hue : null; }, [cityHue]);
 
   // TIME AT CONCERTS — an honest back-of-envelope: songs heard live × ~4.2 min a song.
   const SONG_MIN = 4.2;
@@ -2842,8 +2706,6 @@ function GigsView({ go }) {
         <section className="gv-sec">
           <div className="gv-label">Where</div>
           <div className="gv-title">The cities that put you in a crowd.</div>
-          <GigsMap cityList={G.cityList} hueForCity={hueForCity}
-            onCity={(d) => { const el = document.getElementById("gv-city-" + d.key.replace(/[^a-z0-9]/gi, "")); if (el) el.scrollIntoView({ behavior: "smooth", block: "center" }); }} />
           <div className="gv-cities">
             {G.cityList.map(c => (
               <div key={c.countryCode + c.city} id={"gv-city-" + (c.countryCode + "|" + c.city).replace(/[^a-z0-9]/gi, "")} className="gv-city">
@@ -2987,6 +2849,7 @@ function GigsView({ go }) {
         /* event map + calendar card */
         .gv-tmap-card { padding: 10px 12px 8px; margin-bottom: 10px; }
         .gv-tmap-wrap { position: relative; }
+        .gv-tmap-svgwrap { position: relative; }
         .gv-tmap { display: block; width: 100%; height: auto; }
         .gv-tmap-zoom { position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column; gap: 4px; }
         .gv-tmap-zoom button { width: 26px; height: 26px; border-radius: 6px; border: 1px solid var(--rule-2);
