@@ -325,8 +325,10 @@ function resolveOSDSource(work) {
   }
   const simpleUrl = work.imgZoom || work.img;
   if (simpleUrl) {
-    const corsOk = /(^https:\/\/upload\.wikimedia\.org\/)|(^https:\/\/commons\.wikimedia\.org\/)/.test(simpleUrl);
-    return { tileSource: { type: "image", url: simpleUrl }, cors: corsOk ? "Anonymous" : false, label: work.title.replace(/^TBC — /, "") };
+    // ALWAYS cors:false for canon images — Commons Special:FilePath REDIRECT hops send no
+    // ACAO header, so a crossorigin=anonymous load fails the whole chain (found 2026-07-12
+    // via the Murillo). We never need pixel access for viewing; plain loads are strictly better.
+    return { tileSource: { type: "image", url: simpleUrl }, cors: false, label: work.title.replace(/^TBC — /, "") };
   }
   return null;
 }
