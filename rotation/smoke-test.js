@@ -153,5 +153,60 @@ if (core) {
   ok(core.SUBS && Object.keys(core.SUBS).length > 50, `subgenres present (${core.SUBS && Object.keys(core.SUBS).length})`);
 }
 
+console.log("── album canonicalisation + release-type + artist active-days");
+// (a) base+variant collapsed: no "Mezzanine (Deluxe)" distinct from "Mezzanine" for Massive Attack.
+// Check the kept-artist topAlbums (per-artist aggregate) — the canonical merge site.
+if (core && Array.isArray(core.ARTISTS)) {
+  const ma = core.ARTISTS.find(a => a.name === "Massive Attack");
+  if (!ma) console.warn("  ⚠ Massive Attack not a kept artist — skipping Mezzanine merge check");
+  else {
+    const titles = (ma.topAlbums || []).map(a => a.title);
+    const hasDeluxe = titles.some(t => /^Mezzanine\s*[([]/i.test(t));   // "Mezzanine (Deluxe)" etc.
+    ok(!hasDeluxe, `Massive Attack: no "Mezzanine (Deluxe)" variant distinct from "Mezzanine" (${titles.filter(t => /mezzanine/i.test(t)).join(" | ") || "none"})`);
+  }
+  // (d) every album kind is one of the allowed release types
+  const KINDS = new Set(["single", "ep", "album", "comp", "live", "ost"]);
+  let badKind = 0, kindSeen = 0;
+  for (const a of core.ARTISTS) for (const al of (a.topAlbums || [])) { kindSeen++; if (!KINDS.has(al.kind)) badKind++; }
+  ok(kindSeen > 0 && badKind === 0, `every album kind ∈ {single,ep,album,comp,live,ost} (${kindSeen} checked, ${badKind} bad)`);
+}
+
+// (b) album-alias.js parses and has ≥ 200 alias entries
+{
+  const r = loadGlobal("album-alias.js", "ROTATION_ALBUM_ALIAS");
+  if (r.missing) ok(false, "album-alias.js exists");
+  else if (r.error) ok(false, "album-alias.js parses — " + r.error);
+  else {
+    const n = r.value ? Object.keys(r.value).length : 0;
+    ok(n >= 200, `album-alias.js has ≥200 aliases (${n})`);
+  }
+}
+
+// (c) artist-days.js parses, ≥300 artists, spot-decode yields strictly increasing offsets
+{
+  const r = loadGlobal("artist-days.js", "ROTATION_ARTIST_DAYS");
+  if (r.missing) ok(false, "artist-days.js exists");
+  else if (r.error) ok(false, "artist-days.js parses — " + r.error);
+  else {
+    const v = r.value || {};
+    const days = v.days || {};
+    const ids = Object.keys(days);
+    ok(v.v === 1 && /^\d{4}-\d{2}-\d{2}$/.test(v.start || ""), `artist-days: v=1 + start day (${v.start})`);
+    ok(ids.length >= 300, `artist-days: ≥300 artists (${ids.length})`);
+    // decode one artist per the LOCKED delta-base36 scheme → offsets must be strictly increasing
+    const sample = ids.find(id => days[id] && days[id].indexOf(",") > 0) || ids[0];
+    const toks = (days[sample] || "").split(",");
+    let prev = -1, strict = true, off = 0;
+    for (let i = 0; i < toks.length; i++) {
+      const t = parseInt(toks[i], 36);
+      off = i === 0 ? t : off + t;
+      if (i > 0 && t < 1) strict = false;       // gaps must be ≥1
+      if (off <= prev) strict = false;           // offsets strictly increasing
+      prev = off;
+    }
+    ok(toks.length > 0 && strict, `artist-days: spot-decode "${sample}" gives strictly increasing offsets (${toks.length} days)`);
+  }
+}
+
 console.log(failures ? `\n${failures} FAILURE(S) — deploy should be blocked.` : "\nall smoke checks passed");
 process.exit(failures ? 1 : 0);

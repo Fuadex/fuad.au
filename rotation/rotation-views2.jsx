@@ -483,6 +483,60 @@ function ArtistTourCard({ a, go }) {
   );
 }
 
+// ─────────────────────────────────────────────────────────────────
+//  Per-artist barcode strip — active-day hairlines from artist-days.js
+// ─────────────────────────────────────────────────────────────────
+function ArtistBarcode({ artistId, daysReady }) {
+  const AD = window.ROTATION_ARTIST_DAYS;
+  // decode base36 delta encoding → array of integer day-offsets from global start
+  const offsets = React.useMemo(() => {
+    if (!AD || !AD.days || !AD.days[artistId]) return null;
+    const tokens = AD.days[artistId].split(",");
+    const result = [];
+    let running = 0;
+    for (let i = 0; i < tokens.length; i++) {
+      running += parseInt(tokens[i], 36);
+      result.push(running);
+    }
+    return result;
+  }, [artistId, daysReady]);
+
+  if (!offsets || offsets.length === 0) return null;
+
+  const startMs = new Date(AD.start).getTime();
+  const nowMs = Date.now();
+  const totalDays = Math.max(1, Math.round((nowMs - startMs) / 86400000));
+  const W = 1000, H = 28;
+  const firstOffset = offsets[0];
+  const lastOffset = offsets[offsets.length - 1];
+  const firstYear = new Date(startMs + firstOffset * 86400000).getFullYear();
+  const lastYear = new Date(startMs + lastOffset * 86400000).getFullYear();
+
+  const lines = offsets.map(off => {
+    const x = ((off / totalDays) * W).toFixed(2);
+    const isoDate = new Date(startMs + off * 86400000).toISOString().slice(0, 10);
+    return (
+      <line key={off} x1={x} x2={x} y1="0" y2={H}
+        stroke="oklch(0.44 0.10 300)" strokeWidth="0.8" opacity="0.8">
+        <title>{isoDate}</title>
+      </line>
+    );
+  });
+
+  return (
+    <div style={{ marginBottom: 10 }}>
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" height={H}
+        style={{ display: "block", imageRendering: "crispEdges" }}
+        preserveAspectRatio="none">
+        {lines}
+      </svg>
+      <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".08em", textAlign: "right", marginTop: 3 }}>
+        every active day · {firstYear}→{lastYear}
+      </div>
+    </div>
+  );
+}
+
 function ArtistView({ t, id, go, setPop, city, setCity }) {
   const R = window.ROTATION;
   const full = R.byId[id];
@@ -538,6 +592,16 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     for (const v of vs) for (let k = 0; k < 6; k++) m[k] += v[k];
     return { vec: m.map(x => x / vs.length / 100), n: vs.length, of: (selAlbum.tracks || []).length };
   }, [selAlbum, taReady, a.id]);
+  // artist-days.js — lazy-loaded once; presence-only day offsets for the barcode strip
+  const [daysReady, setDaysReady] = React.useState(!!window.ROTATION_ARTIST_DAYS);
+  React.useEffect(() => {
+    if (window.ROTATION_ARTIST_DAYS) { setDaysReady(true); return; }
+    let s = document.getElementById("artist-days-js");
+    if (!s) { s = document.createElement("script"); s.id = "artist-days-js"; s.src = "artist-days.js"; s.onerror = () => {}; document.head.appendChild(s); }
+    const onLoad = () => { if (window.ROTATION_ARTIST_DAYS) setDaysReady(true); };
+    s.addEventListener("load", onLoad);
+    return () => s.removeEventListener("load", onLoad);
+  }, []);
   // artists outside the kept 205 still rank in Explore — give them a lightweight page
   // (return AFTER hooks so hook order stays stable across navigations).
   if (!full && R.expById && R.expById[id]) return <MiniArtistView a={R.expById[id]} go={go} />;
@@ -617,17 +681,20 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
         </div>
-        <div style={{ display: "flex", gap: 26 }}>
-          <div><div className="r-stat-n" style={{ fontSize: 38 }}>{fmt(a.plays)}</div>
-            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
-          <div><div className="r-stat-n" style={{ fontSize: 38 }}>{peakYear}</div>
-            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>peak year</div></div>
-          <div><div className="r-stat-n" style={{ fontSize: 38, color: "var(--accent)" }}>{shareOfTotal.toFixed(1)}%</div>
-            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>of all plays</div></div>
-          {a.listeners != null && (
-            <div><div className="r-stat-n" style={{ fontSize: 38 }}>{a.listeners >= 1e6 ? (a.listeners / 1e6).toFixed(1) + "M" : a.listeners >= 1000 ? Math.round(a.listeners / 1000) + "k" : a.listeners}</div>
-              <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>listeners ww</div></div>
-          )}
+        <div style={{ display: "flex", flexDirection: "column", gap: 0, alignSelf: "flex-end" }}>
+          <ArtistBarcode artistId={a.id} daysReady={daysReady} />
+          <div style={{ display: "flex", gap: 26 }}>
+            <div><div className="r-stat-n" style={{ fontSize: 38 }}>{fmt(a.plays)}</div>
+              <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
+            <div><div className="r-stat-n" style={{ fontSize: 38 }}>{peakYear}</div>
+              <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>peak year</div></div>
+            <div><div className="r-stat-n" style={{ fontSize: 38, color: "var(--accent)" }}>{shareOfTotal.toFixed(1)}%</div>
+              <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>of all plays</div></div>
+            {a.listeners != null && (
+              <div><div className="r-stat-n" style={{ fontSize: 38 }}>{a.listeners >= 1e6 ? (a.listeners / 1e6).toFixed(1) + "M" : a.listeners >= 1000 ? Math.round(a.listeners / 1000) + "k" : a.listeners}</div>
+                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>listeners ww</div></div>
+            )}
+          </div>
         </div>
       </div>
 

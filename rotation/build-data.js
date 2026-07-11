@@ -362,10 +362,50 @@ const canon = (name) => CANON.get(name) || name;
 // (album hygiene — placeholder remaps + tag stripping — now lives in sync-csv.js as data overrides,
 // so fuadex.csv already holds clean album titles by the time we read it here.)
 
+// ─────────── album canonicalisation (variant-suffix stripping) ───────────
+// Collapse edition variants onto their base release so base+variant count as ONE album
+// everywhere albums aggregate (per-artist lists, media index, flow, geo/day, obsessions):
+// "Mezzanine (Deluxe)" → "Mezzanine", "Led Zeppelin IV (Remastered)" → "Led Zeppelin IV".
+// Applied at scrobble-ingest, so every downstream Map is keyed by the canonical title.
+// A real MusicBrainz release-group pass will supersede this heuristic later.
+//   STRIP (edition markers): deluxe, expanded, remaster(ed), anniversary, special edition,
+//     extended, bonus (track) edition, collector('s), redux, tour edition, complete edition,
+//     "20xx remaster/mix/master/edition".
+//   NEVER STRIP (distinct releases): live, acoustic, unplugged, instrumental(s), demo(s),
+//     acapella, remix(es/ed), single, EP, OST/soundtrack, session(s), cover(s). When in doubt, keep.
+const _ALBUM_KEEP = /\b(live|acoustic|unplugged|instrumentals?|demos?|acapella|a cappella|remix(?:es|ed)?|single|ep|ost|soundtrack|sessions?|covers?)\b/i;
+const _ALBUM_STRIP = new RegExp(
+  "^(.*?)[\\s]*[([\\-–—][\\s]*(?:" +
+  "deluxe|expanded|remaster(?:ed)?|anniversary|special edition|extended|" +
+  "bonus(?:[\\s-]track)?(?:[\\s-]edition)?|collector(?:'?s)?(?:[\\s-]edition)?|redux|" +
+  "tour edition|complete edition|" +
+  "(?:19|20)\\d{2}(?:[\\s-](?:remaster(?:ed)?|mix|master|edition|version))?" +   // "2012 Mix/Master", bare year only when in a suffix segment
+  ")[^)\\]]*[)\\]]?\\s*$", "i"
+);
+function canonAlbum(name) {
+  if (!name) return name;
+  let s = name;
+  // peel one trailing edition segment at a time (handles "… (Deluxe) (Remastered)")
+  for (let i = 0; i < 4; i++) {
+    const m = _ALBUM_STRIP.exec(s);
+    if (!m) break;
+    const base = m[1].replace(/[\s\-–—]+$/, "").trim();
+    const stripped = s.slice(base.length);            // the tail we'd remove
+    if (!base) break;                                  // never strip to empty
+    if (_ALBUM_KEEP.test(stripped)) break;             // exclusion list wins — leave as-is
+    s = base;
+  }
+  return s;
+}
+// alias entries: "<artistSlug>~<variantAlbumSlug>" → "<artistSlug>~<canonAlbumSlug>", recorded
+// at ingest whenever a variant title differs from its canonical base (emitted to album-alias.js).
+const ALBUM_ALIAS = {};
+
 const artistPlays = new Map();           // name → count
 const albumPlays = new Map();            // artist\x00album → count
 const trackPlays = new Map();            // artist\x00track → count
 const trackAlbumCount = new Map();       // artist\x00track → Map(artist\x00album → count) — dominant album per track
+const albumTracks = new Map();           // artist\x00album → Set(track titles) — distinct tracks → release-type kind
 const albumSpan = new Map();             // artist\x00album → [firstYear, lastYear]
 const trackYear = new Map();             // artist\x00track → Map(year → count) — for per-year ranking
 const albumYear = new Map();             // artist\x00album → Map(year → count)
@@ -379,13 +419,19 @@ const scrobbles = [];                    // [artist, album, track, ms] newest-fi
 const undatedArtists = [];
 
 for (const line of lines) {
-  const [rawArtist, album, track, ts] = parseLine(line);
+  const [rawArtist, rawAlbum, track, ts] = parseLine(line);
   if (!rawArtist) continue;
   const artist = canon(rawArtist);   // merge scrobble-name variants (album hygiene done in the CSV)
+  // collapse edition variants onto the base title BEFORE any album map is keyed
+  const album = canonAlbum(rawAlbum);
+  if (album && rawAlbum !== album) {
+    const aSlug = slug(artist);
+    ALBUM_ALIAS[aSlug + "~" + slug(rawAlbum)] = aSlug + "~" + slug(album);
+  }
   artistPlays.set(artist, (artistPlays.get(artist) || 0) + 1);
   if (album) albumPlays.set(artist + "\x00" + album, (albumPlays.get(artist + "\x00" + album) || 0) + 1);
   if (track) trackPlays.set(artist + "\x00" + track, (trackPlays.get(artist + "\x00" + track) || 0) + 1);
-  if (track && album) { const tk = artist + "\x00" + track, ak = artist + "\x00" + album; let m = trackAlbumCount.get(tk); if (!m) { m = new Map(); trackAlbumCount.set(tk, m); } m.set(ak, (m.get(ak) || 0) + 1); }
+  if (track && album) { const tk = artist + "\x00" + track, ak = artist + "\x00" + album; let m = trackAlbumCount.get(tk); if (!m) { m = new Map(); trackAlbumCount.set(tk, m); } m.set(ak, (m.get(ak) || 0) + 1); let s = albumTracks.get(ak); if (!s) { s = new Set(); albumTracks.set(ak, s); } s.add(track); }
 
   const d = parseDate(ts);
   if (!d || d.getTime() < 31536e6) { undatedArtists.push(artist); continue; } // 1970 = lost timestamp
@@ -463,6 +509,23 @@ for (const [k, plays] of albumPlays) {
 for (const m of _tBy.values()) m.sort((a, b) => b.plays - a.plays);
 for (const m of _aBy.values()) m.sort((a, b) => b.plays - a.plays);
 
+// release-type heuristic per (canonical) album: distinct-track count → single/ep/album,
+// overridden by name patterns → comp/live/ost. A MusicBrainz release-group pass corrects
+// this later; the field name stays just `kind` so that swap is transparent to the UI.
+const _kNameComp = /\b(greatest hits|best of|anthology|collection|singles)\b/i;
+const _kNameLive = /\blive\b|\blive at\b|unplugged/i;
+const _kNameOst = /\b(ost|original soundtrack|soundtrack)\b/i;
+function albumKind(artist, title) {
+  if (_kNameComp.test(title)) return "comp";
+  if (_kNameLive.test(title)) return "live";
+  if (_kNameOst.test(title)) return "ost";
+  const n = (albumTracks.get(artist + "\x00" + title) || _EMPTY_SET).size;
+  if (n <= 2) return "single";
+  if (n <= 6) return "ep";
+  return "album";
+}
+const _EMPTY_SET = new Set();
+
 // measured Sound DNA from the Spotify audio-features dump (built by extract-audio.js); falls back to
 // inferred tag-derived DNA where an artist didn't match (~98% are measured).
 const AUDIO = (() => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, "audio-features.json"), "utf8")); } catch (e) { return {}; } })();
@@ -485,7 +548,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     image: imageOf(name),
     thumb: thumbOf(name),
     topTracks: (_tBy.get(name) || []).slice(0, TRACKS_PER_ARTIST),
-    topAlbums: (_aBy.get(name) || []).slice(0, ALBUMS_PER_ARTIST_VIEW).map(a => ({ ...a, cover: albArt(name, a.title) })),
+    topAlbums: (_aBy.get(name) || []).slice(0, ALBUMS_PER_ARTIST_VIEW).map(a => ({ ...a, cover: albArt(name, a.title), kind: albumKind(name, a.title) })),
     spotGenres: (SPOTGEN[name] || []).slice(0, 8),   // Spotify's own genre tags
     audio: AUDIO[name]
       ? { energy: AUDIO[name].energy, valence: AUDIO[name].valence, acoustic: AUDIO[name].acoustic, tempo: AUDIO[name].tempo, dance: AUDIO[name].dance, instr: AUDIO[name].instr }
@@ -526,7 +589,7 @@ for (const [key] of rankedAlbums) {
 }
 const ALBUMS = rankedAlbums.filter(([key]) => albumKeys.has(key)).map(([key, plays], i) => {
   const [artist, title] = key.split("\x00");
-  return { id: "al" + i, artistId: slug(artist), artist, title, year: null, plays, hue: hueFor(artist) };
+  return { id: "al" + i, artistId: slug(artist), artist, title, year: null, plays, hue: hueFor(artist), kind: albumKind(artist, title) };
 });
 
 // ─────────── TRACKS ───────────
@@ -1973,6 +2036,43 @@ window.ROTATION_MEDIA = { artists: ${JSON.stringify(_mArtists)}, tracks: ${JSON.
 fs.writeFileSync(path.join(__dirname, "media-index.js"), mediaOut, "utf8");
 console.log(`media index: ${mediaTracks.length} tracks · ${mediaAlbums.length} albums · ${_mArtists.length} artists (${(mediaOut.length / 1024).toFixed(0)} KB)`);
 
+// ─────────── ALBUM ALIAS MAP (generated lazy file) ───────────
+// "<artistSlug>~<variantAlbumSlug>" → "<artistSlug>~<canonAlbumSlug>", so any slug-keyed join
+// (covers, album-about, front-to-back byAlbum) that still holds a pre-canon variant slug resolves
+// to the merged album. Recorded at ingest into ALBUM_ALIAS whenever a title was stripped.
+const _aliasOut = "// GENERATED by build-data.js — album edition-variant → canonical slug map (lazy).\n"
+  + "window.ROTATION_ALBUM_ALIAS = " + JSON.stringify(ALBUM_ALIAS) + ";\n";
+fs.writeFileSync(path.join(__dirname, "album-alias.js"), _aliasOut, "utf8");
+console.log(`album-alias.js: ${Object.keys(ALBUM_ALIAS).length} variant→canonical aliases (${(_aliasOut.length / 1024).toFixed(0)} KB)`);
+
+// ─────────── ARTIST ACTIVE-DAYS (generated lazy file) ───────────
+// Per-artist barcode of active listening days for the artist page. Encoding (LOCKED — the UI
+// agent decodes exactly this): "start" = global first scrobble day (YYYY-MM-DD). Each artist's
+// value is the sorted active day-offsets (days since start) delta-encoded: first token = first
+// offset, each later token = the gap (≥1) to the previous, every token base36, joined by ",".
+//   offsets [3,4,10] → "3,1,6". Included: artists with ≥100 total plays.
+const ARTIST_DAYS_MIN_PLAYS = 100;
+const _dayMs = 86400e3;
+const _adStartMs = Date.UTC(+iso(oldestMs).slice(0, 4), +iso(oldestMs).slice(5, 7) - 1, +iso(oldestMs).slice(8, 10));
+const _adDays = new Map();   // artist → Set(dayOffset)
+for (const [artist, , , ms] of scrobbles) {
+  if ((artistPlays.get(artist) || 0) < ARTIST_DAYS_MIN_PLAYS) continue;
+  const dk = iso(ms);   // same UTC day-key convention as dayCounts
+  const off = Math.round((Date.UTC(+dk.slice(0, 4), +dk.slice(5, 7) - 1, +dk.slice(8, 10)) - _adStartMs) / _dayMs);
+  let s = _adDays.get(artist); if (!s) { s = new Set(); _adDays.set(artist, s); } s.add(off);
+}
+const _adOut = {};
+for (const [artist, set] of _adDays) {
+  const offs = [...set].sort((a, b) => a - b);
+  let prev = 0, parts = [];
+  for (let i = 0; i < offs.length; i++) { const tok = i === 0 ? offs[i] : offs[i] - prev; parts.push(tok.toString(36)); prev = offs[i]; }
+  _adOut[slug(artist)] = parts.join(",");
+}
+const _adFile = "// GENERATED by build-data.js — per-artist active-day barcode (delta-base36; lazy).\n"
+  + "window.ROTATION_ARTIST_DAYS = " + JSON.stringify({ v: 1, start: iso(oldestMs), days: _adOut }) + ";\n";
+fs.writeFileSync(path.join(__dirname, "artist-days.js"), _adFile, "utf8");
+console.log(`artist-days.js: ${Object.keys(_adOut).length} artists ≥${ARTIST_DAYS_MIN_PLAYS} plays (${(_adFile.length / 1024).toFixed(0)} KB)`);
+
 // lazy per-track audio detail (loaded only on a TrackView) — keyed slug(artist)~slug(track), same id TrackView routes by.
 const _taOut = "// GENERATED by build-data.js — per-track Spotify audio features + stats (lazy-loaded on TrackView).\n"
   + "// key = artistSlug~trackSlug → [durSec, popularity, explicit, trackNo, energy, valence, acoustic, tempo, dance, instr] (features 0..100; length 4 when no features).\n"
@@ -2254,11 +2354,13 @@ for (const a of EXPLORE) {
   const NAMES = [], NI = new Map();
   const intern = (s) => { let i = NI.get(s); if (i == null) { i = NAMES.length; NI.set(s, i); NAMES.push(s); } return i; };
   const top = (arr) => (arr || []).sort((x, y) => y[1] - x[1]).slice(0, 12).map(([t, p]) => [intern(t), p]);
+  // albums carry a 3rd slot: the release-type kind (single/ep/album/comp/live/ost)
+  const topAlb = (arr, artist) => (arr || []).sort((x, y) => y[1] - x[1]).slice(0, 12).map(([t, p]) => [intern(t), p, albumKind(artist, t)]);
   const DETAIL = {};
   for (const a of EXPLORE) {
     if (byName[a.name]) continue;
     const rec = {};
-    const t = top(tBy.get(a.name)), al = top(aBy.get(a.name));
+    const t = top(tBy.get(a.name)), al = topAlb(aBy.get(a.name), a.name);
     if (t.length) rec.t = t;
     if (al.length) rec.al = al;
     const bio = bioOf(a.name) || dgProfileOf(a.name);          // last.fm bio, else Discogs profile
