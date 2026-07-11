@@ -144,6 +144,11 @@ function BarcodeScrubber({ years, selYear, setSelYear }) {
   const LABEL_H = 13;   // space below hairlines for year labels
   const LINE_H = STRIP_H - LABEL_H;  // hairline area height
 
+  // Lab-matched color tiers (mirrors BarcodeStrip in rotation-lab.jsx exactly).
+  const COL_PEAK   = "oklch(0.80 0.18 340)";  // top 5%
+  const COL_HEAVY  = "oklch(0.62 0.15 320)";  // top 20%
+  const COL_ACTIVE = "oklch(0.44 0.10 300)";  // active
+
   // Memoize the static hairlines — they never change when selYear changes.
   const hairlines = React.useMemo(() => {
     if (!days) return null;
@@ -157,17 +162,12 @@ function BarcodeScrubber({ years, selYear, setSelYear }) {
       const v = counts[i];
       if (!v) continue;
       const x = (i / (n - 1)) * 1000;  // viewBox width = 1000
-      // Taller + brighter for heavier days, giving texture without cost.
-      const h = v >= p95 ? LINE_H : v >= p80 ? LINE_H * 0.72 : LINE_H * 0.42;
-      const op = v >= p95 ? 0.95 : v >= p80 ? 0.70 : 0.42;
-      const col = v >= p95 ? "var(--accent)"
-        : v >= p80 ? "oklch(0.62 0.13 var(--acc-h))"
-        : "oklch(0.44 0.08 var(--acc-h))";
+      const col = v >= p95 ? COL_PEAK : v >= p80 ? COL_HEAVY : COL_ACTIVE;
       lines.push(
         <line key={i} x1={x.toFixed(2)} x2={x.toFixed(2)}
-          y1={(LINE_H - h).toFixed(2)} y2={LINE_H.toFixed(2)}
-          stroke={col} strokeWidth="0.55" opacity={op}
-          vectorEffect="non-scaling-stroke" shapeRendering="crispEdges" />
+          y1="0" y2={LINE_H.toFixed(2)}
+          stroke={col} strokeWidth="0.8" opacity="0.8"
+          shapeRendering="crispEdges" />
       );
     }
     return lines;
@@ -189,80 +189,92 @@ function BarcodeScrubber({ years, selYear, setSelYear }) {
     }).filter(s => s.x1 >= s.x0);
   }, [days, years]);
 
-  const placeholder = (
+  // Fixed-position shell shared by both loading and loaded states.
+  const fixedShell = (children) => (
+    <div className="bc-scrubber-fixed">
+      {children}
+    </div>
+  );
+
+  if (!days) return fixedShell(
     <div style={{
-      height: STRIP_H + 20, display: "flex", alignItems: "center",
+      height: STRIP_H, display: "flex", alignItems: "center",
       fontFamily: "var(--mono)", fontSize: 10, color: "var(--ink-faint)",
-      letterSpacing: ".1em", background: "var(--bg-3)", borderRadius: 6,
-      padding: "0 16px"
+      letterSpacing: ".1em", padding: "0 16px"
     }}>
       loading history…
     </div>
   );
 
-  if (!days) return (
-    <div className="bc-scrubber-wrap">{placeholder}</div>
-  );
+  return fixedShell(
+    <div style={{ width: "100%", padding: "4px 0 0" }}>
+      <div style={{ display: "flex", alignItems: "flex-end", gap: 0 }}>
+        {/* Barcode SVG — fills all remaining width */}
+        <svg
+          viewBox={`0 0 1000 ${STRIP_H}`}
+          preserveAspectRatio="none"
+          style={{ flex: 1, minWidth: 0, height: STRIP_H, display: "block" }}
+          aria-label="Listening history barcode — click a year to highlight it"
+        >
+          {/* Year highlight bands — rendered below hairlines, only changes on selYear. */}
+          {yearSegs.map(({ y, x0, x1 }) => {
+            const on = y === selYear;
+            return (
+              <rect key={y + "-bg"}
+                x={x0.toFixed(2)} y="0"
+                width={Math.max(0, x1 - x0).toFixed(2)} height={LINE_H}
+                fill={on ? "oklch(0.35 0.07 var(--acc-h) / 0.55)" : "transparent"}
+                rx="0"
+              />
+            );
+          })}
 
-  return (
-    <div className="bc-scrubber-wrap">
-      <svg
-        viewBox={`0 0 1000 ${STRIP_H}`}
-        preserveAspectRatio="none"
-        style={{ width: "100%", height: STRIP_H + 20, display: "block", overflow: "visible" }}
-        aria-label="Listening history barcode — click a year to highlight it"
-      >
-        {/* Year highlight bands — rendered below hairlines, only changes on selYear. */}
-        {yearSegs.map(({ y, x0, x1 }) => {
-          const on = y === selYear;
-          return (
-            <rect key={y + "-bg"}
-              x={x0.toFixed(2)} y="0"
-              width={Math.max(0, x1 - x0).toFixed(2)} height={LINE_H}
-              fill={on ? "oklch(0.35 0.07 var(--acc-h) / 0.55)" : "transparent"}
-              rx="0"
-            />
-          );
-        })}
+          {/* Hairlines — memoized, never re-renders on year change. */}
+          {hairlines}
 
-        {/* Hairlines — memoized, never re-renders on year change. */}
-        {hairlines}
+          {/* Year separator lines + labels + click targets. */}
+          {yearSegs.map(({ y, x0, x1 }, i) => {
+            const on = y === selYear;
+            const cx = ((x0 + x1) / 2).toFixed(2);
+            const label = "'" + String(y).slice(2);
+            return (
+              <g key={y} style={{ cursor: "pointer", touchAction: "manipulation" }}
+                onClick={() => setSelYear(on ? null : y)}>
+                {/* Invisible wide hit target for mobile-friendly tap. */}
+                <rect x={x0.toFixed(2)} y="0"
+                  width={Math.max(0, x1 - x0).toFixed(2)} height={STRIP_H}
+                  fill="transparent" />
+                {/* Separator tick at year boundary (skip first). */}
+                {i > 0 && (
+                  <line x1={x0.toFixed(2)} x2={x0.toFixed(2)} y1="0" y2={LINE_H}
+                    stroke="var(--rule)" strokeWidth="0.8" opacity="0.4" />
+                )}
+                {/* Accent underline for selected year. */}
+                {on && (
+                  <rect x={x0.toFixed(2)} y={(LINE_H - 2).toFixed(2)}
+                    width={Math.max(0, x1 - x0).toFixed(2)} height="2"
+                    fill="var(--accent)" rx="1" />
+                )}
+                {/* Year label. */}
+                <text
+                  x={cx} y={(STRIP_H - 1).toFixed(2)}
+                  fontFamily="var(--mono)" fontSize="7.5"
+                  fill={on ? "var(--accent)" : "var(--ink-faint)"}
+                  textAnchor="middle"
+                  style={{ userSelect: "none" }}
+                >{label}</text>
+              </g>
+            );
+          })}
+        </svg>
 
-        {/* Year separator lines + labels + click targets. */}
-        {yearSegs.map(({ y, x0, x1 }, i) => {
-          const on = y === selYear;
-          const cx = ((x0 + x1) / 2).toFixed(2);
-          const label = "'" + String(y).slice(2);
-          return (
-            <g key={y} style={{ cursor: "pointer", touchAction: "manipulation" }}
-              onClick={() => setSelYear(on ? null : y)}>
-              {/* Invisible wide hit target for mobile-friendly tap. */}
-              <rect x={x0.toFixed(2)} y="0"
-                width={Math.max(0, x1 - x0).toFixed(2)} height={STRIP_H}
-                fill="transparent" />
-              {/* Separator tick at year boundary (skip first). */}
-              {i > 0 && (
-                <line x1={x0.toFixed(2)} x2={x0.toFixed(2)} y1="0" y2={LINE_H}
-                  stroke="var(--rule-2)" strokeWidth="0.8" opacity="0.6" />
-              )}
-              {/* Accent underline for selected year. */}
-              {on && (
-                <rect x={x0.toFixed(2)} y={(LINE_H - 2).toFixed(2)}
-                  width={Math.max(0, x1 - x0).toFixed(2)} height="2"
-                  fill="var(--accent)" rx="1" />
-              )}
-              {/* Year label. */}
-              <text
-                x={cx} y={(STRIP_H - 1).toFixed(2)}
-                fontFamily="var(--mono)" fontSize="7.5"
-                fill={on ? "var(--accent)" : "var(--ink-faint)"}
-                textAnchor="middle"
-                style={{ userSelect: "none" }}
-              >{label}</text>
-            </g>
-          );
-        })}
-      </svg>
+        {/* Inline legend — right-aligned, hidden on narrow screens via CSS */}
+        <div className="bc-legend">
+          <span><i style={{ background: COL_PEAK }} />peak (top 5%)</span>
+          <span><i style={{ background: COL_HEAVY }} />heavy (top 20%)</span>
+          <span><i style={{ background: COL_ACTIVE }} />active</span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -337,7 +349,7 @@ function CalendarView({ go, seed }) {
   const iRow = ([t, a, p]) => ({ title: NM[t], artist: NM[a], plays: p });
 
   return (
-    <div className="r-view tv-page">
+    <div className="r-view tv-page" style={{ paddingBottom: 96 }}>
       <div className="r-viewhead">
         <div>
           <div className="r-kicker">Calendar · {years[0]}—{years[years.length - 1]} · {fmt(max)} in a single day</div>
@@ -394,23 +406,18 @@ function CalendarView({ go, seed }) {
       <ClockCard R={R} selHours={selHours} setSelHours={setSelHours} />
       </div>
 
-      {/* barcode year scrubber — full-width strip across all history */}
+      {/* barcode year scrubber — fixed bottom strip across all history */}
       {cal && (
-        <div style={{ marginTop: 28 }}>
-          <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 6 }}>
-            listening history{selYear ? <> · <span style={{ color: "var(--accent)" }}>{selYear} highlighted</span></> : " · click a year to jump to it"}
-          </div>
-          <BarcodeScrubber years={years} selYear={selYear} setSelYear={(y) => {
-            setSelYear(y);
-            // jump the page to that year's heatmap row (the calendar shows all years stacked)
-            const el = heatRef.current;
-            if (y != null && el) {
-              const r = el.getBoundingClientRect();
-              const frac = (topPad + years.indexOf(y) * (rowH + yearGap)) / H;
-              window.scrollTo({ top: window.scrollY + r.top + frac * r.height - 110, behavior: "smooth" });
-            }
-          }} />
-        </div>
+        <BarcodeScrubber years={years} selYear={selYear} setSelYear={(y) => {
+          setSelYear(y);
+          // jump the page to that year's heatmap row (the calendar shows all years stacked)
+          const el = heatRef.current;
+          if (y != null && el) {
+            const r = el.getBoundingClientRect();
+            const frac = (topPad + years.indexOf(y) * (rowH + yearGap)) / H;
+            window.scrollTo({ top: window.scrollY + r.top + frac * r.height - 110, behavior: "smooth" });
+          }
+        }} />
       )}
 
       {/* period overview */}
@@ -492,7 +499,7 @@ function CalendarView({ go, seed }) {
         .cal-rk { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); width: 18px; }
         .cal-nm { font-size: 13.5px; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .cal-pl { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
-        .cal-float { position: fixed; right: 24px; bottom: 24px; z-index: 60; width: min(560px, 92vw);
+        .cal-float { position: fixed; right: 24px; bottom: 82px; z-index: 60; width: min(560px, 92vw);
           max-height: 82vh; display: flex; flex-direction: column; background: var(--panel);
           border: 1px solid var(--rule-2); border-radius: 12px; box-shadow: 0 24px 60px -20px rgba(0,0,0,.7); overflow: hidden; }
         .cal-float-bar { display: flex; align-items: center; gap: 8px; padding: 9px 12px; cursor: grab;
@@ -503,7 +510,30 @@ function CalendarView({ go, seed }) {
         .cal-float-x { background: none; border: none; color: var(--ink-faint); cursor: pointer; font-size: 12px; line-height: 1; }
         .cal-float-x:hover { color: var(--ink); }
         .cal-float-body { padding: 18px 20px; overflow-y: auto; }
-        .bc-scrubber-wrap { width: 100%; border-radius: 6px; overflow: hidden; background: var(--bg-3); }
+        /* ── Barcode scrubber — fixed to viewport bottom ── */
+        .bc-scrubber-fixed {
+          position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+          background: color-mix(in oklab, var(--bg) 86%, transparent);
+          -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+          border-top: 1px solid var(--rule);
+          padding: 6px 12px;
+          padding-bottom: calc(6px + env(safe-area-inset-bottom));
+          box-sizing: border-box;
+        }
+        /* Legend — three labelled swatches, right-aligned */
+        .bc-legend {
+          display: flex; flex-direction: column; justify-content: center;
+          gap: 3px; padding-left: 10px; flex-shrink: 0;
+          font-family: var(--mono); font-size: 8px; color: var(--ink-faint);
+          white-space: nowrap;
+        }
+        .bc-legend span { display: flex; align-items: center; gap: 4px; }
+        .bc-legend i {
+          display: inline-block; width: 8px; height: 8px;
+          border-radius: 1px; flex-shrink: 0;
+        }
+        /* Hide legend on narrow screens to save space for the barcode */
+        @media (max-width: 520px) { .bc-legend { display: none; } }
         /* mobile: bottom sheet — full width, finger-resizable via the bar (see onBarTouchStart).
            !important defeats any stored PC drag position. Default 40vh = calendar stays visible. */
         @media (max-width: 760px) {

@@ -261,7 +261,7 @@ function OvWeatherCard({ R, go, restReady }) {
   // ── DECADES (chronological strip treemap → drillable per-year) ──
   const decadesTab = () => {
     if (!hasDec) return <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", padding: "8px 0" }}>no decade data</div>;
-    const W = 100, H = 96;   // % width space; height in px
+    const H = 96;   // strip height px — HTML flex strips, not SVG: a stretched viewBox distorts label glyphs
 
     if (zoom != null) {
       // per-year within the clicked decade
@@ -277,27 +277,23 @@ function OvWeatherCard({ R, go, restReady }) {
         );
       }
       const { rows, tot } = yearBreak;
-      let cx = 0;
-      const rects = rows.map(r => { const w = tot ? (r.plays / tot) * W : 0; const rr = { x: cx, w, ...r }; cx += w; return rr; });
       return (
         <div>
           <button onClick={() => setZoom(null)} className="ov-wback">← {zoom}s</button>
-          <svg viewBox={`0 0 ${W} ${H}`} width="100%" preserveAspectRatio="none" style={{ display: "block", borderRadius: 4, height: H }}>
-            {rects.map((r, i) => {
+          <div style={{ display: "flex", height: H, borderRadius: 4, overflow: "hidden", gap: 1 }}>
+            {rows.map((r, i) => {
+              const w = tot ? (r.plays / tot) * 100 : 0;
               const pct = tot ? Math.round(r.plays / tot * 100) : 0;
               const hue = 60 + ((r.year - zoom) * 20);
               return (
-                <g key={r.year}>
-                  <title>{r.year} · {r.plays.toLocaleString("en-US")} plays · {pct}% of the {zoom}s</title>
-                  <rect x={r.x.toFixed(2)} y="0" width={Math.max(r.w - 0.4, 0).toFixed(2)} height={H}
-                    fill={`oklch(${0.34 + (i % 5) * 0.05} 0.13 ${hue % 360})`} />
-                  {r.w > 9 && <text x={(r.x + r.w / 2).toFixed(2)} y={H / 2 + 3}
-                    fill="rgba(255,255,255,0.9)" fontSize="6" fontFamily="var(--mono)" textAnchor="middle"
-                    style={{ pointerEvents: "none" }}>'{String(r.year).slice(2)}</text>}
-                </g>
+                <div key={r.year} title={`${r.year} · ${r.plays.toLocaleString("en-US")} plays · ${pct}% of the ${zoom}s`}
+                  style={{ width: w + "%", minWidth: 2, background: `oklch(${0.34 + (i % 5) * 0.05} 0.13 ${hue % 360})`,
+                    display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                  {w > 8 && <span className="r-mono" style={{ fontSize: 9.5, color: "rgba(255,255,255,.9)", whiteSpace: "nowrap" }}>'{String(r.year).slice(2)}</span>}
+                </div>
               );
             })}
-          </svg>
+          </div>
           <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 8, lineHeight: 1.5 }}>
             {dec ? Math.round(dec.share * 100) + "% of plays are " + zoom + "s music" : ""} — by artist debut year
           </div>
@@ -307,29 +303,24 @@ function OvWeatherCard({ R, go, restReady }) {
 
     // decade strip — chronological, area = play share
     const tot = decades.reduce((s, d) => s + d.plays, 0);
-    let cx = 0;
-    const rects = decades.map(d => { const w = tot ? (d.plays / tot) * W : 0; const r = { x: cx, w, ...d }; cx += w; return r; });
     return (
       <div>
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" preserveAspectRatio="none" style={{ display: "block", borderRadius: 4, height: H }}>
-          {rects.map((r, i) => {
-            const pct = Math.round(r.share * 100);
+        <div style={{ display: "flex", height: H, borderRadius: 4, overflow: "hidden", gap: 1 }}>
+          {decades.map((d, i) => {
+            const w = tot ? (d.plays / tot) * 100 : 0;
+            const pct = Math.round(d.share * 100);
             const hue = 60 + i * 28;
             return (
-              <g key={r.decade} style={{ cursor: "pointer" }} onClick={() => setZoom(r.decade)}>
-                <title>{r.decade}s · {r.plays.toLocaleString("en-US")} plays · {pct}% — click to drill in</title>
-                <rect x={r.x.toFixed(2)} y="0" width={Math.max(r.w - 0.4, 0).toFixed(2)} height={H}
-                  fill={`oklch(${0.32 + i * 0.055} 0.14 ${hue % 360})`} />
-                {r.w > 12 && <text x={(r.x + r.w / 2).toFixed(2)} y={H / 2 - 2}
-                  fill="rgba(255,255,255,0.92)" fontSize="7" fontFamily="var(--mono)" fontWeight="600" textAnchor="middle"
-                  style={{ pointerEvents: "none" }}>{String(r.decade).slice(2)}s</text>}
-                {r.w > 12 && <text x={(r.x + r.w / 2).toFixed(2)} y={H / 2 + 8}
-                  fill="rgba(255,255,255,0.62)" fontSize="6" fontFamily="var(--mono)" textAnchor="middle"
-                  style={{ pointerEvents: "none" }}>{pct}%</text>}
-              </g>
+              <div key={d.decade} title={`${d.decade}s · ${d.plays.toLocaleString("en-US")} plays · ${pct}% — click to drill in`}
+                onClick={() => setZoom(d.decade)}
+                style={{ width: w + "%", minWidth: 2, background: `oklch(${0.32 + i * 0.055} 0.14 ${hue % 360})`, cursor: "pointer",
+                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                {w > 9 && <span className="r-mono" style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,.92)", whiteSpace: "nowrap" }}>{String(d.decade).slice(2)}s</span>}
+                {w > 9 && <span className="r-mono" style={{ fontSize: 8.5, color: "rgba(255,255,255,.62)", whiteSpace: "nowrap" }}>{pct}%</span>}
+              </div>
             );
           })}
-        </svg>
+        </div>
         <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 8 }}>
           area = share of plays by release decade · click a decade to drill in
         </div>

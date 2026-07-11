@@ -2492,6 +2492,17 @@ function TonightView({ items, onOpenItem, onExit }) {
           <div className="tonight-week-caption">
             your week: {weekTone.top.map(f => `${Math.round(f.share * 100)}% ${f.name.toLowerCase()}`).join(' · ')}
             {' — '}{week === 'match' ? 'dealing to match' : 'dealing to counter'}
+            {/* the reasoning: which moods each family translates into, so the nudge isn't a black box */}
+            <div className="tonight-week-why">
+              {weekTone.top.slice(0, 3).filter(f => (FAMILY_TONE[f.name] || []).length).map(f => (
+                <span key={f.name} className="tonight-week-map">
+                  {f.name.toLowerCase()} → {(FAMILY_TONE[f.name] || []).slice(0, 3).map(k => HIGHLIGHTS[k] ? HIGHLIGHTS[k].label.toLowerCase() : k).join(' · ')}
+                </span>
+              ))}
+              <span className="tonight-week-verdict">
+                {week === 'match' ? 'so the deck leans toward those moods tonight' : 'so the deck leans away from those moods tonight'}
+              </span>
+            </div>
           </div>
         )}
 
