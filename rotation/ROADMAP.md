@@ -443,8 +443,8 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
      rebuild → commit `genius-about.json`. 681 meaning-blurbs shipped / 1,041 context-only
      cached-but-hidden / 1,274 no About. Next per Fuad: once populated, figure out how to
      navigate the trivia-only entries and drill deeper (LLM gap-filler still parked).
-   • **Gig corrections awaiting Fuad**: Coaltar of the Deepers correct date+venue (setlist.fm
-     a marking may be a stand-in); NO WORDS NEEDED exact May-2025 day; was the
+   • **Gig corrections awaiting Fuad**: a couple of setlist.fm markings look like stand-ins
+     (details in local notes); NO WORDS NEEDED exact May-2025 day; was the
      Haru Nemuri 2026-06-06 ANTIKNOCK show ALSO attended (if so: two entries, drop override);
      venues for Mariko Goto/DHMHTHP/Bleach/Zinchikurandan (≈-dated Tokyo shows). All go in
      `gigs-manual.json` (add/override; month-precision + approx:1 + copySongsFrom supported).
