@@ -1652,6 +1652,8 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   font-family: var(--mono); font-size: 10px; color: var(--ink-soft);
   letter-spacing: 0.03em; padding: 2px 0 2px 66px; margin-top: -4px;
 }
+.tonight-week-why { margin-top: 5px; display: flex; flex-direction: column; gap: 2px; font-size: 9.5px; color: var(--ink-faint); }
+.tonight-week-verdict { font-style: italic; margin-top: 2px; }
 
 .tonight-budget { display: flex; align-items: center; gap: 14px; flex: 1; padding-top: 3px; }
 .tonight-budget input[type="range"] { flex: 1; max-width: 320px; accent-color: var(--accent); }
