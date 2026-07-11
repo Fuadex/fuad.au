@@ -875,7 +875,12 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
            right-stuck via marginLeft:auto; min-width floor keeps it from collapsing on
            narrow artists (Fuad 2026-07-12). */}
         <div style={{ display: "flex", flexDirection: "column", gap: 0, alignSelf: "flex-end", marginLeft: "auto", width: "fit-content", maxWidth: "100%", minWidth: 280 }}>
-          <ArtistBarcode artistId={a.id} daysReady={daysReady} />
+          {/* width:0 + minWidth:100% — the barcode contributes NOTHING to the column's intrinsic
+             width, so the column sizes to the STAT ROW alone and the barcode then fills exactly
+             that width (the "hug the plays→listeners block" ask, done right this time). */}
+          <div style={{ width: 0, minWidth: "100%" }}>
+            <ArtistBarcode artistId={a.id} daysReady={daysReady} />
+          </div>
           <div style={{ display: "flex", gap: 26, justifyContent: "flex-end" }}>
             <div><div className="r-stat-n" style={{ fontSize: 38 }}>{fmt(a.plays)}</div>
               <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
@@ -909,7 +914,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
       <div style={{ display: "grid", gap: "var(--gap)" }}>
           {/* row 2 on PC: flow (wide — Sound DNA moved to the bottom row for breathing room,
              Fuad 2026-07-06) · top tracks · albums */}
-          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "var(--gap)", alignItems: "stretch" }}>
+          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "var(--gap)", alignItems: "start" }}>
             {/* top tracks · how they played out (flow now in the MIDDLE — Fuad 2026-07-06) · albums.
                alignItems:stretch (was start) so the three modules share the tallest sibling's
                height instead of the releases card ballooning — matters at the owner's 200-250%
@@ -948,7 +953,8 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {/* releases card — flex column so its body scrolls INSIDE a bounded height rather
                than the whole card dictating the row's height at high zoom. maxHeight is a soft
                cap; short release lists still shrink to fit (Fuad 2026-07-12). */}
-            <div className="r-card" style={{ padding: 18, display: "flex", flexDirection: "column", maxHeight: "min(820px, 100%)" }}>
+            {/* modest fixed cap + internal scroll — "roughly match the row, don't blow it out" */}
+            <div className="r-card" style={{ padding: 18, display: "flex", flexDirection: "column", maxHeight: 620 }}>
               <div style={{ overflowY: "auto", minHeight: 0, marginRight: -4, paddingRight: 4 }}>
               {albums.length > 0 && <React.Fragment>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
