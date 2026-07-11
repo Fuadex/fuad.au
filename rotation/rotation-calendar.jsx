@@ -265,8 +265,10 @@ const DAY_MS = 86400e3;
 function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, customRange, setCustomRange, onRangeCommit }) {
   const [days, setDays] = React.useState(window.ROTATION_DAYS || null);
   const [view, setView] = React.useState(() => {
-    try { return localStorage.getItem("rot-cal-strip-view") === "horizon" ? "horizon" : "barcode"; } catch (e) { return "barcode"; }
+    // horizon is the DEFAULT (Fuad 2026-07-12: better perf); barcode only if explicitly chosen
+    try { return localStorage.getItem("rot-cal-strip-view") === "barcode" ? "barcode" : "horizon"; } catch (e) { return "horizon"; }
   });
+  const [hoverDay, setHoverDay] = React.useState(null);   // day offset under cursor (context readout)
   const stripRef = React.useRef(null);   // the interactive strip element (for px↔day mapping)
   const scrubRef = React.useRef(null);   // the fixed .bc-scrubber wrapper — docked above the footer
 
@@ -471,6 +473,28 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
     try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {}
   };
 
+  // Hover context (Fuad: "based on cursor's position, make it context aware — highlight what
+  // the colored peaks mean"): track the day under the cursor when not dragging; readout shows
+  // date · plays · intensity tier, and the svg draws a thin cursor line.
+  const onStripMove = (e) => {
+    if (dragRef.current) { onDragMove(e); return; }
+    if (!meta || !days) return;
+    const r = stripRef.current.getBoundingClientRect();
+    const frac = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+    setHoverDay(Math.round(frac * ((meta.msEnd - meta.msStart) / DAY_MS)));
+  };
+  const tiers = React.useMemo(() => {
+    if (!days) return null;
+    const sorted = days.counts.filter(v => v > 0).slice().sort((a, b) => a - b);
+    return { p80: sorted[Math.floor(sorted.length * 0.8)] || 1, p95: sorted[Math.floor(sorted.length * 0.95)] || 1 };
+  }, [days]);
+  const fDd = (ms) => { const dt = new Date(ms); return dt.getUTCDate() + " " + ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][dt.getUTCMonth()] + " '" + String(dt.getUTCFullYear()).slice(2); };
+  const hoverInfo = (hoverDay != null && days && meta && tiers) ? (() => {
+    const v = days.counts[hoverDay] || 0;
+    const tier = v === 0 ? "quiet" : v >= tiers.p95 ? "peak day — top 5%" : v >= tiers.p80 ? "heavy — top 20%" : "active";
+    return { ms: meta.msStart + hoverDay * DAY_MS, v, tier };
+  })() : null;
+
   const shell = (children) => <div className="bc-scrubber" ref={scrubRef}>{children}</div>;
 
   const header = (
@@ -493,8 +517,11 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
           }
           const fD = (ms) => { const dt = new Date(ms); return dt.getUTCDate() + " " + ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][dt.getUTCMonth()] + " " + String(dt.getUTCFullYear()).slice(2); };
           return <><b>{fD(s)}</b> → <b>{fD(en)}</b> · {fmt(plays)} plays · {active} active days · peak {fmt(peak)}
+            {hoverInfo && <span className="bc-hov"> · {fDd(hoverInfo.ms)}: {fmt(hoverInfo.v)}p</span>}
             <button className="bc-clear" onClick={() => setCustomRange(null)} title="clear range">✕</button></>;
-        })() : <span className="bc-hint">click a year to clip a range, then drag the edges</span>}
+        })() : hoverInfo
+          ? <span><b>{fDd(hoverInfo.ms)}</b> · {fmt(hoverInfo.v)} plays · <span className="bc-hov">{hoverInfo.tier}</span></span>
+          : <span className="bc-hint">click a year to clip a range, then drag the edges</span>}
       </div>
       <div className="r-seg bc-seg bc-viewseg">
         {[["barcode", "barcode"], ["horizon", "horizon"]].map(([k, l]) =>
@@ -523,7 +550,8 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
     <>
       {header}
       <div className="bc-strip" ref={stripRef}
-        onPointerDown={beginStrip} onPointerMove={onDragMove}
+        onPointerDown={beginStrip} onPointerMove={onStripMove}
+        onPointerLeave={() => setHoverDay(null)}
         onPointerUp={endDrag} onPointerCancel={endDrag}>
         {/* Main render layer — barcode OR horizon; both memoized. */}
         <svg viewBox={`0 0 1000 ${STRIP_H}`} preserveAspectRatio="none"
@@ -535,6 +563,11 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
               fill="oklch(0.35 0.07 var(--acc-h) / 0.55)" />
           ))}
           {view === "barcode" ? hairlines : horizonBars}
+          {/* cursor context line */}
+          {hoverInfo && (() => { const x = xOfMs(hoverInfo.ms); return (
+            <line x1={x.toFixed(2)} x2={x.toFixed(2)} y1="0" y2={STRIP_H}
+              stroke="var(--ink)" strokeWidth="1" opacity="0.55" vectorEffect="non-scaling-stroke" />
+          ); })()}
           {/* Year separator ticks. */}
           {yearSegs.map(({ y, x0 }, i) => i > 0 && (
             <line key={y + "-sep"} x1={x0.toFixed(2)} x2={x0.toFixed(2)} y1="0" y2={STRIP_H}
@@ -941,6 +974,7 @@ function CalendarView({ go, seed }) {
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
         .bc-readout b { color: var(--ink); }
         .bc-hint { color: var(--ink-faint); }
+        .bc-hov { color: oklch(0.74 0.18 340); }
         .bc-clear { background: none; border: none; color: var(--ink-faint); cursor: pointer;
           font-size: 11px; line-height: 1; margin-left: 8px; padding: 0 2px; }
         .bc-clear:hover { color: var(--accent); }

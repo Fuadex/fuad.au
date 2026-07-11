@@ -12,13 +12,22 @@ const MUS_BY_ID = {}; for (const m of MUSEUMS) MUS_BY_ID[m.id] = m;
 const COUNTRY = { jp: "Japan", us: "United States", fr: "France", ie: "Ireland", gb: "United Kingdom", at: "Austria", pl: "Poland", se: "Sweden", au: "Australia", nl: "Netherlands", ch: "Switzerland", de: "Germany", ca: "Canada", it: "Italy", gr: "Greece", kr: "South Korea" };
 
 // merged view of one work: hand canon ⊕ overlay
+const HIRES = window.CANVAS_HIRES || {};
 function enrich(w) {
   const d = AD.artworks[w.id] || {};
   const artist = AD.artists[w.artistId] || {};
   const venues = (Array.isArray(w.seenAt) ? w.seenAt : w.seenAt ? [w.seenAt] : []).map(id => MUS_BY_ID[id]).filter(Boolean);
-  // hand-set images on the canon row (in-copyright works Wikidata can't supply) beat the overlay
-  return { ...w, ...d, artistData: artist, venues, year: w.year || d.year || null,
-    img: w.img || d.img || null, imgGrid: w.imgGrid || d.imgGrid || null, imgZoom: w.imgZoom || d.imgZoom || null };
+  // hand-set images on the canon row (in-copyright works Wikidata can't supply) beat the overlay.
+  // Machine img resolves first (thumbnails: grid stays lightweight); a hi-res overlay (Met/AIC/CMA
+  // full-res, keyed by id) is layered BETWEEN hand and machine: it only upgrades the zoom/large
+  // context, never the grid thumbnail — unless the machine has no image at all, then it fills in.
+  const hires = HIRES[w.id] || null;
+  const mImg = d.img || null, mGrid = d.imgGrid || null, mZoom = d.imgZoom || null;
+  const hi = hires && hires.img ? hires.img : null;
+  return { ...w, ...d, artistData: artist, venues, year: w.year || d.year || null, hires,
+    img: w.img || mImg || hi || null,
+    imgGrid: w.imgGrid || mGrid || (mImg ? null : hi) || null,
+    imgZoom: w.imgZoom || hi || mZoom || null };
 }
 
 function useRoute() {
@@ -184,18 +193,83 @@ function Zoom({ src, onClose }) {
   );
 }
 
+// ——— Deep zoom: full-screen OpenSeadragon over an IIIF info.json (Met/AIC/CMA hi-res tiles).
+// The OSD script is vendored (never CDN) and lazy-loaded ONCE via a shared #osd-js tag; the
+// viewer mounts into its own dark layer above the Reader and is destroyed on close.
+let osdLoad = null; // shared promise so the script is fetched a single time across opens
+function loadOSD() {
+  if (window.OpenSeadragon) return Promise.resolve();
+  if (osdLoad) return osdLoad;
+  osdLoad = new Promise((resolve, reject) => {
+    let s = document.getElementById("osd-js");
+    if (!s) {
+      s = document.createElement("script");
+      s.id = "osd-js";
+      s.src = "vendor/openseadragon/openseadragon.min.js";
+      document.body.appendChild(s);
+    }
+    s.addEventListener("load", () => resolve());
+    s.addEventListener("error", () => { osdLoad = null; reject(new Error("osd load failed")); });
+  });
+  return osdLoad;
+}
+function DeepZoom({ work, onClose }) {
+  const elRef = React.useRef(null);
+  const viewerRef = React.useRef(null);
+  const [err, setErr] = useState(false);
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") { e.stopPropagation(); onClose(); } };
+    window.addEventListener("keydown", onKey, true);
+    let cancelled = false;
+    loadOSD().then(() => {
+      if (cancelled || !elRef.current || !window.OpenSeadragon) return;
+      try {
+        const viewer = window.OpenSeadragon({
+          element: elRef.current,
+          prefixUrl: "vendor/openseadragon/images/",
+          tileSources: work.hires.iiif,
+          showNavigator: true,
+          navigatorPosition: "BOTTOM_RIGHT",
+          showRotationControl: true,
+          maxZoomPixelRatio: 2,
+          gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true },
+          crossOriginPolicy: "Anonymous",
+          ajaxWithCredentials: false,
+        });
+        viewer.addHandler("open-failed", () => { if (!cancelled) setErr(true); });
+        viewerRef.current = viewer;
+      } catch (e) { if (!cancelled) setErr(true); }
+    }).catch(() => { if (!cancelled) setErr(true); });
+    return () => {
+      cancelled = true;
+      window.removeEventListener("keydown", onKey, true);
+      if (viewerRef.current) { try { viewerRef.current.destroy(); } catch (e) {} viewerRef.current = null; }
+    };
+  }, []);
+  const src = (work.hires.src || "").toUpperCase();
+  return (
+    <div className="cv-osd">
+      <div className="cv-osd-view" ref={elRef} />
+      {err && <div className="cv-osd-err">zoom unavailable — the tile source didn't load</div>}
+      <button className="cv-r-close cv-osd-close" onClick={onClose}>✕</button>
+      <div className="cv-osd-cap">{work.title.replace(/^TBC — /, "")} · deep zoom{src ? ` via ${src}` : ""}</div>
+    </div>
+  );
+}
+
 function Reader({ id, go }) {
   const w = useMemo(() => { const x = WORKS.find(x => x.id === id); return x ? enrich(x) : null; }, [id]);
   const [zoom, setZoom] = useState(false);
+  const [deep, setDeep] = useState(false);
   const [tier, setTier] = useState("about");
   // close returns to the previous history entry (home or wall, depending where the card was clicked)
   const close = () => { history.back(); };
-  useEffect(() => { setZoom(false); setTier("about"); }, [id]);
+  useEffect(() => { setZoom(false); setDeep(false); setTier("about"); }, [id]);
   useEffect(() => {
-    const on = (e) => { if (e.key === "Escape" && !zoom) close(); };
+    const on = (e) => { if (e.key === "Escape" && !zoom && !deep) close(); };
     window.addEventListener("keydown", on);
     return () => window.removeEventListener("keydown", on);
-  }, [zoom]);
+  }, [zoom, deep]);
   if (!w) return null;
   const a = w.artistData;
   const life = a.born ? `${a.born}–${a.died || ""}` : null;
@@ -243,6 +317,7 @@ function Reader({ id, go }) {
           )}
           {w.note && <div className="cv-r-note">{w.note}</div>}
           <div className="cv-r-links">
+            {w.hires && w.hires.iiif && <button type="button" className="cv-r-deep" onClick={() => setDeep(true)}>⤢ Deep zoom</button>}
             {w.qid && <a href={`https://www.wikidata.org/wiki/${w.qid}`} target="_blank" rel="noopener noreferrer">Wikidata ↗</a>}
             {w.imgZoom && <a href={w.imgZoom} target="_blank" rel="noopener noreferrer">Full resolution ↗</a>}
             {a.qid && <a href={`https://www.wikidata.org/wiki/${a.qid}`} target="_blank" rel="noopener noreferrer">{w.artist.split(" ").pop()} on Wikidata ↗</a>}
@@ -250,6 +325,7 @@ function Reader({ id, go }) {
         </div>
       </div>
       {zoom && w.imgZoom && <Zoom src={w.imgZoom} onClose={() => setZoom(false)} />}
+      {deep && w.hires && w.hires.iiif && <DeepZoom work={w} onClose={() => setDeep(false)} />}
     </React.Fragment>
   );
 }
