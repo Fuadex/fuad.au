@@ -751,7 +751,11 @@ function Reader({ id, go }) {
                 </React.Fragment>
               )}
               {!inspOpen && (
-                <button type="button" className="cv-r-inspect-more" onClick={() => setInspOpen(true)}>continue the inspection ▾</button>
+                <React.Fragment>
+                  <button type="button" className="cv-r-inspect-more" onClick={() => setInspOpen(true)}>continue the inspection ▾</button>
+                  {/* the study entry must be visible WITHOUT expanding (Fuad: "I don't see the button") */}
+                  <button type="button" className="cv-r-inspect-study" onClick={() => go("study", w.id)}>Open the full study →</button>
+                </React.Fragment>
               )}
             </div>
           )}
