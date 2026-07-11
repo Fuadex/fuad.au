@@ -334,6 +334,35 @@ a { color: inherit; }
   .cv-search-drop { left: 0; right: 0; width: auto; }
 }
 
+/* ——— Inspection block (Reader: four-lens deep reading by Fable) ——— */
+.cv-r-inspect { margin-top: 28px; }
+.cv-r-inspect-rule { border: none; border-top: 1px solid var(--rule); margin: 0 0 16px; }
+.cv-r-inspect-kicker {
+  font: 500 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 20px;
+}
+.cv-r-inspect-lens { margin-bottom: 18px; }
+.cv-r-inspect-lens .lbl { font: 600 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: 7px; }
+.cv-r-inspect-txt {
+  font: 400 16px/1.75 var(--serif); color: var(--ink-soft);
+  max-width: 65ch; margin: 0;
+}
+.cv-r-inspect-more {
+  display: inline-block; margin-top: 4px;
+  font: 500 10.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent); background: none; border: none; cursor: pointer; padding: 0;
+}
+.cv-r-inspect-more:hover { text-decoration: underline; }
+.cv-r-inspect-zoom {
+  display: inline-block; margin-top: 16px;
+  font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent); background: none; cursor: pointer;
+  border: none; border-bottom: 1px solid oklch(0.66 0.14 46 / .35); padding: 0 0 2px;
+}
+@media (max-width: 620px) {
+  .cv-r-inspect-txt { font-size: 15px; line-height: 1.7; max-width: 100%; }
+}
+
 /* ——— Portrait (taste insight page) ——— */
 .cv-portrait { max-width: 1000px; margin: 0 auto; padding: 26px 34px 70px; }
 .cv-p-read { font: 400 20px/1.6 var(--serif); color: var(--ink-soft); margin: 6px 0 30px; }

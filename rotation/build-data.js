@@ -2390,6 +2390,9 @@ console.log(`genius-themes-lazy: ${Object.keys(GENIUS_THEMES).length - 1} tracks
   // hand kill-list — previews confirmed to play the WRONG recording (Fuad 2026-07-13). Wrong
   // audio is worse than none; artist-wide kills stay until an ISRC verification pass clears them.
   const PREVIEW_KILL_KEYS = new Set(["rammstein~engel", "wargasm-uk~venom", "limp-bizkit~my-generation"]);
+  // + the MB-ISRC audit's confirmed wrong-recording matches (preview-kill.json, regenerated
+  // from .sptmp/preview-audit.json — 225 keys as of 2026-07-12)
+  try { for (const k of JSON.parse(fs.readFileSync(path.join(__dirname, "preview-kill.json"), "utf8"))) PREVIEW_KILL_KEYS.add(k); } catch (e) {}
   const PREVIEW_KILL_ARTISTS = new Set(["pro8l3m"]);
   const pv = {};
   for (const [k, v] of Object.entries(LINKS)) {

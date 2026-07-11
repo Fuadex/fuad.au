@@ -268,5 +268,185 @@ window.CANVAS_HIRES = {
 "iiif": null,
 "title": "Two Tahitian Women",
 "conf": "high"
+},
+"podkowinski-szal-uniesien": {
+"src": "",
+"img": null,
+"iiif": null,
+"title": "Szał uniesień",
+"conf": "high",
+"details": [
+{
+"x": 0.05,
+"y": 0.02,
+"w": 0.45,
+"h": 0.28,
+"t": "The beast",
+"n": "Barely a horse: the eye burns red, the mouth gapes, the head is closer to a skull. Darkness that has grown anatomy — the passion itself, not a mount."
+},
+{
+"x": 0.36,
+"y": 0.1,
+"w": 0.3,
+"h": 0.24,
+"t": "The surrender",
+"n": "Her eyes are closed, cheek against the neck — and her hair and the mane are one current of paint. You cannot find the seam; that's the argument."
+},
+{
+"x": 0.38,
+"y": 0.22,
+"w": 0.4,
+"h": 0.42,
+"t": "The single light",
+"n": "Her body is the only light source in three metres of storm — carved out of the dark the way you'd carve a flame out of night. No reins anywhere."
+},
+{
+"x": 0.0,
+"y": 0.66,
+"w": 0.55,
+"h": 0.34,
+"t": "The void",
+"n": "No ground, no horizon: a few rocks dissolving into directional impasto. The world once obsession has eaten it — weather instead of place."
+}
+]
+},
+"monet-woman-with-a-parasol": {
+"src": "",
+"img": null,
+"iiif": null,
+"title": "Woman with a Parasol",
+"conf": "high",
+"details": [
+{
+"x": 0.33,
+"y": 0.33,
+"w": 0.42,
+"h": 0.45,
+"t": "The dress of reflections",
+"n": "White painted with almost no white: blue from the sky, yellow from the grass, grey from the cloud. Impressionism's core claim in one garment — things are the colour of the light that hits them."
+},
+{
+"x": 0.44,
+"y": 0.1,
+"w": 0.3,
+"h": 0.24,
+"t": "The veil",
+"n": "Blown across her face mid-turn — the least finished face in the picture, because the subject is the gust, not the likeness. One second, seized whole."
+},
+{
+"x": 0.06,
+"y": 0.52,
+"w": 0.24,
+"h": 0.24,
+"t": "Jean, over the crest",
+"n": "The son, small behind the rise — the low viewpoint that monumentalizes her also half-buries him in the hill. Family made luminous and slightly distant at once."
+},
+{
+"x": 0.26,
+"y": 0.01,
+"w": 0.46,
+"h": 0.2,
+"t": "The parasol",
+"n": "The one dense, solid green in a canvas of air — it holds the whole sky back. Two-thirds of this painting is weather."
+},
+{
+"x": 0.7,
+"y": 0.9,
+"w": 0.28,
+"h": 0.09,
+"t": "'Claude Monet 75'",
+"n": "Signed at Argenteuil in the high summer of the first Impressionist decade. Camille had four years to live; Monet repainted this composition in 1886 — faceless."
+}
+]
+},
+"leech-convent-garden": {
+"src": "",
+"img": null,
+"iiif": null,
+"title": "A Convent Garden, Brittany",
+"conf": "high",
+"details": [
+{
+"x": 0.52,
+"y": 0.03,
+"w": 0.4,
+"h": 0.32,
+"t": "The novice",
+"n": "Breton coiffe, eyes on the missal, walking out of frame: the white dress is the bridal dress of taking vows. The model is Elizabeth — Leech's wife, the same Elizabeth of The Sunshade."
+},
+{
+"x": 0.02,
+"y": 0.26,
+"w": 0.46,
+"h": 0.58,
+"t": "The lilies",
+"n": "Madonna lilies, purity's oldest emblem, standing taller than she does — a congregation of them. Their stalks are the picture's architecture: verticals rising like organ pipes."
+},
+{
+"x": 0.16,
+"y": 0.0,
+"w": 0.46,
+"h": 0.28,
+"t": "The third white",
+"n": "Convent linen drying between the trees, dark habits moving beneath. Three whites in one frame — dress, lilies, laundry — each built from different colours so they separate without a single outline."
+},
+{
+"x": 0.52,
+"y": 0.3,
+"w": 0.44,
+"h": 0.52,
+"t": "White that isn't white",
+"n": "Lilac, cream, green-shadow, violet — the post-impressionist solution to sunlight on fabric. This is what Leech brought home from France that Irish painting hadn't seen."
+}
+]
+},
+"the-milkmaid": {
+"src": "RIJKS",
+"img": "https://iiif.micr.io/QkOGy/full/max/0/default.jpg",
+"iiif": "https://iiif.micr.io/QkOGy/info.json",
+"title": "The Milkmaid",
+"conf": "high",
+"details": [
+{
+"x": 0.28,
+"y": 0.5,
+"w": 0.24,
+"h": 0.2,
+"t": "The pour",
+"n": "The only thing moving in the room: a thread of white falling into shadow. Painted so it reads as motion in a picture where everything else is stillness."
+},
+{
+"x": 0.03,
+"y": 0.55,
+"w": 0.35,
+"h": 0.25,
+"t": "The bread",
+"n": "Pointillé — actual raised dots of paint that catch actual light. Zoom in: the crust is three-dimensional on the canvas surface."
+},
+{
+"x": 0.0,
+"y": 0.04,
+"w": 0.33,
+"h": 0.45,
+"t": "The window",
+"n": "Leaded glass with one broken pane — the light source that does all the work in the picture, entering like a stage direction."
+},
+{
+"x": 0.55,
+"y": 0.05,
+"w": 0.42,
+"h": 0.35,
+"t": "The wall",
+"n": "Bare plaster, two nails, nail holes, a stain: a nothing surface painted with the attention other painters reserved for faces. Attention as reverence."
+},
+{
+"x": 0.62,
+"y": 0.76,
+"w": 0.36,
+"h": 0.22,
+"t": "The foot warmer",
+"n": "And a strip of Delft tiles at the skirting — one with a Cupid, which scholars read as a quiet joke about the maid's inner life."
+}
+]
 }
 };
