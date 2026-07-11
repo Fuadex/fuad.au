@@ -1,0 +1,303 @@
+{
+  "_doc": "Hand-maintained gig corrections. `add` = shows setlist.fm doesn't have (date may be month-precision 'YYYY-MM' + approx:1; copySongsFrom clones another gig's setlist — e.g. a festival set that repeated a documented one). `override` = fix a setlist.fm entry's fields in place (match by artist + optional date). build-data merges this into ROTATION.GIGS.",
+  "override": [
+    {
+      "match": {
+        "artist": "Haru Nemuri",
+        "date": "2026-06-06"
+      },
+      "set": {
+        "date": "2026-01",
+        "approx": 1,
+        "venue": ""
+      },
+      "note": "Fuad saw Haru Nemuri in January 2026; the June ANTIKNOCK marking was a stand-in. If the June show was ALSO attended, delete this override and add a January entry instead."
+    }
+  ],
+  "add": [
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "Rhim.",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "/naname",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "SALVALAI",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "SCGT",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "EYRIE",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "Liquid Stella",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "The Hey Song",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "nushi",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "バスクのスポーツ",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "ante",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "Gecko&Tokage Parade",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "Testa",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "Marmalade butcher",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2025-05",
+      "approx": 1,
+      "artist": "noh",
+      "venue": "JAMMIN'",
+      "city": "Nagoya",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "NO WORDS NEEDED SPRING 2025"
+    },
+    {
+      "date": "2026-01-23",
+      "artist": "XAMIYA",
+      "venue": "CLUB QUATTRO (AVYSS Circle)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "AVYSS Circle 2026"
+    },
+    {
+      "date": "2026-01-23",
+      "artist": "Emma Aibara",
+      "venue": "CLUB QUATTRO (AVYSS Circle)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "AVYSS Circle 2026"
+    },
+    {
+      "date": "2026-01-23",
+      "artist": "yuzuha",
+      "venue": "CLUB QUATTRO (AVYSS Circle)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "AVYSS Circle 2026"
+    },
+    {
+      "date": "2026-01-23",
+      "artist": "ikea",
+      "venue": "CLUB QUATTRO (AVYSS Circle)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "AVYSS Circle 2026"
+    },
+    {
+      "date": "2026-01-23",
+      "artist": "daine",
+      "venue": "CLUB QUATTRO (AVYSS Circle)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "AVYSS Circle 2026"
+    },
+    {
+      "date": "2026-01-23",
+      "artist": "safmusic",
+      "venue": "CLUB QUATTRO (AVYSS Circle)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "AVYSS Circle 2026"
+    },
+    {
+      "date": "2026-01-23",
+      "artist": "No Buses",
+      "venue": "CLUB QUATTRO (AVYSS Circle)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "AVYSS Circle 2026"
+    },
+    {
+      "date": "2026-01-23",
+      "artist": "Texas 3000",
+      "venue": "WWW (AVYSS Circle)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "AVYSS Circle 2026"
+    },
+    {
+      "date": "2026-01-23",
+      "artist": "SleepInside",
+      "venue": "WWW (AVYSS Circle)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "AVYSS Circle 2026"
+    },
+    {
+      "date": "2026-01-23",
+      "artist": "iVy",
+      "venue": "WWW (AVYSS Circle)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "AVYSS Circle 2026"
+    },
+    {
+      "date": "2026-01-23",
+      "artist": "soccer",
+      "venue": "WWW (AVYSS Circle)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "AVYSS Circle 2026"
+    },
+    {
+      "date": "2026-01-23",
+      "artist": "music fm",
+      "venue": "WWW (AVYSS Circle)",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP",
+      "tour": "AVYSS Circle 2026"
+    },
+    {
+      "date": "2026-02",
+      "approx": 1,
+      "artist": "Mariko Goto",
+      "venue": "",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP"
+    },
+    {
+      "date": "2026-03",
+      "approx": 1,
+      "artist": "DHMHTHP",
+      "venue": "",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP"
+    },
+    {
+      "date": "2026-03",
+      "approx": 1,
+      "artist": "Bleach",
+      "venue": "",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP"
+    },
+    {
+      "date": "2026-03",
+      "approx": 1,
+      "artist": "Zinchikurandan",
+      "venue": "",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP"
+    }
+  ]
+}
