@@ -47,6 +47,7 @@ geo-detail.js
 tm-tour-lazy.js
 album-about-lazy.js
 album-alias.js
+album-extras.js
 artist-days.js
 
 # llm-about shards + theme index — CI artifacts from shard-about.js (which STAYS committed).

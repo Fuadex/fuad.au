@@ -18,7 +18,7 @@
         "rotation-lab.jsx",
         "rotation-app.jsx",
         "music-core.js", "music-rest.js", "day-series.js", "pulse.js", "live-data.js", "search-index.js", "media-index.js", "track-audio.js",
-        "album-alias.js", "artist-days.js",
+        "album-alias.js", "album-extras.js", "artist-days.js",
         "genius-mood-lazy.js", "genius-about-lazy.js", "genius-themes-lazy.js", "album-about-lazy.js", "tm-tour-lazy.js", "blurb-demo.js", "llm-about.js",
         "track-previews.js", "shelves-unplayed.js", "artist-flow.js", "artist-detail.js",
         "calendar.js", "calendar-detail.js", "geo-detail.js", "world-map.js",
