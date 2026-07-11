@@ -883,7 +883,7 @@ function DecadeTreemap() {
 const ATTR_FEAT_IX = { energy: 4, valence: 5, acoustic: 6, tempo: 7, dance: 8, instr: 9 };
 
 // axis descriptors: key -> { label, kind }. kind drives scaling + value formatting.
-const ATTR_AXES = [
+const LAB_ATTR_AXES = [
   { key: "energy",     label: "energy",       kind: "feat" },
   { key: "dance",      label: "danceability", kind: "feat" },
   { key: "valence",    label: "valence",      kind: "feat" },
@@ -900,11 +900,11 @@ const ATTR_SHADE = [
   { key: "instr",    label: "instrumental" },
   { key: "tempo",    label: "tempo" },
 ];
-const attrAxisByKey = (k) => ATTR_AXES.find(a => a.key === k) || ATTR_AXES[0];
+const LAB_attrAxisByKey = (k) => LAB_ATTR_AXES.find(a => a.key === k) || LAB_ATTR_AXES[0];
 
 // build (memo-friendly) per-artist attribute centroids from the track-audio blob.
 // One-time ~40k-row pass; caller memoises on the blob identity.
-function attrBuildArtists(TA, R) {
+function LAB_attrBuildArtists(TA, R) {
   // accumulate feature sums + counts per artistSlug
   const acc = new Map(); // slug -> { n, sum:[6], key }
   const keys = Object.keys(TA);
@@ -973,7 +973,7 @@ function attrBuildArtists(TA, R) {
 }
 
 // weighted subgenre centroids from the per-artist rows (weight = plays).
-function attrBuildSubs(artists, R) {
+function LAB_attrBuildSubs(artists, R) {
   const SUBS = R.SUBS || [];
   const agg = new Map(); // subIdx -> { w, sum:[6], listW, listSum, debW, debSum, plays }
   for (const a of artists) {
@@ -1010,7 +1010,7 @@ function attrBuildSubs(artists, R) {
 }
 
 // raw axis value for a row given an axis key.
-function attrRawVal(row, key) {
+function LAB_attrRawVal(row, key) {
   if (key === "plays") return row.plays || 0;
   if (key === "popularity") return row.listeners != null ? row.listeners : null;
   if (key === "debut") return row.debut != null ? row.debut : null;
@@ -1018,8 +1018,8 @@ function attrRawVal(row, key) {
 }
 
 // human-readable value for the tooltip / results list.
-function attrFmtVal(row, key) {
-  const v = attrRawVal(row, key);
+function LAB_attrFmtVal(row, key) {
+  const v = LAB_attrRawVal(row, key);
   if (v == null) return "–";
   if (key === "plays") return Math.round(v).toLocaleString("en-US");
   if (key === "popularity") return Math.round(v).toLocaleString("en-US");
@@ -1048,9 +1048,9 @@ function AttributeChart({ artists, subs, totalAudioArtists, hasRest }) {
 
   // build scale for an axis over the current rows.
   const buildScale = React.useCallback((key) => {
-    const ax = attrAxisByKey(key);
+    const ax = LAB_attrAxisByKey(key);
     const vals = [];
-    for (const r of rows) { const v = attrRawVal(r, key); if (v != null && v === v) vals.push(v); }
+    for (const r of rows) { const v = LAB_attrRawVal(r, key); if (v != null && v === v) vals.push(v); }
     if (!vals.length) return { ax, ok: false, map: () => 0, min: 0, max: 1 };
     let min = Math.min(...vals), max = Math.max(...vals);
     if (ax.kind === "feat") { min = 0; max = 100; }
@@ -1070,7 +1070,7 @@ function AttributeChart({ artists, subs, totalAudioArtists, hasRest }) {
     for (const r of rows) maxPlays = Math.max(maxPlays, r.plays || 0);
     const totPlays = rows.reduce((s, r) => s + (r.plays || 0), 0) || 1;
     for (const r of rows) {
-      const vx = attrRawVal(r, xKey), vy = attrRawVal(r, yKey);
+      const vx = LAB_attrRawVal(r, xKey), vy = LAB_attrRawVal(r, yKey);
       if (vx == null || vy == null || vx !== vx || vy !== vy) continue;
       const px = PAD_L + sx.map(vx) * PW;
       const py = PAD_T + (1 - sy.map(vy)) * PH; // y inverted (higher value = up)
@@ -1206,13 +1206,13 @@ function AttributeChart({ artists, subs, totalAudioArtists, hasRest }) {
         <div>
           <span style={ctrlLabel}>X</span>
           <select value={xKey} onChange={e => { setXKey(e.target.value); setBrushed(null); }} style={selBox}>
-            {ATTR_AXES.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+            {LAB_ATTR_AXES.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
           </select>
         </div>
         <div>
           <span style={ctrlLabel}>Y</span>
           <select value={yKey} onChange={e => { setYKey(e.target.value); setBrushed(null); }} style={selBox}>
-            {ATTR_AXES.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+            {LAB_ATTR_AXES.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
           </select>
         </div>
         <div>
@@ -1233,8 +1233,8 @@ function AttributeChart({ artists, subs, totalAudioArtists, hasRest }) {
         {hoverRow ? (
           <span>
             <b style={{ color: labHue(hoverRow.hue != null ? hoverRow.hue : 300) }}>{hoverRow.name}</b>
-            {"  ·  " + attrAxisByKey(xKey).label + " " + attrFmtVal(hoverRow, xKey)}
-            {"  ·  " + attrAxisByKey(yKey).label + " " + attrFmtVal(hoverRow, yKey)}
+            {"  ·  " + LAB_attrAxisByKey(xKey).label + " " + LAB_attrFmtVal(hoverRow, xKey)}
+            {"  ·  " + LAB_attrAxisByKey(yKey).label + " " + LAB_attrFmtVal(hoverRow, yKey)}
             {"  ·  " + (hoverRow.plays || 0).toLocaleString("en-US") + " plays"}
           </span>
         ) : (
@@ -1248,7 +1248,7 @@ function AttributeChart({ artists, subs, totalAudioArtists, hasRest }) {
           <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%) rotate(-90deg)",
             transformOrigin: "left", whiteSpace: "nowrap", fontFamily: "var(--mono)", fontSize: 10,
             color: LAB_ACC, letterSpacing: ".14em", textTransform: "uppercase" }}>
-            {attrAxisByKey(yKey).label} →
+            {LAB_attrAxisByKey(yKey).label} →
           </div>
         </div>
         <div style={{ position: "relative", flex: 1 }}>
@@ -1315,7 +1315,7 @@ function AttributeChart({ artists, subs, totalAudioArtists, hasRest }) {
           </div>
           <div style={{ textAlign: "center", marginTop: 2, fontFamily: "var(--mono)", fontSize: 10,
             color: LAB_ACC, letterSpacing: ".14em", textTransform: "uppercase" }}>
-            {attrAxisByKey(xKey).label} →
+            {LAB_attrAxisByKey(xKey).label} →
           </div>
 
           {/* Y tick labels floated over left edge */}
@@ -1344,7 +1344,7 @@ function AttributeChart({ artists, subs, totalAudioArtists, hasRest }) {
                 <span style={{ color: labHue(pt.row.hue != null ? pt.row.hue : 300), overflow: "hidden",
                   textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{pt.row.name}</span>
                 <span style={{ color: LAB_FAINT, flex: "0 0 auto" }}>
-                  {(pt.row.plays || 0).toLocaleString("en-US")} · {attrFmtVal(pt.row, xKey)}/{attrFmtVal(pt.row, yKey)}
+                  {(pt.row.plays || 0).toLocaleString("en-US")} · {LAB_attrFmtVal(pt.row, xKey)}/{LAB_attrFmtVal(pt.row, yKey)}
                 </span>
               </div>
             ))}
@@ -1391,8 +1391,8 @@ function AttributeWrapper() {
   // HARD MEMO: the ~40k-row centroid pass runs once per (blob, rest-arrival).
   const built = React.useMemo(() => {
     if (!taReady || !window.ROTATION_TRACKAUDIO || !R) return null;
-    const base = attrBuildArtists(window.ROTATION_TRACKAUDIO, R);
-    const subs = attrBuildSubs(base.artists, R);
+    const base = LAB_attrBuildArtists(window.ROTATION_TRACKAUDIO, R);
+    const subs = LAB_attrBuildSubs(base.artists, R);
     return { ...base, subs };
   }, [taReady, restReady, R]);
 

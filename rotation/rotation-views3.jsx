@@ -2406,6 +2406,14 @@ function GigsMap({ cityList, hueForCity, onCity }) {
   const vbRef = React.useRef(BASE);                 // current (animated) viewBox
   const rafRef = React.useRef(0);
   const fisheyeRef = React.useRef(0);               // rAF handle for the pointermove fisheye
+  // FREE NAVIGATION state (drag-pan + wheel/pinch zoom), all imperative like fit():
+  const ptrs = React.useRef(new Map());             // active pointerId → {x,y} client coords
+  const drag = React.useRef(null);                  // {x,y,vb} anchor at pointerdown for a 1-pointer pan
+  const pinch = React.useRef(null);                 // last two-pointer distance for pinch
+  const isPanning = React.useRef(false);            // true once a drag/pinch crosses the threshold — pauses fisheye
+  const didPan = React.useRef(false);               // survives past pointerup so the trailing click is swallowed
+  const fitTarget = React.useRef(BASE);             // the last viewBox fit() aimed at; drives the "reset view" chip
+  const [drifted, setDrifted] = React.useState(false); // has the user panned/zoomed away from fitTarget?
   React.useEffect(() => {
     if (window.ROTATION_WORLD) return;
     const on = () => setWorld(window.ROTATION_WORLD);
@@ -2442,6 +2450,8 @@ function GigsMap({ cityList, hueForCity, onCity }) {
     else { const nh = w / aspect; y0 -= (nh - h) / 2; h = nh; }
     w = Math.max(w, 120); h = Math.max(h, 120 / aspect);   // don't over-zoom a single city
     const target = { x: x0, y: y0, w, h };
+    fitTarget.current = target;      // remember where we aimed — the "reset view" chip compares against this
+    setDrifted(false);               // an in-progress fit is, by definition, back on-target
     cancelAnimationFrame(rafRef.current);
     const from = vbRef.current, t0 = performance.now(), dur = 420;
     const step = (now) => {
@@ -2492,6 +2502,8 @@ function GigsMap({ cityList, hueForCity, onCity }) {
   };
   const resetAll = (svg) => { for (const g of svg.querySelectorAll(".gv-cmap-dot")) setK(g, 1); };
   const onMove = (e) => {
+    if (onPan(e)) return;          // a drag/pinch owns this move — don't also run the fisheye
+    if (isPanning.current) return; // still mid-gesture (e.g. threshold just crossed): fisheye stays paused
     if (fisheyeRef.current) return;
     const cx = e.clientX, cy = e.clientY, svg = svgRef.current;
     fisheyeRef.current = requestAnimationFrame(() => {
@@ -2515,13 +2527,103 @@ function GigsMap({ cityList, hueForCity, onCity }) {
   };
   const onLeave = () => { const svg = svgRef.current; if (svg) resetAll(svg); };
 
+  // ---- FREE NAVIGATION (drag-pan + wheel/pinch zoom) ---------------------------------------
+  // Same imperative ownership as fit(): we mutate vbRef and write the svg viewBox attribute
+  // directly. React never controls the viewBox, so a drag never fights a re-render.
+  const clampVB = (vb) => {
+    // clamp size: no larger than the whole-world BASE box, no smaller than BASE/30 (~30x zoom-in)
+    const aspect = BASE.w / BASE.h;
+    let w = Math.min(vb.w, BASE.w), h = Math.min(vb.h, BASE.h);
+    const minW = BASE.w / 30, minH = BASE.h / 30;
+    w = Math.max(w, minW); h = Math.max(h, minH);
+    // keep base aspect so land isn't stretched (zoom math already preserves it; this is a guard)
+    if (w / h > aspect) h = w / aspect; else w = h * aspect;
+    return { x: vb.x, y: vb.y, w, h };
+  };
+  const applyVB = (vb) => {
+    vbRef.current = vb;
+    const svg = svgRef.current;
+    if (svg) svg.setAttribute("viewBox", vb.x + " " + vb.y + " " + vb.w + " " + vb.h);
+    // "drifted" once the view no longer matches the last fit target (any of the 4 numbers moved)
+    const t = fitTarget.current;
+    const same = Math.abs(vb.x - t.x) < 0.5 && Math.abs(vb.y - t.y) < 0.5 &&
+                 Math.abs(vb.w - t.w) < 0.5 && Math.abs(vb.h - t.h) < 0.5;
+    setDrifted(d => d === !same ? d : !same);
+  };
+  // zoom around a client point (cx,cy): the view-space point under the cursor stays put.
+  const zoomAt = (cx, cy, factor) => {
+    const svg = svgRef.current; if (!svg) return;
+    const rect = svg.getBoundingClientRect(); if (!rect.width || !rect.height) return;
+    cancelAnimationFrame(rafRef.current);   // a manual zoom cancels any in-flight fit animation
+    const vb = vbRef.current;
+    let nw = vb.w / factor, nh = vb.h / factor;
+    const clamped = clampVB({ x: vb.x, y: vb.y, w: nw, h: nh });
+    nw = clamped.w; nh = clamped.h;
+    const fx = (cx - rect.left) / rect.width, fy = (cy - rect.top) / rect.height;   // 0..1 across the svg
+    const mvx = vb.x + fx * vb.w, mvy = vb.y + fy * vb.h;   // view point under the cursor
+    applyVB({ x: mvx - fx * nw, y: mvy - fy * nh, w: nw, h: nh });
+  };
+  // Wheel zoom — non-passive so preventDefault() stops the page scrolling (same pattern as
+  // rotation-worldmap.jsx's onWheel useEffect). Registered via ref, re-bound when the svg mounts.
+  React.useEffect(() => {
+    const svg = svgRef.current; if (!svg) return;
+    const onWheel = (e) => { e.preventDefault(); zoomAt(e.clientX, e.clientY, e.deltaY < 0 ? 1.15 : 1 / 1.15); };
+    svg.addEventListener("wheel", onWheel, { passive: false });
+    return () => svg.removeEventListener("wheel", onWheel);
+  }, [world]);
+
+  const DRAG_PX = 5;   // movement threshold: under this a pointerup is still a bubble CLICK
+  const onDown = (e) => {
+    ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    didPan.current = false;   // a fresh press: assume a click until movement proves otherwise
+    if (ptrs.current.size === 1) drag.current = { x: e.clientX, y: e.clientY, vb: vbRef.current };
+  };
+  const capture = (e) => { try { e.currentTarget.setPointerCapture(e.pointerId); } catch (x) {} };
+  // returns true if it consumed the event as a pan/pinch (so the fisheye should stand down)
+  const onPan = (e) => {
+    if (ptrs.current.has(e.pointerId)) ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    const pts = [...ptrs.current.values()];
+    const svg = svgRef.current; if (!svg) return false;
+    const rect = svg.getBoundingClientRect(); if (!rect.width || !rect.height) return false;
+    if (pts.length >= 2) {                       // two-finger pinch-zoom, centred between the fingers
+      e.preventDefault(); capture(e); isPanning.current = true; didPan.current = true;
+      const [a, b] = pts, dist = Math.hypot(a.x - b.x, a.y - b.y);
+      const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+      if (pinch.current) zoomAt(mx, my, dist / pinch.current);
+      pinch.current = dist; drag.current = null; return true;
+    }
+    pinch.current = null;
+    if (drag.current) {
+      const totdx = e.clientX - drag.current.x, totdy = e.clientY - drag.current.y;
+      if (!isPanning.current && Math.hypot(totdx, totdy) < DRAG_PX) return false;   // still a potential click
+      // crossed the threshold → it's a pan
+      if (!isPanning.current) { isPanning.current = true; didPan.current = true; capture(e); cancelAnimationFrame(rafRef.current); resetAll(svg); }
+      if (e.cancelable) e.preventDefault();
+      const dvx = totdx / rect.width * drag.current.vb.w, dvy = totdy / rect.height * drag.current.vb.h;
+      applyVB({ x: drag.current.vb.x - dvx, y: drag.current.vb.y - dvy, w: drag.current.vb.w, h: drag.current.vb.h });
+      return true;
+    }
+    return false;
+  };
+  const endPtr = (e) => {
+    if (e && e.pointerId != null) ptrs.current.delete(e.pointerId);
+    if (ptrs.current.size < 2) pinch.current = null;
+    if (ptrs.current.size === 0) { drag.current = null; isPanning.current = false; }
+  };
+  // a gesture can end off the map (pointer released outside its bounds) — clean up globally
+  React.useEffect(() => {
+    window.addEventListener("pointerup", endPtr); window.addEventListener("pointercancel", endPtr);
+    return () => { window.removeEventListener("pointerup", endPtr); window.removeEventListener("pointercancel", endPtr); };
+  }, []);
+
   const landEls = React.useMemo(() => world ? world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" />) : null, [world]);
   if (!world) return <div className="gv-cmap-empty r-mono">the map loads…</div>;
   return (
     <div className="gv-cmap-wrap">
       <svg ref={svgRef} className="gv-cmap"
         role="img" aria-label="concert map — the cities where you've been in a crowd"
-        onPointerMove={onMove} onPointerLeave={onLeave} style={{ touchAction: "pan-y" }}>
+        onPointerDown={onDown} onPointerMove={onMove} onPointerUp={endPtr} onPointerLeave={onLeave}
+        style={{ touchAction: "none" }}>
         {landEls}
         {dots.map(d => {
           const on = !off.has(d.key);
@@ -2530,7 +2632,7 @@ function GigsMap({ cityList, hueForCity, onCity }) {
               style={{ opacity: on ? 1 : 0.14 }}>
               <circle cx={d.cx} cy={d.cy} r={d.r} className="gv-cmap-c" data-on={on}
                 fill={d.hue != null ? `oklch(0.64 0.15 ${d.hue})` : "var(--accent)"}
-                onClick={() => onCity && onCity(d)} style={{ cursor: onCity ? "pointer" : "default" }}>
+                onClick={() => { if (didPan.current) return; onCity && onCity(d); }} style={{ cursor: onCity ? "pointer" : "default" }}>
                 <title>{d.city} · {d.count} show{d.count !== 1 ? "s" : ""}</title>
               </circle>
             </g>
@@ -2544,7 +2646,7 @@ function GigsMap({ cityList, hueForCity, onCity }) {
             {d.city} <span>{d.count}</span>
           </button>
         ))}
-        {off.size > 0 && <button className="gv-cmap-chip gv-cmap-reset" onClick={() => { setOff(new Set()); fit(dots); }}>reset view</button>}
+        {(off.size > 0 || drifted) && <button className="gv-cmap-chip gv-cmap-reset" onClick={() => { setOff(new Set()); fit(dots); }}>reset view</button>}
       </div>
     </div>
   );

@@ -1078,8 +1078,10 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               })()}
             </div>
 
-          {/* family tree — members + shared-member lineage (MusicBrainz + Discogs + Wikidata) */}
-          {((a.members && a.members.length > 0) || (a.wd && a.wd.lineup) || (a.connections && a.connections.length > 0)) && (() => {
+          {/* family tree — members + shared-member lineage (MusicBrainz + Discogs + Wikidata)
+              PLUS the MB lineup roster (injected here; the standalone LineupCard is removed).
+              Renders when tree data OR MB data is present. */}
+          {((a.members && a.members.length > 0) || (a.wd && a.wd.lineup) || (a.connections && a.connections.length > 0) || (mbReady && window.ROTATION_MB && window.ROTATION_MB[a.id])) && (() => {
             // Wikidata lineup carries gender MB can't (its `gender` is null for Groups). Merge it
             // in: colour a member's dot by gender, and surface Wikidata-only members (e.g. a new
             // vocalist) the MB/Discogs lists haven't caught up to.
@@ -1094,6 +1096,80 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             // those orphan chips get room instead of wrapping into a tall column (Fuad 2026-07-06)
             const otherBands = (a.connections || []).reduce((n, l) => n + (l.others ? l.others.length : 0), 0);
             const famWide = otherBands >= 6 || roster.length >= 10;
+
+            // MB lineup section — mirrors LineupCard internals, rendered inside this card
+            const mb = mbReady && window.ROTATION_MB && window.ROTATION_MB[a.id];
+            const mbYears = mb ? (mb.from ? (mb.to ? mb.from + "-" + mb.to : mb.from + " ->") : "") : "";
+            const mbHeadBits = mb ? [mb.type, mb.area, mbYears].filter(Boolean) : [];
+            const mbAka = (mb && mb.aka) || [];
+            const isPerson = mb && mb.type === "Person";
+            const mbMembers = (mb && !isPerson && mb.members) ? mb.members : [];
+            const mbCurrent = mbMembers.filter(m => !m.t);
+            const mbFormer = mbMembers.filter(m => m.t);
+            const tenure = (m) => m.f ? (m.t ? m.f + "-" + m.t : m.f + " ->") : (m.t ? "-" + m.t : "");
+            const normInstr = (raw) => { const s = raw.toLowerCase().trim(); if (s.includes("vocal")) return "vocals"; if (s.includes("drum")) return "drums"; return raw; };
+            const instrSummary = (() => {
+              const seen = [], seenSet = new Set();
+              for (const m of mbCurrent) {
+                for (const instr of (m.i || [])) {
+                  const n = normInstr(instr);
+                  if (!seenSet.has(n)) { seenSet.add(n); seen.push(n); }
+                  if (seen.length >= 4) break;
+                }
+                if (seen.length >= 4) break;
+              }
+              return seen;
+            })();
+            const MbRow = (m, i) => {
+              const gg = genderGlyph(m.g === "F" ? "f" : m.g === "M" ? "m" : (m.g || ""));
+              return (
+                <div key={m.n + i} style={{ display: "flex", gap: 8, alignItems: "baseline", flexWrap: "wrap", padding: "3px 0" }}>
+                  <span style={{ fontSize: 13, color: "var(--ink)" }}>{m.n}</span>
+                  {gg && <span title={gg.label} style={{ fontSize: 11, color: "var(--ink-faint)" }}>{gg.ch}</span>}
+                  {(m.i || []).length > 0 && (
+                    <span style={{ display: "inline-flex", gap: 5, flexWrap: "wrap" }}>
+                      {m.i.slice(0, 4).map((r, ri) => (
+                        <span key={r + ri} className="r-mono" style={{ fontSize: 9, color: "var(--ink-soft)", padding: "1px 6px", borderRadius: 999, border: "1px solid var(--rule)" }}>{r}</span>
+                      ))}
+                    </span>
+                  )}
+                  {tenure(m) && <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginLeft: "auto" }}>{tenure(m)}</span>}
+                </div>
+              );
+            };
+
+            // lineup open/close state — stored in the IIFE via a ref trick: React.useState
+            // can't be called inside an IIFE, so we lift it to a small inner component.
+            const LineupRoster = () => {
+              const [open, setOpen] = React.useState(false);
+              return (
+                <React.Fragment>
+                  {!open && mbMembers.length > 0 && (
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", cursor: "pointer" }}
+                      onClick={() => setOpen(true)}>
+                      <span style={{ fontSize: 12, color: "var(--ink-soft)" }}>
+                        <b style={{ color: "var(--ink)" }}>{mbCurrent.length}</b>{" member"}{mbCurrent.length !== 1 ? "s" : ""}
+                        {instrSummary.length > 0 && (
+                          <span style={{ color: "var(--ink-faint)" }}>{" — "}{instrSummary.join(" · ")}</span>
+                        )}
+                      </span>
+                      <span className="av-more" style={{ pointerEvents: "none" }}>{"▾ full lineup"}</span>
+                    </div>
+                  )}
+                  {open && (
+                    <React.Fragment>
+                      {mbCurrent.length > 0 && <div style={{ display: "grid", gap: 1 }}>{mbCurrent.map(MbRow)}</div>}
+                      {mbFormer.length > 0 && <LineupFormer former={mbFormer} Row={MbRow} />}
+                      <button className="av-more" style={{ marginTop: 10 }} onClick={() => setOpen(false)}>{"▴ collapse"}</button>
+                    </React.Fragment>
+                  )}
+                </React.Fragment>
+              );
+            };
+
+            const hasTreeData = roster.length > 0 || (a.connections && a.connections.length > 0) || (wCity || wInc);
+            const hasMb = !!mb;
+
             return (
             <div className={`r-card av-famcard${famWide ? " wide" : ""}`} style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
@@ -1102,7 +1178,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               {(wCity || wInc) && (
                 <div style={{ fontSize: 12, color: "var(--ink-soft)", marginBottom: 14 }}>
                   Formed{wCity ? <> in <b style={{ color: "var(--ink)" }}>{wCity}</b></> : null}
-                  {wInc ? <>, <span className="r-mono">{wInc}{wDis ? `–${wDis}` : ""}</span></> : null}
+                  {wInc ? <>, <span className="r-mono">{wInc}{wDis ? `-${wDis}` : ""}</span></> : null}
                   {wDis ? <span style={{ color: "var(--ink-faint)" }}> · disbanded</span> : null}
                 </div>
               )}
@@ -1120,7 +1196,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                 </div>
               )}
               {a.connections && a.connections.length > 0 && (
-                <div>
+                <div style={{ marginBottom: hasMb ? 18 : 0 }}>
                   <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 10 }}>Shares members with</div>
                   <div style={{ display: "grid", gap: 9 }}>
                     {a.connections.map((l, i) => (
@@ -1144,16 +1220,24 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   </div>
                 </div>
               )}
+              {hasMb && (
+                <div style={{ borderTop: hasTreeData ? "1px solid var(--rule)" : "none", paddingTop: hasTreeData ? 14 : 0 }}>
+                  {mbHeadBits.length > 0 && (
+                    <div style={{ fontSize: 12, color: "var(--ink-soft)", marginBottom: mbAka.length ? 6 : 10 }}>
+                      {mbHeadBits.map((b, i) => <React.Fragment key={i}>{i > 0 && <span style={{ color: "var(--ink-faint)" }}> · </span>}{b}</React.Fragment>)}
+                    </div>
+                  )}
+                  {mbAka.length > 0 && (
+                    <div style={{ fontSize: 12, color: "var(--ink-faint)", marginBottom: 10 }}>
+                      also known as: <span style={{ color: "var(--ink-soft)" }}>{mbAka.slice(0, 4).join(", ")}</span>
+                    </div>
+                  )}
+                  {mbMembers.length > 0 && <LineupRoster />}
+                </div>
+              )}
             </div>
             );
           })()}
-
-          {/* The lineup — MusicBrainz per-artist distill (mb-lineup.js, lazy). Presence-gated:
-              no entry → no card, no layout reservation. Sits in the av-endrow flex row next to
-              Sound DNA / Sounds like / Family tree. Collapses to a summary line by default. */}
-          {mbReady && window.ROTATION_MB && window.ROTATION_MB[a.id] && (
-            <LineupCard mb={window.ROTATION_MB[a.id]} />
-          )}
           </div>
 
           {/* on tour — upcoming Ticketmaster dates, above Seen live (Fuad 2026-07-06) */}
