@@ -777,28 +777,76 @@ function Portrait({ go }) {
   );
 }
 
-// ——— Home: a curated selection — featured works always first, then a deterministic
+// ——— Home: one uniform grid — curated lead sequence followed by a deterministic
 // day-seeded round-robin spread of liked/loved works, one per artist, images required.
-// The seed rotates daily so the mix shifts without random flicker per render.
+// Lead order: two hand-pinned works, then impressionist/post-impressionist liked/floored
+// works (best-per-artist, quality-sorted), with the two Leech paintings spliced in at
+// ~position 6.  The seed rotates daily so the spread shifts without random flicker.
 // No latest-skew: recency plays no role; the spread is artist-diversity + quality-gated.
-const HOME_CAP = 24;   // total home cards (featured + spread), cap to a tidy grid
+const HOME_LEAD_IDS = ["monet-woman-with-a-parasol", "podkowinski-szal-uniesien"];
+const HOME_LEECH_IDS = ["leech-the-sunshade", "leech-convent-garden"];
+const IMPRESSIONIST_RE = /impressionis/i;   // matches "Impressionism" + "Post-impressionism"
+const HOME_SPREAD_CAP = 24;   // spread cards (after lead); total wall ~28 max
 
 function HomeView({ go }) {
   const all = useMemo(() => WORKS.map(enrich), []);
 
-  const { featured, spread } = useMemo(() => {
-    // 1. featured: hand-flagged, shown first regardless of image (they always have one)
-    const feat = all.filter(w => w.featured);
+  const wall = useMemo(() => {
+    const placed = new Set();
 
-    // 2. pool: liked or floored/favorite, must have an image (hand or machine), not already featured
-    const featIds = new Set(feat.map(w => w.id));
+    // helper: resolve the primary movement label for a work
+    const movLabel = (w) => {
+      const a = AD.artists[w.artistId];
+      const q = a && a.movementQids && a.movementQids[0];
+      return (q && (AD.movements || {})[q]) || null;
+    };
+
+    // 1. resolve the two explicit lead works (must have an id match in canon)
+    const byId = {};
+    for (const w of all) byId[w.id] = w;
+    const leadExplicit = HOME_LEAD_IDS.map(id => byId[id]).filter(Boolean);
+    for (const w of leadExplicit) placed.add(w.id);
+
+    // 2. impressionist / post-impressionist liked/floored works with images, best per artist
+    const impPool = all.filter(w =>
+      !placed.has(w.id) &&
+      (w.floored || w.favorite || w.liked) &&
+      (w.imgGrid || w.img) &&
+      IMPRESSIONIST_RE.test(movLabel(w))
+    );
+    // sort: floored/favorite first, then liked; within tier by year ascending
+    impPool.sort((a, b) => weight(a) - weight(b) || (a.year || 9999) - (b.year || 9999));
+    // one best work per artist
+    const impByArtist = {};
+    for (const w of impPool) {
+      const key = w.artistId || w.id;
+      if (!impByArtist[key]) impByArtist[key] = w;
+    }
+    // up to 5 impressionist leads (positions 3–7ish); already sorted by quality
+    const impLeads = Object.values(impByArtist).slice(0, 5);
+    for (const w of impLeads) placed.add(w.id);
+
+    // 3. Leech works — leech has no movementQids so splice them in explicitly at ~position 6
+    //    (after lead[0..1] + 3 impressionists, i.e. after index 4 in the assembled sequence)
+    const leechWorks = HOME_LEECH_IDS.map(id => byId[id]).filter(w => w && (w.imgGrid || w.img));
+    for (const w of leechWorks) placed.add(w.id);
+
+    // assemble lead: explicit[0..1] + impLeads[0..2] + leechs + impLeads[3..4]
+    const lead = [
+      ...leadExplicit,
+      ...impLeads.slice(0, 3),
+      ...leechWorks,
+      ...impLeads.slice(3),
+    ];
+
+    // 4. spread pool: liked or floored/favorite, must have an image, not already placed
     const pool = all.filter(w =>
-      !featIds.has(w.id) &&
+      !placed.has(w.id) &&
       (w.floored || w.favorite || w.liked) &&
       (w.imgGrid || w.img)
     );
 
-    // 3. group by artistId, keep each group sorted by quality (floored/favorite > liked)
+    // 5. group by artistId, sort each bucket by quality
     const byArtist = {};
     for (const w of pool) {
       const key = w.artistId || w.id;
@@ -808,52 +856,41 @@ function HomeView({ go }) {
       byArtist[key].sort((a, b) => weight(a) - weight(b));
     }
 
-    // 4. stable daily seed: day-of-year (resets Jan 1 each year — slow, non-flickery rotation)
+    // 6. stable daily seed: day-of-year (resets Jan 1 — slow, non-flickery rotation)
     const now = new Date();
     const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
-
-    // 5. order the artist buckets by the seeded offset so the starting artist rotates daily
-    const artistKeys = Object.keys(byArtist).sort();   // alphabetic base keeps it deterministic
+    const artistKeys = Object.keys(byArtist).sort();
     const offset = dayOfYear % Math.max(artistKeys.length, 1);
     const rotated = [...artistKeys.slice(offset), ...artistKeys.slice(0, offset)];
 
-    // 6. round-robin: one pick per artist until we fill the remainder of HOME_CAP
-    const needed = HOME_CAP - feat.length;
+    // 7. round-robin fill up to HOME_SPREAD_CAP
     const picks = [];
     let round = 0;
-    outer: while (picks.length < needed) {
+    outer: while (picks.length < HOME_SPREAD_CAP) {
       let any = false;
       for (const key of rotated) {
         if (byArtist[key][round]) {
           picks.push(byArtist[key][round]);
           any = true;
-          if (picks.length >= needed) break outer;
+          if (picks.length >= HOME_SPREAD_CAP) break outer;
         }
       }
       if (!any) break;
       round++;
     }
 
-    return { featured: feat, spread: picks };
+    return [...lead, ...picks];
   }, [all]);
 
-  const spreadArtistCount = useMemo(() => new Set([
-    ...featured.map(w => w.artistId || w.id),
-    ...spread.map(w => w.artistId || w.id)
-  ]).size, [featured, spread]);
+  const artistCount = useMemo(() =>
+    new Set(wall.map(w => w.artistId || w.id)).size, [wall]);
 
   return (
     <React.Fragment>
       <div className="cv-home-intro">
-        <p>Works I've stood in front of — a selection across {spreadArtistCount} artists. <a href="#/wall">See the full wall →</a></p>
+        <p>Works I've stood in front of — a selection across {artistCount} artists. <a href="#/wall">See the full wall →</a></p>
       </div>
-      {featured.length > 0 && (
-        <React.Fragment>
-          <div className="cv-section-h cv-home-label">Featured</div>
-          <div className="cv-wall cv-home-featured">{featured.map(w => <Card key={w.id} w={w} go={go} />)}</div>
-        </React.Fragment>
-      )}
-      <div className="cv-wall">{spread.map(w => <Card key={w.id} w={w} go={go} />)}</div>
+      <div className="cv-wall">{wall.map(w => <Card key={w.id} w={w} go={go} />)}</div>
     </React.Fragment>
   );
 }

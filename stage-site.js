@@ -67,6 +67,10 @@ function precompileApp(app, babel) {
 
 function copy(src, dst) {
   if (!fs.existsSync(src)) { console.warn("  ! missing:", src); missing++; return; }
+  if (fs.statSync(src).isDirectory()) {   // deploy entries may name whole dirs (e.g. vendor/)
+    for (const e of fs.readdirSync(src)) copy(path.join(src, e), path.join(dst, e));
+    return;
+  }
   fs.mkdirSync(path.dirname(dst), { recursive: true });
   fs.copyFileSync(src, dst);
   copied++;
