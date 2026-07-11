@@ -109,6 +109,9 @@ function clampPanelBox(s) {
 }
 
 // Draggable, repositionable, resizable floating panel; remembers {x,y,w,h} in localStorage.
+// On mobile (≤760px) it becomes a bottom sheet that opens in a COLLAPSED "peek" state: a slim
+// ~44px pill docked above the barcode scrubber. Tapping the pill expands to the full sheet;
+// the drag bar's ▼ button collapses back to peek; ✕ closes fully.
 function DraggablePanel({ storageKey, title, onClose, children }) {
   const ref = React.useRef(null);
   const boxRef = React.useRef(null);
@@ -177,11 +180,16 @@ function DraggablePanel({ storageKey, title, onClose, children }) {
     window.addEventListener("pointermove", move); window.addEventListener("pointerup", up);
   };
 
-  // Mobile: the panel becomes a bottom sheet (CSS below overrides the fixed pos). Dragging the
-  // bar with a finger RESIZES it (24–90 vh), so it can be shrunk to a peek strip instead of
-  // overshadowing the calendar behind it (Fuad 2026-07-05). Untouched by the desktop resize above.
+  // Mobile peek state — collapses the sheet to a slim pill above the scrubber.
+  // Opens in peek by default (non-intrusive); tapping expands; ▼ collapses back; ✕ closes fully.
+  // State resets per selection (component remounts when panelOpen toggles via the key prop on the
+  // parent, so no persistent storage needed here — just React state).
+  const [sheetPeek, setSheetPeek] = React.useState(true);
   const [sheetH, setSheetH] = React.useState(40);
+  const isMobile = () => window.innerWidth <= 760;
+
   const onBarTouchStart = () => {
+    if (sheetPeek) { setSheetPeek(false); return; }
     const move = (ev) => {
       const t = ev.touches[0]; if (!t) return;
       setSheetH(Math.round(Math.max(24, Math.min(90, (window.innerHeight - t.clientY) / window.innerHeight * 100))));
@@ -189,6 +197,7 @@ function DraggablePanel({ storageKey, title, onClose, children }) {
     const end = () => { window.removeEventListener("touchmove", move); window.removeEventListener("touchend", end); };
     window.addEventListener("touchmove", move, { passive: true }); window.addEventListener("touchend", end);
   };
+
   // Explicit w/h only apply on desktop (CSS `!important` sheet rules win on mobile ≤760px).
   const style = {
     ...(box ? { left: box.x, top: box.y, right: "auto", bottom: "auto" } : {}),
@@ -197,10 +206,16 @@ function DraggablePanel({ storageKey, title, onClose, children }) {
     "--sheet-h": sheetH + "vh"
   };
   return (
-    <div ref={ref} className="cal-float" style={style}>
-      <div className="cal-float-bar" onPointerDown={startDrag} onTouchStart={onBarTouchStart}>
+    <div ref={ref} className="cal-float" data-peek={sheetPeek ? "true" : "false"} style={style}>
+      <div className="cal-float-bar" onPointerDown={startDrag} onTouchStart={onBarTouchStart}
+        onClick={() => { if (isMobile() && sheetPeek) setSheetPeek(false); }}>
         <span className="cal-float-grip">⠿</span>
         <span className="cal-float-title">{title}</span>
+        {/* On mobile expanded: ▼ collapses back to peek; on peek: ▲ hint; desktop: neither shown */}
+        <button className="cal-float-peek-btn" title="collapse to pill"
+          onClick={(e) => { e.stopPropagation(); setSheetPeek(p => !p); }}>
+          {sheetPeek ? "▲" : "▼"}
+        </button>
         <button className="cal-float-x" onClick={onClose} title="close">✕</button>
       </div>
       <div className="cal-float-body">{children}</div>
@@ -1041,6 +1056,8 @@ function CalendarView({ go, seed }) {
         .cal-float-title { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .cal-float-x { background: none; border: none; color: var(--ink-faint); cursor: pointer; font-size: 12px; line-height: 1; }
         .cal-float-x:hover { color: var(--ink); }
+        .cal-float-peek-btn { background: none; border: none; color: var(--ink-faint); cursor: pointer; font-size: 11px; line-height: 1; display: none; }
+        .cal-float-peek-btn:hover { color: var(--ink-soft); }
         .cal-float-body { padding: 18px 20px; overflow-y: auto; overflow-x: hidden; min-width: 0; }
         /* No horizontal scroll (refinement #5): the overview head + hour-filter notes can wrap,
            the DNA radar is centered/max-width, and the list rows already ellipsis their titles. */
@@ -1154,6 +1171,31 @@ function CalendarView({ go, seed }) {
           .cal-float-bar::before { content: ""; position: absolute; top: 5px; left: 50%; transform: translateX(-50%);
             width: 44px; height: 4px; border-radius: 999px; background: var(--rule-2); }
           .cal-float-body { flex: 1; }
+          /* peek-btn visible on mobile only */
+          .cal-float-peek-btn { display: block; }
+          /* PEEK STATE: slim pill docked above the barcode scrubber (~92px from viewport bottom).
+             z-index: 55 sits above the scrubber (50) but below the expanded panel (60) — but since
+             this IS the panel element, expanded state gets z-index: 60 via the base rule above.
+             The pill shows only the bar (44px); body is hidden via overflow:hidden + height. */
+          .cal-float[data-peek="true"] {
+            bottom: 92px !important;
+            height: 44px !important;
+            max-height: 44px !important;
+            border-radius: 22px !important;
+            border: 1px solid var(--rule-2) !important;
+            box-shadow: 0 4px 20px -8px rgba(0,0,0,.6) !important;
+            cursor: pointer;
+            overflow: hidden;
+          }
+          .cal-float[data-peek="true"] .cal-float-bar {
+            padding: 0 14px;
+            height: 44px;
+            border-bottom: none;
+            background: var(--panel);
+          }
+          .cal-float[data-peek="true"] .cal-float-bar::before { display: none; }
+          .cal-float[data-peek="true"] .cal-float-grip { display: none; }
+          .cal-float[data-peek="true"] .cal-float-body { display: none; }
         }
       `}</style>
     </div>

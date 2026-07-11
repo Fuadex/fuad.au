@@ -2480,10 +2480,15 @@ function GigsMap({ cityList, hueForCity, onCity }) {
   // translate(cx cy) scale(k) translate(-cx -cy) — CSS transform + transform-origin on SVG <g> is
   // unreliable (needs transform-box: fill-box, and a scale(var(--k)) CSS var silently no-ops in some
   // browsers), whereas the attribute form scales around the bubble's own centre everywhere.
+  // scale by writing the circle's r attribute directly — no transforms at all (SVG transform
+  // scaling proved unreliable across two attempts: CSS-var transforms no-op, attribute
+  // transforms fought the CSS transition). r is universally supported and React never
+  // re-renders during hover, so nothing clobbers it.
   const setK = (g, k) => {
-    const bx = +g.dataset.cx, by = +g.dataset.cy;
-    if (k === 1) { g.setAttribute("transform", "translate(" + bx + " " + by + ") translate(" + (-bx) + " " + (-by) + ")"); return; }
-    g.setAttribute("transform", "translate(" + bx + " " + by + ") scale(" + k.toFixed(3) + ") translate(" + (-bx) + " " + (-by) + ")");
+    const c = g.querySelector("circle"); if (!c) return;
+    const base = +c.dataset.r || +c.getAttribute("r");
+    if (!c.dataset.r) c.dataset.r = base;
+    c.setAttribute("r", (base * k).toFixed(2));
   };
   const resetAll = (svg) => { for (const g of svg.querySelectorAll(".gv-cmap-dot")) setK(g, 1); };
   const onMove = (e) => {
