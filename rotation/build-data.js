@@ -313,7 +313,7 @@ const FAMILIES = [
   { family: "Shoegaze / noise",     hue: 252, cx: .5,  cy: .56, kw: /shoegaze|dream pop|nu-gaze|noise rock|noise|post-rock|ambient/ },
   { family: "Pop / indie",          hue: 60,  cx: .72, cy: .4,  kw: /synth-pop|synthpop|new wave|art pop|indie pop|electropop|dance-pop|pop$|^pop/ },
   // Jazz — Soul/Funk/R&B fold in here (shared organic/groove corner; a defensible single family)
-  { family: "Jazz",                 hue: 40,  cx: .40, cy: .45, kw: /jazz|bebop|hard bop|big band|saxophone|trumpet|jazz fusion|nu jazz|vocal jazz|neo-soul|northern soul|motown|rhythm and blues|\bfunk\b|\bsoul\b/ },
+  { family: "Jazz",                 hue: 40,  cx: .40, cy: .45, kw: /jazz|bebop|hard bop|big band|saxophone|trumpet|jazz fusion|nu jazz|vocal jazz|neo-soul|northern soul|motown|rhythm and blues/ },
   { family: "Classical / Score",    hue: 150, cx: .18, cy: .22, kw: /classical|neoclassical|modern classical|contemporary classical|orchestral|soundtrack|film score|\bscore\b|cinematic|opera|baroque|chamber music|piano/ },
   // Other — catch-all so nothing gets nuked; kw never matches (assigned as an explicit fallback).
   // grey:true is a marker for the color pass (rendered with a placeholder hue until then).
@@ -392,6 +392,35 @@ const HAND_MERGE = {
 // Sound-map family overrides — consulted BEFORE tag classification (tag data is wrong/absent):
 const FAMILY_OVERRIDES = {
   "daine": "Digital hardcore / hyperpop",
+  // Genre corrections round 3 (Fuad 2026-07-12, vs tag noise):
+  // + Fable's tag-audit verdicts (top-160 sweep; prog-metal follows the Volumes precedent,
+  //   JP-scene acts consolidate into Japanese):
+  "Dream Theater": "Prog / alt rock",
+  "Tool": "Prog / alt rock",
+  "TesseracT": "Prog / alt rock",
+  "Animals as Leaders": "Prog / alt rock",
+  "Periphery": "Prog / alt rock",
+  "BABYMETAL": "Japanese",
+  "Melt-Banana": "Japanese",
+  "ミドリ": "Japanese",
+  "tricot": "Japanese",
+  "9mm Parabellum Bullet": "Japanese",
+  "MAN WITH A MISSION": "Japanese",
+  "Trent Reznor and Atticus Ross": "Classical / Score",
+  "Trent Reznor & Atticus Ross": "Classical / Score",
+  "HEALTH": "Shoegaze / noise",
+  "Grimes": "Electronic / DnB",
+  "Battle Tapes": "Electronic / DnB",
+  "Airbourne": "Thrash / heavy",
+  "RedHook": "Nu-metal / alt-metal",
+  "Alex": "Electronic / DnB",
+  "Romes": "Nu-metal / alt-metal",
+  "Lisa": "Japanese",
+  "Gramatik": "Electronic / DnB",
+  "Metrik": "Electronic / DnB",
+  "Yours Truly": "Metalcore / -core",
+  "Jon Opstad": "Classical / Score",
+  "Volumes": "Prog / alt rock",
   // Other-list fold, round 2 (Fuad's verdicts + Fable's confident calls, 2026-07-12):
   "PRO8L3M, Dawid Podsiadło, Duit": "Hip-hop",
   "Gurren Lagann OST Disc 1": "Classical / Score",
