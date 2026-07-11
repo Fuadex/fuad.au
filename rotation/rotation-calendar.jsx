@@ -640,14 +640,25 @@ function CalendarView({ go, seed }) {
   const [pane, setPane] = React.useState("artists");  // artists | albums | songs | dna
   const [selHours, setSelHours] = React.useState(() => new Set()); // rhythm hour multi-select
   const [rangeCommit, setRangeCommit] = React.useState(null); // committed [startMs,endMs] → range overview panel
-  const ROW_PAGE = 40;                                 // panel lists render this many rows at a time…
-  const [rowCap, setRowCap] = React.useState(ROW_PAGE); // …plus a "show more" gate (avoids 200 eager cover requests)
+  // Panel page size: 10 | 25 | 50, persisted across sessions.
+  const [panelN, setPanelN] = React.useState(() => {
+    try { const v = parseInt(localStorage.getItem("rot-cal-panel-n"), 10); if (v === 10 || v === 25 || v === 50) return v; } catch (e) {}
+    return 25;
+  });
+  const setPanelNPersist = (v) => { setPanelN(v); try { localStorage.setItem("rot-cal-panel-n", String(v)); } catch (e) {} };
+  // Panel list/grid view toggle, persisted across sessions.
+  const [panelView, setPanelView] = React.useState(() => {
+    try { const v = localStorage.getItem("rot-cal-panel-view"); if (v === "grid" || v === "list") return v; } catch (e) {}
+    return "list";
+  });
+  const setPanelViewPersist = (v) => { setPanelView(v); try { localStorage.setItem("rot-cal-panel-view", v); } catch (e) {} };
+  const [rowCap, setRowCap] = React.useState(panelN); // "show more" gate — starts at panelN, grows by panelN
   React.useEffect(() => { if (seedDay) ensureDetail(); }, []);
   // Clearing the range anywhere (the strip's ✕, or setCustomRange(null)) closes the range panel.
   React.useEffect(() => { if (!customRange && rangeCommit) setRangeCommit(null); }, [customRange]);
-  // Reset the "show more" row cap whenever the list identity changes (new pane / period / range /
-  // hour filter) so a fresh list starts at the top with only ROW_PAGE covers requested.
-  React.useEffect(() => { setRowCap(ROW_PAGE); }, [pane, sel, gran, rangeCommit, selHours]);
+  // Reset the "show more" row cap whenever the list identity or page size changes (new pane /
+  // period / range / hour filter) so a fresh list starts at the top with only panelN covers loaded.
+  React.useEffect(() => { setRowCap(panelN); }, [pane, sel, gran, rangeCommit, selHours, panelN]);
 
   React.useEffect(() => {
     if (window.ROTATION_CAL) { setCal(window.ROTATION_CAL); return; }
@@ -723,6 +734,18 @@ function CalendarView({ go, seed }) {
   const selLabel = sel ? (gran === "day" ? fmtDate(new Date(sel + "T00:00:00Z")) : gran === "week" ? "Week of " + fmtDate(new Date(sel + "T00:00:00Z")) : MONF[+sel.split("-")[1] - 1] + " " + sel.split("-")[0]) : "";
   const aRow = ([i, p]) => ({ name: NM[i], plays: p });
   const iRow = ([t, a, p]) => ({ title: NM[t], artist: NM[a], plays: p });
+  // song→album cover lookup: if ROTATION_MEDIA is already loaded, build a title+artist keyed map
+  // so each song row can show its album cover via GenCover image/thumb props. Falls back to artist
+  // art (the existing behaviour) when the media-index isn't loaded or the track isn't in it.
+  const songAlbumCover = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA; if (!M || !M.tracks || !M.albums || !M.artists) return {};
+    const out = {};
+    for (const t of M.tracks) {
+      const cover = M.albums[t[3]] && M.albums[t[3]][6];
+      if (cover) out[t[0] + "\x00" + M.artists[t[1]]] = cover;
+    }
+    return out;
+  }, [detail]); // re-run if detail loads (ROTATION_MEDIA may have arrived meanwhile)
 
   // Unified panel state: a committed range takes priority over a period `sel`. Both feed the same
   // DraggablePanel markup. `panelKind` labels the overview; `panelP` is the merged pseudo-period.
@@ -807,9 +830,28 @@ function CalendarView({ go, seed }) {
                   </div>
                 </div>
 
-                <div className="r-seg" style={{ margin: "16px 0 14px" }}>
-                  {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) =>
-                    <button key={k} data-on={pane === k} onClick={() => setPane(k)}>{l}</button>)}
+                {/* Tab row: pane selector + list/grid toggle (albums, songs, artists) */}
+                <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "16px 0 14px", flexWrap: "wrap" }}>
+                  <div className="r-seg" style={{ flex: 1, minWidth: 0 }}>
+                    {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) =>
+                      <button key={k} data-on={pane === k} onClick={() => setPane(k)}>{l}</button>)}
+                  </div>
+                  {pane !== "dna" && (
+                    <div className="r-seg cal-view-seg" title="list / grid view">
+                      <button data-on={panelView === "list"} onClick={() => setPanelViewPersist("list")} title="list view">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <line x1="4" y1="2" x2="12" y2="2"/><line x1="4" y1="6" x2="12" y2="6"/><line x1="4" y1="10" x2="12" y2="10"/>
+                          <rect x="0" y="0.5" width="2.5" height="2.5" rx="0.5"/><rect x="0" y="4.5" width="2.5" height="2.5" rx="0.5"/><rect x="0" y="8.5" width="2.5" height="2.5" rx="0.5"/>
+                        </svg>
+                      </button>
+                      <button data-on={panelView === "grid"} onClick={() => setPanelViewPersist("grid")} title="grid view">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <rect x="0" y="0" width="5" height="5" rx="1"/><rect x="7" y="0" width="5" height="5" rx="1"/>
+                          <rect x="0" y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/>
+                        </svg>
+                      </button>
+                    </div>
+                  )}
                 </div>
                 {!rangeOpen && selArr && (gran === "month"
                   ? <div className="r-mono" style={{ fontSize: 9.5, color: "var(--accent)", marginBottom: 12 }}>filtered to {selHours.size} selected hour{selHours.size > 1 ? "s" : ""} · {fmt(panelP.t)} plays</div>
@@ -818,6 +860,33 @@ function CalendarView({ go, seed }) {
                 {pane === "artists" && (() => {
                   const rows = panelP.a.map(aRow);
                   const shown = rows.slice(0, rowCap);
+                  const remaining = rows.length - rowCap;
+                  if (panelView === "grid") return (
+                    <>
+                      <div className="cal-grid">
+                        {shown.map((r, i) => {
+                          const rec = R.byId[R.slug(r.name)] || {};
+                          return (
+                            <div key={r.name} className="cal-gtile" data-link={!!R.byId[R.slug(r.name)]} onClick={() => R.byId[R.slug(r.name)] && go("artist", R.slug(r.name))}>
+                              <GenCover hue={rec.hue || 210} name={r.name} size="100%" style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
+                              <div className="cal-gtile-title">{r.name}</div>
+                              <div className="cal-gtile-plays">{fmt(r.plays)}</div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      {remaining > 0 && (
+                        <div className="cal-more-row">
+                          <button className="cal-more" onClick={() => setRowCap(c => c + panelN)}>
+                            show {Math.min(panelN, remaining)} more · {remaining} left
+                          </button>
+                          <div className="cal-n-seg r-seg">
+                            {[10, 25, 50].map(n => <button key={n} data-on={panelN === n} onClick={() => setPanelNPersist(n)}>{n}</button>)}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  );
                   return (
                   <div className="cal-rows">
                     {shown.map((r, i) => (
@@ -828,34 +897,80 @@ function CalendarView({ go, seed }) {
                         <span className="cal-pl">{fmt(r.plays)}</span>
                       </div>
                     ))}
-                    {rows.length > rowCap && (
-                      <button className="cal-more" onClick={() => setRowCap(c => c + ROW_PAGE)}>
-                        show {Math.min(ROW_PAGE, rows.length - rowCap)} more · {rows.length - rowCap} left
-                      </button>
+                    {remaining > 0 && (
+                      <div className="cal-more-row">
+                        <button className="cal-more" onClick={() => setRowCap(c => c + panelN)}>
+                          show {Math.min(panelN, remaining)} more · {remaining} left
+                        </button>
+                        <div className="cal-n-seg r-seg">
+                          {[10, 25, 50].map(n => <button key={n} data-on={panelN === n} onClick={() => setPanelNPersist(n)}>{n}</button>)}
+                        </div>
+                      </div>
                     )}
                   </div>
                   );
                 })()}
                 {(pane === "albums" || pane === "songs") && (() => {
-                  const rows = (pane === "albums" ? panelP.al : panelP.s).map(iRow);
+                  const isSongs = pane === "songs";
+                  const rows = (isSongs ? panelP.s : panelP.al).map(iRow);
                   const shown = rows.slice(0, rowCap);
+                  const remaining = rows.length - rowCap;
+                  if (panelView === "grid") return (
+                    <>
+                      <div className="cal-grid">
+                        {shown.map((r, i) => {
+                          const hue = (R.byId[R.slug(r.artist)] || {}).hue || 210;
+                          // songs: use album cover from media-index if loaded; albums: use artist hue (no cover in al rows)
+                          const coverKey = isSongs ? (r.title + "\x00" + r.artist) : null;
+                          const albumCover = coverKey ? (songAlbumCover[coverKey] || "") : "";
+                          return (
+                            <div key={r.title + i} className="cal-gtile" data-link={!!R.byId[R.slug(r.artist)]} onClick={() => R.byId[R.slug(r.artist)] && go("artist", R.slug(r.artist))}>
+                              <GenCover hue={hue} name={isSongs ? r.artist : r.title} image={albumCover} thumb={albumCover} size="100%" style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
+                              <div className="cal-gtile-title">{r.title}</div>
+                              <div className="cal-gtile-plays">{r.artist} · {fmt(r.plays)}</div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      {remaining > 0 && (
+                        <div className="cal-more-row">
+                          <button className="cal-more" onClick={() => setRowCap(c => c + panelN)}>
+                            show {Math.min(panelN, remaining)} more · {remaining} left
+                          </button>
+                          <div className="cal-n-seg r-seg">
+                            {[10, 25, 50].map(n => <button key={n} data-on={panelN === n} onClick={() => setPanelNPersist(n)}>{n}</button>)}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  );
                   return (
                   <div className="cal-rows">
-                    {shown.map((r, i) => (
-                      <div key={r.title + i} className="cal-row" data-link={!!R.byId[R.slug(r.artist)]} onClick={() => R.byId[R.slug(r.artist)] && go("artist", R.slug(r.artist))}>
-                        <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span>
-                        <GenCover hue={(R.byId[R.slug(r.artist)] || {}).hue || 210} name={r.artist} size={34} radius={3} />
-                        <div style={{ minWidth: 0, flex: 1 }}>
-                          <div className="cal-nm" style={{ fontStyle: "italic" }}>{r.title}</div>
-                          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.artist}</div>
+                    {shown.map((r, i) => {
+                      const hue = (R.byId[R.slug(r.artist)] || {}).hue || 210;
+                      const coverKey = isSongs ? (r.title + "\x00" + r.artist) : null;
+                      const albumCover = coverKey ? (songAlbumCover[coverKey] || "") : "";
+                      return (
+                        <div key={r.title + i} className="cal-row" data-link={!!R.byId[R.slug(r.artist)]} onClick={() => R.byId[R.slug(r.artist)] && go("artist", R.slug(r.artist))}>
+                          <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span>
+                          <GenCover hue={hue} name={isSongs ? r.artist : r.title} image={albumCover} thumb={albumCover} size={34} radius={3} />
+                          <div style={{ minWidth: 0, flex: 1 }}>
+                            <div className="cal-nm" style={{ fontStyle: "italic" }}>{r.title}</div>
+                            <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.artist}</div>
+                          </div>
+                          <span className="cal-pl">{fmt(r.plays)}</span>
                         </div>
-                        <span className="cal-pl">{fmt(r.plays)}</span>
+                      );
+                    })}
+                    {remaining > 0 && (
+                      <div className="cal-more-row">
+                        <button className="cal-more" onClick={() => setRowCap(c => c + panelN)}>
+                          show {Math.min(panelN, remaining)} more · {remaining} left
+                        </button>
+                        <div className="cal-n-seg r-seg">
+                          {[10, 25, 50].map(n => <button key={n} data-on={panelN === n} onClick={() => setPanelNPersist(n)}>{n}</button>)}
+                        </div>
                       </div>
-                    ))}
-                    {rows.length > rowCap && (
-                      <button className="cal-more" onClick={() => setRowCap(c => c + ROW_PAGE)}>
-                        show {Math.min(ROW_PAGE, rows.length - rowCap)} more · {rows.length - rowCap} left
-                      </button>
                     )}
                   </div>
                   );
@@ -931,11 +1046,24 @@ function CalendarView({ go, seed }) {
            the DNA radar is centered/max-width, and the list rows already ellipsis their titles. */
         .cal-ov-head { max-width: 100%; }
         /* "show more" button that gates the panel list length (refinement #2 — lazy cover requests) */
-        .cal-more { display: block; width: 100%; margin-top: 4px; padding: 7px 0;
+        .cal-more { display: block; flex: 1; margin-top: 0; padding: 7px 0;
           background: var(--bg-3); border: 1px solid var(--rule); border-radius: 6px;
           color: var(--ink-soft); font-family: var(--mono); font-size: 10px; letter-spacing: .06em;
           cursor: pointer; }
         .cal-more:hover { color: var(--ink); border-color: var(--rule-2); }
+        /* "show more" row: the button fills the left, the 10/25/50 size selector sits on the right */
+        .cal-more-row { display: flex; align-items: stretch; gap: 6px; margin-top: 4px; }
+        .cal-n-seg button { font-size: 10px; padding: 2px 7px; }
+        /* list/grid toggle in the tab row */
+        .cal-view-seg button { padding: 4px 7px; line-height: 1; }
+        /* grid view — auto-fill cover tiles */
+        .cal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 10px; margin-bottom: 4px; }
+        .cal-gtile { min-width: 0; cursor: default; }
+        .cal-gtile[data-link="true"] { cursor: pointer; }
+        .cal-gtile-title { font-size: 10px; margin-top: 5px; line-height: 1.2;
+          display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .cal-gtile-plays { font-family: var(--mono); font-size: 8.5px; color: var(--ink-faint);
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         /* Desktop resize affordances (refinement #3). Hidden on the mobile sheet (≤760px below). */
         .cal-float-rz { position: absolute; touch-action: none; z-index: 4; }
         .cal-float-rz-e { top: 0; bottom: 12px; right: 0; width: 6px; cursor: ew-resize; }

@@ -320,6 +320,10 @@ const niceTags = (name) => {
 const _famCache = new Map();
 function familyIdxByName(name) {
   if (_famCache.has(name)) return _famCache.get(name);
+  if (typeof FAMILY_OVERRIDES !== "undefined" && FAMILY_OVERRIDES[name]) {
+    const oi = FAMILIES.findIndex(f => f.family === FAMILY_OVERRIDES[name]);
+    if (oi >= 0) { _famCache.set(name, oi); return oi; }
+  }
   const tags = (META[name] && META[name].tags) || niceTags(name);
   let idx = -1;
   for (const tg of tags) { const f = classifyTag(tg); if (f) { idx = FAMILIES.indexOf(f); break; } }
@@ -358,7 +362,25 @@ const CANON = new Map();
     for (const n of names) if (n !== rep) CANON.set(n, rep);
   }
 }
-const canon = (name) => CANON.get(name) || name;
+// ─────────── hand fixes (Fuad's verdicts, 2026-07-13) ───────────
+// Merges the mbid/name grouping can't see (genuinely different names, same act):
+const HAND_MERGE = {
+  "A. Yarmak": "Alex Yarmak",
+  "DOOM (2016) OST": "Mick Gordon",
+};
+// Sound-map family overrides — consulted BEFORE tag classification (tag data is wrong/absent):
+const FAMILY_OVERRIDES = {
+  "daine": "Digital hardcore / hyperpop",
+  "Yuna Kil": "Nu-metal / alt-metal",
+  "i_o, Lights": "Electronic / DnB",       // collab credit; i_o leads → electronic
+  "Mystery Kiss": "Japanese",              // Odd Taxi's fictional j-pop unit
+  "Taoubt": "Prog / alt rock",
+  "VonRyk": "Electronic / DnB",
+};
+// Non-music scrobbles (YouTube shows etc.) — excluded from Explore / the genre map.
+// ("Corridor" ≠ "Corridor Crew" — the Montreal band stays.)
+const NONMUSIC = new Set(["Corridor Crew"]);
+const canon = (name) => { const c = CANON.get(name) || name; return HAND_MERGE[c] || c; };
 // (album hygiene — placeholder remaps + tag stripping — now lives in sync-csv.js as data overrides,
 // so fuadex.csv already holds clean album titles by the time we read it here.)
 
@@ -2387,6 +2409,7 @@ const subIdxByName = new Map(SUBS.map((s, i) => [s.name, i]));
 const EXPLORE = [];
 for (const [name, plays] of rankedArtists) {
   if (plays < 5) continue;
+  if (NONMUSIC.has(name)) continue;   // "inapplicable" — not music, keep off the genre map
   const meta = META[name];
   // subgenre membership from last.fm tags AND Discogs styles — the latter reaches the ~6000
   // artists we have Discogs data for, well past last.fm's tag coverage.
