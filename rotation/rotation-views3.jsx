@@ -2494,7 +2494,7 @@ function GigsMap({ cityList, hueForCity, onCity }) {
       if (!svg) return;
       const rect = svg.getBoundingClientRect();
       if (cx < rect.left || cx > rect.right || cy < rect.top || cy > rect.bottom) { resetAll(svg); return; }
-      const R_PX = 80, MAXK = 1.6;
+      const R_PX = 110, MAXK = 2.6;   // was 80/1.6 — imperceptible on small dots at 4K; make it unmissable
       const vb = vbRef.current;
       // px → view units, so the radius stays ~80 SCREEN px whatever the zoom
       const pxToVx = vb.w / rect.width, pxToVy = vb.h / rect.height;
@@ -2919,7 +2919,8 @@ function GigsView({ go }) {
         .gv-cmap-wrap { margin: 2px 0 16px; }
         .gv-cmap { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 8px; background: var(--panel); overflow: hidden; }
         .gv-cmap-empty { padding: 50px 0; text-align: center; color: var(--ink-faint); font-size: 11px; border: 1px solid var(--rule); border-radius: 8px; }
-        .gv-cmap-dot { transition: transform .12s ease-out, opacity .2s; }
+        .gv-cmap-dot { transition: opacity .2s; }  /* no transform transition — attr-driven transforms + transitions lag/no-op across browsers; rAF already paces it */
+        .gv-cmap { cursor: crosshair; }
         .gv-cmap-c { fill-opacity: .78; transition: fill-opacity .15s; }
         .gv-cmap-c:hover { fill-opacity: 1; }
         .gv-cmap-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
