@@ -181,8 +181,27 @@ const originOf = (name) => {
   if (!o || !o.country) return null;
   return { country: o.country, area: o.area || "", city: o.beginArea || "" };
 };
-// gender (Person artists only) → glyph; life-span → active / disbanded / deceased on artist pages
-const genderOf = (name) => { const pn = pinOf(name); if (pn && "gender" in pn) return pn.gender; return (ORIGINS[name] && ORIGINS[name].gender) || ""; };
+// gender → glyph; life-span → active / disbanded / deceased on artist pages.
+// BANDS carry their LEAD VOCALIST's gender (Fuad 2026-07-12: "like on other pages that contain
+// it") — from the MusicBrainz lineup distill. Solo artists keep their own gender as before.
+const _MB_VOX_GENDER = (() => {
+  const m = new Map();
+  try {
+    const raw = JSON.parse(fs.readFileSync(path.join(__dirname, "mb-artists.json"), "utf8"));
+    for (const e of Object.values(raw)) {
+      if (!e.members || !e.members.length) continue;
+      const vox = e.members.find(x => x.t === "" && (x.i || []).some(i => /lead vocals/.test(i)))
+        || e.members.find(x => (x.i || []).some(i => /vocals/.test(i)));
+      if (vox && (vox.g === "M" || vox.g === "F" || vox.g === "m" || vox.g === "f"))
+        m.set(e.q, /f/i.test(vox.g) ? "Female" : "Male");
+    }
+  } catch (err) {}
+  return m;
+})();
+const genderOf = (name) => {
+  const pn = pinOf(name); if (pn && "gender" in pn) return pn.gender;
+  return (ORIGINS[name] && ORIGINS[name].gender) || _MB_VOX_GENDER.get(name) || "";
+};
 const lifeOf = (name) => {
   const pn = pinOf(name);
   if (pn && pn.clearLife) return null;
@@ -366,11 +385,33 @@ const CANON = new Map();
 // Merges the mbid/name grouping can't see (genuinely different names, same act):
 const HAND_MERGE = {
   "A. Yarmak": "Alex Yarmak",
+  "\"Pts.Of.Athrty\" (Official HD Video)": "Linkin Park",   // junk video-title scrobbles
+  "Cyberpunk 2077 – E3 2018 Trailer Music / Hyper": "Hyper",
   "DOOM (2016) OST": "Mick Gordon",
 };
 // Sound-map family overrides — consulted BEFORE tag classification (tag data is wrong/absent):
 const FAMILY_OVERRIDES = {
   "daine": "Digital hardcore / hyperpop",
+  // Other-list fold, round 2 (Fuad's verdicts + Fable's confident calls, 2026-07-12):
+  "PRO8L3M, Dawid Podsiadło, Duit": "Hip-hop",
+  "Gurren Lagann OST Disc 1": "Classical / Score",
+  "Morgan Thomaso": "Prog / alt rock",
+  "DHMHTHP": "Punk / garage",
+  "Ivy Lab, Roses Gabor": "Electronic / DnB",
+  "Hensonn": "Electronic / DnB",
+  "Grimes, i_o": "Electronic / DnB",
+  "Glacerate": "Electronic / DnB",
+  "panda beats": "Electronic / DnB",
+  "Beatman, Hyper, Ludmilla": "Electronic / DnB",
+  "Tommy Trash, i_o, Daisy Guttridge": "Electronic / DnB",
+  "Kaskade x Deadmau5 feat. Skylar Grey": "Electronic / DnB",
+  "SBCR & Razihel": "Electronic / DnB",
+  "Zankyou no Terror OST": "Classical / Score",
+  "Spec Ops: The Line": "Classical / Score",
+  "UnderTale OST": "Classical / Score",
+  "The London Metropolitan Orchestra;Michael Kamen": "Classical / Score",
+  "05.  Counterattack Mankind": "Classical / Score",
+  "Vaporwave with Teenage Engineering OP-1 蒸気波 (feat. Blank Banshee": "Electronic / DnB",
   "Yuna Kil": "Nu-metal / alt-metal",
   "i_o, Lights": "Electronic / DnB",       // collab credit; i_o leads → electronic
   "Mystery Kiss": "Japanese",              // Odd Taxi's fictional j-pop unit
@@ -379,7 +420,7 @@ const FAMILY_OVERRIDES = {
 };
 // Non-music scrobbles (YouTube shows etc.) — excluded from Explore / the genre map.
 // ("Corridor" ≠ "Corridor Crew" — the Montreal band stays.)
-const NONMUSIC = new Set(["Corridor Crew"]);
+const NONMUSIC = new Set(["Corridor Crew", "George Carlin"]);   // stand-up, not music
 const canon = (name) => { const c = CANON.get(name) || name; return HAND_MERGE[c] || c; };
 // (album hygiene — placeholder remaps + tag stripping — now lives in sync-csv.js as data overrides,
 // so fuadex.csv already holds clean album titles by the time we read it here.)

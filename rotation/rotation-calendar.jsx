@@ -186,10 +186,48 @@ function DraggablePanel({ storageKey, title, onClose, children }) {
   // parent, so no persistent storage needed here — just React state).
   const [sheetPeek, setSheetPeek] = React.useState(true);
   const [sheetH, setSheetH] = React.useState(40);
-  const isMobile = () => window.innerWidth <= 760;
 
+  // ── Dynamic scrubber anchor (bug #2/#3) ──────────────────────────────────────────────────
+  // The bottom scrubber (.bc-scrubber) is position:fixed but its bottom offset is JS-driven: 0
+  // while scrolling, rising above the footer at page end. Its rendered height also varies with
+  // the safe-area inset and — on Firefox Android — with URL-bar collapse (which changes
+  // innerHeight and bumps the strip). A hard-coded `bottom: 92px` therefore drifts off the strip.
+  // Mirror the scrubber's own docking listener: on every scroll/resize (rAF-throttled, plus the
+  // visualViewport events that fire on URL-bar collapse) read the scrubber's LIVE top edge and
+  // expose it as `--scrub-top` (distance from the viewport bottom to the scrubber's top). The CSS
+  // sheet rules pin the panel's bottom to that value so the panel bottom sits EXACTLY on the
+  // scrubber's top edge — in peek, at page bottom, and through URL-bar collapse.
+  const [scrubTop, setScrubTop] = React.useState(92);
+  React.useEffect(() => {
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      const sc = document.querySelector(".bc-scrubber");
+      if (!sc) return;
+      const r = sc.getBoundingClientRect();
+      // gap from the viewport bottom up to the scrubber's top edge.
+      const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+      const gap = Math.max(0, Math.round(vh - r.top));
+      setScrubTop(gap);
+    };
+    const onChange = () => { if (!raf) raf = requestAnimationFrame(measure); };
+    measure();
+    window.addEventListener("scroll", onChange, { passive: true });
+    window.addEventListener("resize", onChange);
+    const vv = window.visualViewport;
+    if (vv) { vv.addEventListener("resize", onChange); vv.addEventListener("scroll", onChange); }
+    return () => {
+      window.removeEventListener("scroll", onChange);
+      window.removeEventListener("resize", onChange);
+      if (vv) { vv.removeEventListener("resize", onChange); vv.removeEventListener("scroll", onChange); }
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  // Finger-resize the EXPANDED sheet by dragging the bar. (In peek the overlay button owns the
+  // tap — see the expand handler below — so this only runs when already expanded.)
   const onBarTouchStart = () => {
-    if (sheetPeek) { setSheetPeek(false); return; }
+    if (sheetPeek) return;
     const move = (ev) => {
       const t = ev.touches[0]; if (!t) return;
       setSheetH(Math.round(Math.max(24, Math.min(90, (window.innerHeight - t.clientY) / window.innerHeight * 100))));
@@ -198,17 +236,29 @@ function DraggablePanel({ storageKey, title, onClose, children }) {
     window.addEventListener("touchmove", move, { passive: true }); window.addEventListener("touchend", end);
   };
 
+  // ── Peek → expand: ONE tap target (bug #1) ───────────────────────────────────────────────
+  // Firefox Android fired a synthetic click that fell through the pill onto the first artist row
+  // that appeared once the sheet expanded (ghost/tap-through). Fix: a full-size overlay button is
+  // the ONLY thing that receives the peek tap. It expands on pointerup and preventDefault()s so no
+  // synthetic click is generated and nothing underneath (page rows or the just-revealed body) is
+  // hit. stopPropagation keeps it off the bar's own handlers.
+  const onPeekExpand = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSheetPeek(false);
+  };
+
   // Explicit w/h only apply on desktop (CSS `!important` sheet rules win on mobile ≤760px).
   const style = {
     ...(box ? { left: box.x, top: box.y, right: "auto", bottom: "auto" } : {}),
     ...(box && box.w ? { width: box.w } : {}),
     ...(box && box.h ? { height: box.h, maxHeight: box.h } : {}),
-    "--sheet-h": sheetH + "vh"
+    "--sheet-h": sheetH + "vh",
+    "--scrub-top": scrubTop + "px"
   };
   return (
     <div ref={ref} className="cal-float" data-peek={sheetPeek ? "true" : "false"} style={style}>
-      <div className="cal-float-bar" onPointerDown={startDrag} onTouchStart={onBarTouchStart}
-        onClick={() => { if (isMobile() && sheetPeek) setSheetPeek(false); }}>
+      <div className="cal-float-bar" onPointerDown={startDrag} onTouchStart={onBarTouchStart}>
         <span className="cal-float-grip">⠿</span>
         <span className="cal-float-title">{title}</span>
         {/* On mobile expanded: ▼ collapses back to peek; on peek: ▲ hint; desktop: neither shown */}
@@ -218,6 +268,13 @@ function DraggablePanel({ storageKey, title, onClose, children }) {
         </button>
         <button className="cal-float-x" onClick={onClose} title="close">✕</button>
       </div>
+      {/* Peek-only expand target (bug #1): a full-size transparent button over the pill. It's the
+          sole tap target in peek — pointer-events on the bar content are disabled via CSS so the
+          tap can't reach the title/rows. Expands on pointerup + preventDefault (no ghost click). */}
+      {sheetPeek && (
+        <button className="cal-float-peek-hit" aria-label="expand overview"
+          onPointerUp={onPeekExpand} onClick={(e) => { e.preventDefault(); e.stopPropagation(); }} />
+      )}
       <div className="cal-float-body">{children}</div>
       {/* Desktop resize affordances — hidden on mobile via CSS. Edges are 6px invisible strips;
           the corner is a 24×24 target. All use Pointer Events (mouse + touch/pen). */}
@@ -1058,6 +1115,9 @@ function CalendarView({ go, seed }) {
         .cal-float-x:hover { color: var(--ink); }
         .cal-float-peek-btn { background: none; border: none; color: var(--ink-faint); cursor: pointer; font-size: 11px; line-height: 1; display: none; }
         .cal-float-peek-btn:hover { color: var(--ink-soft); }
+        /* Full-size peek expand target (mobile only — enabled in the ≤760px block). Hidden on desktop
+           so it never covers the resizable panel. */
+        .cal-float-peek-hit { display: none; }
         .cal-float-body { padding: 18px 20px; overflow-y: auto; overflow-x: hidden; min-width: 0; }
         /* No horizontal scroll (refinement #5): the overview head + hour-filter notes can wrap,
            the DNA radar is centered/max-width, and the list rows already ellipsis their titles. */
@@ -1162,8 +1222,12 @@ function CalendarView({ go, seed }) {
         /* mobile: bottom sheet — full width, finger-resizable via the bar (see onBarTouchStart).
            !important defeats any stored PC drag position. Default 40vh = calendar stays visible. */
         @media (max-width: 760px) {
-          .cal-float { left: 0 !important; right: 0 !important; bottom: 0 !important; top: auto !important;
-            width: 100% !important; height: var(--sheet-h, 40vh) !important; max-height: 92vh !important;
+          /* Expanded sheet: its bottom sits on the scrubber's LIVE top edge (--scrub-top, set from
+             JS every scroll/resize/visualViewport change — bug #3), never overlapping the strip.
+             max-height also subtracts that gap so a tall sheet still clears the scrubber. */
+          .cal-float { left: 0 !important; right: 0 !important; bottom: var(--scrub-top, 0px) !important; top: auto !important;
+            width: 100% !important; height: var(--sheet-h, 40vh) !important;
+            max-height: calc(96vh - var(--scrub-top, 0px)) !important;
             border-radius: 14px 14px 0 0; border-left: none; border-right: none; border-bottom: none; }
           /* the desktop resize grips are meaningless in the CSS-driven sheet — remove them */
           .cal-float-rz { display: none !important; }
@@ -1173,12 +1237,11 @@ function CalendarView({ go, seed }) {
           .cal-float-body { flex: 1; }
           /* peek-btn visible on mobile only */
           .cal-float-peek-btn { display: block; }
-          /* PEEK STATE: slim pill docked above the barcode scrubber (~92px from viewport bottom).
-             z-index: 55 sits above the scrubber (50) but below the expanded panel (60) — but since
-             this IS the panel element, expanded state gets z-index: 60 via the base rule above.
-             The pill shows only the bar (44px); body is hidden via overflow:hidden + height. */
+          /* PEEK STATE: slim pill docked so its bottom sits on the scrubber's live top edge
+             (--scrub-top — bug #2). The pill shows only the bar (44px); body is hidden.
+             The full-size .cal-float-peek-hit overlay is the ONLY tap target (bug #1). */
           .cal-float[data-peek="true"] {
-            bottom: 92px !important;
+            bottom: var(--scrub-top, 92px) !important;
             height: 44px !important;
             max-height: 44px !important;
             border-radius: 22px !important;
@@ -1196,6 +1259,16 @@ function CalendarView({ go, seed }) {
           .cal-float[data-peek="true"] .cal-float-bar::before { display: none; }
           .cal-float[data-peek="true"] .cal-float-grip { display: none; }
           .cal-float[data-peek="true"] .cal-float-body { display: none; }
+          /* In peek, the bar's contents don't receive taps — the overlay button does. The ✕ stays
+             tappable (higher stacking) so the user can still close from the pill. */
+          .cal-float[data-peek="true"] .cal-float-bar { pointer-events: none; }
+          .cal-float[data-peek="true"] .cal-float-x { pointer-events: auto; position: relative; z-index: 3; }
+          .cal-float[data-peek="true"] .cal-float-peek-hit {
+            display: block; position: absolute; inset: 0; z-index: 2;
+            width: 100%; height: 100%; margin: 0; padding: 0;
+            background: transparent; border: none; border-radius: 22px;
+            cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+          }
         }
       `}</style>
     </div>
