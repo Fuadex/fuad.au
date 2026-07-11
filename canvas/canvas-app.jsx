@@ -188,9 +188,11 @@ function Reader({ id, go }) {
   const w = useMemo(() => { const x = WORKS.find(x => x.id === id); return x ? enrich(x) : null; }, [id]);
   const [zoom, setZoom] = useState(false);
   const [tier, setTier] = useState("about");
+  // close returns to the previous history entry (home or wall, depending where the card was clicked)
+  const close = () => { history.back(); };
   useEffect(() => { setZoom(false); setTier("about"); }, [id]);
   useEffect(() => {
-    const on = (e) => { if (e.key === "Escape" && !zoom) go("wall"); };
+    const on = (e) => { if (e.key === "Escape" && !zoom) close(); };
     window.addEventListener("keydown", on);
     return () => window.removeEventListener("keydown", on);
   }, [zoom]);
@@ -201,9 +203,9 @@ function Reader({ id, go }) {
   const read = (window.CANVAS_ART_ABOUT || {})[id];
   return (
     <React.Fragment>
-      <div className="cv-reader-bg" onClick={() => go("wall")} />
+      <div className="cv-reader-bg" onClick={close} />
       <div className="cv-reader">
-        <button className="cv-r-close" onClick={() => go("wall")}>✕</button>
+        <button className="cv-r-close" onClick={close}>✕</button>
         {w.img && <img className="hero" src={w.img} alt={w.title} title="click to zoom" style={{ cursor: "zoom-in" }} onClick={() => setZoom(true)} />}
         <div className="cv-r-body">
           <h1 className="cv-r-title">{w.title.replace(/^TBC — /, "")}</h1>
@@ -775,17 +777,102 @@ function Portrait({ go }) {
   );
 }
 
+// ——— Home: a curated selection — featured works always first, then a deterministic
+// day-seeded round-robin spread of liked/loved works, one per artist, images required.
+// The seed rotates daily so the mix shifts without random flicker per render.
+// No latest-skew: recency plays no role; the spread is artist-diversity + quality-gated.
+const HOME_CAP = 24;   // total home cards (featured + spread), cap to a tidy grid
+
+function HomeView({ go }) {
+  const all = useMemo(() => WORKS.map(enrich), []);
+
+  const { featured, spread } = useMemo(() => {
+    // 1. featured: hand-flagged, shown first regardless of image (they always have one)
+    const feat = all.filter(w => w.featured);
+
+    // 2. pool: liked or floored/favorite, must have an image (hand or machine), not already featured
+    const featIds = new Set(feat.map(w => w.id));
+    const pool = all.filter(w =>
+      !featIds.has(w.id) &&
+      (w.floored || w.favorite || w.liked) &&
+      (w.imgGrid || w.img)
+    );
+
+    // 3. group by artistId, keep each group sorted by quality (floored/favorite > liked)
+    const byArtist = {};
+    for (const w of pool) {
+      const key = w.artistId || w.id;
+      (byArtist[key] = byArtist[key] || []).push(w);
+    }
+    for (const key of Object.keys(byArtist)) {
+      byArtist[key].sort((a, b) => weight(a) - weight(b));
+    }
+
+    // 4. stable daily seed: day-of-year (resets Jan 1 each year — slow, non-flickery rotation)
+    const now = new Date();
+    const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+
+    // 5. order the artist buckets by the seeded offset so the starting artist rotates daily
+    const artistKeys = Object.keys(byArtist).sort();   // alphabetic base keeps it deterministic
+    const offset = dayOfYear % Math.max(artistKeys.length, 1);
+    const rotated = [...artistKeys.slice(offset), ...artistKeys.slice(0, offset)];
+
+    // 6. round-robin: one pick per artist until we fill the remainder of HOME_CAP
+    const needed = HOME_CAP - feat.length;
+    const picks = [];
+    let round = 0;
+    outer: while (picks.length < needed) {
+      let any = false;
+      for (const key of rotated) {
+        if (byArtist[key][round]) {
+          picks.push(byArtist[key][round]);
+          any = true;
+          if (picks.length >= needed) break outer;
+        }
+      }
+      if (!any) break;
+      round++;
+    }
+
+    return { featured: feat, spread: picks };
+  }, [all]);
+
+  const spreadArtistCount = useMemo(() => new Set([
+    ...featured.map(w => w.artistId || w.id),
+    ...spread.map(w => w.artistId || w.id)
+  ]).size, [featured, spread]);
+
+  return (
+    <React.Fragment>
+      <div className="cv-home-intro">
+        <p>Works I've stood in front of — a selection across {spreadArtistCount} artists. <a href="#/wall">See the full wall →</a></p>
+      </div>
+      {featured.length > 0 && (
+        <React.Fragment>
+          <div className="cv-section-h cv-home-label">Featured</div>
+          <div className="cv-wall cv-home-featured">{featured.map(w => <Card key={w.id} w={w} go={go} />)}</div>
+        </React.Fragment>
+      )}
+      <div className="cv-wall">{spread.map(w => <Card key={w.id} w={w} go={go} />)}</div>
+    </React.Fragment>
+  );
+}
+
 function App() {
   const route = useRoute();
   const [mode, setMode] = useState("collage");   // wall arrangement: collage | spectrum | timeline | movements
-  const go = (view, id) => { location.hash = view === "wall" ? "/" : "/" + view + (id ? "/" + id : ""); };
-  const view = route.view === "work" ? "wall" : route.view;   // reader overlays the wall
+  const go = (view, id) => { location.hash = id ? "/" + view + "/" + id : view === "home" ? "/" : "/" + view; };
+  // useRoute parses "#/" as view="wall"; we treat "wall" with no id AND hash="#/" as home.
+  // "#/wall" is the explicit full wall. Reader (#/work/<id>) overlays whatever is beneath.
+  const isHome = route.view === "wall" && !route.id && (location.hash === "#/" || location.hash === "#" || location.hash === "");
+  const view = route.view === "work" ? "work" : isHome ? "home" : route.view;
   return (
     <React.Fragment>
       <header className="cv-head">
         <a className="cv-brand" href="#/">Canvas<i>.</i></a>
         <nav className="cv-nav">
-          <a href="#/" data-on={view === "wall" && route.view !== "deck"}>The Wall</a>
+          <a href="#/" data-on={view === "home"}>Home</a>
+          <a href="#/wall" data-on={view === "wall"}>The Wall</a>
           <a href="#/portrait" data-on={view === "portrait"}>Portrait</a>
           <a href="#/museums" data-on={view === "museums" || route.view === "deck"}>Museums</a>
           <a href="#/artists" data-on={view === "artists" || route.view === "artist"}>Artists</a>
@@ -803,7 +890,9 @@ function App() {
         : view === "portrait" ? <Portrait go={go} />
         : (view === "map" || view === "pilgrimage") ? <MapView go={go} />
         : route.view === "artist" ? <ArtistView artistId={route.id} go={go} key={route.id} />
-        : view === "artists" ? <Artists go={go} /> : <Wall go={go} mode={mode} />}
+        : view === "artists" ? <Artists go={go} />
+        : view === "wall" ? <Wall go={go} mode={mode} />
+        : <HomeView go={go} />}
       {route.view === "work" && <Reader id={route.id} go={go} />}
       <footer className="cv-foot">
         <span className="cv-foot-main">canvas · a personal gallery, reconstructed from memory · images via <a href="https://commons.wikimedia.org" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> / <a href="https://www.wikidata.org" target="_blank" rel="noopener noreferrer">Wikidata</a></span>

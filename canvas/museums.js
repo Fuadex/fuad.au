@@ -59,4 +59,11 @@ window.CANVAS_MUSEUMS = [
   { id: "acropolis", name: "Acropolis Museum", city: "Athens", country: "gr", qid: "Q421084", kind: "art", visits: ["2018-11-13"] },
   { id: "islamic-berlin", name: "Museum für Islamische Kunst", city: "Berlin", country: "de", qid: "Q1954632", kind: "art", visits: ["2022-12-23"] },
   { id: "nmk-seoul", name: "National Museum of Korea", city: "Seoul", country: "kr", qid: "Q494407", kind: "art", visits: ["2018-07-29"] },
+  // ——— Timeline-mined additions round 2 (2026-07-12; Fuad named Berlin/Munich/London/Kraków/Toruń) ———
+  { id: "alte-nationalgalerie", name: "Alte Nationalgalerie", city: "Berlin", country: "de", qid: "Q162111", kind: "art", visits: ["2022-12-23"], note: "Museum Island — same trip as Islamische Kunst." },
+  { id: "aegyptischer-kunst", name: "Staatliches Museum Ägyptischer Kunst", city: "Munich", country: "de", qid: "Q464872", kind: "art", visits: ["2016-09-10","2016-10-12","2017-07-06"] },
+  { id: "tate-britain", name: "Tate Britain", city: "London", country: "gb", qid: "Q195436", kind: "art", visits: ["2024-06-13"], note: "Same day as Tate Modern." },
+  { id: "nhm-london", name: "Natural History Museum", city: "London", country: "gb", qid: "Q309388", kind: "natural-history", visits: ["2024-06-16"] },
+  { id: "mnk-main", name: "Muzeum Narodowe w Krakowie (Main Building)", city: "Kraków", country: "pl", qid: "Q195311", kind: "art", visits: ["2014-04-26"], note: "Day before Sukiennice." },
+  { id: "coca-torun", name: "Centre of Contemporary Art Znaki Czasu", city: "Toruń", country: "pl", qid: "Q9186485", kind: "art", visits: ["2026-05-23"] },
 ];

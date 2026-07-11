@@ -688,9 +688,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 0, alignSelf: "flex-end", width: "fit-content", maxWidth: "100%" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 0, alignSelf: "flex-end", marginLeft: "auto", width: "min(560px, 100%)" }}>
           <ArtistBarcode artistId={a.id} daysReady={daysReady} />
-          <div style={{ display: "flex", gap: 26 }}>
+          <div style={{ display: "flex", gap: 26, justifyContent: "flex-end" }}>
             <div><div className="r-stat-n" style={{ fontSize: 38 }}>{fmt(a.plays)}</div>
               <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
             <div><div className="r-stat-n" style={{ fontSize: 38 }}>{peakYear}</div>
@@ -792,55 +792,89 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               )}
               </React.Fragment>}
 
-              {/* EPs & singles — compact spine rows (no covers). A single with `on` links to its
-                  host album (same nav as the cover grid) and reads "→ appears on {Album}". */}
+              {/* EPs & singles — same covers/list toggle as Albums; singles with `on` show host album. */}
               {epsSingles.length > 0 && (() => {
-                // resolve each single's `on` slug → a display title, from any release we know
                 const titleForSlug = (s) => { const hit = allAlbums.find(al => R.slug(al.title) === s); return hit ? hit.title : null; };
                 return (
                 <div style={{ marginTop: albums.length ? 16 : 0 }}>
                   <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
                     <span className="lbl"><b>EPs & singles</b></span><span className="meta">{epsSingles.length}</span></div>
-                  <div style={{ display: "grid", gap: 2, maxHeight: 300, overflowY: "auto", paddingRight: 4 }}>
-                    {epsSingles.map((al, i) => {
-                      const onTitle = al.on ? titleForSlug(al.on) : null;
-                      const nav = al.on ? () => go("album", R.slug(a.name) + "~" + al.on) : () => goAlbum(al.title);
-                      return (
-                        <div key={al.title + i} className="r-track-row" onClick={nav}
-                          title={onTitle ? `${onTitle} →` : `${al.title} →`}
-                          style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 4px", cursor: "pointer", borderRadius: 4 }}>
-                          <span style={{ flex: 1, minWidth: 0, fontSize: 12, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                            {al.title}
-                            {onTitle && <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginLeft: 7 }}>→ appears on {onTitle}</span>}
-                          </span>
-                          <span className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{al.kind}</span>
-                          <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(al.plays)}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
+                  {albMode === "covers" ? (
+                    <div className="av-albumcovers" style={{ maxHeight: 300, overflowY: "auto", paddingRight: 4,
+                      display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: 10 }}>
+                      {epsSingles.map((al, i) => {
+                        const onTitle = al.on ? titleForSlug(al.on) : null;
+                        const nav = al.on ? () => go("album", R.slug(a.name) + "~" + al.on) : () => goAlbum(al.title);
+                        return (
+                          <div key={al.title + i} style={{ cursor: "pointer", minWidth: 0 }} onClick={nav}
+                            title={onTitle ? `${onTitle} →` : `${al.title} →`}>
+                            <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
+                            <div style={{ fontSize: 10, marginTop: 5, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{al.title}</div>
+                            <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>
+                              <span style={{ textTransform: "uppercase", letterSpacing: ".05em" }}>{al.kind}</span>
+                              {onTitle && <span style={{ marginLeft: 4 }}>· on {onTitle}</span>}
+                            </div>
+                            <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(al.plays)} plays</div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div style={{ display: "grid", gap: 2, maxHeight: 300, overflowY: "auto", paddingRight: 4 }}>
+                      {epsSingles.map((al, i) => {
+                        const onTitle = al.on ? titleForSlug(al.on) : null;
+                        const nav = al.on ? () => go("album", R.slug(a.name) + "~" + al.on) : () => goAlbum(al.title);
+                        return (
+                          <div key={al.title + i} className="r-track-row" onClick={nav}
+                            title={onTitle ? `${onTitle} →` : `${al.title} →`}
+                            style={{ display: "flex", alignItems: "center", gap: 9, padding: "5px 4px", cursor: "pointer", borderRadius: 4 }}>
+                            <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={30} radius={2} />
+                            <span style={{ flex: 1, minWidth: 0, fontSize: 12, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                              {al.title}
+                              {onTitle && <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginLeft: 7 }}>→ appears on {onTitle}</span>}
+                            </span>
+                            <span className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{al.kind}</span>
+                            <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(al.plays)}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               );})()}
 
-              {/* Compilations, live & OSTs — same spine rows, collapsed behind "+ N more" */}
+              {/* Compilations, live & OSTs — same covers/list as above, collapsed behind "+ N more" */}
               {comps.length > 0 && (
                 <div style={{ marginTop: (albums.length || epsSingles.length) ? 16 : 0 }}>
                   <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
                     <span className="lbl"><b>Compilations, live & OSTs</b></span>
                     <button className="av-more" onClick={() => setCompsOpen(o => !o)}>{compsOpen ? "hide ▴" : `+ ${comps.length} more`}</button>
                   </div>
-                  {compsOpen && (
+                  {compsOpen && (albMode === "covers" ? (
+                    <div className="av-albumcovers" style={{ maxHeight: 300, overflowY: "auto", paddingRight: 4,
+                      display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: 10 }}>
+                      {comps.map((al, i) => (
+                        <div key={al.title + i} style={{ cursor: "pointer", minWidth: 0 }} onClick={() => goAlbum(al.title)} title={`${al.title} →`}>
+                          <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
+                          <div style={{ fontSize: 10, marginTop: 5, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{al.title}</div>
+                          <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textTransform: "uppercase", letterSpacing: ".05em" }}>{al.kind}</div>
+                          <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(al.plays)} plays</div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
                     <div style={{ display: "grid", gap: 2, maxHeight: 300, overflowY: "auto", paddingRight: 4 }}>
                       {comps.map((al, i) => (
                         <div key={al.title + i} className="r-track-row" onClick={() => goAlbum(al.title)} title={`${al.title} →`}
-                          style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 4px", cursor: "pointer", borderRadius: 4 }}>
+                          style={{ display: "flex", alignItems: "center", gap: 9, padding: "5px 4px", cursor: "pointer", borderRadius: 4 }}>
+                          <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={30} radius={2} />
                           <span style={{ flex: 1, minWidth: 0, fontSize: 12, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{al.title}</span>
                           <span className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{al.kind}</span>
                           <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(al.plays)}</span>
                         </div>
                       ))}
                     </div>
-                  )}
+                  ))}
                 </div>
               )}
             </div>

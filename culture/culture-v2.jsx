@@ -2293,6 +2293,56 @@ function TonightCard({ item, pinned, onPin, onOpen }) {
 
 const TONIGHT_PIN_KEY = 'culture-tonight-pin';
 
+// ─────────── Tonight Overlay ───────────
+// Wraps TonightView in a Reader-style backdrop + scrollable panel.
+// `open` is the logical open state from the parent (route === 'tonight').
+// We keep the DOM alive for 240ms after open→false so the fade-out plays.
+// Pattern mirrors Reader exactly: mount → rAF → .on; close → off → 240ms → unmount.
+function TonightOverlay({ open, items, onOpenItem, onClose }) {
+  const [alive, setAlive] = React.useState(open);
+  const [on, setOn] = React.useState(false);
+  const closing = React.useRef(false);
+
+  const handleClose = React.useCallback(() => {
+    if (closing.current) return;
+    closing.current = true;
+    setOn(false);
+    setTimeout(() => { setAlive(false); onClose(); }, 240);
+  }, [onClose]);
+
+  React.useEffect(() => {
+    if (open) {
+      closing.current = false;
+      setAlive(true);
+      requestAnimationFrame(() => setOn(true));
+    } else if (!open && alive) {
+      handleClose();
+    }
+  }, [open]);  // intentionally omit alive/handleClose to avoid loops
+
+  React.useEffect(() => {
+    if (!alive) return;
+    const onKey = (e) => { if (e.key === 'Escape') handleClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [alive, handleClose]);
+
+  if (!alive) return null;
+
+  return (
+    <div className={`tonight-backdrop${on ? ' on' : ''}`} onClick={handleClose}>
+      <div className="tonight-panel" onClick={(e) => e.stopPropagation()}>
+        <button className="reader-close" onClick={handleClose} title="Close (Esc)">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" strokeLinecap="round"/>
+          </svg>
+        </button>
+        <TonightView items={items} onOpenItem={onOpenItem} onExit={handleClose} />
+      </div>
+    </div>
+  );
+}
+
 function TonightView({ items, onOpenItem, onExit }) {
   const [mediums, setMediums] = React.useState(() => new Set());  // empty = all
   const [budget, setBudget] = React.useState('any');
@@ -2419,7 +2469,6 @@ function TonightView({ items, onOpenItem, onExit }) {
   return (
     <div className="tonight">
       <div className="tonight-topbar">
-        <button className="tonight-back" onClick={onExit}>← Library</button>
         <h1 className="tonight-h1">Tonight's Pick<span className="dot">.</span></h1>
         <div className="tonight-sub">Deal three from what you want next — weighted for you, still a gamble.</div>
       </div>
@@ -2602,13 +2651,13 @@ function App() {
   // Standout-badge filter (highlight keys).
   const [selectedHighlights, setSelectedHighlights] = React.useState(() => new Set());
 
-  // Scroll lock for the Reader modal. (Popup lock is owned by Popup itself.)
+  // Scroll lock for the Reader modal and Tonight overlay. (Popup lock is owned by Popup itself.)
   React.useEffect(() => {
-    if (!openItem) return;
+    if (!openItem && route !== 'tonight') return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = prev; };
-  }, [openItem]);
+  }, [openItem, route]);
 
   // ── Shareable URL state ── encode collection / search / open-item in the hash,
   // e.g.  #/wishlist?q=genre:Horror&open=imp-f-1234  — restore it on load.
@@ -2895,21 +2944,6 @@ function App() {
     if (anyFilter && !prevFilterRef.current && mode === 'covers') setMode('spines');
     prevFilterRef.current = anyFilter;
   }, [anyFilter, mode]);
-
-  if (route === 'tonight') {
-    return (
-      <div className="page">
-        <TonightView items={wishlistItems} onOpenItem={setOpenItem} onExit={exitTonight} />
-        {openItem && (
-          <Reader item={openItem} onClose={() => setOpenItem(null)} onJump={(it) => setOpenItem(it)}
-            allItems={ITEMS}
-            otherItems={seenItems}
-            library="wishlist"
-            onFilter={() => setOpenItem(null)} />
-        )}
-      </div>
-    );
-  }
 
   return (
     <div className="page">
@@ -3204,6 +3238,13 @@ function App() {
           selectedHighlights={selectedHighlights}       onToggleHighlight={toggleHighlight}
         />
       )}
+
+      <TonightOverlay
+        open={route === 'tonight'}
+        items={wishlistItems}
+        onOpenItem={setOpenItem}
+        onClose={exitTonight}
+      />
     </div>
   );
 }

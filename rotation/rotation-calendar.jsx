@@ -6,11 +6,53 @@
 // ClockCard — VERTICAL hour-of-day histogram (00→23 as rows), all-time or a single year.
 // Lives to the RIGHT of the calendar as a sticky rail. Clicking an hour selects it (future:
 // filters the heatmap once per-day-hour data exists — see ROADMAP).
-function ClockCard({ R, selHours, setSelHours }) {
+function ClockCard({ R, selHours, setSelHours, customRange }) {
   const days = R.CLOCK.days;
   const grid = R.CLOCK.grid;
+  // Range-awareness: when a customRange is active, lazy-load day-hours.js and build the hour
+  // histogram over ONLY the range's days; otherwise fall back to the all-time clock grid.
+  const [dayHours, setDayHours] = React.useState(window.ROTATION_DAY_HOURS || null);
+  React.useEffect(() => {
+    if (!customRange) return;
+    if (window.ROTATION_DAY_HOURS) { setDayHours(window.ROTATION_DAY_HOURS); return; }
+    let s = document.getElementById("day-hours-js");
+    if (!s) {
+      s = document.createElement("script");
+      s.id = "day-hours-js"; s.src = "day-hours.js";
+      s.onload = () => setDayHours(window.ROTATION_DAY_HOURS);
+      s.onerror = () => setDayHours(null);
+      document.head.appendChild(s);
+    } else {
+      const poll = setInterval(() => { if (window.ROTATION_DAY_HOURS) { clearInterval(poll); setDayHours(window.ROTATION_DAY_HOURS); } }, 80);
+      return () => clearInterval(poll);
+    }
+  }, [customRange]);
+
+  const rangeActive = !!(customRange && dayHours);
+  // Histogram over range days (decode day-hours rows for every offset inside [start,end]).
+  const rangeHours = React.useMemo(() => {
+    if (!rangeActive) return null;
+    const startMs = new Date(dayHours.start + "T00:00:00Z").getTime();
+    const i0 = Math.round((customRange[0] - startMs) / 86400e3);
+    const i1 = Math.round((customRange[1] - startMs) / 86400e3);
+    const tot = new Array(24).fill(0);
+    for (let i = i0; i <= i1; i++) {
+      const row = dayHours.rows[i.toString(36)];
+      if (!row) continue;
+      for (const p of row.split(";")) { if (!p) continue; const [hs, cs] = p.split(":"); tot[parseInt(hs, 36)] += parseInt(cs, 36); }
+    }
+    return tot;
+  }, [rangeActive, dayHours, customRange]);
+
+  const rangeLabel = React.useMemo(() => {
+    if (!customRange) return "";
+    const M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const fD = (ms) => { const dt = new Date(ms); return dt.getUTCDate() + " " + M[dt.getUTCMonth()] + " " + String(dt.getUTCFullYear()).slice(2); };
+    return fD(customRange[0]) + " → " + fD(customRange[1]);
+  }, [customRange]);
+
   const hourTot = React.useMemo(() =>
-    Array.from({ length: 24 }, (_, h) => days.reduce((s, _, di) => s + grid[di][h], 0)), [R]);
+    rangeHours || Array.from({ length: 24 }, (_, h) => days.reduce((s, _, di) => s + grid[di][h], 0)), [R, rangeHours]);
   const max = Math.max(1, ...hourTot);
   const total = hourTot.reduce((a, b) => a + b, 0) || 1;
   const peakHour = hourTot.indexOf(Math.max(...hourTot));
@@ -20,9 +62,9 @@ function ClockCard({ R, selHours, setSelHours }) {
   const toggle = (h) => { const n = new Set(selHours); n.has(h) ? n.delete(h) : n.add(h); setSelHours(n); };
   return (
     <div className="r-card cal-clock" style={{ padding: "14px 14px 12px" }}>
-      <div className="r-card-h" style={{ padding: 0, marginBottom: 4, display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
-        <span className="lbl"><b>Rhythm</b></span>
-        {selHours.size > 0 && <button onClick={() => setSelHours(new Set())} className="r-mono" style={{ background: "none", border: "none", color: "var(--ink-faint)", cursor: "pointer", fontSize: 9 }}>clear ✕</button>}
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 4, display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 6 }}>
+        <span className="lbl" style={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}><b>Rhythm</b>{rangeActive && <span style={{ color: "var(--ink-faint)", fontWeight: 400 }}> · {rangeLabel}</span>}</span>
+        {selHours.size > 0 && <button onClick={() => setSelHours(new Set())} className="r-mono" style={{ background: "none", border: "none", color: "var(--ink-faint)", cursor: "pointer", fontSize: 9, flexShrink: 0 }}>clear ✕</button>}
       </div>
       <div style={{ fontSize: 11.5, color: "var(--ink-soft)", marginBottom: 10 }}>
         {selHours.size > 0
@@ -98,19 +140,28 @@ function DraggablePanel({ storageKey, title, onClose, children }) {
 }
 
 function sumHours(h, hrs) { if (!h) return 0; let s = 0; for (const x of hrs) s += h[x] || 0; return s; }
-// merge the selected hours' month sub-breakdowns into one ranked set (Tier 2)
-function mergeHours(period, hrs) {
+
+// mergeBreakdowns — fold a list of period-like sub-breakdowns into ONE ranked pseudo-period.
+// Each entry is { t, a, al, s, d } (t=plays, a/al/s = ranked id-rows [..ids, plays], d=6-slot DNA).
+// Ranked lists are id-joined + play-summed; d is weight-averaged by each entry's t. Used by both
+// mergeHours (month × selected-hours) and the calendar range overview (day entries across a range).
+function mergeBreakdowns(entries) {
   const merge = (key) => {
     const m = new Map();
-    for (const hr of hrs) { const sub = period.h[hr]; if (!sub) continue;
-      for (const row of sub[key]) { const id = row.slice(0, -1).join("|"); const plays = row[row.length - 1];
+    for (const e of entries) { const rows = e && e[key]; if (!rows) continue;
+      for (const row of rows) { const id = row.slice(0, -1).join("|"); const plays = row[row.length - 1];
         const cur = m.get(id); if (cur) cur[cur.length - 1] += plays; else m.set(id, row.slice()); } }
     return [...m.values()].sort((a, b) => b[b.length - 1] - a[a.length - 1]);
   };
   let t = 0; const dsum = [0, 0, 0, 0, 0, 0]; let tw = 0;
-  for (const hr of hrs) { const sub = period.h[hr]; if (!sub) continue; t += sub.t;
-    for (let i = 0; i < 6; i++) dsum[i] += sub.d[i] * sub.t; tw += sub.t; }
-  return { t, n: period.n, a: merge("a"), al: merge("al"), s: merge("s"), d: dsum.map(x => Math.round(x / (tw || 1) * 100) / 100) };
+  for (const e of entries) { if (!e) continue; t += e.t;
+    for (let i = 0; i < 6; i++) dsum[i] += (e.d ? e.d[i] : 0) * e.t; tw += e.t; }
+  return { t, a: merge("a"), al: merge("al"), s: merge("s"), d: dsum.map(x => Math.round(x / (tw || 1) * 100) / 100) };
+}
+// merge the selected hours' month sub-breakdowns into one ranked set (Tier 2)
+function mergeHours(period, hrs) {
+  const subs = hrs.map(hr => period.h[hr]).filter(Boolean);
+  return { ...mergeBreakdowns(subs), n: period.n };
 }
 
 // ─────────────────────────────────────────────────────────────────
@@ -135,12 +186,40 @@ const CAL_HORIZON_COLORS = [
 
 const DAY_MS = 86400e3;
 
-function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, customRange, setCustomRange }) {
+function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, customRange, setCustomRange, onRangeCommit }) {
   const [days, setDays] = React.useState(window.ROTATION_DAYS || null);
   const [view, setView] = React.useState(() => {
     try { return localStorage.getItem("rot-cal-strip-view") === "horizon" ? "horizon" : "barcode"; } catch (e) { return "barcode"; }
   });
   const stripRef = React.useRef(null);   // the interactive strip element (for px↔day mapping)
+  const scrubRef = React.useRef(null);   // the fixed .bc-scrubber wrapper — docked above the footer
+
+  // Dock the fixed bar above the app footer. `.r-app` has overflow-x:hidden, which defeats
+  // position:sticky in real browsers, so we go fixed + compute the bottom offset from the footer
+  // each scroll/resize (rAF-throttled). While scrolling: pinned to the viewport bottom (off=0).
+  // At page end: rides up so its bottom sits exactly on the footer's top edge.
+  React.useEffect(() => {
+    let raf = 0;
+    const apply = () => {
+      raf = 0;
+      const el = scrubRef.current; if (!el) return;
+      const ft = document.querySelector(".r-foot");
+      const off = ft ? Math.max(0, window.innerHeight - ft.getBoundingClientRect().top) : 0;
+      el.style.bottom = off + "px";
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(apply); };
+    apply();  // run once on mount (and again below when data loads)
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); if (raf) cancelAnimationFrame(raf); };
+  }, []);
+  // Re-dock once the history data loads (the strip height / footer position can shift).
+  React.useEffect(() => {
+    const el = scrubRef.current; if (!el) return;
+    const ft = document.querySelector(".r-foot");
+    const off = ft ? Math.max(0, window.innerHeight - ft.getBoundingClientRect().top) : 0;
+    el.style.bottom = off + "px";
+  }, [days]);
 
   React.useEffect(() => {
     if (window.ROTATION_DAYS) { setDays(window.ROTATION_DAYS); return; }
@@ -271,6 +350,9 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
     if (!dragRef.current) return;
     dragRef.current = null;
     try { e.currentTarget.releasePointerCapture(e.pointerId); } catch (err) {}
+    // Commit the range on pointer-up (not per-move) → drives the range overview panel.
+    // Skip a zero-width "clip out of nothing" tap that never grew into a range.
+    if (onRangeCommit && customRange && customRange[1] > customRange[0]) onRangeCommit(customRange);
   };
   // Grab a handle → anchor is the opposite edge.
   const beginHandle = (edge) => (e) => {
@@ -290,13 +372,15 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
     try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {}
   };
 
-  const shell = (children) => <div className="bc-scrubber">{children}</div>;
+  const shell = (children) => <div className="bc-scrubber" ref={scrubRef}>{children}</div>;
 
   const header = (
     <div className="bc-head">
-      <div className="r-seg bc-seg">
+      <div className="r-seg bc-seg" data-locked={!!customRange}>
         {[["day", "day"], ["week", "week"], ["month", "month"]].map(([k, l]) =>
-          <button key={k} data-on={gran === k} onClick={() => { setGran(k); setSel(null); }}>{l}</button>)}
+          <button key={k} data-on={gran === k} disabled={!!customRange}
+            title={customRange ? "clear the range to use periods" : undefined}
+            onClick={() => { if (customRange) return; setGran(k); setSel(null); }}>{l}</button>)}
       </div>
       <div className="bc-readout">
         {customRange && meta ? (() => {
@@ -417,7 +501,10 @@ function CalendarView({ go, seed }) {
   const heatRef = React.useRef(null);                  // heatmap svg — scrub clicks scroll to the year's row
   const [pane, setPane] = React.useState("artists");  // artists | albums | songs | dna
   const [selHours, setSelHours] = React.useState(() => new Set()); // rhythm hour multi-select
+  const [rangeCommit, setRangeCommit] = React.useState(null); // committed [startMs,endMs] → range overview panel
   React.useEffect(() => { if (seedDay) ensureDetail(); }, []);
+  // Clearing the range anywhere (the strip's ✕, or setCustomRange(null)) closes the range panel.
+  React.useEffect(() => { if (!customRange && rangeCommit) setRangeCommit(null); }, [customRange]);
 
   React.useEffect(() => {
     if (window.ROTATION_CAL) { setCal(window.ROTATION_CAL); return; }
@@ -444,6 +531,24 @@ function CalendarView({ go, seed }) {
     const start = new Date(sel + "T00:00:00Z").getTime();
     return gran === "week" ? [start, start + 6 * 86400e3] : [start, start];
   }, [sel, gran, customRange]);
+
+  // Range overview: merge detail.day entries for every day inside the committed range into ONE
+  // pseudo-period (top artists/albums/songs id-joined + summed, DNA weight-averaged by each day's
+  // t) — rendered through the SAME panel markup as day/week/month. Re-runs when rangeCommit changes
+  // (commit fires on pointer-up / year-click, not per-move) or when detail finishes loading.
+  const rangePeriod = React.useMemo(() => {
+    if (!rangeCommit || !detail || !detail.day) return null;
+    const [s, en] = rangeCommit;
+    const entries = [];
+    for (let ms = s; ms <= en; ms += 86400e3) {
+      const key = new Date(ms).toISOString().slice(0, 10);
+      const p = detail.day[key];
+      if (p) entries.push(p);
+    }
+    if (!entries.length) return { t: 0, n: 0, a: [], al: [], s: [], d: [0, 0, 0, 0, 0, 0] };
+    const merged = mergeBreakdowns(entries);
+    return { ...merged, n: entries.length };
+  }, [rangeCommit, detail]);
 
   const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const MONF = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -475,6 +580,18 @@ function CalendarView({ go, seed }) {
   const selLabel = sel ? (gran === "day" ? fmtDate(new Date(sel + "T00:00:00Z")) : gran === "week" ? "Week of " + fmtDate(new Date(sel + "T00:00:00Z")) : MONF[+sel.split("-")[1] - 1] + " " + sel.split("-")[0]) : "";
   const aRow = ([i, p]) => ({ name: NM[i], plays: p });
   const iRow = ([t, a, p]) => ({ title: NM[t], artist: NM[a], plays: p });
+
+  // Unified panel state: a committed range takes priority over a period `sel`. Both feed the same
+  // DraggablePanel markup. `panelKind` labels the overview; `panelP` is the merged pseudo-period.
+  const rangeOpen = !!rangeCommit;
+  const panelOpen = rangeOpen || !!sel;
+  const panelKind = rangeOpen ? "range" : gran;
+  const panelP = rangeOpen ? rangePeriod : P;
+  const rangeLbl = rangeCommit ? fmtDate(new Date(rangeCommit[0])) + " → " + fmtDate(new Date(rangeCommit[1])) : "";
+  const panelLabel = rangeOpen ? rangeLbl : selLabel;
+  const panelTitle = rangeOpen ? ("range overview · " + rangeLbl) : (gran + " overview" + (selLabel ? " · " + selLabel : ""));
+  // closing the panel clears the range too (✕ on the pane); a plain period close just clears sel.
+  const closePanel = () => { if (rangeOpen) { setRangeCommit(null); setCustomRange(null); setSelYear(null); } else setSel(null); };
 
   return (
     <div className="r-view tv-page">
@@ -527,23 +644,23 @@ function CalendarView({ go, seed }) {
       </div>
       </div>
       {/* rhythm — the vertical hour clock (moved from Explore), sitting to the right of the calendar */}
-      <ClockCard R={R} selHours={selHours} setSelHours={setSelHours} />
+      <ClockCard R={R} selHours={selHours} setSelHours={setSelHours} customRange={customRange} />
       </div>
 
-      {/* period overview */}
-      {sel && (
-        <DraggablePanel storageKey="rot-cal-panel" title={gran + " overview" + (selLabel ? " · " + selLabel : "")} onClose={() => setSel(null)}>
+      {/* period / range overview — a committed range takes priority over a day/week/month sel */}
+      {panelOpen && (
+        <DraggablePanel storageKey="rot-cal-panel" title={panelTitle} onClose={closePanel}>
           {!detail ? <div style={{ color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12, padding: "10px 0" }}>loading the detail…</div>
-            : !period ? <div style={{ color: "var(--ink-soft)" }}><b>{selLabel}</b> — too quiet for a full breakdown{hov && hov.top ? <> (mostly {hov.top[0]})</> : ""}.</div>
+            : !panelP || !panelP.t ? <div style={{ color: "var(--ink-soft)" }}><b>{panelLabel}</b> — too quiet for a full breakdown{!rangeOpen && hov && hov.top ? <> (mostly {hov.top[0]})</> : ""}.</div>
               : <>
                 <div className="cal-ov-head">
                   <div>
-                    <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>{gran} overview</div>
-                    <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 24 }}>{selLabel}</div>
+                    <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>{panelKind} overview</div>
+                    <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 24 }}>{panelLabel}</div>
                   </div>
                   <div style={{ display: "flex", gap: 22, alignItems: "baseline" }}>
-                    <div><div className="r-stat-n" style={{ fontSize: 26 }}>{fmt(P.t)}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>plays</div></div>
-                    {gran !== "day" && <div><div className="r-stat-n" style={{ fontSize: 26 }}>{P.n}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>active days</div></div>}
+                    <div><div className="r-stat-n" style={{ fontSize: 26 }}>{fmt(panelP.t)}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>plays</div></div>
+                    {(rangeOpen || gran !== "day") && <div><div className="r-stat-n" style={{ fontSize: 26 }}>{panelP.n}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>active days</div></div>}
                   </div>
                 </div>
 
@@ -551,13 +668,13 @@ function CalendarView({ go, seed }) {
                   {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) =>
                     <button key={k} data-on={pane === k} onClick={() => setPane(k)}>{l}</button>)}
                 </div>
-                {selArr && (gran === "month"
-                  ? <div className="r-mono" style={{ fontSize: 9.5, color: "var(--accent)", marginBottom: 12 }}>filtered to {selHours.size} selected hour{selHours.size > 1 ? "s" : ""} · {fmt(P.t)} plays</div>
+                {!rangeOpen && selArr && (gran === "month"
+                  ? <div className="r-mono" style={{ fontSize: 9.5, color: "var(--accent)", marginBottom: 12 }}>filtered to {selHours.size} selected hour{selHours.size > 1 ? "s" : ""} · {fmt(panelP.t)} plays</div>
                   : <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 12 }}>hour filter shows on the heatmap · switch to <b>month</b> to filter this list</div>)}
 
                 {pane === "artists" && (
                   <div className="cal-rows">
-                    {P.a.map(aRow).map((r, i) => (
+                    {panelP.a.map(aRow).map((r, i) => (
                       <div key={r.name} className="cal-row" data-link={!!R.byId[R.slug(r.name)]} onClick={() => R.byId[R.slug(r.name)] && go("artist", R.slug(r.name))}>
                         <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span>
                         <GenCover hue={(R.byId[R.slug(r.name)] || {}).hue || 210} name={r.name} size={34} radius={3} />
@@ -569,7 +686,7 @@ function CalendarView({ go, seed }) {
                 )}
                 {(pane === "albums" || pane === "songs") && (
                   <div className="cal-rows">
-                    {(pane === "albums" ? P.al : P.s).map(iRow).map((r, i) => (
+                    {(pane === "albums" ? panelP.al : panelP.s).map(iRow).map((r, i) => (
                       <div key={r.title + i} className="cal-row" data-link={!!R.byId[R.slug(r.artist)]} onClick={() => R.byId[R.slug(r.artist)] && go("artist", R.slug(r.artist))}>
                         <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span>
                         <GenCover hue={(R.byId[R.slug(r.artist)] || {}).hue || 210} name={r.artist} size={34} radius={3} />
@@ -585,8 +702,8 @@ function CalendarView({ go, seed }) {
                 {pane === "dna" && (
                   <div style={{ display: "flex", justifyContent: "center", padding: "6px 0" }}>
                     <div style={{ maxWidth: 360, width: "100%" }}>
-                      <Radar axes={["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"]} values={P.d} values2={avg} run={true} size={300} />
-                      <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 6 }}>solid = this {gran} · dashed = your all-time average</div>
+                      <Radar axes={["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"]} values={panelP.d} values2={avg} run={true} size={300} />
+                      <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 6 }}>solid = this {panelKind} · dashed = your all-time average</div>
                     </div>
                   </div>
                 )}
@@ -601,9 +718,12 @@ function CalendarView({ go, seed }) {
           years={years} selYear={selYear}
           gran={gran} setGran={setGran} setSel={setSel}
           customRange={customRange} setCustomRange={setCustomRange}
+          // committed on pointer-up (handle/strip drag) → open + aggregate the range overview panel
+          onRangeCommit={(range) => { ensureDetail(); setRangeCommit(range); }}
           onYear={(y, range) => {
             setSelYear(y);
             setCustomRange(range);  // year click also clips the heatmap to that whole year
+            ensureDetail(); setRangeCommit(range);  // year is a committed range → range overview
             // jump the page to that year's heatmap row (the calendar shows all years stacked)
             const el = heatRef.current;
             if (y != null && el) {
@@ -641,13 +761,13 @@ function CalendarView({ go, seed }) {
         .cal-float-x { background: none; border: none; color: var(--ink-faint); cursor: pointer; font-size: 12px; line-height: 1; }
         .cal-float-x:hover { color: var(--ink); }
         .cal-float-body { padding: 18px 20px; overflow-y: auto; }
-        /* ── Barcode / horizon time-control — sticky to the viewport bottom ──
-           Full-bleed: negative margins cancel the .r-view horizontal padding so the
-           strip spans edge-to-edge. Sticky-bottom pins it while the page continues
-           below the fold, then it docks at the end and the footer shows through. */
+        /* ── Barcode / horizon time-control — FIXED to the viewport bottom, docked above the
+           footer. .r-app has overflow-x:hidden which defeats position:sticky in real browsers, so
+           we pin with position:fixed and set bottom from JS (footer-aware, rAF-throttled): 0px
+           while scrolling, rising to the footer's height at page end so the footer stays visible.
+           left/right:0 span the viewport edge-to-edge (no full-bleed margin trick needed now). */
         .bc-scrubber {
-          position: sticky; bottom: 0; z-index: 50;
-          margin: 18px calc(-1 * var(--pad, 24px)) 0;
+          position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
           background: color-mix(in oklab, var(--bg) 90%, transparent);
           -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
           border-top: 1px solid var(--rule);
@@ -655,10 +775,17 @@ function CalendarView({ go, seed }) {
           padding-bottom: calc(6px + env(safe-area-inset-bottom));
           box-sizing: border-box;
         }
+        /* reserve space at the view bottom so page content clears the fixed bar (strip 40 + header
+           + label rows + padding ≈ 118px). Matches the fixed bar's rendered height. */
+        .tv-page { padding-bottom: 130px; }
         /* Slim header row: granularity · readout · view toggle */
         .bc-head { display: flex; align-items: center; gap: 12px; margin-bottom: 5px; flex-wrap: wrap; }
         .bc-seg { flex-shrink: 0; }
         .bc-seg button { font-size: 10px; padding: 2px 8px; }
+        /* range takes priority — the Day/Week/Month buttons dim + go non-interactive while a
+           customRange is active (clear the range to re-enable them). */
+        .bc-seg[data-locked="true"] { opacity: .4; }
+        .bc-seg[data-locked="true"] button { cursor: not-allowed; pointer-events: none; }
         .bc-viewseg { margin-left: auto; }
         .bc-readout { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft);
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
