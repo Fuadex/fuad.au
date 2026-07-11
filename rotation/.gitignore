@@ -46,6 +46,8 @@ calendar-detail.js
 geo-detail.js
 tm-tour-lazy.js
 album-about-lazy.js
+album-alias.js
+artist-days.js
 
 # llm-about shards + theme index — CI artifacts from shard-about.js (which STAYS committed).
 # llm-about.js itself remains the committed source of truth; only the split output is ignored.
