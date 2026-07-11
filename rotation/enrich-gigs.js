@@ -86,6 +86,20 @@ function flattenSongs(sets) {
     p++;
     await sleep(DELAY_MS);
   }
+  // gigs-local.json (untracked, optional) — local corrections applied at fetch time, same
+  // shape as gigs-manual `override` (match by artist+date, set fields). setlist.fm sometimes
+  // carries stand-in/mislabelled entries; the fixes live locally and are re-applied on refresh.
+  const LOCAL = path.join(__dirname, "gigs-local.json");
+  if (fs.existsSync(LOCAL)) {
+    const loc = JSON.parse(fs.readFileSync(LOCAL, "utf8"));
+    for (const o of (loc.override || [])) {
+      const hit = gigs.find(g => g.artist.toLowerCase() === o.match.artist.toLowerCase() && (!o.match.date || g.date === o.match.date));
+      if (hit) {
+        Object.assign(hit, o.set);
+        if (o.scrubRef) { hit.url = ""; hit.id = "m-" + hit.artist.toLowerCase().replace(/ /g, "-").slice(0, 24) + "-" + hit.date; }
+      } else console.warn(`gigs-local: override target not found — ${o.match.artist} ${o.match.date || ""}`);
+    }
+  }
   gigs.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0)); // newest first
   const payload = { fetched: new Date().toISOString().slice(0, 10), user: USER, total: gigs.length, gigs };
   fs.writeFileSync(OUT, JSON.stringify(payload, null, 0), "utf8");

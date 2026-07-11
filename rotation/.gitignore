@@ -16,6 +16,7 @@ my_spotify_data*.zip
 Spotify Extended Streaming History/
 Spotify Account Data/
 spotify-sync.log
+gigs-local.json
 # scratch logs from background enrichment runs
 *-run.log
 
