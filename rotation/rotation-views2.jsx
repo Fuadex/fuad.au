@@ -835,17 +835,6 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
           <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} onTour={a.onTour} />
-          {instrStrip && (
-            <div title={instrStrip.tip} style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 12,
-              padding: "4px 10px", borderRadius: 999, border: "1px solid var(--rule)", cursor: "default" }}>
-              <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", letterSpacing: ".02em" }}>{instrStrip.n}-piece</span>
-              <span style={{ color: "var(--ink-faint)" }}>·</span>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 15, lineHeight: 1 }}>
-                {instrStrip.glyphs.map((g, i) => <span key={i}>{g}</span>)}
-                {instrStrip.overflow && <span style={{ fontSize: 12, color: "var(--ink-faint)" }}>…</span>}
-              </span>
-            </div>
-          )}
           {a.tags && a.tags.length > 0 && (
             <div style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap", alignItems: "center" }}>
               <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>last.fm</span>
@@ -875,6 +864,18 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
            right-stuck via marginLeft:auto; min-width floor keeps it from collapsing on
            narrow artists (Fuad 2026-07-12). */}
         <div style={{ display: "flex", flexDirection: "column", gap: 0, alignSelf: "flex-end", marginLeft: "auto", width: "fit-content", maxWidth: "100%", minWidth: 280 }}>
+          {/* instrument strip rides ABOVE the barcode (Fuad 2026-07-12), right-aligned with it */}
+          {instrStrip && (
+            <div title={instrStrip.tip} style={{ display: "flex", alignItems: "center", gap: 8, justifyContent: "flex-end",
+              marginBottom: 8, cursor: "default" }}>
+              <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)", letterSpacing: ".02em" }}>{instrStrip.n}-piece</span>
+              <span style={{ color: "var(--ink-faint)" }}>·</span>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 14, lineHeight: 1 }}>
+                {instrStrip.glyphs.map((g, i) => <span key={i}>{g}</span>)}
+                {instrStrip.overflow && <span style={{ fontSize: 12, color: "var(--ink-faint)" }}>…</span>}
+              </span>
+            </div>
+          )}
           {/* width:0 + minWidth:100% — the barcode contributes NOTHING to the column's intrinsic
              width, so the column sizes to the STAT ROW alone and the barcode then fills exactly
              that width (the "hug the plays→listeners block" ask, done right this time). */}

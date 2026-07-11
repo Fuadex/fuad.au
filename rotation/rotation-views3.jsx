@@ -2159,15 +2159,16 @@ function useTourMapNav(svgRef, gRef, dotSel) {
   const toVB = (cx, cy) => { const r = svgRef.current.getBoundingClientRect(); return [TMAP_VB.x + (cx - r.left) / r.width * TMAP_VB.w, TMAP_VB.y + (cy - r.top) / r.height * TMAP_VB.h]; };
 
   // FISHEYE — grow the dots nearest the cursor by writing each circle's r attribute (transforms on
-  // SVG <g> proved unreliable across browsers). Ported from GigsMap: R_PX 110 / MAXK 2.6, eased
-  // falloff, imperative hover readout. Each hit-<g> carries data-cx/cy/city/count; data-r caches the
-  // base radius so React re-renders (which reset r to the base) never fight the hover.
-  const R_PX = 110, FISH_MAXK = 2.6;
+  // SVG <g> proved unreliable across browsers). Tuned SUBTLE (Fuad 2026-07-12): small radius,
+  // gentle growth. Each hit-<g> carries data-cx/cy + data-r0 (the UNSCALED base radius); the
+  // rendered r = r0/k so dots stay constant on screen — setK recomputes from r0 each time, so
+  // zoom-driven re-renders never leave a stale cache.
+  const R_PX = 55, FISH_MAXK = 1.35;
   const setK = (g, k) => {
     const c = g.querySelector("circle"); if (!c) return;
-    const b = +c.dataset.r || +c.getAttribute("r");
-    if (!c.dataset.r) c.dataset.r = b;
-    c.setAttribute("r", (b * k).toFixed(2));
+    const r0 = +g.dataset.r0 || +c.getAttribute("r");
+    const t = pending.current || tfRef.current;
+    c.setAttribute("r", ((r0 / (t.k || 1)) * k).toFixed(2));
   };
   const resetAll = (svg) => { for (const g of svg.querySelectorAll(dotSel)) setK(g, 1); };
   const runFisheye = (cx, cy) => {
@@ -2191,9 +2192,7 @@ function useTourMapNav(svgRef, gRef, dotSel) {
         setK(g, k);
         if (dnorm < bestD) { bestD = dnorm; bestG = g; }
       }
-      if (hovRef.current) hovRef.current.textContent = (bestG && bestD < 1)
-        ? (bestG.dataset.city || "") + " · " + (bestG.dataset.count || "") + " event" + (bestG.dataset.count === "1" ? "" : "s")
-        : "hover the bubbles — they grow toward the cursor · drag to pan · wheel to zoom";
+      // (hover readout removed — Fuad: "I don't want the full cities printed")
     });
   };
 
@@ -2314,9 +2313,9 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
   const dotEls = React.useMemo(() => cities.map(c => {
     const on = !off.has(c.k);
     return (
-      <g key={c.k} className="gv-tmap-hit" data-cx={c.x} data-cy={c.y} data-city={`${c.city} (${c.cc})`} data-count={c.n} style={{ opacity: on ? 1 : 0.14 }}>
+      <g key={c.k} className="gv-tmap-hit" data-cx={c.x} data-cy={c.y} data-r0={(base + Math.sqrt(c.n) * 1.15).toFixed(2)} style={{ opacity: on ? 1 : 0.14 }}>
         <circle className="gv-tmap-dot" data-on={city === c.k}
-          cx={c.x} cy={c.y} r={base + Math.sqrt(c.n) * 1.15} strokeWidth={1.2 / rk}
+          cx={c.x} cy={c.y} r={(base + Math.sqrt(c.n) * 1.15) / rk} strokeWidth={1.2 / rk}
           fill={c.hue != null ? `oklch(0.64 0.15 ${c.hue})` : "var(--accent)"}
           onClick={(e) => { if (!nav.moved.current && on) setCity(city === c.k ? null : c.k); e.stopPropagation(); }}>
           <title>{c.city} ({c.cc}) · {c.n} event{c.n !== 1 ? "s" : ""} — click to filter</title>
@@ -2359,7 +2358,6 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
           {tf.k > 1 && <button onClick={() => { setOff(new Set()); nav.resetView(cities); }} title="reset view">⟲</button>}
         </div>
       </div>
-      <div ref={nav.hovRef} className="gv-cmap-hoverline r-mono">hover the bubbles — they grow toward the cursor · drag to pan · wheel to zoom</div>
       <div className="gv-cmap-chips">
         {cities.map(c => (
           <button key={c.k} className="gv-cmap-chip" data-on={!off.has(c.k)}
