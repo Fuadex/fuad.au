@@ -90,33 +90,96 @@ function ClockCard({ R, selHours, setSelHours, customRange }) {
   );
 }
 
-// Draggable, repositionable floating panel; remembers its position in localStorage.
+// Panel size clamps (desktop mode only — mobile is the CSS bottom-sheet, untouched).
+const PANEL_MIN_W = 320, PANEL_MIN_H = 280;
+const panelMaxW = () => Math.round(window.innerWidth * 0.92);
+const panelMaxH = () => Math.round(window.innerHeight * 0.85);
+// Clamp a stored {x,y,w,h} so the panel stays usable: size within [min, viewport-max], and at
+// least the title bar reachable (x ≤ innerWidth−120, y ≤ innerHeight−60, both ≥ 0). Returns a
+// normalised object (w/h may be undefined if never resized — CSS default width then applies).
+function clampPanelBox(s) {
+  if (!s || typeof s.x !== "number" || typeof s.y !== "number") return null;
+  const vw = window.innerWidth, vh = window.innerHeight;
+  const out = { x: s.x, y: s.y };
+  if (typeof s.w === "number") out.w = Math.max(PANEL_MIN_W, Math.min(panelMaxW(), s.w));
+  if (typeof s.h === "number") out.h = Math.max(PANEL_MIN_H, Math.min(panelMaxH(), s.h));
+  out.x = Math.max(0, Math.min(vw - 120, out.x));
+  out.y = Math.max(0, Math.min(vh - 60, out.y));
+  return out;
+}
+
+// Draggable, repositionable, resizable floating panel; remembers {x,y,w,h} in localStorage.
 function DraggablePanel({ storageKey, title, onClose, children }) {
   const ref = React.useRef(null);
-  const posRef = React.useRef(null);
-  const [pos, setPos] = React.useState(() => {
-    try { const s = JSON.parse(localStorage.getItem(storageKey) || "null"); if (s && typeof s.x === "number") { posRef.current = s; return s; } } catch (e) {}
+  const boxRef = React.useRef(null);
+  // Initialise from storage, clamped against the CURRENT viewport in the useState initializer so
+  // an off-screen 4K position never paints (refinement #4 — runs before first paint).
+  const [box, setBox] = React.useState(() => {
+    try { const c = clampPanelBox(JSON.parse(localStorage.getItem(storageKey) || "null")); if (c) { boxRef.current = c; return c; } } catch (e) {}
     return null;
   });
+  const persist = () => { try { localStorage.setItem(storageKey, JSON.stringify(boxRef.current)); } catch (e) {} };
+
+  // On window resize, re-clamp position AND size so a shrunk viewport can't strand the panel.
+  React.useEffect(() => {
+    const onResize = () => {
+      if (!boxRef.current) return;
+      const c = clampPanelBox(boxRef.current);
+      boxRef.current = c; setBox(c); persist();
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  // ── Bar drag = reposition (Pointer Events → mouse + pen; touch on mobile keeps the sheet path). ──
   const startDrag = (e) => {
-    if (e.button !== 0) return;
+    if (e.button != null && e.button !== 0) return;
+    // On mobile the bar RESIZES the sheet (onBarTouchStart) — don't hijack touch here.
+    if (e.pointerType === "touch" && window.innerWidth <= 760) return;
     const r = ref.current.getBoundingClientRect();
     const off = { x: e.clientX - r.left, y: e.clientY - r.top };
     const move = (ev) => {
-      const x = Math.max(6, Math.min(window.innerWidth - 80, ev.clientX - off.x));
-      const y = Math.max(6, Math.min(window.innerHeight - 30, ev.clientY - off.y));
-      posRef.current = { x, y }; setPos({ x, y });
+      const cur = boxRef.current || {};
+      const c = clampPanelBox({ ...cur, x: ev.clientX - off.x, y: ev.clientY - off.y });
+      boxRef.current = c; setBox(c);
     };
-    const up = () => {
-      window.removeEventListener("mousemove", move); window.removeEventListener("mouseup", up);
-      try { localStorage.setItem(storageKey, JSON.stringify(posRef.current)); } catch (e) {}
+    const up = (ev) => {
+      window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up);
+      persist();
     };
-    window.addEventListener("mousemove", move); window.addEventListener("mouseup", up);
+    window.addEventListener("pointermove", move); window.addEventListener("pointerup", up);
     e.preventDefault();
   };
+
+  // ── Resize (desktop only): corner grip + right/bottom edges. Pointer Events + capture = mouse
+  //    AND touch/pen on desktop-width viewports. dir picks which dimensions grow. ──
+  const startResize = (dir) => (e) => {
+    if (e.button != null && e.button !== 0) return;
+    if (window.innerWidth <= 760) return;   // mobile sheet owns sizing
+    e.preventDefault(); e.stopPropagation();
+    const r = ref.current.getBoundingClientRect();
+    const start = { mx: e.clientX, my: e.clientY, w: r.width, h: r.height, x: r.left, y: r.top };
+    try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {}
+    const target = e.currentTarget;
+    const move = (ev) => {
+      const cur = boxRef.current || { x: start.x, y: start.y };
+      let w = cur.w, h = cur.h;
+      if (dir.indexOf("e") >= 0) w = Math.max(PANEL_MIN_W, Math.min(panelMaxW(), start.w + (ev.clientX - start.mx)));
+      if (dir.indexOf("s") >= 0) h = Math.max(PANEL_MIN_H, Math.min(panelMaxH(), start.h + (ev.clientY - start.my)));
+      const c = clampPanelBox({ x: cur.x != null ? cur.x : start.x, y: cur.y != null ? cur.y : start.y, w, h });
+      boxRef.current = c; setBox(c);
+    };
+    const up = (ev) => {
+      window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up);
+      try { target.releasePointerCapture(ev.pointerId); } catch (err) {}
+      persist();
+    };
+    window.addEventListener("pointermove", move); window.addEventListener("pointerup", up);
+  };
+
   // Mobile: the panel becomes a bottom sheet (CSS below overrides the fixed pos). Dragging the
   // bar with a finger RESIZES it (24–90 vh), so it can be shrunk to a peek strip instead of
-  // overshadowing the calendar behind it (Fuad 2026-07-05).
+  // overshadowing the calendar behind it (Fuad 2026-07-05). Untouched by the desktop resize above.
   const [sheetH, setSheetH] = React.useState(40);
   const onBarTouchStart = () => {
     const move = (ev) => {
@@ -126,15 +189,28 @@ function DraggablePanel({ storageKey, title, onClose, children }) {
     const end = () => { window.removeEventListener("touchmove", move); window.removeEventListener("touchend", end); };
     window.addEventListener("touchmove", move, { passive: true }); window.addEventListener("touchend", end);
   };
-  const style = { ...(pos ? { left: pos.x, top: pos.y, right: "auto", bottom: "auto" } : {}), "--sheet-h": sheetH + "vh" };
+  // Explicit w/h only apply on desktop (CSS `!important` sheet rules win on mobile ≤760px).
+  const style = {
+    ...(box ? { left: box.x, top: box.y, right: "auto", bottom: "auto" } : {}),
+    ...(box && box.w ? { width: box.w } : {}),
+    ...(box && box.h ? { height: box.h, maxHeight: box.h } : {}),
+    "--sheet-h": sheetH + "vh"
+  };
   return (
     <div ref={ref} className="cal-float" style={style}>
-      <div className="cal-float-bar" onMouseDown={startDrag} onTouchStart={onBarTouchStart}>
+      <div className="cal-float-bar" onPointerDown={startDrag} onTouchStart={onBarTouchStart}>
         <span className="cal-float-grip">⠿</span>
         <span className="cal-float-title">{title}</span>
         <button className="cal-float-x" onClick={onClose} title="close">✕</button>
       </div>
       <div className="cal-float-body">{children}</div>
+      {/* Desktop resize affordances — hidden on mobile via CSS. Edges are 6px invisible strips;
+          the corner is a 24×24 target. All use Pointer Events (mouse + touch/pen). */}
+      <div className="cal-float-rz cal-float-rz-e" onPointerDown={startResize("e")} />
+      <div className="cal-float-rz cal-float-rz-s" onPointerDown={startResize("s")} />
+      <div className="cal-float-rz cal-float-rz-se" onPointerDown={startResize("se")} title="resize">
+        <svg viewBox="0 0 10 10" width="10" height="10"><path d="M9 1 L1 9 M9 5 L5 9" stroke="currentColor" strokeWidth="1" fill="none" /></svg>
+      </div>
     </div>
   );
 }
@@ -340,9 +416,18 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
   //   • edge drag  — grabbing a handle: the OTHER edge is the fixed anchor.
   //   • fresh drag — pressing empty strip with no range: the press point is the anchor,
   //     and the pointer defines the moving edge (clip a range out of nothing).
-  const dragRef = React.useRef(null);   // { anchor: ms } — the fixed edge; pointer defines the other
+  //   • move drag  — grabbing the region BETWEEN the handles: translate the whole [start,end]
+  //     window along the axis preserving its width, clamped at both ends (refinement #6).
+  const dragRef = React.useRef(null);   // edge/fresh: { anchor: ms } · move: { move:true, grabMs, width }
   const onDragMove = (e) => {
     const d = dragRef.current; if (!d) return;
+    if (d.move) {
+      // Translate: keep the grabbed offset under the pointer, clamp so the whole window fits.
+      const raw = msFromClientX(e.clientX) - d.grabMs;      // desired new start (day-aligned)
+      const start = Math.max(meta.msStart, Math.min(meta.msEnd - d.width, raw));
+      setCustomRange([start, start + d.width]);
+      return;
+    }
     const ms = msFromClientX(e.clientX);
     setCustomRange([Math.min(ms, d.anchor), Math.max(ms, d.anchor)]);
   };
@@ -361,10 +446,24 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
     dragRef.current = { anchor: edge === "start" ? customRange[1] : customRange[0] };
     try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {}
   };
+  // Grab the region BETWEEN the handles → MOVE the whole window (Premiere clip-slide).
+  const beginMove = (e) => {
+    if (!customRange || !meta) return;
+    e.preventDefault(); e.stopPropagation();
+    dragRef.current = { move: true, grabMs: msFromClientX(e.clientX) - customRange[0], width: customRange[1] - customRange[0] };
+    try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {}
+  };
   // Press bare strip (in a gap between year targets) with no range → begin a fresh clip.
+  // With a range active, the between-handles zone is the MOVE target (handled by beginMove), so a
+  // fresh select only starts OUTSIDE the current range — guard on the ms falling in [start,end].
   const beginStrip = (e) => {
-    if (!meta || customRange) return;
-    if (e.target.closest && e.target.closest("[data-bc-handle],[data-bc-year]")) return;
+    if (!meta) return;
+    if (e.target.closest && e.target.closest("[data-bc-handle],[data-bc-year],[data-bc-move]")) return;
+    if (customRange) {
+      const ms = msFromClientX(e.clientX);
+      if (ms >= customRange[0] && ms <= customRange[1]) return;  // inside the range → move, not fresh-select
+      return;  // a range exists; bare-strip outside it does nothing (clear via the ✕ / handles)
+    }
     e.preventDefault();
     const anchor = msFromClientX(e.clientX);
     dragRef.current = { anchor };
@@ -460,6 +559,12 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
           <>
             <div className="bc-veil" style={{ left: 0, width: (crX0 / 10) + "%" }} />
             <div className="bc-veil" style={{ left: (crX1 / 10) + "%", right: 0 }} />
+            {/* Move zone — grab BETWEEN the handles to slide the whole window (refinement #6).
+                Inset by the handle width so edge-grabs still hit the handles first. */}
+            <div className="bc-move" data-bc-move
+              style={{ left: (crX0 / 10) + "%", width: Math.max(0, (crX1 - crX0) / 10) + "%" }}
+              onPointerDown={beginMove}
+              title="drag to move the range" />
             <div className="bc-handle bc-handle-l" data-bc-handle
               style={{ left: (crX0 / 10) + "%" }}
               onPointerDown={beginHandle("start")}>
@@ -502,9 +607,14 @@ function CalendarView({ go, seed }) {
   const [pane, setPane] = React.useState("artists");  // artists | albums | songs | dna
   const [selHours, setSelHours] = React.useState(() => new Set()); // rhythm hour multi-select
   const [rangeCommit, setRangeCommit] = React.useState(null); // committed [startMs,endMs] → range overview panel
+  const ROW_PAGE = 40;                                 // panel lists render this many rows at a time…
+  const [rowCap, setRowCap] = React.useState(ROW_PAGE); // …plus a "show more" gate (avoids 200 eager cover requests)
   React.useEffect(() => { if (seedDay) ensureDetail(); }, []);
   // Clearing the range anywhere (the strip's ✕, or setCustomRange(null)) closes the range panel.
   React.useEffect(() => { if (!customRange && rangeCommit) setRangeCommit(null); }, [customRange]);
+  // Reset the "show more" row cap whenever the list identity changes (new pane / period / range /
+  // hour filter) so a fresh list starts at the top with only ROW_PAGE covers requested.
+  React.useEffect(() => { setRowCap(ROW_PAGE); }, [pane, sel, gran, rangeCommit, selHours]);
 
   React.useEffect(() => {
     if (window.ROTATION_CAL) { setCal(window.ROTATION_CAL); return; }
@@ -672,9 +782,12 @@ function CalendarView({ go, seed }) {
                   ? <div className="r-mono" style={{ fontSize: 9.5, color: "var(--accent)", marginBottom: 12 }}>filtered to {selHours.size} selected hour{selHours.size > 1 ? "s" : ""} · {fmt(panelP.t)} plays</div>
                   : <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 12 }}>hour filter shows on the heatmap · switch to <b>month</b> to filter this list</div>)}
 
-                {pane === "artists" && (
+                {pane === "artists" && (() => {
+                  const rows = panelP.a.map(aRow);
+                  const shown = rows.slice(0, rowCap);
+                  return (
                   <div className="cal-rows">
-                    {panelP.a.map(aRow).map((r, i) => (
+                    {shown.map((r, i) => (
                       <div key={r.name} className="cal-row" data-link={!!R.byId[R.slug(r.name)]} onClick={() => R.byId[R.slug(r.name)] && go("artist", R.slug(r.name))}>
                         <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span>
                         <GenCover hue={(R.byId[R.slug(r.name)] || {}).hue || 210} name={r.name} size={34} radius={3} />
@@ -682,27 +795,47 @@ function CalendarView({ go, seed }) {
                         <span className="cal-pl">{fmt(r.plays)}</span>
                       </div>
                     ))}
+                    {rows.length > rowCap && (
+                      <button className="cal-more" onClick={() => setRowCap(c => c + ROW_PAGE)}>
+                        show {Math.min(ROW_PAGE, rows.length - rowCap)} more · {rows.length - rowCap} left
+                      </button>
+                    )}
                   </div>
-                )}
-                {(pane === "albums" || pane === "songs") && (
+                  );
+                })()}
+                {(pane === "albums" || pane === "songs") && (() => {
+                  const rows = (pane === "albums" ? panelP.al : panelP.s).map(iRow);
+                  const shown = rows.slice(0, rowCap);
+                  return (
                   <div className="cal-rows">
-                    {(pane === "albums" ? panelP.al : panelP.s).map(iRow).map((r, i) => (
+                    {shown.map((r, i) => (
                       <div key={r.title + i} className="cal-row" data-link={!!R.byId[R.slug(r.artist)]} onClick={() => R.byId[R.slug(r.artist)] && go("artist", R.slug(r.artist))}>
                         <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span>
                         <GenCover hue={(R.byId[R.slug(r.artist)] || {}).hue || 210} name={r.artist} size={34} radius={3} />
                         <div style={{ minWidth: 0, flex: 1 }}>
                           <div className="cal-nm" style={{ fontStyle: "italic" }}>{r.title}</div>
-                          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{r.artist}</div>
+                          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.artist}</div>
                         </div>
                         <span className="cal-pl">{fmt(r.plays)}</span>
                       </div>
                     ))}
+                    {rows.length > rowCap && (
+                      <button className="cal-more" onClick={() => setRowCap(c => c + ROW_PAGE)}>
+                        show {Math.min(ROW_PAGE, rows.length - rowCap)} more · {rows.length - rowCap} left
+                      </button>
+                    )}
                   </div>
-                )}
+                  );
+                })()}
                 {pane === "dna" && (
                   <div style={{ display: "flex", justifyContent: "center", padding: "6px 0" }}>
                     <div style={{ maxWidth: 360, width: "100%" }}>
-                      <Radar axes={["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"]} values={panelP.d} values2={avg} run={true} size={300} />
+                      {/* SOUND DNA is a 6-axis Radar (SVG polygon), NOT bars. The polygon `points`
+                          are the value-driven attribute; Radar already animates them via
+                          transition:all .9s on the <polygon>. A STABLE key ("cal-dna") keeps the
+                          same Radar instance mounted across period ↔ range ↔ hour-filter switches
+                          so the polygon tweens to new values instead of React remounting it. */}
+                      <Radar key="cal-dna" axes={["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"]} values={panelP.d} values2={avg} run={true} size={300} />
                       <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 6 }}>solid = this {panelKind} · dashed = your all-time average</div>
                     </div>
                   </div>
@@ -747,9 +880,9 @@ function CalendarView({ go, seed }) {
         .cal-row { display: flex; align-items: center; gap: 11px; padding: 6px 6px; border-radius: 6px; transition: background .12s; }
         .cal-row[data-link="true"] { cursor: pointer; }
         .cal-row[data-link="true"]:hover { background: var(--bg-3); }
-        .cal-rk { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); width: 18px; }
+        .cal-rk { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); width: 18px; flex-shrink: 0; }
         .cal-nm { font-size: 13.5px; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .cal-pl { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+        .cal-pl { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); flex-shrink: 0; text-align: right; margin-left: auto; }
         .cal-float { position: fixed; right: 24px; bottom: 82px; z-index: 60; width: min(560px, 92vw);
           max-height: 82vh; display: flex; flex-direction: column; background: var(--panel);
           border: 1px solid var(--rule-2); border-radius: 12px; box-shadow: 0 24px 60px -20px rgba(0,0,0,.7); overflow: hidden; }
@@ -760,7 +893,24 @@ function CalendarView({ go, seed }) {
         .cal-float-title { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .cal-float-x { background: none; border: none; color: var(--ink-faint); cursor: pointer; font-size: 12px; line-height: 1; }
         .cal-float-x:hover { color: var(--ink); }
-        .cal-float-body { padding: 18px 20px; overflow-y: auto; }
+        .cal-float-body { padding: 18px 20px; overflow-y: auto; overflow-x: hidden; min-width: 0; }
+        /* No horizontal scroll (refinement #5): the overview head + hour-filter notes can wrap,
+           the DNA radar is centered/max-width, and the list rows already ellipsis their titles. */
+        .cal-ov-head { max-width: 100%; }
+        /* "show more" button that gates the panel list length (refinement #2 — lazy cover requests) */
+        .cal-more { display: block; width: 100%; margin-top: 4px; padding: 7px 0;
+          background: var(--bg-3); border: 1px solid var(--rule); border-radius: 6px;
+          color: var(--ink-soft); font-family: var(--mono); font-size: 10px; letter-spacing: .06em;
+          cursor: pointer; }
+        .cal-more:hover { color: var(--ink); border-color: var(--rule-2); }
+        /* Desktop resize affordances (refinement #3). Hidden on the mobile sheet (≤760px below). */
+        .cal-float-rz { position: absolute; touch-action: none; z-index: 4; }
+        .cal-float-rz-e { top: 0; bottom: 12px; right: 0; width: 6px; cursor: ew-resize; }
+        .cal-float-rz-s { left: 0; right: 12px; bottom: 0; height: 6px; cursor: ns-resize; }
+        .cal-float-rz-se { right: 0; bottom: 0; width: 24px; height: 24px; cursor: nwse-resize;
+          display: flex; align-items: flex-end; justify-content: flex-end; padding: 3px;
+          color: var(--ink-faint); }
+        .cal-float-rz-se:hover { color: var(--ink-soft); }
         /* ── Barcode / horizon time-control — FIXED to the viewport bottom, docked above the
            footer. .r-app has overflow-x:hidden which defeats position:sticky in real browsers, so
            we pin with position:fixed and set bottom from JS (footer-aware, rAF-throttled): 0px
@@ -805,6 +955,12 @@ function CalendarView({ go, seed }) {
         /* Translucent veil over the clipped-out region */
         .bc-veil { position: absolute; top: 0; bottom: 0;
           background: color-mix(in oklab, var(--bg) 62%, transparent); pointer-events: none; }
+        /* Move zone between the handles — grab to slide the whole range (refinement #6).
+           z-index below the handles (3) so edge-grabs still resize; touch-action:none for pointer
+           capture on touch. */
+        .bc-move { position: absolute; top: 0; bottom: 0; z-index: 2;
+          cursor: grab; touch-action: none; }
+        .bc-move:active { cursor: grabbing; }
         /* Premiere-style range handles — slim accent grips, ≥14px invisible touch pad. */
         .bc-handle { position: absolute; top: -2px; bottom: -2px; width: 16px;
           transform: translateX(-8px); cursor: ew-resize; touch-action: none;
@@ -828,8 +984,10 @@ function CalendarView({ go, seed }) {
            !important defeats any stored PC drag position. Default 40vh = calendar stays visible. */
         @media (max-width: 760px) {
           .cal-float { left: 0 !important; right: 0 !important; bottom: 0 !important; top: auto !important;
-            width: 100% !important; height: var(--sheet-h, 40vh); max-height: 92vh;
+            width: 100% !important; height: var(--sheet-h, 40vh) !important; max-height: 92vh !important;
             border-radius: 14px 14px 0 0; border-left: none; border-right: none; border-bottom: none; }
+          /* the desktop resize grips are meaningless in the CSS-driven sheet — remove them */
+          .cal-float-rz { display: none !important; }
           .cal-float-bar { padding: 12px; touch-action: none; justify-content: center; position: relative; }
           .cal-float-bar::before { content: ""; position: absolute; top: 5px; left: 50%; transform: translateX(-50%);
             width: 44px; height: 4px; border-radius: 999px; background: var(--rule-2); }

@@ -57,7 +57,14 @@ window.CANVAS_MUSEUMS = [
   { id: "kunstpalast", name: "Museum Kunstpalast", city: "Düsseldorf", country: "de", qid: "Q461277", kind: "art", visits: ["2018-11-14"] },
   { id: "kunsthauswien", name: "KunstHausWien", city: "Vienna", country: "at", qid: "Q638493", kind: "art", visits: ["2017-06-20"] },
   { id: "acropolis", name: "Acropolis Museum", city: "Athens", country: "gr", qid: "Q421084", kind: "art", visits: ["2018-11-13"] },
-  { id: "islamic-berlin", name: "Museum für Islamische Kunst", city: "Berlin", country: "de", qid: "Q1954632", kind: "art", visits: ["2022-12-23"] },
+  // Fuad 2026-07-12: never visited Islamische Kunst — the 2022-12-23 coordinate match was the
+  // Pergamonmuseum (Islamische Kunst sits INSIDE the Pergamon building). Swapped.
+  { id: "pergamon", name: "Pergamonmuseum", city: "Berlin", country: "de", qid: "Q160112", kind: "art", visits: ["2022-12-23"] },
+  { id: "neues-museum", name: "Neues Museum", city: "Berlin", country: "de", qid: "Q157316", kind: "art", visits: ["TBC (long ago — Fuad confirmed)"] },
+  { id: "altes-museum", name: "Altes Museum", city: "Berlin", country: "de", qid: "Q160077", kind: "art", visits: ["TBC (long ago — Fuad confirmed)"] },
+  { id: "bode-museum", name: "Bode-Museum", city: "Berlin", country: "de", qid: "Q157825", kind: "art", visits: ["TBC"], note: "Fuad: 'I don't remember. Maybe?' — unconfirmed." },
+  { id: "alte-pinakothek", name: "Alte Pinakothek", city: "Munich", country: "de", qid: "Q154568", kind: "art", visits: ["TBC (Munich 2016–17 era)"] },
+  { id: "neue-pinakothek", name: "Neue Pinakothek", city: "Munich", country: "de", qid: "Q170152", kind: "art", visits: ["TBC (Munich 2016–17 era)"], note: "Fuad: 'the Pinakotheks' — der Moderne possibly too, unconfirmed." },
   { id: "nmk-seoul", name: "National Museum of Korea", city: "Seoul", country: "kr", qid: "Q494407", kind: "art", visits: ["2018-07-29"] },
   // ——— Timeline-mined additions round 2 (2026-07-12; Fuad named Berlin/Munich/London/Kraków/Toruń) ———
   { id: "alte-nationalgalerie", name: "Alte Nationalgalerie", city: "Berlin", country: "de", qid: "Q162111", kind: "art", visits: ["2022-12-23"], note: "Museum Island — same trip as Islamische Kunst." },
