@@ -2463,9 +2463,29 @@ function GigsMap({ cityList, hueForCity, onCity }) {
     return n;
   });
   React.useEffect(() => () => { cancelAnimationFrame(rafRef.current); cancelAnimationFrame(fisheyeRef.current); }, []);
+  // The viewBox is driven IMPERATIVELY by fit()'s animation (setAttribute). It must NOT also be a
+  // controlled JSX prop — React would re-apply the static BASE viewBox on every re-render (each chip
+  // toggle calls setOff → re-render), clobbering the animation and snapping the view back. So we set
+  // the initial viewBox exactly once here, after the SVG exists, and let only fit() touch it after.
+  React.useEffect(() => {
+    const svg = svgRef.current;
+    if (svg && !svg.getAttribute("viewBox")) {
+      const b = vbRef.current;
+      svg.setAttribute("viewBox", b.x + " " + b.y + " " + b.w + " " + b.h);
+    }
+  }, [world]);
 
-  // FISHEYE: one rAF-throttled pointermove maps the cursor to view-space, then writes a per-bubble
-  // scale via a CSS var on each <g>. transform-origin sits at the bubble centre so it grows in place.
+  // FISHEYE: one rAF-throttled pointermove maps the cursor to view-space, then scales each bubble by
+  // proximity. We write the scale to the <g>'s transform ATTRIBUTE as an explicit
+  // translate(cx cy) scale(k) translate(-cx -cy) — CSS transform + transform-origin on SVG <g> is
+  // unreliable (needs transform-box: fill-box, and a scale(var(--k)) CSS var silently no-ops in some
+  // browsers), whereas the attribute form scales around the bubble's own centre everywhere.
+  const setK = (g, k) => {
+    const bx = +g.dataset.cx, by = +g.dataset.cy;
+    if (k === 1) { g.setAttribute("transform", "translate(" + bx + " " + by + ") translate(" + (-bx) + " " + (-by) + ")"); return; }
+    g.setAttribute("transform", "translate(" + bx + " " + by + ") scale(" + k.toFixed(3) + ") translate(" + (-bx) + " " + (-by) + ")");
+  };
+  const resetAll = (svg) => { for (const g of svg.querySelectorAll(".gv-cmap-dot")) setK(g, 1); };
   const onMove = (e) => {
     if (fisheyeRef.current) return;
     const cx = e.clientX, cy = e.clientY, svg = svgRef.current;
@@ -2473,7 +2493,7 @@ function GigsMap({ cityList, hueForCity, onCity }) {
       fisheyeRef.current = 0;
       if (!svg) return;
       const rect = svg.getBoundingClientRect();
-      if (cx < rect.left || cx > rect.right || cy < rect.top || cy > rect.bottom) { for (const g of svg.querySelectorAll(".gv-cmap-dot")) g.style.setProperty("--k", "1"); return; }
+      if (cx < rect.left || cx > rect.right || cy < rect.top || cy > rect.bottom) { resetAll(svg); return; }
       const R_PX = 80, MAXK = 1.6;
       const vb = vbRef.current;
       // px → view units, so the radius stays ~80 SCREEN px whatever the zoom
@@ -2484,17 +2504,17 @@ function GigsMap({ cityList, hueForCity, onCity }) {
         const bx = +g.dataset.cx, by = +g.dataset.cy;
         const dnorm = Math.hypot((bx - mvx) / rx, (by - mvy) / ry);   // 0 at cursor, 1 at edge
         const k = dnorm >= 1 ? 1 : 1 + (MAXK - 1) * (1 - dnorm) * (1 - dnorm);   // eased falloff
-        g.style.setProperty("--k", k.toFixed(3));
+        setK(g, k);
       }
     });
   };
-  const onLeave = () => { const svg = svgRef.current; if (svg) for (const g of svg.querySelectorAll(".gv-cmap-dot")) g.style.setProperty("--k", "1"); };
+  const onLeave = () => { const svg = svgRef.current; if (svg) resetAll(svg); };
 
   const landEls = React.useMemo(() => world ? world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" />) : null, [world]);
   if (!world) return <div className="gv-cmap-empty r-mono">the map loads…</div>;
   return (
     <div className="gv-cmap-wrap">
-      <svg ref={svgRef} className="gv-cmap" viewBox={`${BASE.x} ${BASE.y} ${BASE.w} ${BASE.h}`}
+      <svg ref={svgRef} className="gv-cmap"
         role="img" aria-label="concert map — the cities where you've been in a crowd"
         onPointerMove={onMove} onPointerLeave={onLeave} style={{ touchAction: "pan-y" }}>
         {landEls}
@@ -2502,7 +2522,7 @@ function GigsMap({ cityList, hueForCity, onCity }) {
           const on = !off.has(d.key);
           return (
             <g key={d.key} className="gv-cmap-dot" data-cx={d.cx} data-cy={d.cy}
-              style={{ transformOrigin: `${d.cx}px ${d.cy}px`, transform: "scale(var(--k, 1))", transition: "transform .12s ease-out", opacity: on ? 1 : 0.14 }}>
+              style={{ opacity: on ? 1 : 0.14 }}>
               <circle cx={d.cx} cy={d.cy} r={d.r} className="gv-cmap-c" data-on={on}
                 fill={d.hue != null ? `oklch(0.64 0.15 ${d.hue})` : "var(--accent)"}
                 onClick={() => onCity && onCity(d)} style={{ cursor: onCity ? "pointer" : "default" }}>
@@ -2543,8 +2563,13 @@ function GigsView({ go }) {
   // the set of artistIds Fuad has actually STOOD in the crowd for — factored cleanly so a later
   // iteration can hand it to the map filters. Bucket list = his most-played artists NOT in it.
   const seenIds = React.useMemo(() => new Set(G.gigs.map(g => g.artistId)), []);
+  // keep each artist's REAL rank in the overall top-artists order (index+1 in R.ARTISTS),
+  // not their position within this filtered queue — TON is #5 overall even if 3rd here.
   const bucketList = React.useMemo(
-    () => (R.ARTISTS || []).filter(a => !seenIds.has(a.id)).slice(0, 12),
+    () => (R.ARTISTS || [])
+      .map((a, idx) => ({ a, rank: idx + 1 }))
+      .filter(e => !seenIds.has(e.a.id))
+      .slice(0, 12),
     [seenIds]
   );
   // hue for a city bubble = the hue of the highest-played act seen there (falls back to a gig hue)
@@ -2598,9 +2623,9 @@ function GigsView({ go }) {
           <div className="gv-label">Still to catch</div>
           <div className="gv-title">The rotation regulars you've never seen live.</div>
           <div className="gv-bucket">
-            {bucketList.map((a, i) => (
+            {bucketList.map(({ a, rank }) => (
               <div key={a.id} className="gv-bucket-row" data-link={artistHasPage(a.id)} onClick={() => openArtist(a.id)}>
-                <span className="gv-bucket-n">{i + 1}</span>
+                <span className="gv-bucket-n">{rank}</span>
                 <GenCover hue={a.hue} name={a.name} size={34} radius={4} image={a.thumb || a.image} />
                 <div style={{ minWidth: 0 }}>
                   <div className="gv-tile-name">{a.name}</div>
@@ -2894,6 +2919,7 @@ function GigsView({ go }) {
         .gv-cmap-wrap { margin: 2px 0 16px; }
         .gv-cmap { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 8px; background: var(--panel); overflow: hidden; }
         .gv-cmap-empty { padding: 50px 0; text-align: center; color: var(--ink-faint); font-size: 11px; border: 1px solid var(--rule); border-radius: 8px; }
+        .gv-cmap-dot { transition: transform .12s ease-out, opacity .2s; }
         .gv-cmap-c { fill-opacity: .78; transition: fill-opacity .15s; }
         .gv-cmap-c:hover { fill-opacity: 1; }
         .gv-cmap-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }

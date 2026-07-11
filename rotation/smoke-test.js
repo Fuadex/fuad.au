@@ -218,7 +218,7 @@ if (core && Array.isArray(core.ARTISTS)) {
     const keys = Object.keys(v);
     ok(true, `album-extras.js parses (${keys.length} albums)`);
     if (keys.length > 0) {
-      let badShape = 0, empties = 0;
+      let badShape = 0, empties = 0, badEd = 0, edCoverGap = 0;
       for (const k of keys) {
         const e = v[k];
         // present fields must be arrays; entries with neither bonus nor from should not be emitted
@@ -226,9 +226,24 @@ if (core && Array.isArray(core.ARTISTS)) {
         if ("from" in e && !Array.isArray(e.from)) badShape++;
         const nb = (e.bonus && e.bonus.length) || 0, nf = (e.from && e.from.length) || 0;
         if (nb === 0 && nf === 0) empties++;
+        // byEdition (new): present iff bonus present; object of suffix → track[]; its tracks must
+        // exactly cover the bonus set (no track dropped or invented by the grouping pass).
+        if (nb > 0) {
+          if (typeof e.byEdition !== "object" || e.byEdition === null || Array.isArray(e.byEdition)) badEd++;
+          else {
+            const covered = new Set();
+            for (const suf in e.byEdition) {
+              if (!Array.isArray(e.byEdition[suf])) { badEd++; break; }
+              for (const t of e.byEdition[suf]) covered.add(t);
+            }
+            if (covered.size !== nb || !e.bonus.every(t => covered.has(t))) edCoverGap++;
+          }
+        } else if ("byEdition" in e) badEd++;   // no bonus → byEdition must be absent
       }
       ok(badShape === 0, `album-extras: bonus/from are arrays where present (${badShape} bad)`);
       ok(empties === 0, `album-extras: no empty entries (bonus.length||from.length > 0) (${empties} empty)`);
+      ok(badEd === 0, `album-extras: byEdition is {suffix:[…]} present iff bonus present (${badEd} bad)`);
+      ok(edCoverGap === 0, `album-extras: byEdition tracks exactly cover the bonus set (${edCoverGap} mismatched)`);
     }
   }
 }

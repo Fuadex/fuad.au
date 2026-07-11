@@ -443,10 +443,22 @@ function variantSuffix(raw, canon) {
 //   _albBaseTracks: artist\x00canonAlbum → Set(track titles that appeared under the BASE title)
 //   _albVarTracks:  artist\x00canonAlbum → Set(track titles that appeared under a VARIANT title)
 //   _albVarNames:   artist\x00canonAlbum → Set(distinct human-readable variant suffix names)
+//   _albVarByEd:    artist\x00canonAlbum → Map(editionSuffix → Map(track → plays)) — WHICH edition
+//                   each variant track arrived under, so bonus tracks can group by release below.
+//                   plays counted here (variant-title scrobbles) resolve a track to its most-played
+//                   edition when it appears under several.
 const _albBaseTracks = new Map();
 const _albVarTracks = new Map();
 const _albVarNames = new Map();
+const _albVarByEd = new Map();
 const _addTo = (map, key, val) => { let s = map.get(key); if (!s) { s = new Set(); map.set(key, s); } s.add(val); };
+// bump artist\x00album → suffix → track → +1 play (nested-map bookkeeping, sane memory: only
+// variant-title scrobbles ever land here, a small tail of the whole CSV).
+const _bumpEd = (key, suffix, track) => {
+  let bySuf = _albVarByEd.get(key); if (!bySuf) { bySuf = new Map(); _albVarByEd.set(key, bySuf); }
+  let byTrk = bySuf.get(suffix); if (!byTrk) { byTrk = new Map(); bySuf.set(suffix, byTrk); }
+  byTrk.set(track, (byTrk.get(track) || 0) + 1);
+};
 
 // ─────────── spelling-fold prescan (albums + tracks) ───────────
 // One extra pass over the CSV: per artist, group album titles (post-suffix-strip) and track
@@ -515,6 +527,7 @@ for (const line of lines) {
     const suf = variantSuffix(rawAlbum, albumStripped);
     if (suf) _addTo(_albVarNames, ak, suf);
     if (track) _addTo(_albVarTracks, ak, track);
+    if (suf && track) _bumpEd(ak, suf, track);   // remember which edition carried this track (with plays)
   } else if (album && track) {
     // base-title scrobble (nothing stripped) — records that this track lives on the base album
     _addTo(_albBaseTracks, artist + "\x00" + album, track);
@@ -2166,10 +2179,16 @@ console.log(`album-alias.js: ${Object.keys(ALBUM_ALIAS).length} variant→canoni
 
 // ─────────── ALBUM EXTRAS (generated lazy file) ───────────
 // Per canonical album that absorbed edition variants: what the variants added on top of the base.
-//   key = "<artistSlug>~<canonAlbumSlug>" → { bonus: [track titles ONLY ever seen under a variant],
-//   from: [distinct human-readable variant suffix names, e.g. "Deluxe Edition", "2012 Mix"] }.
-// Consumed lazily on the album view to (i) float deluxe/bonus tracks below a rule, (ii) chip the
-// "also logged as" editions. Only albums with bonus.length>0 || from.length>0 are emitted.
+//   key = "<artistSlug>~<canonAlbumSlug>" → {
+//     bonus:     [track titles ONLY ever seen under a variant, MARKED as live/demo/etc],
+//     from:      [distinct human-readable variant suffix names, e.g. "Deluxe Edition", "2012 Mix"],
+//     byEdition: { "<suffix>": [track, …], … } — the SAME bonus tracks grouped by the edition
+//                suffix they arrived under. A track seen under several editions is filed under its
+//                MOST-PLAYED one (variant-title plays, from _albVarByEd); ties broken by first-seen
+//                Map order. Powers the per-edition sub-sections (disc-like) on the album view.
+//   }
+// Consumed lazily on the album view to (i) render one restart-numbered sub-section per edition,
+// (ii) chip the "also logged as" editions. Only albums with bonus.length>0 || from.length>0 emitted.
 const ALBUM_EXTRAS = {};
 {
   const keys = new Set([..._albVarTracks.keys(), ..._albVarNames.keys()]);
@@ -2195,9 +2214,23 @@ const ALBUM_EXTRAS = {};
     const bonus = varOnly.filter(t => MARKED.test(t)).sort();
     const from = [...(_albVarNames.get(ak) || _EMPTY_SET)].sort();
     if (bonus.length === 0 && from.length === 0) continue;
+    // group the bonus tracks by the edition suffix that carried the most plays of each.
+    const byEdition = {};
+    if (bonus.length) {
+      const bySuf = _albVarByEd.get(ak);   // Map(suffix → Map(track → plays)), may be undefined
+      for (const t of bonus) {
+        let bestSuf = null, bestPlays = -1;
+        if (bySuf) for (const [suf, byTrk] of bySuf) {   // Map iteration = first-seen order → tie-break
+          const p = byTrk.get(t); if (p != null && p > bestPlays) { bestPlays = p; bestSuf = suf; }
+        }
+        (byEdition[bestSuf || ""] || (byEdition[bestSuf || ""] = [])).push(t);   // "" = no named edition
+      }
+      for (const k in byEdition) byEdition[k].sort();
+    }
     const entry = {};
     if (bonus.length) entry.bonus = bonus;
     if (from.length) entry.from = from;
+    if (bonus.length) entry.byEdition = byEdition;
     ALBUM_EXTRAS[slug(artist) + "~" + slug(title)] = entry;
   }
 }
@@ -3224,6 +3257,9 @@ const CORE = {
   CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
   FAMILIES: FAMILIES_OUT, SUBS, GENRE_FLOW, THUMBS, SPOTIMG: SPOTIMG_OUT,
   AUDIO_DIST, GIGS, TOUR, EXPLORE_N: EXPLORE.length,
+  // build stamp — cache-buster for lazily-fetched shards (Cloudflare caches 4h; stamped URLs
+  // make each build's shards distinct AND keep core+shards version-consistent).
+  BUILT: new Date().toISOString().slice(0, 16).replace(/[-:T]/g, ""),
 };
 const REST = {
   EXPLORE, ALBUMS, AUDIO: AUDIO_OUT, ARTIST_CLOCK, SUB_ARTISTS, CLOCK_BY_YEAR,

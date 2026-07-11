@@ -26,7 +26,7 @@ and a record shop of 11,000 spines you can dig through.
 | Lyrics analysed | 25,900 tracks matched · 37 languages · sentiment + 18-theme taxonomy |
 | Song interpretations | 7,000+ tracks with AI reads (tiered: gist → deep → web-researched) |
 | Concerts | ~130 attended shows with setlists, cross-joined to the play history |
-| Enrichment layers | 20+ caches: MusicBrainz, Discogs, Wikidata, Spotify archive, Genius corpus, Ticketmaster, setlist.fm |
+| Enrichment layers | 20+ caches: MusicBrainz, Discogs, Wikidata, Ticketmaster, setlist.fm |
 | Deployed payload | ~34 MB total, ~11.6 MB gzipped — lazy-loaded so first paint pays ~2 MB |
 | Build | one Node script, ~11 s, zero npm dependencies |
 
@@ -64,14 +64,16 @@ cross-filtering genre cascade, event map, and calendar.
 trees (members, formation, dissolution — MusicBrainz × Wikidata), "sounds like" by
 listening-graph and by raw audio similarity, play-history sparklines, and on track pages a
 **"what it's about" switcher**: tiered AI interpretations (quick gist → deeper reads →
-web-researched for songs whose lyrics exist nowhere in dumps) alongside the human-written
+web-researched for songs whose lyrics are findable nowhere else) alongside the human-written
 Genius account where one exists.
 
 ## How it works
 
-**Buildless, serverless, static.** React 18 UMD + Babel standalone; every `.jsx` compiles in
-the visitor's browser. No bundler, no router library, no framework churn — `git push` is the
-deploy, and every file is view-source-debuggable in production.
+**Buildless authoring, precompiled deploy.** React 18 UMD is self-hosted; in development every
+`.jsx` compiles in-browser via Babel standalone. CI precompiles `.jsx → .js` in the staged
+`_site/` only, so production ships finished JS with no Babel download and no per-load compile.
+No bundler, no router library, no framework churn — `git push` is the deploy, and every file
+is view-source-debuggable in production.
 
 ```
 last.fm API ──sync-csv.js──▶ fuadex.csv  (one row per scrobble — the single source of truth)
@@ -82,8 +84,8 @@ last.fm API ──sync-csv.js──▶ fuadex.csv  (one row per scrobble — the
                                   │
               ┌───────────────────┴───────────────────┐
               ▼                                       ▼
-       music-data.js  (~4.8 MB, eager)      20 lazy data files (~28 MB)
-       everything first paint needs         loaded on first need per view
+  music-core.js + music-rest.js             ~12 lazy data files
+  (eager then deferred; window.ROTATION)    loaded on first need per view
 ```
 
 - **Daily CI** (GitHub Actions): pull new scrobbles → rebuild → smoke-test gate → deploy to
@@ -103,11 +105,12 @@ last.fm API ──sync-csv.js──▶ fuadex.csv  (one row per scrobble — the
 
 | Layer | Source | What it adds |
 |---|---|---|
-| Scrobbles | last.fm API | the spine — every play since 2006 |
-| Genres & bios | last.fm, Discogs | weighted tags → genre families, artist profiles |
+| Scrobbles | last.fm export CSV | the spine — every play since 2006 |
+| Genres & bios | last.fm API, Discogs | weighted tags → genre families, artist profiles |
 | Identity & origins | MusicBrainz, Wikidata | aliases, members, gender, formation/dissolution, city coordinates |
-| Audio DNA | Spotify catalogue data (local) | per-track energy/valence/tempo/…, 30-s previews, album art, ISRCs |
-| Lyrics | lyrics dataset (local) | language, sentiment (NRC, multilingual), 18-anchor theme embeddings — **derived stats only, no lyric text is ever republished** |
+| Audio DNA | per-track audio features (pluggable; [Essentia](https://essentia.upf.edu/) for redistribution-safe builds) | energy/valence/tempo/acousticness/… per track → artist Sound DNA radars and taste percentiles |
+| Album art & metadata | Discogs, Cover Art Archive | release year/type/label, album covers, artist images |
+| Lyrics analysis | personal lyrics corpus | language detection, NRC sentiment (multilingual), 18-anchor theme embeddings — **derived stats only, no lyric text is ever republished** |
 | Interpretations | LLM pipeline + web research | tiered "what it's about" reads for 7,000+ songs |
 | Live music | setlist.fm, Ticketmaster | attended-gig history with setlists; who's on tour now |
 | Covers (fallback tiers) | Cover Art Archive, iTunes | fills where the primary source had none |
@@ -144,5 +147,5 @@ opt-in, from "just a last.fm key" to "bring your own local datasets".
 ---
 
 *Data: [last.fm](https://www.last.fm/user/fuadex) · enriched via MusicBrainz, Wikidata,
-Discogs, Cover Art Archive, setlist.fm, Ticketmaster. Song "About" excerpts where shown are
-attributed and linked to Genius. No lyric text is redistributed.*
+Discogs, Cover Art Archive, setlist.fm, Ticketmaster, LRCLIB. Song "About" excerpts where
+shown are attributed and linked to Genius. No lyric text is redistributed.*

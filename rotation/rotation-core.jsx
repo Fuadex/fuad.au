@@ -699,7 +699,7 @@ Object.assign(window, { cssRotation, fmt, fmtK, hashInt, useCountUp, useInView, 
     const flush = () => { const q = st.waiting[b]; st.waiting[b] = []; q.forEach(f => f && f()); };
     const bb = String(b).padStart(2, "0");
     const s = document.createElement("script");
-    s.src = "about/" + tier + "-" + bb + ".js";
+    s.src = "about/" + tier + "-" + bb + ".js" + (R.BUILT ? "?v=" + R.BUILT : "");   // bust the 4h edge cache per build
     s.onload = () => { st.loaded[b] = true; flush(); };
     s.onerror = () => { loadBlob(() => flush()); };   // dev fallback: whole file, synthesised
     document.head.appendChild(s);
@@ -721,7 +721,7 @@ Object.assign(window, { cssRotation, fmt, fmtK, hashInt, useCountUp, useInView, 
   R.loadAboutIndex = (cb) => {
     if (window.ROTATION_ABOUT_INDEX) { cb && cb(); return; }
     const s = document.createElement("script");
-    s.src = "about/index.js";
+    s.src = "about/index.js" + (R.BUILT ? "?v=" + R.BUILT : "");
     s.onload = () => cb && cb();
     s.onerror = () => loadBlob(() => cb && cb());   // dev: theme search scans the blob instead
     document.head.appendChild(s);

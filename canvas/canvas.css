@@ -226,6 +226,74 @@ a { color: inherit; }
 .cv-osd-close { position: fixed; top: 16px; right: 20px; margin: 0; z-index: 2; }
 .cv-osd-cap { position: fixed; bottom: 14px; left: 18px; font: 500 10px/1.3 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(227,216,200,.55); z-index: 2; }
 .cv-osd-err { position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); text-align: center; font: 500 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(227,216,200,.6); }
+
+/* ——— deep-zoom annotation tour strip ——— */
+/* strip sits at the bottom; on wide screens it moves to a right rail */
+.cv-osd-tour {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 3;
+  display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; overflow-x: auto;
+  padding: 10px 14px 12px;
+  background: linear-gradient(transparent, rgba(10,8,5,.82) 30%);
+  /* chips only intercept their own clicks — background is transparent to OSD panning */
+  pointer-events: none;
+  scrollbar-width: none;
+}
+.cv-osd-tour::-webkit-scrollbar { display: none; }
+.cv-osd-chip {
+  pointer-events: all; /* chips ARE clickable */
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  font: 500 10.5px/1 var(--mono); letter-spacing: .06em;
+  padding: 7px 12px; border-radius: 999px;
+  border: 1px solid rgba(227,216,200,.28);
+  background: rgba(20,15,10,.72);
+  color: rgba(227,216,200,.75);
+  cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+  white-space: nowrap;
+}
+.cv-osd-chip:hover { border-color: rgba(227,216,200,.7); color: #e3d8c8; background: rgba(30,22,14,.88); }
+.cv-osd-chip-on { border-color: var(--accent-soft); color: oklch(0.82 0.14 60); background: rgba(30,22,14,.9); }
+.cv-osd-chip-home { border-color: rgba(227,216,200,.18); color: rgba(227,216,200,.45); }
+.cv-osd-chip-home:hover { border-color: rgba(227,216,200,.6); color: rgba(227,216,200,.85); }
+.cv-osd-chip-n {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent); color: #fff;
+  font: 600 9px/1 var(--mono); flex-shrink: 0;
+}
+.cv-osd-chip-on .cv-osd-chip-n { background: oklch(0.62 0.14 60); }
+.cv-osd-chip-t { max-width: 160px; overflow: hidden; text-overflow: ellipsis; }
+.cv-osd-tour-hint { pointer-events: none; margin-left: 8px; font: italic 400 9.5px/1 var(--serif); color: rgba(227,216,200,.32); flex-shrink: 0; }
+
+/* active detail caption card — bottom-left above the tour strip, serif */
+.cv-osd-det-cap {
+  position: fixed; bottom: 58px; left: 18px; z-index: 3;
+  max-width: min(360px, calc(100vw - 36px));
+  display: flex; flex-direction: column; gap: 5px;
+  padding: 12px 16px 13px;
+  background: rgba(18,13,8,.88);
+  border: 1px solid rgba(227,216,200,.18);
+  border-radius: 9px;
+  pointer-events: none; /* floats above the OSD; OSD still gets pointer events */
+}
+.cv-osd-det-n { font: 500 9px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent-soft); }
+.cv-osd-det-title { font: 600 15px/1.25 var(--serif); color: #f2e9dc; }
+.cv-osd-det-note { font: 400 13px/1.6 var(--serif); color: rgba(227,216,200,.82); }
+
+/* on wide screens push tour to a right rail so the left half is unobstructed */
+@media (min-width: 900px) {
+  .cv-osd-tour {
+    top: 0; bottom: 0; left: auto; right: 0; width: 230px;
+    flex-direction: column; align-items: flex-start; justify-content: center;
+    flex-wrap: nowrap; overflow-y: auto; overflow-x: hidden;
+    padding: 60px 14px 60px 12px;
+    background: linear-gradient(to left, rgba(10,8,5,.78) 0%, transparent 100%);
+  }
+  .cv-osd-chip-t { max-width: 140px; white-space: normal; line-height: 1.3; }
+  .cv-osd-tour-hint { margin-left: 0; margin-top: 8px; }
+  .cv-osd-det-cap { bottom: 18px; }
+}
 .cv-r-read { margin-top: 22px; border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; background: rgba(255,255,255,.35); }
 .cv-r-read-head { display: flex; align-items: baseline; gap: 12px; }
 .cv-r-read-head .lbl { font: 600 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
