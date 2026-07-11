@@ -484,6 +484,27 @@ function ArtistTourCard({ a, go }) {
 }
 
 // ─────────────────────────────────────────────────────────────────
+//  Former-members block for "The lineup" — faint rule + collapse past 10
+// ─────────────────────────────────────────────────────────────────
+function LineupFormer({ former, Row }) {
+  const [open, setOpen] = React.useState(false);
+  const LIMIT = 10;
+  const shown = open ? former : former.slice(0, LIMIT);
+  const extra = former.length - LIMIT;
+  return (
+    <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid var(--rule)" }}>
+      <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 8 }}>formerly</div>
+      <div style={{ display: "grid", gap: 1 }}>{shown.map(Row)}</div>
+      {extra > 0 && (
+        <button className="av-more" style={{ marginTop: 8 }} onClick={() => setOpen(o => !o)}>
+          {open ? "show less ▴" : `+${extra} more ▾`}
+        </button>
+      )}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────
 //  Per-artist barcode strip — active-day hairlines from artist-days.js
 // ─────────────────────────────────────────────────────────────────
 function ArtistBarcode({ artistId, daysReady }) {
@@ -600,6 +621,17 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     let s = document.getElementById("artist-days-js");
     if (!s) { s = document.createElement("script"); s.id = "artist-days-js"; s.src = "artist-days.js"; s.onerror = () => {}; document.head.appendChild(s); }
     const onLoad = () => { if (window.ROTATION_ARTIST_DAYS) setDaysReady(true); };
+    s.addEventListener("load", onLoad);
+    return () => s.removeEventListener("load", onLoad);
+  }, []);
+  // mb-lineup.js — lazy-loaded once on ArtistView mount (mirrors artist-days.js): MusicBrainz
+  // lineup distill, powers "The lineup" card. Presence-gated — no entry → no card.
+  const [mbReady, setMbReady] = React.useState(!!window.ROTATION_MB);
+  React.useEffect(() => {
+    if (window.ROTATION_MB) { setMbReady(true); return; }
+    let s = document.getElementById("mb-lineup-js");
+    if (!s) { s = document.createElement("script"); s.id = "mb-lineup-js"; s.src = "mb-lineup.js"; s.onerror = () => {}; document.head.appendChild(s); }
+    const onLoad = () => { if (window.ROTATION_MB) setMbReady(true); };
     s.addEventListener("load", onLoad);
     return () => s.removeEventListener("load", onLoad);
   }, []);
@@ -1025,6 +1057,57 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                 </div>
               )}
             </div>
+            );
+          })()}
+
+          {/* The lineup — MusicBrainz per-artist distill (mb-lineup.js, lazy). Presence-gated:
+              no entry → no card, no layout reservation. Sits in the av-endrow flex row next to
+              Sound DNA / Sounds like / Family tree. Members with a current tenure (t empty) list
+              first; former members fall under a faint "formerly" rule, collapsed past 10. */}
+          {mbReady && window.ROTATION_MB && window.ROTATION_MB[a.id] && (() => {
+            const mb = window.ROTATION_MB[a.id];
+            const glyph = (g) => g === "F" ? "♀" : g === "M" ? "♂" : "";
+            // active years: "2002 →" (open) or "2002–2010" (closed); "" when no from
+            const years = mb.from ? (mb.to ? `${mb.from}–${mb.to}` : `${mb.from} →`) : "";
+            const headBits = [mb.type, mb.area, years].filter(Boolean);
+            const aka = mb.aka || [];
+            const isPerson = mb.type === "Person";
+            const members = (!isPerson && mb.members) ? mb.members : [];
+            const current = members.filter(m => !m.t);
+            const former = members.filter(m => m.t);
+            const tenure = (m) => m.f ? (m.t ? `${m.f}–${m.t}` : `${m.f} →`) : (m.t ? `–${m.t}` : "");
+            const Row = (m, i) => (
+              <div key={m.n + i} style={{ display: "flex", gap: 8, alignItems: "baseline", flexWrap: "wrap", padding: "3px 0" }}>
+                <span style={{ fontSize: 13, color: "var(--ink)" }}>{m.n}</span>
+                {glyph(m.g) && <span style={{ fontSize: 11, color: "var(--ink-faint)" }}>{glyph(m.g)}</span>}
+                {(m.i || []).length > 0 && (
+                  <span style={{ display: "inline-flex", gap: 5, flexWrap: "wrap" }}>
+                    {m.i.slice(0, 4).map((r, ri) => (
+                      <span key={r + ri} className="r-mono" style={{ fontSize: 9, color: "var(--ink-soft)", padding: "1px 6px", borderRadius: 999, border: "1px solid var(--rule)" }}>{r}</span>
+                    ))}
+                  </span>
+                )}
+                {tenure(m) && <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginLeft: "auto" }}>{tenure(m)}</span>}
+              </div>
+            );
+            return (
+              <div className="r-card av-lineupcard" style={{ padding: 18 }}>
+                <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}>
+                  <span className="lbl">The <b>lineup</b></span>
+                  <span className="meta">musicbrainz</span></div>
+                {headBits.length > 0 && (
+                  <div style={{ fontSize: 12, color: "var(--ink-soft)", marginBottom: aka.length ? 6 : (members.length ? 14 : 0) }}>
+                    {headBits.map((b, i) => <React.Fragment key={i}>{i > 0 && <span style={{ color: "var(--ink-faint)" }}> · </span>}{b}</React.Fragment>)}
+                  </div>
+                )}
+                {aka.length > 0 && (
+                  <div style={{ fontSize: 12, color: "var(--ink-faint)", marginBottom: members.length ? 14 : 0 }}>
+                    also known as: <span style={{ color: "var(--ink-soft)" }}>{aka.slice(0, 4).join(", ")}</span>
+                  </div>
+                )}
+                {current.length > 0 && <div style={{ display: "grid", gap: 1 }}>{current.map(Row)}</div>}
+                {former.length > 0 && <LineupFormer former={former} Row={Row} />}
+              </div>
             );
           })()}
           </div>

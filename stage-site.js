@@ -50,7 +50,9 @@ function precompileApp(app, babel) {
       throw e;
     }
     fs.writeFileSync(src.replace(/\.jsx$/, ".js"), out, "utf8");
-    fs.rmSync(src);   // drop the .jsx from the shipped bundle
+    // KEEP the source .jsx in the bundle: clients holding a CACHED pre-precompile index.html
+    // (HTML max-age 600s, assets 4h) still request the .jsx + in-browser Babel — dropping it
+    // white-screened Culture during the transition (2026-07-12). Costs a few hundred KB.
   }
   // rewrite the staged index.html: strip the Babel runtime, point script tags at the
   // compiled .js, add `defer` so they no longer block parse. react/react-dom untouched.

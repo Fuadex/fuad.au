@@ -50,6 +50,7 @@ album-about-lazy.js
 album-alias.js
 album-extras.js
 artist-days.js
+mb-lineup.js
 
 # llm-about shards + theme index — CI artifacts from shard-about.js (which STAYS committed).
 # llm-about.js itself remains the committed source of truth; only the split output is ignored.

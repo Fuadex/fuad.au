@@ -208,6 +208,23 @@ if (core && Array.isArray(core.ARTISTS)) {
   }
 }
 
+// (c2) mb-lineup.js parses, ≥300 entries, a sampled member has n + i array
+{
+  const r = loadGlobal("mb-lineup.js", "ROTATION_MB");
+  if (r.missing) ok(false, "mb-lineup.js exists");
+  else if (r.error) ok(false, "mb-lineup.js parses — " + r.error);
+  else {
+    const v = r.value || {};
+    const ids = Object.keys(v);
+    ok(ids.length >= 300, `mb-lineup: ≥300 entries (${ids.length})`);
+    // find an entry with members, sample the first, assert n string + i is an array
+    const mid = ids.find(id => v[id] && v[id].members && v[id].members.length);
+    const m = mid ? v[mid].members[0] : null;
+    ok(!!m && typeof m.n === "string" && m.n.length > 0 && Array.isArray(m.i),
+      mid ? `mb-lineup: sampled member "${m.n}" (of ${mid}) has n + i array` : "mb-lineup: no member found");
+  }
+}
+
 // (e) album-extras.js parses; when it has entries, each value has array bonus/from fields
 {
   const r = loadGlobal("album-extras.js", "ROTATION_ALBUM_EXTRAS");

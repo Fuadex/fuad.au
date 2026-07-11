@@ -313,17 +313,20 @@ function loadOSD() {
 // Derive the OSD tileSource and caption label for any work.
 // Returns { tileSource, label } or null if no usable image exists.
 function resolveOSDSource(work) {
+  // cors: only claim Anonymous where the host actually sends ACAO (museum APIs, wikimedia);
+  // for arbitrary hosts (reddit etc.) crossOriginPolicy must be FALSE or the tile load errors.
   if (work.hires && work.hires.iiif) {
     const src = (work.hires.src || "").toUpperCase();
-    return { tileSource: work.hires.iiif, label: src ? `deep zoom via ${src}` : "deep zoom" };
+    return { tileSource: work.hires.iiif, cors: "Anonymous", label: src ? `deep zoom via ${src}` : "deep zoom" };
   }
   if (work.hires && work.hires.img) {
     const src = (work.hires.src || "").toUpperCase();
-    return { tileSource: { type: "image", url: work.hires.img }, label: src ? `deep zoom via ${src}` : "deep zoom" };
+    return { tileSource: { type: "image", url: work.hires.img }, cors: "Anonymous", label: src ? `deep zoom via ${src}` : "deep zoom" };
   }
   const simpleUrl = work.imgZoom || work.img;
   if (simpleUrl) {
-    return { tileSource: { type: "image", url: simpleUrl }, label: work.title.replace(/^TBC — /, "") };
+    const corsOk = /(^https:\/\/upload\.wikimedia\.org\/)|(^https:\/\/commons\.wikimedia\.org\/)/.test(simpleUrl);
+    return { tileSource: { type: "image", url: simpleUrl }, cors: corsOk ? "Anonymous" : false, label: work.title.replace(/^TBC — /, "") };
   }
   return null;
 }
@@ -406,7 +409,7 @@ function DeepZoom({ work, onClose, onOsdFail }) {
           showRotationControl: true,
           maxZoomPixelRatio: 2,
           gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true },
-          crossOriginPolicy: "Anonymous",
+          crossOriginPolicy: osdSrc.cors,   // Anonymous only for hosts that send ACAO; false otherwise
           ajaxWithCredentials: false,
         });
         viewer.addHandler("open-failed", () => { if (!cancelled) setErr(true); });
