@@ -282,12 +282,19 @@ function Zoom({ src, onClose }) {
   );
 }
 
-// ——— Deep zoom: full-screen OpenSeadragon over an IIIF info.json (Met/AIC/CMA hi-res tiles).
+// ——— Deep zoom: full-screen OpenSeadragon — three source tiers:
+//   1. IIIF (AIC/Met/CMA tiled): work.hires.iiif — full tile pyramid, best quality
+//   2. hires simple image: work.hires.img — OSD simple-image source, whole file fetched
+//   3. fallback simple image: work.imgZoom || work.img — same simple-image path, no hires entry
 // The OSD script is vendored (never CDN) and lazy-loaded ONCE via a shared #osd-js tag; the
 // viewer mounts into its own dark layer above the Reader and is destroyed on close.
+// osdFailed: module-level flag set when the OSD script itself fails to load, so we can skip
+// the OSD path entirely and tell the Reader to fall back to the plain Zoom overlay.
 let osdLoad = null; // shared promise so the script is fetched a single time across opens
+let osdFailed = false; // true after a hard script-load error
 function loadOSD() {
   if (window.OpenSeadragon) return Promise.resolve();
+  if (osdFailed) return Promise.reject(new Error("osd previously failed"));
   if (osdLoad) return osdLoad;
   osdLoad = new Promise((resolve, reject) => {
     let s = document.getElementById("osd-js");
@@ -298,17 +305,38 @@ function loadOSD() {
       document.body.appendChild(s);
     }
     s.addEventListener("load", () => resolve());
-    s.addEventListener("error", () => { osdLoad = null; reject(new Error("osd load failed")); });
+    s.addEventListener("error", () => { osdLoad = null; osdFailed = true; reject(new Error("osd load failed")); });
   });
   return osdLoad;
 }
-function DeepZoom({ work, onClose }) {
+
+// Derive the OSD tileSource and caption label for any work.
+// Returns { tileSource, label } or null if no usable image exists.
+function resolveOSDSource(work) {
+  if (work.hires && work.hires.iiif) {
+    const src = (work.hires.src || "").toUpperCase();
+    return { tileSource: work.hires.iiif, label: src ? `deep zoom via ${src}` : "deep zoom" };
+  }
+  if (work.hires && work.hires.img) {
+    const src = (work.hires.src || "").toUpperCase();
+    return { tileSource: { type: "image", url: work.hires.img }, label: src ? `deep zoom via ${src}` : "deep zoom" };
+  }
+  const simpleUrl = work.imgZoom || work.img;
+  if (simpleUrl) {
+    return { tileSource: { type: "image", url: simpleUrl }, label: work.title.replace(/^TBC — /, "") };
+  }
+  return null;
+}
+
+function DeepZoom({ work, onClose, onOsdFail }) {
   const elRef = React.useRef(null);
   const viewerRef = React.useRef(null);
   const [err, setErr] = useState(false);
   const details = (work.hires && work.hires.details) || [];
   // activeDetail: null = full view; number = index into details
   const [activeDetail, setActiveDetail] = useState(null);
+
+  const osdSrc = resolveOSDSource(work);
 
   // Navigate to a detail via OSD viewport, or go home
   const goToDetail = useCallback((idx) => {
@@ -361,13 +389,18 @@ function DeepZoom({ work, onClose }) {
     };
     window.addEventListener("keydown", onKey, true);
     let cancelled = false;
+    if (!osdSrc) {
+      // no usable image at all — nothing to show
+      if (!cancelled) setErr(true);
+      return () => { cancelled = true; window.removeEventListener("keydown", onKey, true); };
+    }
     loadOSD().then(() => {
       if (cancelled || !elRef.current || !window.OpenSeadragon) return;
       try {
         const viewer = window.OpenSeadragon({
           element: elRef.current,
           prefixUrl: "vendor/openseadragon/images/",
-          tileSources: work.hires.iiif,
+          tileSources: osdSrc.tileSource,
           showNavigator: true,
           navigatorPosition: "BOTTOM_RIGHT",
           showRotationControl: true,
@@ -379,7 +412,10 @@ function DeepZoom({ work, onClose }) {
         viewer.addHandler("open-failed", () => { if (!cancelled) setErr(true); });
         viewerRef.current = viewer;
       } catch (e) { if (!cancelled) setErr(true); }
-    }).catch(() => { if (!cancelled) setErr(true); });
+    }).catch(() => {
+      // OSD script failed to load — signal Reader to fall back to plain Zoom
+      if (!cancelled) { if (onOsdFail) onOsdFail(); else setErr(true); }
+    });
     return () => {
       cancelled = true;
       window.removeEventListener("keydown", onKey, true);
@@ -387,8 +423,8 @@ function DeepZoom({ work, onClose }) {
     };
   }, []);
 
-  const src = (work.hires.src || "").toUpperCase();
   const activeDet = activeDetail !== null ? details[activeDetail] : null;
+  const capLabel = osdSrc ? osdSrc.label : work.title.replace(/^TBC — /, "");
 
   return (
     <div className="cv-osd">
@@ -427,7 +463,7 @@ function DeepZoom({ work, onClose }) {
           <span className="cv-osd-det-note">{activeDet.n}</span>
         </div>
       ) : (
-        <div className="cv-osd-cap">{work.title.replace(/^TBC — /, "")} · deep zoom{src ? ` via ${src}` : ""}{details.length ? " · click a detail below to explore" : ""}</div>
+        <div className="cv-osd-cap">{capLabel}{details.length ? " · click a detail below to explore" : ""}</div>
       )}
     </div>
   );
@@ -435,8 +471,8 @@ function DeepZoom({ work, onClose }) {
 
 function Reader({ id, go }) {
   const w = useMemo(() => { const x = WORKS.find(x => x.id === id); return x ? enrich(x) : null; }, [id]);
-  const [zoom, setZoom] = useState(false);
-  const [deep, setDeep] = useState(false);
+  const [zoom, setZoom] = useState(false);       // plain Zoom overlay (fallback when OSD fails)
+  const [deep, setDeep] = useState(false);       // DeepZoom (OSD) overlay
   const [tier, setTier] = useState("about");
   // close returns to the previous history entry (home or wall, depending where the card was clicked)
   const close = () => { history.back(); };
@@ -451,12 +487,30 @@ function Reader({ id, go }) {
   const life = a.born ? `${a.born}–${a.died || ""}` : null;
   const pal = (window.CANVAS_PALETTE || {})[id];
   const read = (window.CANVAS_ART_ABOUT || {})[id];
+
+  // Does this work have a usable OSD source? (IIIF, hires.img, or fallback imgZoom/img)
+  const hasDeepZoom = !!resolveOSDSource(w);
+  // Clicking the hero image opens DeepZoom when available; falls back to plain Zoom only if
+  // OSD script failed to load (osdFailed flag) and we have a imgZoom/img to show.
+  const openZoom = () => {
+    if (hasDeepZoom && !osdFailed) { setDeep(true); return; }
+    // OSD unavailable — fall back to plain overlay if we have a zoom-worthy URL
+    const fallbackSrc = w.imgZoom || w.img;
+    if (fallbackSrc) setZoom(true);
+  };
+  // Called by DeepZoom when the OSD script itself fails to load; switches to plain overlay.
+  const handleOsdFail = () => {
+    setDeep(false);
+    const fallbackSrc = w.imgZoom || w.img;
+    if (fallbackSrc) setZoom(true);
+  };
+
   return (
     <React.Fragment>
       <div className="cv-reader-bg" onClick={close} />
       <div className="cv-reader">
         <button className="cv-r-close" onClick={close}>✕</button>
-        {w.img && <img className="hero" src={w.img} alt={w.title} title="click to zoom" style={{ cursor: "zoom-in" }} onClick={() => setZoom(true)} />}
+        {w.img && <img className="hero" src={w.img} alt={w.title} title="click to zoom" style={{ cursor: "zoom-in" }} onClick={openZoom} />}
         <div className="cv-r-body">
           <h1 className="cv-r-title">{w.title.replace(/^TBC — /, "")}</h1>
           <div className="cv-r-meta"><b style={{ cursor: "pointer" }} title="artist page" onClick={() => go("artist", w.artistId)}>{w.artist.replace(/\s*\(.*\)$/, "")}</b>{life ? ` · ${life}` : ""}{w.year ? ` · ${w.year}` : ""}{a.desc ? ` · ${a.desc}` : ""}</div>
@@ -493,15 +547,15 @@ function Reader({ id, go }) {
           )}
           {w.note && <div className="cv-r-note">{w.note}</div>}
           <div className="cv-r-links">
-            {w.hires && w.hires.iiif && <button type="button" className="cv-r-deep" onClick={() => setDeep(true)}>⤢ Deep zoom</button>}
+            {hasDeepZoom && <button type="button" className="cv-r-deep" onClick={() => setDeep(true)}>⤢ Deep zoom</button>}
             {w.qid && <a href={`https://www.wikidata.org/wiki/${w.qid}`} target="_blank" rel="noopener noreferrer">Wikidata ↗</a>}
             {w.imgZoom && <a href={w.imgZoom} target="_blank" rel="noopener noreferrer">Full resolution ↗</a>}
             {a.qid && <a href={`https://www.wikidata.org/wiki/${a.qid}`} target="_blank" rel="noopener noreferrer">{w.artist.split(" ").pop()} on Wikidata ↗</a>}
           </div>
         </div>
       </div>
-      {zoom && w.imgZoom && <Zoom src={w.imgZoom} onClose={() => setZoom(false)} />}
-      {deep && w.hires && w.hires.iiif && <DeepZoom work={w} onClose={() => setDeep(false)} />}
+      {zoom && (w.imgZoom || w.img) && <Zoom src={w.imgZoom || w.img} onClose={() => setZoom(false)} />}
+      {deep && <DeepZoom work={w} onClose={() => setDeep(false)} onOsdFail={handleOsdFail} />}
     </React.Fragment>
   );
 }

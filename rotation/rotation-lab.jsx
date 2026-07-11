@@ -872,6 +872,550 @@ function DecadeTreemap() {
 }
 
 // ─────────────────────────────────────────────────────────────────
+//  0. ATTRIBUTE LAB — library projected onto pickable audio-attribute axes
+// ─────────────────────────────────────────────────────────────────
+// Per-track audio features live in track-audio.js (window.ROTATION_TRACKAUDIO),
+// keyed artistSlug~trackSlug -> [durSec, pop, explicit, trackNo, energy, valence,
+// acoustic, tempo, dance, instr]. Features are present only when length >= 10;
+// every feature axis is scaled 0..100. We average per artist (artistSlug = the
+// leading key segment = R.ARTISTS/R.EXPLORE .id) into an attribute centroid.
+
+const ATTR_FEAT_IX = { energy: 4, valence: 5, acoustic: 6, tempo: 7, dance: 8, instr: 9 };
+
+// axis descriptors: key -> { label, kind }. kind drives scaling + value formatting.
+const ATTR_AXES = [
+  { key: "energy",     label: "energy",       kind: "feat" },
+  { key: "dance",      label: "danceability", kind: "feat" },
+  { key: "valence",    label: "valence",      kind: "feat" },
+  { key: "acoustic",   label: "acousticness", kind: "feat" },
+  { key: "instr",      label: "instrumental", kind: "feat" },
+  { key: "tempo",      label: "tempo",        kind: "feat" },
+  { key: "popularity", label: "popularity",   kind: "log" },   // listeners, log-scaled
+  { key: "debut",      label: "debut year",   kind: "year" },
+  { key: "plays",      label: "your plays",   kind: "log" },
+];
+const ATTR_SHADE = [
+  { key: "none",     label: "none" },
+  { key: "acoustic", label: "acoustic" },
+  { key: "instr",    label: "instrumental" },
+  { key: "tempo",    label: "tempo" },
+];
+const attrAxisByKey = (k) => ATTR_AXES.find(a => a.key === k) || ATTR_AXES[0];
+
+// build (memo-friendly) per-artist attribute centroids from the track-audio blob.
+// One-time ~40k-row pass; caller memoises on the blob identity.
+function attrBuildArtists(TA, R) {
+  // accumulate feature sums + counts per artistSlug
+  const acc = new Map(); // slug -> { n, sum:[6], key }
+  const keys = Object.keys(TA);
+  for (let i = 0; i < keys.length; i++) {
+    const k = keys[i];
+    const td = TA[k];
+    if (!td || td.length < 10) continue; // no feature block
+    const tilde = k.indexOf("~");
+    if (tilde < 1) continue;
+    const aSlug = k.slice(0, tilde);
+    let e = acc.get(aSlug);
+    if (!e) { e = { n: 0, sum: [0, 0, 0, 0, 0, 0] }; acc.set(aSlug, e); }
+    // energy,valence,acoustic,tempo,dance,instr in that fixed order
+    const vs = [td[4], td[5], td[6], td[7], td[8], td[9]];
+    let ok = true;
+    for (let j = 0; j < 6; j++) { const v = vs[j]; if (typeof v !== "number" || v !== v) { ok = false; break; } }
+    if (!ok) continue;
+    for (let j = 0; j < 6; j++) e.sum[j] += vs[j];
+    e.n++;
+  }
+
+  // meta lookup: id -> { name, plays, hue, listeners, debut }. ARTISTS is always
+  // present; EXPLORE (deferred) carries the long tail + listeners(l)/debut(d).
+  const meta = new Map();
+  const addMeta = (a, kept) => {
+    if (!a || !a.id) return;
+    const cur = meta.get(a.id) || {};
+    meta.set(a.id, {
+      name: cur.name || a.name,
+      plays: cur.plays != null ? cur.plays : a.plays,
+      hue: cur.hue != null ? cur.hue : (a.hue != null ? a.hue : 300),
+      listeners: cur.listeners != null ? cur.listeners : (a.l != null ? a.l : null),
+      debut: cur.debut != null ? cur.debut : (a.d != null ? a.d : null),
+      s: cur.s != null ? cur.s : (a.s || null),
+    });
+  };
+  if (R.ARTISTS) for (const a of R.ARTISTS) addMeta(a, true);
+  if (R.EXPLORE) for (const a of R.EXPLORE) addMeta(a, false);
+
+  const artists = [];
+  for (const [aSlug, e] of acc) {
+    if (e.n < 3) continue; // require >=3 audio-covered tracks
+    const m = meta.get(aSlug);
+    if (!m) continue; // not in our library projection (unkept, unscrobbled)
+    const feat = {
+      energy:   e.sum[0] / e.n,
+      valence:  e.sum[1] / e.n,
+      acoustic: e.sum[2] / e.n,
+      tempo:    e.sum[3] / e.n,
+      dance:    e.sum[4] / e.n,
+      instr:    e.sum[5] / e.n,
+    };
+    artists.push({
+      id: aSlug,
+      name: m.name || aSlug,
+      plays: m.plays || 0,
+      hue: m.hue,
+      listeners: m.listeners,
+      debut: m.debut,
+      sub: (m.s && m.s.length) ? m.s[0] : null,
+      nTracks: e.n,
+      feat,
+    });
+  }
+  return { artists, totalAudioArtists: acc.size };
+}
+
+// weighted subgenre centroids from the per-artist rows (weight = plays).
+function attrBuildSubs(artists, R) {
+  const SUBS = R.SUBS || [];
+  const agg = new Map(); // subIdx -> { w, sum:[6], listW, listSum, debW, debSum, plays }
+  for (const a of artists) {
+    if (a.sub == null || !SUBS[a.sub]) continue;
+    const w = Math.max(a.plays, 1);
+    let e = agg.get(a.sub);
+    if (!e) { e = { w: 0, sum: [0, 0, 0, 0, 0, 0], listW: 0, listSum: 0, debW: 0, debSum: 0, plays: 0 }; agg.set(a.sub, e); }
+    const f = a.feat;
+    e.sum[0] += f.energy * w; e.sum[1] += f.valence * w; e.sum[2] += f.acoustic * w;
+    e.sum[3] += f.tempo * w;  e.sum[4] += f.dance * w;   e.sum[5] += f.instr * w;
+    e.w += w; e.plays += a.plays;
+    if (a.listeners != null) { e.listSum += a.listeners * w; e.listW += w; }
+    if (a.debut != null)     { e.debSum += a.debut * w;      e.debW += w; }
+  }
+  const subs = [];
+  for (const [si, e] of agg) {
+    if (e.w <= 0) continue;
+    const S = SUBS[si];
+    subs.push({
+      id: "sub-" + si,
+      name: S.name,
+      plays: e.plays,
+      hue: S.hue != null ? S.hue : 300,
+      listeners: e.listW > 0 ? e.listSum / e.listW : null,
+      debut: e.debW > 0 ? e.debSum / e.debW : null,
+      sub: si,
+      feat: {
+        energy: e.sum[0] / e.w, valence: e.sum[1] / e.w, acoustic: e.sum[2] / e.w,
+        tempo: e.sum[3] / e.w,  dance: e.sum[4] / e.w,   instr: e.sum[5] / e.w,
+      },
+    });
+  }
+  return subs;
+}
+
+// raw axis value for a row given an axis key.
+function attrRawVal(row, key) {
+  if (key === "plays") return row.plays || 0;
+  if (key === "popularity") return row.listeners != null ? row.listeners : null;
+  if (key === "debut") return row.debut != null ? row.debut : null;
+  return row.feat ? row.feat[key] : null; // feature axis (0..100)
+}
+
+// human-readable value for the tooltip / results list.
+function attrFmtVal(row, key) {
+  const v = attrRawVal(row, key);
+  if (v == null) return "–";
+  if (key === "plays") return Math.round(v).toLocaleString("en-US");
+  if (key === "popularity") return Math.round(v).toLocaleString("en-US");
+  if (key === "debut") return String(Math.round(v));
+  return v.toFixed(0); // 0..100 feature
+}
+
+function AttributeChart({ artists, subs, totalAudioArtists, hasRest }) {
+  const R = window.ROTATION;
+  const [xKey, setXKey] = React.useState("energy");
+  const [yKey, setYKey] = React.useState("valence");
+  const [mode, setMode] = React.useState("artists");
+  const [shade, setShade] = React.useState("none");
+  const [hover, setHover] = React.useState(null);
+  const [brush, setBrush] = React.useState(null);   // {x0,y0,x1,y1} in pixel space, live
+  const [brushed, setBrushed] = React.useState(null); // committed rect
+  const dragRef = React.useRef(null);
+  const svgRef = React.useRef(null);
+
+  const rows = mode === "subgenres" ? subs : artists;
+
+  // pixel-space plot geometry (viewBox 1000 x H, non-stretched via preserveAspectRatio)
+  const W = 1000, H = 520;
+  const PAD_L = 44, PAD_R = 20, PAD_T = 20, PAD_B = 40;
+  const PW = W - PAD_L - PAD_R, PH = H - PAD_T - PAD_B;
+
+  // build scale for an axis over the current rows.
+  const buildScale = React.useCallback((key) => {
+    const ax = attrAxisByKey(key);
+    const vals = [];
+    for (const r of rows) { const v = attrRawVal(r, key); if (v != null && v === v) vals.push(v); }
+    if (!vals.length) return { ax, ok: false, map: () => 0, min: 0, max: 1 };
+    let min = Math.min(...vals), max = Math.max(...vals);
+    if (ax.kind === "feat") { min = 0; max = 100; }
+    let tf = (v) => v;
+    if (ax.kind === "log") { tf = (v) => Math.log10(Math.max(v, 1)); min = tf(min); max = tf(Math.max(max, 1)); }
+    if (min === max) max = min + 1;
+    return { ax, ok: true, tf, min, max, map: (v) => (tf(v) - min) / (max - min) };
+  }, [rows]);
+
+  const sx = React.useMemo(() => buildScale(xKey), [buildScale, xKey]);
+  const sy = React.useMemo(() => buildScale(yKey), [buildScale, yKey]);
+
+  // plotted points with pixel coords.
+  const pts = React.useMemo(() => {
+    const out = [];
+    let maxPlays = 1;
+    for (const r of rows) maxPlays = Math.max(maxPlays, r.plays || 0);
+    const totPlays = rows.reduce((s, r) => s + (r.plays || 0), 0) || 1;
+    for (const r of rows) {
+      const vx = attrRawVal(r, xKey), vy = attrRawVal(r, yKey);
+      if (vx == null || vy == null || vx !== vx || vy !== vy) continue;
+      const px = PAD_L + sx.map(vx) * PW;
+      const py = PAD_T + (1 - sy.map(vy)) * PH; // y inverted (higher value = up)
+      // r ∝ sqrt(plays); subgenre dots sized to total plays share
+      const base = Math.sqrt((r.plays || 1) / maxPlays);
+      const radius = mode === "subgenres"
+        ? Math.max(4, 6 + base * 20)
+        : Math.max(2.2, 2.5 + base * 12);
+      out.push({ row: r, px, py, radius, vx, vy });
+    }
+    return out;
+  }, [rows, sx, sy, xKey, yKey, mode]);
+
+  // top subgenres to label (by plays) when in subgenre mode.
+  const labelIds = React.useMemo(() => {
+    if (mode !== "subgenres") return new Set();
+    const sorted = pts.slice().sort((a, b) => (b.row.plays || 0) - (a.row.plays || 0)).slice(0, 25);
+    return new Set(sorted.map(p => p.row.id));
+  }, [pts, mode]);
+
+  // shade-by luminance: map chosen attr to 0..1 (only feature axes offered).
+  const shadeVal = React.useCallback((row) => {
+    if (shade === "none") return null;
+    const v = row.feat ? row.feat[shade] : null;
+    if (v == null || v !== v) return null;
+    return Math.max(0, Math.min(1, v / 100));
+  }, [shade]);
+
+  // convert a client mouse event to pixel-space coords in the viewBox.
+  const toLocal = (evt) => {
+    const svg = svgRef.current; if (!svg) return null;
+    const rect = svg.getBoundingClientRect();
+    const cx = (evt.clientX - rect.left) / rect.width * W;
+    const cy = (evt.clientY - rect.top) / rect.height * H;
+    return { x: cx, y: cy };
+  };
+
+  const onMove = (evt) => {
+    const p = toLocal(evt); if (!p) return;
+    if (dragRef.current) {
+      setBrush({ x0: dragRef.current.x, y0: dragRef.current.y, x1: p.x, y1: p.y });
+      return;
+    }
+    // nearest dot within 24px (pixel-space)
+    let best = null, bd = 24 * 24;
+    for (const pt of pts) {
+      const dx = pt.px - p.x, dy = pt.py - p.y;
+      const d = dx * dx + dy * dy;
+      if (d < bd) { bd = d; best = pt; }
+    }
+    setHover(best);
+  };
+
+  const onDown = (evt) => {
+    const p = toLocal(evt); if (!p) return;
+    dragRef.current = p;
+    setBrush({ x0: p.x, y0: p.y, x1: p.x, y1: p.y });
+  };
+  const onUp = () => {
+    if (dragRef.current && brush) {
+      const w = Math.abs(brush.x1 - brush.x0), h = Math.abs(brush.y1 - brush.y0);
+      if (w > 6 && h > 6) {
+        setBrushed({
+          x0: Math.min(brush.x0, brush.x1), x1: Math.max(brush.x0, brush.x1),
+          y0: Math.min(brush.y0, brush.y1), y1: Math.max(brush.y0, brush.y1),
+        });
+      } else { setBrushed(null); }
+    }
+    dragRef.current = null;
+    setBrush(null);
+  };
+  const onLeave = () => { if (!dragRef.current) setHover(null); };
+
+  // which points are inside the committed brush?
+  const inBrush = React.useCallback((pt) => {
+    if (!brushed) return true;
+    return pt.px >= brushed.x0 && pt.px <= brushed.x1 && pt.py >= brushed.y0 && pt.py <= brushed.y1;
+  }, [brushed]);
+
+  const brushedPts = React.useMemo(() => {
+    if (!brushed) return [];
+    return pts.filter(inBrush).sort((a, b) => (b.row.plays || 0) - (a.row.plays || 0)).slice(0, 30);
+  }, [pts, brushed, inBrush]);
+
+  // axis tick labels (HTML, outside svg per house rule): 4 ticks.
+  const ticksFor = (scale) => {
+    if (!scale.ok) return [];
+    const out = [];
+    for (let i = 0; i <= 3; i++) {
+      const frac = i / 3;
+      let raw;
+      if (scale.ax.kind === "log") raw = Math.pow(10, scale.min + frac * (scale.max - scale.min));
+      else raw = scale.min + frac * (scale.max - scale.min);
+      let lbl;
+      if (scale.ax.kind === "feat") lbl = Math.round(raw).toString();
+      else if (scale.ax.kind === "year") lbl = Math.round(raw).toString();
+      else if (raw >= 1000) lbl = (raw / 1000).toFixed(raw >= 10000 ? 0 : 1) + "k";
+      else lbl = Math.round(raw).toString();
+      out.push({ frac, lbl });
+    }
+    return out;
+  };
+  const xTicks = ticksFor(sx), yTicks = ticksFor(sy);
+
+  const selBox = {
+    background: LAB_BG2, color: LAB_INK, border: "1px solid " + LAB_RULE,
+    borderRadius: 4, fontFamily: "var(--mono)", fontSize: 11, padding: "3px 6px",
+    letterSpacing: ".04em", cursor: "pointer",
+  };
+  const ctrlLabel = { fontFamily: "var(--mono)", fontSize: 9, color: LAB_FAINT,
+    letterSpacing: ".14em", textTransform: "uppercase", marginRight: 6 };
+
+  const segBtn = (on) => ({
+    fontFamily: "var(--mono)", fontSize: 10, letterSpacing: ".08em",
+    padding: "4px 10px", cursor: "pointer", border: "1px solid " + LAB_RULE,
+    background: on ? LAB_ACC : "transparent", color: on ? "#120c16" : LAB_DIM,
+    textTransform: "uppercase",
+  });
+
+  const hoverRow = hover ? hover.row : null;
+
+  // luminance-shaded fill for a row.
+  const fillFor = (row) => {
+    const sv = shadeVal(row);
+    const L = sv == null ? 0.66 : (0.34 + sv * 0.5);
+    return "oklch(" + L.toFixed(3) + " 0.15 " + (row.hue != null ? row.hue : 300) + ")";
+  };
+
+  return (
+    <div>
+      {/* CONTROLS */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "14px 20px", alignItems: "center", marginBottom: 12 }}>
+        <div>
+          <span style={ctrlLabel}>X</span>
+          <select value={xKey} onChange={e => { setXKey(e.target.value); setBrushed(null); }} style={selBox}>
+            {ATTR_AXES.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
+        <div>
+          <span style={ctrlLabel}>Y</span>
+          <select value={yKey} onChange={e => { setYKey(e.target.value); setBrushed(null); }} style={selBox}>
+            {ATTR_AXES.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
+        <div>
+          <span style={ctrlLabel}>shade</span>
+          <select value={shade} onChange={e => setShade(e.target.value)} style={selBox}>
+            {ATTR_SHADE.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
+        <div style={{ display: "flex", borderRadius: 4, overflow: "hidden" }}>
+          <div onClick={() => { setMode("artists"); setBrushed(null); setHover(null); }} style={segBtn(mode === "artists")}>artists</div>
+          <div onClick={() => { setMode("subgenres"); setBrushed(null); setHover(null); }} style={segBtn(mode === "subgenres")}>subgenres</div>
+        </div>
+      </div>
+
+      {/* HOVER READOUT (top of card) */}
+      <div style={{ minHeight: 18, marginBottom: 6, fontFamily: "var(--mono)", fontSize: 11,
+        color: hoverRow ? LAB_INK : LAB_FAINT, letterSpacing: ".04em" }}>
+        {hoverRow ? (
+          <span>
+            <b style={{ color: labHue(hoverRow.hue != null ? hoverRow.hue : 300) }}>{hoverRow.name}</b>
+            {"  ·  " + attrAxisByKey(xKey).label + " " + attrFmtVal(hoverRow, xKey)}
+            {"  ·  " + attrAxisByKey(yKey).label + " " + attrFmtVal(hoverRow, yKey)}
+            {"  ·  " + (hoverRow.plays || 0).toLocaleString("en-US") + " plays"}
+          </span>
+        ) : (
+          <span>hover a dot for its values · drag to brush a region</span>
+        )}
+      </div>
+
+      {/* PLOT: y-label column + svg */}
+      <div style={{ display: "flex", alignItems: "stretch" }}>
+        <div style={{ position: "relative", width: 16, flex: "0 0 16px" }}>
+          <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%) rotate(-90deg)",
+            transformOrigin: "left", whiteSpace: "nowrap", fontFamily: "var(--mono)", fontSize: 10,
+            color: LAB_ACC, letterSpacing: ".14em", textTransform: "uppercase" }}>
+            {attrAxisByKey(yKey).label} →
+          </div>
+        </div>
+        <div style={{ position: "relative", flex: 1 }}>
+          <svg ref={svgRef} viewBox={"0 0 " + W + " " + H} width="100%"
+            style={{ display: "block", background: LAB_BG, borderRadius: 6, touchAction: "none",
+              aspectRatio: W + " / " + H,
+              cursor: dragRef.current ? "crosshair" : "default" }}
+            onMouseMove={onMove} onMouseDown={onDown} onMouseUp={onUp} onMouseLeave={onLeave}>
+            {/* grid */}
+            {yTicks.map((t, i) => {
+              const y = PAD_T + (1 - t.frac) * PH;
+              return <line key={"gy" + i} x1={PAD_L} x2={W - PAD_R} y1={y} y2={y} stroke={LAB_RULE} strokeWidth="1" opacity="0.5" />;
+            })}
+            {xTicks.map((t, i) => {
+              const x = PAD_L + t.frac * PW;
+              return <line key={"gx" + i} x1={x} x2={x} y1={PAD_T} y2={H - PAD_B} stroke={LAB_RULE} strokeWidth="1" opacity="0.5" />;
+            })}
+            {/* axis frame */}
+            <line x1={PAD_L} x2={PAD_L} y1={PAD_T} y2={H - PAD_B} stroke={LAB_FAINT} strokeWidth="1" />
+            <line x1={PAD_L} x2={W - PAD_R} y1={H - PAD_B} y2={H - PAD_B} stroke={LAB_FAINT} strokeWidth="1" />
+
+            {/* dots */}
+            {pts.map((pt, i) => {
+              const on = inBrush(pt);
+              const isHover = hover && hover.row.id === pt.row.id;
+              const op = brushed ? (on ? 0.92 : 0.12) : (mode === "subgenres" ? 0.82 : 0.75);
+              return (
+                <circle key={pt.row.id + i} cx={pt.px.toFixed(1)} cy={pt.py.toFixed(1)}
+                  r={(isHover ? pt.radius + 2 : pt.radius).toFixed(1)}
+                  fill={fillFor(pt.row)} opacity={op}
+                  stroke={isHover ? LAB_INK : "none"} strokeWidth={isHover ? 1.4 : 0} />
+              );
+            })}
+
+            {/* subgenre labels (tiny mono) for the top ~25 */}
+            {mode === "subgenres" && pts.filter(pt => labelIds.has(pt.row.id)).map((pt, i) => (
+              <text key={"lbl" + pt.row.id} x={(pt.px + pt.radius + 3).toFixed(1)} y={(pt.py + 3).toFixed(1)}
+                fill={LAB_DIM} fontSize="10" fontFamily="var(--mono)">
+                {pt.row.name.length > 22 ? pt.row.name.slice(0, 21) + "…" : pt.row.name}
+              </text>
+            ))}
+
+            {/* live brush rectangle */}
+            {brush && (
+              <rect x={Math.min(brush.x0, brush.x1).toFixed(1)} y={Math.min(brush.y0, brush.y1).toFixed(1)}
+                width={Math.abs(brush.x1 - brush.x0).toFixed(1)} height={Math.abs(brush.y1 - brush.y0).toFixed(1)}
+                fill={LAB_ACC} fillOpacity="0.08" stroke={LAB_ACC} strokeWidth="1" strokeDasharray="4 3" />
+            )}
+            {/* committed brush outline */}
+            {brushed && !brush && (
+              <rect x={brushed.x0.toFixed(1)} y={brushed.y0.toFixed(1)}
+                width={(brushed.x1 - brushed.x0).toFixed(1)} height={(brushed.y1 - brushed.y0).toFixed(1)}
+                fill="none" stroke={LAB_ACC} strokeWidth="1" strokeDasharray="4 3" opacity="0.7" />
+            )}
+          </svg>
+
+          {/* X tick labels (HTML, outside svg) */}
+          <div style={{ position: "relative", height: 14, marginTop: 2 }}>
+            {xTicks.map((t, i) => (
+              <div key={"xt" + i} style={{ position: "absolute",
+                left: ((PAD_L + t.frac * PW) / W * 100) + "%", transform: "translateX(-50%)",
+                fontFamily: "var(--mono)", fontSize: 9, color: LAB_FAINT }}>{t.lbl}</div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 2, fontFamily: "var(--mono)", fontSize: 10,
+            color: LAB_ACC, letterSpacing: ".14em", textTransform: "uppercase" }}>
+            {attrAxisByKey(xKey).label} →
+          </div>
+
+          {/* Y tick labels floated over left edge */}
+          {yTicks.map((t, i) => (
+            <div key={"yt" + i} style={{ position: "absolute", left: -2,
+              top: (PAD_T + (1 - t.frac) * PH) / H * 100 + "%", transform: "translate(-100%,-50%)",
+              fontFamily: "var(--mono)", fontSize: 9, color: LAB_FAINT, paddingRight: 4 }}>{t.lbl}</div>
+          ))}
+        </div>
+      </div>
+
+      {/* BRUSH RESULTS */}
+      {brushed && (
+        <div style={{ marginTop: 14, borderTop: "1px solid " + LAB_RULE, paddingTop: 12 }}>
+          <div style={{ fontFamily: "var(--mono)", fontSize: 9, color: LAB_FAINT,
+            letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8 }}>
+            {brushedPts.length} in region — top {Math.min(30, brushedPts.length)} by plays
+            <span style={{ color: LAB_FAINT, textTransform: "none", letterSpacing: 0 }}>
+              {"  (names are plain text — the #lab view isn't wired to navigation)"}
+            </span>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "4px 16px" }}>
+            {brushedPts.map((pt) => (
+              <div key={pt.row.id} style={{ fontFamily: "var(--mono)", fontSize: 11,
+                color: LAB_DIM, display: "flex", justifyContent: "space-between", gap: 8 }}>
+                <span style={{ color: labHue(pt.row.hue != null ? pt.row.hue : 300), overflow: "hidden",
+                  textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{pt.row.name}</span>
+                <span style={{ color: LAB_FAINT, flex: "0 0 auto" }}>
+                  {(pt.row.plays || 0).toLocaleString("en-US")} · {attrFmtVal(pt.row, xKey)}/{attrFmtVal(pt.row, yKey)}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {!hasRest && (
+        <div style={{ marginTop: 10, fontFamily: "var(--mono)", fontSize: 9, color: LAB_FAINT, letterSpacing: ".06em" }}>
+          long-tail universe still loading — popularity &amp; debut-year axes fill in once music-rest.js lands.
+        </div>
+      )}
+    </div>
+  );
+}
+
+function AttributeWrapper() {
+  const R = window.ROTATION;
+  const [taReady, setTaReady] = React.useState(!!window.ROTATION_TRACKAUDIO);
+  const [restReady, setRestReady] = React.useState(!!(R && R._restLoaded));
+
+  // lazy-load the shared track-audio blob (id reused so we never double-inject).
+  React.useEffect(() => {
+    if (window.ROTATION_TRACKAUDIO) { setTaReady(true); return; }
+    const existing = document.getElementById("lab-track-audio-js");
+    if (!existing) {
+      const s = document.createElement("script");
+      s.id = "lab-track-audio-js"; s.src = "track-audio.js";
+      s.onload = () => setTaReady(true); s.onerror = () => setTaReady(true);
+      document.head.appendChild(s);
+    } else {
+      const poll = setInterval(() => { if (window.ROTATION_TRACKAUDIO) { clearInterval(poll); setTaReady(true); } }, 80);
+      return () => clearInterval(poll);
+    }
+  }, []);
+
+  // watch for the deferred EXPLORE universe (listeners/debut axes + long tail).
+  React.useEffect(() => {
+    if (!R || R._restLoaded) { setRestReady(true); return; }
+    const poll = setInterval(() => { if (R._restLoaded) { clearInterval(poll); setRestReady(true); } }, 120);
+    return () => clearInterval(poll);
+  }, []);
+
+  // HARD MEMO: the ~40k-row centroid pass runs once per (blob, rest-arrival).
+  const built = React.useMemo(() => {
+    if (!taReady || !window.ROTATION_TRACKAUDIO || !R) return null;
+    const base = attrBuildArtists(window.ROTATION_TRACKAUDIO, R);
+    const subs = attrBuildSubs(base.artists, R);
+    return { ...base, subs };
+  }, [taReady, restReady, R]);
+
+  const caption = built
+    ? "The library projected onto pickable audio-attribute axes — pick X/Y, brush a region, "
+      + "read who lives there. " + built.artists.length + " of "
+      + (built.totalAudioArtists ? built.totalAudioArtists : "?") + " audio-covered artists have ≥3 featured tracks "
+      + "(only those get a stable centroid)."
+    : "The library projected onto pickable audio-attribute axes for granular discovery.";
+
+  let body;
+  if (!taReady) {
+    body = <div style={{ fontFamily: "var(--mono)", fontSize: 11, color: LAB_FAINT, letterSpacing: ".06em" }}>Loading track-audio…</div>;
+  } else if (!built || !built.artists.length) {
+    body = <div style={{ fontFamily: "var(--mono)", fontSize: 11, color: LAB_FAINT, letterSpacing: ".06em" }}>No artists with ≥3 audio-featured tracks.</div>;
+  } else {
+    body = <AttributeChart artists={built.artists} subs={built.subs} totalAudioArtists={built.totalAudioArtists} hasRest={restReady} />;
+  }
+
+  return labCard("Attribute Lab", caption, body);
+}
+
+// ─────────────────────────────────────────────────────────────────
 //  LAB VIEW
 // ─────────────────────────────────────────────────────────────────
 function LabView() {
@@ -894,6 +1438,7 @@ function LabView() {
         </div>
       </div>
 
+      <AttributeWrapper />
       <BumpChart />
       <SpiralWrapper />
       <HorizonWrapper />
