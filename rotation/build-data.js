@@ -399,17 +399,21 @@ const _ALBUM_KEEP = /\b(live|acoustic|unplugged|instrumentals?|demos?|acapella|a
 const _ALBUM_STRIP = new RegExp(
   "^(.*?)[\\s]*[([\\-–—][\\s]*(?:" +
   "deluxe|expanded|remaster(?:ed)?|anniversary|special edition|extended|" +
-  "bonus(?:[\\s-]track)?(?:[\\s-]edition)?|collector(?:'?s)?(?:[\\s-]edition)?|redux|" +
-  "tour edition|complete edition|" +
+  "bonus(?:[\\s-]track)?(?:[\\s-]edition)?(?:[\\s-]version)?|collector(?:'?s)?(?:[\\s-]edition)?|redux|" +
+  "tour edition|complete edition|limited(?:[\\s-]edition)?|digipak|re-?issue|" +
+  "legacy edition|platinum edition|gold edition|(?:japanese|japan|uk|us|european) (?:edition|version)|bonus disc|" +
+  "\\d+(?:th|st|nd|rd)[\\s-]anniversary(?:[\\s-]edition)?|" +
   "(?:19|20)\\d{2}(?:[\\s-](?:remaster(?:ed)?|mix|master|edition|version))?" +   // "2012 Mix/Master", bare year only when in a suffix segment
   ")[^)\\]]*[)\\]]?\\s*$", "i"
 );
+// edition suffixes that appear WITHOUT a bracket/dash delimiter: "Meteora 20th Anniversary Edition"
+const _ALBUM_STRIP_BARE = /^(.{3,}?)\s+(\d+(?:th|st|nd|rd)\s+anniversary(?:\s+edition)?|limited edition|deluxe(?:\s+(?:edition|version))?|special edition)$/i;
 function canonAlbum(name) {
   if (!name) return name;
   let s = name;
   // peel one trailing edition segment at a time (handles "… (Deluxe) (Remastered)")
   for (let i = 0; i < 4; i++) {
-    const m = _ALBUM_STRIP.exec(s);
+    const m = _ALBUM_STRIP.exec(s) || _ALBUM_STRIP_BARE.exec(s);
     if (!m) break;
     const base = m[1].replace(/[\s\-–—]+$/, "").trim();
     const stripped = s.slice(base.length);            // the tail we'd remove
@@ -419,6 +423,10 @@ function canonAlbum(name) {
   }
   return s;
 }
+// diacritic/punctuation fold — "Liebe Ist Fur Alle Da" ≡ "Liebe ist für alle da",
+// "Reise, Reise" ≡ "Reise Reise". Groups same-artist spellings; display = most-played.
+const _foldName = (s) => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "")
+  .toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 // alias entries: "<artistSlug>~<variantAlbumSlug>" → "<artistSlug>~<canonAlbumSlug>", recorded
 // at ingest whenever a variant title differs from its canonical base (emitted to album-alias.js).
 const ALBUM_ALIAS = {};
@@ -440,6 +448,36 @@ const _albVarTracks = new Map();
 const _albVarNames = new Map();
 const _addTo = (map, key, val) => { let s = map.get(key); if (!s) { s = new Set(); map.set(key, s); } s.add(val); };
 
+// ─────────── spelling-fold prescan (albums + tracks) ───────────
+// One extra pass over the CSV: per artist, group album titles (post-suffix-strip) and track
+// titles by folded key; every variant spelling remaps to the most-played one at ingest.
+// Catches umlaut-less dupes, curly-vs-straight apostrophes, comma variants.
+const ALBUM_FOLD = new Map();   // artist\x00fold(album) → best spelling
+const TRACK_FOLD = new Map();   // artist\x00slug(track) → best spelling
+{
+  const albC = new Map(), trkC = new Map();
+  for (const line of lines) {
+    const [ra, rAlb, trk] = parseLine(line);
+    if (!ra) continue;
+    const a = canon(ra);
+    if (rAlb) { const al = canonAlbum(rAlb); const k = a + "\x00" + _foldName(al) + "\x00" + al;
+      albC.set(k, (albC.get(k) || 0) + 1); }
+    if (trk) { const k = a + "\x00" + slug(trk) + "\x00" + trk; trkC.set(k, (trkC.get(k) || 0) + 1); }
+  }
+  const pick = (src, dst) => {
+    const best = new Map();
+    for (const [k, n] of src) {
+      const i = k.lastIndexOf("\x00"); const g = k.slice(0, i), spelling = k.slice(i + 1);
+      const cur = best.get(g);
+      if (!cur || n > cur[1]) best.set(g, [spelling, n]);
+    }
+    for (const [g, [spelling]] of best) dst.set(g, spelling);
+  };
+  pick(albC, ALBUM_FOLD); pick(trkC, TRACK_FOLD);
+}
+const foldAlbum = (artist, album) => album ? (ALBUM_FOLD.get(artist + "\x00" + _foldName(album)) || album) : album;
+const foldTrack = (artist, track) => track ? (TRACK_FOLD.get(artist + "\x00" + slug(track)) || track) : track;
+
 const artistPlays = new Map();           // name → count
 const albumPlays = new Map();            // artist\x00album → count
 const trackPlays = new Map();            // artist\x00track → count
@@ -458,17 +496,23 @@ const scrobbles = [];                    // [artist, album, track, ms] newest-fi
 const undatedArtists = [];
 
 for (const line of lines) {
-  const [rawArtist, rawAlbum, track, ts] = parseLine(line);
+  const [rawArtist, rawAlbum, rawTrack, ts] = parseLine(line);
   if (!rawArtist) continue;
   const artist = canon(rawArtist);   // merge scrobble-name variants (album hygiene done in the CSV)
-  // collapse edition variants onto the base title BEFORE any album map is keyed
-  const album = canonAlbum(rawAlbum);
-  if (album && rawAlbum !== album) {
+  const track = foldTrack(artist, rawTrack);   // "Don’t stay" → "Don't Stay" (most-played spelling)
+  // collapse edition variants onto the base title BEFORE any album map is keyed,
+  // then fold spelling variants ("Liebe Ist Fur Alle Da" → "Liebe ist für alle da")
+  const albumStripped = canonAlbum(rawAlbum);
+  const album = foldAlbum(artist, albumStripped);
+  if (album && rawAlbum !== album && slug(rawAlbum) !== slug(album)) {
     const aSlug = slug(artist);
     ALBUM_ALIAS[aSlug + "~" + slug(rawAlbum)] = aSlug + "~" + slug(album);
-    // this scrobble came in under a variant edition — remember its suffix + which track it carried
+  }
+  if (album && rawAlbum !== albumStripped) {
+    // an EDITION suffix was stripped — remember it + which track the variant carried.
+    // (pure spelling folds are NOT variants: they count as base scrobbles below)
     const ak = artist + "\x00" + album;
-    const suf = variantSuffix(rawAlbum, album);
+    const suf = variantSuffix(rawAlbum, albumStripped);
     if (suf) _addTo(_albVarNames, ak, suf);
     if (track) _addTo(_albVarTracks, ak, track);
   } else if (album && track) {
@@ -2141,7 +2185,14 @@ const ALBUM_EXTRAS = {};
       .replace(/\s*[-–—(\[]\s*((\d{4}\s*)?remaster(ed)?(\s*\d{4})?|\d{4}\s*(mix|master)(\/(mix|master))?|(mix\/master))\s*[)\]]?\s*$/i, "")
       .trim();
     const baseCmp = new Set([...base].map(cmp));
-    const bonus = [...varTracks].filter(t => !base.has(t) && !baseCmp.has(cmp(t))).sort();
+    const varOnly = [...varTracks].filter(t => !base.has(t) && !baseCmp.has(cmp(t)));
+    // We only know what was PLAYED, not release tracklists. Variant-only tracks split two ways:
+    //  · MARKED (live/demo/unreleased/remix/version tails) = genuine edition extras → bonus divider
+    //    (the Meteora|20 case: 60+ demos & live discs must sit below the rule, not inline).
+    //  · CLEAN titles = standard album tracks the base was never scrobbled with (Hunting Party
+    //    case) → merge silently, no "bonus" label.
+    const MARKED = /(\s[-–—]\s.*\b(live|demo|unreleased|acoustic|instrumental|remix|rework|edit|mix|version)\b)|(\(\s*[^)]*\b(live|demo|unreleased|acoustic|instrumental|remix|version)\b[^)]*\))/i;
+    const bonus = varOnly.filter(t => MARKED.test(t)).sort();
     const from = [...(_albVarNames.get(ak) || _EMPTY_SET)].sort();
     if (bonus.length === 0 && from.length === 0) continue;
     const entry = {};
@@ -2234,8 +2285,15 @@ console.log(`genius-themes-lazy: ${Object.keys(GENIUS_THEMES).length - 1} tracks
 // rebuilds https://p.scdn.co/mp3-preview/<hash>?cid=…). From spotify-track-links.json (archive pass 2).
 {
   const LINKS = _readJson("spotify-track-links.json");
+  // hand kill-list — previews confirmed to play the WRONG recording (Fuad 2026-07-13). Wrong
+  // audio is worse than none; artist-wide kills stay until an ISRC verification pass clears them.
+  const PREVIEW_KILL_KEYS = new Set(["rammstein~engel", "wargasm-uk~venom", "limp-bizkit~my-generation"]);
+  const PREVIEW_KILL_ARTISTS = new Set(["pro8l3m"]);
   const pv = {};
-  for (const [k, v] of Object.entries(LINKS)) { const m = ((v && v[1]) || "").match(/mp3-preview\/([0-9a-f]+)/); if (m) pv[k] = m[1]; }
+  for (const [k, v] of Object.entries(LINKS)) {
+    if (PREVIEW_KILL_KEYS.has(k) || PREVIEW_KILL_ARTISTS.has(k.split("~")[0])) continue;
+    const m = ((v && v[1]) || "").match(/mp3-preview\/([0-9a-f]+)/); if (m) pv[k] = m[1];
+  }
   const out = "// GENERATED by build-data.js — 30s Spotify preview hashes (lazy-loaded on TrackView).\nwindow.ROTATION_PREVIEWS = " + JSON.stringify(pv) + ";\n";
   fs.writeFileSync(path.join(__dirname, "track-previews.js"), out, "utf8");
   console.log(`track-previews: ${Object.keys(pv).length} tracks (${(out.length / 1024).toFixed(0)} KB)`);

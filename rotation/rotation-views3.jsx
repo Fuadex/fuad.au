@@ -2390,6 +2390,141 @@ function TourSection({ go, gigDate }) {
   );
 }
 
+// Concert map — the cities where Fuad has stood in a crowd, on the shared equirectangular
+// projection (x = (lng+180)/360*1000, y = (90-lat)/180*500; viewBox "0 70 1000 315"), reusing
+// world-map.js land paths like TourMap above. Three owner features live here:
+//  · city CHIPS toggle a city's bubble in/out; the VIEW then fits to the bounding box of the
+//    still-enabled cities (so dropping Sydney zooms Europe/Japan). We animate the viewBox rather
+//    than a <g> transform — bubble radii are already in view-units, so fitting is pure geometry.
+//  · a cursor FISHEYE: on pointermove we scale each bubble by proximity (≈1.6 at the cursor,
+//    easing to 1 past ~80 screen-px), so a knot of nearby cities spreads out and stays clickable.
+function GigsMap({ cityList, hueForCity, onCity }) {
+  const BASE = { x: 0, y: 70, w: 1000, h: 315 };   // the whole-world viewBox this projection lives in
+  const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
+  const [off, setOff] = React.useState(() => new Set());  // countryCode+city keys that are toggled OFF
+  const svgRef = React.useRef(null);
+  const vbRef = React.useRef(BASE);                 // current (animated) viewBox
+  const rafRef = React.useRef(0);
+  const fisheyeRef = React.useRef(0);               // rAF handle for the pointermove fisheye
+  React.useEffect(() => {
+    if (window.ROTATION_WORLD) return;
+    const on = () => setWorld(window.ROTATION_WORLD);
+    let s = document.getElementById("rotation-world-js");
+    if (!s) { s = document.createElement("script"); s.id = "rotation-world-js"; s.src = "world-map.js"; document.head.appendChild(s); }
+    s.addEventListener("load", on);
+    return () => s.removeEventListener("load", on);
+  }, []);
+  // project every city once; keep only those with real coordinates
+  const dots = React.useMemo(() => {
+    const max = Math.max(1, ...cityList.map(c => c.count));
+    return cityList.filter(c => c.lat != null && c.lng != null).map(c => ({
+      key: c.countryCode + "|" + c.city,
+      city: c.city, country: c.country, count: c.count,
+      cx: (c.lng + 180) / 360 * 1000, cy: (90 - c.lat) / 180 * 500,
+      r: 3 + Math.sqrt(c.count / max) * 9,        // area ∝ shows
+      hue: hueForCity(c),
+    }));
+  }, [cityList, hueForCity]);
+
+  // fit the viewBox to the bounding box of the ENABLED bubbles (their radii included) + padding,
+  // clamped to the world box and to a sane min size; then ease the current viewBox toward it.
+  const fit = React.useCallback((targetDots) => {
+    const ds = targetDots.length ? targetDots : dots;   // never fit to nothing
+    if (!ds.length) return;
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    for (const d of ds) { x0 = Math.min(x0, d.cx - d.r); y0 = Math.min(y0, d.cy - d.r); x1 = Math.max(x1, d.cx + d.r); y1 = Math.max(y1, d.cy + d.r); }
+    let w = x1 - x0, h = y1 - y0;
+    const padX = Math.max(w * 0.18, 40), padY = Math.max(h * 0.18, 40);
+    x0 -= padX; y0 -= padY; w += padX * 2; h += padY * 2;
+    // preserve the base aspect ratio so land isn't stretched
+    const aspect = BASE.w / BASE.h;
+    if (w / h < aspect) { const nw = h * aspect; x0 -= (nw - w) / 2; w = nw; }
+    else { const nh = w / aspect; y0 -= (nh - h) / 2; h = nh; }
+    w = Math.max(w, 120); h = Math.max(h, 120 / aspect);   // don't over-zoom a single city
+    const target = { x: x0, y: y0, w, h };
+    cancelAnimationFrame(rafRef.current);
+    const from = vbRef.current, t0 = performance.now(), dur = 420;
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);   // easeOutCubic
+      const vb = { x: from.x + (target.x - from.x) * e, y: from.y + (target.y - from.y) * e,
+        w: from.w + (target.w - from.w) * e, h: from.h + (target.h - from.h) * e };
+      vbRef.current = vb;
+      if (svgRef.current) svgRef.current.setAttribute("viewBox", `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+      if (p < 1) rafRef.current = requestAnimationFrame(step);
+    };
+    rafRef.current = requestAnimationFrame(step);
+  }, [dots]);
+
+  const toggle = (k) => setOff(s => {
+    const n = new Set(s);
+    n.has(k) ? n.delete(k) : n.add(k);
+    if (n.size >= dots.length) n.delete(k);   // never allow ALL off — keep the last one on
+    fit(dots.filter(d => !n.has(d.key)));
+    return n;
+  });
+  React.useEffect(() => () => { cancelAnimationFrame(rafRef.current); cancelAnimationFrame(fisheyeRef.current); }, []);
+
+  // FISHEYE: one rAF-throttled pointermove maps the cursor to view-space, then writes a per-bubble
+  // scale via a CSS var on each <g>. transform-origin sits at the bubble centre so it grows in place.
+  const onMove = (e) => {
+    if (fisheyeRef.current) return;
+    const cx = e.clientX, cy = e.clientY, svg = svgRef.current;
+    fisheyeRef.current = requestAnimationFrame(() => {
+      fisheyeRef.current = 0;
+      if (!svg) return;
+      const rect = svg.getBoundingClientRect();
+      if (cx < rect.left || cx > rect.right || cy < rect.top || cy > rect.bottom) { for (const g of svg.querySelectorAll(".gv-cmap-dot")) g.style.setProperty("--k", "1"); return; }
+      const R_PX = 80, MAXK = 1.6;
+      const vb = vbRef.current;
+      // px → view units, so the radius stays ~80 SCREEN px whatever the zoom
+      const pxToVx = vb.w / rect.width, pxToVy = vb.h / rect.height;
+      const mvx = vb.x + (cx - rect.left) * pxToVx, mvy = vb.y + (cy - rect.top) * pxToVy;
+      const rx = R_PX * pxToVx, ry = R_PX * pxToVy;
+      for (const g of svg.querySelectorAll(".gv-cmap-dot")) {
+        const bx = +g.dataset.cx, by = +g.dataset.cy;
+        const dnorm = Math.hypot((bx - mvx) / rx, (by - mvy) / ry);   // 0 at cursor, 1 at edge
+        const k = dnorm >= 1 ? 1 : 1 + (MAXK - 1) * (1 - dnorm) * (1 - dnorm);   // eased falloff
+        g.style.setProperty("--k", k.toFixed(3));
+      }
+    });
+  };
+  const onLeave = () => { const svg = svgRef.current; if (svg) for (const g of svg.querySelectorAll(".gv-cmap-dot")) g.style.setProperty("--k", "1"); };
+
+  const landEls = React.useMemo(() => world ? world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" />) : null, [world]);
+  if (!world) return <div className="gv-cmap-empty r-mono">the map loads…</div>;
+  return (
+    <div className="gv-cmap-wrap">
+      <svg ref={svgRef} className="gv-cmap" viewBox={`${BASE.x} ${BASE.y} ${BASE.w} ${BASE.h}`}
+        role="img" aria-label="concert map — the cities where you've been in a crowd"
+        onPointerMove={onMove} onPointerLeave={onLeave} style={{ touchAction: "pan-y" }}>
+        {landEls}
+        {dots.map(d => {
+          const on = !off.has(d.key);
+          return (
+            <g key={d.key} className="gv-cmap-dot" data-cx={d.cx} data-cy={d.cy}
+              style={{ transformOrigin: `${d.cx}px ${d.cy}px`, transform: "scale(var(--k, 1))", transition: "transform .12s ease-out", opacity: on ? 1 : 0.14 }}>
+              <circle cx={d.cx} cy={d.cy} r={d.r} className="gv-cmap-c" data-on={on}
+                fill={d.hue != null ? `oklch(0.64 0.15 ${d.hue})` : "var(--accent)"}
+                onClick={() => onCity && onCity(d)} style={{ cursor: onCity ? "pointer" : "default" }}>
+                <title>{d.city} · {d.count} show{d.count !== 1 ? "s" : ""}</title>
+              </circle>
+            </g>
+          );
+        })}
+      </svg>
+      <div className="gv-cmap-chips">
+        {dots.map(d => (
+          <button key={d.key} className="gv-cmap-chip" data-on={!off.has(d.key)}
+            onClick={() => toggle(d.key)} title={`${!off.has(d.key) ? "hide" : "show"} ${d.city} — refits the view`}>
+            {d.city} <span>{d.count}</span>
+          </button>
+        ))}
+        {off.size > 0 && <button className="gv-cmap-chip gv-cmap-reset" onClick={() => { setOff(new Set()); fit(dots); }}>reset view</button>}
+      </div>
+    </div>
+  );
+}
+
 function GigsView({ go }) {
   const R = window.ROTATION, G = R.GIGS;
   if (!G || !G.gigs || !G.gigs.length) return (
@@ -2404,6 +2539,29 @@ function GigsView({ go }) {
   const years = [...new Set(G.gigs.map(g => g.year))].sort((a, b) => b - a);
   const span = G.firstGig.slice(0, 4) + "–" + G.lastGig.slice(0, 4);
   const maxCity = Math.max(...G.cityList.map(c => c.count));
+
+  // the set of artistIds Fuad has actually STOOD in the crowd for — factored cleanly so a later
+  // iteration can hand it to the map filters. Bucket list = his most-played artists NOT in it.
+  const seenIds = React.useMemo(() => new Set(G.gigs.map(g => g.artistId)), []);
+  const bucketList = React.useMemo(
+    () => (R.ARTISTS || []).filter(a => !seenIds.has(a.id)).slice(0, 12),
+    [seenIds]
+  );
+  // hue for a city bubble = the hue of the highest-played act seen there (falls back to a gig hue)
+  const cityHue = React.useMemo(() => {
+    const m = new Map();   // "cc|city" → { hue, plays }
+    for (const g of G.gigs) {
+      if (!g.city) continue;
+      const k = g.countryCode + "|" + g.city, cur = m.get(k);
+      if (!cur || (g.plays || 0) > cur.plays) m.set(k, { hue: g.hue, plays: g.plays || 0 });
+    }
+    return m;
+  }, []);
+  const hueForCity = React.useCallback((c) => { const e = cityHue.get(c.countryCode + "|" + c.city); return e ? e.hue : null; }, [cityHue]);
+
+  // TIME AT CONCERTS — an honest back-of-envelope: songs heard live × ~4.2 min a song.
+  const SONG_MIN = 4.2;
+  const crowdHours = Math.round(G.songsSeen * SONG_MIN / 60);
   const Tile = ({ a, sub }) => (
     <div className="gv-tile" data-link={artistHasPage(a.artistId)} onClick={() => openArtist(a.artistId)}>
       <GenCover hue={a.hue} name={a.artist} size={40} radius={4} />
@@ -2423,13 +2581,36 @@ function GigsView({ go }) {
           {" "}{fmt(G.songsSeen)} songs played to you live — <b>{G.inLibrary}</b> of these acts are in your rotation.
         </p>
         <div className="gv-stats">
-          {[["shows", G.total], ["artists", G.artists], ["cities", G.cities], ["songs seen", G.songsSeen]].map(([l, n]) => (
+          {[["shows", G.total], ["artists", G.artists], ["hours in crowds", crowdHours], ["songs seen", G.songsSeen]].map(([l, n]) => (
             <div key={l} className="gv-stat"><div className="gv-stat-n">{fmt(n)}</div><div className="gv-stat-l">{l}</div></div>
           ))}
         </div>
+        <div className="gv-crowd-cap">≈ {fmt(crowdHours)} h in crowds · {fmt(G.songsSeen)} songs seen × ~4 min + change</div>
       </header>
 
       <TourSection go={go} gigDate={gigDate} />
+
+      {/* LIVE BUCKET LIST — your most-played artists you've never stood in a crowd for. A queue,
+          not a chart: numbered, plays shown, each tile opens the artist page. (seenIds is factored
+          so a later pass can dim/route these on the map.) */}
+      {bucketList.length > 0 && (
+        <section className="gv-sec">
+          <div className="gv-label">Still to catch</div>
+          <div className="gv-title">The rotation regulars you've never seen live.</div>
+          <div className="gv-bucket">
+            {bucketList.map((a, i) => (
+              <div key={a.id} className="gv-bucket-row" data-link={artistHasPage(a.id)} onClick={() => openArtist(a.id)}>
+                <span className="gv-bucket-n">{i + 1}</span>
+                <GenCover hue={a.hue} name={a.name} size={34} radius={4} image={a.thumb || a.image} />
+                <div style={{ minWidth: 0 }}>
+                  <div className="gv-tile-name">{a.name}</div>
+                  <div className="gv-tile-sub">{fmt(a.plays)} plays · never caught</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* the ledger — of your kept artists: seen · still possible · gone for good · second
           chances (disbanded groups back with dates). caught = seen before they ended. */}
@@ -2519,9 +2700,11 @@ function GigsView({ go }) {
         <section className="gv-sec">
           <div className="gv-label">Where</div>
           <div className="gv-title">The cities that put you in a crowd.</div>
+          <GigsMap cityList={G.cityList} hueForCity={hueForCity}
+            onCity={(d) => { const el = document.getElementById("gv-city-" + d.key.replace(/[^a-z0-9]/gi, "")); if (el) el.scrollIntoView({ behavior: "smooth", block: "center" }); }} />
           <div className="gv-cities">
             {G.cityList.map(c => (
-              <div key={c.countryCode + c.city} className="gv-city">
+              <div key={c.countryCode + c.city} id={"gv-city-" + (c.countryCode + "|" + c.city).replace(/[^a-z0-9]/gi, "")} className="gv-city">
                 <span className="gv-city-name">{c.city} <small>{c.country}</small></span>
                 <div className="gv-city-bar"><i style={{ width: (c.count / maxCity * 100) + "%" }} /></div>
                 <span className="gv-city-n">{c.count}</span>
@@ -2699,6 +2882,28 @@ function GigsView({ go }) {
         .gv-led-chip[data-link="true"] { cursor: pointer; }
         .gv-led-chip[data-link="true"]:hover { color: var(--accent); border-color: var(--accent-dim); }
         .gv-led-chip small { font-family: var(--mono); font-size: 8.5px; color: var(--ink-faint); }
+        /* time-at-concerts caption */
+        .gv-crowd-cap { margin-top: 10px; font-family: var(--mono); font-size: 9.5px; letter-spacing: .05em; color: var(--ink-faint); }
+        /* live bucket list — a numbered queue */
+        .gv-bucket { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; }
+        .gv-bucket-row { display: flex; gap: 10px; align-items: center; padding: 8px 10px; border: 1px solid var(--rule); border-radius: 6px; transition: border-color .15s; }
+        .gv-bucket-row[data-link="true"] { cursor: pointer; }
+        .gv-bucket-row[data-link="true"]:hover { border-color: var(--rule-2); }
+        .gv-bucket-n { font-family: var(--serif); font-size: 15px; color: var(--ink-faint); width: 20px; flex: none; text-align: right; font-variant-numeric: tabular-nums; }
+        /* concert map — city bubbles on the shared equirectangular projection */
+        .gv-cmap-wrap { margin: 2px 0 16px; }
+        .gv-cmap { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 8px; background: var(--panel); overflow: hidden; }
+        .gv-cmap-empty { padding: 50px 0; text-align: center; color: var(--ink-faint); font-size: 11px; border: 1px solid var(--rule); border-radius: 8px; }
+        .gv-cmap-c { fill-opacity: .78; transition: fill-opacity .15s; }
+        .gv-cmap-c:hover { fill-opacity: 1; }
+        .gv-cmap-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+        .gv-cmap-chip { display: inline-flex; align-items: baseline; gap: 6px; padding: 4px 10px; border-radius: 999px;
+          border: 1px solid var(--rule); background: none; color: var(--ink-soft); cursor: pointer; font-size: 11.5px; transition: border-color .15s, opacity .15s, background .15s; }
+        .gv-cmap-chip span { font-family: var(--mono); font-size: 9px; color: var(--ink-faint); }
+        .gv-cmap-chip:hover { border-color: var(--rule-2); }
+        .gv-cmap-chip[data-on="false"] { opacity: .45; text-decoration: line-through; }
+        .gv-cmap-chip[data-on="true"] { border-color: var(--accent-dim); background: var(--accent-bg); color: var(--ink); }
+        .gv-cmap-reset { color: var(--accent); border-color: var(--accent-dim); }
         @media (max-width: 700px) {
           .gv-stats { grid-template-columns: 1fr 1fr; }
           .gv-tiles { grid-template-columns: 1fr; }
