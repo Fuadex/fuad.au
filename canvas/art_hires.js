@@ -270,8 +270,8 @@ window.CANVAS_HIRES = {
 "conf": "high"
 },
 "podkowinski-szal-uniesien": {
-"src": "",
-"img": null,
+"src": "MNK",
+"img": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Wladyslaw_Podkowinski_-_Ecstasy_-_MNK_II-b-887_%28143955%29.jpg",
 "iiif": null,
 "title": "Szał uniesień",
 "conf": "high",

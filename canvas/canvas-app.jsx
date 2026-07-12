@@ -373,7 +373,7 @@ function useOSDViewer(work, onOsdFail) {
           tileSources: osdSrc.tileSource,
           showNavigator: true,
           navigatorPosition: "BOTTOM_RIGHT",
-          showRotationControl: true,
+          showNavigationControl: false,
           maxZoomPixelRatio: 2,
           gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true },
           crossOriginPolicy: osdSrc.cors,
@@ -392,6 +392,20 @@ function useOSDViewer(work, onOsdFail) {
     };
   }, [osdSrc]);
   return { elRef, viewerRef, err, ready, osdSrc };
+}
+
+// Site-styled zoom controls — the default OSD chrome (image-sprite + − home fullscreen
+// buttons) is disabled in useOSDViewer; these are the only viewer buttons.
+function OSDControls({ viewerRef }) {
+  const zoom = (f) => { const v = viewerRef.current; if (v) { v.viewport.zoomBy(f); v.viewport.applyConstraints(); } };
+  const home = () => { const v = viewerRef.current; if (v) v.viewport.goHome(false); };
+  return (
+    <div className="cv-osd-ctl">
+      <button type="button" onClick={() => zoom(1.5)} title="Zoom in">+</button>
+      <button type="button" onClick={() => zoom(1 / 1.5)} title="Zoom out">−</button>
+      <button type="button" onClick={home} title="Full view">⌂</button>
+    </div>
+  );
 }
 
 function DeepZoom({ work, onClose, onOsdFail }) {
@@ -448,6 +462,7 @@ function DeepZoom({ work, onClose, onOsdFail }) {
   return (
     <div className="cv-osd">
       <div className="cv-osd-view" ref={elRef} />
+      <OSDControls viewerRef={viewerRef} />
       {err && <div className="cv-osd-err">zoom unavailable — the tile source didn't load</div>}
       <button className="cv-r-close cv-osd-close" onClick={onClose}>✕</button>
 
@@ -587,6 +602,7 @@ function StudyView({ id, go }) {
     <div className="cv-study">
       <div className="cv-study-viewer">
         <div className="cv-osd-view" ref={elRef} />
+        <OSDControls viewerRef={viewerRef} />
         {err && <div className="cv-osd-err">zoom unavailable — the tile source didn't load</div>}
         {details.length > 0 && (
           <div className="cv-osd-tour cv-study-tour">

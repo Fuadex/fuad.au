@@ -239,6 +239,22 @@ a { color: inherit; }
   scrollbar-width: none;
 }
 .cv-osd-tour::-webkit-scrollbar { display: none; }
+/* Site-styled viewer controls (default OSD sprite buttons are disabled) */
+.cv-osd-ctl {
+  position: absolute; top: 14px; left: 14px; z-index: 6;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.cv-osd-ctl button {
+  width: 30px; height: 30px; border-radius: 999px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  font: 500 14px/1 var(--mono);
+  border: 1px solid rgba(227,216,200,.28);
+  background: rgba(20,15,10,.72);
+  color: rgba(227,216,200,.75);
+  cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.cv-osd-ctl button:hover { border-color: rgba(227,216,200,.7); color: #e3d8c8; background: rgba(30,22,14,.88); }
 .cv-osd-chip {
   pointer-events: all; /* chips ARE clickable */
   flex-shrink: 0;
