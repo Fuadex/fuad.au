@@ -23,6 +23,20 @@ window.CANVAS_ARTWORKS = [
     // hand-linked image (en-wiki fair-use file — not on Commons; hotlink, consider mirroring later)
     img: "https://upload.wikimedia.org/wikipedia/en/a/a8/W1500-Leech-Convent-Garden.jpg", imgGrid: "https://upload.wikimedia.org/wikipedia/en/a/a8/W1500-Leech-Convent-Garden.jpg", imgZoom: "https://upload.wikimedia.org/wikipedia/en/a/a8/W1500-Leech-Convent-Garden.jpg" },
 
+  { id: "strindberg-underlandet", title: "Underlandet (Wonderland)", artist: "August Strindberg", artistId: "strindberg", qid: "Q18601693", year: 1894,
+    seenAt: "tokyo-met", via: "exhibition", exhibition: "Swedish Masters of Art", seenConfidence: "sure", favorite: true,
+    note: "Loved. Permanent on the home wall. Nationalmuseum's canvas, met in Tokyo.",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/August_Strindberg_-_Wonderland_-_Google_Art_Project.jpg/960px-August_Strindberg_-_Wonderland_-_Google_Art_Project.jpg",
+    imgGrid: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/August_Strindberg_-_Wonderland_-_Google_Art_Project.jpg/960px-August_Strindberg_-_Wonderland_-_Google_Art_Project.jpg",
+    imgZoom: "https://upload.wikimedia.org/wikipedia/commons/4/47/August_Strindberg_-_Wonderland_-_Google_Art_Project.jpg" },
+
+  { id: "sergel-hetsigt-karlekspar", title: "Hetsigt kärlekspar (Passionate Couple)", artist: "Johan Tobias Sergel", artistId: "sergel", qid: null, year: null,
+    seenAt: "nationalmuseum", seenConfidence: "sure", favorite: true,
+    note: "Fuad's favorite Sergel drawing. Permanent on the home wall. NMH A 45/1970.",
+    img: "https://www.nationalmuseum.se/imager/c545dc925b82e6041b9bbffa9ad0a2b8/Sergel-Hetsigt-k%C3%A4rlekspar-nmha-045-1970_64576ffe4e075da3e6596dab737e8711.jpg",
+    imgGrid: "https://www.nationalmuseum.se/imager/c545dc925b82e6041b9bbffa9ad0a2b8/Sergel-Hetsigt-k%C3%A4rlekspar-nmha-045-1970_64576ffe4e075da3e6596dab737e8711.jpg",
+    imgZoom: "https://www.nationalmuseum.se/imager/c545dc925b82e6041b9bbffa9ad0a2b8/Sergel-Hetsigt-k%C3%A4rlekspar-nmha-045-1970_64576ffe4e075da3e6596dab737e8711.jpg" },
+
   { id: "fjaestad-wood-pattern", title: "TBC — the wood-pattern painting", artist: "Gustaf Fjæstad", artistId: "fjaestad", qid: null, year: null,
     seenAt: "tokyo-met", via: "exhibition", exhibition: "Swedish Masters (name TBC)", seenConfidence: "sure", floored: true,
     note: "Painted to resemble wood grain — \"haven't seen a painting made in such style.\" Attribution to Fjæstad CONFIRMED as likely by Fuad. Which work + which painting was the marvelous exhibition poster — recall deck." },

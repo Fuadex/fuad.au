@@ -7,6 +7,70 @@
 // Pilot batch 2026-07-12: Szał uniesień · Woman with a Parasol · A Convent Garden, Brittany ·
 // The Milkmaid (the Rijksmuseum IIIF test work).
 window.CANVAS_INSPECT = {
+ "strindberg-underlandet": {
+  "see": "A wall of green-black paint — troweled on, not brushed — parts like heavy curtains around an opening of pale light. The light isn't sky exactly: it's a soft white-blue radiance with something golden breathing at its lower edge, as if you were looking out of a cave, or a forest, or a state of mind, at a brightness you can't name. Along the bottom, small pink and white flowers catch light on the dark ground like sparks that fell from the opening. Stand close and every centimetre is knife-work: paint dragged, crushed, scraped — the surface is geology.",
+  "about": "The escape hole. Strindberg painted in bursts, only in the years when writing failed him, and nearly everything he painted is this same picture in different weather: darkness pressing in from the edges, and one luminous gap that might be a way out. Call the opening what you like — grace, sanity, the sea remembered from the skerries, the 'wonderland' of the title — the painting's real subject is the *ratio*: how much dark it takes to make one small brightness feel like salvation. The flowers at the bottom are the miracle detail: life growing in the dark part, facing the light.",
+  "craft": "No brushes — Strindberg worked oil with a palette knife straight onto the surface, wet into wet, fast, and let the material misbehave. The dark masses aren't drawn foliage; they're accidents of dragged paint that he *decided* to read as forest, exactly as he described in his 1894 essay on chance in art: start smearing, then find the picture the way you find shapes in clouds. That method makes the lit centre astonishingly sophisticated — the 'hole' works because its edges are torn, not outlined; light bleeds into dark along crumbled knife-ridges, which is optically exactly how brightness behaves at the mouth of a cave. He was painting like this in 1894 — de Kooning-thick surfaces, chance-led process — half a century before anyone had words for it.",
+  "context": "1894, Dornach on the Danube — Strindberg's marriage to Frida Uhl coming apart, the Inferno crisis a year away, the playwright between languages and between breakdowns. That same year he published 'The New Arts! or The Role of Chance in Artistic Creation' — the little manifesto this canvas demonstrates — and painted the handful of works (this, Golgotha, the wave pictures) on which his whole reputation as a painter now rests. Nobody took the paintings seriously in his lifetime; today Underlandet hangs in the Nationalmuseum in Stockholm as one of the strangest, most forward-leaning European pictures of its decade. Met, improbably, in Tokyo — on loan to the Swedish Masters of Art exhibition at the Tokyo Metropolitan Art Museum.",
+  "deeper": [
+   {
+    "t": "The opening",
+    "x": 0.18,
+    "y": 0.26,
+    "w": 0.55,
+    "h": 0.40,
+    "body": "Go into the light and try to decide what it is. It refuses. The upper part reads as sky seen through a gap in canopy; the middle has a pearly, almost marine depth, like haze over water; at the lower edge a warm gold rises into it like shallows or dawn. Strindberg grew up summering in the Stockholm archipelago, and readers of his novels recognize this glow instantly — the skerry light, sea and sky fused. But he painted it in landlocked Austria, from memory or from need, which tells you the opening isn't a place. His paintings from the crisis years keep producing this exact form: The Lonely Poisonous Mushroom has it, the cave pictures have it, Wonderland perfects it — darkness organized around one bright absence. Psychologically it's the most legible motif in his art: the exit, kept small, kept far, kept lit."
+   },
+   {
+    "t": "Flowers in the dark half",
+    "x": 0.20,
+    "y": 0.64,
+    "w": 0.65,
+    "h": 0.20,
+    "body": "The bottom third is a dark slope — earth, undergrowth, knife-mud — and scattered across it, a dozen dabs of pink and white that resolve into flowers. Look at how they're made: single knife-touches, wet colour pressed into wet dark, some no more than two crumbs of paint. They matter enormously. Without them the picture is a tunnel — all longing, aimed at the far light. With them the dark foreground becomes inhabited: things bloom *here*, in the shadowed part where the viewer stands, not just out there in the radiance. It's the painting's one gesture of consolation, and it's characteristic of Strindberg that he makes it almost too small to notice — hope, in his grammar, is always at the edge of legibility."
+   },
+   {
+    "t": "Painting by accident, on purpose",
+    "x": 0.55,
+    "y": 0.02,
+    "w": 0.42,
+    "h": 0.30,
+    "body": "Zoom into the upper right and watch the 'foliage' fall apart. There are no leaves — there's dragged viridian over black, scraped ridges, a skid of pale grey where the knife ran dry. This is the method he wrote up in 1894 in 'The New Arts!': smear first, look second, let the material propose and the eye dispose — he called the results 'natural art', nature's own way of making forms, and described hunting for images in his own smears the way one reads clouds or embers. The art-historical shock is the date. Automatism — the surrealists' sacred technique — is thirty years away; abstraction is twenty; the thick, chance-embracing surfaces of postwar painting are fifty. Strindberg arrives there alone, from literature, and then mostly stops painting. The canvases sat as curiosities for a century until painters caught up with them; now the Nationalmuseum hangs him among the masters, and pictures like this one read less like a footnote to his plays than like a message posted to the wrong decade."
+   }
+  ]
+ },
+ "sergel-hetsigt-karlekspar": {
+  "see": "Two figures stand fused into one knot of pen-lines — a couple kissing so hard they're wrestling. The man strides into the embrace, his back leg braced like a fencer's lunge; the woman bends back under it, her hair falling in a single dark sheet. Around them the ink goes wild: a great wing of brown wash sweeps off his shoulders like a cloak or a gust, contour lines are drawn three and four times each, and the whole group stands in a puddle of dark wash shadow that anchors it to the floor. A chair waits behind them, sketched in five strokes — furniture from the real world, comically calm about what's happening in front of it.",
+  "about": "Appetite, drawn at the speed of appetite. The title Sweden gave it — Hetsigt kärlekspar, a hot-tempered pair of lovers — says it plainly: this is not tenderness, it's collision; desire as something with footwork, balance, force vectors. The multiplied contours aren't corrections, they're the point — the figures vibrate because a single outline would mean a single instant, and Sergel wants the *lunge*, the second of impact and the second after. The chair is the joke and the thesis: passion this size still happens in rooms, next to furniture.",
+  "craft": "Pen and brown ink with wash, moving at maybe two minutes of total drawing time — and every decision right. The stresses are structural: look at how the weight-bearing legs get the darkest, most repeated lines, while the woman's back stays one long open curve. The wash does three jobs with one brush: the 'wing' turns the couple into a single silhouette, the mid-tones model the man's torso like the sculptor Sergel was, and the floor-shadow nails the group down so all that motion doesn't float. This is a sculptor thinking — masses, balance, a composition that would stand in bronze — executed with the freedom sculpture never allowed him.",
+  "context": "Sergel was Sweden's greatest neoclassical sculptor — the marble decorum of Amor and Psyche, the Gustav III monument — and his private drawings are the pressure valve: rapid, erotic, satirical sheets he made for himself and his friends, never for exhibition. The habit crystallized in his Rome years, where his circle included Fuseli and the wild draughtsmen around him, egging each other into ink like this. Public Sergel is contour and calm; private Sergel is this — and posterity has quietly decided the private one matters more, as proto-Romantic, proto-expressionist drawing with almost no eighteenth-century equal. This sheet (NMH A 45/1970) lives in the Nationalmuseum in Stockholm with the rest of his drawings — seen there, and immediately the favorite.",
+  "deeper": [
+   {
+    "t": "The kiss as collision",
+    "x": 0.30,
+    "y": 0.04,
+    "w": 0.45,
+    "h": 0.30,
+    "body": "Start at the heads, because you can barely find them — and that's the report from the front line. The faces have merged into one scribbled mass; Sergel doesn't even attempt features. What he gives you instead is *pressure*: his hand cupping the back of her head, her head yielding backward, the necks at angles that only make sense under force. Compare any academic depiction of lovers from the 1770s — profile kisses, decorous necks, faces intact for the connoisseur — and you see the transgression: Sergel reports that at this range there IS no view, no composure, no faces. It's drawing from the inside of an experience rather than the outside, a century before anyone asked art to do that."
+   },
+   {
+    "t": "Four legs, one machine",
+    "x": 0.08,
+    "y": 0.48,
+    "w": 0.78,
+    "h": 0.48,
+    "body": "Now the lower half, where the sculptor takes over. The two bodies resolve into a single load-bearing structure: his back leg is the buttress, drawn darkest because it carries everything; his front leg and both of hers interlace into a tangle you can't assign to either figure — count the feet and you'll lose track, and it doesn't matter, because the structure reads. The dark wash puddle underneath is doing real static work: it's the shadow that proves contact with the ground, the plinth this bronze would need. Sergel spent his public career solving exactly this problem in marble — how two figures share weight (Amor and Psyche is the official answer) — and here he solves it again in ninety seconds, with more truth, because these two aren't posing as gods. They're just trying not to fall over."
+   },
+   {
+    "t": "The wing, the chair, and private Sergel",
+    "x": 0.55,
+    "y": 0.30,
+    "w": 0.42,
+    "h": 0.38,
+    "body": "Two objects share the right side: a sweep of wash rising off the couple like a wing, and a little chair, waiting. The wing first — it's probably a coat, but drawn with such velocity it stops being clothing and becomes weather, the storm-system the couple generates; Fuseli, Sergel's friend from the Rome years, built a whole career on exactly this move, costume turned atmosphere. Then the chair: four ticks of the pen, perfectly banal, and the drawing's secret genius. It sets the scale (this is a room, not Olympus), it supplies the before-and-after (someone was sitting; someone stood up fast), and it's the deadpan witness that makes the frenzy funny as well as fierce. The public Sergel carved gods with perfect manners. In the drawings he kept for himself and his friends, this is what he knew about people — and the Nationalmuseum's sheets like this one are why draughtsmen rank private Sergel among the great drawing oeuvres of his century."
+   }
+  ]
+ },
  "podkowinski-szal-uniesien": {
   "see": "A naked woman with copper hair rides — no, clings to — a black horse rearing through nothing. There is no ground, no horizon, no sky: the whole canvas is one churned storm of gray-black strokes, and the only light in it is her body, pressed along the animal's neck. Look where her hair ends and the mane begins: you can't find the seam. The horse's head is barely a horse — the eye burns red, the mouth gapes, it is closer to a skull with nostrils. Her face isn't afraid. Her eyes are closed, cheek against the beast, somewhere between prayer and dissolution.",
   "about": "Desire, painted as the thing that carries you off. She holds no reins — there are none — and she isn't riding the horse so much as surrendering to it: the animal is not her transport but her own passion given a body, and the void around them is what's left of the world once obsession has eaten it. The title says it plainly and plurally — a frenzy of raptures — and the picture refuses to tell you whether this is ecstasy or destruction, because its whole argument is that at this pitch they are the same thing.",
