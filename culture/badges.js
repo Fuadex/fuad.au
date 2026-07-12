@@ -136,7 +136,8 @@ window.CULTURE_BADGES = {
   "worldbuilding"
  ],
  "dead-set": [
-  "horrifying"
+  "horrifying",
+  "social-xray"
  ],
  "deer-hunter": [
   "intense",
@@ -760,7 +761,8 @@ window.CULTURE_BADGES = {
   "visuals"
  ],
  "spec-ops": [
-  "haunting"
+  "haunting",
+  "intense"
  ],
  "spider-verse": [
   "impact",

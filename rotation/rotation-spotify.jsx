@@ -61,31 +61,17 @@ function SpotifyView({ go }) {
         <Stat n={d.countries.length} l="countries" />
       </div>
 
-      {/* migration map */}
+      {/* migration map removed 2026-07-13 (Fuad: "doesn't show anything at the moment").
+          Year filter chips move to the per-year card below. */}
+      {/* per-year volume + skip rate */}
       <div className="r-card" style={{ padding: 18, marginBottom: "var(--gap)" }}>
-        <div className="r-card-h" style={{ padding: 0, marginBottom: 10, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
-          <span className="lbl"><b>Listening by place</b>{hiC ? <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)", marginLeft: 8 }}>{cname(hiC.cc)} · {fmt(playsFor(hiC))} plays · {hiC.hours}h · top {hiC.topArtist}</span> : null}</span>
+        <div className="r-card-h" style={{ padding: 0, marginBottom: 14, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
+          <span className="lbl"><b>Plays per year</b> · bar height = plays · number = skip %</span>
           <div className="r-seg" style={{ flexWrap: "wrap" }}>
             <button data-on={year == null} onClick={() => setYear(null)}>all</button>
             {years.map(y => <button key={y} data-on={year === y} onClick={() => setYear(y)}>{"'" + String(y).slice(2)}</button>)}
           </div>
         </div>
-        <svg viewBox={`0 40 ${W} 420`} style={{ width: "100%", height: "auto", display: "block" }} onMouseLeave={() => setHi(null)}>
-          {world && world.land.map((p, i) => <path key={i} d={p} fill="var(--bg-3)" />)}
-          {dots.sort((a, b) => playsFor(b) - playsFor(a)).map(c => {
-            const p = playsFor(c), r = 3 + Math.sqrt(p / maxP) * 34, on = hi === c.cc;
-            return <circle key={c.cc} cx={px(c.ll[1])} cy={py(c.ll[0])} r={r}
-              fill={c.cc === "AU" ? "var(--accent)" : c.cc === "PL" ? "oklch(0.7 0.15 30)" : "oklch(0.66 0.13 210)"}
-              fillOpacity={on ? 0.9 : 0.5} stroke={on ? "#fff" : "none"} strokeWidth="1.2"
-              style={{ cursor: "default" }} onMouseEnter={() => setHi(c.cc)}><title>{cname(c.cc)}: {fmt(p)} plays</title></circle>;
-          })}
-        </svg>
-        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 4 }}>bubble = plays from that country{year != null ? " in " + year : " (all time)"} · hover for detail</div>
-      </div>
-
-      {/* per-year volume + skip rate */}
-      <div className="r-card" style={{ padding: 18, marginBottom: "var(--gap)" }}>
-        <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}><span className="lbl"><b>Plays per year</b> · bar height = plays · number = skip %</span></div>
         <div style={{ display: "flex", alignItems: "flex-end", gap: 6, height: 150 }}>
           {d.years.map(y => (
             <div key={y.year} onClick={() => setYear(year === y.year ? null : y.year)} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", cursor: "pointer" }}>

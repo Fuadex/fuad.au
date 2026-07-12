@@ -77,6 +77,8 @@ a { color: inherit; }
 .cv-r-meta b { color: var(--accent); font-weight: 600; }
 .cv-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .cv-chip { font: 500 10.5px/1 var(--mono); letter-spacing: .07em; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink-soft); }
+.cv-chip-study { cursor: pointer; background: none; color: var(--accent); border-color: oklch(0.66 0.14 46 / .45); }
+.cv-chip-study:hover { border-color: var(--accent); background: oklch(0.66 0.14 46 / .08); }
 .cv-chip[data-k="conf-sure"] { border-color: oklch(0.5 0.1 145 / .5); color: oklch(0.42 0.1 145); }
 .cv-chip[data-k="conf-probably"] { border-color: oklch(0.6 0.1 80 / .55); color: oklch(0.5 0.1 80); }
 .cv-chip[data-k="conf-unsure"] { border-style: dashed; color: var(--ink-faint); }
