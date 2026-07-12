@@ -805,9 +805,14 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   const allAlbums = a.topAlbums || [];
   // sectioned album taxonomy (build-data tags each entry with kind ∈ single/ep/album/comp/live/ost;
   // kind=single may carry `on` = the canonical slug of the host album it appears on).
-  const albums = allAlbums.filter(al => !al.kind || al.kind === "album");     // LPs (+ anything unknown)
-  const epsSingles = allAlbums.filter(al => al.kind === "ep" || al.kind === "single");
-  const comps = allAlbums.filter(al => al.kind === "comp" || al.kind === "live" || al.kind === "ost");
+  // PILOT: MB release-group types override the title heuristic where we have them.
+  const _mbKinds = (mbxReady && window.ROTATION_MBX && window.ROTATION_MBX[a.id] && window.ROTATION_MBX[a.id].kinds) || null;
+  const _kfold = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+  const kindOf = (al) => (_mbKinds && _mbKinds[_kfold(al.title)]) || al.kind;
+  const albums = allAlbums.filter(al => !kindOf(al) || kindOf(al) === "album");     // LPs (+ anything unknown)
+  const epsSingles = allAlbums.filter(al => kindOf(al) === "ep" || kindOf(al) === "single")
+    .sort((x, y) => (kindOf(x) === "ep" ? 0 : 1) - (kindOf(y) === "ep" ? 0 : 1) || (y.plays || 0) - (x.plays || 0)); // EPs surface above the singles maze
+  const comps = allAlbums.filter(al => ["comp", "live", "ost"].includes(kindOf(al)));
   const goAlbum = (title) => go("album", R.slug(a.name) + "~" + R.slug(title));
   const tracks = a.topTracks || [];
   // album-scoped views (active while an album is drilled in the flow):
@@ -1651,6 +1656,13 @@ function AlbumView({ id, go }) {
     if (window.ROTATION_TRACKTHEMES) return;
     const s = document.createElement("script"); s.src = "genius-themes-lazy.js"; s.onload = () => setThemesReady(true); document.head.appendChild(s);
   }, []);
+  // PILOT: album-level covers rollup (MB works) — same file as the track bios, lazy + optional
+  const [, setBioReady] = React.useState(!!window.ROTATION_ALBBIO);
+  React.useEffect(() => {
+    if (window.ROTATION_ALBBIO) return;
+    const s = document.createElement("script"); s.src = "mb-track-bio.js";
+    s.onload = () => setBioReady(true); s.onerror = () => setBioReady(true); document.head.appendChild(s);
+  }, []);
   // album extras (deluxe/bonus tracks + absorbed-edition names) — lazy + optional (404 = feature off).
   // shared script tag so every AlbumView reuses one load; graceful onerror keeps the page working.
   const [, setExReady] = React.useState(!!window.ROTATION_ALBUM_EXTRAS);
@@ -1840,6 +1852,30 @@ function AlbumView({ id, go }) {
           </div>
         </div>
       )}
+
+      {(() => {
+        // PILOT: album-level covers rollup — cov = covers ON this album; out = tracks here
+        // that other library artists also recorded (each links straight to the counterpart).
+        const ab = window.ROTATION_ALBBIO && window.ROTATION_ALBBIO[id];
+        if (!ab) return null;
+        const tlink = (ts, label) => <a onClick={() => go("track", id.slice(0, id.indexOf("~")) + "~" + ts)} style={{ cursor: "pointer", borderBottom: "1px dotted var(--ink-faint)" }}>{label}</a>;
+        return (
+          <div className="r-card" style={{ padding: "14px 18px" }}>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl">Shared songs</span><span className="meta">via MusicBrainz · pilot</span></div>
+            <div style={{ display: "grid", gap: 6, fontSize: 12.5 }}>
+              {(ab.cov || []).map(([ts, w]) => (
+                <div key={"c" + ts}>{tlink(ts, ts.replace(/-/g, " "))}<span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)", marginLeft: 8 }}>a cover — written by {w}</span></div>
+              ))}
+              {(ab.out || []).map(([ts, also]) => (
+                <div key={"o" + ts}>{tlink(ts, ts.replace(/-/g, " "))}<span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", margin: "0 6px" }}>ALSO BY</span>
+                  {also.map(([s, n, cts], i) => (
+                    <React.Fragment key={s}>{i > 0 ? " · " : ""}<a onClick={() => cts ? go("track", s + "~" + cts) : go("artist", s)} style={{ cursor: "pointer", borderBottom: "1px dotted var(--ink-faint)" }}>{n}{cts ? " →" : ""}</a></React.Fragment>
+                  ))}</div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
 
       <div className="r-card" style={{ padding: "16px 18px" }}>
         <div className="r-card-h" style={{ padding: 0, marginBottom: 6, flexWrap: "wrap", gap: 6 }}><span className="lbl"><b>Tracks you've played</b></span>
@@ -2325,8 +2361,10 @@ function TrackView({ id, go }) {
               {b.w && <div><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginRight: 8, letterSpacing: ".06em" }}>WRITTEN BY</span>{b.w.join(", ")}</div>}
               {b.also && b.also.length > 0 && (
                 <div><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginRight: 8, letterSpacing: ".06em" }}>ALSO IN YOUR LIBRARY BY</span>
-                  {b.also.map(([s, n], i) => (
-                    <React.Fragment key={s}>{i > 0 ? " · " : ""}<a onClick={() => go("artist", s)} style={{ cursor: "pointer", borderBottom: "1px dotted var(--ink-faint)" }}>{n}</a></React.Fragment>
+                  {b.also.map(([s, n, ts], i) => (
+                    // link straight to the counterpart's own version when we can key it;
+                    // artist page only as fallback (Fuad: "hyperlink direct to the cover")
+                    <React.Fragment key={s}>{i > 0 ? " · " : ""}<a onClick={() => ts ? go("track", s + "~" + ts) : go("artist", s)} style={{ cursor: "pointer", borderBottom: "1px dotted var(--ink-faint)" }}>{n}{ts ? " →" : ""}</a></React.Fragment>
                   ))}</div>
               )}
               {b.v > 1 && <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>{b.v} recorded versions exist on MusicBrainz (live takes included)</div>}
