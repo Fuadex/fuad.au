@@ -49,6 +49,8 @@
         "album-extras.js",
         "artist-days.js",
         "mb-lineup.js",
+        "mb-artist-x.js",
+        "mb-track-bio.js",
         "genius-mood-lazy.js",
         "genius-about-lazy.js",
         "genius-themes-lazy.js",

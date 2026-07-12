@@ -725,6 +725,16 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     s.addEventListener("load", onLoad);
     return () => s.removeEventListener("load", onLoad);
   }, []);
+  // mb-artist-x.js — PILOT MB extras (label eras + producer/mix credits), same lazy pattern.
+  const [mbxReady, setMbxReady] = React.useState(!!window.ROTATION_MBX);
+  React.useEffect(() => {
+    if (window.ROTATION_MBX) { setMbxReady(true); return; }
+    let s = document.getElementById("mb-artist-x-js");
+    if (!s) { s = document.createElement("script"); s.id = "mb-artist-x-js"; s.src = "mb-artist-x.js"; s.onerror = () => {}; document.head.appendChild(s); }
+    const onLoad = () => { if (window.ROTATION_MBX) setMbxReady(true); };
+    s.addEventListener("load", onLoad);
+    return () => s.removeEventListener("load", onLoad);
+  }, []);
   // Instrument taxonomy strip — a compact "{N}-piece · {glyphs}" line derived from the
   // MusicBrainz CURRENT lineup (t === ""), shown up near the header. Solo artists (type
   // Person) and groups with no member data are skipped. Each member contributes up to 2
@@ -1331,6 +1341,34 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             );
           })()}
           </div>
+
+          {/* PILOT: the paper trail — label eras + studio hands from the MB B/C/D harvest */}
+          {(() => {
+            const x = mbxReady && window.ROTATION_MBX && window.ROTATION_MBX[a.id];
+            if (!x || (!(x.labels || []).length && !(x.prod || []).length)) return null;
+            const era = ([n, from, to, cnt]) => from ? `${n} ${from}${to !== from ? "–" + to : ""}` : n;
+            return (
+              <div className="r-card" style={{ padding: 18 }}>
+                <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}>
+                  <span className="lbl">The paper trail</span><span className="meta">via MusicBrainz · pilot</span></div>
+                <div style={{ display: "grid", gap: 8, fontSize: 13 }}>
+                  {(x.labels || []).length > 0 && (
+                    <div><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginRight: 8, letterSpacing: ".06em" }}>LABELS</span>
+                      {x.labels.map(era).join(" · ")}</div>
+                  )}
+                  {(x.prod || []).length > 0 && (
+                    <div><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginRight: 8, letterSpacing: ".06em" }}>PRODUCED BY</span>
+                      {x.prod.map(([n, c]) => c > 1 ? `${n} (${c})` : n).join(" · ")}
+                      <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginLeft: 8 }}>across your top tracks</span></div>
+                  )}
+                  {(x.mix || []).length > 0 && (
+                    <div><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginRight: 8, letterSpacing: ".06em" }}>MIXED BY</span>
+                      {x.mix.map(([n, c]) => c > 1 ? `${n} (${c})` : n).join(" · ")}</div>
+                  )}
+                </div>
+              </div>
+            );
+          })()}
 
           {/* on tour — upcoming Ticketmaster dates, above Seen live (Fuad 2026-07-06) */}
           <ArtistTourCard a={a} go={go} />
@@ -2014,6 +2052,7 @@ function TrackView({ id, go }) {
     load("track-previews.js", "ROTATION_PREVIEWS"); load("genius-mood-lazy.js", "ROTATION_MOOD");
     load("genius-about-lazy.js", "ROTATION_ABOUT");
     load("blurb-demo.js", "ROTATION_BLURB_DEMO");   // DEMO: multi-model "what it's about" reads
+    load("mb-track-bio.js", "ROTATION_TRACKBIO");   // PILOT: song bios (writers/covers/versions) via MusicBrainz
     if (need === 0) setReady(true);
   }, []);
   const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
@@ -2272,6 +2311,29 @@ function TrackView({ id, go }) {
           </div>
         </div>
       )}
+
+      {(() => {
+        // PILOT: the song's biography — writers, cover status, cross-library versions (MB works)
+        const b = window.ROTATION_TRACKBIO && window.ROTATION_TRACKBIO[id];
+        if (!b) return null;
+        return (
+          <div className="r-card" style={{ padding: "16px 18px" }}>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
+              <span className="lbl">The song itself{!b.own && b.w ? " · a cover" : ""}</span>
+              <span className="meta">via MusicBrainz</span></div>
+            <div style={{ display: "grid", gap: 7, fontSize: 13 }}>
+              {b.w && <div><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginRight: 8, letterSpacing: ".06em" }}>WRITTEN BY</span>{b.w.join(", ")}</div>}
+              {b.also && b.also.length > 0 && (
+                <div><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginRight: 8, letterSpacing: ".06em" }}>ALSO IN YOUR LIBRARY BY</span>
+                  {b.also.map(([s, n], i) => (
+                    <React.Fragment key={s}>{i > 0 ? " · " : ""}<a onClick={() => go("artist", s)} style={{ cursor: "pointer", borderBottom: "1px dotted var(--ink-faint)" }}>{n}</a></React.Fragment>
+                  ))}</div>
+              )}
+              {b.v > 1 && <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>{b.v} recorded versions exist on MusicBrainz (live takes included)</div>}
+            </div>
+          </div>
+        );
+      })()}
 
       {known && <div style={{ marginTop: 14 }}><button className="r-back" style={{ margin: 0 }} onClick={() => go("artist", artistId)}>more from {data.artist} →</button></div>}
     </div>
