@@ -17,11 +17,12 @@ const ACCENTS = [
 ];
 
 const NAV_FULL = [
+  // order set by Fuad 2026-07-13: Overview, Explore, Calendar, Shelves, Stories, Gigs; Spotify last
   ["overview", "Overview"],
-  ["stories", "Stories"],
   ["explore", "Explore"],
-  ["shelves", "Shelves"],
   ["calendar", "Calendar"],
+  ["shelves", "Shelves"],
+  ["stories", "Stories"],
   ["gigs", "Gigs"],
   ["live", "Live"],
   ["spotify", "Spotify"],   // unhidden 2026-07-11 — v3 Account-Data layer landed (persona sections)

@@ -713,6 +713,8 @@ function Reader({ id, go }) {
             {w.liked && !w.floored && <span className="cv-chip" data-k="floored">♡ liked</span>}
             {w.wish && <span className="cv-chip">pilgrimage — not yet seen</span>}
             {w.via === "exhibition" && <span className="cv-chip">temporary exhibition</span>}
+            {/* the full study is the flagship — promoted up here (Fuad: at the bottom it hides) */}
+            {inspect && <button type="button" className="cv-chip cv-chip-study" onClick={() => go("study", w.id)}>Open the full study →</button>}
           </div>
           {w.venues.length > 0 && (
             <div className="cv-r-sec"><span className="lbl">Where I saw it{w.venues.length > 1 ? " — an impression at each" : ""}</span>
@@ -1065,6 +1067,24 @@ function MapView({ go }) {
         const ang = i * 2.399, rad = i === 0 ? 0 : 3 + 1.8 * Math.sqrt(i);
         out.push({ ...p, x: cx + rad * Math.cos(ang), y: cy + rad * Math.sin(ang), bx: cx, by: cy, split: i !== 0 });
       });
+    }
+    // global anti-overlap pass (Fuad 2026-07-13): the grid declusters same-cell museums, but
+    // neighbouring-cell bubbles could still collide. A few relaxation rounds push any pair
+    // apart to the sum of their rendered radii (r matches the render formula below).
+    const rOf = (p) => p.n ? 3 + Math.sqrt(p.n) * 1.9 : 2.2;
+    for (let it = 0; it < 24; it++) {
+      let moved = false;
+      for (let i = 0; i < out.length; i++) for (let j = i + 1; j < out.length; j++) {
+        const a = out[i], b = out[j];
+        const min = rOf(a) + rOf(b) + 0.6;
+        let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy);
+        if (d >= min) continue;
+        if (d < 0.01) { dx = 0.5; dy = 0.3; d = Math.hypot(dx, dy); }
+        const push = (min - d) / d / 2;
+        a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push;
+        moved = true;
+      }
+      if (!moved) break;
     }
     return out;
   }, []);

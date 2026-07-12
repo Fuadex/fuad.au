@@ -2102,7 +2102,7 @@ function useTourMapNav(svgRef, gRef, dotSel) {
   const fitTf = React.useRef({ k: 1, x: 0, y: 0 });   // the transform the last fit() aimed at
   const hovRef = React.useRef(null);    // imperative hover readout element
   const [drifted, setDrifted] = React.useState(false); // panned/zoomed away from the fit target?
-  React.useEffect(() => () => { cancelAnimationFrame(rafRef.current); cancelAnimationFrame(fishRef.current); }, []);
+  React.useEffect(() => () => { cancelAnimationFrame(rafRef.current); cancelAnimationFrame(fishRef.current); cancelAnimationFrame(easeRef.current); }, []);
 
   const clampK = (k) => Math.min(TMAP_MAXK, Math.max(TMAP_MINK, k));
   // write the transform to the <g> attribute (imperative) and flag drift vs the last fit target
@@ -2163,14 +2163,33 @@ function useTourMapNav(svgRef, gRef, dotSel) {
   // gentle growth. Each hit-<g> carries data-cx/cy + data-r0 (the UNSCALED base radius); the
   // rendered r = r0/k so dots stay constant on screen — setK recomputes from r0 each time, so
   // zoom-driven re-renders never leave a stale cache.
-  const R_PX = 55, FISH_MAXK = 1.35;
-  const setK = (g, k) => {
+  // Fuad 2026-07-13: (a) the bubble actually under the cursor gets a clear HOVER boost, so you
+  // can always tell which one you're on despite the proximity growth around it; (b) radii EASE
+  // toward their targets (lerp per frame) instead of snapping — he'll assess how it feels.
+  const R_PX = 55, FISH_MAXK = 1.35, HOVER_K = 1.8, EASE = 0.28;
+  const easeRef = React.useRef(0);      // rAF handle for the easing loop
+  const writeR = (g, k, tk) => {
     const c = g.querySelector("circle"); if (!c) return;
     const r0 = +g.dataset.r0 || +c.getAttribute("r");
-    const t = pending.current || tfRef.current;
-    c.setAttribute("r", ((r0 / (t.k || 1)) * k).toFixed(2));
+    c.setAttribute("r", ((r0 / (tk || 1)) * k).toFixed(2));
   };
-  const resetAll = (svg) => { for (const g of svg.querySelectorAll(dotSel)) setK(g, 1); };
+  const easeTick = () => {
+    easeRef.current = 0;
+    const svg = svgRef.current; if (!svg) return;
+    const t = pending.current || tfRef.current;
+    let live = false;
+    for (const g of svg.querySelectorAll(dotSel)) {
+      const kt = +g.dataset.kt || 1;
+      let kc = +g.dataset.kc || 1;
+      kc += (kt - kc) * EASE;
+      if (Math.abs(kt - kc) > 0.004) live = true; else kc = kt;
+      g.dataset.kc = kc;
+      writeR(g, kc, t.k);
+    }
+    if (live) easeRef.current = requestAnimationFrame(easeTick);
+  };
+  const ensureEase = () => { if (!easeRef.current) easeRef.current = requestAnimationFrame(easeTick); };
+  const resetAll = (svg) => { for (const g of svg.querySelectorAll(dotSel)) g.dataset.kt = 1; ensureEase(); };
   const runFisheye = (cx, cy) => {
     const svg = svgRef.current; if (!svg) return;
     if (fishRef.current) return;
@@ -2184,14 +2203,25 @@ function useTourMapNav(svgRef, gRef, dotSel) {
       const vx = TMAP_VB.x + (cx - rect.left) * pxToVx, vy = TMAP_VB.y + (cy - rect.top) * pxToVy;
       const mvx = (vx - t.x) / t.k, mvy = (vy - t.y) / t.k;
       const rx = R_PX * pxToVx / t.k, ry = R_PX * pxToVy / t.k;   // fisheye radius stays ~constant on screen
-      let bestD = Infinity, bestG = null;
+      // pass 1: find the dot the cursor is actually ON (screen-space hit against rendered radius)
+      let hoverG = null, hoverD = Infinity;
+      for (const g of svg.querySelectorAll(dotSel)) {
+        const bx = +g.dataset.cx, by = +g.dataset.cy;
+        const sx = rect.left + ((bx * t.k + t.x) - TMAP_VB.x) / pxToVx;
+        const sy = rect.top + ((by * t.k + t.y) - TMAP_VB.y) / pxToVy;
+        const rScreen = ((+g.dataset.r0 || 4) / t.k) / pxToVx * t.k; // r0/t.k model units → screen px
+        const d = Math.hypot(sx - cx, sy - cy);
+        if (d <= Math.max(rScreen + 4, 11) && d < hoverD) { hoverD = d; hoverG = g; }
+      }
+      // pass 2: fisheye targets, hovered dot boosted above its neighbours
       for (const g of svg.querySelectorAll(dotSel)) {
         const bx = +g.dataset.cx, by = +g.dataset.cy;
         const dnorm = Math.hypot((bx - mvx) / rx, (by - mvy) / ry);   // 0 at cursor, 1 at edge
-        const k = dnorm >= 1 ? 1 : 1 + (FISH_MAXK - 1) * (1 - dnorm) * (1 - dnorm);
-        setK(g, k);
-        if (dnorm < bestD) { bestD = dnorm; bestG = g; }
+        let k = dnorm >= 1 ? 1 : 1 + (FISH_MAXK - 1) * (1 - dnorm) * (1 - dnorm);
+        if (g === hoverG) k = HOVER_K;
+        g.dataset.kt = k;
       }
+      ensureEase();
       // (hover readout removed — Fuad: "I don't want the full cities printed")
     });
   };
