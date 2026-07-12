@@ -3242,7 +3242,7 @@ function App() {
       <TonightOverlay
         open={route === 'tonight'}
         items={wishlistItems}
-        onOpenItem={setOpenItem}
+        onOpenItem={(it) => { setOpenItem(it); exitTonight(); }}
         onClose={exitTonight}
       />
     </div>
