@@ -688,6 +688,31 @@ function LabView() {
         </div>
       </div>
 
+      {/* ── Book pilot ── */}
+      {(() => {
+        const BookLaunchButton = window.BookLaunchButton;
+        if (!BookLaunchButton) return null;
+        return (
+          <div style={{
+            background: LAB_PANEL, border: `1px solid ${LAB_RULE}`, borderRadius: 8,
+            marginBottom: 28, overflow: "hidden"
+          }}>
+            <div style={{ padding: "16px 20px 10px", borderBottom: `1px solid ${LAB_RULE}` }}>
+              <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: ".2em",
+                textTransform: "uppercase", color: LAB_ACC, marginBottom: 5 }}>Stories as a Book · pilot</div>
+              <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13,
+                color: LAB_DIM, lineHeight: 1.5 }}>
+                Full-viewport spreads — page through with ← →, on-screen arrows, or swipe.
+                Three spreads: cover, genre eras (stacked-area stream), listening-hour ridgeline.
+              </div>
+            </div>
+            <div style={{ padding: "18px 20px 20px" }}>
+              <BookLaunchButton />
+            </div>
+          </div>
+        );
+      })()}
+
       <BumpChart />
       <SpiralWrapper />
       <RidgeWrapper />
