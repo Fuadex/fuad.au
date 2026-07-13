@@ -34,6 +34,7 @@
         "rotation-calendar.jsx",
         "rotation-shelves.jsx",
         "rotation-spotify.jsx",
+        "vendor-page-flip.js",
         "rotation-book.jsx",
         "rotation-lab.jsx",
         "rotation-lab2.jsx",
