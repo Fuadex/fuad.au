@@ -131,6 +131,15 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
   // song→album cover lookup: if ROTATION_MEDIA is already loaded, build a title+artist keyed map
   // so each song row can show its album cover instead of the artist/generative cover. Falls back
   // to artist art when the media-index isn't loaded or the track isn't found in it.
+  // media index loaded here explicitly (covers were hit-or-miss before) + an ALBUM cover map —
+  // album tiles had no cover source at all (Fuad 2026-07-14)
+  const [mediaReady2, setMediaReady2] = React.useState(!!window.ROTATION_MEDIA);
+  React.useEffect(() => {
+    if (window.ROTATION_MEDIA) return;
+    let sM = document.getElementById("media-index-js");
+    if (!sM) { sM = document.createElement("script"); sM.id = "media-index-js"; sM.src = "media-index.js"; sM.onerror = () => {}; document.head.appendChild(sM); }
+    sM.addEventListener("load", () => setMediaReady2(true));
+  }, []);
   const songAlbumCover = React.useMemo(() => {
     const M = window.ROTATION_MEDIA; if (!M || !M.tracks || !M.albums || !M.artists) return {};
     const out = {};
@@ -139,7 +148,13 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
       if (cover) out[t[0] + "\x00" + M.artists[t[1]]] = cover;
     }
     return out;
-  }, [adetail]); // re-run when adetail loads (ROTATION_MEDIA may have arrived meanwhile)
+  }, [adetail, mediaReady2]);
+  const albumCoverMap2 = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA; if (!M || !M.albums || !M.artists) return {};
+    const out = {};
+    for (const al of M.albums) if (al[6]) out[al[0] + "\x00" + M.artists[al[1]]] = al[6];
+    return out;
+  }, [adetail, mediaReady2]);
   const [view, setView] = React.useState({ s: 1, x: 0, y: 0 });
   const svgRef = React.useRef(null);
   const gRef = React.useRef(null);
@@ -166,7 +181,7 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
   const fishRaf = React.useRef(0);
 const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shrink further when deep-zoomed (Fuad 2026-07-12)
   const FISH_R_PX = 45, FISH_MAXK = 1.22;
-  const resetFisheye = () => { const el = svgRef.current; if (!el) return; const s = viewRef.current.s; for (const c of el.querySelectorAll(".mp-bub")) { const r0 = +c.dataset.r0; if (r0) c.setAttribute("r", (r0 / Math.pow(s, mpRadExp(s))).toFixed(3)); } };
+  const resetFisheye = () => { const el = svgRef.current; if (!el) return; const s = viewRef.current.s; for (const c of el.querySelectorAll(".mp-bub")) { const r0 = +c.dataset.r0; if (r0) { c.style.transition = ""; c.setAttribute("r", (r0 / Math.pow(s, mpRadExp(s))).toFixed(3)); } } };
   const runFisheye = (cx, cy) => {
     const el = svgRef.current; if (!el) return;
     // never during a gesture (pan/pinch) — the transform write owns the frame then
@@ -188,6 +203,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
         if (!r0) continue;
         const dnorm = Math.hypot((bx - mvx) * inv, (by - mvy) * inv);   // 0 at cursor, 1 at edge
         const k = dnorm >= 1 ? 1 : 1 + (FISH_MAXK - 1) * (1 - dnorm) * (1 - dnorm);
+        if (c.style.transition === "") c.style.transition = "fill .5s, fill-opacity .12s";  // r transitions off while the fisheye drives
         c.setAttribute("r", (r0 * sk * k).toFixed(3));
       }
     });
@@ -529,13 +545,13 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
                 : null;
               if (inPeriod === false) return null;
               // data-cx/cy/r0 feed the cursor fisheye (see runFisheye) — r0 is the UNSCALED base
-              // radius; the fisheye writes r from it each frame. `r` is dropped from the CSS
-              // transition so the per-frame fisheye writes land instantly (not smeared over .6s);
-              // year-morph resize re-renders from state, which is fine instant.
+              // radius; the fisheye writes r from it each frame. `r` IS in the CSS transition
+              // (the smooth year-morph Fuad missed — 2026-07-14); the fisheye suppresses the
+              // transition inline while the cursor is engaged and restores it on reset.
               return <circle key={b.key} className="mp-bub" data-cx={b.x} data-cy={b.y} data-r0={b.r}
                 cx={b.x} cy={b.y} r={b.r / Math.pow(view.s, mpRadExp(view.s))} fill={col} fillOpacity={on ? 0.72 : 0.34}
                 stroke={inPeriod ? "var(--accent)" : col} strokeWidth={((inPeriod ? 1.8 : on ? 1.6 : 0.7)) / view.s}
-                style={{ cursor: "pointer", transition: "fill .5s, fill-opacity .12s" }}
+                style={{ cursor: "pointer", transition: "r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s" }}
                 onMouseEnter={() => setHi(b.key)} onClick={(e) => { e.stopPropagation(); if (!moved.current) openBubble(b); }} />;
             })}
           </g>
@@ -646,12 +662,12 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
               if (resView === "grid") return (
                 <div className="mp-medgrid">{shown.map((r, i) => {
                   const hue = (R.byId[r.aid] || {}).hue || 210;
-                  const coverKey = isSongs ? (r.title + "\x00" + r.artist) : null;
-                  const albumCover = coverKey ? (songAlbumCover[coverKey] || "") : "";
+                  const ck3 = r.title + "\x00" + r.artist;
+                  const albumCover = isSongs ? (songAlbumCover[ck3] || "") : (albumCoverMap2[ck3] || "");
                   const mid = R.slug(r.artist) + "~" + R.slug(r.title);
                   return (
                     <div key={r.aid + "|" + r.title + i} className="mp-medtile" data-link={true} onClick={() => go(isSongs ? "track" : "album", mid)} title={r.title}>
-                      <GenCover hue={hue} name={isSongs ? r.artist : r.title} image={albumCover} thumb={albumCover} size="100%" style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
+                      <GenCover hue={hue} name={r.title} image={albumCover} thumb={albumCover} size="100%" style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
                       <div className="mp-medtile-title">{r.title}</div>
                       <div className="mp-medtile-plays">{isSongs ? r.artist + " · " : ""}{fmt(r.plays)}</div>
                     </div>
@@ -660,13 +676,13 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
               );
               return <div className="cal-rows">{shown.map((r, i) => {
                 const hue = (R.byId[r.aid] || {}).hue || 210;
-                const coverKey = isSongs ? (r.title + "\x00" + r.artist) : null;
-                const albumCover = coverKey ? (songAlbumCover[coverKey] || "") : "";
+                const ck3 = r.title + "\x00" + r.artist;
+                const albumCover = isSongs ? (songAlbumCover[ck3] || "") : (albumCoverMap2[ck3] || "");
                 const mid = R.slug(r.artist) + "~" + R.slug(r.title);
                 return (
                   <div key={r.aid + "|" + r.title + i} className="cal-row" data-link={true} onClick={() => go(isSongs ? "track" : "album", mid)} title={`${r.title} →`}>
                     <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span>
-                    <GenCover hue={hue} name={isSongs ? r.artist : r.title} image={albumCover} thumb={albumCover} size={34} radius={3} />
+                    <GenCover hue={hue} name={r.title} image={albumCover} thumb={albumCover} size={34} radius={3} />
                     <div style={{ minWidth: 0, flex: 1 }}><div className="cal-nm" style={{ fontStyle: "italic" }}>{r.title}</div><div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{r.artist}</div></div>
                     <span className="cal-pl">{fmt(r.plays)}</span>
                   </div>

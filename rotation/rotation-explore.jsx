@@ -243,18 +243,24 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
   const nActive = activeIds.size;
   // dots memoized without the zoom factor; radius rides the --zk CSS var so zoom rescales
   // natively without re-reconciling the whole cloud (Fuad 2026-07-09).
+  // `hi` deliberately NOT a dep — hover during drag re-reconciled the whole cloud and killed
+  // performance (Fuad 2026-07-14); the hovered dot gets one separate highlight ring.
   const dots = React.useMemo(() => pts.slice(0, n).map(p => {
-    const active = activeIds.has(p.id), on = hi === p.id;
+    const active = activeIds.has(p.id);
     const dimZone = active && moodZone && zoneOf(p.x, p.y) !== moodZone;
-    const op = !active ? 0.05 : on ? 0.95 : dimZone ? 0.1 : 0.62;
-    const baseR = on ? 7 : 3 + Math.sqrt(p.plays / maxPlays) * 9;
+    const op = !active ? 0.05 : dimZone ? 0.1 : 0.62;
+    const baseR = 3 + Math.sqrt(p.plays / maxPlays) * 9;
     return (
       <circle key={p.id} className="xp-fdot" data-cx={qx(p.x).toFixed(1)} data-cy={qy(p.y).toFixed(1)}
         cx={qx(p.x)} cy={qy(p.y)} fill={`oklch(0.64 0.16 ${p.hue})`}
-        fillOpacity={op} stroke={on ? "#fff" : "none"} strokeWidth={1.3} vectorEffect="non-scaling-stroke"
+        fillOpacity={op} vectorEffect="non-scaling-stroke"
         style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: "fill-opacity .45s ease" }}
-        onMouseEnter={() => active && setHi(p.id)} onClick={(e) => { e.stopPropagation(); active && go("artist", p.id); }}><title>{p.name}</title></circle>);
-  }), [pts, n, activeIds, hi, maxPlays, moodZone, go]);
+        onMouseEnter={() => active && setHi(p)} onClick={(e) => { e.stopPropagation(); active && go("artist", p.id); }}><title>{p.name}</title></circle>);
+  }), [pts, n, activeIds, maxPlays, moodZone, go]);
+  const hiRing = hi && (
+    <circle cx={qx(hi.x)} cy={qy(hi.y)} fill={`oklch(0.7 0.16 ${hi.hue})`} fillOpacity={0.95}
+      stroke="#fff" strokeWidth={1.3} vectorEffect="non-scaling-stroke" pointerEvents="none"
+      style={{ r: `calc(7px * var(--zk))` }} />);
   const mid = 0.5;
   const zones = [
     { z: "dark-intense", x: qp, y: qp, w: qx(mid) - qp, h: qy(mid) - qp },
@@ -276,9 +282,10 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
         {[["intense", qx(.5), qp - 4, "middle"], ["calm", qx(.5), QH - qp + 16, "middle"], ["dark", qp - 8, qy(.5), "end"], ["bright", QW - qp + 8, qy(.5), "start"]].map(([t, x, y, anc]) =>
           <text key={t} x={x} y={y} textAnchor={anc} fontFamily="var(--mono)" fontSize={10 * z.k} fill="var(--ink-faint)">{t}</text>)}
         {dots}
+        {hiRing}
       </svg>
       <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>
-        {n < pts.length ? `plotting ${fmt(n)} / ${fmt(pts.length)}…` : hi ? (pts.find(p => p.id === hi) || {}).name : moodZone ? `${MOOD_LABELS[moodZone]} — tap again to clear` : `${fmt(nActive)} artists · tap a quadrant to filter · tap a dot to open`}</div>
+        {n < pts.length ? `plotting ${fmt(n)} / ${fmt(pts.length)}…` : hi ? hi.name : moodZone ? `${MOOD_LABELS[moodZone]} — tap again to clear` : `${fmt(nActive)} artists · tap a quadrant to filter · tap a dot to open`}</div>
     </div>
   );
 }
@@ -303,17 +310,23 @@ function ArtistCloud({ pts, activeIds, go }) {
   const fish = useFisheye(z.bind.ref, z.vbRef, ".xp-fdot", z.draggingRef);
   // dots memoized WITHOUT the zoom factor — radius rides a CSS var (--zk) so zooming rescales
   // marks natively without React re-reconciling the whole cloud (Fuad 2026-07-09).
+  // `hi` is deliberately NOT a dep: hovering during a drag re-reconciled all ~3.9k dots per
+  // crossed dot and killed the page (Fuad 2026-07-14). The hovered dot gets ONE highlight
+  // ring rendered separately instead.
   const dots = React.useMemo(() => pts.slice(0, n).map(p => {
-    const active = activeIds.has(p.id), on = hi === p.id;
-    const op = !active ? 0.05 : on ? 0.95 : 0.6;
-    const baseR = on ? 7 : 2.4 + Math.sqrt(p.plays / maxPlays) * 8.5;
+    const active = activeIds.has(p.id);
+    const baseR = 2.4 + Math.sqrt(p.plays / maxPlays) * 8.5;
     return (
       <circle key={p.id} className="xp-fdot" data-cx={px(p.x).toFixed(1)} data-cy={py(p.y).toFixed(1)}
-        cx={px(p.x)} cy={py(p.y)} fill={`oklch(0.64 0.16 ${p.hue})`} fillOpacity={op}
-        stroke={on ? "#fff" : "none"} strokeWidth={1.3} vectorEffect="non-scaling-stroke"
+        cx={px(p.x)} cy={py(p.y)} fill={`oklch(0.64 0.16 ${p.hue})`} fillOpacity={active ? 0.6 : 0.05}
+        vectorEffect="non-scaling-stroke"
         style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: active ? "pointer" : "default", pointerEvents: active ? "auto" : "none", transition: "fill-opacity .45s ease" }}
-        onMouseEnter={() => active && setHi(p.id)} onClick={() => active && go("artist", p.id)}><title>{p.name}</title></circle>);
-  }), [pts, n, activeIds, hi, maxPlays, go]);
+        onMouseEnter={() => active && setHi(p)} onClick={() => active && go("artist", p.id)}><title>{p.name}</title></circle>);
+  }), [pts, n, activeIds, maxPlays, go]);
+  const hiRing = hi && (
+    <circle cx={px(hi.x)} cy={py(hi.y)} fill={`oklch(0.7 0.16 ${hi.hue})`} fillOpacity={0.95}
+      stroke="#fff" strokeWidth={1.3} vectorEffect="non-scaling-stroke" pointerEvents="none"
+      style={{ r: `calc(7px * var(--zk))` }} />);
   return (
     <div style={{ padding: "14px 16px 10px", position: "relative" }}>
       <ZoomReset z={z} />
@@ -330,9 +343,10 @@ function ArtistCloud({ pts, activeIds, go }) {
         <text x={20} y={H - pad} fill="var(--ink-faint)" fontSize={11 * z.k} fontFamily="var(--mono)" transform={`rotate(-90 20 ${H - pad})`} style={{ letterSpacing: ".1em" }}>CALM</text>
         <text x={20} y={pad + 56} fill="var(--ink-faint)" fontSize={11 * z.k} fontFamily="var(--mono)" transform={`rotate(-90 20 ${pad + 56})`} textAnchor="end" style={{ letterSpacing: ".1em" }}>VIOLENT</text>
         {dots}
+        {hiRing}
       </svg>
       <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>
-        {n < pts.length ? `plotting ${fmt(n)} / ${fmt(pts.length)}…` : hi ? (pts.find(p => p.id === hi) || {}).name : `${fmt(activeIds.size)} artists in view · tap a dot to open`}</div>
+        {n < pts.length ? `plotting ${fmt(n)} / ${fmt(pts.length)}…` : hi ? hi.name : `${fmt(activeIds.size)} artists in view · tap a dot to open`}</div>
     </div>
   );
 }
