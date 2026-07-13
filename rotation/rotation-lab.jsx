@@ -702,8 +702,9 @@ function LabView() {
                 textTransform: "uppercase", color: LAB_ACC, marginBottom: 5 }}>Stories as a Book · pilot</div>
               <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13,
                 color: LAB_DIM, lineHeight: 1.5 }}>
-                Full-viewport spreads — page through with ← →, on-screen arrows, or swipe.
-                Three spreads: cover, genre eras (stacked-area stream), listening-hour ridgeline.
+                A physical book with real page-turn physics (StPageFlip). Click the cover to open.
+                7 pages: cover · title · genre eras prose + chart · listening hours chart + prose · back cover.
+                ← → to turn pages. Chapter rail on the left. Esc to close.
               </div>
             </div>
             <div style={{ padding: "18px 20px 20px" }}>
