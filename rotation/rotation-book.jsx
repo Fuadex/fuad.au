@@ -1,28 +1,41 @@
-// rotation-book.jsx — "Stories as a Book" v3
+// rotation-book.jsx — "Stories as a Book" v4
 // StPageFlip 2.0.7 (vendor-page-flip.js, window.St.PageFlip)
 //
-// Chapter / page map (18 pages, 0-based):
+// Chapter / page map — MAIN CHAPTERS ONLY (shorter atmospheric spreads).
+// The book is a FOREFRONT, not the whole content.  Elaborate sections are
+// rendered BELOW the stage in normal page flow.
+//
 //   Page  0  — Front Cover (hard)
 //   Page  1  — Title / endpaper (soft, paper)
-//   Page  2  — Ch I prose  : Genre Eras narrative (soft, paper)
-//   Page  3  — Ch I chart  : Genre stream SVG (soft, dark)
-//   Page  4  — Ch II chart : Hour ridgeline SVG (soft, dark)
-//   Page  5  — Ch II prose : Listening hours narrative (soft, paper)
-//   Page  6  — Ch III prose: Top Artist Eras narrative (soft, paper)
-//   Page  7  — Ch III chart: Artist era bump chart SVG (soft, dark)
-//   Page  8  — Ch IV chart : Streak / milestones timeline SVG (soft, dark)
-//   Page  9  — Ch IV prose : Milestones & streaks narrative (soft, paper)
-//   Page 10  — Ch V prose  : Taste chapters narrative (soft, paper)
+//   Page  2  — Ch I prose  : Genre Eras (soft, paper)
+//   Page  3  — Ch I chart  : Genre stream (soft, dark)
+//   Page  4  — Ch II chart : Hour ridgeline (soft, dark)
+//   Page  5  — Ch II prose : Listening Hours (soft, paper)
+//   Page  6  — Ch III prose: Artist Eras (soft, paper)
+//   Page  7  — Ch III chart: Artist bump (soft, dark)
+//   Page  8  — Ch IV chart : Milestones (soft, dark)
+//   Page  9  — Ch IV prose : Milestones & Streaks (soft, paper)
+//   Page 10  — Ch V prose  : Taste Chapters (soft, paper)
 //   Page 11  — Ch V chart  : Taste chapter timeline (soft, dark)
-//   Page 12  — Colophon / closing prose (soft, dark)
-//   Page 13  — Closing endpaper (soft, paper) — blank, pads to even inner count
-//   Page 14  — Back matter (soft, paper) — spare back endpaper
-//   Page 15  — Blank endpaper (soft, paper) — keeps inner count = 14 (even)
-//   Page 16  — Rear endpaper (soft, dark)
-//   Page 17  — Back Cover (hard)
+//   Page 12  — Colophon (soft, dark)
+//   Page 13  — Blank endpaper (soft, paper) — pads to even inner count
+//   Page 14  — Rear endpaper (soft, dark)
+//   Page 15  — Back Cover (hard)
 //
 // Two-page spread mode: usePortrait:false, size:"fixed", width = ONE page width.
-// StPageFlip renders the pair; inner page count (pages 1–16 = 16 pages) is even.
+// On narrow screens (< 700px) switches to portrait single-page mode.
+//
+// Architecture:
+//   BookSection = <stage> + <elaborate sections> in normal page flow.
+//   Each spread carries a "read the full chapter ↓" link → the matching #bk-ch-N below.
+//   Each elaborate section has a "back to the book ↑" link.
+//
+// Bug fixes vs v3:
+//   1. Scale computed from ResizeObserver on stage — fills ~80% stage width at 4K.
+//   2. Dark parchment paper pages (not bright white).
+//   3. Annotations target computed from the rendered stf__parent bounding box.
+//   4. pointer-events: none on annotation SVG; stage wrapper does not intercept.
+//   5. Chapter rail rendered outside any transformed ancestor (untransformed page space).
 //
 // Exports: window.BookSection, window.BookLaunchButton (legacy compat)
 // Data: ROTATION.GENRE_FLOW, CLOCK_BY_YEAR, CLOCK, TOTALS, ERAS, ARTISTS,
@@ -34,10 +47,11 @@
   // ─── palette ───────────────────────────────────────────────────────────────
   const BK_BG        = "#0b0a0f";
   const BK_STAGE     = "#0e0c14";
-  const BK_PAPER     = "#f4f1ea";
-  const BK_PAPER_INK = "#16131c";
-  const BK_PAPER_RULE= "#cbc4ba";
-  const BK_INK       = "#f1eef6";
+  // v4: dark parchment — warm dark, readable ink, not bright
+  const BK_PAPER     = "#1e1a14";   // dark warm parchment (was #f4f1ea)
+  const BK_PAPER_INK = "#d4cebc";   // warm cream text on dark parchment
+  const BK_PAPER_RULE= "#3a3228";   // subtle rule on dark parchment
+  const BK_INK       = "var(--ink, #f1eef6)";
   const BK_DIM       = "#a09bb0";
   const BK_FAINT     = "#665f78";
   const BK_RULE      = "#272235";
@@ -46,15 +60,16 @@
   const BK_SPINE     = "oklch(0.35 0.10 330)";
 
   // ─── book dimensions ───────────────────────────────────────────────────────
-  // width = ONE page; StPageFlip displays two side-by-side in landscape mode.
   const PAGE_W = 500;
   const PAGE_H = 660;
-  const PAGE_COUNT = 18;
+  const PAGE_COUNT = 16;   // v4: 16 pages (0–15, inner pages 1–14 = 14, even)
 
-  // data-density for each page (index 0 and 17 = hard covers)
   const PAGE_DENSITIES = Array.from({ length: PAGE_COUNT }, (_, i) =>
     i === 0 || i === PAGE_COUNT - 1 ? "hard" : "soft"
   );
+
+  // portrait breakpoint
+  const PORTRAIT_BP = 700; // px — stage narrower than this → single page mode
 
   // ─── Catmull-Rom spline helper ─────────────────────────────────────────────
   function _segs(pts) {
@@ -70,7 +85,7 @@
   }
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  CHARTS
+  //  CHARTS (unchanged data derivations from v3)
   // ─────────────────────────────────────────────────────────────────────────────
 
   function GenreStreamChart({ W: CW, H: CH }) {
@@ -344,7 +359,6 @@
     const W = CW || PAGE_W - 32;
     const H = CH || 300;
     const R = window.ROTATION;
-    const miles = R && R.INSIGHTS && R.INSIGHTS.MILESTONES;
     const totals = R && R.TOTALS;
     if (!totals) {
       return (
@@ -356,15 +370,12 @@
       );
     }
 
-    // Build a timeline from YEAR_PEAKS (top artist per year)
-    const yp = R && R.INSIGHTS && R.INSIGHTS.YEAR_PEAKS;
     const ERAS = R && R.ERAS ? R.ERAS.slice().sort((a, b) => a.year - b.year) : [];
     const scrobbles = (totals.scrobbles) || 0;
     const since = totals.since ? new Date(totals.since).getUTCFullYear() : 2006;
     const now = new Date().getUTCFullYear();
     const years = Array.from({ length: now - since + 1 }, (_, i) => since + i);
 
-    // get per-year plays from ERAS
     const yearPlays = {};
     for (const e of ERAS) yearPlays[e.year] = e.plays || 0;
     const maxPlays = Math.max(...Object.values(yearPlays), 1);
@@ -378,30 +389,23 @@
     const area = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}` + _segs(pts) +
       ` L${pts[pts.length - 1][0].toFixed(1)} ${PAD_T + ih} L${pts[0][0].toFixed(1)} ${PAD_T + ih} Z`;
 
-    // find peak year
     let peakYear = since, peakVal = 0;
     for (const [y, v] of Object.entries(yearPlays)) {
       if (v > peakVal) { peakVal = v; peakYear = +y; }
     }
 
-    // milestone scrobble round numbers
     const milestoneNs = [50000, 100000, 150000, 200000, 250000, 300000];
     const shownMiles = milestoneNs.filter(n => n <= scrobbles);
 
     return (
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" height={H} style={{ display: "block", overflow: "visible" }}>
-        {/* area */}
         <path d={area} fill="oklch(0.52 0.14 330)" fillOpacity={0.35} />
         <path d={`M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}` + _segs(pts)}
           fill="none" stroke="oklch(0.72 0.14 330)" strokeWidth="1.8" strokeLinejoin="round" />
-
-        {/* year axis labels */}
         {years.filter((y, i) => i % 4 === 0 || y === now).map(y => (
           <text key={y} x={xOf(y)} y={H - 10} textAnchor="middle"
             fontFamily="var(--mono)" fontSize="7.5" fill={BK_FAINT}>{y}</text>
         ))}
-
-        {/* peak marker */}
         {peakYear && (
           <>
             <line x1={xOf(peakYear)} x2={xOf(peakYear)} y1={PAD_T} y2={PAD_T + ih}
@@ -410,12 +414,8 @@
               fontFamily="var(--mono)" fontSize="8" fill={BK_ACCENT}>{peakYear}</text>
           </>
         )}
-
-        {/* milestone dots along the curve — approximate x positions by year proportion */}
         {shownMiles.map(n => {
-          // find which year crossed this threshold (cumulative sum)
-          let cum = 0;
-          let crossYear = since;
+          let cum = 0, crossYear = since;
           for (const y of years) {
             cum += yearPlays[y] || 0;
             if (cum >= n) { crossYear = y; break; }
@@ -494,7 +494,7 @@
   }
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  DATA NARRATIVES
+  //  DATA NARRATIVES (unchanged from v3)
   // ─────────────────────────────────────────────────────────────────────────────
 
   function useGenreNarrative() {
@@ -592,7 +592,6 @@
       const eras = R.ERAS.slice().sort((a, b) => a.year - b.year);
       const tot  = R.TOTALS || {};
 
-      // find the artist who dominated the most years
       const counts = {};
       for (const e of eras) {
         const top = e.top && e.top[0];
@@ -628,7 +627,6 @@
       const R = window.ROTATION;
       if (!R) return [];
       const tot   = R.TOTALS || {};
-      const miles = R.INSIGHTS && R.INSIGHTS.MILESTONES;
       const streak = tot.streak;
       const topDay = tot.topDay;
 
@@ -674,7 +672,6 @@
         `Taste doesn't drift uniformly — it pivots. The algorithm found ${chapters.length} ` +
         `distinct chapters in this listening history, each with its own dominant genre profile.`
       );
-      // find the sharpest shift
       let sharpest = null, maxD = 0;
       for (const ch of chapters) {
         if (!ch.shift) continue;
@@ -710,9 +707,10 @@
   }
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  PAGE CONTENT COMPONENTS
+  //  PAGE CONTENT PRIMITIVES
   // ─────────────────────────────────────────────────────────────────────────────
 
+  // v4: PaperPage uses dark parchment, not bright white
   function PaperPage({ children, style }) {
     return (
       <div style={{
@@ -739,23 +737,23 @@
     );
   }
 
-  function ChapterKicker({ roman, title, color }) {
+  function ChapterKicker({ roman, title }) {
     return (
       <div style={{
         fontFamily: "var(--mono)", fontSize: 8, letterSpacing: ".28em",
-        textTransform: "uppercase", color: color || BK_PAPER_RULE, marginBottom: 14
+        textTransform: "uppercase", color: BK_PAPER_RULE, marginBottom: 14
       }}>
         Chapter {roman} · {title}
       </div>
     );
   }
 
-  function ProseTitle({ children, color }) {
+  function ProseTitle({ children }) {
     return (
       <div style={{
         fontFamily: "var(--serif)", fontStyle: "italic", fontWeight: 600,
         fontSize: 26, lineHeight: 1.2, letterSpacing: "-.02em",
-        color: color || BK_PAPER_INK, marginBottom: 18
+        color: BK_PAPER_INK, marginBottom: 18
       }}>
         {children}
       </div>
@@ -766,14 +764,14 @@
     return <div style={{ width: 32, height: 1.5, background: BK_PAPER_RULE, marginBottom: 22 }} />;
   }
 
-  function Paras({ paras, dark }) {
+  function Paras({ paras }) {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: 14, flex: 1, overflow: "hidden" }}>
         {paras.map((p, i) => (
           <p key={i} style={{
             margin: 0, fontFamily: "var(--serif)",
             fontSize: 13, lineHeight: 1.72,
-            color: dark ? (i === 0 ? BK_INK : BK_DIM) : (i === 0 ? BK_PAPER_INK : "#3d3830"),
+            color: i === 0 ? BK_PAPER_INK : "#8a8070",
             fontWeight: i === 0 ? 500 : 400
           }}>{p}</p>
         ))}
@@ -781,14 +779,26 @@
     );
   }
 
-  function FacingHint({ direction, text, dark }) {
+  // "read the full chapter ↓" link inside each spread's prose page
+  function ReadMoreLink({ chapterId, dark }) {
     return (
-      <div style={{
-        marginTop: "auto", paddingTop: 16,
-        fontFamily: "var(--mono)", fontSize: 7.5,
-        color: dark ? BK_FAINT : BK_PAPER_RULE,
-        letterSpacing: ".08em"
-      }}>{direction === "right" ? "→" : "←"} {text}</div>
+      <div style={{ marginTop: "auto", paddingTop: 16 }}>
+        <a href={`#bk-ch-${chapterId}`}
+          onClick={e => {
+            e.preventDefault();
+            const el = document.getElementById(`bk-ch-${chapterId}`);
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+          style={{
+            fontFamily: "var(--mono)", fontSize: 8.5, letterSpacing: ".12em",
+            textTransform: "uppercase",
+            color: dark ? BK_ACCENT : "oklch(0.65 0.13 330)",
+            textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 5
+          }}
+        >
+          read the full chapter ↓
+        </a>
+      </div>
     );
   }
 
@@ -803,7 +813,11 @@
     );
   }
 
-  // ── Page 0 — Front Cover ────────────────────────────────────────────────────
+  // ─────────────────────────────────────────────────────────────────────────────
+  //  PAGE CONTENT (v4 — 16 pages, 0–15)
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  // Page 0 — Front Cover
   function PageContent_Cover() {
     const R = window.ROTATION;
     const since = R && R.TOTALS && R.TOTALS.since
@@ -822,38 +836,32 @@
           border: `1px solid oklch(0.38 0.10 330 / 0.55)`, borderRadius: 2, pointerEvents: "none" }} />
         <div style={{ position: "absolute", inset: 23,
           border: `1px solid oklch(0.28 0.08 330 / 0.35)`, borderRadius: 1, pointerEvents: "none" }} />
-
         <div style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: ".34em",
           textTransform: "uppercase", color: BK_FAINT, marginBottom: 36, position: "relative", zIndex: 1 }}>
           fuad.au · a personal archive
         </div>
-
         <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontWeight: 600,
           fontSize: 52, letterSpacing: "-.03em", lineHeight: 1.1,
           color: BK_INK, position: "relative", zIndex: 1 }}>
           the listening<br />
           <span style={{ color: BK_ACCENT }}>years</span>
         </div>
-
         <div style={{
           width: 48, height: 2,
           background: `linear-gradient(90deg, transparent, ${BK_ACCENT}, transparent)`,
           margin: "32px auto", position: "relative", zIndex: 1
         }} />
-
         <div style={{ fontFamily: "var(--serif)", fontStyle: "italic",
           fontSize: 15, color: BK_DIM, lineHeight: 1.6, position: "relative", zIndex: 1 }}>
           {scrobbles} plays<br />
           {since} to today
         </div>
-
         <div style={{
           position: "absolute", bottom: 44, left: 0, right: 0, textAlign: "center",
           fontFamily: "var(--mono)", fontSize: 9, letterSpacing: ".22em",
           textTransform: "uppercase", color: BK_FAINT, zIndex: 1,
           animation: "bk-pulse 2.4s ease-in-out infinite"
         }}>open the cover →</div>
-
         <div style={{
           position: "absolute", top: 0, right: 0, bottom: 0, width: 20,
           background: "linear-gradient(to left, rgba(0,0,0,0.45), transparent)",
@@ -863,14 +871,13 @@
     );
   }
 
-  // ── Page 1 — Title / endpaper ───────────────────────────────────────────────
+  // Page 1 — Title / endpaper
   function PageContent_Title() {
     const R = window.ROTATION;
     const tot = (R && R.TOTALS) || {};
     const since = tot.since ? new Date(tot.since).getUTCFullYear() : 2006;
     const hours = tot.exactHours ? Math.round(tot.exactHours).toLocaleString("en-US") : null;
     const scrobbles = tot.scrobbles ? tot.scrobbles.toLocaleString("en-US") : "—";
-
     return (
       <PaperPage>
         <div style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: ".28em",
@@ -881,7 +888,7 @@
           fontSize: 38, letterSpacing: "-.02em", lineHeight: 1.1,
           color: BK_PAPER_INK, marginBottom: 32 }}>
           the listening<br />
-          <span style={{ color: "oklch(0.48 0.15 330)" }}>years</span>
+          <span style={{ color: "oklch(0.65 0.15 330)" }}>years</span>
         </div>
         <div style={{ width: 36, height: 1.5, background: BK_PAPER_RULE, marginBottom: 36 }} />
         <div style={{ display: "flex", flexDirection: "column", gap: 16,
@@ -889,17 +896,17 @@
           <div>
             <span style={{ color: BK_PAPER_RULE, fontFamily: "var(--mono)", fontSize: 9,
               letterSpacing: ".14em", textTransform: "uppercase" }}>plays</span><br />
-            <strong>{scrobbles}</strong>
+            <strong style={{ color: BK_PAPER_INK }}>{scrobbles}</strong>
           </div>
           <div>
             <span style={{ color: BK_PAPER_RULE, fontFamily: "var(--mono)", fontSize: 9,
               letterSpacing: ".14em", textTransform: "uppercase" }}>years active</span><br />
-            <strong>{since} – today</strong>
+            <strong style={{ color: BK_PAPER_INK }}>{since} – today</strong>
           </div>
           {hours && <div>
             <span style={{ color: BK_PAPER_RULE, fontFamily: "var(--mono)", fontSize: 9,
               letterSpacing: ".14em", textTransform: "uppercase" }}>hours</span><br />
-            <strong>{hours}</strong>
+            <strong style={{ color: BK_PAPER_INK }}>{hours}</strong>
           </div>}
         </div>
         <div style={{ marginTop: "auto", fontFamily: "var(--mono)", fontSize: 8.5,
@@ -911,7 +918,7 @@
     );
   }
 
-  // ── Page 2 — Ch I prose ─────────────────────────────────────────────────────
+  // Page 2 — Ch I prose
   function PageContent_GenreProse() {
     const paras = useGenreNarrative();
     return (
@@ -920,12 +927,12 @@
         <ProseTitle>How the sound shifted</ProseTitle>
         <Rule />
         <Paras paras={paras} />
-        <FacingHint direction="right" text="see chart on facing page" />
+        <ReadMoreLink chapterId="genre" />
       </PaperPage>
     );
   }
 
-  // ── Page 3 — Ch I chart ──────────────────────────────────────────────────────
+  // Page 3 — Ch I chart
   function PageContent_GenreChart() {
     return (
       <DarkPage>
@@ -942,7 +949,7 @@
     );
   }
 
-  // ── Page 4 — Ch II chart ─────────────────────────────────────────────────────
+  // Page 4 — Ch II chart
   function PageContent_RidgeChart() {
     return (
       <DarkPage>
@@ -958,7 +965,7 @@
     );
   }
 
-  // ── Page 5 — Ch II prose ─────────────────────────────────────────────────────
+  // Page 5 — Ch II prose
   function PageContent_RidgeProse() {
     const paras = useRidgeNarrative();
     return (
@@ -967,12 +974,12 @@
         <ProseTitle>When the music plays</ProseTitle>
         <Rule />
         <Paras paras={paras} />
-        <FacingHint direction="left" text="see ridgeline on facing page" />
+        <ReadMoreLink chapterId="hours" />
       </PaperPage>
     );
   }
 
-  // ── Page 6 — Ch III prose ────────────────────────────────────────────────────
+  // Page 6 — Ch III prose
   function PageContent_ArtistErasProse() {
     const paras = useArtistErasSummary();
     return (
@@ -981,12 +988,12 @@
         <ProseTitle>Who commanded the years</ProseTitle>
         <Rule />
         <Paras paras={paras} />
-        <FacingHint direction="right" text="see bump chart on facing page" />
+        <ReadMoreLink chapterId="artists" />
       </PaperPage>
     );
   }
 
-  // ── Page 7 — Ch III chart ────────────────────────────────────────────────────
+  // Page 7 — Ch III chart
   function PageContent_ArtistErasChart() {
     return (
       <DarkPage>
@@ -1002,7 +1009,7 @@
     );
   }
 
-  // ── Page 8 — Ch IV chart ─────────────────────────────────────────────────────
+  // Page 8 — Ch IV chart
   function PageContent_MilestonesChart() {
     return (
       <DarkPage>
@@ -1018,7 +1025,7 @@
     );
   }
 
-  // ── Page 9 — Ch IV prose ─────────────────────────────────────────────────────
+  // Page 9 — Ch IV prose
   function PageContent_MilestonesProse() {
     const paras = useMilestonesNarrative();
     return (
@@ -1027,12 +1034,12 @@
         <ProseTitle>The accumulated weight</ProseTitle>
         <Rule />
         <Paras paras={paras} />
-        <FacingHint direction="left" text="see timeline on facing page" />
+        <ReadMoreLink chapterId="milestones" />
       </PaperPage>
     );
   }
 
-  // ── Page 10 — Ch V prose ─────────────────────────────────────────────────────
+  // Page 10 — Ch V prose
   function PageContent_TasteChaptersProse() {
     const paras = useTasteChaptersNarrative();
     return (
@@ -1041,12 +1048,12 @@
         <ProseTitle>The chapters of a musical life</ProseTitle>
         <Rule />
         <Paras paras={paras} />
-        <FacingHint direction="right" text="see chapter chart on facing page" />
+        <ReadMoreLink chapterId="taste" />
       </PaperPage>
     );
   }
 
-  // ── Page 11 — Ch V chart ─────────────────────────────────────────────────────
+  // Page 11 — Ch V chart
   function PageContent_TasteChaptersChart() {
     return (
       <DarkPage>
@@ -1062,7 +1069,7 @@
     );
   }
 
-  // ── Page 12 — Colophon ───────────────────────────────────────────────────────
+  // Page 12 — Colophon
   function PageContent_Colophon() {
     const R = window.ROTATION;
     const tot = (R && R.TOTALS) || {};
@@ -1070,7 +1077,6 @@
     const artists = tot.artists ? tot.artists.toLocaleString("en-US") : "—";
     const hrs = tot.exactHours ? Math.round(tot.exactHours).toLocaleString("en-US") : "—";
     const since = tot.since ? new Date(tot.since).getUTCFullYear() : 2006;
-
     return (
       <DarkPage style={{ alignItems: "center", justifyContent: "center", textAlign: "center" }}>
         <div style={{ fontFamily: "var(--serif)", fontStyle: "italic",
@@ -1096,47 +1102,77 @@
     );
   }
 
-  // ── Pages 13–16 — endpapers / blanks ─────────────────────────────────────────
-  function PageContent_Endpaper({ dark }) {
+  // Page 13 — Blank endpaper (pads inner count to 12 even = 6 spreads)
+  function PageContent_Endpaper() {
     const R = window.ROTATION;
     const tot = (R && R.TOTALS) || {};
     const scrobbles = tot.scrobbles ? tot.scrobbles.toLocaleString("en-US") : "316,000+";
-    // subtle watermark
     return (
       <div style={{
         width: "100%", height: "100%",
-        background: dark ? BK_COVER_BG : BK_PAPER,
+        background: BK_PAPER,
         display: "flex", alignItems: "center", justifyContent: "center",
         position: "relative", overflow: "hidden"
       }}>
         <div style={{
           fontFamily: "var(--serif)", fontStyle: "italic",
-          fontSize: 11, color: dark ? "oklch(0.28 0.06 330)" : "#d9d5cd",
+          fontSize: 11, color: "#2e2820",
           textAlign: "center", letterSpacing: ".06em", lineHeight: 2,
           userSelect: "none", pointerEvents: "none"
         }}>
           {scrobbles} plays · fuad.au
         </div>
-        {/* decorative corner dots */}
         {[0,1,2,3].map(c => (
           <div key={c} style={{
             position: "absolute",
             top: c < 2 ? 24 : "auto", bottom: c >= 2 ? 24 : "auto",
             left: c % 2 === 0 ? 24 : "auto", right: c % 2 !== 0 ? 24 : "auto",
             width: 4, height: 4, borderRadius: "50%",
-            background: dark ? "oklch(0.35 0.08 330)" : "#cbc4ba"
+            background: BK_PAPER_RULE
           }} />
         ))}
       </div>
     );
   }
 
-  // ── Page 17 — Back Cover ─────────────────────────────────────────────────────
+  // Page 14 — Rear endpaper (dark)
+  function PageContent_RearEndpaper() {
+    const R = window.ROTATION;
+    const tot = (R && R.TOTALS) || {};
+    const scrobbles = tot.scrobbles ? tot.scrobbles.toLocaleString("en-US") : "316,000+";
+    return (
+      <div style={{
+        width: "100%", height: "100%",
+        background: BK_COVER_BG,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        position: "relative", overflow: "hidden"
+      }}>
+        <div style={{
+          fontFamily: "var(--serif)", fontStyle: "italic",
+          fontSize: 11, color: "oklch(0.28 0.06 330)",
+          textAlign: "center", letterSpacing: ".06em", lineHeight: 2,
+          userSelect: "none", pointerEvents: "none"
+        }}>
+          {scrobbles} plays · fuad.au
+        </div>
+        {[0,1,2,3].map(c => (
+          <div key={c} style={{
+            position: "absolute",
+            top: c < 2 ? 24 : "auto", bottom: c >= 2 ? 24 : "auto",
+            left: c % 2 === 0 ? 24 : "auto", right: c % 2 !== 0 ? 24 : "auto",
+            width: 4, height: 4, borderRadius: "50%",
+            background: "oklch(0.35 0.08 330)"
+          }} />
+        ))}
+      </div>
+    );
+  }
+
+  // Page 15 — Back Cover
   function PageContent_BackCover() {
     const R = window.ROTATION;
     const tot = (R && R.TOTALS) || {};
     const scrobbles = tot.scrobbles ? tot.scrobbles.toLocaleString("en-US") : "319,000+";
-
     return (
       <div style={{
         width: "100%", height: "100%", background: BK_COVER_BG,
@@ -1168,36 +1204,37 @@
   }
 
   // ─── PAGE REGISTRY ──────────────────────────────────────────────────────────
+  // v4: 16 pages (inner 1–14 = 14 pages, even: 7 spreads)
   const PAGE_RENDERERS = [
-    PageContent_Cover,         // 0  hard
-    PageContent_Title,         // 1  paper
-    PageContent_GenreProse,    // 2  paper
-    PageContent_GenreChart,    // 3  dark
-    PageContent_RidgeChart,    // 4  dark
-    PageContent_RidgeProse,    // 5  paper
-    PageContent_ArtistErasProse,  // 6  paper
-    PageContent_ArtistErasChart,  // 7  dark
-    PageContent_MilestonesChart,  // 8  dark
-    PageContent_MilestonesProse,  // 9  paper
-    PageContent_TasteChaptersProse, // 10 paper
-    PageContent_TasteChaptersChart, // 11 dark
-    PageContent_Colophon,      // 12 dark
-    () => <PageContent_Endpaper dark={false} />,  // 13 endpaper
-    () => <PageContent_Endpaper dark={false} />,  // 14 endpaper
-    () => <PageContent_Endpaper dark={false} />,  // 15 endpaper
-    () => <PageContent_Endpaper dark={true}  />,  // 16 dark endpaper
-    PageContent_BackCover,     // 17 hard
+    PageContent_Cover,               // 0  hard
+    PageContent_Title,               // 1  paper
+    PageContent_GenreProse,          // 2  paper
+    PageContent_GenreChart,          // 3  dark
+    PageContent_RidgeChart,          // 4  dark
+    PageContent_RidgeProse,          // 5  paper
+    PageContent_ArtistErasProse,     // 6  paper
+    PageContent_ArtistErasChart,     // 7  dark
+    PageContent_MilestonesChart,     // 8  dark
+    PageContent_MilestonesProse,     // 9  paper
+    PageContent_TasteChaptersProse,  // 10 paper
+    PageContent_TasteChaptersChart,  // 11 dark
+    PageContent_Colophon,            // 12 dark
+    PageContent_Endpaper,            // 13 paper (blank pad)
+    PageContent_RearEndpaper,        // 14 dark endpaper
+    PageContent_BackCover,           // 15 hard
   ];
 
   // ─── CHAPTER RAIL ───────────────────────────────────────────────────────────
+  // v4: rendered OUTSIDE the scaled book wrapper — in untransformed page space.
+  // This means it lives at the BookSection level and receives onChapterClick.
   const CHAPTERS = [
-    { label: "Cover",               page: 0  },
-    { label: "I · Genre Eras",      page: 2  },
-    { label: "II · Hours",          page: 4  },
-    { label: "III · Artists",       page: 6  },
-    { label: "IV · Milestones",     page: 8  },
-    { label: "V · Taste Chapters",  page: 10 },
-    { label: "Colophon",            page: 12 },
+    { label: "Cover",              page: 0  },
+    { label: "I · Genre Eras",    page: 2  },
+    { label: "II · Hours",        page: 4  },
+    { label: "III · Artists",     page: 6  },
+    { label: "IV · Milestones",   page: 8  },
+    { label: "V · Taste",         page: 10 },
+    { label: "Colophon",          page: 12 },
   ];
 
   function activeChapter(pageIdx) {
@@ -1208,13 +1245,17 @@
     return ch;
   }
 
+  // ChapterRail: rendered in untransformed stage coordinates (Bug #5 fix)
   function ChapterRail({ currentPage, onChapterClick }) {
     const active = activeChapter(currentPage);
     return (
       <div style={{
         position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)",
         display: "flex", flexDirection: "column", gap: 4,
-        padding: "12px 6px", zIndex: 20
+        padding: "12px 6px",
+        // v4: z-index high but no pointer-events confusion; lives outside transformed wrapper
+        zIndex: 30,
+        // ensure it doesn't intercept clicks meant for the book (only its own buttons)
       }}>
         {CHAPTERS.map((ch, i) => (
           <button key={i} onClick={() => onChapterClick(ch.page)} style={{
@@ -1240,63 +1281,60 @@
   }
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  MARGIN ANNOTATIONS
-  //  ANNOTATIONS[pageIndex] = [{side, y (0-1 of stage), tx (0-1 stage w), ty, text}]
-  //  "side" = "left" | "right"  — which margin the note lives in
+  //  ANNOTATIONS (v4)
+  //  Bug #3 fix: annotation targets are fractions of the VISIBLE SPREAD box
+  //  (the stf__parent bounding box), not stage fractions.
+  //  tx/ty are fractions of the visible spread box: 0=left, 1=right, 0=top, 1=bottom.
+  //  The AnnotationLayer measures the stf__parent bbox on every render + resize.
   // ─────────────────────────────────────────────────────────────────────────────
   const ANNOTATIONS = {
-    // Cover spread (page 0 visible as right page of spread 0)
     0: [
       { side: "right", y: 0.35, tx: 0.62, ty: 0.45, text: "316,000 plays pressed\ninto cloth" },
       { side: "right", y: 0.65, tx: 0.72, ty: 0.72, text: "click to open →" },
     ],
-    // Title spread (pages 1/2 open — left=1, right=2 or vice versa)
     1: [
       { side: "left", y: 0.50, tx: 0.22, ty: 0.38, text: "since 2006 —\n18 years of\ndata" },
     ],
-    // Genre chart (page 3)
     3: [
       { side: "right", y: 0.40, tx: 0.78, ty: 0.38, text: "2019 —\nthe peak\nyear" },
       { side: "left",  y: 0.60, tx: 0.24, ty: 0.62, text: "genre share\nnormalised\nper year" },
     ],
-    // Hour ridgeline (page 4)
     4: [
       { side: "left", y: 0.35, tx: 0.28, ty: 0.30, text: "late-night\npeak: 22:00" },
       { side: "right", y: 0.55, tx: 0.74, ty: 0.60, text: "each ridge\nis one year" },
     ],
-    // Artist bump (page 7)
     7: [
       { side: "right", y: 0.42, tx: 0.76, ty: 0.35, text: "rank crossings\nshow obsession\nshifts" },
     ],
-    // Milestones (page 8)
     8: [
       { side: "left",  y: 0.38, tx: 0.26, ty: 0.32, text: "100k milestone\ncrossed" },
       { side: "right", y: 0.55, tx: 0.76, ty: 0.55, text: "peak year\nmarked in\naccent" },
     ],
-    // Taste chapters (page 11)
     11: [
       { side: "left", y: 0.45, tx: 0.22, ty: 0.50, text: "each bar =\none chapter\nin taste" },
     ],
   };
 
-  function AnnotationLayer({ stageW, stageH, currentPage, visible }) {
-    // Show annotations for the two pages currently visible in the spread.
-    // In two-page mode, spread n shows pages (2n) and (2n+1) (approximately).
-    // We show annotations defined for currentPage and currentPage+1.
+  // v4: AnnotationLayer receives the measured spread bbox so it can place
+  // leader-line targets relative to the actual rendered book position.
+  function AnnotationLayer({ stageW, stageH, spreadRect, currentPage, visible }) {
     const candidates = [];
     for (const pi of [currentPage, currentPage + 1]) {
       const anns = ANNOTATIONS[pi];
       if (anns) candidates.push(...anns);
     }
+    if (!candidates.length || !spreadRect) return null;
 
-    if (!candidates.length) return null;
+    const MARGIN = 120;
+    const { left: sl, top: st, width: sw, height: sh } = spreadRect;
 
-    const MARGIN = 120; // px on each side for annotations
     return (
       <svg
         style={{
           position: "absolute", inset: 0, width: "100%", height: "100%",
-          pointerEvents: "none", zIndex: 25,
+          // Bug #4 fix: pointer-events none so mouse drags pass through to StPageFlip
+          pointerEvents: "none",
+          zIndex: 25,
           opacity: visible ? 1 : 0,
           transition: "opacity 0.5s ease"
         }}
@@ -1305,14 +1343,12 @@
       >
         {candidates.map((ann, i) => {
           const isLeft = ann.side === "left";
-          // note anchor in the margin
           const noteX = isLeft ? MARGIN * 0.5 : stageW - MARGIN * 0.5;
           const noteY = ann.y * stageH;
-          // target point on the book spread
-          const targetX = ann.tx * stageW;
-          const targetY = ann.ty * stageH;
+          // v4: target anchored to the SPREAD box's actual position on screen
+          const targetX = sl + ann.tx * sw;
+          const targetY = st + ann.ty * sh;
 
-          // leader line control point (slight curve)
           const cpX = (noteX + targetX) / 2;
           const cpY = (noteY + targetY) / 2 - 20;
 
@@ -1322,30 +1358,17 @@
 
           return (
             <g key={i}>
-              {/* leader line */}
               <path
                 d={`M${noteX.toFixed(1)} ${noteY.toFixed(1)} Q${cpX.toFixed(1)} ${cpY.toFixed(1)} ${targetX.toFixed(1)} ${targetY.toFixed(1)}`}
-                fill="none"
-                stroke={BK_ACCENT}
-                strokeWidth="0.8"
-                strokeOpacity="0.55"
-                strokeDasharray="3 3"
+                fill="none" stroke={BK_ACCENT} strokeWidth="0.8"
+                strokeOpacity="0.55" strokeDasharray="3 3"
               />
-              {/* dot at target */}
               <circle cx={targetX} cy={targetY} r="2.5" fill={BK_ACCENT} opacity="0.65" />
-              {/* annotation text */}
               {lines.map((line, li) => (
-                <text
-                  key={li}
-                  x={noteX}
+                <text key={li} x={noteX}
                   y={noteY - totalTextH / 2 + li * lineH + lineH * 0.75}
-                  textAnchor="middle"
-                  fontFamily="var(--mono)"
-                  fontSize="9"
-                  fill={BK_ACCENT}
-                  opacity="0.80"
-                  letterSpacing=".06em"
-                >
+                  textAnchor="middle" fontFamily="var(--mono)" fontSize="9"
+                  fill={BK_ACCENT} opacity="0.80" letterSpacing=".06em">
                   {line}
                 </text>
               ))}
@@ -1357,7 +1380,7 @@
   }
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  CLOSED BOOK (resting state)
+  //  CLOSED BOOK
   // ─────────────────────────────────────────────────────────────────────────────
   function ClosedBook({ onClick }) {
     const R = window.ROTATION;
@@ -1387,7 +1410,6 @@
           <div style={{ position: "absolute", inset: 20,
             border: `1px solid oklch(0.28 0.08 330 / 0.30)`,
             borderRadius: 1, pointerEvents: "none" }} />
-
           <div style={{ fontFamily: "var(--mono)", fontSize: 8, letterSpacing: ".30em",
             textTransform: "uppercase", color: BK_FAINT, marginBottom: 28, position: "relative", zIndex: 1 }}>
             fuad.au · a personal archive
@@ -1414,14 +1436,12 @@
             background: "linear-gradient(to left, rgba(0,0,0,0.5), transparent)",
             pointerEvents: "none" }} />
         </div>
-        {/* Spine */}
         <div style={{
           position: "absolute", top: 0, left: -14, bottom: 0, width: 14,
           background: `linear-gradient(to right, ${BK_SPINE}, oklch(0.28 0.08 330))`,
           borderRadius: "4px 0 0 4px",
           boxShadow: "-4px 0 12px rgba(0,0,0,0.5)"
         }} />
-        {/* Surface shadow */}
         <div style={{
           position: "absolute", bottom: -28, left: "5%", right: "5%", height: 28,
           background: "radial-gradient(ellipse at 50% 0%, rgba(0,0,0,0.5) 0%, transparent 80%)",
@@ -1452,36 +1472,42 @@
   }
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  OPEN BOOK (StPageFlip, two-page landscape mode)
+  //  OPEN BOOK
+  //  v4 fixes:
+  //    Bug #1: scale computed via ResizeObserver on the stage element;
+  //            targets ~80% of stage width; no hard cap (allows 4K fill).
+  //    Bug #4: stage wrapper has no pointerdown intercept; annotation SVG
+  //            has pointer-events:none.  useMouseEvents:true is set.
+  //    Bug #5: ChapterRail is hoisted outside this component into BookSection
+  //            so it lives in untransformed stage space.
   // ─────────────────────────────────────────────────────────────────────────────
-  function BookOpen({ stageRef, onClose }) {
+  function BookOpen({ stageRef, onClose, onChapterClick, currentPage, setCurrentPage, portrait }) {
     const containerRef = useRef(null);
     const pageFlipRef  = useRef(null);
-    const [currentPage, setCurrentPage]   = useState(0);
     const [vendorReady, setVendorReady]   = useState(!!(window.St && window.St.PageFlip));
     const [annotVisible, setAnnotVisible] = useState(true);
     const [scale, setScale]               = useState(1);
     const [stageSize, setStageSize]       = useState({ w: 900, h: 600 });
+    // v4 Bug #3: spreadRect tracks the actual rendered spread bounding box
+    const [spreadRect, setSpreadRect]     = useState(null);
 
-    // Compute scale to fill as much of the stage as possible
-    function calcScale() {
+    // v4 Bug #1: scale fills ~80% of stage width at any resolution
+    const calcScale = useCallback(() => {
       const stage = stageRef && stageRef.current;
       if (!stage) return;
       const sw = stage.offsetWidth;
       const sh = stage.offsetHeight;
       setStageSize({ w: sw, h: sh });
 
-      const railW = 150;  // left chapter rail
-      const annW  = 130;  // annotation margin each side
-      const padH  = 60;   // top + bottom padding
-      // open spread = 2 × PAGE_W; strong zoom requested — use 92% of available space
-      const availW = sw - railW - annW - 32;
+      const padH = 56; // top hint bar + bottom counter
+      const availW = portrait ? sw * 0.88 : sw * 0.80;  // 80% of stage width
       const availH = sh - padH;
-      const scaleW = availW / (PAGE_W * 2);
+      const bookNatW = portrait ? PAGE_W : PAGE_W * 2;
+      const scaleW = availW / bookNatW;
       const scaleH = availH / PAGE_H;
-      // allow up to 1.4× to fill the viewport strongly
-      setScale(Math.min(scaleW, scaleH, 1.4));
-    }
+      // take the smaller so the book fits; no upper cap (allows 4K fill)
+      setScale(Math.min(scaleW, scaleH));
+    }, [portrait]);
 
     useEffect(() => {
       calcScale();
@@ -1489,34 +1515,66 @@
       const stage = stageRef && stageRef.current;
       if (stage) obs.observe(stage);
       return () => obs.disconnect();
+    }, [calcScale]);
+
+    // v4 Bug #3: measure the stf__parent after every flip + on resize
+    const measureSpread = useCallback(() => {
+      const stage = stageRef && stageRef.current;
+      if (!stage) return;
+      const parent = stage.querySelector(".stf__parent");
+      if (!parent) return;
+      const sr = stage.getBoundingClientRect();
+      const pr = parent.getBoundingClientRect();
+      setSpreadRect({
+        left: pr.left - sr.left,
+        top:  pr.top  - sr.top,
+        width: pr.width,
+        height: pr.height,
+      });
     }, []);
 
-    // Load vendor
+    useEffect(() => {
+      if (!vendorReady) return;
+      // measure after a short delay to let StPageFlip settle
+      const t = setTimeout(measureSpread, 200);
+      return () => clearTimeout(t);
+    }, [vendorReady, scale, measureSpread]);
+
+    // Resize also re-measures spread
+    useEffect(() => {
+      const stage = stageRef && stageRef.current;
+      if (!stage) return;
+      const obs = new ResizeObserver(measureSpread);
+      obs.observe(stage);
+      return () => obs.disconnect();
+    }, [measureSpread]);
+
     useEffect(() => {
       if (vendorReady) return;
       loadVendor(() => setVendorReady(true));
     }, []);
 
-    // Init StPageFlip
     useEffect(() => {
       if (!vendorReady || !containerRef.current) return;
       const pageEls = Array.from(containerRef.current.querySelectorAll(".book-page"));
       if (pageEls.length !== PAGE_COUNT) return;
 
       const pf = new window.St.PageFlip(containerRef.current, {
-        width:             PAGE_W,
-        height:            PAGE_H,
-        size:              "fixed",
-        usePortrait:       false,   // landscape two-page mode
-        maxShadowOpacity:  0.5,
-        showCover:         true,    // pages 0 and 17 get hard-cover treatment
-        useMouseEvents:    true,
+        width:               PAGE_W,
+        height:              PAGE_H,
+        size:                "fixed",
+        // v4: portrait mode for narrow screens
+        usePortrait:         portrait,
+        maxShadowOpacity:    0.5,
+        showCover:           true,
+        // Bug #4: ensure mouse events enabled
+        useMouseEvents:      true,
         mobileScrollSupport: false,
-        flippingTime:      700,
-        startZIndex:       10,
-        drawShadow:        true,
-        showPageCorners:   true,
-        disableFlipByClick: false,
+        flippingTime:        700,
+        startZIndex:         10,
+        drawShadow:          true,
+        showPageCorners:     true,
+        disableFlipByClick:  false,
       });
 
       pf.loadFromHTML(pageEls);
@@ -1524,10 +1582,16 @@
       pf.on("flip", e => {
         setCurrentPage(e.data);
         setAnnotVisible(false);
-        setTimeout(() => setAnnotVisible(true), 600);
+        setTimeout(() => {
+          setAnnotVisible(true);
+          measureSpread();
+        }, 700);
       });
 
       pageFlipRef.current = pf;
+
+      // measure once StPageFlip has laid out
+      setTimeout(measureSpread, 300);
 
       return () => {
         if (pageFlipRef.current) {
@@ -1535,7 +1599,7 @@
           pageFlipRef.current = null;
         }
       };
-    }, [vendorReady]);
+    }, [vendorReady, portrait]);
 
     // Keyboard nav
     useEffect(() => {
@@ -1552,14 +1616,19 @@
       return () => window.removeEventListener("keydown", h);
     }, [onClose]);
 
+    // Chapter click — passed in from BookSection (outside transform)
     const handleChapterClick = useCallback(pageIdx => {
       if (pageFlipRef.current) pageFlipRef.current.turnToPage(pageIdx);
     }, []);
+    // expose to parent
+    useEffect(() => {
+      onChapterClick.current = handleChapterClick;
+    }, [handleChapterClick]);
 
-    const bookNaturalW = PAGE_W * 2;
+    const bookNaturalW = portrait ? PAGE_W : PAGE_W * 2;
 
     return (
-      <div style={{ position: "relative", width: "100%", height: "100%" }}>
+      <div style={{ position: "absolute", inset: 0 }}>
         {/* Hint bar */}
         <div style={{
           position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)",
@@ -1582,18 +1651,16 @@
           title="Close book (Esc)"
         >✕</button>
 
-        {/* Chapter rail (left side) */}
-        <ChapterRail currentPage={currentPage} onChapterClick={handleChapterClick} />
-
-        {/* Book — centred in stage, scaled to fill */}
+        {/* Book — centred in stage, scaled to fill; no pointer intercept on the centering wrapper */}
         <div style={{
           position: "absolute", inset: 0,
-          display: "flex", alignItems: "center", justifyContent: "center"
+          display: "flex", alignItems: "center", justifyContent: "center",
+          // Bug #4: no pointerEvents block here; let events reach StPageFlip's DOM
         }}>
           <div style={{
             transform: `scale(${scale})`,
             transformOrigin: "center center",
-            position: "relative"
+            position: "relative",
           }}>
             <div
               ref={containerRef}
@@ -1616,10 +1683,11 @@
           </div>
         </div>
 
-        {/* Margin annotations overlay — covers the full stage */}
+        {/* Annotation overlay — pointer-events:none (Bug #4); uses spread bbox (Bug #3) */}
         <AnnotationLayer
           stageW={stageSize.w}
           stageH={stageSize.h}
+          spreadRect={spreadRect}
           currentPage={currentPage}
           visible={annotVisible}
         />
@@ -1628,7 +1696,7 @@
         <div style={{
           position: "absolute", bottom: 14, left: "50%", transform: "translateX(-50%)",
           fontFamily: "var(--mono)", fontSize: 9, color: BK_FAINT,
-          letterSpacing: ".14em", zIndex: 30
+          letterSpacing: ".14em", zIndex: 30, pointerEvents: "none"
         }}>
           {currentPage + 1} / {PAGE_COUNT}
         </div>
@@ -1637,60 +1705,263 @@
   }
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  BOOK SECTION — inline component for the #lab page
-  //  Renders as a tall block in the page flow. Closed book sits centred on the stage.
-  //  Clicking opens the book in-place (no overlay). Stage height ~90vh.
+  //  ELABORATE SECTIONS — rendered below the stage in normal page flow
+  //  Each chapter's full prose + larger chart, r-card idiom.
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  function BackToBook() {
+    return (
+      <div style={{ marginBottom: 12 }}>
+        <a href="#bk-stage"
+          onClick={e => {
+            e.preventDefault();
+            const el = document.getElementById("bk-stage");
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+          style={{
+            fontFamily: "var(--mono)", fontSize: 8.5, letterSpacing: ".12em",
+            textTransform: "uppercase",
+            color: BK_ACCENT, textDecoration: "none",
+            display: "inline-flex", alignItems: "center", gap: 5
+          }}
+        >
+          ↑ back to the book
+        </a>
+      </div>
+    );
+  }
+
+  function ElaborateCard({ id, roman, title, children }) {
+    return (
+      <div id={`bk-ch-${id}`} className="r-card" style={{
+        marginBottom: 28,
+        background: "#13111a",
+        border: `1px solid ${BK_RULE}`,
+        borderRadius: 8, padding: "24px 28px",
+        scrollMarginTop: 24,
+      }}>
+        <BackToBook />
+        <div style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: ".22em",
+          textTransform: "uppercase", color: BK_ACCENT, marginBottom: 6 }}>
+          {roman && `Chapter ${roman} · `}{title}
+        </div>
+        {children}
+      </div>
+    );
+  }
+
+  function ElaborateGenre() {
+    const paras = useGenreNarrative();
+    return (
+      <ElaborateCard id="genre" roman="I" title="Genre Eras — How the Sound Shifted">
+        <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontWeight: 600,
+          fontSize: 22, color: BK_INK, marginBottom: 16, lineHeight: 1.3 }}>
+          How the sound shifted
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 24 }}>
+          {paras.map((p, i) => (
+            <p key={i} style={{ margin: 0, fontFamily: "var(--serif)", fontSize: 14,
+              lineHeight: 1.78, color: i === 0 ? BK_INK : BK_DIM }}>{p}</p>
+          ))}
+        </div>
+        <GenreStreamChart W={680} H={340} />
+        <div style={{ fontFamily: "var(--mono)", fontSize: 8, color: BK_FAINT,
+          letterSpacing: ".08em", marginTop: 10 }}>
+          Genre families by share of plays per year · Data: ROTATION.GENRE_FLOW
+        </div>
+      </ElaborateCard>
+    );
+  }
+
+  function ElaborateHours() {
+    const paras = useRidgeNarrative();
+    return (
+      <ElaborateCard id="hours" roman="II" title="Listening Hours — When the Music Plays">
+        <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontWeight: 600,
+          fontSize: 22, color: BK_INK, marginBottom: 16, lineHeight: 1.3 }}>
+          When the music plays
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 24 }}>
+          {paras.map((p, i) => (
+            <p key={i} style={{ margin: 0, fontFamily: "var(--serif)", fontSize: 14,
+              lineHeight: 1.78, color: i === 0 ? BK_INK : BK_DIM }}>{p}</p>
+          ))}
+        </div>
+        <HourRidgeChart W={680} CH={undefined} />
+        <div style={{ fontFamily: "var(--mono)", fontSize: 8, color: BK_FAINT,
+          letterSpacing: ".08em", marginTop: 10 }}>
+          Hour-of-day ridgeline by year · Data: ROTATION.CLOCK_BY_YEAR
+        </div>
+      </ElaborateCard>
+    );
+  }
+
+  function ElaborateArtists() {
+    const paras = useArtistErasSummary();
+    return (
+      <ElaborateCard id="artists" roman="III" title="Artist Eras — Who Commanded the Years">
+        <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontWeight: 600,
+          fontSize: 22, color: BK_INK, marginBottom: 16, lineHeight: 1.3 }}>
+          Who commanded the years
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 24 }}>
+          {paras.map((p, i) => (
+            <p key={i} style={{ margin: 0, fontFamily: "var(--serif)", fontSize: 14,
+              lineHeight: 1.78, color: i === 0 ? BK_INK : BK_DIM }}>{p}</p>
+          ))}
+        </div>
+        <ArtistEraBumpChart W={680} H={380} />
+        <div style={{ fontFamily: "var(--mono)", fontSize: 8, color: BK_FAINT,
+          letterSpacing: ".08em", marginTop: 10 }}>
+          Top-10 artist rank per year · Data: ROTATION.ERAS
+        </div>
+      </ElaborateCard>
+    );
+  }
+
+  function ElaborateMilestones() {
+    const paras = useMilestonesNarrative();
+    return (
+      <ElaborateCard id="milestones" roman="IV" title="Milestones & Streaks — The Accumulated Weight">
+        <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontWeight: 600,
+          fontSize: 22, color: BK_INK, marginBottom: 16, lineHeight: 1.3 }}>
+          The accumulated weight
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 24 }}>
+          {paras.map((p, i) => (
+            <p key={i} style={{ margin: 0, fontFamily: "var(--serif)", fontSize: 14,
+              lineHeight: 1.78, color: i === 0 ? BK_INK : BK_DIM }}>{p}</p>
+          ))}
+        </div>
+        <MilestonesChart W={680} H={360} />
+        <div style={{ fontFamily: "var(--mono)", fontSize: 8, color: BK_FAINT,
+          letterSpacing: ".08em", marginTop: 10 }}>
+          Scrobbles per year + milestone crossings · Data: ROTATION.ERAS + ROTATION.TOTALS
+        </div>
+      </ElaborateCard>
+    );
+  }
+
+  function ElaborateTaste() {
+    const paras = useTasteChaptersNarrative();
+    return (
+      <ElaborateCard id="taste" roman="V" title="Taste Chapters — The Chapters of a Musical Life">
+        <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontWeight: 600,
+          fontSize: 22, color: BK_INK, marginBottom: 16, lineHeight: 1.3 }}>
+          The chapters of a musical life
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 24 }}>
+          {paras.map((p, i) => (
+            <p key={i} style={{ margin: 0, fontFamily: "var(--serif)", fontSize: 14,
+              lineHeight: 1.78, color: i === 0 ? BK_INK : BK_DIM }}>{p}</p>
+          ))}
+        </div>
+        <TasteChapterChart W={680} H={320} />
+        <div style={{ fontFamily: "var(--mono)", fontSize: 8, color: BK_FAINT,
+          letterSpacing: ".08em", marginTop: 10 }}>
+          Auto-segmented taste chapters · Data: ROTATION.INSIGHTS.TASTE_ERAS
+        </div>
+      </ElaborateCard>
+    );
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  //  BOOK SECTION — stage + elaborate sections in normal page flow
+  //  v4: BookSection is the top-level component; ChapterRail lives here
+  //      (outside the transformed book wrapper) to fix Bug #5.
   // ─────────────────────────────────────────────────────────────────────────────
   function BookSection() {
     const [phase, setPhase] = useState("closed");
-    // phase: "closed" | "open"
+    const [currentPage, setCurrentPage] = useState(0);
     const stageRef = useRef(null);
+    const chapterClickRef = useRef(null);  // set by BookOpen
 
-    const openBook  = useCallback(() => setPhase("open"),  []);
+    // detect portrait mode from stage width
+    const [portrait, setPortrait] = useState(false);
+    useEffect(() => {
+      const stage = stageRef.current;
+      if (!stage) return;
+      const check = () => setPortrait(stage.offsetWidth < PORTRAIT_BP);
+      check();
+      const obs = new ResizeObserver(check);
+      obs.observe(stage);
+      return () => obs.disconnect();
+    }, []);
+
+    const openBook  = useCallback(() => setPhase("open"),   []);
     const closeBook = useCallback(() => setPhase("closed"), []);
 
+    const handleChapterClick = useCallback(pageIdx => {
+      if (chapterClickRef.current) chapterClickRef.current(pageIdx);
+    }, []);
+
     return (
-      <div
-        ref={stageRef}
-        style={{
-          position: "relative",
-          width: "100%",
-          // 90vh tall: big enough to show a double-page spread comfortably
-          height: "90vh",
-          minHeight: 520,
-          background: BK_STAGE,
-          borderRadius: 10,
-          overflow: "hidden",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: 32,
-        }}
-      >
-        {phase === "closed" && (
-          <>
-            {/* subtle table surface */}
-            <div style={{
-              position: "absolute", bottom: "22%", left: "8%", right: "8%", height: 2,
-              background: "radial-gradient(ellipse at 50% 50%, oklch(0.30 0.08 330 / 0.30) 0%, transparent 70%)",
-              pointerEvents: "none"
-            }} />
-            <ClosedBook onClick={openBook} />
-          </>
-        )}
-        {phase === "open" && (
-          <BookOpen stageRef={stageRef} onClose={closeBook} />
-        )}
+      <div>
+        {/* ── Stage ── */}
+        <div
+          id="bk-stage"
+          ref={stageRef}
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "88vh",
+            minHeight: 480,
+            background: BK_STAGE,
+            borderRadius: 10,
+            overflow: "hidden",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 36,
+            // Bug #4: no pointer intercept on the stage wrapper itself
+          }}
+        >
+          {phase === "closed" && (
+            <>
+              <div style={{
+                position: "absolute", bottom: "22%", left: "8%", right: "8%", height: 2,
+                background: "radial-gradient(ellipse at 50% 50%, oklch(0.30 0.08 330 / 0.30) 0%, transparent 70%)",
+                pointerEvents: "none"
+              }} />
+              <ClosedBook onClick={openBook} />
+            </>
+          )}
+          {phase === "open" && (
+            <>
+              {/* Bug #5: ChapterRail OUTSIDE the scaled book wrapper */}
+              <ChapterRail currentPage={currentPage} onChapterClick={handleChapterClick} />
+              <BookOpen
+                stageRef={stageRef}
+                onClose={closeBook}
+                onChapterClick={chapterClickRef}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                portrait={portrait}
+              />
+            </>
+          )}
+        </div>
+
+        {/* ── Elaborate Sections (below the stage, normal page flow) ── */}
+        <div style={{ marginTop: 8 }}>
+          <div style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: ".18em",
+            textTransform: "uppercase", color: BK_FAINT, marginBottom: 20 }}>
+            Full chapters · scroll to read in detail
+          </div>
+          <ElaborateGenre />
+          <ElaborateHours />
+          <ElaborateArtists />
+          <ElaborateMilestones />
+          <ElaborateTaste />
+        </div>
       </div>
     );
   }
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  LEGACY: BookOverlay / BookLaunchButton  (kept for any existing references)
+  //  LEGACY: BookLaunchButton
   // ─────────────────────────────────────────────────────────────────────────────
   function BookLaunchButton() {
-    // Now just a thin wrapper that mounts BookSection inline below the button.
-    // The button is a no-op visual — the section is always rendered if this is used.
     return (
       <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: BK_FAINT,
         letterSpacing: ".12em", textTransform: "uppercase", padding: "8px 0" }}>

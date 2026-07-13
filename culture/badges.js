@@ -881,7 +881,8 @@ window.CULTURE_BADGES = {
   "cerebral"
  ],
  "walkabout": [
-  "impact"
+  "impact",
+  "social-xray"
  ],
  "waltz-bashir": [
   "cerebral"

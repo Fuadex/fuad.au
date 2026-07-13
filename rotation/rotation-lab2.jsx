@@ -1,17 +1,25 @@
 // rotation-lab2.jsx — Overview Makeover Prototype (#lab2)
-// A legible fact-derivation system: FACT_RULES declare exactly what each
-// insight does. Every rule is a plain object the owner can read and audit.
+// v2: expandable-headline cards. Each rule now derives { headline, text, detail?, link? }.
+// The headline is glanceable (big number or ≤8-word claim). Collapsed cards are dense;
+// expanded cards reveal the sentence + derivation note. 8-10 facts fit on one screen.
 // Route: #lab2 — hidden, not in NAV.
 
 // ─────────────────────────────────────────────────────────────────
 //  FACT RULES ENGINE
-//  Each rule: { id, source, label, derive(R) => null | { text, detail?, link? } }
-//  R = window.ROTATION (plus window.ROTATION_MB, ROTATION_TRACKBIO, GIGS… if loaded)
-//  Rules must return null when data is absent — no crashes allowed.
+//  Each rule: { id, source, label, derive(R) => null | { headline, text, detail?, link? } }
+//  headline: a glanceable fragment — big number or ≤8-word claim
+//  text:     the full sentence (shown expanded)
+//  detail:   derivation note / supporting number (shown expanded)
+//  link:     { view, id } navigation target
 // ─────────────────────────────────────────────────────────────────
+//
+//  CULLED RULES (cannot compress to a glanceable headline):
+//  • "segue" (rule 11) — the headline would need to name two tracks and two artists,
+//    which always exceeds 8 words and reads as a sentence anyway. Content is
+//    strong in Stories but not glanceable at a card level.
 
 const FACT_RULES = [
-  // ── 1. Genre momentum: biggest family share-shift between the two most recent GENRE_FLOW years ──
+  // ── 1. Genre momentum ──────────────────────────────────────────────────────────────
   {
     id: "genre-shift",
     source: "genres",
@@ -24,7 +32,6 @@ const FACT_RULES = [
         const prev   = GF.years[GF.years.length - 2];
         const fams   = GF.families || [];
         if (!fams.length || !recent.fams || !prev.fams) return null;
-        // normalise raw play counts → share 0–100 within each year
         const totR = recent.fams.reduce((s, v) => s + (v || 0), 0) || 1;
         const totP = prev.fams.reduce((s, v) => s + (v || 0), 0) || 1;
         const shareR = recent.fams.map(v => (v || 0) / totR * 100);
@@ -37,10 +44,11 @@ const FACT_RULES = [
         if (maxIdx < 0 || maxDelta < 3) return null;
         const fam   = fams[maxIdx];
         const delta = shareR[maxIdx] - shareP[maxIdx];
-        const dir   = delta > 0 ? "up" : "down";
+        const dir   = delta > 0 ? "+" : "−";
         const pp    = Math.abs(Math.round(delta));
         return {
-          text: `${fam.family} is your fastest-shifting genre — ${dir} ${pp} percentage-points between ${prev.year} and ${recent.year}`,
+          headline: `${fam.family} ${dir}${pp}pp in a year`,
+          text: `${fam.family} is your fastest-shifting genre — ${delta > 0 ? "up" : "down"} ${pp} percentage-points between ${prev.year} and ${recent.year}`,
           detail: `${prev.year}: ${Math.round(shareP[maxIdx])}% → ${recent.year}: ${Math.round(shareR[maxIdx])}% of plays`,
           link: { view: "explore", id: null },
         };
@@ -48,7 +56,7 @@ const FACT_RULES = [
     },
   },
 
-  // ── 2. Complete discography: artist in top-400 with the most albums represented in ALBUMS list ──
+  // ── 2. Complete discography ────────────────────────────────────────────────────────
   {
     id: "complete-discog",
     source: "mb",
@@ -56,8 +64,7 @@ const FACT_RULES = [
     derive(R) {
       try {
         if (!R || !R.ARTISTS || !R.ALBUMS) return null;
-        // count albums per artist in the ALBUMS list
-        const albumsPerArtist = new Map(); // artistId → count
+        const albumsPerArtist = new Map();
         const totalPlaysPerArtist = new Map();
         for (const al of R.ALBUMS) {
           if (!al || !al.artistId) continue;
@@ -75,6 +82,7 @@ const FACT_RULES = [
         if (!best) return null;
         const { a, count, albumPlays } = best;
         return {
+          headline: `${a.name} — ${count} albums deep`,
           text: `${a.name} has the broadest album footprint in your library — ${count} distinct records all with meaningful play counts`,
           detail: `${a.plays.toLocaleString("en-US")} total plays; ${albumPlays.toLocaleString("en-US")} across those ${count} albums`,
           link: { view: "artist", id: a.id },
@@ -83,7 +91,7 @@ const FACT_RULES = [
     },
   },
 
-  // ── 3. Peak day: the all-time heaviest single listening day (from TOTALS.topDay) ──
+  // ── 3. Peak day ───────────────────────────────────────────────────────────────────
   {
     id: "peak-day",
     source: "calendar",
@@ -97,6 +105,7 @@ const FACT_RULES = [
         const d = new Date(day.date + "T00:00:00Z");
         const label = `${d.getUTCDate()} ${MON[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
         return {
+          headline: `${day.count.toLocaleString("en-US")} plays in one day`,
           text: `Your all-time heaviest day was ${label} — ${day.count.toLocaleString("en-US")} plays`,
           detail: day.note || null,
           link: { view: "calendar", id: day.date },
@@ -105,7 +114,7 @@ const FACT_RULES = [
     },
   },
 
-  // ── 4. One-song artist: artist in top-50 tracks where a single track dominates their play count ──
+  // ── 4. One-song artist ────────────────────────────────────────────────────────────
   {
     id: "one-song",
     source: "reads",
@@ -129,6 +138,7 @@ const FACT_RULES = [
         const { tk, share, artistName, artistId } = best;
         const pct = Math.round(share * 100);
         return {
+          headline: `"${tk.title}" is ${pct}% of ${artistName}`,
           text: `"${tk.title}" accounts for ${pct}% of all your ${artistName} plays — a one-song obsession`,
           detail: `${tk.plays.toLocaleString("en-US")} plays for that track out of ${(R.byId[artistId] && R.byId[artistId].plays || 0).toLocaleString("en-US")} total`,
           link: { view: "artist", id: artistId },
@@ -137,7 +147,7 @@ const FACT_RULES = [
     },
   },
 
-  // ── 5. Newest entry in the all-time top 50: the most recently discovered artist that cracked it ──
+  // ── 5. Newest entry in the all-time top 50 ────────────────────────────────────────
   {
     id: "new-to-top50",
     source: "genres",
@@ -158,6 +168,7 @@ const FACT_RULES = [
         const cy = new Date().getUTCFullYear();
         const age = cy - firstYear;
         return {
+          headline: `${a.name} in top 50 — only ${age}yr old`,
           text: `${a.name} is the newest face in your all-time top 50 — you first played them in ${firstYear}, only ${age} year${age !== 1 ? "s" : ""} ago`,
           detail: `${a.plays.toLocaleString("en-US")} plays since ${firstYear}`,
           link: { view: "artist", id: a.id },
@@ -166,7 +177,7 @@ const FACT_RULES = [
     },
   },
 
-  // ── 6. Streak vs best: current streak and how far from the all-time record ──
+  // ── 6. Streak vs best ─────────────────────────────────────────────────────────────
   {
     id: "streak-gap",
     source: "calendar",
@@ -179,6 +190,7 @@ const FACT_RULES = [
         const isRecord = current >= best;
         if (isRecord) {
           return {
+            headline: `${current}-day streak — ALL-TIME record`,
             text: `You're on a ${current}-day listening streak — that IS the all-time record`,
             detail: "Keep it going",
             link: { view: "calendar", id: null },
@@ -186,6 +198,7 @@ const FACT_RULES = [
         }
         const gap = best - current;
         return {
+          headline: `${gap} days from the ${best}-day record`,
           text: `Current streak: ${current} days. The all-time record is ${best} days — ${gap} to go`,
           detail: `At your average rate you'd need ${gap} consecutive days of listening`,
           link: { view: "calendar", id: null },
@@ -194,7 +207,7 @@ const FACT_RULES = [
     },
   },
 
-  // ── 7. Fastest-growing decade: decade whose share of plays is climbing fastest across ERAS ──
+  // ── 7. Decade dominance ───────────────────────────────────────────────────────────
   {
     id: "decade-growth",
     source: "genres",
@@ -203,19 +216,16 @@ const FACT_RULES = [
       try {
         const ad = R && R.INSIGHTS && R.INSIGHTS.ADOPTION;
         if (!ad || !ad.decades || ad.decades.length < 2) return null;
-        // ADOPTION.decades is sorted by share — find the one labelled with the highest share
         const decades = ad.decades.slice().filter(d => d.plays > 0);
         if (!decades.length) return null;
-        // find the decade with highest share that's not the obvious dominant one
         const sorted = decades.slice().sort((a, b) => b.share - a.share);
-        // the runner-up is interesting: dominated but growing
-        const top     = sorted[0];
-        const runner  = sorted[1];
+        const top    = sorted[0];
+        const runner = sorted[1];
         if (!runner) return null;
-        const topPct  = Math.round(top.share * 100);
-        const runPct  = Math.round(runner.share * 100);
+        const topPct = Math.round(top.share * 100);
         return {
-          text: `The ${top.decade}s dominate with ${topPct}% of plays by release decade; the ${runner.decade}s are close behind at ${runPct}%`,
+          headline: `${top.decade}s music — ${topPct}% of your plays`,
+          text: `The ${top.decade}s dominate with ${topPct}% of plays by release decade; the ${runner.decade}s are close behind at ${Math.round(runner.share * 100)}%`,
           detail: `By artist debut year across your ${R.TOTALS.artists.toLocaleString("en-US")}-artist library`,
           link: { view: "stories", id: null },
         };
@@ -223,7 +233,7 @@ const FACT_RULES = [
     },
   },
 
-  // ── 8. Comeback: an artist you ignored for years then returned to (INSIGHTS.COMEBACKS) ──
+  // ── 8. Comeback ───────────────────────────────────────────────────────────────────
   {
     id: "comeback",
     source: "calendar",
@@ -234,9 +244,11 @@ const FACT_RULES = [
         if (!cb || !cb.length) return null;
         const c = cb[0];
         if (!c || !c.artist) return null;
-        const gapYrs = c.gapDays ? Math.round(c.gapDays / 365) : null;
+        const gapYrs  = c.gapDays ? Math.round(c.gapDays / 365) : null;
         const backYear = c.back ? c.back.slice(0, 4) : null;
+        const gapStr  = gapYrs ? `${gapYrs}yr gap` : "long gap";
         return {
+          headline: `${c.artist} — ${gapStr}${backYear ? ", back " + backYear : ""}`,
           text: `${c.artist} went quiet for ${gapYrs ? gapYrs + " years" : "a long stretch"} then came roaring back${backYear ? " in " + backYear : ""}`,
           detail: c.playsAfter ? `${c.playsAfter.toLocaleString("en-US")} plays since the return` : null,
           link: { view: "artist", id: R.slug ? R.slug(c.artist) : c.artist },
@@ -245,20 +257,19 @@ const FACT_RULES = [
     },
   },
 
-  // ── 9. Session binge: album played front-to-back the most times (INSIGHTS.SESSIONS) ──
+  // ── 9. Session binge ──────────────────────────────────────────────────────────────
   {
     id: "binge-album",
     source: "calendar",
     label: "Reads INSIGHTS.SESSIONS.sittings.byAlbum — an object keyed by 'artistSlug~albumSlug' → sitting-count. Sorts by count descending and reports the top entry. Resolves the album name from R.ALBUMS or splits the slug",
     derive(R) {
       try {
-        const sess = R && R.INSIGHTS && R.INSIGHTS.SESSIONS;
+        const sess    = R && R.INSIGHTS && R.INSIGHTS.SESSIONS;
         const byAlbum = sess && sess.sittings && sess.sittings.byAlbum;
         if (!byAlbum || typeof byAlbum !== "object") return null;
         const entries = Object.entries(byAlbum).sort((a, b) => b[1] - a[1]);
         if (!entries.length) return null;
         const [key, count] = entries[0];
-        // Try to resolve album name from R.ALBUMS
         let albumTitle = null, artistName = null;
         if (R.ALBUMS) {
           for (const al of R.ALBUMS) {
@@ -267,12 +278,14 @@ const FACT_RULES = [
             if (k === key) { albumTitle = al.title; artistName = al.artist; break; }
           }
         }
-        // Fallback: parse the slug
         if (!albumTitle) {
           const parts = key.split("~");
           albumTitle = parts[1] ? parts[1].replace(/-/g, " ") : key;
         }
+        // Truncate long titles for headline
+        const shortTitle = albumTitle.length > 22 ? albumTitle.slice(0, 20) + "…" : albumTitle;
         return {
+          headline: `"${shortTitle}" front-to-back ×${count}`,
           text: `You've listened to "${albumTitle}" front-to-back ${count} time${count !== 1 ? "s" : ""} in a single uninterrupted session`,
           detail: artistName ? `by ${artistName}` : null,
           link: { view: "stories", id: "sessions" },
@@ -281,7 +294,7 @@ const FACT_RULES = [
     },
   },
 
-  // ── 10. Underground depth: share of library under 50k global listeners (INSIGHTS.UNDERGROUND) ──
+  // ── 10. Underground depth ─────────────────────────────────────────────────────────
   {
     id: "underground",
     source: "mb",
@@ -290,9 +303,10 @@ const FACT_RULES = [
       try {
         const U = R && R.INSIGHTS && R.INSIGHTS.UNDERGROUND;
         if (!U || U.artistShare50k == null) return null;
-        const pct     = Math.round(U.artistShare50k * 100);
-        const median  = U.medianArtistListeners;
+        const pct    = Math.round(U.artistShare50k * 100);
+        const median = U.medianArtistListeners;
         return {
+          headline: `${pct}% of library under 50k listeners`,
           text: `${pct}% of the artists you play have fewer than 50,000 listeners worldwide — genuinely underground taste`,
           detail: median ? `Median artist: ${median.toLocaleString("en-US")} listeners globally` : null,
           link: { view: "stories", id: null },
@@ -301,32 +315,7 @@ const FACT_RULES = [
     },
   },
 
-  // ── 11. Segue machine: the most-repeated X→Y track transition (INSIGHTS.SESSIONS.segues) ──
-  {
-    id: "segue",
-    source: "calendar",
-    label: "Reads INSIGHTS.SESSIONS.segues — each entry has fromArtist, fromTrack, toArtist, toTrack, n (count), pct (percentage). Cross-artist segues are ranked first. Reports the top entry as a named ritual",
-    derive(R) {
-      try {
-        const segs = R && R.INSIGHTS && R.INSIGHTS.SESSIONS && R.INSIGHTS.SESSIONS.segues;
-        if (!segs || !segs.length) return null;
-        // Cross-artist segues are more interesting; they're sorted first already
-        const top = segs[0];
-        if (!top || !top.fromTrack || !top.toTrack) return null;
-        const crossArtist = !top.sameArtist;
-        const desc = crossArtist
-          ? `"${top.fromTrack}" (${top.fromArtist}) → "${top.toTrack}" (${top.toArtist})`
-          : `"${top.fromTrack}" → "${top.toTrack}" by ${top.fromArtist}`;
-        return {
-          text: `Your most automatic track transition: ${desc}`,
-          detail: `Happened ${top.n} time${top.n !== 1 ? "s" : ""} (${top.pct}% of the time after that first track)`,
-          link: { view: "stories", id: "segues" },
-        };
-      } catch (e) { return null; }
-    },
-  },
-
-  // ── 12. Obsession week: the artist whose one-week binge was the most concentrated ──
+  // ── 11. Obsession week ────────────────────────────────────────────────────────────
   {
     id: "obsession-peak",
     source: "reads",
@@ -335,12 +324,14 @@ const FACT_RULES = [
       try {
         const obs = R && R.INSIGHTS && R.INSIGHTS.OBSESSIONS;
         if (!obs || !obs.length) return null;
-        const o = obs[0]; // already sorted by plays desc
+        const o   = obs[0];
         if (!o || !o.artist) return null;
         const pct  = o.share != null ? Math.round(o.share * 100) : null;
         const week = o.weekStart ? o.weekStart.slice(0, 7) : null;
         const a    = R.byId && R.byId[R.slug ? R.slug(o.artist) : o.artist];
+        const playsStr = o.plays ? o.plays.toLocaleString("en-US") : "?";
         return {
+          headline: `${o.artist} — ${playsStr} plays in one week`,
           text: `Your most intense single-week binge: ${o.artist}${week ? ` in ${week}` : ""} — ${pct != null ? pct + "% of that week's plays" : o.plays + " plays"}`,
           detail: o.total ? `Out of ${o.total} total plays that week` : null,
           link: { view: "artist", id: (a && a.id) || (R.slug && R.slug(o.artist)) || o.artist },
@@ -349,21 +340,22 @@ const FACT_RULES = [
     },
   },
 
-  // ── 13. Lifespan — disbanded while you listened (INSIGHTS.LIFESPAN) ──
+  // ── 12. Disbanded while listening ─────────────────────────────────────────────────
   {
     id: "disbanded",
     source: "mb",
     label: "Reads INSIGHTS.LIFESPAN.whileListening (sorted by plays before end-year). Each entry: name, end (year number), plays, before, after, found (first-play year), artistId. Reports the artist you played most before their disbandment",
     derive(R) {
       try {
-        const LS = R && R.INSIGHTS && R.INSIGHTS.LIFESPAN;
+        const LS  = R && R.INSIGHTS && R.INSIGHTS.LIFESPAN;
         const ewl = LS && LS.whileListening;
         if (!ewl || !ewl.length) return null;
-        const e = ewl[0];
+        const e      = ewl[0];
         if (!e || !e.name) return null;
         const before = e.before ? e.before.toLocaleString("en-US") : null;
         const after  = e.after  ? e.after.toLocaleString("en-US")  : null;
         return {
+          headline: `${e.name} ended ${e.end || "??"} — you were there`,
           text: `${e.name} ended in ${e.end || "??"} while you were still actively listening — you were there until the curtain came down`,
           detail: before ? `${before} plays while they were active${after ? `, ${after} after` : ""}` : null,
           link: { view: "artist", id: e.artistId || (R.slug && R.slug(e.name)) || e.name },
@@ -372,17 +364,16 @@ const FACT_RULES = [
     },
   },
 
-  // ── 14. Taste chapter: the most distinct era of listening style (INSIGHTS.TASTE_ERAS) ──
+  // ── 13. Taste chapter ─────────────────────────────────────────────────────────────
   {
     id: "taste-era",
     source: "genres",
     label: "Reads INSIGHTS.TASTE_ERAS.eras — each chapter has start/end (YYYY-MM strings), topFams[{fam, hue, share}], and shift {up, down} for chapters after the first. Finds the era with the largest named genre pivot (shift.up.d or shift.down.d, each 0–100)",
     derive(R) {
       try {
-        const TE = R && R.INSIGHTS && R.INSIGHTS.TASTE_ERAS;
+        const TE   = R && R.INSIGHTS && R.INSIGHTS.TASTE_ERAS;
         const eras = TE && TE.eras;
         if (!eras || eras.length < 2) return null;
-        // find the era with the strongest shift
         let pivot = null, maxD = 0;
         for (const era of eras) {
           if (!era.shift) continue;
@@ -390,24 +381,29 @@ const FACT_RULES = [
           if (d > maxD) { maxD = d; pivot = era; }
         }
         if (!pivot) {
-          // fallback: report current chapter
           const last = eras[eras.length - 1];
-          const top = last.topFams && last.topFams[0];
+          const top  = last.topFams && last.topFams[0];
           if (!top) return null;
           return {
+            headline: `${top.fam} era since ${last.start.slice(0, 4)}`,
             text: `Your current listening chapter (from ${last.start.slice(0, 4)}) is defined by ${top.fam}`,
             detail: `${top.share}% family share in this period`,
             link: { view: "stories", id: "taste-chapters" },
           };
         }
-        const up   = pivot.shift.up;
-        const down = pivot.shift.down;
+        const up      = pivot.shift.up;
+        const down    = pivot.shift.down;
         const yearStr = pivot.start ? pivot.start.slice(0, 4) : "?";
+        let headPart  = "";
+        if (up && down) headPart = `${up.fam} ▲ / ${down.fam} ▼ in ${yearStr}`;
+        else if (up)   headPart = `${up.fam} surged ${up.d}pp in ${yearStr}`;
+        else if (down) headPart = `${down.fam} dropped sharply in ${yearStr}`;
         let changeDesc = "";
         if (up && down) changeDesc = `${up.fam} rose ${up.d}pp as ${down.fam} fell`;
-        else if (up) changeDesc = `${up.fam} surged ${up.d} percentage-points`;
+        else if (up)   changeDesc = `${up.fam} surged ${up.d} percentage-points`;
         else if (down) changeDesc = `${down.fam} dropped sharply`;
         return {
+          headline: headPart || `Taste pivot in ${yearStr}`,
           text: `Sharpest taste pivot: around ${yearStr}, ${changeDesc}`,
           detail: pivot.topFams && pivot.topFams[0] ? `This era defined by ${pivot.topFams[0].fam} (${pivot.topFams[0].share}%)` : null,
           link: { view: "stories", id: "taste-chapters" },
@@ -423,19 +419,18 @@ const FACT_RULES = [
 function Lab2Vitals({ R, go }) {
   const T = R && R.TOTALS;
   if (!T) return null;
-  const live = window.ROTATION_LIVE;
+  const live  = window.ROTATION_LIVE;
   const total = (live && live.total) || T.scrobbles;
-  const w = live && live.week;
+  const w     = live && live.week;
 
   const V = ({ n, sub, onClick }) => (
     <div onClick={onClick} style={{ cursor: onClick ? "pointer" : "default",
-      padding: "14px 18px", flex: "1 1 120px" }}>
-      <div style={{ fontFamily: "var(--serif)", fontStyle: "italic",
-        fontSize: "clamp(24px,3vw,36px)", fontWeight: 600, lineHeight: 1 }}>
+      padding: "12px 16px", flex: "1 1 110px" }}>
+      <div className="r-stat-n" style={{ fontSize: "clamp(22px,2.6vw,32px)" }}>
         {typeof n === "number" ? n.toLocaleString("en-US") : n}
       </div>
-      <div style={{ fontFamily: "var(--mono)", fontSize: 9.5, letterSpacing: ".13em",
-        textTransform: "uppercase", color: "var(--ink-faint)", marginTop: 7 }}>
+      <div style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: ".13em",
+        textTransform: "uppercase", color: "var(--ink-faint)", marginTop: 6 }}>
         {sub}{onClick ? " ↗" : ""}
       </div>
     </div>
@@ -443,7 +438,7 @@ function Lab2Vitals({ R, go }) {
 
   return (
     <div className="r-card" style={{ display: "flex", flexWrap: "wrap", gap: 0,
-      borderRadius: 10, overflow: "hidden", marginBottom: 28 }}>
+      borderRadius: 10, overflow: "hidden", marginBottom: 22 }}>
       <V n={total} sub="scrobbles" onClick={() => go("calendar")} />
       <V n={T.listeningHours ? Math.round(T.listeningHours).toLocaleString("en-US") : "—"} sub="hours" onClick={() => go("calendar")} />
       <V n={T.artists ? T.artists.toLocaleString("en-US") : "—"} sub="artists" onClick={() => go("explore")} />
@@ -470,8 +465,8 @@ function SourceChip({ src }) {
   const def = SOURCE_COLORS[src] || { hue: 210, label: src };
   return (
     <span style={{
-      fontFamily: "var(--mono)", fontSize: 8.5, letterSpacing: ".12em",
-      textTransform: "uppercase", padding: "2px 8px", borderRadius: 999,
+      fontFamily: "var(--mono)", fontSize: 8, letterSpacing: ".12em",
+      textTransform: "uppercase", padding: "2px 7px", borderRadius: 999,
       background: `oklch(0.72 0.14 ${def.hue} / 0.15)`,
       color: `oklch(0.74 0.13 ${def.hue})`,
       border: `1px solid oklch(0.72 0.14 ${def.hue} / 0.3)`,
@@ -481,73 +476,87 @@ function SourceChip({ src }) {
 }
 
 // ─────────────────────────────────────────────────────────────────
-//  FACT CARD
+//  FACT CARD — headline-first, expandable body
 // ─────────────────────────────────────────────────────────────────
 function FactCard({ rule, result, go }) {
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleLink = () => {
+  const handleNav = (e) => {
     if (!result.link) return;
+    e.stopPropagation();
     go(result.link.view, result.link.id || undefined);
   };
 
+  const toggleExpand = (e) => {
+    e.stopPropagation();
+    setExpanded(x => !x);
+  };
+
   return (
-    <div className="r-card" style={{
-      padding: "18px 20px", display: "flex", flexDirection: "column", gap: 10,
-      cursor: result.link ? "pointer" : "default",
-    }}
-    onClick={result.link ? handleLink : undefined}>
-      {/* header row */}
-      <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+    <div className="r-card lab2-card" style={{
+      padding: "14px 16px 12px",
+      display: "flex", flexDirection: "column", gap: 0,
+    }}>
+      {/* ── top bar: chip + nav link ── */}
+      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 10 }}>
         <SourceChip src={rule.source} />
         {result.link && (
-          <span style={{ marginLeft: "auto", fontFamily: "var(--mono)", fontSize: 9,
-            color: "var(--accent)", flexShrink: 0 }}>→</span>
+          <button onClick={handleNav} style={{
+            marginLeft: "auto", background: "none", border: "none", padding: "2px 6px",
+            cursor: "pointer", fontFamily: "var(--mono)", fontSize: 8.5,
+            color: "var(--accent)", letterSpacing: ".08em",
+          }}>→</button>
         )}
       </div>
 
-      {/* main text */}
-      <div style={{ fontFamily: "var(--serif)", fontStyle: "italic",
-        fontSize: "clamp(14px,1.5vw,17px)", lineHeight: 1.55, color: "var(--ink)" }}>
-        {result.text}
+      {/* ── headline ── big number / glanceable claim ── */}
+      <div className="r-stat-n" style={{
+        fontSize: "clamp(16px,2vw,21px)", lineHeight: 1.2,
+        color: "var(--ink)", marginBottom: 10,
+        letterSpacing: "-.01em",
+      }}>
+        {result.headline}
       </div>
 
-      {/* detail */}
-      {result.detail && (
-        <div style={{ fontFamily: "var(--mono)", fontSize: 10.5,
-          color: "var(--ink-soft)", lineHeight: 1.4 }}>
-          {result.detail}
-        </div>
-      )}
-
-      {/* expandable "how" line */}
-      <div style={{ marginTop: 4, borderTop: "1px solid var(--rule)", paddingTop: 8 }}>
+      {/* ── expander row ── */}
+      <div style={{ borderTop: "1px solid var(--rule)", paddingTop: 8 }}>
         <button
-          onClick={e => { e.stopPropagation(); setExpanded(x => !x); }}
+          onClick={toggleExpand}
           style={{
             background: "none", border: "none", padding: 0, cursor: "pointer",
-            fontFamily: "var(--mono)", fontSize: 9, letterSpacing: ".1em",
+            fontFamily: "var(--mono)", fontSize: 8.5, letterSpacing: ".1em",
             textTransform: "uppercase", color: "var(--ink-faint)",
-            display: "flex", alignItems: "center", gap: 6,
+            display: "flex", alignItems: "center", gap: 5, width: "100%",
           }}>
-          <span style={{ color: "var(--accent-dim)" }}>{expanded ? "▾" : "▸"}</span>
-          how this was derived
+          <span style={{ color: "var(--accent-dim)", fontSize: 10 }}>{expanded ? "▾" : "▸"}</span>
+          {expanded ? "less" : "more"}
         </button>
+
         {expanded && (
-          <div style={{
-            marginTop: 8, fontFamily: "var(--mono)", fontSize: 10,
-            color: "var(--ink-soft)", lineHeight: 1.55,
-            background: "var(--bg-3)", borderRadius: 6, padding: "10px 12px",
-          }}>
-            <span style={{ color: "var(--ink-faint)", fontSize: 9, letterSpacing: ".08em",
-              textTransform: "uppercase" }}>rule id: </span>
-            <span style={{ color: "var(--accent-dim)" }}>{rule.id}</span>
-            <br />
-            <span style={{ color: "var(--ink-faint)", fontSize: 9, letterSpacing: ".08em",
-              textTransform: "uppercase" }}>source: </span>
-            <span>{rule.source}</span>
-            <br /><br />
-            {rule.label}
+          <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 8 }}>
+            {/* sentence */}
+            <div style={{ fontFamily: "var(--serif)", fontStyle: "italic",
+              fontSize: "clamp(12.5px,1.3vw,14.5px)", lineHeight: 1.55, color: "var(--ink-soft)" }}>
+              {result.text}
+            </div>
+            {/* detail */}
+            {result.detail && (
+              <div style={{ fontFamily: "var(--mono)", fontSize: 10,
+                color: "var(--ink-faint)", lineHeight: 1.4 }}>
+                {result.detail}
+              </div>
+            )}
+            {/* derivation */}
+            <div style={{
+              fontFamily: "var(--mono)", fontSize: 9.5,
+              color: "var(--ink-soft)", lineHeight: 1.5,
+              background: "var(--bg-3)", borderRadius: 5, padding: "8px 10px",
+            }}>
+              <span style={{ color: "var(--accent-dim)" }}>{rule.id}</span>
+              <span style={{ color: "var(--ink-faint)" }}> · {rule.source}</span>
+              <br />
+              <span style={{ color: "var(--ink-faint)", fontSize: 9 }}>{rule.label}</span>
+            </div>
           </div>
         )}
       </div>
@@ -556,27 +565,27 @@ function FactCard({ rule, result, go }) {
 }
 
 // ─────────────────────────────────────────────────────────────────
-//  NULL CARD (when a rule returns null — shown in audit mode only)
+//  NULL CARD (shown in audit mode only)
 // ─────────────────────────────────────────────────────────────────
 function NullCard({ rule }) {
   const [show, setShow] = React.useState(false);
   return (
     <div style={{
-      padding: "10px 14px", borderRadius: 8,
+      padding: "8px 12px", borderRadius: 8,
       border: "1px dashed var(--rule)", opacity: 0.5,
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
         <SourceChip src={rule.source} />
-        <span style={{ fontFamily: "var(--mono)", fontSize: 9.5, color: "var(--ink-faint)" }}>
+        <span style={{ fontFamily: "var(--mono)", fontSize: 9, color: "var(--ink-faint)" }}>
           {rule.id} — no data
         </span>
         <button onClick={() => setShow(x => !x)} style={{
           marginLeft: "auto", background: "none", border: "none", cursor: "pointer",
-          fontFamily: "var(--mono)", fontSize: 8.5, color: "var(--ink-faint)",
+          fontFamily: "var(--mono)", fontSize: 8, color: "var(--ink-faint)",
         }}>{show ? "hide" : "why?"}</button>
       </div>
       {show && (
-        <div style={{ marginTop: 8, fontFamily: "var(--mono)", fontSize: 9.5,
+        <div style={{ marginTop: 6, fontFamily: "var(--mono)", fontSize: 9,
           color: "var(--ink-faint)", lineHeight: 1.5 }}>
           {rule.label}
         </div>
@@ -592,7 +601,6 @@ function Lab2View() {
   const R = window.ROTATION;
   const [showNulls, setShowNulls] = React.useState(false);
 
-  // Run all rules — guarded so one crash never kills the page
   const results = React.useMemo(() => {
     if (!R) return [];
     return FACT_RULES.map(rule => {
@@ -606,24 +614,24 @@ function Lab2View() {
   const missed = results.filter(x => x.result === null);
 
   return (
-    <div className="r-view" style={{ maxWidth: 800, margin: "0 auto" }}>
+    <div className="r-view" style={{ maxWidth: 900, margin: "0 auto" }}>
       {/* header */}
-      <div style={{ marginBottom: 28 }}>
+      <div style={{ marginBottom: 22 }}>
         <div className="r-kicker">Lab 2</div>
         <h1 className="r-title">Overview Makeover<span className="dot">.</span></h1>
-        <p className="r-lede" style={{ marginTop: 8 }}>
-          A prototype driven by a legible fact-derivation system. Each card tells
-          you what it found and how it found it — every rule is readable in{" "}
-          <code style={{ fontFamily: "var(--mono)", fontSize: 12,
+        <p className="r-lede" style={{ marginTop: 6, marginBottom: 0 }}>
+          Expandable fact cards — glance the headline, open for the full story.
+          Rules are readable in{" "}
+          <code style={{ fontFamily: "var(--mono)", fontSize: 11,
             color: "var(--accent-dim)", background: "var(--bg-3)",
             padding: "1px 5px", borderRadius: 4 }}>rotation-lab2.jsx</code>.
         </p>
         <div style={{ fontFamily: "var(--mono)", fontSize: 9, color: "var(--ink-faint)",
-          marginTop: 10, letterSpacing: ".14em", textTransform: "uppercase",
-          display: "flex", alignItems: "center", gap: 16 }}>
+          marginTop: 8, letterSpacing: ".14em", textTransform: "uppercase",
+          display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
           <a href="#overview" style={{ color: "var(--accent)", textDecoration: "none" }}>← back to overview</a>
           <span style={{ color: "var(--rule-2)" }}>|</span>
-          <span>{fired.length} fact{fired.length !== 1 ? "s" : ""} derived · {missed.length} rule{missed.length !== 1 ? "s" : ""} returned null</span>
+          <span>{fired.length} fact{fired.length !== 1 ? "s" : ""} · {missed.length} null</span>
         </div>
       </div>
 
@@ -632,31 +640,31 @@ function Lab2View() {
 
       {/* section header */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between",
-        marginBottom: 16 }}>
-        <div style={{ fontFamily: "var(--mono)", fontSize: 9.5, letterSpacing: ".18em",
+        marginBottom: 14 }}>
+        <div style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: ".18em",
           textTransform: "uppercase", color: "var(--ink-faint)" }}>
           What the site learned
         </div>
         <button
           onClick={() => setShowNulls(x => !x)}
           style={{ background: "none", border: "1px solid var(--rule)", borderRadius: 999,
-            padding: "4px 12px", fontFamily: "var(--mono)", fontSize: 8.5, letterSpacing: ".1em",
+            padding: "3px 10px", fontFamily: "var(--mono)", fontSize: 8, letterSpacing: ".1em",
             textTransform: "uppercase", color: "var(--ink-faint)", cursor: "pointer" }}>
-          {showNulls ? "hide nulls" : "audit all rules"}
+          {showNulls ? "hide nulls" : "audit rules"}
         </button>
       </div>
 
       {/* fact cards grid */}
       {!R && (
-        <div className="r-card" style={{ padding: 32, textAlign: "center",
+        <div className="r-card" style={{ padding: 28, textAlign: "center",
           fontFamily: "var(--mono)", fontSize: 11, color: "var(--ink-faint)" }}>
           waiting for window.ROTATION…
         </div>
       )}
 
       {fired.length > 0 && (
-        <div style={{ display: "grid", gap: 16,
-          gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))" }}>
+        <div style={{ display: "grid", gap: 10,
+          gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))" }}>
           {fired.map(({ rule, result }) => (
             <FactCard key={rule.id} rule={rule} result={result}
               go={window.__lab2Go || (() => {})} />
@@ -665,7 +673,7 @@ function Lab2View() {
       )}
 
       {fired.length === 0 && R && (
-        <div className="r-card" style={{ padding: 32, textAlign: "center",
+        <div className="r-card" style={{ padding: 28, textAlign: "center",
           fontFamily: "var(--mono)", fontSize: 11, color: "var(--ink-faint)" }}>
           no facts fired — check that music-core.js loaded
         </div>
@@ -673,29 +681,32 @@ function Lab2View() {
 
       {/* null cards (audit mode) */}
       {showNulls && missed.length > 0 && (
-        <div style={{ marginTop: 24 }}>
+        <div style={{ marginTop: 20 }}>
           <div style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: ".16em",
-            textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 12 }}>
+            textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 10 }}>
             Rules that returned null (data absent or guard triggered)
           </div>
-          <div style={{ display: "grid", gap: 8 }}>
+          <div style={{ display: "grid", gap: 7 }}>
             {missed.map(({ rule }) => <NullCard key={rule.id} rule={rule} />)}
           </div>
         </div>
       )}
 
       {/* footer */}
-      <div style={{ marginTop: 48, paddingTop: 24, borderTop: "1px solid var(--rule)",
-        fontFamily: "var(--mono)", fontSize: 9.5, color: "var(--ink-faint)",
+      <div style={{ marginTop: 40, paddingTop: 20, borderTop: "1px solid var(--rule)",
+        fontFamily: "var(--mono)", fontSize: 9, color: "var(--ink-faint)",
         letterSpacing: ".1em", lineHeight: 1.8 }}>
-        <div>prototype — rules in <span style={{ color: "var(--accent-dim)" }}>rotation-lab2.jsx</span></div>
-        <div style={{ marginTop: 4 }}>
+        <div>prototype v2 · rules in <span style={{ color: "var(--accent-dim)" }}>rotation-lab2.jsx</span></div>
+        <div style={{ marginTop: 3 }}>
           {FACT_RULES.length} rules · {fired.length} fired · {missed.length} null ·
+          culled: segue (headline too long) ·
           sources: {[...new Set(FACT_RULES.map(r => r.source))].join(", ")}
         </div>
       </div>
 
       <style>{`
+        .lab2-card { transition: border-color .14s; }
+        .lab2-card:hover { border-color: var(--accent-dim); }
         .lab2-go-link { color: var(--accent); text-decoration: none; cursor: pointer; }
         .lab2-go-link:hover { text-decoration: underline; }
       `}</style>
@@ -703,7 +714,6 @@ function Lab2View() {
   );
 }
 
-// Wire up go() — the Lab2View needs it but receives it indirectly. Since Lab2View
-// is rendered by RotationApp (which owns go), we expose it via a global that the
-// view reads. RotationApp calls Object.assign(window, { __lab2Go: go }) after
-// mounting (see rotation-app.jsx patch). Fallback: no-op.
+// Wire up go() — Lab2View reads it from a global set by RotationApp.
+// RotationApp calls Object.assign(window, { __lab2Go: go }) after mounting.
+// Fallback: no-op.

@@ -160,9 +160,10 @@ function ShSpine({ al, expanded, onExpand, onOpen }) {
 }
 
 // ── RE-SHELVING LENSES — same records, different walls ──
-const SH_LENSES = [["genre", "genre"], ["decade", "decade"], ["found", "when you found them"], ["mood", "mood"], ["done", "completeness"]];
+const SH_LENSES = [["genre", "genre"], ["decade", "decade"], ["found", "when you found them"], ["mood", "mood"], ["done", "completeness"], ["labels", "label"]];
 function shGroupBy(lens, albums, R) {
   if (lens === "genre" || !lens) return shGroupShelves(albums, R);
+  if (lens === "labels") return shGroupLabels(albums);
   const groups = new Map();
   const put = (k, name, hue, order, al) => {
     if (!groups.has(k)) groups.set(k, { fam: "L" + k, name, hue, order, albums: [], plays: 0 });
@@ -196,6 +197,69 @@ function shGroupBy(lens, albums, R) {
     }
   }
   return [...groups.values()].sort((a, b) => b.order - a.order);
+}
+
+// group albums by PARENT LABEL (or label itself when parentless).
+// Returns a flat list of group objects ordered by album count DESC, "no label" last.
+// Each group: { key, name, hue, albums: al[], sublabels: Map<sublabelName, al[]> | null }
+// (sublabels is non-null only when the parent has 2+ distinct sublabels represented)
+function shGroupLabels(albums) {
+  const ALB = window.ROTATION_ALB_LABELS; // { "artistSlug~albumSlug": [labelName, parentName|null] }
+  const R   = window.ROTATION;
+  const _slugFn = (s) => {
+    const t = (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    if (t) return t;
+    // hash fallback for non-latin (mirrors lib-slug.js)
+    let h = 5381; for (let i = 0; i < s.length; i++) h = (((h << 5) + h) ^ s.charCodeAt(i)) >>> 0;
+    return "a-" + h.toString(36).slice(0, 7);
+  };
+  const slugFn = (R && R.slug) ? R.slug : _slugFn;
+
+  // hue by label name hash (stable, varied)
+  const lhue = (s) => {
+    let h = 0; for (let i = 0; i < s.length; i++) h = (((h << 5) + h) ^ s.charCodeAt(i)) >>> 0;
+    return Math.round(h % 360);
+  };
+
+  // bucket by "display group" = parentName if present, else labelName, else "__nolabel__"
+  const byGroup = new Map(); // groupKey → { name, hue, sublabels: Map<sub, al[]>, albums: al[] }
+  for (const al of albums) {
+    // reconstruct the canonical albumId: "artistSlug~albumSlug"
+    const albumId = al.artistId + "~" + slugFn(al.title);
+    const row = ALB ? ALB[albumId] : undefined;
+    const labelName  = row ? row[0] : null;
+    const parentName = row ? row[1] : null;
+
+    if (!labelName) {
+      if (!byGroup.has("__nolabel__")) byGroup.set("__nolabel__", { name: "no label on record", hue: 260, sublabels: new Map(), albums: [] });
+      byGroup.get("__nolabel__").albums.push(al);
+      continue;
+    }
+
+    const groupKey = parentName || labelName;  // top-level key
+    const subKey   = parentName ? labelName : null; // sub-key within parent
+
+    if (!byGroup.has(groupKey)) byGroup.set(groupKey, { name: groupKey, hue: lhue(groupKey), sublabels: new Map(), albums: [] });
+    const g = byGroup.get(groupKey);
+    g.albums.push(al);
+    if (subKey) {
+      if (!g.sublabels.has(subKey)) g.sublabels.set(subKey, []);
+      g.sublabels.get(subKey).push(al);
+    }
+  }
+
+  // Build output, ordered by album count DESC, "no label" always last
+  const out = [];
+  for (const [key, g] of byGroup) {
+    if (key === "__nolabel__") continue;
+    out.push({ key, name: g.name, hue: g.hue, albums: g.albums, sublabels: g.sublabels.size >= 2 ? g.sublabels : null });
+  }
+  out.sort((a, b) => b.albums.length - a.albums.length);
+  if (byGroup.has("__nolabel__")) {
+    const nl = byGroup.get("__nolabel__");
+    out.push({ key: "__nolabel__", name: nl.name, hue: nl.hue, albums: nl.albums, sublabels: null });
+  }
+  return out;
 }
 
 // group album records into genre shelves (family rows), Misc last — shared by both modes
@@ -313,6 +377,8 @@ function ShelvesView({ go, seed }) {
   const mergeFam = (fam) => { setSplit(p => ({ ...p, [fam]: false })); setJustMerged(fam); setTimeout(() => setJustMerged(null), 450); };
   const [mode, setMode] = React.useState(_seed.mode);     // racks | wrap (the Unplayed Shelf)
   const [lens, setLens] = React.useState(_seed.lens);     // re-shelving lens (racks mode)
+  const [labelsReady, setLabelsReady] = React.useState(!!window.ROTATION_ALB_LABELS);
+  const [labelsExpanded, setLabelsExpanded] = React.useState(false); // clamp expand/collapse
   // mirror mode/lens into the URL (replaceState — no history spam)
   const _shMounted = React.useRef(false);
   React.useEffect(() => {
@@ -335,6 +401,10 @@ function ShelvesView({ go, seed }) {
     if (mode !== "wrap" || window.ROTATION_UNPLAYED) { if (window.ROTATION_UNPLAYED && !unReady) setUnReady(true); return; }
     const s = document.createElement("script"); s.src = "shelves-unplayed.js"; s.onload = () => setUnReady(true); document.head.appendChild(s);
   }, [mode]);
+  React.useEffect(() => {   // label data loads only when the labels lens is first opened
+    if (lens !== "labels" || window.ROTATION_ALB_LABELS) { if (window.ROTATION_ALB_LABELS && !labelsReady) setLabelsReady(true); return; }
+    const s = document.createElement("script"); s.src = "mb-album-labels.js"; s.onload = () => setLabelsReady(true); document.head.appendChild(s);
+  }, [lens]);
 
   // one pass over the media index → album records with family/sub + top-track preview key
   const data = React.useMemo(() => {
@@ -369,7 +439,7 @@ function ShelvesView({ go, seed }) {
     albums.sort((x, y) => y.plays - x.plays);
     return { albums };
   }, [ready, R]);
-  const rackShelves = React.useMemo(() => data ? shGroupBy(lens, data.albums, R) : null, [data, lens, R]);
+  const rackShelves = React.useMemo(() => data ? shGroupBy(lens, data.albums, R) : null, [data, lens, labelsReady, R]);
 
   // the shrinkwrap wall — LPs by well-played artists that were never pressed play on
   const unData = React.useMemo(() => {
@@ -455,14 +525,63 @@ function ShelvesView({ go, seed }) {
         <div className="sh-lensbar">
           <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)" }}>shelve by</span>
           {SH_LENSES.map(([k, lbl]) => (
-            <button key={k} className="sh-lens" data-on={lens === k} onClick={() => { setLens(k); setSplit({}); }}>{lbl}</button>
+            <button key={k} className="sh-lens" data-on={lens === k} onClick={() => { setLens(k); setSplit({}); if (k !== "labels") setLabelsExpanded(false); }}>{lbl}</button>
           ))}
         </div>
       )}
 
       {mode === "wrap" && !unData && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 30 }}>unwrapping…</div>}
 
-      {(mode === "wrap" ? (unData ? unData.shelves : []) : rackShelves).map(g => split[g.fam] && mode === "racks" && SPLIT_LABELS[lens]
+      {/* LABELS MODE — clamped, with sublabel sub-headers */}
+      {mode === "racks" && lens === "labels" && (() => {
+        if (!labelsReady) return <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 30 }}>loading label data…</div>;
+        const SH_LABEL_CLAMP = 8;
+        const groups = rackShelves || [];
+        const visible = labelsExpanded ? groups : groups.slice(0, SH_LABEL_CLAMP);
+        return (
+          <>
+            {visible.map((g) => {
+              const shelfId = "labels:" + g.key;
+              // if there are sublabels, render a famgroup header + one shelf per sublabel
+              if (g.sublabels && g.sublabels.size >= 2) {
+                return (
+                  <div key={shelfId} className="sh-famgroup">
+                    <div className="sh-shelf-h" style={{ marginBottom: 2 }}>
+                      <span className="sh-shelf-name" style={{ "--h": g.hue, fontSize: 17 }}>{g.name}</span>
+                      <span className="sh-shelf-n">{fmt(g.albums.length)} albums</span>
+                    </div>
+                    {[...g.sublabels.entries()].sort((a, b) => b[1].length - a[1].length).map(([sname, sarr], si) => (
+                      <div key={shelfId + ":" + sname} className="sh-reveal" style={{ animationDelay: (si * 40) + "ms" }}>
+                        <ShShelf id={shelfId + ":" + sname} name={sname} hue={g.hue} albums={sarr} depth={1}
+                          cap={SH_CAP + (caps[shelfId + ":" + sname] || 0)}
+                          onMore={() => setCaps(p => ({ ...p, [shelfId + ":" + sname]: (p[shelfId + ":" + sname] || 0) + SH_STEP }))}
+                          expanded={expanded} setExpanded={setExpanded} setReader={setReader} />
+                      </div>
+                    ))}
+                  </div>
+                );
+              }
+              // single label or no sublabels: one plain shelf
+              return (
+                <ShShelf key={shelfId} id={shelfId} name={g.name} hue={g.hue} albums={g.albums}
+                  cap={SH_CAP + (caps[shelfId] || 0)}
+                  onMore={() => setCaps(p => ({ ...p, [shelfId]: (p[shelfId] || 0) + SH_STEP }))}
+                  expanded={expanded} setExpanded={setExpanded} setReader={setReader} />
+              );
+            })}
+            {groups.length > SH_LABEL_CLAMP && (
+              <div style={{ textAlign: "center", margin: "8px 0 24px" }}>
+                <button className="sh-expand-btn" onClick={() => setLabelsExpanded(e => !e)}>
+                  {labelsExpanded ? "collapse ↑" : `expand — all ${fmt(groups.length)} labels ↓`}
+                </button>
+              </div>
+            )}
+          </>
+        );
+      })()}
+
+      {/* ALL OTHER MODES */}
+      {(mode === "wrap" || lens !== "labels") && (mode === "wrap" ? (unData ? unData.shelves : []) : rackShelves || []).map(g => split[g.fam] && mode === "racks" && SPLIT_LABELS[lens]
         ? (
           <div key={g.fam} className="sh-famgroup">
             <div className="sh-shelf-h" style={{ marginBottom: 2 }}>
@@ -560,6 +679,10 @@ function ShelvesView({ go, seed }) {
         .sh-dig { padding: 8px 16px; border-radius: 999px; border: 1px solid var(--rule-2); background: none;
           color: var(--ink-soft); cursor: pointer; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
         .sh-dig:hover { color: var(--accent); border-color: var(--accent-dim); }
+        .sh-expand-btn { padding: 8px 20px; border-radius: 999px; border: 1px solid var(--rule-2); background: none;
+          color: var(--ink-faint); cursor: pointer; font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+          transition: color .15s, border-color .15s; }
+        .sh-expand-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
 
         /* Reader — bottom sheet */
         .sh-veil { position: fixed; inset: 0; background: rgba(5,4,8,.6); backdrop-filter: blur(3px); z-index: 80;
