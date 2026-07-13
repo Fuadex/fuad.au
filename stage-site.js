@@ -9,6 +9,7 @@
  */
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 const OUT = "_site";
 const manifest = JSON.parse(fs.readFileSync("apps.json", "utf8"));
@@ -68,6 +69,18 @@ function precompileApp(app, babel) {
     html = html.replace(/<script\s+type="text\/babel"(?:\s+data-presets="[^"]*")?\s*>([\s\S]*?)<\/script>/g, (m, body) => {
       const compiled = babel.transform(body, { presets: ["env", "react"], compact: false, comments: false }).code;
       return `<script>document.addEventListener("DOMContentLoaded", function () {\n${compiled}\n});</script>`;
+    });
+    // CONTENT-HASH cache-busting (2026-07-14): stamp every LOCAL script/css reference that has
+    // no manual ?v= with an 8-char hash of the staged file. Rotation's scripts carried no
+    // stamps at all, so browsers served stale code for hours after every deploy (the recurring
+    // "I don't see the feature" — e.g. the Downward Spiral spine). Manual ?v= (canvas/culture)
+    // is left untouched.
+    html = html.replace(/(src|href)="([^"?]+\.(?:js|css))"/g, (m, attr, file) => {
+      if (/^https?:|^\/\//.test(file)) return m;
+      const p2 = path.join(dir, file);
+      if (!fs.existsSync(p2)) return m;
+      const h = crypto.createHash("md5").update(fs.readFileSync(p2)).digest("hex").slice(0, 8);
+      return `${attr}="${file}?v=${h}"`;
     });
     fs.writeFileSync(idx, html, "utf8");
   }

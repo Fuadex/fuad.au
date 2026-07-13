@@ -1671,6 +1671,14 @@ function AlbumView({ id, go }) {
     const s = document.createElement("script"); s.src = "mb-album-spine.js";
     s.onload = () => setSpineReady(true); s.onerror = () => setSpineReady(true); document.head.appendChild(s);
   }, []);
+  // per-album LINEUP — members whose tenure covers the record's year (mb-lineup.js, lazy)
+  const [, setMbReady] = React.useState(!!window.ROTATION_MB);
+  React.useEffect(() => {
+    if (window.ROTATION_MB) return;
+    let s = document.getElementById("mb-lineup-js");
+    if (!s) { s = document.createElement("script"); s.id = "mb-lineup-js"; s.src = "mb-lineup.js"; s.onerror = () => {}; document.head.appendChild(s); }
+    s.addEventListener("load", () => setMbReady(true));
+  }, []);
   // album extras (deluxe/bonus tracks + absorbed-edition names) — lazy + optional (404 = feature off).
   // shared script tag so every AlbumView reuses one load; graceful onerror keeps the page working.
   const [, setExReady] = React.useState(!!window.ROTATION_ALBUM_EXTRAS);
@@ -1904,6 +1912,35 @@ function AlbumView({ id, go }) {
         );
       })()}
 
+      {(() => {
+        // per-album LINEUP: who actually played on this record — tenure windows crossed with
+        // the record's year (MB members via ROTATION_MB; spine date beats the meta year).
+        const mb = window.ROTATION_MB && window.ROTATION_MB[id.slice(0, id.indexOf("~"))];
+        if (!mb || mb.type === "Person" || !Array.isArray(mb.members) || !mb.members.length) return null;
+        const _f2 = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+        const sp2 = window.ROTATION_ALBSPINE && window.ROTATION_ALBSPINE[id.slice(0, id.indexOf("~"))];
+        const spd = sp2 && sp2[_f2(data.title)] && sp2[_f2(data.title)].d;
+        const yr = parseInt((spd || "").slice(0, 4)) || (data.meta && data.meta[0]) || null;
+        if (!yr) return null;
+        const on = mb.members.filter(m => {
+          const from = parseInt(m.f) || parseInt(mb.from) || 0;
+          const to = m.t ? (parseInt(m.t) || 9999) : 9999;
+          return from <= yr && yr <= to;
+        });
+        if (!on.length) return null;
+        return (
+          <div className="r-card" style={{ padding: "14px 18px" }}>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
+              <span className="lbl">The {yr} lineup</span><span className="meta">who played on this record · via MusicBrainz</span></div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 14px", fontSize: 12.5 }}>
+              {on.map(m => (
+                <span key={m.n}>{m.n}{m.i && m.i.length ? <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginLeft: 5 }}>{m.i.slice(0, 2).join(", ")}</span> : null}</span>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
       <div className="r-card" style={{ padding: "16px 18px" }}>
         <div className="r-card-h" style={{ padding: 0, marginBottom: 6, flexWrap: "wrap", gap: 6 }}><span className="lbl"><b>Tracks you've played</b></span>
           <span className="meta">{fmt(data.trackPlays)} plays across {data.tracks.length}</span></div>
@@ -2099,7 +2136,9 @@ function BlurbSwitcher({ id, about }) {
   return (
     <div className="tv-switch">
       <div className="tv-switch-head">
-        <span className="tv-switch-lbl">What it's about</span>
+        <span className="tv-switch-lbl">What it's about
+          {about && about[1] && <a href={`https://genius.com/songs/${about[1]}`} target="_blank" rel="noopener noreferrer"
+            className="r-mono" style={{ fontSize: 9.5, marginLeft: 10, color: "var(--ink-faint)", borderBottom: "1px dotted var(--ink-faint)", letterSpacing: ".06em" }}>full lyrics ↗</a>}</span>
         {multi && (
           <div className="tv-switch-btns" data-dim={showDeep}>
             {sources.map(s => (
