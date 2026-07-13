@@ -251,6 +251,9 @@ window.CULTURE_BADGES = {
  "ico": [
   "devastating"
  ],
+ "ikiru": [
+  "formal-exec"
+ ],
  "illustrated-man": [
   "ahead",
   "cerebral"
@@ -762,7 +765,8 @@ window.CULTURE_BADGES = {
  ],
  "spec-ops": [
   "haunting",
-  "intense"
+  "intense",
+  "formal-exec"
  ],
  "spider-verse": [
   "impact",
