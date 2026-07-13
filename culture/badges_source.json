@@ -755,7 +755,8 @@
  ],
  "spec-ops": [
   "haunting",
-  "intense"
+  "intense",
+  "formal-exec"
  ],
  "spider-verse": [
   "impact",
@@ -1650,6 +1651,9 @@
   "score"
  ],
  "in-treatment": [
+  "formal-exec"
+ ],
+ "ikiru": [
   "formal-exec"
  ]
 }
