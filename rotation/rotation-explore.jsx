@@ -522,7 +522,7 @@ function attrFmtVal(row, key) {
 // Reuses useZoom / --zk / non-scaling-stroke exactly like the other Explore charts, so dots are
 // memoized without the zoom factor and zoom only mutates the viewBox + a CSS var (no React reconcile
 // of the cloud). Colours ride the family hue; the legend below dims by family.
-function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go }) {
+function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel }) {
   const [hover, setHover] = React.useState(null);
   const [brush, setBrush] = React.useState(null);    // live pixel rect while dragging
   const [brushed, setBrushed] = React.useState(null); // committed rect
@@ -634,6 +634,15 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go }) {
     if (!brushed) return [];
     return pts.filter(p => inBrush(p) && !isDimFam(p.row)).sort((a, b) => (b.row.plays || 0) - (a.row.plays || 0)).slice(0, 40);
   }, [pts, brushed, inBrush, isDimFam]);
+  // lift the FULL brushed selection (not the top-40 display slice) so the neighbouring ranked
+  // list can filter to it — artists as slugs, subgenres as SUBS indexes (Fuad 2026-07-13)
+  React.useEffect(() => {
+    if (!onBrushSel) return;
+    if (!brushed) { onBrushSel(null); return; }
+    const all = pts.filter(p => inBrush(p) && !isDimFam(p.row));
+    const keys = new Set(all.map(p => mode === "subgenres" ? parseInt(String(p.row.id).slice(4), 10) : p.row.id));
+    onBrushSel({ mode, keys });
+  }, [brushed, pts, inBrush, isDimFam, mode, onBrushSel]);
 
   // dots memoized WITHOUT the zoom factor — radius rides --zk so wheel-zoom reconciles nothing
   const dots = React.useMemo(() => pts.map((pt, i) => {
@@ -740,7 +749,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go }) {
 
 // AttrExplore — the "attributes" lens wrapper: lazy-loads track-audio.js, memoises the centroid
 // pass, owns the X/Y/shade pickers + the family colour key (click a family to dim the rest).
-function AttrExplore({ R, go, grain }) {
+function AttrExplore({ R, go, grain, onBrushSel }) {
   const [taReady, setTaReady] = React.useState(!!window.ROTATION_TRACKAUDIO);
   const [restReady, setRestReady] = React.useState(!!(R && R._restLoaded));
   const [xKey, setXKey] = React.useState("energy");
@@ -809,7 +818,7 @@ function AttrExplore({ R, go, grain }) {
           <select value={shade} onChange={e => setShade(e.target.value)} style={selBox}>{shadeOpts.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}</select></div>
       </div>
 
-      <AttrScatter rows={rows} mode={mode} xKey={xKey} yKey={yKey} shade={shade} famDim={famDim} go={go} />
+      <AttrScatter rows={rows} mode={mode} xKey={xKey} yKey={yKey} shade={shade} famDim={famDim} go={go} onBrushSel={onBrushSel} />
 
       {/* family colour key — tap a family to isolate it (dim the rest); tap again to clear */}
       <div className="xp-attr-legend">
@@ -987,6 +996,8 @@ function ExploreView({ t, go, setPop, seed }) {
   const [cells, setCells] = React.useState(() => new Set());
   const [playing, setPlaying] = React.useState(false);
   const [lens, setLens] = React.useState("texture");      // left surface: "texture" map or "mood" quadrant
+  const [attrSel, setAttrSel] = React.useState(null);     // attributes-lens brush selection ({mode, keys}) — filters the ranked list
+  React.useEffect(() => { if (lens !== "attributes") setAttrSel(null); }, [lens]);
   const [grain, setGrain] = React.useState("subs");       // plot granularity for either lens: "subs" or "artists"
   const [moodZone, setMoodZone] = React.useState(null);   // active valence×energy quadrant filter, or null
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
@@ -1088,12 +1099,21 @@ function ExploreView({ t, go, setPop, seed }) {
     // fetch a lookahead past what's visible so "load more" has rows ready and `more` is detectable
     return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { year, fam, subIdx, cells, moodZone }, visN + 40);
   }, [kind, mediaReady, mediaArtMeta, year, fam, subIdx, cells, moodZone, visN, R]);
-  const items = (kind !== "artists" && mediaItems) ? mediaItems.items : exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone });
+  const itemsRaw = (kind !== "artists" && mediaItems) ? mediaItems.items : exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone });
+  // attributes-lens brush carries into this ranked list (Fuad 2026-07-13): artist brushes filter
+  // by slug; subgenre brushes keep artists whose subgenre set intersects the selected indexes.
+  const items = React.useMemo(() => {
+    if (!attrSel || lens !== "attributes" || !attrSel.keys.size) return itemsRaw;
+    const aidOf = (it) => it.aid || (it.artist ? (R.idForName(it.artist) || R.slug(it.artist)) : it.id);
+    if (attrSel.mode === "artists") return itemsRaw.filter(it => attrSel.keys.has(aidOf(it)));
+    const ok = (aid) => { const e = (R.expById && R.expById[aid]) || R.byId[aid]; return !!(e && e.s && e.s.some(ix => attrSel.keys.has(ix))); };
+    return itemsRaw.filter(it => ok(aidOf(it)));
+  }, [itemsRaw, attrSel, lens, kind, R]);
   // more rows to reveal? true whenever the ranked pool has more than we're currently showing —
   // works for artists (full list) AND albums/tracks (media pool), so load-more applies to all three.
   const more = items.length > visN;
   // a new slice resets the load-more expansion (the chosen 8/16/24/32 base stays)
-  React.useEffect(() => { setExtra(0); }, [kind, year, fam, subIdx, cells, moodZone]);
+  React.useEffect(() => { setExtra(0); }, [kind, year, fam, subIdx, cells, moodZone, attrSel]);
   // mood-lens slices. The quadrant renders a STABLE universe of points (so dots persist across filter
   // changes and can transition opacity/size) and toggles which are "active" for the current slice;
   // facts/arc reflect the chosen zone too.
@@ -1181,7 +1201,7 @@ function ExploreView({ t, go, setPop, seed }) {
             </div>
             <div className="xp-chartwrap">
             {lens === "attributes"
-              ? <AttrExplore R={R} go={go} grain={grain} />
+              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} />
               : lens === "texture"
               ? (grain === "subs"
                 ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
@@ -1206,6 +1226,9 @@ function ExploreView({ t, go, setPop, seed }) {
             </div>
           </div>
           {cells.size > 0 && kind !== "artists" && <div className="r-mono xp-note">filtered to {kind} by artists active in the selected slots</div>}
+          {attrSel && lens === "attributes" && attrSel.keys.size > 0 && (
+            <div className="r-mono xp-note">filtered to the brushed region — {attrSel.keys.size} {attrSel.mode === "subgenres" ? "subgenres" : "artists"} · clear the brush (click the chart) to reset</div>
+          )}
           {items.length === 0
             ? <div className="r-card xp-empty">Nothing in this slice — loosen a filter.</div>
             : <div className="xp-rank-win"><RankRows items={items.slice(0, visN)} go={go} kind={kind} disp={disp} /></div>}
@@ -1320,9 +1343,14 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-bar > div { height: 100%; border-radius: 4px; transition: width .5s cubic-bezier(.3,.8,.3,1); }
         /* tv-grid/tv-head/r-track-row rules moved to cssRotation (rotation-core) — they style the
            Album/Track pages, which can be deep-linked WITHOUT Explore ever mounting. */
-        /* PC: the ranked list lives in a fixed-height scrolling window instead of blowing the page up */
+        /* PC: chart card and results column share ONE FIXED height — the chart never resizes or
+           jumps when a click changes the list (Fuad 2026-07-13), and overflow scrolls INSIDE the
+           results window instead of blowing the page up. */
         @media (min-width: 980px) {
-          .xp-rank-win { max-height: 660px; overflow-y: auto; padding-right: 4px;
+          .xp-main { align-items: start; --xp-col-h: min(74vh, 720px); }
+          .xp-left > .r-card { height: var(--xp-col-h); }
+          .xp-right { height: var(--xp-col-h); display: flex; flex-direction: column; min-height: 0; }
+          .xp-rank-win { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-right: 4px;
             scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
         }
         .xp-val { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); text-align: right; }
@@ -1397,7 +1425,12 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
         return (
           <g key={s.name} style={{ cursor: present ? "pointer" : "default", opacity: seen ? (present ? (dim ? 0.14 : 1) : 0) : 0,
             transition: `opacity .45s cubic-bezier(.3,.8,.3,1) ${i * 0.008}s`, pointerEvents: present ? "auto" : "none" }}
-            onMouseEnter={() => setPop({ x: px(s.x) / W * (window.innerWidth - 460), y: 300, title: s.name, pip: s.hue, meta: "subgenre", rows: [["plays", fmt(s.w)]], hint: "click to filter" })}
+            onMouseEnter={(e) => {
+              // anchor the popover to the BUBBLE's screen position (was a hardcoded viewport
+              // y:300, which floated over the chart when the page was scrolled — Fuad 2026-07-13)
+              const r2 = e.currentTarget.querySelector("circle:last-of-type").getBoundingClientRect();
+              setPop({ x: r2.left + r2.width / 2, y: r2.top, title: s.name, pip: s.hue, meta: "subgenre", rows: [["plays", fmt(s.w)]], hint: "click to filter" });
+            }}
             onClick={() => onPick(s.name)} onMouseLeave={() => setPop(null)}>
             {/* transparent min-size hit target so even tiny subgenres are clickable/hoverable */}
             <circle cx={px(s.x)} cy={py(s.y)} r={Math.max(r, 14)} fill="transparent" />
