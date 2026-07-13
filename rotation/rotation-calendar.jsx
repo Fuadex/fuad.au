@@ -809,6 +809,15 @@ function CalendarView({ go, seed }) {
   // song→album cover lookup: if ROTATION_MEDIA is already loaded, build a title+artist keyed map
   // so each song row can show its album cover via GenCover image/thumb props. Falls back to artist
   // art (the existing behaviour) when the media-index isn't loaded or the track isn't in it.
+  // the media index never loaded on this page before, so covers were hit-or-miss
+  // (Fuad 2026-07-14) — load it here like the other views do, then key BOTH songs and albums.
+  const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
+  React.useEffect(() => {
+    if (window.ROTATION_MEDIA) return;
+    let sM = document.getElementById("media-index-js");
+    if (!sM) { sM = document.createElement("script"); sM.id = "media-index-js"; sM.src = "media-index.js"; sM.onerror = () => {}; document.head.appendChild(sM); }
+    sM.addEventListener("load", () => setMediaReady(true));
+  }, []);
   const songAlbumCover = React.useMemo(() => {
     const M = window.ROTATION_MEDIA; if (!M || !M.tracks || !M.albums || !M.artists) return {};
     const out = {};
@@ -817,7 +826,13 @@ function CalendarView({ go, seed }) {
       if (cover) out[t[0] + "\x00" + M.artists[t[1]]] = cover;
     }
     return out;
-  }, [detail]); // re-run if detail loads (ROTATION_MEDIA may have arrived meanwhile)
+  }, [detail, mediaReady]);
+  const albumCoverMap = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA; if (!M || !M.albums || !M.artists) return {};
+    const out = {};
+    for (const al of M.albums) if (al[6]) out[al[0] + "\x00" + M.artists[al[1]]] = al[6];
+    return out;
+  }, [detail, mediaReady]);
 
   // Unified panel state: a committed range takes priority over a period `sel`. Both feed the same
   // DraggablePanel markup. `panelKind` labels the overview; `panelP` is the merged pseudo-period.
@@ -993,10 +1008,11 @@ function CalendarView({ go, seed }) {
                         {shown.map((r, i) => {
                           const hue = (R.byId[R.slug(r.artist)] || {}).hue || 210;
                           // songs: use album cover from media-index if loaded; albums: use artist hue (no cover in al rows)
-                          const coverKey = isSongs ? (r.title + "\x00" + r.artist) : null;
-                          const albumCover = coverKey ? (songAlbumCover[coverKey] || "") : "";
+                          const ck2 = r.title + "\x00" + r.artist;
+                          const albumCover = isSongs ? (songAlbumCover[ck2] || "") : (albumCoverMap[ck2] || "");
                           return (
-                            <div key={r.title + i} className="cal-gtile" data-link={!!R.byId[R.slug(r.artist)]} onClick={() => R.byId[R.slug(r.artist)] && go("artist", R.slug(r.artist))}>
+                            <div key={r.title + i} className="cal-gtile" data-link={true}
+                              onClick={() => go(isSongs ? "track" : "album", R.slug(r.artist) + "~" + R.slug(r.title))}>
                               <GenCover hue={hue} name={isSongs ? r.artist : r.title} image={albumCover} thumb={albumCover} size="100%" style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
                               <div className="cal-gtile-title">{r.title}</div>
                               <div className="cal-gtile-plays">{r.artist} · {fmt(r.plays)}</div>
@@ -1020,10 +1036,11 @@ function CalendarView({ go, seed }) {
                   <div className="cal-rows">
                     {shown.map((r, i) => {
                       const hue = (R.byId[R.slug(r.artist)] || {}).hue || 210;
-                      const coverKey = isSongs ? (r.title + "\x00" + r.artist) : null;
-                      const albumCover = coverKey ? (songAlbumCover[coverKey] || "") : "";
+                      const ck2 = r.title + "\x00" + r.artist;
+                      const albumCover = isSongs ? (songAlbumCover[ck2] || "") : (albumCoverMap[ck2] || "");
                       return (
-                        <div key={r.title + i} className="cal-row" data-link={!!R.byId[R.slug(r.artist)]} onClick={() => R.byId[R.slug(r.artist)] && go("artist", R.slug(r.artist))}>
+                        <div key={r.title + i} className="cal-row" data-link={true}
+                          onClick={() => go(isSongs ? "track" : "album", R.slug(r.artist) + "~" + R.slug(r.title))}>
                           <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span>
                           <GenCover hue={hue} name={isSongs ? r.artist : r.title} image={albumCover} thumb={albumCover} size={34} radius={3} />
                           <div style={{ minWidth: 0, flex: 1 }}>

@@ -55,6 +55,8 @@
         "mb-artist-x.js",
         "mb-track-bio.js",
         "mb-album-spine.js",
+        "mb-kinds.js",
+        "mb-album-labels.js",
         "mb-covers-story.js",
         "genius-mood-lazy.js",
         "genius-about-lazy.js",

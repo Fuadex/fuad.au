@@ -749,9 +749,10 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel }) 
         </div>
       </div>
 
-      {/* BRUSH RESULTS — rows click through to artist pages (artists mode) */}
+      {/* BRUSH RESULTS — rows click through to artist pages (artists mode); scrolls inside
+          .xp-attr-info so the chart above never moves (Fuad 2026-07-14) */}
       {brushed && (
-        <div style={{ marginTop: 14, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
+        <div className="xp-attr-info" style={{ marginTop: 14, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
           <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8 }}>
             {brushedPts.length} in region — top {Math.min(40, brushedPts.length)} by plays{mode !== "subgenres" ? " · tap to open" : ""}
           </div>
@@ -1365,15 +1366,20 @@ function ExploreView({ t, go, setPop, seed }) {
            status line and let the tall svg overlay the lens buttons (hover stopped firing).
            Now: lens row is a fixed opaque layer; everything below it scrolls DOWNWARD inside
            the card (chart + status + brush results), so nothing is ever cut or covered. */
+        /* Round 5 (Fuad 2026-07-14): fixed column heights caused 4K dead space under small
+           charts AND let the chart itself scroll out of view when brush results grew. New model:
+           the card is CONTENT-SIZED (no dead space), the CHART NEVER SCROLLS (it and its status
+           line are always fully visible), and only the info regions below it scroll internally.
+           Columns are independent (align start); the results column keeps its own scroll window. */
         @media (min-width: 980px) {
-          .xp-main { align-items: start; --xp-col-h: min(86vh, 980px); }
-          .xp-left > .r-card { height: var(--xp-col-h); }
+          .xp-main { align-items: start; }
           .xp-lens { position: relative; z-index: 3; background: var(--bg-1, var(--bg-2)); flex: 0 0 auto; }
-          .xp-chartwrap { flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden;
-            justify-content: flex-start; scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
-          .xp-chartwrap svg { max-height: calc(var(--xp-col-h) - 200px); } /* full chart + status rows always visible */
-          .xp-right { height: var(--xp-col-h); display: flex; flex-direction: column; min-height: 0; }
-          .xp-rank-win { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-right: 4px;
+          .xp-chartwrap { flex: 0 0 auto; justify-content: flex-start; overflow: visible; }
+          .xp-chartwrap svg { max-height: min(62vh, 760px); }
+          .xp-attr-info { max-height: 34vh; overflow-y: auto; padding-right: 4px;
+            scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
+          .xp-right { display: flex; flex-direction: column; min-height: 0; }
+          .xp-rank-win { max-height: min(78vh, 900px); overflow-y: auto; padding-right: 4px;
             scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
         }
         .xp-val { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); text-align: right; }
@@ -1433,6 +1439,7 @@ function ExploreView({ t, go, setPop, seed }) {
 // scatter where bubbles ARE subgenres; click selects/filters; radius morphs with the year
 function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, setPop }) {
   const W = 1000, H = 560, pad = 46;
+  const [hi, setHi] = React.useState(null);   // hovered subgenre — bottom status line (popover phased out, Fuad 2026-07-14)
   const maxW = Math.max(1, ...subs.map(s => s.w));
   const px = (x) => pad + x * (W - pad * 2);
   const py = (y) => H - pad - y * (H - pad * 2);
@@ -1448,20 +1455,15 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
         return (
           <g key={s.name} style={{ cursor: present ? "pointer" : "default", opacity: seen ? (present ? (dim ? 0.14 : 1) : 0) : 0,
             transition: `opacity .45s cubic-bezier(.3,.8,.3,1) ${i * 0.008}s`, pointerEvents: present ? "auto" : "none" }}
-            onMouseEnter={(e) => {
-              // anchor the popover to the BUBBLE's screen position (was a hardcoded viewport
-              // y:300, which floated over the chart when the page was scrolled — Fuad 2026-07-13)
-              const r2 = e.currentTarget.querySelector("circle:last-of-type").getBoundingClientRect();
-              setPop({ x: r2.left + r2.width / 2, y: r2.top, title: s.name, pip: s.hue, meta: "subgenre", rows: [["plays", fmt(s.w)]], hint: "click to filter" });
-            }}
-            onClick={() => onPick(s.name)} onMouseLeave={() => setPop(null)}>
+            onMouseEnter={() => setHi(s)}
+            onClick={() => onPick(s.name)} onMouseLeave={() => setHi(null)}>
             {/* transparent min-size hit target so even tiny subgenres are clickable/hoverable */}
             <circle cx={px(s.x)} cy={py(s.y)} r={Math.max(r, 14)} fill="transparent" />
             <circle cx={px(s.x)} cy={py(s.y)} r={r} fill={col} fillOpacity={on ? .5 : (expressive ? .28 : .14)} stroke={col} strokeWidth={on ? 2.2 : 1.4} style={{ transition: "r .55s cubic-bezier(.3,.8,.3,1), fill-opacity .2s" }} />
             {r > 17 && <text x={px(s.x)} y={py(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontSize={Math.min(13, r / 3.2)} fontFamily="var(--sans)" fontWeight="500" style={{ pointerEvents: "none", transition: "font-size .55s" }}>{s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
           </g>
         );
-      }), [subs, maxW, activeSub, activeFam, expressive, seen, setPop, onPick]);
+      }), [subs, maxW, activeSub, activeFam, expressive, seen, onPick]);
   return (
     <div style={{ position: "relative" }}>
       <ZoomReset z={z} />
@@ -1477,6 +1479,9 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
       <text x={20} y={pad + 56} fill="var(--ink-faint)" fontSize="11" fontFamily="var(--mono)" transform={`rotate(-90 20 ${pad + 56})`} textAnchor="end" style={{ letterSpacing: ".1em" }}>VIOLENT</text>
       {bubbles}
     </svg>
+    <div className="r-mono" style={{ textAlign: "center", marginTop: 6, fontSize: 10, color: hi ? "var(--ink-soft)" : "var(--ink-faint)", letterSpacing: ".08em", minHeight: 14 }}>
+      {hi ? `${hi.name} — ${fmt(hi.w)} plays · click to filter` : `${subs.filter(x => x.w > 0).length} subgenres · hover to identify · click to filter`}
+    </div>
     </div>
   );
 }

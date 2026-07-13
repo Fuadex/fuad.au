@@ -2326,7 +2326,15 @@ function useTourMapNav(svgRef, gRef, dotSel) {
 // City CHIPS toggle a city's bubble out and refit the view to what remains; a cursor fisheye grows
 // the nearest event bubbles; a hover readout names the bubble under the cursor. All of that lives in
 // useTourMapNav; this component supplies the dots and keeps its own city-select highlight/routes.
-function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
+// map-region boxes in map coords (x = (lon+180)/360*1000, y = (90-lat)/180*500)
+const TMAP_REGIONS = {
+  europe: { x0: 455, y0: 75, x1: 605, y1: 160 },
+  sydney: { x0: 880, y0: 320, x1: 945, y1: 365 },
+  berlin: { x0: 455, y0: 75, x1: 605, y1: 160 },
+  warsaw: { x0: 455, y0: 75, x1: 605, y1: 160 },
+  tokyo:  { x0: 855, y0: 130, x1: 920, y1: 175 },
+};
+function TourMap({ events, city, setCity, hiPath, hiHue, routes, focus }) {
   const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
   const [off, setOff] = React.useState(() => new Set());   // "cc|city" keys toggled OFF via a chip
   const svgRef = React.useRef(null);
@@ -2354,6 +2362,20 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes }) {
   }, [events]);
   const nav = useTourMapNav(svgRef, gRef, ".gv-tmap-hit");
   const { tf } = nav;
+  // start zoomed on EUROPE (Fuad 2026-07-14: Berlin as the default vantage), and fly to a
+  // market region whenever a market chip above the map is clicked (`focus` prop).
+  const didInit = React.useRef(false);
+  React.useEffect(() => {
+    if (didInit.current || !world || !cities.length) return;
+    didInit.current = true;
+    const b = TMAP_REGIONS.europe;
+    nav.fit([{ x: b.x0, y: b.y0 }, { x: b.x1, y: b.y1 }], cities);
+  }, [world, cities]);
+  React.useEffect(() => {
+    if (!focus || !world) return;
+    const b = TMAP_REGIONS[focus.id];
+    if (b) nav.fit([{ x: b.x0, y: b.y0 }, { x: b.x1, y: b.y1 }], cities);
+  }, [focus]);
   // toggling a chip excludes that city AND animates the view to fit the remaining ones (reusing the
   // exact fit/clamp/ease code). Never allow ALL off — keep the last city on.
   const toggle = (k) => setOff(s => {
@@ -2469,6 +2491,7 @@ function TourSection({ go, gigDate }) {
     return out;
   }, [tour]);
   const byGenre = (x) => sub != null ? x.a.prim === sub : gkey != null ? x.a.gkey === gkey : true;
+  const [mktFocus, setMktFocus] = React.useState(null);   // market chip clicked → TourMap flies there
   const byCity = (x) => city == null || (x.e.cc + "|" + x.e.city) === city;
   const byTime = (x) => selKey == null || keyOf(x.e.d) === selKey;
   // each vis sees the OTHER two filters; the list sees all three
@@ -2526,7 +2549,10 @@ function TourSection({ go, gigDate }) {
       )}
       <div className="gv-tour-meta">
         {T.markets.map(m => (
-          <span key={m.id} className="gv-tour-mkt" data-stale={!!m.stale} title={`${m.scanned} events scanned within ${m.radiusKm} km of ${m.label}${m.stale ? " — this market returned nothing on the last pull; showing last good data" : ""}${m.id === "tokyo" && !m.scanned ? " — Ticketmaster carries no Japan inventory (that circuit lives on eplus/Pia, no public API)" : ""}`}>
+          <span key={m.id} className="gv-tour-mkt" data-stale={!!m.stale} role="button"
+            style={{ cursor: "pointer" }}
+            onClick={() => setMktFocus({ id: m.id, t: Date.now() })}
+            title={`fly the map to ${m.label} · ${m.scanned} events scanned within ${m.radiusKm} km${m.stale ? " — this market returned nothing on the last pull; showing last good data" : ""}${m.id === "tokyo" && !m.scanned ? " — Ticketmaster carries no Japan inventory (that circuit lives on eplus/Pia, no public API)" : ""}`}>
             {m.label} <b>{m.matched}</b>{m.stale ? " ⚠" : ""}
           </span>
         ))}
@@ -2539,7 +2565,7 @@ function TourSection({ go, gigDate }) {
       {!tour && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 16 }}>loading tour dates…</div>}
       {tour && <>
         <div className="r-card gv-tmap-card">
-          <TourMap events={mapEvents} city={city} setCity={setCity} hiPath={hiPath} hiHue={hiArt ? hiArt.hue : 40} routes={checkedRoutes} />
+          <TourMap events={mapEvents} city={city} setCity={setCity} hiPath={hiPath} hiHue={hiArt ? hiArt.hue : 40} routes={checkedRoutes} focus={mktFocus} />
           <div className="gv-tmap-foot">
             <span className="r-mono gv-tmap-hint">{hiArt ? <>tracing <b>{hiArt.name}</b>'s route — dots numbered in date order</>
               : checked.size ? <>mapping <b>{(checkedRoutes || []).length}</b> route{(checkedRoutes || []).length !== 1 ? "s" : ""} — tick artists below to add · <em style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => setChecked(new Set())}>clear ✕</em></>
@@ -2615,12 +2641,15 @@ function GigsView({ go }) {
   const seenIds = React.useMemo(() => new Set(G.gigs.map(g => g.artistId)), []);
   // keep each artist's REAL rank in the overall top-artists order (index+1 in R.ARTISTS),
   // not their position within this filtered queue — TON is #5 overall even if 3rd here.
+  // all vs ACTIVE (default — no point queueing for Type O Negative, Fuad 2026-07-14)
+  const [bucketMode, setBucketMode] = React.useState("active");
   const bucketList = React.useMemo(
     () => (R.ARTISTS || [])
       .map((a, idx) => ({ a, rank: idx + 1 }))
       .filter(e => !seenIds.has(e.a.id))
+      .filter(e => bucketMode === "all" || !(e.a.life && e.a.life.ended))
       .slice(0, 12),
-    [seenIds]
+    [seenIds, bucketMode]
   );
 
   // TIME AT CONCERTS — an honest back-of-envelope: songs heard live × ~4.2 min a song.
@@ -2660,7 +2689,13 @@ function GigsView({ go }) {
       {bucketList.length > 0 && (
         <section className="gv-sec">
           <div className="gv-label">Still to catch</div>
-          <div className="gv-title">The rotation regulars you've never seen live.</div>
+          <div className="gv-title" style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
+            <span>The rotation regulars you've never seen live.</span>
+            <div className="r-seg" style={{ flex: "0 0 auto" }}>
+              <button data-on={bucketMode === "active"} onClick={() => setBucketMode("active")}>active artists</button>
+              <button data-on={bucketMode === "all"} onClick={() => setBucketMode("all")}>all artists</button>
+            </div>
+          </div>
           <div className="gv-bucket">
             {bucketList.map(({ a, rank }) => (
               <div key={a.id} className="gv-bucket-row" data-link={artistHasPage(a.id)} onClick={() => openArtist(a.id)}>

@@ -725,6 +725,15 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     s.addEventListener("load", onLoad);
     return () => s.removeEventListener("load", onLoad);
   }, []);
+  // mb-kinds.js — GLOBAL MB release-group types (loads once; kept above the early returns
+  // so hook order stays stable)
+  const [, setKindsReady] = React.useState(!!window.ROTATION_MB_KINDS);
+  React.useEffect(() => {
+    if (window.ROTATION_MB_KINDS) return;
+    let sK = document.getElementById("mb-kinds-js");
+    if (!sK) { sK = document.createElement("script"); sK.id = "mb-kinds-js"; sK.src = "mb-kinds.js"; sK.onerror = () => {}; document.head.appendChild(sK); }
+    sK.addEventListener("load", () => setKindsReady(true));
+  }, []);
   // mb-artist-x.js — PILOT MB extras (label eras + producer/mix credits), same lazy pattern.
   const [mbxReady, setMbxReady] = React.useState(!!window.ROTATION_MBX);
   React.useEffect(() => {
@@ -805,8 +814,10 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   const allAlbums = a.topAlbums || [];
   // sectioned album taxonomy (build-data tags each entry with kind ∈ single/ep/album/comp/live/ost;
   // kind=single may carry `on` = the canonical slug of the host album it appears on).
-  // PILOT: MB release-group types override the title heuristic where we have them.
-  const _mbKinds = (mbxReady && window.ROTATION_MBX && window.ROTATION_MBX[a.id] && window.ROTATION_MBX[a.id].kinds) || null;
+  // MB release-group types override the title heuristic where we have them — GLOBAL since
+  // 2026-07-14 (mb-kinds.js, all 1,300+ artists), with the pilot MBX kinds as fallback.
+  const _mbKinds = (window.ROTATION_MB_KINDS && window.ROTATION_MB_KINDS[a.id])
+    || (mbxReady && window.ROTATION_MBX && window.ROTATION_MBX[a.id] && window.ROTATION_MBX[a.id].kinds) || null;
   const _kfold = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
   const kindOf = (al) => (_mbKinds && _mbKinds[_kfold(al.title)]) || al.kind;
   const albums = allAlbums.filter(al => !kindOf(al) || kindOf(al) === "album");     // LPs (+ anything unknown)
@@ -1355,7 +1366,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             return (
               <div className="r-card" style={{ padding: 18 }}>
                 <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}>
-                  <span className="lbl">The paper trail</span><span className="meta">via MusicBrainz · pilot</span></div>
+                  <span className="lbl">The paper trail</span><span className="meta">via MusicBrainz</span></div>
                 <div style={{ display: "grid", gap: 8, fontSize: 13 }}>
                   {(x.labels || []).length > 0 && (
                     <div><span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginRight: 8, letterSpacing: ".06em" }}>LABELS</span>
@@ -1656,14 +1667,14 @@ function AlbumView({ id, go }) {
     if (window.ROTATION_TRACKTHEMES) return;
     const s = document.createElement("script"); s.src = "genius-themes-lazy.js"; s.onload = () => setThemesReady(true); document.head.appendChild(s);
   }, []);
-  // PILOT: album-level covers rollup (MB works) — same file as the track bios, lazy + optional
+  // album-level covers rollup (core feature) (MB works) — same file as the track bios, lazy + optional
   const [, setBioReady] = React.useState(!!window.ROTATION_ALBBIO);
   React.useEffect(() => {
     if (window.ROTATION_ALBBIO) return;
     const s = document.createElement("script"); s.src = "mb-track-bio.js";
     s.onload = () => setBioReady(true); s.onerror = () => setBioReady(true); document.head.appendChild(s);
   }, []);
-  // PILOT: the album SPINE — the canonical MB release as tracklist skeleton (true disc
+  // the album SPINE (core feature) — the canonical MB release as tracklist skeleton (true disc
   // boundaries, official order), with your plays hung off it. Lazy + optional.
   const [, setSpineReady] = React.useState(!!window.ROTATION_ALBSPINE);
   React.useEffect(() => {
@@ -1870,19 +1881,35 @@ function AlbumView({ id, go }) {
       )}
 
       {(() => {
-        // PILOT: "the record, as released" — MB canonical tracklist as the spine, your play
+        // "the record, as released" (core feature) — MB canonical tracklist as the spine, your play
         // counts hung off each track (fold match); unplayed tracks ghosted. Disc boundaries real.
         const _f = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
         const aS = id.slice(0, id.indexOf("~"));
         const sp = window.ROTATION_ALBSPINE && window.ROTATION_ALBSPINE[aS] && window.ROTATION_ALBSPINE[aS][_f(data.title)];
         if (!sp) return null;
-        const pl = new Map(data.tracks.map(t => [_f(t.title), t]));
+        // plays are AGGREGATED across the artist's releases (single/EP/album versions of the
+        // same song share the mark — Fuad 2026-07-14: Oddworld's tracks were "unplayed" because
+        // the plays sat on the singles). Falls back to this album's rows if media isn't loaded.
+        const M2 = window.ROTATION_MEDIA;
+        const pl = new Map(data.tracks.map(t => [_f(t.title), { title: t.title, plays: t.plays }]));
+        if (M2) {
+          const aIx = M2.artists.indexOf(data.artist);
+          if (aIx >= 0) {
+            const agg = new Map();
+            for (const t of M2.tracks) if (t[1] === aIx) {
+              const k2 = _f(t[0]);
+              const e2 = agg.get(k2) || { title: t[0], plays: 0 };
+              e2.plays += t[2]; agg.set(k2, e2);
+            }
+            for (const [k2, e2] of agg) pl.set(k2, e2);
+          }
+        }
         const multi = sp.discs.length > 1;
         return (
           <div className="r-card" style={{ padding: "16px 18px" }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 10, flexWrap: "wrap", gap: 6 }}>
               <span className="lbl"><b>The record, as released</b>{sp.d ? ` · ${sp.d.slice(0, 4)}` : ""}</span>
-              <span className="meta">via MusicBrainz · pilot</span></div>
+              <span className="meta">via MusicBrainz</span></div>
             {sp.discs.map(([dt, tracks], di) => (
               <div key={di} style={{ marginBottom: di < sp.discs.length - 1 ? 14 : 0 }}>
                 {multi && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".08em", textTransform: "uppercase", margin: "0 0 6px", borderBottom: "1px solid var(--rule)", paddingBottom: 4 }}>
@@ -1908,35 +1935,6 @@ function AlbumView({ id, go }) {
                 </div>
               </div>
             ))}
-          </div>
-        );
-      })()}
-
-      {(() => {
-        // per-album LINEUP: who actually played on this record — tenure windows crossed with
-        // the record's year (MB members via ROTATION_MB; spine date beats the meta year).
-        const mb = window.ROTATION_MB && window.ROTATION_MB[id.slice(0, id.indexOf("~"))];
-        if (!mb || mb.type === "Person" || !Array.isArray(mb.members) || !mb.members.length) return null;
-        const _f2 = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
-        const sp2 = window.ROTATION_ALBSPINE && window.ROTATION_ALBSPINE[id.slice(0, id.indexOf("~"))];
-        const spd = sp2 && sp2[_f2(data.title)] && sp2[_f2(data.title)].d;
-        const yr = parseInt((spd || "").slice(0, 4)) || (data.meta && data.meta[0]) || null;
-        if (!yr) return null;
-        const on = mb.members.filter(m => {
-          const from = parseInt(m.f) || parseInt(mb.from) || 0;
-          const to = m.t ? (parseInt(m.t) || 9999) : 9999;
-          return from <= yr && yr <= to;
-        });
-        if (!on.length) return null;
-        return (
-          <div className="r-card" style={{ padding: "14px 18px" }}>
-            <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
-              <span className="lbl">The {yr} lineup</span><span className="meta">who played on this record · via MusicBrainz</span></div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 14px", fontSize: 12.5 }}>
-              {on.map(m => (
-                <span key={m.n}>{m.n}{m.i && m.i.length ? <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginLeft: 5 }}>{m.i.slice(0, 2).join(", ")}</span> : null}</span>
-              ))}
-            </div>
           </div>
         );
       })()}
@@ -1987,14 +1985,43 @@ function AlbumView({ id, go }) {
           );
         })()}
         {(() => {
-        // PILOT: album-level covers rollup — cov = covers ON this album; out = tracks here
+        // per-album LINEUP: who actually played on this record — tenure windows crossed with
+        // the record's year (MB members via ROTATION_MB; spine date beats the meta year).
+        const mb = window.ROTATION_MB && window.ROTATION_MB[id.slice(0, id.indexOf("~"))];
+        if (!mb || mb.type === "Person" || !Array.isArray(mb.members) || !mb.members.length) return null;
+        const _f2 = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+        const sp2 = window.ROTATION_ALBSPINE && window.ROTATION_ALBSPINE[id.slice(0, id.indexOf("~"))];
+        const spd = sp2 && sp2[_f2(data.title)] && sp2[_f2(data.title)].d;
+        const yr = parseInt((spd || "").slice(0, 4)) || (data.meta && data.meta[0]) || null;
+        if (!yr) return null;
+        const on = mb.members.filter(m => {
+          const from = parseInt(m.f) || parseInt(mb.from) || 0;
+          const to = m.t ? (parseInt(m.t) || 9999) : 9999;
+          return from <= yr && yr <= to;
+        });
+        if (!on.length) return null;
+        return (
+          <div className="r-card" style={{ padding: "14px 18px" }}>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
+              <span className="lbl">The {yr} lineup</span><span className="meta">who played on this record · via MusicBrainz</span></div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 14px", fontSize: 12.5 }}>
+              {on.map(m => (
+                <span key={m.n}>{m.n}{m.i && m.i.length ? <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginLeft: 5 }}>{m.i.slice(0, 2).join(", ")}</span> : null}</span>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
+      {(() => {
+        // album-level covers rollup (core feature) — cov = covers ON this album; out = tracks here
         // that other library artists also recorded (each links straight to the counterpart).
         const ab = window.ROTATION_ALBBIO && window.ROTATION_ALBBIO[id];
         if (!ab) return null;
         const tlink = (ts, label) => <a onClick={() => go("track", id.slice(0, id.indexOf("~")) + "~" + ts)} style={{ cursor: "pointer", borderBottom: "1px dotted var(--ink-faint)" }}>{label}</a>;
         return (
           <div className="r-card" style={{ padding: "14px 18px" }}>
-            <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl">Shared songs</span><span className="meta">via MusicBrainz · pilot</span></div>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl">Shared songs</span><span className="meta">via MusicBrainz</span></div>
             <div style={{ display: "grid", gap: 6, fontSize: 12.5 }}>
               {(ab.cov || []).map(([ts, w]) => (
                 <div key={"c" + ts}>{tlink(ts, ts.replace(/-/g, " "))}<span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)", marginLeft: 8 }}>a cover — written by {w}</span></div>
@@ -2178,7 +2205,7 @@ function TrackView({ id, go }) {
     load("track-previews.js", "ROTATION_PREVIEWS"); load("genius-mood-lazy.js", "ROTATION_MOOD");
     load("genius-about-lazy.js", "ROTATION_ABOUT");
     load("blurb-demo.js", "ROTATION_BLURB_DEMO");   // DEMO: multi-model "what it's about" reads
-    load("mb-track-bio.js", "ROTATION_TRACKBIO");   // PILOT: song bios (writers/covers/versions) via MusicBrainz
+    load("mb-track-bio.js", "ROTATION_TRACKBIO");   // song bios (writers/covers/versions) via MusicBrainz
     if (need === 0) setReady(true);
   }, []);
   const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
@@ -2193,7 +2220,10 @@ function TrackView({ id, go }) {
     const t = bestIdx >= 0 ? M.tracks[bestIdx] : null;
     const artist = t ? M.artists[t[1]] : aSlug;
     const albIdx = t ? t[3] : -1; const alb = albIdx >= 0 ? M.albums[albIdx] : null;
-    const plays = t ? t[2] : 0;
+    // song pages aggregate plays across ALL of the artist's releases of the title (single +
+    // album + EP versions are the same song — Fuad 2026-07-14); the host album stays bestIdx's.
+    let plays = 0;
+    if (t) for (let i = 0; i < M.tracks.length; i++) { const o = M.tracks[i]; if (o[1] === t[1] && R.slug(o[0]) === tSlug) plays += o[2]; }
     // ranks + siblings (from the media index)
     let artistRank = 0, artistTracks = 0, globalRank = bestIdx >= 0 ? bestIdx + 1 : 0;
     const siblings = [];
