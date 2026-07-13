@@ -1862,30 +1862,6 @@ function AlbumView({ id, go }) {
       )}
 
       {(() => {
-        // PILOT: album-level covers rollup — cov = covers ON this album; out = tracks here
-        // that other library artists also recorded (each links straight to the counterpart).
-        const ab = window.ROTATION_ALBBIO && window.ROTATION_ALBBIO[id];
-        if (!ab) return null;
-        const tlink = (ts, label) => <a onClick={() => go("track", id.slice(0, id.indexOf("~")) + "~" + ts)} style={{ cursor: "pointer", borderBottom: "1px dotted var(--ink-faint)" }}>{label}</a>;
-        return (
-          <div className="r-card" style={{ padding: "14px 18px" }}>
-            <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl">Shared songs</span><span className="meta">via MusicBrainz · pilot</span></div>
-            <div style={{ display: "grid", gap: 6, fontSize: 12.5 }}>
-              {(ab.cov || []).map(([ts, w]) => (
-                <div key={"c" + ts}>{tlink(ts, ts.replace(/-/g, " "))}<span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)", marginLeft: 8 }}>a cover — written by {w}</span></div>
-              ))}
-              {(ab.out || []).map(([ts, also]) => (
-                <div key={"o" + ts}>{tlink(ts, ts.replace(/-/g, " "))}<span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", margin: "0 6px" }}>ALSO BY</span>
-                  {also.map(([s, n, cts], i) => (
-                    <React.Fragment key={s}>{i > 0 ? " · " : ""}<a onClick={() => cts ? go("track", s + "~" + cts) : go("artist", s)} style={{ cursor: "pointer", borderBottom: "1px dotted var(--ink-faint)" }}>{n}{cts ? " →" : ""}</a></React.Fragment>
-                  ))}</div>
-              ))}
-            </div>
-          </div>
-        );
-      })()}
-
-      {(() => {
         // PILOT: "the record, as released" — MB canonical tracklist as the spine, your play
         // counts hung off each track (fold match); unplayed tracks ghosted. Disc boundaries real.
         const _f = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
@@ -1906,12 +1882,17 @@ function AlbumView({ id, go }) {
                 <div style={{ display: "grid", gap: 1 }}>
                   {tracks.map((tt, i) => {
                     const hit = pl.get(_f(tt)) || pl.get(_f(String(tt).replace(/\s*\([^)]*\)\s*$/, "")));
+                    const tid = hit ? aS + "~" + R.slug(hit.title) : null;
                     return (
                       <div key={i} className={hit ? "r-track-row" : undefined}
-                        onClick={hit ? () => go("track", aS + "~" + R.slug(hit.title)) : undefined}
+                        onClick={hit ? () => go("track", tid) : undefined}
                         style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 52px", gap: 10, alignItems: "center", padding: "4px 4px", borderRadius: 4, cursor: hit ? "pointer" : "default", opacity: hit ? 1 : 0.38 }}>
                         <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{String(i + 1).padStart(2, "0")}</span>
-                        <span style={{ fontSize: 13, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{tt}</span>
+                        <span style={{ fontSize: 13, minWidth: 0, display: "flex", alignItems: "center", gap: 6, overflow: "hidden" }}>
+                          <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{tt}</span>
+                          {tid && <LikedMark on={likedKey(tid)} />}
+                          {tid && <EngBar eng={engOf(tid)} />}
+                          {tid && <LiveMark on={seenLiveKey(tid)} />}</span>
                         <span className="r-mono" style={{ fontSize: 11, color: hit ? "var(--ink-soft)" : "var(--ink-faint)", textAlign: "right" }}>{hit ? fmt(hit.plays) : "—"}</span>
                       </div>
                     );
@@ -1968,7 +1949,31 @@ function AlbumView({ id, go }) {
             </div>
           );
         })()}
-        {known && <div style={{ marginTop: 14 }}><button className="r-back" style={{ margin: 0 }} onClick={() => go("artist", artistId)}>more from {data.artist} →</button></div>}
+        {(() => {
+        // PILOT: album-level covers rollup — cov = covers ON this album; out = tracks here
+        // that other library artists also recorded (each links straight to the counterpart).
+        const ab = window.ROTATION_ALBBIO && window.ROTATION_ALBBIO[id];
+        if (!ab) return null;
+        const tlink = (ts, label) => <a onClick={() => go("track", id.slice(0, id.indexOf("~")) + "~" + ts)} style={{ cursor: "pointer", borderBottom: "1px dotted var(--ink-faint)" }}>{label}</a>;
+        return (
+          <div className="r-card" style={{ padding: "14px 18px" }}>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl">Shared songs</span><span className="meta">via MusicBrainz · pilot</span></div>
+            <div style={{ display: "grid", gap: 6, fontSize: 12.5 }}>
+              {(ab.cov || []).map(([ts, w]) => (
+                <div key={"c" + ts}>{tlink(ts, ts.replace(/-/g, " "))}<span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)", marginLeft: 8 }}>a cover — written by {w}</span></div>
+              ))}
+              {(ab.out || []).map(([ts, also]) => (
+                <div key={"o" + ts}>{tlink(ts, ts.replace(/-/g, " "))}<span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", margin: "0 6px" }}>ALSO BY</span>
+                  {also.map(([s, n, cts], i) => (
+                    <React.Fragment key={s}>{i > 0 ? " · " : ""}<a onClick={() => cts ? go("track", s + "~" + cts) : go("artist", s)} style={{ cursor: "pointer", borderBottom: "1px dotted var(--ink-faint)" }}>{n}{cts ? " →" : ""}</a></React.Fragment>
+                  ))}</div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
+      {known && <div style={{ marginTop: 14 }}><button className="r-back" style={{ margin: 0 }} onClick={() => go("artist", artistId)}>more from {data.artist} →</button></div>}
       </div>
     </div>
   );
