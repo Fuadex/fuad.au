@@ -20,6 +20,7 @@ window.CANVAS_MUSEUMS = [
   { id: "mnw",            name: "Muzeum Narodowe w Warszawie",       city: "Warsaw",       country: "pl", qid: "Q153306",   kind: "art", visits: ["2014 (frequent)","2017","2019-08-01","2022-12-27","2023-09-20","2024 (4 visits)"] },
   { id: "sukiennice",     name: "Sukiennice Gallery (MNK)",          searchAs: "Sukiennice Museum", city: "Kraków", country: "pl", qid: "Q779609", kind: "art", visits: ["2014-04-27","2015-07-07"],  note: "Gallery of 19th-C Polish Art — Szał uniesień hangs here." },
   { id: "nationalmuseum", name: "Nationalmuseum",                    city: "Stockholm",    country: "se", qid: "Q842858",   kind: "art", visits: ["2026-04-16"],  note: "Sergel CONFIRMED — sculptures + the unbelievable drawings." },
+  { id: "harvard-art",    name: "Harvard Art Museums",               city: "Cambridge, MA", country: "us", qid: "Q3783572",  kind: "art", visits: ["TBC"], note: "Deck-only for now — grading the pageview-ranked majors (API pull 2026-07-13)." },
   // ——— Australia (visited; verdict \"only ok, at times even less\" — no works recalled yet) ———
   { id: "agnsw",          name: "Art Gallery of New South Wales",    city: "Sydney",       country: "au", qid: "Q705551",   kind: "art", visits: ["2014-2025 (45 visits)"] },
   { id: "ngv",            name: "National Gallery of Victoria",      city: "Melbourne",    country: "au", qid: "Q1464509",  kind: "art", visits: ["2020-12-20","2021-05-01"] },
