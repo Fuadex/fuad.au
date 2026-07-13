@@ -1663,6 +1663,14 @@ function AlbumView({ id, go }) {
     const s = document.createElement("script"); s.src = "mb-track-bio.js";
     s.onload = () => setBioReady(true); s.onerror = () => setBioReady(true); document.head.appendChild(s);
   }, []);
+  // PILOT: the album SPINE — the canonical MB release as tracklist skeleton (true disc
+  // boundaries, official order), with your plays hung off it. Lazy + optional.
+  const [, setSpineReady] = React.useState(!!window.ROTATION_ALBSPINE);
+  React.useEffect(() => {
+    if (window.ROTATION_ALBSPINE) return;
+    const s = document.createElement("script"); s.src = "mb-album-spine.js";
+    s.onload = () => setSpineReady(true); s.onerror = () => setSpineReady(true); document.head.appendChild(s);
+  }, []);
   // album extras (deluxe/bonus tracks + absorbed-edition names) — lazy + optional (404 = feature off).
   // shared script tag so every AlbumView reuses one load; graceful onerror keeps the page working.
   const [, setExReady] = React.useState(!!window.ROTATION_ALBUM_EXTRAS);
@@ -1873,6 +1881,44 @@ function AlbumView({ id, go }) {
                   ))}</div>
               ))}
             </div>
+          </div>
+        );
+      })()}
+
+      {(() => {
+        // PILOT: "the record, as released" — MB canonical tracklist as the spine, your play
+        // counts hung off each track (fold match); unplayed tracks ghosted. Disc boundaries real.
+        const _f = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+        const aS = id.slice(0, id.indexOf("~"));
+        const sp = window.ROTATION_ALBSPINE && window.ROTATION_ALBSPINE[aS] && window.ROTATION_ALBSPINE[aS][_f(data.title)];
+        if (!sp) return null;
+        const pl = new Map(data.tracks.map(t => [_f(t.title), t]));
+        const multi = sp.discs.length > 1;
+        return (
+          <div className="r-card" style={{ padding: "16px 18px" }}>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 10, flexWrap: "wrap", gap: 6 }}>
+              <span className="lbl"><b>The record, as released</b>{sp.d ? ` · ${sp.d.slice(0, 4)}` : ""}</span>
+              <span className="meta">via MusicBrainz · pilot</span></div>
+            {sp.discs.map(([dt, tracks], di) => (
+              <div key={di} style={{ marginBottom: di < sp.discs.length - 1 ? 14 : 0 }}>
+                {multi && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".08em", textTransform: "uppercase", margin: "0 0 6px", borderBottom: "1px solid var(--rule)", paddingBottom: 4 }}>
+                  disc {di + 1}{dt && dt !== data.title ? ` — ${dt}` : ""}</div>}
+                <div style={{ display: "grid", gap: 1 }}>
+                  {tracks.map((tt, i) => {
+                    const hit = pl.get(_f(tt)) || pl.get(_f(String(tt).replace(/\s*\([^)]*\)\s*$/, "")));
+                    return (
+                      <div key={i} className={hit ? "r-track-row" : undefined}
+                        onClick={hit ? () => go("track", aS + "~" + R.slug(hit.title)) : undefined}
+                        style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 52px", gap: 10, alignItems: "center", padding: "4px 4px", borderRadius: 4, cursor: hit ? "pointer" : "default", opacity: hit ? 1 : 0.38 }}>
+                        <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{String(i + 1).padStart(2, "0")}</span>
+                        <span style={{ fontSize: 13, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{tt}</span>
+                        <span className="r-mono" style={{ fontSize: 11, color: hit ? "var(--ink-soft)" : "var(--ink-faint)", textAlign: "right" }}>{hit ? fmt(hit.plays) : "—"}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
         );
       })()}
