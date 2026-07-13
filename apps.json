@@ -54,6 +54,7 @@
         "mb-lineup.js",
         "mb-artist-x.js",
         "mb-track-bio.js",
+        "mb-album-spine.js",
         "genius-mood-lazy.js",
         "genius-about-lazy.js",
         "genius-themes-lazy.js",
