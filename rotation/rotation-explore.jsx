@@ -44,6 +44,10 @@ function exploreRank(R, kind, f) {
       if (year != null && !(a.yp && a.yp[year])) continue;
       if (subIdx >= 0) { if (a.s.indexOf(subIdx) < 0) continue; }
       else if (!inFam(a.s)) continue;
+      if (f.attrSel) {  // attributes-lens brush/click: filter the FULL universe, not the top-40 slice
+        if (f.attrSel.mode === "artists") { if (!f.attrSel.keys.has(a.id)) continue; }
+        else if (!a.s.some(ix => f.attrSel.keys.has(ix))) continue;
+      }
       const plays = hasCells ? tsPlays(R, a.id, cells) : (year != null ? a.yp[year] : a.plays);
       if (hasCells && !plays) continue;
       let value = plays, disp;
@@ -116,6 +120,10 @@ function mediaRank(M, R, meta, kind, f, limit) {
     if (subIdx >= 0) { if (!rec || !rec.s || rec.s.indexOf(subIdx) < 0) continue; }
     else if (fam != null) { if (!rec || !rec.s || !rec.s.some(si => R.SUBS[si].fam === fam)) continue; }
     if (moodZone) { const af = R.AUDIO[m.aid]; if (!af || !inMoodZone(af, moodZone)) continue; }
+    if (f.attrSel) {
+      if (f.attrSel.mode === "artists") { if (!f.attrSel.keys.has(m.aid)) continue; }
+      else if (!rec || !rec.s || !rec.s.some(si => f.attrSel.keys.has(si))) continue;
+    }
     if (hasCells && !tsPlays(R, m.aid, cells)) continue;
     let value = row[2];
     if (!noYear) { value = playsInYear(row, year); if (!value) continue; }
@@ -262,7 +270,7 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
         onMouseLeave={() => { setHi(null); z.bind.onMouseUp(); fish.reset(); }}>
         {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
           fill={moodZone === zn.z ? "var(--accent-bg)" : "transparent"} stroke="none"
-          style={{ cursor: "pointer", transition: "fill .35s ease" }} onClick={() => setMoodZone(moodZone === zn.z ? null : zn.z)}><title>{MOOD_LABELS[zn.z]}</title></rect>)}
+          style={{ transition: "fill .35s ease" }}><title>{MOOD_LABELS[zn.z]}</title></rect>)}  {/* quadrant-click filter disabled (Fuad 2026-07-14: cool but pointless for now) */}
         <line x1={qx(.5)} y1={qp} x2={qx(.5)} y2={QH - qp} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
         <line x1={qp} y1={qy(.5)} x2={QW - qp} y2={qy(.5)} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
         {[["intense", qx(.5), qp - 4, "middle"], ["calm", qx(.5), QH - qp + 16, "middle"], ["dark", qp - 8, qy(.5), "end"], ["bright", QW - qp + 8, qy(.5), "start"]].map(([t, x, y, anc]) =>
@@ -373,7 +381,7 @@ function SubMoodScatter({ subs, activeSub, activeFam, onPick, moodZone, setMoodZ
         onMouseLeave={() => { setHi(null); z.bind.onMouseUp(); fish.reset(); }}>
         {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
           fill={moodZone === zn.z ? "var(--accent-bg)" : "transparent"} stroke="none"
-          style={{ cursor: "pointer", transition: "fill .35s ease" }} onClick={() => setMoodZone(moodZone === zn.z ? null : zn.z)}><title>{MOOD_LABELS[zn.z]}</title></rect>)}
+          style={{ transition: "fill .35s ease" }}><title>{MOOD_LABELS[zn.z]}</title></rect>)}  {/* quadrant-click filter disabled (Fuad 2026-07-14: cool but pointless for now) */}
         <line x1={qx(.5)} y1={qp} x2={qx(.5)} y2={QH - qp} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
         <line x1={qp} y1={qy(.5)} x2={QW - qp} y2={qy(.5)} stroke="var(--rule)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
         {[["intense", qx(.5), qp - 4, "middle"], ["calm", qx(.5), QH - qp + 16, "middle"], ["dark", qp - 8, qy(.5), "end"], ["bright", QW - qp + 8, qy(.5), "start"]].map(([t, x, y, anc]) =>
@@ -729,7 +737,11 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel }) 
             {xTicks.map((t, i) => <text key={"xt" + i} x={PAD_L + t.frac * PW} y={H - PAD_B + 16} textAnchor="middle" fill="var(--ink-faint)" fontFamily="var(--mono)" style={{ fontSize: `calc(9px * var(--zk))` }}>{t.lbl}</text>)}
             {yTicks.map((t, i) => <text key={"yt" + i} x={PAD_L - 6} y={PAD_T + (1 - t.frac) * PH + 3} textAnchor="end" fill="var(--ink-faint)" fontFamily="var(--mono)" style={{ fontSize: `calc(9px * var(--zk))` }}>{t.lbl}</text>)}
             {dots}
-            {subLabels}
+            {/* printed subgenre labels removed (Fuad 2026-07-14: confusing black text) —
+                replaced by a subtle hover label right above the bubble you're on */}
+            {hover && <text x={hover.px} y={hover.py - hover.radius - 7} textAnchor="middle"
+              fill="var(--ink)" fontFamily="var(--mono)" pointerEvents="none"
+              style={{ fontSize: `calc(10.5px * var(--zk))`, paintOrder: "stroke", stroke: "var(--bg-2, #0b0a0f)", strokeWidth: 3 }}>{hover.row.name}</text>}
             {brush && <rect x={bx.toFixed(1)} y={by.toFixed(1)} width={Math.abs(brush.x1 - brush.x0).toFixed(1)} height={Math.abs(brush.y1 - brush.y0).toFixed(1)} fill="var(--accent)" fillOpacity="0.08" stroke="var(--accent)" strokeWidth="1" strokeDasharray="4 3" vectorEffect="non-scaling-stroke" />}
             {brushed && !brush && <rect x={brushed.x0.toFixed(1)} y={brushed.y0.toFixed(1)} width={(brushed.x1 - brushed.x0).toFixed(1)} height={(brushed.y1 - brushed.y0).toFixed(1)} fill="none" stroke="var(--accent)" strokeWidth="1" strokeDasharray="4 3" opacity="0.7" vectorEffect="non-scaling-stroke" />}
           </svg>
@@ -1107,18 +1119,12 @@ function ExploreView({ t, go, setPop, seed }) {
   const mediaItems = React.useMemo(() => {
     if (kind === "artists" || !mediaReady || !mediaArtMeta) return null;
     // fetch a lookahead past what's visible so "load more" has rows ready and `more` is detectable
-    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { year, fam, subIdx, cells, moodZone }, visN + 40);
-  }, [kind, mediaReady, mediaArtMeta, year, fam, subIdx, cells, moodZone, visN, R]);
-  const itemsRaw = (kind !== "artists" && mediaItems) ? mediaItems.items : exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone });
-  // attributes-lens brush carries into this ranked list (Fuad 2026-07-13): artist brushes filter
-  // by slug; subgenre brushes keep artists whose subgenre set intersects the selected indexes.
-  const items = React.useMemo(() => {
-    if (!attrSel || lens !== "attributes" || !attrSel.keys.size) return itemsRaw;
-    const aidOf = (it) => it.aid || (it.artist ? (R.idForName(it.artist) || R.slug(it.artist)) : it.id);
-    if (attrSel.mode === "artists") return itemsRaw.filter(it => attrSel.keys.has(aidOf(it)));
-    const ok = (aid) => { const e = (R.expById && R.expById[aid]) || R.byId[aid]; return !!(e && e.s && e.s.some(ix => attrSel.keys.has(ix))); };
-    return itemsRaw.filter(it => ok(aidOf(it)));
-  }, [itemsRaw, attrSel, lens, kind, R]);
+    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { year, fam, subIdx, cells, moodZone, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
+  }, [kind, mediaReady, mediaArtMeta, year, fam, subIdx, cells, moodZone, visN, R, attrSel, lens]);
+  // the attributes-lens selection now filters INSIDE the rank functions (full universe,
+  // pre-slice) — the old post-filter ran on the top-40 and starved the list (Fuad 2026-07-14)
+  const items = (kind !== "artists" && mediaItems) ? mediaItems.items
+    : exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null });
   // more rows to reveal? true whenever the ranked pool has more than we're currently showing —
   // works for artists (full list) AND albums/tracks (media pool), so load-more applies to all three.
   const more = items.length > visN;
@@ -1360,12 +1366,12 @@ function ExploreView({ t, go, setPop, seed }) {
            Now: lens row is a fixed opaque layer; everything below it scrolls DOWNWARD inside
            the card (chart + status + brush results), so nothing is ever cut or covered. */
         @media (min-width: 980px) {
-          .xp-main { align-items: start; --xp-col-h: min(74vh, 720px); }
+          .xp-main { align-items: start; --xp-col-h: min(86vh, 980px); }
           .xp-left > .r-card { height: var(--xp-col-h); }
           .xp-lens { position: relative; z-index: 3; background: var(--bg-1, var(--bg-2)); flex: 0 0 auto; }
           .xp-chartwrap { flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden;
             justify-content: flex-start; scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
-          .xp-chartwrap svg { max-height: 56vh; }
+          .xp-chartwrap svg { max-height: calc(var(--xp-col-h) - 200px); } /* full chart + status rows always visible */
           .xp-right { height: var(--xp-col-h); display: flex; flex-direction: column; min-height: 0; }
           .xp-rank-win { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-right: 4px;
             scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
