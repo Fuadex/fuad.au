@@ -15,6 +15,41 @@ const hueOfName = (name) => (window.ROTATION.byId[window.ROTATION.slug(name)] ||
   : hashInt(name, 0) % 360;
 
 // ════════════════════════ STORIES ════════════════════════
+
+// "The songs you own twice" — the cross-library covers graph (mb-covers-story.js, lazy).
+// Each entry: {t: title, w: [writers], p: [[artistSlug, artistName, trackSlug|null]]}
+function CoversStory({ go }) {
+  const [d, setD] = React.useState(window.ROTATION_COVSTORY || null);
+  React.useEffect(() => {
+    if (window.ROTATION_COVSTORY) return;
+    const s = document.createElement("script"); s.src = "mb-covers-story.js";
+    s.onload = () => setD(window.ROTATION_COVSTORY); s.onerror = () => {};
+    document.head.appendChild(s);
+  }, []);
+  if (!d || !d.length) return null;
+  const top = d.slice(0, 12);
+  return (
+    <section className="st-card st-hero">
+      <div className="st-label">The songs you own twice</div>
+      <div className="st-big"><em>{d.length}</em> songs live more than once in your library.</div>
+      <div className="st-sub">The same composition, recorded by different artists you actually play — found by joining every top track to its MusicBrainz work. The champion: <em>{top[0].t}</em>, held by {top[0].p.length} of your artists.</div>
+      <div style={{ display: "grid", gap: 9, marginTop: 14 }}>
+        {top.map((g, i) => (
+          <div key={i} style={{ fontSize: 13 }}>
+            <b>{g.t}</b>{g.w && g.w.length ? <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginLeft: 8 }}>written by {g.w.slice(0, 2).join(", ")}</span> : null}
+            <div className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)", marginTop: 2 }}>
+              {g.p.map(([sl, n, ts], j) => (
+                <React.Fragment key={sl + j}>{j > 0 ? " · " : ""}<a onClick={() => ts ? go("track", sl + "~" + ts) : go("artist", sl)} style={{ cursor: "pointer", borderBottom: "1px dotted var(--ink-faint)" }}>{n}</a></React.Fragment>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      {d.length > top.length && <div className="st-sub" style={{ marginTop: 10 }}>…and {d.length - top.length} more shared songs across the library.</div>}
+    </section>
+  );
+}
+
 function StoriesView({ t, go, seed }) {
   const R = window.ROTATION;
   const I = R.INSIGHTS;
@@ -342,6 +377,9 @@ function StoriesView({ t, go, seed }) {
             </section>
           );
         })()}
+
+        {/* the songs you own twice — cross-library shared works (MB works graph) */}
+        <CoversStory go={go} />
 
         {/* year in review */}
         {yr && (
