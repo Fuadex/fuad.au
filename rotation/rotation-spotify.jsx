@@ -1,13 +1,18 @@
-// rotation-spotify.jsx — PLACEHOLDER page for the personal Spotify export (13 yrs of extended
-// history: ms_played, per-play country, skips). Data is precomputed PII-FREE aggregates in
-// spotify-insights.js (window.ROTATION_SPOTIFY) — never raw rows / IPs. This page is a sandbox to
-// see the data working before folding hearts / engagement into the artist/album/track modules.
+// rotation-spotify.jsx — the ATTENTION page (v4). The personal Spotify export knows what
+// last.fm can't: ms_played (how long a song actually held you), reason_end (how it ended)
+// and session shape. Data is precomputed PII-FREE aggregates in spotify-insights.js +
+// spotify-attention.js — never raw rows / IPs / locations.
+// shared stat block (used by the headline row and the attention layer)
+const SpStat = ({ n, l, accent }) => (
+  <div><div className="r-stat-n" style={{ fontSize: 30, ...(accent ? { color: "var(--accent)" } : {}) }}>{n}</div>
+    <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 4 }}>{l}</div></div>
+);
+
 function SpotifyView({ go }) {
   const [d, setD] = React.useState(window.ROTATION_SPOTIFY || null);
   const [P, setP] = React.useState(window.ROTATION_PERSONA || null);
-  const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
+  const [At, setAt] = React.useState(window.ROTATION_SPOT_ATTN || null);
   const [year, setYear] = React.useState(null);          // null = all-time
-  const [hi, setHi] = React.useState(null);              // hovered country cc
   React.useEffect(() => {
     if (!window.ROTATION_SPOTIFY) {
       const s = document.createElement("script"); s.src = "spotify-insights.js"; s.onload = () => setD(window.ROTATION_SPOTIFY);
@@ -17,48 +22,33 @@ function SpotifyView({ go }) {
       const s = document.createElement("script"); s.src = "spotify-persona.js"; s.onload = () => setP(window.ROTATION_PERSONA);
       document.head.appendChild(s);
     }
-    if (!window.ROTATION_WORLD) {
-      let s = document.getElementById("rotation-world-js");
-      if (!s) { s = document.createElement("script"); s.id = "rotation-world-js"; s.src = "world-map.js"; document.head.appendChild(s); }
-      s.addEventListener("load", () => setWorld(window.ROTATION_WORLD));
+    if (!window.ROTATION_SPOT_ATTN) {
+      const s = document.createElement("script"); s.src = "spotify-attention.js";
+      s.onload = () => setAt(window.ROTATION_SPOT_ATTN); s.onerror = () => {};
+      document.head.appendChild(s);
     }
   }, []);
   if (!d) return <div className="r-rest-wait r-mono">loading your Spotify history…</div>;
 
-  const W = 1000, H = 500;
-  const px = (lon) => (lon + 180) / 360 * W, py = (lat) => (90 - lat) / 180 * H;
-  // per-country plays for the active year (or all-time)
-  const playsFor = (c) => year == null ? c.plays : (d.countryYear[c.cc] || {})[year] || 0;
-  const dots = d.countries.filter(c => c.ll && playsFor(c) > 0);
-  const maxP = Math.max(1, ...dots.map(playsFor));
-  const hiC = hi && d.countries.find(c => c.cc === hi);
-  const CCN = { AU: "Australia", PL: "Poland", JP: "Japan", US: "United States", HK: "Hong Kong", KR: "South Korea", NZ: "New Zealand", GB: "United Kingdom", DE: "Germany", FR: "France", IT: "Italy", ES: "Spain", NL: "Netherlands", CZ: "Czechia", TH: "Thailand", SG: "Singapore", TW: "Taiwan", CN: "China", VN: "Vietnam", ID: "Indonesia", MY: "Malaysia", PH: "Philippines", AE: "UAE", CA: "Canada", MO: "Macau", BN: "Brunei" };
-  const cname = (cc) => CCN[cc] || cc;
   const years = d.years.map(y => y.year);
   const maxYearPlays = Math.max(1, ...d.years.map(y => y.plays));
-
-  const Stat = ({ n, l, accent }) => (
-    <div><div className="r-stat-n" style={{ fontSize: 30, ...(accent ? { color: "var(--accent)" } : {}) }}>{n}</div>
-      <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 4 }}>{l}</div></div>
-  );
 
   return (
     <div className="r-view">
       <div className="r-viewhead"><div>
         <div className="r-kicker">Spotify · extended history · {d.totals.span[0]} → {d.totals.span[1]}</div>
-        <h1 className="r-title">Where I <em>listened</em><span className="dot">.</span></h1>
+        <h1 className="r-title">What held my <em>attention</em><span className="dot">.</span></h1>
       </div></div>
       <div className="r-card" style={{ padding: "10px 16px", marginBottom: "var(--gap)", fontFamily: "var(--mono)", fontSize: 11, color: "var(--ink-faint)" }}>
-        ⚗ placeholder — a sandbox for the Spotify data (13 yrs, ms-played + per-play country). Not yet wired into the main pages.
+        the export knows what last.fm can't: how long each song actually played, how it ended, and the shape of every session
       </div>
 
       {/* headline stats */}
       <div className="r-card" style={{ padding: 18, marginBottom: "var(--gap)", display: "flex", gap: 30, flexWrap: "wrap" }}>
-        <Stat n={fmt(d.totals.plays)} l="plays" />
-        <Stat n={fmt(d.totals.hours) + "h"} l="listening" />
-        <Stat n={Math.round(d.totals.hours / 24) + "d"} l="of your life" />
-        <Stat n={d.totals.skipPct + "%"} l="skipped" accent />
-        <Stat n={d.countries.length} l="countries" />
+        <SpStat n={fmt(d.totals.plays)} l="plays" />
+        <SpStat n={fmt(d.totals.hours) + "h"} l="listening" />
+        <SpStat n={Math.round(d.totals.hours / 24) + "d"} l="of your life" />
+        <SpStat n={d.totals.skipPct + "%"} l="skipped" accent />
       </div>
 
       {/* migration map removed 2026-07-13 (Fuad: "doesn't show anything at the moment").
@@ -107,9 +97,119 @@ function SpotifyView({ go }) {
         </div>
       </div>
 
+      {/* ——— v4: the ATTENTION layer (spotify-attention.js) — what only ms_played can tell ——— */}
+      {At && <SpotifyAttention A={At} />}
+
       {/* ——— v3: the Account Data layer (spotify-persona.js) ——— */}
       {P && <SpotifyPersona P={P} />}
     </div>
+  );
+}
+
+// v4 sections — the page's real story: ATTENTION. Only this export knows how long a song
+// actually held you (ms_played), how it ended (reason_end), and the shape of your sessions.
+function SpotifyAttention({ A }) {
+  const years = Object.keys(A.medianListenSec || {}).sort();
+  const maxSpan = Math.max(...years.map(y => A.medianListenSec[y] || 0), 1);
+  const S = A.sessions || {};
+  const row = (a, i, right) => (
+    <div key={(a[0] || "") + (a[1] || "") + i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "4px 0", borderBottom: "1px solid var(--rule)" }}>
+      <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 18 }}>{String(i + 1).padStart(2, "0")}</span>
+      <span style={{ flex: 1, minWidth: 0, fontSize: 12.5, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={a[0]}>{a[1] || a[0]}<span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginLeft: 6 }}>{a[1] ? a[0] : ""}</span></span>
+      {right(a)}
+    </div>
+  );
+  return (
+    <React.Fragment>
+      {/* session anatomy */}
+      <div className="r-card" style={{ padding: 18, marginTop: "var(--gap)", marginBottom: "var(--gap)" }}>
+        <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Session anatomy</b> · a session ends after 30 quiet minutes</span></div>
+        <div style={{ display: "flex", gap: 30, flexWrap: "wrap", marginBottom: 14 }}>
+          <SpStat n={fmt(S.count)} l="sessions" />
+          <SpStat n={S.medianMin + "m"} l="median session" />
+          <SpStat n={Math.round((S.longest || {}).min / 60) + "h"} l={`longest (${(S.longest || {}).tracks} tracks, ${(S.longest || {}).year})`} accent />
+        </div>
+        <div style={{ display: "flex", alignItems: "flex-end", gap: 6, height: 90 }}>
+          {Object.entries(S.byYear || {}).map(([y, e]) => (
+            <div key={y} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}
+              title={`${y}: ${fmt(e.n)} sessions · avg ${e.avgMin}m · ${e.avgTracks} tracks`}>
+              <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{e.avgMin}m</div>
+              <div style={{ width: "100%", height: Math.max(4, e.avgMin / Math.max(...Object.values(S.byYear).map(x => x.avgMin)) * 64) + "px", background: "var(--accent-bg)", borderTop: "2px solid var(--accent)", marginTop: 2 }} />
+              <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 3 }}>{"'" + y.slice(2)}</div>
+            </div>
+          ))}
+        </div>
+        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 4 }}>bar = average session length per year</div>
+      </div>
+
+      {/* attention span + how songs end */}
+      <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
+        <div className="r-card" style={{ padding: 18 }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>How long a song holds you</b> · median seconds actually played</span></div>
+          <div style={{ display: "flex", alignItems: "flex-end", gap: 5, height: 110 }}>
+            {years.map(y => (
+              <div key={y} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }} title={`${y}: ${A.medianListenSec[y]}s median`}>
+                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{A.medianListenSec[y]}s</div>
+                <div style={{ width: "100%", height: Math.max(4, A.medianListenSec[y] / maxSpan * 78) + "px", background: "var(--accent-bg)", borderTop: "2px solid var(--accent)", marginTop: 2 }} />
+                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 3 }}>{"'" + y.slice(2)}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="r-card" style={{ padding: 18 }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>How songs end</b> · played out vs skipped ahead</span></div>
+          <div style={{ display: "grid", gap: 5 }}>
+            {years.map(y => {
+              const e = (A.ends || {})[y] || {};
+              const segs = [["played out", "var(--accent)"], ["skipped ahead", "oklch(0.6 0.13 30)"], ["closed app", "var(--rule-2)"], ["other", "var(--bg-3)"]];
+              return (
+                <div key={y} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", width: 24 }}>{"'" + y.slice(2)}</span>
+                  <div style={{ flex: 1, display: "flex", height: 10, borderRadius: 5, overflow: "hidden" }}
+                    title={segs.map(([k]) => `${k} ${e[k] || 0}%`).join(" · ")}>
+                    {segs.map(([k, c]) => <div key={k} style={{ width: (e[k] || 0) + "%", background: c }} />)}
+                  </div>
+                  <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)", width: 34, textAlign: "right" }}>{e["played out"] || 0}%</span>
+                </div>
+              );
+            })}
+          </div>
+          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 8 }}>number = share of songs allowed to finish</div>
+        </div>
+      </div>
+
+      {/* the leaderboards attention makes possible */}
+      <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
+        <div className="r-card" style={{ padding: 18 }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Songs you never finish</b> · high plays, high skips</span></div>
+          {(A.never || []).slice(0, 12).map((a, i) => row(a, i, x => <span className="r-mono" style={{ fontSize: 11, color: "var(--accent)" }}>{x[3]}%<span style={{ color: "var(--ink-faint)", fontSize: 9 }}> · {fmt(x[2])}p</span></span>))}
+        </div>
+        <div className="r-card" style={{ padding: 18 }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Songs you devour</b> · high plays, never skipped</span></div>
+          {(A.devoured || []).slice(0, 12).map((a, i) => row(a, i, x => <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>{x[3]}%<span style={{ color: "var(--ink-faint)", fontSize: 9 }}> · {fmt(x[2])}p</span></span>))}
+        </div>
+      </div>
+
+      {/* platform eras */}
+      <div className="r-card" style={{ padding: 18, marginBottom: "var(--gap)" }}>
+        <div className="r-card-h" style={{ padding: 0, marginBottom: 12 }}><span className="lbl"><b>Where you listened</b> · device mix per year</span></div>
+        <div style={{ display: "grid", gap: 5 }}>
+          {Object.entries(A.platforms || {}).map(([y, mix]) => {
+            const segs = [["phone", "var(--accent)"], ["desktop", "oklch(0.62 0.1 250)"], ["web", "var(--rule-2)"], ["living room", "oklch(0.6 0.1 140)"], ["other", "var(--bg-3)"]];
+            return (
+              <div key={y} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", width: 24 }}>{"'" + y.slice(2)}</span>
+                <div style={{ flex: 1, display: "flex", height: 10, borderRadius: 5, overflow: "hidden" }}
+                  title={segs.map(([k]) => `${k} ${mix[k] || 0}%`).join(" · ")}>
+                  {segs.map(([k, c]) => <div key={k} style={{ width: (mix[k] || 0) + "%", background: c }} />)}
+                </div>
+                <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)", width: 60, textAlign: "right" }}>{(mix.phone || 0)}% phone</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </React.Fragment>
   );
 }
 
@@ -123,7 +223,7 @@ function SpotifyPersona({ P }) {
   const chip = (name, tone) => (
     <span key={name} className="r-mono" style={{ fontSize: 10.5, padding: "3px 9px", borderRadius: 100, border: "1px solid var(--rule)", color: tone === "hot" ? "var(--accent)" : "var(--ink-soft)", borderColor: tone === "hot" ? "var(--accent)" : "var(--rule)", whiteSpace: "nowrap" }}>{name}</span>
   );
-  const Stat = ({ n, l, accent }) => (
+  const SpStat = ({ n, l, accent }) => (
     <div><div className="r-stat-n" style={{ fontSize: 26, ...(accent ? { color: "var(--accent)" } : {}) }}>{n}</div>
       <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 4 }}>{l}</div></div>
   );
@@ -134,10 +234,10 @@ function SpotifyPersona({ P }) {
       <div className="r-card" style={{ padding: 18, marginTop: "var(--gap)" }}>
         <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>The label machine's verdict</b> · Marquee — how artists' marketing tools rate you</span></div>
         <div style={{ display: "flex", gap: 26, flexWrap: "wrap", margin: "10px 0 14px" }}>
-          <Stat n={M.counts.super} l="super listener" accent />
-          <Stat n={M.counts.moderate} l="moderate" />
-          <Stat n={M.counts.light} l="light" />
-          <Stat n={fmt(M.counts.previous)} l="previously active" />
+          <SpStat n={M.counts.super} l="super listener" accent />
+          <SpStat n={M.counts.moderate} l="moderate" />
+          <SpStat n={M.counts.light} l="light" />
+          <SpStat n={fmt(M.counts.previous)} l="previously active" />
         </div>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>{M.super.map(a => chip(a, "hot"))}</div>
         {allSegs && <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 10, opacity: .85 }}>{M.moderate.map(a => chip(a))}</div>}
@@ -151,12 +251,12 @@ function SpotifyPersona({ P }) {
       <div className="r-card" style={{ padding: 18, marginTop: "var(--gap)" }}>
         <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Wrapped 2025, cross-examined</b> · their structured verdict vs this site's record</span></div>
         <div style={{ display: "flex", gap: 26, flexWrap: "wrap", margin: "10px 0 14px" }}>
-          <Stat n={fmt(W.hours) + "h"} l="in their window" />
-          <Stat n={fmt(W.uniqueArtists)} l="artists" />
-          <Stat n={"top " + W.topPercentile + "%"} l={"fan of " + (W.leaderboard.artist || "your #1")} accent />
-          <Stat n={W.listeningAge.age} l="“listening age”" />
-          <Stat n={(100 - W.party.popularity) + "%"} l="obscurity" />
-          <Stat n={W.party.tempo + " bpm"} l="avg tempo" />
+          <SpStat n={fmt(W.hours) + "h"} l="in their window" />
+          <SpStat n={fmt(W.uniqueArtists)} l="artists" />
+          <SpStat n={"top " + W.topPercentile + "%"} l={"fan of " + (W.leaderboard.artist || "your #1")} accent />
+          <SpStat n={W.listeningAge.age} l="“listening age”" />
+          <SpStat n={(100 - W.party.popularity) + "%"} l="obscurity" />
+          <SpStat n={W.party.tempo + " bpm"} l="avg tempo" />
         </div>
         <div style={{ overflowX: "auto" }}>
           <table className="r-mono" style={{ fontSize: 10.5, borderCollapse: "collapse" }}>

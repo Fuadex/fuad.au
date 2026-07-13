@@ -70,6 +70,7 @@
         "geo-detail.js",
         "world-map.js",
         "spotify-insights.js",
+        "spotify-attention.js",
         "spotify-liked.js",
         "spotify-engagement.js",
         "spotify-persona.js",
