@@ -1013,7 +1013,7 @@ function CalendarView({ go, seed }) {
                           return (
                             <div key={r.title + i} className="cal-gtile" data-link={true}
                               onClick={() => go(isSongs ? "track" : "album", R.slug(r.artist) + "~" + R.slug(r.title))}>
-                              <GenCover hue={hue} name={isSongs ? r.artist : r.title} image={albumCover} thumb={albumCover} size="100%" style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
+                              <GenCover hue={hue} name={r.title} image={albumCover} thumb={albumCover} size="100%" style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
                               <div className="cal-gtile-title">{r.title}</div>
                               <div className="cal-gtile-plays">{r.artist} · {fmt(r.plays)}</div>
                             </div>
@@ -1042,7 +1042,7 @@ function CalendarView({ go, seed }) {
                         <div key={r.title + i} className="cal-row" data-link={true}
                           onClick={() => go(isSongs ? "track" : "album", R.slug(r.artist) + "~" + R.slug(r.title))}>
                           <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span>
-                          <GenCover hue={hue} name={isSongs ? r.artist : r.title} image={albumCover} thumb={albumCover} size={34} radius={3} />
+                          <GenCover hue={hue} name={r.title} image={albumCover} thumb={albumCover} size={34} radius={3} />
                           <div style={{ minWidth: 0, flex: 1 }}>
                             <div className="cal-nm" style={{ fontStyle: "italic" }}>{r.title}</div>
                             <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.artist}</div>
