@@ -526,6 +526,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel }) 
   const [hover, setHover] = React.useState(null);
   const [brush, setBrush] = React.useState(null);    // live pixel rect while dragging
   const [brushed, setBrushed] = React.useState(null); // committed rect
+  const [singleSel, setSingleSel] = React.useState(null); // single-clicked subgenre row id (multi = drag)
   const dragRef = React.useRef(null);
   const z = useZoom(1000, 560);
   const svgRef = z.bind.ref; // share the element useZoom already tracks (wheel-zoom binds to it)
@@ -620,8 +621,14 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel }) 
   const onUp = () => {
     if (dragRef.current && brush) {
       const w = Math.abs(brush.x1 - brush.x0), h = Math.abs(brush.y1 - brush.y0);
-      if (w > 6 && h > 6) setBrushed({ x0: Math.min(brush.x0, brush.x1), x1: Math.max(brush.x0, brush.x1), y0: Math.min(brush.y0, brush.y1), y1: Math.max(brush.y0, brush.y1) });
-      else setBrushed(null);
+      if (w > 6 && h > 6) { setBrushed({ x0: Math.min(brush.x0, brush.x1), x1: Math.max(brush.x0, brush.x1), y0: Math.min(brush.y0, brush.y1), y1: Math.max(brush.y0, brush.y1) }); setSingleSel(null); }
+      else {
+        // a CLICK (not a drag): in subgenre mode it toggles that one subgenre's selection
+        // (multi stays on drag); in artist mode it clears. Empty-space click clears both.
+        setBrushed(null);
+        if (hover && mode === "subgenres") setSingleSel(s => s === hover.row.id ? null : hover.row.id);
+        else setSingleSel(null);
+      }
     }
     dragRef.current = null; setBrush(null);
   };
@@ -634,29 +641,32 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel }) 
     if (!brushed) return [];
     return pts.filter(p => inBrush(p) && !isDimFam(p.row)).sort((a, b) => (b.row.plays || 0) - (a.row.plays || 0)).slice(0, 40);
   }, [pts, brushed, inBrush, isDimFam]);
-  // lift the FULL brushed selection (not the top-40 display slice) so the neighbouring ranked
-  // list can filter to it — artists as slugs, subgenres as SUBS indexes (Fuad 2026-07-13)
+  // lift the selection to the ranked list: a committed brush (region) OR a single-clicked
+  // subgenre — artists as slugs, subgenres as SUBS indexes (Fuad 2026-07-13/14)
   React.useEffect(() => {
     if (!onBrushSel) return;
-    if (!brushed) { onBrushSel(null); return; }
-    const all = pts.filter(p => inBrush(p) && !isDimFam(p.row));
-    const keys = new Set(all.map(p => mode === "subgenres" ? parseInt(String(p.row.id).slice(4), 10) : p.row.id));
-    onBrushSel({ mode, keys });
-  }, [brushed, pts, inBrush, isDimFam, mode, onBrushSel]);
+    if (brushed) {
+      const all = pts.filter(p => inBrush(p) && !isDimFam(p.row));
+      onBrushSel({ mode, keys: new Set(all.map(p => mode === "subgenres" ? parseInt(String(p.row.id).slice(4), 10) : p.row.id)) });
+    } else if (singleSel && mode === "subgenres") {
+      onBrushSel({ mode, keys: new Set([parseInt(String(singleSel).slice(4), 10)]) });
+    } else onBrushSel(null);
+  }, [brushed, singleSel, pts, inBrush, isDimFam, mode, onBrushSel]);
 
   // dots memoized WITHOUT the zoom factor — radius rides --zk so wheel-zoom reconciles nothing
   const dots = React.useMemo(() => pts.map((pt, i) => {
     const on = inBrush(pt), dimF = isDimFam(pt.row);
     const isHover = hover && hover.row.id === pt.row.id;
-    const op = dimF ? 0.06 : brushed ? (on ? 0.92 : 0.1) : (mode === "subgenres" ? 0.82 : 0.72);
+    const isSel = singleSel && pt.row.id === singleSel;
+    const op = dimF ? 0.06 : brushed ? (on ? 0.92 : 0.1) : singleSel ? (isSel ? 0.95 : 0.15) : (mode === "subgenres" ? 0.82 : 0.72);
     const baseR = isHover ? pt.radius + 2 : pt.radius;
     return (
       <circle key={pt.row.id + "-" + i} className="xp-fdot" data-cx={pt.px.toFixed(1)} data-cy={pt.py.toFixed(1)}
         cx={pt.px.toFixed(1)} cy={pt.py.toFixed(1)}
         fill={fillFor(pt.row)} fillOpacity={op}
-        stroke={isHover ? "#fff" : "none"} strokeWidth={1.4} vectorEffect="non-scaling-stroke"
+        stroke={isHover || isSel ? "#fff" : "none"} strokeWidth={isSel ? 2 : 1.4} vectorEffect="non-scaling-stroke"
         style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: "pointer", transition: "fill-opacity .3s ease" }} />);
-  }), [pts, hover, brushed, inBrush, isDimFam, fillFor, mode]);
+  }), [pts, hover, brushed, singleSel, inBrush, isDimFam, fillFor, mode]);
 
   const subLabels = React.useMemo(() => mode !== "subgenres" ? null : pts.filter(pt => labelIds.has(pt.row.id) && !isDimFam(pt.row)).map(pt => (
     <text key={"lbl" + pt.row.id} x={(pt.px + pt.radius + 3).toFixed(1)} y={(pt.py + 3).toFixed(1)}
@@ -1344,11 +1354,18 @@ function ExploreView({ t, go, setPop, seed }) {
         /* tv-grid/tv-head/r-track-row rules moved to cssRotation (rotation-core) — they style the
            Album/Track pages, which can be deep-linked WITHOUT Explore ever mounting. */
         /* PC: chart card and results column share ONE FIXED height — the chart never resizes or
-           jumps when a click changes the list (Fuad 2026-07-13), and overflow scrolls INSIDE the
-           results window instead of blowing the page up. */
+           jumps when a click changes the list, and overflow scrolls INSIDE each column.
+           Round 2 (Fuad 2026-07-14): the v1 clamp + r-card overflow:hidden clipped the hover
+           status line and let the tall svg overlay the lens buttons (hover stopped firing).
+           Now: lens row is a fixed opaque layer; everything below it scrolls DOWNWARD inside
+           the card (chart + status + brush results), so nothing is ever cut or covered. */
         @media (min-width: 980px) {
           .xp-main { align-items: start; --xp-col-h: min(74vh, 720px); }
           .xp-left > .r-card { height: var(--xp-col-h); }
+          .xp-lens { position: relative; z-index: 3; background: var(--bg-1, var(--bg-2)); flex: 0 0 auto; }
+          .xp-chartwrap { flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden;
+            justify-content: flex-start; scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
+          .xp-chartwrap svg { max-height: 56vh; }
           .xp-right { height: var(--xp-col-h); display: flex; flex-direction: column; min-height: 0; }
           .xp-rank-win { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-right: 4px;
             scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
