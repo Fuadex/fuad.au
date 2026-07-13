@@ -36,6 +36,7 @@
         "rotation-spotify.jsx",
         "rotation-book.jsx",
         "rotation-lab.jsx",
+        "rotation-lab2.jsx",
         "rotation-app.jsx",
         "music-core.js",
         "music-rest.js",

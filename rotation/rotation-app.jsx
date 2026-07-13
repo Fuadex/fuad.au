@@ -88,6 +88,8 @@ function RotationApp() {
     if ((window.location.hash || "") !== target) window.history.pushState(null, "", target || (location.pathname + location.search));
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+  // expose go to hidden lab pages that can't receive it as a prop via the render tree
+  React.useEffect(() => { window.__lab2Go = go; }, [go]);
 
   // back/forward + manual hash edits → sync the in-memory route (pushState above doesn't fire these)
   React.useEffect(() => {
@@ -179,6 +181,7 @@ function RotationApp() {
                 {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
                 {v === "spotify" && <SpotifyView go={go} />}
                 {v === "lab" && <LabView />}
+                {v === "lab2" && <Lab2View />}
                 {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
                 {v === "album" && <AlbumView id={route.id} go={go} />}
                 {v === "track" && <TrackView id={route.id} go={go} />}
