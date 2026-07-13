@@ -688,28 +688,25 @@ function LabView() {
         </div>
       </div>
 
-      {/* ── Book pilot ── */}
+      {/* ── Book v3 — inline section (not an overlay) ── */}
       {(() => {
-        const BookLaunchButton = window.BookLaunchButton;
-        if (!BookLaunchButton) return null;
+        const BookSection = window.BookSection;
+        if (!BookSection) return null;
         return (
-          <div style={{
-            background: LAB_PANEL, border: `1px solid ${LAB_RULE}`, borderRadius: 8,
-            marginBottom: 28, overflow: "hidden"
-          }}>
-            <div style={{ padding: "16px 20px 10px", borderBottom: `1px solid ${LAB_RULE}` }}>
+          <div style={{ marginBottom: 28 }}>
+            <div style={{ marginBottom: 14 }}>
               <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: ".2em",
-                textTransform: "uppercase", color: LAB_ACC, marginBottom: 5 }}>Stories as a Book · pilot</div>
+                textTransform: "uppercase", color: LAB_ACC, marginBottom: 5 }}>
+                Stories as a Book · v3
+              </div>
               <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13,
                 color: LAB_DIM, lineHeight: 1.5 }}>
-                A physical book with real page-turn physics (StPageFlip). Click the cover to open.
-                7 pages: cover · title · genre eras prose + chart · listening hours chart + prose · back cover.
-                ← → to turn pages. Chapter rail on the left. Esc to close.
+                18 pages · 5 chapters · hard covers + soft pages · two-page spread (StPageFlip landscape mode).
+                Click the cover to open. ← → or chapter rail to navigate. Margin annotations point at chart features.
+                Renders inline — part of this page, not a modal.
               </div>
             </div>
-            <div style={{ padding: "18px 20px 20px" }}>
-              <BookLaunchButton />
-            </div>
+            <BookSection />
           </div>
         );
       })()}
