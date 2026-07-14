@@ -2274,12 +2274,14 @@ function TrackView({ id, go }) {
   const tasteStandouts = (() => {
     if (!f) return [];
     const DIMS = [
-      { k: "energy", i: 4, hi: "more intense", lo: "more mellow" },
-      { k: "valence", i: 5, hi: "brighter", lo: "darker" },
-      { k: "tempo", i: 7, hi: "faster", lo: "slower" },
-      { k: "acoustic", i: 6, hi: "more acoustic", lo: null },
-      { k: "dance", i: 8, hi: "more danceable", lo: null },
-      { k: "instr", i: 9, hi: "more instrumental", lo: null },
+      // plain adjectives only — the "more" now lives once on the right ("more than 88%"), so the
+      // adjective column stays short and the bars line up in a row (Fuad 2026-07-14).
+      { k: "energy", i: 4, hi: "intense", lo: "mellow" },
+      { k: "valence", i: 5, hi: "bright", lo: "dark" },
+      { k: "tempo", i: 7, hi: "fast", lo: "slow" },
+      { k: "acoustic", i: 6, hi: "acoustic", lo: null },
+      { k: "dance", i: 8, hi: "danceable", lo: null },
+      { k: "instr", i: 9, hi: "instrumental", lo: null },
     ];
     const out = [];
     for (const d of DIMS) {
@@ -2345,7 +2347,7 @@ function TrackView({ id, go }) {
                   <div className="tv-taste-row" key={s.phrase}>
                     <span className="tv-taste-adj">{s.phrase}</span>
                     <div className="tv-taste-bar"><i style={{ width: s.pct + "%", background: `oklch(0.62 0.15 ${hue})` }} /></div>
-                    <span className="tv-taste-pct">than {Math.round(s.pct)}%</span>
+                    <span className="tv-taste-pct">more than {Math.round(s.pct)}%</span>
                   </div>
                 ))}
               </div>
