@@ -215,8 +215,8 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 .tv-taste { max-width: 680px; margin: 0 0 var(--gap); padding: 14px 18px; border-left: 2px solid var(--rule-2); background: var(--panel); border-radius: 0 8px 8px 0; }
 .tv-taste-h { font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
 .tv-taste-list { display: grid; gap: 9px; }
-.tv-taste-row { display: grid; grid-template-columns: 88px 1fr 50px; gap: 10px; align-items: center; }
-.tv-taste-adj { font-size: 13.5px; color: var(--ink); text-transform: capitalize; }
+.tv-taste-row { display: grid; grid-template-columns: 76px 1fr 84px; gap: 10px; align-items: center; }
+.tv-taste-adj { font-size: 13.5px; color: var(--ink); text-transform: capitalize; white-space: nowrap; }
 .tv-taste-bar { height: 5px; background: var(--bg-3); border-radius: 3px; overflow: hidden; }
 .tv-taste-bar i { display: block; height: 100%; border-radius: 3px; }
 .tv-taste-pct { font-family: var(--mono); font-size: 10px; color: var(--ink-soft); text-align: right; }
