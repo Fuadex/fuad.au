@@ -5,7 +5,10 @@
 const { useState, useEffect, useMemo, useRef, useCallback } = React;
 
 const MUSEUMS = window.CANVAS_MUSEUMS || [];
-const WORKS = window.CANVAS_ARTWORKS || [];
+// Anonymous / institutional works (artifact decks — British Museum, NMK Seoul) carry a null
+// artist; coerce to "" once here so the many downstream `.artist.replace/.split/.localeCompare`
+// sites don't throw. Falsy-guards elsewhere (`w.artist || "—"`, `p.artist ? …`) still hold.
+const WORKS = (window.CANVAS_ARTWORKS || []).map(w => (w.artist == null ? { ...w, artist: "" } : w));
 const AD = window.CANVAS_ART_DATA || { museums: {}, artworks: {}, artists: {} };
 
 const MUS_BY_ID = {}; for (const m of MUSEUMS) MUS_BY_ID[m.id] = m;
