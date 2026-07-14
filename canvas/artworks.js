@@ -488,7 +488,7 @@ window.CANVAS_ARTWORKS = [
   { id: "ziwiye", title: "Ziwiye", artist: null, artistId: null, qid: "Q206986", qidTrusted: true, year: null, seenAt: "british-museum", seenConfidence: "unsure", liked: true, note: "Deck pick — british-museum-2026-07-14." },
   { id: "sutton-hoo-helmet", title: "Sutton Hoo helmet", artist: null, artistId: null, qid: "Q1603141", qidTrusted: true, year: null, seenAt: "british-museum", seenConfidence: "unsure", liked: true, note: "Deck pick — british-museum-2026-07-14." },
   // ——— deck-folded picks (fold-deck.js) ———
-  { id: "the-potato-eaters", title: "The Potato Eaters", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q154469", qidTrusted: true, year: 1885, seenAt: "van-gogh-museum", seenConfidence: "unsure", liked: true, note: "Deck pick — van-gogh-museum-2026-07-14." },
+  { id: "the-potato-eaters", title: "The Potato Eaters", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q154469", qidTrusted: true, year: 1885, seenAt: "van-gogh-museum", seenConfidence: "sure", liked: true, note: "Seen + liked (Fuad, 2026-07-14) — Van Gogh Museum." },
   { id: "wheatfield-with-crows", title: "Wheatfield with Crows", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q634122", qidTrusted: true, year: 1890, seenAt: "van-gogh-museum", seenConfidence: "unsure", liked: true, note: "Deck pick — van-gogh-museum-2026-07-14." },
   { id: "skull-of-a-skeleton-with-burning-cigarette", title: "Skull of a Skeleton with Burning Cigarette", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q7536969", qidTrusted: true, year: 1884, seenAt: "van-gogh-museum", seenConfidence: "unsure", liked: true, note: "Deck pick — van-gogh-museum-2026-07-14." },
   { id: "almond-blossom", title: "Almond Blossom", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q1432536", qidTrusted: true, year: 1890, seenAt: "van-gogh-museum", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — van-gogh-museum-2026-07-14." },
@@ -528,6 +528,13 @@ window.CANVAS_ARTWORKS = [
   // ——— deck-folded picks (fold-deck.js) ———
   { id: "rouen-cathedral-portal-and-tower-saint-romain-in-the-sun", title: "Rouen Cathedral, Portal and Tower Saint-Romain in the Sun", artist: "Claude Monet", artistId: "monet", qid: "Q3820705", qidTrusted: true, year: 1893, seenAt: "orsay", seenConfidence: "sure", liked: true, note: "Deck pick — monet-adds-2026-07-14." },
   { id: "london-the-houses-of-parliament-sunlight-opening-in-fog", title: "London, the Houses of Parliament, Sunlight Opening in Fog", artist: "Claude Monet", artistId: "monet", qid: "Q17493907", qidTrusted: true, year: 1904, seenAt: "orsay", seenConfidence: "unsure", liked: true, note: "Deck pick — monet-adds-2026-07-14." },
+  // ——— deck-folded picks (fold-deck.js) ———
+  { id: "mlle-irene-cahen-d-anvers", title: "Mlle Irène Cahen d'Anvers", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q3937570", qidTrusted: true, year: 1880, seenAt: "kunsthaus-zurich", seenConfidence: "sure", liked: true, note: "Deck pick — renoir-vangogh-anchored-2026-07-14." },
+  { id: "the-starry-night", title: "The Starry Night", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q45585", qidTrusted: true, year: 1889, seenAt: "moma", seenConfidence: "sure", floored: true, note: "Deck pick — renoir-vangogh-anchored-2026-07-14." },
+  // ——— seen, venue-uncertain (loan sightings; no map pin) ———
+  { id: "two-sisters", title: "Two Sisters (On the Terrace)", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q630121", qidTrusted: true, year: 1881, seenAt: null, seenConfidence: "sure", liked: true, note: "Seen + liked (Fuad, 2026-07-14) — venue uncertain, likely on loan; home: Art Institute of Chicago." },
+  { id: "la-promenade", title: "La Promenade", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q3823474", qidTrusted: true, year: 1870, seenAt: null, seenConfidence: "sure", wish: true, liked: true, note: "Loved; may have seen (Fuad, 2026-07-14) — venue uncertain; home: Getty Center." },
+  { id: "cafe-terrace-at-night", title: "Café Terrace at Night", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q1025704", qidTrusted: true, year: 1888, seenAt: null, seenConfidence: "sure", note: "Seen (Fuad, 2026-07-14) — venue uncertain, possibly on loan; home: Kröller-Müller Museum, Otterlo." },
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
