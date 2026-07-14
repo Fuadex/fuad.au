@@ -796,7 +796,10 @@ function CalendarView({ go, seed }) {
   const W = leftPad + 53 * step + 6;
   const H = topPad + years.length * (rowH + yearGap);
 
-  const pick = (y, d) => { const k = keyFor(gran, dateOf(y, d)); setSel(k); ensureDetail(); };  // keep the current pane so you can track e.g. DNA across days
+  // clicking a calendar cell EXITS any scrolling-timeline range (customRange/rangeCommit) and selects
+  // that specific day/week/month at the current granularity — so a range no longer traps you (Fuad
+  // 2026-07-15: previously only the ✕ could clear it). Keep the current pane (track DNA across days).
+  const pick = (y, d) => { setCustomRange(null); setRangeCommit(null); const k = keyFor(gran, dateOf(y, d)); setSel(k); ensureDetail(); };
 
   const hov = hover ? { date: fmtDate(dateOf(hover.y, hover.d)), count: hover.count, top: hover.top } : null;
   const NM = detail && detail.names;

@@ -1032,10 +1032,10 @@ function ExploreView({ t, go, setPop, seed }) {
   const [sub, setSub] = React.useState(null);             // subgenre NAME, or null
   const [cells, setCells] = React.useState(() => new Set());
   const [playing, setPlaying] = React.useState(false);
-  const [lens, setLens] = React.useState("texture");      // left surface: "texture" map or "mood" quadrant
+  const [lens, setLens] = React.useState("attributes");   // left surface: "texture" map · "mood" quadrant · "attributes" (default — no panning, best perf; Fuad 2026-07-15)
   const [attrSel, setAttrSel] = React.useState(null);     // attributes-lens brush selection ({mode, keys}) — filters the ranked list
   React.useEffect(() => { if (lens !== "attributes") setAttrSel(null); }, [lens]);
-  const [grain, setGrain] = React.useState("subs");       // plot granularity for either lens: "subs" or "artists"
+  const [grain, setGrain] = React.useState("artists");    // plot granularity for either lens: "subs" or "artists" (default artists; Fuad 2026-07-15)
   const [moodZone, setMoodZone] = React.useState(null);   // active valence×energy quadrant filter, or null
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
   const [showN, setShowN] = React.useState(16);           // base visible rows (8/16/24/32 buttons; default 16)
@@ -1460,9 +1460,13 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
   const z = useZoom(W, H);
   // bubbles don't ride the zoom factor, so memoizing them makes wheel-zoom (viewBox only)
   // reconcile nothing — no per-frame rebuild of ~200 subgenre marks (Fuad 2026-07-09).
+  // bubble radius rides the inverse zoom (× z.k) so it stays a constant SCREEN size instead of
+  // ballooning with the viewBox when you zoom in (Fuad 2026-07-15). z.k only changes on zoom steps,
+  // not on pan, so this memo still rebuilds nothing while dragging.
   const bubbles = React.useMemo(() => subs.map((s, i) => {
         const present = s.w > 0;
-        const r = present ? 9 + (s.w / maxW) * 42 : 0;
+        const baseR = present ? 9 + (s.w / maxW) * 42 : 0;
+        const r = baseR * z.k;
         const on = activeSub ? activeSub === s.name : (activeFam != null && s.fam === activeFam);
         const dim = activeSub ? activeSub !== s.name : (activeFam != null && s.fam !== activeFam);
         const col = expressive ? `oklch(0.62 0.17 ${s.hue})` : "var(--accent)";
@@ -1472,12 +1476,12 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
             onMouseEnter={() => setHi(s)}
             onClick={() => onPick(s.name)} onMouseLeave={() => setHi(null)}>
             {/* transparent min-size hit target so even tiny subgenres are clickable/hoverable */}
-            <circle cx={px(s.x)} cy={py(s.y)} r={Math.max(r, 14)} fill="transparent" />
+            <circle cx={px(s.x)} cy={py(s.y)} r={Math.max(r, 10 * z.k)} fill="transparent" />
             <circle cx={px(s.x)} cy={py(s.y)} r={r} fill={col} fillOpacity={on ? .5 : (expressive ? .28 : .14)} stroke={col} strokeWidth={on ? 2.2 : 1.4} style={{ transition: "r .55s cubic-bezier(.3,.8,.3,1), fill-opacity .2s" }} />
-            {r > 17 && <text x={px(s.x)} y={py(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontSize={Math.min(13, r / 3.2)} fontFamily="var(--sans)" fontWeight="500" style={{ pointerEvents: "none", transition: "font-size .55s" }}>{s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
+            {baseR > 17 && <text x={px(s.x)} y={py(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontSize={Math.min(13, baseR / 3.2) * z.k} fontFamily="var(--sans)" fontWeight="500" style={{ pointerEvents: "none", transition: "font-size .55s" }}>{s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
           </g>
         );
-      }), [subs, maxW, activeSub, activeFam, expressive, seen, onPick]);
+      }), [subs, maxW, activeSub, activeFam, expressive, seen, onPick, z.k]);
   return (
     <div style={{ position: "relative" }}>
       <ZoomReset z={z} />
