@@ -15,6 +15,7 @@ const haveIds = new Set(existing.map(w => w.id));
 
 const slug = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 const surname = (a) => {
+  if (!a) return null;                       // anonymous / institutional works (artifact decks)
   if (/van gogh/i.test(a)) return "van-gogh";
   const parts = a.split(/\s+/); return slug(parts[parts.length - 1]);
 };
@@ -52,7 +53,7 @@ for (const f of files) {
     }
     let id = slug(r.title);
     const taken = (x) => haveIds.has(x) || out.some(o => o.id === x);
-    if (taken(id)) id = id + "-" + surname(r.artist);
+    if (taken(id)) id = id + "-" + (surname(r.artist) || slug(r.qid));
     for (let n = 2; taken(id); n++) id = id.replace(/-\d+$/, "") + "-" + n;
     if (r.year && /^q\d+$/.test(slug(r.title))) id = surname(r.artist) + "-" + r.year;  // unlabeled leftovers
     haveIds.add(id);
