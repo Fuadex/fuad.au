@@ -842,6 +842,12 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     }
     return null;
   })();
+  // Fallback when the artist has NO track in the Spotify preview dump (e.g. PRO8L3M, Eat Your Heart
+  // Out): expose a preview on the most-played track via PreviewBtn, which resolves through the keyless
+  // iTunes lookup and simply hides itself if nothing matches (Fuad 2026-07-14).
+  const topPrev = (!needleKey && tracks.length)
+    ? (() => { const t = tracks.slice().sort((x, y) => y.plays - x.plays)[0]; return { id: R.slug(a.name) + "~" + R.slug(t.title), title: t.title }; })()
+    : null;
   // Search ALL real concerts (not just the chosen city) for this artist's upcoming dates.
   const upcoming = Object.values(R.CONCERTS || {}).flat().filter(g => g.artistId === a.id)
     .sort((a, b) => a.date.localeCompare(b.date)).slice(0, 4);
@@ -880,7 +886,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             </div>
           )}
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap", alignItems: "center" }}>
-            {needleKey && <ShNeedle trackKey={needleKey} hue={a.hue} />}
+            {needleKey ? <ShNeedle trackKey={needleKey} hue={a.hue} /> : (topPrev && <PreviewBtn id={topPrev.id} hue={a.hue} artist={a.name} title={topPrev.title} />)}
             <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
