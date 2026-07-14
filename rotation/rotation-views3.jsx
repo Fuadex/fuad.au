@@ -2312,7 +2312,9 @@ function useTourMapNav(svgRef, gRef, dotSel) {
     window.addEventListener("pointerup", onUp);
     window.addEventListener("pointercancel", onUp);
     return () => { svg.removeEventListener("wheel", onWheel); window.removeEventListener("pointermove", onMove); window.removeEventListener("pointerup", onUp); window.removeEventListener("pointercancel", onUp); };
-  }, []);
+  }, [world]);   // must re-run once the map actually renders — on first mount world is null so the svg
+                 // isn't in the DOM, the effect early-returns, and the wheel/pan listeners never attach
+                 // (the +/- buttons worked because they're React onClick handlers). Fuad 2026-07-15.
   const onDown = (e) => {
     ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY }); moved.current = false;
     const t = pending.current || tfRef.current;
