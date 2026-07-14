@@ -499,8 +499,12 @@ function canonAlbum(name) {
 }
 // diacritic/punctuation fold — "Liebe Ist Fur Alle Da" ≡ "Liebe ist für alle da",
 // "Reise, Reise" ≡ "Reise Reise". Groups same-artist spellings; display = most-played.
-const _foldName = (s) => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "")
-  .toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+// Uses Unicode letter/number classes (not [a-z0-9]) so NON-LATIN titles keep their characters:
+// otherwise every all-CJK album title folds to "" and distinct albums collapse into one — that
+// bug merged ミドリ's 清水 / 深夜高速 / ライブ!! into あらためまして (all folded to empty). Stripping
+// only marks + non-alphanumerics also re-merges mojibake-corrupted duplicates onto the clean title.
+const _foldName = (s) => String(s).normalize("NFD").replace(/\p{M}/gu, "")
+  .toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 // alias entries: "<artistSlug>~<variantAlbumSlug>" → "<artistSlug>~<canonAlbumSlug>", recorded
 // at ingest whenever a variant title differs from its canonical base (emitted to album-alias.js).
 const ALBUM_ALIAS = {};
