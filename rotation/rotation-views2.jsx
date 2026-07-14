@@ -1906,7 +1906,7 @@ function AlbumView({ id, go }) {
         }
         const multi = sp.discs.length > 1;
         return (
-          <div className="r-card" style={{ padding: "16px 18px" }}>
+          <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 10, flexWrap: "wrap", gap: 6 }}>
               <span className="lbl"><b>The record, as released</b>{sp.d ? ` · ${sp.d.slice(0, 4)}` : ""}</span>
               <span className="meta">via MusicBrainz</span></div>
@@ -1939,7 +1939,7 @@ function AlbumView({ id, go }) {
         );
       })()}
 
-      <div className="r-card" style={{ padding: "16px 18px" }}>
+      <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
         <div className="r-card-h" style={{ padding: 0, marginBottom: 6, flexWrap: "wrap", gap: 6 }}><span className="lbl"><b>Tracks you've played</b></span>
           <span className="meta">{fmt(data.trackPlays)} plays across {data.tracks.length}</span></div>
         {/* absorbed edition chip — this canonical album merged one or more variant editions */}
@@ -1984,7 +1984,10 @@ function AlbumView({ id, go }) {
             </div>
           );
         })()}
-        {(() => {
+      </div>{/* /Tracks you've played — lineup & shared songs are lifted OUT below into their own
+              standalone full-width cards (continuous vertical column), Fuad 2026-07-14 */}
+
+      {(() => {
         // per-album LINEUP: who actually played on this record — tenure windows crossed with
         // the record's year (MB members via ROTATION_MB; spine date beats the meta year).
         const mb = window.ROTATION_MB && window.ROTATION_MB[id.slice(0, id.indexOf("~"))];
@@ -2001,7 +2004,7 @@ function AlbumView({ id, go }) {
         });
         if (!on.length) return null;
         return (
-          <div className="r-card" style={{ padding: "14px 18px" }}>
+          <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
               <span className="lbl">The {yr} lineup</span><span className="meta">who played on this record · via MusicBrainz</span></div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 14px", fontSize: 12.5 }}>
@@ -2020,7 +2023,7 @@ function AlbumView({ id, go }) {
         if (!ab) return null;
         const tlink = (ts, label) => <a onClick={() => go("track", id.slice(0, id.indexOf("~")) + "~" + ts)} style={{ cursor: "pointer", borderBottom: "1px dotted var(--ink-faint)" }}>{label}</a>;
         return (
-          <div className="r-card" style={{ padding: "14px 18px" }}>
+          <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl">Shared songs</span><span className="meta">via MusicBrainz</span></div>
             <div style={{ display: "grid", gap: 6, fontSize: 12.5 }}>
               {(ab.cov || []).map(([ts, w]) => (
@@ -2038,7 +2041,6 @@ function AlbumView({ id, go }) {
       })()}
 
       {known && <div style={{ marginTop: 14 }}><button className="r-back" style={{ margin: 0 }} onClick={() => go("artist", artistId)}>more from {data.artist} →</button></div>}
-      </div>
     </div>
   );
 }
