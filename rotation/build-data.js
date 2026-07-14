@@ -1391,7 +1391,9 @@ if (hasOrigins) {
   }).filter(Boolean).sort((a, b) => b.plays - a.plays).slice(0, 300);
   GEOGRAPHY = {
     coverage: Math.round(totalCovered / lines.length * 100) / 100,
-    countries: countries.slice(0, 20),
+    // ALL countries (was top-20) so the Overview map plots every country the profile counts —
+    // the map already filters to those with a world-geometry centroid (Fuad 2026-07-14).
+    countries,
     cities,
     cityPoints,
     totalCountries: countries.length,
