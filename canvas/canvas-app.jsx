@@ -1048,48 +1048,40 @@ function MapView({ go }) {
   const P = (lat, lng) => [(lng + 180) / 360 * 1000, (90 - lat) / 180 * 500];
   const coordOf = (id) => { const d = AD.museums[id] || {}; return d.lat == null ? null : P(d.lat, d.lng); };
   const landPath = useMemo(() => (world && world.land ? world.land.join(" ") : ""), []);
-  const pins = useMemo(() => {
+  // ONE bubble per CITY at its true location (Fuad 2026-07-14). Per-museum pins overlapped badly,
+  // and any anti-overlap relaxation that separated a city's 5–6 museums dragged them off the real
+  // city (capitals "didn't match"). A city sits exactly where it is (cities are far apart → no
+  // overlap) and BRANCHES to its museums → loved/liked works on click. Works are aggregated so the
+  // bubble is sized by the whole city's canon, and each city keeps its museum list for the branch.
+  const cities = useMemo(() => {
     const counts = {};
     for (const w of WORKS) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) if (id) counts[id] = (counts[id] || 0) + 1;
-    const raw = MUSEUMS.map(m => {
-      const d = AD.museums[m.id] || {};
-      if (d.lat == null) return null;
+    const byCity = {};
+    for (const m of MUSEUMS) {
+      const d = AD.museums[m.id] || {}; if (d.lat == null) continue;
       const [x, y] = P(d.lat, d.lng);
-      return { id: m.id, name: m.name.replace(/\s*\(.*\)$/, ""), city: m.city, x, y, n: counts[m.id] || 0, kind: m.kind, visits: m.visits || [] };
-    }).filter(Boolean);
-    // decluster same-city museums that project to (nearly) the same point: fan the group out on a
-    // golden-angle spiral around its centroid and keep a thin connector back to it, so they read as
-    // one coagulated cluster that splits apart as you zoom in (offsets are fixed map units).
-    const groups = {};
-    for (const p of raw) { const key = Math.round(p.x / 5) + ":" + Math.round(p.y / 5); (groups[key] = groups[key] || []).push(p); }
-    const out = [];
-    for (const g of Object.values(groups)) {
-      if (g.length === 1) { out.push({ ...g[0], bx: g[0].x, by: g[0].y, split: false }); continue; }
-      const cx = g.reduce((s, p) => s + p.x, 0) / g.length, cy = g.reduce((s, p) => s + p.y, 0) / g.length;
-      g.sort((a, b) => b.n - a.n).forEach((p, i) => {
-        const ang = i * 2.399, rad = i === 0 ? 0 : 3 + 1.8 * Math.sqrt(i);
-        out.push({ ...p, x: cx + rad * Math.cos(ang), y: cy + rad * Math.sin(ang), bx: cx, by: cy, split: i !== 0 });
-      });
+      const c = (byCity[m.city] = byCity[m.city] || { city: m.city, xs: 0, ys: 0, k: 0, n: 0, museums: [] });
+      const n = counts[m.id] || 0; c.xs += x; c.ys += y; c.k++; c.n += n;
+      c.museums.push({ id: m.id, name: m.name.replace(/\s*\(.*\)$/, ""), x, y, n });
     }
-    // global anti-overlap pass (Fuad 2026-07-13): the grid declusters same-cell museums, but
-    // neighbouring-cell bubbles could still collide. A few relaxation rounds push any pair
-    // apart to the sum of their rendered radii (r matches the render formula below).
-    const rOf = (p) => p.n ? 3 + Math.sqrt(p.n) * 1.9 : 2.2;
-    for (let it = 0; it < 24; it++) {
+    const arr = Object.values(byCity).map(c => ({ ...c, x: c.xs / c.k, y: c.ys / c.k }));
+    // light relaxation only — cities rarely collide; radii are small and drift is hard-clamped to
+    // 5 units so a city can never leave its spot even where two are close (e.g. European neighbours).
+    for (const c of arr) { c.ox = c.x; c.oy = c.y; }
+    const rOf = c => 1.4 + Math.sqrt(c.n) * 0.8;
+    for (let it = 0; it < 30; it++) {
       let moved = false;
-      for (let i = 0; i < out.length; i++) for (let j = i + 1; j < out.length; j++) {
-        const a = out[i], b = out[j];
-        const min = rOf(a) + rOf(b) + 0.6;
+      for (let i = 0; i < arr.length; i++) for (let j = i + 1; j < arr.length; j++) {
+        const a = arr[i], b = arr[j], min = rOf(a) + rOf(b) + 0.6;
         let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy);
-        if (d >= min) continue;
-        if (d < 0.01) { dx = 0.5; dy = 0.3; d = Math.hypot(dx, dy); }
-        const push = (min - d) / d / 2;
-        a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push;
-        moved = true;
+        if (d >= min) continue; if (d < 0.01) { dx = 0.5; dy = 0.3; d = Math.hypot(dx, dy); }
+        const push = (min - d) / d / 2; a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push; moved = true;
       }
+      for (const c of arr) { c.x += (c.ox - c.x) * 0.3; c.y += (c.oy - c.y) * 0.3; const ex = c.x - c.ox, ey = c.y - c.oy, e = Math.hypot(ex, ey); if (e > 5) { c.x = c.ox + ex / e * 5; c.y = c.oy + ey / e * 5; } }
       if (!moved) break;
     }
-    return out;
+    const map = {}; for (const c of arr) map[c.city] = c;
+    return { list: arr, byCity: map };
   }, []);
   // pilgrimage layer: wish works placed at their holding museum, fanned out so a shared venue spreads
   const { wishMarkers, wishList } = useMemo(() => {
@@ -1133,6 +1125,39 @@ function MapView({ go }) {
   const [hover, setHover] = useState(null);
   const k = vb.w / 880;
   const commit = (next) => { vbRef.current = next; if (!raf.current) raf.current = requestAnimationFrame(() => { raf.current = 0; setVb(vbRef.current); }); };
+  // ——— branching: click a city → it fans out to its museums, and each museum to the loved/liked
+  // works you saw there (hover a work for a preview, click to open). Pure geometry in map units;
+  // focusing auto-zooms the viewBox to frame the branch. (Fuad 2026-07-14)
+  const [focus, setFocus] = useState(null);
+  const branch = useMemo(() => {
+    if (!focus) return null;
+    const c = cities.byCity[focus]; if (!c) return null;
+    const museums = c.museums.filter(m => m.n > 0);
+    const nm = museums.length || 1;
+    const RM = 10 + nm * 1.7;                                   // museum-ring radius (map units)
+    const nodes = museums.map((m, i) => {
+      const ang = -Math.PI / 2 + (i / nm) * 2 * Math.PI;
+      const mx = c.x + RM * Math.cos(ang), my = c.y + RM * Math.sin(ang);
+      const works = WORKS.map(enrich).filter(w => !w.wish && (w.floored || w.liked) &&
+        (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt]).includes(m.id));
+      const nw = works.length, RW = Math.min(3 + nw * 0.32, 8);
+      const wnodes = works.map((w, j) => {
+        const wa = (j / Math.max(nw, 1)) * 2 * Math.PI + ang;   // ring the works around the museum
+        const rr = RW + (j % 2) * 1.4;                          // 2-row stagger to reduce touching
+        return { w, x: mx + rr * Math.cos(wa), y: my + rr * Math.sin(wa) };
+      });
+      return { m, x: mx, y: my, wnodes, nw };
+    });
+    return { c, nodes };
+  }, [focus]);
+  const focusCity = (c) => {
+    setFocus(c.city);
+    const nm = c.museums.filter(m => m.n > 0).length || 1;
+    const half = Math.max(34, 10 + nm * 1.7 + 13);             // frame museum ring + works + margin
+    const w = half * 2, h = w * AR;
+    commit({ x: c.x - half, y: c.y - h / 2, w, h });
+  };
+  const clearFocus = () => { setFocus(null); setHover(null); commit(HOME); };
   React.useEffect(() => {
     const el = svgRef.current; if (!el) return;
     const onWheel = (e) => {
@@ -1152,39 +1177,63 @@ function MapView({ go }) {
 
   return (
     <div className="cv-map">
-      <p className="cv-deck-sum">Museums pinned where they stand, sized by how much of the canon they gave you; the <b style={{ color: "oklch(0.55 0.19 18)" }}>♥ markers</b> are works you're still chasing — hover for a look, click to open. Scroll to zoom, drag to pan.</p>
+      <p className="cv-deck-sum">Every city where a work entered your canon, sized by how much it gave you — <b>click a city</b> to branch out to its museums and the works you loved there (hover a work for a look). The <b style={{ color: "oklch(0.55 0.19 18)" }}>♥ markers</b> are works you're still chasing. Scroll to zoom, drag to pan.</p>
       <div className="cv-map-wrap" onMouseLeave={stop}>
         <svg ref={svgRef} viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
           onMouseDown={onDown} onMouseMove={onMove} onMouseUp={stop}>
           {landPath && <path d={landPath} fill="#d3c4ab" stroke="none" />}
-          {pins.filter(p => p.split).map(p => <line key={"l" + p.id} x1={p.bx} y1={p.by} x2={p.x} y2={p.y} stroke="rgba(58,47,34,.35)" strokeWidth={0.4 * k} />)}
-          {pins.map(p => (
-            <g key={p.id} className="cv-pin" onClick={() => go("museums")}>
-              <circle cx={p.x} cy={p.y} r={(p.n ? 3 + Math.sqrt(p.n) * 1.9 : 2.2) * k}
-                fill={p.n ? "oklch(0.55 0.13 46 / .82)" : "rgba(58,47,34,.45)"} stroke="#f4ecdf" strokeWidth={0.8 * k} />
-              <title>{p.name}, {p.city} — {p.n ? p.n + " work" + (p.n > 1 ? "s" : "") + " in the canon" : "visited"}</title>
-              {p.n >= 4 && !p.split && <text x={p.x} y={p.y - (4 + Math.sqrt(p.n) * 1.9) * k} textAnchor="middle" style={{ fontSize: 8.5 * k }}>{p.city}</text>}
+          {/* DEFAULT: one bubble per city (click to branch) + the ♥ works you're still chasing */}
+          {!focus && cities.list.map(c => (
+            <g key={c.city} className="cv-pin" onClick={() => focusCity(c)} style={{ cursor: "pointer" }}>
+              <circle cx={c.x} cy={c.y} r={(c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1) * k}
+                fill={c.n ? "oklch(0.55 0.13 46 / .82)" : "rgba(58,47,34,.45)"} stroke="#f4ecdf" strokeWidth={0.6 * k} />
+              <title>{c.city} — {c.n} work{c.n !== 1 ? "s" : ""} · {c.museums.length} museum{c.museums.length !== 1 ? "s" : ""}{c.n ? " · click to open" : ""}</title>
+              {c.n >= 8 && <text x={c.x} y={c.y - (2.4 + Math.sqrt(c.n) * 0.8) * k} textAnchor="middle" style={{ fontSize: 8 * k }}>{c.city}</text>}
             </g>
           ))}
-          {wishMarkers.map((mk, i) => (
+          {!focus && wishMarkers.map((mk, i) => (
             <g key={mk.w.id + "-" + i} className="cv-wishpin" onClick={() => go("work", mk.w.id)}
               onMouseEnter={e => setHover({ w: mk.w, mx: e.clientX, my: e.clientY, venue: mk.venue, city: mk.city })}
               onMouseMove={e => setHover(h => h && h.w === mk.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
               onMouseLeave={() => setHover(null)}>
               {(mk.x !== mk.bx || mk.y !== mk.by) && <line x1={mk.bx} y1={mk.by} x2={mk.x} y2={mk.y} stroke="oklch(0.55 0.19 18 / .4)" strokeWidth={0.5 * k} />}
-              <circle cx={mk.x} cy={mk.y} r={2.4 * k} fill="oklch(0.55 0.19 18 / .9)" stroke="#f7efe2" strokeWidth={0.7 * k} />
+              <circle cx={mk.x} cy={mk.y} r={2 * k} fill="oklch(0.55 0.19 18 / .9)" stroke="#f7efe2" strokeWidth={0.6 * k} />
             </g>
           ))}
+          {/* FOCUSED: the branch — city → museums → the loved/liked works you saw at each */}
+          {branch && (
+            <g className="cv-branch">
+              {branch.nodes.map(nd => <line key={"cm" + nd.m.id} x1={branch.c.x} y1={branch.c.y} x2={nd.x} y2={nd.y} stroke="rgba(58,47,34,.5)" strokeWidth={0.5 * k} />)}
+              {branch.nodes.map(nd => nd.wnodes.map((wn, j) => (
+                <g key={nd.m.id + "-w" + j} className="cv-wishpin" onClick={() => go("work", wn.w.id)}
+                  onMouseEnter={e => setHover({ w: wn.w, mx: e.clientX, my: e.clientY, venue: nd.m.name, city: branch.c.city, seen: true })}
+                  onMouseMove={e => setHover(h => h && h.w === wn.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
+                  onMouseLeave={() => setHover(null)}>
+                  <line x1={nd.x} y1={nd.y} x2={wn.x} y2={wn.y} stroke="rgba(58,47,34,.26)" strokeWidth={0.3 * k} />
+                  <circle cx={wn.x} cy={wn.y} r={(wn.w.floored ? 1.5 : 1.1) * k}
+                    fill={wn.w.floored ? "oklch(0.55 0.19 18 / .92)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.4 * k} />
+                </g>
+              )))}
+              {branch.nodes.map(nd => (
+                <g key={"m" + nd.m.id} onClick={() => go("deck", nd.m.id)} style={{ cursor: "pointer" }}>
+                  <circle cx={nd.x} cy={nd.y} r={2.4 * k} fill="oklch(0.5 0.14 46 / .95)" stroke="#f4ecdf" strokeWidth={0.7 * k} />
+                  <text x={nd.x} y={nd.y - 3.4 * k} textAnchor="middle" style={{ fontSize: 6.2 * k, fontWeight: 600 }}>{nd.m.name}</text>
+                </g>
+              ))}
+              <circle cx={branch.c.x} cy={branch.c.y} r={3.2 * k} fill="oklch(0.42 0.15 30 / .96)" stroke="#f4ecdf" strokeWidth={0.9 * k} />
+              <text x={branch.c.x} y={branch.c.y + 1.5 * k} textAnchor="middle" style={{ fontSize: 5.6 * k, fontWeight: 700, fill: "#f4ecdf" }}>{branch.c.city}</text>
+            </g>
+          )}
         </svg>
         {hover && (
           <div className="cv-map-preview" style={{ left: hover.mx + 16, top: hover.my + 16 }}>
             {hover.w.imgGrid && <img src={hover.w.imgGrid} alt="" />}
             <div className="cv-map-preview-t">{hover.w.title}</div>
             <div className="cv-map-preview-s">{hover.w.artist.replace(/\s*\(.*\)$/, "")}{hover.w.year ? " · " + hover.w.year : ""}</div>
-            {hover.venue && <div className="cv-map-preview-s">to see at {hover.venue}, {hover.city}</div>}
+            {hover.venue && <div className="cv-map-preview-s">{hover.seen ? "seen at " : "to see at "}{hover.venue}, {hover.city}</div>}
           </div>
         )}
-        {vb.w < 880 && <button className="cv-map-reset" onClick={() => setVb({ x: 60, y: 40, w: 880, h: 380 })}>reset view</button>}
+        {(focus || vb.w < 880) && <button className="cv-map-reset" onClick={clearFocus}>{focus ? "← all cities" : "reset view"}</button>}
       </div>
       <div className="cv-map-legend"><span><i className="lg-seen" /> museums you've walked</span><span><i className="lg-wish" /> works you're chasing</span></div>
       <div className="cv-trips">
