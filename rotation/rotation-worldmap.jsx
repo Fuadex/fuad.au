@@ -181,7 +181,14 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
   const fishRaf = React.useRef(0);
 const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shrink further when deep-zoomed (Fuad 2026-07-12)
   const FISH_R_PX = 45, FISH_MAXK = 1.22;
-  const resetFisheye = () => { const el = svgRef.current; if (!el) return; const s = viewRef.current.s; for (const c of el.querySelectorAll(".mp-bub")) { const r0 = +c.dataset.r0; if (r0) { c.style.transition = ""; c.setAttribute("r", (r0 / Math.pow(s, mpRadExp(s))).toFixed(3)); } } };
+  // Two transition modes for the bubbles (Fuad 2026-07-15 — the size/colour morphs stopped firing
+  // after the first hover because reset left transition="" forever): IDLE animates r on a data
+  // change (year scrub / mode); FISH turns r off so the cursor fisheye drives r per frame without
+  // lag. fishOn flips them ONCE per engage/reset instead of every frame.
+  const FISH_TR = "fill .5s, fill-opacity .12s";
+  const IDLE_TR = "r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s";
+  const fishOn = React.useRef(false);
+  const resetFisheye = () => { const el = svgRef.current; if (!el) return; const s = viewRef.current.s; for (const c of el.querySelectorAll(".mp-bub")) { const r0 = +c.dataset.r0; if (r0) { c.style.transition = IDLE_TR; c.setAttribute("r", (r0 / Math.pow(s, mpRadExp(s))).toFixed(3)); } } fishOn.current = false; };
   const runFisheye = (cx, cy) => {
     const el = svgRef.current; if (!el) return;
     // never during a gesture (pan/pinch) — the transform write owns the frame then
@@ -198,12 +205,13 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
       // fisheye radius: FISH_R_PX screen px → viewBox units (W/rect.width) → model units (÷s)
       const rr = FISH_R_PX * (W / rect.width) / v.s;
       const inv = 1 / rr, sk = 1 / Math.pow(v.s, mpRadExp(v.s));
-      for (const c of el.querySelectorAll(".mp-bub")) {
+      const bubs = el.querySelectorAll(".mp-bub");
+      if (!fishOn.current) { for (const c of bubs) c.style.transition = FISH_TR; fishOn.current = true; }  // r off while the fisheye drives
+      for (const c of bubs) {
         const bx = +c.dataset.cx, by = +c.dataset.cy, r0 = +c.dataset.r0;
         if (!r0) continue;
         const dnorm = Math.hypot((bx - mvx) * inv, (by - mvy) * inv);   // 0 at cursor, 1 at edge
         const k = dnorm >= 1 ? 1 : 1 + (FISH_MAXK - 1) * (1 - dnorm) * (1 - dnorm);
-        if (c.style.transition === "") c.style.transition = "fill .5s, fill-opacity .12s";  // r transitions off while the fisheye drives
         c.setAttribute("r", (r0 * sk * k).toFixed(3));
       }
     });

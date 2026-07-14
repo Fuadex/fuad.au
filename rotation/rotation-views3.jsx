@@ -2165,7 +2165,10 @@ function useTourMapNav(svgRef, gRef, dotSel) {
     const ds = (targetDots && targetDots.length) ? targetDots : allDots;
     if (!ds || !ds.length) return;
     let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
-    for (const d of ds) { x0 = Math.min(x0, d.x - d.r); y0 = Math.min(y0, d.y - d.r); x1 = Math.max(x1, d.x + d.r); y1 = Math.max(y1, d.y + d.r); }
+    // r may be absent (region-box corner points {x,y} passed by the initial Europe fit + the market
+    // chips) — treat as 0, else d.x - undefined = NaN poisons the whole transform (Fuad 2026-07-15:
+    // this was the "translate(NaN NaN)" that killed pan/zoom and the Sydney/Berlin buttons).
+    for (const d of ds) { const r = d.r || 0; x0 = Math.min(x0, d.x - r); y0 = Math.min(y0, d.y - r); x1 = Math.max(x1, d.x + r); y1 = Math.max(y1, d.y + r); }
     let w = x1 - x0, h = y1 - y0;
     const padX = Math.max(w * 0.18, 40), padY = Math.max(h * 0.18, 40);
     x0 -= padX; y0 -= padY; w += padX * 2; h += padY * 2;
