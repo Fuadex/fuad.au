@@ -162,9 +162,21 @@ function useZoom(W, H) {
     return () => { el.removeEventListener("wheel", onWheel); if (raf.current) cancelAnimationFrame(raf.current); };
   }, [W, H]);
   const drag = React.useRef(null);
-  const onDown = (e) => { if (e.button !== 0) return; drag.current = { mx: e.clientX, my: e.clientY, v: vbRef.current }; };
-  const onMove = (e) => { if (!drag.current || !ref.current) return; const r = ref.current.getBoundingClientRect(), d = drag.current; commit({ ...d.v, x: d.v.x - (e.clientX - d.mx) / r.width * d.v.w, y: d.v.y - (e.clientY - d.my) / r.height * d.v.h }); };
-  const onUp = () => { drag.current = null; };
+  const onDown = (e) => { if (e.button !== 0) return; drag.current = { mx: e.clientX, my: e.clientY, v: vbRef.current, lx: null, ly: null }; };
+  // PAN PERF (Fuad 2026-07-15): panning used to commit the viewBox every frame, which forces the
+  // browser to repaint ALL ~3.9k dots each move. Instead, translate the whole svg with a cheap
+  // GPU-composited CSS transform DURING the drag and commit the equivalent viewBox shift only on
+  // release (the fisheye is paused while dragging, so nothing reads the viewBox mid-gesture).
+  const onMove = (e) => { const d = drag.current; if (!d || !ref.current) return; d.lx = e.clientX; d.ly = e.clientY; ref.current.style.transform = `translate(${e.clientX - d.mx}px, ${e.clientY - d.my}px)`; };
+  const onUp = () => {
+    const d = drag.current; drag.current = null; const el = ref.current; if (!d || !el) return;
+    if (d.lx == null) { el.style.transform = ""; return; }   // a click, no pan
+    const r = el.getBoundingClientRect();
+    const nv = { ...d.v, x: d.v.x - (d.lx - d.mx) / r.width * d.v.w, y: d.v.y - (d.ly - d.my) / r.height * d.v.h };
+    el.setAttribute("viewBox", `${nv.x} ${nv.y} ${nv.w} ${nv.h}`);   // apply the real pan…
+    el.style.transform = "";                                         // …and drop the CSS pan in the same frame (no jump)
+    commit(nv);
+  };
   const reset = () => commit({ x: 0, y: 0, w: W, h: H });
   // live numeric viewBox [x,y,w,h] for the fisheye (mid-gesture-correct, reads vbRef not state);
   // draggingRef lets a chart tell the fisheye to pause while the pan drag is active.
@@ -1458,34 +1470,40 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
   const px = (x) => pad + x * (W - pad * 2);
   const py = (y) => H - pad - y * (H - pad * 2);
   const z = useZoom(W, H);
-  // bubbles don't ride the zoom factor, so memoizing them makes wheel-zoom (viewBox only)
-  // reconcile nothing — no per-frame rebuild of ~200 subgenre marks (Fuad 2026-07-09).
-  // bubble radius rides the inverse zoom (× z.k) so it stays a constant SCREEN size instead of
-  // ballooning with the viewBox when you zoom in (Fuad 2026-07-15). z.k only changes on zoom steps,
-  // not on pan, so this memo still rebuilds nothing while dragging.
+  // cursor fisheye (same as the MOOD/subgenres scatter): radius rides --zk (inverse zoom → constant
+  // screen size, no ballooning) × --fk (fisheye growth near the cursor). Both are CSS vars so zoom
+  // and fisheye rescale marks natively without React re-reconciling ~200 bubbles (Fuad 2026-07-15).
+  const fish = useFisheye(z.bind.ref, z.vbRef, ".xp-fdot", z.draggingRef);
   const bubbles = React.useMemo(() => subs.map((s, i) => {
         const present = s.w > 0;
         const baseR = present ? 9 + (s.w / maxW) * 42 : 0;
-        const r = baseR * z.k;
         const on = activeSub ? activeSub === s.name : (activeFam != null && s.fam === activeFam);
         const dim = activeSub ? activeSub !== s.name : (activeFam != null && s.fam !== activeFam);
+        const foc = hi && hi.name === s.name;                        // the bubble under the cursor
         const col = expressive ? `oklch(0.62 0.17 ${s.hue})` : "var(--accent)";
+        const baseFs = Math.min(13, baseR / 3.2);
         return (
           <g key={s.name} style={{ cursor: present ? "pointer" : "default", opacity: seen ? (present ? (dim ? 0.14 : 1) : 0) : 0,
             transition: `opacity .45s cubic-bezier(.3,.8,.3,1) ${i * 0.008}s`, pointerEvents: present ? "auto" : "none" }}
             onMouseEnter={() => setHi(s)}
             onClick={() => onPick(s.name)} onMouseLeave={() => setHi(null)}>
             {/* transparent min-size hit target so even tiny subgenres are clickable/hoverable */}
-            <circle cx={px(s.x)} cy={py(s.y)} r={Math.max(r, 10 * z.k)} fill="transparent" />
-            <circle cx={px(s.x)} cy={py(s.y)} r={r} fill={col} fillOpacity={on ? .5 : (expressive ? .28 : .14)} stroke={col} strokeWidth={on ? 2.2 : 1.4} style={{ transition: "r .55s cubic-bezier(.3,.8,.3,1), fill-opacity .2s" }} />
-            {baseR > 17 && <text x={px(s.x)} y={py(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontSize={Math.min(13, baseR / 3.2) * z.k} fontFamily="var(--sans)" fontWeight="500" style={{ pointerEvents: "none", transition: "font-size .55s" }}>{s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
+            <circle className="xp-fdot" data-cx={px(s.x).toFixed(1)} data-cy={py(s.y).toFixed(1)} cx={px(s.x)} cy={py(s.y)} fill="transparent" style={{ r: `calc(${Math.max(baseR, 14).toFixed(2)}px * var(--zk) * var(--fk, 1))` }} />
+            {/* hover: a distinct scale-up + fill-opacity bump (still translucent), both transitioned —
+                done via CSS transform/opacity so they never fight the fisheye's per-frame --fk writes */}
+            <circle className="xp-fdot" data-cx={px(s.x).toFixed(1)} data-cy={py(s.y).toFixed(1)} cx={px(s.x)} cy={py(s.y)} fill={col}
+              fillOpacity={foc ? .46 : on ? .5 : (expressive ? .28 : .14)} stroke={col} strokeWidth={on || foc ? 2.4 : 1.4} vectorEffect="non-scaling-stroke"
+              style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, transformBox: "fill-box", transformOrigin: "center", transform: foc ? "scale(1.18)" : "scale(1)", transition: "transform .2s cubic-bezier(.3,.8,.3,1), fill-opacity .2s, stroke-width .2s" }} />
+            {baseR > 17 && <text x={px(s.x)} y={py(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontFamily="var(--sans)" fontWeight="500" style={{ pointerEvents: "none", fontSize: `calc(${baseFs.toFixed(2)}px * var(--zk))` }}>{s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
           </g>
         );
-      }), [subs, maxW, activeSub, activeFam, expressive, seen, onPick, z.k]);
+      }), [subs, maxW, activeSub, activeFam, expressive, seen, onPick, hi]);
   return (
     <div style={{ position: "relative" }}>
       <ZoomReset z={z} />
-    <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation" }}>
+    <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }}
+      onMouseMove={(e) => { z.bind.onMouseMove(e); fish.run(e.clientX, e.clientY); }}
+      onMouseLeave={() => { setHi(null); z.bind.onMouseUp(); fish.reset(); }}>
       {[.25, .5, .75].map(g => (<g key={g}>
         <line x1={px(g)} y1={pad} x2={px(g)} y2={H - pad} stroke="var(--rule)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
         <line x1={pad} y1={py(g)} x2={W - pad} y2={py(g)} stroke="var(--rule)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
