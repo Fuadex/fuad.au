@@ -13,5 +13,13 @@
   "Brutus": {
     "clearLife": true,
     "note": "Belgian post-hardcore trio (formed ~2013). MB matched an unrelated 1960s act → bogus 'since 1966' elder."
+  },
+  "Loathe": {
+    "origin": { "country": "GB", "area": "England", "city": "Liverpool" },
+    "note": "Liverpool metalcore/shoegaze band (formed ~2014). MB matched an unrelated Maltese 'Loathe' → wrongly placed the map bubble in Malta."
+  },
+  "Bloodywood": {
+    "origin": { "country": "IN", "area": "India", "city": "New Delhi" },
+    "note": "New Delhi folk-metal band. MB matched a wrong Chinese entity → the bubble landed in China."
   }
 }
