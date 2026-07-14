@@ -380,6 +380,29 @@ const CANON = new Map();
     for (const n of names) if ((_rawCount.get(n) || 0) > (_rawCount.get(rep) || 0)) rep = n;
     for (const n of names) if (n !== rep) CANON.set(n, rep);
   }
+  // second pass (Fuad 2026-07-14): a mbid-keyed artist and a NO-mbid decorated variant of the same
+  // name land in different groups above, so they never merge (e.g. "Deftones" [mbid] vs "♥ Deftones"
+  // scrobbled by a player that prepends a heart on loved tracks — same slug, shown as a duplicate).
+  // Fold any orphan no-mbid name onto the mbid-anchored artist that shares its normalised name.
+  const mbNorm = new Map();
+  for (const name of _rawCount.keys()) {
+    if (!(STATS[name] && STATS[name].mbid)) continue;
+    const nn = _normName(name); if (!nn) continue;
+    const cur = mbNorm.get(nn);
+    if (!cur || (_rawCount.get(name) || 0) > (_rawCount.get(cur) || 0)) mbNorm.set(nn, name);
+  }
+  for (const name of _rawCount.keys()) {
+    if (CANON.has(name) || (STATS[name] && STATS[name].mbid)) continue;
+    const rep = mbNorm.get(_normName(name));
+    if (rep && rep !== name) CANON.set(name, rep);
+  }
+  // flatten chains to a fixed point — canon() applies the map only once, so a two-hop variant like
+  // "♥️ deftones" → "♥ Deftones" → "Deftones" would otherwise strand the middle name as a phantom.
+  for (const k of [...CANON.keys()]) {
+    let v = CANON.get(k); const seen = new Set([k]);
+    while (CANON.has(v) && !seen.has(v)) { seen.add(v); v = CANON.get(v); }
+    CANON.set(k, v);
+  }
 }
 // ─────────── hand fixes (Fuad's verdicts, 2026-07-13) ───────────
 // Merges the mbid/name grouping can't see (genuinely different names, same act):
