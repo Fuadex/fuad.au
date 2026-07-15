@@ -243,11 +243,12 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
   const toSvg = (cx, cy) => { const el = svgRef.current; if (!el) return [W / 2, Hh / 2]; const r = el.getBoundingClientRect(); if (!r.width || !r.height) return [W / 2, Hh / 2]; return [(cx - r.left) / r.width * W, (cy - r.top) / r.height * Hh]; };
   React.useEffect(() => {
     const el = svgRef.current; if (!el) return;
-    const onWheel = (e) => { e.preventDefault(); const [sx, sy] = toSvg(e.clientX, e.clientY); setView(v => { const ns = clamp(v.s * (e.deltaY < 0 ? 1.15 : 1 / 1.15), 1, 14); return { s: ns, x: sx - (sx - v.x) / v.s * ns, y: sy - (sy - v.y) / v.s * ns }; }); };
+    const onWheel = (e) => { e.preventDefault(); setViewAnim(false); const [sx, sy] = toSvg(e.clientX, e.clientY); setView(v => { const ns = clamp(v.s * (e.deltaY < 0 ? 1.15 : 1 / 1.15), 1, 14); return { s: ns, x: sx - (sx - v.x) / v.s * ns, y: sy - (sy - v.y) / v.s * ns }; }); };
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
   }, [world]);
   const onDown = (e) => {
+    setViewAnim(false);   // dragging must be instant, not eased
     ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY }); moved.current = false;
     if (ptrs.current.size === 1) drag.current = { x: e.clientX, y: e.clientY, vx: viewRef.current.x, vy: viewRef.current.y }; // mouse, or one finger when zoomed
   };
@@ -287,8 +288,11 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
     return () => { window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up); };
   }, []);
-  const frame = (bb) => { if (!bb) return; const [x0, y0, x1, y1] = bb, bw = Math.max(8, x1 - x0), bh = Math.max(8, y1 - y0), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2; const s = clamp(Math.min(W / (bw * 1.6), Hh / (bh * 1.6)), 1, 12); setView({ s, x: W / 2 - cx * s, y: Hh / 2 - cy * s }); };
-  const reset = () => { setFocus(null); setSel(null); setView({ s: 1, x: 0, y: 0 }); };
+  // smooth the <g> transform for PROGRAMMATIC zooms (fly into a clicked country, zoom back out on
+  // deactivate) but keep it OFF during interactive pan/wheel so those stay instant (Fuad 2026-07-15).
+  const setViewAnim = (on) => { const g = gRef.current; if (g) g.style.transition = on ? "transform .6s cubic-bezier(.3,.8,.3,1)" : "none"; };
+  const frame = (bb) => { if (!bb) return; const [x0, y0, x1, y1] = bb, bw = Math.max(8, x1 - x0), bh = Math.max(8, y1 - y0), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2; const s = clamp(Math.min(W / (bw * 1.6), Hh / (bh * 1.6)), 1, 12); setViewAnim(true); setView({ s, x: W / 2 - cx * s, y: Hh / 2 - cy * s }); };
+  const reset = () => { setFocus(null); setSel(null); setViewAnim(true); setView({ s: 1, x: 0, y: 0 }); };
 
   // genre pivot — sum every place's plays for the selected family/subgenre (membership-based, like Explore).
   // year-aware: when a year is active we sum that year's plays (a.yp) so genre × year combine.
@@ -472,9 +476,13 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     let fi; if (yearIdx != null) fi = c.yf ? c.yf[yearIdx] : -1; else fi = colorBy === "top" ? c.tf : c.df; return (fi >= 0 && FAMHUE[fi] != null) ? `oklch(0.63 0.17 ${FAMHUE[fi]})` : "var(--accent)";
   };
   const openBubble = (b) => {
-    // clicking the already-selected place again clears it (Fuad: needs an obvious way out)
-    if (b.kind === "city" && sel && sel.kind === "city" && sel.key === b.c.country + "|" + b.c.city) { setSel(null); return; }
-    if (b.kind === "country") { setFocus(b.c.code); frame(world.bbox[b.c.code]); setSel({ kind: "country", key: b.c.code }); }
+    // clicking the already-selected place again DEACTIVATES it and zooms back out to the world
+    // (Fuad 2026-07-15 — needs an obvious way out, and the zoom should reverse).
+    if (b.kind === "city" && sel && sel.kind === "city" && sel.key === b.c.country + "|" + b.c.city) { reset(); return; }
+    if (b.kind === "country") {
+      if (sel && sel.kind === "country" && sel.key === b.c.code) { reset(); return; }   // click again → zoom out
+      setFocus(b.c.code); frame(world.bbox[b.c.code]); setSel({ kind: "country", key: b.c.code });
+    }
     else setSel({ kind: "city", key: b.c.country + "|" + b.c.city });
     setPane("artists");
   };
