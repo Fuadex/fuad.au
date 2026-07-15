@@ -2126,7 +2126,7 @@ function TourCal({ events, gran, setGran, selKey, setSelKey, keyOf }) {
 // lives in ("0 70 1000 315"). MINK/MAXK bound the zoom.
 const TMAP_VB = { x: 0, y: 70, w: 1000, h: 315 };
 const TMAP_MINK = 1, TMAP_MAXK = 14;
-function useTourMapNav(svgRef, gRef, dotSel) {
+function useTourMapNav(svgRef, gRef, dotSel, ready) {
   const [tf, setTf] = React.useState({ k: 1, x: 0, y: 0 });   // committed g transform
   const tfRef = React.useRef(tf);
   React.useEffect(() => { tfRef.current = tf; }, [tf]);
@@ -2312,7 +2312,7 @@ function useTourMapNav(svgRef, gRef, dotSel) {
     window.addEventListener("pointerup", onUp);
     window.addEventListener("pointercancel", onUp);
     return () => { svg.removeEventListener("wheel", onWheel); window.removeEventListener("pointermove", onMove); window.removeEventListener("pointerup", onUp); window.removeEventListener("pointercancel", onUp); };
-  }, [world]);   // must re-run once the map actually renders — on first mount world is null so the svg
+  }, [ready]);   // must re-run once the map actually renders — on first mount the svg isn't in the DOM
                  // isn't in the DOM, the effect early-returns, and the wheel/pan listeners never attach
                  // (the +/- buttons worked because they're React onClick handlers). Fuad 2026-07-15.
   const onDown = (e) => {
@@ -2365,7 +2365,7 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes, focus }) {
     for (const c of arr) { c.hue = c.hues.size ? [...c.hues.entries()].sort((a, b) => b[1] - a[1])[0][0] : null; c.r = 2 + Math.sqrt(c.n) * 1.15; }
     return arr.sort((a, b) => b.n - a.n);
   }, [events]);
-  const nav = useTourMapNav(svgRef, gRef, ".gv-tmap-hit");
+  const nav = useTourMapNav(svgRef, gRef, ".gv-tmap-hit", !!world);
   const { tf } = nav;
   // start zoomed on EUROPE (Fuad 2026-07-14: Berlin as the default vantage), and fly to a
   // market region whenever a market chip above the map is clicked (`focus` prop).
