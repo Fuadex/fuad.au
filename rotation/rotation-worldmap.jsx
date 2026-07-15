@@ -408,13 +408,17 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     }
     return cc.size ? { cc, ci } : null;
   }, [periodData, R]);
+  // only plot country bubbles that actually have artists in EXPLORE — else a country whose only
+  // artists fall below the EXPLORE cutoff (e.g. Jamaica/Morocco with a single low-play act) shows a
+  // bubble that clicks through to an empty Results list (Fuad 2026-07-15).
+  const exploreCC = React.useMemo(() => new Set((R.EXPLORE || []).map(a => a.co).filter(Boolean)), [R]);
   const bubbles = React.useMemo(() => {
     if (!world) return [];
     const proj = (c) => [(c.lng + 180) / 360 * world.w, (90 - c.lat) / 180 * world.h];
     let set, kind, base, scale, project;
     if (focus) { set = cityPts.filter(c => c.country === focus); kind = "city"; base = 2; scale = 16; project = proj; }
     else if (mode === "city") { set = cityPts; kind = "city"; base = 2.5; scale = 24; project = proj; }
-    else { const C = world.centroids; set = G.countries.filter(c => C[c.code]); kind = "country"; base = 4; scale = 28; project = (c) => C[c.code]; }
+    else { const C = world.centroids; set = G.countries.filter(c => C[c.code] && exploreCC.has(c.code)); kind = "country"; base = 4; scale = 28; project = (c) => C[c.code]; }
     const mx = Math.max(1, ...set.map(sizeOf));
     return set.map((c, i) => { const [x, y] = project(c); const sv = sizeOf(c); const r = ((yearIdx != null || filtSums) && sv === 0) ? 0 : base + Math.sqrt(sv / mx) * scale; return { key: kind === "country" ? c.code : "c" + i, kind, x, y, r, c }; });
   }, [world, mode, focus, yearIdx, filtSums, R]);
