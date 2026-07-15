@@ -1,4 +1,10 @@
 {
+ "171": {
+  "country": "JP",
+  "city": "Tokyo",
+  "lat": 35.6762,
+  "lng": 139.6503
+ },
  "_doc": "Verified true origins (Sonnet-assisted, Fuad 2026-07-15) overriding wrong/city-less MusicBrainz origins. name -> {country ISO2, city, lat, lng}. build-data merges lat/lng into the gazetteer and consults these first.",
  "God Is an Astronaut": {
   "country": "IE",
@@ -635,5 +641,557 @@
   "city": "Osaka",
   "lat": 34.6937,
   "lng": 135.5023
+ },
+ "Heart of a Coward": {
+  "country": "GB",
+  "city": "Milton Keynes",
+  "lat": 52.0406,
+  "lng": -0.7594
+ },
+ "Toothgrinder": {
+  "country": "US",
+  "city": "New Jersey",
+  "lat": 40.0583,
+  "lng": -74.4057
+ },
+ "Martin Stig Andersen": {
+  "country": "DK",
+  "city": "Aarhus",
+  "lat": 56.1629,
+  "lng": 10.2039
+ },
+ "Oni": {
+  "country": "US",
+  "city": "Phoenix",
+  "lat": 33.4484,
+  "lng": -112.074
+ },
+ "Fizzy Blood": {
+  "country": "GB",
+  "city": "Leeds",
+  "lat": 53.8008,
+  "lng": -1.5491
+ },
+ "THE ORAL CIGARETTES": {
+  "country": "JP",
+  "city": "Nara",
+  "lat": 34.6851,
+  "lng": 135.8048
+ },
+ "Oddko": {
+  "country": "US",
+  "city": "Los Angeles",
+  "lat": 34.0522,
+  "lng": -118.2437
+ },
+ "Teenage Wrist": {
+  "country": "US",
+  "city": "Los Angeles",
+  "lat": 34.0522,
+  "lng": -118.2437
+ },
+ "a flood of circle": {
+  "country": "JP",
+  "city": "Tokyo",
+  "lat": 35.6762,
+  "lng": 139.6503
+ },
+ "South Central": {
+  "country": "GB",
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278
+ },
+ "Crystal Lake": {
+  "country": "JP",
+  "city": "Tokyo",
+  "lat": 35.6762,
+  "lng": 139.6503
+ },
+ "Bad Nerves": {
+  "country": "GB",
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278
+ },
+ "Anup Sastry": {
+  "country": "US",
+  "city": "Seattle",
+  "lat": 47.6062,
+  "lng": -122.3321
+ },
+ "Straightener": {
+  "country": "JP",
+  "city": "Tokyo",
+  "lat": 35.6762,
+  "lng": 139.6503
+ },
+ "Strawberry Girls": {
+  "country": "US",
+  "city": "San Francisco",
+  "lat": 37.7749,
+  "lng": -122.4194
+ },
+ "I Built the Sky": {
+  "country": "AU",
+  "city": "Sydney",
+  "lat": -33.8688,
+  "lng": 151.2093
+ },
+ "Another Animal": {
+  "country": "US",
+  "city": "Lansing",
+  "lat": 42.7325,
+  "lng": -84.5555
+ },
+ "Delta Sleep": {
+  "country": "GB",
+  "city": "Brighton",
+  "lat": 50.8229,
+  "lng": -0.1363
+ },
+ "Vexes": {
+  "country": "US",
+  "city": "Los Angeles",
+  "lat": 34.0522,
+  "lng": -118.2437
+ },
+ "Dance With the Dead": {
+  "country": "US",
+  "city": "Orange County",
+  "lat": 33.7175,
+  "lng": -117.8311
+ },
+ "Machine Gun Kelly": {
+  "country": "US",
+  "city": "Cleveland",
+  "lat": 41.4993,
+  "lng": -81.6944
+ },
+ "THE NOVEMBERS": {
+  "country": "JP",
+  "city": "Tokyo",
+  "lat": 35.6762,
+  "lng": 139.6503
+ },
+ "Polar": {
+  "country": "GB",
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278
+ },
+ "Imminence": {
+  "country": "SE",
+  "city": "Gothenburg",
+  "lat": 57.7089,
+  "lng": 11.9746
+ },
+ "The Album Leaf": {
+  "country": "US",
+  "city": "San Diego",
+  "lat": 32.7157,
+  "lng": -117.1611
+ },
+ "Art Vs Science": {
+  "country": "AU",
+  "city": "Sydney",
+  "lat": -33.8688,
+  "lng": 151.2093
+ },
+ "Spirit of the Beehive": {
+  "country": "US",
+  "city": "Philadelphia",
+  "lat": 39.9526,
+  "lng": -75.1652
+ },
+ "Normandie": {
+  "country": "SE",
+  "city": "Stockholm",
+  "lat": 59.3293,
+  "lng": 18.0686
+ },
+ "Tokky Horror": {
+  "country": "GB",
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278
+ },
+ "Daniel Avery": {
+  "country": "GB",
+  "city": "Bournemouth",
+  "lat": 50.7192,
+  "lng": -1.8808
+ },
+ "Teddy Killerz": {
+  "country": "RU",
+  "city": "Moscow",
+  "lat": 55.7558,
+  "lng": 37.6173
+ },
+ "Jutes": {
+  "country": "CA",
+  "city": "Toronto",
+  "lat": 43.6532,
+  "lng": -79.3832
+ },
+ "LLLL": {
+  "country": "JP",
+  "city": "Tokyo",
+  "lat": 35.6762,
+  "lng": 139.6503
+ },
+ "The Last Martyr": {
+  "country": "AU",
+  "city": "Melbourne",
+  "lat": -37.8136,
+  "lng": 144.9631
+ },
+ "Movements": {
+  "country": "US",
+  "city": "Orange County",
+  "lat": 33.7175,
+  "lng": -117.8311
+ },
+ "PIXEL GRIP": {
+  "country": "US",
+  "city": "Chicago",
+  "lat": 41.8781,
+  "lng": -87.6298
+ },
+ "Nitroverts": {
+  "country": "BY",
+  "city": "Minsk",
+  "lat": 53.9045,
+  "lng": 27.5615
+ },
+ "Rising Insane": {
+  "country": "DE",
+  "city": "Kaiserslautern",
+  "lat": 49.4441,
+  "lng": 7.7491
+ },
+ "Crosses": {
+  "country": "US",
+  "city": "Los Angeles",
+  "lat": 34.0522,
+  "lng": -118.2437
+ },
+ "Ocean Sleeper": {
+  "country": "AU",
+  "city": "Melbourne",
+  "lat": -37.8136,
+  "lng": 144.9631
+ },
+ "Dope Stars Inc.": {
+  "country": "IT",
+  "city": "Rome",
+  "lat": 41.9028,
+  "lng": 12.4964
+ },
+ "Julie": {
+  "country": "DK",
+  "city": "Aarhus",
+  "lat": 56.1629,
+  "lng": 10.2039
+ },
+ "Marmozets": {
+  "country": "GB",
+  "city": "Bingley",
+  "lat": 53.8481,
+  "lng": -1.8388
+ },
+ "Head Cloud": {
+  "country": "GB",
+  "city": "Grantham",
+  "lat": 52.9143,
+  "lng": -0.6407
+ },
+ "Lane 8": {
+  "country": "US",
+  "city": "San Francisco",
+  "lat": 37.7749,
+  "lng": -122.4194
+ },
+ "k?d": {
+  "country": "US",
+  "city": "Denver",
+  "lat": 39.7392,
+  "lng": -104.9903
+ },
+ "Vana": {
+  "country": "NZ",
+  "city": "Auckland",
+  "lat": -36.8509,
+  "lng": 174.7645
+ },
+ "Roadrunner United": {
+  "country": "US",
+  "city": "New York",
+  "lat": 40.7128,
+  "lng": -74.006
+ },
+ "Ylvis": {
+  "country": "NO",
+  "city": "Bergen",
+  "lat": 60.3913,
+  "lng": 5.3221
+ },
+ "LEAD HORIZON": {
+  "country": "RU",
+  "city": "Novosibirsk",
+  "lat": 54.9885,
+  "lng": 82.9207
+ },
+ "Space of Variations": {
+  "country": "UA",
+  "city": "Vinnytsia",
+  "lat": 49.2331,
+  "lng": 28.4682
+ },
+ "Hide": {
+  "country": "US",
+  "city": "Chicago",
+  "lat": 41.8781,
+  "lng": -87.6298
+ },
+ "Fluke": {
+  "country": "GB",
+  "city": "Hammersmith",
+  "lat": 51.4927,
+  "lng": -0.2339
+ },
+ "Age Factory": {
+  "country": "JP",
+  "city": "Nara",
+  "lat": 34.6851,
+  "lng": 135.8049
+ },
+ "Vildhjarta": {
+  "country": "SE",
+  "city": "Hudiksvall",
+  "lat": 61.728,
+  "lng": 17.1054
+ },
+ "Brooklyn Funk Essentials": {
+  "country": "US",
+  "city": "Brooklyn",
+  "lat": 40.6782,
+  "lng": -73.9442
+ },
+ "Eric Prydz": {
+  "country": "SE",
+  "city": "Stockholm",
+  "lat": 59.3293,
+  "lng": 18.0686
+ },
+ "S.O.D.": {
+  "country": "US",
+  "city": "New York City",
+  "lat": 40.7128,
+  "lng": -74.006
+ },
+ "Sentinel Beast": {
+  "country": "US",
+  "city": "Sacramento",
+  "lat": 38.5816,
+  "lng": -121.4944
+ },
+ "Spiderbait": {
+  "country": "AU",
+  "city": "Melbourne",
+  "lat": -37.8136,
+  "lng": 144.9631
+ },
+ "Marina": {
+  "country": "UA",
+  "city": "Vinnytsia",
+  "lat": 49.2331,
+  "lng": 28.4682
+ },
+ "Mike Candys": {
+  "country": "CH",
+  "city": "Zurich",
+  "lat": 47.3769,
+  "lng": 8.5417
+ },
+ "MD.45": {
+  "country": "US",
+  "city": "Los Angeles",
+  "lat": 34.0522,
+  "lng": -118.2437
+ },
+ "Holy Fawn": {
+  "country": "US",
+  "city": "Phoenix",
+  "lat": 33.4484,
+  "lng": -112.074
+ },
+ "Red Handed Denial": {
+  "country": "CA",
+  "city": "Toronto",
+  "lat": 43.6532,
+  "lng": -79.3832
+ },
+ "Kmac2021": {
+  "country": "GB",
+  "city": "Edinburgh",
+  "lat": 55.9533,
+  "lng": -3.1883
+ },
+ "downy": {
+  "country": "JP",
+  "city": "Osaka",
+  "lat": 34.6937,
+  "lng": 135.5023
+ },
+ "Daniel Tompkins": {
+  "country": "GB",
+  "city": "Nottingham",
+  "lat": 52.9548,
+  "lng": -1.1581
+ },
+ "Dollar": {
+  "country": "GB",
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278
+ },
+ "VOWWS": {
+  "country": "AU",
+  "city": "Sydney",
+  "lat": -33.8688,
+  "lng": 151.2093
+ },
+ "Sullivan King": {
+  "country": "US",
+  "city": "Los Angeles",
+  "lat": 34.0522,
+  "lng": -118.2437
+ },
+ "John Wolfhooker": {
+  "country": "CZ",
+  "city": "Prague",
+  "lat": 50.0755,
+  "lng": 14.4378
+ },
+ "Ivy Lab": {
+  "country": "GB",
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278
+ },
+ "Lazerpunk": {
+  "country": "HU",
+  "city": "Budapest",
+  "lat": 47.4979,
+  "lng": 19.0402
+ },
+ "Rawtekk": {
+  "country": "NO",
+  "city": "Oslo",
+  "lat": 59.9139,
+  "lng": 10.7522
+ },
+ "Irving Force": {
+  "country": "SE",
+  "city": "Stockholm",
+  "lat": 59.3293,
+  "lng": 18.0686
+ },
+ "Anavae": {
+  "country": "GB",
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278
+ },
+ "1000mods": {
+  "country": "GR",
+  "city": "Chiliomodi",
+  "lat": 37.85,
+  "lng": 22.9167
+ },
+ "H.U.V.A. Network": {
+  "country": "FR",
+  "city": "Paris",
+  "lat": 48.8566,
+  "lng": 2.3522
+ },
+ "Little People": {
+  "country": "GB",
+  "city": "Manchester",
+  "lat": 53.4808,
+  "lng": -2.2426
+ },
+ "Super Junky Monkey": {
+  "country": "JP",
+  "city": "Tokyo",
+  "lat": 35.6762,
+  "lng": 139.6503
+ },
+ "kx5": {
+  "country": "US",
+  "city": "Las Vegas",
+  "lat": 36.1699,
+  "lng": -115.1398
+ },
+ "Astronoid": {
+  "country": "US",
+  "city": "Boston",
+  "lat": 42.3601,
+  "lng": -71.0589
+ },
+ "October Drift": {
+  "country": "GB",
+  "city": "Taunton",
+  "lat": 51.015,
+  "lng": -3.1
+ },
+ "James Ivy": {
+  "country": "US",
+  "city": "New Jersey",
+  "lat": 40.0583,
+  "lng": -74.4057
+ },
+ "NEMOPHILA": {
+  "country": "JP",
+  "city": "Tokyo",
+  "lat": 35.6762,
+  "lng": 139.6503
+ },
+ "Madvillain": {
+  "country": "US",
+  "city": "Long Beach",
+  "lat": 33.7701,
+  "lng": -118.1937
+ },
+ "Cristobal Tapia de Veer": {
+  "country": "CL",
+  "city": "Santiago",
+  "lat": -33.4489,
+  "lng": -70.6693
+ },
+ "Shokran": {
+  "country": "RU",
+  "city": "Moscow",
+  "lat": 55.7558,
+  "lng": 37.6173
+ },
+ "Nujabes": {
+  "country": "JP",
+  "city": "Tokyo",
+  "lat": 35.6762,
+  "lng": 139.6503
+ },
+ "Deadlife": {
+  "country": "SE",
+  "city": "Linköping",
+  "lat": 58.4108,
+  "lng": 15.6214
+ },
+ "Suspended 4th": {
+  "country": "JP",
+  "city": "Tokyo",
+  "lat": 35.6762,
+  "lng": 139.6503
  }
 }
