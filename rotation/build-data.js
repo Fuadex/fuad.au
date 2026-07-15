@@ -3399,6 +3399,15 @@ const CORE = {
   // make each build's shards distinct AND keep core+shards version-consistent).
   BUILT: new Date().toISOString().slice(0, 16).replace(/[-:T]/g, ""),
 };
+// keep the world map coherent with the "N countries" stat: a country only counts if it has an
+// artist in EXPLORE (the map plots exactly those; a country whose only act is below the EXPLORE
+// cutoff — e.g. one 3-play artist — would show a bubble that clicks through to an empty Results
+// list). Filter GEOGRAPHY.countries to EXPLORE-represented countries and re-derive the count.
+if (GEOGRAPHY) {
+  const _exCC = new Set(EXPLORE.map(a => a.co).filter(Boolean));
+  GEOGRAPHY.countries = GEOGRAPHY.countries.filter(c => _exCC.has(c.code));
+  GEOGRAPHY.totalCountries = GEOGRAPHY.countries.length;
+}
 const REST = {
   EXPLORE, ALBUMS, AUDIO: AUDIO_OUT, ARTIST_CLOCK, SUB_ARTISTS, CLOCK_BY_YEAR,
 };
