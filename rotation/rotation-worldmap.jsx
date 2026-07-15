@@ -98,7 +98,7 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
   const _if = initFilter || {};   // seeded from the Overview hash (genre + mode); place-select is transient
 
   const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
-  const [mode, setMode] = React.useState(_if.mode || "city");   // cities are the default lens (Fuad, 2026-07-05)
+  const [mode, setMode] = React.useState(_if.mode || "country");   // countries are the default lens (Fuad, 2026-07-16)
   const [colorBy, setColorBy] = React.useState("dominant"); // dominant | top
   const [focus, setFocus] = React.useState(null);
   const [yearIdx, setYearIdx] = React.useState(null);       // null = all-time
