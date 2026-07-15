@@ -577,6 +577,8 @@ window.CANVAS_ARTWORKS = [
   { id: "priestess-of-delphi", title: "Priestess of Delphi", artist: "John Collier", artistId: "collier", qid: "Q28796765", qidTrusted: true, year: 1891, seenAt: "agsa", seenConfidence: "unsure", liked: true, note: "Deck pick — agsa-2026-07-15." },
   { id: "a-wijdschip-and-a-kaag-in-an-inlet-close-to-a-sea-wall", title: "A wijdschip and a kaag in an inlet close to a sea-wall", artist: "Willem van de Velde the Younger", artistId: "younger", qid: "Q28797254", qidTrusted: true, year: 1661, seenAt: "agsa", seenConfidence: "unsure", liked: true, note: "Deck pick — agsa-2026-07-15." },
   { id: "the-life-of-stars", title: "The Life of Stars", artist: "Lindy Lee", artistId: "lee", qid: "Q133867018", qidTrusted: true, year: 2015, seenAt: "agsa", seenConfidence: "sure", note: "Deck pick — agsa-2026-07-15." },
+  // ——— deck-folded picks (fold-deck.js) ———
+  { id: "guernica", title: "Guernica", artist: "Pablo Picasso", artistId: "picasso", qid: "Q175036", qidTrusted: true, year: 1937, seenAt: "reina-sofia", seenConfidence: "sure", liked: true, note: "Deck pick — guernica-2026-07-15." },
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
