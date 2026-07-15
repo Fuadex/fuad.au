@@ -8,7 +8,7 @@ const HERE = __dirname;
 const CACHE = path.join(HERE, "highlights_cache.json");
 const OUT = path.join(HERE, "museum_highlights.js");
 const UA = "fuad.au-canvas/0.1 (https://fuad.au; fuadex@gmail.com)";
-const PER_MUSEUM = 40;
+const PER_MUSEUM = 100;
 const FORCE = process.argv.includes("--force");
 
 const ev = (f, g) => { const c = { window: {} }; vm.createContext(c); vm.runInContext(fs.readFileSync(path.join(HERE, f), "utf8"), c, { filename: f }); return c.window[g]; };
@@ -42,7 +42,7 @@ async function highlights(mqid) {
   } ORDER BY DESC(?links) LIMIT ${PER_MUSEUM * 2}`;
   let rows = [];
   try { rows = (await sparql(q)).results.bindings; }
-  catch (e) { console.log(`  ${mqid}: SPARQL failed (${e.message}) — empty deck`); cache[mqid] = []; fs.writeFileSync(CACHE, JSON.stringify(cache)); return []; }
+  catch (e) { const prev = cache[mqid] || []; console.log(`  ${mqid}: SPARQL failed (${e.message}) — keeping ${prev.length} cached`); return prev; }
   const seen = {}, out = [];
   for (const b of rows) {
     const qid = b.item.value.split("/").pop();
