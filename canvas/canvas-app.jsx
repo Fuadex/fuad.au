@@ -952,8 +952,25 @@ function ArtistView({ artistId, go }) {
   const works = useMemo(() => WORKS.map(enrich).filter(w => w.artistId === artistId), [artistId]);
   if (!works.length && !AD2.qid) return <div className="cv-mus"><p>No artist here (yet).</p></div>;
   const name = (works[0] && works[0].artist.replace(/\s*\(.*\)$/, "")) || AD2.label;
+  // "Majors you haven't met" filters the notable list against the canon. Matching on qid alone
+  // misses the common case where the canon holds a SPECIFIC painting (e.g. Haystacks, midday) but
+  // the notable list carries the SERIES / generic qid (Haystacks). So also match by normalised
+  // title: exact, prefix (canon specifies a base title), or series-stem containment. women→woman
+  // so "Woman/Women in the Garden" unify. Kept strict enough that e.g. Irises ≠ Vase with Irises.
+  const normT = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .replace(/\bwomen\b/g, "woman").replace(/\bmen\b/g, "man")
+    .replace(/\b(series|study|no\s*\d+)\b/g, "").replace(/[^a-z0-9]+/g, " ").trim();
   const canonQids = new Set(works.map(w => w.qid).filter(Boolean));
-  const unmet = (AD2.notable || []).filter(n => !canonQids.has(n.qid));
+  const canonT = works.map(w => normT(w.title)).filter(Boolean);
+  const isMet = (n) => {
+    if (canonQids.has(n.qid)) return true;
+    const nt = normT(n.title); if (nt.length < 4) return false;
+    const series = /\bseries\b/i.test(n.title);
+    return canonT.some(ct => ct === nt
+      || (nt.length >= 5 && (ct.startsWith(nt + " ") || nt.startsWith(ct + " ")))
+      || (series && (ct.includes(nt) || nt.includes(ct))));
+  };
+  const unmet = (AD2.notable || []).filter(n => !isMet(n));
   const movements = (AD2.movementQids || []).map(q => (AD.movements || {})[q]).filter(Boolean);
   const venues = [...new Set(works.flatMap(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).filter(Boolean)))]
     .map(id => MUS_BY_ID[id]).filter(Boolean);
