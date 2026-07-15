@@ -837,9 +837,14 @@ const migrateVerdict = (v) => typeof v === "string"
   ? { seen: v === "floored" ? "yes" : v, love: v === "floored" ? 2 : 0 } : v;
 function Deck({ museumId, go }) {
   const HL = window.CANVAS_HIGHLIGHTS || {};
-  const mus = MUS_BY_ID[museumId];
+  // the "by-artists" virtual deck: discovery works by artists you love, tied to no single venue
+  const VIRTUAL = museumId === "by-artists";
+  const mus = VIRTUAL ? { name: "Works by artists you love" } : MUS_BY_ID[museumId];
   const canonQids = useMemo(() => new Set(WORKS.map(w => (AD.artworks[w.id] || {}).qid).filter(Boolean)), []);
-  const deck = useMemo(() => (HL[museumId] || []).filter(w => !canonQids.has(w.qid)), [museumId]);
+  const deck = useMemo(() => {
+    const src = VIRTUAL ? (window.CANVAS_BY_ARTISTS || []) : (HL[museumId] || []);
+    return src.filter(w => !canonQids.has(w.qid));
+  }, [museumId]);
   const storeKey = "canvas-deck-" + museumId;
   const [verdicts, setVerdicts] = useState(() => {
     try {
@@ -879,7 +884,7 @@ function Deck({ museumId, go }) {
 
   if (i >= deck.length) {
     const rows = deck.filter(w => verdicts[w.qid] && (verdicts[w.qid].seen !== "no" || verdicts[w.qid].love > 0))
-      .map(w => ({ qid: w.qid, title: w.title, artist: w.artist, year: w.year, museum: museumId, ...verdicts[w.qid] }));
+      .map(w => ({ qid: w.qid, title: w.title, artist: w.artist, year: w.year, museum: VIRTUAL ? null : museumId, ...verdicts[w.qid] }));
     const seen = rows.filter(r => r.seen === "yes");
     const discoveries = rows.filter(r => r.seen !== "yes" && r.love > 0);
     const json = JSON.stringify(rows, null, 1);
@@ -1659,8 +1664,9 @@ function App() {
           <a href="#/" data-on={view === "home"}>Home</a>
           <a href="#/wall" data-on={view === "wall"}>The Wall</a>
           <a href="#/portrait" data-on={view === "portrait"}>Portrait</a>
-          <a href="#/museums" data-on={view === "museums" || route.view === "deck"}>Museums</a>
+          <a href="#/museums" data-on={view === "museums" || (route.view === "deck" && route.id !== "by-artists")}>Museums</a>
           <a href="#/artists" data-on={view === "artists" || route.view === "artist"}>Artists</a>
+          <a href="#/deck/by-artists" data-on={route.view === "deck" && route.id === "by-artists"}>By Your Artists</a>
           <a href="#/map" data-on={view === "map" || view === "pilgrimage"}>Map</a>
         </nav>
         {view === "wall" && (
