@@ -168,6 +168,12 @@ const ORIGINS = fs.existsSync(ORIGINS_PATH) ? JSON.parse(fs.readFileSync(ORIGINS
 // city-coords.json: "ISO|City" → [lat, lng], from the one-time gazetteer geocode. For the world map.
 const CITYCOORDS_PATH = path.join(__dirname, "city-coords.json");
 const CITYCOORDS = fs.existsSync(CITYCOORDS_PATH) ? JSON.parse(fs.readFileSync(CITYCOORDS_PATH, "utf8")) : {};
+// origin-overrides.json — verified true origins for artists whose MusicBrainz origin was wrong or
+// city-less (Fuad 2026-07-15, Sonnet-assisted lookups). Each: name → { country (ISO2), city, lat,
+// lng }. The lat/lng is merged into the gazetteer so the real city plots, and originOf consults
+// these first, so a bad MB match can never override a hand-verified origin.
+const OVERRIDES = (() => { try { const o = JSON.parse(fs.readFileSync(path.join(__dirname, "origin-overrides.json"), "utf8")); delete o._doc; return o; } catch (e) { return {}; } })();
+for (const [nm, ov] of Object.entries(OVERRIDES)) { if (ov && ov.city && ov.country && ov.lat != null) CITYCOORDS[ov.country + "|" + ov.city] = [ov.lat, ov.lng]; }
 const hasOrigins = Object.keys(ORIGINS).length > 0;
 // ─────────── PINS (name-ambiguity overrides, pins.json) ───────────
 // Durable corrections for wrong entity matches (Bleach/Brutus/daine class). Consulted at read
@@ -177,6 +183,8 @@ const pinOf = (name) => PINS[name] || null;
 const originOf = (name) => {
   const pn = pinOf(name);
   if (pn && pn.origin) return { country: pn.origin.country || "", area: pn.origin.area || "", city: pn.origin.city || "" };
+  const ov = OVERRIDES[name];
+  if (ov && ov.country) return { country: ov.country, area: ov.area || ov.city || "", city: ov.city || "" };
   const o = ORIGINS[name];
   if (!o || !o.country) return null;
   return { country: o.country, area: o.area || "", city: o.beginArea || "" };
