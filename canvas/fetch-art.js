@@ -153,7 +153,7 @@ const ARTY = /painting|drawing|sculpture|artwork|series|cycle|canvas/i;
         ?item wdt:P170 wd:${art.qid} ; wdt:P18 ?img ; wikibase:sitelinks ?links . FILTER(?links > 2)
         OPTIONAL { ?item wdt:P571 ?date }
         SERVICE wikibase:label { bd:serviceParam wikibase:language "en,fr,de,pl,ja,sv". }
-      } ORDER BY DESC(?links) LIMIT 16`;
+      } ORDER BY DESC(?links) LIMIT 60`;
       try {
         const rows = (await sparql(q)).results.bindings, seenQ = {}, list = [];
         for (const b of rows) {
