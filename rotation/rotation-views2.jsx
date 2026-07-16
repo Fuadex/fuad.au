@@ -184,9 +184,10 @@ function MiniArtistView({ a, go }) {
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>listeners ww</div></div>}
         </div>
       </div>
-      {/* secondary modules share a responsive grid — no lone full-width bands, and auto-fit
-         redistributes when a module is missing (long-tail artists lack some) — Fuad 2026-07-09 */}
-      <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: "var(--gap)", alignItems: "start", marginBottom: "var(--gap)" }}>
+      {/* secondary modules share a responsive grid; auto-fit redistributes when a module is
+         missing, but tracks are CAPPED (not 1fr) and the row centers — a lone survivor keeps
+         card width instead of blowing out to the full page (Fuad 2026-07-16) */}
+      <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), min(100%, 560px)))", justifyContent: "center", gap: "var(--gap)", alignItems: "start", marginBottom: "var(--gap)" }}>
       {spark && spark.some(v => v > 0) && (
         <div className="r-card" style={{ padding: 18 }}>
           <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 12 }}>Plays by year</div>
@@ -947,7 +948,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
       <div style={{ display: "grid", gap: "var(--gap)" }}>
           {/* row 2 on PC: flow (wide — Sound DNA moved to the bottom row for breathing room,
              Fuad 2026-07-06) · top tracks · albums */}
-          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: "var(--gap)", alignItems: "start" }}>
+          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), min(100%, 560px)))", justifyContent: "center", gap: "var(--gap)", alignItems: "start" }}>
             {/* top tracks · how they played out (flow now in the MIDDLE — Fuad 2026-07-06) · albums.
                alignItems:stretch (was start) so the three modules share the tallest sibling's
                height instead of the releases card ballooning — matters at the owner's 200-250%
@@ -1442,9 +1443,9 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           background: var(--accent-bg); border: 0; color: var(--accent-ink); padding: 8px 12px; border-radius: 5px; cursor: pointer; white-space: nowrap; }
         @media (max-width: 860px){ .r-view > div[style*="340px"]{ grid-template-columns: 1fr !important; }
           .r-view div[style*="1fr 1fr"]{ grid-template-columns: 1fr !important; } }
-        /* av-row2 is a resilient auto-fit grid: 3 modules when wide, and if a module (e.g. the flow)
-           has no data and doesn't render, the survivors re-flow to fill instead of stranding a gap
-           or mis-sizing. children must be allowed to shrink inside their track. */
+        /* av-row2 is a resilient auto-fit grid: 3 modules when wide; if a module has no data and
+           doesn't render, survivors keep a CAPPED card width and the row centers (no full-page
+           blowout on sparse artists). children must be allowed to shrink inside their track. */
         .av-row2 > * { min-width: 0; }
         .av-more { background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px;
           color: var(--ink-faint); cursor: pointer; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; }
