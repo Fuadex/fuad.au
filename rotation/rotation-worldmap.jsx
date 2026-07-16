@@ -721,6 +721,11 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
       </div>
 
       <style>{`.map-ctl { display: flex; gap: 14px 18px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+        /* the map band's columns must never grow past their share: bare fr / block children have an
+           implicit min-width:auto, so a wide flow/results/list — or drilling a subgenre — could blow
+           the whole band past the viewport. Pin every child + track to a 0 min (Fuad 2026-07-16). */
+        .mp-grid, .mp-map, .mp-flow, .mp-results, .mp-list, .mp-stats, .mp-cal { min-width: 0; max-width: 100%; }
+        .mp-map > .r-card, .mp-flow > .r-card { min-width: 0; max-width: 100%; }
         /* PC composition (Fuad, 2026-07-04): map · flow · results at 3:3:2, height-matched on
            one row; row 2 = deepest places stretched under map+flow, calendar squeezed to its
            right under the results. The results body is a flexed scroll well (height:0 + grow)
@@ -728,7 +733,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
         @media (min-width: 1150px) {
           /* map column widened (was 3fr:3fr:2fr) so the world fills its container instead of
              sitting small and letterboxed in a narrow cell (Fuad 2026-07-06) */
-          .mp-grid { display: grid; grid-template-columns: 7fr 5fr 4fr; gap: var(--gap); align-items: stretch; }
+          .mp-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr) minmax(0, 4fr); gap: var(--gap); align-items: stretch; }
           .mp-map { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; }
           .mp-map > .r-card { flex: 1; display: flex; align-items: center; }
           .mp-flow { grid-column: 2; grid-row: 1; margin-top: 0 !important; display: flex; flex-direction: column; }

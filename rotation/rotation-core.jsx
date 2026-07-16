@@ -293,10 +293,12 @@ a.r-link:hover { color: var(--ink); }
 
 /* mobile grid utilities — inline grid styles win over plain rules, so !important */
 @media (max-width: 860px) {
-  .m-stack { display: grid; grid-template-columns: 1fr !important; }
-  .m-stack > * { grid-column: auto !important; grid-row: auto !important; }
-  .m-2col { grid-template-columns: 1fr 1fr !important; }
-  .m-2col > * { grid-column: auto !important; }
+  /* minmax(0,1fr) (not a bare 1fr, whose implicit min is auto) so a wide child — an SVG map,
+     a flex row, the map band's own grid — can't push its track past the viewport (Fuad 2026-07-16) */
+  .m-stack { display: grid; grid-template-columns: minmax(0, 1fr) !important; }
+  .m-stack > * { grid-column: auto !important; grid-row: auto !important; min-width: 0; }
+  .m-2col { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; }
+  .m-2col > * { grid-column: auto !important; min-width: 0; }
 }
 
 /* Album/Track page rules — GLOBAL (these pages are deep-linkable; component-scoped styles in
