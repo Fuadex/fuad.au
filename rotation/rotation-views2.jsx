@@ -6,7 +6,7 @@ const DNA_AXES = ["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"];
 
 // Per-artist album/song streamgraph (reuses the Journey StreamGraph). Flow data lives in a
 // separate artist-flow.js, lazy-loaded on the first artist-page visit so first paint stays lean.
-function ArtistFlow({ id, hue, go, drill: drillProp, setDrill: setDrillProp, onAlbum }) {
+function ArtistFlow({ id, hue, go, drill: drillProp, setDrill: setDrillProp, onAlbum, className }) {
   const get = () => (window.ROTATION_FLOW && window.ROTATION_FLOW.byId[id]) || (window.ROTATION_FLOW ? false : null);
   const [flow, setFlow] = React.useState(get);
   const [mode, setMode] = React.useState("albums");  // albums | songs
@@ -44,7 +44,7 @@ function ArtistFlow({ id, hue, go, drill: drillProp, setDrill: setDrillProp, onA
     : (go ? ((s) => { if (!s.mute) go("track", id + "~" + window.ROTATION.slug(s.name)); }) : null);
 
   return (
-    <div className="r-card" style={{ padding: 18, touchAction: "manipulation" }}>
+    <div className={"r-card" + (className ? " " + className : "")} style={{ padding: 18, touchAction: "manipulation" }}>
       <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}>
         <span className="lbl"><b>How they played out</b></span>
         <div className="r-seg">
@@ -184,12 +184,14 @@ function MiniArtistView({ a, go }) {
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>listeners ww</div></div>}
         </div>
       </div>
-      {/* secondary modules share a responsive grid; auto-fit redistributes when a module is
-         missing, but tracks are CAPPED (not 1fr) and the row centers — a lone survivor keeps
-         card width instead of blowing out to the full page (Fuad 2026-07-16) */}
-      <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), min(100%, 560px)))", justifyContent: "center", gap: "var(--gap)", alignItems: "start", marginBottom: "var(--gap)" }}>
+      {/* secondary modules — a CENTERED flex band with a consistent card width, so sparse artists
+         (1 or 2 surviving modules) read as a composed band instead of scattered auto-fit tracks.
+         Cards that have no data don't render at all (spark w/o year plays, flow w/o albums/tracks),
+         so only real modules take a slot. Full 3-module artists still fill the row in thirds. The
+         m-stack class collapses this to a single column at <=860px (Fuad 2026-07-16). */}
+      <div className="av-minirow" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "var(--gap)", alignItems: "flex-start", marginBottom: "var(--gap)" }}>
       {spark && spark.some(v => v > 0) && (
-        <div className="r-card" style={{ padding: 18 }}>
+        <div className="r-card av-minicard" style={{ padding: 18 }}>
           <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 12 }}>Plays by year</div>
           <Spark data={spark} w={620} h={70} run={true} stroke="var(--accent)" fill="var(--accent-bg)" />
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
@@ -199,7 +201,7 @@ function MiniArtistView({ a, go }) {
         </div>
       )}
       {dna && (
-        <div className="r-card" style={{ padding: 18 }}>
+        <div className="r-card av-minicard av-mini-dna" style={{ padding: 18 }}>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
           <Radar axes={DNA_AXES} values={dna} values2={avg} run={true} size={224} />
           <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>solid = {a.name.split(" ")[0]} · dashed = your average · measured</div>
@@ -222,9 +224,20 @@ function MiniArtistView({ a, go }) {
           </div>
         </div>
       )}
-      <ArtistFlow id={a.id} hue={a.hue} go={go} />
+      <ArtistFlow id={a.id} hue={a.hue} go={go} className="av-minicard" />
       </div>
       <MiniArtistDetail id={a.id} name={a.name} hue={a.hue} go={go} />
+      <style>{`
+        /* sparse mini-artist band: every surviving module gets the SAME flex-basis and cap, so a
+           lone survivor centers at a readable width (not a full-page slab), a pair sits as equal
+           halves, and a full trio fills the row in thirds — a composed band at any survivor count. */
+        .av-minirow > .av-minicard { flex: 1 1 360px; max-width: 540px; }
+        /* Sound DNA is content-narrow (radar + a 4-col stat grid); keep it from stretching so wide
+           it reads sparse — a tighter cap keeps it tidy next to a sparkline or on its own. */
+        .av-minirow > .av-mini-dna { flex: 1 1 320px; max-width: 440px; }
+        /* mirror the m-stack breakpoint: one full-width column on small screens */
+        @media (max-width: 860px){ .av-minirow > .av-minicard { flex: 1 1 100%; max-width: none; } }
+      `}</style>
     </div>
   );
 }
@@ -947,8 +960,11 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
 
       <div style={{ display: "grid", gap: "var(--gap)" }}>
           {/* row 2 on PC: flow (wide — Sound DNA moved to the bottom row for breathing room,
-             Fuad 2026-07-06) · top tracks · albums */}
-          <div className="m-stack av-row2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), min(100%, 560px)))", justifyContent: "center", gap: "var(--gap)", alignItems: "start" }}>
+             Fuad 2026-07-06) · top tracks · albums. This row ALWAYS has all three modules, so it
+             gets an explicit even 3-col template above the m-stack breakpoint rather than auto-fit
+             — auto-fit's 2-track band (min 300 + gap: any width in ~620-940px fits only two, so
+             albums wrapped to a lonely second row) is gone (Fuad 2026-07-16). */}
+          <div className="m-stack av-row3" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "var(--gap)", alignItems: "start" }}>
             {/* top tracks · how they played out (flow now in the MIDDLE — Fuad 2026-07-06) · albums.
                alignItems:stretch (was start) so the three modules share the tallest sibling's
                height instead of the releases card ballooning — matters at the owner's 200-250%
@@ -1443,10 +1459,10 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           background: var(--accent-bg); border: 0; color: var(--accent-ink); padding: 8px 12px; border-radius: 5px; cursor: pointer; white-space: nowrap; }
         @media (max-width: 860px){ .r-view > div[style*="340px"]{ grid-template-columns: 1fr !important; }
           .r-view div[style*="1fr 1fr"]{ grid-template-columns: 1fr !important; } }
-        /* av-row2 is a resilient auto-fit grid: 3 modules when wide; if a module has no data and
-           doesn't render, survivors keep a CAPPED card width and the row centers (no full-page
-           blowout on sparse artists). children must be allowed to shrink inside their track. */
-        .av-row2 > * { min-width: 0; }
+        /* av-row3 = the kept-artist row (top tracks · flow · albums) — always three modules, so an
+           explicit even 3-col template (no auto-fit wrap band). Children must shrink in-track. The
+           m-stack rule collapses it to one column at <=860px. */
+        .av-row3 > * { min-width: 0; }
         .av-more { background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px;
           color: var(--ink-faint); cursor: pointer; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; }
         .av-more:hover { color: var(--accent); border-color: var(--accent-dim); }
