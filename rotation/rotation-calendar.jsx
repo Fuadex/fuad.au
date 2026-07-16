@@ -1119,10 +1119,10 @@ function CalendarView({ go, seed }) {
 
       <style>{`
         .cal-heatwrap { display: grid; grid-template-columns: minmax(0,1fr) 210px; gap: var(--gap); align-items: start; }
-        /* Rhythm rail follows the scroll — sticky under the 64px sticky .r-head (mirrors Explore's
-           .xp-left top:76px). .r-app's overflow-x:hidden doesn't defeat it here: .r-app has no fixed
-           height, so the window scrolls and sticky resolves against the viewport (same as .xp-left).
-           self-max-height + own scroll so a tall clock never outgrows the viewport while pinned. */
+        /* Rhythm rail follows the scroll — sticky below the header. Sticky only works here since
+           .r-app moved to overflow-x: CLIP (hidden made it a scroll container, which silently
+           defeated sticky for every view — the barcode scrubber's fixed-position workaround
+           exists for the same reason). self-max-height + own scroll caps a tall clock. */
         /* .cal-heatwrap > child selector outguns core's .r-card { position: relative } (equal
            class specificity otherwise, and core's sheet lands later — sticky silently lost) */
         .cal-heatwrap > .cal-clock { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 88px); overflow-y: auto; }

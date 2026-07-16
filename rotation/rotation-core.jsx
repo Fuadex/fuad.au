@@ -51,7 +51,10 @@ html, body { margin: 0; background: var(--bg); color: var(--ink); }
 body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 ::selection { background: var(--accent-bg); }
 
-.r-app { min-height: 100vh; position: relative; overflow-x: hidden; }
+/* overflow-x: clip, NOT hidden — hidden makes .r-app a scroll container, which silently breaks
+   position:sticky for EVERY descendant (sticky then resolves against .r-app's never-scrolling
+   scrollport instead of the viewport). clip clips identically without that side effect. */
+.r-app { min-height: 100vh; position: relative; overflow-x: clip; }
 
 /* scrollbar */
 .r-app *::-webkit-scrollbar { height: 8px; width: 8px; }
