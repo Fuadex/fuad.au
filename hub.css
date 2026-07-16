@@ -1,4 +1,4 @@
-/* fuad.au — diagonal split launcher. Two apps behind glass; hover to clear + expand. */
+/* fuad.au — diagonal split launcher. Three apps behind glass; hover to clear + expand. */
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;background:#050507;overflow:hidden;
   font-family:'Space Grotesk',system-ui,sans-serif;color:#fff;
@@ -12,9 +12,10 @@ html,body{margin:0;height:100%;background:#050507;overflow:hidden;
   cursor:pointer;transition:flex-grow .8s cubic-bezier(.72,0,.18,1)}
 .pane + .pane{border-left:1.5px solid rgba(255,255,255,.6);
   box-shadow:-2px 0 40px rgba(0,0,0,.65)}
-.pane--l{--accent:oklch(0.74 0.13 330)}
-.pane--r{--accent:#d8a94a}
-.pane--c{--accent:oklch(0.66 0.14 46)}
+/* accents travel with the app, not the slot (order: canvas | culture | rotation) */
+.pane--rotation{--accent:oklch(0.74 0.13 330)}
+.pane--culture{--accent:#d8a94a}
+.pane--canvas{--accent:oklch(0.66 0.14 46)}
 
 /* snapshot — counter-skewed so it sits upright, scaled to cover, blurred like frosted glass */
 .content{position:absolute;inset:-3%;transform:skewX(9deg) scale(1.16);transform-origin:center}
@@ -33,10 +34,18 @@ html,body{margin:0;height:100%;background:#050507;overflow:hidden;
   gap:12px;text-align:center;padding:0 9%;pointer-events:none}
 .wm{font-size:clamp(30px,4.6vw,66px);font-weight:600;letter-spacing:-.025em;line-height:1;
   transition:transform .5s ease,opacity .5s ease}
-.pane--l .wm{color:#f3eef4}
-.pane--r .wm{color:#f5efe4}
-.pane--c .wm{color:#f2e9dc}
+.pane--rotation .wm{color:#f3eef4}
+.pane--culture .wm{color:#f5efe4}
+.pane--canvas .wm{color:#f2e9dc}
 .wm .dot{color:var(--accent)}
+
+/* the stage is oversized (132% wide, shifted -16%) so the skew never exposes corners —
+   which puts 16vw of each OUTER pane offscreen. Center their labels on the VISIBLE
+   region, not the pane box, or the titles sit half-clipped until hover (the P16-zoom /
+   narrow-viewport bug). Shift = half the hidden strip: (padL - padR)/2 = 8vw = 36% of
+   a 44vw pane. */
+.pane:first-child .label{padding:0 5% 0 41%}
+.pane:last-child .label{padding:0 41% 0 5%}
 
 .reveal{max-width:380px;opacity:0;transform:translateY(16px);pointer-events:none;
   transition:opacity .55s ease .04s,transform .55s cubic-bezier(.72,0,.18,1) .04s}
@@ -68,6 +77,12 @@ html,body{margin:0;height:100%;background:#050507;overflow:hidden;
   font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.26em;
   text-transform:uppercase;color:rgba(255,255,255,.3);pointer-events:none}
 
+/* very wide screens: bias the outer titles a touch further toward the center */
+@media (min-width:2200px){
+  .pane:first-child .label{padding:0 3% 0 49%}
+  .pane:last-child .label{padding:0 49% 0 3%}
+}
+
 @media (max-width:640px){
   .split{flex-direction:column;transform:skewY(-8deg);width:100%;left:0;height:132%;top:-16%}
   .content{transform:skewY(8deg) scale(1.16)}
@@ -75,4 +90,7 @@ html,body{margin:0;height:100%;background:#050507;overflow:hidden;
   .pane + .pane{border-left:none;border-top:1.5px solid rgba(255,255,255,.6)}
   .pane:hover{flex-grow:1.5}
   .reveal{max-width:80vw}
+  /* column mode hides 16vh of the TOP and BOTTOM panes instead — same fix, vertical */
+  .pane:first-child .label{padding:16vh 9% 0}
+  .pane:last-child .label{padding:0 9% 16vh}
 }
