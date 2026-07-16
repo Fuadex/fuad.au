@@ -117,8 +117,11 @@ a { color: inherit; }
 .cv-mus-chip { font: 500 10px/1 var(--mono); letter-spacing: .05em; color: rgba(232,221,204,.82); background: rgba(232,221,204,.08); border: 1px solid rgba(232,221,204,.18); border-radius: 999px; padding: 6px 11px; }
 .cv-mus-chip-link { text-decoration: none; color: #f2e9dc; }
 .cv-mus-chip-link:hover { border-color: var(--accent-soft); color: oklch(0.82 0.14 60); }
+/* flow-root contains the floated interior INSIDE the read pane — without it a short read
+   lets the float poke below the pane and steal width from the artists row underneath */
+.cv-mus-read-pane { display: flow-root; }
 .cv-mus-interior { float: right; width: 40%; margin: 4px 0 14px 20px; }
-.cv-mus-interior img { display: block; width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 16px rgba(40,28,14,.2); }
+.cv-mus-interior img { display: block; width: 100%; height: auto; max-height: 240px; object-fit: cover; border-radius: 6px; box-shadow: 0 4px 16px rgba(40,28,14,.2); }
 .cv-mus-interior figcaption { font: 500 9px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 6px; text-align: center; }
 .cv-mus-interior-solo { float: none; width: min(360px, 60%); margin: 22px 0 0; }
 .cv-mus-h1 { font: 600 32px/1.12 var(--serif); margin: 0; color: #f2e9dc; }
