@@ -347,8 +347,60 @@ a { color: inherit; }
 
 /* ——— Study mode: full-screen two-pane (persistent OSD viewer + scrollable reading) ——— */
 .cv-study { position: fixed; inset: 0; z-index: 80; background: #0f0c08; display: flex; }
+/* flex-basis is driven inline (the adjustable split); grow/shrink 0 so it holds the dragged ratio */
 .cv-study-viewer { position: relative; flex: 0 0 57%; min-width: 0; background: #0f0c08; }
 .cv-study-viewer .cv-osd-view { position: absolute; inset: 0; }
+
+/* ——— FIX 4: adjustable split divider + collapse ——— */
+.cv-study-divider {
+  flex: 0 0 8px; position: relative; z-index: 4; cursor: col-resize; background: #0f0c08;
+  border-left: 1px solid rgba(227,216,200,.14); border-right: 1px solid var(--rule);
+  touch-action: none; display: flex; align-items: center; justify-content: center;
+}
+.cv-study-divider:hover { background: #17120b; }
+.cv-study-divider-grip { width: 3px; height: 42px; border-radius: 999px; background: rgba(227,216,200,.28); }
+.cv-study-divider:hover .cv-study-divider-grip { background: var(--accent-soft); }
+.cv-study-collapse {
+  font: 500 10.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-faint); background: none; border: 1px solid var(--rule); border-radius: 999px;
+  padding: 7px 13px; cursor: pointer;
+}
+.cv-study-collapse:hover { border-color: var(--ink); color: var(--ink); }
+.cv-study-restore {
+  position: absolute; top: 14px; right: 14px; z-index: 7; margin: 0;
+  font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase;
+  color: rgba(227,216,200,.85); background: rgba(20,15,10,.78); border: 1px solid rgba(227,216,200,.3);
+  border-radius: 999px; padding: 9px 15px; cursor: pointer;
+}
+.cv-study-restore:hover { border-color: rgba(227,216,200,.75); background: rgba(30,22,14,.9); color: #f2e9dc; }
+
+/* ——— FIX 6a: tour prev/next arrows over the viewer ——— */
+.cv-study-tourarrows {
+  position: absolute; top: 14px; left: 50%; transform: translateX(-50%); z-index: 6;
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 8px; border-radius: 999px;
+  background: rgba(20,15,10,.7); border: 1px solid rgba(227,216,200,.22);
+}
+.cv-study-arrow {
+  width: 30px; height: 30px; border-radius: 999px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  font: 500 18px/1 var(--serif); color: rgba(227,216,200,.8);
+  background: none; border: 1px solid rgba(227,216,200,.28); cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.cv-study-arrow:hover:not(:disabled) { border-color: rgba(227,216,200,.7); color: #e3d8c8; background: rgba(30,22,14,.8); }
+.cv-study-arrow:disabled { opacity: .35; cursor: default; }
+.cv-study-arrow-lbl {
+  min-width: 96px; text-align: center; font: 500 9.5px/1 var(--mono);
+  letter-spacing: .1em; text-transform: uppercase; color: rgba(227,216,200,.7);
+}
+/* the chapter currently walked in the tour lights up in the pane */
+.cv-study-sec-on { position: relative; }
+.cv-study-sec-on .cv-study-sec-h span:first-child { color: var(--accent); }
+.cv-study-sec-on::before {
+  content: ""; position: absolute; left: -16px; top: 2px; bottom: 2px; width: 3px;
+  border-radius: 999px; background: var(--accent-soft);
+}
 /* study's detail-tour chip strip: keep it a bottom horizontal strip even on wide screens
    (the generic .cv-osd-tour right-rail rule is scoped to the deep-zoom overlay, not here) */
 .cv-study-tour {
@@ -362,7 +414,7 @@ a { color: inherit; }
 .cv-study-tour::-webkit-scrollbar { display: none; }
 .cv-study-tour .cv-osd-chip-t { max-width: 150px; }
 
-.cv-study-pane { flex: 1 1 43%; min-width: 0; overflow-y: auto; background: #f7efe2; }
+.cv-study-pane { flex: 1 1 0; min-width: 0; overflow-y: auto; background: #f7efe2; }
 .cv-study-panehead {
   position: sticky; top: 0; z-index: 3; display: flex; align-items: center; gap: 14px;
   padding: 12px 30px; background: rgba(247,239,226,.92); backdrop-filter: blur(6px);
@@ -422,8 +474,12 @@ a { color: inherit; }
 /* MOBILE (<760px): stack — viewer fixed at top (~45vh), reading pane scrolls beneath */
 @media (max-width: 760px) {
   .cv-study { flex-direction: column; }
-  .cv-study-viewer { flex: 0 0 45vh; height: 45vh; width: 100%; }
+  /* stacked layout: force the vertical split (inline flex-basis from the drag is overridden) and
+     make the divider inert — the horizontal drag has no meaning when panes stack vertically */
+  .cv-study-viewer { flex: 0 0 45vh !important; height: 45vh; width: 100%; }
+  .cv-study-collapsed .cv-study-viewer { flex: 1 1 auto !important; height: auto; }
   .cv-study-pane { flex: 1 1 auto; }
+  .cv-study-divider { display: none; }
   .cv-study-panehead { padding: 10px 18px; }
   .cv-study-body { padding: 20px 20px 80px; }
   .cv-study-title { font-size: 23px; }
