@@ -579,9 +579,15 @@ function ShelvesView({ go, seed }) {
                       <span className="sh-shelf-name" style={{ "--h": g.hue, fontSize: 17 }}>{g.name}</span>
                       <span className="sh-shelf-n">{fmt(g.albums.length)} albums</span>
                     </div>
-                    {g.labelNames.length >= 2 && (
-                      <div className="sh-labelsub" title="labels merged under this parent">{g.labelNames.join(" · ")}</div>
-                    )}
+                    {g.labelNames.length >= 2 && (() => {
+                      // constituent labels, most-albums-first; clamp to keep the subtitle to one
+                      // tidy line even when a conglomerate swallows a dozen imprints.
+                      const SUB_MAX = 6;
+                      const shown = g.labelNames.slice(0, SUB_MAX);
+                      const extra = g.labelNames.length - shown.length;
+                      const text = shown.join(" · ") + (extra > 0 ? ` +${extra} more` : "");
+                      return <div className="sh-labelsub" title={g.labelNames.join(" · ")}>{text}</div>;
+                    })()}
                     {[...g.sublabels.entries()].sort((a, b) => b[1].length - a[1].length).map(([sname, sarr], si) => (
                       <div key={shelfId + ":" + sname} className="sh-reveal" style={{ animationDelay: (si * 40) + "ms" }}>
                         <ShShelf id={shelfId + ":" + sname} name={sname} hue={g.hue} albums={sarr} depth={1}

@@ -430,6 +430,16 @@ function SubMoodScatter({ subs, activeSub, activeFam, onPick, moodZone, setMoodZ
 // Sound-Map FAMILY hue exactly as the rest of Explore does. Zoomable (shared useZoom / --zk), brush-
 // select with a click-through results list, family colour key that dims by family.
 
+// When the axes change (or a lens switch keeps the same points), the attribute dots can glide to
+// their new spots instead of snapping — but only when few enough are visible that animating every
+// node's transform won't jank on a phone (the owner's Fold 5). Above this count we snap as before.
+// Measured reasoning: the artists universe is thousands of SVG circles; transitioning transform on
+// all of them means the compositor tweens thousands of nodes for 450ms while React has already
+// swapped the values — that's the exact node×style-recalc load that spiked earlier maps. A slice of
+// ~1.2k animated transforms is the comfort ceiling; the subgenre grain (~200) is always under it.
+const ATTR_ANIM_MAX = 1200;
+const ATTR_ANIM_MS = 450;
+
 const ATTR_AXES = [
   { key: "energy",     label: "energy",       kind: "feat" },
   { key: "dance",      label: "danceability", kind: "feat" },
@@ -556,7 +566,7 @@ function attrFmtVal(row, key) {
 // Reuses useZoom / --zk / non-scaling-stroke exactly like the other Explore charts, so dots are
 // memoized without the zoom factor and zoom only mutates the viewBox + a CSS var (no React reconcile
 // of the cloud). Colours ride the family hue; the legend below dims by family.
-function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel }) {
+function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pageActiveOf }) {
   const [hover, setHover] = React.useState(null);
   const [brush, setBrush] = React.useState(null);    // live pixel rect while dragging
   const [brushed, setBrushed] = React.useState(null); // committed rect
@@ -648,7 +658,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel }) 
     const p = toLocal(evt); if (!p) return;
     if (dragRef.current) { setBrush({ x0: dragRef.current.x, y0: dragRef.current.y, x1: p.x, y1: p.y }); return; }
     let best = null, bd = 26 * 26;
-    for (const pt of pts) { const dx = pt.px - p.x, dy = pt.py - p.y, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = pt; } }
+    for (const pt of pts) { if (isPageDim(pt.row)) continue; const dx = pt.px - p.x, dy = pt.py - p.y, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = pt; } }
     setHover(best);
     fish.run(evt.clientX, evt.clientY);   // proximity fisheye (paused while brushing via dragRef)
   };
@@ -670,42 +680,69 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel }) 
 
   const inBrush = React.useCallback((pt) => brushed ? (pt.px >= brushed.x0 && pt.px <= brushed.x1 && pt.py >= brushed.y0 && pt.py <= brushed.y1) : true, [brushed]);
   const isDimFam = React.useCallback((row) => famDim != null && row.fam !== famDim, [famDim]);
+  // dimmed because it's outside the page's active time/genre/clock slice (the filter conjunction).
+  // Treated like the family-dim: non-members drop out of the brush region and can't be opened.
+  const isPageDim = React.useCallback((row) => pageActiveOf ? !pageActiveOf(row) : false, [pageActiveOf]);
 
   const brushedPts = React.useMemo(() => {
     if (!brushed) return [];
-    return pts.filter(p => inBrush(p) && !isDimFam(p.row)).sort((a, b) => (b.row.plays || 0) - (a.row.plays || 0)).slice(0, 40);
-  }, [pts, brushed, inBrush, isDimFam]);
+    return pts.filter(p => inBrush(p) && !isDimFam(p.row) && !isPageDim(p.row)).sort((a, b) => (b.row.plays || 0) - (a.row.plays || 0)).slice(0, 40);
+  }, [pts, brushed, inBrush, isDimFam, isPageDim]);
   // lift the selection to the ranked list: a committed brush (region) OR a single-clicked
-  // subgenre — artists as slugs, subgenres as SUBS indexes (Fuad 2026-07-13/14)
+  // subgenre — artists as slugs, subgenres as SUBS indexes (Fuad 2026-07-13/14). The brush composes
+  // WITH the page filter: dots dimmed by the active slice are excluded so brushing only ever refines
+  // within the conjunction the chart already shows.
   React.useEffect(() => {
     if (!onBrushSel) return;
     if (brushed) {
-      const all = pts.filter(p => inBrush(p) && !isDimFam(p.row));
+      const all = pts.filter(p => inBrush(p) && !isDimFam(p.row) && !isPageDim(p.row));
       onBrushSel({ mode, keys: new Set(all.map(p => mode === "subgenres" ? parseInt(String(p.row.id).slice(4), 10) : p.row.id)) });
     } else if (singleSel && mode === "subgenres") {
       onBrushSel({ mode, keys: new Set([parseInt(String(singleSel).slice(4), 10)]) });
     } else onBrushSel(null);
-  }, [brushed, singleSel, pts, inBrush, isDimFam, mode, onBrushSel]);
+  }, [brushed, singleSel, pts, inBrush, isDimFam, isPageDim, mode, onBrushSel]);
+
+  // POSITIONAL TRANSITIONS (guarded) — when the axes change React reuses each dot (keys are stable
+  // per row), so we CAN glide dots to their new spot. cx/cy attributes don't animate, only CSS props
+  // do, so on the animated path we pin cx/cy=0 and place the dot with transform: translate(px,py),
+  // which the compositor can tween cheaply. Guard: only animate when the visible (non-dimmed) count
+  // is ≤ ATTR_ANIM_MAX — thousands of tweening transforms would jank the Fold 5, so above the ceiling
+  // (typically the full artists universe) we snap instantly exactly as before. Subgenres (~200) and
+  // any filtered artist slice under the ceiling get the glide.
+  const visCount = React.useMemo(() => {
+    let c = 0;
+    for (const pt of pts) if (!isDimFam(pt.row) && !isPageDim(pt.row)) c++;
+    return c;
+  }, [pts, isDimFam, isPageDim]);
+  const animatePos = visCount <= ATTR_ANIM_MAX;
 
   // dots memoized WITHOUT the zoom factor — radius rides --zk so wheel-zoom reconciles nothing
   const dots = React.useMemo(() => pts.map((pt, i) => {
-    const on = inBrush(pt), dimF = isDimFam(pt.row);
+    const on = inBrush(pt), dimF = isDimFam(pt.row), dimP = isPageDim(pt.row);
     const isHover = hover && hover.row.id === pt.row.id;
     const isSel = singleSel && pt.row.id === singleSel;
-    const op = dimF ? 0.06 : brushed ? (on ? 0.92 : 0.1) : singleSel ? (isSel ? 0.95 : 0.15) : (mode === "subgenres" ? 0.82 : 0.72);
+    // page-slice dim is the same visual language as ArtistCloud (0.05) / ExploreScatter (~0.14): a
+    // dot outside the active slice fades hard and stops responding to pointer, so brush/hover only
+    // touch the conjunction. Family-dim (0.06) still wins when both apply.
+    const op = dimF ? 0.06 : dimP ? (mode === "subgenres" ? 0.12 : 0.05) : brushed ? (on ? 0.92 : 0.1) : singleSel ? (isSel ? 0.95 : 0.15) : (mode === "subgenres" ? 0.82 : 0.72);
     const baseR = isHover ? pt.radius + 2 : pt.radius;
+    // opacity always transitions (cheap); transform transitions only when under the guard.
+    const trans = animatePos ? `transform ${ATTR_ANIM_MS}ms ease-out, fill-opacity .3s ease` : "fill-opacity .3s ease";
+    const pos = animatePos
+      ? { cx: 0, cy: 0, style: { transform: `translate(${pt.px.toFixed(1)}px, ${pt.py.toFixed(1)}px)` } }
+      : { cx: pt.px.toFixed(1), cy: pt.py.toFixed(1), style: {} };
     return (
       <circle key={pt.row.id + "-" + i} className="xp-fdot" data-cx={pt.px.toFixed(1)} data-cy={pt.py.toFixed(1)}
-        cx={pt.px.toFixed(1)} cy={pt.py.toFixed(1)}
+        cx={pos.cx} cy={pos.cy}
         fill={fillFor(pt.row)} fillOpacity={op}
         stroke={isHover || isSel ? "#fff" : "none"} strokeWidth={isSel ? 2 : 1.4} vectorEffect="non-scaling-stroke"
-        style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: "pointer", transition: "fill-opacity .3s ease" }} />);
-  }), [pts, hover, brushed, singleSel, inBrush, isDimFam, fillFor, mode]);
+        style={{ ...pos.style, r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: dimF || dimP ? "default" : "pointer", pointerEvents: dimF || dimP ? "none" : "auto", transition: trans }} />);
+  }), [pts, hover, brushed, singleSel, inBrush, isDimFam, isPageDim, fillFor, mode, animatePos]);
 
-  const subLabels = React.useMemo(() => mode !== "subgenres" ? null : pts.filter(pt => labelIds.has(pt.row.id) && !isDimFam(pt.row)).map(pt => (
+  const subLabels = React.useMemo(() => mode !== "subgenres" ? null : pts.filter(pt => labelIds.has(pt.row.id) && !isDimFam(pt.row) && !isPageDim(pt.row)).map(pt => (
     <text key={"lbl" + pt.row.id} x={(pt.px + pt.radius + 3).toFixed(1)} y={(pt.py + 3).toFixed(1)}
       fill="var(--ink-dim)" fontFamily="var(--mono)" style={{ fontSize: `calc(10px * var(--zk))`, pointerEvents: "none" }}>
-      {pt.row.name.length > 22 ? pt.row.name.slice(0, 21) + "…" : pt.row.name}</text>)), [pts, labelIds, mode, isDimFam]);
+      {pt.row.name.length > 22 ? pt.row.name.slice(0, 21) + "…" : pt.row.name}</text>)), [pts, labelIds, mode, isDimFam, isPageDim]);
 
   const ticksFor = (scale) => {
     if (!scale.ok) return [];
@@ -798,7 +835,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel }) 
 
 // AttrExplore — the "attributes" lens wrapper: lazy-loads track-audio.js, memoises the centroid
 // pass, owns the X/Y/shade pickers + the family colour key (click a family to dim the rest).
-function AttrExplore({ R, go, grain, onBrushSel }) {
+function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam, filtersActive }) {
   const [taReady, setTaReady] = React.useState(!!window.ROTATION_TRACKAUDIO);
   const [restReady, setRestReady] = React.useState(!!(R && R._restLoaded));
   const [xKey, setXKey] = React.useState("energy");
@@ -834,6 +871,26 @@ function AttrExplore({ R, go, grain, onBrushSel }) {
   }, [taReady, restReady, R]);
 
   const rows = built ? (mode === "subgenres" ? built.subs : built.artists) : [];
+
+  // FILTER CONJUNCTION — the attributes lens now honours the page's time/genre/clock slice exactly
+  // like the texture/mood charts: dots outside the active slice dim (and go non-interactive), and the
+  // brush refines WITHIN that dimmed view. artists grain reads the shared `activeIds` set (moodActive,
+  // same as ArtistCloud/MoodQuadrant); subs grain reads activeSub/activeFam like ExploreScatter. When
+  // no page filter is set, everything renders full strength (pageFiltered=false → pageActiveOf=true).
+  // artists honour the whole slice (year/genre/clock via activeIds); subs dim by genre only, exactly
+  // like ExploreScatter (which ignores year/clock for its subgenre dimming).
+  const pageFiltered = mode === "subgenres"
+    ? (activeSub != null || activeFam != null)
+    : (!!filtersActive && activeIds != null && activeIds.size > 0);
+  const pageActiveOf = React.useCallback((row) => {
+    if (!pageFiltered) return true;
+    if (mode === "subgenres") {
+      const nm = (row.sub != null && R.SUBS[row.sub]) ? R.SUBS[row.sub].name : row.name;
+      return activeSub != null ? nm === activeSub : (activeFam != null ? row.fam === activeFam : true);
+    }
+    return activeIds ? activeIds.has(row.id) : true;
+  }, [pageFiltered, mode, activeSub, activeFam, activeIds, R]);
+
   // families actually present in the current rows, for the colour key (ordered by FAMILIES index)
   const legendFams = React.useMemo(() => {
     if (!built) return [];
@@ -867,7 +924,7 @@ function AttrExplore({ R, go, grain, onBrushSel }) {
           <select value={shade} onChange={e => setShade(e.target.value)} style={selBox}>{shadeOpts.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}</select></div>
       </div>
 
-      <AttrScatter rows={rows} mode={mode} xKey={xKey} yKey={yKey} shade={shade} famDim={famDim} go={go} onBrushSel={onBrushSel} />
+      <AttrScatter rows={rows} mode={mode} xKey={xKey} yKey={yKey} shade={shade} famDim={famDim} go={go} onBrushSel={onBrushSel} pageActiveOf={pageActiveOf} />
 
       {/* family colour key — tap a family to isolate it (dim the rest); tap again to clear */}
       <div className="xp-attr-legend">
@@ -1244,7 +1301,7 @@ function ExploreView({ t, go, setPop, seed }) {
             </div>
             <div className="xp-chartwrap">
             {lens === "attributes"
-              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} />
+              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} filtersActive={year != null || fam != null || sub != null || cells.size > 0} />
               : lens === "texture"
               ? (grain === "subs"
                 ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
