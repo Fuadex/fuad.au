@@ -750,12 +750,10 @@ function Reader({ id, go }) {
                 <div className="cv-r-tiers">
                   <button data-on={tier === "about"} onClick={() => setTier("about")}>Info</button>
                   <button data-on={tier === "deep"} onClick={() => setTier("deep")}>Interpretation</button>
-                  {read.study && <button data-on={tier === "study"} onClick={() => setTier("study")}>Study</button>}
                 </div>
               </div>
-              {/* studies are multi-paragraph (blank-line separated) — pre-line keeps the breaks */}
-              <div className="cv-r-read-txt" style={{ whiteSpace: "pre-line" }}>
-                {tier === "study" && read.study ? read.study : tier === "deep" ? read.deep : read.about}</div>
+              {/* full long-form studies live in Study mode (#/study/<id>), not as a flat tier here */}
+              <div className="cv-r-read-txt">{tier === "deep" ? read.deep : read.about}</div>
               <div className="cv-r-read-by">via {read.by || "Fable"}</div>
             </div>
           )}
@@ -768,7 +766,7 @@ function Reader({ id, go }) {
           {inspect && (
             <div className="cv-r-inspect">
               <div className="cv-r-inspect-rule" />
-              <div className="cv-r-inspect-kicker">Inspection — a close reading by Fable</div>
+              <div className="cv-r-inspect-kicker">Inspection — a close reading by {inspect.by || "Fable"}</div>
               <div className="cv-r-inspect-lens">
                 <span className="lbl">What you see</span>
                 <p className="cv-r-inspect-txt">{inspect.see}</p>
@@ -1176,11 +1174,20 @@ function MapView({ go }) {
     for (const m of MUSEUMS) {
       const d = AD.museums[m.id] || {}; if (d.lat == null) continue;
       const [x, y] = P(d.lat, d.lng);
-      const c = (byCity[m.city] = byCity[m.city] || { city: m.city, xs: 0, ys: 0, k: 0, n: 0, museums: [] });
+      const c = (byCity[m.city] = byCity[m.city] || { city: m.city, xs: 0, ys: 0, k: 0, wxs: 0, wys: 0, wk: 0, n: 0, museums: [] });
       const n = counts[m.id] || 0; c.xs += x; c.ys += y; c.k++; c.n += n;
+      // works-weighted accumulator: the anchor is pulled toward the museums that actually
+      // hold the canon (min weight 1 so coordinate-only venues still register), so the bubble
+      // sits on the loved-works mass rather than a plain geometric mean of every pin.
+      const wt = n + 1; c.wxs += x * wt; c.wys += y * wt; c.wk += wt;
       c.museums.push({ id: m.id, name: m.name.replace(/\s*\(.*\)$/, ""), x, y, n });
     }
-    const arr = Object.values(byCity).map(c => ({ ...c, x: c.xs / c.k, y: c.ys / c.k }));
+    // x/y = the single TRUE anchor (works-weighted centroid). The default bubble, the branch
+    // root, the viewBox framing AND the museum fan all read this one point → every layer
+    // diverges from exactly the same place (root cause of the old "emanates elsewhere" drift:
+    // the bubble used the plain mean while relaxation then nudged it, so the branch fanned from
+    // a spot the eye never saw). We keep ax/ay = this anchor and never let relaxation move it.
+    const arr = Object.values(byCity).map(c => ({ ...c, x: c.wxs / c.wk, y: c.wys / c.wk }));
     // light relaxation only — cities rarely collide; radii are small and drift is hard-clamped to
     // 5 units so a city can never leave its spot even where two are close (e.g. European neighbours).
     for (const c of arr) { c.ox = c.x; c.oy = c.y; }
@@ -1241,39 +1248,125 @@ function MapView({ go }) {
   const [hover, setHover] = useState(null);
   const k = vb.w / 880;
   const commit = (next) => { vbRef.current = next; if (!raf.current) raf.current = requestAnimationFrame(() => { raf.current = 0; setVb(vbRef.current); }); };
+  // ——— cursor fisheye magnifier (fix 4). The pointer position is tracked in MAP units (lens),
+  // and every bubble within LENS_R of it is displaced radially outward + scaled up with a smooth
+  // cosine falloff, so tiny clustered bubbles bloom and separate under the cursor without fighting
+  // the pan/zoom (it only reshapes rendering, never the viewBox). On touch there is no hover, so
+  // the lens is driven by a tap that also nudges a semantic zoom step toward the tapped point.
+  const [lens, setLens] = useState(null);           // { x, y } in map units, or null
+  const lensRaf = React.useRef(0);
+  const LENS_R = 26;                                 // magnifier radius, map units (scales with zoom via vb)
+  const LENS_MAG = 2.1;                              // peak size multiplier at the cursor
+  const lensR = LENS_R * k, lensReach = 6.5 * k;     // reach = how far a bubble is pushed out at peak
+  const setLensThrottled = (p) => { if (lensRaf.current) return; lensRaf.current = requestAnimationFrame(() => { lensRaf.current = 0; setLens(p); }); };
+  // fisheye transform for one point: returns [x, y, scale]. t is a 0..1 nearness ramp.
+  const fish = (x, y) => {
+    if (!lens) return [x, y, 1];
+    const dx = x - lens.x, dy = y - lens.y, d = Math.hypot(dx, dy);
+    if (d >= lensR) return [x, y, 1];
+    const t = 0.5 + 0.5 * Math.cos(Math.PI * d / lensR);   // 1 at centre → 0 at edge (smooth)
+    const scale = 1 + (LENS_MAG - 1) * t;
+    const push = lensReach * t, nd = d || 0.001;
+    return [x + dx / nd * push, y + dy / nd * push, scale];
+  };
+  const clientToMap = (cx, cy) => {
+    const el = svgRef.current; if (!el) return null; const r = el.getBoundingClientRect(); const v = vbRef.current;
+    return { x: v.x + (cx - r.left) / r.width * v.w, y: v.y + (cy - r.top) / r.height * v.h };
+  };
   // ——— branching: click a city → it fans out to its museums, and each museum to the loved/liked
   // works you saw there (hover a work for a preview, click to open). Pure geometry in map units;
   // focusing auto-zooms the viewBox to frame the branch. (Fuad 2026-07-14)
   const [focus, setFocus] = useState(null);
+  // ——— collision-relaxed radial fan (fix 2). Seed each child on a golden-angle spiral out of the
+  // parent (guarantees an even, non-symmetrical spread that adapts to count), then run a few
+  // relaxation passes: children that sit closer than their combined radii shove each other apart
+  // and are gently pulled back toward the parent. Longer leader lines are preferred over overlap,
+  // so no two bubbles clump. minR keeps the ring off the parent bubble; the result is used for
+  // BOTH museums (out of the city) and works (out of each museum).
+  const relaxFan = (px, py, items, opt) => {
+    const n = items.length; if (!n) return [];
+    const GA = 2.399963;                                       // golden angle (rad) — even fan
+    const minR = opt.minR, step = opt.step, sep = opt.sep, rOf = opt.rOf, seedAng = opt.seedAng || 0;
+    const nodes = items.map((it, i) => {
+      const rr = minR + step * Math.sqrt(i);
+      const a = seedAng + i * GA;
+      return { it, x: px + rr * Math.cos(a), y: py + rr * Math.sin(a), r: rOf(it, i) };
+    });
+    for (let pass = 0; pass < 14; pass++) {
+      for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
+        const a = nodes[i], b = nodes[j], min = a.r + b.r + sep;
+        let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy);
+        if (d >= min) continue; if (d < 0.001) { dx = Math.cos(i) * 0.5; dy = Math.sin(i) * 0.5; d = Math.hypot(dx, dy); }
+        const push = (min - d) / d / 2; a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push;
+      }
+      // keep each node outside the parent's clear radius and gently regularise leader length
+      for (const nd of nodes) {
+        let ex = nd.x - px, ey = nd.y - py, e = Math.hypot(ex, ey) || 0.001;
+        if (e < minR) { nd.x = px + ex / e * minR; nd.y = py + ey / e * minR; }
+      }
+    }
+    return nodes;
+  };
   const branch = useMemo(() => {
     if (!focus) return null;
     const c = cities.byCity[focus]; if (!c) return null;
     const museums = c.museums.filter(m => m.n > 0);
     const nm = museums.length || 1;
-    const RM = 10 + nm * 1.7;                                   // museum-ring radius (map units)
-    const nodes = museums.map((m, i) => {
-      const ang = -Math.PI / 2 + (i / nm) * 2 * Math.PI;
-      const mx = c.x + RM * Math.cos(ang), my = c.y + RM * Math.sin(ang);
-      const works = WORKS.map(enrich).filter(w => !w.wish && (w.floored || w.liked) &&
-        (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt]).includes(m.id));
-      const nw = works.length, RW = Math.min(3 + nw * 0.32, 8);
-      const wnodes = works.map((w, j) => {
-        const wa = (j / Math.max(nw, 1)) * 2 * Math.PI + ang;   // ring the works around the museum
-        const rr = RW + (j % 2) * 1.4;                          // 2-row stagger to reduce touching
-        return { w, x: mx + rr * Math.cos(wa), y: my + rr * Math.sin(wa) };
-      });
-      return { m, x: mx, y: my, wnodes, nw };
+    const enriched = WORKS.map(enrich);
+    // museum fan: starts CLOSE to the city bubble (minR) and adapts — length/angle fall out of the
+    // relaxation, so a dense city just pushes its museums a little further, never symmetric-forced.
+    const cityR = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
+    const mFan = relaxFan(c.x, c.y, museums, {
+      minR: cityR + 4.5, step: 3.2, sep: 5.5, seedAng: -Math.PI / 2,
+      rOf: (m) => 2.4 + Math.min(m.n, 8) * 0.12,
     });
-    return { c, nodes };
+    const nodes = mFan.map((mn, i) => {
+      const m = mn.it, mx = mn.x, my = mn.y;
+      const works = enriched.filter(w => !w.wish && (w.floored || w.liked) &&
+        (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt]).includes(m.id));
+      const nw = works.length;
+      // seed the work fan pointing AWAY from the city so works splay outward, not back over the ring
+      const outAng = Math.atan2(my - c.y, mx - c.x);
+      const wFan = relaxFan(mx, my, works, {
+        minR: 3.4, step: 1.5, sep: 1.6, seedAng: outAng - Math.PI / 2,
+        rOf: (w) => (w.floored ? 1.5 : 1.1) + 0.5,
+      });
+      const wnodes = wFan.map(wn => ({ w: wn.it, x: wn.x, y: wn.y }));
+      // label sits clear ABOVE the bubble; leader line drawn if the offset is non-trivial
+      return { m, x: mx, y: my, mr: mn.r, wnodes, nw, lx: mx, ly: my - (mn.r + 4.2) };
+    });
+    return { c, nodes, cityR };
   }, [focus]);
+  // ——— divergence transition (fix 5). grow ramps 0→1 on focus (museums/works ease-OUT of the city
+  // bubble) and 1→0 on collapse (they retract back into it). Per-node stagger is applied at render
+  // time from the node index so museums unfurl in sequence, then their works. rAF drives it so the
+  // leader lines (SVG geometry, not CSS-animatable) interpolate in lockstep with the bubbles.
+  const [grow, setGrow] = useState(0);
+  const growRaf = React.useRef(0), growFrom = React.useRef(0), growTo = React.useRef(0), growT0 = React.useRef(0);
+  const animateGrow = (to, from) => {
+    growFrom.current = from == null ? grow : from; growTo.current = to; growT0.current = performance.now();
+    if (growRaf.current) cancelAnimationFrame(growRaf.current);
+    const DUR = 420;
+    const tick = (now) => {
+      const p = Math.min(1, (now - growT0.current) / DUR);
+      const e = 1 - Math.pow(1 - p, 3);                  // ease-out cubic
+      setGrow(growFrom.current + (growTo.current - growFrom.current) * e);
+      if (p < 1) growRaf.current = requestAnimationFrame(tick); else growRaf.current = 0;
+    };
+    growRaf.current = requestAnimationFrame(tick);
+  };
   const focusCity = (c) => {
-    setFocus(c.city);
+    setFocus(c.city); setGrow(0); animateGrow(1, 0);
     const nm = c.museums.filter(m => m.n > 0).length || 1;
-    const half = Math.max(34, 10 + nm * 1.7 + 13);             // frame museum ring + works + margin
+    // frame the whole relaxed fan: museum ring reach grows ~sqrt(nm), plus works + label margin
+    const half = Math.max(30, (c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1) + 4.5 + 3.2 * Math.sqrt(nm) + 16);
     const w = half * 2, h = w * AR;
     commit({ x: c.x - half, y: c.y - h / 2, w, h });
   };
-  const clearFocus = () => { setFocus(null); setHover(null); commit(HOME); };
+  const clearFocus = () => {
+    setHover(null); commit(HOME); animateGrow(0);
+    setTimeout(() => setFocus(null), 440);            // retract the branch, then drop it
+  };
   React.useEffect(() => {
     const el = svgRef.current; if (!el) return;
     const onWheel = (e) => {
@@ -1285,61 +1378,127 @@ function MapView({ go }) {
       commit({ x: v.x + mx * v.w - mx * w, y: v.y + my * v.h - my * h, w, h });
     };
     el.addEventListener("wheel", onWheel, { passive: false });
-    return () => { el.removeEventListener("wheel", onWheel); if (raf.current) cancelAnimationFrame(raf.current); };
+    return () => { el.removeEventListener("wheel", onWheel); if (raf.current) cancelAnimationFrame(raf.current); if (lensRaf.current) cancelAnimationFrame(lensRaf.current); if (growRaf.current) cancelAnimationFrame(growRaf.current); };
   }, []);
-  const onDown = (e) => { if (e.button !== 0) return; drag.current = { mx: e.clientX, my: e.clientY, v: vbRef.current }; };
-  const onMove = (e) => { if (!drag.current || !svgRef.current) return; const r = svgRef.current.getBoundingClientRect(), d = drag.current; commit({ ...d.v, x: d.v.x - (e.clientX - d.mx) / r.width * d.v.w, y: d.v.y - (e.clientY - d.my) / r.height * d.v.h }); };
+  const onDown = (e) => { if (e.button !== 0) return; drag.current = { mx: e.clientX, my: e.clientY, v: vbRef.current, moved: false }; };
+  const onMove = (e) => {
+    if (drag.current && svgRef.current) {
+      const r = svgRef.current.getBoundingClientRect(), d = drag.current;
+      if (Math.abs(e.clientX - d.mx) + Math.abs(e.clientY - d.my) > 3) d.moved = true;
+      commit({ ...d.v, x: d.v.x - (e.clientX - d.mx) / r.width * d.v.w, y: d.v.y - (e.clientY - d.my) / r.height * d.v.h });
+      return;
+    }
+    const p = clientToMap(e.clientX, e.clientY); if (p) setLensThrottled(p);   // fisheye follows the cursor
+  };
   const stop = () => { drag.current = null; };
+  const onLeave = () => { drag.current = null; setLensThrottled(null); };
+  // touch fallback: no hover, so a single tap sets the lens under the finger AND toggles a gentle
+  // semantic zoom step toward that point (tap zoomed-out -> zoom in; tap zoomed-in -> zoom back out);
+  // a drag still pans. This keeps tiny bubbles reachable on touch with no hover dependency.
+  const touch = React.useRef(null);
+  const onTouchStart = (e) => { const t = e.touches[0]; if (t) touch.current = { x: t.clientX, y: t.clientY, moved: false, t: Date.now() }; };
+  const onTouchMove = (e) => {
+    const t = e.touches[0], d = touch.current; if (!t || !d || !svgRef.current) return;
+    if (Math.abs(t.clientX - d.x) + Math.abs(t.clientY - d.y) > 6) {
+      if (!drag.current) drag.current = { mx: d.x, my: d.y, v: vbRef.current, moved: true };
+      const r = svgRef.current.getBoundingClientRect(), dr = drag.current;
+      commit({ ...dr.v, x: dr.v.x - (t.clientX - dr.mx) / r.width * dr.v.w, y: dr.v.y - (t.clientY - dr.my) / r.height * dr.v.h });
+      d.moved = true;
+    }
+  };
+  const onTouchEnd = (e) => {
+    const d = touch.current; drag.current = null; touch.current = null; if (!d || d.moved) return;
+    const p = clientToMap(d.x, d.y); if (!p) return;
+    setLens(p);                                   // magnify under the tap (hover-free)
+    const v = vbRef.current, out = v.w < 300, f = out ? 1.6 : 1 / 1.6;   // toggle a zoom step
+    const w = Math.min(880, Math.max(70, v.w * f)), h = w * AR;
+    const el = svgRef.current, r = el.getBoundingClientRect();
+    const fx = (d.x - r.left) / r.width, fy = (d.y - r.top) / r.height;
+    commit({ x: v.x + fx * v.w - fx * w, y: v.y + fy * v.h - fy * h, w, h });
+  };
 
   return (
     <div className="cv-map">
-      <p className="cv-deck-sum">Every city where a work entered your canon, sized by how much it gave you — <b>click a city</b> to branch out to its museums and the works you loved there (hover a work for a look). The <b style={{ color: "oklch(0.55 0.19 18)" }}>♥ markers</b> are works you're still chasing. Scroll to zoom, drag to pan.</p>
-      <div className="cv-map-wrap" onMouseLeave={stop}>
+      <p className="cv-deck-sum">Every city where a work entered your canon, sized by how much it gave you — <b>click a city</b> to branch out to its museums and the works you loved there (hover a work for a look). The <b style={{ color: "oklch(0.55 0.19 18)" }}>♥ markers</b> are works you're still chasing. Scroll to zoom, drag to pan — hover to magnify the bubbles under your cursor (tap on touch).</p>
+      <div className="cv-map-wrap" onMouseLeave={onLeave}>
         <svg ref={svgRef} viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
-          onMouseDown={onDown} onMouseMove={onMove} onMouseUp={stop}>
+          onMouseDown={onDown} onMouseMove={onMove} onMouseUp={stop}
+          onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
           {landPath && <path d={landPath} fill="#d3c4ab" stroke="none" />}
           {/* DEFAULT: one bubble per city (click to branch) + the ♥ works you're still chasing */}
-          {!focus && cities.list.map(c => (
-            <g key={c.city} className="cv-pin" onClick={() => focusCity(c)} style={{ cursor: "pointer" }}>
-              <circle cx={c.x} cy={c.y} r={(c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1) * k}
-                fill={c.n ? "oklch(0.55 0.13 46 / .82)" : "rgba(58,47,34,.45)"} stroke="#f4ecdf" strokeWidth={0.6 * k} />
-              <title>{c.city} — {c.n} work{c.n !== 1 ? "s" : ""} · {c.museums.length} museum{c.museums.length !== 1 ? "s" : ""}{c.n ? " · click to open" : ""}</title>
-              {c.n >= 8 && <text x={c.x} y={c.y - (2.4 + Math.sqrt(c.n) * 0.8) * k} textAnchor="middle" style={{ fontSize: 8 * k }}>{c.city}</text>}
-            </g>
-          ))}
-          {!focus && wishMarkers.map((mk, i) => (
-            <g key={mk.w.id + "-" + i} className="cv-wishpin" onClick={() => go("work", mk.w.id)}
-              onMouseEnter={e => setHover({ w: mk.w, mx: e.clientX, my: e.clientY, venue: mk.venue, city: mk.city })}
-              onMouseMove={e => setHover(h => h && h.w === mk.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
-              onMouseLeave={() => setHover(null)}>
-              {(mk.x !== mk.bx || mk.y !== mk.by) && <line x1={mk.bx} y1={mk.by} x2={mk.x} y2={mk.y} stroke="oklch(0.55 0.19 18 / .4)" strokeWidth={0.5 * k} />}
-              <circle cx={mk.x} cy={mk.y} r={2 * k} fill="oklch(0.55 0.19 18 / .9)" stroke="#f7efe2" strokeWidth={0.6 * k} />
-            </g>
-          ))}
-          {/* FOCUSED: the branch — city → museums → the loved/liked works you saw at each */}
-          {branch && (
-            <g className="cv-branch">
-              {branch.nodes.map(nd => <line key={"cm" + nd.m.id} x1={branch.c.x} y1={branch.c.y} x2={nd.x} y2={nd.y} stroke="rgba(58,47,34,.5)" strokeWidth={0.5 * k} />)}
-              {branch.nodes.map(nd => nd.wnodes.map((wn, j) => (
-                <g key={nd.m.id + "-w" + j} className="cv-wishpin" onClick={() => go("work", wn.w.id)}
-                  onMouseEnter={e => setHover({ w: wn.w, mx: e.clientX, my: e.clientY, venue: nd.m.name, city: branch.c.city, seen: true })}
-                  onMouseMove={e => setHover(h => h && h.w === wn.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
-                  onMouseLeave={() => setHover(null)}>
-                  <line x1={nd.x} y1={nd.y} x2={wn.x} y2={wn.y} stroke="rgba(58,47,34,.26)" strokeWidth={0.3 * k} />
-                  <circle cx={wn.x} cy={wn.y} r={(wn.w.floored ? 1.5 : 1.1) * k}
-                    fill={wn.w.floored ? "oklch(0.55 0.19 18 / .92)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.4 * k} />
-                </g>
-              )))}
-              {branch.nodes.map(nd => (
-                <g key={"m" + nd.m.id} onClick={() => go("deck", nd.m.id)} style={{ cursor: "pointer" }}>
-                  <circle cx={nd.x} cy={nd.y} r={2.4 * k} fill="oklch(0.5 0.14 46 / .95)" stroke="#f4ecdf" strokeWidth={0.7 * k} />
-                  <text x={nd.x} y={nd.y - 3.4 * k} textAnchor="middle" style={{ fontSize: 6.2 * k, fontWeight: 600 }}>{nd.m.name}</text>
-                </g>
-              ))}
-              <circle cx={branch.c.x} cy={branch.c.y} r={3.2 * k} fill="oklch(0.42 0.15 30 / .96)" stroke="#f4ecdf" strokeWidth={0.9 * k} />
-              <text x={branch.c.x} y={branch.c.y + 1.5 * k} textAnchor="middle" style={{ fontSize: 5.6 * k, fontWeight: 700, fill: "#f4ecdf" }}>{branch.c.city}</text>
-            </g>
-          )}
+          {!focus && cities.list.map(c => {
+            const cr = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
+            const [fx, fy, fs] = fish(c.x, c.y);
+            return (
+              <g key={c.city} className="cv-pin" onClick={() => focusCity(c)} style={{ cursor: "pointer" }}>
+                <circle cx={fx} cy={fy} r={cr * fs * k}
+                  fill={c.n ? "oklch(0.55 0.13 46 / .82)" : "rgba(58,47,34,.45)"} stroke="#f4ecdf" strokeWidth={0.6 * k} />
+                <title>{c.city} — {c.n} work{c.n !== 1 ? "s" : ""} · {c.museums.length} museum{c.museums.length !== 1 ? "s" : ""}{c.n ? " · click to open" : ""}</title>
+                {(c.n >= 8 || fs > 1.25) && <text x={fx} y={fy - (cr * fs + 1) * k} textAnchor="middle" style={{ fontSize: 8 * k }}>{c.city}</text>}
+              </g>
+            );
+          })}
+          {!focus && wishMarkers.map((mk, i) => {
+            const [fx, fy, fs] = fish(mk.x, mk.y);
+            return (
+              <g key={mk.w.id + "-" + i} className="cv-wishpin" onClick={() => go("work", mk.w.id)}
+                onMouseEnter={e => setHover({ w: mk.w, mx: e.clientX, my: e.clientY, venue: mk.venue, city: mk.city })}
+                onMouseMove={e => setHover(h => h && h.w === mk.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
+                onMouseLeave={() => setHover(null)}>
+                {(mk.x !== mk.bx || mk.y !== mk.by) && <line x1={mk.bx} y1={mk.by} x2={fx} y2={fy} stroke="oklch(0.55 0.19 18 / .4)" strokeWidth={0.5 * k} />}
+                <circle cx={fx} cy={fy} r={2 * fs * k} fill="oklch(0.55 0.19 18 / .9)" stroke="#f7efe2" strokeWidth={0.6 * k} />
+              </g>
+            );
+          })}
+          {/* FOCUSED: the branch — city → museums → works. grow (0→1) eases every child OUT of the
+              city bubble with a per-node stagger; the fisheye reshapes it on top. */}
+          {branch && (() => {
+            const cx = branch.c.x, cy = branch.c.y, N = branch.nodes.length;
+            // stagger: museum i unfurls over its slice of grow; its works trail just behind it
+            const mProg = (i) => { const s = N > 1 ? 0.45 * i / (N - 1) : 0; return Math.max(0, Math.min(1, (grow - s) / (1 - s || 1))); };
+            const lerp = (a, b, t) => a + (b - a) * t;
+            return (
+              <g className="cv-branch">
+                {branch.nodes.map((nd, i) => {
+                  const g = mProg(i), mx = lerp(cx, nd.x, g), my = lerp(cy, nd.y, g);
+                  return <line key={"cm" + nd.m.id} x1={cx} y1={cy} x2={mx} y2={my} stroke="rgba(58,47,34,.5)" strokeWidth={0.5 * k} style={{ opacity: g }} />;
+                })}
+                {branch.nodes.map((nd, i) => {
+                  const g = mProg(i), mx = lerp(cx, nd.x, g), my = lerp(cy, nd.y, g), wg = Math.max(0, (g - 0.3) / 0.7);
+                  return nd.wnodes.map((wn, j) => {
+                    const wx0 = lerp(mx, wn.x, wg), wy0 = lerp(my, wn.y, wg);
+                    const [fx, fy, fs] = fish(wx0, wy0);
+                    return (
+                      <g key={nd.m.id + "-w" + j} className="cv-wishpin" style={{ opacity: wg }} onClick={() => go("work", wn.w.id)}
+                        onMouseEnter={e => setHover({ w: wn.w, mx: e.clientX, my: e.clientY, venue: nd.m.name, city: branch.c.city, seen: true })}
+                        onMouseMove={e => setHover(h => h && h.w === wn.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
+                        onMouseLeave={() => setHover(null)}>
+                        <line x1={mx} y1={my} x2={fx} y2={fy} stroke="rgba(58,47,34,.26)" strokeWidth={0.3 * k} />
+                        <circle cx={fx} cy={fy} r={(wn.w.floored ? 1.5 : 1.1) * fs * k}
+                          fill={wn.w.floored ? "oklch(0.55 0.19 18 / .92)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.4 * k} />
+                      </g>
+                    );
+                  });
+                })}
+                {branch.nodes.map((nd, i) => {
+                  const g = mProg(i), mx = lerp(cx, nd.x, g), my = lerp(cy, nd.y, g);
+                  const [fx, fy, fs] = fish(mx, my);
+                  const lx = fx, ly = fy - (nd.mr * fs + 3.6) * k;               // label clear above the bubble
+                  const chW = Math.max(nd.m.name.length * 3.05 + 6, 14) * k, chH = 8.4 * k;
+                  return (
+                    <g key={"m" + nd.m.id} className="cv-mus" style={{ opacity: g }} onClick={() => go("deck", nd.m.id)}>
+                      {(ly + chH / 2) < fy - nd.mr * fs * k - 0.4 * k && <line x1={fx} y1={fy - nd.mr * fs * k} x2={fx} y2={ly + chH / 2} stroke="rgba(58,47,34,.4)" strokeWidth={0.35 * k} />}
+                      <circle cx={fx} cy={fy} r={nd.mr * fs * k} fill="oklch(0.5 0.14 46 / .95)" stroke="#f4ecdf" strokeWidth={0.7 * k} />
+                      <rect className="cv-map-chip" x={lx - chW / 2} y={ly - chH / 2} width={chW} height={chH} rx={chH / 2} />
+                      <text x={lx} y={ly + 1.9 * k} textAnchor="middle" style={{ fontSize: 5 * k }}>{nd.m.name}</text>
+                    </g>
+                  );
+                })}
+                <circle cx={cx} cy={cy} r={branch.cityR * 1.55 * k} fill="oklch(0.42 0.15 30 / .96)" stroke="#f4ecdf" strokeWidth={0.9 * k} />
+                <text x={cx} y={cy + 1.5 * k} textAnchor="middle" style={{ fontSize: 5.6 * k, fontWeight: 700, fill: "#f4ecdf" }}>{branch.c.city}</text>
+              </g>
+            );
+          })()}
         </svg>
         {hover && (
           <div className="cv-map-preview" style={{ left: hover.mx + 16, top: hover.my + 16 }}>
