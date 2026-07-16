@@ -242,9 +242,18 @@ function DraggablePanel({ storageKey, title, onClose, children }) {
   // the ONLY thing that receives the peek tap. It expands on pointerup and preventDefault()s so no
   // synthetic click is generated and nothing underneath (page rows or the just-revealed body) is
   // hit. stopPropagation keeps it off the bar's own handlers.
+  // Expanding also UNMOUNTS this overlay (it's rendered only while peeked), so the synthetic click
+  // the same tap emits a beat later lands on the just-revealed first artist row → it navigated
+  // away instead of expanding, and only a long-press (which fires no synthetic click) "worked".
+  // Swallow that one trailing click at the document level (capture phase) so the expand tap can
+  // never also trigger a row (Fuad 2026-07-16).
   const onPeekExpand = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    const swallow = (ev) => { ev.preventDefault(); ev.stopPropagation(); };
+    document.addEventListener("click", swallow, { capture: true, once: true });
+    // if no synthetic click arrives (e.g. mouse/pen), don't leave the one-shot armed for a later real click
+    setTimeout(() => document.removeEventListener("click", swallow, { capture: true }), 500);
     setSheetPeek(false);
   };
 

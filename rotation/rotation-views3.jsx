@@ -1984,6 +1984,16 @@ function StoriesView({ t, go, seed }) {
         }
 
         /* ── mobile pass ── */
+        /* the feed is capped + centred, but several rows are grids whose 1fr/2fr tracks carry an
+           implicit auto min — a long name/tag can then push the track (and the card) past a ~344px
+           screen. Pin every story grid + its cells to a 0 min so content ellipsises instead of
+           overflowing, and hard-cap the feed to the viewport (Fuad 2026-07-16). */
+        .st-feed { max-width: min(780px, 100%); }
+        .st-feed > section { max-width: 100%; min-width: 0; overflow-wrap: anywhere; }
+        .st-list, .st-life, .st-atlas, .st-peaks, .st-gates, .st-turn, .st-arc,
+        .st-incub, .st-grid, .st-scenes, .st-ug-cuts, .st-geo-grid { min-width: 0; }
+        .st-life-row, .st-atlas-row, .st-peak, .st-gate, .st-turn-row, .st-arc-row,
+        .st-incub-row, .st-life-row > *, .st-atlas-row > *, .st-peak > *, .st-gate > * { min-width: 0; }
         @media (max-width: 700px) {
           .st-ug-cuts { grid-template-columns: 1fr 1fr; gap: 6px; }
           .st-ug-cut { padding: 8px; }
@@ -1993,6 +2003,7 @@ function StoriesView({ t, go, seed }) {
         }
         @media (max-width: 420px) {
           .st-ug-cuts { grid-template-columns: 1fr; }
+          .st-grid { grid-template-columns: 1fr; }
         }
 
         /* ── slope graph ── */

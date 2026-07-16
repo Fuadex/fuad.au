@@ -472,7 +472,7 @@ function OverviewView({ t, go, restReady, seed }) {
       </div>
 
       {/* bento */}
-      <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
+      <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, minmax(0, 1fr))", gap: "var(--gap)" }}>
         {/* now playing — top-right corner of the pulse row (DOM-first so mobile still leads
             with it; the ≥981px block pins it to cols 9-12) */}
         <div className="r-card ov-np" style={{ gridColumn: "span 4", padding: 14, display: "flex", gap: 14, alignItems: "center", minWidth: 0 }}>
@@ -737,6 +737,14 @@ function OverviewView({ t, go, restReady, seed }) {
         .eqbar { width: 4px; height: 10px; background: var(--accent); border-radius: 2px;
           animation: eq .9s ease-in-out infinite alternate; box-shadow: 0 0 6px var(--accent-bg); }
         @keyframes eq { from { height: 6px; } to { height: 26px; } }
+        /* the inner insight grid is a repeat(12,1fr); bare fr tracks have an implicit auto min, so a
+           long insight can push a span-4 card past its third and overflow the card. Pin the tracks to
+           a 0 min and let the cards stack once there isn't room (Fuad 2026-07-16). */
+        .ov-insgrid { grid-template-columns: repeat(12, minmax(0, 1fr)) !important; }
+        .ov-insgrid > .r-card { min-width: 0; }
+        @media (max-width: 760px) {
+          .ov-insgrid > .r-card { grid-column: 1 / -1 !important; }
+        }
         @media (max-width: 980px) {
           .r-view .r-card { grid-column: span 12 !important; }
         }
