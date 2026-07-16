@@ -12,6 +12,24 @@ const WORKS = (window.CANVAS_ARTWORKS || []).map(w => (w.artist == null ? { ...w
 const AD = window.CANVAS_ART_DATA || { museums: {}, artworks: {}, artists: {} };
 
 const MUS_BY_ID = {}; for (const m of MUSEUMS) MUS_BY_ID[m.id] = m;
+
+// ——— deck queue: unmet majors added from artist pages, held in localStorage until graded.
+// Shape: array of { qid, title, artist, year, img } (dedup by qid). The by-artists deck reads
+// this FIRST, then the shipped CANVAS_BY_ARTISTS list (dedup by qid across both).
+const DECK_QUEUE_KEY = "canvas-deck-queue";
+const readDeckQueue = () => {
+  try { const a = JSON.parse(localStorage.getItem(DECK_QUEUE_KEY)); return Array.isArray(a) ? a : []; }
+  catch (e) { return []; }
+};
+const writeDeckQueue = (arr) => { try { localStorage.setItem(DECK_QUEUE_KEY, JSON.stringify(arr)); } catch (e) {} };
+const isQueued = (qid) => readDeckQueue().some(w => w.qid === qid);
+const addToDeckQueue = (w) => {
+  const arr = readDeckQueue();
+  if (arr.some(x => x.qid === w.qid)) return arr;
+  const next = [...arr, { qid: w.qid, title: w.title, artist: w.artist, year: w.year || null, img: w.img || null }];
+  writeDeckQueue(next);
+  return next;
+};
 const COUNTRY = { jp: "Japan", us: "United States", fr: "France", ie: "Ireland", gb: "United Kingdom", at: "Austria", pl: "Poland", se: "Sweden", au: "Australia", nl: "Netherlands", ch: "Switzerland", de: "Germany", ca: "Canada", it: "Italy", gr: "Greece", kr: "South Korea" };
 
 // merged view of one work: hand canon ⊕ overlay
@@ -846,11 +864,25 @@ function Deck({ museumId, part, go }) {
   const VIRTUAL = museumId === "by-artists";
   const mus = VIRTUAL ? { name: "Works by artists you love" } : MUS_BY_ID[museumId];
   const canonQids = useMemo(() => new Set(WORKS.map(w => (AD.artworks[w.id] || {}).qid).filter(Boolean)), []);
-  // full deck (all parts) — verdicts are stored here across parts
+  // queued works added from artist pages (by-artists deck only). Read once at mount so grading
+  // doesn't reshuffle the live deck; pruning happens in localStorage, reflected on next visit.
+  const [queued] = useState(() => (museumId === "by-artists" ? readDeckQueue() : []));
+  // full deck (all parts) — verdicts are stored here across parts. For the by-artists deck the
+  // queued works (minus canon) come FIRST, then the shipped list, deduped by qid across both.
   const fullDeck = useMemo(() => {
-    const src = VIRTUAL ? (window.CANVAS_BY_ARTISTS || []) : (HL[museumId] || []);
-    return src.filter(w => !canonQids.has(w.qid));
-  }, [museumId]);
+    if (VIRTUAL) {
+      const shipped = window.CANVAS_BY_ARTISTS || [];
+      const seen = new Set();
+      const merged = [];
+      for (const w of [...queued, ...shipped]) {
+        if (!w.qid || seen.has(w.qid) || canonQids.has(w.qid)) continue;
+        seen.add(w.qid); merged.push(w);
+      }
+      return merged;
+    }
+    return (HL[museumId] || []).filter(w => !canonQids.has(w.qid));
+  }, [museumId, queued]);
+  const queuedCount = VIRTUAL ? fullDeck.filter(w => queued.some(q => q.qid === w.qid)).length : 0;
   // part splitting: 40-card pages (last page = remainder); part is 1-based
   const numParts = Math.max(1, Math.ceil(fullDeck.length / DECK_PART_SIZE));
   const safePart = Math.min(Math.max(part || 1, 1), numParts);
@@ -882,9 +914,12 @@ function Deck({ museumId, part, go }) {
 
   const judge = (seenV) => {
     if (i >= deck.length) return;
-    const next = { ...verdicts, [deck[i].qid]: { seen: seenV, love } };
+    const gradedQid = deck[i].qid;
+    const next = { ...verdicts, [gradedQid]: { seen: seenV, love } };
     setVerdicts(next);
     localStorage.setItem(storeKey, JSON.stringify(next));
+    // once a queued work is graded, prune it from the queue (harmless if it lingers, but tidy)
+    if (VIRTUAL && isQueued(gradedQid)) writeDeckQueue(readDeckQueue().filter(w => w.qid !== gradedQid));
     setI(i + 1);
   };
   useEffect(() => {
@@ -928,7 +963,7 @@ function Deck({ museumId, part, go }) {
     return (
       <div className="cv-deck">
         {partNav}
-        <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")} — Part {safePart} done</div>
+        <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")} — Part {safePart} done{queuedCount > 0 ? <span className="cv-deck-queued"> · {queuedCount} from artist pages</span> : null}</div>
         <p className="cv-deck-sum">{seen.length} recognised across all parts ({seen.filter(r => r.love === 2).length} floored) · {rows.filter(r => r.seen === "unsure").length} unsure · {discoveries.length} discoveries you'd love to see.</p>
         {nextPart && (
           <a className="cv-deck-btn cv-deck-btn-next" href={partHref(nextPart)}>Continue to Part {nextPart} →</a>
@@ -962,7 +997,7 @@ function Deck({ museumId, part, go }) {
   return (
     <div className="cv-deck">
       {partNav}
-      <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")}{numParts > 1 ? " · Part " + safePart : ""} · did you see this?</div>
+      <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")}{numParts > 1 ? " · Part " + safePart : ""} · did you see this?{queuedCount > 0 ? <span className="cv-deck-queued"> · {queuedCount} from artist pages</span> : null}</div>
       <div className="cv-deck-prog">{i + 1} / {deck.length} · 1–3 seen · 4 ♡ · 5 ♥{i > 0 ? " · Backspace = back" : ""}</div>
       <div className="cv-deck-card" key={w.qid}>{/* remount per card: stale image must not linger under the next label */}
         <img src={w.img} alt={w.title} loading="eager" />
@@ -992,6 +1027,11 @@ function Deck({ museumId, part, go }) {
 function ArtistView({ artistId, go }) {
   const AD2 = AD.artists[artistId] || {};
   const works = useMemo(() => WORKS.map(enrich).filter(w => w.artistId === artistId), [artistId]);
+  // queued-qids for the "+ deck" affordance: seeded from localStorage so an already-queued major
+  // renders as "queued" immediately; adding one updates the set for instant feedback. Declared
+  // before the early return below to keep the hook order stable (rules of hooks).
+  const [queuedQids, setQueuedQids] = useState(() => new Set(readDeckQueue().map(w => w.qid)));
+  const queueMajor = (n) => { addToDeckQueue(n); setQueuedQids(prev => new Set(prev).add(n.qid)); };
   if (!works.length && !AD2.qid) return <div className="cv-mus"><p>No artist here (yet).</p></div>;
   const name = (works[0] && works[0].artist.replace(/\s*\(.*\)$/, "")) || AD2.label;
   // "Majors you haven't met" filters the notable list against the canon. Matching on qid alone
@@ -1036,12 +1076,20 @@ function ArtistView({ artistId, go }) {
         <React.Fragment>
           <div className="cv-a-secl">Their majors you haven't met</div>
           <div className="cv-a-unmet">
-            {unmet.map(n => (
-              <a key={n.qid} href={`https://www.wikidata.org/wiki/${n.qid}`} target="_blank" rel="noopener noreferrer" title={n.title}>
-                <img src={n.img} alt={n.title} loading="lazy" />
-                <span>{n.title}{n.year ? ` · ${n.year}` : ""}</span>
-              </a>
-            ))}
+            {unmet.map(n => {
+              const q = queuedQids.has(n.qid);
+              return (
+                <div className="cv-a-unmet-item" key={n.qid}>
+                  <a href={`https://www.wikidata.org/wiki/${n.qid}`} target="_blank" rel="noopener noreferrer" title={n.title}>
+                    <img src={n.img} alt={n.title} loading="lazy" />
+                    <span>{n.title}{n.year ? ` · ${n.year}` : ""}</span>
+                  </a>
+                  <button type="button" className="cv-a-unmet-add" data-q={q} disabled={q}
+                    title={q ? "queued for the By Your Artists deck" : "add to the By Your Artists deck"}
+                    onClick={() => queueMajor(n)}>{q ? "queued ✓" : "+ deck"}</button>
+                </div>
+              );
+            })}
           </div>
         </React.Fragment>
       )}

@@ -169,9 +169,21 @@ a { color: inherit; }
 @media (max-width: 900px)  { .cv-a-wall { column-count: 3; } }
 @media (max-width: 620px)  { .cv-a-wall { column-count: 2; } }
 .cv-a-unmet { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.cv-a-unmet-item { position: relative; }
 .cv-a-unmet a { display: block; text-decoration: none; }
 .cv-a-unmet img { width: 100%; height: 120px; object-fit: cover; border-radius: 5px; box-shadow: 0 4px 14px rgba(40,28,14,.22); }
 .cv-a-unmet span { display: block; font: 400 11px/1.4 var(--serif); color: var(--ink-soft); margin-top: 5px; }
+/* corner affordance: queue an unmet major into the By Your Artists deck. Subtle by default,
+   solid on hover; the queued state stays visible + disabled. */
+.cv-a-unmet-add { position: absolute; top: 6px; right: 6px; font: 500 9.5px/1 var(--mono);
+  letter-spacing: .06em; padding: 5px 8px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--rule); background: rgba(251,246,236,.82); color: var(--ink-soft);
+  opacity: .78; transition: opacity .14s, border-color .14s, color .14s; }
+.cv-a-unmet-item:hover .cv-a-unmet-add, .cv-a-unmet-add:focus { opacity: 1; }
+.cv-a-unmet-add:hover { border-color: var(--accent); color: var(--accent); background: rgba(251,246,236,.96); }
+.cv-a-unmet-add[data-q="true"] { opacity: 1; cursor: default; color: oklch(0.42 0.1 145);
+  border-color: oklch(0.5 0.1 145 / .5); background: oklch(0.5 0.1 145 / .1); }
+.cv-deck-queued { font: 500 12px/1 var(--mono); color: var(--ink-faint); letter-spacing: .04em; }
 
 /* ——— the painterly map (Phase 4a) ——— */
 .cv-map { max-width: 1200px; margin: 0 auto; padding: 20px 34px 60px; }
