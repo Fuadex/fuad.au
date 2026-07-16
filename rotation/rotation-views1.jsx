@@ -196,31 +196,29 @@ function parseOvSeed(seed) {
 }
 
 // Emotional-weather card. The last-90-days block (baseline vs last-90d sounds/reads; routes to
-// the story) sits on top; a DECADES row underneath re-uses the SAME two-axis metric — sounds
-// (Spotify audio valence) × reads (NRC lyric valence), 0–100 — and the SAME bar visual, only
-// bucketed per listening decade (2000s / 2010s / 2020s), play-weighted from MOOD.arc's per-year
-// rows (year → { plays, aud, lyr }). No new data: MOOD.arc already ships in window.ROTATION.
-function OvWeatherCard({ R, go }) {
+// the story) sits on top; the RELEASE-DECADE strip treemap (formerly hidden behind a tab) sits
+// directly underneath at reduced height — both fit in one module (Fuad, 2026-07-17). The strip
+// stays drillable to per-year. (A by-year emotional-weather timeline is parked as a future
+// pairing with the map's date scrubber.)
+function OvWeatherCard({ R, go, restReady }) {
+  const [zoom, setZoom] = React.useState(null);   // clicked decade (per-year drill-down) or null
   const M = R.INSIGHTS && R.INSIGHTS.MOOD, N = M && M.now;
-
-  // per-decade sounds/reads — fold MOOD.arc's per-year rows into 10-year buckets, play-weighting
-  // aud/lyr by each year's plays (same weighting build-data uses for avgAud/avgLyr).
-  const decades = React.useMemo(() => {
-    const arc = M && M.arc;
-    if (!arc || !arc.length) return [];
-    const b = new Map();   // decade → { plays, audW, lyrW }
-    for (const r of arc) {
-      if (r.aud == null || r.lyr == null || !r.plays) continue;
-      const dec = Math.floor(r.year / 10) * 10;
-      let a = b.get(dec);
-      if (!a) { a = { decade: dec, plays: 0, audW: 0, lyrW: 0 }; b.set(dec, a); }
-      a.plays += r.plays; a.audW += r.aud * r.plays; a.lyrW += r.lyr * r.plays;
-    }
-    return [...b.values()].sort((x, y) => x.decade - y.decade)
-      .map(a => ({ decade: a.decade, plays: a.plays,
-        aud: Math.round(a.audW / a.plays), lyr: Math.round(a.lyrW / a.plays) }));
-  }, [M]);
+  const ad = R.INSIGHTS && R.INSIGHTS.ADOPTION;
+  const decades = React.useMemo(() =>
+    ad && ad.decades ? ad.decades.filter(d => d.plays > 0).slice().sort((a, b) => a.decade - b.decade) : [],
+    [ad]);
   const hasDec = decades.length > 0;
+
+  // per-year plays inside a decade, reconstructed from EXPLORE debut years (needs the rest bundle)
+  const yearBreak = React.useMemo(() => {
+    if (zoom == null || !restReady || !R.EXPLORE) return null;
+    const buckets = new Map();
+    for (const a of R.EXPLORE) { const y = a.d; if (y >= zoom && y < zoom + 10 && a.plays > 0) buckets.set(y, (buckets.get(y) || 0) + a.plays); }
+    const rows = [...buckets.entries()].map(([year, plays]) => ({ year, plays })).sort((a, b) => a.year - b.year);
+    const tot = rows.reduce((s, r) => s + r.plays, 0);
+    return { rows, tot };
+  }, [zoom, restReady, R]);
+
   if (!N && !hasDec) return null;
 
   // Shared bar — identical visual language for the last-90d block and every decade row: a filled
@@ -258,24 +256,68 @@ function OvWeatherCard({ R, go }) {
     );
   };
 
-  // ── DECADES (same two-axis metric, one stacked pair per listening decade) ──
-  const decadesRow = () => {
+  // ── DECADES (chronological strip treemap → drillable per-year; reduced height so it fits
+  //    under the weather block in one module) ──
+  const H = 64;   // strip height px — HTML flex strips, not SVG: a stretched viewBox distorts label glyphs
+  const decadesStrip = () => {
     if (!hasDec) return null;
+
+    if (zoom != null) {
+      const dec = decades.find(x => x.decade === zoom);
+      if (!yearBreak) {
+        return (
+          <div>
+            <button onClick={(e) => { e.stopPropagation(); setZoom(null); }} className="ov-wback">← {zoom}s</button>
+            <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", padding: "14px 0" }}>loading detail…</div>
+          </div>
+        );
+      }
+      const { rows, tot } = yearBreak;
+      return (
+        <div>
+          <button onClick={(e) => { e.stopPropagation(); setZoom(null); }} className="ov-wback">← {zoom}s</button>
+          <div style={{ display: "flex", height: H, borderRadius: 4, overflow: "hidden", gap: 1 }}>
+            {rows.map((r, i) => {
+              const w = tot ? (r.plays / tot) * 100 : 0;
+              const pct = tot ? Math.round(r.plays / tot * 100) : 0;
+              const hue = 60 + ((r.year - zoom) * 20);
+              return (
+                <div key={r.year} title={`${r.year} · ${r.plays.toLocaleString("en-US")} plays · ${pct}% of the ${zoom}s`}
+                  style={{ width: w + "%", minWidth: 2, background: `oklch(${0.34 + (i % 5) * 0.05} 0.13 ${hue % 360})`,
+                    display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                  {w > 8 && <span className="r-mono" style={{ fontSize: 9.5, color: "rgba(255,255,255,.9)", whiteSpace: "nowrap" }}>'{String(r.year).slice(2)}</span>}
+                </div>
+              );
+            })}
+          </div>
+          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 7, lineHeight: 1.5 }}>
+            {dec ? Math.round(dec.share * 100) + "% of plays are " + zoom + "s music" : ""} — by artist debut year
+          </div>
+        </div>
+      );
+    }
+
+    const tot = decades.reduce((s, d) => s + d.plays, 0);
     return (
-      <div className="ov-wdecs">
-        <div className="r-mono ov-wdlbl" style={{ fontSize: 9, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>by decade</div>
-        <div style={{ display: "grid", gap: 12 }}>
-          {decades.map(dc => (
-            <div key={dc.decade}>
-              <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)", marginBottom: 5 }}>
-                {dc.decade}s <span style={{ color: "var(--ink-faint)" }}>· {dc.plays.toLocaleString("en-US")} plays</span>
+      <div>
+        <div style={{ display: "flex", height: H, borderRadius: 4, overflow: "hidden", gap: 1 }}>
+          {decades.map((d, i) => {
+            const w = tot ? (d.plays / tot) * 100 : 0;
+            const pct = Math.round(d.share * 100);
+            const hue = 60 + i * 28;
+            return (
+              <div key={d.decade} title={`${d.decade}s · ${d.plays.toLocaleString("en-US")} plays · ${pct}% — click to drill in`}
+                onClick={(e) => { e.stopPropagation(); setZoom(d.decade); }}
+                style={{ width: w + "%", minWidth: 2, background: `oklch(${0.32 + i * 0.055} 0.14 ${hue % 360})`, cursor: "pointer",
+                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                {w > 9 && <span className="r-mono" style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,.92)", whiteSpace: "nowrap" }}>{String(d.decade).slice(2)}s</span>}
+                {w > 9 && <span className="r-mono" style={{ fontSize: 8.5, color: "rgba(255,255,255,.62)", whiteSpace: "nowrap" }}>{pct}%</span>}
               </div>
-              <div style={{ display: "grid", gap: 6 }}>
-                <Bar label="Sounds" v={dc.aud} avg={M ? M.avgAud : null} col={SND} />
-                <Bar label="Reads" v={dc.lyr} avg={M ? M.avgLyr : null} col={RDS} />
-              </div>
-            </div>
-          ))}
+            );
+          })}
+        </div>
+        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 7 }}>
+          area = share of plays by release decade · click a decade to drill in
         </div>
       </div>
     );
@@ -287,11 +329,20 @@ function OvWeatherCard({ R, go }) {
         <span className="lbl"><b>Emotional weather</b></span>
       </div>
       {weather()}
-      {decadesRow()}
+      {hasDec && (
+        <div className="ov-wdecs">
+          <div className="r-mono ov-wdlbl" style={{ fontSize: 9, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>Decades</div>
+          {decadesStrip()}
+        </div>
+      )}
       <style>{`
-        /* decades row sits under the last-90d block; left edge aligns with the paragraph above it */
+        /* decades strip sits under the last-90d block; left edge aligns with the paragraph above */
         .ov-wdecs { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
-        .ov-wdlbl { margin-bottom: 10px; }
+        .ov-wdlbl { margin-bottom: 8px; }
+        .ov-wback { font-family: var(--mono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase;
+          background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px;
+          color: var(--ink-soft); cursor: pointer; margin-bottom: 8px; }
+        .ov-wback:hover { color: var(--accent); border-color: var(--accent-dim); }
       `}</style>
     </div>
   );
@@ -567,7 +618,7 @@ function OverviewView({ t, go, restReady, seed }) {
 
         {/* emotional weather now — last-90d sounds/reads on top, a per-decade row of the SAME
             two-axis metric underneath. Card footprint unchanged (ov-weather grid rules). */}
-        <OvWeatherCard R={R} go={go} />
+        <OvWeatherCard R={R} go={go} restReady={restReady} />
 
       </div>
 

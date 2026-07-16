@@ -791,6 +791,32 @@ function CalendarView({ go, seed }) {
   const fmtDate = (dt) => dt.getUTCDate() + " " + MON[dt.getUTCMonth()] + " " + dt.getUTCFullYear();
   const keyFor = (g, dt) => { const iso = dt.toISOString().slice(0, 10); if (g === "day") return iso; if (g === "month") return iso.slice(0, 7); const dow = (dt.getUTCDay() + 6) % 7; return new Date(dt.getTime() - dow * 86400e3).toISOString().slice(0, 10); };
 
+  // song→album cover lookup (media-index, lazy). These hooks MUST sit above the `if (!cal)`
+  // early return below — hooks after it change the hook count when calendar.js lazy-loads,
+  // which is exactly React error #310 (crashed the view on first visit until 2026-07-17).
+  const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
+  React.useEffect(() => {
+    if (window.ROTATION_MEDIA) return;
+    let sM = document.getElementById("media-index-js");
+    if (!sM) { sM = document.createElement("script"); sM.id = "media-index-js"; sM.src = "media-index.js"; sM.onerror = () => {}; document.head.appendChild(sM); }
+    sM.addEventListener("load", () => setMediaReady(true));
+  }, []);
+  const songAlbumCover = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA; if (!M || !M.tracks || !M.albums || !M.artists) return {};
+    const out = {};
+    for (const t of M.tracks) {
+      const cover = M.albums[t[3]] && M.albums[t[3]][6];
+      if (cover) out[t[0] + "\x00" + M.artists[t[1]]] = cover;
+    }
+    return out;
+  }, [detail, mediaReady]);
+  const albumCoverMap = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA; if (!M || !M.albums || !M.artists) return {};
+    const out = {};
+    for (const al of M.albums) if (al[6]) out[al[0] + "\x00" + M.artists[al[1]]] = al[6];
+    return out;
+  }, [detail, mediaReady]);
+
   if (!cal) return (
     <div className="r-view">
       <div className="r-viewhead"><div><div className="r-kicker">Calendar</div><h1 className="r-title">Every <em>day</em><span className="dot">.</span></h1></div></div>
@@ -818,33 +844,7 @@ function CalendarView({ go, seed }) {
   const selLabel = sel ? (gran === "day" ? fmtDate(new Date(sel + "T00:00:00Z")) : gran === "week" ? "Week of " + fmtDate(new Date(sel + "T00:00:00Z")) : MONF[+sel.split("-")[1] - 1] + " " + sel.split("-")[0]) : "";
   const aRow = ([i, p]) => ({ name: NM[i], plays: p });
   const iRow = ([t, a, p]) => ({ title: NM[t], artist: NM[a], plays: p });
-  // song→album cover lookup: if ROTATION_MEDIA is already loaded, build a title+artist keyed map
-  // so each song row can show its album cover via GenCover image/thumb props. Falls back to artist
-  // art (the existing behaviour) when the media-index isn't loaded or the track isn't in it.
-  // the media index never loaded on this page before, so covers were hit-or-miss
-  // (Fuad 2026-07-14) — load it here like the other views do, then key BOTH songs and albums.
-  const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
-  React.useEffect(() => {
-    if (window.ROTATION_MEDIA) return;
-    let sM = document.getElementById("media-index-js");
-    if (!sM) { sM = document.createElement("script"); sM.id = "media-index-js"; sM.src = "media-index.js"; sM.onerror = () => {}; document.head.appendChild(sM); }
-    sM.addEventListener("load", () => setMediaReady(true));
-  }, []);
-  const songAlbumCover = React.useMemo(() => {
-    const M = window.ROTATION_MEDIA; if (!M || !M.tracks || !M.albums || !M.artists) return {};
-    const out = {};
-    for (const t of M.tracks) {
-      const cover = M.albums[t[3]] && M.albums[t[3]][6];
-      if (cover) out[t[0] + "\x00" + M.artists[t[1]]] = cover;
-    }
-    return out;
-  }, [detail, mediaReady]);
-  const albumCoverMap = React.useMemo(() => {
-    const M = window.ROTATION_MEDIA; if (!M || !M.albums || !M.artists) return {};
-    const out = {};
-    for (const al of M.albums) if (al[6]) out[al[0] + "\x00" + M.artists[al[1]]] = al[6];
-    return out;
-  }, [detail, mediaReady]);
+  // (song→album cover hooks live ABOVE the `if (!cal)` early return — see note there)
 
   // Unified panel state: a committed range takes priority over a period `sel`. Both feed the same
   // DraggablePanel markup. `panelKind` labels the overview; `panelP` is the merged pseudo-period.
@@ -1123,8 +1123,10 @@ function CalendarView({ go, seed }) {
            .xp-left top:76px). .r-app's overflow-x:hidden doesn't defeat it here: .r-app has no fixed
            height, so the window scrolls and sticky resolves against the viewport (same as .xp-left).
            self-max-height + own scroll so a tall clock never outgrows the viewport while pinned. */
-        .cal-clock { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 88px); overflow-y: auto; }
-        @media (max-width: 900px) { .cal-heatwrap { grid-template-columns: 1fr; } .cal-clock { position: static; max-height: none; overflow-y: visible; } }
+        /* .cal-heatwrap > child selector outguns core's .r-card { position: relative } (equal
+           class specificity otherwise, and core's sheet lands later — sticky silently lost) */
+        .cal-heatwrap > .cal-clock { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 88px); overflow-y: auto; }
+        @media (max-width: 900px) { .cal-heatwrap { grid-template-columns: 1fr; } .cal-heatwrap > .cal-clock { position: static; max-height: none; overflow-y: visible; } }
         .cal-detail { font-family: var(--serif); font-size: 15px; color: var(--ink-soft); margin-bottom: 12px; min-height: 22px; }
         .cal-art { color: var(--accent); cursor: pointer; border-bottom: 1px solid currentColor; }
         .cal-art:hover { opacity: .8; }
