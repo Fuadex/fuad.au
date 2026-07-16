@@ -433,7 +433,18 @@ function OSDControls({ viewerRef }) {
 
 function DeepZoom({ work, onClose, onOsdFail }) {
   const { elRef, viewerRef, err, osdSrc } = useOSDViewer(work, onOsdFail);
-  const details = (work.hires && work.hires.details) || [];
+  // FIX 6b (2026-07-17): prefer the work's own hires detail tour; but when it has none, fall back to
+  // the anchored chapters of its study (CANVAS_INSPECT[id].deeper) — {t,x,y,w,h,body} → {t,x,y,w,h,n}
+  // so every studied work gets a "walk the details" tour here too (title = chapter t, note = body).
+  const details = useMemo(() => {
+    const hd = (work.hires && work.hires.details) || [];
+    if (hd.length) return hd;
+    const insp = (window.CANVAS_INSPECT || {})[work.id];
+    const deeper = (insp && insp.deeper) || [];
+    return deeper
+      .filter(c => typeof c.x === "number" && typeof c.y === "number" && typeof c.w === "number" && typeof c.h === "number")
+      .map(c => ({ t: c.t, x: c.x, y: c.y, w: c.w, h: c.h, n: c.body }));
+  }, [work]);
   // activeDetail: null = full view; number = index into details
   const [activeDetail, setActiveDetail] = useState(null);
 
@@ -539,7 +550,6 @@ function StudyView({ id, go }) {
   const work = useMemo(() => { const x = WORKS.find(x => x.id === id); return x ? enrich(x) : null; }, [id]);
   const inspect = (window.CANVAS_INSPECT || {})[id] || null;
   const { elRef, viewerRef, err, ready } = useOSDViewer(work, null);
-  const details = (work && work.hires && work.hires.details) || [];
   const [activeDetail, setActiveDetail] = useState(null);
   const [autoFollow, setAutoFollow] = useState(true);
   const autoRef = useRef(true); autoRef.current = autoFollow;
@@ -561,6 +571,49 @@ function StudyView({ id, go }) {
     return out;
   }, [inspect]);
   const firstDeep = sections.findIndex(s => s.chapter);
+  // FIX 6a (2026-07-17): the detail TOUR is sourced from the anchored deep chapters (inspect.deeper),
+  // NOT from work.hires.details — so every studied work with anchored chapters gets a "walk the
+  // details" tour, whether or not it also has a hires detail tour. Each tour stop carries the section
+  // key so stepping can highlight + scroll the matching chapter in the pane.
+  const tour = useMemo(() => sections.filter(s => s.chapter && s.anchor)
+    .map(s => ({ key: s.key, t: s.label, anchor: s.anchor })), [sections]);
+
+  // FIX 4 (2026-07-17): adjustable split (draggable divider) + collapse toggle. `split` is the
+  // viewer's flex-basis as a 0..1 fraction of the row width, persisted in localStorage; `collapsed`
+  // hides the prose pane entirely (viewer full-bleed, a floating restore button appears). The divider
+  // is inert on the stacked mobile layout (a media query hides it; drag handlers no-op there).
+  const SPLIT_MIN = 0.4, SPLIT_MAX = 0.72;              // viewer never below ~40%
+  const [split, setSplit] = useState(() => {
+    const v = parseFloat(localStorage.getItem("canvas-study-split"));
+    return (isFinite(v) && v >= SPLIT_MIN && v <= SPLIT_MAX) ? v : 0.57;
+  });
+  const [collapsed, setCollapsed] = useState(false);
+  const splitRef = useRef(null);                        // the flex row element, for width math
+  const dragSplit = useRef(false);
+  const onSplitDown = useCallback((e) => {
+    if (!splitRef.current) return;
+    dragSplit.current = true;
+    e.preventDefault();
+    const move = (cx) => {
+      const r = splitRef.current.getBoundingClientRect();
+      if (r.width <= 0) return;
+      let f = (cx - r.left) / r.width;
+      f = Math.max(SPLIT_MIN, Math.min(SPLIT_MAX, f));
+      setSplit(f);
+    };
+    const mm = (ev) => { if (dragSplit.current) move(ev.clientX); };
+    const tm = (ev) => { if (dragSplit.current && ev.touches[0]) { move(ev.touches[0].clientX); ev.preventDefault(); } };
+    const up = () => {
+      dragSplit.current = false;
+      try { localStorage.setItem("canvas-study-split", String(split)); } catch (e2) {}
+      window.removeEventListener("pointermove", mm); window.removeEventListener("pointerup", up);
+      window.removeEventListener("touchmove", tm); window.removeEventListener("touchend", up);
+    };
+    window.addEventListener("pointermove", mm); window.addEventListener("pointerup", up);
+    window.addEventListener("touchmove", tm, { passive: false }); window.addEventListener("touchend", up);
+  }, [split]);
+  // persist whenever split settles (covers keyboard/programmatic changes too)
+  useEffect(() => { try { localStorage.setItem("canvas-study-split", String(split)); } catch (e) {} }, [split]);
 
   const flyTo = useCallback((anchor, immediately) => {
     const viewer = viewerRef.current;
@@ -572,18 +625,41 @@ function StudyView({ id, go }) {
     const viewer = viewerRef.current;
     if (viewer) { try { viewer.viewport.goHome(false); } catch (e) {} }
   }, []);
+  // Step the tour to stop `idx` (into `tour`): fly the viewer to its anchor AND highlight + scroll
+  // the matching chapter in the prose pane. The IntersectionObserver auto-follow is temporarily
+  // ignored during a programmatic scroll so it doesn't fight the fly we just issued.
+  const suppressFollow = useRef(false);
   const goToDetail = useCallback((idx) => {
     if (idx === null) { goHome(); return; }
+    const stop = tour[idx]; if (!stop) return;
     setActiveDetail(idx);
-    flyTo(details[idx], false);
-  }, [details, flyTo, goHome]);
+    flyTo(stop.anchor, false);
+    if (paneRef.current) {
+      const el = paneRef.current.querySelector(`[data-skey="${stop.key}"]`);
+      if (el) { suppressFollow.current = true; el.scrollIntoView({ behavior: "smooth", block: "start" }); setTimeout(() => { suppressFollow.current = false; }, 650); }
+    }
+  }, [tour, flyTo, goHome]);
+  const stepTour = useCallback((dir) => {
+    setActiveDetail(prev => {
+      let next;
+      if (dir > 0) next = prev === null ? 0 : Math.min(prev + 1, tour.length - 1);
+      else { if (prev === null || prev === 0) { setTimeout(() => goToDetail(null), 0); return null; } next = prev - 1; }
+      setTimeout(() => goToDetail(next), 0);
+      return next;
+    });
+  }, [tour, goToDetail]);
 
-  // ESC leaves study back to the previous hash.
+  // ESC leaves study; ← → step the detail tour (when there is one).
   useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") { e.stopPropagation(); history.back(); } };
+    const onKey = (e) => {
+      if (e.key === "Escape") { e.stopPropagation(); history.back(); return; }
+      if (!tour.length) return;
+      if (e.key === "ArrowRight") { e.stopPropagation(); stepTour(1); }
+      else if (e.key === "ArrowLeft") { e.stopPropagation(); stepTour(-1); }
+    };
     window.addEventListener("keydown", onKey, true);
     return () => window.removeEventListener("keydown", onKey, true);
-  }, []);
+  }, [tour, stepTour]);
 
   // Bad/unknown artwork id: leave study (done in an effect so render stays side-effect-free).
   useEffect(() => { if (!work) history.back(); }, [work]);
@@ -597,7 +673,7 @@ function StudyView({ id, go }) {
     const byKey = {};
     for (const s of anchored) byKey[s.key] = s.anchor;
     const obs = new IntersectionObserver((entries) => {
-      if (!autoRef.current) return;
+      if (!autoRef.current || suppressFollow.current) return;
       // choose the most-visible anchored heading currently intersecting
       let best = null;
       for (const en of entries) {
@@ -621,29 +697,55 @@ function StudyView({ id, go }) {
   const a = work.artistData || {};
   const life = a.born ? `${a.born}–${a.died || ""}` : null;
 
+  const activeKey = activeDetail !== null && tour[activeDetail] ? tour[activeDetail].key : null;
   return (
-    <div className="cv-study">
-      <div className="cv-study-viewer">
+    <div className={"cv-study" + (collapsed ? " cv-study-collapsed" : "")} ref={splitRef}>
+      <div className="cv-study-viewer" style={{ flexBasis: collapsed ? "100%" : (split * 100) + "%" }}>
         <div className="cv-osd-view" ref={elRef} />
         <OSDControls viewerRef={viewerRef} />
         {err && <div className="cv-osd-err">zoom unavailable — the tile source didn't load</div>}
-        {details.length > 0 && (
-          <div className="cv-osd-tour cv-study-tour">
-            <button className={"cv-osd-chip" + (activeDetail === null ? " cv-osd-chip-home" : "")}
-              onClick={goHome} title="Return to full view">⌂ full view</button>
-            {details.map((d, i) => (
-              <button key={i} className={"cv-osd-chip" + (activeDetail === i ? " cv-osd-chip-on" : "")}
-                onClick={() => goToDetail(i)} title={d.t}>
-                <span className="cv-osd-chip-n">{i + 1}</span>
-                <span className="cv-osd-chip-t">{d.t}</span>
-              </button>
-            ))}
-          </div>
+        {/* FIX 6a: the detail tour over the viewer — prev/next arrows step through the anchored
+            chapters (fly + highlight/scroll the chapter), plus a chip strip. Sourced from `tour`
+            (inspect.deeper anchors), so it appears for every studied work with anchored chapters. */}
+        {tour.length > 0 && (
+          <React.Fragment>
+            <div className="cv-study-tourarrows">
+              <button className="cv-study-arrow" onClick={() => stepTour(-1)} disabled={activeDetail === null}
+                title="Previous detail (←)" aria-label="Previous detail">‹</button>
+              <span className="cv-study-arrow-lbl">{activeDetail === null ? "walk the details" : `${activeDetail + 1} / ${tour.length}`}</span>
+              <button className="cv-study-arrow" onClick={() => stepTour(1)} disabled={activeDetail === tour.length - 1}
+                title="Next detail (→)" aria-label="Next detail">›</button>
+            </div>
+            <div className="cv-osd-tour cv-study-tour">
+              <button className={"cv-osd-chip" + (activeDetail === null ? " cv-osd-chip-home" : "")}
+                onClick={goHome} title="Return to full view">⌂ full view</button>
+              {tour.map((d, i) => (
+                <button key={d.key} className={"cv-osd-chip" + (activeDetail === i ? " cv-osd-chip-on" : "")}
+                  onClick={() => goToDetail(i)} title={d.t}>
+                  <span className="cv-osd-chip-n">{i + 1}</span>
+                  <span className="cv-osd-chip-t">{d.t}</span>
+                </button>
+              ))}
+            </div>
+          </React.Fragment>
+        )}
+        {/* when the prose pane is collapsed, a small floating button brings it back */}
+        {collapsed && (
+          <button className="cv-study-restore" onClick={() => setCollapsed(false)} title="Show the study pane">☰ study</button>
         )}
       </div>
+      {/* draggable divider (inert on the stacked mobile layout via CSS) */}
+      {!collapsed && (
+        <div className="cv-study-divider" onPointerDown={onSplitDown} onTouchStart={onSplitDown}
+          role="separator" aria-orientation="vertical" title="Drag to resize">
+          <span className="cv-study-divider-grip" />
+        </div>
+      )}
+      {!collapsed && (
       <div className="cv-study-pane" ref={paneRef}>
         <div className="cv-study-panehead">
           <button className="cv-study-back" onClick={() => history.back()} title="Leave the study (Esc)">✕ close</button>
+          <button className="cv-study-collapse" onClick={() => setCollapsed(true)} title="Hide the study pane (full-bleed viewer)">⤢ hide pane</button>
           <label className="cv-study-follow" title="Let the viewer follow your reading">
             <input type="checkbox" checked={autoFollow} onChange={e => setAutoFollow(e.target.checked)} />
             auto-follow
@@ -661,7 +763,7 @@ function StudyView({ id, go }) {
               {s.chapter && i === firstDeep && (
                 <div className="cv-study-chaprule"><span>The study</span></div>
               )}
-              <section className={"cv-study-sec" + (s.chapter ? " cv-study-chapter" : "")}>
+              <section className={"cv-study-sec" + (s.chapter ? " cv-study-chapter" : "") + (s.key === activeKey ? " cv-study-sec-on" : "")}>
                 <h2 className="cv-study-sec-h" data-skey={s.key}>
                   <span>{s.label}</span>
                   {s.anchor && (
@@ -678,6 +780,7 @@ function StudyView({ id, go }) {
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 }
@@ -702,6 +805,10 @@ function Reader({ id, go }) {
   const pal = (window.CANVAS_PALETTE || {})[id];
   const read = (window.CANVAS_ART_ABOUT || {})[id];
   const inspect = (window.CANVAS_INSPECT || {})[id] || null;
+  // FIX 6b: a deep-zoom detail tour is available if the work has hires details OR its study has at
+  // least one anchored chapter (DeepZoom builds the tour from inspect.deeper in that case).
+  const hasDetailTour = !!((w.hires && w.hires.details && w.hires.details.length) ||
+    (inspect && (inspect.deeper || []).some(c => typeof c.x === "number" && typeof c.y === "number" && typeof c.w === "number" && typeof c.h === "number")));
 
   // Does this work have a usable OSD source? (IIIF, hires.img, or fallback imgZoom/img)
   const hasDeepZoom = !!resolveOSDSource(w);
@@ -725,7 +832,12 @@ function Reader({ id, go }) {
       <div className="cv-reader-bg" onClick={close} />
       <div className="cv-reader">
         <button className="cv-r-close" onClick={close}>✕</button>
-        {w.img && <img className="hero" src={w.img} alt={w.title} title="click to zoom" style={{ cursor: "zoom-in" }} onClick={openZoom} />}
+        {/* FIX 5 (2026-07-17): when this work has a study (CANVAS_INSPECT entry), the hero opens Study
+            mode instead of the bare DeepZoom overlay; works without a study keep the plain zoom. */}
+        {w.img && <img className="hero" src={w.img} alt={w.title}
+          title={inspect ? "click to open the study" : "click to zoom"}
+          style={{ cursor: inspect ? "pointer" : "zoom-in" }}
+          onClick={inspect ? () => go("study", w.id) : openZoom} />}
         <div className="cv-r-body">
           <h1 className="cv-r-title">{w.title.replace(/^TBC — /, "")}</h1>
           <div className="cv-r-meta"><b style={{ cursor: "pointer" }} title="artist page" onClick={() => go("artist", w.artistId)}>{w.artist.replace(/\s*\(.*\)$/, "")}</b>{life ? ` · ${life}` : ""}{w.year ? ` · ${w.year}` : ""}{a.desc ? ` · ${a.desc}` : ""}</div>
@@ -787,7 +899,9 @@ function Reader({ id, go }) {
                     <span className="lbl">The moment</span>
                     <p className="cv-r-inspect-txt">{inspect.context}</p>
                   </div>
-                  {w.hires && w.hires.details && w.hires.details.length > 0 && (
+                  {/* FIX 6b: a detail tour now exists in deep zoom for hires details OR anchored study
+                      chapters, so surface the "walk the details" entry whenever either is present. */}
+                  {hasDetailTour && (
                     <button type="button" className="cv-r-inspect-zoom" onClick={() => setDeep(true)}>⤢ walk the details in deep zoom</button>
                   )}
                   <button type="button" className="cv-r-inspect-study" onClick={() => go("study", w.id)}>Open the full study →</button>
@@ -1231,21 +1345,27 @@ function MapView({ go }) {
     for (const { c, list } of Object.values(byCity)) {
       const bx = c.x, by = c.y;                                   // branch from the city bubble anchor
       const cr = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
-      const R = 2, sep = 1.4, minR = cr + R + 1.4, GA = 2.399963;
+      // FIX 3 (2026-07-17): the ♥ dots were r=2 and unhittable — grow to 4.6 (~2.3x). FIX 2: hug the
+      // parent — the seed ring starts right off the bubble and packs DENSER (small radial step) so a
+      // dense city grows a second ring instead of flinging dots across the map. FIX 1: the clamp is
+      // radius-aware (keep the dot's EDGE off the city bubble), so no ♥ ever lands inside it.
+      const R = 4.6, sep = 1.6, GAP = 1.4, minR = cr + R + GAP, GA = 2.399963;
       const nodes = list.map((e, i) => {
-        const rr = minR + 1.5 * Math.sqrt(i), a = i * GA;
+        const rr = minR + 1.1 * Math.sqrt(i), a = i * GA;
         return { e, x: bx + rr * Math.cos(a), y: by + rr * Math.sin(a) };
       });
+      const clear = (nd) => { let ex = nd.x - bx, ey = nd.y - by, e = Math.hypot(ex, ey) || 0.001; const floor = cr + R + GAP; if (e < floor) { nd.x = bx + ex / e * floor; nd.y = by + ey / e * floor; } };
       // collision relaxation: shove overlapping ♥ apart, keep them off the city bubble
-      for (let pass = 0; pass < 14; pass++) {
+      for (let pass = 0; pass < 16; pass++) {
         for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
           const a = nodes[i], b = nodes[j], min = R + R + sep;
           let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy);
           if (d >= min) continue; if (d < 0.001) { dx = Math.cos(i) * 0.5; dy = Math.sin(i) * 0.5; d = Math.hypot(dx, dy); }
           const push = (min - d) / d / 2; a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push;
         }
-        for (const nd of nodes) { let ex = nd.x - bx, ey = nd.y - by, e = Math.hypot(ex, ey) || 0.001; if (e < minR) { nd.x = bx + ex / e * minR; nd.y = by + ey / e * minR; } }
+        for (const nd of nodes) clear(nd);
       }
+      for (const nd of nodes) clear(nd);                          // final hard guarantee
       for (const nd of nodes) markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue });
     }
     // text list under the map keeps the finer venue grouping (incl. location-TBC works with no coords)
@@ -1313,28 +1433,39 @@ function MapView({ go }) {
   // and are gently pulled back toward the parent. Longer leader lines are preferred over overlap,
   // so no two bubbles clump. minR keeps the ring off the parent bubble; the result is used for
   // BOTH museums (out of the city) and works (out of each museum).
+  // FIX 1 (2026-07-17): the parent-clear clamp is now RADIUS-AWARE. The old clamp pushed a node's
+  // CENTRE to minR, ignoring the node's own radius and the parent's — so a fat child seeded at minR
+  // still had its disc overlapping (and often sitting on top of) the parent bubble, which is exactly
+  // the "stray dot in the centre of the city bubble" the owner saw. Now every node is kept so its
+  // EDGE clears the parent bubble by `gap`: dist(center) >= parentR + nodeR + gap, enforced every
+  // pass AND once more at the very end so no path can leave a marker under a parent. `parentR`/`gap`
+  // come from opt; minR is still the seed ring but the clamp no longer trusts it alone.
   const relaxFan = (px, py, items, opt) => {
     const n = items.length; if (!n) return [];
     const GA = 2.399963;                                       // golden angle (rad) — even fan
     const minR = opt.minR, step = opt.step, sep = opt.sep, rOf = opt.rOf, seedAng = opt.seedAng || 0;
+    const parentR = opt.parentR || 0, gap = opt.gap == null ? 1.2 : opt.gap;
     const nodes = items.map((it, i) => {
       const rr = minR + step * Math.sqrt(i);
       const a = seedAng + i * GA;
       return { it, x: px + rr * Math.cos(a), y: py + rr * Math.sin(a), r: rOf(it, i) };
     });
-    for (let pass = 0; pass < 14; pass++) {
+    const clearParent = (nd) => {
+      const need = parentR + nd.r + gap;                       // node EDGE must clear the parent bubble
+      let ex = nd.x - px, ey = nd.y - py, e = Math.hypot(ex, ey) || 0.001;
+      const floor = Math.max(minR, need);
+      if (e < floor) { nd.x = px + ex / e * floor; nd.y = py + ey / e * floor; }
+    };
+    for (let pass = 0; pass < 16; pass++) {
       for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
         const a = nodes[i], b = nodes[j], min = a.r + b.r + sep;
         let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy);
         if (d >= min) continue; if (d < 0.001) { dx = Math.cos(i) * 0.5; dy = Math.sin(i) * 0.5; d = Math.hypot(dx, dy); }
         const push = (min - d) / d / 2; a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push;
       }
-      // keep each node outside the parent's clear radius and gently regularise leader length
-      for (const nd of nodes) {
-        let ex = nd.x - px, ey = nd.y - py, e = Math.hypot(ex, ey) || 0.001;
-        if (e < minR) { nd.x = px + ex / e * minR; nd.y = py + ey / e * minR; }
-      }
+      for (const nd of nodes) clearParent(nd);                 // radius-aware parent clear, every pass
     }
+    for (const nd of nodes) clearParent(nd);                   // final hard guarantee: nothing under the parent
     return nodes;
   };
   const branch = useMemo(() => {
@@ -1346,26 +1477,43 @@ function MapView({ go }) {
     // museum fan: starts CLOSE to the city bubble (minR) and adapts — length/angle fall out of the
     // relaxation, so a dense city just pushes its museums a little further, never symmetric-forced.
     const cityR = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
+    // FIX 3 (2026-07-17): museum bubbles ~1.5x (rOf base 2.4→3.6). FIX 1: pass parentR=cityR so the
+    // radius-aware clamp keeps every museum's disc off the city bubble. FIX 2: seed ring hugs the
+    // city (minR small) and the radial step is gentle — a dense city packs a tighter fan (relaxation
+    // + a second ring) instead of flinging museums across the country.
+    const musR = (m) => 3.6 + Math.min(m.n, 8) * 0.18;
     const mFan = relaxFan(c.x, c.y, museums, {
-      minR: cityR + 4.5, step: 3.2, sep: 5.5, seedAng: -Math.PI / 2,
-      rOf: (m) => 2.4 + Math.min(m.n, 8) * 0.12,
+      minR: cityR + musR({ n: 0 }) + 2.4, step: 3.0, sep: 3.0, seedAng: -Math.PI / 2,
+      parentR: cityR, gap: 1.6, rOf: musR,
     });
     const nodes = mFan.map((mn, i) => {
       const m = mn.it, mx = mn.x, my = mn.y;
       const works = enriched.filter(w => !w.wish && (w.floored || w.liked) &&
         (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt]).includes(m.id));
       const nw = works.length;
+      // FIX 3: work dots ~2.5x (base ~1.5-2.0 → ~3.8-4.6). FIX 2: hug the museum (small seed ring,
+      // gentle step, denser sep so a busy museum grows a second ring rather than a long tail). FIX 1:
+      // parentR=mn.r keeps every work disc clear of its museum bubble on all paths.
       // seed the work fan pointing AWAY from the city so works splay outward, not back over the ring
       const outAng = Math.atan2(my - c.y, mx - c.x);
+      const wRof = (w) => (w.floored ? 4.6 : 3.8);
       const wFan = relaxFan(mx, my, works, {
-        minR: 3.4, step: 1.5, sep: 1.6, seedAng: outAng - Math.PI / 2,
-        rOf: (w) => (w.floored ? 1.5 : 1.1) + 0.5,
+        minR: mn.r + 4.6 + 1.4, step: 1.4, sep: 1.4, seedAng: outAng - Math.PI / 2,
+        parentR: mn.r, gap: 1.4, rOf: wRof,
       });
-      const wnodes = wFan.map(wn => ({ w: wn.it, x: wn.x, y: wn.y }));
+      const wnodes = wFan.map((wn, j) => ({ w: wn.it, x: wn.x, y: wn.y, r: wRof(wn.it) }));
       // label sits clear ABOVE the bubble; leader line drawn if the offset is non-trivial
       return { m, x: mx, y: my, mr: mn.r, wnodes, nw, lx: mx, ly: my - (mn.r + 4.2) };
     });
-    return { c, nodes, cityR };
+    // FIX 2 (2026-07-17): frame from the ACTUAL fan extent (every bubble edge relative to the city
+    // anchor) rather than a loose formula, so the focused viewBox always contains the whole fan with
+    // a small margin and never leaves the country. reach = furthest bubble edge from the city centre.
+    let reach = cityR + 4;
+    for (const nd of nodes) {
+      reach = Math.max(reach, Math.hypot(nd.x - c.x, nd.y - c.y) + nd.mr + 5.2 /* label */);
+      for (const wn of nd.wnodes) reach = Math.max(reach, Math.hypot(wn.x - c.x, wn.y - c.y) + wn.r);
+    }
+    return { c, nodes, cityR, reach };
   }, [focus]);
   // ——— divergence transition (fix 5). grow ramps 0→1 on focus (museums/works ease-OUT of the city
   // bubble) and 1→0 on collapse (they retract back into it). Per-node stagger is applied at render
@@ -1385,14 +1533,21 @@ function MapView({ go }) {
     };
     growRaf.current = requestAnimationFrame(tick);
   };
+  const framePending = React.useRef(false);
   const focusCity = (c) => {
     setFocus(c.city); setGrow(0); animateGrow(1, 0);
-    const nm = c.museums.filter(m => m.n > 0).length || 1;
-    // frame the whole relaxed fan: museum ring reach grows ~sqrt(nm), plus works + label margin
-    const half = Math.max(30, (c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1) + 4.5 + 3.2 * Math.sqrt(nm) + 16);
-    const w = half * 2, h = w * AR;
-    commit({ x: c.x - half, y: c.y - h / 2, w, h });
+    framePending.current = true;                       // frame once `branch` (hence its reach) is ready
   };
+  // FIX 2 (2026-07-17): frame the focused viewBox from the fan's MEASURED reach (branch.reach), not a
+  // formula, so the whole fan fits with a small pad and no dot spills off the country. Runs the frame
+  // once per fresh focus (framePending guards against re-frames on unrelated re-renders / hover).
+  React.useEffect(() => {
+    if (!branch || !framePending.current) return;
+    framePending.current = false;
+    const half = Math.max(28, branch.reach + 6);      // +6 map-unit breathing pad
+    const w = half * 2, h = w * AR;
+    commit({ x: branch.c.x - half, y: branch.c.y - h / 2, w, h });
+  }, [branch]);
   const clearFocus = () => {
     setHover(null); commit(HOME); animateGrow(0);
     setTimeout(() => setFocus(null), 440);            // retract the branch, then drop it
@@ -1476,7 +1631,7 @@ function MapView({ go }) {
                 onMouseMove={e => setHover(h => h && h.w === mk.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                 onMouseLeave={() => setHover(null)}>
                 {(mk.x !== mk.bx || mk.y !== mk.by) && <line x1={mk.bx} y1={mk.by} x2={fx} y2={fy} stroke="oklch(0.55 0.19 18 / .4)" strokeWidth={0.5 * k} />}
-                <circle cx={fx} cy={fy} r={2 * fs * k} fill="oklch(0.55 0.19 18 / .9)" stroke="#f7efe2" strokeWidth={0.6 * k} />
+                <circle cx={fx} cy={fy} r={4.6 * fs * k} fill="oklch(0.55 0.19 18 / .9)" stroke="#f7efe2" strokeWidth={0.6 * k} />
               </g>
             );
           })}
@@ -1504,7 +1659,7 @@ function MapView({ go }) {
                         onMouseMove={e => setHover(h => h && h.w === wn.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                         onMouseLeave={() => setHover(null)}>
                         <line x1={mx} y1={my} x2={fx} y2={fy} stroke="rgba(58,47,34,.26)" strokeWidth={0.3 * k} />
-                        <circle cx={fx} cy={fy} r={(wn.w.floored ? 1.5 : 1.1) * fs * k}
+                        <circle cx={fx} cy={fy} r={(wn.w.floored ? 4.6 : 3.8) * fs * k}
                           fill={wn.w.floored ? "oklch(0.55 0.19 18 / .92)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.4 * k} />
                       </g>
                     );
