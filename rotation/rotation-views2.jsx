@@ -2162,10 +2162,11 @@ function BlurbSwitcher({ id, about }) {
   if (!sources.length) return null;
   const cur = sources.find(s => s.m === pick) || sources.find(s => gist && s.m === gist.src) || sources[0];
   const multi = sources.length > 1;
-  // fableDeep lives in the deep shard; the gist `has` "I" marker tells us it EXISTS so the
-  // Interpretation toggle renders before the deep shard lands. Its text fills in on load.
-  const hasDeepRead = !!(gist && gist.has && gist.has.includes("I")) || !!(llm && llm.fableDeep);
-  const deepText = llm && llm.fableDeep;              // Fable's close-reading, once loaded
+  // fableDeep/opusDeep live in the deep shard; the gist `has` "I" marker tells us one EXISTS so
+  // the Interpretation toggle renders before the deep shard lands. Its text fills in on load.
+  const hasDeepRead = !!(gist && gist.has && gist.has.includes("I")) || !!(llm && (llm.fableDeep || llm.opusDeep));
+  const deepText = llm && (llm.fableDeep || llm.opusDeep);   // Fable's close-reading wins over Opus's
+  const deepBy = llm && llm.fableDeep ? "fable" : "opus";    // honest attribution in the brand line
   const showDeep = mode === "deep" && hasDeepRead;
   // a deep model read (sonnet/opus/fable) is selected but its shard hasn't landed yet
   const curLoading = !showDeep && cur.text == null && !GIST_SRC[cur.m] && cur.m !== "genius";
@@ -2185,14 +2186,14 @@ function BlurbSwitcher({ id, about }) {
         {hasDeepRead && (
           <div className="tv-switch-mode">
             <button data-on={mode === "info"} onClick={() => setMode("info")}>Info</button>
-            <button data-on={mode === "deep"} data-m="fable" onClick={() => setMode("deep")}>Interpretation</button>
+            <button data-on={mode === "deep"} data-m={deepBy} onClick={() => setMode("deep")}>Interpretation</button>
           </div>
         )}
       </div>
       <div className="tv-switch-body">
         <span className="tv-switch-txt">{showDeep ? (deepText || "…") : (curLoading ? "…" : cur.text)}</span>
         {showDeep
-          ? <span className="tv-switch-brand" data-m="fable">via Fable · interpretation</span>
+          ? <span className="tv-switch-brand" data-m={deepBy}>via {deepBy === "fable" ? "Fable" : "Opus"} · interpretation</span>
           : cur.m === "genius" && cur.link
             ? <a className="tv-switch-brand" data-m="genius" href={cur.link} target="_blank" rel="noopener noreferrer">via Genius ↗</a>
             : <span className="tv-switch-brand" data-m={cur.m}>via {cur.label}</span>}
