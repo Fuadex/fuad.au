@@ -108,7 +108,19 @@ a { color: inherit; }
 
 /* ——— museum pages (#/museum/<id>) ——— */
 .cv-museum { max-width: 1200px; margin: 0 auto; padding: 24px 34px 70px; }
-.cv-mus-head { background: #24201a; color: #e8ddcc; border-radius: 10px; padding: 26px 30px; }
+.cv-mus-head { background: #24201a; color: #e8ddcc; border-radius: 10px; padding: 26px 30px; display: flex; align-items: flex-start; gap: 26px; }
+.cv-mus-head-main { flex: 1 1 auto; min-width: 0; }
+.cv-mus-postcard { flex: 0 0 auto; width: min(280px, 34%); margin: 4px 0 0; }
+.cv-mus-postcard img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid rgba(232,221,204,.22); box-shadow: 0 6px 20px rgba(0,0,0,.4), inset 0 0 0 4px #24201a, 0 0 0 5px rgba(232,221,204,.14); }
+.cv-mus-postcard figcaption { font: 500 9px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: rgba(232,221,204,.55); margin-top: 8px; text-align: center; }
+.cv-mus-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 12px; }
+.cv-mus-chip { font: 500 10px/1 var(--mono); letter-spacing: .05em; color: rgba(232,221,204,.82); background: rgba(232,221,204,.08); border: 1px solid rgba(232,221,204,.18); border-radius: 999px; padding: 6px 11px; }
+.cv-mus-chip-link { text-decoration: none; color: #f2e9dc; }
+.cv-mus-chip-link:hover { border-color: var(--accent-soft); color: oklch(0.82 0.14 60); }
+.cv-mus-interior { float: right; width: 40%; margin: 4px 0 14px 20px; }
+.cv-mus-interior img { display: block; width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 16px rgba(40,28,14,.2); }
+.cv-mus-interior figcaption { font: 500 9px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 6px; text-align: center; }
+.cv-mus-interior-solo { float: none; width: min(360px, 60%); margin: 22px 0 0; }
 .cv-mus-h1 { font: 600 32px/1.12 var(--serif); margin: 0; color: #f2e9dc; }
 .cv-mus-head[data-kind="natural-history"] .cv-mus-h1::after { content: " 🦕"; font-size: 22px; }
 .cv-mus-sub { font: 500 11px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(232,221,204,.6); margin-top: 8px; }
@@ -140,9 +152,12 @@ a { color: inherit; }
 
 @media (max-width: 620px) {
   .cv-museum { padding: 16px 16px 60px; }
-  .cv-mus-head { padding: 20px 18px; }
+  .cv-mus-head { padding: 20px 18px; flex-direction: column; gap: 0; }
   .cv-mus-h1 { font-size: 25px; }
   .cv-mus-gradebtn { margin-left: 0; }
+  .cv-mus-postcard { width: min(320px, 80vw); margin: 16px 0 4px; }
+  .cv-mus-interior { float: none; width: 100%; margin: 4px 0 14px; }
+  .cv-mus-interior-solo { width: 100%; }
 }
 
 .cv-foot { padding: 26px 34px 40px; border-top: 1px solid var(--rule); font: 400 11.5px/1.6 var(--mono); color: var(--ink-faint); }

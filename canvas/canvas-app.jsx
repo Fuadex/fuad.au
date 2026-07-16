@@ -986,6 +986,7 @@ function MuseumView({ museumId, go }) {
   const HL = window.CANVAS_HIGHLIGHTS || {};
   const PAL = window.CANVAS_PALETTE || {};
   const ABOUT = (window.CANVAS_MUSEUM_ABOUT || {})[museumId] || null;
+  const DATA = (window.CANVAS_MUSEUM_DATA || {})[museumId] || null;
   const READS = window.CANVAS_ART_ABOUT || {};
   const INSPECT = window.CANVAS_INSPECT || {};
   const [tier, setTier] = useState("about");
@@ -1060,6 +1061,20 @@ function MuseumView({ museumId, go }) {
 
   const cityLine = `${m.city} · ${(COUNTRY[m.country] || m.country || "").toUpperCase()}`;
 
+  // building facts + imagery (data-driven; every element renders only when its datum exists)
+  const fmtVisitors = (n) => n >= 1e6 ? +(n / 1e6).toFixed(1) + "M" : n >= 1e3 ? +(n / 1e3).toFixed(0) + "K" : String(n);
+  const fmtWorks = (n) => n.toLocaleString("en-US");
+  const architectsLine = DATA && Array.isArray(DATA.architects) && DATA.architects.length ? DATA.architects.join(" · ") : null;
+  const hasReadPane = !!(ABOUT && (ABOUT.about || ABOUT.deep));
+  // date chip eligibility
+  const eligible = (dateStr, country) => dateStr < "2024-06" || dateStr > "2025-12" || country === "au";
+  const visitDate = (Array.isArray(m.visits) ? m.visits : []).find(d => /^\d{4}-\d{2}/.test(d)) || null;
+  const visitMonthLabel = (dateStr) => {
+    const dt = new Date(dateStr + (dateStr.length === 7 ? "-01" : ""));
+    return isNaN(dt) ? null : dt.toLocaleString("en-US", { month: "short", year: "numeric" });
+  };
+  const showVisitChip = visitDate && eligible(visitDate, m.country) ? visitMonthLabel(visitDate) : null;
+
   // reusable card wall (uses the home Card so ✦ read markers + floored ★ + conf styling match)
   const Wall = ({ works }) => (
     <div className="cv-wall cv-mus-wall">
@@ -1076,28 +1091,48 @@ function MuseumView({ museumId, go }) {
     <div className="cv-museum">
       {/* 1. HEADER */}
       <div className="cv-mus-head" data-kind={m.kind}>
-        <h1 className="cv-mus-h1">{m.name.replace(/\s*\(.*\)$/, "")}</h1>
-        <div className="cv-mus-sub">{cityLine}</div>
-        {floored.length > 0 && (
-          <div className="cv-mus-floored">
-            {floored.filter(w => w.imgGrid).map(w => (
-              <button className="cv-mus-floored-item" key={w.id} onClick={() => go("work", w.id)} title={w.title}>
-                <img src={w.imgGrid} alt={w.title} loading="lazy" />
-              </button>
-            ))}
+        <div className="cv-mus-head-main">
+          <h1 className="cv-mus-h1">{m.name.replace(/\s*\(.*\)$/, "")}</h1>
+          <div className="cv-mus-sub">{cityLine}</div>
+          {DATA && (DATA.founded || architectsLine || DATA.style || DATA.visitors || DATA.site || showVisitChip) && (
+            <div className="cv-mus-chips">
+              {DATA.founded && <span className="cv-mus-chip">est. {DATA.founded}</span>}
+              {architectsLine && <span className="cv-mus-chip">{architectsLine}</span>}
+              {DATA.style && <span className="cv-mus-chip">{DATA.style}</span>}
+              {DATA.visitors && <span className="cv-mus-chip">{fmtVisitors(DATA.visitors)} visitors/yr</span>}
+              {showVisitChip && <span className="cv-mus-chip">visited · {showVisitChip}</span>}
+              {DATA.site && <a className="cv-mus-chip cv-mus-chip-link" href={DATA.site} target="_blank" rel="noopener noreferrer">site ↗</a>}
+            </div>
+          )}
+          {floored.length > 0 && (
+            <div className="cv-mus-floored">
+              {floored.filter(w => w.imgGrid).map(w => (
+                <button className="cv-mus-floored-item" key={w.id} onClick={() => go("work", w.id)} title={w.title}>
+                  <img src={w.imgGrid} alt={w.title} loading="lazy" />
+                </button>
+              ))}
+            </div>
+          )}
+          <div className="cv-mus-stats">
+            {DATA && DATA.works
+              ? <span title="your coverage of the collection">{met.length} work{met.length !== 1 ? "s" : ""} met · of ~{fmtWorks(DATA.works)}</span>
+              : <span title={`sure ${conf.sure} · probably ${conf.probably} · unsure ${conf.unsure}`}>{met.length} work{met.length !== 1 ? "s" : ""} met</span>}
+            {floored.length ? <span>★ {floored.length} floored</span> : null}
+            {liked ? <span>♡ {liked} loved</span> : null}
+            {unmet.length ? <span>{unmet.length} unmet major{unmet.length !== 1 ? "s" : ""}</span> : null}
+            {highlights.length > 0 && <a className="cv-mus-gradebtn" href={"#/deck/" + museumId}>grade this museum's deck →</a>}
           </div>
-        )}
-        <div className="cv-mus-stats">
-          <span title={`sure ${conf.sure} · probably ${conf.probably} · unsure ${conf.unsure}`}>{met.length} work{met.length !== 1 ? "s" : ""} met</span>
-          {floored.length ? <span>★ {floored.length} floored</span> : null}
-          {liked ? <span>♡ {liked} loved</span> : null}
-          {unmet.length ? <span>{unmet.length} unmet major{unmet.length !== 1 ? "s" : ""}</span> : null}
-          {highlights.length > 0 && <a className="cv-mus-gradebtn" href={"#/deck/" + museumId}>grade this museum's deck →</a>}
         </div>
+        {DATA && DATA.img && (
+          <figure className="cv-mus-postcard">
+            <img src={DATA.img} alt={m.name.replace(/\s*\(.*\)$/, "")} loading="lazy" />
+            <figcaption>the building</figcaption>
+          </figure>
+        )}
       </div>
 
       {/* 2. MUSEUM READ (only when the overlay ships an entry) */}
-      {ABOUT && (ABOUT.about || ABOUT.deep) && (
+      {hasReadPane && (
         <div className="cv-r-read cv-mus-read-pane">
           <div className="cv-r-read-head">
             <span className="lbl">The museum</span>
@@ -1108,9 +1143,23 @@ function MuseumView({ museumId, go }) {
               </div>
             )}
           </div>
+          {DATA && DATA.interior && (
+            <figure className="cv-mus-interior">
+              <img src={DATA.interior} alt={m.name.replace(/\s*\(.*\)$/, "") + " interior"} loading="lazy" />
+              <figcaption>inside</figcaption>
+            </figure>
+          )}
           <div className="cv-r-read-txt">{tier === "deep" && ABOUT.deep ? ABOUT.deep : ABOUT.about}</div>
           <div className="cv-r-read-by">via {ABOUT.by || "Fable"}</div>
         </div>
+      )}
+
+      {/* 2b. INTERIOR STANDALONE (interior exists but no read pane to host it) */}
+      {DATA && DATA.interior && !hasReadPane && (
+        <figure className="cv-mus-interior cv-mus-interior-solo">
+          <img src={DATA.interior} alt={m.name.replace(/\s*\(.*\)$/, "") + " interior"} loading="lazy" />
+          <figcaption>inside</figcaption>
+        </figure>
       )}
 
       {/* 3. THE ENCOUNTERS */}
