@@ -666,11 +666,11 @@ Object.assign(window, { cssRotation, fmt, fmtK, hashInt, useCountUp, useInView, 
       const e = O[k];
       if (G[k] === undefined) {
         const g = {}; for (const f of ["src", "haiku", "web"]) if (e[f] != null) g[f] = e[f];
-        let has = ""; if (e.sonnet) has += "s"; if (e.opus) has += "o"; if (e.fable) has += "f"; if (e.fableDeep) has += "I";
+        let has = ""; if (e.sonnet) has += "s"; if (e.opus) has += "o"; if (e.fable) has += "f"; if (e.fableDeep || e.opusDeep) has += "I";
         if (has) g.has = has;
         G[k] = g;
       }
-      if (D[k] === undefined) { const d = {}; for (const f of ["sonnet", "opus", "fable", "fableDeep"]) if (e[f] != null) d[f] = e[f]; D[k] = d; }
+      if (D[k] === undefined) { const d = {}; for (const f of ["sonnet", "opus", "fable", "fableDeep", "opusDeep"]) if (e[f] != null) d[f] = e[f]; D[k] = d; }
     }
     // every bucket is now satisfied by the blob
     for (let b = 0; b < N; b++) { state.g.loaded[b] = true; state.d.loaded[b] = true; }

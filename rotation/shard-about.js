@@ -47,7 +47,7 @@ const STOPWORDS = new Set((
 
 // GIST holds only what the default track-page read needs; DEEP holds the interpretive reads.
 const GIST_FIELDS = ["src", "haiku", "web"];
-const DEEP_FIELDS = ["sonnet", "opus", "fable", "fableDeep"];
+const DEEP_FIELDS = ["sonnet", "opus", "fable", "fableDeep", "opusDeep"];
 
 function loadSource() {
   if (!fs.existsSync(SRC)) {
@@ -116,12 +116,13 @@ function main() {
     const d = pick(e, DEEP_FIELDS);
     // `has` — compact marker of which DEEP reads exist, so the switcher can render the
     // Sonnet/Opus/Fable buttons (and the Interpretation toggle) from the gist alone, then
-    // lazy-load the deep shard only when one is actually opened. letters: s/o/f + I(fableDeep).
+    // lazy-load the deep shard only when one is actually opened. letters: s/o/f + I(any deep
+    // interpretation — fableDeep or opusDeep; attribution resolves after the shard loads).
     let has = "";
     if (e.sonnet) has += "s";
     if (e.opus) has += "o";
     if (e.fable) has += "f";
-    if (e.fableDeep) has += "I";
+    if (e.fableDeep || e.opusDeep) has += "I";
     if (has) g.has = has;
     if (Object.keys(g).length) gist[b][k] = g;
     if (Object.keys(d).length) deep[b][k] = d;
