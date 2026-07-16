@@ -853,7 +853,12 @@ function Reader({ id, go }) {
           </div>
           {w.venues.length > 0 && (
             <div className="cv-r-sec"><span className="lbl">Where I saw it{w.venues.length > 1 ? " — an impression at each" : ""}</span>
-              {w.venues.map(v => `${v.name.replace(/\s*\(.*\)$/, "")}, ${v.city}`).join(" · ")}
+              {w.venues.map((v, vi) => (
+                <React.Fragment key={v.id}>
+                  {vi > 0 ? " · " : ""}
+                  <a className="cv-r-venue" onClick={() => go("museum", v.id)}>{v.name.replace(/\s*\(.*\)$/, "")}, {v.city}</a>
+                </React.Fragment>
+              ))}
               {w.exhibition ? ` — ${w.exhibition}` : ""}
             </div>
           )}
@@ -930,7 +935,7 @@ function Reader({ id, go }) {
   );
 }
 
-function Museums() {
+function Museums({ go }) {
   const HL = window.CANVAS_HIGHLIGHTS || {};
   const rows = useMemo(() => {
     const counts = {};
@@ -946,7 +951,7 @@ function Museums() {
           <div className="cv-mus-country">{COUNTRY[cc] || cc}</div>
           {list.map(m => (
             <div className="cv-mus-row" key={m.id} data-kind={m.kind}>
-              <span className="cv-mus-name">{m.name.replace(/\s*\(.*\)$/, "")}</span>
+              <span className="cv-mus-name cv-mus-namelink" onClick={() => go("museum", m.id)} title="open the museum page">{m.name.replace(/\s*\(.*\)$/, "")}</span>
               <span className="cv-mus-city">{m.city}{m.visits && m.visits[0] !== "TBC" ? ` · ${m.visits.join(", ")}` : ""}</span>
               <span className="cv-mus-count">
                 {m.works ? `${m.works} in the canon · ` : ""}
@@ -957,6 +962,232 @@ function Museums() {
           ))}
         </React.Fragment>
       ))}
+    </div>
+  );
+}
+
+// ——— Museum pages (#/museum/<id>): the venue as a place you walked. Header (floored strip +
+// stats + deck link) → optional museum read (CANVAS_MUSEUM_ABOUT overlay) → the encounters
+// (canon works met here, permanent) → met-on-loan (via==="exhibition") → the artists → still in
+// the building (highlights minus canon) → reasons to return (pilgrimage) → the colour of the
+// place (aggregate palette). Works without the overlay/highlights render gracefully. Follows the
+// StudyView/ArtistView patterns for structure; class prefix cv-mus-.
+// normT/isMet mirror ArtistView so "still in the building" hides highlights already in the canon
+// (qid match OR normalised-title match — series/prefix aware).
+const museumNormT = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
+  .replace(/\bwomen\b/g, "woman").replace(/\bmen\b/g, "man")
+  .replace(/\b(series|study|no\s*\d+)\b/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+// approximate hex distance for palette dedup (sum of abs channel diffs, 0..765)
+const hexRGB = (h) => { const m = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(h || ""); return m ? [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)] : null; };
+const hexClose = (a, b) => { const x = hexRGB(a), y = hexRGB(b); if (!x || !y) return false; return Math.abs(x[0] - y[0]) + Math.abs(x[1] - y[1]) + Math.abs(x[2] - y[2]) < 46; };
+
+function MuseumView({ museumId, go }) {
+  const m = MUS_BY_ID[museumId];
+  const HL = window.CANVAS_HIGHLIGHTS || {};
+  const PAL = window.CANVAS_PALETTE || {};
+  const ABOUT = (window.CANVAS_MUSEUM_ABOUT || {})[museumId] || null;
+  const READS = window.CANVAS_ART_ABOUT || {};
+  const INSPECT = window.CANVAS_INSPECT || {};
+  const [tier, setTier] = useState("about");
+  const [queuedQids, setQueuedQids] = useState(() => new Set(readDeckQueue().map(w => w.qid)));
+  const queueMajor = (n) => { addToDeckQueue(n); setQueuedQids(prev => new Set(prev).add(n.qid)); };
+
+  // every canon work whose seenAt includes this museum, enriched. Split permanent vs on-loan.
+  // (all hooks run unconditionally — the missing-museum guard sits AFTER them, below, so hook
+  //  order stays stable per React's rules; met is empty for a bad id so the memos stay safe.)
+  const met = useMemo(() => WORKS.map(enrich).filter(w =>
+    (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt]).includes(museumId)), [museumId]);
+
+  const hasRead = (w) => !!(READS[w.id] || INSPECT[w.id]);
+  // ★ floored/favorite first, then liked, then the rest; images ahead of text within a tier.
+  const hangSort = (a, b) => {
+    const wa = (a.floored || a.favorite) ? 0 : a.liked ? 1 : 2, wb = (b.floored || b.favorite) ? 0 : b.liked ? 1 : 2;
+    return wa - wb || (b.imgGrid ? 1 : 0) - (a.imgGrid ? 1 : 0);
+  };
+  const encounters = met.filter(w => w.via !== "exhibition").sort(hangSort);
+  const onLoan = met.filter(w => w.via === "exhibition").sort(hangSort);
+  const floored = met.filter(w => w.floored || w.favorite);
+  const liked = met.filter(w => w.liked).length;
+
+  // confidence breakdown for the stats title attr
+  const conf = { sure: 0, probably: 0, unsure: 0 };
+  for (const w of met) conf[w.seenConfidence === "sure" ? "sure" : w.seenConfidence === "probably" ? "probably" : "unsure"]++;
+
+  // artists met here, by count (desc)
+  const artistRows = useMemo(() => {
+    const by = {};
+    for (const w of met) { if (!w.artistId) continue; const r = by[w.artistId] = by[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0 }; r.n++; }
+    return Object.values(by).sort((a, b) => b.n - a.n || a.name.localeCompare(b.name));
+  }, [met]);
+
+  // still in the building: this museum's highlights minus the canon (by qid, then normalised title)
+  const canonQids = new Set(met.map(w => w.qid).filter(Boolean));
+  const canonT = met.map(w => museumNormT(w.title)).filter(Boolean);
+  const isMet = (n) => {
+    if (n.qid && canonQids.has(n.qid)) return true;
+    const nt = museumNormT(n.title); if (nt.length < 4) return false;
+    const series = /\bseries\b/i.test(n.title);
+    return canonT.some(ct => ct === nt
+      || (nt.length >= 5 && (ct.startsWith(nt + " ") || nt.startsWith(ct + " ")))
+      || (series && (ct.includes(nt) || nt.includes(ct))));
+  };
+  const highlights = HL[museumId] || [];
+  const unmet = useMemo(() => {
+    const seen = new Set();
+    return highlights.filter(n => { if (isMet(n) || (n.qid && seen.has(n.qid))) return false; if (n.qid) seen.add(n.qid); return true; });
+  }, [museumId, met]);
+
+  // reasons to return: pilgrimage/wish works held by this venue. Two sources:
+  //  1. artworks.js wish:true canon rows whose seenAt (holder ref) points at this museum
+  //  2. hand-authored CANVAS_PILGRIMAGE entries (place/work) — match by a holder/museum/venue ref
+  //     if one exists, else by city+country. pilgrimage.js currently ships only a place entry with
+  //     no venue ref, so nothing binds to a specific museum here; the city-match keeps it working.
+  const wishWorks = met.filter(w => w.wish);
+
+  // the colour of the place: union of met works' palettes, similar hexes deduped, cap 12
+  const palette = useMemo(() => {
+    const out = [];
+    for (const w of met) { const p = PAL[w.id]; if (!p) continue; for (const hex of p) { if (out.length >= 12) break; if (!out.some(o => hexClose(o, hex))) out.push(hex); } }
+    return out;
+  }, [met]);
+
+  // ——— all hooks are above this line; the missing-museum guard is safe here (stable per mount). ———
+  if (!m) return <div className="cv-mus"><p>No museum here (yet).</p></div>;
+
+  const pilgrimagePlaces = (window.CANVAS_PILGRIMAGE || []).filter(p =>
+    p.museumId === museumId || p.holder === museumId || p.at === museumId ||
+    (p.museumId == null && p.holder == null && p.at == null && p.city === m.city && p.country === m.country));
+
+  const cityLine = `${m.city} · ${(COUNTRY[m.country] || m.country || "").toUpperCase()}`;
+
+  // reusable card wall (uses the home Card so ✦ read markers + floored ★ + conf styling match)
+  const Wall = ({ works }) => (
+    <div className="cv-wall cv-mus-wall">
+      {works.map(w => (
+        <div className="cv-mus-cardwrap" key={w.id}>
+          {hasRead(w) && <span className="cv-mus-read" title="has a read / study">✦</span>}
+          <Card w={w} go={go} />
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <div className="cv-museum">
+      {/* 1. HEADER */}
+      <div className="cv-mus-head" data-kind={m.kind}>
+        <h1 className="cv-mus-h1">{m.name.replace(/\s*\(.*\)$/, "")}</h1>
+        <div className="cv-mus-sub">{cityLine}</div>
+        {floored.length > 0 && (
+          <div className="cv-mus-floored">
+            {floored.filter(w => w.imgGrid).map(w => (
+              <button className="cv-mus-floored-item" key={w.id} onClick={() => go("work", w.id)} title={w.title}>
+                <img src={w.imgGrid} alt={w.title} loading="lazy" />
+              </button>
+            ))}
+          </div>
+        )}
+        <div className="cv-mus-stats">
+          <span title={`sure ${conf.sure} · probably ${conf.probably} · unsure ${conf.unsure}`}>{met.length} work{met.length !== 1 ? "s" : ""} met</span>
+          {floored.length ? <span>★ {floored.length} floored</span> : null}
+          {liked ? <span>♡ {liked} loved</span> : null}
+          {unmet.length ? <span>{unmet.length} unmet major{unmet.length !== 1 ? "s" : ""}</span> : null}
+          {highlights.length > 0 && <a className="cv-mus-gradebtn" href={"#/deck/" + museumId}>grade this museum's deck →</a>}
+        </div>
+      </div>
+
+      {/* 2. MUSEUM READ (only when the overlay ships an entry) */}
+      {ABOUT && (ABOUT.about || ABOUT.deep) && (
+        <div className="cv-r-read cv-mus-read-pane">
+          <div className="cv-r-read-head">
+            <span className="lbl">The museum</span>
+            {ABOUT.deep && (
+              <div className="cv-r-tiers">
+                <button data-on={tier === "about"} onClick={() => setTier("about")}>Info</button>
+                <button data-on={tier === "deep"} onClick={() => setTier("deep")}>Interpretation</button>
+              </div>
+            )}
+          </div>
+          <div className="cv-r-read-txt">{tier === "deep" && ABOUT.deep ? ABOUT.deep : ABOUT.about}</div>
+          <div className="cv-r-read-by">via {ABOUT.by || "Fable"}</div>
+        </div>
+      )}
+
+      {/* 3. THE ENCOUNTERS */}
+      {encounters.length > 0 && (
+        <React.Fragment>
+          <div className="cv-a-secl">The encounters — what I met here</div>
+          <Wall works={encounters} />
+        </React.Fragment>
+      )}
+
+      {/* 4. MET ON LOAN HERE */}
+      {onLoan.length > 0 && (
+        <React.Fragment>
+          <div className="cv-a-secl">Met on loan here — temporary exhibitions</div>
+          <Wall works={onLoan} />
+        </React.Fragment>
+      )}
+
+      {/* 5. THE ARTISTS */}
+      {artistRows.length > 0 && (
+        <React.Fragment>
+          <div className="cv-a-secl">The artists</div>
+          <div className="cv-mus-artists">
+            {artistRows.map(r => (
+              <button className="cv-mus-artchip" key={r.id} onClick={() => go("artist", r.id)}>{r.name}<i>×{r.n}</i></button>
+            ))}
+          </div>
+        </React.Fragment>
+      )}
+
+      {/* 6. STILL IN THE BUILDING */}
+      {unmet.length > 0 && (
+        <React.Fragment>
+          <div className="cv-a-secl">Still in the building — majors you haven't met</div>
+          <div className="cv-a-unmet">
+            {unmet.map(n => {
+              const q = queuedQids.has(n.qid);
+              return (
+                <div className="cv-a-unmet-item" key={n.qid || n.title}>
+                  <a href={n.qid ? `https://www.wikidata.org/wiki/${n.qid}` : undefined} target="_blank" rel="noopener noreferrer" title={n.title}>
+                    <img src={n.img} alt={n.title} loading="lazy" />
+                    <span>{n.title}{n.artist ? ` · ${n.artist}` : ""}{n.year ? ` · ${n.year}` : ""}</span>
+                  </a>
+                  <button type="button" className="cv-a-unmet-add" data-q={q} disabled={q}
+                    title={q ? "queued for the By Your Artists deck" : "add to the By Your Artists deck"}
+                    onClick={() => queueMajor(n)}>{q ? "queued ✓" : "+ deck"}</button>
+                </div>
+              );
+            })}
+          </div>
+        </React.Fragment>
+      )}
+
+      {/* 7. REASONS TO RETURN */}
+      {(wishWorks.length > 0 || pilgrimagePlaces.length > 0) && (
+        <React.Fragment>
+          <div className="cv-a-secl">Reasons to return — the pilgrimage</div>
+          {wishWorks.length > 0 && (
+            <div className="cv-wall cv-mus-wall">{wishWorks.map(w => <Card key={w.id} w={w} go={go} />)}</div>
+          )}
+          {pilgrimagePlaces.map(p => (
+            <div className="cv-mus-row" key={p.id}>
+              <span className="cv-mus-name">{p.title}</span>
+              <span className="cv-mus-city">{p.city}</span>
+              {p.note && <span className="cv-mus-note">{p.note}</span>}
+            </div>
+          ))}
+        </React.Fragment>
+      )}
+
+      {/* 8. THE COLOUR OF THE PLACE */}
+      {palette.length >= 4 && (
+        <React.Fragment>
+          <div className="cv-a-secl">The colour of the place</div>
+          <div className="cv-mus-palette">{palette.map((c, i) => <i key={i} style={{ background: c }} title={c} />)}</div>
+        </React.Fragment>
+      )}
     </div>
   );
 }
@@ -1081,7 +1312,7 @@ function Deck({ museumId, part, go }) {
     return (
       <div className="cv-deck">
         {partNav}
-        <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")} — Part {safePart} done{queuedCount > 0 ? <span className="cv-deck-queued"> · {queuedCount} from artist pages</span> : null}</div>
+        <div className="cv-deck-head">{VIRTUAL ? mus.name.replace(/\s*\(.*\)$/, "") : <a className="cv-deck-headlink" onClick={() => go("museum", museumId)}>{mus.name.replace(/\s*\(.*\)$/, "")}</a>} — Part {safePart} done{queuedCount > 0 ? <span className="cv-deck-queued"> · {queuedCount} from artist pages</span> : null}</div>
         <p className="cv-deck-sum">{seen.length} recognised across all parts ({seen.filter(r => r.love === 2).length} floored) · {rows.filter(r => r.seen === "unsure").length} unsure · {discoveries.length} discoveries you'd love to see.</p>
         {nextPart && (
           <a className="cv-deck-btn cv-deck-btn-next" href={partHref(nextPart)}>Continue to Part {nextPart} →</a>
@@ -1115,7 +1346,7 @@ function Deck({ museumId, part, go }) {
   return (
     <div className="cv-deck">
       {partNav}
-      <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")}{numParts > 1 ? " · Part " + safePart : ""} · did you see this?{queuedCount > 0 ? <span className="cv-deck-queued"> · {queuedCount} from artist pages</span> : null}</div>
+      <div className="cv-deck-head">{VIRTUAL ? mus.name.replace(/\s*\(.*\)$/, "") : <a className="cv-deck-headlink" onClick={() => go("museum", museumId)}>{mus.name.replace(/\s*\(.*\)$/, "")}</a>}{numParts > 1 ? " · Part " + safePart : ""} · did you see this?{queuedCount > 0 ? <span className="cv-deck-queued"> · {queuedCount} from artist pages</span> : null}</div>
       <div className="cv-deck-prog">{i + 1} / {deck.length} · 1–3 seen · 4 ♡ · 5 ♥{i > 0 ? " · Backspace = back" : ""}</div>
       <div className="cv-deck-card" key={w.qid}>{/* remount per card: stale image must not linger under the next label */}
         <img src={w.img} alt={w.title} loading="eager" />
@@ -1345,11 +1576,13 @@ function MapView({ go }) {
     for (const { c, list } of Object.values(byCity)) {
       const bx = c.x, by = c.y;                                   // branch from the city bubble anchor
       const cr = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
-      // FIX 3 (2026-07-17): the ♥ dots were r=2 and unhittable — grow to 4.6 (~2.3x). FIX 2: hug the
-      // parent — the seed ring starts right off the bubble and packs DENSER (small radial step) so a
-      // dense city grows a second ring instead of flinging dots across the map. FIX 1: the clamp is
+      // SIZE SCOPING (2026-07-17): the enlargement was only ever meant for the FOCUSED fan-out. At
+      // rest, the ♥ markers must be their ORIGINAL small size (r=2) so nothing overlaps a neighbouring
+      // city. The seed ring/clamp radius here is the marker's own radius, so it too returns to 2. FIX 2:
+      // hug the parent — the seed ring starts right off the bubble and packs DENSER (small radial step)
+      // so a dense city grows a second ring instead of flinging dots across the map. FIX 1: the clamp is
       // radius-aware (keep the dot's EDGE off the city bubble), so no ♥ ever lands inside it.
-      const R = 4.6, sep = 1.6, GAP = 1.4, minR = cr + R + GAP, GA = 2.399963;
+      const R = 2, sep = 1.2, GAP = 1.2, minR = cr + R + GAP, GA = 2.399963;
       const nodes = list.map((e, i) => {
         const rr = minR + 1.1 * Math.sqrt(i), a = i * GA;
         return { e, x: bx + rr * Math.cos(a), y: by + rr * Math.sin(a) };
@@ -1482,9 +1715,12 @@ function MapView({ go }) {
     // city (minR small) and the radial step is gentle — a dense city packs a tighter fan (relaxation
     // + a second ring) instead of flinging museums across the country.
     const musR = (m) => 3.6 + Math.min(m.n, 8) * 0.18;
+    // TIGHTER FAN (2026-07-17): pull the museum ring another notch closer to the city (smaller minR
+    // offset + gentler radial step + tighter separation). The big fan sizes + fisheye carry readability;
+    // the branch should sit close around the city, not sprawl across the country. Sizes unchanged.
     const mFan = relaxFan(c.x, c.y, museums, {
-      minR: cityR + musR({ n: 0 }) + 2.4, step: 3.0, sep: 3.0, seedAng: -Math.PI / 2,
-      parentR: cityR, gap: 1.6, rOf: musR,
+      minR: cityR + musR({ n: 0 }) + 1.2, step: 2.1, sep: 2.2, seedAng: -Math.PI / 2,
+      parentR: cityR, gap: 1.2, rOf: musR,
     });
     const nodes = mFan.map((mn, i) => {
       const m = mn.it, mx = mn.x, my = mn.y;
@@ -1497,9 +1733,12 @@ function MapView({ go }) {
       // seed the work fan pointing AWAY from the city so works splay outward, not back over the ring
       const outAng = Math.atan2(my - c.y, mx - c.x);
       const wRof = (w) => (w.floored ? 4.6 : 3.8);
+      // TIGHTER FAN (2026-07-17): the work ring hugs its museum bubble one notch closer (seed offset
+      // is just the largest work radius, gentler step) so a museum's works cluster tightly around it
+      // rather than trailing outward. Work-dot sizes (4.6/3.8) unchanged.
       const wFan = relaxFan(mx, my, works, {
-        minR: mn.r + 4.6 + 1.4, step: 1.4, sep: 1.4, seedAng: outAng - Math.PI / 2,
-        parentR: mn.r, gap: 1.4, rOf: wRof,
+        minR: mn.r + 4.6 + 0.6, step: 1.1, sep: 1.2, seedAng: outAng - Math.PI / 2,
+        parentR: mn.r, gap: 1.2, rOf: wRof,
       });
       const wnodes = wFan.map((wn, j) => ({ w: wn.it, x: wn.x, y: wn.y, r: wRof(wn.it) }));
       // label sits clear ABOVE the bubble; leader line drawn if the offset is non-trivial
@@ -1631,7 +1870,8 @@ function MapView({ go }) {
                 onMouseMove={e => setHover(h => h && h.w === mk.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                 onMouseLeave={() => setHover(null)}>
                 {(mk.x !== mk.bx || mk.y !== mk.by) && <line x1={mk.bx} y1={mk.by} x2={fx} y2={fy} stroke="oklch(0.55 0.19 18 / .4)" strokeWidth={0.5 * k} />}
-                <circle cx={fx} cy={fy} r={4.6 * fs * k} fill="oklch(0.55 0.19 18 / .9)" stroke="#f7efe2" strokeWidth={0.6 * k} />
+                {/* SIZE SCOPING: original rest size r=2 (the fisheye handles hittability on hover). */}
+                <circle cx={fx} cy={fy} r={2 * fs * k} fill="oklch(0.55 0.19 18 / .9)" stroke="#f7efe2" strokeWidth={0.6 * k} />
               </g>
             );
           })}
@@ -1671,7 +1911,7 @@ function MapView({ go }) {
                   const lx = fx, ly = fy - (nd.mr * fs + 3.6) * k;               // label clear above the bubble
                   const chW = Math.max(nd.m.name.length * 3.05 + 6, 14) * k, chH = 8.4 * k;
                   return (
-                    <g key={"m" + nd.m.id} className="cv-mus" style={{ opacity: g }} onClick={() => go("deck", nd.m.id)}>
+                    <g key={"m" + nd.m.id} className="cv-mus" style={{ opacity: g }} onClick={() => go("museum", nd.m.id)}>
                       {(ly + chH / 2) < fy - nd.mr * fs * k - 0.4 * k && <line x1={fx} y1={fy - nd.mr * fs * k} x2={fx} y2={ly + chH / 2} stroke="rgba(58,47,34,.4)" strokeWidth={0.35 * k} />}
                       <circle cx={fx} cy={fy} r={nd.mr * fs * k} fill="oklch(0.5 0.14 46 / .95)" stroke="#f4ecdf" strokeWidth={0.7 * k} />
                       <rect className="cv-map-chip" x={lx - chW / 2} y={ly - chH / 2} width={chW} height={chH} rx={chH / 2} />
@@ -2119,7 +2359,7 @@ function App() {
           <a href="#/" data-on={view === "home"}>Home</a>
           <a href="#/wall" data-on={view === "wall"}>The Wall</a>
           <a href="#/portrait" data-on={view === "portrait"}>Portrait</a>
-          <a href="#/museums" data-on={view === "museums" || (route.view === "deck" && route.id !== "by-artists")}>Museums</a>
+          <a href="#/museums" data-on={view === "museums" || route.view === "museum" || (route.view === "deck" && route.id !== "by-artists")}>Museums</a>
           <a href="#/artists" data-on={view === "artists" || route.view === "artist"}>Artists</a>
           <a href="#/deck/by-artists" data-on={route.view === "deck" && route.id === "by-artists"}>By Your Artists</a>
           <a href="#/map" data-on={view === "map" || view === "pilgrimage"}>Map</a>
@@ -2133,7 +2373,8 @@ function App() {
         <SearchBar go={go} />
       </header>
       {route.view === "deck" ? <Deck museumId={route.id} part={route.part} go={go} key={route.id + "-" + route.part} />
-        : view === "museums" ? <Museums />
+        : route.view === "museum" ? <MuseumView museumId={route.id} go={go} key={route.id} />
+        : view === "museums" ? <Museums go={go} />
         : view === "portrait" ? <Portrait go={go} />
         : (view === "map" || view === "pilgrimage") ? <MapView go={go} />
         : route.view === "artist" ? <ArtistView artistId={route.id} go={go} key={route.id} />
