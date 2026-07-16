@@ -136,6 +136,7 @@
         "art_hires.js",
         "art_inspect.js",
         "museum_highlights.js",
+        "museum_about.js",
         "by_artists.js",
         "pilgrimage.js",
         "canvas-world.js",

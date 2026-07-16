@@ -99,6 +99,51 @@ a { color: inherit; }
 .cv-mus-count { margin-left: auto; font: 500 11px/1 var(--mono); color: var(--accent); white-space: nowrap; }
 .cv-mus-note { flex-basis: 100%; font: italic 400 12.5px/1.5 var(--serif); color: var(--ink-faint); }
 .cv-mus-row[data-kind="natural-history"] .cv-mus-name::after { content: " 🦕"; font-size: 13px; }
+.cv-mus-namelink { cursor: pointer; }
+.cv-mus-namelink:hover { color: var(--accent); text-decoration: underline; }
+.cv-r-venue { cursor: pointer; color: var(--accent); text-decoration: none; border-bottom: 1px solid oklch(0.66 0.14 46 / .3); }
+.cv-r-venue:hover { border-bottom-color: var(--accent); }
+.cv-deck-headlink { cursor: pointer; }
+.cv-deck-headlink:hover { color: var(--accent); text-decoration: underline; }
+
+/* ——— museum pages (#/museum/<id>) ——— */
+.cv-museum { max-width: 1200px; margin: 0 auto; padding: 24px 34px 70px; }
+.cv-mus-head { background: #24201a; color: #e8ddcc; border-radius: 10px; padding: 26px 30px; }
+.cv-mus-h1 { font: 600 32px/1.12 var(--serif); margin: 0; color: #f2e9dc; }
+.cv-mus-head[data-kind="natural-history"] .cv-mus-h1::after { content: " 🦕"; font-size: 22px; }
+.cv-mus-sub { font: 500 11px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(232,221,204,.6); margin-top: 8px; }
+.cv-mus-floored { display: flex; gap: 10px; overflow-x: auto; padding: 18px 0 4px; scrollbar-width: thin; }
+.cv-mus-floored::-webkit-scrollbar { height: 6px; }
+.cv-mus-floored::-webkit-scrollbar-thumb { background: rgba(232,221,204,.25); border-radius: 999px; }
+.cv-mus-floored-item { flex-shrink: 0; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 5px; overflow: hidden; }
+.cv-mus-floored-item img { height: 96px; width: auto; display: block; border-radius: 5px; box-shadow: 0 4px 14px rgba(0,0,0,.35); transition: transform .15s; }
+.cv-mus-floored-item:hover img { transform: translateY(-2px); }
+.cv-mus-stats { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 16px; font: 500 11px/1.5 var(--mono); letter-spacing: .05em; color: rgba(232,221,204,.8); }
+.cv-mus-stats > span { white-space: nowrap; }
+.cv-mus-gradebtn { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #f2e9dc; text-decoration: none; border: 1px solid rgba(232,221,204,.4); border-radius: 999px; padding: 8px 14px; margin-left: auto; }
+.cv-mus-gradebtn:hover { border-color: var(--accent-soft); color: oklch(0.82 0.14 60); }
+.cv-mus-read-pane { margin-top: 22px; }
+.cv-mus-wall { padding: 12px 0 0; column-count: 6; }
+@media (max-width: 1500px) { .cv-mus-wall { column-count: 5; } }
+@media (max-width: 1200px) { .cv-mus-wall { column-count: 4; } }
+@media (max-width: 900px)  { .cv-mus-wall { column-count: 3; } }
+@media (max-width: 620px)  { .cv-mus-wall { column-count: 2; } }
+.cv-mus-cardwrap { break-inside: avoid; margin: 0 0 8px; position: relative; }
+.cv-mus-cardwrap .cv-card { margin: 0; }
+.cv-mus-read { position: absolute; top: 8px; left: 9px; z-index: 2; font-size: 12px; color: var(--accent-soft); filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); pointer-events: none; }
+.cv-mus-artists { display: flex; flex-wrap: wrap; gap: 9px; }
+.cv-mus-artchip { display: inline-flex; align-items: baseline; gap: 6px; font: 600 13px/1.2 var(--serif); color: var(--ink); background: #fff; border: 1px solid var(--rule); border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+.cv-mus-artchip:hover { border-color: var(--accent-soft); }
+.cv-mus-artchip i { font: 500 10px/1 var(--mono); font-style: normal; color: var(--ink-faint); }
+.cv-mus-palette { display: flex; height: 46px; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 16px rgba(40,28,14,.18); }
+.cv-mus-palette i { flex: 1 1 0; min-width: 0; }
+
+@media (max-width: 620px) {
+  .cv-museum { padding: 16px 16px 60px; }
+  .cv-mus-head { padding: 20px 18px; }
+  .cv-mus-h1 { font-size: 25px; }
+  .cv-mus-gradebtn { margin-left: 0; }
+}
 
 .cv-foot { padding: 26px 34px 40px; border-top: 1px solid var(--rule); font: 400 11.5px/1.6 var(--mono); color: var(--ink-faint); }
 .cv-foot a { color: var(--accent); text-decoration: none; }
