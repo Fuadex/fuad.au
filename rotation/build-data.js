@@ -597,7 +597,20 @@ const TRACK_FOLD = new Map();   // artist\x00slug(track) → best spelling
   pick(albC, ALBUM_FOLD); pick(trkC, TRACK_FOLD);
 }
 const foldAlbum = (artist, album) => album ? (ALBUM_FOLD.get(artist + "\x00" + _foldName(album)) || album) : album;
-const foldTrack = (artist, track) => track ? (TRACK_FOLD.get(artist + "\x00" + slug(track)) || track) : track;
+
+// ─────────── hand-curated track merges ───────────
+// De-facto duplicate tracks whose titles slug DIFFERENTLY (feat./parenthetical variants), so
+// the spelling fold above can't see them as one group. variant "artistSlug~trackSlug" → a
+// title that slugs to the canonical track; the fold then picks the best display spelling.
+const TRACK_MERGE = {
+  "deadmau5~sofi-needs-a-ladder-ft-sofi": "Sofi Needs A Ladder",
+};
+const foldTrack = (artist, track) => {
+  if (!track) return track;
+  const merged = TRACK_MERGE[slug(artist) + "~" + slug(track)];
+  if (merged) track = merged;
+  return TRACK_FOLD.get(artist + "\x00" + slug(track)) || track;
+};
 
 const artistPlays = new Map();           // name → count
 const albumPlays = new Map();            // artist\x00album → count
