@@ -132,6 +132,13 @@ a { color: inherit; }
 .cv-deck-btns { margin-top: 12px; }
 .cv-deck-hint { margin-top: 16px; font: italic 400 11.5px/1.5 var(--serif); color: var(--ink-faint); }
 .cv-deck-secl { font: 600 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin: 18px 0 4px; }
+.cv-deck-btn-next { display: block; margin: 16px auto 8px; }
+.cv-deck-parts { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin: 0 0 18px; }
+.cv-deck-part { font: 500 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink-faint); text-decoration: none; }
+.cv-deck-part:hover { border-color: var(--ink-soft); color: var(--ink-soft); }
+.cv-deck-part-on { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.cv-deck-part-on:hover { color: var(--paper); border-color: var(--ink); }
+.cv-deck-part-n { opacity: .65; }
 
 /* ——— wall filters + cap ——— */
 .cv-filters { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 16px 34px 0; }
