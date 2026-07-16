@@ -714,7 +714,32 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
     for (const pt of pts) if (!isDimFam(pt.row) && !isPageDim(pt.row)) c++;
     return c;
   }, [pts, isDimFam, isPageDim]);
-  const animatePos = visCount <= ATTR_ANIM_MAX;
+
+  // Position is ALWAYS expressed as transform: translate(px,py) with cx/cy pinned to 0 (see dots
+  // below) so a dot never switches how it is placed — that removes the path-switch that used to make
+  // filtered-in points fly from the (0,0) corner. The only thing the guard decides is whether the
+  // transform TRANSITION is armed for a given render. We arm it only when this render was caused by an
+  // axis/lens change (X, Y, or artists|subgenres) AND no filter change happened this render, and both
+  // the previous and current visible counts are under the ceiling. A filter change (anything that
+  // alters the visible/dimmed set: page slice, family-dim, the underlying rows) suppresses the
+  // transition for that render — so entering/leaving points snap into place. Opacity (dimming) keeps
+  // transitioning on every path regardless; that's handled separately in the style.
+  const lensKey = xKey + "|" + yKey + "|" + mode;
+  // filter signature: anything that changes which dots are shown / dimmed but is NOT the lens.
+  const filterSig = React.useMemo(() => rows.length + "|" + String(famDim) + "|" + String(!!pageActiveOf), [rows, famDim, pageActiveOf]);
+  const prevFilterSigRef = React.useRef(filterSig);
+  const prevLensRef = React.useRef(lensKey);
+  const prevUnderCeilRef = React.useRef(visCount <= ATTR_ANIM_MAX);
+  const filterChanged = prevFilterSigRef.current !== filterSig;
+  const lensChanged = prevLensRef.current !== lensKey;
+  const underCeil = visCount <= ATTR_ANIM_MAX;
+  // arm the glide only for a pure lens change (no filter change this render) where both the previous
+  // and the new render sit under the ceiling — i.e. two transform-mode renders whose only difference
+  // is position. First mount (prev refs seeded equal) is never a lens change, so it never animates.
+  const animatePos = lensChanged && !filterChanged && underCeil && prevUnderCeilRef.current;
+  prevFilterSigRef.current = filterSig;
+  prevLensRef.current = lensKey;
+  prevUnderCeilRef.current = underCeil;
 
   // dots memoized WITHOUT the zoom factor — radius rides --zk so wheel-zoom reconciles nothing
   const dots = React.useMemo(() => pts.map((pt, i) => {
@@ -726,17 +751,17 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
     // touch the conjunction. Family-dim (0.06) still wins when both apply.
     const op = dimF ? 0.06 : dimP ? (mode === "subgenres" ? 0.12 : 0.05) : brushed ? (on ? 0.92 : 0.1) : singleSel ? (isSel ? 0.95 : 0.15) : (mode === "subgenres" ? 0.82 : 0.72);
     const baseR = isHover ? pt.radius + 2 : pt.radius;
-    // opacity always transitions (cheap); transform transitions only when under the guard.
+    // Position is ALWAYS via transform (cx/cy=0) so no dot ever switches how it's placed — that's what
+    // kills the corner-flight. Opacity always transitions (cheap). The transform transition is armed
+    // ONLY on a pure lens-change render (animatePos); otherwise transform:none so entering/moved-by-
+    // filter dots snap. data-cx/data-cy keep the TRUE pixel coords for hover/brush/fisheye radius.
     const trans = animatePos ? `transform ${ATTR_ANIM_MS}ms ease-out, fill-opacity .3s ease` : "fill-opacity .3s ease";
-    const pos = animatePos
-      ? { cx: 0, cy: 0, style: { transform: `translate(${pt.px.toFixed(1)}px, ${pt.py.toFixed(1)}px)` } }
-      : { cx: pt.px.toFixed(1), cy: pt.py.toFixed(1), style: {} };
     return (
       <circle key={pt.row.id + "-" + i} className="xp-fdot" data-cx={pt.px.toFixed(1)} data-cy={pt.py.toFixed(1)}
-        cx={pos.cx} cy={pos.cy}
+        cx={0} cy={0}
         fill={fillFor(pt.row)} fillOpacity={op}
         stroke={isHover || isSel ? "#fff" : "none"} strokeWidth={isSel ? 2 : 1.4} vectorEffect="non-scaling-stroke"
-        style={{ ...pos.style, r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: dimF || dimP ? "default" : "pointer", pointerEvents: dimF || dimP ? "none" : "auto", transition: trans }} />);
+        style={{ transform: `translate(${pt.px.toFixed(1)}px, ${pt.py.toFixed(1)}px)`, r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: dimF || dimP ? "default" : "pointer", pointerEvents: dimF || dimP ? "none" : "auto", transition: trans }} />);
   }), [pts, hover, brushed, singleSel, inBrush, isDimFam, isPageDim, fillFor, mode, animatePos]);
 
   const subLabels = React.useMemo(() => mode !== "subgenres" ? null : pts.filter(pt => labelIds.has(pt.row.id) && !isDimFam(pt.row) && !isPageDim(pt.row)).map(pt => (

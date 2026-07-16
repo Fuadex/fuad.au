@@ -201,8 +201,8 @@ function shGroupBy(lens, albums, R, labelGrouped) {
 
 // group albums by record label. Two modes:
 //   grouped=true  → cluster labels under their PARENT COMPANY (label-parents.js);
-//                   a parent shelf with 2+ constituent labels lists them in a subtitle
-//                   and, when the mode renders sublabels, one sub-shelf each.
+//                   every imprint's albums merge into ONE shelf titled with the company,
+//                   its 2+ constituent labels listed in a subtitle caption.
 //   grouped=false → SPLIT into the specific labels themselves (variants still folded).
 // Trivial name variants (Records/GmbH/Inc. suffixes, casing) are normalised via
 // ROTATION_LABEL_CANON before either bucketing, so "Nuclear Blast" / "Nuclear Blast
@@ -561,7 +561,8 @@ function ShelvesView({ go, seed }) {
 
       {mode === "wrap" && !unData && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 30 }}>unwrapping…</div>}
 
-      {/* LABELS MODE — clamped, with sublabel sub-headers */}
+      {/* LABELS MODE — clamped; grouped = one merged shelf per conglomerate (imprint list as
+          a caption), split = one shelf per label */}
       {mode === "racks" && lens === "labels" && (() => {
         if (!labelsReady) return <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 30 }}>loading label data…</div>;
         const SH_LABEL_CLAMP = 8;
@@ -571,41 +572,30 @@ function ShelvesView({ go, seed }) {
           <>
             {visible.map((g) => {
               const shelfId = "labels:" + g.key;
-              // if there are sublabels, render a famgroup header + one shelf per sublabel
-              if (g.sublabels && g.sublabels.size >= 2) {
-                return (
-                  <div key={shelfId} className="sh-famgroup">
-                    <div className="sh-shelf-h" style={{ marginBottom: 2 }}>
-                      <span className="sh-shelf-name" style={{ "--h": g.hue, fontSize: 17 }}>{g.name}</span>
-                      <span className="sh-shelf-n">{fmt(g.albums.length)} albums</span>
-                    </div>
-                    {g.labelNames.length >= 2 && (() => {
-                      // constituent labels, most-albums-first; clamp to keep the subtitle to one
-                      // tidy line even when a conglomerate swallows a dozen imprints.
-                      const SUB_MAX = 6;
-                      const shown = g.labelNames.slice(0, SUB_MAX);
-                      const extra = g.labelNames.length - shown.length;
-                      const text = shown.join(" · ") + (extra > 0 ? ` +${extra} more` : "");
-                      return <div className="sh-labelsub" title={g.labelNames.join(" · ")}>{text}</div>;
-                    })()}
-                    {[...g.sublabels.entries()].sort((a, b) => b[1].length - a[1].length).map(([sname, sarr], si) => (
-                      <div key={shelfId + ":" + sname} className="sh-reveal" style={{ animationDelay: (si * 40) + "ms" }}>
-                        <ShShelf id={shelfId + ":" + sname} name={sname} hue={g.hue} albums={sarr} depth={1}
-                          cap={SH_CAP + (caps[shelfId + ":" + sname] || 0)}
-                          onMore={() => setCaps(p => ({ ...p, [shelfId + ":" + sname]: (p[shelfId + ":" + sname] || 0) + SH_STEP }))}
-                          expanded={expanded} setExpanded={setExpanded} setReader={setReader} />
-                      </div>
-                    ))}
-                  </div>
-                );
-              }
-              // single label or no sublabels: one plain shelf
-              return (
-                <ShShelf key={shelfId} id={shelfId} name={g.name} hue={g.hue} albums={g.albums}
+              // Grouped mode: ONE merged shelf per conglomerate (all imprints racked together),
+              // with the top-6-imprints "+N more" line as a subtitle (full list in the tooltip).
+              // The split-by-labels toggle (labelGrouped=false → no sublabels) unravels into the
+              // individual label shelves via the plain single-shelf branch below.
+              const subtitle = (g.sublabels && g.labelNames.length >= 2) ? (() => {
+                // constituent labels, most-albums-first; clamp to keep the subtitle to one
+                // tidy line even when a conglomerate swallows a dozen imprints.
+                const SUB_MAX = 6;
+                const shown = g.labelNames.slice(0, SUB_MAX);
+                const extra = g.labelNames.length - shown.length;
+                const text = shown.join(" · ") + (extra > 0 ? ` +${extra} more` : "");
+                return <div className="sh-labelsub" title={g.labelNames.join(" · ")}>{text}</div>;
+              })() : null;
+              // one shelf — title = conglomerate name, albums = every imprint's albums merged,
+              // count = group total (ShShelf derives the header count from albums.length).
+              const shelf = (
+                <ShShelf id={shelfId} name={g.name} hue={g.hue} albums={g.albums}
                   cap={SH_CAP + (caps[shelfId] || 0)}
                   onMore={() => setCaps(p => ({ ...p, [shelfId]: (p[shelfId] || 0) + SH_STEP }))}
                   expanded={expanded} setExpanded={setExpanded} setReader={setReader} />
               );
+              return subtitle
+                ? <div key={shelfId} className="sh-labelgroup">{shelf}{subtitle}</div>
+                : React.cloneElement(shelf, { key: shelfId });
             })}
             {groups.length > SH_LABEL_CLAMP && (
               <div style={{ textAlign: "center", margin: "8px 0 24px" }}>
@@ -658,6 +648,11 @@ function ShelvesView({ go, seed }) {
         .sh-labelseg { margin-left: 4px; }
         .sh-labelsub { font-family: var(--mono); font-size: 9.5px; letter-spacing: .04em;
           color: var(--ink-faint); margin: -2px 0 10px; line-height: 1.5; }
+        /* grouped-labels: one merged shelf per conglomerate; the imprint list rides just under
+           the shelf header as a caption (the shelf owns its own header/row/progress). */
+        .sh-labelgroup { margin-bottom: 26px; }
+        .sh-labelgroup .sh-shelf { margin-bottom: 0; }
+        .sh-labelgroup .sh-labelsub { margin: 6px 0 0; }
         .sh-shelf { margin-bottom: 26px; content-visibility: auto; contain-intrinsic-size: auto 190px; }
         .sh-shelf[data-depth="1"] { margin: 0 0 16px 14px; }
         .sh-famgroup { margin-bottom: 30px; }
