@@ -47,7 +47,9 @@ function enrich(w) {
   const hi = hires && hires.img ? hires.img : null;
   return { ...w, ...d, artistData: artist, venues, year: w.year || d.year || null, hires,
     img: w.img || mImg || hi || null,
-    imgGrid: w.imgGrid || mGrid || (mImg ? null : hi) || null,
+    // hand-set canon img doubles as the grid thumb when the machine has none (at a lighter
+    // width for FilePath URLs) — a hand-fixed image should never leave a blank wall tile
+    imgGrid: w.imgGrid || mGrid || (mImg ? null : hi) || (w.img ? w.img.replace(/width=\d+/, "width=440") : null),
     imgZoom: w.imgZoom || hi || mZoom || null };
 }
 
@@ -1206,24 +1208,51 @@ function MapView({ go }) {
     const map = {}; for (const c of arr) map[c.city] = c;
     return { list: arr, byCity: map };
   }, []);
-  // pilgrimage layer: wish works placed at their holding museum, fanned out so a shared venue spreads
+  // pilgrimage layer: wish ("to see") works you're still chasing. FIX 2 (2026-07-17): these pink ♥
+  // dots used to fan from the holding MUSEUM's raw coordinate (coordOf(mid)) with a plain golden-angle
+  // spiral and NO collision pass — so a) they emanated from a point that is NOT the city bubble (the
+  // bubble sits on the works-weighted city anchor, offset from any single museum), and b) at a shared
+  // venue several ♥ seeds landed on top of each other. Now each city's wishes fan out of that SAME
+  // city-bubble anchor and run through a relaxation pass identical in spirit to relaxFan, so the ♥
+  // dots share the city bubble's parent and never overlap. (Only shown in the all-cities view; during
+  // focus the museum work-fans take over.)
   const { wishMarkers, wishList } = useMemo(() => {
     const wishes = WORKS.map(enrich).filter(w => w.wish);
-    const byMus = {};
-    for (const w of wishes) { const mid = (Array.isArray(w.seenAt) ? w.seenAt[0] : w.seenAt) || w.at; (byMus[mid || "_tbc"] = byMus[mid || "_tbc"] || []).push(w); }
-    const markers = [], groups = {};
-    for (const [mid, list] of Object.entries(byMus)) {
-      const m = MUS_BY_ID[mid], base = mid !== "_tbc" ? coordOf(mid) : null;
-      groups[m ? m.city + " — " + m.name.replace(/\s*\(.*\)$/, "") : "location TBC"] = list;
-      if (!base) continue;
-      const venue = m ? m.name.replace(/\s*\(.*\)$/, "") : "";
-      list.forEach((w, i) => {
-        const ang = i * 2.399, rad = list.length === 1 ? 0 : 2 + 1.5 * Math.sqrt(i);
-        markers.push({ w, x: base[0] + rad * Math.cos(ang), y: base[1] + rad * Math.sin(ang), bx: base[0], by: base[1], city: m ? m.city : "", venue });
-      });
+    // group for the branch dots BY CITY (true parent = the city bubble); keep the per-venue grouping
+    // only for the "To see" text list beneath the map.
+    const byCity = {}, byMus = {};
+    for (const w of wishes) {
+      const mid = (Array.isArray(w.seenAt) ? w.seenAt[0] : w.seenAt) || w.at;
+      const m = mid ? MUS_BY_ID[mid] : null;
+      (byMus[mid || "_tbc"] = byMus[mid || "_tbc"] || []).push(w);
+      if (m && cities.byCity[m.city]) (byCity[m.city] = byCity[m.city] || { c: cities.byCity[m.city], list: [] }).list.push({ w, venue: m.name.replace(/\s*\(.*\)$/, "") });
     }
+    const markers = [];
+    for (const { c, list } of Object.values(byCity)) {
+      const bx = c.x, by = c.y;                                   // branch from the city bubble anchor
+      const cr = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
+      const R = 2, sep = 1.4, minR = cr + R + 1.4, GA = 2.399963;
+      const nodes = list.map((e, i) => {
+        const rr = minR + 1.5 * Math.sqrt(i), a = i * GA;
+        return { e, x: bx + rr * Math.cos(a), y: by + rr * Math.sin(a) };
+      });
+      // collision relaxation: shove overlapping ♥ apart, keep them off the city bubble
+      for (let pass = 0; pass < 14; pass++) {
+        for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j], min = R + R + sep;
+          let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy);
+          if (d >= min) continue; if (d < 0.001) { dx = Math.cos(i) * 0.5; dy = Math.sin(i) * 0.5; d = Math.hypot(dx, dy); }
+          const push = (min - d) / d / 2; a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push;
+        }
+        for (const nd of nodes) { let ex = nd.x - bx, ey = nd.y - by, e = Math.hypot(ex, ey) || 0.001; if (e < minR) { nd.x = bx + ex / e * minR; nd.y = by + ey / e * minR; } }
+      }
+      for (const nd of nodes) markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue });
+    }
+    // text list under the map keeps the finer venue grouping (incl. location-TBC works with no coords)
+    const groups = {};
+    for (const [mid, l] of Object.entries(byMus)) { const m = MUS_BY_ID[mid]; groups[m ? m.city + " — " + m.name.replace(/\s*\(.*\)$/, "") : "location TBC"] = l; }
     return { wishMarkers: markers, wishList: Object.entries(groups).sort((a, b) => b[1].length - a[1].length) };
-  }, []);
+  }, [cities]);
   const trips = useMemo(() => {
     const by = {};
     for (const m of MUSEUMS) for (const v of (m.visits || [])) {
@@ -1248,26 +1277,27 @@ function MapView({ go }) {
   const [hover, setHover] = useState(null);
   const k = vb.w / 880;
   const commit = (next) => { vbRef.current = next; if (!raf.current) raf.current = requestAnimationFrame(() => { raf.current = 0; setVb(vbRef.current); }); };
-  // ——— cursor fisheye magnifier (fix 4). The pointer position is tracked in MAP units (lens),
-  // and every bubble within LENS_R of it is displaced radially outward + scaled up with a smooth
-  // cosine falloff, so tiny clustered bubbles bloom and separate under the cursor without fighting
-  // the pan/zoom (it only reshapes rendering, never the viewBox). On touch there is no hover, so
-  // the lens is driven by a tap that also nudges a semantic zoom step toward the tapped point.
+  // ——— cursor magnifier (fix 4, reworked 2026-07-17). SCALE-ONLY: the pointer is tracked in MAP
+  // units (lens) and every bubble within LENS_R grows with a smooth cosine falloff (up to LENS_MAG
+  // at the cursor), labels fade in and the nearest raises z-order — but POSITIONS STAY STATIC. The
+  // earlier version also displaced nodes radially OUTWARD from the pointer, which made a bubble flee
+  // the cursor as you approached (an anti-magnet). Static overlap is already handled by relaxFan, so
+  // approaching a bubble now simply grows it → easier to hit. On touch there is no hover, so the
+  // lens is driven by a tap that also nudges a semantic zoom step toward the tapped point.
   const [lens, setLens] = useState(null);           // { x, y } in map units, or null
   const lensRaf = React.useRef(0);
   const LENS_R = 26;                                 // magnifier radius, map units (scales with zoom via vb)
   const LENS_MAG = 2.1;                              // peak size multiplier at the cursor
-  const lensR = LENS_R * k, lensReach = 6.5 * k;     // reach = how far a bubble is pushed out at peak
+  const lensR = LENS_R * k;
   const setLensThrottled = (p) => { if (lensRaf.current) return; lensRaf.current = requestAnimationFrame(() => { lensRaf.current = 0; setLens(p); }); };
-  // fisheye transform for one point: returns [x, y, scale]. t is a 0..1 nearness ramp.
+  // magnifier transform for one point: returns [x, y, scale]. Position is unchanged; only scale
+  // ramps 1→LENS_MAG as the point nears the cursor (t is a 0..1 nearness ramp, cosine falloff).
   const fish = (x, y) => {
     if (!lens) return [x, y, 1];
     const dx = x - lens.x, dy = y - lens.y, d = Math.hypot(dx, dy);
     if (d >= lensR) return [x, y, 1];
     const t = 0.5 + 0.5 * Math.cos(Math.PI * d / lensR);   // 1 at centre → 0 at edge (smooth)
-    const scale = 1 + (LENS_MAG - 1) * t;
-    const push = lensReach * t, nd = d || 0.001;
-    return [x + dx / nd * push, y + dy / nd * push, scale];
+    return [x, y, 1 + (LENS_MAG - 1) * t];
   };
   const clientToMap = (cx, cy) => {
     const el = svgRef.current; if (!el) return null; const r = el.getBoundingClientRect(); const v = vbRef.current;

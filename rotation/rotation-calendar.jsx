@@ -1119,8 +1119,12 @@ function CalendarView({ go, seed }) {
 
       <style>{`
         .cal-heatwrap { display: grid; grid-template-columns: minmax(0,1fr) 210px; gap: var(--gap); align-items: start; }
-        .cal-clock { position: sticky; top: 12px; }
-        @media (max-width: 900px) { .cal-heatwrap { grid-template-columns: 1fr; } .cal-clock { position: static; } }
+        /* Rhythm rail follows the scroll — sticky under the 64px sticky .r-head (mirrors Explore's
+           .xp-left top:76px). .r-app's overflow-x:hidden doesn't defeat it here: .r-app has no fixed
+           height, so the window scrolls and sticky resolves against the viewport (same as .xp-left).
+           self-max-height + own scroll so a tall clock never outgrows the viewport while pinned. */
+        .cal-clock { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 88px); overflow-y: auto; }
+        @media (max-width: 900px) { .cal-heatwrap { grid-template-columns: 1fr; } .cal-clock { position: static; max-height: none; overflow-y: visible; } }
         .cal-detail { font-family: var(--serif); font-size: 15px; color: var(--ink-soft); margin-bottom: 12px; min-height: 22px; }
         .cal-art { color: var(--accent); cursor: pointer; border-bottom: 1px solid currentColor; }
         .cal-art:hover { opacity: .8; }
