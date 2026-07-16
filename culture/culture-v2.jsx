@@ -1139,7 +1139,8 @@ function enrichExtras(item) {
   const scriptMood = (window.CULTURE_SCRIPT_MOOD || {})[item.id]; // NRC dialogue mood {v,e,m}
   const pred = (window.CULTURE_PREDICT || {})[item.id];      // predicted rating + reasons (wishlist)
   const blurb = (window.CULTURE_WISHLIST_BLURBS || {})[item.id]; // Fable why-watch blurb (wishlist items without a note)
-  if (!omdb && !book && !gameTt && !fwNote && !noteEn && !tmdb && !addBadges && !scriptMood && !pred && !blurb) return item;
+  const interp = (window.CULTURE_INTERPRETATIONS || {})[item.id]; // Opus interpretation (Reader description toggle source)
+  if (!omdb && !book && !gameTt && !fwNote && !noteEn && !tmdb && !addBadges && !scriptMood && !pred && !blurb && !interp) return item;
   const out = book ? { ...item, ...book } : { ...item };
   if (scriptMood) out.scriptMood = scriptMood;
   if (pred) { out.pred = pred.pred; out.predWhy = pred.why; }
@@ -1151,6 +1152,7 @@ function enrichExtras(item) {
   if (fwNote && !out.note) out.note = fwNote;
   if (blurb && !out.note) out.note = blurb;
   if (noteEn) out.noteEn = noteEn;
+  if (interp) out.interpretation = interp;
   if (tmdb && !out.summary) out.summary = tmdb;
   if (addBadges) out.highlights = [...new Set([...(out.highlights || []), ...addBadges])];
   // No hand-picked poster and cast_data had no TMDB art? Use OMDb's poster (already
@@ -1820,6 +1822,10 @@ function ReaderSummary({ item }) {
     sources.push({ key: item.medium === 'Books' ? 'Synopsis' : 'TMDB', text: item.summary });
   if (item.igdbSummary)
     sources.push({ key: 'IGDB', text: item.igdbSummary });
+  // Opus interpretation — a deeper "what it's really about" reading, offered as an
+  // extra description source. Kept last so the factual description stays the default.
+  if (item.interpretation)
+    sources.push({ key: 'Reading', text: item.interpretation, by: 'interpretation — Opus' });
   const [idx, setIdx] = React.useState(0);
   if (!sources.length) return null;
   const i = Math.min(idx, sources.length - 1);
@@ -1831,6 +1837,7 @@ function ReaderSummary({ item }) {
         <span className="summary-flip" onClick={() => setIdx((i + 1) % sources.length)}
           title="Switch description source">{active.key} ⇄</span>
       )}
+      {active.by && <span className="summary-by">✦ {active.by}</span>}
     </p>
   );
 }

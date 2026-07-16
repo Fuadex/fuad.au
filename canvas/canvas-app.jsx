@@ -36,8 +36,8 @@ function enrich(w) {
 function useRoute() {
   const parse = () => {
     const h = (location.hash || "#/").replace(/^#\/?/, "");
-    const [view, id] = h.split("/");
-    return { view: view || "wall", id: id || null };
+    const segs = h.split("/");
+    return { view: segs[0] || "wall", id: segs[1] || null, part: segs[2] ? (parseInt(segs[2], 10) || 1) : 1 };
   };
   const [route, setRoute] = useState(parse);
   useEffect(() => {
@@ -831,20 +831,33 @@ function Museums() {
 // "Didn't see it + ♥" is the most valuable answer of all: it builds the Pilgrimage list.
 // Verdicts persist in localStorage as {seen, love}; the summary exports JSON for folding
 // into artworks.js / pilgrimage.js. Old-format string verdicts are migrated on load.
+// Decks > 40 cards are split into sequential parts of 40 (last part = remainder).
+// Part routing: #/deck/<museumId>/2 — part 1 is the default (no suffix needed).
+// Verdicts and the export are deck-wide (all parts share one storeKey); the part split
+// is presentation-only slicing so already-graded items work exactly as before.
+const DECK_PART_SIZE = 40;
 const SEEN_OPTS = [["no", "didn't see it"], ["unsure", "not sure"], ["yes", "saw it"]];
 const LOVE_OPTS = [[0, "○ nothing special"], [1, "♡ like it"], [2, "♥ love it"]];
 const migrateVerdict = (v) => typeof v === "string"
   ? { seen: v === "floored" ? "yes" : v, love: v === "floored" ? 2 : 0 } : v;
-function Deck({ museumId, go }) {
+function Deck({ museumId, part, go }) {
   const HL = window.CANVAS_HIGHLIGHTS || {};
   // the "by-artists" virtual deck: discovery works by artists you love, tied to no single venue
   const VIRTUAL = museumId === "by-artists";
   const mus = VIRTUAL ? { name: "Works by artists you love" } : MUS_BY_ID[museumId];
   const canonQids = useMemo(() => new Set(WORKS.map(w => (AD.artworks[w.id] || {}).qid).filter(Boolean)), []);
-  const deck = useMemo(() => {
+  // full deck (all parts) — verdicts are stored here across parts
+  const fullDeck = useMemo(() => {
     const src = VIRTUAL ? (window.CANVAS_BY_ARTISTS || []) : (HL[museumId] || []);
     return src.filter(w => !canonQids.has(w.qid));
   }, [museumId]);
+  // part splitting: 40-card pages (last page = remainder); part is 1-based
+  const numParts = Math.max(1, Math.ceil(fullDeck.length / DECK_PART_SIZE));
+  const safePart = Math.min(Math.max(part || 1, 1), numParts);
+  const partStart = (safePart - 1) * DECK_PART_SIZE;
+  const deck = fullDeck.slice(partStart, partStart + DECK_PART_SIZE);
+  const partHref = (p) => "#/deck/" + museumId + (p > 1 ? "/" + p : "");
+
   const storeKey = "canvas-deck-" + museumId;
   const [verdicts, setVerdicts] = useState(() => {
     try {
@@ -857,6 +870,12 @@ function Deck({ museumId, go }) {
   const [i, setI] = useState(firstOpen < 0 ? deck.length : firstOpen);
   const [love, setLove] = useState(0);
   const [copied, setCopied] = useState(false);
+  // reset card index when part changes (key on Deck in App handles full remount, but guard here too)
+  useEffect(() => {
+    const fo = deck.findIndex(w => !verdicts[w.qid]);
+    setI(fo < 0 ? deck.length : fo);
+    setCopied(false);
+  }, [safePart, museumId]);
   useEffect(() => {   // returning to an answered card (Backspace) restores its feeling
     const w = deck[i]; setLove(w && verdicts[w.qid] ? verdicts[w.qid].love : 0);
   }, [i]);
@@ -880,18 +899,40 @@ function Deck({ museumId, go }) {
     return () => window.removeEventListener("keydown", on);
   }, [i, verdicts, love]);
 
-  if (!mus || !deck.length) return <div className="cv-mus"><p>No deck for this museum (yet).</p></div>;
+  if (!mus || !fullDeck.length) return <div className="cv-mus"><p>No deck for this museum (yet).</p></div>;
+
+  // Part nav strip (only shown when there are multiple parts)
+  const partNav = numParts > 1 ? (
+    <div className="cv-deck-parts">
+      {Array.from({ length: numParts }, (_, pi) => {
+        const pn = pi + 1;
+        const pStart = pi * DECK_PART_SIZE;
+        const pSlice = fullDeck.slice(pStart, pStart + DECK_PART_SIZE);
+        const pCount = pSlice.length;
+        return (
+          <a key={pn} className={"cv-deck-part" + (pn === safePart ? " cv-deck-part-on" : "")}
+            href={partHref(pn)}>Part {pn} <span className="cv-deck-part-n">·{pCount}</span></a>
+        );
+      })}
+    </div>
+  ) : null;
 
   if (i >= deck.length) {
-    const rows = deck.filter(w => verdicts[w.qid] && (verdicts[w.qid].seen !== "no" || verdicts[w.qid].love > 0))
+    // summary is for ALL parts combined (full-deck verdicts)
+    const rows = fullDeck.filter(w => verdicts[w.qid] && (verdicts[w.qid].seen !== "no" || verdicts[w.qid].love > 0))
       .map(w => ({ qid: w.qid, title: w.title, artist: w.artist, year: w.year, museum: VIRTUAL ? null : museumId, ...verdicts[w.qid] }));
     const seen = rows.filter(r => r.seen === "yes");
     const discoveries = rows.filter(r => r.seen !== "yes" && r.love > 0);
     const json = JSON.stringify(rows, null, 1);
+    const nextPart = safePart < numParts ? safePart + 1 : null;
     return (
       <div className="cv-deck">
-        <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")} — deck complete</div>
-        <p className="cv-deck-sum">{seen.length} recognised ({seen.filter(r => r.love === 2).length} floored) · {rows.filter(r => r.seen === "unsure").length} unsure · {discoveries.length} discoveries you'd love to see.</p>
+        {partNav}
+        <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")} — Part {safePart} done</div>
+        <p className="cv-deck-sum">{seen.length} recognised across all parts ({seen.filter(r => r.love === 2).length} floored) · {rows.filter(r => r.seen === "unsure").length} unsure · {discoveries.length} discoveries you'd love to see.</p>
+        {nextPart && (
+          <a className="cv-deck-btn cv-deck-btn-next" href={partHref(nextPart)}>Continue to Part {nextPart} →</a>
+        )}
         {seen.length > 0 && (
           <React.Fragment>
             <div className="cv-deck-secl">Seen</div>
@@ -911,7 +952,7 @@ function Deck({ museumId, go }) {
             <textarea className="cv-deck-json" readOnly value={json} rows={6} />
           </React.Fragment>
         )}
-        <button className="cv-deck-btn" onClick={() => { setI(0); }}>re-deal from the top</button>
+        <button className="cv-deck-btn" onClick={() => { setI(0); setCopied(false); }}>re-deal this part</button>
         <a className="cv-deal" href="#/museums">← back to museums</a>
       </div>
     );
@@ -920,7 +961,8 @@ function Deck({ museumId, go }) {
   const w = deck[i];
   return (
     <div className="cv-deck">
-      <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")} · did you see this?</div>
+      {partNav}
+      <div className="cv-deck-head">{mus.name.replace(/\s*\(.*\)$/, "")}{numParts > 1 ? " · Part " + safePart : ""} · did you see this?</div>
       <div className="cv-deck-prog">{i + 1} / {deck.length} · 1–3 seen · 4 ♡ · 5 ♥{i > 0 ? " · Backspace = back" : ""}</div>
       <div className="cv-deck-card" key={w.qid}>{/* remount per card: stale image must not linger under the next label */}
         <img src={w.img} alt={w.title} loading="eager" />
@@ -1694,7 +1736,7 @@ function App() {
         )}
         <SearchBar go={go} />
       </header>
-      {route.view === "deck" ? <Deck museumId={route.id} go={go} key={route.id} />
+      {route.view === "deck" ? <Deck museumId={route.id} part={route.part} go={go} key={route.id + "-" + route.part} />
         : view === "museums" ? <Museums />
         : view === "portrait" ? <Portrait go={go} />
         : (view === "map" || view === "pilgrimage") ? <MapView go={go} />
