@@ -1582,9 +1582,11 @@ function MapView({ go }) {
       // hug the parent — the seed ring starts right off the bubble and packs DENSER (small radial step)
       // so a dense city grows a second ring instead of flinging dots across the map. FIX 1: the clamp is
       // radius-aware (keep the dot's EDGE off the city bubble), so no ♥ ever lands inside it.
-      const R = 2, sep = 1.2, GAP = 1.2, minR = cr + R + GAP, GA = 2.399963;
+      // TIGHTER HALO (2026-07-17 r4): pull the ♥ ring hard onto the bubble (GAP 1.2 -> 0.6) and shrink
+      // the radial step (1.1 -> 0.7) so a dense city grows tight concentric rings instead of long spokes.
+      const R = 2, sep = 1.0, GAP = 0.6, minR = cr + R + GAP, GA = 2.399963;
       const nodes = list.map((e, i) => {
-        const rr = minR + 1.1 * Math.sqrt(i), a = i * GA;
+        const rr = minR + 0.7 * Math.sqrt(i), a = i * GA;
         return { e, x: bx + rr * Math.cos(a), y: by + rr * Math.sin(a) };
       });
       const clear = (nd) => { let ex = nd.x - bx, ey = nd.y - by, e = Math.hypot(ex, ey) || 0.001; const floor = cr + R + GAP; if (e < floor) { nd.x = bx + ex / e * floor; nd.y = by + ey / e * floor; } };
@@ -1600,6 +1602,27 @@ function MapView({ go }) {
       }
       for (const nd of nodes) clear(nd);                          // final hard guarantee
       for (const nd of nodes) markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue });
+    }
+    // FIX 2 (2026-07-17 r4) — THE centre-dot fix. The per-city clamp above only keeps a dot off ITS
+    // OWN city bubble; it never guarded against OTHER cities. A dot fanned out of city A (or shoved by
+    // relaxation) can land squarely on top of a geographically-near city B's bubble — that is the red
+    // dot the owner keeps seeing dead-centre of an orange bubble. Enforce it globally as a FINAL FILTER:
+    // for every marker, against EVERY city bubble, if the dot's centre is within (cityR + dotR + gap)
+    // of that bubble, push the dot radially out of the bubble to its rim. Iterate a few times because
+    // pushing clear of one bubble can nudge it toward another (dense European clusters).
+    const cityDot = 2, cityGap = 1.2;
+    const cRad = (c) => (c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1);
+    for (let pass = 0; pass < 4; pass++) {
+      for (const mk of markers) {
+        for (const c of cities.list) {
+          const need = cRad(c) + cityDot + cityGap;
+          let ex = mk.x - c.x, ey = mk.y - c.y, e = Math.hypot(ex, ey);
+          if (e >= need) continue;
+          if (e < 0.001) { ex = mk.x - mk.bx; ey = mk.y - mk.by; e = Math.hypot(ex, ey) || 0.001; ex /= e; ey /= e; }
+          else { ex /= e; ey /= e; }
+          mk.x = c.x + ex * need; mk.y = c.y + ey * need;   // push the dot out to the bubble rim
+        }
+      }
     }
     // text list under the map keeps the finer venue grouping (incl. location-TBC works with no coords)
     const groups = {};
@@ -1714,31 +1737,32 @@ function MapView({ go }) {
     // radius-aware clamp keeps every museum's disc off the city bubble. FIX 2: seed ring hugs the
     // city (minR small) and the radial step is gentle — a dense city packs a tighter fan (relaxation
     // + a second ring) instead of flinging museums across the country.
-    const musR = (m) => 3.6 + Math.min(m.n, 8) * 0.18;
-    // TIGHTER FAN (2026-07-17): pull the museum ring another notch closer to the city (smaller minR
-    // offset + gentler radial step + tighter separation). The big fan sizes + fisheye carry readability;
-    // the branch should sit close around the city, not sprawl across the country. Sizes unchanged.
+    // FIX 4 (2026-07-17 r4): museums come down a touch (base 3.6 -> 3.0) to rebalance against the much
+    // smaller work dots so the fan reads as a tight halo, not city-sized satellites.
+    const musR = (m) => 3.0 + Math.min(m.n, 8) * 0.16;
+    // TIGHTER HALO (2026-07-17 r4): pull the museum ring right onto the city (minR offset + step + gap
+    // all reduced) so the museums sit as a tight ring around the city bubble, not spokes. The clamp is
+    // still radius-aware (parentR=cityR) so no museum disc ever overlaps the city.
     const mFan = relaxFan(c.x, c.y, museums, {
-      minR: cityR + musR({ n: 0 }) + 1.2, step: 2.1, sep: 2.2, seedAng: -Math.PI / 2,
-      parentR: cityR, gap: 1.2, rOf: musR,
+      minR: cityR + musR({ n: 0 }) + 0.4, step: 1.3, sep: 1.4, seedAng: -Math.PI / 2,
+      parentR: cityR, gap: 0.8, rOf: musR,
     });
     const nodes = mFan.map((mn, i) => {
       const m = mn.it, mx = mn.x, my = mn.y;
       const works = enriched.filter(w => !w.wish && (w.floored || w.liked) &&
         (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt]).includes(m.id));
       const nw = works.length;
-      // FIX 3: work dots ~2.5x (base ~1.5-2.0 → ~3.8-4.6). FIX 2: hug the museum (small seed ring,
-      // gentle step, denser sep so a busy museum grows a second ring rather than a long tail). FIX 1:
-      // parentR=mn.r keeps every work disc clear of its museum bubble on all paths.
+      // FIX 4 (2026-07-17 r4): the work dots were almost city-sized (4.6/3.8). Shrink ~2.5x to a tight
+      // constellation: floored 1.8, liked 1.5. The scale-only fisheye (up to 2.1x) restores hittability
+      // on hover. FIX 1: with the smaller radii the ring hugs the museum tightly (seed offset is just the
+      // largest work radius, gentle step, sep rebalanced to the smaller discs so the tighter fan still
+      // has no overlaps). parentR=mn.r keeps every work disc clear of its museum bubble on all paths.
       // seed the work fan pointing AWAY from the city so works splay outward, not back over the ring
       const outAng = Math.atan2(my - c.y, mx - c.x);
-      const wRof = (w) => (w.floored ? 4.6 : 3.8);
-      // TIGHTER FAN (2026-07-17): the work ring hugs its museum bubble one notch closer (seed offset
-      // is just the largest work radius, gentler step) so a museum's works cluster tightly around it
-      // rather than trailing outward. Work-dot sizes (4.6/3.8) unchanged.
+      const wRof = (w) => (w.floored ? 1.8 : 1.5);
       const wFan = relaxFan(mx, my, works, {
-        minR: mn.r + 4.6 + 0.6, step: 1.1, sep: 1.2, seedAng: outAng - Math.PI / 2,
-        parentR: mn.r, gap: 1.2, rOf: wRof,
+        minR: mn.r + 1.8 + 0.4, step: 0.8, sep: 0.7, seedAng: outAng - Math.PI / 2,
+        parentR: mn.r, gap: 0.6, rOf: wRof,
       });
       const wnodes = wFan.map((wn, j) => ({ w: wn.it, x: wn.x, y: wn.y, r: wRof(wn.it) }));
       // label sits clear ABOVE the bubble; leader line drawn if the offset is non-trivial
@@ -1849,7 +1873,15 @@ function MapView({ go }) {
           onMouseDown={onDown} onMouseMove={onMove} onMouseUp={stop}
           onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
           {landPath && <path d={landPath} fill="#d3c4ab" stroke="none" />}
-          {/* DEFAULT: one bubble per city (click to branch) + the ♥ works you're still chasing */}
+          {/* DEFAULT: one bubble per city (click to branch) + the ♥ works you're still chasing.
+              FIX 3 (2026-07-17 r4) Z-ORDER: all ♥ leader lines are drawn FIRST, in their own layer,
+              so they render BEHIND the orange city bubbles — a line emerges from underneath its city
+              and never crosses over the dots. City bubbles paint next, then the ♥ dots on top. */}
+          {!focus && wishMarkers.map((mk, i) => {
+            if (mk.x === mk.bx && mk.y === mk.by) return null;
+            const [fx, fy] = fish(mk.x, mk.y);
+            return <line key={"wl" + mk.w.id + "-" + i} x1={mk.bx} y1={mk.by} x2={fx} y2={fy} stroke="oklch(0.55 0.19 18 / .4)" strokeWidth={0.5 * k} />;
+          })}
           {!focus && cities.list.map(c => {
             const cr = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
             const [fx, fy, fs] = fish(c.x, c.y);
@@ -1869,7 +1901,6 @@ function MapView({ go }) {
                 onMouseEnter={e => setHover({ w: mk.w, mx: e.clientX, my: e.clientY, venue: mk.venue, city: mk.city })}
                 onMouseMove={e => setHover(h => h && h.w === mk.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                 onMouseLeave={() => setHover(null)}>
-                {(mk.x !== mk.bx || mk.y !== mk.by) && <line x1={mk.bx} y1={mk.by} x2={fx} y2={fy} stroke="oklch(0.55 0.19 18 / .4)" strokeWidth={0.5 * k} />}
                 {/* SIZE SCOPING: original rest size r=2 (the fisheye handles hittability on hover). */}
                 <circle cx={fx} cy={fy} r={2 * fs * k} fill="oklch(0.55 0.19 18 / .9)" stroke="#f7efe2" strokeWidth={0.6 * k} />
               </g>
@@ -1899,7 +1930,7 @@ function MapView({ go }) {
                         onMouseMove={e => setHover(h => h && h.w === wn.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                         onMouseLeave={() => setHover(null)}>
                         <line x1={mx} y1={my} x2={fx} y2={fy} stroke="rgba(58,47,34,.26)" strokeWidth={0.3 * k} />
-                        <circle cx={fx} cy={fy} r={(wn.w.floored ? 4.6 : 3.8) * fs * k}
+                        <circle cx={fx} cy={fy} r={(wn.w.floored ? 1.8 : 1.5) * fs * k}
                           fill={wn.w.floored ? "oklch(0.55 0.19 18 / .92)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.4 * k} />
                       </g>
                     );
