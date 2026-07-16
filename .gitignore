@@ -4,6 +4,11 @@
 # deploy staging, assembled by stage-site.js on every build
 _site/
 
+# local Babel install for stage-site.js precompile checks (CI installs its own)
+node_modules/
+package.json
+package-lock.json
+
 # secrets — never commit (hub-level .env + any nested app .env)
 .env
 *.env
