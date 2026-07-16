@@ -511,7 +511,7 @@ function FactCard({ rule, result, go }) {
 
       {/* ── headline ── big number / glanceable claim ── */}
       <div className="r-stat-n" style={{
-        fontSize: "clamp(16px,2vw,21px)", lineHeight: 1.2,
+        fontSize: "clamp(13px,1.5vw,15.5px)", lineHeight: 1.3,
         color: "var(--ink)", marginBottom: 10,
         letterSpacing: "-.01em",
       }}>
