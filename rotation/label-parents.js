@@ -1,36 +1,40 @@
 // Record-label → parent-company map for the Shelves "label" lens.
 //
 // Keys are label names EXACTLY as they appear in ROTATION_ALB_LABELS (the album→label
-// cache). Values are the parent group each label rolls up to. A label that is its own
-// top of the tree (independent, or the group name itself) maps to itself so the grouped
-// view still has a clean shelf title.
+// cache). Values are the ULTIMATE owner each label rolls up to — the top-level conglomerate,
+// never an intermediate division. So every Universal frontline imprint (Interscope, Virgin,
+// Geffen, Capitol, EMI…) maps straight to "Universal Music Group"; every Warner imprint
+// (Atlantic, Elektra, Roadrunner, Warner Bros…) maps straight to "Warner Music Group"; every
+// Sony imprint (Columbia, Epic, RCA, Century Media, Ultra…) maps straight to "Sony Music".
+// A label that is its own top of the tree (a genuine independent, or the group name itself)
+// maps to itself so the grouped view still has a clean shelf title.
 //
 // Two jobs, both keyed the same way:
 //   1. NORMALISE trivial name variants of ONE label to a single canonical name
 //      (e.g. "Nuclear Blast", "Nuclear Blast Records", "Nuclear Blast GmbH" → "Nuclear Blast";
 //      "FiXT", "FiXT Music" → "FiXT Music"). A label that only needs normalising maps to
 //      its own canonical form.
-//   2. CLUSTER labels under the corporate group / holding company that owns them
-//      (e.g. Roadrunner + Elektra → "Elektra Music Group"; the many Universal frontline
-//      imprints → "Universal Music Group").
+//   2. CLUSTER labels under the TOP-LEVEL conglomerate / holding company that owns them.
+//      The grouped Shelves view shows one shelf per conglomerate; the split toggle then
+//      breaks that shelf back into its specific labels.
 //
 // Sources, in order of confidence: parent hints already carried in the album→label cache
 // (MusicBrainz label relationships), then well-established public ownership for the majors
-// and the larger metal/electronic groups. Groupings are conservative — where ownership is
-// uncertain or a label is independent, it stays as itself. Coverage target: every label
-// with 2+ albums in the data, plus every major-label imprint.
+// and the larger metal/electronic groups. Groupings are conservative — where current
+// ownership is uncertain, a label stays as itself rather than being folded into a guess.
 //
 // The Shelves grouped view reads value(label). The split view ignores parents but still
 // uses this map to fold name variants together (via ROTATION_LABEL_CANON below).
 
 window.ROTATION_LABEL_PARENTS = {
   // ── Warner Music Group ────────────────────────────────────────────────
-  // Elektra Music Group is WMG's rock/alternative division; Roadrunner has sat under it
-  // since the 2021 reshuffle. Grouped here as its own shelf per the record-shop framing.
-  "Roadrunner Records": "Elektra Music Group",
-  "Roadracer Records": "Elektra Music Group",   // Roadrunner's 1980s name
-  "Elektra": "Elektra Music Group",
-  "Elektra Music Group": "Elektra Music Group",
+  // Atlantic, Elektra, Roadrunner, Warner Bros/Reprise, Parlophone, Rhino, etc. all roll up
+  // to WMG at the top. Elektra Music Group and Atlantic Music Group are internal WMG
+  // divisions — they do NOT get their own shelf.
+  "Roadrunner Records": "Warner Music Group",
+  "Roadracer Records": "Warner Music Group",     // Roadrunner's 1980s name
+  "Elektra": "Warner Music Group",
+  "Elektra Music Group": "Warner Music Group",
   "Warner Bros. Records": "Warner Music Group",
   "Reprise Records": "Warner Music Group",
   "Maverick": "Warner Music Group",
@@ -38,7 +42,7 @@ window.ROTATION_LABEL_PARENTS = {
   "Slash": "Warner Music Group",
   "Atlantic": "Warner Music Group",
   "Rhino": "Warner Music Group",
-  "Parlophone": "Warner Music Group",           // Parlophone Label Group → WMG (2013)
+  "Parlophone": "Warner Music Group",            // Parlophone Label Group → WMG (2013)
   "Parlophone Records TOKYO": "Warner Music Group",
   "wea": "Warner Music Group",
   "Warner Music Japan": "Warner Music Group",
@@ -47,12 +51,13 @@ window.ROTATION_LABEL_PARENTS = {
   "Warner Music Central Europe": "Warner Music Group",
   "EastWest Japan": "Warner Music Group",
   "EastWest": "Warner Music Group",
-  "Rykodisc": "Warner Music Group",             // Warner-owned catalogue label
-  "Better Noise Music": "Better Noise Music",   // Eleven Seven / Better Noise — independent
+  "Rykodisc": "Warner Music Group",              // Warner-owned catalogue label
+  "Better Noise Music": "Better Noise Music",    // Eleven Seven / Better Noise — independent
   "Better Noise Records": "Better Noise Music",
   "Eleven Seven Music": "Better Noise Music",
 
   // ── Universal Music Group ─────────────────────────────────────────────
+  // Interscope, Geffen, Capitol, Virgin, EMI, Republic, Def Jam, Island, Decca, Spinefarm…
   "Universal Music Group": "Universal Music Group",
   "Universal Music": "Universal Music Group",
   "Universal": "Universal Music Group",
@@ -65,7 +70,7 @@ window.ROTATION_LABEL_PARENTS = {
   "USM JAPAN": "Universal Music Group",
   "Interscope Records": "Universal Music Group",
   "Geffen Records": "Universal Music Group",
-  "DGC Records": "Universal Music Group",        // Geffen imprint
+  "DGC Records": "Universal Music Group",         // Geffen imprint
   "A&M Records": "Universal Music Group",
   "A&M/Octone Records": "Universal Music Group",
   "Republic Records": "Universal Music Group",
@@ -95,28 +100,33 @@ window.ROTATION_LABEL_PARENTS = {
   "Spinefarm Records U.K.": "Universal Music Group",
   "Spinnin’ Records": "Universal Music Group",
 
-  // ── Sony Music Entertainment ──────────────────────────────────────────
-  "Sony Music": "Sony Music Entertainment",
-  "Sony Music Records": "Sony Music Entertainment",
-  "Sony Music Associated Records": "Sony Music Entertainment",
-  "Columbia": "Sony Music Entertainment",
-  "Epic": "Sony Music Entertainment",
-  "Epic Records": "Sony Music Entertainment",
-  "RCA": "Sony Music Entertainment",
-  "Century Media": "Sony Music Entertainment",   // Century Media Records → Sony (2015)
-  "SME Records": "Sony Music Entertainment",
-  "Jive": "Sony Music Entertainment",
-  "CBS": "Sony Music Entertainment",             // legacy → Columbia/Sony
-  "SACRA MUSIC": "Sony Music Entertainment",     // Sony Music Japan imprint
-  "DefSTAR RECORDS": "Sony Music Entertainment",
-  "Aniplex": "Sony Music Entertainment",         // Sony/Aniplex
+  // ── Sony Music ────────────────────────────────────────────────────────
+  // Columbia, Epic, RCA, Century Media (+ its Inside Out sub), Ultra, Music for Nations…
+  "Sony Music": "Sony Music",
+  "Sony Music Records": "Sony Music",
+  "Sony Music Associated Records": "Sony Music",
+  "Columbia": "Sony Music",
+  "Epic": "Sony Music",
+  "Epic Records": "Sony Music",
+  "RCA": "Sony Music",
+  "Century Media": "Sony Music",                 // Century Media Records → Sony (2015)
+  "Inside Out Music": "Sony Music",              // InsideOut → Century Media → Sony
+  "Music for Nations": "Sony Music",             // reactivated under Columbia UK / Sony
+  "SME Records": "Sony Music",
+  "Jive": "Sony Music",
+  "CBS": "Sony Music",                           // legacy → Columbia/Sony
+  "SACRA MUSIC": "Sony Music",                   // Sony Music Japan imprint
+  "DefSTAR RECORDS": "Sony Music",
+  "Aniplex": "Sony Music",                       // Sony/Aniplex
+  "Ultra Records": "Sony Music",                 // Ultra → Sony (2021)
+  "Ultra Records, LLC": "Sony Music",
 
-  // ── BMG Rights Management ─────────────────────────────────────────────
-  "BMG": "BMG Rights Management",
-  "BMG Japan": "BMG Rights Management",
-  "BMG Direct Marketing, Inc.": "BMG Rights Management",
-  "Sanctuary Records": "BMG Rights Management",  // Sanctuary catalogue → BMG
-  "Cooking Vinyl": "Cooking Vinyl",              // independent
+  // ── BMG (BMG Rights Management) ───────────────────────────────────────
+  "BMG": "BMG",
+  "BMG Rights Management": "BMG",
+  "BMG Japan": "BMG",
+  "BMG Direct Marketing, Inc.": "BMG",
+  "Sanctuary Records": "BMG",                    // Sanctuary catalogue → BMG
 
   // ── Concord ───────────────────────────────────────────────────────────
   "Concord Records": "Concord",
@@ -125,19 +135,17 @@ window.ROTATION_LABEL_PARENTS = {
   "Loma Vista Recordings": "Concord",            // Concord Music Group label
   "Fearless Records": "Concord",                 // Concord-owned
 
-  // ── Nuclear Blast (name-variant normalisation → independent group) ────
-  "Nuclear Blast": "Nuclear Blast",
-  "Nuclear Blast Records": "Nuclear Blast",
-  "Nuclear Blast GmbH": "Nuclear Blast",
+  // ── Believe ───────────────────────────────────────────────────────────
+  // Believe acquired Nuclear Blast (via Nuclear Blast/Sanctum) in 2018.
+  "Nuclear Blast": "Believe",
+  "Nuclear Blast Records": "Believe",
+  "Nuclear Blast GmbH": "Believe",
 
-  // ── Sumerian ──────────────────────────────────────────────────────────
+  // ── Independents that keep their own top-level shelf ──────────────────
+  "Cooking Vinyl": "Cooking Vinyl",
   "Sumerian Records": "Sumerian Records",
-
-  // ── FiXT (name-variant normalisation) ─────────────────────────────────
   "FiXT Music": "FiXT Music",
   "FiXT": "FiXT Music",
-
-  // ── UNFD, Rise, and other larger independents that keep their own shelf ─
   "UNFD": "UNFD",
   "Rise Records": "Rise Records",
   "SharpTone Records": "SharpTone Records",
@@ -148,13 +156,11 @@ window.ROTATION_LABEL_PARENTS = {
   "Season of Mist": "Season of Mist",
   "Relapse Records": "Relapse Records",
   "Earache Records": "Earache Records",
-  "Inside Out Music": "Inside Out Music",        // Century Media/Sony sub, but kept as prog-rock shelf
   "Hopeless Records": "Hopeless Records",
   "Hopeless Records, Inc.": "Hopeless Records",
   "Pure Noise Records": "Pure Noise Records",
   "Epitaph": "Epitaph",
   "Mascot Records": "Mascot Records",
-  "Music for Nations": "Music for Nations",      // reactivated under Sony, kept as its own shelf
   "Out of Line": "Out of Line Music",
   "Out of Line Music": "Out of Line Music",
   "Steamhammer": "SPV",
@@ -172,8 +178,6 @@ window.ROTATION_LABEL_PARENTS = {
   "Monstercat": "Monstercat",
   "Monstercat Uncaged": "Monstercat",
   "mau5trap": "mau5trap",
-  "Ultra Records": "Sony Music Entertainment",   // Ultra → Sony (2021)
-  "Ultra Records, LLC": "Sony Music Entertainment",
   "Hospital Records": "Hospital Records",
   "Breakbeat Kaos": "Hospital Records",
   "Viper Recordings": "Viper Recordings",
@@ -181,7 +185,7 @@ window.ROTATION_LABEL_PARENTS = {
   "Future Classic": "Future Classic",
   "STMPD RCRDS": "STMPD RCRDS",
 
-  // ── XL / Beggars Group ────────────────────────────────────────────────
+  // ── Beggars Group ─────────────────────────────────────────────────────
   "XL Recordings": "Beggars Group",
   "Young Turks": "Beggars Group",
   "4AD": "Beggars Group",
@@ -189,7 +193,7 @@ window.ROTATION_LABEL_PARENTS = {
   "True Panther Sounds": "Beggars Group",
   "Rough Trade": "Beggars Group",                // Rough Trade distributed via Beggars
 
-  // ── [PIAS] ────────────────────────────────────────────────────────────
+  // ── PIAS ──────────────────────────────────────────────────────────────
   "[PIAS] Cooperative": "PIAS",
   "[PIAS] Recordings": "PIAS",
   "Cooperative Music": "PIAS",
