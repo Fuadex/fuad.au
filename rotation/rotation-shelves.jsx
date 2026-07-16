@@ -161,9 +161,9 @@ function ShSpine({ al, expanded, onExpand, onOpen }) {
 
 // ── RE-SHELVING LENSES — same records, different walls ──
 const SH_LENSES = [["genre", "genre"], ["decade", "decade"], ["found", "when you found them"], ["mood", "mood"], ["done", "completeness"], ["labels", "label"]];
-function shGroupBy(lens, albums, R) {
+function shGroupBy(lens, albums, R, labelGrouped) {
   if (lens === "genre" || !lens) return shGroupShelves(albums, R);
-  if (lens === "labels") return shGroupLabels(albums);
+  if (lens === "labels") return shGroupLabels(albums, labelGrouped);
   const groups = new Map();
   const put = (k, name, hue, order, al) => {
     if (!groups.has(k)) groups.set(k, { fam: "L" + k, name, hue, order, albums: [], plays: 0 });
@@ -199,12 +199,20 @@ function shGroupBy(lens, albums, R) {
   return [...groups.values()].sort((a, b) => b.order - a.order);
 }
 
-// group albums by PARENT LABEL (or label itself when parentless).
-// Returns a flat list of group objects ordered by album count DESC, "no label" last.
-// Each group: { key, name, hue, albums: al[], sublabels: Map<sublabelName, al[]> | null }
-// (sublabels is non-null only when the parent has 2+ distinct sublabels represented)
-function shGroupLabels(albums) {
-  const ALB = window.ROTATION_ALB_LABELS; // { "artistSlug~albumSlug": [labelName, parentName|null] }
+// group albums by record label. Two modes:
+//   grouped=true  → cluster labels under their PARENT COMPANY (label-parents.js);
+//                   a parent shelf with 2+ constituent labels lists them in a subtitle
+//                   and, when the mode renders sublabels, one sub-shelf each.
+//   grouped=false → SPLIT into the specific labels themselves (variants still folded).
+// Trivial name variants (Records/GmbH/Inc. suffixes, casing) are normalised via
+// ROTATION_LABEL_CANON before either bucketing, so "Nuclear Blast" / "Nuclear Blast
+// Records" land on the same shelf.
+// Returns a flat list ordered by album count DESC, "no label" last. Each group:
+//   { key, name, hue, albums, sublabels: Map<labelName, al[]>|null, labelNames: string[] }
+function shGroupLabels(albums, grouped) {
+  const ALB     = window.ROTATION_ALB_LABELS;   // { "artistSlug~albumSlug": [labelName, parentName|null] }
+  const PARENTS = window.ROTATION_LABEL_PARENTS || {};
+  const CANON   = window.ROTATION_LABEL_CANON || {};
   const R   = window.ROTATION;
   const _slugFn = (s) => {
     const t = (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -215,49 +223,55 @@ function shGroupLabels(albums) {
   };
   const slugFn = (R && R.slug) ? R.slug : _slugFn;
 
-  // hue by label name hash (stable, varied)
+  // hue by group-name hash (stable, varied)
   const lhue = (s) => {
     let h = 0; for (let i = 0; i < s.length; i++) h = (((h << 5) + h) ^ s.charCodeAt(i)) >>> 0;
     return Math.round(h % 360);
   };
+  // fold trivial variants onto a canonical label name
+  const canon  = (name) => CANON[name] || name;
+  // the parent-company shelf for a (canonical) label, falling back to the label itself
+  const parent = (name) => PARENTS[name] || PARENTS[canon(name)] || canon(name);
 
-  // bucket by "display group" = parentName if present, else labelName, else "__nolabel__"
-  const byGroup = new Map(); // groupKey → { name, hue, sublabels: Map<sub, al[]>, albums: al[] }
+  // bucket by group key: parent company (grouped) or the label itself (split)
+  const byGroup = new Map(); // groupKey → { name, hue, sublabels: Map<label, al[]>, albums }
   for (const al of albums) {
     // reconstruct the canonical albumId: "artistSlug~albumSlug"
     const albumId = al.artistId + "~" + slugFn(al.title);
     const row = ALB ? ALB[albumId] : undefined;
-    const labelName  = row ? row[0] : null;
-    const parentName = row ? row[1] : null;
+    const rawLabel = row ? row[0] : null;
 
-    if (!labelName) {
+    if (!rawLabel) {
       if (!byGroup.has("__nolabel__")) byGroup.set("__nolabel__", { name: "no label on record", hue: 260, sublabels: new Map(), albums: [] });
       byGroup.get("__nolabel__").albums.push(al);
       continue;
     }
 
-    const groupKey = parentName || labelName;  // top-level key
-    const subKey   = parentName ? labelName : null; // sub-key within parent
+    const labelName = canon(rawLabel);
+    const groupKey  = grouped ? parent(labelName) : labelName;
 
     if (!byGroup.has(groupKey)) byGroup.set(groupKey, { name: groupKey, hue: lhue(groupKey), sublabels: new Map(), albums: [] });
     const g = byGroup.get(groupKey);
     g.albums.push(al);
-    if (subKey) {
-      if (!g.sublabels.has(subKey)) g.sublabels.set(subKey, []);
-      g.sublabels.get(subKey).push(al);
-    }
+    // track constituent labels within the group (only meaningful when grouped)
+    if (!g.sublabels.has(labelName)) g.sublabels.set(labelName, []);
+    g.sublabels.get(labelName).push(al);
   }
 
   // Build output, ordered by album count DESC, "no label" always last
   const out = [];
   for (const [key, g] of byGroup) {
     if (key === "__nolabel__") continue;
-    out.push({ key, name: g.name, hue: g.hue, albums: g.albums, sublabels: g.sublabels.size >= 2 ? g.sublabels : null });
+    // constituent label names by album count DESC (for the subtitle)
+    const labelNames = [...g.sublabels.entries()].sort((a, b) => b[1].length - a[1].length).map(e => e[0]);
+    // only surface sublabels when grouping actually merged 2+ distinct labels
+    const showSubs = grouped && g.sublabels.size >= 2;
+    out.push({ key, name: g.name, hue: g.hue, albums: g.albums, sublabels: showSubs ? g.sublabels : null, labelNames });
   }
   out.sort((a, b) => b.albums.length - a.albums.length);
   if (byGroup.has("__nolabel__")) {
     const nl = byGroup.get("__nolabel__");
-    out.push({ key: "__nolabel__", name: nl.name, hue: nl.hue, albums: nl.albums, sublabels: null });
+    out.push({ key: "__nolabel__", name: nl.name, hue: nl.hue, albums: nl.albums, sublabels: null, labelNames: [] });
   }
   return out;
 }
@@ -363,9 +377,10 @@ function ShelvesView({ go, seed }) {
   const R = window.ROTATION;
   // restore mode/lens from the hash (#shelves/l=mood, #shelves/m=wrap) — bookmarkable like Explore.
   const _seed = React.useRef((() => {
-    const o = { mode: "racks", lens: "genre" };
+    const o = { mode: "racks", lens: "genre", labelGrouped: true };
     for (const kv of (seed || "").split(";")) { const i = kv.indexOf("="); if (i < 0) continue; const k = kv.slice(0, i), v = kv.slice(i + 1);
-      if (k === "m" && v === "wrap") o.mode = "wrap"; else if (k === "l" && SH_LENSES.some(l => l[0] === v)) o.lens = v; }
+      if (k === "m" && v === "wrap") o.mode = "wrap"; else if (k === "l" && SH_LENSES.some(l => l[0] === v)) o.lens = v;
+      else if (k === "g" && v === "split") o.labelGrouped = false; }
     return o;
   })()).current;
   const [ready, setReady] = React.useState(!!(window.ROTATION_MEDIA && window.ROTATION_PREVIEWS));
@@ -377,9 +392,10 @@ function ShelvesView({ go, seed }) {
   const mergeFam = (fam) => { setSplit(p => ({ ...p, [fam]: false })); setJustMerged(fam); setTimeout(() => setJustMerged(null), 450); };
   const [mode, setMode] = React.useState(_seed.mode);     // racks | wrap (the Unplayed Shelf)
   const [lens, setLens] = React.useState(_seed.lens);     // re-shelving lens (racks mode)
-  const [labelsReady, setLabelsReady] = React.useState(!!window.ROTATION_ALB_LABELS);
+  const [labelsReady, setLabelsReady] = React.useState(!!(window.ROTATION_ALB_LABELS && window.ROTATION_LABEL_PARENTS));
   const [labelsExpanded, setLabelsExpanded] = React.useState(false); // clamp expand/collapse
-  // mirror mode/lens into the URL (replaceState — no history spam)
+  const [labelGrouped, setLabelGrouped] = React.useState(_seed.labelGrouped); // labels lens: cluster by parent company vs split into specific labels
+  // mirror mode/lens/label-grouping into the URL (replaceState — no history spam)
   const _shMounted = React.useRef(false);
   React.useEffect(() => {
     if (!_shMounted.current) { _shMounted.current = true; if (seed) return; }
@@ -387,9 +403,10 @@ function ShelvesView({ go, seed }) {
     const parts = [];
     if (mode === "wrap") parts.push("m=wrap");
     if (lens !== "genre") parts.push("l=" + lens);
+    if (lens === "labels" && !labelGrouped) parts.push("g=split");   // grouped is the default
     const target = "#shelves" + (parts.length ? "/" + parts.join(";") : "");
     if ((window.location.hash || "") !== target) window.history.replaceState(null, "", target);
-  }, [mode, lens]);
+  }, [mode, lens, labelGrouped]);
   const [unReady, setUnReady] = React.useState(!!window.ROTATION_UNPLAYED);
   React.useEffect(() => {
     let need = 0; const done = () => { if (--need <= 0) setReady(true); };
@@ -401,9 +418,15 @@ function ShelvesView({ go, seed }) {
     if (mode !== "wrap" || window.ROTATION_UNPLAYED) { if (window.ROTATION_UNPLAYED && !unReady) setUnReady(true); return; }
     const s = document.createElement("script"); s.src = "shelves-unplayed.js"; s.onload = () => setUnReady(true); document.head.appendChild(s);
   }, [mode]);
-  React.useEffect(() => {   // label data loads only when the labels lens is first opened
-    if (lens !== "labels" || window.ROTATION_ALB_LABELS) { if (window.ROTATION_ALB_LABELS && !labelsReady) setLabelsReady(true); return; }
-    const s = document.createElement("script"); s.src = "mb-album-labels.js"; s.onload = () => setLabelsReady(true); document.head.appendChild(s);
+  React.useEffect(() => {   // label data + parent map load only when the labels lens is first opened
+    if (lens !== "labels") return;
+    const haveAll = () => window.ROTATION_ALB_LABELS && window.ROTATION_LABEL_PARENTS;
+    if (haveAll()) { if (!labelsReady) setLabelsReady(true); return; }
+    let need = 0; const done = () => { if (--need <= 0 && haveAll()) setLabelsReady(true); };
+    const load = (src, glob) => { if (window[glob]) return; need++; const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
+    load("mb-album-labels.js", "ROTATION_ALB_LABELS");
+    load("label-parents.js", "ROTATION_LABEL_PARENTS");
+    if (need === 0) setLabelsReady(true);
   }, [lens]);
 
   // one pass over the media index → album records with family/sub + top-track preview key
@@ -439,7 +462,7 @@ function ShelvesView({ go, seed }) {
     albums.sort((x, y) => y.plays - x.plays);
     return { albums };
   }, [ready, R]);
-  const rackShelves = React.useMemo(() => data ? shGroupBy(lens, data.albums, R) : null, [data, lens, labelsReady, R]);
+  const rackShelves = React.useMemo(() => data ? shGroupBy(lens, data.albums, R, labelGrouped) : null, [data, lens, labelsReady, labelGrouped, R]);
 
   // the shrinkwrap wall — LPs by well-played artists that were never pressed play on
   const unData = React.useMemo(() => {
@@ -527,6 +550,12 @@ function ShelvesView({ go, seed }) {
           {SH_LENSES.map(([k, lbl]) => (
             <button key={k} className="sh-lens" data-on={lens === k} onClick={() => { setLens(k); setSplit({}); if (k !== "labels") setLabelsExpanded(false); }}>{lbl}</button>
           ))}
+          {lens === "labels" && (
+            <span className="r-seg sh-labelseg" role="group" aria-label="group labels by parent company">
+              <button data-on={labelGrouped} onClick={() => { setLabelGrouped(true); setLabelsExpanded(false); }}>parent company</button>
+              <button data-on={!labelGrouped} onClick={() => { setLabelGrouped(false); setLabelsExpanded(false); }}>every label</button>
+            </span>
+          )}
         </div>
       )}
 
@@ -550,6 +579,9 @@ function ShelvesView({ go, seed }) {
                       <span className="sh-shelf-name" style={{ "--h": g.hue, fontSize: 17 }}>{g.name}</span>
                       <span className="sh-shelf-n">{fmt(g.albums.length)} albums</span>
                     </div>
+                    {g.labelNames.length >= 2 && (
+                      <div className="sh-labelsub" title="labels merged under this parent">{g.labelNames.join(" · ")}</div>
+                    )}
                     {[...g.sublabels.entries()].sort((a, b) => b[1].length - a[1].length).map(([sname, sarr], si) => (
                       <div key={shelfId + ":" + sname} className="sh-reveal" style={{ animationDelay: (si * 40) + "ms" }}>
                         <ShShelf id={shelfId + ":" + sname} name={sname} hue={g.hue} albums={sarr} depth={1}
@@ -572,7 +604,7 @@ function ShelvesView({ go, seed }) {
             {groups.length > SH_LABEL_CLAMP && (
               <div style={{ textAlign: "center", margin: "8px 0 24px" }}>
                 <button className="sh-expand-btn" onClick={() => setLabelsExpanded(e => !e)}>
-                  {labelsExpanded ? "collapse ↑" : `expand — all ${fmt(groups.length)} labels ↓`}
+                  {labelsExpanded ? "collapse ↑" : `expand — all ${fmt(groups.length)} ${labelGrouped ? "companies" : "labels"} ↓`}
                 </button>
               </div>
             )}
@@ -617,6 +649,9 @@ function ShelvesView({ go, seed }) {
           letter-spacing: .1em; text-transform: uppercase; transition: color .15s, border-color .15s; }
         .sh-lens:hover { color: var(--ink); }
         .sh-lens[data-on="true"] { color: var(--accent); border-color: var(--accent-dim); }
+        .sh-labelseg { margin-left: 4px; }
+        .sh-labelsub { font-family: var(--mono); font-size: 9.5px; letter-spacing: .04em;
+          color: var(--ink-faint); margin: -2px 0 10px; line-height: 1.5; }
         .sh-shelf { margin-bottom: 26px; content-visibility: auto; contain-intrinsic-size: auto 190px; }
         .sh-shelf[data-depth="1"] { margin: 0 0 16px 14px; }
         .sh-famgroup { margin-bottom: 30px; }
