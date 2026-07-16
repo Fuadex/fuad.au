@@ -750,9 +750,12 @@ function Reader({ id, go }) {
                 <div className="cv-r-tiers">
                   <button data-on={tier === "about"} onClick={() => setTier("about")}>Info</button>
                   <button data-on={tier === "deep"} onClick={() => setTier("deep")}>Interpretation</button>
+                  {read.study && <button data-on={tier === "study"} onClick={() => setTier("study")}>Study</button>}
                 </div>
               </div>
-              <div className="cv-r-read-txt">{tier === "deep" ? read.deep : read.about}</div>
+              {/* studies are multi-paragraph (blank-line separated) — pre-line keeps the breaks */}
+              <div className="cv-r-read-txt" style={{ whiteSpace: "pre-line" }}>
+                {tier === "study" && read.study ? read.study : tier === "deep" ? read.deep : read.about}</div>
               <div className="cv-r-read-by">via {read.by || "Fable"}</div>
             </div>
           )}
