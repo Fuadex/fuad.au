@@ -209,6 +209,16 @@ a { color: inherit; }
 .cv-map-legend .lg-seen { background: oklch(0.55 0.13 46 / .82); }
 .cv-map-legend .lg-wish { background: oklch(0.55 0.19 18 / .9); }
 .cv-map-tosee { margin-top: 28px; }
+/* museum label chips (fix 3): a light pill behind readable text, sitting clear above the bubble
+   with a thin leader line back to it — replaces the low-contrast black text jammed on the pin. */
+.cv-map-chip { fill: rgba(251,246,236,.94); stroke: rgba(58,47,34,.18); stroke-width: .3px; }
+.cv-mus { cursor: pointer; }
+.cv-mus text { fill: var(--ink); font-family: var(--sans); font-weight: 600; letter-spacing: -.01em;
+  paint-order: stroke; stroke: rgba(251,246,236,.9); stroke-width: .5px; }
+.cv-mus:hover .cv-map-chip { fill: #fff; stroke: var(--accent); }
+.cv-mus:hover circle { stroke: var(--accent); }
+/* city labels in the default + focused branch view get a soft halo so they read over land + sea */
+.cv-pin text { paint-order: stroke; stroke: rgba(233,223,205,.85); stroke-width: 1px; }
 
 /* ——— Artists as circular photo blobs ——— */
 .cv-artists { max-width: 1200px; margin: 0 auto; padding: 20px 34px 60px; }
