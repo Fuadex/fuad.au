@@ -753,6 +753,7 @@ function Reader({ id, go }) {
                 </div>
               </div>
               <div className="cv-r-read-txt">{tier === "deep" ? read.deep : read.about}</div>
+              <div className="cv-r-read-by">via {read.by || "Fable"}</div>
             </div>
           )}
           {pal && (

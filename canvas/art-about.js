@@ -1,7 +1,7 @@
 // art-about.js — Fable reads for the canon's flagship works (Phase 5). Two tiers, same
 // convention as rotation's llm-about: `about` = what you're looking at (Info), `deep` =
 // how the work works — composition, light, history, where to stand (Interpretation).
-// Hand-written via Claude (Fable); keyed by canvas work id.
+// Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
 "impression-sunrise": {
 about: "Le Havre's harbour at sunrise, 1872 — an orange sun over grey-blue mist, cranes and masts dissolved in haze, two small rowboats. The quick harbour sketch whose title a mocking critic turned into the name of an entire movement: Impressionism.",
@@ -66,4 +66,34 @@ deep: "Pissarro was the only painter in all eight Impressionist exhibitions, and
 "the-tuileries-study": {
 about: "Monet, 1876: the Tuileries gardens from a window above — a study, kept loose, Paris hazed in light with the garden's geometry dissolving under it.",
 deep: "It is labelled a study and that is its virtue: Monet at speed, the formal French garden — the most geometric landscape in Europe — melting into dabs. The view is from Victor Chocquet's apartment, looking down: the elevated viewpoint flattens the garden into bands of colour, a proto-aerial abstraction. Where the finished Monets of the period negotiate between drawing and light, here light simply wins." },
+
+"strindberg-underlandet": {
+about: "An oil landscape by August Strindberg — the playwright, painting. A dark mass of forest splits open onto a burst of golden light, more sensation than scene. He painted it in 1894, in one of the short feverish spells when he painted at all. Its home is Stockholm's Nationalmuseum, however far it travels.",
+deep: "Strindberg only painted when he couldn't write — in crisis, fast, trusting the accident. He worked with a palette knife, no drawing underneath, no fixed motif, and argued in an essay that same year that chance should do half the making: smear the paint, then find the image in it, the way you find shapes in clouds. Underlandet is built as a tunnel — dark, thickly scraped woodland framing a radiant gap, so your eye is dragged through the gloom to the light before you register a single detail. The title does the rest: that bright opening reads less like sky than like a hole into another world. Zoom into the central gap — what glows from a distance is bare ridged knife-work close up, image and substance at once. Painting this chance-made and subjectless wouldn't have a name until art informel, half a century on.",
+by: 'Opus · Fable' },
+
+"sergel-hetsigt-karlekspar": {
+about: "An ink-and-wash drawing by Johan Tobias Sergel, the great Swedish sculptor of the late eighteenth century: two lovers caught mid-embrace in a handful of urgent strokes. It was never meant for exhibition — Sergel's drawings were private, done for himself — which is exactly why it still feels alive. Nationalmuseum, Stockholm.",
+deep: "By day Sergel carved marble gods and royal monuments; on paper he answered to no one. The couple is drawn the way a sculptor thinks — in mass and torsion, not outline — so two bodies read as one twisting volume, the wash doing the work of shadow falling over form. Nothing is finished and nothing is missing: the anatomy is summarised down to pressure, one body against another. Zoom in on the arms and hands, where a few overlapping strokes lock the figures together — that knot is the whole drawing. The irony is that these private sheets, tossed off at speed, now look more modern than the neoclassical marbles that made his name. The official Sergel obeyed antiquity; this one obeyed the moment.",
+by: 'Opus · Fable' },
+
+"women-in-the-garden": {
+about: "Monet at twenty-five, thinking enormous: nearly two and a half metres of canvas, four women in summer dresses among trees and flowerbeds, painted in 1866 — before Impressionism had a name. The real subject is already sunlight: how it sifts through leaves and lands on white fabric. Musée d'Orsay, Paris.",
+deep: "Monet insisted on painting it outdoors at full scale, digging a trench in the garden so the huge canvas could be lowered on a pulley and he could keep working at eye level. Camille, his companion, modelled for several of the figures, but the women are nearly a pretext. Watch the seated woman in the foreground shade: she goes cool grey-blue while the sunlit dresses behind stay warm, and her face is lit from below by light bouncing off her own dress — light, not story, organises everything. The Salon rejected it in 1867 as raw and unfinished. The joke came later: in 1921 the French state, heir to the jury that turned it down, bought it from the elderly Monet for 200,000 francs — a rejection repaid with half a century's interest.",
+by: 'Opus · Fable' },
+
+"the-town": {
+about: "A late seascape by August Strindberg from 1903, his final period of painting. Stockholm — the town of the title — is a thin dark strip on the horizon; nearly everything else is storm, worked in heavy palette-knife impasto. Small, turbulent, close to abstract: landscape as a weather report from inside a mind. Nationalmuseum, Stockholm.",
+deep: "By 1903 Strindberg no longer painted in front of the motif at all — he built pictures like this indoors, from memory, letting the dragged knife find cloud and spray on its own. The composition is deliberate imbalance: the horizon shoved low, the sky given most of the canvas, so the storm doesn't sit over the town, it looms. Then look where the light lands — a pale glow breaks exactly over the little silhouette of Stockholm, the city he spent his whole writing life fighting granted one centimetre of canvas and a single mercy of brightness. Step back and the crusted ridges resolve into moving air and water; step in and they collapse into raw pigment again. That flicker between picture and matter is what later abstraction would build a whole aesthetic on.",
+by: 'Opus · Fable' },
+
+"midsummer-dance": {
+about: "Anders Zorn's 1897 scene of villagers dancing through a midsummer night in his native Dalarna. Couples whirl between the timber cottages under a sky that never quite darkens. It is Sweden's most beloved image of itself — folk dress, red houses and the long pale light of the north. Nationalmuseum, Stockholm.",
+deep: "The subject is dancing but the achievement is light. At midsummer this far north the sun barely dips below the horizon, and Zorn paints exactly that hour: no lamps, no moon, yet everything is visible in a warm, sourceless glow — a village lit by a sun that has set but not gone. The sky behind the rooftops is already turning back into morning; the dance has simply outlasted the night. In the foreground couples, feet and skirts blur into broad wet strokes while the faces stay sharp and flushed — Zorn paints the sensation of spinning, not the anatomy of it. By 1897 he was an international portrait star, painting the rich on two continents; this is the world he kept coming home to, and it shows — nothing here is observed coldly.",
+by: 'Opus · Fable' },
+
+"the-starry-night": {
+about: "Van Gogh's 1889 night sky over a village, painted at the asylum in Saint-Rémy-de-Provence where he had committed himself. A cypress flames up the left edge; eleven stars and a crescent moon churn above the hills. You know it before you see it — which is the thing worth fighting. Museum of Modern Art, New York.",
+deep: "It looks like ecstatic reportage; it's a composite, painted by day in a downstairs studio — he wasn't allowed to work in his bedroom. The sky is from his east-facing window, but the village can't be seen from there, and the spire is a Dutch church smuggled in from memory. The one documented observation is the brightest light beside the cypress: Venus, the morning star, which he had written to Theo about watching before dawn. Around that fact he let go — thick curling strokes knotting the sky into two great spirals, the cypress, a tree he associated with death, binding earth to heaven while the village sleeps below in straight, sober lines. Turbulence organised against calm. Van Gogh judged the picture a failure, telling Bernard its abstraction had gone too far. Every gift shop on earth has since disagreed.",
+by: 'Opus · Fable' },
 };
