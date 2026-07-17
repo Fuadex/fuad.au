@@ -128,8 +128,10 @@ function MiniArtistDetail({ id, name, go }) {
           </div>
         </div>
         {(simTab === "sound" || !(rec.sim && rec.sim.length)) && R.AUDIO && R.AUDIO[id] ? <SoundSimilar id={id} go={go} /> : (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(110px,1fr))", gap: 12 }}>
-          {rec.sim.map((name, i) => { const rid = (R.idForName && R.idForName(name)) || R.slug(name); const s = R.byId[rid] || (R.expById && R.expById[rid]); const played = !!s || (R.played && R.played(name)); return (
+        /* Sounds like — inside the dossier this is compacted to ONE ROW (mav-simrow: cap 6, no wrap);
+           the wider band page keeps the wrapping auto-fill grid (Fuad 2026-07-18). */
+        <div className="mav-simrow" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(110px,1fr))", gap: 12 }}>
+          {rec.sim.slice(0, 6).map((name, i) => { const rid = (R.idForName && R.idForName(name)) || R.slug(name); const s = R.byId[rid] || (R.expById && R.expById[rid]); const played = !!s || (R.played && R.played(name)); return (
             <div key={name + i} onClick={() => s && go("artist", rid)} style={{ cursor: s ? "pointer" : "default", opacity: played ? 1 : 0.62 }}>
               <GenCover hue={s ? s.hue : 210} name={name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
               <div style={{ fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{name}</div>
@@ -222,9 +224,15 @@ function MiniArtistView({ a, go }) {
   const dnaSection = dnaHas ? (
     <div className="r-card av-minicard av-mini-dna" style={{ padding: 18 }}>
       <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
+      {/* two-column inside the dossier (change 3, Fuad 2026-07-18): radar LEFT, measure bars stacked
+          row-by-row to its RIGHT. av-dna-split governs the columns; it falls back to stacked on
+          narrow widths (and the non-dossier band keeps the radar-over-bars stack via its own rules). */}
+      <div className="av-dna-split">
+      <div className="av-dna-radar">
       <Radar axes={DNA_AXES} values={dna} values2={avg} run={true} size={224} />
       <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>solid = {a.name.split(" ")[0]} · dashed = your average · measured</div>
-      <div style={{ marginTop: 14, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 9 }}>
+      </div>
+      <div className="av-dna-bars" style={{ marginTop: 14, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 9 }}>
         {[
           { k: "tempo", v: Math.round(50 + af[3] * 140), u: " bpm", f: af[3] },
           { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
@@ -241,15 +249,19 @@ function MiniArtistView({ a, go }) {
           </div>
         ))}
       </div>
+      </div>
     </div>
   ) : null;
 
   // COMPACT DOSSIER — one centered ~700px card, everything stacked as sections of a single document.
   if (compact) {
     return (
-      <div className="r-view">
+      <div className="r-view mav-compact">
         <button className="r-back" onClick={() => go("explore")}>← explore</button>
-        {header}
+        {/* HEADER constrained to the dossier width (Fuad 2026-07-18): on sparse pages the page
+            header ran wider than the dossier card and broke the single-column read. Wrapping it in
+            mav-dossier-head (same 700px cap, centered) aligns header + dossier as one column. */}
+        <div className="mav-dossier-head">{header}</div>
         <div className="mav-dossier">
           {/* portrait/gist first, if this artist has a portrait entry */}
           <PortraitCard id={a.id} />
@@ -264,6 +276,25 @@ function MiniArtistView({ a, go }) {
              but line up in one narrow stack. No backticks in this comment. */
           .mav-dossier { max-width: 700px; margin: 0 auto; display: grid; gap: var(--gap); }
           .mav-dossier > .av-minicard { max-width: none; }
+          /* header shares the dossier's width + centering so everything reads as one column. */
+          .mav-dossier-head { max-width: 700px; margin: 0 auto; }
+          /* Sounds like (change 2): ONE row of similar-artist tiles inside the dossier — override the
+             auto-fill wrap with a single non-wrapping row, tiles flow left to right and are capped in
+             JS at 6 so they don't overflow. Only applies within the dossier column. */
+          .mav-dossier .mav-simrow { display: flex !important; flex-wrap: nowrap; overflow: hidden; }
+          .mav-dossier .mav-simrow > * { flex: 1 1 0; min-width: 0; }
+          .mav-dossier .mav-simrow > * > div:not(:first-child) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          /* Sound DNA two-column (change 3): radar LEFT, measure bars stacked row-by-row RIGHT.
+             The bars grid is forced to a single column so each measure is its own row beside the
+             radar. Falls back to stacked (radar over bars) below 560px. Dossier-scoped only.
+             !important because the bars grid carries inline grid-template-columns / margin-top
+             defaults for the band page, which we must beat here. */
+          .mav-dossier .av-dna-split { display: grid; grid-template-columns: 224px minmax(0, 1fr); gap: 20px; align-items: center; }
+          .mav-dossier .av-dna-split .av-dna-bars { margin-top: 0 !important; grid-template-columns: 1fr !important; gap: 11px; }
+          @media (max-width: 560px){
+            .mav-dossier .av-dna-split { grid-template-columns: 1fr; gap: 12px; }
+            .mav-dossier .av-dna-split .av-dna-bars { margin-top: 14px !important; grid-template-columns: repeat(4, 1fr) !important; }
+          }
         `}</style>
       </div>
     );
@@ -826,29 +857,37 @@ function PortraitCard({ id, alt, showWords = true }) {
           {/* gist renders as plain serif lead text — quote-mark/blockquote styling is intentionally
               NOT applied (the class is reserved for a future tier). */}
           <p className="pv-gist">{p.gist}</p>
-          {full && (
-            <>
-              <button className="pv-toggle" onClick={() => setOpen(o => !o)} aria-expanded={open}>
-                {open ? "less ▴" : "the full read ▾"}
-              </button>
-              {open && full.split(/\n+/).filter(Boolean).map((para, i) => (
-                <p key={i} className="pv-full">{para}</p>
-              ))}
-            </>
-          )}
-          {facts.length > 0 && (
-            <div className="pv-facts">
-              <div className="pv-chips">
+          {/* DENSITY (Fuad 2026-07-18): one compact control row — the fact chips, then the full-read
+              toggle, and the via-source flick chip pinned RIGHT — instead of a vertical fact block +
+              full-read toggle + a separate flick row. Chips keep click-to-expand; the derivation
+              renders on its own line BELOW the row. Wraps gracefully on narrow screens. */}
+          {(facts.length > 0 || full || hasAlt) && (
+            <div className="pv-facts pv-controlrow-wrap">
+              <div className="pv-controlrow">
                 {facts.map((f, i) => (
                   <button key={i} className={"pv-chip" + (chip === i ? " on" : "")}
                     onClick={() => setChip(c => c === i ? -1 : i)} aria-expanded={chip === i}>
                     <b>{f.k}</b>{!badV(f.v) && <span className="pv-sep"> · {f.v}</span>}
                   </button>
                 ))}
+                {full && (
+                  <button className="pv-toggle pv-toggle-inrow" onClick={() => setOpen(o => !o)} aria-expanded={open}>
+                    {open ? "less ▴" : "the full read ▾"}
+                  </button>
+                )}
+                {hasAlt && (
+                  <button className="pv-flick pv-flick-inrow r-mono" onClick={() => setFace(f => f === "alt" ? "portrait" : "alt")}
+                    title={"see the " + alt.label + " source"}>
+                    {"via " + alt.label + " ⇄"}
+                  </button>
+                )}
               </div>
               {chip >= 0 && facts[chip] && (
                 <div className="pv-deriv">{facts[chip].x}</div>
               )}
+              {full && open && full.split(/\n+/).filter(Boolean).map((para, i) => (
+                <p key={i} className="pv-full">{para}</p>
+              ))}
             </div>
           )}
           {w && (
@@ -864,13 +903,14 @@ function PortraitCard({ id, alt, showWords = true }) {
           )}
         </>
       )}
-      {/* FLICK CHIP — bottom-right of the module; cycles Portrait <-> the old source and back.
-          Subtle mono chip; label names the destination face so it reads as "flip to that source". */}
-      {hasAlt && (
+      {/* FLICK CHIP — bottom-right; cycles the old source back to Portrait. On the PORTRAIT face the
+          flick now lives inline in the compact control row above (Fuad 2026-07-18), so this bottom
+          row only renders on the OLD-SOURCE face, to flip back. */}
+      {hasAlt && showAlt && (
         <div className="pv-flickrow">
           <button className="pv-flick r-mono" onClick={() => setFace(f => f === "alt" ? "portrait" : "alt")}
-            title={showAlt ? "back to the Portrait read" : "see the " + alt.label + " source"}>
-            {showAlt ? "via Portrait ⇄" : "via " + alt.label + " ⇄"}
+            title={"back to the Portrait read"}>
+            {"via Portrait ⇄"}
           </button>
         </div>
       )}
@@ -890,6 +930,11 @@ function PortraitCard({ id, alt, showWords = true }) {
         .pv-toggle { margin-top: 12px; background: none; border: none; padding: 0; cursor: pointer;
           font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
         .pv-toggle:hover { color: var(--accent); }
+        /* DENSITY control row (Fuad 2026-07-18): fact chips + full-read toggle + via-source flick on
+           ONE line, flick pinned right; wraps on narrow screens. No backticks in these comments. */
+        .pv-controlrow { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+        .pv-toggle-inrow { margin-top: 0; padding: 4px 2px; align-self: center; white-space: nowrap; }
+        .pv-flick-inrow { margin-left: auto; align-self: center; }
         .pv-full { font-family: var(--serif); font-size: 15px; line-height: 1.62; color: var(--ink-soft); margin: 12px 0 0; }
         .pv-facts { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
         .pv-chips { display: flex; flex-wrap: wrap; gap: 7px; }
@@ -1225,10 +1270,14 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
       <div style={{ display: "grid", gap: "var(--gap)" }}>
           {/* row 2 on PC: flow (wide — Sound DNA moved to the bottom row for breathing room,
              Fuad 2026-07-06) · top tracks · albums. This row ALWAYS has all three modules, so it
-             gets an explicit even 3-col template above the m-stack breakpoint rather than auto-fit
+             gets an explicit 3-col template above the m-stack breakpoint rather than auto-fit
              — auto-fit's 2-track band (min 300 + gap: any width in ~620-940px fits only two, so
-             albums wrapped to a lonely second row) is gone (Fuad 2026-07-16). */}
-          <div className="m-stack av-row3" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "var(--gap)", alignItems: "start" }}>
+             albums wrapped to a lonely second row) is gone (Fuad 2026-07-16). FLOW EXPANSION
+             (Fuad 2026-07-18): the middle flow column is given the lion's share via unequal fr
+             weights 0.85 / 1.4 / 0.9 — flow eats into the top-tracks and albums columns, but
+             tracks still fit their line at ~1400px (nothing gets eaten) and albums lose about one
+             cover-square. minmax(0,*) keeps every child shrinkable in-track. */}
+          <div className="m-stack av-row3" style={{ display: "grid", gridTemplateColumns: "minmax(0, 0.85fr) minmax(0, 1.4fr) minmax(0, 0.9fr)", gap: "var(--gap)", alignItems: "start" }}>
             {/* top tracks · how they played out (flow now in the MIDDLE — Fuad 2026-07-06) · albums.
                alignItems:stretch (was start) so the three modules share the tallest sibling's
                height instead of the releases card ballooning — matters at the owner's 200-250%

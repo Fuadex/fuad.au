@@ -344,8 +344,13 @@ const PROVIDERS = [
     };
   },
 
-  // ── story of the day — promotes one Stories card, deep-linked, rotating daily ──
-  (ctx) => {
+];
+
+// ── story of the day — promotes one Stories card, deep-linked, rotating daily ──
+// NOT in the PROVIDERS array: Overview renders this in a DEDICATED slot (window.storyOfDay) rather
+// than leaving it to the top-N insight lottery, where higher-scoring milestone / on-repeat / week
+// cards were pushing it out of the 4 shown, so no story surfaced at all (Fuad 2026-07-18).
+function storyOfDayProvider(ctx) {
     const I = ctx.R.INSIGHTS; if (!I) return null;
     const cands = [];
     if (I.UNDERGROUND) cands.push({ id: "how-deep-it-goes", t: "How deep it goes",
@@ -365,7 +370,7 @@ const PROVIDERS = [
     if (!cands.length) return null;
     const pick = cands[_hash("story" + _dayKey(ctx.now)) % cands.length];
     return {
-      id: "story-day", category: "story", score: 0.76,
+      id: "story-day", category: "story", score: 0.76, _pick: pick,
       label: "Story of the day", meta: "stories ↗", onClick: () => ctx.go("stories", pick.id),
       render: (
         <div>
@@ -375,9 +380,10 @@ const PROVIDERS = [
         </div>
       ),
     };
-  },
-];
+}
 
+// Keep the story OUT of the ranked InsightRow (it has a dedicated Overview slot now), so it never
+// competes with milestone/on-repeat/week cards for a top-N seat and never double-renders.
 function runInsights(ctx, n) {
   const out = [];
   for (const p of PROVIDERS) { try { const r = p(ctx); if (r) out.push(r); } catch (e) { /* a bad provider never breaks the row */ } }
@@ -389,19 +395,19 @@ function runInsights(ctx, n) {
 
 function InsightCard({ ins }) {
   return (
-    <div className={"r-card" + (ins.onClick ? " ov-stat-link" : "")} style={{ gridColumn: "span 4", padding: 18, cursor: ins.onClick ? "pointer" : "default" }}
+    <div className={"r-card" + (ins.onClick ? " ov-stat-link" : "")} style={{ gridColumn: "span 4", padding: "12px 13px", cursor: ins.onClick ? "pointer" : "default" }}
       onClick={ins.onClick || undefined}>
-      <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}>
         <span className="lbl"><b>{ins.label}</b></span>
         {ins.meta && <span className="meta" style={{ maxWidth: 130, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{ins.meta}{ins.onClick ? " ↗" : ""}</span>}
       </div>
       {ins.render ? ins.render : (<>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 8, margin: "4px 0 4px" }}>
-        <div className="r-stat-n" style={{ fontSize: 38, color: ins.accent ? "var(--accent)" : "var(--ink)" }}>{ins.big}</div>
-        {ins.bigUnit && <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)" }}>{ins.bigUnit}</span>}
+      <div style={{ display: "flex", alignItems: "baseline", gap: 7, margin: "2px 0 2px" }}>
+        <div className="r-stat-n" style={{ fontSize: 32, color: ins.accent ? "var(--accent)" : "var(--ink)" }}>{ins.big}</div>
+        {ins.bigUnit && <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>{ins.bigUnit}</span>}
       </div>
-      {ins.sub && <div className="r-mono" style={{ fontSize: 10, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{ins.sub}</div>}
-      {ins.note && <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13, color: "var(--ink-soft)", lineHeight: 1.4, marginTop: 9 }}>{ins.note}</div>}
+      {ins.sub && <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{ins.sub}</div>}
+      {ins.note && <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.4, marginTop: 6 }}>{ins.note}</div>}
       </>)}
     </div>
   );
@@ -413,4 +419,10 @@ function InsightRow({ go, n = 6 }) {
   return picks.map(ins => <InsightCard key={ins.id} ins={ins} />);
 }
 
-Object.assign(window, { InsightRow, runInsights });
+// storyOfDay(go) → the day's story descriptor (or null if no story data), for Overview's dedicated
+// "Story of the day" slot. Deterministic per UTC day (same _dayKey seed as the rest of the engine).
+function storyOfDay(go) {
+  try { return storyOfDayProvider({ R: window.ROTATION, go, now: new Date() }); } catch (e) { return null; }
+}
+
+Object.assign(window, { InsightRow, runInsights, storyOfDay });

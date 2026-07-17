@@ -596,7 +596,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
       {/* breakdown list */}
       <div className="mp-list" style={{ marginTop: "var(--gap)" }}>
         <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 10 }}>{focus ? "Cities in " + focusName : mode === "city" ? "Deepest cities" : "Deepest countries"}</div>
-        <div style={{ maxHeight: 230, overflowY: "auto", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px,1fr))", gap: "5px 22px", paddingRight: 4 }}>
+        <div style={{ maxHeight: 200, overflowY: "auto", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px,1fr))", gap: "5px 22px", paddingRight: 4 }}>
           {list.map((t, i) => (
             <div key={(t.code || t.city) + i} className="map-listrow"
               onMouseEnter={() => setHi(t.code ? t.code : "c" + cityPts.filter(c => !focus || c.country === focus).indexOf(t))} onMouseLeave={() => setHi(null)}
@@ -745,9 +745,10 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
           .mp-results .mp-covergrid { grid-template-columns: repeat(5, 1fr); gap: 6px; }
           .mp-results .mp-covergrid .mp-covernm { font-size: 8.5px; }
           /* deepest-cities + stat strip sit ~2/3 the calendar's height: stop them stretching
-             the shared row and cap the list well (Fuad 2026-07-06) */
+             the shared row and cap the list well (Fuad 2026-07-06). Cut by one row-height so the
+             whole band gets shorter (list scrolls internally, Fuad 2026-07-18). */
           .mp-list { grid-column: 1; grid-row: 2; margin-top: 0 !important; align-self: start; }
-          .mp-list > div:last-child { max-height: 147px !important; }
+          .mp-list > div:last-child { max-height: 117px !important; }
           .mp-stats { grid-column: 2; grid-row: 2; margin-top: 0 !important; display: flex; align-self: start; }
           .mp-stats > .r-card { flex: 1; }
           .mp-cal { grid-column: 3; grid-row: 2; margin-top: 0 !important; }
