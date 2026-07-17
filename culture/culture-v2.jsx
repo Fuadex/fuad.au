@@ -25,6 +25,35 @@ function hash(str, seed = 0) {
   return h;
 }
 
+// If data.js ever fails to load (stale cache / partial deploy), a shape-complete stub
+// keeps the app painting an empty library instead of white-screening on the destructures.
+if (!window.CULTURE) window.CULTURE = { ITEMS: [], REGION_COLORS: {}, DECADE_COLORS: {}, REGION_NAMES: {}, MEDIA: [], PICKABLE_IDS: [] };
+
+// ── LAZY DATA (audit 2026-07-18) ── index.html ships only data.js + imports.js +
+// badges.js eagerly (~830 KB of what was a 13 MB blocking payload). The heavy id-keyed
+// overlays load here on demand — first Reader open / Wishlist entry — plus an idle
+// preload a few seconds after boot so they're usually resident before the first click.
+// Injected URLs reuse the page's shared manual ?v= epoch (see index.html note).
+const LAZY_SETS = {
+  reader:   ['cast_data.js', 'omdb_data.js', 'books_data.js', 'game_imdb.js', 'filmweb_notes.js', 'notes_en.js', 'tmdb_data.js', 'script_mood.js', 'interpretations.js'],
+  wishlist: ['wishlist.js', 'wishlist_cast.js', 'wishlist_pred.js', 'wishlist_blurbs.js'],
+};
+const _lazyState = {};   // set name → 'loading' | 'done'
+const DATA_V = (() => { const s = document.querySelector('script[src*="?v="]'); const m = s && s.src.match(/\?v=(\w+)/); return m ? m[1] : ''; })();
+const _lazyDoneCbs = [];
+function loadLazySet(name) {
+  if (_lazyState[name] === 'done' || _lazyState[name] === 'loading') return;
+  _lazyState[name] = 'loading';
+  let left = LAZY_SETS[name].length;
+  const settle = () => { if (--left === 0) { _lazyState[name] = 'done'; _lazyDoneCbs.forEach(cb => cb()); } };
+  for (const f of LAZY_SETS[name]) {
+    const s = document.createElement('script');
+    s.src = f + (DATA_V ? '?v=' + DATA_V : '');
+    s.onload = settle; s.onerror = settle;   // a missing overlay means unenriched items, never a hang
+    document.head.appendChild(s);
+  }
+}
+
 // Spine body color = region or decade.
 function spineBodyColor(item) {
   const { REGION_COLORS, DECADE_COLORS } = window.CULTURE;
@@ -2594,6 +2623,15 @@ function TonightView({ items, onOpenItem, onExit }) {
 // ─────────── App ───────────
 function App() {
   const { MEDIA, PICKABLE_IDS } = window.CULTURE;
+  // Bumps whenever a lazy data set lands — the item memos below re-enrich on it.
+  const [dataTick, setDataTick] = React.useState(0);
+  React.useEffect(() => {
+    const cb = () => setDataTick(t => t + 1);
+    _lazyDoneCbs.push(cb);
+    // idle preload: in most sessions both sets are resident long before the first click
+    const tid = setTimeout(() => { loadLazySet('reader'); loadLazySet('wishlist'); }, 2500);
+    return () => { clearTimeout(tid); const i = _lazyDoneCbs.indexOf(cb); if (i >= 0) _lazyDoneCbs.splice(i, 1); };
+  }, []);
   // The SEEN library: favourites (data.js) + imports, merged with cast/season data.
   const seenItems = React.useMemo(() => {
     const castData = window.CULTURE_CAST    || {};
@@ -2603,7 +2641,7 @@ function App() {
     const hasCast = Object.keys(castData).length > 0;
     const merged = hasCast ? all.map(item => castData[item.id] ? { ...item, ...castData[item.id] } : item) : all;
     return merged.map(enrichExtras);
-  }, []);
+  }, [dataTick]);
   // The WISHLIST (unseen) — wishlist.js merged with its own enrichment file.
   const wishlistItems = React.useMemo(() => {
     const list = window.CULTURE_WISHLIST      || [];
@@ -2611,7 +2649,7 @@ function App() {
     const hasCast = Object.keys(cast).length > 0;
     const merged = hasCast ? list.map(item => cast[item.id] ? { ...item, ...cast[item.id] } : item) : list;
     return merged.map(enrichExtras);
-  }, []);
+  }, [dataTick]);
   // Which collection is on screen. 'library' = seen, 'wishlist' = to-consume.
   const [library, setLibrary] = React.useState('library');
   // Top-level route. 'main' = the shelves page; 'tonight' = the #tonight deal view.
@@ -2624,11 +2662,20 @@ function App() {
   }, []);
   const goTonight = () => { window.location.hash = '#tonight'; setRoute('tonight'); };
   const exitTonight = () => { window.location.hash = '#/library'; setRoute('main'); };
+  // demand triggers for the lazy sets (idle preload usually beats these; they cover fast clicks)
+  React.useEffect(() => { if (library === 'wishlist' || route === 'tonight') { loadLazySet('wishlist'); loadLazySet('reader'); } }, [library, route]);
   const ITEMS = library === 'wishlist' ? wishlistItems : seenItems;
   // Foot-of-spine number: personal score in the Library, rounded Filmweb avg in
   // the Wishlist (which has no personal scores). Not user-toggleable on the main page.
   const spineValue = library === 'wishlist' ? 'fwAvg' : 'rating';
   const [openItem, setOpenItem] = React.useState(null);
+  React.useEffect(() => { if (openItem) loadLazySet('reader'); }, [openItem]);
+  // the Reader must see the FRESH enriched object once a lazy set lands (openItem may
+  // have been captured pre-enrichment) — re-resolve it by id against the live pools
+  const openResolved = React.useMemo(() => {
+    if (!openItem) return null;
+    return seenItems.find(i => i.id === openItem.id) || wishlistItems.find(i => i.id === openItem.id) || openItem;
+  }, [openItem, seenItems, wishlistItems]);
   const [justPickedId, setJustPickedId] = React.useState(null);
   const [paletteOpen, setPaletteOpen] = React.useState(false);
   const [pickedSet, setPickedSet] = React.useState(() => new Set());
@@ -2669,6 +2716,7 @@ function App() {
   // ── Shareable URL state ── encode collection / search / open-item in the hash,
   // e.g.  #/wishlist?q=genre:Horror&open=imp-f-1234  — restore it on load.
   const didInitUrl = React.useRef(false);
+  const pendingOpenId = React.useRef(null);   // deep-linked open= target waiting for its (lazy) pool
   React.useEffect(() => {
     didInitUrl.current = true;
     const raw = window.location.hash.replace(/^#\/?/, '');
@@ -2680,11 +2728,16 @@ function App() {
     const q = params.get('q'); if (q) setSearch(q);
     const openId = params.get('open');
     if (openId) {
-      const pool = lib === 'wishlist' ? wishlistItems : seenItems;
-      const found = pool.find(i => i.id === openId);
-      if (found) setOpenItem(found);
+      pendingOpenId.current = openId;
+      loadLazySet('reader'); loadLazySet('wishlist');   // wishlist deep-links need the lazy pool
     }
   }, []);   // mount only
+  // resolve a deep-linked open= as soon as its item exists in either pool (fires again per dataTick)
+  React.useEffect(() => {
+    const id = pendingOpenId.current; if (!id) return;
+    const found = seenItems.find(i => i.id === id) || wishlistItems.find(i => i.id === id);
+    if (found) { pendingOpenId.current = null; setOpenItem(found); }
+  }, [seenItems, wishlistItems]);
   const firstUrlWrite = React.useRef(true);
   React.useEffect(() => {
     if (firstUrlWrite.current) { firstUrlWrite.current = false; return; }  // don't clobber the restored hash
@@ -3226,7 +3279,7 @@ function App() {
       </footer>
 
       {openItem && (
-        <Reader item={openItem} onClose={() => setOpenItem(null)} onJump={(it) => setOpenItem(it)}
+        <Reader item={openResolved} onClose={() => setOpenItem(null)} onJump={(it) => setOpenItem(it)}
           allItems={ITEMS}
           otherItems={library === 'wishlist' ? seenItems : wishlistItems}
           library={library}
