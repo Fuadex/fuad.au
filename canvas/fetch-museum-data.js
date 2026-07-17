@@ -12,6 +12,8 @@ const PILOT = ["met-nyc", "marmottan", "van-gogh-museum", "guggenheim", "belvede
 // hard qid pins — for names too ambiguous for search to resolve safely
 const QID_PIN = {
   "national-gallery-london": "Q180788",
+  "sukiennice": "Q7635861",     // Sukiennice Museum (19th-c. Polish art, MNK branch)
+  "petit-palais": "Q820892",    // the Petit Palais building (carries the image/architect claims)
 };
 const SEARCH_HINT = {
   "belvedere": "Österreichische Galerie Belvedere",
@@ -21,6 +23,12 @@ const SEARCH_HINT = {
   "national-gallery-london": "National Gallery",
   "rodin": "Musée Rodin",
   "nga-canberra": "National Gallery of Australia",
+  "sukiennice": "Gallery of 19th-Century Polish Art in the Sukiennice",
+  "czestochowa-mgs": "Miejska Galeria Sztuki w Częstochowie",
+  "tokyo-met": "Tokyo Metropolitan Art Museum",
+  "orangerie": "Musée de l'Orangerie",
+  "reina-sofia": "Museo Nacional Centro de Arte Reina Sofía",
+  "moma": "Museum of Modern Art",
 };
 
 const w = {}; vm.runInNewContext(fs.readFileSync(path.join(__dirname, "museums.js"), "utf8"), { window: w });
