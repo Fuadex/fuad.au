@@ -1741,12 +1741,18 @@ function StoriesView({ t, go, seed }) {
       </div>
 
       <style>{`
-        .st-feed { max-width: 780px; margin: 0 auto; display: grid; gap: var(--gap); }
-        /* desktop: two-column magazine flow — chapters span both columns, cards never split */
+        .st-feed { max-width: 820px; margin: 0 auto; display: grid; gap: var(--gap); }
+        /* desktop: two-column magazine flow — chapters span both columns, cards never split.
+           Feed width scales with the screen so PC/4K read comfortably (Fuad 2026-07-17): the
+           earlier mobile-overflow fix had clamped this to 780px even on wide screens, which
+           read compressed. Now: ~1100px at the 1150px tier, opening to 1200px past 1500px. */
         @media (min-width: 1150px) {
-          .st-feed { display: block; columns: 2; column-gap: var(--gap); max-width: 1520px; }
+          .st-feed { display: block; columns: 2; column-gap: var(--gap); max-width: 1100px; }
           .st-feed > section { break-inside: avoid; margin-bottom: var(--gap); }
           .st-feed > .st-chapter { column-span: all; break-inside: avoid; margin-bottom: var(--gap); }
+        }
+        @media (min-width: 1500px) {
+          .st-feed { max-width: 1200px; column-gap: calc(var(--gap) * 1.35); }
         }
         .st-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 26px 28px; }
         .st-hero { padding: 34px 32px; }
@@ -1987,9 +1993,11 @@ function StoriesView({ t, go, seed }) {
         /* the feed is capped + centred, but several rows are grids whose 1fr/2fr tracks carry an
            implicit auto min — a long name/tag can then push the track (and the card) past a ~344px
            screen. Pin every story grid + its cells to a 0 min so content ellipsises instead of
-           overflowing, and hard-cap the feed to the viewport (Fuad 2026-07-16). */
-        .st-feed { max-width: min(780px, 100%); }
+           overflowing, and hard-cap the feed to the viewport (Fuad 2026-07-16). The feed
+           cap is scoped to mobile only now — desktop widths use the tiered max-widths above
+           (Fuad 2026-07-17). */
         .st-feed > section { max-width: 100%; min-width: 0; overflow-wrap: anywhere; }
+        @media (max-width: 700px) { .st-feed { max-width: 100%; } }
         .st-list, .st-life, .st-atlas, .st-peaks, .st-gates, .st-turn, .st-arc,
         .st-incub, .st-grid, .st-scenes, .st-ug-cuts, .st-geo-grid { min-width: 0; }
         .st-life-row, .st-atlas-row, .st-peak, .st-gate, .st-turn-row, .st-arc-row,

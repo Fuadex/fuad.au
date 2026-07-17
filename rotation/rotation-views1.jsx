@@ -324,8 +324,8 @@ function OvWeatherCard({ R, go, restReady }) {
   };
 
   return (
-    <div className="r-card ov-weather" style={{ padding: 18 }}>
-      <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}>
+    <div className="r-card ov-weather" style={{ padding: 14 }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
         <span className="lbl"><b>Emotional weather</b></span>
       </div>
       {weather()}
@@ -344,6 +344,54 @@ function OvWeatherCard({ R, go, restReady }) {
           color: var(--ink-soft); cursor: pointer; margin-bottom: 8px; }
         .ov-wback:hover { color: var(--accent); border-color: var(--accent-dim); }
       `}</style>
+    </div>
+  );
+}
+
+// Compact fact line for the Overview "portrait" / "dig" modules — reuses lab2's FACT_RULES
+// grammar (glanceable headline collapsed to ONE line, click to expand the full sentence +
+// derivation detail). Kept dense on purpose: this whole pass is about tightening Overview.
+// `ids` picks which lab2 rules to fire, in order; missing/null-returning rules are skipped.
+function OvFacts({ ids, go, accent, restReady }) {
+  const R = window.ROTATION;
+  const rules = window.FACT_RULES;
+  const [open, setOpen] = React.useState(-1);
+  // restReady is a dep so rules that read deferred keys (ALBUMS → complete-discog) re-derive
+  // once music-rest has merged into the same window.ROTATION object.
+  const facts = React.useMemo(() => {
+    if (!R || !rules) return [];
+    const byId = {}; rules.forEach(r => { byId[r.id] = r; });
+    const out = [];
+    for (const id of ids) {
+      const rule = byId[id]; if (!rule) continue;
+      let res = null; try { res = rule.derive(R); } catch (e) { res = null; }
+      if (res && res.headline) out.push({ rule, res });
+    }
+    return out;
+  }, [R, rules, ids.join(","), restReady]);
+  if (!facts.length) return null;
+  return (
+    <div className="ov-facts">
+      {facts.map(({ rule, res }, i) => {
+        const isOpen = open === i;
+        return (
+          <div key={rule.id} className="ov-fact" data-open={isOpen}>
+            <button className="ov-fact-head" onClick={() => setOpen(x => x === i ? -1 : i)}>
+              <span className="ov-fact-tick" style={accent ? { color: accent } : null}>{isOpen ? "▾" : "▸"}</span>
+              <span className="ov-fact-hl">{res.headline}</span>
+              {res.link && (
+                <span className="ov-fact-go" onClick={(e) => { e.stopPropagation(); go(res.link.view, res.link.id || undefined); }}>→</span>
+              )}
+            </button>
+            {isOpen && (
+              <div className="ov-fact-body">
+                <div className="ov-fact-text">{res.text}</div>
+                {res.detail && <div className="ov-fact-det">{res.detail}</div>}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -452,9 +500,9 @@ function OverviewView({ t, go, restReady, seed }) {
 
   const Stat = ({ n, sub, big, onClick }) => (
     <div onClick={onClick} style={onClick ? { cursor: "pointer" } : null} className={onClick ? "ov-stat-link" : ""}>
-      <div className="r-stat-n" style={{ fontSize: big ? "clamp(30px,4vw,46px)" : 30 }}>{n}</div>
-      <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase",
-        color: "var(--ink-faint)", marginTop: 7 }}>{sub}{onClick ? " ↗" : ""}</div>
+      <div className="r-stat-n" style={{ fontSize: big ? "clamp(28px,3.4vw,40px)" : 27 }}>{n}</div>
+      <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".14em", textTransform: "uppercase",
+        color: "var(--ink-faint)", marginTop: 4 }}>{sub}{onClick ? " ↗" : ""}</div>
     </div>
   );
 
@@ -474,7 +522,7 @@ function OverviewView({ t, go, restReady, seed }) {
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, minmax(0, 1fr))", gap: "var(--gap)" }}>
         {/* now playing — top-right corner of the pulse row (DOM-first so mobile still leads
             with it; the ≥981px block pins it to cols 9-12) */}
-        <div className="r-card ov-np" style={{ gridColumn: "span 4", padding: 14, display: "flex", gap: 14, alignItems: "center", minWidth: 0 }}>
+        <div className="r-card ov-np" style={{ gridColumn: "span 4", padding: "10px 14px", display: "flex", gap: 14, alignItems: "center", minWidth: 0 }}>
           <div style={{ position: "relative", cursor: npKnown ? "pointer" : "default" }} onClick={() => npKnown && go("artist", now.artistId)}>
             <GenCover hue={nowArtist.hue} name={now.artist} size={92} radius={4} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "flex-end", justifyContent: "center",
@@ -494,23 +542,23 @@ function OverviewView({ t, go, restReady, seed }) {
         </div>
 
         {/* scrobble counter + trend — left anchor of the pulse row */}
-        <div className="r-card ov-scrob" style={{ gridColumn: "span 3", padding: 14, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        <div className="r-card ov-scrob" style={{ gridColumn: "span 3", padding: "10px 14px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <div className="r-card-h" style={{ padding: 0 }}>
             <span className="lbl"><b>Scrobbles</b></span>
             <span className="meta">26-wk</span>
           </div>
-          <div className="r-stat-n" style={{ fontSize: "clamp(30px,4vw,44px)", margin: "4px 0 2px" }}>{fmt(Math.round(scrob))}</div>
-          <div style={{ marginTop: 6 }}>
-            <Spark data={trend} w={300} h={34} run={seen} fill="var(--accent-bg)" />
+          <div className="r-stat-n" style={{ fontSize: "clamp(26px,3.4vw,38px)", margin: "2px 0 0" }}>{fmt(Math.round(scrob))}</div>
+          <div style={{ marginTop: 4 }}>
+            <Spark data={trend} w={300} h={30} run={seen} fill="var(--accent-bg)" />
           </div>
         </div>
 
         {/* streak — current run + when the all-time best happened (INSIGHTS.STREAK carries the range) */}
-        <div className="r-card ov-streak" style={{ gridColumn: "span 2", padding: 14, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div className="r-card ov-streak" style={{ gridColumn: "span 2", padding: "10px 14px", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Streak</b></span>
             {T.streak.current >= T.streak.best ? <span className="meta" style={{ color: "var(--accent)" }}>record!</span> : null}</div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 2 }}>
-            <div className="r-stat-n" style={{ fontSize: 34 }}>{T.streak.current}</div>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 0 }}>
+            <div className="r-stat-n" style={{ fontSize: 28 }}>{T.streak.current}</div>
             <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>days</span>
           </div>
           {(() => {
@@ -539,33 +587,34 @@ function OverviewView({ t, go, restReady, seed }) {
           const delta = w.weekAvg ? Math.round((w.plays7 - w.weekAvg) / w.weekAvg * 100) : 0, up = delta >= 0;
           const ta = w.topArtists && w.topArtists[0];
           return (
-            <div className="r-card ov-week" style={{ gridColumn: "span 3", padding: 14, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <div className="r-card ov-week" style={{ gridColumn: "span 3", padding: "10px 14px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>This week</b></span>
                 <span className="meta" style={{ color: up ? "var(--accent)" : "var(--ink-faint)" }}>{up ? "▲" : "▼"} {Math.abs(delta)}%</span></div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 2 }}>
-                <div className="r-stat-n" style={{ fontSize: 34 }}>{fmt(w.plays7)}</div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 0 }}>
+                <div className="r-stat-n" style={{ fontSize: 28 }}>{fmt(w.plays7)}</div>
                 <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>plays</span>
               </div>
               {ta ? (
-                <div style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", minWidth: 0 }} onClick={() => go("artist", ta.artistId)}>
-                  <GenCover hue={(R.byId[ta.artistId] || (R.expById && R.expById[ta.artistId]) || { hue: 210 }).hue} name={ta.name} size={26} radius={2} />
-                  <div style={{ minWidth: 0 }}>
-                    <div style={{ fontSize: 11.5, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{ta.name}</div>
-                    <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>#1 · {ta.plays} plays</div>
+                /* artist + play count INLINE on one line (Fuad 2026-07-17) — cover kept small at left */
+                <div style={{ display: "flex", alignItems: "center", gap: 7, cursor: "pointer", minWidth: 0 }} onClick={() => go("artist", ta.artistId)}>
+                  <GenCover hue={(R.byId[ta.artistId] || (R.expById && R.expById[ta.artistId]) || { hue: 210 }).hue} name={ta.name} size={20} radius={2} />
+                  <div style={{ fontSize: 11.5, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <b style={{ fontWeight: 600 }}>{ta.name}</b>
+                    <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}> · {ta.plays} plays</span>
                   </div>
                 </div>
               ) : <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>vs your weekly average</div>}
               {w.newArtistsThisWeek > 0
-                ? <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".06em", textTransform: "uppercase", marginTop: 6 }}>{w.newArtistsThisWeek} new artist{w.newArtistsThisWeek !== 1 ? "s" : ""} this week</div>
-                : <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 6 }}>no new artists yet</div>}
+                ? <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".06em", textTransform: "uppercase", marginTop: 3 }}>{w.newArtistsThisWeek} new artist{w.newArtistsThisWeek !== 1 ? "s" : ""} this week</div>
+                : <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 3 }}>no new artists yet</div>}
             </div>
           );
         })()}
 
         {/* recent ticker — squeezed centrally between streak and now-playing; the list is a
             capped scroll well at PC widths so the pulse row stays shallow */}
-        <div className="r-card ov-recent" style={{ gridColumn: "span 3", padding: 11, display: "flex", flexDirection: "column" }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 7 }}><span className="lbl"><b>Recently played</b></span>
+        <div className="r-card ov-recent" style={{ gridColumn: "span 3", padding: "9px 11px", display: "flex", flexDirection: "column" }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 5 }}><span className="lbl"><b>Recently played</b></span>
             <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
               style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
           <div className="ov-rl" style={{ display: "grid", gap: 2, flex: 1, alignContent: "center" }}>
@@ -595,8 +644,8 @@ function OverviewView({ t, go, restReady, seed }) {
             statSlot={
               /* lifetime stats, now nested under the flowmap (Fuad 2026-07-06); hours + distinct
                  artists react to the active map/calendar filter, the rest are lifetime. */
-              <div className="r-card ov-strip" style={{ padding: 16, display: "grid",
-                gridTemplateColumns: "repeat(2,1fr)", gap: "14px 16px", alignContent: "center" }}>
+              <div className="r-card ov-strip" style={{ padding: "12px 14px", display: "grid",
+                gridTemplateColumns: "repeat(2,1fr)", gap: "10px 16px", alignContent: "center" }}>
                 <Stat n={fStats && fStats.active ? fmt(fStats.hours) : fmt(Math.round(hrs))} sub={fStats && fStats.active ? "hrs · " + fStats.label : "hours listened"} onClick={() => go("calendar")} />
                 <Stat n={fStats && fStats.active ? fmt(fStats.artists) : fmt(T.artists)} sub={fStats && fStats.active ? "artists · filtered" : "distinct artists"} onClick={() => go("explore")} />
                 <Stat n={flt ? flt.avgDay : T.perDay} sub={flt ? "avg/day · " + flt.label : "avg / day"} />
@@ -608,8 +657,8 @@ function OverviewView({ t, go, restReady, seed }) {
 
         {/* Right now — the live insight feed, promoted directly under the map (Fuad 2026-07-06),
             paired with emotional weather on its row (was full-width lower down). */}
-        <div className="r-card ov-insights" style={{ gridColumn: "span 8", padding: 18 }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}><span className="lbl"><b>Right now</b></span>
+        <div className="r-card ov-insights" style={{ gridColumn: "span 8", padding: 14 }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}><span className="lbl"><b>Right now</b></span>
             <span className="meta">what's moving</span></div>
           <div className="ov-insgrid" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
             <InsightRow go={go} n={4} />
@@ -622,57 +671,29 @@ function OverviewView({ t, go, restReady, seed }) {
 
       </div>
 
-      {/* hub — teasers into every deeper view */}
-      {(() => {
-        const I = R.INSIGHTS, U = I.UNDERGROUND, G = I.GEOGRAPHY, GF = R.GENRE_FLOW;
-        const cards = [];
-        cards.push({ k: "Explore", h: `${fmt(R.EXPLORE_N || R.EXPLORE.length)} artists`, s: `${R.SUBS.length} subgenres · filter any slice`, hue: 255, on: () => go("explore") });
-        if (GF) cards.push({ k: "The journey", h: `${GF.years.length} years of drift`, s: "watch genres hand off over time", hue: 330, on: () => go("journey") });
-        if (U) cards.push({ k: "How deep it goes", h: `${Math.round(U.artistShare50k * 100)}% under 50k`, s: "the depth is in the breadth", hue: 188, on: () => go("stories") });
-        if (I.RECOMMENDATIONS && I.RECOMMENDATIONS.artists[0]) { const r = I.RECOMMENDATIONS.artists[0]; cards.push({ k: "Blind spots", h: r.name, s: `you'd love them — via ${r.via.map(v => v.name).join(", ")}`, hue: r.hue, on: () => go("stories") }); }
-        if (I.REVISIT && I.REVISIT.artists[0]) { const r = I.REVISIT.artists[0]; cards.push({ k: "Gathering dust", h: r.name, s: `${r.monthsSince} months since you played them`, hue: r.hue, on: () => go("stories") }); }
-        if (G && G.countries[0]) cards.push({ k: "Taste geography", h: `${G.countries[0].flag || ""} ${G.countries[0].name}`, s: `${G.totalCountries} countries deep`, hue: 140, on: () => go("stories") });
-        if (I.ADOPTION) cards.push({ k: "How old the music was", h: `${I.ADOPTION.medianLag}yr median`, s: "you dig back-catalogue, not new releases", hue: 28, on: () => go("stories") });
-        return (
-          <div style={{ marginTop: "calc(var(--gap)*1.4)" }}>
-            <div className="r-mono hub-lbl">Where to dig</div>
-            <div className="hub-chips">
-              {cards.map((c, i) => (
-                <button key={i} className="hub-chip" onClick={c.on} style={{ "--c": `oklch(0.7 0.16 ${c.hue})` }} title={c.s}>
-                  <span className="hub-chip-k">{c.k}</span>
-                  <span className="hub-chip-h">{c.h}</span>
-                  <span className="hub-arrow">→</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        );
-      })()}
+      {/* portrait + dig — two compact data-derived modules, Phase 1 of the Overview makeover
+          (Fuad 2026-07-17). Both share lab2's FACT_RULES grammar via <OvFacts>: a glanceable
+          one-line headline, click to open the fuller sentence + derivation. Portrait = who you
+          are (identity facts); Where to dig = where to explore next (discovery facts). Each
+          module fires a hand-picked subset of rule ids so it stays tight. */}
+      <div className="ov-pd" style={{ marginTop: "calc(var(--gap)*1.4)" }}>
+        {/* YOUR PORTRAIT — self-portrait: underground depth · dominant decade · heaviest day ·
+            one-song obsession (lab2 rules: underground, decade-growth, peak-day, one-song) */}
+        <div className="r-card ov-pd-card" style={{ padding: "16px 18px" }}>
+          <div className="r-mono ov-pd-lbl">Your portrait</div>
+          <OvFacts ids={["underground", "decade-growth", "peak-day", "one-song"]} go={go} accent="var(--accent)" restReady={restReady} />
+          <div className="r-mono ov-pd-foot" onClick={() => go("stories")}>read the long version ↗</div>
+        </div>
 
-      {/* portrait — a generated verdict; sits at the end, after you've seen the numbers */}
-      {(() => {
-        const U = R.INSIGHTS.UNDERGROUND, A = R.INSIGHTS.ADOPTION, G = R.INSIGHTS.GEOGRAPHY, GF = R.GENRE_FLOW;
-        const grid = R.CLOCK.grid, hourTot = Array.from({ length: 24 }, (_, h) => grid.reduce((s, r) => s + r[h], 0));
-        const tot = hourTot.reduce((a, b) => a + b, 0) || 1, night = Math.round(hourTot.slice(0, 5).reduce((a, b) => a + b, 0) / tot * 100);
-        const em = (txt, hue) => <b style={{ color: hue != null ? `oklch(0.8 0.13 ${hue})` : "var(--ink)" }}>{txt}</b>;
-        const link = (txt, dest, hue) => <b className="pt-link" onClick={() => go(dest)} style={{ color: hue != null ? `oklch(0.8 0.13 ${hue})` : "var(--accent)" }}>{txt}</b>;
-        let thenG, nowG;
-        if (GF && GF.years.length) { const domOf = (y) => { let bi = 0; y.fams.forEach((v, i) => { if (v > y.fams[bi]) bi = i; }); return GF.families[bi]; }; thenG = domOf(GF.years[0]); nowG = domOf(GF.years[GF.years.length - 1]); }
-        const peakDec = A && A.decades.length ? A.decades.slice().sort((a, b) => b.share - a.share)[0] : null;
-        return (
-          <div className="r-card" style={{ padding: "22px 26px", marginTop: "calc(var(--gap)*1.6)" }}>
-            <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 12 }}>Your portrait</div>
-            <p style={{ fontFamily: "var(--serif)", fontSize: "clamp(16px,1.9vw,21px)", lineHeight: 1.62, color: "var(--ink-soft)", margin: 0 }}>
-              {night >= 18 && <>A {em(night + "%")}-before-5AM night owl with {em("genuinely underground")} taste — </>}
-              {U && <>{link(Math.round(U.artistShare50k * 100) + "%", "stories")} of the artists you play sit under 50k listeners worldwide, the median just {em(fmt(U.medianArtistListeners))}. </>}
-              {A && <>You don't chase new releases, you {link("dig", "stories")}: the typical artist was {em(A.medianLag + " years")} past their debut when you found them{peakDec ? <>, most of it made in the {em(peakDec.decade + "s")}</> : null}. </>}
-              {G && G.countries[0] && <>Rooted in {link(G.countries[0].name, "stories")} but reaching across {em(G.totalCountries + " countries")}. </>}
-              {thenG && nowG && thenG.family !== nowG.family && <>And the taste {link("migrated", "journey")} — from {link(thenG.family, "journey", thenG.hue)} to {link(nowG.family, "journey", nowG.hue)} across {GF.years.length} years.</>}
-            </p>
-            <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginTop: 14, cursor: "pointer" }} onClick={() => go("journey")}>see the journey ↗</div>
-          </div>
-        );
-      })()}
+        {/* WHERE TO DIG — discovery-oriented: genre momentum · newest all-time top-50 face ·
+            biggest comeback · deepest discography to complete (lab2 rules: genre-shift,
+            new-to-top50, comeback, complete-discog) */}
+        <div className="r-card ov-pd-card" style={{ padding: "16px 18px" }}>
+          <div className="r-mono ov-pd-lbl">Where to dig</div>
+          <OvFacts ids={["genre-shift", "new-to-top50", "comeback", "complete-discog"]} go={go} accent="oklch(0.7 0.16 188)" restReady={restReady} />
+          <div className="r-mono ov-pd-foot" onClick={() => go("explore")}>open Explore ↗</div>
+        </div>
+      </div>
 
       <style>{`
         /* ── PC bento (≥981px, Fuad's redesign 2026-07-04): ONE pulse row — scrobbles ·
@@ -692,14 +713,14 @@ function OverviewView({ t, go, restReady, seed }) {
           .m-stack:has(.ov-week) .ov-recent { grid-column: 7 / span 3 !important; }
           .m-stack:has(.ov-week) .ov-np     { grid-column: 10 / -1 !important; }
           .ov-recent .ov-rl { max-height: none; overflow: visible; align-content: start; }
-          .ov-scrob .r-stat-n { font-size: clamp(20px, 1.9vw, 27px) !important; }
-          .ov-streak .r-stat-n, .ov-week .r-stat-n { font-size: 27px !important; }
-          .ov-week .spark, .ov-scrob .spark { max-height: 30px; }
+          .ov-scrob .r-stat-n { font-size: clamp(18px, 1.7vw, 23px) !important; }
+          .ov-streak .r-stat-n, .ov-week .r-stat-n { font-size: 23px !important; }
+          .ov-week .spark, .ov-scrob .spark { max-height: 26px; }
           /* row 3 = map band (1/-1 inline); row 4 — the four stats (left, they react to the
              map/calendar filter) + heaviest day (right) */
-          .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(5, 1fr) !important; gap: 14px !important; }
+          .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(5, 1fr) !important; gap: 10px !important; }
           .ov-weather  { grid-column: 9 / -1 !important; }
-          .ov-strip .r-stat-n { font-size: 24px !important; }
+          .ov-strip .r-stat-n { font-size: 21px !important; }
           /* insights module is full-width → its four cards run in one rank */
           .ov-insgrid > .r-card { grid-column: span 3 !important; }
         }
@@ -724,6 +745,26 @@ function OverviewView({ t, go, restReady, seed }) {
         .hub-card:hover { border-color: color-mix(in oklch, var(--c) 50%, var(--rule-2)); }
         .hub-h { color: var(--ink); }
         .hub-lbl { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
+        /* portrait + dig — twin compact fact modules, side-by-side on PC, stacked on mobile */
+        .ov-pd { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+        @media (max-width: 760px) { .ov-pd { grid-template-columns: 1fr; } }
+        .ov-pd-lbl { font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
+        .ov-pd-foot { font-size: 9.5px; letter-spacing: .1em; color: var(--ink-faint); margin-top: 12px; cursor: pointer; }
+        .ov-pd-foot:hover { color: var(--accent); }
+        .ov-facts { display: grid; gap: 2px; }
+        .ov-fact { border-radius: 6px; }
+        .ov-fact-head { display: flex; align-items: center; gap: 9px; width: 100%; text-align: left;
+          background: none; border: none; padding: 8px 8px; margin: 0 -8px; border-radius: 6px; cursor: pointer;
+          transition: background .15s; }
+        .ov-fact-head:hover { background: var(--bg-3); }
+        .ov-fact-tick { font-size: 10px; color: var(--accent-dim); flex: none; width: 10px; }
+        .ov-fact-hl { flex: 1; min-width: 0; font-size: 13px; line-height: 1.35; color: var(--ink);
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .ov-fact[data-open="true"] .ov-fact-hl { white-space: normal; overflow: visible; }
+        .ov-fact-go { flex: none; font-family: var(--mono); font-size: 11px; color: var(--accent); padding: 0 2px; }
+        .ov-fact-body { padding: 2px 8px 10px 27px; display: grid; gap: 6px; }
+        .ov-fact-text { font-family: var(--serif); font-style: italic; font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
+        .ov-fact-det { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); line-height: 1.45; }
         .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: var(--gap); }
         .hub-card { padding: 16px 18px; cursor: pointer; transition: transform .15s, box-shadow .15s; }
         .hub-card:hover { transform: translateY(-3px); box-shadow: 0 16px 34px -16px rgba(0,0,0,.6); }

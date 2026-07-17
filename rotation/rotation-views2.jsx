@@ -160,70 +160,126 @@ function MiniArtistView({ a, go }) {
     for (const sid in R.AUDIO) { if (sid === a.id) continue; const v = R.AUDIO[sid]; let d = 0; for (let k = 0; k < 6; k++) { const dd = me[k] - v[k]; d += dd * dd; } out.push([sid, d]); }
     return out.sort((x, y) => x[1] - y[1]).slice(0, 6).map(e => e[0]);
   }, [a.id]);
+  // COMPACT DOSSIER (Fuad 2026-07-17): sparse explore artists (showing-teeth etc.) looked scattered
+  // when 1-2 of the three row modules had no data. Count the row modules that actually carry data —
+  // spark (year plays), Sound DNA (measured audio), flow (albums/tracks over time) — and when 2 or
+  // fewer survive, drop the row/grid layout for ONE centered card that stacks whatever exists as
+  // SECTIONS (portrait/gist, spark, DNA, then the MiniArtistDetail body). Full-module artists (all 3)
+  // keep the existing layout untouched. Flow presence is read lazily so the decision settles once
+  // artist-flow.js lands (mirrors ArtistFlow's own loader) rather than flickering.
+  const [flowReady, setFlowReady] = React.useState(!!window.ROTATION_FLOW);
+  React.useEffect(() => {
+    if (window.ROTATION_FLOW) { setFlowReady(true); return; }
+    let s = document.getElementById("rotation-flow-js");
+    if (!s) { s = document.createElement("script"); s.id = "rotation-flow-js"; s.src = "artist-flow.js"; document.head.appendChild(s); }
+    const on = () => setFlowReady(true);
+    s.addEventListener("load", on);
+    return () => s.removeEventListener("load", on);
+  }, [a.id]);
+  const sparkHas = !!(spark && spark.some(v => v > 0));
+  const dnaHas = !!dna;
+  const flowRec = flowReady && window.ROTATION_FLOW && window.ROTATION_FLOW.byId[a.id];
+  const flowHas = !!(flowRec && (((flowRec.albums || []).length >= 1) || ((flowRec.tracks || []).length >= 1)));
+  const moduleCount = (sparkHas ? 1 : 0) + (dnaHas ? 1 : 0) + (flowHas ? 1 : 0);
+  const compact = moduleCount <= 2;
+
+  // shared header — identical in both layouts
+  const header = (
+    <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 24 }}>
+      <GenCover hue={a.hue} name={a.name} size={120} radius={6} />{/* auto-resolves THUMBS + Spotify-alt fallback */}
+      <div style={{ flex: 1, minWidth: 240 }}>
+        <div className="r-kicker">explore{a.d ? ` · est. ${a.d}` : ""}</div>
+        <h1 className="r-title" style={{ fontSize: "clamp(32px,4.5vw,54px)" }}>{a.name}<span className="dot">.</span></h1>
+        <ArtistMeta gender={a.g} life={a.ty ? { type: a.ty, ended: !!a.ed, end: a.en } : null} size={16} />
+        <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
+          {subs.slice(0, 6).map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)}>{s}</span>)}
+        </div>
+        <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
+          {[["last.fm", `https://www.last.fm/music/${encodeURIComponent(a.name)}`], ["Spotify", `https://open.spotify.com/search/${encodeURIComponent(a.name)}`]].map(([l, h]) =>
+            <a key={l} href={h} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: ".08em", textTransform: "uppercase", padding: "6px 11px", borderRadius: 999, border: "1px solid var(--rule)", color: "var(--ink-soft)", textDecoration: "none" }}>{l} ↗</a>)}
+        </div>
+      </div>
+      <div style={{ display: "flex", gap: 26 }}>
+        <div><div className="r-stat-n" style={{ fontSize: 34 }}>{fmt(a.plays)}</div>
+          <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
+        {L && <div><div className="r-stat-n" style={{ fontSize: 34 }}>{L}</div>
+          <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>listeners ww</div></div>}
+      </div>
+    </div>
+  );
+
+  // spark + DNA sections, shared markup (rendered in the row band OR stacked in the dossier)
+  const sparkSection = sparkHas ? (
+    <div className="r-card av-minicard" style={{ padding: 18 }}>
+      <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 12 }}>Plays by year</div>
+      <Spark data={spark} w={620} h={70} run={true} stroke="var(--accent)" fill="var(--accent-bg)" />
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+        <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{years[0]}</span>
+        <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{years[years.length - 1]}</span>
+      </div>
+    </div>
+  ) : null;
+  const dnaSection = dnaHas ? (
+    <div className="r-card av-minicard av-mini-dna" style={{ padding: 18 }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
+      <Radar axes={DNA_AXES} values={dna} values2={avg} run={true} size={224} />
+      <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>solid = {a.name.split(" ")[0]} · dashed = your average · measured</div>
+      <div style={{ marginTop: 14, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 9 }}>
+        {[
+          { k: "tempo", v: Math.round(50 + af[3] * 140), u: " bpm", f: af[3] },
+          { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
+          { k: "loud", v: Math.round(af[9]), u: " dB", f: Math.max(0, Math.min(1, (af[9] + 60) / 60)) },
+          { k: "speech", v: Math.round(af[10] * 100), u: "%", f: af[10] },
+          { k: "live", v: Math.round(af[11] * 100), u: "%", f: af[11] },
+          { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
+          { k: "followers", v: fmtK(af[8]), f: null },
+        ].map(s => (
+          <div key={s.k}>
+            <div className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</div>
+            <div style={{ fontSize: 13, marginTop: 1, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 9, color: "var(--ink-faint)" }}>{s.u}</span>}</div>
+            {s.f != null && <div style={{ height: 3, background: "var(--bg-3)", borderRadius: 2, marginTop: 5, overflow: "hidden" }}><div style={{ height: "100%", width: (s.f * 100) + "%", background: `oklch(0.62 0.15 ${a.hue})` }} /></div>}
+          </div>
+        ))}
+      </div>
+    </div>
+  ) : null;
+
+  // COMPACT DOSSIER — one centered ~700px card, everything stacked as sections of a single document.
+  if (compact) {
+    return (
+      <div className="r-view">
+        <button className="r-back" onClick={() => go("explore")}>← explore</button>
+        {header}
+        <div className="mav-dossier">
+          {/* portrait/gist first, if this artist has a portrait entry */}
+          <PortraitCard id={a.id} />
+          {sparkSection}
+          {dnaSection}
+          {/* the rest of the long-tail detail (bio, top tracks/albums, similar) as the closing sections */}
+          <MiniArtistDetail id={a.id} name={a.name} hue={a.hue} go={go} />
+        </div>
+        <style>{`
+          /* compact dossier — a single centered column so a sparse explore artist reads as one
+             composed document, not scattered cards. The inner cards keep their own r-card chrome
+             but line up in one narrow stack. No backticks in this comment. */
+          .mav-dossier { max-width: 700px; margin: 0 auto; display: grid; gap: var(--gap); }
+          .mav-dossier > .av-minicard { max-width: none; }
+        `}</style>
+      </div>
+    );
+  }
+
   return (
     <div className="r-view">
       <button className="r-back" onClick={() => go("explore")}>← explore</button>
-      <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 24 }}>
-        <GenCover hue={a.hue} name={a.name} size={120} radius={6} />{/* auto-resolves THUMBS + Spotify-alt fallback */}
-        <div style={{ flex: 1, minWidth: 240 }}>
-          <div className="r-kicker">explore{a.d ? ` · est. ${a.d}` : ""}</div>
-          <h1 className="r-title" style={{ fontSize: "clamp(32px,4.5vw,54px)" }}>{a.name}<span className="dot">.</span></h1>
-          <ArtistMeta gender={a.g} life={a.ty ? { type: a.ty, ended: !!a.ed, end: a.en } : null} size={16} />
-          <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
-            {subs.slice(0, 6).map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)}>{s}</span>)}
-          </div>
-          <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
-            {[["last.fm", `https://www.last.fm/music/${encodeURIComponent(a.name)}`], ["Spotify", `https://open.spotify.com/search/${encodeURIComponent(a.name)}`]].map(([l, h]) =>
-              <a key={l} href={h} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: ".08em", textTransform: "uppercase", padding: "6px 11px", borderRadius: 999, border: "1px solid var(--rule)", color: "var(--ink-soft)", textDecoration: "none" }}>{l} ↗</a>)}
-          </div>
-        </div>
-        <div style={{ display: "flex", gap: 26 }}>
-          <div><div className="r-stat-n" style={{ fontSize: 34 }}>{fmt(a.plays)}</div>
-            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
-          {L && <div><div className="r-stat-n" style={{ fontSize: 34 }}>{L}</div>
-            <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>listeners ww</div></div>}
-        </div>
-      </div>
-      {/* secondary modules — a CENTERED flex band with a consistent card width, so sparse artists
-         (1 or 2 surviving modules) read as a composed band instead of scattered auto-fit tracks.
-         Cards that have no data don't render at all (spark w/o year plays, flow w/o albums/tracks),
-         so only real modules take a slot. Full 3-module artists still fill the row in thirds. The
-         m-stack class collapses this to a single column at <=860px (Fuad 2026-07-16). */}
+      {header}
+      {/* secondary modules — a CENTERED flex band with a consistent card width. Full 3-module artists
+         fill the row in thirds; the compact-dossier path above handles the sparse (<=2 module) case,
+         so this band now only runs for full-module artists (Fuad 2026-07-17). The m-stack breakpoint
+         collapses it to a single column at <=860px. */}
       <div className="av-minirow" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "var(--gap)", alignItems: "flex-start", marginBottom: "var(--gap)" }}>
-      {spark && spark.some(v => v > 0) && (
-        <div className="r-card av-minicard" style={{ padding: 18 }}>
-          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 12 }}>Plays by year</div>
-          <Spark data={spark} w={620} h={70} run={true} stroke="var(--accent)" fill="var(--accent-bg)" />
-          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
-            <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{years[0]}</span>
-            <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{years[years.length - 1]}</span>
-          </div>
-        </div>
-      )}
-      {dna && (
-        <div className="r-card av-minicard av-mini-dna" style={{ padding: 18 }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Sound DNA</b></span></div>
-          <Radar axes={DNA_AXES} values={dna} values2={avg} run={true} size={224} />
-          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 4 }}>solid = {a.name.split(" ")[0]} · dashed = your average · measured</div>
-          <div style={{ marginTop: 14, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 9 }}>
-            {[
-              { k: "tempo", v: Math.round(50 + af[3] * 140), u: " bpm", f: af[3] },
-              { k: "key", v: af[6] >= 0.5 ? "major" : "minor", f: af[6] },
-              { k: "loud", v: Math.round(af[9]), u: " dB", f: Math.max(0, Math.min(1, (af[9] + 60) / 60)) },
-              { k: "speech", v: Math.round(af[10] * 100), u: "%", f: af[10] },
-              { k: "live", v: Math.round(af[11] * 100), u: "%", f: af[11] },
-              { k: "pop", v: af[7], u: "/100", f: af[7] / 100 },
-              { k: "followers", v: fmtK(af[8]), f: null },
-            ].map(s => (
-              <div key={s.k}>
-                <div className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</div>
-                <div style={{ fontSize: 13, marginTop: 1, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 9, color: "var(--ink-faint)" }}>{s.u}</span>}</div>
-                {s.f != null && <div style={{ height: 3, background: "var(--bg-3)", borderRadius: 2, marginTop: 5, overflow: "hidden" }}><div style={{ height: "100%", width: (s.f * 100) + "%", background: `oklch(0.62 0.15 ${a.hue})` }} /></div>}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      {sparkSection}
+      {dnaSection}
       <ArtistFlow id={a.id} hue={a.hue} go={go} className="av-minicard" />
       </div>
       <MiniArtistDetail id={a.id} name={a.name} hue={a.hue} go={go} />
@@ -700,9 +756,16 @@ function WordsWeatherBars({ v, a, x }) {
 //   portraits.js       -> window.ROTATION_PORTRAITS   {id: {gist, portrait?|liner?, by}}
 //   portrait-facts.js  -> window.ROTATION_PORTRAIT_FACTS {id: [{k, v, x}]}
 // Both are loaded once on first mount (same script-tag pattern as mb-lineup.js / label-parents.js).
-// Presence-gated: renders nothing unless ROTATION_PORTRAITS[id] exists. There is deliberately NO
-// crossover slot — artists carry portrait, albums carry liner, and neither is invented here.
-function PortraitCard({ id }) {
+// This card now OWNS the old-blurb slot (Fuad 2026-07-17): when a portrait/liner entry exists it is
+// the primary read, with a subtle flick chip at the module's bottom-right that cycles to the OLD
+// source (last.fm wiki on artists / Wikipedia on albums) and back. When NO entry exists it renders
+// the `alt` fallback verbatim — the exact old blurb the page showed before. So the parent no longer
+// gates the old block on portrait presence; it hands its old-source content in as `alt` and lets
+// this card decide. `alt` = { label, node } where node is the old source's inner JSX (attribution
+// links preserved). `words` (album-only) is the "In its own words" block, now lifted OUT to the
+// parent, so it is passed as `false`/absent here.
+// There is deliberately NO crossover slot — artists carry portrait, albums carry liner.
+function PortraitCard({ id, alt, showWords = true }) {
   const [pReady, setPReady] = React.useState(!!window.ROTATION_PORTRAITS);
   const [fReady, setFReady] = React.useState(!!window.ROTATION_PORTRAIT_FACTS);
   React.useEffect(() => {
@@ -725,66 +788,105 @@ function PortraitCard({ id }) {
   }, []);
   const [open, setOpen] = React.useState(false);   // full read (portrait/liner) toggle
   const [chip, setChip] = React.useState(-1);      // index of the one expanded fact chip, -1 = none
-  // words overlay (pilot) — album-only "In its own words" row; keyed by the same artistSlug~albumSlug id
+  const [face, setFace] = React.useState("portrait");   // "portrait" (default) | "alt" (old source), via the flick chip
+  // words overlay (pilot) — album-only "In its own words" row; keyed by the same artistSlug~albumSlug id.
+  // Now lifted OUT to the parent on albums (its own compact block under "The record, as released");
+  // showWords stays true only where the old inline behaviour is still wanted (none currently).
   const words = useWordsLayer();
-  const w = (words && words.albums && words.albums[id]) || null;
+  const w = (showWords && words && words.albums && words.albums[id]) || null;
 
   if (!pReady) return null;
   const p = window.ROTATION_PORTRAITS && window.ROTATION_PORTRAITS[id];
-  if (!p) return null;
+  // No portrait entry: this card OWNS the slot, so render the old source verbatim as the fallback
+  // (the exact block the page showed before). Nothing to show if there's no fallback either.
+  if (!p) return alt && alt.node ? (
+    <div className="r-card pv-card pv-card-altonly" style={{ padding: "18px 22px", marginBottom: "var(--gap)" }}>{alt.node}</div>
+  ) : null;
   const facts = (fReady && window.ROTATION_PORTRAIT_FACTS && window.ROTATION_PORTRAIT_FACTS[id]) || [];
   const full = p.portrait || p.liner || "";           // no crossover slot: one or the other
   // the derivation values are trusted; a v of "[object Object]" is a known upstream stringify
   // artifact (e.g. seen-live), so we drop it from the chip label and lean on the derivation text.
   const badV = (v) => v == null || v === "[object Object]";
 
+  // the flick chip only shows when there IS an old source to cycle to
+  const hasAlt = !!(alt && alt.node);
+  const showAlt = face === "alt" && hasAlt;
+
   return (
     <div className="r-card pv-card" style={{ padding: "18px 22px", marginBottom: "var(--gap)" }}>
-      <div className="r-card-h" style={{ padding: 0, marginBottom: 10, display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-        <span className="lbl"><b>Portrait</b></span>
-        {p.by && <span className="r-mono pv-by">via {p.by}</span>}
-      </div>
-      <p className="pv-gist">{p.gist}</p>
-      {full && (
+      {showAlt ? (
+        // OLD SOURCE face — last.fm wiki (artists) / Wikipedia (albums), verbatim, attribution intact
+        <div className="pv-altface">{alt.node}</div>
+      ) : (
         <>
-          <button className="pv-toggle" onClick={() => setOpen(o => !o)} aria-expanded={open}>
-            {open ? "less ▴" : "the full read ▾"}
-          </button>
-          {open && full.split(/\n+/).filter(Boolean).map((para, i) => (
-            <p key={i} className="pv-full">{para}</p>
-          ))}
-        </>
-      )}
-      {facts.length > 0 && (
-        <div className="pv-facts">
-          <div className="pv-chips">
-            {facts.map((f, i) => (
-              <button key={i} className={"pv-chip" + (chip === i ? " on" : "")}
-                onClick={() => setChip(c => c === i ? -1 : i)} aria-expanded={chip === i}>
-                <b>{f.k}</b>{!badV(f.v) && <span className="pv-sep"> · {f.v}</span>}
-              </button>
-            ))}
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 10, display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+            <span className="lbl"><b>Portrait</b></span>
+            {p.by && <span className="r-mono pv-by">via {p.by}</span>}
           </div>
-          {chip >= 0 && facts[chip] && (
-            <div className="pv-deriv">{facts[chip].x}</div>
+          {/* gist renders as plain serif lead text — quote-mark/blockquote styling is intentionally
+              NOT applied (the class is reserved for a future tier). */}
+          <p className="pv-gist">{p.gist}</p>
+          {full && (
+            <>
+              <button className="pv-toggle" onClick={() => setOpen(o => !o)} aria-expanded={open}>
+                {open ? "less ▴" : "the full read ▾"}
+              </button>
+              {open && full.split(/\n+/).filter(Boolean).map((para, i) => (
+                <p key={i} className="pv-full">{para}</p>
+              ))}
+            </>
           )}
-        </div>
-      )}
-      {w && (
-        <div className="ww-own">
-          <div className="ww-own-h r-mono">In its own words</div>
-          {w.phrases && w.phrases.length > 0 && (
-            <div className="ww-chips">
-              {w.phrases.map((ph, i) => <span key={i} className="ww-chip">{ph}</span>)}
+          {facts.length > 0 && (
+            <div className="pv-facts">
+              <div className="pv-chips">
+                {facts.map((f, i) => (
+                  <button key={i} className={"pv-chip" + (chip === i ? " on" : "")}
+                    onClick={() => setChip(c => c === i ? -1 : i)} aria-expanded={chip === i}>
+                    <b>{f.k}</b>{!badV(f.v) && <span className="pv-sep"> · {f.v}</span>}
+                  </button>
+                ))}
+              </div>
+              {chip >= 0 && facts[chip] && (
+                <div className="pv-deriv">{facts[chip].x}</div>
+              )}
             </div>
           )}
-          <WordsWeatherBars v={w.v} a={w.a} x={w.x} />
+          {w && (
+            <div className="ww-own">
+              <div className="ww-own-h r-mono">In its own words</div>
+              {w.phrases && w.phrases.length > 0 && (
+                <div className="ww-chips">
+                  {w.phrases.map((ph, i) => <span key={i} className="ww-chip">{ph}</span>)}
+                </div>
+              )}
+              <WordsWeatherBars v={w.v} a={w.a} x={w.x} />
+            </div>
+          )}
+        </>
+      )}
+      {/* FLICK CHIP — bottom-right of the module; cycles Portrait <-> the old source and back.
+          Subtle mono chip; label names the destination face so it reads as "flip to that source". */}
+      {hasAlt && (
+        <div className="pv-flickrow">
+          <button className="pv-flick r-mono" onClick={() => setFace(f => f === "alt" ? "portrait" : "alt")}
+            title={showAlt ? "back to the Portrait read" : "see the " + alt.label + " source"}>
+            {showAlt ? "via Portrait ⇄" : "via " + alt.label + " ⇄"}
+          </button>
         </div>
       )}
       <style>{`
         /* Portrait overlay (pilot) — scoped pv- styles. No backticks in these comments. */
         .pv-by { font-size: 9.5px; color: var(--ink-faint); letter-spacing: .1em; text-transform: uppercase; }
+        /* .pv-gist is plain serif lead text. Quote-mark / blockquote styling is RESERVED for a
+           future tier and is deliberately not applied to the gist today. */
         .pv-gist { font-family: var(--serif); font-size: 15px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
+        /* flick chip — bottom-right, subtle; cycles Portrait to the old source and back. */
+        .pv-flickrow { display: flex; justify-content: flex-end; margin-top: 14px; }
+        .pv-flick { background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px;
+          cursor: pointer; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+        .pv-flick:hover { color: var(--accent); border-color: var(--accent-dim); }
+        /* old-source face reuses the parent blocks' own inline styling (the alt node is rendered
+           verbatim), so no extra rules are needed for .pv-altface / .pv-card-altonly. */
         .pv-toggle { margin-top: 12px; background: none; border: none; padding: 0; cursor: pointer;
           font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
         .pv-toggle:hover { color: var(--accent); }
@@ -1099,24 +1201,26 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         </div>
       </div>
 
-      {/* bio — full-width; Sound DNA moved down into the tracks/albums row (Fuad, 2026-07-05) */}
-      {a.bio && a.bio.length > 40 && (
-        <div className="r-card" style={{ padding: "18px 22px", marginBottom: "var(--gap)" }}>
-          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 10 }}>About</div>
-          <p style={{ fontFamily: "var(--serif)", fontSize: 15.5, lineHeight: 1.55, color: "var(--ink-soft)", margin: 0 }}>
-            {a.bio.length > 620 ? a.bio.slice(0, 620).replace(/\s+\S*$/, "") + "…" : a.bio}
-          </p>
-          {/* attribution — last.fm's API terms ask that wiki/bio text credit + link back to them */}
-          <a href={`https://www.last.fm/music/${encodeURIComponent(a.name)}/+wiki`} target="_blank" rel="noopener noreferrer"
-            style={{ display: "inline-block", marginTop: 10, fontFamily: "var(--mono)", fontSize: 9.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)", textDecoration: "none" }}>
-            via last.fm ↗
-          </a>
-        </div>
-      )}
-
-      {/* PILOT: portrait overlay — a written read + fact modules, keyed by artist slug (Fuad,
-          pilot 2026-07). Sits between the last.fm bio and the module grid; presence-gated. */}
-      <PortraitCard id={id} />
+      {/* PORTRAIT owns this slot (Fuad 2026-07-17). When a portrait entry exists it is the primary
+          read; a flick chip at its foot cycles to the OLD last.fm wiki/bio (attribution link intact)
+          and back. When no entry exists, PortraitCard renders this same bio block verbatim as the
+          fallback — so artists without a portrait keep exactly the old "About" card. */}
+      <PortraitCard id={id} alt={(a.bio && a.bio.length > 40) ? {
+        label: "last.fm",
+        node: (
+          <>
+            <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 10 }}>About</div>
+            <p style={{ fontFamily: "var(--serif)", fontSize: 15.5, lineHeight: 1.55, color: "var(--ink-soft)", margin: 0 }}>
+              {a.bio.length > 620 ? a.bio.slice(0, 620).replace(/\s+\S*$/, "") + "…" : a.bio}
+            </p>
+            {/* attribution — last.fm's API terms ask that wiki/bio text credit + link back to them */}
+            <a href={`https://www.last.fm/music/${encodeURIComponent(a.name)}/+wiki`} target="_blank" rel="noopener noreferrer"
+              style={{ display: "inline-block", marginTop: 10, fontFamily: "var(--mono)", fontSize: 9.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)", textDecoration: "none" }}>
+              via last.fm ↗
+            </a>
+          </>
+        )
+      } : null} />
 
       <div style={{ display: "grid", gap: "var(--gap)" }}>
           {/* row 2 on PC: flow (wide — Sound DNA moved to the bottom row for breathing room,
@@ -1823,6 +1927,105 @@ const keyName = (k, m) => (k == null || k < 0) ? "" : PITCH[k] + (m === 0 ? " mi
 // AlbumView — your history with one album: the tracks you've played from it (with per-song plays),
 // when you played it, and the artist's genre/mood (joined from the inline universe). The album's
 // identity is "artistSlug~titleSlug"; data comes from the lazy media-index, loaded on demand.
+
+// AlbumTracksPlayed — the INNER body of the old "Tracks you've played" module (meta line, absorbed-
+// edition chip, tracklist with the per-edition sub-sections). No card wrapper: it is now folded into
+// "The record, as released" behind an expandable handle (Fuad 2026-07-17), and only used standalone as
+// a fallback for albums with no MB spine. All page-derived values arrive as props so it stays pure.
+function AlbumTracksPlayed({ data, extras, standout, maxT, hue, R, go, baseTracks, bonusSections }) {
+  const row = (t, i, nStr) => (
+    <div key={t.title + i} className="r-track-row" onClick={() => go("track", R.slug(data.artist) + "~" + R.slug(t.title))} title={`${t.title} →${t.e != null ? ` · energy ${t.e} · positivity ${t.v}` : ""}`} style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px", cursor: "pointer", borderRadius: 4 }}>
+      <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{nStr != null ? nStr : (t.no ? String(t.no).padStart(2, "0") : String(i + 1).padStart(2, "0"))}</span>
+      <div style={{ fontSize: 13, lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>
+        {t.title}{standout && t === standout ? <span title="your most-played from this album" style={{ color: "var(--accent)", marginLeft: 5 }}>★</span> : null}
+        {" "}<LikedMark on={likedKey(R.slug(data.artist) + "~" + R.slug(t.title))} />
+        {" "}<EngBar eng={engOf(R.slug(data.artist) + "~" + R.slug(t.title))} />
+        {" "}<LiveMark on={seenLiveKey(R.slug(data.artist) + "~" + R.slug(t.title))} /></div>
+      <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: (t.plays / maxT * 100) + "%", background: `oklch(0.6 0.14 ${hue})` }} /></div>
+      <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", textAlign: "right" }}>{fmt(t.plays)}</span>
+    </div>
+  );
+  const secHead = (name) => (
+    <div key={"h~" + name} className="r-mono" style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", margin: "12px 4px 4px" }}>
+      <span>{name}</span>
+      <span style={{ flex: 1, height: 1, background: "var(--rule)" }} />
+    </div>
+  );
+  return (
+    <>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 6, flexWrap: "wrap", gap: 6 }}><span className="lbl"><b>Tracks you've played</b></span>
+        <span className="meta">{fmt(data.trackPlays)} plays across {data.tracks.length}</span></div>
+      {/* absorbed edition chip — this canonical album merged one or more variant editions */}
+      {extras && extras.from && extras.from.length > 0 && (
+        <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".06em", textTransform: "uppercase", margin: "0 0 10px" }}>
+          also logged as: <span style={{ color: "var(--ink-soft)" }}>{extras.from.join(", ")}</span>
+        </div>
+      )}
+      <div style={{ display: "grid", gap: 2 }}>
+        {/* base tracklist — numbering as today (real Spotify no, else sequential) */}
+        {baseTracks.map((t, i) => row(t, i))}
+        {/* one restart-numbered sub-section per edition (disc-like), biggest first, catch-all last */}
+        {bonusSections.map(sec => (
+          <React.Fragment key={"sec~" + sec.name}>
+            {secHead(sec.name)}
+            {sec.tracks.map((t, i) => row(t, i, String(i + 1).padStart(2, "0")))}
+          </React.Fragment>
+        ))}
+      </div>
+    </>
+  );
+}
+
+// AlbumTracksHandle — the expandable "tracks you've played ▾" foot for "The record, as released".
+// Styled like the portrait's "the full read ▾" toggle; expanded shows exactly the old module content.
+function AlbumTracksHandle(props) {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid var(--rule)" }}>
+      <button className="pv-toggle" onClick={() => setOpen(o => !o)} aria-expanded={open}
+        style={{ margin: 0 }}>
+        {open ? "hide the tracks you've played ▴" : "tracks you've played ▾"}
+      </button>
+      {open && <div style={{ marginTop: 12 }}><AlbumTracksPlayed {...props} /></div>}
+    </div>
+  );
+}
+
+// AlbumWordsBlock — the album "In its own words" row (signature phrases + bright/intense/unresolved
+// bars), lifted OUT of PortraitCard (Fuad 2026-07-17) to sit as its own compact block directly under
+// "The record, as released". Same content + same ww- styling as before. Presence-gated on the words
+// overlay carrying this album id.
+function AlbumWordsBlock({ id }) {
+  const words = useWordsLayer();
+  const w = (words && words.albums && words.albums[id]) || null;
+  if (!w) return null;
+  return (
+    <div className="r-card ww-albumblock" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
+      <div className="ww-own-h r-mono">In its own words</div>
+      {w.phrases && w.phrases.length > 0 && (
+        <div className="ww-chips">
+          {w.phrases.map((ph, i) => <span key={i} className="ww-chip">{ph}</span>)}
+        </div>
+      )}
+      <WordsWeatherBars v={w.v} a={w.a} x={w.x} />
+      <style>{`
+        /* album words block — reuses the ww-track grammar (compact bars + chips). No backticks here. */
+        .ww-albumblock .ww-own-h { font-size: 9px; color: var(--ink-faint); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 9px; }
+        .ww-albumblock .ww-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+        .ww-albumblock .ww-chip { max-width: 100%; background: var(--bg-3); border: 1px solid var(--rule); border-radius: 999px;
+          padding: 4px 11px; font-family: var(--serif); font-size: 12px; font-style: italic; line-height: 1.35;
+          color: var(--ink-soft); white-space: normal; }
+        .ww-albumblock .ww-bars { display: grid; gap: 7px; }
+        .ww-albumblock .ww-axis { display: grid; grid-template-columns: 74px minmax(0,1fr) 30px; gap: 10px; align-items: center; }
+        .ww-albumblock .ww-k { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+        .ww-albumblock .ww-bar { height: 6px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
+        .ww-albumblock .ww-bar i { display: block; height: 100%; border-radius: 4px; }
+        .ww-albumblock .ww-v { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); text-align: right; }
+      `}</style>
+    </div>
+  );
+}
+
 function AlbumView({ id, go }) {
   const R = window.ROTATION;
   const [ready, setReady] = React.useState(!!window.ROTATION_MEDIA);
@@ -2010,18 +2213,21 @@ function AlbumView({ id, go }) {
         </div>
       </div>
 
-      {/* what it's about — Wikipedia themes/content section (album-about-lazy.js) */}
-      {albumAbout && (
-        <div className="tv-about" style={{ maxWidth: "none", marginBottom: "var(--gap)" }}>
-          <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginRight: 8 }}>What it's about</span>
-          <span className="tv-about-txt">{albumAbout[0]}</span>
-          {albumAbout[1] ? <a className="tv-about-src" href={`https://en.wikipedia.org/wiki/${encodeURIComponent(albumAbout[1].replace(/ /g, "_"))}`} target="_blank" rel="noopener noreferrer">via Wikipedia ↗</a> : null}
-        </div>
-      )}
-
-      {/* PILOT: portrait overlay (liner + fact modules) — album id is artistSlug~albumSlug, the
-          same key AlbumView keys everything else on. Prominent, just under the header/about. */}
-      <PortraitCard id={id} />
+      {/* PORTRAIT owns this slot (Fuad 2026-07-17). When a liner entry exists it is the primary read;
+          a flick chip at its foot cycles to the OLD Wikipedia "What it's about" (source link intact)
+          and back. When no entry exists, PortraitCard renders this same Wikipedia block verbatim as
+          the fallback. Words ("In its own words") are lifted OUT to their own block below "The record,
+          as released", so showWords is false here. */}
+      <PortraitCard id={id} showWords={false} alt={albumAbout ? {
+        label: "Wikipedia",
+        node: (
+          <div className="tv-about" style={{ maxWidth: "none", margin: 0 }}>
+            <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginRight: 8 }}>What it's about</span>
+            <span className="tv-about-txt">{albumAbout[0]}</span>
+            {albumAbout[1] ? <a className="tv-about-src" href={`https://en.wikipedia.org/wiki/${encodeURIComponent(albumAbout[1].replace(/ /g, "_"))}`} target="_blank" rel="noopener noreferrer">via Wikipedia ↗</a> : null}
+          </div>
+        )
+      } : null} />
 
       {dna && (
         <div className="tv-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
@@ -2122,57 +2328,27 @@ function AlbumView({ id, go }) {
                 </div>
               </div>
             ))}
+            {/* "Tracks you've played" is now FOLDED IN here behind an expandable handle (Fuad
+                2026-07-17), styled like the portrait's "the full read" toggle. */}
+            <AlbumTracksHandle data={data} extras={extras} standout={standout} maxT={maxT} hue={hue}
+              R={R} go={go} baseTracks={baseTracks} bonusSections={bonusSections} />
           </div>
         );
       })()}
 
-      <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
-        <div className="r-card-h" style={{ padding: 0, marginBottom: 6, flexWrap: "wrap", gap: 6 }}><span className="lbl"><b>Tracks you've played</b></span>
-          <span className="meta">{fmt(data.trackPlays)} plays across {data.tracks.length}</span></div>
-        {/* absorbed edition chip — this canonical album merged one or more variant editions */}
-        {extras && extras.from && extras.from.length > 0 && (
-          <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".06em", textTransform: "uppercase", margin: "0 0 10px" }}>
-            also logged as: <span style={{ color: "var(--ink-soft)" }}>{extras.from.join(", ")}</span>
-          </div>
-        )}
-        {(() => {
-          // numLabel: for the base list, prefer the real Spotify track number (t.no); for edition
-          // sub-sections, force the section-local sequential number (nStr) — the merged Spotify nos
-          // collide across releases, so per-section restart is the whole point.
-          const row = (t, i, nStr) => (
-            <div key={t.title + i} className="r-track-row" onClick={() => go("track", R.slug(data.artist) + "~" + R.slug(t.title))} title={`${t.title} →${t.e != null ? ` · energy ${t.e} · positivity ${t.v}` : ""}`} style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px", cursor: "pointer", borderRadius: 4 }}>
-              <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{nStr != null ? nStr : (t.no ? String(t.no).padStart(2, "0") : String(i + 1).padStart(2, "0"))}</span>
-              <div style={{ fontSize: 13, lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>
-                {t.title}{standout && t === standout ? <span title="your most-played from this album" style={{ color: "var(--accent)", marginLeft: 5 }}>★</span> : null}
-                {" "}<LikedMark on={likedKey(R.slug(data.artist) + "~" + R.slug(t.title))} />
-                {" "}<EngBar eng={engOf(R.slug(data.artist) + "~" + R.slug(t.title))} />
-                {" "}<LiveMark on={seenLiveKey(R.slug(data.artist) + "~" + R.slug(t.title))} /></div>
-              <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: (t.plays / maxT * 100) + "%", background: `oklch(0.6 0.14 ${hue})` }} /></div>
-              <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", textAlign: "right" }}>{fmt(t.plays)}</span>
-            </div>
-          );
-          const secHead = (name) => (
-            <div key={"h~" + name} className="r-mono" style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", margin: "12px 4px 4px" }}>
-              <span>{name}</span>
-              <span style={{ flex: 1, height: 1, background: "var(--rule)" }} />
-            </div>
-          );
-          return (
-            <div style={{ display: "grid", gap: 2 }}>
-              {/* base tracklist — numbering as today (real Spotify no, else sequential) */}
-              {baseTracks.map((t, i) => row(t, i))}
-              {/* one restart-numbered sub-section per edition (disc-like), biggest first, catch-all last */}
-              {bonusSections.map(sec => (
-                <React.Fragment key={"sec~" + sec.name}>
-                  {secHead(sec.name)}
-                  {sec.tracks.map((t, i) => row(t, i, String(i + 1).padStart(2, "0")))}
-                </React.Fragment>
-              ))}
-            </div>
-          );
-        })()}
-      </div>{/* /Tracks you've played — lineup & shared songs are lifted OUT below into their own
-              standalone full-width cards (continuous vertical column), Fuad 2026-07-14 */}
+      {/* WORDS block — album "In its own words", relocated OUT of PortraitCard (Fuad 2026-07-17) to
+          sit directly under "The record, as released" as its own compact ww- block. */}
+      <AlbumWordsBlock id={id} />
+
+      {/* Fallback ONLY when the album has no MB spine (so "The record, as released" didn't render):
+          keep "Tracks you've played" as a standalone card so the tracklist isn't lost. */}
+      {!(window.ROTATION_ALBSPINE && window.ROTATION_ALBSPINE[id.slice(0, id.indexOf("~"))]
+         && window.ROTATION_ALBSPINE[id.slice(0, id.indexOf("~"))][String(data.title || "").toLowerCase().replace(/[^a-z0-9]+/g, "")]) && (
+        <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
+          <AlbumTracksPlayed data={data} extras={extras} standout={standout} maxT={maxT} hue={hue}
+            R={R} go={go} baseTracks={baseTracks} bonusSections={bonusSections} />
+        </div>
+      )}
 
       {(() => {
         // per-album LINEUP: who actually played on this record — tenure windows crossed with
