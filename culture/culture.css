@@ -1104,8 +1104,13 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 
 @media (max-width: 768px) {
   .site-head { padding: 32px 24px 18px; grid-template-columns: 1fr; }
-  .site-head .right { align-items: flex-start; }
+  .site-head .right { align-items: flex-start; max-width: 100%; }
   .site-head .tagline { text-align: left; }
+  /* header controls: one horizontally-scrollable strip instead of 3+ wrapped lines
+     that shoved the shelves below the fold on phones (audit 2026-07-18) */
+  .btn-row { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; max-width: 100%;
+    padding-bottom: 6px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+  .btn-row > * { flex: 0 0 auto; }
   .shelf-head { padding: 0 24px 12px; }
   .shelf-scroll { padding: 18px 24px 18px; }
   .shelf-rail::before, .shelf-rail::after { width: 24px; }

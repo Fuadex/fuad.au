@@ -3407,6 +3407,24 @@ const SPOTIMG_OUT = {};
 for (const a of EXPLORE) { const s = SPOT[a.name]; if (s && s.img) SPOTIMG_OUT[a.id] = s.img; }
 for (const a of ARTISTS) { if (!SPOTIMG_OUT[a.id]) { const s = SPOT[a.name]; if (s && s.img) SPOTIMG_OUT[a.id] = s.img; } }
 
+// ── ARTISTS field split (Phase 0.1): the heavy per-artist prose/relationship fields are only
+//    read by views that mount AFTER music-rest merges (ArtistView in rotation-views2.jsx,
+//    MapView in rotation-worldmap.jsx). Nothing on Overview's first paint — the FACT_RULES in
+//    rotation-lab2.jsx, TopArtistsPeek/OverviewView in rotation-views1.jsx, or storyOfDay in
+//    rotation-insights.jsx — touches them (verified field-by-field). So we strip them out of the
+//    eager ARTISTS array and ship them in an id-keyed map (ARTIST_X) inside music-rest.js. The
+//    rest file Object.assigns ARTIST_X[id] back onto the SAME record objects (which byId/expById
+//    already reference) BEFORE _restLoaded flips, so every post-rest consumer sees identical
+//    records to today. The build itself keeps the FULL records (STYLE_ATLAS bridges reads
+//    a.styles at line ~1564, connections mutation at ~1984, etc.), so we only split at emit time.
+const ARTIST_HEAVY = ["bio", "wd", "members", "topTracks", "topAlbums", "similar", "similarNames", "styles", "discogsGenres", "spotGenres", "origin"];
+const ARTIST_X = {};       // id → { heavy fields } — deferred, merged by music-rest.js
+const ARTISTS_CORE = ARTISTS.map(a => {
+  const core = {}, heavy = {};
+  for (const k in a) (ARTIST_HEAVY.includes(k) ? heavy : core)[k] = a[k];
+  ARTIST_X[a.id] = heavy;
+  return core;
+});
 // ── split emit (Phase 0): music-core.js (eager, everything Overview's first paint reads +
 //    the inputs the runtime helpers need) + music-rest.js (deferred, injected after paint).
 //    music-rest merges into window.ROTATION via Object.assign, so any Node consumer can
@@ -3414,7 +3432,7 @@ for (const a of ARTISTS) { if (!SPOTIMG_OUT[a.id]) { const s = SPOT[a.name]; if 
 //    Split rule: a key belongs in REST only if NOTHING on the Overview first paint reads it.
 //    EXPLORE is deferred but Overview needs its COUNT → shipped as EXPLORE_N in core. ──
 const CORE = {
-  ARTISTS, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
+  ARTISTS: ARTISTS_CORE, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
   CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
   FAMILIES: FAMILIES_OUT, SUBS, GENRE_FLOW, THUMBS, SPOTIMG: SPOTIMG_OUT,
   AUDIO_DIST, GIGS, TOUR, EXPLORE_N: EXPLORE.length,
@@ -3433,6 +3451,7 @@ if (GEOGRAPHY) {
 }
 const REST = {
   EXPLORE, ALBUMS, AUDIO: AUDIO_OUT, ARTIST_CLOCK, SUB_ARTISTS, CLOCK_BY_YEAR,
+  ARTIST_X,   // id → heavy per-artist fields; folded back onto the ARTISTS records (see merge below)
 };
 const DATA = CORE;   // the core file's IIFE builds window.ROTATION from these
 const out = `// ────────────────────────────────────────────────────────────────
@@ -3487,6 +3506,12 @@ const restOut = `// ─── Rotation — deferred data (music-rest.js) · GENE
   var R = window.ROTATION; if (!R) return;
   var REST = ${JSON.stringify(REST)};
   for (var k in REST) R[k] = REST[k];
+  // fold the heavy per-artist fields (ARTIST_X) back onto the SAME record objects the core built,
+  // which R.byId (and every post-rest consumer) already references — so ArtistView/MapView see full
+  // records identical to the pre-split build. Must run BEFORE _restLoaded flips.
+  var AX = REST.ARTIST_X || {};
+  for (var _id in AX) { var _rec = R.byId[_id]; if (_rec) { var _h = AX[_id]; for (var _f in _h) _rec[_f] = _h[_f]; } }
+  delete R.ARTIST_X;
   R.expById = {};
   for (var i = 0; i < R.EXPLORE.length; i++) R.expById[R.EXPLORE[i].id] = R.EXPLORE[i];
   R._restLoaded = true;

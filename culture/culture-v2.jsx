@@ -616,7 +616,9 @@ function TagBadgeExplorer({ items, onOpenItem }) {
             {results.slice(0, 140).map(it => {
               const img = it.poster || it.tmdbPoster || it.igdbCover || it.bookCover;
               return (
-                <a key={it.id} className="xcover" onClick={() => onOpenItem && onOpenItem(it)} title={`${displayTitle(it)} (${it.year || ''})`}>
+                <a key={it.id} className="xcover" role="button" tabIndex={0} aria-label={displayTitle(it)}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpenItem && onOpenItem(it); } }}
+                  onClick={() => onOpenItem && onOpenItem(it)} title={`${displayTitle(it)} (${it.year || ''})`}>
                   {img ? <img src={img} alt="" loading="lazy" />
                        : <span className="xcover-fallback" style={{ '--pf-bg': spineBodyColor(it) }}>{MG[it.medium] || '•'}</span>}
                 </a>
@@ -1630,6 +1632,8 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
         onMouseDown={(e) => { if (e.button === 1) e.preventDefault(); }}
         onAuxClick={(e) => handleAuxClick(e, item)}
         title={item.title}
+        role="button" tabIndex={0} aria-label={item.title}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(item); } }}
       >
         <img className="layer-img" src={item.poster || item.tmdbPoster || item.igdbCover || item.bookCover} alt={item.title} loading="lazy"/>
         <div className="layer-spine">
