@@ -90,8 +90,7 @@
  ],
  "chernobyl": [
   "acting",
-  "devastating",
-  "intense"
+  "devastating"
  ],
  "cinema-paradiso": [
   "bittersweet",
@@ -199,7 +198,8 @@
  "fma-brotherhood": [
   "cerebral",
   "devastating",
-  "impact"
+  "impact",
+  "haunting"
  ],
  "galactic-railroad": [
   "devastating",
@@ -219,7 +219,8 @@
   "worldbuilding"
  ],
  "green-planet": [
-  "cerebral"
+  "cerebral",
+  "cinematography"
  ],
  "gta-iv": [
   "impact"
@@ -232,7 +233,8 @@
   "devastating"
  ],
  "heavy-rain": [
-  "thrilling"
+  "thrilling",
+  "impact"
  ],
  "hilda": [
   "gentle"
@@ -576,7 +578,8 @@
   "formal-exec"
  ],
  "mary-and-max": [
-  "bittersweet"
+  "bittersweet",
+  "writing"
  ],
  "mass-effect": [
   "worldbuilding"
@@ -685,7 +688,8 @@
   "bittersweet"
  ],
  "promare": [
-  "gem"
+  "gem",
+  "thrilling"
  ],
  "psycho-pass": [
   "horrifying"
@@ -756,7 +760,8 @@
  "spec-ops": [
   "haunting",
   "intense",
-  "formal-exec"
+  "formal-exec",
+  "horrifying"
  ],
  "spider-verse": [
   "impact",
@@ -764,7 +769,8 @@
  ],
  "squid-game": [
   "intense",
-  "social-xray"
+  "social-xray",
+  "style"
  ],
  "steins-gate": [
   "devastating",
@@ -855,7 +861,8 @@
  "twin-peaks": [
   "mindbending",
   "score",
-  "singular"
+  "singular",
+  "direction"
  ],
  "undertale": [
   "cognitive"
@@ -1645,7 +1652,8 @@
  ],
  "yamadas": [
   "gentle",
-  "satire"
+  "satire",
+  "social-xray"
  ],
  "your-name": [
   "bittersweet",
@@ -1656,5 +1664,8 @@
  ],
  "ikiru": [
   "formal-exec"
+ ],
+ "wolf-among-us": [
+  "writing"
  ]
 }
