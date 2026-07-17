@@ -1,15 +1,35 @@
 > Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
 
-# Backlog & session checkpoint — 2026-07-10
+# Backlog & session checkpoint — 2026-07-18
 
 Consolidated "what shipped recently + what's queued," written for a cold pickup after a context
 compaction. Companion to `rotation/ROADMAP.md` (the big plan), `rotation/SPOTIFY.md`,
-`rotation/ARCHITECTURE.md`. Rotation deploy = push `.jsx`/data to `main`; CI precompiles jsx and
-runs `build-data.js` (needs `fuadex.csv`). Canvas/Culture golden rule: bump `?v=` in index.html.
+`rotation/ARCHITECTURE.md`. Rotation and Canvas: push `.jsx`/data to `main`; CI precompiles and
+auto-stamps content-hash `?v=`. Culture: always bump the manual `?v=` epoch on
+any data or code change.
 
 ---
 
-## Recently shipped (this arc)
+## Shipped 2026-07-18 (full-project audit)
+
+- **PWA shell** across all three apps (manifest, sw.js, icons, HTTPS-only registration,
+  tiered caching). Installable on desktop + mobile. DONE.
+- **Content-hash auto-stamping** in `stage-site.js`: hub root + per-app `index.html` refs
+  (including `hub.css` which was unstamped). DONE.
+- **SW cache epoch** (`__BUILD__` → staged-content digest) stamped at stage time. DONE.
+- **stage-site.js: fail always on missing files** (was CI-only). DONE.
+- **sync.yml smoke steps** given distinct names. DONE.
+- **Culture lazy-loading**: ~12 MB overlays on demand; ~830 KB eager. DONE.
+- **Rotation music-core split**: eager boot ~3.5 → ~2.1 MB. DONE.
+- **`instrumentals.js`** deployed in rotation. DONE.
+- **OG/Twitter cards + favicons** on all three apps (culture favicon.svg new). DONE.
+- **11-bug P1 sweep** (boot-path failures). DONE.
+- **a11y pass** across all apps. DONE.
+- **`blurb-demo.js`** removed from apps.json deploy list. DONE.
+
+---
+
+## Recently shipped (prior arc)
 
 **Reads pipeline** — `rotation/llm-about.js` now ~9,864 entries (haiku ~7,763 / sonnet ~5,829 /
 opus ~4,226 / web / fable). Keyed `artistSlug~trackSlug` using build-data's **hash-fallback slug**
@@ -168,7 +188,7 @@ agents per wave as before. Wave A (>=5 plays, 2,387 tracks) awaits his explicit 
   inline type errors immediately.
 - **Tauri desktop packaging** — Rust-shelled webview (~5 MB binaries vs Electron ~100 MB) as
   the deliverable format if the hub is ever packaged as a local app for other people's data.
-  PWA comes first; Tauri is the follow-on if a packaged install is needed.
+  PWA shipped (2026-07-18); Tauri is the follow-on if a native packaged install is ever needed.
 - **Essentia as the open-source audio-features base** — if Rotation is ever open-sourced,
   per-track audio features must come from Essentia (open-source audio analysis; needs actual
   audio files) instead of the current non-redistributable sources. Mark as the designated
@@ -180,7 +200,9 @@ agents per wave as before. Wave A (>=5 plays, 2,387 tracks) awaits his explicit 
 - **Slug keying:** always use build-data's `slug()` with the empty→`"a-"+_slugHash(...)` fallback
   (build-data.js:56). A plain slug mis-keys ALL CJK content. Node keying scripts that replicate it:
   `.sptmp/key-spotify.js`, `.sptmp/nl-targets.js`. `R.slug` (frontend) already matches.
-- **Rotation jsx has NO `?v=`** — CI precompiles. Committing `.jsx`/`build-data.js`/data files is enough.
+- **Rotation and Canvas: no manual `?v=`** — CI precompiles `.jsx`; `stage-site.js` auto-stamps
+  content-hash `?v=` on all local refs. Committing files is enough. **Culture: always bump the
+  manual `?v=` epoch** in `culture/index.html` on any data/code change.
 - **New data files must be added to `apps.json` `deploy` list** or they won't ship.
 - **PRIVATE, never commit:** `*.zip`/`*.gz`/`*.sqlite*`/`*.parquet`, `Spotify Extended Streaming
   History/`, `Spotify Account Data/`, dump provenance in tracked files. Inspect zips in-memory.

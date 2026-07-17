@@ -16,6 +16,7 @@ guarantee: a new app can't destabilise an existing one.
 /                 launcher: index.html + hub.css + apps.json (+ favicon.svg, og.png, CNAME)
 /rotation/        music app — own index.html, jsx, data, build pipeline, ARCHITECTURE/ROADMAP
 /culture/         film/games/books app — own index.html, jsx, css, data + Python workshop
+/canvas/          art-gallery app — own index.html, jsx, css, data
 .github/workflows build + deploy (sync.yml), weekly enrichment (enrich.yml)
 stage-site.js     manifest-driven deploy stager (reads apps.json → _site/)
 ```
@@ -26,29 +27,51 @@ An app is a top-level folder that:
 2. never reaches into another app's folder (no shared globals, no shared CSS),
 3. declares what to deploy via its entry in `apps.json` (`deploy` = explicit file list, so
    workshop/caches are never shipped),
-4. may bring its own build step and its own nested `.gitignore`.
+4. ships a PWA shell: `manifest.webmanifest`, `sw.js`, `icon-192.png`, `icon-512.png` (all
+   listed in `deploy`; `sw.js` gets its `__BUILD__` token replaced with a content-digest of
+   the staged app directory at stage time),
+5. may bring its own build step and its own nested `.gitignore`.
 
 ## apps.json
 Single source of truth for what exists and what ships:
 ```json
-{ "hubFiles": ["index.html","hub.css","apps.json","favicon.svg","og.png","CNAME"],
-  "apps": [ { "id","name","tagline","accent","path","deploy":[…] }, … ] }
+{ "hubFiles": ["index.html","hub.css","apps.json","hub-stats.json","favicon.svg","og.png","CNAME"],
+  "apps": [ { "id","name","tagline","accent","path","precompile":true,"deploy":[…] }, … ] }
 ```
 `hubFiles` land at `_site/` root; each app's `deploy` files land at `_site/<id>/`.
+The `precompile` flag tells `stage-site.js` to Babel-compile the app's `.jsx` → `.js` in the
+staged copy only (authoring stays buildless locally). All three apps currently carry
+`"precompile": true`.
 
 ## Deploy
 `node stage-site.js` (run from repo root, after any per-app build) rebuilds `_site/` from
 `apps.json`. CI runs Rotation's `build-data.js`/`sync-live.js` inside `rotation/` first, then
-the stager, then uploads `_site/` as the Pages artifact. In CI, a missing deploy file fails the
-build (guarded by `process.env.CI`); locally it only warns (Rotation's generated data isn't
-present until you build).
+the stager, then uploads `_site/` as the Pages artifact. **A missing deploy-list file always
+fails the stage** (locally and in CI alike — the CI-only guard was removed 2026-07-18).
+
+`stage-site.js` also:
+- Content-hash stamps every local unversioned `<script>`/`<link>` ref in the hub root
+  `index.html` and each per-app `index.html` (8-char MD5 of the staged file appended as `?v=`).
+  Manual `?v=` params (Culture's runtime epoch) are left untouched.
+- Replaces `__BUILD__` in each app's `sw.js` with a digest of the full staged app directory,
+  so the service-worker cache epoch updates whenever any deployed byte changes.
 
 ## Adding a new app (e.g. Museums, Travel)
 1. `mkdir <app>/`, drop in its `index.html` + relative assets (any stack).
-2. Add an object to `apps.json` (`id`, `name`, `tagline`, `accent`, `path`, `deploy` list).
-3. Add a card to the root `index.html` launcher (until the launcher goes data-driven).
-4. Deploy — `stage-site.js` picks it up automatically; the workflow needs no edit.
-5. If the app has its own data pipeline, give it its own build step; it stays inside the folder.
+2. Add a PWA shell: `manifest.webmanifest`, `sw.js` (with `__BUILD__` placeholder),
+   `icon-192.png`, `icon-512.png`.
+3. Add an object to `apps.json` (`id`, `name`, `tagline`, `accent`, `path`, `deploy` list
+   including the four PWA files, and `"precompile": true` if the app uses `.jsx`).
+4. Add a card to the root `index.html` launcher (until the launcher goes data-driven).
+5. Deploy — `stage-site.js` picks it up automatically; the workflow needs no edit.
+6. If the app has its own data pipeline, give it its own build step; it stays inside the folder.
+
+## PWA
+All three apps are installable as PWAs (desktop + mobile). The pattern is: HTTPS-only
+service-worker registration in `index.html`, tiered caching in `sw.js` (shell/data/lazy
+layers), icons at 192 and 512 px, OG/Twitter cards with correct `fuad.au` canonical URLs.
+No Tauri or Capacitor — deliberate: PWA + Pages keeps push-to-live instant with no native
+build step.
 
 ## Roadmap notes
 - **Dynamic launcher** (wanted): replace the hardcoded cards in `index.html` with a

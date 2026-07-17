@@ -37,17 +37,24 @@ safe to re-run.
 4. Games only: **`python update_igdb.py`** (cover, tags) and/or **`update_game_imdb.py`**
    (IMDb id), **`update_steam_tags.py`** (Steam tags).
 5. Books only: **`python update_books.py`**.
-6. Badges: edit `badges_source.json` → **`python build_badges.py`**. (Or set base
+6. Filmweb notes (if refreshing): **`python scrape_filmweb_reviews.py`** (scrapes your
+   own Filmweb vote comments → CSV), then **`python build_filmweb_notes.py`** (compiles
+   the CSV → `filmweb_notes.js`). The scraper is a prerequisite — don't run the builder
+   against a stale CSV.
+7. Badges: edit `badges_source.json` → **`python build_badges.py`**. (Or set base
    highlights inline in the data file — no build needed for inline.)
-7. EN notes: edit `notes_en_source.json` → **`python build_notes_en.py`**.
-8. **Bump `?v=` in `index.html`** (every `?v=N` → `N+1`). REQUIRED or the change won't show.
-9. Commit + push.
+8. EN notes: edit `notes_en_source.json` → **`python build_notes_en.py`**.
+9. **Bump `?v=` in `index.html`** (every `?v=N` → `N+1`). REQUIRED or the change won't
+   show. Keep the epoch **manual and shared** — the lazy loader reuses it for injected
+   overlay URLs; per-file auto-hashing would break those requests. `build_all.py`
+   automates the bump of the shared epoch across all refs in `index.html`.
+10. Commit + push.
 
 ## Runbook — I added/edited a WISHLIST item
 
 1. **`python update_wishlist_enrich.py`** — writes region/director/runtime/genres/cast/
    `tmdbPoster` into `wishlist_cast.js` (wishlist.js itself stays importer-owned).
-2. Bump `?v=`, commit.
+2. Bump the shared `?v=` epoch, commit.
 
 ## ⚠ Source-mutator scripts (rewrite hand-authored files in place — review the diff)
 

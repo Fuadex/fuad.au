@@ -13,6 +13,48 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
 
 ---
 
+## 2026-07-18
+
+### Cross-app
+- **Full-project audit executed.** P1 sweep across all three apps; fixes shipped the same day.
+- **PWA shell across all apps.** Every app now ships `manifest.webmanifest`, `sw.js`,
+  `icon-192.png`, `icon-512.png`. Tiered service-worker caching; installable on desktop and
+  mobile. No Tauri / Capacitor — deliberate: PWA + Pages keeps push-to-live instant.
+- **Share / meta layer.** All three apps carry correct OG / Twitter cards and `fuad.au`
+  canonical URLs. Culture gained a `favicon.svg` (was missing).
+- **a11y pass.** Accessibility sweep applied across all apps.
+- **CI hardening.** Two sync.yml smoke steps now carry distinct names. `stage-site.js` missing-
+  file guard now fails always (was CI-only), so a local stage with gaps also aborts.
+
+### Rotation
+- **Boot no longer blocks on data.** `music-core.js` + `live-data.js` load with `defer`; the
+  Spotify ♥/engagement overlays inject after first paint. First contentful paint dropped from
+  ~25s to ~4s on a throttled-mobile simulation.
+- **music-core artist split.** The heavy per-artist fields (bios, top tracks/albums, links)
+  moved out of the eager `music-core.js` (3.5 → 2.1 MB) into the deferred `music-rest.js`,
+  merged back in place before any consumer reads them.
+- **`instrumentals.js` deployed.** Instrumental tracks get an honest "no words to read" slot.
+
+### Culture
+- **Lazy-loading.** ~12 MB of data overlays now load on demand; only ~830 KB eager on boot
+  (was everything upfront). Shelves paint in ~0.5s. Runtime `?v=` epoch stays manual.
+- **Stats filters completed.** Animation-director, production-company and composer histograms
+  now filter the library like the rest.
+
+### Canvas
+- **Manual `?v=` retired** — cache-busting is stamped automatically at deploy.
+- **Museum pages widened** (index rows full-window; content below the museum module full-width)
+  and **"/" now summons search** like the other apps.
+
+### Hub
+- **Content-hash cache-busting auto-applied** by `stage-site.js` to every local unversioned
+  script / CSS ref in the hub root `index.html` and each per-app `index.html` (including
+  `hub.css`, which was previously unstamped and cached stale after changes).
+- **SW cache epoch stamped** at stage time: `__BUILD__` in each `sw.js` is replaced with a
+  digest of the full staged app directory.
+
+---
+
 ## 2026-07-08
 
 ### Cross-app

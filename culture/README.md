@@ -23,7 +23,9 @@ is there too, predicted and taste-ranked. About 3,300 seen entries and 1,340 sti
   thematic tags (visuals, atmosphere, rewatchable, …).
 - **Badge taxonomy** — a hand-curated system of ~30 thematic and craft tags compiled into
   each item's entry; frequency charts and co-occurrence audits built in.
-- **Stats** — play counts by medium, region, decade, director frequency, and badge heat maps.
+- **Stats** — play counts by medium, region, decade; director, actor, animation-director,
+  production-company, and composer frequency histograms — all wired as live library filters.
+  Badge heat maps.
 - **Wishlist** — the unseen canon sorted by a predicted-rating model (genre priors × rating
   curve × tag overlap with what I already love), each entry enriched with cast, runtime, and
   a TMDB poster.
@@ -40,22 +42,28 @@ is there too, predicted and taste-ranked. About 3,300 seen entries and 1,340 sti
 
 **Buildless React + Babel-in-browser.** A single `culture-v2.jsx` compiles in the visitor's
 browser via `@babel/standalone`; no bundler, no server. Production ships the same files with
-a `?v=` cache-bust bump on every change.
+a `?v=` cache-bust bump on every change. The app is a **PWA**: `manifest.webmanifest`,
+`sw.js` (tiered service-worker cache), and icons make it installable.
+
+**Lazy loading (2026-07-18).** `index.html` eagerly loads only `data.js`, `imports.js`,
+and `badges.js` (~830 KB). The heavy overlays are injected on demand by `loadLazySet()` —
+triggered by the first Reader open or Wishlist/Tonight entry, plus a 2.5-second idle
+preload. This removes ~12 MB of blocking JavaScript from the initial page load.
 
 **Data model: hand-authored canon + generated overlays.**
 
 ```
 data.js         hand-authored  ─┐
 imports.js      hand-authored  ─┤──▶ runtime merge (enrichExtras()) ──▶ seenItems
-wishlist.js     hand-authored  ─┘                                       wishlistItems
+wishlist.js     hand-authored  ─┘  (wishlist.js loaded lazily)         wishlistItems
 
-cast_data.js       generated overlay (keyed by item id)
-omdb_data.js       generated overlay
-tmdb_data.js       generated overlay
-books_data.js      generated overlay
-badges.js          generated overlay (compiled from badges_source.json)
-notes_en.js        generated overlay (compiled from notes_en_source.json)
-script_mood.js     generated overlay (NRC sentiment from screenplay transcripts)
+cast_data.js       generated overlay (keyed by item id) ─┐
+omdb_data.js       generated overlay                      │  loaded lazily
+tmdb_data.js       generated overlay                      │  on first Reader open
+books_data.js      generated overlay                      │  or Wishlist entry
+notes_en.js        generated overlay                     ─┘
+badges.js          generated overlay (compiled from badges_source.json) — eager
+script_mood.js     generated overlay (NRC sentiment from screenplay transcripts) — lazy
 ```
 
 Three hand-edited files carry the canon directly: `data.js` (curated favourites with inline
