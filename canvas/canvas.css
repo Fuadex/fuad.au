@@ -101,6 +101,56 @@ a { color: inherit; }
 .cv-mus-row[data-kind="natural-history"] .cv-mus-name::after { content: " 🦕"; font-size: 13px; }
 .cv-mus-namelink { cursor: pointer; }
 .cv-mus-namelink:hover { color: var(--accent); text-decoration: underline; }
+
+/* ——— museums index: country-grouped card gallery (cv-musidx-) ——— */
+.cv-musidx { padding: 22px 34px 64px; max-width: 1180px; }
+.cv-musidx-sec { margin: 0 0 34px; }
+.cv-musidx-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin: 0 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+.cv-musidx-country { font: 600 20px/1.1 var(--serif); color: var(--ink); margin: 0; letter-spacing: -.01em; }
+.cv-musidx-tally { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin: 0; }
+.cv-musidx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.cv-musidx-rest { margin-top: 14px; }
+
+.cv-musidx-card { display: flex; flex-direction: column; background: #d8cbb8; border-radius: 5px; overflow: hidden; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; box-shadow: 0 1px 3px rgba(40,28,14,.1); }
+.cv-musidx-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(40,28,14,.2); }
+.cv-musidx-thumb { aspect-ratio: 16 / 10; overflow: hidden; background: #cabda8; }
+.cv-musidx-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cv-musidx-body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 4px; }
+.cv-musidx-name { font: 600 15px/1.28 var(--serif); color: var(--ink); }
+.cv-musidx-read { color: var(--accent); }
+.cv-musidx-card[data-kind="natural-history"] .cv-musidx-name::after { content: " 🦕"; font-size: 13px; }
+.cv-musidx-city { font: 500 9.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
+.cv-musidx-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 6px; font: 500 10.5px/1 var(--mono); letter-spacing: .04em; }
+.cv-musidx-met { color: var(--accent); }
+.cv-musidx-met.cv-musidx-none { color: var(--ink-faint); font-style: normal; text-transform: none; letter-spacing: .02em; }
+.cv-musidx-floored { color: var(--ink-soft); }
+.cv-musidx-deck { text-decoration: none; color: var(--ink); background: rgba(26,20,14,.07); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px; letter-spacing: .06em; text-transform: uppercase; font-size: 9.5px; }
+.cv-musidx-deck:hover { border-color: var(--accent-soft); color: var(--accent); }
+
+/* text-only variant: no facade image, ink card echoing the wall's cv-text tiles */
+.cv-musidx-text { background: var(--ink); }
+.cv-musidx-text .cv-musidx-name { color: var(--paper); }
+.cv-musidx-text .cv-musidx-city { color: rgba(227,216,200,.55); }
+.cv-musidx-text .cv-musidx-floored { color: rgba(227,216,200,.8); }
+.cv-musidx-text .cv-musidx-met.cv-musidx-none { color: rgba(227,216,200,.5); }
+.cv-musidx-text .cv-musidx-deck { color: #f2e9dc; background: rgba(232,221,204,.08); border-color: rgba(232,221,204,.2); }
+.cv-musidx-text .cv-musidx-deck:hover { color: var(--accent-soft); border-color: var(--accent-soft); }
+
+/* quiet venues: no works met yet — present but recessive */
+.cv-musidx-quiet { opacity: .78; }
+.cv-musidx-quiet:hover { opacity: 1; }
+
+.cv-musidx-more { display: inline-block; margin-top: 12px; font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+.cv-musidx-more:hover { color: var(--ink); border-color: var(--ink-faint); }
+
+@media (max-width: 620px) {
+  .cv-musidx { padding: 18px 16px 54px; }
+  .cv-musidx-grid { grid-template-columns: 1fr; gap: 12px; }
+}
+@media (max-width: 360px) {
+  .cv-musidx { padding: 16px 12px 50px; }
+}
+
 .cv-r-venue { cursor: pointer; color: var(--accent); text-decoration: none; border-bottom: 1px solid oklch(0.66 0.14 46 / .3); }
 .cv-r-venue:hover { border-bottom-color: var(--accent); }
 .cv-deck-headlink { cursor: pointer; }

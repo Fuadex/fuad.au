@@ -935,34 +935,108 @@ function Reader({ id, go }) {
   );
 }
 
+// ——— Museums index (#/museums): a country-grouped card gallery of every venue walked.
+// Sections order by total works met (desc). Within a country, venues split three ways:
+//   met  — the owner met canon works here (cards ordered by met desc, floored as tiebreak)
+//   quiet — no met works, but a read/highlights/deck give it a reason to exist (muted cards)
+//   rest — neither; folded into a "…and N more venues" row.
+// A card reads: facade thumb (CANVAS_MUSEUM_DATA.img) or a cv-text variant, name, city,
+// met + ★ floored counts, a ✦ marker when a read exists, a "deck" chip → #/deck/<id>.
+// Whole card → #/museum/<id>. Fallback country name for codes outside COUNTRY.
+function countryName(cc) {
+  if (COUNTRY[cc]) return COUNTRY[cc];
+  try { return new Intl.DisplayNames(["en"], { type: "region" }).of((cc || "").toUpperCase()) || (cc || "").toUpperCase(); }
+  catch (e) { return (cc || "").toUpperCase(); }
+}
+
+function MuseumCard({ m, go, quiet }) {
+  const DATA = (window.CANVAS_MUSEUM_DATA || {})[m.id] || null;
+  const hasRead = !!(window.CANVAS_MUSEUM_ABOUT || {})[m.id];
+  const hasDeck = !!(m.deck && m.deck.length);
+  const img = DATA && DATA.img ? DATA.img : null;
+  const name = m.name.replace(/\s*\(.*\)$/, "");
+  return (
+    <div className={"cv-musidx-card" + (img ? "" : " cv-musidx-text") + (quiet ? " cv-musidx-quiet" : "")}
+      data-kind={m.kind} onClick={() => go("museum", m.id)} title={"open " + name}>
+      {img
+        ? <div className="cv-musidx-thumb"><img src={img} alt={name} loading="lazy" /></div>
+        : null}
+      <div className="cv-musidx-body">
+        <div className="cv-musidx-name">{name}{hasRead ? <span className="cv-musidx-read" title="has a read"> ✦</span> : null}</div>
+        <div className="cv-musidx-city">{m.city}</div>
+        <div className="cv-musidx-meta">
+          {m.met ? <span className="cv-musidx-met">{m.met} met</span> : <span className="cv-musidx-met cv-musidx-none">no works met yet</span>}
+          {m.floored ? <span className="cv-musidx-floored">★ {m.floored}</span> : null}
+          {hasDeck ? <a className="cv-musidx-deck" href={"#/deck/" + m.id} onClick={(e) => e.stopPropagation()} title="deal the recall deck">deck</a> : null}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Museums({ go }) {
   const HL = window.CANVAS_HIGHLIGHTS || {};
-  const rows = useMemo(() => {
-    const counts = {};
-    for (const w of WORKS) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt])) if (id) counts[id] = (counts[id] || 0) + 1;
+  const sections = useMemo(() => {
+    // per-museum met/floored tallies from the enriched canon (seenAt → this venue).
+    const met = {}, floored = {};
+    for (const w of WORKS.map(enrich)) {
+      for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt])) {
+        if (!id) continue;
+        met[id] = (met[id] || 0) + 1;
+        if (w.floored || w.favorite) floored[id] = (floored[id] || 0) + 1;
+      }
+    }
     const by = {};
-    for (const m of MUSEUMS) (by[m.country] = by[m.country] || []).push({ ...m, ...( AD.museums[m.id] || {}), works: counts[m.id] || 0 });
-    return Object.entries(by).sort((a, b) => b[1].length - a[1].length);
+    for (const m of MUSEUMS) {
+      const row = { ...m, ...(AD.museums[m.id] || {}), met: met[m.id] || 0, floored: floored[m.id] || 0, deck: HL[m.id] || null };
+      (by[m.country] = by[m.country] || []).push(row);
+    }
+    // section order: total works met desc, then museum count desc as tiebreak.
+    return Object.entries(by).map(([cc, list]) => {
+      const metWorks = list.reduce((s, m) => s + m.met, 0);
+      // within a country: met venues first (met desc, floored tiebreak), then quiet (read/deck), then rest.
+      const has = (m) => m.deck || (window.CANVAS_MUSEUM_ABOUT || {})[m.id] || (window.CANVAS_MUSEUM_DATA || {})[m.id];
+      const withMet = list.filter(m => m.met > 0).sort((a, b) => b.met - a.met || b.floored - a.floored || a.name.localeCompare(b.name));
+      const quiet = list.filter(m => m.met === 0 && has(m)).sort((a, b) => a.name.localeCompare(b.name));
+      const rest = list.filter(m => m.met === 0 && !has(m)).sort((a, b) => a.name.localeCompare(b.name));
+      return { cc, metWorks, count: list.length, withMet, quiet, rest };
+    }).sort((a, b) => b.metWorks - a.metWorks || b.count - a.count);
   }, []);
   return (
-    <div className="cv-mus">
-      {rows.map(([cc, list]) => (
-        <React.Fragment key={cc}>
-          <div className="cv-mus-country">{COUNTRY[cc] || cc}</div>
-          {list.map(m => (
-            <div className="cv-mus-row" key={m.id} data-kind={m.kind}>
-              <span className="cv-mus-name cv-mus-namelink" onClick={() => go("museum", m.id)} title="open the museum page">{m.name.replace(/\s*\(.*\)$/, "")}</span>
-              <span className="cv-mus-city">{m.city}{m.visits && m.visits[0] !== "TBC" ? ` · ${m.visits.join(", ")}` : ""}</span>
-              <span className="cv-mus-count">
-                {m.works ? `${m.works} in the canon · ` : ""}
-                {HL[m.id] ? <a className="cv-deal" href={"#/deck/" + m.id}>deal the deck ({HL[m.id].length}) →</a> : "—"}
-              </span>
-              {m.note && <span className="cv-mus-note">{m.note}</span>}
-            </div>
-          ))}
-        </React.Fragment>
+    <div className="cv-musidx">
+      {sections.map(sec => (
+        <MuseumSection key={sec.cc} sec={sec} go={go} />
       ))}
     </div>
+  );
+}
+
+function MuseumSection({ sec, go }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <section className="cv-musidx-sec">
+      <header className="cv-musidx-head">
+        <h2 className="cv-musidx-country">{countryName(sec.cc)}</h2>
+        <p className="cv-musidx-tally">{sec.count} museum{sec.count === 1 ? "" : "s"}{sec.metWorks ? ` · ${sec.metWorks} works met` : ""}</p>
+      </header>
+      {(sec.withMet.length || sec.quiet.length) ? (
+        <div className="cv-musidx-grid">
+          {sec.withMet.map(m => <MuseumCard key={m.id} m={m} go={go} />)}
+          {sec.quiet.map(m => <MuseumCard key={m.id} m={m} go={go} quiet />)}
+        </div>
+      ) : null}
+      {sec.rest.length ? (
+        open ? (
+          <div className="cv-musidx-grid cv-musidx-rest">
+            {sec.rest.map(m => <MuseumCard key={m.id} m={m} go={go} quiet />)}
+          </div>
+        ) : (
+          <button className="cv-musidx-more" onClick={() => setOpen(true)}>
+            …and {sec.rest.length} more venue{sec.rest.length === 1 ? "" : "s"}
+          </button>
+        )
+      ) : null}
+    </section>
   );
 }
 
