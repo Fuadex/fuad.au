@@ -3214,8 +3214,8 @@ if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
     lastGig: gigs.reduce((m, g) => g.date > m ? g.date : m, gigs[0].date),
     gigs, // already newest-first from the enricher
     byYear,
-    // acts you saw AND love — ranked by how much you play them
-    seenTop: uniqArtists.filter(a => a.inLibrary).sort((a, b) => b.plays - a.plays).slice(0, 12),
+    // acts you saw AND love — ranked by how much you play them (deep enough for the +12 pager)
+    seenTop: uniqArtists.filter(a => a.inLibrary).sort((a, b) => b.plays - a.plays).slice(0, 60),
     // saw live but (almost) never played — festival discoveries / support acts
     strangers: uniqArtists.filter(a => !a.inLibrary).slice(0, 12),
     // artists you saw before you were a fan

@@ -2480,7 +2480,7 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes, focus }) {
 function TourSection({ go, gigDate }) {
   const R = window.ROTATION;
   const [tour, setTour] = React.useState(window.ROTATION_TOUR || null);
-  const [showAll, setShowAll] = React.useState(false);
+  const [limit, setLimit] = React.useState(20);   // expand by +40 per click (Fuad 2026-07-18)
   const [gran, setGran] = React.useState("m");
   const [selKey, setSelKey] = React.useState(null);   // calendar bucket ("2026-08" / week-start / day)
   const [city, setCity] = React.useState(null);       // "CC|City" from a map dot
@@ -2554,7 +2554,8 @@ function TourSection({ go, gigDate }) {
     return [...byA.values()].filter(r => r.pts.length >= 2);
   }, [mapEvents, checked]);
   const anyFilt = gkey != null || sub != null || city != null || selKey != null;
-  const shown = showAll ? artists : artists.slice(0, 20);
+  React.useEffect(() => { setLimit(20); }, [gkey, sub, city, selKey, gran]);   // fresh slice → back to the first page
+  const shown = artists.slice(0, limit);
   const chips = [];
   if (selKey) chips.push([selKey, () => setSelKey(null)]);
   if (city) chips.push([city.split("|")[1], () => setCity(null)]);
@@ -2636,8 +2637,8 @@ function TourSection({ go, gigDate }) {
           {!artists.length && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 18, textAlign: "center" }}>nothing matches this slice — clear a filter.</div>}
         </div>
         {artists.length > 20 && (
-          <button className="gv-tour-all" onClick={() => setShowAll(!showAll)}>
-            {showAll ? "show fewer" : `show all ${artists.length} artists`}
+          <button className="gv-tour-all" onClick={() => setLimit(l => l >= artists.length ? 20 : l + 40)}>
+            {limit >= artists.length ? "show fewer" : `show ${Math.min(40, artists.length - limit)} more · ${limit} of ${artists.length}`}
           </button>
         )}
       </>}
@@ -2667,15 +2668,17 @@ function GigsView({ go }) {
   // not their position within this filtered queue — TON is #5 overall even if 3rd here.
   // all vs ACTIVE (default — no point queueing for Type O Negative, Fuad 2026-07-14)
   const [bucketMode, setBucketMode] = React.useState("active");
+  const [bucketShown, setBucketShown] = React.useState(12);   // expand by +12 per click (Fuad 2026-07-18)
+  React.useEffect(() => { setBucketShown(12); }, [bucketMode]);
   const bucketList = React.useMemo(
     () => (R.ARTISTS || [])
       .map((a, idx) => ({ a, rank: idx + 1 }))
       .filter(e => !seenIds.has(e.a.id))
-      .filter(e => bucketMode === "all" || !(e.a.life && e.a.life.ended))
-      .slice(0, 12),
+      .filter(e => bucketMode === "all" || !(e.a.life && e.a.life.ended)),
     [seenIds, bucketMode]
   );
 
+  const [seenShown, setSeenShown] = React.useState(12);   // Seen & loved: expand by +12 per click (Fuad 2026-07-18)
   // TIME AT CONCERTS — an honest back-of-envelope: songs heard live × ~4.2 min a song.
   const SONG_MIN = 4.2;
   const crowdHours = Math.round(G.songsSeen * SONG_MIN / 60);
@@ -2721,7 +2724,7 @@ function GigsView({ go }) {
             </div>
           </div>
           <div className="gv-bucket">
-            {bucketList.map(({ a, rank }) => (
+            {bucketList.slice(0, bucketShown).map(({ a, rank }) => (
               <div key={a.id} className="gv-bucket-row" data-link={artistHasPage(a.id)} onClick={() => openArtist(a.id)}>
                 <span className="gv-bucket-n">{rank}</span>
                 <GenCover hue={a.hue} name={a.name} size={34} radius={4} image={a.thumb || a.image} />
@@ -2732,6 +2735,11 @@ function GigsView({ go }) {
               </div>
             ))}
           </div>
+          {bucketList.length > 12 && (
+            <button className="gv-tour-all" onClick={() => setBucketShown(n => n >= bucketList.length ? 12 : n + 12)}>
+              {bucketShown >= bucketList.length ? "show fewer" : `show 12 more · ${Math.min(bucketShown, bucketList.length)} of ${bucketList.length}`}
+            </button>
+          )}
         </section>
       )}
 
@@ -2786,8 +2794,13 @@ function GigsView({ go }) {
           <div className="gv-label">Seen &amp; loved</div>
           <div className="gv-title">The acts you play the most, live in the room.</div>
           <div className="gv-tiles">
-            {G.seenTop.map(a => <Tile key={a.artistId} a={a} sub={(x) => `${fmt(x.plays)} plays`} />)}
+            {G.seenTop.slice(0, seenShown).map(a => <Tile key={a.artistId} a={a} sub={(x) => `${fmt(x.plays)} plays`} />)}
           </div>
+          {G.seenTop.length > 12 && (
+            <button className="gv-tour-all" onClick={() => setSeenShown(n => n >= G.seenTop.length ? 12 : n + 12)}>
+              {seenShown >= G.seenTop.length ? "show fewer" : `show 12 more · ${Math.min(seenShown, G.seenTop.length)} of ${G.seenTop.length}`}
+            </button>
+          )}
         </section>
       )}
 

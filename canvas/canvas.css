@@ -103,7 +103,7 @@ a { color: inherit; }
 .cv-mus-namelink:hover { color: var(--accent); text-decoration: underline; }
 
 /* ——— museums index: country-grouped card gallery (cv-musidx-) ——— */
-.cv-musidx { padding: 22px 34px 64px; max-width: 1180px; }
+.cv-musidx { padding: 22px 34px 64px; max-width: none; }   /* rows span the full window (Fuad 2026-07-18) */
 .cv-musidx-sec { margin: 0 0 34px; }
 .cv-musidx-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin: 0 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
 .cv-musidx-country { font: 600 20px/1.1 var(--serif); color: var(--ink); margin: 0; letter-spacing: -.01em; }
@@ -157,8 +157,11 @@ a { color: inherit; }
 .cv-deck-headlink:hover { color: var(--accent); text-decoration: underline; }
 
 /* ——— museum pages (#/museum/<id>) ——— */
-.cv-museum { max-width: 1200px; margin: 0 auto; padding: 24px 34px 70px; }
-.cv-mus-head { background: #24201a; color: #e8ddcc; border-radius: 10px; padding: 26px 30px; display: flex; align-items: flex-start; gap: 26px; }
+/* container spans the full window; the header + museum-read module stay in a readable 1200px
+   band, while everything BELOW the module (encounters, artists, unmet, pilgrimage…) uses the
+   whole monitor width (Fuad 2026-07-18) */
+.cv-museum { max-width: none; margin: 0; padding: 24px 34px 70px; }
+.cv-mus-head { max-width: 1200px; margin: 0 auto; background: #24201a; color: #e8ddcc; border-radius: 10px; padding: 26px 30px; display: flex; align-items: flex-start; gap: 26px; }
 .cv-mus-head-main { flex: 1 1 auto; min-width: 0; }
 .cv-mus-postcard { flex: 0 0 auto; width: min(280px, 34%); margin: 4px 0 0; }
 .cv-mus-postcard img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid rgba(232,221,204,.22); box-shadow: 0 6px 20px rgba(0,0,0,.4), inset 0 0 0 4px #24201a, 0 0 0 5px rgba(232,221,204,.14); }
@@ -170,10 +173,10 @@ a { color: inherit; }
 /* flow-root contains the floated interior INSIDE the read pane — without it a short read
    lets the float poke below the pane and steal width from the artists row underneath */
 .cv-mus-read-pane { display: flow-root; }
-.cv-mus-interior { float: right; width: 40%; margin: 4px 0 14px 20px; }
+.cv-mus-interior { float: right; width: 40%; margin: 14px 0 16px 24px; }   /* extra top margin keeps the photo off the Info/Interpretation buttons */
 .cv-mus-interior img { display: block; width: 100%; height: auto; max-height: 240px; object-fit: cover; border-radius: 6px; box-shadow: 0 4px 16px rgba(40,28,14,.2); }
 .cv-mus-interior figcaption { font: 500 9px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 6px; text-align: center; }
-.cv-mus-interior-solo { float: none; width: min(360px, 60%); margin: 22px 0 0; }
+.cv-mus-interior-solo { float: none; width: min(360px, 100%); margin: 22px 0 0; }
 .cv-mus-h1 { font: 600 32px/1.12 var(--serif); margin: 0; color: #f2e9dc; }
 .cv-mus-head[data-kind="natural-history"] .cv-mus-h1::after { content: " 🦕"; font-size: 22px; }
 .cv-mus-sub { font: 500 11px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(232,221,204,.6); margin-top: 8px; }
@@ -187,7 +190,8 @@ a { color: inherit; }
 .cv-mus-stats > span { white-space: nowrap; }
 .cv-mus-gradebtn { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #f2e9dc; text-decoration: none; border: 1px solid rgba(232,221,204,.4); border-radius: 999px; padding: 8px 14px; margin-left: auto; }
 .cv-mus-gradebtn:hover { border-color: var(--accent-soft); color: oklch(0.82 0.14 60); }
-.cv-mus-read-pane { margin-top: 22px; }
+.cv-mus-read-pane { margin: 22px auto 0; max-width: 1200px; }
+.cv-mus-read-pane .cv-r-read-head { margin-bottom: 6px; }   /* breathing room between the tier buttons and the interior photo */
 .cv-mus-wall { padding: 12px 0 0; column-count: 6; }
 @media (max-width: 1500px) { .cv-mus-wall { column-count: 5; } }
 @media (max-width: 1200px) { .cv-mus-wall { column-count: 4; } }
