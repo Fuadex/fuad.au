@@ -839,6 +839,8 @@ function Reader({ id, go }) {
         {w.img && <img className="hero" src={w.img} alt={w.title}
           title={inspect ? "click to open the study" : "click to zoom"}
           style={{ cursor: inspect ? "pointer" : "zoom-in" }}
+          role="button" tabIndex={0} aria-label={(inspect ? "open the study of " : "zoom into ") + w.title}
+          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); (inspect ? () => go("study", w.id) : openZoom)(); } }}
           onClick={inspect ? () => go("study", w.id) : openZoom} />}
         <div className="cv-r-body">
           <h1 className="cv-r-title">{w.title.replace(/^TBC — /, "")}</h1>
