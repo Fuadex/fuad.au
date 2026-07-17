@@ -717,3 +717,10 @@ function Lab2View() {
 // Wire up go() — Lab2View reads it from a global set by RotationApp.
 // RotationApp calls Object.assign(window, { __lab2Go: go }) after mounting.
 // Fallback: no-op.
+
+// Factor the fact-rules engine onto window so Overview (rotation-views1) can share the exact
+// same data-derived one-liners in its "Your portrait" + "Where to dig" modules (Phase 1 of the
+// Overview makeover, Fuad 2026-07-17). lab2 stays the single source of truth for the derivations;
+// Overview just picks a subset of rule ids per module. Ordering-safe: views1 loads BEFORE lab2 in
+// index.html but only reads window.FACT_RULES at render time (after every script has evaluated).
+Object.assign(window, { FACT_RULES });
