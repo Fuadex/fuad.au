@@ -70,9 +70,11 @@ exactly culture's contract):
 | `similar.js` | Wikidata movement/teacher/student graph + shared-collection co-occurrence | "if this, then…" per artist and per work |
 | `museum_data.js` | Wikidata + museum APIs | collection highlights (the recall-deck source), coordinates, official links |
 
-Same golden rules as culture: bump `?v=` on any change; generated files are never
-hand-edited; scripts are resumable with committed caches (`wikidata_cache.json` etc.)
-so quota/progress survives machine moves.
+Same overlay golden rule as Culture: generated files are never hand-edited; scripts are
+resumable with committed caches so quota/progress survives machine moves. **Cache-busting
+is automatic since 2026-07-18**: `index.html` ships refs unversioned; `stage-site.js`
+content-hash stamps every local script/CSS ref at deploy. The manual `?v=` golden rule is
+retired for Canvas (Culture still needs it — see Culture's CLAUDE.md).
 
 ## 3. Data sources — what's actually open (checked July 2026)
 
@@ -192,7 +194,7 @@ everything actionable. Old string verdicts migrate on load.
 
 > 2026-07-07 (later): **Phase 3 artist pages + Artists index SHIPPED** (charcoal header, canon works, majors-you-have-not-met via fame-ranked notable-works fetch, movement labels; Reader artist name links through). **Phase 4b Pilgrimage + wall filters/cap/sorts SHIPPED** the same day (chips x museum x 4 sorts, cap 48 + hang-more; pilgrimage.js hand file seeded with Sanok). Remaining: similar-artists graph, painterly Map + trip timeline (4a), Phase 5 polish (IIIF zoom, palette, Fable reads, Paris Musees depth).
 
-> 2026-07-07 (later still): **Phase 4a painterly Map SHIPPED** (#/map — equirect land from rotation geometry, museum pins sized by canon contribution, trip strip by year from Timeline-matched dates). **Matte fix**: unsure-card dimming moved off the artwork onto the label. **?v= cache-bust convention adopted** (culture golden rule; stage-site carries the query through jsx→js rewrite) — bump on every change.
+> 2026-07-07 (later still): **Phase 4a painterly Map SHIPPED** (#/map — equirect land from rotation geometry, museum pins sized by canon contribution, trip strip by year from Timeline-matched dates). **Matte fix**: unsure-card dimming moved off the artwork onto the label. Cache-busting initially adopted Culture's manual ?v= convention; replaced 2026-07-18 with automatic content-hash stamping in stage-site.js.
 
 > 2026-07-07: **Multi-venue works** (prints, casts, loans seen at several museums) — fold-deck.js now MERGES a duplicate qid instead of dropping it: appends the new museum to seenAt (array), upgrades confidence (unsure→sure on a firm sighting) and floored, marks multiVenue:true, prints a merge report. Reader shows "Where I saw it — an impression at each". Fixed retroactively: The Great Wave (NGV+Met) and Melencolia I (NGV+NGA-DC+Met). seenAt-as-array was already handled everywhere (wall/museums/map/pilgrimage).
 
@@ -211,6 +213,17 @@ everything actionable. Old string verdicts migrate on load.
 > root `CHANGELOG.md` (feature/architecture only; dataset provenance kept local). ?v=6.
 
 > 2026-07-08: **Portrait page SHIPPED** (#/portrait) — Canvas answer to Rotation Stories, all client-side from loaded canon: a generated read paragraph (313 works / 22 museums / 9 countries / fav artist / dominant movement), the palette-of-taste spectrum (every works dominant colour, hue-sorted), movements-by-loved bars (Impressionism 94, Symbolism 34...), a centuries histogram (8th-c Faras to 1900s), and "Who your eye chose" (most-loved artists beyond the named affinity — Morisot/Claudel/Zorn thread). Wall tightened to 6-col earlier same day; ?v=5.
+
+> 2026-07-18: **Full-project audit + polish pass.** PWA shipped: `manifest.webmanifest`,
+> `sw.js` (tiered cache, epoch-stamped at deploy), icons — app is installable; full OG/Twitter
+> meta. **Automatic cache-busting**: `index.html` ships refs unversioned; `stage-site.js`
+> content-hash stamps every local script/CSS at deploy — manual `?v=` retired for Canvas.
+> **Museum pages**: index rows span full window; on a museum page the header + museum-read
+> module hold a 1200 px band, everything below is full-width. Info/Interpretation buttons have
+> clearance from the interior photo. **Search**: `/` or Cmd/Ctrl-K summons the search bar;
+> museum results navigate straight to `#/museum/<id>`. Reader hero keyboard-reachable; deck
+> grades warn if storage writes fail (quota / private mode); deck cards have a broken-image
+> fallback (card hides image element on `onError`, text label stays visible).
 
 > 2026-07-11: **API collection list locked** (keys → fuad.au/.env, never commit).
 > KEYS TO OBTAIN: Rijksmuseum (Rijksstudio account → advanced settings; high-res + toppieces) ·
