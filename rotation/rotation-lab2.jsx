@@ -101,7 +101,7 @@ const FACT_RULES = [
         if (!R || !R.TOTALS || !R.TOTALS.topDay) return null;
         const day = R.TOTALS.topDay;
         if (!day.date || !day.count) return null;
-        const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        const MON = window.MON;
         const d = new Date(day.date + "T00:00:00Z");
         const label = `${d.getUTCDate()} ${MON[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
         return {

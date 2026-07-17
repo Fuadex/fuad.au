@@ -86,9 +86,7 @@ function BumpChart() {
 
   const hueOf = (name) => {
     const a = R.byId && R.byId[R.slug ? R.slug(name) : name];
-    if (a) return a.hue;
-    let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) >>> 0;
-    return h % 360;
+    return a ? a.hue : window.hashInt(name, 0) % 360;   // core's hash (dedup 2026-07-18)
   };
 
   return labCard(
@@ -246,7 +244,7 @@ function SpiralPlot() {
         const frac = m / 12;
         const a = frac * Math.PI * 2 - Math.PI / 2;
         const outerR = INNER + years.length * (RING + GAP) + 6;
-        const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        const months = window.MON;
         return (
           <g key={m}>
             <line x1={CX + Math.cos(a) * INNER} y1={CY + Math.sin(a) * INNER}

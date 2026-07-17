@@ -374,6 +374,23 @@ function hashInt(str, seed) {
 const fmt = (n) => n == null ? "—" : n.toLocaleString("en-US");
 const fmtK = (n) => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 1) + "M"
   : n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1) + "k" : "" + n;
+// the ONE month-name array (audit 2026-07-18: it was re-typed in 12+ scopes) and the one
+// "8 Mar 2026" formatter. Local aliases like `const MON = window.MON;` are fine.
+const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const fmtDate = (s) => { const [y, m, d] = String(s).split("-"); return `${+d} ${MON[+m - 1]} ${y}`; };
+// the ONE lazy-script loader (audit 2026-07-18: the pattern was hand-rolled ~30× with
+// inconsistent id/onerror guarding — some scripts could inject twice, some failures hung
+// spinners forever). Guarded by element id; a second caller piggybacks on the load event.
+function loadScript(src, id, onLoad, onFail) {
+  const prev = document.getElementById(id);
+  if (prev) { if (onLoad) prev.addEventListener("load", onLoad); return prev; }
+  const s = document.createElement("script");
+  s.id = id; s.src = src;
+  if (onLoad) s.onload = onLoad;
+  s.onerror = onFail || (() => {});
+  document.head.appendChild(s);
+  return s;
+}
 
 // ── romaji transliteration so Latin typing finds kana names (e.g. "midori" → ミドリ) ──
 // Hepburn-ish; katakana is folded to hiragana first (codepoint −0x60). Handles yōon (small や/ゆ/よ),
@@ -630,7 +647,7 @@ class Boundary extends React.Component {
   }
 }
 
-Object.assign(window, { cssRotation, fmt, fmtK, hashInt, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE, Boundary });
+Object.assign(window, { cssRotation, fmt, fmtK, hashInt, MON, fmtDate, loadScript, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE, Boundary });
 
 // ─────────────────────────────────────────────────────────────────
 //  "What it's about" — lazy shard loader (llm-about split into about/g-NN.js gist +

@@ -2,9 +2,10 @@
 // last.fm can't: ms_played (how long a song actually held you), reason_end (how it ended)
 // and session shape. Data is precomputed PII-FREE aggregates in spotify-insights.js +
 // spotify-attention.js — never raw rows / IPs / locations.
-// shared stat block (used by the headline row and the attention layer)
-const SpStat = ({ n, l, accent }) => (
-  <div><div className="r-stat-n" style={{ fontSize: 30, ...(accent ? { color: "var(--accent)" } : {}) }}>{n}</div>
+// shared stat block (headline row, attention layer, persona — size prop replaces the
+// former duplicate inner definition; dedup 2026-07-18)
+const SpStat = ({ n, l, accent, size }) => (
+  <div><div className="r-stat-n" style={{ fontSize: size || 30, ...(accent ? { color: "var(--accent)" } : {}) }}>{n}</div>
     <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 4 }}>{l}</div></div>
 );
 
@@ -227,10 +228,7 @@ function SpotifyPersona({ P }) {
   const chip = (name, tone) => (
     <span key={name} className="r-mono" style={{ fontSize: 10.5, padding: "3px 9px", borderRadius: 100, border: "1px solid var(--rule)", color: tone === "hot" ? "var(--accent)" : "var(--ink-soft)", borderColor: tone === "hot" ? "var(--accent)" : "var(--rule)", whiteSpace: "nowrap" }}>{name}</span>
   );
-  const SpStat = ({ n, l, accent }) => (
-    <div><div className="r-stat-n" style={{ fontSize: 26, ...(accent ? { color: "var(--accent)" } : {}) }}>{n}</div>
-      <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 4 }}>{l}</div></div>
-  );
+  const PStat = (p) => <SpStat {...p} size={26} />;   // persona uses the shared block, one size down
   const MOS = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
   return (
     <React.Fragment>
@@ -238,10 +236,10 @@ function SpotifyPersona({ P }) {
       <div className="r-card" style={{ padding: 18, marginTop: "var(--gap)" }}>
         <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>The label machine's verdict</b> · Marquee — how artists' marketing tools rate you</span></div>
         <div style={{ display: "flex", gap: 26, flexWrap: "wrap", margin: "10px 0 14px" }}>
-          <SpStat n={M.counts.super} l="super listener" accent />
-          <SpStat n={M.counts.moderate} l="moderate" />
-          <SpStat n={M.counts.light} l="light" />
-          <SpStat n={fmt(M.counts.previous)} l="previously active" />
+          <PStat n={M.counts.super} l="super listener" accent />
+          <PStat n={M.counts.moderate} l="moderate" />
+          <PStat n={M.counts.light} l="light" />
+          <PStat n={fmt(M.counts.previous)} l="previously active" />
         </div>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>{M.super.map(a => chip(a, "hot"))}</div>
         {allSegs && <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 10, opacity: .85 }}>{M.moderate.map(a => chip(a))}</div>}
@@ -255,12 +253,12 @@ function SpotifyPersona({ P }) {
       <div className="r-card" style={{ padding: 18, marginTop: "var(--gap)" }}>
         <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Wrapped 2025, cross-examined</b> · their structured verdict vs this site's record</span></div>
         <div style={{ display: "flex", gap: 26, flexWrap: "wrap", margin: "10px 0 14px" }}>
-          <SpStat n={fmt(W.hours) + "h"} l="in their window" />
-          <SpStat n={fmt(W.uniqueArtists)} l="artists" />
-          <SpStat n={"top " + W.topPercentile + "%"} l={"fan of " + (W.leaderboard.artist || "your #1")} accent />
-          <SpStat n={W.listeningAge.age} l="“listening age”" />
-          <SpStat n={(100 - W.party.popularity) + "%"} l="obscurity" />
-          <SpStat n={W.party.tempo + " bpm"} l="avg tempo" />
+          <PStat n={fmt(W.hours) + "h"} l="in their window" />
+          <PStat n={fmt(W.uniqueArtists)} l="artists" />
+          <PStat n={"top " + W.topPercentile + "%"} l={"fan of " + (W.leaderboard.artist || "your #1")} accent />
+          <PStat n={W.listeningAge.age} l="“listening age”" />
+          <PStat n={(100 - W.party.popularity) + "%"} l="obscurity" />
+          <PStat n={W.party.tempo + " bpm"} l="avg tempo" />
         </div>
         <div style={{ overflowX: "auto" }}>
           <table className="r-mono" style={{ fontSize: 10.5, borderCollapse: "collapse" }}>

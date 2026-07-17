@@ -646,7 +646,7 @@
         );
       }
       if (topDay) {
-        const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        const MON = window.MON;
         const d = topDay.date ? new Date(topDay.date + "T00:00:00Z") : null;
         const dateStr = d ? `${d.getUTCDate()} ${MON[d.getUTCMonth()]} ${d.getUTCFullYear()}` : "one day";
         paras.push(

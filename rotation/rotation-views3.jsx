@@ -1,10 +1,8 @@
 // rotation-views3.jsx — Stories (mined insights) + artist Search overlay
 // exports: StoriesView, SearchOverlay
 
-const fmtDate = (s) => {
-  const d = new Date(s + "T00:00:00Z");
-  return d.getUTCDate() + " " + ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getUTCMonth()] + " " + d.getUTCFullYear();
-};
+// fmtDate comes from core (top-level lexical binding shared across scripts — redeclaring it
+// here would throw; audit-2026-07-18 dedup)
 const yearsOf = (days) => (days / 365.25).toFixed(1);
 // an artist id is navigable if it has EITHER a kept full page (byId) OR an EXPLORE record
 // (rendered via MiniArtistView). Use this for every artist click-gate so the long tail is
@@ -310,7 +308,7 @@ function StoriesView({ t, go, seed }) {
         {I.REVISIT && I.REVISIT.artists.length > 0 && (() => {
           const RV = I.REVISIT;
           const top = RV.artists[0];
-          const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+          const MON = window.MON;
           const monthName = (ym) => { if (!ym) return ""; const [y, m] = ym.split("-"); return MON[+m - 1] + " " + y; };
           const ago = (mo) => mo >= 12 ? (mo / 12).toFixed(mo >= 24 ? 0 : 1) + " years" : mo + " months";
           return (
@@ -1046,7 +1044,7 @@ function StoriesView({ t, go, seed }) {
             .sort((a, b) => b.firstHeard.localeCompare(a.firstHeard))[0] || G[G.length - 1];
           const fmtMonth = (iso) => {
             const d = new Date(iso);
-            return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getUTCMonth()] + " " + d.getUTCFullYear();
+            return window.MON[d.getUTCMonth()] + " " + d.getUTCFullYear();
           };
           return (
             <section className="st-card st-hero">
@@ -1443,7 +1441,7 @@ function StoriesView({ t, go, seed }) {
         {/* lifecycle — the shape of an obsession, and the ones burning now (Phase 3) */}
         {I.LIFECYCLE && (I.LIFECYCLE.burningNow.length >= 2 || I.LIFECYCLE.flameout.length >= 2) && (() => {
           const L = I.LIFECYCLE, hot = L.burningNow[0];
-          const MO = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+          const MO = window.MON;
           const moL = (ym) => { const p = (ym || "").split("-"); return p.length === 2 ? MO[+p[1] - 1] + " " + p[0] : ym; };
           const names = (arr) => arr.slice(0, 4).map(a => a.name).join(", ");
           return (
@@ -1561,7 +1559,7 @@ function StoriesView({ t, go, seed }) {
           const top = E[0];
           const monthLabel = (mk) => {
             const d = new Date(mk + "-15");
-            return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getUTCMonth()] + " " + d.getUTCFullYear();
+            return window.MON[d.getUTCMonth()] + " " + d.getUTCFullYear();
           };
           return (
             <section className="st-card st-hero">
@@ -2084,7 +2082,7 @@ function GenreCascade({ R, arts, gkey, sub, setGkey, setSub }) {
 }
 
 function TourCal({ events, gran, setGran, selKey, setSelKey, keyOf }) {
-  const MONS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const MONS = window.MON;
   const buckets = React.useMemo(() => {
     const counts = new Map();
     let min = null, max = null;
@@ -2656,7 +2654,7 @@ function GigsView({ go }) {
     <div style={{ maxWidth: 720, margin: "60px auto", textAlign: "center", color: "var(--ink-soft)" }}>No attended concerts yet.</div>
   );
   // manual entries can be month-precision ("2026-03", approx:1) → "≈ Mar" instead of a fake day
-  const MONS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const MONS = window.MON;
   const gigDate = (d, noYear) => d.length === 7
     ? "≈ " + MONS[+d.slice(5, 7) - 1] + (noYear ? "" : " " + d.slice(0, 4))
     : noYear ? fmtDate(d).replace(/ (\d{4})$/, "") : fmtDate(d);

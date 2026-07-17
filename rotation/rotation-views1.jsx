@@ -91,7 +91,7 @@ function OvCalRail({ go, onYear, onPeriod, init }) {
   }, []);
   const years = cal ? Object.keys(cal.byYear).map(Number).sort((a, b) => b - a) : [];
   const y = cal && cal.byYear[yr];
-  const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const MON = window.MON;
   if (!y) return <div className="r-card" style={{ padding: 16, fontFamily: "var(--mono)", fontSize: 10, color: "var(--ink-faint)" }}>calendar…</div>;
   const counts = y.counts || [];
   const mx = Math.max(1, ...counts);
@@ -488,7 +488,7 @@ function OverviewView({ t, go, restReady, seed }) {
   const recent = React.useMemo(() => {
     const LV = window.ROTATION_LIVE;
     if (!LV || !LV.recent || !LV.recent.length) return R.RECENT;
-    const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const MON = window.MON;
     const when = (uts) => { if (!uts) return ""; const d = new Date(uts * 1000); return d.getUTCDate() + " " + MON[d.getUTCMonth()]; };
     const hueOf = (id) => { const e = R.byId[id] || (R.expById && R.expById[id]); return e && e.hue != null ? e.hue : 210; };
     return LV.recent.map((r, i) => ({ id: "lv" + i, artistId: r.artistId, artist: r.artist, track: r.track, when: when(r.uts), hue: hueOf(r.artistId) }));
@@ -566,7 +566,7 @@ function OverviewView({ t, go, restReady, seed }) {
           </div>
           {(() => {
             const S = R.INSIGHTS && R.INSIGHTS.STREAK;
-            const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const MON = window.MON;
             const f = (d) => { const x = new Date(d + "T00:00:00Z"); return MON[x.getUTCMonth()] + " '" + String(x.getUTCFullYear()).slice(2); };
             return (
               <div>
