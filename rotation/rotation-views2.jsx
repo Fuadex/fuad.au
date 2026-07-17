@@ -662,6 +662,101 @@ function ArtistBarcode({ artistId, daysReady }) {
   );
 }
 
+// PortraitCard — shared artist/album "Portrait" overlay (pilot). Data lives in two lazy files:
+//   portraits.js       -> window.ROTATION_PORTRAITS   {id: {gist, portrait?|liner?, by}}
+//   portrait-facts.js  -> window.ROTATION_PORTRAIT_FACTS {id: [{k, v, x}]}
+// Both are loaded once on first mount (same script-tag pattern as mb-lineup.js / label-parents.js).
+// Presence-gated: renders nothing unless ROTATION_PORTRAITS[id] exists. There is deliberately NO
+// crossover slot — artists carry portrait, albums carry liner, and neither is invented here.
+function PortraitCard({ id }) {
+  const [pReady, setPReady] = React.useState(!!window.ROTATION_PORTRAITS);
+  const [fReady, setFReady] = React.useState(!!window.ROTATION_PORTRAIT_FACTS);
+  React.useEffect(() => {
+    if (window.ROTATION_PORTRAITS) { setPReady(true); }
+    else {
+      let s = document.getElementById("portraits-js");
+      if (!s) { s = document.createElement("script"); s.id = "portraits-js"; s.src = "portraits.js"; s.onerror = () => {}; document.head.appendChild(s); }
+      const on = () => { if (window.ROTATION_PORTRAITS) setPReady(true); };
+      s.addEventListener("load", on);
+      return () => s.removeEventListener("load", on);
+    }
+  }, []);
+  React.useEffect(() => {
+    if (window.ROTATION_PORTRAIT_FACTS) { setFReady(true); return; }
+    let s = document.getElementById("portrait-facts-js");
+    if (!s) { s = document.createElement("script"); s.id = "portrait-facts-js"; s.src = "portrait-facts.js"; s.onerror = () => {}; document.head.appendChild(s); }
+    const on = () => { if (window.ROTATION_PORTRAIT_FACTS) setFReady(true); };
+    s.addEventListener("load", on);
+    return () => s.removeEventListener("load", on);
+  }, []);
+  const [open, setOpen] = React.useState(false);   // full read (portrait/liner) toggle
+  const [chip, setChip] = React.useState(-1);      // index of the one expanded fact chip, -1 = none
+
+  if (!pReady) return null;
+  const p = window.ROTATION_PORTRAITS && window.ROTATION_PORTRAITS[id];
+  if (!p) return null;
+  const facts = (fReady && window.ROTATION_PORTRAIT_FACTS && window.ROTATION_PORTRAIT_FACTS[id]) || [];
+  const full = p.portrait || p.liner || "";           // no crossover slot: one or the other
+  // the derivation values are trusted; a v of "[object Object]" is a known upstream stringify
+  // artifact (e.g. seen-live), so we drop it from the chip label and lean on the derivation text.
+  const badV = (v) => v == null || v === "[object Object]";
+
+  return (
+    <div className="r-card pv-card" style={{ padding: "18px 22px", marginBottom: "var(--gap)" }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 10, display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+        <span className="lbl"><b>Portrait</b></span>
+        {p.by && <span className="r-mono pv-by">via {p.by}</span>}
+      </div>
+      <p className="pv-gist">{p.gist}</p>
+      {full && (
+        <>
+          <button className="pv-toggle" onClick={() => setOpen(o => !o)} aria-expanded={open}>
+            {open ? "less ▴" : "the full read ▾"}
+          </button>
+          {open && full.split(/\n+/).filter(Boolean).map((para, i) => (
+            <p key={i} className="pv-full">{para}</p>
+          ))}
+        </>
+      )}
+      {facts.length > 0 && (
+        <div className="pv-facts">
+          <div className="pv-chips">
+            {facts.map((f, i) => (
+              <button key={i} className={"pv-chip" + (chip === i ? " on" : "")}
+                onClick={() => setChip(c => c === i ? -1 : i)} aria-expanded={chip === i}>
+                <b>{f.k}</b>{!badV(f.v) && <span className="pv-sep"> · {f.v}</span>}
+              </button>
+            ))}
+          </div>
+          {chip >= 0 && facts[chip] && (
+            <div className="pv-deriv">{facts[chip].x}</div>
+          )}
+        </div>
+      )}
+      <style>{`
+        /* Portrait overlay (pilot) — scoped pv- styles. No backticks in these comments. */
+        .pv-by { font-size: 9.5px; color: var(--ink-faint); letter-spacing: .1em; text-transform: uppercase; }
+        .pv-gist { font-family: var(--serif); font-size: 15px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
+        .pv-toggle { margin-top: 12px; background: none; border: none; padding: 0; cursor: pointer;
+          font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+        .pv-toggle:hover { color: var(--accent); }
+        .pv-full { font-family: var(--serif); font-size: 15px; line-height: 1.62; color: var(--ink-soft); margin: 12px 0 0; }
+        .pv-facts { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+        .pv-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+        .pv-chip { max-width: 100%; background: var(--bg-3); border: 1px solid var(--rule); border-radius: 999px;
+          padding: 4px 11px; cursor: pointer; font-family: var(--mono); font-size: 10px; letter-spacing: .04em;
+          color: var(--ink-soft); white-space: normal; text-align: left; line-height: 1.35; }
+        .pv-chip b { color: var(--ink); font-weight: 600; }
+        .pv-chip .pv-sep { color: var(--ink-faint); }
+        .pv-chip:hover { border-color: var(--accent-dim); color: var(--ink); }
+        .pv-chip.on { border-color: var(--accent-dim); background: var(--accent-bg); color: var(--ink); }
+        .pv-deriv { margin-top: 9px; font-size: 12px; line-height: 1.5; color: var(--ink-soft);
+          border-left: 2px solid var(--accent-dim); padding: 2px 0 2px 11px; }
+      `}</style>
+    </div>
+  );
+}
+
 function ArtistView({ t, id, go, setPop, city, setCity }) {
   const R = window.ROTATION;
   const full = R.byId[id];
@@ -957,6 +1052,10 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           </a>
         </div>
       )}
+
+      {/* PILOT: portrait overlay — a written read + fact modules, keyed by artist slug (Fuad,
+          pilot 2026-07). Sits between the last.fm bio and the module grid; presence-gated. */}
+      <PortraitCard id={id} />
 
       <div style={{ display: "grid", gap: "var(--gap)" }}>
           {/* row 2 on PC: flow (wide — Sound DNA moved to the bottom row for breathing room,
@@ -1858,6 +1957,10 @@ function AlbumView({ id, go }) {
           {albumAbout[1] ? <a className="tv-about-src" href={`https://en.wikipedia.org/wiki/${encodeURIComponent(albumAbout[1].replace(/ /g, "_"))}`} target="_blank" rel="noopener noreferrer">via Wikipedia ↗</a> : null}
         </div>
       )}
+
+      {/* PILOT: portrait overlay (liner + fact modules) — album id is artistSlug~albumSlug, the
+          same key AlbumView keys everything else on. Prominent, just under the header/about. */}
+      <PortraitCard id={id} />
 
       {dna && (
         <div className="tv-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
