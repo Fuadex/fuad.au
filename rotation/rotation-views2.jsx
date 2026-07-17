@@ -550,8 +550,12 @@ function ArtistTourCard({ a, go }) {
   const [tour, setTour] = React.useState(window.ROTATION_TOUR || null);
   React.useEffect(() => {
     if (!a.onTour || window.ROTATION_TOUR) return;
-    const s = document.createElement("script"); s.src = "tm-tour-lazy.js";
-    s.onload = () => setTour(window.ROTATION_TOUR); document.head.appendChild(s);
+    const prev = document.getElementById("tm-tour-lazy-js");
+    if (prev) { prev.addEventListener("load", () => setTour(window.ROTATION_TOUR)); return; }
+    const s = document.createElement("script"); s.id = "tm-tour-lazy-js"; s.src = "tm-tour-lazy.js";
+    s.onload = () => setTour(window.ROTATION_TOUR);
+    s.onerror = () => setTour({ artists: [] });   // fail-open: card renders its no-dates state instead of spinning
+    document.head.appendChild(s);
   }, []);
   if (!a.onTour) return null;
   const MONS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

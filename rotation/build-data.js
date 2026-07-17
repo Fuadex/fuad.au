@@ -360,6 +360,10 @@ function familyIdxByName(name) {
 }
 
 // ─────────── read + aggregate ───────────
+if (!fs.existsSync(CSV_PATH)) {
+  console.error(`FATAL: ${CSV_PATH} missing — the daily scrobble sync must run before build-data.`);
+  process.exit(1);
+}
 const raw = fs.readFileSync(CSV_PATH, "utf8");
 const lines = raw.split(/\r?\n/).filter(l => l.trim());
 

@@ -2491,8 +2491,12 @@ function TourSection({ go, gigDate }) {
   const toggleCheck = (id) => setChecked(s => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
   React.useEffect(() => {
     if (window.ROTATION_TOUR || !R.TOUR) return;
-    const s = document.createElement("script"); s.src = "tm-tour-lazy.js";
-    s.onload = () => setTour(window.ROTATION_TOUR); document.head.appendChild(s);
+    const prev = document.getElementById("tm-tour-lazy-js");
+    if (prev) { prev.addEventListener("load", () => setTour(window.ROTATION_TOUR)); return; }
+    const s = document.createElement("script"); s.id = "tm-tour-lazy-js"; s.src = "tm-tour-lazy.js";
+    s.onload = () => setTour(window.ROTATION_TOUR);
+    s.onerror = () => setTour({ artists: [] });   // fail-open instead of "loading tour dates…" forever
+    document.head.appendChild(s);
   }, []);
   const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
   const wkOf = (d) => { const t = new Date(d + "T00:00:00Z"); t.setUTCDate(t.getUTCDate() - (t.getUTCDay() + 6) % 7); return t.toISOString().slice(0, 10); };

@@ -4,13 +4,13 @@
 # (.gitignore has NO inline comments — patterns must stand alone on their own line)
 *.parquet
 *.zip
-# compressed lyrics/data dumps + any DB unpacked from them (e.g. LRCLIB) — PRIVATE, local-only
+# compressed local archives + any DB unpacked from them — PRIVATE, local-only
 *.gz
 *.sqlite
 *.sqlite3
 *.db
 archive.zip
-archive_genius.zip   # Genius lyrics dump (~3 GB) — local-only
+archive_genius.zip
 # personal Spotify exports — PRIVATE (contain IP addresses + liked songs), never commit
 my_spotify_data*.zip
 Spotify Extended Streaming History/

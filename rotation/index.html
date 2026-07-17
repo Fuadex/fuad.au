@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>Rotation · fuad.design</title>
+<title>Rotation · fuad.au</title>
 <meta name="description" content="Rotation — a personal listening observatory. 20 years and 319,000+ real last.fm scrobbles, mined for patterns: obsessions, comebacks, taste geography, sound DNA.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="fuad.design">
+<meta property="og:site_name" content="fuad.au">
 <meta property="og:title" content="Rotation — 319,000 scrobbles, mapped">
 <meta property="og:description" content="20 years of listening mined for patterns: obsessions, flameouts, taste geography, sound DNA. Real last.fm data.">
-<meta property="og:url" content="https://fuad.au/">
+<meta property="og:url" content="https://fuad.au/rotation/">
 <meta property="og:image" content="https://fuad.au/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Rotation — 319,000 scrobbles, mapped">
@@ -52,9 +52,13 @@
 
 <!-- music-core.js = window.ROTATION with everything first paint needs; the deferred rest
      (EXPLORE universe, albums, audio, per-artist clocks) is injected by rotation-app after
-     mount via music-rest.js, which merges in and flips ROTATION._restLoaded. -->
-<script src="music-core.js"></script>
-<script src="live-data.js"></script>
+     mount via music-rest.js, which merges in and flips ROTATION._restLoaded.
+     defer: data no longer blocks the parser/first paint — defer scripts run in document
+     order before DOMContentLoaded, so ROTATION is still assembled before the (also
+     deferred) app bundles execute. The spotify ♥/engagement overlays are injected
+     post-mount by rotation-app (they only decorate artist/track rows). -->
+<script src="music-core.js" defer></script>
+<script src="live-data.js" defer></script>
 <script type="text/babel" src="rotation-live.jsx"></script>
 <script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel" src="rotation-core.jsx"></script>
@@ -68,9 +72,6 @@
 <script type="text/babel" src="rotation-calendar.jsx"></script>
 <script type="text/babel" src="rotation-shelves.jsx"></script>
 <script type="text/babel" src="rotation-spotify.jsx"></script>
-<!-- Spotify personal-export overlays: liked ♥ + per-track engagement (PII-free, keyed by slug) -->
-<script src="spotify-liked.js"></script>
-<script src="spotify-engagement.js"></script>
 </head>
 <body>
 <div id="root">
@@ -80,11 +81,12 @@
   </div>
 </div>
 <script>
-  // dynamic count — prefer the daily live total, else the CSV total (data scripts already loaded above)
-  (function () { try {
+  // dynamic count — prefer the daily live total, else the CSV total. Data scripts are defer
+  // now, so wait for DOMContentLoaded (defer runs just before it) instead of reading inline.
+  document.addEventListener("DOMContentLoaded", function () { try {
     var t = (window.ROTATION_LIVE && window.ROTATION_LIVE.total) || (window.ROTATION && window.ROTATION.TOTALS && window.ROTATION.TOTALS.scrobbles) || 0;
     if (t) document.getElementById("boot-sub").textContent = "reading " + Math.round(t / 1000) + "k scrobbles…";
-  } catch (e) {} })();
+  } catch (e) {} });
 </script>
 <style>
   #boot { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;

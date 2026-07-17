@@ -156,6 +156,7 @@
       "path": "/culture/",
       "deploy": [
         "index.html",
+        "favicon.svg",
         "culture-v2.jsx",
         "culture.css",
         "data.js",

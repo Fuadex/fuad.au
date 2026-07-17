@@ -75,16 +75,23 @@ function precompileApp(app, babel) {
     // stamps at all, so browsers served stale code for hours after every deploy (the recurring
     // "I don't see the feature" — e.g. the Downward Spiral spine). Manual ?v= (canvas/culture)
     // is left untouched.
-    html = html.replace(/(src|href)="([^"?]+\.(?:js|css))"/g, (m, attr, file) => {
-      if (/^https?:|^\/\//.test(file)) return m;
-      const p2 = path.join(dir, file);
-      if (!fs.existsSync(p2)) return m;
-      const h = crypto.createHash("md5").update(fs.readFileSync(p2)).digest("hex").slice(0, 8);
-      return `${attr}="${file}?v=${h}"`;
-    });
+    html = stampHashes(html, dir);
     fs.writeFileSync(idx, html, "utf8");
   }
   console.log(`  precompiled ${jsxFiles.length} .jsx → .js (Babel stripped from prod)`);
+}
+
+// stamp every LOCAL unversioned script/css ref in an html string with a content hash of the
+// staged file (shared by per-app index.html AND the hub root — hub.css shipped unstamped
+// until 2026-07-18 and cached stale for hours after changes)
+function stampHashes(html, dir) {
+  return html.replace(/(src|href)="([^"?]+\.(?:js|css))"/g, (m, attr, file) => {
+    if (/^https?:|^\/\//.test(file)) return m;
+    const p2 = path.join(dir, file);
+    if (!fs.existsSync(p2)) { console.warn(`  ! unversioned ref to missing file: ${file}`); return m; }
+    const h = crypto.createHash("md5").update(fs.readFileSync(p2)).digest("hex").slice(0, 8);
+    return `${attr}="${file}?v=${h}"`;
+  });
 }
 
 function copy(src, dst) {
@@ -112,6 +119,9 @@ fs.mkdirSync(OUT, { recursive: true });
 
 console.log("hub root:");
 for (const f of manifest.hubFiles) copy(f, path.join(OUT, f));
+// cache-bust the hub root's own refs (hub.css etc.) exactly like the per-app pages
+const hubIdx = path.join(OUT, "index.html");
+if (fs.existsSync(hubIdx)) fs.writeFileSync(hubIdx, stampHashes(fs.readFileSync(hubIdx, "utf8"), OUT), "utf8");
 
 const babel = manifest.apps.some(a => a.precompile) ? loadBabel() : null;
 if (manifest.apps.some(a => a.precompile) && !babel) {
@@ -129,7 +139,8 @@ for (const app of manifest.apps) {
 
 console.log(`\nstaged ${copied} files into ${OUT}/ (${mb(dirSize(OUT))} total)`);
 if (missing) {
-  console.warn(`WARNING: ${missing} file(s) missing.`);
-  // In CI, generated Rotation data must exist post-build — fail loudly there.
-  if (process.env.CI) { console.error("Missing files in CI — failing."); process.exit(1); }
+  // Fail ALWAYS, not just in CI — a local stage with holes is a broken bundle either way
+  // (the CI-only gate let `node stage-site.js` silently ship gaps; audit 2026-07-18).
+  console.error(`BROKEN BUNDLE: ${missing} file(s) missing — failing.`);
+  process.exit(1);
 }

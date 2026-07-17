@@ -80,6 +80,19 @@ function RotationApp() {
     return () => clearTimeout(tid);
   }, []);
 
+  // Spotify ♥/engagement overlays — injected post-mount (they only decorate artist/track
+  // rows, which read window.ROTATION_LIKED/ROTATION_ENGAGE opportunistically at render;
+  // a heart appearing a beat late on a page beats 733 KB blocking first paint).
+  React.useEffect(() => {
+    for (const [src, id, glob] of [["spotify-liked.js", "sp-liked-js", "ROTATION_LIKED"], ["spotify-engagement.js", "sp-engage-js", "ROTATION_ENGAGE"]]) {
+      if (window[glob] || document.getElementById(id)) continue;
+      const s = document.createElement("script");
+      s.id = id; s.src = src;
+      s.onerror = () => {};   // overlays are optional decoration — absent file just means no hearts
+      document.head.appendChild(s);
+    }
+  }, []);
+
   const go = React.useCallback((view, id) => {
     setPop(null);
     const v = LEGACY[view] || view;
@@ -185,6 +198,15 @@ function RotationApp() {
                 {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
                 {v === "album" && <AlbumView id={route.id} go={go} />}
                 {v === "track" && <TrackView id={route.id} go={go} />}
+                {/* unknown hash → say so instead of a silent blank content area */}
+                {!["stories", "explore", "shelves", "calendar", "gigs", "live", "spotify", "lab", "lab2", "artist", "album", "track"].includes(v) && (
+                  <div className="r-view" style={{ textAlign: "center", padding: "60px 20px" }}>
+                    <div className="r-card" style={{ display: "inline-block", padding: "36px 44px", color: "var(--ink-soft)", fontFamily: "var(--serif)", fontSize: 15 }}>
+                      Nothing lives at <span style={{ fontFamily: "var(--mono)", fontSize: 12 }}>#{v}</span>.
+                      <div style={{ marginTop: 14 }}><button className="r-back" onClick={() => go("overview")}>← back to overview</button></div>
+                    </div>
+                  </div>
+                )}
               </React.Fragment>)}
       </Boundary>
 

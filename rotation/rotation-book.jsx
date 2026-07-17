@@ -1454,7 +1454,7 @@
   // ─────────────────────────────────────────────────────────────────────────────
   //  VENDOR LOADER
   // ─────────────────────────────────────────────────────────────────────────────
-  function loadVendor(cb) {
+  function loadVendor(cb, onFail) {
     if (window.St && window.St.PageFlip) { cb(); return; }
     const existing = document.getElementById("vendor-page-flip-js");
     if (existing) {
@@ -1467,7 +1467,7 @@
     s.id = "vendor-page-flip-js";
     s.src = "vendor-page-flip.js";
     s.onload = () => cb();
-    s.onerror = () => console.error("[BookSection] vendor-page-flip.js failed to load");
+    s.onerror = () => { console.error("[BookSection] vendor-page-flip.js failed to load"); if (onFail) onFail(); };
     document.head.appendChild(s);
   }
 
@@ -1485,6 +1485,7 @@
     const containerRef = useRef(null);
     const pageFlipRef  = useRef(null);
     const [vendorReady, setVendorReady]   = useState(!!(window.St && window.St.PageFlip));
+    const [vendorFailed, setVendorFailed] = useState(false);
     const [annotVisible, setAnnotVisible] = useState(true);
     const [scale, setScale]               = useState(1);
     const [stageSize, setStageSize]       = useState({ w: 900, h: 600 });
@@ -1551,7 +1552,7 @@
 
     useEffect(() => {
       if (vendorReady) return;
-      loadVendor(() => setVendorReady(true));
+      loadVendor(() => setVendorReady(true), () => setVendorFailed(true));
     }, []);
 
     useEffect(() => {
@@ -1650,6 +1651,14 @@
           onMouseLeave={e => { e.currentTarget.style.color = BK_DIM; }}
           title="Close book (Esc)"
         >✕</button>
+
+        {/* Vendor failed → say so instead of an empty stage (close button above still works) */}
+        {vendorFailed && !vendorReady && (
+          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
+            color: BK_DIM, fontFamily: "var(--mono)", fontSize: 12, letterSpacing: ".08em" }}>
+            The book can't open right now — its page-flip engine failed to load.
+          </div>
+        )}
 
         {/* Book — centred in stage, scaled to fill; no pointer intercept on the centering wrapper */}
         <div style={{

@@ -934,7 +934,7 @@ function Halls({ items, onOpenItem }) {
 }
 
 // ─────────── StatsModal ───────────
-function StatsModal({ allItems, library, seenItemsForTaste, onClose, onOpenItem, selectedRatings, onToggleRating, selectedDirectors, onToggleDirector, selectedStudios, onToggleStudio, selectedWeeks, onToggleWeek, selectedCountries, onToggleCountry, selectedActors, onToggleActor, selectedWriters, onToggleWriter, selectedCinematographers, onToggleCinematographer, selectedHighlights, onToggleHighlight }) {
+function StatsModal({ allItems, library, seenItemsForTaste, onClose, onOpenItem, selectedRatings, onToggleRating, selectedDirectors, onToggleDirector, selectedStudios, onToggleStudio, selectedWeeks, onToggleWeek, selectedCountries, onToggleCountry, selectedActors, onToggleActor, selectedWriters, onToggleWriter, selectedCinematographers, onToggleCinematographer, selectedAnimDirectors, onToggleAnimDirector, selectedCompanies, onToggleCompany, selectedComposers, onToggleComposer, selectedHighlights, onToggleHighlight }) {
   const { MEDIA } = window.CULTURE;
   const LEFT_VIEW_LABELS  = { directors: 'Directors · Creators · Authors', actors: 'Actors', writers: 'Writers · Screenwriters', cinematographers: 'Cinematographers', animationDirectors: 'Animation Directors' };
   const RIGHT_VIEW_LABELS = { studios: 'Studios · Networks · Publishers', companies: 'Production Companies', composers: 'Composers', badges: 'Standout badges' };
@@ -961,7 +961,7 @@ function StatsModal({ allItems, library, seenItemsForTaste, onClose, onOpenItem,
   const totalWithDate = statItems.filter(i => i.watchedDate).length;
 
   return (
-    <div className={`stats-backdrop${on ? '' : ''}`} onClick={onClose}>
+    <div className={`stats-backdrop${on ? ' on' : ''}`} onClick={onClose}>
       <div className="stats-modal" onClick={e => e.stopPropagation()}>
         <button className="stats-close" onClick={onClose}>
           <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
@@ -1031,7 +1031,7 @@ function StatsModal({ allItems, library, seenItemsForTaste, onClose, onOpenItem,
                 selected={selectedActors} onToggle={onToggleActor} />}
             {leftView === 'writers'    && <HBarHistogram items={statItems} keyFn={it => it.writer || null} selected={selectedWriters} onToggle={onToggleWriter} />}
             {leftView === 'cinematographers' && <HBarHistogram items={statItems} keyFn={it => it.cinematographer || null} selected={selectedCinematographers} onToggle={onToggleCinematographer} />}
-            {leftView === 'animationDirectors' && <HBarHistogram items={statItems} keyFn={it => it.animationDirector || null} selected={new Set()} onToggle={() => {}} />}
+            {leftView === 'animationDirectors' && <HBarHistogram items={statItems} keyFn={it => it.animationDirector || null} selected={selectedAnimDirectors} onToggle={onToggleAnimDirector} />}
           </div>
 
           <div className="stats-section">
@@ -1048,8 +1048,8 @@ function StatsModal({ allItems, library, seenItemsForTaste, onClose, onOpenItem,
             {rightView === 'studios'   && <HBarHistogram items={statItems} keyFn={it => it.studio} selected={selectedStudios} onToggle={onToggleStudio} />}
             {rightView === 'companies' && <HBarHistogram items={statItems}
                 countFn={its => { const m = {}; its.forEach(it => (it.productionCompanies||[]).forEach(c => { m[c] = (m[c]||0)+1; })); return m; }}
-                selected={new Set()} onToggle={() => {}} />}
-            {rightView === 'composers' && <HBarHistogram items={statItems} keyFn={it => it.composer || null} selected={new Set()} onToggle={() => {}} />}
+                selected={selectedCompanies} onToggle={onToggleCompany} />}
+            {rightView === 'composers' && <HBarHistogram items={statItems} keyFn={it => it.composer || null} selected={selectedComposers} onToggle={onToggleComposer} />}
             {rightView === 'badges'    && <HBarHistogram items={statItems}
                 countFn={its => { const m = {}; its.forEach(it => (it.highlights||[]).forEach(h => { if (HIGHLIGHTS[h]) m[h] = (m[h]||0)+1; })); return m; }}
                 labelFn={h => HIGHLIGHTS[h] ? `${HIGHLIGHTS[h].emoji} ${HIGHLIGHTS[h].label}` : h}
@@ -1712,7 +1712,7 @@ function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave })
       </div>
       {(item.noteEn || item.note)
         ? <div className="blurb">{splitNoteAttribution(item.noteEn || item.note).text}</div>
-        : <div className="blurb empty">No note yet — add one in <code style={{ fontFamily:'var(--mono)', fontSize:11, background:'#eee5d3', padding:'1px 4px' }}>data.js</code>.</div>}
+        : <div className="blurb empty">From the wider library — no personal note yet.</div>}
       <div className="hint">Click to open ↗ · middle-click → {service}</div>
     </div>
   );
@@ -2596,13 +2596,10 @@ function App() {
   const { MEDIA, PICKABLE_IDS } = window.CULTURE;
   // The SEEN library: favourites (data.js) + imports, merged with cast/season data.
   const seenItems = React.useMemo(() => {
-    const seasons  = window.CULTURE_SEASONS || {};
     const castData = window.CULTURE_CAST    || {};
-    const favs = window.CULTURE.ITEMS.map(i => {
-      if (seasons[i.id] && !i.seasons) return { ...i, seasons: seasons[i.id] };
-      return i;
-    });
-    const all = favs.concat(window.CULTURE_IMPORTS || []);
+    // (a CULTURE_SEASONS overlay was read here for years but no such file ever ships —
+    // dead branch removed, audit 2026-07-18; seasons live inline on data.js items)
+    const all = window.CULTURE.ITEMS.concat(window.CULTURE_IMPORTS || []);
     const hasCast = Object.keys(castData).length > 0;
     const merged = hasCast ? all.map(item => castData[item.id] ? { ...item, ...castData[item.id] } : item) : all;
     return merged.map(enrichExtras);
@@ -2653,6 +2650,9 @@ function App() {
   const [selectedActors, setSelectedActors] = React.useState(() => new Set());
   const [selectedWriters, setSelectedWriters] = React.useState(() => new Set());
   const [selectedCinematographers, setSelectedCinematographers] = React.useState(() => new Set());
+  const [selectedAnimDirectors, setSelectedAnimDirectors] = React.useState(() => new Set());
+  const [selectedCompanies, setSelectedCompanies] = React.useState(() => new Set());
+  const [selectedComposers, setSelectedComposers] = React.useState(() => new Set());
   // Wishlist bottom strip: filter by release-year bucket (5-yr blocks ≥1980, decades before).
   const [selectedReleaseBuckets, setSelectedReleaseBuckets] = React.useState(() => new Set());
   // Standout-badge filter (highlight keys).
@@ -2788,6 +2788,7 @@ function App() {
     }
     const hasStats = selectedRatings.size || selectedDirectors.size || selectedStudios.size || selectedWeeks.size || selectedCountries.size
                    || selectedGenres.size || selectedActors.size || selectedWriters.size || selectedCinematographers.size
+                   || selectedAnimDirectors.size || selectedCompanies.size || selectedComposers.size
                    || selectedHighlights.size;
     if (!hasStats) return base.filter(s => s.items.length > 0);
     return base.map(s => ({
@@ -2813,12 +2814,15 @@ function App() {
         if (selectedActors.size         && !(it.cast           && it.cast.some(a => selectedActors.has(a)))) return false;
         if (selectedWriters.size        && !(it.writer         && selectedWriters.has(it.writer))) return false;
         if (selectedCinematographers.size && !(it.cinematographer && selectedCinematographers.has(it.cinematographer))) return false;
+        if (selectedAnimDirectors.size  && !(it.animationDirector && selectedAnimDirectors.has(it.animationDirector))) return false;
+        if (selectedCompanies.size      && !(it.productionCompanies && it.productionCompanies.some(c => selectedCompanies.has(c)))) return false;
+        if (selectedComposers.size      && !(it.composer       && selectedComposers.has(it.composer))) return false;
         if (selectedHighlights.size && !(it.highlights && it.highlights.some(h => selectedHighlights.has(h)))) return false;
         return true;
       }),
     })).filter(s => s.items.length > 0);
   }, [preChipShelves, selectedRatedYears, selectedReleaseBuckets, selectedRatings, selectedDirectors, selectedStudios, selectedWeeks, selectedCountries,
-      selectedGenres, selectedActors, selectedWriters, selectedCinematographers, selectedHighlights]);
+      selectedGenres, selectedActors, selectedWriters, selectedCinematographers, selectedAnimDirectors, selectedCompanies, selectedComposers, selectedHighlights]);
 
   const totalSearchResults = React.useMemo(
     () => filteredShelves.reduce((n, s) => n + s.items.length, 0),
@@ -2868,11 +2872,15 @@ function App() {
   const toggleActor     = a => setSelectedActors(prev => { const n = new Set(prev); n.has(a) ? n.delete(a) : n.add(a); return n; });
   const toggleWriter    = w => setSelectedWriters(prev => { const n = new Set(prev); n.has(w) ? n.delete(w) : n.add(w); return n; });
   const toggleCinematographer = c => setSelectedCinematographers(prev => { const n = new Set(prev); n.has(c) ? n.delete(c) : n.add(c); return n; });
+  const toggleAnimDirector = a => setSelectedAnimDirectors(prev => { const n = new Set(prev); n.has(a) ? n.delete(a) : n.add(a); return n; });
+  const toggleCompany   = c => setSelectedCompanies(prev => { const n = new Set(prev); n.has(c) ? n.delete(c) : n.add(c); return n; });
+  const toggleComposer  = c => setSelectedComposers(prev => { const n = new Set(prev); n.has(c) ? n.delete(c) : n.add(c); return n; });
   const toggleHighlight = h => setSelectedHighlights(prev => { const n = new Set(prev); n.has(h) ? n.delete(h) : n.add(h); return n; });
   const clearStatsFilters = () => {
     setSelectedRatings(new Set()); setSelectedDirectors(new Set()); setSelectedStudios(new Set());
     setSelectedWeeks(new Set()); setSelectedCountries(new Set());
     setSelectedGenres(new Set()); setSelectedActors(new Set()); setSelectedWriters(new Set()); setSelectedCinematographers(new Set());
+    setSelectedAnimDirectors(new Set()); setSelectedCompanies(new Set()); setSelectedComposers(new Set());
     setSelectedReleaseBuckets(new Set());
     setSelectedHighlights(new Set());
   };
@@ -2929,7 +2937,8 @@ function App() {
     setLibrary(lib);
     const sharedFilter = !!(search.trim() || selectedDirectors.size || selectedStudios.size ||
       selectedCountries.size || selectedGenres.size || selectedActors.size ||
-      selectedWriters.size || selectedCinematographers.size || selectedHighlights.size);
+      selectedWriters.size || selectedCinematographers.size || selectedAnimDirectors.size ||
+      selectedCompanies.size || selectedComposers.size || selectedHighlights.size);
     if (lib === 'wishlist') {
       setSelectedRatings(new Set()); setSelectedWeeks(new Set()); setSelectedRatedYears(new Set());
       setMode('spines'); setSort('pred');
@@ -2945,6 +2954,7 @@ function App() {
   const anyFilter = !!(search.trim() || selectedRatings.size || selectedDirectors.size ||
     selectedStudios.size || selectedWeeks.size || selectedCountries.size || selectedGenres.size ||
     selectedActors.size || selectedWriters.size || selectedCinematographers.size ||
+    selectedAnimDirectors.size || selectedCompanies.size || selectedComposers.size ||
     selectedHighlights.size || selectedRatedYears.size || selectedReleaseBuckets.size);
   const prevFilterRef = React.useRef(false);
   React.useEffect(() => {
@@ -3095,6 +3105,7 @@ function App() {
 
       {(selectedRatings.size > 0 || selectedDirectors.size > 0 || selectedStudios.size > 0 || selectedWeeks.size > 0 || selectedCountries.size > 0
         || selectedGenres.size > 0 || selectedActors.size > 0 || selectedWriters.size > 0 || selectedCinematographers.size > 0
+        || selectedAnimDirectors.size > 0 || selectedCompanies.size > 0 || selectedComposers.size > 0
         || selectedHighlights.size > 0) && (
         <div className="active-filters">
           {[...selectedRatings].sort().map(r => (
@@ -3114,6 +3125,15 @@ function App() {
           ))}
           {[...selectedCinematographers].map(c => (
             <span key={c} className="filter-pill">{c}<button onClick={() => toggleCinematographer(c)}>×</button></span>
+          ))}
+          {[...selectedAnimDirectors].map(a => (
+            <span key={a} className="filter-pill">{a}<button onClick={() => toggleAnimDirector(a)}>×</button></span>
+          ))}
+          {[...selectedCompanies].map(c => (
+            <span key={c} className="filter-pill">{c}<button onClick={() => toggleCompany(c)}>×</button></span>
+          ))}
+          {[...selectedComposers].map(c => (
+            <span key={c} className="filter-pill">{c}<button onClick={() => toggleComposer(c)}>×</button></span>
           ))}
           {[...selectedStudios].map(s => (
             <span key={s} className="filter-pill">{s}<button onClick={() => toggleStudio(s)}>×</button></span>
@@ -3242,6 +3262,9 @@ function App() {
           selectedActors={selectedActors}               onToggleActor={toggleActor}
           selectedWriters={selectedWriters}             onToggleWriter={toggleWriter}
           selectedCinematographers={selectedCinematographers} onToggleCinematographer={toggleCinematographer}
+          selectedAnimDirectors={selectedAnimDirectors} onToggleAnimDirector={toggleAnimDirector}
+          selectedCompanies={selectedCompanies}         onToggleCompany={toggleCompany}
+          selectedComposers={selectedComposers}         onToggleComposer={toggleComposer}
           selectedHighlights={selectedHighlights}       onToggleHighlight={toggleHighlight}
         />
       )}

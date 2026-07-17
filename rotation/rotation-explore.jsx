@@ -752,16 +752,16 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
   prevLensRef.current = lensKey;
   prevUnderCeilRef.current = underCeil;
 
-  // dots memoized WITHOUT the zoom factor — radius rides --zk so wheel-zoom reconciles nothing
+  // dots memoized WITHOUT the zoom factor — radius rides --zk so wheel-zoom reconciles nothing.
+  // hover is deliberately NOT a dep (it changes every mousemove and used to rebuild the whole
+  // layer per frame — audit 2026-07-18); the hover emphasis is a separate overlay ring below.
   const dots = React.useMemo(() => pts.map((pt, i) => {
     const on = inBrush(pt), dimF = isDimFam(pt.row), dimP = isPageDim(pt.row);
-    const isHover = hover && hover.row.id === pt.row.id;
     const isSel = (singleSel && pt.row.id === singleSel) || (clickSel && clickSel.has(pt.row.id));
     // page-slice dim is the same visual language as ArtistCloud (0.05) / ExploreScatter (~0.14): a
     // dot outside the active slice fades hard and stops responding to pointer, so brush/hover only
     // touch the conjunction. Family-dim (0.06) still wins when both apply.
     const op = dimF ? 0.06 : dimP ? (mode === "subgenres" ? 0.12 : 0.05) : brushed ? (on ? 0.92 : 0.1) : (singleSel || clickSel) ? (isSel ? 0.95 : 0.15) : (mode === "subgenres" ? 0.82 : 0.72);
-    const baseR = isHover ? pt.radius + 2 : pt.radius;
     // Position is ALWAYS via transform (cx/cy=0) so no dot ever switches how it's placed — that's what
     // kills the corner-flight. Opacity always transitions (cheap). The transform transition is armed
     // ONLY on a pure lens-change render (animatePos); otherwise transform:none so entering/moved-by-
@@ -771,9 +771,9 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
       <circle key={pt.row.id + "-" + i} className="xp-fdot" data-cx={pt.px.toFixed(1)} data-cy={pt.py.toFixed(1)}
         cx={0} cy={0}
         fill={fillFor(pt.row)} fillOpacity={op}
-        stroke={isHover || isSel ? "#fff" : "none"} strokeWidth={isSel ? 2 : 1.4} vectorEffect="non-scaling-stroke"
-        style={{ transform: `translate(${pt.px.toFixed(1)}px, ${pt.py.toFixed(1)}px)`, r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: dimF || dimP ? "default" : "pointer", pointerEvents: dimF || dimP ? "none" : "auto", transition: trans }} />);
-  }), [pts, hover, brushed, singleSel, clickSel, inBrush, isDimFam, isPageDim, fillFor, mode, animatePos]);
+        stroke={isSel ? "#fff" : "none"} strokeWidth={2} vectorEffect="non-scaling-stroke"
+        style={{ transform: `translate(${pt.px.toFixed(1)}px, ${pt.py.toFixed(1)}px)`, r: `calc(${pt.radius.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: dimF || dimP ? "default" : "pointer", pointerEvents: dimF || dimP ? "none" : "auto", transition: trans }} />);
+  }), [pts, brushed, singleSel, clickSel, inBrush, isDimFam, isPageDim, fillFor, mode, animatePos]);
 
   const subLabels = React.useMemo(() => mode !== "subgenres" ? null : pts.filter(pt => labelIds.has(pt.row.id) && !isDimFam(pt.row) && !isPageDim(pt.row)).map(pt => (
     <text key={"lbl" + pt.row.id} x={(pt.px + pt.radius + 3).toFixed(1)} y={(pt.py + 3).toFixed(1)}
@@ -836,6 +836,11 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
             {xTicks.map((t, i) => <text key={"xt" + i} x={PAD_L + t.frac * PW} y={H - PAD_B + 16} textAnchor="middle" fill="var(--ink-faint)" fontFamily="var(--mono)" style={{ fontSize: `calc(9px * var(--zk))` }}>{t.lbl}</text>)}
             {yTicks.map((t, i) => <text key={"yt" + i} x={PAD_L - 6} y={PAD_T + (1 - t.frac) * PH + 3} textAnchor="end" fill="var(--ink-faint)" fontFamily="var(--mono)" style={{ fontSize: `calc(9px * var(--zk))` }}>{t.lbl}</text>)}
             {dots}
+            {/* hover emphasis lives OUTSIDE the memoized dot layer: one ring re-renders per
+                mousemove instead of the whole field (audit 2026-07-18) */}
+            {hover && <circle cx={hover.px} cy={hover.py} fill="none" stroke="#fff" strokeWidth="1.6"
+              vectorEffect="non-scaling-stroke" pointerEvents="none"
+              style={{ r: `calc(${(hover.radius + 2).toFixed(2)}px * var(--zk) * var(--fk, 1))` }} />}
             {/* printed subgenre labels removed (Fuad 2026-07-14: confusing black text) —
                 replaced by a subtle hover label right above the bubble you're on */}
             {hover && <text x={hover.px} y={hover.py - hover.radius - 7} textAnchor="middle"
