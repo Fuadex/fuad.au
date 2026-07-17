@@ -295,7 +295,7 @@ function shGroupShelves(albums, R) {
 // mobile "position jumps back" bug). Stable identity = React keeps the DOM (and scrollLeft).
 // Desktop rows drag-to-pan (Culture-style); the scrollbar is replaced by a progress line + %.
 // Progress updates go straight to the DOM (refs) — a 500-spine row must not re-render per frame.
-function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitLabel, splitOn, onSplit, expanded, setExpanded, setReader }) {
+function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitLabel, splitOn, onSplit, splitPill, expanded, setExpanded, setReader }) {
   const visible = albums.slice(0, cap);
   const rowRef = React.useRef(null), barRef = React.useRef(null), pctRef = React.useRef(null), progRef = React.useRef(null), trackRef = React.useRef(null);
   const drag = React.useRef({ down: false, moved: false });
@@ -349,7 +349,9 @@ function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitL
         <span className="sh-shelf-name" style={{ "--h": hue }}>{name}</span>
         <span className="sh-shelf-n">{fmt(albums.length)} records · {fmt(albums.reduce((s, a) => s + a.plays, 0))} plays</span>
         {splittable && (
-          <button className="sh-split" onClick={onSplit}>{splitOn ? "merge ▴" : `${splitLabel || "split"} ▾`}</button>
+          splitPill
+            ? <button className="r-seg-sm sh-groupsplit" onClick={onSplit}>{splitOn ? "merge ▴" : `${splitLabel || "split"} ▸`}</button>
+            : <button className="sh-split" onClick={onSplit}>{splitOn ? "merge ▴" : `${splitLabel || "split"} ▾`}</button>
         )}
       </div>
       <div className="sh-rowwrap">
@@ -395,6 +397,14 @@ function ShelvesView({ go, seed }) {
   const [labelsReady, setLabelsReady] = React.useState(!!(window.ROTATION_ALB_LABELS && window.ROTATION_LABEL_PARENTS));
   const [labelsExpanded, setLabelsExpanded] = React.useState(false); // clamp expand/collapse
   const [labelGrouped, setLabelGrouped] = React.useState(_seed.labelGrouped); // labels lens: cluster by parent company vs split into specific labels
+  // per-group inline split: conglomerate names currently unravelled into per-label shelves.
+  // session-local only (never mirrored to the hash) and reset whenever the global grouping
+  // toggle flips or the lens changes — the global "every label" view supersedes it entirely.
+  const [splitGroups, setSplitGroups] = React.useState(() => new Set());
+  React.useEffect(() => { setSplitGroups(new Set()); }, [labelGrouped, lens]);
+  const toggleSplitGroup = (key) => setSplitGroups(prev => {
+    const next = new Set(prev); next.has(key) ? next.delete(key) : next.add(key); return next;
+  });
   // mirror mode/lens/label-grouping into the URL (replaceState — no history spam)
   const _shMounted = React.useRef(false);
   React.useEffect(() => {
@@ -551,9 +561,12 @@ function ShelvesView({ go, seed }) {
             <button key={k} className="sh-lens" data-on={lens === k} onClick={() => { setLens(k); setSplit({}); if (k !== "labels") setLabelsExpanded(false); }}>{lbl}</button>
           ))}
           {lens === "labels" && (
-            <span className="r-seg sh-labelseg" role="group" aria-label="group labels by parent company">
-              <button data-on={labelGrouped} onClick={() => { setLabelGrouped(true); setLabelsExpanded(false); }}>parent company</button>
-              <button data-on={!labelGrouped} onClick={() => { setLabelGrouped(false); setLabelsExpanded(false); }}>every label</button>
+            <span className="sh-labelseg-wrap">
+              <span className="r-mono sh-labelseg-cap">group</span>
+              <span className="r-seg sh-labelseg" role="group" aria-label="group labels by parent company">
+                <button data-on={labelGrouped} onClick={() => { setLabelGrouped(true); setLabelsExpanded(false); }}>parent company</button>
+                <button data-on={!labelGrouped} onClick={() => { setLabelGrouped(false); setLabelsExpanded(false); }}>every label</button>
+              </span>
             </span>
           )}
         </div>
@@ -572,11 +585,42 @@ function ShelvesView({ go, seed }) {
           <>
             {visible.map((g) => {
               const shelfId = "labels:" + g.key;
-              // Grouped mode: ONE merged shelf per conglomerate (all imprints racked together),
-              // with the top-6-imprints "+N more" line as a subtitle (full list in the tooltip).
-              // The split-by-labels toggle (labelGrouped=false → no sublabels) unravels into the
-              // individual label shelves via the plain single-shelf branch below.
-              const subtitle = (g.sublabels && g.labelNames.length >= 2) ? (() => {
+              // A conglomerate is splittable when grouping actually merged 2+ imprints
+              // (shGroupBy only fills g.sublabels in that case).
+              const multi = !!(g.sublabels && g.labelNames.length >= 2);
+              const splitOpen = multi && splitGroups.has(g.key);
+
+              // PER-GROUP SPLIT — unravel JUST this conglomerate in place: one shelf per
+              // constituent label, nested under a group header (mirrors the .sh-famgroup
+              // pattern), while every other group stays merged. Reuses the same ShShelf
+              // rendering the global "every label" view uses, fed the per-label album lists
+              // that shGroupBy already tracked in g.sublabels.
+              if (splitOpen) {
+                // constituent labels, most-albums-first (labelNames is already sorted so)
+                const rows = g.labelNames.map(lname => [lname, g.sublabels.get(lname)]);
+                return (
+                  <div key={shelfId} className="sh-famgroup">
+                    <div className="sh-shelf-h" style={{ marginBottom: 2 }}>
+                      <span className="sh-shelf-name" style={{ "--h": g.hue, fontSize: 17 }}>{g.name}</span>
+                      <span className="sh-shelf-n">{fmt(g.albums.length)} records · {fmt(g.labelNames.length)} labels</span>
+                      <button className="r-seg-sm sh-groupsplit" onClick={() => toggleSplitGroup(g.key)}>merge ▴</button>
+                    </div>
+                    {rows.map(([lname, arr], si) => (
+                      <div key={g.key + "|" + lname} className="sh-reveal" style={{ animationDelay: (si * 45) + "ms" }}>
+                        <ShShelf id={shelfId + "|" + lname} name={lname} hue={g.hue} albums={arr} depth={1}
+                          cap={SH_CAP + (caps[shelfId + "|" + lname] || 0)}
+                          onMore={() => setCaps(p => ({ ...p, [shelfId + "|" + lname]: (p[shelfId + "|" + lname] || 0) + SH_STEP }))}
+                          expanded={expanded} setExpanded={setExpanded} setReader={setReader} />
+                      </div>
+                    ))}
+                  </div>
+                );
+              }
+
+              // MERGED (default) — ONE shelf per conglomerate (all imprints racked together),
+              // with the top-6-imprints "+N more" line as a subtitle (full list in the tooltip)
+              // and, for 2+-imprint groups, an inline split pill that unravels this group only.
+              const subtitle = multi ? (() => {
                 // constituent labels, most-albums-first; clamp to keep the subtitle to one
                 // tidy line even when a conglomerate swallows a dozen imprints.
                 const SUB_MAX = 6;
@@ -587,10 +631,13 @@ function ShelvesView({ go, seed }) {
               })() : null;
               // one shelf — title = conglomerate name, albums = every imprint's albums merged,
               // count = group total (ShShelf derives the header count from albums.length).
+              // splittable=multi surfaces the inline "split · N labels" pill in the shelf header.
               const shelf = (
                 <ShShelf id={shelfId} name={g.name} hue={g.hue} albums={g.albums}
                   cap={SH_CAP + (caps[shelfId] || 0)}
                   onMore={() => setCaps(p => ({ ...p, [shelfId]: (p[shelfId] || 0) + SH_STEP }))}
+                  splittable={multi} splitLabel={`split · ${g.labelNames.length} labels`}
+                  splitOn={false} splitPill onSplit={() => toggleSplitGroup(g.key)}
                   expanded={expanded} setExpanded={setExpanded} setReader={setReader} />
               );
               return subtitle
@@ -645,7 +692,16 @@ function ShelvesView({ go, seed }) {
           letter-spacing: .1em; text-transform: uppercase; transition: color .15s, border-color .15s; }
         .sh-lens:hover { color: var(--ink); }
         .sh-lens[data-on="true"] { color: var(--accent); border-color: var(--accent-dim); }
-        .sh-labelseg { margin-left: 4px; }
+        /* the global grouped-versus-split toggle. Grouped with its own "group" caption and
+           given breathing room so it reads as a distinct control rather than another lens
+           pill; on a narrow lens bar it wraps as one unit onto its own line (~344px). */
+        .sh-labelseg-wrap { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; flex: none; }
+        .sh-labelseg-cap { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+        .sh-labelseg { flex: none; }
+        @media (max-width: 560px) {
+          /* claim a full row so the toggle never gets buried mid-line among the lens pills */
+          .sh-labelseg-wrap { margin-left: 0; flex-basis: 100%; margin-top: 2px; }
+        }
         .sh-labelsub { font-family: var(--mono); font-size: 9.5px; letter-spacing: .04em;
           color: var(--ink-faint); margin: -2px 0 10px; line-height: 1.5; }
         /* grouped-labels: one merged shelf per conglomerate; the imprint list rides just under
@@ -663,6 +719,13 @@ function ShelvesView({ go, seed }) {
         .sh-split { margin-left: auto; background: none; border: none; color: var(--ink-faint); cursor: pointer;
           font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
         .sh-split:hover { color: var(--accent); }
+        /* per-group inline split — a small pill in the conglomerate header (matches the
+           r-seg-sm control register). Sits self-aligned so it hugs the header baseline row. */
+        .sh-groupsplit { margin-left: auto; align-self: center; border: 1px solid var(--rule-2); border-radius: 999px;
+          background: rgba(255,255,255,.02); color: var(--ink-soft); cursor: pointer;
+          font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
+          padding: 4px 9px; white-space: nowrap; transition: color .15s, border-color .15s; }
+        .sh-groupsplit:hover { color: var(--accent); border-color: var(--accent-dim); }
         /* row + arrows sit side by side; the arrows own a gutter and never cover the albums */
         .sh-rowwrap { display: flex; align-items: stretch; border-bottom: 3px solid var(--rule-2); }
         .sh-row { flex: 1; min-width: 0; display: flex; align-items: flex-end; gap: 2px; overflow-x: auto; padding: 6px 2px 0;
