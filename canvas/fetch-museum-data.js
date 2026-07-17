@@ -9,10 +9,18 @@ const fs = require("fs"), path = require("path"), vm = require("vm");
 const PILOT = ["met-nyc", "marmottan", "van-gogh-museum", "guggenheim", "belvedere",
   "orsay", "nationalmuseum", "frick", "nga-dc", "ngi"];
 // searches that need a steer past ambiguous names
+// hard qid pins — for names too ambiguous for search to resolve safely
+const QID_PIN = {
+  "national-gallery-london": "Q180788",
+};
 const SEARCH_HINT = {
   "belvedere": "Österreichische Galerie Belvedere",
   "nationalmuseum": "Nationalmuseum Stockholm",
   "nga-dc": "National Gallery of Art",
+  "mnw": "National Museum in Warsaw",
+  "national-gallery-london": "National Gallery",
+  "rodin": "Musée Rodin",
+  "nga-canberra": "National Gallery of Australia",
 };
 
 const w = {}; vm.runInNewContext(fs.readFileSync(path.join(__dirname, "museums.js"), "utf8"), { window: w });
@@ -60,10 +68,14 @@ async function labelOf(qids) {
     if (!m) { console.log(id, ": not in museums.js, skipped"); continue; }
     if (existing[id]) { console.log(id, ": already fetched, skip (pass the id explicitly to refresh)"); continue; }
     // search by the bare name — appending the city defeats wbsearchentities' label match
-    const q = SEARCH_HINT[id] || m.name;
-    const s = await api({ action: "wbsearchentities", search: q, language: "en", type: "item", limit: 5 });
-    const hit = s.search && s.search[0];
-    if (!hit) { console.log(id, ": no wikidata hit for", q); continue; }
+    let hit;
+    if (QID_PIN[id]) hit = { id: QID_PIN[id], label: m.name, description: "(pinned)" };
+    else {
+      const q = SEARCH_HINT[id] || m.name;
+      const s = await api({ action: "wbsearchentities", search: q, language: "en", type: "item", limit: 5 });
+      hit = s.search && s.search[0];
+      if (!hit) { console.log(id, ": no wikidata hit for", q); continue; }
+    }
     await sleep(600);
     const cl = (await api({ action: "wbgetclaims", entity: hit.id })).claims || {};
     const archQ = all(cl, "P84").map(v => v.id).filter(Boolean);
