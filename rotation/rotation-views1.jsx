@@ -622,7 +622,7 @@ function OverviewView({ t, go, restReady, seed }) {
               style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
           <div className="ov-rl" style={{ display: "grid", gap: 1, flex: 1, alignContent: "center" }}>
             {recent3.map(r => (
-              <div key={r.id} onClick={() => go("track", R.slug(r.artist) + "~" + R.slug(r.track))} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 9,
+              <div key={r.id} onClick={() => { if (r.artist && r.track) go("track", R.slug(r.artist) + "~" + R.slug(r.track)); }} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 9,
                 padding: "3px 6px", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
                 onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
                 onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
@@ -901,8 +901,9 @@ function BubbleField({ items, seen, setPop, onClick, expressive }) {
             <g key={p.id} style={{ cursor: "pointer", opacity: seen ? 1 : 0,
               transform: seen ? "scale(1)" : "scale(0)", transformOrigin: `${p.x}px ${p.y}px`,
               transition: `all .6s cubic-bezier(.3,1.4,.5,1) ${i * 0.03}s` }}
-              onMouseEnter={(e) => setPop({ x: p.x / W * window.innerWidth, y: 260, title: p.label, pip: p.hue,
-                meta: "plays", rows: [["plays", fmt(p.value)], ["·", p.sub]], hint: "click to open ↗" })}
+              onMouseEnter={(e) => { const svg = e.currentTarget.ownerSVGElement, rc = svg && svg.getBoundingClientRect();
+                setPop({ x: rc ? rc.left + p.x / W * rc.width : p.x, y: 260, title: p.label, pip: p.hue,
+                meta: "plays", rows: [["plays", fmt(p.value)], ["·", p.sub]], hint: "click to open ↗" }); }}
               onMouseLeave={() => setPop(null)} onClick={() => onClick(p)}>
               <circle cx={p.x} cy={p.y} r={p.rad} fill={col} fillOpacity={expressive ? 0.32 : 0.16}
                 stroke={col} strokeWidth="1.4" />

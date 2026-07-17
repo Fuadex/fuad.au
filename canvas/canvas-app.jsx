@@ -605,7 +605,8 @@ function StudyView({ id, go }) {
     const tm = (ev) => { if (dragSplit.current && ev.touches[0]) { move(ev.touches[0].clientX); ev.preventDefault(); } };
     const up = () => {
       dragSplit.current = false;
-      try { localStorage.setItem("canvas-study-split", String(split)); } catch (e2) {}
+      // (persist happens in the [split] effect below — writing here captured the STALE
+      // start-of-drag value in this closure, audit 2026-07-18)
       window.removeEventListener("pointermove", mm); window.removeEventListener("pointerup", up);
       window.removeEventListener("touchmove", tm); window.removeEventListener("touchend", up);
     };
@@ -703,7 +704,8 @@ function StudyView({ id, go }) {
       <div className="cv-study-viewer" style={{ flexBasis: collapsed ? "100%" : (split * 100) + "%" }}>
         <div className="cv-osd-view" ref={elRef} />
         <OSDControls viewerRef={viewerRef} />
-        {err && <div className="cv-osd-err">zoom unavailable — the tile source didn't load</div>}
+        {err && <div className="cv-osd-err">zoom unavailable — the tile source didn't load
+          {" · "}<a href={"#/work/" + id} style={{ color: "inherit", textDecoration: "underline" }}>open in reader →</a></div>}
         {/* FIX 6a: the detail tour over the viewer — prev/next arrows step through the anchored
             chapters (fly + highlight/scroll the chapter), plus a chip strip. Sourced from `tour`
             (inspect.deeper anchors), so it appears for every studied work with anchored chapters. */}
@@ -856,7 +858,7 @@ function Reader({ id, go }) {
               {w.venues.map((v, vi) => (
                 <React.Fragment key={v.id}>
                   {vi > 0 ? " · " : ""}
-                  <a className="cv-r-venue" onClick={() => go("museum", v.id)}>{v.name.replace(/\s*\(.*\)$/, "")}, {v.city}</a>
+                  <a className="cv-r-venue" href={"#/museum/" + v.id} onClick={(e) => { e.preventDefault(); go("museum", v.id); }}>{v.name.replace(/\s*\(.*\)$/, "")}, {v.city}</a>
                 </React.Fragment>
               ))}
               {w.exhibition ? ` — ${w.exhibition}` : ""}
@@ -1374,6 +1376,7 @@ function Deck({ museumId, part, go }) {
   const [i, setI] = useState(firstOpen < 0 ? deck.length : firstOpen);
   const [love, setLove] = useState(0);
   const [copied, setCopied] = useState(false);
+  const [saveWarn, setSaveWarn] = useState(false);   // localStorage write failed (quota / private mode)
   // reset card index when part changes (key on Deck in App handles full remount, but guard here too)
   useEffect(() => {
     const fo = deck.findIndex(w => !verdicts[w.qid]);
@@ -1389,7 +1392,8 @@ function Deck({ museumId, part, go }) {
     const gradedQid = deck[i].qid;
     const next = { ...verdicts, [gradedQid]: { seen: seenV, love } };
     setVerdicts(next);
-    localStorage.setItem(storeKey, JSON.stringify(next));
+    try { localStorage.setItem(storeKey, JSON.stringify(next)); setSaveWarn(false); }
+    catch (e) { setSaveWarn(true); }   // quota/private-mode: grade shows but won't survive reload — say so
     // once a queued work is graded, prune it from the queue (harmless if it lingers, but tidy)
     if (VIRTUAL && isQueued(gradedQid)) writeDeckQueue(readDeckQueue().filter(w => w.qid !== gradedQid));
     setI(i + 1);
@@ -1472,7 +1476,9 @@ function Deck({ museumId, part, go }) {
       <div className="cv-deck-head">{VIRTUAL ? mus.name.replace(/\s*\(.*\)$/, "") : <a className="cv-deck-headlink" onClick={() => go("museum", museumId)}>{mus.name.replace(/\s*\(.*\)$/, "")}</a>}{numParts > 1 ? " · Part " + safePart : ""} · did you see this?{queuedCount > 0 ? <span className="cv-deck-queued"> · {queuedCount} from artist pages</span> : null}</div>
       <div className="cv-deck-prog">{i + 1} / {deck.length} · 1–3 seen · 4 ♡ · 5 ♥{i > 0 ? " · Backspace = back" : ""}</div>
       <div className="cv-deck-card" key={w.qid}>{/* remount per card: stale image must not linger under the next label */}
-        <img src={w.img} alt={w.title} loading="eager" />
+        {w.img
+          ? <img src={w.img} alt={w.title} loading="eager" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+          : <div className="cv-deck-noimg" style={{ padding: "60px 20px", color: "var(--ink-faint)", font: "400 14px/1.5 var(--serif)" }}>no image — judge from the title</div>}
         <div className="cv-deck-label">
           <div className="cv-title">{w.title}</div>
           <div className="cv-artist">{w.artist || "—"}{w.year ? " · " + w.year : ""}</div>
@@ -1488,7 +1494,9 @@ function Deck({ museumId, part, go }) {
           <button key={v} data-v={v} onClick={() => judge(v)}><span className="key">{k + 1}</span>{label}</button>
         ))}
       </div>
-      <div className="cv-deck-hint">feeling first (optional), then the seen answer deals the next card — "didn't see it" + ♥ builds your pilgrimage list</div>
+      <div className="cv-deck-hint">{saveWarn
+        ? "⚠ grades aren't being saved (storage unavailable — private mode?) — they'll be lost on reload"
+        : "feeling first (optional), then the seen answer deals the next card — \"didn't see it\" + ♥ builds your pilgrimage list"}</div>
     </div>
   );
 }
@@ -2080,7 +2088,7 @@ function MapView({ go }) {
           })()}
         </svg>
         {hover && (
-          <div className="cv-map-preview" style={{ left: hover.mx + 16, top: hover.my + 16 }}>
+          <div className="cv-map-preview" style={{ left: Math.min(hover.mx + 16, (window.innerWidth || 1200) - 210), top: Math.min(hover.my + 16, (window.innerHeight || 800) - 160) }}>
             {hover.w.imgGrid && <img src={hover.w.imgGrid} alt="" />}
             <div className="cv-map-preview-t">{hover.w.title}</div>
             <div className="cv-map-preview-s">{hover.w.artist.replace(/\s*\(.*\)$/, "")}{hover.w.year ? " · " + hover.w.year : ""}</div>
@@ -2439,7 +2447,7 @@ function SearchBar({ go }) {
   }, [open]);
 
   const openResult = (r) => {
-    if (r.kind === "museum") { go("museums"); }
+    if (r.kind === "museum") { go("museum", r.id); }   // straight to the venue page, not the index
     else { go("work", r.id); }
     setOpen(false); setQ("");
   };

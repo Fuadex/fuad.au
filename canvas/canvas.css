@@ -27,7 +27,6 @@ a { color: inherit; }
 .cv-mode { display: flex; gap: 4px; }
 .cv-mode button { font: 500 10.5px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-faint); cursor: pointer; }
 .cv-mode button[data-on="true"] { border-color: var(--ink); color: var(--ink); }
-.cv-sub { padding: 10px 34px 0; font: 400 13px/1.5 var(--serif); font-style: italic; color: var(--ink-faint); }
 
 /* ——— the wall (collage) — tighter 6-column packed hang (Fuad, 2026-07-08) ——— */
 .cv-wall { column-count: 6; column-gap: 8px; padding: 18px 24px 60px; }

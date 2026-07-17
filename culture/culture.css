@@ -281,18 +281,6 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   .search-results-msg { padding: 0 24px; }
 }
 
-/* ───── INTRO ───── */
-.intro {
-  padding: 28px 56px 6px;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 18px;
-  line-height: 1.45;
-  color: var(--ink-soft);
-  max-width: 760px;
-}
-.intro b { color: var(--ink); font-style: normal; font-weight: 600; font-family: var(--sans); }
-
 /* ───── SHELVES ───── */
 .shelf { padding: 36px 0 0; position: relative; }
 .shelf-head {
@@ -667,7 +655,6 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   align-items: center;
   margin-bottom: 6px;
 }
-.popup .meta .pip { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
 .popup .t {
   font-family: var(--serif);
   font-style: italic;
@@ -1119,7 +1106,6 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   .site-head { padding: 32px 24px 18px; grid-template-columns: 1fr; }
   .site-head .right { align-items: flex-start; }
   .site-head .tagline { text-align: left; }
-  .intro { padding: 24px 24px 0; font-size: 16px; }
   .shelf-head { padding: 0 24px 12px; }
   .shelf-scroll { padding: 18px 24px 18px; }
   .shelf-rail::before, .shelf-rail::after { width: 24px; }
@@ -1391,8 +1377,6 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 /* activity heatmap */
 .heatmap-wrap { overflow-x: auto; }
 .heatmap-inner { display: inline-block; min-width: 100%; }
-.heatmap-months { display: grid; gap: 2px; margin-bottom: 4px; }
-.heatmap-month-lbl { font-family: var(--mono); font-size: 8px; color: var(--ink-faint); }
 .heatmap-rows { display: flex; flex-direction: column; gap: 2px; }
 .heatmap-row { display: flex; align-items: center; gap: 2px; }
 .heatmap-year-lbl { font-family: var(--mono); font-size: 9px; color: var(--ink-faint); width: 34px; flex-shrink: 0; }
@@ -1627,12 +1611,6 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 /* ───── TONIGHT'S PICK ───── */
 .tonight { max-width: 1100px; margin: 0 auto; padding: 40px 56px 80px; }
 .tonight-topbar { margin-bottom: 26px; }
-.tonight-back {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  background: none; border: 1px solid var(--rule); border-radius: 999px;
-  color: var(--ink-soft); padding: 5px 12px; cursor: pointer; transition: color .15s, border-color .15s;
-}
-.tonight-back:hover { color: var(--ink); border-color: var(--ink-soft); }
 .tonight-h1 {
   font-family: var(--serif); font-style: italic; font-weight: 400;
   font-size: clamp(38px, 6vw, 66px); letter-spacing: -0.025em; line-height: 0.98;

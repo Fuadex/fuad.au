@@ -13,13 +13,16 @@ function SpotifyView({ go }) {
   const [P, setP] = React.useState(window.ROTATION_PERSONA || null);
   const [At, setAt] = React.useState(window.ROTATION_SPOT_ATTN || null);
   const [year, setYear] = React.useState(null);          // null = all-time
+  const [failed, setFailed] = React.useState(false);     // insights file 404'd — say so instead of spinning forever
   React.useEffect(() => {
     if (!window.ROTATION_SPOTIFY) {
       const s = document.createElement("script"); s.src = "spotify-insights.js"; s.onload = () => setD(window.ROTATION_SPOTIFY);
+      s.onerror = () => setFailed(true);
       document.head.appendChild(s);
     }
     if (!window.ROTATION_PERSONA) {
       const s = document.createElement("script"); s.src = "spotify-persona.js"; s.onload = () => setP(window.ROTATION_PERSONA);
+      s.onerror = () => {};   // persona sections simply don't render without it
       document.head.appendChild(s);
     }
     if (!window.ROTATION_SPOT_ATTN) {
@@ -28,6 +31,7 @@ function SpotifyView({ go }) {
       document.head.appendChild(s);
     }
   }, []);
+  if (failed && !d) return <div className="r-rest-wait r-mono">Spotify history data isn't available right now.</div>;
   if (!d) return <div className="r-rest-wait r-mono">loading your Spotify history…</div>;
 
   const years = d.years.map(y => y.year);

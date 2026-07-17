@@ -55,7 +55,7 @@ jobs:
 
       # 2b) smoke test -- invariant checks (slug contract, key joins, emit sanity).
       #     A failure here BLOCKS the deploy on purpose; see rotation/smoke-test.js.
-      - name: Smoke test
+      - name: Smoke test — slug/join invariants
         working-directory: rotation
         run: node smoke-test.js
 
@@ -72,7 +72,7 @@ jobs:
         run: node sync-live.js
 
       # 4) sanity gate -- a broken dataset never deploys
-      - name: Smoke test
+      - name: Smoke test — dataset sanity
         working-directory: rotation
         run: node smoke.js
 
