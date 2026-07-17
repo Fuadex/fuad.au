@@ -2464,6 +2464,19 @@ function SearchBar({ go }) {
 
   const expand = () => { setOpen(true); setTimeout(() => inputRef.current && inputRef.current.focus(), 0); };
 
+  // "/" (or Cmd/Ctrl-K) summons search from anywhere — same muscle memory as Rotation/Culture
+  useEffect(() => {
+    const onKey = (e) => {
+      const el = e.target;
+      const typing = el && (/(input|textarea|select)/i.test(el.tagName || "") || el.isContentEditable);
+      if (((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") || (e.key === "/" && !typing)) {
+        e.preventDefault(); expand();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
     <div className="cv-search" ref={wrapRef}>
       {!open
