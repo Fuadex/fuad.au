@@ -104,6 +104,20 @@ function copy(src, dst) {
   fs.copyFileSync(src, dst);
   copied++;
 }
+// digest of every staged file's content — the service worker's cache epoch. Any deployed
+// byte changing (code, data, lazy shards) opens a fresh epoch on the next SW activate.
+function dirDigest(dir) {
+  const h = crypto.createHash("md5");
+  const walk = (d) => {
+    for (const e of fs.readdirSync(d, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+      const p = path.join(d, e.name);
+      if (e.isDirectory()) walk(p);
+      else { h.update(e.name); h.update(fs.readFileSync(p)); }
+    }
+  };
+  walk(dir);
+  return h.digest("hex").slice(0, 10);
+}
 function dirSize(dir) {
   let n = 0;
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -133,6 +147,13 @@ for (const app of manifest.apps) {
   console.log(`app: ${app.id}/`);
   for (const f of app.deploy) copy(path.join(app.id, f), path.join(OUT, app.id, f));
   if (app.precompile && babel) precompileApp(app, babel);
+  // PWA: stamp the service worker's cache epoch with the staged-content digest
+  const swp = path.join(OUT, app.id, "sw.js");
+  if (fs.existsSync(swp)) {
+    const dig = dirDigest(path.join(OUT, app.id));
+    fs.writeFileSync(swp, fs.readFileSync(swp, "utf8").replace(/__BUILD__/g, dig), "utf8");
+    console.log(`  sw epoch ${dig}`);
+  }
   if (fs.existsSync(path.join(OUT, app.id)))
     console.log(`  -> ${mb(dirSize(path.join(OUT, app.id)))}`);
 }

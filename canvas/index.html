@@ -6,6 +6,9 @@
 <title>Canvas — a personal gallery</title>
 <meta name="description" content="The art I've stood in front of — a personal gallery of encounters, museum by museum.">
 <link rel="icon" href="favicon.svg">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#24201a">
+<link rel="apple-touch-icon" href="icon-192.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="fuad.au">
 <meta property="og:title" content="Canvas — the art I've stood in front of">
@@ -43,5 +46,10 @@
 <script src="art_hires.js?v=57"></script>
 <script src="art_inspect.js?v=57"></script>
 <script type="text/babel" src="canvas-app.jsx?v=57"></script>
+<script>
+  // PWA shell — https only, so local dev (http) never registers a worker
+  if ("serviceWorker" in navigator && location.protocol === "https:")
+    addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+</script>
 </body>
 </html>
