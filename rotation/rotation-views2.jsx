@@ -2519,11 +2519,10 @@ function PreviewBtn({ id, hue, artist, title }) {
 // stats (duration, popularity, explicit, track #, ranks). Identity is "artistSlug~trackSlug" (mirrors
 // AlbumView). Needs media-index (plays/album) + the lazy track-audio.js (features), loaded on demand.
 // "What it's about" — the Haiku gist is the default read; flick to Fable / Opus (deeper reads) or
-// Genius (human, community-written) where present. Order Haiku → Fable → Opus → Genius; Sonnet is
-// intentionally omitted. Reads come from blurb-reads (bake-off data today; the real pipeline later).
+// Genius (human, community-written) where present. All model reads live in llm-about (the old
+// blurb-demo bake-off file was folded in and retired, 2026-07-18).
 // Where the track carries a fableDeep close-reading, an Info / Interpretation toggle sits at the
 // module's top right: Info = the normal one-line reads, Interpretation = Fable's longer reading.
-const BLURB_ORDER = [["haiku", "Haiku"], ["fable", "Fable"], ["opus", "Opus"]];
 // which READ sources live in the gist shard (light) vs the deep shard (mirrors shard-about.js).
 const GIST_SRC = { haiku: 1, web: 1 };
 function BlurbSwitcher({ id, about }) {
@@ -2532,7 +2531,6 @@ function BlurbSwitcher({ id, about }) {
   // GIST first (light default read); DEEP loads only when a deep source / Interpretation opens.
   React.useEffect(() => {
     if (R && R.loadAbout) R.loadAbout(id, bump);
-    if (!window.ROTATION_BLURB_DEMO) { const s = document.createElement("script"); s.src = "blurb-demo.js"; s.onload = bump; s.onerror = bump; document.head.appendChild(s); }
     if (!window.ROTATION_INSTRUMENTALS) { const s = document.createElement("script"); s.src = "instrumentals.js"; s.onload = bump; s.onerror = bump; document.head.appendChild(s); }
   }, [id]);
   const [pick, setPick] = React.useState(null);
@@ -2547,10 +2545,9 @@ function BlurbSwitcher({ id, about }) {
   const gist = gist0;                                            // src + haiku + web + has (deep markers)
   const deep = (R && R.aboutDeep && R.aboutDeep(id)) || null;    // sonnet/opus/fable/fableDeep (once loaded)
   const llm = (gist || deep) ? Object.assign({}, gist || {}, deep || {}) : null;   // merged, blob-shape
-  const reads = (window.ROTATION_BLURB_DEMO && window.ROTATION_BLURB_DEMO[id]) || null; // bake-off multi-model
   // buttons: the model reads (Haiku · Sonnet · Opus · Fable), a Web read (researched from web sources
   // when the lyrics dump had none), then Genius (human). Default = the chosen source (llm.src).
-  // Bake-off songs keep their set. Deep buttons appear from the gist's `has` marker even before
+  // Deep buttons appear from the gist's `has` marker even before
   // the deep shard lands; opening one triggers its load and re-render (text fills in).
   const sources = [];
   if (gist) {
@@ -2560,10 +2557,8 @@ function BlurbSwitcher({ id, about }) {
     for (const [m, label] of [["haiku", "Haiku"], ["sonnet", "Sonnet"], ["opus", "Opus"], ["fable", "Fable"], ["web", "Web"]]) {
       if (present[m]) sources.push({ m, label, text: llm[m] || null });   // text null until deep loads
     }
-  } else if (reads) {
-    for (const [m, label] of BLURB_ORDER) if (reads[m]) sources.push({ m, label, text: reads[m] });
   }
-  const geniusText = (about && about[0]) || (reads && reads.genius);
+  const geniusText = about && about[0];
   if (geniusText) sources.push({ m: "genius", label: "Genius", text: geniusText, link: about && about[1] ? `https://genius.com/songs/${about[1]}` : null });
   if (!sources.length) {
     // no read exists — if the track is classified instrumental, say so instead of vanishing
@@ -2673,7 +2668,6 @@ function TrackView({ id, go }) {
     load("media-index.js", "ROTATION_MEDIA"); load("track-audio.js", "ROTATION_TRACKAUDIO");
     load("track-previews.js", "ROTATION_PREVIEWS"); load("genius-mood-lazy.js", "ROTATION_MOOD");
     load("genius-about-lazy.js", "ROTATION_ABOUT");
-    load("blurb-demo.js", "ROTATION_BLURB_DEMO");   // DEMO: multi-model "what it's about" reads
     load("mb-track-bio.js", "ROTATION_TRACKBIO");   // song bios (writers/covers/versions) via MusicBrainz
     if (need === 0) setReady(true);
   }, []);
