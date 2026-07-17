@@ -370,14 +370,17 @@ function OvFacts({ ids, go, accent, restReady }) {
     return out;
   }, [R, rules, ids.join(","), restReady]);
   if (!facts.length) return null;
+  // Bullet list in the #lab2 sense: a bullet-dot lead-in + one terse mono-ish headline per item,
+  // tight vertical rhythm, click to expand the full sentence + derivation (mirrors lab2 FactCard's
+  // collapsed→expanded grammar). Redesigned from the old full-width expanding rows (Fuad 2026-07-18).
   return (
-    <div className="ov-facts">
+    <ul className="ov-facts">
       {facts.map(({ rule, res }, i) => {
         const isOpen = open === i;
         return (
-          <div key={rule.id} className="ov-fact" data-open={isOpen}>
+          <li key={rule.id} className="ov-fact" data-open={isOpen}>
             <button className="ov-fact-head" onClick={() => setOpen(x => x === i ? -1 : i)}>
-              <span className="ov-fact-tick" style={accent ? { color: accent } : null}>{isOpen ? "▾" : "▸"}</span>
+              <span className="ov-fact-dot" style={accent ? { background: accent } : null} />
               <span className="ov-fact-hl">{res.headline}</span>
               {res.link && (
                 <span className="ov-fact-go" onClick={(e) => { e.stopPropagation(); go(res.link.view, res.link.id || undefined); }}>→</span>
@@ -389,10 +392,10 @@ function OvFacts({ ids, go, accent, restReady }) {
                 {res.detail && <div className="ov-fact-det">{res.detail}</div>}
               </div>
             )}
-          </div>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 }
 
@@ -522,39 +525,39 @@ function OverviewView({ t, go, restReady, seed }) {
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, minmax(0, 1fr))", gap: "var(--gap)" }}>
         {/* now playing — top-right corner of the pulse row (DOM-first so mobile still leads
             with it; the ≥981px block pins it to cols 9-12) */}
-        <div className="r-card ov-np" style={{ gridColumn: "span 4", padding: "10px 14px", display: "flex", gap: 14, alignItems: "center", minWidth: 0 }}>
+        <div className="r-card ov-np" style={{ gridColumn: "span 4", padding: "8px 12px", display: "flex", gap: 12, alignItems: "center", minWidth: 0 }}>
           <div style={{ position: "relative", cursor: npKnown ? "pointer" : "default" }} onClick={() => npKnown && go("artist", now.artistId)}>
-            <GenCover hue={nowArtist.hue} name={now.artist} size={92} radius={4} />
+            <GenCover hue={nowArtist.hue} name={now.artist} size={62} radius={4} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "flex-end", justifyContent: "center",
-              gap: 3, padding: "0 0 9px" }}>
+              gap: 3, padding: "0 0 6px" }}>
               {[0, 1, 2, 3, 4].map(i => <span key={i} className="eqbar" style={{ animationDelay: i * 0.13 + "s" }} />)}
             </div>
           </div>
           <div style={{ minWidth: 0 }}>
-            <div className="r-live" style={{ marginBottom: 7 }}><span className="dot" /> {now.nowplaying ? "Now playing" : "Last played"}</div>
-            <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 19, lineHeight: 1.05 }}>{now.track}</div>
-            <div style={{ color: "var(--ink-soft)", fontSize: 13, marginTop: 4 }}>
+            <div className="r-live" style={{ marginBottom: 3 }}><span className="dot" /> {now.nowplaying ? "Now playing" : "Last played"}</div>
+            <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 17, lineHeight: 1.05 }}>{now.track}</div>
+            <div style={{ color: "var(--ink-soft)", fontSize: 12.5, marginTop: 2 }}>
               {npKnown ? <b onClick={() => go("artist", now.artistId)} style={{ cursor: "pointer", color: "var(--ink)", fontWeight: 600 }}>{now.artist}</b> : now.artist} — <span style={{ color: "var(--ink-faint)" }}>{now.album}</span></div>
-            <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: 6, marginTop: 6, flexWrap: "wrap" }}>
               {nowArtist.tags.slice(0, 3).map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
             </div>
           </div>
         </div>
 
         {/* scrobble counter + trend — left anchor of the pulse row */}
-        <div className="r-card ov-scrob" style={{ gridColumn: "span 3", padding: "10px 14px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        <div className="r-card ov-scrob" style={{ gridColumn: "span 3", padding: "8px 12px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <div className="r-card-h" style={{ padding: 0 }}>
             <span className="lbl"><b>Scrobbles</b></span>
             <span className="meta">26-wk</span>
           </div>
-          <div className="r-stat-n" style={{ fontSize: "clamp(26px,3.4vw,38px)", margin: "2px 0 0" }}>{fmt(Math.round(scrob))}</div>
-          <div style={{ marginTop: 4 }}>
-            <Spark data={trend} w={300} h={30} run={seen} fill="var(--accent-bg)" />
+          <div className="r-stat-n" style={{ fontSize: "clamp(24px,3.4vw,34px)", margin: "1px 0 0" }}>{fmt(Math.round(scrob))}</div>
+          <div style={{ marginTop: 2 }}>
+            <Spark data={trend} w={300} h={22} run={seen} fill="var(--accent-bg)" />
           </div>
         </div>
 
         {/* streak — current run + when the all-time best happened (INSIGHTS.STREAK carries the range) */}
-        <div className="r-card ov-streak" style={{ gridColumn: "span 2", padding: "10px 14px", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div className="r-card ov-streak" style={{ gridColumn: "span 2", padding: "8px 12px", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Streak</b></span>
             {T.streak.current >= T.streak.best ? <span className="meta" style={{ color: "var(--accent)" }}>record!</span> : null}</div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 0 }}>
@@ -587,7 +590,7 @@ function OverviewView({ t, go, restReady, seed }) {
           const delta = w.weekAvg ? Math.round((w.plays7 - w.weekAvg) / w.weekAvg * 100) : 0, up = delta >= 0;
           const ta = w.topArtists && w.topArtists[0];
           return (
-            <div className="r-card ov-week" style={{ gridColumn: "span 3", padding: "10px 14px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <div className="r-card ov-week" style={{ gridColumn: "span 3", padding: "8px 12px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>This week</b></span>
                 <span className="meta" style={{ color: up ? "var(--accent)" : "var(--ink-faint)" }}>{up ? "▲" : "▼"} {Math.abs(delta)}%</span></div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 0 }}>
@@ -613,20 +616,20 @@ function OverviewView({ t, go, restReady, seed }) {
 
         {/* recent ticker — squeezed centrally between streak and now-playing; the list is a
             capped scroll well at PC widths so the pulse row stays shallow */}
-        <div className="r-card ov-recent" style={{ gridColumn: "span 3", padding: "9px 11px", display: "flex", flexDirection: "column" }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 5 }}><span className="lbl"><b>Recently played</b></span>
+        <div className="r-card ov-recent" style={{ gridColumn: "span 3", padding: "8px 11px", display: "flex", flexDirection: "column" }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 3 }}><span className="lbl"><b>Recently played</b></span>
             <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
               style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
-          <div className="ov-rl" style={{ display: "grid", gap: 2, flex: 1, alignContent: "center" }}>
+          <div className="ov-rl" style={{ display: "grid", gap: 1, flex: 1, alignContent: "center" }}>
             {recent3.map(r => (
-              <div key={r.id} onClick={() => go("track", R.slug(r.artist) + "~" + R.slug(r.track))} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 10,
-                padding: "4px 6px", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
+              <div key={r.id} onClick={() => go("track", R.slug(r.artist) + "~" + R.slug(r.track))} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 9,
+                padding: "3px 6px", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
                 onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
                 onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
-                <GenCover hue={r.hue} name={r.artist} size={26} radius={2} />
+                <GenCover hue={r.hue} name={r.artist} size={22} radius={2} />
                 <div style={{ minWidth: 0, flex: 1 }}>
-                  <div style={{ fontSize: 12.5, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
-                  <div style={{ fontSize: 10.5, color: "var(--ink-faint)", cursor: "pointer", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={`${r.artist} →`}
+                  <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
+                  <div style={{ fontSize: 10, color: "var(--ink-faint)", cursor: "pointer", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={`${r.artist} →`}
                     onClick={e => { e.stopPropagation(); go("artist", r.artistId); }}>{r.artist}</div>
                 </div>
                 <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", flex: "none" }}>{r.when}</span>
@@ -655,12 +658,32 @@ function OverviewView({ t, go, restReady, seed }) {
             } />
         </div>
 
+        {/* Story of the day — a DEDICATED slot (was only an insight-row card, so higher-scoring
+            milestone cards crowded it out of the top-4 and nothing showed — Fuad 2026-07-18). Now
+            it always features, deterministic per UTC day via window.storyOfDay(). */}
+        {(() => {
+          const story = window.storyOfDay ? window.storyOfDay(go) : null;
+          if (!story) return null;
+          const pick = story._pick;
+          return (
+            <div className="r-card ov-story" style={{ gridColumn: "1 / -1", padding: "14px 18px", cursor: "pointer",
+              display: "flex", alignItems: "center", gap: 16 }} onClick={story.onClick}>
+              <span className="r-mono ov-story-tag">Story of the day</span>
+              <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "baseline", gap: 12, flexWrap: "wrap" }}>
+                <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 18, lineHeight: 1.2, color: "var(--ink)" }}>{pick ? pick.t : ""}</span>
+                <span style={{ fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.45, minWidth: 0 }}>{pick ? pick.teaser : ""}</span>
+              </div>
+              <span className="r-mono ov-story-go">read →</span>
+            </div>
+          );
+        })()}
+
         {/* Right now — the live insight feed, promoted directly under the map (Fuad 2026-07-06),
             paired with emotional weather on its row (was full-width lower down). */}
-        <div className="r-card ov-insights" style={{ gridColumn: "span 8", padding: 14 }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}><span className="lbl"><b>Right now</b></span>
+        <div className="r-card ov-insights" style={{ gridColumn: "span 8", padding: "10px 12px" }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 7 }}><span className="lbl"><b>Right now</b></span>
             <span className="meta">what's moving</span></div>
-          <div className="ov-insgrid" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "var(--gap)" }}>
+          <div className="ov-insgrid" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 8 }}>
             <InsightRow go={go} n={4} />
           </div>
         </div>
@@ -679,7 +702,7 @@ function OverviewView({ t, go, restReady, seed }) {
       <div className="ov-pd" style={{ marginTop: "calc(var(--gap)*1.4)" }}>
         {/* YOUR PORTRAIT — self-portrait: underground depth · dominant decade · heaviest day ·
             one-song obsession (lab2 rules: underground, decade-growth, peak-day, one-song) */}
-        <div className="r-card ov-pd-card" style={{ padding: "16px 18px" }}>
+        <div className="r-card ov-pd-card" style={{ padding: "14px 16px" }}>
           <div className="r-mono ov-pd-lbl">Your portrait</div>
           <OvFacts ids={["underground", "decade-growth", "peak-day", "one-song"]} go={go} accent="var(--accent)" restReady={restReady} />
           <div className="r-mono ov-pd-foot" onClick={() => go("stories")}>read the long version ↗</div>
@@ -688,7 +711,7 @@ function OverviewView({ t, go, restReady, seed }) {
         {/* WHERE TO DIG — discovery-oriented: genre momentum · newest all-time top-50 face ·
             biggest comeback · deepest discography to complete (lab2 rules: genre-shift,
             new-to-top50, comeback, complete-discog) */}
-        <div className="r-card ov-pd-card" style={{ padding: "16px 18px" }}>
+        <div className="r-card ov-pd-card" style={{ padding: "14px 16px" }}>
           <div className="r-mono ov-pd-lbl">Where to dig</div>
           <OvFacts ids={["genre-shift", "new-to-top50", "comeback", "complete-discog"]} go={go} accent="oklch(0.7 0.16 188)" restReady={restReady} />
           <div className="r-mono ov-pd-foot" onClick={() => go("explore")}>open Explore ↗</div>
@@ -713,9 +736,14 @@ function OverviewView({ t, go, restReady, seed }) {
           .m-stack:has(.ov-week) .ov-recent { grid-column: 7 / span 3 !important; }
           .m-stack:has(.ov-week) .ov-np     { grid-column: 10 / -1 !important; }
           .ov-recent .ov-rl { max-height: none; overflow: visible; align-content: start; }
-          .ov-scrob .r-stat-n { font-size: clamp(18px, 1.7vw, 23px) !important; }
-          .ov-streak .r-stat-n, .ov-week .r-stat-n { font-size: 23px !important; }
-          .ov-week .spark, .ov-scrob .spark { max-height: 26px; }
+          .ov-scrob .r-stat-n { font-size: clamp(18px, 1.7vw, 22px) !important; }
+          .ov-streak .r-stat-n, .ov-week .r-stat-n { font-size: 21px !important; }
+          .ov-week .spark, .ov-scrob .spark { max-height: 20px; }
+          /* cap the whole pulse row so it lands ~2/3 of its pre-tightening height: the tallest
+             card (now-playing's cover stack / recently-played's 3 rows) can't push it taller than
+             this. The recent list scrolls internally if it ever overflows (Fuad 2026-07-18). */
+          .ov-scrob, .ov-streak, .ov-week, .ov-recent, .ov-np { max-height: 96px; overflow: hidden; }
+          .ov-recent .ov-rl { overflow-y: auto; }
           /* row 3 = map band (1/-1 inline); row 4 — the four stats (left, they react to the
              map/calendar filter) + heaviest day (right) */
           .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(5, 1fr) !important; gap: 10px !important; }
@@ -745,26 +773,38 @@ function OverviewView({ t, go, restReady, seed }) {
         .hub-card:hover { border-color: color-mix(in oklch, var(--c) 50%, var(--rule-2)); }
         .hub-h { color: var(--ink); }
         .hub-lbl { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
+        /* story of the day — a slim full-width banner card leading the insight section */
+        .ov-story { transition: border-color .15s; }
+        .ov-story:hover { border-color: var(--accent-dim); }
+        .ov-story:hover .ov-story-go { color: var(--accent); }
+        .ov-story-tag { flex: none; font-size: 8.5px; letter-spacing: .14em; text-transform: uppercase;
+          color: var(--accent); border: 1px solid var(--accent-dim); border-radius: 999px; padding: 3px 9px; }
+        .ov-story-go { flex: none; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); transition: color .15s; }
+        @media (max-width: 760px) { .ov-story { flex-wrap: wrap; gap: 8px; } .ov-story-go { display: none; } }
         /* portrait + dig — twin compact fact modules, side-by-side on PC, stacked on mobile */
         .ov-pd { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
         @media (max-width: 760px) { .ov-pd { grid-template-columns: 1fr; } }
-        .ov-pd-lbl { font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
-        .ov-pd-foot { font-size: 9.5px; letter-spacing: .1em; color: var(--ink-faint); margin-top: 12px; cursor: pointer; }
+        .ov-pd-lbl { font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 9px; }
+        .ov-pd-foot { font-size: 9.5px; letter-spacing: .1em; color: var(--ink-faint); margin-top: 9px; cursor: pointer; }
         .ov-pd-foot:hover { color: var(--accent); }
-        .ov-facts { display: grid; gap: 2px; }
-        .ov-fact { border-radius: 6px; }
-        .ov-fact-head { display: flex; align-items: center; gap: 9px; width: 100%; text-align: left;
-          background: none; border: none; padding: 8px 8px; margin: 0 -8px; border-radius: 6px; cursor: pointer;
+        /* tight bulleted fact list (lab2 collapsed-fact grammar): dot lead-in, terse mono-ish
+           headline, minimal padding + rhythm; click expands the sentence + derivation. */
+        .ov-facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+        .ov-fact { border-radius: 5px; }
+        .ov-fact-head { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left;
+          background: none; border: none; padding: 4px 6px; margin: 0 -6px; border-radius: 5px; cursor: pointer;
           transition: background .15s; }
         .ov-fact-head:hover { background: var(--bg-3); }
-        .ov-fact-tick { font-size: 10px; color: var(--accent-dim); flex: none; width: 10px; }
-        .ov-fact-hl { flex: 1; min-width: 0; font-size: 13px; line-height: 1.35; color: var(--ink);
+        .ov-fact-dot { flex: none; width: 4px; height: 4px; border-radius: 50%; background: var(--accent-dim);
+          align-self: center; }
+        .ov-fact-hl { flex: 1; min-width: 0; font-family: var(--mono); font-size: 11px; letter-spacing: .01em;
+          line-height: 1.4; color: var(--ink-soft);
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .ov-fact[data-open="true"] .ov-fact-hl { white-space: normal; overflow: visible; }
+        .ov-fact[data-open="true"] .ov-fact-hl { white-space: normal; overflow: visible; color: var(--ink); }
         .ov-fact-go { flex: none; font-family: var(--mono); font-size: 11px; color: var(--accent); padding: 0 2px; }
-        .ov-fact-body { padding: 2px 8px 10px 27px; display: grid; gap: 6px; }
-        .ov-fact-text { font-family: var(--serif); font-style: italic; font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
-        .ov-fact-det { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); line-height: 1.45; }
+        .ov-fact-body { padding: 1px 6px 8px 18px; display: grid; gap: 5px; }
+        .ov-fact-text { font-family: var(--serif); font-style: italic; font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
+        .ov-fact-det { font-family: var(--mono); font-size: 9.5px; color: var(--ink-faint); line-height: 1.45; }
         .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: var(--gap); }
         .hub-card { padding: 16px 18px; cursor: pointer; transition: transform .15s, box-shadow .15s; }
         .hub-card:hover { transform: translateY(-3px); box-shadow: 0 16px 34px -16px rgba(0,0,0,.6); }
@@ -774,9 +814,9 @@ function OverviewView({ t, go, restReady, seed }) {
         .hub-s { font-size: 12px; color: var(--ink-soft); line-height: 1.35; }
         .hub-go { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: var(--ink-faint); margin-top: 12px; transition: color .15s; }
         .ov-stat-link { transition: color .15s; } .ov-stat-link:hover .r-stat-n { color: var(--accent); } .ov-stat-link:hover { color: var(--accent); }
-        .eqbar { width: 4px; height: 10px; background: var(--accent); border-radius: 2px;
+        .eqbar { width: 3px; height: 8px; background: var(--accent); border-radius: 2px;
           animation: eq .9s ease-in-out infinite alternate; box-shadow: 0 0 6px var(--accent-bg); }
-        @keyframes eq { from { height: 6px; } to { height: 26px; } }
+        @keyframes eq { from { height: 5px; } to { height: 18px; } }
         /* the inner insight grid is a repeat(12,1fr); bare fr tracks have an implicit auto min, so a
            long insight can push a span-4 card past its third and overflow the card. Pin the tracks to
            a 0 min and let the cards stack once there isn't room (Fuad 2026-07-16). */
