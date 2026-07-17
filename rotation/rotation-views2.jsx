@@ -662,6 +662,40 @@ function ArtistBarcode({ artistId, daysReady }) {
   );
 }
 
+// useWordsLayer — lazy-load words-layer.js (the unconstrained words-annotation overlay) once, the
+// same script-tag pattern PortraitCard uses. Returns window.ROTATION_WORDS (or null until it lands).
+// Shared by TrackWords (per-track) and PortraitCard (per-album).
+function useWordsLayer() {
+  const [ready, setReady] = React.useState(!!window.ROTATION_WORDS);
+  React.useEffect(() => {
+    if (window.ROTATION_WORDS) { setReady(true); return; }
+    let s = document.getElementById("words-layer-js");
+    if (!s) { s = document.createElement("script"); s.id = "words-layer-js"; s.src = "words-layer.js"; s.onerror = () => {}; document.head.appendChild(s); }
+    const on = () => { if (window.ROTATION_WORDS) setReady(true); };
+    s.addEventListener("load", on);
+    return () => s.removeEventListener("load", on);
+  }, []);
+  return ready ? (window.ROTATION_WORDS || null) : null;
+}
+
+// WordsWeatherBars — the three words-only axes (valence/arousal/tension 0-100) as a compact mini-bar
+// row, matching the Emotional Weather / tv-mood-bar grammar: label · track · fill · value. Labelled
+// bright / intense / unresolved. Shared visual for track + album.
+function WordsWeatherBars({ v, a, x }) {
+  const rows = [["bright", v, "oklch(0.72 0.15 85)"], ["intense", a, "oklch(0.66 0.18 25)"], ["unresolved", x, "oklch(0.55 0.12 300)"]];
+  return (
+    <div className="ww-bars">
+      {rows.map(([label, val, col]) => (
+        <div className="ww-axis" key={label}>
+          <span className="ww-k">{label}</span>
+          <div className="ww-bar"><i style={{ width: (val || 0) + "%", background: col }} /></div>
+          <span className="ww-v">{val == null ? "—" : val}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // PortraitCard — shared artist/album "Portrait" overlay (pilot). Data lives in two lazy files:
 //   portraits.js       -> window.ROTATION_PORTRAITS   {id: {gist, portrait?|liner?, by}}
 //   portrait-facts.js  -> window.ROTATION_PORTRAIT_FACTS {id: [{k, v, x}]}
@@ -691,6 +725,9 @@ function PortraitCard({ id }) {
   }, []);
   const [open, setOpen] = React.useState(false);   // full read (portrait/liner) toggle
   const [chip, setChip] = React.useState(-1);      // index of the one expanded fact chip, -1 = none
+  // words overlay (pilot) — album-only "In its own words" row; keyed by the same artistSlug~albumSlug id
+  const words = useWordsLayer();
+  const w = (words && words.albums && words.albums[id]) || null;
 
   if (!pReady) return null;
   const p = window.ROTATION_PORTRAITS && window.ROTATION_PORTRAITS[id];
@@ -733,6 +770,17 @@ function PortraitCard({ id }) {
           )}
         </div>
       )}
+      {w && (
+        <div className="ww-own">
+          <div className="ww-own-h r-mono">In its own words</div>
+          {w.phrases && w.phrases.length > 0 && (
+            <div className="ww-chips">
+              {w.phrases.map((ph, i) => <span key={i} className="ww-chip">{ph}</span>)}
+            </div>
+          )}
+          <WordsWeatherBars v={w.v} a={w.a} x={w.x} />
+        </div>
+      )}
       <style>{`
         /* Portrait overlay (pilot) — scoped pv- styles. No backticks in these comments. */
         .pv-by { font-size: 9.5px; color: var(--ink-faint); letter-spacing: .1em; text-transform: uppercase; }
@@ -752,6 +800,19 @@ function PortraitCard({ id }) {
         .pv-chip.on { border-color: var(--accent-dim); background: var(--accent-bg); color: var(--ink); }
         .pv-deriv { margin-top: 9px; font-size: 12px; line-height: 1.5; color: var(--ink-soft);
           border-left: 2px solid var(--accent-dim); padding: 2px 0 2px 11px; }
+        /* words overlay (pilot) — scoped ww- styles, shared by track + album. No backticks in comments. */
+        .ww-own { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+        .ww-own-h { font-size: 9px; color: var(--ink-faint); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 9px; }
+        .ww-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+        .ww-chip { max-width: 100%; background: var(--bg-3); border: 1px solid var(--rule); border-radius: 999px;
+          padding: 4px 11px; font-family: var(--serif); font-size: 12px; font-style: italic; line-height: 1.35;
+          color: var(--ink-soft); white-space: normal; }
+        .ww-bars { display: grid; gap: 7px; }
+        .ww-axis { display: grid; grid-template-columns: 74px minmax(0,1fr) 30px; gap: 10px; align-items: center; }
+        .ww-k { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+        .ww-bar { height: 6px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
+        .ww-bar i { display: block; height: 100%; border-radius: 4px; }
+        .ww-v { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); text-align: right; }
       `}</style>
     </div>
   );
@@ -2324,6 +2385,45 @@ function BlurbSwitcher({ id, about }) {
   );
 }
 
+// TrackWords — "What the words say" (pilot). Renders only when the words overlay carries this track
+// (id is artistSlug~trackSlug, the same key TrackView routes by). Lead: the signature phrase (serif
+// italic); beneath it the trajectory (smaller); then the free theme phrases as chips; and a compact
+// three-mini-bar row for v/a/x labelled bright / intense / unresolved (matches the tv-mood bar grammar).
+function TrackWords({ id }) {
+  const words = useWordsLayer();
+  const w = (words && words.tracks && words.tracks[id]) || null;
+  if (!w) return null;
+  return (
+    <div className="r-card ww-track" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
+      <div className="ww-own-h r-mono">What the words say</div>
+      {w.s && <p className="ww-sig">{w.s}</p>}
+      {w.tr && <p className="ww-tr">{w.tr}</p>}
+      {w.t && w.t.length > 0 && (
+        <div className="ww-chips">
+          {w.t.map((ph, i) => <span key={i} className="ww-chip">{ph}</span>)}
+        </div>
+      )}
+      <WordsWeatherBars v={w.v} a={w.a} x={w.x} />
+      <style>{`
+        /* words overlay (pilot) — scoped ww- styles for the track card. No backticks in comments. */
+        .ww-track .ww-own-h { font-size: 9px; color: var(--ink-faint); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 9px; }
+        .ww-sig { font-family: var(--serif); font-style: italic; font-size: 16px; line-height: 1.5; color: var(--ink); margin: 0; }
+        .ww-tr { font-size: 12px; line-height: 1.55; color: var(--ink-soft); margin: 6px 0 0; }
+        .ww-track .ww-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0; }
+        .ww-track .ww-chip { max-width: 100%; background: var(--bg-3); border: 1px solid var(--rule); border-radius: 999px;
+          padding: 4px 11px; font-family: var(--mono); font-size: 10px; letter-spacing: .04em; line-height: 1.35;
+          color: var(--ink-soft); white-space: normal; }
+        .ww-track .ww-bars { display: grid; gap: 7px; }
+        .ww-track .ww-axis { display: grid; grid-template-columns: 74px minmax(0,1fr) 30px; gap: 10px; align-items: center; }
+        .ww-track .ww-k { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+        .ww-track .ww-bar { height: 6px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
+        .ww-track .ww-bar i { display: block; height: 100%; border-radius: 4px; }
+        .ww-track .ww-v { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); text-align: right; }
+      `}</style>
+    </div>
+  );
+}
+
 function TrackView({ id, go }) {
   const R = window.ROTATION;
   const [ready, setReady] = React.useState(!!(window.ROTATION_MEDIA && window.ROTATION_TRACKAUDIO));
@@ -2517,6 +2617,9 @@ function TrackView({ id, go }) {
 
       {/* "what it's about" — real Genius blurb always; the bake-off model reads where present */}
       <BlurbSwitcher id={id} about={about} />
+
+      {/* PILOT: the words-annotation overlay — sits with the reads, gated on words-layer.js carrying this id */}
+      <TrackWords id={id} />
 
       {f ? (
         <div className="tv-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
