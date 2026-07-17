@@ -94,8 +94,7 @@ window.CULTURE_BADGES = {
  ],
  "chernobyl": [
   "acting",
-  "devastating",
-  "intense"
+  "devastating"
  ],
  "cinema-paradiso": [
   "bittersweet",
@@ -203,7 +202,8 @@ window.CULTURE_BADGES = {
  "fma-brotherhood": [
   "cerebral",
   "devastating",
-  "impact"
+  "impact",
+  "haunting"
  ],
  "galactic-railroad": [
   "devastating",
@@ -223,7 +223,8 @@ window.CULTURE_BADGES = {
   "worldbuilding"
  ],
  "green-planet": [
-  "cerebral"
+  "cerebral",
+  "cinematography"
  ],
  "gta-iv": [
   "impact"
@@ -236,7 +237,8 @@ window.CULTURE_BADGES = {
   "devastating"
  ],
  "heavy-rain": [
-  "thrilling"
+  "thrilling",
+  "impact"
  ],
  "hilda": [
   "gentle"
@@ -586,7 +588,8 @@ window.CULTURE_BADGES = {
   "formal-exec"
  ],
  "mary-and-max": [
-  "bittersweet"
+  "bittersweet",
+  "writing"
  ],
  "mass-effect": [
   "worldbuilding"
@@ -695,7 +698,8 @@ window.CULTURE_BADGES = {
   "bittersweet"
  ],
  "promare": [
-  "gem"
+  "gem",
+  "thrilling"
  ],
  "psycho-pass": [
   "horrifying"
@@ -766,7 +770,8 @@ window.CULTURE_BADGES = {
  "spec-ops": [
   "haunting",
   "intense",
-  "formal-exec"
+  "formal-exec",
+  "horrifying"
  ],
  "spider-verse": [
   "impact",
@@ -774,7 +779,8 @@ window.CULTURE_BADGES = {
  ],
  "squid-game": [
   "intense",
-  "social-xray"
+  "social-xray",
+  "style"
  ],
  "steins-gate": [
   "devastating",
@@ -865,7 +871,8 @@ window.CULTURE_BADGES = {
  "twin-peaks": [
   "mindbending",
   "score",
-  "singular"
+  "singular",
+  "direction"
  ],
  "undertale": [
   "cognitive"
@@ -1641,6 +1648,9 @@ window.CULTURE_BADGES = {
   "cognitive",
   "atmosphere"
  ],
+ "wolf-among-us": [
+  "writing"
+ ],
  "wolfs-rain": [
   "atmosphere",
   "devastating",
@@ -1655,7 +1665,8 @@ window.CULTURE_BADGES = {
  ],
  "yamadas": [
   "gentle",
-  "satire"
+  "satire",
+  "social-xray"
  ],
  "your-name": [
   "bittersweet",
