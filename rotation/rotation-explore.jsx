@@ -581,7 +581,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
   const PAD_L = 54, PAD_R = 24, PAD_T = 24, PAD_B = 46;
   const PW = W - PAD_L - PAD_R, PH = H - PAD_T - PAD_B;
 
-  React.useEffect(() => { setBrushed(null); setClickSel(null); }, [xKey, yKey, mode]);
+  React.useEffect(() => { setBrushed(null); setSingleSel(null); setClickSel(null); }, [xKey, yKey, mode]);
 
   const buildScale = React.useCallback((key) => {
     const ax = attrAxisByKey(key);
@@ -664,9 +664,13 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
     fish.run(evt.clientX, evt.clientY);   // proximity fisheye (paused while brushing via dragRef)
   };
   const onUp = () => {
-    if (dragRef.current && brush) {
-      const w = Math.abs(brush.x1 - brush.x0), h = Math.abs(brush.y1 - brush.y0);
-      if (w > 6 && h > 6) { setBrushed({ x0: Math.min(brush.x0, brush.x1), x1: Math.max(brush.x0, brush.x1), y0: Math.min(brush.y0, brush.y1), y1: Math.max(brush.y0, brush.y1) }); setSingleSel(null); setClickSel(null); }
+    // guard on the REF (always current) — the `brush` STATE can lag a crisp click (setBrush from
+    // onDown may not have committed yet), which silently swallowed subgenre/artist clicks (Fuad 2026-07-18).
+    const start = dragRef.current;
+    dragRef.current = null;
+    if (start) {
+      const w = brush ? Math.abs(brush.x1 - brush.x0) : 0, h = brush ? Math.abs(brush.y1 - brush.y0) : 0;
+      if (brush && w > 6 && h > 6) { setBrushed({ x0: Math.min(brush.x0, brush.x1), x1: Math.max(brush.x0, brush.x1), y0: Math.min(brush.y0, brush.y1), y1: Math.max(brush.y0, brush.y1) }); setSingleSel(null); setClickSel(null); }
       else {
         // a CLICK (not a drag): subgenre mode toggles that one subgenre's selection (multi stays
         // on drag); artists grain TOGGLES the dot in/out of a picked list — click once to add,
@@ -679,7 +683,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
         } else { setSingleSel(null); setClickSel(null); }
       }
     }
-    dragRef.current = null; setBrush(null);
+    setBrush(null);
   };
   const onLeave = () => { if (!dragRef.current) { setHover(null); fish.reset(); } };
 
