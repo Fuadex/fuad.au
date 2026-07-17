@@ -2,7 +2,7 @@
 
 # PIPELINE.md — the reads / blurb wave process
 
-How Rotation's editorial layer (`llm-about.js`, ~9.9k per-song reads) is produced, and the
+How Rotation's editorial layer (`llm-about.js`, 15,018 per-song reads as of 2026-07-18) is produced, and the
 process any future wave — for Rotation, Culture blurbs, or Canvas artwork reads — should
 follow. The workshop scripts themselves live OUTSIDE the repo (untracked, at the GitHub root
 `../.sptmp/`); this file is the committed record of the *shape* of the process, so it can be
@@ -44,11 +44,17 @@ audited and re-run cold.
 - **Coverage claim at the end**: a wave isn't done until the merge prints `X / Y eligible`
   and the number is explained (Y − X = exclusions, not mystery).
 
-## Current state (2026-07-11)
+## Current state (2026-07-18)
 
-- Rotation reads: 9,864 entries (haiku 7,763 · sonnet 5,829 · opus 4,226 · web 229 ·
-  fable 59). Floor so far: lyric-matched, roughly ≥4 plays + LRCLIB ≥10-play + non-latin.
-- Next planned wave: LRCLIB fetch for the ~15.5k lyric-unmatched tracks with ≥2 plays,
-  then floor-descent waves 5→3→2 (target universe: 30,012 tracks ≥2 plays of 60,035).
-  Prerequisite: shard llm-about.js (16 artist-hash buckets) before it triples in size.
+- Rotation reads: **15,018 entries** in `llm-about.js` (one entry per line — this format is
+  mandatory; merge scripts must preserve it). `blurb-demo.js` retired: all reads folded in.
+  `instrumentals.js` (351 keys) deployed: TrackView shows "Instrumental — no words to read" for
+  these tracks instead of an empty read slot.
+- Wave A (≥5 plays) effectively done. Wave B (3–4 plays, ~2.2k) and Wave C (=2 plays, ~3.5k)
+  remain gated pending corpus scale decisions. Liner-notes redo and C→B taxonomy consolidation
+  also remain open.
 - Culture wishlist blurbs: COMPLETE — 1,340/1,340 no-note items (batches 01–15).
+
+**Caching note:** rotation's `?v` stamps are automatic (content hash at stage via `stage-site.js
+stampHashes`); canvas is now the same. Culture's runtime script injection reuses the SW epoch
+but its data files remain manually cache-busted via the epoch on each deploy.

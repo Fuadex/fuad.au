@@ -24,10 +24,10 @@ and a record shop of 11,000 spines you can dig through.
 | Artist universe | ~6,000 explorable · top 400 with full pages |
 | Albums | 33,700 known · 11,500 shelved · 17,700+ real covers |
 | Lyrics analysed | 25,900 tracks matched · 37 languages · sentiment + 18-theme taxonomy |
-| Song interpretations | 7,000+ tracks with AI reads (tiered: gist → deep → web-researched) |
+| Song interpretations | 15,000+ tracks with AI reads (tiered: gist → deep → web-researched) |
 | Concerts | ~130 attended shows with setlists, cross-joined to the play history |
 | Enrichment layers | 20+ caches: MusicBrainz, Discogs, Wikidata, Ticketmaster, setlist.fm |
-| Deployed payload | ~34 MB total, ~11.6 MB gzipped — lazy-loaded so first paint pays ~2 MB |
+| Deployed payload | ~34 MB total, lazy-loaded; first paint pays ~2.1 MB gz (music-core + live-data, both `defer`) |
 | Build | one Node script, ~11 s, zero npm dependencies |
 
 ## What's inside
@@ -84,16 +84,23 @@ last.fm API ──sync-csv.js──▶ fuadex.csv  (one row per scrobble — the
                                   │
               ┌───────────────────┴───────────────────┐
               ▼                                       ▼
-  music-core.js + music-rest.js             ~12 lazy data files
-  (eager then deferred; window.ROTATION)    loaded on first need per view
+  music-core.js (defer) +                  ~30 lazy data files
+  music-rest.js (post-mount inject)        loaded on first need per view
+  (window.ROTATION — light records eager,
+   heavy artist fields deferred)
 ```
 
+- **PWA**: `manifest.webmanifest` + `sw.js` with a tiered cache (offline shell fallback,
+  content-hash–stamped assets cache-first, lazy shards stale-while-revalidate, live data
+  network-first, image LRU). Cache epoch is the staged-content digest, stamped at deploy time.
 - **Daily CI** (GitHub Actions): pull new scrobbles → rebuild → smoke-test gate → deploy to
   Pages. **Weekly CI**: incremental enrichment for artists new to the library.
-- **Two-tier loading**: the Overview pays for ~2 MB gzipped; everything else — media index,
-  per-track audio, geography detail, calendar drill-downs, interpretations — injects on
-  demand. Each routed view is wrapped in an error boundary, so one page crashing never
-  blanks the site.
+- **Two-tier loading**: `music-core.js` + `live-data.js` load with `defer` so the boot
+  placeholder paints immediately; `music-rest.js` (heavy artist fields) and
+  `spotify-liked`/`spotify-engagement` inject post-mount. Everything else — media index,
+  per-track audio, geography detail, calendar drill-downs, interpretations — injects on first
+  need. Each routed view is wrapped in an error boundary, so one page crashing never blanks
+  the site. Unknown hashes render a not-found card.
 - **Identity plumbing**: one slug function shared by build and runtime, MusicBrainz alias
   resolution (a click on "Midori" lands on ミドリ), canonical subgenre merging, and a genre →
   hue system that keeps every artist's colour consistent across every chart.
@@ -141,8 +148,10 @@ opt-in, from "just a last.fm key" to "bring your own local datasets".
 
 - **ARCHITECTURE.md** — full technical inventory: runtime, data model, every shipped feature.
 - **ROADMAP.md** — the build queue, evaluated API/data-source catalogue, module plan.
-- **AUDIT-2026-07.md** — honest self-assessment: performance, resilience, content quality,
-  copyright posture, and where this goes next.
+- **PIPELINE.md** — the reads/blurb wave process: ledger → targets → waves → merge → verify.
+- **LIMITATIONS.md** — known approximations, brittle spots, and deferred nice-to-haves.
+- **SPOTIFY.md** — personal Spotify export integration plan and shipped features.
+- **AUDIT-2026-07.md** — grounding audit (2026-07-04/07); superseded by 2026-07-18 full audit.
 
 ---
 

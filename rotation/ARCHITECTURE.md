@@ -8,8 +8,9 @@
 > - **ROADMAP.md** — audit findings, API catalogue, and the modular plan for what's next.
 > - **CSV-OVERRIDES.md** — manual data corrections (gitignored, local only).
 >
-> Last full audit of this document: **2026-07-03**. Phase 0 platform work (precompile,
+> Last full audit of this document: **2026-07-18**. Phase 0 platform work (precompile,
 > self-hosted React, music-core/rest split, TourMap fix) folded in **2026-07-07** — see §2, §6.
+> PWA shell, boot path, attributes-lens dot fixes, and Gigs pagers updated **2026-07-18**.
 
 ---
 
@@ -41,13 +42,13 @@ library — hash routing (`#view/id`) in `rotation-app.jsx` with `pushState` +
 
 ### Script tiers
 
-**Tier 0 — eager (in `index.html`, blocking first paint):**
+**Tier 0 — eager (in `index.html`, with `defer`; first paint is the boot placeholder):**
 | File | Role |
 |---|---|
 | `react(-dom).production.min.js` | runtime — **self-hosted** (Phase 0); Babel is dev-only + CI-only, absent from prod |
-| `music-core.js` (~3.3 MB / 989 KB gz) | `window.ROTATION` — everything first paint reads (see split below) |
-| `music-rest.js` (~1.4 MB / 404 KB gz) | deferred dataset — **injected by `rotation-app` after first paint**, `Object.assign`s into `window.ROTATION`, flips `_restLoaded` |
-| `live-data.js` (~4 KB) | `window.ROTATION_LIVE` — daily live snapshot |
+| `music-core.js` (~2.1 MB raw) | `window.ROTATION` — light ARTISTS records + everything first paint reads; loaded with `defer` |
+| `music-rest.js` | 11 heavy per-artist fields (bio, wd, members, topTracks, topAlbums, similar, similarNames, styles, discogsGenres, spotGenres, origin) in an id-keyed `ARTIST_X` map — **injected by `rotation-app` after first mount**, folds fields back onto the same ARTISTS record objects via `Object.assign`, flips `_restLoaded` |
+| `live-data.js` (~4 KB) | `window.ROTATION_LIVE` — daily live snapshot; loaded with `defer` |
 | `rotation-live.jsx` | `useLiveNow()` — now-playing from the snapshot (no client API calls, ever) |
 | `tweaks-panel.jsx` | design-tweaks drawer (accent hue, font, chart style, layout, density) |
 | `rotation-core.jsx` | CSS + shared primitives: `GenCover`, `Spark`, `Bars`, `Radar`, hooks, `fmt` |
@@ -77,12 +78,19 @@ library — hash routing (`#view/id`) in `rotation-app.jsx` with `pushState` +
 | `calendar-detail.js` | `ROTATION_CAL_DETAIL` | ~2.1 MB | first day/week/month click |
 
 Every routed view is wrapped in a `<Boundary>` (rotation-core) — a crash inside one page renders
-a fallback card instead of blanking the site.
+a fallback card instead of blanking the site. Unknown hashes render a not-found card. The
+`spotify-liked`/`spotify-engagement` overlays are **not** in `<head>` — `rotation-app` lazy-injects
+them post-mount via `<script>` tags with `onerror` fail-opens (absent files just mean no hearts/bars).
+The book vendor (`vendor-page-flip.js`) failure shows a message instead of crashing.
 
 **Deploys are CI-built (since 2026-07-03):** Pages source = "GitHub Actions". The workflow builds
 the dataset and uploads an explicit `_site/` staging list — generated data files are **not in
 git** (`.gitignore`d; only `fuadex.csv`, caches, code, and the static `world-map.js` are
 committed). `_config.yml` is a leftover from the Jekyll era, kept only as a rollback path.
+
+**`stage-site.js` hard-fails on any missing file** (always, not only in CI — a local stage with
+gaps is a broken bundle). `build-data.js` prints a readable `FATAL` if `fuadex.csv` is absent.
+Hub root `index.html` is content-hash stamped (including `hub.css`) by `stage-site`'s `stampHashes`.
 
 ## 3. Data pipeline
 
@@ -185,18 +193,21 @@ pin in CSV-OVERRIDES.md — re-running photo/discogs enrichers can silently re-b
 
 ## 6. Data model (compact formats — check before consuming)
 
-**Core/rest split (Phase 0, 2026-07-07):** `window.ROTATION` is assembled from **`music-core.js`**
-(eager) + **`music-rest.js`** (deferred, injected after Overview's first paint). Core carries
-everything the Overview first paint reads (ARTISTS, TOTALS, NOW, RECENT, TREND, INSIGHTS, YEARS,
-THUMBS, SPOTIMG, GIGS, TOUR, SUBS, GENRE_FLOW, FAMILIES, helpers) plus **`EXPLORE_N`** (the
-EXPLORE count, since that's the only EXPLORE read on first paint). Rest carries the deferred
-keys: **EXPLORE, ALBUMS, AUDIO, ARTIST_CLOCK, SUB_ARTISTS, CLOCK_BY_YEAR**. Core stubs those
-empty and sets `_restLoaded=false`; rest merges them, rebuilds `expById`, flips `_restLoaded=true`,
-and calls `window.__rotRest`. **Guard rule:** every non-Overview view reads a deferred key, so
-`rotation-app` gates them behind `restReady` (a "loading your library…" card) and mounts them
-FRESH once rest lands — so their `useMemo`s never cache empty. The Overview map band is gated the
-same way. Node consumers (smoke, sync-live, extract-audio, enrich-spotify) evaluate both files in
-one context to reconstitute the whole object.
+**Core/rest split (Phase 0, 2026-07-07; artist-field split 2026-07-18):** `window.ROTATION` is
+assembled from **`music-core.js`** (loaded with `defer`, ~2.1 MB raw) + **`music-rest.js`**
+(injected by `rotation-app` after first mount). Core carries light ARTISTS records (without the 11
+heavy prose/relationship fields) plus everything the Overview first paint reads (TOTALS, NOW,
+RECENT, TREND, INSIGHTS, YEARS, THUMBS, SPOTIMG, GIGS, TOUR, SUBS, GENRE_FLOW, FAMILIES, helpers)
+and **`EXPLORE_N`**. Rest carries: **EXPLORE, ALBUMS, AUDIO, ARTIST_CLOCK, SUB_ARTISTS,
+CLOCK_BY_YEAR**, plus **`ARTIST_X`** (an id-keyed map of the 11 heavy fields — bio, wd, members,
+topTracks, topAlbums, similar, similarNames, styles, discogsGenres, spotGenres, origin — that the
+rest file folds back onto the same ARTISTS record objects before `_restLoaded` flips). Core stubs
+deferred keys empty and sets `_restLoaded=false`; rest merges them, rebuilds `expById`, flips
+`_restLoaded=true`, and calls `window.__rotRest`. **Guard rule:** every non-Overview view reads a
+deferred key, so `rotation-app` gates them behind `restReady` (a "loading your library…" card) and
+mounts them FRESH once rest lands — so their `useMemo`s never cache empty. The Overview map band is
+gated the same way. Node consumers (smoke, sync-live, extract-audio, enrich-spotify) evaluate both
+files in one context to reconstitute the whole object.
 
 **`window.ROTATION`** (music-core.js + music-rest.js) keys:
 `ARTISTS` (kept = **top 400 by plays** (~100-play cutoff, raised from 200 on 2026-07-04:
@@ -241,7 +252,8 @@ seasonal artists), `TASTE_ERAS` (auto-segmented chapters w/ topFams + shift diff
 ## 7. Views & navigation
 
 Nav: **Overview · Stories · Explore · Shelves · Calendar · (Live)** — Live auto-hides when
-`R.CITIES` is empty (it currently is). The Map page was **ported wholesale into Overview**
+`R.CITIES` is empty (it currently is). The **Spotify** tab is hidden from the nav but routable
+at `#spotify` (hidden again 2026-07-18 by Fuad). The Map page was **ported wholesale into Overview**
 (2026-07-05, `OvMapBand` lazy-mounts the full `MapView embedded` on scroll; `#map`/`#journey`
 legacy-route to Overview). `#calendar/YYYY-MM-DD` deep-opens a specific day. Detail routes: `#artist/id`, `#album/id`, `#track/id`,
 `#explore/tag` (seeds a genre filter). **Explore also serializes its full active slice into the
@@ -308,15 +320,21 @@ obsession (lifecycle: flameout/perennial + "burning now" flameout prediction).
 ### Explore (the converged digger; reflowed 2026-07-05)
 One filter set — **time** (year chips + "play the decade"), **genre** (families → subgenres),
 **mood quadrant** (valence×energy zones) — over one universe (~6,000 artists). Left surface
-toggles **texture map** (subgenre scatter) ⇄ **mood lens** (quadrant + facts). Right: ranked
-artists/albums/tracks (full-library media-index; **8/16/24/32 count buttons + a "load more" that
-reveals rows *beyond* the base** — visible = base+extra; buttons set the base & reset the
-expansion, load-more adds +24 and grows the media pool, works for all three tabs; unified
-2026-07-07). PC fixed-height scroll window. **Below the module**: the by-sound **sort row** (plays → energy/mood/…/most obscure),
-then the "mood over the years" arc, then the **genre families as a 6-column grid** (3-col ≤1250px,
-1-col ≤760px; each family's subgenre list capped + scrollable). The Rhythm clock-cell filter was **removed** (clock moved to
-Calendar). Subgenre spelling variants (hip hop/hip-hop, nu metal, dnb…) merge via `SUB_CANON` in
-build-data. ⚠ mood-lens first paint is slow (open bug).
+toggles **texture map** (subgenre scatter) ⇄ **mood lens** (quadrant + facts) ⇄ **attributes
+lens** (dot scatter by audio axes). Right: ranked artists/albums/tracks (full-library media-index;
+**8/16/24/32 count buttons + a "load more" that reveals rows *beyond* the base** — visible =
+base+extra; buttons set the base & reset the expansion, load-more adds +24 and grows the media
+pool, works for all three tabs; unified 2026-07-07). PC fixed-height scroll window. **Below the
+module**: the by-sound **sort row** (plays → energy/mood/…/most obscure), then the "mood over the
+years" arc, then the **genre families as a 6-column grid** (3-col ≤1250px, 1-col ≤760px; each
+family's subgenre list capped + scrollable). The Rhythm clock-cell filter was **removed** (clock
+moved to Calendar). Subgenre spelling variants (hip hop/hip-hop, nu metal, dnb…) merge via
+`SUB_CANON` in build-data.
+**Attributes-lens dot interaction (2026-07-18):** hover shows an overlay ring (a single separate
+element outside the memoised dot layer — no per-mousemove full layer rebuild); dots are
+**click-to-pick** artists (click again to remove). **Subgenre single-click filter fixed
+(2026-07-18):** a click on a subgenre row correctly scopes the scatter; singleSel state is now
+separate from the drag-brush path. ⚠ mood-lens first paint is slow (open bug).
 
 ### Calendar (heatmap + vertical Rhythm clock)
 GitHub-style **every-day heatmap** for 20 years (calendar.js), click any day/week/month → lazy
@@ -389,11 +407,34 @@ enricher works; needs a refresh run + ideally automation. See ROADMAP M3).
 Overlay over search-index (artists: name/plays/span/peak-year) + media-index (songs + albums)
 → artist / album / track pages.
 
+### PWA (Progressive Web App)
+`rotation/manifest.webmanifest` + `sw.js` (tiered cache strategy, stamped at deploy time by
+`stage-site.js` replacing `__BUILD__` with a content-digest epoch) + `icon-192.png`/`icon-512.png`.
+Cache tiers: navigations network-first with offline shell fallback → `?v`-hashed assets
+cache-first (content-addressed = immutable) → unversioned same-origin shard files
+stale-while-revalidate → `live-data.js`/`hub-stats.json`/`pulse.js` network-first → cross-origin
+images LRU (cap 300). Responses over 5 MB are never cached. Cache epoch = staged-content
+MD5 digest stamped by `stage-site`; every deploy opens a fresh epoch and the `activate`
+handler drops the old one. SW registration is HTTPS-only (localhost excluded in browsers).
+`?v`-hash stamping of JS/CSS references in `index.html` is automatic via `stage-site.js`'s
+`stampHashes`; this covers rotation, canvas (both have `sw.js`), and the hub root.
+
+### Gigs
+The **Gigs** tab (`rotation-views3.jsx`) shows attended shows joined to the listening history,
+"on tour now" explorer, and coverage ledger. Incremental pagers (2026-07-18): tour artists
+expand in **+40** increments; the "still to catch" and "seen & loved" buckets each expand in
+**+12** increments. `seenTop` is built from up to 60 artists. Genre cascade, event map,
+D/W/M calendar cross-filters remain as shipped 2026-07-06.
+
 ## 9. Dead code & dormant surfaces
 
 **Purged 2026-07-03** (commit `06f9f1e`): `ChartsView`/`ClockView`/`SoundMapView`/`ErasView`
 (absorbed into Explore long ago), `rotation-constellation.jsx`, and the unconsumed data keys
 `CONSTELLATION`/`CLOCK_CUBE`/`SOUND_BY_YEAR`/`SUB_FLOW` (music-data.js 3.74 → 3.52 MB).
+
+**`blurb-demo.js` retired** — its reads are folded into `llm-about.js` (now 15,018 entries,
+one entry per line). `instrumentals.js` is a deployed data file (351 keys); TrackView shows
+"Instrumental — no words to read" for entries in `window.ROTATION_INSTRUMENTALS`.
 
 Still around, intentionally: `design-canvas.jsx`, `variant-*.jsx`, `Shader Wallpapers.html`
 (design-tool artifacts, not deployed — the CI staging list skips them); `run-spotify-daily.ps1`
@@ -408,9 +449,9 @@ remains dormant until a concerts cache exists (ROADMAP M2).
    live at the GitHub root: `../../.dtmp` (duckdb), `../../.sptmp` (archive extraction), `../../.babelcheck`.
 3. **Ship to main.** Production is the test environment; don't block on local verification.
 4. **Commit trailer:** `Co-Authored-By: Claude <model> <noreply@anthropic.com>`.
-5. **Weight discipline:** new data belongs in *lazy* generated files, not in music-data.js,
-   unless the Overview needs it at first paint. Watch generated-file sizes (`build-data.js`
-   prints them).
+5. **Weight discipline:** new data belongs in *lazy* generated files, not in `music-core.js`,
+   unless the Overview needs it at first paint. Heavy per-artist prose goes in `music-rest.js`
+   via the `ARTIST_X` map. Watch generated-file sizes (`build-data.js` prints them).
 6. **Insight, not mirrors:** features must derive something last.fm doesn't already show.
 7. Data corrections go through `sync-csv.js fixRow()` (durable) or are logged in
    CSV-OVERRIDES.md (cache pins, fragile).

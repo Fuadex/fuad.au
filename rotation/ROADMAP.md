@@ -26,20 +26,27 @@ also template prep. **Net cold-first-paint win: −700 KB gz (Babel gone) − ~4
 2. ✅ **Self-host runtime** — react + react-dom vendored (byte-identical to unpkg, SRI-verified);
    prod has no third-party runtime dependency. Babel is dev-only. React 18.3.1 UMD is the final
    UMD release (19 dropped UMD) → pin is permanent.
-3. ✅ **music-data split** — `music-core.js` (989 KB gz) eager + `music-rest.js` (404 KB gz)
-   injected after first paint, merges into `window.ROTATION`. Defensive: deferred keys stubbed
-   empty, `EXPLORE_N` in core, non-Overview views gated behind `restReady` (mount fresh once
-   ready), map band gated too, Node consumers load both. Smoke green; Overview + cold
-   `#explore` deep-link both verified in headless Edge.
+3. ✅ **music-data split** — `music-core.js` (~2.1 MB gz, was 3.5 MB) loaded with `defer` +
+   `music-rest.js` injected after first mount by `rotation-app`, merges into `window.ROTATION`.
+   **2026-07-18: ARTIST_X split** — 11 heavy per-artist fields (bio, wd, members, topTracks,
+   topAlbums, similar, similarNames, styles, discogsGenres, spotGenres, origin) moved into
+   `ARTIST_X` in rest, folded back onto the same record objects before `_restLoaded` flips.
+   Both `music-core.js` and `live-data.js` load with `defer` so the boot placeholder paints
+   immediately. Defensive: deferred keys stubbed empty, `EXPLORE_N` in core, non-Overview views
+   gated behind `restReady` (mount fresh once ready), map band gated too, Node consumers load both.
 4. ✅ **TourMap render fix** — imperative pan (no setState/frame) + memoized land/dots/routes;
    a pan now only updates the `<g>` transform. *(MapView same-idiom audit still open — it uses
    a similar pattern; do when Map is next touched.)*
 5. ⏸ **De-bloat — measured, mostly not worth it:** the cover-URL prefix table saves only
    **~10 KB gz** (gzip already dedupes the repeated `https://i.scdn.co/image/` prefixes — the
-   audit's "~500 KB" was a raw-byte miscalc), so **skipped**. Retiring blurb-demo.js would strip
-   reads from **22 tracks** not in llm-about (Rammstein/Amenra/The HU/Karel Kryl…) → **deferred
-   to Phase 2** as a proper content fold (schema differs: fable vs sonnet), not a de-bloat.
-6. **Resilience:** ✅ last.fm bio attribution line · ✅ global `prefers-reduced-motion` block.
+   audit's "~500 KB" was a raw-byte miscalc), so **skipped**. ✅ **blurb-demo.js retired
+   (2026-07-18)** — all reads folded into llm-about.js (now 15,018 entries, one entry per line).
+   `instrumentals.js` ships with 351 keys.
+6. **Resilience:** ✅ last.fm bio attribution line · ✅ global `prefers-reduced-motion` block ·
+   ✅ **spotify-insights/tm-tour lazy loaders have `onerror` fail-opens (2026-07-18)** ·
+   ✅ **unknown hash renders a not-found card** · ✅ **book vendor failure shows a message** ·
+   ✅ **stage-site.js hard-fails on missing files always** (not only CI) ·
+   ✅ **build-data readable FATAL if fuadex.csv absent**.
    ⏳ **ListenBrainz mirror — needs Fuad** (his LB account + token; one-time import). ⏳ **Vendor
    fonts — deferred** (cosmetic-only failure mode, ~15 woff2 files; low priority vs the SPOF,
    which is already fixed).
@@ -123,16 +130,21 @@ below (LIMITATIONS §6b) — decide the layout/structure BEFORE building:**
    deliberate implementation** (reads as data, not an error), not a quick line.
 5. Rework "Where to dig" + "Your portrait" (greenlit A4) — or hold for the era card (Phase 3.4,
    which is designed to absorb "Your portrait").
-6. **Fold blurb-demo's 22 non-llm-about tracks into llm-about**, then retire blurb-demo.js
-   (the Phase 0 de-bloat that was deferred because it would drop those reads). *(Not gated.)*
+6. ✅ **blurb-demo.js retired (2026-07-18)** — all reads folded into llm-about.js (15,018
+   entries; one-entry-per-line format). `instrumentals.js` (351 keys) deployed alongside.
 7. Run the 270-track actionable promotion backlog locally through Claude. *(Not gated.)*
 
-### 📈 Reads data file — scaling note (2026-07-10)
+### 📈 Reads data file — scaling note (2026-07-10, updated 2026-07-18)
 The "what it's about" reads (haiku/sonnet/opus/web + fable/fableDeep in `llm-about.js`; Genius
 excerpts in `genius-about-lazy.js`) are **already isolated, lazy-loaded, and out of the main
 bundle** — they download only when a track/artist "about" view opens, then cache. So the reads
 can grow freely without touching first paint. Intent (Fuad, 2026-07-10): **grow Sonnet/Opus to
 cover as many songs as possible.**
+
+**Wave status (2026-07-18):** Wave A (≥5 plays) is effectively done. Wave B (3–4 plays, ~2.2k
+tracks) and Wave C (=2 plays, ~3.5k tracks) remain gated pending corpus scale decisions.
+Liner-notes redo, crossovers (paused), and C→B taxonomy consolidation (waits for corpus scale)
+remain open.
 
 Measured 2026-07-10: `llm-about.js` raw 3.53 MB → **brotli ~0.90 MB** over the wire (GitHub Pages
 serves brotli; compresses only ~3.9× — unique prose). +3,876 haiku-only tail ≈ **~1.05 MB brotli**.
@@ -316,7 +328,8 @@ The packaging plan (expands M6; every earlier phase feeds it):
    optionally a Show HN / r/lastfm post when stable. Monetization stays as judged (M6):
    Sponsors link at most.
 
-**Decision points for Fuad along the way:** PWA (still open) · wrapped mode/share cards
+**Decision points for Fuad along the way:** ✅ **PWA SHIPPED 2026-07-18** (manifest +
+sw.js tiered cache + icons; cache epoch = staged-content digest) · wrapped mode/share cards
 (parked) · template repo name + go-public timing · whether fuad.au itself converts to
 consume config.json (recommended — it makes the personal site the template's first tester).
 
@@ -510,7 +523,7 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
 
 ### Waiting on Fuad
 setlist.fm account + gigs (M2) · Spotify extended-history request (M3) · `residences.json`
-(M4 location features) · responsiveness re-test verdicts · PWA yes/no.
+(M4 location features) · responsiveness re-test verdicts.
 
 ---
 
@@ -522,7 +535,8 @@ setlist.fm account + gigs (M2) · Spotify extended-history request (M3) · `resi
   (3.74 → 3.52 MB). Further `EXPLORE`/`INSIGHTS` fat-trimming still possible.
 - **Open:** in-browser Babel still compiles ~450 KB of JSX per load — *by explicit choice*
   (buildless philosophy; Fuad opted to keep it, 2026-07-03). A `precompile.js` option remains
-  on the table if phones ever feel it. No `defer` on data scripts either.
+  on the table if phones ever feel it. ✅ **`defer` on `music-core.js` + `live-data.js`
+  (2026-07-18)** — boot placeholder paints immediately before data scripts execute.
 
 ### A2 · Repo & operations — ✅ RESOLVED 2026-07-03
 - ~~Daily commits of ~19 MB generated JS~~ → **CI-built deploys**: Pages source = "GitHub
@@ -753,7 +767,10 @@ The payoff layer; each item is a build-data export + a Story/insight card:
   YEARS/calendar-detail data). Prototype and see where it takes us.
 - **Shareable stat cards — APPROVED as a test**: one story card → PNG export first, judge, then
   generalize.
-- PWA/offline: explained to Fuad, awaiting his verdict.
+- ✅ **PWA SHIPPED 2026-07-18**: `manifest.webmanifest` + `sw.js` (tiered cache: navigations
+  network-first w/ offline shell fallback, `?v`-hashed assets cache-first, unversioned shards
+  stale-while-revalidate, live-data/hub-stats network-first, images LRU 300-cap). Cache epoch =
+  staged-content digest stamped by `stage-site` (`__BUILD__`). Registration is HTTPS-only.
 - Stories mini-TOC; per-story deep links (`#stories/adoption`) — folds into the Stories overhaul (A4).
 
 ### M7 · SHELVES — the record shop (Fuad's flagship; V1+V2+V3 SHIPPED 2026-07-04/05)

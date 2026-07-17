@@ -18,25 +18,31 @@ needs; apps never reach into each other.
 
 Push to `main` → `.github/workflows/sync.yml` triggers. Three jobs:
 
-1. **Build** — runs `node build-data.js` + `node sync-live.js` inside `rotation/` (needs
-   `LASTFM_API_KEY`), then `node stage-site.js` from the repo root, which reads `apps.json`
-   and assembles `_site/`: hub launcher files at root, each app at `_site/<id>/`.
-2. **Deploy** — uploads `_site/` to GitHub Pages as a workflow artifact.
+1. **Build** — pulls new scrobbles, runs `build-data.js` + `shard-about.js` + `sync-live.js`
+   inside `rotation/` (needs `LASTFM_API_KEY`); builds `hub-stats.json`; then `node stage-site.js`
+   from the repo root assembles `_site/`: hub launcher files at root, each app at `_site/<id>/`.
+   Babel is installed in CI to precompile `.jsx` → `.js` in the staged copy.
+2. **Deploy** — uploads `_site/` to GitHub Pages via `actions/deploy-pages` (one auto-retry
+   for the Pages infra flake).
 3. **Persist** — commits the CSV delta *after* deploy (committing before makes Pages reject
    the artifact; fixed 2026-07-03). Pages Source = "GitHub Actions".
 
-A smoke-test (`smoke-test.js`) gates every deploy. Push to `main` is the test environment.
+Two smoke-test gates: "Smoke test — slug/join invariants" (`smoke-test.js`) and "Smoke test —
+dataset sanity" (`smoke.js`). Push to `main` is the test environment.
 
 ---
 
 ## Golden rules
 
-1. **Rotation jsx has NO `?v=`** — CI precompiles each `.jsx` → `.js` in `_site/` only
-   (gated on `"precompile":true` in `apps.json`). Committing `.jsx`/`build-data.js`/data
-   files is enough; never add cache-busting params.
+1. **Rotation and Canvas: no manual `?v=`** — `stage-site.js` auto-stamps every local
+   unversioned script/CSS ref with a content-hash `?v=` at stage time (CI precompiles `.jsx`
+   → `.js` first, gated on `"precompile":true`). Committing files is enough; never add manual
+   cache-busting params to Rotation or Canvas.
 
-2. **Canvas and Culture bump `?v=` on every change** — their data files are committed and
-   served as-is; the browser will not see changes without a version bump in `index.html`.
+2. **Culture: bump the manual `?v=` epoch on every change** — Culture injects data scripts at
+   runtime rather than at parse time, so `stage-site.js`'s auto-stamping does not cover them.
+   Bump the shared `?v=N` in `culture/index.html` on any `culture/` data or code change.
+  
 
 3. **New shipped files must be in `apps.json` `deploy` list** — `stage-site.js` copies
    only what is listed; an unlisted file will not reach `_site/` or production.
@@ -73,6 +79,7 @@ A smoke-test (`smoke-test.js`) gates every deploy. Push to `main` is the test en
 | **BACKLOG.md** | Open items, session checkpoints, key gotchas, pathways under consideration |
 | **CHANGELOG.md** | Feature/architecture milestones (public-safe; no provenance) |
 | **README.md** | Public-facing one-pager about the site |
+| **STATUS-2026-07.md** | Cross-app status snapshot (refreshed 2026-07-18) |
 | `PROJECT-AUDIT-2026-07-10.local.md` | Local-only deep audit (gitignored); never tracked |
 
 ### Rotation
@@ -106,7 +113,7 @@ A smoke-test (`smoke-test.js`) gates every deploy. Push to `main` is the test en
 ### Archive (gitignored — local only)
 | Doc | What it is |
 |---|---|
-| **notes/STATUS-2026-07.md** | Cross-app status snapshot + Fable-leverage plan (2026-07-08) |
-| **notes/MIGRATION.md** | Hub migration plan — how Rotation + Culture were assembled |
-| **notes/AUDIT-2026-07.md** | Rotation grounding audit (2026-07-04) — now absorbed into ARCHITECTURE.md |
+| **notes/STATUS-2026-07.md** | Cross-app snapshot + Fable-leverage plan (2026-07-08; superseded by root STATUS-2026-07.md) |
+| **notes/MIGRATION.md** | Hub migration plan — how Rotation + Culture were assembled (COMPLETE) |
+| **notes/AUDIT-2026-07.md** | Rotation grounding audit (2026-07-04); SUPERSEDED banner added 2026-07-18 |
 | **culture/notes/** | Badge proposals, taxonomy working docs, taste-profile plan, colour ideas, absorbed backlog |

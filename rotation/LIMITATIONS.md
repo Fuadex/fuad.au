@@ -69,11 +69,11 @@ map view isn't bookmarkable yet. Deferred.
 ## 6. Content-quality nice-to-haves (see ROADMAP Phase 2)
 
 - "In your rotation, this track is…" gate is loose (weak outliers slip in); wants ≥85/≤15 +
-  comparative wording.
+  comparative wording. *(Partially tightened 2026-07-07 — see ROADMAP Phase 2 item 1.)*
 - Sounds/Reads CJK sentiment is n-gram NRC (no context model) — some JP tracks mislabelled;
   the transformer re-score is queued.
-- `blurb-demo.js` still ships (22 tracks' reads not yet folded into `llm-about`).
 - Tracks/artists without audio data silently drop the radar/quadrant cards (no "no data" note).
+- ~~`blurb-demo.js` still ships~~ — **retired 2026-07-18**; reads folded into `llm-about.js`.
 
 ## 6b. Design decisions to deliberate before building (Fuad, 2026-07-07)
 
@@ -91,6 +91,8 @@ Surfacing the deep features is wanted, but needs design thought first — don't 
 
 ## 7. Platform nice-to-haves (deferred from Phase 0)
 
+- ~~PWA/offline~~ — **shipped 2026-07-18** (`manifest.webmanifest` + `sw.js` tiered cache +
+  icons; cache epoch = staged-content digest).
 - **ListenBrainz mirror** of the scrobble history (insurance) — needs Fuad's LB account/token.
 - **Self-hosted fonts** — cosmetic-only failure mode; Google Fonts still a third-party request.
 - **MapView pan/zoom** uses the same state-per-frame idiom TourMap had — audit for the same fix.

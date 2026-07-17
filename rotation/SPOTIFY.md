@@ -95,8 +95,9 @@ gems + music-interest reads, Wrapped (hours/uniques/percentile/listeningAge/part
 leaderboard/race/topTracks), Sound Capsule highlights. Wrapped artist URIs are anonymous —
 names INFERRED from our own play record (window ≈ Jan–Sep; race names matched by final rank;
 leaderboard sanity: 1600 vs 1622 min). Rendered as four sections in `rotation-spotify.jsx`
-(SpotifyPersona); **#spotify tab UNHIDDEN** the same day. Next candidates: playlist
-archaeology + search-intent (SearchQueries deliberately not extracted yet — curate first).
+(SpotifyPersona). **#spotify tab re-hidden 2026-07-18** (Fuad); the page remains routable at
+`#spotify` but does not appear in the nav. Next candidates: playlist archaeology + search-intent
+(SearchQueries deliberately not extracted yet — curate first).
 
 ## PINNED — reconcile Spotify history with the last.fm core (needs deliberation)
 Spotify has 316k plays 2013→2026; last.fm core has ~320k scrobbles. They overlap but differ:
