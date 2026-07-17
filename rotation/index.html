@@ -7,6 +7,9 @@
 <title>Rotation · fuad.au</title>
 <meta name="description" content="Rotation — a personal listening observatory. 20 years and 319,000+ real last.fm scrobbles, mined for patterns: obsessions, comebacks, taste geography, sound DNA.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b0a0f">
+<link rel="apple-touch-icon" href="icon-192.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="fuad.au">
 <meta property="og:title" content="Rotation — 319,000 scrobbles, mapped">
@@ -97,6 +100,11 @@
     color: #665f78; animation: bootpulse 1.6s ease-in-out infinite; }
   @keyframes bootpulse { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
 </style>
+<script>
+  // PWA shell — https only, so local dev (http) never registers a worker
+  if ("serviceWorker" in navigator && location.protocol === "https:")
+    addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+</script>
 <script type="text/babel" src="rotation-book.jsx"></script>
 <script type="text/babel" src="rotation-lab.jsx"></script>
 <script type="text/babel" src="rotation-lab2.jsx"></script>

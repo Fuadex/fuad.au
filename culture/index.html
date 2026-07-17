@@ -7,6 +7,9 @@
 <title>Culture · fuad.au</title>
 <meta name="description" content="Films, TV, games, books — a personal canon on browsable shelves, with notes, stats, and a wishlist.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#14110d">
+<link rel="apple-touch-icon" href="icon-192.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="fuad.au">
 <meta property="og:title" content="Culture — films, games, books: a personal canon">
@@ -54,6 +57,11 @@
 <script type="text/babel" data-presets="env,react">
   const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(<App/>);
+</script>
+<script>
+  // PWA shell — https only, so local dev (http) never registers a worker
+  if ("serviceWorker" in navigator && location.protocol === "https:")
+    addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
 </script>
 </body>
 </html>
