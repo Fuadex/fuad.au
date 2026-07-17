@@ -2533,6 +2533,7 @@ function BlurbSwitcher({ id, about }) {
   React.useEffect(() => {
     if (R && R.loadAbout) R.loadAbout(id, bump);
     if (!window.ROTATION_BLURB_DEMO) { const s = document.createElement("script"); s.src = "blurb-demo.js"; s.onload = bump; s.onerror = bump; document.head.appendChild(s); }
+    if (!window.ROTATION_INSTRUMENTALS) { const s = document.createElement("script"); s.src = "instrumentals.js"; s.onload = bump; s.onerror = bump; document.head.appendChild(s); }
   }, [id]);
   const [pick, setPick] = React.useState(null);
   const [mode, setMode] = React.useState("info");     // "info" | "deep" (Fable interpretation)
@@ -2564,7 +2565,21 @@ function BlurbSwitcher({ id, about }) {
   }
   const geniusText = (about && about[0]) || (reads && reads.genius);
   if (geniusText) sources.push({ m: "genius", label: "Genius", text: geniusText, link: about && about[1] ? `https://genius.com/songs/${about[1]}` : null });
-  if (!sources.length) return null;
+  if (!sources.length) {
+    // no read exists — if the track is classified instrumental, say so instead of vanishing
+    const inst = window.ROTATION_INSTRUMENTALS;
+    if (inst && inst.includes(id)) {
+      return (
+        <div className="tv-switch">
+          <div className="tv-switch-head"><span className="tv-switch-lbl">What it's about</span></div>
+          <div className="tv-switch-body">
+            <span className="tv-switch-txt" style={{ fontStyle: "italic", color: "var(--ink-soft)" }}>Instrumental — no words to read.</span>
+          </div>
+        </div>
+      );
+    }
+    return null;
+  }
   const cur = sources.find(s => s.m === pick) || sources.find(s => gist && s.m === gist.src) || sources[0];
   const multi = sources.length > 1;
   // fableDeep/opusDeep live in the deep shard; the gist `has` "I" marker tells us one EXISTS so

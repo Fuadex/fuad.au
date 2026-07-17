@@ -25,7 +25,7 @@ const NAV_FULL = [
   ["stories", "Stories"],
   ["gigs", "Gigs"],
   ["live", "Live"],
-  ["spotify", "Spotify"],   // unhidden 2026-07-11 — v3 Account-Data layer landed (persona sections)
+  // ["spotify", "Spotify"],   // hidden again 2026-07-18 (Fuad) — page stays routable at #spotify
 ];
 // Hide tabs with no data behind them — avoids a dead-end. "Live" needs upcoming-concert cities;
 // "Gigs" needs the attended-shows dataset (setlist.fm → gigs.json → ROTATION.GIGS).

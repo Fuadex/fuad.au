@@ -571,6 +571,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
   const [brush, setBrush] = React.useState(null);    // live pixel rect while dragging
   const [brushed, setBrushed] = React.useState(null); // committed rect
   const [singleSel, setSingleSel] = React.useState(null); // single-clicked subgenre row id (multi = drag)
+  const [clickSel, setClickSel] = React.useState(null);   // artists grain: click-picked dot ids (Set) — click again to remove (Fuad 2026-07-18)
   const dragRef = React.useRef(null);
   const z = useZoom(1000, 560);
   const svgRef = z.bind.ref; // share the element useZoom already tracks (wheel-zoom binds to it)
@@ -580,7 +581,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
   const PAD_L = 54, PAD_R = 24, PAD_T = 24, PAD_B = 46;
   const PW = W - PAD_L - PAD_R, PH = H - PAD_T - PAD_B;
 
-  React.useEffect(() => { setBrushed(null); }, [xKey, yKey, mode]);
+  React.useEffect(() => { setBrushed(null); setClickSel(null); }, [xKey, yKey, mode]);
 
   const buildScale = React.useCallback((key) => {
     const ax = attrAxisByKey(key);
@@ -665,13 +666,17 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
   const onUp = () => {
     if (dragRef.current && brush) {
       const w = Math.abs(brush.x1 - brush.x0), h = Math.abs(brush.y1 - brush.y0);
-      if (w > 6 && h > 6) { setBrushed({ x0: Math.min(brush.x0, brush.x1), x1: Math.max(brush.x0, brush.x1), y0: Math.min(brush.y0, brush.y1), y1: Math.max(brush.y0, brush.y1) }); setSingleSel(null); }
+      if (w > 6 && h > 6) { setBrushed({ x0: Math.min(brush.x0, brush.x1), x1: Math.max(brush.x0, brush.x1), y0: Math.min(brush.y0, brush.y1), y1: Math.max(brush.y0, brush.y1) }); setSingleSel(null); setClickSel(null); }
       else {
-        // a CLICK (not a drag): in subgenre mode it toggles that one subgenre's selection
-        // (multi stays on drag); in artist mode it clears. Empty-space click clears both.
+        // a CLICK (not a drag): subgenre mode toggles that one subgenre's selection (multi stays
+        // on drag); artists grain TOGGLES the dot in/out of a picked list — click once to add,
+        // again to subtract (Fuad 2026-07-18). Empty-space click clears everything.
         setBrushed(null);
         if (hover && mode === "subgenres") setSingleSel(s => s === hover.row.id ? null : hover.row.id);
-        else setSingleSel(null);
+        else if (hover) {
+          setSingleSel(null);
+          setClickSel(s => { const n = new Set(s || []); if (n.has(hover.row.id)) n.delete(hover.row.id); else n.add(hover.row.id); return n.size ? n : null; });
+        } else { setSingleSel(null); setClickSel(null); }
       }
     }
     dragRef.current = null; setBrush(null);
@@ -697,10 +702,12 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
     if (brushed) {
       const all = pts.filter(p => inBrush(p) && !isDimFam(p.row) && !isPageDim(p.row));
       onBrushSel({ mode, keys: new Set(all.map(p => mode === "subgenres" ? parseInt(String(p.row.id).slice(4), 10) : p.row.id)) });
+    } else if (clickSel && clickSel.size && mode !== "subgenres") {
+      onBrushSel({ mode, keys: new Set(clickSel) });   // the click-picked artists behave like a brush
     } else if (singleSel && mode === "subgenres") {
       onBrushSel({ mode, keys: new Set([parseInt(String(singleSel).slice(4), 10)]) });
     } else onBrushSel(null);
-  }, [brushed, singleSel, pts, inBrush, isDimFam, isPageDim, mode, onBrushSel]);
+  }, [brushed, singleSel, clickSel, pts, inBrush, isDimFam, isPageDim, mode, onBrushSel]);
 
   // POSITIONAL TRANSITIONS (guarded) — when the axes change React reuses each dot (keys are stable
   // per row), so we CAN glide dots to their new spot. cx/cy attributes don't animate, only CSS props
@@ -745,11 +752,11 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
   const dots = React.useMemo(() => pts.map((pt, i) => {
     const on = inBrush(pt), dimF = isDimFam(pt.row), dimP = isPageDim(pt.row);
     const isHover = hover && hover.row.id === pt.row.id;
-    const isSel = singleSel && pt.row.id === singleSel;
+    const isSel = (singleSel && pt.row.id === singleSel) || (clickSel && clickSel.has(pt.row.id));
     // page-slice dim is the same visual language as ArtistCloud (0.05) / ExploreScatter (~0.14): a
     // dot outside the active slice fades hard and stops responding to pointer, so brush/hover only
     // touch the conjunction. Family-dim (0.06) still wins when both apply.
-    const op = dimF ? 0.06 : dimP ? (mode === "subgenres" ? 0.12 : 0.05) : brushed ? (on ? 0.92 : 0.1) : singleSel ? (isSel ? 0.95 : 0.15) : (mode === "subgenres" ? 0.82 : 0.72);
+    const op = dimF ? 0.06 : dimP ? (mode === "subgenres" ? 0.12 : 0.05) : brushed ? (on ? 0.92 : 0.1) : (singleSel || clickSel) ? (isSel ? 0.95 : 0.15) : (mode === "subgenres" ? 0.82 : 0.72);
     const baseR = isHover ? pt.radius + 2 : pt.radius;
     // Position is ALWAYS via transform (cx/cy=0) so no dot ever switches how it's placed — that's what
     // kills the corner-flight. Opacity always transitions (cheap). The transform transition is armed
@@ -762,7 +769,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
         fill={fillFor(pt.row)} fillOpacity={op}
         stroke={isHover || isSel ? "#fff" : "none"} strokeWidth={isSel ? 2 : 1.4} vectorEffect="non-scaling-stroke"
         style={{ transform: `translate(${pt.px.toFixed(1)}px, ${pt.py.toFixed(1)}px)`, r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: dimF || dimP ? "default" : "pointer", pointerEvents: dimF || dimP ? "none" : "auto", transition: trans }} />);
-  }), [pts, hover, brushed, singleSel, inBrush, isDimFam, isPageDim, fillFor, mode, animatePos]);
+  }), [pts, hover, brushed, singleSel, clickSel, inBrush, isDimFam, isPageDim, fillFor, mode, animatePos]);
 
   const subLabels = React.useMemo(() => mode !== "subgenres" ? null : pts.filter(pt => labelIds.has(pt.row.id) && !isDimFam(pt.row) && !isPageDim(pt.row)).map(pt => (
     <text key={"lbl" + pt.row.id} x={(pt.px + pt.radius + 3).toFixed(1)} y={(pt.py + 3).toFixed(1)}
@@ -803,7 +810,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
             {"  ·  " + (hoverRow.plays || 0).toLocaleString("en-US") + " plays"}
             {mode !== "subgenres" && hoverRow.seenLive ? "  ·  seen live" : ""}
           </span>
-        ) : <span>hover a dot for its values · drag to brush a region · scroll to zoom</span>}
+        ) : <span>hover a dot for its values{mode !== "subgenres" ? " · click to pick it (click again to remove)" : ""} · drag to brush a region · scroll to zoom</span>}
       </div>
       <ZoomReset z={z} />
       <div style={{ display: "flex", alignItems: "stretch" }}>
@@ -837,15 +844,20 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
         </div>
       </div>
 
-      {/* BRUSH RESULTS — rows click through to artist pages (artists mode); scrolls inside
-          .xp-attr-info so the chart above never moves (Fuad 2026-07-14) */}
-      {brushed && (
+      {/* SELECTION RESULTS — a committed brush region OR the click-picked dots; rows click
+          through to artist pages (artists mode); scrolls inside .xp-attr-info so the chart
+          above never moves (Fuad 2026-07-14) */}
+      {(brushed || (clickSel && clickSel.size > 0)) && (() => {
+        const listPts = brushed ? brushedPts : pts.filter(p => clickSel.has(p.row.id)).sort((a, b) => (b.row.plays || 0) - (a.row.plays || 0));
+        return (
         <div className="xp-attr-info" style={{ marginTop: 14, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
           <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8 }}>
-            {brushedPts.length} in region — top {Math.min(40, brushedPts.length)} by plays{mode !== "subgenres" ? " · tap to open" : ""}
+            {brushed
+              ? <>{listPts.length} in region — top {Math.min(40, listPts.length)} by plays{mode !== "subgenres" ? " · tap to open" : ""}</>
+              : <>{listPts.length} picked — click a dot again to remove it · tap a row to open</>}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "2px 16px" }}>
-            {brushedPts.map((pt) => (
+            {listPts.map((pt) => (
               <div key={pt.row.id} className="xp-attr-brushrow" data-link={mode !== "subgenres"} onClick={() => openRow(pt.row)}>
                 <span style={{ color: `oklch(0.7 0.16 ${pt.row.hue != null ? pt.row.hue : 300})`, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{pt.row.name}</span>
                 <span style={{ color: "var(--ink-faint)", flex: "0 0 auto" }}>{(pt.row.plays || 0).toLocaleString("en-US")} · {attrFmtVal(pt.row, xKey)}/{attrFmtVal(pt.row, yKey)}</span>
@@ -853,7 +865,8 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
             ))}
           </div>
         </div>
-      )}
+        );
+      })()}
     </div>
   );
 }
