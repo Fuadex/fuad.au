@@ -395,19 +395,19 @@ function runInsights(ctx, n) {
 
 function InsightCard({ ins }) {
   return (
-    <div className={"r-card" + (ins.onClick ? " ov-stat-link" : "")} style={{ gridColumn: "span 4", padding: "12px 13px", cursor: ins.onClick ? "pointer" : "default" }}
+    <div className={"r-card" + (ins.onClick ? " ov-stat-link" : "")} style={{ gridColumn: "span 4", padding: "9px 12px", cursor: ins.onClick ? "pointer" : "default" }}
       onClick={ins.onClick || undefined}>
-      <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}>
         <span className="lbl"><b>{ins.label}</b></span>
         {ins.meta && <span className="meta" style={{ maxWidth: 130, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{ins.meta}{ins.onClick ? " ↗" : ""}</span>}
       </div>
       {ins.render ? ins.render : (<>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 7, margin: "2px 0 2px" }}>
-        <div className="r-stat-n" style={{ fontSize: 32, color: ins.accent ? "var(--accent)" : "var(--ink)" }}>{ins.big}</div>
-        {ins.bigUnit && <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>{ins.bigUnit}</span>}
+      <div style={{ display: "flex", alignItems: "baseline", gap: 7, margin: "1px 0 1px" }}>
+        <div className="r-stat-n" style={{ fontSize: 26, color: ins.accent ? "var(--accent)" : "var(--ink)" }}>{ins.big}</div>
+        {ins.bigUnit && <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{ins.bigUnit}</span>}
       </div>
-      {ins.sub && <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{ins.sub}</div>}
-      {ins.note && <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.4, marginTop: 6 }}>{ins.note}</div>}
+      {ins.sub && <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{ins.sub}</div>}
+      {ins.note && <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 12, color: "var(--ink-soft)", lineHeight: 1.35, marginTop: 4 }}>{ins.note}</div>}
       </>)}
     </div>
   );

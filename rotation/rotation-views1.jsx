@@ -258,7 +258,7 @@ function OvWeatherCard({ R, go, restReady }) {
 
   // ── DECADES (chronological strip treemap → drillable per-year; reduced height so it fits
   //    under the weather block in one module) ──
-  const H = 64;   // strip height px — HTML flex strips, not SVG: a stretched viewBox distorts label glyphs
+  const H = 46;   // strip height px — HTML flex strips, not SVG: a stretched viewBox distorts label glyphs
   const decadesStrip = () => {
     if (!hasDec) return null;
 
@@ -324,7 +324,7 @@ function OvWeatherCard({ R, go, restReady }) {
   };
 
   return (
-    <div className="r-card ov-weather" style={{ padding: 14 }}>
+    <div className="r-card ov-weather" style={{ padding: 12 }}>
       <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
         <span className="lbl"><b>Emotional weather</b></span>
       </div>
@@ -337,7 +337,7 @@ function OvWeatherCard({ R, go, restReady }) {
       )}
       <style>{`
         /* decades strip sits under the last-90d block; left edge aligns with the paragraph above */
-        .ov-wdecs { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+        .ov-wdecs { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--rule); }
         .ov-wdlbl { margin-bottom: 8px; }
         .ov-wback { font-family: var(--mono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase;
           background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px;
@@ -493,8 +493,8 @@ function OverviewView({ t, go, restReady, seed }) {
     const hueOf = (id) => { const e = R.byId[id] || (R.expById && R.expById[id]); return e && e.hue != null ? e.hue : 210; };
     return LV.recent.map((r, i) => ({ id: "lv" + i, artistId: r.artistId, artist: r.artist, track: r.track, when: when(r.uts), hue: hueOf(r.artistId) }));
   }, [R]);
-  // just the last 3 played (the 6/12/18 selector was too tight for the row — Fuad 2026-07-06)
-  const recent3 = React.useMemo(() => recent.slice(0, 3), [recent]);
+  // just the last 2 played (was 3; the shallower 96px pulse row fits two cleanly — Fuad 2026-07-18)
+  const recent3 = React.useMemo(() => recent.slice(0, 2), [recent]);
 
   // 26-week scrobble trend (real if the build provides it)
   const trend = React.useMemo(() => R.TREND || Array.from({ length: 26 }, (_, i) =>
@@ -680,8 +680,8 @@ function OverviewView({ t, go, restReady, seed }) {
 
         {/* Right now — the live insight feed, promoted directly under the map (Fuad 2026-07-06),
             paired with emotional weather on its row (was full-width lower down). */}
-        <div className="r-card ov-insights" style={{ gridColumn: "span 8", padding: "10px 12px" }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 7 }}><span className="lbl"><b>Right now</b></span>
+        <div className="r-card ov-insights" style={{ gridColumn: "span 8", padding: "8px 12px" }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 5 }}><span className="lbl"><b>Right now</b></span>
             <span className="meta">what's moving</span></div>
           <div className="ov-insgrid" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 8 }}>
             <InsightRow go={go} n={4} />
@@ -700,20 +700,20 @@ function OverviewView({ t, go, restReady, seed }) {
           are (identity facts); Where to dig = where to explore next (discovery facts). Each
           module fires a hand-picked subset of rule ids so it stays tight. */}
       <div className="ov-pd" style={{ marginTop: "calc(var(--gap)*1.4)" }}>
-        {/* YOUR PORTRAIT — self-portrait: underground depth · dominant decade · heaviest day ·
-            one-song obsession (lab2 rules: underground, decade-growth, peak-day, one-song) */}
-        <div className="r-card ov-pd-card" style={{ padding: "14px 16px" }}>
+        {/* YOUR PORTRAIT — self-portrait, now the FULL identity slice of lab2's rule set
+            (populated like the old rich modules but each line stays an expandable bullet —
+            Fuad 2026-07-18) */}
+        <div className="r-card ov-pd-card" style={{ padding: "12px 16px" }}>
           <div className="r-mono ov-pd-lbl">Your portrait</div>
-          <OvFacts ids={["underground", "decade-growth", "peak-day", "one-song"]} go={go} accent="var(--accent)" restReady={restReady} />
+          <OvFacts ids={["underground", "decade-growth", "taste-era", "peak-day", "one-song", "obsession-peak", "streak-gap"]} go={go} accent="var(--accent)" restReady={restReady} />
           <div className="r-mono ov-pd-foot" onClick={() => go("stories")}>read the long version ↗</div>
         </div>
 
-        {/* WHERE TO DIG — discovery-oriented: genre momentum · newest all-time top-50 face ·
-            biggest comeback · deepest discography to complete (lab2 rules: genre-shift,
-            new-to-top50, comeback, complete-discog) */}
-        <div className="r-card ov-pd-card" style={{ padding: "14px 16px" }}>
+        {/* WHERE TO DIG — the full discovery slice: genre momentum · newest top-50 face ·
+            comeback · discography to complete · binge album · disbanded favourite */}
+        <div className="r-card ov-pd-card" style={{ padding: "12px 16px" }}>
           <div className="r-mono ov-pd-lbl">Where to dig</div>
-          <OvFacts ids={["genre-shift", "new-to-top50", "comeback", "complete-discog"]} go={go} accent="oklch(0.7 0.16 188)" restReady={restReady} />
+          <OvFacts ids={["genre-shift", "new-to-top50", "comeback", "complete-discog", "binge-album", "disbanded"]} go={go} accent="oklch(0.7 0.16 188)" restReady={restReady} />
           <div className="r-mono ov-pd-foot" onClick={() => go("explore")}>open Explore ↗</div>
         </div>
       </div>
@@ -792,13 +792,13 @@ function OverviewView({ t, go, restReady, seed }) {
         .ov-facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
         .ov-fact { border-radius: 5px; }
         .ov-fact-head { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left;
-          background: none; border: none; padding: 4px 6px; margin: 0 -6px; border-radius: 5px; cursor: pointer;
+          background: none; border: none; padding: 2.5px 6px; margin: 0 -6px; border-radius: 5px; cursor: pointer;
           transition: background .15s; }
         .ov-fact-head:hover { background: var(--bg-3); }
         .ov-fact-dot { flex: none; width: 4px; height: 4px; border-radius: 50%; background: var(--accent-dim);
           align-self: center; }
-        .ov-fact-hl { flex: 1; min-width: 0; font-family: var(--mono); font-size: 11px; letter-spacing: .01em;
-          line-height: 1.4; color: var(--ink-soft);
+        .ov-fact-hl { flex: 1; min-width: 0; font-family: var(--mono); font-size: 10.5px; letter-spacing: .01em;
+          line-height: 1.35; color: var(--ink-soft);
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .ov-fact[data-open="true"] .ov-fact-hl { white-space: normal; overflow: visible; color: var(--ink); }
         .ov-fact-go { flex: none; font-family: var(--mono); font-size: 11px; color: var(--accent); padding: 0 2px; }

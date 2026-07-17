@@ -748,7 +748,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
              the shared row and cap the list well (Fuad 2026-07-06). Cut by one row-height so the
              whole band gets shorter (list scrolls internally, Fuad 2026-07-18). */
           .mp-list { grid-column: 1; grid-row: 2; margin-top: 0 !important; align-self: start; }
-          .mp-list > div:last-child { max-height: 117px !important; }
+          .mp-list > div:last-child { max-height: 88px !important; }
           .mp-stats { grid-column: 2; grid-row: 2; margin-top: 0 !important; display: flex; align-self: start; }
           .mp-stats > .r-card { flex: 1; }
           .mp-cal { grid-column: 3; grid-row: 2; margin-top: 0 !important; }
