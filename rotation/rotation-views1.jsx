@@ -742,7 +742,7 @@ function OverviewView({ t, go, restReady, seed }) {
           /* cap the whole pulse row so it lands ~2/3 of its pre-tightening height: the tallest
              card (now-playing's cover stack / recently-played's 3 rows) can't push it taller than
              this. The recent list scrolls internally if it ever overflows (Fuad 2026-07-18). */
-          .ov-scrob, .ov-streak, .ov-week, .ov-recent, .ov-np { max-height: 96px; overflow: hidden; }
+          .ov-scrob, .ov-streak, .ov-week, .ov-recent, .ov-np { max-height: 102px; overflow: hidden; }
           .ov-recent .ov-rl { overflow-y: auto; }
           /* row 3 = map band (1/-1 inline); row 4 — the four stats (left, they react to the
              map/calendar filter) + heaviest day (right) */
