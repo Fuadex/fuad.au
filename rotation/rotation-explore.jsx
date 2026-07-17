@@ -101,8 +101,8 @@ function sliceArtists(R, f, applyZone) {
   return out;
 }
 
-// hue for a media artist with no profiled record (deterministic from the name)
-const _hueHash = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
+// hue for a media artist with no profiled record — core's hashInt, mod 360 (dedup 2026-07-18)
+const _hueHash = (s) => window.hashInt(s || "", 0) % 360;
 
 // mediaRank — rank albums/tracks from the lazy media-index at FULL depth, applying the same filter
 // set as the inline ranking. `meta` is the precomputed per-artist resolution (id/record/hue). Returns

@@ -33,7 +33,7 @@ const PROVIDERS = [
     const days = Math.round((anniv - today) / 86400e3);
     if (days > 50) return null;
     const years = new Date(anniv).getUTCFullYear() - y0;
-    const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const MON = window.MON;
     return {
       id: "anniv", category: "anniversary", score: 0.6 + 0.38 * (1 - days / 50), accent: true,
       label: "Anniversary", big: years + " yr" + (years !== 1 ? "s" : ""),
@@ -249,7 +249,7 @@ const PROVIDERS = [
       for (const s of [off, -off]) { const d = new Date(ctx.now.getTime() + s * 86400e3); const e = otd[key(d)]; if (e && (e.byYear || []).length) { entry = e; used = d; break; } }
     }
     const rows = (entry && entry.byYear) || []; if (!rows.length) return null;
-    const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const MON = window.MON;
     const sameDay = used.getUTCDate() === ctx.now.getUTCDate() && used.getUTCMonth() === ctx.now.getUTCMonth();
     const label = sameDay ? "On this day" : `On ${used.getUTCDate()} ${MON[used.getUTCMonth()]}`;
     const standout = rows.slice().sort((a, b) => b.plays - a.plays)[0];

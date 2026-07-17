@@ -558,8 +558,7 @@ function ArtistTourCard({ a, go }) {
     document.head.appendChild(s);
   }, []);
   if (!a.onTour) return null;
-  const MONS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const dfmt = (d) => { const [y, m, dd] = d.split("-"); return `${+dd} ${MONS[+m - 1]} ${y}`; };
+  const dfmt = window.fmtDate;   // core's "8 Mar 2026" formatter (dedup 2026-07-18)
   const rec = tour && tour.artists.find(x => x.id === a.id);
   const n = a.onTour[0];
   return (

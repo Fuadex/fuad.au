@@ -46,7 +46,7 @@ function ClockCard({ R, selHours, setSelHours, customRange }) {
 
   const rangeLabel = React.useMemo(() => {
     if (!customRange) return "";
-    const M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const M = window.MON;
     const fD = (ms) => { const dt = new Date(ms); return dt.getUTCDate() + " " + M[dt.getUTCMonth()] + " " + String(dt.getUTCFullYear()).slice(2); };
     return fD(customRange[0]) + " → " + fD(customRange[1]);
   }, [customRange]);
@@ -569,7 +569,7 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
     const sorted = days.counts.filter(v => v > 0).slice().sort((a, b) => a - b);
     return { p80: sorted[Math.floor(sorted.length * 0.8)] || 1, p95: sorted[Math.floor(sorted.length * 0.95)] || 1 };
   }, [days]);
-  const fDd = (ms) => { const dt = new Date(ms); return dt.getUTCDate() + " " + ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][dt.getUTCMonth()] + " '" + String(dt.getUTCFullYear()).slice(2); };
+  const fDd = (ms) => { const dt = new Date(ms); return dt.getUTCDate() + " " + window.MON[dt.getUTCMonth()] + " '" + String(dt.getUTCFullYear()).slice(2); };
   const hoverInfo = (hoverDay != null && days && meta && tiers) ? (() => {
     const v = days.counts[hoverDay] || 0;
     const tier = v === 0 ? "quiet" : v >= tiers.p95 ? "peak day — top 5%" : v >= tiers.p80 ? "heavy — top 20%" : "active";
@@ -596,7 +596,7 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
             const v = days.counts[i] || 0;
             plays += v; if (v) active++; if (v > peak) peak = v;
           }
-          const fD = (ms) => { const dt = new Date(ms); return dt.getUTCDate() + " " + ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][dt.getUTCMonth()] + " " + String(dt.getUTCFullYear()).slice(2); };
+          const fD = (ms) => { const dt = new Date(ms); return dt.getUTCDate() + " " + window.MON[dt.getUTCMonth()] + " " + String(dt.getUTCFullYear()).slice(2); };
           return <><b>{fD(s)}</b> → <b>{fD(en)}</b> · {fmt(plays)} plays · {active} active days · peak {fmt(peak)}
             {hoverInfo && <span className="bc-hov"> · {fDd(hoverInfo.ms)}: {fmt(hoverInfo.v)}p</span>}
             <button className="bc-clear" onClick={() => setCustomRange(null)} title="clear range">✕</button></>;
@@ -785,7 +785,7 @@ function CalendarView({ go, seed }) {
     return { ...merged, n: entries.length };
   }, [rangeCommit, detail]);
 
-  const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const MON = window.MON;
   const MONF = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const dateOf = (y, d) => new Date(Date.UTC(y, 0, 1) + d * 86400e3);
   const fmtDate = (dt) => dt.getUTCDate() + " " + MON[dt.getUTCMonth()] + " " + dt.getUTCFullYear();
