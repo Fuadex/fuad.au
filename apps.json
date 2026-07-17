@@ -61,6 +61,7 @@
         "label-parents.js",
         "portraits.js",
         "portrait-facts.js",
+        "words-layer.js",
         "mb-covers-story.js",
         "genius-mood-lazy.js",
         "genius-about-lazy.js",
