@@ -735,6 +735,10 @@ function StudyView({ id, go }) {
         {collapsed && (
           <button className="cv-study-restore" onClick={() => setCollapsed(false)} title="Show the study pane">☰ study</button>
         )}
+        {/* exit study — always reachable from the viewer's top-right. The pane's own ✕ close is
+            hidden when collapsed and below the fold on a phone, so this is the dependable way out
+            (Fuad 2026-07-18). Hidden only on desktop-expanded where the pane ✕ is already visible. */}
+        <button className="cv-study-exit" onClick={() => history.back()} title="Leave the study (Esc)" aria-label="Close study">✕</button>
       </div>
       {/* draggable divider (inert on the stacked mobile layout via CSS) */}
       {!collapsed && (
@@ -1977,8 +1981,28 @@ function MapView({ go }) {
   // semantic zoom step toward that point (tap zoomed-out -> zoom in; tap zoomed-in -> zoom back out);
   // a drag still pans. This keeps tiny bubbles reachable on touch with no hover dependency.
   const touch = React.useRef(null);
-  const onTouchStart = (e) => { const t = e.touches[0]; if (t) touch.current = { x: t.clientX, y: t.clientY, moved: false, t: Date.now() }; };
+  // two-finger pinch → zoom around the finger midpoint (touch-action:none feeds every touch to JS)
+  const pinch = React.useRef(null);
+  const fingerDist = (a, b) => Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+  const onTouchStart = (e) => {
+    if (e.touches.length >= 2) {
+      const [a, b] = [e.touches[0], e.touches[1]];
+      pinch.current = { d: fingerDist(a, b) || 1, v: vbRef.current };
+      touch.current = null; drag.current = null; return;
+    }
+    const t = e.touches[0]; if (t) touch.current = { x: t.clientX, y: t.clientY, moved: false, t: Date.now() };
+  };
   const onTouchMove = (e) => {
+    if (pinch.current && e.touches.length >= 2 && svgRef.current) {
+      const [a, b] = [e.touches[0], e.touches[1]], p = pinch.current;
+      const nd = fingerDist(a, b); if (nd < 1) return;
+      const f = p.d / nd;   // fingers spreading → nd>d → f<1 → smaller viewBox → zoom in
+      const r = svgRef.current.getBoundingClientRect();
+      const fx = ((a.clientX + b.clientX) / 2 - r.left) / r.width, fy = ((a.clientY + b.clientY) / 2 - r.top) / r.height;
+      const w = Math.min(880, Math.max(70, p.v.w * f)), h = w * AR;
+      commit({ x: p.v.x + fx * p.v.w - fx * w, y: p.v.y + fy * p.v.h - fy * h, w, h });
+      return;
+    }
     const t = e.touches[0], d = touch.current; if (!t || !d || !svgRef.current) return;
     if (Math.abs(t.clientX - d.x) + Math.abs(t.clientY - d.y) > 6) {
       if (!drag.current) drag.current = { mx: d.x, my: d.y, v: vbRef.current, moved: true };
@@ -1988,6 +2012,8 @@ function MapView({ go }) {
     }
   };
   const onTouchEnd = (e) => {
+    // end / restart pinch cleanly as fingers lift
+    if (pinch.current) { if (e.touches.length >= 2) { const [a, b] = [e.touches[0], e.touches[1]]; pinch.current = { d: fingerDist(a, b) || 1, v: vbRef.current }; } else pinch.current = null; touch.current = null; drag.current = null; return; }
     const d = touch.current; drag.current = null; touch.current = null; if (!d || d.moved) return;
     const p = clientToMap(d.x, d.y); if (!p) return;
     setLens(p);                                   // magnify under the tap (hover-free)
@@ -1998,10 +2024,19 @@ function MapView({ go }) {
     commit({ x: v.x + fx * v.w - fx * w, y: v.y + fy * v.h - fy * h, w, h });
   };
 
+  // on-screen zoom around the map centre — the touch-friendly path (pinch works too, but buttons
+  // are the reliable way on a phone; ⌂ recovers a lost view). Fuad 2026-07-18.
+  const zoomCenter = (f) => { const v = vbRef.current; const w = Math.min(880, Math.max(70, v.w * f)), h = w * AR; commit({ x: v.x + 0.5 * v.w - 0.5 * w, y: v.y + 0.5 * v.h - 0.5 * h, w, h }); };
+
   return (
     <div className="cv-map">
-      <p className="cv-deck-sum">Every city where a work entered your canon, sized by how much it gave you — <b>click a city</b> to branch out to its museums and the works you loved there (hover a work for a look). The <b style={{ color: "oklch(0.55 0.19 18)" }}>♥ markers</b> are works you're still chasing. Scroll to zoom, drag to pan — hover to magnify the bubbles under your cursor (tap on touch).</p>
+      <p className="cv-deck-sum">Every city where a work entered your canon, sized by how much it gave you — <b>click a city</b> to branch out to its museums and the works you loved there (hover a work for a look). The <b style={{ color: "oklch(0.55 0.19 18)" }}>♥ markers</b> are works you're still chasing. Scroll or pinch to zoom, drag to pan — hover to magnify the bubbles under your cursor (tap on touch).</p>
       <div className="cv-map-wrap" onMouseLeave={onLeave}>
+        <div className="cv-map-zoom">
+          <button type="button" onClick={() => zoomCenter(1 / 1.4)} aria-label="Zoom in" title="Zoom in">+</button>
+          <button type="button" onClick={() => zoomCenter(1.4)} aria-label="Zoom out" title="Zoom out">−</button>
+          <button type="button" onClick={() => setVb(HOME)} aria-label="Reset view" title="Reset view">⌂</button>
+        </div>
         <svg ref={svgRef} viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
           onMouseDown={onDown} onMouseMove={onMove} onMouseUp={stop}
           onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>

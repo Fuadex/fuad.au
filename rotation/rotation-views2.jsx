@@ -1234,7 +1234,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           <div style={{ width: 0, minWidth: "100%" }}>
             <ArtistBarcode artistId={a.id} daysReady={daysReady} />
           </div>
-          <div style={{ display: "flex", gap: 26, justifyContent: "flex-end" }}>
+          <div className="av-hstats" style={{ display: "flex", gap: 26, justifyContent: "flex-end" }}>
             <div><div className="r-stat-n" style={{ fontSize: 38 }}>{fmt(a.plays)}</div>
               <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
             <div><div className="r-stat-n" style={{ fontSize: 38 }}>{peakYear}</div>
@@ -1742,9 +1742,13 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               {a.seenLive.songs.length > 0 && (
                 <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                   {a.seenLive.songs.map(s => (
-                    <span key={s.title} className="r-chip" style={{ fontSize: 11,
+                    // played songs are in the rotation, so they have a track page (id = artist~track);
+                    // link those, leave the un-scrobbled ones as plain chips.
+                    <span key={s.title} className={"r-chip" + (s.played ? " av-livesong" : "")} style={{ fontSize: 11,
                       color: s.played ? "var(--accent)" : "var(--ink-soft)",
-                      borderColor: s.played ? "var(--accent-dim)" : "var(--rule)" }}>
+                      borderColor: s.played ? "var(--accent-dim)" : "var(--rule)" }}
+                      title={s.played ? "open this song →" : undefined}
+                      onClick={s.played ? () => go("track", a.id + "~" + R.slug(s.title)) : undefined}>
                       {s.title}{s.times > 1 ? <span style={{ color: "var(--ink-faint)" }}> ×{s.times}</span> : null}
                     </span>
                   ))}
@@ -1799,6 +1803,16 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         .av-tourrow-d { font-size: 10.5px; color: var(--ink-faint); white-space: nowrap; flex: none; width: 92px; }
         .av-tourrow-w { flex: 1; min-width: 0; font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .av-tourrow-out { flex: none; font-size: 10px; color: var(--ink-faint); }
+        /* plays->peak->share->listeners row: the 38px figures don't fit four-up on a phone (the
+           "listeners ww" label clipped off the edge), so shrink the figures + gap on narrow screens
+           (Fuad 2026-07-18) */
+        @media (max-width: 620px){
+          .av-hstats { gap: 14px !important; }
+          .av-hstats .r-stat-n { font-size: 23px !important; }
+        }
+        /* live-set song chips that you also have in rotation link to the track page */
+        .av-livesong { cursor: pointer; text-decoration: none; }
+        .av-livesong:hover { border-color: var(--accent) !important; color: var(--accent) !important; }
       `}</style>
     </div>
   );

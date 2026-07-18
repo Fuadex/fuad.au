@@ -753,6 +753,14 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
           .mp-stats > .r-card { flex: 1; }
           .mp-cal { grid-column: 3; grid-row: 2; margin-top: 0 !important; }
         }
+        /* mobile / tablet single-column stack order (Fuad 2026-07-18): map, flow, then RESULTS,
+           then the calendar, and the deepest-places list + lifetime stats after. Below 1150 the
+           band is one column, so drive the visual order with flex order (the grid above owns >=1150). */
+        @media (max-width: 1149px) {
+          .mp-grid { display: flex; flex-direction: column; }
+          .mp-map { order: 1; } .mp-flow { order: 2; } .mp-results { order: 3; }
+          .mp-cal { order: 4; } .mp-list { order: 5; } .mp-stats { order: 6; }
+        }
         .mp-clear { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase;
           padding: 6px 11px; border-radius: 999px; border: 1px solid var(--accent-dim); color: var(--accent);
           background: var(--accent-bg); cursor: pointer; align-self: flex-end; }
