@@ -2063,10 +2063,21 @@ function GenreCascade({ R, arts, gkey, sub, setGkey, setSub }) {
       <span className="gv-gpill-dot" />{name}<span className="gv-gpill-n">{n}</span>
     </button>
   );
+  // collapsible so the pill wall doesn't shove the results down — starts open on desktop, folded
+  // on phones where it's the longest thing between the map and the list (Fuad 2026-07-18). An
+  // active pick is kept visible by force-opening.
+  const [open, setOpen] = React.useState(() => {
+    try { return !window.matchMedia("(max-width: 760px)").matches; } catch (e) { return true; }
+  });
+  const shown = open || gkey != null;
   if (!gens.length) return null;
   return (
     <div className="gv-casc">
-      <div className="r-mono gv-casc-cap">Genre — {gens.length} in this slice{gkey && gkey[0] === "f" ? " · pick unfolds subgenres" : ""}</div>
+      <button className="gv-casc-cap" data-open={shown} onClick={() => setOpen(o => !o)} aria-expanded={shown}>
+        <span className="gv-casc-caret">{shown ? "▾" : "▸"}</span>
+        Genre — {gens.length} in this slice{shown && gkey && gkey[0] === "f" ? " · pick unfolds subgenres" : gkey ? " · 1 active" : ""}
+      </button>
+      {shown && <>
       <div className="gv-gpills">
         {gens.map(g => <Pill key={g.key} name={g.name} hue={g.hue} n={g.n} on={gkey === g.key} dim={gkey != null && gkey !== g.key}
           pick={() => { setSub(null); setGkey(gkey === g.key ? null : g.key); }} />)}
@@ -2077,6 +2088,7 @@ function GenreCascade({ R, arts, gkey, sub, setGkey, setSub }) {
             pick={() => setSub(sub === s.i ? null : s.i)} />)}
         </div>
       )}
+      </>}
     </div>
   );
 }
@@ -2886,7 +2898,9 @@ function GigsView({ go }) {
       <div className="gv-foot">Attended-show data from your setlist.fm profile · {G.fetched}</div>
 
       <style>{`
-        .gv { max-width: 900px; margin: 0 auto; }
+        /* GigsView renders its own root (not inside .r-view), so it carries the app gutter itself
+           — otherwise the page bleeds to the screen edges on mobile (Fuad 2026-07-18). */
+        .gv { max-width: 900px; margin: 0 auto; padding: 0 var(--pad); }
         .gv-hero { padding: 12px 2px 26px; }
         .gv-kicker { font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
         .gv-h1 { font-family: var(--serif); font-size: clamp(26px, 4vw, 42px); line-height: 1.1; letter-spacing: -.02em; margin: 0; }
@@ -2965,7 +2979,11 @@ function GigsView({ go }) {
         .gv-tour-row[data-hi="true"] { border-color: var(--rule-2); background: var(--bg-2); }
         /* genre filter — legible pills (sits UNDER the map); a real family unfolds its subgenres */
         .gv-casc { margin: 2px 0 12px; }
-        .gv-casc-cap { font-size: 8.5px; color: var(--ink-faint); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 7px; }
+        .gv-casc-cap { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 8.5px;
+          color: var(--ink-faint); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 7px;
+          background: none; border: 0; padding: 2px 0; cursor: pointer; transition: color .15s; }
+        .gv-casc-cap:hover { color: var(--ink-soft); }
+        .gv-casc-caret { font-size: 9px; line-height: 1; }
         .gv-gpills { display: flex; flex-wrap: wrap; gap: 6px; }
         .gv-gpills-sub { margin-top: 6px; padding-top: 8px; border-top: 1px dashed var(--rule); }
         .gv-gpill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px;

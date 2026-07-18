@@ -25,6 +25,31 @@ function hash(str, seed = 0) {
   return h;
 }
 
+// LazyImg — real off-screen deferral for shelf/grid covers. Native loading="lazy" does NOT
+// defer images inside horizontally-scrolling shelves (they share the viewport's vertical band, so
+// the browser fetches the whole row) — on a phone that fired ~170 poster requests on first paint
+// (audit 2026-07-18). A viewport-rooted IntersectionObserver only reveals src once a cover is
+// actually near view, in ANY scroll direction. The container carries fixed CSS dimensions (.item
+// is 144px tall, .xcover is aspect-ratio 2/3, .hall-card sized), so withholding src never
+// collapses layout — off-screen cards stay off-screen and never intersect.
+function LazyImg({ src, alt, className, draggable }) {
+  const ref = React.useRef(null);
+  const [show, setShow] = React.useState(false);
+  React.useEffect(() => {
+    if (show || !src) return;
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === 'undefined') { setShow(true); return; }
+    const io = new IntersectionObserver((ents) => {
+      for (const e of ents) if (e.isIntersecting) { setShow(true); io.disconnect(); return; }
+    }, { rootMargin: '400px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [show, src]);
+  return <img ref={ref} className={className} alt={alt || ''} draggable={draggable}
+    src={show ? src : undefined} loading="lazy" decoding="async" />;
+}
+
 // If data.js ever fails to load (stale cache / partial deploy), a shape-complete stub
 // keeps the app painting an empty library instead of white-screening on the destructures.
 if (!window.CULTURE) window.CULTURE = { ITEMS: [], REGION_COLORS: {}, DECADE_COLORS: {}, REGION_NAMES: {}, MEDIA: [], PICKABLE_IDS: [] };
@@ -619,7 +644,7 @@ function TagBadgeExplorer({ items, onOpenItem }) {
                 <a key={it.id} className="xcover" role="button" tabIndex={0} aria-label={displayTitle(it)}
                   onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpenItem && onOpenItem(it); } }}
                   onClick={() => onOpenItem && onOpenItem(it)} title={`${displayTitle(it)} (${it.year || ''})`}>
-                  {img ? <img src={img} alt="" loading="lazy" />
+                  {img ? <LazyImg src={img} alt="" />
                        : <span className="xcover-fallback" style={{ '--pf-bg': spineBodyColor(it) }}>{MG[it.medium] || '•'}</span>}
                 </a>
               );
@@ -835,7 +860,7 @@ function WishlistPicker({ items, seenItems, onOpenItem }) {
       <div className="explorer-wall">
         {list.map(it => { const img = it.poster || it.tmdbPoster || it.igdbCover || it.bookCover; return (
           <a key={it.id} className="xcover" onClick={() => onOpenItem && onOpenItem(it)} title={`${displayTitle(it)} (${it.year || ''})${wlScore(it) ? ' · ⌀ ' + wlScore(it) : ''}`}>
-            {img ? <img src={img} alt="" loading="lazy" /> : <span className="xcover-fallback" style={{ '--pf-bg': spineBodyColor(it) }}>{MG[it.medium] || '•'}</span>}
+            {img ? <LazyImg src={img} alt="" /> : <span className="xcover-fallback" style={{ '--pf-bg': spineBodyColor(it) }}>{MG[it.medium] || '•'}</span>}
           </a>); })}
       </div>
     </div>
@@ -951,7 +976,7 @@ function Halls({ items, onOpenItem }) {
               {list.map(it => (
                 <button className="hall-card" key={it.id} onClick={() => onOpenItem(it)} title={displayTitle(it)}>
                   {posterOf(it)
-                    ? <img src={posterOf(it)} alt="" loading="lazy"/>
+                    ? <LazyImg src={posterOf(it)} alt="" />
                     : <span className="hall-card-glyph">{displayTitle(it)}</span>}
                   <span className="hall-card-t">{displayTitle(it)}</span>
                 </button>
@@ -1635,7 +1660,7 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
         role="button" tabIndex={0} aria-label={item.title}
         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(item); } }}
       >
-        <img className="layer-img" src={item.poster || item.tmdbPoster || item.igdbCover || item.bookCover} alt={item.title} loading="lazy"/>
+        <LazyImg className="layer-img" src={item.poster || item.tmdbPoster || item.igdbCover || item.bookCover} alt={item.title} />
         <div className="layer-spine">
           <span className="spine-band top"/>
           {item.highlights && item.highlights.length > 0 && (
@@ -2285,7 +2310,7 @@ function TonightCard({ item, pinned, onPin, onOpen }) {
   return (
     <div className={`tonight-card${isConviction ? ' conviction' : ''}`}>
       <div className="tonight-card-poster" onClick={() => onOpen(item)}>
-        {img ? <img src={img} alt="" loading="lazy"/>
+        {img ? <LazyImg src={img} alt="" />
              : <span className="tonight-poster-fallback" style={{ '--pf-bg': spineBodyColor(item) }}>{MEDIA_GLYPH[item.medium] || '•'}</span>}
       </div>
       <div className="tonight-card-body">

@@ -20,7 +20,9 @@ a { color: inherit; }
 .cv-head { display: flex; align-items: baseline; gap: 26px; padding: 26px 34px 18px; border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
 .cv-brand { font: 700 24px/1 var(--sans); color: var(--ink); letter-spacing: -.02em; text-decoration: none; }
 .cv-brand i { font-style: normal; color: var(--accent-soft); }
-.cv-nav { display: flex; gap: 4px; }
+/* wrap so the 7-item nav folds to fit a phone instead of forcing the page ~160px wider than the
+   viewport (Fuad 2026-07-18). Plenty of room to stay one line on desktop. */
+.cv-nav { display: flex; gap: 4px; flex-wrap: wrap; }
 .cv-nav a { font: 500 11.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--ink-faint); padding: 7px 12px; border-radius: 999px; }
 .cv-nav a:hover { color: var(--ink); }
 .cv-nav a[data-on="true"] { background: var(--ink); color: var(--paper); }
@@ -589,6 +591,8 @@ a { color: inherit; }
 
 /* MOBILE (<760px): stack — viewer fixed at top (~45vh), reading pane scrolls beneath */
 @media (max-width: 760px) {
+  /* tighten the header gutter/gap so the wrapped nav + search reclaim phone width */
+  .cv-head { padding: 18px 16px 14px; gap: 12px 18px; }
   .cv-study { flex-direction: column; }
   /* stacked layout: force the vertical split (inline flex-basis from the drag is overridden) and
      make the divider inert — the horizontal drag has no meaning when panes stack vertically */
