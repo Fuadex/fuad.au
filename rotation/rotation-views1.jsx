@@ -825,7 +825,12 @@ function OverviewView({ t, go, restReady, seed }) {
         @media (max-width: 760px) {
           .ov-insgrid > .r-card { grid-column: 1 / -1 !important; }
         }
-        @media (max-width: 980px) {
+        /* Only span the 12-col overview grid while it IS 12 columns (861–980px). At ≤860 the
+           .m-stack utility collapses to a single minmax(0,1fr) track and forces children to
+           grid-column:auto; a lingering span-12 here (higher specificity than .m-stack > *) would
+           re-create 12 implicit tracks and strand auto items — the map band — in a ~58%-wide
+           track (Fuad 2026-07-18). */
+        @media (min-width: 861px) and (max-width: 980px) {
           .r-view .r-card { grid-column: span 12 !important; }
         }
       `}</style>

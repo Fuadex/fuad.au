@@ -1554,6 +1554,9 @@ function ExploreView({ t, go, setPop, seed }) {
           .xp-flabel { padding-top: 0; }
           .xp-chiprow { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
           .xp-chiprow::-webkit-scrollbar { display: none; }
+          /* the year row wraps to fit the phone instead of scrolling off-screen (it was clipped
+             by .r-app's overflow-x:clip, so buttons past the edge were unreachable) — Fuad 2026-07-18 */
+          .xp-chiprow-time { flex-wrap: wrap; overflow-x: visible; }
           .xp-head-right { width: 100%; }
           .xp-search { min-width: 0; width: 100%; }
           .clk-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
