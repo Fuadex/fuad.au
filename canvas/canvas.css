@@ -306,6 +306,15 @@ a { color: inherit; }
 /* ——— the painterly map (Phase 4a) ——— */
 .cv-map { max-width: 1200px; margin: 0 auto; padding: 20px 34px 60px; }
 .cv-map-wrap { position: relative; }
+.cv-map-zoom { position: absolute; top: 12px; right: 12px; z-index: 4; display: flex; flex-direction: column; gap: 6px; }
+.cv-map-zoom button {
+  width: 38px; height: 38px; border-radius: 10px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  font: 500 18px/1 var(--sans); color: var(--ink-soft);
+  background: rgba(237,228,214,.92); border: 1px solid var(--rule); cursor: pointer;
+  box-shadow: 0 1px 4px rgba(80,55,25,.14); transition: border-color .15s, color .15s, background .15s;
+}
+.cv-map-zoom button:hover { border-color: var(--ink); color: var(--ink); background: #ede4d6; }
 .cv-map svg { width: 100%; background: #e9dfcd; border-radius: 12px; box-shadow: inset 0 0 60px rgba(120,90,50,.12); cursor: grab; touch-action: none; display: block; }
 .cv-map svg:active { cursor: grabbing; }
 .cv-pin { cursor: pointer; }
@@ -485,12 +494,23 @@ a { color: inherit; }
 }
 .cv-study-collapse:hover { border-color: var(--ink); color: var(--ink); }
 .cv-study-restore {
-  position: absolute; top: 14px; right: 14px; z-index: 7; margin: 0;
+  position: absolute; top: 14px; right: 62px; z-index: 7; margin: 0;
   font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase;
   color: rgba(227,216,200,.85); background: rgba(20,15,10,.78); border: 1px solid rgba(227,216,200,.3);
   border-radius: 999px; padding: 9px 15px; cursor: pointer;
 }
 .cv-study-restore:hover { border-color: rgba(227,216,200,.75); background: rgba(30,22,14,.9); color: #f2e9dc; }
+/* always-visible exit at the viewer's top-right corner */
+.cv-study-exit {
+  position: absolute; top: 14px; right: 14px; z-index: 8; margin: 0;
+  width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+  font: 500 15px/1 var(--mono); color: rgba(227,216,200,.85);
+  background: rgba(20,15,10,.78); border: 1px solid rgba(227,216,200,.3);
+  border-radius: 999px; cursor: pointer; transition: border-color .15s, color .15s, background .15s;
+}
+.cv-study-exit:hover { border-color: rgba(227,216,200,.75); background: rgba(30,22,14,.9); color: #f2e9dc; }
+/* on desktop with the pane open, the pane's own ✕ close is visible — no need to double up */
+@media (min-width: 761px) { .cv-study:not(.cv-study-collapsed) .cv-study-exit { display: none; } }
 
 /* ——— FIX 6a: tour prev/next arrows over the viewer ——— */
 .cv-study-tourarrows {

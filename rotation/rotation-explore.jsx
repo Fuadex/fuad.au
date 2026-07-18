@@ -178,17 +178,54 @@ function useZoom(W, H) {
     commit(nv);
   };
   const reset = () => commit({ x: 0, y: 0, w: W, h: H });
+  // button zoom — around the chart centre (the touch-friendly path; pinch handles the rest)
+  const zoomBy = (f) => { const v = vbRef.current; const w = Math.min(W, Math.max(W * 0.1, v.w * f)), h = w * AR;
+    commit({ x: v.x + 0.5 * v.w - 0.5 * w, y: v.y + 0.5 * v.h - 0.5 * h, w, h }); };
+  // two-finger pinch → zoom + pan around the finger midpoint. Single-finger touch is left to the
+  // browser (touch-action: pan-y on the svg) so the page still scrolls over the chart (Fuad 2026-07-18).
+  const pinch = React.useRef(null);
+  const fdist = (a, b) => Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+  const onTouchStart = (e) => {
+    if (e.touches.length >= 2) { const [a, b] = [e.touches[0], e.touches[1]];
+      pinch.current = { d: fdist(a, b) || 1, cx: (a.clientX + b.clientX) / 2, cy: (a.clientY + b.clientY) / 2, v: vbRef.current };
+      drag.current = null; }
+  };
+  const onTouchMove = (e) => {
+    if (!pinch.current || e.touches.length < 2 || !ref.current) return;
+    const [a, b] = [e.touches[0], e.touches[1]], p = pinch.current, nd = fdist(a, b); if (nd < 1) return;
+    const r = ref.current.getBoundingClientRect();
+    const mx = (a.clientX + b.clientX) / 2, my = (a.clientY + b.clientY) / 2, f = p.d / nd;
+    const fx = (p.cx - r.left) / r.width, fy = (p.cy - r.top) / r.height;
+    const w = Math.min(W, Math.max(W * 0.1, p.v.w * f)), h = w * AR;
+    let nx = p.v.x + fx * p.v.w - fx * w, ny = p.v.y + fy * p.v.h - fy * h;
+    nx -= (mx - p.cx) / r.width * w; ny -= (my - p.cy) / r.height * h;   // pan by midpoint drift
+    commit({ x: nx, y: ny, w, h });
+  };
+  const onTouchEnd = (e) => { if (e.touches.length < 2) pinch.current = null; };
   // live numeric viewBox [x,y,w,h] for the fisheye (mid-gesture-correct, reads vbRef not state);
   // draggingRef lets a chart tell the fisheye to pause while the pan drag is active.
   const vbArr = React.useRef([vb.x, vb.y, vb.w, vb.h]);
   vbArr.current = [vbRef.current.x, vbRef.current.y, vbRef.current.w, vbRef.current.h];
-  return { k: vb.w / W, zoomed: vb.w < W - 0.5, reset, vbRef: vbArr, draggingRef: drag,
-    bind: { ref, viewBox: `${vb.x} ${vb.y} ${vb.w} ${vb.h}`, onMouseDown: onDown, onMouseMove: onMove, onMouseUp: onUp } };
+  return { k: vb.w / W, zoomed: vb.w < W - 0.5, reset, zoomBy, vbRef: vbArr, draggingRef: drag,
+    bind: { ref, viewBox: `${vb.x} ${vb.y} ${vb.w} ${vb.h}`, onMouseDown: onDown, onMouseMove: onMove, onMouseUp: onUp,
+      onTouchStart, onTouchMove, onTouchEnd } };
 }
 
 // a small floating "reset zoom" chip shown over a chart once it's been zoomed
 function ZoomReset({ z }) {
   return z.zoomed ? <button className="xp-zoomreset" onClick={z.reset} title="reset zoom">⤢ reset</button> : null;
+}
+
+// +/−/home cluster (top-right of a chart) — the reliable way to zoom on a phone where there's no
+// scroll wheel; ⌂ resets. Complements pinch. (Fuad 2026-07-18)
+function ZoomControls({ z }) {
+  return (
+    <div className="xp-zoomctl">
+      <button type="button" onClick={() => z.zoomBy(1 / 1.3)} title="Zoom in" aria-label="Zoom in">+</button>
+      <button type="button" onClick={() => z.zoomBy(1.3)} title="Zoom out" aria-label="Zoom out">−</button>
+      <button type="button" onClick={z.reset} title="Reset zoom" aria-label="Reset zoom" data-dim={!z.zoomed}>⌂</button>
+    </div>
+  );
 }
 
 // ── cursor FISHEYE for the Explore dot clouds ──────────────────────────────────
@@ -282,8 +319,8 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
   ];
   return (
     <div style={{ padding: "14px 16px 10px", position: "relative" }}>
-      <ZoomReset z={z} />
-      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }}
+      <ZoomControls z={z} />
+      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "pan-y", "--zk": z.k }}
         onMouseMove={(e) => { z.bind.onMouseMove(e); fish.run(e.clientX, e.clientY); }}
         onMouseLeave={() => { setHi(null); z.bind.onMouseUp(); fish.reset(); }}>
         {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
@@ -341,8 +378,8 @@ function ArtistCloud({ pts, activeIds, go }) {
       style={{ r: `calc(7px * var(--zk))` }} />);
   return (
     <div style={{ padding: "14px 16px 10px", position: "relative" }}>
-      <ZoomReset z={z} />
-      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }}
+      <ZoomControls z={z} />
+      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "pan-y", "--zk": z.k }}
         onMouseMove={(e) => { z.bind.onMouseMove(e); fish.run(e.clientX, e.clientY); }}
         onMouseLeave={() => { setHi(null); z.bind.onMouseUp(); fish.reset(); }}>
         {[.25, .5, .75].map(g => (<g key={g}>
@@ -401,8 +438,8 @@ function SubMoodScatter({ subs, activeSub, activeFam, onPick, moodZone, setMoodZ
   ];
   return (
     <div style={{ padding: "14px 16px 10px", position: "relative" }}>
-      <ZoomReset z={z} />
-      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }}
+      <ZoomControls z={z} />
+      <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "pan-y", "--zk": z.k }}
         onMouseMove={(e) => { z.bind.onMouseMove(e); fish.run(e.clientX, e.clientY); }}
         onMouseLeave={() => { setHi(null); z.bind.onMouseUp(); fish.reset(); }}>
         {zones.map(zn => <rect key={zn.z} x={zn.x} y={zn.y} width={zn.w} height={zn.h}
@@ -816,7 +853,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
           </span>
         ) : <span>hover a dot for its values{mode !== "subgenres" ? " · click to pick it (click again to remove)" : ""} · drag to brush a region · scroll to zoom</span>}
       </div>
-      <ZoomReset z={z} />
+      <ZoomControls z={z} />
       <div style={{ display: "flex", alignItems: "stretch" }}>
         {/* Y axis caption */}
         <div style={{ position: "relative", width: 16, flex: "0 0 16px" }}>
@@ -1455,6 +1492,14 @@ function ExploreView({ t, go, setPop, seed }) {
           letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); background: var(--bg-2, rgba(20,16,12,.7));
           border: 1px solid var(--rule); border-radius: 999px; padding: 5px 9px; cursor: pointer; }
         .xp-zoomreset:hover { color: var(--ink); border-color: var(--ink-faint); }
+        /* +/−/⌂ zoom cluster, top-right of a scatter — the touch/no-wheel path (Fuad 2026-07-18) */
+        .xp-zoomctl { position: absolute; top: 8px; right: 10px; z-index: 4; display: flex; flex-direction: column; gap: 5px; }
+        .xp-zoomctl button { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+          font-family: var(--sans); font-size: 16px; line-height: 1; color: var(--ink-soft);
+          background: var(--bg-2, rgba(20,16,12,.78)); border: 1px solid var(--rule); border-radius: 8px; cursor: pointer;
+          transition: color .15s, border-color .15s; }
+        .xp-zoomctl button:hover { color: var(--ink); border-color: var(--ink-faint); }
+        .xp-zoomctl button[data-dim="true"] { opacity: .45; }
         /* stretch both columns to the taller one and let the chart card fill + center its SVG, so the
            sound map ≈ the artists module height beside it (mirrors Overview's map card — Fuad 2026-07-07) */
         .xp-main { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: var(--gap); align-items: stretch; }
@@ -1607,8 +1652,8 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
       }), [subs, maxW, activeSub, activeFam, expressive, seen, onPick, hi]);
   return (
     <div style={{ position: "relative" }}>
-      <ZoomReset z={z} />
-    <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "manipulation", "--zk": z.k }}
+      <ZoomControls z={z} />
+    <svg {...z.bind} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "pan-y", "--zk": z.k }}
       onMouseMove={(e) => { z.bind.onMouseMove(e); fish.run(e.clientX, e.clientY); }}
       onMouseLeave={() => { setHi(null); z.bind.onMouseUp(); fish.reset(); }}>
       {[.25, .5, .75].map(g => (<g key={g}>
