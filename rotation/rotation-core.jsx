@@ -298,8 +298,11 @@ a.r-link:hover { color: var(--ink); }
 @media (max-width: 860px) {
   /* minmax(0,1fr) (not a bare 1fr, whose implicit min is auto) so a wide child — an SVG map,
      a flex row, the map band's own grid — can't push its track past the viewport (Fuad 2026-07-16) */
-  .m-stack { display: grid; grid-template-columns: minmax(0, 1fr) !important; }
-  .m-stack > * { grid-column: auto !important; grid-row: auto !important; min-width: 0; }
+  /* display + min-width need !important too: an inline display:flex (e.g. the artist page's
+     av-endrow) otherwise wins and the row never collapses, and a child min-width:300px (same
+     card) survives to overflow a folded-phone width (~344px). Fuad 2026-07-18 (Fold Z5). */
+  .m-stack { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; }
+  .m-stack > * { grid-column: auto !important; grid-row: auto !important; min-width: 0 !important; }
   .m-2col { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; }
   .m-2col > * { grid-column: auto !important; min-width: 0; }
 }

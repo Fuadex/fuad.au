@@ -1270,7 +1270,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         )
       } : null} />
 
-      <div style={{ display: "grid", gap: "var(--gap)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr)", gap: "var(--gap)" }}>
           {/* row 2 on PC: flow (wide — Sound DNA moved to the bottom row for breathing room,
              Fuad 2026-07-06) · top tracks · albums. This row ALWAYS has all three modules, so it
              gets an explicit 3-col template above the m-stack breakpoint rather than auto-fit
