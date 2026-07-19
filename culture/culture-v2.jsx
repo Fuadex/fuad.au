@@ -3064,6 +3064,7 @@ function App() {
             {/*Things I watched, read and played.*/}
           </div>
           <div className="btn-row">
+            <div className="br-group br-primary">
             <div className="library-toggle">
               <button data-active={library === 'library'}  onClick={() => switchLibrary('library')}>Library</button>
               <button data-active={library === 'wishlist'} onClick={() => switchLibrary('wishlist')}>Wishlist</button>
@@ -3071,6 +3072,8 @@ function App() {
             <button className="btn-tonight" onClick={goTonight} title="Tonight's Pick — deal three from your wishlist">
               ✦ Tonight
             </button>
+            </div>
+            <div className="br-group br-view">
             <div className="mode-toggle">
               <button data-active={mode === 'covers'} onClick={() => setModeAndAnimate('covers')}>Covers</button>
               <button data-active={mode === 'spines'} onClick={() => setModeAndAnimate('spines')}>Spines</button>
@@ -3100,6 +3103,8 @@ function App() {
               <option value="rating">Rating</option>
               <option value="duration">Duration</option>
             </select>
+            </div>
+            <div className="br-group br-actions">
             <button
               className="sort-dir-btn"
               disabled={sort === 'curated'}
@@ -3115,7 +3120,7 @@ function App() {
                 <rect x="6.5" y="5" width="3" height="11" rx="0.5" fill="currentColor"/>
                 <rect x="12" y="2" width="3" height="14" rx="0.5" fill="currentColor"/>
               </svg>
-              Stats
+              <span className="btn-txt">Stats</span>
             </button>
             <button className="btn-pick" onClick={pickOne}>
               <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
@@ -3125,8 +3130,15 @@ function App() {
                 <circle cx="8.5" cy="8.5" r="1" fill="currentColor"/>
                 <circle cx="12.5" cy="12.5" r="1" fill="currentColor"/>
               </svg>
-              Pick one for me
+              <span className="btn-txt">Pick one for me</span>
             </button>
+            <button
+              className="search-hint-btn"
+              data-active={showSearchHint}
+              onClick={() => setShowSearchHint(h => !h)}
+              title="Search syntax"
+            >?</button>
+            </div>
           </div>
           <div className="search-row">
             <div className="search-wrap">
@@ -3145,12 +3157,6 @@ function App() {
                 <button className="search-clear" onClick={() => setSearch('')} title="Clear search">×</button>
               )}
             </div>
-            <button
-              className="search-hint-btn"
-              data-active={showSearchHint}
-              onClick={() => setShowSearchHint(h => !h)}
-              title="Search syntax"
-            >?</button>
             {showSearchHint && (
               <div className="search-hint-popover">
                 <div className="search-hint-row"><code>:alien</code> or <code>title:alien</code><span>— match the title only</span></div>

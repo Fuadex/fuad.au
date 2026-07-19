@@ -494,11 +494,15 @@ a { color: inherit; }
 }
 .cv-study-collapse:hover { border-color: var(--ink); color: var(--ink); }
 .cv-study-restore {
-  position: absolute; top: 14px; right: 62px; z-index: 7; margin: 0;
+  /* sits just above the walkthrough chip strip (bottom of the viewer) rather than crowding the
+     top with the tour arrows + exit (Fuad 2026-07-19) */
+  position: absolute; left: 16px; bottom: 64px; z-index: 7; margin: 0;
   font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase;
   color: rgba(227,216,200,.85); background: rgba(20,15,10,.78); border: 1px solid rgba(227,216,200,.3);
   border-radius: 999px; padding: 9px 15px; cursor: pointer;
 }
+/* when there's no walkthrough strip, drop it to the corner so it isn't floating in space */
+.cv-study:not(:has(.cv-study-tour)) .cv-study-restore { bottom: 16px; }
 .cv-study-restore:hover { border-color: rgba(227,216,200,.75); background: rgba(30,22,14,.9); color: #f2e9dc; }
 /* always-visible exit at the viewer's top-right corner */
 .cv-study-exit {
@@ -614,12 +618,17 @@ a { color: inherit; }
   /* tighten the header gutter/gap so the wrapped nav + search reclaim phone width */
   .cv-head { padding: 18px 16px 14px; gap: 12px 18px; }
   .cv-study { flex-direction: column; }
-  /* stacked layout: force the vertical split (inline flex-basis from the drag is overridden) and
-     make the divider inert — the horizontal drag has no meaning when panes stack vertically */
-  .cv-study-viewer { flex: 0 0 45vh !important; height: 45vh; width: 100%; }
+  /* stacked layout: the inline flex-basis (the split) now drives the viewer's HEIGHT, and the
+     divider is a horizontal drag handle so the reader can grow/shrink the image up or down
+     (Fuad 2026-07-19). */
+  .cv-study-viewer { width: 100%; min-height: 0; }
   .cv-study-collapsed .cv-study-viewer { flex: 1 1 auto !important; height: auto; }
-  .cv-study-pane { flex: 1 1 auto; }
-  .cv-study-divider { display: none; }
+  .cv-study-pane { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
+  .cv-study-divider { display: flex; flex: 0 0 12px; width: 100%; height: 12px; cursor: row-resize;
+    border-left: none; border-right: none; border-top: 1px solid rgba(227,216,200,.14); border-bottom: 1px solid var(--rule); }
+  .cv-study-divider-grip { width: 42px; height: 3px; }
+  /* restore button clears the smaller mobile chip strip */
+  .cv-study-restore { bottom: 58px; }
   .cv-study-panehead { padding: 10px 18px; }
   .cv-study-body { padding: 20px 20px 80px; }
   .cv-study-title { font-size: 23px; }
