@@ -3097,7 +3097,11 @@ function SearchOverlay({ open, onClose, go }) {
   React.useEffect(() => {
     if (!open) return;
     setQ(""); setSel(null); setMode("names");
-    const load = (src, has, done) => { if (window[has]) return; const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
+    // NB: still fire `done` when the script is ALREADY loaded — another view (the Overview map,
+    // calendar, track pages…) may have pulled media-index.js in first, and if we skip the callback
+    // the ready flag never flips, leaving slugMap null and Theme search stuck on "reading your
+    // library…" forever (Fuad 2026-07-19).
+    const load = (src, has, done) => { if (window[has]) { done && done(); return; } const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
     load("search-index.js", "ROTATION_SEARCH", () => setReady(true));
     load("media-index.js", "ROTATION_MEDIA", () => setMediaReady(true));   // albums + songs (big, lazy)
     setTimeout(() => inputRef.current && inputRef.current.focus(), 40);
