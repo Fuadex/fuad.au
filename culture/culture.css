@@ -68,6 +68,9 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   max-width: 320px;
 }
 .btn-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+/* on desktop the sub-groups are transparent — every control flows into .btn-row exactly as before.
+   On phones (see the media query) each group becomes its own row. */
+.br-group { display: contents; }
 .btn-pick {
   font-family: var(--mono);
   font-size: 11px;
@@ -1103,14 +1106,24 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 .site-foot .links { display: flex; gap: 20px; }
 
 @media (max-width: 768px) {
-  .site-head { padding: 32px 24px 18px; grid-template-columns: 1fr; }
-  .site-head .right { align-items: flex-start; max-width: 100%; }
+  .site-head { padding: 32px 24px 18px; grid-template-columns: minmax(0, 1fr); }
+  .site-head .right { align-items: stretch; max-width: 100%; min-width: 0; }
   .site-head .tagline { text-align: left; }
-  /* header controls: one horizontally-scrollable strip instead of 3+ wrapped lines
-     that shoved the shelves below the fold on phones (audit 2026-07-18) */
-  .btn-row { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; max-width: 100%;
-    padding-bottom: 6px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
-  .btn-row > * { flex: 0 0 auto; }
+  /* header controls in stacked rows (Fuad 2026-07-19): Library/Wishlist + Tonight, then
+     Covers/Spines/Mix + a compressed Curated dropdown, then the ←/Stats/Pick/? actions as
+     icons. Each .br-group is its own row; the groups are display:contents on desktop. */
+  .btn-row { flex-direction: column; align-items: stretch; gap: 10px; overflow: visible; max-width: 100%; }
+  .br-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  /* keep Covers/Spines/Mix + Curated on ONE row: toggle holds its width, dropdown fills+shrinks */
+  .br-view { flex-wrap: nowrap; }
+  .br-view .mode-toggle { flex: 0 0 auto; }
+  .br-view .mode-toggle button { padding: 8px 11px; }
+  .br-view .sort-select { flex: 1 1 0; min-width: 0; width: 0; }  /* compressed Curated dropdown (basis 0 → fills leftover) */
+  .br-actions { justify-content: flex-start; }
+  .btn-stats .btn-txt, .btn-pick .btn-txt { display: none; }   /* icon-only actions */
+  .btn-stats, .btn-pick { padding: 8px 10px; }
+  .search-row { width: 100%; }
+  .search-wrap { flex: 1 1 auto; min-width: 0; }
   .shelf-head { padding: 0 24px 12px; }
   .shelf-scroll { padding: 18px 24px 18px; }
   .shelf-rail::before, .shelf-rail::after { width: 24px; }
@@ -1125,7 +1138,9 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   .reader-poster img { width: auto; height: 100%; object-fit: cover; object-position: top center; }
   .reader-body { overflow: visible; flex: 0 0 auto; }
   .reader-title { font-size: 40px; }
-  .yr-chips-section { padding: 24px 24px 0; }
+  /* let the "Rated in" chips run the full phone width (label indented, strip reaches the edge)
+     instead of sitting boxed-in with a 24px gutter each side (Fuad 2026-07-19) */
+  .yr-chips-section { padding: 22px 0 0 16px !important; }
 }
 
 /* sort direction button */

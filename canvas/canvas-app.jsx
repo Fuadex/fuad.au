@@ -594,15 +594,17 @@ function StudyView({ id, go }) {
     if (!splitRef.current) return;
     dragSplit.current = true;
     e.preventDefault();
-    const move = (cx) => {
-      const r = splitRef.current.getBoundingClientRect();
-      if (r.width <= 0) return;
-      let f = (cx - r.left) / r.width;
-      f = Math.max(SPLIT_MIN, Math.min(SPLIT_MAX, f));
-      setSplit(f);
+    // on the stacked mobile layout the row is a COLUMN, so the divider resizes the viewer's
+    // HEIGHT (drag up/down) instead of its width (Fuad 2026-07-19).
+    const move = (cx, cy) => {
+      const el = splitRef.current, r = el.getBoundingClientRect();
+      const vertical = getComputedStyle(el).flexDirection === "column";
+      const f = vertical ? (r.height > 0 ? (cy - r.top) / r.height : null) : (r.width > 0 ? (cx - r.left) / r.width : null);
+      if (f == null) return;
+      setSplit(Math.max(SPLIT_MIN, Math.min(SPLIT_MAX, f)));
     };
-    const mm = (ev) => { if (dragSplit.current) move(ev.clientX); };
-    const tm = (ev) => { if (dragSplit.current && ev.touches[0]) { move(ev.touches[0].clientX); ev.preventDefault(); } };
+    const mm = (ev) => { if (dragSplit.current) move(ev.clientX, ev.clientY); };
+    const tm = (ev) => { if (dragSplit.current && ev.touches[0]) { move(ev.touches[0].clientX, ev.touches[0].clientY); ev.preventDefault(); } };
     const up = () => {
       dragSplit.current = false;
       // (persist happens in the [split] effect below — writing here captured the STALE
