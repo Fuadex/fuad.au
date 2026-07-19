@@ -6,3 +6,8 @@
 # they save the pricier per-museum / image passes across machines.
 wikidata_cache.json
 edge-tmp*/
+
+# match_decisions.json — the artwork-detection side project's raw verdicts (photo filenames +
+# lat/lon location history + per-photo match picks). Local-only PII; only the DERIVED, verified
+# fields (qid, seenAt, seenConfidence, favorite) flow into the committed artworks.js.
+match_decisions.json
