@@ -856,7 +856,9 @@ window.CANVAS_ARTWORKS = [
   { id: "johan-christian-dahl-an-eruption-of-vesuvius", title: "An Eruption of Vesuvius", artist: "Johan Christian Dahl", artistId: "johan-christian-dahl", qid: "Q78637988", qidTrusted: true, year: 1824,
     seenAt: "met-nyc", seenConfidence: "sure" },
   { id: "claude-monet-ile-aux-orties-near-vernon", title: "Île aux Orties near Vernon", artist: "Claude Monet", artistId: "monet", qid: "Q19914264", qidTrusted: true, year: 1897,
-    seenAt: "met-nyc", seenConfidence: "sure" }
+    seenAt: "met-nyc", seenConfidence: "sure" },
+  { id: "degas-grande-arabesque-third-time", title: "Grande Arabesque, Third Time (First Arabesque Penchée)", artist: "Edgar Degas", artistId: "degas", qid: "Q63861737", qidTrusted: true, year: 1885,
+    seenAt: "met-nyc", seenConfidence: "sure", note: "A bronze cast — the Met holds its Havemeyer cast; other casts hang at NGA Washington and Aberdeen." }
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
