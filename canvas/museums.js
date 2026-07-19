@@ -41,7 +41,7 @@ window.CANVAS_MUSEUMS = [
   { id: "whitney", name: "Whitney Museum of American Art", city: "New York", country: "us", qid: "Q639791", kind: "art", visits: ["2019-03-22"] },
   { id: "montreal-mfa", name: "Montreal Museum of Fine Arts", city: "Montreal", country: "ca", qid: "Q860812", kind: "art", visits: ["2019-05-22"] },
   { id: "moma", name: "Museum of Modern Art", city: "New York", country: "us", qid: "Q188740", kind: "art", visits: ["2019-01-24"] },
-  { id: "national-gallery-london", name: "National Gallery", city: "London", country: "gb", qid: "Q180788", kind: "art", visits: ["2024-06-14"] },
+  { id: "national-gallery-london", name: "National Gallery", city: "London", country: "gb", qid: "Q180788", kind: "art", visits: ["2017-03-19", "2024-06-14"] },
   { id: "british-museum", name: "British Museum", city: "London", country: "gb", qid: "Q6373", kind: "art", visits: ["2024-06-15"] },
   { id: "soane", name: "Sir John Soane's Museum", city: "London", country: "gb", qid: "Q2060860", kind: "art", visits: ["2024-06-15"] },
   { id: "mam-paris", name: "Musée d'Art Moderne de Paris", city: "Paris", country: "fr", qid: "Q857276", kind: "art", visits: ["TBC"] },

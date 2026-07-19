@@ -192,7 +192,7 @@ window.CANVAS_ARTWORKS = [
   { id: "the-boar-hunt", title: "The boar hunt", artist: "Frans Snyders", artistId: "snyders", qid: "Q20487542", qidTrusted: true, year: 1650, seenAt: "agnsw", seenConfidence: "sure", note: "Deck pick — agnsw-2026-07-07." },
   { id: "mucius-scaevola-in-the-presence-of-lars-porsenna", title: "Mucius Scaevola in the presence of Lars Porsenna", artist: "Matthias Stom", artistId: "stom", qid: "Q20487657", qidTrusted: true, year: 1640, seenAt: "agnsw", seenConfidence: "sure", note: "Deck pick — agnsw-2026-07-07." },
   // ——— deck-folded picks (fold-deck.js) ———
-  { id: "the-great-wave-off-kanagawa", title: "The Great Wave off Kanagawa", artist: "Katsushika Hokusai", artistId: "hokusai", qid: "Q252485", qidTrusted: true, year: 1830, seenAt: ["ngv", "met-nyc"], seenConfidence: "sure", floored: true, multiVenue: true, note: "A woodblock print — many impressions exist. Floored at NGV and the Met." },
+  { id: "the-great-wave-off-kanagawa", title: "The Great Wave off Kanagawa", artist: "Katsushika Hokusai", artistId: "hokusai", qid: "Q252485", qidTrusted: true, year: 1830, seenAt: ["ngv", "met-nyc", "mnw"], seenConfidence: "sure", floored: true, multiVenue: true, note: "A woodblock print — many impressions exist. Floored at NGV and the Met; also the National Museum in Warsaw (Jasieński collection)." },
   { id: "melencolia-i", title: "Melencolia I", artist: "Albrecht Dürer", artistId: "durer", qid: "Q1362177", qidTrusted: true, year: 1514, seenAt: ["ngv", "nga-dc", "met-nyc"], seenConfidence: "unsure", liked: true, multiVenue: true, note: "An engraving — impressions hang at NGV, NGA Washington and the Met; unsure which you stood at, but the image is loved." },
   { id: "anguish", title: "Anguish", artist: "August Friedrich Albert Schenck", artistId: "schenck", qid: "Q20392215", qidTrusted: true, year: 1878, seenAt: "ngv", seenConfidence: "unsure", liked: true, note: "Deck pick — ngv-2026-07-07." },
   { id: "the-rescue", title: "The Rescue", artist: "John Everett Millais", artistId: "millais", qid: "Q1175910", qidTrusted: true, year: 1855, seenAt: "ngv", seenConfidence: "unsure", liked: true, note: "Deck pick — ngv-2026-07-07." },
@@ -620,7 +620,7 @@ window.CANVAS_ARTWORKS = [
   { id: "leonardo-da-vinci-la-gioconda", title: "La Gioconda", artist: "Leonardo da Vinci", artistId: "vinci", qid: "Q12418", qidTrusted: true, year: 1503,
     seenAt: null, seenConfidence: "sure" },
   { id: "elisabeth-louise-vigee-le-brun-self-portrait-in-a-straw-hat", title: "Self Portrait in a Straw Hat", artist: "Élisabeth Louise Vigée Le Brun", artistId: "elisabeth-louise-vigee-le-brun", qid: "Q18719540", qidTrusted: true, year: 1782,
-    seenAt: null, seenConfidence: "sure" },
+    seenAt: "national-gallery-london", seenConfidence: "sure" },
   { id: "johan-jongkind-honfleur", title: "Honfleur", artist: "Johan Jongkind", artistId: "johan-jongkind", qid: "Q19912639", qidTrusted: true, year: 1865,
     seenAt: "met-nyc", seenConfidence: "sure", liked: true },
   { id: "franz-marc-tierschicksale", title: "Tierschicksale", artist: "Franz Marc", artistId: "marc", qid: "Q2432407", qidTrusted: true, year: 1913,
