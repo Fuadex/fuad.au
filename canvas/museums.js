@@ -48,7 +48,6 @@ window.CANVAS_MUSEUMS = [
   { id: "petit-palais", name: "Petit Palais (Musée des Beaux-Arts de la Ville de Paris)", city: "Paris", country: "fr", qid: "Q59546080", kind: "art", visits: ["TBC"] },
   { id: "bourdelle", name: "Musée Bourdelle", city: "Paris", country: "fr", qid: "Q2715373", kind: "art", visits: ["TBC"] },
   { id: "getty-villa", name: "Getty Villa", city: "Los Angeles", country: "us", qid: "Q180401", kind: "art", visits: ["2025-09-29"] },
-  { id: "moma", name: "Museum of Modern Art", city: "New York", country: "us", qid: "Q188740", kind: "art", visits: ["TBC"] },
   { id: "haus-der-kunst", name: "Haus der Kunst", city: "Munich", country: "de", qid: "Q697782", kind: "art", visits: ["TBC"] },
   { id: "reina-sofia", name: "Museo Reina Sofía", city: "Madrid", country: "es", qid: "Q460889", kind: "art", visits: ["TBC"] },
   { id: "scrovegni", name: "Scrovegni Chapel", city: "Padua", country: "it", qid: "Q963954", kind: "art", visits: ["2025-09-30"] },
