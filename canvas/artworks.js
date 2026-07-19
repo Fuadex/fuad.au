@@ -852,7 +852,11 @@ window.CANVAS_ARTWORKS = [
   { id: "unknown-the-arrival-of-american-troops-at-the-front-first-st", title: "The Arrival of American Troops at the Front; First Study for the Arrival of American Troops at the Front", artist: "Unknown", artistId: "unknown", qid: "Q79278622", qidTrusted: true, year: 1918,
     seenAt: null, seenConfidence: "unsure", liked: true },
   { id: "jozef-che-monski-na-konskim-targu-w-ba-cie", title: "Na końskim targu w Bałcie", artist: "Józef Chełmoński", artistId: "che-monski", qid: "Q135087908", qidTrusted: true, year: 1879,
-    seenAt: null, seenConfidence: "unsure", liked: true }
+    seenAt: null, seenConfidence: "unsure", liked: true },
+  { id: "johan-christian-dahl-an-eruption-of-vesuvius", title: "An Eruption of Vesuvius", artist: "Johan Christian Dahl", artistId: "johan-christian-dahl", qid: "Q78637988", qidTrusted: true, year: 1824,
+    seenAt: "met-nyc", seenConfidence: "sure" },
+  { id: "claude-monet-ile-aux-orties-near-vernon", title: "Île aux Orties near Vernon", artist: "Claude Monet", artistId: "monet", qid: "Q19914264", qidTrusted: true, year: 1897,
+    seenAt: "met-nyc", seenConfidence: "sure" }
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
