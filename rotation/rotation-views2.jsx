@@ -212,9 +212,9 @@ function MiniArtistView({ a, go }) {
 
   // spark + DNA sections, shared markup (rendered in the row band OR stacked in the dossier)
   const sparkSection = sparkHas ? (
-    <div className="r-card av-minicard" style={{ padding: 18 }}>
+    <div className="r-card av-minicard av-spark-card" style={{ padding: 18 }}>
       <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 12 }}>Plays by year</div>
-      <Spark data={spark} w={620} h={70} run={true} stroke="var(--accent)" fill="var(--accent-bg)" />
+      <Spark data={spark} w={300} h={64} run={true} stroke="var(--accent)" fill="var(--accent-bg)" />
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
         <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{years[0]}</span>
         <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{years[years.length - 1]}</span>
@@ -276,6 +276,9 @@ function MiniArtistView({ a, go }) {
              but line up in one narrow stack. No backticks in this comment. */
           .mav-dossier { max-width: 700px; margin: 0 auto; display: grid; gap: var(--gap); }
           .mav-dossier > .av-minicard { max-width: none; }
+          /* Plays by year keeps its full-width section card in the dossier (reads as one composed
+             document), but the sparkline inside is now the small w=300 lego block (Fuad 2026-07-20)
+             so it no longer stretches edge-to-edge. */
           /* header shares the dossier's width + centering so everything reads as one column. */
           .mav-dossier-head { max-width: 700px; margin: 0 auto; }
           /* Sounds like (change 2): ONE row of similar-artist tiles inside the dossier — override the
@@ -319,6 +322,8 @@ function MiniArtistView({ a, go }) {
            lone survivor centers at a readable width (not a full-page slab), a pair sits as equal
            halves, and a full trio fills the row in thirds — a composed band at any survivor count. */
         .av-minirow > .av-minicard { flex: 1 1 360px; max-width: 540px; }
+        /* Plays by year stays a small lego block here too — never grabs a full third/half of the band. */
+        .av-minirow > .av-spark-card { flex: 0 1 300px; max-width: 340px; }
         /* Sound DNA is content-narrow (radar + a 4-col stat grid); keep it from stretching so wide
            it reads sparse — a tighter cap keeps it tidy next to a sparkline or on its own. */
         .av-minirow > .av-mini-dna { flex: 1 1 320px; max-width: 440px; }
