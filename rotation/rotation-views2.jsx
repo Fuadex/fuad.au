@@ -276,9 +276,11 @@ function MiniArtistView({ a, go }) {
              but line up in one narrow stack. No backticks in this comment. */
           .mav-dossier { max-width: 700px; margin: 0 auto; display: grid; gap: var(--gap); }
           .mav-dossier > .av-minicard { max-width: none; }
-          /* Plays by year keeps its full-width section card in the dossier (reads as one composed
-             document), but the sparkline inside is now the small w=300 lego block (Fuad 2026-07-20)
-             so it no longer stretches edge-to-edge. */
+          /* Plays by year is a small centered lego block in the dossier too (Fuad 2026-07-20).
+             Capping it here (higher specificity than the max-width:none above) means it is never
+             full width in ANY state — including the brief pre-flow-load window when a minirow
+             artist momentarily renders as a 2-module dossier. */
+          .mav-dossier > .av-minicard.av-spark-card { max-width: 340px; justify-self: center; }
           /* header shares the dossier's width + centering so everything reads as one column. */
           .mav-dossier-head { max-width: 700px; margin: 0 auto; }
           /* Sounds like (change 2): ONE row of similar-artist tiles inside the dossier — override the
