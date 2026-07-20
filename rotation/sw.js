@@ -16,6 +16,8 @@ const BIG_SKIP = 5 * 1024 * 1024;
 const FRESH = [/live-data\.js$/, /hub-stats\.json$/, /pulse\.js$/];
 
 self.addEventListener("install", (e) => {
+  self.skipWaiting();   // a freshly-deployed worker becomes ready on the next visit instead of
+                        // waiting for every tab to close — stale assets don't linger for days.
   e.waitUntil(caches.open(CORE).then((c) => c.add("./")).catch(() => {}));
 });
 self.addEventListener("activate", (e) => {
@@ -45,7 +47,9 @@ self.addEventListener("fetch", (e) => {
   const sameOrigin = url.origin === location.origin;
 
   if (req.mode === "navigate") {
-    e.respondWith(fetch(req).then((res) => { put(CORE, "./", res.clone()); return res; })
+    // cache:"reload" bypasses the browser HTTP cache so the HTML (and thus the ?v= asset hashes
+    // it references) is always the freshest deployed one — no ~10-min stale window after a deploy.
+    e.respondWith(fetch(new Request(req, { cache: "reload" })).then((res) => { put(CORE, "./", res.clone()); return res; })
       .catch(() => caches.match("./")));
     return;
   }
