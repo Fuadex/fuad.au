@@ -328,7 +328,12 @@ function MiniArtistView({ a, go }) {
            it reads sparse — a tighter cap keeps it tidy next to a sparkline or on its own. */
         .av-minirow > .av-mini-dna { flex: 1 1 320px; max-width: 440px; }
         /* mirror the m-stack breakpoint: one full-width column on small screens */
-        @media (max-width: 860px){ .av-minirow > .av-minicard { flex: 1 1 100%; max-width: none; } }
+        @media (max-width: 860px){
+          .av-minirow > .av-minicard { flex: 1 1 100%; max-width: none; }
+          /* ...but Plays by year stays a small centered lego block on mobile too — the full-width
+             rule above would otherwise strand the 300px sparkline in a full-width card (Fuad 2026-07-20). */
+          .av-minirow > .av-spark-card { flex: 0 1 300px; max-width: 300px; }
+        }
       `}</style>
     </div>
   );
