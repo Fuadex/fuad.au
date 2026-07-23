@@ -436,6 +436,15 @@ D/W/M calendar cross-filters remain as shipped 2026-07-06.
 one entry per line). `instrumentals.js` is a deployed data file (351 keys); TrackView shows
 "Instrumental — no words to read" for entries in `window.ROTATION_INSTRUMENTALS`.
 
+**Opus reads are lyric-independent (invariant, enforced 2026-07-24):** every `opus` read
+must DISTIL the song, never quote or closely paraphrase its lyrics. Detector = shared
+content-word bigrams between read and lyric (STOP-filtered); the corpus is held at bigram
+overlap ≤3, no quote marks (~4,660 reads rewritten across 3 lyric sources, 99.8% coverage,
+independently QC'd). New/edited reads should pass the same gate; workshop tooling lives in
+the untracked GitHub-root `.sptmp/` (detector, batch builders, `apply-redrafts.js` which
+preserves the one-entry-per-line format). Lyric lookups must join keys back to REAL names
+via `media-index.js` + `lib-slug.js` — never de-slug a key to guess a title.
+
 Still around, intentionally: `design-canvas.jsx`, `variant-*.jsx`, `Shader Wallpapers.html`
 (design-tool artifacts, not deployed — the CI staging list skips them); `run-spotify-daily.ps1`
 (pre-archive local Spotify loop); `_config.yml` (Jekyll-era, rollback path only). The Live tab
