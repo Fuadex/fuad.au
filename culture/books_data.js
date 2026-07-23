@@ -1871,5 +1871,839 @@ window.CULTURE_BOOKS = {
   ],
   "director": "Janusz A. Zajdel",
   "pages": 140
+ },
+ "norwegian-wood": {
+  "bookCover": "https://covers.openlibrary.org/b/id/2237620-L.jpg",
+  "summary": "As his plane lands at a European airport, thirty-seven-year-old Toru Watanabe casually hears an old Beatles song. Suddenly, the music transports him back to his youth, to the turbulent Tokyo of the late sixties. He then remembers, with melancholy and unease, the unstable and mysterious Naoko, the girlfriend of his best—and only—friend from adolescence, Kizuki, and how Kizuki's suicide distanced them for a year until they reunited at university. There, they began an intimate relationship, which was soon cut short by Naoko’s fragile mental health, leading to her admission to a rest center. Shortly afterward, Watanabe fell in love with Midori, a lively and determined young woman. Indecisive and plagued by fears, Watanabe experienced only bewilderment and disillusionment in the very areas where everything was supposed to make sense: sex, love, and death. The unbearable situation led him to seek a delicate balance between his hopes and the need to find his place in the world.\r\n\r\nMientras su avión aterriza en un aeropuerto europeo, Toru Watanabe, de treinta y siete años, escucha casualmente una vieja canción de los Beatles: de pronto, la música le hace retroceder a su juventud, al turbulento Tokio de finales de los sesenta. Recuerda entonces, con melancolía y desasosiego, a la inestable y misteriosa Naoko, la novia de su mejor -y único- amigo de la adolescencia, Kizuki, y cómo el suicidio de éste les distanció durante un año, hasta que se reencontraron en la universidad. Iniciaron allí una relación íntima, truncada, sin embargo, por la frágil salud mental de Naoko, a quien hubo que internar en un centro de reposo. Al poco, Watanabe se enamoró de Midori, una joven activa y resuelta. Indeciso, acosado por los temores, Watanabe sólo experimentaba el deslumbramiento y el desengaño allá donde todo debía cobrar sentido: el sexo, el amor y la muerte. La insostenible situación le llevó entonces a intentar alcanzar el delicado equilibrio entre sus esperanzas y la necesidad de encontrar su lugar en el mundo.",
+  "genres": [
+   "Student",
+   "Theaterwissenschaft",
+   "Liebesbeziehung",
+   "Belletristische Darstellung"
+  ],
+  "tags": [
+   "Student",
+   "Theaterwissenschaft",
+   "Liebesbeziehung",
+   "Belletristische Darstellung",
+   "Fiction, romance, general",
+   "College students",
+   "Man-woman relationships",
+   "Young men",
+   "Fiction, romance, contemporary",
+   "Japan, fiction",
+   "Chinese fiction",
+   "Chang pian xiao shuo",
+   "Japanese fiction",
+   "Translations into Chinese",
+   "Translations into Russian"
+  ],
+  "director": "Haruki Murakami",
+  "pages": 296
+ },
+ "robot": {
+  "summary": "Eden is a 1958 social science fiction novel by Polish writer Stanisław Lem. It was first published in 1958 in issues 211-271 of the newspaper Trybuna Robotnicza. The first book edition was in 1959. It was first published in English in 1989 (ISBN 0-15-127580-7).",
+  "genres": [
+   "Novel"
+  ],
+  "tags": [
+   "Novel"
+  ],
+  "director": "Stanisław Lem"
+ },
+ "wl-b-use-of-weapons": {
+  "bookCover": "https://covers.openlibrary.org/b/id/2379038-L.jpg",
+  "summary": "The man known as Cheradenine Zakalwe was one of Special Circumstances' foremost agents, changing the destiny of planets to suit the Culture through intrigue, dirty tricks and military action. The woman known as Diziet Sma had plucked him from obscurity and pushed him towards his present eminence, but despite all their dealings she did not know him as well as she thought. The drone known as Skaffen-Amtiskaw knew both of these people. It had once saved the woman's life by massacring her attackers in a particularly bloody manner. It believed the man to be a burnt-out case. But not even its machine could see the horrors in his past. Ferociously intelligent, both witty and horrific, USE OF WEAPONS is a masterpiece of science fiction.",
+  "genres": [
+   "Science Fiction",
+   "Science Fiction & Fantasy",
+   "Space warfare"
+  ],
+  "tags": [
+   "Science Fiction",
+   "Science Fiction & Fantasy",
+   "Space warfare"
+  ]
+ },
+ "wl-b-roger-ackroyd": {
+  "bookCover": "https://covers.openlibrary.org/b/id/13151356-L.jpg",
+  "summary": "Belgian Inspector Hercule Poirot has retired to the countryside in the small English village of King's Abbot. Dr. Sheppard, observing his new neighbor, is sure that he must be a former hairdresser. But the brutal murder of a local squire reveals the truth: the peculiar little man is actually a detective par excellence. The Murder of the wealthy industrialist Roger Ackroyd begins the night before with the suicide of Mrs. Ferrars, a wealthy widow. Her death is believed to be an accident, until Roger Ackroyd is stabbed to death in his locked study. There are rumors she poisoned her first husband, rumors that she was being blackmailed, rumors that her secret lover was Roger Ackroyd, a man who knew too much, but no one is sure.\r\n\r\nThere's no shortage of suspects, all the members of the household stand to gain from his death, from Roger's neurotic sister-in-law who has accumulated personal debts, to a parlormaid with an uncertain history who resigned her post the afternoon of the murder. But the police focus on Ralph Paton, Ackroyd's stepson and heir, and the person with the most to gain from Roger's death. When sleuth Hercule Poirot, who is living quietly in King's Abbot, agrees to investigate, the case takes a completely different turn. Poirot exonerates all of the original suspects, and lays out a completely reasoned case that the clever and devious murderer is someone who had not come under suspicion at all - someone whose motive has nothing to do with money.\r\n([source](https://www.agathachristie.com/stories/the-murder-of-roger-ackroyd))",
+  "genres": [
+   "detective fiction",
+   "mystery",
+   "murder",
+   "investigation"
+  ],
+  "tags": [
+   "detective fiction",
+   "mystery",
+   "murder",
+   "investigation",
+   "victim",
+   "Private investigators",
+   "Detective and mystery stories",
+   "Mystery & Detective fiction",
+   "historical fiction",
+   "crime fiction",
+   "Unreliable Narrator",
+   "Belgians",
+   "Investigadores privados",
+   "Novela policíaca",
+   "Ficción"
+  ]
+ },
+ "wl-b-flowers-algernon": {
+  "bookCover": "https://covers.openlibrary.org/b/id/12947700-L.jpg",
+  "summary": "Until he was thirty-two, Charlie Gordon --gentle, amiable, oddly engaging-- had lived in a kind of mental twilight. He knew knowledge was important and had learned to read and write after a fashion, but he also knew he wasn't nearly as bright as most of the people around him. There was even a white mouse named Algernon who outpaced Charlie in some ways. But a remarkable operation had been performed on Algernon, and now he was a genius among mice. Suppose Charlie underwent a similar operation...",
+  "genres": [
+   "institutionalization",
+   "dementia",
+   "phenylketonuria",
+   "award:nebula_award=novel"
+  ],
+  "tags": [
+   "institutionalization",
+   "dementia",
+   "phenylketonuria",
+   "award:nebula_award=novel",
+   "Brain",
+   "Surgery",
+   "People with mental disabilities",
+   "Gifted persons",
+   "American Science fiction",
+   "Retrasados mentales",
+   "Niños superdotados",
+   "Readers",
+   "Cerebro",
+   "Ficción juvenil",
+   "Cirugía"
+  ]
+ },
+ "wl-b-piranesi": {
+  "bookCover": "https://covers.openlibrary.org/b/id/10226290-L.jpg",
+  "summary": "**From the *New York Times* bestselling author of *Jonathan Strange & Mr. Norrell*, an intoxicating, hypnotic new novel set in a dreamlike alternative reality.**\r\n\r\nPiranesi's house is no ordinary building; its rooms are infinite, its corridors endless, its walls are lined with thousands upon thousands of statues, each one different from all the others. Within the labyrinth of halls an ocean is imprisoned; waves thunder up staircases, rooms are flooded in an instant. But Piranesi is not afraid; he understands the tides as he understands the pattern of the labyrinth itself. He lives to explore the house.\r\n\r\nThere is one other person in the house--a man called The Other, who visits Piranesi twice a week and asks for help with research into A Great and Secret Knowledge. But as Piranesi explores, evidence emerges of another person, and a terrible truth begins to unravel, revealing a world beyond the one Piranesi has always known.\r\n\r\nFor readers of Neil Gaiman's *The Ocean at the End of the Lane* and fans of Madeline Miller's *Circe*, *Piranesi* introduces an astonishing new world, an infinite labyrinth full of startling images of surreal beauty, haunted by the tides and the clouds.\r\n\r\nThis description comes from the publisher.",
+  "genres": [
+   "form:novel",
+   "genre:fantasy",
+   "English literature",
+   "New York Times bestseller"
+  ],
+  "tags": [
+   "form:novel",
+   "genre:fantasy",
+   "English literature",
+   "New York Times bestseller",
+   "Labyrinths",
+   "Curiosities and wonders",
+   "Dwellings",
+   "Dead"
+  ]
+ },
+ "wl-b-the-magus": {
+  "bookCover": "https://covers.openlibrary.org/b/id/5424278-L.jpg",
+  "summary": "A startlingly original novel about a young English graduate who takes a position as a teacher at a private school on a small Greek island. Bored and lonely he spends his free hours wandering alone until he meets a wealthy and mysterious neighbour. Soon he finds himself a victim of this man’s increasingly bizarre psychological games and obsessed with a young woman who may or may not be a willing participant in these games.",
+  "genres": [
+   "British",
+   "English Psychological fiction",
+   "Greece",
+   "Islands"
+  ],
+  "tags": [
+   "British",
+   "English Psychological fiction",
+   "Greece",
+   "Islands",
+   "Travel",
+   "Fiction, psychological",
+   "Teachers, fiction",
+   "Greece, fiction",
+   "Fiction, general"
+  ]
+ },
+ "wl-b-house-of-leaves": {
+  "bookCover": "https://covers.openlibrary.org/b/id/6450442-L.jpg",
+  "summary": "Nothing, in all it's entirety.",
+  "genres": [
+   "Holes",
+   "Documentary films",
+   "Manuscripts",
+   "Fiction, suspense"
+  ],
+  "tags": [
+   "Holes",
+   "Documentary films",
+   "Manuscripts",
+   "Fiction, suspense",
+   "Fiction, horror",
+   "Fiction, thrillers, suspense",
+   "Suspense",
+   "Labyrinths",
+   "Dwellings",
+   "Horror tales",
+   "Paranormal fiction",
+   "Perception",
+   "Experimental fiction",
+   "American Experimental fiction",
+   "American Horror tales"
+  ]
+ },
+ "wl-b-third-policeman": {
+  "bookCover": "https://covers.openlibrary.org/b/id/296165-L.jpg",
+  "summary": "The Third Policeman is Flann O'Brien's brilliantly dark comic novel about the nature of time, death, and existence. Told by a narrator who has committed a botched robbery and brutal murder, the novel follows him and his adventures in a two-dimensional police station where, through the theories of the scientist/philosopher de Selby, he is introduced to \"Atomic Theory\" and its relation to bicycles, the existence of eternity (which turns out to be just down the road), and de Selby's view that the earth is not round but \"sausage-shaped.\" With the help of his newly found soul named \"Joe,\" he grapples with the riddles and\r\ncontradictions that three eccentric policeman present to him.\r\nThe last of O'Brien's novels to be published, The Third Policeman joins O'Brien's other fiction (At Swim-Two-Birds, The Poor Mouth, The Hard Life, The Best of Myles, The Dalkey Archive) to ensure his place, along with James Joyce and Samuel Beckett, as one of Ireland's great comic geniuses.",
+  "genres": [
+   "Murder",
+   "Ireland, fiction"
+  ],
+  "tags": [
+   "Murder",
+   "Ireland, fiction"
+  ]
+ },
+ "wl-b-the-affirmation": {
+  "bookCover": "https://covers.openlibrary.org/b/id/4377814-L.jpg",
+  "summary": "The Affirmation is a 1981 science fiction novel by British writer Christopher Priest. The book follows the story of Peter Sinclair, who begins creating fantasy fiction, only to find his life merging with that of the book’s protagonist. The novel eventually earned praise among reviewers as one of Priest's best works.",
+  "genres": [
+   "Fiction, general",
+   "Fiction, psychological",
+   "Schizophrenia"
+  ],
+  "tags": [
+   "Fiction, general",
+   "Fiction, psychological",
+   "Schizophrenia"
+  ]
+ },
+ "wl-b-ubik": {
+  "bookCover": "https://covers.openlibrary.org/b/id/5018327-L.jpg",
+  "summary": "Named one of Time's 100 Best Books, Ubik is a mind-bending, classic novel about the perception of reality from Philip K. Dick, the Hugo Award-winning author of The Man in the High Castle. “From the stuff of space opera, Dick spins a deeply unsettling existential horror story, a nightmare you’ll never be sure you’ve woken up from.”—Lev Grossman, Time Glen Runciter runs a lucrative business — deploying his teams of anti-psychics to corporate clients who want privacy and security from psychic spies. But when he and his top team are ambushed by a rival, he is gravely injured and placed in “half-life,” a dreamlike state of suspended animation. Soon, though, the surviving members of the team begin experiencing some strange phenomena, such as Runciter’s face appearing on coins and the world seeming to move backward in time. As consumables deteriorate and technology gets ever more primitive, the group needs to find out what is causing the shifts and what a mysterious product called Ubik has to do with it all. “More brilliant than similar experiments conducted by Pynchon or DeLillo.”—Roberto Bolaño",
+  "genres": [
+   "Death",
+   "Businessmen",
+   "Explosions",
+   "Science Fiction"
+  ],
+  "tags": [
+   "Death",
+   "Businessmen",
+   "Explosions",
+   "Science Fiction",
+   "Iowa, fiction",
+   "Fiction, humorous",
+   "FICTION / Literary",
+   "Large type books",
+   "Motion picture plays",
+   "Fiction, humorous, general",
+   "Murder victims",
+   "Terrorism",
+   "Death--fiction",
+   "Businessmen--fiction",
+   "Explosions--fiction"
+  ]
+ },
+ "wl-b-trust-diaz": {
+  "bookCover": "https://covers.openlibrary.org/b/id/12742248-L.jpg",
+  "summary": "Even through the roar and effervescence of the 1920s, everyone in New York has heard of Benjamin and Helen Rask. He is a legendary Wall Street tycoon; she is the daughter of eccentric aristocrats. Together, they have risen to the very top of a world of seemingly boundless wealth—all as a decade of excess and speculation draws to an end. But at what cost have they acquired their immense fortune? This is the mystery at the center of *Bonds*, a successful 1937 novel that all of New York seems to have read. Yet there are other versions of this tale of privilege and deceit.",
+  "genres": [
+   "American literature",
+   "Rich people",
+   "Financial services industry",
+   "Truthfulness and falsehood"
+  ],
+  "tags": [
+   "American literature",
+   "Rich people",
+   "Financial services industry",
+   "Truthfulness and falsehood",
+   "Mental illness",
+   "History",
+   "Riches",
+   "Romans, nouvelles",
+   "Services financiers",
+   "Mensonge",
+   "Maladies mentales",
+   "Histoire",
+   "FICTION / Historical / General",
+   "FICTION / Literary",
+   "Trust"
+  ]
+ },
+ "wl-b-raw-shark": {
+  "bookCover": "https://covers.openlibrary.org/b/id/888852-L.jpg",
+  "summary": "Eric Sanderson wakes up in a place he doesn't recognise, unable to remember who he is. All he has left are journal entries recalling Clio, a perfect love now gone. So begins a thrilling adventure that will send Eric and his cynical cat Ian on a search for the Ludovician, the force that is threatening his life, and Dr Trey Fidorus, the only man who knows its secrets.",
+  "genres": [
+   "New York Times reviewed",
+   "Fiction, psychological"
+  ],
+  "tags": [
+   "New York Times reviewed",
+   "Fiction, psychological"
+  ]
+ },
+ "wl-b-s-abrams-dorst": {
+  "bookCover": "https://covers.openlibrary.org/b/id/8391201-L.jpg",
+  "summary": "A young woman picks up a book left behind by a stranger. Inside it are his margin notes, which reveal a reader entranced by the story and by its mysterious author. She responds with notes of her own, leaving the book for the stranger, and so begins an unlikely conversation that plunges them both into the unknown.\r\n\r\nTHE BOOK: Ship of Theseus, the final novel by a prolific but enigmatic writer named V. M. Straka, in which a man with no past is shanghaied onto a strange ship with a monstrous crew and launched onto a disorienting and perilous journey.\r\n\r\nTHE WRITER: Straka, the incendiary and secretive subject of one of the world’s greatest mysteries, a revolutionary about whom the world knows nothing apart from the words he wrote and the rumours that swirl around him.\r\n\r\nTHE READERS: Jennifer and Eric, a college senior and a disgraced grad student, both facing crucial decisions about who they are, who they might become, and how much they’re willing to trust another person with their passions, hurts, and fears.\r\n\r\nS. , conceived by filmmaker J. J. Abrams and written by award-winning novelist Doug Dorst, is the chronicle of two readers finding each other in the margins of a book and enmeshing themselves in a deadly struggle between forces they don’t understand. It is also Abrams and Dorst’s love letter to the written word.",
+  "genres": [
+   "Fiction, romance, suspense",
+   "Fiction, sea stories"
+  ],
+  "tags": [
+   "Fiction, romance, suspense",
+   "Fiction, sea stories"
+  ]
+ },
+ "wl-b-winters-night": {
+  "bookCover": "https://covers.openlibrary.org/b/id/12007967-L.jpg",
+  "summary": "\"You are about to begin reading Italo Calvino's new novel...Relax. Concentrate. Dispel every other thought. Let the world around you fade.\" —from If On A Winter's Night a Traveler\r\n\r\nItalo Calvino's stunning classic imagines a novel capable of endless possibilities in an intricately crafted, spellbinding story about writing and reading.\r\n\r\nIf on a Winter's Night a Traveler is a feat of striking ingenuity and intelligence, exploring how our reading choices can shape and transform our lives. Originally published in 1979, Italo Calvino's singular novel crafted a postmodern narrative like never seen before—offering not one novel but ten, each with a different plot, style, ambience, and author, and each interrupted at a moment of suspense. Together, the stories form a labyrinth of literature known and unknown, alive and extinct, through which two readers pursue the story lines that intrigue them and try to read each other. Deeply profound and surprisingly romantic, this classic is a beautiful meditation on the transformative power of reading and the ways we make meaning in our lives.",
+  "genres": [
+   "Metafiction",
+   "postmodernism",
+   "experimental fiction",
+   "novel in frames"
+  ],
+  "tags": [
+   "Metafiction",
+   "postmodernism",
+   "experimental fiction",
+   "novel in frames",
+   "reading",
+   "writing",
+   "storytelling",
+   "love",
+   "loss",
+   "desire",
+   "the power of imagination",
+   "Books and reading",
+   "Books and reading--fiction",
+   "Man-woman relationships"
+  ]
+ },
+ "wl-b-fbl-ficciones": {
+  "bookCover": "https://covers.openlibrary.org/b/id/10832290-L.jpg",
+  "summary": "A collection of his short stories in which Borges often uses the labyrinth as a literary device to expound his ideas on all aspects of human life and endeavor.",
+  "genres": [
+   "Anachronisms",
+   "speculative fiction",
+   "subjective idealism",
+   "duodecimals"
+  ],
+  "tags": [
+   "Anachronisms",
+   "speculative fiction",
+   "subjective idealism",
+   "duodecimals",
+   "aneurysms",
+   "adjectives",
+   "hermeticism",
+   "philanthropy",
+   "cabala",
+   "persecution",
+   "Social life and customs",
+   "Spanish language books",
+   "Readers",
+   "Translations into English",
+   "Spanish language"
+  ]
+ },
+ "wl-b-fbl-the-woman-in-the-dunes": {
+  "bookCover": "https://covers.openlibrary.org/b/id/10836985-L.jpg",
+  "summary": "A man collecting insects in a remote seaside area of Japan finds himself trapped in a town of enormous sand dunes.",
+  "genres": [
+   "Japan, fiction",
+   "Fiction, psychological",
+   "Villages",
+   "Sand dunes"
+  ],
+  "tags": [
+   "Japan, fiction",
+   "Fiction, psychological",
+   "Villages",
+   "Sand dunes"
+  ]
+ },
+ "wl-b-fbl-the-box-man": {
+  "bookCover": "https://covers.openlibrary.org/b/id/656169-L.jpg",
+  "summary": "Presents the narrator's observations on the world after he gives up his home to live in a cardboard box, which he wears over his head.",
+  "genres": [
+   "Fiction, psychological",
+   "Homelessness"
+  ],
+  "tags": [
+   "Fiction, psychological",
+   "Homelessness"
+  ]
+ },
+ "wl-b-fbl-no-longer-human": {
+  "bookCover": "https://covers.openlibrary.org/b/id/14611513-L.jpg",
+  "summary": "No Longer Human (Japanese: 人間失格, Hepburn: Ningen Shikkaku), also translated as A Shameful Life, is a 1948 novel by Japanese author Osamu Dazai. It tells the story of a troubled man incapable of revealing his true self to others, and who, instead, maintains a façade of hollow jocularity, later turning to a life of alcoholism and drug abuse before his final disappearance. The original title translates as \"Disqualified as a human being\" or \"A failed human\". The book was published one month after Dazai's suicide at the age of 38. No Longer Human is considered a classic of postwar Japanese literature and Dazai's masterpiece.",
+  "genres": [
+   "Novel"
+  ],
+  "tags": [
+   "Novel"
+  ]
+ },
+ "wl-b-fbl-a-perfect-vacuum": {
+  "bookCover": "https://covers.openlibrary.org/b/id/8768893-L.jpg",
+  "summary": "A Perfect Vacuum (Polish: Doskonała próżnia) is a 1971 book by Polish author Stanisław Lem, the largest and best known collection of Stanisław Lem's fictitious criticism of nonexisting books. It was translated into English by Michael Kandel. Some of the reviews remind the reader of drafts of his science fiction novels, some read like philosophical pieces across scientific topics, from cosmology to the pervasiveness of computers, finally others satirize and parody everything from the nouveau roman to pornography, Ulysses, authorless writing, and Dostoevsky.",
+  "genres": [
+   "Novel"
+  ],
+  "tags": [
+   "Novel"
+  ]
+ },
+ "wl-b-fbl-roadside-picnic": {
+  "bookCover": "https://covers.openlibrary.org/b/id/6752719-L.jpg",
+  "summary": "[Comment by Hari Kunru in The Guardian][1]:\r\n\r\n> Soviet-era Russian science fiction deserves a wider audience in English. The Strugatsky brothers collaborated on numerous novels and stories, the best known of which is this, partly because it was filmed by Andrei Tarkovsky as Stalker, in 1977. The novel takes place 10 years after a mysterious alien visitation, which seems to have no rational explanation. No one saw the visitors. Their presence caused disease and blindness in the areas where they landed. Now, in the six \"Zones\", the laws of physics (and, seemingly, of reality) are disturbed by anomalies, and littered with inexplicable, deadly wreckage. Only a few brave \"stalkers\" risk their lives to enter the zones to gather alien artefacts for sale. Some of these artefacts offer the promise of extraordinary powers. Unlike Tarkovsky's film, which concentrates on the hallucinatory, vacated landscape of the zones, the novels portray a society adapting to an inexplicable, terrifying event, an eruption of the unknown. Though written in 1971 and published in English in 1977, the novel was heavily bowdlerised by Soviet censors, and an authoritative text wasn't available in Russian until 2000. It's a book with an extraordinary atmosphere – and a demonstration of how science fiction, by using a single bold central metaphor, can open up the possibilities of the novel.\r\n\r\nOriginal Title: Пикник на обочине\r\n\r\n\r\n  [1]: http://www.guardian.co.uk/books/2011/may/14/science-fiction-authors-choice",
+  "genres": [
+   "science fiction",
+   "Russian science fiction",
+   "alien visitation",
+   "anomalies"
+  ],
+  "tags": [
+   "science fiction",
+   "Russian science fiction",
+   "alien visitation",
+   "anomalies",
+   "Russian fiction"
+  ]
+ },
+ "wl-b-fbl-blindsight": {
+  "bookCover": "https://covers.openlibrary.org/b/id/524560-L.jpg",
+  "summary": "*Two months since the stars fell...*\r\n\r\nTwo months since sixty-five thousand alien objects clenched around the Earth like a luminous fist, screaming to the heavens as the atmosphere burned them to ash. Two months since that moment of brief, bright surveillance by agents unknown. \r\n\r\nTwo months of silence while a world holds its breath. \r\n\r\nNow some half-derelict space probe, sparking fitfully past Neptune's orbit, hears a whisper from the edge of the solar system: a faint signal sweeping the cosmos like a lighthouse beam. Whatever's out there isn't talking to us. It's talking to some distant star, perhaps. Or perhaps to something closer, something *en route.* \r\n\r\nSo who do you send to force introductions on an intelligence with motives unknown, maybe unknowable? Who do you send to meet the alien when the alien doesn't want to meet? \r\n\r\nYou send a linguist with multiple personalities, her brain surgically partitioned into separate, sentient processing cores. You send a biologist so radically interfaced with machinery that he sees X-rays and tastes ultrasound, so compromised by grafts and splices that he no longer feels his own flesh. You send a pacifist warrior in the faint hope she won't be needed, and a fainter hope that she'll do any good if she is needed. You send a monster to command them all, an extinct hominid predator once called \"vampire,\" recalled from the grave with the voodoo of recombinant genetics and the blood of sociopaths. And you send a synthesist—an informational topologist with half his mind gone—as an interface between *here* and *there,* a conduit through which the Dead Center might hope to understand the Bleeding Edge. \r\n\r\nYou send them all to the edge of interstellar space, praying you can trust such freaks and retrofits with the fate of a world. You fear they may be more alien than the thing they've been sent to find. \r\n\r\nBut you'd give anything for that to be true, if you only knew what was waiting for them....",
+  "genres": [
+   "Vampires",
+   "Artifical Hibernation",
+   "Science Fiction",
+   "Human-alien encounters"
+  ],
+  "tags": [
+   "Vampires",
+   "Artifical Hibernation",
+   "Science Fiction",
+   "Human-alien encounters",
+   "Life on other planets",
+   "Neurology",
+   "Linguists"
+  ]
+ },
+ "wl-b-fbl-stories-of-your-life-and-others": {
+  "bookCover": "https://covers.openlibrary.org/b/id/524046-L.jpg",
+  "summary": "Ted Chiang's first published story, \"Tower of Babylon,\" won the Nebula Award in 1990. Subsequent stories have won the Asimov's SF Magazine reader poll, a second Nebula Award, the Theodore Sturgeon Memorial Award, and the Sidewise Award for alternate history. He won the John W. Campbell Award for Best New Writer in 1992. Story for story, he is the most honored young writer in modern SF.\r\n\r\nNow, collected here for the first time are all seven of this extraordinary writer's stories so far--plus an eighth story written especially for this volume.\r\n\r\nWhat if men built a tower from Earth to Heaven--and broke through to Heaven's other side? What if we discovered that the fundamentals of mathematics were arbitrary and inconsistent? What if there were a science of naming things that calls life into being from inanimate matter? What if exposure to an alien language forever changed our perception of time? What if all the beliefs of fundamentalist Christianity were literally true, and the sight of sinners being swallowed into fiery pits were a routine event on city streets? These are the kinds of outrageous questions posed by the stories of Ted Chiang. Stories of your life . . . and others.",
+  "genres": [
+   "American Science fiction",
+   "New York Times bestseller",
+   "Life change events",
+   "Change (Psychology)"
+  ],
+  "tags": [
+   "American Science fiction",
+   "New York Times bestseller",
+   "Life change events",
+   "Change (Psychology)",
+   "Automation",
+   "Human-alien encounters",
+   "Adaptability (Psychology)",
+   "Short stories",
+   "Science fiction",
+   "Science fiction, american",
+   "Life change events--fiction",
+   "Change (psychology)--fiction",
+   "Automation--fiction",
+   "Human-alien encounters--fiction",
+   "American"
+  ]
+ },
+ "wl-b-fbl-permutation-city": {
+  "bookCover": "https://covers.openlibrary.org/b/id/1000639-L.jpg",
+  "summary": "Immortality can be yours . . . at a price\r\n\r\nPermutation city is the tale of a man with a vision - how to create immortality - and how that vision becomes grows beyond his control. Encompassing the lives and struggles of an artificial life junkie desperate to save her dying mother, a billionaire banker scarred by a terrible crime, the lovers for whom, in their timeless virtual world, love is not enough - and much more - Permutation city is filled with the sense of wonder and dread.\r\n\r\nCan what makes you human be distilled into data? And what happens if you can't afford to pay?",
+  "genres": [
+   "Twenty-first century in fiction",
+   "Twenty-first century",
+   "Distopian",
+   "Apocalyptic literature"
+  ],
+  "tags": [
+   "Twenty-first century in fiction",
+   "Twenty-first century",
+   "Distopian",
+   "Apocalyptic literature",
+   "Post-apocalyptic"
+  ]
+ },
+ "wl-b-fbl-the-fifth-head-of-cerberus": {
+  "bookCover": "https://covers.openlibrary.org/b/id/911117-L.jpg",
+  "summary": "Bien loin de la Terre, deux planètes soeurs, Sainte-Anne et Sainte-Croix, ont été colonisées par des Français qui ont détruit la population indigène de la seconde. Des décennies plus tard, après que les colons ont été eux-mêmes vaincus et dispersés, un ethnologue consacre sa vie à retrouver les traces de cette culture effacée et oubliée.",
+  "genres": [
+   "American Science fiction",
+   "Fiction in English",
+   "Fiction, general",
+   "Fiction, fantasy, epic"
+  ],
+  "tags": [
+   "American Science fiction",
+   "Fiction in English",
+   "Fiction, general",
+   "Fiction, fantasy, epic"
+  ]
+ },
+ "wl-b-fbl-the-dispossessed": {
+  "bookCover": "https://covers.openlibrary.org/b/id/6979680-L.jpg",
+  "summary": "Shevek, a brilliant physicist, decides to take action. He will seek answers, question the unquestionable, and attempt to tear down the walls of hatred that have isolated his planet of anarchists from the rest of the civilized universe.  To do this dangerous task will mean giving up his family and possibly his life.  Shevek must make the unprecedented journey to the planet, Anarres, to challenge the complex structures of life and living, and ignite the fires of change.",
+  "genres": [
+   "Anarchism",
+   "Anarquismo",
+   "Ciencia-ficción",
+   "Communal living"
+  ],
+  "tags": [
+   "Anarchism",
+   "Anarquismo",
+   "Ciencia-ficción",
+   "Communal living",
+   "Ficción",
+   "Fiction in English",
+   "Físicos",
+   "Hugo Award Winner",
+   "Life on other planets",
+   "Novela utópica",
+   "Physicists",
+   "Science fiction",
+   "Utopias",
+   "Vida comunal",
+   "Vida en otros planets"
+  ]
+ },
+ "wl-b-fbl-the-city-the-city": {
+  "bookCover": "https://covers.openlibrary.org/b/id/8455453-L.jpg",
+  "summary": "Inspector Tyador Borlú must travel to Ul Qoma to search for answers in the murder of a woman found in the city of Besźel.",
+  "genres": [
+   "Murder",
+   "Investigation",
+   "English fiction",
+   "Meurtre"
+  ],
+  "tags": [
+   "Murder",
+   "Investigation",
+   "English fiction",
+   "Meurtre",
+   "Romans, nouvelles",
+   "Enquêtes",
+   "Roman anglais",
+   "Homicide",
+   "Fantasy",
+   "award:world_fantasy_award=novel",
+   "Crime, fiction",
+   "Fiction, fantasy, general",
+   "Science fiction",
+   "Hugo Award Winner",
+   "award:hugo_award=novel"
+  ]
+ },
+ "wl-b-fbl-hyperion": {
+  "bookCover": "https://covers.openlibrary.org/b/id/380332-L.jpg",
+  "summary": "In the 29th century, the Hegemony of Man comprises hundreds of planets connected by farcaster portals. The Hegemony maintains an uneasy alliance with the TechnoCore, a civilisation of AIs. Modified humans known as Ousters live in space stations between stars and are engaged in conflict with the Hegemony.\r\n\r\nNumerous \"Outback\" planets have no farcasters and cannot be accessed without incurring significant time dilation. One of these planets is Hyperion, home to structures known as the Time Tombs, which are moving backwards in time and guarded by a legendary creature known as the Shrike. On the eve of an Ouster invasion of Hyperion, a final pilgrimage to the Time Tombs has been organized. The pilgrims decide that they will each tell their tale of how they were chosen for the pilgrimage.",
+  "genres": [
+   "American Science fiction",
+   "Hugo Award Winner",
+   "award:hugo_award=novel",
+   "Ciencia-ficcio n."
+  ],
+  "tags": [
+   "American Science fiction",
+   "Hugo Award Winner",
+   "award:hugo_award=novel",
+   "Ciencia-ficcio n.",
+   "Extraterrestrial beings",
+   "Pilgrims and pilgrimages",
+   "Interplanetary voyages",
+   "Drama",
+   "Fantasy",
+   "Future life",
+   "Life on other planets",
+   "Jesuits",
+   "Space colonies",
+   "Good and evil",
+   "Imaginary places, fiction"
+  ]
+ },
+ "wl-b-fbl-pedro-paramo": {
+  "bookCover": "https://covers.openlibrary.org/b/id/5419076-L.jpg",
+  "summary": "Dentro de su brevedad -determinada por el rigor y la concentración expresiva-, *Pedro Páramo* sintetiza la mayor parte de los temas que han interesado -y afligido- siempre a los mexicanos: ese misterio nacional que el talento de Juan Rulfo ha sabido condensar por medio rural del sur de Jalisco -de Comala en particular, región inscrita ya en la mitología literia universal-; sus personajes muertos que \"evasivos, reticentes, convierten en secreto el aire mismo, y se vuelven elocuentes como consecuencia de callarse.\"",
+  "genres": [
+   "Ficción",
+   "Readers",
+   "Spanish language",
+   "Translations into Irish"
+  ],
+  "tags": [
+   "Ficción",
+   "Readers",
+   "Spanish language",
+   "Translations into Irish",
+   "Jalisco (México)",
+   "Peasants",
+   "Campesinos",
+   "Fiction, family life",
+   "Mexico, fiction",
+   "Despotisme",
+   "Romans, nouvelles",
+   "Fantastique",
+   "Histoires de fantômes",
+   "Fiction, family life, general",
+   "Mexican fiction"
+  ]
+ },
+ "wl-b-fbl-the-tartar-steppe": {
+  "bookCover": "https://covers.openlibrary.org/b/id/8137160-L.jpg",
+  "summary": "The Tartar Steppe (Italian: Il deserto dei Tartari, lit. 'The desert of the Tartars'), also published as The Stronghold (La fortezza), is a novel by Italian author Dino Buzzati, published in 1940. The novel tells the story of a young officer, Giovanni Drogo, and his life spent guarding Bastiani Fortress, an old, unmaintained border fortress. The novel was ranked 29th on Le Monde's 100 Books of the Century list. The novel has been translated into English by Stuart C. Hood, in 1952, and by Lawrence Venuti, in 2023.",
+  "genres": [
+   "Novel"
+  ],
+  "tags": [
+   "Novel"
+  ]
+ },
+ "wl-b-fbl-stoner": {
+  "bookCover": "https://covers.openlibrary.org/b/id/8310729-L.jpg",
+  "summary": "William Stoner is born at the end of the nineteenth century into a dirt-poor Missouri farming family. Sent to the state university to study agronomy, he instead falls in love with English literature and embraces a scholar’s life, so different from the hardscrabble existence he has known. And yet as the years pass, Stoner encounters a succession of disappointments: marriage into a “proper” family estranges him from his parents; his career is stymied; his wife and daughter turn coldly away from him; a transforming experience of new love ends under threat of scandal. Driven ever deeper within himself, Stoner rediscovers the stoic silence of his forebears and confronts an essential solitude.\r\n\r\nJohn Williams’s luminous and deeply moving novel is a work of quiet perfection. William Stoner emerges from it not only as an archetypal American, but as an unlikely existential hero, standing, like a figure in a painting by Edward Hopper, in stark relief against an unforgiving world. **Stoner pdf**",
+  "genres": [
+   "domestic fiction",
+   "psychological fiction",
+   "Study and teaching",
+   "College teachers"
+  ],
+  "tags": [
+   "domestic fiction",
+   "psychological fiction",
+   "Study and teaching",
+   "College teachers",
+   "Adultery",
+   "English teachers",
+   "Marital conflict",
+   "campus",
+   "academic",
+   "College teachers, fiction",
+   "Missouri, fiction",
+   "Fiction, general",
+   "Fiction, family life",
+   "Fiction, family life, general",
+   "Fiction, psychological"
+  ]
+ },
+ "wl-b-fbl-blood-meridian": {
+  "bookCover": "https://covers.openlibrary.org/b/id/419991-L.jpg",
+  "summary": "An epic novel of the violence and depravity that attended America's westward expansion, Blood Meridian brilliantly subverts the conventions of the Western novel and the mythology of the \"wild west.\" Based on historical events that took place on the Texas-Mexico border in the 1850s, it traces the fortunes of the Kid, a fourteen-year-old Tennesseean who stumbles into the nightmarish world where Indians are being murdered and the market for their scalps is thriving.",
+  "genres": [
+   "Glanton Gang",
+   "Outlaws",
+   "Teenage boys",
+   "Indians of North America"
+  ],
+  "tags": [
+   "Glanton Gang",
+   "Outlaws",
+   "Teenage boys",
+   "Indians of North America",
+   "Massacres",
+   "Fiction, westerns",
+   "Fiction, historical",
+   "West (u.s.), fiction",
+   "Fiction, historical, general",
+   "Fiction, action & adventure",
+   "Fiction, general"
+  ]
+ },
+ "wl-b-fbl-the-remains-of-the-day": {
+  "bookCover": "https://covers.openlibrary.org/b/id/95742-L.jpg",
+  "summary": "In the summer of 1956, Stevens, the ageing butler of Darlington Hall, embarks on a leisurely holiday that will take him deep into the countryside and into his past . . .A contemporary classic, The Remains of the Day is Kazuo Ishiguro's beautiful and haunting evocation of life between the wars in a Great English House, of lost causes and lost love.",
+  "genres": [
+   "Man Booker Prize Winner",
+   "Household employees",
+   "Butlers",
+   "Country homes"
+  ],
+  "tags": [
+   "Man Booker Prize Winner",
+   "Household employees",
+   "Butlers",
+   "Country homes",
+   "Domestics",
+   "Country homes -- Fiction",
+   "Man-woman relationships",
+   "History",
+   "Historical fiction",
+   "Fiction, historical",
+   "England, fiction",
+   "Readers",
+   "Diener",
+   "Fiction, historical, general",
+   "Social classes"
+  ]
+ },
+ "wl-b-fbl-slaughterhouse-five": {
+  "bookCover": "https://covers.openlibrary.org/b/id/12727001-L.jpg",
+  "summary": "Slaughterhouse-Five is one of the world's great anti-war books. Centering on the infamous fire-bombing of Dresden, Billy Pilgrim's odyssey through time reflects the mythic journey of our own fractured lives as we search for meaning in what we are afraid to know.",
+  "genres": [
+   "American science fiction",
+   "bombing of Dresden",
+   "military fiction",
+   "war stories"
+  ],
+  "tags": [
+   "American science fiction",
+   "bombing of Dresden",
+   "military fiction",
+   "war stories",
+   "World War II",
+   "literature and the war",
+   "war",
+   "free will and determinism",
+   "literary fiction",
+   "Animals",
+   "Boats and boating",
+   "Accelerated Reader",
+   "Domestic animals",
+   "Fiction, general",
+   "Fiction, war & military"
+  ]
+ },
+ "wl-b-fbl-dead-dead-demon-s-dededede-destruction": {
+  "bookCover": "https://covers.openlibrary.org/b/id/8750524-L.jpg",
+  "summary": "It’s just an everyday apocalypse.\r\n\r\nThree years ago the aliens invaded Tokyo.\r\n\r\nNothing was ever the same again.\r\n\r\nBut after a while, even impending doom starts to feel ordinary.\r\n\r\nThe Japan Self-Defense Forces are still looking for a way to combat the alien threat, but so far conventional weapons have had no effect. Maybe it’s time to try something unconventional.\r\n\r\nMeanwhile, Kadode Koyama and her best friend avidly track the aliens’ movements on social media and less enthusiastically study for college entrance exams. When the end of the world looms overhead, you learn to take things one step at a time.",
+  "genres": [
+   "Graphic novels",
+   "Manga",
+   "Science fiction comics",
+   "Apocalyptic comics"
+  ],
+  "tags": [
+   "Graphic novels",
+   "Manga",
+   "Science fiction comics",
+   "Apocalyptic comics",
+   "Science fiction comic books",
+   "Comic books, strips",
+   "End of the world",
+   "High school students",
+   "Human-alien encounters",
+   "Social media"
+  ]
+ },
+ "wl-b-fbl-uzumaki": {
+  "bookCover": "https://covers.openlibrary.org/b/id/11888471-L.jpg",
+  "summary": "Kurôzu-cho, a small fogbound town on the coast of Japan, is cursed. According to Shuichi Saito, the withdrawn boyfriend of teenager Kirie Goshima, their town is haunted not by a person or being but by a pattern: uzumaki, the spiral, the hypnotic secret shape of the world. It manifests itself in everything from seashells and whirlpools in water to the spiral marks on people's bodies, the insane obsessions of Shuichi's father and the voice from the cochlea in our inner ear. As the madness spreads, the inhabitants of Kurôzu-cho are pulled ever deeper into a whirlpool from which there is no return!",
+  "genres": [
+   "Death",
+   "Spirals",
+   "Comic books, strips",
+   "Death--comic books, strips, etc"
+  ],
+  "tags": [
+   "Death",
+   "Spirals",
+   "Comic books, strips",
+   "Death--comic books, strips, etc"
+  ]
+ },
+ "wl-b-new-sun": {
+  "summary": "The Book of the New Sun (1980–1983, 1987) is a four-volume science fantasy novel written by the American author Gene Wolfe. The work is in four parts with a fifth novel acting as a coda to the main story. It inaugurated the \"Solar Cycle\" that Wolfe continued by setting other works in the same universe (The Book of the Long Sun series, and The Book of the Short Sun series). It chronicles the journey of Severian, a journeyman torturer from the Order of the Seekers for Truth and Penitence. After helping a client kill herself, he is exiled in disgrace to journey to the distant city of Thrax where he is to live out his days as their executioner.",
+  "genres": [
+   "Novel"
+  ],
+  "tags": [
+   "Novel"
+  ]
+ },
+ "wl-b-fbl-invisible-cities": {
+  "summary": "Invisible Cities (Italian: Le città invisibili) is a postmodern novel by the Italian writer Italo Calvino. It was published in Italy in 1972 by Einaudi.",
+  "genres": [
+   "Fiction, general"
+  ],
+  "tags": [
+   "Fiction, general"
+  ]
+ },
+ "wl-b-fbl-the-futurological-congress": {
+  "summary": "The Futurological Congress (Polish: Kongres futurologiczny) is a 1971 black humour science fiction novel by Polish author Stanisław Lem. It details the exploits of the hero of a number of his stories, Ijon Tichy, as he visits the Eighth World Futurological Congress at a Hilton Hotel in Costa Rica.[note 1] The book is Lem's take on the science fictional trope of an apparently Utopian future that turns out to be an illusion.",
+  "genres": [
+   "Novel"
+  ],
+  "tags": [
+   "Novel"
+  ]
+ },
+ "wl-b-fbl-darkness-at-noon": {
+  "bookCover": "https://upload.wikimedia.org/wikipedia/commons/7/78/DarknessAtNoon.jpg",
+  "summary": "Darkness at Noon (German: Sonnenfinsternis, lit. 'Solar eclipse') is a novel by Austrian-Hungarian-born novelist Arthur Koestler, first published in 1940. His best known work, it is the tale of Rubashov, an Old Bolshevik who is arrested, imprisoned, and tried for treason against the government that he had helped to create. The novel is set between 1938 and 1940, after the Great Purge and Moscow show trials. Despite being based on real events, the novel does not name either Russia or the Soviets, and tends to use generic terms to describe people and organizations; for example, the Soviet government is referred to as \"the Party\" and Nazi Germany is referred to as \"the Dictatorship\".",
+  "genres": [
+   "Novel"
+  ],
+  "tags": [
+   "Novel"
+  ]
+ },
+ "wl-b-fbl-the-brothers-karamazov": {
+  "bookCover": "https://covers.openlibrary.org/b/id/11263774-L.jpg",
+  "summary": "The Brothers Karamazov (Russian: Братья Карамазовы, romanized: Brat'ya Karamazovy, IPA: [ˈbratʲjə kərɐˈmazəvɨ]), also translated as The Karamazov Brothers, is the sixteenth and final novel by Russian author Fyodor Dostoevsky. Dostoevsky spent nearly two years writing The Brothers Karamazov, which was published as a serial in The Russian Messenger from January 1879 to November 1880. Dostoevsky died less than four months after its publication. It has been acclaimed as one of the supreme achievements in world literature. Set in 19th-century Russia, The Brothers Karamazov is a passionate philosophical novel that discusses questions of God, free will, and morality.",
+  "genres": [
+   "Fiction, psychological",
+   "Fathers and sons, fiction",
+   "Brothers, fiction",
+   "Fiction, family life, general"
+  ],
+  "tags": [
+   "Fiction, psychological",
+   "Fathers and sons, fiction",
+   "Brothers, fiction",
+   "Fiction, family life, general"
+  ]
+ },
+ "wl-b-fbl-vagabond": {
+  "bookCover": "https://covers.openlibrary.org/b/id/8211378-L.jpg",
+  "summary": "Fear, failure, disgrace... Even the most renowned swordsman of all time had his low moments. For the first time ever, Miyamoto Musashi suffers a humilating loss when he takes on the deadly spear technique of Inshun, the second-generation master of Hozoin Temple. Dealing with defeat can be even more daunting of a task than facing the fiercest of warriors. Will Mushashi be up for his latest challenge?",
+  "genres": [
+   "Comic books, strips",
+   "Swordsmen",
+   "Samurai, fiction",
+   "Translations into English"
+  ],
+  "tags": [
+   "Comic books, strips",
+   "Swordsmen",
+   "Samurai, fiction",
+   "Translations into English",
+   "Graphic novels",
+   "Épéistes",
+   "Bandes dessinées",
+   "Japan, fiction",
+   "History",
+   "Rōnin"
+  ]
+ },
+ "wl-b-fbl2-blindness": {
+  "bookCover": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Book_cover_of_Ensaio_sobre_a_Cegueira.jpg",
+  "summary": "Blindness (Portuguese: Ensaio sobre a cegueira, lit. 'Essay on Blindness') is a 1995 novel by Portuguese author José Saramago. It centers on an unexplained mass epidemic of blindness afflicting nearly everyone in a nonspecific city, and follows multiple unnamed characters as they navigate the social breakdown that swiftly follows. The novel was translated into English by Giovanni Pontiero in 1997. In 1998, Saramago received the Nobel Prize for Literature, and Blindness was one of his works noted by the committee when announcing the award. A sequel titled Seeing was published in 2004. Blindness was adapted into a film of the same name in 2008.",
+  "genres": [
+   "Blind",
+   "Blindness",
+   "Fiction, general"
+  ],
+  "tags": [
+   "Blind",
+   "Blindness",
+   "Fiction, general"
+  ]
+ },
+ "wl-b-fbl3-the-wind-up-bird-chronicle": {
+  "summary": "The Wind-Up Bird Chronicle (ねじまき鳥クロニクル, Nejimakidori Kuronikuru) is a novel published in 1994–1995 by Japanese author Haruki Murakami. The American translation and its British adaptation, dubbed the \"only official translations\" (English), are by Jay Rubin and were first published in 1997. For this novel, Murakami received the Yomiuri Literary Award, which was awarded to him by one of his harshest former critics, Kenzaburō Ōe.",
+  "genres": [
+   "Novel"
+  ],
+  "tags": [
+   "Novel"
+  ]
  }
 };

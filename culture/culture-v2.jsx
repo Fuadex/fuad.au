@@ -1660,7 +1660,12 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
         role="button" tabIndex={0} aria-label={item.title}
         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(item); } }}
       >
-        <LazyImg className="layer-img" src={item.poster || item.tmdbPoster || item.igdbCover || item.bookCover} alt={item.title} />
+        {(item.poster || item.tmdbPoster || item.igdbCover || item.bookCover)
+          ? <LazyImg className="layer-img" src={item.poster || item.tmdbPoster || item.igdbCover || item.bookCover} alt={item.title} />
+          : <div className="poster-fallback" style={{ '--pf-bg': bodyColor }}>
+              <span className="pf-title">{displayTitle(item)}</span>
+              <span className="pf-meta">{item.year || ''}</span>
+            </div>}
         <div className="layer-spine">
           <span className="spine-band top"/>
           {item.highlights && item.highlights.length > 0 && (
