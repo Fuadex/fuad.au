@@ -59,9 +59,12 @@ def parse_books(path):
             gid = m2.group(1) if m2 else None
         tm = (re.search(r"""\btitle"?\s*:\s*'((?:[^'\\]|\\.)*)'""", line)
               or re.search(r'"title":\s*"((?:[^"\\]|\\.)*)"', line))
+        am = (re.search(r"""\bdirector"?\s*:\s*'((?:[^'\\]|\\.)*)'""", line)
+              or re.search(r'"director":\s*"((?:[^"\\]|\\.)*)"', line))
         out.append({
             'id': iid, 'gid': gid,
             'title': re.sub(r'\\(.)', r'\1', tm.group(1)) if tm else '',
+            'author': re.sub(r'\\(.)', r'\1', am.group(1)) if am else '',
             'has_note': bool(re.search(r'"?note"?\s*:', line)),
         })
     return out
@@ -262,7 +265,8 @@ def build(item, gr, cache):
     row = gr.get(item['gid'] or '', {})
     isbn13 = clean_isbn(row.get('ISBN13'))
     isbn10 = clean_isbn(row.get('ISBN'))
-    author = (row.get('Author') or '').strip()
+    # wishlist books have no Goodreads row — their author rides in the line's director field
+    author = (row.get('Author') or '').strip() or (item.get('author') or '').strip()
     review = (row.get('My Review') or '').strip()
     pages  = (row.get('Number of Pages') or '').strip()
 
@@ -353,7 +357,8 @@ def build(item, gr, cache):
     if cover:   out['bookCover'] = cover
     if summary: out['summary'] = summary
     if tags:    out['genres'] = tags[:4]; out['tags'] = tags
-    if author:  out['director'] = author
+    # never override a hand-authored author (wishlist books carry their own director)
+    if author and not (item.get('author') or '').strip():  out['director'] = author
     if pages.isdigit(): out['pages'] = int(pages)
     if review and not item['has_note']: out['note'] = review
     return out
@@ -364,7 +369,7 @@ def main():
     cache = json.load(open(CACHE, encoding='utf-8')) if os.path.exists(CACHE) else {}
 
     items, seen = [], set()
-    for name in ('imports.js', 'data.js'):
+    for name in ('imports.js', 'data.js', 'wishlist.js'):
         p = os.path.join(SD, name)
         if not os.path.exists(p):
             continue
