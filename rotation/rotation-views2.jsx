@@ -306,7 +306,7 @@ function MiniArtistView({ a, go }) {
   }
 
   return (
-    <div className="r-view">
+    <div className="r-view mav-band">
       <button className="r-back" onClick={() => go("explore")}>← explore</button>
       {header}
       {/* secondary modules — a CENTERED flex band with a consistent card width. Full 3-module artists
@@ -320,6 +320,10 @@ function MiniArtistView({ a, go }) {
       </div>
       <MiniArtistDetail id={a.id} name={a.name} hue={a.hue} go={go} />
       <style>{`
+        /* the whole 3-module explore page stays a centered column (Fuad 2026-07-24): .r-view has no
+           width cap, so on a wide monitor MiniArtistDetail ("description onwards") ran full-bleed —
+           the "full width" Fluke/Ils complaint. Thin mini-page content never earns the full viewport. */
+        .mav-band { max-width: 1120px; margin: 0 auto; }
         /* sparse mini-artist band: every surviving module gets the SAME flex-basis and cap, so a
            lone survivor centers at a readable width (not a full-page slab), a pair sits as equal
            halves, and a full trio fills the row in thirds — a composed band at any survivor count. */
