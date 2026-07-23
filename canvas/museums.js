@@ -78,7 +78,6 @@ window.CANVAS_MUSEUMS = [
   { id: "coca-torun", name: "Centre of Contemporary Art Znaki Czasu", city: "Toruń", country: "pl", qid: "Q9186485", kind: "art", visits: ["2026-05-23"] },
   {id: "kunstmuseum-basel",name: "Kunstmuseum Basel",city: "Basel",country: "ch",qid: "Q194626",kind: "art",visits: ["2017-08-05"],note: ""},
   {id: "kunstsalon-franke-schenk",name: "Kunstsalon Franke-Schenk",city: "Altstadt-Lehel",country: "de",qid: "Q15428775",kind: "art",visits: ["2017-03-25"],note: ""},
-  {id: "leo-castelli",name: "Leo Castelli Gallery",city: "New York City",country: "us",qid: "Q31407686",kind: "art",visits: ["2019-02-27"],note: ""},
   {id: "bavarian-state-paintings",name: "Bavarian State Painting Collections",city: "Munich",country: "de",qid: "Q812285",kind: "art",visits: ["2016-10-15","2016-11-27"],note: ""},
   {id: "lenbachhaus",name: "Lenbachhaus",city: "Munich",country: "de",qid: "Q262234",kind: "art",visits: ["2016-10-15"],note: ""},
   {id: "museo-fortuny",name: "Museo Fortuny",city: "Venice",country: "it",qid: "Q616676",kind: "art",visits: ["TBC"],note: ""},
