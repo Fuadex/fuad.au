@@ -1045,6 +1045,9 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
         .xp-attr-legclear { color: var(--ink-faint); border-style: dashed; }
         .xp-attr-swatch { width: 10px; height: 10px; border-radius: 3px; flex: none; }
         .xp-attr-foot { font-size: 9.5px; color: var(--ink-faint); letter-spacing: .04em; padding: 2px 14px 12px; line-height: 1.5; }
+        /* each ctrl group (label + select) must not push past the card edge on narrow phones (Fuad 2026-07-25) */
+        .xp-attr-ctrls > div { min-width: 0; }
+        .xp-attr-ctrls select { max-width: 100%; }
         @media (max-width: 520px) { .xp-attr-ctrls { gap: 8px 12px; } .xp-attr-ctrls select { font-size: 11px; } }
       `}</style>
     </div>
@@ -1523,8 +1526,8 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-cardnm { font-size: 10px; margin-top: 5px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .xp-cardsub { font-family: var(--mono); font-size: 8px; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .xp-mood svg { max-height: 330px; margin: 0 auto; }
-        .xp-rows { display: grid; gap: 2px; }
-        .xp-row { display: grid; grid-template-columns: 24px 34px 1fr 90px 46px; gap: 10px; align-items: center; padding: 5px 6px; border-radius: 6px; transition: background .12s; }
+        .xp-rows { display: grid; gap: 2px; overflow-x: clip; }
+        .xp-row { display: grid; grid-template-columns: 24px 34px 1fr 90px 46px; gap: 10px; align-items: center; padding: 5px 6px; border-radius: 6px; transition: background .12s; min-width: 0; }
         .xp-row[data-link="true"] { cursor: pointer; }
         .xp-row[data-link="true"]:hover { background: var(--bg-3); }
         .xp-rank { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); }
@@ -1608,6 +1611,14 @@ function ExploreView({ t, go, setPop, seed }) {
           .clk-scroll::-webkit-scrollbar { display: none; }
           .clk-scroll > div { min-width: 430px; }
           .era-d-grid { grid-template-columns: 1fr 1fr; }
+          /* ranked list rows: tighten bar+val columns at phone widths so the name column
+             has enough room to read — 64px bar, 34px val, 8px gap (Fuad 2026-07-25) */
+          .xp-row { grid-template-columns: 20px 30px 1fr 64px 34px; gap: 8px; }
+          /* year detail: use standard card padding instead of the desktop 22px gutter (Fuad 2026-07-25) */
+          .xp-yeardetail { padding: 14px 16px; }
+          /* lens control row: tighter button padding so both segments stay on one line (Fuad 2026-07-25) */
+          .xp-lens { padding: 9px 12px 0; gap: 8px 10px; }
+          .xp-lens-seg button { padding: 3px 8px; }
         }
       `}</style>
     </div>
