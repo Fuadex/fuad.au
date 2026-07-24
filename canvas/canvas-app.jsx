@@ -667,34 +667,38 @@ function StudyView({ id, go }) {
   // Bad/unknown artwork id: leave study (done in an effect so render stays side-effect-free).
   useEffect(() => { if (!work) history.back(); }, [work]);
 
-  // Scroll-follow: observe every anchored section's heading; when one crosses ~0.6 visibility and
-  // auto-follow is on, gently fly there. Only (re)wired once the viewer is ready and sections exist.
+  // Scroll-follow: observe EVERY section's heading (lenses too). The most-visible heading drives
+  // the tour UI — the chip strip, the "1 / N" arrows label and the chapter highlight all track the
+  // reading position (Fuad 2026-07-24: "the ui elements would respond… scroll through 1 2 3
+  // dynamically as well, not just zoom") — and, when auto-follow is on, also flies the viewer.
+  // Scrolling back up into the lens sections clears the chip without touching the zoom.
+  // Only (re)wired once the viewer is ready and sections exist.
   useEffect(() => {
-    if (!ready || !paneRef.current) return;
-    const anchored = sections.filter(s => s.anchor);
-    if (!anchored.length) return;
+    if (!ready || !paneRef.current || !sections.length) return;
     const byKey = {};
-    for (const s of anchored) byKey[s.key] = s.anchor;
+    for (const s of sections) if (s.anchor) byKey[s.key] = s.anchor;
+    const tourIdx = {};
+    tour.forEach((t, i) => { tourIdx[t.key] = i; });
     const obs = new IntersectionObserver((entries) => {
-      if (!autoRef.current || suppressFollow.current) return;
-      // choose the most-visible anchored heading currently intersecting
+      if (suppressFollow.current) return;
+      // choose the most-visible heading currently intersecting
       let best = null;
       for (const en of entries) {
         if (en.isIntersecting && en.intersectionRatio >= 0.6) {
           if (!best || en.intersectionRatio > best.intersectionRatio) best = en;
         }
       }
-      if (best) {
-        const key = best.target.getAttribute("data-skey");
-        if (byKey[key]) flyTo(byKey[key], false);
-      }
+      if (!best) return;
+      const key = best.target.getAttribute("data-skey");
+      setActiveDetail(key in tourIdx ? tourIdx[key] : null);
+      if (autoRef.current && byKey[key]) flyTo(byKey[key], false);
     }, { root: paneRef.current, threshold: [0, 0.6, 1] });
-    for (const s of anchored) {
+    for (const s of sections) {
       const el = paneRef.current.querySelector(`[data-skey="${s.key}"]`);
       if (el) obs.observe(el);
     }
     return () => obs.disconnect();
-  }, [ready, sections, flyTo]);
+  }, [ready, sections, tour, flyTo]);
 
   if (!work) return null;
   const a = work.artistData || {};
@@ -2430,6 +2434,27 @@ const SEARCH_INDEX = (() => {
   });
 })();
 
+// artists are searchable too (Fuad 2026-07-24): one entry per canon artist, portrait thumb
+// where Wikidata has one, routed to the artist page (#/artist/<id>).
+const ARTIST_SEARCH_INDEX = (() => {
+  const by = {};
+  for (const w of WORKS) {
+    if (!w.artistId) continue;
+    const r = (by[w.artistId] = by[w.artistId] || { id: w.artistId, name: (w.artist || "").replace(/\s*\(.*\)$/, ""), n: 0 });
+    r.n++;
+  }
+  return Object.values(by).map(r => {
+    const a = AD.artists[r.id] || {};
+    const name = a.label || r.name;
+    return {
+      kind: "artist", id: r.id, title: name,
+      artist: `${r.n} ${r.n === 1 ? "work" : "works"} in the canon${a.desc ? " · " + a.desc : ""}`,
+      imgGrid: a.image ? a.image.replace(/width=\d+/, "width=160") : null,
+      hay: fold(name),
+    };
+  });
+})();
+
 function SearchBar({ go }) {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
@@ -2467,7 +2492,9 @@ function SearchBar({ go }) {
         musResults.push({ kind: "museum", id: mid, title: mn.name.replace(/\s*\(.*\)$/, ""), artist: mn.city, imgGrid: null });
       }
     }
-    return [...musResults, ...hits].slice(0, 12);
+    // artist hits lead (they're the broadest destination), then museums, then works
+    const artistResults = ARTIST_SEARCH_INDEX.filter(a => a.hay.includes(needle)).slice(0, 3);
+    return [...artistResults, ...musResults, ...hits].slice(0, 12);
   }, [q]);
 
   // reset selection when results change
@@ -2487,6 +2514,7 @@ function SearchBar({ go }) {
 
   const openResult = (r) => {
     if (r.kind === "museum") { go("museum", r.id); }   // straight to the venue page, not the index
+    else if (r.kind === "artist") { go("artist", r.id); }
     else { go("work", r.id); }
     setOpen(false); setQ("");
   };
@@ -2547,7 +2575,7 @@ function SearchBar({ go }) {
                 : <span className="cv-search-thumb cv-search-thumb-empty" />}
               <span className="cv-search-hit-text">
                 <span className="cv-search-hit-title">{r.title}</span>
-                <span className="cv-search-hit-sub">{r.kind === "museum" ? "Museum · " : ""}{r.artist}</span>
+                <span className="cv-search-hit-sub">{r.kind === "museum" ? "Museum · " : r.kind === "artist" ? "Artist · " : ""}{r.artist}</span>
               </span>
             </div>
           ))}
