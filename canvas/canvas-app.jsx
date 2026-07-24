@@ -53,6 +53,55 @@ function enrich(w) {
     imgZoom: w.imgZoom || hi || mZoom || null };
 }
 
+// ——— LazyImg — real off-screen deferral (mirrors culture's, audit 2026-07-18). Native loading="lazy"
+// does NOT defer images that share the viewport's vertical band — a horizontal floored strip or a
+// tall masonry wall fetches its whole row/column on first paint. A viewport-rooted IntersectionObserver
+// only reveals src once a tile is actually near view, in ANY scroll direction. The container must carry
+// its own dimensions (fixed height or aspect) so withholding src never collapses layout. (Fuad 2026-07-25)
+function LazyImg({ src, alt, className, title, loading }) {
+  const ref = useRef(null);
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    if (show || !src) return;
+    const el = ref.current; if (!el) return;
+    if (typeof IntersectionObserver === "undefined") { setShow(true); return; }
+    const io = new IntersectionObserver((ents) => {
+      for (const e of ents) if (e.isIntersecting) { setShow(true); io.disconnect(); return; }
+    }, { rootMargin: "500px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [show, src]);
+  return <img ref={ref} className={className} alt={alt || ""} title={title}
+    src={show ? src : undefined} loading={loading || "lazy"} decoding="async" />;
+}
+
+// ——— RevealChunks — reveal-based lazy RENDERING for long lists (Fuad 2026-07-25). Renders the first
+// `initial` items immediately, then reveals `step` more each time a sentinel near the list's end scrolls
+// into view. Keeps the initial DOM small on museum/artist/index pages (long walls used to mount every
+// card up-front). `render(items)` receives the currently-revealed slice and returns the wall/grid markup.
+function RevealChunks({ items, initial = 24, step = 24, render }) {
+  const [n, setN] = useState(Math.min(initial, items.length));
+  const sentinel = useRef(null);
+  // reset the reveal window when the source list changes (filter/sort/route change)
+  useEffect(() => { setN(Math.min(initial, items.length)); }, [items, initial]);
+  useEffect(() => {
+    if (n >= items.length) return;
+    const el = sentinel.current; if (!el) return;
+    if (typeof IntersectionObserver === "undefined") { setN(items.length); return; }
+    const io = new IntersectionObserver((ents) => {
+      for (const e of ents) if (e.isIntersecting) { setN(v => Math.min(v + step, items.length)); return; }
+    }, { rootMargin: "600px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [n, items, step]);
+  return (
+    <React.Fragment>
+      {render(items.slice(0, n))}
+      {n < items.length && <div ref={sentinel} className="cv-reveal-sentinel" aria-hidden="true" />}
+    </React.Fragment>
+  );
+}
+
 function useRoute() {
   const parse = () => {
     const h = (location.hash || "#/").replace(/^#\/?/, "");
@@ -568,6 +617,7 @@ function StudyView({ id, go }) {
   const [autoFollow, setAutoFollow] = useState(true);
   const autoRef = useRef(true); autoRef.current = autoFollow;
   const paneRef = useRef(null);
+  const tourRef = useRef(null);                          // the horizontal chip strip, for scrollLeft math
 
   // Build the ordered list of reading sections. Each: {key, label, body, anchor?}. Lenses first,
   // then the `deeper` chapters. Only sections with an anchor participate in scroll-follow / look.
@@ -714,6 +764,23 @@ function StudyView({ id, go }) {
     return () => obs.disconnect();
   }, [ready, sections, tour, flyTo]);
 
+  // Slide the active chip into view WITHIN the horizontal strip whenever activeDetail changes —
+  // whether the scroll-spy set it or a tap did (Fuad 2026-07-25: the deep-read buttons highlight on
+  // scroll but the strip never moved, so late chips stayed off-screen). scrollLeft math only, NOT
+  // scrollIntoView (which would also scroll the pane / page ancestors and fight the prose scroll).
+  useEffect(() => {
+    const strip = tourRef.current; if (!strip || activeDetail === null) return;
+    // chips index: [0] is the "⌂ full view" chip, so tour[i] lives at child i+1
+    const chip = strip.children[activeDetail + 1]; if (!chip) return;
+    const pad = 24;   // keep a little of the neighbour chip visible on either side
+    const left = chip.offsetLeft - pad;
+    const right = chip.offsetLeft + chip.offsetWidth + pad;
+    let target = strip.scrollLeft;
+    if (left < strip.scrollLeft) target = left;                                   // chip is off the left edge
+    else if (right > strip.scrollLeft + strip.clientWidth) target = right - strip.clientWidth;  // off the right
+    if (target !== strip.scrollLeft) strip.scrollTo({ left: Math.max(0, target), behavior: "smooth" });
+  }, [activeDetail]);
+
   if (!work) return null;
   const a = work.artistData || {};
   const life = a.born ? `${a.born}–${a.died || ""}` : null;
@@ -738,7 +805,7 @@ function StudyView({ id, go }) {
               <button className="cv-study-arrow" onClick={() => stepTour(1)} disabled={activeDetail === tour.length - 1}
                 title="Next detail (→)" aria-label="Next detail">›</button>
             </div>
-            <div className="cv-osd-tour cv-study-tour">
+            <div className="cv-osd-tour cv-study-tour" ref={tourRef}>
               <button className={"cv-osd-chip" + (activeDetail === null ? " cv-osd-chip-home" : "")}
                 onClick={goHome} title="Return to full view">⌂ full view</button>
               {tour.map((d, i) => (
@@ -987,7 +1054,7 @@ function MuseumCard({ m, go, quiet }) {
     <div className={"cv-musidx-card" + (img ? "" : " cv-musidx-text") + (quiet ? " cv-musidx-quiet" : "")}
       data-kind={m.kind} onClick={() => go("museum", m.id)} title={"open " + name}>
       {img
-        ? <div className="cv-musidx-thumb"><img src={img} alt={name} loading="lazy" /></div>
+        ? <div className="cv-musidx-thumb"><LazyImg src={img} alt={name} /></div>
         : null}
       <div className="cv-musidx-body">
         <div className="cv-musidx-name">{name}{hasRead ? <span className="cv-musidx-read" title="has a read"> ✦</span> : null}</div>
@@ -1177,16 +1244,20 @@ function MuseumView({ museumId, go }) {
   };
   const showVisitChip = visitDate && eligible(visitDate, m.country) ? visitMonthLabel(visitDate) : null;
 
-  // reusable card wall (uses the home Card so ✦ read markers + floored ★ + conf styling match)
+  // reusable card wall (uses the home Card so ✦ read markers + floored ★ + conf styling match).
+  // Reveal-chunked (Fuad 2026-07-25): only the first ~30 cards mount up-front; the rest render as the
+  // wall scrolls into view, so a 200-work venue no longer builds its whole masonry on first paint.
   const Wall = ({ works }) => (
-    <div className="cv-wall cv-mus-wall">
-      {works.map(w => (
-        <div className="cv-mus-cardwrap" key={w.id}>
-          {hasRead(w) && <span className="cv-mus-read" title="has a read / study">✦</span>}
-          <Card w={w} go={go} />
-        </div>
-      ))}
-    </div>
+    <RevealChunks items={works} initial={30} step={30} render={(slice) => (
+      <div className="cv-wall cv-mus-wall">
+        {slice.map(w => (
+          <div className="cv-mus-cardwrap" key={w.id}>
+            {hasRead(w) && <span className="cv-mus-read" title="has a read / study">✦</span>}
+            <Card w={w} go={go} />
+          </div>
+        ))}
+      </div>
+    )} />
   );
 
   return (
@@ -1210,7 +1281,7 @@ function MuseumView({ museumId, go }) {
             <div className="cv-mus-floored">
               {floored.filter(w => w.imgGrid).map(w => (
                 <button className="cv-mus-floored-item" key={w.id} onClick={() => go("work", w.id)} title={w.title}>
-                  <img src={w.imgGrid} alt={w.title} loading="lazy" />
+                  <LazyImg src={w.imgGrid} alt={w.title} />
                 </button>
               ))}
             </div>
@@ -1296,22 +1367,24 @@ function MuseumView({ museumId, go }) {
       {unmet.length > 0 && (
         <React.Fragment>
           <div className="cv-a-secl">Still in the building — majors you haven't met</div>
-          <div className="cv-a-unmet">
-            {unmet.map(n => {
-              const q = queuedQids.has(n.qid);
-              return (
-                <div className="cv-a-unmet-item" key={n.qid || n.title}>
-                  <a href={n.qid ? `https://www.wikidata.org/wiki/${n.qid}` : undefined} target="_blank" rel="noopener noreferrer" title={n.title}>
-                    <img src={n.img} alt={n.title} loading="lazy" />
-                    <span>{n.title}{n.artist ? ` · ${n.artist}` : ""}{n.year ? ` · ${n.year}` : ""}</span>
-                  </a>
-                  <button type="button" className="cv-a-unmet-add" data-q={q} disabled={q}
-                    title={q ? "queued for the By Your Artists deck" : "add to the By Your Artists deck"}
-                    onClick={() => queueMajor(n)}>{q ? "queued ✓" : "+ deck"}</button>
-                </div>
-              );
-            })}
-          </div>
+          <RevealChunks items={unmet} initial={18} step={18} render={(slice) => (
+            <div className="cv-a-unmet">
+              {slice.map(n => {
+                const q = queuedQids.has(n.qid);
+                return (
+                  <div className="cv-a-unmet-item" key={n.qid || n.title}>
+                    <a href={n.qid ? `https://www.wikidata.org/wiki/${n.qid}` : undefined} target="_blank" rel="noopener noreferrer" title={n.title}>
+                      <LazyImg src={n.img} alt={n.title} />
+                      <span>{n.title}{n.artist ? ` · ${n.artist}` : ""}{n.year ? ` · ${n.year}` : ""}</span>
+                    </a>
+                    <button type="button" className="cv-a-unmet-add" data-q={q} disabled={q}
+                      title={q ? "queued for the By Your Artists deck" : "add to the By Your Artists deck"}
+                      onClick={() => queueMajor(n)}>{q ? "queued ✓" : "+ deck"}</button>
+                  </div>
+                );
+              })}
+            </div>
+          )} />
         </React.Fragment>
       )}
 
@@ -1577,26 +1650,31 @@ function ArtistView({ artistId, go }) {
         </div>
       </div>
       <div className="cv-a-secl">In your canon</div>
-      <div className="cv-wall cv-a-wall">{works.map(w => <Card key={w.id} w={w} go={go} />)}</div>
+      {/* reveal-chunked wall (Fuad 2026-07-25): prolific artists mount their whole canon on paint otherwise */}
+      <RevealChunks items={works} initial={30} step={30} render={(slice) => (
+        <div className="cv-wall cv-a-wall">{slice.map(w => <Card key={w.id} w={w} go={go} />)}</div>
+      )} />
       {unmet.length > 0 && (
         <React.Fragment>
           <div className="cv-a-secl">Their majors you haven't met</div>
-          <div className="cv-a-unmet">
-            {unmet.map(n => {
-              const q = queuedQids.has(n.qid);
-              return (
-                <div className="cv-a-unmet-item" key={n.qid}>
-                  <a href={`https://www.wikidata.org/wiki/${n.qid}`} target="_blank" rel="noopener noreferrer" title={n.title}>
-                    <img src={n.img} alt={n.title} loading="lazy" />
-                    <span>{n.title}{n.year ? ` · ${n.year}` : ""}</span>
-                  </a>
-                  <button type="button" className="cv-a-unmet-add" data-q={q} disabled={q}
-                    title={q ? "queued for the By Your Artists deck" : "add to the By Your Artists deck"}
-                    onClick={() => queueMajor(n)}>{q ? "queued ✓" : "+ deck"}</button>
-                </div>
-              );
-            })}
-          </div>
+          <RevealChunks items={unmet} initial={18} step={18} render={(slice) => (
+            <div className="cv-a-unmet">
+              {slice.map(n => {
+                const q = queuedQids.has(n.qid);
+                return (
+                  <div className="cv-a-unmet-item" key={n.qid}>
+                    <a href={`https://www.wikidata.org/wiki/${n.qid}`} target="_blank" rel="noopener noreferrer" title={n.title}>
+                      <LazyImg src={n.img} alt={n.title} />
+                      <span>{n.title}{n.year ? ` · ${n.year}` : ""}</span>
+                    </a>
+                    <button type="button" className="cv-a-unmet-add" data-q={q} disabled={q}
+                      title={q ? "queued for the By Your Artists deck" : "add to the By Your Artists deck"}
+                      onClick={() => queueMajor(n)}>{q ? "queued ✓" : "+ deck"}</button>
+                  </div>
+                );
+              })}
+            </div>
+          )} />
         </React.Fragment>
       )}
       {(AD2.similar || []).length > 0 && (
@@ -1663,6 +1741,11 @@ function Artists({ go }) {
 // is rotation's simplified equirect world, copied (apps stay self-contained).
 function MapView({ go }) {
   const world = window.CANVAS_WORLD || null;
+  // FIX 6 (Fuad 2026-07-25): on a phone the dots are tiny and the labels illegible, so make the
+  // dots bigger — a VISUAL/hit-area multiplier applied to the rendered radii only (positions are
+  // already collision-relaxed in map units, so we don't touch the layout, just paint fatter dots).
+  const [dotMul] = useState(() => (typeof window !== "undefined" && window.matchMedia
+    && window.matchMedia("(max-width: 620px)").matches) ? 1.7 : 1);
   const P = (lat, lng) => [(lng + 180) / 360 * 1000, (90 - lat) / 180 * 500];
   const coordOf = (id) => { const d = AD.museums[id] || {}; return d.lat == null ? null : P(d.lat, d.lng); };
   const landPath = useMemo(() => (world && world.land ? world.land.join(" ") : ""), []);
@@ -2075,10 +2158,10 @@ function MapView({ go }) {
             const [fx, fy, fs] = fish(c.x, c.y);
             return (
               <g key={c.city} className="cv-pin" onClick={() => focusCity(c)} style={{ cursor: "pointer" }}>
-                <circle cx={fx} cy={fy} r={cr * fs * k}
+                <circle cx={fx} cy={fy} r={cr * fs * k * dotMul}
                   fill={c.n ? "oklch(0.55 0.13 46 / .82)" : "rgba(58,47,34,.45)"} stroke="#f4ecdf" strokeWidth={0.6 * k} />
                 <title>{c.city} — {c.n} work{c.n !== 1 ? "s" : ""} · {c.museums.length} museum{c.museums.length !== 1 ? "s" : ""}{c.n ? " · click to open" : ""}</title>
-                {(c.n >= 8 || fs > 1.25) && <text x={fx} y={fy - (cr * fs + 1) * k} textAnchor="middle" style={{ fontSize: 8 * k }}>{c.city}</text>}
+                {(c.n >= 8 || fs > 1.25) && <text x={fx} y={fy - (cr * fs * dotMul + 1) * k} textAnchor="middle" style={{ fontSize: 8 * k * dotMul }}>{c.city}</text>}
               </g>
             );
           })}
@@ -2090,7 +2173,7 @@ function MapView({ go }) {
                 onMouseMove={e => setHover(h => h && h.w === mk.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                 onMouseLeave={() => setHover(null)}>
                 {/* SIZE SCOPING: original rest size r=2 (the fisheye handles hittability on hover). */}
-                <circle cx={fx} cy={fy} r={2 * fs * k} fill="oklch(0.55 0.19 18 / .9)" stroke="#f7efe2" strokeWidth={0.6 * k} />
+                <circle cx={fx} cy={fy} r={2 * fs * k * dotMul} fill="oklch(0.55 0.19 18 / .9)" stroke="#f7efe2" strokeWidth={0.6 * k} />
               </g>
             );
           })}
@@ -2118,7 +2201,7 @@ function MapView({ go }) {
                         onMouseMove={e => setHover(h => h && h.w === wn.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                         onMouseLeave={() => setHover(null)}>
                         <line x1={mx} y1={my} x2={fx} y2={fy} stroke="rgba(58,47,34,.26)" strokeWidth={0.3 * k} />
-                        <circle cx={fx} cy={fy} r={(wn.w.floored ? 1.8 : 1.5) * fs * k}
+                        <circle cx={fx} cy={fy} r={(wn.w.floored ? 1.8 : 1.5) * fs * k * dotMul}
                           fill={wn.w.floored ? "oklch(0.55 0.19 18 / .92)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.4 * k} />
                       </g>
                     );
