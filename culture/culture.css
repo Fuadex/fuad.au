@@ -1369,6 +1369,21 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 @media (max-width: 768px) {
   .stats-modal { padding: 24px; }
   .stats-two-col { grid-template-columns: 1fr; gap: 28px; }
+
+  /* ── Rating distribution + Explore: title/toggle rows wrap so neither
+     the source-toggle nor the axis-toggle forces the modal wider than the
+     phone viewport (2026-07-25). ── */
+  .stats-section-title-row { flex-wrap: wrap; }
+  /* Toggle becomes a block-level flex container so it fills the row width
+     and its buttons can wrap to a second line when there are many. */
+  .rating-source-toggle { display: flex; flex-shrink: 1; flex-wrap: wrap; }
+  .rating-source-toggle button { padding: 4px 7px; font-size: 8px; }
+
+  /* ── Explore tab: "Where your taste diverges" 2-col → 1-col on phones. ── */
+  .taste-two { grid-template-columns: 1fr; gap: 16px; }
+
+  /* explorer chips: tighten padding so more fit per row on small screens */
+  .xchip { font-size: 9px; padding: 3px 7px; }
 }
 
 /* rating histogram */
