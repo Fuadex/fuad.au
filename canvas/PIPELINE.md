@@ -15,8 +15,29 @@ the canon, and deploy. All enrichment scripts are **Node.js**, **keyless**, and
 | `fetch-highlights.js` | Recall-deck source: for each museum (via its Wikidata qid from `art_data.js`), fetches the most famous collection works ranked by sitelink count. Up to 100 works per museum. | `museums.js`, `art_data.js`; Wikidata SPARQL (no key) | `museum_highlights.js` (`CANVAS_HIGHLIGHTS`) |
 | `fold-deck.js` | Folds completed recall-deck JSON exports into `artworks.js` (the hand-authored canon). | `<deck.json>` files (output of the in-app deck export), `artworks.js` | patches `artworks.js` in place |
 | `import-art.js` | Photo-detection importer, step 1: turns the (gitignored, local-only) `match_decisions.json` verdicts into a review proposal — resolves picks by qid, derives `seenAt`/`seenConfidence` (committed pick ⇒ `sure`), maps love→`floored` / like→`liked`, disambiguates versioned works by capture-time + venue. Never writes the canon. | `match_decisions.json`, `artworks.js`, `museums.js`; Wikidata (no key) | `../../.sptmp/import-proposal.json` |
-| `apply-import.js` | Photo-detection importer, step 2: applies a reviewed proposal — stubs new museums (visit dates from photo EXIF), appends new artworks (`qidTrusted: true`), merges marks onto existing qids. Dry-run by default; `--write` to commit. Insert regex must absorb the trailing comma (`,?\n\];`) and target the FIRST `];` (artworks.js ends with a second `CANVAS_AFFINITY` array). | `.sptmp/import-proposal.json`, `artworks.js`, `museums.js` | patches both in place |
+| `apply-import.js` | Photo-detection importer, step 2: applies a reviewed proposal — stubs new museums (visit dates from photo EXIF), appends new artworks (`qidTrusted: true`), merges marks onto existing qids. Dry-run by default; `--write` to commit. Insert regex must absorb the trailing comma (`,?\n\];`) and target the FIRST `];` (artworks.js ends with a second `CANVAS_AFFINITY` array). ⚠ Dedupe by qid alone is not enough: Met-deck entries carry `met-XXXXXX` pseudo-qids that can never qid-match a real Wikidata entry — audit new imports by normalized title+artist too (three such dupes merged 2026-07-24; venue inference can also mis-assign a museum that sits near the real one, so cross-check odd venues against the Timeline). | `.sptmp/import-proposal.json`, `artworks.js`, `museums.js` | patches both in place |
 | `fix-labels.js` | Post-import label polish: backfills `(untitled)` titles from the best non-English Wikidata label (fr/de/…), fixes unresolved creators. Anchored by qid; `--write` to commit. | `artworks.js`; Wikidata (no key) | patches `artworks.js` in place |
+
+## Study tours & reads (LLM content, not script-generated)
+
+Three hand-QC'd content overlays sit beside the script pipeline, all keyed by canvas id:
+
+- **`art_inspect.js`** (`CANVAS_INSPECT`) — full studies: four lenses + the anchored
+  `deeper` detail tour that Study mode (`#/study/<id>`) flies through. Production and QC
+  protocol: **[STUDY_SPEC.md](STUDY_SPEC.md)** (Opus subagent drafts from the actual
+  image → Fable fact-checks every claim and crop-verifies every anchor box before merge).
+  16 works covered as of 2026-07-24.
+- **`art-about.js`** (`CANVAS_ART_ABOUT`) — shorter two-tier reads (about/deep) for
+  flagship works. A study entry must go deeper than, and never contradict, an existing
+  about read.
+- **`museum_about.js`** (`CANVAS_MUSEUM_ABOUT`) — institution reads (about = what the
+  place is, deep = how it works as a visit), 32 museums. Same truth rule as studies:
+  personal "you met X here" claims only for canon-`sure` works; `probably`/`unsure`
+  works get the institutional phrasing ("home of X"). All 32 independently fact-checked
+  2026-07-24.
+
+These are content, not generated artifacts — edit them directly (with QC), never
+regenerate them from a script.
 
 ### Local cache note
 

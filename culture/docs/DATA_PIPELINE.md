@@ -15,7 +15,7 @@ per-script detail.
 | `wishlist_cast.js` (`CULTURE_WISHLIST_CAST`) | `update_wishlist_enrich.py` | TMDB / IGDB | — |
 | `omdb_data.js` (`CULTURE_OMDB`) | `update_omdb.py` | OMDb | `omdb_cache.json` (committed) |
 | `tmdb_data.js` (`CULTURE_TMDB`) | `update_tmdb_overview.py` | TMDB | `tmdb_cache.json` |
-| `books_data.js` (`CULTURE_BOOKS`) | `update_books.py` | OpenLibrary | — |
+| `books_data.js` (`CULTURE_BOOKS`) | `update_books.py` | OpenLibrary / Wikipedia | `books_cache.json` (local-only; seed from committed output if absent) |
 | `game_imdb.js` (`CULTURE_GAME_IMDB`) | `update_game_imdb.py` | Wikidata | — |
 | `filmweb_notes.js` (`CULTURE_FILMWEB_NOTES`) | `build_filmweb_notes.py` | scraped CSV (`scrape_filmweb_reviews.py`) | — |
 | `notes_en.js` (`CULTURE_NOTES_EN`) | `build_notes_en.py` | `notes_en_source.json` | — |
@@ -36,7 +36,9 @@ safe to re-run.
 3. **`python update_tmdb_overview.py`** — TMDB synopsis (the Reader's IMDb⇄TMDB toggle).
 4. Games only: **`python update_igdb.py`** (cover, tags) and/or **`update_game_imdb.py`**
    (IMDb id), **`update_steam_tags.py`** (Steam tags).
-5. Books only: **`python update_books.py`**.
+5. Books only: **`python update_books.py`** — covers library AND wishlist books
+   (a wishlist book entry needs an inline `director` author field for reliable
+   matching; title-only fuzzy search has mismatched editions/adaptations before).
 6. Filmweb notes (if refreshing): **`python scrape_filmweb_reviews.py`** (scrapes your
    own Filmweb vote comments → CSV), then **`python build_filmweb_notes.py`** (compiles
    the CSV → `filmweb_notes.js`). The scraper is a prerequisite — don't run the builder

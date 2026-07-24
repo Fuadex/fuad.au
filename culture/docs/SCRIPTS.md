@@ -18,7 +18,7 @@ dev diagnostic (`archive/`).
 | `update_igdb.py` | `cast_data.js` (igdb fields) + patches `imports.js` | IGDB | core, **lib** (→ steam_tags, titles, wishlist_enrich) |
 | `update_steam_tags.py` | `cast_data.js` + `wishlist_cast.js` (game tags) | IGDB/SteamSpy | core |
 | `update_game_imdb.py` | `game_imdb.js` | Wikidata | core |
-| `update_books.py` | `books_data.js` | OpenLibrary | core |
+| `update_books.py` | `books_data.js` | OpenLibrary/Wikipedia | core. Since 2026-07-24 also parses `wishlist.js` (wishlist books use the entry's inline `director` as the author hint; the overlay never overrides a hand-authored `director`). `books_cache.json` is local-only — if missing, seed it from the committed `books_data.js` before running, or the whole library refetches |
 | `update_wishlist_enrich.py` | `wishlist_cast.js` | TMDB/IGDB | core |
 | `build_badges.py` | `badges.js` ← `badges_source.json` | — | core |
 | `build_notes_en.py` | `notes_en.js` ← `notes_en_source.json` | — | core |
