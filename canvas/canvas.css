@@ -161,7 +161,7 @@ a { color: inherit; }
 /* container spans the full window; the header + museum-read module stay in a readable 1200px
    band, while everything BELOW the module (encounters, artists, unmet, pilgrimage…) uses the
    whole monitor width (Fuad 2026-07-18) */
-.cv-museum { max-width: none; margin: 0; padding: 24px 34px 70px; }
+.cv-museum { max-width: none; margin: 0; padding: 24px 34px 70px; overflow-x: clip; }
 .cv-mus-head { max-width: 1200px; margin: 0 auto; background: #24201a; color: #e8ddcc; border-radius: 10px; padding: 26px 30px; display: flex; align-items: flex-start; gap: 26px; }
 .cv-mus-head-main { flex: 1 1 auto; min-width: 0; }
 .cv-mus-postcard { flex: 0 0 auto; width: min(280px, 34%); margin: 4px 0 0; }
@@ -181,10 +181,16 @@ a { color: inherit; }
 .cv-mus-h1 { font: 600 32px/1.12 var(--serif); margin: 0; color: #f2e9dc; }
 .cv-mus-head[data-kind="natural-history"] .cv-mus-h1::after { content: " 🦕"; font-size: 22px; }
 .cv-mus-sub { font: 500 11px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(232,221,204,.6); margin-top: 8px; }
-.cv-mus-floored { display: flex; gap: 10px; overflow-x: auto; padding: 18px 0 4px; scrollbar-width: thin; }
+/* min-width:0 is load-bearing (Fuad 2026-07-25): without it this flex strip reports its
+   max-content width (~11 thumbnails) up to .cv-mus-head-main, expanding the layout viewport
+   past device width — after which the 620px media queries never fire. The floor lets overflow-x
+   actually clip+scroll instead of pushing the page wide. Must hold at ANY viewport, not just mobile. */
+.cv-mus-floored { display: flex; gap: 10px; overflow-x: auto; padding: 18px 0 4px; scrollbar-width: thin; contain: inline-size; }  /* contain: the strip's max-content (11 thumbs ~1200px) propagated through the flex chain and expanded the MOBILE LAYOUT VIEWPORT itself, after which the 620px media queries never fired; min-width:0/max-width:100% cannot stop intrinsic propagation (percentages do not resolve during intrinsic sizing) — verified 2026-07-25 */
 .cv-mus-floored::-webkit-scrollbar { height: 6px; }
 .cv-mus-floored::-webkit-scrollbar-thumb { background: rgba(232,221,204,.25); border-radius: 999px; }
-.cv-mus-floored-item { flex-shrink: 0; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 5px; overflow: hidden; }
+/* min-width holds the slot open while LazyImg withholds a not-yet-revealed src (width:auto would
+   otherwise collapse the button to 0 and let the strip re-flow as tiles load) (Fuad 2026-07-25) */
+.cv-mus-floored-item { flex-shrink: 0; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 5px; overflow: hidden; min-width: 72px; min-height: 96px; }
 .cv-mus-floored-item img { height: 96px; width: auto; display: block; border-radius: 5px; box-shadow: 0 4px 14px rgba(0,0,0,.35); transition: transform .15s; }
 .cv-mus-floored-item:hover img { transform: translateY(-2px); }
 .cv-mus-stats { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 16px; font: 500 11px/1.5 var(--mono); letter-spacing: .05em; color: rgba(232,221,204,.8); }
@@ -258,13 +264,24 @@ a { color: inherit; }
 .cv-deck-part-on:hover { color: var(--paper); border-color: var(--ink); }
 .cv-deck-part-n { opacity: .65; }
 
+/* reveal sentinel: a 1px marker at the end of a chunked list; when it nears the viewport the next
+   chunk mounts. Needs a non-zero box so IntersectionObserver reliably fires (Fuad 2026-07-25). */
+.cv-reveal-sentinel { width: 100%; height: 1px; }
+
 /* ——— wall filters + cap ——— */
 .cv-filters { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 16px 34px 0; }
 .cv-filters button { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-faint); cursor: pointer; }
 .cv-filters button:hover { color: var(--ink); }
 .cv-filters button[data-on="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.cv-filters select { font: 500 11px/1 var(--mono); padding: 7px 10px; border-radius: 8px; border: 1px solid var(--rule); background: #fff; color: var(--ink-soft); }
+/* max-width + ellipsis stop a long museum name ("The Metropolitan Museum of Art (243)") from
+   stretching the select — and with it the whole .cv-filters row — past the device width (Fuad 2026-07-25) */
+.cv-filters select { font: 500 11px/1 var(--mono); padding: 7px 10px; border-radius: 8px; border: 1px solid var(--rule); background: #fff; color: var(--ink-soft); max-width: 200px; text-overflow: ellipsis; }
 .cv-count { margin-left: auto; font: 500 10.5px/1 var(--mono); letter-spacing: .08em; color: var(--ink-faint); }
+@media (max-width: 620px) {
+  .cv-filters { padding: 14px 16px 0; gap: 7px; }
+  /* the museum select must never widen the row past the phone; cap it to the row width and clip */
+  .cv-filters select { max-width: calc(100vw - 32px); min-width: 0; }
+}
 .cv-more { text-align: center; padding: 0 0 50px; }
 .cv-more button { font: 500 11.5px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; padding: 12px 26px; border-radius: 999px; border: 1px solid var(--ink); background: none; color: var(--ink); cursor: pointer; }
 .cv-more button:hover { background: var(--ink); color: var(--paper); }
@@ -275,6 +292,7 @@ a { color: inherit; }
 /* ——— artist pages (charcoal editorial, mockup 1c) ——— */
 .cv-artist { max-width: none; padding: 26px 34px 60px; }
 .cv-a-head { display: flex; gap: 22px; align-items: flex-start; background: #24201a; color: #e8ddcc; border-radius: 10px; padding: 26px 30px; }
+.cv-a-head > div { flex: 1 1 auto; min-width: 0; }   /* the text column takes the row's remaining width; min-width:0 lets long meta wrap */
 .cv-a-face { width: 92px; height: 92px; object-fit: cover; border-radius: 6px; filter: grayscale(.35); }
 .cv-a-name { font: 600 32px/1.1 var(--serif); margin: 0; color: #f2e9dc; }
 .cv-a-meta { font: 500 11px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: rgba(232,221,204,.6); margin-top: 7px; }
@@ -286,8 +304,8 @@ a { color: inherit; }
 @media (max-width: 1200px) { .cv-a-wall { column-count: 4; } }
 @media (max-width: 900px)  { .cv-a-wall { column-count: 3; } }
 @media (max-width: 620px)  { .cv-a-wall { column-count: 2; } }
-.cv-a-unmet { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
-.cv-a-unmet-item { position: relative; }
+.cv-a-unmet { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; min-width: 0; }
+.cv-a-unmet-item { position: relative; min-width: 0; }
 .cv-a-unmet a { display: block; text-decoration: none; }
 .cv-a-unmet img { width: 100%; height: 120px; object-fit: cover; border-radius: 5px; box-shadow: 0 4px 14px rgba(40,28,14,.22); }
 .cv-a-unmet span { display: block; font: 400 11px/1.4 var(--serif); color: var(--ink-soft); margin-top: 5px; }
@@ -303,6 +321,19 @@ a { color: inherit; }
   border-color: oklch(0.5 0.1 145 / .5); background: oklch(0.5 0.1 145 / .1); }
 .cv-deck-queued { font: 500 12px/1 var(--mono); color: var(--ink-faint); letter-spacing: .04em; }
 
+@media (max-width: 620px) {
+  .cv-artist { padding: 16px 16px 54px; }
+  /* FIX 4 (Fuad 2026-07-25): stack the header so the meta/stats live in the FULL container width
+     instead of a narrow column pinned beside the portrait (it "stuck to the right side"). */
+  .cv-a-head { flex-direction: column; gap: 14px; padding: 20px 18px; }
+  .cv-a-name { font-size: 26px; }
+  /* FIX 5: tighten the caption whitespace under each artwork in the wall on mobile — the
+     "Claude Monet · 1877" line sat in an oversized label box. Scoped to the artist wall. */
+  .cv-a-wall .cv-card { margin-bottom: 6px; }
+  .cv-a-wall .cv-card .cv-label { padding: 6px 9px 7px; }
+  .cv-a-wall .cv-card .cv-artist { margin-top: 2px; }
+}
+
 /* ——— the painterly map (Phase 4a) ——— */
 .cv-map { max-width: 1200px; margin: 0 auto; padding: 20px 34px 60px; }
 .cv-map-wrap { position: relative; }
@@ -317,6 +348,8 @@ a { color: inherit; }
 .cv-map-zoom button:hover { border-color: var(--ink); color: var(--ink); background: #ede4d6; }
 .cv-map svg { width: 100%; background: #e9dfcd; border-radius: 12px; box-shadow: inset 0 0 60px rgba(120,90,50,.12); cursor: grab; touch-action: none; display: block; }
 .cv-map svg:active { cursor: grabbing; }
+/* mobile: reclaim the side padding so the map (and its now-fatter dots) get more room (Fuad 2026-07-25) */
+@media (max-width: 620px) { .cv-map { padding: 16px 12px 54px; } }
 .cv-pin { cursor: pointer; }
 .cv-pin:hover circle { stroke: var(--accent); }
 .cv-wishpin { cursor: pointer; }
