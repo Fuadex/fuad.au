@@ -383,7 +383,16 @@ function useOSDViewer(work, onOsdFail) {
   const viewerRef = useRef(null);
   const [err, setErr] = useState(false);
   const [ready, setReady] = useState(false);
-  const osdSrc = useMemo(() => resolveOSDSource(work), [work]);
+  // When a HIRES tile source dies (dead IIIF id, CORS, museum API down — the Great Wave's AIC
+  // iiif, found 2026-07-24), fall back to the plain canon image instead of stranding the view
+  // with the err strip. The viewer is rebuilt with cors:false (Commons FilePath redirects send
+  // no ACAO — the Murillo gotcha). One retry only; a failed fallback errs as before.
+  const [fallbackUrl, setFallbackUrl] = useState(null);
+  useEffect(() => { setFallbackUrl(null); setErr(false); setReady(false); }, [work]);
+  const osdSrc = useMemo(() => {
+    if (fallbackUrl) return { tileSource: { type: "image", url: fallbackUrl }, cors: false, label: work ? work.title.replace(/^TBC — /, "") : "" };
+    return resolveOSDSource(work);
+  }, [work, fallbackUrl]);
   useEffect(() => {
     let cancelled = false;
     if (!osdSrc) { setErr(true); return; }
@@ -402,7 +411,12 @@ function useOSDViewer(work, onOsdFail) {
           crossOriginPolicy: osdSrc.cors,
           ajaxWithCredentials: false,
         });
-        viewer.addHandler("open-failed", () => { if (!cancelled) setErr(true); });
+        viewer.addHandler("open-failed", () => {
+          if (cancelled) return;
+          const simple = work && (work.imgZoom || work.img);
+          if (!fallbackUrl && work && work.hires && simple) setFallbackUrl(simple);
+          else setErr(true);
+        });
         viewer.addHandler("open", () => { if (!cancelled) setReady(true); });
         viewerRef.current = viewer;
       } catch (e) { if (!cancelled) setErr(true); }
@@ -674,7 +688,7 @@ function StudyView({ id, go }) {
   // Scrolling back up into the lens sections clears the chip without touching the zoom.
   // Only (re)wired once the viewer is ready and sections exist.
   useEffect(() => {
-    if (!ready || !paneRef.current || !sections.length) return;
+    if (!paneRef.current || !sections.length) return;   // chip-sync runs even if the viewer never readies
     const byKey = {};
     for (const s of sections) if (s.anchor) byKey[s.key] = s.anchor;
     const tourIdx = {};
@@ -691,7 +705,7 @@ function StudyView({ id, go }) {
       if (!best) return;
       const key = best.target.getAttribute("data-skey");
       setActiveDetail(key in tourIdx ? tourIdx[key] : null);
-      if (autoRef.current && byKey[key]) flyTo(byKey[key], false);
+      if (autoRef.current && ready && byKey[key]) flyTo(byKey[key], false);
     }, { root: paneRef.current, threshold: [0, 0.6, 1] });
     for (const s of sections) {
       const el = paneRef.current.querySelector(`[data-skey="${s.key}"]`);
