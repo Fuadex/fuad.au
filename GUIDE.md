@@ -10,7 +10,7 @@ needs; apps never reach into each other.
 |---|---|---|
 | **Rotation** | `/rotation/` | 20 years of last.fm listening (~319k scrobbles), mined for derived narrative insight: obsessions, flameouts, taste geography, sound DNA, song readings, gigs. |
 | **Culture** | `/culture/` | A personal film / TV / games / books canon (~3,300 seen + 1,340 wishlist), with a Python enrichment workshop alongside. |
-| **Canvas** | `/canvas/` | A personal gallery of art seen in museums, built from memory reconstruction + Wikidata; ~313 works, ~52 museums, 45 recall decks. |
+| **Canvas** | `/canvas/` | A personal gallery of art seen in museums, built from memory reconstruction + photo detection + Wikidata; ~645 works, ~72 museums, recall decks, Study tours. |
 
 ---
 
@@ -108,6 +108,8 @@ dataset sanity" (`smoke.js`). Push to `main` is the test environment.
 | Doc | Read when |
 |---|---|
 | **canvas/PLAN.md** | Touching Canvas — full architecture, data model, phases, open questions |
+| **canvas/PIPELINE.md** | Refreshing Canvas data — enrichment scripts, deck folding, the photo-detection import chain, LLM content overlays |
+| **canvas/STUDY_SPEC.md** | Writing or QC-ing a Study tour (`art_inspect.js`) — format, arc structure, truth rules, the Opus-draft → Fable crop-QC pipeline |
 | **canvas/memory-seed.md** | The memory reconstruction log (raw recollections → resolved entities) |
 
 ### Archive (gitignored — local only)
