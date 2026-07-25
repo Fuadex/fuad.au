@@ -36,6 +36,7 @@ haiku → sonnet → opus.** Audit first; classify gaps:
 | Deluxe-edition extras | Out of scope — coverage is measured against the standard tracklist |
 | Instrumentals / interludes / cues | EXEMPT (reads require lyrics — see PIPELINE.md floor rules) |
 | No lyrics findable anywhere | Flagged lyric-less residue; the album read simply doesn't mention them |
+| Instrumental WITH a lyric source | ⚠ Verify the source — LRCLIB community entries can be MISATTRIBUTED (the-four-of-us-are-dying carried someone else's lyrics; all three tiers then faithfully described the wrong song and had to be purged). If a track is known-instrumental, distrust any lyric that appears for it |
 | Real gaps | FILL before writing the album read |
 
 Gap fills are authored by the tier's **namesake model** (Haiku/Sonnet/Opus subagents),
@@ -63,6 +64,9 @@ no quotation marks, no track-by-track inventory, no sequence narration. Special 
 - **Covers albums**: the meaning lives in the SELECTION and the recasting, not
   authorship — never attribute the songwriting to the performer (APC eMOTIVe is the
   model: the curation does the accusing).
+- **Live releases** (Fuad 2026-07-25): no read — they get a GIST-ONLY entry describing
+  what the release is (NIN Beside You In Time is the model); their songs keep their reads
+  on the studio records.
 - **Unplayed tracks** (Fuad 2026-07-25): albums may contain songs never scrobbled here
   (unplayed, or lost to last.fm limits). PERMITTED — the read is written from the played
   tracks' reads — but FLAGGED: holes in the trackNo sequence reveal them; note the gap
@@ -81,6 +85,15 @@ no quotation marks, no track-by-track inventory, no sequence narration. Special 
    IS its arc (concept albums — The Downward Spiral), the read absorbs it and no coda.
    Running rate so far: ~60% of albums earn one.
 4. Owner approves each batch inline before apply.
+
+## Rendering
+
+`PortraitCard` linkifies mentioned track titles inside album reads (gist, liner, arc):
+case-sensitive exact-title matches with non-letter boundaries, longest-first, so
+common-word titles (Only, Wish, Stone) only hit their capitalized mentions. Links are
+invisible at rest; hover = dotted underline + accent (`.pv-tracklink`); click routes to
+the track page. The `arc` coda renders italic. Album pages already gate on media-index,
+which supplies the title list.
 
 ## Apply
 
