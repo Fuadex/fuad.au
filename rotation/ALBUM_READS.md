@@ -6,7 +6,7 @@ Album-level reads live in `portraits.js` (`ROTATION_PORTRAITS`, album keys =
 `artistSlug~albumSlug` via `lib-slug.js` — non-Latin names hash, e.g. Midori's debut is
 `a-2yw9ix~a-1ue2pqe`). They REPLACED the portrait-pilot album liners (2026-07-25). Entry
 shape: `{ gist, liner, arc?, by }` — `gist` is the collapsed headline (description + the
-owner's listening stats), `liner` is the album read, `arc` is an optional one-sentence
+owner's listening SHAPE), `liner` is the album read, `arc` is an optional one-sentence
 Fable coda rendered as an *italic* line by `PortraitCard` (rotation-views2.jsx), `by` is
 `"Opus"` or `"Opus · Fable"` when a coda rides. Artist `portrait` entries are a separate,
 older pilot — untouched by this pipeline.
@@ -90,7 +90,13 @@ no quotation marks, no track-by-track inventory, no sequence narration. Special 
    record's ending — the coda judgment must look at instrumental positions too
    (Hesitation Marks' softened plea is followed by the bleak wordless Black Noise;
    the coda carries that, the read couldn't).
-4. Owner approves each batch inline before apply.
+4. **Gists are STATS-FREE** (Fuad 2026-07-26): never bake a raw play count into gist
+   prose — every page that renders a PortraitCard already shows live plays in its header,
+   and baked numbers rot as the library keeps scrobbling. The gist keeps listening-SHAPE
+   judgments only: relative claims ("far ahead of everything else", "the deepest-played of
+   their early records"), spans/discovery years, and unplayed-cut flags. Writing the gist
+   stays a Fable QC step after the Opus read. (87 legacy gists migrated 2026-07-26.)
+5. Owner approves each batch inline before apply.
 
 ## Rendering
 
@@ -100,6 +106,12 @@ common-word titles (Only, Wish, Stone) only hit their capitalized mentions. Link
 invisible at rest; hover = dotted underline + accent (`.pv-tracklink`); click routes to
 the track page. The `arc` coda renders italic. Album pages already gate on media-index,
 which supplies the title list.
+
+Artist portraits linkify too (2026-07-26): the artist's ALBUM titles route to album
+pages, and their track titles route to track pages where no album shares the name —
+albums win title ties, because artist reads anchor albums (a "Toxicity" mention links
+the record, not the title track). Applies to gist, portrait and `note`. If media-index
+isn't resident on an artist page the read simply renders unlinked.
 
 ## Artist level (approved 2026-07-26)
 

@@ -819,6 +819,8 @@ function WordsWeatherBars({ v, a, x }) {
 // links — no decoration at rest, dotted underline + accent on hover (the site's inline-link
 // grammar). Case-SENSITIVE exact-title matching with non-letter boundaries, longest title
 // first, so common-word titles (Only, Wish, Stone…) only match their capitalized mentions.
+// Generalized for artist portraits (Fuad 2026-07-26): items may carry route:"album" so an
+// artist read's anchor ALBUMS link to their album pages; same matcher, same quiet grammar.
 function linkifyTracks(text, tracks, go) {
   if (!text || !tracks || !tracks.length || !go) return text;
   const isWord = (c) => /[A-Za-z0-9]/.test(c || "");
@@ -831,7 +833,7 @@ function linkifyTracks(text, tracks, go) {
       const before = text[i - 1], after = text[i + tr.title.length];
       if (!isWord(before) && !isWord(after) &&
           !hits.some(h => i < h.end && i + tr.title.length > h.start)) {
-        hits.push({ start: i, end: i + tr.title.length, tid: tr.tid, label: tr.title });
+        hits.push({ start: i, end: i + tr.title.length, tid: tr.tid, route: tr.route || "track", label: tr.title });
       }
       from = i + tr.title.length;
     }
@@ -841,7 +843,7 @@ function linkifyTracks(text, tracks, go) {
   const out = []; let pos = 0;
   hits.forEach((h, i) => {
     if (h.start > pos) out.push(text.slice(pos, h.start));
-    out.push(<a key={"tl" + i} className="pv-tracklink" onClick={(e) => { e.stopPropagation(); go("track", h.tid); }}>{h.label}</a>);
+    out.push(<a key={"tl" + i} className="pv-tracklink" onClick={(e) => { e.stopPropagation(); go(h.route, h.tid); }}>{h.label}</a>);
     pos = h.end;
   });
   if (pos < text.length) out.push(text.slice(pos));
@@ -878,20 +880,41 @@ function PortraitCard({ id, alt, showWords = true, go }) {
   const words = useWordsLayer();
   const w = (showWords && words && words.albums && words.albums[id]) || null;
 
-  // album track list for read-linkification (albums only; media-index is already resident on
-  // album pages — AlbumView gates on it before rendering this card). Hook stays ABOVE the
-  // early return per React's rules.
+  // link items for read-linkification. Albums: the album's track list (media-index is already
+  // resident — AlbumView gates on it before rendering this card). Artists (Fuad 2026-07-26):
+  // the artist's ALBUM titles (route to album pages) plus their track titles where no album
+  // shares the name — artist reads anchor albums, so albums win title ties (title tracks:
+  // a "Toxicity" mention links the record, not the song). Hook stays ABOVE the early return
+  // per React's rules. On artist pages media-index may not be resident — items stay null and
+  // the read renders unlinked; same graceful degradation as before.
   const albumTracks = React.useMemo(() => {
-    if (!go || !id.includes("~") || !window.ROTATION_MEDIA || !window.ROTATION) return null;
+    if (!go || !window.ROTATION_MEDIA || !window.ROTATION) return null;
     const M = window.ROTATION_MEDIA, R = window.ROTATION;
-    const ai = M.albums.findIndex(a => R.slug(M.artists[a[1]]) + "~" + R.slug(a[0]) === id);
-    if (ai < 0) return null;
-    const artistSlug = id.slice(0, id.indexOf("~"));
+    if (id.includes("~")) {
+      const ai = M.albums.findIndex(a => R.slug(M.artists[a[1]]) + "~" + R.slug(a[0]) === id);
+      if (ai < 0) return null;
+      const artistSlug = id.slice(0, id.indexOf("~"));
+      const seen = new Set(); const out = [];
+      for (const t of M.tracks) {
+        if (t[3] !== ai || seen.has(t[0])) continue;
+        seen.add(t[0]);
+        out.push({ title: t[0], tid: artistSlug + "~" + R.slug(t[0]), route: "track" });
+      }
+      return out.sort((a, b) => b.title.length - a.title.length);
+    }
+    const rec = window.ROTATION.byId && window.ROTATION.byId[id];
+    const artIdx = rec ? M.artists.indexOf(rec.name) : -1;
+    if (artIdx < 0) return null;
     const seen = new Set(); const out = [];
+    for (const a of M.albums) {
+      if (a[1] !== artIdx || seen.has(a[0])) continue;
+      seen.add(a[0]);
+      out.push({ title: a[0], tid: id + "~" + R.slug(a[0]), route: "album" });
+    }
     for (const t of M.tracks) {
-      if (t[3] !== ai || seen.has(t[0])) continue;
+      if (t[1] !== artIdx || seen.has(t[0])) continue;
       seen.add(t[0]);
-      out.push({ title: t[0], tid: artistSlug + "~" + R.slug(t[0]) });
+      out.push({ title: t[0], tid: id + "~" + R.slug(t[0]), route: "track" });
     }
     return out.sort((a, b) => b.title.length - a.title.length);
   }, [id, go]);
@@ -967,7 +990,7 @@ function PortraitCard({ id, alt, showWords = true, go }) {
                   against the world, appended after the read — never a rewrite. Same italic coda
                   grammar as the album arc. */}
               {p.note && open && (
-                <p className="pv-full pv-arc" style={{ fontStyle: "italic", opacity: 0.85 }}>{p.note}</p>
+                <p className="pv-full pv-arc" style={{ fontStyle: "italic", opacity: 0.85 }}>{linkifyTracks(p.note, albumTracks, go)}</p>
               )}
             </div>
           )}

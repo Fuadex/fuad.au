@@ -525,6 +525,11 @@ composition · Explore 10/20/40 window · mini-page track/album links · `#calen
 setlist.fm account + gigs (M2) · Spotify extended-history request (M3) · `residences.json`
 (M4 location features) · responsiveness re-test verdicts.
 
+**PINNED — listening-shape layer (Fuad 2026-07-26):** surface WHEN the listening happened,
+not just how much — media-index `yearHist` already knows discovery-and-return stories
+(Meteora: 28 plays in 2010, 149 in 2023). Fuad wants this as its OWN section, designed
+separately — do NOT fold it into portrait gists; gists stay stats-free (ALBUM_READS.md).
+
 ---
 
 ## ① Audit findings
