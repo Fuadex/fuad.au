@@ -60,6 +60,15 @@ no quotation marks, no track-by-track inventory, no sequence narration. Special 
   together reveal — rather than forcing false unity (Soundgarden A-Sides is the model).
 - **Instrumental-majority records**: lead with the architecture honestly; treat the few
   vocal tracks as recurring flickers, not a thesis (deadmau5 ATGH is the model).
+- **Covers albums**: the meaning lives in the SELECTION and the recasting, not
+  authorship — never attribute the songwriting to the performer (APC eMOTIVe is the
+  model: the curation does the accusing).
+- **Unplayed tracks** (Fuad 2026-07-25): albums may contain songs never scrobbled here
+  (unplayed, or lost to last.fm limits). PERMITTED — the read is written from the played
+  tracks' reads — but FLAGGED: holes in the trackNo sequence reveal them; note the gap
+  lightly in the gist (PRO8L3M s/t is the model: "three album cuts never scrobbled
+  here"). The read itself must not claim totality it doesn't have. Rollout intent is
+  decent coverage of the MOST-played albums, not completeness of every album played.
 
 ## Fable QC
 
