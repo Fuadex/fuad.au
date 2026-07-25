@@ -95,6 +95,25 @@ invisible at rest; hover = dotted underline + accent (`.pv-tracklink`); click ro
 the track page. The `arc` coda renders italic. Album pages already gate on media-index,
 which supplies the title list.
 
+## Artist level (approved 2026-07-26)
+
+One level up again: ARTIST reads synthesize from the artist's ALBUM reads (release-ordered
+dossier with plays/years and any arc codas). Qualifying rule: an artist qualifies when
+every major album (by play threshold) carries a read. Brief: 3–5 sentences, 90–150 words;
+the obsession the records keep returning to and how it MOVES across the discography —
+era-drift is the subject at this level, but never chronology-walked; 2–3 anchor ALBUMS;
+album-read grounding, career knowledge frames-never-contradicts. Stored as the artist
+entry's `portrait` (substituting the old pilot portraits); the gist keeps the stats/sound
+duty; there is no artist arc coda (the discography arc IS the read).
+
+**Fable note tier**: after drafting, Fable audits the read's claims against its own
+knowledge of the world (quick web verification where unsure) and may append a `note` —
+rendered in the same italic coda grammar — adding context the album reads structurally
+could not surface (band mythology, biographical engines, the instrumentation half of a
+duo's method). A note never rewrites; if a read is factually wrong it goes back for a
+redraft instead. First three: Tool (interpretation boobytraps), Serj Tankian (Armenia as
+source code), Midori (the deadpan jazz quartet under the shrieking).
+
 ## Apply
 
 Batch apply scripts live at the GitHub root `../.sptmp/album-batch/` (untracked
