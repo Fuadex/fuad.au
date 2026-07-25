@@ -42,7 +42,9 @@ haiku → sonnet → opus.** Audit first; classify gaps:
 Gap fills are authored by the tier's **namesake model** (Haiku/Sonnet/Opus subagents),
 each tier written INDEPENDENTLY (no sight of other tiers), sonnet under the original
 register rules, opus under the non-quoting rules + the mechanical bigram gate (≤1 shared
-content-word pair with the lyric). Lyrics come from the local sets first, then LRCLIB by
+content-word pair with the lyric). **The gate polices OPUS ONLY** (Fuad 2026-07-26):
+sonnet and haiku are deliberately left on their original rules — do not rewrite a sonnet
+for lyric echo; that is its register. Lyrics come from the local sets first, then LRCLIB by
 REAL artist/track names (works for Japanese; note LRCLIB sometimes serves English
 *translations* — the gate applies to whatever text grounded the read).
 
@@ -83,7 +85,11 @@ no quotation marks, no track-by-track inventory, no sequence narration. Special 
    (wrong timescale, wrong ending, wrong hierarchy of threads)? If yes — one italic
    sentence appended as `arc`, written in the read's register. If the record's subject
    IS its arc (concept albums — The Downward Spiral), the read absorbs it and no coda.
-   Running rate so far: ~60% of albums earn one.
+   Running rate so far: ~60% of albums earn one. **⚠ Instrumental closers count**
+   (Fuad 2026-07-26): exempt tracks vanish from the read dossier but still shape the
+   record's ending — the coda judgment must look at instrumental positions too
+   (Hesitation Marks' softened plea is followed by the bleak wordless Black Noise;
+   the coda carries that, the read couldn't).
 4. Owner approves each batch inline before apply.
 
 ## Rendering
@@ -100,9 +106,13 @@ which supplies the title list.
 One level up again: ARTIST reads synthesize from the artist's ALBUM reads (release-ordered
 dossier with plays/years and any arc codas). Qualifying rule: an artist qualifies when
 every major album (by play threshold) carries a read. Brief: 3–5 sentences, 90–150 words;
-the obsession the records keep returning to and how it MOVES across the discography —
-era-drift is the subject at this level, but never chronology-walked; 2–3 anchor ALBUMS;
-album-read grounding, career knowledge frames-never-contradicts. Stored as the artist
+the obsession OR the two-three threads the records keep returning to and how they MOVE
+across the discography — era-drift is the subject at this level, but never
+chronology-walked; 2–3 anchor ALBUMS; album-read grounding, career knowledge
+frames-never-contradicts. **Briefs stay CLEAN** (Fuad 2026-07-26): factual context only
+(formation, disbandment, era facts) — never thematic pointers ("the X structure is in
+the reads") and never a demand for ONE thesis; both were tried and both steered the
+prose (the emphasis-becomes-subject law, third confirmation). Stored as the artist
 entry's `portrait` (substituting the old pilot portraits); the gist keeps the stats/sound
 duty; there is no artist arc coda (the discography arc IS the read).
 
