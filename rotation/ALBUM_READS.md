@@ -142,3 +142,8 @@ folder/classifier), tier-fill QC, and per-batch apply scripts that rewrite
 `llm-about.js` under its ONE-ENTRY-PER-LINE contract (merge existing lines in place,
 append new keys before the closing brace), then verify the full entry-count parse.
 Cache-busting is automatic (CI content-hash) — commit and push is enough.
+
+**Variant album pages**: when a read was written on plays merged across library
+variants (edition spellings, promo pressings, mojibake titles), the finished entry
+is MIRRORED under every variant's album key so each album page shows it (e.g. both
+Random Album Title keys); the gist says "across editions" where the count is merged.
