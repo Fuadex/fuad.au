@@ -907,6 +907,11 @@ function PortraitCard({ id, alt, showWords = true }) {
               {full && open && full.split(/\n+/).filter(Boolean).map((para, i) => (
                 <p key={i} className="pv-full">{para}</p>
               ))}
+              {/* Fable-QC arc coda (album reads, Fuad 2026-07-25): where the tracklist order
+                  reframes the read, a single italic clause — a labeled lens, never a rewrite. */}
+              {p.arc && open && (
+                <p className="pv-full pv-arc" style={{ fontStyle: "italic", opacity: 0.85 }}>{p.arc}</p>
+              )}
             </div>
           )}
           {w && (
