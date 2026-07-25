@@ -116,6 +116,15 @@ prose (the emphasis-becomes-subject law, third confirmation). Stored as the arti
 entry's `portrait` (substituting the old pilot portraits); the gist keeps the stats/sound
 duty; there is no artist arc coda (the discography arc IS the read).
 
+**Dossier completeness** (Fuad 2026-07-26): the artist dossier includes EVERY significant
+record — full read where coverage allows, a gist-only DESCRIPTOR where not (soundtracks,
+live documents, wordless works, sub-threshold records get their one-line gist first).
+An artist read can only echo what its dossier contains (Massive Attack's film score was
+invisible until its descriptor entered). **Emphasis may follow the listening**: album
+plays ride in the dossier, and where the listening concentrates, the read may weight
+accordingly — this is a personal library, not an encyclopedia. Both rules are generic —
+they apply to every artist identically; per-artist steering stays banned.
+
 **Fable note tier**: after drafting, Fable audits the read's claims against its own
 knowledge of the world (quick web verification where unsure) and may append a `note` —
 rendered in the same italic coda grammar — adding context the album reads structurally
