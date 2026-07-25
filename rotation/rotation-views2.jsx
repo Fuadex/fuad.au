@@ -264,7 +264,7 @@ function MiniArtistView({ a, go }) {
         <div className="mav-dossier-head">{header}</div>
         <div className="mav-dossier">
           {/* portrait/gist first, if this artist has a portrait entry */}
-          <PortraitCard id={a.id} />
+          <PortraitCard id={a.id} go={go} />
           {sparkSection}
           {dnaSection}
           {/* the rest of the long-tail detail (bio, top tracks/albums, similar) as the closing sections */}
@@ -815,7 +815,40 @@ function WordsWeatherBars({ v, a, x }) {
 // links preserved). `words` (album-only) is the "In its own words" block, now lifted OUT to the
 // parent, so it is passed as `false`/absent here.
 // There is deliberately NO crossover slot — artists carry portrait, albums carry liner.
-function PortraitCard({ id, alt, showWords = true }) {
+// Linkify track titles inside an album read (Fuad 2026-07-25): mentioned songs become quiet
+// links — no decoration at rest, dotted underline + accent on hover (the site's inline-link
+// grammar). Case-SENSITIVE exact-title matching with non-letter boundaries, longest title
+// first, so common-word titles (Only, Wish, Stone…) only match their capitalized mentions.
+function linkifyTracks(text, tracks, go) {
+  if (!text || !tracks || !tracks.length || !go) return text;
+  const isWord = (c) => /[A-Za-z0-9]/.test(c || "");
+  const hits = [];
+  for (const tr of tracks) {
+    let from = 0;
+    while (true) {
+      const i = text.indexOf(tr.title, from);
+      if (i < 0) break;
+      const before = text[i - 1], after = text[i + tr.title.length];
+      if (!isWord(before) && !isWord(after) &&
+          !hits.some(h => i < h.end && i + tr.title.length > h.start)) {
+        hits.push({ start: i, end: i + tr.title.length, tid: tr.tid, label: tr.title });
+      }
+      from = i + tr.title.length;
+    }
+  }
+  if (!hits.length) return text;
+  hits.sort((a, b) => a.start - b.start);
+  const out = []; let pos = 0;
+  hits.forEach((h, i) => {
+    if (h.start > pos) out.push(text.slice(pos, h.start));
+    out.push(<a key={"tl" + i} className="pv-tracklink" onClick={(e) => { e.stopPropagation(); go("track", h.tid); }}>{h.label}</a>);
+    pos = h.end;
+  });
+  if (pos < text.length) out.push(text.slice(pos));
+  return out;
+}
+
+function PortraitCard({ id, alt, showWords = true, go }) {
   const [pReady, setPReady] = React.useState(!!window.ROTATION_PORTRAITS);
   const [fReady, setFReady] = React.useState(!!window.ROTATION_PORTRAIT_FACTS);
   React.useEffect(() => {
@@ -844,6 +877,24 @@ function PortraitCard({ id, alt, showWords = true }) {
   // showWords stays true only where the old inline behaviour is still wanted (none currently).
   const words = useWordsLayer();
   const w = (showWords && words && words.albums && words.albums[id]) || null;
+
+  // album track list for read-linkification (albums only; media-index is already resident on
+  // album pages — AlbumView gates on it before rendering this card). Hook stays ABOVE the
+  // early return per React's rules.
+  const albumTracks = React.useMemo(() => {
+    if (!go || !id.includes("~") || !window.ROTATION_MEDIA || !window.ROTATION) return null;
+    const M = window.ROTATION_MEDIA, R = window.ROTATION;
+    const ai = M.albums.findIndex(a => R.slug(M.artists[a[1]]) + "~" + R.slug(a[0]) === id);
+    if (ai < 0) return null;
+    const artistSlug = id.slice(0, id.indexOf("~"));
+    const seen = new Set(); const out = [];
+    for (const t of M.tracks) {
+      if (t[3] !== ai || seen.has(t[0])) continue;
+      seen.add(t[0]);
+      out.push({ title: t[0], tid: artistSlug + "~" + R.slug(t[0]) });
+    }
+    return out.sort((a, b) => b.title.length - a.title.length);
+  }, [id, go]);
 
   if (!pReady) return null;
   const p = window.ROTATION_PORTRAITS && window.ROTATION_PORTRAITS[id];
@@ -875,7 +926,7 @@ function PortraitCard({ id, alt, showWords = true }) {
           </div>
           {/* gist renders as plain serif lead text — quote-mark/blockquote styling is intentionally
               NOT applied (the class is reserved for a future tier). */}
-          <p className="pv-gist">{p.gist}</p>
+          <p className="pv-gist">{linkifyTracks(p.gist, albumTracks, go)}</p>
           {/* DENSITY (Fuad 2026-07-18): one compact control row — the fact chips, then the full-read
               toggle, and the via-source flick chip pinned RIGHT — instead of a vertical fact block +
               full-read toggle + a separate flick row. Chips keep click-to-expand; the derivation
@@ -905,12 +956,12 @@ function PortraitCard({ id, alt, showWords = true }) {
                 <div className="pv-deriv">{facts[chip].x}</div>
               )}
               {full && open && full.split(/\n+/).filter(Boolean).map((para, i) => (
-                <p key={i} className="pv-full">{para}</p>
+                <p key={i} className="pv-full">{linkifyTracks(para, albumTracks, go)}</p>
               ))}
               {/* Fable-QC arc coda (album reads, Fuad 2026-07-25): where the tracklist order
                   reframes the read, a single italic clause — a labeled lens, never a rewrite. */}
               {p.arc && open && (
-                <p className="pv-full pv-arc" style={{ fontStyle: "italic", opacity: 0.85 }}>{p.arc}</p>
+                <p className="pv-full pv-arc" style={{ fontStyle: "italic", opacity: 0.85 }}>{linkifyTracks(p.arc, albumTracks, go)}</p>
               )}
             </div>
           )}
@@ -944,6 +995,10 @@ function PortraitCard({ id, alt, showWords = true }) {
         /* .pv-gist is plain serif lead text. Quote-mark / blockquote styling is RESERVED for a
            future tier and is deliberately not applied to the gist today. */
         .pv-gist { font-family: var(--serif); font-size: 15px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
+        /* mentioned-track links in album reads (Fuad 2026-07-25): invisible at rest, dotted
+           underline + accent on hover — clickable without decorating the prose. */
+        .pv-tracklink { cursor: pointer; border-bottom: 1px dotted transparent; transition: color .15s ease, border-color .15s ease; }
+        .pv-tracklink:hover { color: var(--accent); border-bottom-color: var(--accent-dim); }
         /* flick chip — bottom-right, subtle; cycles Portrait to the old source and back. */
         .pv-flickrow { display: flex; justify-content: flex-end; margin-top: 14px; }
         .pv-flick { background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px;
@@ -1274,7 +1329,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           read; a flick chip at its foot cycles to the OLD last.fm wiki/bio (attribution link intact)
           and back. When no entry exists, PortraitCard renders this same bio block verbatim as the
           fallback — so artists without a portrait keep exactly the old "About" card. */}
-      <PortraitCard id={id} alt={(a.bio && a.bio.length > 40) ? {
+      <PortraitCard id={id} go={go} alt={(a.bio && a.bio.length > 40) ? {
         label: "last.fm",
         node: (
           <>
@@ -2305,7 +2360,7 @@ function AlbumView({ id, go }) {
           and back. When no entry exists, PortraitCard renders this same Wikipedia block verbatim as
           the fallback. Words ("In its own words") are lifted OUT to their own block below "The record,
           as released", so showWords is false here. */}
-      <PortraitCard id={id} showWords={false} alt={albumAbout ? {
+      <PortraitCard id={id} go={go} showWords={false} alt={albumAbout ? {
         label: "Wikipedia",
         node: (
           <div className="tv-about" style={{ maxWidth: "none", margin: 0 }}>
