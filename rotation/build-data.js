@@ -776,17 +776,39 @@ const _hostAlbumsBy = new Map();
   }
 }
 // For a kind=single titled `single`, find the most-played album/ep of the same artist whose
-// tracklist contains a track named exactly like the single. Returns that album's canonical slug,
-// or "" when none / ambiguous-but-resolvable (we pick the most-played, so never truly ambiguous).
-function singleHostSlug(artist, single) {
+// tracklist contains a track named like the single. Exact title match first; normalized
+// match (casefold, feat/with parentheticals, edit-suffixes) as the fallback — the strict
+// rule alone missed ~145 real hosts (CALI SUN vs Cali Sun, Afterimage (feat. Ian Kenny)).
+// Returns the host row or null; `excludeTitle` skips the single release itself.
+const _normCache = new Map();
+function _normTitle(s) {
+  let v = _normCache.get(s);
+  if (v == null) {
+    v = s.toLowerCase()
+      .replace(/\s*[\(\[][^\)\]]*(feat\.?|ft\.?|with |w\/)[^\)\]]*[\)\]]\s*/gi, " ")
+      .replace(/\s*-\s*(single|radio edit|album version|remaster(ed)?( \d{4})?)$/i, "")
+      .replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+    _normCache.set(s, v);
+  }
+  return v;
+}
+function singleHost(artist, song, excludeTitle) {
   const hosts = _hostAlbumsBy.get(artist);
-  if (!hosts) return "";
+  if (!hosts) return null;
+  const ns = _normTitle(song);
   let best = null;
   for (const h of hosts) {
-    if (h.title === single) continue;   // don't point a single at an LP of the same name
+    if (h.title === excludeTitle) continue;   // don't point a single at an LP of the same name
     const tracks = albumTracks.get(artist + "\x00" + h.title);
-    if (tracks && tracks.has(single) && (!best || h.plays > best.plays)) best = h;
+    if (!tracks) continue;
+    let hit = tracks.has(song);
+    if (!hit) for (const t of tracks) if (_normTitle(t) === ns) { hit = true; break; }
+    if (hit && (!best || h.plays > best.plays)) best = h;
   }
+  return best;
+}
+function singleHostSlug(artist, single) {
+  const best = singleHost(artist, single, single);
   return best ? slug(best.title) : "";
 }
 
@@ -2272,7 +2294,18 @@ const mediaTracks = [...trackPlays.entries()].sort((a, b) => b[1] - a[1]).map(([
   const ix = key.indexOf("\x00"), artist = key.slice(0, ix), title = key.slice(ix + 1);
   if (!title) return null;
   let albumIdx = -1; const m = trackAlbumCount.get(key);
-  if (m) { let best = null, bv = 0; for (const [ak, c] of m) if (c > bv) { bv = c; best = ak; } if (best != null && albumKeyIdx.has(best)) albumIdx = albumKeyIdx.get(best); }
+  if (m) {
+    let best = null, bv = 0; for (const [ak, c] of m) if (c > bv) { bv = c; best = ak; }
+    // Singles re-home (Fuad 2026-07-26): when the most-scrobbled key is a kind=single
+    // release but a host LP/EP carries the same song, the track's home is the host —
+    // LP > EP > single, "it's essentially where the song belongs". The single release
+    // keeps its own album row and scrobbles; only this pointer moves (~690 tracks).
+    if (best != null && albumKind(artist, best) === "single") {
+      const h = singleHost(artist, title, best);
+      if (h && albumKeyIdx.has(artist + "\x00" + h.title)) best = artist + "\x00" + h.title;
+    }
+    if (best != null && albumKeyIdx.has(best)) albumIdx = albumKeyIdx.get(best);
+  }
   const td = trackData(artist, title);
   const hasFeat = td && td.length >= 10;
   if (hasFeat && albumIdx >= 0) {   // accumulate album DNA: [energy, valence, dance, acoustic, instr, tempo]
