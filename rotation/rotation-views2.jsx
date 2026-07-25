@@ -963,6 +963,12 @@ function PortraitCard({ id, alt, showWords = true, go }) {
               {p.arc && open && (
                 <p className="pv-full pv-arc" style={{ fontStyle: "italic", opacity: 0.85 }}>{linkifyTracks(p.arc, albumTracks, go)}</p>
               )}
+              {/* Fable note (artist reads, Fuad 2026-07-26): knowledge-grounded context verified
+                  against the world, appended after the read — never a rewrite. Same italic coda
+                  grammar as the album arc. */}
+              {p.note && open && (
+                <p className="pv-full pv-arc" style={{ fontStyle: "italic", opacity: 0.85 }}>{p.note}</p>
+              )}
             </div>
           )}
           {w && (
