@@ -88,6 +88,7 @@ dataset sanity" (`smoke.js`). Push to `main` is the test environment.
 | **rotation/ARCHITECTURE.md** | Touching any Rotation code — the full technical inventory |
 | **rotation/ROADMAP.md** | Planning Rotation features — build queue, API catalogue, module plan |
 | **rotation/PIPELINE.md** | Running a reads/blurb wave (llm-about, canvas art reads, etc.) |
+| **rotation/ALBUM_READS.md** | Writing album "What's it about?" reads — coverage rule, gap classes, Opus-read + Fable-coda design |
 | **rotation/LIMITATIONS.md** | Understanding known approximations and deferred fixes |
 | **rotation/SPOTIFY.md** | Working with the personal Spotify export integration |
 | **rotation/CSV-OVERRIDES.md** | Manual data corrections (local-only, gitignored) |
