@@ -48,6 +48,21 @@ for lyric echo; that is its register. Lyrics come from the local sets first, the
 REAL artist/track names (works for Japanese; note LRCLIB sometimes serves English
 *translations* — the gate applies to whatever text grounded the read).
 
+**Song-read budgets (Fuad 2026-07-27):**
+- Length is a difficulty-scaled budget, not a fixed cap: **1–3 sentences for most songs,
+  up to 5 where the song's structure earns it** (multi-part builds, POV shifts, dense
+  allusion). Length must buy new content, never rephrasing.
+- Opus's one-borrowed-image rule keeps its default, with an **image-system escape hatch**:
+  when a song's meaning lives in the relation BETWEEN image families, the read may map
+  the system — name its two-three image families in its own words. The bigram gate stays
+  the hard constraint either way.
+- **Resists-reading songs** (form-is-the-difficulty: cut-up, dada, deliberate semantic
+  void) are NOT a register and get no special brief — Fable fishes them out at QC. The
+  interesting artifact is the pair: the opus read stands, and Fable appends a counter
+  (stored as the track's `fable` tier) saying the meaning-hunt is the trap — the Tool
+  boobytrap note is the model. Rare by design; confabulated meaning is the one failure
+  the pyramid cannot tolerate.
+
 ## The write
 
 Dossier per album: tracks deduped by normalized title (keep highest-play variant), sorted
@@ -59,6 +74,9 @@ Brief (Opus subagent): 2–4 sentences, 60–110 words, glanceable; the throughl
 two-three threads the track reads keep circling; name 2–3 anchor tracks; ground every
 claim in the supplied reads (own knowledge frames, never contradicts); no lyric quoting,
 no quotation marks, no track-by-track inventory, no sequence narration. Special cases:
+- **Collaborative releases** (Fuad 2026-07-27): a two-artist record is read as a MEETING
+  of voices, never a solo statement (Haru Nemuri × Frost Children's Soul Kiss is the
+  model). The library may credit it to one artist; the read must not.
 - **Grab-bags** (compilations): say what KIND of grab-bag — what the tracks taken
   together reveal — rather than forcing false unity (Soundgarden A-Sides is the model).
 - **Instrumental-majority records**: lead with the architecture honestly; treat the few
@@ -161,6 +179,12 @@ folder/classifier), tier-fill QC, and per-batch apply scripts that rewrite
 `llm-about.js` under its ONE-ENTRY-PER-LINE contract (merge existing lines in place,
 append new keys before the closing brace), then verify the full entry-count parse.
 Cache-busting is automatic (CI content-hash) — commit and push is enough.
+
+**Future depth pass (Fuad 2026-07-27, pinned):** the album/artist reads are solid, but
+some early entries may be leaving insight on the table — SOAD, Tool and NIN felt like
+they were hitting limits. Revisit selectively later to see how much more can be
+extracted; also run limited tests of the new song budgets on the hardest already-covered
+songs. Not now — pinned.
 
 **Variant album pages**: when a read was written on plays merged across library
 variants (edition spellings, promo pressings, mojibake titles), the finished entry
