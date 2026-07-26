@@ -47,7 +47,7 @@ const STOPWORDS = new Set((
 
 // GIST holds only what the default track-page read needs; DEEP holds the interpretive reads.
 const GIST_FIELDS = ["src", "haiku", "web"];
-const DEEP_FIELDS = ["sonnet", "opus", "fable", "fableDeep", "opusDeep"];
+const DEEP_FIELDS = ["sonnet", "opus", "fable", "fableDeep", "opusDeep", "fv"];   // fv: fable-tier methodology version (2 = Opus-authored + Fable-QC'd, dual credit in UI)
 
 function loadSource() {
   if (!fs.existsSync(SRC)) {

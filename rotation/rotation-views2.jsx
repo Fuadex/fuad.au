@@ -2733,7 +2733,8 @@ function BlurbSwitcher({ id, about }) {
           ? <span className="tv-switch-brand" data-m={deepBy}>via {deepBy === "fable" ? "Fable" : "Opus"} · interpretation</span>
           : cur.m === "genius" && cur.link
             ? <a className="tv-switch-brand" data-m="genius" href={cur.link} target="_blank" rel="noopener noreferrer">via Genius ↗</a>
-            : <span className="tv-switch-brand" data-m={cur.m}>via {cur.label}</span>}
+            /* v2-badged fable reads are Opus-authored + Fable-QC'd — dual credit (Fuad 2026-07-27) */
+            : <span className="tv-switch-brand" data-m={cur.m}>via {cur.m === "fable" && llm && llm.fv === 2 ? "Opus · Fable" : cur.label}</span>}
       </div>
       {showDeep
         ? <div className="tv-switch-note r-mono">a closer reading of the lyric — how it works, not just what it says</div>
