@@ -352,8 +352,11 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
   const resultArtists = React.useMemo(() => {
     if (periodData) return periodData.arts;
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
+    // UNCAPPED (Fuad 2026-07-26): the old .slice(0, 25) both blocked the 50-row selector and
+    // made the results-card "plays" stat sum only the top 25 (81,838 mystery). The render
+    // paths slice to `limit`; the reduce over the full array is the honest slice total.
     return filteredArtists.map(a => ({ a, p: yr != null ? (a.yp ? (a.yp[yr] || 0) : 0) : a.plays }))
-      .filter(e => e.p > 0).sort((x, y) => y.p - x.p).slice(0, 25);
+      .filter(e => e.p > 0).sort((x, y) => y.p - x.p);
   }, [filteredArtists, yearIdx, periodData]);
   // albums/songs aggregated from each filtered artist's own top lists (kept records + lazy detail) —
   // so the results work without picking a place. all-time (per-artist lists aren't year-split).

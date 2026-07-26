@@ -33,7 +33,7 @@ function mapWeights(R, year) {
   return R.SUBS.map((s, i) => ({ ...s, w: w[i] }));
 }
 
-function exploreRank(R, kind, f) {
+function exploreRank(R, kind, f, limit = 40) {
   const { year, fam, subIdx, cells } = f;
   const hasCells = cells && cells.size > 0;
   const inFam = (s) => fam == null || s.some(si => R.SUBS[si].fam === fam); // inclusive: any sub in family
@@ -60,7 +60,7 @@ function exploreRank(R, kind, f) {
         sub: (R.SUBS[a.s[0]] || {}).name || "" });
     }
     const _seen = new Set();   // distinct artists can share a slug id (✝✝✝/Crosses) — keep one, avoids key collisions
-    return arr.sort((x, y) => (y.value - x.value) * (snd ? dir : 1)).filter(x => _seen.has(x.id) ? false : _seen.add(x.id)).slice(0, 40);
+    return arr.sort((x, y) => (y.value - x.value) * (snd ? dir : 1)).filter(x => _seen.has(x.id) ? false : _seen.add(x.id)).slice(0, limit);
   }
   let src;
   if (year == null) {
@@ -73,7 +73,7 @@ function exploreRank(R, kind, f) {
   if (subIdx >= 0) src = src.filter(it => { const e = R.expById[it.aid]; return e && e.s.indexOf(subIdx) >= 0; });
   else if (fam != null) src = src.filter(it => { const e = R.expById[it.aid]; return e && e.s.some(si => R.SUBS[si].fam === fam); });
   if (hasCells) src = src.filter(it => tsPlays(R, it.aid, cells) > 0);
-  return src.map(it => ({ ...it, kept: !!(R.byId[it.aid] || (R.expById && R.expById[it.aid])) })).sort((a, b) => b.value - a.value).slice(0, 40);
+  return src.map(it => ({ ...it, kept: !!(R.byId[it.aid] || (R.expById && R.expById[it.aid])) })).sort((a, b) => b.value - a.value).slice(0, limit);
 }
 
 // ── mood lens (the former Mood page, folded in as a filter) ──
@@ -1295,7 +1295,9 @@ function ExploreView({ t, go, setPop, seed }) {
   // the attributes-lens selection now filters INSIDE the rank functions (full universe,
   // pre-slice) — the old post-filter ran on the top-40 and starved the list (Fuad 2026-07-14)
   const items = (kind !== "artists" && mediaItems) ? mediaItems.items
-    : exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null });
+    // artists get the same visN+40 lookahead as mediaRank, so "load more" keeps expanding
+    // past 40 instead of hitting the old hard cap (Fuad 2026-07-26)
+    : exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
   // more rows to reveal? true whenever the ranked pool has more than we're currently showing —
   // works for artists (full list) AND albums/tracks (media pool), so load-more applies to all three.
   const more = items.length > visN;
