@@ -66,6 +66,13 @@ no quotation marks, no track-by-track inventory, no sequence narration. Special 
 - **Covers albums**: the meaning lives in the SELECTION and the recasting, not
   authorship — never attribute the songwriting to the performer (APC eMOTIVe is the
   model: the curation does the accusing).
+- **Single releases** (Fuad 2026-07-26): a played single can carry a full release read —
+  coverage is trivially complete — but the read must work at RELEASE scale (what the
+  single is as a statement, 40-80 words) and never re-summarize the track read or claim
+  a wider catalog (Showing Teeth's Labyrinth is the model). Sub-threshold singles get
+  gist-only entries. Artist reads over singles-only catalogs run SHORT (50-100 words)
+  and say the scale plainly — a beginning is not an arc; the health script will flag
+  the under-length, which is correct behaviour, not a fault.
 - **Live releases** (Fuad 2026-07-25): no read — they get a GIST-ONLY entry describing
   what the release is (NIN Beside You In Time is the model); their songs keep their reads
   on the studio records.
