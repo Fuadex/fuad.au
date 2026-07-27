@@ -2729,6 +2729,11 @@ function BlurbSwitcher({ id, about }) {
       </div>
       <div className="tv-switch-body">
         <span className="tv-switch-txt">{showDeep ? (deepText || "…") : (curLoading ? "…" : cur.text)}</span>
+        {/* Fable addition (Fuad 2026-07-28): when QC sees a verified layer the read couldn't
+            surface, it rides as `fnote` — an italic line under the Fable read, never an edit. */}
+        {!showDeep && cur.m === "fable" && llm && llm.fnote && (
+          <span className="tv-switch-txt" style={{ display: "block", marginTop: 7, fontStyle: "italic", opacity: 0.85 }}>{llm.fnote}</span>
+        )}
         {showDeep
           ? <span className="tv-switch-brand" data-m={deepBy}>via {deepBy === "fable" ? "Fable" : "Opus"} · interpretation</span>
           : cur.m === "genius" && cur.link
