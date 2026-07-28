@@ -935,12 +935,36 @@ function PortraitCard({ id, alt, showWords = true, go }) {
   // the flick chip only shows when there IS an old source to cycle to
   const hasAlt = !!(alt && alt.node);
   const showAlt = face === "alt" && hasAlt;
+  // ALTERNATE FABLE READ (Fuad 2026-07-28): an album may carry a second liner (liner2/arc2)
+  // synthesized from the songs' Opus·Fable flagship reads — a flickable face, never a
+  // replacement. Cycle: portrait → fable2 → old source → portrait (absent faces skipped).
+  const hasFable2 = !!p.liner2;
+  const showFable2 = face === "fable2" && hasFable2;
+  const nextFace = (f) => f === "portrait" ? (hasFable2 ? "fable2" : (hasAlt ? "alt" : "portrait"))
+    : f === "fable2" ? (hasAlt ? "alt" : "portrait") : "portrait";
+  const flickLabel = face === "portrait" && hasFable2 ? "via Fable ⇄" : hasAlt ? "via " + alt.label + " ⇄" : "via Opus ⇄";
 
   return (
     <div className="r-card pv-card" style={{ padding: "18px 22px", marginBottom: "var(--gap)" }}>
       {showAlt ? (
         // OLD SOURCE face — last.fm wiki (artists) / Wikipedia (albums), verbatim, attribution intact
         <div className="pv-altface">{alt.node}</div>
+      ) : showFable2 ? (
+        // ALTERNATE READ face — the Fable-corpus synthesis, always expanded, footnoted honestly
+        <div className="pv-fable2face">
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 10, display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+            <span className="lbl"><b>Portrait</b></span>
+            <span className="r-mono pv-by">via Fable</span>
+          </div>
+          {p.liner2.split(/\n+/).filter(Boolean).map((para, i) => (
+            <p key={i} className="pv-full">{linkifyTracks(para, albumTracks, go)}</p>
+          ))}
+          {p.arc2 && (
+            <p className="pv-full pv-arc" style={{ fontStyle: "italic", opacity: 0.85 }}>{linkifyTracks(p.arc2, albumTracks, go)}</p>
+          )}
+          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".06em", marginTop: 10 }}>
+            an alternative album read, synthesized from the songs' Opus · Fable reads</div>
+        </div>
       ) : (
         <>
           <div className="r-card-h" style={{ padding: 0, marginBottom: 10, display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
@@ -968,10 +992,10 @@ function PortraitCard({ id, alt, showWords = true, go }) {
                     {open ? "less ▴" : "the full read ▾"}
                   </button>
                 )}
-                {hasAlt && (
-                  <button className="pv-flick pv-flick-inrow r-mono" onClick={() => setFace(f => f === "alt" ? "portrait" : "alt")}
-                    title={"see the " + alt.label + " source"}>
-                    {"via " + alt.label + " ⇄"}
+                {(hasAlt || hasFable2) && (
+                  <button className="pv-flick pv-flick-inrow r-mono" onClick={() => setFace(nextFace)}
+                    title={hasFable2 ? "see the alternate Fable read" : "see the " + alt.label + " source"}>
+                    {flickLabel}
                   </button>
                 )}
               </div>
@@ -1010,11 +1034,11 @@ function PortraitCard({ id, alt, showWords = true, go }) {
       {/* FLICK CHIP — bottom-right; cycles the old source back to Portrait. On the PORTRAIT face the
           flick now lives inline in the compact control row above (Fuad 2026-07-18), so this bottom
           row only renders on the OLD-SOURCE face, to flip back. */}
-      {hasAlt && showAlt && (
+      {(showAlt || showFable2) && (
         <div className="pv-flickrow">
-          <button className="pv-flick r-mono" onClick={() => setFace(f => f === "alt" ? "portrait" : "alt")}
-            title={"back to the Portrait read"}>
-            {"via Portrait ⇄"}
+          <button className="pv-flick r-mono" onClick={() => setFace(nextFace)}
+            title={showFable2 && hasAlt ? "see the " + alt.label + " source" : "back to the Portrait read"}>
+            {showFable2 && hasAlt ? "via " + alt.label + " ⇄" : "via Portrait ⇄"}
           </button>
         </div>
       )}
