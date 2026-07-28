@@ -19,6 +19,10 @@
 // museum/reference sources; per-entry by:"Opus 5"): The Kiss · La Grenouillère · Peasants'
 // Houses Éragny · Mme Arthur Fontaine · Notre-Dame-de-la-Garde · The Olive Trees · The
 // Manneporte · Coastal Scene · By the Seashore · Walk near Argenteuil. 10 works.
+// Wave 2026-07-29 c (Opus 5 — drafted from the image, crop-QC'd, web-fact-verified; per-
+// entry by:"Opus 5"; clears the floored backlog): Pont de l'Europe · 4 late Marmottan water
+// canvases (Nymphéas, Weeping Willow, Agapanthes, 2 willow-reflections) · Tuileries study ·
+// Renoir In the Meadow · Turner Venetian Scene · Díaz Flower Piece. 10 works.
 window.CANVAS_INSPECT = {
  "strindberg-underlandet": {
   "see": "A wall of green-black paint — troweled on, not brushed — parts like heavy curtains around an opening of pale light. The light isn't sky exactly: it's a soft white-blue radiance with something golden breathing at its lower edge, as if you were looking out of a cave, or a forest, or a state of mind, at a brightness you can't name. Along the bottom, small pink and white flowers catch light on the dark ground like sparks that fell from the opening. Stand close and every centimetre is knife-work: paint dragged, crushed, scraped — the surface is geology.",
@@ -1958,6 +1962,448 @@ window.CANVAS_INSPECT = {
     "w": 1,
     "h": 0.42,
     "body": "Step back and give the top half its due — it takes fully half the canvas. The sky is worked in wide, wet drags of blue-grey and white, cloud and clear pushed around each other so the whole thing feels mid-change, a gust caught. This is weather, not backdrop, and it governs everything below: the same broken light that flecks the meadow moves through the clouds. By handing so much surface to sky and flowers and so little to faces, Monet quietly resets the hierarchy of what a figure painting is for. The people are why we came; the light is what the painting is about. That inversion — humble outing, monumental looking — is the Argenteuil years in a single afternoon."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "pont-de-l-europe-gare-saint-lazare": {
+  "see": "The canvas splits along a diagonal. From the upper right, the iron span of the Pont de l'Europe drops toward the center on a steep angle, a dark lattice of girders drawn against pale sky. Everywhere else is vapour: a soft grey-blue fog that thins to lilac and rises off the tracks in slow columns, swallowing whatever locomotives are working below. On the left, ranked apartment blocks hold the far edge in cool cream and blue, their chimneys smoking into the same haze. The ground is a scuffed brown apron, wet-looking, nearly empty. Two accents interrupt the grey — a red signal in the middle distance, a small standing figure below it — and the eye keeps sliding between the bridge's hard drawing and the steam that erases it. Nothing sits still; the picture is built to feel like weather indoors.",
+  "about": "This is one canvas from the twelve Monet made of Gare Saint-Lazare in 1877, and it takes the station from outside the train shed rather than under its glass. The Pont de l'Europe — the great iron road-bridge that vaulted over the rail cutting where six streets met — enters at the top right and gives the composition its spine. Beyond it lie the platforms and the Haussmann city. Monet is not documenting a timetable. He is watching how a machine remakes the air: coal smoke and released steam become a manufactured atmosphere, dense enough to bury the engines that produce it. The subject is the collision of two moderns — the surveyor's iron and the chemist's cloud — held in a single grey key that a landscape painter of open fields could never have found.",
+  "craft": "Two languages of paint share the surface. The bridge and the buildings are drawn: darker strokes laid with direction, the girders scratched in over wet ground so the trusswork reads as line, the apartment cornices clipped square. The steam is the opposite — dragged, scumbled, worked wet-in-wet so no edge survives, greys warmed with rose and cooled with blue until the cloud has volume without contour. Monet keeps the whole thing on a narrow band of value; the loudest note is a coin of red at the signal, and it carries because almost nothing else raises its voice. Look at the foreground: the brown apron is thin, almost dry-brushed, letting the weave show, so the ground feels trodden and bare against the churning air above it. The handling itself dramatizes the theme — firm structure, then dissolution.",
+  "context": "In 1877 Monet rented a room near the station and secured permission to work inside the railway precinct; the series he produced there was shown, several canvases at once, at the third Impressionist exhibition that spring. Saint-Lazare was the terminus for the western suburbs and for Argenteuil, where he had been painting the river — so this was his own gateway, the machine that carried him between city and country. The other versions push into the shed under its iron-and-glass roof; this one steps back to include the Pont de l'Europe and the open cutting, closer to Caillebotte's near-contemporary studies of the same bridge. Where earlier painters had made the railway a symbol or a threat, Monet treats it as a motif like haystacks or water — a thing that light and vapour happen to, recorded without comment.",
+  "deeper": [
+   {
+    "t": "The iron bridge",
+    "x": 0.7,
+    "y": 0,
+    "w": 0.3,
+    "h": 0.45,
+    "body": "Start where the weight is. The Pont de l'Europe crosses the top-right corner as a steep dark diagonal, and in the upper corner you can read the actual engineering — a lattice of crossed girders, the X-braces of a metal truss, scribbled in with quick dark strokes over the lighter sky. This is the star-shaped iron bridge that carried six converging streets over the tracks; Caillebotte painted its walkway the same year. Monet gives it as pure structure, the one thing in the canvas with hard edges and a fixed angle. It anchors everything: the steam has no shape of its own until this rigid geometry gives it something to be measured against. Cross the picture from here and every later form is softer than the last."
+   },
+   {
+    "t": "Steam that buries the engine",
+    "x": 0.48,
+    "y": 0.28,
+    "w": 0.37,
+    "h": 0.47,
+    "body": "Below and left of the bridge, the largest event in the painting is an absence made of paint. A locomotive is working here — you can just make out a darker mass low in the cloud — but Monet has let its own exhaust erase it. The steam is built wet-in-wet, greys pushed toward rose where the light catches and toward cold blue in the shadowed rolls, with no line anywhere to say where vapour ends. It has genuine volume; it turns and lifts. This is the series' real argument: the machine manufactures the very atmosphere that hides it. Modern power announces itself not as a shape you can name but as a change in the air, a weather system produced on demand and dense enough to swallow its source."
+   },
+   {
+    "t": "The city holding the left edge",
+    "x": 0,
+    "y": 0.13,
+    "w": 0.45,
+    "h": 0.42,
+    "body": "The whole left flank is Haussmann's Paris, ranked apartment blocks in cool cream, grey and pale blue, their regular windows and cornices dissolving as they recede into the haze. Along the rooflines, chimney pots smoke — one or two flushed a dull red — so the domestic hearths add their own contribution to the shared murk; the station's cloud and the city's are the same substance. These blocks do the quiet structural work of the picture. Squared and stacked, they answer the bridge's diagonal with verticals and give the fog a wall to rise against. Monet paints them thinly, almost weightlessly, more veil than masonry, so the solid city and the passing steam trade places until you cannot say which is the more permanent."
+   },
+   {
+    "t": "The red signal",
+    "x": 0.22,
+    "y": 0.55,
+    "w": 0.13,
+    "h": 0.14,
+    "body": "In the middle distance, on a slim post rising from the track, sits the one saturated note in the whole canvas — a small red-orange disc, a railway signal lamp. It is barely a thumbnail of pigment, but in a field pitched entirely in greys and blues it does the work of a whole chord, pulling the eye to the exact center of the station's activity where the platforms and low sheds gather. Monet knew what a single warm accent buys in a cool painting; he spends it once and spends it precisely here, at the operational heart of the scene. It is also the most human mark in the machine's landscape — a signal, an instruction, the trace of people running this weather-making apparatus just out of sight."
+   },
+   {
+    "t": "The lone figure",
+    "x": 0.13,
+    "y": 0.72,
+    "w": 0.16,
+    "h": 0.24,
+    "body": "Close on the smallest presence that decides the scale. A single figure stands in the lower left, a few strokes of dusty blue for the coat, a pale dab for the head, planted on the bare brown apron with the whole steaming station rising behind. He is almost nothing — you could pass over him — yet he sets the terms: read him as man-height and the bridge becomes vast, the cloud becomes architecture. Around him the ground is painted thin and dry, the canvas weave showing through, so the earth feels trodden and empty against the churning air above. That contrast is the picture in miniature — one small, still human being dwarfed by a machine-made sky he can only stand and watch, which is finally what you are asked to do here too."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "nympheas-monet-2": {
+  "see": "The whole canvas is water, tilted up toward you so the pond fills a tall vertical frame that gives the eye no horizon to steady it. Lily pads float as flattened ovals, spaced apart rather than massed, thinning as they climb toward the top edge. Near the upper centre sits the one bright event: a tight knot of white blooms lit with yellow hearts. Everything else is surface and what the surface holds. Read the picture from the bottom up and you find one anchor the others in this pond lack: a wedge of green bank shoulders into the lower-left corner, warm and solid against the cool, drifting water. That corner tells you where you stand.",
+  "about": "Monet painted this in his sixties and seventies at Giverny, walking the same pond he had dug and planted himself, returning to it for the last three decades of his life. By the late 1910s the water lilies were less a subject than a discipline: the same few square metres of water studied again and again, in different light, until the pond became a way of testing what paint could hold. This canvas keeps its footing where many of the late ones let go. The bank in the corner, the readable pads, the clustered flowers all insist on a real place seen from a real vantage, slightly above the water. It is contemplative rather than dissolved, a pond you could kneel beside, not yet the boundless field of the museum murals.",
+  "craft": "Look at how differently the two halves are handled. The upper water is built from short, crossing dabs, grey-green laced with lavender and pink, that lie flat and describe the skin of the pond. The lower half is combed downward in long vertical strokes, cooler and looser, so foliage and sky sink into the water as reflection rather than sitting on it. The pads bridge the two: firm horizontal ovals, some ringed with a darker edge, pressing the surface flat wherever they fall. The bloom cluster is the only place Monet loads the brush thick and bright, white over yellow, so the flowers catch light the water only borrows. The green bank is scrubbed in with warmer, drier paint, its yellows and olive greens breaking the cool spell of everything around it.",
+  "context": "The Marmottan Monet holds the largest collection of Monet anywhere, most of it his late Giverny work, bequeathed by his son Michel in 1966. Among those canvases are many near-identical water-lily views, painted in the same years and often left undated, which makes any single title a little slippery. This one belongs to that family but keeps its own signature: the bank corner and the tight central bloom cluster. These late ponds were painted alongside the vast decorative panels Monet was preparing for the state, the ones now wrapped around two oval rooms at the Orangerie. Seeing an easel-scale canvas like this beside that project shows the private study behind the public wall, the pond first observed close, then expanded into something a viewer could stand inside.",
+  "deeper": [
+   {
+    "t": "The bloom cluster",
+    "x": 0.4,
+    "y": 0.22,
+    "w": 0.28,
+    "h": 0.18,
+    "body": "This is the one spot where the painting stops drifting and lands. A knot of white lilies, four or five blooms, each carrying a stroke of chrome yellow at its centre, sits just above the middle of the canvas. Monet paints them thicker than anything else, the white ridged and catching real light, so the flowers seem to sit slightly proud of the water. Everything around them is reflection and suggestion; these are things. In a pond otherwise built from cool greys and lavenders, this small warm cluster is where the eye is meant to rest, and it earns its keep by being the one passage the artist refused to let dissolve."
+   },
+   {
+    "t": "The green bank",
+    "x": 0,
+    "y": 0.72,
+    "w": 0.34,
+    "h": 0.28,
+    "body": "A triangle of bank pushes into the lower-left corner, and it changes how you read the whole picture. Where the water is cool and vertical, the bank is warm, dry, and tangled, scrubbed in olive greens with flecks of yellow and rust that never appear out on the open water. It gives the pond an edge, and with an edge comes a vantage: you are standing above the water, looking down and slightly out, not floating in an endless surface. Many of the Marmottan's late lily canvases drop this anchor entirely and let the water run to all four sides. Keeping it makes this one the more grounded, more legible cousin of those boundless views."
+   },
+   {
+    "t": "The reflected foliage",
+    "x": 0.15,
+    "y": 0.55,
+    "w": 0.6,
+    "h": 0.35,
+    "body": "Below the pads the water turns into a hanging curtain of vertical strokes, greens and blues and a few violet threads drawn straight down. These are the reflections of the willows and reeds along the bank, and Monet paints them not as objects but as the water's memory of objects, softened, elongated, sinking. The trick is that the reflections read as depth even though the paint sits on the same flat plane as the pads above. Where a pad crosses this curtain, its firm oval snaps the surface back to the top, and you feel the whole shallow thickness of the pond at once, its skin and its depths held in the same square inch of canvas."
+   },
+   {
+    "t": "The upper edge",
+    "x": 0.55,
+    "y": 0.02,
+    "w": 0.42,
+    "h": 0.2,
+    "body": "Follow the pads up and they thin, shrink, and tilt as they near the top of the canvas, the ones at the far edge reading almost as thin slivers seen nearly edge-on. This is Monet handling perspective without a horizon: the pond recedes simply because the pads grow smaller and closer together as they climb. It is the only cue to distance in the whole picture, and it is enough. The lavender-grey water up here carries the faintest warmth of reflected sky, the closest this skyless canvas comes to admitting there is anything above the pond at all."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "saule-pleureur-et-bassin-aux-nympheas": {
+  "see": "A single willow trunk fills the canvas, rising from a shadowed base almost to the top edge. It is not a smooth column but a woven mass of vertical strokes — red-brown, orange, violet, and near-black tangled together like plaited rope. To either side, thin fronds hang down against a pale lavender ground, and the lower right opens onto a bank of green and ochre grass that slopes away toward a glimpsed strip of water. The subject here is the tree itself, seen up close, not the pond it stands beside.",
+  "about": "This is the odd one out among Monet's late canvases of the Giverny water garden. Where most of them lie flat on the pond's surface, mirroring sky and lilies, this one stands the viewer at the foot of a weeping willow and looks straight up its bark. The pond survives only as a sliver at the right edge. Monet planted willows around his lily basin and returned to them again and again in his last decade; here the tree is not a frame for the water but the entire event, its trunk pressed so near it crowds everything else to the margins.",
+  "craft": "Look at how the bark is built. Monet lays down long vertical strokes and then crosses and interrupts them with diagonals, so the surface reads as bark and as pure woven paint at once. The colours are not the browns of a real trunk but a full spectrum — orange laid beside violet, green threaded through red — each stroke kept distinct rather than blended, so the eye does the mixing. The fronds are dragged downward in thin wet lines that break against the lavender behind them. Nothing is drawn; everything is stated in the direction and weight of the stroke.",
+  "context": "Monet painted his willows through the years of the First World War, and in the standard reading the tree had become his emblem of mourning — he grieved the war deeply, and the drooping willow carried that grief. This canvas belongs to that group, roughly 1916 to 1919, though the exact year is not secure. Its looseness and its refusal to resolve into finish are of a piece with the vast Nymphéas he was building for the state in the same studio. The result is a picture that stays half-abstract, closer to a record of feeling worked into paint than to a view of a garden.",
+  "deeper": [
+   {
+    "t": "The woven bark",
+    "x": 0.28,
+    "y": 0.3,
+    "w": 0.34,
+    "h": 0.42,
+    "body": "Come in close on the trunk's midsection. What looks from a distance like textured bark dissolves into a lattice of separate strokes — some vertical and dragged the length of the trunk, others short diagonals cutting across them. Monet works in complementary pairs: orange struck against violet, warm red beside cool green. He does not blend these on the canvas; he sets them side by side and lets them vibrate. This is the same optical method he used on water, turned now onto a solid vertical thing, which is why the trunk seems to shimmer rather than sit still."
+   },
+   {
+    "t": "Orange in the seams",
+    "x": 0.3,
+    "y": 0.55,
+    "w": 0.26,
+    "h": 0.28,
+    "body": "The brightest notes in the whole picture are the flecks of orange and red buried in the lower trunk. They are not describing anything you could name — not moss, not light — but they carry the heat that keeps the dark bark from going dead. Track how they thin out as the trunk rises and gather again near the base, where the wood meets its own shadow. This scattering of warm accents through a cool mass is one of Monet's steadiest habits in the late work, a way of pushing energy up through a form."
+   },
+   {
+    "t": "The hanging fronds",
+    "x": 0.62,
+    "y": 0.04,
+    "w": 0.34,
+    "h": 0.4,
+    "body": "Along the top and right, the willow's fronds fall in thin downward lines against the pale ground. Monet drags them wet, so the green streaks and blurs rather than holding a clean edge, and the lavender behind shows through the gaps. This is the gesture that gives the weeping willow its name and, for Monet in these war years, its meaning. The strokes all run one direction — down — so the eye is pulled steadily toward the earth, the opposite pull to the trunk's upward climb."
+   },
+   {
+    "t": "The bank and the glimpsed pond",
+    "x": 0.55,
+    "y": 0.55,
+    "w": 0.44,
+    "h": 0.42,
+    "body": "At the lower right the ground opens. A grassy bank built of green, yellow-green, and ochre slopes down and away, and at the far edge it gives onto a cooler blue-green passage — the only piece of the lily pond that enters the frame. This is the hinge that tells you where you are: not floating on the water as in Monet's other late canvases, but standing on solid ground at the tree's foot, with the famous pond reduced to a distant sliver. The whole scene is anchored here, in earth rather than reflection."
+   },
+   {
+    "t": "The shadowed roots",
+    "x": 0.2,
+    "y": 0.8,
+    "w": 0.34,
+    "h": 0.2,
+    "body": "Where the trunk meets the ground, the paint darkens into a pool of blue-green and near-black. Monet lets the base go almost unreadable, a dense shadow with no clear line between root and soil. It weights the bottom of the composition and gives the soaring trunk something to rise out of. Notice there is no drawn contour anywhere here — the trunk's own edge is only where the woven strokes stop and the greener grass begins, a boundary made of paint rather than of line."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "claude-monet-agapanthes": {
+  "see": "Two things share this tall canvas and refuse to settle into one place. At the lower left a clump of agapanthus rises out of dark earth — blue-green strap leaves curling outward, two long stalks lifting pale blue-white flower-heads into the light. To the right, and drifting along the top edge, float the water-lily pads Monet is better known for, dabbed with yellow. Between them spreads a hazy field of lavender, cream and yellow-green where nothing is quite drawn. The picture is neither a garden portrait nor a pond: it is the seam where the two meet and dissolve.",
+  "about": "The agapanthus, an African lily, grew in the beds around Monet's Giverny water garden, and here he sets it against the pond it bordered rather than isolating either. That double subject is the point. Painted in his last decade, when cataracts thickened the world into veils of colour, the canvas treats a recognisable plant and an almost formless expanse of water-light as equal halves of one motif. The flower-heads are the last clearly legible objects; everywhere else form loosens toward pure atmosphere. This meeting of land and water fed the vast Agapanthus triptych Monet worked toward in the same years.",
+  "craft": "Monet lets density carry meaning. The agapanthus clump is built in thick, directional strokes — leaves laid on as short curved slashes, the earth beneath them a knot of dark green and violet impasto — so the plant has weight and edge. Move right and the paint thins and pales; strokes lengthen and blur, colours lighten to lavender and buttery green, and objects stop having outlines. The lily pads are no longer drawn but suggested by ovals of shadow and flecks of yellow floating on lighter ground. He paints legibility itself as a gradient, dense at the flower and evaporating toward the water.",
+  "context": "This is the Marmottan's late Monet, from the Paris museum that holds the largest trove of the artist's work, much of it kept in the family until it came to the institution. Canvases like this one sat in his Giverny studio as a study toward the monumental Agapanthus triptych and the Grandes Décorations, and their loose, near-abstract handling was long read as failing eyesight before later viewers saw deliberate experiment. Dated broadly to his final years, it belongs to the body of work that made Monet, decades after Impressionism, a touchstone for mid-century abstract painting.",
+  "deeper": [
+   {
+    "t": "The two flower-heads",
+    "x": 0.1,
+    "y": 0.28,
+    "w": 0.3,
+    "h": 0.22,
+    "body": "The higher, paler globe and the lower pink-tinged one are the most finished passages in the picture — rounded clusters of small dabs, white and blue and rose, that read instantly as agapanthus blooms. Each sits atop a single long stalk drawn as one nearly vertical stroke. They anchor the whole canvas: the only forms with a clear silhouette, they give the eye something to hold before the rest slides toward haze."
+   },
+   {
+    "t": "Leaf clump and dark earth",
+    "x": 0.04,
+    "y": 0.52,
+    "w": 0.44,
+    "h": 0.44,
+    "body": "At the base the strap leaves fan out in curved, calligraphic strokes of deep blue-green, springing from a dense tangle of dark violet and near-black impasto that stands for wet earth. This is the heaviest paint on the canvas. Its solidity is deliberate: the plant is rooted, physical, and by contrast the pale field above and the water to the right feel like light rather than matter."
+   },
+   {
+    "t": "The dissolving centre",
+    "x": 0.26,
+    "y": 0.18,
+    "w": 0.42,
+    "h": 0.38,
+    "body": "Between flowers and pond the surface becomes a field of pale lavender, cream and yellow-green with no describable object in it. It could be reflected sky, sunlit water, or the blur of a garden bed seen at the edge of failing vision. Monet leaves it undecided. This is where the picture stops being a scene and becomes atmosphere, the transition that makes the flower and the pads read as two poles of one continuous surface."
+   },
+   {
+    "t": "Lily pads to the right",
+    "x": 0.54,
+    "y": 0.48,
+    "w": 0.44,
+    "h": 0.3,
+    "body": "Here the pond asserts itself. Oval pads are massed as patches of darker green and shadow, threaded with flecks of yellow for the lilies and cooler streaks for water between them. None is outlined; they cohere only as a rhythm of light and dark. Set against the sharply drawn agapanthus at the left, this passage shows how far Monet was willing to let a subject go — recognisable as water lilies only because we know the pond, and because a few yellow touches insist on blossoms."
+   },
+   {
+    "t": "Floating pads along the top",
+    "x": 0.44,
+    "y": 0.01,
+    "w": 0.52,
+    "h": 0.13,
+    "body": "A scatter of pale, thinly painted ovals drifts across the upper edge, ringed in faint blue. Reading them as lily pads confirms that the top of the canvas is more pond, seen as if the water tilts up toward the picture plane. With no horizon anywhere, Monet flattens depth: near flower, far water and open light all press into a single vertical field, a hallmark of the Grandes Décorations he was pursuing."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "the-tuileries-study": {
+  "see": "A garden seen from high up and slightly to the side: the Tuileries laid out below as bands of green and gravel, the city hazing off toward a pale horizon, one big building shouldering into the upper left. Read it in three depths. The bottom third is loose, near foliage worked wet and thick. The middle is the formal garden, its geometry already softening. The top is Paris itself, dissolved almost to vapour. Almost nothing is drawn as an edge; everything is a patch of colour placed next to another patch, and the eye assembles the park from that.",
+  "about": "This is an oil study, and the label is the point. Where Monet's finished Tuileries canvases of 1876 hold a line between the garden's engineered order and the light falling on it, here the negotiation is abandoned and light takes everything. The most rigidly geometric landscape in Europe — a garden of axes, parterres and clipped alignments — arrives as smears and dabs, its right angles guessed rather than stated. What a rapid lay-in keeps is exactly this: the first impression, before the mind has corrected the scene back into the shapes it knows are there.",
+  "craft": "Look at how the paint is handled by zone. The foreground shrubs are built from short loaded strokes, greens and rust-reds jabbed side by side and left unblended, so the leaf-mass reads as texture more than form. In the garden beds the touch flattens and lengthens into horizontal drags of pale earth and green. By the skyline the strokes thin to near-nothing, a smoky wash that lets the canvas breathe through. The distance is rendered not by drawing smaller but by painting looser — atmosphere as a function of brush pressure.",
+  "context": "The elevated angle is the study's second gift. Looking down rather than across, Monet loses the horizon a landscape usually leans on and flattens the park into stacked horizontal bands — a bird's-eye compression that reads almost as pattern, a proto-aerial abstraction decades before anyone had literally seen a city from the air. The vantage is traditionally given as an upper-floor apartment overlooking the gardens; the picture belongs to a small group of Tuileries views Monet made that year, of which this is the most openly unfinished and the most freely painted.",
+  "deeper": [
+   {
+    "t": "The building that anchors the corner",
+    "x": 0,
+    "y": 0.04,
+    "w": 0.24,
+    "h": 0.55,
+    "body": "A large pale-blue mass of masonry props up the whole left edge and gives the loose scene one fixed weight. Monet notes its bulk and a suggestion of ornamented roofline, then declines to detail it — a few darker touches for windows and cornice and no more. It functions less as a named monument than as ballast: a vertical, opaque, near-monochrome block set against the horizontal shimmer of the garden, so the eye has one solid thing to push off from before it slides out into the haze. I would not stake the exact identification of this structure on this resolution."
+   },
+   {
+    "t": "Bands of the formal garden",
+    "x": 0.1,
+    "y": 0.34,
+    "w": 0.46,
+    "h": 0.26,
+    "body": "This is where the study makes its argument. A French formal garden is nothing but geometry — straight allees, rectangular parterres, symmetry enforced to the metre. Monet paints it as loose horizontal stripes of gravel-buff and clipped green, the edges feathered, the right angles implied and never ruled. You can feel the underlying plan without a single hard line stating it. The order is remembered rather than drawn, which is precisely what a fast sketch preserves: the scene as impression, before the eye tidies it back into a diagram."
+   },
+   {
+    "t": "Pale verticals: the statuary",
+    "x": 0.3,
+    "y": 0.42,
+    "w": 0.18,
+    "h": 0.14,
+    "body": "Scattered through the mid-garden are small upright flecks of light paint — the Tuileries' sculptures and their plinths, caught as bright accents rather than described figures. Each is a single loaded touch standing a shade taller and lighter than the greenery around it. They do quiet structural work: punctuation marks down the garden's length that let the eye measure distance and step backward into the picture, standing in for the perspective lines Monet has otherwise let go."
+   },
+   {
+    "t": "Figures on the path",
+    "x": 0.45,
+    "y": 0.55,
+    "w": 0.28,
+    "h": 0.22,
+    "body": "Along the diagonal walk, strollers thin to commas of paint — a dark dab for a coat, a lighter one above for the head, and here a soft round disc that reads unmistakably as a parasol tilted against the sun. None has a face or a stride; each is the minimum mark that still says person. That economy is the study's honesty. From this height and at this speed a figure is a blot of tone in motion, and Monet paints exactly that, refusing to invent a detail the eye at distance could never actually have received."
+   },
+   {
+    "t": "Foreground worked wet and thick",
+    "x": 0,
+    "y": 0.72,
+    "w": 1,
+    "h": 0.28,
+    "body": "The near shrubbery and the curved bed at the bottom carry the heaviest, freshest paint in the picture. Greens, ochres and reddish notes are stabbed in with a loaded brush and left standing, ridges of pigment catching the real light in the room. This is the sketch at its most physical — no attempt to resolve individual leaves, just the sensation of dense growth close to the eye. Set it against the vaporous city above and the whole depth of the scene is stated by touch alone: thick and tactile here, thinning to breath at the horizon."
+   },
+   {
+    "t": "Paris dissolved at the top",
+    "x": 0.15,
+    "y": 0.1,
+    "w": 0.83,
+    "h": 0.2,
+    "body": "Above the garden's tree-line the city goes to vapour: rooftops, chimneys and a far skyline melted into a pale horizontal smoke of grey, blue and warm white. There is no drawing here at all, only thinned paint dragged across the weave. This is Monet's clearest wager in the study — that recession can be carried entirely by how loosely a thing is painted. The further off, the less resolved, until Paris itself becomes atmosphere rather than architecture."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "water-lilies": {
+  "see": "A pond seen from above, tilted up until the water fills the whole frame with no sky and no far shore. The dominant note is violet: a bruised lavender that runs edge to edge and reads as depth rather than as a surface. Down through it fall long vertical streaks of green and gold, the reflection of willow branches hanging into the water. Across those streaks float dark rounded lily pads, and near the middle-left a small cluster of pale pink and white blooms sits among them. In the lower-left corner a wedge of brighter green marks the near bank.",
+  "about": "This is one axis laid over another. The willow does not appear as a tree; only its reflection does, raining straight down the canvas in vertical threads of green shot through with violet. The lily pads contradict that fall, lying flat and horizontal on the same water. The picture is built on the friction between the two directions: what drops and what floats, the mirrored world of the reflection against the real leaves resting on top of it. Monet gives the eye no footing anywhere except the small green corner, so vision finds nothing to hold and drifts on the water itself, which is the point of the late pond paintings.",
+  "craft": "The violet is not one color but many close values dragged wet into wet, so the surface stays alive without any single passage calling attention. The willow reflections are laid in long downward strokes that keep their separateness, threads rather than a wash, which is why they read as hanging. The pads are darker, blunter marks laid across the willow’s downward streaks, and the blooms are quick touches of pink and white with almost no drawing. Nothing is outlined. Depth comes only from the pull between warm greens near the eye and the cooler violet that seems to recede beneath them.",
+  "context": "Monet painted the pond at Giverny for the last three decades of his life, and by the years around 1916-19 his eyesight was failing and the canvases grew large, loose, and increasingly abstract. This one belongs to that late group now held at the Musée Marmottan Monet, works the artist kept rather than sold. The willow, the vertical reflections, and the boundless water without horizon are the vocabulary he refined toward the great Orangerie decorations. Here the same means are turned to a smaller, more saturated and more violet key.",
+  "deeper": [
+   {
+    "t": "The willow, falling",
+    "x": 0.28,
+    "y": 0.02,
+    "w": 0.44,
+    "h": 0.62,
+    "body": "Start with the vertical streaks, because they organize everything else. These are the willow's branches reflected in the water, not the branches themselves, so they read as a downward rain of green and gold rather than as a tree. Follow one from the top edge and watch how it stays a distinct thread the whole way down, never blending into a wash. Between the threads the violet of the water shows through, so the reflection and the depth are interleaved. This vertical fall is the canvas's spine; hold it in mind as you look at the pads, which run the other way."
+   },
+   {
+    "t": "Pads across the current",
+    "x": 0.02,
+    "y": 0.28,
+    "w": 0.66,
+    "h": 0.52,
+    "body": "Now the lily pads, the darker rounded marks that lie flat across the vertical streaks. Where the willow reflection drops, the pads rest horizontal on the surface, and that crossing of directions is what gives the flat water its two layers: something floating on top, something mirrored below. The pads are painted bluntly, as dark green and violet patches with no drawn edge, thinning and spacing out toward the lower right so the water opens up. At this resolution you cannot resolve individual leaves cleanly, but the horizontal drift of the group against the vertical grain is unmistakable."
+   },
+   {
+    "t": "The blooms and the near bank",
+    "x": 0,
+    "y": 0.28,
+    "w": 0.44,
+    "h": 0.62,
+    "body": "The one clear incident is the small cluster of pink and white blooms at the middle-left, set among the pads. They are the warmest, lightest touches in the picture, a few quick strokes with almost no shaping, and they draw the eye simply by contrast with all that violet. Below them, in the lower-left corner, a wedge of brighter green marks the real bank, the only edge of solid ground Monet allows. It anchors the floating world to one small piece of land, then releases you back onto the water. These two passages are where the eye enters and rests."
+   },
+   {
+    "t": "The violet field, stepping back",
+    "x": 0.5,
+    "y": 0.36,
+    "w": 0.5,
+    "h": 0.6,
+    "body": "Step back to the lower-right, where the willow threads thin out and the water becomes almost pure violet. This is the painting's true subject: a depth with no floor and no horizon, held together only by close-valued lavenders dragged into one another. Read it against the busy upper-left and you see Monet's whole method, a crowded, threaded zone giving way to an open one so the eye can breathe. Nothing here is described; the color alone carries the sense of deep, still, cool water. This is why the late pond paintings feel closer to abstraction than to landscape."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "water-lilies-reflection-of-a-weeping-willow": {
+  "see": "A near-square field with no top, no edge, no water's surface you can point to — only a vertical rain of blue and violet strokes, the reflection of a weeping willow's hanging branches read straight down into the pond. There is no sky, no bank, no horizon. The one place the picture lets you find the water again is off-centre and low: a cluster of turquoise and slate pads, and at lower right a single pink flower beside a coiled turquoise swirl. Everything else is dissolved into the willow's mirrored curtain.",
+  "about": "This is among the most dissolved of Monet's late pond canvases — the point where the motif nearly stops being a motif. He is not painting a willow but the willow's reflection, so the tree arrives already upside down, already broken into water. By choosing that doubled image he removes every fixed landmark: the surface of the pond becomes the whole surface of the painting, and the eye has nothing solid to stand on. What survives of \"subject\" is a handful of lily pads and one pink bloom, kept deliberately at the margin. The rest is pure reflection, painted as if it were an end in itself.",
+  "craft": "The willow is built almost entirely from vertical drags — long downward pulls of blue, violet, grey-green and pink, laid wet and loose so the strokes shiver against each other rather than describe anything. Against that vertical grain the few horizontal notes of the pads read as the only stable plane, which is how you know it is water at all. Monet withholds contour; nothing is outlined. Colour does the work of drawing, and it is cooled far down toward blue and lavender, with warmer flecks buried inside rather than sitting on top. The paint is dragged, scumbled, and left open — the canvas breathes through it.",
+  "context": "Painted at Giverny around 1916-19, in the years of the great Grandes Décorations and of Monet's failing cataract-clouded sight. The weeping willow was his war motif, worked through the First World War as a mourning tree. Here it is pushed unusually far: the recognisable pond has thinned almost to nothing, and the canvas sits on the hinge where the last Impressionism and the first abstraction become, for a few years, the same object. It hangs at the Musée Marmottan Monet, among the works kept by the family and given late.",
+  "deeper": [
+   {
+    "t": "The falling willow",
+    "x": 0.3,
+    "y": 0.02,
+    "w": 0.45,
+    "h": 0.55,
+    "body": "Start at the top and read downward. These are not branches but the reflection of branches, so the willow enters the picture already inverted, already loosening into water. The strokes fall in long vertical drags — blue over violet over grey — and never resolve into a tree. This upper zone is where dissolution is most complete: no anchor, no surface, no edge, just the mirrored curtain. It is the clearest statement of what makes this canvas one of the most nearly-abstract of the late pond paintings."
+   },
+   {
+    "t": "The pads that hold the water",
+    "x": 0.24,
+    "y": 0.4,
+    "w": 0.42,
+    "h": 0.28,
+    "body": "Here the reflection breaks and the pond returns. A loose raft of turquoise and slate lily pads lies across the vertical grain, and because these notes run roughly horizontal they read as the water's plane — the one place the picture tells you it is a surface at all. Monet keeps them soft and unoutlined, colour standing in for edges. Without this small legible island the whole field would read as an abstract screen; it is the hinge between depiction and pure paint."
+   },
+   {
+    "t": "The margin's last flower",
+    "x": 0.62,
+    "y": 0.68,
+    "w": 0.36,
+    "h": 0.3,
+    "body": "Down in the lower right, kept deliberately to the edge, sit the only unmistakable objects: a single pink bloom and a coiled turquoise swirl beside it. Monet lets the subject survive here and nowhere else, as a marginal note rather than a centre. The swirl of paint turns almost calligraphic, drawn as much as painted. Everything the rest of the canvas gives up — flower, colour-accent, legible form — is concentrated in this corner, then let go."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "pierre-auguste-renoir-in-the-meadow": {
+  "see": "Two young women sit in tall grass on a sloping bank, the whole surface loosened into a haze of green, cream, and rose. One in front turns her back, in a pink dress, dark hair falling in a long braid; her companion sits a little higher and further off in white, blonde, bending toward a small handful of flowers between them. Behind, the land drops to a pale blue valley and rises again into soft hills, screened at the right by feathery trees. Almost nothing in the picture has a hard edge. The figures stay tender and rounded while the meadow around them breaks into flecks and drifts of touched color.",
+  "about": "This is an idyll with no incident: two girls at rest on a summer afternoon, gathering wildflowers. Renoir gives them no story beyond their own company and the warmth of the day. The nearer figure, seen from behind, draws you into the scene rather than meeting your look, and your eye follows her attention across to the blonde and the flowers she cradles. It is a picture about tenderness and ease, the kind of unhurried leisure Renoir returned to again and again. The meadow is not a place you could name; it is an image of well-being, sunlight and youth held in a single quiet moment with nothing asked of it.",
+  "craft": "Look at how differently the paint behaves on the girls and on the grass. The two figures are modeled with soft, continuous strokes that keep them solid and rounded, their skin pearly and their dresses lit from within. Around them the handling loosens completely: the meadow is built from short, broken flecks laid one over another, so that flowers, grass, and light dissolve into a shimmering weave with no drawn contour. Renoir sets the rose of the near dress against cool greens and the chalky white of the far one, and lets the two women anchor a surface that would otherwise drift apart. The result is a picture that feels breathed onto the canvas rather than drawn.",
+  "context": "By his later manner Renoir had passed through a dry, hard-edged phase, sometimes called his Ingres period, in which he tightened his line and cooled his color. This canvas belongs to his return from that discipline to soft, luminous figure painting, the pearly manner of his 1890s. You can feel both lessons at once: the figures keep the firmness and clear structure he had drilled into himself, while the setting recovers the loose, atmospheric touch of his Impressionist years. The subject, girls at leisure out of doors, is one he had painted for decades, but here the flowers and grass are handled with a freedom that the more controlled earlier work would not have allowed.",
+  "deeper": [
+   {
+    "t": "The girl in pink",
+    "x": 0.14,
+    "y": 0.4,
+    "w": 0.42,
+    "h": 0.4,
+    "body": "Seen from behind, she is the picture's near anchor. Renoir keeps her form full and legible, the pink dress modeled in warm folds that catch the light, her long dark braid a single sustained shape against it. Her right arm reaches down into the grass, dissolving where hand meets meadow so that figure and setting blur into each other. Turning her away lets her look for us, carrying attention across to her companion and the flowers rather than back out at the viewer."
+   },
+   {
+    "t": "The blonde and the flowers",
+    "x": 0.48,
+    "y": 0.28,
+    "w": 0.34,
+    "h": 0.34,
+    "body": "The second girl sits higher on the bank in white with a bluish sash, blonde hair catching the strongest light in the group. She bends toward a small pale bunch of flowers held near the center, the quiet event the whole scene turns on. Her white dress is the coolest, chalkiest note in the picture, and Renoir uses it to balance the warm rose of the foreground figure. Between them the flowers are barely more than a few dabs of light, yet they hold the two women together."
+   },
+   {
+    "t": "The dissolving meadow",
+    "x": 0.06,
+    "y": 0.6,
+    "w": 0.55,
+    "h": 0.34,
+    "body": "The foreground grass shows Renoir's late touch at its freest. There is no drawn edge anywhere here, only short strokes of green, cream, gold, and lilac dabbed over one another until the surface shimmers. Flowers register as small flecks of lighter paint rather than described blooms. This flickering weave makes the solidity of the figures read all the more clearly, and it lets the ground feel warm and sunlit without any single blade or petal being spelled out."
+   },
+   {
+    "t": "The far valley",
+    "x": 0.2,
+    "y": 0.16,
+    "w": 0.46,
+    "h": 0.18,
+    "body": "Behind the figures the land falls away to a pale, cool distance, blue-green hills melting into a soft sky with a suggestion of a path or field and tiny far-off marks that read as figures or animals. Renoir thins his color and blurs his touch here so the background recedes and stays atmospheric, keeping all the weight and warmth up front with the two women while the depth opens quietly behind them."
+   },
+   {
+    "t": "The set-down bonnet",
+    "x": 0.7,
+    "y": 0.76,
+    "w": 0.24,
+    "h": 0.16,
+    "body": "In the lower right, easy to miss, a white bonnet trimmed with pink lies discarded in the grass. It is a small domestic clue that the girls have settled in and taken their ease, the day warm enough to set a hat aside. Painted with the same loose flecking as the meadow, it doubles as a bright cool accent that answers the white dress above it and steadies the bottom corner of the composition."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "j-m-w-turner-venetian-scene": {
+  "see": "Almost nothing here is drawn; it is weather made visible. A pale, nearly square field opens into an atmosphere of blue-grey, cream and chalk-white, brushed in loose arcs that lift toward a soft crown of light near the top. Below, a low band of warm ochre reads as a shoreline or horizon, and above it the paint thins to a haze in which shapes barely hold. The eye is left to assemble land, water and sky from tone alone. There are no hard edges, no framing verticals, no fixed distance — only a luminous vagueness that the picture asks you to enter rather than read.",
+  "about": "Tate holds the great store of Turner's late Venice work, and this canvas belongs to its most dissolved register — the point at which architecture and lagoon surrender to light. Where his exhibited Venetian views still gave the eye palaces and gondolas, works like this push toward pure atmosphere, the city implied rather than described. The title 'Venetian Scene' fits a lagoon read of low horizon and hovering mist, but the documentary record for this specific canvas is thin, and its status — a resolved statement or an unfinished sketch left in the studio — is not something the surface settles. That ambiguity is the subject as much as Venice is.",
+  "craft": "The handling is thin and open, oil laid on so lightly that the ground seems to breathe through it. Turner works wet strokes of pale blue and grey into a cream field, letting them blur at the seams rather than meet at a line. The upper canvas is scumbled and dragged, paler pigment scrubbed over a warmer base so light appears to sit inside the paint. Along the horizon the touch tightens into a knot of darker, denser marks — the one place the brush presses and drops color. Elsewhere the picture is nearly empty, and that emptiness is deliberate, not unresolved: the void carries the weather.",
+  "context": "This is the abstraction Turner reached in his last decade, decades before it had a name. Venice gave him a place where solid things — stone, water, air — already traded qualities, and he pressed that until the motif nearly vanished. Whether he considered a canvas like this exhibitable or a private study is often unclear, and much of his late work stayed rolled in the studio, entering the national collection only after his death. Seen now, its refusal to finish looks less like a lack than a discovery — that a picture can be almost all atmosphere and still hold. Read it as a threshold in his art rather than a view of a named place.",
+  "deeper": [
+   {
+    "t": "The knot on the horizon",
+    "x": 0.5,
+    "y": 0.66,
+    "w": 0.34,
+    "h": 0.18,
+    "body": "The single dense passage in an otherwise open canvas: a low cluster of dark and warm strokes gathered at center-right along the horizon, with a bright vermilion accent flaring among them. It could be figures on a shore, a distant huddle of buildings, or moored boats — the paint declines to specify. What matters is the weight: this is where Turner lets the brush press and color concentrate, anchoring the whole hovering field to one small band of incident. Given the low resolution, read it as a mass and a red spark, not as identifiable forms."
+   },
+   {
+    "t": "The crown of light",
+    "x": 0.42,
+    "y": 0.2,
+    "w": 0.56,
+    "h": 0.36,
+    "body": "The upper canvas is not empty sky but worked light. Pale blue-grey is scumbled over a cream ground in broad, curving sweeps that arc toward a softer, brighter zone near the top center, as if a diffuse sun or high haze sat just behind the mist. The strokes stay loose and overlapping, never resolving into cloud shapes; the luminosity comes from thin paint over a warm base rather than from any depicted source. This is Turner treating the sky as the picture's true subject — a field of atmosphere given nearly two-thirds of the surface."
+   },
+   {
+    "t": "The pale foreground sweep",
+    "x": 0.3,
+    "y": 0.82,
+    "w": 0.65,
+    "h": 0.18,
+    "body": "The lower register is a broad, thinly brushed expanse of cream and warm tan that reads as water, wet sand, or simply undefined ground. It is among the least worked areas of the canvas, the ground barely covered, and a small dark mark sits isolated near the bottom center — a boat, a figure, or a stray touch, impossible to call at this scale. The near-emptiness here does the same work as the open sky above: it lets the small horizon incident carry all the picture's tension between the two large, quiet fields."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "narcisse-virgilio-diaz-flower-piece": {
+  "see": "A mass of cut flowers heaped against a near-black ground, lit as if a shaft has found them in an otherwise dark room. The brightest weight sits low and central, where pink and white blooms build in thick paste, while yellows flare to the right and cooler blues thread the middle. Toward the top the bouquet loosens and dissolves into shadow, so the eye reads the arrangement from a solid, glowing base upward into obscurity. No vase is clearly given; the flowers seem to rest on a dim ledge and rise straight out of the dark.",
+  "about": "This is a Barbizon-school flower piece by Narcisse Virgilio Díaz de la Peña (1807-1876), better known for jewelled forest interiors than for still life, though he painted bouquets throughout his career. The manner is Romantic rather than botanical: colour is treated as light caught in shadow, and the picture is organised by glow and mass more than by species. The dark ground is not a backdrop but an active field the blooms emerge from. It belongs to Glasgow Museums, home of one of the larger civic art collections in the United Kingdom. The canvas is only tentatively dated — Glasgow’s record points to the 1840s — and specific documentation for it appears thin.",
+  "craft": "The paint is loaded and worked wet, blossoms modelled in ridges of impasto so that pigment stands proud and catches the raking light physically, not just by tone. Highlights on the pink and white flowers are struck in short, thick touches; petals are suggested by the drag and lift of the brush rather than drawn. The blues and greens are scumbled thinly across the dark so cooler notes stay recessed, while the pale masses sit forward. Edges are kept soft and few flowers are fully resolved, which lets the arrangement hold together as a single luminous body against the ground.",
+  "context": "Díaz was a friend of Théodore Rousseau and Jean-François Millet and a central figure of the Barbizon painters, who worked the forest of Fontainebleau in the 1840s-1860s. His reputation rested on rich, saturated colour and heavily worked surfaces, and that sensibility carries directly into his flower pieces, where a bouquet becomes an occasion for pigment and light rather than a record of a specific arrangement. The tradition of the dark-grounded flower still life reaches back through Dutch and French seventeenth-century painting; Díaz absorbs it and pushes it toward Romantic atmosphere, the blooms half-swallowed by shadow.",
+  "deeper": [
+   {
+    "t": "The glowing core",
+    "x": 0.12,
+    "y": 0.5,
+    "w": 0.55,
+    "h": 0.42,
+    "body": "The heart of the picture is this bank of pink and cream blooms, likely peonies or full carnations, where the paint is thickest. Highlights are built up in raised strokes that hold the light as texture, so the flowers read as luminous mass before they read as individual petals. This is where Díaz anchors the whole arrangement: everything above is lighter, looser, and darker in surround, so the eye keeps returning here for solidity."
+   },
+   {
+    "t": "Yellows and a red at the right",
+    "x": 0.55,
+    "y": 0.38,
+    "w": 0.42,
+    "h": 0.4,
+    "body": "On the right the bouquet opens into yellow lilies and, near the edge, a hotter red-orange bloom that reads as a dahlia. These warm notes balance the cool pinks at centre and pull the composition rightward, keeping it from settling into a single symmetrical clump. The red is the most saturated accent in the picture and sits close to the dark, so it glows rather than shouts; the surrounding shadow does the work of setting it off."
+   },
+   {
+    "t": "Cool blues in the shadow",
+    "x": 0.18,
+    "y": 0.32,
+    "w": 0.4,
+    "h": 0.28,
+    "body": "Threaded through the middle are small blue flowers, cornflowers or the like, scumbled thinly so they stay set back from the pale forward masses. Blue is the rarest colour here and Díaz uses it sparingly to cool and vary the interior of the bouquet. Because these touches are laid over the dark rather than built up in impasto, they recede, and the picture gains depth from the contrast between thin, cool, receding notes and thick, warm, advancing ones."
+   },
+   {
+    "t": "The ledge and signature",
+    "x": 0.55,
+    "y": 0.72,
+    "w": 0.42,
+    "h": 0.26,
+    "body": "At lower right the bouquet meets a dim horizontal shelf, barely described, and a signature is worked into the shadow near the corner. Little is spelled out here: a few fallen touches suggest stray petals or stems, and the surface stays loose. Stepping back, the arrangement resolves as a single body of light rising from darkness, with the base weighted and warm and the top dissolving, so the composition is read as much by luminosity as by any vase or support, which is never clearly shown."
    }
   ],
   "by": "Opus 5"
