@@ -350,7 +350,7 @@ window.CANVAS_ARTWORKS = [
   { id: "woman-with-child-mathilde-schonberg-with-daughter-gertrud", title: "Woman with Child (Mathilde Schönberg with Daughter Gertrud)", artist: "Richard Gerstl", artistId: "gerstl", qid: "Q28005247", qidTrusted: true, year: 1906, seenAt: "belvedere", seenConfidence: "unsure", liked: true, note: "Deck pick — belvedere-2026-07-07." },
   { id: "verherrlichung-des-namens-jesu", title: "Verherrlichung des Namens Jesu", artist: "Johann Michael Rottmayr", artistId: "rottmayr", qid: "Q28005283", qidTrusted: true, year: 1703, seenAt: "belvedere", seenConfidence: "unsure", liked: true, note: "Deck pick — belvedere-2026-07-07." },
   // ——— deck-folded picks (fold-deck.js) ———
-  { id: "la-grenouillere-renoir", title: "La Grenouillère", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q10908882", qidTrusted: true, year: 1875, seenAt: "nationalmuseum", seenConfidence: "sure", floored: true, note: "Deck pick — nationalmuseum-2026-07-07." },
+  { id: "la-grenouillere-renoir", title: "La Grenouillère", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q10908882", qidTrusted: true, year: 1869, seenAt: "nationalmuseum", seenConfidence: "sure", floored: true, note: "Deck pick — nationalmuseum-2026-07-07." },
   { id: "the-conspiracy-of-claudius-civilis", title: "The Conspiracy of Claudius Civilis", artist: "Rembrandt", artistId: "rembrandt", qid: "Q2234397", qidTrusted: true, year: 1661, seenAt: "nationalmuseum", seenConfidence: "unsure", liked: true, note: "Deck pick — nationalmuseum-2026-07-07." },
   { id: "the-lady-with-a-fan-the-artist-s-wife", title: "The Lady with a Fan, The Artist's Wife", artist: "Alexander Roslin", artistId: "roslin", qid: "Q10466368", qidTrusted: true, year: 1768, seenAt: "nationalmuseum", seenConfidence: "unsure", liked: true, note: "Deck pick — nationalmuseum-2026-07-07." },
   { id: "portrait-of-a-violinist", title: "Portrait of a violinist", artist: "Anne Vallayer-Coster", artistId: "vallayer-coster", qid: "Q21260816", qidTrusted: true, year: 1773, seenAt: "nationalmuseum", seenConfidence: "unsure", liked: true, note: "Deck pick — nationalmuseum-2026-07-07." },
@@ -768,7 +768,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: null, seenConfidence: "unsure", liked: true },
   { id: "claude-monet-agapanthes", title: "Agapanthes", artist: "Claude Monet", artistId: "monet", qid: "Q50415959", qidTrusted: true, year: 1900,
     seenAt: null, seenConfidence: "unsure", floored: true },
-  { id: "vincent-van-gogh-the-olive-tree", title: "The Olive Tree", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q9212498", qidTrusted: true, year: 1889,
+  { id: "vincent-van-gogh-the-olive-tree", title: "The Olive Trees", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q9212498", qidTrusted: true, year: 1889,
     seenAt: "moma", seenConfidence: "sure", floored: true },
   { id: "james-fulton-pringle-bay-of-naples", title: "Bay of Naples", artist: "James Fulton Pringle", artistId: "james-fulton-pringle", qid: "Q108693165", qidTrusted: true, year: 1839,
     seenAt: "new-york-historical", seenConfidence: "unsure", liked: true },
