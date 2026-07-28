@@ -186,6 +186,17 @@ they were hitting limits. Revisit selectively later to see how much more can be
 extracted; also run limited tests of the new song budgets on the hardest already-covered
 songs. Not now — pinned.
 
+## Track-level flagship reads (the fable tier, 2026-07-27+)
+
+Songs carry a flagship "what's it about?" read as the `fable` field in llm-about.js
+(`"fv":2` marks the current methodology; UI shows "via Opus · Fable" — Opus authors,
+Fable QCs). Written one solo agent per song under a frozen minimal brief; mechanical
+anti-quoting gate + fact/placement verification at QC; verified extra layers ride as
+`fnote` (an italic line under the read). Albums whose songs are fully fable-covered may
+carry an ALTERNATE album read synthesized from those flagship reads (`liner2`/`arc2`,
+flickable via Fable on the PortraitCard). Operational details live in the untracked
+workshop docs.
+
 **Variant album pages**: when a read was written on plays merged across library
 variants (edition spellings, promo pressings, mojibake titles), the finished entry
 is MIRRORED under every variant's album key so each album page shows it (e.g. both
