@@ -11,6 +11,10 @@
 // The City Rises · Diary of a Seducer · Hero and Leander · Birth of Venus. Stop count floats
 // with the work (5–8); tours run as an arc — the across-the-room pull first, a step-back
 // synthesis (wide box) last.
+// Wave 2026-07-29 (Opus 5 — drafted from the image, then crop-QC'd, web-fact-verified against
+// museum/reference sources, and voice-deduplicated; per-entry by:"Opus 5"): Impression Sunrise ·
+// The Clouds · Wheat Field with Cypresses · Serena Lederer · The Thinker · Gray Weather, Grande
+// Jatte · The Waterspout · Vesuv-Ausbruch · Mrs. Walter Rathbone Bacon · Mount Niesen. 10 works.
 window.CANVAS_INSPECT = {
  "strindberg-underlandet": {
   "see": "A wall of green-black paint — troweled on, not brushed — parts like heavy curtains around an opening of pale light. The light isn't sky exactly: it's a soft white-blue radiance with something golden breathing at its lower edge, as if you were looking out of a cave, or a forest, or a state of mind, at a brightness you can't name. Along the bottom, small pink and white flowers catch light on the dark ground like sparks that fell from the opening. Stand close and every centimetre is knife-work: paint dragged, crushed, scraped — the surface is geology.",
@@ -757,5 +761,711 @@ window.CANVAS_INSPECT = {
     "body": "Step back to the whole standing figure and hunt for a flaw. You will not easily find a brushstroke — but you can find the artifice in the drawing. The transition from her cascading auburn hair to the small of her back is impossibly clean; the join where torso meets hip is smoothed past what a real body does; the shell she stands on is too small and too flat to actually bear her, a pedestal costumed as a boat. This is the real tell of the picture: not roughness but excessive resolution, a world sanded free of the accidents that make flesh look alive up close. That flawlessness is exactly what floored you and exactly what the modernists came to distrust — and standing in the Orsay, with the Impressionists a few rooms away, you can hold both reactions at once and let the argument of 1879 play out in your own eye."
    }
   ]
+ },
+ "impression-sunrise": {
+  "see": "Nothing here is drawn. The water is horizontal strokes, dark green-grey commas dragged across a paler ground. The sky is diagonal smears of salmon and mauve. The harbour is verticals — masts, stacks, plumes, all smeared downward. Three directions of brush, and the eye sorts them into water, air and iron without being told. There is no horizon line anywhere; the far shore simply thickens out of the mist around the middle of the canvas and stops. The only hard-edged things are a small orange disc set high and right of centre, and two dark boats low and left, silhouettes with no interior detail. Beneath the disc, a broken column of orange runs down through the water almost to the bottom edge. Everything else is a single blue-grey weather that cools and greens as it comes toward you.",
+  "about": "This is not a nature scene. It is a working industrial port at the start of a shift: coal smoke, steam derricks, the masts of cargo shipping, and in the near water two men in a rowboat going somewhere unglamorous. Monet gives the machinery exactly the tenderness a previous generation reserved for ruins and mountains — the cranes get the same soft mauve as the sky, no editorial. Le Havre was where he grew up and where France's Atlantic trade came ashore; painting it at dawn in 1872 meant painting a country visibly restarting after a lost war. The deeper subject, though, is the two or three seconds before recognition — the state in which a crane is still just a grey diagonal and a boat is still just a dark wedge. The picture is fixed at that moment and refuses to advance past it.",
+  "craft": "The paint is lean and thin, closer to washes than to loaded oil, and the warm pale ground is left grinning through everywhere — most of the mist is bare priming with a dry brush dragged over it. Saturated pigment covers perhaps a twentieth of the surface: the disc, the reflection, a few streaks up top. Everything else is a narrow band of blue-grey greened toward the foreground. There is no perspective armature at all — no orthogonals, no receding quay, no drawn horizon. Depth is carried entirely by two things: the relative size of the two boats, and the rate at which contrast dies with distance. The composition is a long diagonal, boats low left to sun high right, hinged at the middle by the reflection column, and the two crisp elements — disc and hulls — sit at opposite ends of it, holding a picture that is otherwise deliberately loose.",
+  "context": "Monet painted it after the Franco-Prussian War, having sat out the fighting in London and the Netherlands; in 1872 he was back and working the Le Havre harbour from an upper window. The canvas is signed and dated 72, but its life began in April 1874, when it hung in the first independent exhibition mounted by Monet, Degas, Pissarro, Renoir and others in a photographer's vacated studio on the boulevard des Capucines. The critic Louis Leroy, writing in the satirical paper Le Charivari, seized on the title and built a mocking dialogue around it. His joke term stuck, and within a few years the group had adopted it themselves. The word was not invented for the occasion — 'impression' was already studio shorthand for the first rapid lay-in of a motif, which is precisely why the insult landed and why Monet could not really deny it.",
+  "deeper": [
+   {
+    "t": "The disc",
+    "x": 0.545,
+    "y": 0.25,
+    "w": 0.115,
+    "h": 0.125,
+    "body": "Look at how it is put on. The conventional sun is a bright core blended outward into radiance; this one is a single stamp of near-unmixed vermilion with no halo, no yellow, no gradient, laid over paint that had already set. It sits on the surface like a wafer rather than inside the atmosphere. Its edge is not quite circular and the lower left is slightly eaten by the mist crossing it, which is the only concession to air. Its placement matters too: it sits well above the level of the cranes, so it reads as already risen. The event of the picture is not the sun clearing the horizon — it is the light arriving on the water below."
+   },
+   {
+    "t": "The upper air",
+    "x": 0.04,
+    "y": 0,
+    "w": 0.92,
+    "h": 0.2,
+    "body": "The sky is worked almost entirely with a dryish brush dragged diagonally, up to the right, so the strokes skip and let the pale ground show through as broken light. Note the colour: the salmon and coral streaks are the same red as the sun, cut heavily with white. The pigment of the disc is seeded right across the top of the canvas before it ever appears as a disc — that is what stitches the one saturated note into the whole. Top left is the single heavy passage in the sky, a bruised mass of grey-violet, and it gives the weather a direction: the warm streaks all run away from it. Cover that corner and the sky goes inert."
+   },
+   {
+    "t": "The ghost quay",
+    "x": 0.02,
+    "y": 0.14,
+    "w": 0.42,
+    "h": 0.36,
+    "body": "This whole left side is a different handwriting: vertical strokes, several of them single unbroken pulls for an entire mast or funnel. Watch what happens directly under them. Monet does not draw the reflections as shapes; he re-states each vertical as a longer, softer downward drag, so the buildings dissolve into their own doubles with no waterline between them. That is exactly what a still harbour does to a mast, and it is the reason the far shore has no edge. There are smokestacks and at least one pale steam plume in here, and a rigging of thin dark ticks over the blue mass — the only place he lets a brush point touch the left half."
+   },
+   {
+    "t": "The working side",
+    "x": 0.62,
+    "y": 0.33,
+    "w": 0.37,
+    "h": 0.23,
+    "body": "The right shore corrects the standard idea of Monet as a blurrer. These crane arms and derrick booms are drawn — thin, dark, deliberate linear marks made with the tip of a fine brush, some of them nearly ruled, angling up and out over the water. Where the subject is rigged and engineered, the touch goes graphic; where it is vapour, it goes soft. Beneath them sits the darkest continuous mass on the right, a low bank of shore and hulls that grounds the sun's side of the canvas. This is also the near shore of the composition, closer than the left quay, which is why its marks stay hard while the left side has already surrendered to mist."
+   },
+   {
+    "t": "What the water does with it",
+    "x": 0.53,
+    "y": 0.5,
+    "w": 0.16,
+    "h": 0.44,
+    "body": "The reflection is not a streak but a stack of separate horizontal touches, dozens of them, each a discrete flick with gaps of grey water left between. Two things are engineered here. First, this column holds far more orange than the disc does — the water, not the sky, is where the light actually lives in this painting. Second, watch the strokes lengthen and coarsen as they come forward: short nervous ticks up near the middle distance, long broad dashes near the bottom. That gradient is real perspective, smuggled into a passage that looks purely instinctive. The column also stops short of the bottom edge rather than running off it, which keeps the light inside the picture."
+   },
+   {
+    "t": "Two boats, one ruler",
+    "x": 0.22,
+    "y": 0.56,
+    "w": 0.35,
+    "h": 0.28,
+    "body": "The near boat carries two figures — one upright and working, one lower and seated — rendered as dark ticks with no faces, no hands, no colour. Behind and to the left is a second boat, smaller, higher in the frame, and noticeably paler and softer. That single comparison is doing all the work: it is the only depth measurement in a picture with no perspective lines, and it tells you the intervening water is wide. The near hull is also the darkest value on the canvas, deliberately parked low left, diagonally opposite the sun. The one pure chroma and the one true dark hold the two ends of the composition, and the mist floats between them."
+   },
+   {
+    "t": "The hand, dated",
+    "x": 0.02,
+    "y": 0.9,
+    "w": 0.28,
+    "h": 0.1,
+    "body": "Bottom left, floated straight onto the water with no attempt to tuck it into shadow: Claude Monet, and then the year, 72. Two things worth noticing. The ink is in the warm red family rather than the black most painters default to, so even the signature belongs to the sun's palette rather than the harbour's. And the date is a small piece of evidence — the canvas was finished and signed two years before the exhibition that named a movement after it. It sat around. Whatever this picture was to Monet in 1872, it was not yet a manifesto; the argument was attached to it afterwards, by other people, in public."
+   },
+   {
+    "t": "Step back",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Standing in front of it at the Marmottan, the surprise is how small it is — barely two feet across, and thinner in paint than almost anything hanging near it. What holds at that size is the consistency of the refusal. Nothing is resolved, but nothing is resolved more than anything else, so the eye never catches Monet finishing one thing and abandoning another; that even hand is why it reads as complete rather than as an abandoned sketch. Three brush directions, one narrow blue-grey range, one saturated red used four times, and a long diagonal from the dark hull to the disc. Every element that could have carried the picture conventionally — drawing, horizon, detail, a lit sky — has been removed, and it still stands up."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "the-clouds": {
+  "see": "Nothing in it is above water. The left end is a dense olive-green dark, thick and dry, with a few lily pads lying flat inside it. From there the paint cools into blue-green, then opens out: a pale cream haze along the top edge, and beneath it a chain of soft white and lavender masses that swell as they travel right, largest and brightest around two-thirds of the way along. Short horizontal dashes ride across them, pads seen almost edge-on, with a few small pink notes near the middle. The bottom centre is nearly black-green and nearly empty. At the far right a large dark mass drops from the top edge and shuts the whole thing down, and underneath it the water turns pale again. There is no horizon, no bank, no fixed centre, and no point where the composition tells you to stand.",
+  "about": "It is a picture with no place to stand. A framed landscape tells you where you are; this one runs past the edges of your vision on both sides, so at any moment you see a fraction of it sharply and hold the rest as colour at the periphery, assembling the whole from memory as you move. That is as much the subject as the pond is. Clouds are the fastest thing in a garden, the one element that guarantees the view was gone before the paint was dry, and Monet gave them the largest and slowest object he ever made. The panel is a long argument that a view is not something you receive but something your eye builds over time, and that the building never finishes, because the water will not hold still and neither will you.",
+  "craft": "Two mark-systems do all the work. Cloud is made of loose, curling, roughly circular strokes dragged dry across earlier dried paint, so the colour underneath keeps flickering through and nothing acquires an edge. Everything belonging to the actual water surface, pads and ripple, is a short flat horizontal, and those horizontals are what stop the whole field from becoming mere weather. Tonally it is bracketed: heavy dark at the left end, heavier dark at the right, the light released between them, with the lowest band kept deliberately deep so the wall carries weight down at your feet. Monet also let the picture keep its own history. Pink, violet and green underlayers surface everywhere as flecks, not because they describe anything, but because he built the panel in campaigns across years and never scraped it back to a single moment.",
+  "context": "Monet offered these panels to France the day after the Armistice, through his friend Georges Clemenceau, as a monument to peace; the gift was formalised by deed in 1922, and the rooms at the Orangerie were built to his own specifications, oval and top-lit, the canvases running in an unbroken band at eye level. By then he had lost his second wife and his elder son, and he was going blind: cataracts thickened through these years and were operated on in 1923, which is part of why the cycle took a decade and why he kept destroying canvases. The rooms opened in May 1927, months after his death, and were promptly written off as the long dusk of a superseded style. They were rediscovered after 1945, when painters working at mural scale found their own ambitions already sitting there.",
+  "deeper": [
+   {
+    "t": "The bright mass, and which way is up",
+    "x": 0.55,
+    "y": 0.28,
+    "w": 0.2,
+    "h": 0.7,
+    "body": "This is what carries: the one passage with real bulk, piled cream, rose and grey. Note where it sits, which is low. In a reflection, the sky directly overhead lands nearest your feet, at the bottom of the water, while sky far off toward the opposite bank lands high in the picture. So reading up this panel walks you down the sky toward the far distance, and reading down it takes you back to the zenith. The biggest, most solid cloud here therefore belongs to the sky nearer overhead rather than to the far distance. Once you have that, the field stops being pretty weather and becomes a map of an entire hemisphere of sky, laid out top to bottom in the wrong order."
+   },
+   {
+    "t": "The left end, and the only ruler",
+    "x": 0,
+    "y": 0.28,
+    "w": 0.095,
+    "h": 0.72,
+    "body": "Start here, because it is the only part of the panel that tells you how big anything is. The dark is not shadow but foliage on the bank, reflected: the one solid object besides sky that the water has to report. Painted dry and thick, it is the most opaque paint on the wall. Down inside it the pads are drawn nearly as full ovals, large and separate, which means the view onto them is steep and close. Everywhere further right the pads flatten into slivers, because they lie further off. Those two facts are the entire perspective system of the picture. Monet took away the horizon and then hid the measuring stick down here, in the corner where you enter."
+   },
+   {
+    "t": "The top edge, where it refuses to end",
+    "x": 0.13,
+    "y": 0,
+    "w": 0.26,
+    "h": 0.26,
+    "body": "Along the top the paint thins to a pale green-cream and the strokes lie shallow and horizontal. In an ordinary landscape this height would be sky, or at least a far bank; here it is simply the most distant water, and it is given no line to stop against. That omission is the most radical thing in the cycle. A horizon tells you how tall you are, how far you can see, and where the picture ends. Without one, the top edge reads as an arbitrary cut rather than a boundary, and the pond appears to carry on above it. Close up the effect is physical: the field continues past the top of your vision and never confirms where you are standing."
+   },
+   {
+    "t": "The pink notes that hold the plane",
+    "x": 0.34,
+    "y": 0.32,
+    "w": 0.13,
+    "h": 0.3,
+    "body": "Here is the raft of pads, and among them small pink blossoms, almost the only warm saturated colour on the whole wall. They matter far beyond their size. Everything else in this region is reflection, which is to say an image with no location: it lies at no depth you could measure and it shifts when you shift. The pads and flowers are the exception. They sit on the water at a fixed place, and the instant the eye finds them the shimmering field snaps into having a surface — they are the whole reason it reads as water rather than fog. Monet understood the price of them exactly, which is why there are so few and why he spaces them so far apart."
+   },
+   {
+    "t": "The trough at the bottom",
+    "x": 0.18,
+    "y": 0.66,
+    "w": 0.26,
+    "h": 0.34,
+    "body": "A long stretch with almost nothing in it: deep blue-green, no pads, no cloud, no incident. At this scale that is not a lapse, it is engineering. No eye can sustain attention across a wall of continuous activity, so Monet builds in troughs, and this is the deepest. It is also the darkest paint in the lower half, doing structural work, because the band of light above it would float away without mass underneath. And it is observed: this is water close to the near bank, where reflected sky is weakest and you start to see into the water rather than off it. That is why it goes green rather than blue. You are looking at depth here, not at anything above."
+   },
+   {
+    "t": "The dark that closes the sentence",
+    "x": 0.845,
+    "y": 0,
+    "w": 0.155,
+    "h": 0.62,
+    "body": "The largest single decision on the wall. A dense brown-green mass falls from the top edge and takes most of the height, and everything to the left of it is defined by it: this is the reference dark that lets metres of pale grey read as luminous. It is reflected foliage again, rhyming with the left end, and its placement is deliberate. Set at the very end, it acts as a stop; crossing the panel from the left you accumulate light steadily until this shuts it. Notice how little detail it carries. Monet lets it stay almost undescribed, a weight rather than a thing, because a described tree would reinstate exactly the world of solid objects the rest of the panel has spent its whole length dismantling."
+   },
+   {
+    "t": "Light slipping under the stop",
+    "x": 0.855,
+    "y": 0.7,
+    "w": 0.145,
+    "h": 0.3,
+    "body": "Below the mass the water turns pale and cool again, and small pads reappear as horizontal flecks with a few warm notes among them. This is not a leftover corner. The reflection of a bank only reaches so far toward the viewer; nearer water goes on showing sky, so the dark stops short of the bottom edge and light slides underneath it. That is an accurate fact about ponds, and it is used structurally: the closing dark is undercut, so the composition ends open rather than sealed. It also rhymes with the pads in the low corner at the other end of the wall, the same motif in the same position, bracketing everything in between."
+   },
+   {
+    "t": "The whole wall, and why it is oval",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Step back to the whole. It is separate canvases butted edge to edge, and the joins show if you look for them, dividing the length into roughly equal thirds, which tells you the thing was designed to be crossed rather than faced. There is no centre, no subject, no position at which you are correctly placed. The Orangerie rooms are ellipses for that reason: no corner lets you retreat far enough to take it in whole, so viewing turns into walking. What you leave with is not an image but a duration. In the room where you saw it, the painting is never finished with you as long as you are still moving, which is also a fair description of standing at the edge of water watching cloud go over."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "vincent-van-gogh-wheat-field-with-cypresses": {
+  "see": "Half sky, half field, one tree. The canvas divides into three horizontal bands — a churning white-and-blue sky, a low blue ridge with dark green scrub beneath it, and a wheat field taking the bottom third — and a single dark cypress runs vertically up the right side, cutting off at the top edge. Nothing here is a flat colour. The wheat is ochre, cream, orange and green laid side by side; the sky's white is warmed with pink and cooled with pale green; the cypress is bottle green over near-black over blue. The paint stands off the surface in ridges you can read stroke by stroke, and the strokes are what carry the movement: rolled and curled in the sky, dragged sideways in the grain, ticked upward in the tree. From a distance the whole surface seems to be turning.",
+  "about": "The cypress in Provence is two things at once: a windbreak planted along field edges, and the tree of graveyards. So the picture holds a working agricultural landscape — wheat at its ripest, days from being cut — and a funerary marker, in one frame, without comment. Van Gogh had been writing about harvest as an image of mortality around this time: the reaper at work in gold light, death arriving with nothing sad about it. Set the ripe field against the black tree and the argument is made by placement alone, before any symbol is named. The other subject is exposure. There is no shelter anywhere in it — no house, no figure, no road leading out. Everything soft is being combed by wind; the only things holding still are the tree and the mountains. This is a landscape seen by someone with no way of getting indoors from it.",
+  "craft": "Composition first: the cypress sits about four-fifths of the way across and is cropped by the top edge, so the tree is larger than the picture containing it. That one decision does most of the work — it makes the frame feel undersized, and it gives the eye a single immovable vertical against which to measure all the horizontal drift. The field's crest is set high, closing off the escape at the bottom and pushing the wheat forward. The colour scheme is the old complementary pair, gold against violet-blue, but broken into small separate strokes so neither ever becomes a solid area and both keep flickering. The subtlest choice is the mountains: they alone are painted thin, cool and dry with drawn contours, while everything else is built in loaded impasto. Thin recedes, thick advances. That is the entire depth system in this painting.",
+  "context": "In May 1889 Van Gogh admitted himself to the asylum at Saint-Paul-de-Mausole, just outside Saint-Rémy-de-Provence, after the collapses at Arles. The ridge on the horizon here is the Alpilles, the range visible from that ground, and the wheat fields were where he was let out to work between attacks, under supervision. That summer the cypress became a fixation. He told Theo the cypresses still preoccupied him, that they were as beautiful in line and proportion as an Egyptian obelisk, and that nobody had yet painted them as he saw them — he wanted to do for cypresses what he had already done for sunflowers. The Starry Night comes out of the same weeks and the same species of tree. He returned to this composition more than once, working it outdoors and again indoors. He would be dead by the following July.",
+  "deeper": [
+   {
+    "t": "The tree that outgrows the frame",
+    "x": 0.75,
+    "y": 0,
+    "w": 0.22,
+    "h": 0.66,
+    "body": "It is cut off. The cypress climbs out of the scrub and leaves through the top edge, so what you get is a fragment of a tree in a picture that had room for everything else. Watch how it is built: not as a silhouette but as a stack of short strokes curling in on themselves, dark green over blue-black over a blue that is really sky colour dragged into the mass. Those inward curls give the column a slow torsion, as if it were being wrung. It is also the only form here made with upward strokes — everything else slides sideways or rotates. That is why the eye keeps returning to it: it is the one place in the painting where the surface stops moving."
+   },
+   {
+    "t": "How the cloud is actually made",
+    "x": 0.02,
+    "y": 0,
+    "w": 0.55,
+    "h": 0.32,
+    "body": "The big bank reads as one solid mass, but there is no continuous white anywhere in it. It is a heap of separate curds, each a short comma of cream, pale pink or grey-green, and it holds together only because blue-grey has been run between them to give every lump an edge; those seams are the sole thing keeping the heap from scattering into loose confetti of cream and pink. Then compare the shape of those curls with the cypress: the same rolling, inward-turning gesture, dispersed across the sky instead of stacked into a column. The sky is not a backdrop. It is the tree's rhythm let loose, which is why the picture feels like one weather system rather than a tree standing in front of scenery."
+   },
+   {
+    "t": "The sky has a heading",
+    "x": 0.48,
+    "y": 0,
+    "w": 0.28,
+    "h": 0.3,
+    "body": "Follow the strokes rather than the shapes. Up here the clouds stop being clouds and become weather: long parallel lashes holding a single bearing across the width of the canvas, interrupted by tight rolled spirals where the current folds back on itself. Turbulence is being drawn as direction, not described as effect. Notice too that the paint nearest the cypress is the lightest and coolest in the whole sky — the value is lifted there so the dark tree will cut against it. You never read that as a device, because it arrives as glare. And the green threaded through this blue is the same green that runs through the field below, which is what keeps the top and bottom halves of the picture in one key."
+   },
+   {
+    "t": "The ridge that barely exists",
+    "x": 0.35,
+    "y": 0.45,
+    "w": 0.4,
+    "h": 0.17,
+    "body": "This is the thinnest paint in the picture. Everywhere else the colour is loaded and ridged; here it is scrubbed on cool and dry, with a few drawn blue contours doing all the work of the peaks. That is the sole reason the horizon sits back, because there is almost no atmospheric softening in this painting — recession is carried by how much paint is on the canvas rather than by haze. Look at the ridge line itself: not one continuous profile but a run of separate hooks and notches, each a single decisive stroke. He is drawing with the brush at exactly the moment the picture needs stillness, and the flatness of this band is what lets the field below feel so physically near."
+   },
+   {
+    "t": "The bush is the evidence",
+    "x": 0.06,
+    "y": 0.56,
+    "w": 0.33,
+    "h": 0.24,
+    "body": "This pale clump is the counterweight the composition needs — low, spreading, light and open against the tall dark closed column on the other side. It is also the proof of wind. Its foliage is combed the same way the wheat strokes run, so the two register as one gust passing through different materials. The colour is the lesson worth taking: the leaves are a blue-green pulled straight from the sky's palette, so the top of the mass half-dissolves into air, while the dark trunk strokes underneath pin it hard into the gold. One object painted in two languages, dissolving above and anchored below. That is how a bush is made to look like it is being taken apart by weather without a single contour being distorted."
+   },
+   {
+    "t": "Reading the field as a current",
+    "x": 0.4,
+    "y": 0.66,
+    "w": 0.55,
+    "h": 0.26,
+    "body": "The wheat is painted not as a texture but as a flow. The strokes fan — nearly horizontal along the crest, then tilting and lengthening as the ground comes forward, so the field appears to accelerate toward the viewer. There is no drawing in this passage at all: no stalks, no ears, no outlines, only stroke direction and broken colour. And the colour is not yellow. It is ochre beside cream beside orange beside green, each laid separately so the surface never settles into a single tone; up close it comes apart into a mosaic, at ten feet it burns. The pale band along the top of the field is the one place the crop is allowed to flatten, and it reads instantly as wind pressing down on grain."
+   },
+   {
+    "t": "The doorstep",
+    "x": 0.1,
+    "y": 0.84,
+    "w": 0.5,
+    "h": 0.16,
+    "body": "At the bottom edge the heat drops out. A wedge of cool grey-blue and dull rose opens in the near ground — bare earth, or the track running along the field — and it is the only quiet, cool passage in the entire lower half. Compositionally it works as a doorstep: the single place the picture offers you to stand. Around it the handling changes again, shortening into upright green shoots, and scattered among them are small red-orange accents. They occupy almost no area at all, yet they are the precise complement of that green, and they make the near ground ring at a pitch nothing higher in the field can reach. A tiny quantity of the opposite colour, used as a charge rather than as a subject."
+   },
+   {
+    "t": "Four speeds in one frame",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Step back and it resolves into a single argument about speed. Four bands, four rates: the sky rotating fastest, the field streaming sideways, the ridge held almost motionless, the cypress not moving at all — and every one of those rates is produced purely by how the brush is loaded and aimed, not by drawing anything differently. Which is why the painting reproduces so poorly and rewards the room instead: the impasto is genuine relief, and in the Met's light the ridges throw their own small shadows, so the surface keeps changing as you walk along it. If it floored you there, that is the mechanism. This is not a view of a wheat field. It is a diagram of turbulence with one vertical set into it to prove the turbulence is real."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "gustav-klimt-serena-pulitzer-lederer-1867-1943": {
+  "see": "A single figure on a canvas more than twice as tall as it is wide, standing frontally, close to life-size, in a high-waisted white gown that falls unbroken from just under the bust to a wide sweep at the floor. The colour range is tiny: warm greyish ivory ground, cooler white dress, one mass of near-black hair. That hair, and the face beneath it, are the only fully resolved things in the picture; below the shoulders everything softens continuously until the hem has no edge at all. There is no room — no floor line, no furniture, no cast shadow, nothing to say where she stands. The eye arrives at the head, is pulled straight down the ribbed length of the dress, meets the flare of the train, and climbs back. Reproduced small the whole thing looks faint; at gallery distance it slowly turns luminous.",
+  "about": "Klimt withholds almost every device by which a society portrait normally identifies its sitter. No interior, no possessions, no fan or book or gloves; a single small earring. What is left is a face and a proportion — which is itself the statement about the woman. Serena Lederer's household did not need a painting to itemise its assets; the white gown, the emptiness around it and the sheer height of the canvas are the display, and they are more expensive-looking than any inventory of objects would be. Beyond that, the picture is about a body turning into atmosphere. The head is alert, present, faintly amused. The torso is inference. The hem is vapour. You can read the figure as condensing out of the air or as evaporating into it, and the painting declines to settle which. It is a portrait caught one step before it becomes an apparition.",
+  "craft": "Everything follows from the format. At better than two to one the canvas cannot be taken in at a glance, so Klimt builds a top-to-bottom sequence and controls its pace. Value does the work: figure and ground sit within a few steps of each other, with the ground held a touch warmer and greyer so the dress reads as white without ever being bright — he never lightens her, he darkens the air. Contrast is rationed and spent entirely on the head, the only saturated colour and the only hard edges anywhere. The gown is dragged in long dry parallel strokes, blue-grey and violet threaded into white and deliberately left unblended, producing grain rather than drapery: no creases, no highlights, nothing to interrupt the fall. Detail is rationed the same way, into one thick passage of near-white embroidery at the bust. The lineage is Whistler's near-monochrome Symphonies; the elongation is Klimt's own answer to them.",
+  "context": "1899. Klimt is thirty-seven, two years into the Vienna Secession he helped found, and a year away from the Faculty paintings uproar that would end his career as an artist of the Austrian state. The commission came from the family of August Lederer, and it opened the most consequential relationship of Klimt's working life: the Lederers went on to build the largest private collection of his work, the Beethoven Frieze among it. The bracketed dates in the title carry the rest of the story. The family was Jewish. In the wake of the 1938 Anschluss the collection was looted; Serena did not live to see the end of the war, dying in 1943; the Faculty paintings, stored with the Lederer collection, burned in 1945 at Schloss Immendorf. Of the collection that began with this portrait, a great deal simply no longer exists. The canvas in New York is a survivor, which is why the second date needs saying aloud.",
+  "deeper": [
+   {
+    "t": "The one place he lets you land",
+    "x": 0.36,
+    "y": 0.05,
+    "w": 0.42,
+    "h": 0.14,
+    "body": "In a canvas of pale drift this is the only true dark, and it is built like a separate painting: a solid black core with loose, almost scribbled curls around the silhouette so the edge never hardens against the ground. Everything sharp in the whole picture happens inside a few inches — the two dark eyes, the drawn brows, the small red mouth, a flush on each cheek. Klimt sets the head just above the upper third and turns it a few degrees further toward you than the shoulders are turned, so she reads as having only now looked up. The expression is not grand. It is the half-smile of a woman who understands that a sitting is a performance and is willing to give you exactly that much."
+   },
+   {
+    "t": "The ground is painted, not left blank",
+    "x": 0.09,
+    "y": 0.05,
+    "w": 0.22,
+    "h": 0.17,
+    "body": "Nothing happens here, and that is worth looking at. The empty field is not a flat coat: it is laid in short patchy blocky touches of grey, ochre and mauve set side by side and dragged fairly dry, so the surface stirs rather than sits. No horizon, no skirting board, no corner — no information at all about where she is standing. What the ground does instead is tuning. It is held a step or two warmer and greyer than the gown, and that is the only reason the gown reads as white. Klimt never brightens the dress; he dims the air around it. Cover this area and the figure would go dull. It is the least eventful stretch of the canvas and it governs everything else."
+   },
+   {
+    "t": "Where the body stops being a body",
+    "x": 0.27,
+    "y": 0.215,
+    "w": 0.5,
+    "h": 0.135,
+    "body": "This band is the hinge of the picture. At the top, throat and chest are still flesh — pale, but modelled, with real weight. Within a hand's width the chest gives way to a gauze painted at almost exactly the value of skin, so the neckline becomes a suggestion rather than an edge and you cannot say where she ends and the dress begins. The one concession to detail is the embroidery across the bust: small bright loops and flecks of near-white raised paint, the thickest handling below the head. He spends it here and nowhere else in the gown. The sleeves are two clouds, and the arms inside them are inferred rather than drawn. The waist sits high, just under the bust, which means everything beneath is a single uninterrupted fall."
+   },
+   {
+    "t": "Two hands, deliberately unfinished",
+    "x": 0.28,
+    "y": 0.48,
+    "w": 0.46,
+    "h": 0.1,
+    "body": "Find the hands and you find the boldest decision in the painting. Her right hand hangs free at the hip — pink, soft, with no knuckles drawn, a shape that reads as a hand mainly because of where it is. The other is held closer in and half-swallowed by its sleeve. Neither is doing anything: no fan, no glove, no gathered skirt, none of the props a society portrait normally issues to keep a sitter's arms occupied. This is calculated. Hands are where a portrait conventionally proves its draughtsmanship, and by refusing them Klimt keeps every claim the picture makes concentrated in the head. They also quietly mark the widest point of the actual body, just before the skirt takes over the width."
+   },
+   {
+    "t": "The grain that does the stretching",
+    "x": 0.3,
+    "y": 0.6,
+    "w": 0.42,
+    "h": 0.14,
+    "body": "Nothing here but dress, and it is the technical heart of the thing. Watch direction: every stroke runs vertically, pulled long and dry so the canvas weave breaks it into a fine striation. Into the white he threads cool blue-grey and a little violet, with warmer cream where light falls, and leaves the strokes separate rather than blending them. The result is fabric with no folds in the ordinary sense — no dark creases, no bright highlights, only grain. That grain is what elongates her. Painted with conventional drapery shadows this span would have been chopped into episodes, each one a place for the eye to stop. Painted as continuous striation it reads as one fall, and the eye slides the whole length without being able to rest."
+   },
+   {
+    "t": "No floor, no shadow, no edge",
+    "x": 0.06,
+    "y": 0.8,
+    "w": 0.78,
+    "h": 0.16,
+    "body": "The gown opens out and then stops being paint that describes cloth. The hem does not close: on the left it thins into the ground with no contour whatever, and where you expect the darker accent of a shadow pooling under a standing figure, there is nothing. She casts no shadow and stands on no surface. Structurally the flare is indispensable — it gives a very tall column a base broad enough to hold it, a soft triangle that keeps the whole design from drifting upward — but it is a base made of air. This is the passage that decides what sort of picture this is: not a woman in a room, but a woman as a column of light that happens to be tapering."
+   },
+   {
+    "t": "GVSTAV KLIMT, whispered",
+    "x": 0.82,
+    "y": 0.925,
+    "w": 0.14,
+    "h": 0.05,
+    "body": "Down in the dead zone at lower right, in two stacked lines of blocky capitals with a V standing in for the U, the signature is painted barely a shade off the ground and vanishes at any distance. The lettering is designed rather than written — reformed, geometric, squared-off, the kind of alphabet the Secession was pushing across its posters and its journal in precisely these years, and a sign of how completely Klimt understood himself as part of a design movement rather than simply a painter. Note where he has put it: the one region of the canvas where nothing else is happening. Then note that he made sure it does not happen there either."
+   },
+   {
+    "t": "Step back: the proportion is the argument",
+    "x": 0.02,
+    "y": 0,
+    "w": 0.96,
+    "h": 1,
+    "body": "From across a room the subject is not a woman, it is a ratio. The canvas is more than twice as tall as it is wide; the figure fills nearly its whole height while occupying a narrow band of its width, so the picture is mostly the vertical itself. Every part already looked at serves that: the dark head as a full stop at the top, the unbroken striated fall, the flare that lands. And the entire thing is held within a few steps of one value, which is why standing in front of it — as you have — it seems to brighten gradually as the eye adjusts, rather than declaring itself at once. Klimt is testing how little a portrait can contain and still be overwhelming. Within a few years he answers the same question in gold leaf."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "the-thinker": {
+  "see": "From below, the figure fills the frame against open sky, so nothing competes with the contour. The bronze is not one green. Upward-facing planes — the crown of the skull, the top of the shoulder, the thigh, the knuckles — catch a bright yellow-green, while every hollow drops to near black. The skin is not smooth: even at this size you can see lumps, ridges and swipes left from the modelling, so light breaks across the body in small patches instead of sliding over it. The silhouette is closed and heavy. No limb escapes into the air; everything folds back into the mass. Below, a pale stone plinth carries cut capitals that the bottom of the frame slices through. A dark conifer stands at the left, a slate roof at the right. This is garden light, moving, not gallery light.",
+  "about": "Strip the title away and the body still argues one thing: that deciding costs something. There is no ease in it. The pose is not a man enjoying an idea but a man holding one he cannot put down, and the price is paid in the shoulders, the jaw, the knuckles. Thought here is not an activity of the head at all — the head is the least worked-up part of him. What the figure gained by being taken off the door and enlarged is anonymity. On a plinth, alone, with no damned beneath him and no architecture over him, he stops being anyone in particular; the subscription that funded his placement in front of the Panthéon in 1906 could read him as a workman, a figure for people who labour, and that reading stuck to him harder than the literary one ever did.",
+  "craft": "The decisive fact is that this size was not modelled. Rodin built the figure small, then had it mechanically enlarged around 1902–03, and enlargement is never neutral: the machine steps a form up in facets, and what was a thumb-mark at seventy centimetres becomes a readable plane at life-and-a-half. Rather than smooth that away, Rodin kept it — which is why the surface reads as handled rather than finished, and why it holds outdoor light so well. Broken planes give a weather-proof chiaroscuro that polish would kill. The composition is a closed pyramid, everything cantilevered off one knee, with no gap for sky to pass through the body. And proportion is weighted rather than copied: shoulders, hands and feet swell, the skull shrinks. You read the load before you read the man.",
+  "context": "The figure began at the start of the 1880s as one element of The Gates of Hell, a door commissioned by the French state for a decorative arts museum that was never built. The door was never delivered in Rodin's lifetime and never cast in bronze until after his death, so the parts of it went out into the world on their own, this one furthest of all. Rodin came to it carrying a scandal: The Age of Bronze had been accused in 1877 of being cast from a living body, an accusation about surface that made every subsequent handling of skin a defence. The monumental version was shown in 1904 and placed before the Panthéon by public subscription in 1906, then moved to the Musée Rodin. Claims about this particular bronze — which cast, which foundry, how many exist — are flagged below rather than asserted.",
+  "deeper": [
+   {
+    "t": "The head does the least",
+    "x": 0.5,
+    "y": 0.07,
+    "w": 0.33,
+    "h": 0.2,
+    "body": "This is what pulls you from across the garden, and it turns out to be the emptiest part of him. The head is small — undersized against the shoulders below it — and worked almost to abstraction. The eyes are not carved as eyes; they are pits sunk under a brow that projects like a ledge, so at any distance they simply fill with shadow and read as two dark holes. Meanwhile the bald crown is the brightest thing in the whole picture, a cap of light. The effect is a face you cannot actually read: the longer you look, the less expression you find. Whatever this sculpture is doing, it is not doing it with a facial expression."
+   },
+   {
+    "t": "Knuckles in the mouth",
+    "x": 0.53,
+    "y": 0.17,
+    "w": 0.3,
+    "h": 0.2,
+    "body": "Look at how the hand actually meets the face. It does not cradle the chin. The back of the hand is turned outward and the knuckles are pushed up into the mouth, fingers curled hard rather than folded. It reads closer to biting down than to resting — the gesture of someone stopping himself from speaking. Then watch what it does to the outline: the forearm rises and welds into the jaw so that head and arm become a single silhouette with no daylight between them. Rodin will not allow a gap there. A gap would let the head float free of the body, and the whole point is that the head is not separable from it."
+   },
+   {
+    "t": "Where the clay is still visible",
+    "x": 0.28,
+    "y": 0.18,
+    "w": 0.31,
+    "h": 0.26,
+    "body": "The shoulder and the long curve of the back give the biggest lit surface in the work, and this is where the making is most readable. Broad pressed planes meet at soft edges; small ridges run in rows and catch light like corrugation. Bronze is a faithful liar — it records exactly what the clay did, and nothing here was sanded smooth afterwards. Note the proportion at the same time. The shoulder girdle is inflated well past life, which is precisely why the head above it looks small. Rodin swelled whatever carries a load and shrank whatever does not, so the eye takes in effort before it takes in a person."
+   },
+   {
+    "t": "Two limbs, one knee",
+    "x": 0.54,
+    "y": 0.35,
+    "w": 0.34,
+    "h": 0.24,
+    "body": "Everything above this point is carried here. A hand lies over the kneecap with its fingers loose and hanging, and the elbow of the raised arm lands on the same leg just behind it — two limbs arriving from opposite sides of the body and converging on one small area of a single knee. Structurally it is the keystone; cover it and the pose has nothing to stand on. Then compare the two hands. The one at the mouth is clenched to the bone; this one is doing nothing at all, fingers slack, weight simply dropped. It is the only passage of rest in the entire figure, and it exists to make the clenched hand read harder."
+   },
+   {
+    "t": "The knee that sets the width",
+    "x": 0.18,
+    "y": 0.4,
+    "w": 0.3,
+    "h": 0.3,
+    "body": "The near leg pushes out to the left edge of the bronze and makes the widest point of the whole silhouette, roughly level with the far knee. That is what gives the figure its broad triangular base and its low centre of gravity: from here the body is a pyramid, wide at the knees, tapering through the shoulders to that small head. Notice also how little is described along this leg compared with the torso — long smooth runs, few incidents, almost no detail to catch on. The eye slides down it fast and lands at the rock. Rodin varies the density of information deliberately; the quiet passages exist so the crowded ones can speak."
+   },
+   {
+    "t": "Where the body stops being a body",
+    "x": 0.25,
+    "y": 0.66,
+    "w": 0.42,
+    "h": 0.28,
+    "body": "The seat is not furniture. It is a rough block handled in a completely different language from the flesh above it — broken facets, hard edges, no continuous skin — and the anatomy is allowed to dissolve into it rather than sit tidily on top. That is why the figure looks grown out of the mass instead of placed on it, and it is a habit that runs through Rodin: keep some of the raw material in the finished work. This is also the seam between two crafts. Bronze ends, masonry begins, and the join is abrupt. Height is decided here too — mounted this low he stays close enough to be a man rather than a monument."
+   },
+   {
+    "t": "Step back",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "From here the whole thing resolves into one closed, compact mass: diagonals running up the far knee, through the arm, into the head, and back down the near leg, with nowhere for sky to pass through the body. That closure is why it carries at a hundred metres and why it survives bad reproduction — the outline does the work before any detail arrives. Be honest about what this frame is, though. It is a single view from below and slightly to his right; it can say nothing about the back, or the far side, or the profile. What it does record is the condition the bronze actually lives in, outdoors under weather that keeps rewriting the green. You met it in that garden, not in a room."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "georges-seurat-gray-weather-grande-jatte": {
+  "see": "Two dark screens of foliage hold the picture open: slender trunks rising off the left edge, cut top and bottom, and a heavier leaf-mass hanging in from the right. Between them the Seine lies as a broad pale plane, the lightest thing on the canvas, running back to a low far bank of trees with a few pale house fronts and two or three red roofs. A dark-hulled boat is moored below centre, its mast the one firm vertical in the middle of the field; a slimmer craft lies further left, close inshore. The near bank fills the bottom left, grass giving way to a sandy, faintly pink track. Everything is laid in small separate touches of roughly even size, and the whole is ringed by a border of dots painted on the canvas itself, dark blue and violet and red, inside the wooden frame.",
+  "about": "This is the same island in the Seine as the canvas full of Sunday Parisians, and nobody has come. The promenade is a bare track, the boats are tied up and empty, and the only event is the weather. What the picture is really about is the word in its title. Overcast light flattens value differences: nothing is very dark, nothing is very bright, and Seurat treats that flattening as an opportunity rather than a loss. Take away sun and shadow and what is left is pure hue, dispersed and quiet. The painting argues that gray is not an absence of colour but a crowd of colours agreeing to cancel each other out. It is also about return. A motif he had already used to build a machine of a picture is revisited without ambition, on a dull day, as a place rather than as a subject.",
+  "craft": "Divided touch does the work. Seurat lays discrete dabs of unmixed colour side by side and lets them fuse in the eye rather than on the palette, so the water's gray is assembled from cream, rose, pale blue and green and stays luminous where a mixed gray would go dead. Watch the touch change job as it crosses the canvas: dense and clotted in the foliage, laid flat and horizontal on the water so the plane lies down, loose and open on the bank. The composition is a wedge, dark verticals left and right, a horizontal river driven between them, the far shore a thin ribbon pinning the top. The mast holds the middle. Edges get his particular treatment, so that where a dark form meets a pale one the pale side lifts fractionally just outside the contour and the contours vibrate instead of cutting.",
+  "context": "The famous Grande Jatte, the big Sunday crowd now in Chicago, was finished in 1886 and hung at the eighth and last Impressionist exhibition that May, where it drew both the ridicule and the theorising that made Seurat's name; Félix Fénéon's review of that season gave the tendency its label, Neo-Impressionism. That scandal belongs to that canvas, not to this one. This is a smaller, later, unpeopled return to the same island northwest of Paris, and it carries none of the manifesto weight; the Metropolitan dates it to the later 1880s rather than firmly to the exhibition year, and scholarship on it is thin next to the literature on its enormous cousin. Seurat kept going back to the island for landscapes in these years. He also took up, around 1888 and after, painting borders of dots directly onto his canvases, and went back to add one to the Chicago picture too. He died in 1891, aged thirty-one.",
+  "deeper": [
+   {
+    "t": "The pale plane",
+    "x": 0.22,
+    "y": 0.45,
+    "w": 0.5,
+    "h": 0.16,
+    "body": "What carries here is a broad wafer of light with almost nothing in it. It is the highest value in the painting, and Seurat keeps it that way by refusing incident, barely a ripple, no glitter, no strong reflection to break the surface. Close up the gray dissolves. The touches near the far bank run warm, cream and rose with green among them; as the water comes forward they cool into blue and lilac, and that shift alone tips the plane away and lays it flat. The dabs here are set more horizontally than anywhere else in the picture, which does most of the remaining work of making water. Standing in front of it at the Met, this is the passage that keeps pulling the eye back, because the colour is never quite the same twice."
+   },
+   {
+    "t": "Trunks as bars",
+    "x": 0.04,
+    "y": 0.04,
+    "w": 0.2,
+    "h": 0.58,
+    "body": "These are not portraits of trees. The trunks enter at the top edge and leave at the bottom without showing either root or crown, so they read as bars laid over the view, a screen rather than a specimen. Their spacing is deliberately uneven, two close together, then a gap, then one leaning slightly off vertical, which stops the rhythm turning into a fence. The canopy overhead belongs to no particular trunk. Watch the edges where a dark trunk crosses pale ground: the ground brightens fractionally just outside the contour while the trunk's own margin cools, so the line shimmers instead of cutting. That halo is calculated, worked out from contrast theory, and it is why these silhouettes sit in air rather than looking pasted on."
+   },
+   {
+    "t": "The right-hand curtain",
+    "x": 0.68,
+    "y": 0.1,
+    "w": 0.27,
+    "h": 0.58,
+    "body": "The right side is closed by a single hanging mass. Seurat gives it no branch structure worth speaking of; it is a silhouette with a scalloped edge, dense and dark low down, thinning upward until individual dots stand alone against the sky. Those loose dots are the giveaway. The green is not one green but several, with orange and red-brown salted through it, which is why the mass reads warm and breathing rather than as a flat stencil. The frayed boundary matters too: instead of an outline, the foliage dissolves into the sky by degrees, so the tree occupies depth. Structurally the curtain does two jobs at once. It stops the eye leaving to the right, and it squeezes the river into a wedge that can only be entered from the near bank."
+   },
+   {
+    "t": "The far bank",
+    "x": 0.3,
+    "y": 0.3,
+    "w": 0.34,
+    "h": 0.18,
+    "body": "All the distance in the picture is compressed into a band a couple of centimetres deep. Seurat does not draw it, he narrows its values. Trees, roofs and quay are given almost the same darkness, so the eye cannot separate them and reads the whole strip as far off. The only saturated red in the painting is up here, in two or three roof planes no bigger than a fingernail, and they carry weight out of all proportion to their size: they are the one place where the far side declares itself built, inhabited, ordinary. Note the waterline as well. It is dead straight and exactly horizontal, the structural spine of the design, and every other direction, the leaning trunks, the sloping bank, the angled hull, is measured against it."
+   },
+   {
+    "t": "The moored boat",
+    "x": 0.4,
+    "y": 0.52,
+    "w": 0.32,
+    "h": 0.24,
+    "body": "The one substantial object, and it is doing nothing. The hull is a dark flattened almond, the heaviest note in the middle of the canvas, and its mast is the single strong vertical standing between the trunks on the left and the foliage on the right, a hinge that holds the two screens together across the empty centre. Seurat sets it just off the middle so the picture does not split in half. Beside it a pale form and a slim post repeat that verticality at a lower pitch, so the passage is not one lonely mark. The boat carries nobody, and the reflection is barely stated, a few darker touches directly beneath and no long streak. Suppressing it keeps the water reading as a plane rather than a mirror, which is what the whole design depends on."
+   },
+   {
+    "t": "The bare promenade",
+    "x": 0.05,
+    "y": 0.66,
+    "w": 0.4,
+    "h": 0.28,
+    "body": "This wedge of ground is where the crowd would be in the picture everyone knows. It is empty. The pale track running down through the grass is a promenade with nobody on it, and Seurat gives it the most sensuous handling on the canvas: pinks, straw yellows, mauve and small stabs of orange scattered through the green, so the shadowed grass is built out of warm colour rather than out of black. The bank also does the work of admission. It rises from the lower edge toward the water, and because it is nearest and least described the eye starts here and is pushed inward with nothing to detain it. That is the real difference from the famous version of this island. The ground is offered and left unused."
+   },
+   {
+    "t": "The painted border",
+    "x": 0.03,
+    "y": 0.8,
+    "w": 0.3,
+    "h": 0.18,
+    "body": "Look at the last inch before the wood. That band of dots is paint, on the canvas, applied by the artist so the picture would not have to meet a frame cold. It works by opposition: against the light passages it goes dark blue and violet, against the darker ones it warms toward red, so it contradicts whatever it touches and the edges of the picture stay charged instead of dying into the moulding. The dots here are coarser than anywhere inside, which makes this corner the best place in the painting to see the method naked, separate marks, no blending, mixing in your eye at three paces and falling apart into confetti at one. The argument of the whole canvas is legible in a strip most people walk straight past."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "gustave-courbet-marine-the-waterspout": {
+  "see": "Two thirds weather, one third water, and no horizon line to divide them. A wave comes in from the left, green-black in the body, its crest tipping over into a long white lip that runs almost to the middle of the canvas. Behind it the centre of the picture is a soft grey-green wall: rain seen from far enough away to have shape, falling in pale shafts out of a bruised cloud head right of centre. Top left the cloud tears open into copper and dull rose, the only warmth across most of the surface. At the right a dark headland leans in, and at its foot a heap of pale tan blocks catches a light with no obvious source. Foam boils along the bottom edge. The eye keeps hunting for a level to rest on, never finds one, and slides.",
+  "about": "A waterspout lasts minutes. What is taken on here is not a place but an event, and an event with no fixed edges: water lifted into air, air made visible as falling water, rock standing in it getting wet. The picture withholds nearly everything a marine was supposed to supply. No crew, no rescue, no identifiable stretch of coast, no incident to narrate. Strip those away and the sea stops being a stage and becomes a substance, which is what Courbet meant by insisting these were landscapes of the sea rather than seascapes. It is a realist's problem set at the hardest available level: paint the truth of something that will not hold still, has no contour, and is the same colour as the sky it is falling out of. What the picture is finally about is weight, and specifically how much of the air is water.",
+  "craft": "Almost none of this is drawn. The sky is dragged, thin paint pulled sideways so the canvas grain keeps surfacing through it, which is why the rain reads as rain rather than as grey paint. The wave is the opposite: loaded, pushed on in single passes, white shoved through green while both were wet, so the crest carries a raised ridge that reads as actual relief when you stand in front of it at the Met. The whole canvas runs on roughly four values, which is why the handful of bright notes, foam and blocks and torn copper, carry the entire design; they align on a diagonal from top left to bottom right. Against that, the falling shafts are the only verticals in the picture and they are what keeps it upright. The warm chord is deliberate too: copper overhead, tan in the rocks, red-brown in the signature, corner answering corner.",
+  "context": "The 1870 date puts this canvas on the lip of the worst years of Courbet's life, but before them, and the sequence matters. He had spent the previous autumn on the Normandy coast at Etretat working through wave after wave, and marines from that campaign went to the Salon of 1870 to considerable notice; that summer he publicly refused the Legion of Honour from an Empire he despised. War with Prussia followed in July, the Empire fell in September, Paris was besieged through the winter. The Commune came after this picture, in the spring of 1871: Courbet was elected to it, chaired its arts commission, and was afterwards held responsible for the toppling of the Vendome Column. Imprisonment followed in 1871 into 1872, then a ruinous assessment for re-erecting the column, then exile in Switzerland, where he died in 1877. None of that is in the paint. This was made by a man still free and selling well.",
+  "deeper": [
+   {
+    "t": "The crest, from a distance",
+    "x": 0,
+    "y": 0.66,
+    "w": 0.44,
+    "h": 0.3,
+    "body": "This is what carries at twenty paces, and it is worth seeing how little it is made of. The lip is one continuous run of near-white with a hard upper edge and a soft lower one: hard where the blade lifted, soft where it was dragged down into wet green. Notice the wave is cut by the left edge, so it has no beginning. It enters already at full size, which is why it feels larger than the canvas holds. Notice too that the trough immediately in front is nearly black and thinly painted, and that darkness is doing the work; the white is not especially bright, it only has nothing to compete with. The nearest thing in the picture is also the least described."
+   },
+   {
+    "t": "The tear in the ceiling",
+    "x": 0.02,
+    "y": 0.01,
+    "w": 0.46,
+    "h": 0.3,
+    "body": "Read this as light and it misleads. Hold a finger over the copper and the picture goes monochrome and dies, so the instinct is to call it a sunset breaking through. It is not: it is the underside of cloud, warm because it is lit from behind and above, and its value is barely different from the grey beside it. The contrast here is temperature, not brightness. That is the lesson to take away, because Courbet uses the same trick everywhere in the painting. The paint is also at its thickest here, clotted into small curls and knots that catch real light in the gallery, so the sky is physically rougher than the sea below it, the reverse of what the subject would suggest."
+   },
+   {
+    "t": "The largest area is empty",
+    "x": 0.04,
+    "y": 0.3,
+    "w": 0.42,
+    "h": 0.32,
+    "body": "There is no object in this box, and that is the point. The single biggest region of the canvas contains nothing at all: a mid-grey field made of thin strokes dragged at a slight lean, with the weave of the canvas left visible to stand in for atmosphere. The lean of those drags is the only information given about which way the rain is slanting. A picture of this date would normally put its incident in the middle; Courbet gives the centre to weather and dares you to keep looking at a grey rectangle. It only reads as deep space rather than a wall because of what surrounds it, dark wave in front, warm cloud above. Remove either and it flattens."
+   },
+   {
+    "t": "The spout itself",
+    "x": 0.54,
+    "y": 0.02,
+    "w": 0.24,
+    "h": 0.58,
+    "body": "The title event, and notice how little it commits. A dense brown-black cloud head, and beneath it pale shafts dropping toward the water, not as straight ruled lines but thickening, bending slightly, one of them splaying wider as it descends. There is no funnel drawn, no cone, no meteorological diagram. The column is made by lightening the grey with the same tool that made the sky around it, which means the spout is built out of the sky rather than placed in front of it. Then look at where it meets the sea: nothing happens. No splash, no impact, the junction simply left unresolved. That refusal is more truthful than any drawn meeting could be, and it is the hardest decision in the painting."
+   },
+   {
+    "t": "The middle water",
+    "x": 0.4,
+    "y": 0.63,
+    "w": 0.2,
+    "h": 0.16,
+    "body": "Between the big wave and the rocks the water drops away pale and low, and there is a light form here that keeps changing its mind. Look for a second breaker and you find one. Look for a sail and you can have that too. The paint genuinely does not decide, and the indecision is useful, because this small bright shape is the only thing in the picture proposing distance. Measure it against the crest to the left: smaller, and higher on the canvas. Those two facts together are the entire depth cue in a painting that has deliberately denied itself a horizon; without that small form the wave and the cliff would read on one plane, and the picture would lose its only measure of distance."
+   },
+   {
+    "t": "Geometry at the waterline",
+    "x": 0.56,
+    "y": 0.6,
+    "w": 0.29,
+    "h": 0.28,
+    "body": "The blocks are the design's hinge. They are painted as flat tan planes with knife-cut edges, faceted and near-cubic, and they hold the only straight lines anywhere on the canvas. Everything to the left is formless, cool and moving; this pile is fixed, warm and edged, and the whole picture is balanced on that opposition. Then notice the problem nobody points out: they are lit, strongly and from the front left, by a sun that the sky directly above them makes impossible. Courbet is not being consistent, he is being useful, handing the eye something solid to stand on. Look at the base, where foam has been laid over the top of the finished stone, last mark on the driest paint."
+   },
+   {
+    "t": "The headland leaning in",
+    "x": 0.74,
+    "y": 0.14,
+    "w": 0.26,
+    "h": 0.5,
+    "body": "The cliff runs up out of the frame, wet grey-green ledges with a dark seam of vegetation caught in them. Its profile falls away to the lower left as a long diagonal, and that diagonal is precisely the answer to the wave's diagonal climbing to the upper right. The two cross near the blocks, and that crossing is the structural knot of the whole composition. Worth noticing what it is painted with: the same greys as the rain, only darker and given edges. Courbet keeps rock and weather inside one colour family on purpose, so the storm appears to be dissolving the coast rather than blowing across it. And like the wave, it is cropped, too big for the canvas to contain."
+   },
+   {
+    "t": "G. Courbet, in red",
+    "x": 0.78,
+    "y": 0.88,
+    "w": 0.22,
+    "h": 0.12,
+    "body": "The signature sits low right in a red-brown that is the same earth pigment as the torn cloud at the top left, which is why the corner does not feel detached. It is placed on the one patch of the surface calm enough to take script; everywhere else is foam ridge or knife furrow and the letters would break up. Courbet signed his marines large and plainly because they were, without embarrassment, product. He made them in numbers, priced them well, and understood that a Courbet wave was a recognisable commodity. And here is the closing fact: there is no figure anywhere in this picture. The only human mark in it is his name, from a painter who put himself into almost everything else he made."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "michael-wutky-versuv-ausbruch": {
+  "see": "Almost the whole surface is brown-black. Colour is rationed to a narrow vertical seam up the centre: a white-yellow core at the base of the cone, a rain of orange sparks above it, and a bruised orange stain spreading across the cloud ceiling overhead. Everything else - the rubble filling the bottom third, the wedges of rock closing in from left and right - is silhouette, or a dull red-brown lit only by what bounces back off the smoke. The format is upright, unusual for a landscape and correct here: it gives the fountain room to climb. At a distance the picture resolves into a single luminous stroke in a dark field. Up close the dark opens: the foreground is not black but a slow gradation of maroon, olive and soot, with faint glowing seams running through it and a few isolated sparks sitting on bare rock.",
+  "about": "The subject is an eruption; the argument is a vantage point. Almost every eighteenth-century Vesuvius picture puts the bay between you and the mountain - boats, the city, a road, a crowd of spectators, the whole apparatus of safe viewing. This one deletes it. There is no horizon, no sea, no city, no sky that is not smoke. The rock closing the left and right edges is the crater's own wall, which means the viewing position sits inside the thing being looked at. What the picture is about, then, is the collapse of the distance that made the sublime bearable. Terror at a remove is a pleasure; this removes the remove. It is also, quietly, about looking. The only human presence is a handful of figures at the lower left doing exactly what the viewer is doing, and nearly invisible while they do it.",
+  "craft": "One light source, and every decision follows from it. The vent is the only thing emitting light; everything else is a surface reporting on it, which lets an entire terrain be modelled within about three steps of value. The smoke is the second half of the mechanism - painted as a low ceiling rather than an open sky, so the glare bounces back down and fills the crater with a dull ambient orange instead of dispersing into night. The falling ejecta go in as discrete flecks rather than drawn lines, so the fountain reads as particles with weight, not as flame. Hue is withheld everywhere else so the small yellow-white core can behave as light rather than as paint. And the composition is a funnel: dark wedges pressing in from both sides, a rising column, no exit at the top.",
+  "context": "By the 1790s Vesuvius was an industry. It erupted repeatedly through the second half of the century, and Naples had become a terminal stop of the Grand Tour partly because of it; local guides walked visitors up the cone at night, when the lava showed. Sir William Hamilton, Britain's envoy to Naples, sent eruption reports to the Royal Society and published Campi Phlegraei with hand-coloured plates, lending the mountain scientific standing alongside its theatre. Burke had already supplied the vocabulary - terror contemplated from safety, which he called sublime. Painters supplied the goods, and an eruption canvas was a standing purchase for visitors leaving Naples. That is the firm ground. Wutky himself is not: he is a genuinely minor figure, the literature on him is slight, and on this canvas specifically it is close to nothing. Better to say so than to invent a story for it.",
+  "deeper": [
+   {
+    "t": "The seam of light",
+    "x": 0.34,
+    "y": 0.32,
+    "w": 0.22,
+    "h": 0.29,
+    "body": "The thing that carries across a room is not one shape but three joined together. At the bottom, sitting in the throat of the cone, is the only near-white in the painting. Above it the column breaks into separate falling particles, denser and more arced on the left, thinning as they rise. Above that there is no column at all, only a diffuse glow with no drawn edge anywhere. Note where the brightest point sits: at the base, not the middle. That single placement is what makes the fountain read as material being thrown out under pressure rather than as a fire burning upward. Every other brightness in the picture is measured against this core, which is why the smoke can be a dull brown and still read as blazing."
+   },
+   {
+    "t": "The lid",
+    "x": 0.1,
+    "y": 0.02,
+    "w": 0.75,
+    "h": 0.3,
+    "body": "The smoke is doing structural work, not atmosphere. Read its underside: the lower surfaces are lit and the upper edges are not, so the cloud mass acquires a floor and hangs at a definite height. The orange in the middle is not smoke that glows, it is smoke reflecting - which is why it softens and cools as it moves outward from the vent. The decisive choice is negative: there is no patch of clear night sky anywhere in the picture. Nothing vents upward, nothing escapes the frame. Close the top and the light has nowhere to go but back down onto the crater, which is exactly what illuminates the rest of the canvas."
+   },
+   {
+    "t": "The crater floor",
+    "x": 0.14,
+    "y": 0.56,
+    "w": 0.55,
+    "h": 0.14,
+    "body": "The densest information in the painting sits where fewest people look. To the left of the cone a pool of yellow reads as a second, lower source - light spilling from a fissure below the vent - and it is what accounts for the illumination on the rocks at the far left, which the main fountain could not reach at that angle. To the right the ground becomes crust: mottled red-orange broken by dark clinker, laid in as a scatter of small separate marks rather than a continuous wash. That handling is the difference between skin over something hot and a lake of fire. Follow the crust rightward and you can feel the ground tilt and fall away toward you."
+   },
+   {
+    "t": "The left wall",
+    "x": 0,
+    "y": 0.2,
+    "w": 0.18,
+    "h": 0.38,
+    "body": "A dark spur enters at the left edge and drops diagonally toward the crater floor. It carries no internal detail whatsoever - a flat silhouette with a single soft lit edge where it turns toward the light. It does two jobs. It is the evidence for where the viewer is standing: for this rock to interpose itself between eye and vent at that angle, the vantage point has to be up on the rim and inside the bowl rather than out on the slope. And it is the value anchor of the upper half, the darkest passage set directly against the brightest smoke, forcing the eye to accept that smoke as radiant when in absolute terms it is a muted brown."
+   },
+   {
+    "t": "The right-hand rock",
+    "x": 0.72,
+    "y": 0.46,
+    "w": 0.27,
+    "h": 0.2,
+    "body": "The opposite wall, handled in the opposite way. Where the left side is one smooth wedge, here the silhouette breaks into jagged fingers against a warm patch, and the shape is hard not to read as a hand or a claw. Whether that was intended cannot be known. What is certain is compositional: the glow behind these rocks sits lower and further back than the main fountain, so it functions as a separate depth cue, pushing the right-hand side of the crater away from the viewer. It is the only passage that tells you the crater has extent as well as a centre."
+   },
+   {
+    "t": "The ground nobody looks at",
+    "x": 0,
+    "y": 0.7,
+    "w": 1,
+    "h": 0.3,
+    "body": "Nearly a third of the canvas, and almost nothing happens in it. Give it thirty seconds and it separates: overlapping ridges running left to right, a dark trough entering at the lower left, faint red seams tracing open cracks, a few warm sparks stranded on bare rock. The colour is not black but warm brown layered over a cooler dark, so it stays alive rather than going dead. Its emptiness is the function. Because there is so little to catch on, the eye crosses it slowly, and that crossing time is what makes the vent feel genuinely distant and the canvas feel physically large. Paint this passage in the same key as the rest and the picture flattens to a stage set."
+   },
+   {
+    "t": "The figures",
+    "x": 0.16,
+    "y": 0.63,
+    "w": 0.18,
+    "h": 0.13,
+    "body": "On the ridge at the shadowed left, just above the lit ground, a small cluster of dark marks that resolve, once you have found them, into figures — how many, and what they carry, is past anything the paint will confirm. They are minute. You can stand in front of this canvas at Basel and not register that anyone is in it. They set the scale, and the cone behind them turns enormous when you find them. But their real work is a claim: the vantage point is a place a person can walk to. Guides did lead visitors up the mountain at night, and whoever is standing here has made that walk. The picture is not a vision of hell. It presents itself as a report from a spot with a footpath."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "anders-zorn-mrs-walter-rathbone-bacon-virginia-purdy-barker": {
+  "see": "A woman sits well back in a low chair, turned three-quarters out, in a cream evening gown that fills the lower two-thirds of a very tall canvas. A collie presses against her left side, its dark sable mask and white ruff cutting the pale field in two. The background gives almost nothing: a violet-grey wall, an ochre-gold chair back at the left, and at the upper right a tall gilt-mounted cabinet indicated in three or four strokes. The dress is the picture's light source; the wall reads as dusk beside it. Detail is rationed. Two faces are described, everything else is stated once and left. Colour arrives twice: yellow blossoms at the shoulder, salmon-pink embroidery scattered down the skirt. A long chain drops from the throat into the lap, the only sustained vertical in a painting otherwise built entirely from diagonals.",
+  "about": "The subject is a wife of American money in 1897, and the painting knows the assignment: a full-length in white, a room implying more room, a dog with a pedigree. What it does with the assignment is the interesting part. The dress is enormous and the head inside it is small, so the social fact and the private one are set at different scales and the eye has to travel between them. Her expression does not help. It is composed, level, and gives nothing away, the face of someone who has sat for this before and understands it as work. The dog is the only unguarded thing in the frame, and she is holding on to it. Read that way the picture is less about status than about the upkeep of it: a portrait of poise, with one warm animal permitted inside the arrangement.",
+  "craft": "Zorn paints events, not surfaces. The satin is a sequence of long loaded strokes, each laid once in a single direction and then left alone, with no blending and no scumbled transitions. Close up they are visibly separate slabs of cream, grey-violet and dirty ochre; step back and they lock into fabric that seems lit from within. The discipline is in the not-returning. He was among the great etchers of the period, and the painting works like his plates: parallel, directional marks whose spacing and pressure carry the whole tonal argument. The palette is deliberately narrow, earths and black and a red and white, so that two pinks on the skirt and the yellows at the shoulder can do a disproportionate amount of work. Finish is allotted by importance. The head is built, the dog's mask nearly so, the floor is barely more than stained canvas.",
+  "context": "Zorn came to America for the 1893 World's Columbian Exposition in Chicago as Sweden's commissioner and left as one of the portraitists the new American fortunes wanted, working the same clientele as Sargent and later portraying three presidents. This canvas falls in the middle of that run, signed 1897, when he was crossing the Atlantic repeatedly to take commissions from the eastern moneyed families. The sitter, born Virginia Purdy Barker, married Walter Rathbone Bacon; beyond the dates attached to her name the documentation is thin, and the particulars of her life, of the commission, and of where it was painted are not things this text will invent. What can be said is the class of object. Portraits like this were dynastic property, commissioned to hang in a private house and later given onward, which is how a New York interior ends up on a museum wall.",
+  "deeper": [
+   {
+    "t": "The white does the pulling",
+    "x": 0.38,
+    "y": 0.38,
+    "w": 0.52,
+    "h": 0.34,
+    "body": "From across the room you register a pale wedge before you register a person. The skirt opens to the right and downward and is the brightest area by a wide margin. Look closely and almost none of it is white. It is grey-violet in the folds, warm ochre where the light rakes across, a chalky cream along only two or three top ridges. Zorn saves his purest white for the narrowest passages and lets everything else fall a step or two darker, which is exactly why the dress reads as luminous rather than blank. Notice also how few strokes describe a fold: often one long mark for the lit side, one for the shadow, and the hard edge between them doing all the drawing. Seeing it at the Met, this is the passage that holds you before the face does."
+   },
+   {
+    "t": "The head, and how little it took",
+    "x": 0.27,
+    "y": 0.06,
+    "w": 0.2,
+    "h": 0.19,
+    "body": "The head occupies a small fraction of a very tall canvas and carries the entire likeness. Watch what is actually drawn: the eyes, the shadow under the nose, the seam of the mouth. Everything else is placed tone. The cheek turns with two values rather than a gradient. The hair is a silhouette, a dark shape with a warm edge where light catches the coil, and there is not a single strand anywhere. The mouth is one dark stroke with a lighter one beneath it, and the corners are left soft, which is why the expression stays unfixed and faintly cool however long you look at it. This is the most worked area in the painting and it is still economical. The difference between here and the skirt is decisions per square inch, not technique."
+   },
+   {
+    "t": "The chain is the plumb line",
+    "x": 0.22,
+    "y": 0.215,
+    "w": 0.34,
+    "h": 0.185,
+    "body": "A long chain drops from the throat, crosses the bodice and disappears into the lap. In a composition built almost entirely from diagonals, the slope of the shoulders, the fall of the skirt, the line of the dog's back, it is the one true vertical, and it quietly stops the figure sliding to the right. Around it the bodice is sheer stuff over skin, and Zorn gets that by doing less rather than more: the flesh tone goes in first and the gauze is a few dragged, half-opaque greys pulled across it, letting the warmth beneath show through the gaps. The pale blossoms pinned at the shoulder are the first colour accent in the picture, and they sit high on purpose. The pinks on the skirt answer them low."
+   },
+   {
+    "t": "The second portrait",
+    "x": 0.12,
+    "y": 0.385,
+    "w": 0.3,
+    "h": 0.155,
+    "body": "The dog is painted with the same seriousness as the woman, and structurally it does more work. Its dark mask is the only strong dark inside the pale lower half of the canvas, so it anchors the left side and keeps the composition from tipping away into the skirt. The head is drawn with the muzzle as one long tapered wedge and the white blaze cut in over it as a separate, later stroke, still sitting on top. The eyes are two small dark accents with a single light touch each, placed just far enough apart to read as attention rather than as decoration. A long-coated collie was a fashionable animal for this class of owner in the 1890s, so the dog is partly a status marker. It does not paint like one."
+   },
+   {
+    "t": "Fur, and where the hand goes",
+    "x": 0.05,
+    "y": 0.5,
+    "w": 0.24,
+    "h": 0.16,
+    "body": "The white ruff is the finest passage of pure handling in the picture. The strokes run outward and downward, following the growth direction of the coat, and they are dragged dry so the bristle tracks stay visible and read as hair at distance. It is the same trick as the satin above, differently loaded. Note the greys: the ruff is white only at its outer edge, and everything turning back toward the body is a cool shadow tone. Set into that mass, low and to the left, is a warm note where her hand rests in the fur, deliberately understated and half lost. The understatement is the point. That gesture is the emotional hinge of the portrait and Zorn refuses to underline it, so it stays something you find rather than something you are shown."
+   },
+   {
+    "t": "Where the colour is spent",
+    "x": 0.58,
+    "y": 0.575,
+    "w": 0.3,
+    "h": 0.23,
+    "body": "Salmon-pink flowers are scattered down the skirt and they are the only saturated colour on the canvas. They went on last, over dry satin, and they sit upon it rather than in it; the paint stands proud of the surface it lies across. Two things follow. First, they map the fabric. Each spray tilts and foreshortens with the plane it occupies, so the embroidery does the job of describing how the skirt falls, which the tonal painting alone had left deliberately vague. Second, they carry the picture's entire warmth budget. Take them out and the whole canvas goes grey. A few square inches of red doing the work of a colour scheme is the strongest argument for a narrow palette anywhere in the painting."
+   },
+   {
+    "t": "The room, in four strokes",
+    "x": 0.77,
+    "y": 0.01,
+    "w": 0.21,
+    "h": 0.24,
+    "body": "The only furniture Zorn admits besides the chair is here: a tall case with gilt mounts, described in a handful of ochre and dark strokes and no drawing at all. Its purpose is not to be identified. It is the one hard, warm, costly thing in the frame, and it exists so the rest of the background can stay soft and atmospheric without leaving the sitter floating in a void. Notice how thin the paint is around it. The wall is scrubbed on dry in violet-grey, and in places the weave and the warm underlayer read straight through. Backgrounds like this were painted fast, early, and abandoned; the resolution was saved for the two faces. Nothing up here competes for a second of your attention."
+   },
+   {
+    "t": "Zorn 1897, and the corner that gives out",
+    "x": 0.78,
+    "y": 0.925,
+    "w": 0.2,
+    "h": 0.055,
+    "body": "The signature and date sit low in the right corner, brushed dark and small, tipped slightly along with the floor. What makes this corner worth stopping at is the paint around it. The floor is close to bare, thin and dragged and barely a colour, and the hem of the skirt does not end so much as give out into it. There is no contour anywhere along that lower edge. That dissolution is what keeps the figure from looking cut and pasted onto its ground: the eye is handed nothing to catch on, so it accepts the space without argument. It is also the plainest evidence of how the picture was made. The last few square feet cost him almost nothing, because by then everything that mattered had been decided."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "ferdinand-hodler-mount-niesen-seen-from-heustrich": {
+  "see": "A single green mountain fills almost the whole width of the frame, rising to a point just left of centre and running off both edges without resolving. Above it, blue sky carrying dozens of small cream-white clouds, each a hook or comma of thick paint, loosely ranked in rows that grow larger toward the top. The mountain's body is a weave of greens — bottle, olive, acid — cut by paler channels fanning down from the summit. A thin dark-blue line separates crest from sky. Across the lower slopes lies a bank of white cumulus, so the mountain has no visible base. There is no lake, no village, no path, no figure, no foreground. The whole thing sits close and frontal, high in the frame, more like an object held up for inspection than a view come upon on a walk.",
+  "about": "The Niesen is a mountain that already looks like an idea: a near-regular pyramid standing alone above the Kander valley. Hodler does not discover that shape, he ratifies it. The subject behind the subject is his conviction that nature is not chaos but recurrence — that things in the world arrive in repeated, answering forms, and that the sensation of order is what registers on us as grandeur. So the picture is less a report on a place than a demonstration. It also works by subtraction. Every device a landscape normally uses to measure a mountain — a road, a roof, a boat on the water below, a haze that softens distance — has been removed, and with nothing to measure it against the mountain becomes unmeasurable. What is left has the bearing of a portrait: frontal, centred, filling its frame, looked at rather than looked across.",
+  "craft": "Parallelism, in Hodler's own use of the word, is not symmetry but repetition: like forms set beside like forms until the repeating itself becomes the subject. Here it runs at three scales. The two flanks answer each other across a vertical axis. The ridges restate the summit's angle in smaller and smaller versions as they descend. And the sky is assembled from a single cloud-unit reiterated dozens of times. The intelligence is in the inexactness — no two clouds are the same hook, the apex sits off centre, and the right side carries a shoulder the left has no answer for. Structurally, the silhouette is drawn in the sky's own blue, so the mountain is cut out rather than modelled. The paint is dry, matte and thin; the palette is narrow enough that drawing rather than colour carries the picture; and there is no aerial perspective at all, the far ridge as saturated as the near.",
+  "context": "By 1910 Hodler was the most celebrated painter in Switzerland: the Vienna Secession had made his international reputation in 1904, and German exhibitions, purchases and mural commissions followed. In the last decade of his life he turned increasingly to landscape, working the Bernese Oberland and Lake Geneva in campaigns and returning to the same peaks again and again. The Niesen he painted more than once in this period, and the versions differ in weather, in cloud, and in how much valley is admitted. What belongs to this one is the low cumulus bank cutting off the base, the heavily patterned sky, and the frame-filling scale. Heustrich lies in the Kander valley beneath the mountain, which explains the frontality and the absence of Lake Thun on the far side. He had been notorious once — 'Night' was pulled from a Geneva exhibition in 1891 — and would be again in 1914, when signing a protest over Reims cost him his German standing. This canvas falls in the secure years between.",
+  "deeper": [
+   {
+    "t": "The apex, and its flaw",
+    "x": 0.26,
+    "y": 0.28,
+    "w": 0.48,
+    "h": 0.28,
+    "body": "The peak is neither centred nor a clean point. The summit is a short, slightly broken ridge, and the two lines leaving it do so at different angles: the left falls steeper and straighter, the right hesitates before it commits. At a distance the shape reads as a plain isosceles triangle; up close it is not one. That gap is the engine of the painting — an emblem built, then roughened by the mountain that was actually standing there. Note also how the sky immediately around the crest lightens into a pale band, which pushes the dark ridge forward and keeps the silhouette from looking pasted on. The summit is the only place where the greens go nearly black, and it is the one passage he refused to simplify."
+   },
+   {
+    "t": "The sky is a field, not weather",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 0.42,
+    "body": "Look at one cloud, then at the next. Each is essentially the same object: a hooked stroke of cream-white, blunt at one end and tapering at the other, laid over blue and left standing proud. This is not a sky being recorded, it is a unit being repeated — parallelism operating in the one part of the world that never holds still. The units grow toward the top of the canvas and shrink as they approach the ridge, which manufactures depth without a single tonal transition or a wisp of haze. And they lean: most tilt the same way, so the whole field seems to drift across the summit, which gives the static mountain something to be still against. Cover the mountain and this alone is a patterned surface, closer to textile than to atmosphere."
+   },
+   {
+    "t": "The long left line",
+    "x": 0,
+    "y": 0.38,
+    "w": 0.54,
+    "h": 0.36,
+    "body": "The left ridge is the longest uninterrupted line in the painting, and it runs almost straight from the summit to the edge of the canvas without a break large enough to catch the eye. Hodler lets it leave the picture rather than settling it in a valley, so the mountain reads as larger than the frame that holds it. Below the line the flank is not modelled so much as stitched: short parallel strokes laid in the direction of the fall, so the drawing of the surface repeats the direction of its own edge. That is the quiet part of parallelism — not just mirrored halves, but interior marks agreeing with the contour. Mask the right half and what remains is nearly abstract: a green wedge under a patterned blue."
+   },
+   {
+    "t": "The shoulder that pays for the symmetry",
+    "x": 0.54,
+    "y": 0.42,
+    "w": 0.46,
+    "h": 0.38,
+    "body": "The right side is where the symmetry is paid for. Instead of the clean single fall of the left, the slope steps outward into a broad shoulder and then a lower spur before it leaves the canvas — a staged descent rather than one line. This is the asymmetry that stops the picture becoming a diagram, and it is placed with care: far enough from the axis to register as variation rather than as a mistake. The greens here also cool and go bluer, so the shoulder settles back while the summit stays forward. In a painting that otherwise refuses recession, this is the only genuine move into space, and Hodler spends it on the side that needed loosening."
+   },
+   {
+    "t": "Gullies: the pattern at small scale",
+    "x": 0.36,
+    "y": 0.44,
+    "w": 0.32,
+    "h": 0.32,
+    "body": "Down the front face run pale yellow-green channels, fanning out from just below the summit. They are the only drawing inside the mass, and they do two jobs at once. They give the face grain — a direction of fall, so the mountain looks like something that sheds water and light — and they restate the outer silhouette in miniature, each channel a narrow version of the ridge above it. That is the third scale of the repetition: mountain, ridge, gully. Note how they are painted light over dark, dragged rather than described, and left broken where the underpaint shows through. He was not naming particular couloirs. He was making the surface agree with the shape."
+   },
+   {
+    "t": "The bank that removes the ground",
+    "x": 0.02,
+    "y": 0.66,
+    "w": 0.72,
+    "h": 0.32,
+    "body": "The white cumulus lying across the lower slopes is the boldest edit in the picture, because it deletes the ground. There is no valley floor, no river, no road up from the hamlet — the mountain simply stops being visible and the painting ends. Without a base there is no judging how far off it stands or how high it goes, and the effect is that it ceases to be a place and becomes a form. The handling differs from the sky above: these clouds are fatter, softer, built from overlapping lobes rather than hooks, and warmer in tone. Two weathers share one canvas, and the lower one exists mainly to do the cutting."
+   },
+   {
+    "t": "The corner he let go slack",
+    "x": 0.76,
+    "y": 0.8,
+    "w": 0.24,
+    "h": 0.2,
+    "body": "The lower right is the loosest passage on the canvas: greens sliding to blue-black, strokes crossing each other, no attempt to name a rock or a tree, and the signature set into it dark on dark at the size of a mark rather than a claim. Letting a corner go slack is a considered decision, not fatigue. Everything structural has already happened above and to the left, and a busy corner here would compete with the summit for attention. Step back and the whole area resolves into plain shadow, doing nothing but weighting the base of the composition. It is also where the thinness of the paint is most obvious, dry and dragged, with what lies beneath still readable."
+   },
+   {
+    "t": "Step back: why it holds the room",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "From distance the argument is legible in a second: one triangle, one repeated cloud, one green, one blue. Hodler's claim was that what makes nature feel monumental is not size but recurrence, and this is about the cleanest test of it he ever set himself — take a mountain already halfway to being a symbol, strip out everything that would locate it, and let repetition carry the rest. In Basel, standing where you stood in front of it, what lands first is how flat the picture stays: no haze, no falling away, the far ridge as loud as the near one, everything arriving on a single plane at once. That flatness is why it reads across a gallery, and why the thing is closer to a banner or an icon than to a view."
+   }
+  ],
+  "by": "Opus 5"
  }
 };
