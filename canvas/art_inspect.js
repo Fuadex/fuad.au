@@ -15,6 +15,10 @@
 // museum/reference sources, and voice-deduplicated; per-entry by:"Opus 5"): Impression Sunrise ·
 // The Clouds · Wheat Field with Cypresses · Serena Lederer · The Thinker · Gray Weather, Grande
 // Jatte · The Waterspout · Vesuv-Ausbruch · Mrs. Walter Rathbone Bacon · Mount Niesen. 10 works.
+// Wave 2026-07-29 b (Opus 5 — drafted from the image, crop-QC'd, web-fact-verified against
+// museum/reference sources; per-entry by:"Opus 5"): The Kiss · La Grenouillère · Peasants'
+// Houses Éragny · Mme Arthur Fontaine · Notre-Dame-de-la-Garde · The Olive Trees · The
+// Manneporte · Coastal Scene · By the Seashore · Walk near Argenteuil. 10 works.
 window.CANVAS_INSPECT = {
  "strindberg-underlandet": {
   "see": "A wall of green-black paint — troweled on, not brushed — parts like heavy curtains around an opening of pale light. The light isn't sky exactly: it's a soft white-blue radiance with something golden breathing at its lower edge, as if you were looking out of a cave, or a forest, or a state of mind, at a brightness you can't name. Along the bottom, small pink and white flowers catch light on the dark ground like sparks that fell from the opening. Stand close and every centimetre is knife-work: paint dragged, crushed, scraped — the surface is geology.",
@@ -1464,6 +1468,496 @@ window.CANVAS_INSPECT = {
     "w": 1,
     "h": 1,
     "body": "From distance the argument is legible in a second: one triangle, one repeated cloud, one green, one blue. Hodler's claim was that what makes nature feel monumental is not size but recurrence, and this is about the cleanest test of it he ever set himself — take a mountain already halfway to being a symbol, strip out everything that would locate it, and let repetition carry the rest. In Basel, standing where you stood in front of it, what lands first is how flat the picture stays: no haze, no falling away, the far ridge as loud as the near one, everything arriving on a single plane at once. That flatness is why it reads across a gallery, and why the thing is closer to a banner or an icon than to a view."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "the-kiss": {
+  "see": "Two nude figures fused into a single pyramid of stone. The man sits; the woman is half in his lap, half rising against him, her right arm hooked up and around the back of his neck. Their heads tip toward each other at the summit, and the eye climbs there first — that meeting point is the peak of the whole mass, everything below built to carry it. From this one photograph the surface reads pale and matte, mottled rather than glassy, the tone of worked stone lit flatly against a grey wall. Follow the light down: it pools on her back and thigh, on the ridge of his shoulder, on the taut inner line where his chest presses her side. Beneath them the material coarsens into a rough block, unpolished, still bearing the block it was cut from. The figures are finished; the ground is not.",
+  "about": "The subject is desire caught a half-second before it completes. Look where their mouths are: the lips are angled toward each other but from this view they do not quite seal — the sculpture holds the instant of approach, not the kiss itself, and that withholding is the charge the whole thing runs on. Beneath the tenderness sits a darker premise. These are Paolo and Francesca, the adulterous lovers of Dante's Inferno, damned for a love that began over a book and ended in murder. The embrace is doomed and the figures seem not to know it, which is the ache of it — two bodies wholly given to a moment that condemns them. Rodin lets the eye enjoy the sensuality first and only afterward feel the cost, so the work is about pleasure and consequence held in the same block, inseparable.",
+  "craft": "The composition is a pyramid, wide and stable at the base, narrowing to the joined heads — a form built to be circled, though here we get one face of it. Rodin's decision is contrast. He polishes the flesh to a soft continuous skin so the light slides unbroken over back, hip and thigh, then leaves the base raw, gouged, deliberately unfinished. The eye feels the difference as heat against cold, alive against inert stone, and reads the couple as emerging from the rock rather than placed on it. Watch the pressure points: where her side meets his chest, where his hand grips, the stone is worked to suggest give, as if marble could yield. Nothing is symmetrical — she twists, he leans, limbs cross and lock — yet the mass balances. The tension is real physics made to look like feeling.",
+  "context": "The Kiss began inside a larger project. In the early 1880s Rodin was building The Gates of Hell, a vast bronze door swarming with Dante's damned, and this couple — Paolo and Francesca — was conceived as one element among hundreds. He then lifted them out: too serene, too happy for a doorway of torment; by 1886 he had cut them loose to live as an independent work. From that model Rodin and his studio produced versions at several scales and in several materials. The Musée Rodin in Paris, where this was encountered, holds the famous life-size white marble, and Rodin's later ambivalence is well recorded — he thought the piece conventional, a polished thing that pleased crowds more than it pleased him. The surface in this photograph reads paler and more matte than glassy marble, so which cast or material is pictured is not certain from the image alone.",
+  "deeper": [
+   {
+    "t": "Where it doesn't land",
+    "x": 0.3,
+    "y": 0.05,
+    "w": 0.45,
+    "h": 0.22,
+    "body": "Start at the top, where the two heads meet, because this is the hinge of the entire sculpture. His head tilts up and into hers; she inclines down toward him. But trace the actual mouths from this view and they hover a hair apart — the kiss is imminent, not achieved. Rodin froze the beat before contact, and that gap is deliberate. A completed kiss is a resolved thing; an unfinished one keeps the whole mass tensed toward a release it never gets. Everything below — the reaching arm, the gripping hand, the locked legs — is a body straining toward this point. Cover the rest and this summit still hums with waiting."
+   },
+   {
+    "t": "Her arm, the vault",
+    "x": 0.26,
+    "y": 0.09,
+    "w": 0.34,
+    "h": 0.26,
+    "body": "Her right arm rises off her shoulder, crosses behind his neck and pulls his head toward her. Structurally it is the sculpture's arch — a long unbroken curve that carries the eye from her back up to the joined heads and hands them the weight. Notice it is she who reaches and encloses; his posture is more received than reaching. The forearm and the muscle of his neck read as one continuous surface here, flesh answering flesh, so the embrace looks less like two people touching than like a single form folding on itself. This is Rodin's economy: one gesture does the emotional work and the compositional work at once."
+   },
+   {
+    "t": "The hesitating hand",
+    "x": 0.3,
+    "y": 0.37,
+    "w": 0.33,
+    "h": 0.16,
+    "body": "His hand lies against her hip and thigh — and it is the most argued detail of the work. It does not grasp or pull; it rests, fingers spread, poised. Read as tenderness it is a man holding something he can hardly believe he holds; read as restraint it is the last hesitation before surrender. Rodin gives you both and settles neither. The carving matters: the fingers press into the thigh just enough that the stone seems to soften under them, the illusion of a real hand on real flesh. Of all the places the two bodies meet, this is where the sculptor asks marble to behave like skin most openly, and where it most nearly convinces."
+   },
+   {
+    "t": "Legs that lock",
+    "x": 0.1,
+    "y": 0.44,
+    "w": 0.62,
+    "h": 0.34,
+    "body": "Drop to the lower half and the embrace stops being about faces and becomes about weight. He sits; his thigh runs down and out to the left as a firm diagonal. She is half across his lap, her near leg folding down over his so the two limbs cross and pin each other. This interlock is what makes the couple one object — pull the legs apart in your mind and the figures fall into two separate people, but bound this way they read as a single closed mass. It is also honest anatomy under pressure: you can feel who is bearing whom. The lower body carries the sensuality the faces only promise."
+   },
+   {
+    "t": "Where the stone stays rough",
+    "x": 0.44,
+    "y": 0.56,
+    "w": 0.5,
+    "h": 0.4,
+    "body": "Look at what the figures rise from. The base is left coarse and unworked, a blunt block still showing tool marks and the raw shape of the material, while the bodies above are smoothed to a continuous skin. This is a choice Rodin returned to across his career: the finished form seeming to struggle up out of formless matter. The effect is to make the lovers feel newly made, emerging, as if the embrace were pulling them into being out of the rock itself. It also grounds them — literally gives the polished pyramid a heavy, earthbound seat. End here, on the least glamorous inch of the work, because the crude base is exactly what makes the tenderness above it read as alive."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "la-grenouillere-renoir": {
+  "see": "A round gravel pontoon juts into green river water, crowded with figures in dark coats and pale summer dresses. Trees arch overhead from the left, dropping the scene into dappled shade, while the water opens out bright toward the right, dotted with small boats and swimmers. Two women in white anchor the middle; men in top hats lean and gather around them. A plank walkway crosses to a wooded island at left, and at right a café pavilion carries posted notices. The whole lower half is water, worked into short broken strokes that catch reflected sky, foliage, and the hulls of moored rowboats. Nothing sits still: the eye is pulled from the packed platform out across the river and back, a Sunday crowd caught mid-murmur rather than posed.",
+  "about": "This is Renoir's record of a leisure ritual, not a portrait of anyone in particular. La Grenouillère was a commercial pleasure spot, and the picture is about the act of gathering there: the small talk on the deck, the strolling, the watching of the water. Renoir keeps every face summary and unfinished, so no single person carries the scene; the subject is the collective mood of a warm afternoon. He treats the fashionable crowd and the shimmer of the Seine with the same attention, refusing to rank people above weather. The result reads less as an event than as a temperature, a specific quality of shaded light and idle motion that he wanted to hold onto before it moved on.",
+  "craft": "Look at how little is drawn and how much is placed. Faces are a smear or two; a top hat is a single dark dab, a white dress a few loaded sweeps that never resolve into cloth. Renoir builds the figures the same way he builds the water, in short separate touches of unblended color set side by side, so shade reads as cool blue-greens and the sunlit river as warm flecks. Edges stay open; the crowd and the foliage bleed into each other rather than meeting a line. In the reflections the strokes turn horizontal and choppy, each one a small facet of light. Step back and the marks fuse into figures and ripples; move close and they scatter back into raw paint, the picture holding both states at once.",
+  "context": "La Grenouillère, a floating cafe and bathing raft on the Seine at Croissy near Bougival, was where Impressionism found one of its founding motifs. In 1869 Renoir and Monet set up side by side and painted the same pontoon, boats, and swimmers, testing a way of catching sunlight on moving water through quick, broken brushwork rather than smooth finish. That summer's canvases are usually treated as a hinge point for the movement. This version belongs to that campaign, and its handling matches it closely. The crowd's dark suits and light dresses, the leisure economy of the riverbank, and the rapid open touch all place the scene firmly in that world of weekend escape from Paris that the Impressionists made their own.",
+  "deeper": [
+   {
+    "t": "The two women in white",
+    "x": 0.42,
+    "y": 0.34,
+    "w": 0.2,
+    "h": 0.28,
+    "body": "Start where the light collects. The two pale dresses at center are the brightest note in a shaded scene, and Renoir uses them as an anchor the whole crowd orbits. See how little describes them: no seams, no hands, just loaded sweeps of near-white broken by cool grey where the fabric folds into shadow. The men around them stay dark and summary, so the eye keeps returning to the white. This is Renoir sorting his crowd by tone rather than by story. He is not telling you who these women are; he is using them as the pivot of brightness that makes the surrounding shade legible and gives the packed platform its center of gravity."
+   },
+   {
+    "t": "The pontoon crowd",
+    "x": 0.29,
+    "y": 0.4,
+    "w": 0.33,
+    "h": 0.28,
+    "body": "Now widen to the gravel deck itself. It is thick with people, yet almost no one is finished. Top hats are single dark taps, a turned back is one gesture of a coat, a face is a pinkish flick with no features. Renoir wants the sensation of a crowd, not its census, and he gets it by letting the figures crowd and overlap without hard outlines. The pale gravel of the platform reads as reflected warmth, worked in the same broken touch as the water below. Count how many separate people you can pick out and then how few actually have a face: the difference is the whole method, presence built from suggestion rather than detail."
+   },
+   {
+    "t": "The pavilion and its notices",
+    "x": 0.81,
+    "y": 0.3,
+    "w": 0.19,
+    "h": 0.34,
+    "body": "At the right edge a café pavilion carries pale rectangles of posted notices. It is easy to miss, but it fixes the place as a business: this is a commercial pleasure spot with prices and announcements, not a private garden. Renoir renders the signage as blank flecks, legible as paper but never as words, so it stays part of the shimmer instead of freezing into hard architecture. The pavilion's cooler greys also give the warm crowd a foil at the composition's edge. Note how even a built structure gets the same loose, unruled touch as the trees, keeping the whole surface at one restless pitch of light."
+   },
+   {
+    "t": "The river opening right",
+    "x": 0.55,
+    "y": 0.27,
+    "w": 0.4,
+    "h": 0.16,
+    "body": "Beyond the deck the Seine opens out, brighter and busier: small rowboats, tiny swimmers, a pale sail. This band is where the shade lifts and the light goes full. Renoir keeps the far figures to single dabs, letting scale alone carry the distance, and the water here is worked in flatter, lighter strokes than the churned foreground. The contrast is deliberate. The crowded near platform sits in cool tree-shadow; the far river glows. That tonal step from dark foreground to luminous distance is what gives the flat canvas its depth without any drawn perspective lines, and it pulls the eye out past the crowd into open air."
+   },
+   {
+    "t": "The moored rowboats",
+    "x": 0.01,
+    "y": 0.62,
+    "w": 0.34,
+    "h": 0.34,
+    "body": "Down in the near corner the empty rowboats do quiet compositional work. The tan hull at left and the dark green boats beside it are the most solid, opaque shapes in the picture, and Renoir sets them across the foreground like a bar that holds the churning water in place. Their curves also point inward toward the pontoon, steering you back to the crowd. Because they sit closest, they get the heaviest paint and the firmest edges, everything behind them progressively looser. Emptiness matters here: unoccupied boats waiting at the bank quietly say this is a place people come to and leave, the traffic of a working leisure spot rather than a fixed tableau."
+   },
+   {
+    "t": "The water and its reflections",
+    "x": 0,
+    "y": 0.66,
+    "w": 1,
+    "h": 0.34,
+    "body": "Close on the smallest unit of the whole picture: a single stroke of water. The lower half is nothing but these short choppy marks, laid mostly horizontal, each one a facet catching sky, leaf, or hull. No stroke pretends to be a wave; together they read unmistakably as moving water. This is the discovery the Grenouillère summer is remembered for, that reflected light on a river could be built from separate touches of unmixed color rather than smoothed into glaze. Trace how the boats' colors drop down into the ripples and dissolve. The reflections are not mirrored; they are re-invented in paint, the whole surface admitting it is paint and reading as river at the same time."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "peasants-houses-eragny": {
+  "see": "Two peasant cottages sit behind a garden hedge on a summer afternoon. The nearer one, at left, carries two brick chimneys and a steep tiled roof; its whitewashed wall catches the sun. A second house recedes at right, half-swallowed by greenery. Between them and you runs a wall of clipped hedge, broken by a modest wooden gate and pale posts. A broad path of trodden earth sweeps across the foreground, curving toward a wedge of lawn at lower right. A slim tree rises at the far left, its trunk crossing the roofline. Everything is built from small separate touches of colour, so the surface seems to vibrate faintly in the light rather than settle into hard edges. The scene is quiet, domestic, entirely unpeopled — the backs of houses, a bit of kitchen garden, the ordinary ground you would walk on to reach the door.",
+  "about": "By 1887 Pissarro had spent three years at Éragny-sur-Epte, a hamlet in Normandy where he rented, then bought, a house with a long garden and orchard. He was in his late fifties, the elder statesman of the Impressionist circle and the only member to exhibit in every one of their eight group shows. Yet here he is painting like a much younger man. Convinced by Seurat and Signac that colour built from separate dots was more truthful and more permanent than the loose Impressionist brushstroke, he had reworked his whole method around it. This canvas shows that conviction at work on the plainest possible motif: not a grand view but the rear of his neighbours' cottages, the hedge, the garden path. The humbleness is deliberate. With nothing picturesque to lean on, the picture rests entirely on how it is made.",
+  "craft": "Look closely and the image dissolves into a mosaic of small strokes, each a distinct note of colour laid beside its neighbour rather than blended on the palette. This is divisionism: greens set against pinks, orange roof-tiles against blue shadow, so the eye mixes them at viewing distance and the surface holds a soft, even shimmer. Pissarro rarely uses pure round dots — his marks are often short commas and flecks, looser than Seurat's stricter method. Notice how the roofs are warm brick-red stitched through with cooler violets, and how the shadowed foreground path is not brown but a weave of lilac, ochre and green. The technique enforces slowness: nothing is described in a single gesture, everything accumulates. That patience is the subject as much as the cottages are. Pissarro would later abandon the method, finding it too rigid and too slow to catch a passing light, but the discipline of it stayed in his eye.",
+  "context": "Pissarro was the bridge in nineteenth-century French painting. Older than Monet, Renoir and Degas, he had absorbed Corot and Courbet, helped invent Impressionism, then late in life turned to the young Neo-Impressionists and adopted their science of colour. He also mentored Cézanne and Gauguin, both of whom called him a teacher. Éragny anchored the last decades of his life; he painted its fields, gardens and seasons obsessively, often from the same upstairs window. The divisionist experiment of the mid-1880s split the Impressionist group, which distrusted its coldness and theory, and Pissarro's commitment to it briefly cost him buyers. That this modest French garden scene now hangs in Sydney, far from the Oise fields it depicts, is part of its interest here: a quiet cottage motif, made at the moment a founding Impressionist was humbly relearning his craft from painters half his age.",
+  "deeper": [
+   {
+    "t": "The nearer cottage",
+    "x": 0.15,
+    "y": 0.07,
+    "w": 0.42,
+    "h": 0.37,
+    "body": "The left-hand house is the picture's anchor: two brick chimneys, a steeply pitched roof of orange tile, a whitewashed gable wall bright with sun. Pissarro builds the roof not as a flat red plane but as a tissue of warm and cool flecks — brick, rust, violet, a little blue where the light turns — so it reads as a tiled surface warming in the afternoon rather than a coloured shape. The wall beneath is pale but never plain white; look for the faint pinks and greens threaded into it that keep it luminous. Even here, on solid architecture, nothing is drawn with a hard contour. The edges are made of massed small touches, which is why the building sits so softly in its surrounding air."
+   },
+   {
+    "t": "The far house in the greenery",
+    "x": 0.55,
+    "y": 0.16,
+    "w": 0.31,
+    "h": 0.22,
+    "body": "A second cottage recedes at the right, smaller and dimmer, its chimney and roofline nearly overtaken by the hedge and foliage growing up around it. Pissarro uses it to set depth: by letting green climb over its walls and softening every edge, he pushes it back behind the nearer house without any drawn perspective lines. The greens here do a great deal of quiet work — dozens of distinct dabs, from yellow-green in the light to deep blue-green in shadow — so a mass that could read as a flat wall of hedge instead breathes and has weight. It is the least emphatic passage in the painting, and one of the most patiently observed."
+   },
+   {
+    "t": "The gate and hedge",
+    "x": 0.29,
+    "y": 0.36,
+    "w": 0.26,
+    "h": 0.21,
+    "body": "At the centre a plain wooden gate hangs between two pale posts, the only clear man-made line crossing the band of hedge that separates garden from path. It is a small, ordinary threshold — the way in to the kitchen garden — and Pissarro gives it no drama. But it organises the whole middle of the picture, marking where the trodden foreground meets the cultivated ground beyond. The hedge on either side is a long horizontal of massed green touches, cool and dense, that seals the cottages off into their own quiet domestic world. Notice how the posts are lighter than everything around them, catching the sun, so the eye is led gently toward this modest opening rather than to any grander feature."
+   },
+   {
+    "t": "The foreground path",
+    "x": 0,
+    "y": 0.55,
+    "w": 1,
+    "h": 0.45,
+    "body": "The lower third is given over to bare, trodden earth curving across the canvas, with a wedge of green lawn cut into it at the right. This is where divisionism is easiest to read. The ground is not one brown but a woven field of lilac, rose, pale ochre and green flecks, warmed where the sun falls and cooled into violet where it does not. Pissarro lets these small strokes describe the gentle rise and fall of the path without any drawn shadow. The emptiness is the point: no figures, no incident, just the ordinary ground you would cross to reach the door, made to shimmer with the same care he gave the houses. Stand back and it settles into sunlit earth; step close and it is pure colour theory at work."
+   },
+   {
+    "t": "The tree at the edge",
+    "x": 0,
+    "y": 0,
+    "w": 0.15,
+    "h": 0.58,
+    "body": "A slender tree rises at the far left, its trunk running up past the roofline and off the top of the canvas. Pissarro often used a vertical like this at a picture's edge to hold the composition together and to keep the eye from sliding out of frame. The trunk is built from cool grey-violet touches with green light glancing across it, and it frames the cottages without competing with them. Small as its role is, remove it in your mind and the left side of the painting loses its anchor. It is a quiet piece of structure — the kind of unshowy compositional decision that comes from a painter who had been arranging landscapes for thirty years."
+   },
+   {
+    "t": "The signature",
+    "x": 0.02,
+    "y": 0.9,
+    "w": 0.22,
+    "h": 0.09,
+    "body": "In the lower-left corner Pissarro signed and dated the work, fixing it to 1887 — the height of his divisionist years. It is worth pausing on: this is a founding Impressionist, well into his fifties, dating a canvas made by a method he had learned from Seurat and Signac, painters young enough to be his sons. The signature sits in the same dotted, flecked ground as the rest of the painting, not scratched onto a smooth patch but woven into the surface. Within a few years he would set this technique aside as too slow. So the date marks a genuine hinge — the moment the elder of the Impressionists was humbly, deliberately relearning how to lay down colour."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "odilon-redon-madame-arthur-fontaine-marie-escudier-born-1865": {
+  "see": "A woman sits in profile, turned left, absorbed in something white she holds in her lap. Her dress is a deep saturated yellow, almost the only firm colour in the picture; against it a bib of pale lace opens at the throat. Her auburn hair is pinned up over a face barely modelled, more suggested than drawn. She does not look at us, and there is no attempt to make her. Everything behind her dissolves into a haze of blossom, violet clusters massed to the right, small flecks of white and gold drifting across a dusk-green ground. The figure is solid and the world around her is vapour. She reads or embroiders, private, self-contained, unaware, and the whole surface has the soft grain of pastel rubbed into paper rather than paint laid on canvas.",
+  "about": "This is Marie Escudier, who married Arthur Fontaine, a senior civil servant whose Paris house was a gathering point for Symbolist writers and musicians. Redon made it in 1901, when he was past sixty and had spent most of his working life in black. For decades he produced his noirs, charcoals and lithographs of severed heads, spiders, closed eyes, dreams pushed to the edge of nightmare. Then, across the 1890s, colour arrives in his work like a released breath, mostly in pastel, and portraits and flowers replace the monsters. A commissioned likeness of a friend's wife is not the obvious vehicle for a visionary, yet the tension between the two, real sitter and unreal setting, is exactly what makes this his and not a society painter's. She is observed; her surroundings are imagined onto her.",
+  "craft": "The medium is pastel, and Redon uses its two natures against each other. The dress is worked densely, the yellow packed and burnished so it reads as weight and cloth. The background is the opposite: dry pigment dragged and dotted so loosely that the paper tooth shows through, each flower a stroke or two, nothing described. He lets the two zones share no clear edge, so the sitter seems to condense out of the atmosphere rather than sit in front of it. The face is left deliberately soft, planes indicated with the side of the stick and almost no line, so we read expression from posture instead. Highlights on the lace are pale scumbles pulled over darker tone. It is a technique that hides labour, but the density of that yellow is not quick.",
+  "context": "By 1901 the Symbolist movement was decades old, and Redon was its elder painter, admired by younger men for having painted the invisible. Symbolism preferred suggestion to statement, mood to narrative, the inner life to the documentary. A conventional portrait records status and features; this one withholds both. We get no room, no possessions, no direct gaze, only a woman folded into her own attention amid flowers that could as easily be a state of mind as a garden. That is the Symbolist move: the setting is not where she is but what she is like. The Fontaine circle valued exactly this register, and placing Marie among dissolving blossom rather than in a drawing room reads as a compliment in their language, less a likeness of a face than of a temperament.",
+  "deeper": [
+   {
+    "t": "The averted face",
+    "x": 0.29,
+    "y": 0.13,
+    "w": 0.24,
+    "h": 0.2,
+    "body": "Start where a portrait usually anchors and notice how little is given. The face is strict profile, turned fully from us, and Redon models it with the flat of the pastel, almost no drawn line, so the features stay soft and unemphatic. There is no catchlight in the eye, no address to the viewer, none of the flattery a commission might invite. What we read instead is downcast attention: the tilt of the head, the lowered lids, the whole set of someone reading and forgetting she is watched. The auburn hair is a firmer, warmer mass above it, giving the head its weight. He treats the most public part of a portrait as its most private, and that reversal sets the mood for everything else."
+   },
+   {
+    "t": "The yellow dress",
+    "x": 0.27,
+    "y": 0.44,
+    "w": 0.44,
+    "h": 0.48,
+    "body": "The dress carries the picture. This saturated golden yellow is the one passage Redon builds up to real density, the pastel packed and rubbed until it reads as heavy silk with weight and fall. It grounds a work that everywhere else wants to evaporate. Track how the colour warms and cools as the cloth turns, brighter where light catches the shoulder and arm, deepening into shadow at the waist and lap. Against it the massed violets of the background sit as the near-opposite on the wheel, and that complementary pairing is doing quiet structural work, pushing the figure forward while the cool haze recedes. Redon the colourist is a late arrival in his own career, and here the whole argument for that late turn is concentrated in one dress."
+   },
+   {
+    "t": "The white in her hands",
+    "x": 0.09,
+    "y": 0.42,
+    "w": 0.39,
+    "h": 0.31,
+    "body": "In her lap she holds a large pale sheet, most likely embroidery on a frame or an open book. It is the brightest note in the picture and the reason for her downturned pose, the thing her attention flows into. Redon keeps it summary, a broad white plane flecked with faint touches rather than described stitch by stitch, so it stays an object of concentration more than a still life. Its whiteness rhymes with the lace at her throat and links the two zones of the figure. Compositionally it also weighs down the lower left and balances the flower mass rising on the right. Whatever it is exactly, its purpose is clear: it gives her somewhere to look that is not us, and the picture depends on that."
+   },
+   {
+    "t": "Flowers as atmosphere",
+    "x": 0.6,
+    "y": 0.04,
+    "w": 0.38,
+    "h": 0.56,
+    "body": "The right side is a drift of blossom, violet and lilac clusters massed near the shoulder, thinning into scattered white and yellow flecks across a dusky green ground. Look how little each flower is: a dab, a smear, the paper showing between them. Nothing is a botanical portrait; it is the idea of a flowering thicket, laid on so loosely it might be pattern, weather, or reverie. This is where Redon the maker of noirs and Redon the painter of flowers meet. He has taken the dream-space of his black work and simply lit it. The blossoms never resolve into a real garden, and that refusal is the point: the setting is a mood surrounding the sitter, not a place containing her."
+   },
+   {
+    "t": "Solid figure, vapour world",
+    "x": 0.04,
+    "y": 0.04,
+    "w": 0.92,
+    "h": 0.92,
+    "body": "Step back and the design is one clear decision: a firm, weighted figure set into a field that dissolves. Along her contour the two states meet with no crisp edge, the yellow condensing out of violet haze so she seems to gather herself from the atmosphere rather than pose in front of it. That soft boundary is the whole Symbolist proposition here. A society portrait would seat her in a describable room; Redon suspends her in something closer to inner weather, and lets the picture read as a temperament rather than an inventory. The unbroken profile, the private task in her hands, the massed cool blossom, the single warm dress, all of it is arranged so we understand a person by mood and colour, not by face and furniture."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "paul-signac-notre-dame-de-la-garde-la-bonne-mere": {
+  "see": "A view up the Old Port of Marseille toward the hill crowned by Notre-Dame-de-la-Garde, the pilgrimage church locals call La Bonne-Mère. Everything is built from small square touches of unmixed colour laid side by side, so the surface reads as a mosaic before it resolves into a scene. Warm light floods the sky in pink, lilac and pale yellow; the water below answers in blues and violets flecked with rose. Masts crowd both banks into a thicket. On the left a moored boat carries a furled sail striped in yellow, white and blue. Low at centre a tiny rowboat holds two figures, oars spread on the water. The church itself sits small and violet against the haze, less a subject than a summit the whole harbour climbs toward.",
+  "about": "By 1905 Signac had spent nearly two decades as the organiser and theorist of Neo-Impressionism, the movement he built with Georges Seurat and carried forward alone after Seurat died in 1891. His treatise D'Eugène Delacroix au néo-impressionnisme (1899) argued that painting could be as systematic as it was expressive: pure colours placed separately, left for the eye to combine. This canvas shows how far the method had travelled from Seurat's cool, disciplined dots. Marseille was near Signac's adopted south; he had settled at Saint-Tropez and sailed the Mediterranean coast obsessively. The port here is not documented so much as celebrated, a working harbour turned into a hymn of coloured light. The church presiding over it gives the scene its title and its axis, but Signac's real subject is the atmosphere in which boats, water and stone all dissolve.",
+  "craft": "The technique is divisionism, and Signac applies it as pure theory made visible. Rather than blending pigments on a palette, he lays touches of separate colour on the canvas so they mix optically in the viewer's eye, staying brighter than any physical mixture could. By this date his strokes are large blocks, tesserae the size of tiles, each holding one clear hue. Look at the water and you find no grey: shadow is built from violet, blue and rose set against one another. He works in complementaries throughout, warm pinks answered by cool blue-violets so each intensifies its opposite. The mortar of untouched or lighter ground between strokes keeps the colours from muddying and makes the whole surface vibrate. The result is a picture that describes bright southern light not by imitating it but by reconstructing how colour behaves under it.",
+  "context": "The larger tessellated touch you see here is the story of Neo-Impressionism's second act. Seurat's dots were small, dense and cool, aiming at a scientific evenness. After his death Signac loosened the method: the touches grew, the colour warmed, and the mosaic became frankly decorative, closer to the enamelled surface of Byzantine work than to optical experiment. That shift mattered beyond his own canvases. The young Henri Matisse painted alongside Signac at Saint-Tropez in 1904, and the blocks of saturated colour he learned there fed directly into Fauvism, which erupted in 1905 as this canvas was taking shape. Signac's harbour views sit at the hinge: still committed to the divisionist system, already pushing colour toward the autonomy the next generation would claim. The Bonne-Mère, watching over sailors for centuries, presides over a painting that is itself a passage from one century's art to the next.",
+  "deeper": [
+   {
+    "t": "The Bonne-Mère on her hill",
+    "x": 0.5,
+    "y": 0.03,
+    "w": 0.3,
+    "h": 0.3,
+    "body": "The basilica gives the painting its name and its summit. Signac renders it small and violet-blue, the bell tower a spiky vertical against the pale sky, the mass below softened almost to a mirage. He refuses to make it a monument. It is stated in the same coloured touches as the boats and water, only cooler and more distant, so it belongs to the atmosphere rather than dominating it. Notre-Dame-de-la-Garde had guarded Marseille's sailors from her hilltop for centuries, and the whole composition tilts upward toward her. Yet the reverence is structural, not sentimental: she anchors the design as its highest point while the light and colour do the actual work of devotion below."
+   },
+   {
+    "t": "The striped sail",
+    "x": 0.02,
+    "y": 0.32,
+    "w": 0.26,
+    "h": 0.32,
+    "body": "The moored boat at left carries the picture's most concentrated colour, a furled sail banded in yellow, white and blue. Against the lilac haze of the port these stripes ring like a struck note. Signac uses the boat to demonstrate his system at full strength: warm yellow set hard against cool blue, each pushing the other brighter, the white acting as a rest between them. The tall mast rises the full height of the canvas, a firm vertical that steadies the shimmering field around it. This is the nearest object to us, and Signac makes nearness felt through saturation, the colours here bolder and less dissolved than anything in the receding harbour."
+   },
+   {
+    "t": "The thicket of masts",
+    "x": 0.66,
+    "y": 0.28,
+    "w": 0.34,
+    "h": 0.4,
+    "body": "The right bank dissolves into a forest of masts and rigging, a working port distilled to a rhythm of near-vertical lines. Signac does not count the ships or draw their gear; he suggests density through repetition, dark violet strokes crowding upward until they blur into the warmer light behind. This is characteristic of his late manner, description handed over to pattern. The masts rhyme with the single tall spar at the left, framing the water between them like a stage. What could be industrial clutter becomes ornament, the harbour's traffic reorganised into a decorative screen that keeps the eye circulating rather than settling on any one hull."
+   },
+   {
+    "t": "Two figures in the rowboat",
+    "x": 0.2,
+    "y": 0.72,
+    "w": 0.28,
+    "h": 0.2,
+    "body": "Low at centre, almost lost in the water, a small rowboat holds two figures, their oars spread flat on the surface. They are tiny, painted in warm reddish touches that stand out against the cool blue-violet water, and they supply the human scale the rest of the scene withholds. Signac gives them no faces and no story, only presence: enough to register that this shimmering field is a real working harbour, not an abstraction. Their oars trail thin ripples across the tessellated water, one of the few horizontal accents in a composition ruled by verticals. Cover the harbour's grandeur and these two figures remain its quiet centre of gravity."
+   },
+   {
+    "t": "The mosaic of water",
+    "x": 0,
+    "y": 0.78,
+    "w": 1,
+    "h": 0.22,
+    "body": "The lower band of the canvas is where divisionism speaks most plainly. The water is built from square touches of blue, violet and rose, never blended, never grey. Shadow here is not the absence of colour but a denser weave of cool hues, warmed by pink reflections dropped from the sky above. Read the strokes individually and they are a chart of separate pigments; let them settle and they resolve into moving, light-struck water. This is the optical mixture Signac theorised, colour combined in the eye rather than on the palette, kept vibrant because it is never physically muddied. Step back through the whole picture from here and the method's logic is complete: the surface is a mosaic, the scene a Mediterranean noon."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "vincent-van-gogh-the-olive-tree": {
+  "see": "A grove of olive trees fills the middle of the canvas, their silvery foliage massed into blue-green clumps that ripple across the width of the picture. Behind them the Alpilles roll in bands of blue, and above those a pale sky carries a knot of yellow-white clouds shaped like rising smoke. The ground tilts up toward you in orange and green, ploughed into long curving furrows. Nothing here sits still. The same wave that lifts the clouds runs through the hills, the trees, and the earth, so the eye is pulled around the surface rather than held at any one point. It reads at first as a bright, ordinary sight of the Provençal countryside, then reveals itself as a landscape where every part is in motion at once.",
+  "about": "Van Gogh painted olive groves through the summer and autumn of 1889, during his year at the asylum in Saint-Rémy-de-Provence. The trees drew him because they were difficult and alive: he wrote of their changeable silver, grey, and green, and of how hard they were to render. He worked outdoors, in front of the motif, returning to the same subject in canvas after canvas across the seasons. This picture belongs to a cluster of grove paintings from that year, several of which he sent to his brother Theo in Paris. Where other Saint-Rémy subjects carried heavy feeling for him, the olives were closer to daily labour and observation, a working countryside he could study directly. It now hangs at the Museum of Modern Art in New York, one of the versions in which the grove stands full and green under a moving sky.",
+  "craft": "The whole surface is built from short curved strokes laid side by side, each following the form it describes. The foliage is stippled in overlapping commas of green and blue; the hills are stacked in longer horizontal ridges; the ground unspools in furrows that swing left and right as they climb. Van Gogh keeps the direction of the brush visible everywhere, so paint and motion become the same thing. The palette is cool and high-keyed, blues and greens carrying most of the picture, with orange earth pushed underneath to make the greens vibrate. He leaves little atmosphere between planes: trees, hills, and sky press close, flattened toward the viewer. The clouds are the one loose, weightless passage, dragged in thin pale yellow against firmer blue, a release above all that dense worked ground.",
+  "context": "The olive was one of the few motifs Van Gogh could return to freely from the asylum grounds and the fields nearby, and he made it his own repeated study rather than a single statement. He set these groves against his cypresses, his letters of these months casting the olive and its harvest as the living, cultivated land where the cypress had spoken of death. That pairing matters for reading this canvas: it is a picture of tended, useful country, trees shaped by generations of pruning, not wild nature. The rolling sky and heaving ground are not distress so much as his conviction that a landscape is a single breathing thing. Painted the year before his death, it shows him at full command of a style built entirely from the moving brush, turning a plain grove into something that pulses.",
+  "deeper": [
+   {
+    "t": "The leaning tree",
+    "x": 0,
+    "y": 0.6,
+    "w": 0.34,
+    "h": 0.4,
+    "body": "Start at the lower left, where a single olive leans in from the edge on a trunk that bends like an S. Van Gogh gives it a darker, more defined outline than the trees behind, so it reads as the nearest figure in the grove and the point where you enter the picture. The trunk is drawn in swinging strokes that follow its curve, and its roots seem to grip the sloping orange ground. Olive trees are pruned and shaped by hand over generations, and he catches that trained, muscular growth rather than any wild tangle. This one tree sets the rhythm the whole grove repeats: nothing grows straight, everything turns."
+   },
+   {
+    "t": "Foliage as woven strokes",
+    "x": 0.28,
+    "y": 0.34,
+    "w": 0.4,
+    "h": 0.28,
+    "body": "Move up into the canopy and the leaves dissolve into method. Each mass of foliage is a dense weave of short curved dabs, greens over blues, laid in slightly different directions so the clumps seem to shift and shimmer. This is how Van Gogh chased the olive's famous changeable colour, the silver that turns grey then green as wind and light move through it. He does not paint individual leaves; he paints the sensation of a whole crown catching light. Look at the gaps of pale sky punched between the clumps, which keep the trees breathing and airy rather than solid. The technique is the subject: motion made visible in paint."
+   },
+   {
+    "t": "The rolling hills",
+    "x": 0,
+    "y": 0.17,
+    "w": 1,
+    "h": 0.28,
+    "body": "Behind the grove the Alpilles roll across the full width in bands of blue, the low limestone range that framed Saint-Remy. Van Gogh stacks them in long horizontal ridges, cooler and flatter than the busy trees, and lets the right-hand mass darken almost to indigo. He compresses the distance so the hills sit close behind the grove rather than receding far away, pressing the whole landscape toward you. Notice how their curves echo the swing of the tree trunks below and the clouds above, tying the three zones into one continuous wave. This band is where the picture takes a breath between the density of the foliage and the emptiness of the sky."
+   },
+   {
+    "t": "The smoke-shaped clouds",
+    "x": 0.22,
+    "y": 0,
+    "w": 0.6,
+    "h": 0.2,
+    "body": "At the top a single cloud coils in pale yellow-white against the blue, its scrolls shaped less like weather than like rising smoke or breath. This is the loosest passage in the painting: thin, dragged paint over a firmer sky, weightless above all the worked ground below. Van Gogh often gave his skies these restless swirling forms, and here the cloud's curl rhymes exactly with the bend of the trees and the roll of the hills, so the eye can travel from earth to sky without ever leaving the same rhythm. It is the clearest sign that he sees the landscape as one moving body, animated top to bottom by a single current."
+   },
+   {
+    "t": "The furrowed ground",
+    "x": 0.3,
+    "y": 0.72,
+    "w": 0.55,
+    "h": 0.28,
+    "body": "Come down finally to the foreground earth, which is worked as hard as anything in the picture. The ground is ploughed into long curving furrows of orange and green that swing left and right as they rise toward the trees, tilting the whole floor up to meet you. That warm orange, mostly hidden beneath the surface, is what makes the cool greens above it ring. The lines of the earth carry your eye inward toward the grove and knit the bottom of the canvas to the leaning tree at the left. This is cultivated, useful land, the harvest ground of the olives, and Van Gogh dignifies plain soil with the same charged, moving brush he gives the sky."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "claude-monet-the-manneporte-etretat": {
+  "see": "A single arch of chalk cliff fills almost the whole canvas, so close and so large that it crowds the sky out to a thin pale band at top. On the left the rock lifts into a wide span; on the right a heavy pier plunges straight into the sea, its seaward face lit warm ochre and gold while the inner wall stays cool grey-violet. Below, the water churns in ropes of blue, green and curdled white, breaking against the base of the stone. Through the opening you glimpse flat, hazy water and light. There is no foreground path, no framing shore. The arch is not a view onto a scene; it is the scene, met head-on and slightly from below, as if you were standing on the rocks beneath it.",
+  "about": "This is the Manneporte, the largest of the three sea arches at Étretat on the Normandy coast, where the chalk cliffs the locals had painted for generations, Courbet among them, had become a testing ground. Monet worked at Étretat across several winter campaigns in the early 1880s and returned to the arches obsessively, painting the Porte d'Aval, the Porte d'Amont and this greatest span again and again from shifting angles and tides. The subject was already a tourist landmark; his gamble was to strip away the picturesque and stand almost inside it. What he wanted was not the arch as monument but the arch as a mass of light, water and weather caught at one hour. The Met's canvas is one of that group, painted on the spot with the sea coming in.",
+  "craft": "Monet builds the rock from short, dragged strokes that follow its bulk, letting the ochre light of the seaward face sit against the violet-grey shadow so the pier reads as solid and turning. He keeps the paint thin and broken across the wall, thick and clotted in the surf, where white is troweled over blue and green in loops that never fully mix. The sky is scumbled lightly, almost an afterthought, so nothing competes with the stone. Colour, not line, does the drawing: the boundary between lit and shadowed rock is a seam of temperature, warm meeting cool, with no drawn edge at all. The whole surface stays visibly worked, weather made of pigment, and the arch holds its weight through sheer contrast of hue.",
+  "context": "By 1883 Monet had shown at several Impressionist exhibitions and was pushing toward the idea that would organize his later life: a single motif returned to under changing light, which he would formalize in the Haystacks, Poplars, Rouen Cathedral and Water Lilies. The Étretat arches are an early, rugged rehearsal of that method, monolithic geology standing in for the later serial subjects. He was also measuring himself against precedent here. Courbet had painted these same cliffs a generation before as grand, stable landscape; Delacroix and countless print-makers had made the arches a postcard. Monet answers by getting closer, lower and rougher, refusing the tidy distant view. The result feels less like a record of a famous rock than a report from beneath it, filed while the tide rose.",
+  "deeper": [
+   {
+    "t": "The lit seaward face",
+    "x": 0.5,
+    "y": 0.28,
+    "w": 0.34,
+    "h": 0.5,
+    "body": "The whole picture turns on this wall. Monet loads it with pale ochre, cream and touches of pink where the low sun rakes across the chalk, then lets those warm notes die into blue-grey as the surface angles away toward shadow. There is no outline dividing the two; the change is purely one of colour temperature, warm advancing, cool receding, and that alone makes the pier read as a rounded, weight-bearing mass rather than a flat cutout. The strokes are short and follow the rock's fall, so the eye slides down its face into the water. This is the engine of the whole canvas: light modelling stone without a single drawn contour."
+   },
+   {
+    "t": "The arch and the thin sky",
+    "x": 0.02,
+    "y": 0.02,
+    "w": 0.62,
+    "h": 0.45,
+    "body": "Monet crops hard. The span reaches almost to the top edge, squeezing the sky into a narrow, lightly brushed strip that reads as afterthought rather than subject. Through the opening the sea and haze go pale and nearly featureless, a soft screen of light against which the near rock stands dark and solid. This is the compositional gamble: instead of setting the arch in a wide coastal panorama, he pushes it forward until it becomes a near-abstract shape, a great loop of stone framing emptiness. The distant water seen through the gap gives just enough depth to keep the rock from flattening into pattern."
+   },
+   {
+    "t": "The breaking surf",
+    "x": 0,
+    "y": 0.62,
+    "w": 1,
+    "h": 0.38,
+    "body": "Where the rock is dragged thin, the sea is built thick. Monet works the water in agitated loops and commas of blue, green, teal and white, the paint clotted and raised where the wave crests and breaks against the base of the arch. Nothing here fully blends; each colour keeps its own stroke, and the churn reads as motion because the marks refuse to settle. Cool green shadow sits in the troughs, curdled white on the spray. This band anchors the picture's bottom and does the opposite work of the calm sky above, turbulence answering stillness, so the eye is caught between weight overhead and unrest below."
+   },
+   {
+    "t": "The base of the left pier",
+    "x": 0,
+    "y": 0.52,
+    "w": 0.22,
+    "h": 0.28,
+    "body": "Down where the left leg of the arch meets the surf, Monet lets the rock go darkest, green-black and wet, half lost in the shadow of the span above. A few small vertical dark marks sit on the low shelf here. Monet often placed a tiny figure at the foot of these cliffs precisely so its smallness would state the arch's true scale, and marks like these are where such a figure would stand. Whether these particular touches read as people or simply as broken rock is hard to settle at this size, but the effect is the same: the base is where the eye finally registers how enormous the thing overhead really is."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "theo-van-rysselberghe-coastal-scene": {
+  "see": "A shallow bay at rest, seen almost end-on so the water fills two-thirds of the canvas and the sky is squeezed into a pale strip above. Low blue hills close the far shore, dropping to a soft promontory on the left. Across the middle a band of light lies on the surface, silver-green, brighter than either sky or hills, as if the whole scene were tuned to that one horizontal glow. The near water cools into blue and violet as it comes toward you. The only firm incident is a scatter of thin dark stakes rising in the lower centre, each trailing a faint reflection. Nothing moves. The picture is built not from strokes but from thousands of separate coloured dots, so the surface reads as a single shimmering fabric rather than a described place.",
+  "about": "This is Neo-Impressionism at its most contemplative. Van Rysselberghe was the leading Belgian follower of Georges Seurat, and by 1892 he had committed fully to the divided touch and to subjects that let colour do the work: harbours, estuaries, flat southern coasts where light sits on still water. A coastal scene like this offers almost no anecdote. There is no boat under sail, no figure, no drama of weather. What holds you instead is a problem of pure sensation, how a band of reflected light can be made to feel more solid than land. Painting the sea this way, dot by dot, was partly a scientific wager about how the eye mixes colour and partly a temperament that preferred order and quiet to Impressionist bustle. The result feels less like a view than a state of attention.",
+  "craft": "The method is divisionism: small, discrete touches of unmixed colour set side by side so they blend in the eye rather than on the palette. Van Rysselberghe does not mix a grey for the water; he lays blue beside green beside rose beside a warm cream and lets them fuse into that pearly shimmer. The dots vary by zone. In the luminous horizon band they run pale and closely keyed, so the light seems to hum; in the near foreground they cool and darken toward violet and slate blue, pulling the surface forward. The hills are a denser, bluer weave. Because every passage is the same unit repeated, the picture has no hard edges anywhere except the stakes, which is exactly why those few dark verticals carry so much weight. The whole thing is patience made visible.",
+  "context": "By 1892 Seurat was a year dead, and the Neo-Impressionist circle he had left behind in Brussels and Paris was refining his discovery into a shared language. Van Rysselberghe helped carry that language into Belgium through Les Vingt, the avant-garde exhibiting society he was central to, which pulled Seurat, Signac and others north. This canvas belongs to a wave of coastal and marine subjects the group favoured, where an empty horizon gave the divided touch room to breathe without the clutter of incident. It is a small, quiet painting rather than a manifesto piece, which is part of its interest: it shows the technique used not to astonish but to register a mood. The National Gallery in London holds it now, a modest Belgian entry in a French-dominated story of how colour was taken apart and reassembled by the eye.",
+  "deeper": [
+   {
+    "t": "The band of light",
+    "x": 0.06,
+    "y": 0.3,
+    "w": 0.72,
+    "h": 0.16,
+    "body": "Start where the picture wants you to: the horizontal glow across the middle distance. It is the brightest passage on the canvas, brighter than the sky, and it is doing the hardest job. This is reflected light lying flat on still water, and Van Rysselberghe builds it from the palest, most closely matched dots in the whole scene, silver, green-gold, faint rose. Because the touches are so near each other in value, the eye cannot fix on any one and the band seems to vibrate softly. It reads as a plane of light rather than a described stretch of sea. That inversion, water outshining air, is the quiet event the picture is organised around, and everything cooler and darker exists to set it off."
+   },
+   {
+    "t": "The far hills",
+    "x": 0.26,
+    "y": 0.25,
+    "w": 0.72,
+    "h": 0.14,
+    "body": "The far shore closes the bay in low blue hills, denser and bluer than anything else on the canvas. Here the divided touch does the work of atmosphere: distance is not drawn but cooled, the dots shifting toward blue and violet so the land recedes and dissolves at its own edges. A softer promontory drops toward the left, giving the horizon a gentle asymmetry rather than a ruled line. Notice there is no drawn contour anywhere; the hills end where their colour stops matching the water's. That is the divisionist bargain, form surrendered so that light and air can be continuous. At this resolution the individual dots blur into a solid blue weave, but the logic is the same one running through the whole surface."
+   },
+   {
+    "t": "The stakes",
+    "x": 0.28,
+    "y": 0.72,
+    "w": 0.4,
+    "h": 0.26,
+    "body": "Now the one hard incident. A loose cluster of thin wooden stakes rises from the shallows in the lower centre, mooring posts or the remains of a fish trap, and each casts a faint broken reflection into the water below. They are the only near-vertical, near-black marks in a picture made entirely of soft coloured dots, and they carry enormous structural weight for their size. They give the eye a foothold, a sense of near versus far, and a human trace in an otherwise empty scene. Their reflections, wavering and dispersed rather than mirror-sharp, quietly confirm that the water is moving just slightly. Take these few marks away and the surface would lose its scale and float free."
+   },
+   {
+    "t": "Foreground water and signature",
+    "x": 0.5,
+    "y": 0.6,
+    "w": 0.5,
+    "h": 0.4,
+    "body": "Step back into the near water. As the surface comes toward you it cools and deepens, the dots turning from the horizon's pale silver to blue, violet and slate. This temperature shift, warm light far off, cool weight close to, is how the flat plane gains depth without any drawn perspective; colour alone tells you what is near. A soft paler channel runs down the centre, the light's reflection reaching toward the viewer. Along the lower right the artist's monogram sits woven into the same dotted fabric. The whole foreground is the technique's real test: an almost featureless expanse held together purely by the modulation of tiny touches, which is what makes a scene this empty stay alive to look at."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "pierre-auguste-renoir-by-the-seashore": {
+  "see": "A young woman sits in a wicker chair set at the edge of the sea. She fills the tall canvas almost entirely, turned three-quarters toward us, her body in dark blue-black, her face lifted and composed. A ruffled white collar breaks at her throat, the brightest note in the picture. On her head a blue bonnet trimmed with pale lace. Her gloved hands rest in her lap over a tangle of needlework. Behind her, to the right, the sea opens out in loose blue and green, with a pale chalk cliff and a few small sails near the top edge. The chair's warm yellow curves around her like a frame. Look for how differently the woman and the water are painted: she is drawn, the sea is only brushed.",
+  "about": "Renoir made this in 1883, in the middle of what he later called a crisis. For a decade he had painted with the Impressionists, dissolving figures into flickering light and color. By the early 1880s he felt he had reached the end of that road and no longer knew how to draw or paint. A trip to Italy, and long study of Raphael and Ingres, pushed him back toward firm outline and modeled form. This picture sits exactly on that hinge. The model, posed in the studio and set against a seaside that Renoir likely invented, is rendered with a new sharpness of contour, while the water behind her keeps the old shimmering touch. The result is a deliberate collision of two manners in one frame, the artist thinking on canvas about what to keep and what to leave behind.",
+  "craft": "Two systems of paint share the surface. The face is built in close, blended tones, the cheek turned gently from light to shadow, the eyes and mouth held by firm dark contours that keep the head from spreading into the air around it. This is the drawn Renoir, learning again from the old masters. The sea is the opposite: horizontal drags of blue, green and white laid wet and left unblended, the cliff a few pale swipes, the sails single flecks. Between the two lies the wicker chair, described in quick parallel yellow strokes that read as caning without ever being carefully outlined. The white collar is thick and worked, the darkest passages of the dress nearly flat. Renoir lets the brush change its speed and pressure from zone to zone, so the figure feels solid and the world behind her feels like weather.",
+  "context": "By 1883 Impressionism was fracturing. The group shows had grown quarrelsome, the market was uneven, and several painters were privately doubting the loose plein-air method that had defined them. Renoir's answer was to reintroduce classical drawing, a phase later called his dry or Ingres manner, which would dominate his mid-1880s work and culminate in the tightly outlined bathers of 1887. Seaside leisure, fashionable dress and the modern woman at rest were standard Impressionist subjects, and Renoir keeps them here. What is new is the treatment. The sitter has the poise of a formal portrait even though she is nominally caught in a casual moment. The painting entered the Metropolitan Museum with the H. O. Havemeyer collection, one of the American holdings that made Renoir central to how the movement was understood in the United States.",
+  "deeper": [
+   {
+    "t": "The face, drawn",
+    "x": 0.3,
+    "y": 0.29,
+    "w": 0.28,
+    "h": 0.17,
+    "body": "Start here, because everything else is measured against it. The head is the most resolved thing in the picture: a clear jaw, a modeled cheek moving from lit to shadowed, cool grey-blue eyes and a small closed mouth. The contours are firm enough to hold the features in place rather than letting them melt into the surrounding light, which is precisely the discipline Renoir was reaching back toward in 1883. The expression is self-possessed and slightly distant, closer to a Renaissance portrait than to a snapshot of a day out. This is the passage where you can watch him deliberately un-learn the soft Impressionist face and re-learn the drawn one."
+   },
+   {
+    "t": "Bonnet and lace",
+    "x": 0.28,
+    "y": 0.17,
+    "w": 0.3,
+    "h": 0.15,
+    "body": "The blue bonnet is one dark shape, but its lace trim is painted as light itself, dry white touches flicked over the blue so the edge seems to breathe. Notice the contrast with the face just below: the same brush that firmly contained the features here loosens completely for the frill. Renoir was a superb painter of fabric and trimming, trained early as a porcelain decorator, and that fluency never left him. The bonnet also does compositional work, weighting the top of the tall canvas and framing the face so your eye settles on it rather than drifting up into the sky."
+   },
+   {
+    "t": "The white collar",
+    "x": 0.33,
+    "y": 0.45,
+    "w": 0.26,
+    "h": 0.13,
+    "body": "At the throat the dress opens into a ruffled white collar, the highest, thickest paint in the picture. It is the pivot of the whole tonal scheme: the darkest passage, the near-black dress, meets the lightest one right at the center. Renoir loads the brush and lets the white stand almost sculptural against the flat dark cloth, a small burst of texture that catches whatever light there is. Placed directly under the modeled face, it also acts as a bright pedestal, lifting the head and keeping the eye from sliding down into the shadowed body too quickly."
+   },
+   {
+    "t": "Hands and needlework",
+    "x": 0.36,
+    "y": 0.62,
+    "w": 0.36,
+    "h": 0.18,
+    "body": "Her hands rest in her lap over a pale tangle of lace or netting, one of them holding a fine tool, a crochet hook or needle. This is the quiet narrative anchor: a fashionable woman at the shore, occupied with delicate handwork. But look at how loosely it is painted compared with the face. The needlework is a flurry of white and rust flecks with no drawn edges, closer in handling to the sea than to the head. Renoir keeps the labor legible enough to read while refusing to tidy it, so the hands feel genuinely at work rather than posed."
+   },
+   {
+    "t": "The wicker chair",
+    "x": 0.14,
+    "y": 0.44,
+    "w": 0.72,
+    "h": 0.4,
+    "body": "The chair is doing more than seating her. Its warm yellow curves wrap up the sides and across the back, a bright armature that encloses the figure and separates her from the cool sea beyond. Renoir describes the caning with rapid parallel and crosshatched strokes, enough to read as woven cane without a single carefully drawn line. The warmth is deliberate: it pushes the figure forward and lets the blues recede. Follow the curve of the near arm and you see how it steers your eye up toward the hands and then the face, giving the tall composition an internal loop."
+   },
+   {
+    "t": "The invented sea",
+    "x": 0.5,
+    "y": 0.1,
+    "w": 0.5,
+    "h": 0.35,
+    "body": "Step back to the background, the counter-argument to the figure. The water is pure Impressionist shorthand: horizontal drags of blue and green, a pale chalk cliff in a few swipes, tiny sails set down as single flecks near the top. Nothing here is drawn; it is all weather and light. Most likely it was not observed at all but composed in the studio behind a posed model, which is why it functions as a decorative backdrop rather than a specific place. Holding this loose sea against the firmly modeled woman is the real subject of the picture, Renoir staging his own indecision between two ways of painting."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "walk-near-argenteuil": {
+  "see": "A summer meadow fills the lower half of the canvas, thick with wildflowers flecked in red, violet, yellow and green. Three figures move through it. Left of center, an adult in dark clothing and a dark hat walks beside a taller figure in a pale dress and light hat, both turned away so their faces read as little more than a smudge of tone. Lower and to the right, a small figure in pale clothing rises only head-and-shoulders above the grass. A broad tree with dark foliage anchors the right edge; a low band of trees marks the horizon at left. Above it all, the sky takes the top half entirely — restless blue-grey and white, broadly worked, weather rather than backdrop. The whole thing hovers between a portrait of a family and a portrait of a field of light.",
+  "about": "This is the scale of Monet's Argenteuil years distilled: not a grand statement but a few people crossing their own back meadow on a windy afternoon. The picture refuses to make the walk into an event. Nobody poses, nobody looks back; you catch them mid-stride, level with your own eye, as though you had fallen a few paces behind. What the painting is actually about is the meeting of two moving things — a family in motion and weather in motion — and Monet weights them equally. The flowers receive as much attention as the people, the sky more than either. It is a domestic subject painted with the seriousness usually reserved for something monumental, and that mismatch between humble occasion and ambitious looking is exactly the point. The ordinary is treated as enough.",
+  "craft": "Everything here is built from separate touches of loaded color laid side by side, never blended smooth. The meadow is not drawn and filled but tapped in — short dabs of red for poppies, blues and violets between, greens threaded through, so the field reads as flicker rather than surface. The figures get the same treatment: the dark walker is a few decisive strokes, the pale dress a stack of broken whites and blue-greys, faces left deliberately unresolved. The sky is dragged in wide, wet passages, cloud and gap worked at once. Distance is handled by touch alone — near flowers coarse and separate, the far tree-line softening to a low smear. There is no line anywhere doing the work of an edge; contour is where two colors happen to stop. The paint stays visibly paint, and the scene assembles only when you let the marks settle.",
+  "context": "Monet lived at Argenteuil, on the Seine just outside Paris, from 1871 to 1878 — the heart of his high-Impressionist prime, and the years that produced the poppies, gardens and river pictures the movement is now known by. This is one of the meadow subjects from that stretch, painted in 1875. It belongs to a cluster of works in which figures cross fields of summer flowers under big skies, close cousins to the famous Poppies canvases. The intimacy is not incidental: these were the pictures of home, painted on the familiar river plain he lived beside. The canvas now hangs at the Musée Marmottan Monet in Paris, the collection richest in Monet's own holdings, where the small domestic scale of the Argenteuil work sits alongside the later water-lily monumentality — a reminder that the vast late Monet grew out of exactly this kind of modest afternoon looking.",
+  "deeper": [
+   {
+    "t": "The two walkers",
+    "x": 0.3,
+    "y": 0.3,
+    "w": 0.3,
+    "h": 0.45,
+    "body": "Start with the pair. The dark figure and the pale one read instantly as adults on a path, yet neither has a face — the heads are a couple of strokes, a hat, a tone. Monet gives you posture, direction and the fall of light on cloth, and withholds everything a portrait would insist on. That withholding is the radical move. We are used to figures being the reason a picture exists; here they are one incident among many, no more finished than the grass. Notice how the pale dress is not white but a built pile of blues, greys and creams, shadow and sun stacked wet into wet. They are unmistakably a person walking, and unmistakably also just a bright shape moving through color."
+   },
+   {
+    "t": "The child in the grass",
+    "x": 0.62,
+    "y": 0.55,
+    "w": 0.22,
+    "h": 0.3,
+    "body": "To the right, a smaller figure surfaces from the meadow — head, hat and shoulders above a screen of flowers, the rest swallowed by the field. Its pale clothing and light headwear echo the walker in white, and the size drop tells you it stands further off or is simply small. This is the detail that turns a landscape into a family outing: a group spread across the meadow rather than a single strolling couple. Monet paints the child exactly as he paints everything else, in the same broken dabs, so it half-dissolves into the flowers around it. You have to look to find it, and finding it changes the whole reading of the scene from stroll to household."
+   },
+   {
+    "t": "The flower field",
+    "x": 0.02,
+    "y": 0.62,
+    "w": 0.55,
+    "h": 0.35,
+    "body": "Drop into the meadow itself and the picture becomes almost abstract. Up close there are no flowers, only decisions — a red tap, a violet next to it, a green stroke between, yellow flecked over. None of it describes a single bloom; together it reads as a whole field vibrating in wind and sun. This is where Monet spends his real attention, and where the painting's argument lives: that a patch of summer weeds, seen honestly, holds as much light and event as any subject. The coarse, separate marks in the foreground are what let the far tree-line and horizon read as distant by contrast — depth built purely from how loose or tight the touch is, nowhere by drawn line."
+   },
+   {
+    "t": "Sky as the real subject",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 0.42,
+    "body": "Step back and give the top half its due — it takes fully half the canvas. The sky is worked in wide, wet drags of blue-grey and white, cloud and clear pushed around each other so the whole thing feels mid-change, a gust caught. This is weather, not backdrop, and it governs everything below: the same broken light that flecks the meadow moves through the clouds. By handing so much surface to sky and flowers and so little to faces, Monet quietly resets the hierarchy of what a figure painting is for. The people are why we came; the light is what the painting is about. That inversion — humble outing, monumental looking — is the Argenteuil years in a single afternoon."
    }
   ],
   "by": "Opus 5"
