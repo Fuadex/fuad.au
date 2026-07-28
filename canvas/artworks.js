@@ -39,7 +39,11 @@ window.CANVAS_ARTWORKS = [
 
   { id: "fjaestad-wood-pattern", title: "TBC — the wood-pattern painting", artist: "Gustaf Fjæstad", artistId: "fjaestad", qid: null, year: null,
     seenAt: "tokyo-met", via: "exhibition", exhibition: "Swedish Masters (name TBC)", seenConfidence: "sure", floored: true,
-    note: "Painted to resemble wood grain — \"haven't seen a painting made in such style.\" Attribution to Fjæstad CONFIRMED as likely by Fuad. Which work + which painting was the marvelous exhibition poster — recall deck." },
+    note: "Painted to resemble wood grain — \"haven't seen a painting made in such style.\" Attribution to Fjæstad CONFIRMED as likely by Fuad. Which work + which painting was the marvelous exhibition poster — recall deck. NOT Winter Moonlight (a separate work, added below) — the wood-pattern one has water at the bottom of the canvas; candidates Winter Evening by a River / Evening Sun in Early Winter pending Fuad's ID." },
+
+  { id: "fjaestad-winter-moonlight", title: "Winter Moonlight", artist: "Gustaf Fjæstad", artistId: "fjaestad", qid: "Q43225438", qidTrusted: true, year: 1895,
+    seenAt: "tokyo-met", via: "exhibition", exhibition: "Swedish Masters of Art", seenConfidence: "sure", liked: true,
+    note: "Vintermånsken — snow-laden firs under a moonlit night. Seen in the Swedish Masters of Art exhibition at the Tokyo Metropolitan Art Museum (Nationalmuseum Stockholm NM 1628)." },
 
   { id: "isson-works", title: "TBC — Tanaka Isson works", artist: "Tanaka Isson", artistId: "isson", qid: null, year: null,
     seenAt: null, via: "exhibition", exhibition: "TBC — 2024 retrospective was Tokyo Met, but Fuad can't confirm that's where he saw them", seenConfidence: "sure",
