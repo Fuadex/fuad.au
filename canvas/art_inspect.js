@@ -23,6 +23,8 @@
 // entry by:"Opus 5"; clears the floored backlog): Pont de l'Europe · 4 late Marmottan water
 // canvases (Nymphéas, Weeping Willow, Agapanthes, 2 willow-reflections) · Tuileries study ·
 // Renoir In the Meadow · Turner Venetian Scene · Díaz Flower Piece. 10 works.
+// Wave 2026-07-29 d (Opus 5): the two Fjæstad works — Winter Evening by a River (the
+// wood-pattern one) + Winter Moonlight. 2 works.
 window.CANVAS_INSPECT = {
  "strindberg-underlandet": {
   "see": "A wall of green-black paint — troweled on, not brushed — parts like heavy curtains around an opening of pale light. The light isn't sky exactly: it's a soft white-blue radiance with something golden breathing at its lower edge, as if you were looking out of a cave, or a forest, or a state of mind, at a brightness you can't name. Along the bottom, small pink and white flowers catch light on the dark ground like sparks that fell from the opening. Stand close and every centimetre is knife-work: paint dragged, crushed, scraped — the surface is geology.",
@@ -2404,6 +2406,120 @@ window.CANVAS_INSPECT = {
     "w": 0.42,
     "h": 0.26,
     "body": "At lower right the bouquet meets a dim horizontal shelf, barely described, and a signature is worked into the shadow near the corner. Little is spelled out here: a few fallen touches suggest stray petals or stems, and the surface stays loose. Stepping back, the arrangement resolves as a single body of light rising from darkness, with the base weighted and warm and the top dissolving, so the composition is read as much by luminosity as by any vase or support, which is never clearly shown."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "fjaestad-wood-pattern": {
+  "see": "A dark river fills almost the whole canvas. A thin snow-covered bank runs across the top, bare trees rising from it, and a matching bank of snow curves across the bottom foreground. Between them lies water — but it barely reads as water. The trees on the far bank drop their reflections straight down into it, and those reflections have been drawn as dense, close-packed vertical ripples that lock together into a continuous striated weave. A warm gold-green light glows across the middle band and darkens to brown at the bottom. The eye keeps trying to read the surface as flowing water and keeps landing on something closer to a milled plank. You saw this at the Swedish Masters of Art exhibition at the Tokyo Metropolitan Art Museum, and the thing that stopped you is exactly this: the river turned into grain.",
+  "about": "This is \"Winter Evening by a River\" (Vinterafton vid en alv), painted by Gustaf Fjaestad in 1907 and now in the Nationalmuseum in Stockholm. Fjaestad was the central figure of the Rackstad artists' colony near Arvika in Varmland, and he built a whole career out of the Nordic winter — snow, hoarfrost, still and moving water — rendered not as atmosphere but as pattern. He was also a furniture and textile designer, and that surface-design instinct is the engine of the picture. What looks like a modest motif, a stretch of river at dusk with two banks of snow, is really an argument: that the visible world can be resolved into an even, decorative, all-over weave. The subject is almost an excuse. The real subject is the treatment of the water, and the strangeness of what that treatment produces.",
+  "craft": "The method is patient and almost mechanical, which is the point. Fjaestad covers the whole water with short, roughly vertical strokes, each ripple a small dash, and packs them tightly enough that they fuse into long continuous streaks running top to bottom. Where a tree reflects, the streaks darken and thicken; between reflections they thin to the pale gold of the underlying light. The result reads like the grain of a sawn board — parallel runs interrupted by knots and figuring. The snow is built the opposite way, with a dry, granular stipple that catches the last evening light. Colour stays deliberately narrow: muted gold, green, and brown across the water, near-white for the snow, dark umber for the trees. There is no bravura brushwork on show and no single focal incident. The picture is made of accumulation, thousands of near-identical marks doing the work.",
+  "context": "Fjaestad worked at the meeting point of Swedish National Romanticism and the decorative flatness of Jugendstil, the northern cousin of Art Nouveau. Around 1900 the ideal was total design — a picture, a chair, and a woven hanging all speaking the same patterned language — and Fjaestad moved freely between them, which is why his canvases so often behave like textiles or veneers. He is remembered above all as a painter of rimfrost, hoarfrost, and of snow and water, motifs he could turn into all-over ornament without ever quite leaving observation behind. \"Winter Evening by a River\" belongs to that project. It takes the least fixable of subjects, moving water at dusk, and disciplines it into a repeating weave. Your reaction — not having seen a painting made in such a style — is the response the whole approach was reaching for.",
+  "deeper": [
+   {
+    "t": "The far bank and its trees",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 0.22,
+    "body": "Start at the top, because everything below depends on it. A thin band of snow closes off the far side of the river, lumpy along its lower edge where it meets the water. Bare trees rise from it: a loose scatter on the left, and a heavier dark mass to the right of centre, its fine twigs drawn as a brownish haze against the pale sky. This strip is the only conventionally legible part of the picture — recognisable snow, recognisable trees. Fjaestad gives you just enough of a normal winter scene here to set up the surprise. Every tree you can name along this edge is about to be repeated, stretched, and combed downward into the water as pattern."
+   },
+   {
+    "t": "The right-hand reflection",
+    "x": 0.55,
+    "y": 0.2,
+    "w": 0.45,
+    "h": 0.6,
+    "body": "This is the clearest wood-grain passage in the painting. The heavy tree on the right drops a dark column straight down through the water, and Fjaestad renders it as tightly stacked horizontal ripples reading as continuous vertical streaks — darker at the core, feathering paler at the edges, exactly like the figured grain around a knot in a board. The ripples never resolve into a mirror image; there is no legible upside-down tree, only the abstracted texture of one. This is the trick the whole canvas turns on. A reflection, which should dissolve and shimmer, has instead been fixed into a dense decorative weave, and it is here that the resemblance to sawn timber is impossible to unsee."
+   },
+   {
+    "t": "The left-hand reflections",
+    "x": 0,
+    "y": 0.2,
+    "w": 0.4,
+    "h": 0.45,
+    "body": "The left side answers the right in a lighter key. Here the scattered trees on the bank throw down softer, paler streaks — a set of vertical runs that lean and taper as they descend, like the looser figuring toward the edge of a plank. They sit over the warm gold-green light of the water's middle band, so they read as tone-on-tone rather than dark-on-light. Compare the two sides and you can see Fjaestad orchestrating the whole surface: dense and dark at the right, open and luminous at the left, the ripples changing weight across the canvas the way grain changes across a wide board. Nothing here is random; the pattern is composed."
+   },
+   {
+    "t": "The band of evening light",
+    "x": 0.2,
+    "y": 0.28,
+    "w": 0.55,
+    "h": 0.22,
+    "body": "Across the middle of the water runs a warm horizontal band — gold shading to green — where the last of the evening sky lands on the surface. It is the brightest passage below the snow, and it is what keeps the picture from going wholly abstract. This glow reminds you that you are looking at water catching light at dusk, even as the ripple-pattern pulls the other way toward flat ornament. The band also does compositional work: it separates the darker, more legible reflections near the far bank from the deep brown weave that takes over the lower canvas, giving the eye a lit shelf to rest on before the surface darkens toward you."
+   },
+   {
+    "t": "The dark lower water",
+    "x": 0,
+    "y": 0.5,
+    "w": 1,
+    "h": 0.32,
+    "body": "As the water comes toward you it deepens to a dense brown, and the ripple-marks grow smaller and more uniform — the grain tightening into a fine, even figuring with no strong reflection to organise it. This is the passage where the wood analogy is at its purest, because there is little left to read as a specific tree; it is simply patterned surface. Fjaestad lets the whole lower third become texture, an all-over field of near-identical marks. It rewards slow looking rather than a glance: the longer you hold on it, the more it stops behaving like a river and settles into something woven or milled, which is precisely the effect that stopped you in Tokyo."
+   },
+   {
+    "t": "The foreground snow bank",
+    "x": 0.35,
+    "y": 0.82,
+    "w": 0.65,
+    "h": 0.18,
+    "body": "Close on the near bank of snow that curves across the bottom. After all that dark, striated water it arrives as relief — a broad, bright, granular sweep, built from a dry stipple that catches the low evening light. It anchors the composition and gives the water an edge to press against. The painter's signature and the date sit at its lower right. Notice how differently this snow is made from the water above it: same patient accumulation of small marks, but scattered and matte rather than combed into streaks. The two textures, woven water and powdered snow, are the picture's whole vocabulary, and Fjaestad plays them against each other from top to bottom."
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "fjaestad-winter-moonlight": {
+  "see": "A forest at night, thick with snow. The left half is a dark wall of firs and bare trunks; over it, one great branch bows almost to the ground under the weight of snow it carries, the pale masses hanging like slow drips arrested in mid-fall. The sky is a deep, even night-blue, warming faintly toward the horizon on the right, where the brightest star burns. There the trees thin and the land opens into a paler valley, snow catching what light there is. The foreground is all drift and mound, built from countless small pale touches. Nothing moves. The picture holds a hush more than an incident, and the eye, once it has followed the heavy bough down, drifts rightward into the quieter, lit distance and comes to rest on that one bright point of light.",
+  "about": "Fjæstad painted this in 1895, early in the run of winter nights that would make his name, and it belongs to a Swedish taste for the mood-landscape, the stämningslandskap, where weather and hour carry the whole feeling and no story is told. The subject is simply a northern forest under moonlight and snow, but the painting is about silence and cold as much as about trees. It sits at the meeting point of National Romanticism, which prized these Nordic winters as an image of the land itself, and a decorative instinct that would later turn Fjæstad toward furniture and textiles. You saw it in Tokyo, among the Swedish Masters of Art at the Metropolitan Art Museum; it belongs to the Nationalmuseum in Stockholm, one of the first canvases in which he found this particular stillness.",
+  "craft": "Look closely and the snow is not smooth. It is built from dense, small strokes and stippled touches, pale blues and near-whites laid side by side so that the surface reads at once as deep soft snow and as a woven, decorative pattern spread evenly across the canvas. This is Fjæstad's signature: a National-Romantic subject handled with an almost Jugendstil flatness, where foreground drift and distant bank are given the same busy, all-over treatment. The palette is narrow, blue-greys and cold whites against the dark of the forest, with only the faint warmth near the horizon to relieve it. Because the light is diffuse moonlight, there are no hard cast shadows; instead the snow seems to hold the light within itself and give it back softly, so the brightest passages sit in the drifts rather than in the sky.",
+  "context": "Fjæstad (1868–1948) was the recognised master of rimfrost, of hoarfrost and snow, and a central figure of the Rackstad colony of artists near Arvika in Värmland, where painters, weavers and furniture-makers gathered around the winter landscape as a shared subject. That double life shows here: the man who designed textiles and carved furniture reads a snowbound forest as pattern as readily as a painter reads it as space. Works like this one helped fix the image of the Swedish winter for a whole generation, less a place than a mood, cold and decorative and still. It is worth remembering that the record on any single early canvas is thin; what is certain is the type he was inventing, the deep-blue moonlit forest built from patient stippling, of which this is one of the first clear statements.",
+  "deeper": [
+   {
+    "t": "The bowing bough",
+    "x": 0.08,
+    "y": 0.06,
+    "w": 0.42,
+    "h": 0.55,
+    "body": "Start here, because the weight starts here. One long branch sweeps down from the upper left, and the snow it holds hangs in rounded, drooping masses, each lobe a little heavier than clean snow would allow, so the whole limb seems to sag under a real load. Fjæstad models these mounds with soft gradations rather than outlines, letting shadow gather in the hollows between them. The gesture is the picture's one piece of drama, a slow downward pull answered everywhere else by stillness. Notice how the snow reads as sculptural mass here and as flat pattern elsewhere; he lets the same substance do both jobs without ever changing his touch."
+   },
+   {
+    "t": "The dark forest wall",
+    "x": 0,
+    "y": 0,
+    "w": 0.3,
+    "h": 0.85,
+    "body": "Behind and beneath the snow, the left edge is a wall of dark: shadowed firs, bare trunks, and thin bent saplings crossing the lower slope. This is the coldest, least worked-looking passage, and it does the quiet work of setting off everything pale. Fjæstad keeps it nearly featureless, a deep blue-brown gloom, so that the snow reads as light by contrast rather than by any bright pigment. The few bare branches that curve out across the drift are the darkest lines in the painting; they give the eye something spare and drawn against all the soft stippling, and they tell you the forest is deep, not a flat backdrop."
+   },
+   {
+    "t": "The brightest star",
+    "x": 0.6,
+    "y": 0.03,
+    "w": 0.24,
+    "h": 0.22,
+    "body": "High in the sky, right of centre, one star burns clearest against the night-blue. It is a small thing, a single bright point, but it carries weight in a picture otherwise given over to snow, because it is the one direct light in a scene where everything else is reflected and diffuse; a scatter of far fainter stars barely registers beside it. Fjæstad sets it in an empty stretch of sky where nothing competes, so the eye finds it and holds. The blue around it is laid in smooth gradations, darkest at the top and warming faintly downward, which makes the star sit deeper in space than the trees. It is the note that tips the mood from cold toward something like reverence."
+   },
+   {
+    "t": "The valley opening",
+    "x": 0.5,
+    "y": 0.4,
+    "w": 0.35,
+    "h": 0.3,
+    "body": "Where the heavy forest ends, the land opens to the right into a paler, quieter distance. Smaller snow-laden firs stand here at full height rather than bowing, and the ground lightens toward a low horizon warmed by the last faint colour in the sky. This is the painting's breath, the release after the dense left half. Fjæstad handles the recession gently, with no sharp perspective lines, only a softening and paling of his touch as things move back. The valley reads as the way out of the wood, the one direction with air in it, and it keeps the composition from closing entirely into darkness."
+   },
+   {
+    "t": "The lit crest of the drift",
+    "x": 0.42,
+    "y": 0.62,
+    "w": 0.34,
+    "h": 0.22,
+    "body": "In the middle foreground a low bank of snow lifts its rounded crest into the moonlight and catches it more brightly than anything else on the ground. This is where you can see the making most plainly: the pale surface is not one colour but many small touches of blue-white and cool grey set close together, so the drift both swells as form and shimmers as pattern. Fjæstad puts his lightest values here, in the snow itself, rather than in the sky, which is why the ground seems to glow from within. It is the clearest proof that the snow, for him, holds the light and gives it back softly instead of merely receiving it."
+   },
+   {
+    "t": "The signature",
+    "x": 0.02,
+    "y": 0.91,
+    "w": 0.2,
+    "h": 0.09,
+    "body": "Down in the lower left corner, small and dark against the pale foreground snow, sits the painter's signature and the year. It is easy to miss, tucked at the edge where the drift meets the shadowed base of the trees. Ending here is a way of stepping back from the mood to the maker: a young painter in 1895, working out the winter night he would return to for the rest of his life. The mark is modest, no flourish, in keeping with a picture that keeps its drama to a single bowing branch and a single star. From this corner the eye can climb back up the left wall and begin the walk again."
    }
   ],
   "by": "Opus 5"
