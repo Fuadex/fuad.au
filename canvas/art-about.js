@@ -314,10 +314,12 @@ by: "Opus 4.8" },
 
 "haystacks-midday": {
 about: "Monet's Haystacks, midday, 1890 — grainstacks in a Giverny field. Part of a series he painted at least 25 times chasing shifting light, most of which sold at once to American collectors.",
+deep: "Painted at the hour when shadows are shortest and colour bleaches toward pastel, this canvas makes the argument that the grainstack is not really the subject. Monet locks a fixed form in place so that the variables — hour, air, light temperature — become visible by changing between canvases. Look at the lit and shadowed flanks: not warm and dark but warm and cool, apricot against lilac and blue-grey, so shadow reads as a different colour of light rather than its absence. The cast shadow on the ground repeats this in mauve and cool green; the sky is so bleached it sets the whole key of the day. At midday there is barely any drama, which is the point — high sun, short shadows, and a single ordinary shape made strange by how attentively it was watched.",
 by: "Opus 4.8" },
 
 "claude-monet-the-japanese-footbridge": {
 about: "Monet's The Japanese Footbridge, c. 1920: the Giverny bridge he painted for decades, now dissolved into fiery reds and swirling strokes as cataracts left the near-blind painter seeing the world in a shifting reddish haze.",
+deep: "The subject here is not a garden but a condition of seeing. Monet returns to the bridge at Giverny he had painted in cool blues for thirty years, but cataracts have turned his world into a hot browning film, and the canvas records exactly that — sensation without stable object. One pale ochre band floats across the middle: the bridge, kept thinner and cooler so it hovers in front of the blaze, the last legible thing in the motif. Everything else is thick paint dragged wet into wet, red and orange smearing into brown, no drawn edge permitted. A wedge of lemon at upper left is the only other relief from the heat. What makes this extraordinary is how Monet accepts the dissolution rather than resisting it — turning a failure of sight into the real subject of the work.",
 by: "Opus 4.8" },
 
 "the-water-lily-pond": {
@@ -379,6 +381,7 @@ by: "Opus 4.8" },
 
 "georges-seurat-the-channel-at-gravelines-evening": {
 about: "Seurat's The Channel at Gravelines, Evening, 1890 — a hushed harbour in dotted light, one of his last four landscapes before his death at 31, ringed by a hand-painted dotted border.",
+deep: "Seurat's subject is the hush after work — a port emptied, the light drained to a low, level glow — and the composition holds that mood structurally. A slender lamppost anchors the left; a heavy iron anchor pins the lower right; between them the channel opens as a near-featureless void, the eye crossing open water to the far bank. Two fixed verticals, a ruled horizontal, emptiness given room. Beneath the placid surface the method is anything but still: what reads across the room as a pale expanse is a weave of rose, mint, lilac and cream dots — warm against cool — mixed only in the eye. Even the border is hand-stippled in deeper blues and reds, the whole edge under the same law, so the painting has no neutral ground, only organised sensation held just short of stillness.",
 by: "Opus 4.8" },
 
 "arnold-bocklin-der-ritt-des-todes-herbst-und-tod": {
@@ -427,6 +430,7 @@ by: "Opus 4.8" },
 
 "camille-pissarro-prairie-a-eragny": {
 about: "Pissarro's Prairie à Éragny, 1886 — a hazy rural meadow built from dotted, contrasting hues; this Neo-Impressionist landscape became the Art Gallery of South Australia's most significant acquisition, bought for $4.5 million in 2014.",
+deep: "A plain meadow, patiently looked at, holds as much as any grander motif — that is the proposition. Pissarro paints what he can see from his own window: an apple tree left of centre, a band of violet-blue furrows angling from the lower left, roofs half-buried in foliage, hills gone pale along a hazy horizon. No figures, no story. The lone tree is the picture's only strong vertical, tying ground to sky, and everything else — grass, cloud, turned earth — is built from the same short, separated dabs so the surface reads as one woven skin. Depth comes from tone and scale, not outlines. The furrowed foreground carries the sharpest contrasts, violet and cobalt against russet, the colours nearest you the most vivid; step back and the whole field settles quietly into its hazy autumn light.",
 by: "Opus 4.8" },
 
 "peter-paul-rubens-der-hollensturz-der-verdammten": {
@@ -487,6 +491,7 @@ by: "Opus 4.8" },
 
 "rouen-cathedral-portal-and-tower-saint-romain-in-the-sun": {
 about: "Monet's Rouen Cathedral, Portal and Tower Saint-Romain in the Sun, 1893 — one facade under shifting light. Monet painted more than thirty views of the same cathedral to track light across the hours; twenty were shown together in 1895.",
+deep: "Monet cuts in so close the cathedral has no surroundings, no ground, almost no sky — just stone pressed to the frame's edge so it cannot be seen as a building, only experienced as a surface. That surface works at two distances: from across the room it resolves into Gothic arches and towers; step closer and it dissolves into heaped pigment that follows no architectural edge. The deep portal arch is the tonal engine, a recess of layered blue and brownish violet that registers as depth without a single drawn contour. Around it shadow is never dark — it is coloured, violet and warm gold, so what looks like shade is another kind of light. The stone is not what Monet is recording; it is noon on a particular day in 1893, held still before it could move on.",
 by: "Opus 4.8" },
 
 "edouard-manet-madame-manet-suzanne-leenhoff-1830-1906-at-bel": {
@@ -500,6 +505,7 @@ by: "Opus 4.8" },
 
 "paul-signac-opus-217-sur-l-email-d-un-fond-rythmique-de-mesu": {
 about: "Signac's 1890 profile portrait of critic Felix Feneon, Opus 217 — the dapper subject set against a swirling kaleidoscope adapted from theorist Charles Henry's newly published color wheel.",
+deep: "Signac's joke is that the man who wrote the rules ends up exhibit A inside them. Felix Feneon — dandy, anarchist, the critic who named Neo-Impressionism — stands in strict profile, offering a cyclamen with a magician's pinch, while behind him a vortex of rays and arabesques runs on Charles Henry's program: warm rising colors keyed to pleasure, cool descending ones to their opposite. The method that applies to the swirling background applies identically to the sitter's coat and cheek, both resolved from orange, blue and violet dabs into cloth and skin only at a distance. Firm, near-enameled contours cut Feneon as a silhouette against the churning field, so he reads as a figure pasted onto pure sensation rather than standing inside a room. Portrait, manifesto, and affectionate ribbing arrive as a single woven surface — the man is the demonstration.",
 by: "Opus 4.8" },
 
 "umberto-boccioni-states-of-mind-i-the-farewells": {
@@ -542,6 +548,7 @@ by: "Opus 4.8" },
 
 "paul-cezanne-rochers-a-fontainebleau": {
 about: "Cézanne painted these Fontainebleau boulders around 1893 with thin, watercolor-like oil that flattens depth into a faceted surface, dissolving the forest rocks into shimmering planes of green, blue and purple. Louisine Havemeyer bought it, and it entered the Met with her 1929 bequest.",
+deep: "Depth is what Cézanne refuses you. He picks the most closed-off corner of the forest — a boulder-heap with no sky, no path — and presses it flat so near rock and far leaf sit at the same pressure. The real subject is the problem the motif poses to sight: mass that will not sort into clean near and far. His instrument is colour temperature; the central boulder is warm ochre on its crown, cool violet on its flank, and that shift does all the work of modelled shadow. Contours are left open so an edge belongs to two forms at once, planes bleeding into neighbours, depth collapsing to surface. Bare canvas shows through in places. The picture is less a view of rocks than a study of how the eye assembles solidity from patches of colour.",
 by: "Opus 4.8" },
 
 "claude-monet-chrysanthemums": {
@@ -566,6 +573,7 @@ by: "Opus 4.8" },
 
 "edgar-degas-two-dancers": {
 about: "The model tugging her shoulder strap in this 1879 study is Marie van Goethem, the young ballet pupil who posed for Degas's scandalous sculpture The Little Fourteen-Year-Old Dancer, drawn here in chalk on paper that keeps its original green tint.",
+deep: "Before the curtain rises there is this: a girl tugging her shoulder strap, another looking off at nothing. Degas sets the two figures almost back-to-back — the same tired body from both sides — and lets green paper between them stay empty, refusing narrative. The medium does the argument. Green paper becomes the left dancer's tutu; bare ground passes for air; white is scraped on only at shoulder blades and the bright toes of the slippers, where working flesh meets working floor. Diagonal hatching fans behind the right figure like banked energy, left frankly as marks. Contours stay open, doubled where he reconsidered a shoulder. What theatre labors to conceal — the strain, the boredom, the unglamorous fidget — Degas holds in plain view, and the deliberate unfinish is the point: scaffolding of looking kept visible, the image honestly provisional.",
 by: "Opus 4.8" },
 
 "lovis-corinth-blumen-und-tochter-wilhelmine": {
@@ -594,6 +602,7 @@ by: "Opus 4.8" },
 
 "edouard-manet-young-lady-in-1866": {
 about: "Manet's model is Victorine Meurent, the same woman who scandalized Paris as the nude in Olympia; here in 1866, buttoned into a pink peignoir with a parrot, she reads as a demure rejoinder to Courbet's sensual Woman with a Parrot.",
+deep: "Presence without access is Manet's real subject. Victorine stands at portrait scale, fully clothed and frontally composed, yet the picture systematically empties every channel through which a portrait normally delivers meaning: no setting, no occasion, no expression that inclines toward the viewer. The peignoir — private morning dress, here buttoned to the throat — is the performance: a broad column of rose, pearl and grey-green worked in wide loaded strokes that stay visibly paint, flattened against a ground of the same tonal family so the body reads as silhouette rather than volume. Three small accents — the lilac ribbon, the black neck-cord, the orange rind below — pin the whole quiet field. Everything else is held in suspension: violets almost smelled, a lens not raised, a parrot that notices more than she does. The picture is built to reach you at full human scale and then give nothing back.",
 by: "Opus 4.8" },
 
 "vincent-van-gogh-roses": {
@@ -610,6 +619,7 @@ by: "Opus 4.8" },
 
 "two-sisters": {
 about: "The pair were not sisters at all: eighteen-year-old aspiring actress Jeanne Darlot posed as the elder, and Renoir titled it simply Two Sisters in 1881, painting them on the Fournaise restaurant terrace at Chatou; his dealer added On the Terrace.",
+deep: "Renoir stages two arguments at once and refuses to resolve them. The elder girl's face is the most finished surface in the picture — skin fused smooth, features held in focus — while everything around her dissolves into loose dabs that refuse to settle. Portrait precision and Impressionist shimmer sit in open disagreement, and the navy dress holds the tension: the one quiet, unbroken plane the busy canvas needs to push against. He also builds a colour architecture across the surface, rhyming reds from hat to corsage to wool basket and answering them with blues across dress, pinafore and tub, so the eye ricochets. What the picture is about is leisure — the Parisian afternoon as a new kind of subject — but it earns that softness honestly, through paint working hard in two opposed directions at once.",
 by: "Opus 4.8" },
 
 "la-promenade": {
