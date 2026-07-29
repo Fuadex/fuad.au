@@ -56,8 +56,6 @@ window.CANVAS_ARTWORKS = [
   { id: "pollock-tate", title: "TBC — Pollocks at Tate Modern", artist: "Jackson Pollock", artistId: "pollock", qid: null, year: null,
     seenAt: "tate-modern", seenConfidence: "probably", note: "\"Some cool Pollock works.\" Candidates: Summertime 9A, Yellow Islands." },
 
-  { id: "sergel-drawings", title: "TBC — Sergel drawings (incl. a dancing couple) + sculptures", artist: "Johan Tobias Sergel", artistId: "sergel", qid: null, year: null,
-    seenAt: "nationalmuseum", seenConfidence: "sure", floored: true, note: "CONFIRMED Sergel. The standout: \"just beautiful sketch of two people dancing\" — identify the exact drawing via deck (his dance studies are famous)." },
 
 
   { id: "beksinski-works", title: "Beksiński paintings (three venues)", artist: "Zdzisław Beksiński", artistId: "beksinski", qid: null, year: null, noResolve: true,
