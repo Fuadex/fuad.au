@@ -2314,4 +2314,225 @@ by: "Opus 4.8" },
 about: "The Pennsylvania Academy of Fine Arts sold this 1934 Hopper at Christie's in December 2013 for $40.5 million — at the time a record for the artist — to fund an endowment for contemporary acquisitions, setting off a fierce debate about museum deaccessioning. The painting itself is a stripped, wind-scoured New Jersey street with a \"For Sale\" sign that now reads differently knowing what happened next.",
 by: "Opus 4.8" },
 
+
+"edward-hopper-manhattan-bridge-loop": {
+about: "Hopper designed this 1928 canvas to be unusually wide and then ran its main horizontal lines almost unbroken to the edges, a deliberate device he described in his own words as an effort to give \"the sensation of great lateral extent\" — forcing the eye to travel slowly across the scene rather than settle at a single focal point. The lone pedestrian dwarfed beneath the bridge approach and the empty asphalt amplify that lateral stretch, turning a Brooklyn streetscape into a meditation on urban solitude.",
+by: "Opus 4.8" },
+
+"edouard-vuillard-untitled": {
+about: "Vuillard, a founding member of the Nabis, believed that the figurative dimension of painting was secondary to the formal play of colour, line, and pattern — and in this c.1895 work the seated figure nearly dissolves into the dark, flickering brushwork around her, the boundary between person and setting all but erased. That deliberate merging of body and interior was Vuillard's signature move in the mid-1890s, earning him the label \"intimist\" alongside Bonnard.",
+by: "Opus 4.8" },
+
+"odilon-redon-fantasia": {
+about: "By 1910 Redon had left behind the monochrome charcoal works he called his \"noirs\" and entered what he described as entering colour \"as if into paradise\" — and Fantasia sits squarely in that late, chromatically liberated phase. Swirling oranges, blues, and pinks dissolve landscape and form into pure atmospheric sensation, showing the former Symbolist now using colour itself as the dreamwork. The medium appears to be oil on canvas rather than pastel.",
+by: "Opus 4.8" },
+
+"jan-ciaglinski-ganges-po-zachodzie-s-onca-z-podrozy-do-indii": {
+about: "Ciągliński (1858–1913), described by historians as one of the first Russian Impressionists despite his Polish birth, was known for energetic travel sketching across North Africa, the Middle East, and India — earning the nickname \"frenetic Jan.\" This 1907 oil from his India journey captures the Ganges at sunset in rapid, unresolved strokes, the orange sky and violet mountains reading as direct plein-air sensation rather than finished studio work.",
+by: "Opus 4.8" },
+
+"adolphe-joseph-thomas-monticelli-a-garden-fete": {
+about: "Van Gogh said Monticelli gave \"something passionate and eternal... in a true colourist's way, parallel with Delacroix,\" and in 1886 began copying his flower still lifes directly. This garden scene, painted around 1870 in Monticelli's characteristic thick impasto, shows why: figures and foliage are built up in crusted, jewel-like ridges of pigment that catch the light almost sculpturally, subordinating legibility to chromatic intensity.",
+by: "Opus 4.8" },
+
+"charles-francois-daubigny-untitled": {
+about: "Daubigny painted most of his river landscapes from Le Botin, a converted ferry he fitted out as a floating studio in 1857 and used to drift the Oise and Seine. This stormy evening sky — sulphurous cloud break over a dark marsh — is a characteristic product of that method: observed at close range from the water, at the moment the light turns. Year undated.",
+by: "Opus 4.8" },
+
+"johan-christian-dahl-cloud-study": {
+about: "Dahl learned the outdoor oil sketch in Italy and brought the habit back to Dresden, where he made clouds a sustained subject after Luke Howard's early 19th-century cloud taxonomy made meteorological observation a serious artistic pursuit. This small, almost groundless panel — dark mass building over a pale break — is closer to a weather record than a composition, painted in a single session from life, 1830.",
+by: "Opus 4.8" },
+
+"jan-ciaglinski-himalaje-z-podrozy-do-indii": {
+about: "Ciągliński was a Polish painter based in St Petersburg who travelled extensively through India and the Middle East, making Impressionist oil sketches on the spot that he later worked into finished Orientalist canvases. This small, rapidly worked panel — mist-wrapped foothills, a sliver of river, no human figures — is one of those travel records, dated 1907.",
+by: "Opus 4.8" },
+
+"eugene-delacroix-l-etang-le-louroux-en-touraine": {
+about: "Delacroix painted this pond — the Étang de Beauregard at Le Louroux in Touraine — during a stay with his brother, General Charles Delacroix, most likely in 1822; the job metadata gives 1825, which appears to be a later scholarly bracket rather than the visit date. The painting was long disputed, attributed by Lee Johnson to Delacroix's collaborator Pierre Andrieu, then reattributed to Delacroix himself by Jean-Luc Stéphant. It is now in the Louvre.",
+by: "Opus 4.8" },
+
+"gustave-courbet-soleil-couchant-marine": {
+about: "In August 1869 Courbet painted roughly twenty seascapes in a single campaign at Étretat on the Normandy coast, working with palette knife and heavy impasto to give the sea mass and weight rather than shimmer. This sunset — a low red line under a vast pale sky, one sail barely legible — strips the scene to almost nothing; the technique and the economy both pointed toward what the Impressionists would do next.",
+by: "Opus 4.8" },
+
+"hans-makart-brunnhilde-brings-sieglinde-to-safety": {
+about: "Painted the year Makart died, this 1883 oil is one of the Vienna painter-prince's few direct responses to Wagner's Ring cycle — a composer he knew personally — showing Brünnhilde galloping through storm-cloud with the unconscious Sieglinde cradled against her. The canvas is now in the Art Museum Riga Bourse.",
+by: "Opus 4.8" },
+
+"wojciech-kossak-untitled": {
+about: "On 13 June 1915 a squadron of 115 Polish Legions Uhlans charged entrenched Russian positions at Rokitna; only 6 riders came back. Kossak painted this memorial canvas in 1934, nearly two decades later, and it now hangs in the Polish Military Museum in Warsaw as the canonical image of that sacrifice.",
+by: "Opus 4.8" },
+
+"unknown-the-arrival-of-american-troops-at-the-front-first-st": {
+about: "The job file lists the artist as Unknown, but multiple institutional sources — the Gilcrease Museum collection record, Wikidata, and Wikimedia Commons — firmly attribute this 1918 oil study to John Singer Sargent, painted during his four months on the Western Front as a commissioned British War Memorials artist. The Gilcrease Museum in Tulsa holds the work.",
+by: "Opus 4.8" },
+
+"jozef-che-monski-na-konskim-targu-w-ba-cie": {
+about: "Chełmoński painted this chaotic 1879 Podolian horse market while living in Paris, where his Ukrainian steppe scenes found a ready market with American buyers drawn to their raw energy. At the Horse Fair in Bałta captures the dust and press of hundreds of horses and traders in a single horizontal sweep that prefigures his later panoramic realism.",
+by: "Opus 4.8" },
+
+"whistler-s-mother": {
+about: "Anna Whistler stepped in as a last-minute replacement after a model failed to show, and because she was elderly she sat rather than stood — which is why the composition became one of serenity rather than display. The French state bought the painting in 1891 for the Musée du Luxembourg, making it the first work by Whistler to enter a public collection, and it has since become an unlikely global icon of motherhood. Now at the Musée d'Orsay, 1871.",
+by: "Opus 4.8" },
+
+"polish-hamlet-portrait-of-aleksander-wielopolski": {
+about: "Malczewski cast the young Aleksander Wielopolski as Hamlet to dramatise the exact dilemma Poland's partitioned intelligentsia faced: the daisy Wielopolski holds is literally a he-loves-me-he-loves-me-not between the two female personifications of Poland flanking him — one chained and defeated, one breaking free. Malczewski painted his own ammunition belt loaded with paint tubes onto the figure, binding artistic identity to national fate. Jacek Malczewski, 1903.",
+by: "Opus 4.8" },
+
+"scholar-at-his-desk": {
+about: "This painting was presumed lost in World War II and resurfaced only in the early 1990s, returning to Poland in 1994 as part of a donation by Professor Karolina Lanckorońska — one of the more dramatic repatriations in Polish cultural history. Rembrandt scholars accept the Scholar as an autograph work; it is one of only three Rembrandts in Polish collections. Rembrandt van Rijn, 1641.",
+by: "Opus 4.8" },
+
+"portrait-of-adam-mickiewicz-on-the-ayu-dag-cliff": {
+about: "Wańkowicz painted this in St Petersburg, not Crimea — the pose and cliff were staged from the text of Mickiewicz's own Crimean Sonnets, specifically the final sonnet \"Ajudah.\" That gap between experience and image is the painting's quiet argument: the most iconic portrait of Poland's national poet is a literary construction, the poet playing himself as a Byronic exile on a rock he was imagining from a capital city. Walenty Wańkowicz, 1828.",
+by: "Opus 4.8" },
+
+"saint-anne": {
+about: "This is not a medieval European work but a Nubian wall painting from Faras Cathedral in what is now Sudan, rescued in the 1960s during a UNESCO campaign before the site was flooded by the Aswan Dam. The finger Anne holds to her lips is read as invoking divine silence — the three mysteries of Mary accomplished in stillness. It became the logo of the National Museum in Warsaw. Unknown artist, 8th–9th century.",
+by: "Opus 4.8" },
+
+"christian-dirce": {
+about: "Siemiradzki based this on Suetonius's account that Nero decreed a beautiful young Christian woman should die exactly as the mythological Dirce died — tied to a bull and dragged across the arena. The painting shows the moment after: Nero and his court inspect the lifeless woman and the fallen bull, the emperor's satisfaction the final indictment. Henryk Siemiradzki, 1897.",
+by: "Opus 4.8" },
+
+"la-mort-de-barbara-radziwi-by-jozef-simmler": {
+about: "When the Warsaw Society for the Encouragement of Fine Arts exhibited this painting in 1861, public demand to acquire it was so intense that a subscription fund was launched — ordinary art lovers collectively purchasing it for the nascent national collection. Simmler's 1860 canvas shows the dying queen Barbara Radziwiłł, married to Sigismund Augustus only to be crowned and dead within five months, with the king bowed over her in grief.",
+by: "Opus 4.8" },
+
+"a-cavalier": {
+about: "This 1658 small-panel self-portrait by Frans van Mieris the Elder — Leiden's foremost fijnschilder after Gerrit Dou, celebrated for jewel-like finish and microscopic detail — was stolen from the Art Gallery of New South Wales in 2007 while the gallery was open, unnoticed due to its compact size. It has never been recovered and appears on the FBI's Top Ten Art Crimes list.",
+by: "Opus 4.8" },
+
+"almost-once": {
+about: "Brett Whiteley's 1968 outdoor sculpture — two giant matchsticks, one pristine red-headed, one charred — stands eight metres tall on the Domain outside the Art Gallery of New South Wales. The burnt match was made by suspending the timber in chains and actually setting it on fire, burning it to roughly half an inch deep.",
+by: "Opus 4.8" },
+
+"the-boar-hunt": {
+about: "Frans Snyders painted around sixty hunt scenes, many derived from designs by Rubens — the two collaborated routinely, Rubens painting figures into Snyders' animal compositions and Snyders painting animals into Rubens' canvases. This c.1650 work showing hounds piling onto a boar is adapted from an earlier Snyders composition of the 1620s, with a signed 1653 variant now in the British Royal Collection.",
+by: "Opus 4.8" },
+
+"mucius-scaevola-in-the-presence-of-lars-porsenna": {
+about: "Matthias Stom painted this scene of the Roman assassin Mucius Scaevola thrusting his own right hand into a brazier — the act meant to show the Etruscan king Lars Porsenna that Romans did not fear death — in the tenebrism style of the Utrecht Caravaggists, with a single flame illuminating the figures from below. Stom completed it in the early 1640s, working in Sicily after time in Rome absorbing Caravaggio's followers.",
+by: "Opus 4.8" },
+
+"shearing-the-rams": {
+about: "Tom Roberts paid two girls sixpence each to kick up dust in the empty woolshed so he could capture the haze of shearing time — a detail that reveals how deliberately staged this icon of Australian labour actually is. Roberts worked from sketches made at Brocklesby Station, New South Wales, and the Felton Bequest brought the painting to the NGV in 1932, where it has anchored the national story of dignified rural work ever since.",
+by: "Opus 4.8" },
+
+"aboriginal-memorial": {
+about: "Each of the 200 hollow-log coffins stands for one year of European occupation — a war memorial, conceived by curator Djon Mundine with 43 Ramingining artists, for all Aboriginal people who died defending their country since 1788. Unveiled at the 1988 Sydney Biennale to coincide with the Bicentenary, the work re-frames the national celebration as a site of mourning and of sovereign loss.",
+by: "Opus 4.8" },
+
+"the-emperor-napoleon-in-his-study-at-the-tuileries": {
+about: "The clock behind Napoleon reads 4:13 and the candles on his desk have nearly burnt out — David's way of showing an emperor who has worked through the night on the Napoleonic Code, his sword set aside for the law. The portrait was painted by Jacques-Louis David in 1812 as a deliberate piece of image-making: Napoleon as diligent legislator rather than military conqueror, though the Code itself had been completed almost a decade earlier.",
+by: "Opus 4.8" },
+
+"the-life-of-stars": {
+about: "More than 80,000 holes were hand-placed by Lindy Lee across the polished stainless steel surface over three weeks of meditative work at a Shanghai foundry — each perforation turning the six-metre oval into something that both contains and radiates light, like a star. The form references Indra's net, the Buddhist image of a universe held together by infinite reflection, placing this 2015 work squarely in Lee's practice of finding the cosmic in material process.",
+by: "Opus 4.8" },
+
+"piet-mondrian-trafalgar-square": {
+about: "Mondrian began this painting in London after fleeing Paris in 1938 to escape the Nazi threat, naming it for the square near his studio — then carried the unfinished canvas to New York when the war closed in, completing it there between 1939 and 1943. The painting is the first in a series named after the cities that sheltered him, its grid holding the memory of one place while being finished in another.",
+by: "Opus 4.8" },
+
+"alexandre-calame-the-rosenlaui-valley-with-the-wetterhorn": {
+about: "Calame first visited the Bernese Oberland in 1838 and returned to the Wetterhorn from Rosenlaui as a subject repeatedly across his career, producing his first version around 1840; this 1856 canvas, now in Kunstmuseum Basel, is the mature culmination of that lifelong obsession — the glacier-capped peak framed against breaking storm clouds, with a torrent crashing through boulders below, staged in the Romantic tradition of the Alpine sublime that Calame helped define for Swiss painting.",
+by: "Opus 4.8" },
+
+"juan-de-arellano-blumenstillleben": {
+about: "Arellano was considered the preeminent painter of flowers in 17th-century Spain — from around 1645 he devoted virtually his entire career to the floral still life, absorbing Flemish models (Daniel Seghers) and Italian ones (Mario Nuzzi) into a distinctly Spanish idiom; this c. 1670 basket overflowing with tulips, roses, irises and carnations is a showcase of that mastery, every bloom rendered at peak freshness against a dark ground in the Baroque manner.",
+by: "Opus 4.8" },
+
+"claude-monet-bouquet-of-sunflowers": {
+about: "Monet painted cut sunflowers from his garden at Vétheuil six years before Van Gogh's Arles series, and the connection was not lost on the artists themselves: in November 1888 Van Gogh wrote that Gauguin had told him about a Monet sunflower painting in a large Japanese vase — \"very fine\" — adding that Gauguin preferred his own, to which Van Gogh replied he was \"not of that opinion.\" Shown at the seventh Impressionist exhibition in 1882, where critics praised its \"brio and daring\", the 1881 canvas is now at the Met.",
+by: "Opus 4.8" },
+
+"claude-monet-the-four-trees": {
+about: "When the village of Limetz put the Epte poplars up for auction for timber in 1891, Monet struck a deal with the winning lumber merchant to leave the trees standing until he finished his series — then sold them back once the paintings were done; he worked some canvases from the riverbank, others, including this one, from a boat fitted with grooves to hold multiple canvases so he could swap between them as light changed. Fifteen works from the resulting series of twenty-three were exhibited in Paris in 1892.",
+by: "Opus 4.8" },
+
+"gustave-courbet-the-young-bather": {
+about: "Courbet's fleshy nude at water's edge first caused uproar at the Salon in the 1850s; by the time this 1866 version was exhibited, the climate had shifted enough that one critic praised the figure as \"health itself, with an ample and plump silhouette — one could not be more independent or more true.\" The grudging acceptance registers how thoroughly Courbet had changed what a nude in a woodland setting was allowed to look like, moving it from idealized myth toward unadorned physical presence.",
+by: "Opus 4.8" },
+
+"pierre-auguste-renoir-bouquet-of-chrysanthemums": {
+about: "Renoir painted flower still lifes as deliberate experiments, telling the writer Georges Rivière he felt free to \"try out tones and values\" without fear of ruining a canvas — licence he rarely gave himself in figure work. This 1881 bouquet came shortly after his Italian trip, and its tighter structure shows a new classicism settling into his touch.",
+by: "Opus 4.8" },
+
+"theodore-rousseau-the-forest-in-winter-at-sunset": {
+about: "Rousseau worked on this picture on and off for over twenty years — begun in 1846, it was only at the urging of friends that he finally let it go in 1867. The ancient Fontainebleau oaks he spent his life defending from logging are the subject: massive, bare, and lit by a winter sunset that seems to be absorbed rather than reflected.",
+by: "Opus 4.8" },
+
+"elisabeth-louise-vigee-le-brun-self-portrait-in-a-straw-hat": {
+about: "Vigée Le Brun painted this in 1782 as a deliberate answer to Rubens's Portrait of Susanna Lunden — a work she had seen the previous year in Flanders and that was already famous under the misleading name Le Chapeau de Paille. She holds palette and brushes, casts herself in the same outdoor contre-jour light Rubens used, and presents herself as both society lady and professional painter in a single calculated image.",
+by: "Opus 4.8" },
+
+"gustave-courbet-hunting-dogs-with-dead-hare": {
+about: "Courbet debuted hunting scenes at the Paris Salon of 1857, the same year he painted this — and the two dogs here are lifted directly from his larger Salon piece The Quarry, which features a stag and a hunter. Stripped of those figures, the scene belongs entirely to the dogs and their quarry, suspended in a moment of stillness before the handler arrives.",
+by: "Opus 4.8" },
+
+"peter-paul-rubens-self-portrait": {
+about: "In 1623 Rubens painted two self-portraits; this one was made for his friend the scholar Nicolas-Claude Fabri de Peiresc, and shows Rubens in full court dress with a gold chain marking his office as court painter to the rulers of the Spanish Netherlands — no brushes, no canvas, just a gentleman of Antwerp. He told Peiresc that the aim of a good portrait was \"intelligence of glance,\" and appears to have judged himself accordingly.",
+by: "Opus 4.8" },
+
+"alphonse-de-neuville-the-defence-of-rorke-s-drift-1879": {
+about: "De Neuville never visited Africa — he reconstructed the entire battle from survivor testimonies and military reports, working in Paris while the Fine Art Society solicited photographs, uniform details, and personal accounts from veterans. The result is a chaotic, smoke-filled panorama of the January 1879 last stand in which roughly 150 British soldiers held off several thousand Zulu warriors, an action that produced eleven Victoria Crosses in a single night. Painted in 1880 and now at the Art Gallery of New South Wales.",
+by: "Opus 4.8" },
+
+"marinus-van-reymerswaele-poborcy-podatkow": {
+about: "This composition was so successful that more than twenty-five versions survive, produced by Reymerswaele and his workshop across decades — making it one of the most replicated satirical subjects in sixteenth-century Netherlandish painting. The two grotesquely caricatured clerks, one bent over a ledger and the other raking in coins, turn grubby fiscal routine into an allegory of avarice, rendered with a precision that made the image endlessly copyable. Painted c.1540; National Museum, Warsaw.",
+by: "Opus 4.8" },
+
+"florine-stettheimer-new-york-liberty": {
+about: "Stettheimer designed the frame herself — a carved surround of red, white, and blue rope with gold tassels, crowned by a gold bald eagle — so the work arrives as a total object, not just a canvas. Painted in 1918–19 to mark the end of World War I and Woodrow Wilson's return from the Paris Peace Conference, the scene stacks Lady Liberty, a navy vessel, and the downtown skyline into a buoyant, jewel-toned cityscape that is ironic and affectionate at once. Whitney Museum of American Art.",
+by: "Opus 4.8" },
+
+"edgar-degas-the-artist-s-cousin-probably-mrs-william-bell-ma": {
+about: "Degas complained in a letter that persuading a cousin who was nursing a two-month-old infant to sit for him was 'quite hard work' — a remark that survives as the only documented record of this pastel's making. He was in New Orleans visiting his mother's family in the fall and winter of 1872–73, and the pastel's open, tentative handling — the second face sketched and left unresolved at right — suggests a sitter who could not hold still for long. Metropolitan Museum of Art, 1873.",
+by: "Opus 4.8" },
+
+"vincent-van-gogh-sonnenblumen": {
+about: "Van Gogh painted four sunflower canvases in a single week in August 1888, specifically to hang in the guest room of the Yellow House in Arles before Paul Gauguin's arrival — they were decorations made to impress a friend, not works destined for the market. He described wanting 'harsh or broken yellows to burst against various blue backgrounds,' and the Munich canvas, with twelve blooms against a pale turquoise ground, captures that voltage most directly. Neue Pinakothek, Munich, 1888.",
+by: "Opus 4.8" },
+
+"johan-christian-dahl-an-eruption-of-vesuvius": {
+about: "Dahl was in Naples when Vesuvius erupted in December 1820 and climbed the mountain to sketch from the closest possible range — the oil sketch made on the spot became the direct basis for this large canvas, completed around 1824–26. The tiny figures at lower right give the scale of what he described as a \"horribly wondrous sight.\"",
+by: "Opus 4.8" },
+
+"claude-monet-ile-aux-orties-near-vernon": {
+about: "The island of nettles visible here was Monet's own property — he used it to moor his boats near Giverny. Painting four versions of this spot in 1897, he dissolved the willows into a haze of violet and pink so thoroughly that water and foliage are barely distinguishable, making the place he knew well look like something half-imagined.",
+by: "Opus 4.8" },
+
+"degas-grande-arabesque-third-time": {
+about: "Degas never intended this for exhibition — the wax original was a private studio prop, built up over wire armature with small pieces of wax left unblended. Only after his death in 1917 did his heirs authorize the Hébrard foundry to cast the surviving figures in bronze, a process that took until 1932 and produced at most twenty copies of each.",
+by: "Opus 4.8" },
+
+"cafe-terrace-at-night": {
+about: "Van Gogh painted this on the spot in Arles in September 1888 — setting up his easel in the dark so the colors would read as they actually appeared at night, not as remembered in daylight. It was his first painting to fill the sky with stars, done without black paint, achieving depth entirely through complementary yellows and blues.",
+by: "Opus 4.8" },
+
+"henri-matisse-auguste-pellerin-ii": {
+about: "Pellerin rejected Matisse's first portrait, so Matisse painted this second version in 1917, stripping every feature to near-abstract severity — and the result looks strikingly like Cézanne in old age, an odd tribute considering Pellerin owned up to eighty Cézannes. Pellerin later changed his mind about the rejected first canvas and tried to buy both at a discount; Matisse refused and collected full payment for each.",
+by: "Opus 4.8" },
+
+"henri-matisse-tete-de-jeannette-iv": {
+about: "Matisse made all five Jeannette heads from the same model, Jeanne Vaderin, but the first two were life studies and the last three were worked entirely from imagination — each one pushing further from the face he had already observed. By the fourth head, the features are folded into angular masses and the neck swells into a near-abstract bulb, a transformation MoMA describes as reorganising the portrait into \"simplified chunks\" to reveal essential qualities rather than visual likeness. Matisse, 1910–13, bronze.",
+by: "Opus 4.8" },
+
+"henri-matisse-nu-bleu-iv": {
+about: "After surgery for stomach cancer confined Matisse to a bed or wheelchair in the early 1950s, he turned to gouache-painted paper that assistants prepared in bulk, cutting the sheets himself with scissors into organic silhouettes he then arranged and rearranged over weeks. Nu bleu IV is among the most reworked of the four Blue Nudes — a seated figure resolved almost entirely into flat, interlocking planes of ultramarine. Matisse described the method as an occupation in which he could lose himself. Matisse, 1952, gouache découpée.",
+by: "Opus 4.8" },
+
+"claude-monet-untitled": {
+about: "Monet rose before dawn each morning in the summers of 1896 and 1897 and rowed out to a converted studio-boat moored where the Epte meets the Seine, painting the same narrow channel of mist as the light shifted minute by minute. He made twenty-one canvases in the series, all anchored to one motif, and showed fifteen at Galerie Georges Petit in 1898. This canvas, \"Bras de Seine près de Giverny, soleil levant,\" is now at the Metropolitan Museum of Art. Monet, 1897, oil on canvas.",
+by: "Opus 4.8" },
+
+"paul-cezanne-groupe-de-sept-baigneurs": {
+about: "Cézanne spent roughly thirty years returning to the bather theme across some 200 paintings, watercolours, and drawings, treating the nude figures less as people than as volumes to be locked into landscape the way an architect fits stones. When a large retrospective displayed his bather paintings in 1907, the year after his death, Picasso and Matisse were both in the room, and the geometric compression they saw there fed directly into early Cubism. \"Groupe de sept baigneurs\" (Beyeler Foundation) belongs to this lifelong reckoning. Cézanne, c. 1900, oil on canvas.",
+by: "Opus 4.8" },
+
+"leonardo-da-vinci-la-gioconda": {
+about: "On 21 August 1911 Vincenzo Peruggia — an Italian handyman who had once helped build the painting's own protective frame — spent a night hidden in the Louvre, lifted the panel off the wall, tucked it under his smock, and kept it concealed in a trunk in his Paris apartment for two years. The theft triggered global press coverage and public queues to see the empty wall hook, turning a painting that was respected but not iconic into the most famous work in the world. Peruggia's stated motive was to return what he believed Napoleon had stolen from Italy. Leonardo da Vinci, c. 1503–19, oil on panel, Louvre.",
+by: "Opus 4.8" },
+
 };
