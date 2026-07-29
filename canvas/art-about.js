@@ -222,6 +222,7 @@ by: "Opus 4.8" },
 
 "bal-du-moulin-de-la-galette": {
 about: "Renoir's Bal du moulin de la Galette, 1876 — a Sunday dance in a Montmartre garden, dappled sun falling through the crowd. He painted it twice; the smaller version sold for $78.1 million in 1990, its Japanese buyer joking he would be cremated with it.",
+deep: "Atmosphere is the argument. Renoir refuses to give the scene a single protagonist or a readable story, so what you get instead is a crowd felt as shimmer — the dappled Sunday-afternoon light breaking across shoulders, straw hats, a striped dress, the orange carafe. The color decisions drive everything: shadows are blue and violet, never brown, which keeps the paint surface luminous even in its darkest passages, and each figure is described just enough to dissolve into the next. Distance is made not by perspective but by loosening the touch, the dancers at the back becoming smears of blue and cream. Without a fixed focal centre, the eye ricochets endlessly through the crowd — that restlessness is the content. The picture is not about the dancing; it is about how a crowd is felt from inside it.",
 by: "Opus 4.8" },
 
 "starry-night-over-the-rhone": {
@@ -234,6 +235,7 @@ by: "Opus 4.8" },
 
 "the-magpie": {
 about: "Monet's The Magpie, 1868 — a lone bird on a gate in blue-shadowed snow. Rejected by the 1869 Salon as too pale, it holds some of his earliest coloured shadows: light painted where academics demanded black.",
+deep: "Scale and silence are set against a single dark point. The canvas is almost entirely snow and sky; the horizon rides high, and the one living thing — the magpie on the gate — is small, off to the left, easy to miss. Monet builds the picture so the eye scans the pale emptiness first, the way it would scan a real winter field, and arrives at the bird last. The daring is in the shadows: cast across the foreground in luminous blue and violet rather than grey, they model the snow as coloured light rather than an absence of it, and this is what makes the vast pale surface read as brilliance. The bird is the only true dark in the canvas, and the whole shining field exists as a setting for one creature about to leave.",
 by: "Opus 4.8" },
 
 "battle-of-grunwald": {
@@ -303,6 +305,7 @@ by: "Opus 4.8" },
 
 "le-dejeuner-sur-l-herbe": {
 about: "Monet's Le Déjeuner sur l'herbe, 1865 — picnickers under dappled trees, his answer to Manet. Pawned to a landlord for unpaid rent, it rotted in a damp cellar; Monet cut it up, and only fragments survive.",
+deep: "What survives is a wound with ambitions still inside it. Monet began this as a monumental riposte — modern figures in real outdoor light, at Salon scale — but the canvas was never finished, mildewed in storage, and cut apart. What remains is the cloth: a great white sheet across the lower third, built from warm cream and cool grey-green patches that map the forest light, pulling the eye before any face does. The figures carry a Courbet solidity Monet would soon abandon, but the canopy above is already dissolving — thousands of small green touches painting the experience of light through leaves rather than the leaves themselves. The woman who turns to meet your gaze is the still point of a composition that, even truncated, insists the modern world deserves a monumental scale.",
 by: "Opus 4.8" },
 
 "train-in-the-snow": {
@@ -319,6 +322,7 @@ by: "Opus 4.8" },
 
 "the-water-lily-pond": {
 about: "Monet's The Water-Lily Pond, 1918 — the pond surface fills the whole canvas. Part of the roughly 250-work Nympheas cycle he painted at Giverny across three decades, later beloved by the Abstract Expressionists.",
+deep: "There is no horizon, no bank, no sky — only water tipped up to fill the frame, and the question of whether you are looking into depth or at a flat decorated surface is left unresolved by design. Monet collapses the pond and the canvas into the same problem: how a surface that never holds still can be painted again and again. The pads are short loaded brush-pulls set nearly horizontal to lie flat; reflections in the open center are cool blues scumbled over warmer ground, the weave catching and shimmering. Up close the strokes read as abstract weather; at distance they resolve into water. That gap between mark and image, deliberately widened, is the whole method. The picture is about duration: not a moment but an endless resettling of light on a surface that refuses to fix.",
 by: "Opus 4.8" },
 
 "the-church-at-auvers": {
@@ -339,10 +343,12 @@ by: "Opus 4.8" },
 
 "la-balancoire": {
 about: "Renoir's La Balançoire, 1876 — a woman on a swing in a sun-dappled garden; shown at the 1877 Impressionist exhibition, its dabs of pale, shifting light on clothing and ground drew particular scorn from critics.",
+deep: "Everything turns on a pause. The woman stands beside the swing rather than riding it, caught between stepping on and stepping away, and that small hesitation suspends the whole scene. Around her a man leans in to speak, another watches from behind the tree, a child stares up — a ring of attention with no answer at its centre. Renoir makes the suspension physical: his blue-violet dabs of sunlight scatter across every surface equally, democratizing the figures into the same shimmering paint so that no one person holds ground. The crowd of witnesses turns a private moment into a half-public performance. And the title names the object no one is using — the occasion, rather than the event. What the picture records is not a swing being ridden but the charged social geometry of an idle afternoon.",
 by: "Opus 4.8" },
 
 "girls-at-the-piano": {
 about: "Renoir's Girls at the Piano, 1892 — two girls reading music at a keyboard. A French government commission, it became the first Impressionist work bought for the national collection; Renoir refined it across five canvases.",
+deep: "The subject is not music but joint attention. Two heads incline toward a single score, and Renoir makes their absorption the whole scene — neither girl looks out, no narrative is offered, no drama resolved. His craft completes the idea: a narrow warm palette of rose, cream, and honey fuses the two figures into one mass of light so that the close physical fact of their shared lesson becomes an aesthetic one too. Every diagonal in the composition converges on the brightest, coolest white in the canvas: the sheet music, painted almost blank, the thing everyone's gaze flows toward. Step back and you feel a room of unhurried ease; step close and the girls' heads seem to draw tighter together. What Renoir offers is the pleasure of watching someone else be fully, quietly occupied.",
 by: "Opus 4.8" },
 
 "mlle-irene-cahen-d-anvers": {
@@ -351,6 +357,7 @@ by: "Opus 4.8" },
 
 "berthe-morisot-with-a-bouquet-of-violets": {
 about: "Manet's Berthe Morisot with a Bouquet of Violets, 1872 — the painter in mourning black. Paul Valéry ranked it above all Manet's work, comparing it to Vermeer's Girl with a Pearl Earring.",
+deep: "The black is the picture's intelligence. Almost everything is it — hat, coat, scarf, swallowing the lower canvas — and against that mass Manet delivers three counterweights: a face, a gaze, and a small spray of violets barely resolved into paint. The hat is laid in with a brush run dry, the coat modulated through warm and cool underlayers so the darkness stays alive rather than flat, but around the face the handling tightens, two speeds of the same confident hand deciding how much finish each zone can bear. Those eyes, aimed directly out with nothing to soften them, come forward while the black recedes. The violets — a few dabs of blue and lilac, private, almost hidden — carry the entire emotional register the rest of the portrait withholds.",
 by: "Opus 4.8" },
 
 "edouard-manet-the-dead-christ-with-angels": {
@@ -359,6 +366,7 @@ by: "Opus 4.8" },
 
 "edgar-degas-woman-with-a-towel": {
 about: "Degas's Woman with a Towel, 1896 — a bather seen from behind. He worked the pastel with his fingers, brushes and sharp tools, smudging and scraping the pigment, then drew black outlines over it to sharpen the figure's twist.",
+deep: "The body is a problem to be solved, not a beauty to be displayed. A woman dries herself with her back to us, spine torquing one way, head another, arm swinging across for the towel — the awkward mechanics of an ordinary action, left in rather than corrected out. Degas builds the figure in layers of pastel, fusing color until the back's warmth and coolness feel like light from within the flesh, then hauls it back to legibility with a pressured black contour drawn over the top. That line does not find the true edge so much as insist on one, rescuing the figure from the blending that nearly dissolved it. The towel, pale and massive, occupies the entire lower half — as large as the body, as carefully handled, the two halves of a single private act weighted equally.",
 by: "Opus 4.8" },
 
 "edgar-degas-dancer-with-a-fan": {
@@ -487,6 +495,7 @@ by: "Opus 4.8" },
 
 "paul-cezanne-la-montagne-sainte-victoire-vue-des-lauves": {
 about: "Cézanne's Mont Sainte-Victoire vue des Lauves, 1902-06, at the Met — painted from the hilltop by his last Les Lauves studio, one of about eighty views of the peak he obsessively returned to.",
+deep: "The mountain is both solid and a fiction. Step close and Sainte-Victoire breaks into separate, unblended tiles — cobalt, slate, violet, pale grey-green; step back and they lock into a peak. Cézanne builds the whole canvas on this flicker: small parallel strokes of unmixed colour set edge to edge, form stated by juxtaposition rather than modelled by shadow. Sky and mountain share the same blues, so the boundary between air and stone goes soft, the far distance pressed flat against the picture surface. Warm ochres in the plain advance; the cool peak sits back; the green band between tilts toward you rather than sinking into depth. Bare canvas shows through in places, left deliberately. The landscape is solid and the construction is visible at once, and the picture refuses to let either reading cancel the other.",
 by: "Opus 4.8" },
 
 "paul-signac-opus-217-sur-l-email-d-un-fond-rythmique-de-mesu": {
@@ -499,6 +508,7 @@ by: "Opus 4.8" },
 
 "white-and-yellow-chrysanthemums-petit-gennevilliers-garden": {
 about: "Caillebotte's chrysanthemums, 1893 — densely packed blossoms he grew at his Petit-Gennevilliers property; the close-up view was tied to his plan for painted dining-room doors, echoing friend Monet's decorative Giverny garden series.",
+deep: "No sky, no vase, no ground to stand on — Caillebotte plants you face-first in the bed. The frame crops the blooms on every side so the field simply continues past all four edges, and that refusal of enclosure is the picture's first argument: this is inventory at flower-height, not a bouquet arranged for a room. Each bloom is a distinct type with its own handling — long spike-strokes for the white heads, short blunt dabs clotted wet-on-wet for the round pom-poms, single chrome pulls for the yellows — so the surface reads as a taxonomy of varieties as much as a decorative field. Dark foliage presses between them almost to black, doing no spatial work but structural work: those gaps are what make the bright heads read as bright. The whole thing has the density of something grown, not cut.",
 by: "Opus 4.8" },
 
 "the-hanging-of-the-sigismund-bell-at-the-cathedral-tower-in-1521-in-krakow": {
