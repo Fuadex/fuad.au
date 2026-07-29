@@ -355,6 +355,7 @@ by: "Opus 4.8" },
 
 "mlle-irene-cahen-d-anvers": {
 about: "Renoir's portrait of eight-year-old Irène Cahen d'Anvers, 1880: the Jewish banker's daughter survived the war, but the canvas was Nazi-looted and passed to Göring before she recovered it and sold it to arms-dealer Bührle.",
+deep: "Hair is the real subject. That sheet of red-gold falling from crown to lap outweighs everything else: Renoir builds the whole picture to warm it, cool it, and stand back. The face against it is almost porcelain — smoothed, barely modeled, a pale oval — and the contrast is the argument. She looks left, absorbed in something the canvas refuses to name; that averted gaze transforms a commission into a reverie. The family's ambition is present in the dress and setting, but what survives is a child's interiority. The background never resolves into a real garden, just loose viridian dabs whose only job is to keep the eye from settling anywhere but her. The lower half dissolves into scumbled blue-white so the top holds everything. What you remember is not a banker's daughter posed for posterity but a particular eight-year-old, looking at nothing, caught.",
 by: "Opus 4.8" },
 
 "berthe-morisot-with-a-bouquet-of-violets": {
@@ -364,6 +365,7 @@ by: "Opus 4.8" },
 
 "edouard-manet-the-dead-christ-with-angels": {
 about: "Manet's The Dead Christ with Angels, 1864: a cadaverous Christ mourned by two angels. Manet painted the spear wound on the wrong side of the body, and despite Baudelaire's warning to fix it before the Salon, he left the error.",
+deep: "Manet collapses the distance devotional painting normally keeps. Christ is not laid out for veneration but propped upright, chest forward, eye level with you — the usual posture of looking down on the dead body is denied. What the picture proposes is that mortality is a fact to be witnessed, not a mystery to be approached: the grey, slack torso built from plaster-flat planes, the nailed feet pushed almost into your space. Two angels divide the emotional labour, one steadying the corpse with practical care, the other withdrawing into shadow and grief, but neither can redirect attention from the body between them. The narrow palette gives the blue wing its detonating force. At the base, Manet writes his name on the tomb stone: the artist as witness, bound to the body he has refused to soften.",
 by: "Opus 4.8" },
 
 "edgar-degas-woman-with-a-towel": {
@@ -373,6 +375,7 @@ by: "Opus 4.8" },
 
 "edgar-degas-dancer-with-a-fan": {
 about: "Degas's Dancer with a Fan, c.1890, pastel and charcoal — the doubled lines edging the fan conjure its fluttering motion, and the shadowy figure at right may be a dance instructor modeling the pose.",
+deep: "Fatigue is what the picture is really about — the fatigue a trained body is built to hide, exposed here because Degas refuses to watch it from the front. He positions himself above and to the side, a box-seat angle that tips the floor upward and presses the dancer flat against the backdrop, nowhere to project outward, nowhere to perform. Her back stays turned the whole time; no face, no invitation. The fan she holds is a prop of exhaustion, not display. He renders the body in bare tan paper, leaving the ground itself to stand in for flesh and cloth, and draws every contour two or three times over — not to correct but to keep the edge moving, still arriving rather than fixed. The result is a figure vibrating with contained life at the exact moment it has stopped trying to look alive.",
 by: "Opus 4.8" },
 
 "paul-cezanne-arlequin": {
@@ -528,6 +531,7 @@ by: "Opus 4.8" },
 
 "regates-a-argenteuil": {
 about: "Fellow painter Gustave Caillebotte owned this canvas and willed it to France, which is how Monet's 1872 view of Sunday sailboats and their broken reflections on the Seine at Argenteuil reached the Musée d'Orsay.",
+deep: "The regatta is a pretext. Monet gives you boats and a stretch of the Seine on a grey Sunday afternoon, then proposes that the river below the waterline deserves as much attention — as much paint — as the world above it. He makes the argument structurally: the canvas splits near the middle, upper world and reflection given roughly equal share, painted with the same loaded, loose brush. The terracotta roofs descend as stacked columns of warm color interrupted by horizontal ripple-dashes; close up, this lower half stops being water and becomes pure mosaic. Step back and it resolves again. The dissolving trick the Impressionists would build their name on is already here in 1872, premised on one quiet claim: a reflection is not the inferior copy of the thing but its equal.",
 by: "Opus 4.8" },
 
 "nympheas": {
@@ -540,6 +544,7 @@ by: "Opus 4.8" },
 
 "a-girl-with-a-watering-can": {
 about: "The blond child's identity has never been pinned down; scholars think Renoir simply painted a neighborhood girl who pleased him. His 1876 canvas sets her on a garden path in Washington's National Gallery of Art.",
+deep: "Renoir plants the child dead center, frontal, still — portrait symmetry — then refuses her every convention of the formal portrait: no chair, no drapery, no floor, only garden dissolving in every direction. The picture is about that tension, the one crisp solid person against a world already softening into color and warmth. Her face, the white lace, the buttoned boots carry his tightest handling; everything around her breaks into separate, unmixed strokes of blue-green, rose, and cream that cohere only at a step back. She holds a watering can in one hand and picked flowers in the other — the tool and the result — and the can hangs slack because she has stopped mid-task to be looked at. Color rather than line ties figure to garden: the red bow answers the red flowers scattered at the canvas edge.",
 by: "Opus 4.8" },
 
 "lion-attacking-a-dromedary": {
@@ -590,6 +595,7 @@ by: "Opus 4.8" },
 
 "claude-monet-camille-monet-1847-1879-in-the-garden-at-argent": {
 about: "One of roughly ten canvases Monet painted of his rented house and garden in 1876, the last full year at Argenteuil; his wife Camille dissolves into a pale blue shape beside the flowering bed, the flowers overtaking her.",
+deep: "A portrait that swallows its sitter. The eye goes first to the mounded flowering bed — red and pink heat jabbed into cool green — then to the cream house half-dissolved in foliage. The small pale figure at the left margin takes searching. Monet has pushed Camille to the edge, shrunk her to a few soft vertical strokes, her edges bleeding into path and shadow so she reads as one more pale note among leaves. This is the picture's method and statement: broken-colour touches build flowers, house, tree, and woman from the same dabs, so the garden absorbs her. A leaning trunk divides the canvas, keeping Camille from the flowering centre. The intimacy is real but withheld — she is present as atmosphere, dissolving, on the way out of a summer that has no interest in keeping her.",
 by: "Opus 4.8" },
 
 "pierre-auguste-renoir-still-life-with-peaches-and-grapes": {
@@ -598,6 +604,7 @@ by: "Opus 4.8" },
 
 "georges-seurat-grandcamp-un-soir": {
 about: "Seurat later framed this 1885 Normandy seascape with a painted dotted border of his own, extending the pointillist method onto the frame; the back carries the signature of his disciple Paul Signac, who once owned it.",
+deep: "Distance is what Seurat is painting, not place. The logic of the picture runs from close to far: dark, crowded vegetation in the foreground sets the register, and from there everything opens and empties until the pale sky takes up nearly half the canvas. Come close and the calm evening sea breaks into emerald, turquoise, pink, and ochre marks sitting side by side, the mixing happening entirely in the eye. Step back and the coast reassembles into luminous haze. That oscillation is the experience he designed. Then there is the border — dots painted directly onto the canvas, cool against warm passages, dark against the sky — so the picture frames itself in its own optical system, the edge as calculated as the water. A single sail holds the open bay from tipping into abstraction; without it, you would lose the scale of the quiet.",
 by: "Opus 4.8" },
 
 "edouard-manet-young-lady-in-1866": {
@@ -652,10 +659,12 @@ by: "Opus 4.8" },
 
 "l-absinthe": {
 about: "When Degas's 1876 canvas reached London in 1893, Victorian critics branded it a study in human degradation, a scandal that shamed its two friends who posed. It shows a hollow-eyed woman and companion slumped in a Paris cafe.",
+deep: "Degas stacks the argument in the composition itself: both figures packed into the upper-right corner while the lower half of the canvas goes entirely to bare marble tabletops, a diagonal staircase of cool planes that leads the eye upward and keeps the viewer stranded below. The woman's face gives almost nothing back — dull flush, unfocused eyes, absent rather than tragic — and the absinthe glass before her is painted with the same flat economy as the water carafe beside it, named as ruin and then withheld from judgment. He looks the other way entirely. This is what the café's much-celebrated sociability looks like from the inside: two people in physical proximity, sealed inside separate fatigues, the wide indifferent room filling most of the canvas to say it for them. The empty space does the emotional work the figures decline to perform.",
 by: "Opus 4.8" },
 
 "the-balcony": {
 about: "The dark-eyed seated woman is painter Berthe Morisot, making her first appearance in Manet's work before she became his favourite model and sister-in-law. Manet's 1868 scene sets three oddly disconnected figures behind a green iron rail.",
+deep: "Manet builds the design on non-relation: three figures share a shallow ledge and send their gazes in three different directions, none meeting. The green iron railing across the lower third is the key decision — painted flat, saturated, barely modelled, it reads as a screen laid against the picture plane rather than a receding railing in space, fencing the figures in and holding the viewer out. Behind the two white-dressed women, the man dissolves into the black doorway, his suit merging with shadow, present and recessive at once. The result refuses depth twice over: the rail flattens the foreground and the darkness swallows the back. What remains is a band of white between two voids, three people who happen to occupy the same moment without sharing it — modern proximity rendered as its own kind of isolation.",
 by: "Opus 4.8" },
 
 "dante-and-virgil-in-hell": {
@@ -672,6 +681,7 @@ by: "Opus 4.8" },
 
 "les-raboteurs-de-parquet": {
 about: "The Salon rejected this canvas in 1875 as too vulgar for showing bare-backed urban laborers, so Gustave Caillebotte took it to the Impressionists instead: three men on their knees planing a Paris parquet floor by window light.",
+deep: "Caillebotte gives three tradesmen scraping a parquet floor the format and seriousness the Salon reserved for history painting, and the geometry is the argument. The floorboards converge in steep one-point perspective toward the window, tipping the surface up until it reads almost as a vertical plane — men pinned high on a rising stage rather than crouched beneath your eye. Against that rigorous, near-photographic recession the paint loosens: backs are slicked in highlights over warm shadow, wood shavings flicked on as quick pale curls that map where the light falls. The work shown is specific and difficult, and Caillebotte observes it without sentiment or condescension, no narrative, no owner, no moral — only the effort itself, rendered with the same precision he gives the ruled lines of the room. The cool window light rations everything bright.",
 by: "Opus 4.8" },
 
 "the-circus": {
