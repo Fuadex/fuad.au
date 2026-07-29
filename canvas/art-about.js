@@ -219,4 +219,85 @@ about: "Monet's Giverny pond, 1917 — tilted up until water fills the frame, no
 deep: "The picture is built on friction between two directions. The willow never appears as a tree; only its reflection does, falling straight down in green threads shot through with violet, each streak holding its separateness the whole way rather than blending into a wash. Across that downward fall the lily pads lie flat and horizontal, dark blunt marks resting on the same water. What drops and what floats, the mirrored world against the real leaves on top. Monet gives you no footing except one green wedge of bank in the lower-left, so vision finds nothing to hold and drifts on the violet itself — a depth with no floor and no horizon. That drift is the point.",
 by: "Opus 4.8" },
 
+
+"bal-du-moulin-de-la-galette": {
+about: "Renoir's Bal du moulin de la Galette, 1876 — a Sunday dance in a Montmartre garden, dappled sun falling through the crowd. He painted it twice; the smaller version sold for $78.1 million in 1990, its Japanese buyer joking he would be cremated with it.",
+by: "Opus 4.8" },
+
+"starry-night-over-the-rhone": {
+about: "Van Gogh's Starry Night Over the Rhone, 1888 — the Big Dipper above Arles, gaslights streaking gold across the water. One of his first night scenes painted outdoors on the spot, worked in the dark under a gas lamp on the quay.",
+by: "Opus 4.8" },
+
+"the-gleaners": {
+about: "Millet's The Gleaners, 1857: three peasant women stooping to salvage stray grain — at the Salon, France's bourgeoisie read revolt into it, one critic seeing \"the scaffolds of 1793\" in figures scaled like grand history painting.",
+by: "Opus 4.8" },
+
+"the-magpie": {
+about: "Monet's The Magpie, 1868 — a lone bird on a gate in blue-shadowed snow. Rejected by the 1869 Salon as too pale, it holds some of his earliest coloured shadows: light painted where academics demanded black.",
+by: "Opus 4.8" },
+
+"battle-of-grunwald": {
+about: "Matejko's Battle of Grunwald, 1878, stages Poland-Lithuania crushing the Teutonic Knights in 1410 — the painting the Nazis put atop their most-wanted list, offering millions for it while Polish Underground members were tortured and killed rather than reveal it hidden near Lublin.",
+by: "Opus 4.8" },
+
+"stanczyk": {
+about: "Matejko's Stańczyk, 1862 — a court jester slumped alone, a ball glittering behind him. The painter gave the jester his own face, the one man who grasps the discarded letter announcing Smolensk's fall while the court celebrates on.",
+by: "Opus 4.8" },
+
+"adam-and-eve": {
+about: "Dürer's Adam and Eve, 1504: his ideal-proportion nudes drawn from the Apollo Belvedere and Medici Venus. The four animals below encode the medieval humours — cat choleric, rabbit sanguine, elk melancholic, ox phlegmatic — held in balance until the Fall throws them into disorder.",
+by: "Opus 4.8" },
+
+"storks": {
+about: "Chełmoński's Storks, 1900 — a ploughman and his son break from the field to watch storks pass overhead. A monographer called it a hallowed symbol of Polishness; the returning stork augured spring, fertility and good fortune.",
+by: "Opus 4.8" },
+
+"ginevra-de-benci": {
+about: "Leonardo's Ginevra de' Benci, c. 1476: a pale Florentine wreathed in juniper — ginepro, a pun on her name. The only Leonardo in the Americas, bought by the National Gallery in 1967 for a then-record roughly $5 million.",
+by: "Opus 4.8" },
+
+"portrait-of-a-man-self-portrait": {
+about: "Van Eyck's Portrait of a Man, 1433, thought to be a self-portrait — the sitter's confrontational gaze suggesting a mirror. Its frame carries the motto \"Als Ich Can,\" a pun on his own name: as I, Eyck, can.",
+by: "Opus 4.8" },
+
+"the-potato-eaters": {
+about: "Van Gogh's The Potato Eaters, 1885: five Nuenen peasants sharing potatoes under an oil lamp — the canvas his friend Anthon van Rappard savaged so harshly, mocking the figures' proportions, that it broke off their friendship for good.",
+by: "Opus 4.8" },
+
+"guernica": {
+about: "Picasso's Guernica, 1937 — a grey mural of a bombed Basque town, screaming horse and fallen figures. He decreed it stay out of Spain until democracy returned, so it hung at New York's MoMA until 1981.",
+by: "Opus 4.8" },
+
+"watson-and-the-shark": {
+about: "Copley's Watson and the Shark, 1778: the boy it depicts, Brook Watson, really lost his leg to a shark in Havana harbour, then commissioned this rescue scene after becoming a wealthy merchant and future Lord Mayor of London.",
+by: "Opus 4.8" },
+
+"arnold-bocklin-the-island-of-life": {
+about: "Böcklin's The Island of Life, 1888 — a sunlit islet of bathers, swans and revelers under palms. He painted it as the deliberate antipode to his own Isle of the Dead; both now hang at the Kunstmuseum Basel.",
+by: "Opus 4.8" },
+
+"franz-marc-tierschicksale": {
+about: "Franz Marc's Tierschicksale (Fate of the Animals), 1913: a blue deer and creatures caught in splintering red shafts — a vision that eerily prefigured World War I, in which Marc himself died at Verdun three years later.",
+by: "Opus 4.8" },
+
+"edward-hopper-house-by-the-railroad": {
+about: "Hopper's House by the Railroad, 1925 — a lone mansard-roofed mansion stranded above a single rail track in hard light. The first painting MoMA acquired, in 1930, and the house Hitchcock credited for the Bates mansion in Psycho.",
+by: "Opus 4.8" },
+
+"wassily-kandinsky-picture-with-an-archer": {
+about: "Kandinsky's Picture with an Archer, 1909: a horseman twists in his saddle to draw his bow over blue onion domes and bulbous hills — a MoMA canvas where vibrating patchwork color nearly overwhelms the figures, a key step toward pure abstraction.",
+by: "Opus 4.8" },
+
+"the-gates-of-hell": {
+about: "Rodin's The Gates of Hell, begun 1880 — a bronze portal swarming with Dante's damned. Commissioned for a decorative-arts museum that was never built, Rodin reworked it for 37 years until his death, never finishing.",
+by: "Opus 4.8" },
+
+"jewess-with-oranges": {
+about: "Gierymski's Jewess with Oranges, 1880: an aging Jewish street vendor with her baskets before a hazy Warsaw skyline — looted by the Nazis in WWII, the canvas vanished until it surfaced at a German auction and Poland recovered it in 2011.",
+by: "Opus 4.8" },
+
+"edvard-munch-night-in-saint-cloud": {
+about: "Munch's Night in Saint-Cloud, 1890 — a shadowed room, a cross of moonlight on the floor. Painted in the Paris suburb the year his father died; the seated figure, modeled on poet Emanuel Goldstein, reads as Munch's own grief.",
+by: "Opus 4.8" },
+
 };
