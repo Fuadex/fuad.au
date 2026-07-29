@@ -113,4 +113,110 @@ about: "Gustaf Fjæstad's Winter Moonlight (Vintermånsken), 1895 — a snow-lad
 deep: "One of the early winter nights that made his name, and a model Swedish stämningslandskap — a mood-landscape where hour and weather carry everything and no story is told. The snow is not smooth: dense blue-white stippling that works at once as deep soft drift and as flat decorative pattern, a National-Romantic subject handled with near-Jugendstil surface. Because the light is diffuse moonlight there are no hard shadows; the brightest values sit in the snow itself, which seems to hold the light and give it back, while the sky stays darker. The single bough's slow downward pull is the only drama, answered everywhere by cold and hush.",
 by: "Opus 5" },
 
+
+"anders-zorn-mrs-walter-rathbone-bacon-virginia-purdy-barker": {
+about: "Virginia Purdy Barker, wife of American money, painted by Anders Zorn in 1897 — a full-length in cream that fills a tall canvas, a collie pressed to her side, and a level, guarded face that gives nothing away.",
+deep: "The dress is enormous and the head inside it is small, so the social fact and the private one sit at different scales, and you travel between them. Zorn paints events, not surfaces: the satin is long loaded strokes laid once and never returned to, cream, grey-violet and dirty ochre that lock into fabric lit from within. The palette is starved on purpose, so two salmon pinks on the skirt carry the whole warmth budget. Her face is composed, level, worked more than anything else and still economical. The dog is the only unguarded thing in the frame, and she is holding on to it — a portrait less about status than the upkeep of it.",
+by: "Opus 5" },
+
+"claude-monet-agapanthes": {
+about: "Agapanthus, an African lily from the beds around Monet's Giverny water garden, rising at lower left against a half-dissolved field, with pond pads drifting to the right. A late study, painted around 1914-17 toward the vast Agapanthus triptych.",
+deep: "The real subject is the seam where garden meets pond. Monet sets a rooted plant against near-formless water-light and treats them as equal halves of one motif. Look how legibility works as a gradient: the two flower-heads are the most finished passages, clear-edged clusters of white, blue and rose atop single vertical stalks, while the leaves fan out in calligraphic blue-green over dark impasto earth, the heaviest paint here. Move right and the strokes lengthen, colours pale to lavender and buttery green, and the lily pads stop being drawn, cohering only as a rhythm of shadow and yellow flecks. Form loosens toward pure atmosphere. With no horizon, near flower and far water press into a single vertical field.",
+by: "Opus 5" },
+
+"claude-monet-the-manneporte-etretat": {
+about: "The Manneporte, largest of the Étretat sea arches on the Normandy coast, painted by Monet in 1883. A single span of chalk cliff crowds out the sky, met head-on and slightly from below, as if you stood on the rocks beneath it.",
+deep: "The arch is not a view onto a scene; it is the scene. Monet crops hard, pushing the span almost to the top edge so the sky shrinks to a thin afterthought and nothing competes with the stone. Colour, not line, does the drawing: the seaward face burns pale ochre and gold, dies into cool grey-violet as it turns, and that seam of temperature alone makes the pier read as a rounded, weight-bearing mass with no drawn edge. Below, the rock goes dragged and thin while the surf clots thick, white troweled over blue and green in loops that never settle. An early rehearsal for the serial method to come, weather made of pigment.",
+by: "Opus 5" },
+
+"ferdinand-hodler-mount-niesen-seen-from-heustrich": {
+about: "Ferdinand Hodler's Mount Niesen, 1910 — a single green pyramid filling almost the whole frame, no lake, no path, no figure. A base-cutting bank of white cloud leaves it floating, less a view than a form held up for inspection.",
+deep: "Hodler called his method parallelism: like forms set beside like forms until the repeating becomes the subject. Watch it run at three scales here — the two flanks answering across a vertical axis, the ridges restating the summit's angle as they fall, the sky assembled from one hooked cloud-unit reiterated dozens of times. The intelligence is in the inexactness: the apex sits off centre, and the right side carries a stepped shoulder the left has no answer for, the asymmetry that stops the picture becoming a diagram. The silhouette is drawn in the sky's own blue, so the mountain is cut out rather than modelled; paint dry and thin, no aerial haze, the far ridge as loud as the near.",
+by: "Opus 5" },
+
+"georges-seurat-gray-weather-grande-jatte": {
+about: "Georges Seurat, 1886: the same island in the Seine as his famous Sunday crowd, now emptied. Bare track, moored boats tied up, the only event the weather. A pale plane of river runs back between dark screens of foliage under overcast light.",
+deep: "The subject is the word in the title. Overcast light flattens value, so nothing is very dark or bright, and Seurat treats that as opportunity: strip away sun and shadow and what remains is pure hue, dispersed and quiet. The picture argues that gray is not absence of colour but a crowd of colours agreeing to cancel out. Watch the river, the highest value on the canvas: assembled from cream, rose, pale blue and green in small horizontal touches that stay luminous where a mixed gray would go dead. Dark trunks left, a hanging leaf-mass right, the moored boat's mast the one firm vertical hinging the empty centre. A motif revisited without ambition, as a place.",
+by: "Opus 5" },
+
+"gustav-klimt-serena-pulitzer-lederer-1867-1943": {
+about: "Gustav Klimt's 1899 portrait of Serena Pulitzer Lederer — a near life-size figure in white on a canvas more than twice as tall as it is wide, only her dark head fully resolved, everything below the shoulders softening until the hem has no edge.",
+deep: "The real subject is a proportion. The canvas runs better than two to one, so Klimt builds a top-to-bottom fall and rations everything to serve it. Contrast is spent entirely on the head: the only saturated colour, the only hard edges, a black core with curls that never harden against the ground. Below, the gown is dragged in long dry vertical strokes, blue-grey and violet left unblended, so it reads as grain rather than drapery, no creases to stop the eye. He never brightens the dress; he dims the warmer air around it. The hands go unfinished, the hem dissolves, she casts no shadow — a body turning into atmosphere. Standing before it, you watch it slowly brighten as the eye adjusts.",
+by: "Opus 5" },
+
+"gustave-courbet-marine-the-waterspout": {
+about: "Gustave Courbet's Marine: The Waterspout, 1870 — a storm at sea with no horizon to divide weather from water. A green-black wave breaks in from the left, rain falls in pale shafts from a bruised cloud, and the cloud tears open into copper overhead.",
+deep: "Courbet paints an event, not a place: water lifted into air, air made visible as falling water. The whole canvas runs on four values, so a few bright notes carry the design — foam, the tan blocks, the torn copper cloud, aligned on a diagonal from top left to bottom right. Almost nothing is drawn. The sky is dragged thin, canvas grain surfacing through it, which is why rain reads as rain; the wave is loaded, white shoved through wet green into a ridge of real relief. Watch the tear overhead: warm because lit from behind, not brighter than the grey beside it. The contrast is temperature, not light. What it is finally about is weight — how much of the air is water.",
+by: "Opus 5" },
+
+"j-m-w-turner-venetian-scene": {
+about: "A late Turner Venice from the Tate's bequest, dated around 1842 but thinly documented — a lagoon dissolved into blue-grey, cream and chalk-white. Almost nothing is drawn; the city is implied by a low horizon and hovering mist, weather made visible rather than a place described.",
+deep: "The real subject is ambiguity itself. A pale, nearly square field opens into atmosphere, the sky given almost two-thirds of the surface as scumbled light arcs toward a soft crown near the top. Everywhere the paint thins so the warm ground breathes through, edges blurred at the seams rather than met at a line. Only one passage holds weight: a low knot of dark, warm strokes at center-right, a vermilion spark flaring among them — figures, boats, or buildings, the paint declines to say. Whether this is a resolved statement or a studio sketch is not something the surface settles, and that refusal to finish is the picture's discovery, not its lack.",
+by: "Opus 5" },
+
+"la-grenouillere-renoir": {
+about: "La Grenouillère, a floating café and bathing raft on the Seine, painted by Renoir in 1869 — a Sunday crowd on a gravel pontoon, dark suits and pale dresses under arching trees, the whole lower half worked into broken water.",
+deep: "The subject is a temperature, not an event. Renoir keeps every face summary — a top hat is one dark dab, a dress a few loaded sweeps — and builds figures exactly as he builds water: short separate touches of unblended color set side by side, shade cooling to blue-green, sunlit river warming to flecks. Two women in white at center are pure tone, not portrait: the brightest note the crowd orbits, sorting the scene by brightness rather than story. Step back and the marks fuse into figures and ripples; move close and they scatter into raw paint. Painted beside Monet that summer, it is where Impressionism found reflected light could be built from separate strokes.",
+by: "Opus 5" },
+
+"michael-wutky-versuv-ausbruch": {
+about: "Vesuvius erupting, painted by Michael Wutky in 1796 - an upright canvas nearly all brown-black, its colour rationed to one central seam: a white core at the cone's throat, a rain of orange sparks, a bruised glow across the smoke overhead.",
+deep: "The subject is an eruption; the argument is a vantage point. Eighteenth-century Vesuvius pictures put a bay, a city, a crowd between viewer and mountain - the apparatus of safe viewing. This deletes it: no horizon, no sea, no sky that is not smoke. The rock walls closing left and right are the crater's own, so the vantage sits inside the thing being looked at, and the distance that made terror a pleasure collapses. The craft serves this. One light source, the vent; the smoke painted as a low lid so glare bounces back down rather than escaping upward. Hue withheld everywhere else so the small yellow-white core reads as light, not paint. The composition is a funnel with no exit at the top.",
+by: "Opus 5" },
+
+"narcisse-virgilio-diaz-flower-piece": {
+about: "A heaped bouquet of cut flowers rising out of near-black shadow, by Barbizon painter Narcisse Virgilio Díaz — better known for jewelled forest interiors. No vase is shown; the blooms glow from a solid base and dissolve upward into dark.",
+deep: "The real subject is light caught in shadow rather than any species of flower. Díaz organises the picture by glow and mass: the pink and cream core sits low and central, built in ridges of impasto that hold the raking light as physical texture, so the flowers read as luminous weight before they read as petals. Warm yellows and a saturated red flare to the right; rare blues are scumbled thinly over the dark so they recede while the pale masses advance. Few blooms are fully resolved and edges stay soft, which lets the arrangement cohere as a single body of light. The dark ground is not a backdrop but the active field the bouquet emerges from.",
+by: "Opus 5" },
+
+"nympheas-monet-2": {
+about: "A single stretch of Monet's Giverny pond, painted around 1918, tilted up until water fills the whole vertical frame with no horizon. A wedge of green bank holds the lower-left corner; near the centre, one tight cluster of white blooms.",
+deep: "The argument is that one corner keeps this pond real. Where many of Monet's late lily canvases let the water run to all four edges, here a triangle of warm, dry bank shoulders into the lower left, and that edge gives you a place to stand: above the water, looking down and slightly out. Everything else is surface and reflection, cool greys and lavenders combed downward into the water's memory of willows. Only two passages refuse to dissolve. The bank, scrubbed in olive and rust, and the central knot of white lilies, loaded thick with yellow hearts so they sit proud of the pond. Between an anchoring corner and a bloom that lands, the eye finally has somewhere to rest.",
+by: "Opus 5" },
+
+"odilon-redon-madame-arthur-fontaine-marie-escudier-born-1865": {
+about: "Marie Escudier, wife of civil servant Arthur Fontaine, in profile and absorbed in something white in her lap. Odilon Redon, 1901 — a solid, deep-yellow figure who dissolves into a haze of imagined violet blossom.",
+deep: "The one firm thing here is a dress. Redon works its saturated yellow to real density, packed and burnished until it reads as heavy silk, while everything behind dissolves into loosely dabbed blossom with the paper showing through. Figure and setting share no crisp edge, so she seems to condense out of the atmosphere rather than pose in front of it. The face, strict profile, turned fully from you, is barely modelled with the flat of the stick — the most public part of a portrait made its most private. This is the Symbolist move: the flowers are not where she is but what she is like. A visionary who spent decades in black, late-arrived at colour, painting a temperament, not a likeness.",
+by: "Opus 5" },
+
+"paul-signac-notre-dame-de-la-garde-la-bonne-mere": {
+about: "Paul Signac's 1905 view up the Old Port of Marseille toward Notre-Dame-de-la-Garde, the hilltop church locals call La Bonne-Mère. Built from square touches of unmixed colour, the whole harbour reads as a mosaic before it resolves into a scene.",
+deep: "Signac's real subject is not the church but the atmosphere that dissolves boats, water and stone alike. This is divisionism as theory made visible: touches of separate colour laid side by side to mix in your eye, brighter than any palette mixture. By 1905 the strokes have grown into tesserae the size of tiles, each a clear hue, the surface enamelled and frankly decorative. Look at the water and find no grey; shadow is a denser weave of violet, blue and rose, warmed by pink dropped from the sky. Warm pinks answer cool blue-violets throughout, each intensifying its opposite. The Bonne-Mère presides small and violet, a summit the harbour climbs toward while colour does the actual work of devotion below.",
+by: "Opus 5" },
+
+"pierre-auguste-renoir-by-the-seashore": {
+about: "Renoir, By the Seashore, 1883: a young woman in dark blue-black fills a tall canvas, a wicker chair curving warmly around her, the sea loose behind. A ruffled white collar at her throat is the picture's brightest, thickest note.",
+deep: "The real subject is Renoir mid-crisis, staging his own indecision on one canvas. After a decade dissolving figures into Impressionist light, a trip to Italy and study of Raphael and Ingres pushed him back toward firm outline. Watch the collision: the face is drawn, built in close blended tones with dark contours holding the features in place; the sea behind is only brushed, horizontal drags of blue and green, a chalk cliff in a few swipes, sails as single flecks. The model was posed in the studio, the seaside likely invented. Between them, the warm wicker chair frames her in quick parallel strokes, pushing the figure forward while the blues recede.",
+by: "Opus 5" },
+
+"pierre-auguste-renoir-in-the-meadow": {
+about: "Two young women at rest in tall summer grass, gathering wildflowers — a Renoir idyll from his later, pearly manner, around 1890. The nearer figure turns her back in rose pink, drawing you into the scene rather than meeting your look.",
+deep: "Watch how the paint changes between the girls and the meadow. The two figures are modeled with soft, continuous strokes that keep them solid and rounded, skin pearly, dresses lit from within; around them the handling dissolves completely into short broken flecks of green, cream, gold, and lilac, with no drawn edge anywhere. This is Renoir returning from his dry, hard-edged Ingres phase: the figures hold the firm structure he drilled into himself, while the grass recovers his old Impressionist freedom. The near girl's arm blurs where hand meets meadow, and a discarded bonnet lies in the corner — the day warm enough to set a hat aside.",
+by: "Opus 5" },
+
+"saule-pleureur-et-bassin-aux-nympheas": {
+about: "A single weeping-willow trunk at Giverny, Claude Monet, 1917 — the odd one out among his late water canvases. Instead of the pond's flat surface, he stands you at the tree's foot and looks straight up its bark, the lily basin surviving as a sliver at the right edge.",
+deep: "The willow's trunk crowds out the pond that made these late canvases famous. Monet builds the bark from long vertical strokes crossed by short diagonals, kept in complementary pairs — orange against violet, red beside green — set side by side so the eye mixes them and the trunk shimmers rather than sits still. It is the optical method he used on water, turned onto a solid vertical thing. The fronds are dragged wet, downward, pulling toward the earth against the trunk's upward climb; the base darkens into unreadable blue-green shadow. Painted through the war years, the drooping willow was his emblem of mourning — a record of feeling worked into paint, not a view of a garden.",
+by: "Opus 5" },
+
+"theo-van-rysselberghe-coastal-scene": {
+about: "A shallow bay at rest, 1892, by Théo van Rysselberghe, the leading Belgian follower of Seurat. Water fills two-thirds of the canvas, and a band of reflected light lies across the middle, silver-green and brighter than either sky or hills.",
+deep: "The quiet event here is an inversion: water outshining air. That horizontal glow across the middle is the brightest passage on the canvas, built from the palest, most closely keyed dots so the eye can fix on none of them and the band seems to vibrate. Everything else exists to set it off. Van Rysselberghe works in divisionism, laying blue beside green beside rose so they fuse into shimmer rather than mixing on the palette. The near water cools toward violet and slate, and that temperature shift alone gives depth without drawn perspective. Only the thin dark stakes are firm; take them away and the surface would lose its scale and float free.",
+by: "Opus 5" },
+
+"vincent-van-gogh-the-olive-tree": {
+about: "An olive grove in Provence, painted by Van Gogh in 1889 during his year at the Saint-Remy asylum. Silvery foliage massed in blue-green clumps, blue hills behind, a coil of smoke-shaped cloud above ploughed orange earth.",
+deep: "The real subject is a single current running through everything. The same wave that coils the pale cloud rolls through the Alpilles, ripples the foliage, and swings the furrows of the ground, so your eye is pulled around the surface rather than held. Van Gogh builds the whole picture from short curved strokes, each following the form it describes, until paint and motion become one thing. He pushes orange earth beneath the cool blues and greens to make them vibrate, and compresses the distance so trees, hills, and sky press flat toward you. Not distress but conviction: a landscape seen as one breathing body, a tended working grove made to pulse.",
+by: "Opus 5" },
+
+"vincent-van-gogh-wheat-field-with-cypresses": {
+about: "A Provence wheat field days from harvest under a churning sky, Van Gogh, 1889 — painted from the asylum at Saint-Rémy. One dark cypress runs up the right side and grows straight out of the top edge, larger than the frame that holds it.",
+deep: "The real subject is speed. Four horizontal bands move at four rates: the sky rotating fastest in rolled spirals, the wheat streaming sideways, the ridge held nearly motionless, the cypress not moving at all — and every rate comes purely from how the brush is loaded and aimed, not from drawing. The cypress, cropped and outgrowing the frame, is the one immovable vertical you measure the drift against. Depth is done by paint alone: the mountains alone are thin, cool and dry, so they recede, while everything else advances in loaded impasto. Gold against violet-blue, broken into separate flickering strokes. Stand close and it comes apart into mosaic; step back and it burns.",
+by: "Opus 5" },
+
+"water-lilies": {
+about: "Monet's Giverny pond, 1917 — tilted up until water fills the frame, no sky and no far shore. A bruised violet runs edge to edge, and long vertical streaks of green and gold rain down it: the reflection of willow branches hanging into the water.",
+deep: "The picture is built on friction between two directions. The willow never appears as a tree; only its reflection does, falling straight down in green threads shot through with violet, each streak holding its separateness the whole way rather than blending into a wash. Across that downward fall the lily pads lie flat and horizontal, dark blunt marks resting on the same water. What drops and what floats, the mirrored world against the real leaves on top. Monet gives you no footing except one green wedge of bank in the lower-left, so vision finds nothing to hold and drifts on the violet itself — a depth with no floor and no horizon. That drift is the point.",
+by: "Opus 5" },
+
 };
