@@ -300,4 +300,213 @@ by: "Opus 4.8" },
 about: "Munch's Night in Saint-Cloud, 1890 — a shadowed room, a cross of moonlight on the floor. Painted in the Paris suburb the year his father died; the seated figure, modeled on poet Emanuel Goldstein, reads as Munch's own grief.",
 by: "Opus 4.8" },
 
+
+"le-dejeuner-sur-l-herbe": {
+about: "Monet's Le Déjeuner sur l'herbe, 1865 — picnickers under dappled trees, his answer to Manet. Pawned to a landlord for unpaid rent, it rotted in a damp cellar; Monet cut it up, and only fragments survive.",
+by: "Opus 4.8" },
+
+"train-in-the-snow": {
+about: "Monet's Train in the Snow, 1875: a locomotive nosing through Argenteuil's snow — he painted it from the station platform, and it foreshadowed his celebrated Gare Saint-Lazare series of 1877.",
+by: "Opus 4.8" },
+
+"haystacks-midday": {
+about: "Monet's Haystacks, midday, 1890 — grainstacks in a Giverny field. Part of a series he painted at least 25 times chasing shifting light, most of which sold at once to American collectors.",
+by: "Opus 4.8" },
+
+"claude-monet-the-japanese-footbridge": {
+about: "Monet's The Japanese Footbridge, c. 1920: the Giverny bridge he painted for decades, now dissolved into fiery reds and swirling strokes as cataracts left the near-blind painter seeing the world in a shifting reddish haze.",
+by: "Opus 4.8" },
+
+"the-water-lily-pond": {
+about: "Monet's The Water-Lily Pond, 1918 — the pond surface fills the whole canvas. Part of the roughly 250-work Nympheas cycle he painted at Giverny across three decades, later beloved by the Abstract Expressionists.",
+by: "Opus 4.8" },
+
+"the-church-at-auvers": {
+about: "Van Gogh's The Church at Auvers, 1890, painted weeks before his death — yet the priest of this very church later refused him a funeral, as he was Protestant and had died by suicide.",
+by: "Opus 4.8" },
+
+"self-portrait": {
+about: "Van Gogh's Self-Portrait, 1889, at the Musée d'Orsay — its hallucinatory blue arabesques were painted in September at the Saint-Rémy asylum, and this may be the very last self-portrait he ever made.",
+by: "Opus 4.8" },
+
+"farmhouse-in-provence": {
+about: "Van Gogh's Farmhouse in Provence, 1888 — a sun-struck Arles harvest, painted during the roughly 15 months when he produced over 200 canvases, built from vibrating pairs of complementary colours.",
+by: "Opus 4.8" },
+
+"vincent-van-gogh-cypresse": {
+about: "Van Gogh's Cypresses, 1889 — painted weeks into his year at the Saint-Rémy asylum, it launched his obsession with the trees he called 'beautiful as regards lines and proportions, like an Egyptian obelisk.'",
+by: "Opus 4.8" },
+
+"la-balancoire": {
+about: "Renoir's La Balançoire, 1876 — a woman on a swing in a sun-dappled garden; shown at the 1877 Impressionist exhibition, its dabs of pale, shifting light on clothing and ground drew particular scorn from critics.",
+by: "Opus 4.8" },
+
+"girls-at-the-piano": {
+about: "Renoir's Girls at the Piano, 1892 — two girls reading music at a keyboard. A French government commission, it became the first Impressionist work bought for the national collection; Renoir refined it across five canvases.",
+by: "Opus 4.8" },
+
+"mlle-irene-cahen-d-anvers": {
+about: "Renoir's portrait of eight-year-old Irène Cahen d'Anvers, 1880: the Jewish banker's daughter survived the war, but the canvas was Nazi-looted and passed to Göring before she recovered it and sold it to arms-dealer Bührle.",
+by: "Opus 4.8" },
+
+"berthe-morisot-with-a-bouquet-of-violets": {
+about: "Manet's Berthe Morisot with a Bouquet of Violets, 1872 — the painter in mourning black. Paul Valéry ranked it above all Manet's work, comparing it to Vermeer's Girl with a Pearl Earring.",
+by: "Opus 4.8" },
+
+"edouard-manet-the-dead-christ-with-angels": {
+about: "Manet's The Dead Christ with Angels, 1864: a cadaverous Christ mourned by two angels. Manet painted the spear wound on the wrong side of the body, and despite Baudelaire's warning to fix it before the Salon, he left the error.",
+by: "Opus 4.8" },
+
+"edgar-degas-woman-with-a-towel": {
+about: "Degas's Woman with a Towel, 1896 — a bather seen from behind. He worked the pastel with his fingers, brushes and sharp tools, smudging and scraping the pigment, then drew black outlines over it to sharpen the figure's twist.",
+by: "Opus 4.8" },
+
+"edgar-degas-dancer-with-a-fan": {
+about: "Degas's Dancer with a Fan, c.1890, pastel and charcoal — the doubled lines edging the fan conjure its fluttering motion, and the shadowy figure at right may be a dance instructor modeling the pose.",
+by: "Opus 4.8" },
+
+"paul-cezanne-arlequin": {
+about: "Cézanne's Arlequin, at Washington's National Gallery — the red-diamond commedia figure was posed by the painter's own son Paul in a Harlequin costume, the largest of three isolated Harlequins Cézanne made around 1888-90.",
+by: "Opus 4.8" },
+
+"georges-seurat-the-channel-at-gravelines-evening": {
+about: "Seurat's The Channel at Gravelines, Evening, 1890 — a hushed harbour in dotted light, one of his last four landscapes before his death at 31, ringed by a hand-painted dotted border.",
+by: "Opus 4.8" },
+
+"arnold-bocklin-der-ritt-des-todes-herbst-und-tod": {
+about: "Böcklin's Der Ritt des Todes (Autumn and Death), 1871 — a skeletal Death rides through a ruined graveyard, painted as the Symbolist processed the just-ended Franco-Prussian War through myth. Now in Munich's Schack collection.",
+by: "Opus 4.8" },
+
+"arnold-bocklin-im-spiel-der-wellen": {
+about: "Böcklin's Im Spiel der Wellen, 1882 — tritons and nereids tumbling in heavy surf; the central mermaid was modelled on the painter's own daughter Angela, and by 1899 Germans hailed it among the century's greatest achievements.",
+by: "Opus 4.8" },
+
+"lovis-corinth-der-rote-christus": {
+about: "Corinth's Der rote Christus, 1922 — a blood-drenched crucifixion in swirling reds. Painted after the stroke that partially paralysed him, its loose, gestural violence marks his turn from naturalism to full Expressionism.",
+by: "Opus 4.8" },
+
+"henri-matisse-porte-fenetre-a-collioure": {
+about: "Matisse's Porte-fenêtre à Collioure, 1914: a black slab where a balcony view should be — his most radical brush with abstraction, left unfinished at war's outbreak and unseen publicly until 1966.",
+by: "Opus 4.8" },
+
+"umberto-boccioni-the-city-rises": {
+about: "Boccioni's The City Rises, 1910 — a giant workhorse dissolving into laboring men. Nearly ten feet wide, it is considered his first truly Futurist work, later bought by composer Ferruccio Busoni.",
+by: "Opus 4.8" },
+
+"franz-marc-vogel": {
+about: "Marc's Vögel (Birds), 1914: birds splintered into prismatic shards of blue, green and red, among his last works before he died at Verdun in 1916. The Nazis later branded his art degenerate and banned it in 1937.",
+by: "Opus 4.8" },
+
+"unknown-mask-of-fear": {
+about: "Klee's Mask of Fear, 1932 — a huge blank mask carried on four spindly legs. Painted on the eve of Hitler's rise; within a year the Nazis branded Klee's work degenerate and he fled Germany for Switzerland.",
+by: "Opus 4.8" },
+
+"unknown-one-who-understands": {
+about: "Klee's One Who Understands, 1934, made the year after the Nazis branded his art 'degenerate' and forced him from his teaching post — its face fractured by lines like a cracked windowpane.",
+by: "Opus 4.8" },
+
+"ernst-ludwig-kirchner-five-women-on-the-street": {
+about: "Kirchner's Five Women on the Street, 1913, at Cologne's Museum Ludwig — this is the first work in his celebrated Berlin street-scene cycle, its cocottes standing in for the sensuality and frenzy of the modern city.",
+by: "Opus 4.8" },
+
+"edward-hopper-new-york-movie": {
+about: "Hopper's New York Movie, 1939 — a lone usherette lost in thought beside the screen, assembled from over 50 sketches of Manhattan theatres, with his wife Jo modelling the figure.",
+by: "Opus 4.8" },
+
+"paul-gauguin-ferme-en-bretagne-i": {
+about: "Gauguin's A Farm in Brittany, 1894 — made on his fifth and final Breton stay, between Tahiti voyages; its impressionist brushwork carries the hot palette he brought back from the tropics.",
+by: "Opus 4.8" },
+
+"camille-pissarro-prairie-a-eragny": {
+about: "Pissarro's Prairie à Éragny, 1886 — a hazy rural meadow built from dotted, contrasting hues; this Neo-Impressionist landscape became the Art Gallery of South Australia's most significant acquisition, bought for $4.5 million in 2014.",
+by: "Opus 4.8" },
+
+"peter-paul-rubens-der-hollensturz-der-verdammten": {
+about: "Rubens's Fall of the Damned, c.1620 — a cascade of nude bodies hurled into hell. In 1959 a would-be philosopher threw acid over it, saying the acid 'relieves one from the work of destruction'; years of restoration followed.",
+by: "Opus 4.8" },
+
+"arshile-gorky-diary-of-a-seducer": {
+about: "Gorky's Diary of a Seducer, 1945: sinuous biomorphic forms in a grey field, its title lifted from Kierkegaard — a Surrealist-fed bridge to the Abstract Expressionism his contemporaries would soon push further.",
+by: "Opus 4.8" },
+
+"j-m-w-turner-the-parting-of-hero-and-leander": {
+about: "Turner's The Parting of Hero and Leander, 1834 — the doomed lovers hidden in shadow at the water's edge. He broke history-painting convention by pushing his subjects off-centre and wrote his own verse for it.",
+by: "Opus 4.8" },
+
+"in-the-arbour": {
+about: "Gierymski's In the Arbour, 1882: aristocrats in 18th-century dress take tea in dappled garden light. The finest work of his Roman years and his approach to Impressionism, after he destroyed an earlier 1880 version himself.",
+by: "Opus 4.8" },
+
+"skarga-s-sermon": {
+about: "Matejko's Skarga's Sermon, 1864 — a Jesuit preacher warns the king and Sejm of Poland's downfall. Matejko's first monumental history painting, it won a gold medal at the 1865 Paris Salon.",
+by: "Opus 4.8" },
+
+"black-woman": {
+about: "Bilińska's Black Woman, 1884, painted in Paris by the Polish artist — the canvas was looted from Warsaw's National Museum during World War II and only resurfaced at auction in 2011, returning in 2012.",
+by: "Opus 4.8" },
+
+"gossamer": {
+about: "Chełmoński's Gossamer (Babie lato), 1875, at Warsaw's National Museum — the barefoot peasant girl lifts a strand of spider silk, and its unidealized dirty realism scandalized viewers at its Zachęta debut that year.",
+by: "Opus 4.8" },
+
+"soil": {
+about: "Ruszczyc's Ziemia (Soil), 1898 — a tiny ploughman and oxen dwarfed by a towering sky, a work critic Eligiusz Niewiadomski said turned simple ploughing into symbolic drama, and a touchstone of Polish identity.",
+by: "Opus 4.8" },
+
+"at-the-seashore": {
+about: "Bilińska's At the Seashore, 1886 — a fisherwoman and child on a grey Pourville beach, painted by the Paris-trained Pole during summers shadowed by her father's death and a nervous breakdown.",
+by: "Opus 4.8" },
+
+"elgin-marbles": {
+about: "The Elgin Marbles — 5th-century BC Parthenon sculptures in the British Museum, stripped from the Athens Acropolis by Lord Elgin; Greece has demanded their return since 1832, but the 1963 British Museum Act bars the museum from parting with them.",
+by: "Opus 4.8" },
+
+"johan-jongkind-honfleur": {
+about: "Jongkind's Honfleur, 1865 — moored ships in the Normandy harbour under shifting light. He sketched here beside the young Monet, and his plein-air method and same-scene-different-hours idea directly seeded Impressionism.",
+by: "Opus 4.8" },
+
+"walter-crane-neptune-s-horses": {
+about: "Crane's Neptune's Horses, 1892: breakers rearing into a herd of white steeds — a literal picturing of the English phrase \"white horses\" for surf, sparked by Atlantic waves he watched at Nantucket.",
+by: "Opus 4.8" },
+
+"elie-nadelman-man-in-the-open-air": {
+about: "Nadelman's Man in the Open Air, c. 1915 — a nude leaning on a stylised tree. The classical body wears only a bowler hat and bow tie, fusing Greek statuary with the modern dandy or flaneur.",
+by: "Opus 4.8" },
+
+"andrea-mantegna-triumph-des-scipio": {
+about: "Mantegna's Cornaro frieze, 1505: a crowded classical procession painted entirely in monochrome so the figures mimic carved stone against marble. The one canvas he finished of a planned series before his death in 1506.",
+by: "Opus 4.8" },
+
+"rouen-cathedral-portal-and-tower-saint-romain-in-the-sun": {
+about: "Monet's Rouen Cathedral, Portal and Tower Saint-Romain in the Sun, 1893 — one facade under shifting light. Monet painted more than thirty views of the same cathedral to track light across the hours; twenty were shown together in 1895.",
+by: "Opus 4.8" },
+
+"edouard-manet-madame-manet-suzanne-leenhoff-1830-1906-at-bel": {
+about: "Manet's Madame Manet at Bellevue, 1880 — his last portrait of his wife Suzanne, painted the summer they spent in that Paris suburb, its rapid brushwork preceded by two drawings and an oil sketch.",
+by: "Opus 4.8" },
+
+"paul-cezanne-la-montagne-sainte-victoire-vue-des-lauves": {
+about: "Cézanne's Mont Sainte-Victoire vue des Lauves, 1902-06, at the Met — painted from the hilltop by his last Les Lauves studio, one of about eighty views of the peak he obsessively returned to.",
+by: "Opus 4.8" },
+
+"paul-signac-opus-217-sur-l-email-d-un-fond-rythmique-de-mesu": {
+about: "Signac's 1890 profile portrait of critic Felix Feneon, Opus 217 — the dapper subject set against a swirling kaleidoscope adapted from theorist Charles Henry's newly published color wheel.",
+by: "Opus 4.8" },
+
+"umberto-boccioni-states-of-mind-i-the-farewells": {
+about: "Boccioni's States of Mind I: The Farewells, 1911 — a railway-station vortex anchored by the calm engine number 6943; MoMA's is the second version, repainted with Cubist facets after his Paris trip that November.",
+by: "Opus 4.8" },
+
+"white-and-yellow-chrysanthemums-petit-gennevilliers-garden": {
+about: "Caillebotte's chrysanthemums, 1893 — densely packed blossoms he grew at his Petit-Gennevilliers property; the close-up view was tied to his plan for painted dining-room doors, echoing friend Monet's decorative Giverny garden series.",
+by: "Opus 4.8" },
+
+"the-hanging-of-the-sigismund-bell-at-the-cathedral-tower-in-1521-in-krakow": {
+about: "Matejko's Hanging of the Sigismund Bell, 1874 — workers hoist Kraków's great bell as royalty watch. To people the Renaissance-era crowd, Matejko posed nearly his entire own family as the models.",
+by: "Opus 4.8" },
+
+"joseph-wright-virgil-s-tomb-by-moonlight-with-silius-italicu": {
+about: "Wright's moonlit Virgil's Tomb, 1779: a robed figure reads by a ruin near Naples — the Roman poet Silius Italicus, who owned the tomb and honoured Virgil's death each year by declaiming his verse there.",
+by: "Opus 4.8" },
+
 };
