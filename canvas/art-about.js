@@ -1913,4 +1913,405 @@ by: "Opus 4.8" },
 about: "The National Gallery paid a then-record £2.5 million for it in 1980, but scholars have disputed the Rubens attribution almost ever since. A 2023 AI authentication study put the probability of it being a later copy at 91 percent. Peter Paul Rubens (attributed), c.1609-10.",
 by: "Opus 4.8" },
 
+
+"a-young-woman-standing-at-a-virginal": {
+about: "Vermeer painted this and its companion piece — a woman seated at the same instrument — as pendants around 1670–72, the two hanging together as contrasting meditations on faithful versus illicit love. The Cupid on the back wall here signals fidelity; the seated version pairs its player with a painting of a client visiting a prostitute.",
+by: "Opus 4.8" },
+
+"christ-in-the-house-of-his-parents": {
+about: "When Millais showed this in 1850, Charles Dickens published a review calling the Christ child \"a hideous, wry-necked, blubbering, red-headed boy in a nightgown\" and Mary so ugly she would disgrace a gin shop — a furious response to the Pre-Raphaelite decision to paint the Holy Family as real, dirty working people.",
+by: "Opus 4.8" },
+
+"tiger-in-a-tropical-storm": {
+about: "Rousseau claimed his dense jungle scenes drew on military service in Mexico, but he never left France — the vegetation here was pieced together from the Jardin des Plantes in Paris, its zoo, and taxidermy specimens. Painted in 1891, it was his first jungle canvas and was shown at the open Salon des Indépendants.",
+by: "Opus 4.8" },
+
+"the-execution-of-lady-jane-grey": {
+about: "Delaroche painted the blindfolded sixteen-year-old queen groping for the block in 1833, and the canvas was a sensation at the 1834 Paris Salon. It then vanished into storage, was assumed destroyed in the 1928 Thames flood, and lay forgotten until a Tate curator unrolled it by accident in 1973 — with another painting rolled inside it.",
+by: "Opus 4.8" },
+
+"beata-beatrix": {
+about: "Rossetti began this as a memorial after his wife Elizabeth Siddal died of a laudanum overdose in 1862, working on it until around 1870. The bird delivering a white poppy to her half-open hands is a deliberate symbol: the poppy stands for the opium derivative that killed her.",
+by: "Opus 4.8" },
+
+"the-adoration-of-the-kings": {
+about: "Pieter Bruegel the Elder painted this Nativity scene on a single winter's day in 1564 — the date and signature are inscribed at the bottom right — and gave the stable crowd the weathered, skeptical faces of ordinary Flemish villagers rather than the reverent courtiers convention demanded.",
+by: "Opus 4.8" },
+
+"the-annunciation-with-saint-emidius": {
+about: "Carlo Crivelli painted this Annunciation in 1486 to celebrate the papal bull of 1482 granting Ascoli Piceno the right to self-government; the words LIBERTAS ECCLESIASTICA are inscribed across the bottom frame, and the local patron saint Emidius stands beside the angel holding a miniature model of the town.",
+by: "Opus 4.8" },
+
+"rosetta-stone": {
+about: "A priestly decree issued in 196 BC under Ptolemy V, carved in hieroglyphic, Demotic, and Greek; the Greek text gave Jean-François Champollion the key to announce his decipherment of hieroglyphs on 27 September 1822, ending fourteen centuries in which the script was unreadable. Now the British Museum's most-visited object.",
+by: "Opus 4.8" },
+
+"lewis-chessmen": {
+about: "Norse chess pieces carved from walrus ivory, made in Norway c.1150–1200 and found in a sand bank on the Isle of Lewis in 1831; four of the warder pieces depict berserkers biting their own shields, a gesture drawn from saga accounts of warriors entering battle-fury. The hoard is divided between the British Museum and the National Museum of Scotland.",
+by: "Opus 4.8" },
+
+"portland-vase": {
+about: "A Roman cameo-glass vessel made c.1–25 AD, with white mythological figures carved in relief against a deep cobalt-blue ground; on 7 February 1845 a visitor smashed it into more than 200 fragments, and it has since been painstakingly reassembled twice. Josiah Wedgwood spent years trying to replicate its layered glass technique in Jasperware.",
+by: "Opus 4.8" },
+
+"black-obelisk-of-shalmaneser-iii": {
+about: "A six-foot black limestone obelisk carved around 825 BC in Nimrud (ancient Kalhu), recording the campaigns of the Assyrian king Shalmaneser III. It was excavated by Austen Henry Layard in 1846 and is now in the British Museum.",
+by: "Opus 4.8" },
+
+"fine-wind-clear-morning": {
+about: "A woodblock print by Katsushika Hokusai, published around 1830–32 as part of the Thirty-Six Views of Mount Fuji series. Also known as Red Fuji or Gaifū kaisei, it is held in multiple collections; a noted impression is in the British Museum.",
+by: "Opus 4.8" },
+
+"lycurgus-cup": {
+about: "A Roman cage cup dated to the 4th century AD, carved from a single blank of dichroic glass and mounted in gilded metal. It depicts the mythological death of King Lycurgus and is held in the British Museum.",
+by: "Opus 4.8" },
+
+"the-ancient-of-days": {
+about: "A hand-coloured relief etching by William Blake, first published as the frontispiece to Europe: A Prophecy (1794) and revisited by him in multiple copies over the following decades. It is held in the British Museum.",
+by: "Opus 4.8" },
+
+"ziwiye": {
+about: "A group of gold, silver, and ivory objects attributed to a hoard found around 1947 near Ziwiyeh, Kurdistan Province, Iran, and dated broadly to the 7th century BC. Pieces are distributed across several institutions; some items attributed to the hoard have appeared in the British Museum.",
+by: "Opus 4.8" },
+
+"sutton-hoo-helmet": {
+about: "Excavated in 1939 from a ship burial in Suffolk, the helmet arrived in over 500 fragments — less than half its original surface — and had to be reconstructed twice, in 1945–46 and again in 1970–71, before it resembled what you see today. It likely belonged to a king, possibly Rædwald of East Anglia, and stands as the most celebrated object from early medieval England.",
+by: "Opus 4.8" },
+
+"wheatfield-with-crows": {
+about: "Everyone calls it Van Gogh's last painting, but it wasn't — scholars have long established from his letters that he made other works after this one. Painted in July 1890 on the double-square format he used in his final Auvers weeks, it shows three dirt paths converging in a wheat field under a bruised sky, crows peeling off in every direction.",
+by: "Opus 4.8" },
+
+"skull-of-a-skeleton-with-burning-cigarette": {
+about: "Van Gogh made this at the Antwerp academy in early 1886, where drawing skeletons was a standard exercise — but painting them was not. Stuffing a lit cigarette into the jaw was a student-prank subversion of a tedious anatomy drill, not a meditation on mortality, and it shows the wit he rarely gets credit for.",
+by: "Opus 4.8" },
+
+"almond-blossom": {
+about: "Van Gogh painted this in February 1890 at Saint-Rémy as a gift for his newborn nephew, also named Vincent, whose birth he celebrated from inside a psychiatric asylum. The look — blossoming branches floated close against a flat turquoise sky — comes directly from the Japanese woodblock prints he had been collecting for years.",
+by: "Opus 4.8" },
+
+"tree-roots": {
+about: "In 2020 a researcher matched the painting's tangled root mass to a specific hillside on a road 150 metres from Van Gogh's inn in Auvers-sur-Oise, using a 1905 postcard as a key — the largest trunk is still standing. This identification strengthened the argument that Tree Roots, not Wheatfield with Crows, was his final work, likely made on 27 July 1890.",
+by: "Opus 4.8" },
+
+"harvest-at-la-crau-with-montmajour-in-the-background": {
+about: "Van Gogh called this panorama of the Provençal plain one of the finest things he had done — a view of La Crau built in receding planes of yellowed wheat, with the ruined abbey of Montmajour rising at the far edge. He painted most of it in a single June day in 1888, at the height of his Arles period, and sent Theo a drawing of it that same week.",
+by: "Opus 4.8" },
+
+"crab-on-its-back": {
+about: "The idea for this still life came from a Japanese woodblock print of a crab by Hokusai, reproduced in the magazine Le Japon Artistique that Van Gogh described as admirable. Painted in Paris in 1887, the orange-red shell set hard against a green background is a deliberate exercise in complementary-colour contrast — the same Delacroix principle Van Gogh was working through that summer.",
+by: "Opus 4.8" },
+
+"view-of-the-sea-at-scheveningen": {
+about: "Painted outdoors on the beach in a storm in 1882, this seascape has actual grains of beach sand embedded in its surface — the wind nearly blew Van Gogh off his feet and he had to scrape the canvas twice. The painting was stolen from the Van Gogh Museum in 2002 and recovered by anti-Mafia police in Italy in 2016, returning to Amsterdam after fourteen years.",
+by: "Opus 4.8" },
+
+"view-of-paris-from-vincent-s-room-in-the-rue-lepic": {
+about: "This is the rooftop view Van Gogh had every day from the fourth-floor Montmartre apartment he shared with his brother Theo on the Rue Lepic in 1887 — one of three works he made from the same window, the view stretching southeast across the Paris skyline. Living with Theo gave him direct access to the Impressionist circle and a palette that was growing steadily lighter.",
+by: "Opus 4.8" },
+
+"wheat-field-with-a-lark": {
+about: "A tiny lark climbs into the upper left of the canvas above a Paris-period wheat field, its flight the only movement in an otherwise still early-summer day. Painted in 1887, the work shows Van Gogh's palette visibly brightening under Impressionist influence — the heavy dark register of his Dutch years giving way to mixed, open brushwork and light colour combinations.",
+by: "Opus 4.8" },
+
+"congregation-leaving-the-reformed-church-in-nuenen": {
+about: "Van Gogh began this painting as a gift for his mother while she recovered from a broken leg; after his father — the church's pastor — died suddenly in 1885, he reworked the canvas to add the congregation filing out in mourning. The painting was stolen from the Van Gogh Museum in 2002 and recovered by Italian anti-Mafia police in 2016.",
+by: "Opus 4.8" },
+
+"kingfisher-by-the-waterside": {
+about: "Van Gogh painted this small canvas in Paris in 1887 working directly from a stuffed kingfisher he kept among his studio props — comparing the specimen to the painting reveals that he deliberately lengthened the tail for compositional balance and added feet to anchor the bird on its reed.",
+by: "Opus 4.8" },
+
+"a-pair-of-shoes": {
+about: "These worn boots sparked one of the twentieth century's most cited art-philosophy disputes: Martin Heidegger used the painting in his 1935 essay to argue that art reveals the hidden truth of peasant labour, and art historian Meyer Schapiro fired back in 1968 arguing the shoes were Van Gogh's own, bought at a flea market and worn on a rainy walk — making them a self-portrait, not a peasant scene. Van Gogh, 1886.",
+by: "Opus 4.8" },
+
+"the-sower": {
+about: "Van Gogh consciously updated Millet's dark, sombre Sower from 1850 into a colour manifesto: the enormous lemon-yellow sun doubles as a halo, turning a peasant labourer into a near-sacred figure. He wrote to Theo that he wanted radiant colour and sharp contrasts where Millet had grey. The sower motif appears repeatedly across his career. Van Gogh, Arles 1888.",
+by: "Opus 4.8" },
+
+"vase-with-irises": {
+about: "The irises in this painting are not the blue they appear today: Van Gogh mixed in a red pigment that has since faded, meaning the flowers were originally a vivid purple. He painted the work at the Saint-Paul-de-Mausole asylum in Saint-Rémy, setting cut irises against the emphatic yellow ground to drive the colour contrast he wanted. Van Gogh, 1890.",
+by: "Opus 4.8" },
+
+"the-pieta-after-delacroix": {
+about: "Van Gogh painted the dead Christ with red hair and beard — his own coloring — while confined at the Saint-Paul-de-Mausole asylum in September 1889, working from a black-and-white lithograph after Delacroix because the original painting was unavailable to him; the color choices, and that quiet physical self-identification, were entirely his own.",
+by: "Opus 4.8" },
+
+"avenue-of-poplars-in-autumn": {
+about: "Van Gogh wrote to Theo in October 1884 describing the sun casting 'glittering patches' of light on fallen leaves through a double row of sky-high poplars in Nuenen; the solitary cloaked figure at the bottom and the long diagonal shadows give the tunnel of trees a quiet, slightly melancholic weight that would mark his Dutch period throughout.",
+by: "Opus 4.8" },
+
+"wheatfield-under-thunderclouds": {
+about: "In a letter dated 10 July 1890, Van Gogh told Theo and Jo he had made a point of trying to express 'sadness, extreme loneliness' in these double-square panoramas painted at Auvers; the unusually wide format was deliberate — he wanted to show the full, unbroken expanse of the fields under the pressing sky.",
+by: "Opus 4.8" },
+
+"still-life-with-bible": {
+about: "Painted in 1885 just after his father's sudden death, Van Gogh placed his own well-worn copy of Zola's La Joie de vivre — a novel about enduring life's suffering — against the massive open family Bible, which is turned to Isaiah 53; the extinguished candle to the right reads as the pastor's life cut short, and the two books as irreconcilable worldviews set in plain confrontation.",
+by: "Opus 4.8" },
+
+"view-of-arles-with-irises-in-the-foreground": {
+about: "Painted en plein air in May 1888, Van Gogh described the view around Arles as 'like a Japanese dream'; the diagonal band of purple irises cutting across a yellow wheat field directly applies the compositional logic of the Japanese woodblock prints he collected — bold foreground detail, flat colour zones, no conventional depth — to the landscape in front of him.",
+by: "Opus 4.8" },
+
+"fishing-boats-on-the-beach-at-les-saintes-maries-de-la-mer": {
+about: "Van Gogh drew these beached fishing boats on the Mediterranean shore in May 1888 but painted the canvas back in Arles — the fishermen left before dawn, leaving him no time to paint on the spot. The result is a work built from memory and rapid field drawings, its vivid colours reconstructed rather than observed.",
+by: "Opus 4.8" },
+
+"giant-peacock-moth": {
+about: "Van Gogh found this moth in the asylum garden at Saint-Rémy in May 1889 and wrote to Theo calling it a death's-head moth — but it was a giant peacock moth, and the skull-like marking he described exists only on the former species. He later painted it from a drawing, having decided after all to kill the insect so he could study it.",
+by: "Opus 4.8" },
+
+"the-raising-of-lazarus-van-gogh": {
+about: "Working from a Rembrandt etching at Saint-Rémy in 1890, Van Gogh cut Christ out of the scene entirely and replaced him with a blazing sun — and gave Lazarus his own red beard, identifying himself with the figure returning from the dead during his illness.",
+by: "Opus 4.8" },
+
+"red-cabbages-and-garlic": {
+about: "This Paris still life was titled Red Cabbages and Onions from its public debut in 1928 until 2023, when a chef examining it noticed the bulbs were garlic, not onions — prompting the Van Gogh Museum to rename the work. Van Gogh painted it in Montmartre in 1887 to decorate his brother Theo's apartment.",
+by: "Opus 4.8" },
+
+"the-old-cemetery-tower-at-nuenen": {
+about: "Van Gogh painted this crumbling medieval tower at Nuenen in 1885 as it was actively being demolished for scrap. In a letter to Theo he wrote that the ruin showed how for centuries peasants had been laid to rest in the very fields they had worked — the tower outlasting the church, the dead outlasting the faith.",
+by: "Opus 4.8" },
+
+"baby-marcelle-roulin": {
+about: "Van Gogh painted the entire Roulin family during his Arles years as a kind of surrogate kin — and Marcelle, the postman Joseph Roulin's infant daughter, was his youngest subject. This 1888 portrait shows her alone, just a few months old, against a luminous yellow-green ground, painted with the same tenderness Van Gogh brought to her mother and brothers.",
+by: "Opus 4.8" },
+
+"self-portrait-with-grey-felt-hat": {
+about: "Van Gogh painted this self-portrait in Paris in 1887 after studying the Neo-Impressionists closely, and the result shows how far he had absorbed — and departed from — their method. The background radiates in concentric dashes of blue and orange, his beard answered in green and red, but rather than Seurat's systematic dots, each zone of the canvas has its own distinct mark-making system.",
+by: "Opus 4.8" },
+
+"bridge-in-the-rain-after-hiroshige": {
+about: "Van Gogh made this 1887 oil painting as a near-exact copy of a Hiroshige woodblock print, preserving the composition's proportions and even adding a border filled with Japanese characters — copied from other prints by other artists, in a script he could not read. His Japonisme is made literal here: the frame is a performance of Japanese form rather than a translation of it.",
+by: "Opus 4.8" },
+
+"vincent-van-gogh": {
+about: "This is a portrait of Van Gogh by Australian painter John Peter Russell, made in Paris in 1886 when both men were students at Cormon's atelier. Van Gogh valued it so much that years later he wrote to his brother Theo urging him to 'take good care of my portrait by Russell, which means a lot to me.' A fellow student, Hartrick, later called it the most accurate likeness of Van Gogh ever made.",
+by: "Opus 4.8" },
+
+"portrait-of-vincent-van-gogh-1887": {
+about: "Toulouse-Lautrec sketched this pastel of Van Gogh in profile at a Paris café table in 1887, when the two were fellow students at Cormon's atelier. It catches Van Gogh absorbed and slightly turned away — a glass on the table, the café setting loose around him — and is one of only a handful of likenesses made of him by contemporaries during his lifetime.",
+by: "Opus 4.8" },
+
+"birds-nests": {
+about: "Van Gogh gathered real nests that autumn with the help of a local peasant boy, seeing in the birds' tightly woven shelters a mirror of the Nuenen cottages he called 'human nests.' This single dark nest with its pale eggs, painted in 1885, belongs to the series of five nest still lifes he made in close succession at Nuenen.",
+by: "Opus 4.8" },
+
+"birds-nests-van-gogh": {
+about: "Part of five nest still lifes Van Gogh painted back-to-back in autumn 1885, this multi-nest arrangement shows how deliberately he worked within the dark earth palette of his Nuenen period — mossy browns and deep shadow that he felt matched the colour of unpeeled potatoes and the soil his peasant sitters worked. Van Gogh, 1885.",
+by: "Opus 4.8" },
+
+"head-of-a-woman": {
+about: "One of roughly forty peasant head studies Van Gogh made in Nuenen over the winter of 1884–85, working directly from local sitters as raw material for The Potato Eaters — he wrote that he wanted the faces to look 'like the colour of a really dusty potato, unpeeled.' Van Gogh, 1884.",
+by: "Opus 4.8" },
+
+"inwang-jesaekdo": {
+about: "Painted from direct observation near the artist's home rather than from Chinese landscape formulas, this ink-on-paper work captures Mount Inwang's granite mass still steaming after rain — the defining example of Korea's jingyeong ('true-view') landscape tradition. Jeong Seon, 1751. National Treasure No. 216.",
+by: "Opus 4.8" },
+
+"gold-buckle-from-seogam-ri-pyeongyang": {
+about: "Seven intertwined dragons built up from hundreds of tiny gold granules and originally set with 41 turquoise stones — this pure-gold belt buckle from Tomb 9 at Seogam-ri, Pyeongyang, was made under the Han Lelang commandery around the 1st–2nd century AD. It is National Treasure No. 89 and weighs 53.6 grams.",
+by: "Opus 4.8" },
+
+"baegak-chunhyo": {
+about: "Painted in 1915 when Korea was under Japanese occupation, An Jung-sik — the last official court painter of the Joseon dynasty — rendered Mt. Baegak and Gyeongbokgung Palace in the traditional true-view landscape mode, making the seat of Korean sovereignty a quiet act of cultural preservation.",
+by: "Opus 4.8" },
+
+"london-the-houses-of-parliament-sunlight-opening-in-fog": {
+about: "Monet painted nearly a hundred views of the Thames from a fixed terrace at St Thomas's Hospital, working the same scene across different hours and weather until fog and sunlight became the true subject; this 1904 canvas, now at the Musée d'Orsay, is one of the series' most dissolved and solar.",
+by: "Opus 4.8" },
+
+"the-musicians": {
+about: "Painted around 1595 as one of Caravaggio's first commissions for Cardinal del Monte, The Musicians staged the cardinal's music room back at him, using real companions as models — including Caravaggio himself, peering out from the second boy on the right.",
+by: "Opus 4.8" },
+
+"knight-death-and-the-devil": {
+about: "Dürer called it simply the Rider (Reuter), but Knight, Death, and the Devil became one of his three Meisterstiche — master engravings grouped with Melencolia I and St Jerome in His Study for their technical perfection and depth of meaning, all made within a single year between 1513 and 1514.",
+by: "Opus 4.8" },
+
+"opening-of-the-fifth-seal": {
+about: "Picasso studied this painting repeatedly at his friend Zuloaga's house before beginning Les Demoiselles d'Avignon in 1907; art historian John Richardson later argued it shaped the size, format, and compositional logic of that work at least as much as Cézanne did — a debt recognized formally only in the early 1980s.",
+by: "Opus 4.8" },
+
+"shahnameh-of-shah-tahmasp": {
+about: "In 1959 Arthur Houghton bought this manuscript whole, then had its 258 miniatures cut from their pages and sold off individually — scattering them across dozens of museums and private collections — until Iran recovered the remainder in a clandestine 1994 Vienna airport swap for a Willem de Kooning painting. One of the most lavishly illustrated Islamic manuscripts ever made, it was produced by a royal workshop under Shah Tahmasp I, not a single artist.",
+by: "Opus 4.8" },
+
+"circe-invidiosa": {
+about: "Circe pours poison into the sea not to harm a sailor, but to destroy a rival: the sea-god Glaucus wanted the nymph Scylla, so the jealous enchantress poisoned Scylla's bathing pool, transforming her into the barking-dog monster that would later devour Odysseus's crew. Waterhouse draws the moment from Ovid's Metamorphoses, casting it in a palette of deep, menacing greens.",
+by: "Opus 4.8" },
+
+"a-holiday-at-mentone": {
+about: "Conder was twenty years old and had been in Melbourne only a few weeks when he painted this — making it his first Australian work and one of the founding canvases of the Heidelberg School. The beach at Mentone, just south of the city, gave him a subject that let him match the flat, bleaching Australian noon light against the fashionable decorum of the figures.",
+by: "Opus 4.8" },
+
+"nemesis": {
+about: "The Alpine valley Nemesis floats above is real: Dürer sketched Klausen (Chiusa) in the Valle d'Isarco on his road to Venice, and embedded its topography directly into this engraving of the winged goddess of retribution. She holds a bridle for the wicked and a goblet for the just, balancing on a sphere — Dürer's image of fortune as unstable ground.",
+by: "Opus 4.8" },
+
+"a-break-away": {
+about: "Roberts painted this during a real drought in southern New South Wales in 1891, when Australia's economy depended so heavily on wool that the era was said to ride on the sheep's back — making a mob of thirst-maddened sheep stampeding for a dam both a dramatic scene and an economic fact. He built the composition from accumulated drawings rather than a single witnessed event.",
+by: "Opus 4.8" },
+
+"view-of-bracciano": {
+about: "A panoramic view of the lakeside hill town of Bracciano, northwest of Rome, with a horse-drawn carriage in the foreground and the Orsini-Odescalchi castle crowning the town above. Painted by the Flemish landscapist Paul Bril, who spent his career in Rome and became perhaps its most popular landscape painter around 1600.",
+by: "Opus 4.8" },
+
+"winter-morning-after-rain-gardiner-s-creek": {
+about: "A timber trestle bridge over Gardiner's Creek on the outskirts of Melbourne, a figure on horseback driving cattle across it, painted with loose, light-saturated brushwork characteristic of European Impressionism newly transplanted to Australian bush. Tom Roberts had recently returned from studying in Europe when he made this work.",
+by: "Opus 4.8" },
+
+"miss-collins": {
+about: "A portrait of Gladys Neville Collins — Melbourne socialite and daughter of a state parliamentary draughtsman — rendered with cool authority in fur, wide-brimmed hat, and a steady, slightly withdrawn gaze. William Beckwith McInnes won the Archibald Prize, Australia's top portraiture award, a record seven times.",
+by: "Opus 4.8" },
+
+"four-times-of-the-day": {
+about: "A set of four small landscapes painted on silvered copper, moving through a single day from dawn fishermen preparing their boats to moonlit night music — morning, midday, evening, and night each given its own mood and light. Joseph Vernet was the acknowledged master of French landscape painting in the mid-eighteenth century.",
+by: "Opus 4.8" },
+
+"madonna-and-child": {
+about: "A tender Neapolitan Baroque devotional scene: the Madonna leans over the Christ child while two attendant figures — a dark-robed saint and a cherub — hover at the edges. Francesco Solimena dominated Neapolitan painting for the first half of the eighteenth century and trained a wide circle of pupils who spread his style across Europe.",
+by: "Opus 4.8" },
+
+"zenobia-s-last-look-on-palmyra": {
+about: "Zenobia was the warrior-queen of Palmyra who broke from Rome in 270 CE, ruled Egypt and much of the Near East, and was defeated by the Emperor Aurelian in 272. Schmalz shows her in chains on a Roman terrace, glancing back at the city she briefly commanded, its temples still visible in the dusk below.",
+by: "Opus 4.8" },
+
+"helena-and-hermia": {
+about: "Before the enchantments of A Midsummer Night's Dream pull them apart, Helena and Hermia are simply old friends talking in a garden. Poynter isolates that calm moment of girlhood intimacy — the unravelling ball of red thread at their feet hinting at the entangled loves to come.",
+by: "Opus 4.8" },
+
+"st-vaast-la-hougue": {
+about: "Saint-Vaast-la-Hougue is the Normandy harbour where twelve French warships were burned by an Anglo-Dutch fleet in 1692, ending Louis XIV's plan to restore James II to the English throne. Two centuries on, Eugène Boudin painted the same bay in its everyday calm — low tide, a wide sky, a few figures on the rocks.",
+by: "Opus 4.8" },
+
+"priestess-of-delphi": {
+about: "The Pythia of Apollo's temple at Delphi delivered her oracles in a trance brought on by vapours rising through a fissure beneath her tripod. Geologists in the 1990s confirmed the fissure was real and the gases likely included ethylene. John Collier painted this in 1891, just as Victorian science was beginning to take the ancient accounts seriously.",
+by: "Opus 4.8" },
+
+"a-wijdschip-and-a-kaag-in-an-inlet-close-to-a-sea-wall": {
+about: "A wijdschip was a broad-beamed Dutch cargo vessel; a kaag a small flat-bottomed coastal trader. Van de Velde the Younger, who would later move his studio to London at the invitation of Charles II, perfected the 'calm' — a genre of glassy-water marine painting that made Dutch harbourscapes the defining image of seventeenth-century maritime power.",
+by: "Opus 4.8" },
+
+"mariano-fortuny-untitled": {
+about: "Fortuny was famous for jewel-box detail, but this private sketch of his wife Cecilia de Madrazo shows the opposite side of his hand — loose, rapid brushwork that he rarely let leave the studio. Painted around 1870, four years before his death at 36.",
+by: "Opus 4.8" },
+
+"james-fulton-pringle-bay-of-naples": {
+about: "Pringle was considered the leading marine painter working in New York in the 1830s and 1840s, known for meticulous ship portraits of the clipper era. This Neapolitan veduta, dated 1839, sits outside his usual subject matter — likely painted from prints or other artists' studies rather than direct observation — and is now held at the New-York Historical Society.",
+by: "Opus 4.8" },
+
+"j-m-w-turner-ostende": {
+about: "Turner showed this storm-lashed Belgian harbour at the same 1844 Royal Academy exhibition as Rain, Steam and Speed — two visions of elemental force shown side by side, one on water, one on rails. Now in the Neue Pinakothek, Munich.",
+by: "Opus 4.8" },
+
+"vincent-van-gogh-irises": {
+about: "The background now reads as white, but Van Gogh painted it pink — the red lake pigments he used have faded entirely, shifting the colour harmony he carefully planned. Painted days before he left the Saint-Rémy asylum in May 1890, one of four still lifes he made as a kind of farewell to the year spent there.",
+by: "Opus 4.8" },
+
+"jean-baptiste-camille-corot-landscape-and-figures": {
+about: "Corot's silvery late manner was so widely desired that forgeries circulated even in his own lifetime — he is said to have authenticated many of them with a shrug. This feathery, atmospheric work was painted the year before his death in 1875, when he was 78.",
+by: "Opus 4.8" },
+
+"unknown-the-snow-storm-nyc": {
+about: "A snow-blurred bird's-eye view of a New York street in 1924 — streetcars, automobiles, and pedestrians pushing through a whiteout — painted in the gritty, urban spirit of the Ashcan circle.",
+by: "Opus 4.8" },
+
+"roy-brown-wet-day-in-old-new-york": {
+about: "A loose, painterly view of a wet winter street corner in New York, with bare trees, low rooftops, and horse-drawn carriages suggesting an older city already slipping away by 1931.",
+by: "Opus 4.8" },
+
+"everett-warner-manhattan-contrasts-new-york-city": {
+about: "Low Federal-era rowhouses in a snowstorm, a soaring skyscraper looming behind them — the old Manhattan and the new caught in a single frame, painted in a soft Impressionist haze.",
+by: "Opus 4.8" },
+
+"lionel-s-reiss-rain": {
+about: "A crowded street in a downpour — figures hunched under umbrellas, one man on hands and knees in the gutter — ordinary city life observed with the same attentive eye Reiss turned toward Jewish communities across Europe.",
+by: "Opus 4.8" },
+
+"vincent-van-gogh-blick-auf-arles": {
+about: "Van Gogh painted this view of Arles in spring 1889, looking across blooming orchards toward the town's church towers — the blossoming trees a recurring motif from his most fertile months in Provence.",
+by: "Opus 4.8" },
+
+"vincent-van-gogh-women-picking-olives": {
+about: "Van Gogh painted three versions of this composition at Saint-Rémy in December 1889 as a deliberate secular counterpart to the religious \"Christ in the Garden of Olives\" he had refused to paint — writing to Theo that showing the olive harvest as it actually happens might evoke Gethsemane more honestly than any imagined Christ could.",
+by: "Opus 4.8" },
+
+"pierre-denis-martin-die-schlacht-in-der-bukowina-1686": {
+about: "Louis XIV's court battle-painter Pierre-Denis Martin depicted the 1686 engagement in the Bukowina from a sweeping aerial vantage that turns the battlefield into a map of smoke and ranked formations — the same distancing strategy he applied to all the king's campaigns, making war legible rather than visceral.",
+by: "Opus 4.8" },
+
+"harold-septimus-power-the-battle-before-villers-bretonneux-a": {
+about: "August 8, 1918 — the day Ludendorff called \"the black day of the German Army\" — saw Australian and Canadian forces break the German line near Amiens; official Australian war artist Harold Septimus Power painted this scene in 1920, centering the charge of horse-drawn artillery as the visible engine of a collapse that led Ludendorff to counsel seeking an armistice.",
+by: "Opus 4.8" },
+
+"new-york-interior": {
+about: "Glimpsed as if from a passing elevated train, the woman in Hopper's 1921 painting sits with her back entirely to the viewer, sewing — an early instance of his signature voyeuristic frame that grants intimacy while withholding identity, the vertical bands of shadow on either side formalising the viewer's limited line of sight.",
+by: "Opus 4.8" },
+
+"landscape-with-snow": {
+about: "Van Gogh arrived in Arles in February 1888 to find the southern countryside under an unexpectedly deep snow, and this flat, pale plain is among the very first canvases he painted there — a scene he described to Theo within days of arrival, before the sun and heat that would define his Arles palette had taken over.",
+by: "Opus 4.8" },
+
+"jean-baptiste-camille-corot-diana-bathing": {
+about: "Corot painted fewer than thirty nudes across his career, almost all of women, and this 1873 Diane au bain — with his favourite model Emma Dobigny reportedly among the figures — belongs to the late silvery woodland series that surprised contemporaries who knew him as a landscapist. Two figures rest in dappled forest light: one standing, one seated at the edge of shadow, their forms blurring softly into the foliage in the feathery manner Corot had developed by his seventies.",
+by: "Opus 4.8" },
+
+"gustave-caillebotte-untitled-2": {
+about: "Chrysanthèmes dans un vase, painted in 1893, draws on flowers from Caillebotte's garden at Petit-Gennevilliers, the property outside Paris where he spent his last decade gardening and sailing rather than painting city streets. Chrysanthemums were prized in France for their East Asian associations and vivid autumn colour; Caillebotte returned to them across multiple canvases that year, including the large close-up now at the Met and a white-and-yellow version in the Marmottan.",
+by: "Opus 4.8" },
+
+"edgar-degas-woman-drying-herself": {
+about: "Degas described his bather pastels as views through a keyhole — women moving without awareness of being watched — and this late work, dated c.1906, shows the pose seen from behind and above, the figure absorbed entirely in the act of drying her hair. By this period his eyesight was failing and he worked pastel over pastel in dense, urgent hatching; the series of roughly 200 bather pastels, made from the 1880s to the end of his career, remained largely in his studio at his death.",
+by: "Opus 4.8" },
+
+"pierre-auguste-renoir-untitled": {
+about: "Poires et pommes, c.1890, is among Renoir's still lifes most visibly shaped by Cézanne — the draped white cloth with its considered folds, the close arrangement of fruit, the warm brick-red ground — painted at a moment when Renoir was reworking his style after the \"Ingres period\" crisis of the mid-1880s. The Musée de l'Orangerie holds a version; the FBI's National Stolen Art File also lists a Poires et Pommes by Renoir, suggesting the title was used more than once.",
+by: "Opus 4.8" },
+
+"j-m-w-turner-george-iv-s-departure-from-the-royal-george-182": {
+about: "Turner was in Edinburgh in August 1822 when George IV made his state visit — the first by a reigning monarch since 1651, stage-managed entirely by Walter Scott — and returned to the water the next day to watch the king leave the Royal George by barge. He hoped the occasion would earn him royal patronage for a cycle of nineteen commemorative paintings; it did not, and of that planned cycle only two interiors and two sketchy seascapes, including this unfinished oil, survive.",
+by: "Opus 4.8" },
+
+"j-m-w-turner-margate-jetty": {
+about: "Margate was not just a sketching destination for Turner — from the late 1820s he lodged at the seafront house of Sophia Booth, who became his long-term companion after her husband's death in 1833. This oil, probably a fragment of a larger canvas, captures the 1,100-foot wooden jetty built in 1824 where steamers docked at low tide: a structure both he and Mrs Booth would have known from daily life. J. M. W. Turner, c. 1840.",
+by: "Opus 4.8" },
+
+"j-m-w-turner-stormy-sea-with-dolphins": {
+about: "Found in Turner's studio after his death and titled by the curators who catalogued the 1856 Bequest, this large oil was probably never intended for exhibition. The dolphins are barely readable — a few arcs of paint barely distinct from the breaking spray around them — which is either the painting's unfinished state or its point. J. M. W. Turner, c. 1835–40. (Job year given as 1837; Tate dates the work c. 1835–40.)",
+by: "Opus 4.8" },
+
+"j-m-w-turner-rough-sea": {
+about: "Because this canvas never left Turner's studio, it shows exactly how he built a seascape from scratch: broad neutral washes anchoring the horizon, then dragged and dabbed marks pulling the wave-forms upward into a still-pale sky. The finished exhibition pieces concealed this structural logic; the unfinished ones, gathered by the 1856 Turner Bequest, laid it bare. J. M. W. Turner, c. 1840–45. (Job year given as 1842; Tate dates the work c. 1840–45.)",
+by: "Opus 4.8" },
+
+"j-m-w-turner-a-wreck-with-fishing-boats": {
+about: "Shipwreck was a subject Turner returned to across his entire career — from the large exhibited Shipwreck of 1805 through dozens of late studio studies — and in his final decade he stripped the compositions back further still, dropping the foreground reference points that earlier works had used to orient the viewer. Here the wreck and the attending boats sit in a field of churned surf with nothing solid beneath them. J. M. W. Turner, c. 1840–45. (Job year given as 1842; Tate dates the work c. 1840–45.)",
+by: "Opus 4.8" },
+
+"j-m-w-turner-venetian-festival": {
+about: "Turner visited Venice three times — 1819, 1833, and 1840 — and his last trip fed the most sustained run of Venetian oils he ever produced, shown almost annually at the Royal Academy from 1840 through 1846. This late work, now held at Tate via the 1856 Turner Bequest, gathers figures in carnival dress around a blaze of yellow at the water's edge, Venice's architecture barely suggested in the haze behind them. J. M. W. Turner, c. 1845.",
+by: "Opus 4.8" },
+
+"john-constable-osmington-bay": {
+about: "Constable painted this coastal sketch on his honeymoon in October 1816, when he and Maria Bicknell spent six weeks at Osmington on the Dorset coast — one of his rare excursions to the sea, far from his usual Suffolk haunts. The swift, open handling and dramatic cloud-filled sky capture the freshness of a view painted on the spot.",
+by: "Opus 4.8" },
+
+"henri-edmond-cross-garden-at-st-tropez": {
+about: "Cross settled at Saint-Tropez in 1892, where he and Paul Signac developed a looser, more colour-saturated branch of Neo-Impressionism; when Matisse visited Signac's house there in 1904 and saw Cross's work, it fed directly into Luxe, Calme et Volupté and the birth of Fauvism. This 1900 garden scene, with its mosaic of vivid dabs, shows Cross pushing the dot toward pure chromatic expression.",
+by: "Opus 4.8" },
+
+"edgar-degas-two-dancers-2": {
+about: "Degas worked on tracing paper so he could transfer and rework the same poses repeatedly — the technique behind the seemingly effortless fluency here. This pastel from around 1893 catches two dancers in blue tutus waiting in the wings, arms akimbo, bodies still carrying the tension of a performance not yet begun.",
+by: "Opus 4.8" },
+
+"edgar-degas-untitled": {
+about: "By the early 1890s Degas's eyesight was failing, and he responded by working at a larger scale and with bolder, more fused colour — the warm amber ground and dissolved contours here are a direct consequence of that adaptation. These three dancers in yellow skirts, c.1891, show the late style fully formed: figures dissolving into field rather than cutting against it.",
+by: "Opus 4.8" },
+
+"edward-hopper-east-wind-over-weehawken": {
+about: "The Pennsylvania Academy of Fine Arts sold this 1934 Hopper at Christie's in December 2013 for $40.5 million — at the time a record for the artist — to fund an endowment for contemporary acquisitions, setting off a fierce debate about museum deaccessioning. The painting itself is a stripped, wind-scoured New Jersey street with a \"For Sale\" sign that now reads differently knowing what happened next.",
+by: "Opus 4.8" },
+
 };
