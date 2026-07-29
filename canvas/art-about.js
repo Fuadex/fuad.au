@@ -1512,4 +1512,405 @@ by: "Opus 4.8" },
 about: "Crowds queued for hours at its 1872 Nationalmuseum debut; bought by King Charles XV, who died that year and bequeathed it to the museum, Winge's 1872 canvas became the defining image of Norse mythology for Swedish national romanticism.",
 by: "Opus 4.8" },
 
+
+"omnibus": {
+about: "Painted in Paris and praised at the 1892 Salon, this horse-tram interior captures Anders Zorn at his most impressionist: anonymous women in electric evening light, intimate yet estranged amid the city's rush.",
+by: "Opus 4.8" },
+
+"the-rope-dancer": {
+about: "Toulouse-Lautrec drew this entirely from memory while confined to a psychiatric clinic in 1899 to prove his mind was sound, making it one of a circus series produced without a single live reference.",
+by: "Opus 4.8" },
+
+"simeon-in-the-temple": {
+about: "Found unfinished on Rembrandt's easel when he died in October 1669, this is his last known work, its background left incomplete, giving the aged Simeon cradling the Christ child an unresolved, haunting quality.",
+by: "Opus 4.8" },
+
+"landscape-from-bretagne": {
+about: "Painted during Gauguin's 1889 Brittany stay as he was formalising Synthetism, this landscape uses flat colour fields and bold contours — orange earth thrown against complementary blue shadows — rather than Impressionist observation.",
+by: "Opus 4.8" },
+
+"breakfast-time": {
+about: "One critic wrote that Hirsch-Pauli must have used the tablecloth to clean her brushes, yet this 1887 plein-air garden scene became a breakthrough work in the Nordic art world and is now in Nationalmuseum.",
+by: "Opus 4.8" },
+
+"landscape-with-the-fall-of-icarus": {
+about: "W.H. Auden wrote \"Musée des Beaux Arts\" about this very moment: Icarus vanishes into the sea while a ploughman, shepherd, and sailor carry on, indifferent; Joos de Momper the Younger, c.1620s.",
+by: "Opus 4.8" },
+
+"zoie-ghika-moldavian-princess": {
+about: "After Russian troops overran Moldavia and her father was executed by the Ottomans, Zoie Ghika ended up a political pawn at the court of Catherine the Great, who commissioned this portrait; Alexander Roslin, 1777.",
+by: "Opus 4.8" },
+
+"virgin-and-child-with-saints": {
+about: "This drawing records a lost Rogier van der Weyden altarpiece that has not been seen since the 17th century; the Master of the Drapery Studies copied it in meticulous detail, preserving the composition for posterity, c.1435.",
+by: "Opus 4.8" },
+
+"coronation-of-gustav-iii": {
+about: "Pilo spent eleven years on this vast canvas and never finished it: Gustav III was assassinated at the opera in 1792, and Pilo himself died in 1793, leaving a swirling, half-resolved crowd the size of a room; Carl Gustaf Pilo, 1782–1793.",
+by: "Opus 4.8" },
+
+"victory-at-narva": {
+about: "At Narva in November 1700, Charles XII's Swedish army routed a Russian force three to four times its size in a blizzard, a shock that reverberated across Europe; Gustaf Cederström painted this retrospective scene in 1905.",
+by: "Opus 4.8" },
+
+"at-breakfast": {
+about: "Myrtle branches above her head signal Aphrodite's blessing on a young marriage: Ring painted his wife Sigrid Kähler, two years wed, reading the newspaper in their home, in 1898.",
+by: "Opus 4.8" },
+
+"en-premiar": {
+about: "The title means a child's first time in the water, not a theatre opening night: Zorn's nude mother steadies her infant at the edge of the sea at Dalarö in 1888, painted when outdoor nudity was still banned in Swedish waters.",
+by: "Opus 4.8" },
+
+"maria-lady-eardley-1743-1794": {
+about: "Gainsborough painted Maria Wilmot around the time of her 1766 marriage to Sir Sampson Gideon, who would later take the Eardley title from her family name, making her one of the few Georgian women whose maiden identity outlasted her husband's.",
+by: "Opus 4.8" },
+
+"the-rhinoceros": {
+about: "Dürer never saw the animal: working from a written description and a quick sketch of a live Indian rhinoceros brought to Lisbon, he produced a woodcut in 1515 that Europeans accepted as an accurate likeness for over 250 years.",
+by: "Opus 4.8" },
+
+"alba-madonna": {
+about: "Soviet Russia sold this tondo to Andrew Mellon in 1931 for $1,166,400, then the highest price ever paid for a single painting; Raphael painted the Virgin seated on the ground — the Madonna of Humility — around 1510.",
+by: "Opus 4.8" },
+
+"death-and-the-miser": {
+about: "Derived from the medieval Ars Moriendi, Bosch's c.1485–90 panel sets a dying man between an angel offering a crucifix and a demon dangling gold, while Death already stands in the doorway.",
+by: "Opus 4.8" },
+
+"a-polish-nobleman": {
+about: "The title has no factual basis: Rembrandt's 1637 panel is a tronie, an invented exotic type in beaver hat, fur cloak, and gold chain, probably not a portrait of any specific individual.",
+by: "Opus 4.8" },
+
+"early-sunday-morning": {
+about: "Hopper painted out a figure he had placed in an upper window, and the resulting 1930 Seventh Avenue row of shopfronts holds its stillness without any human presence to explain it.",
+by: "Opus 4.8" },
+
+"rideau-cruchon-et-compotier": {
+about: "Sold at Sotheby's in 1999 for $60.5 million, Cézanne's c.1893–94 arrangement of apples, pitcher, and curtain became the highest price paid at auction for a still life up to that point.",
+by: "Opus 4.8" },
+
+"second-story-sunlight": {
+about: "Hopper described this 1960 painting as an attempt to render sunlight as white with almost no yellow pigment, setting two women of different ages on a balcony where the light, not the figures, is the real subject.",
+by: "Opus 4.8" },
+
+"dempsey-and-firpo": {
+about: "Bellows hid himself in the lower-left crowd at the moment Firpo knocked Dempsey clean out of the ring — a cameo that collapses painter, witness, and fight fan into one person, George Bellows, 1924.",
+by: "Opus 4.8" },
+
+"baptism-in-kansas": {
+about: "A full-immersion ceremony in a barnyard cattle trough, witnessed by Curry on a neighbour's Kansas farm, which critics on its 1928 debut called the signal work of a new Regionalist movement, John Steuart Curry, 1928.",
+by: "Opus 4.8" },
+
+"my-egypt": {
+about: "Demuth cast a Lancaster grain elevator as an American equivalent of the ancient Egyptian monuments, while the title also hints at the slave labour those monuments required, a Precisionist icon, Charles Demuth, 1927.",
+by: "Opus 4.8" },
+
+"yellow-cow": {
+about: "Art historian Mark Rosenthal reads this as a private wedding picture: the leaping yellow cow is Maria Franck, Marc's new wife, and the blue mountains are Franz himself, per his colour theory that yellow means feminine joy, Franz Marc, 1911.",
+by: "Opus 4.8" },
+
+"composition-viii": {
+about: "Kandinsky called his Compositions the pinnacle of his output, analogous to symphonies; this hard-geometry Bauhaus canvas was among the first works Solomon Guggenheim bought directly from the school, Wassily Kandinsky, 1923.",
+by: "Opus 4.8" },
+
+"woman-with-parrot": {
+about: "Believed to be Renoir's farewell portrait of Lise Tréhot, the companion and model who left him to marry an architect shortly after, painted in 1871 amid the aftermath of the Paris Commune.",
+by: "Opus 4.8" },
+
+"several-circles": {
+about: "Kandinsky called the circle the form that \"points most clearly to the fourth dimension,\" a synthesis of the concentric and eccentric held in equilibrium, and this 1926 Bauhaus painting is his fullest demonstration of that theory.",
+by: "Opus 4.8" },
+
+"still-life-flowers": {
+about: "Painted during Renoir's classical \"dry period\" when he was experimenting with fresco-like technique to emulate Italian murals, a method that produced visible surface cracking in this 1885 bouquet and others from the same years.",
+by: "Opus 4.8" },
+
+"portrait-of-countess-albazzi": {
+about: "Executed in pastel on fine canvas stretched over wood, a fragile medium Manet returned to repeatedly in his final years, this c.1880 portrait belongs to the late burst of pastels he produced as his health declined.",
+by: "Opus 4.8" },
+
+"improvisation-28-second-version": {
+about: "Kandinsky called his \"Improvisations\" largely unconscious expressions, and this 1912 canvas hides an apocalyptic scene beneath its abstraction: a boat and flooding waves, a serpent, and cannons on the left, drawn from the Book of Revelation.",
+by: "Opus 4.8" },
+
+"peasant-woman-seated-in-the-grass": {
+about: "Painted before Seurat had developed pointillism, this 1883 oil belongs to his early peasant-study series, where loose cross-hatched brushwork was already testing how color interaction could carry form.",
+by: "Opus 4.8" },
+
+"graceful-ascent": {
+about: "Kandinsky's Paris exile reshaped his vocabulary: arriving in France in late 1933, he absorbed the biomorphic language of Miró and Arp, and by 1934 geometric rigor had dissolved into the soft, organism-like forms here.",
+by: "Opus 4.8" },
+
+"red-oval": {
+about: "Kandinsky painted this in revolutionary Moscow in 1920, a year before he left Russia for good; the tightening geometric structure reflects his Constructivist circles at Vkhutemas, right on the cusp of his Bauhaus move.",
+by: "Opus 4.8" },
+
+"painting-with-white-border": {
+about: "Kandinsky made at least sixteen preparatory studies before finishing this 1913 canvas, working through memories of Moscow — the veiled figure of Saint George at the center and a troika buried in the turbulence of line and color.",
+by: "Opus 4.8" },
+
+"the-unfortunate-land-of-tyrol": {
+about: "Franz Marc filled this 1913 Tyrolean landscape with black horses, a red hill studded with grave crosses, and a border sign — imagery that reads as a direct premonition of the war in which Marc himself would be killed in 1916.",
+by: "Opus 4.8" },
+
+"portrait-of-an-army-doctor": {
+about: "Gleizes painted this Cubist portrait of his regimental surgeon while actually serving in the French army at Toul in 1914, turning military obligation into a commission and fragmenting uniform, rank, and figure into interlocking planes.",
+by: "Opus 4.8" },
+
+"blue-mountain": {
+about: "Painted after Kandinsky settled in Murnau in 1908, this canvas keeps riders and trees just legible while giving colour total independence from description, sitting at the threshold between landscape painting and full abstraction.",
+by: "Opus 4.8" },
+
+"black-lines": {
+about: "By December 1913 Kandinsky had cut every remaining tie to the visible world: floating colour ovals and agitated black lines in this painting carry no subject at all, making it one of his first fully non-objective works.",
+by: "Opus 4.8" },
+
+"still-life-with-gingerpot-2": {
+about: "After moving to Paris in 1912 and absorbing Cubism, Mondrian repainted his own ginger-jar still life almost to the point of erasure: the jar survives as a faint green volume inside a scaffold of grey lines that has swallowed the rest.",
+by: "Opus 4.8" },
+
+"the-football-players": {
+about: "Rousseau chose rugby — then a novelty sport in France — as one of his rare athletic subjects in 1908, placing four striped players in his signature flat-leaved forest with the same ceremonial gravity he gave to jungles and dreamers.",
+by: "Opus 4.8" },
+
+"still-life-with-gingerpot-i": {
+about: "On long-term loan to the Guggenheim since a 1975 exchange with Kunstmuseum Den Haag, this 1911 Mondrian keeps its objects legible where the near-simultaneous Gingerpot II dissolves them into Cubist facets.",
+by: "Opus 4.8" },
+
+"composition-no-1-with-grey-and-red-1938-composition-with-red-1939": {
+about: "Mondrian began this Neoplastic grid in London in 1938 and was still reworking it when he fled the Blitz for New York in September 1940; the dual title records both the London and New York phases of the same canvas.",
+by: "Opus 4.8" },
+
+"woman-in-evening-dress": {
+about: "A 2018 Guggenheim restoration stripped two layers of discoloured varnish and revealed the dress is striped, not black — prompting a retitle to Woman in a Striped Dress. Manet painted it around 1877-80, not 1850 as earlier records stated. Manet, c.1877-80.",
+by: "Opus 4.8" },
+
+"levels": {
+about: "Structured like a display case of geometric specimens — semicircles, crescents, bicoloured circles and triangles sorted into compartments — this 1929 Kandinsky distils the systematic visual grammar he taught at the Bauhaus during his decade there.",
+by: "Opus 4.8" },
+
+"small-pleasures": {
+about: "Kandinsky buried horsemen, a flood and a fleeing boat beneath the abstraction deliberately, so the painting's cheerful title works against the apocalyptic imagery dissolved into its swirling colour; Kandinsky, 1913, Guggenheim.",
+by: "Opus 4.8" },
+
+"sketch-for-composition-ii": {
+about: "The finished Composition II was destroyed in World War II, leaving this 1910 study as the most complete surviving record of what Kandinsky considered a landmark in his move toward abstraction.",
+by: "Opus 4.8" },
+
+"woman-with-animals": {
+about: "This Cubist-Futurist canvas by Gleizes, 1914, portrays Madame Raymond Duchamp-Villon — wife of the sculptor, not the painter — surrounded by pets, using multiple viewpoints and force-lines to dissolve figure into setting.",
+by: "Opus 4.8" },
+
+"nude-study-sad-young-man-on-a-train": {
+about: "Duchamp identified this fragmented, dark study as a self-portrait, painted in 1911–12 while working toward Nude Descending a Staircase; the French title pleased him with its triste–train alliteration.",
+by: "Opus 4.8" },
+
+"composition-8": {
+about: "Still rooted in observable Paris facades, this 1914 grid of muted rectangles shows Mondrian out-abstracting the Cubists by stripping volume entirely — the building source is there if you know it, but pure grid is almost all that remains.",
+by: "Opus 4.8" },
+
+"composition": {
+about: "One of the last Mondrian works traceable to a real source — a church study — this 1916 canvas bridges his Cubist phase and Neoplasticism, with scattered colour planes and plus-minus black marks replacing any readable subject.",
+by: "Opus 4.8" },
+
+"the-hermitage-at-pontoise": {
+about: "Painted at nearly two metres wide as a Salon-scale bid, this 1867 landscape by Pissarro stripped the rural village of L'Hermitage of sentimental overtones — a Realist ambition he soon abandoned for Impressionist looseness.",
+by: "Opus 4.8" },
+
+"birsk": {
+about: "Popova began this 1916 canvas during a summer visit to her former governess near the Ural Mountains, translating the small town of Birsk into a bird's-eye cascade of geometric planes — a bridge between her Cubo-Futurist work and Suprematist abstraction.",
+by: "Opus 4.8" },
+
+"white-bull": {
+about: "Marc held that animals possessed a godliness humans had forfeited; in this 1911 canvas the white bull embodies that purity, its pale body set against a deep blue field that, in his colour system, signified the spiritual and masculine.",
+by: "Opus 4.8" },
+
+"young-boy-with-a-lamb-the-good-shepherd": {
+about: "Marc painted this expressionist take on the Good Shepherd in 1911, the same year he co-founded Der Blaue Reiter, casting a nude orange boy wading through churning water as the ancient pastoral figure, its biblical charge amplified by raw colour.",
+by: "Opus 4.8" },
+
+"officer-and-laughing-girl": {
+about: "The officer's head is about twice as wide as the girl's — a scale discrepancy that, as early as 1891, printmaker Joseph Pennell cited as evidence Vermeer used a camera obscura, whose lens exaggerates near objects exactly this way.",
+by: "Opus 4.8" },
+
+"girl-interrupted-at-her-music": {
+about: "The woman at the music stand has stopped playing and turned to look directly out of the canvas — the painting's title names you as the intruder. Vermeer, c.1658–59, deepens the scene with a barely visible Cupid on the wall behind, quietly marking the lesson as a courtship.",
+by: "Opus 4.8" },
+
+"mistress-and-maid": {
+about: "Henry Clay Frick bought this in 1919, the year he died — the last work he ever acquired. Vermeer, c.1666-67, left the mistress's face and hands without final modelling, and scholars debate whether the canvas is unfinished or simply his late, looser touch.",
+by: "Opus 4.8" },
+
+"the-polish-rider": {
+about: "Since 1984, when a Rembrandt Research Project member proposed that his pupil Willem Drost painted it, this has been one of the most contested attributions in Dutch art. The Frick still credits Rembrandt, c.1655, but the question has never fully closed.",
+by: "Opus 4.8" },
+
+"hundred-guilder-print": {
+about: "The nickname came from Rembrandt's own era: a 1654 letter records the print selling for over a hundred guilders, an extraordinary sum for a single sheet. Rembrandt packed four separate scenes from Matthew 19 into one etching. Rembrandt, c.1647-49.",
+by: "Opus 4.8" },
+
+"allegory-of-virtue-and-vice": {
+about: "One half of a pair — its pendant Wisdom and Strength also hangs at the Frick, and the two have travelled together since Emperor Rudolf II's court. Veronese, c.1565, frames the Choice of Hercules as a physical tug-of-war for the hero's fate.",
+by: "Opus 4.8" },
+
+"mother-and-children": {
+about: "Renoir sent this as the centrepiece of the Second Impressionist Exhibition in 1876, retitling it \"La Promenade,\" yet most critics simply ignored it; he painted a mother and two identically dressed daughters mid-stroll through a Paris park, ca. 1875.",
+by: "Opus 4.8" },
+
+"self-portrait-rembrandt": {
+about: "Two years after declaring insolvency and surrendering his goods to creditors, Rembrandt painted himself enthroned in a fur-lined robe, commanding and immovable — one of the most defiant self-images in Western art, 1658.",
+by: "Opus 4.8" },
+
+"the-forge": {
+about: "Goya cast three blacksmiths hammering at an anvil in the heroic scale usually reserved for gods and generals, adapting the classical myth of Vulcan's forge to ordinary Spanish laborers, ca. 1815-20.",
+by: "Opus 4.8" },
+
+"allegory-of-wisdom-and-strength": {
+about: "Veronese inscribed OMNIA VANITAS — \"all is vanity\" — at the lower left, so that Hercules gazing down at jewels and treasure reads not as triumphant but as distracted by what the painting declares worthless, ca. 1565.",
+by: "Opus 4.8" },
+
+"the-bullfight": {
+about: "After the 1864 Salon mocked his larger bullfight canvas — one critic called the toreador a wooden figure killed by a horned rat — Manet cut the painting in two. This upper fragment, its bull's head added after the cut, is what survives at the Frick.",
+by: "Opus 4.8" },
+
+"portrait-of-nicolaes-ruts": {
+about: "Rembrandt painted this Amsterdam fur merchant in 1631, the year he left Leiden, and it was likely his first portrait commission from outside his own family. The sitter's sable robe and ushanka hat advertise his Russia trade. Rembrandt, 1631.",
+by: "Opus 4.8" },
+
+"portrait-of-a-man-in-a-red-cap": {
+about: "Dating to around 1510-16, this is one of Titian's earliest commissions; its soft, diffused light led generations of scholars to attribute it to Giorgione. The sitter's identity was never established, and a later label naming Lorenzo de' Medici has no basis.",
+by: "Opus 4.8" },
+
+"julia-lady-peel": {
+about: "Lawrence painted this deliberately echoing Rubens's Chapeau de Paille, which her husband Robert Peel had purchased just four years earlier — the broad feathered hat and white satin sleeve answer Rubens almost point for point. A critic called it among the highest achievements of modern art. Lawrence, 1827.",
+by: "Opus 4.8" },
+
+"general-john-burgoyne": {
+about: "Reynolds painted Burgoyne around 1766, when he was a dashing colonel fresh from a Portuguese campaign. Eleven years later, the same man surrendered his entire army at Saratoga — the defeat that brought France into the Revolutionary War. The portrait knows nothing of what is coming. Reynolds, c.1766.",
+by: "Opus 4.8" },
+
+"portrait-of-a-man": {
+about: "Memling painted this unidentified man around 1470-75, set against an open window with a Flemish landscape behind. The tower at right may be the church of St. Giles outside Bruges — the one clue to his identity scholars have chased for five centuries.",
+by: "Opus 4.8" },
+
+"dance-of-time": {
+about: "The clock inside the glass globe was the first rotating annular-dial mechanism ever built to sit within a transparent sphere. Clockmaker Jean-Baptiste Lepaute and sculptor Clodion made it in 1788; three terracotta nymphs dance around a column to hold it aloft.",
+by: "Opus 4.8" },
+
+"the-progress-of-love-the-meeting": {
+about: "Commissioned by Madame du Barry for a music pavilion, the series was rejected by 1773 and returned to Fragonard — possibly for being too nakedly romantic. He kept the canvases two decades before installing them in his cousin's house at Grasse.",
+by: "Opus 4.8" },
+
+"the-three-soldiers": {
+about: "Once owned by King Charles I of England, this tiny grisaille shows three Landsknecht mercenaries — a drummer, a fifer, and a standard-bearer — in flamboyant slashed-sleeve costume. Bruegel painted it in 1568, likely as a model for an engraving.",
+by: "Opus 4.8" },
+
+"regatta-in-venice": {
+about: "Guardi based this view on a Canaletto composition rather than direct observation, then dissolved it into something Canaletto never quite managed: a shimmering, atmospheric light that makes the crowded Grand Canal feel felt rather than documented. Guardi, c.1770.",
+by: "Opus 4.8" },
+
+"perseus-and-andromeda": {
+about: "This small oil sketch is the only record of a lost ceiling fresco: Tiepolo painted it around 1730-31 as a modello for Milan's Palazzo Archinto, and the fresco was destroyed by Allied bombing in 1943. He put Perseus on Pegasus, not Ovid's winged sandals.",
+by: "Opus 4.8" },
+
+"the-comtesse-daru": {
+about: "David painted this portrait free of charge as a private gift to thank Comte Daru for finally securing his overdue payment for the monumental coronation painting of Napoleon — completing it in just a few sittings in 1810.",
+by: "Opus 4.8" },
+
+"christ-driving-the-money-changers-from-the-temple": {
+about: "El Greco tucked portraits of four Renaissance masters he revered — Titian, Michelangelo, Giulio Clovio, and Raphael — into the lower-right corner of this ca. 1600 version, one of several he painted of the same subject across his career.",
+by: "Opus 4.8" },
+
+"the-mall-in-st-james-s-park": {
+about: "Gainsborough painted this ca. 1783 scene of fashionable London promenaders for George III, who rejected it as too fantastical and unfaithful to the actual Mall — leaving the canvas in the artist's studio until his death.",
+by: "Opus 4.8" },
+
+"the-white-horse": {
+about: "The first of Constable's celebrated \"six-footers\" — monumental Stour Valley landscapes — this 1819 Royal Academy exhibit drew more attention than anything he had shown before, helping secure his election as an Associate of the Academy.",
+by: "Opus 4.8" },
+
+"don-pedro-duque-de-osuna": {
+about: "The third known portrait Goya made of Spain's enormously wealthy ninth Duke of Osuna, painted ca. 1795-1800, it is strikingly informal — the duke forgoes his Golden Fleece — compared with Goya's tightly academic earlier likenesses of the same sitter.",
+by: "Opus 4.8" },
+
+"view-of-the-cannaregio-canal-in-venice": {
+about: "Guardi painted the Cannaregio Canal not as a grand tourist route but as a working neighbourhood artery, filling the foreground with gondoliers and tradespeople rather than ceremony. The loose brushwork dissolves architecture into light and atmosphere, c.1770.",
+by: "Opus 4.8" },
+
+"femmes-arabes-a-la-promenade": {
+about: "The painter born Étienne Dinet converted to Islam, took the name Nasreddine, and settled permanently in the Algerian oasis of Bou-Saâda — making this 1895 scene of veiled women at leisure a document of a life genuinely lived from the inside rather than observed at distance.",
+by: "Opus 4.8" },
+
+"the-milkmaid": {
+about: "Vermeer gave a low-ranking kitchen servant the pyramidal mass and gravity of a devotional figure, treating the act of pouring milk as something worthy of the same attention as a religious subject. The Rijksmuseum's most visited work, c.1658.",
+by: "Opus 4.8" },
+
+"ophelia": {
+about: "Elizabeth Siddal posed in a heated bath for weeks; the lamps warming the water went out and she developed a severe cold, with her father billing Millais for medical expenses. Every flower surrounding her in this 1851–52 painting carries a precise botanical identity tied to Ophelia's fate.",
+by: "Opus 4.8" },
+
+"rokeby-venus": {
+about: "Suffragette Mary Richardson walked into the National Gallery on 4 March 1914 and slashed the canvas seven times to protest the imprisonment of Emmeline Pankhurst. It is the only surviving female nude by Velázquez, painted c.1647–51.",
+by: "Opus 4.8" },
+
+"the-hay-wain": {
+about: "Snubbed in England, Constable's pastoral scene caused a sensation at the 1824 Paris Salon, winning a gold medal from Charles X and prompting Delacroix to repaint sections of his own Massacre at Chios after studying its broken, light-flecked brushwork. John Constable, 1821.",
+by: "Opus 4.8" },
+
+"supper-at-emmaus": {
+about: "A basket of fruit tips over the table's edge into the viewer's space while a disciple's arm thrusts forward in extreme foreshortening — the physical shock of the moment Christ is recognised as risen, mid-meal. Caravaggio, 1601.",
+by: "Opus 4.8" },
+
+"belshazzar-s-feast": {
+about: "The Hebrew words appear written downward in columns rather than right to left, an unusual arrangement Rembrandt borrowed from his friend and neighbour Menasseh ben Israel, a Jewish scholar who argued this vertical order was why no court wise man could read them. Rembrandt, c. 1636–38.",
+by: "Opus 4.8" },
+
+"rain-steam-and-speed-the-great-western-railway": {
+about: "A hare sprints ahead of the oncoming engine along the track — Turner brushed it in lightly enough that the paint has since gone transparent, making it invisible to the naked eye today, though visible in an 1859 engraving. J. M. W. Turner, 1844.",
+by: "Opus 4.8" },
+
+"an-experiment-on-a-bird-in-the-air-pump": {
+about: "A travelling lecturer pumps air from a glass vessel containing a white cockatoo while a family watches by candlelight, each face registering a different response to the bird's impending suffocation. Wright holds Enlightenment curiosity and its moral cost in one frame. Joseph Wright of Derby, 1768.",
+by: "Opus 4.8" },
+
+"the-fighting-temeraire": {
+about: "Turner called this his Darling and refused every offer to buy it, leaving it to the nation at his death. It shows a veteran Trafalgar warship towed by a black steam-tug to the breakers' yard against a blazing sunset — voted Britain's greatest painting in 2005.",
+by: "Opus 4.8" },
+
+"boy-bitten-by-a-lizard": {
+about: "Painting a single frozen instant of shock was almost unknown in the sixteenth century. Caravaggio rejected convention and worked from a live model, catching the boy mid-flinch as a lizard bites his finger — immediacy that made him famous almost overnight. Caravaggio, c.1594-95.",
+by: "Opus 4.8" },
+
+"bathers-at-asnieres": {
+about: "The Salon rejected it in 1884, so Seurat helped found a rival jury-free exhibition. He later returned to the canvas and repainted passages with small pointillist dots of contrasting colour — a technique he had not yet invented when he first laid it down. Seurat, 1884.",
+by: "Opus 4.8" },
+
+"carnation-lily-lily-and-rose": {
+about: "Sargent had only a few minutes of usable twilight each evening; he posed the girls in advance and raced through each session as the light shifted. He returned the following autumn to finish the work. The title comes from a popular song. Sargent, 1885-86.",
+by: "Opus 4.8" },
+
+"allegory-of-prudence": {
+about: "The three faces are believed to be Titian himself in old age, his son Orazio, and his heir Marco Vecellio — a family self-portrait in philosophical guise. The Latin inscription reads: from the past the present acts wisely, lest it spoil the future. Titian, c.1550-65.",
+by: "Opus 4.8" },
+
+"madonna-of-the-pinks": {
+about: "Long dismissed as a copy and held unrecognised in the Duke of Northumberland's collection, this small devotional panel was reattributed to Raphael in the early 1990s, triggering an export battle that ended when the National Gallery bought it for £22 million in 2004. Raphael, c.1506.",
+by: "Opus 4.8" },
+
+"the-lady-of-shalott": {
+about: "Sir Henry Tate donated this to the public in 1894, making it central to the collection he founded. Waterhouse, 1888, shows Tennyson's cursed weaver at the moment she looses her chain and steps into the boat that will carry her, singing, to her death.",
+by: "Opus 4.8" },
+
+"diana-and-actaeon": {
+about: "Jointly bought in 2009 for £50 million by the National Gallery and National Galleries of Scotland — the largest sum ever raised to keep a painting in Britain — Titian's 1556-59 canvas shows the hunter Actaeon stumbling into Diana's bathing grove, sealing his doom.",
+by: "Opus 4.8" },
+
+"a-young-woman-seated-at-a-virginal": {
+about: "One of only two Vermeers in the National Gallery that face each other as probable pendants, it entered the collection through the Salting Bequest in 1910. The painting on the wall and the unused viola da gamba suggest a meditation on love and music. Johannes Vermeer, c.1670-72.",
+by: "Opus 4.8" },
+
+"samson-and-delilah": {
+about: "The National Gallery paid a then-record £2.5 million for it in 1980, but scholars have disputed the Rubens attribution almost ever since. A 2023 AI authentication study put the probability of it being a later copy at 91 percent. Peter Paul Rubens (attributed), c.1609-10.",
+by: "Opus 4.8" },
+
 };
