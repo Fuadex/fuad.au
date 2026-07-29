@@ -710,4 +710,405 @@ by: "Opus 4.8" },
 about: "Shown at the 1876 Impressionist exhibition that a Figaro critic mocked as \"five or six alienated persons, one of them a woman,\" Morisot's 1875 study of a young woman raising a fan answered that jibe with silvery, ethereal refinement.",
 by: "Opus 4.8" },
 
+
+"portrait-de-mademoiselle-victorine-de-bellio": {
+about: "Victorine de Bellio later bequeathed her father Georges de Bellio's Impressionist collection — including Monet's Impression, Sunrise — to the Marmottan, making this 1892 Renoir portrait central to the museum's own founding story.",
+by: "Opus 4.8" },
+
+"portrait-de-julie-manet": {
+about: "A year before Berthe Morisot's death made Julie an orphan at sixteen, Renoir — who would become her legal guardian alongside Mallarmé — painted this 1894 portrait of the girl who had grown up at the heart of the Impressionist circle.",
+by: "Opus 4.8" },
+
+"portrait-de-madame-claude-monet": {
+about: "Renoir painted his close friend Monet's wife Camille Doncieux in 1873, during the years both artists worked side by side at Argenteuil — she was Monet's primary model and died young in 1879, aged thirty-two.",
+by: "Opus 4.8" },
+
+"bassin-aux-nympheas": {
+about: "Painted as cataracts progressively stripped Monet's colour vision — blues vanished, then greens, leaving a yellowish-red filter — this 1918 canvas of the Giverny water-lily pond shows the fiery palette his failing sight imposed.",
+by: "Opus 4.8" },
+
+"nympheas-monet": {
+about: "Monet donated a suite of monumental Nymphéas panels to France on Armistice Day 1918 as a gesture of peace; this 1918 canvas belongs to the roughly 250-work cycle he pursued across three decades at his Giverny pond.",
+by: "Opus 4.8" },
+
+"vetheuil-in-the-fog": {
+about: "Donated to the Marmottan in 1940 by Eugène and Victorine Donop de Monchy, this 1879 Monet dissolves the Seine-side village of Vétheuil into blue fog and water-reflection, form yielding entirely to atmosphere.",
+by: "Opus 4.8" },
+
+"michel-monet-with-a-pompon": {
+about: "Painted roughly seven months after his mother Camille died in September 1879, this 1880 Monet portrait shows Michel, then barely two years old, wearing the pom-pom bonnet that gives the picture its name.",
+by: "Opus 4.8" },
+
+"sur-la-plage-a-trouville": {
+about: "Grains of real beach sand, blown onto the wet canvas by the sea breeze, are still embedded in the paint surface, confirming that Monet completed this 1870 Trouville scene on the spot with Camille seated nearby.",
+by: "Opus 4.8" },
+
+"autoportrait": {
+about: "Morisot rarely turned the brush on herself, making this 1885 oil one of only a handful of self-portraits she completed, the direct gaze and loose impressionist handling capturing her identity as a working artist rather than a domestic subject.",
+by: "Opus 4.8" },
+
+"le-cerisier": {
+about: "Julie Manet's own diary records that Morisot began this 1891 painting at Mézy with Julie on the ladder and her cousin below, then finished it in Paris with a professional model after Julie became unavailable.",
+by: "Opus 4.8" },
+
+"nympheas-effect-in-the-evening": {
+about: "Monet had to petition the local prefect to divert the River Ru for his Giverny pond, and neighbours objected that the exotic plants would poison their cattle; this 1897 canvas is among the first paintings of what became a 250-work series.",
+by: "Opus 4.8" },
+
+"the-pont-neuf-and-the-samaritaine-at-night": {
+about: "Matisse, who trained alongside Marquet in Gustave Moreau's studio, compared his friend's draftsmanship to the calligraphic simplicity of Hokusai; this 1937 nocturne by Albert Marquet shows how far Marquet had moved from their shared Fauve years.",
+by: "Opus 4.8" },
+
+"la-ville-de-paris": {
+about: "Painted over two years and sent to the 1912 Salon des Indépendants at 267 by 406 centimetres, Robert Delaunay's canvas fuses the Three Graces, the Seine, and the Eiffel Tower as a pivot from Cubist fragmentation toward pure colour abstraction.",
+by: "Opus 4.8" },
+
+"portrait-of-pere-tanguy": {
+about: "Tanguy let destitute artists pay in canvases, making his Montmartre backroom the only Paris place to see Cézanne's work in the 1880s; Van Gogh's 1887 portrait at Musée Rodin poses him as a Japanese sage against the Japanese prints they both collected.",
+by: "Opus 4.8" },
+
+"arles-view-from-the-wheat-fields": {
+about: "Van Gogh painted this during a concentrated ten-canvas harvest campaign in June 1888, writing to Theo that he had spent a week working in the wheatfields under blazing sun; the town of Arles sits on the horizon of this 1888 canvas now at Musée Rodin.",
+by: "Opus 4.8" },
+
+"the-eternal-springtime": {
+about: "Rodin conceived this embrace in 1884 as part of The Gates of Hell, then pulled it out because the lovers looked too happy for a vision of damnation — leaving it to stand alone as a hymn to desire.",
+by: "Opus 4.8" },
+
+"the-mature-age": {
+about: "The French state commissioned this bronze in 1895, then cancelled the funding in 1899 — reportedly after Rodin, who appears as the central figure being torn from Claudel, pressured the ministry to kill the work that exposed him.",
+by: "Opus 4.8" },
+
+"the-waltz": {
+about: "When Claudel applied for a state marble commission in 1892, the Ministry of Fine Arts rejected the work outright for indecency — forcing her to drape the female figure before it could be shown, the flowing skirt we see now a bureaucratic imposition.",
+by: "Opus 4.8" },
+
+"danaid": {
+about: "Rodin carved this 1885 marble from a mythological sinner — a Danaid condemned to fill a leaking barrel forever — but the hair flowing into the stone base was identified by scholar Monique Laurent as almost certainly modelled on Camille Claudel.",
+by: "Opus 4.8" },
+
+"the-cathedral": {
+about: "Rodin's 1908 stone sculpture pairs two right hands — belonging to two different people — whose fingertips nearly meet in an arch he named after Gothic cathedrals only once his book Les Cathédrales de France appeared in 1914.",
+by: "Opus 4.8" },
+
+"sakuntala-claudel": {
+about: "When Claudel showed this plaster at the 1888 Salon, reviewers said it bested Rodin that year; she later reworked the embracing couple in marble as Vertumnus and Pomona for a patron in 1905.",
+by: "Opus 4.8" },
+
+"torso-of-adele": {
+about: "Rodin later used this headless, armless plaster — modelled around 1882 from Italian model Adèle Abruzzesi — as a linking figure in the upper-left corner of The Gates of Hell, completed there in 1889.",
+by: "Opus 4.8" },
+
+"ugolino-and-sons": {
+about: "Rodin deliberately broke from the upright pose used by Carpeaux, placing his Ugolino on all fours over his dying children in this 1881 plaster — a position thought to strip the count of the last trace of human dignity.",
+by: "Opus 4.8" },
+
+"la-vague-by-camille-claudel": {
+about: "Claudel chose onyx specifically because its veining and translucency read as moving water; three bronze bathers shelter beneath the curl in this 1897–1903 work that openly responds to Hokusai's Great Wave.",
+by: "Opus 4.8" },
+
+"clotho": {
+about: "Claudel modelled this gaunt fate-spinner in 1893 from an elderly woman who worked in Rodin's atelier; a marble version was commissioned in 1895 and completed by 1897, but it has since been lost.",
+by: "Opus 4.8" },
+
+"rodin-s-le-penseur-in-dr-linde-s-garden": {
+about: "The Musée Rodin is the only French museum to own a Munch canvas — Rodin never possessed and probably never saw this 1907 painting Edvard Munch made of a cast of The Thinker standing in collector Max Linde's Lübeck garden.",
+by: "Opus 4.8" },
+
+"vertumnus-and-pomona": {
+about: "Claudel spent nearly two decades trying to get a state commission for this group — the marble was finally carved in 1905 only when the Comtesse de Maigret stepped in as patron, giving a subject first modelled in 1886 its Roman mythological title.",
+by: "Opus 4.8" },
+
+"auguste-rodin": {
+about: "Rodin reportedly declared that Sargent was the Van Dyck of his time after seeing this 1884 oil portrait, inscribed \"à mon ami Rodin\" — the two had met that same year when both showed work at the inaugural Les XX exhibition in Brussels.",
+by: "Opus 4.8" },
+
+"dancer-with-veils": {
+about: "Rodin produced over 7,000 drawings held by the museum, yet remained little known as a draughtsman; this c.1900 pencil-and-watercolour depicts Salome's dance of the seven veils, showing how Rodin used drawing as a mode of thinking through movement.",
+by: "Opus 4.8" },
+
+"avenue-of-plane-trees-near-arles-station": {
+about: "Van Gogh painted this avenue of bare plane trees during his 1888 stay in Arles — the railway station visible through the trunks places the canvas squarely in the working landscape he was determined to paint rather than the picturesque Provence of tourist expectation.",
+by: "Opus 4.8" },
+
+"le-penseur-reduction": {
+about: "Conceived in 1880 as \"The Poet\" crowning the Gates of Hell — a figure of Dante watching the damned — Rodin later exhibited it independently and renamed it The Thinker; this reduction preserves the original 71 cm scale.",
+by: "Opus 4.8" },
+
+"portrait-de-rodin": {
+about: "Painted in October 1904 and exhibited the following year at Venice, then London, Bordeaux, and Rome, Jacques-Émile Blanche's 1904 portrait of Rodin became one of the era's most widely toured likenesses of the sculptor.",
+by: "Opus 4.8" },
+
+"the-baptism-of-lithuania": {
+about: "Lithuania was the last pagan nation in medieval Europe; Matejko's 1888 canvas captures the Holy Saturday 1387 mass baptism before the temple of Perkūnas, part of his series History of Civilisation in Poland.",
+by: "Opus 4.8" },
+
+"peasant-coffin": {
+about: "Director Andrzej Wajda wrote that he knew no other painting in Polish art where tragedy strikes with equal force; Aleksander Gierymski's 1895 canvas, his last figural composition, shows a couple waiting outside with a small blue coffin.",
+by: "Opus 4.8" },
+
+"union-of-lublin": {
+about: "Painted to mark the 300th anniversary of the 1569 Polish-Lithuanian union, Matejko's 1869 canvas was acclaimed in Paris and earned him the Légion d'honneur — the work that first turned Polish attention toward the positive moments of their shared past.",
+by: "Opus 4.8" },
+
+"garden-in-kissingen": {
+about: "Menzel painted this view of the Kissingen spa fountain from the Hailmann Villa where he lodged on annual summer visits with his sister, producing a series of small gouaches there between 1884 and 1893. Adolph von Menzel, 1885.",
+by: "Opus 4.8" },
+
+"rzeczpospolita-babinska": {
+about: "The Babin Republic was a real mock-state where Polish nobles earned offices by telling the funniest anecdote; their register of 411 stories, compiled over nearly seventy years, survives as a document of gentry life. Jan Matejko, 1881.",
+by: "Opus 4.8" },
+
+"the-raising-of-lazarus": {
+about: "Hidden beneath old overpaint, the signature 'Car. Fabr.' was only uncovered during a 1935 restoration, before which the canvas was attributed to an anonymous German follower of Rembrandt. Carel Fabritius, 1643.",
+by: "Opus 4.8" },
+
+"introduction-of-christianity-in-poland": {
+about: "Matejko painted this twelve-work cycle in 1889 partly to satisfy the research requirements for his honorary doctorate from the Jagiellonian University, making it as much an academic statement as a historical panorama. Jan Matejko, 1889.",
+by: "Opus 4.8" },
+
+"cymon-and-iphigenia": {
+about: "Leighton spent six months searching across Europe for a model who matched his imagined ideal of Iphigenia before beginning this Boccaccio subject, which the Art Gallery of New South Wales acquired at Christie's in 1976. Frederic Leighton, 1884.",
+by: "Opus 4.8" },
+
+"on-the-wallaby-track": {
+about: "McCubbin used his own family as models for this 1896 portrait of itinerant poverty, painting close to his Melbourne home to capture a swagman's family camped roadside during the 1890s depression.",
+by: "Opus 4.8" },
+
+"the-golden-fleece": {
+about: "Roberts spent five months living at Newstead station near Inverell to paint this 1894 shearing shed scene, then renamed it after the Greek myth to honour the wool trade as the foundation of the Australian nation.",
+by: "Opus 4.8" },
+
+"the-white-glove": {
+about: "When the Art Gallery of New South Wales bought Lambert's 1921 portrait of Gladys Neville Collins for 600 guineas, it was the highest price a public gallery had ever paid for a portrait by an Australian artist.",
+by: "Opus 4.8" },
+
+"fire-s-on": {
+about: "Streeton witnessed a worker named Edward Brown killed by a premature tunnel blast at Lapstone and wrote to Tom Roberts about it; the tiny procession carrying Brown's body is painted into this 1891 landscape.",
+by: "Opus 4.8" },
+
+"nasturtiums": {
+about: "The model was fellow artist Edith Anderson, who married Fox's close friend Penleigh Boyd months after sitting; the painting stayed with the Boyd family until 2011, when the Art Gallery of NSW acquired it as a memorial to Margaret Olley.",
+by: "Opus 4.8" },
+
+"spring-frost": {
+about: "Gruner wrapped his legs in chaff bags to ward off frostbite while finishing this canvas en plein air at Emu Plains — the effort paid off when Spring Frost won Elioth Gruner his second Wynne Prize in 1919.",
+by: "Opus 4.8" },
+
+"the-beach": {
+about: "Boudin personally mentored the teenage Monet, and it was painting alongside him at Honfleur that gave Monet his artistic revelation — this 1864 Trouville beach scene shows the open-sky work that shaped that influence.",
+by: "Opus 4.8" },
+
+"banks-of-the-marne": {
+about: "Dealer Ambroise Vollard recalled this painting hanging in Cézanne's landmark 1895 Paris solo exhibition — his first — and it became the first Cézanne to enter the Art Gallery of New South Wales when acquired in 2008.",
+by: "Opus 4.8" },
+
+"head-of-a-peasant": {
+about: "Van Gogh painted around forty peasant heads in Nuenen during 1884–85, each one a direct preparatory study for The Potato Eaters — this 1884 portrait is among the raw material from which his first major work was built.",
+by: "Opus 4.8" },
+
+"morning-light": {
+about: "Morning Light won Elioth Gruner the Wynne Prize in 1916, three years before his more famous Spring Frost claimed the same prize — both painted at dawn on the Emu Plains farm he returned to again and again from 1915.",
+by: "Opus 4.8" },
+
+"melencolia-i": {
+about: "The 4x4 magic square in Dürer's 1514 engraving encodes the year of its making in its bottom row — every row, column, diagonal, and quadrant sums to 34 — part of an image so loaded with symbols that scholars still debate what they collectively mean.",
+by: "Opus 4.8" },
+
+"anguish": {
+about: "Voted the most popular work in the NGV's entire 75,000-piece collection in both 1906 and 2011, Schenck's 1878 painting of a ewe crying over her dead lamb as crows close in has held Melbourne audiences for over a century.",
+by: "Opus 4.8" },
+
+"the-rescue": {
+about: "John Ruskin declared Millais's 1855 painting the only great picture at that year's Royal Academy — singling out a fireman hauling children from a blaze, a subject Millais chose to honour men he watched fight a London fire in 1854.",
+by: "Opus 4.8" },
+
+"the-pioneer": {
+about: "By casting settler life in a triptych — the format of religious altarpieces — McCubbin's 1904 painting deliberately elevated the Australian pioneer to a near-sacred subject, tracing one family from bush clearing to the graves they leave behind.",
+by: "Opus 4.8" },
+
+"scene-from-a-midsummer-night-s-dream": {
+about: "Commissioned by engineer Isambard Kingdom Brunel and praised by Queen Victoria as 'a gem' in her diary on its 1851 Royal Academy debut, Landseer's painting of Titania besotted with Bottom is the only fairy scene he ever painted.",
+by: "Opus 4.8" },
+
+"the-victory-of-faith": {
+about: "Two condemned Christian women sleep naked in the moments before being fed to the lions — a Roman damnatio ad bestias — while contemporaries read their embrace as sisterly and modern scholar Kobena Mercer has named it an interracial lesbian image. Saint George Hare, 1891.",
+by: "Opus 4.8" },
+
+"queen-esther": {
+about: "Melbourne's agent spotted this painting unfinished in Long's studio and commissioned a second version on the spot for £1,600, so Long worked on both canvases simultaneously — making the NGV picture a twin, not a copy. Edwin Long, 1878.",
+by: "Opus 4.8" },
+
+"october-saison-d-octobre": {
+about: "Bastien-Lepage painted this potato harvest in his own home village of Damvillers and showed it at the Paris Salon of 1879 as a declaration that peasant labour deserved the same monumental treatment as history painting — a shift that directly shaped the Australian Heidelberg painters. Jules Bastien-Lepage, 1878.",
+by: "Opus 4.8" },
+
+"the-sunny-south": {
+about: "The title works three ways at once: a hit Melbourne play of 1883, Ricketts Point to the south of the city where the boys are swimming, and the bare backside of the central bather facing away from us. Tom Roberts, 1887.",
+by: "Opus 4.8" },
+
+"the-purple-noon-s-transparent-might": {
+about: "Streeton painted this Hawkesbury River heat-haze in two days on a ledge in 42°C shade, working in what he called \"a kind of artistic intoxication with thoughts of Shelley in my mind\"; the 1896 title comes from Shelley's Stanzas Written in Dejection.",
+by: "Opus 4.8" },
+
+"the-watermill": {
+about: "Ruisdael and his pupil Hobbema both sketched the same Deventer mill on the Ijssel in the early 1660s; this 1660 painting records that shared subject, the overshot wheel and rushing sluice rendered with a drama typical of Ruisdael at full command.",
+by: "Opus 4.8" },
+
+"two-old-men-disputing": {
+about: "The earliest record of this 1628 Rembrandt is a 1641 will in which his friend Jacques de Gheyn III described the beam of sunlight and the large book on the disputing man's lap — a rare Rembrandt documented in the artist's own lifetime.",
+by: "Opus 4.8" },
+
+"the-cicada": {
+about: "Exhibited at the 1872 Salon — the first after France's defeat in the Franco-Prussian War — Lefebvre's nude allegorises La Fontaine's improvident grasshopper as a pointed rebuke of Napoleon III's unreadiness, the fallen leaves at her feet standing in for winter's reckoning.",
+by: "Opus 4.8" },
+
+"the-north-wind": {
+about: "Synchrotron X-ray fluorescence imaging of this 1888 McCubbin revealed a green, lush landscape buried beneath the arid scrub visible today, suggesting the artist repainted it specifically to match the centenary of settlement's emerging myth of the stoic Australian battler.",
+by: "Opus 4.8" },
+
+"the-quarters-behind-alresford-hall": {
+about: "Constable painted this 1816 Chinoiserie fishing pavilion as the smaller companion to Wivenhoe Park at his patron's request; he wrote to his fiancée that a 'young lady who is the heroine of all these scenes' came here to angle, giving this hushed pond its human story.",
+by: "Opus 4.8" },
+
+"an-interesting-story": {
+about: "Tissot painted this ironic harbourside scene in 1872 as one of his first London works, made after he fled the fall of the Paris Commune in 1871 with under a hundred francs to his name.",
+by: "Opus 4.8" },
+
+"mrs-campbell-mcinnes-later-angela-thirkell": {
+about: "The woman in blue John Collier painted in 1912 went on to write thirty-one novels as Angela Thirkell, becoming one of mid-century Britain's most popular chroniclers of English country life.",
+by: "Opus 4.8" },
+
+"mount-st-michael-cornwall": {
+about: "King William IV saw this storm-lashed canvas at the Royal Academy's 1830 summer exhibition and immediately commissioned two new works from Stanfield, the royal favour that launched his career as Britain's foremost marine painter.",
+by: "Opus 4.8" },
+
+"golden-summer-eaglemont": {
+about: "Streeton's sun-bleached view of the Eaglemont plains, painted in 1889, became the first work by an Australian-born artist to hang at London's Royal Academy and received an honourable mention at the 1892 Paris Salon.",
+by: "Opus 4.8" },
+
+"lodgepole-pines-lyell-fork-of-the-merced-river": {
+about: "Adams made this soft-focus pictorialist photograph at 9,000 feet in 1921, near the end of his painterly phase; within four years he had abandoned the style entirely for the sharp-contrast realism that defined his later work.",
+by: "Opus 4.8" },
+
+"in-a-corner-on-the-macintyre": {
+about: "The NGA subtitles this painting 'The bushranger': it is read as depicting Captain Thunderbolt's last stand of 1870, yet Tom Roberts, painting it in 1895 near Inverell, pitched the mood as quiet elegy rather than frontier drama.",
+by: "Opus 4.8" },
+
+"man-with-horse": {
+about: "Munch painted this in 1918, two years after buying the Ekely farm outside Oslo to escape his drinking and failing health; the rural workers and horses of Ekely became a defining motif of his late career.",
+by: "Opus 4.8" },
+
+"study-for-le-bec-du-hoc-grandcamp": {
+about: "This is one of twelve pocket-sized croquetons Seurat painted on panel at Grandcamp in summer 1885 — his first marine landscapes; Seurat, then 25, used it to work out the composition before completing the finished canvas now in the Tate.",
+by: "Opus 4.8" },
+
+"woman-holding-a-balance": {
+about: "Microscopic analysis confirmed the scales are entirely empty — she is not weighing pearls or gold but holding a moment of balance, with the Last Judgment painting directly behind her; Vermeer, around 1664, built the whole picture as an allegory of spiritual temperance.",
+by: "Opus 4.8" },
+
+"a-young-girl-reading": {
+about: "Fragonard reportedly painted this in about an hour, working alla prima into still-wet layers; the girl originally faced the viewer and was later repainted absorbed in her book, which is why her profile carries such settled conviction.",
+by: "Opus 4.8" },
+
+"the-railway": {
+about: "Mocked by caricaturists at the 1874 Salon for its incoherent composition, Manet's 1873 painting shows his longtime model Victorine Meurent beside iron railings at the Gare Saint-Lazare, steam obscuring any train.",
+by: "Opus 4.8" },
+
+"little-dancer-of-fourteen-years": {
+about: "The only sculpture Degas ever exhibited publicly, this 1881 wax figure of Marie van Goethem wears a real tutu, real ballet slippers, and a wig of human hair — details that horrified critics who called it a specimen from a waxwork museum.",
+by: "Opus 4.8" },
+
+"the-old-musician": {
+about: "The figures are documented individuals from a Parisian slum Manet knew personally: the seated violinist is Jean Lagrène, a real gypsy bandleader, and Manet painted them all in 1862 without letting them interact or acknowledge each other.",
+by: "Opus 4.8" },
+
+"symphony-in-white-no-1-the-white-girl": {
+about: "Rejected by the Royal Academy and the Paris Salon before becoming a centrepiece of the 1863 Salon des Refusés, Whistler's 1862 portrait of his mistress Jo Hiffernan standing on a wolf-skin helped establish his art-for-art's-sake identity.",
+by: "Opus 4.8" },
+
+"portrait-of-bindo-altoviti": {
+about: "Misidentified as a Raphael self-portrait for over two centuries, this circa 1515 portrait of banker Bindo Altoviti was sold by Altoviti's own heirs as a self-portrait — a confusion that inflated its price and sent it across Europe before reaching the NGA.",
+by: "Opus 4.8" },
+
+"the-plum": {
+about: "The model here is actress Ellen Andrée, who also sat for Degas' L'Absinthe the previous year — her cigarette unlit and plum untouched, Manet c.1877 made estrangement the subject.",
+by: "Opus 4.8" },
+
+"laocoon": {
+about: "Toledo stands in for Troy because local legend held that the city was founded by Trojan descendants — El Greco's only known mythological painting, c.1610, transplants an ancient catastrophe into his own adopted city.",
+by: "Opus 4.8" },
+
+"a-lady-writing-a-letter": {
+about: "The yellow jacket trimmed with white fur appears in Vermeer's 1676 death inventory and recurs across at least five other paintings — Vermeer c.1665 was working with actual clothes from his household.",
+by: "Opus 4.8" },
+
+"the-voyage-of-life": {
+about: "The NGA holds the second version of Cole's four-part allegory, painted in Rome in 1841–42 after a dispute over exhibition rights blocked the 1840 original — Thomas Cole completed this set abroad, then exhibited it across American cities on his return.",
+by: "Opus 4.8" },
+
+"two-women-at-a-window": {
+about: "A Spanish proverb — 'la mujer ventanera, uva de la calle,' a woman at the window is a grape of the street — likely underlies what seems like casual charm; Murillo c.1655–1660 borrowed the window-frame device from Dutch genre painting.",
+by: "Opus 4.8" },
+
+"bulb-fields": {
+about: "Sold for scrap as worthless rubbish in 1902, this Van Gogh from 1883 is now in the NGA — a wide landscape of striped hyacinth beds near The Hague painted when he had barely a year of oils behind him.",
+by: "Opus 4.8" },
+
+"girl-in-white": {
+about: "Painted in the final weeks before Van Gogh's death in 1890 at Auvers-sur-Oise, this figure standing in a wheat field passed through Johanna van Gogh-Bonger's hands before collector Chester Dale gave it to the NGA in 1963.",
+by: "Opus 4.8" },
+
+"the-open-window": {
+about: "Hung in the Salon d'Automne room that critics nicknamed the cage aux fauves — cage of wild beasts — this Matisse from 1905 painted at Collioure gave the Fauvist movement the name it kept forever.",
+by: "Opus 4.8" },
+
+"the-death-of-socrates": {
+about: "At the 1787 Paris Salon, Joshua Reynolds called this David painting in every sense perfect and ranked it with the Sistine Chapel — extraordinary praise that helped make it the defining image of Neoclassical moral seriousness.",
+by: "Opus 4.8" },
+
+"view-of-toledo": {
+about: "One of only two surviving pure landscapes El Greco ever painted, this stormy cityscape of c.1599 rearranges Toledo's actual skyline — the cathedral was moved — producing a vision that later critics called the first Expressionist landscape in Western art.",
+by: "Opus 4.8" },
+
+"madame-x-virginie-amelie-avegno-gautreau": {
+about: "When Sargent showed this portrait at the 1884 Paris Salon with one shoulder strap fallen, the scandal was so severe he repainted the strap and left Paris for London — a full-length portrait of Virginie Gautreau he had sought to make his masterpiece.",
+by: "Opus 4.8" },
+
+"washington-crossing-the-delaware": {
+about: "Leutze painted a first version that went to the Bremen Kunsthalle, where a 1942 RAF bombing raid destroyed it; the Met holds the second version he completed in 1851, full of documented inaccuracies including the wrong flag and wrong boats.",
+by: "Opus 4.8" },
+
+"the-harvesters": {
+about: "This is one of only five surviving panels from a six-painting months-of-the-year cycle commissioned by Antwerp merchant Nicolaes Jonghelinck — Bruegel the Elder's 1565 view of a wheat harvest standing in for late summer.",
+by: "Opus 4.8" },
+
+"woman-with-a-water-jug": {
+about: "Henry Gurdon Marquand bought this canvas in Paris for $800 in 1887 and gave it to the Met — making it the first Vermeer to enter any American collection, a c. 1662 domestic interior lit by a single leaded window.",
+by: "Opus 4.8" },
+
+"garden-at-sainte-adresse": {
+about: "Monet described this canvas in his own letters as \"the Chinese painting with flags in it,\" acknowledging the Japanese woodblock flatness he was deliberately borrowing — an 1867 terrace scene the Met bought at Christie's in 1967 for a then-record Impressionist price.",
+by: "Opus 4.8" },
+
+"aristotle-with-a-bust-of-homer": {
+about: "When the Met paid $2.3 million for this painting at a 1961 Parke-Bernet auction — then the highest price ever paid for a work of art — crowds of over 83,000 visited it in a single Sunday; Rembrandt painted it in 1653.",
+by: "Opus 4.8" },
+
+"woman-with-a-parrot": {
+about: "Cézanne reportedly carried a photograph of this painting in his wallet, and Manet began his own version the same year it was shown at the 1866 Salon; Courbet painted the nude in 1866 as a deliberate challenge to academic decorum.",
+by: "Opus 4.8" },
+
+"the-woman-in-the-waves": {
+about: "Courbet evokes Venus rising from the sea but pointedly shows his model's underarm hair — a detail no goddess in academic painting would have — making her unmistakably a real woman; he painted her in 1868.",
+by: "Opus 4.8" },
+
+"a-girl-asleep": {
+about: "X-ray examination revealed that Vermeer originally painted a man in the far doorway and a dog in the middle distance, then painted both out to focus attention on the sleeping figure; he made this canvas around 1657.",
+by: "Opus 4.8" },
+
+"beauty-revealed": {
+about: "Goodridge sent this watercolor-on-ivory self-portrait — just 2.6 by 3.1 inches, depicting only her bare breasts — to the recently widowed senator Daniel Webster in 1828, and Webster kept it until his death in 1852.",
+by: "Opus 4.8" },
+
 };
