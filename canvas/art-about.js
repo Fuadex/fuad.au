@@ -1111,4 +1111,405 @@ by: "Opus 4.8" },
 about: "Goodridge sent this watercolor-on-ivory self-portrait — just 2.6 by 3.1 inches, depicting only her bare breasts — to the recently widowed senator Daniel Webster in 1828, and Webster kept it until his death in 1852.",
 by: "Opus 4.8" },
 
+
+"heart-of-the-andes": {
+about: "When Church showed this canvas in New York in 1859, he staged it in a darkened room lit by gas lamps and charged 25 cents admission; over 12,000 people queued to see it in three weeks alone.",
+by: "Opus 4.8" },
+
+"portrait-of-juan-de-pareja": {
+about: "Velázquez painted this in Rome in 1650 as a warm-up for a papal portrait; the sitter was his own enslaved assistant, whom he freed by 1654, and the Met bought it in 1970 for a then-world-record £2,310,000.",
+by: "Opus 4.8" },
+
+"the-horse-fair": {
+about: "To sketch at Paris's horse market without harassment, Bonheur obtained a formal police permit to wear male clothing; she spent eighteen months visiting the market twice a week before finishing this 1853 canvas.",
+by: "Opus 4.8" },
+
+"woman-with-a-lute": {
+about: "The woman is tuning rather than playing: open songbooks and a viola da gamba on the floor signal she awaits a duet partner, while the map of Europe behind her hints at distance, in this Vermeer of around 1662–63.",
+by: "Opus 4.8" },
+
+"la-grenouillere": {
+about: "In the summer of 1869 Monet and Renoir set up their easels side by side at this Seine bathing resort, producing nearly identical compositions from the same vantage — paintings now considered among the first works of Impressionism.",
+by: "Opus 4.8" },
+
+"the-spanish-singer": {
+about: "Praised by Théophile Gautier and moved to a more prominent wall by Salon officials, this 1861 debut earned Manet his first major critical notice and rallied a circle of young painters to his studio.",
+by: "Opus 4.8" },
+
+"don-manuel-osorio-de-zuniga": {
+about: "The cats eyeing the tethered magpie read as menace encircling innocence in Goya's 1787–88 portrait of a boy who died at eight, making the predatory animals beside him feel less decorative than prophetic.",
+by: "Opus 4.8" },
+
+"september-morn": {
+about: "Anthony Comstock's 1913 campaign to suppress a New York dealer's print of this modest nude by Chabas backfired so completely that some seven million reproductions eventually sold across the United States.",
+by: "Opus 4.8" },
+
+"the-source": {
+about: "Courbet painted this 1862 nude as a direct riposte to Ingres's celebrated idealized figure of the same name, replacing classical allegory with the unvarnished weight and texture of a real body in cold water.",
+by: "Opus 4.8" },
+
+"regatta-at-sainte-adresse": {
+about: "Monet painted this 1867 canvas as one half of a deliberate pair with The Beach at Sainte-Adresse, the two works identical in size and viewpoints yards apart, setting bourgeois leisure at high tide against working fishermen in overcast low tide.",
+by: "Opus 4.8" },
+
+"two-tahitian-women": {
+about: "Bare-breasted and bearing a plate of mango blossoms, the two women embody the ceremonial offering imagery that made this 1899 Gauguin the focal point of debate about his colonial Tahitian period at the Met.",
+by: "Opus 4.8" },
+
+"self-portrait-in-a-soft-hat": {
+about: "Painted around 1894, this is one of Cézanne's last self-portraits, in which the soft felt hat anchors a composition that subordinates likeness to the same constructive brushwork he applied to apples and Mont Sainte-Victoire.",
+by: "Opus 4.8" },
+
+"young-man-playing-the-piano-martial-caillebotte": {
+about: "Shown at the 1876 Second Impressionist Exhibition, this painting depicts Gustave's younger brother Martial — a composer and pianist — at the family piano on rue de Miromesnil, rendered with Caillebotte's signature realist depth.",
+by: "Opus 4.8" },
+
+"deer-running-in-the-snow": {
+about: "Courbet built a series of more than sixty hunting scenes that were his most commercially reliable work; here a stag bolts across snow he scraped with a palette knife, capturing the Franche-Comté landscape he knew as a native, c.1856.",
+by: "Opus 4.8" },
+
+"georgette-charpeitier-seated": {
+about: "Commissioned in 1876 when Georgette Charpentier was four years old, the portrait was a direct product of Renoir's relationship with her father Georges Charpentier, the publisher-patron who became his most important financial backer in that decade.",
+by: "Opus 4.8" },
+
+"reminiscence-of-the-tempyo-era": {
+about: "Designated an Important Cultural Property of Japan, this 1902 oil by Fujishima Takeji fuses a hanging-scroll format and gold ground with European academic technique, evoking the ancient Tempyō court through a musician in Tang-era dress.",
+by: "Opus 4.8" },
+
+"woman-and-child-on-a-balcony": {
+about: "Painted from Morisot's own apartment near the Palais de Chaillot, this 1872 canvas shows the golden dome of Les Invalides on the horizon, anchoring an intimate domestic scene firmly in the modern city.",
+by: "Opus 4.8" },
+
+"women-going-to-the-woods": {
+about: "Sisley's submission to the 1866 Salon — the first time the jury accepted his work — depicts the village street of Marlotte, where he had painted alongside Renoir, in tones that echo Corot with Courbet's brushwork.",
+by: "Opus 4.8" },
+
+"quai-d-ivry": {
+about: "The airship overhead is identifiable as La Patrie, the French army's first military dirigible, which crossed Paris skies in 1907, giving Rousseau's naïve Seine-bank scene an unexpected contemporary edge.",
+by: "Opus 4.8" },
+
+"mont-sainte-victoire-and-chateau-noir": {
+about: "Cézanne returned to Mont Sainte-Victoire more than sixty times in his career; this c.1904 canvas, one of his last, presses the mountain and the ochre Château Noir into a single geometric field that pointed directly toward Cubism.",
+by: "Opus 4.8" },
+
+"windmills-on-montmartre": {
+about: "Montmartre still had working windmills when Van Gogh moved there in 1886, and he painted several as his palette brightened under direct exposure to the Paris Impressionists during his two years with brother Theo.",
+by: "Opus 4.8" },
+
+"thonier-a-concarneau": {
+about: "The vividly coloured tuna-boat sails that fill Signac's 1925 Divisionist canvas have since vanished from Concarneau harbour entirely, replaced by motor boats, making the painting a record of a working fleet now gone.",
+by: "Opus 4.8" },
+
+"terrasses-a-cannes": {
+about: "By the time Renoir painted these sun-drenched Cannes terraces in 1905, rheumatoid arthritis had so damaged his hands that he had cloth bandages tied around them to hold the brush in place.",
+by: "Opus 4.8" },
+
+"self-portrait-manet": {
+about: "Manet painted only two formal self-portraits in his entire career, both made within the same year or two around 1878; this skull-cap version at the Artizon is one of that rare pair.",
+by: "Opus 4.8" },
+
+"the-beach-near-trouville": {
+about: "Boudin is the painter who first took the young Monet outside to paint in the open air, and it was on this same Trouville beach that he developed the rapid, sketchy plein-air technique he captured in this 1865 scene.",
+by: "Opus 4.8" },
+
+"snow-effect-in-a-quarry": {
+about: "Painted in 1870, the year Courbet refused the Legion of Honour and just before the Paris Commune drove him into Swiss exile, this winter quarry scene captures the monumental, close-pressed Realism of his Franche-Comté landscapes at their most politically charged.",
+by: "Opus 4.8" },
+
+"girl-of-brehat": {
+about: "Remembered in Japan as the father of Western-style painting, Kuroda Seiki made this 1891 portrait on Bréhat island while still studying under Raphaël Collin in Paris, using a local child as his model with unusually raw, liberated brushwork.",
+by: "Opus 4.8" },
+
+"self-portrait-with-a-hat": {
+about: "Painted in 1924, the year Koide Narashige opened his Osaka atelier after two years in France, this near-monumental self-portrait declares his identity as a yōga painter — a confident image unusual for an artist whose canvases were otherwise notably small.",
+by: "Opus 4.8" },
+
+"still-life-with-horse-s-head": {
+about: "The horse is modelled on a Parthenon cast Gauguin saw at the British Museum in 1885, placed beside a Japanese fan and Chinese doll — a deliberate collision of Greek and Asian objects that marks Gauguin's 1886 first step into Japonisme.",
+by: "Opus 4.8" },
+
+"still-life-with-buckling-and-garlic-onion": {
+about: "Smoked herrings and a garlic bulb on a bare table: painted in Paris in 1887, this belongs to the humble food still lifes that drove Van Gogh's decisive palette shift from dark Dutch tones to the brighter colours of Impressionism.",
+by: "Opus 4.8" },
+
+"paradise-under-the-sea": {
+about: "Drawn from the Kojiki creation myth, this 1907 canvas by Shigeru Aoki shows the moment a mortal hunter enters the sea-god Wadatsumi's palace and meets Toyotama-hime, rendered in Pre-Raphaelite register by a painter who died of tuberculosis at 28.",
+by: "Opus 4.8" },
+
+"striped-jacket": {
+about: "Three surviving photographs show this 1914 portrait of Matisse's daughter Marguerite being stripped back to near-abstraction in under three weeks, the face and striped bodice distilled into flat planes of red, blue, and yellow outlined in black.",
+by: "Opus 4.8" },
+
+"odalisques-aux-bras-leves": {
+about: "Henriette Darricarrère, who held arms-raised poses for up to ten hours at a sitting, modelled the odalisque series that Matisse staged in his Nice apartment using Moroccan textiles as theatrical backdrop, of which this 1921 canvas is an early example.",
+by: "Opus 4.8" },
+
+"collioure": {
+about: "Over nine weeks in Collioure in summer 1905, Matisse and Derain applied primary colors straight from the tube with no attempt at naturalism; the canvases they showed at that autumn's Salon scandalized critics into coining the word fauves.",
+by: "Opus 4.8" },
+
+"odalisque": {
+about: "In his Nice apartment studio Matisse dressed Henriette Darricarrère in North African costume and arranged Algerian textiles, Moroccan props, and patterned drapes into a theatrical alcove; this 1926 canvas, signed and dated on the lower left, is one of those staged fantasies.",
+by: "Opus 4.8" },
+
+"nympheas-monet-4": {
+about: "One canvas from Monet's roughly 250-painting water-lily cycle, begun in the late 1890s and pursued obsessively until his death in 1926, this 1903 work shows the pond surface filling the frame as banks and bridge recede.",
+by: "Opus 4.8" },
+
+"the-taking-of-christ": {
+about: "Lost for nearly two centuries and misattributed to Honthorst, this Caravaggio was found in 1990 hanging in the dining room of a Jesuit house on Dublin's Leeson Street, and is now on indefinite loan to the National Gallery of Ireland.",
+by: "Opus 4.8" },
+
+"lady-writing-a-letter-with-her-maid": {
+about: "Stolen twice from Russborough House — first by an IRA gang in 1974 and again by Martin Cahill's crew in 1986 — Vermeer's c.1670 domestic scene spent years underground before its recovery and arrival at the National Gallery of Ireland.",
+by: "Opus 4.8" },
+
+"man-writing-a-letter": {
+about: "Painted as a deliberate pendant to Metsu's companion piece, Woman Reading a Letter, this c.1665 panel was stolen twice from Russborough House alongside the Vermeer before Sir Alfred Beit donated both to the National Gallery of Ireland in 1987.",
+by: "Opus 4.8" },
+
+"the-funeral-of-patroclus": {
+about: "Painted in Rome during David's Prix de Rome pension and shown to critical acclaim at the Palazzo Mancini in 1778, this vast Homeric canvas then vanished for nearly two centuries before the National Gallery of Ireland acquired it in 1973.",
+by: "Opus 4.8" },
+
+"portrait-of-dona-antonia-zarate": {
+about: "Stolen twice from Russborough House — by the IRA in 1974, then Dublin criminals in 1986 — Goya's 1805 portrait of the celebrated Spanish actress Antonia Zárate spent years underground before Irish police recovered it in Antwerp in 1993.",
+by: "Opus 4.8" },
+
+"castle-bentheim": {
+about: "Ruisdael deliberately placed Bentheim's modest low-hill castle atop a towering wooded mountain — a conscious act of invention — making this 1653 painting, completed when he was just twenty-four, the grandest of his dozen versions of the site.",
+by: "Opus 4.8" },
+
+"argenteuil-basin-with-a-single-sailboat": {
+about: "A visitor punched a three-branched tear through this Monet in 2012, and restorers spent eighteen months rejoining individual threads under a microscope before it returned to the wall; Monet painted the autumn basin at Argenteuil in 1874.",
+by: "Opus 4.8" },
+
+"kitchen-scene-with-the-supper-in-emmaus": {
+about: "A 1933 cleaning revealed the risen Christ dining at Emmaus in a hatch behind the kitchen maid, recasting Velázquez's c.1618 bodegón as a painting in which the servant appears to overhear a miracle.",
+by: "Opus 4.8" },
+
+"jacob-blessing-the-sons-of-joseph": {
+about: "Commissioned early in Guercino's career, this 1620 painting — sent to the Getty Conservation Institute for a landmark public restoration — shows the blind patriarch Jacob crossing his hands to bless Joseph's younger son Ephraim over the elder Manasseh.",
+by: "Opus 4.8" },
+
+"judith-with-the-head-of-holofernes": {
+about: "Painted in grisaille to mimic carved stone relief, Mantegna's c.1495 tempera uses monochrome not as a shortcut but as the point — the entire surface reads as sculpture before it reads as paint.",
+by: "Opus 4.8" },
+
+"connemara-girl": {
+about: "Reproduced on more Irish classroom and kitchen walls than almost any other painting, Burke's early 1870s portrait of a barefoot girl herding goats became an unofficial image of rural Ireland.",
+by: "Opus 4.8" },
+
+"fisher-boy-with-basket": {
+about: "Laughter was among the hardest expressions to pin in paint; Hals made it his speciality, and this c.1630 tronie of a grinning fisher boy with a basket is one of his sharpest captures of a fleeting moment.",
+by: "Opus 4.8" },
+
+"nocturnal-landscape-with-the-holy-family-resting-on-the-flight-into-egypt": {
+about: "Among Rembrandt's nine painted landscapes, this 1647 work is the only one set at night, its biblical figures barely visible beside a campfire while a vast, moonlit darkness commands the canvas.",
+by: "Opus 4.8" },
+
+"hellelil-and-hildebrand-the-meeting-on-the-turret-stairs": {
+about: "Voted Ireland's favourite painting in a 2012 public poll, Burton's 1864 watercolour is kept behind closed cabinet doors and displayed for only a few hours a week to protect its colours from light damage.",
+by: "Opus 4.8" },
+
+"cornelis-de-graeff-with-his-wife-and-sons": {
+about: "The only known commissioned work by Jacob van Ruisdael, this c.1660 collaboration with Thomas de Keyser records Amsterdam's most powerful burgomaster arriving at his Soestdijk estate with his family in a gilded coach.",
+by: "Opus 4.8" },
+
+"the-gleaners-breton": {
+about: "Painted three years before Millet's more famous version, Jules Breton's 1854 canvas drew praise at the 1855 Salon for finding dignity rather than hardship in the women gathering leftover grain after the harvest.",
+by: "Opus 4.8" },
+
+"portrait-of-baldassare-castiglione": {
+about: "Titian painted this c.1536-38 portrait of the author of The Book of the Courtier several years after Castiglione's death, commemorating the man whose writing had defined Renaissance ideals of courtly conduct for all of Europe.",
+by: "Opus 4.8" },
+
+"el-sueno": {
+about: "Unusually gentle for Goya, this luminous oil sketch of a sleeping woman in silvery greys, c.1800, was acquired by the National Gallery of Ireland in 1969 and stands apart from his more turbulent work.",
+by: "Opus 4.8" },
+
+"in-a-dublin-park-light-and-shade": {
+about: "Shown at the Royal Academy in 1895, Walter Osborne's Phoenix Park scene applied French Impressionist light to the reality of Dublin's poor, a mother and infant at the centre watched by two worn old men.",
+by: "Opus 4.8" },
+
+"dublin-streets-a-vendor-of-books": {
+about: "Osborne painted this Aston Quay book stall using photographs alongside outdoor sketches — a quietly modern method — placing the Custom House in the haze behind a scene of working Dublin, 1889.",
+by: "Opus 4.8" },
+
+"portrait-of-lady-elizabeth-foster-later-duchess-of-devonshire": {
+about: "The sitter lived for decades in a ménage à trois with the Duke of Devonshire and his wife Georgiana, then married the Duke after Georgiana's death; Lawrence painted her in 1805 mid-arrangement.",
+by: "Opus 4.8" },
+
+"banks-of-a-canal-near-naples": {
+about: "Caillebotte's early Italy visit in 1872 produced this radically cropped, low-horizon canal view years before his famous Paris streets — the stone post's off-centre placement already signals his spatial restlessness.",
+by: "Opus 4.8" },
+
+"children-on-the-sand-dunes-grandcamp": {
+about: "Gonzalès was Manet's only formal pupil, yet like him she refused to show with the Impressionists; this 1877 Normandy coast scene of two children and a fish basket reveals her plein-air lightness on her own terms.",
+by: "Opus 4.8" },
+
+"line-describing-a-cone": {
+about: "Viewers stand with their backs to the screen and look into the projector beam itself — over thirty minutes a pencil of light slowly widens into a hollow cone of haze, McCall's 1973 solid-light sculpture without a surface.",
+by: "Opus 4.8" },
+
+"banks-of-the-seine-with-the-pont-de-clichy": {
+about: "Painted during Van Gogh's Paris years in June 1887, this Seine riverbank scene shows him absorbing Impressionist colour and light just two years before the vivid southern palette of Arles would take over.",
+by: "Opus 4.8" },
+
+"judith-i": {
+about: "Critics at the 1901 Vienna Secession called her Salome rather than Judith, and the confusion stuck — Klimt's gold-ground femme fatale, modelled on socialite Adele Bloch-Bauer, reads as erotic triumph rather than pious heroism.",
+by: "Opus 4.8" },
+
+"beethoven-frieze": {
+about: "Klimt painted this 34-metre frieze directly onto the walls of the 1902 Vienna Secession exhibition as a temporary decoration, never meant to outlast the show; a collector bought and dismantled it in 1903, and it did not go on public display again until 1986.",
+by: "Opus 4.8" },
+
+"the-evil-mothers": {
+about: "Segantini based this 1894 Divisionist vision on a Buddhist-inflected poem by Luigi Illica in which women who rejected motherhood are condemned to purgatorial suffering, entangled in frozen trees for eternity.",
+by: "Opus 4.8" },
+
+"death-and-the-maiden": {
+about: "Schiele painted this in 1915 immediately after abandoning his lover Wally Neuzil to marry the more socially acceptable Edith Harms; the clinging woman is Wally, and Schiele himself is the dark figure she holds.",
+by: "Opus 4.8" },
+
+"fishermen-in-poissy": {
+about: "One of only three paintings Monet made of Poissy during his two years living there, this Seine scene captures anglers from an elevated viewpoint — an unusually bird's-eye angle for Monet in 1882.",
+by: "Opus 4.8" },
+
+"portrait-of-pere-paul": {
+about: "Paul-Antoine Graff baked galettes for Monet, his rare off-season guest at the Pourville inn, and Monet called this loose, affectionate portrait an esquisse curieuse — a curious sketch — painted in 1882.",
+by: "Opus 4.8" },
+
+"the-hydra": {
+about: "Klimt renamed these entwined water-nymphs from a provocative title to the allegorical Wasserschlangen — Water Serpents — so he could exhibit the work in Vienna without censorship, completing it between 1904 and 1907.",
+by: "Opus 4.8" },
+
+"the-embrace": {
+about: "Painted two years after his marriage to Edith Harms, this 1917 canvas marks Schiele's deliberate turn away from the anguished, isolated figures of his early work toward a tender, mutual shelter the couple held until both died of influenza in 1918.",
+by: "Opus 4.8" },
+
+"portrait-of-amalie-zuckerkandl": {
+about: "Klimt died in 1918 before finishing this portrait, leaving the dress as pencil outlines on bare canvas; Amalie Zuckerkandl was murdered in the Holocaust, and the painting spent decades at the centre of a contested Nazi-looting restitution case.",
+by: "Opus 4.8" },
+
+"bauerngarten-mit-sonnenblumen": {
+about: "A related 'Bauerngarten' canvas sold for $59.3 million at Sotheby's in 2017, making it a record for Klimt landscapes; this 1906 cottage garden, painted at Litzlberg on the Attersee, packs sunflowers and dahlias into his signature square frame.",
+by: "Opus 4.8" },
+
+"the-plain-of-auvers": {
+about: "Van Gogh painted thirteen double-square panoramic canvases around Auvers between 17 June and 27 July 1890, almost all of them in his final weeks of life; this 1890 wheatfield plain is one of that concentrated burst.",
+by: "Opus 4.8" },
+
+"sunflower": {
+about: "Critic Ludwig Hevesi wrote in 1907 that Klimt's single sunflower appears 'like a love-struck fairy, whose greenish-gray robes flow down with passionate tremors,' treating the plant as a veiled human figure rather than a botanical subject.",
+by: "Opus 4.8" },
+
+"seashore-with-fisherman": {
+about: "Friedrich designed this 1807 coastal scene as one half of a deliberate pair with 'Seashore in the Mist,' held together at the Belvedere: the green shoreline here represents earthly life, while the open sea in its companion stands for eternity.",
+by: "Opus 4.8" },
+
+"poppy-field-mohnfeld": {
+about: "Painted at Litzlberg on the Attersee in 1907, Klimt's Mohnfeld suppresses conventional depth so completely that the fruit trees merge into the blooms around them and only a narrow strip of sky survives at the top, turning meadow into tapestry.",
+by: "Opus 4.8" },
+
+"four-trees": {
+about: "Among Schiele's rare serene landscapes, this autumnal row of chestnut trees against a blazing sunset is read as an allegory of life's stages, one bare tree standing for decline; Schiele painted it in 1917.",
+by: "Opus 4.8" },
+
+"souls-on-the-banks-of-the-acheron": {
+about: "Hermes stands luminous before a surging crowd of the newly dead awaiting passage across the Acheron; Hirémy-Hirschl fused academic finish with Symbolist despair in this 1898 canvas, a centrepiece of the Belvedere collection.",
+by: "Opus 4.8" },
+
+"eduard-kosmack": {
+about: "Kosmack's wide, unblinking stare — already noted as hypnotic by contemporaries — is amplified by Schiele into a confrontational force that fills the near-empty canvas; Schiele painted this publisher portrait in 1910.",
+by: "Opus 4.8" },
+
+"theodor-billroth-operating": {
+about: "Seligmann inserted himself into the front row of this meticulous group portrait of Billroth performing surgery before packed student galleries at the Vienna General Hospital, documenting a celebrity surgeon at work in 1890.",
+by: "Opus 4.8" },
+
+"sea-beach-in-the-fog": {
+about: "Fog dissolves sky and sea into a single grey field with two ships barely legible as silhouettes; the radical atmospheric emptiness of Friedrich's 1807 seascape anticipates a stripped-down Romantic sublime that would echo for over a century.",
+by: "Opus 4.8" },
+
+"the-five-senses-by-hans-makart": {
+about: "Called the Malerfürst — painter-prince — by contemporaries, Makart embodied an era: his Makartstil set the aesthetic of Ringstrasse Vienna, and this five-panel cycle of allegorical nudes, one per sense, painted 1872–79, is its summation.",
+by: "Opus 4.8" },
+
+"avenue-in-the-park-of-schloss-kammer": {
+about: "Klimt built the entire canopy from small distinct dabs of colour, a modified pointillism that turns observation into decoration: the tree-lined drive to the Attersee castle dissolves into interlocking patches of green and blue, 1912.",
+by: "Opus 4.8" },
+
+"still-life-with-five-bottles": {
+about: "Van Gogh painted this while teaching Eindhoven friends to paint still lifes in November 1884, working in dark earth tones that show no trace of the vivid colour that would define his later work, a record of deliberate, early learning.",
+by: "Opus 4.8" },
+
+"lady-in-white": {
+about: "Klimt suffered a fatal stroke in January 1918 and died the following month, leaving several canvases mid-session; this portrait of an unidentified woman, face and dress barely resolved, is among those caught at the moment he stopped working, 1917–18.",
+by: "Opus 4.8" },
+
+"trois-ecolieres": {
+about: "Courbet's Realist instinct fills the canvas with the quiet texture of absorbed attention: three girls at a desk, barely looking up from their books, painted in a close, dim interior in 1860 with characteristic economy of light and sentiment.",
+by: "Opus 4.8" },
+
+"the-old-bachelor": {
+about: "Spitzweg plants his solitary figure with his back to the viewer, quietly parodying the Romantic Rückenfigur to skewer Biedermeier bachelor isolation; the 1846 genre scene is gentle social satire from a self-taught painter who trained as a pharmacist.",
+by: "Opus 4.8" },
+
+"allegory-of-sacred-music": {
+about: "Painted for a seven-ceiling theatre commission in Rijeka twelve years before Klimt co-founded the Vienna Secession, this work shows him as a fully conventional academic decorator; Gustav Klimt, 1885.",
+by: "Opus 4.8" },
+
+"allegory-of-the-golden-age": {
+about: "One of the leading Austrian Rococo decorators, Maulbertsch was trained through Paul Troger on the Venetian painters Piazzetta and Pittoni, and channelled their turbulent energy into this swirling 1752 mythological allegory of a lost golden age.",
+by: "Opus 4.8" },
+
+"woman-with-child-mathilde-schonberg-with-daughter-gertrud": {
+about: "Gerstl had been invited into the Schönberg household to teach Mathilde to paint; two years after this portrait she left Arnold for him, then returned, and Gerstl killed himself at 25; Richard Gerstl, 1906.",
+by: "Opus 4.8" },
+
+"verherrlichung-des-namens-jesu": {
+about: "This oil sketch is the surviving bozzetto Rottmayr made before painting the nave fresco of the Jesuit church in Breslau (1704–06), preserving his working composition in miniature; Johann Michael Rottmayr, 1703.",
+by: "Opus 4.8" },
+
+"the-conspiracy-of-claudius-civilis": {
+about: "Rejected by Amsterdam's town hall after Rembrandt delivered it in 1662, the canvas was returned to him, and he cut it to roughly a quarter of its original size to make it saleable — what survives is that mutilated fragment.",
+by: "Opus 4.8" },
+
+"the-lady-with-a-fan-the-artist-s-wife": {
+about: "Roslin's wife Marie-Suzanne Giroust was herself a painter elected to the Académie royale, and this 1768 portrait — Diderot called it très piquante — captures a fellow professional behind dark silk and a half-raised fan.",
+by: "Opus 4.8" },
+
+"portrait-of-a-violinist": {
+about: "Vallayer-Coster was one of only four women admitted to the Académie royale before the Revolution, elected at 26, and this 1773 portrait — acquired by Nationalmuseum at a then-record price — shows her at the height of that hard-won recognition.",
+by: "Opus 4.8" },
+
+"truth-time-and-history": {
+about: "Scholars have debated whether Goya painted this allegory around 1804–08 as a decorative companion piece for Godoy's palace, or later as a commentary on the 1812 Constitution — the uncertainty itself signals how charged its imagery of Truth escaping into light became.",
+by: "Opus 4.8" },
+
+"the-triumph-of-venus": {
+about: "Swedish diplomat Carl Gustaf Tessin bought this directly from Boucher's Paris studio in 1740, then was forced by debt to sell his entire collection to the Swedish crown in 1749 — which is how Boucher's most celebrated mythological canvas ended up in Stockholm.",
+by: "Opus 4.8" },
+
+"the-kitchen-maid": {
+about: "Gustav III bought this painting in 1779 without knowing its author, listed simply as a study of a boy; later identified as Rembrandt, 1651, it became one of the Nationalmuseum's most celebrated Dutch Golden Age works.",
+by: "Opus 4.8" },
+
+"dancing-fairies": {
+about: "Painted by August Malmström in 1866 and bequeathed to the Nationalmuseum by King Charles XV in 1872, this moonlit vision of translucent water-sprites became a defining image of Swedish National Romantic folklore painting.",
+by: "Opus 4.8" },
+
+"young-boy-peeling-a-pear": {
+about: "Anders Zorn bought this in Paris and donated it to the Nationalmuseum in 1896 as the museum's first Impressionist-circle work; the sitter is Léon Leenhoff, Manet's stepson, in a canvas of c. 1868.",
+by: "Opus 4.8" },
+
+"bringing-home-the-body-of-king-karl-xii-of-sweden": {
+about: "Cederström delivered this canvas on 30 November 1884, the precise anniversary of Karl XII's death; the snow cortège is a deliberate fantasy — the king's body was actually transported by wagon, not carried on an open bier.",
+by: "Opus 4.8" },
+
+"thor-s-fight-with-the-giants": {
+about: "Crowds queued for hours at its 1872 Nationalmuseum debut; bought by King Charles XV, who died that year and bequeathed it to the museum, Winge's 1872 canvas became the defining image of Norse mythology for Swedish national romanticism.",
+by: "Opus 4.8" },
+
 };
