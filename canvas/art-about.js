@@ -509,4 +509,205 @@ by: "Opus 4.8" },
 about: "Wright's moonlit Virgil's Tomb, 1779: a robed figure reads by a ruin near Naples — the Roman poet Silius Italicus, who owned the tomb and honoured Virgil's death each year by declaiming his verse there.",
 by: "Opus 4.8" },
 
+
+"regates-a-argenteuil": {
+about: "Fellow painter Gustave Caillebotte owned this canvas and willed it to France, which is how Monet's 1872 view of Sunday sailboats and their broken reflections on the Seine at Argenteuil reached the Musée d'Orsay.",
+by: "Opus 4.8" },
+
+"nympheas": {
+about: "One of nearly 300 water-lily canvases Monet painted at Giverny over three decades, this large-format 1916 panel dissolves the pond into floating blooms and mirrored willows, and hangs at the Musée Marmottan Monet.",
+by: "Opus 4.8" },
+
+"nympheas-monet-3": {
+about: "This 1903 canvas belongs to Monet's ~300-painting Nymphéas cycle and hangs in the Musée Marmottan Monet, home to the world's largest Monet collection; the pond surface holds only lilies, sky and reflected trees, no horizon.",
+by: "Opus 4.8" },
+
+"a-girl-with-a-watering-can": {
+about: "The blond child's identity has never been pinned down; scholars think Renoir simply painted a neighborhood girl who pleased him. His 1876 canvas sets her on a garden path in Washington's National Gallery of Art.",
+by: "Opus 4.8" },
+
+"lion-attacking-a-dromedary": {
+about: "A CT scan revealed the mounted rider in Verreaux's 1867 taxidermy diorama contains a real human skull and jaw; the orientalist scene of a lion mauling a camel and courier was built for the Paris Exposition.",
+by: "Opus 4.8" },
+
+"paul-cezanne-rochers-a-fontainebleau": {
+about: "Cézanne painted these Fontainebleau boulders around 1893 with thin, watercolor-like oil that flattens depth into a faceted surface, dissolving the forest rocks into shimmering planes of green, blue and purple. Louisine Havemeyer bought it, and it entered the Met with her 1929 bequest.",
+by: "Opus 4.8" },
+
+"claude-monet-chrysanthemums": {
+about: "One of some twenty floral still lifes Monet made between 1878 and 1883 to bring in reliable income, this vase of chrysanthemums, dated 1882, hung beside his Bouquet of Sunflowers at Durand-Ruel in 1883 and with the avant-garde group Les XX in Brussels in 1886.",
+by: "Opus 4.8" },
+
+"claude-monet-bridge-over-a-pond-of-water-lilies": {
+about: "Monet built this Japanese footbridge over the pond he dug at Giverny, then in summer 1899 painted twelve views of it. This 1899 canvas is one of the few in vertical format, tilting emphasis onto the water lilies and their reflections.",
+by: "Opus 4.8" },
+
+"henri-matisse-tete-blanche-et-rose": {
+about: "The face gridded by black bars is Matisse's daughter Marguerite, painted in 1914 during his most Cubist-influenced experiment with abstraction. Matisse said he could only push this far with her, and he kept the picture until his death.",
+by: "Opus 4.8" },
+
+"lovis-corinth-portrat-des-reichsprasidenten-friedrich-ebert": {
+about: "The heavyset man in the blue suit is Friedrich Ebert, first president of Germany's Weimar Republic, painted by Lovis Corinth in March 1924. Both men died soon after: Ebert in February 1925, Corinth that July, making this a late work by each.",
+by: "Opus 4.8" },
+
+"claude-monet-poppy-fields-near-argenteuil": {
+about: "This 1875 canvas is one of four views Monet painted of the poppy-strewn plain of Gennevilliers in a single summer, revisiting the motif of his celebrated 1873 Poppies near Argenteuil now in the Musee d'Orsay, its two poplars framing a lone figure.",
+by: "Opus 4.8" },
+
+"edgar-degas-two-dancers": {
+about: "The model tugging her shoulder strap in this 1879 study is Marie van Goethem, the young ballet pupil who posed for Degas's scandalous sculpture The Little Fourteen-Year-Old Dancer, drawn here in chalk on paper that keeps its original green tint.",
+by: "Opus 4.8" },
+
+"lovis-corinth-blumen-und-tochter-wilhelmine": {
+about: "The shy child beside the blaze of amaryllis, arums and lilacs is Corinth's own eleven-year-old daughter Wilhelmine, who lived to 2001; the artist merged his love of flower painting with a family portrait in this 1920 canvas, now in Kunstmuseum Basel.",
+by: "Opus 4.8" },
+
+"gustave-courbet-the-source-of-the-loue": {
+about: "Courbet trowelled this 1864 grotto on with a palette knife, building a craggy surface to match the rock, one of four landscapes he made of the Loue's cavernous source, the river of his native Ornans, in a single spring campaign.",
+by: "Opus 4.8" },
+
+"claude-monet-the-path-through-the-irises": {
+about: "The blaring, near-abstract color here owes partly to the double cataracts clouding Monet's sight; painted around 1914-17, it belongs to a series of some twenty iris views from his Giverny garden made in monumental scale during the First World War.",
+by: "Opus 4.8" },
+
+"claude-monet-camille-monet-1847-1879-in-the-garden-at-argent": {
+about: "One of roughly ten canvases Monet painted of his rented house and garden in 1876, the last full year at Argenteuil; his wife Camille dissolves into a pale blue shape beside the flowering bed, the flowers overtaking her.",
+by: "Opus 4.8" },
+
+"pierre-auguste-renoir-still-life-with-peaches-and-grapes": {
+about: "Renoir painted this in summer 1881 at the Wargemont home of his patron Paul Berard, one of two matched still lifes of the family's faience bowl heaped with peaches; Berard kept this one, the other went to the 1882 Impressionist exhibition.",
+by: "Opus 4.8" },
+
+"georges-seurat-grandcamp-un-soir": {
+about: "Seurat later framed this 1885 Normandy seascape with a painted dotted border of his own, extending the pointillist method onto the frame; the back carries the signature of his disciple Paul Signac, who once owned it.",
+by: "Opus 4.8" },
+
+"edouard-manet-young-lady-in-1866": {
+about: "Manet's model is Victorine Meurent, the same woman who scandalized Paris as the nude in Olympia; here in 1866, buttoned into a pink peignoir with a parrot, she reads as a demure rejoinder to Courbet's sensual Woman with a Parrot.",
+by: "Opus 4.8" },
+
+"vincent-van-gogh-roses": {
+about: "These roses read as white now, but van Gogh painted them pink; the red pigment has bleached over time, erasing the pink-against-green contrast he intended. He made this in May 1890 as he prepared to leave the Saint-Remy asylum.",
+by: "Opus 4.8" },
+
+"vincent-van-gogh-the-flowering-orchard": {
+about: "Van Gogh painted fourteen orchard canvases in barely a month during the Arles spring of 1888, chasing what he called a Provencal orchard of tremendous gaiety; this one, with its rake and scythe, is among the few to hint at a human presence.",
+by: "Opus 4.8" },
+
+"gustave-caillebotte-untitled": {
+about: "Caillebotte, the wealthy painter who bankrolled and collected his fellow Impressionists, worked this snowbound Paris view around 1880 from his own apartment balcony, whose wrought-iron railing anchors the plunging aerial look down Boulevard Haussmann.",
+by: "Opus 4.8" },
+
+"two-sisters": {
+about: "The pair were not sisters at all: eighteen-year-old aspiring actress Jeanne Darlot posed as the elder, and Renoir titled it simply Two Sisters in 1881, painting them on the Fournaise restaurant terrace at Chatou; his dealer added On the Terrace.",
+by: "Opus 4.8" },
+
+"la-promenade": {
+about: "The woman a boater-hatted suitor leads up the wooded path is thought to be Lise Trehot, Renoir's lover and favorite early model; painted in 1870, it reworks a Fragonard-style Rococo courtship theme into open-air Impressionism.",
+by: "Opus 4.8" },
+
+"leonardo-da-vinci-st-john-the-baptist": {
+about: "This descends from Leonardo's Saint John the Baptist in the Louvre, traditionally counted his final painting and the apogee of his sfumato; the enigmatic smile, auburn curls and animal pelt emerging from a dark void were copied endlessly by his Leonardeschi followers.",
+by: "Opus 4.8" },
+
+"stanis-aw-ignacy-witkiewicz-kompozycja": {
+about: "This 1922 canvas puts Witkacy's theory of Pure Form into practice, the doctrine he laid out in his 1919 book on new painting: polymorphic splashes of colour caged in irregular black outlines, meaning subordinated to composition alone.",
+by: "Opus 4.8" },
+
+"franz-marc-triple-t": {
+about: "Painted in March 1912, this is the moment Franz Marc fused Cubism and Futurism into his own idiom: a great cat coiled on a rock, its body and the faceted landscape splintered into the same shards of red, green and violet.",
+by: "Opus 4.8" },
+
+"luncheon-on-the-grass": {
+about: "Rejected by the 1863 Salon jury and hung at the Salon des Refuses, Manet's picture scandalized Paris because his model Victorine Meurent, nude beside two clothed men, met the viewer's gaze as a recognizable modern woman rather than a mythic figure.",
+by: "Opus 4.8" },
+
+"a-burial-at-ornans": {
+about: "Courbet outraged the 1850-51 Salon by painting an ordinary provincial funeral, that of his great-uncle at Ornans, on the vast scale reserved for history and religious epics; critics recoiled at the crowd's ugliness, and Realism had its manifesto.",
+by: "Opus 4.8" },
+
+"the-painter-s-studio": {
+about: "When the 1855 Exposition Universelle rejected this canvas, Courbet built his own Pavilion of Realism in sight of the official show to display it; his self-styled real allegory ranges society's poor at left against his patrons and Baudelaire at right.",
+by: "Opus 4.8" },
+
+"l-absinthe": {
+about: "When Degas's 1876 canvas reached London in 1893, Victorian critics branded it a study in human degradation, a scandal that shamed its two friends who posed. It shows a hollow-eyed woman and companion slumped in a Paris cafe.",
+by: "Opus 4.8" },
+
+"the-balcony": {
+about: "The dark-eyed seated woman is painter Berthe Morisot, making her first appearance in Manet's work before she became his favourite model and sister-in-law. Manet's 1868 scene sets three oddly disconnected figures behind a green iron rail.",
+by: "Opus 4.8" },
+
+"dante-and-virgil-in-hell": {
+about: "Bouguereau painted this lurid academic tour-de-force in 1850 as a Prix de Rome bid, staging Canto XXX of Dante's Inferno where the damned Gianni Schicchi sinks his teeth into a rival while the poets and a demon look on.",
+by: "Opus 4.8" },
+
+"the-birth-of-venus-cabanel": {
+about: "Napoleon III bought Cabanel's nude straight from the 1863 Salon, making it the sanctioned erotic ideal against which Manet's Olympia would soon scandalize. Venus reclines on the waves beneath a flurry of cherubs.",
+by: "Opus 4.8" },
+
+"the-angelus": {
+about: "Salvador Dali was so obsessed with Millet's praying peasants that he had the Louvre X-ray the 1859 canvas, revealing a coffin-shaped form beneath the potato basket, feeding his claim it hid a dead child. Two figures bow at dusk.",
+by: "Opus 4.8" },
+
+"les-raboteurs-de-parquet": {
+about: "The Salon rejected this canvas in 1875 as too vulgar for showing bare-backed urban laborers, so Gustave Caillebotte took it to the Impressionists instead: three men on their knees planing a Paris parquet floor by window light.",
+by: "Opus 4.8" },
+
+"the-circus": {
+about: "Georges Seurat died of diphtheria days after this 1891 Pointillist panel first went on show, leaving it unfinished, its blue guide-grid still visible beneath a bareback rider balanced on a leaping white horse before tiered spectators.",
+by: "Opus 4.8" },
+
+"dance-in-the-country": {
+about: "The smiling woman is Aline Charigot, Renoir's companion and future wife, who modeled for this 1883 canvas: a couple waltzing on a country inn terrace, one of a contrasting pair with the formal Dance in the City.",
+by: "Opus 4.8" },
+
+"the-wounded-man": {
+about: "X-rays revealed a woman once leaned on this sleeper's shoulder: after his long relationship with Virginie Binet collapsed, Courbet painted her out and added a sword and bloodstain, turning the 1844 self-portrait into a dying duelist.",
+by: "Opus 4.8" },
+
+"the-age-of-bronze": {
+about: "This 1877 nude was so lifelike that critics accused Rodin of casting it from a live model; he cleared his name with photographs of the soldier who posed, and the scandal launched his career. A standing man raises one hand to his head.",
+by: "Opus 4.8" },
+
+"eugene-manet-on-isle-of-wight": {
+about: "Berthe Morisot painted this on her 1875 honeymoon at Cowes, the first portrait she made of her new husband Eugene Manet, brother of Edouard. He sits at a hotel window, penned indoors while the sea and passersby stay beyond the glass.",
+by: "Opus 4.8" },
+
+"monet-that-reads": {
+about: "This is Renoir's portrait of his friend Claude Monet, painted around 1873 in the Argenteuil years when the two worked side by side inventing Impressionism. Monet sits absorbed in a newspaper, pipe lit, rendered by a fellow founder rather than a hired hand.",
+by: "Opus 4.8" },
+
+"diogenes": {
+about: "Jules Bastien-Lepage recast the Greek philosopher Diogenes in 1877 not as a heroic sage but as a Naturalist study of destitution, giving the barrel-dwelling cynic cruelly ruined feet and a raw, unidealized face over the lantern he famously carried seeking an honest man.",
+by: "Opus 4.8" },
+
+"berthe-morisot": {
+about: "The sitter is the painter Berthe Morisot, Edouard Manet's favorite model and fellow Impressionist, whom he painted repeatedly before she married his brother Eugene. Here in 1873 he sets her pale face against deep browns and blacks in loose, dashed strokes.",
+by: "Opus 4.8" },
+
+"the-row-boat": {
+about: "Monet painted this empty rowboat at Giverny in 1887, tilting the viewpoint down and cropping out sky and horizon so the River Epte's water fills the whole canvas, a Japanese-print device that pushes the picture toward the near-abstraction of his later water lilies.",
+by: "Opus 4.8" },
+
+"eugene-manet-et-sa-fille-dans-le-jardin-de-bougival": {
+about: "The bearded man is Morisot's husband Eugène Manet, brother of painter Édouard Manet, absorbed in a board game with their daughter Julie; a domestic scene few male Impressionists painted, set at the family's summer home in this 1881 canvas.",
+by: "Opus 4.8" },
+
+"bergere-couchee": {
+about: "This 1891 reclining shepherdess, modeled by local girl Gabrielle Dufour with her goat at Mézy, was the only one of three versions Morisot showed at Boussod et Valadon in 1892, her sole solo exhibition during her lifetime.",
+by: "Opus 4.8" },
+
+"julie-manet-and-her-greyhound-laertes": {
+about: "The greyhound was a consolation gift from poet Stéphane Mallarmé after Julie's father died in 1892; Morisot painted her daughter in mourning black beside the dog named for Hamlet's friend in this 1893 canvas.",
+by: "Opus 4.8" },
+
+"paule-gobillard-peignant": {
+about: "The young painter is Morisot's niece and devoted pupil Paule Gobillard, daughter of her sister Edma; this unsigned 1887 study of her at the easel stayed inside the family as an intimate aunt-to-niece gift until 1961.",
+by: "Opus 4.8" },
+
+"au-bal": {
+about: "Shown at the 1876 Impressionist exhibition that a Figaro critic mocked as \"five or six alienated persons, one of them a woman,\" Morisot's 1875 study of a young woman raising a fan answered that jibe with silvery, ethereal refinement.",
+by: "Opus 4.8" },
+
 };
