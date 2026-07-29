@@ -310,6 +310,7 @@ by: "Opus 4.8" },
 
 "train-in-the-snow": {
 about: "Monet's Train in the Snow, 1875: a locomotive nosing through Argenteuil's snow — he painted it from the station platform, and it foreshadowed his celebrated Gare Saint-Lazare series of 1877.",
+deep: "Monet turns the engine toward us — blunt, black, bearing down — yet the locomotive does not dominate. It condenses. Sky, snow and steam are held in one muffled grey key, and the machine sits within that key rather than against it, so the train reads less as iron cutting through weather than as iron emerging from it. Two lamps burn at the front, hot red-orange dabs that carry the only warmth in a frozen picture and make the whole dark mass suddenly alive and directed. Look at the snow on the ground and it is grey, cream, blue, touched with lilac — never simply white. That same restless coloring moves into the steam above, where machine-smoke and cloud are worked with identical loose touches until neither can be told from the other. The radical proposition is quiet: that the great modern subject and the great Impressionist subject were always the same subject.",
 by: "Opus 4.8" },
 
 "haystacks-midday": {
@@ -499,6 +500,7 @@ by: "Opus 4.8" },
 
 "edouard-manet-madame-manet-suzanne-leenhoff-1830-1906-at-bel": {
 about: "Manet's Madame Manet at Bellevue, 1880 — his last portrait of his wife Suzanne, painted the summer they spent in that Paris suburb, its rapid brushwork preceded by two drawings and an oil sketch.",
+deep: "The hat is the argument. Tipped forward over Suzanne's brow, it throws most of her face into shadow and lets Manet spend almost nothing there — one continuous profile contour, a thin cool wash, a touch of pink at the ear. A display portrait would open the face outward; this one folds it away, making intimacy the subject. The green behind her is not a backdrop but active paint, wet dabs struck against wet, pressing right up to the shoulder with no clear boundary between figure and foliage. Cloth reads as cloth not from drawn folds but from the direction of long dragged strokes of ivory and ochre. What you feel in all of it — the loose dress, the compressed profile, the quick surrounding green — is a man painting the person he already knows completely, in a summer light he may have understood both of them were already running out of.",
 by: "Opus 4.8" },
 
 "paul-cezanne-la-montagne-sainte-victoire-vue-des-lauves": {
@@ -591,6 +593,7 @@ by: "Opus 4.8" },
 
 "claude-monet-the-path-through-the-irises": {
 about: "The blaring, near-abstract color here owes partly to the double cataracts clouding Monet's sight; painted around 1914-17, it belongs to a series of some twenty iris views from his Giverny garden made in monumental scale during the First World War.",
+deep: "The real subject is entry with no exit. Monet plants you inside the iris bed rather than at the end of a receding lane, and the whole surface is built to make you stay there: no sky, no horizon, only blades closing in from both sides and a warm channel of gold that widens as it descends but never opens onto anything beyond itself. Every mark runs vertically — thick, raw sweeps of green and violet dragged upward — so the surface breathes as one rising motion rather than settling into a view. The blooms are dabs of pink set directly against green, vibrating by complementary contrast, never botanical. Toward the top, motif and atmosphere trade places until you cannot say where plant ends and air begins. What was a garden becomes a condition: the eye held, surrounded, unable to find the distance it normally reaches for.",
 by: "Opus 4.8" },
 
 "claude-monet-camille-monet-1847-1879-in-the-garden-at-argent": {
@@ -600,6 +603,7 @@ by: "Opus 4.8" },
 
 "pierre-auguste-renoir-still-life-with-peaches-and-grapes": {
 about: "Renoir painted this in summer 1881 at the Wargemont home of his patron Paul Berard, one of two matched still lifes of the family's faience bowl heaped with peaches; Berard kept this one, the other went to the 1882 Impressionist exhibition.",
+deep: "Renoir paints this fruit exactly as he paints a face: cream and pale yellow on the lit side, deepening through apricot to rose, a breath of green at the stem, cool violet where one peach presses against another — no line, roundness made entirely from warm colour swelling forward and cool retreating. The argument slips in quietly: still life and portrait share the same method, so the heap of peaches in a faience bowl becomes an image of flesh and touch rather than objects. Temperature does all the structural work — warm fruit against the cool blue bowl, both against a neutral wall, and a white cloth that is grey, blue, and lilac in its folds, almost no actual white. The grapes at lower right break containment, spilling onto the cloth in cooler, faster dabs, their chill throwing the peaches' warmth back. What the picture offers, at every scale, is abundance — and Renoir's trust that the sensuous surface of things is reason enough.",
 by: "Opus 4.8" },
 
 "georges-seurat-grandcamp-un-soir": {
@@ -622,6 +626,7 @@ by: "Opus 4.8" },
 
 "gustave-caillebotte-untitled": {
 about: "Caillebotte, the wealthy painter who bankrolled and collected his fellow Impressionists, worked this snowbound Paris view around 1880 from his own apartment balcony, whose wrought-iron railing anchors the plunging aerial look down Boulevard Haussmann.",
+deep: "Everything follows from where you are standing. Caillebotte puts you at a balcony rail, high above the boulevard, and the whole picture is the consequence of that position. The iron scrollwork crosses the foreground in flat black — the one hard, near-abstract shape in a canvas otherwise dissolved into chalky greys — and it names your exact location: indoors, behind the glass, a floor above the cold. Below, a steep plunging perspective tips the street almost vertical, so the Haussmann artery reads as a diagram rather than a road: two rows of buildings converging hard on a misty vanishing point, bare trees thinning to strokes, figures reduced to dark accents pressed into snow. Snow is the device that makes all this legible, stripping the city of colour and crowd until what remains is pure geometry — the new Paris seen from above it, ordered, cold, and very far away.",
 by: "Opus 4.8" },
 
 "two-sisters": {
@@ -647,6 +652,7 @@ by: "Opus 4.8" },
 
 "luncheon-on-the-grass": {
 about: "Rejected by the 1863 Salon jury and hung at the Salon des Refuses, Manet's picture scandalized Paris because his model Victorine Meurent, nude beside two clothed men, met the viewer's gaze as a recognizable modern woman rather than a mythic figure.",
+deep: "What makes this picture scandalous is not the nudity but the gaze. The nude looks out at you level and unbothered while two clothed men talk on beside her, and the whole painting is built to make that look inescapable. Manet seals it with his paint: the body is lit head-on, collapsing into broad pale planes with hard edges rather than warm, rounded flesh — almost a cut-out pressed against near-black coats. The technical 'failure' and the social transgression are the same statement. Every convention of the nude tradition depends on the woman not knowing she is seen; this one knows, and declines to perform otherwise. That is what the picture is doing: not shocking with skin but dismantling the polite agreement that makes looking at painted skin acceptable.",
 by: "Opus 4.8" },
 
 "a-burial-at-ornans": {
@@ -686,10 +692,12 @@ by: "Opus 4.8" },
 
 "the-circus": {
 about: "Georges Seurat died of diphtheria days after this 1891 Pointillist panel first went on show, leaving it unfinished, its blue guide-grid still visible beneath a bareback rider balanced on a leaping white horse before tiered spectators.",
+deep: "Seurat's wager is that feeling can be manufactured. He built this canvas on the theory that upward lines and warm colours equal gaiety, so every element — the whip's arc, the horse's launched body, the rider's flung arms, the tilted seats — rises the same way, like instruments keyed to one note. The result is a scene of abandon that is oddly airless. The rider's face is a blank oval, the crowd a mechanical grid of dotted heads, the gallop a frozen diagram of a gallop. Seurat is not criticising mass entertainment so much as demonstrating what it runs on: the same formula, reliably applied, producing the same sensation on schedule. Even the dots participate — separate unmixed touches doing the mixing in your eye, pleasure engineered all the way down to the brushstroke.",
 by: "Opus 4.8" },
 
 "dance-in-the-country": {
 about: "The smiling woman is Aline Charigot, Renoir's companion and future wife, who modeled for this 1883 canvas: a couple waltzing on a country inn terrace, one of a contrasting pair with the formal Dance in the City.",
+deep: "Renoir bets everything on one smile. The woman turns her flushed face straight out at us mid-turn, openly beaming under a red bonnet, and every other decision in the canvas is arranged to make that land. Her partner is given as a near-abstract block of dark navy — a mass that throws her brightness forward. The yellow gloves are placed as hot punctuation exactly where the two figures meet. The dropped straw hat at the bottom says what the picture will not say directly: someone was too glad to keep hold of it. Renoir builds the dance from soft, edgeless strokes so the dress breathes and the foliage blurs, keeping the whole surface warm and in motion — pleasure that has stopped caring how it looks.",
 by: "Opus 4.8" },
 
 "the-wounded-man": {
@@ -730,6 +738,7 @@ by: "Opus 4.8" },
 
 "julie-manet-and-her-greyhound-laertes": {
 about: "The greyhound was a consolation gift from poet Stéphane Mallarmé after Julie's father died in 1892; Morisot painted her daughter in mourning black beside the dog named for Hamlet's friend in this 1893 canvas.",
+deep: "Grief sits in this picture as a structural principle. The girl's dark mourning dress anchors the composition; everything else — pale divan, loose green walls, the barely-sketched armchair at the left — is kept provisional around it. The dog does the emotional work the girl's grave, closed face withholds: the long muzzle turned upward, the body pressed to her legs, that posture of plain and loyal staying-close. Morisot gives the animal's head almost the same resolved attention she gives her daughter's, as if these are the two things that matter and everything else is notation. The empty chair in the pale left half is the picture's real unsettling detail — the seat of whoever is not there, the watcher who is also the painter who would die within two years.",
 by: "Opus 4.8" },
 
 "paule-gobillard-peignant": {
@@ -738,6 +747,7 @@ by: "Opus 4.8" },
 
 "au-bal": {
 about: "Shown at the 1876 Impressionist exhibition that a Figaro critic mocked as \"five or six alienated persons, one of them a woman,\" Morisot's 1875 study of a young woman raising a fan answered that jibe with silvery, ethereal refinement.",
+deep: "What the picture is about is not the ball but the pause inside it. Morisot crops so tight that there is no room, no floor, no other guests — only a woman who has momentarily stopped performing and turned inward. The downcast gaze, the slightly parted lips, the fan held up without being used: these are the signs of a public person in a private moment. Morisot enacts that through her paint. Everything except the face is left as suggestion: the gown assembled from loose parallel drags of blue-grey and lilac, the glove a single pale sweep, the background collapsing into unblended dabs of foliage and red. The one place she resolves anything is the small, quietly self-absorbed head at the centre. Finish, the picture insists, belongs to the self — not to what surrounds it.",
 by: "Opus 4.8" },
 
 
