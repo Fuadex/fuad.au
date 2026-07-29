@@ -37,9 +37,9 @@ window.CANVAS_ARTWORKS = [
     imgGrid: "https://www.nationalmuseum.se/imager/c545dc925b82e6041b9bbffa9ad0a2b8/Sergel-Hetsigt-k%C3%A4rlekspar-nmha-045-1970_64576ffe4e075da3e6596dab737e8711.jpg",
     imgZoom: "https://www.nationalmuseum.se/imager/c545dc925b82e6041b9bbffa9ad0a2b8/Sergel-Hetsigt-k%C3%A4rlekspar-nmha-045-1970_64576ffe4e075da3e6596dab737e8711.jpg" },
 
-  { id: "fjaestad-wood-pattern", title: "TBC — the wood-pattern painting", artist: "Gustaf Fjæstad", artistId: "fjaestad", qid: null, year: null,
-    seenAt: "tokyo-met", via: "exhibition", exhibition: "Swedish Masters (name TBC)", seenConfidence: "sure", floored: true,
-    note: "Painted to resemble wood grain — \"haven't seen a painting made in such style.\" Attribution to Fjæstad CONFIRMED as likely by Fuad. Which work + which painting was the marvelous exhibition poster — recall deck. NOT Winter Moonlight (a separate work, added below) — the wood-pattern one has water at the bottom of the canvas; candidates Winter Evening by a River / Evening Sun in Early Winter pending Fuad's ID." },
+  { id: "fjaestad-wood-pattern", title: "Winter Evening by a River", artist: "Gustaf Fjæstad", artistId: "fjaestad", qid: "Q43221672", qidTrusted: true, year: 1907,
+    seenAt: "tokyo-met", via: "exhibition", exhibition: "Swedish Masters of Art", seenConfidence: "sure", floored: true,
+    note: "Vinterafton vid en älv (1907, Nationalmuseum Stockholm NM 1703). The dark river fills the lower canvas, its dense vertical tree-reflections reading like wood grain — \"haven't seen a painting made in such style.\" Seen in the Swedish Masters of Art exhibition at the Tokyo Metropolitan Art Museum. ID confirmed by Fuad. (id kept as fjaestad-wood-pattern.)" },
 
   { id: "fjaestad-winter-moonlight", title: "Winter Moonlight", artist: "Gustaf Fjæstad", artistId: "fjaestad", qid: "Q43225438", qidTrusted: true, year: 1895,
     seenAt: "tokyo-met", via: "exhibition", exhibition: "Swedish Masters of Art", seenConfidence: "sure", liked: true,
