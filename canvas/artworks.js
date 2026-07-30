@@ -751,7 +751,7 @@ window.CANVAS_ARTWORKS = [
   { id: "ferdinand-hodler-mount-niesen-seen-from-heustrich", title: "Mount Niesen seen from Heustrich", artist: "Ferdinand Hodler", artistId: "hodler", qid: "Q126718576", qidTrusted: true, year: 1910,
     seenAt: "kunstmuseum-basel", seenConfidence: "sure", floored: true },
   { id: "gustave-caillebotte-untitled", title: "Boulevard Haussmann, effet de neige", artist: "Gustave Caillebotte", artistId: "caillebotte", qid: "Q123822046", qidTrusted: true,
-    seenAt: "met-nyc", seenConfidence: "sure", liked: true },
+    seenAt: "met-nyc", seenConfidence: "unsure", liked: true, note: "Venue can't be literally right — the Met doesn't hold this painting (it's at the Musée du Château de Flers, France); seen-at kept but downgraded pending which Caillebotte/venue this actually was." },
   { id: "edward-hopper-new-york-movie", title: "New York Movie", artist: "Edward Hopper", artistId: "hopper", qid: "Q19884479", qidTrusted: true, year: 1939,
     seenAt: "moma", seenConfidence: "sure", liked: true },
   { id: "edward-hopper-house-by-the-railroad", title: "House by the Railroad", artist: "Edward Hopper", artistId: "hopper", qid: "Q15734146", qidTrusted: true, year: 1925,
