@@ -407,6 +407,8 @@ by: "Opus 4.8" },
 
 "umberto-boccioni-the-city-rises": {
 about: "Boccioni's The City Rises, 1910 — a giant workhorse dissolving into laboring men. Nearly ten feet wide, it is considered his first truly Futurist work, later bought by composer Ferruccio Busoni.",
+deep: "The painting stages modernization not as triumph but as a wrestling match. Boccioni sets a quantity of barely-steerable force at the centre — the horse isn't a beast so much as pure surge made flesh — and the men around it aren't heroes but figures nearly broken by the effort of not being dragged under. That is the real argument: the energy remaking Milan in 1910 is genuinely dangerous, genuinely beautiful, and only nominally under human control. The craft holds the claim up. The city in the background is rendered in legible, descriptive strokes — solid, nameable — while the horse and workers dissolve into Divisionist directionality, strokes that stop depicting surfaces and start tracing momentum. Two levels of reality share one canvas: the made thing and the making of it, the achieved city standing calm at the top while below it the violent, almost-uncontainable process that produced it still rages.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "franz-marc-vogel": {
@@ -440,14 +442,20 @@ by: "Opus 4.8" },
 
 "peter-paul-rubens-der-hollensturz-der-verdammten": {
 about: "Rubens's Fall of the Damned, c.1620 — a cascade of nude bodies hurled into hell. In 1959 a would-be philosopher threw acid over it, saying the acid 'relieves one from the work of destruction'; years of restoration followed.",
+deep: "Rubens solves the Last Judgement's most intractable problem — that eternal punishment is an abstraction — by turning it into a physics problem: bodies have weight, weight falls, and hell is simply the bottom. The doctrine goes de-individualized on purpose; there is no medieval ledger of named sinners, no labels for pride or avarice, only the sheer quantity of humanity going the wrong direction in bulk. The single erect figure at the top in bright armour is the entire argument for order and justice, and everything else — the whole of the rest of the canvas, nearly three metres of it — is what order looks like when it lets go. The engine holding this together is one long diagonal kept permanently in motion: every torso is mid-rotation so the eye is passed from limb to limb and cannot stop falling either; and Rubens grades the palette as the column drops, cool pale flesh at the top warming to red-browns and igniting into ochre-and-black beast-fire at the bottom, as though temperature and colour are themselves consequences of the descent. The horror is not the demons at the right edge. It is the quantity, and the fact that the fall has no visible floor.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "arshile-gorky-diary-of-a-seducer": {
 about: "Gorky's Diary of a Seducer, 1945: sinuous biomorphic forms in a grey field, its title lifted from Kierkegaard — a Surrealist-fed bridge to the Abstract Expressionism his contemporaries would soon push further.",
+deep: "Grey is the gambit. A colourist choosing, for once, to starve the field — so that the single red mouth and the few orange sparks that surface detonate rather than glow. The Kierkegaard title isn't illustrative content; it is a mood instruction. The seducer in Either/Or runs desire as a cold aesthetic project, engineering affection from outside feeling, and Gorky does something analogous: the biomorphic forms that fill his bright canvases — coupling, budding, viscerally alive — are pulled here into ash and shadow, desire observed rather than felt, the body's inner weather gone cerebral. The formal engine is equally withholding. The drawn line refuses to describe the washed shapes beneath it, wandering across them out of register, so the eye can never lock contour to mass. The composition drifts centrifugally, held only by the black weight pressing in at the top corners. Everything is organised around the pleasure of not resolving — a seduction in which legibility is exactly what is kept just out of reach.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "j-m-w-turner-the-parting-of-hero-and-leander": {
 about: "Turner's The Parting of Hero and Leander, 1834 — the doomed lovers hidden in shadow at the water's edge. He broke history-painting convention by pushing his subjects off-centre and wrote his own verse for it.",
+deep: "Grief arrives before the death does — that is what makes this picture so hard to look away from. The architecture is warm, the sea is cold, and Turner builds the canvas as a duel between them: pale stone climbing into rose light on the left, a churn of dissolving surf lit from within on the right, the moonpath threading both halves together while insisting they don't belong to each other. The lovers are there, tiny and low, lamp raised — but the whole upper two-thirds belong to sky and water, and the scale is the argument: the sea is bigger than the love, and already knows how this ends. Turner printed the ending in his catalogue verse before the painted daybreak resolves, the myth's close disclosed before the eye has taken in the dawn. What he made isn't a parting scene; it's a mourning picture in the costume of one, classical amplitude turned nocturnal and fatal at the exact hour a love runs out.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "in-the-arbour": {
@@ -1893,6 +1901,8 @@ by: "Opus 4.8" },
 
 "the-milkmaid": {
 about: "Vermeer gave a low-ranking kitchen servant the pyramidal mass and gravity of a devotional figure, treating the act of pouring milk as something worthy of the same attention as a religious subject. The Rijksmuseum's most visited work, c.1658.",
+deep: "What Vermeer is actually arguing is that attention — sustained, exacting, unhurried attention — is itself a form of reverence, and that the kitchen is as sanctified a space as the church when it is looked at this hard. The servant has the build and the pyramidal mass of an altarpiece figure, but there is no allegory, no moral caption, no justification needed: the pour of milk is the subject and the justification at once. He earns the claim through the craft: money spent on lapis ultramarine against lead-tin yellow, raised dots of paint on the bread's crust that catch actual light the way the bread catches actual light, the milk rendered as motion — white falling through shadow — in a picture where nothing else moves. Even the wall is painted with the gravity reserved elsewhere for faces: bare plaster, nail holes, a shadowed patch. The geometry closes it: bowed head, tilted jug, the pour, the pot — a triangle the window light enters like a stage direction, pinning the whole room in place.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "ophelia": {
@@ -2584,5 +2594,10 @@ by: "Opus 4.8" },
 "leonardo-da-vinci-la-gioconda": {
 about: "On 21 August 1911 Vincenzo Peruggia — an Italian handyman who had once helped build the painting's own protective frame — spent a night hidden in the Louvre, lifted the panel off the wall, tucked it under his smock, and kept it concealed in a trunk in his Paris apartment for two years. The theft triggered global press coverage and public queues to see the empty wall hook, turning a painting that was respected but not iconic into the most famous work in the world. Peruggia's stated motive was to return what he believed Napoleon had stolen from Italy. Leonardo da Vinci, c. 1503–19, oil on panel, Louvre.",
 by: "Opus 4.8" },
+
+"leech-convent-garden": {
+about: "William John Leech painted this Concarneau garden around 1913, and the woman in white reading among the Madonna lilies is Elizabeth, his wife — the same figure who appears under the parasol in The Sunshade. The setting draws on a centuries-old tradition: a walled garden enclosing a woman in white, surrounded by lilies, is the hortus conclusus, the symbolic garden of purity. Leech renders it not as allegory but as sensation — three different whites (dress, lilies, laundry) kept apart by temperature alone, the whole canvas blazing with post-impressionist light. It hangs in the National Gallery of Ireland.",
+deep: "Enclosure, here, is not a privation — it is the whole point. The walled garden carries a freight of theological symbol (the hortus conclusus, the Madonna lilies as congregation), but Leech strips that iconography down to pure sensation: blazing acid greens, three distinct whites separating without a single outline because each is built from different colour temperatures — dress in lilac-cream, lilies in green-silver, convent laundry in whatever the sun makes of cotton. The vertical lily stalks run like organ pipes against the diagonal of her walk, giving the canvas its architecture while the light, post-impressionist and French rather than anything in the Irish tradition before him, flattens and brightens everything into confident dabs. The open question the picture refuses to answer is whether the peace is hers or the painter's: Leech went to Brittany chasing calm through recurring depression, and this garden — his wife reading, too absorbed to notice — holds exactly the stillness he was looking for, painted as though holding it might make it stay.",
+by: "Sonnet 4.6" },
 
 };
