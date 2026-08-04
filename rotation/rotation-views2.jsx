@@ -2753,6 +2753,11 @@ function BlurbSwitcher({ id, about }) {
       </div>
       <div className="tv-switch-body">
         <span className="tv-switch-txt">{showDeep ? (deepText || "…") : (curLoading ? "…" : cur.text)}</span>
+        {/* Stacked second take (Fuad 2026-08-04): where an old-era Fable read stays primary,
+            the newer read rides as `fable2` under a hairline split — same formatting, both kept. */}
+        {!showDeep && cur.m === "fable" && llm && llm.fable2 && (
+          <span className="tv-switch-txt" style={{ display: "block", marginTop: 9, paddingTop: 9, borderTop: "1px solid var(--ink-faint, rgba(127,127,127,.3))" }}>{llm.fable2}</span>
+        )}
         {/* Fable addition (Fuad 2026-07-28): when QC sees a verified layer the read couldn't
             surface, it rides as `fnote` — an italic line under the Fable read, never an edit. */}
         {!showDeep && cur.m === "fable" && llm && llm.fnote && (
