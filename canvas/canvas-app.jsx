@@ -968,7 +968,7 @@ function Reader({ id, go }) {
               </div>
               {/* full long-form studies live in Study mode (#/study/<id>), not as a flat tier here */}
               <div className="cv-r-read-txt">{tier === "deep" ? read.deep : read.about}</div>
-              <div className="cv-r-read-by">via {read.by || "Fable"}</div>
+              <div className="cv-r-read-by">via {(tier === "deep" && read.deepBy) ? read.deepBy : (read.by || "Fable")}</div>
             </div>
           )}
           {pal && (
@@ -1323,7 +1323,7 @@ function MuseumView({ museumId, go }) {
             </figure>
           )}
           <div className="cv-r-read-txt">{tier === "deep" && ABOUT.deep ? ABOUT.deep : ABOUT.about}</div>
-          <div className="cv-r-read-by">via {ABOUT.by || "Fable"}</div>
+          <div className="cv-r-read-by">via {(tier === "deep" && ABOUT.deepBy) ? ABOUT.deepBy : (ABOUT.by || "Fable")}</div>
         </div>
       )}
 
