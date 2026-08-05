@@ -3279,6 +3279,31 @@ if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
   // set of "artistSlug~songSlug" performed live, for the TrackView "seen live" mark.
   const perArtist = new Map();
   const liveSongKeys = new Set();
+  // Setlist.fm titles often differ from scrobbled titles by suffixes the service omits —
+  // "(feat. X)", "(cover)", "(live)", "- Live On BBC…", "(TV-Size)" — so an exact slug match
+  // misses them (the track row never gets the 🎤). Resolve each live song to any scrobbled
+  // track sharing the same NORMALISED title: strip trailing bracket/paren suffixes and
+  // version-y "- …" tails, but only when title text precedes them, so bracket-only interlude
+  // titles like "[JFK]" stay intact and can't cross-match a different interlude.
+  const _normTitle = (s) => {
+    let t = (s || "").trim(), prev;
+    do { prev = t; t = t.replace(/(.+?)\s*[\(\[][^\[\]\(\)]*[\)\]]\s*$/, "$1").trim(); } while (t !== prev);
+    t = t.replace(/\s*[-–]\s+.*(remaster|live|mono|stereo|edit|version|mix|demo|session|bbc|radio|acoustic|single|album|take|anniversary|remix).*$/i, "").trim();
+    t = t.replace(/\s+feat\.?\s+.*$/i, "").trim();
+    return t.toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+  };
+  const _normMap = new Map();   // (artistSlug \x00 normTitle) -> Set(trackSlug)
+  for (const k of trackPlays.keys()) {
+    const i = k.indexOf("\x00"); if (i < 0) continue;
+    const nt = _normTitle(k.slice(i + 1)); if (!nt) continue;
+    const mk = slug(k.slice(0, i)) + "\x00" + nt;
+    let set = _normMap.get(mk); if (!set) { set = new Set(); _normMap.set(mk, set); }
+    set.add(slug(k.slice(i + 1)));
+  }
+  const _resolveLive = (aid, name) => {   // scrobbled trackSlugs whose normalised title matches
+    const nt = _normTitle(name); if (!nt) return [];
+    const set = _normMap.get(aid + "\x00" + nt); return set ? [...set] : [];
+  };
   for (const g of rawGigs) {   // merged: setlist.fm + gigs-manual adds/overrides
     const aid = slug(g.artist);
     let e = perArtist.get(aid);
@@ -3287,8 +3312,8 @@ if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
     e.dates.push(g.date);
     for (const s of (g.songs || [])) {
       if (!s.name) continue;
-      const key = aid + "~" + slug(s.name);
-      liveSongKeys.add(key);
+      liveSongKeys.add(aid + "~" + slug(s.name));
+      for (const ts of _resolveLive(aid, s.name)) liveSongKeys.add(aid + "~" + ts); // suffix-mismatch resolution
       e.songs.set(s.name, (e.songs.get(s.name) || 0) + 1); // times seen performed
     }
   }
@@ -3301,7 +3326,7 @@ if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
       first: dates[0], last: dates[dates.length - 1],
       // songs performed, most-repeated first (then alpha); flag which you also play
       songs: [...e.songs.entries()]
-        .map(([title, times]) => ({ title, times, played: (trackPlays.get(a.name + "\x00" + title) || 0) > 0 }))
+        .map(([title, times]) => ({ title, times, played: (trackPlays.get(a.name + "\x00" + title) || 0) > 0 || _resolveLive(a.id, title).length > 0 }))
         .sort((x, y) => (y.times - x.times) || x.title.localeCompare(y.title)),
     };
   }
