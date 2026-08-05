@@ -722,6 +722,20 @@ const erasRaw = years.map(year => {
   return { year, top };
 });
 
+// seen-live inclusion: any artist you've attended a gig for gets a full artist entry
+// (and thus the seen-live badge), regardless of play count — so niche live acts you
+// rarely stream (e.g. Maximum the Hormone, 44 plays) aren't dropped by the TOP_ARTISTS
+// cutoff. Only rescues artists with >=1 scrobble; pure gig-only acts stay gig-map-only.
+{
+  const _rankSlug = new Map(rankedArtists.map(([n]) => [slug(n), n]));
+  const _gigNames = [];
+  try { const j = JSON.parse(fs.readFileSync(path.join(__dirname, "gigs.json"), "utf8")); for (const g of (j.gigs || [])) _gigNames.push(g.artist); } catch (e) {}
+  try { const j = JSON.parse(fs.readFileSync(path.join(__dirname, "gigs-manual.json"), "utf8")); for (const g of (j.add || [])) _gigNames.push(g.artist); } catch (e) {}
+  let _added = 0;
+  for (const gn of _gigNames) { const n = _rankSlug.get(slug(gn)); if (n && !include.has(n)) { include.add(n); _added++; } }
+  console.log(`seen-live inclusion: +${_added} sub-threshold gig artists into the artist set`);
+}
+
 // Per-artist top tracks + albums computed from the FULL trackPlays/albumPlays maps,
 // not from the globally-capped TRACKS (top 24) / ALBUMS (top 472). Previously ArtistView
 // filtered globals and an artist like Midori showed zero tracks even though they're scrobbled.

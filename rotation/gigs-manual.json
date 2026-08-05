@@ -298,6 +298,15 @@
       "city": "Tokyo",
       "country": "Japan",
       "countryCode": "JP"
+    },
+    {
+      "date": "2026-05-29",
+      "artist": "Toronto is Broken",
+      "venue": "Face Bar",
+      "city": "Reading",
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "tour": "Beat:Cancer / Schism Rock Club"
     }
   ]
 }
