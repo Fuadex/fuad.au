@@ -85,10 +85,13 @@ function ShReader({ al, onClose, go }) {
   const key = R.slug(al.artist) + "~" + R.slug(al.title);
   const meta = al.meta || 0;
   const typeName = meta && meta[1] === "s" ? "Single" : meta && meta[1] === "c" ? "Compilation" : "Album";
+  // played albums have a full page — make the cover + title link to it (unplayed/shrinkwrap don't).
+  const openPage = al.unplayed ? null : () => { onClose(); go("album", key); };
   return (
     <div className="sh-veil" onClick={onClose}>
       <div className="sh-reader" onClick={(e) => e.stopPropagation()}>
-        <div className="sh-sleeve" data-spin={spin}>
+        <div className={"sh-sleeve" + (openPage ? " sh-sleeve-link" : "")} data-spin={spin}
+          onClick={openPage || undefined} title={openPage ? "open full page" : undefined}>
           <div className="sh-vinyl" />
           {al.cover
             ? <img className="sh-reader-cover" src={shBig(al.cover)} alt="" onError={(e) => { e.target.src = al.cover; }} />
@@ -96,7 +99,8 @@ function ShReader({ al, onClose, go }) {
         </div>
         <div className="sh-reader-body">
           <div className="r-kicker">{typeName}{meta && meta[0] ? ` · ${meta[0]}` : ""}{meta && meta[2] ? ` · ${meta[2]}` : ""}</div>
-          <div className="sh-reader-title">{al.title}</div>
+          <div className={"sh-reader-title" + (openPage ? " sh-reader-title-link" : "")}
+            onClick={openPage || undefined} title={openPage ? "open full page" : undefined}>{al.title}{openPage ? <span className="sh-title-arrow"> →</span> : null}</div>
           <div className="sh-reader-artist" onClick={() => { onClose(); go("artist", al.artistId); }}>{al.artist} →</div>
           {al.unplayed ? (
             <div className="sh-reader-stats">
@@ -807,6 +811,13 @@ function ShelvesView({ go, seed }) {
           box-shadow: 4px 0 18px rgba(0,0,0,.5); }
         .sh-reader-body { min-width: 0; flex: 1; }
         .sh-reader-title { font-family: var(--serif); font-style: italic; font-size: 24px; line-height: 1.15; margin: 4px 0 2px; }
+        .sh-sleeve-link { cursor: pointer; }
+        .sh-sleeve-link .sh-reader-cover { transition: box-shadow .18s; }
+        .sh-sleeve-link:hover .sh-reader-cover { box-shadow: 4px 0 24px rgba(0,0,0,.6); }
+        .sh-reader-title-link { cursor: pointer; transition: color .15s; }
+        .sh-reader-title-link:hover { color: var(--accent); }
+        .sh-title-arrow { color: var(--ink-faint); font-size: .72em; vertical-align: middle; }
+        .sh-reader-title-link:hover .sh-title-arrow { color: var(--accent); }
         .sh-reader-artist { color: var(--ink-soft); cursor: pointer; font-size: 14px; margin-bottom: 10px; }
         .sh-reader-artist:hover { color: var(--accent); }
         .sh-reader-stats { display: flex; gap: 14px; flex-wrap: wrap; font-family: var(--mono); font-size: 10px;
