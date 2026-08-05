@@ -426,6 +426,11 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   transition: opacity .4s ease;
 }
 .as-spine .layer-img { opacity: 0; }
+/* cover-less items render a .poster-fallback (big .pf-title) in place of the image;
+   like .layer-img it must be hidden on spines, else the 28px title overflows the
+   ~24px spine horizontally and obfuscates it (e.g. Invisible Cities, Dekalog). The
+   vertical .spine-label carries the title in spine mode. */
+.as-spine .poster-fallback { opacity: 0; }
 
 .layer-spine {
   position: absolute;
