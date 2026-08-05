@@ -49,7 +49,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: null, via: "exhibition", exhibition: "TBC — 2024 retrospective was Tokyo Met, but Fuad can't confirm that's where he saw them", seenConfidence: "sure",
     note: "\"Amazing in real life\" is certain; the VENUE is the open question (couldn't verify the exhibition on the website)." },
 
-  { id: "klimt-kiss", title: "The Kiss", artist: "Gustav Klimt", artistId: "klimt", qid: "Q203890", year: 1908,
+  { id: "klimt-kiss", title: "The Kiss", artist: "Gustav Klimt", artistId: "klimt", qid: "Q698487", year: 1908,
     seenAt: "belvedere", seenConfidence: "probably", note: "\"I think I saw The Kiss yes\" — long ago." },
 
 
