@@ -432,9 +432,9 @@ window.CANVAS_HIRES = {
 "n": "Leaded glass with one broken pane — the light source that does all the work in the picture, entering like a stage direction."
 },
 {
-"x": 0.55,
+"x": 0.65,
 "y": 0.05,
-"w": 0.42,
+"w": 0.32,
 "h": 0.35,
 "t": "The wall",
 "n": "Bare plaster, two nails, nail holes, a stain: a nothing surface painted with the attention other painters reserved for faces. Attention as reverence."
