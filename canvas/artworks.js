@@ -704,7 +704,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: "met-nyc", seenConfidence: "sure", liked: true },
   { id: "georges-seurat-the-channel-at-gravelines-evening", title: "The Channel at Gravelines, Evening", artist: "Georges Seurat", artistId: "seurat", qid: "Q3793240", qidTrusted: true, year: 1890,
     seenAt: "moma", seenConfidence: "sure", liked: true },
-  { id: "andrea-mantegna-triumph-des-scipio", title: "Triumph des Scipio", artist: "Andrea Mantegna", artistId: "mantegna", qid: "Q3204269", qidTrusted: true, year: 1505,
+  { id: "andrea-mantegna-triumph-des-scipio", title: "The Introduction of the Cult of Cybele at Rome", artist: "Andrea Mantegna", artistId: "mantegna", qid: "Q3204269", qidTrusted: true, year: 1505,
     seenAt: null, seenConfidence: "sure", liked: true },
   { id: "edouard-manet-madame-manet-suzanne-leenhoff-1830-1906-at-bel", title: "Madame Manet (Suzanne Leenhoff, 1830–1906) at Bellevue", artist: "Édouard Manet", artistId: "manet", qid: "Q19905267", qidTrusted: true, year: 1880,
     seenAt: "met-nyc", seenConfidence: "sure", liked: true },
