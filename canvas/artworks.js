@@ -10,7 +10,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: "orangerie", seenConfidence: "sure", favorite: true, note: "The panoramic rooms." },
 
 
-  { id: "podkowinski-szal-uniesien", title: "Szał uniesień (Frenzy of Exultations)", artist: "Władysław Podkowiński", artistId: "podkowinski", qid: "Q2450645", year: 1894,
+  { id: "podkowinski-szal-uniesien", title: "Szał uniesień (Frenzy of Exultations)", artist: "Władysław Podkowiński", artistId: "podkowinski", qid: "Q4942269", year: 1894,
     seenAt: "sukiennice", seenConfidence: "probably", favorite: true, note: "One canvas exists (slashed by the artist, restored) — hangs in Sukiennice; the Warsaw memory was likely a loan or another Podkowiński." },
 
   { id: "leech-the-sunshade", title: "The Sunshade", artist: "William John Leech", artistId: "leech", qid: null, year: 1913,
