@@ -147,16 +147,67 @@ const weight = (w) => (w.floored || w.favorite) ? 0 : (w.liked ? 1 : 2);
 // arrangement helpers — dominant-hue of a work (grey/no-palette sort last), primary movement,
 // and century band. All from data already loaded (CANVAS_PALETTE, AD.artists movementQids, year).
 const palHueOf = (w) => { const p = (window.CANVAS_PALETTE || {})[w.id]; if (!p || !p[0]) return 999; const h = hexHue(p[0]); return h < 0 ? 998 : h; };
-const movOf = (w) => { const a = AD.artists[w.artistId]; const q = a && a.movementQids && a.movementQids[0]; return (q && (AD.movements || {})[q]) || null; };
 const centuryOf = (w) => w.year ? Math.floor(w.year / 100) * 100 : null;
 
-function Wall({ go, mode = "collage" }) {
+// ——— MOVEMENTS ———————————————————————————————————————————————————————————————
+// Wikidata files movement on the ARTIST (P135), never on the canvas — so a style here always
+// means "by an artist Wikidata calls an Impressionist", not "this picture is Impressionist".
+// The copy says so; don't let the UI imply otherwise.
+//
+// Raw labels need a pass before they're fit to show: case is inconsistent ("Expressionism" and
+// "expressionism" are separate labels, likewise Naturalism), "Baroque painting" is just Baroque,
+// and Jules Bastien-Lepage's movement is literally "potato" (Wikidata junk, 2026-08-07).
+const MOV_DROP = new Set(["potato"]);
+const MOV_ALIAS = { "Baroque painting": "Baroque" };
+// Title-case the first word and each space-separated word after it. Hyphen continuations are left
+// alone on purpose, so "Post-impressionism" and "Ukiyo-e" keep the form the literature uses.
+const movLabel = (s) => (MOV_ALIAS[s] || s).replace(/^[a-zà-ÿ]/, c => c.toUpperCase()).replace(/ ([a-zà-ÿ])/g, (m, c) => " " + c.toUpperCase());
+const movSlug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+// ALL of an artist's movements, cleaned and deduped. Filtering matches ANY of them: reading only
+// movementQids[0] hides most of the collection — Neo-impressionism is 1 work by primary and 23 by
+// any, Bauhaus 0 vs 14, Fauvism 1 vs 11.
+const movsOf = (w) => {
+  const a = AD.artists[w.artistId];
+  if (!a || !a.movementQids) return [];
+  const out = [];
+  for (const q of a.movementQids) {
+    const raw = (AD.movements || {})[q];
+    if (!raw || MOV_DROP.has(raw)) continue;
+    const l = movLabel(raw);
+    if (!out.includes(l)) out.push(l);
+  }
+  return out;
+};
+// grouped Movements mode needs ONE bucket per work, so it still keys off the primary movement.
+const movOf = (w) => movsOf(w)[0] || null;
+// every movement present in the canon, by work count — the chip row's source of truth
+const movIndex = () => {
+  const counts = {};
+  for (const w of WORKS) for (const m of movsOf(w)) counts[m] = (counts[m] || 0) + 1;
+  return Object.entries(counts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([label, n]) => ({ label, n, slug: movSlug(label) }));
+};
+
+// how many style chips sit on the row before the rest fold into "+N more"
+const STYLE_CHIPS = 12;
+
+function Wall({ go, mode = "collage", styleIds }) {
   const all = useMemo(() => WORKS.map(enrich), []);
   const [filt, setFilt] = useState("all");
   const [mus, setMus] = useState("");
   const [sort, setSort] = useState("hang");
   const [extra, setExtra] = useState(0);
-  useEffect(() => { setExtra(0); }, [filt, mus, sort, mode]);
+  const [allStyles, setAllStyles] = useState(false);   // "+N more" disclosure
+  const movs = useMemo(movIndex, []);
+  // Selected styles live in the URL (#/wall/impressionism+fauvism), not in state — that makes a
+  // filtered wall shareable and back-button-able, and gives Portrait somewhere to link to.
+  const sel = useMemo(() => {
+    const bySlug = new Map(movs.map(m => [m.slug, m.label]));
+    return (styleIds || "").split("+").map(s => bySlug.get(s)).filter(Boolean);
+  }, [styleIds, movs]);
+  const setSel = (labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null);
+  const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
+  useEffect(() => { setExtra(0); }, [filt, mus, sort, mode, styleIds]);
 
   const shown = useMemo(() => {
     let list = all;
@@ -166,6 +217,8 @@ function Wall({ go, mode = "collage" }) {
     if (filt === "unsure") list = list.filter(w => w.seenConfidence !== "sure");
     if (filt === "wish") list = list.filter(w => w.wish);
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
+    // styles are OR'd — picking Impressionism + Fauvism widens, it doesn't narrow to the overlap
+    if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
     const arr = [...list];
     if (mode === "spectrum") arr.sort((a, b) => palHueOf(a) - palHueOf(b) || weight(a) - weight(b));
     else if (mode === "timeline") arr.sort((a, b) => (a.year || 9999) - (b.year || 9999) || weight(a) - weight(b));
@@ -177,7 +230,7 @@ function Wall({ go, mode = "collage" }) {
       if (sort === "museum") arr.sort((a, b) => String(a.seenAt).localeCompare(String(b.seenAt)) || weight(a) - weight(b));
     }
     return arr;
-  }, [all, filt, mus, sort, mode]);
+  }, [all, filt, mus, sort, mode, sel]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
@@ -220,6 +273,27 @@ function Wall({ go, mode = "collage" }) {
         )}
         <span className="cv-count">{Math.min(visN, shown.length)} of {shown.length}</span>
       </div>
+      {/* STYLES — multi-select, OR'd. Movement is the artist's (Wikidata P135), so the note says
+          so rather than pretending each canvas carries the tag. */}
+      <div className="cv-styles">
+        <span className="cv-styles-lbl" title="Wikidata files movement on the artist, not the artwork">styles</span>
+        {movs.slice(0, allStyles ? movs.length : STYLE_CHIPS).map(m => (
+          <button key={m.slug} data-on={sel.includes(m.label)} onClick={() => toggle(m.label)}>
+            {m.label}<i>{m.n}</i>
+          </button>
+        ))}
+        {movs.length > STYLE_CHIPS && (
+          <button className="cv-styles-more" onClick={() => setAllStyles(v => !v)}>
+            {allStyles ? "fewer" : `+ ${movs.length - STYLE_CHIPS} more`}
+          </button>
+        )}
+        {sel.length > 0 && <button className="cv-styles-clear" onClick={() => setSel([])}>✕ clear</button>}
+      </div>
+      {sel.length > 0 && (
+        <div className="cv-styles-note">
+          {shown.length} {shown.length === 1 ? "work" : "works"} by artists working in {sel.join(" or ")}
+        </div>
+      )}
       {grouped
         ? sections.map(g => (
           <section className="cv-section" key={g.k}>
@@ -1632,7 +1706,9 @@ function ArtistView({ artistId, go }) {
       || (series && (ct.includes(nt) || nt.includes(ct))));
   };
   const unmet = (AD2.notable || []).filter(n => !isMet(n));
-  const movements = (AD2.movementQids || []).map(q => (AD.movements || {})[q]).filter(Boolean);
+  // cleaned + deduped, and each one links onto the wall filtered to that style. Keyed off the id
+  // rather than works[0] so an artist with nothing hung yet still shows their movements.
+  const movements = movsOf({ artistId });
   const venues = [...new Set(works.flatMap(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).filter(Boolean)))]
     .map(id => MUS_BY_ID[id]).filter(Boolean);
   const floored = works.filter(w => w.floored || w.favorite).length;
@@ -1644,7 +1720,17 @@ function ArtistView({ artistId, go }) {
         <div>
           <h1 className="cv-a-name">{name}</h1>
           <div className="cv-a-meta">{AD2.born ? `${AD2.born}–${AD2.died || ""}` : ""}{AD2.desc ? ` · ${AD2.desc.replace(/\s*\(\d{4}[–-]?\d{0,4}\)$/, "")}` : ""}</div>
-          {movements.length > 0 && <div className="cv-a-mov">{movements.join(" · ")}</div>}
+          {movements.length > 0 && (
+            <div className="cv-a-mov">
+              {movements.map((m, i) => (
+                <React.Fragment key={m}>
+                  {i > 0 ? " · " : ""}
+                  <span className="cv-a-movlink" onClick={() => go("wall", movSlug(m))}
+                    title={`see every work on the wall by artists working in ${m}`}>{m}</span>
+                </React.Fragment>
+              ))}
+            </div>
+          )}
           <div className="cv-a-stats">{works.length} in your canon{floored ? ` · ★ ${floored} floored` : ""}{liked ? ` · ♡ ${liked} liked` : ""}
             {venues.length ? ` · met at ${venues.map(v => v.name.replace(/\s*\(.*\)$/, "")).join(", ")}` : ""}</div>
         </div>
@@ -2305,7 +2391,8 @@ function Portrait({ go }) {
     const found = artists.filter(a => !AFFINITY.has(a.id) && a.love >= 4).slice(0, 8);
     // movements (loved)
     const movCount = {};
-    for (const w of loved) { const a = AD.artists[w.artistId]; if (!a) continue; for (const q of (a.movementQids || [])) { const m = (AD.movements || {})[q]; if (m) movCount[m] = (movCount[m] || 0) + 1; } }
+    // via movsOf so the labels are the cleaned ones the Wall's chips use — these bars link there
+    for (const w of loved) for (const m of movsOf(w)) movCount[m] = (movCount[m] || 0) + 1;
     const movements = Object.entries(movCount).sort((a, b) => b[1] - a[1]).slice(0, 8);
     // centuries
     const cent = {};
@@ -2334,7 +2421,7 @@ function Portrait({ go }) {
         You've stood in front of <b>{data.total}</b> works across <b>{data.museums}</b> museums in <b>{data.countries}</b> countries —
         {" "}<b>{data.loved}</b> of them moved you, <b>{data.floored}</b> stopped you cold.
         {data.favArtist && <> The artist you return to most is <b onClick={() => go("artist", data.favArtist.id)} style={{ cursor: "pointer", color: "var(--accent)" }}>{data.favArtist.name}</b>.</>}
-        {data.topMovement && <> Your eye lives in <b>{data.topMovement[0]}</b> — it accounts for more of what you love than any other movement, by far.</>}
+        {data.topMovement && <> Your eye lives in <b onClick={() => go("wall", movSlug(data.topMovement[0]))} style={{ cursor: "pointer", color: "var(--accent)" }}>{data.topMovement[0]}</b> — it accounts for more of what you love than any other movement, by far.</>}
       </p>
 
       <div className="cv-p-sec">
@@ -2347,7 +2434,8 @@ function Portrait({ go }) {
         <div className="cv-p-sec">
           <div className="cv-p-lbl">Where your love lives — movements</div>
           {data.movements.map(([m, n]) => (
-            <div className="cv-p-bar" key={m}>
+            <div className="cv-p-bar cv-p-barlink" key={m} onClick={() => go("wall", movSlug(m))}
+              title={`see every work on the wall by artists working in ${m}`}>
               <span className="cv-p-barlbl">{m}</span>
               <span className="cv-p-bartrack"><i style={{ width: (n / maxMov * 100) + "%" }} /></span>
               <span className="cv-p-barn">{n}</span>
@@ -2688,6 +2776,7 @@ function App() {
   const go = (view, id) => { location.hash = id ? "/" + view + "/" + id : view === "home" ? "/" : "/" + view; };
   // useRoute parses "#/" as view="wall"; we treat "wall" with no id AND hash="#/" as home.
   // "#/wall" is the explicit full wall. Reader (#/work/<id>) overlays whatever is beneath.
+  // "#/wall/<style+style>" is still the wall — the id carries the style filter, not a work.
   const isHome = route.view === "wall" && !route.id && (location.hash === "#/" || location.hash === "#" || location.hash === "");
   const view = route.view === "work" ? "work" : isHome ? "home" : route.view;
   return (
@@ -2718,7 +2807,7 @@ function App() {
         : (view === "map" || view === "pilgrimage") ? <MapView go={go} />
         : route.view === "artist" ? <ArtistView artistId={route.id} go={go} key={route.id} />
         : view === "artists" ? <Artists go={go} />
-        : view === "wall" ? <Wall go={go} mode={mode} />
+        : view === "wall" ? <Wall go={go} mode={mode} styleIds={route.id} />
         : <HomeView go={go} />}
       {route.view === "work" && <Reader id={route.id} go={go} />}
       {route.view === "study" && <StudyView id={route.id} go={go} key={route.id} />}

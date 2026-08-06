@@ -282,6 +282,25 @@ a { color: inherit; }
   /* the museum select must never widen the row past the phone; cap it to the row width and clip */
   .cv-filters select { max-width: calc(100vw - 32px); min-width: 0; }
 }
+/* ——— style (movement) chips ———
+   Deliberately quieter than .cv-filters: lower-contrast, not uppercase, count set inside each
+   chip. It's a second row of controls and shouldn't compete with the primary filters. */
+.cv-styles { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; padding: 10px 34px 0; }
+.cv-styles-lbl { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin-right: 4px; cursor: help; }
+.cv-styles button { font: 500 11px/1 var(--sans); padding: 5px 10px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-soft); cursor: pointer; }
+.cv-styles button:hover { color: var(--ink); border-color: var(--ink-faint); }
+.cv-styles button i { font-style: normal; font-family: var(--mono); font-size: 9px; color: var(--ink-faint); margin-left: 6px; }
+.cv-styles button[data-on="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.cv-styles button[data-on="true"] i { color: var(--paper); opacity: .6; }
+.cv-styles-more, .cv-styles-clear { border-style: dashed !important; color: var(--ink-faint) !important; }
+.cv-styles-note { padding: 8px 34px 0; font: italic 400 12px/1.5 var(--serif); color: var(--ink-soft); }
+@media (max-width: 620px) { .cv-styles { padding: 10px 16px 0; } .cv-styles-note { padding: 8px 16px 0; } }
+/* movements are hotlinks into the filtered wall — on the portrait bars and the artist header */
+.cv-p-barlink { cursor: pointer; }
+.cv-p-barlink:hover .cv-p-barlbl { color: var(--accent); }
+.cv-a-movlink { cursor: pointer; }
+.cv-a-movlink:hover { color: var(--accent); }
+
 .cv-more { text-align: center; padding: 0 0 50px; }
 .cv-more button { font: 500 11.5px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; padding: 12px 26px; border-radius: 999px; border: 1px solid var(--ink); background: none; color: var(--ink); cursor: pointer; }
 .cv-more button:hover { background: var(--ink); color: var(--paper); }
