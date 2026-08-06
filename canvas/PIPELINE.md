@@ -25,8 +25,8 @@ Three hand-QC'd content overlays sit beside the script pipeline, all keyed by ca
 - **`art_inspect.js`** (`CANVAS_INSPECT`) — full studies: four lenses + the anchored
   `deeper` detail tour that Study mode (`#/study/<id>`) flies through. Production and QC
   protocol: **[STUDY_SPEC.md](STUDY_SPEC.md)** (Opus subagent drafts from the actual
-  image → Fable fact-checks every claim and crop-verifies every anchor box before merge).
-  16 works covered as of 2026-07-24.
+  image → fact-checked every claim and crop-verified every anchor box before merge).
+  300 works covered as of 2026-08-06.
 - **`art-about.js`** (`CANVAS_ART_ABOUT`) — shorter two-tier reads (about/deep) for
   flagship works. A study entry must go deeper than, and never contradict, an existing
   about read.

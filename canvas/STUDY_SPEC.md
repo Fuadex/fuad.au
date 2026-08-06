@@ -5,7 +5,7 @@
 The INSPECTION layer: per-work deep studies that power Study mode (`#/study/<id>`) — a
 reading pane beside a zoomable image, where each `deeper` stop flies the viewer to a
 region of the painting. This spec is what a drafting model (Opus subagent) receives;
-the QC protocol at the bottom is what the reviewing model (Fable) runs before merge.
+the QC protocol at the bottom is what the reviewing model runs before merge.
 
 The brief, in Fuad's words: the deep reads should "showcase what makes them what they
 are so I can also understand what got me that interested by the artwork."
@@ -47,20 +47,64 @@ are so I can also understand what got me that interested by the artwork."
 - Where an `art-about.js` read already exists, the study must not contradict or repeat
   it — its points are taken; go deeper.
 
-## Production pipeline (the 2026-07-24 wave, 6 works)
+## Production pipeline (matured — as run through batch 31, 2026-08-06)
 
-1. Download the work's image locally (Commons `Special:FilePath/<name>?width=1600`,
-   URL-encode the filename; Commons rate-limits — space requests). The coordinates are
-   fractions of whatever image the writer studies; the site displays the same art_data
-   image, so fractions transfer.
-2. One **Opus subagent per work**, given: this spec, the image path (agents view images
-   via Read), the canon facts (venue, confidence, floored/liked, existing reads), and
-   any history worth pre-flagging for verification. Output: one JSON per work.
-3. **Fable QC** (mandatory — agents' self-checked coordinates drift):
-   - Fact-check every claim; web-verify the load-bearing ones. Resolve or strip flags.
-   - **Crop every `deeper` box out of the image (PIL) and look at it.** In the first
-     wave 6 of 42 boxes were wrong despite agent self-verification (a Fuji reduced to
-     a sliver, a boat that was mostly sky), and crops caught a goat-head described as
-     a bird-head. Never merge un-cropped.
-   - Recalibrate boxes / fix text, strip `id` + `flags`, merge into `art_inspect.js`
-     (`window.CANVAS_INSPECT`), re-parse to validate, push (canvas `?v=` is auto).
+The store is at **300 tours** (batches shipped in waves of 10–25). Each batch runs a
+per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the shared
+`STUDY_BRIEF.md`, `cs.py`, `ids.json`, the downloaded `img_<id>.jpg`, and the drafters'
+`out_tour_<id>.json`. The loop:
+
+1. **Pick the batch.** The tour-priority signal is `seenConfidence:"sure"` + a `note` in
+   the canon (there is **no** `favorite` flag). That 2D-painting pool is now exhausted, so
+   batches draw from the `unsure`/`probably` marquee tier. **Screen images first:**
+   sculpture / installation / gallery-room shots / b&w print repros are NOT tour-eligible —
+   the fly-to-region format needs a painted surface. Some canon P18s are b&w heliogravures
+   or framed gallery photos; catch these before drafting.
+2. **Download each image** locally. Resolve the canon `qid`'s P18 via Wikidata
+   `wbgetentities` / `Special:EntityData`, then Commons `Special:FilePath/<file>?width=1600`
+   (URL-encode; Commons rate-limits — space requests). Broken qids resolve via Commons
+   search or `en.wikipedia.org` pageprops `wikibase_item`. Note low-res briefs so drafters
+   ask for fewer, larger stops.
+3. **Draft:** one **Opus subagent per work**, in waves of ~5, each given the shared
+   `STUDY_BRIEF.md`, the image path, and per-work preflags **including `seenConfidence`**
+   (so the drafter uses the right framing). Output: one `out_tour_<id>.json` each. Badge the
+   merged entry `by:"Opus 4.8"`.
+4. **Box QC (mandatory — never merge un-cropped):** run `cs.py` to draw numbered overlays
+   (`ov_<id>.jpg`) and crop every `deeper` box (`box_<id>_N.jpg`), then look at every crop.
+   Recent batches run near-zero fixes because drafters are told upfront the boxes will be
+   crop-checked — but the format still catches real drift.
+5. **Fact QC:** batch of Sonnet web-verifiers (one per work, or grouped), each handed the
+   work's `flags[]` and text, reporting `FIX: "<old>" => "<new>"` for confirmed errors only.
+   Apply as minimal Python string patches (**use a real em-dash `—`, not `--`**).
+6. **Merge:** insertion-only into `window.CANVAS_INSPECT` after the `window.CANVAS_INSPECT = {\n`
+   anchor — strip `id` + `flags`, keep `by`. Prove the round-trip: eval before/after, assert
+   every existing entry is byte-identical, the count delta equals the batch size, and no box
+   exceeds `[0, 1.002]`. Commit (`git commit -F -`) and push (canvas `?v=` is auto).
+
+## QC lessons (accumulated — read before drafting/QC)
+
+- **Image beats web on anything visible.** Fact-verifiers work from text and are routinely
+  wrong about a work's *visuals* (they've mis-called costume colour, hat shape, weapon
+  count). Only apply verifier fixes to non-visual history; trust the drafter's image-read
+  for what's on the surface. It also beats your own hasty text edits (the Ophelia robin: I
+  moved the text per a verifier before re-checking the image, and had to move it back).
+- **Reconcile the tour against the CANON entry, not just your brief.** A preflag naming the
+  wrong institution sends the verifier to check the wrong *object* entirely (Goya
+  Truth/Time/History: the canon `seenAt`/qid is the Stockholm finished canvas, but the brief
+  said "MFA Boston sketch" — a different work with a different title). Always check
+  `seenAt` + `qid` before trusting a preflag.
+- **Some canon images are framed gallery photos.** Coordinates are fractions of *that*
+  photo, so verify boxes don't clip onto the frame (Degas Two Dancers: two boxes had to be
+  tightened off the gold frame).
+- **Dark silhouettes read as empty** in both the drafted box and a brightened crop — verify
+  against an *unbrightened* zoom that shows the figure's contour against a light neighbour
+  (Munch's near-invisible top-hatted man). Brightening *hurts* a shadow-figure.
+- **Trust the drafter when the qid image differs from your preflags** — they're reading the
+  actual image and correctly adapt (Manet self-portrait = the skull-cap Artizon version, not
+  the private palette one).
+- **On subagent overload / session limits** (daily limit resets ~06:40 Sydney; occasional
+  529s): hand-draft the affected works directly rather than stall — same quality, still
+  badged honestly.
+- A work with a **broken qid shows no image on the site** — worth periodic qid audits
+  (P31/P18/P170). False positives: pastels/sculptures/murals (P31 ≠ "painting") and
+  intentional `met-NNNNN` accession pseudo-ids.
