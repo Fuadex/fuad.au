@@ -538,7 +538,7 @@ function ShelvesView({ go, seed }) {
     <div className="r-view">
       <div className="r-viewhead">
         <div>
-          <div className="r-kicker">Shelves · {mode === "wrap"
+          <div className="r-kicker">Records · {mode === "wrap"
             ? (unData ? `${fmt(unData.albums.length)} LPs still in shrinkwrap` : "…")
             : `${fmt(data.albums.length)} records racked`}</div>
           <h1 className="r-title">{mode === "wrap" ? <>Still <em>sealed</em></> : <>The record <em>shop</em></>}<span className="dot">.</span></h1>

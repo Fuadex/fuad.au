@@ -3222,6 +3222,16 @@ if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
   // (Fuad, 2026-07-06 — Melt-Banana/Ling Tosite Sigure showed "never in rotation", Kneecap plays 0).
   const nameBySlug = new Map();
   for (const [nm, p] of artistPlays) { const s = slug(nm); if (!nameBySlug.has(s) || p > (artistPlays.get(nameBySlug.get(s)) || 0)) nameBySlug.set(s, nm); }
+  // last.fm also disambiguates homonyms with a trailing parenthetical ("WARGASM (UK)") where
+  // setlist.fm just prints the name. The plain slug then lands on the near-unplayed namesake, so
+  // an act you HAVE seen gets credited 1 play and resurfaces under "still to catch". Same
+  // most-played-wins rule, applied to the de-parenthesised slug
+  // (Fuad 2026-08-06 — WARGASM 1 play vs WARGASM (UK) 1803).
+  for (const [nm, p] of artistPlays) {
+    const bare = slug(nm.replace(/\s*\([^)]*\)\s*$/, ""));
+    if (!bare || bare === slug(nm)) continue;
+    if (p > (artistPlays.get(nameBySlug.get(bare)) || 0)) nameBySlug.set(bare, nm);
+  }
   const gigs = rawGigs.map(g => {
     const canon = nameBySlug.get(slug(g.artist)) || g.artist;   // canonical library name for this gig
     const plays = artistPlays.get(canon) || 0;
@@ -3236,7 +3246,9 @@ if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
     known.sort((a, b) => b.plays - a.plays);
     return {
       date: g.date, year: +String(g.date).slice(0, 4),
-      artist: g.artist, artistId: slug(g.artist), hue: hueFor(canon),
+      // id off the CANONICAL name, not the concert billing — otherwise the gig links to a dead
+      // artist page and never matches the seen-set that "still to catch" subtracts.
+      artist: g.artist, artistId: slug(canon), hue: hueFor(canon),
       inLibrary: plays > 0, plays,
       venue: g.venue, city: g.city, country: g.country, countryCode: g.countryCode,
       lat: g.lat, lng: g.lng, tour: g.tour || "",
