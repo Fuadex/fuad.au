@@ -18,10 +18,13 @@ const ACCENTS = [
 
 const NAV_FULL = [
   // order set by Fuad 2026-07-13: Overview, Explore, Calendar, Shelves, Stories, Gigs; Spotify last
+  // relabelled 2026-08-06 (Fuad): Calendar → Time, Shelves → Records. The ROUTE ids stay
+  // `calendar`/`shelves` — they're woven through hash-sync, deep links and lazy chunk names —
+  // so the new names are display-only, with #time / #records aliased in LEGACY below.
   ["overview", "Overview"],
   ["explore", "Explore"],
-  ["calendar", "Calendar"],
-  ["shelves", "Shelves"],
+  ["calendar", "Time"],
+  ["shelves", "Records"],
   ["stories", "Stories"],
   ["gigs", "Gigs"],
   ["live", "Live"],
@@ -36,7 +39,9 @@ const NAV = NAV_FULL.filter(([k]) => {
 });
 // legacy view names (old Charts/Clock/Sound/Eras tabs) now resolve into the unified Explore view;
 // the Map page moved INTO Overview (2026-07-05) — #map deep links land there.
-const LEGACY = { charts: "explore", clock: "explore", sound: "explore", eras: "explore", mood: "explore", journey: "overview", map: "overview" };
+const LEGACY = { charts: "explore", clock: "explore", sound: "explore", eras: "explore", mood: "explore", journey: "overview", map: "overview",
+  // display renames (2026-08-06) — the new nav names work as deep links too
+  time: "calendar", records: "shelves" };
 
 // URL state — a lightweight hash handle per view/artist (e.g. #artist/nine-inch-nails) so pages are
 // deep-linkable and the browser back/forward works. No router lib, no separate pages.

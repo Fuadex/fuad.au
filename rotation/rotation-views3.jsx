@@ -2683,19 +2683,89 @@ function GigsView({ go }) {
   // all vs ACTIVE (default — no point queueing for Type O Negative, Fuad 2026-07-14)
   const [bucketMode, setBucketMode] = React.useState("active");
   const [bucketShown, setBucketShown] = React.useState(12);   // expand by +12 per click (Fuad 2026-07-18)
-  React.useEffect(() => { setBucketShown(12); }, [bucketMode]);
-  const bucketList = React.useMemo(
-    () => (R.ARTISTS || [])
-      .map((a, idx) => ({ a, rank: idx + 1 }))
+  // YEAR SCRUB (Fuad 2026-08-06) — same control as the Overview map's year slider. null = all
+  // time (rank = overall top-artists rank); a year re-ranks the queue by THAT year's plays
+  // (a.yp is the sparse per-year map), so "who owned my 2013 and I still never caught them".
+  const bucketYears = React.useMemo(() => (R.YEARS || []).map(y => y.year).sort((a, b) => a - b), []);
+  const [yrIdx, setYrIdx] = React.useState(null);
+  const [yrPlay, setYrPlay] = React.useState(false);
+  const bucketYear = yrIdx == null ? null : bucketYears[yrIdx];
+  React.useEffect(() => { setBucketShown(12); }, [bucketMode, bucketYear]);
+  React.useEffect(() => {
+    if (!yrPlay || !bucketYears.length) return;
+    const t = setInterval(() => setYrIdx(i => {
+      const n = i == null ? 0 : i + 1;
+      if (n >= bucketYears.length) { setYrPlay(false); return bucketYears.length - 1; }
+      return n;
+    }), 1100);
+    return () => clearInterval(t);
+  }, [yrPlay, bucketYears]);
+  const bucketList = React.useMemo(() => {
+    const pool = (R.ARTISTS || [])
+      .map((a, idx) => ({ a, rank: idx + 1, plays: a.plays }))
       .filter(e => !seenIds.has(e.a.id))
-      .filter(e => bucketMode === "all" || !(e.a.life && e.a.life.ended)),
-    [seenIds, bucketMode]
-  );
+      .filter(e => bucketMode === "all" || !(e.a.life && e.a.life.ended));
+    if (bucketYear == null) return pool;
+    // rank within the year is the artist's place among EVERYONE played that year (seen or not) —
+    // an unseen act sitting at #3 of 2013 is the point; renumbering 1..n would erase it.
+    const y = String(bucketYear);
+    const yrRank = new Map();
+    (R.ARTISTS || []).filter(a => (a.yp || {})[y] > 0)
+      .sort((a, b) => b.yp[y] - a.yp[y])
+      .forEach((a, i) => yrRank.set(a.id, i + 1));
+    return pool
+      .filter(e => (e.a.yp || {})[y] > 0)
+      .map(e => ({ a: e.a, rank: yrRank.get(e.a.id), plays: e.a.yp[y] }))
+      .sort((x, z) => z.plays - x.plays);
+  }, [seenIds, bucketMode, bucketYear]);
 
   const [seenShown, setSeenShown] = React.useState(12);   // Seen & loved: expand by +12 per click (Fuad 2026-07-18)
   // TIME AT CONCERTS — an honest back-of-envelope: songs heard live × ~4.2 min a song.
   const SONG_MIN = 4.2;
   const crowdHours = Math.round(G.songsSeen * SONG_MIN / 60);
+  // ── THE TIMELINE, grouped by night ─────────────────────────────────────────────
+  // Acts within a night are ordered by how much you actually play them (lifetime scrobbles),
+  // falling back to set length — that's what makes Tool rather than Maple's Pet Dinosaur the
+  // face of a 14-act festival day. `place` collapses the venue: one venue → its name, several
+  // (stage names on one festival site) → "N stages", plus the city when it's shared.
+  const [expandAll, setExpandAll] = React.useState(false);
+  const [openDays, setOpenDays] = React.useState({});   // date → open?
+  const nights = React.useMemo(() => {
+    const m = new Map();
+    for (const g of G.gigs) { if (!m.has(g.date)) m.set(g.date, []); m.get(g.date).push(g); }
+    return [...m.entries()].map(([date, list]) => {
+      const acts = list.slice().sort((a, b) => (b.plays - a.plays) || (b.songCount - a.songCount));
+      const venues = [...new Set(acts.map(a => a.venue).filter(Boolean))];
+      const cities = [...new Set(acts.map(a => a.city).filter(Boolean))];
+      const where = venues.length === 1 ? venues[0] : venues.length > 1 ? `${venues.length} stages` : "";
+      return {
+        date, year: acts[0].year, acts,
+        place: [where, cities.join(" · ")].filter(Boolean).join(" · "),
+        songCount: acts.reduce((s, a) => s + a.songCount, 0),
+      };
+    }).sort((a, b) => b.date.localeCompare(a.date));
+  }, []);
+  const GigRow = ({ g, noDate }) => (
+    <div className="gv-gig" data-link={artistHasPage(g.artistId)} onClick={() => openArtist(g.artistId)}>
+      <div className="gv-gig-date" title={g.approx ? "approximate — exact day unknown" : undefined}>{noDate ? "" : gigDate(g.date, true)}</div>
+      <span className="gv-gig-dot" style={{ background: `oklch(0.68 0.16 ${g.hue})` }} />
+      <div className="gv-gig-main">
+        <div className="gv-gig-artist">{g.artist}{g.tour ? <span className="gv-gig-tour"> · {g.tour}</span> : null}</div>
+        <div className="gv-gig-venue">{g.venue}{g.city ? ` · ${g.city}` : ""}</div>
+        {g.knownSongs.length > 0 && (
+          <div className="gv-gig-songs">
+            heard live, in your rotation: {g.knownSongs.map((s, j) => (
+              <React.Fragment key={s.title}>{j > 0 ? ", " : ""}<b>{s.title}</b></React.Fragment>
+            ))}{g.knownCount > g.knownSongs.length ? ` +${g.knownCount - g.knownSongs.length}` : ""}
+          </div>
+        )}
+      </div>
+      <div className="gv-gig-meta">
+        {g.plays > 0 ? <span className="gv-gig-plays">{fmt(g.plays)}<small>plays</small></span> : null}
+        {g.songCount > 0 ? <span className="gv-gig-set">{g.songCount}<small>songs</small></span> : null}
+      </div>
+    </div>
+  );
   const Tile = ({ a, sub }) => (
     <div className="gv-tile" data-link={artistHasPage(a.artistId)} onClick={() => openArtist(a.artistId)}>
       <GenCover hue={a.hue} name={a.artist} size={40} radius={4} />
@@ -2727,28 +2797,46 @@ function GigsView({ go }) {
       {/* LIVE BUCKET LIST — your most-played artists you've never stood in a crowd for. A queue,
           not a chart: numbered, plays shown, each tile opens the artist page. (seenIds is factored
           so a later pass can dim/route these on the map.) */}
-      {bucketList.length > 0 && (
+      {/* guarded on ARTISTS, not bucketList — a year with nothing left to catch must still render
+          the slider, or the scrub strands you on an empty page with no way back. */}
+      {(R.ARTISTS || []).length > 0 && (
         <section className="gv-sec">
           <div className="gv-label">Still to catch</div>
           <div className="gv-title" style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
-            <span>The rotation regulars you've never seen live.</span>
+            <span>{bucketYear == null
+              ? "The rotation regulars you've never seen live."
+              : `Who owned your ${bucketYear} — and still got away.`}</span>
             <div className="r-seg" style={{ flex: "0 0 auto" }}>
-              <button data-on={bucketMode === "active"} onClick={() => setBucketMode("active")}>active artists</button>
-              <button data-on={bucketMode === "all"} onClick={() => setBucketMode("all")}>all artists</button>
+              <button data-on={bucketMode === "active"} onClick={() => setBucketMode("active")}>active</button>
+              <button data-on={bucketMode === "all"} onClick={() => setBucketMode("all")}>all</button>
             </div>
           </div>
+          <div className="gv-years">
+            <button className="gv-play" data-on={yrPlay}
+              onClick={() => { if (!yrPlay && (yrIdx == null || yrIdx >= bucketYears.length - 1)) setYrIdx(0); setYrPlay(p => !p); }}>
+              {yrPlay ? "❚❚" : "▶"}
+            </button>
+            <input className="gv-slider" type="range" min="0" max={bucketYears.length} value={yrIdx == null ? 0 : yrIdx + 1}
+              onChange={(e) => { setYrPlay(false); const v = +e.target.value; setYrIdx(v === 0 ? null : v - 1); }} />
+            <span className="gv-yrlabel">{bucketYear == null ? "all years" : bucketYear}</span>
+          </div>
           <div className="gv-bucket">
-            {bucketList.slice(0, bucketShown).map(({ a, rank }) => (
+            {bucketList.slice(0, bucketShown).map(({ a, rank, plays }) => (
               <div key={a.id} className="gv-bucket-row" data-link={artistHasPage(a.id)} onClick={() => openArtist(a.id)}>
                 <span className="gv-bucket-n">{rank}</span>
                 <GenCover hue={a.hue} name={a.name} size={34} radius={4} image={a.thumb || a.image} />
                 <div style={{ minWidth: 0 }}>
                   <div className="gv-tile-name">{a.name}</div>
-                  <div className="gv-tile-sub">{fmt(a.plays)} plays · never caught</div>
+                  <div className="gv-tile-sub">{fmt(plays)} plays{bucketYear == null ? "" : " in " + bucketYear} · never caught</div>
                 </div>
               </div>
             ))}
           </div>
+          {bucketList.length === 0 && (
+            <div className="gv-tile-sub" style={{ padding: "8px 2px" }}>
+              You caught everyone you played in {bucketYear}.
+            </div>
+          )}
           {bucketList.length > 12 && (
             <button className="gv-tour-all" onClick={() => setBucketShown(n => n >= bucketList.length ? 12 : n + 12)}>
               {bucketShown >= bucketList.length ? "show fewer" : `show 12 more · ${Math.min(bucketShown, bucketList.length)} of ${bucketList.length}`}
@@ -2862,34 +2950,57 @@ function GigsView({ go }) {
         </section>
       )}
 
+      {/* THE TIMELINE — grouped by NIGHT, not by show. 109 shows land on 34 dates; the festival
+          days (14 acts across 5 stages, 11 at Saitama, the Open'er and Porto runs) were drowning
+          the ordinary gigs. A multi-act night collapses to one card headlining its three
+          most-played acts, the rest a click away. Single-act nights render exactly as before. */}
       <section className="gv-sec">
         <div className="gv-label">The timeline</div>
-        <div className="gv-title">Every night, newest first.</div>
+        <div className="gv-title" style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
+          <span>Every night, newest first.</span>
+          <div className="r-seg" style={{ flex: "0 0 auto" }}>
+            <button data-on={!expandAll} onClick={() => { setExpandAll(false); setOpenDays({}); }}>compact</button>
+            <button data-on={expandAll} onClick={() => setExpandAll(true)}>everything</button>
+          </div>
+        </div>
         {years.map(y => (
           <div key={y} className="gv-year-block">
             <div className="gv-year">{y}<span>{G.byYear[y]} {G.byYear[y] === 1 ? "show" : "shows"}</span></div>
             <div className="gv-gigs">
-              {G.gigs.filter(g => g.year === y).map((g, i) => (
-                <div key={g.artist + g.date + i} className="gv-gig" data-link={artistHasPage(g.artistId)} onClick={() => openArtist(g.artistId)}>
-                  <div className="gv-gig-date" title={g.approx ? "approximate — exact day unknown" : undefined}>{gigDate(g.date, true)}</div>
-                  <span className="gv-gig-dot" style={{ background: `oklch(0.68 0.16 ${g.hue})` }} />
-                  <div className="gv-gig-main">
-                    <div className="gv-gig-artist">{g.artist}{g.tour ? <span className="gv-gig-tour"> · {g.tour}</span> : null}</div>
-                    <div className="gv-gig-venue">{g.venue}{g.city ? ` · ${g.city}` : ""}</div>
-                    {g.knownSongs.length > 0 && (
-                      <div className="gv-gig-songs">
-                        heard live, in your rotation: {g.knownSongs.map((s, j) => (
-                          <React.Fragment key={s.title}>{j > 0 ? ", " : ""}<b>{s.title}</b></React.Fragment>
-                        ))}{g.knownCount > g.knownSongs.length ? ` +${g.knownCount - g.knownSongs.length}` : ""}
+              {nights.filter(n => n.year === y).map(n => {
+                const open = expandAll || !!openDays[n.date];
+                // one act that night → the original row, songs and all. Nothing to compact.
+                if (n.acts.length === 1) return <GigRow key={n.date} g={n.acts[0]} />;
+                const top = n.acts.slice(0, 3), rest = n.acts.length - top.length;
+                return (
+                  <div key={n.date} className="gv-night" data-open={open}>
+                    <div className="gv-gig gv-night-head" data-link={true} onClick={() => setOpenDays(o => ({ ...o, [n.date]: !open }))}>
+                      <div className="gv-gig-date" title={n.acts[0].approx ? "approximate — exact day unknown" : undefined}>{gigDate(n.date, true)}</div>
+                      <span className="gv-night-dots">
+                        {n.acts.slice(0, 4).map((a, i) => <i key={i} style={{ background: `oklch(0.68 0.16 ${a.hue})` }} />)}
+                      </span>
+                      <div className="gv-gig-main">
+                        <div className="gv-gig-artist">
+                          {top.map((a, i) => (
+                            <React.Fragment key={a.artist + i}>
+                              {i > 0 ? <span className="gv-night-sep"> · </span> : null}
+                              <span className="gv-night-act" data-link={artistHasPage(a.artistId)}
+                                onClick={(e) => { if (artistHasPage(a.artistId)) { e.stopPropagation(); openArtist(a.artistId); } }}>{a.artist}</span>
+                            </React.Fragment>
+                          ))}
+                          {rest > 0 ? <span className="gv-night-more"> + {rest} more</span> : null}
+                        </div>
+                        <div className="gv-gig-venue">{n.place}</div>
                       </div>
-                    )}
+                      <div className="gv-gig-meta">
+                        <span className="gv-gig-plays">{n.acts.length}<small>acts</small></span>
+                        {n.songCount > 0 ? <span className="gv-gig-set">{n.songCount}<small>songs</small></span> : null}
+                      </div>
+                    </div>
+                    {open && <div className="gv-night-acts">{n.acts.map((g, i) => <GigRow key={g.artist + i} g={g} noDate />)}</div>}
                   </div>
-                  <div className="gv-gig-meta">
-                    {g.plays > 0 ? <span className="gv-gig-plays">{fmt(g.plays)}<small>plays</small></span> : null}
-                    {g.songCount > 0 ? <span className="gv-gig-set">{g.songCount}<small>songs</small></span> : null}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         ))}
@@ -2945,6 +3056,26 @@ function GigsView({ go }) {
         .gv-gig-plays, .gv-gig-set { font-family: var(--serif); font-size: 16px; font-variant-numeric: tabular-nums; white-space: nowrap; }
         .gv-gig-set { color: var(--ink-soft); }
         .gv-gig-meta small { font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-left: 4px; }
+        /* multi-act night: the collapsed head reads like a gig row, the expanded list nests under
+           a rule so a festival stays visibly ONE night rather than dissolving back into the flow */
+        .gv-night[data-open="true"] { border-left: 1px solid var(--rule); margin-left: -1px; border-radius: 0; }
+        .gv-night-head { cursor: pointer; }
+        .gv-night-dots { display: flex; flex-direction: column; gap: 2px; margin-top: 5px; }
+        .gv-night-dots i { width: 8px; height: 8px; border-radius: 50%; display: block; }
+        .gv-night-act[data-link="true"]:hover { color: var(--accent); }
+        .gv-night-sep { color: var(--ink-faint); font-weight: 400; }
+        .gv-night-more { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; color: var(--accent); font-weight: 400; margin-left: 6px; }
+        .gv-night-acts { padding-left: 14px; margin-top: 2px; display: grid; gap: 2px; }
+        .gv-night-acts .gv-gig-date { display: none; }
+        .gv-night-acts .gv-gig { grid-template-columns: 10px 1fr auto; }
+        /* year scrub on Still to catch — same control as the Overview map's year slider */
+        .gv-years { display: flex; gap: 10px; align-items: center; max-width: 340px; margin: 0 0 12px; }
+        .gv-play { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; flex: none; }
+        .gv-play[data-on="true"] { background: var(--accent); color: #0c0a08; }
+        .gv-slider { flex: 1; min-width: 90px; height: 4px; -webkit-appearance: none; appearance: none; background: var(--bg-3); border-radius: 3px; outline: none; cursor: pointer; }
+        .gv-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 15px; height: 15px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid var(--bg-2); }
+        .gv-slider::-moz-range-thumb { width: 15px; height: 15px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid var(--bg-2); }
+        .gv-yrlabel { font-family: var(--mono); font-size: 10px; color: var(--ink-soft); flex: none; min-width: 56px; text-align: right; }
         .gv-foot { margin: 40px 0 20px; font-family: var(--mono); font-size: 10px; color: var(--ink-faint); text-align: center; letter-spacing: .05em; }
         .gv-tour-meta { display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; margin: -6px 0 14px; }
         .gv-tour-mkt { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px; cursor: help; }
@@ -3071,6 +3202,10 @@ function GigsView({ go }) {
           .gv-tour-row .gv-tour-ev { grid-column: 2; }
           .gv-gig-meta { grid-column: 3; justify-content: flex-start; margin-top: 4px; }
           .gv-gig-date { font-size: 10px; }
+          /* nested night rows drop the (hidden) date column, so their meta wraps under col 2 */
+          .gv-night-acts .gv-gig { grid-template-columns: 8px 1fr; }
+          .gv-night-acts .gv-gig-meta { grid-column: 2; }
+          .gv-night-acts { padding-left: 8px; }
         }
       `}</style>
     </div>

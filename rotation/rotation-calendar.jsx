@@ -819,7 +819,7 @@ function CalendarView({ go, seed }) {
 
   if (!cal) return (
     <div className="r-view">
-      <div className="r-viewhead"><div><div className="r-kicker">Calendar</div><h1 className="r-title">Every <em>day</em><span className="dot">.</span></h1></div></div>
+      <div className="r-viewhead"><div><div className="r-kicker">Time</div><h1 className="r-title">Every <em>day</em><span className="dot">.</span></h1></div></div>
       <div style={{ padding: 40, color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>loading the calendar…</div>
     </div>
   );
@@ -862,7 +862,7 @@ function CalendarView({ go, seed }) {
     <div className="r-view tv-page">
       <div className="r-viewhead">
         <div>
-          <div className="r-kicker">Calendar · {years[0]}—{years[years.length - 1]} · {fmt(max)} in a single day</div>
+          <div className="r-kicker">Time · {years[0]}—{years[years.length - 1]} · {fmt(max)} in a single day</div>
           <h1 className="r-title">Every <em>day</em><span className="dot">.</span></h1>
         </div>
       </div>
