@@ -2752,6 +2752,9 @@ function BlurbSwitcher({ id, about }) {
         )}
       </div>
       <div className="tv-switch-body">
+        {/* the read + its attribution form one block; the brand anchors to THIS, not the whole
+            body, so Means/Built can sit beneath it without pushing the credit down (2026-08-08) */}
+        <div className="tv-switch-read">
         <span className="tv-switch-txt">{showDeep ? (deepText || "…") : (curLoading ? "…" : cur.text)}</span>
         {/* Stacked second take (Fuad 2026-08-04): where an old-era Fable read stays primary,
             the newer read rides as `fable2` under a hairline split — same formatting, both kept. */}
@@ -2763,11 +2766,6 @@ function BlurbSwitcher({ id, about }) {
         {!showDeep && cur.m === "fable" && llm && llm.fnote && (
           <span className="tv-switch-txt" style={{ display: "block", marginTop: 7, fontStyle: "italic", opacity: 0.85 }}>{llm.fnote}</span>
         )}
-        {/* BUILT (pilot 2026-08-08) — the craft observation distilled from the same read. Sits
-            under whichever read is showing, since it describes the song, not the tier. */}
-        {llm && llm.built && (
-          <div className="tv-built"><span className="tv-built-k">Built</span><span className="tv-built-v">{llm.built}</span></div>
-        )}
         {showDeep
           ? <span className="tv-switch-brand" data-m={deepBy}>via {deepBy === "fable" ? "Fable" : "Opus"} · interpretation</span>
           : cur.m === "genius" && cur.link
@@ -2775,6 +2773,16 @@ function BlurbSwitcher({ id, about }) {
             /* v2 = Opus-authored + Fable-QC'd (Fuad 2026-07-27). v3 = the Fable QC pass was
                cut short and finished under Opus, so the credit names all three legs. */
             : <span className="tv-switch-brand" data-m={cur.m}>via {cur.m === "fable" && llm && (llm.fv === 2 || llm.fv === 3) ? (llm.fv === 3 ? "Opus · Fable · Opus" : "Opus · Fable") : cur.label}</span>}
+        </div>
+        {/* MEANS + BUILT (pilot 2026-08-08) — distilled from the same read, so they sit BELOW the
+            read's attribution behind a hairline: the credit closes the read, these open a second
+            register. They describe the song, not the selected tier, so they don't switch. */}
+        {llm && (llm.means || llm.built) && (
+          <div className="tv-craft">
+            {llm.means && <div className="tv-craft-row"><span className="tv-craft-k">Means</span><span className="tv-craft-v">{llm.means}</span></div>}
+            {llm.built && <div className="tv-craft-row"><span className="tv-craft-k">Built</span><span className="tv-craft-v">{llm.built}</span></div>}
+          </div>
+        )}
       </div>
       {showDeep
         ? <div className="tv-switch-note r-mono">a closer reading of the lyric — how it works, not just what it says</div>
@@ -2895,7 +2903,6 @@ function TrackView({ id, go }) {
   // switcher below loads the same shard, and loadAbout is idempotent.
   const tGist = (R && R.aboutGist && R.aboutGist(id)) || null;
   const themes = (tGist && tGist.themes) || null;
-  const means = (tGist && tGist.means) || null;
   const seenLive = !!(R.GIGS && R.GIGS.liveSongs && R.GIGS.liveSongs.indexOf(id) >= 0);
   const divergent = (audVal != null && lyrVal != null && Math.abs(audVal - lyrVal) >= 30);
   const bpm = f ? Math.round(50 + f[7] / 100 * 140) : 0;   // undo build-time 50..190 remap
@@ -3001,10 +3008,9 @@ function TrackView({ id, go }) {
                 <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: "oklch(0.68 0.16 25)" }} /></div>
                 <span className="tv-mood-v">{lyrVal}</span>
               </div>
-              {/* MEANS + themes (pilot 2026-08-08) supersede the old NRC caption where present:
-                  reasoned from the fable read rather than counted off an emotion lexicon. Falls
-                  back to the lexicon line on the ~97% of tracks not yet covered. */}
-              {means && <div className="tv-means"><span className="tv-means-k">Means</span><span className="tv-means-v">{means}</span></div>}
+              {/* THEMES (pilot 2026-08-08) supersede the old NRC emotion label where present —
+                  reasoned from the fable read, not counted off a lexicon. Means/Built live with
+                  the read below; this card keeps only the themes. */}
               {themes && themes.length > 0 && (
                 <div className="tv-themes">
                   {themes.map(t => <span key={t} className="tv-theme">{t}</span>)}
@@ -3012,7 +3018,7 @@ function TrackView({ id, go }) {
               )}
               <div className="tv-mood-note">
                 <span className="txt">
-                  {means ? null : <>
+                  {themes && themes.length ? null : <>
                     {divergent
                       ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
                       : <>Sound and words agree.</>}

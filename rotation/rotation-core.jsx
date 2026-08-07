@@ -241,20 +241,12 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 .tv-mood-note { font-size: 12px; color: var(--ink-soft); margin-top: 2px; display: flex; align-items: center; gap: 8px; }
 .tv-mood-note b { color: var(--ink); }
 .tv-mood-note .txt { flex: 1; }
-/* MEANS — the third axis in the same 58px key column as Sounds/Reads, so the three labels
-   line up as one family (Fuad 2026-08-08). Serif body against the mono key. */
-.tv-means { display: grid; grid-template-columns: 58px 1fr; gap: 12px; align-items: baseline; margin-top: 2px; }
-.tv-means-k { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
-.tv-means-v { font-family: var(--serif); font-size: 13.5px; line-height: 1.45; color: var(--ink); }
-/* theme chips — indented to the same 58px gutter so they read as belonging to Means.
-   Inert for now; the Explore theme filter turns them into buttons. */
-.tv-themes { display: flex; flex-wrap: wrap; gap: 5px; margin: 2px 0 0 70px; }
+/* theme chips under the bars — indented to the same 58px key gutter as Sounds/Reads so they
+   hang off the axis labels. Inert for now; the Explore theme filter turns them into buttons. */
+.tv-themes { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 0 70px; }
 .tv-theme { font-family: var(--mono); font-size: 9.5px; letter-spacing: .04em; color: var(--ink-soft);
   border: 1px solid var(--rule); border-radius: 999px; padding: 3px 8px; white-space: nowrap; }
-@media (max-width: 620px) {
-  .tv-means { grid-template-columns: 1fr; gap: 2px; }
-  .tv-themes { margin-left: 0; }
-}
+@media (max-width: 620px) { .tv-themes { margin-left: 0; } }
 /* hover-? explaining the two axes (Fuad 2026-07-05) — works on tap too via tabIndex focus */
 .tv-mood-help { position: relative; flex: none; }
 .tv-mood-help > i { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px;
@@ -345,15 +337,18 @@ a.r-link:hover { color: var(--ink); }
 .tv-switch-mode button:hover { border-color: var(--rule-2); color: var(--ink); }
 .tv-switch-mode button[data-on="true"] { border-color: currentColor; color: var(--ink-soft); }
 .tv-switch-mode button[data-m="fable"][data-on="true"] { color: oklch(0.78 0.14 60); }
-.tv-switch-body { position: relative; padding-bottom: 20px; }
+.tv-switch-body { position: relative; }
+/* the read block owns the absolute brand credit, so Means/Built can follow it in flow */
+.tv-switch-read { position: relative; padding-bottom: 20px; }
 .tv-switch-txt { font-family: var(--serif); font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
-/* BUILT — the craft line under whichever read is showing (Fuad 2026-08-08). Hairline above it
-   so it reads as a separate register from the prose, not a continuation of it. */
-.tv-built { display: flex; gap: 10px; align-items: baseline; margin-top: 12px; padding-top: 10px;
-  border-top: 1px solid var(--rule); }
-.tv-built-k { flex: none; font-family: var(--mono); font-size: 9px; letter-spacing: .12em;
+/* MEANS + BUILT — the craft register, below the read and its credit, behind a hairline
+   (Fuad 2026-08-08). Keys share one column so the two lines align. */
+.tv-craft { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule); display: grid; gap: 6px; }
+.tv-craft-row { display: grid; grid-template-columns: 46px 1fr; gap: 10px; align-items: baseline; }
+.tv-craft-k { font-family: var(--mono); font-size: 9px; letter-spacing: .12em;
   text-transform: uppercase; color: var(--accent); }
-.tv-built-v { font-family: var(--serif); font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); font-style: italic; }
+.tv-craft-v { font-family: var(--serif); font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
+@media (max-width: 620px) { .tv-craft-row { grid-template-columns: 1fr; gap: 1px; } }
 .tv-switch-brand { position: absolute; right: 0; bottom: 0; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
 .tv-switch-brand[data-m="genius"] { color: oklch(0.7 0.12 330); }
 .tv-switch-brand[data-m="haiku"] { color: oklch(0.66 0.11 145); }
