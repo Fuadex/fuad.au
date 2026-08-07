@@ -242,10 +242,13 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 .tv-mood-note b { color: var(--ink); }
 .tv-mood-note .txt { flex: 1; }
 /* theme chips under the bars — indented to the same 58px key gutter as Sounds/Reads so they
-   hang off the axis labels. Inert for now; the Explore theme filter turns them into buttons. */
-.tv-themes { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 0 70px; }
+   hang off the axis labels. Inert for now; the Explore theme filter turns them into buttons.
+   The "?" help rides at the end of this row when themes are shown, so the card doesn't carry an
+   otherwise-empty caption row beneath the chips. */
+.tv-themes { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; margin: 2px 0 -4px 70px; }
 .tv-theme { font-family: var(--mono); font-size: 9.5px; letter-spacing: .04em; color: var(--ink-soft);
   border: 1px solid var(--rule); border-radius: 999px; padding: 3px 8px; white-space: nowrap; }
+.tv-themes .tv-mood-help { margin-left: 2px; }
 @media (max-width: 620px) { .tv-themes { margin-left: 0; } }
 /* hover-? explaining the two axes (Fuad 2026-07-05) — works on tap too via tabIndex focus */
 .tv-mood-help { position: relative; flex: none; }

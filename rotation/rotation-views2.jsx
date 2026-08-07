@@ -3011,29 +3011,34 @@ function TrackView({ id, go }) {
               {/* THEMES (pilot 2026-08-08) supersede the old NRC emotion label where present —
                   reasoned from the fable read, not counted off a lexicon. Means/Built live with
                   the read below; this card keeps only the themes. */}
-              {themes && themes.length > 0 && (
-                <div className="tv-themes">
-                  {themes.map(t => <span key={t} className="tv-theme">{t}</span>)}
-                </div>
-              )}
-              <div className="tv-mood-note">
-                <span className="txt">
-                  {themes && themes.length ? null : <>
-                    {divergent
-                      ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
-                      : <>Sound and words agree.</>}
-                    {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
-                  </>}
-                </span>
-                <span className="tv-mood-help" tabIndex={0}>
-                  <i>?</i>
-                  <span className="tv-mood-tip">
-                    <b>Sounds</b> — how upbeat the music itself is: Spotify&#8217;s audio positivity, 0 gloomy &#8594; 100 euphoric.<br />
-                    <b>Reads</b> — how positive the lyrics are on the page, scored word-by-word against an emotion lexicon in the song&#8217;s language.<br />
-                    A wide gap is the classic trick: music that smiles while the words don&#8217;t.
+              {(() => {
+                const help = (
+                  <span className="tv-mood-help" tabIndex={0}>
+                    <i>?</i>
+                    <span className="tv-mood-tip">
+                      <b>Sounds</b> — how upbeat the music itself is: Spotify&#8217;s audio positivity, 0 gloomy &#8594; 100 euphoric.<br />
+                      <b>Reads</b> — how positive the lyrics are on the page, scored word-by-word against an emotion lexicon in the song&#8217;s language.<br />
+                      A wide gap is the classic trick: music that smiles while the words don&#8217;t.
+                    </span>
                   </span>
-                </span>
-              </div>
+                );
+                // With themes present the old caption has nothing to say, so the whole note row
+                // would render empty but for the "?" — fold the help into the chip row instead
+                // and drop the row, otherwise the card carries ~25px of dead space (2026-08-08).
+                return themes && themes.length > 0
+                  ? <div className="tv-themes">{themes.map(t => <span key={t} className="tv-theme">{t}</span>)}{help}</div>
+                  : (
+                    <div className="tv-mood-note">
+                      <span className="txt">
+                        {divergent
+                          ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
+                          : <>Sound and words agree.</>}
+                        {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
+                      </span>
+                      {help}
+                    </div>
+                  );
+              })()}
             </div>
           )}
         </div>
