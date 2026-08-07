@@ -46,7 +46,9 @@ const STOPWORDS = new Set((
 ).split(/\s+/).filter(Boolean));
 
 // GIST holds only what the default track-page read needs; DEEP holds the interpretive reads.
-const GIST_FIELDS = ["src", "haiku", "web"];
+// themes/means/built ride in GIST because they render beside the mood bars on first paint —
+// in DEEP they'd pop in late. They cost ~150 bytes a track and only 74 tracks carry them today.
+const GIST_FIELDS = ["src", "haiku", "web", "themes", "means", "built"];
 const DEEP_FIELDS = ["sonnet", "opus", "fable", "fable2", "fableDeep", "opusDeep", "fv", "fnote"];   // fv: fable-tier methodology version (2 = Opus-authored + Fable-QC'd, dual credit in UI); fable2 = stacked newer take under a kept old-era read
 
 function loadSource() {
