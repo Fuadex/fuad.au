@@ -2763,6 +2763,11 @@ function BlurbSwitcher({ id, about }) {
         {!showDeep && cur.m === "fable" && llm && llm.fnote && (
           <span className="tv-switch-txt" style={{ display: "block", marginTop: 7, fontStyle: "italic", opacity: 0.85 }}>{llm.fnote}</span>
         )}
+        {/* BUILT (pilot 2026-08-08) — the craft observation distilled from the same read. Sits
+            under whichever read is showing, since it describes the song, not the tier. */}
+        {llm && llm.built && (
+          <div className="tv-built"><span className="tv-built-k">Built</span><span className="tv-built-v">{llm.built}</span></div>
+        )}
         {showDeep
           ? <span className="tv-switch-brand" data-m={deepBy}>via {deepBy === "fable" ? "Fable" : "Opus"} · interpretation</span>
           : cur.m === "genius" && cur.link
@@ -2829,6 +2834,10 @@ function TrackView({ id, go }) {
     load("mb-track-bio.js", "ROTATION_TRACKBIO");   // song bios (writers/covers/versions) via MusicBrainz
     if (need === 0) setReady(true);
   }, []);
+  // the gist shard carries themes/means for the mood card (the switcher pulls the same shard —
+  // loadAbout is cached, so asking twice costs one fetch)
+  const [, bumpGist] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => { if (R && R.loadAbout) R.loadAbout(id, bumpGist); }, [id]);
   const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
 
   const data = React.useMemo(() => {
@@ -2881,6 +2890,12 @@ function TrackView({ id, go }) {
   const audVal = f ? f[5] : null;    // Spotify audio valence ("sounds")
   const lyrVal = mood ? mood[0] : null;  // NRC lyric valence ("reads")
   const lyrEmo = mood && mood[1] >= 0 ? EMO_NAMES[mood[1]] : null;
+  // THEMES + MEANS (pilot 2026-08-08) — reasoned from the fable read, not the NRC lexicon.
+  // They ride in the GIST shard so they paint with the bars instead of popping in late; the
+  // switcher below loads the same shard, and loadAbout is idempotent.
+  const tGist = (R && R.aboutGist && R.aboutGist(id)) || null;
+  const themes = (tGist && tGist.themes) || null;
+  const means = (tGist && tGist.means) || null;
   const seenLive = !!(R.GIGS && R.GIGS.liveSongs && R.GIGS.liveSongs.indexOf(id) >= 0);
   const divergent = (audVal != null && lyrVal != null && Math.abs(audVal - lyrVal) >= 30);
   const bpm = f ? Math.round(50 + f[7] / 100 * 140) : 0;   // undo build-time 50..190 remap
@@ -2986,12 +3001,23 @@ function TrackView({ id, go }) {
                 <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: "oklch(0.68 0.16 25)" }} /></div>
                 <span className="tv-mood-v">{lyrVal}</span>
               </div>
+              {/* MEANS + themes (pilot 2026-08-08) supersede the old NRC caption where present:
+                  reasoned from the fable read rather than counted off an emotion lexicon. Falls
+                  back to the lexicon line on the ~97% of tracks not yet covered. */}
+              {means && <div className="tv-means"><span className="tv-means-k">Means</span><span className="tv-means-v">{means}</span></div>}
+              {themes && themes.length > 0 && (
+                <div className="tv-themes">
+                  {themes.map(t => <span key={t} className="tv-theme">{t}</span>)}
+                </div>
+              )}
               <div className="tv-mood-note">
                 <span className="txt">
-                  {divergent
-                    ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
-                    : <>Sound and words agree.</>}
-                  {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
+                  {means ? null : <>
+                    {divergent
+                      ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
+                      : <>Sound and words agree.</>}
+                    {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
+                  </>}
                 </span>
                 <span className="tv-mood-help" tabIndex={0}>
                   <i>?</i>
