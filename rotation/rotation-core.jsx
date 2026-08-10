@@ -676,6 +676,19 @@ class Boundary extends React.Component {
 Object.assign(window, { cssRotation, fmt, fmtK, hashInt, MON, fmtDate, loadScript, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE, Boundary });
 
 // ─────────────────────────────────────────────────────────────────
+//  Singles→LP "absorb" resolver. album-absorb.js (window.ROTATION_ALBUM_ABSORB) maps a single's
+//  album key "<artistSlug>~<singleSlug>" → its host LP key "<artistSlug>~<lpSlug>". LINK, NOT
+//  MERGE: the single keeps its own browsable album row; only AGGREGATIONS (artist flowmap) and
+//  track→album navigation resolve THROUGH this map so a track lands on its LP, not the single.
+//  The flowmap's per-album aggregation is folded build-side (build-data.js ARTIST_FLOW), so this
+//  runtime resolver serves the nav/chip path; it's also consulted by the flow renderer's song→
+//  track hops (defensive). Sidecar is tiny — loaded once at boot, no-op until present.
+loadScript("album-absorb.js", "rotation-absorb-js");
+// absorbAlbum(key) → the LP key an absorbed single points at, else the key unchanged.
+window.ROTATION_absorbAlbum = (key) =>
+  (key && window.ROTATION_ALBUM_ABSORB && window.ROTATION_ALBUM_ABSORB[key]) || key;
+
+// ─────────────────────────────────────────────────────────────────
 //  "What it's about" — lazy shard loader (llm-about split into about/g-NN.js gist +
 //  about/d-NN.js deep, 16 buckets by _slugHash(artistSlug) % 16; see shard-about.js).
 //  A track page loads exactly ONE gist shard for its artist; the deep reads (sonnet/opus/
