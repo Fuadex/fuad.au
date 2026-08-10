@@ -161,6 +161,21 @@ const hasBios = Object.keys(BIOS).length > 0;
 const bioOf = (name) => (BIOS[name] && BIOS[name].bio) || "";
 const realSimilar = (name) => (BIOS[name] && BIOS[name].similar) || null;
 
+// ─────────── curated coherency folds (folds.json — hand-auditable ledger) ───────────
+// Optional ledger of KNOWN artist/album/track variants that build-data's automatic
+// most-played-wins machinery can't express (see .sptmp/coherency/LEDGER_DESIGN.md).
+// Ships SEPARATELY after owner review; when absent this whole feature no-ops (empty {}).
+// Grouped by CANONICAL artist name; three optional arrays per block (tracks/albums/artist).
+// Applied at four ingest slots below (artist→HAND_MERGE, album→ALBUM_FOLD, track→
+// TRACK_MERGE/TRACK_FOLD, variant→ROTATION_VARIANT_OF sidecar). Keys derive via lib-slug.
+const FOLDS = (() => {
+  try { const f = JSON.parse(fs.readFileSync(path.join(__dirname, "folds.json"), "utf8")); delete f._doc; delete f._comment; delete f.note; return f; }
+  catch (e) { return {}; }
+})();
+// VARIANT_OF: "<artistSlug>~<variantSlug>" → "<artistSlug>~<canonSlug>" for track/album variants.
+// Same shape as ALBUM_ALIAS; emitted to variant-of.js. Populated at the fold-seed steps below.
+const VARIANT_OF = {};
+
 // ─────────── MusicBrainz origins (artist-origins.json, built by enrich-origins.js) ───────────
 // Per artist: { country (ISO), area, beginArea, type }. Used for "taste geography".
 const ORIGINS_PATH = path.join(__dirname, "artist-origins.json");
@@ -424,6 +439,22 @@ const HAND_MERGE = {
   "Cyberpunk 2077 – E3 2018 Trailer Music / Hyper": "Hyper",
   "DOOM (2016) OST": "Mick Gordon",
 };
+// 3a — artist folds (feat-credit / diacritic / spelling) seed HAND_MERGE: variant name →
+// canonical block key. Semantically identical to a hand fix; canon() (below) already applies
+// HAND_MERGE[c] || c after CANON. MUST run before the spelling-fold prescan (which calls canon()
+// to bucket by artist) — it does, prescan is further down. See LEDGER_DESIGN.md §3a / risk #5.
+for (const [canonName, block] of Object.entries(FOLDS)) {
+  const arts = block && block.artist ? [].concat(block.artist) : [];
+  for (const a of arts) if (a && a.from) HAND_MERGE[a.from] = canonName;
+}
+// canon() applies HAND_MERGE only once, so — unlike CANON — it is NOT fixed-point flattened.
+// A folded `from` pointing at a name that is itself another `from` would strand the middle hop
+// (LEDGER_DESIGN.md risk #1). Flatten HAND_MERGE to a fixed point so multi-hop folds resolve.
+for (const k of Object.keys(HAND_MERGE)) {
+  let v = HAND_MERGE[k]; const seen = new Set([k]);
+  while (HAND_MERGE[v] && !seen.has(v)) { seen.add(v); v = HAND_MERGE[v]; }
+  HAND_MERGE[k] = v;
+}
 // Sound-map family overrides — consulted BEFORE tag classification (tag data is wrong/absent):
 const FAMILY_OVERRIDES = {
   "daine": "Digital hardcore / hyperpop",
@@ -599,6 +630,23 @@ const TRACK_FOLD = new Map();   // artist\x00slug(track) → best spelling
     for (const [g, [spelling]] of best) dst.set(g, spelling);
   };
   pick(albC, ALBUM_FOLD); pick(trkC, TRACK_FOLD);
+  // 3b — album SPELLING folds: force the curated canonical over the prescan's most-played winner.
+  // Overwrite BOTH the variant's fold-group AND the target's group to resolve to f.to, so the
+  // variant title never survives into an album Map. variant-type album folds are NOT merged here
+  // (that would erase the row) — they emit a ROTATION_VARIANT_OF link below (3d). Slug/_foldName
+  // compare per fold. See LEDGER_DESIGN.md §3b / risk #2.
+  for (const [canonName, block] of Object.entries(FOLDS)) {
+    for (const f of ((block && block.albums) || [])) {
+      if (f && f.type === "spelling" && f.from && f.to) {
+        ALBUM_FOLD.set(canonName + "\x00" + _foldName(f.from), f.to);
+        ALBUM_FOLD.set(canonName + "\x00" + _foldName(f.to), f.to);
+      } else if (f && f.type === "variant" && f.from && f.to) {
+        const aSlug = slug(canonName);
+        const vk = aSlug + "~" + slug(f.from);
+        if (slug(f.from) !== slug(f.to)) VARIANT_OF[vk] = aSlug + "~" + slug(f.to);
+      }
+    }
+  }
 }
 const foldAlbum = (artist, album) => album ? (ALBUM_FOLD.get(artist + "\x00" + _foldName(album)) || album) : album;
 
@@ -615,6 +663,25 @@ const TRACK_MERGE = Object.assign(
   {
     "deadmau5~sofi-needs-a-ladder-ft-sofi": "Sofi Needs A Ladder",
   });
+// 3c / 3d — track folds. SPELLING folds ride the existing rails so the variant title yields
+// exactly one media row + one read key: TRACK_MERGE renames the variant slug to the canonical
+// spelling, TRACK_FOLD pins the display spelling. (When slug(from)===slug(to) the prescan already
+// grouped them; TRACK_FOLD alone forces the winner. TRACK_MERGE is a harmless no-op there.)
+// VARIANT folds stay DISTINCT rows — kept OUT of TRACK_MERGE/TRACK_FOLD — and emit a
+// ROTATION_VARIANT_OF link instead. Slug compare per fold. See LEDGER_DESIGN.md §3c/§3d.
+for (const [canonName, block] of Object.entries(FOLDS)) {
+  for (const f of ((block && block.tracks) || [])) {
+    if (!f || !f.from || !f.to) continue;
+    if (f.type === "spelling") {
+      TRACK_MERGE[slug(canonName) + "~" + slug(f.from)] = f.to;   // rename to canonical spelling
+      TRACK_FOLD.set(canonName + "\x00" + slug(f.to), f.to);      // pin the display spelling
+    } else if (f.type === "variant") {
+      const aSlug = slug(canonName);
+      const vk = aSlug + "~" + slug(f.from);
+      if (slug(f.from) !== slug(f.to)) VARIANT_OF[vk] = aSlug + "~" + slug(f.to);
+    }
+  }
+}
 const foldTrack = (artist, track) => {
   if (!track) return track;
   const merged = TRACK_MERGE[slug(artist) + "~" + slug(track)];
@@ -2357,6 +2424,17 @@ const _aliasOut = "// GENERATED by build-data.js — album edition-variant → c
   + "window.ROTATION_ALBUM_ALIAS = " + JSON.stringify(ALBUM_ALIAS) + ";\n";
 fs.writeFileSync(path.join(__dirname, "album-alias.js"), _aliasOut, "utf8");
 console.log(`album-alias.js: ${Object.keys(ALBUM_ALIAS).length} variant→canonical aliases (${(_aliasOut.length / 1024).toFixed(0)} KB)`);
+
+// ─────────── VARIANT-OF MAP (generated lazy file) ───────────
+// "<artistSlug>~<variantTitleSlug>" → "<artistSlug>~<canonTitleSlug>" for curated `variant` folds
+// (live/demo tracks + rare distinct live albums, from folds.json §3d). Unlike an alias/fold, the
+// variant KEEPS its own row + plays; consumers resolve THROUGH this map for reads + album-
+// completeness (deduping on the canonical slug so a live variant can't inflate "played N of M").
+// Same emit shape as album-alias.js. Empty {} when folds.json is absent — the file still ships.
+const _variantOut = "// GENERATED by build-data.js — curated variant → canonical slug map (lazy).\n"
+  + "window.ROTATION_VARIANT_OF = " + JSON.stringify(VARIANT_OF) + ";\n";
+fs.writeFileSync(path.join(__dirname, "variant-of.js"), _variantOut, "utf8");
+console.log(`variant-of.js: ${Object.keys(VARIANT_OF).length} variant→canonical links (${(_variantOut.length / 1024).toFixed(0)} KB)`);
 
 // ─────────── ALBUM EXTRAS (generated lazy file) ───────────
 // Per canonical album that absorbed edition variants: what the variants added on top of the base.
