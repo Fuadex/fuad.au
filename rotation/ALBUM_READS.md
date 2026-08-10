@@ -101,6 +101,33 @@ no quotation marks, no track-by-track inventory, no sequence narration. Special 
   here"). The read itself must not claim totality it doesn't have. Rollout intent is
   decent coverage of the MOST-played albums, not completeness of every album played.
 
+## The emergence question (tested 2026-08-10 — NOT adopted; under consideration)
+
+A diagnosed weakness of the settled brief, found on Fear of a Blank Planet: asking for
+"the throughline the track reads keep circling" yields the INTERSECTION of the reads,
+and the common denominator of six sharp readings is a blunt one. The resulting liner was
+accurate but semi-clinical — every clause a compressed citation of a track read's
+conclusion ("X sets, Y builds, Z rehearses": role-assignment, which is inventory wearing
+a thesis). Three structural causes: the writer never touches primary material (reads of
+reads); the anchor-track requirement plus the grounding rule pushes citation; and no
+album-level image budget exists, so liners are categorically imageless.
+
+A one-change redraft swapped the question: not the shared throughline, but what the reads
+TOGETHER reveal that no single read states — the claim only visible at album scale — with
+the Midori debut liner as register model (its opening claim is a relation BETWEEN songs;
+its anchors re-discover with concrete objects; its close is an album-level finding).
+Result: a clearly stronger liner ("every door it opens onto relief turns out to be the
+same door as erasure"; "even the two moments of tenderness are traps" — a genuinely
+emergent find), at the cost of one surviving essay-tic clause. Both versions ship on the
+FoaBP portrait — v1 as `liner`, v2 as `liner2` (the flickable face) — so the pair is
+inspectable in place.
+
+Status: Fuad is considering whether the emergence question replaces the intersection
+question for future albums. Until he rules, the settled brief stands. The Midori debut
+observation worth keeping either way: language distance (Japanese titles, hashed keys)
+FORCED re-rendering there — emergence appeared without being asked for, which suggests
+the question, not the writer, is the lever.
+
 ## Fable QC
 
 1. Every track NAMED in the read must exist in its dossier (an agent once cited an
