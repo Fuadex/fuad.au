@@ -50,6 +50,11 @@
     "to": "Mer de noms",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "TalkTalk",
+    "to": "Eat the Elephant",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -208,6 +213,21 @@
     "to": "5 AM",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "LINA",
+    "to": "Roots Grow Deep",
+    "type": "absorb"
+   },
+   {
+    "from": "Hydrogen",
+    "to": "Hotline Miami Goes Metal",
+    "type": "absorb"
+   },
+   {
+    "from": "Chains",
+    "to": "Limits",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -226,6 +246,11 @@
     "to": "Alice in Chains Greatest Hits",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Hollow (Single)",
+    "to": "The Devil Put Dinosaurs Here",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -358,6 +383,13 @@
     "to": "Nephele",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "albums": [
+   {
+    "from": "The Problem of Other Minds",
+    "to": "Parrhesia",
+    "type": "absorb"
    }
   ]
  },
@@ -580,6 +612,13 @@
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
    }
+  ],
+  "albums": [
+   {
+    "from": "Terror Squad",
+    "to": "Terror Squad-Fear of Tomorrow",
+    "type": "absorb"
+   }
   ]
  },
  "Arukara": {
@@ -649,6 +688,31 @@
     "to": "PA PA YA!!",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Starlight",
+    "to": "METAL GALAXY",
+    "type": "absorb"
+   },
+   {
+    "from": "Elevator Girl",
+    "to": "METAL GALAXY",
+    "type": "absorb"
+   },
+   {
+    "from": "Distortion",
+    "to": "METAL GALAXY",
+    "type": "absorb"
+   },
+   {
+    "from": "PA PA YA!!",
+    "to": "METAL GALAXY",
+    "type": "absorb"
+   },
+   {
+    "from": "Starlight - Single",
+    "to": "METAL GALAXY",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -824,6 +888,13 @@
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
    }
+  ],
+  "albums": [
+   {
+    "from": "If Only",
+    "to": "Texture",
+    "type": "absorb"
+   }
   ]
  },
  "Behemoth": {
@@ -949,6 +1020,11 @@
     "to": "England's Dreaming (Acoustic)",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Container",
+    "to": "Sundiver",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -983,6 +1059,31 @@
     "to": "Can You Feel My Heart",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Teardrops",
+    "to": "POST HUMAN: SURVIVAL HORROR",
+    "type": "absorb"
+   },
+   {
+    "from": "Kool-Aid",
+    "to": "POST HUMAN: NeX GEn",
+    "type": "absorb"
+   },
+   {
+    "from": "Obey",
+    "to": "POST HUMAN: SURVIVAL HORROR",
+    "type": "absorb"
+   },
+   {
+    "from": "Parasite Eve",
+    "to": "POST HUMAN: SURVIVAL HORROR",
+    "type": "absorb"
+   },
+   {
+    "from": "AmEN! (feat. Lil Uzi Vert and Daryl Palumbo of Glassjaw)",
+    "to": "POST HUMAN: NeX GEn",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -1077,6 +1178,16 @@
     "to": "Blind Lead the Blind",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "End of an Empire (Standard Edition)",
+    "to": "End of an Empire",
+    "type": "absorb"
+   },
+   {
+    "from": "Electric Eye",
+    "to": "A Matter Of Time",
+    "type": "variant"
    }
   ],
   "tracks": [
@@ -1117,6 +1228,11 @@
     "to": "What The Fuck Is Wrong With You People?",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Never Surrender",
+    "to": "Making Monsters",
+    "type": "absorb"
    }
   ]
  },
@@ -1127,6 +1243,11 @@
     "to": "Chemicals",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Paralyzed",
+    "to": "Slow Burn",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -1155,6 +1276,11 @@
     "to": "Closing In",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Hypomania",
+    "to": "Where Spirit Meets Bone",
+    "type": "variant"
    }
   ]
  },
@@ -1228,6 +1354,13 @@
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
    }
+  ],
+  "albums": [
+   {
+    "from": "Concrete",
+    "to": "Amnesty (I)",
+    "type": "absorb"
+   }
   ]
  },
  "Dada Life": {
@@ -1247,6 +1380,19 @@
     "to": "Nascent",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Sand Tiger",
+    "to": "As the Light Left",
+    "type": "absorb"
+   },
+   {
+    "from": "All-Consuming",
+    "to": "As the Light Left",
+    "type": "spelling",
+    "reason": "mislabeled container: LP row carried a song's name; merge onto the real album title"
    }
   ]
  },
@@ -1375,6 +1521,16 @@
     "to": "B-Sides & Rarities",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Prayers/Triangles",
+    "to": "Gore",
+    "type": "absorb"
+   },
+   {
+    "from": "Back to School (Mini Maggit)",
+    "to": "White Pony",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -1495,6 +1651,26 @@
     "to": "Brainwash Broadcast",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Instability",
+    "to": "The World Is In Your Way",
+    "type": "absorb"
+   },
+   {
+    "from": "Here for War",
+    "to": "The World Is In Your Way",
+    "type": "absorb"
+   },
+   {
+    "from": "Hypochondria",
+    "to": "The World Is In Your Way",
+    "type": "absorb"
+   },
+   {
+    "from": "Riot",
+    "to": "The World Is In Your Way",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -1669,6 +1845,23 @@
     "to": "Strike of the Beast",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Shovel Headed Kill Machine",
+    "to": "Shovel Headed Kill Machine (Japan)",
+    "type": "variant"
+   },
+   {
+    "from": "Tempo of the Damned",
+    "to": "Tempo Of The Damned (Japan)",
+    "type": "variant"
+   },
+   {
+    "from": "Bonded By Blood",
+    "to": "Let There Be Blood",
+    "type": "variant"
    }
   ]
  },
@@ -2039,6 +2232,21 @@
     "to": "We Appreciate Power",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "My Name is Dark (Art Mix)",
+    "to": "Miss Anthropocene",
+    "type": "absorb"
+   },
+   {
+    "from": "So Heavy I Fell Through the Earth",
+    "to": "Miss Anthropocene",
+    "type": "absorb"
+   },
+   {
+    "from": "4æm",
+    "to": "Miss Anthropocene",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -2097,6 +2305,16 @@
     "to": "Canary Yellow",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Nightingale",
+    "to": "Fauna",
+    "type": "absorb"
+   },
+   {
+    "from": "Prosthetic",
+    "to": "Virus",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -2263,6 +2481,11 @@
     "to": "Miłość",
     "type": "spelling",
     "reason": "diacritic: accent-stripped form folds to canonical"
+   },
+   {
+    "from": "DEFTO",
+    "to": "Miłość",
+    "type": "absorb"
    }
   ]
  },
@@ -2626,6 +2849,11 @@
     "to": "The Unquestionable Truth (Part 1)",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Eat You Alive",
+    "to": "Results May Vary",
+    "type": "variant"
    }
   ],
   "tracks": [
@@ -3077,6 +3305,18 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "albums": [
+   {
+    "from": "Heavy Is The Crown",
+    "to": "From Zero",
+    "type": "absorb"
+   },
+   {
+    "from": "Lost",
+    "to": "Meteora",
+    "type": "absorb"
+   }
   ]
  },
  "Lisa": {
@@ -3210,6 +3450,18 @@
     "type": "spelling",
     "reason": "diacritic: no-accent form folds to canonical accented form"
    }
+  ],
+  "albums": [
+   {
+    "from": "The Burning Red",
+    "to": "Burning Red",
+    "type": "absorb"
+   },
+   {
+    "from": "Beyond the Pale",
+    "to": "Catharsis",
+    "type": "absorb"
+   }
   ]
  },
  "Mad Season": {
@@ -3235,6 +3487,13 @@
     "to": "Pop Culture",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Imperium",
+    "to": "Adventure",
+    "type": "absorb"
    }
   ]
  },
@@ -3640,6 +3899,13 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "albums": [
+   {
+    "from": "Caged",
+    "to": "Auburn",
+    "type": "absorb"
+   }
   ]
  },
  "Motörhead": {
@@ -3956,6 +4222,18 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "albums": [
+   {
+    "from": "With Teeth (UK Only Version)",
+    "to": "With Teeth",
+    "type": "variant"
+   },
+   {
+    "from": "With Teeth (International Version)",
+    "to": "With Teeth",
+    "type": "variant"
+   }
   ]
  },
  "Nirvana": {
@@ -3993,6 +4271,41 @@
     "to": "Miasma",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Carbonized",
+    "to": "Obsidian",
+    "type": "absorb"
+   },
+   {
+    "from": "Afterimage (feat. Ian Kenny)",
+    "to": "Mirror's Edge",
+    "type": "absorb"
+   },
+   {
+    "from": "Clockwork",
+    "to": "Obsidian",
+    "type": "absorb"
+   },
+   {
+    "from": "Miasma",
+    "to": "Mirror's Edge",
+    "type": "absorb"
+   },
+   {
+    "from": "Talking Heads",
+    "to": "Alien",
+    "type": "absorb"
+   },
+   {
+    "from": "Echo Chamber",
+    "to": "Obsidian",
+    "type": "absorb"
+   },
+   {
+    "from": "Bloodline",
+    "to": "Alien",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -4107,6 +4420,58 @@
     "to": "SUNNY",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "albums": [
+   {
+    "from": "SEX DOPE GOLD",
+    "to": "Up In The Air Forever",
+    "type": "absorb"
+   },
+   {
+    "from": "CALI SUN",
+    "to": "Up In The Air Forever",
+    "type": "absorb"
+   },
+   {
+    "from": "Junkie$",
+    "to": "Flip Phone Fantasy",
+    "type": "absorb"
+   },
+   {
+    "from": "FLY AWAY",
+    "to": "ODDWORLD",
+    "type": "absorb"
+   },
+   {
+    "from": "THOUSAND GOLDEN PEOPLE",
+    "to": "Flip Phone Fantasy",
+    "type": "absorb"
+   },
+   {
+    "from": "RAINDROP",
+    "to": "ODDWORLD",
+    "type": "absorb"
+   },
+   {
+    "from": "My Disaster",
+    "to": "ODDWORLD",
+    "type": "absorb"
+   },
+   {
+    "from": "SUNNY",
+    "to": "Flip Phone Fantasy",
+    "type": "absorb"
+   },
+   {
+    "from": "NEO",
+    "to": "Flip Phone Fantasy",
+    "type": "absorb"
+   },
+   {
+    "from": "Ask For The Anthem",
+    "to": "Flip Phone Fantasy",
+    "type": "absorb"
    }
   ]
  },
@@ -4332,6 +4697,11 @@
     "to": "Live At Brixton Academy",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Cannibal",
+    "to": "Inertia",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -4443,6 +4813,13 @@
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
    }
+  ],
+  "albums": [
+   {
+    "from": "Harridan",
+    "to": "Closure / Continuation",
+    "type": "absorb"
+   }
   ]
  },
  "Power Glove": {
@@ -4490,6 +4867,18 @@
     "to": "Teoria Bezwzględności",
     "type": "spelling",
     "reason": "diacritic: no-accent form folds to canonical accented form"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Hazard",
+    "to": "Ground Zero Mixtape",
+    "type": "absorb"
+   },
+   {
+    "from": "Flary",
+    "to": "Ground Zero Mixtape",
+    "type": "absorb"
    }
   ]
  },
@@ -4674,6 +5063,11 @@
     "to": "Liebe ist für alle da",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Radio",
+    "to": "RAMMSTEIN",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -5145,6 +5539,11 @@
     "to": "Holy Roller",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "The Void",
+    "to": "The Fear of Fear",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -5340,6 +5739,18 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "albums": [
+   {
+    "from": "King",
+    "to": "Sonder",
+    "type": "absorb"
+   },
+   {
+    "from": "The Grey",
+    "to": "War Of Being",
+    "type": "absorb"
+   }
   ]
  },
  "Testament": {
@@ -5533,6 +5944,11 @@
     "to": "Always Outnumbered, Never Outgunned",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Voodoo People",
+    "to": "Music for the Jilted Generation",
+    "type": "variant"
    }
   ],
   "tracks": [
@@ -5759,6 +6175,38 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "albums": [
+   {
+    "from": "Break You",
+    "to": "Heaven Can Wait",
+    "type": "absorb"
+   },
+   {
+    "from": "Synthetic Sympathy",
+    "to": "Don't You Feel Amazing?",
+    "type": "absorb"
+   },
+   {
+    "from": "filthy/RIGHTEOUS (feat. Kenta Koie of Crossfaith)",
+    "to": "Heaven Can Wait",
+    "type": "absorb"
+   },
+   {
+    "from": "Alpha Omega (feat. Kamiyada+)",
+    "to": "Don't You Feel Amazing?",
+    "type": "variant"
+   },
+   {
+    "from": "Delusions of Grandeur",
+    "to": "Heaven Can Wait",
+    "type": "absorb"
+   },
+   {
+    "from": "Liar Liar",
+    "to": "Heaven Can Wait",
+    "type": "absorb"
+   }
   ]
  },
  "Trevor Morris": {
@@ -5784,6 +6232,13 @@
     "to": "エンドロールに間に合うように",
     "type": "spelling",
     "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Dogs and Ducks",
+    "to": "上出来",
+    "type": "absorb"
    }
   ]
  },
@@ -5868,6 +6323,11 @@
     "to": "Desperate Youth, Bloodthirsty Babes",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Staring at the Sun",
+    "to": "Desperate Youth, Bloodthirsty Babes",
+    "type": "absorb"
    }
   ]
  },
@@ -6200,7 +6660,34 @@
    "from": "WARGASM (UK)",
    "type": "spelling",
    "reason": "spelling: variant name form folds to canonical artist name"
-  }
+  },
+  "albums": [
+   {
+    "from": "Do It So Good",
+    "to": "Venom",
+    "type": "absorb"
+   },
+   {
+    "from": "Modern Love",
+    "to": "Venom",
+    "type": "absorb"
+   },
+   {
+    "from": "Salma Hayek",
+    "to": "EXPLICIT: THE MIXXXTAPE",
+    "type": "absorb"
+   },
+   {
+    "from": "Bang Ya Head",
+    "to": "Venom",
+    "type": "absorb"
+   },
+   {
+    "from": "Fukstar",
+    "to": "EXPLICIT: THE MIXXXTAPE",
+    "type": "absorb"
+   }
+  ]
  },
  "Weather Report": {
   "tracks": [
@@ -6319,6 +6806,951 @@
     "to": "ゆきこさん",
     "type": "spelling",
     "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Calva Louise": {
+  "albums": [
+   {
+    "from": "Over The Threshold (ROMES Remix)",
+    "to": "Over The Threshold",
+    "type": "variant"
+   },
+   {
+    "from": "Trial",
+    "to": "Euphoric",
+    "type": "absorb"
+   },
+   {
+    "from": "Third Class Citizen",
+    "to": "Over The Threshold",
+    "type": "absorb"
+   },
+   {
+    "from": "La Corriente",
+    "to": "Edge of The Abyss",
+    "type": "absorb"
+   },
+   {
+    "from": "Square One",
+    "to": "Over The Threshold",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Emma Aibara": {
+  "albums": [
+   {
+    "from": "escape mode",
+    "to": "u:phobia",
+    "type": "variant"
+   }
+  ]
+ },
+ "AVOID": {
+  "albums": [
+   {
+    "from": "Whatever",
+    "to": "Cult Mentality",
+    "type": "absorb"
+   },
+   {
+    "from": "Flashbang!",
+    "to": "The Burner",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Siiickbrain": {
+  "albums": [
+   {
+    "from": "PARASITE",
+    "to": "MY MASOCHISTIC MIND",
+    "type": "absorb"
+   }
+  ]
+ },
+ "House of Protection": {
+  "albums": [
+   {
+    "from": "It's Supposed To Hurt",
+    "to": "GALORE",
+    "type": "absorb"
+   },
+   {
+    "from": "Learn to Forget",
+    "to": "GALORE",
+    "type": "absorb"
+   },
+   {
+    "from": "Pulling Teeth",
+    "to": "GALORE",
+    "type": "absorb"
+   },
+   {
+    "from": "Fire",
+    "to": "Outrun You All",
+    "type": "absorb"
+   },
+   {
+    "from": "I Need More Than This",
+    "to": "Outrun You All",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Romes": {
+  "albums": [
+   {
+    "from": "ANOTHER DAY",
+    "to": "SONIC TRASH",
+    "type": "absorb"
+   },
+   {
+    "from": "DISSOLVER",
+    "to": "SONIC TRASH",
+    "type": "absorb"
+   },
+   {
+    "from": "the dread",
+    "to": "SONIC TRASH",
+    "type": "variant"
+   }
+  ]
+ },
+ "Ecca Vandal": {
+  "albums": [
+   {
+    "from": "Bleed But Never Die",
+    "to": "LOOKING FOR PEOPLE TO UNFOLLOW",
+    "type": "absorb"
+   },
+   {
+    "from": "CRUISING TO SELF SOOTHE",
+    "to": "LOOKING FOR PEOPLE TO UNFOLLOW",
+    "type": "absorb"
+   },
+   {
+    "from": "VERTICAL WORLDS",
+    "to": "LOOKING FOR PEOPLE TO UNFOLLOW",
+    "type": "absorb"
+   },
+   {
+    "from": "SORRY! CRASH!",
+    "to": "LOOKING FOR PEOPLE TO UNFOLLOW",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Saint Agnes": {
+  "albums": [
+   {
+    "from": "The Ghost",
+    "to": "Your God Fearing Days Are About To Begin",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Magdalena Bay": {
+  "albums": [
+   {
+    "from": "Chaeri",
+    "to": "Mercurial World",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Resolve": {
+  "albums": [
+   {
+    "from": "Seasick Sailor",
+    "to": "Between Me and The Machine",
+    "type": "absorb"
+   },
+   {
+    "from": "Beautiful Hell",
+    "to": "Between Me and The Machine",
+    "type": "absorb"
+   },
+   {
+    "from": "Emerald Skies",
+    "to": "Between Me and The Machine",
+    "type": "absorb"
+   }
+  ]
+ },
+ "HEALTH": {
+  "albums": [
+   {
+    "from": "VIBE COP",
+    "to": "CONFLICT DLC",
+    "type": "absorb"
+   },
+   {
+    "from": "SHRED ENVY",
+    "to": "CONFLICT DLC",
+    "type": "absorb"
+   },
+   {
+    "from": "HATEFUL",
+    "to": "RAT WARS",
+    "type": "absorb"
+   },
+   {
+    "from": "BODY/PRISON",
+    "to": "DISCO4 :: PART I",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Nutronic": {
+  "albums": [
+   {
+    "from": "Code War",
+    "to": "Futures",
+    "type": "absorb"
+   },
+   {
+    "from": "Icon",
+    "to": "Futures",
+    "type": "absorb"
+   },
+   {
+    "from": "Empathy",
+    "to": "Futures",
+    "type": "absorb"
+   },
+   {
+    "from": "Somniac",
+    "to": "Futures",
+    "type": "spelling",
+    "reason": "mislabeled container: LP row carried a song's name; merge onto the real album title"
+   }
+  ]
+ },
+ "Lantlôs": {
+  "albums": [
+   {
+    "from": "Oxygen",
+    "to": "Nowhere In Between Forever",
+    "type": "absorb"
+   },
+   {
+    "from": "Lake Fantasy",
+    "to": "Wildhund",
+    "type": "absorb"
+   },
+   {
+    "from": "Lich",
+    "to": "Wildhund",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Triptykon": {
+  "albums": [
+   {
+    "from": "Breathing (Single)",
+    "to": "Melana Chasmata",
+    "type": "absorb"
+   }
+  ]
+ },
+ "James And The Cold Gun": {
+  "albums": [
+   {
+    "from": "Chewing Glass",
+    "to": "James and the Cold Gun",
+    "type": "absorb"
+   },
+   {
+    "from": "Plug Me In",
+    "to": "False Start",
+    "type": "absorb"
+   },
+   {
+    "from": "Something to Say",
+    "to": "James and the Cold Gun",
+    "type": "absorb"
+   },
+   {
+    "from": "Cheating on the Sun",
+    "to": "James and the Cold Gun",
+    "type": "absorb"
+   },
+   {
+    "from": "Long Way Home",
+    "to": "False Start",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Thornhill": {
+  "albums": [
+   {
+    "from": "Silver Swarm",
+    "to": "BODIES",
+    "type": "absorb"
+   },
+   {
+    "from": "Where We Go When We Die",
+    "to": "The Dark Pool",
+    "type": "absorb"
+   },
+   {
+    "from": "Nurture",
+    "to": "The Dark Pool",
+    "type": "absorb"
+   },
+   {
+    "from": "Arkangel",
+    "to": "Heroine",
+    "type": "absorb"
+   },
+   {
+    "from": "Obsession",
+    "to": "BODIES",
+    "type": "absorb"
+   },
+   {
+    "from": "Coven",
+    "to": "The Dark Pool",
+    "type": "absorb"
+   },
+   {
+    "from": "Hollywood",
+    "to": "Heroine",
+    "type": "absorb"
+   },
+   {
+    "from": "Reptile",
+    "to": "Butterfly",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Poppy": {
+  "albums": [
+   {
+    "from": "So Mean",
+    "to": "Flux",
+    "type": "absorb"
+   },
+   {
+    "from": "the cost of giving up",
+    "to": "Negative Spaces",
+    "type": "absorb"
+   },
+   {
+    "from": "they’re all around us",
+    "to": "Negative Spaces",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Karen Dió": {
+  "albums": [
+   {
+    "from": "Sick Ride",
+    "to": "My World",
+    "type": "absorb"
+   },
+   {
+    "from": "Stupid",
+    "to": "My World",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Skywalker": {
+  "albums": [
+   {
+    "from": "Charon's Song",
+    "to": "Late Eternity",
+    "type": "absorb"
+   }
+  ]
+ },
+ "ALT BLK ERA": {
+  "albums": [
+   {
+    "from": "My Drummer's Girlfriend",
+    "to": "Rave Immortal",
+    "type": "absorb"
+   },
+   {
+    "from": "Come On Outside",
+    "to": "Rave Immortal",
+    "type": "absorb"
+   },
+   {
+    "from": "Straight To Heart",
+    "to": "Rave Immortal",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Toronto Is Broken": {
+  "albums": [
+   {
+    "from": "Drip Feed",
+    "to": "TORONTOISBROKEN",
+    "type": "absorb"
+   },
+   {
+    "from": "Raw (feat. REEBZ & Sebotage)",
+    "to": "TORONTOISBROKEN",
+    "type": "absorb"
+   },
+   {
+    "from": "Euphoria (feat. REEBZ)",
+    "to": "TORONTOISBROKEN",
+    "type": "absorb"
+   }
+  ]
+ },
+ "We Came as Romans": {
+  "albums": [
+   {
+    "from": "Black Hole",
+    "to": "Darkbloom",
+    "type": "absorb"
+   }
+  ]
+ },
+ "The Offering": {
+  "albums": [
+   {
+    "from": "Failure (S.O.S)",
+    "to": "HOME",
+    "type": "absorb"
+   },
+   {
+    "from": "Ultraviolence",
+    "to": "HOME",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Nushi": {
+  "albums": [
+   {
+    "from": "Armageddon",
+    "to": "DIYNUSHI 2",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Nova Twins": {
+  "albums": [
+   {
+    "from": "Choose Your Fighter",
+    "to": "Supernova",
+    "type": "absorb"
+   },
+   {
+    "from": "Antagonist",
+    "to": "Supernova",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Ling Tosite Sigure": {
+  "albums": [
+   {
+    "from": "Telecastic Fake Show",
+    "to": "just A moment",
+    "type": "variant"
+   },
+   {
+    "from": "Neighbormind",
+    "to": "last aurorally",
+    "type": "absorb"
+   },
+   {
+    "from": "abnormalize",
+    "to": "i'mperfect",
+    "type": "variant"
+   },
+   {
+    "from": "laser beamer",
+    "to": "last aurorally",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Matt Lange": {
+  "albums": [
+   {
+    "from": "Quiet Symphony (Edit)",
+    "to": "Dichotomy",
+    "type": "variant"
+   }
+  ]
+ },
+ "Good Tiger": {
+  "albums": [
+   {
+    "from": "Young Speak",
+    "to": "Raised In A Doomsday Cult",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Machine Girl": {
+  "albums": [
+   {
+    "from": "Motherfather",
+    "to": "MG Ultra",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Avi": {
+  "albums": [
+   {
+    "from": "Fred Astaire",
+    "to": "Mały Książę",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Danny Blu": {
+  "albums": [
+   {
+    "from": "The American Dream",
+    "to": "MOLOTOV",
+    "type": "absorb"
+   }
+  ]
+ },
+ "The Bloody Beetroots": {
+  "albums": [
+   {
+    "from": "Rocksteady",
+    "to": "HIDE",
+    "type": "variant"
+   }
+  ]
+ },
+ "Uneven Structure": {
+  "albums": [
+   {
+    "from": "Creator",
+    "to": "Paragon",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Heartlay": {
+  "albums": [
+   {
+    "from": "Breathing in Embers",
+    "to": "Sovereign Sore",
+    "type": "absorb"
+   },
+   {
+    "from": "Itch by a Leech",
+    "to": "Sovereign Sore",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Windwaker": {
+  "albums": [
+   {
+    "from": "Beautiful",
+    "to": "Love Language",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Luna Kills": {
+  "albums": [
+   {
+    "from": "LEECH",
+    "to": "DEATHMATCH",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Haru Nemuri": {
+  "albums": [
+   {
+    "from": "I Refuse",
+    "to": "INSAINT",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Architects": {
+  "albums": [
+   {
+    "from": "Brain Dead",
+    "to": "The Sky, the Earth & All Between",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Quebonafide": {
+  "albums": [
+   {
+    "from": "Quebahombre",
+    "to": "Egzotyka",
+    "type": "absorb"
+   },
+   {
+    "from": "Oh My Buddha",
+    "to": "Egzotyka",
+    "type": "absorb"
+   },
+   {
+    "from": "Madagaskar",
+    "to": "Egzotyka",
+    "type": "absorb"
+   },
+   {
+    "from": "Bollywood",
+    "to": "Egzotyka",
+    "type": "absorb"
+   },
+   {
+    "from": "Changa",
+    "to": "Egzotyka",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Sepultura": {
+  "albums": [
+   {
+    "from": "Phantom Self",
+    "to": "Machine Messiah",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Fontaines D.C.": {
+  "albums": [
+   {
+    "from": "Starburster",
+    "to": "Romance",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Zheani": {
+  "albums": [
+   {
+    "from": "Skin Walker",
+    "to": "I Hate People On The Internet",
+    "type": "absorb"
+   },
+   {
+    "from": "Napalm",
+    "to": "I Hate People On The Internet",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Polaris": {
+  "albums": [
+   {
+    "from": "Landmine",
+    "to": "The Death of Me",
+    "type": "absorb"
+   },
+   {
+    "from": "Lucid",
+    "to": "The Mortal Coil",
+    "type": "absorb"
+   },
+   {
+    "from": "Hypermania",
+    "to": "The Death of Me",
+    "type": "absorb"
+   },
+   {
+    "from": "The Remedy",
+    "to": "The Mortal Coil",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Levels": {
+  "albums": [
+   {
+    "from": "SIREN HYMN",
+    "to": "PULSE",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Unprocessed": {
+  "albums": [
+   {
+    "from": "Fear",
+    "to": "Artificial Void",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Lambrini Girls": {
+  "albums": [
+   {
+    "from": "Bad Apple",
+    "to": "Who Let The Dogs Out",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Future Palace": {
+  "albums": [
+   {
+    "from": "The Echoes of Disparity",
+    "to": "Distortion",
+    "type": "absorb"
+   },
+   {
+    "from": "Malphas",
+    "to": "Distortion",
+    "type": "absorb"
+   },
+   {
+    "from": "Decarabia",
+    "to": "Distortion",
+    "type": "absorb"
+   }
+  ]
+ },
+ "I:Scintilla": {
+  "albums": [
+   {
+    "from": "Havestar",
+    "to": "Optics",
+    "type": "absorb"
+   }
+  ]
+ },
+ "OUR OCEANS": {
+  "albums": [
+   {
+    "from": "Unravel",
+    "to": "While Time Disappears",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Till Lindemann": {
+  "albums": [
+   {
+    "from": "Sport Frei",
+    "to": "Zunge 2025",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Blue Stahli": {
+  "albums": [
+   {
+    "from": "One Last Breath",
+    "to": "Obsidian",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Alt.": {
+  "albums": [
+   {
+    "from": "APEP",
+    "to": "ABEYANCE",
+    "type": "absorb"
+   },
+   {
+    "from": "A.D.D",
+    "to": "ABEYANCE",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Between the Buried and Me": {
+  "albums": [
+   {
+    "from": "Condemned to the Gallows",
+    "to": "Automata I",
+    "type": "absorb"
+   }
+  ]
+ },
+ "grandson": {
+  "albums": [
+   {
+    "from": "brainrot",
+    "to": "Inertia",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Void of Vision": {
+  "albums": [
+   {
+    "from": "Angel of Darkness",
+    "to": "What I'll Leave Behind",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Profiler": {
+  "albums": [
+   {
+    "from": "Animo",
+    "to": "A Digital Nowhere",
+    "type": "absorb"
+   }
+  ]
+ },
+ "The Word Alive": {
+  "albums": [
+   {
+    "from": "Strange Love",
+    "to": "Hard Reset",
+    "type": "absorb"
+   }
+  ]
+ },
+ "N3b": {
+  "albums": [
+   {
+    "from": "The Void",
+    "to": "Streetlight Orange",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Cassyette": {
+  "albums": [
+   {
+    "from": "September Rain",
+    "to": "Sad Girl Mixtape",
+    "type": "absorb"
+   },
+   {
+    "from": "Friends In Low Places",
+    "to": "This World Fucking Sucks",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Holy Wars": {
+  "albums": [
+   {
+    "from": "Deus Ex Machina",
+    "to": "Cult Classic",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Dead Pony": {
+  "albums": [
+   {
+    "from": "RAINBOWS",
+    "to": "Ignore This",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Caligula's Horse": {
+  "albums": [
+   {
+    "from": "Valkyrie",
+    "to": "Rise Radiant",
+    "type": "absorb"
+   }
+  ]
+ },
+ "kx5": {
+  "albums": [
+   {
+    "from": "Avalanche",
+    "to": "Kx5",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Make Them Suffer": {
+  "albums": [
+   {
+    "from": "Drown With Me",
+    "to": "How To Survive A Funeral",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Bloodywood": {
+  "albums": [
+   {
+    "from": "Gaddaar",
+    "to": "Rakshak",
+    "type": "absorb"
+   },
+   {
+    "from": "Machi Bhasad",
+    "to": "Rakshak",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Ok Goodnight": {
+  "albums": [
+   {
+    "from": "The Fox and the Bird (single)",
+    "to": "The Fox and the Bird",
+    "type": "variant"
+   }
+  ]
+ },
+ "Skyharbor": {
+  "albums": [
+   {
+    "from": "Blind Side",
+    "to": "Sunshine Dust",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Devin Townsend": {
+  "albums": [
+   {
+    "from": "Evermore",
+    "to": "Empath",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Nothing’s Carved In Stone": {
+  "albums": [
+   {
+    "from": "Sands Of Time",
+    "to": "円環 -ENCORE",
+    "type": "variant"
+   }
+  ]
+ },
+ "Dirtyphonics": {
+  "albums": [
+   {
+    "from": "Walk in the Fire",
+    "to": "Irreverence",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Stone Sour": {
+  "albums": [
+   {
+    "from": "Come What May",
+    "to": "Come What(ever) May",
+    "type": "absorb"
    }
   ]
  }

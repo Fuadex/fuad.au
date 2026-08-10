@@ -32,10 +32,27 @@ function ArtistFlow({ id, hue, go, drill: drillProp, setDrill: setDrillProp, onA
   if (!flow) return null;
   if ((flow.albums || []).length < 1 && (flow.tracks || []).length < 1) return null;
 
+  // singles→LP absorb: fold any absorbed-single album stream into its host LP stream so the single
+  // stops appearing as its own blob and its plays count under the LP. Aggregation is already done
+  // build-side (ARTIST_FLOW), so this is a defensive render-time pass over ROTATION_ALBUM_ABSORB —
+  // it also keeps the flowmap correct if a stale single ever survives into the flow data.
+  const absorbFold = (albums) => {
+    const R = window.ROTATION, ABS = window.ROTATION_ALBUM_ABSORB;
+    if (!R || !ABS || !albums || !albums.length) return albums;
+    const out = [], byKey = new Map();
+    for (const al of albums) {
+      const k0 = id + "~" + R.slug(al.name), k = ABS[k0] || k0;
+      if (k === k0 && !byKey.has(k)) { byKey.set(k, al); out.push(al); continue; }
+      const host = byKey.get(k);
+      if (host) { host.vals = host.vals.map((v, i) => v + (al.vals[i] || 0)); }   // single → LP stream
+      else { byKey.set(k, al); out.push(al); }   // LP not seen yet — carry the single, host may merge later
+    }
+    return out;
+  };
   let items, years, drillAlbum = null;
   if (mode === "songs") { items = flow.tracks; years = flow.years; }
   else if (drill != null && flow.albums[drill]) { drillAlbum = flow.albums[drill]; items = drillAlbum.tracks; years = drillAlbum.tyears; }
-  else { items = flow.albums; years = flow.years; }
+  else { items = absorbFold(flow.albums); years = flow.years; }
   const series = items.map((it, i) => ({ key: it.name + i, name: it.name, hue: (hue + (i - (items.length - 1) / 2) * 15 + 360) % 360, vals: it.vals, mute: !!it.other }));
   const canDrill = mode === "albums" && drill == null;
   // albums drill into their songs; songs (top-songs mode OR inside a drilled album) open the track page
@@ -1124,8 +1141,10 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   // 30-s preview hashes for the header "needle drop" (plays the artist's most-played playable song)
   const [prevReady, setPrevReady] = React.useState(!!window.ROTATION_PREVIEWS);
   React.useEffect(() => {
-    if (window.ROTATION_PREVIEWS) { setPrevReady(true); return; }
-    const s = document.createElement("script"); s.src = "track-previews.js"; s.onload = () => setPrevReady(true); document.head.appendChild(s);
+    if (!window.ROTATION_PREVIEWS) { const s = document.createElement("script"); s.src = "track-previews.js"; s.onload = () => setPrevReady(true); document.head.appendChild(s); }
+    else setPrevReady(true);
+    // vetted iTunes fallback table (preview-fallback.js) — PreviewBtn's non-Spotify source
+    if (!window.ROTATION_PREVIEW_FALLBACK) { const s = document.createElement("script"); s.src = "preview-fallback.js"; s.onload = () => setPrevReady(true); document.head.appendChild(s); }
   }, []);
   // flowmap album selection (drill lifted OUT of ArtistFlow) scopes Top tracks + Sound DNA
   // to that album (Fuad, 2026-07-07). selAlbum = the flow album object {name, tracks:[{name,vals}]}.
@@ -1292,8 +1311,8 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     return null;
   })();
   // Fallback when the artist has NO track in the Spotify preview dump (e.g. PRO8L3M, Eat Your Heart
-  // Out): expose a preview on the most-played track via PreviewBtn, which resolves through the keyless
-  // iTunes lookup and simply hides itself if nothing matches (Fuad 2026-07-14).
+  // Out): expose a preview on the most-played track via PreviewBtn, which resolves through the
+  // build-time vetted preview-fallback table and simply hides itself if that track isn't in it.
   const topPrev = (!needleKey && tracks.length)
     ? (() => { const t = tracks.slice().sort((x, y) => y.plays - x.plays)[0]; return { id: R.slug(a.name) + "~" + R.slug(t.title), title: t.title }; })()
     : null;
@@ -2335,6 +2354,15 @@ function AlbumView({ id, go }) {
     return [...acc.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2)
       .map(([i, p]) => ({ theme: TT._themes[i], share: Math.round(p / tot * 100) }));
   })();
+  // singles→LP absorb: this album row is KEPT + browsable, but if it's an absorbed single, surface
+  // one subtle line linking to the LP it lives on. id is artistSlug~albumSlug (same absorb key).
+  const livesOn = (() => {
+    const lpId = window.ROTATION_absorbAlbum ? window.ROTATION_absorbAlbum(id) : id;
+    if (!lpId || lpId === id) return null;
+    const M = window.ROTATION_MEDIA, lpSlug = lpId.slice(lpId.indexOf("~") + 1);
+    const row = M && M.albums.find(r => r[1] === M.artists.indexOf(data.artist) && R.slug(r[0]) === lpSlug);
+    return { id: lpId, title: row ? row[0] : lpSlug };
+  })();
   // album "what it's about" (Wikipedia themes) — id is artistSlug~albumSlug, same key the pull uses
   const albumAbout = (window.ROTATION_ALBUM_ABOUT && window.ROTATION_ALBUM_ABOUT[id]) || null; // [excerpt, wikiTitle]
   // album extras (same id key): { bonus:[track titles], from:[edition names], byEdition:{suffix:[…]} }.
@@ -2377,6 +2405,8 @@ function AlbumView({ id, go }) {
           <h1 className="r-title" style={{ fontSize: "clamp(30px,4.4vw,54px)" }}>{data.title}<span className="dot">.</span></h1>
           <div style={{ color: "var(--ink-soft)", fontSize: 15, marginTop: 6 }}>
             by {known ? <b onClick={() => go("artist", artistId)} style={{ cursor: "pointer", color: "var(--ink)" }}>{data.artist}</b> : data.artist}</div>
+          {livesOn && <div className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-faint)", marginTop: 5 }}>
+            single · lives on <span className="link" style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => go("album", livesOn.id)} title={`${livesOn.title} →`}>{livesOn.title}</span></div>}
           {label && <div className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-faint)", marginTop: 4 }}>{label}{heardYr ? ` · you played it ${heardYr}` : ""}</div>}
           {albThemes && (
             <div style={{ fontSize: 12.5, color: "var(--ink-soft)", marginTop: 8 }} title="Play-weighted lyric themes across the tracks you've played from this album">
@@ -2603,16 +2633,15 @@ function AlbumView({ id, go }) {
   );
 }
 
-// PreviewBtn — plays the 30-second Spotify preview (hash from the lazy track-previews.js; the
-// cid query param is constant across the whole dump). When the dump has no preview (e.g. much
-// of NIN's catalog), falls back to the keyless iTunes Search API — accepted only when BOTH the
-// artist and title match after normalisation, so it can't play the wrong song. One Audio
-// element, toggled; cleaned on nav.
+// PreviewBtn — plays the 30-second preview (hash from the lazy track-previews.js; the cid query
+// param is constant across the whole dump). When the dump has no Spotify preview (e.g. much of
+// NIN's catalog), falls back to a build-time VETTED iTunes preview URL keyed by track id
+// (preview-fallback.js — window.ROTATION_PREVIEW_FALLBACK). That table was human-adjudicated so it
+// never serves the wrong version (remix/dub/live); there is NO runtime iTunes search / guessing.
+// If neither source has the track, the button hides itself. One Audio element, toggled; cleaned on nav.
 const PREVIEW_CID = "65b708073fc0480ea92a077233ca87bd";
-const _itCache = new Map();   // id → url | null (session-level, avoids repeat lookups)
 function PreviewBtn({ id, hue, artist, title }) {
   const [playing, setPlaying] = React.useState(false);
-  const [itUrl, setItUrl] = React.useState(() => _itCache.has(id) ? _itCache.get(id) : undefined);
   const ref = React.useRef(null);
   React.useEffect(() => {
     // On id change (navigation) or unmount: stop playback and reset UI state.
@@ -2622,21 +2651,8 @@ function PreviewBtn({ id, hue, artist, title }) {
     };
   }, [id]);
   const hash = window.ROTATION_PREVIEWS && window.ROTATION_PREVIEWS[id];
-  React.useEffect(() => {
-    if (hash || !artist || !title || _itCache.has(id)) return;
-    const nrm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\(.*?\)|\[.*?\]/g, "").replace(/[^a-z0-9ぁ-んァ-ヶ一-龠]/gu, "");
-    fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artist + " " + title)}&media=music&entity=song&limit=5`)
-      .then(r => r.json())
-      .then(j => {
-        const tN = nrm(title), aN = nrm(artist);
-        const hit = (j.results || []).find(r => r.previewUrl && nrm(r.trackName) === tN &&
-          (nrm(r.artistName).includes(aN) || aN.includes(nrm(r.artistName))));
-        const url = hit ? hit.previewUrl : null;
-        _itCache.set(id, url); setItUrl(url);
-      })
-      .catch(() => { _itCache.set(id, null); setItUrl(null); });
-  }, [id, hash]);
-  const src = hash ? `https://p.scdn.co/mp3-preview/${hash}?cid=${PREVIEW_CID}` : itUrl;
+  const fallback = window.ROTATION_PREVIEW_FALLBACK && window.ROTATION_PREVIEW_FALLBACK[id];
+  const src = hash ? `https://p.scdn.co/mp3-preview/${hash}?cid=${PREVIEW_CID}` : (fallback || null);
   if (!src) return null;
   const toggle = () => {
     if (ref.current && !ref.current.paused) { ref.current.pause(); setPlaying(false); return; }
@@ -2649,7 +2665,7 @@ function PreviewBtn({ id, hue, artist, title }) {
     setPlaying(true);
   };
   return (
-    <button onClick={toggle} title="30-second preview (Spotify)"
+    <button onClick={toggle} title="30-second preview"
       style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "6px 14px", borderRadius: 999,
         border: `1px solid ${playing ? `oklch(0.6 0.14 ${hue} / .8)` : "var(--rule-2)"}`,
         background: playing ? `oklch(0.6 0.14 ${hue} / .16)` : "transparent",
@@ -2851,7 +2867,8 @@ function TrackView({ id, go }) {
     let need = 0; const done = () => { if (--need <= 0) setReady(true); };
     const load = (src, glob) => { if (window[glob]) return; need++; const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
     load("media-index.js", "ROTATION_MEDIA"); load("track-audio.js", "ROTATION_TRACKAUDIO");
-    load("track-previews.js", "ROTATION_PREVIEWS"); load("genius-mood-lazy.js", "ROTATION_MOOD");
+    load("track-previews.js", "ROTATION_PREVIEWS"); load("preview-fallback.js", "ROTATION_PREVIEW_FALLBACK");
+    load("genius-mood-lazy.js", "ROTATION_MOOD");
     load("genius-about-lazy.js", "ROTATION_ABOUT");
     load("mb-track-bio.js", "ROTATION_TRACKBIO");   // song bios (writers/covers/versions) via MusicBrainz
     if (need === 0) setReady(true);
@@ -2885,9 +2902,22 @@ function TrackView({ id, go }) {
       if (albIdx >= 0) for (let i = 0; i < M.tracks.length && siblings.length < 20; i++) { const o = M.tracks[i]; if (i !== bestIdx && o[3] === albIdx) siblings.push({ title: o[0], plays: o[2], no: o[5] || 0, id: R.slug(artist) + "~" + R.slug(o[0]) }); }
       siblings.sort((x, y) => (x.no && y.no) ? x.no - y.no : y.plays - x.plays);
     }
+    // track→album navigation: if the track's home album is an absorbed SINGLE row, route to the LP
+    // it lives on (link, not merge — the single row still exists, this only redirects the chip).
+    let albName = alb ? alb[0] : "", albId = alb ? R.slug(M.artists[alb[1]]) + "~" + R.slug(alb[0]) : "";
+    if (albId && window.ROTATION_absorbAlbum) {
+      const lpId = window.ROTATION_absorbAlbum(albId);
+      if (lpId !== albId) {
+        albId = lpId;
+        // resolve the LP's display title from the media index (fallback: keep the single's label)
+        const [lpaSlug, lpSlug] = lpId.split("~");
+        const lpRow = M.albums.find(r => R.slug(M.artists[r[1]]) === lpaSlug && R.slug(r[0]) === lpSlug);
+        if (lpRow) albName = lpRow[0];
+      }
+    }
     return {
       title: t ? t[0] : tSlug, artist, plays,
-      album: alb ? alb[0] : "", albumId: alb ? R.slug(M.artists[alb[1]]) + "~" + R.slug(alb[0]) : "",
+      album: albName, albumId: albId,
       cover: alb && alb[6] ? alb[6] : "", trackNo: (t && t[5]) || (feat && feat[3]) || 0,
       dur: feat ? feat[0] : 0, pop: feat ? feat[1] : 0, explicit: feat ? !!feat[2] : false,
       feat: feat && feat.length >= 16 ? feat : null,
