@@ -344,6 +344,10 @@ a.r-link:hover { color: var(--ink); }
 /* the read block owns the absolute brand credit, so Means/Built can follow it in flow */
 .tv-switch-read { position: relative; padding-bottom: 20px; }
 .tv-switch-txt { font-family: var(--serif); font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
+/* fableAlt flick (Fuad 2026-08-11) — the "Take / Alt take" swap under a folded twin's Fable read.
+   Reuses the tv-switch-mode pill idiom; sits inline under the read (no margin-auto push right). */
+.tv-switch-alt { margin: 9px 0 0; }
+.tv-switch-alt button[data-on="true"] { color: oklch(0.78 0.14 60); }
 /* MEANS + BUILT — the craft register, below the read and its credit, behind a hairline
    (Fuad 2026-08-08). Keys share one column so the two lines align. */
 .tv-craft { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule); display: grid; gap: 6px; }

@@ -1,0 +1,6325 @@
+{
+ "385": {
+  "artist": {
+   "from": "３８５",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "_doc": "Curated coherency folds. Applied at scrobble ingest in build-data.js. Grouped by canonical artist; one line per fold. type spelling|variant|feat-credit|diacritic. Source: classified-all.json + out-AR-albums-fixed.json + mojibake + tier-2 verifier corrections. See LEDGER_DESIGN.md.",
+ "100 gecs": {
+  "tracks": [
+   {
+    "from": "hand crushed by a mallet (Remix) [feat. Fall Out Boy, Craig Owens, Nicole Dollanganger]",
+    "to": "hand crushed by a mallet",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "9mm Parabellum Bullet": {
+  "tracks": [
+   {
+    "from": "インフェル�",
+    "to": "インフェルノ",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "A Day to Remember": {
+  "tracks": [
+   {
+    "from": "My Life for Hire (Live In Switzerland)",
+    "to": "My Life for Hire",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Another Song About the Weekend (acoustic)",
+    "to": "Another Song About the Weekend",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "A Perfect Circle": {
+  "albums": [
+   {
+    "from": "Mer De Noms - Live",
+    "to": "Mer de noms",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "The Outsider (acoustic)",
+    "to": "The Outsider",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Weak And Powerless (acoustic)",
+    "to": "Weak and Powerless",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Hollow (acoustic)",
+    "to": "The Hollow",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Blue (remix)",
+    "to": "Blue",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "3 Libras (acoustic)",
+    "to": "3 Libras",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Orestes (acoustic)",
+    "to": "Orestes",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Sleeping Beauty (acoustic)",
+    "to": "Sleeping Beauty",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Thomas (acoustic)",
+    "to": "Thomas",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Brena",
+    "to": "Breña",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Accept": {
+  "artist": {
+   "from": "ACCEPT (H)",
+   "type": "spelling",
+   "reason": "spelling: variant name form folds to canonical artist name"
+  }
+ },
+ "Acid Drinkers": {
+  "albums": [
+   {
+    "from": "Męskie Granie 2016 (Live)",
+    "to": "Męskie Granie 2016",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Love Shack - Live",
+    "to": "Love Shack",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Jocker",
+    "to": "The Joker",
+    "type": "spelling",
+    "reason": "tier-2: typo, canonical is \"The Joker\""
+   },
+   {
+    "from": "The Jokers",
+    "to": "The Joker",
+    "type": "spelling",
+    "reason": "tier-2: typo, canonical is \"The Joker\""
+   }
+  ]
+ },
+ "Acme": {
+  "tracks": [
+   {
+    "from": "Mononoke Requiem - (Album Version)",
+    "to": "Mononoke Requiem",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Acres": {
+  "tracks": [
+   {
+    "from": "Nothing. - Live from Islington O2 Academy, 2023",
+    "to": "Nothing.",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Agnieszka Chylińska": {
+  "artist": {
+   "from": "Agnieszka Chylinska",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "Alex": {
+  "albums": [
+   {
+    "from": "SWITCH OF THE LIGHT",
+    "to": "SWITCH OFF THE LIGHT",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "SWITCH OF THE LIGHT",
+    "to": "SWITCH OFF THE LIGHT",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Alex Klingle": {
+  "tracks": [
+   {
+    "from": "Colors Back (Radio Edit)",
+    "to": "Colors Back",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Alex Yarmak": {
+  "albums": [
+   {
+    "from": "5 AM (Remix)",
+    "to": "5 AM",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "5 AM - Remix",
+    "to": "5 AM",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Alice in Chains": {
+  "albums": [
+   {
+    "from": "Alice In Chain's Greatest Hits",
+    "to": "Alice in Chains Greatest Hits",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "We Die Young (Demo)",
+    "to": "We Die Young",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Would - live",
+    "to": "Would?",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "What The Hell Have I (Remix)",
+    "to": "What The Hell Have I",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Them Bones - Live",
+    "to": "Them Bones",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Bleed The Freak - live",
+    "to": "Bleed the Freak",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Down In A Hole (Album Version)",
+    "to": "Down in a Hole",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Nutshell (Album Version)",
+    "to": "Nutshell",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Brother (Album Version)",
+    "to": "Brother",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "A Little Bitter (Remix)",
+    "to": "A Little Bitter",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Junkhead - live",
+    "to": "Junkhead",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "God Smack",
+    "to": "Godsmack",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Don't Follow (Album Version)",
+    "to": "Don't Follow",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Whale & Wasp (Album Version)",
+    "to": "Whale & Wasp",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Am I Inside (Album Version)",
+    "to": "Am I Inside",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Swing On This (Album Version)",
+    "to": "Swing on This",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Alien Weaponry": {
+  "tracks": [
+   {
+    "from": "Ru Ana Te Whenua",
+    "to": "Rū Ana Te Whenua",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   }
+  ]
+ },
+ "Amalee": {
+  "tracks": [
+   {
+    "from": "Clattanoia (From \"Overlord�) (feat. Jonathan Young)",
+    "to": "Clattanoia (From \"Overlord\") (feat. Jonathan Young)",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "American Authors": {
+  "tracks": [
+   {
+    "from": "Best Day Of My Life (Single Version)",
+    "to": "Best Day of My Life",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Animals as Leaders": {
+  "tracks": [
+   {
+    "from": "Nephele (Live from Detroit)",
+    "to": "Nephele",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Annie": {
+  "artist": {
+   "from": "Anniê",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "Annihilator": {
+  "tracks": [
+   {
+    "from": "Human Insecticide (live)",
+    "to": "Human Insecticide",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Kraf Dinner (Demo)",
+    "to": "Kraf Dinner",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Shallow grave (live)",
+    "to": "Shallow Grave",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Anthrax": {
+  "albums": [
+   {
+    "from": "Persistance Of Time",
+    "to": "Persistence of Time",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Only (remix)",
+    "to": "Only",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Panic (Live In Studio)",
+    "to": "Panic",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Keep It In The Family [Live]",
+    "to": "Keep It in the Family",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Potters Field (Remix)",
+    "to": "Potter's Field",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Efilnekufesin (N.F.L)",
+    "to": "Efilnikufesin (N.F.L.)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Apocalyptica": {
+  "albums": [
+   {
+    "from": "Life Burns! (feat. Lauri Ylönen)",
+    "to": "Life Burns!",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Faraway (radio edit)",
+    "to": "Faraway",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Bittersweet (acoustic)",
+    "to": "Bittersweet",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "End Of Me (feat. Gavin Rossdale) (300mph Remix)",
+    "to": "End of Me (feat. Gavin Rossdale)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Enter Sandman (album version)",
+    "to": "Enter Sandman",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Enter Sandman (edit)",
+    "to": "Enter Sandman",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Arch Enemy": {
+  "tracks": [
+   {
+    "from": "Taking Back My Soul (live)",
+    "to": "Taking Back My Soul",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Blood On Your Hands (live)",
+    "to": "Blood On Your Hands",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Beast Of Man (Live)",
+    "to": "Beast Of Man",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Immortal (live)",
+    "to": "The Immortal",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Immortal (Live In Japan '99)",
+    "to": "The Immortal",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Heart of Darkness (live in paris 2004) (bonus track)",
+    "to": "Heart of Darkness",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Diva Satanica (live)",
+    "to": "Diva Satanica",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Bridge of Destiny (live in paris 2004) (bonus track)",
+    "to": "Bridge Of Destiny",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Bridge Of Destiny (live)",
+    "to": "Bridge Of Destiny",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Dead Inside (Live In Japan '99)",
+    "to": "Dead Inside",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Bury Me an Angel (Live)",
+    "to": "Bury Me an Angel",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Pilgrim (Live In Japan '99)",
+    "to": "Pilgrim",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Silverwing (Live In Japan '99)",
+    "to": "Silverwing",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Angelclaw (Live in Japan '99)",
+    "to": "Angelclaw",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Art Vs Science": {
+  "tracks": [
+   {
+    "from": "Parlez-vous français?",
+    "to": "Parlez-vous Francais?",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Artillery": {
+  "tracks": [
+   {
+    "from": "Sandbox philosopsy",
+    "to": "Sandbox Philosophy",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Arukara": {
+  "tracks": [
+   {
+    "from": "ア�ノーマルが足りない",
+    "to": "アンノーマルが足りない",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Ascension of the Watchers": {
+  "albums": [
+   {
+    "from": "Apochrypha",
+    "to": "Apocrypha",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Asking Alexandria": {
+  "albums": [
+   {
+    "from": "Reckless And Relentless",
+    "to": "Reckless & Relentless",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Alone Again - Acoustic",
+    "to": "Alone Again",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Faded Out - Acoustic",
+    "to": "Faded Out",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Faded Out (feat. Within Temptation)",
+    "to": "Faded Out",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Awake the Dreamer": {
+  "albums": [
+   {
+    "from": "Atmosphere (feat. Ryo Kinoshita)",
+    "to": "Atmosphere",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "BABYMETAL": {
+  "albums": [
+   {
+    "from": "PA PA YA!! (feat. F.HERO) - Single",
+    "to": "PA PA YA!!",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Kagerou (with Kami Band Intro)",
+    "to": "Kagerou",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Gimme Chocolate!! (Live at O2 Academy Brixton,London) (Live)",
+    "to": "Gimme Chocolate!!",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Gimme chocolate!! - live",
+    "to": "Gimme Chocolate!!",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Megitsune - live",
+    "to": "Megitsune",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "CATCH ME IF YOU CAN - Live (Makuhari Hall)",
+    "to": "Catch Me If You Can",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Catch me if you can - Live",
+    "to": "Catch Me If You Can",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "CATCH ME IF YOU CAN - Live (Makuhari Messe)",
+    "to": "Catch Me If You Can",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "BABYMETAL DEATH - live",
+    "to": "BABYMETAL DEATH",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Song 4 - live",
+    "to": "Song 4",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Iine! - live",
+    "to": "Iine!",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Uki Uki ★ Midnight - live",
+    "to": "Uki Uki ★ Midnight",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Karate (Live UK Download 2016)",
+    "to": "KARATE",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Doki Doki ☆ Morning - live",
+    "to": "Doki Doki ☆ Morning",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Rondo of Nightmare - live",
+    "to": "Rondo of Nightmare",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Headbangeeeeerrrrr!!!!! - live",
+    "to": "Headbangeeeeerrrrr!!!!!",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Head Bangeeeeerrrrr!!!!!",
+    "to": "Headbangeeeeerrrrr!!!!!",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   }
+  ]
+ },
+ "Bad Nerves": {
+  "albums": [
+   {
+    "from": "Don't Stop (Live in London. 2022)",
+    "to": "Don't Stop",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Don't Stop - Live in London, 2022",
+    "to": "Don't Stop",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Can't Be Mine - Live in London, 2022",
+    "to": "Can't Be Mine",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Bad Omens": {
+  "albums": [
+   {
+    "from": "Never Know (Live)",
+    "to": "Never Know",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "The Worst In Me - Live",
+    "to": "The Worst In Me",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Limits - Live",
+    "to": "Limits",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Limits - Acoustic",
+    "to": "Limits",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Never Know - Live",
+    "to": "Never Know",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Careful What You Wish For - Live",
+    "to": "Careful What You Wish For",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Battle Tapes": {
+  "tracks": [
+   {
+    "from": "Last Resort and Spa",
+    "to": "Last Resort & Spa",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Behemoth": {
+  "albums": [
+   {
+    "from": "A Forest (feat. Niklas Kvarforth)",
+    "to": "A Forest",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Björk": {
+  "artist": {
+   "from": "Bjork",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "Black River": {
+  "tracks": [
+   {
+    "from": "Punky Blonde (live)",
+    "to": "Punky Blonde",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Free Man - Acoustic",
+    "to": "Free Man",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Symetry",
+    "to": "Symmetry",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Night Lover (live)",
+    "to": "Night Lover",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Too Far Away (live)",
+    "to": "Too Far Away",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Unlucky in Hell",
+    "to": "Lucky in Hell",
+    "type": "spelling",
+    "reason": "tier-2: leading \"Un\" is typo, canonical is \"Lucky in Hell\""
+   }
+  ]
+ },
+ "Bleach": {
+  "tracks": [
+   {
+    "from": "黒ペ�美学を天使ちゃんと考えました。",
+    "to": "黒ペン美学を天使ちゃんと考えました。",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   },
+   {
+    "from": "黒ペン�学を天使ちゃんと考えました。",
+    "to": "黒ペン美学を天使ちゃんと考えました。",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Blue Öyster Cult": {
+  "artist": {
+   "from": "Blue Oyster Cult",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "bôa": {
+  "tracks": [
+   {
+    "from": "Duvet [Acoustic]",
+    "to": "Duvet",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Bonobo": {
+  "tracks": [
+   {
+    "from": "Stay The Same - Radio Edit",
+    "to": "Stay the Same (feat. Andreya Triana)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Boris Brejcha": {
+  "albums": [
+   {
+    "from": "Never Stop Dancing (feat. Ginger)",
+    "to": "Never Stop Dancing",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Boston Manor": {
+  "albums": [
+   {
+    "from": "Algorithm (Acoustic)",
+    "to": "Algorithm",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Englands Dreaming (Acoustic)",
+    "to": "England's Dreaming (Acoustic)",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Algorithm - Acoustic",
+    "to": "Algorithm",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Brand of Sacrifice": {
+  "tracks": [
+   {
+    "from": "Lifeblood - Remix",
+    "to": "Lifeblood",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Bring Me the Horizon": {
+  "albums": [
+   {
+    "from": "Obey (with YUNGBLUD)",
+    "to": "Obey",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Can You Feel My Heart (Remix)",
+    "to": "Can You Feel My Heart",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Obey",
+    "to": "Obey (with YUNGBLUD)",
+    "type": "spelling",
+    "reason": "feat-credit: missing/incomplete feature credit folds to full official title"
+   },
+   {
+    "from": "Can You Feel My Heart - Remix",
+    "to": "Can You Feel My Heart",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "sugar honey ice & tea - Edit",
+    "to": "sugar honey ice & tea",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Doomed - Live at the Royal Albert Hall",
+    "to": "Doomed",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Cab Calloway": {
+  "tracks": [
+   {
+    "from": "Minnie the Mooche",
+    "to": "Minnie the Moocher",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Cabal": {
+  "albums": [
+   {
+    "from": "Drag Me Down (feat. Jamie Hails)",
+    "to": "Drag Me Down",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Calvin Harris": {
+  "tracks": [
+   {
+    "from": "Feels So Close",
+    "to": "Feel So Close",
+    "type": "spelling",
+    "reason": "spelling: \"Feels\" is a typo; canonical plain title is \"Feel So Close\" per Wikipedia"
+   },
+   {
+    "from": "Feel So Close (Radio Edit)",
+    "to": "Feel So Close",
+    "type": "variant",
+    "reason": "variant: Radio Edit links to canonical plain title \"Feel So Close\""
+   }
+  ]
+ },
+ "Carcass": {
+  "tracks": [
+   {
+    "from": "No Love Lost (live)",
+    "to": "No Love Lost",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Rot 'n' Roll (live)",
+    "to": "Rot 'n' Roll",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Edge Of Darkness (live)",
+    "to": "Edge of Darkness",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Celldweller": {
+  "albums": [
+   {
+    "from": "Blind Lead the Blind (Album Version)",
+    "to": "Blind Lead the Blind",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "The Lucky One (Remix by Paul Udarov) (Celldweller The Lucky One Competition)",
+    "to": "The Lucky One",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The End of the World (feat. Daedric) - HIGHSOCIETY Remix",
+    "to": "The End of the World",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The End of the World (feat. Daedric)",
+    "to": "The End of the World",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   }
+  ]
+ },
+ "chouchou merged syrups.": {
+  "tracks": [
+   {
+    "from": "何度�",
+    "to": "何度も",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Combichrist": {
+  "albums": [
+   {
+    "from": "What the F^^k Is Wrong With You People?",
+    "to": "What The Fuck Is Wrong With You People?",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Conquer Divide": {
+  "albums": [
+   {
+    "from": "Chemicals (Acoustic)",
+    "to": "Chemicals",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Chemicals - Acoustic",
+    "to": "Chemicals",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Coolio": {
+  "tracks": [
+   {
+    "from": "Gangstas Paradise",
+    "to": "Gangsta's Paradise (feat. L.V.)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Coping Method": {
+  "albums": [
+   {
+    "from": "Closing In (feat. REEBZ)",
+    "to": "Closing In",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Coroner": {
+  "tracks": [
+   {
+    "from": "Devine Step (Conspectu Mortis)",
+    "to": "Divine Step (Conspectu Mortis)",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Divine Step (Conspectu Mortis) [Live '95]",
+    "to": "Divine Step (Conspectu Mortis)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Caveat (To the Comming)",
+    "to": "Caveat (To the Coming)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Status: Still Thinking [Live '95]",
+    "to": "Status: Still Thinking",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Creedence Clearwater Revival": {
+  "tracks": [
+   {
+    "from": "It Came Out of the Sky [live]",
+    "to": "It Came Out of the Sky",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Crystal Castles": {
+  "tracks": [
+   {
+    "from": "Celestica - Album Version",
+    "to": "Celestica",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Year Of Silence - Album Version",
+    "to": "Year of Silence",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Not in Love (feat. Robert Smith)",
+    "to": "Not in Love",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Not In Love (feat. Robert Smith - Sane Smith Remix - Instrumental Edit)",
+    "to": "Not in Love",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Not In Love - Radio Version",
+    "to": "Not In Love (Radio Version) (Feat. Robert Smith)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Dada Life": {
+  "tracks": [
+   {
+    "from": "Cookies With a Smile (Radio Edit)",
+    "to": "Cookies With a Smile",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Daedric": {
+  "tracks": [
+   {
+    "from": "Nascent - Live",
+    "to": "Nascent",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Daft Punk": {
+  "albums": [
+   {
+    "from": "Alive: 2007 (Live)",
+    "to": "Alive 2007",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Harder, Better, Faster, Stronger (Album Version)",
+    "to": "Harder, Better, Faster, Stronger",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "DAOKO": {
+  "tracks": [
+   {
+    "from": "ぼくらのネッ�ワーク",
+    "to": "ぼくらのネットワーク",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Dayseeker": {
+  "tracks": [
+   {
+    "from": "Crooked Soul - Single Version",
+    "to": "Crooked Soul",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "deadmau5": {
+  "artist": [
+   {
+    "from": "Deadmau5 [Feat. Rob Swire]",
+    "type": "feat-credit",
+    "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+   },
+   {
+    "from": "Deadmau5 [feat. Gerard Way]",
+    "type": "feat-credit",
+    "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Bridged By A Lightwave (Acoustic)",
+    "to": "Bridged By A Lightwave",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "I Remember (Radio Edit)",
+    "to": "I Remember",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Ghosts 'n' Stuff (Radio Edit)",
+    "to": "Ghosts 'n' Stuff (feat. Rob Swire)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Strobe - Radio Edit",
+    "to": "Strobe",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Professional Griefers - Vocal Mix",
+    "to": "Professional Griefers (Vocal Mix) (feat. Gerard Way)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Careless (Acoustic)",
+    "to": "Careless",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Drfunkenstein",
+    "to": "Dr. Funkenstein",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Dean Lewis": {
+  "albums": [
+   {
+    "from": "Same Kind Of Different (Acoustic)",
+    "to": "Same Kind of Different",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ]
+ },
+ "Death Grips": {
+  "tracks": [
+   {
+    "from": "Ha Ha Ha",
+    "to": "Hahaha",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Deftones": {
+  "albums": [
+   {
+    "from": "B-Sides & Rarities (Explicit)",
+    "to": "B-Sides & Rarities",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Knife Prty",
+    "to": "Knife Party",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Digital Bath (acoustic)",
+    "to": "Digital Bath",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Change (In the House of Flies) (acoustic)",
+    "to": "Change (In the House of Flies)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "976EVIL",
+    "to": "976-EVIL",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Riviere",
+    "to": "Rivière",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   }
+  ]
+ },
+ "Depeche Mode": {
+  "tracks": [
+   {
+    "from": "Enjoy the Silence (remix)",
+    "to": "Enjoy the Silence",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Destiny Potato": {
+  "tracks": [
+   {
+    "from": "Walls Of Thoughts",
+    "to": "Walls of Thought",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Dillon Francis & Dj Snake": {
+  "tracks": [
+   {
+    "from": "Get Low (Radio Edit)",
+    "to": "Get Low",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "DIR EN GREY": {
+  "albums": [
+   {
+    "from": "落ちた事�ある空 (Ochita Koto no Aru Sora)",
+    "to": "落ちた事のある空 (Ochita Koto no Aru Sora)",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Don Broco": {
+  "tracks": [
+   {
+    "from": "One True Prince - Live",
+    "to": "One True Prince",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Dope": {
+  "tracks": [
+   {
+    "from": "You Spin Me Round (like A Reco",
+    "to": "You Spin Me Round (Like a Record)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Dragged Under": {
+  "albums": [
+   {
+    "from": "Instability (Live)",
+    "to": "Instability",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Hypochondria (Live)",
+    "to": "Hypochondria",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Chelsea (Live)",
+    "to": "Chelsea",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Brainwash Broadcast (feat. Spencer Chamberlain)",
+    "to": "Brainwash Broadcast",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Instability - Live",
+    "to": "Instability",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Hypochondria - Live",
+    "to": "Hypochondria",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Chelsea - Live",
+    "to": "Chelsea",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Hardest Drug - Live",
+    "to": "The Hardest Drug",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Just Like Me - Live",
+    "to": "Just Like Me",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Dream Theater": {
+  "tracks": [
+   {
+    "from": "This Dying Soul (Live)",
+    "to": "This Dying Soul",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Perfect Strangers (Live)",
+    "to": "Perfect Strangers",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Perfect Stranger",
+    "to": "Perfect Strangers",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "In the Presence of Enemies - Part I",
+    "to": "In The Presence Of Enemies Pt. 1",
+    "type": "spelling"
+   }
+  ]
+ },
+ "Dreamer Isioma": {
+  "albums": [
+   {
+    "from": "Technicolor Love (feat. redveil)",
+    "to": "Technicolor Love",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Duke Ellington": {
+  "tracks": [
+   {
+    "from": "In a sentimentaI mood",
+    "to": "In A Sentimental Mood",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Dying Wish": {
+  "tracks": [
+   {
+    "from": "Innate Thirst - Single Version",
+    "to": "Innate Thirst",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Eminem": {
+  "albums": [
+   {
+    "from": "Encore (Explicit)",
+    "to": "Encore",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Enter Shikari": {
+  "tracks": [
+   {
+    "from": "{ The Dreamer's Hotel } (Acoustic)",
+    "to": "{ The Dreamer's Hotel }",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Sorry, You're Not A Winner - Live at Wembley",
+    "to": "Sorry You're Not A Winner",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Eric Prydz": {
+  "tracks": [
+   {
+    "from": "Pjanoo (Radio Edit)",
+    "to": "Pjanoo",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Ernest Gonzales": {
+  "albums": [
+   {
+    "from": "While On Saturns Rings",
+    "to": "While on Saturn's Rings",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Étienne de Crécy": {
+  "artist": {
+   "from": "Etienne de Crécy",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "Evergrey": {
+  "tracks": [
+   {
+    "from": "Weightless - Live In Gothenburg",
+    "to": "Weightless",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Exodus": {
+  "tracks": [
+   {
+    "from": "And Then There Were None (Live)",
+    "to": "And Then There Were None",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Me, Myself And I",
+    "to": "Me, Myself & I",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Stike Of The Beast",
+    "to": "Strike of the Beast",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Faith No More": {
+  "tracks": [
+   {
+    "from": "The Gentle Art Of Making Enemi",
+    "to": "The Gentle Art of Making Enemies",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Fall Out Boy": {
+  "tracks": [
+   {
+    "from": "Love From The Other Side - Edit",
+    "to": "Love From the Other Side",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "False Heads": {
+  "tracks": [
+   {
+    "from": "Thick Skin - Remix",
+    "to": "Thick Skin",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Fatboy Slim": {
+  "tracks": [
+   {
+    "from": "Yamama",
+    "to": "Ya Mamma",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Filter": {
+  "tracks": [
+   {
+    "from": "Take A Picture (Radio Edit)",
+    "to": "Take a Picture",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Under - Live 1995",
+    "to": "Under",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "American Cliche",
+    "to": "American Cliché",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   },
+   {
+    "from": "Columbind",
+    "to": "Columind",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "(Can't She See) Head Of Fire, Part 2",
+    "to": "(Can't She See) Head of Fire Pt. 2",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "It's Over - Live 1995",
+    "to": "It's Over",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Take",
+    "to": "The Wake",
+    "type": "spelling",
+    "reason": "tier-2: typo confirmed, \"The Take\" is \"The Wake\""
+   },
+   {
+    "from": "My Long Walk to Vail",
+    "to": "My Long Walk to Jail",
+    "type": "spelling",
+    "reason": "tier-2: typo confirmed, Vail is Jail"
+   }
+  ]
+ },
+ "FKA Rayne": {
+  "tracks": [
+   {
+    "from": "WOOF - live studio version",
+    "to": "WOOF",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "FKA twigs": {
+  "tracks": [
+   {
+    "from": "Two Weeks (Live on KEXP)",
+    "to": "Two Weeks",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Lights On (Live on KEXP)",
+    "to": "Lights On",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Hide (Live on KEXP)",
+    "to": "Hide",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Flo Rida": {
+  "tracks": [
+   {
+    "from": "GDFR (Feat. Sage The Gemini & Lookas) (K. Theory Remix)",
+    "to": "GDFR (feat. Sage the Gemini & Lookas)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Flow": {
+  "tracks": [
+   {
+    "from": "ドリ�ムエクスプレス",
+    "to": "ドリームエクスプレス",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Foo Fighters": {
+  "artist": {
+   "from": "Foo Fighters (HD)",
+   "type": "spelling",
+   "reason": "spelling: variant name form folds to canonical artist name"
+  },
+  "tracks": [
+   {
+    "from": "Breakout  (Live @ Wembley Stadium 2008)",
+    "to": "Breakout",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Fort Minor": {
+  "albums": [
+   {
+    "from": "The Rising Tied (Explicit)",
+    "to": "The Rising Tied",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Frank Carter & The Rattlesnakes": {
+  "artist": {
+   "from": "Frank Carter & The Rattlesnakes [feat. Cassyette]",
+   "type": "feat-credit",
+   "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+  }
+ },
+ "Franz Ferdinand": {
+  "tracks": [
+   {
+    "from": "Take Me Out (Album Version)",
+    "to": "Take Me Out",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Free": {
+  "tracks": [
+   {
+    "from": "All Right Now (Single Version)",
+    "to": "All Right Now",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "From Ashes to New": {
+  "artist": {
+   "from": "From Ashes to New [feat. Trevor McNevan]",
+   "type": "feat-credit",
+   "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+  }
+ },
+ "From First to Last": {
+  "albums": [
+   {
+    "from": "GENESIS (Remix)",
+    "to": "GENESIS",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "GENESIS - Remix",
+    "to": "GENESIS",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Frost*": {
+  "tracks": [
+   {
+    "from": "Closer to the Sun - Demo",
+    "to": "Closer To The Sun",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Last Day - Demo",
+    "to": "Last Day",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Hypoventilate",
+    "to": "Hyperventilate",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Gary Numan": {
+  "albums": [
+   {
+    "from": "Intruder (Edit)",
+    "to": "intruder",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "intruder",
+    "to": "Intruder",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Intruder (Edit)",
+    "to": "Intruder",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Ghøstkid": {
+  "artist": {
+   "from": "Ghøstkid [feat. Heaven Shall Burn]",
+   "type": "feat-credit",
+   "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+  },
+  "albums": [
+   {
+    "from": "HOLLYWOOD SUICIDE (feat. SETYØURSAILS & Within Destruction)",
+    "to": "HOLLYWOOD SUICIDE",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "girugamesh": {
+  "albums": [
+   {
+    "from": "chimera",
+    "to": "鵺-chimera-",
+    "type": "spelling",
+    "reason": "tier-2: bare \"chimera\" folds to full official title \"鵺-chimera-\""
+   }
+  ]
+ },
+ "Glacerate": {
+  "tracks": [
+   {
+    "from": "Binge - Remix",
+    "to": "Binge",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Glenn Miller": {
+  "tracks": [
+   {
+    "from": "In The Mood - Live",
+    "to": "In the Mood",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "God Is an Astronaut": {
+  "tracks": [
+   {
+    "from": "Fire Flies and Empty Skies",
+    "to": "Fireflies and Empty Skies",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Shininhg Through",
+    "to": "Shining Through",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Post Mortem",
+    "to": "Postmortem",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Gorillaz": {
+  "tracks": [
+   {
+    "from": "El Manana",
+    "to": "El Mañana",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   },
+   {
+    "from": "Do Ya Thing",
+    "to": "DoYaThing (feat. Andre 3000 and James Murphy)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Greg Puciato": {
+  "albums": [
+   {
+    "from": "Lowered (feat. Reba Meyers)",
+    "to": "Lowered",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Grimes": {
+  "albums": [
+   {
+    "from": "We Appreciate Power (Radio Edit)",
+    "to": "We Appreciate Power",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Violence (Original Mix)",
+    "to": "Violence (Original Mix) (feat. i_o)",
+    "type": "spelling",
+    "reason": "feat-credit: missing/incomplete feature credit folds to full official title"
+   },
+   {
+    "from": "My Name is Dark (Art Mix) [Explicit]",
+    "to": "My Name is Dark (Art Mix)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Groove Armada": {
+  "tracks": [
+   {
+    "from": "At The River (Radio Edit)",
+    "to": "At the River",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Gunship": {
+  "albums": [
+   {
+    "from": "Blood For The Blood God (Feat. HEALTH) (LOR Remix)",
+    "to": "Blood For The Blood God (Feat. HEALTH) (Remix)",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Blood For The Blood God (Feat. Health)",
+    "to": "Blood For The Blood God (Feat. HEALTH)",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Blood For The Blood God (Feat. HEALTH) (LOR Remix)",
+    "to": "Blood For The Blood God (Feat. HEALTH)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Haken": {
+  "albums": [
+   {
+    "from": "Canary Yellow (feat. Courtney Swain)",
+    "to": "Canary Yellow",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Canary Yellow (feat. Courtney Swain) - Acoustic Version",
+    "to": "Canary Yellow",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Hayden James": {
+  "tracks": [
+   {
+    "from": "On Your Own (feat. Elderbrook) - Fort Romeau Remix",
+    "to": "On Your Own (feat. Elderbrook)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Hilltop Hoods": {
+  "tracks": [
+   {
+    "from": "Live and Let Go (feat. Maverick Sabre & Brother Ali)",
+    "to": "Live And Let Go",
+    "type": "spelling",
+    "reason": "feat-credit: missing/incomplete feature credit folds to full official title"
+   }
+  ]
+ },
+ "HIM": {
+  "albums": [
+   {
+    "from": "Greatest Love Songs Vol. 666",
+    "to": "Greatest Lovesongs Vol. 666",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Hundredth": {
+  "albums": [
+   {
+    "from": "Whatever (Remix)",
+    "to": "Whatever",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Whatever - Remix",
+    "to": "Whatever",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Hybrid": {
+  "tracks": [
+   {
+    "from": "High Life (Live In Tokyo)",
+    "to": "High Life",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Snyper (Live In Tokyo)",
+    "to": "Snyper",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Hyper": {
+  "tracks": [
+   {
+    "from": "The End - Beatman and Ludmilla Remix",
+    "to": "The End - Beatman & Ludmilla Remix",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "I am Ritto": {
+  "tracks": [
+   {
+    "from": "🅴�🆁🅾🆁 #31",
+    "to": "🅴🆁🆁🅾🆁 #31",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Ice Nine Kills": {
+  "tracks": [
+   {
+    "from": "Stabbing In The Dark - Live in Worcester, MA / November 2019",
+    "to": "Stabbing In the Dark",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Ihlo": {
+  "albums": [
+   {
+    "from": "Union (Live Sessions From Pirate Studios)",
+    "to": "Union",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ]
+ },
+ "In Flames": {
+  "albums": [
+   {
+    "from": "Clayman (Re-Recorded)",
+    "to": "Clayman",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Only for the Weak - Re-Recorded",
+    "to": "Only for the Weak",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Pinball Map - re-recorded",
+    "to": "Pinball Map",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Iron Butterfly": {
+  "tracks": [
+   {
+    "from": "In-a-gadda-da-vida - Single Version",
+    "to": "In-A-Gadda-Da-Vida",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Ivy Lab": {
+  "albums": [
+   {
+    "from": "Fortuna E.P",
+    "to": "Fortuna EP",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Jamal": {
+  "albums": [
+   {
+    "from": "Milosc",
+    "to": "Miłość",
+    "type": "spelling",
+    "reason": "diacritic: accent-stripped form folds to canonical"
+   }
+  ]
+ },
+ "Jason Derulo": {
+  "artist": {
+   "from": "Jason Derülo",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "Jenő Jandó": {
+  "artist": {
+   "from": "Jeno Jando",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "Jinjer": {
+  "tracks": [
+   {
+    "from": "Sit Stay Roll Over - Live",
+    "to": "Sit Stay Roll Over",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Pisces (Live Session)",
+    "to": "Pisces",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Joey Negro": {
+  "tracks": [
+   {
+    "from": "Make A Move On Me - Radio Edit",
+    "to": "Make A Move On Me",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "John Coltrane": {
+  "albums": [
+   {
+    "from": "Giant Steps (mono)",
+    "to": "Giant Steps",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ]
+ },
+ "John Summit": {
+  "tracks": [
+   {
+    "from": "Go Back (feat. Julia Church) - YDG Remix",
+    "to": "Go Back (feat. Julia Church) - Kyle Watson Remix",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Judas Priest": {
+  "tracks": [
+   {
+    "from": "Victim of Changes (Live from Battle Cry)",
+    "to": "Victim of Changes",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Kabanos": {
+  "albums": [
+   {
+    "from": "Zêby w cianê",
+    "to": "Zęby w ścianę",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Kamelot": {
+  "tracks": [
+   {
+    "from": "The Great Pandemonium (Live From Wacken 2010)",
+    "to": "The Great Pandemonium",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Karnivool": {
+  "tracks": [
+   {
+    "from": "Shutter Speed",
+    "to": "Shutterspeed",
+    "type": "spelling",
+    "reason": "spelling: Themata tracklist uses one word; \"Shutter Speed\" folds to canonical \"Shutterspeed\""
+   }
+  ]
+ },
+ "Kero Kero Bonito": {
+  "tracks": [
+   {
+    "from": "Only Acting - Radio Edit",
+    "to": "Only Acting",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "KID BRUNSWICK": {
+  "albums": [
+   {
+    "from": "Blow (Remix)",
+    "to": "Blow",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Blow - Remix",
+    "to": "blow",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Kodeseven": {
+  "albums": [
+   {
+    "from": "Prototype (feat. REEBZ)",
+    "to": "Prototype",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Kool & the Gang": {
+  "tracks": [
+   {
+    "from": "Get Down On It - Single Version",
+    "to": "Get Down On It",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Korn": {
+  "albums": [
+   {
+    "from": "Greatest Hits Vol. 1 (Explicit)",
+    "to": "Greatest Hits Vol. 1",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Can You Hear Me (Acoustic)",
+    "to": "Can You Hear Me",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Got The Life (Live From Denver / 2014)",
+    "to": "Got the Life",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Can You Hear Me - Acoustic",
+    "to": "Can You Hear Me",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Get Up (Live From Moscow/2014)",
+    "to": "Get Up! (feat. Skrillex)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Love & Meth (Live From London / 2014)",
+    "to": "Love & Meth",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Another Brick In The Wall (Live From Denver/2014)",
+    "to": "Another Brick in the Wall",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Never Never (Live From Moscow/2014)",
+    "to": "Never Never",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Its On",
+    "to": "It's On!",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Worst Is On Its Way [Feat. Danny Brown & Meechy Darko] - HEALTH Remix",
+    "to": "Worst Is on Its Way",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Idiosyncracy",
+    "to": "Idiosyncrasy",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Korpiklaani": {
+  "tracks": [
+   {
+    "from": "Paat Pois Tai Hirteen",
+    "to": "Päät Pois Tai Hirteen",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   },
+   {
+    "from": "Vakirauta",
+    "to": "Väkirauta",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   }
+  ]
+ },
+ "Kreator": {
+  "tracks": [
+   {
+    "from": "Hordes Of Chaos",
+    "to": "Hordes of Chaos",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Hordes of Chaos (Live at Wacken 2011)",
+    "to": "Hordes of Chaos",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Warcurse",
+    "to": "War Curse",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Violence Revolution",
+    "to": "Violent Revolution",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Violent Revolution (demo)",
+    "to": "Violent Revolution",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Civilisation Collapse",
+    "to": "Civilization Collapse",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Lääz Rockit": {
+  "artist": {
+   "from": "Laaz Rockit",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "LANDMVRKS": {
+  "tracks": [
+   {
+    "from": "Lost in a Wave (Live) [Explicit]",
+    "to": "Lost in a Wave",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Scars - Live",
+    "to": "Scars",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Tired of It All - Live",
+    "to": "Tired of It All",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Say No Word - Live",
+    "to": "Say No Word",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Fantasy - Live",
+    "to": "Fantasy",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Winter (Live) [Explicit]",
+    "to": "Winter (feat. Mattéo Gelsomino)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Lifespark.": {
+  "albums": [
+   {
+    "from": "Lucid Dreamer (Acoustic)",
+    "to": "Lucid Dreamer",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Lucid Dreamer - Acoustic",
+    "to": "Lucid Dreamer",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Limp Bizkit": {
+  "albums": [
+   {
+    "from": "Three Dollar Bill Y'all",
+    "to": "Three Dollar Bill, Yall$",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Chocolate Starfish and the Hotdog Flavored Water",
+    "to": "Chocolate Starfish and the Hot Dog Flavored Water",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "The Unquestionable Truth (Pt. 1)",
+    "to": "The Unquestionable Truth (Part 1)",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "My Way (Live at Rock Allegiance Festival 2018) Sneak Peek",
+    "to": "My Way",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "“Pollution” (Live at  PinkPop Festival 1997) Official Pro Shot  4K Remastered",
+    "to": "Pollution",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Stuck (Live at UNO Lakefront Arena, 1998) *Official Pro Shot",
+    "to": "Stuck",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Crack Addit",
+    "to": "Crack Addict",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Linkin Park": {
+  "tracks": [
+   {
+    "from": "Somewhere I Belong (Live)",
+    "to": "Somewhere I Belong",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Somewhere I Belong - Live In Texas",
+    "to": "Somewhere I Belong",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Somewhere I Belong - Live In Nottingham 2003",
+    "to": "Somewhere I Belong",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Points of Authority (remix)",
+    "to": "Points of Authority",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Points of Authority (live)",
+    "to": "Points of Authority",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Points Of Authority (Live At Docklands Arena, London)",
+    "to": "Points of Authority",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Points Of Authority - Live In Texas",
+    "to": "Points of Authority",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Points of Authority - Live In Nottingham 2003",
+    "to": "Points of Authority",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "PAPERCUT (live At Docklands Arena, London)",
+    "to": "Papercut",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Papercut - Live In Texas",
+    "to": "Papercut",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Papercut - Live In Nottingham 2003",
+    "to": "Papercut",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Papercut (Live at Yalding House, London, England, 1/12/2001 - BBC One)",
+    "to": "Papercut",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Numb - Live In Texas",
+    "to": "Numb",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Faint - Live In Texas",
+    "to": "Faint",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Faint - Live In Nottingham 2003",
+    "to": "Faint",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Hit the Floor - Live In Nottingham 2003",
+    "to": "Hit the Floor",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "From The Inside - Live LP Underground Tour 2003",
+    "to": "From the Inside",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "From The Inside - Live In Texas",
+    "to": "From the Inside",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "From the Inside - Live In Nottingham 2003",
+    "to": "From the Inside",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "In the End (Live)",
+    "to": "In the End",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "In The End - Live In Texas",
+    "to": "In the End",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "In the End - Live In Nottingham 2003",
+    "to": "In the End",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "A Place for My Head (live)",
+    "to": "A Place for My Head",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "A Place For My Head (live At Docklands Arena, London)",
+    "to": "A Place for My Head",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "A Place For My Head - live in texas",
+    "to": "A Place for My Head",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "A Place for My Head - Live In Nottingham 2003",
+    "to": "A Place for My Head",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "With You - LIVE IN TEXAS",
+    "to": "With You",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "With You - Live In Nottingham 2003",
+    "to": "With You",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Breaking the Habbit",
+    "to": "Breaking the Habit",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "By My Self (Remix)",
+    "to": "By Myself",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "By Myself - LIVE IN TEXAS",
+    "to": "By Myself",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Wish (live)",
+    "to": "Wish",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Wish - Live Projekt Revolution 2004",
+    "to": "Wish",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Don't Stay - Live in Texas",
+    "to": "Don't Stay",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Don't Stay - Live In Nottingham 2003",
+    "to": "Don't Stay",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Don't Stay (Live in Shanghai, 2007)",
+    "to": "Don't Stay",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Lying From You - Live In Texas",
+    "to": "Lying from You",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Lying From You - Live LP Underground Tour 2003",
+    "to": "Lying from You",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Lying from You - Live In Nottingham 2003",
+    "to": "Lying from You",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Lying From You - Live",
+    "to": "Lying from You",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Figure.09 - Live in Texas",
+    "to": "Figure.09",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Given Up (Live from Taipei, 2009)",
+    "to": "Given Up",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "One Step Closer (live)",
+    "to": "One Step Closer",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "One step closer (feat. Jonathathan Davi) (live)",
+    "to": "One Step Closer",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "One Step Closer (feat. Jonathan Davis) - Live Projekt Revolution 2004",
+    "to": "One Step Closer",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "One Step Closer - Live In Texas",
+    "to": "One Step Closer",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "One Step Closer - Live In Nottingham 2003",
+    "to": "One Step Closer",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Guilty All The Same (Live)",
+    "to": "Guilty All the Same (feat. Rakim)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Runaway - Live In Texas",
+    "to": "Runaway",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Runaway - Live In Nottingham 2003",
+    "to": "Runaway",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Reading my eyes (live)",
+    "to": "Reading My Eyes",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Bleed It Out (Live with excerpts from Beastie Boys 'Sabotage')",
+    "to": "Bleed It Out",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Crawling - Live In Texas",
+    "to": "Crawling",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Crawling - Live In Nottingham 2003",
+    "to": "Crawling",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Easier to Run - Live In Nottingham 2003",
+    "to": "Easier to Run",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Pushing Me Away (Live)",
+    "to": "Pushing Me Away",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Lies Greed Misery (Live)",
+    "to": "Lies Greed Misery",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Qwerty (live)",
+    "to": "QWERTY",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "QWERTY (Live in Tokyo, 2006)",
+    "to": "QWERTY",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Session - Live In Nottingham 2003",
+    "to": "Session",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "What I've Done (Live)",
+    "to": "What I've Done",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Wastelands (Live)",
+    "to": "Wastelands",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Burn It Down (live)",
+    "to": "Burn It Down",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Lost In The Echo (Live)",
+    "to": "Lost in the Echo",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Waiting for the End (Remix)",
+    "to": "Waiting for the End",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Wrectches And Kings",
+    "to": "Wretches and Kings",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "P5HNG ME A*WY - Live In Texas",
+    "to": "P5hng Me A*wy",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "P5hng Me Aw*y",
+    "to": "P5hng Me A*wy",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Step Up/Nobody's Listening/It's Going Down (Live)",
+    "to": "Step Up / Nobody's Listening / It's Going Down",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Roads Untraveled (feat. Bun B) - Rad Omen Remix",
+    "to": "Roads Untraveled",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Lisa": {
+  "albums": [
+   {
+    "from": "play the world! (Live at RAINBOW SIX JAPAN CHAMPIONSHIP 2020)",
+    "to": "play the world!",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "play the world! (Live at RAINBOW SIX JAPAN CHAMPIONSHIP 2020)",
+    "to": "play the world!",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Little Dragon": {
+  "tracks": [
+   {
+    "from": "Lover Chanting (Edit) [Explicit]",
+    "to": "Lover Chanting",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Lô Borges": {
+  "albums": [
+   {
+    "from": "O Trem Azul (feat. Lô Borges, Solange Borges & Toninho Horta)",
+    "to": "O Trem Azul",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Lorde": {
+  "tracks": [
+   {
+    "from": "Homemade Dynamite (Remix) (feat. Khalid, Post Malone & SZA)",
+    "to": "Homemade Dynamite",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Lotus Eater": {
+  "artist": {
+   "from": "Lotus Eater [feat. Oli Sykes]",
+   "type": "feat-credit",
+   "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+  }
+ },
+ "LULU Suicide": {
+  "tracks": [
+   {
+    "from": "tommorowland",
+    "to": "TOMORROWLAND",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "M83": {
+  "tracks": [
+   {
+    "from": "Gone (live)",
+    "to": "Gone",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Machine Head": {
+  "tracks": [
+   {
+    "from": "Blood For Blood",
+    "to": "Blood for Blood",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Blood for Blood (Live in the Studio 2019)",
+    "to": "Blood for Blood",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Davidian (Live In The Studio 2019)",
+    "to": "Davidian",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Blood, The Sweat, The Tears",
+    "to": "The Blood, the Sweat, the Tears",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "The Blood, the Sweat, the Tear",
+    "to": "The Blood, the Sweat, the Tears",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Desire To Fire",
+    "to": "Desire to Fire",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Desire to Fire (live)",
+    "to": "Desire to Fire",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Blood for Blood (Live in the Studio 2019)",
+    "to": "Blood for Blood",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Rotten",
+    "to": "RØTTEN",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   }
+  ]
+ },
+ "Mad Season": {
+  "tracks": [
+   {
+    "from": "X-Ray Mind (Live at The Moore)",
+    "to": "X-Ray Mind",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Madeon": {
+  "tracks": [
+   {
+    "from": "Icarus (Live Version)",
+    "to": "Icarus",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Pop Culture (live mashup)",
+    "to": "Pop Culture",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "MAN WITH A MISSION": {
+  "tracks": [
+   {
+    "from": "Freak It!",
+    "to": "Freak It! (feat. Tokyo Ska Paradise Orchestra)",
+    "type": "spelling",
+    "reason": "feat-credit: missing/incomplete feature credit folds to full official title"
+   }
+  ]
+ },
+ "Marilyn Manson": {
+  "tracks": [
+   {
+    "from": "This Is The New Shit - Album Version",
+    "to": "This Is the New Shit",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "This is the new s**t",
+    "to": "This Is the New Shit",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Tourniquet - Album Version",
+    "to": "Tourniquet",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Paranoic**",
+    "to": "Para-noir",
+    "type": "spelling",
+    "reason": "tier-2: \"Paranoic\" (trailing junk) folds to \"Para-noir\""
+   }
+  ]
+ },
+ "Martin Garrix": {
+  "tracks": [
+   {
+    "from": "Wizard (Radio Edit)",
+    "to": "Wizard",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "MASS OF THE FERMENTING DREGS": {
+  "tracks": [
+   {
+    "from": "delusionalism - Live at TUPPENCE STUDIO, Tokyo, Japan, 2023",
+    "to": "delusionalism",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "She Is Inside, He Is Outside (Live at TUPPENCE STUDIO, Tokyo, Japan, 2023)",
+    "to": "She Is Inside, He Is Outside",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Kakuiumono (Live at TUPPENCE STUDIO, Tokyo, Japan, 2023)",
+    "to": "Kakuiumono",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "終�りのはじまり",
+    "to": "終わりのはじまり",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Massive Attack": {
+  "tracks": [
+   {
+    "from": "Group Four (with Elizabeth Fraser)",
+    "to": "Group Four",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Unfinished Sympathy (with Deborah Miller)",
+    "to": "Unfinished Sympathy",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Name Taken (With Horace Andy)",
+    "to": "Name Taken",
+    "type": "spelling",
+    "reason": "feat-credit: missing/incomplete feature credit folds to full official title"
+   },
+   {
+    "from": "Safe From Harm (with Deborah Miller)",
+    "to": "Safe From Harm",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Matthew K. Heafy": {
+  "artist": {
+   "from": "Matthew K. Heafy [feat. Richard Marx]",
+   "type": "feat-credit",
+   "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+  }
+ },
+ "Megadeth": {
+  "tracks": [
+   {
+    "from": "Holy Wars...The Punishment Due (Demo)",
+    "to": "Holy Wars...The Punishment Due",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Take No Prisoners (demo)",
+    "to": "Take No Prisoners",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Rust In Peace...Polaris (Demo)",
+    "to": "Rust In Peace...Polaris",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Mechanix (demo)",
+    "to": "Mechanix",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "New World Order (demo)",
+    "to": "New World Order",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Memphis May Fire": {
+  "tracks": [
+   {
+    "from": "Overdose - feat. Blindside - Acappella",
+    "to": "Overdose - feat. Blindside",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Merzhin": {
+  "tracks": [
+   {
+    "from": "L'etincelle",
+    "to": "L'étincelle",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Meshuggah": {
+  "tracks": [
+   {
+    "from": "Future Breed Machine (Live)",
+    "to": "Future Breed Machine",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Mestís": {
+  "artist": {
+   "from": "Mestis",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "Metallica": {
+  "tracks": [
+   {
+    "from": "Creeping Death (Live at Rasputin Music, Berkeley, CA - April 16th, 2016)",
+    "to": "Creeping Death",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "For Whom The Bell Tolls - Live",
+    "to": "For Whom the Bell Tolls",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Enter Sandman - Live at Tushino Airfield, Moscow, Russia / September 28th, 1991",
+    "to": "Enter Sandman",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Moth Into Flame - Live",
+    "to": "Moth Into Flame",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "No leaf Clover - Live",
+    "to": "No Leaf Clover",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Sad But True - Live at Tushino Airfield, Moscow, Russia / September 28th, 1991",
+    "to": "Sad but True",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Of Wolf and Man - Live at Maimarktgelände, Mannheim, Germany / May 22nd, 1993",
+    "to": "Of Wolf and Man",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Wherever I May Roam - Live at Day on the Green, Oakland, CA / October 12th, 1991",
+    "to": "Wherever I May Roam",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Nothing Else Matters - live",
+    "to": "Nothing Else Matters",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Through the Never - Live at Arco Arena, Sacramento, CA / January 11th, 1992",
+    "to": "Through the Never",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Metal Militia (Live at Rasputin Music, Berkeley, CA - April 16th, 2016)",
+    "to": "Metal Militia",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Ministry": {
+  "tracks": [
+   {
+    "from": "Watch Yourself (remix)",
+    "to": "Watch Yourself",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Last Sucker (remix)",
+    "to": "The Last Sucker",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Psalm 69 (Live in Paris)",
+    "to": "Psalm 69",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Minor League": {
+  "tracks": [
+   {
+    "from": "アイ キャン スピー� ジャパニーズ",
+    "to": "アイ キャン スピーク ジャパニーズ",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   },
+   {
+    "from": "アイ キ�ン スピーク ジャパニーズ",
+    "to": "アイ キャン スピーク ジャパニーズ",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Missile Girl Scoot": {
+  "tracks": [
+   {
+    "from": "FINISH THE WORRY DAYS - Live",
+    "to": "Finish the Worry Days",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Modwheelmood": {
+  "tracks": [
+   {
+    "from": "Thursday Pelle Choir (demo)",
+    "to": "thursday pelle choir",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Monuments": {
+  "tracks": [
+   {
+    "from": "Lavos (feat. Mick Gordon) - single version",
+    "to": "Lavos",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Morgan Page, Lissie": {
+  "albums": [
+   {
+    "from": "The Longest Road (feat. Lissie)",
+    "to": "The Longest Road",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "The Longest Road (feat. Lissie) [Deadmau5 Remix]",
+    "to": "The Longest Road (feat. Lissie)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Mortal Sin": {
+  "tracks": [
+   {
+    "from": "Lebanon (live)",
+    "to": "Lebanon",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "women in leather (live)",
+    "to": "Women In Leather",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Mayhemic Destruction (Live)",
+    "to": "Mayhemic Destruction",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "I Am Immortal (Live)",
+    "to": "I Am Immortal",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Infantry Corps (Live)",
+    "to": "The Infantry Corps",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Terminal Reward (live)",
+    "to": "Terminal Reward",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Innocent Torture (Live)",
+    "to": "Innocent Torture",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Motionless in White": {
+  "albums": [
+   {
+    "from": "Scoring The End Of The World (feat. Mick Gordon)",
+    "to": "Scoring the End of the World",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Motive Black": {
+  "tracks": [
+   {
+    "from": "Lift Me Up - Radio Edit",
+    "to": "Lift Me Up",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Motörhead": {
+  "tracks": [
+   {
+    "from": "Ace Öf Spades",
+    "to": "Ace of Spades",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   },
+   {
+    "from": "Överkill",
+    "to": "Overkill",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Motorhead",
+    "to": "Motörhead",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Motorhead (Live)",
+    "to": "Motörhead",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Metröpölis",
+    "to": "Metropolis",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Deaf Förever",
+    "to": "Deaf Forever",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Just 'Cös Yöu Göt The Pöwer",
+    "to": "Just 'Cos You Got the Power",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Steal Your Face (Live)",
+    "to": "Steal Your Face",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Built För Speed",
+    "to": "Built for Speed",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Dögs",
+    "to": "Dogs",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Shoot You In the Back (Live)",
+    "to": "Shoot You In The Back",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "MUCC": {
+  "albums": [
+   {
+    "from": "Sin Homura Uta",
+    "to": "Shin HomuraUta",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Muse": {
+  "tracks": [
+   {
+    "from": "histeria",
+    "to": "Hysteria",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Muscle Museum (Live Acoustic Version KCRW - 8/3/99)",
+    "to": "Muscle Museum",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Ghosts (How Can I Move On) [feat. Elisa]",
+    "to": "Ghosts (How Can I Move On) [feat. Mylène Farmer]",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "MY FIRST STORY": {
+  "tracks": [
+   {
+    "from": "モノクロエフェクタ�",
+    "to": "モノクロエフェクター",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "My Riot": {
+  "tracks": [
+   {
+    "from": "Bol Przemija",
+    "to": "Ból przemija",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   }
+  ]
+ },
+ "N.E.R.D": {
+  "tracks": [
+   {
+    "from": "RockStar",
+    "to": "Rock Star",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "N.W.A": {
+  "tracks": [
+   {
+    "from": "8 Ball (remix)",
+    "to": "8 Ball",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Dopeman (remix)",
+    "to": "Dopeman",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Nightmares on Wax": {
+  "tracks": [
+   {
+    "from": "Nights Introlude",
+    "to": "Nights Interlude",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Nightwish": {
+  "tracks": [
+   {
+    "from": "7 days of the wolves",
+    "to": "7 Days to the Wolves",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Nine Inch Nails": {
+  "tracks": [
+   {
+    "from": "Head Like A Hole (Live)",
+    "to": "Head Like a Hole",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Heresy (Demo)",
+    "to": "Heresy",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Everyday Is Exactly the Same",
+    "to": "Every Day Is Exactly the Same",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Ruiner (Demo)",
+    "to": "Ruiner",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Starsuckers, Inc.",
+    "to": "Starfuckers, Inc.",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Starfuckers, Inc. - Remix Version (as)",
+    "to": "Starfuckers, Inc.",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Starfuckers, Inc. - Remix Version (do)",
+    "to": "Starfuckers, Inc.",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Starfuckers, Inc. - Remix Version (cc)",
+    "to": "Starfuckers, Inc.",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Frail (Remix Version)",
+    "to": "The Frail",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Frail - remix",
+    "to": "The Frail",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Wretched (Remix Version)",
+    "to": "The Wretched",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The wretched - remix",
+    "to": "The Wretched",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Deep (Album Version)",
+    "to": "Deep",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Deep (radio edit)",
+    "to": "Deep",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Mark Has Been Made (Live)",
+    "to": "The Mark Has Been Made",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Slipping Away (Remix Version)",
+    "to": "Slipping Away",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Slipping Away - Remix",
+    "to": "Slipping Away",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Adrift and at Peace",
+    "to": "Adrift & At Peace",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "The Great Collapse (Remix Version)",
+    "to": "The Great Collapse",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Great Collapse - Remix",
+    "to": "The Great Collapse",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "10 Miles High (Remix Version)",
+    "to": "10 Miles High",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "10 Miles High - remix",
+    "to": "10 Miles High",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Metal - remix",
+    "to": "Metal",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Metal (Remix Version)",
+    "to": "Metal",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Nirvana": {
+  "tracks": [
+   {
+    "from": "Lithium (Live In Amsterdam, Holland / 1991)",
+    "to": "Lithium",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Polly (Live In London / 1989)",
+    "to": "Polly",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Aneurism",
+    "to": "Aneurysm",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Northlane": {
+  "albums": [
+   {
+    "from": "Afterimage (feat. Ian Kenny, Karnivool)",
+    "to": "Afterimage (feat. Ian Kenny)",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Miasma (feat. Winston McCall)",
+    "to": "Miasma",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Bloodline - Live",
+    "to": "Bloodline",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Afterimage (feat. Ian Kenny)",
+    "to": "Afterimage (feat. Ian Kenny, Karnivool)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Citizen - Live in Melbourne, Australia",
+    "to": "Citizen",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Enemy of the Night - Acoustic",
+    "to": "Enemy Of The Night",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Rot (Single Version)",
+    "to": "Rot",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Nothing More": {
+  "tracks": [
+   {
+    "from": "ANGEL SONG (feat. David Draiman) - JD Remix",
+    "to": "ANGEL SONG (feat. David Draiman)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Nothing's Carved In Stone": {
+  "albums": [
+   {
+    "from": "All We Have feat. Masato(cordrain)",
+    "to": "All We Have feat. Masato(coldrain)",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Novembre": {
+  "tracks": [
+   {
+    "from": "Nostalgiaplatz (Acoustic)",
+    "to": "Nostalgiaplatz",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "NUMBER GIRL": {
+  "albums": [
+   {
+    "from": "シブヤROCKTRANSFORMED�態",
+    "to": "シブヤROCKTRANSFORMED状態",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "EIGHT BEATER - Live",
+    "to": "EIGHT BEATER",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Iggy Pop Fanclub",
+    "to": "IGGY POP FAN CLUB",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "透明少女 - 1998/12/30 福岡 VIVRE HALL「DYNAMIC VIBRATO 98�",
+    "to": "透明少女 - 1998/12/30 福岡 VIVRE HALL「DYNAMIC VIBRATO 98」",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Ocean Grove": {
+  "tracks": [
+   {
+    "from": "CELL DIVISION - Live at Club Academy, Manchester 2025!",
+    "to": "Cell Division",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "RAINDROP - Live in Manchester 2025",
+    "to": "Raindrop",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "SUNNY - Remix",
+    "to": "SUNNY",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Oddko": {
+  "albums": [
+   {
+    "from": "Disobey (Remix)",
+    "to": "Disobey",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ]
+ },
+ "Of Mice & Men": {
+  "albums": [
+   {
+    "from": "Earth & Sky",
+    "to": "earthandsky",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Ólafur Arnalds": {
+  "artist": {
+   "from": "Olafur Arnalds",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "Onslaught": {
+  "tracks": [
+   {
+    "from": "Metal Forces (Live)",
+    "to": "Metal Forces",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Opeth": {
+  "tracks": [
+   {
+    "from": "Era (Live)",
+    "to": "Era",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Cusp of Eternity (live)",
+    "to": "Cusp of Eternity",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Otoboke Beaver": {
+  "albums": [
+   {
+    "from": "anata watashi daita ato yome no meshi",
+    "to": "あなたわたし抱いたあとよめのめし anata watashi daita ato yome no meshi",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Ozzy Osbourne": {
+  "tracks": [
+   {
+    "from": "I Don't Wanna Stop(Live)",
+    "to": "I Don't Wanna Stop",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Here for You (Live)",
+    "to": "Here For You",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Palm Reader": {
+  "tracks": [
+   {
+    "from": "Hold/Release - Radio Edit",
+    "to": "Hold/Release",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Pantera": {
+  "tracks": [
+   {
+    "from": "Walk (Remastered Version) (Remastered)",
+    "to": "Walk (Remastered Version)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Paradise Lost": {
+  "albums": [
+   {
+    "from": "One Second (Live)",
+    "to": "One Second",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Shadowkings - Live",
+    "to": "Shadowkings",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "As i die - live",
+    "to": "As I Die",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Ghosts - Live",
+    "to": "Ghosts",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "the enemy - live",
+    "to": "The Enemy",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "One Second - live",
+    "to": "One Second",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Paranoid void": {
+  "tracks": [
+   {
+    "from": "ゲ�ュタルトの箱庭",
+    "to": "ゲシュタルトの箱庭",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Pearl Jam": {
+  "tracks": [
+   {
+    "from": "Alive [Live]",
+    "to": "Alive",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Alive - Live MTV Unplugged",
+    "to": "Alive",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Even Flow - Live MTV unplugged",
+    "to": "Even Flow",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Even Flow (Live)",
+    "to": "Even Flow",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Oceans - Live MTV Unplugged",
+    "to": "Oceans",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Faithful",
+    "to": "Faithfull",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Jeremy (Live)",
+    "to": "Jeremy",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Release (Live)",
+    "to": "Release",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Better Man - live",
+    "to": "Better Man",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Betterman",
+    "to": "Better Man",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   }
+  ]
+ },
+ "Pendulum": {
+  "albums": [
+   {
+    "from": "Live At Brixton Academy (Explicit)",
+    "to": "Live At Brixton Academy",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Tarantula (feat. DJ Fresh, $pyda, & Tenor Fly) - Icarus Remix",
+    "to": "Tarantula",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Tarantula [Live At Brixton Academy]",
+    "to": "Tarantula",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Another Planet [Live At Brixton Academy]",
+    "to": "Another Planet",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Blood Sugar [Live At Brixton Academy]",
+    "to": "Blood Sugar",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Tarantula - Original Mix",
+    "to": "Tarantula (Original Mix) (feat. $pyda, Dj Fresh & Tenor Fly)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Pezet": {
+  "tracks": [
+   {
+    "from": "Jak byc szczesliwym (feat. Killa Kela)",
+    "to": "Jak być szczęśliwym (feat. Killa Kela)",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   },
+   {
+    "from": "Ten Dzien Minie",
+    "to": "Ten Dzień Minie",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   },
+   {
+    "from": "Tamtego Lata (radiowy) - Remix",
+    "to": "Tamtego Lata (radiowy)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Pierce the Veil": {
+  "tracks": [
+   {
+    "from": "Pass The Nirvana - Live From When We Were Young '22",
+    "to": "Pass the Nirvana",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Pink Floyd": {
+  "tracks": [
+   {
+    "from": "Another Brick in the Wall (Part 2)",
+    "to": "Another Brick in the Wall, Pt. 2",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Pixies": {
+  "albums": [
+   {
+    "from": "Death To The Pixies (Live CD)",
+    "to": "Death to the Pixies",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ]
+ },
+ "Polyphia": {
+  "albums": [
+   {
+    "from": "Look But Don't Touch (feat. Lewis Grant)",
+    "to": "Look But Don't Touch",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Porcupine Tree": {
+  "tracks": [
+   {
+    "from": "Anesthetize - live (Tilburg, Netherlands) Full Song",
+    "to": "Anesthetize",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Open Car ( with Lyrics)",
+    "to": "Open Car",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Power Glove": {
+  "tracks": [
+   {
+    "from": "NIGHTFORCE",
+    "to": "Night Force",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Primus": {
+  "tracks": [
+   {
+    "from": "Jerry was a Racecar Driver",
+    "to": "Jerry Was a Race Car Driver",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "To Defy The Laws Of Tradition - live",
+    "to": "To Defy the Laws of Tradition",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "PRO8L3M": {
+  "tracks": [
+   {
+    "from": "Zar",
+    "to": "Żar",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   },
+   {
+    "from": "Opowiesc o Tobie",
+    "to": "Opowieść o Tobie",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   },
+   {
+    "from": "TEORIA BEZWZGLEDNOSCI",
+    "to": "Teoria Bezwzględności",
+    "type": "spelling",
+    "reason": "diacritic: no-accent form folds to canonical accented form"
+   }
+  ]
+ },
+ "Psy": {
+  "artist": {
+   "from": "PSY (prod. SUGA)",
+   "type": "feat-credit",
+   "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+  }
+ },
+ "Puscifer": {
+  "tracks": [
+   {
+    "from": "Momma Sed (Live)",
+    "to": "Momma Sed",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Quebonafide x Kuban x Kuba Knap": {
+  "tracks": [
+   {
+    "from": "�adnych Zmartwień (prod. ka-meal)",
+    "to": "Żadnych Zmartwień (prod. ka-meal)",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Queens of the Stone Age": {
+  "tracks": [
+   {
+    "from": "You Think I Ain't Worth A Dollar, But I Feel Like A Millionaire - Album Version (With Interlude)",
+    "to": "You Think I Ain't Worth a Dollar, but I Feel Like a Millionaire",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "You Think I Ain't Worth A Dollar, But I Feel Like A Millionaire - With Out Interlude",
+    "to": "You Think I Ain't Worth a Dollar, but I Feel Like a Millionaire",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Avon (live)",
+    "to": "Avon",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Make It Wit Chu (acoustic)",
+    "to": "Make It Wit Chu",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Monsters in the Parasol (live)",
+    "to": "Monsters in the Parasol",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Queensrÿche": {
+  "artist": {
+   "from": "Queensryche",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "Rabbit Junk": {
+  "albums": [
+   {
+    "from": "The Grind (Remix)",
+    "to": "The Grind",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Denature (Remix)",
+    "to": "Denature",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Reckoning (Remix)",
+    "to": "Reckoning",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "The Grind (remix)",
+    "to": "The Grind",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Denature (remix)",
+    "to": "Denature",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Reckoning (Remix)",
+    "to": "Reckoning",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Rage Against the Machine": {
+  "tracks": [
+   {
+    "from": "Sleep Now In the Fire (Album Version)",
+    "to": "Sleep Now in the Fire",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Sleep Now In The Fire (Live Album Version)",
+    "to": "Sleep Now in the Fire",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Bombtrack (Remastered)",
+    "to": "Bombtrack",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Bombtrack (Album Version)",
+    "to": "Bombtrack",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Born Of A Broken Man (Album Version)",
+    "to": "Born of a Broken Man",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Born Of A Broken Man (Live Album Version)",
+    "to": "Born of a Broken Man",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Wake Up (Album Version)",
+    "to": "Wake Up",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Know Your Enemy (Album Version)",
+    "to": "Know Your Enemy",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "New Millennium Homes (Album Version)",
+    "to": "New Millennium Homes",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "New Millenium Homes",
+    "to": "New Millennium Homes",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Rammstein": {
+  "albums": [
+   {
+    "from": "Liebe ist f�r alle da",
+    "to": "Liebe ist für alle da",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Engel (Live from Madison Square Garden)",
+    "to": "Engel",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Heirate mich (edit)",
+    "to": "Heirate mich",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Spiel Mit Mir",
+    "to": "Spiel mit mir",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Spielt Mit Mir",
+    "to": "Spiel mit mir",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Ramm4 (Live at Hellfest 2016)",
+    "to": "Ramm4",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Ready to Die": {
+  "tracks": [
+   {
+    "from": "Andrew WK )",
+    "to": "Andrew W.K",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "RedHook": {
+  "albums": [
+   {
+    "from": "Minute on Fire (Remix)",
+    "to": "Minute on Fire",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Minute on Fire - Remix",
+    "to": "Minute On Fire",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Refused": {
+  "tracks": [
+   {
+    "from": "Dawkins Christ - Live",
+    "to": "Dawkins Christ",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Circle Pit - Live",
+    "to": "Circle Pit",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Rêve": {
+  "artist": {
+   "from": "Reve",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "Rezz": {
+  "albums": [
+   {
+    "from": "Taste of You (feat. Dove Cameron)",
+    "to": "Taste of You",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "RJD2": {
+  "tracks": [
+   {
+    "from": "Ghostwriter (Remix)",
+    "to": "Ghostwriter",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Rob Zombie": {
+  "albums": [
+   {
+    "from": "Past, Present & Future (Explicit)",
+    "to": "Past, Present & Future",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Röyksopp": {
+  "artist": {
+   "from": "royksopp",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  }
+ },
+ "Rush": {
+  "tracks": [
+   {
+    "from": "The Big Money (live in Rio)",
+    "to": "The Big Money",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Sarah Vaughan": {
+  "tracks": [
+   {
+    "from": "The Can't Take That Away From Me",
+    "to": "They Can't Take That Away From Me",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "SBCR": {
+  "tracks": [
+   {
+    "from": "Vector (feat. Moon Bounce) [Instrumental Mix]",
+    "to": "Vector (feat. Moon Bounce) [Original Mix]",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Serj Tankian": {
+  "tracks": [
+   {
+    "from": "Empy Walls",
+    "to": "Empty Walls",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Empty Walls [Live Album Version]",
+    "to": "Empty Walls",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Empty Walls [Live Album Version] (Live)",
+    "to": "Empty Walls",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Reconstructive Demonstration",
+    "to": "Reconstructive Demonstrations",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "SETYØURSAILS": {
+  "artist": {
+   "from": "SETYØURSAILS [feat. Rudi Schwarzer]",
+   "type": "feat-credit",
+   "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+  }
+ },
+ "Sevdaliza": {
+  "tracks": [
+   {
+    "from": "Nothing Lasts Forever (with Grimes) - Parrish Smith Remix",
+    "to": "Nothing Lasts Forever (with Grimes)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Shaka Ponk": {
+  "tracks": [
+   {
+    "from": "Gotta Get Me Hight",
+    "to": "Gotta Get Me High",
+    "type": "spelling",
+    "reason": "spelling: trailing 't' typo; canonical is \"Gotta Get Me High\""
+   },
+   {
+    "from": "Gotta get me High",
+    "to": "Gotta Get Me High",
+    "type": "spelling",
+    "reason": "spelling: case variant folds to canonical \"Gotta Get Me High\""
+   }
+  ]
+ },
+ "Shinedown": {
+  "tracks": [
+   {
+    "from": "Second Chance (Album Version)",
+    "to": "Second Chance",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Sigrid": {
+  "albums": [
+   {
+    "from": "Bad Life (Acoustic)",
+    "to": "Bad Life",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Bad Life - Acoustic",
+    "to": "Bad Life",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Skrillex": {
+  "tracks": [
+   {
+    "from": "Ragga Bomb (feat. Ragga Twins) [Skrillex & Zomboy Remix]",
+    "to": "Ragga Bomb (feat. Ragga Twins) [Teddykillerz Remix]",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Slayer": {
+  "tracks": [
+   {
+    "from": "Angel of Death - Live 1994",
+    "to": "Angel of Death",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Raining Blood - Live 1994",
+    "to": "Raining Blood",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Mandatory Suicide - Live 1994",
+    "to": "Mandatory Suicide",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Slipknot": {
+  "tracks": [
+   {
+    "from": "Left Behind - Live In London 2002",
+    "to": "Left Behind",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Wait & Bleed",
+    "to": "Wait and Bleed",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Wait and Bleed (Demo)",
+    "to": "Wait and Bleed",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Wait and Bleed - Live in London, 2002",
+    "to": "Wait and Bleed",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Shope",
+    "to": "The Shape",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Eyeless - Live In London 2002",
+    "to": "Eyeless",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "My Plague - Live in London, 2002",
+    "to": "My Plague",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Disasterpiece - Live In London 2002",
+    "to": "Disasterpiece",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Override (with lyrics)",
+    "to": "Override",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "People = Shit - Live in London, 2002",
+    "to": "People = Shit",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Tattered and Torn",
+    "to": "Tattered & Torn",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Sarcastrophe - Live",
+    "to": "Sarcastrophe",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Eeyore - Live in London, 2002",
+    "to": "Eeyore",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Smashing Pumpkins": {
+  "tracks": [
+   {
+    "from": "1979 - Remastered 2012",
+    "to": "1979",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Smorgas": {
+  "tracks": [
+   {
+    "from": "ゴン�ワナへの旅",
+    "to": "ゴンドワナへの旅",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Sodom": {
+  "tracks": [
+   {
+    "from": "Agent Orange (Live)",
+    "to": "Agent Orange",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Tired And Red (Live)",
+    "to": "Tired and Red",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Remember the Fallen (Live)",
+    "to": "Remember the Fallen",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Ausgebombt (live)",
+    "to": "Ausgebombt",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Incest (live)",
+    "to": "Incest",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Bombenhagel (Live)",
+    "to": "Bombenhagel",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "An Eye for a Eye",
+    "to": "An Eye for an Eye",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Sokoninaru": {
+  "tracks": [
+   {
+    "from": "Teinen - Live at Shimokitazawa Shangri-La-2024.3.2",
+    "to": "Teinen",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Solence": {
+  "tracks": [
+   {
+    "from": "Best For You - Acoustic",
+    "to": "Best For You",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Waves - Acoustic",
+    "to": "Waves",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Spiderbait": {
+  "tracks": [
+   {
+    "from": "Black Betty (Edit)",
+    "to": "Black Betty",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Spiritbox": {
+  "albums": [
+   {
+    "from": "Constance (Acoustic)",
+    "to": "Constance",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Holy Roller (feat. Ryo Kinoshita)",
+    "to": "Holy Roller",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Constance - Acoustic",
+    "to": "Constance",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Stain The Canvas": {
+  "tracks": [
+   {
+    "from": "Stolen Youth",
+    "to": "Stolen Youth (with Famous Last Words & Outline in Color)",
+    "type": "spelling",
+    "reason": "feat-credit: missing/incomplete feature credit folds to full official title"
+   }
+  ]
+ },
+ "Stellar Circuits": {
+  "tracks": [
+   {
+    "from": "Fell Under a Spell (Remix)",
+    "to": "Fell Under a Spell",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Steve Vai": {
+  "artist": [
+   {
+    "from": "Steve Vai (feat. Devin Townsend)",
+    "type": "feat-credit",
+    "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+   }
+  ]
+ },
+ "Steven Wilson": {
+  "tracks": [
+   {
+    "from": "The Holy Drinker (demo)",
+    "to": "The Holy Drinker",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Stone Temple Pilots": {
+  "tracks": [
+   {
+    "from": "Plush (acoustic)",
+    "to": "Plush",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Dead & Bloated",
+    "to": "Dead and Bloated",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Strapping Young Lad": {
+  "tracks": [
+   {
+    "from": "Skesis",
+    "to": "Skeksis",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Stray From the Path": {
+  "tracks": [
+   {
+    "from": "First World Problem Child - Live in London, England",
+    "to": "First World Problem Child (Feat. Sam Carter)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Stu Brooks": {
+  "albums": [
+   {
+    "from": "They'll Just Love You (feat. Danny Elfman & Sextile) - Alice Gas & 99jakes Remix",
+    "to": "They'll Just Love You (feat. Poppy & Danny Elfman)",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "They'll Just Love You (feat. Danny Elfman & Sextile) - Alice Gas & 99jakes Remix",
+    "to": "They'll Just Love You (feat. Poppy & Danny Elfman)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Subtronics": {
+  "albums": [
+   {
+    "from": "Black Ice (feat. Phantogram)",
+    "to": "Black Ice",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Sullivan King": {
+  "albums": [
+   {
+    "from": "LOUD (feat. Jason Aalon from FEVER 333)",
+    "to": "LOUD",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "System of a Down": {
+  "tracks": [
+   {
+    "from": "Sugar - Live at Irving Plaza, NYC, NY - January 1999",
+    "to": "Sugar",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Nuguns",
+    "to": "Nüguns",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Kill Rock & Roll",
+    "to": "Kill Rock 'n Roll",
+    "type": "spelling",
+    "reason": "spelling: Wikipedia/Hypnotize tracklist confirms official title is \"Kill Rock 'n Roll\"; ampersand form is unofficial"
+   },
+   {
+    "from": "Roulette (Album Version)",
+    "to": "Roulette",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Soldier Side (Album Version)",
+    "to": "Soldier Side",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Marmelade",
+    "to": "Marmalade",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Taska Black": {
+  "tracks": [
+   {
+    "from": "Summer Nights (feat. emma løv & Loote) - Midnight Edit",
+    "to": "Summer Nights (feat. emma løv & Loote)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "TesseracT": {
+  "artist": [
+   {
+    "from": "TesseracT (Feat. Snoop Dogg)",
+    "type": "feat-credit",
+    "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Of Mind - Exile",
+    "to": "Of Mind - Exiled",
+    "type": "spelling",
+    "reason": "spelling: Spotify title is error; band-confirmed official title is \"Of Mind - Exiled\""
+   },
+   {
+    "from": "April (Acoustic)",
+    "to": "April",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Testament": {
+  "tracks": [
+   {
+    "from": "D.N.R. (Do Not Resuscitate) [Live @ Paramount Theatre, Huntington, New York]",
+    "to": "D.N.R. (Do Not Resuscitate)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Over the Wall (Live @ Paramount Theatre, Huntington, New York)",
+    "to": "Over the Wall",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "The Amsterdam Red Light District": {
+  "artist": {
+   "from": "The Amsterdam Red Light District [feat. Drew York & Stray From The Path]",
+   "type": "feat-credit",
+   "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+  }
+ },
+ "The Anix": {
+  "tracks": [
+   {
+    "from": "Renegade - Live",
+    "to": "Renegade",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "My Eyes - Live",
+    "to": "My Eyes",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Pretend - Live",
+    "to": "Pretend",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Interchanger - Live",
+    "to": "Interchanger",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Die With You - Live",
+    "to": "Die With You",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "the band apart": {
+  "artist": {
+   "from": "the band apart (naked)",
+   "type": "spelling",
+   "reason": "spelling: variant name form folds to canonical artist name"
+  }
+ },
+ "The Butterfly Effect": {
+  "tracks": [
+   {
+    "from": "A Slow Descent (Radio Edit)",
+    "to": "A Slow Descent",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "The Crystal Method": {
+  "albums": [
+   {
+    "from": "Tweekend (Explicit)",
+    "to": "Tweekend",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Comin' Back (remix)",
+    "to": "Comin' Back",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "The Cure": {
+  "tracks": [
+   {
+    "from": "The Funeral Party (Live)",
+    "to": "The Funeral Party",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "The Dali Thundering Concept": {
+  "tracks": [
+   {
+    "from": "The Myth of Hapiness",
+    "to": "The Myth of Happiness",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "The Devil Wears Prada": {
+  "albums": [
+   {
+    "from": "Salt (feat. Dayseeker)",
+    "to": "Salt",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Salt - Acoustic",
+    "to": "Salt",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "The Glitch Mob": {
+  "tracks": [
+   {
+    "from": "Becoming Harmonius (feat Metal Mother)",
+    "to": "Becoming Harmonious (feat. Metal Mother)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "The Killers": {
+  "tracks": [
+   {
+    "from": "All These Thing That I've Done",
+    "to": "All These Things That I've Done",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "The Misfits": {
+  "albums": [
+   {
+    "from": "American Phsycho",
+    "to": "American Psycho",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "The Ocean": {
+  "albums": [
+   {
+    "from": "Jurassic | Cretaceous (Live at Roadburn Redux)",
+    "to": "Jurassic | Cretaceous",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Jurassic | Cretaceous (Live at Roadburn Redux)",
+    "to": "Jurassic | Cretaceous",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Devonian: Nascent (Live in Bremen)",
+    "to": "Devonian: Nascent",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "The Prodigy": {
+  "albums": [
+   {
+    "from": "Always Outnumbered, Never Out Gunned",
+    "to": "Always Outnumbered, Never Outgunned",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Breathe (feat. RZA) - René LaVice Dark D&B Remix",
+    "to": "Breathe",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Breathe (feat. RZA) [Liam H and Rene LaVice Re-Amp]",
+    "to": "Breathe",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Hot Ride -Feat. Juliette Lewis",
+    "to": "Hotride",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Hot Ride",
+    "to": "Hotride",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Firestarter (Live)",
+    "to": "Firestarter",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Their Law (feat. Pop Will Eat Itself) [Remastered]",
+    "to": "Their Law (feat. Pop Will Eat Itself)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Voodoo People (Pendulum remix)",
+    "to": "Voodoo People (Pendulum Remix)",
+    "type": "spelling",
+    "reason": "tier-2: casing fix to official title \"Voodoo People (Pendulum Remix)\""
+   },
+   {
+    "from": "Voodoo People (Pendulum Mix)",
+    "to": "Voodoo People (Pendulum Remix)",
+    "type": "spelling",
+    "reason": "tier-2: \"Mix\" -> \"Remix\", same Pendulum version, official title"
+   }
+  ]
+ },
+ "The Smith Street Band": {
+  "tracks": [
+   {
+    "from": "Sunshine And Technology",
+    "to": "Sunshine & Technology",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "The Sword": {
+  "tracks": [
+   {
+    "from": "Archeron / Unearthing the Orb",
+    "to": "Acheron / Unearthing the Orb",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "This Will Destroy You": {
+  "tracks": [
+   {
+    "from": "There Are Some Remedies Worse Than The Disease (Live)",
+    "to": "There Are Some Remedies Worse Than the Disease",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "A Three-Legged Work Horse",
+    "to": "A Three-Legged Workhorse",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "A Three Legged Workhorse (Live)",
+    "to": "A Three-Legged Workhorse",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Mighty Rio Grande (Live)",
+    "to": "The Mighty Rio Grande",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Thousand Thoughts": {
+  "albums": [
+   {
+    "from": "Change (feat. Daigo Jax)",
+    "to": "Change",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Thrice": {
+  "tracks": [
+   {
+    "from": "Summer Set Fire To The Rain - Acoustic",
+    "to": "Summer Set Fire to the Rain",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Tides From Nebula": {
+  "tracks": [
+   {
+    "from": "The New Delta - Live Session",
+    "to": "The New Delta",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Tiësto": {
+  "artist": {
+   "from": "Tiesto",
+   "type": "diacritic",
+   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+  },
+  "tracks": [
+   {
+    "from": "The Only Way Is Up (Radio Edit)",
+    "to": "The Only Way Is Up",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Time Zone": {
+  "artist": {
+   "from": "Time Zone (J. Lydon, Afrika Bambaataa & B. Laswell)",
+   "type": "feat-credit",
+   "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+  }
+ },
+ "toe": {
+  "tracks": [
+   {
+    "from": "Goodbye (Album Version)",
+    "to": "Goodbye",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Tom Morello": {
+  "artist": [
+   {
+    "from": "Tom Morello [feat. BreakCode]",
+    "type": "feat-credit",
+    "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+   },
+   {
+    "from": "Tom Morello [feat. Ben Harper]",
+    "type": "feat-credit",
+    "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+   }
+  ]
+ },
+ "Tool": {
+  "albums": [
+   {
+    "from": "�nima",
+    "to": "Ænima",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Undertow (Explicit)",
+    "to": "Undertow",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Roseta Stoned",
+    "to": "Rosetta Stoned",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Aenima",
+    "to": "Ænema",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Jerk-Off [Live]",
+    "to": "Jerk-Off",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Trash Boat": {
+  "artist": {
+   "from": "Trash Boat [feat. Milkie Way]",
+   "type": "feat-credit",
+   "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+  },
+  "tracks": [
+   {
+    "from": "Alpha Omega (feat. Kamiyada+) [Strange Bones Remix]",
+    "to": "Alpha Omega (feat. Kamiyada+)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Trevor Morris": {
+  "tracks": [
+   {
+    "from": "Vikings Attacked",
+    "to": "Vikings Attack",
+    "type": "spelling",
+    "reason": "tier-2: past-tense \"Attacked\" -> present \"Attack\""
+   }
+  ]
+ },
+ "tricot": {
+  "tracks": [
+   {
+    "from": "Laststep (Acoustic)",
+    "to": "laststep",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "エンド�ールに間に合うように",
+    "to": "エンドロールに間に合うように",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "Trivium": {
+  "albums": [
+   {
+    "from": "Bleed Into Me (Acoustic)",
+    "to": "Bleed Into Me",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Bleed Into Me - Acoustic",
+    "to": "Bleed into Me",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "TSS": {
+  "tracks": [
+   {
+    "from": "Would you be my therapy? (feat. Windwaker) - Redux",
+    "to": "Would you be my therapy?",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "TsuShiMaMiRe": {
+  "tracks": [
+   {
+    "from": "SHOT YOU - Live",
+    "to": "SHOT YOU",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "ファンタジックアド�ンチャーランド",
+    "to": "ファンタジックアドベンチャーランド",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   },
+   {
+    "from": "ニンゲン・コーテ�ング",
+    "to": "ニンゲン・コーティング",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   },
+   {
+    "from": "ニンゲン・コ�ティング",
+    "to": "ニンゲン・コーティング",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   },
+   {
+    "from": "ニ�ゲン・コーティング",
+    "to": "ニンゲン・コーティング",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   },
+   {
+    "from": "�ァンタジックアドベンチャーランド",
+    "to": "ファンタジックアドベンチャーランド",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   },
+   {
+    "from": "昨日�この空の下で",
+    "to": "昨日のこの空の下で",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "TV on the Radio": {
+  "albums": [
+   {
+    "from": "Desperate Youth, Blood Thirsty Babes",
+    "to": "Desperate Youth, Bloodthirsty Babes",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ]
+ },
+ "Tycho": {
+  "albums": [
+   {
+    "from": "Awake (Remix)",
+    "to": "Awake",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ]
+ },
+ "Type O Negative": {
+  "albums": [
+   {
+    "from": "The Best Of Type O Negative (Explicit)",
+    "to": "The Best of Type O Negative",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Everything Dies - Live",
+    "to": "Everything Dies",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Christian Woman (Edit)",
+    "to": "Christian Woman",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Christian Woman - Live at Wacken Open Air 2007",
+    "to": "Christian Woman",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Christian Woman (Live 2007)",
+    "to": "Christian Woman",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Christian Woman (Edit) (Album Version)",
+    "to": "Christian Woman",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "My Girlfriend's Girlfriend - Live",
+    "to": "My Girlfriend's Girlfriend",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "My Girlfriends Girlfriend",
+    "to": "My Girlfriend's Girlfriend",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "My Grilfriends Girlfriend",
+    "to": "My Girlfriend's Girlfriend",
+    "type": "spelling",
+    "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "HAIL AND FAREWELL TO BRITIAN",
+    "to": "Hail and Farewell to Britain",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Love You to Death - Live at Wacken Open Air 2007",
+    "to": "Love You to Death",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Love You To Death - Live",
+    "to": "Love You to Death",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Anesthesia - Live at Wacken Open Air 2007",
+    "to": "Anesthesia",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Tyrkouaz": {
+  "tracks": [
+   {
+    "from": "ethergaze - feat. みけたはな & ウエダリュウタ",
+    "to": "Ethergaze (feat. Hana Miketa & Ryuta Ueda)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "U2": {
+  "tracks": [
+   {
+    "from": "Vertigo (Radio Edit)",
+    "to": "Vertigo",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Beatiful Day",
+    "to": "Beautiful Day",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Ulrich Schnauss": {
+  "tracks": [
+   {
+    "from": "Monday - Paracetemol",
+    "to": "Monday - Paracetamol",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Underoath": {
+  "albums": [
+   {
+    "from": "Let Go (Acoustic)",
+    "to": "Let Go",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Hallelujah - Live From Digital Ghost",
+    "to": "Hallelujah",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Hallelujah [Feat. Charlotte Sands] - Charlotte Sands Version",
+    "to": "Hallelujah",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "A Boy Brushed Red Living In Black And White - Acoustic",
+    "to": "A Boy Brushed Red Living in Black and White",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Let Go (Acoustic)",
+    "to": "Let Go",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Damn Excuses - Live From Digital Ghost",
+    "to": "Damn Excuses",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Cycle - Live From Digital Ghost",
+    "to": "Cycle",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Vader": {
+  "tracks": [
+   {
+    "from": "Devilized",
+    "to": "Devilizer",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Van Halen": {
+  "tracks": [
+   {
+    "from": "Hot For Teacher (Remastered Album Version) (Remastered)",
+    "to": "Hot For Teacher (Remastered Album Version)",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "Vladimir Horowitz": {
+  "tracks": [
+   {
+    "from": "Scriabin: 3 Pieces For Piano, Op.2 - 1. Etude In C-Sharp Minor (Live)",
+    "to": "Scriabin: 3 Pieces for piano, Op.2 - 1. Etude in C sharp minor",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Void Chapter": {
+  "albums": [
+   {
+    "from": "Diabolic (feat. Daedric)",
+    "to": "Diabolic",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Diabolic (feat. Daedric) - Single Edit",
+    "to": "Diabolic (feat. Daedric) - HIGHSOCIETY Remix",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Diabolic (feat. Daedric) - Extended",
+    "to": "Diabolic (feat. Daedric) - HIGHSOCIETY Remix",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Resist (feat. Celldweller) - Brian Skeel VIP",
+    "to": "Resist",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Resist (feat. Celldweller) - Extended",
+    "to": "Resist",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Our Time is Now (feat. The Anix) - Single Edit",
+    "to": "Our Time is Now (feat. The Anix) - Extended",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "VOLA": {
+  "albums": [
+   {
+    "from": "Head Mounted Sideways (Live From The Pool)",
+    "to": "Head Mounted Sideways",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Straight Lines (Live From The Pool)",
+    "to": "Straight Lines",
+    "type": "variant",
+    "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Straight Lines - Live From The Pool",
+    "to": "Straight Lines",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "24 Light-Years - Live From The Pool",
+    "to": "24 Light-Years",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Head Mounted Sideways - Live From The Pool",
+    "to": "Head Mounted Sideways",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Inside Your Fur - Live From The Pool",
+    "to": "Inside Your Fur",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "These Black Claws - Live From The Pool",
+    "to": "These Black Claws (feat. SHAHMEN)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Vortek's": {
+  "tracks": [
+   {
+    "from": "La Soupe Aux Choux (Remix Psytrance)",
+    "to": "La Soupe Aux Choux (Remix)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Voyager": {
+  "tracks": [
+   {
+    "from": "Lost - Live",
+    "to": "Lost",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Meaning of I - Live",
+    "to": "The Meaning Of I",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Wargasm": {
+  "artist": {
+   "from": "WARGASM (UK)",
+   "type": "spelling",
+   "reason": "spelling: variant name form folds to canonical artist name"
+  }
+ },
+ "Weather Report": {
+  "tracks": [
+   {
+    "from": "Birdland - Live",
+    "to": "Birdland",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Weezer": {
+  "tracks": [
+   {
+    "from": "In The Garage - Live On BBC Evening Sessions - January 26, 1995",
+    "to": "In the Garage",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "While She Sleeps": {
+  "tracks": [
+   {
+    "from": "YOU ARE ALL YOU NEED - Acoustic",
+    "to": "YOU ARE ALL YOU NEED",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Wilderun": {
+  "tracks": [
+   {
+    "from": "Identifier - Radio Edit",
+    "to": "Identifier",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Yoko Kanno": {
+  "albums": [
+   {
+    "from": "攻殻�動隊 STAND ALONE COMPLEX O.S.T.2",
+    "to": "攻殻機動隊 STAND ALONE COMPLEX O.S.T.2",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Home sSay",
+    "to": "home stay",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "zavet": {
+  "tracks": [
+   {
+    "from": "Выключили с�ет",
+    "to": "Выключили свет",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "ZAZEN BOYS": {
+  "tracks": [
+   {
+    "from": "You Make Me Feel So Bad - LIVE",
+    "to": "You Make Me Feel So Bad",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "Zigmund Afraid": {
+  "tracks": [
+   {
+    "from": "Pleasure Was Minus - Radio Edit",
+    "to": "Pleasure Was Mine - Radio Edit",
+    "type": "spelling",
+    "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ]
+ },
+ "ヌンチャク": {
+  "tracks": [
+   {
+    "from": "や�てみよう",
+    "to": "やってみよう",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ },
+ "ミドリ": {
+  "tracks": [
+   {
+    "from": "スピ�ドビート",
+    "to": "スピードビート",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   },
+   {
+    "from": "�夜高速",
+    "to": "深夜高速",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   },
+   {
+    "from": "ゆきこさ�",
+    "to": "ゆきこさん",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   }
+  ]
+ }
+}

@@ -2681,7 +2681,8 @@ function BlurbSwitcher({ id, about }) {
   }, [id]);
   const [pick, setPick] = React.useState(null);
   const [mode, setMode] = React.useState("info");     // "info" | "deep" (Fable interpretation)
-  React.useEffect(() => { setPick(null); setMode("info"); }, [id]);   // new song → default read; clicks never clobbered
+  const [altTake, setAltTake] = React.useState(false); // false = primary fable, true = fableAlt (the fold-merged twin's read)
+  React.useEffect(() => { setPick(null); setMode("info"); setAltTake(false); }, [id]);   // new song → default read; clicks never clobbered
   const gist0 = (R && R.aboutGist && R.aboutGist(id)) || null;   // read before deciding on deep load
   // pull the deep shard when a deep read is being shown: a picked deep source, the Interpretation
   // mode, OR when the DEFAULT source (gist.src) is itself a deep read (so it renders without a click).
@@ -2755,15 +2756,28 @@ function BlurbSwitcher({ id, about }) {
         {/* the read + its attribution form one block; the brand anchors to THIS, not the whole
             body, so Means/Built can sit beneath it without pushing the credit down (2026-08-08) */}
         <div className="tv-switch-read">
-        <span className="tv-switch-txt">{showDeep ? (deepText || "…") : (curLoading ? "…" : cur.text)}</span>
+        {/* fableAlt (Fuad 2026-08-11): after a coherency fold merged a duplicate spelling into
+            this track, its own Fable read survives as `fableAlt`. A subtle flick swaps between the
+            two takes — same tv-switch-mode button idiom, scoped to the Fable read only. */}
+        {(() => {
+          const hasAlt = !showDeep && cur.m === "fable" && llm && llm.fableAlt;
+          const shown = hasAlt && altTake ? llm.fableAlt : cur.text;
+          return <span className="tv-switch-txt">{showDeep ? (deepText || "…") : (curLoading ? "…" : shown)}</span>;
+        })()}
+        {!showDeep && cur.m === "fable" && llm && llm.fableAlt && (
+          <div className="tv-switch-mode tv-switch-alt">
+            <button data-on={!altTake} onClick={() => setAltTake(false)}>Take</button>
+            <button data-on={altTake} onClick={() => setAltTake(true)}>Alt take</button>
+          </div>
+        )}
         {/* Stacked second take (Fuad 2026-08-04): where an old-era Fable read stays primary,
             the newer read rides as `fable2` under a hairline split — same formatting, both kept. */}
-        {!showDeep && cur.m === "fable" && llm && llm.fable2 && (
+        {!showDeep && !altTake && cur.m === "fable" && llm && llm.fable2 && (
           <span className="tv-switch-txt" style={{ display: "block", marginTop: 9, paddingTop: 9, borderTop: "1px solid var(--ink-faint, rgba(127,127,127,.3))" }}>{llm.fable2}</span>
         )}
         {/* Fable addition (Fuad 2026-07-28): when QC sees a verified layer the read couldn't
             surface, it rides as `fnote` — an italic line under the Fable read, never an edit. */}
-        {!showDeep && cur.m === "fable" && llm && llm.fnote && (
+        {!showDeep && !altTake && cur.m === "fable" && llm && llm.fnote && (
           <span className="tv-switch-txt" style={{ display: "block", marginTop: 7, fontStyle: "italic", opacity: 0.85 }}>{llm.fnote}</span>
         )}
         {showDeep

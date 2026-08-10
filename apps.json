@@ -54,6 +54,7 @@
         "media-index.js",
         "track-audio.js",
         "album-alias.js",
+        "variant-of.js",
         "album-extras.js",
         "artist-days.js",
         "mb-lineup.js",
