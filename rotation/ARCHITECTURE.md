@@ -156,8 +156,16 @@ into `../../.sptmp` (outside the repo), queried with DuckDB (`../../.dtmp/node_m
 ⚠ `node_modules` is **NOT** gitignored in this repo — never `npm install` here; use `../../.dtmp` /
 `../../.sptmp` / `../../.babelcheck` at the GitHub root.
 
-Known enrichment fragility: name-ambiguous artists can cache the wrong entity (see the **Bleach**
-pin in CSV-OVERRIDES.md — re-running photo/discogs enrichers can silently re-break it).
+Known enrichment fragility: name-ambiguous artists can cache the wrong entity. The durable fix
+is **`pins.json`** (consulted by build-data at read time; enrichers should prefer a pinned id over
+a name search). Field inventory (2026-08-12): `mbid`/`spotify`/`discogs` canonical ids ·
+`clearStyles`/`clearLife` drop a wrong joined dataset · `origin`/`life`/`gender` hard overrides ·
+`react` force the Reactivated badge (hand-curated ledger) · `tmExclude` skip a wrong-entity
+Ticketmaster name-match (Bleach vs. an Italian tribute act) · `bio`/`tags`/`dropTags` override the
+shipped bio/tag chips (Bleach multi-band last.fm text; LiSA collision tags) · `clearImage` skip a
+wrong-entity Discogs/last.fm image and fall through to Spotify, whose cache entry can itself be
+repointed by pinned id (the LiSA case: Discogs held an American Lisa, Spotify held BLACKPINK's —
+cache repointed to the real LiSA by JP-market exact-casing search).
 
 ## 5. Identity & cross-cutting systems
 
@@ -175,8 +183,12 @@ pin in CSV-OVERRIDES.md — re-running photo/discogs enrichers can silently re-b
 - **Album id** = `slug(artist)~slug(title)`; **Track id** = `slug(artist)~slug(track)` (routes
   `#album/…`, `#track/…` — mirrors media-index / track-audio keys).
 - **Alias resolution:** `R.idForName(name)` — direct slug, then `ALIAS_TO_ID` (MusicBrainz
-  aliases), so a click on "Midori" lands on ミドリ. `R.played(name)` checks the ≥3-plays set
-  including aliases.
+  aliases), then the **`CANON_MK` fuzzy tier** (2026-08-12): a `matchKey`-keyed map seeded from
+  kept artists + their MB aliases + all HAND_MERGE folds (kept artists registered first so a fold
+  can never shadow a real artist), plus leading-"the"-stripped keys. Catches source renames
+  ("Wargasm (UK)") and spelling drift ("The Smashing Pumpkins") that the exact tiers miss — the
+  New This Month ghost-new/dead-redirect fix. `R.played(name)` checks the ≥3-plays set through
+  the same tiers.
 - **Resolution layer (raw scrobbles → what you see).** One intermediary bridge sits between the
   raw last.fm rows and every display, so views never re-invent matching per card. Four stages,
   earliest to latest:
@@ -201,7 +213,12 @@ pin in CSV-OVERRIDES.md — re-running photo/discogs enrichers can silently re-b
   **Where new work belongs:** a new duplicate-spelling *class* → `folds.json` (identity). A new
   single that should feed its LP → an `absorb` entry (aggregation link, row kept). A view that needs
   to match a title from one source against another → `R.matchKey`/`matchKeyLoose` (the core API),
-  never a fresh inline regex.
+  never a fresh inline regex. **Auditing the ledger:** `../../.sptmp/fold-audit/audit-folds.js`
+  (2026-08-12) mechanically ranks suspect spelling folds — title-core dissimilarity + interleaved
+  independent play histories + local MB release-group evidence — born from the inverted NIN
+  "Home" fold (a bulk-wave entry that renamed the canonical title INTO its bonus-track variant).
+  Run it after any bulk fold wave; its only standing high scorers are the two deliberate
+  LP-under-song-name exceptions (Nutronic, Daedric).
 - **Colour system 1 — artist hue:** each artist inherits its genre **family** hue
   (`build-data.js` FAMILIES: nu-metal 24 orange, thrash 4 red, metalcore 346, industrial 214 blue,
   DnB/electronic 190 cyan, prog 282 purple, Japanese 332 pink, digital-hardcore 308, hip-hop 46,
@@ -237,9 +254,11 @@ files in one context to reconstitute the whole object.
 **`window.ROTATION`** (music-core.js + music-rest.js) keys:
 `ARTISTS` (kept = **top 400 by plays** (~100-play cutoff, raised from 200 on 2026-07-04:
 206→3.5 MB, 400→4.4 MB, 1000→6.5 MB — 400 chosen) + per-year top-10 union; full records:
-name/id/plays/hue/tags/country/members/bio/similar/…),
+name/id/plays/hue/tags/country/members/bio/similar/…, `vx` = ordered vocalist genders from
+`vocals.json` ("fm" = female+male in lineup order, "" = instrumental, absent = unknown),
+`life` = {type, ended, end, react} with `react` from the pins Reactivated ledger),
 `ALBUMS` (top 120 + 4/kept-artist ≈ 1,572), `TRACKS` (top 50), `GENRES`, `FAMILIES`, `SUBS` + `SUB_ARTISTS` + `EXPLORE`
-(~6,000-artist universe: `{id, name, plays, hue, s:[subIdx], co, ci, yp:{year:plays}(top 3k)}`),
+(~6,000-artist universe: `{id, name, plays, hue, s:[subIdx], co, ci, g, vx, ty, yp:{year:plays}(top 3k)}`),
 `CLOCK` + `CLOCK_BY_YEAR` + `ARTIST_CLOCK`, `YEARS` (per-year top artists/albums/tracks),
 `ERAS`, `TREND` (26 wk), `TOTALS` (incl. `exactHours`, `explicitPct`, `avgTrackSec`,
 `discoveryRate`, `perDay`, `streak`, `topDay`), `NOW`/`RECENT`, `INSIGHTS` (see below),
@@ -450,6 +469,35 @@ The **Gigs** tab (`rotation-views3.jsx`) shows attended shows joined to the list
 expand in **+40** increments; the "still to catch" and "seen & loved" buckets each expand in
 **+12** increments. `seenTop` is built from up to 60 artists. Genre cascade, event map,
 D/W/M calendar cross-filters remain as shipped 2026-07-06.
+
+### 2026-08 wave (vocals · filters · status · reads plumbing)
+- **Vocals dimension.** `vocals.json` = ordered multi-value vocalist genders per artist
+  (never-guess pipeline: MB lineup extraction → high-confidence knowledge only → web
+  verification of the rest; low-confidence ships as ABSENT, not guessed). Ships as `vx`.
+  **Glyph-first `VocalsBadge`**: mic + ♀♂⚧ in lineup order (words in the tooltip), MB-gender
+  fallback for solo acts — the old standalone gender glyph folded in, not replaced. Explore
+  gains a vocals chip row (Any/Male/Female/Mixed/Non-binary/Instrumental; rows without data
+  are excluded only while the filter is active). Vocalist selection in build prefers
+  lead-vocals in ANY era over current backing credits (the ミドリ fix: departed lead
+  Mariko Goto vs. a male backing credit). Wider-tier run (≥30-play artists) in progress.
+- **Explore filters.** 28-theme bitmask chips with AND semantics + release-decade bar with
+  year drill-in (Sort module); vocals/theme/decade all ALSO drive the mood/attribute charts
+  via `sliceArtists` (fail-open when inactive, exclude-no-data when active); result-count
+  segmented control 16/32/64 (default 16); hi-res artist images.
+- **Liked songs view.** Derived buckets (fresh/doorway/canon/lived/left/mid) + genre/tempo/
+  energy filters + artist/album miniatures; `liked-meta.js` 9-field rows joined truth-first
+  via the track's media albIdx (never name-slug).
+- **Artist status.** Reactivated badge = pins ledger (`react:true` — Linkin Park 2017→2024,
+  Alice in Chains 2002→2005, Nevermore 2011→2025, Bleach ~2009→performing again) OR the
+  derived path (disbanded group + upcoming TM dates); `tmExclude` guards wrong-entity TM
+  matches; Deceased Persons keep their badge (tribute billings are not comebacks).
+- **Time page.** Day/week/month heatmap selection mirrors timeline scrubbing — both resolve
+  to the same `selRange`, so the Rhythm rail follows either. Touch drag handles.
+- **Reads plumbing.** `fvr` revision field on fable-tier reads ("2.3" = current methodology
+  era; absent = v2.2 — the future depth-revisit target list), surfaced as a tooltip on the
+  Fable source button; `fnote2` second footnote slot; needle drops on mini artist pages with
+  hash → vetted-fallback → legacy resolution (~220 explore artists gained needles).
+- **New This Month** module filters through canonical name resolution (see CANON_MK, §5).
 
 ## 9. Dead code & dormant surfaces
 

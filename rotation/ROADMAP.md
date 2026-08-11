@@ -9,6 +9,37 @@
 
 ---
 
+## ⓪ Status snapshot — 2026-08-12 (the current open queue; phases below remain reference)
+
+**Shipped through 2026-08-12** (feature detail in ARCHITECTURE.md §8 "2026-08 wave"): fable-read
+corpus 588 reads / 161 footnotes / 573 themed with the `fvr` 2.3/2.2 revision scheme; vocals
+dimension + glyph badge + Explore filter; Explore themes(AND)/decade/chart-filter wiring +
+16/32/64; Liked songs view; Time selection⇄scrub mirror; Reactivated pins ledger + wrong-entity
+guards (tmExclude/bio/tags/clearImage — Bleach, LiSA); NIN Home inverted-fold fix + fold-audit
+tool; New This Month canonical resolution; needle-drop fallback on mini artist pages; setlist
+refresh (153 gigs).
+
+**Open, in order:**
+1. **Genre taxonomy v2 — APPROVED, rolling out 2026-08-13** (held a day at Fuad's request).
+   15 slots: Heavy/Doom/Gothic split from Thrash/Death; Metalcore/Nu; Prog Metal/Rock;
+   Shoegaze/Grunge; Punk/Hardcore (incl. post-hardcore); Alternative/Indie (incl. post-punk);
+   Industrial/DH/Hyperpop/Noise; Electronic/DnB (incl. trip-hop); Hip-Hop/Rap; Pop; Jazz;
+   Classical; **Score/Games & Film (new split)**; Other. Country/scene stays orthogonal.
+   Mechanics: 3-source weighted voting (last.fm counts + Spotify genres + Discogs styles),
+   word-boundary patterns (no substring traps: Zheani via "trap metal"), no first-match order
+   bugs (Polyphia via metal$), coordinated hue + id migration across liked-meta familyIds,
+   filter-index, Sound Map, Culture pulse.
+2. **Vocals wider tier** — 723-artist roster (≥30 plays) in flight: MB phase done (109
+   resolved), knowledge phase done (+78 high-conf), verification wave next; merge → vocals.json.
+3. **Fold-ledger follow-ups** — sub-10-play singles tail (~928 candidates) unabsorbed;
+   sub-5-play tracks unswept; 1,112 preview-sweep no-hits.
+4. **Parked** (Fuad-pinned): tempo/metronome (TEMPO-ROADMAP.local.md); NRC/valence accuracy
+   audit + "What the words say" module revival; Overview expanding readers proposal;
+   Sound-DNA drag-region filter; Live tab cache refresh (M3); v2.2 reads depth revisit
+   (the fvr target list).
+
+---
+
 ## ⓪ ROLLOUT PHASES — 2026-07-07 (the current master plan)
 
 > Distilled from AUDIT-2026-07.md Part II. This supersedes all earlier orderings in this file

@@ -216,10 +216,15 @@ songs. Not now — pinned.
 ## Track-level flagship reads (the fable tier, 2026-07-27+)
 
 Songs carry a flagship "what's it about?" read as the `fable` field in llm-about.js
-(`"fv":2` marks the current methodology; UI shows "via Opus · Fable" — Opus authors,
+(`"fv":2` marks the fable tier; UI shows "via Opus · Fable" — Opus authors,
 Fable QCs). Written one solo agent per song under a frozen minimal brief; mechanical
 anti-quoting gate + fact/placement verification at QC; verified extra layers ride as
-`fnote` (an italic line under the read). Albums whose songs are fully fable-covered may
+`fnote` (an italic line under the read; `fnote2` = a second, perspective-class slot).
+**Revision marker (2026-08-12):** `fvr:"2.3"` = written under the full current QC
+(an independent account-first cross-check before each read is judged, plus a whole-batch
+final sweep after verification); `fv:2` entries without `fvr` are **v2.2** (frozen-pipeline
+era) — the natural target list for the pinned future depth pass. The Fable source button's
+tooltip surfaces the revision. Every new apply ships 2.3. Albums whose songs are fully fable-covered may
 carry an ALTERNATE album read synthesized from those flagship reads (`liner2`/`arc2`,
 flickable via Fable on the PortraitCard). Operational details live in the untracked
 workshop docs.
