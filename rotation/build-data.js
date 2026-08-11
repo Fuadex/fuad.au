@@ -3669,6 +3669,31 @@ window.ROTATION = (function () {
     const t = (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
     return t || ("a-" + _slugHash(s || "x").slice(0, 7));
   };
+  // ─── resolution layer (display-time bridge) ────────────────────────────────
+  // Raw scrobbles get identity-merged at build time (folds.json) and aggregation-
+  // linked via the absorb/variant sidecars. These helpers do the LAST mile: matching
+  // a title from one data source (a play row) to a title from another (an MB spine,
+  // an MB-kinds map) when the two spell it differently. Kept HERE, next to slug(), so
+  // every view shares ONE normal form instead of re-typing an inline regex per card
+  // (the class of drift that stranded plays on "unplayed" tracks). See ARCHITECTURE.md
+  // "Resolution layer".
+  //   decEnt        — HTML-entity decode (&#39;/&apos;/&quot;/&amp;/&#NN;).
+  //   matchKey      — strict form: decEnt + lowercase-alnum squash. The join key.
+  //   matchKeyLoose — decEnt + strip bracketed feat./ft./with/w credit segments,
+  //                   [Explicit]/(Explicit), a trailing " - Single", then squash.
+  //                   For when a play row carries a credit the canonical title omits.
+  //   resolveAlbum  — follow the singles→LP absorb sidecar to the display key (identity
+  //                   when the single isn't absorbed, or the sidecar isn't loaded yet).
+  // NOTE: this whole IIFE is emitted THROUGH a template literal into music-core.js, so every
+  // regex backslash must be DOUBLED here to survive to one backslash in the generated file.
+  const decEnt = (s) => String(s || "").replace(/&#0*39;|&apos;/gi, "'").replace(/&quot;/gi, '"').replace(/&amp;/gi, "&").replace(/&#(\\d+);/g, function (m, n) { var c = parseInt(n, 10); return c ? String.fromCharCode(c) : m; });
+  const matchKey = (s) => decEnt(s).toLowerCase().replace(/[^a-z0-9]+/g, "");
+  const matchKeyLoose = (s) => decEnt(s)
+    .replace(/[([]\\s*(?:feat\\.?|ft\\.?|featuring|with|w\\/)\\s[^)\\]]*[)\\]]/gi, " ")
+    .replace(/[([]\\s*explicit\\s*[)\\]]/gi, " ")
+    .replace(/\\s*-\\s*single\\s*$/i, " ")
+    .toLowerCase().replace(/[^a-z0-9]+/g, "");
+  const resolveAlbum = (key) => (key && typeof window !== "undefined" && window.ROTATION_ALBUM_ABSORB && window.ROTATION_ALBUM_ABSORB[key]) || key;
   const D = ${JSON.stringify(DATA)};
   // deferred keys (arrive via music-rest.js) — stubbed empty so any first-paint read never
   // throws; the rest file Object.assigns the real data, rebuilds expById, flips _restLoaded.
@@ -3677,6 +3702,10 @@ window.ROTATION = (function () {
   D.byId = Object.fromEntries(D.ARTISTS.map(a => [a.id, a]));
   D.slug = slug;
   D._slugHash = _slugHash;   // exposed so lazy loaders (llm-about shards) bucket via the canonical hash
+  D.decEnt = decEnt;
+  D.matchKey = matchKey;             // canonical display-time match key (see resolution layer above)
+  D.matchKeyLoose = matchKeyLoose;   // credit/explicit/-single-insensitive squash
+  D.resolveAlbum = resolveAlbum;     // singles→LP absorb resolver (identity if unlinked/sidecar absent)
   // played(name) — kept artist OR scrobbled ≥3 times (plus aliases). Covers the long tail
   // (Otoboke Beaver) AND cross-script (ミドリ ↔ "Midori" via MusicBrainz aliases).
   const _played = new Set(D.PLAYED || []);
