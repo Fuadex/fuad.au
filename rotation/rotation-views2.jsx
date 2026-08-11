@@ -2817,6 +2817,11 @@ function BlurbSwitcher({ id, about }) {
         {!showDeep && !altTake && cur.m === "fable" && llm && llm.fnote && (
           <span className="tv-switch-txt" style={{ display: "block", marginTop: 7, fontStyle: "italic", opacity: 0.85 }}>{llm.fnote}</span>
         )}
+        {/* Second fnote slot (Fuad 2026-08-12): a further verified annotation stacks as
+            `fnote2` under the first — same italic styling, only when present. */}
+        {!showDeep && !altTake && cur.m === "fable" && llm && llm.fnote2 && (
+          <span className="tv-switch-txt" style={{ display: "block", marginTop: 7, fontStyle: "italic", opacity: 0.85 }}>{llm.fnote2}</span>
+        )}
         {showDeep
           ? <span className="tv-switch-brand" data-m={deepBy}>via {deepBy === "fable" ? "Fable" : "Opus"} · interpretation</span>
           : cur.m === "genius" && cur.link
