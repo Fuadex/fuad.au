@@ -56,6 +56,7 @@
         "album-alias.js",
         "variant-of.js",
         "album-absorb.js",
+        "liked-meta.js",
         "album-extras.js",
         "artist-days.js",
         "mb-lineup.js",

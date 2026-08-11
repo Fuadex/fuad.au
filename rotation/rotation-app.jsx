@@ -198,13 +198,14 @@ function RotationApp() {
                 {v === "gigs" && <GigsView go={go} />}
                 {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
                 {v === "spotify" && <SpotifyView go={go} />}
+                {v === "liked" && <LikedView go={go} />}
                 {v === "lab" && <LabView />}
                 {v === "lab2" && <Lab2View />}
                 {v === "artist" && <ArtistView t={t} id={route.id} go={go} setPop={setPop} city={city} setCity={setCity} />}
                 {v === "album" && <AlbumView id={route.id} go={go} />}
                 {v === "track" && <TrackView id={route.id} go={go} />}
                 {/* unknown hash → say so instead of a silent blank content area */}
-                {!["stories", "explore", "shelves", "calendar", "gigs", "live", "spotify", "lab", "lab2", "artist", "album", "track"].includes(v) && (
+                {!["stories", "explore", "shelves", "calendar", "gigs", "live", "spotify", "liked", "lab", "lab2", "artist", "album", "track"].includes(v) && (
                   <div className="r-view" style={{ textAlign: "center", padding: "60px 20px" }}>
                     <div className="r-card" style={{ display: "inline-block", padding: "36px 44px", color: "var(--ink-soft)", fontFamily: "var(--serif)", fontSize: 15 }}>
                       Nothing lives at <span style={{ fontFamily: "var(--mono)", fontSize: 12 }}>#{v}</span>.
