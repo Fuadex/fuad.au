@@ -359,29 +359,304 @@ function tagAudio(tags) {
   return out;
 }
 
-// tag → Sound-Map family. Membership + weights are REAL; x/y is a curated layout
-// (organic↔electronic × calm↔violent) so the scatter stays legible. First match wins.
+// ─────────── GENRE TAXONOMY v2 (approved 2026-08-12; see DESIGN.md §1.3, .sptmp/genre-v2) ───────────
+// The 15-family v2 wheel. Membership is decided by a WEIGHTED VOTE over word-boundary rules across
+// all three enrichment sources (last.fm tags, Spotify genres, Discogs styles) — NOT the old
+// first-classifiable-tag-wins, which let the v1 `metal$`-first-match order decide ties. hue/cx/cy
+// carry the color contract (hue = the ONE genre-color source; cx/cy = Sound-Map layout, x≈organic→
+// electronic, y≈light→heavy). Views consume { i, family, hue } (index-keyed via R.FAMILIES[f.i]);
+// cx/cy/grey stay build-side. "Other" keeps its grey marker + catch-all role.
 const FAMILIES = [
-  { family: "Nu-metal / alt-metal", hue: 24,  cx: .28, cy: .74, kw: /nu-metal|nu metal|rap metal|funk metal|alternative metal|rapcore/ },
-  { family: "Metalcore / -core",    hue: 346, cx: .42, cy: .9,  kw: /metalcore|post-hardcore|deathcore|djent|mathcore|electronicore|screamo/ },
-  { family: "Industrial",           hue: 214, cx: .6,  cy: .76, kw: /industrial|ebm|neue deutsche|aggrotech|cyber/ },
-  { family: "Thrash / heavy",       hue: 4,   cx: .22, cy: .9,  kw: /thrash|heavy metal|groove metal|speed metal|death metal|black metal|doom|sludge|grind|power metal|symphonic metal|metal$|^metal/ },
-  { family: "Prog / alt rock",      hue: 282, cx: .3,  cy: .54, kw: /progressive metal|progressive rock|art rock|alternative rock|post-metal|stoner|grunge|indie rock|psychedelic|hard rock|rock$|^rock/ },
-  { family: "Japanese",             hue: 332, cx: .46, cy: .64, kw: /japanese|j-rock|j-pop|jpop|jrock|visual kei|kawaii|city pop|shibuya/ },
-  { family: "Electronic / DnB",     hue: 190, cx: .84, cy: .64, kw: /drum and bass|drum n bass|dnb|jungle|breakbeat|big beat|techno|house|trance|electro|edm|rave|hardstyle|electronic|idm|downtempo|trip-hop|trip hop|triphop|dubstep|synthwave|darksynth|retrowave|outrun|chillwave|ambient techno/ },
-  { family: "Digital hardcore / hyperpop", hue: 308, cx: .86, cy: .9, kw: /digital hardcore|breakcore|gabber|speedcore|witch house|hyperpop|glitch|vaporwave/ },
-  { family: "Hip-hop",              hue: 46,  cx: .62, cy: .42, kw: /hip-hop|hip hop|rap|boom bap|trap|grime|polish hip/ },
-  { family: "Punk / garage",        hue: 96,  cx: .26, cy: .8,  kw: /punk|garage|post-punk|emo|riot grrrl|hardcore punk/ },
-  { family: "Shoegaze / noise",     hue: 252, cx: .5,  cy: .56, kw: /shoegaze|dream pop|nu-gaze|noise rock|noise|post-rock|ambient/ },
-  { family: "Pop / indie",          hue: 60,  cx: .72, cy: .4,  kw: /synth-pop|synthpop|new wave|art pop|indie pop|electropop|dance-pop|pop$|^pop/ },
-  // Jazz — Soul/Funk/R&B fold in here (shared organic/groove corner; a defensible single family)
-  { family: "Jazz",                 hue: 40,  cx: .40, cy: .45, kw: /jazz|bebop|hard bop|big band|saxophone|trumpet|jazz fusion|nu jazz|vocal jazz|neo-soul|northern soul|motown|rhythm and blues/ },
-  { family: "Classical / Score",    hue: 150, cx: .18, cy: .22, kw: /classical|neoclassical|modern classical|contemporary classical|orchestral|soundtrack|film score|\bscore\b|cinematic|opera|baroque|chamber music|piano/ },
-  // Other — catch-all so nothing gets nuked; kw never matches (assigned as an explicit fallback).
+  { family: "Thrash/Death",                 hue: 4,   cx: .22, cy: .90 },
+  { family: "Heavy/Doom/Gothic",            hue: 24,  cx: .18, cy: .80 },
+  { family: "Metalcore/Nu",                 hue: 346, cx: .38, cy: .88 },
+  { family: "Punk/Hardcore",                hue: 96,  cx: .26, cy: .80 },
+  { family: "Prog Metal/Rock",              hue: 282, cx: .30, cy: .54 },
+  { family: "Shoegaze/Grunge",              hue: 252, cx: .50, cy: .60 },
+  { family: "Alternative/Indie",            hue: 60,  cx: .40, cy: .50 },
+  { family: "Industrial/DH/Hyperpop/Noise", hue: 214, cx: .68, cy: .80 },
+  { family: "Electronic/DnB",               hue: 190, cx: .84, cy: .60 },
+  { family: "Hip-Hop/Rap",                  hue: 46,  cx: .62, cy: .42 },
+  { family: "Pop",                          hue: 332, cx: .72, cy: .38 },
+  { family: "Jazz",                         hue: 40,  cx: .40, cy: .32 },
+  { family: "Classical",                    hue: 150, cx: .18, cy: .22 },
+  { family: "Score/Games & Film",           hue: 308, cx: .50, cy: .22 },
+  // Other — catch-all so nothing gets nuked; no rule assigns it (only the explicit fallback does).
   // grey:true is a marker for the color pass (rendered with a placeholder hue until then).
-  { family: "Other",                hue: 72,  cx: .5,  cy: .5,  grey: true, kw: /(?!)/ },
+  { family: "Other",                        hue: 72,  cx: .50, cy: .50, grey: true },
 ];
-function classifyTag(tag) { for (const f of FAMILIES) if (f.kw.test(tag)) return f; return null; }
+const _FAM_INDEX = new Map(FAMILIES.map((f, i) => [f.family, i]));
+const _famByName = (name) => { const i = _FAM_INDEX.get(name); return i == null ? null : FAMILIES[i]; };
+
+// v2 word-boundary vote (ported from .sptmp/genre-v2/engine.js so the build stays self-contained).
+// Normalise a tag/style to a token stream where \b is meaningful (fold apostrophes, slashes→space).
+const _gnorm = (t) => String(t).toLowerCase().trim()
+  .replace(/[’']/g, "").replace(/[_/]+/g, " ").replace(/\s+/g, " ");
+// Non-voting scene/country tags (orthogonal scene dimension) contribute ZERO. j-pop/city pop are
+// the EXCEPTION → they vote Pop (handled in the rule table, so they must NOT be listed here).
+const SCENE_ZERO = new Set([
+  "japanese", "j-rock", "jrock", "j rock", "visual kei", "kawaii",
+  "shibuya-kei", "shibuya kei", "polish", "german", "australian", "french", "russian",
+  "swedish", "finnish", "norwegian", "british", "american", "uk", "usa", "us",
+  "danish", "italian", "spanish", "dutch", "canadian", "belgian", "brazilian",
+  "korean", "chinese", "icelandic", "austrian", "ukrainian", "seattle", "bergen",
+  "gothenburg", "melbourne", "sydney", "london", "berlin", "tokyo", "chicago",
+  "new york", "los angeles", "england", "scotland", "wales", "ireland", "europe",
+  "european", "asian", "latin", "nordic", "scandinavian", "female fronted",
+  "female vocalists", "male vocalists", "instrumental", "acoustic",
+]);
+// Junk / meta tags: always zero (personal-collection noise).
+const GENRE_JUNK = new Set([
+  "seen live", "favorites", "favourites", "favorite", "my top songs", "my favorites",
+  "love", "loved", "awesome", "good", "cool", "epic", "amazing", "beautiful",
+  "under 2000 listeners", "spotify", "albums i own", "vinyl", "owned", "check out",
+  "want to see live", "concert", "band", "artist", "music", "songs", "playlist",
+  "all", "seen live 2023", "seen live 2024", "10s", "00s", "90s", "80s", "70s", "60s",
+  "2020s", "2010s", "2000s", "1990s", "1980s",
+]);
+const _GW = { strong: 1.0, med: 0.8, weak: 0.5, umbrella: 0.2 };
+// Ordered rule table; first matching rule claims a tag (specific guards precede broad umbrellas).
+// STEP-1 pattern fixes (owner-approved 2026-08-12) folded in: kawaii metal→Metalcore/Nu,
+// gothic rock/folk metal/drone→Heavy/Doom/Gothic, technical metal→Prog, 8-bit/chiptune/vgm→Score,
+// blues→Jazz, electroclash→Electronic, dance→Electronic ×0.2, modern rock→Alt ×0.2.
+const GENRE_RULES = [
+  // ── ORDER-SENSITIVE guards first ──
+  ["Metalcore/Nu", /\bkawaii metal\b/, _GW.strong],           // STEP1: BABYMETAL fix (before scene-zero would eat "kawaii")
+  ["Metalcore/Nu", /\btrap metal\b/, _GW.strong],
+  ["Metalcore/Nu", /\bpost[- ]hardcore\b/, _GW.strong],
+  ["Punk/Hardcore", /\bmelodic hardcore\b/, _GW.strong],
+  ["Prog Metal/Rock", /\bprogressive (metal|rock)\b/, _GW.strong],
+  ["Prog Metal/Rock", /\bprog (metal|rock)\b/, _GW.strong],
+  ["Prog Metal/Rock", /\btechnical (metal|rock)\b/, _GW.strong],   // STEP1
+  ["Alternative/Indie", /\bmath rock\b/, _GW.strong],
+  ["Prog Metal/Rock", /\bmath metal\b/, _GW.med],
+  ["Industrial/DH/Hyperpop/Noise", /\bnoise rock\b/, _GW.strong],
+  ["Industrial/DH/Hyperpop/Noise", /\bpower electronics\b/, _GW.strong],
+  ["Pop", /\bcity pop\b/, _GW.strong],
+  ["Pop", /\bj-?pop\b/, _GW.strong],
+
+  // ── 1 Thrash/Death ──
+  ["Thrash/Death", /\bthrash\b/, _GW.strong],
+  ["Thrash/Death", /\bdeath metal\b/, _GW.strong],
+  ["Thrash/Death", /\bblack metal\b/, _GW.strong],
+  ["Thrash/Death", /\b(grindcore|grind)\b/, _GW.strong],
+  ["Thrash/Death", /\bspeed metal\b/, _GW.strong],
+  ["Thrash/Death", /\bgroove metal\b/, _GW.strong],
+  ["Thrash/Death", /\b(brutal death|technical death|tech death|melodic death|melodeath|deathgrind)\b/, _GW.strong],
+  ["Thrash/Death", /\bblackened\b/, _GW.med],
+
+  // ── 2 Heavy/Doom/Gothic ──
+  ["Heavy/Doom/Gothic", /\bheavy metal\b/, _GW.strong],
+  ["Heavy/Doom/Gothic", /\bdoom\b/, _GW.strong],
+  ["Heavy/Doom/Gothic", /\bstoner\b/, _GW.strong],
+  ["Heavy/Doom/Gothic", /\bsludge\b/, _GW.strong],
+  ["Heavy/Doom/Gothic", /\bgothic (metal|rock)\b/, _GW.strong],   // STEP1: gothic rock joins gothic metal here
+  ["Heavy/Doom/Gothic", /\bfolk metal\b/, _GW.strong],            // STEP1
+  ["Heavy/Doom/Gothic", /\bdrone\b/, _GW.strong],                 // STEP1
+  ["Heavy/Doom/Gothic", /\bpower metal\b/, _GW.strong],
+  ["Heavy/Doom/Gothic", /\bsymphonic metal\b/, _GW.strong],
+  ["Heavy/Doom/Gothic", /\bnwobhm\b/, _GW.strong],
+  ["Heavy/Doom/Gothic", /\btrue metal\b/, _GW.med],
+
+  // ── 3 Metalcore/Nu ──
+  ["Metalcore/Nu", /\bmetalcore\b/, _GW.strong],
+  ["Metalcore/Nu", /\bdeathcore\b/, _GW.strong],
+  ["Metalcore/Nu", /\bmathcore\b/, _GW.strong],
+  ["Metalcore/Nu", /\belectronicore\b/, _GW.strong],
+  ["Metalcore/Nu", /\bscreamo\b/, _GW.strong],
+  ["Metalcore/Nu", /\bnu[- ]?metal\b/, _GW.strong],
+  ["Metalcore/Nu", /\brap metal\b/, _GW.strong],
+  ["Metalcore/Nu", /\bfunk metal\b/, _GW.strong],
+  ["Metalcore/Nu", /\balternative metal\b/, _GW.strong],
+  ["Metalcore/Nu", /\brapcore\b/, _GW.strong],
+  ["Metalcore/Nu", /\bnu[- ]?core\b/, _GW.med],
+
+  // ── 4 Punk/Hardcore ──
+  ["Punk/Hardcore", /\bhardcore punk\b/, _GW.strong],
+  ["Punk/Hardcore", /\bpunk\b/, _GW.strong],
+  ["Punk/Hardcore", /\bhardcore\b/, _GW.strong],
+  ["Punk/Hardcore", /\bemo\b/, _GW.strong],
+  ["Punk/Hardcore", /\bska(-?punk)?\b/, _GW.strong],
+  ["Punk/Hardcore", /\briot grrrl\b/, _GW.strong],
+  ["Punk/Hardcore", /\bgarage (punk|rock)\b/, _GW.strong],
+  ["Punk/Hardcore", /\bcrust\b/, _GW.strong],
+  ["Punk/Hardcore", /\bpost-punk\b/, _GW.med],
+
+  // ── 5 Prog Metal/Rock ──
+  ["Prog Metal/Rock", /\bdjent\b/, _GW.strong],
+  ["Prog Metal/Rock", /\bprogressive\b/, _GW.med],
+  ["Prog Metal/Rock", /\bpost-metal\b/, _GW.strong],
+  ["Prog Metal/Rock", /\bart rock\b/, _GW.strong],
+  ["Prog Metal/Rock", /\bpsychedelic\b/, _GW.strong],
+  ["Prog Metal/Rock", /\bclassic rock\b/, _GW.med],
+  ["Prog Metal/Rock", /\bhard rock\b/, _GW.med],
+
+  // ── 6 Shoegaze/Grunge ──
+  ["Shoegaze/Grunge", /\bshoegaze\b/, _GW.strong],
+  ["Shoegaze/Grunge", /\bnu-?gaze\b/, _GW.strong],
+  ["Shoegaze/Grunge", /\bblackgaze\b/, _GW.strong],
+  ["Shoegaze/Grunge", /\bdream pop\b/, _GW.strong],
+  ["Shoegaze/Grunge", /\bgrunge\b/, _GW.strong],
+  ["Shoegaze/Grunge", /\bpost-grunge\b/, _GW.strong],
+  ["Shoegaze/Grunge", /\bslowcore\b/, _GW.strong],
+  ["Shoegaze/Grunge", /\bpost-rock\b/, _GW.strong],
+
+  // ── 7 Alternative/Indie ──
+  ["Alternative/Indie", /\balternative rock\b/, _GW.med],
+  ["Alternative/Indie", /\bindie (rock|pop-rock|pop rock)\b/, _GW.strong],
+  ["Alternative/Indie", /\bpost-punk\b/, _GW.med],
+  ["Alternative/Indie", /\bbritpop\b/, _GW.strong],
+  ["Alternative/Indie", /\bmadchester\b/, _GW.strong],
+  ["Alternative/Indie", /\bmodern rock\b/, _GW.umbrella],    // STEP1: weak ×0.2
+  ["Alternative/Indie", /\bindie\b/, _GW.weak],
+
+  // ── 8 Industrial/DH/Hyperpop/Noise ──
+  ["Industrial/DH/Hyperpop/Noise", /\bindustrial\b/, _GW.strong],
+  ["Industrial/DH/Hyperpop/Noise", /\bebm\b/, _GW.strong],
+  ["Industrial/DH/Hyperpop/Noise", /\bneue deutsche h(a|ä)rte\b/, _GW.strong],
+  ["Industrial/DH/Hyperpop/Noise", /\baggrotech\b/, _GW.strong],
+  ["Industrial/DH/Hyperpop/Noise", /\bcyber\b/, _GW.med],
+  ["Industrial/DH/Hyperpop/Noise", /\bdigital hardcore\b/, _GW.strong],
+  ["Industrial/DH/Hyperpop/Noise", /\bbreakcore\b/, _GW.strong],
+  ["Industrial/DH/Hyperpop/Noise", /\bgabber\b/, _GW.strong],
+  ["Industrial/DH/Hyperpop/Noise", /\bspeedcore\b/, _GW.strong],
+  ["Industrial/DH/Hyperpop/Noise", /\bhyperpop\b/, _GW.strong],
+  ["Industrial/DH/Hyperpop/Noise", /\bglitch\b/, _GW.med],
+  ["Industrial/DH/Hyperpop/Noise", /\bwitch house\b/, _GW.strong],
+  ["Industrial/DH/Hyperpop/Noise", /\bnoise\b/, _GW.med],
+
+  // ── 9 Electronic/DnB ──
+  ["Electronic/DnB", /\b(drum and bass|drum n bass|dnb|d&b)\b/, _GW.strong],
+  ["Electronic/DnB", /\b(jungle|breakbeat|big beat|breaks)\b/, _GW.strong],
+  ["Electronic/DnB", /\btechno\b/, _GW.strong],
+  ["Electronic/DnB", /\bhouse\b/, _GW.strong],
+  ["Electronic/DnB", /\btrance\b/, _GW.strong],
+  ["Electronic/DnB", /\belectroclash\b/, _GW.strong],   // STEP1 (before bare "electro")
+  ["Electronic/DnB", /\belectro\b/, _GW.med],
+  ["Electronic/DnB", /\bedm\b/, _GW.med],
+  ["Electronic/DnB", /\brave\b/, _GW.med],
+  ["Electronic/DnB", /\bhardstyle\b/, _GW.strong],
+  ["Electronic/DnB", /\bidm\b/, _GW.strong],
+  ["Electronic/DnB", /\bdowntempo\b/, _GW.strong],
+  ["Electronic/DnB", /\btrip-?hop\b/, _GW.strong],
+  ["Electronic/DnB", /\bdubstep\b/, _GW.strong],
+  ["Electronic/DnB", /\b(synthwave|darksynth|retrowave|outrun)\b/, _GW.strong],
+  ["Electronic/DnB", /\bambient techno\b/, _GW.strong],
+  ["Electronic/DnB", /\bambient\b/, _GW.med],
+  ["Electronic/DnB", /\bvaporwave\b/, _GW.strong],
+  ["Electronic/DnB", /\bchillwave\b/, _GW.strong],
+  ["Electronic/DnB", /\bdance\b/, _GW.umbrella],   // STEP1: weak ×0.2 (before bare "electronic")
+  ["Electronic/DnB", /\belectronic\b/, _GW.weak],
+
+  // ── 10 Hip-Hop/Rap ──
+  ["Hip-Hop/Rap", /\bhip[- ]?hop\b/, _GW.strong],
+  ["Hip-Hop/Rap", /\brap\b/, _GW.strong],
+  ["Hip-Hop/Rap", /\bboom bap\b/, _GW.strong],
+  ["Hip-Hop/Rap", /\btrap\b/, _GW.strong],   // "trap metal" already claimed above
+  ["Hip-Hop/Rap", /\bgrime\b/, _GW.strong],
+  ["Hip-Hop/Rap", /\bpolish hip[- ]?hop\b/, _GW.strong],
+
+  // ── 11 Pop ──
+  ["Pop", /\bsynth-?pop\b/, _GW.strong],
+  ["Pop", /\bnew wave\b/, _GW.strong],
+  ["Pop", /\bart pop\b/, _GW.strong],
+  ["Pop", /\bindie pop\b/, _GW.strong],
+  ["Pop", /\belectropop\b/, _GW.strong],
+  ["Pop", /\bdance-?pop\b/, _GW.strong],
+  ["Pop", /\bdark pop\b/, _GW.strong],
+  ["Pop", /\bk-?pop\b/, _GW.strong],
+  ["Pop", /\bpop\b/, _GW.weak],
+
+  // ── 12 Jazz (soul/funk/R&B/blues fold in) ──
+  ["Jazz", /\bjazz\b/, _GW.strong],
+  ["Jazz", /\bbebop\b/, _GW.strong],
+  ["Jazz", /\bfusion\b/, _GW.med],
+  ["Jazz", /\bbig band\b/, _GW.strong],
+  ["Jazz", /\bneo-?soul\b/, _GW.strong],
+  ["Jazz", /\bsoul\b/, _GW.med],
+  ["Jazz", /\bmotown\b/, _GW.strong],
+  ["Jazz", /\bfunk\b/, _GW.med],
+  ["Jazz", /\bblues\b/, _GW.med],   // STEP1: blues → Jazz
+  ["Jazz", /\b(rhythm and blues|r&b|rnb)\b/, _GW.med],
+
+  // ── 13 Classical ──
+  ["Classical", /\b(neo-?classical|modern classical|contemporary classical|classical)\b/, _GW.strong],
+  ["Classical", /\borchestral\b/, _GW.med],
+  ["Classical", /\bopera\b/, _GW.strong],
+  ["Classical", /\bbaroque\b/, _GW.strong],
+  ["Classical", /\bchamber\b/, _GW.strong],
+  ["Classical", /\bpiano\b/, _GW.med],
+
+  // ── 14 Score/Games & Film ──
+  ["Score/Games & Film", /\b(8-?bit|chiptune|chip music)\b/, _GW.strong],   // STEP1
+  ["Score/Games & Film", /\bsoundtrack\b/, _GW.strong],
+  ["Score/Games & Film", /\bfilm score\b/, _GW.strong],
+  ["Score/Games & Film", /\bscore\b/, _GW.strong],
+  ["Score/Games & Film", /\bcinematic\b/, _GW.strong],
+  ["Score/Games & Film", /\b(video game music|vgm|game music)\b/, _GW.strong],   // STEP1: vgm
+  ["Score/Games & Film", /\bost\b/, _GW.strong],
+  ["Score/Games & Film", /\bepic orchestral\b/, _GW.strong],
+];
+// Bare-umbrella handling (tag equals the umbrella exactly, after norm): bare metal→Heavy ×0.2,
+// bare rock/alternative→Alt ×0.2.
+const GENRE_UMBRELLA = new Map([
+  ["metal", ["Heavy/Doom/Gothic", _GW.umbrella]],
+  ["rock", ["Alternative/Indie", _GW.umbrella]],
+  ["alternative", ["Alternative/Indie", _GW.umbrella]],
+]);
+// classifyTag(tag) → { family, hue, cx, cy, i, weight } | null. `family`-shaped like the old
+// FAMILIES entry (so existing `f.family`/`f.hue`/`f.cx`/`f.cy`/FAMILIES.indexOf(f) callers work),
+// plus `.weight` (the family multiplier). Returns the FIRST matching rule.
+function _classifyToken(rawTag) {
+  const t = _gnorm(rawTag);
+  if (!t) return null;
+  if (GENRE_JUNK.has(t)) return null;
+  if (SCENE_ZERO.has(t)) return null;
+  if (GENRE_UMBRELLA.has(t)) { const [fam, w] = GENRE_UMBRELLA.get(t); const f = _famByName(fam); return f && { ...f, i: _FAM_INDEX.get(fam), weight: w }; }
+  for (const [fam, re, w] of GENRE_RULES) {
+    if (re.test(t)) { const f = _famByName(fam); return f && { ...f, i: _FAM_INDEX.get(fam), weight: w }; }
+  }
+  return null;
+}
+// Back-compat surface: classifyTag returns the family object (no weight needed by SUBS/GENRES
+// callers, which only read .family/.hue/.cx/.cy and FAMILIES.indexOf). Memoised on the token.
+const _clsCache = new Map();
+function classifyTag(tag) {
+  const key = tag == null ? "" : String(tag);
+  if (_clsCache.has(key)) return _clsCache.get(key);
+  const c = _classifyToken(key);
+  const f = c ? FAMILIES[c.i] : null;   // return the CANONICAL FAMILIES object so indexOf works
+  _clsCache.set(key, f);
+  return f;
+}
+
+// ── classifyArtist(evidence) — the weighted vote (ported engine). Returns the winning family INDEX
+//    (or -1 for no evidence). evidence = { lastfm:[[tag,count0..100],…], spotify:[genre,…],
+//    discogs:[[style,count],…] }. Source weights: last.fm count/100, spotify flat 0.7, discogs
+//    count-scaled to 0.5 max within the artist.
+const _GENRE_SRC = { spotify: 0.7, discogsBase: 0.5 };
+function classifyArtist(ev) {
+  const totals = new Map();
+  const nvote = new Map();   // family → # of tags that voted for it (for the confidence gate)
+  const add = (idx, contribution) => { totals.set(idx, (totals.get(idx) || 0) + contribution); nvote.set(idx, (nvote.get(idx) || 0) + 1); };
+  for (const [tag, count] of (ev.lastfm || [])) {
+    const c = _classifyToken(tag); if (!c) continue;
+    add(c.i, (((count || 0) / 100) || 0.01) * c.weight);
+  }
+  for (const g of (ev.spotify || [])) {
+    const c = _classifyToken(g); if (!c) continue;
+    add(c.i, _GENRE_SRC.spotify * c.weight);
+  }
+  const dstyles = ev.discogs || [];
+  const dmax = dstyles.reduce((m, s) => Math.max(m, s[1] || 0), 0) || 1;
+  for (const [style, count] of dstyles) {
+    const c = _classifyToken(style); if (!c) continue;
+    add(c.i, (_GENRE_SRC.discogsBase * ((count || 0) / dmax)) * c.weight);
+  }
+  const ranked = [...totals.entries()].sort((a, b) => b[1] - a[1]);
+  if (!ranked.length) return -1;
+  return ranked[0][0];
+}
 
 // umbrella tags too broad to be interesting — kept out of the Sound Map + artist chips
 const GENERIC = new Set([
@@ -398,20 +673,39 @@ const niceTags = (name) => {
   return (specific.length ? specific : all).slice(0, 4);
 };
 
+// Discogs styles WITH release counts (fold-aware), for the weighted vote — [[style, count], …].
+// stylesOf() returns names-only (top-5, display); the vote wants the full count-weighted list.
+function stylesCountOf(name) {
+  const pn = pinOf(name);
+  if (pn && pn.clearStyles) return [];   // wrong-entity Discogs match → no discogs evidence
+  const d = aliasedByName(DISCOGS, name);
+  return (d && d.styles) ? d.styles : [];
+}
+
 // artist → primary Sound-Map family INDEX (aligns with FAMILIES order, the cube's famIdx).
-// First classifiable tag wins; Discogs styles as fallback. Memoised — the clock cube calls
-// this once per scrobble (315k), so it must not re-classify per call.
+// v2: a WEIGHTED VOTE (classifyArtist) over ALL THREE sources — last.fm tag-cache (count-scaled),
+// Spotify genres (flat 0.7), Discogs styles (count-scaled, 0.5 max) — replaces the old
+// first-classifiable-tag-wins. Precedence: pins.json "fam" (hard pin) > FAMILY_OVERRIDES (legacy
+// hand list) > the vote. Memoised — the clock cube calls this once per scrobble (315k).
 const _famCache = new Map();
 function familyIdxByName(name) {
   if (_famCache.has(name)) return _famCache.get(name);
-  if (typeof FAMILY_OVERRIDES !== "undefined" && FAMILY_OVERRIDES[name]) {
-    const oi = FAMILIES.findIndex(f => f.family === FAMILY_OVERRIDES[name]);
-    if (oi >= 0) { _famCache.set(name, oi); return oi; }
+  // NEW `fam` pin (pins.json): hard-override the assignment by family NAME.
+  const pn = pinOf(name);
+  if (pn && pn.fam) {
+    const pi = _FAM_INDEX.get(pn.fam);
+    if (pi != null) { _famCache.set(name, pi); return pi; }
   }
-  const tags = (META[name] && META[name].tags) || niceTags(name);
-  let idx = -1;
-  for (const tg of tags) { const f = classifyTag(tg); if (f) { idx = FAMILIES.indexOf(f); break; } }
-  if (idx < 0) for (const s of stylesOf(name)) { const f = classifyTag(s.toLowerCase()); if (f) { idx = FAMILIES.indexOf(f); break; } }
+  if (typeof FAMILY_OVERRIDES !== "undefined" && FAMILY_OVERRIDES[name]) {
+    const oi = _FAM_INDEX.get(FAMILY_OVERRIDES[name]);
+    if (oi != null) { _famCache.set(name, oi); return oi; }
+  }
+  const lastfm = (META[name] && META[name].tags)
+    ? META[name].tags.map(t => Array.isArray(t) ? t : [t, 100])   // curated META tags are bare strings
+    : cachedTags(name);                                            // [[tag, count], …]
+  const spotify = aliasedByName(SPOTGEN, name) || [];
+  const discogs = stylesCountOf(name);
+  const idx = classifyArtist({ lastfm, spotify, discogs });
   _famCache.set(name, idx);
   return idx;
 }
@@ -581,63 +875,66 @@ function aliasSidecarBySlugAlbum(obj) {
   Object.assign(obj, adds);
   return obj;
 }
-// Sound-map family overrides — consulted BEFORE tag classification (tag data is wrong/absent):
+// Sound-map family overrides — consulted BEFORE the tag vote (tag data is wrong/absent).
+// v2 (2026-08-12): values re-mapped to the v2 15-family vocabulary. The dissolved "Japanese"
+// family is gone — each JP-scene act is pinned to its real musical family (Sound-Map lens is genre,
+// not scene; the scene dimension is orthogonal/non-voting). New hard pins should ride pins.json's
+// `fam` field (checked first in familyIdxByName); this legacy hand list stays for the acts already
+// verified here. Owner may migrate individual rows to pins.json over time.
 const FAMILY_OVERRIDES = {
-  "daine": "Digital hardcore / hyperpop",
-  // Genre corrections round 3 (Fuad 2026-07-12, vs tag noise):
-  // + Fable's tag-audit verdicts (top-160 sweep; prog-metal follows the Volumes precedent,
-  //   JP-scene acts consolidate into Japanese):
-  "Dream Theater": "Prog / alt rock",
-  "Tool": "Prog / alt rock",
-  "TesseracT": "Prog / alt rock",
-  "Animals as Leaders": "Prog / alt rock",
-  "Periphery": "Prog / alt rock",
-  "BABYMETAL": "Japanese",
-  "Melt-Banana": "Japanese",
-  "ミドリ": "Japanese",
-  "tricot": "Japanese",
-  "9mm Parabellum Bullet": "Japanese",
-  "MAN WITH A MISSION": "Japanese",
-  "Trent Reznor and Atticus Ross": "Classical / Score",
-  "Trent Reznor & Atticus Ross": "Classical / Score",
-  "HEALTH": "Shoegaze / noise",
-  "Grimes": "Electronic / DnB",
-  "Battle Tapes": "Electronic / DnB",
-  "Airbourne": "Thrash / heavy",
-  "RedHook": "Nu-metal / alt-metal",
-  "Alex": "Electronic / DnB",
-  "Romes": "Nu-metal / alt-metal",
-  "Lisa": "Japanese",
-  "Gramatik": "Electronic / DnB",
-  "Metrik": "Electronic / DnB",
-  "Yours Truly": "Metalcore / -core",
-  "Jon Opstad": "Classical / Score",
-  "Volumes": "Prog / alt rock",
+  "daine": "Industrial/DH/Hyperpop/Noise",   // was Digital hardcore / hyperpop → folded into Industrial bucket
+  // Genre corrections round 3 (Fuad 2026-07-12, vs tag noise) + Fable's tag-audit verdicts:
+  "Dream Theater": "Prog Metal/Rock",
+  "Tool": "Prog Metal/Rock",
+  "TesseracT": "Prog Metal/Rock",
+  "Animals as Leaders": "Prog Metal/Rock",
+  "Periphery": "Prog Metal/Rock",
+  "BABYMETAL": "Metalcore/Nu",               // v2: kawaii metal → Metalcore/Nu (STEP1 fix; owner-approved)
+  "Melt-Banana": "Punk/Hardcore",            // Japanese noise-punk
+  "ミドリ": "Punk/Hardcore",                  // Japanese noise-rock/jazz-punk
+  "tricot": "Alternative/Indie",             // math rock → Alt/Indie
+  "9mm Parabellum Bullet": "Alternative/Indie",
+  "MAN WITH A MISSION": "Metalcore/Nu",      // Japanese alt-metal/rock
+  "Trent Reznor and Atticus Ross": "Score/Games & Film",
+  "Trent Reznor & Atticus Ross": "Score/Games & Film",
+  "HEALTH": "Shoegaze/Grunge",
+  "Grimes": "Electronic/DnB",
+  "Battle Tapes": "Electronic/DnB",
+  "Airbourne": "Heavy/Doom/Gothic",          // hard-rock/heavy → Heavy bucket
+  "RedHook": "Metalcore/Nu",
+  "Alex": "Electronic/DnB",
+  "Romes": "Metalcore/Nu",
+  "Lisa": "Pop",                             // JP pop-rock vocalist → Pop
+  "Gramatik": "Electronic/DnB",
+  "Metrik": "Electronic/DnB",
+  "Yours Truly": "Metalcore/Nu",
+  "Jon Opstad": "Score/Games & Film",
+  "Volumes": "Prog Metal/Rock",
   // Other-list fold, round 2 (Fuad's verdicts + Fable's confident calls, 2026-07-12):
-  "PRO8L3M, Dawid Podsiadło, Duit": "Hip-hop",
-  "Gurren Lagann OST Disc 1": "Classical / Score",
-  "Morgan Thomaso": "Prog / alt rock",
-  "DHMHTHP": "Punk / garage",
-  "Ivy Lab, Roses Gabor": "Electronic / DnB",
-  "Hensonn": "Electronic / DnB",
-  "Grimes, i_o": "Electronic / DnB",
-  "Glacerate": "Electronic / DnB",
-  "panda beats": "Electronic / DnB",
-  "Beatman, Hyper, Ludmilla": "Electronic / DnB",
-  "Tommy Trash, i_o, Daisy Guttridge": "Electronic / DnB",
-  "Kaskade x Deadmau5 feat. Skylar Grey": "Electronic / DnB",
-  "SBCR & Razihel": "Electronic / DnB",
-  "Zankyou no Terror OST": "Classical / Score",
-  "Spec Ops: The Line": "Classical / Score",
-  "UnderTale OST": "Classical / Score",
-  "The London Metropolitan Orchestra;Michael Kamen": "Classical / Score",
-  "05.  Counterattack Mankind": "Classical / Score",
-  "Vaporwave with Teenage Engineering OP-1 蒸気波 (feat. Blank Banshee": "Electronic / DnB",
-  "Yuna Kil": "Nu-metal / alt-metal",
-  "i_o, Lights": "Electronic / DnB",       // collab credit; i_o leads → electronic
-  "Mystery Kiss": "Japanese",              // Odd Taxi's fictional j-pop unit
-  "Taoubt": "Prog / alt rock",
-  "VonRyk": "Electronic / DnB",
+  "PRO8L3M, Dawid Podsiadło, Duit": "Hip-Hop/Rap",
+  "Gurren Lagann OST Disc 1": "Score/Games & Film",
+  "Morgan Thomaso": "Prog Metal/Rock",
+  "DHMHTHP": "Punk/Hardcore",
+  "Ivy Lab, Roses Gabor": "Electronic/DnB",
+  "Hensonn": "Electronic/DnB",
+  "Grimes, i_o": "Electronic/DnB",
+  "Glacerate": "Electronic/DnB",
+  "panda beats": "Electronic/DnB",
+  "Beatman, Hyper, Ludmilla": "Electronic/DnB",
+  "Tommy Trash, i_o, Daisy Guttridge": "Electronic/DnB",
+  "Kaskade x Deadmau5 feat. Skylar Grey": "Electronic/DnB",
+  "SBCR & Razihel": "Electronic/DnB",
+  "Zankyou no Terror OST": "Score/Games & Film",
+  "Spec Ops: The Line": "Score/Games & Film",
+  "UnderTale OST": "Score/Games & Film",
+  "The London Metropolitan Orchestra;Michael Kamen": "Score/Games & Film",
+  "05.  Counterattack Mankind": "Score/Games & Film",
+  "Vaporwave with Teenage Engineering OP-1 蒸気波 (feat. Blank Banshee": "Electronic/DnB",
+  "Yuna Kil": "Metalcore/Nu",
+  "i_o, Lights": "Electronic/DnB",           // collab credit; i_o leads → electronic
+  "Mystery Kiss": "Pop",                     // Odd Taxi's fictional j-pop unit → Pop
+  "Taoubt": "Prog Metal/Rock",
+  "VonRyk": "Electronic/DnB",
 };
 // Non-music scrobbles (YouTube shows etc.) — excluded from Explore / the genre map.
 // ("Corridor" ≠ "Corridor Crew" — the Montreal band stays.)
@@ -4246,4 +4543,4 @@ console.log(`topDay: ${TOTALS.topDay.date} (${TOTALS.topDay.count}) · streak be
 console.log(`eras: ${ERA_START}–${ERA_END} · ARTISTS kept: ${ARTISTS.length} · ALBUMS kept: ${ALBUMS.length}`);
 console.log(`insights: ${OBSESSIONS.length} obsessions · ${COMEBACKS.length} comebacks · ${WONDERS.length} wonders · ${NIGHT_OWLS.length} night owls · ${MILESTONES.length} milestones`);
 console.log(`search index: ${searchRows.length} artists (${(searchOut.length / 1024).toFixed(0)} KB)`);
-console.log(`genres: ${GENRES === GENRES_REAL ? `REAL from ${Object.keys(TAG_CACHE).length} tagged artists (${GENRES.length} families)` : "curated fallback"}`);
+console.log(`genres: ${GENRES === GENRES_REAL ? `REAL from ${Object.keys(TAG_CACHE).length} tagged artists (${FAMILIES.length} families; ${GENRES.length} carry subgenres)` : "curated fallback"}`);
