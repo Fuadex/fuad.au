@@ -724,7 +724,7 @@ function CalendarView({ go, seed }) {
   // Panel page size: 10 | 25 | 50, persisted across sessions.
   const [panelN, setPanelN] = React.useState(() => {
     try { const v = parseInt(localStorage.getItem("rot-cal-panel-n"), 10); if (v === 10 || v === 25 || v === 50) return v; } catch (e) {}
-    return 25;
+    return 10;
   });
   const setPanelNPersist = (v) => { setPanelN(v); try { localStorage.setItem("rot-cal-panel-n", String(v)); } catch (e) {} };
   // Panel list/grid view toggle, persisted across sessions.
@@ -767,23 +767,49 @@ function CalendarView({ go, seed }) {
     return gran === "week" ? [start, start + 6 * 86400e3] : [start, start];
   }, [sel, gran, customRange]);
 
-  // Range overview: merge detail.day entries for every day inside the committed range into ONE
-  // pseudo-period (top artists/albums/songs id-joined + summed, DNA weight-averaged by each day's
-  // t) — rendered through the SAME panel markup as day/week/month. Re-runs when rangeCommit changes
-  // (commit fires on pointer-up / year-click, not per-move) or when detail finishes loading.
-  const rangePeriod = React.useMemo(() => {
-    if (!rangeCommit || !detail || !detail.day) return null;
-    const [s, en] = rangeCommit;
+  // aggregateDays — merge detail.day entries for every day inside [startMs,endMs] inclusive into
+  // ONE pseudo-period (top artists/albums/songs id-joined + summed, DNA weight-averaged by each
+  // day's t). This is the DEEP construction: the stored month/week periods cap their lists (6
+  // artists / 5 albums / 10 songs), but the union of a period's days runs far deeper (a real month
+  // → ~70 artists / ~130 songs). Used by BOTH the scrubbed range overview AND — for depth parity —
+  // a picked day/week/month (see periodDeep below). Returns null if day data isn't loaded yet.
+  const aggregateDays = React.useCallback((startMs, endMs) => {
+    if (!detail || !detail.day) return null;
     const entries = [];
-    for (let ms = s; ms <= en; ms += 86400e3) {
+    for (let ms = startMs; ms <= endMs; ms += 86400e3) {
       const key = new Date(ms).toISOString().slice(0, 10);
       const p = detail.day[key];
       if (p) entries.push(p);
     }
     if (!entries.length) return { t: 0, n: 0, a: [], al: [], s: [], d: [0, 0, 0, 0, 0, 0] };
-    const merged = mergeBreakdowns(entries);
-    return { ...merged, n: entries.length };
-  }, [rangeCommit, detail]);
+    return { ...mergeBreakdowns(entries), n: entries.length };
+  }, [detail]);
+
+  // Range overview: aggregate the committed range's days. Re-runs when rangeCommit changes (commit
+  // fires on pointer-up / year-click, not per-move) or when detail finishes loading.
+  const rangePeriod = React.useMemo(() => {
+    if (!rangeCommit) return null;
+    return aggregateDays(rangeCommit[0], rangeCommit[1]);
+  }, [rangeCommit, aggregateDays]);
+
+  // Depth parity with the scrub path: a picked day/week/month is treated as a programmatic range
+  // over that period, aggregated from detail.day the SAME way the barcode scrub aggregates a
+  // clipped range (aggregateDays) — so "show more" runs the same distance for a picked month as for
+  // that month scrubbed (stored periods cap at 6/5/10; the day-union runs ~10× deeper). Mirrors the
+  // earlier selRange unification for the Rhythm rail. Consumed by `P` below (where hour-filtering,
+  // month-only, still uses the stored period's per-hour sub-breakdowns). These MUST be hooks and
+  // live ABOVE the `if (!cal)` early return — otherwise the hook count shifts when calendar.js
+  // lazy-loads (React #310, the crash this file's other notes warn about).
+  const periodRange = React.useMemo(() => {
+    if (!sel) return null;
+    if (gran === "month") { const [y, m] = sel.split("-").map(Number); return [Date.UTC(y, m - 1, 1), Date.UTC(y, m, 1) - 86400e3]; }
+    const start = new Date(sel + "T00:00:00Z").getTime();
+    return gran === "week" ? [start, start + 6 * 86400e3] : [start, start];
+  }, [sel, gran]);
+  const periodDeep = React.useMemo(() => {
+    if (!periodRange) return null;
+    return aggregateDays(periodRange[0], periodRange[1]);
+  }, [periodRange, aggregateDays]);
 
   const MON = window.MON;
   const MONF = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -840,7 +866,11 @@ function CalendarView({ go, seed }) {
   const NM = detail && detail.names;
   const selArr = selHours.size ? [...selHours].sort((a, b) => a - b) : null;
   const period = (detail && sel) ? (detail[gran] || {})[sel] : null;
-  const P = (gran === "month" && selArr && period && period.h) ? mergeHours(period, selArr) : period;
+  const P = (gran === "month" && selArr && period && period.h)
+    ? mergeHours(period, selArr)
+    // Deep lists from the day-union, but keep the stored period's headline t/n (true period totals;
+    // the day-union can undercount days that fell below the detail threshold) when we have them.
+    : ((periodDeep && periodDeep.t) ? (period ? { ...periodDeep, t: period.t, n: period.n } : periodDeep) : period);
   const selLabel = sel ? (gran === "day" ? fmtDate(new Date(sel + "T00:00:00Z")) : gran === "week" ? "Week of " + fmtDate(new Date(sel + "T00:00:00Z")) : MONF[+sel.split("-")[1] - 1] + " " + sel.split("-")[0]) : "";
   const aRow = ([i, p]) => ({ name: NM[i], plays: p });
   const iRow = ([t, a, p]) => ({ title: NM[t], artist: NM[a], plays: p });
