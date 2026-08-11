@@ -106,7 +106,7 @@ const META = {};
 const TAG_CACHE_PATH = path.join(__dirname, "tag-cache.json");
 const TAG_CACHE = fs.existsSync(TAG_CACHE_PATH) ? JSON.parse(fs.readFileSync(TAG_CACHE_PATH, "utf8")) : {};
 const hasTags = Object.keys(TAG_CACHE).length > 0;
-const cachedTags = (name) => (TAG_CACHE[name] && TAG_CACHE[name].tags) || []; // [[tag, count 0–100], …]
+const cachedTags = (name) => { const t = aliasedByName(TAG_CACHE, name); return (t && t.tags) || []; }; // [[tag, count 0–100], …]
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 
 // ─────────── global last.fm stats (artist-stats.json, built by enrich-stats.js) ───────────
@@ -115,7 +115,7 @@ const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 const STATS_PATH = path.join(__dirname, "artist-stats.json");
 const STATS = fs.existsSync(STATS_PATH) ? JSON.parse(fs.readFileSync(STATS_PATH, "utf8")) : {};
 const hasStats = Object.keys(STATS).length > 0;
-const listenersOf = (name) => { const s = STATS[name]; return s && s.listeners > 0 ? s.listeners : null; };
+const listenersOf = (name) => { const s = aliasedByName(STATS, name); return s && s.listeners > 0 ? s.listeners : null; };
 
 // ─────────── MusicBrainz aliases (artist-aliases.json, by enrich-aliases.js) ───────────
 // Cross-script identity: ミドリ ↔ Midori, Боevsky ↔ Boevsky, etc. Folded into PLAYED
@@ -145,21 +145,23 @@ const ARTIMG = _readJson("spotify-artist-img.json");  // name → 640px artist i
 const SPOTGEN = { ..._readJson("spotify-genres-extra.json"), ..._readJson("spotify-genres.json") }; // name → [genre, …]
 const ALBTRACKS = _readJson("spotify-albtracks.json"); // "artistSlug~titleSlug" → album total_tracks (completeness)
 const TRACKDATA = _readJson("spotify-track-data.json"); // "artistSlug~trackSlug" → [durSec, pop, explicit, trackNo, (energy, valence, acoustic, tempo, dance, instr)]  (features 0..100)
-const albArt = (artist, title) => ALBART[slug(artist) + "~" + slug(title)] || "";
-const albMeta = (artist, title) => ALBMETA[slug(artist) + "~" + slug(title)] || 0;
-const trackData = (artist, title) => TRACKDATA[slug(artist) + "~" + slug(title)] || 0;
-const spotImg = (name) => (SPOT[name] && SPOT[name].img) || ARTIMG[name] || "";
-const imageOf = (name) => (DGA[name] && DGA[name].image) || (IMAGES[name] && IMAGES[name].image) || spotImg(name) || "";
-const thumbOf = (name) => (DGA[name] && DGA[name].thumb) || (IMAGES[name] && IMAGES[name].thumb) || spotImg(name) || "";
-const dgProfileOf = (name) => (DGA[name] && DGA[name].profile) || "";
-const dgMembersOf = (name) => (DGA[name] && DGA[name].members) || [];
+// slug~album keyed → alias-aware (fall back to the pre-fold artist-slug prefix, same album part).
+const albArt = (artist, title) => aliasedBySlugAlbum(ALBART, slug(artist), slug(title)) || "";
+const albMeta = (artist, title) => aliasedBySlugAlbum(ALBMETA, slug(artist), slug(title)) || 0;
+const trackData = (artist, title) => aliasedBySlugAlbum(TRACKDATA, slug(artist), slug(title)) || 0;
+// name-keyed → alias-aware (fall back to a pre-fold variant name).
+const spotImg = (name) => { const s = aliasedByName(SPOT, name); return (s && s.img) || aliasedByName(ARTIMG, name) || ""; };
+const imageOf = (name) => { const d = aliasedByName(DGA, name), i = aliasedByName(IMAGES, name); return (d && d.image) || (i && i.image) || spotImg(name) || ""; };
+const thumbOf = (name) => { const d = aliasedByName(DGA, name), i = aliasedByName(IMAGES, name); return (d && d.thumb) || (i && i.thumb) || spotImg(name) || ""; };
+const dgProfileOf = (name) => { const d = aliasedByName(DGA, name); return (d && d.profile) || ""; };
+const dgMembersOf = (name) => { const d = aliasedByName(DGA, name); return (d && d.members) || []; };
 
 // ─────────── last.fm bios + REAL similar-artists (artist-bios.json, by enrich-bios.js) ───────────
 const BIOS_PATH = path.join(__dirname, "artist-bios.json");
 const BIOS = fs.existsSync(BIOS_PATH) ? JSON.parse(fs.readFileSync(BIOS_PATH, "utf8")) : {};
 const hasBios = Object.keys(BIOS).length > 0;
-const bioOf = (name) => (BIOS[name] && BIOS[name].bio) || "";
-const realSimilar = (name) => (BIOS[name] && BIOS[name].similar) || null;
+const bioOf = (name) => { const b = aliasedByName(BIOS, name); return (b && b.bio) || ""; };
+const realSimilar = (name) => { const b = aliasedByName(BIOS, name); return (b && b.similar) || null; };
 
 // ─────────── curated coherency folds (folds.json — hand-auditable ledger) ───────────
 // Optional ledger of KNOWN artist/album/track variants that build-data's automatic
@@ -206,13 +208,13 @@ const hasOrigins = Object.keys(ORIGINS).length > 0;
 // Durable corrections for wrong entity matches (Bleach/Brutus/daine class). Consulted at read
 // time here; enrichers should prefer a pinned id over a blind name search. See pins.json._doc.
 const PINS = (() => { try { const p = JSON.parse(fs.readFileSync(path.join(__dirname, "pins.json"), "utf8")); delete p._doc; return p; } catch (e) { return {}; } })();
-const pinOf = (name) => PINS[name] || null;
+const pinOf = (name) => aliasedByName(PINS, name) || null;
 const originOf = (name) => {
   const pn = pinOf(name);
   if (pn && pn.origin) return { country: pn.origin.country || "", area: pn.origin.area || "", city: pn.origin.city || "" };
-  const ov = OVERRIDES[name];
+  const ov = aliasedByName(OVERRIDES, name);
   if (ov && ov.country) return { country: ov.country, area: ov.area || ov.city || "", city: ov.city || "" };
-  const o = ORIGINS[name];
+  const o = aliasedByName(ORIGINS, name);
   if (!o || !o.country) return null;
   return { country: o.country, area: o.area || "", city: o.beginArea || "" };
 };
@@ -235,13 +237,14 @@ const _MB_VOX_GENDER = (() => {
 })();
 const genderOf = (name) => {
   const pn = pinOf(name); if (pn && "gender" in pn) return pn.gender;
-  return (ORIGINS[name] && ORIGINS[name].gender) || _MB_VOX_GENDER.get(name) || "";
+  const o = aliasedByName(ORIGINS, name);
+  return (o && o.gender) || _MB_VOX_GENDER.get(name) || "";
 };
 const lifeOf = (name) => {
   const pn = pinOf(name);
   if (pn && pn.clearLife) return null;
   if (pn && pn.life) return { type: pn.life.type || "Group", ended: !!pn.life.ended, end: (pn.life.end || "").slice(0, 4) };
-  const o = ORIGINS[name]; if (!o || !o.type || !("ended" in o)) return null; return { type: o.type, ended: !!o.ended, end: (o.end || "").slice(0, 4) };
+  const o = aliasedByName(ORIGINS, name); if (!o || !o.type || !("ended" in o)) return null; return { type: o.type, ended: !!o.ended, end: (o.end || "").slice(0, 4) };
 };
 
 // ─────────── Wikidata (wikidata-cache.json, by enrich-wikidata.js) ───────────
@@ -251,7 +254,7 @@ const lifeOf = (name) => {
 const WIKIDATA_PATH = path.join(__dirname, "wikidata-cache.json");
 const WIKIDATA = fs.existsSync(WIKIDATA_PATH) ? JSON.parse(fs.readFileSync(WIKIDATA_PATH, "utf8")) : {};
 function wdOf(name) {
-  const w = WIKIDATA[name];
+  const w = aliasedByName(WIKIDATA, name);
   if (!w) return null;
   const r = {};
   if (w.formCity) r.city = w.formCity;                       // exact formation city ("Bergen", "Gothenburg")
@@ -273,14 +276,14 @@ const hasDiscogs = Object.keys(DISCOGS).length > 0;
 function stylesOf(name) {
   const pn = pinOf(name);
   if (pn && pn.clearStyles) return pn.styles || [];   // wrong-entity Discogs match → drop (or use pinned styles)
-  const d = DISCOGS[name];
+  const d = aliasedByName(DISCOGS, name);
   if (!d || !d.styles || d.styles.length === 0) return [];
   return d.styles.slice(0, 5).map(s => s[0]);
 }
 function dGenresOf(name) {
   const pn = pinOf(name);
   if (pn && pn.clearStyles) return pn.genres || [];
-  const d = DISCOGS[name];
+  const d = aliasedByName(DISCOGS, name);
   if (!d || !d.genres || d.genres.length === 0) return [];
   return d.genres.slice(0, 3).map(g => g[0]);
 }
@@ -291,8 +294,8 @@ function dGenresOf(name) {
 const MB_PATH = path.join(__dirname, "artist-mb.json");
 const MB = fs.existsSync(MB_PATH) ? JSON.parse(fs.readFileSync(MB_PATH, "utf8")) : {};
 const hasMB = Object.keys(MB).length > 0;
-const debutOf = (name) => (MB[name] && MB[name].debut) || null;
-const membersOf = (name) => ((MB[name] && MB[name].rels) || []).filter(r => r[0] === "member of band").map(r => r[1]);
+const debutOf = (name) => { const m = aliasedByName(MB, name); return (m && m.debut) || null; };
+const membersOf = (name) => { const m = aliasedByName(MB, name); return ((m && m.rels) || []).filter(r => r[0] === "member of band").map(r => r[1]); };
 
 // tag → audio-DNA vector. Tag-DERIVED, not measured (last.fm has no audio features);
 // an artist's axes are the play-weighted average of its tags. First bucket wins.
@@ -466,6 +469,90 @@ for (const k of Object.keys(HAND_MERGE)) {
   let v = HAND_MERGE[k]; const seen = new Set([k]);
   while (HAND_MERGE[v] && !seen.has(v)) { seen.add(v); v = HAND_MERGE[v]; }
   HAND_MERGE[k] = v;
+}
+// ─────────── fold alias maps (canonical → [folded-from variants]) ───────────
+// A fold re-attributes a variant's scrobbles to a canonical name (WARGASM (UK) → Wargasm), but the
+// ENRICHMENT stores (images/art/bios/genres/…) were pulled under the OLD name/slug and never re-keyed.
+// After a fold the canonical name/slug misses every one of those stores → folded artists render blank.
+// Build the reverse map ONCE so every enrichment join can fall back to the pre-fold key on a miss.
+//   ALIAS_NAMES : canonicalName → [foldedFromName, …]   (for name-keyed stores)
+//   ALIAS_SLUGS : canonicalSlug → [foldedFromSlug, …]   (for slug- and slug~album-keyed stores)
+// A canonical may absorb several variants; keep them all (first hit wins at read time). We SKIP any
+// alias whose slug already equals the canonical slug (nothing to gain), and dedupe within a canonical.
+const ALIAS_NAMES = new Map();
+const ALIAS_SLUGS = new Map();
+for (const [from, canonName] of Object.entries(HAND_MERGE)) {
+  if (!from || !canonName || from === canonName) continue;
+  if (!ALIAS_NAMES.has(canonName)) ALIAS_NAMES.set(canonName, []);
+  const nl = ALIAS_NAMES.get(canonName);
+  if (!nl.includes(from)) nl.push(from);
+  const cS = slug(canonName), fS = slug(from);
+  if (fS && fS !== cS) {
+    if (!ALIAS_SLUGS.has(cS)) ALIAS_SLUGS.set(cS, []);
+    const sl = ALIAS_SLUGS.get(cS);
+    if (!sl.includes(fS)) sl.push(fS);
+  }
+}
+// aliasedByName(map, name)  — return map[name] if present (canonical always wins), else the first
+//   folded-from variant of `name` that has a value in the map. `map` is a plain object.
+// aliasedBySlug(map, key)   — same, for a store keyed by artist SLUG.
+// aliasedBySlugAlbum(map, artistSlug, albumSlug) — for "<artistSlug>~<albumSlug>" keyed stores: try
+//   the canonical prefix, then each alias prefix with the SAME album part (albumSlug is fold-invariant —
+//   only the artist half changes across a fold). Returns the value or undefined.
+// These ONLY add fallbacks; a present canonical key is never overridden.
+function aliasedByName(map, name) {
+  if (!map || name == null) return undefined;
+  if (map[name] != null) return map[name];
+  const al = ALIAS_NAMES.get(name);
+  if (al) for (const a of al) if (map[a] != null) return map[a];
+  return undefined;
+}
+function aliasedBySlug(map, key) {
+  if (!map || key == null) return undefined;
+  if (map[key] != null) return map[key];
+  const al = ALIAS_SLUGS.get(key);
+  if (al) for (const a of al) if (map[a] != null) return map[a];
+  return undefined;
+}
+function aliasedBySlugAlbum(map, artistSlug, albumSlug) {
+  if (!map || artistSlug == null) return undefined;
+  const ck = artistSlug + "~" + albumSlug;
+  if (map[ck] != null) return map[ck];
+  const al = ALIAS_SLUGS.get(artistSlug);
+  if (al) for (const a of al) { const v = map[a + "~" + albumSlug]; if (v != null) return v; }
+  return undefined;
+}
+// Emit-time aliasing for the LAZY SIDECARS shipped wholesale and looked up CLIENT-SIDE by canonical
+// slug (mb-lineup, track-audio, genius-mood/about/themes, album-about). The client only knows the
+// canonical slug post-fold, but these objects still carry the pre-fold slug keys → a folded artist's
+// lookup misses. Inject canonical-slug alias entries (canonical NEVER overwrites an existing key).
+//   aliasSidecarBySlug(obj)       — obj keyed by "<artistSlug>": for each canonical with a folded
+//                                   variant present, copy the variant's entry to the canonical slug.
+//   aliasSidecarBySlugAlbum(obj)  — obj keyed by "<artistSlug>~<albumSlug>": likewise, per album part.
+// Both mutate + return `obj`. Purely additive: only fills a missing canonical key.
+function aliasSidecarBySlug(obj) {
+  if (!obj) return obj;
+  for (const [cS, aliases] of ALIAS_SLUGS) {
+    if (obj[cS] != null) continue;                 // canonical already keyed — leave it
+    for (const a of aliases) if (obj[a] != null) { obj[cS] = obj[a]; break; }
+  }
+  return obj;
+}
+function aliasSidecarBySlugAlbum(obj) {
+  if (!obj) return obj;
+  const adds = {};
+  for (const key of Object.keys(obj)) {
+    const t = key.indexOf("~"); if (t < 0) continue;
+    const aliasArtist = key.slice(0, t), album = key.slice(t + 1);
+    // which canonical(s) fold this artist slug? invert ALIAS_SLUGS on demand.
+    for (const [cS, aliases] of ALIAS_SLUGS) {
+      if (cS === aliasArtist || !aliases.includes(aliasArtist)) continue;
+      const ck = cS + "~" + album;
+      if (obj[ck] == null && adds[ck] == null) adds[ck] = obj[key];   // canonical wins if already present
+    }
+  }
+  Object.assign(obj, adds);
+  return obj;
 }
 // Sound-map family overrides — consulted BEFORE tag classification (tag data is wrong/absent):
 const FAMILY_OVERRIDES = {
@@ -936,7 +1023,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     thumb: thumbOf(name),
     topTracks: (_tBy.get(name) || []).slice(0, TRACKS_PER_ARTIST),
     topAlbums: (_aBy.get(name) || []).slice(0, ALBUMS_PER_ARTIST_VIEW).map(a => { const kind = albumKind(name, a.title); const rec = { ...a, cover: albArt(name, a.title), kind }; if (kind === "single") { const on = singleHostSlug(name, a.title); if (on) rec.on = on; } return rec; }),
-    spotGenres: (SPOTGEN[name] || []).slice(0, 8),   // Spotify's own genre tags
+    spotGenres: (aliasedByName(SPOTGEN, name) || []).slice(0, 8),   // Spotify's own genre tags
     audio: AUDIO[name]
       ? { energy: AUDIO[name].energy, valence: AUDIO[name].valence, acoustic: AUDIO[name].acoustic, tempo: AUDIO[name].tempo, dance: AUDIO[name].dance, instr: AUDIO[name].instr }
       : meta.audio
@@ -1134,7 +1221,7 @@ let _distTotal = 0;
 let _secCov = 0, _playsCov = 0, _totPlays = 0, _explPlays = 0, _explCov = 0;
 for (const [key, plays] of trackPlays) {
   _totPlays += plays;
-  const ix = key.indexOf("\x00"); const td = TRACKDATA[slug(key.slice(0, ix)) + "~" + slug(key.slice(ix + 1))];
+  const ix = key.indexOf("\x00"); const td = aliasedBySlugAlbum(TRACKDATA, slug(key.slice(0, ix)), slug(key.slice(ix + 1)));
   if (!td) continue;
   if (td[0]) { _secCov += td[0] * plays; _playsCov += plays; }
   if (td.length >= 3) { _explCov += plays; if (td[2]) _explPlays += plays; }
@@ -1643,7 +1730,8 @@ if (hasDiscogs) {
     if (plays < 3) continue; // require ≥3 plays to count as real (not a one-off scrobble)
     const pn = pinOf(name);
     if (pn && pn.clearStyles && !(pn.styles && pn.styles.length)) continue; // pinned: wrong Discogs match, no styles to contribute
-    const styles = (pn && pn.clearStyles && pn.styles) ? pn.styles.map(s => Array.isArray(s) ? s : [s]) : (DISCOGS[name] && DISCOGS[name].styles);
+    const _dg = aliasedByName(DISCOGS, name);
+    const styles = (pn && pn.clearStyles && pn.styles) ? pn.styles.map(s => Array.isArray(s) ? s : [s]) : (_dg && _dg.styles);
     if (!styles || styles.length === 0) continue;
     artistsCovered++;
     const topStyles = styles.slice(0, 5).map(s => s[0]);
@@ -1775,7 +1863,7 @@ let LIFESPAN = null;
     if (plays < 5) continue;
     const pn = pinOf(name);
     if (pn && pn.clearLife) continue; // pinned: MB matched a wrong entity, drop its life-span
-    const o = (pn && pn.life) || ORIGINS[name];
+    const o = (pn && pn.life) || aliasedByName(ORIGINS, name);
     if (!o || (!o.begin && !o.end && !o.ended)) continue;
     known++;
     const sp = span.get(name);
@@ -1882,8 +1970,8 @@ let MOOD = null;
   const yAcc = new Map(); // year → { p, lyrW, lyrP, audW, audP, emo: [8 counts] }
   for (const [key, plays] of trackPlays) {
     const ix = key.indexOf("\x00"); const artist = key.slice(0, ix), title = key.slice(ix + 1);
-    const sk = slug(artist) + "~" + slug(title);
-    const m = GENIUS_MOOD[sk], td = TRACKDATA[sk];
+    const aS = slug(artist), tS = slug(title), sk = aS + "~" + tS;
+    const m = aliasedBySlugAlbum(GENIUS_MOOD, aS, tS), td = aliasedBySlugAlbum(TRACKDATA, aS, tS);
     const hasLyr = m && m[0] != null, hasAud = td && td.length >= 6 && typeof td[5] === "number";
     if (hasLyr || hasAud) {
       const ym = trackYear.get(key);
@@ -1927,8 +2015,8 @@ let MOOD = null;
       let audW = 0, audP = 0, lyrW = 0, lyrP = 0; const emoN = new Array(8).fill(0);
       for (const [artist, , track, ms] of scrobbles) {
         if (ms < cutoff) continue;
-        const sk = slug(artist) + "~" + slug(track);
-        const m = GENIUS_MOOD[sk], td = TRACKDATA[sk];
+        const aS = slug(artist), tS = slug(track);
+        const m = aliasedBySlugAlbum(GENIUS_MOOD, aS, tS), td = aliasedBySlugAlbum(TRACKDATA, aS, tS);
         if (m && m[0] != null) { lyrW += m[0]; lyrP++; if (m[1] >= 0) emoN[m[1]]++; }
         if (td && td.length >= 6 && typeof td[5] === "number") { audW += td[5]; audP++; }
       }
@@ -1967,7 +2055,7 @@ if (GENIUS_THEMES._themes) {
     totalPlays += plays;
     const ix = key.indexOf("\x00"); const artist = key.slice(0, ix), title = key.slice(ix + 1);
     const sk = slug(artist) + "~" + slug(title);
-    const th = GENIUS_THEMES[sk];
+    const th = aliasedBySlugAlbum(GENIUS_THEMES, slug(artist), slug(title));
     if (!th || !th.length) continue;
     covered++; coveredPlays += plays;
     const prim = th[0][0];
@@ -2026,7 +2114,7 @@ let LINEUPS = null;
   const featured = [], allWomen = [], biggestLineups = [];
   for (const [name, plays] of artistPlays) {
     if (plays < 20) continue;
-    const w = WIKIDATA[name];
+    const w = aliasedByName(WIKIDATA, name);
     if (!w || !w.members || w.members.length === 0) continue;
     const gendered = w.members.filter(m => m.gender);
     biggestLineups.push({ name, artistId: slug(name), hue: hueFor(name), plays, memberCount: w.members.length });
@@ -2068,7 +2156,7 @@ if (hasMB || Object.keys(DGA).length > 0) {
   };
   for (const [name, plays] of artistPlays) {
     if (plays < 5) continue;
-    const mb = MB[name];
+    const mb = aliasedByName(MB, name);
     if (mb && mb.rels) for (const [type, rn] of mb.rels) if (type === "member of band") addEdge(rn, name);
     // Discogs members fill the gap for artists MusicBrainz has no relations for (underground)
     for (const p of dgMembersOf(name)) addEdge(p, name);
@@ -2423,7 +2511,7 @@ const mediaTracks = [...trackPlays.entries()].sort((a, b) => b[1] - a[1]).map(([
 for (const [ai, a] of albDNA) if (a.w) mediaAlbums[ai][8] = a.s.map(x => Math.round(x / a.w));
 // [9] = Spotify total_tracks (sparse) → per-album completeness ("played 7 of 12")
 for (const r of mediaAlbums) {
-  const tt = ALBTRACKS[slug(_mArtists[r[1]]) + "~" + slug(r[0])];
+  const tt = aliasedBySlugAlbum(ALBTRACKS, slug(_mArtists[r[1]]), slug(r[0]));
   if (tt) { if (r[8] === undefined) r[8] = 0; r[9] = tt; }
 }
 const mediaOut = `// GENERATED by build-data.js — lazy media index (header search + album pages + Explore depth).
@@ -2576,6 +2664,7 @@ for (const entry of Object.values(_MBRAW)) {
   if (members.length) rec.members = members;
   _mbOut[id] = rec;
 }
+aliasSidecarBySlug(_mbOut);   // fold-alias: canonical artist slug inherits a folded variant's lineup
 const _mbFile = "// GENERATED by build-data.js — per-artist MusicBrainz lineup distill (lazy-loaded on ArtistView).\n"
   + "window.ROTATION_MB = " + JSON.stringify(_mbOut) + ";\n";
 fs.writeFileSync(path.join(__dirname, "mb-lineup.js"), _mbFile, "utf8");
@@ -2584,7 +2673,7 @@ console.log(`mb-lineup.js: ${Object.keys(_mbOut).length} artists (${(_mbFile.len
 // lazy per-track audio detail (loaded only on a TrackView) — keyed slug(artist)~slug(track), same id TrackView routes by.
 const _taOut = "// GENERATED by build-data.js — per-track Spotify audio features + stats (lazy-loaded on TrackView).\n"
   + "// key = artistSlug~trackSlug → [durSec, popularity, explicit, trackNo, energy, valence, acoustic, tempo, dance, instr] (features 0..100; length 4 when no features).\n"
-  + "window.ROTATION_TRACKAUDIO = " + JSON.stringify(TRACKDATA) + ";\n";
+  + "window.ROTATION_TRACKAUDIO = " + JSON.stringify(aliasSidecarBySlugAlbum(TRACKDATA)) + ";\n";
 fs.writeFileSync(path.join(__dirname, "track-audio.js"), _taOut, "utf8");
 console.log(`track-audio: ${Object.keys(TRACKDATA).length} tracks (${(_taOut.length / 1024).toFixed(0)} KB)`);
 
@@ -2592,7 +2681,7 @@ console.log(`track-audio: ${Object.keys(TRACKDATA).length} tracks (${(_taOut.len
 // key → [lyricValence0-100, domEmotionIdx(0..7 anger/anticipation/disgust/fear/joy/sadness/surprise/trust), emotiveWords]
 const _moodOut = "// GENERATED by build-data.js — per-track NRC lyric mood (lazy-loaded on TrackView).\n"
   + "// key = artistSlug~trackSlug → [lyricValence0-100, domEmotionIdx, emotiveWords]. Emotions: anger anticipation disgust fear joy sadness surprise trust.\n"
-  + "window.ROTATION_MOOD = " + JSON.stringify(GENIUS_MOOD) + ";\n";
+  + "window.ROTATION_MOOD = " + JSON.stringify(aliasSidecarBySlugAlbum(GENIUS_MOOD)) + ";\n";
 fs.writeFileSync(path.join(__dirname, "genius-mood-lazy.js"), _moodOut, "utf8");
 console.log(`genius-mood-lazy: ${Object.keys(GENIUS_MOOD).length} tracks (${(_moodOut.length / 1024).toFixed(0)} KB)`);
 
@@ -2603,6 +2692,7 @@ console.log(`genius-mood-lazy: ${Object.keys(GENIUS_MOOD).length} tracks (${(_mo
 const GENIUS_ABOUT = _readJson("genius-about.json"); // key → [excerpt|null, fullLen, id, meaning01]
 const _aboutShip = {};
 for (const [k, v] of Object.entries(GENIUS_ABOUT)) if (v && v[0] && v[3] === 1) _aboutShip[k] = [v[0], v[2] || 0];
+aliasSidecarBySlugAlbum(_aboutShip);   // fold-alias: canonical artist slug inherits folded variant's track Abouts
 const _aboutOut = "// GENERATED by build-data.js — Genius About excerpts (lazy-loaded on TrackView).\n"
   + "// key = artistSlug~trackSlug → [excerpt, geniusId]. Community-written; link back to Genius.\n"
   + "window.ROTATION_ABOUT = " + JSON.stringify(_aboutShip) + ";\n";
@@ -2612,7 +2702,7 @@ console.log(`genius-about-lazy: ${Object.keys(_aboutShip).length} blurbs (${(_ab
 // lazy album-level "what it's about" blurbs — Wikipedia Themes/Content section, by
 // .sptmp/album-about.py. key artistSlug~albumSlug → [excerpt, wikiTitle]. Only emitted when present.
 {
-  const ALBUM_ABOUT = _readJson("album-about.json");
+  const ALBUM_ABOUT = aliasSidecarBySlugAlbum(_readJson("album-about.json"));
   if (ALBUM_ABOUT && Object.keys(ALBUM_ABOUT).length) {
     const _aaOut = "// GENERATED by build-data.js — album 'what it's about' blurbs (Wikipedia; AlbumView).\n"
       + "window.ROTATION_ALBUM_ABOUT = " + JSON.stringify(ALBUM_ABOUT) + ";\n";
@@ -2624,7 +2714,7 @@ console.log(`genius-about-lazy: ${Object.keys(_aboutShip).length} blurbs (${(_ab
 // lazy per-track themes — for client-side album roll-ups (AlbumView "mostly about…" chips).
 const _themesOut = "// GENERATED by build-data.js — per-track lyric themes (lazy; AlbumView aggregates).\n"
   + "// _themes: names; key → [[themeIdx, score0-100], …top3]\n"
-  + "window.ROTATION_TRACKTHEMES = " + JSON.stringify(GENIUS_THEMES) + ";\n";
+  + "window.ROTATION_TRACKTHEMES = " + JSON.stringify(aliasSidecarBySlugAlbum(GENIUS_THEMES)) + ";\n";
 fs.writeFileSync(path.join(__dirname, "genius-themes-lazy.js"), _themesOut, "utf8");
 console.log(`genius-themes-lazy: ${Object.keys(GENIUS_THEMES).length - 1} tracks (${(_themesOut.length / 1024).toFixed(0)} KB)`);
 
@@ -2644,6 +2734,10 @@ console.log(`genius-themes-lazy: ${Object.keys(GENIUS_THEMES).length - 1} tracks
     if (PREVIEW_KILL_KEYS.has(k) || PREVIEW_KILL_ARTISTS.has(k.split("~")[0])) continue;
     const m = ((v && v[1]) || "").match(/mp3-preview\/([0-9a-f]+)/); if (m) pv[k] = m[1];
   }
+  // fold-alias: the client reads previews by the CANONICAL TrackView id (wargasm~venom), but the
+  // link source keys by the pre-fold slug (wargasm-uk~venom). Copy to the canonical key. Killed keys
+  // were already excluded above, so no killed recording gets resurrected under a canonical alias.
+  aliasSidecarBySlugAlbum(pv);
   const out = "// GENERATED by build-data.js — 30s Spotify preview hashes (lazy-loaded on TrackView).\nwindow.ROTATION_PREVIEWS = " + JSON.stringify(pv) + ";\n";
   fs.writeFileSync(path.join(__dirname, "track-previews.js"), out, "utf8");
   console.log(`track-previews: ${Object.keys(pv).length} tracks (${(out.length / 1024).toFixed(0)} KB)`);
@@ -3596,13 +3690,13 @@ const FAMILIES_OUT = FAMILIES.map((f, i) => ({ i, family: f.family, hue: f.hue, 
 //  8 followers, 9 loudness(dB), 10 speechiness, 11 liveness, 12 avg track length(sec)]
 const AUDIO_OUT = {};
 const _afRow = (af) => [af.energy, af.valence, af.acoustic, af.tempo, af.dance, af.instr, af.major, af.pop, af.followers, af.loud, af.speech, af.live, Math.round((af.dur || 0) / 1000)];
-for (const a of EXPLORE) { const af = AUDIO[a.name]; if (af) AUDIO_OUT[a.id] = _afRow(af); }
-for (const a of ARTISTS) { if (!AUDIO_OUT[a.id]) { const af = AUDIO[a.name]; if (af) AUDIO_OUT[a.id] = _afRow(af); } }
+for (const a of EXPLORE) { const af = aliasedByName(AUDIO, a.name); if (af) AUDIO_OUT[a.id] = _afRow(af); }
+for (const a of ARTISTS) { if (!AUDIO_OUT[a.id]) { const af = aliasedByName(AUDIO, a.name); if (af) AUDIO_OUT[a.id] = _afRow(af); } }
 
 // Spotify photo per artist id — alternate/backup image (GenCover falls back to it if the primary 404s)
 const SPOTIMG_OUT = {};
-for (const a of EXPLORE) { const s = SPOT[a.name]; if (s && s.img) SPOTIMG_OUT[a.id] = s.img; }
-for (const a of ARTISTS) { if (!SPOTIMG_OUT[a.id]) { const s = SPOT[a.name]; if (s && s.img) SPOTIMG_OUT[a.id] = s.img; } }
+for (const a of EXPLORE) { const s = aliasedByName(SPOT, a.name); if (s && s.img) SPOTIMG_OUT[a.id] = s.img; }
+for (const a of ARTISTS) { if (!SPOTIMG_OUT[a.id]) { const s = aliasedByName(SPOT, a.name); if (s && s.img) SPOTIMG_OUT[a.id] = s.img; } }
 
 // ── ARTISTS field split (Phase 0.1): the heavy per-artist prose/relationship fields are only
 //    read by views that mount AFTER music-rest merges (ArtistView in rotation-views2.jsx,
