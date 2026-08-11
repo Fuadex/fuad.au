@@ -2501,7 +2501,15 @@ function AlbumView({ id, go }) {
       {(() => {
         // "the record, as released" (core feature) — MB canonical tracklist as the spine, your play
         // counts hung off each track (fold match); unplayed tracks ghosted. Disc boundaries real.
-        const _f = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+        const _dec = (s) => String(s || "").replace(/&#0*39;|&apos;/gi, "'").replace(/&quot;/gi, '"').replace(/&amp;/gi, "&").replace(/&#(\d+);/g, (m, n) => { const c = parseInt(n, 10); return c ? String.fromCharCode(c) : m; });
+        const _f = (s) => _dec(s).toLowerCase().replace(/[^a-z0-9]+/g, "");
+        // _fx: a second, conservative normal form — decode entities, then strip ONLY bracketed
+        // feature/version credit segments (feat/ft/featuring/with/w) and a bare [Explicit]/(Explicit)
+        // tag, wherever they appear. Deliberately does NOT touch "(Reprise)"/"(Part 2)" etc.
+        const _fx = (s) => _dec(s)
+          .replace(/[([]\s*(?:feat\.?|ft\.?|featuring|with|w\/)\s[^)\]]*[)\]]/gi, " ")
+          .replace(/[([]\s*explicit\s*[)\]]/gi, " ")
+          .toLowerCase().replace(/[^a-z0-9]+/g, "");
         const aS = id.slice(0, id.indexOf("~"));
         const sp = window.ROTATION_ALBSPINE && window.ROTATION_ALBSPINE[aS] && window.ROTATION_ALBSPINE[aS][_f(data.title)];
         if (!sp) return null;
@@ -2510,6 +2518,8 @@ function AlbumView({ id, go }) {
         // the plays sat on the singles). Falls back to this album's rows if media isn't loaded.
         const M2 = window.ROTATION_MEDIA;
         const pl = new Map(data.tracks.map(t => [_f(t.title), { title: t.title, plays: t.plays }]));
+        // register a candidate under a key without letting a weaker entry clobber a stronger one.
+        const put = (k, e) => { const cur = pl.get(k); if (!cur || e.plays > cur.plays) pl.set(k, e); };
         if (M2) {
           const aIx = M2.artists.indexOf(data.artist);
           if (aIx >= 0) {
@@ -2520,6 +2530,17 @@ function AlbumView({ id, go }) {
               e2.plays += t[2]; agg.set(k2, e2);
             }
             for (const [k2, e2] of agg) pl.set(k2, e2);
+            // _fx layer: each agg entry has a distinct _f key, so a shared _fx key means two
+            // different songs collapsed to the same credit-stripped form — SUM their plays there
+            // (never double-counts a track with itself) and keep the higher-play title.
+            const fxAgg = new Map();
+            for (const e2 of agg.values()) {
+              const kx = _fx(e2.title);
+              const cur = fxAgg.get(kx);
+              if (!cur) fxAgg.set(kx, { title: e2.title, plays: e2.plays });
+              else { cur.plays += e2.plays; if (e2.plays > cur.plays - e2.plays) cur.title = e2.title; }
+            }
+            for (const [kx, ex] of fxAgg) put(kx, ex);
           }
         }
         const multi = sp.discs.length > 1;
@@ -2534,7 +2555,7 @@ function AlbumView({ id, go }) {
                   disc {di + 1}{dt && dt !== data.title ? ` — ${dt}` : ""}</div>}
                 <div style={{ display: "grid", gap: 1 }}>
                   {tracks.map((tt, i) => {
-                    const hit = pl.get(_f(tt)) || pl.get(_f(String(tt).replace(/\s*\([^)]*\)\s*$/, "")));
+                    const hit = pl.get(_f(tt)) || pl.get(_f(String(tt).replace(/\s*\([^)]*\)\s*$/, ""))) || pl.get(_fx(tt));
                     const tid = hit ? aS + "~" + R.slug(hit.title) : null;
                     return (
                       <div key={i} className={hit ? "r-track-row" : undefined}
@@ -2568,7 +2589,7 @@ function AlbumView({ id, go }) {
       {/* Fallback ONLY when the album has no MB spine (so "The record, as released" didn't render):
           keep "Tracks you've played" as a standalone card so the tracklist isn't lost. */}
       {!(window.ROTATION_ALBSPINE && window.ROTATION_ALBSPINE[id.slice(0, id.indexOf("~"))]
-         && window.ROTATION_ALBSPINE[id.slice(0, id.indexOf("~"))][String(data.title || "").toLowerCase().replace(/[^a-z0-9]+/g, "")]) && (
+         && window.ROTATION_ALBSPINE[id.slice(0, id.indexOf("~"))][String(data.title || "").replace(/&#0*39;|&apos;/gi, "'").replace(/&quot;/gi, '"').replace(/&amp;/gi, "&").replace(/&#(\d+);/g, (m, n) => { const c = parseInt(n, 10); return c ? String.fromCharCode(c) : m; }).toLowerCase().replace(/[^a-z0-9]+/g, "")]) && (
         <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
           <AlbumTracksPlayed data={data} extras={extras} standout={standout} maxT={maxT} hue={hue}
             R={R} go={go} baseTracks={baseTracks} bonusSections={bonusSections} />
@@ -2580,7 +2601,7 @@ function AlbumView({ id, go }) {
         // the record's year (MB members via ROTATION_MB; spine date beats the meta year).
         const mb = window.ROTATION_MB && window.ROTATION_MB[id.slice(0, id.indexOf("~"))];
         if (!mb || mb.type === "Person" || !Array.isArray(mb.members) || !mb.members.length) return null;
-        const _f2 = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+        const _f2 = (s) => String(s || "").replace(/&#0*39;|&apos;/gi, "'").replace(/&quot;/gi, '"').replace(/&amp;/gi, "&").replace(/&#(\d+);/g, (m, n) => { const c = parseInt(n, 10); return c ? String.fromCharCode(c) : m; }).toLowerCase().replace(/[^a-z0-9]+/g, "");
         const sp2 = window.ROTATION_ALBSPINE && window.ROTATION_ALBSPINE[id.slice(0, id.indexOf("~"))];
         const spd = sp2 && sp2[_f2(data.title)] && sp2[_f2(data.title)].d;
         const yr = parseInt((spd || "").slice(0, 4)) || (data.meta && data.meta[0]) || null;
