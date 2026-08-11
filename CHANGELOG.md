@@ -13,6 +13,31 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
 
 ---
 
+## 2026-08-12
+
+### Rotation
+- **Track flagship reads** matured into a versioned corpus: 588 fable-tier reads with 161
+  verified footnotes and 573 theme/tell annotations. A revision marker (v2.3 / v2.2) now
+  records which reads were written under the newest QC methodology, so older ones can be
+  selectively revisited later.
+- **Vocalist dimension.** Artists carry ordered vocalist genders (a ♀♂ badge in lineup order,
+  non-binary and instrumental included), with an Explore filter. Sourced conservatively:
+  documented lineups and verified knowledge only — unknowns stay unknown rather than guessed.
+- **Explore.** Theme filtering (must match ALL selected themes), a release-decade bar with
+  per-year drill-in, and the active filters now drive the visual charts too; result count
+  selectable 16/32/64; higher-resolution artist images.
+- **Liked songs view.** Relationship buckets (fresh discovery → canon → drifted away),
+  genre/tempo/energy filters, artist and album miniatures.
+- **Artist status.** A curated "Reactivated" ledger (Linkin Park, Alice in Chains, Nevermore,
+  Bleach) distinguishes bands that returned after a death or breakup from plain
+  active/disbanded; wrong-entity guards fixed several same-name collisions (event listings,
+  images, bios, tags — including the Japanese singer LiSA).
+- **Identity hardening.** A wrongly inverted track fold (NIN's Home) fixed and a fold-audit
+  tool added to rank suspect merges; "New This Month" no longer mistakes renamed or
+  re-spelled artists for new ones.
+- **Time page** period selection now mirrors timeline scrubbing; needle drops reach mini
+  artist pages (~220 more artists); attended-shows data refreshed (153 gigs).
+
 ## 2026-07-18
 
 ### Cross-app
