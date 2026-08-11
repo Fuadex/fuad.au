@@ -345,15 +345,23 @@ function LikedRange({ label, lo, hi, min, max, onChange, fmt }) {
     </div>
   );
 }
-function LikedRow({ r, legendByCode, famById, go, navable }) {
+function LikedRow({ r, legendByCode, famById, go, navable, albumCover }) {
   const [id, plays, firstYear, code, famId, tempo, energy] = r.meta;
   const leg = legendByCode[code] || { key: "mid", label: "Mid" };
   const color = LIKED_BUCKET_COLOR[leg.key] || "oklch(0.68 0.12 320)";  // brand labels get a fixed violet
   const fam = famId != null ? famById[famId] : null;
   const canNav = navable && go;
+  const hue = fam ? fam.hue : 40;
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, height: 46, padding: "0 4px", borderBottom: "1px solid var(--rule)", cursor: canNav ? "pointer" : "default" }}
+    <div style={{ display: "flex", alignItems: "center", gap: 10, height: 52, padding: "0 4px", borderBottom: "1px solid var(--rule)", cursor: canNav ? "pointer" : "default" }}
       onClick={canNav ? () => go("track", r.key) : undefined}>
+      {/* left miniatures: round artist thumb (auto-resolved by GenCover) + square album cover.
+          GenCover paints a generated gradient underneath, so an unresolved thumb reads as a tasteful
+          placeholder — never a broken-image icon. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
+        <GenCover hue={hue} name={r.artist} size={28} radius={999} />
+        <GenCover hue={hue} name={r.album || r.artist} image={albumCover || ""} thumb={albumCover || ""} size={28} radius={5} />
+      </div>
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: canNav ? "var(--ink)" : "var(--ink-soft)" }}>{r.track}</div>
         <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
@@ -416,6 +424,21 @@ function LikedView({ go }) {
     return set;
   }, [mediaReady]);
 
+  // album cover + real-name lookup keyed "<artistSlug>~<albumSlug>", built from the media-index
+  // album rows (al[6] = Spotify cover url). The liked rows carry the album slug (meta[8]); this map
+  // resolves it to a thumbnail + display title. media-index is already loaded for navKeys, so this
+  // adds no fetch. ~89% of saves land an album here; the rest fall back to a generated placeholder.
+  const albCoverBySlug = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA; const out = new Map();
+    if (M && R && M.albums) for (const al of M.albums) { if (al[6]) out.set(R.slug(M.artists[al[1]]) + "~" + R.slug(al[0]), al[6]); }
+    return out;
+  }, [mediaReady]);
+  const albNameBySlug = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA; const out = new Map();
+    if (M && R && M.albums) for (const al of M.albums) { const k = R.slug(M.artists[al[1]]) + "~" + R.slug(al[0]); if (!out.has(k)) out.set(k, al[0]); }
+    return out;
+  }, [mediaReady]);
+
   // flatten the meta map into rows once, re-deriving artist/title from the media index where present
   // (real names), falling back to a de-slugged label for unscrobbled saves.
   const rows = React.useMemo(() => {
@@ -433,12 +456,16 @@ function LikedView({ go }) {
       const track = pair ? pair[1] : deslug(key.slice(ix + 1));
       const leg = legendByCode[meta[3]] || { key: "mid" };
       const aSlug = key.slice(0, ix);
-      out.push({ key, meta, artist, track, bucketKey: leg.key,
+      // album for the row thumbnail: real name from the media-index album row when the track's album
+      // is known, else a de-slugged label from the emitted albumSlug (meta[8]).
+      const albumSlug = meta[8] || "";
+      const album = albNameBySlug.get(aSlug + "~" + albumSlug) || (albumSlug ? deslug(albumSlug) : "");
+      out.push({ key, meta, artist, track, album, aSlug, albumSlug, bucketKey: leg.key,
         famId: meta[4], sub: subsByArtist[aSlug] || "",
         tempo: meta[5], energy: meta[6], valence: meta[7] });
     }
     return out;
-  }, [ready, mediaReady, legendByCode]);
+  }, [ready, mediaReady, legendByCode, albNameBySlug]);
 
   // bucket counts (over the full set, unfiltered by search) for the chip labels
   const counts = React.useMemo(() => {
@@ -508,7 +535,7 @@ function LikedView({ go }) {
   }, [rows, q, bucket, sort, fams, subFilter, tempo, energy, valence, sliderActive, tempoActive, energyActive, tLo, tHi]);
 
   // windowing: render only rows near the viewport. ROW_H must match the row height in LikedRow.
-  const ROW_H = 46, PAD = 18, OVERSCAN = 12;
+  const ROW_H = 52, PAD = 18, OVERSCAN = 12;
   React.useEffect(() => { setWin({ start: 0, end: 60 }); if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [q, bucket, sort, fams, subFilter, tempo, energy, valence]);
   // drop a subgenre selection that the current family set no longer offers
   React.useEffect(() => { if (subFilter && !subOptions.some(([s]) => s === subFilter)) setSubFilter(""); }, [subOptions, subFilter]);
@@ -607,7 +634,7 @@ function LikedView({ go }) {
             ? <div className="r-mono" style={{ fontSize: 12, color: "var(--ink-faint)", padding: "24px 0", textAlign: "center" }}>no saved songs match.</div>
             : <div style={{ height: total * ROW_H, position: "relative" }}>
                 <div style={{ position: "absolute", top: win.start * ROW_H, left: 0, right: 0 }}>
-                  {vis.map(r => <LikedRow key={r.key} r={r} legendByCode={legendByCode} famById={famById} go={go} navable={navKeys.has(r.key)} />)}
+                  {vis.map(r => <LikedRow key={r.key} r={r} legendByCode={legendByCode} famById={famById} go={go} navable={navKeys.has(r.key)} albumCover={albCoverBySlug.get(r.aSlug + "~" + r.albumSlug) || ""} />)}
                 </div>
               </div>}
         </div>
