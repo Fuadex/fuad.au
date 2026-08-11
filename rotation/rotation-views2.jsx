@@ -560,25 +560,32 @@ function lifeBadge(life) {
   return null;
 }
 // VOCALS badge — mic glyph + "female + male vocals" (in lineup order), or "instrumental". Renders
-// only when the artist carries vocals data (vx: "m"/"f"/"n" chars, "" = instrumental; undefined = none).
+// when the artist carries vocals data (vx: "m"/"f"/"n" chars, "" = instrumental; undefined = none).
+// FALLBACK: for solo acts outside the vocals table (no vx) it renders the old MusicBrainz gender
+// sign as the same badge — genderOf("Female") → "female vocals" — so no artist loses their sign.
 const _VOX_WORD = { m: "male", f: "female", n: "non-binary" };
-function VocalsBadge({ vx, size }) {
-  if (vx === undefined || vx === null) return null;
-  let text;
-  if (vx === "") text = "instrumental";
+function VocalsBadge({ vx, gender, size }) {
+  let text, tip = "vocalist genders (MusicBrainz lineup / verified)";
+  if (vx === undefined || vx === null) {
+    // no lineup vocals data — fall back to the solo artist's own MusicBrainz gender, if any
+    const g = genderGlyph(gender);
+    if (!g) return null;
+    text = g.label.toLowerCase() + " vocals";
+    tip = "vocalist gender (MusicBrainz)";
+  } else if (vx === "") text = "instrumental";
   else {
     const seen = [], order = [];   // preserve lineup order, drop consecutive/repeat dupes of the same gender
     for (const ch of vx) { const w = _VOX_WORD[ch]; if (w && !seen.includes(w)) { seen.push(w); order.push(w); } }
     text = order.join(" + ") + " vocals";
   }
   return (
-    <span className="r-mono" title="vocalist genders (MusicBrainz lineup / verified)"
+    <span className="r-mono" title={tip}
       style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid var(--rule-2)", color: "var(--ink-faint)" }}>
       <span style={{ fontSize: (size || 12) - 1, lineHeight: 1 }}>🎤</span>{text}</span>
   );
 }
 function ArtistMeta({ gender, life, size, seenLive, onTour, vx }) {
-  const g = genderGlyph(gender);
+  const g = genderGlyph(gender);   // still gates the early-return; the sign itself now renders inside VocalsBadge
   let b = lifeBadge(life);
   // a "disbanded" GROUP with fresh tour dates isn't disbanded — it reactivated (the Bleach
   // case). Deceased Persons keep their badge: their events are tribute billings, not comebacks.
@@ -591,8 +598,7 @@ function ArtistMeta({ gender, life, size, seenLive, onTour, vx }) {
   const sl = seenLive ? { txt: "Seen live" + (seenLive.count > 1 ? " ×" + seenLive.count : ""), tip: `you attended ${seenLive.count} show${seenLive.count !== 1 ? "s" : ""}${seenLive.first ? " · " + seenLive.first.slice(0, 4) + (seenLive.last && seenLive.last.slice(0, 4) !== seenLive.first.slice(0, 4) ? "–" + seenLive.last.slice(0, 4) : "") : ""}` } : null;
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 9, marginTop: 9, flexWrap: "wrap" }}>
-      {g && <span title={g.label} style={{ fontSize: size || 16, lineHeight: 1, color: "var(--ink-soft)" }}>{g.ch}</span>}
-      <VocalsBadge vx={vx} size={size} />
+      <VocalsBadge vx={vx} gender={gender} size={size} />
       {b && <span className="r-mono" title={b.tip} style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid " + (b.tone === "active" ? "oklch(0.6 0.13 150 / .5)" : b.tone === "react" ? "oklch(0.62 0.16 45 / .5)" : "var(--rule-2)"), color: b.tone === "active" ? "oklch(0.72 0.15 150)" : b.tone === "react" ? "oklch(0.75 0.16 45)" : "var(--ink-faint)", cursor: b.tip ? "help" : undefined }}>{b.txt}</span>}
       {ot && <span className="r-mono" title={ot.tip} style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid oklch(0.68 0.14 70 / .55)", color: "oklch(0.79 0.13 75)", cursor: "help" }}>{ot.txt}</span>}
       {sl && <span className="r-mono" title={sl.tip} style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid oklch(0.6 0.16 305 / .55)", color: "oklch(0.74 0.14 305)", cursor: "help" }}>🎤 {sl.txt}</span>}
