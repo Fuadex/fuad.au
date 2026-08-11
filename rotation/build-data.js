@@ -151,8 +151,10 @@ const albMeta = (artist, title) => aliasedBySlugAlbum(ALBMETA, slug(artist), slu
 const trackData = (artist, title) => aliasedBySlugAlbum(TRACKDATA, slug(artist), slug(title)) || 0;
 // name-keyed → alias-aware (fall back to a pre-fold variant name).
 const spotImg = (name) => { const s = aliasedByName(SPOT, name); return (s && s.img) || aliasedByName(ARTIMG, name) || ""; };
-const imageOf = (name) => { const d = aliasedByName(DGA, name), i = aliasedByName(IMAGES, name); return (d && d.image) || (i && i.image) || spotImg(name) || ""; };
-const thumbOf = (name) => { const d = aliasedByName(DGA, name), i = aliasedByName(IMAGES, name); return (d && d.thumb) || (i && i.thumb) || spotImg(name) || ""; };
+// clearImage pin: the Discogs/last.fm image is a wrong entity — fall through to Spotify
+// (whose cache entry can itself be repointed by id via the spotify pin; the LiSA case).
+const imageOf = (name) => { { const _p = pinOf(name); if (_p && _p.clearImage) return spotImg(name) || ""; } const d = aliasedByName(DGA, name), i = aliasedByName(IMAGES, name); return (d && d.image) || (i && i.image) || spotImg(name) || ""; };
+const thumbOf = (name) => { { const _p = pinOf(name); if (_p && _p.clearImage) return spotImg(name) || ""; } const d = aliasedByName(DGA, name), i = aliasedByName(IMAGES, name); return (d && d.thumb) || (i && i.thumb) || spotImg(name) || ""; };
 const dgProfileOf = (name) => { const d = aliasedByName(DGA, name); return (d && d.profile) || ""; };
 const dgMembersOf = (name) => { const d = aliasedByName(DGA, name); return (d && d.members) || []; };
 
@@ -227,7 +229,15 @@ const _MB_VOX_GENDER = (() => {
     const raw = JSON.parse(fs.readFileSync(path.join(__dirname, "mb-artists.json"), "utf8"));
     for (const e of Object.values(raw)) {
       if (!e.members || !e.members.length) continue;
+      // Prefer the LEAD vocalist over any backing/"other vocals" credit, and only then fall back
+      // by recency. The old order gated lead-vocals on t==="" (current member) first, so a band
+      // whose lead singer had left (end-date set) skipped straight to any-"vocals" — picking a
+      // backing vocalist of the wrong gender. (ミドリ: female lead Mariko Gotō t=2010 was skipped
+      // for a male "other vocals" member.) Lead-vocals wins regardless of era; recency only breaks
+      // ties within a credit tier.
       const vox = e.members.find(x => x.t === "" && (x.i || []).some(i => /lead vocals/.test(i)))
+        || e.members.find(x => (x.i || []).some(i => /lead vocals/.test(i)))
+        || e.members.find(x => x.t === "" && (x.i || []).some(i => /vocals/.test(i)))
         || e.members.find(x => (x.i || []).some(i => /vocals/.test(i)));
       if (vox && (vox.g === "M" || vox.g === "F" || vox.g === "m" || vox.g === "f"))
         m.set(e.q, /f/i.test(vox.g) ? "Female" : "Male");
