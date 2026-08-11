@@ -195,6 +195,36 @@ function MiniArtistView({ a, go }) {
     s.addEventListener("load", on);
     return () => s.removeEventListener("load", on);
   }, [a.id]);
+  // Header "needle drop" for a long-tail artist too — the most-played track that has a playable
+  // preview from EITHER source: a Spotify hash (track-previews.js) OR a vetted iTunes URL
+  // (preview-fallback.js, keyed artistSlug~trackSlug). Fractalize etc. get a preview here just like
+  // kept artists do. Top tracks live in artist-detail.js (ROTATION_ADETAIL); we lazy-load all three
+  // and re-render on each load, then let ShNeedle resolve whichever source the chosen key carries.
+  const [prevReady, setPrevReady] = React.useState(!!(window.ROTATION_PREVIEWS && window.ROTATION_PREVIEW_FALLBACK && window.ROTATION_ADETAIL));
+  React.useEffect(() => {
+    const bump = () => setPrevReady(p => !p ? true : p);
+    const load = (src, glob, id) => {
+      if (window[glob]) return;
+      let s = id && document.getElementById(id);
+      if (!s) { s = document.createElement("script"); if (id) s.id = id; s.src = src; s.onerror = () => {}; document.head.appendChild(s); }
+      s.addEventListener("load", bump);
+    };
+    load("track-previews.js", "ROTATION_PREVIEWS");
+    load("preview-fallback.js", "ROTATION_PREVIEW_FALLBACK");
+    load("artist-detail.js", "ROTATION_ADETAIL", "rotation-adetail-js");
+    if (window.ROTATION_PREVIEWS && window.ROTATION_PREVIEW_FALLBACK && window.ROTATION_ADETAIL) setPrevReady(true);
+  }, [a.id]);
+  const needleKey = React.useMemo(() => {
+    const P = window.ROTATION_PREVIEWS, F = window.ROTATION_PREVIEW_FALLBACK, D = window.ROTATION_ADETAIL;
+    const rec = D && D.d && D.d[a.id];
+    if ((!P && !F) || !rec || !rec.t || !rec.t.length) return null;
+    for (const [ti] of rec.t.slice().sort((x, y) => (y[1] || 0) - (x[1] || 0))) {
+      const k = R.slug(a.name) + "~" + R.slug(D.names[ti]);
+      if ((P && P[k]) || (F && F[k])) return k;
+    }
+    return null;
+  }, [a.id, prevReady]);
+
   const sparkHas = !!(spark && spark.some(v => v > 0));
   const dnaHas = !!dna;
   const flowRec = flowReady && window.ROTATION_FLOW && window.ROTATION_FLOW.byId[a.id];
@@ -213,7 +243,8 @@ function MiniArtistView({ a, go }) {
         <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
           {subs.slice(0, 6).map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)}>{s}</span>)}
         </div>
-        <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap", alignItems: "center" }}>
+          {needleKey && <ShNeedle trackKey={needleKey} artist={a.name} hue={a.hue} />}
           {[["last.fm", `https://www.last.fm/music/${encodeURIComponent(a.name)}`], ["Spotify", `https://open.spotify.com/search/${encodeURIComponent(a.name)}`]].map(([l, h]) =>
             <a key={l} href={h} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: ".08em", textTransform: "uppercase", padding: "6px 11px", borderRadius: 999, border: "1px solid var(--rule)", color: "var(--ink-soft)", textDecoration: "none" }}>{l} ↗</a>)}
         </div>
@@ -1301,21 +1332,20 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         .sort((x, y) => y.plays - x.plays)
     : null;
   const shownTracks = albTracks || tracks;
-  // "needle drop" for the artist: the most-played track that actually has a playable preview
-  // (fall through to the next if the top one has no hash). prevReady re-renders on load.
+  // "needle drop" for the artist: the most-played track that actually has a playable preview —
+  // EITHER a Spotify hash (ROTATION_PREVIEWS) OR a vetted iTunes URL (ROTATION_PREVIEW_FALLBACK,
+  // keyed artistSlug~trackSlug). Lesser-known artists (e.g. Fractalize) whose only preview lives in
+  // the fallback table now get a needle too. Fall through to the next track if the top one has
+  // neither. prevReady re-renders on load. ShNeedle resolves whichever source the key carries.
   const needleKey = (() => {
-    const P = window.ROTATION_PREVIEWS; if (!P || !tracks.length) return null;
+    const P = window.ROTATION_PREVIEWS, F = window.ROTATION_PREVIEW_FALLBACK;
+    if ((!P && !F) || !tracks.length) return null;
     for (const tr of tracks.slice().sort((x, y) => y.plays - x.plays)) {
-      const k = R.slug(a.name) + "~" + R.slug(tr.title); if (P[k]) return k;
+      const k = R.slug(a.name) + "~" + R.slug(tr.title);
+      if ((P && P[k]) || (F && F[k])) return k;
     }
     return null;
   })();
-  // Fallback when the artist has NO track in the Spotify preview dump (e.g. PRO8L3M, Eat Your Heart
-  // Out): expose a preview on the most-played track via PreviewBtn, which resolves through the
-  // build-time vetted preview-fallback table and simply hides itself if that track isn't in it.
-  const topPrev = (!needleKey && tracks.length)
-    ? (() => { const t = tracks.slice().sort((x, y) => y.plays - x.plays)[0]; return { id: R.slug(a.name) + "~" + R.slug(t.title), title: t.title }; })()
-    : null;
   // Search ALL real concerts (not just the chosen city) for this artist's upcoming dates.
   const upcoming = Object.values(R.CONCERTS || {}).flat().filter(g => g.artistId === a.id)
     .sort((a, b) => a.date.localeCompare(b.date)).slice(0, 4);
@@ -1354,7 +1384,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             </div>
           )}
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap", alignItems: "center" }}>
-            {needleKey ? <ShNeedle trackKey={needleKey} hue={a.hue} /> : (topPrev && <PreviewBtn id={topPrev.id} hue={a.hue} artist={a.name} title={topPrev.title} />)}
+            {needleKey && <ShNeedle trackKey={needleKey} artist={a.name} hue={a.hue} />}
             <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
