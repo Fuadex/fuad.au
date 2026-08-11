@@ -14,6 +14,9 @@
 
 ---
 
+> Visual-language contracts (hue wheel, badge tones, glyphs, control idioms) live in
+> **DESIGN.md** — the design system of record since 2026-08-13. Structure and data live here.
+
 ## 1. What this is
 
 **Rotation** (fuad.au) is a personal listening-history observatory built on Fuad's real last.fm
