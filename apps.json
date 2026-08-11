@@ -73,6 +73,7 @@
         "genius-mood-lazy.js",
         "genius-about-lazy.js",
         "genius-themes-lazy.js",
+        "filter-index.js",
         "album-about-lazy.js",
         "tm-tour-lazy.js",
         "instrumentals.js",

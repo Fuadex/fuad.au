@@ -187,6 +187,17 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 .r-chip.link { cursor: pointer; }
 .r-chip.link:hover { color: var(--accent-ink); background: var(--accent-bg); border-color: transparent; }
 
+/* liked-view dual-thumb range slider — two overlaid transparent range inputs; only the thumbs take events */
+.lt-range { position: absolute; top: 0; left: 0; width: 100%; height: 20px; margin: 0; background: none;
+  -webkit-appearance: none; appearance: none; pointer-events: none; }
+.lt-range::-webkit-slider-runnable-track { background: none; height: 20px; }
+.lt-range::-moz-range-track { background: none; height: 20px; }
+.lt-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; pointer-events: auto;
+  width: 15px; height: 15px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg);
+  box-shadow: 0 1px 3px rgba(0,0,0,.35); cursor: pointer; margin-top: 3px; }
+.lt-range::-moz-range-thumb { pointer-events: auto; width: 15px; height: 15px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 1px 3px rgba(0,0,0,.35); cursor: pointer; }
+
 /* back button + external links — shared across artist / album / mini pages */
 .r-back { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
   background: transparent; border: 1px solid var(--rule-2); color: var(--ink-soft); padding: 8px 14px;
