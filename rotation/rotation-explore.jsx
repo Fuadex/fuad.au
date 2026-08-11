@@ -1540,44 +1540,22 @@ function ExploreView({ t, go, setPop, seed }) {
         </div>
       </div>
 
-      {/* sort row — moved BELOW the artists/tracks module (Fuad): plays → most obscure */}
-      {kind === "artists" && (
-        <div className="r-card" style={{ padding: "10px 14px", marginTop: "var(--gap)" }}>
-          <div className="xp-frow" style={{ marginBottom: 0 }}>
-            <span className="xp-flabel">Sort</span>
-            <div className="xp-chiprow">
-              {[["", "plays"], ["energy", "energy"], ["valence", "mood"], ["dance", "dance"], ["acoustic", "acoustic"], ["tempo", "tempo"], ["pop", "popularity"]].map(([k, l]) =>
-                <button key={k || "p"} className="xp-chip" data-on={(sound || "") === k} onClick={() => setSound(k || null)}>{l}</button>)}
-              {sound && <button className="xp-chip" onClick={() => setSndDir(d => -d)} title="flip direction">{sndDir === 1 ? "▼ high→low" : "▲ low→high"}</button>}
-            </div>
-          </div>
-          {sound && <div className="r-mono xp-note" style={{ marginTop: 6 }}>{sound === "pop" ? "Spotify popularity 0–100 · flip for most-obscure first" : "share of that trait, 0–100% · artists with ≥15 plays"}</div>}
-        </div>
-      )}
-
-      {/* THEMES chips (left) + DECADES bar (right), directly under the sort buttons (Fuad's layout
-          spec). Themes = what the lyrics are about (OR within selection); decades = release era,
-          click-to-filter, drill to a single year. Both compose with the filters above. */}
+      {/* Filter module (Fuad's layout spec): the Sort buttons and the Era bar share one top row
+          (Sort left, Era pinned right), and the Themes chips span the full module width beneath —
+          so the themes can spread across the whole page instead of a narrow left column. */}
       <div className="r-card xp-td">
-        <div className="xp-td-themes">
-          <div className="xp-frow" style={{ marginBottom: 0 }}>
-            <span className="xp-flabel">Themes</span>
-            <div className="xp-chiprow">
-              {!filtReady
-                ? <span className="r-mono xp-note" style={{ margin: 0 }}>loading…</span>
-                : themeNames.map((name, b) => {
-                    const on = themeSel.has(b);
-                    const c = themeCounts ? themeCounts[b] : 0;
-                    if (!on && !c) return null;               // hide zero-count chips in the current context
-                    return <button key={b} className="xp-chip" data-on={on} onClick={() => toggleTheme(b)}
-                      title={c.toLocaleString("en-US") + " tracks"}>{name}</button>;
-                  })}
+        <div className="xp-td-top">
+          {kind === "artists" && (
+            <div className="xp-frow xp-td-sort" style={{ marginBottom: 0 }}>
+              <span className="xp-flabel">Sort</span>
+              <div className="xp-chiprow">
+                {[["", "plays"], ["energy", "energy"], ["valence", "mood"], ["dance", "dance"], ["acoustic", "acoustic"], ["tempo", "tempo"], ["pop", "popularity"]].map(([k, l]) =>
+                  <button key={k || "p"} className="xp-chip" data-on={(sound || "") === k} onClick={() => setSound(k || null)}>{l}</button>)}
+                {sound && <button className="xp-chip" onClick={() => setSndDir(d => -d)} title="flip direction">{sndDir === 1 ? "▼ high→low" : "▲ low→high"}</button>}
+              </div>
             </div>
-          </div>
-          {themeSel.size > 0 && <div className="r-mono xp-note" style={{ marginTop: 6, marginBottom: 0 }}>matching {themeSel.size > 1 ? "ALL selected themes" : "the selected theme"} · artists/albums shown when ≥20% of their plays fit</div>}
-        </div>
-        <div className="xp-td-decs">
-          <div className="xp-frow" style={{ marginBottom: 0 }}>
+          )}
+          <div className="xp-frow xp-td-decs" style={{ marginBottom: 0 }}>
             <span className="xp-flabel">Era</span>
             <div style={{ flex: 1, minWidth: 0 }}>
               {!decadeData ? <span className="r-mono xp-note" style={{ margin: 0 }}>loading…</span> : (() => {
@@ -1613,6 +1591,22 @@ function ExploreView({ t, go, setPop, seed }) {
             </div>
           </div>
         </div>
+        {kind === "artists" && sound && <div className="r-mono xp-note" style={{ marginTop: 8, marginBottom: 0 }}>{sound === "pop" ? "Spotify popularity 0–100 · flip for most-obscure first" : "share of that trait, 0–100% · artists with ≥15 plays"}</div>}
+        <div className="xp-frow xp-td-themes" style={{ marginBottom: 0, marginTop: 12 }}>
+          <span className="xp-flabel">Themes</span>
+          <div className="xp-chiprow">
+            {!filtReady
+              ? <span className="r-mono xp-note" style={{ margin: 0 }}>loading…</span>
+              : themeNames.map((name, b) => {
+                  const on = themeSel.has(b);
+                  const c = themeCounts ? themeCounts[b] : 0;
+                  if (!on && !c) return null;               // hide zero-count chips in the current context
+                  return <button key={b} className="xp-chip" data-on={on} onClick={() => toggleTheme(b)}
+                    title={c.toLocaleString("en-US") + " tracks"}>{name}</button>;
+                })}
+          </div>
+        </div>
+        {themeSel.size > 0 && <div className="r-mono xp-note" style={{ marginTop: 6, marginBottom: 0 }}>matching {themeSel.size > 1 ? "ALL selected themes" : "the selected theme"} · artists/albums shown when ≥20% of their plays fit</div>}
       </div>
 
       {/* "Mood over the years" arc removed from Explore (Fuad 2026-07-07) — candidate to move into
@@ -1657,8 +1651,12 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-chip-active { border-color: var(--accent); color: var(--ink); }
         .xp-chip-active .xp-ck { color: var(--ink-faint); text-transform: uppercase; letter-spacing: .1em; font-size: 8.5px; }
         .xp-clearall { color: var(--ink-faint); border-style: dashed; }
-        /* themes + decades module: chips left, era bar right (Fuad's layout spec) */
-        .xp-td { padding: 12px 14px; margin-top: var(--gap); display: grid; grid-template-columns: 1fr minmax(300px, 40%); gap: 18px; align-items: start; }
+        /* filter module (Fuad's layout spec): Sort + Era share a top row (Era pinned right),
+           Themes chips span the full module width beneath. */
+        .xp-td { padding: 12px 14px; margin-top: var(--gap); }
+        .xp-td-top { display: flex; align-items: flex-start; gap: 22px; flex-wrap: wrap; }
+        .xp-td-sort { flex: 0 0 auto; }
+        .xp-td-decs { flex: 1 1 300px; min-width: 260px; margin-left: auto; }
         .xp-td-themes .xp-chiprow { max-height: 132px; overflow-y: auto; }
         .xp-decbar { display: flex; height: 46px; border-radius: 4px; overflow: hidden; gap: 1px; }
         .xp-decseg { min-width: 3px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; transition: filter .14s, outline-color .14s; outline: 1.5px solid transparent; outline-offset: -1.5px; }
@@ -1667,7 +1665,7 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-decseg-l { font-family: var(--mono); font-size: 10px; font-weight: 600; color: rgba(255,255,255,.92); white-space: nowrap; }
         .xp-decback { font-family: var(--mono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase; background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px; color: var(--ink-soft); cursor: pointer; margin-top: 8px; }
         .xp-decback:hover { color: var(--accent); border-color: var(--accent-dim); }
-        @media (max-width: 760px) { .xp-td { grid-template-columns: 1fr; gap: 12px; } }
+        @media (max-width: 760px) { .xp-td-top { gap: 12px; } .xp-td-decs { flex-basis: 100%; margin-left: 0; } }
         .xp-dot { width: 9px; height: 9px; border-radius: 3px; flex: none; }
         .xp-empty { padding: 56px 20px; text-align: center; color: var(--ink-faint); font-family: var(--mono); font-size: 12px; }
         .xp-note { font-size: 10px; color: var(--ink-faint); margin-bottom: 10px; }

@@ -1453,8 +1453,8 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 18 }}>{String(i + 1).padStart(2, "0")}</span>
                   <span style={{ fontSize: 13, flex: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{tr.title}</span>
                   <LikedMark on={likedKey(R.slug(a.name) + "~" + R.slug(tr.title))} />
-                  <EngBar eng={engOf(R.slug(a.name) + "~" + R.slug(tr.title))} />
                   <LiveMark on={clickable && seenLiveKey(R.slug(a.name) + "~" + R.slug(tr.title))} />
+                  <EngBar eng={engOf(R.slug(a.name) + "~" + R.slug(tr.title))} />
                   <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{tr.plays ? fmt(tr.plays) : "—"}</span>
                 </div>
               );})}
