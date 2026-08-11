@@ -4650,6 +4650,24 @@
  "Nine Inch Nails": {
   "tracks": [
    {
+    "from": "Home (Bonus Track)",
+    "to": "Home",
+    "type": "spelling",
+    "reason": "spelling: bonus-track/edition suffix on the same recording folds to canonical 'Home' (With Teeth)"
+   },
+   {
+    "from": "Home - Bonus Track",
+    "to": "Home",
+    "type": "spelling",
+    "reason": "spelling: bonus-track/edition suffix on the same recording folds to canonical 'Home' (With Teeth)"
+   },
+   {
+    "from": "Home (Non-LP Version)",
+    "to": "Home",
+    "type": "spelling",
+    "reason": "spelling: non-LP/edition suffix on the same recording folds to canonical 'Home' (With Teeth)"
+   },
+   {
     "from": "Head Like A Hole (Live)",
     "to": "Head Like a Hole",
     "type": "variant",
