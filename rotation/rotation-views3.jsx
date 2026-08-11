@@ -2971,7 +2971,7 @@ function GigsView({ go }) {
                 const open = expandAll || !!openDays[n.date];
                 // one act that night → the original row, songs and all. Nothing to compact.
                 if (n.acts.length === 1) return <GigRow key={n.date} g={n.acts[0]} />;
-                const top = n.acts.slice(0, 3), rest = n.acts.length - top.length;
+                const top = n.acts.slice(0, 4), rest = n.acts.length - top.length;
                 return (
                   <div key={n.date} className="gv-night" data-open={open}>
                     <div className="gv-gig gv-night-head" data-link={true} onClick={() => setOpenDays(o => ({ ...o, [n.date]: !open }))}>
