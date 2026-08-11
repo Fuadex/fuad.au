@@ -160,7 +160,7 @@ const dgMembersOf = (name) => { const d = aliasedByName(DGA, name); return (d &&
 const BIOS_PATH = path.join(__dirname, "artist-bios.json");
 const BIOS = fs.existsSync(BIOS_PATH) ? JSON.parse(fs.readFileSync(BIOS_PATH, "utf8")) : {};
 const hasBios = Object.keys(BIOS).length > 0;
-const bioOf = (name) => { const b = aliasedByName(BIOS, name); return (b && b.bio) || ""; };
+const bioOf = (name) => { const pn = pinOf(name); if (pn && pn.bio) return pn.bio; const b = aliasedByName(BIOS, name); return (b && b.bio) || ""; };
 const realSimilar = (name) => { const b = aliasedByName(BIOS, name); return (b && b.similar) || null; };
 
 // ─────────── curated coherency folds (folds.json — hand-auditable ledger) ───────────
@@ -254,8 +254,11 @@ const vocalsCodeBySlug = (s) => {
 const lifeOf = (name) => {
   const pn = pinOf(name);
   if (pn && pn.clearLife) return null;
-  if (pn && pn.life) return { type: pn.life.type || "Group", ended: !!pn.life.ended, end: (pn.life.end || "").slice(0, 4) };
-  const o = aliasedByName(ORIGINS, name); if (!o || !o.type || !("ended" in o)) return null; return { type: o.type, ended: !!o.ended, end: (o.end || "").slice(0, 4) };
+  // hand-curated reactivated ledger: a "react" pin forces the Reactivated badge (band killed by
+  // death/breakup then returned). Rides on life.react so ArtistMeta can read it without a tour join.
+  const react = !!(pn && pn.react);
+  if (pn && pn.life) return { type: pn.life.type || "Group", ended: !!pn.life.ended, end: (pn.life.end || "").slice(0, 4), ...(react ? { react: true } : {}) };
+  const o = aliasedByName(ORIGINS, name); if (!o || !o.type || !("ended" in o)) return null; return { type: o.type, ended: !!o.ended, end: (o.end || "").slice(0, 4), ...(react ? { react: true } : {}) };
 };
 
 // ─────────── Wikidata (wikidata-cache.json, by enrich-wikidata.js) ───────────
@@ -377,7 +380,10 @@ const GENERIC = new Set([
   "british", "american", "uk", "usa", "german", "polish", "australian",
 ]);
 const niceTags = (name) => {
-  const all = cachedTags(name).map(t => t[0]);
+  const pn = pinOf(name);
+  if (pn && pn.tags) return pn.tags.slice(0, 4);   // hard-override tag chips (same-name enrichment collision)
+  const drop = new Set((pn && pn.dropTags) || []);  // franchise/collision tags to filter out (e.g. "anime")
+  const all = cachedTags(name).map(t => t[0]).filter(t => !drop.has(t));
   const specific = all.filter(t => !GENERIC.has(t));
   return (specific.length ? specific : all).slice(0, 4);
 };
@@ -3900,6 +3906,8 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
   const _tour = new Map(); // library name → on-tour record
   for (const e of TM_RAW.events) {
     for (const [nm, viaMb] of e.hits) {
+      const _pn = pinOf(nm);
+      if (_pn && _pn.tmExclude) continue;   // pinned: TM name-match is a wrong entity (e.g. the "Bleach" Nirvana tribute act)
       let r = _tour.get(nm);
       if (!r) {
         const a = _byName.get(nm);
@@ -3911,7 +3919,7 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
           seen: a && a.seenLive ? a.seenLive.count : 0,
           // disbanded on record, yet touring. Groups only — a deceased Person with events is a
           // tribute/orchestra billing (Morricone, Bill Evans), not a reactivation.
-          react: (lf && lf.ended && lf.type !== "Person") || (wd && wd.dissolved) ? 1 : 0,
+          react: (lf && lf.react) || (lf && lf.ended && lf.type !== "Person") || (wd && wd.dissolved) ? 1 : 0,
           _genres: new Map(),   // TM classification genre → count (fallback taxonomy for unplaced artists)
           events: [],
         });
@@ -3974,7 +3982,7 @@ if (GIGS) {
   for (const a of ARTISTS) {
     const ended = a.life && a.life.ended;
     const isPerson = !!(a.life && a.life.type && a.life.type[0].toLowerCase() === "p");
-    const react = !!(ended && !isPerson && a.onTour);   // disbanded group, fresh dates
+    const react = !!(ended && !isPerson && a.onTour);   // disbanded group, fresh dates (this bucket = upcoming-gig "second chance", so it needs real tour dates)
     if (a.seenLive) {
       cov.seen++;
       if (ended && !react) { cov.caught++; cov.caughtList.push([a.name, a.id, a.plays, (a.life.end || ""), isPerson ? 1 : 0]); }
@@ -4010,6 +4018,42 @@ for (const a of ARTISTS) {
   ALIAS_TO_ID[a.name] = a.id;
   const aka = (ALIASES[a.name] && ALIASES[a.name].aliases) || [];
   for (const alias of aka) if (!ALIAS_TO_ID[alias]) ALIAS_TO_ID[alias] = a.id;
+}
+
+// CANON_MK — matchKey(variant) → kept-artist id. The fuzzy tier of idForName/played, so a name
+// that isn't the canonical spelling still resolves to the right page. ALIAS_TO_ID above is
+// EXACT-string keyed (built from the CSV's own spellings + MusicBrainz aliases); it misses live
+// last.fm chart names that carry a case/punctuation drift or a source-side rename the full CSV
+// re-export hasn't folded yet. Two classes bit the "New this month" module (sync-live.js pulls raw
+// chart names): a rename — last.fm now serves "Wargasm (UK)", folded to "Wargasm" only via
+// HAND_MERGE's exact "WARGASM (UK)" key — and a "The " prefix drift ("The Smashing Pumpkins" vs the
+// kept "Smashing Pumpkins"), which no map held. Both showed as brand-new and clicked nowhere.
+// Keyed by matchKey (case/punct-insensitive squash — the same core join key views use) so the drift
+// normalises away; also register a leading-"the "-stripped key per source so prefix drift resolves.
+// First writer wins; kept artists are registered first so a fold never shadows a real artist's key.
+const _keptIds = new Set(ARTISTS.map(a => a.id));
+const CANON_MK = {};
+// Node-side mirror of the emitted core matchKey (defined inside the ROTATION IIFE below): strict
+// entity-decode + lowercase-alnum squash. Build-time CANON_MK seeding runs before that IIFE string
+// is emitted, so it needs its own copy here.
+const _decEntBuild = (s) => String(s || "").replace(/&#0*39;|&apos;/gi, "'").replace(/&quot;/gi, '"').replace(/&amp;/gi, "&").replace(/&#(\d+);/g, (m, n) => { const c = parseInt(n, 10); return c ? String.fromCharCode(c) : m; });
+const matchKey = (s) => _decEntBuild(s).toLowerCase().replace(/[^a-z0-9]+/g, "");
+const _mkStripThe = (s) => matchKey(String(s || "").replace(/^the\s+/i, ""));
+const _canonMkAdd = (name, id) => {
+  if (!name || !id) return;
+  const mk = matchKey(name); if (mk && CANON_MK[mk] == null) CANON_MK[mk] = id;
+  const st = _mkStripThe(name); if (st && CANON_MK[st] == null) CANON_MK[st] = id;
+};
+// 1) kept artists (their own spelling + aliases) — highest authority, added first.
+for (const a of ARTISTS) {
+  _canonMkAdd(a.name, a.id);
+  const aka = (ALIASES[a.name] && ALIASES[a.name].aliases) || [];
+  for (const alias of aka) _canonMkAdd(alias, a.id);
+}
+// 2) HAND_MERGE folds: variant name → canonical name → that kept artist's id (slug of canon).
+for (const [from, canonName] of Object.entries(HAND_MERGE)) {
+  const id = slug(canonName);
+  if (_keptIds.has(id)) _canonMkAdd(from, id);
 }
 
 // FAMILIES — lightweight {i, family, hue} aligned to the cube's famIdx, for Explore chips.
@@ -4060,7 +4104,7 @@ const ARTISTS_CORE = ARTISTS.map(a => {
 //    EXPLORE is deferred but Overview needs its COUNT → shipped as EXPLORE_N in core. ──
 const CORE = {
   ARTISTS: ARTISTS_CORE, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
-  CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID,
+  CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID, CANON_MK,
   FAMILIES: FAMILIES_OUT, SUBS, GENRE_FLOW, THUMBS, SPOTIMG: SPOTIMG_OUT,
   AUDIO_DIST, GIGS, TOUR, EXPLORE_N: EXPLORE.length,
   // build stamp — cache-buster for lazily-fetched shards (Cloudflare caches 4h; stamped URLs
@@ -4137,19 +4181,27 @@ window.ROTATION = (function () {
   D.matchKey = matchKey;             // canonical display-time match key (see resolution layer above)
   D.matchKeyLoose = matchKeyLoose;   // credit/explicit/-single-insensitive squash
   D.resolveAlbum = resolveAlbum;     // singles→LP absorb resolver (identity if unlinked/sidecar absent)
+  // _canonMk(name) — matchKey-based fold to a kept-artist id (CANON_MK), the fuzzy last resort for
+  // idForName/played. Catches case/punctuation drift and last.fm source renames the exact ALIAS_TO_ID
+  // map misses (e.g. live chart "Wargasm (UK)" → wargasm, "The Smashing Pumpkins" → smashing-pumpkins).
+  const _canonMkMap = D.CANON_MK || {};
+  const _mkStripThe = (s) => matchKey(String(s || "").replace(/^the\\s+/i, ""));
+  const _canonMk = (name) => name ? (_canonMkMap[matchKey(name)] || _canonMkMap[_mkStripThe(name)] || null) : null;
+  delete D.CANON_MK;
   // played(name) — kept artist OR scrobbled ≥3 times (plus aliases). Covers the long tail
-  // (Otoboke Beaver) AND cross-script (ミドリ ↔ "Midori" via MusicBrainz aliases).
+  // (Otoboke Beaver) AND cross-script (ミドリ ↔ "Midori" via MusicBrainz aliases), plus the
+  // matchKey fold so a renamed/prefixed live-chart name isn't mistaken for a brand-new artist.
   const _played = new Set(D.PLAYED || []);
-  D.played = (name) => _played.has(name) || !!D.byId[slug(name)];
+  D.played = (name) => _played.has(name) || !!D.byId[slug(name)] || !!_canonMk(name);
   delete D.PLAYED;
-  // idForName(name) — resolve a name to a kept-artist id. Tries direct slug first, then the
-  // alias map (so a similar-link click on "Midori" lands on ミドリ's page).
+  // idForName(name) — resolve a name to a kept-artist id. Tries direct slug first, then the exact
+  // alias map (so a similar-link click on "Midori" lands on ミドリ's page), then the matchKey fold.
   const _aliasMap = D.ALIAS_TO_ID || {};
   D.idForName = (name) => {
     if (!name) return null;
     const direct = slug(name);
     if (D.byId[direct]) return direct;
-    return _aliasMap[name] || null;
+    return _aliasMap[name] || _canonMk(name) || null;
   };
   delete D.ALIAS_TO_ID;
   return D;

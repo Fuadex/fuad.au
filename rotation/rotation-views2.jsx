@@ -587,9 +587,13 @@ function VocalsBadge({ vx, gender, size }) {
 function ArtistMeta({ gender, life, size, seenLive, onTour, vx }) {
   const g = genderGlyph(gender);   // still gates the early-return; the sign itself now renders inside VocalsBadge
   let b = lifeBadge(life);
-  // a "disbanded" GROUP with fresh tour dates isn't disbanded — it reactivated (the Bleach
-  // case). Deceased Persons keep their badge: their events are tribute billings, not comebacks.
-  if (b && onTour && life && life.ended && life.type[0].toLowerCase() !== "p")
+  // Reactivated = a band killed for a while (death/breakup) that returned. Two sources:
+  //  1. the hand-curated ledger (pins.json react:true → life.react) — the authoritative signal;
+  //  2. derived: a "disbanded" GROUP with fresh tour dates (kept for artists not in the ledger).
+  // Deceased Persons keep their badge: their events are tribute billings, not comebacks.
+  if (b && life && life.react)
+    b = { txt: "Reactivated", tone: "react", tip: `disbanded${life.end ? " " + life.end : ""} — since reactivated` };
+  else if (b && onTour && life && life.ended && life.type[0].toLowerCase() !== "p")
     b = { txt: "Reactivated", tone: "react", tip: `on record as disbanded${life.end ? " " + life.end : ""} — yet they have upcoming dates` };
   if (!g && !b && !seenLive && !onTour && vx === undefined) return null;
   // on-tour badge: amber — upcoming Ticketmaster dates around the configured markets
