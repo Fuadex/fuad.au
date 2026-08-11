@@ -339,8 +339,12 @@ function LikedRange({ label, lo, hi, min, max, onChange, fmt }) {
       <div style={{ position: "relative", height: 20 }}>
         <div style={{ position: "absolute", top: 8, left: 0, right: 0, height: 4, borderRadius: 2, background: "var(--rule-2)" }} />
         <div style={{ position: "absolute", top: 8, height: 4, borderRadius: 2, background: "var(--accent)", left: pct(lo) + "%", right: (100 - pct(hi)) + "%" }} />
-        <input type="range" className="lt-range" min={min} max={max} value={lo} onChange={e => clampLo(+e.target.value)} />
-        <input type="range" className="lt-range" min={min} max={max} value={hi} onChange={e => clampHi(+e.target.value)} />
+        {/* two full-width overlaid inputs — only the thumbs take pointer events. The hi input is
+            DOM-later so it paints ON TOP; once the lo thumb crosses into the upper half it sits under
+            the hi input's (invisible) track and becomes ungrabbable. Lift lo above hi whenever it's
+            past the midpoint so BOTH thumbs stay draggable across the whole range. */}
+        <input type="range" className="lt-range" style={{ zIndex: pct(lo) > 50 ? 4 : 3 }} min={min} max={max} value={lo} onChange={e => clampLo(+e.target.value)} />
+        <input type="range" className="lt-range" style={{ zIndex: pct(lo) > 50 ? 3 : 4 }} min={min} max={max} value={hi} onChange={e => clampHi(+e.target.value)} />
       </div>
     </div>
   );
@@ -426,8 +430,9 @@ function LikedView({ go }) {
 
   // album cover + real-name lookup keyed "<artistSlug>~<albumSlug>", built from the media-index
   // album rows (al[6] = Spotify cover url). The liked rows carry the album slug (meta[8]); this map
-  // resolves it to a thumbnail + display title. media-index is already loaded for navKeys, so this
-  // adds no fetch. ~89% of saves land an album here; the rest fall back to a generated placeholder.
+  // is the FALLBACK join for unscrobbled saves (no media track row). media-index is already loaded
+  // for navKeys, so this adds no fetch. ~89% of saves land an album here; the rest fall back to a
+  // generated placeholder.
   const albCoverBySlug = React.useMemo(() => {
     const M = window.ROTATION_MEDIA; const out = new Map();
     if (M && R && M.albums) for (const al of M.albums) { if (al[6]) out.set(R.slug(M.artists[al[1]]) + "~" + R.slug(al[0]), al[6]); }
@@ -436,6 +441,22 @@ function LikedView({ go }) {
   const albNameBySlug = React.useMemo(() => {
     const M = window.ROTATION_MEDIA; const out = new Map();
     if (M && R && M.albums) for (const al of M.albums) { const k = R.slug(M.artists[al[1]]) + "~" + R.slug(al[0]); if (!out.has(k)) out.set(k, al[0]); }
+    return out;
+  }, [mediaReady]);
+  // GROUND TRUTH for a scrobbled row: the media track row (t) carries t[3] = its own album index, so
+  // M.albums[t[3]] is the exact album the track was played from — [6]=cover, [0]=name. The liked-src
+  // album NAME (meta[8]) is often a standalone single that slugs to a DIFFERENT same-artist album,
+  // so the name-slug join above resolves the wrong cover for ~2% of saves (and misses ~2% more whose
+  // single has no cover row). Keying by the track's real album index removes that whole class of bug.
+  const trackAlbumByKey = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA; const out = new Map();
+    if (M && R && M.tracks && M.albums) for (const t of M.tracks) {
+      const ai = t[3];                                    // media track [3] = album index (-1 if none)
+      if (ai == null || ai < 0) continue;
+      const al = M.albums[ai]; if (!al) continue;
+      const k = R.slug(M.artists[t[1]]) + "~" + R.slug(t[0]);
+      if (!out.has(k)) out.set(k, [al[6] || "", al[0]]);  // [cover, name]
+    }
     return out;
   }, [mediaReady]);
 
@@ -456,16 +477,21 @@ function LikedView({ go }) {
       const track = pair ? pair[1] : deslug(key.slice(ix + 1));
       const leg = legendByCode[meta[3]] || { key: "mid" };
       const aSlug = key.slice(0, ix);
-      // album for the row thumbnail: real name from the media-index album row when the track's album
-      // is known, else a de-slugged label from the emitted albumSlug (meta[8]).
+      // album cover + name for the row thumbnail. GROUND TRUTH first: if the track is scrobbled, use
+      // the album it was actually played from (media track [3] → album row). Only unscrobbled saves
+      // (or scrobbled ones whose album row lacks a cover) fall back to the meta[8] album-name slug
+      // join, then to a de-slugged label.
       const albumSlug = meta[8] || "";
-      const album = albNameBySlug.get(aSlug + "~" + albumSlug) || (albumSlug ? deslug(albumSlug) : "");
-      out.push({ key, meta, artist, track, album, aSlug, albumSlug, bucketKey: leg.key,
+      const truth = trackAlbumByKey.get(key);            // [cover, name] from the track's real album
+      const joinKey = aSlug + "~" + albumSlug;
+      const albumCover = (truth && truth[0]) || albCoverBySlug.get(joinKey) || "";
+      const album = (truth && truth[1]) || albNameBySlug.get(joinKey) || (albumSlug ? deslug(albumSlug) : "");
+      out.push({ key, meta, artist, track, album, albumCover, aSlug, albumSlug, bucketKey: leg.key,
         famId: meta[4], sub: subsByArtist[aSlug] || "",
         tempo: meta[5], energy: meta[6], valence: meta[7] });
     }
     return out;
-  }, [ready, mediaReady, legendByCode, albNameBySlug]);
+  }, [ready, mediaReady, legendByCode, albNameBySlug, albCoverBySlug, trackAlbumByKey]);
 
   // bucket counts (over the full set, unfiltered by search) for the chip labels
   const counts = React.useMemo(() => {
@@ -634,7 +660,7 @@ function LikedView({ go }) {
             ? <div className="r-mono" style={{ fontSize: 12, color: "var(--ink-faint)", padding: "24px 0", textAlign: "center" }}>no saved songs match.</div>
             : <div style={{ height: total * ROW_H, position: "relative" }}>
                 <div style={{ position: "absolute", top: win.start * ROW_H, left: 0, right: 0 }}>
-                  {vis.map(r => <LikedRow key={r.key} r={r} legendByCode={legendByCode} famById={famById} go={go} navable={navKeys.has(r.key)} albumCover={albCoverBySlug.get(r.aSlug + "~" + r.albumSlug) || ""} />)}
+                  {vis.map(r => <LikedRow key={r.key} r={r} legendByCode={legendByCode} famById={famById} go={go} navable={navKeys.has(r.key)} albumCover={r.albumCover} />)}
                 </div>
               </div>}
         </div>

@@ -1245,22 +1245,37 @@
     return ch;
   }
 
-  // ChapterRail: rendered in untransformed stage coordinates (Bug #5 fix)
+  // ChapterRail: rendered in untransformed stage coordinates (Bug #5 fix).
+  // The chapter list has outgrown short viewports, so the rail is now its OWN scroll
+  // container capped to the stage height (maxHeight: 100% of the stage), and it FOLLOWS
+  // the reading position: whenever the active chapter changes, that item is scrolled into
+  // view (block: nearest) so it always stays visible instead of being clipped at the
+  // bottom. The look is unchanged; only overflow + auto-follow are added.
   function ChapterRail({ currentPage, onChapterClick }) {
     const active = activeChapter(currentPage);
+    const activeRef = useRef(null);
+    useEffect(() => {
+      const el = activeRef.current;
+      if (el && el.scrollIntoView) el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }, [active]);
     return (
       <div style={{
         position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)",
         display: "flex", flexDirection: "column", gap: 4,
         padding: "12px 6px",
+        // cap to the stage so a long chapter list scrolls INSIDE the rail rather than
+        // spilling past the bottom of the viewport (the reported overflow).
+        maxHeight: "calc(100% - 24px)", overflowY: "auto", overflowX: "hidden",
+        // thin, unobtrusive scrollbar — keep the rail's minimal look
+        scrollbarWidth: "thin",
         // v4: z-index high but no pointer-events confusion; lives outside transformed wrapper
         zIndex: 30,
         // ensure it doesn't intercept clicks meant for the book (only its own buttons)
       }}>
         {CHAPTERS.map((ch, i) => (
-          <button key={i} onClick={() => onChapterClick(ch.page)} style={{
+          <button key={i} ref={i === active ? activeRef : null} onClick={() => onChapterClick(ch.page)} style={{
             background: "none", border: "none", cursor: "pointer",
-            display: "flex", alignItems: "center", gap: 8, padding: "5px 4px"
+            display: "flex", alignItems: "center", gap: 8, padding: "5px 4px", flexShrink: 0
           }}>
             <div style={{
               width: i === active ? 24 : 10, height: 2,
