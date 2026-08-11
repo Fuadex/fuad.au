@@ -908,8 +908,12 @@ function CalendarView({ go, seed }) {
         <span style={{ marginLeft: "auto" }}>click the grid to open a {gran} ↓</span>
       </div>
       </div>
-      {/* rhythm — the vertical hour clock (moved from Explore), sitting to the right of the calendar */}
-      <ClockCard R={R} selHours={selHours} setSelHours={setSelHours} customRange={customRange} />
+      {/* rhythm — the vertical hour clock (moved from Explore), sitting to the right of the calendar.
+          Feed it the EFFECTIVE window (selRange), not the raw scrub customRange: a scrub sets
+          customRange, but a day/week/month period pick sets sel+gran — selRange unifies both to the
+          same [start,end], so the Rhythm rail follows a period selection exactly as it follows a
+          scrub (null → all-time). */}
+      <ClockCard R={R} selHours={selHours} setSelHours={setSelHours} customRange={selRange} />
       </div>
 
       {/* period / range overview — a committed range takes priority over a day/week/month sel */}
