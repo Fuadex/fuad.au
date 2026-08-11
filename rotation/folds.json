@@ -41,6 +41,13 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "albums": [
+   {
+    "from": "Paranoia",
+    "to": "Bad Vibrations",
+    "type": "absorb"
+   }
   ]
  },
  "A Perfect Circle": {
@@ -194,6 +201,11 @@
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
    }
+  ],
+  "artist": [
+   {
+    "from": "Alex, Madelyn Darling"
+   }
   ]
  },
  "Alex Klingle": {
@@ -227,6 +239,16 @@
    {
     "from": "Chains",
     "to": "Limits",
+    "type": "absorb"
+   },
+   {
+    "from": "Eraser",
+    "to": "Square Two",
+    "type": "absorb"
+   },
+   {
+    "from": "Ghost",
+    "to": "Square Two",
     "type": "absorb"
    }
   ],
@@ -354,6 +376,18 @@
     "type": "spelling",
     "reason": "diacritic: no-accent form folds to canonical accented form"
    }
+  ],
+  "albums": [
+   {
+    "from": "Rū Ana Te Whenua",
+    "to": "Tū",
+    "type": "absorb"
+   },
+   {
+    "from": "Holding My Breath",
+    "to": "Tū",
+    "type": "absorb"
+   }
   ]
  },
  "Amalee": {
@@ -388,6 +422,26 @@
   "albums": [
    {
     "from": "The Problem of Other Minds",
+    "to": "Parrhesia",
+    "type": "absorb"
+   },
+   {
+    "from": "Wave of Babies",
+    "to": "Animals as Leaders",
+    "type": "absorb"
+   },
+   {
+    "from": "Monomyth",
+    "to": "Parrhesia",
+    "type": "absorb"
+   },
+   {
+    "from": "Gordian Naught",
+    "to": "Parrhesia",
+    "type": "absorb"
+   },
+   {
+    "from": "Monomyth - Single",
     "to": "Parrhesia",
     "type": "absorb"
    }
@@ -471,6 +525,16 @@
     "to": "Life Burns!",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "I'm not Jesus",
+    "to": "Worlds Collide",
+    "type": "absorb"
+   },
+   {
+    "from": "I Don’t Care",
+    "to": "Worlds Collide",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -503,6 +567,38 @@
     "to": "Enter Sandman",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Apocalyptica feat. Lacey of Flyleaf"
+   },
+   {
+    "from": "Apocalyptica feat. Gavin Rossdale"
+   },
+   {
+    "from": "Apocalyptica feat. Corey Taylor"
+   },
+   {
+    "from": "Apocalyptica feat. Brent Smith of Shinedown"
+   },
+   {
+    "from": "Apocalyptica feat. Matthias Sayer"
+   },
+   {
+    "from": "Apocalyptica feat. Manu"
+   },
+   {
+    "from": "Apocalyptica feat. Doug Robb"
+   },
+   {
+    "from": "Apocalyptica Feat. Adam Gontier of Three Days Grace"
+   },
+   {
+    "from": "Apocalyptica feat. Brent Smith"
+   },
+   {
+    "from": "Apocalyptica feat. Nina Hagen"
    }
   ]
  },
@@ -713,6 +809,16 @@
     "from": "Starlight - Single",
     "to": "METAL GALAXY",
     "type": "absorb"
+   },
+   {
+    "from": "Distortion - Single",
+    "to": "METAL GALAXY",
+    "type": "absorb"
+   },
+   {
+    "from": "Shanti Shanti Shanti",
+    "to": "METAL GALAXY",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -812,6 +918,26 @@
     "type": "spelling",
     "reason": "spelling fold within variant group: same recording as canonical"
    }
+  ],
+  "artist": [
+   {
+    "from": "BABYMETAL, Tak Matsumoto"
+   },
+   {
+    "from": "BABYMETAL, Tim Henson, Scott LePage"
+   },
+   {
+    "from": "BABYMETAL, Joakim Brodén"
+   },
+   {
+    "from": "BABYMETAL, F.HERO"
+   },
+   {
+    "from": "BABYMETAL with X JAPAN"
+   },
+   {
+    "from": "BABYMETAL, Alissa White-Gluz"
+   }
   ]
  },
  "Bad Nerves": {
@@ -845,6 +971,16 @@
     "to": "Never Know",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "The Grey",
+    "to": "THE DEATH OF PEACE OF MIND",
+    "type": "absorb"
+   },
+   {
+    "from": "Like A Villain",
+    "to": "THE DEATH OF PEACE OF MIND",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -878,6 +1014,11 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "artist": [
+   {
+    "from": "Bad Omens, HEALTH & SWARM"
+   }
   ]
  },
  "Battle Tapes": {
@@ -892,6 +1033,16 @@
   "albums": [
    {
     "from": "If Only",
+    "to": "Texture",
+    "type": "absorb"
+   },
+   {
+    "from": "In Too Deep",
+    "to": "Texture",
+    "type": "absorb"
+   },
+   {
+    "from": "One Night in Burbank",
     "to": "Texture",
     "type": "absorb"
    }
@@ -1005,6 +1156,14 @@
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
    }
+  ],
+  "artist": [
+   {
+    "from": "Boris Brejcha, Arctic Lake"
+   },
+   {
+    "from": "Boris Brejcha, Ginger"
+   }
   ]
  },
  "Boston Manor": {
@@ -1024,6 +1183,26 @@
    {
     "from": "Container",
     "to": "Sundiver",
+    "type": "absorb"
+   },
+   {
+    "from": "Foxglove",
+    "to": "Datura",
+    "type": "absorb"
+   },
+   {
+    "from": "Passenger",
+    "to": "Datura",
+    "type": "absorb"
+   },
+   {
+    "from": "Liquid",
+    "to": "Glue",
+    "type": "absorb"
+   },
+   {
+    "from": "Ratking",
+    "to": "Glue",
     "type": "absorb"
    }
   ],
@@ -1084,6 +1263,21 @@
     "from": "AmEN! (feat. Lil Uzi Vert and Daryl Palumbo of Glassjaw)",
     "to": "POST HUMAN: NeX GEn",
     "type": "absorb"
+   },
+   {
+    "from": "There Is a Hell, Believe Me I've Seen It. There Is a Heaven, Let&#39;s Keep It a Secret",
+    "to": "There Is a Hell, Believe Me I've Seen It. There Is a Heaven, Let's Keep It a Secret",
+    "type": "spelling"
+   },
+   {
+    "from": "Ludens",
+    "to": "POST HUMAN: SURVIVAL HORROR",
+    "type": "absorb"
+   },
+   {
+    "from": "Can You Feel My Heart",
+    "to": "Sempiternal",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -1110,6 +1304,38 @@
     "to": "Doomed",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Kingslayer [Explicit]",
+    "to": "Kingslayer (feat. BABYMETAL)",
+    "type": "spelling"
+   },
+   {
+    "from": "1x1 [Explicit]",
+    "to": "1x1 (feat. Nova Twins)",
+    "type": "spelling"
+   },
+   {
+    "from": "Obey [Explicit]",
+    "to": "Obey (with YUNGBLUD)",
+    "type": "spelling"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Bring Me the Horizon, BABYMETAL"
+   },
+   {
+    "from": "Bring Me the Horizon feat. BABYMETAL"
+   },
+   {
+    "from": "Bring Me the Horizon feat. Nova Twins"
+   },
+   {
+    "from": "Bring Me The Horizon feat. YUNGBLUD"
+   },
+   {
+    "from": "Bring Me the Horizon feat. Amy Lee"
    }
   ]
  },
@@ -1146,6 +1372,11 @@
     "to": "Feel So Close",
     "type": "variant",
     "reason": "variant: Radio Edit links to canonical plain title \"Feel So Close\""
+   }
+  ],
+  "artist": [
+   {
+    "from": "Calvin Harris ft. Florence Welch"
    }
   ]
  },
@@ -1188,6 +1419,11 @@
     "from": "Electric Eye",
     "to": "A Matter Of Time",
     "type": "variant"
+   },
+   {
+    "from": "Switchback",
+    "to": "Celldweller",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -1208,6 +1444,20 @@
     "to": "The End of the World",
     "type": "spelling",
     "reason": "spelling fold within variant group: same recording as canonical"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Celldweller, Scandroid"
+   },
+   {
+    "from": "Celldweller feat. Styles of Beyond"
+   },
+   {
+    "from": "Celldweller, Styles Of Beyond"
+   },
+   {
+    "from": "Celldweller, Blue Stahli"
    }
   ]
  },
@@ -1231,6 +1481,11 @@
    },
    {
     "from": "Never Surrender",
+    "to": "Making Monsters",
+    "type": "absorb"
+   },
+   {
+    "from": "Throat Full of Glass",
     "to": "Making Monsters",
     "type": "absorb"
    }
@@ -1310,6 +1565,11 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "artist": [
+   {
+    "from": "Coroner feat. Tom G. Warrior"
+   }
   ]
  },
  "Creedence Clearwater Revival": {
@@ -1360,6 +1620,16 @@
     "from": "Concrete",
     "to": "Amnesty (I)",
     "type": "absorb"
+   },
+   {
+    "from": "Fleece",
+    "to": "Amnesty (I)",
+    "type": "absorb"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Crystal Castles, Robert Smith"
    }
   ]
  },
@@ -1445,6 +1715,42 @@
     "from": "Deadmau5 [feat. Gerard Way]",
     "type": "feat-credit",
     "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+   },
+   {
+    "from": "Deadmau5, Wolfgang Gartner"
+   },
+   {
+    "from": "deadmau5, Lights"
+   },
+   {
+    "from": "Billy Newton-Davis, Deadmau5"
+   },
+   {
+    "from": "deadmau5 feat. Grabbitz"
+   },
+   {
+    "from": "Deadmau5, Colleen D'Agostino"
+   },
+   {
+    "from": "Deadmau5, Foster the People"
+   },
+   {
+    "from": "deadmau5 ft. Gerard Way"
+   },
+   {
+    "from": "deadmau5 feat. Foster the People"
+   },
+   {
+    "from": "deadmau5, Kiesza"
+   },
+   {
+    "from": "deadmau5, Rezz"
+   },
+   {
+    "from": "Deadmau5, Grabbitz"
+   },
+   {
+    "from": "Deadmau5 ft. Shotty Horroh"
    }
   ],
   "albums": [
@@ -1453,6 +1759,11 @@
     "to": "Bridged By A Lightwave",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Strobe",
+    "to": "For Lack of a Better Name",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -1512,6 +1823,13 @@
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
    }
+  ],
+  "albums": [
+   {
+    "from": "Guillotine",
+    "to": "Exmilitary",
+    "type": "absorb"
+   }
   ]
  },
  "Deftones": {
@@ -1530,6 +1848,11 @@
    {
     "from": "Back to School (Mini Maggit)",
     "to": "White Pony",
+    "type": "absorb"
+   },
+   {
+    "from": "Sextape",
+    "to": "Diamond Eyes",
     "type": "absorb"
    }
   ],
@@ -1771,6 +2094,11 @@
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
    }
+  ],
+  "artist": [
+   {
+    "from": "Eminem ft  Rihanna"
+   }
   ]
  },
  "Enter Shikari": {
@@ -1796,6 +2124,17 @@
     "to": "Pjanoo",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Eric Prydz, Rob Swire"
+   },
+   {
+    "from": "Eric Prydz, Empire of the Sun"
+   },
+   {
+    "from": "Eric Prydz, CHVRCHES"
    }
   ]
  },
@@ -2010,11 +2349,16 @@
   ]
  },
  "Foo Fighters": {
-  "artist": {
-   "from": "Foo Fighters (HD)",
-   "type": "spelling",
-   "reason": "spelling: variant name form folds to canonical artist name"
-  },
+  "artist": [
+   {
+    "from": "Foo Fighters (HD)",
+    "type": "spelling",
+    "reason": "spelling: variant name form folds to canonical artist name"
+   },
+   {
+    "from": "Foo Fighters With Rick Astley"
+   }
+  ],
   "tracks": [
    {
     "from": "Breakout  (Live @ Wembley Stadium 2008)",
@@ -2115,6 +2459,11 @@
     "to": "intruder",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Now and Forever",
+    "to": "intruder",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -2133,11 +2482,16 @@
   ]
  },
  "Ghøstkid": {
-  "artist": {
-   "from": "Ghøstkid [feat. Heaven Shall Burn]",
-   "type": "feat-credit",
-   "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
-  },
+  "artist": [
+   {
+    "from": "Ghøstkid [feat. Heaven Shall Burn]",
+    "type": "feat-credit",
+    "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
+   },
+   {
+    "from": "Ghøstkid, Johnny 3 Tears"
+   }
+  ],
   "albums": [
    {
     "from": "HOLLYWOOD SUICIDE (feat. SETYØURSAILS & Within Destruction)",
@@ -2213,6 +2567,23 @@
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
    }
+  ],
+  "artist": [
+   {
+    "from": "Gorillaz, Peter Hook, Georgia"
+   },
+   {
+    "from": "Gorillaz, Fatoumata Diawara"
+   },
+   {
+    "from": "Gorillaz, Popcaan"
+   },
+   {
+    "from": "Gorillaz, Beck"
+   },
+   {
+    "from": "Gorillaz, Shelley FKA DRAM"
+   }
   ]
  },
  "Greg Puciato": {
@@ -2247,6 +2618,21 @@
     "from": "4æm",
     "to": "Miss Anthropocene",
     "type": "absorb"
+   },
+   {
+    "from": "We Appreciate Power",
+    "to": "Miss Anthropocene",
+    "type": "absorb"
+   },
+   {
+    "from": "REALiTi",
+    "to": "Art Angels",
+    "type": "absorb"
+   },
+   {
+    "from": "Delete Forever",
+    "to": "Miss Anthropocene",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -2261,6 +2647,17 @@
     "to": "My Name is Dark (Art Mix)",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Grimes, i_o"
+   },
+   {
+    "from": "Grimes, 潘PAN"
+   },
+   {
+    "from": "Grimes, HANA"
    }
   ]
  },
@@ -2315,6 +2712,16 @@
     "from": "Prosthetic",
     "to": "Virus",
     "type": "absorb"
+   },
+   {
+    "from": "The Alphabet of Me",
+    "to": "Fauna",
+    "type": "absorb"
+   },
+   {
+    "from": "Puzzle Box",
+    "to": "Vector",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -2334,6 +2741,11 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "artist": [
+   {
+    "from": "Hayden James, Gorgon City, Nat Dunn"
+   }
   ]
  },
  "Hilltop Hoods": {
@@ -2343,6 +2755,18 @@
     "to": "Live And Let Go",
     "type": "spelling",
     "reason": "feat-credit: missing/incomplete feature credit folds to full official title"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Hilltop Hoods, Maverick Sabre"
+   }
+  ],
+  "albums": [
+   {
+    "from": "The Nosebleed Section",
+    "to": "The Calling",
+    "type": "absorb"
    }
   ]
  },
@@ -2397,6 +2821,11 @@
     "to": "The End - Beatman & Ludmilla Remix",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Hyper, WARGASM (UK)"
    }
   ]
  },
@@ -2490,11 +2919,16 @@
   ]
  },
  "Jason Derulo": {
-  "artist": {
-   "from": "Jason Derülo",
-   "type": "diacritic",
-   "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
-  }
+  "artist": [
+   {
+    "from": "Jason Derülo",
+    "type": "diacritic",
+    "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+   },
+   {
+    "from": "Jason Derulo, Sped Up Songs + Nightcore"
+   }
+  ]
  },
  "Jenő Jandó": {
   "artist": {
@@ -2536,6 +2970,11 @@
     "to": "Giant Steps",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   }
+  ],
+  "artist": [
+   {
+    "from": "John Coltrane, The Red Garland Quintet"
    }
   ]
  },
@@ -2586,6 +3025,33 @@
     "to": "Shutterspeed",
     "type": "spelling",
     "reason": "spelling: Themata tracklist uses one word; \"Shutter Speed\" folds to canonical \"Shutterspeed\""
+   }
+  ],
+  "albums": [
+   {
+    "from": "Animation",
+    "to": "In Verses",
+    "type": "absorb"
+   },
+   {
+    "from": "Drone",
+    "to": "In Verses",
+    "type": "absorb"
+   },
+   {
+    "from": "Set Fire To The Hive",
+    "to": "Sound Awake",
+    "type": "absorb"
+   },
+   {
+    "from": "Aozora",
+    "to": "In Verses",
+    "type": "absorb"
+   },
+   {
+    "from": "Eidolon",
+    "to": "Asymmetry",
+    "type": "absorb"
    }
   ]
  },
@@ -2650,6 +3116,21 @@
     "to": "Can You Hear Me",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "You'll Never Find Me",
+    "to": "The Nothing",
+    "type": "absorb"
+   },
+   {
+    "from": "Can You Hear Me",
+    "to": "The Nothing",
+    "type": "absorb"
+   },
+   {
+    "from": "A Different World (feat. Corey Taylor)",
+    "to": "The Serenity of Suffering",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -2810,6 +3291,38 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "albums": [
+   {
+    "from": "Overrated",
+    "to": "Lost In The Waves",
+    "type": "absorb"
+   },
+   {
+    "from": "Rainfall",
+    "to": "Lost In The Waves",
+    "type": "absorb"
+   },
+   {
+    "from": "Self-Made Black Hole",
+    "to": "Lost In The Waves",
+    "type": "absorb"
+   },
+   {
+    "from": "Death",
+    "to": "Lost In The Waves",
+    "type": "absorb"
+   },
+   {
+    "from": "Paralyzed",
+    "to": "Lost In The Waves",
+    "type": "absorb"
+   },
+   {
+    "from": "Lost in a Wave",
+    "to": "Lost In The Waves",
+    "type": "absorb"
+   }
   ]
  },
  "Lifespark.": {
@@ -2854,6 +3367,16 @@
     "from": "Eat You Alive",
     "to": "Results May Vary",
     "type": "variant"
+   },
+   {
+    "from": "Behind Blue Eyes",
+    "to": "Results May Vary",
+    "type": "absorb"
+   },
+   {
+    "from": "My Way",
+    "to": "Chocolate Starfish and the Hot Dog Flavored Water",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -3316,6 +3839,11 @@
     "from": "Lost",
     "to": "Meteora",
     "type": "absorb"
+   },
+   {
+    "from": "Fighting Myself",
+    "to": "Meteora",
+    "type": "absorb"
    }
   ]
  },
@@ -3494,6 +4022,21 @@
     "from": "Imperium",
     "to": "Adventure",
     "type": "absorb"
+   },
+   {
+    "from": "Pay No Mind",
+    "to": "Adventure",
+    "type": "absorb"
+   },
+   {
+    "from": "Home",
+    "to": "Adventure",
+    "type": "absorb"
+   },
+   {
+    "from": "You're On",
+    "to": "Adventure",
+    "type": "absorb"
    }
   ]
  },
@@ -3533,6 +4076,11 @@
     "type": "spelling",
     "reason": "tier-2: \"Paranoic\" (trailing junk) folds to \"Para-noir\""
    }
+  ],
+  "artist": [
+   {
+    "from": "Marilyn Manson feat Tyler Bates"
+   }
   ]
  },
  "Martin Garrix": {
@@ -3542,6 +4090,11 @@
     "to": "Wizard",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Martin Garrix, G-Eazy, Sasha Alex Sloan"
    }
   ]
  },
@@ -3598,6 +4151,20 @@
     "to": "Safe From Harm",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Massive Attack, Azekel"
+   },
+   {
+    "from": "Massive Attack, Ghostpoet"
+   },
+   {
+    "from": "Massive Attack, Tricky & 3D"
+   },
+   {
+    "from": "Massive Attack, Young Fathers"
    }
   ]
  },
@@ -3815,23 +4382,10 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
-  ]
- },
- "Morgan Page, Lissie": {
-  "albums": [
-   {
-    "from": "The Longest Road (feat. Lissie)",
-    "to": "The Longest Road",
-    "type": "spelling",
-    "reason": "spelling: tagging/credit variant folds to canonical"
-   }
   ],
-  "tracks": [
+  "artist": [
    {
-    "from": "The Longest Road (feat. Lissie) [Deadmau5 Remix]",
-    "to": "The Longest Road (feat. Lissie)",
-    "type": "variant",
-    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+    "from": "Monuments feat. Neema Askari"
    }
   ]
  },
@@ -4008,6 +4562,13 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "albums": [
+   {
+    "from": "Invincible",
+    "to": "Black Holes and Revelations",
+    "type": "absorb"
+   }
   ]
  },
  "MY FIRST STORY": {
@@ -4037,6 +4598,11 @@
     "to": "Rock Star",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ],
+  "artist": [
+   {
+    "from": "N.E.R.D, Vita, Lee Harvey"
    }
   ]
  },
@@ -4233,6 +4799,16 @@
     "from": "With Teeth (International Version)",
     "to": "With Teeth",
     "type": "variant"
+   },
+   {
+    "from": "Everything",
+    "to": "Hesitation Marks",
+    "type": "absorb"
+   },
+   {
+    "from": "Closer to God",
+    "to": "The Downward Spiral",
+    "type": "absorb"
    }
   ]
  },
@@ -4306,6 +4882,16 @@
     "from": "Bloodline",
     "to": "Alien",
     "type": "absorb"
+   },
+   {
+    "from": "Dante",
+    "to": "Mirror's Edge",
+    "type": "absorb"
+   },
+   {
+    "from": "Plenty",
+    "to": "Obsidian",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -4339,6 +4925,11 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "artist": [
+   {
+    "from": "Northlane, In Hearts Wake"
+   }
   ]
  },
  "Nothing More": {
@@ -4348,6 +4939,13 @@
     "to": "ANGEL SONG (feat. David Draiman)",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Don't Stop (Featuring Jacoby Shaddix)",
+    "to": "The Stories We Tell Ourselves",
+    "type": "absorb"
    }
   ]
  },
@@ -4472,6 +5070,37 @@
     "from": "Ask For The Anthem",
     "to": "Flip Phone Fantasy",
     "type": "absorb"
+   },
+   {
+    "from": "Sunny - Single",
+    "to": "Flip Phone Fantasy",
+    "type": "absorb"
+   },
+   {
+    "from": "LAST DANCE",
+    "to": "ODDWORLD",
+    "type": "absorb"
+   },
+   {
+    "from": "These Boys Light Fires",
+    "to": "The Rhapsody Tapes",
+    "type": "absorb"
+   },
+   {
+    "from": "SILVER LINING",
+    "to": "Up In The Air Forever",
+    "type": "absorb"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Ocean Grove feat. Zachary Britt"
+   },
+   {
+    "from": "Ocean Grove feat. Adrian Fitipaldes"
+   },
+   {
+    "from": "Ocean Grove feat. Running Touch"
    }
   ]
  },
@@ -4702,6 +5331,11 @@
     "from": "Cannibal",
     "to": "Inertia",
     "type": "absorb"
+   },
+   {
+    "from": "Tarantula (feat. DJ Fresh, $pyda, & Tenor Fly)",
+    "to": "Hold Your Colour",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -4734,6 +5368,17 @@
     "to": "Tarantula (Original Mix) (feat. $pyda, Dj Fresh & Tenor Fly)",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Pendulum, Bullet For My Valentine"
+   },
+   {
+    "from": "Pendulum, Freestylers"
+   },
+   {
+    "from": "Pendulum, Joey Valence & Brae"
    }
   ]
  },
@@ -4797,6 +5442,17 @@
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
    }
+  ],
+  "artist": [
+   {
+    "from": "Polyphia, Nick Johnston"
+   },
+   {
+    "from": "Polyphia, Jason Richardson"
+   },
+   {
+    "from": "Polyphia, Cuco"
+   }
   ]
  },
  "Porcupine Tree": {
@@ -4818,6 +5474,16 @@
    {
     "from": "Harridan",
     "to": "Closure / Continuation",
+    "type": "absorb"
+   },
+   {
+    "from": "Anesthetize",
+    "to": "Fear of a Blank Planet",
+    "type": "absorb"
+   },
+   {
+    "from": "Time Flies",
+    "to": "The Incident",
     "type": "absorb"
    }
   ]
@@ -4845,6 +5511,11 @@
     "to": "To Defy the Laws of Tradition",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Primus, Puscifer"
    }
   ]
  },
@@ -4879,6 +5550,66 @@
     "from": "Flary",
     "to": "Ground Zero Mixtape",
     "type": "absorb"
+   },
+   {
+    "from": "Mayday",
+    "to": "PROXL3M",
+    "type": "absorb"
+   },
+   {
+    "from": "Flary - Single",
+    "to": "Ground Zero Mixtape",
+    "type": "absorb"
+   },
+   {
+    "from": "False flag",
+    "to": "PROXL3M",
+    "type": "absorb"
+   },
+   {
+    "from": "Nicea",
+    "to": "PROXL3M",
+    "type": "absorb"
+   },
+   {
+    "from": "Hazard - Single",
+    "to": "Ground Zero Mixtape",
+    "type": "absorb"
+   }
+  ],
+  "artist": [
+   {
+    "from": "PRO8L3M, Dawid Podsiadło, Duit"
+   },
+   {
+    "from": "PRO8L3M, Brodka"
+   },
+   {
+    "from": "PRO8L3M feat. Wanda i Banda"
+   },
+   {
+    "from": "PRO8L3M feat. Majka Jeżowska"
+   },
+   {
+    "from": "PRO8L3M, CatchUp, Pezet"
+   },
+   {
+    "from": "PRO8L3M, Sokół, Duit"
+   },
+   {
+    "from": "PRO8L3M, Ero, Wilku WDZ"
+   },
+   {
+    "from": "PRO8L3M, Kukon, The Returners, Pih"
+   },
+   {
+    "from": "PRO8L3M, Młody Dron, Szamz"
+   },
+   {
+    "from": "PRO8L3M, Paluch, Luxon"
+   },
+   {
+    "from": "PRO8L3M, Kaz Bałagane, Szpaku"
    }
   ]
  },
@@ -5068,6 +5799,11 @@
     "from": "Radio",
     "to": "RAMMSTEIN",
     "type": "absorb"
+   },
+   {
+    "from": "Zick Zack",
+    "to": "Zeit",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -5120,6 +5856,11 @@
     "to": "Minute on Fire",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Cure 4 Psycho",
+    "to": "Bad Decisions",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -5162,6 +5903,17 @@
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
    }
+  ],
+  "artist": [
+   {
+    "from": "Rezz, Deadmau5"
+   },
+   {
+    "from": "Rezz, PVRIS"
+   },
+   {
+    "from": "Rezz, Dove Cameron"
+   }
   ]
  },
  "RJD2": {
@@ -5199,6 +5951,11 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "artist": [
+   {
+    "from": "Rush, Aimee Mann"
+   }
   ]
  },
  "Sarah Vaughan": {
@@ -5218,6 +5975,11 @@
     "to": "Vector (feat. Moon Bounce) [Original Mix]",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "artist": [
+   {
+    "from": "SBCR, Elisa Bee & His Majesty Andre"
    }
   ]
  },
@@ -5317,6 +6079,17 @@
     "to": "Ragga Bomb (feat. Ragga Twins) [Teddykillerz Remix]",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Skrillex, Starrah, Four Tet"
+   },
+   {
+    "from": "Skrillex, Noisia, Josh Pan, Dylan Brady"
+   },
+   {
+    "from": "Skrillex, Fred again.., Flowdan"
    }
   ]
  },
@@ -5488,6 +6261,18 @@
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
    }
+  ],
+  "albums": [
+   {
+    "from": "The Saw Is the Law",
+    "to": "In War and Pieces",
+    "type": "absorb"
+   },
+   {
+    "from": "Ausgebombt",
+    "to": "In War and Pieces",
+    "type": "absorb"
+   }
   ]
  },
  "Sokoninaru": {
@@ -5544,6 +6329,31 @@
     "from": "The Void",
     "to": "The Fear of Fear",
     "type": "absorb"
+   },
+   {
+    "from": "Holy Roller",
+    "to": "Eternal Blue",
+    "type": "absorb"
+   },
+   {
+    "from": "Constance",
+    "to": "Eternal Blue",
+    "type": "absorb"
+   },
+   {
+    "from": "Circle With Me",
+    "to": "Eternal Blue",
+    "type": "absorb"
+   },
+   {
+    "from": "Hurt You",
+    "to": "Eternal Blue",
+    "type": "absorb"
+   },
+   {
+    "from": "Secret Garden",
+    "to": "Eternal Blue",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -5552,6 +6362,11 @@
     "to": "Constance",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Spiritbox, Ryo Kinoshita"
    }
   ]
  },
@@ -5562,6 +6377,20 @@
     "to": "Stolen Youth (with Famous Last Words & Outline in Color)",
     "type": "spelling",
     "reason": "feat-credit: missing/incomplete feature credit folds to full official title"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Stain the Canvas, The Word Alive"
+   },
+   {
+    "from": "Stain the Canvas, Famous Last Words, Outline In Color"
+   },
+   {
+    "from": "Stain the Canvas, Call Me Karizma"
+   },
+   {
+    "from": "Stain the Canvas, Get Scared"
    }
   ]
  },
@@ -5750,6 +6579,16 @@
     "from": "The Grey",
     "to": "War Of Being",
     "type": "absorb"
+   },
+   {
+    "from": "Smile",
+    "to": "Sonder",
+    "type": "absorb"
+   },
+   {
+    "from": "Luminary",
+    "to": "Sonder",
+    "type": "absorb"
    }
   ]
  },
@@ -5808,6 +6647,11 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "artist": [
+   {
+    "from": "The Anix, Apoptygma Berzerk"
+   }
   ]
  },
  "the band apart": {
@@ -5824,6 +6668,13 @@
     "to": "A Slow Descent",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Always",
+    "to": "Begins Here",
+    "type": "absorb"
    }
   ]
  },
@@ -5842,6 +6693,17 @@
     "to": "Comin' Back",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "artist": [
+   {
+    "from": "The Crystal Method, Hyper & Iggy Pop"
+   },
+   {
+    "from": "The Crystal Method, The Heavy"
+   },
+   {
+    "from": "The Crystal Method, Teflon Sega, Delila Paz"
    }
   ]
  },
@@ -5890,6 +6752,24 @@
     "to": "Becoming Harmonious (feat. Metal Mother)",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ],
+  "artist": [
+   {
+    "from": "The Glitch Mob, Aja Volkman"
+   },
+   {
+    "from": "The Glitch Mob, Monuman"
+   },
+   {
+    "from": "The Glitch Mob, Arama"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Take Me with You - Single",
+    "to": "See Without Eyes",
+    "type": "absorb"
    }
   ]
  },
@@ -6139,6 +7019,11 @@
     "to": "Undertow",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Opiate²",
+    "to": "Undertow",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -6206,6 +7091,36 @@
     "from": "Liar Liar",
     "to": "Heaven Can Wait",
     "type": "absorb"
+   },
+   {
+    "from": "Be Someone (feat. Eric Vanlerberghe of I Prevail)",
+    "to": "Heaven Can Wait",
+    "type": "absorb"
+   },
+   {
+    "from": "Are You Ready Now?",
+    "to": "Heaven Can Wait",
+    "type": "absorb"
+   },
+   {
+    "from": "Better Than Yesterday",
+    "to": "Heaven Can Wait",
+    "type": "absorb"
+   },
+   {
+    "from": "He's So Good",
+    "to": "Don't You Feel Amazing?",
+    "type": "absorb"
+   },
+   {
+    "from": "Bad Entertainment (feat. Milkie Way)",
+    "to": "Don't You Feel Amazing?",
+    "type": "absorb"
+   },
+   {
+    "from": "Silence Is Golden",
+    "to": "Don't You Feel Amazing?",
+    "type": "absorb"
    }
   ]
  },
@@ -6249,6 +7164,11 @@
     "to": "Bleed Into Me",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "Strife",
+    "to": "Vengeance Falls",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -6327,6 +7247,16 @@
    {
     "from": "Staring at the Sun",
     "to": "Desperate Youth, Bloodthirsty Babes",
+    "type": "absorb"
+   },
+   {
+    "from": "Happy Idiot",
+    "to": "Seeds",
+    "type": "absorb"
+   },
+   {
+    "from": "Careful You",
+    "to": "Seeds",
     "type": "absorb"
    }
   ]
@@ -6594,6 +7524,21 @@
     "to": "Straight Lines",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "24 Light-Years",
+    "to": "Witness",
+    "type": "absorb"
+   },
+   {
+    "from": "Straight Lines",
+    "to": "Witness",
+    "type": "absorb"
+   },
+   {
+    "from": "Smartfriend",
+    "to": "Applause Of A Distant Crowd",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -6652,6 +7597,38 @@
     "to": "The Meaning Of I",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Voyager, Einar Solberg"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Promise",
+    "to": "Fearless In Love",
+    "type": "absorb"
+   },
+   {
+    "from": "Submarine",
+    "to": "Fearless In Love",
+    "type": "absorb"
+   },
+   {
+    "from": "Water over the Bridge",
+    "to": "Colours in the Sun",
+    "type": "absorb"
+   },
+   {
+    "from": "Colours",
+    "to": "Colours in the Sun",
+    "type": "absorb"
+   },
+   {
+    "from": "Brightstar",
+    "to": "Colours in the Sun",
+    "type": "absorb"
    }
   ]
  },
@@ -6717,6 +7694,23 @@
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
    }
+  ],
+  "albums": [
+   {
+    "from": "HAUNT ME",
+    "to": "So What?",
+    "type": "absorb"
+   },
+   {
+    "from": "THE GUILTY PARTY",
+    "to": "So What?",
+    "type": "absorb"
+   },
+   {
+    "from": "Anti-Social - Single",
+    "to": "So What?",
+    "type": "absorb"
+   }
   ]
  },
  "Wilderun": {
@@ -6726,6 +7720,13 @@
     "to": "Identifier",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Distraction I",
+    "to": "Epigone",
+    "type": "absorb"
    }
   ]
  },
@@ -6744,6 +7745,17 @@
     "to": "home stay",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Yoko Kanno feat. Teshima Aoi"
+   },
+   {
+    "from": "YOKO KANNO, Yuuka Nanri"
+   },
+   {
+    "from": "YOKO KANNO, SHinpei Ruike, Masayoshi Furukawa"
    }
   ]
  },
@@ -6835,6 +7847,16 @@
     "from": "Square One",
     "to": "Over The Threshold",
     "type": "absorb"
+   },
+   {
+    "from": "Oportunista",
+    "to": "Over The Threshold",
+    "type": "absorb"
+   },
+   {
+    "from": "Feast Is Over",
+    "to": "Over The Threshold",
+    "type": "absorb"
    }
   ]
  },
@@ -6844,6 +7866,31 @@
     "from": "escape mode",
     "to": "u:phobia",
     "type": "variant"
+   },
+   {
+    "from": "you will know",
+    "to": "u:phobia",
+    "type": "absorb"
+   },
+   {
+    "from": "you're scared of me",
+    "to": "u:phobia",
+    "type": "absorb"
+   },
+   {
+    "from": "+ ever again +",
+    "to": "u:phobia",
+    "type": "absorb"
+   },
+   {
+    "from": "i can't go back",
+    "to": "u:phobia",
+    "type": "absorb"
+   },
+   {
+    "from": "R3D",
+    "to": "u:phobia",
+    "type": "absorb"
    }
   ]
  },
@@ -6865,6 +7912,16 @@
   "albums": [
    {
     "from": "PARASITE",
+    "to": "MY MASOCHISTIC MIND",
+    "type": "absorb"
+   },
+   {
+    "from": "Psychopath",
+    "to": "MY MASOCHISTIC MIND",
+    "type": "absorb"
+   },
+   {
+    "from": "Die Quietly",
     "to": "MY MASOCHISTIC MIND",
     "type": "absorb"
    }
@@ -6896,6 +7953,16 @@
     "from": "I Need More Than This",
     "to": "Outrun You All",
     "type": "absorb"
+   },
+   {
+    "from": "Being One",
+    "to": "GALORE",
+    "type": "absorb"
+   },
+   {
+    "from": "Afterlife",
+    "to": "Outrun You All",
+    "type": "absorb"
    }
   ]
  },
@@ -6915,6 +7982,16 @@
     "from": "the dread",
     "to": "SONIC TRASH",
     "type": "variant"
+   },
+   {
+    "from": "GLASS EYED IDOLS",
+    "to": "SONIC TRASH",
+    "type": "absorb"
+   },
+   {
+    "from": "ROCK N ROLL IS ASLEEP",
+    "to": "SONIC TRASH",
+    "type": "absorb"
    }
   ]
  },
@@ -6939,6 +8016,21 @@
     "from": "SORRY! CRASH!",
     "to": "LOOKING FOR PEOPLE TO UNFOLLOW",
     "type": "absorb"
+   },
+   {
+    "from": "MOLLY",
+    "to": "LOOKING FOR PEOPLE TO UNFOLLOW",
+    "type": "absorb"
+   },
+   {
+    "from": "BLEACH",
+    "to": "LOOKING FOR PEOPLE TO UNFOLLOW",
+    "type": "absorb"
+   },
+   {
+    "from": "THEN THERE'S ONE",
+    "to": "LOOKING FOR PEOPLE TO UNFOLLOW",
+    "type": "absorb"
    }
   ]
  },
@@ -6946,6 +8038,16 @@
   "albums": [
    {
     "from": "The Ghost",
+    "to": "Your God Fearing Days Are About To Begin",
+    "type": "absorb"
+   },
+   {
+    "from": "Good Boy",
+    "to": "Your God Fearing Days Are About To Begin",
+    "type": "absorb"
+   },
+   {
+    "from": "Song For Mia",
     "to": "Your God Fearing Days Are About To Begin",
     "type": "absorb"
    }
@@ -6976,6 +8078,16 @@
     "from": "Emerald Skies",
     "to": "Between Me and The Machine",
     "type": "absorb"
+   },
+   {
+    "from": "D.G.G.R.S",
+    "to": "Between Me and The Machine",
+    "type": "absorb"
+   },
+   {
+    "from": "Surrender",
+    "to": "Between Me and The Machine",
+    "type": "absorb"
    }
   ]
  },
@@ -7000,6 +8112,31 @@
     "from": "BODY/PRISON",
     "to": "DISCO4 :: PART I",
     "type": "absorb"
+   },
+   {
+    "from": "Feel Nothing",
+    "to": "VOL. 4 :: SLAVES OF FEAR",
+    "type": "absorb"
+   },
+   {
+    "from": "Antidote",
+    "to": "CONFLICT DLC",
+    "type": "absorb"
+   },
+   {
+    "from": "YOU DIED",
+    "to": "CONFLICT DLC",
+    "type": "absorb"
+   },
+   {
+    "from": "THOUGHT LEADER",
+    "to": "CONFLICT DLC",
+    "type": "absorb"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Health, Nine Inch Nails"
    }
   ]
  },
@@ -7044,6 +8181,16 @@
     "from": "Lich",
     "to": "Wildhund",
     "type": "absorb"
+   },
+   {
+    "from": "Daisies",
+    "to": "Nowhere In Between Forever",
+    "type": "absorb"
+   },
+   {
+    "from": "Magnolia",
+    "to": "Wildhund",
+    "type": "absorb"
    }
   ]
  },
@@ -7080,6 +8227,26 @@
    },
    {
     "from": "Long Way Home",
+    "to": "False Start",
+    "type": "absorb"
+   },
+   {
+    "from": "Alone Again",
+    "to": "James and the Cold Gun",
+    "type": "absorb"
+   },
+   {
+    "from": "My Silhouette",
+    "to": "James and the Cold Gun",
+    "type": "absorb"
+   },
+   {
+    "from": "Bittersweet",
+    "to": "James and the Cold Gun",
+    "type": "absorb"
+   },
+   {
+    "from": "It's Mutual",
     "to": "False Start",
     "type": "absorb"
    }
@@ -7126,6 +8293,26 @@
     "from": "Reptile",
     "to": "Butterfly",
     "type": "absorb"
+   },
+   {
+    "from": "Casanova",
+    "to": "Heroine",
+    "type": "absorb"
+   },
+   {
+    "from": "RAW",
+    "to": "Heroine",
+    "type": "absorb"
+   },
+   {
+    "from": "nerv",
+    "to": "Silver Swarm",
+    "type": "absorb"
+   },
+   {
+    "from": "In My Skin",
+    "to": "The Dark Pool",
+    "type": "absorb"
    }
   ]
  },
@@ -7145,6 +8332,26 @@
     "from": "they’re all around us",
     "to": "Negative Spaces",
     "type": "absorb"
+   },
+   {
+    "from": "Her",
+    "to": "Flux",
+    "type": "absorb"
+   },
+   {
+    "from": "New Way Out",
+    "to": "Negative Spaces",
+    "type": "absorb"
+   },
+   {
+    "from": "Church Outfit",
+    "to": "Zig",
+    "type": "absorb"
+   },
+   {
+    "from": "Knockoff",
+    "to": "Zig",
+    "type": "absorb"
    }
   ]
  },
@@ -7159,6 +8366,11 @@
     "from": "Stupid",
     "to": "My World",
     "type": "absorb"
+   },
+   {
+    "from": "3am",
+    "to": "My World",
+    "type": "absorb"
    }
   ]
  },
@@ -7166,6 +8378,36 @@
   "albums": [
    {
     "from": "Charon's Song",
+    "to": "Late Eternity",
+    "type": "absorb"
+   },
+   {
+    "from": "No Control",
+    "to": "All News Is Bad News",
+    "type": "absorb"
+   },
+   {
+    "from": "Every Grief",
+    "to": "Late Eternity",
+    "type": "absorb"
+   },
+   {
+    "from": "Ignis",
+    "to": "Late Eternity",
+    "type": "absorb"
+   },
+   {
+    "from": "No Sanctuary",
+    "to": "All News Is Bad News",
+    "type": "absorb"
+   },
+   {
+    "from": "Soundtrack",
+    "to": "Late Eternity",
+    "type": "absorb"
+   },
+   {
+    "from": "Justify Me",
     "to": "Late Eternity",
     "type": "absorb"
    }
@@ -7187,6 +8429,16 @@
     "from": "Straight To Heart",
     "to": "Rave Immortal",
     "type": "absorb"
+   },
+   {
+    "from": "Run Rabbit",
+    "to": "Rave Immortal",
+    "type": "absorb"
+   },
+   {
+    "from": "Hunt You Down",
+    "to": "Rave Immortal",
+    "type": "absorb"
    }
   ]
  },
@@ -7206,6 +8458,41 @@
     "from": "Euphoria (feat. REEBZ)",
     "to": "TORONTOISBROKEN",
     "type": "absorb"
+   },
+   {
+    "from": "Nihilist (feat. Sebotage)",
+    "to": "TORONTOISBROKEN",
+    "type": "absorb"
+   },
+   {
+    "from": "Anaesthesia (feat. Sebotage & Fight The Fade)",
+    "to": "TORONTOISBROKEN",
+    "type": "absorb"
+   },
+   {
+    "from": "Breed (feat. REEBZ)",
+    "to": "TORONTOISBROKEN",
+    "type": "absorb"
+   },
+   {
+    "from": "Martyrs (feat. Sebotage)",
+    "to": "TORONTOISBROKEN",
+    "type": "absorb"
+   },
+   {
+    "from": "Circle",
+    "to": "TORONTOISBROKEN",
+    "type": "absorb"
+   },
+   {
+    "from": "Shower Prayer (feat. REEBZ)",
+    "to": "TORONTOISBROKEN",
+    "type": "absorb"
+   },
+   {
+    "from": "LOWLIFE (feat. Sebotage)",
+    "to": "TORONTOISBROKEN",
+    "type": "absorb"
    }
   ]
  },
@@ -7215,6 +8502,14 @@
     "from": "Black Hole",
     "to": "Darkbloom",
     "type": "absorb"
+   }
+  ],
+  "artist": [
+   {
+    "from": "We Came As Romans, Zero 9:36"
+   },
+   {
+    "from": "We Came As Romans, Caleb Shomo"
    }
   ]
  },
@@ -7286,12 +8581,60 @@
     "to": "Dichotomy",
     "type": "variant"
    }
+  ],
+  "artist": [
+   {
+    "from": "Matt Lange feat. Kerry Leva"
+   },
+   {
+    "from": "Matt Lange feat. Deniz Reno"
+   }
   ]
  },
  "Good Tiger": {
   "albums": [
    {
     "from": "Young Speak",
+    "to": "Raised In A Doomsday Cult",
+    "type": "absorb"
+   },
+   {
+    "from": "GoGo Yubari",
+    "to": "Raised In A Doomsday Cult",
+    "type": "absorb"
+   },
+   {
+    "from": "Ghost Vomit",
+    "to": "Raised In A Doomsday Cult",
+    "type": "absorb"
+   },
+   {
+    "from": "Kimbal",
+    "to": "Raised In A Doomsday Cult",
+    "type": "absorb"
+   },
+   {
+    "from": "If You Weren't My Son I'd Hug You",
+    "to": "Raised In A Doomsday Cult",
+    "type": "absorb"
+   },
+   {
+    "from": "Sunthrower Flower",
+    "to": "Raised In A Doomsday Cult",
+    "type": "absorb"
+   },
+   {
+    "from": "Animal Mother",
+    "to": "Raised In A Doomsday Cult",
+    "type": "absorb"
+   },
+   {
+    "from": "Redshift",
+    "to": "Raised In A Doomsday Cult",
+    "type": "absorb"
+   },
+   {
+    "from": "Whatever Happened to Man's Best Friend",
     "to": "Raised In A Doomsday Cult",
     "type": "absorb"
    }
@@ -7303,6 +8646,11 @@
     "from": "Motherfather",
     "to": "MG Ultra",
     "type": "absorb"
+   },
+   {
+    "from": "Psychic Attack",
+    "to": "MG Ultra",
+    "type": "absorb"
    }
   ]
  },
@@ -7312,6 +8660,11 @@
     "from": "Fred Astaire",
     "to": "Mały Książę",
     "type": "absorb"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Avi, Oskar83, @atutowy"
    }
   ]
  },
@@ -7330,6 +8683,11 @@
     "from": "Rocksteady",
     "to": "HIDE",
     "type": "variant"
+   },
+   {
+    "from": "Saint Bass City Rockers",
+    "to": "The Great Electronic Swindle",
+    "type": "absorb"
    }
   ]
  },
@@ -7337,6 +8695,21 @@
   "albums": [
    {
     "from": "Creator",
+    "to": "Paragon",
+    "type": "absorb"
+   },
+   {
+    "from": "Outlaw",
+    "to": "Paragon",
+    "type": "absorb"
+   },
+   {
+    "from": "Innocent",
+    "to": "Paragon",
+    "type": "absorb"
+   },
+   {
+    "from": "Everyman",
     "to": "Paragon",
     "type": "absorb"
    }
@@ -7353,6 +8726,11 @@
     "from": "Itch by a Leech",
     "to": "Sovereign Sore",
     "type": "absorb"
+   },
+   {
+    "from": "Carnivore as Well",
+    "to": "Sovereign Sore",
+    "type": "absorb"
    }
   ]
  },
@@ -7360,6 +8738,11 @@
   "albums": [
    {
     "from": "Beautiful",
+    "to": "Love Language",
+    "type": "absorb"
+   },
+   {
+    "from": "Lucy",
     "to": "Love Language",
     "type": "absorb"
    }
@@ -7380,6 +8763,11 @@
     "from": "I Refuse",
     "to": "INSAINT",
     "type": "absorb"
+   },
+   {
+    "from": "Daijoubu Desu",
+    "to": "Soul Kiss",
+    "type": "absorb"
    }
   ]
  },
@@ -7389,6 +8777,32 @@
     "from": "Brain Dead",
     "to": "The Sky, the Earth & All Between",
     "type": "absorb"
+   },
+   {
+    "from": "deep fake",
+    "to": "the classic symptoms of a broken spirit",
+    "type": "absorb"
+   },
+   {
+    "from": "a new moral low ground",
+    "to": "the classic symptoms of a broken spirit",
+    "type": "absorb"
+   },
+   {
+    "from": "when we were young",
+    "to": "the classic symptoms of a broken spirit",
+    "type": "absorb"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Architects, Winston McCall"
+   },
+   {
+    "from": "Architects feat. Mike Kerr"
+   },
+   {
+    "from": "Architects feat. Winston McCall"
    }
   ]
  },
@@ -7418,6 +8832,52 @@
     "from": "Changa",
     "to": "Egzotyka",
     "type": "absorb"
+   },
+   {
+    "from": "Szejk",
+    "to": "Egzotyka",
+    "type": "absorb"
+   },
+   {
+    "from": "C'est la vie",
+    "to": "Egzotyka",
+    "type": "absorb"
+   },
+   {
+    "from": "To nie jest hip-hop",
+    "to": "Egzotyka",
+    "type": "absorb"
+   },
+   {
+    "from": "Bumerang",
+    "to": "Egzotyka",
+    "type": "absorb"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Quebonafide ft. Solar, Wac Toja"
+   },
+   {
+    "from": "Quebonafide ft. Sfera Ebbasta"
+   },
+   {
+    "from": "Quebonafide ft. Czesław Mozil"
+   },
+   {
+    "from": "Quebonafide ft. KRS-One"
+   },
+   {
+    "from": "Quebonafide ft. Ifani"
+   },
+   {
+    "from": "Quebonafide ft. Young Lungs"
+   },
+   {
+    "from": "Quebonafide ft. Szesnasty"
+   },
+   {
+    "from": "Quebonafide ft. PlanBe, Szopeen"
    }
   ]
  },
@@ -7427,6 +8887,11 @@
     "from": "Phantom Self",
     "to": "Machine Messiah",
     "type": "absorb"
+   },
+   {
+    "from": "I Am the Enemy",
+    "to": "Machine Messiah",
+    "type": "absorb"
    }
   ]
  },
@@ -7434,6 +8899,16 @@
   "albums": [
    {
     "from": "Starburster",
+    "to": "Romance",
+    "type": "absorb"
+   },
+   {
+    "from": "I Love You",
+    "to": "Skinty Fia",
+    "type": "absorb"
+   },
+   {
+    "from": "It's Amazing to Be Young",
     "to": "Romance",
     "type": "absorb"
    }
@@ -7448,6 +8923,16 @@
    },
    {
     "from": "Napalm",
+    "to": "I Hate People On The Internet",
+    "type": "absorb"
+   },
+   {
+    "from": "Fuck the Hollywood Cult",
+    "to": "I Hate People On The Internet",
+    "type": "absorb"
+   },
+   {
+    "from": "Designer Sadness",
     "to": "I Hate People On The Internet",
     "type": "absorb"
    }
@@ -7474,6 +8959,11 @@
     "from": "The Remedy",
     "to": "The Mortal Coil",
     "type": "absorb"
+   },
+   {
+    "from": "Consume",
+    "to": "The Mortal Coil",
+    "type": "absorb"
    }
   ]
  },
@@ -7483,6 +8973,11 @@
     "from": "SIREN HYMN",
     "to": "PULSE",
     "type": "absorb"
+   },
+   {
+    "from": "Black Dove",
+    "to": "This Will Make You Feel Again",
+    "type": "absorb"
    }
   ]
  },
@@ -7490,6 +8985,51 @@
   "albums": [
    {
     "from": "Fear",
+    "to": "Artificial Void",
+    "type": "absorb"
+   },
+   {
+    "from": "Snowlover",
+    "to": "Angel",
+    "type": "absorb"
+   },
+   {
+    "from": "Sacrifice Me",
+    "to": "Angel",
+    "type": "absorb"
+   },
+   {
+    "from": "Dinner",
+    "to": "Gold",
+    "type": "absorb"
+   },
+   {
+    "from": "Rain",
+    "to": "Gold",
+    "type": "absorb"
+   },
+   {
+    "from": "Abandoned",
+    "to": "Artificial Void",
+    "type": "absorb"
+   },
+   {
+    "from": "Dark, Silent and Complete",
+    "to": "Angel",
+    "type": "absorb"
+   },
+   {
+    "from": "Fabulist",
+    "to": "Gold",
+    "type": "absorb"
+   },
+   {
+    "from": "Portrait",
+    "to": "Gold",
+    "type": "absorb"
+   },
+   {
+    "from": "Prototype",
     "to": "Artificial Void",
     "type": "absorb"
    }
@@ -7597,6 +9137,16 @@
     "from": "Angel of Darkness",
     "to": "What I'll Leave Behind",
     "type": "absorb"
+   },
+   {
+    "from": "Decay",
+    "to": "Hyperdaze",
+    "type": "absorb"
+   },
+   {
+    "from": "Year Of The Rat",
+    "to": "Hyperdaze",
+    "type": "absorb"
    }
   ]
  },
@@ -7647,6 +9197,11 @@
     "from": "Deus Ex Machina",
     "to": "Cult Classic",
     "type": "absorb"
+   },
+   {
+    "from": "BODY//TEMPLE",
+    "to": "Cult Classic",
+    "type": "absorb"
    }
   ]
  },
@@ -7656,6 +9211,16 @@
     "from": "RAINBOWS",
     "to": "Ignore This",
     "type": "absorb"
+   },
+   {
+    "from": "23, Never Me",
+    "to": "Zero",
+    "type": "absorb"
+   },
+   {
+    "from": "Bullet Farm",
+    "to": "Zero",
+    "type": "absorb"
    }
   ]
  },
@@ -7663,6 +9228,16 @@
   "albums": [
    {
     "from": "Valkyrie",
+    "to": "Rise Radiant",
+    "type": "absorb"
+   },
+   {
+    "from": "The Tempest",
+    "to": "Rise Radiant",
+    "type": "absorb"
+   },
+   {
+    "from": "Slow Violence",
     "to": "Rise Radiant",
     "type": "absorb"
    }
@@ -7675,12 +9250,32 @@
     "to": "Kx5",
     "type": "absorb"
    }
+  ],
+  "artist": [
+   {
+    "from": "Kx5, deadmau5, Kaskade, James French"
+   }
   ]
  },
  "Make Them Suffer": {
   "albums": [
    {
     "from": "Drown With Me",
+    "to": "How To Survive A Funeral",
+    "type": "absorb"
+   },
+   {
+    "from": "Old Souls",
+    "to": "Old Souls & Lord of Woe",
+    "type": "absorb"
+   },
+   {
+    "from": "Soul Decay",
+    "to": "How To Survive A Funeral",
+    "type": "absorb"
+   },
+   {
+    "from": "erase me",
     "to": "How To Survive A Funeral",
     "type": "absorb"
    }
@@ -7715,6 +9310,21 @@
     "from": "Blind Side",
     "to": "Sunshine Dust",
     "type": "absorb"
+   },
+   {
+    "from": "Out of Time",
+    "to": "Sunshine Dust",
+    "type": "absorb"
+   },
+   {
+    "from": "Dim",
+    "to": "Sunshine Dust",
+    "type": "absorb"
+   },
+   {
+    "from": "Dissent",
+    "to": "Sunshine Dust",
+    "type": "absorb"
    }
   ]
  },
@@ -7722,6 +9332,11 @@
   "albums": [
    {
     "from": "Evermore",
+    "to": "Empath",
+    "type": "absorb"
+   },
+   {
+    "from": "Genesis",
     "to": "Empath",
     "type": "absorb"
    }
@@ -7733,6 +9348,11 @@
     "from": "Sands Of Time",
     "to": "円環 -ENCORE",
     "type": "variant"
+   },
+   {
+    "from": "Rendaman",
+    "to": "円環 -ENCORE",
+    "type": "absorb"
    }
   ]
  },
@@ -7750,6 +9370,1962 @@
    {
     "from": "Come What May",
     "to": "Come What(ever) May",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Lil Uzi Vert": {
+  "artist": [
+   {
+    "from": "Lil Uzi Vert, Bring Me The Horizon"
+   },
+   {
+    "from": "Lil Uzi Vert, BABYMETAL"
+   },
+   {
+    "from": "Lil Uzi Vert, Travis Scott"
+   },
+   {
+    "from": "Lil Uzi Vert, Don Toliver"
+   },
+   {
+    "from": "Lil Uzi Vert, sped up nightcore, ArizonaTears"
+   },
+   {
+    "from": "Lil Uzi Vert, Nicki Minaj"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Werewolf (feat. Bring Me The Horizon)",
+    "to": "Pink Tape",
+    "type": "absorb"
+   },
+   {
+    "from": "HITTIN MY SHOULDER",
+    "to": "Red & White",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Muzz": {
+  "artist": [
+   {
+    "from": "MUZZ, Cammie Robinson"
+   }
+  ]
+ },
+ "Anup Sastry": {
+  "artist": [
+   {
+    "from": "Anup Sastry, Andy Cizek"
+   },
+   {
+    "from": "Anup Sastry, Chaney Crabb"
+   },
+   {
+    "from": "Anup Sastry, Mike Semesky"
+   },
+   {
+    "from": "Anup Sastry, Adam Bentley"
+   }
+  ]
+ },
+ "Becko": {
+  "artist": [
+   {
+    "from": "Becko, A.I.KA00"
+   },
+   {
+    "from": "Becko, DEATHNYANN"
+   },
+   {
+    "from": "Becko, Tired Violence"
+   }
+  ],
+  "albums": [
+   {
+    "from": "REB00T MYSELF (feat. Tired Violence)",
+    "to": "Present Day // Present Time",
+    "type": "absorb"
+   },
+   {
+    "from": "OPEN YOUR EYES",
+    "to": "Present Day // Present Time",
+    "type": "absorb"
+   },
+   {
+    "from": "EAT ME, DRINK ME!",
+    "to": "Present Day // Present Time",
+    "type": "absorb"
+   },
+   {
+    "from": "FOLLOW THE WHITE R@BBIT (feat. Hoshikuma Minami of DEATHNYANN)",
+    "to": "Present Day // Present Time",
+    "type": "absorb"
+   }
+  ]
+ },
+ "i_o": {
+  "artist": [
+   {
+    "from": "i_o, Tommy Trash, Daisy Guttridge"
+   },
+   {
+    "from": "i_o, Mike Schmid"
+   }
+  ]
+ },
+ "Perturbator": {
+  "artist": [
+   {
+    "from": "Perturbator, Carpenter Brut"
+   },
+   {
+    "from": "Perturbator, Dead Astronauts"
+   }
+  ]
+ },
+ "Kendrick Lamar": {
+  "artist": [
+   {
+    "from": "Kendrick Lamar, George Clinton, Thundercat"
+   },
+   {
+    "from": "Kendrick Lamar, Zacari"
+   },
+   {
+    "from": "Kendrick Lamar, Blxst & Amanda Reifer"
+   },
+   {
+    "from": "Kendrick Lamar, U2"
+   },
+   {
+    "from": "Kendrick Lamar, Rihanna"
+   }
+  ]
+ },
+ "Kaskade": {
+  "artist": [
+   {
+    "from": "Kaskade, Deadmau5, Skylar Grey"
+   },
+   {
+    "from": "Kaskade, Deadmau5, Haley Gibby"
+   },
+   {
+    "from": "Kaskade, The Moth & The Flame"
+   }
+  ]
+ },
+ "Kx5": {
+  "artist": [
+   {
+    "from": "deadmau5, Kaskade, Elderbrook, Kx5"
+   }
+  ]
+ },
+ "Sokół": {
+  "artist": [
+   {
+    "from": "Sokół feat. Pono"
+   },
+   {
+    "from": "Sokół Feat. Pono, Fred & Franek Kimono"
+   }
+  ]
+ },
+ "Death Tour": {
+  "artist": [
+   {
+    "from": "Death Tour, WARGASM (UK)"
+   }
+  ]
+ },
+ "Armin van Buuren": {
+  "artist": [
+   {
+    "from": "Armin van Buuren, Maor Levi"
+   },
+   {
+    "from": "Armin van Buuren, RBVLN"
+   },
+   {
+    "from": "Armin Van Buuren, Giuseppe Ottaviani"
+   }
+  ]
+ },
+ "Cartoon Theory": {
+  "artist": [
+   {
+    "from": "Cartoon Theory, Visenya, Morgan Thomaso"
+   }
+  ]
+ },
+ "slowthai": {
+  "artist": [
+   {
+    "from": "A$AP Rocky, slowthai"
+   }
+  ]
+ },
+ "The Acacia Strain": {
+  "artist": [
+   {
+    "from": "The Acacia Strain, Courtney LaPlante"
+   }
+  ]
+ },
+ "Moneybagg Yo": {
+  "artist": [
+   {
+    "from": "Moneybagg Yo, Future"
+   }
+  ]
+ },
+ "Young Thug": {
+  "artist": [
+   {
+    "from": "Young Thug, 21 Savage"
+   },
+   {
+    "from": "Young Thug, Future"
+   },
+   {
+    "from": "Young Thug, Drake"
+   },
+   {
+    "from": "Young Thug, Yak Gotti, Travis Scott, 21 Savage"
+   },
+   {
+    "from": "Young Thug, Juice WRLD, Nicki Minaj"
+   },
+   {
+    "from": "Young Thug, Lil Uzi Vert"
+   }
+  ]
+ },
+ "Quavo": {
+  "artist": [
+   {
+    "from": "Quavo, Future"
+   },
+   {
+    "from": "Quavo, Takeoff, Future"
+   }
+  ]
+ },
+ "Travis Scott": {
+  "artist": [
+   {
+    "from": "Travis Scott, Rob49, 21 Savage"
+   },
+   {
+    "from": "Travis Scott, Drake"
+   },
+   {
+    "from": "Travis Scott, Young Thug"
+   },
+   {
+    "from": "Travis Scott, James Blake, 21 Savage"
+   }
+  ]
+ },
+ "Morgan Page": {
+  "artist": [
+   {
+    "from": "Morgan Page, Lissie"
+   },
+   {
+    "from": "Morgan Page, Sick Individuals, Asia Whiteacre"
+   }
+  ],
+  "albums": [
+   {
+    "from": "The Longest Road (feat. Lissie)",
+    "to": "The Longest Road",
+    "type": "spelling",
+    "reason": "spelling: tagging/credit variant folds to canonical"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "The Longest Road (feat. Lissie) [Deadmau5 Remix]",
+    "to": "The Longest Road (feat. Lissie)",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ]
+ },
+ "James Francies": {
+  "artist": [
+   {
+    "from": "James Francies, Bilal"
+   }
+  ]
+ },
+ "Khruangbin": {
+  "artist": [
+   {
+    "from": "Khruangbin, Quantic"
+   }
+  ]
+ },
+ "Alesso": {
+  "artist": [
+   {
+    "from": "Alesso, CORSAK"
+   }
+  ]
+ },
+ "ZHU": {
+  "artist": [
+   {
+    "from": "ZHU, Yuna"
+   },
+   {
+    "from": "ZHU, Arctic Lake"
+   }
+  ]
+ },
+ "In Hearts Wake": {
+  "artist": [
+   {
+    "from": "In Hearts Wake, Joel Birch"
+   },
+   {
+    "from": "In Hearts Wake, Jamie Hails"
+   }
+  ]
+ },
+ "DJ Shadow": {
+  "artist": [
+   {
+    "from": "DJ Shadow, Nils Frahm"
+   }
+  ]
+ },
+ "Popek": {
+  "artist": [
+   {
+    "from": "Popek, Matheo"
+   }
+  ]
+ },
+ "Juno Reactor": {
+  "artist": [
+   {
+    "from": "Juno Reactor Featuring Gocoo"
+   }
+  ]
+ },
+ "Melleefresh": {
+  "artist": [
+   {
+    "from": "Melleefresh, Deadmau5"
+   },
+   {
+    "from": "Melleefresh, Rik Assfalg"
+   }
+  ]
+ },
+ "Machine Gun Kelly": {
+  "artist": [
+   {
+    "from": "Machine Gun Kelly ft. Halsey"
+   },
+   {
+    "from": "Machine Gun Kelly, Trippie Redd"
+   }
+  ]
+ },
+ "Getter": {
+  "artist": [
+   {
+    "from": "Getter feat. nothing, nowhere"
+   }
+  ]
+ },
+ "Anderson .Paak": {
+  "artist": [
+   {
+    "from": "Anderson .Paak feat. Snoop Dogg & The Last Artful, Dodgr"
+   }
+  ]
+ },
+ "sophie meiers": {
+  "artist": [
+   {
+    "from": "Sophie meiers feat. Nohidea"
+   }
+  ]
+ },
+ "Seven Lions": {
+  "artist": [
+   {
+    "from": "Seven Lions feat. Kerli"
+   }
+  ]
+ },
+ "Rylo Rodriguez": {
+  "artist": [
+   {
+    "from": "Rylo Rodriguez, Lil Yachty"
+   },
+   {
+    "from": "Rylo Rodriguez, Fridayy, Lil Durk"
+   },
+   {
+    "from": "Rylo Rodriguez, Lil Baby"
+   }
+  ]
+ },
+ "Sexyy Red": {
+  "artist": [
+   {
+    "from": "Sexyy Red, Sukihana"
+   },
+   {
+    "from": "Sexyy Red, Lil Durk"
+   }
+  ]
+ },
+ "Mick Jenkins": {
+  "artist": [
+   {
+    "from": "Mick Jenkins, Benny The Butcher"
+   },
+   {
+    "from": "Mick Jenkins, Freddie Gibbs"
+   }
+  ]
+ },
+ "EST Gee": {
+  "artist": [
+   {
+    "from": "EST Gee, Lil Baby"
+   },
+   {
+    "from": "EST Gee, Yo Gotti"
+   },
+   {
+    "from": "EST Gee, 42 Dugg"
+   }
+  ]
+ },
+ "DJ Khaled": {
+  "artist": [
+   {
+    "from": "DJ Khaled, Lil Baby, Future, Lil Uzi Vert"
+   }
+  ]
+ },
+ "Gucci Mane": {
+  "artist": [
+   {
+    "from": "Gucci Mane, J. Cole, Mike WiLL Made-It"
+   }
+  ]
+ },
+ "Metro Boomin": {
+  "artist": [
+   {
+    "from": "Metro Boomin, 21 Savage, Mustafa"
+   },
+   {
+    "from": "Metro Boomin, Don Toliver, Lil Uzi Vert"
+   }
+  ]
+ },
+ "Lil Tjay": {
+  "artist": [
+   {
+    "from": "Lil Tjay, Fivio Foreign"
+   },
+   {
+    "from": "Lil Tjay, Polo G"
+   }
+  ]
+ },
+ "Ken Carson": {
+  "artist": [
+   {
+    "from": "Ken Carson, Destroy Lonely"
+   }
+  ]
+ },
+ "Destroy Lonely": {
+  "artist": [
+   {
+    "from": "Destroy Lonely, Ken Carson"
+   }
+  ]
+ },
+ "Yeat": {
+  "artist": [
+   {
+    "from": "Yeat, Lil Uzi Vert"
+   }
+  ]
+ },
+ "DJ Drama": {
+  "artist": [
+   {
+    "from": "DJ Drama, A Boogie Wit da Hoodie, Lil Baby"
+   }
+  ]
+ },
+ "Diplo": {
+  "artist": [
+   {
+    "from": "Diplo, Kodak Black, Koe Wetzel"
+   },
+   {
+    "from": "Diplo, Mat.Joe"
+   }
+  ]
+ },
+ "Benny Benassi": {
+  "artist": [
+   {
+    "from": "Benny Benassi, Astrality"
+   },
+   {
+    "from": "Benny Benassi, Channing"
+   },
+   {
+    "from": "Benny Benassi, Chris Nasty, MazZz"
+   },
+   {
+    "from": "Benny Benassi feat. Serj Tankian"
+   }
+  ]
+ },
+ "Meduza": {
+  "artist": [
+   {
+    "from": "Meduza, DEL-30, Mali-Koa"
+   }
+  ]
+ },
+ "Chris Lake": {
+  "artist": [
+   {
+    "from": "Chris Lake, Aatig"
+   },
+   {
+    "from": "Chris Lake, Riva Starr, lau.ra"
+   }
+  ]
+ },
+ "Patient Sixty-Seven": {
+  "artist": [
+   {
+    "from": "Patient Sixty-Seven, Outline In Color"
+   },
+   {
+    "from": "Patient Sixty-Seven, Rory Rodriguez"
+   }
+  ]
+ },
+ "Julien-K": {
+  "artist": [
+   {
+    "from": "Julien-K, Aesthetic Perfection"
+   }
+  ]
+ },
+ "Original God": {
+  "artist": [
+   {
+    "from": "Lost Outrider, Original God, babychaos"
+   }
+  ]
+ },
+ "Turbowolf": {
+  "artist": [
+   {
+    "from": "Turbowolf, Mike Kerr"
+   }
+  ]
+ },
+ "Jaws the Shark": {
+  "artist": [
+   {
+    "from": "Jaws the Shark, Dinosaur Pile-Up"
+   }
+  ]
+ },
+ "deadmau5 & Kaskade": {
+  "artist": [
+   {
+    "from": "deadmau5 & Kaskade feat. Kx5 & Hayla"
+   }
+  ]
+ },
+ "Seatbelts": {
+  "artist": [
+   {
+    "from": "Seatbelts, Yoko Kanno, Yasuo Sano, Hitoshi Watanabe, Tsuneo Imahori, MATARO, Yasumitsu Suzuki, Eric Miyashiro, Koji Nishimura, Takuo Yamamoto, Yoichi Murata, Junichiro Taku, Masato Honda & Yabu"
+   },
+   {
+    "from": "Seatbelts, Leo Imai"
+   },
+   {
+    "from": "Seatbelts, Elena Satine"
+   },
+   {
+    "from": "Seatbelts, A-sha Mai Yamane"
+   }
+  ]
+ },
+ "Pegboard Nerds": {
+  "artist": [
+   {
+    "from": "Pegboard Nerds, Stonebank & Emel"
+   }
+  ]
+ },
+ "Nicholas Payton": {
+  "artist": [
+   {
+    "from": "Nicholas Payton, Ron Carter"
+   }
+  ]
+ },
+ "K/DA": {
+  "artist": [
+   {
+    "from": "K/DA, Madison Beer, Kim Petras, League of Legends"
+   }
+  ]
+ },
+ "Herbie Hancock": {
+  "artist": [
+   {
+    "from": "Herbie Hancock, Wallace Roney, Jimmy Heath, Buster Williams, Albert \"Tootie\" Heath"
+   }
+  ]
+ },
+ "Don Diablo": {
+  "artist": [
+   {
+    "from": "Don Diablo, Galantis"
+   }
+  ]
+ },
+ "Zeds Dead": {
+  "artist": [
+   {
+    "from": "Zeds Dead, MKLA"
+   }
+  ]
+ },
+ "Matthew Whitaker": {
+  "artist": [
+   {
+    "from": "Matthew Whitaker, Jon Batiste"
+   }
+  ]
+ },
+ "Sonny Rollins": {
+  "artist": [
+   {
+    "from": "Sonny Rollins, Han Bennink, Ruud Jacobs"
+   }
+  ]
+ },
+ "Eddie": {
+  "artist": [
+   {
+    "from": "EDDIE, Enya Angel"
+   }
+  ]
+ },
+ "The Qemists": {
+  "artist": [
+   {
+    "from": "The Qemists, Kenta Koie"
+   }
+  ]
+ },
+ "Nubya Garcia": {
+  "artist": [
+   {
+    "from": "Nubya Garcia, Ms Maurice, Cassie Kinoshi, Richie Seivwright"
+   }
+  ]
+ },
+ "Floating Points": {
+  "artist": [
+   {
+    "from": "Floating Points, Pharoah Sanders, London Symphony Orchestra"
+   }
+  ]
+ },
+ "Sons of Kemet": {
+  "artist": [
+   {
+    "from": "Sons Of Kemet, Kojey Radical"
+   }
+  ]
+ },
+ "Steve Aoki": {
+  "artist": [
+   {
+    "from": "Steve Aoki, GATTÜSO, Aukoustics, MKLA"
+   },
+   {
+    "from": "Steve Aoki, Chemical Surf, Zafrir, Max-Africana"
+   }
+  ]
+ },
+ "DJ Snake": {
+  "artist": [
+   {
+    "from": "DJ Snake, Malaa"
+   }
+  ]
+ },
+ "Swedish House Mafia": {
+  "artist": [
+   {
+    "from": "Swedish House Mafia, Ty Dolla $ign, 070 Shake"
+   }
+  ]
+ },
+ "The Knocks": {
+  "artist": [
+   {
+    "from": "The Knocks, Weezer, Royal & the Serpent"
+   }
+  ]
+ },
+ "Clean Bandit": {
+  "artist": [
+   {
+    "from": "Clean Bandit, Topic, Wes Nelson"
+   }
+  ]
+ },
+ "Papa Roach": {
+  "artist": [
+   {
+    "from": "Papa Roach, Fever333, Sueco"
+   }
+  ]
+ },
+ "Tommy Trash": {
+  "artist": [
+   {
+    "from": "Tommy Trash, Kiesza"
+   },
+   {
+    "from": "Tommy Trash, Daisy Guttridge"
+   }
+  ]
+ },
+ "Theo Croker": {
+  "artist": [
+   {
+    "from": "Theo Croker, Wyclef Jean"
+   }
+  ]
+ },
+ "No Mana": {
+  "artist": [
+   {
+    "from": "No Mana, Tommy Trash"
+   },
+   {
+    "from": "No Mana, i_o, Fay"
+   },
+   {
+    "from": "No Mana, Jessica Ess"
+   }
+  ]
+ },
+ "Bas": {
+  "artist": [
+   {
+    "from": "Bas, J. Cole, Lil Tjay"
+   }
+  ]
+ },
+ "Miles Davis": {
+  "artist": [
+   {
+    "from": "Miles Davis, John Coltrane, Cannonball Adderley, Bill Evans"
+   }
+  ]
+ },
+ "Lane 8": {
+  "artist": [
+   {
+    "from": "Lane 8, Julia Church"
+   }
+  ]
+ },
+ "Faithless": {
+  "artist": [
+   {
+    "from": "Faithless, Nathan Ball, Caleb Femi"
+   },
+   {
+    "from": "Faithless, Caleb Femi, Nathan Ball"
+   }
+  ]
+ },
+ "Curbi": {
+  "artist": [
+   {
+    "from": "Curbi, Tchami, Kyan Palmer"
+   }
+  ]
+ },
+ "Modeselektor": {
+  "artist": [
+   {
+    "from": "Modeselektor, Blixa Bargeld"
+   }
+  ]
+ },
+ "Jauz": {
+  "artist": [
+   {
+    "from": "Jauz, HALIENE"
+   }
+  ]
+ },
+ "Whethan": {
+  "artist": [
+   {
+    "from": "Whethan, Kevin George"
+   }
+  ]
+ },
+ "Yellow Claw": {
+  "artist": [
+   {
+    "from": "Yellow Claw, Crisis Era, Ramengvrl"
+   },
+   {
+    "from": "Yellow Claw, Sara Fajira"
+   }
+  ]
+ },
+ "Habstrakt": {
+  "artist": [
+   {
+    "from": "Habstrakt, Karra"
+   }
+  ]
+ },
+ "Clozee": {
+  "artist": [
+   {
+    "from": "CloZee, Maddy O'Neal"
+   }
+  ]
+ },
+ "Porter Robinson": {
+  "artist": [
+   {
+    "from": "Porter Robinson, Totally Enormous Extinct Dinosaurs"
+   }
+  ]
+ },
+ "Gorgon City": {
+  "artist": [
+   {
+    "from": "Gorgon City, Drama"
+   }
+  ]
+ },
+ "Oliver Heldens": {
+  "artist": [
+   {
+    "from": "Oliver Heldens, Syd Silvair"
+   }
+  ]
+ },
+ "Yosvany Terry": {
+  "artist": [
+   {
+    "from": "Yosvany Terry, Obed Calvaire, Michael Rodriguez, Yunior Terry, Osmany Paredes, Pedro Martinez, Gonzalo Rubalcaba"
+   }
+  ]
+ },
+ "Alison Wonderland": {
+  "artist": [
+   {
+    "from": "Alison Wonderland, Valentino Khan"
+   }
+  ]
+ },
+ "50 Cent": {
+  "artist": [
+   {
+    "from": "50 Cent, Olivia Longott"
+   }
+  ]
+ },
+ "Sia": {
+  "artist": [
+   {
+    "from": "Sia, Eddie Benjamin"
+   }
+  ]
+ },
+ "Alix Perez": {
+  "artist": [
+   {
+    "from": "Alix Perez, Monty"
+   },
+   {
+    "from": "Alix Perez, Spectrasoul, DRS"
+   }
+  ]
+ },
+ "Dreamers": {
+  "artist": [
+   {
+    "from": "DREAMERS, American Teeth, Wes Period"
+   }
+  ]
+ },
+ "Nubiyan Twist": {
+  "artist": [
+   {
+    "from": "Nubiyan Twist, Cherise"
+   }
+  ]
+ },
+ "Siamese": {
+  "artist": [
+   {
+    "from": "Siamese, Rory Rodriguez"
+   }
+  ]
+ },
+ "TOKiMONSTA": {
+  "artist": [
+   {
+    "from": "TOKiMONSTA, Anderson .Paak"
+   }
+  ]
+ },
+ "Shlohmo": {
+  "artist": [
+   {
+    "from": "Shlohmo, D33J"
+   }
+  ]
+ },
+ "Hybrid Minds": {
+  "artist": [
+   {
+    "from": "Hybrid Minds, Pola & Bryson"
+   }
+  ]
+ },
+ "Glass Beach": {
+  "artist": [
+   {
+    "from": "Glass Beach, Jhariah"
+   }
+  ]
+ },
+ "Loathe": {
+  "artist": [
+   {
+    "from": "Loathe, Vincente Void"
+   },
+   {
+    "from": "Loathe, Harry Rule"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Is It Really You?",
+    "to": "I Let It In And It Took Everything",
+    "type": "absorb"
+   },
+   {
+    "from": "Two-Way Mirror",
+    "to": "I Let It In And It Took Everything",
+    "type": "absorb"
+   },
+   {
+    "from": "Aggressive Evolution",
+    "to": "I Let It In And It Took Everything",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Love and Death": {
+  "artist": [
+   {
+    "from": "Love And Death, Keith Wallen"
+   }
+  ]
+ },
+ "O.R.k.": {
+  "artist": [
+   {
+    "from": "O.R.k., Serj Tankian"
+   }
+  ]
+ },
+ "Squid": {
+  "artist": [
+   {
+    "from": "Squid, Martha Skye Murphy"
+   }
+  ]
+ },
+ "Pupil Slicer": {
+  "artist": [
+   {
+    "from": "Pupil Slicer, Carson pace"
+   }
+  ]
+ },
+ "Harakiri for the Sky": {
+  "artist": [
+   {
+    "from": "Harakiri for the Sky, Neige"
+   }
+  ]
+ },
+ "Mal": {
+  "artist": [
+   {
+    "from": "Mal, Ingested, Noiseast"
+   }
+  ]
+ },
+ "Dance Gavin Dance": {
+  "artist": [
+   {
+    "from": "Dance Gavin Dance, Andrew Wells"
+   },
+   {
+    "from": "Dance Gavin Dance, Bilmuri"
+   }
+  ]
+ },
+ "Kiko King & creativemaze": {
+  "artist": [
+   {
+    "from": "Kiko King & creativemaze, Nimoe, Cocox22x"
+   }
+  ]
+ },
+ "Zedd": {
+  "artist": [
+   {
+    "from": "ZEDD, Jasmine Thompson"
+   }
+  ]
+ },
+ "Dillon Francis": {
+  "artist": [
+   {
+    "from": "Dillon Francis, Evie Irie"
+   }
+  ]
+ },
+ "Bassnectar": {
+  "artist": [
+   {
+    "from": "Bassnectar, Dorfex Bos"
+   }
+  ]
+ },
+ "The Avalanches": {
+  "artist": [
+   {
+    "from": "The Avalanches, MGMT, Johnny Marr"
+   }
+  ]
+ },
+ "Sigur Rós": {
+  "artist": [
+   {
+    "from": "Sigur Rós, Hilmar Örn Hilmarsson, Steindór Andersen, María Huld Markan Sigfúsdóttir"
+   }
+  ]
+ },
+ "Circle of Dust": {
+  "artist": [
+   {
+    "from": "Circle Of Dust, Celldweller"
+   }
+  ]
+ },
+ "Emigrate": {
+  "artist": [
+   {
+    "from": "Emigrate, Cardinal Copia"
+   },
+   {
+    "from": "Emigrate, Till Lindemann"
+   },
+   {
+    "from": "Emigrate, Benjamin Kowalewicz"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Eat You Alive",
+    "to": "Silent so long",
+    "type": "absorb"
+   },
+   {
+    "from": "Freeze My Mind",
+    "to": "The Persistence of Memory",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Theory of a Deadman": {
+  "artist": [
+   {
+    "from": "Theory Of A Deadman, Zero 9:36"
+   }
+  ]
+ },
+ "Tede": {
+  "artist": [
+   {
+    "from": "Tede, Sistars"
+   }
+  ]
+ },
+ "Carpenter Brut": {
+  "artist": [
+   {
+    "from": "Carpenter Brut, David Eugene Edwards"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Imaginary Fire",
+    "to": "Leather Terror",
+    "type": "absorb"
+   },
+   {
+    "from": "The Widow Maker",
+    "to": "Leather Terror",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Fit For A King": {
+  "artist": [
+   {
+    "from": "Fit For A King, Ryo Kinoshita"
+   }
+  ]
+ },
+ "Brodinski": {
+  "artist": [
+   {
+    "from": "Brodinski, Djedjotronic, Noob & Harvard Bass"
+   }
+  ]
+ },
+ "Laidback Luke": {
+  "artist": [
+   {
+    "from": "Laidback Luke, A-Trak"
+   }
+  ]
+ },
+ "OVERWERK": {
+  "artist": [
+   {
+    "from": "OVERWERK, Black Atlass"
+   }
+  ]
+ },
+ "Yppah": {
+  "artist": [
+   {
+    "from": "Yppah feat. Anomie Belle"
+   }
+  ]
+ },
+ "Taylor McFerrin": {
+  "artist": [
+   {
+    "from": "Taylor McFerrin feat. Robert Glasper and Thundercat"
+   }
+  ]
+ },
+ "Korzus": {
+  "artist": [
+   {
+    "from": "Korzus feat. Joăo Gordo"
+   },
+   {
+    "from": "Korzus feat. André Matos"
+   }
+  ]
+ },
+ "Venjent": {
+  "artist": [
+   {
+    "from": "Venjent, Oktae"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Going Nowhere",
+    "to": "R U Guna Move",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Guzior": {
+  "artist": [
+   {
+    "from": "GUZIOR ft. Oskar83"
+   }
+  ]
+ },
+ "Jetlagz": {
+  "artist": [
+   {
+    "from": "Jetlagz ft. PRO8L3M"
+   }
+  ]
+ },
+ "DJ Cam": {
+  "artist": [
+   {
+    "from": "Dj Cam feat. Chris James"
+   }
+  ]
+ },
+ "Booba": {
+  "artist": [
+   {
+    "from": "Booba feat Kaaris"
+   }
+  ]
+ },
+ "JAY Z": {
+  "artist": [
+   {
+    "from": "Jay Z Ft. Rihanna & Kanye West"
+   }
+  ]
+ },
+ "Robin Thicke": {
+  "artist": [
+   {
+    "from": "Robin Thicke ft Pharelle Williams"
+   }
+  ]
+ },
+ "David Guetta": {
+  "artist": [
+   {
+    "from": "David Guetta ft Sia"
+   },
+   {
+    "from": "David Guetta Ft. Zara Larsson"
+   }
+  ]
+ },
+ "A$AP Rocky": {
+  "artist": [
+   {
+    "from": "A$AP Rocky ft Skrillex"
+   }
+  ]
+ },
+ "Maroon 5": {
+  "artist": [
+   {
+    "from": "Maroon 5 ft Wiz Khalifa"
+   }
+  ]
+ },
+ "DJ Vadim": {
+  "artist": [
+   {
+    "from": "DJ Vadim ft  Gregory Blackman"
+   }
+  ]
+ },
+ "Avicii": {
+  "artist": [
+   {
+    "from": "Avicii ft Aloe Blacc"
+   }
+  ]
+ },
+ "Kanye West": {
+  "artist": [
+   {
+    "from": "Kanye West ft Big Sean, Pusha T, Chief Keef & Jadakiss"
+   }
+  ]
+ },
+ "Pang!": {
+  "artist": [
+   {
+    "from": "PANG! , Mags Duval"
+   }
+  ]
+ },
+ "Twin Shadow": {
+  "artist": [
+   {
+    "from": "Twin Shadow feat. Rainsford"
+   }
+  ]
+ },
+ "WWO": {
+  "artist": [
+   {
+    "from": "WWO feat Soundkail & Fu"
+   },
+   {
+    "from": "WWO feat. Dekadencja"
+   }
+  ]
+ },
+ "Casper": {
+  "artist": [
+   {
+    "from": "Casper ft  Kraftklub"
+   }
+  ]
+ },
+ "Żabson": {
+  "artist": [
+   {
+    "from": "Żabson ft. Quebonafide"
+   }
+  ]
+ },
+ "The Returners": {
+  "artist": [
+   {
+    "from": "The Returners feat. Włodi, Otsochodzi"
+   }
+  ]
+ },
+ "Seether": {
+  "artist": [
+   {
+    "from": "Seether feat. Amy Lee"
+   }
+  ]
+ },
+ "Lia Lia": {
+  "albums": [
+   {
+    "from": "Am I Human?",
+    "to": "Angst",
+    "type": "absorb"
+   },
+   {
+    "from": "What if I jump from a Bridge?",
+    "to": "Angst",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Hirax": {
+  "albums": [
+   {
+    "from": "El Rostro de la Muerte (The Face of Death)",
+    "to": "El Rostro de la Muerte",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Novelists": {
+  "albums": [
+   {
+    "from": "Prisoner",
+    "to": "Mourning the Dawn",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Introvert": {
+  "albums": [
+   {
+    "from": "Dreamers",
+    "to": "Mending Breaking",
+    "type": "absorb"
+   },
+   {
+    "from": "Somewhere Else",
+    "to": "Mending Breaking",
+    "type": "absorb"
+   },
+   {
+    "from": "Dreamers - Single",
+    "to": "Mending Breaking",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Jakub Zytecki": {
+  "albums": [
+   {
+    "from": "HEART",
+    "to": "Remind Me",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Annisokay": {
+  "albums": [
+   {
+    "from": "Time",
+    "to": "Abyss Pt I",
+    "type": "absorb"
+   },
+   {
+    "from": "Calamity",
+    "to": "Abyss Pt I",
+    "type": "absorb"
+   },
+   {
+    "from": "Human",
+    "to": "Abyss Pt I",
+    "type": "absorb"
+   },
+   {
+    "from": "Like a Parasite",
+    "to": "Aurora",
+    "type": "absorb"
+   }
+  ]
+ },
+ "VUKOVI": {
+  "albums": [
+   {
+    "from": "GUNGHO",
+    "to": "MY GOD HAS GOT A GUN",
+    "type": "absorb"
+   },
+   {
+    "from": "HADES",
+    "to": "NULA",
+    "type": "absorb"
+   },
+   {
+    "from": "LASSO",
+    "to": "NULA",
+    "type": "absorb"
+   },
+   {
+    "from": "KILL IT",
+    "to": "NULA",
+    "type": "absorb"
+   },
+   {
+    "from": "Behave",
+    "to": "Fall Better",
+    "type": "absorb"
+   },
+   {
+    "from": "QUENCH",
+    "to": "NULA",
+    "type": "absorb"
+   },
+   {
+    "from": "C.L.A.U.D.I.A",
+    "to": "Fall Better",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Lowlives": {
+  "albums": [
+   {
+    "from": "LIAR",
+    "to": "Freaking Out",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Kneecap": {
+  "albums": [
+   {
+    "from": "Liars Tale",
+    "to": "FENIAN",
+    "type": "absorb"
+   },
+   {
+    "from": "Smugglers & Scholars",
+    "to": "FENIAN",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Dream State": {
+  "albums": [
+   {
+    "from": "Primrose",
+    "to": "Primrose Path",
+    "type": "absorb"
+   },
+   {
+    "from": "Open Windows",
+    "to": "Primrose Path",
+    "type": "absorb"
+   },
+   {
+    "from": "Twenty Letters",
+    "to": "Primrose Path",
+    "type": "absorb"
+   },
+   {
+    "from": "Hand in Hand",
+    "to": "Primrose Path",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Bad/Love": {
+  "albums": [
+   {
+    "from": "Are You Ready?",
+    "to": "Mono No Aware, Pt. I",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Stand Atlantic": {
+  "albums": [
+   {
+    "from": "Criminal",
+    "to": "Was Here",
+    "type": "absorb"
+   },
+   {
+    "from": "FRENEMIES",
+    "to": "Was Here",
+    "type": "absorb"
+   },
+   {
+    "from": "LOVE U ANYWAY",
+    "to": "Was Here",
+    "type": "absorb"
+   },
+   {
+    "from": "NOSE BLEED",
+    "to": "Was Here",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Enmy": {
+  "albums": [
+   {
+    "from": "Demon Eyes",
+    "to": "Breaking Down",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Lindemann": {
+  "albums": [
+   {
+    "from": "Blut",
+    "to": "F & M",
+    "type": "absorb"
+   },
+   {
+    "from": "Steh auf",
+    "to": "F & M",
+    "type": "absorb"
+   },
+   {
+    "from": "Ich weiß es nicht",
+    "to": "F & M",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Sleep Token": {
+  "albums": [
+   {
+    "from": "Gods",
+    "to": "Sugar",
+    "type": "absorb"
+   },
+   {
+    "from": "Higher",
+    "to": "Sugar",
+    "type": "absorb"
+   },
+   {
+    "from": "Levitate",
+    "to": "Sugar",
+    "type": "absorb"
+   },
+   {
+    "from": "Alkaline",
+    "to": "This Place Will Become Your Tomb",
+    "type": "absorb"
+   },
+   {
+    "from": "Take Aim",
+    "to": "Sugar",
+    "type": "absorb"
+   },
+   {
+    "from": "The Offering",
+    "to": "Sugar",
+    "type": "absorb"
+   },
+   {
+    "from": "The Night Does Not Belong To God",
+    "to": "Sugar",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Bury Tomorrow": {
+  "albums": [
+   {
+    "from": "The Grey (VIXI)",
+    "to": "Cannibal",
+    "type": "absorb"
+   },
+   {
+    "from": "Better Below",
+    "to": "Cannibal",
+    "type": "absorb"
+   },
+   {
+    "from": "Choke",
+    "to": "Cannibal",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Time, The Valuator": {
+  "albums": [
+   {
+    "from": "Ivy",
+    "to": "Binary Pulse",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Figures": {
+  "albums": [
+   {
+    "from": "Underpaid Machinery",
+    "to": "Operating in Unsafe Mode",
+    "type": "absorb"
+   },
+   {
+    "from": "Someone Uninvited",
+    "to": "Operating in Unsafe Mode",
+    "type": "absorb"
+   }
+  ]
+ },
+ "3TEETH": {
+  "albums": [
+   {
+    "from": "Merchant of the Void",
+    "to": "EndEx",
+    "type": "absorb"
+   },
+   {
+    "from": "AFFLUENZA",
+    "to": "Metawar",
+    "type": "absorb"
+   },
+   {
+    "from": "EXXXIT",
+    "to": "Metawar",
+    "type": "absorb"
+   },
+   {
+    "from": "Scorpion",
+    "to": "EndEx",
+    "type": "absorb"
+   },
+   {
+    "from": "AMERICAN LANDFILL",
+    "to": "Metawar",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Sick Joy": {
+  "albums": [
+   {
+    "from": "i've got more than i need (and i don’t have much)",
+    "to": "WE'RE ALL GONNA F***ING DIE.",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Andromida": {
+  "albums": [
+   {
+    "from": "The Pathogen Downfall",
+    "to": "Hellscape",
+    "type": "absorb"
+   },
+   {
+    "from": "The Zenith",
+    "to": "Hellscape",
+    "type": "absorb"
+   },
+   {
+    "from": "Dystopia Foretold",
+    "to": "Hellscape",
+    "type": "absorb"
+   },
+   {
+    "from": "Isolated",
+    "to": "Hellscape",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Novelists FR": {
+  "albums": [
+   {
+    "from": "Somebody Else",
+    "to": "C'est la vie",
+    "type": "absorb"
+   },
+   {
+    "from": "Head Rush",
+    "to": "C'est la vie",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Processor": {
+  "albums": [
+   {
+    "from": "Your Madness",
+    "to": "Entourage",
+    "type": "absorb"
+   },
+   {
+    "from": "Billy Butcher",
+    "to": "Entourage",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Ninajirachi": {
+  "albums": [
+   {
+    "from": "Fuck My Computer",
+    "to": "I Love My Computer",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Gojira": {
+  "albums": [
+   {
+    "from": "Born For One Thing",
+    "to": "Amazonia",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Blood Red Shoes": {
+  "albums": [
+   {
+    "from": "Elijah",
+    "to": "Get Tragic",
+    "type": "absorb"
+   },
+   {
+    "from": "MURDER ME",
+    "to": "GHOSTS ON TAPE",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Viagra Boys": {
+  "albums": [
+   {
+    "from": "Sports",
+    "to": "Street Worms",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Thank You Scientist": {
+  "albums": [
+   {
+    "from": "Swarm",
+    "to": "Terraformer",
+    "type": "absorb"
+   },
+   {
+    "from": "FXMLDR",
+    "to": "Terraformer",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Crossfaith": {
+  "albums": [
+   {
+    "from": "God Speed",
+    "to": "AЯK",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Static Dress": {
+  "albums": [
+   {
+    "from": "sober exit(s)",
+    "to": "Prologue... (Comic Book Soundtrack)",
+    "type": "absorb"
+   }
+  ]
+ },
+ "coldrain": {
+  "albums": [
+   {
+    "from": "REVOLUTION",
+    "to": "THE SIDE EFFECTS",
+    "type": "absorb"
+   },
+   {
+    "from": "Coexist",
+    "to": "THE SIDE EFFECTS",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Kyuss": {
+  "albums": [
+   {
+    "from": "Green Machine",
+    "to": "Blues for the Red Sun",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Aimer": {
+  "albums": [
+   {
+    "from": "Brave Shine",
+    "to": "DAWN",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Clams Casino": {
+  "albums": [
+   {
+    "from": "Blast",
+    "to": "32 Levels",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Alice Glass": {
+  "albums": [
+   {
+    "from": "Without Love",
+    "to": "Alice Glass",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Jane's Addiction": {
+  "albums": [
+   {
+    "from": "Just Because",
+    "to": "Strays",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Seething Akira": {
+  "albums": [
+   {
+    "from": "Gravity",
+    "to": "Dysfunctional Wonderland",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Snow Strippers": {
+  "albums": [
+   {
+    "from": "So What If I'm A Freak",
+    "to": "Night Killaz Vol. 2",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Paledusk": {
+  "albums": [
+   {
+    "from": "I'm ready to die for my friends",
+    "to": "PALEHELL",
+    "type": "absorb"
+   }
+  ]
+ },
+ "Eat Your Heart Out": {
+  "albums": [
+   {
+    "from": "Down",
+    "to": "Can't Stay Forever",
+    "type": "absorb"
+   }
+  ]
+ },
+ "iRis.EXE": {
+  "albums": [
+   {
+    "from": "guts :)",
+    "to": "SMiLE",
+    "type": "absorb"
+   },
+   {
+    "from": "a thousand needles",
+    "to": "SMiLE",
+    "type": "absorb"
+   },
+   {
+    "from": "no poison of my own",
+    "to": "SMiLE",
+    "type": "absorb"
+   }
+  ]
+ },
+ "The Hellp": {
+  "albums": [
+   {
+    "from": "Go Somewhere",
+    "to": "LL",
+    "type": "absorb"
+   },
+   {
+    "from": "Caustic",
+    "to": "LL",
     "type": "absorb"
    }
   ]
