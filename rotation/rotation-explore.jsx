@@ -1240,7 +1240,7 @@ function ExploreView({ t, go, setPop, seed }) {
   const [relYear, setRelYear] = React.useState(null);     // drilled release YEAR within relDec, or null
   const [filtReady, setFiltReady] = React.useState(!!window.ROTATION_FILTER);   // filter-index (themes + release years) loaded
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
-  const [showN, setShowN] = React.useState(16);           // base visible rows (8/16/24/32 buttons; default 16)
+  const [showN, setShowN] = React.useState(16);           // base visible rows (16/32/64 buttons; default 16)
   const [extra, setExtra] = React.useState(0);            // extra rows revealed by "load more" beyond the base;
   const visN = showN + extra;                             //   reset by the count buttons and by any filter change
   const [disp, setDisp] = React.useState("list");         // ranked results: list ⇄ cover grid (Fuad 2026-07-07)
@@ -1443,7 +1443,7 @@ function ExploreView({ t, go, setPop, seed }) {
   // more rows to reveal? true whenever the ranked pool has more than we're currently showing —
   // works for artists (full list) AND albums/tracks (media pool), so load-more applies to all three.
   const more = items.length > visN;
-  // a new slice resets the load-more expansion (the chosen 8/16/24/32 base stays)
+  // a new slice resets the load-more expansion (the chosen 16/32/64 base stays)
   React.useEffect(() => { setExtra(0); }, [kind, year, fam, subIdx, cells, moodZone, vocals, attrSel, themeMask, relLo, relHi]);
   // how many artists the ACTIVE vocals filter drops purely for lacking vocals data — same "N without
   // data" honesty as the Liked audio sliders. Counts artists that pass every OTHER filter but have no
@@ -1589,7 +1589,7 @@ function ExploreView({ t, go, setPop, seed }) {
               <button data-on={disp === "grid"} onClick={() => setDisp("grid")}>grid</button>
             </div>
             <div className="r-seg">
-              {[8, 16, 24, 32].map(n => <button key={n} data-on={extra === 0 && showN === n} onClick={() => { setShowN(n); setExtra(0); }}>{n}</button>)}
+              {[16, 32, 64].map(n => <button key={n} data-on={extra === 0 && showN === n} onClick={() => { setShowN(n); setExtra(0); }}>{n}</button>)}
             </div>
           </div>
           {cells.size > 0 && kind !== "artists" && <div className="r-mono xp-note">filtered to {kind} by artists active in the selected slots</div>}
