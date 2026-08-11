@@ -38,8 +38,13 @@ function ShNeedle({ trackKey, artist, album, hue, onState }) {
   const set = (p) => { setPlaying(p); onState && onState(p); };
   React.useEffect(() => () => { if (ref.current) { ref.current.pause(); ref.current = null; } onState && onState(false); }, [trackKey, ck]);
   const hash = trackKey && window.ROTATION_PREVIEWS && window.ROTATION_PREVIEWS[trackKey];
+  // vetted iTunes fallback (preview-fallback.js — keyed artistSlug~trackSlug). Mirrors PreviewBtn:
+  // a curated URL for tracks the Spotify dump has no preview hash for. Preferred over the runtime
+  // iTunes search below (it's human-adjudicated to the right version). Only the runtime search needs
+  // the album title; a keyed fallback works in album-less contexts (the artist-header needle drop).
+  const vetted = trackKey && window.ROTATION_PREVIEW_FALLBACK && window.ROTATION_PREVIEW_FALLBACK[trackKey];
   React.useEffect(() => {
-    if (hash || !artist || !album || _shItCache.has(ck)) return;
+    if (hash || vetted || !artist || !album || _shItCache.has(ck)) return;
     const nrm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\(.*?\)|\[.*?\]/g, "").replace(/[^a-z0-9ぁ-んァ-ヶ一-龠]/gu, "");
     fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artist + " " + album)}&media=music&entity=song&limit=8`)
       .then(r => r.json())
@@ -51,8 +56,8 @@ function ShNeedle({ trackKey, artist, album, hue, onState }) {
         _shItCache.set(ck, url); setItUrl(url);
       })
       .catch(() => { _shItCache.set(ck, null); setItUrl(null); });
-  }, [ck, hash]);
-  const src = hash ? `https://p.scdn.co/mp3-preview/${hash}?cid=65b708073fc0480ea92a077233ca87bd` : itUrl;
+  }, [ck, hash, vetted]);
+  const src = hash ? `https://p.scdn.co/mp3-preview/${hash}?cid=65b708073fc0480ea92a077233ca87bd` : (vetted || itUrl);
   if (!src) return null;
   const toggle = (e) => {
     e.stopPropagation();
