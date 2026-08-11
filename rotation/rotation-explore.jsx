@@ -35,6 +35,7 @@ function mapWeights(R, year) {
 
 function exploreRank(R, kind, f, limit = 40) {
   const { year, fam, subIdx, cells } = f;
+  const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
   const hasCells = cells && cells.size > 0;
   const pass = f.pass && f.pass.active ? f.pass : null;   // theme/decade filter (filter-index); membership sets
   const inFam = (s) => fam == null || s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam); // inclusive: any sub in family (guard stale sub idx)
@@ -46,6 +47,7 @@ function exploreRank(R, kind, f, limit = 40) {
       if (pass && !pass.art.has(a.id)) continue;   // theme/decade: artist keeps ≥20% of matched-track plays
       if (subIdx >= 0) { if (a.s.indexOf(subIdx) < 0) continue; }
       else if (!inFam(a.s)) continue;
+      if (vocals && !vocalsPass(a.vx, vocals)) continue;   // vocals dimension (hides no-data artists)
       if (f.attrSel) {  // attributes-lens brush/click: filter the FULL universe, not the top-40 slice
         if (f.attrSel.mode === "artists") { if (!f.attrSel.keys.has(a.id)) continue; }
         else if (!a.s.some(ix => f.attrSel.keys.has(ix))) continue;
@@ -76,7 +78,30 @@ function exploreRank(R, kind, f, limit = 40) {
   else if (fam != null) src = src.filter(it => { const e = R.expById[it.aid]; return e && e.s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam); });
   if (hasCells) src = src.filter(it => tsPlays(R, it.aid, cells) > 0);
   if (pass) src = src.filter(it => kind === "albums" ? pass.alb.has(it.id) : pass.trk(it.id));   // it.id = artSlug~titleSlug
+  if (vocals) src = src.filter(it => { const e = R.expById[it.aid] || R.byId[it.aid]; return e && vocalsPass(e.vx, vocals); });   // vocals dimension
   return src.map(it => ({ ...it, kept: !!(R.byId[it.aid] || (R.expById && R.expById[it.aid])) })).sort((a, b) => b.value - a.value).slice(0, limit);
+}
+
+// ── vocals filter (the VOCALS dimension) ──
+// vx is the per-artist vocals code from build-data: "m"/"f"/"n" chars in lineup order,
+// "" = instrumental, undefined = no data. Options: any / male / female / mixed / nb / instrumental.
+//   male   = ONLY male vocalists     female = ONLY female vocalists
+//   mixed  = ≥2 DISTINCT genders     nb     = list contains a non-binary vocalist
+//   instr  = empty list (no vocals)
+// Returns false when the artist has no vocals data (undefined vx) under any active option — those
+// artists are hidden while the filter is on (see the "N without data" note).
+function vocalsPass(vx, opt) {
+  if (opt === "any") return true;
+  if (vx === undefined || vx === null) return false;   // no data → hidden under an active filter
+  const set = new Set(vx.split(""));                    // distinct gender chars
+  switch (opt) {
+    case "instrumental": return vx === "";
+    case "male":   return vx !== "" && set.size === 1 && set.has("m");
+    case "female": return vx !== "" && set.size === 1 && set.has("f");
+    case "nb":     return set.has("n");
+    case "mixed":  return set.size >= 2;
+    default: return true;
+  }
 }
 
 // ── mood lens (the former Mood page, folded in as a filter) ──
@@ -115,6 +140,7 @@ function mediaRank(M, R, meta, kind, f, limit) {
   const rows = kind === "albums" ? M.albums : M.tracks;
   const tailIdx = kind === "albums" ? 5 : 4;
   const { year, fam, subIdx, cells, moodZone } = f;
+  const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
   const pass = f.pass && f.pass.active ? f.pass : null;   // theme/decade filter (filter-index)
   const hasCells = cells && cells.size > 0, noYear = year == null;
   const playsInYear = (row, y) => { const t = row[tailIdx]; if (t == null) return 0; if (typeof t === "number") return t === y ? row[2] : 0; for (let i = 0; i < t.length; i += 2) if (t[i] === y) return t[i + 1]; return 0; };
@@ -125,6 +151,7 @@ function mediaRank(M, R, meta, kind, f, limit) {
     if (pass) { const aname = M.artists[row[1]] || "", key = R.slug(aname) + "~" + R.slug(row[0]); if (kind === "albums" ? !pass.alb.has(key) : !pass.trk(key)) continue; }
     if (subIdx >= 0) { if (!rec || !rec.s || rec.s.indexOf(subIdx) < 0) continue; }
     else if (fam != null) { if (!rec || !rec.s || !rec.s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam)) continue; }
+    if (vocals) { const vx = (rec && rec.vx !== undefined) ? rec.vx : (R.byId[m.aid] && R.byId[m.aid].vx); if (!vocalsPass(vx, vocals)) continue; }   // vocals dimension
     if (moodZone) { const af = R.AUDIO[m.aid]; if (!af || !inMoodZone(af, moodZone)) continue; }
     if (f.attrSel) {
       if (f.attrSel.mode === "artists") { if (!f.attrSel.keys.has(m.aid)) continue; }
@@ -1194,6 +1221,7 @@ function ExploreView({ t, go, setPop, seed }) {
   const [fam, setFam] = React.useState(null);             // family index, or null
   const [sub, setSub] = React.useState(null);             // subgenre NAME, or null
   const [cells, setCells] = React.useState(() => new Set());
+  const [vocals, setVocals] = React.useState("any");      // vocals dimension: any/male/female/mixed/nb/instrumental
   const [playing, setPlaying] = React.useState(false);
   const [lens, setLens] = React.useState("attributes");   // left surface: "texture" map · "mood" quadrant · "attributes" (default — no panning, best perf; Fuad 2026-07-15)
   const [attrSel, setAttrSel] = React.useState(null);     // attributes-lens brush selection ({mode, keys}) — filters the ranked list
@@ -1397,19 +1425,37 @@ function ExploreView({ t, go, setPop, seed }) {
   const mediaItems = React.useMemo(() => {
     if (kind === "artists" || !mediaReady || !mediaArtMeta) return null;
     // fetch a lookahead past what's visible so "load more" has rows ready and `more` is detectable
-    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { year, fam, subIdx, cells, moodZone, pass, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
-  }, [kind, mediaReady, mediaArtMeta, year, fam, subIdx, cells, moodZone, pass, visN, R, attrSel, lens]);
+    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { year, fam, subIdx, cells, moodZone, vocals, pass, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
+  }, [kind, mediaReady, mediaArtMeta, year, fam, subIdx, cells, moodZone, vocals, pass, visN, R, attrSel, lens]);
   // the attributes-lens selection now filters INSIDE the rank functions (full universe,
   // pre-slice) — the old post-filter ran on the top-40 and starved the list (Fuad 2026-07-14)
   const items = (kind !== "artists" && mediaItems) ? mediaItems.items
     // artists get the same visN+40 lookahead as mediaRank, so "load more" keeps expanding
     // past 40 instead of hitting the old hard cap (Fuad 2026-07-26)
-    : exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone, pass, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
+    : exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone, vocals, pass, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
   // more rows to reveal? true whenever the ranked pool has more than we're currently showing —
   // works for artists (full list) AND albums/tracks (media pool), so load-more applies to all three.
   const more = items.length > visN;
   // a new slice resets the load-more expansion (the chosen 8/16/24/32 base stays)
-  React.useEffect(() => { setExtra(0); }, [kind, year, fam, subIdx, cells, moodZone, attrSel, themeMask, relLo, relHi]);
+  React.useEffect(() => { setExtra(0); }, [kind, year, fam, subIdx, cells, moodZone, vocals, attrSel, themeMask, relLo, relHi]);
+  // how many artists the ACTIVE vocals filter drops purely for lacking vocals data — same "N without
+  // data" honesty as the Liked audio sliders. Counts artists that pass every OTHER filter but have no
+  // vx (kind === "artists" only; the note is about artists either way).
+  const vocalsNoData = React.useMemo(() => {
+    if (vocals === "any") return 0;
+    const pass = passAgg && passAgg.active ? passAgg : null;
+    const inFam = (s) => fam == null || s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam);
+    let n = 0;
+    for (const a of R.EXPLORE) {
+      if (a.vx !== undefined) continue;                 // has data — not a no-data drop
+      if (year != null && !(a.yp && a.yp[year])) continue;
+      if (pass && !pass.art.has(a.id)) continue;
+      if (subIdx >= 0) { if (a.s.indexOf(subIdx) < 0) continue; } else if (!inFam(a.s)) continue;
+      if (cells.size && !tsPlays(R, a.id, cells)) continue;
+      n++;
+    }
+    return n;
+  }, [R, vocals, year, fam, subIdx, cells, passAgg]);
   // mood-lens slices. The quadrant renders a STABLE universe of points (so dots persist across filter
   // changes and can transition opacity/size) and toggles which are "active" for the current slice;
   // facts/arc reflect the chosen zone too.
@@ -1447,6 +1493,7 @@ function ExploreView({ t, go, setPop, seed }) {
   else if (fam != null) chips.push(["genre", (R.FAMILIES.find(f => f.i === fam) || {}).family, () => setFam(null)]);
   if (moodZone) chips.push(["mood", MOOD_LABELS[moodZone], () => setMoodZone(null)]);
   if (cells.size) chips.push(["clock", cells.size + " slot" + (cells.size > 1 ? "s" : ""), () => setCells(new Set())]);
+  if (vocals !== "any") chips.push(["vocals", ({ male: "male", female: "female", mixed: "mixed", nb: "non-binary", instrumental: "instrumental" })[vocals] || vocals, () => setVocals("any")]);
   if (themeSel.size) chips.push(["theme", [...themeSel].map(b => themeNames[b]).filter(Boolean).join(" · "), clearTheme]);
   if (relLo != null) chips.push(["era", relYear != null ? relYear : relDec + "s", clearRel]);
 
@@ -1479,10 +1526,20 @@ function ExploreView({ t, go, setPop, seed }) {
               <span className="xp-flabel">Active</span>
               <div className="xp-chiprow">
                 {chips.map(([k, v, clr]) => <button key={k} className="xp-chip xp-chip-active" onClick={clr}><span className="xp-ck">{k}</span> {v} <span className="xp-x">✕</span></button>)}
-                <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYear(null); setFam(null); setSub(null); setCells(new Set()); setMoodZone(null); clearTheme(); clearRel(); }}>clear all</button>
+                <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYear(null); setFam(null); setSub(null); setCells(new Set()); setMoodZone(null); setVocals("any"); clearTheme(); clearRel(); }}>clear all</button>
               </div>
             </div>
           )}
+        </div>
+        {/* Vocals dimension: filter by who's singing. Composes with every other filter above. */}
+        <div className="xp-frow" style={{ marginTop: 10 }}>
+          <span className="xp-flabel">Vocals</span>
+          <div className="xp-chiprow">
+            {[["any", "Any"], ["male", "Male"], ["female", "Female"], ["mixed", "Mixed"], ["nb", "Non-binary"], ["instrumental", "Instrumental"]].map(([k, l]) =>
+              <button key={k} className="xp-chip" data-on={vocals === k} onClick={() => setVocals(vocals === k ? "any" : k)}>{l}</button>)}
+            {vocals !== "any" && vocalsNoData > 0 &&
+              <span className="r-mono xp-note" style={{ margin: 0, alignSelf: "center" }}>{vocalsNoData} without data</span>}
+          </div>
         </div>
       </div>
 

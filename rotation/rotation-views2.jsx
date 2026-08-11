@@ -559,14 +559,32 @@ function lifeBadge(life) {
   if (t === "g") return { txt: "Active", tone: "active" };   // living solo artists get no badge (noise)
   return null;
 }
-function ArtistMeta({ gender, life, size, seenLive, onTour }) {
+// VOCALS badge — mic glyph + "female + male vocals" (in lineup order), or "instrumental". Renders
+// only when the artist carries vocals data (vx: "m"/"f"/"n" chars, "" = instrumental; undefined = none).
+const _VOX_WORD = { m: "male", f: "female", n: "non-binary" };
+function VocalsBadge({ vx, size }) {
+  if (vx === undefined || vx === null) return null;
+  let text;
+  if (vx === "") text = "instrumental";
+  else {
+    const seen = [], order = [];   // preserve lineup order, drop consecutive/repeat dupes of the same gender
+    for (const ch of vx) { const w = _VOX_WORD[ch]; if (w && !seen.includes(w)) { seen.push(w); order.push(w); } }
+    text = order.join(" + ") + " vocals";
+  }
+  return (
+    <span className="r-mono" title="vocalist genders (MusicBrainz lineup / verified)"
+      style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid var(--rule-2)", color: "var(--ink-faint)" }}>
+      <span style={{ fontSize: (size || 12) - 1, lineHeight: 1 }}>🎤</span>{text}</span>
+  );
+}
+function ArtistMeta({ gender, life, size, seenLive, onTour, vx }) {
   const g = genderGlyph(gender);
   let b = lifeBadge(life);
   // a "disbanded" GROUP with fresh tour dates isn't disbanded — it reactivated (the Bleach
   // case). Deceased Persons keep their badge: their events are tribute billings, not comebacks.
   if (b && onTour && life && life.ended && life.type[0].toLowerCase() !== "p")
     b = { txt: "Reactivated", tone: "react", tip: `on record as disbanded${life.end ? " " + life.end : ""} — yet they have upcoming dates` };
-  if (!g && !b && !seenLive && !onTour) return null;
+  if (!g && !b && !seenLive && !onTour && vx === undefined) return null;
   // on-tour badge: amber — upcoming Ticketmaster dates around the configured markets
   const ot = onTour ? { txt: "On tour" + (onTour[0] > 1 ? " ×" + onTour[0] : ""), tip: `${onTour[0]} upcoming date${onTour[0] !== 1 ? "s" : ""} around your markets · next: ${onTour[1]}${onTour[2] ? " · " + onTour[2] : ""}` } : null;
   // seen-live badge: purple, so it doesn't fight the green "Active" badge sitting next to it
@@ -574,6 +592,7 @@ function ArtistMeta({ gender, life, size, seenLive, onTour }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 9, marginTop: 9, flexWrap: "wrap" }}>
       {g && <span title={g.label} style={{ fontSize: size || 16, lineHeight: 1, color: "var(--ink-soft)" }}>{g.ch}</span>}
+      <VocalsBadge vx={vx} size={size} />
       {b && <span className="r-mono" title={b.tip} style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid " + (b.tone === "active" ? "oklch(0.6 0.13 150 / .5)" : b.tone === "react" ? "oklch(0.62 0.16 45 / .5)" : "var(--rule-2)"), color: b.tone === "active" ? "oklch(0.72 0.15 150)" : b.tone === "react" ? "oklch(0.75 0.16 45)" : "var(--ink-faint)", cursor: b.tip ? "help" : undefined }}>{b.txt}</span>}
       {ot && <span className="r-mono" title={ot.tip} style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid oklch(0.68 0.14 70 / .55)", color: "oklch(0.79 0.13 75)", cursor: "help" }}>{ot.txt}</span>}
       {sl && <span className="r-mono" title={sl.tip} style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid oklch(0.6 0.16 305 / .55)", color: "oklch(0.74 0.14 305)", cursor: "help" }}>🎤 {sl.txt}</span>}
@@ -1364,7 +1383,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}
             {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
-          <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} onTour={a.onTour} />
+          <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} onTour={a.onTour} vx={a.vx} />
           {a.tags && a.tags.length > 0 && (
             <div style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap", alignItems: "center" }}>
               <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>last.fm</span>
