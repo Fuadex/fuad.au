@@ -511,8 +511,11 @@ function GenCover({ hue, name, size, radius, style, image, thumb }) {
       const id = R.slug(name);
       const a = R.byId[id];
       if (a && a.image) { image = a.image; thumb = a.thumb; }
-      // explorable (non-kept) artists carry only a Discogs thumbnail in R.THUMBS
-      else if (R.THUMBS && R.THUMBS[id]) { image = R.THUMBS[id]; thumb = R.THUMBS[id]; }
+      // explorable (non-kept) artists carry a 150px Discogs thumbnail in R.THUMBS, and — once the
+      // deferred rest bundle lands — a full-res (≈600px) image in R.THUMBS_HI. Use the hi-res for
+      // the `image` (large) slot so grid cards render crisp on retina; keep the 150px `thumb` for
+      // the small ranked rows. Same photo, just the right resolution per render size.
+      else if (R.THUMBS && R.THUMBS[id]) { const hi = R.THUMBS_HI && R.THUMBS_HI[id]; image = hi || R.THUMBS[id]; thumb = R.THUMBS[id]; }
     }
   }
   const h = hashInt(name || "x", 7);
@@ -549,9 +552,13 @@ function GenCover({ hue, name, size, radius, style, image, thumb }) {
   }
   const px = size || 96;
   const npx = typeof px === "number" ? px : 96;
+  // A non-numeric size (e.g. "100%") is a RESPONSIVE SQUARE CARD — it fills its grid column and,
+  // on retina, its physical pixels far exceed a 150px thumb. Treat those as "large" so they pull
+  // the full-res `image`; only small NUMERIC chips (rows, mini avatars ≤100px) keep the 150px thumb.
+  const large = typeof px !== "number" || npx > 100;
   // Real image when available: small sizes use the 150x thumb, large use the full uri.
   // The generated gradient stays underneath as a load-fallback (and shows if the img 404s).
-  const imgUrl = (npx <= 100 ? (thumb || image) : (image || thumb)) || "";
+  const imgUrl = (large ? (image || thumb) : (thumb || image)) || "";
   // backup image source: the Spotify alternate (R.SPOTIMG) — tried if the primary fails, before falling
   // back to the generated cover. Lets a dead Discogs/last.fm hotlink recover automatically.
   const R0 = (typeof window !== "undefined" && window.ROTATION) || null;

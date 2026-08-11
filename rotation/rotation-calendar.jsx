@@ -1243,6 +1243,20 @@ function CalendarView({ go, seed }) {
           background: var(--accent); border-radius: 2px;
           box-shadow: 0 0 0 1px color-mix(in oklab, var(--bg) 50%, transparent); }
         .bc-handle:hover .bc-grip { filter: brightness(1.15); width: 5px; }
+        /* ── Touch ergonomics (Fuad 2026-08-12: "dragging the window on mobile is cumbersome").
+           On coarse pointers ONLY, widen each handle's hit box to a 44px effective band (centred on
+           the edge via translateX(-22px)) and overflow it ±8px vertically, so a fingertip can grab
+           an edge without pixel-hunting. The VISIBLE grip stays slim (the box is transparent apart
+           from the centred 5px .bc-grip line); desktop/mouse rendering is untouched. The move-zone
+           between the handles already fills the strip, so only the edges needed help. */
+        @media (pointer: coarse) {
+          .bc-handle { width: 44px; transform: translateX(-22px); top: -8px; bottom: -8px; }
+          .bc-grip { width: 5px; }
+          .bc-handle:active .bc-grip { width: 7px; filter: brightness(1.2); }
+          /* the move-zone's grab cursor is meaningless on touch; keep it but ensure the whole
+             range band stays comfortably tappable (already top:0/bottom:0 full strip height). */
+          .bc-move { top: -6px; bottom: -6px; }
+        }
         /* HTML year label row (no SVG glyph stretch) */
         .bc-yearrow { position: relative; height: 12px; margin-top: 2px; }
         .bc-yearlbl { position: absolute; top: 0; text-align: center;
