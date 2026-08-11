@@ -240,6 +240,17 @@ const genderOf = (name) => {
   const o = aliasedByName(ORIGINS, name);
   return (o && o.gender) || _MB_VOX_GENDER.get(name) || "";
 };
+// ─────────── VOCALS (vocals.json, assembled from the phased MB/LLM/web vocals derivation) ───────────
+// slug → ["male","female","nonbinary",…] in lineup order. [] = instrumental act; ABSENT = unknown.
+// Shipped per-artist as a compact ORDER-PRESERVING code string: m=male f=female n=nonbinary,
+// "" (empty string) = instrumental, field ABSENT = no data. e.g. LTS ["female","male"] → "fm".
+const VOCALS = (() => { try { const v = JSON.parse(fs.readFileSync(path.join(__dirname, "vocals.json"), "utf8")); delete v._doc; return v; } catch (e) { return {}; } })();
+const _VOX_CH = { male: "m", female: "f", nonbinary: "n" };
+// returns the code string, "" for instrumental, or undefined when the slug has no vocals data.
+const vocalsCodeBySlug = (s) => {
+  if (!(s in VOCALS)) return undefined;
+  return (VOCALS[s] || []).map(g => _VOX_CH[g] || "").join("");
+};
 const lifeOf = (name) => {
   const pn = pinOf(name);
   if (pn && pn.clearLife) return null;
@@ -1057,6 +1068,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     origin: originOf(name),
     country: meta.country || (originOf(name) ? originOf(name).country.toLowerCase() : ""),
     gender: genderOf(name),     // "Male"/"Female"/"Other"/"" — solo artists only
+    ...(() => { const vx = vocalsCodeBySlug(slug(name)); return vx === undefined ? {} : { vx }; })(),  // vocals code (m/f/n, ""=instrumental); absent = no data
     life: lifeOf(name),         // { type, ended, end } → active/disbanded/deceased badge
     wd: wdOf(name),             // Wikidata slice: formation city+coords, dissolved, lineup+gender
   };
@@ -3247,6 +3259,7 @@ for (const [name, plays] of rankedArtists) {
   const _o = originOf(name);            // country/city tag → lets the Journey scope to a place
   if (_o) { rec.co = _o.country; if (_o.city) rec.ci = _o.city; }
   const _g = genderOf(name); const _gc = _g === "Female" ? "f" : _g === "Male" ? "m" : (_g === "Non-binary" || _g === "Other") ? "x" : ""; if (_gc) rec.g = _gc;   // f/m/x glyph (mini); "Not applicable" → none
+  const _vx = vocalsCodeBySlug(rec.id); if (_vx !== undefined) rec.vx = _vx;   // vocals code (m/f/n; ""=instrumental) — powers the Explore vocals chip; absent = no data
   const _lf = lifeOf(name); if (_lf) { rec.ty = _lf.type[0].toLowerCase(); if (_lf.ended) { rec.ed = 1; if (_lf.end) rec.en = +_lf.end || 0; } }
   if (EXPLORE.length < EXPLORE_YP_TOP) {
     const yc = artistYear.get(name) || new Map();

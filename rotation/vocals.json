@@ -1,0 +1,1180 @@
+{
+ "_doc": "artistSlug -> vocalist genders [\"male\",\"female\",\"nonbinary\"]. Empty array = instrumental act; key ABSENT = unknown. Built by .sptmp/vocals/merge.js from MB-lineup derivation + verified LLM/web classification. See rotation VOCALS dimension.",
+ "3teeth": [
+  "male"
+ ],
+ "9mm-parabellum-bullet": [
+  "male",
+  "male"
+ ],
+ "a-day-to-remember": [
+  "male"
+ ],
+ "a-pale-horse-named-death": [
+  "male"
+ ],
+ "a-perfect-circle": [
+  "male"
+ ],
+ "ac-dc": [
+  "male"
+ ],
+ "acid-drinkers": [
+  "male"
+ ],
+ "aimer": [
+  "male"
+ ],
+ "airbourne": [
+  "male"
+ ],
+ "alex-yarmak": [
+  "male"
+ ],
+ "alice-glass": [
+  "female"
+ ],
+ "alice-in-chains": [
+  "male",
+  "male"
+ ],
+ "alien-weaponry": [
+  "male"
+ ],
+ "alt": [
+  "male"
+ ],
+ "alt-blk-era": [
+  "female",
+  "female"
+ ],
+ "alter-bridge": [
+  "male"
+ ],
+ "anathema": [
+  "male",
+  "male",
+  "female"
+ ],
+ "andromida": [],
+ "animals-as-leaders": [],
+ "annihilator": [
+  "male"
+ ],
+ "annisokay": [
+  "male",
+  "male"
+ ],
+ "anthrax": [
+  "male"
+ ],
+ "anubis-gate": [
+  "male"
+ ],
+ "aphex-twin": [
+  "male"
+ ],
+ "apocalyptica": [],
+ "arch-enemy": [
+  "female"
+ ],
+ "architects": [
+  "male"
+ ],
+ "artillery": [
+  "male"
+ ],
+ "ashen": [
+  "male"
+ ],
+ "ashes-divide": [
+  "male"
+ ],
+ "asking-alexandria": [
+  "male"
+ ],
+ "austrian-death-machine": [
+  "male"
+ ],
+ "babymetal": [
+  "female"
+ ],
+ "bad-omens": [
+  "male"
+ ],
+ "bambie-thug": [
+  "nonbinary"
+ ],
+ "bassvictim": [
+  "female"
+ ],
+ "battle-tapes": [
+  "male"
+ ],
+ "becko": [
+  "male"
+ ],
+ "between-the-buried-and-me": [
+  "male"
+ ],
+ "biting-elbows": [
+  "male"
+ ],
+ "black-light-burns": [
+  "male"
+ ],
+ "black-river": [
+  "male"
+ ],
+ "blanck-mass": [
+  "male"
+ ],
+ "bleach": [
+  "female",
+  "female",
+  "female"
+ ],
+ "blood-red-shoes": [
+  "male",
+  "female"
+ ],
+ "bloodhound-gang": [
+  "male"
+ ],
+ "blue-stahli": [
+  "male"
+ ],
+ "boston-manor": [
+  "male"
+ ],
+ "bring-me-the-horizon": [
+  "male"
+ ],
+ "bullet-for-my-valentine": [
+  "male"
+ ],
+ "bury-tomorrow": [
+  "male"
+ ],
+ "cage-the-elephant": [
+  "male"
+ ],
+ "caligula-s-horse": [
+  "male"
+ ],
+ "calva-louise": [
+  "female"
+ ],
+ "caravan-palace": [
+  "female"
+ ],
+ "carcass": [
+  "male"
+ ],
+ "carpenter-brut": [
+  "male"
+ ],
+ "cassyette": [
+  "female"
+ ],
+ "celldweller": [
+  "male"
+ ],
+ "chalk": [
+  "male"
+ ],
+ "circle-of-dust": [
+  "male"
+ ],
+ "clams-casino": [
+  "male"
+ ],
+ "coaltar-of-the-deepers": [
+  "male"
+ ],
+ "coldrain": [
+  "male"
+ ],
+ "combichrist": [
+  "male"
+ ],
+ "coroner": [
+  "male"
+ ],
+ "cradle-of-filth": [
+  "male"
+ ],
+ "crosses": [
+  "male"
+ ],
+ "crossfaith": [
+  "male"
+ ],
+ "crystal-castles": [
+  "female"
+ ],
+ "crystal-method": [],
+ "daedric": [
+  "female"
+ ],
+ "daine": [
+  "nonbinary"
+ ],
+ "danger": [
+  "male"
+ ],
+ "david-bowie": [
+  "male"
+ ],
+ "daylight-dies": [
+  "male"
+ ],
+ "dead-pony": [
+  "female"
+ ],
+ "deadmau5": [
+  "male"
+ ],
+ "death-angel": [
+  "male"
+ ],
+ "death-grips": [
+  "male"
+ ],
+ "deathbyromy": [
+  "female"
+ ],
+ "decapitated": [
+  "male"
+ ],
+ "deftones": [
+  "male"
+ ],
+ "destiny-potato": [
+  "female"
+ ],
+ "destruction": [
+  "male"
+ ],
+ "devin-townsend": [
+  "male"
+ ],
+ "digitalism": [
+  "male"
+ ],
+ "dirtyphonics": [],
+ "dope": [
+  "male"
+ ],
+ "dragged-under": [
+  "male"
+ ],
+ "dream-state": [
+  "female"
+ ],
+ "dream-theater": [
+  "male"
+ ],
+ "dredg": [
+  "male"
+ ],
+ "drowning-pool": [
+  "male"
+ ],
+ "dz-deathrays": [
+  "male"
+ ],
+ "eat-your-heart-out": [
+  "female"
+ ],
+ "ecca-vandal": [
+  "female"
+ ],
+ "eisbrecher": [
+  "male"
+ ],
+ "ekkstacy": [
+  "male"
+ ],
+ "emigrate": [
+  "male"
+ ],
+ "emma-aibara": [
+  "female"
+ ],
+ "enmy": [
+  "male"
+ ],
+ "erra": [
+  "male",
+  "male"
+ ],
+ "eville": [
+  "female"
+ ],
+ "exodus": [
+  "male"
+ ],
+ "failure": [
+  "male"
+ ],
+ "faith-no-more": [
+  "male"
+ ],
+ "fear-factory": [
+  "male"
+ ],
+ "figures": [
+  "male"
+ ],
+ "filter": [
+  "male"
+ ],
+ "fka-rayne": [
+  "female"
+ ],
+ "fleshwater": [
+  "male",
+  "female"
+ ],
+ "fontaines-d-c": [
+  "male"
+ ],
+ "foo-fighters": [
+  "male"
+ ],
+ "four-year-strong": [
+  "male"
+ ],
+ "frost-children": [
+  "female",
+  "male"
+ ],
+ "gary-numan": [
+  "male"
+ ],
+ "god-is-an-astronaut": [
+  "male"
+ ],
+ "gojira": [
+  "male"
+ ],
+ "good-tiger": [
+  "male"
+ ],
+ "gorillaz": [
+  "male"
+ ],
+ "grabbitz": [
+  "male"
+ ],
+ "gramatik": [
+  "male"
+ ],
+ "grimes": [
+  "female"
+ ],
+ "guns-n-roses": [
+  "male"
+ ],
+ "gurren-lagann": [
+  "female",
+  "male"
+ ],
+ "hadouken": [
+  "male",
+  "female"
+ ],
+ "haken": [
+  "male"
+ ],
+ "haru-nemuri": [
+  "female"
+ ],
+ "health": [
+  "male"
+ ],
+ "heartlay": [
+  "male"
+ ],
+ "heathen": [
+  "male"
+ ],
+ "hellhills": [
+  "male"
+ ],
+ "helloween": [
+  "male"
+ ],
+ "high-on-fire": [
+  "male"
+ ],
+ "hilltop-hoods": [
+  "male"
+ ],
+ "him": [
+  "male"
+ ],
+ "hirax": [
+  "male"
+ ],
+ "hiroyuki-sawano": [],
+ "hollywood-undead": [
+  "male",
+  "male",
+  "male",
+  "male",
+  "male"
+ ],
+ "holy-wars": [
+  "female"
+ ],
+ "house-of-protection": [
+  "male"
+ ],
+ "how-to-destroy-angels": [
+  "female"
+ ],
+ "i-o": [
+  "male"
+ ],
+ "i-scintilla": [
+  "female"
+ ],
+ "idiot-pilot": [
+  "male"
+ ],
+ "in-extremo": [
+  "male",
+  "male",
+  "male"
+ ],
+ "in-flames": [
+  "male"
+ ],
+ "in6n": [
+  "male"
+ ],
+ "introvert": [
+  "male"
+ ],
+ "iris-exe": [
+  "female"
+ ],
+ "jakub-zytecki": [
+  "male"
+ ],
+ "jamal": [
+  "male"
+ ],
+ "james-and-the-cold-gun": [
+  "male"
+ ],
+ "jane-s-addiction": [
+  "male"
+ ],
+ "jeff-loomis": [
+  "male"
+ ],
+ "joel-nielsen": [
+  "male"
+ ],
+ "jonathan-davis": [
+  "male"
+ ],
+ "junkie-xl": [
+  "male"
+ ],
+ "kabanos": [
+  "male"
+ ],
+ "kamelot": [
+  "male"
+ ],
+ "karen-di": [
+  "female"
+ ],
+ "karnivool": [
+  "male"
+ ],
+ "kat": [
+  "male"
+ ],
+ "kendrick-lamar": [
+  "male"
+ ],
+ "kevin-penkin": [
+  "male"
+ ],
+ "kneecap": [
+  "male"
+ ],
+ "knife-party": [],
+ "korn": [
+  "male"
+ ],
+ "korpiklaani": [
+  "male"
+ ],
+ "kreator": [
+  "male"
+ ],
+ "kyuss": [
+  "male"
+ ],
+ "l7": [
+  "female"
+ ],
+ "ladybaby": [
+  "female",
+  "male"
+ ],
+ "lake-malice": [
+  "female"
+ ],
+ "landmvrks": [
+  "male"
+ ],
+ "lantl-s": [
+  "male"
+ ],
+ "le-castle-vania": [
+  "male"
+ ],
+ "lia-lia": [
+  "female"
+ ],
+ "lil-uzi-vert": [
+  "nonbinary"
+ ],
+ "limp-bizkit": [
+  "male"
+ ],
+ "lindemann": [
+  "male"
+ ],
+ "ling-tosite-sigure": [
+  "female",
+  "male"
+ ],
+ "linkin-park": [
+  "male",
+  "female"
+ ],
+ "lisa": [
+  "female"
+ ],
+ "loathe": [
+  "male",
+  "male"
+ ],
+ "lock-the-basement": [
+  "male"
+ ],
+ "lowlives": [
+  "male"
+ ],
+ "m-i-a": [
+  "female"
+ ],
+ "m-tley-cr-e": [
+  "male"
+ ],
+ "machine-girl": [
+  "male"
+ ],
+ "machine-head": [
+  "male"
+ ],
+ "madeon": [
+  "male"
+ ],
+ "magdalena-bay": [
+  "female"
+ ],
+ "make-them-suffer": [
+  "male",
+  "female"
+ ],
+ "man-with-a-mission": [
+  "male",
+  "male"
+ ],
+ "marilyn-manson": [
+  "male"
+ ],
+ "martin-garrix": [
+  "male"
+ ],
+ "mass-of-the-fermenting-dregs": [
+  "female"
+ ],
+ "massive-attack": [
+  "male",
+  "male"
+ ],
+ "matt-lange": [
+  "male"
+ ],
+ "megadeth": [
+  "male"
+ ],
+ "melt-banana": [
+  "female"
+ ],
+ "meshuggah": [
+  "male"
+ ],
+ "metallica": [
+  "male"
+ ],
+ "metrik": [
+  "male"
+ ],
+ "mick-gordon": [
+  "male"
+ ],
+ "ministry": [
+  "male"
+ ],
+ "modwheelmood": [
+  "male"
+ ],
+ "mogwai": [],
+ "monuments": [
+  "male"
+ ],
+ "moodring": [
+  "male"
+ ],
+ "mortal-sin": [
+  "male"
+ ],
+ "mot-rhead": [
+  "male"
+ ],
+ "motorhead": [
+  "male"
+ ],
+ "muse": [
+  "male"
+ ],
+ "muzz": [
+  "male"
+ ],
+ "my-first-story": [
+  "male"
+ ],
+ "my-ticket-home": [
+  "male"
+ ],
+ "n3b": [
+  "male"
+ ],
+ "nero": [
+  "female"
+ ],
+ "nevermore": [
+  "male"
+ ],
+ "nightwish": [
+  "male",
+  "female"
+ ],
+ "nik-nocturnal": [
+  "male"
+ ],
+ "ninajirachi": [
+  "female"
+ ],
+ "nine-inch-nails": [
+  "male"
+ ],
+ "nirvana": [
+  "male"
+ ],
+ "northlane": [
+  "male"
+ ],
+ "nothing-more": [
+  "male"
+ ],
+ "nothing-s-carved-in-stone": [
+  "male"
+ ],
+ "novelists": [
+  "female"
+ ],
+ "novelists-fr": [
+  "female"
+ ],
+ "novembre": [
+  "male"
+ ],
+ "number-girl": [
+  "male"
+ ],
+ "nutronic": [
+  "male"
+ ],
+ "ocean-grove": [
+  "male"
+ ],
+ "olly-steele": [
+  "male"
+ ],
+ "onslaught": [
+  "male"
+ ],
+ "opeth": [
+  "male"
+ ],
+ "orax": [
+  "male"
+ ],
+ "orgy": [
+  "male"
+ ],
+ "otto-s-daughter": [
+  "female"
+ ],
+ "overkill": [
+  "male"
+ ],
+ "ozzy-osbourne": [
+  "male"
+ ],
+ "p-o-d": [
+  "male"
+ ],
+ "paledusk": [
+  "male"
+ ],
+ "paradise-lost": [
+  "male"
+ ],
+ "paranoid-void": [],
+ "pearl-jam": [
+  "male"
+ ],
+ "pendulum": [
+  "male"
+ ],
+ "periphery": [
+  "male"
+ ],
+ "perturbator": [
+  "male"
+ ],
+ "pezet": [
+  "male"
+ ],
+ "phaseone": [
+  "male"
+ ],
+ "pixies": [
+  "male"
+ ],
+ "placebo": [
+  "male"
+ ],
+ "poets-of-the-fall": [
+  "male"
+ ],
+ "polaris": [
+  "male",
+  "male"
+ ],
+ "poppy": [
+  "male"
+ ],
+ "porcupine-tree": [
+  "male"
+ ],
+ "primus": [
+  "male"
+ ],
+ "pro8l3m": [
+  "male"
+ ],
+ "profiler": [
+  "male"
+ ],
+ "psy": [
+  "male"
+ ],
+ "puddle-of-mudd": [
+  "male"
+ ],
+ "puscifer": [
+  "male",
+  "female"
+ ],
+ "quebonafide": [
+  "male"
+ ],
+ "queens-of-the-stone-age": [
+  "male"
+ ],
+ "rage-against-the-machine": [
+  "male"
+ ],
+ "rammstein": [
+  "male"
+ ],
+ "raubtier": [
+  "male"
+ ],
+ "red-hot-chili-peppers": [
+  "male"
+ ],
+ "redhook": [
+  "female"
+ ],
+ "reebz": [
+  "female"
+ ],
+ "refused": [
+  "male"
+ ],
+ "resolve": [
+  "male"
+ ],
+ "rezz": [],
+ "rob-zombie": [
+  "male"
+ ],
+ "romes": [
+  "male"
+ ],
+ "rootwater": [
+  "male"
+ ],
+ "rush": [
+  "male"
+ ],
+ "sabaton": [
+  "male"
+ ],
+ "saint-agnes": [
+  "female",
+  "male"
+ ],
+ "scars-on-broadway": [
+  "male"
+ ],
+ "seatbelts": [
+  "female",
+  "male"
+ ],
+ "seething-akira": [
+  "male"
+ ],
+ "sepultura": [
+  "male"
+ ],
+ "serj-tankian": [
+  "male"
+ ],
+ "seven-lions": [
+  "male"
+ ],
+ "shining": [
+  "male"
+ ],
+ "sick-joy": [
+  "male"
+ ],
+ "siiickbrain": [
+  "female"
+ ],
+ "skyharbor": [
+  "male"
+ ],
+ "skywalker": [
+  "male"
+ ],
+ "slayer": [
+  "male"
+ ],
+ "sleep-token": [
+  "male"
+ ],
+ "slipknot": [
+  "male"
+ ],
+ "slow-crush": [
+  "female"
+ ],
+ "smashing-pumpkins": [
+  "male"
+ ],
+ "snake-eyes": [
+  "male"
+ ],
+ "snow-strippers": [
+  "female"
+ ],
+ "sodom": [
+  "male"
+ ],
+ "sokoninaru": [
+  "male"
+ ],
+ "sonoio": [
+  "male"
+ ],
+ "soundgarden": [
+  "male"
+ ],
+ "spiritbox": [
+  "female"
+ ],
+ "split-chain": [
+  "male"
+ ],
+ "stain-the-canvas": [
+  "male"
+ ],
+ "stand-atlantic": [
+  "female"
+ ],
+ "static-dress": [
+  "male"
+ ],
+ "steven-wilson": [
+  "male"
+ ],
+ "stone-sour": [
+  "male"
+ ],
+ "stone-temple-pilots": [
+  "male"
+ ],
+ "story-of-hope": [
+  "female"
+ ],
+ "strapping-young-lad": [
+  "male"
+ ],
+ "suicidal-tendencies": [
+  "male"
+ ],
+ "system-of-a-down": [
+  "male",
+  "male"
+ ],
+ "tankard": [
+  "male"
+ ],
+ "teen-mortgage": [
+  "male"
+ ],
+ "tesseract": [
+  "male"
+ ],
+ "testament": [
+  "male"
+ ],
+ "textures": [
+  "male"
+ ],
+ "thank-you-scientist": [
+  "male"
+ ],
+ "the-anix": [
+  "male"
+ ],
+ "the-bloody-beetroots": [
+  "male"
+ ],
+ "the-butterfly-effect": [
+  "male"
+ ],
+ "the-crystal-method": [
+  "male"
+ ],
+ "the-cure": [
+  "male"
+ ],
+ "the-devin-townsend-project": [
+  "male"
+ ],
+ "the-dillinger-escape-plan": [
+  "male"
+ ],
+ "the-glitch-mob": [],
+ "the-hellp": [
+  "male"
+ ],
+ "the-mad-capsule-markets": [
+  "male"
+ ],
+ "the-misfits": [
+  "male"
+ ],
+ "the-pineapple-thief": [
+  "male"
+ ],
+ "the-police": [
+  "male"
+ ],
+ "the-prodigy": [
+  "male"
+ ],
+ "the-rolling-stones": [
+  "male",
+  "male",
+  "male"
+ ],
+ "the-smashing-pumpkins": [
+  "male"
+ ],
+ "the-smiths": [
+  "male"
+ ],
+ "the-word-alive": [
+  "male"
+ ],
+ "the-xx": [
+  "female",
+  "male"
+ ],
+ "thornhill": [
+  "male"
+ ],
+ "time-the-valuator": [
+  "male"
+ ],
+ "to-whom-it-may": [
+  "male"
+ ],
+ "toby-fox": [],
+ "tokio-hotel": [
+  "male"
+ ],
+ "tool": [
+  "male"
+ ],
+ "toronto-is-broken": [
+  "male"
+ ],
+ "trash-boat": [
+  "male"
+ ],
+ "trent-reznor": [
+  "male"
+ ],
+ "trent-reznor-and-atticus-ross": [
+  "male"
+ ],
+ "trevor-morris": [
+  "male"
+ ],
+ "tricot": [
+  "female"
+ ],
+ "triptykon": [
+  "male",
+  "male"
+ ],
+ "trivium": [
+  "male"
+ ],
+ "tss": [
+  "male"
+ ],
+ "tsushimamire": [
+  "female"
+ ],
+ "tv-on-the-radio": [
+  "male"
+ ],
+ "type-o-negative": [
+  "male"
+ ],
+ "tyrkouaz": [
+  "male"
+ ],
+ "uneven-structure": [
+  "male"
+ ],
+ "unlike-pluto": [
+  "male"
+ ],
+ "unprocessed": [
+  "male"
+ ],
+ "vader": [
+  "male"
+ ],
+ "vector-seven": [],
+ "venjent": [
+  "male"
+ ],
+ "viagra-boys": [
+  "male"
+ ],
+ "void-of-vision": [
+  "male"
+ ],
+ "vola": [
+  "male"
+ ],
+ "voyager": [
+  "male"
+ ],
+ "vukovi": [
+  "female"
+ ],
+ "wargasm": [
+  "female",
+  "male"
+ ],
+ "wargasm-uk": [
+  "female",
+  "male"
+ ],
+ "we-came-as-romans": [
+  "male"
+ ],
+ "wheel": [
+  "male"
+ ],
+ "while-she-sleeps": [
+  "male"
+ ],
+ "who-shot-scott": [
+  "male"
+ ],
+ "wilderun": [
+  "male"
+ ],
+ "windwaker": [
+  "male"
+ ],
+ "woods-of-ypres": [
+  "male"
+ ],
+ "yakui-the-maid": [
+  "female"
+ ],
+ "yellow-machinegun": [
+  "female"
+ ],
+ "yoko-kanno": [
+  "female"
+ ],
+ "yuna-kil": [
+  "female"
+ ],
+ "zazen-boys": [
+  "male"
+ ],
+ "zedd": [
+  "female"
+ ],
+ "zheani": [
+  "female"
+ ]
+}
