@@ -27,6 +27,7 @@ const NAV_FULL = [
   ["shelves", "Records"],
   ["stories", "Stories"],
   ["gigs", "Gigs"],
+  ["liked", "Liked"],   // promoted to the navbar 2026-08-13 (Fuad: "this is becoming something nice")
   ["live", "Live"],
   // ["spotify", "Spotify"],   // hidden again 2026-07-18 (Fuad) — page stays routable at #spotify
 ];
