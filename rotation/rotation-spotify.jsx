@@ -40,10 +40,13 @@ function SpotifyView({ go }) {
 
   return (
     <div className="r-view">
-      <div className="r-viewhead"><div>
-        <div className="r-kicker">Spotify · extended history · {d.totals.span[0]} → {d.totals.span[1]}</div>
-        <h1 className="r-title">What held my <em>attention</em><span className="dot">.</span></h1>
-      </div></div>
+      <div className="r-viewhead">
+        <div>
+          <div className="r-kicker">Spotify · extended history · {d.totals.span[0]} → {d.totals.span[1]}</div>
+          <h1 className="r-title">What held my <em>attention</em><span className="dot">.</span></h1>
+        </div>
+        <button className="r-back" style={{ marginBottom: 0 }} onClick={() => go("liked")}>♥ liked songs →</button>
+      </div>
       <div className="r-card" style={{ padding: "10px 16px", marginBottom: "var(--gap)", fontFamily: "var(--mono)", fontSize: 11, color: "var(--ink-faint)" }}>
         the export knows what last.fm can't: how long each song actually played, how it ended, and the shape of every session
       </div>
@@ -303,5 +306,184 @@ function SpotifyPersona({ P }) {
         </div>
       </div>
     </React.Fragment>
+  );
+}
+
+// ─── LikedView (#liked) — the ~3,592 Spotify saved songs as a navigable, bucketed playlist ───
+// The owner's ask: "a much easier playlist to sort through and use alternatively to the Spotify
+// system." Data = liked-meta.js (window.ROTATION_LIKED_META, a lazy sidecar built by build-data.js
+// joining the saved-tracks source against the scrobble record) + its bucket legend. Every row is
+// keyed slug(artist)~slug(track), so a click opens the TrackView when the media index knows the
+// song, and the per-row ♪ button always jumps to the Spotify track page (works even for saves that
+// were never scrobbled). Windowed render for the 3.6k rows — only the visible slice mounts.
+const LIKED_BUCKET_COLOR = {   // hue per derived bucket — tuned to the app's oklch palette
+  fresh: "oklch(0.72 0.15 150)", doorway: "oklch(0.7 0.15 280)", canon: "var(--accent)",
+  lived: "oklch(0.7 0.13 45)", left: "var(--ink-faint)", mid: "var(--ink-soft)",
+};
+function LikedRow({ r, legendByCode, go, navable }) {
+  const [id, plays, firstYear, code] = r.meta;
+  const leg = legendByCode[code] || { key: "mid", label: "Mid" };
+  const color = LIKED_BUCKET_COLOR[leg.key] || "oklch(0.68 0.12 320)";  // brand labels get a fixed violet
+  const canNav = navable && go;
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 10, height: 46, padding: "0 4px", borderBottom: "1px solid var(--rule)", cursor: canNav ? "pointer" : "default" }}
+      onClick={canNav ? () => go("track", r.key) : undefined}>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: canNav ? "var(--ink)" : "var(--ink-soft)" }}>{r.track}</div>
+        <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.artist}</div>
+      </div>
+      <span className="r-chip" style={{ borderColor: color, color, textTransform: "none", cursor: "inherit" }}>{leg.label}</span>
+      <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)", width: 46, textAlign: "right" }}>{plays ? plays + "p" : "—"}</span>
+      <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 34, textAlign: "right" }}>{firstYear || "·"}</span>
+      <a href={"https://open.spotify.com/track/" + id} target="_blank" rel="noopener noreferrer" title="open on Spotify"
+        onClick={e => e.stopPropagation()}
+        style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 26, height: 26, borderRadius: 999, border: "1px solid var(--rule-2)", color: "oklch(0.72 0.17 150)", textDecoration: "none", flexShrink: 0, fontSize: 13 }}>♪</a>
+    </div>
+  );
+}
+function LikedView({ go }) {
+  const [ready, setReady] = React.useState(!!window.ROTATION_LIKED_META);
+  const [failed, setFailed] = React.useState(false);
+  const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
+  const [q, setQ] = React.useState("");
+  const [bucket, setBucket] = React.useState("all");
+  const [sort, setSort] = React.useState("plays");
+  const [win, setWin] = React.useState({ start: 0, end: 60 });   // rendered row window
+  const scrollRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (!window.ROTATION_LIKED_META) {
+      const s = document.createElement("script"); s.src = "liked-meta.js";
+      s.onload = () => setReady(true); s.onerror = () => setFailed(true);
+      document.head.appendChild(s);
+    }
+    // media-index tells us which rows can deep-link to a TrackView (some saves were never scrobbled)
+    if (!window.ROTATION_MEDIA) {
+      const s = document.createElement("script"); s.src = "media-index.js";
+      s.onload = () => setMediaReady(true); s.onerror = () => {};
+      document.head.appendChild(s);
+    }
+  }, []);
+
+  const R = window.ROTATION;
+  const legend = (window.ROTATION_LIKED_LEGEND || []);
+  const legendByCode = React.useMemo(() => Object.fromEntries(legend.map(l => [l.code, l])), [legend.length]);
+
+  // set of media track keys (slug(artist)~slug(track)) that exist → those rows are clickable
+  const navKeys = React.useMemo(() => {
+    const set = new Set();
+    const M = window.ROTATION_MEDIA;
+    if (M && R) for (const t of M.tracks) set.add(R.slug(M.artists[t[1]]) + "~" + R.slug(t[0]));
+    return set;
+  }, [mediaReady]);
+
+  // flatten the meta map into rows once, re-deriving artist/title from the media index where present
+  // (real names), falling back to a de-slugged label for unscrobbled saves.
+  const rows = React.useMemo(() => {
+    const META = window.ROTATION_LIKED_META; if (!META) return [];
+    const M = window.ROTATION_MEDIA;
+    const nameByKey = new Map();
+    if (M && R) for (const t of M.tracks) { const k = R.slug(M.artists[t[1]]) + "~" + R.slug(t[0]); if (!nameByKey.has(k)) nameByKey.set(k, [M.artists[t[1]], t[0]]); }
+    const deslug = s => s.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+    const out = [];
+    for (const key in META) {
+      const meta = META[key];
+      const ix = key.indexOf("~");
+      const pair = nameByKey.get(key);
+      const artist = pair ? pair[0] : deslug(key.slice(0, ix));
+      const track = pair ? pair[1] : deslug(key.slice(ix + 1));
+      const leg = legendByCode[meta[3]] || { key: "mid" };
+      out.push({ key, meta, artist, track, bucketKey: leg.key });
+    }
+    return out;
+  }, [ready, mediaReady, legendByCode]);
+
+  // bucket counts (over the full set, unfiltered by search) for the chip labels
+  const counts = React.useMemo(() => {
+    const c = { all: rows.length };
+    for (const r of rows) c[r.bucketKey] = (c[r.bucketKey] || 0) + 1;
+    return c;
+  }, [rows]);
+
+  const filtered = React.useMemo(() => {
+    const needle = q.trim().toLowerCase();
+    let list = rows;
+    if (bucket !== "all") list = list.filter(r => r.bucketKey === bucket);
+    if (needle) list = list.filter(r => (r.artist + " " + r.track).toLowerCase().includes(needle));
+    const s = list.slice();
+    if (sort === "plays") s.sort((a, b) => b.meta[1] - a.meta[1] || a.artist.localeCompare(b.artist));
+    else if (sort === "first-new") s.sort((a, b) => (b.meta[2] || 0) - (a.meta[2] || 0) || b.meta[1] - a.meta[1]);
+    else if (sort === "first-old") s.sort((a, b) => (a.meta[2] || 9999) - (b.meta[2] || 9999) || b.meta[1] - a.meta[1]);
+    else if (sort === "artist") s.sort((a, b) => a.artist.localeCompare(b.artist) || a.track.localeCompare(b.track));
+    return s;
+  }, [rows, q, bucket, sort]);
+
+  // windowing: render only rows near the viewport. ROW_H must match the row height in LikedRow.
+  const ROW_H = 46, PAD = 18, OVERSCAN = 12;
+  React.useEffect(() => { setWin({ start: 0, end: 60 }); if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [q, bucket, sort]);
+  const onScroll = React.useCallback(e => {
+    const st = e.target.scrollTop, h = e.target.clientHeight;
+    const start = Math.max(0, Math.floor(st / ROW_H) - OVERSCAN);
+    const end = Math.ceil((st + h) / ROW_H) + OVERSCAN;
+    setWin(w => (w.start === start && w.end === end) ? w : { start, end });
+  }, []);
+
+  if (failed && !ready) return (
+    <div className="r-view"><button className="r-back" onClick={() => go("spotify")}>← spotify</button>
+      <div className="r-rest-wait r-mono">Liked-songs data isn't available right now.</div></div>
+  );
+  if (!ready && !window.ROTATION_LIKED_META) return <div className="r-view"><div className="r-rest-wait r-mono">loading your liked songs…</div></div>;
+
+  const CHIPS = [["all", "All"], ...legend.map(l => [l.key, l.label])].filter(([k]) => k === "all" || counts[k]);
+  const total = filtered.length;
+  const vis = filtered.slice(win.start, win.end);
+
+  return (
+    <div className="r-view">
+      <button className="r-back" onClick={() => go("spotify")}>← spotify</button>
+      <div className="r-viewhead"><div>
+        <div className="r-kicker">Spotify · {rows.length} saved songs</div>
+        <h1 className="r-title">Your <em>liked</em> songs<span className="dot">.</span></h1>
+      </div></div>
+      <div className="r-card" style={{ padding: "10px 16px", marginBottom: "var(--gap)", fontFamily: "var(--mono)", fontSize: 11, color: "var(--ink-faint)" }}>
+        every song you saved, sorted by what the save turned into — grouped by how deep you went, not by when you added it. tap a row to open the track; ♪ jumps to Spotify.
+      </div>
+
+      {/* bucket chips with counts */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
+        {CHIPS.map(([k, label]) => (
+          <button key={k} className={"r-chip link" + (bucket === k ? " solid" : "")} style={{ textTransform: "none" }} onClick={() => setBucket(k)}>
+            {label} <span style={{ opacity: .6 }}>{counts[k] || 0}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* search + sort */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", marginBottom: 12 }}>
+        <input value={q} onChange={e => setQ(e.target.value)} placeholder="search artist or title…"
+          style={{ flex: "1 1 200px", minWidth: 0, background: "var(--bg-2)", border: "1px solid var(--rule-2)", borderRadius: 999, padding: "8px 14px", color: "var(--ink)", fontFamily: "var(--mono)", fontSize: 12, outline: "none" }} />
+        <div className="r-seg r-seg-sm" style={{ flexWrap: "wrap" }}>
+          {[["plays", "plays"], ["first-new", "newest"], ["first-old", "oldest"], ["artist", "a–z"]].map(([k, l]) => (
+            <button key={k} data-on={sort === k} onClick={() => setSort(k)}>{l}</button>
+          ))}
+        </div>
+      </div>
+
+      {/* windowed list */}
+      <div className="r-card" style={{ padding: PAD }}>
+        <div ref={scrollRef} onScroll={onScroll} style={{ maxHeight: "min(70vh, 720px)", overflowY: "auto" }}>
+          {total === 0
+            ? <div className="r-mono" style={{ fontSize: 12, color: "var(--ink-faint)", padding: "24px 0", textAlign: "center" }}>no saved songs match.</div>
+            : <div style={{ height: total * ROW_H, position: "relative" }}>
+                <div style={{ position: "absolute", top: win.start * ROW_H, left: 0, right: 0 }}>
+                  {vis.map(r => <LikedRow key={r.key} r={r} legendByCode={legendByCode} go={go} navable={navKeys.has(r.key)} />)}
+                </div>
+              </div>}
+        </div>
+        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 8 }}>
+          {total} shown{bucket !== "all" || q ? ` of ${rows.length}` : ""} · plays are your scrobbles · “—” = saved but never scrobbled
+        </div>
+      </div>
+    </div>
   );
 }
