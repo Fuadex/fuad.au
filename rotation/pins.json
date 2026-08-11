@@ -1,27 +1,40 @@
 {
-  "_doc": "Name-ambiguity pins — the durable fix for wrong entity matches. build-data consults these at read time; enrichers should prefer a pinned id over a name search. Keys are the scrobble artist name. Fields: mbid/spotify/discogs = canonical ids; clearStyles = drop this artist's (wrong) Discogs styles; clearLife = drop its (wrong) MB life-span; origin/life/gender = hard overrides; react = force the Reactivated badge (hand-curated ledger: band killed by death/breakup then returned); tmExclude = TM name-match is a wrong entity, skip it; bio = hard-override the last.fm/Discogs bio; tags = hard-override the tag chips; dropTags = filter these (collision) tags out; note = why.",
-
+  "_doc": "Name-ambiguity pins — the durable fix for wrong entity matches. build-data consults these at read time; enrichers should prefer a pinned id over a name search. Keys are the scrobble artist name. Fields: mbid/spotify/discogs = canonical ids; clearStyles = drop this artist's (wrong) Discogs styles; clearLife = drop its (wrong) MB life-span; origin/life/gender = hard overrides; react = force the Reactivated badge (hand-curated ledger: band killed by death/breakup then returned); tmExclude = TM name-match is a wrong entity, skip it; bio = hard-override the last.fm/Discogs bio; tags = hard-override the tag chips; dropTags = filter these (collision) tags out; clearImage = Discogs/last.fm image is a wrong entity, fall through to Spotify; note = why.",
   "Bleach": {
     "mbid": "3e79249f-f1fb-4d0b-b451-0fe1086b459f",
     "spotify": "5gRsPZZNgrkagQnDlyFZUC",
-    "react": false,
+    "react": true,
     "tmExclude": true,
-    "bio": "Bleach were an all-female punk/rock trio from Okinawa, Japan, active from 1998 to 2009. Fronted by vocalist-guitarist Kanako, they built a following on the Japanese underground scene with fast, hooky garage-punk before disbanding in 2009. The name collides with the UK shoegaze Bleach, a German house act and an American Christian rock band.",
-    "dropTags": ["anime"],
-    "note": "Japanese punk band (Okinawa, 1998–2009). Name collides with German house + shoegaze Bleach. tmExclude kills a false-positive Ticketmaster match (\"BLEACH (It) Tribute to NIRVANA\", an Italian Nirvana tribute act). last.fm bio was multi-band disambiguation text describing the UK shoegaze Bleach; overridden here. \"anime\" tag is a franchise collision — dropped."
+    "bio": "Bleach (later bleach03) are an all-female punk/rock trio from Okinawa, Japan, formed in 1998. They built a following on the Japanese underground with fast, hooky garage-punk, wound down around 2009, and have since returned to the stage. The name collides with the UK shoegaze Bleach, a German house act and an American Christian rock band.",
+    "dropTags": [
+      "anime"
+    ],
+    "note": "Japanese punk band (Okinawa, 1998–2009, performing again — owner attended a 2026 show, so react:true despite MB's 2010 end date). Name collides with German house + shoegaze Bleach. tmExclude stays: the Ticketmaster hit (\"BLEACH (It) Tribute to NIRVANA\") is an Italian Nirvana tribute act, not them. last.fm bio was multi-band disambiguation text describing the UK shoegaze Bleach; overridden here. \"anime\" tag is a franchise collision — dropped."
   },
   "Linkin Park": {
-    "life": { "type": "Group", "ended": true, "end": "2017" },
+    "life": {
+      "type": "Group",
+      "ended": true,
+      "end": "2017"
+    },
     "react": true,
     "note": "Ended 2017 after Chester Bennington's death; returned 2024 with new vocalist Emily Armstrong. MB still lists them active — life override marks the 2017 hiatus so the Reactivated badge reads right."
   },
   "Alice in Chains": {
-    "life": { "type": "Group", "ended": true, "end": "2002" },
+    "life": {
+      "type": "Group",
+      "ended": true,
+      "end": "2002"
+    },
     "react": true,
     "note": "Dormant after Layne Staley's decline (inactive ~2002, died 2002); returned 2005–06 with William DuVall. MB still lists them active — life override marks the dormant period."
   },
   "Nevermore": {
-    "life": { "type": "Group", "ended": true, "end": "2011" },
+    "life": {
+      "type": "Group",
+      "ended": true,
+      "end": "2011"
+    },
     "react": true,
     "note": "Disbanded 2011; Warrel Dane died 2017. Reunited 2025 with founders Jeff Loomis and Van Williams plus a new lineup (first show in 16 years). MB still lists them active — life override marks the 2011 breakup."
   },
@@ -34,15 +47,29 @@
     "note": "Belgian post-hardcore trio (formed ~2013). MB matched an unrelated 1960s act → bogus 'since 1966' elder."
   },
   "Loathe": {
-    "origin": { "country": "GB", "area": "England", "city": "Liverpool" },
+    "origin": {
+      "country": "GB",
+      "area": "England",
+      "city": "Liverpool"
+    },
     "note": "Liverpool metalcore/shoegaze band (formed ~2014). MB matched an unrelated Maltese 'Loathe' → wrongly placed the map bubble in Malta."
   },
   "Bloodywood": {
-    "origin": { "country": "IN", "area": "India", "city": "New Delhi" },
+    "origin": {
+      "country": "IN",
+      "area": "India",
+      "city": "New Delhi"
+    },
     "note": "New Delhi folk-metal band. MB matched a wrong Chinese entity → the bubble landed in China."
   },
   "Lisa": {
-    "tags": ["j-pop", "j-rock", "anime"],
-    "note": "This is LiSA (Risa Oribe), the Japanese anime-tied singer (Gurenge, ADAMAS, dawn) — stylized LiSA. Enrichment collided with same-name artists: the Discogs image is the American Lisa and the Spotify image is BLACKPINK's Lisa; neither is correct, so the image is left as-is (no correct local candidate). Tags overridden to drop the collision (hip-hop/k-pop) and read as j-pop/j-rock/anime."
+    "spotify": "0blbVefuxOGltDBa00dspv",
+    "tags": [
+      "j-pop",
+      "j-rock",
+      "anime"
+    ],
+    "note": "This is LiSA (Risa Oribe), the Japanese anime-tied singer (Gurenge, ADAMAS, dawn) — stylized LiSA. Enrichment collided with same-name artists: Discogs held the American Lisa, Spotify held BLACKPINK's Lisa. spotify-cache repointed to the real LiSA id (JP-market search, exact-casing match); tags overridden to j-pop/j-rock/anime.",
+    "clearImage": true
   }
 }

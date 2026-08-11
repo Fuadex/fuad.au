@@ -559,29 +559,33 @@ function lifeBadge(life) {
   if (t === "g") return { txt: "Active", tone: "active" };   // living solo artists get no badge (noise)
   return null;
 }
-// VOCALS badge — mic glyph + "female + male vocals" (in lineup order), or "instrumental". Renders
-// when the artist carries vocals data (vx: "m"/"f"/"n" chars, "" = instrumental; undefined = none).
-// FALLBACK: for solo acts outside the vocals table (no vx) it renders the old MusicBrainz gender
-// sign as the same badge — genderOf("Female") → "female vocals" — so no artist loses their sign.
+// VOCALS badge — GLYPH-FIRST (Fuad: "keep the gender glyphs"). The badge shows the mic + the gender
+// SIGNS in lineup order (vx "fm" → ♀♂, "n" → ⚧); a solo act with no lineup vocals falls back to its
+// own MusicBrainz gender rendered as the same single sign — the old standalone ♀/♂/⚧, now folded into
+// the badge, so no artist loses their sign. The spelled-out words ride in the tooltip. Only the
+// instrumental case ("") has no glyph, so it stays a word.
 const _VOX_WORD = { m: "male", f: "female", n: "non-binary" };
+const _VOX_GLYPH = { m: "♂", f: "♀", n: "⚧" };
 function VocalsBadge({ vx, gender, size }) {
-  let text, tip = "vocalist genders (MusicBrainz lineup / verified)";
+  let glyphs, text, tip;
   if (vx === undefined || vx === null) {
-    // no lineup vocals data — fall back to the solo artist's own MusicBrainz gender, if any
+    // no lineup vocals data — fall back to the solo artist's own MusicBrainz gender sign, if any
     const g = genderGlyph(gender);
     if (!g) return null;
-    text = g.label.toLowerCase() + " vocals";
-    tip = "vocalist gender (MusicBrainz)";
-  } else if (vx === "") text = "instrumental";
-  else {
-    const seen = [], order = [];   // preserve lineup order, drop consecutive/repeat dupes of the same gender
-    for (const ch of vx) { const w = _VOX_WORD[ch]; if (w && !seen.includes(w)) { seen.push(w); order.push(w); } }
-    text = order.join(" + ") + " vocals";
+    glyphs = g.ch;
+    tip = g.label.toLowerCase() + " vocals — vocalist gender (MusicBrainz)";
+  } else if (vx === "") {
+    text = "instrumental"; tip = "instrumental — no vocalist";   // no glyph exists for instrumental
+  } else {
+    const seen = [], gl = [], words = [];   // preserve lineup order, drop repeat dupes of the same gender
+    for (const ch of vx) { const w = _VOX_WORD[ch]; if (w && !seen.includes(w)) { seen.push(w); gl.push(_VOX_GLYPH[ch]); words.push(w); } }
+    glyphs = gl.join(""); tip = words.join(" + ") + " vocals — vocalist genders (MusicBrainz lineup / verified)";
   }
   return (
     <span className="r-mono" title={tip}
       style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", padding: "2.5px 8px", borderRadius: 999, border: "1px solid var(--rule-2)", color: "var(--ink-faint)" }}>
-      <span style={{ fontSize: (size || 12) - 1, lineHeight: 1 }}>🎤</span>{text}</span>
+      <span style={{ fontSize: (size || 12) - 1, lineHeight: 1 }}>🎤</span>
+      {glyphs ? <span style={{ fontSize: (size || 12), lineHeight: 1, letterSpacing: 0 }}>{glyphs}</span> : text}</span>
   );
 }
 function ArtistMeta({ gender, life, size, seenLive, onTour, vx }) {
@@ -2837,7 +2841,9 @@ function BlurbSwitcher({ id, about }) {
         {multi && (
           <div className="tv-switch-btns" data-dim={showDeep}>
             {sources.map(s => (
-              <button key={s.m} data-on={!showDeep && cur.m === s.m} data-m={s.m} onClick={() => { setPick(s.m); setMode("info"); }}>{s.label}</button>
+              <button key={s.m} data-on={!showDeep && cur.m === s.m} data-m={s.m}
+                title={s.m === "fable" ? "fable v" + ((llm && llm.fvr) || "2.2") : undefined}
+                onClick={() => { setPick(s.m); setMode("info"); }}>{s.label}</button>
             ))}
           </div>
         )}
