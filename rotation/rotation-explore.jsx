@@ -37,7 +37,7 @@ function exploreRank(R, kind, f, limit = 40) {
   const { year, fam, subIdx, cells } = f;
   const hasCells = cells && cells.size > 0;
   const pass = f.pass && f.pass.active ? f.pass : null;   // theme/decade filter (filter-index); membership sets
-  const inFam = (s) => fam == null || s.some(si => R.SUBS[si].fam === fam); // inclusive: any sub in family
+  const inFam = (s) => fam == null || s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam); // inclusive: any sub in family (guard stale sub idx)
   if (kind === "artists") {
     const AXI = { energy: 0, valence: 1, acoustic: 2, tempo: 3, dance: 4 }, snd = f.sound, dir = f.dir || 1;
     const arr = [];
@@ -73,7 +73,7 @@ function exploreRank(R, kind, f, limit = 40) {
     src = (yr[kind] || []).map((it, i) => ({ id: kind + year + i, aid: it.artistId, label: it.title, value: it.plays, hue: it.hue, sub: it.artist }));
   }
   if (subIdx >= 0) src = src.filter(it => { const e = R.expById[it.aid]; return e && e.s.indexOf(subIdx) >= 0; });
-  else if (fam != null) src = src.filter(it => { const e = R.expById[it.aid]; return e && e.s.some(si => R.SUBS[si].fam === fam); });
+  else if (fam != null) src = src.filter(it => { const e = R.expById[it.aid]; return e && e.s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam); });
   if (hasCells) src = src.filter(it => tsPlays(R, it.aid, cells) > 0);
   if (pass) src = src.filter(it => kind === "albums" ? pass.alb.has(it.id) : pass.trk(it.id));   // it.id = artSlug~titleSlug
   return src.map(it => ({ ...it, kept: !!(R.byId[it.aid] || (R.expById && R.expById[it.aid])) })).sort((a, b) => b.value - a.value).slice(0, limit);
@@ -91,7 +91,7 @@ const inMoodZone = (af, z) => !z || zoneOf(af[1], af[0]) === z;
 function sliceArtists(R, f, applyZone) {
   const A = R.AUDIO || {}, { year, fam, subIdx, cells, moodZone } = f;
   const hasCells = cells && cells.size > 0;
-  const inFam = (s) => fam == null || s.some(si => R.SUBS[si].fam === fam);
+  const inFam = (s) => fam == null || s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam);
   const out = [];
   for (const a of R.EXPLORE) {
     const af = A[a.id]; if (!af) continue;
@@ -120,16 +120,18 @@ function mediaRank(M, R, meta, kind, f, limit) {
   const playsInYear = (row, y) => { const t = row[tailIdx]; if (t == null) return 0; if (typeof t === "number") return t === y ? row[2] : 0; for (let i = 0; i < t.length; i += 2) if (t[i] === y) return t[i + 1]; return 0; };
   const out = []; let more = false;
   for (const row of rows) {
-    const m = meta[row[1]], rec = m.rec;
-    if (pass) { const key = R.slug(M.artists[row[1]]) + "~" + R.slug(row[0]); if (kind === "albums" ? !pass.alb.has(key) : !pass.trk(key)) continue; }
+    const m = meta[row[1]]; if (!m) continue;   // guard: a media row whose artist idx has no meta (index desync) — skip, don't throw
+    const rec = m.rec;
+    if (pass) { const aname = M.artists[row[1]] || "", key = R.slug(aname) + "~" + R.slug(row[0]); if (kind === "albums" ? !pass.alb.has(key) : !pass.trk(key)) continue; }
     if (subIdx >= 0) { if (!rec || !rec.s || rec.s.indexOf(subIdx) < 0) continue; }
-    else if (fam != null) { if (!rec || !rec.s || !rec.s.some(si => R.SUBS[si].fam === fam)) continue; }
+    else if (fam != null) { if (!rec || !rec.s || !rec.s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam)) continue; }
     if (moodZone) { const af = R.AUDIO[m.aid]; if (!af || !inMoodZone(af, moodZone)) continue; }
     if (f.attrSel) {
       if (f.attrSel.mode === "artists") { if (!f.attrSel.keys.has(m.aid)) continue; }
       else if (!rec || !rec.s || !rec.s.some(si => f.attrSel.keys.has(si))) continue;
     }
     if (hasCells && !tsPlays(R, m.aid, cells)) continue;
+    // (m.aid always present once m is; label/sub read row[0]/M.artists[row[1]] which are guarded above)
     let value = row[2];
     if (!noYear) { value = playsInYear(row, year); if (!value) continue; }
     out.push({ id: (kind === "albums" ? "ma" : "mt") + row[1], aid: m.aid, label: row[0], sub: M.artists[row[1]], value, hue: m.hue, kept: kind === "albums" ? true : !!rec, cover: kind === "albums" ? (row[6] || "") : "" });
@@ -1198,7 +1200,7 @@ function ExploreView({ t, go, setPop, seed }) {
   React.useEffect(() => { if (lens !== "attributes") setAttrSel(null); }, [lens]);
   const [grain, setGrain] = React.useState("artists");    // plot granularity for either lens: "subs" or "artists" (default artists; Fuad 2026-07-15)
   const [moodZone, setMoodZone] = React.useState(null);   // active valence×energy quadrant filter, or null
-  const [themeSel, setThemeSel] = React.useState(() => new Set());   // selected theme bit-indices (OR within selection)
+  const [themeSel, setThemeSel] = React.useState(() => new Set());   // selected theme bit-indices (AND within selection)
   const [relDec, setRelDec] = React.useState(null);       // selected release DECADE (start year e.g. 1990), or null
   const [relYear, setRelYear] = React.useState(null);     // drilled release YEAR within relDec, or null
   const [filtReady, setFiltReady] = React.useState(!!window.ROTATION_FILTER);   // filter-index (themes + release years) loaded
@@ -1314,7 +1316,8 @@ function ExploreView({ t, go, setPop, seed }) {
     return M.artists.map(name => { const aid = R.idForName(name) || R.slug(name); const rec = (R.expById && R.expById[aid]) || R.byId[aid]; return { aid, rec, hue: rec ? rec.hue : _hueHash(name) }; });
   }, [R, mediaReady]);
   // ── THEMES + DECADES filter (filter-index.js) ──────────────────────────────────────────────
-  // themeSel = selected theme bit-indices (OR within selection); relDec/relYear = release-era window.
+  // themeSel = selected theme bit-indices (AND within selection — a track must carry EVERY selected
+  // theme); relDec/relYear = release-era window.
   // The mask/year test runs at TRACK level; artists & albums qualify when ≥MATCH_FRAC of their
   // matched-track plays fall in the selection (tune: 20%). Sets are precomputed once per selection,
   // and the ranked lists just membership-test — same shape as the attrSel pre-slice path.
@@ -1324,11 +1327,12 @@ function ExploreView({ t, go, setPop, seed }) {
   const relLo = relYear != null ? relYear : (relDec != null ? relDec : null);
   const relHi = relYear != null ? relYear : (relDec != null ? relDec + 9 : null);
   const filtActive = (themeMask !== 0) || (relLo != null);
-  // per-track predicate over filter-index: theme (OR) AND release-year window (both optional).
+  // per-track predicate over filter-index: theme (AND — a track must carry EVERY selected theme,
+  // so (mask & sel) === sel) AND release-year window (both optional).
   const passTrack = React.useCallback((key) => {
     const F = window.ROTATION_FILTER; if (!F) return true;
     const v = F.t[key]; if (!v) return false;                 // unfiltered track can't satisfy an active selection
-    if (themeMask && !(v[0] & themeMask)) return false;
+    if (themeMask && (v[0] & themeMask) !== themeMask) return false;
     if (relLo != null) { const y = v[1]; if (!y || y < relLo || y > relHi) return false; }
     return true;
   }, [themeMask, relLo, relHi]);
@@ -1338,11 +1342,13 @@ function ExploreView({ t, go, setPop, seed }) {
     if (!filtActive || !F || !M || !mediaArtMeta) return null;
     const artTot = new Map(), artHit = new Map(), albTot = new Map(), albHit = new Map();
     for (const row of M.tracks) {
-      const plays = row[2], aid = mediaArtMeta[row[1]].aid, ai = row[3];
-      const albKey = ai >= 0 ? R.slug(M.artists[M.albums[ai][1]]) + "~" + R.slug(M.albums[ai][0]) : null;
+      const meta = mediaArtMeta[row[1]]; if (!meta) continue;   // guard: media artist idx with no meta (index desync) — skip, don't throw
+      const plays = row[2], aid = meta.aid, ai = row[3];
+      const alb = ai >= 0 ? M.albums[ai] : null;   // guard: a dangling album idx must not throw the whole aggregation
+      const albKey = alb ? R.slug(M.artists[alb[1]]) + "~" + R.slug(alb[0]) : null;
       artTot.set(aid, (artTot.get(aid) || 0) + plays);
       if (albKey) albTot.set(albKey, (albTot.get(albKey) || 0) + plays);
-      const key = R.slug(M.artists[row[1]]) + "~" + R.slug(row[0]);
+      const key = R.slug(M.artists[row[1]] || "") + "~" + R.slug(row[0]);
       if (passTrack(key)) { artHit.set(aid, (artHit.get(aid) || 0) + plays); if (albKey) albHit.set(albKey, (albHit.get(albKey) || 0) + plays); }
     }
     const art = new Set(), alb = new Set();
@@ -1351,18 +1357,24 @@ function ExploreView({ t, go, setPop, seed }) {
     return { active: true, art, alb, trk: passTrack };
   }, [filtActive, passTrack, mediaArtMeta, R]);
   const pass = passAgg;
-  // theme chip live-counts: tracks that would match each theme WITHIN the current release-era + the
-  // already-selected themes (OR). A zero-count chip hides (unless already selected). Cheap single walk.
+  // theme chip live-counts (AND semantics): for each theme bit b, how many tracks would REMAIN if
+  // that chip were ADDED to the current selection — i.e. tracks carrying every already-selected theme
+  // AND theme b, within the current release-era. So the count is (m & cand) === cand with cand =
+  // themeMask | (1<<b). Already-selected bits give cand === themeMask (the count of the current
+  // result). A zero-count chip hides (unless already selected), so the counts strictly shrink as
+  // themes are stacked. Cheap single walk over the (era-filtered) tracks.
   const themeCounts = React.useMemo(() => {
     const F = window.ROTATION_FILTER; if (!F) return null;
     const n = (F.themes || []).length, cnt = new Array(n).fill(0);
     for (const key in F.t) {
       const v = F.t[key], m = v[0]; if (!m) continue;
       if (relLo != null) { const y = v[1]; if (!y || y < relLo || y > relHi) continue; }
-      for (let b = 0; b < n; b++) if (m & (1 << b)) cnt[b]++;
+      // only tracks already matching the current AND-selection can contribute to any chip's count
+      if (themeMask && (m & themeMask) !== themeMask) continue;
+      for (let b = 0; b < n; b++) { const cand = themeMask | (1 << b); if ((m & cand) === cand) cnt[b]++; }
     }
     return cnt;
-  }, [filtReady, relLo, relHi]);
+  }, [filtReady, relLo, relHi, themeMask]);
 
   // decades bar: release-year play volume from filter-index, keyed by decade → { plays, byYear{} }.
   // Sized/tinted by plays (mirrors the Overview weather-card decade strip). Themes+genre unaffect
@@ -1373,7 +1385,7 @@ function ExploreView({ t, go, setPop, seed }) {
     // plays per track: filter-index has no plays, so fold in media-index track plays by key.
     const M = window.ROTATION_MEDIA;
     if (M) {
-      for (const row of M.tracks) { const v = F.t[R.slug(M.artists[row[1]]) + "~" + R.slug(row[0])]; if (!v || !v[1]) continue; const y = v[1], d = Math.floor(y / 10) * 10; let e = dec.get(d); if (!e) dec.set(d, e = { plays: 0, byYear: new Map() }); e.plays += row[2]; e.byYear.set(y, (e.byYear.get(y) || 0) + row[2]); }
+      for (const row of M.tracks) { const v = F.t[R.slug(M.artists[row[1]] || "") + "~" + R.slug(row[0])]; if (!v || !v[1]) continue; const y = v[1], d = Math.floor(y / 10) * 10; let e = dec.get(d); if (!e) dec.set(d, e = { plays: 0, byYear: new Map() }); e.plays += row[2]; e.byYear.set(y, (e.byYear.get(y) || 0) + row[2]); }
     } else {
       for (const key in F.t) { const y = F.t[key][1]; if (!y) continue; const d = Math.floor(y / 10) * 10; let e = dec.get(d); if (!e) dec.set(d, e = { plays: 0, byYear: new Map() }); e.plays += 1; e.byYear.set(y, (e.byYear.get(y) || 0) + 1); }
     }
@@ -1562,7 +1574,7 @@ function ExploreView({ t, go, setPop, seed }) {
                   })}
             </div>
           </div>
-          {themeSel.size > 0 && <div className="r-mono xp-note" style={{ marginTop: 6, marginBottom: 0 }}>matching ANY selected theme · artists/albums shown when ≥20% of their plays fit</div>}
+          {themeSel.size > 0 && <div className="r-mono xp-note" style={{ marginTop: 6, marginBottom: 0 }}>matching {themeSel.size > 1 ? "ALL selected themes" : "the selected theme"} · artists/albums shown when ≥20% of their plays fit</div>}
         </div>
         <div className="xp-td-decs">
           <div className="xp-frow" style={{ marginBottom: 0 }}>
