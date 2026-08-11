@@ -4996,6 +4996,16 @@
     "to": "透明少女 - 1998/12/30 福岡 VIVRE HALL「DYNAMIC VIBRATO 98」",
     "type": "spelling",
     "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   },
+   {
+    "from": "Brutal Number Girl - 2014 Remaster",
+    "to": "BRUTAL NUMBER GIRL",
+    "type": "spelling"
+   },
+   {
+    "from": "YARUSE NAKIOのBEAT - 2014 Remaster",
+    "to": "YARUSE NAKIOのBEAT",
+    "type": "spelling"
    }
   ]
  },
@@ -11327,6 +11337,15 @@
     "from": "Caustic",
     "to": "LL",
     "type": "absorb"
+   }
+  ]
+ },
+ "COALTAR OF THE DEEPERS": {
+  "tracks": [
+   {
+    "from": "The Systems Made Of Greed - Don’t Bet Our Tax ver.",
+    "to": "The Systems Made of Greed",
+    "type": "variant"
    }
   ]
  }

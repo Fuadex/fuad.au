@@ -2550,7 +2550,12 @@ function AlbumView({ id, go }) {
                   disc {di + 1}{dt && dt !== data.title ? ` — ${dt}` : ""}</div>}
                 <div style={{ display: "grid", gap: 1 }}>
                   {tracks.map((tt, i) => {
-                    const hit = pl.get(_f(tt)) || pl.get(_f(String(tt).replace(/\s*\([^)]*\)\s*$/, ""))) || pl.get(_fx(tt));
+                    // last resort: spine titles sometimes carry a dash-subtitle the scrobble lacks;
+                    // strip it UNLESS the tail is a numbered/part segment (spine "X - Part 2" must
+                    // never match a scrobbled "X").
+                    const _dashBase = (s) => { const m = /^(.*\S)\s+-\s+([^-]+)$/.exec(String(s)); return m && !/\b(pt|part|vol)\b|\d/i.test(m[2]) ? m[1] : null; };
+                    const hit = pl.get(_f(tt)) || pl.get(_f(String(tt).replace(/\s*\([^)]*\)\s*$/, ""))) || pl.get(_fx(tt))
+                      || (_dashBase(tt) ? (pl.get(_f(_dashBase(tt))) || pl.get(_fx(_dashBase(tt)))) : undefined);
                     const tid = hit ? aS + "~" + R.slug(hit.title) : null;
                     return (
                       <div key={i} className={hit ? "r-track-row" : undefined}
