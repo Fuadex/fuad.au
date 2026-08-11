@@ -535,9 +535,10 @@ function OverviewView({ t, go, restReady, seed }) {
           </div>
           <div style={{ minWidth: 0 }}>
             <div className="r-live" style={{ marginBottom: 3 }}><span className="dot" /> {now.nowplaying ? "Now playing" : "Last played"}</div>
-            <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 17, lineHeight: 1.05 }}>{now.track}</div>
+            <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 17, lineHeight: 1.05 }}>
+              {npKnown ? <span onClick={() => go("track", R.slug(now.artist) + "~" + R.slug(now.track))} style={{ cursor: "pointer" }}>{now.track}</span> : now.track}</div>
             <div style={{ color: "var(--ink-soft)", fontSize: 12.5, marginTop: 2 }}>
-              {npKnown ? <b onClick={() => go("artist", now.artistId)} style={{ cursor: "pointer", color: "var(--ink)", fontWeight: 600 }}>{now.artist}</b> : now.artist} — <span style={{ color: "var(--ink-faint)" }}>{now.album}</span></div>
+              {npKnown ? <b onClick={() => go("artist", now.artistId)} style={{ cursor: "pointer", color: "var(--ink)", fontWeight: 600 }}>{now.artist}</b> : now.artist} — {npKnown ? <span onClick={() => go("album", R.slug(now.artist) + "~" + R.slug(now.album))} style={{ cursor: "pointer", color: "var(--ink-faint)" }}>{now.album}</span> : <span style={{ color: "var(--ink-faint)" }}>{now.album}</span>}</div>
             <div style={{ display: "flex", gap: 6, marginTop: 6, flexWrap: "wrap" }}>
               {nowArtist.tags.slice(0, 3).map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
             </div>
