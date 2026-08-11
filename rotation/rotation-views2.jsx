@@ -1638,7 +1638,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
                 <span className="lbl"><b>Sounds like</b></span>
                 <span style={{ display: "inline-flex", gap: 8, alignItems: "center", flexWrap: "wrap", justifyContent: "flex-end" }}>
-                  {simTab === "lastfm" && a.similar.length > 8 && (
+                  {simTab === "lastfm" && (a.similar || []).length > 8 && (
                     <button className="av-more" onClick={() => setSimN(n => n === 8 ? 16 : 8)}>{simN === 8 ? "16 ▾" : "8 ▴"}</button>
                   )}
                   {simTab === "sound" && <React.Fragment>
@@ -1650,7 +1650,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   </div>
                 </span></div>
               {simTab === "sound" ? <SoundSimilar id={a.id} go={go} ctl={{ count: soundCount, setCount: setSoundCount, open: soundOpen, setOpen: setSoundOpen }} /> : (() => {
-                const items = a.similar.slice(0, simN).map((sid, i) => { const name = a.similarNames[i]; const rid = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[rid] || (R.expById && R.expById[rid]); return { name, navId: rec ? rid : null, hue: rec ? rec.hue : (a.hue + 40 + i * 25) % 360, plays: rec ? rec.plays : null, played: !!rec || (R.played && R.played(name)) }; });
+                const items = (a.similar || []).slice(0, simN).map((sid, i) => { const name = (a.similarNames || [])[i]; const rid = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[rid] || (R.expById && R.expById[rid]); return { name, navId: rec ? rid : null, hue: rec ? rec.hue : (a.hue + 40 + i * 25) % 360, plays: rec ? rec.plays : null, played: !!rec || (R.played && R.played(name)) }; });
                 if (!items.length) return <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>no last.fm matches here.</div>;
                 return <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(80px,1fr))", gap: 10 }}>
                   {items.map((it, i) => (
