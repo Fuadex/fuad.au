@@ -3264,10 +3264,19 @@ for (const [name, plays] of rankedArtists) {
 // already carry full images in their ARTISTS record). ~+215KB over the old 1200 cap, but the
 // user wanted covers everywhere — generative tiles only remain where Discogs has no image.
 const THUMBS = {};
+// THUMBS_HI — the FULL-RES (≈600px, q90) Discogs image for the same explorable artist, shipped
+// deferred (music-rest.js) so grid CARDS render crisp on retina without softening from the 150px
+// q40 thumb. Only stored when the full image is a DIFFERENT url than the thumb (Discogs case);
+// Spotify-only entries already resolve to a 640px photo, and last.fm has no larger variant, so
+// those add nothing. Eager first paint is untouched (THUMBS stays in core; HI is REST-only). The
+// small ranked rows keep using THUMBS; only the large square cards prefer THUMBS_HI (see GenCover).
+const THUMBS_HI = {};
 for (const a of EXPLORE) {
   if (byName[a.name]) continue;              // kept artists resolve via byId already
   const t = thumbOf(a.name);   // Discogs thumb, else last.fm, else Spotify photo
   if (t) THUMBS[a.id] = t;
+  const full = imageOf(a.name);   // full 600px Discogs image (else last.fm/Spotify — same as thumb)
+  if (full && full !== t) THUMBS_HI[a.id] = full;
 }
 
 // ─────────── ARTIST DETAIL — lazy top tracks/albums for every non-kept EXPLORE artist ───────────
@@ -4057,6 +4066,7 @@ if (GEOGRAPHY) {
 const REST = {
   EXPLORE, ALBUMS, AUDIO: AUDIO_OUT, ARTIST_CLOCK, SUB_ARTISTS, CLOCK_BY_YEAR,
   ARTIST_X,   // id → heavy per-artist fields; folded back onto the ARTISTS records (see merge below)
+  THUMBS_HI,  // id → full-res Discogs image; grid cards upgrade to it once rest loads (see GenCover)
 };
 const DATA = CORE;   // the core file's IIFE builds window.ROTATION from these
 const out = `// ────────────────────────────────────────────────────────────────
@@ -4105,7 +4115,7 @@ window.ROTATION = (function () {
   const D = ${JSON.stringify(DATA)};
   // deferred keys (arrive via music-rest.js) — stubbed empty so any first-paint read never
   // throws; the rest file Object.assigns the real data, rebuilds expById, flips _restLoaded.
-  D.EXPLORE = []; D.ALBUMS = []; D.AUDIO = {}; D.ARTIST_CLOCK = {}; D.SUB_ARTISTS = {}; D.CLOCK_BY_YEAR = {};
+  D.EXPLORE = []; D.ALBUMS = []; D.AUDIO = {}; D.ARTIST_CLOCK = {}; D.SUB_ARTISTS = {}; D.CLOCK_BY_YEAR = {}; D.THUMBS_HI = {};
   D.expById = {}; D._restLoaded = false;
   D.byId = Object.fromEntries(D.ARTISTS.map(a => [a.id, a]));
   D.slug = slug;
