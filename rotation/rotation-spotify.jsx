@@ -320,18 +320,49 @@ const LIKED_BUCKET_COLOR = {   // hue per derived bucket — tuned to the app's 
   fresh: "oklch(0.72 0.15 150)", doorway: "oklch(0.7 0.15 280)", canon: "var(--accent)",
   lived: "oklch(0.7 0.13 45)", left: "var(--ink-faint)", mid: "var(--ink-soft)",
 };
-function LikedRow({ r, legendByCode, go, navable }) {
-  const [id, plays, firstYear, code] = r.meta;
+// audio-handle axes. tempo uses a LOG-scaled position so the busy 90–160 BPM band gets room
+// (a linear 0–240 axis crushes it). LT_TEMPO/LT_ENERGY are the [min,max] envelopes; the sliders
+// carry integer 0..STEPS positions that map to values through these helpers.
+const LT_TEMPO = [40, 220], TEMPO_STEPS = 100;
+const posTempo = (p) => Math.round(LT_TEMPO[0] * Math.pow(LT_TEMPO[1] / LT_TEMPO[0], p / TEMPO_STEPS));
+// dual-thumb range: two overlaid native range inputs (min + max). Minimal, app-styled — no library.
+function LikedRange({ label, lo, hi, min, max, onChange, fmt }) {
+  const active = lo > min || hi < max;
+  const pct = v => ((v - min) / (max - min)) * 100;
+  const clampLo = v => onChange([Math.min(v, hi), hi]);
+  const clampHi = v => onChange([lo, Math.max(v, lo)]);
+  return (
+    <div style={{ flex: "1 1 200px", minWidth: 170 }}>
+      <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: active ? "var(--accent)" : "var(--ink-faint)", marginBottom: 6, display: "flex", justifyContent: "space-between" }}>
+        <span>{label}</span><span style={{ color: "var(--ink-soft)" }}>{fmt(lo)} – {fmt(hi)}</span>
+      </div>
+      <div style={{ position: "relative", height: 20 }}>
+        <div style={{ position: "absolute", top: 8, left: 0, right: 0, height: 4, borderRadius: 2, background: "var(--rule-2)" }} />
+        <div style={{ position: "absolute", top: 8, height: 4, borderRadius: 2, background: "var(--accent)", left: pct(lo) + "%", right: (100 - pct(hi)) + "%" }} />
+        <input type="range" className="lt-range" min={min} max={max} value={lo} onChange={e => clampLo(+e.target.value)} />
+        <input type="range" className="lt-range" min={min} max={max} value={hi} onChange={e => clampHi(+e.target.value)} />
+      </div>
+    </div>
+  );
+}
+function LikedRow({ r, legendByCode, famById, go, navable }) {
+  const [id, plays, firstYear, code, famId, tempo, energy] = r.meta;
   const leg = legendByCode[code] || { key: "mid", label: "Mid" };
   const color = LIKED_BUCKET_COLOR[leg.key] || "oklch(0.68 0.12 320)";  // brand labels get a fixed violet
+  const fam = famId != null ? famById[famId] : null;
   const canNav = navable && go;
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 10, height: 46, padding: "0 4px", borderBottom: "1px solid var(--rule)", cursor: canNav ? "pointer" : "default" }}
       onClick={canNav ? () => go("track", r.key) : undefined}>
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: canNav ? "var(--ink)" : "var(--ink-soft)" }}>{r.track}</div>
-        <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.artist}</div>
+        <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          {r.artist}{fam ? <span style={{ color: "oklch(" + "0.7 0.12 " + fam.hue + ")" }}> · {fam.family}</span> : ""}
+        </div>
       </div>
+      <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", width: 70, textAlign: "right", whiteSpace: "nowrap" }}
+        title={tempo != null ? tempo + " BPM · energy " + energy : "no audio features"}>
+        {tempo != null ? tempo + "♩" : ""}{tempo != null && energy != null ? " " : ""}{energy != null ? "e" + energy : ""}</span>
       <span className="r-chip" style={{ borderColor: color, color, textTransform: "none", cursor: "inherit" }}>{leg.label}</span>
       <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)", width: 46, textAlign: "right" }}>{plays ? plays + "p" : "—"}</span>
       <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 34, textAlign: "right" }}>{firstYear || "·"}</span>
@@ -348,6 +379,11 @@ function LikedView({ go }) {
   const [q, setQ] = React.useState("");
   const [bucket, setBucket] = React.useState("all");
   const [sort, setSort] = React.useState("plays");
+  const [fams, setFams] = React.useState(() => new Set());   // selected family ids (empty = all)
+  const [subFilter, setSubFilter] = React.useState("");      // subgenre label ("" = any)
+  const [tempo, setTempo] = React.useState([0, TEMPO_STEPS]); // slider positions (log axis)
+  const [energy, setEnergy] = React.useState([0, 100]);
+  const [valence, setValence] = React.useState("any");       // any | down | neutral | up
   const [win, setWin] = React.useState({ start: 0, end: 60 });   // rendered row window
   const scrollRef = React.useRef(null);
 
@@ -368,6 +404,9 @@ function LikedView({ go }) {
   const R = window.ROTATION;
   const legend = (window.ROTATION_LIKED_LEGEND || []);
   const legendByCode = React.useMemo(() => Object.fromEntries(legend.map(l => [l.code, l])), [legend.length]);
+  const famList = (window.ROTATION_LIKED_FAMS || []);
+  const famById = React.useMemo(() => Object.fromEntries(famList.map(f => [f.i, f])), [famList.length]);
+  const subsByArtist = window.ROTATION_LIKED_SUBS || {};
 
   // set of media track keys (slug(artist)~slug(track)) that exist → those rows are clickable
   const navKeys = React.useMemo(() => {
@@ -393,7 +432,10 @@ function LikedView({ go }) {
       const artist = pair ? pair[0] : deslug(key.slice(0, ix));
       const track = pair ? pair[1] : deslug(key.slice(ix + 1));
       const leg = legendByCode[meta[3]] || { key: "mid" };
-      out.push({ key, meta, artist, track, bucketKey: leg.key });
+      const aSlug = key.slice(0, ix);
+      out.push({ key, meta, artist, track, bucketKey: leg.key,
+        famId: meta[4], sub: subsByArtist[aSlug] || "",
+        tempo: meta[5], energy: meta[6], valence: meta[7] });
     }
     return out;
   }, [ready, mediaReady, legendByCode]);
@@ -405,22 +447,71 @@ function LikedView({ go }) {
     return c;
   }, [rows]);
 
-  const filtered = React.useMemo(() => {
+  // family counts + subgenre option list — live-scoped to the CURRENT non-genre filters (bucket +
+  // search), so the chip numbers reflect what a family click would actually surface.
+  const genreBase = React.useMemo(() => {
     const needle = q.trim().toLowerCase();
-    let list = rows;
-    if (bucket !== "all") list = list.filter(r => r.bucketKey === bucket);
-    if (needle) list = list.filter(r => (r.artist + " " + r.track).toLowerCase().includes(needle));
+    return rows.filter(r => (bucket === "all" || r.bucketKey === bucket) &&
+      (!needle || (r.artist + " " + r.track).toLowerCase().includes(needle)));
+  }, [rows, q, bucket]);
+  const famCounts = React.useMemo(() => {
+    const c = {}; for (const r of genreBase) if (r.famId != null) c[r.famId] = (c[r.famId] || 0) + 1;
+    return c;
+  }, [genreBase]);
+  const subOptions = React.useMemo(() => {
+    // subgenres present among rows whose family is selected (or all rows if no family picked)
+    const m = new Map();
+    for (const r of genreBase) {
+      if (fams.size && (r.famId == null || !fams.has(r.famId))) continue;
+      if (r.sub) m.set(r.sub, (m.get(r.sub) || 0) + 1);
+    }
+    return [...m.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  }, [genreBase, fams]);
+
+  const tempoActive = tempo[0] > 0 || tempo[1] < TEMPO_STEPS;
+  const energyActive = energy[0] > 0 || energy[1] < 100;
+  const sliderActive = tempoActive || energyActive || valence !== "any";
+  const tLo = posTempo(tempo[0]), tHi = posTempo(tempo[1]);
+
+  // filtered list + count of rows dropped ONLY because they lack audio features while a slider is on
+  const { list: filtered, hiddenNoData } = React.useMemo(() => {
+    const needle = q.trim().toLowerCase();
+    let hidden = 0;
+    let list = rows.filter(r => {
+      if (bucket !== "all" && r.bucketKey !== bucket) return false;
+      if (needle && !(r.artist + " " + r.track).toLowerCase().includes(needle)) return false;
+      if (fams.size && (r.famId == null || !fams.has(r.famId))) return false;
+      if (subFilter && r.sub !== subFilter) return false;
+      if (sliderActive) {
+        const noData = r.tempo == null && r.energy == null;
+        if (noData) { hidden++; return false; }   // hide featureless rows when a handle is engaged
+        if (tempoActive && (r.tempo == null || r.tempo < tLo || r.tempo > tHi)) return false;
+        if (energyActive && (r.energy == null || r.energy < energy[0] || r.energy > energy[1])) return false;
+        if (valence !== "any") {
+          const v = r.valence;
+          if (v == null) return false;
+          if (valence === "down" && v >= 40) return false;
+          if (valence === "neutral" && (v < 40 || v > 60)) return false;
+          if (valence === "up" && v <= 60) return false;
+        }
+      }
+      return true;
+    });
     const s = list.slice();
     if (sort === "plays") s.sort((a, b) => b.meta[1] - a.meta[1] || a.artist.localeCompare(b.artist));
     else if (sort === "first-new") s.sort((a, b) => (b.meta[2] || 0) - (a.meta[2] || 0) || b.meta[1] - a.meta[1]);
     else if (sort === "first-old") s.sort((a, b) => (a.meta[2] || 9999) - (b.meta[2] || 9999) || b.meta[1] - a.meta[1]);
     else if (sort === "artist") s.sort((a, b) => a.artist.localeCompare(b.artist) || a.track.localeCompare(b.track));
-    return s;
-  }, [rows, q, bucket, sort]);
+    else if (sort === "tempo") s.sort((a, b) => (a.tempo == null) - (b.tempo == null) || (a.tempo || 0) - (b.tempo || 0));
+    else if (sort === "energy") s.sort((a, b) => (a.energy == null) - (b.energy == null) || (b.energy || 0) - (a.energy || 0));
+    return { list: s, hiddenNoData: hidden };
+  }, [rows, q, bucket, sort, fams, subFilter, tempo, energy, valence, sliderActive, tempoActive, energyActive, tLo, tHi]);
 
   // windowing: render only rows near the viewport. ROW_H must match the row height in LikedRow.
   const ROW_H = 46, PAD = 18, OVERSCAN = 12;
-  React.useEffect(() => { setWin({ start: 0, end: 60 }); if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [q, bucket, sort]);
+  React.useEffect(() => { setWin({ start: 0, end: 60 }); if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [q, bucket, sort, fams, subFilter, tempo, energy, valence]);
+  // drop a subgenre selection that the current family set no longer offers
+  React.useEffect(() => { if (subFilter && !subOptions.some(([s]) => s === subFilter)) setSubFilter(""); }, [subOptions, subFilter]);
   const onScroll = React.useCallback(e => {
     const st = e.target.scrollTop, h = e.target.clientHeight;
     const start = Math.max(0, Math.floor(st / ROW_H) - OVERSCAN);
@@ -458,12 +549,52 @@ function LikedView({ go }) {
         ))}
       </div>
 
+      {/* genre family chips (multi-select) + subgenre dropdown scoped to the selection */}
+      {famList.length > 0 && (
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10, alignItems: "center" }}>
+          {famList.filter(f => famCounts[f.i]).sort((a, b) => famCounts[b.i] - famCounts[a.i]).map(f => {
+            const on = fams.has(f.i);
+            const c = "oklch(0.7 0.12 " + f.hue + ")";
+            return (
+              <button key={f.i} className="r-chip link" style={{ textTransform: "none", borderColor: on ? c : "var(--rule-2)", color: on ? "#0c0a08" : c, background: on ? c : "transparent" }}
+                onClick={() => setFams(s => { const n = new Set(s); n.has(f.i) ? n.delete(f.i) : n.add(f.i); return n; })}>
+                {f.family} <span style={{ opacity: .6 }}>{famCounts[f.i]}</span>
+              </button>
+            );
+          })}
+          {fams.size > 0 && <button className="r-chip link" style={{ textTransform: "none", color: "var(--ink-faint)" }} onClick={() => setFams(new Set())}>clear ✕</button>}
+          {subOptions.length > 0 && (
+            <select value={subFilter} onChange={e => setSubFilter(e.target.value)}
+              style={{ background: "var(--bg-2)", border: "1px solid var(--rule-2)", borderRadius: 999, padding: "5px 10px", color: subFilter ? "var(--accent)" : "var(--ink-soft)", fontFamily: "var(--mono)", fontSize: 10.5, outline: "none", maxWidth: 220 }}>
+              <option value="">any subgenre</option>
+              {subOptions.map(([s, n]) => <option key={s} value={s}>{s} ({n})</option>)}
+            </select>
+          )}
+        </div>
+      )}
+
+      {/* audio handles: tempo (BPM, log axis) + energy dual-thumb ranges, valence toggle */}
+      <div className="r-card" style={{ padding: "12px 16px", marginBottom: 10, display: "flex", flexWrap: "wrap", gap: "16px 24px", alignItems: "center" }}>
+        <LikedRange label="tempo" lo={tempo[0]} hi={tempo[1]} min={0} max={TEMPO_STEPS} onChange={setTempo} fmt={p => posTempo(p) + "♩"} />
+        <LikedRange label="energy" lo={energy[0]} hi={energy[1]} min={0} max={100} onChange={setEnergy} fmt={v => v} />
+        <div style={{ flex: "0 0 auto" }}>
+          <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: valence !== "any" ? "var(--accent)" : "var(--ink-faint)", marginBottom: 6 }}>mood</div>
+          <div className="r-seg r-seg-sm" style={{ flexWrap: "wrap" }}>
+            {[["any", "any"], ["down", "downbeat"], ["neutral", "neutral"], ["up", "upbeat"]].map(([k, l]) => (
+              <button key={k} data-on={valence === k} onClick={() => setValence(k)}>{l}</button>
+            ))}
+          </div>
+        </div>
+        {sliderActive && <button className="r-chip link" style={{ textTransform: "none", color: "var(--ink-faint)", alignSelf: "flex-end" }}
+          onClick={() => { setTempo([0, TEMPO_STEPS]); setEnergy([0, 100]); setValence("any"); }}>reset handles ✕</button>}
+      </div>
+
       {/* search + sort */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", marginBottom: 12 }}>
         <input value={q} onChange={e => setQ(e.target.value)} placeholder="search artist or title…"
           style={{ flex: "1 1 200px", minWidth: 0, background: "var(--bg-2)", border: "1px solid var(--rule-2)", borderRadius: 999, padding: "8px 14px", color: "var(--ink)", fontFamily: "var(--mono)", fontSize: 12, outline: "none" }} />
         <div className="r-seg r-seg-sm" style={{ flexWrap: "wrap" }}>
-          {[["plays", "plays"], ["first-new", "newest"], ["first-old", "oldest"], ["artist", "a–z"]].map(([k, l]) => (
+          {[["plays", "plays"], ["first-new", "newest"], ["first-old", "oldest"], ["artist", "a–z"], ["tempo", "tempo"], ["energy", "energy"]].map(([k, l]) => (
             <button key={k} data-on={sort === k} onClick={() => setSort(k)}>{l}</button>
           ))}
         </div>
@@ -476,12 +607,13 @@ function LikedView({ go }) {
             ? <div className="r-mono" style={{ fontSize: 12, color: "var(--ink-faint)", padding: "24px 0", textAlign: "center" }}>no saved songs match.</div>
             : <div style={{ height: total * ROW_H, position: "relative" }}>
                 <div style={{ position: "absolute", top: win.start * ROW_H, left: 0, right: 0 }}>
-                  {vis.map(r => <LikedRow key={r.key} r={r} legendByCode={legendByCode} go={go} navable={navKeys.has(r.key)} />)}
+                  {vis.map(r => <LikedRow key={r.key} r={r} legendByCode={legendByCode} famById={famById} go={go} navable={navKeys.has(r.key)} />)}
                 </div>
               </div>}
         </div>
         <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 8 }}>
-          {total} shown{bucket !== "all" || q ? ` of ${rows.length}` : ""} · plays are your scrobbles · “—” = saved but never scrobbled
+          {total} shown{(bucket !== "all" || q || fams.size || subFilter || sliderActive) ? ` of ${rows.length}` : ""} · plays are your scrobbles · “—” = saved but never scrobbled
+          {sliderActive && hiddenNoData > 0 ? ` · ${hiddenNoData} hidden (no audio data)` : ""}
         </div>
       </div>
     </div>
