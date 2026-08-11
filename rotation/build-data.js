@@ -423,7 +423,7 @@ const GENRE_RULES = [
   // ── ORDER-SENSITIVE guards first ──
   ["Metalcore/Nu", /\bkawaii metal\b/, _GW.strong],           // STEP1: BABYMETAL fix (before scene-zero would eat "kawaii")
   ["Metalcore/Nu", /\btrap metal\b/, _GW.strong],
-  ["Metalcore/Nu", /\bpost[- ]hardcore\b/, _GW.strong],
+  ["Punk/Hardcore", /\bpost[- ]hardcore\b/, _GW.strong],   // v2 spec: post-hardcore lives in Punk/Hardcore (Fuad ruling 2026-08-12)
   ["Punk/Hardcore", /\bmelodic hardcore\b/, _GW.strong],
   ["Prog Metal/Rock", /\bprogressive (metal|rock)\b/, _GW.strong],
   ["Prog Metal/Rock", /\bprog (metal|rock)\b/, _GW.strong],
