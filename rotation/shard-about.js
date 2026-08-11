@@ -49,7 +49,7 @@ const STOPWORDS = new Set((
 // themes/means/built ride in GIST because they render beside the mood bars on first paint —
 // in DEEP they'd pop in late. They cost ~150 bytes a track and only 74 tracks carry them today.
 const GIST_FIELDS = ["src", "haiku", "web", "themes", "means", "built"];
-const DEEP_FIELDS = ["sonnet", "opus", "fable", "fable2", "fableAlt", "fableDeep", "opusDeep", "fv", "fnote", "fnote2"];   // fv: fable-tier methodology version (2 = Opus-authored + Fable-QC'd, dual credit in UI); fable2 = stacked newer take under a kept old-era read; fableAlt = the merged-away twin's Fable read after a coherency fold (flick to it)
+const DEEP_FIELDS = ["sonnet", "opus", "fable", "fable2", "fableAlt", "fableDeep", "opusDeep", "fv", "fvr", "fnote", "fnote2"];   // fv: fable-tier methodology version (2 = Opus-authored + Fable-QC'd, dual credit in UI); fvr: fable revision — "2.3" = account-first + FINAL SWEEP era, absent = v2.2 implicit; fable2 = stacked newer take under a kept old-era read; fableAlt = the merged-away twin's Fable read after a coherency fold (flick to it)
 
 function loadSource() {
   if (!fs.existsSync(SRC)) {
