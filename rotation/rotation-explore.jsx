@@ -7,6 +7,38 @@
 const _inflate = (flat) => Array.from({ length: 7 }, (_, r) => flat.slice(r * 24, r * 24 + 24));
 const _zeros = () => Array.from({ length: 7 }, () => new Array(24).fill(0));
 
+// Legacy family-NAME bridge (genre-v2, 2026-08-12). Deep links carry ?f=<family name>; the v2
+// migration renamed/merged families, so old bookmarks/artist-chip links would dead-end. Map each
+// v1 family name → its nearest v2 family so existing links resolve. Keyed by the normalised name
+// (lowercase, alnum-only — same norm the resolver uses). v2 names resolve directly and never hit
+// this bridge (they're matched first).
+const _V1_FAM_BRIDGE = {
+  "numetalaltmetal": "Metalcore/Nu",
+  "metalcorecore": "Metalcore/Nu",
+  "industrial": "Industrial/DH/Hyperpop/Noise",
+  "thrashheavy": "Thrash/Death",
+  "progaltrock": "Prog Metal/Rock",
+  "japanese": "Pop",                        // dissolved scene family → nearest surviving bucket
+  "electronicdnb": "Electronic/DnB",
+  "digitalhardcorehyperpop": "Industrial/DH/Hyperpop/Noise",
+  "hiphop": "Hip-Hop/Rap",
+  "punkgarage": "Punk/Hardcore",
+  "shoegazenoise": "Shoegaze/Grunge",
+  "popindie": "Pop",
+  "jazz": "Jazz",
+  "classicalscore": "Classical",
+};
+// resolve a ?f= family token to a v2 FAMILIES entry: exact v2 name first, then the v1 bridge.
+const _resolveFamParam = (R, raw) => {
+  const norm = (x) => (x || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const q = norm(raw);
+  let fm = R.FAMILIES.find(f => norm(f.family) === q);
+  if (fm) return fm;
+  const v2name = _V1_FAM_BRIDGE[q];
+  if (v2name) { const nn = norm(v2name); return R.FAMILIES.find(f => norm(f.family) === nn) || null; }
+  return null;
+};
+
 // rhythm grid for the selected year (genre/sub reflected as highlight, not aggregation)
 function rhythmGrid(R, year) {
   if (year == null) return R.CLOCK.grid;
@@ -1274,7 +1306,7 @@ function ExploreView({ t, go, setPop, seed }) {
       const p = {}; for (const kv of seed.split(";")) { const i = kv.indexOf("="); if (i > 0) p[kv.slice(0, i)] = kv.slice(i + 1); }
       if (p.y && !isNaN(+p.y)) setYear(+p.y);
       if (p.s) { const s = R.SUBS.find(x => norm(x.name) === norm(p.s)); if (s) { setFam(null); setSub(s.name); } }
-      else if (p.f) { const fm = R.FAMILIES.find(f => norm(f.family) === norm(p.f)); if (fm) { setSub(null); setFam(fm.i); } }
+      else if (p.f) { const fm = _resolveFamParam(R, p.f); if (fm) { setSub(null); setFam(fm.i); } }
       if (p.m && MOOD_ZONES.includes(p.m)) setMoodZone(p.m);
       if (p.c) setCells(new Set(p.c.split(".").map(Number).filter(n => n >= 0 && n < 168)));
       if (p.t) setThemeSel(new Set(p.t.split(".").map(Number).filter(n => n >= 0 && n < 28)));
@@ -1286,7 +1318,7 @@ function ExploreView({ t, go, setPop, seed }) {
     const q = norm(seed);
     const s = R.SUBS.find(x => norm(x.name) === q);
     if (s) { setFam(null); setSub(s.name); return; }
-    const fm = R.FAMILIES.find(f => norm(f.family) === q);
+    const fm = _resolveFamParam(R, seed);
     if (fm) { setSub(null); setFam(fm.i); }
   }, [seed, R]);
 
