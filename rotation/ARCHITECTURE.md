@@ -177,6 +177,31 @@ pin in CSV-OVERRIDES.md — re-running photo/discogs enrichers can silently re-b
 - **Alias resolution:** `R.idForName(name)` — direct slug, then `ALIAS_TO_ID` (MusicBrainz
   aliases), so a click on "Midori" lands on ミドリ. `R.played(name)` checks the ≥3-plays set
   including aliases.
+- **Resolution layer (raw scrobbles → what you see).** One intermediary bridge sits between the
+  raw last.fm rows and every display, so views never re-invent matching per card. Four stages,
+  earliest to latest:
+  1. **`folds.json` (identity, build-time merge).** Hand-auditable ledger of known artist/album/
+     track spelling variants (`build-data.js` folds them at ingest — HAND_MERGE / ALBUM_FOLD /
+     TRACK_MERGE). The variant name never survives into any Map; it's genuinely the same entity.
+  2. **absorb / variant sidecars (aggregation links, rows preserved).** `album-absorb.js`
+     (`ROTATION_ALBUM_ABSORB`, single→LP) and `variant-of.js` (`ROTATION_VARIANT_OF`). LINK not
+     MERGE — the single/variant keeps its own browsable row; only aggregations + track→album nav
+     resolve *through* the link. `R.resolveAlbum(key)` follows the absorb map (identity if unlinked
+     or the sidecar hasn't loaded).
+  3. **display-time match keys (`R.matchKey` / `R.matchKeyLoose`).** The last mile: when two data
+     sources spell the same title differently at *render* time (a play row vs. an MB spine or an
+     MB-kinds map), these give the shared normal form. `R.matchKey` = entity-decode (`R.decEnt`) +
+     lowercase-alnum squash — the strict join key. `R.matchKeyLoose` additionally strips bracketed
+     `feat.`/`ft.`/`featuring`/`with`/`w/` credits, `[Explicit]`/`(Explicit)`, and a trailing
+     `- Single`, for when a play row carries a credit the canonical title omits (e.g. spine
+     "Kingslayer" ↔ media "Kingslayer (feat. BABYMETAL)"). Defined in **build-data.js's emitted core
+     IIFE** next to `slug()` (so it rides on `ROTATION` exactly like `R.slug`) — **never re-inline a
+     `.toLowerCase().replace(/[^a-z0-9]+/g…)` title matcher in a view; call `R.matchKey`.**
+
+  **Where new work belongs:** a new duplicate-spelling *class* → `folds.json` (identity). A new
+  single that should feed its LP → an `absorb` entry (aggregation link, row kept). A view that needs
+  to match a title from one source against another → `R.matchKey`/`matchKeyLoose` (the core API),
+  never a fresh inline regex.
 - **Colour system 1 — artist hue:** each artist inherits its genre **family** hue
   (`build-data.js` FAMILIES: nu-metal 24 orange, thrash 4 red, metalcore 346, industrial 214 blue,
   DnB/electronic 190 cyan, prog 282 purple, Japanese 332 pink, digital-hardcore 308, hip-hop 46,

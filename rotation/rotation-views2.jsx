@@ -1286,7 +1286,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   // 2026-07-14 (mb-kinds.js, all 1,300+ artists), with the pilot MBX kinds as fallback.
   const _mbKinds = (window.ROTATION_MB_KINDS && window.ROTATION_MB_KINDS[a.id])
     || (mbxReady && window.ROTATION_MBX && window.ROTATION_MBX[a.id] && window.ROTATION_MBX[a.id].kinds) || null;
-  const _kfold = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+  const _kfold = R.matchKey;   // resolution layer — album title ↔ MB-kinds map key (same squash)
   const kindOf = (al) => (_mbKinds && _mbKinds[_kfold(al.title)]) || al.kind;
   const albums = allAlbums.filter(al => !kindOf(al) || kindOf(al) === "album");     // LPs (+ anything unknown)
   const epsSingles = allAlbums.filter(al => kindOf(al) === "ep" || kindOf(al) === "single")
@@ -2501,15 +2501,10 @@ function AlbumView({ id, go }) {
       {(() => {
         // "the record, as released" (core feature) — MB canonical tracklist as the spine, your play
         // counts hung off each track (fold match); unplayed tracks ghosted. Disc boundaries real.
-        const _dec = (s) => String(s || "").replace(/&#0*39;|&apos;/gi, "'").replace(/&quot;/gi, '"').replace(/&amp;/gi, "&").replace(/&#(\d+);/g, (m, n) => { const c = parseInt(n, 10); return c ? String.fromCharCode(c) : m; });
-        const _f = (s) => _dec(s).toLowerCase().replace(/[^a-z0-9]+/g, "");
-        // _fx: a second, conservative normal form — decode entities, then strip ONLY bracketed
-        // feature/version credit segments (feat/ft/featuring/with/w) and a bare [Explicit]/(Explicit)
-        // tag, wherever they appear. Deliberately does NOT touch "(Reprise)"/"(Part 2)" etc.
-        const _fx = (s) => _dec(s)
-          .replace(/[([]\s*(?:feat\.?|ft\.?|featuring|with|w\/)\s[^)\]]*[)\]]/gi, " ")
-          .replace(/[([]\s*explicit\s*[)\]]/gi, " ")
-          .toLowerCase().replace(/[^a-z0-9]+/g, "");
+        // Match keys come from the resolution layer (ROTATION.matchKey / matchKeyLoose) — the ONE
+        // canonical display-time bridge, shared with every other view. Never re-inline these.
+        const _f = R.matchKey;    // strict: entity-decode + lowercase-alnum squash (the join key)
+        const _fx = R.matchKeyLoose;  // + strips feat./with/[Explicit]/-Single credit segments
         const aS = id.slice(0, id.indexOf("~"));
         const sp = window.ROTATION_ALBSPINE && window.ROTATION_ALBSPINE[aS] && window.ROTATION_ALBSPINE[aS][_f(data.title)];
         if (!sp) return null;
@@ -2589,7 +2584,7 @@ function AlbumView({ id, go }) {
       {/* Fallback ONLY when the album has no MB spine (so "The record, as released" didn't render):
           keep "Tracks you've played" as a standalone card so the tracklist isn't lost. */}
       {!(window.ROTATION_ALBSPINE && window.ROTATION_ALBSPINE[id.slice(0, id.indexOf("~"))]
-         && window.ROTATION_ALBSPINE[id.slice(0, id.indexOf("~"))][String(data.title || "").replace(/&#0*39;|&apos;/gi, "'").replace(/&quot;/gi, '"').replace(/&amp;/gi, "&").replace(/&#(\d+);/g, (m, n) => { const c = parseInt(n, 10); return c ? String.fromCharCode(c) : m; }).toLowerCase().replace(/[^a-z0-9]+/g, "")]) && (
+         && window.ROTATION_ALBSPINE[id.slice(0, id.indexOf("~"))][R.matchKey(data.title)]) && (
         <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
           <AlbumTracksPlayed data={data} extras={extras} standout={standout} maxT={maxT} hue={hue}
             R={R} go={go} baseTracks={baseTracks} bonusSections={bonusSections} />
@@ -2601,7 +2596,7 @@ function AlbumView({ id, go }) {
         // the record's year (MB members via ROTATION_MB; spine date beats the meta year).
         const mb = window.ROTATION_MB && window.ROTATION_MB[id.slice(0, id.indexOf("~"))];
         if (!mb || mb.type === "Person" || !Array.isArray(mb.members) || !mb.members.length) return null;
-        const _f2 = (s) => String(s || "").replace(/&#0*39;|&apos;/gi, "'").replace(/&quot;/gi, '"').replace(/&amp;/gi, "&").replace(/&#(\d+);/g, (m, n) => { const c = parseInt(n, 10); return c ? String.fromCharCode(c) : m; }).toLowerCase().replace(/[^a-z0-9]+/g, "");
+        const _f2 = R.matchKey;   // resolution layer — same album-title↔spine-key bridge as above
         const sp2 = window.ROTATION_ALBSPINE && window.ROTATION_ALBSPINE[id.slice(0, id.indexOf("~"))];
         const spd = sp2 && sp2[_f2(data.title)] && sp2[_f2(data.title)].d;
         const yr = parseInt((spd || "").slice(0, 4)) || (data.meta && data.meta[0]) || null;
