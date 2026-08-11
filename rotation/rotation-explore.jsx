@@ -113,16 +113,23 @@ const inMoodZone = (af, z) => !z || zoneOf(af[1], af[0]) === z;
 
 // EXPLORE artists (with measured audio) passing the genre/time filters; moodZone applied only when
 // applyZone is set (the quadrant shows the whole slice; facts/results reflect the chosen zone too).
+// vocals + pass (theme/decade, filter-index) use the SAME predicates as exploreRank's artists path
+// (vocalsPass hides no-data artists; pass.art already folds theme AND decade at artist granularity),
+// so the left-surface charts' active slice tracks the ranked results. Both fail open when inactive.
 function sliceArtists(R, f, applyZone) {
   const A = R.AUDIO || {}, { year, fam, subIdx, cells, moodZone } = f;
   const hasCells = cells && cells.size > 0;
+  const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
+  const pass = f.pass && f.pass.active ? f.pass : null;              // theme/decade filter (filter-index)
   const inFam = (s) => fam == null || s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam);
   const out = [];
   for (const a of R.EXPLORE) {
     const af = A[a.id]; if (!af) continue;
     if (year != null && !(a.yp && a.yp[year])) continue;
+    if (pass && !pass.art.has(a.id)) continue;   // theme/decade: artist keeps ≥20% of matched-track plays
     if (subIdx >= 0) { if (a.s.indexOf(subIdx) < 0) continue; } else if (!inFam(a.s)) continue;
     if (hasCells && !tsPlays(R, a.id, cells)) continue;
+    if (vocals && !vocalsPass(a.vx, vocals)) continue;   // vocals dimension (hides no-data artists)
     if (applyZone && moodZone && !inMoodZone(af, moodZone)) continue;
     out.push(a);
   }
@@ -1463,8 +1470,8 @@ function ExploreView({ t, go, setPop, seed }) {
   // progressive rendering keeps mounting them cheap. af = [energy, valence, acoustic, tempo, dance, instr].
   const moodUniverse = React.useMemo(() => R.EXPLORE.filter(a => R.AUDIO[a.id])
     .map(a => { const af = R.AUDIO[a.id]; return { id: a.id, name: a.name, hue: a.hue, x: af[1], y: af[0], plays: a.plays }; }), [R]);
-  const moodActive = React.useMemo(() => new Set(sliceArtists(R, { year, fam, subIdx, cells }, false).map(a => a.id)), [R, year, fam, subIdx, cells]);
-  const moodSet = React.useMemo(() => sliceArtists(R, { year, fam, subIdx, cells, moodZone }, true), [R, year, fam, subIdx, cells, moodZone]);
+  const moodActive = React.useMemo(() => new Set(sliceArtists(R, { year, fam, subIdx, cells, vocals, pass }, false).map(a => a.id)), [R, year, fam, subIdx, cells, vocals, pass]);
+  const moodSet = React.useMemo(() => sliceArtists(R, { year, fam, subIdx, cells, moodZone, vocals, pass }, true), [R, year, fam, subIdx, cells, moodZone, vocals, pass]);
   // ── granularity data (built once from the universe; independent of the active slice) ──
   // subMood: each subgenre bubbled at its members' play-weighted mean valence × energy.
   const subMood = React.useMemo(() => {
@@ -1561,7 +1568,7 @@ function ExploreView({ t, go, setPop, seed }) {
             </div>
             <div className="xp-chartwrap">
             {lens === "attributes"
-              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} filtersActive={year != null || fam != null || sub != null || cells.size > 0} />
+              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} filtersActive={year != null || fam != null || sub != null || cells.size > 0 || vocals !== "any" || filtActive} />
               : lens === "texture"
               ? (grain === "subs"
                 ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
