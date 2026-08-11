@@ -155,6 +155,11 @@
     "to": "The Joker",
     "type": "spelling",
     "reason": "tier-2: typo, canonical is \"The Joker\""
+   },
+   {
+    "from": "Consument",
+    "to": "Konsument",
+    "type": "spelling"
    }
   ]
  },
