@@ -20,7 +20,11 @@ tool; New This Month canonical resolution; needle-drop fallback on mini artist p
 refresh (153 gigs).
 
 **Open, in order:**
-1. **Genre taxonomy v2 — APPROVED, rolling out 2026-08-13** (held a day at Fuad's request).
+1. **Genre taxonomy v2 — ✅ SHIPPED 2026-08-13** (commits 2c7846a → 85fc9c7): 15-family
+   weighted-vote taxonomy live; adjudication wave (34 verified corrections); colour contract
+   enforced (artist hue = family anchor ±10° jitter); dominant-genre filtering (`fm`
+   memberships + `sq` qualifying subs — Explore + Overview map switched; 2,570 artists lost
+   stray memberships). Original approved spec follows for reference.
    15 slots: Heavy/Doom/Gothic split from Thrash/Death; Metalcore/Nu; Prog Metal/Rock;
    Shoegaze/Grunge; Punk/Hardcore (incl. post-hardcore); Alternative/Indie (incl. post-punk);
    Industrial/DH/Hyperpop/Noise; Electronic/DnB (incl. trip-hop); Hip-Hop/Rap; Pop; Jazz;
