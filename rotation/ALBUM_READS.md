@@ -229,29 +229,39 @@ carry an ALTERNATE album read synthesized from those flagship reads (`liner2`/`a
 flickable via Fable on the PortraitCard). Operational details live in the untracked
 workshop docs.
 
-## Alternate album read synthesis (liner2/arc2) — the tight spec (2026-08-12)
+## Album reads — the STANDALONE-SOLID doctrine (Fuad 2026-08-12; supersedes the same-day "tight spec", which over-corrected)
 
-Source = the album's FABLE reads + fnotes ONLY (never the opus/haiku tiers, never raw
-lyrics — this tier reads the reads). Eligibility: every track fabled, or ≥90% with the
-gaps immaterial.
+Album reads are NOT one canonical shape. Each entry should be standalone solid — a
+satisfying multi-register piece — with tightness a non-goal. The REGISTER CHECKLIST
+(coverage guidance, order flexible, never a template):
 
-- **liner2** (5-6 sentences): an ALBUM-level thesis that only becomes visible across the
-  reads — what the record keeps doing, discovered from what the song reads found. Three
-  or four tracks appear as EVIDENCE anchored to the thesis, never as an itinerary; the
-  album's inversions and exception tracks are prime material; close on the album-scale
-  finding. No quotation marks; register 25-36 wps.
-- **arc2** (ONE sentence, ~25-35 words): the album's single structural tell — the
-  exception track, the pivot, the closing word, the only-X — stated once, with its
-  consequence for hearing the whole. NEVER a walk: if the sentence narrates more than one
-  tracklist motion or glosses three-plus songs, it is a walk — restart. (The first Gore
-  arc2 draft is the type specimen of the failure; Fear Inoculum's Pneuma line is the
-  model.)
-- **Entry mechanics**: albums WITH an existing primary liner keep it — the synthesis
-  lands as `liner2`/`arc2` (the Fable-flick face). Albums WITHOUT an entry get a full new
-  one: `gist` (one line: what the album is + the honest listening-shape from real play
-  data) + `by:"Fable"` + the synthesis as the primary `liner`/`arc`.
-- **Approval**: print liner + arc (and gist when new) for the owner's verdict before any
-  apply — per the standing explicit-approval rule.
+1. **The album in the world** — era, place in the catalog, one line of real lore or
+   reception where it earns its place (the Downward Spiral entry's opening register).
+2. **What it's about** — the emergent thesis, from the fable reads where coverage exists.
+3. **Its shine** — where the record is best. The EXPANDED WALK IS WELCOME here when every
+   station earns its stop (Downward Spiral's station-walk is the positive model; a walk
+   only fails when it substitutes for having a thesis).
+4. **The personal layer** — honest listening-shape from real play data: dominance
+   patterns, first-heard, how the deep cuts behave (the gist may carry this instead).
+5. **A close that lands** — the arc.
+
+**arc**: ONE resonant sentence that may draw on the album's structure, the artist's
+story, its fame, or the owner's history — any register, as long as it lands (Shinsekai's
+arc = structural fact + the band's end, the fullest model; Fear Inoculum's Pneuma line =
+the pure-structural variant). A compressed multi-song walk is still not an arc.
+
+**Synthesis mechanics** (unchanged): thesis register sourced from the album's fable
+reads + fnotes; lore lines must be verification-grade; personal-layer lines from real
+data only. Albums WITH an existing primary liner keep it — synthesis lands as
+liner2/arc2 (the flick face). Albums WITHOUT an entry get the full register treatment as
+a new primary. Print everything for the owner's verdict before applying.
+
+**Remediation plan (marked down 2026-08-12; phases await go):**
+- Phase 1: arc backfill — 68 of 101 album entries lack any arc.
+- Phase 2: register audit of thin entries (entries missing the world/personal registers —
+  the new Gore entry is itself the type specimen of thesis-only thinness; fix it first).
+- Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
+- Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
 
 **Variant album pages**: when a read was written on plays merged across library
 variants (edition spellings, promo pressings, mojibake titles), the finished entry
