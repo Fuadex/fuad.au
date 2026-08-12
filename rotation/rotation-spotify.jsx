@@ -384,6 +384,27 @@ const LK_DNA_AXES = [
   { k: "live",    label: "liveness",    min: 0,    max: 100, fmt: v => v,        get: r => r.live },
   { k: "pop",     label: "popularity",  min: 0,    max: 100, fmt: v => v,        get: r => r.pop },
 ];
+// ── vocals dimension (mirrors Explore's vocalsPass) ──────────────────────────────────────────────
+// Liked rows carry `aSlug` = R.slug(artist); the artist's vocals code lives on the artist record
+// (R.expById[aSlug] || R.byId[aSlug]).vx — the SAME `vx` field + semantics as the Explore vocals chip.
+//   vx: "m"/"f"/"n" chars in lineup order · "" = instrumental · undefined = no data.
+//   male = only male · female = only female · mixed = ≥2 distinct genders · nb = contains non-binary ·
+//   instrumental = empty list. undefined vx → hidden under any active option (the no-data convention).
+// LK_ prefix + lk-prefixed fn: top-level names share global scope across the buildless jsx files.
+const LK_VOCALS = [["any", "Any"], ["male", "Male"], ["female", "Female"], ["mixed", "Mixed"], ["nb", "Non-binary"], ["instrumental", "Instrumental"]];
+function lkVocalsPass(vx, opt) {
+  if (opt === "any") return true;
+  if (vx === undefined || vx === null) return false;   // no data → hidden under an active filter
+  const set = new Set(vx.split(""));
+  switch (opt) {
+    case "instrumental": return vx === "";
+    case "male":   return vx !== "" && set.size === 1 && set.has("m");
+    case "female": return vx !== "" && set.size === 1 && set.has("f");
+    case "nb":     return set.has("n");
+    case "mixed":  return set.size >= 2;
+    default:       return true;
+  }
+}
 // ── audio-DNA radar ──────────────────────────────────────────────────────────────────────────────
 // A compact spider chart of the liked corpus across the six CORE audio axes, mirroring the artist
 // page's Sound-DNA radar (rotation-views2 DNA_AXES / AudioRadar idiom). Axes + order are the artist
@@ -546,11 +567,13 @@ function LikedView({ go }) {
   const [failed, setFailed] = React.useState(false);
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
   const [taReady, setTaReady] = React.useState(!!window.ROTATION_TRACKAUDIO);   // extra DNA axes (lazy)
+  const [restReady, setRestReady] = React.useState(() => !!(window.ROTATION && window.ROTATION._restLoaded));  // deferred bundle → R.expById (explorable-artist vx for the vocals filter)
   const [q, setQ] = React.useState("");
   const [bucket, setBucket] = React.useState("all");
   const [sort, setSort] = React.useState("plays");
   const [fams, setFams] = React.useState(() => new Set());   // selected family ids (empty = all)
   const [subFilter, setSubFilter] = React.useState("");      // subgenre label ("" = any)
+  const [vocals, setVocals] = React.useState("any");         // vocals dimension — ALWAYS-ON class (any/male/female/mixed/nb/instrumental), independent of DNA/sliders arbitration
   // The standalone tempo/energy/mood handles were removed 2026-08-12 — the DNA tuner's tempo/energy
   // bands + valence(positivity) axis fully replace them. Their filter now lives entirely in the bands.
   const [tuneOpen, setTuneOpen] = React.useState(true);      // DNA tuner panel OPEN BY DEFAULT (owner)
@@ -593,6 +616,14 @@ function LikedView({ go }) {
         return () => clearInterval(poll);
       }
     }
+  }, []);
+
+  // the app loads music-rest.js at top level (rebuilds R.expById, carrying every explorable artist's
+  // vx). Poll until it lands so the vocals filter's artist-join lights up for non-kept artists too.
+  React.useEffect(() => {
+    if (window.ROTATION && window.ROTATION._restLoaded) { setRestReady(true); return; }
+    const poll = setInterval(() => { if (window.ROTATION && window.ROTATION._restLoaded) { clearInterval(poll); setRestReady(true); } }, 200);
+    return () => clearInterval(poll);
   }, []);
 
   const R = window.ROTATION;
@@ -691,6 +722,21 @@ function LikedView({ go }) {
     return out;
   }, [ready, mediaReady, taReady, legendByCode, albNameBySlug, albCoverBySlug, trackAlbumByKey]);
 
+  // vocals join: each liked row's aSlug (= R.slug(artist)) → the artist record's `vx` code, the SAME
+  // field the Explore vocals chip reads (R.expById for explorable artists, R.byId for kept ones — kept
+  // vx ships in music-core, explorable vx arrives with music-rest, hence the restReady dep). A slug
+  // absent from both stays undefined → the row is hidden only while a vocals option is active.
+  const vxBySlug = React.useMemo(() => {
+    const m = new Map();
+    if (R) for (const r of rows) {
+      if (m.has(r.aSlug)) continue;
+      const e = (R.expById && R.expById[r.aSlug]) || (R.byId && R.byId[r.aSlug]);
+      m.set(r.aSlug, e ? e.vx : undefined);   // undefined = no vocals data for this artist
+    }
+    return m;
+  }, [rows, restReady]);
+  const vocalsActive = vocals !== "any";
+
   // aggregate liked-corpus profile per axis: min/max/mean + a coarse histogram of where the songs sit.
   // Feeds the dashed "your average" tick + the sparkline behind each slider, and initializes each band
   // to the corpus min..max so "the filter starts encapsulating all" (no filtering until a handle moves).
@@ -774,6 +820,9 @@ function LikedView({ go }) {
       if (needle && !(r.artist + " " + r.track).toLowerCase().includes(needle)) return false;
       if (fams.size && (r.famId == null || !fams.has(r.famId))) return false;
       if (subFilter && r.sub !== subFilter) return false;
+      // vocals dimension — ALWAYS-ON (like bucket/genre/search), independent of DNA/sliders arbitration.
+      // Rows whose artist has no vx are excluded only while a vocals option is active (no-data convention).
+      if (vocalsActive && !lkVocalsPass(vxBySlug.get(r.aSlug), vocals)) return false;
       if (useSliders) {
         const noData = r.tempo == null && r.energy == null;
         if (noData) { hidden++; return false; }   // hide featureless rows when a band is engaged
@@ -811,7 +860,24 @@ function LikedView({ go }) {
     else if (sort === "tempo") s.sort((a, b) => (a.tempo == null) - (b.tempo == null) || (a.tempo || 0) - (b.tempo || 0));
     else if (sort === "energy") s.sort((a, b) => (a.energy == null) - (b.energy == null) || (b.energy || 0) - (a.energy || 0));
     return { list: s, hiddenNoData: hidden };
-  }, [rows, q, bucket, sort, fams, subFilter, dictating, target, tol, activeBands, keyActive, modeActive, keySel, mode]);
+  }, [rows, q, bucket, sort, fams, subFilter, vocals, vocalsActive, vxBySlug, dictating, target, tol, activeBands, keyActive, modeActive, keySel, mode]);
+
+  // how many rows the ACTIVE vocals filter drops purely for lacking artist vx — the same "N without
+  // data" honesty as the audio sliders. Counts rows passing the OTHER always-on filters (bucket/genre/
+  // search) whose artist has no vx (vocalsActive only).
+  const vocalsNoData = React.useMemo(() => {
+    if (!vocalsActive) return 0;
+    const needle = q.trim().toLowerCase();
+    let n = 0;
+    for (const r of rows) {
+      if (bucket !== "all" && r.bucketKey !== bucket) continue;
+      if (needle && !(r.artist + " " + r.track).toLowerCase().includes(needle)) continue;
+      if (fams.size && (r.famId == null || !fams.has(r.famId))) continue;
+      if (subFilter && r.sub !== subFilter) continue;
+      if (vxBySlug.get(r.aSlug) === undefined) n++;
+    }
+    return n;
+  }, [rows, q, bucket, fams, subFilter, vocals, vocalsActive, vxBySlug]);
 
   // seed the draggable TARGET from the current liked aggregate ONCE audio data is present (before the
   // user has touched it). Re-seeds only while still untouched (arbMode !== 'dna') so it tracks the
@@ -825,7 +891,7 @@ function LikedView({ go }) {
 
   // windowing: render only rows near the viewport. ROW_H must match the row height in LikedRow.
   const ROW_H = 52, PAD = 18, OVERSCAN = 12;
-  React.useEffect(() => { setWin({ start: 0, end: 60 }); if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [q, bucket, sort, fams, subFilter, dictating, activeBands, keyActive, modeActive, target, tol]);
+  React.useEffect(() => { setWin({ start: 0, end: 60 }); if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [q, bucket, sort, fams, subFilter, vocals, dictating, activeBands, keyActive, modeActive, target, tol]);
   // drop a subgenre selection that the current family set no longer offers
   React.useEffect(() => { if (subFilter && !subOptions.some(([s]) => s === subFilter)) setSubFilter(""); }, [subOptions, subFilter]);
   // "closest" sort only exists while DNA dictates — fall back to plays if the shape stops dictating
@@ -888,24 +954,34 @@ function LikedView({ go }) {
           <span onClick={e => { e.stopPropagation(); setTuneOpen(o => !o); }} title={tuneOpen ? "collapse" : "expand"} style={{ opacity: .8 }}>{tuneOpen ? "▾" : "▸"}</span>
         </button>
       </div>
-      <div className="r-card" style={{ padding: "10px 16px", marginBottom: "var(--gap)", fontFamily: "var(--mono)", fontSize: 11, color: "var(--ink-faint)" }}>
-        every song you saved, sorted by what the save turned into — grouped by how deep you went, not by when you added it. tap a row to open the track; ♪ jumps to Spotify.
-      </div>
-
       {/* bucket chips with counts — the ✕ at the right of THIS row resets the DNA tune (shown only when
-          a band/key/mode is active), keeping the row uncluttered (the standalone handles are gone). */}
+          a band/key/mode is active), keeping the row uncluttered (the standalone handles are gone).
+          Vocals chips are an ALWAYS-ON filter (like buckets/genre/search) and ride the RIGHT of this row
+          (marginLeft:auto group), before the reserved reset-tune slot; the group wraps below when narrow. */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10, alignItems: "center" }}>
         {CHIPS.map(([k, label]) => (
           <button key={k} className={"r-chip link" + (bucket === k ? " solid" : "")} style={{ textTransform: "none" }} onClick={() => setBucket(k)}>
             {label} <span style={{ opacity: .6 }}>{counts[k] || 0}</span>
           </button>
         ))}
-        {/* reset-tune (Fuad 2026-08-12): its slot is RESERVED — always rendered, pinned right via
-            marginLeft:auto, hidden (visibility) + inert when no tune is active, so the row never
-            reflows as it appears/disappears. Accent-toned (var(--accent) + accent-dim border) to
-            read clearly, matching the clear-filter pill convention (gv-tour-chip). */}
+        {/* vocals dimension — right-aligned group (marginLeft:auto pins it right; wraps below on narrow
+            screens). Toggle semantics: clicking the active option returns to "any". "N without data" note
+            (same honesty as the audio sliders) appears only under an active option. */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center", marginLeft: "auto" }}>
+          <span className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".12em", textTransform: "uppercase", color: vocalsActive ? "var(--accent)" : "var(--ink-faint)", marginRight: 2 }}>vocals</span>
+          {LK_VOCALS.map(([k, l]) => (
+            <button key={k} className={"r-chip link" + (vocals === k ? " solid" : "")} style={{ textTransform: "none" }}
+              onClick={() => setVocals(vocals === k ? "any" : k)}>{l}</button>
+          ))}
+          {vocalsActive && vocalsNoData > 0 &&
+            <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{vocalsNoData} without data</span>}
+        </div>
+        {/* reset-tune (Fuad 2026-08-12): its slot is RESERVED — always rendered, hidden (visibility) +
+            inert when no tune is active, so the row never reflows as it appears/disappears. Accent-toned
+            (var(--accent) + accent-dim border), matching the clear-filter pill convention (gv-tour-chip).
+            No longer marginLeft:auto — it trails the right-aligned vocals group. */}
         <button className="r-chip link" aria-hidden={!anyTuneActive} tabIndex={anyTuneActive ? 0 : -1}
-          style={{ marginLeft: "auto", textTransform: "none", color: "var(--accent)", borderColor: "var(--accent-dim)",
+          style={{ textTransform: "none", color: "var(--accent)", borderColor: "var(--accent-dim)",
             visibility: anyTuneActive ? "visible" : "hidden", pointerEvents: anyTuneActive ? "auto" : "none" }}
           onClick={resetTune}>reset tune ✕</button>
       </div>
@@ -949,19 +1025,24 @@ function LikedView({ go }) {
         </div>
       </div>
 
-      {/* windowed list */}
+      {/* windowed list — FIXED-HEIGHT scroll well (Fuad 2026-08-12): the outer height is CONSTANT
+          regardless of how many rows match, so the tuner panel below never moves when filters/tune/
+          arbitration change the count. Same idiom as the Overview "Recently played" capped well. The
+          empty/few state keeps the exact well height with a centered quiet "N match" note. */}
       <div className="r-card" style={{ padding: PAD }}>
-        <div ref={scrollRef} onScroll={onScroll} style={{ maxHeight: "min(70vh, 720px)", overflowY: "auto" }}>
+        <div ref={scrollRef} onScroll={onScroll} style={{ height: "min(64vh, 640px)", overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
           {total === 0
-            ? <div className="r-mono" style={{ fontSize: 12, color: "var(--ink-faint)", padding: "24px 0", textAlign: "center" }}>no saved songs match.</div>
+            ? <div className="r-mono" style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, color: "var(--ink-faint)", textAlign: "center" }}>no saved songs match.</div>
             : <div style={{ height: total * ROW_H, position: "relative" }}>
                 <div style={{ position: "absolute", top: win.start * ROW_H, left: 0, right: 0 }}>
                   {vis.map(r => <LikedRow key={r.key} r={r} legendByCode={legendByCode} famById={famById} go={go} navable={navKeys.has(r.key)} albumCover={r.albumCover} />)}
                 </div>
               </div>}
         </div>
-        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 8 }}>
-          {total} shown{(bucket !== "all" || q || fams.size || subFilter || anyTuneActive) ? ` of ${rows.length}` : ""} · plays are your scrobbles · “—” = saved but never scrobbled
+        {/* count text lives in a stable slot: minHeight reserves the line so the clauses
+            (`of N`, `hidden`) appearing/disappearing with the count never nudge the tuner below. */}
+        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 8, minHeight: 14 }}>
+          {total} shown{(bucket !== "all" || q || fams.size || subFilter || vocalsActive || anyTuneActive) ? ` of ${rows.length}` : ""} · plays are your scrobbles · “—” = saved but never scrobbled
           {anyTuneActive && hiddenNoData > 0 ? ` · ${hiddenNoData} hidden (no audio data)` : ""}
         </div>
       </div>
@@ -990,20 +1071,31 @@ function LikedView({ go }) {
                   it (a vertex or the tolerance) flips mode→'dna' and its persisted values re-apply. */}
               <div style={{ flex: "0 0 auto", width: 190, maxWidth: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
                 {target && <LikedRadar rows={filtered} size={172} target={target} onTarget={onTarget} dimmed={dimDna} />}
-                {/* tolerance — a small horizontal slider, 5%..60%. Dragging it claims DNA mode. */}
+                {/* tolerance — a small horizontal slider, 5%..60%, ALWAYS visible under the radar (dimmed
+                    only per DNA arbitration). The .lt-range input is position:absolute + pointer-events:none
+                    on its track (only the thumb re-enables events), so it MUST live in a position:relative
+                    box with an explicit height and its own visible rail — otherwise it drops out of flow and
+                    collapses to nothing (the "hidden slider" bug). Same track idiom as LikedRange. */}
                 <div style={{ width: "100%", opacity: dimDna ? 0.45 : 1, transition: "opacity .2s" }}>
-                  <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", color: dictating === "dna" ? "var(--accent)" : "var(--ink-faint)", marginBottom: 4, display: "flex", justifyContent: "space-between" }}>
-                    <span>tolerance</span><span style={{ color: "var(--ink-soft)" }}>{Math.round(tol * 100)}%</span>
+                  <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", color: dictating === "dna" ? "var(--accent)" : "var(--ink-faint)", marginBottom: 4 }}>
+                    tolerance <span style={{ color: "var(--ink-soft)" }}>· {Math.round(tol * 100)}%</span>
                   </div>
-                  <input type="range" className="lt-range" style={{ width: "100%" }} min={5} max={60} value={Math.round(tol * 100)}
-                    onChange={e => { claimDna(); setTol(+e.target.value / 100); }} title="how close a song must be to the target shape" />
+                  <div style={{ position: "relative", height: 20 }}>
+                    {/* base rail + filled portion 5..60 → 0..1 of the track */}
+                    <div style={{ position: "absolute", top: 8, left: 0, right: 0, height: 4, borderRadius: 2, background: "var(--rule-2)" }} />
+                    <div style={{ position: "absolute", top: 8, left: 0, height: 4, borderRadius: 2, background: "var(--accent)", width: (((Math.round(tol * 100) - 5) / 55) * 100) + "%" }} />
+                    <input type="range" className="lt-range" style={{ width: "100%" }} min={5} max={60} value={Math.round(tol * 100)}
+                      onChange={e => { claimDna(); setTol(+e.target.value / 100); }} title="how close a song must be to the target shape" />
+                  </div>
                 </div>
                 {dimDna && <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center" }}>shape idle — drag to take over</div>}
               </div>
               {/* RANGE-BANDS group — per-axis sliders + key/mode. Dims when the DNA shape dictates. */}
               <div style={{ flex: "1 1 340px", minWidth: 0, opacity: dimSliders ? 0.45 : 1, transition: "opacity .2s" }}>
-                {/* one slim dual-range per axis, filling the remaining width, stacking on mobile */}
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: "16px 24px" }}>
+                {/* one slim dual-range per axis: exactly 2×5 on desktop (≥900px), auto-fill wrap below.
+                    The grid template lives in the .lk-dna-sliders CSS class so the breakpoint applies —
+                    an inline gridTemplateColumns would override the media query. */}
+                <div className="lk-dna-sliders">
                   {liveAxes.map(ax => {
                     const c = corpus[ax.k], [lo, hi] = bandOf(ax);
                     return <LikedRange key={ax.k} label={ax.label} lo={lo} hi={hi} min={ax.min} max={ax.max}
