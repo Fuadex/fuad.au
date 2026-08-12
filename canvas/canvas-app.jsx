@@ -1227,7 +1227,9 @@ function Museums({ go }) {
 }
 
 function MuseumSection({ sec, go }) {
-  const [open, setOpen] = useState(false);
+  // open by default — the icon-first version meant a click before you could type (Fuad
+  // 2026-08-13: "should as default let you already write in there").
+  const [open, setOpen] = useState(true);
   return (
     <section className="cv-musidx-sec">
       <header className="cv-musidx-head">
@@ -2881,7 +2883,7 @@ function SearchBar({ go }) {
               autoCorrect="off"
               spellCheck="false"
             />
-            <button className="cv-search-dismiss" onClick={() => { setOpen(false); setQ(""); }}>✕</button>
+            {q && <button className="cv-search-dismiss" onClick={() => { setQ(""); inputRef.current && inputRef.current.focus(); }} aria-label="Clear">✕</button>}
           </div>
         )
       }
