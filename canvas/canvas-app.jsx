@@ -887,15 +887,6 @@ function StudyView({ id, go }) {
 
   if (!work) return null;
   const a = work.artistData || {};
-  // movement labels for this work's artist (art_data.artists[].movementQids ->
-  // art_data.movements). Capped at 2 so the chip row stays readable.
-  const styleTags = useMemo(() => {
-    const ad = (AD.artists && AD.artists[w.artistId]) || null;
-    const qids = (ad && ad.movementQids) || [];
-    const seen = new Set();
-    return qids.map(q => AD.movements && AD.movements[q]).filter(l => l && !seen.has(l) && seen.add(l)).slice(0, 2);
-  }, [w.artistId]);
-
   const life = a.born ? `${a.born}–${a.died || ""}` : null;
 
   const activeKey = activeDetail !== null && tour[activeDetail] ? tour[activeDetail].key : null;
@@ -1005,6 +996,15 @@ function Reader({ id, go }) {
     window.addEventListener("keydown", on);
     return () => window.removeEventListener("keydown", on);
   }, [zoom, deep]);
+  // movement labels for this work's artist (art_data.artists[].movementQids -> art_data.movements).
+  // Declared ABOVE the early return: hooks must run on every render (the first attempt sat below
+  // it, in the wrong component, and took the reader down entirely).
+  const styleTags = useMemo(() => {
+    const ad = (w && AD.artists && AD.artists[w.artistId]) || null;
+    const qids = (ad && ad.movementQids) || [];
+    const seen = new Set();
+    return qids.map(q => AD.movements && AD.movements[q]).filter(l => l && !seen.has(l) && seen.add(l)).slice(0, 2);
+  }, [w]);
   if (!w) return null;
   const a = w.artistData;
   const life = a.born ? `${a.born}–${a.died || ""}` : null;
