@@ -374,6 +374,10 @@ const LK_DNA_AXES = [
   { k: "energy",  label: "energy",      min: 0,    max: 100, fmt: v => v,        get: r => r.energy },
   { k: "valence", label: "positivity",  min: 0,    max: 100, fmt: v => v,        get: r => r.valence },
   { k: "dance",   label: "danceable",   min: 0,    max: 100, fmt: v => v,        get: r => r.dance },
+  // acoustic (ta[6]) + instrumental (ta[9]): the row extraction already exists (radar work); wire them
+  // as bands so the two radar-only axes also gain a numeric range filter. Same 0..100 remap as the blob.
+  { k: "acoustic", label: "acoustic",     min: 0,   max: 100, fmt: v => v,        get: r => r.acoustic },
+  { k: "instr",    label: "instrumental", min: 0,   max: 100, fmt: v => v,        get: r => r.instr },
   // loudness is stored in the track-audio blob as dB×10 (median ≈ -55 → -5.5 dB); scale to real dB.
   { k: "loud",    label: "loudness",    min: -40,  max: 3,   fmt: v => v + "dB", get: r => r.loud == null ? null : Math.round(r.loud / 10) },
   { k: "speech",  label: "speechy",     min: 0,    max: 100, fmt: v => v,        get: r => r.speech },
@@ -407,26 +411,97 @@ function lkLibMean(axis) {
   for (let v = 0; v <= 100; v++) { m += v * (c[v] - prev) / 1000; prev = c[v]; }
   return m;
 }
-// LikedRadar — solid shape = mean of the CURRENTLY FILTERED liked set (live), dashed shape = whole-
-// library average. Both fed as 0..1 arrays into the shared window.Radar (rotation-core). Small, r-mono
-// labels. Reuses Radar (not AudioRadar) because Radar is the globally-exported one.
-function LikedRadar({ rows, size }) {
-  const RadarC = window.Radar;
-  const solid = React.useMemo(() => LK_RADAR_AXES.map(ax => {
+// The 6-axis aggregate of a liked row-set, as a 0..1 array in LK_RADAR_AXES order (used to seed the
+// draggable target and to draw the faint "liked aggregate" shape). Rows missing an axis just don't
+// contribute to that axis's mean.
+function lkRadarAgg(rows) {
+  return LK_RADAR_AXES.map(ax => {
     let sum = 0, n = 0;
     for (const r of rows) { const v = ax.radarGet(r); if (v != null && Number.isFinite(v)) { sum += v; n++; } }
     return n ? Math.max(0, Math.min(1, (sum / n) / 100)) : 0;
-  }), [rows]);
+  });
+}
+// A row's own 6-axis vector in LK_RADAR_AXES order (0..1), or null if ANY axis is missing — a row
+// without full audio data can't be distance-compared, so it's excluded under DNA mode (the no-data
+// convention). Kept as a bare function so the sims can import the math without React.
+function lkRowVec(r) {
+  const out = new Array(LK_RADAR_AXES.length);
+  for (let i = 0; i < LK_RADAR_AXES.length; i++) {
+    const v = LK_RADAR_AXES[i].radarGet(r);
+    if (v == null || !Number.isFinite(v)) return null;
+    out[i] = Math.max(0, Math.min(1, v / 100));
+  }
+  return out;
+}
+// Normalized Euclidean distance between two 0..1 6-vectors: raw L2 divided by sqrt(N) so it lands in
+// 0..1 and compares directly against the tolerance slider. (max L2 across a unit 6-cube = sqrt(6).)
+function lkTargetDist(vec, target) {
+  let s = 0; for (let i = 0; i < target.length; i++) { const d = vec[i] - target[i]; s += d * d; }
+  return Math.sqrt(s) / Math.sqrt(target.length);
+}
+// LikedRadar — now THREE shapes: faint = liked aggregate (initial target seed), dashed = library
+// average, solid draggable = the TARGET (a filter shape). Drag any of the 6 vertices radially to move
+// that axis's target 0..1; `onTarget(nextArray)` reports the change (and flips mode→'dna' upstream).
+// Self-contained SVG (the shared window.Radar is passive — no pointer handling), same visual grammar.
+function LikedRadar({ rows, size, target, onTarget, dimmed }) {
+  const S = size || 172, c = S / 2, r = S / 2 - 26, n = LK_RADAR_AXES.length;
+  const svgRef = React.useRef(null);
+  const [drag, setDrag] = React.useState(-1);   // index of the vertex being dragged (-1 = none)
+  const agg = React.useMemo(() => lkRadarAgg(rows), [rows]);
   const dashed = React.useMemo(() => {
     const vals = LK_RADAR_AXES.map(ax => lkLibMean(ax.k));
     return vals.some(v => v == null) ? null : vals.map(v => Math.max(0, Math.min(1, v / 100)));
   }, []);
-  if (!RadarC) return null;
+  const ang = i => (i / n) * Math.PI * 2 - Math.PI / 2;
+  const pt = (i, v) => [c + Math.cos(ang(i)) * r * v, c + Math.sin(ang(i)) * r * v];
+  const poly = vals => vals.map((v, i) => pt(i, v).map(x => x.toFixed(1)).join(",")).join(" ");
+  // pointer → new radial value for axis `i`: project the cursor onto that axis's spoke, clamp 0..1.
+  const valueAt = (i, clientX, clientY) => {
+    const rect = svgRef.current.getBoundingClientRect();
+    const sx = S / rect.width, sy = S / rect.height;            // css px → viewBox units
+    const dx = (clientX - rect.left) * sx - c, dy = (clientY - rect.top) * sy - c;
+    const proj = (dx * Math.cos(ang(i)) + dy * Math.sin(ang(i))) / r;
+    return Math.max(0, Math.min(1, proj));
+  };
+  const onDown = (i, e) => {
+    // interacting with the shape (even while dimmed) flips mode→'dna' via onTarget below; a pointerdown
+    // on a vertex both grabs it and sets that axis to the cursor's radial position.
+    e.currentTarget.setPointerCapture(e.pointerId); setDrag(i);
+    const next = target.slice(); next[i] = valueAt(i, e.clientX, e.clientY);
+    if (onTarget) onTarget(next);
+  };
+  const onMove = e => {
+    if (drag < 0) return;
+    const next = target.slice(); next[drag] = valueAt(drag, e.clientX, e.clientY);
+    if (onTarget) onTarget(next);
+  };
+  const onUp = () => setDrag(-1);
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-      <RadarC axes={LK_RADAR_AXES.map(a => a.label)} values={solid} values2={dashed} run={true} size={size || 172} />
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, opacity: dimmed ? 0.45 : 1, transition: "opacity .2s" }}>
+      <svg ref={svgRef} width={S} height={S} viewBox={`0 0 ${S} ${S}`} style={{ touchAction: "none", cursor: drag >= 0 ? "grabbing" : "default" }}
+        onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp}>
+        {[0.25, 0.5, 0.75, 1].map((g, i) => (
+          <polygon key={i} points={LK_RADAR_AXES.map((_, j) => pt(j, g).join(",")).join(" ")} fill="none" stroke="var(--rule-2)" strokeWidth="1" opacity={0.6 - i * 0.1} />
+        ))}
+        {LK_RADAR_AXES.map((_, j) => { const p = pt(j, 1); return <line key={j} x1={c} y1={c} x2={p[0]} y2={p[1]} stroke="var(--rule)" strokeWidth="1" />; })}
+        {/* faint = liked aggregate (the whole selection's shape) */}
+        <polygon points={poly(agg)} fill="none" stroke="var(--ink-faint)" strokeWidth="1" opacity="0.5" />
+        {/* dashed = whole-library average */}
+        {dashed && <polygon points={poly(dashed)} fill="none" stroke="var(--ink-faint)" strokeWidth="1.3" strokeDasharray="3 3" opacity="0.8" />}
+        {/* solid = the draggable TARGET */}
+        <polygon points={poly(target)} fill="var(--accent-bg)" stroke="var(--accent)" strokeWidth="1.8" />
+        {/* draggable vertices — generous ~14px transparent hit area over a small visible knob */}
+        {target.map((v, j) => { const p = pt(j, v); return (
+          <g key={j}>
+            <circle cx={p[0]} cy={p[1]} r="14" fill="transparent" style={{ cursor: "grab" }} onPointerDown={e => onDown(j, e)} />
+            <circle cx={p[0]} cy={p[1]} r={drag === j ? 5 : 3.5} fill="var(--accent)" stroke="var(--bg)" strokeWidth="1" style={{ pointerEvents: "none" }} />
+          </g>
+        ); })}
+        {LK_RADAR_AXES.map((ax, j) => { const p = pt(j, 1.18);
+          return <text key={j} x={p[0]} y={p[1]} fill="var(--ink-soft)" fontSize="8.5" fontFamily="var(--mono)" textAnchor="middle" dominantBaseline="middle" style={{ letterSpacing: ".06em", textTransform: "uppercase" }}>{ax.label}</text>; })}
+      </svg>
       <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", lineHeight: 1.4 }}>
-        solid = this selection · dashed = your library
+        drag a vertex to set a target · dashed = your library · faint = this selection
       </div>
     </div>
   );
@@ -482,6 +557,12 @@ function LikedView({ go }) {
   const [bands, setBands] = React.useState(() => ({}));      // { axisKey: [lo, hi] } — absent = full range (no filter)
   const [keySel, setKeySel] = React.useState(() => new Set()); // selected pitch classes 0..11 (empty = any)
   const [mode, setMode] = React.useState("any");             // any | major | minor
+  // ── mode arbitration (owner 2026-08-12): ONE filter system dictates at a time, last-touched wins.
+  //    null = neither engaged yet (both idle). Touching a band/key/mode → 'sliders'; dragging a radar
+  //    vertex or the tolerance → 'dna'. The INACTIVE system keeps its values (dimmed, not reset).
+  const [arbMode, setArbMode] = React.useState(null);        // null | 'sliders' | 'dna'
+  const [target, setTarget] = React.useState(null);          // draggable radar TARGET (6-array 0..1); null until seeded
+  const [tol, setTol] = React.useState(0.25);                // distance tolerance 0.05..0.60 (default ~25%)
   const [win, setWin] = React.useState({ start: 0, end: 60 });   // rendered row window
   const scrollRef = React.useRef(null);
   const tuneRef = React.useRef(null);   // the DNA panel (now under the results) — header pill jumps here
@@ -675,19 +756,25 @@ function LikedView({ go }) {
     return out;
   }, [bands, liveAxes, corpus]);
   const keyActive = keySel.size > 0, modeActive = mode !== "any";
-  const dnaActive = activeBands.length > 0 || keyActive || modeActive;
-  const sliderActive = dnaActive;   // all audio filtering now flows through the DNA tuner bands
+  // does each SYSTEM carry any narrowing? (independent of which one currently dictates)
+  const slidersEngaged = activeBands.length > 0 || keyActive || modeActive;
+  // which system DICTATES the pipeline right now (last-touched wins; only one applies at a time)
+  const dictating = arbMode;   // null | 'sliders' | 'dna'
+  const anyTuneActive = dictating != null && (dictating === "sliders" ? slidersEngaged : true);
 
-  // filtered list + count of rows dropped ONLY because they lack audio features while a slider is on
+  // filtered list. Only the DICTATING system applies (plus the always-on bucket/genre/search filters).
+  // hiddenNoData counts rows dropped ONLY because they lack audio data while a DNA system dictates.
   const { list: filtered, hiddenNoData } = React.useMemo(() => {
     const needle = q.trim().toLowerCase();
     let hidden = 0;
+    const useSliders = dictating === "sliders";
+    const useDna = dictating === "dna" && target != null;
     let list = rows.filter(r => {
       if (bucket !== "all" && r.bucketKey !== bucket) return false;
       if (needle && !(r.artist + " " + r.track).toLowerCase().includes(needle)) return false;
       if (fams.size && (r.famId == null || !fams.has(r.famId))) return false;
       if (subFilter && r.sub !== subFilter) return false;
-      if (sliderActive) {
+      if (useSliders) {
         const noData = r.tempo == null && r.energy == null;
         if (noData) { hidden++; return false; }   // hide featureless rows when a band is engaged
         // DNA bands: each active band excludes rows outside [lo,hi]. Missing datum on THAT axis excludes
@@ -702,24 +789,47 @@ function LikedView({ go }) {
           if (mode === "major" && r.pmode !== 1) return false;
           if (mode === "minor" && r.pmode !== 0) return false;
         }
+      } else if (useDna) {
+        // target-shape filter: keep rows whose normalized distance to the target ≤ tolerance. Rows
+        // missing any radar-axis datum can't be distance-compared → excluded (no-data convention, but
+        // ONLY because DNA dictates).
+        const vec = lkRowVec(r);
+        if (vec == null) { hidden++; return false; }
+        if (lkTargetDist(vec, target) > tol) return false;
       }
       return true;
     });
     const s = list.slice();
-    if (sort === "plays") s.sort((a, b) => b.meta[1] - a.meta[1] || a.artist.localeCompare(b.artist));
+    if (sort === "closest" && useDna) s.sort((a, b) => {
+      const va = lkRowVec(a), vb = lkRowVec(b);
+      return (va ? lkTargetDist(va, target) : Infinity) - (vb ? lkTargetDist(vb, target) : Infinity);
+    });
+    else if (sort === "plays") s.sort((a, b) => b.meta[1] - a.meta[1] || a.artist.localeCompare(b.artist));
     else if (sort === "first-new") s.sort((a, b) => (b.meta[2] || 0) - (a.meta[2] || 0) || b.meta[1] - a.meta[1]);
     else if (sort === "first-old") s.sort((a, b) => (a.meta[2] || 9999) - (b.meta[2] || 9999) || b.meta[1] - a.meta[1]);
     else if (sort === "artist") s.sort((a, b) => a.artist.localeCompare(b.artist) || a.track.localeCompare(b.track));
     else if (sort === "tempo") s.sort((a, b) => (a.tempo == null) - (b.tempo == null) || (a.tempo || 0) - (b.tempo || 0));
     else if (sort === "energy") s.sort((a, b) => (a.energy == null) - (b.energy == null) || (b.energy || 0) - (a.energy || 0));
     return { list: s, hiddenNoData: hidden };
-  }, [rows, q, bucket, sort, fams, subFilter, sliderActive, activeBands, keyActive, modeActive, keySel, mode]);
+  }, [rows, q, bucket, sort, fams, subFilter, dictating, target, tol, activeBands, keyActive, modeActive, keySel, mode]);
+
+  // seed the draggable TARGET from the current liked aggregate ONCE audio data is present (before the
+  // user has touched it). Re-seeds only while still untouched (arbMode !== 'dna') so it tracks the
+  // corpus as track-audio lazy-loads; a user drag (arbMode='dna') freezes it.
+  React.useEffect(() => {
+    if (arbMode === "dna") return;              // user owns it now — don't clobber
+    if (!taReady && target != null) return;     // keep the first seed until full audio lands
+    const seed = lkRadarAgg(rows);
+    if (seed.some(v => v > 0)) setTarget(seed);
+  }, [rows, taReady, arbMode]);
 
   // windowing: render only rows near the viewport. ROW_H must match the row height in LikedRow.
   const ROW_H = 52, PAD = 18, OVERSCAN = 12;
-  React.useEffect(() => { setWin({ start: 0, end: 60 }); if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [q, bucket, sort, fams, subFilter, activeBands, keyActive, modeActive]);
+  React.useEffect(() => { setWin({ start: 0, end: 60 }); if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [q, bucket, sort, fams, subFilter, dictating, activeBands, keyActive, modeActive, target, tol]);
   // drop a subgenre selection that the current family set no longer offers
   React.useEffect(() => { if (subFilter && !subOptions.some(([s]) => s === subFilter)) setSubFilter(""); }, [subOptions, subFilter]);
+  // "closest" sort only exists while DNA dictates — fall back to plays if the shape stops dictating
+  React.useEffect(() => { if (sort === "closest" && dictating !== "dna") setSort("plays"); }, [sort, dictating]);
   const onScroll = React.useCallback(e => {
     const st = e.target.scrollTop, h = e.target.clientHeight;
     const start = Math.max(0, Math.floor(st / ROW_H) - OVERSCAN);
@@ -737,13 +847,22 @@ function LikedView({ go }) {
   const total = filtered.length;
   const vis = filtered.slice(win.start, win.end);
 
-  // reset the DNA tuner (bands back to full corpus range = inert, key/mode cleared). This is now the
-  // ONLY audio reset — the standalone tempo/energy/mood handles were removed; the bucket-row ✕ resets
-  // the tune too (shown only when a band is active), keeping that row uncluttered.
-  const resetTune = () => { setBands({}); setKeySel(new Set()); setMode("any"); };
+  // reset BOTH tune systems and clear the arbitration mode (owner: the bucket-row ✕ nukes everything).
+  // The sliders go inert (bands to full corpus range, key/mode cleared); the DNA target re-seeds from
+  // the aggregate (via the seeding effect, now that arbMode is no longer 'dna'), tolerance to default.
+  const resetTune = () => { setBands({}); setKeySel(new Set()); setMode("any"); setTol(0.25); setArbMode(null); };
   // a band's current [lo,hi], defaulting to the corpus full range so it starts encapsulating all.
   const bandOf = (ax) => { const c = corpus[ax.k]; return bands[ax.k] || (c ? [c.lo, c.hi] : [ax.min, ax.max]); };
-  const setBand = (ax, v) => setBands(b => ({ ...b, [ax.k]: v }));
+  // ── mode-arbitration setters: touching a slider control claims 'sliders'; a radar drag / tolerance
+  //    claims 'dna'. Each wraps the underlying setState so ANY interaction flips the dictating system
+  //    (last-touched wins), and interacting with a DIMMED group instantly takes it over.
+  const setBand = (ax, v) => { setArbMode("sliders"); setBands(b => ({ ...b, [ax.k]: v })); };
+  const claimSliders = () => setArbMode("sliders");
+  const claimDna = () => setArbMode("dna");
+  // radar vertex drag: any reported target change claims 'dna' (last-touched wins) and persists it.
+  const onTarget = (next) => { setArbMode("dna"); setTarget(next); };
+  const dimSliders = dictating === "dna";   // sliders idle while DNA dictates
+  const dimDna = dictating === "sliders";   // shape idle while sliders dictate
 
   return (
     <div className="r-view">
@@ -763,9 +882,9 @@ function LikedView({ go }) {
           }} className="r-mono"
           title="jump to the audio-DNA tuner (below the songs)"
           style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase",
-            padding: "7px 13px", borderRadius: 999, border: "1px solid " + (dnaActive ? "var(--accent)" : "var(--rule-2)"),
-            background: "transparent", color: dnaActive ? "var(--accent)" : "var(--ink-soft)", cursor: "pointer" }}>
-          tune DNA {dnaActive ? <span style={{ opacity: .7 }}>· {activeBands.length + (keyActive ? 1 : 0) + (modeActive ? 1 : 0)} on</span> : null}
+            padding: "7px 13px", borderRadius: 999, border: "1px solid " + (anyTuneActive ? "var(--accent)" : "var(--rule-2)"),
+            background: "transparent", color: anyTuneActive ? "var(--accent)" : "var(--ink-soft)", cursor: "pointer" }}>
+          tune DNA {anyTuneActive ? <span style={{ opacity: .7 }}>· {dictating === "dna" ? "shape" : (activeBands.length + (keyActive ? 1 : 0) + (modeActive ? 1 : 0)) + " on"}</span> : null}
           <span onClick={e => { e.stopPropagation(); setTuneOpen(o => !o); }} title={tuneOpen ? "collapse" : "expand"} style={{ opacity: .8 }}>{tuneOpen ? "▾" : "▸"}</span>
         </button>
       </div>
@@ -785,9 +904,9 @@ function LikedView({ go }) {
             marginLeft:auto, hidden (visibility) + inert when no tune is active, so the row never
             reflows as it appears/disappears. Accent-toned (var(--accent) + accent-dim border) to
             read clearly, matching the clear-filter pill convention (gv-tour-chip). */}
-        <button className="r-chip link" aria-hidden={!dnaActive} tabIndex={dnaActive ? 0 : -1}
+        <button className="r-chip link" aria-hidden={!anyTuneActive} tabIndex={anyTuneActive ? 0 : -1}
           style={{ marginLeft: "auto", textTransform: "none", color: "var(--accent)", borderColor: "var(--accent-dim)",
-            visibility: dnaActive ? "visible" : "hidden", pointerEvents: dnaActive ? "auto" : "none" }}
+            visibility: anyTuneActive ? "visible" : "hidden", pointerEvents: anyTuneActive ? "auto" : "none" }}
           onClick={resetTune}>reset tune ✕</button>
       </div>
 
@@ -822,7 +941,9 @@ function LikedView({ go }) {
         <input value={q} onChange={e => setQ(e.target.value)} placeholder="search artist or title…"
           style={{ flex: "1 1 200px", minWidth: 0, background: "var(--bg-2)", border: "1px solid var(--rule-2)", borderRadius: 999, padding: "8px 14px", color: "var(--ink)", fontFamily: "var(--mono)", fontSize: 12, outline: "none" }} />
         <div className="r-seg r-seg-sm" style={{ flexWrap: "wrap" }}>
-          {[["plays", "plays"], ["first-new", "newest"], ["first-old", "oldest"], ["artist", "a–z"], ["tempo", "tempo"], ["energy", "energy"]].map(([k, l]) => (
+          {/* "closest" (distance ascending) is offered ONLY while the DNA shape dictates — it needs a target */}
+          {[["plays", "plays"], ["first-new", "newest"], ["first-old", "oldest"], ["artist", "a–z"], ["tempo", "tempo"], ["energy", "energy"],
+            ...(dictating === "dna" ? [["closest", "closest"]] : [])].map(([k, l]) => (
             <button key={k} data-on={sort === k} onClick={() => setSort(k)}>{l}</button>
           ))}
         </div>
@@ -840,8 +961,8 @@ function LikedView({ go }) {
               </div>}
         </div>
         <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 8 }}>
-          {total} shown{(bucket !== "all" || q || fams.size || subFilter || sliderActive) ? ` of ${rows.length}` : ""} · plays are your scrobbles · “—” = saved but never scrobbled
-          {sliderActive && hiddenNoData > 0 ? ` · ${hiddenNoData} hidden (no audio data)` : ""}
+          {total} shown{(bucket !== "all" || q || fams.size || subFilter || anyTuneActive) ? ` of ${rows.length}` : ""} · plays are your scrobbles · “—” = saved but never scrobbled
+          {anyTuneActive && hiddenNoData > 0 ? ` · ${hiddenNoData} hidden (no audio data)` : ""}
         </div>
       </div>
 
@@ -856,19 +977,31 @@ function LikedView({ go }) {
           <div className="r-card" style={{ padding: "14px 16px", marginTop: "var(--gap)", background: "var(--bg-2)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
               <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-soft)" }}>
-                tune DNA <span style={{ color: "var(--ink-faint)" }}>· solid radar = this selection · dashed = your library · {total} match</span>
+                tune DNA <span style={{ color: "var(--ink-faint)" }}>· {dictating === "dna" ? "shape filter" : dictating === "sliders" ? "range bands" : "drag the shape or move a band"} · {total} match</span>
               </div>
-              {dnaActive && <button className="r-chip link" style={{ textTransform: "none", color: "var(--ink-faint)" }} onClick={resetTune}>reset tune ✕</button>}
+              {anyTuneActive && <button className="r-chip link" style={{ textTransform: "none", color: "var(--ink-faint)" }} onClick={resetTune}>reset tune ✕</button>}
             </div>
             {!taReady && liveAxes.length <= 3 && (
               <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 10 }}>loading full audio DNA…</div>
             )}
             {/* radar LEFT of the sliders on desktop, ABOVE them on mobile (flex wraps) */}
             <div className="m-stack" style={{ display: "flex", flexWrap: "wrap", gap: "16px 24px", alignItems: "flex-start" }}>
-              <div style={{ flex: "0 0 auto", width: 190, maxWidth: "100%", display: "flex", justifyContent: "center" }}>
-                <LikedRadar rows={filtered} size={172} />
+              {/* DNA-SHAPE group — draggable radar + tolerance. Dims when the sliders dictate; touching
+                  it (a vertex or the tolerance) flips mode→'dna' and its persisted values re-apply. */}
+              <div style={{ flex: "0 0 auto", width: 190, maxWidth: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+                {target && <LikedRadar rows={filtered} size={172} target={target} onTarget={onTarget} dimmed={dimDna} />}
+                {/* tolerance — a small horizontal slider, 5%..60%. Dragging it claims DNA mode. */}
+                <div style={{ width: "100%", opacity: dimDna ? 0.45 : 1, transition: "opacity .2s" }}>
+                  <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", color: dictating === "dna" ? "var(--accent)" : "var(--ink-faint)", marginBottom: 4, display: "flex", justifyContent: "space-between" }}>
+                    <span>tolerance</span><span style={{ color: "var(--ink-soft)" }}>{Math.round(tol * 100)}%</span>
+                  </div>
+                  <input type="range" className="lt-range" style={{ width: "100%" }} min={5} max={60} value={Math.round(tol * 100)}
+                    onChange={e => { claimDna(); setTol(+e.target.value / 100); }} title="how close a song must be to the target shape" />
+                </div>
+                {dimDna && <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center" }}>shape idle — drag to take over</div>}
               </div>
-              <div style={{ flex: "1 1 340px", minWidth: 0 }}>
+              {/* RANGE-BANDS group — per-axis sliders + key/mode. Dims when the DNA shape dictates. */}
+              <div style={{ flex: "1 1 340px", minWidth: 0, opacity: dimSliders ? 0.45 : 1, transition: "opacity .2s" }}>
                 {/* one slim dual-range per axis, filling the remaining width, stacking on mobile */}
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: "16px 24px" }}>
                   {liveAxes.map(ax => {
@@ -886,9 +1019,9 @@ function LikedView({ go }) {
                         {PITCH_CLASSES.map((p, i) => {
                           const on = keySel.has(i);
                           return <button key={i} className={"r-chip link" + (on ? " solid" : "")} style={{ textTransform: "none", minWidth: 30, textAlign: "center" }}
-                            onClick={() => setKeySel(s => { const n = new Set(s); n.has(i) ? n.delete(i) : n.add(i); return n; })}>{p}</button>;
+                            onClick={() => { claimSliders(); setKeySel(s => { const n = new Set(s); n.has(i) ? n.delete(i) : n.add(i); return n; }); }}>{p}</button>;
                         })}
-                        {keyActive && <button className="r-chip link" style={{ textTransform: "none", color: "var(--ink-faint)" }} onClick={() => setKeySel(new Set())}>clear ✕</button>}
+                        {keyActive && <button className="r-chip link" style={{ textTransform: "none", color: "var(--ink-faint)" }} onClick={() => { claimSliders(); setKeySel(new Set()); }}>clear ✕</button>}
                       </div>
                     )}
                     {hasMode && (
@@ -896,13 +1029,16 @@ function LikedView({ go }) {
                         <span className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: modeActive ? "var(--accent)" : "var(--ink-faint)" }}>mode</span>
                         <div className="r-seg r-seg-sm">
                           {[["any", "any"], ["major", "major"], ["minor", "minor"]].map(([k, l]) => (
-                            <button key={k} data-on={mode === k} onClick={() => setMode(k)}>{l}</button>
+                            <button key={k} data-on={mode === k} onClick={() => { claimSliders(); setMode(k); }}>{l}</button>
                           ))}
                         </div>
                       </div>
                     )}
+                    {dimSliders && <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>sliders idle — adjust to take over</div>}
                   </div>
                 )}
+                {/* idle hint when there's no key/mode row to host it (keeps the message present) */}
+                {dimSliders && !(hasKey || hasMode) && <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 10 }}>sliders idle — adjust to take over</div>}
               </div>
             </div>
           </div>
