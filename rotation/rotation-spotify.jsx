@@ -732,10 +732,14 @@ function LikedView({ go }) {
   // absent from both stays undefined → the row is hidden only while a vocals option is active.
   const vxBySlug = React.useMemo(() => {
     const m = new Map();
+    // liked-scoped codes (ride liked-meta.js): liked-only artists have no byId/expById record,
+    // so their vocals.json entries never surfaced here before this fallback (2026-08-12).
+    const LVX = window.ROTATION_LIKED_VX || null;
     if (R) for (const r of rows) {
       if (m.has(r.aSlug)) continue;
       const e = (R.expById && R.expById[r.aSlug]) || (R.byId && R.byId[r.aSlug]);
-      m.set(r.aSlug, e ? e.vx : undefined);   // undefined = no vocals data for this artist
+      const v = e && e.vx !== undefined ? e.vx : (LVX && r.aSlug in LVX ? LVX[r.aSlug] : undefined);
+      m.set(r.aSlug, v);   // undefined = no vocals data for this artist
     }
     return m;
   }, [rows, restReady]);
@@ -942,7 +946,7 @@ function LikedView({ go }) {
           their borders. Genre-family chips get the same treatment via --gc (inline styles would
           otherwise beat the stylesheet and kill the hover). No backticks in these comments. */}
       <style>{`
-        .lk-quiet .r-chip.link:not(.solid) { border-color: transparent; }
+        .lk-quiet .r-chip.link:not(.solid) { border-color: transparent; color: var(--ink); }
         .lk-quiet .lk-famchip { border-color: transparent; background: transparent; }
         .lk-quiet .lk-famchip:hover { border-color: var(--gc); background: transparent; color: var(--gc); }
         .lk-quiet .lk-famchip.on { border-color: var(--gc); background: var(--gc); color: #0c0a08; }
@@ -950,8 +954,14 @@ function LikedView({ go }) {
         .lk-quiet .lk-tunepill { border: 1px solid transparent; color: var(--ink-soft); transition: .15s; }
         .lk-quiet .lk-tunepill:hover { border-color: var(--accent-dim); color: var(--accent); }
         .lk-quiet .lk-tunepill.on { border-color: var(--accent); color: var(--accent); }
+        /* the sort segment reads as plain text too: group lozenge border off, buttons normal ink
+           at rest, accent on hover; the active segment keeps its filled state. */
+        .lk-quiet .r-seg { border-color: transparent; }
+        .lk-quiet .r-seg button { color: var(--ink); }
+        .lk-quiet .r-seg button:hover { color: var(--accent); }
       `}</style>
-      <button className="r-back" onClick={() => go("spotify")}>← spotify</button>
+      {/* (the "← spotify" back button was removed on request — Fuad 2026-08-12; Liked is now a
+          first-class navbar destination, so the up-navigation was noise) */}
       {/* header row: title on the left, the DNA TUNE control hugging the right (stacks under the
           title on narrow screens via flex-wrap). */}
       <div className="r-viewhead" style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 10 }}>

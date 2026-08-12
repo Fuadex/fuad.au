@@ -1714,10 +1714,22 @@ const explicitPct = _explCov ? Math.round(_explPlays / _explCov * 100) : 0;
 // cumulative distribution per axis as permille (0..1000): AUDIO_DIST.cdf[axis][v] = share of plays ≤ v.
 const AUDIO_DIST = { axes: DIST_AXES.map(a => a[0]), cdf: _hist.map(h => { const c = []; let run = 0; for (let v = 0; v <= 100; v++) { run += h[v]; c.push(_distTotal ? Math.round(run / _distTotal * 1000) : 0); } return c; }) };
 
+// album-kind split for the Overview stats strip (Fuad 2026-08-12): LPs vs EPs/singles vs
+// compilations, from the same albummeta the media rows carry. Post-fold rows, so the counts
+// honor the coherency ledger. Rows with no kind metadata (~14k long-tail variants) are NOT
+// binned as albums — the strip shows known-kind counts, the honest number.
+const _albKinds = { a: 0, s: 0, c: 0, u: 0 };
+for (const key of albumPlays.keys()) {
+  const ix = key.indexOf("\x00");
+  const m = albMeta(key.slice(0, ix), key.slice(ix + 1));
+  const k = (m && m[1]) || "u";
+  _albKinds[k] = (_albKinds[k] || 0) + 1;
+}
 const TOTALS = {
   scrobbles: totalScrobbles,
   artists: artistPlays.size,
   albums: albumPlays.size,
+  albumsLP: _albKinds.a, epsSingles: _albKinds.s, comps: _albKinds.c,
   tracks: trackPlays.size,
   since: new Date(undated ? UNDATED_REMAP_START : oldestMs).toISOString().slice(0, 10),
   perDay: Math.round(totalScrobbles / spanDays * 10) / 10,
@@ -3235,7 +3247,20 @@ console.log(`album-absorb.js: ${Object.keys(ALBUM_ABSORB).length} single→LP ab
     + "window.ROTATION_LIKED_LEGEND = " + JSON.stringify(LEGEND) + ";\n"
     + "window.ROTATION_LIKED_FAMS = " + JSON.stringify(LIKED_FAMS) + ";\n"
     + "window.ROTATION_LIKED_SUBS = " + JSON.stringify(LIKED_SUBS) + ";\n"
-    + "window.ROTATION_LIKED_AUDIO_X = " + JSON.stringify(LIKED_AX) + ";\n";
+    + "window.ROTATION_LIKED_AUDIO_X = " + JSON.stringify(LIKED_AX) + ";\n"
+    // liked-scoped vocals codes: the Liked view's vx join reads artist RECORDS (byId/expById),
+    // which liked-only (unscrobbled) artists don't have — so their vocals.json entries never
+    // surfaced (2026-08-12). Ship the code directly for every liked artist the ledger knows.
+    + "window.ROTATION_LIKED_VX = " + JSON.stringify((() => {
+        const o = {};
+        for (const key in META) {
+          const a = key.slice(0, key.indexOf("~"));
+          if (a in o) continue;
+          const c = vocalsCodeBySlug(a);
+          if (c !== undefined) o[a] = c;
+        }
+        return o;
+      })()) + ";\n";
   fs.writeFileSync(path.join(__dirname, "liked-meta.js"), _likedOut, "utf8");
   const audTot = audParquet + audFallback + audNone;
   console.log(`liked-meta.js: ${Object.keys(META).length} saved tracks (${matched} matched · ${unmatched} unscrobbled · ${dupes} dup keys) — `
