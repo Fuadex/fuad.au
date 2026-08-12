@@ -235,8 +235,11 @@ Album reads are NOT one canonical shape. Each entry should be standalone solid �
 satisfying multi-register piece — with tightness a non-goal. The REGISTER CHECKLIST
 (coverage guidance, order flexible, never a template):
 
-1. **The album in the world** — era, place in the catalog, one line of real lore or
-   reception where it earns its place (the Downward Spiral entry's opening register).
+1. **The album in the world — AND in the ear** — era, place in the catalog, one line of
+   real lore or reception where it earns its place, AND the record's sonic identity (what
+   it actually sounds like: Shinsekai's rawness, Gore's vaporous drift). Fuad 2026-08-12:
+   a gist that gives only context/meta without the sound "doesn't reflect the album
+   itself" — the GIST especially must carry the sonic identity.
 2. **What it's about** — the emergent thesis, from the fable reads where coverage exists.
 3. **Its shine** — where the record is best. The EXPANDED WALK IS WELCOME here when every
    station earns its stop (Downward Spiral's station-walk is the positive model; a walk
