@@ -940,25 +940,23 @@ function LikedView({ go }) {
 
   return (
     <div className="r-view lk-quiet">
-      {/* QUIET CHIPS (Fuad 2026-08-12): resting grey pill borders on this page were distracting —
-          chips read as plain text at rest (transparent border keeps geometry, zero reflow) and only
-          light up on hover / when active. Scoped to .lk-quiet so Explore/other r-chip uses keep
-          their borders. Genre-family chips get the same treatment via --gc (inline styles would
-          otherwise beat the stylesheet and kill the hover). No backticks in these comments. */}
+      {/* QUIET CHIPS v3 (Fuad 2026-08-13): inactive chips mirror Explore's xp-chip resting
+          grammar — soft var(--rule) border + ink-soft text, hover = ink-faint border + ink
+          text, accent fill ONLY when active. (v1 rule-2 borders read distracting; v2
+          borderless-at-rest also rejected — Explore-adjacent is the ruling.) Scoped to
+          .lk-quiet; famchips keep their family-colour identity via --gc. No backticks here. */}
       <style>{`
-        .lk-quiet .r-chip.link:not(.solid) { border-color: transparent; color: var(--ink); }
-        .lk-quiet .lk-famchip { border-color: transparent; background: transparent; }
+        .lk-quiet .r-chip.link:not(.solid) { border-color: var(--rule); color: var(--ink-soft); }
+        .lk-quiet .r-chip.link:not(.solid):hover { border-color: var(--ink-faint); color: var(--ink); background: transparent; }
+        .lk-quiet .lk-famchip { border-color: var(--rule); background: transparent; }
         .lk-quiet .lk-famchip:hover { border-color: var(--gc); background: transparent; color: var(--gc); }
         .lk-quiet .lk-famchip.on { border-color: var(--gc); background: var(--gc); color: #0c0a08; }
         .lk-quiet .lk-famchip.on:hover { border-color: var(--gc); background: var(--gc); color: #0c0a08; }
-        .lk-quiet .lk-tunepill { border: 1px solid transparent; color: var(--ink-soft); transition: .15s; }
-        .lk-quiet .lk-tunepill:hover { border-color: var(--accent-dim); color: var(--accent); }
+        .lk-quiet .lk-tunepill { border: 1px solid var(--rule); color: var(--ink-soft); transition: .15s; }
+        .lk-quiet .lk-tunepill:hover { border-color: var(--ink-faint); color: var(--ink); }
         .lk-quiet .lk-tunepill.on { border-color: var(--accent); color: var(--accent); }
-        /* the sort segment reads as plain text too: group lozenge border off, buttons normal ink
-           at rest, accent on hover; the active segment keeps its filled state. */
-        .lk-quiet .r-seg { border-color: transparent; }
-        .lk-quiet .r-seg button { color: var(--ink); }
-        .lk-quiet .r-seg button:hover { color: var(--accent); }
+        /* sort segment: default r-seg lozenge (var(--rule) border) already matches the Explore
+           grammar — no overrides (the borderless v2 experiment is reverted). */
       `}</style>
       {/* (the "← spotify" back button was removed on request — Fuad 2026-08-12; Liked is now a
           first-class navbar destination, so the up-navigation was noise) */}
