@@ -28,7 +28,7 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
       return m;
     };
     if (view === "artist") {   // the bands behind the current place ∩ genre slice
-      const fn = sub != null ? (a => a.s.indexOf(sub) >= 0) : fam != null ? (a => a.s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam)) : (() => true);
+      const fn = sub != null ? (a => (a.sq || a.s).indexOf(sub) >= 0) : fam != null ? (a => a.fm ? a.fm.includes(fam) : a.s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam)) : (() => true);
       return artists.filter(a => a.yp && fn(a)).sort((a, b) => b.plays - a.plays).slice(0, 12)
         .map(a => ({ key: a.id, name: a.name, hue: a.hue, id: a.id, vals: years.map(y => a.yp[y] || 0) })).filter(s => s.vals.some(v => v > 0));
     }
@@ -302,7 +302,9 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
 
   // genre pivot — sum every place's plays for the selected family/subgenre (membership-based, like Explore).
   // year-aware: when a year is active we sum that year's plays (a.yp) so genre × year combine.
-  const matchGenre = (a) => filt.sub != null ? a.s.includes(filt.sub) : a.s.some(si => R.SUBS[si] && R.SUBS[si].fam === filt.fam);
+  // family membership → the record's `fm` set (mention ≠ membership, 2026-08-12); subgenre → `sq`
+  // (qualifying subs, ≥25% of top-tag weight) falling back to `s` for legacy records.
+  const matchGenre = (a) => filt.sub != null ? ((a.sq || a.s).includes(filt.sub)) : (a.fm ? a.fm.includes(filt.fam) : a.s.some(si => R.SUBS[si] && R.SUBS[si].fam === filt.fam));
   const filtSums = React.useMemo(() => {
     if (filt.sub == null && filt.fam == null) return null;
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
