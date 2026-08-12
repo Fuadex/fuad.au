@@ -174,10 +174,11 @@ a { color: inherit; }
 /* flow-root contains the floated interior INSIDE the read pane — without it a short read
    lets the float poke below the pane and steal width from the artists row underneath */
 .cv-mus-read-pane { display: flow-root; }
-.cv-mus-interior { float: right; width: 40%; margin: 14px 0 16px 24px; }   /* extra top margin keeps the photo off the Info/Interpretation buttons */
+.cv-mus-interior { float: none; width: 100%; margin: 14px 0 16px; }   /* folded out of the read pane 2026-08-13; the read now runs full width */
 .cv-mus-interior img { display: block; width: 100%; height: auto; max-height: 240px; object-fit: cover; border-radius: 6px; box-shadow: 0 4px 16px rgba(40,28,14,.2); }
 .cv-mus-interior figcaption { font: 500 9px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 6px; text-align: center; }
-.cv-mus-interior-solo { float: none; width: min(360px, 100%); margin: 22px 0 0; }
+.cv-mus-interior-solo { float: none; width: 100%; max-width: 1200px; margin: 18px auto 0; padding: 0 30px; }
+.cv-mus-interior-solo img { max-height: 300px; width: 100%; object-fit: cover; }
 .cv-mus-h1 { font: 600 32px/1.12 var(--serif); margin: 0; color: #f2e9dc; }
 .cv-mus-head[data-kind="natural-history"] .cv-mus-h1::after { content: " 🦕"; font-size: 22px; }
 .cv-mus-sub { font: 500 11px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(232,221,204,.6); margin-top: 8px; }
@@ -185,9 +186,17 @@ a { color: inherit; }
    max-content width (~11 thumbnails) up to .cv-mus-head-main, expanding the layout viewport
    past device width — after which the 620px media queries never fire. The floor lets overflow-x
    actually clip+scroll instead of pushing the page wide. Must hold at ANY viewport, not just mobile. */
-.cv-mus-floored { display: flex; gap: 10px; overflow-x: auto; padding: 18px 0 4px; scrollbar-width: thin; contain: inline-size; }  /* contain: the strip's max-content (11 thumbs ~1200px) propagated through the flex chain and expanded the MOBILE LAYOUT VIEWPORT itself, after which the 620px media queries never fired; min-width:0/max-width:100% cannot stop intrinsic propagation (percentages do not resolve during intrinsic sizing) — verified 2026-07-25 */
-.cv-mus-floored::-webkit-scrollbar { height: 6px; }
-.cv-mus-floored::-webkit-scrollbar-thumb { background: rgba(232,221,204,.25); border-radius: 999px; }
+.cv-mus-floored { display: flex; gap: 10px; overflow-x: auto; padding: 18px 0 4px; contain: inline-size;
+  /* Fuad 2026-08-13: the visible scrollbar looked cheap and the strip could only be scrolled by
+     wheel/trackpad. Bar hidden, drag-to-scroll wired in canvas-app.jsx, and the strip is aligned
+     to the header block's width + inner padding so the thumbnails start under the museum name
+     rather than floating off-axis. */
+  scrollbar-width: none; -ms-overflow-style: none; cursor: grab; scroll-behavior: auto;
+  max-width: 1200px; margin: 0 auto; padding-left: 30px; padding-right: 30px;
+  overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+.cv-mus-floored:active { cursor: grabbing; }
+.cv-mus-floored img { user-select: none; -webkit-user-drag: none; pointer-events: none; }  /* contain: the strip's max-content (11 thumbs ~1200px) propagated through the flex chain and expanded the MOBILE LAYOUT VIEWPORT itself, after which the 620px media queries never fired; min-width:0/max-width:100% cannot stop intrinsic propagation (percentages do not resolve during intrinsic sizing) — verified 2026-07-25 */
+.cv-mus-floored::-webkit-scrollbar { display: none; }
 /* min-width holds the slot open while LazyImg withholds a not-yet-revealed src (width:auto would
    otherwise collapse the button to 0 and let the strip re-flow as tiles load) (Fuad 2026-07-25) */
 .cv-mus-floored-item { flex-shrink: 0; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 5px; overflow: hidden; min-width: 72px; min-height: 96px; }

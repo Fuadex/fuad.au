@@ -1339,6 +1339,38 @@ function MuseumView({ museumId, go }) {
   const fmtWorks = (n) => n.toLocaleString("en-US");
   const architectsLine = DATA && Array.isArray(DATA.architects) && DATA.architects.length ? DATA.architects.join(" · ") : null;
   const hasReadPane = !!(ABOUT && (ABOUT.about || ABOUT.deep));
+
+  // DRAG-SCROLL for the highlights strip (Fuad 2026-08-13: "I should be able to click and drag
+  // left or right"). Pointer events so mouse/pen/touch share one path; a small movement
+  // threshold before we claim the drag, so a plain click on a thumbnail still opens the work.
+  const flooredRef = useRef(null);
+  const dragState = useRef({ down: false, moved: false, x: 0, left: 0 });
+  const dragScroll = {
+    onPointerDown: (e) => {
+      if (e.button !== undefined && e.button !== 0) return;
+      const el = flooredRef.current; if (!el) return;
+      dragState.current = { down: true, moved: false, x: e.clientX, left: el.scrollLeft };
+    },
+    onPointerMove: (e) => {
+      const st = dragState.current, el = flooredRef.current;
+      if (!st.down || !el) return;
+      const dx = e.clientX - st.x;
+      if (!st.moved && Math.abs(dx) < 4) return;       // below threshold: still a click
+      if (!st.moved) { st.moved = true; el.setPointerCapture?.(e.pointerId); }
+      el.scrollLeft = st.left - dx;
+    },
+    onPointerUp: (e) => {
+      const st = dragState.current, el = flooredRef.current;
+      if (st.moved && el) { el.releasePointerCapture?.(e.pointerId); }
+      // swallow the click that follows a real drag so it doesn't open a work
+      if (st.moved) { e.preventDefault(); e.stopPropagation(); }
+      dragState.current = { down: false, moved: false, x: 0, left: 0 };
+    },
+    onPointerCancel: () => { dragState.current = { down: false, moved: false, x: 0, left: 0 }; },
+    onClickCapture: (e) => {
+      if (dragState.current.moved) { e.preventDefault(); e.stopPropagation(); }
+    },
+  };
   // date chip eligibility
   const eligible = (dateStr, country) => dateStr < "2024-06" || dateStr > "2025-12" || country === "au";
   const visitDate = (Array.isArray(m.visits) ? m.visits : []).find(d => /^\d{4}-\d{2}/.test(d)) || null;
@@ -1382,7 +1414,7 @@ function MuseumView({ museumId, go }) {
             </div>
           )}
           {floored.length > 0 && (
-            <div className="cv-mus-floored">
+            <div className="cv-mus-floored" ref={flooredRef} {...dragScroll}>
               {floored.filter(w => w.imgGrid).map(w => (
                 <button className="cv-mus-floored-item" key={w.id} onClick={() => go("work", w.id)} title={w.title}>
                   <LazyImg src={w.imgGrid} alt={w.title} />
@@ -1420,19 +1452,17 @@ function MuseumView({ museumId, go }) {
               </div>
             )}
           </div>
-          {DATA && DATA.interior && (
-            <figure className="cv-mus-interior">
-              <img src={DATA.interior} alt={m.name.replace(/\s*\(.*\)$/, "") + " interior"} loading="lazy" />
-              <figcaption>inside</figcaption>
-            </figure>
-          )}
+          {/* the interior photo used to float right INSIDE this pane, squeezing the read to
+              ~60% width. Folded out (Fuad 2026-08-13) — the description now takes the module's
+              full width and the photo renders standalone below (2b), which also runs whether or
+              not there is a read pane. */}
           <div className="cv-r-read-txt">{tier === "deep" && ABOUT.deep ? ABOUT.deep : ABOUT.about}</div>
           <div className="cv-r-read-by">via {(tier === "deep" && ABOUT.deepBy) ? ABOUT.deepBy : (ABOUT.by || "Fable")}</div>
         </div>
       )}
 
       {/* 2b. INTERIOR STANDALONE (interior exists but no read pane to host it) */}
-      {DATA && DATA.interior && !hasReadPane && (
+      {DATA && DATA.interior && (
         <figure className="cv-mus-interior cv-mus-interior-solo">
           <img src={DATA.interior} alt={m.name.replace(/\s*\(.*\)$/, "") + " interior"} loading="lazy" />
           <figcaption>inside</figcaption>
