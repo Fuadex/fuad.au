@@ -13,6 +13,19 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
 
 ---
 
+## 2026-08-13
+
+### Rotation
+- **Genre taxonomy v2 shipped.** 15 families with a weighted three-source vote replacing
+  first-tag matching; new Heavy/Doom/Gothic and Score/Games & Film families; scene tags no
+  longer masquerade as genres. A verified adjudication pass corrected 34 borderline artists.
+- **Color follows family, everywhere.** Every classified artist's hue now derives from its
+  family's anchor (with a small per-artist variation), so genre color is finally one system
+  across artist pages, covers, charts, maps and tiles.
+- **Filtering got honest.** Genre filters now use dominant-family membership (up to three for
+  genuine hybrids) instead of any stray tag — thousands of artists no longer appear under
+  families they merely brushed against.
+
 ## 2026-08-12
 
 ### Rotation
