@@ -25,7 +25,7 @@ const _V1_FAM_BRIDGE = {
   "punkgarage": "Punk/Hardcore",
   "shoegazenoise": "Shoegaze/Grunge",
   "popindie": "Pop",
-  "jazz": "Jazz",
+  "jazz": "Jazz/Funk",
   "classicalscore": "Classical",
 };
 // resolve a ?f= family token to a v2 FAMILIES entry: exact v2 name first, then the v1 bridge.

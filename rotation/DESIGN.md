@@ -47,7 +47,7 @@ y ≈ light→heavy).
 | Heavy / Doom / Gothic | 24 | .18, .80 |
 | Hip-Hop / Rap | 46 | .62, .42 |
 | Alternative / Indie | 60 | .40, .50 |
-| Jazz (+ soul/funk/R&B) | 40 | .40, .32 |
+| Jazz/Funk (+ soul/R&B/blues) | 40 | .40, .32 |
 | Punk / Hardcore | 96 | .26, .80 |
 | Classical | 150 | .18, .22 |
 | Electronic / DnB | 190 | .84, .60 |
