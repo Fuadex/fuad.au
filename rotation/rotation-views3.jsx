@@ -57,6 +57,27 @@ function StoriesView({ t, go, seed }) {
   const feedRef = React.useRef(null);
   const [toc, setToc] = React.useState([]);
   const [active, setActive] = React.useState("");
+  // WEIGHTED RAIL (Fuad 2026-08-13): when the chapter rail is taller than the viewport it used
+  // to spill past the bottom (fixed element — unreachable). --stp = page scroll progress 0..1;
+  // the CSS anchors the rail top at page top, bottom at page bottom, sliding in between, so the
+  // overflow flips to wherever you AREN'T.
+  const tocRef = React.useRef(null);
+  React.useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const el = tocRef.current; if (!el) return;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const pr = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0.5;
+        el.style.setProperty("--stp", String(pr));
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => { window.removeEventListener("scroll", onScroll); if (raf) cancelAnimationFrame(raf); };
+  }, []);
   const _slugify = (s) => (s || "").toLowerCase().split("·")[0].trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
   React.useEffect(() => {
     const feed = feedRef.current; if (!feed) return;
@@ -140,7 +161,7 @@ function StoriesView({ t, go, seed }) {
       {toc.length > 3 && (() => {
         const activeIdx = toc.findIndex(it => it.id === active);
         return (
-        <nav className="st-toc" aria-label="stories">
+        <nav className="st-toc" aria-label="stories" ref={tocRef}>
           {toc.map((it, idx) => (
             <button key={it.id} data-on={active === it.id}
               data-reached={activeIdx >= 0 && idx <= activeIdx ? "true" : undefined}
@@ -1957,7 +1978,9 @@ function StoriesView({ t, go, seed }) {
            Breakpoint 1420px (was 1240): Windows-scaled laptops (e.g. P16 at 200% ≈ 1280 CSS px)
            get the horizontal chip bar instead — the rail's hover labels were illegible there. */
         @media (min-width: 1420px) {
-          .st-toc { position: fixed; left: 16px; top: 50%; transform: translateY(-50%);
+          .st-toc { position: fixed; left: 16px;
+            top: calc(14px + var(--stp, .5) * (100vh - 28px));
+            transform: translateY(calc(var(--stp, .5) * -100%));
             flex-direction: column; gap: 0; overflow: visible; margin: 0; padding: 0;
             background: none; backdrop-filter: none; -webkit-backdrop-filter: none;
             max-height: 86vh; z-index: 40; width: auto; }
