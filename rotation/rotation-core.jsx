@@ -314,6 +314,11 @@ a.r-link:hover { color: var(--ink); }
   .r-seg button { padding: 7px 10px; }
 }
 
+/* Liked DNA range-band grid: exactly 2 rows × 5 columns on desktop (10 axes), falling back to the
+   auto-fill wrap on narrower screens. Kept a class (not inline) so the ≥900px breakpoint can apply. */
+.lk-dna-sliders { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px 24px; }
+@media (min-width: 900px) { .lk-dna-sliders { grid-template-columns: repeat(5, 1fr); } }
+
 /* mobile grid utilities — inline grid styles win over plain rules, so !important */
 @media (max-width: 860px) {
   /* minmax(0,1fr) (not a bare 1fr, whose implicit min is auto) so a wide child — an SVG map,
