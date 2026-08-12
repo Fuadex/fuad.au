@@ -312,6 +312,19 @@ function dGenresOf(name) {
   return d.genres.slice(0, 3).map(g => g[0]);
 }
 
+// ─────────── PER-ALBUM genre evidence (album-genres.json + discogs-album.json) ───────────
+// album-genres.json  { "artistSlug~titleSlug": { tags:[[name,count 0..100],…], fetched } } — last.fm
+//   album.gettoptags, built by enrich-album-tags.js.
+// discogs-album.json { "artistSlug~titleSlug": { styles:[[name,count],…] } } — Discogs release styles
+//   aggregated per album, built by enrich-discogs-albums.js.
+// Both OPTIONAL: absent → familyIdxByAlbum returns -1 and the album falls back to its artist family
+// (current behaviour everywhere — the build works with these files missing).
+const ALBUM_TAGS_PATH = path.join(__dirname, "album-genres.json");
+const ALBUM_TAGS = fs.existsSync(ALBUM_TAGS_PATH) ? JSON.parse(fs.readFileSync(ALBUM_TAGS_PATH, "utf8")) : {};
+const ALBUM_STYLES_PATH = path.join(__dirname, "discogs-album.json");
+const ALBUM_STYLES = fs.existsSync(ALBUM_STYLES_PATH) ? JSON.parse(fs.readFileSync(ALBUM_STYLES_PATH, "utf8")) : {};
+const hasAlbumGenres = Object.keys(ALBUM_TAGS).length > 0 || Object.keys(ALBUM_STYLES).length > 0;
+
 // ─────────── MusicBrainz deep (artist-mb.json, by enrich-mb.js) ───────────
 // Per artist: { debut, latest, rgCount, releases:[[title,year,type]], rels:[[type,name,mbid]] }.
 // Powers adoption-lag ("how old the music was when you found it") + the connection graph.
@@ -752,6 +765,35 @@ function familyIdxByName(name) {
   const discogs = stylesCountOf(name);
   const idx = classifyArtist({ lastfm, spotify, discogs });
   _famCache.set(name, idx);
+  return idx;
+}
+
+// ── familyIdxByAlbum(artist, title) — a PER-ALBUM dominant family from album-level evidence, run
+//    through the SAME weighted 3-source vote (_voteArtist) as the artist classifier. Evidence:
+//    { lastfm: album-genres tags for slug(artist)~slug(title), spotify: [] (no per-album Spotify
+//    genres yet), discogs: discogs-album styles }. GATE (approved 2026-08-12): the winner must own
+//    SHARE >= 0.5 of the album's total vote weight (FAM_ABS_MIN class — a confident dominant), else
+//    return -1 so the consumer falls back to the artist family (familyIdxByName). Returns a FAMILIES
+//    index or -1. Absent caches → no evidence → -1 (build works without album-genres.json).
+const _famAlbCache = new Map();
+function familyIdxByAlbum(artist, title) {
+  if (!hasAlbumGenres) return -1;
+  const key = slug(artist) + "~" + slug(title);
+  if (_famAlbCache.has(key)) return _famAlbCache.get(key);
+  const at = aliasedBySlugAlbum(ALBUM_TAGS, slug(artist), slug(title));
+  const as = aliasedBySlugAlbum(ALBUM_STYLES, slug(artist), slug(title));
+  const lastfm = (at && at.tags) || [];
+  const discogs = (as && as.styles) || [];
+  if (!lastfm.length && !discogs.length) { _famAlbCache.set(key, -1); return -1; }
+  const { totals, ranked } = _voteArtist({ lastfm, spotify: [], discogs });
+  let idx = -1;
+  if (ranked.length) {
+    const [winner, top] = ranked[0];
+    let sum = 0; for (const w of totals.values()) sum += w;
+    // dominant-share gate: winner must be a real (non-grey) family AND own >= 50% of the vote.
+    if (sum > 0 && (top / sum) >= FAM_ABS_MIN && !(FAMILIES[winner] && FAMILIES[winner].grey)) idx = winner;
+  }
+  _famAlbCache.set(key, idx);
   return idx;
 }
 
@@ -1491,7 +1533,13 @@ for (const [key] of rankedAlbums) {
 }
 const ALBUMS = rankedAlbums.filter(([key]) => albumKeys.has(key)).map(([key, plays], i) => {
   const [artist, title] = key.split("\x00");
-  return { id: "al" + i, artistId: slug(artist), artist, title, year: null, plays, hue: hueFor(artist), kind: albumKind(artist, title) };
+  // fam: prefer the album's OWN dominant family (from per-album evidence, gated ≥50% share); fall
+  // back to the artist family when the album has no confident evidence. afam:1 flags album-derived
+  // so views can distinguish an album that broke from its artist's family.
+  const albFam = familyIdxByAlbum(artist, title);
+  const rec = { id: "al" + i, artistId: slug(artist), artist, title, year: null, plays, hue: hueFor(artist), kind: albumKind(artist, title), fam: albFam >= 0 ? albFam : familyIdxByName(artist) };
+  if (albFam >= 0) rec.afam = 1;
+  return rec;
 });
 
 // ─────────── TRACKS ───────────
