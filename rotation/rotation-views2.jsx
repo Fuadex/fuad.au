@@ -1068,40 +1068,42 @@ function PortraitCard({ id, alt, showWords = true, go }) {
                     <b>{f.k}</b>{!badV(f.v) && <span className="pv-sep"> · {f.v}</span>}
                   </button>
                 ))}
-                {(hasAlt || hasFable2) && (
-                  <button className="pv-flick pv-flick-inrow r-mono" onClick={() => setFace(nextFace)}
-                    title={hasFable2 ? "see the alternate Fable read" : "see the " + alt.label + " source"}>
-                    {flickLabel}
-                  </button>
-                )}
               </div>
               {chip >= 0 && facts[chip] && (
                 <div className="pv-deriv">{facts[chip].x}</div>
               )}
-              {/* THE FULL READ (Fuad 2026-08-12): always on its OWN line, LEFT-aligned — never
-                  pushed right inside the chip/flick row (albums with plays/released stat rows kept
-                  shoving it inline). Looks like a subtle underlined button; on hover it peeks a few
-                  px of the read's first lines (mask-faded) until pressed, which expands fully. */}
-              {full && !open && (
-                <div className="pv-readtoggle">
-                  <button className="pv-toggle pv-toggle-read" onClick={() => setOpen(true)} aria-expanded={open}>
-                    the full read ▾
-                  </button>
-                  <div className="pv-peek" aria-hidden="true">
-                    {full.split(/\n+/).filter(Boolean).slice(0, 1).map((para, i) => (
-                      <p key={i} className="pv-full pv-peek-p">{para}</p>
-                    ))}
-                  </div>
+              {/* THE FULL READ + VIA-SOURCE (Fuad 2026-08-12, revised): the toggle and the
+                  via-source flick share ONE line BELOW the chips — toggle LEFT, flick RIGHT,
+                  space-between (wraps flick right-aligned below on narrow screens). Reserving a
+                  fixed-width toggle slot keeps the label from shifting when it swaps ▾/▴, and the
+                  read below UNRAVELS in place from the hover-peek: one height-clamped body that
+                  peeks on hover and expands fully on click (sticky — grows downward, never jumps). */}
+              {(full || hasAlt || hasFable2) && (
+                <div className={"pv-readrow" + (open ? " open" : "")}>
+                  {full ? (
+                    <button className="pv-toggle pv-toggle-read"
+                      onClick={() => setOpen(o => !o)} aria-expanded={open}>
+                      <span className="pv-toggle-lbl">{open ? "less ▴" : "the full read ▾"}</span>
+                    </button>
+                  ) : <span className="pv-toggle-spacer" />}
+                  {(hasAlt || hasFable2) && (
+                    <button className="pv-flick pv-flick-inrow r-mono" onClick={() => setFace(nextFace)}
+                      title={hasFable2 ? "see the alternate Fable read" : "see the " + alt.label + " source"}>
+                      {flickLabel}
+                    </button>
+                  )}
                 </div>
               )}
-              {full && open && (
-                <button className="pv-toggle pv-toggle-read pv-toggle-less" onClick={() => setOpen(false)} aria-expanded={open}>
-                  less ▴
-                </button>
+              {full && (
+                <div className={"pv-readbody" + (open ? " open" : "")} aria-hidden={!open}>
+                  {(open ? full.split(/\n+/).filter(Boolean) : full.split(/\n+/).filter(Boolean).slice(0, 1))
+                    .map((para, i) => (
+                      <p key={i} className={"pv-full" + (open ? "" : " pv-peek-p")}>
+                        {open ? linkifyTracks(para, albumTracks, go) : para}
+                      </p>
+                    ))}
+                </div>
               )}
-              {full && open && full.split(/\n+/).filter(Boolean).map((para, i) => (
-                <p key={i} className="pv-full">{linkifyTracks(para, albumTracks, go)}</p>
-              ))}
               {/* Fable-QC arc coda (album reads, Fuad 2026-07-25): where the tracklist order
                   reframes the read, a single italic clause — a labeled lens, never a rewrite. */}
               {p.arc && open && (
@@ -1163,21 +1165,33 @@ function PortraitCard({ id, alt, showWords = true, go }) {
            pinned right; wraps on narrow screens. The full-read toggle was pulled OUT to its own
            left-aligned line below (Fuad 2026-08-12). No backticks in these comments. */
         .pv-controlrow { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
-        .pv-flick-inrow { margin-left: auto; align-self: center; }
-        /* THE FULL READ (Fuad 2026-08-12): its own left-aligned line; reads like a subtle underlined
-           button. On hover the wrapper reveals a few px peek of the read's first lines, mask-faded,
-           via a max-height transition — pressing expands fully (handled in JS by the open state). */
-        .pv-readtoggle { margin-top: 12px; }
-        .pv-toggle-read { display: inline-block; margin-top: 0; text-align: left; text-decoration: underline;
+        .pv-flick-inrow { align-self: center; }
+        /* THE FULL READ + VIA-SOURCE (Fuad 2026-08-12, revised): ONE line below the chips —
+           toggle LEFT, flick RIGHT, space-between; wraps flick right-aligned below when both
+           can't fit. No backticks in these comments. */
+        .pv-readrow { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+          gap: 7px 12px; margin-top: 12px; }
+        .pv-readrow .pv-flick-inrow { margin-left: auto; }
+        .pv-toggle-read { margin-top: 0; text-align: left; text-decoration: underline;
           text-underline-offset: 3px; text-decoration-color: var(--rule); text-decoration-thickness: 1px; }
         .pv-toggle-read:hover { text-decoration-color: var(--accent-dim); }
-        .pv-toggle-less { display: inline-block; }
-        .pv-peek { max-height: 0; overflow: hidden; pointer-events: none;
-          -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
-          mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
-          transition: max-height .15s ease, opacity .15s ease; opacity: 0; }
-        .pv-readtoggle:hover .pv-peek { max-height: 34px; opacity: .85; }
-        .pv-peek-p { margin-top: 6px; }
+        /* fixed-width label slot: the ▾/▴ label swap must not shift the toggle's x/y. The longest
+           label ("the full read ▾") sets the min-width; the shorter "less ▴" left-aligns into it,
+           so nothing to the right reflows and the button never resizes. */
+        .pv-toggle-lbl { display: inline-block; min-width: 8.6em; text-align: left; }
+        .pv-toggle-spacer { display: inline-block; }
+        /* STICKY UNRAVEL: one height-clamped body under the toggle. At rest it peeks a couple of
+           lines (mask-faded) on hover of the row; on click (.open) it unrolls in place to full
+           height with a quick ease-out — continuing from the peek, anchored where the peek was
+           (grows downward, no jump). */
+        .pv-readbody { max-height: 0; overflow: hidden; opacity: 0;
+          -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+          transition: max-height .22s ease-out, opacity .18s ease-out; }
+        .pv-readrow:hover + .pv-readbody:not(.open) { max-height: 46px; opacity: .85; }
+        .pv-readbody.open { max-height: 4000px; opacity: 1; pointer-events: auto;
+          -webkit-mask-image: none; mask-image: none; }
+        .pv-peek-p { margin-top: 6px; pointer-events: none; }
         .pv-full { font-family: var(--serif); font-size: 15px; line-height: 1.62; color: var(--ink-soft); margin: 12px 0 0; }
         .pv-facts { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
         .pv-chips { display: flex; flex-wrap: wrap; gap: 7px; }
