@@ -953,31 +953,30 @@ function LikedView({ go }) {
           borderless-at-rest also rejected — Explore-adjacent is the ruling.) Scoped to
           .lk-quiet; famchips keep their family-colour identity via --gc. No backticks here. */}
       <style>{`
+        /* THE ACTUAL BUG (Fuad 2026-08-13, "the FILL is grey"): .r-chip never sets background —
+           fine on spans, but these chips are <button>s, so the UA's native grey button fill
+           showed through (Explore's xp-chip sets background:transparent explicitly, hence never
+           had it). Fix = transparent fill at rest; text colour stays the DEFAULT ink-soft (the
+           colored-text experiment is reverted — not asked for). Active keeps Explore's data-on
+           grammar: full accent fill, near-black text. Family chips keep their --gc colours. */
+        .lk-quiet .r-chip { background: transparent; }
         .lk-quiet .r-chip.link:not(.solid):not(.on) { border-color: var(--rule); color: var(--ink-soft); }
         .lk-quiet .r-chip.link:not(.solid):not(.on):hover { border-color: var(--ink-faint); color: var(--ink); background: transparent; }
-        /* ACTIVE = Explore's data-on grammar: FULL accent fill + near-black text (the washed
-           r-chip.solid accent-bg read as grey — the core of the "still grey" complaint). The
-           :not(.on) guards above stop the inactive rule outranking .lk-famchip.on (4 vs 3
-           classes — the clicked-genre-went-grey bug). */
-        .lk-quiet .r-chip.link.solid { background: var(--accent); border-color: var(--accent); color: #0c0a08; }
-        .lk-quiet .r-chip.link.solid:hover { background: var(--accent); border-color: var(--accent); color: #0c0a08; }
+        .lk-quiet .r-chip.link.solid, .lk-quiet .r-chip.link.lk-cchip.on,
+        .lk-quiet .r-chip.link.solid:hover, .lk-quiet .r-chip.link.lk-cchip.on:hover {
+          background: var(--accent); border-color: var(--accent); color: #0c0a08; }
         .lk-quiet .lk-famchip:not(.on) { border-color: var(--rule); background: transparent; }
         .lk-quiet .lk-famchip:not(.on):hover { border-color: var(--gc); background: transparent; color: var(--gc); }
         .lk-quiet .lk-famchip.on, .lk-quiet .lk-famchip.on:hover { border-color: var(--gc); background: var(--gc); color: #0c0a08; }
-        /* dimension chips (buckets + vocals): coloured text at rest via --cc (accent fallback
-           for uncoloured keys like All/Any/brands), colour-border hover, FULL colour fill when
-           active. 5-class selectors so the generic inactive rule can't outrank them. */
-        .lk-quiet .r-chip.link.lk-cchip:not(.on) { color: var(--cc, var(--ink-soft)); border-color: var(--rule); }
-        .lk-quiet .r-chip.link.lk-cchip:not(.on):hover { border-color: var(--cc, var(--ink-faint)); color: var(--cc, var(--ink)); background: transparent; }
-        .lk-quiet .r-chip.link.lk-cchip.on, .lk-quiet .r-chip.link.lk-cchip.on:hover { background: var(--cc, var(--accent)); border-color: var(--cc, var(--accent)); color: #0c0a08; }
+        .lk-quiet .lk-tunepill { border: 1px solid var(--rule); background: transparent; color: var(--ink-soft); transition: .15s; }
+        .lk-quiet .lk-tunepill:hover { border-color: var(--ink-faint); color: var(--ink); }
+        .lk-quiet .lk-tunepill.on { border-color: var(--accent); color: var(--accent); }
+        /* sort segment: default r-seg lozenge; its buttons also need the UA fill cleared */
+        .lk-quiet .r-seg button { background: transparent; }
+        .lk-quiet .r-seg button[data-on="true"] { background: var(--accent); }
         /* header rhythm (Fuad 2026-08-13): the gap under "Your liked songs" was deeper than the
            kicker-to-title gap above — tightened so title-to-chips reads symmetrical. */
         .lk-quiet .r-viewhead { margin-bottom: calc(var(--pad) * 0.8); }
-        .lk-quiet .lk-tunepill { border: 1px solid var(--rule); color: var(--ink-soft); transition: .15s; }
-        .lk-quiet .lk-tunepill:hover { border-color: var(--ink-faint); color: var(--ink); }
-        .lk-quiet .lk-tunepill.on { border-color: var(--accent); color: var(--accent); }
-        /* sort segment: default r-seg lozenge (var(--rule) border) already matches the Explore
-           grammar — no overrides (the borderless v2 experiment is reverted). */
       `}</style>
       {/* (the "← spotify" back button was removed on request — Fuad 2026-08-12; Liked is now a
           first-class navbar destination, so the up-navigation was noise) */}
@@ -1008,7 +1007,7 @@ function LikedView({ go }) {
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10, alignItems: "center" }}>
         {CHIPS.map(([k, label]) => (
           <button key={k} className={"r-chip link lk-cchip" + (bucket === k ? " on" : "")}
-            style={{ textTransform: "none", "--cc": LK_CHIP_COLOR[k] }} onClick={() => setBucket(k)}>
+            style={{ textTransform: "none" }} onClick={() => setBucket(k)}>
             {label} <span style={{ opacity: .6 }}>{counts[k] || 0}</span>
           </button>
         ))}
@@ -1019,7 +1018,7 @@ function LikedView({ go }) {
           <span className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".12em", textTransform: "uppercase", color: vocalsActive ? "var(--accent)" : "var(--ink-faint)", marginRight: 2 }}>vocals</span>
           {LK_VOCALS.map(([k, l]) => (
             <button key={k} className={"r-chip link lk-cchip" + (vocals === k ? " on" : "")}
-              style={{ textTransform: "none", "--cc": LK_VOX_COLOR[k] }}
+              style={{ textTransform: "none" }}
               onClick={() => setVocals(vocals === k ? "any" : k)}>{l}</button>
           ))}
           {vocalsActive && vocalsNoData > 0 &&
