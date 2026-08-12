@@ -3133,6 +3133,7 @@ console.log(`album-absorb.js: ${Object.keys(ALBUM_ABSORB).length} single→LP ab
   const LIKED_SUBS = {};   // artistSlug → primary subgenre label (for the subgenre dropdown)
   const famUsed = new Set();
   let audParquet = 0, audFallback = 0, audNone = 0;   // coverage report
+  const LIKED_AX = {};   // liked key → TA-shaped extended-axis row (see the fold in the loop below)
 
   for (const r of LIKED_SRC) {
     const cName = canon(r.artist);
@@ -3182,6 +3183,14 @@ console.log(`album-absorb.js: ${Object.keys(ALBUM_ABSORB).length} single→LP ab
     let tempoBpm = null, energy = null, valence = null;
     const pa = LIKED_AUDIO[r.id];
     if (pa) { tempoBpm = pa[0]; energy = pa[1]; valence = pa[2]; audParquet++; }
+    // extended DNA axes (2026-08-12): 11-field liked-audio rows also carry dance/acoustic/instr/
+    // speech/live/loud/key/mode. Emit them TA-shaped (same slots as ROTATION_TRACKAUDIO, length 16)
+    // into a liked-scoped sidecar so unscrobbled saves stop falling out of the tuner as "without
+    // data". The view still prefers the corpus track-audio row when one exists.
+    if (pa && pa.length >= 11) {
+      const tempoN = Math.max(0, Math.min(100, Math.round((pa[0] - 50) / 140 * 100)));
+      LIKED_AX[key] = [null, null, null, null, pa[1], pa[2], pa[4], tempoN, pa[3], pa[5], pa[8], pa[6], pa[7], pa[9], pa[10], null];
+    }
     else {
       const td = aliasedBySlugAlbum(TRACKDATA, aSlug, slug(r.track));
       if (td && td.length >= 10) { tempoBpm = tdTempoToBpm(td[7]); energy = td[4]; valence = td[5]; audFallback++; }
@@ -3225,7 +3234,8 @@ console.log(`album-absorb.js: ${Object.keys(ALBUM_ABSORB).length} single→LP ab
     + "window.ROTATION_LIKED_META = " + JSON.stringify(META) + ";\n"
     + "window.ROTATION_LIKED_LEGEND = " + JSON.stringify(LEGEND) + ";\n"
     + "window.ROTATION_LIKED_FAMS = " + JSON.stringify(LIKED_FAMS) + ";\n"
-    + "window.ROTATION_LIKED_SUBS = " + JSON.stringify(LIKED_SUBS) + ";\n";
+    + "window.ROTATION_LIKED_SUBS = " + JSON.stringify(LIKED_SUBS) + ";\n"
+    + "window.ROTATION_LIKED_AUDIO_X = " + JSON.stringify(LIKED_AX) + ";\n";
   fs.writeFileSync(path.join(__dirname, "liked-meta.js"), _likedOut, "utf8");
   const audTot = audParquet + audFallback + audNone;
   console.log(`liked-meta.js: ${Object.keys(META).length} saved tracks (${matched} matched · ${unmatched} unscrobbled · ${dupes} dup keys) — `

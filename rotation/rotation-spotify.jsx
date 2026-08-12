@@ -679,6 +679,7 @@ function LikedView({ go }) {
     const META = window.ROTATION_LIKED_META; if (!META) return [];
     const M = window.ROTATION_MEDIA;
     const TA = window.ROTATION_TRACKAUDIO || null;   // per-track extra DNA axes, keyed like a liked row
+    const LAX = window.ROTATION_LIKED_AUDIO_X || null;   // liked-scoped parquet sidecar (rides liked-meta.js)
     const nameByKey = new Map();
     if (M && R) for (const t of M.tracks) { const k = R.slug(M.artists[t[1]]) + "~" + R.slug(t[0]); if (!nameByKey.has(k)) nameByKey.set(k, [M.artists[t[1]], t[0]]); }
     const deslug = s => s.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
@@ -702,8 +703,11 @@ function LikedView({ go }) {
       const album = (truth && truth[1]) || albNameBySlug.get(joinKey) || (albumSlug ? deslug(albumSlug) : "");
       // extra DNA axes from the track-audio blob (same key). Only valid features surface — a loudness
       // of exactly 0 is real, but a whole-row miss (no TA entry) leaves these null so the band filter
-      // excludes the row only while that axis is engaged.
-      const ta = TA ? TA[key] : null;
+      // excludes the row only while that axis is engaged. Saves the corpus store misses (unscrobbled,
+      // or featureless 4-field rows) fall back to the liked-scoped parquet sidecar (same TA slot
+      // layout), which is what shrank the tuner's "without data" pool (2026-08-12).
+      let ta = TA ? TA[key] : null;
+      if (!(ta && ta.length >= 15) && LAX && LAX[key]) ta = LAX[key];
       const taOk = ta && ta.length >= 15;   // 16-field rows carry features; 4-field rows are featureless
       out.push({ key, meta, artist, track, album, albumCover, aSlug, albumSlug, bucketKey: leg.key,
         famId: meta[4], sub: subsByArtist[aSlug] || "",
