@@ -1978,12 +1978,17 @@ function StoriesView({ t, go, seed }) {
            Breakpoint 1420px (was 1240): Windows-scaled laptops (e.g. P16 at 200% ≈ 1280 CSS px)
            get the horizontal chip bar instead — the rail's hover labels were illegible there. */
         @media (min-width: 1420px) {
-          .st-toc { position: fixed; left: 16px;
-            top: calc(14px + var(--stp, .5) * (100vh - 28px));
-            transform: translateY(calc(var(--stp, .5) * -100%));
+          /* at REST the rail sits centered as it always did; on HOVER it slides to the
+             scroll-weighted anchor so the expansion opens AWAY from where you are (at the
+             page bottom it grows upward; at the top, downward) — Fuad 2026-08-13, second
+             pass: the always-on slide read as drift, the shift belongs to the hover. */
+          .st-toc { position: fixed; left: 16px; top: 50%; transform: translateY(-50%);
+            transition: top .28s ease, transform .28s ease;
             flex-direction: column; gap: 0; overflow: visible; margin: 0; padding: 0;
             background: none; backdrop-filter: none; -webkit-backdrop-filter: none;
-            max-height: 86vh; z-index: 40; width: auto; }
+            max-height: none; z-index: 40; width: auto; }
+          .st-toc:hover { top: calc(14px + var(--stp, .5) * (100vh - 28px));
+            transform: translateY(calc(var(--stp, .5) * -100%)); }
           .st-toc button { position: relative; flex: none; display: flex; align-items: center; gap: 11px;
             min-height: 24px; padding: 6px 0; border: none; border-radius: 0; background: none;
             text-align: left; color: var(--ink-faint); white-space: nowrap; }
