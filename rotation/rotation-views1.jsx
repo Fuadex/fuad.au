@@ -264,26 +264,23 @@ function OvWeatherCard({ R, go, restReady }) {
 
     if (zoom != null) {
       const dec = decades.find(x => x.decade === zoom);
+      // the "← 1990s" return chip no longer renders here — it rides the Decades header row
+      // (same line as the label) so the drill-in doesn't grow the module (Fuad 2026-08-12).
       if (!yearBreak) {
-        return (
-          <div>
-            <button onClick={(e) => { e.stopPropagation(); setZoom(null); }} className="ov-wback">← {zoom}s</button>
-            <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", padding: "14px 0" }}>loading detail…</div>
-          </div>
-        );
+        return <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", padding: "14px 0" }}>loading detail…</div>;
       }
       const { rows, tot } = yearBreak;
       return (
         <div>
-          <button onClick={(e) => { e.stopPropagation(); setZoom(null); }} className="ov-wback">← {zoom}s</button>
           <div style={{ display: "flex", height: H, borderRadius: 4, overflow: "hidden", gap: 1 }}>
             {rows.map((r, i) => {
               const w = tot ? (r.plays / tot) * 100 : 0;
               const pct = tot ? Math.round(r.plays / tot * 100) : 0;
               const hue = 60 + ((r.year - zoom) * 20);
               return (
-                <div key={r.year} title={`${r.year} · ${r.plays.toLocaleString("en-US")} plays · ${pct}% of the ${zoom}s`}
-                  style={{ width: w + "%", minWidth: 2, background: `oklch(${0.34 + (i % 5) * 0.05} 0.13 ${hue % 360})`,
+                <div key={r.year} title={`${r.year} · ${r.plays.toLocaleString("en-US")} plays · ${pct}% of the ${zoom}s — open in Explore`}
+                  onClick={(e) => { e.stopPropagation(); go && go("explore", "rd=" + zoom + ";ry=" + r.year); }}
+                  style={{ width: w + "%", minWidth: 2, background: `oklch(${0.34 + (i % 5) * 0.05} 0.13 ${hue % 360})`, cursor: "pointer",
                     display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                   {w > 8 && <span className="r-mono" style={{ fontSize: 9.5, color: "rgba(255,255,255,.9)", whiteSpace: "nowrap" }}>'{String(r.year).slice(2)}</span>}
                 </div>
@@ -291,7 +288,7 @@ function OvWeatherCard({ R, go, restReady }) {
             })}
           </div>
           <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 7, lineHeight: 1.5 }}>
-            {dec ? Math.round(dec.share * 100) + "% of plays are " + zoom + "s music" : ""} — by artist debut year
+            {dec ? Math.round(dec.share * 100) + "% of plays are " + zoom + "s music" : ""} — by artist debut year · click a year to open it in Explore
           </div>
         </div>
       );
@@ -331,7 +328,12 @@ function OvWeatherCard({ R, go, restReady }) {
       {weather()}
       {hasDec && (
         <div className="ov-wdecs">
-          <div className="r-mono ov-wdlbl" style={{ fontSize: 9, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>Decades</div>
+          <div className="ov-wdlbl" style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>Decades</span>
+            {zoom != null && (
+              <button onClick={(e) => { e.stopPropagation(); setZoom(null); }} className="ov-wback" style={{ marginBottom: 0 }}>← all decades</button>
+            )}
+          </div>
           {decadesStrip()}
         </div>
       )}
@@ -652,6 +654,13 @@ function OverviewView({ t, go, restReady, seed }) {
                 gridTemplateColumns: "repeat(2,1fr)", gap: "10px 16px", alignContent: "center" }}>
                 <Stat n={fStats && fStats.active ? fmt(fStats.hours) : fmt(Math.round(hrs))} sub={fStats && fStats.active ? "hrs · " + fStats.label : "hours listened"} onClick={() => go("calendar")} />
                 <Stat n={fStats && fStats.active ? fmt(fStats.artists) : fmt(T.artists)} sub={fStats && fStats.active ? "artists · filtered" : "distinct artists"} onClick={() => go("explore")} />
+                {/* the catalogue row (Fuad 2026-08-12): how much MUSIC that listening covered —
+                    LPs / EPs+singles / distinct folded songs. Lifetime (post-fold row counts);
+                    the map/calendar filter intentionally doesn't reach these — media rows carry
+                    no per-period tags, so a filtered recount would be new plumbing, parked. */}
+                {T.albumsLP != null && <Stat n={fmt(T.albumsLP)} sub="albums played" onClick={() => go("shelves")} />}
+                {T.epsSingles != null && <Stat n={fmt(T.epsSingles)} sub="EPs & singles" onClick={() => go("shelves")} />}
+                {T.tracks != null && <Stat n={fmt(T.tracks)} sub="songs played" onClick={() => go("explore")} />}
                 <Stat n={flt ? flt.avgDay : T.perDay} sub={flt ? "avg/day · " + flt.label : "avg / day"} />
                 <Stat n={flt ? flt.sharePct + "%" : sinceYears + " yr"} sub={flt ? "of all plays" : "of history"} />
                 <Stat n={flt && flt.hi ? fmt(flt.hi.count) : R.TOTALS.topDay.count} sub={"heaviest · " + ((flt && flt.hi ? flt.hi.date : R.TOTALS.topDay.date)).slice(2)} onClick={() => go("calendar")} />

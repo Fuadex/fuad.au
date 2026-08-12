@@ -1130,6 +1130,12 @@ function PortraitCard({ id, alt, showWords = true, go }) {
           {p.arc2 && (
             <p className="pv-full pv-arc" style={{ fontStyle: "italic", opacity: 0.85 }}>{linkifyTracks(p.arc2, albumTracks, go)}</p>
           )}
+          {/* footnote slot (Fuad 2026-08-12, AtF Cavalera line the first user): a small factual
+              aside that earned keeping but would overload the arc. Renders fnote-style, faint. */}
+          {p.note2 && (
+            <p style={{ fontFamily: "var(--serif)", fontSize: 12.5, lineHeight: 1.5, color: "var(--ink-faint)", marginTop: 8 }}>
+              ✱ {linkifyTracks(p.note2, albumTracks, go)}</p>
+          )}
           <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".06em", marginTop: 10 }}>
             an alternative album read, synthesized from the songs' Opus · Fable reads</div>
         </div>
