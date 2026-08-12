@@ -37,6 +37,27 @@ picture's argument is, which is why the hook lands.
    every proper noun and date, and check both tiers against any existing study tour — see
    the truth rule below. Print both tiers for Fuad's verdict; nothing merges unapproved.
 
+## Two production modes (do not conflate them)
+
+The order above describes **paired production** — the about21 mode, used for flagship and
+recently-toured works, where both tiers are written together.
+
+There is also a **bulk Info campaign** mode, which is what built most of the corpus: the
+seven hook-first waves shipped `Info-only entries (about + by:"Opus 4.8", no deep)` to reach
+full coverage of the imaged canon (45 -> 622). Those Info reads were authored directly —
+hook first, facts web-verified — and were never distilled from an Interpretation, because
+none existed. This is why the corpus reads 623 Info against 101 Interpretations: not damage,
+just the coverage campaign running ahead of the paired production.
+
+**Backfill rule (Fuad's call, pending):** when adding an Interpretation to a work that
+already has hook-first Info, the Interpretation-first order cannot apply literally. Two
+options, decided per tier of work rather than drifting:
+- (a) Write the Interpretation fresh from the image, ignoring the existing Info, then
+  re-distil the Info so the pair matches. Truer to the method; also upgrades older Info
+  lines. Recommended where a study tour exists.
+- (b) Write the Interpretation to sit under the existing Info, leaving Info untouched.
+  Cheaper, non-destructive, but inverts the order.
+
 ## Truth rules
 
 - A study tour must go deeper than, and never contradict, the Info read (PIPELINE.md). Where
