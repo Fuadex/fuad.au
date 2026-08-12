@@ -811,31 +811,56 @@ function StudyView({ id, go }) {
   // dynamically as well, not just zoom") — and, when auto-follow is on, also flies the viewer.
   // Scrolling back up into the lens sections clears the chip without touching the zoom.
   // Only (re)wired once the viewer is ready and sections exist.
+  // POSITIONAL scroll-spy (rewritten 2026-08-13 — Fuad: the old one fired "as only barely
+  // seeing the element", failed going upwards, and jumped stops). The IntersectionObserver it
+  // replaced had three faults: (1) it observed HEADINGS, which are ~30px tall, so a 0.6 ratio
+  // was satisfied by ~18px peeking past the bottom edge — hence the hair-trigger on the way
+  // down; (2) an IO callback receives only the entries whose threshold JUST changed, not every
+  // observed element, so "most visible among entries" compared an incomplete set — scrolling up
+  // often delivered no entry at >=0.6 and the `if (!best) return` swallowed the update
+  // entirely; (3) picking the highest ratio among whatever happened to fire let the active stop
+  // jump non-adjacently. Measuring position against a line in the pane fixes all three: it is
+  // symmetric up and down, always considers every section, and can only ever move to the
+  // section you are actually reading.
   useEffect(() => {
-    if (!paneRef.current || !sections.length) return;   // chip-sync runs even if the viewer never readies
+    const pane = paneRef.current;
+    if (!pane || !sections.length) return;
     const byKey = {};
     for (const s of sections) if (s.anchor) byKey[s.key] = s.anchor;
     const tourIdx = {};
     tour.forEach((t, i) => { tourIdx[t.key] = i; });
-    const obs = new IntersectionObserver((entries) => {
+
+    let raf = 0, lastKey = null;
+    const pick = () => {
+      raf = 0;
       if (suppressFollow.current) return;
-      // choose the most-visible heading currently intersecting
-      let best = null;
-      for (const en of entries) {
-        if (en.isIntersecting && en.intersectionRatio >= 0.6) {
-          if (!best || en.intersectionRatio > best.intersectionRatio) best = en;
-        }
+      const box = pane.getBoundingClientRect();
+      // the trigger line sits at 40% of the pane height — a heading becomes "current" only once
+      // it has travelled up to near the middle of the reading pane, not when it first appears.
+      const line = box.top + box.height * 0.4;
+      let key = null;
+      for (const s of sections) {
+        const el = pane.querySelector(`[data-skey="${s.key}"]`);
+        if (!el) continue;
+        // the LAST heading at or above the line is the section being read; if none has reached
+        // it yet (top of the pane) fall back to the first section.
+        if (el.getBoundingClientRect().top <= line) key = s.key; else break;
       }
-      if (!best) return;
-      const key = best.target.getAttribute("data-skey");
+      if (key === null) key = sections[0].key;
+      if (key === lastKey) return;
+      lastKey = key;
       setActiveDetail(key in tourIdx ? tourIdx[key] : null);
       if (autoRef.current && ready && byKey[key]) flyTo(byKey[key], false);
-    }, { root: paneRef.current, threshold: [0, 0.6, 1] });
-    for (const s of sections) {
-      const el = paneRef.current.querySelector(`[data-skey="${s.key}"]`);
-      if (el) obs.observe(el);
-    }
-    return () => obs.disconnect();
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(pick); };
+    pane.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    pick();   // set the initial state without waiting for a scroll
+    return () => {
+      pane.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [ready, sections, tour, flyTo]);
 
   // Slide the active chip into view WITHIN the horizontal strip whenever activeDetail changes —
