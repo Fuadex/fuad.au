@@ -970,6 +970,9 @@ function LikedView({ go }) {
         .lk-quiet .r-chip.link.lk-cchip:not(.on) { color: var(--cc, var(--ink-soft)); border-color: var(--rule); }
         .lk-quiet .r-chip.link.lk-cchip:not(.on):hover { border-color: var(--cc, var(--ink-faint)); color: var(--cc, var(--ink)); background: transparent; }
         .lk-quiet .r-chip.link.lk-cchip.on, .lk-quiet .r-chip.link.lk-cchip.on:hover { background: var(--cc, var(--accent)); border-color: var(--cc, var(--accent)); color: #0c0a08; }
+        /* header rhythm (Fuad 2026-08-13): the gap under "Your liked songs" was deeper than the
+           kicker-to-title gap above — tightened so title-to-chips reads symmetrical. */
+        .lk-quiet .r-viewhead { margin-bottom: calc(var(--pad) * 0.8); }
         .lk-quiet .lk-tunepill { border: 1px solid var(--rule); color: var(--ink-soft); transition: .15s; }
         .lk-quiet .lk-tunepill:hover { border-color: var(--ink-faint); color: var(--ink); }
         .lk-quiet .lk-tunepill.on { border-color: var(--accent); color: var(--accent); }
