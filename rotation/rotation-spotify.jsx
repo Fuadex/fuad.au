@@ -392,6 +392,13 @@ const LK_DNA_AXES = [
 //   instrumental = empty list. undefined vx → hidden under any active option (the no-data convention).
 // LK_ prefix + lk-prefixed fn: top-level names share global scope across the buildless jsx files.
 const LK_VOCALS = [["any", "Any"], ["male", "Male"], ["female", "Female"], ["mixed", "Mixed"], ["nb", "Non-binary"], ["instrumental", "Instrumental"]];
+// chip colours (Fuad 2026-08-13 — "still defaulting as grey"): bucket + vocals chips carry
+// their dimension's colour at rest (like genre-family chips), full fill when active. left/mid
+// get muted-but-real hues HERE ONLY — their row dots keep the semantic grey of LIKED_BUCKET_COLOR.
+const LK_CHIP_COLOR = { fresh: "oklch(0.72 0.15 150)", doorway: "oklch(0.7 0.15 280)", canon: "var(--accent)",
+  lived: "oklch(0.7 0.13 45)", left: "oklch(0.66 0.09 20)", mid: "oklch(0.72 0.09 75)" };
+const LK_VOX_COLOR = { male: "oklch(0.7 0.12 230)", female: "oklch(0.72 0.14 350)", mixed: "oklch(0.7 0.12 300)",
+  nb: "oklch(0.72 0.12 110)", instrumental: "oklch(0.7 0.08 60)" };
 function lkVocalsPass(vx, opt) {
   if (opt === "any") return true;
   if (vx === undefined || vx === null) return false;   // no data → hidden under an active filter
@@ -957,6 +964,12 @@ function LikedView({ go }) {
         .lk-quiet .lk-famchip:not(.on) { border-color: var(--rule); background: transparent; }
         .lk-quiet .lk-famchip:not(.on):hover { border-color: var(--gc); background: transparent; color: var(--gc); }
         .lk-quiet .lk-famchip.on, .lk-quiet .lk-famchip.on:hover { border-color: var(--gc); background: var(--gc); color: #0c0a08; }
+        /* dimension chips (buckets + vocals): coloured text at rest via --cc (accent fallback
+           for uncoloured keys like All/Any/brands), colour-border hover, FULL colour fill when
+           active. 5-class selectors so the generic inactive rule can't outrank them. */
+        .lk-quiet .r-chip.link.lk-cchip:not(.on) { color: var(--cc, var(--ink-soft)); border-color: var(--rule); }
+        .lk-quiet .r-chip.link.lk-cchip:not(.on):hover { border-color: var(--cc, var(--ink-faint)); color: var(--cc, var(--ink)); background: transparent; }
+        .lk-quiet .r-chip.link.lk-cchip.on, .lk-quiet .r-chip.link.lk-cchip.on:hover { background: var(--cc, var(--accent)); border-color: var(--cc, var(--accent)); color: #0c0a08; }
         .lk-quiet .lk-tunepill { border: 1px solid var(--rule); color: var(--ink-soft); transition: .15s; }
         .lk-quiet .lk-tunepill:hover { border-color: var(--ink-faint); color: var(--ink); }
         .lk-quiet .lk-tunepill.on { border-color: var(--accent); color: var(--accent); }
@@ -991,7 +1004,8 @@ function LikedView({ go }) {
           (marginLeft:auto group), before the reserved reset-tune slot; the group wraps below when narrow. */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10, alignItems: "center" }}>
         {CHIPS.map(([k, label]) => (
-          <button key={k} className={"r-chip link" + (bucket === k ? " solid" : "")} style={{ textTransform: "none" }} onClick={() => setBucket(k)}>
+          <button key={k} className={"r-chip link lk-cchip" + (bucket === k ? " on" : "")}
+            style={{ textTransform: "none", "--cc": LK_CHIP_COLOR[k] }} onClick={() => setBucket(k)}>
             {label} <span style={{ opacity: .6 }}>{counts[k] || 0}</span>
           </button>
         ))}
@@ -1001,7 +1015,8 @@ function LikedView({ go }) {
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center", marginLeft: "auto" }}>
           <span className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".12em", textTransform: "uppercase", color: vocalsActive ? "var(--accent)" : "var(--ink-faint)", marginRight: 2 }}>vocals</span>
           {LK_VOCALS.map(([k, l]) => (
-            <button key={k} className={"r-chip link" + (vocals === k ? " solid" : "")} style={{ textTransform: "none" }}
+            <button key={k} className={"r-chip link lk-cchip" + (vocals === k ? " on" : "")}
+              style={{ textTransform: "none", "--cc": LK_VOX_COLOR[k] }}
               onClick={() => setVocals(vocals === k ? "any" : k)}>{l}</button>
           ))}
           {vocalsActive && vocalsNoData > 0 &&
