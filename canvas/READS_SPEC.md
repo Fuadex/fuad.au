@@ -70,16 +70,16 @@ already whole with one thesis.)
 
 ## 4. Drafting brief — Sonnet voice, Opus discipline
 
-Shared brief for the swarm. Distil from the tour's **about / craft / context** lenses (plus
-stops as needed): **no new facts, no re-verification — the tour is already verified.**
+Shared brief for the drafters. Distil from the tour's **about / craft / context** lenses
+(plus stops as needed): **no new facts, no re-verification — the tour is already verified.**
 
 - ~110–190w, soft (a rich synthesis runs longer; length is soft per the reads-length rule).
 - One evocative paragraph. **Lead with the unifying idea** (rich works) or **the single
   crux** (settled works) — the best line goes FIRST.
 - BANNED openers: framing-fact ("Among roughly eighty…"), theory-first ("X had absorbed the
-  theory…"), "What…", "This painting…", the artist's name. Vary across the swarm.
-- No second-person you/your (Sonnet's recurring slip). No exclamation marks. No "the
-  viewer". No masterpiece talk.
+  theory…"), "What…", "This painting…", the artist's name. Vary the opener.
+- No second-person you/your (Sonnet's recurring slip). No exclamation marks. No
+  masterpiece talk.
 - Do not back-load the payoff (Sonnet's habitual failure). Hold length.
 
 **FUSE for best-of-both** where two drafts each have something: keep the winner's spine,
@@ -89,10 +89,10 @@ a downgrade.
 
 ## 5. Info distillation
 
-~40–70 words, distilled from the finished Interpretation, in one or two sentences doing
-three jobs at once: the **hook** (the fact or image that pulls a reader in — who the sitter
-actually was, what the place is, the one crowding decision), the identification (artist,
-year, subject), and one concrete visual fact carried down from the Interpretation.
+Distilled from the finished Interpretation. One sentence, or two short ones — the about21
+reference batch runs **35–49 words (average 41)**; match it. It leads with a **hook** (the
+fact or image that pulls a reader in — who the sitter actually was, what the place is, the
+one compositional decision) and carries the identification.
 
 **Every fact in the hook is web-verified.** This pass is where canon errors surface — the
 campaign caught A Burial at Ornans 1841 → 1850 and The Painter's Studio 1850 → 1855. Fix the
