@@ -326,7 +326,9 @@ const LIKED_BUCKET_COLOR = {   // hue per derived bucket — tuned to the app's 
 const LT_TEMPO = [40, 220], TEMPO_STEPS = 100;
 const posTempo = (p) => Math.round(LT_TEMPO[0] * Math.pow(LT_TEMPO[1] / LT_TEMPO[0], p / TEMPO_STEPS));
 // dual-thumb range: two overlaid native range inputs (min + max). Minimal, app-styled — no library.
-function LikedRange({ label, lo, hi, min, max, onChange, fmt }) {
+// Optional `hist` (array of bar heights 0..1 in position order) draws the corpus distribution behind the
+// track; `meanPos` (a min..max value) draws a dashed tick for the aggregate liked-corpus mean.
+function LikedRange({ label, lo, hi, min, max, onChange, fmt, hist, meanPos }) {
   const active = lo > min || hi < max;
   const pct = v => ((v - min) / (max - min)) * 100;
   const clampLo = v => onChange([Math.min(v, hi), hi]);
@@ -336,8 +338,16 @@ function LikedRange({ label, lo, hi, min, max, onChange, fmt }) {
       <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: active ? "var(--accent)" : "var(--ink-faint)", marginBottom: 6, display: "flex", justifyContent: "space-between" }}>
         <span>{label}</span><span style={{ color: "var(--ink-soft)" }}>{fmt(lo)} – {fmt(hi)}</span>
       </div>
+      {/* corpus distribution histogram behind the track (tiny sparkline of where the liked songs sit) */}
+      {hist && hist.length > 0 && (
+        <div style={{ display: "flex", alignItems: "flex-end", gap: 1, height: 16, marginBottom: 1 }}>
+          {hist.map((h, i) => <div key={i} style={{ flex: 1, height: Math.max(1, h * 16), background: "var(--rule-2)", opacity: 0.9, borderRadius: "1px 1px 0 0" }} />)}
+        </div>
+      )}
       <div style={{ position: "relative", height: 20 }}>
         <div style={{ position: "absolute", top: 8, left: 0, right: 0, height: 4, borderRadius: 2, background: "var(--rule-2)" }} />
+        {/* aggregate liked-corpus mean — the "your average" dashed reference (matches the DNA-radar idiom) */}
+        {meanPos != null && <div title="liked-corpus average" style={{ position: "absolute", top: 2, bottom: 2, left: pct(meanPos) + "%", width: 0, borderLeft: "1.5px dashed var(--ink-faint)", opacity: 0.85 }} />}
         <div style={{ position: "absolute", top: 8, height: 4, borderRadius: 2, background: "var(--accent)", left: pct(lo) + "%", right: (100 - pct(hi)) + "%" }} />
         {/* two full-width overlaid inputs — only the thumbs take pointer events. The hi input is
             DOM-later so it paints ON TOP; once the lo thumb crosses into the upper half it sits under
@@ -349,6 +359,30 @@ function LikedRange({ label, lo, hi, min, max, onChange, fmt }) {
     </div>
   );
 }
+// ── DNA tuner axes ─────────────────────────────────────────────────────────────────────────────
+// Per-liked-track audio characteristics wired as range bands. Two data sources, both keyed the SAME
+// way as a liked row so the join is a lookup:
+//   • liked-meta row itself → tempo (real BPM), energy, valence (already folded in by build-data)
+//   • liked-audio.json (keyed by Spotify track id = meta[0]) → danceability
+//   • track-audio.js / ROTATION_TRACKAUDIO (keyed artistSlug~trackSlug) → loudness(dB), speechiness,
+//     liveness, popularity, key(0-11), mode(0/1)   [field layout decoded from spotify-track-data.json]
+// followers is ARTIST-level only (R.AUDIO[id][8]) — not cleanly per-track, so it is intentionally
+// NOT wired here (documented: no per-liked-track datum).
+// Each axis: { k, label, min, max, fmt, get(row) } where get returns a value or null (missing → the
+// row is excluded only while THIS axis's band is active — the vocals-filter convention).
+const TA_IDX = { pop: 1, loud: 10, speech: 11, live: 12, key: 13, mode: 14 };  // ROTATION_TRACKAUDIO fields
+const PITCH_CLASSES = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"];  // key idx 0..11
+const DNA_AXES = [
+  { k: "tempo",   label: "tempo",       min: 40,   max: 220, fmt: v => v + "♩",  get: r => r.tempo },
+  { k: "energy",  label: "energy",      min: 0,    max: 100, fmt: v => v,        get: r => r.energy },
+  { k: "valence", label: "positivity",  min: 0,    max: 100, fmt: v => v,        get: r => r.valence },
+  { k: "dance",   label: "danceable",   min: 0,    max: 100, fmt: v => v,        get: r => r.dance },
+  // loudness is stored in the track-audio blob as dB×10 (median ≈ -55 → -5.5 dB); scale to real dB.
+  { k: "loud",    label: "loudness",    min: -40,  max: 3,   fmt: v => v + "dB", get: r => r.loud == null ? null : Math.round(r.loud / 10) },
+  { k: "speech",  label: "speechy",     min: 0,    max: 100, fmt: v => v,        get: r => r.speech },
+  { k: "live",    label: "liveness",    min: 0,    max: 100, fmt: v => v,        get: r => r.live },
+  { k: "pop",     label: "popularity",  min: 0,    max: 100, fmt: v => v,        get: r => r.pop },
+];
 function LikedRow({ r, legendByCode, famById, go, navable, albumCover }) {
   const [id, plays, firstYear, code, famId, tempo, energy] = r.meta;
   const leg = legendByCode[code] || { key: "mid", label: "Mid" };
@@ -388,6 +422,7 @@ function LikedView({ go }) {
   const [ready, setReady] = React.useState(!!window.ROTATION_LIKED_META);
   const [failed, setFailed] = React.useState(false);
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
+  const [taReady, setTaReady] = React.useState(!!window.ROTATION_TRACKAUDIO);   // extra DNA axes (lazy)
   const [q, setQ] = React.useState("");
   const [bucket, setBucket] = React.useState("all");
   const [sort, setSort] = React.useState("plays");
@@ -396,6 +431,10 @@ function LikedView({ go }) {
   const [tempo, setTempo] = React.useState([0, TEMPO_STEPS]); // slider positions (log axis)
   const [energy, setEnergy] = React.useState([0, 100]);
   const [valence, setValence] = React.useState("any");       // any | down | neutral | up
+  const [tuneOpen, setTuneOpen] = React.useState(false);     // DNA tuner panel expanded?
+  const [bands, setBands] = React.useState(() => ({}));      // { axisKey: [lo, hi] } — absent = full range (no filter)
+  const [keySel, setKeySel] = React.useState(() => new Set()); // selected pitch classes 0..11 (empty = any)
+  const [mode, setMode] = React.useState("any");             // any | major | minor
   const [win, setWin] = React.useState({ start: 0, end: 60 });   // rendered row window
   const scrollRef = React.useRef(null);
 
@@ -410,6 +449,20 @@ function LikedView({ go }) {
       const s = document.createElement("script"); s.src = "media-index.js";
       s.onload = () => setMediaReady(true); s.onerror = () => {};
       document.head.appendChild(s);
+    }
+    // track-audio blob carries the extra DNA axes (loudness/speech/live/pop/key/mode) per track. Shared
+    // with Explore/Album/Track views; only loaded once. The tuner degrades to tempo/energy/valence/dance
+    // until it lands, so the page is usable immediately.
+    if (!window.ROTATION_TRACKAUDIO) {
+      const id = "xp-track-audio-js";
+      if (!document.getElementById(id)) {
+        const s = document.createElement("script"); s.id = id; s.src = "track-audio.js";
+        s.onload = () => setTaReady(true); s.onerror = () => {};
+        document.head.appendChild(s);
+      } else {
+        const poll = setInterval(() => { if (window.ROTATION_TRACKAUDIO) { clearInterval(poll); setTaReady(true); } }, 120);
+        return () => clearInterval(poll);
+      }
     }
   }, []);
 
@@ -465,6 +518,7 @@ function LikedView({ go }) {
   const rows = React.useMemo(() => {
     const META = window.ROTATION_LIKED_META; if (!META) return [];
     const M = window.ROTATION_MEDIA;
+    const TA = window.ROTATION_TRACKAUDIO || null;   // per-track extra DNA axes, keyed like a liked row
     const nameByKey = new Map();
     if (M && R) for (const t of M.tracks) { const k = R.slug(M.artists[t[1]]) + "~" + R.slug(t[0]); if (!nameByKey.has(k)) nameByKey.set(k, [M.artists[t[1]], t[0]]); }
     const deslug = s => s.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
@@ -486,12 +540,50 @@ function LikedView({ go }) {
       const joinKey = aSlug + "~" + albumSlug;
       const albumCover = (truth && truth[0]) || albCoverBySlug.get(joinKey) || "";
       const album = (truth && truth[1]) || albNameBySlug.get(joinKey) || (albumSlug ? deslug(albumSlug) : "");
+      // extra DNA axes from the track-audio blob (same key). Only valid features surface — a loudness
+      // of exactly 0 is real, but a whole-row miss (no TA entry) leaves these null so the band filter
+      // excludes the row only while that axis is engaged.
+      const ta = TA ? TA[key] : null;
+      const taOk = ta && ta.length >= 15;   // 16-field rows carry features; 4-field rows are featureless
       out.push({ key, meta, artist, track, album, albumCover, aSlug, albumSlug, bucketKey: leg.key,
         famId: meta[4], sub: subsByArtist[aSlug] || "",
-        tempo: meta[5], energy: meta[6], valence: meta[7] });
+        tempo: meta[5], energy: meta[6], valence: meta[7],
+        dance:  taOk ? ta[8]           : null,
+        loud:   taOk ? ta[TA_IDX.loud] : null,
+        speech: taOk ? ta[TA_IDX.speech] : null,
+        live:   taOk ? ta[TA_IDX.live] : null,
+        pop:    taOk ? ta[TA_IDX.pop]  : null,
+        pkey:   taOk ? ta[TA_IDX.key]  : null,
+        pmode:  taOk ? ta[TA_IDX.mode] : null });
     }
     return out;
-  }, [ready, mediaReady, legendByCode, albNameBySlug, albCoverBySlug, trackAlbumByKey]);
+  }, [ready, mediaReady, taReady, legendByCode, albNameBySlug, albCoverBySlug, trackAlbumByKey]);
+
+  // aggregate liked-corpus profile per axis: min/max/mean + a coarse histogram of where the songs sit.
+  // Feeds the dashed "your average" tick + the sparkline behind each slider, and initializes each band
+  // to the corpus min..max so "the filter starts encapsulating all" (no filtering until a handle moves).
+  const HIST_BINS = 24;
+  const corpus = React.useMemo(() => {
+    const out = {};
+    for (const ax of DNA_AXES) {
+      const vals = [];
+      for (const r of rows) { const v = ax.get(r); if (v != null && Number.isFinite(v)) vals.push(v); }
+      if (!vals.length) { out[ax.k] = null; continue; }
+      let lo = Infinity, hi = -Infinity, sum = 0;
+      for (const v of vals) { if (v < lo) lo = v; if (v > hi) hi = v; sum += v; }
+      lo = Math.max(ax.min, Math.floor(lo)); hi = Math.min(ax.max, Math.ceil(hi));
+      const hist = new Array(HIST_BINS).fill(0), span = ax.max - ax.min || 1;
+      for (const v of vals) { let b = Math.floor(((v - ax.min) / span) * HIST_BINS); if (b < 0) b = 0; if (b >= HIST_BINS) b = HIST_BINS - 1; hist[b]++; }
+      const peak = Math.max(...hist, 1);
+      out[ax.k] = { lo, hi, mean: sum / vals.length, n: vals.length, hist: hist.map(h => h / peak) };
+    }
+    return out;
+  }, [rows]);
+  // the axes that actually have corpus data — everything else is dropped from the panel
+  const liveAxes = React.useMemo(() => DNA_AXES.filter(ax => corpus[ax.k] && corpus[ax.k].n > 0), [corpus]);
+  // does the liked corpus carry key/mode? (gates the pitch-chip row + major/minor toggle)
+  const hasKey = React.useMemo(() => rows.some(r => r.pkey != null), [rows]);
+  const hasMode = React.useMemo(() => rows.some(r => r.pmode != null), [rows]);
 
   // bucket counts (over the full set, unfiltered by search) for the chip labels
   const counts = React.useMemo(() => {
@@ -523,8 +615,21 @@ function LikedView({ go }) {
 
   const tempoActive = tempo[0] > 0 || tempo[1] < TEMPO_STEPS;
   const energyActive = energy[0] > 0 || energy[1] < 100;
-  const sliderActive = tempoActive || energyActive || valence !== "any";
   const tLo = posTempo(tempo[0]), tHi = posTempo(tempo[1]);
+
+  // DNA tuner: which axis bands are actually narrowed off the corpus min..max (an engaged band = a
+  // filter). A band initialized to [corpus.lo, corpus.hi] is inert; it only bites once a handle moves.
+  const activeBands = React.useMemo(() => {
+    const out = [];
+    for (const ax of liveAxes) {
+      const b = bands[ax.k], c = corpus[ax.k]; if (!b || !c) continue;
+      if (b[0] > c.lo || b[1] < c.hi) out.push({ ax, lo: b[0], hi: b[1] });
+    }
+    return out;
+  }, [bands, liveAxes, corpus]);
+  const keyActive = keySel.size > 0, modeActive = mode !== "any";
+  const dnaActive = activeBands.length > 0 || keyActive || modeActive;
+  const sliderActive = tempoActive || energyActive || valence !== "any" || dnaActive;
 
   // filtered list + count of rows dropped ONLY because they lack audio features while a slider is on
   const { list: filtered, hiddenNoData } = React.useMemo(() => {
@@ -547,6 +652,18 @@ function LikedView({ go }) {
           if (valence === "neutral" && (v < 40 || v > 60)) return false;
           if (valence === "up" && v <= 60) return false;
         }
+        // DNA bands: each active band excludes rows outside [lo,hi]. Missing datum on THAT axis excludes
+        // the row (the vocals-filter convention) — but only because the band is engaged.
+        for (const { ax, lo, hi } of activeBands) {
+          const v = ax.get(r);
+          if (v == null || v < lo || v > hi) return false;
+        }
+        if (keyActive && (r.pkey == null || !keySel.has(r.pkey))) return false;
+        if (modeActive) {
+          if (r.pmode == null) return false;
+          if (mode === "major" && r.pmode !== 1) return false;
+          if (mode === "minor" && r.pmode !== 0) return false;
+        }
       }
       return true;
     });
@@ -558,11 +675,11 @@ function LikedView({ go }) {
     else if (sort === "tempo") s.sort((a, b) => (a.tempo == null) - (b.tempo == null) || (a.tempo || 0) - (b.tempo || 0));
     else if (sort === "energy") s.sort((a, b) => (a.energy == null) - (b.energy == null) || (b.energy || 0) - (a.energy || 0));
     return { list: s, hiddenNoData: hidden };
-  }, [rows, q, bucket, sort, fams, subFilter, tempo, energy, valence, sliderActive, tempoActive, energyActive, tLo, tHi]);
+  }, [rows, q, bucket, sort, fams, subFilter, tempo, energy, valence, sliderActive, tempoActive, energyActive, tLo, tHi, activeBands, keyActive, modeActive, keySel, mode]);
 
   // windowing: render only rows near the viewport. ROW_H must match the row height in LikedRow.
   const ROW_H = 52, PAD = 18, OVERSCAN = 12;
-  React.useEffect(() => { setWin({ start: 0, end: 60 }); if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [q, bucket, sort, fams, subFilter, tempo, energy, valence]);
+  React.useEffect(() => { setWin({ start: 0, end: 60 }); if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [q, bucket, sort, fams, subFilter, tempo, energy, valence, activeBands, keyActive, modeActive]);
   // drop a subgenre selection that the current family set no longer offers
   React.useEffect(() => { if (subFilter && !subOptions.some(([s]) => s === subFilter)) setSubFilter(""); }, [subOptions, subFilter]);
   const onScroll = React.useCallback(e => {
@@ -582,24 +699,101 @@ function LikedView({ go }) {
   const total = filtered.length;
   const vis = filtered.slice(win.start, win.end);
 
+  // reset just the audio handles (tempo/energy/mood) — the pill that used to live in the handles card.
+  const resetHandles = () => { setTempo([0, TEMPO_STEPS]); setEnergy([0, 100]); setValence("any"); };
+  // reset the DNA tuner only (bands back to full corpus range = inert, key/mode cleared).
+  const resetTune = () => { setBands({}); setKeySel(new Set()); setMode("any"); };
+  // a band's current [lo,hi], defaulting to the corpus full range so it starts encapsulating all.
+  const bandOf = (ax) => { const c = corpus[ax.k]; return bands[ax.k] || (c ? [c.lo, c.hi] : [ax.min, ax.max]); };
+  const setBand = (ax, v) => setBands(b => ({ ...b, [ax.k]: v }));
+
   return (
     <div className="r-view">
       <button className="r-back" onClick={() => go("spotify")}>← spotify</button>
-      <div className="r-viewhead"><div>
-        <div className="r-kicker">Spotify · {rows.length} saved songs</div>
-        <h1 className="r-title">Your <em>liked</em> songs<span className="dot">.</span></h1>
-      </div></div>
+      {/* header row: title on the left, the DNA TUNE control hugging the right (stacks under the
+          title on narrow screens via flex-wrap). */}
+      <div className="r-viewhead" style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 10 }}>
+        <div>
+          <div className="r-kicker">Spotify · {rows.length} saved songs</div>
+          <h1 className="r-title">Your <em>liked</em> songs<span className="dot">.</span></h1>
+        </div>
+        <button onClick={() => setTuneOpen(o => !o)} className="r-mono"
+          title="fine-tune the audio DNA of what you're after"
+          style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase",
+            padding: "7px 13px", borderRadius: 999, border: "1px solid " + (dnaActive ? "var(--accent)" : "var(--rule-2)"),
+            background: tuneOpen ? "var(--bg-3)" : "transparent", color: dnaActive ? "var(--accent)" : "var(--ink-soft)", cursor: "pointer" }}>
+          tune DNA {dnaActive ? <span style={{ opacity: .7 }}>· {activeBands.length + (keyActive ? 1 : 0) + (modeActive ? 1 : 0)} on</span> : null} {tuneOpen ? "▴" : "▾"}
+        </button>
+      </div>
       <div className="r-card" style={{ padding: "10px 16px", marginBottom: "var(--gap)", fontFamily: "var(--mono)", fontSize: 11, color: "var(--ink-faint)" }}>
         every song you saved, sorted by what the save turned into — grouped by how deep you went, not by when you added it. tap a row to open the track; ♪ jumps to Spotify.
       </div>
 
-      {/* bucket chips with counts */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
+      {/* ── DNA tuner panel ─────────────────────────────────────────────────────────────────────────
+          Per-axis range bands over the liked corpus's audio characteristics. Each slider starts at the
+          corpus min..max (encapsulating all — no filter) with the distribution drawn behind it and the
+          aggregate mean as a dashed tick ("your average"). Bands AND with the bucket/genre/handle filters
+          and give live "N match" feedback. Session-only state. */}
+      {tuneOpen && (
+        <div className="r-card" style={{ padding: "14px 16px", marginBottom: "var(--gap)", background: "var(--bg-2)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
+            <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-soft)" }}>
+              fine-tune the DNA <span style={{ color: "var(--ink-faint)" }}>· dashed tick = your average · {total} match</span>
+            </div>
+            {dnaActive && <button className="r-chip link" style={{ textTransform: "none", color: "var(--ink-faint)" }} onClick={resetTune}>reset tune ✕</button>}
+          </div>
+          {!taReady && liveAxes.length <= 3 && (
+            <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 10 }}>loading full audio DNA…</div>
+          )}
+          {/* one slim dual-range per axis, three per row on wide screens, stacking on mobile */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: "16px 24px" }}>
+            {liveAxes.map(ax => {
+              const c = corpus[ax.k], [lo, hi] = bandOf(ax);
+              return <LikedRange key={ax.k} label={ax.label} lo={lo} hi={hi} min={ax.min} max={ax.max}
+                onChange={v => setBand(ax, v)} fmt={ax.fmt} hist={c ? c.hist : null} meanPos={c ? c.mean : null} />;
+            })}
+          </div>
+          {/* key is categorical — a 12-note chip row + major/minor toggle (only if the corpus carries them) */}
+          {(hasKey || hasMode) && (
+            <div style={{ marginTop: 16, paddingTop: 14, borderTop: "1px solid var(--rule)", display: "flex", flexWrap: "wrap", gap: "10px 16px", alignItems: "center" }}>
+              {hasKey && (
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
+                  <span className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: keyActive ? "var(--accent)" : "var(--ink-faint)", marginRight: 2 }}>key</span>
+                  {PITCH_CLASSES.map((p, i) => {
+                    const on = keySel.has(i);
+                    return <button key={i} className={"r-chip link" + (on ? " solid" : "")} style={{ textTransform: "none", minWidth: 30, textAlign: "center" }}
+                      onClick={() => setKeySel(s => { const n = new Set(s); n.has(i) ? n.delete(i) : n.add(i); return n; })}>{p}</button>;
+                  })}
+                  {keyActive && <button className="r-chip link" style={{ textTransform: "none", color: "var(--ink-faint)" }} onClick={() => setKeySel(new Set())}>clear ✕</button>}
+                </div>
+              )}
+              {hasMode && (
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: modeActive ? "var(--accent)" : "var(--ink-faint)" }}>mode</span>
+                  <div className="r-seg r-seg-sm">
+                    {[["any", "any"], ["major", "major"], ["minor", "minor"]].map(([k, l]) => (
+                      <button key={k} data-on={mode === k} onClick={() => setMode(k)}>{l}</button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* bucket chips with counts — the "reset handles" pill hugs the right of THIS row (moved here
+          from inside the audio-handles card, where it disrupted that card's layout). */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10, alignItems: "center" }}>
         {CHIPS.map(([k, label]) => (
           <button key={k} className={"r-chip link" + (bucket === k ? " solid" : "")} style={{ textTransform: "none" }} onClick={() => setBucket(k)}>
             {label} <span style={{ opacity: .6 }}>{counts[k] || 0}</span>
           </button>
         ))}
+        {(tempoActive || energyActive || valence !== "any") && (
+          <button className="r-chip link" style={{ marginLeft: "auto", textTransform: "none", color: "var(--ink-faint)" }}
+            onClick={resetHandles}>reset handles ✕</button>
+        )}
       </div>
 
       {/* genre family chips (multi-select) + subgenre dropdown scoped to the selection */}
@@ -638,8 +832,6 @@ function LikedView({ go }) {
             ))}
           </div>
         </div>
-        {sliderActive && <button className="r-chip link" style={{ textTransform: "none", color: "var(--ink-faint)", alignSelf: "flex-end" }}
-          onClick={() => { setTempo([0, TEMPO_STEPS]); setEnergy([0, 100]); setValence("any"); }}>reset handles ✕</button>}
       </div>
 
       {/* search + sort */}
