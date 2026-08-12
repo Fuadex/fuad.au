@@ -11,31 +11,40 @@ and got reconstructed wrong twice in one session. The method itself is not new: 
 one run in the `about21` batch and the seven hook-first Info waves (art-about 45 → 622).
 Reference set: `.dtmp/about21/ABOUT21-REVIEW.md` — read a few pairs before drafting.
 
-## The order (this is the part that gets forgotten)
+## The cascade (this is the part that gets forgotten)
 
-**Interpretation is written FIRST. Info is distilled FROM it, and leads with a hook.**
+**Study tour -> Interpretation -> Info.** Each stage distils the one above it; the work
+flows downhill, never up.
 
-Not the reverse. An Info read written first produces a thin Interpretation that merely
-elaborates it; distilling the other way produces an Info line that already knows what the
-picture's argument is, which is why the hook lands.
+Verified against the corpus 2026-08-13: all 21 works in the about21 batch already had study
+tours, and the reads derive from them visibly. Hodler's tour `craft` opens "Parallelism, in
+Hodler's own use of the word, is not symmetry but repetition: like forms set beside like
+forms until the repeating itself becomes the subject. Here it runs at three scales." Its
+Interpretation compresses precisely that, and pulls its remaining detail from the tour's
+stops ("The apex, and its flaw" -> the off-centre apex; "The shoulder that pays for the
+symmetry" -> the stepped right shoulder).
 
-1. **One subagent per painting** — Opus, working from the actual image (download the plate
-   the site displays; see STUDY_SPEC.md's plate rules, they apply here too).
-2. **Interpretation** (~110-160 words). How the picture works: composition, palette,
-   technique, a structural decision verifiable by looking — a diagonal, a colour that is
-   not the colour you think, a missing horizon, an edge left rough. At most one piece of
-   verification-grade lore, and only where it changes the seeing. Close on a **looking
-   instruction** tied to the actual room where possible (step back, come close, walk
-   side to side, look from below). Never "the viewer"; no flattery; no masterpiece talk.
+1. **Tour first** — `art_inspect.js`, per STUDY_SPEC.md. This is the deep, image-verified
+   layer: four lenses (see/about/craft/context) plus the anchored `deeper` stops. A work
+   with no tour is not ready for a paired read.
+2. **Interpretation** (~110-160 words), **one subagent per painting**, distilled from that
+   work's tour and everything else written for it. It is the standalone argument, not a
+   summary of the fly-through: take the tour's thesis and its most telling verifiable
+   observations, and compress. Close on a **looking instruction** tied to the actual room
+   where possible. Never "the viewer"; no flattery; no masterpiece talk. It must not
+   contradict the tour, and should not simply restate the stop list.
 3. **Info** (~40-70 words), distilled from the Interpretation. Leads with a **hook** — the
-   fact or image that pulls a reader in: who the sitter actually was, what the place is,
-   the one crowding decision. Then the identifying facts (artist, date, what it depicts).
-   **Every fact in the hook is web-verified** — this pass is where canon errors surface
-   (the campaign caught A Burial at Ornans 1841 → 1850 and The Painter's Studio 1850 →
-   1855 this way; fix the canon row in the same commit).
-4. **QC** (main agent, never a subagent): check the Interpretation against the image, verify
-   every proper noun and date, and check both tiers against any existing study tour — see
-   the truth rule below. Print both tiers for Fuad's verdict; nothing merges unapproved.
+   fact or image that pulls a reader in: who the sitter actually was, what the place is, the
+   one crowding decision — then the identifying facts. **Every fact in the hook is
+   web-verified**; this pass is where canon errors surface (the campaign caught A Burial at
+   Ornans 1841 -> 1850 and The Painter's Studio 1850 -> 1855 this way; fix the canon row in
+   the same commit).
+4. **QC** (main agent, never a subagent): check both tiers against the tour and the image,
+   verify every proper noun and date. Print both tiers for Fuad's verdict; nothing merges
+   unapproved.
+
+Consequence worth stating plainly: **the Interpretation tier can never exceed the tour
+tier.** Tours are the ceiling. To grow Interpretations, tour more works first.
 
 ## Two production modes (do not conflate them)
 
@@ -49,14 +58,12 @@ hook first, facts web-verified — and were never distilled from an Interpretati
 none existed. This is why the corpus reads 623 Info against 101 Interpretations: not damage,
 just the coverage campaign running ahead of the paired production.
 
-**Backfill rule (Fuad's call, pending):** when adding an Interpretation to a work that
-already has hook-first Info, the Interpretation-first order cannot apply literally. Two
-options, decided per tier of work rather than drifting:
-- (a) Write the Interpretation fresh from the image, ignoring the existing Info, then
-  re-distil the Info so the pair matches. Truer to the method; also upgrades older Info
-  lines. Recommended where a study tour exists.
-- (b) Write the Interpretation to sit under the existing Info, leaving Info untouched.
-  Cheaper, non-destructive, but inverts the order.
+**Backfill rule:** the standing queue is the 210 works that HAVE a tour but no
+Interpretation — run the cascade's stage 2 on those, then decide per work whether the
+existing hook-first Info should be re-distilled from the new Interpretation (it usually
+should; the campaign Info was written without one). Works with neither a tour nor an
+Interpretation need a tour first — do not write a paired read from the Info alone, which
+is the error that produced the discarded Orsay drafts of 2026-08-13.
 
 ## Truth rules
 
