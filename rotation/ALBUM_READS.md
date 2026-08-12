@@ -229,6 +229,30 @@ carry an ALTERNATE album read synthesized from those flagship reads (`liner2`/`a
 flickable via Fable on the PortraitCard). Operational details live in the untracked
 workshop docs.
 
+## Alternate album read synthesis (liner2/arc2) — the tight spec (2026-08-12)
+
+Source = the album's FABLE reads + fnotes ONLY (never the opus/haiku tiers, never raw
+lyrics — this tier reads the reads). Eligibility: every track fabled, or ≥90% with the
+gaps immaterial.
+
+- **liner2** (5-6 sentences): an ALBUM-level thesis that only becomes visible across the
+  reads — what the record keeps doing, discovered from what the song reads found. Three
+  or four tracks appear as EVIDENCE anchored to the thesis, never as an itinerary; the
+  album's inversions and exception tracks are prime material; close on the album-scale
+  finding. No quotation marks; register 25-36 wps.
+- **arc2** (ONE sentence, ~25-35 words): the album's single structural tell — the
+  exception track, the pivot, the closing word, the only-X — stated once, with its
+  consequence for hearing the whole. NEVER a walk: if the sentence narrates more than one
+  tracklist motion or glosses three-plus songs, it is a walk — restart. (The first Gore
+  arc2 draft is the type specimen of the failure; Fear Inoculum's Pneuma line is the
+  model.)
+- **Entry mechanics**: albums WITH an existing primary liner keep it — the synthesis
+  lands as `liner2`/`arc2` (the Fable-flick face). Albums WITHOUT an entry get a full new
+  one: `gist` (one line: what the album is + the honest listening-shape from real play
+  data) + `by:"Fable"` + the synthesis as the primary `liner`/`arc`.
+- **Approval**: print liner + arc (and gist when new) for the owner's verdict before any
+  apply — per the standing explicit-approval rule.
+
 **Variant album pages**: when a read was written on plays merged across library
 variants (edition spellings, promo pressings, mojibake titles), the finished entry
 is MIRRORED under every variant's album key so each album page shows it (e.g. both
