@@ -1360,6 +1360,21 @@ function MuseumView({ museumId, go }) {
   // synthetic handlers: the synthetic version did not produce a drag in practice. Pointer is
   // captured on DOWN so the gesture survives leaving the element, and a 4px threshold keeps a
   // plain click opening the work — a real drag swallows the trailing click.
+  // ENCOUNTER FILTER (Fuad 2026-08-13): filter what was met here by how it landed. Mirrors the
+  // Wall's own chip vocabulary so the two pages filter alike. "unmet" is NOT here — unmet majors
+  // are a separate section further down, not part of the encounters grid.
+  const [musFilt, setMusFilt] = useState("all");
+  const MUS_FILTERS = [["all", "all"], ["floored", "★ floored"], ["loved", "♥ loved"],
+                       ["sure", "seen — sure"], ["unsure", "unsure"], ["read", "✦ has a read"]];
+  const applyMusFilt = (list) => {
+    if (musFilt === "floored") return list.filter(w => w.floored || w.favorite);
+    if (musFilt === "loved") return list.filter(w => w.liked || w.floored || w.favorite);
+    if (musFilt === "sure") return list.filter(w => w.seenConfidence === "sure");
+    if (musFilt === "unsure") return list.filter(w => w.seenConfidence !== "sure");
+    if (musFilt === "read") return list.filter(w => hasRead(w));
+    return list;
+  };
+
   const flooredRef = useRef(null);
   useEffect(() => {
     const el = flooredRef.current;
@@ -1490,12 +1505,22 @@ function MuseumView({ museumId, go }) {
           The data (DATA.interior) is untouched — re-enable by restoring this figure. */}
 
       {/* 3. THE ENCOUNTERS */}
-      {encounters.length > 0 && (
-        <React.Fragment>
-          <div className="cv-a-secl">The encounters — what I met here</div>
-          <Wall works={encounters} />
-        </React.Fragment>
-      )}
+      {encounters.length > 0 && (() => {
+        const shown = applyMusFilt(encounters);
+        return (
+          <React.Fragment>
+            <div className="cv-a-secl">The encounters — what I met here</div>
+            <div className="cv-mus-filters">
+              {MUS_FILTERS.map(([k, label]) => (
+                <button key={k} className="cv-mus-filt" data-on={musFilt === k}
+                  onClick={() => setMusFilt(k)}>{label}</button>
+              ))}
+              {musFilt !== "all" && <span className="cv-mus-filt-n">{shown.length} of {encounters.length}</span>}
+            </div>
+            {shown.length ? <Wall works={shown} /> : <p className="cv-mus-filt-none">Nothing here matches that.</p>}
+          </React.Fragment>
+        );
+      })()}
 
       {/* 4. MET ON LOAN HERE */}
       {onLoan.length > 0 && (

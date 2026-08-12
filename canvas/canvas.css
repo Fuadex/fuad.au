@@ -217,6 +217,13 @@ a { color: inherit; }
 .cv-mus-cardwrap { break-inside: avoid; margin: 0 0 8px; position: relative; }
 .cv-mus-cardwrap .cv-card { margin: 0; }
 .cv-mus-read { position: absolute; top: 8px; left: 9px; z-index: 2; font-size: 12px; color: var(--accent-soft); filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); pointer-events: none; }
+.cv-mus-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin: 0 0 12px; }
+.cv-mus-filt { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint);
+  background: transparent; border: 1px solid var(--rule); border-radius: 999px; padding: 6px 12px; cursor: pointer; transition: .15s; }
+.cv-mus-filt:hover { color: var(--ink); border-color: var(--ink-faint); }
+.cv-mus-filt[data-on="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.cv-mus-filt-n { font: 500 10px/1 var(--mono); letter-spacing: .08em; color: var(--ink-faint); }
+.cv-mus-filt-none { font: 400 14px/1.6 var(--serif); color: var(--ink-faint); margin: 4px 0 18px; }
 .cv-mus-artists { display: flex; flex-wrap: wrap; gap: 9px; }
 .cv-mus-artchip { display: inline-flex; align-items: baseline; gap: 6px; font: 600 13px/1.2 var(--serif); color: var(--ink); background: #fff; border: 1px solid var(--rule); border-radius: 999px; padding: 8px 14px; cursor: pointer; }
 .cv-mus-artchip:hover { border-color: var(--accent-soft); }
