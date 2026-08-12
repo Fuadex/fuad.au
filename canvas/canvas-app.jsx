@@ -847,6 +847,11 @@ function StudyView({ id, go }) {
         if (el.getBoundingClientRect().top <= line) key = s.key; else break;
       }
       if (key === null) key = sections[0].key;
+      // BOTTOM CLAMP (Fuad 2026-08-13): the final section's heading can never reach the 40%
+      // line — there is not enough content beneath it to scroll that far — so the last stop
+      // would otherwise be unreachable by scrolling. At the end of the pane, it IS the one
+      // being read.
+      if (pane.scrollTop + pane.clientHeight >= pane.scrollHeight - 24) key = sections[sections.length - 1].key;
       if (key === lastKey) return;
       lastKey = key;
       setActiveDetail(key in tourIdx ? tourIdx[key] : null);
