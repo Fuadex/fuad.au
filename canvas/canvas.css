@@ -292,7 +292,21 @@ a { color: inherit; }
 .cv-filters button[data-on="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 /* max-width + ellipsis stop a long museum name ("The Metropolitan Museum of Art (243)") from
    stretching the select — and with it the whole .cv-filters row — past the device width (Fuad 2026-07-25) */
-.cv-filters select { font: 500 11px/1 var(--mono); padding: 7px 10px; border-radius: 8px; border: 1px solid var(--rule); background: #fff; color: var(--ink-soft); max-width: 200px; text-overflow: ellipsis; }
+.cv-filters select {
+  /* matched to the chip row rather than the browser default (Fuad 2026-08-13) — same mono
+     uppercase, same pill, same rule colour; native chrome stripped and a caret drawn in. */
+  appearance: none; -webkit-appearance: none;
+  font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase;
+  padding: 7px 26px 7px 12px; border-radius: 999px; border: 1px solid var(--rule);
+  background-color: transparent; color: var(--ink-faint); cursor: pointer;
+  max-width: 200px; text-overflow: ellipsis; transition: color .15s, border-color .15s;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 14px) 52%, calc(100% - 9px) 52%;
+  background-size: 5px 5px, 5px 5px; background-repeat: no-repeat;
+}
+.cv-filters select:hover { color: var(--ink); border-color: var(--ink-faint); }
+.cv-filters select:focus-visible { outline: none; border-color: var(--ink); color: var(--ink); }
+.cv-filters select option { font: 400 13px/1.4 var(--sans); text-transform: none; letter-spacing: 0; color: var(--ink); background: var(--paper); }
 .cv-count { margin-left: auto; font: 500 10.5px/1 var(--mono); letter-spacing: .08em; color: var(--ink-faint); }
 @media (max-width: 620px) {
   .cv-filters { padding: 14px 16px 0; gap: 7px; }
@@ -731,7 +745,10 @@ a { color: inherit; }
 .cv-search-icon { font-size: 16px; background: none; border: 1px solid var(--rule); border-radius: 999px; width: 34px; height: 34px; cursor: pointer; color: var(--ink-faint); display: flex; align-items: center; justify-content: center; transition: border-color .15s, color .15s; }
 .cv-search-icon:hover { border-color: var(--ink); color: var(--ink); }
 .cv-search-box { display: flex; align-items: center; gap: 6px; }
-.cv-search-input { font: 500 12.5px/1 var(--mono); padding: 7px 12px; border-radius: 999px; border: 1px solid var(--ink); background: #fff; color: var(--ink); width: min(260px, 48vw); outline: none; }
+.cv-search-input { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink); width: min(260px, 48vw); outline: none; transition: border-color .15s; }
+.cv-search-input:hover { border-color: var(--ink-faint); }
+.cv-search-input:focus { border-color: var(--ink); }
+.cv-search-input::-webkit-search-cancel-button { display: none; }
 .cv-search-input::placeholder { color: var(--ink-faint); }
 .cv-search-dismiss { font-size: 14px; background: none; border: none; color: var(--ink-faint); cursor: pointer; padding: 4px; line-height: 1; }
 .cv-search-dismiss:hover { color: var(--ink); }
