@@ -30,17 +30,22 @@ Info line alone — that error produced the discarded Orsay drafts of 2026-08-13
 | Stage | Model | Shape |
 |---|---|---|
 | Study tour | **Opus**, one agent per work | from the image; facts + anchored boxes |
-| Interpretation | **Sonnet**, swarm of 2–4 agents | from the tour; interpretive voice |
+| Interpretation | **Sonnet, ONE agent per artwork** | from the tour; interpretive voice |
 | Info | distilled from the Interpretation | hook-first, facts web-verified |
 
 Fuad's verdict, 2026-08-05, same six works through both models: *"opus feels very mechanical
 compared to sonnet which I prefer."* Sonnet is the `deep` voice. Opus keeps the tour layer.
 
-**Swarm, never one agent** (Fuad 2026-07-30: *"next time when doing interpretations, do a
-swarm instead of just one subagent"*). One agent doing ~10 in a row drifts into sameness —
-repeated openers, repeated rhythm, thinner attention per work. Fan out 2–4 Sonnet agents for
-an N-work batch. **The swarm does not self-coordinate: cross-check openers across agents
-afterwards** (a Sonnet run repeated "What" and needed a seal).
+**ONE SONNET AGENT PER ARTWORK** (Fuad 2026-08-13, tightening the earlier swarm rule). The
+original instruction was "do a swarm instead of just one subagent" (2026-07-30) because one
+agent handling ~10 works in a row drifts into sameness — repeated openers, repeated rhythm,
+thinner attention per work. Splitting 2–4 ways reduced that; **one agent per work removes it
+entirely** and gives each read full attention. An N-work batch = N Sonnet agents, phased in
+waves of ~5 to avoid launching a dozen at once.
+
+**Agents still do not self-coordinate: cross-check openers across the whole batch
+afterwards** (a Sonnet run repeated "What" and needed a seal). This is now the main residual
+risk of the per-work model and is a mandatory QC step, not an optional one.
 
 ## 3. The unit of decision is THE READ, not the model
 
