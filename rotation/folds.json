@@ -934,6 +934,36 @@
 "to": "Road of Resistance",
 "type": "variant",
 "reason": "variant: distinct live recording (YouTube-caption title), link to canonical for reads"
+},
+{
+"from": "Tattoo",
+"to": "Kagerou",
+"type": "spelling",
+"reason": "YouTube-mistitled row: the song is Kagerou (Fuad ruling 2026-08-13)"
+},
+{
+"from": "Tattoo (Live at Rock on the Range 2018)",
+"to": "Kagerou",
+"type": "variant",
+"reason": "variant: live recording under the YouTube mistitle; the song is Kagerou (Fuad ruling 2026-08-13)"
+},
+{
+"from": "TATTOO (ROCK AM RING 2018) #livespot",
+"to": "Kagerou",
+"type": "variant",
+"reason": "variant: live recording under the YouTube mistitle; the song is Kagerou (Fuad ruling 2026-08-13)"
+},
+{
+"from": "Tattoo (New Song) - Pro Shot @ Rock on the Range 2018",
+"to": "Kagerou",
+"type": "variant",
+"reason": "variant: live recording under the YouTube mistitle; the song is Kagerou (Fuad ruling 2026-08-13)"
+},
+{
+"from": "Tattoo (RaR) ( Remaster v2)",
+"to": "Kagerou",
+"type": "variant",
+"reason": "variant: live recording under the YouTube mistitle; the song is Kagerou (Fuad ruling 2026-08-13)"
 }
 ],
 "artist": [

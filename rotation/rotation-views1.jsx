@@ -482,6 +482,15 @@ function OverviewView({ t, go, restReady, seed }) {
   const liveTotal = (window.ROTATION_LIVE && window.ROTATION_LIVE.total) || T.scrobbles;
   const scrob = useCountUp(liveTotal, 1400, seen);
   const hrs = useCountUp(T.listeningHours, 1400, seen);
+  // seen-live share (Fuad 2026-08-13): % of ALL plays belonging to artists you've stood in front
+  // of. seenLive ships ONLY on kept (core) artist records — expById rest rows never carry it, and
+  // they OVERLAP the kept set, so summing both would be a double-count trap. Denominator is
+  // lifetime scrobbles: the honest share, support-act tail excluded until gigs data reaches core.
+  const seenLivePct = React.useMemo(() => {
+    let live = 0;
+    for (const a of R.ARTISTS) if (a.seenLive) live += a.plays || 0;
+    return T.scrobbles ? Math.round(live / T.scrobbles * 100) : 0;
+  }, [R]);
   const now = useLiveNow(); const nowArtist = R.byId[now.artistId] || { hue: 200, tags: [] };
   const npKnown = !!(R.byId[now.artistId] || (R.expById && R.expById[now.artistId]) || (R.played && R.played(now.artist)));
 
@@ -661,6 +670,7 @@ function OverviewView({ t, go, restReady, seed }) {
                 {T.albumsLP != null && <Stat n={fmt(T.albumsLP)} sub="albums played" onClick={() => go("shelves")} />}
                 {T.epsSingles != null && <Stat n={fmt(T.epsSingles)} sub="EPs & singles" onClick={() => go("shelves")} />}
                 {T.tracks != null && <Stat n={fmt(T.tracks)} sub="songs played" onClick={() => go("explore")} />}
+                {seenLivePct > 0 && <Stat n={seenLivePct + "%"} sub="plays · seen live" onClick={() => go("gigs")} />}
                 <Stat n={flt ? flt.avgDay : T.perDay} sub={flt ? "avg/day · " + flt.label : "avg / day"} />
                 <Stat n={flt ? flt.sharePct + "%" : sinceYears + " yr"} sub={flt ? "of all plays" : "of history"} />
                 <Stat n={flt && flt.hi ? fmt(flt.hi.count) : R.TOTALS.topDay.count} sub={"heaviest · " + ((flt && flt.hi ? flt.hi.date : R.TOTALS.topDay.date)).slice(2)} onClick={() => go("calendar")} />
