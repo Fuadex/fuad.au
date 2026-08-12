@@ -73,11 +73,17 @@ already whole with one thesis.)
 Shared brief for the swarm. Distil from the tour's **about / craft / context** lenses (plus
 stops as needed): **no new facts, no re-verification — the tour is already verified.**
 
-- ~110–190w, soft (a rich synthesis runs longer; length is soft per the reads-length rule).
+- ~110–190w per the ledger; the shipped corpus of 101 centres on **136** (median). Length is
+  soft (Fuad 2026-08-13: "the breaches are not a problem") — but QC MEASURES it, because
+  Sonnet under-reports its own word counts by 5–35 words every time.
 - One evocative paragraph. **Lead with the unifying idea** (rich works) or **the single
   crux** (settled works) — the best line goes FIRST.
-- BANNED openers: framing-fact ("Among roughly eighty…"), theory-first ("X had absorbed the
-  theory…"), "What…", "This painting…", the artist's name. Vary across the swarm.
+- Vary the opener: not a framing fact ("Among roughly eighty…"), not theory-first ("X had
+  absorbed the theory…"), not "What…", "This painting…", or the artist's name.
+  ⚠ Provenance: this ban is an ANTI-REPETITION measure from a swarm run that repeated
+  openers — it is not a corpus norm. The shipped 101 open with "The" ×40 and "What" ×6.
+  With one agent per artwork there is no cross-agent repetition to prevent, so treat it as
+  a nudge toward variety, not a hard rule.
 - No second-person you/your (Sonnet's recurring slip). No exclamation marks. No "the
   viewer". No masterpiece talk.
 - Do not back-load the payoff (Sonnet's habitual failure). Hold length.
@@ -89,10 +95,11 @@ a downgrade.
 
 ## 5. Info distillation
 
-~40–70 words, distilled from the finished Interpretation, in one or two sentences doing
-three jobs at once: the **hook** (the fact or image that pulls a reader in — who the sitter
-actually was, what the place is, the one crowding decision), the identification (artist,
-year, subject), and one concrete visual fact carried down from the Interpretation.
+**35–50 words** — measured from the about21 reference batch (35–49, average 41), NOT a
+number invented at the desk. One sentence or two short ones: the **hook** (the fact or image
+that pulls a reader in — who the sitter actually was, what the place is, the one
+compositional decision) plus the identification. It orients; it does not argue — the
+Interpretation carries the argument, so leave it somewhere to go.
 
 **Every fact in the hook is web-verified.** This pass is where canon errors surface — the
 campaign caught A Burial at Ornans 1841 → 1850 and The Painter's Studio 1850 → 1855. Fix the
