@@ -378,7 +378,7 @@ const FAMILIES = [
   { family: "Electronic/DnB",               hue: 190, cx: .84, cy: .60 },
   { family: "Hip-Hop/Rap",                  hue: 46,  cx: .62, cy: .42 },
   { family: "Pop",                          hue: 332, cx: .72, cy: .38 },
-  { family: "Jazz",                         hue: 40,  cx: .40, cy: .32 },
+  { family: "Jazz/Funk",                         hue: 40,  cx: .40, cy: .32 },
   { family: "Classical",                    hue: 150, cx: .18, cy: .22 },
   { family: "Score/Games & Film",           hue: 308, cx: .50, cy: .22 },
   // Other — catch-all so nothing gets nuked; no rule assigns it (only the explicit fallback does).
@@ -425,10 +425,11 @@ const GENRE_RULES = [
   ["Metalcore/Nu", /\btrap metal\b/, _GW.strong],
   ["Punk/Hardcore", /\bpost[- ]hardcore\b/, _GW.strong],   // v2 spec: post-hardcore lives in Punk/Hardcore (Fuad ruling 2026-08-12)
   ["Punk/Hardcore", /\bmelodic hardcore\b/, _GW.strong],
+  ["Electronic/DnB", /\bprogressive (house|trance)\b/, _GW.strong],   // EDM, not prog (Fuad 2026-08-13)
   ["Prog Metal/Rock", /\bprogressive (metal|rock)\b/, _GW.strong],
   ["Prog Metal/Rock", /\bprog (metal|rock)\b/, _GW.strong],
   ["Prog Metal/Rock", /\btechnical (metal|rock)\b/, _GW.strong],   // STEP1
-  ["Alternative/Indie", /\bmath rock\b/, _GW.strong],
+  ["Prog Metal/Rock", /\bmath rock\b/, _GW.strong],   // moved Alt->Prog (Fuad 2026-08-13)
   ["Prog Metal/Rock", /\bmath metal\b/, _GW.med],
   ["Industrial/DH/Hyperpop/Noise", /\bnoise rock\b/, _GW.strong],
   ["Industrial/DH/Hyperpop/Noise", /\bpower electronics\b/, _GW.strong],
@@ -479,7 +480,8 @@ const GENRE_RULES = [
   ["Punk/Hardcore", /\bemo\b/, _GW.strong],
   ["Punk/Hardcore", /\bska(-?punk)?\b/, _GW.strong],
   ["Punk/Hardcore", /\briot grrrl\b/, _GW.strong],
-  ["Punk/Hardcore", /\bgarage (punk|rock)\b/, _GW.strong],
+  ["Alternative/Indie", /\bgarage rock\b/, _GW.strong],   // garage ROCK -> Alt (Fuad 2026-08-13); garage punk stays Punk
+  ["Punk/Hardcore", /\bgarage punk\b/, _GW.strong],
   ["Punk/Hardcore", /\bcrust\b/, _GW.strong],
   ["Punk/Hardcore", /\bpost-punk\b/, _GW.med],
 
@@ -569,16 +571,17 @@ const GENRE_RULES = [
   ["Pop", /\bpop\b/, _GW.weak],
 
   // ── 12 Jazz (soul/funk/R&B/blues fold in) ──
-  ["Jazz", /\bjazz\b/, _GW.strong],
-  ["Jazz", /\bbebop\b/, _GW.strong],
-  ["Jazz", /\bfusion\b/, _GW.med],
-  ["Jazz", /\bbig band\b/, _GW.strong],
-  ["Jazz", /\bneo-?soul\b/, _GW.strong],
-  ["Jazz", /\bsoul\b/, _GW.med],
-  ["Jazz", /\bmotown\b/, _GW.strong],
-  ["Jazz", /\bfunk\b/, _GW.med],
-  ["Jazz", /\bblues\b/, _GW.med],   // STEP1: blues → Jazz
-  ["Jazz", /\b(rhythm and blues|r&b|rnb)\b/, _GW.med],
+  ["Jazz/Funk", /\bjazz\b/, _GW.strong],
+  ["Jazz/Funk", /\bbebop\b/, _GW.strong],
+  ["Jazz/Funk", /\bfusion\b/, _GW.med],
+  ["Jazz/Funk", /\bbig band\b/, _GW.strong],
+  ["Jazz/Funk", /\bneo-?soul\b/, _GW.strong],
+  ["Jazz/Funk", /\bsoul\b/, _GW.med],
+  ["Jazz/Funk", /\bmotown\b/, _GW.strong],
+  ["Electronic/DnB", /\bliquid funk\b|\bneurofunk\b/, _GW.strong],   // DnB subgenres, before the funk rule (Metrik-class fix, Fuad 2026-08-13)
+  ["Jazz/Funk", /\bfunk\b/, _GW.med],
+  ["Jazz/Funk", /\bblues\b/, _GW.med],   // STEP1: blues → Jazz
+  ["Jazz/Funk", /\b(rhythm and blues|r&b|rnb)\b/, _GW.med],
 
   // ── 13 Classical ──
   ["Classical", /\b(neo-?classical|modern classical|contemporary classical|classical)\b/, _GW.strong],
@@ -950,7 +953,7 @@ const FAMILY_OVERRIDES = {
   "Zankyou no Terror OST": "Score/Games & Film",
   "Future Foundation": "Punk/Hardcore",
   "Wienners": "Punk/Hardcore",
-  "Johnny Cash": "Other",
+  "Johnny Cash": "Jazz/Funk",   // blues/roots stretch (Fuad 2026-08-13), out of Other
   "Vana": "Metalcore/Nu",
   "Ylvis": "Pop",
   "Spec Ops: The Line": "Score/Games & Film",
@@ -969,7 +972,6 @@ const FAMILY_OVERRIDES = {
   "BABYMETAL": "Metalcore/Nu",               // v2: kawaii metal → Metalcore/Nu (STEP1 fix; owner-approved)
   "Melt-Banana": "Punk/Hardcore",            // Japanese noise-punk
   "ミドリ": "Punk/Hardcore",                  // Japanese noise-rock/jazz-punk
-  "tricot": "Alternative/Indie",             // math rock → Alt/Indie
   "9mm Parabellum Bullet": "Alternative/Indie",
   "MAN WITH A MISSION": "Metalcore/Nu",      // Japanese alt-metal/rock
   "Trent Reznor and Atticus Ross": "Score/Games & Film",
