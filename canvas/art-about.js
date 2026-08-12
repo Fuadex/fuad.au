@@ -689,10 +689,14 @@ by: "Opus 4.8" },
 
 "dante-and-virgil-in-hell": {
 about: "Bouguereau painted this lurid academic tour-de-force in 1850 as a Prix de Rome bid, staging Canto XXX of Dante's Inferno where the damned Gianni Schicchi sinks his teeth into a rival while the poets and a demon look on.",
+deep: "Hell, in this canvas, is the condition of being reduced entirely to a body — and the paint makes that argument before the story does. Two men locked in a bite fill the centre at a porcelain brightness nothing else receives: every decision in the picture, the poets dimmed to loose cloth and subdued faces, the crowd flattened into an undifferentiated brown field, the burning sky pitched low enough not to compete, conspires to give all the finish to the sin itself. The welded shape the two bodies form is not a brawl flying apart but a single organism eating itself, closed at every limb except one arm flung out toward the watching poets, fingers spread, stopping just short of the cloak — a hand's width of dark paint keeping the two worlds permanently apart. Above, a demon hangs with his arms folded, grinning, performing the same act as the laurelled poet below: appraisal without intervention. The painting is as interested in the appetite for looking as in the two men supplying it. And the bite draws no blood. All the horror is carried in torsion and grip, which is a young painter's solution to what academic decorum would not allow, and it is cannily the right one: the violence stays in the body and nowhere else, which is precisely the canto's punishment.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "the-birth-of-venus-cabanel": {
 about: "Napoleon III bought Cabanel's nude straight from the 1863 Salon, making it the sanctioned erotic ideal against which Manet's Olympia would soon scandalize. Venus reclines on the waves beneath a flurry of cherubs.",
+deep: "The entire picture is an alibi that confesses to itself. Classical myth supplies the title and the excuse for a near life-size nude in an official Salon, the sleeping-nymph pose supplies the fiction of an unseeing body, and then Cabanel lifts the lids a fraction — pupils turned out of the canvas, slightly down, toward whoever stands in front of it — and the alibi is offered and withdrawn in the same breath. Every formal decision in the painting is engineered to protect that moment from collapsing under its own contradiction. The flesh is glazed until no brushstroke survives, the silhouette runs unbroken from armpit to knee without a shadow or reflection to interrupt it, the body rests on the foam without weight or wetness, and the chain of putti arcs across the sky and descends as a pointer aimed precisely at her face. Nothing is actually happening — no emergence, no displaced water — because the picture is not depicting a birth at all; it is constructing the conditions under which a figure can be looked at and can look back without either party having to acknowledge what is occurring. The half-open eyes are the painting naming that transaction. That small, deniable concession is why it won 1863 outright and why it has been an uncomfortable object in every room it has entered since.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "the-angelus": {
@@ -716,6 +720,8 @@ by: "Opus 4.8" },
 
 "the-wounded-man": {
 about: "X-rays revealed a woman once leaned on this sleeper's shoulder: after his long relationship with Virginie Binet collapsed, Courbet painted her out and added a sword and bloodstain, turning the 1844 self-portrait into a dying duelist.",
+deep: "Sleep and death held inside one body, held open and never settled — that is the picture's governing idea, and everything in its construction serves it. Three lights on a near-black ground make the design: a face tipped back with the brows smooth and the lower lip faintly wet, an open white shirt with a rust-brown stain no larger than a thumb dried into the linen, and a hand that lies slack without reaching toward the wound. The reflex gesture of the injured man, the hand pressed to the chest, is precisely withheld. The face offers no verdict. A slim sword props at the margin and supplies the duel as possibility rather than fact, arriving after the eye has already made the circuit and found no resolution. Underneath all of this, technical examination has shown a lovers' idyll: the same reclining man with a woman at his shoulder, painted out and replaced with the wound, so the picture carries two moods and two time-signatures at once. Courbet kept the canvas; he never sold it. That a young painter spent his twenties casting himself as beautiful casualty, and that an older painter revised that game in private rather than abandon it, is the deepest thing the painting holds.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "the-age-of-bronze": {
@@ -724,6 +730,8 @@ by: "Opus 4.8" },
 
 "eugene-manet-on-isle-of-wight": {
 about: "Berthe Morisot painted this on her 1875 honeymoon at Cowes, the first portrait she made of her new husband Eugene Manet, brother of Edouard. He sits at a hotel window, penned indoors while the sea and passersby stay beyond the glass.",
+deep: "Domesticity and distance are held at the same tonal temperature here, and that refusal to prioritise either is the picture's argument. A man in a straw boater sits in profile at the near corner, his back to the painter, his gaze aimed through the window at strangers along a harbour railing — a position that inverts the conventional arrangement: the woman at the window is behind the canvas, doing the work, while the man occupies the interior seat painting of this period normally reserved for her. The window grid parcels the outside into discrete rectangles, each receiving fewer strokes than the terracotta pots on the sill — the most finished objects in the room — and the geranium flicks of red and vermilion are the sole saturated notes in a surface otherwise pitched entirely in chalky greens, greys and cream. A narrow band of near-black below the sitter's hands is the only full dark anywhere; it anchors every other tone and lends the figure the weight the loose, dry modelling never supplies. The curtain on the right, the sash bars overhead, the half-dissolved face: all are handled with the same evenness, because the whole picture is about equivalence — the inside world and the outside world, the familiar and the public, separated by a bar somebody could simply open.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "monet-that-reads": {
@@ -732,6 +740,8 @@ by: "Opus 4.8" },
 
 "diogenes": {
 about: "Jules Bastien-Lepage recast the Greek philosopher Diogenes in 1877 not as a heroic sage but as a Naturalist study of destitution, giving the barrel-dwelling cynic cruelly ruined feet and a raw, unidealized face over the lantern he famously carried seeking an honest man.",
+deep: "Poverty here is not a pose and the search is over — the lamp is on the floor, and whoever has walked up to the canvas is what the looking found. Bastien-Lepage packs the figure into the lower left and leaves the upper right two-fifths empty: that void is the part of the room where an honest man would have been standing, and its blankness is the painting's thesis. The body closes inward — elbow on knee, knuckles jammed against the mouth in a gesture nearer gnawing than thinking — yet the head turns out and the eyes come level with an unsparing appraisal, aimed straight back at whatever is in front of it. The attribute has been demoted to luggage: a small red box lantern, the only saturated colour in the picture, its candle lighting nothing, ruled into straight lines among a composition otherwise made entirely of curves. Against the dragged, half-bare wall the figure barely separates in value — he sinks into the grey he sits in — while the feet at the far end of the extended leg are given the kind of attention usually reserved for a face, each toe noted, the dirt worked into the creases, the flesh running coolest and most bloodless out at the edge, as if the light gave up before it reached him.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "berthe-morisot": {
@@ -741,6 +751,8 @@ by: "Opus 4.8" },
 
 "the-row-boat": {
 about: "Monet painted this empty rowboat at Giverny in 1887, tilting the viewpoint down and cropping out sky and horizon so the River Epte's water fills the whole canvas, a Japanese-print device that pushes the picture toward the near-abstraction of his later water lilies.",
+deep: "Gone are the two things that organise a landscape — the horizon and the standing figure — and replaced them with the experience of leaning over water and finding no way out. The canvas is almost entirely the River Epte, its surface given a directional grain by long parallel strokes of ribbon weed that curve and flatten toward the lower right, pulling the plane back without a single perspective line. Against that sweeping field, a cream hull occupies the upper right, sliced by the frame so it reads as a fragment already in progress. The boat's function is to fix the depth and the viewpoint and then step aside; once understood, it has nothing left to do except be empty. Two pale thwarts cross a mauve interior — a seat being a shape that implies a body, and the body absent. Scattered through the weed, flecks of vermilion sit below the green and make it pulse without brightening it. No sky, no reflection, only a darkening where a reflection would be. Nearly ten years before the first lily paintings, the whole later programme is already here: water read frontally as a surface with things suspended inside it, offered as the picture's entire subject.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "eugene-manet-et-sa-fille-dans-le-jardin-de-bougival": {
@@ -750,6 +762,8 @@ by: "Opus 4.8" },
 
 "bergere-couchee": {
 about: "This 1891 reclining shepherdess, modeled by local girl Gabrielle Dufour with her goat at Mézy, was the only one of three versions Morisot showed at Boussod et Valadon in 1892, her sole solo exhibition during her lifetime.",
+deep: "Skin, linen, wool, and grass are built from the same short strokes in adjacent keys, so the figure does not sit in the landscape but belongs to the same weather as it does — and that continuity is the painting's whole argument. A young woman lies full-length across a wide canvas, cheek resting in her palm, gaze falling past her own open hand into nothing in particular; a pale goat stands at her shoulder; fruit hangs overhead from a branch that closes the sky. The rococo formula — reclining shepherdess with animal — is borrowed from Boucher, but the coyness is stripped out entirely. Nothing happens. She is not tending, not performing, not aware of being seen, and Morisot keeps her face barely a face, expression replaced by posture and the direction of weight. Against the continuous hatch of the field, two or three long unbroken contours carry the whole figure, and one small block of coral at the nape — the densest paint in the picture — pivots the entire composition where the body's horizontal meets the goat's vertical. The bare canvas weave left showing along the bottom was filed as unfinish in her lifetime; it is nothing of the sort. It is the field breathing underneath everything else.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "julie-manet-and-her-greyhound-laertes": {
@@ -815,10 +829,14 @@ by: "Opus 4.8" },
 
 "the-pont-neuf-and-the-samaritaine-at-night": {
 about: "Matisse, who trained alongside Marquet in Gustave Moreau's studio, compared his friend's draftsmanship to the calligraphic simplicity of Hokusai; this 1937 nocturne by Albert Marquet shows how far Marquet had moved from their shared Fauve years.",
+deep: "Night strips a city down to its signals, and this painting trusts that fact entirely. The Seine, the Pont Neuf, the Samaritaine department store — none exist here as architecture; they exist only as the lights they carry. A red bar on a rooftop has no letters, no frame, no visible structure, only its glow bleeding into the plum sky. The bridge is nothing but a chain of thick globes stepping down through the dark, their spacing alone describing perspective and the curve of the deck. The store is a scatter of cream dabs that thins at every edge, so the building has to be inferred from where the dabs stop rather than any drawn perimeter. Wet asphalt carries the sign's colour as long vertical drags, bigger than any source, amplified by rain. The whole canvas is held in a narrow tonal band of near-black, which means a very small quantity of paint buys enormous contrast — perhaps forty lit marks spending the entire brightness budget of the picture. That economy is also a position: the painting is the view from a window above the quay, detached, watching the city transact its night-time business in pure light, without figures, without text, without anything the eye could not actually pick out at this distance.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "la-ville-de-paris": {
 about: "Painted over two years and sent to the 1912 Salon des Indépendants at 267 by 406 centimetres, Robert Delaunay's canvas fuses the Three Graces, the Seine, and the Eiffel Tower as a pivot from Cubist fragmentation toward pure colour abstraction.",
+deep: "Three pictures run at once — a window-view city on the left, an antique figure group in the centre, a tower on the right — and Delaunay's singular claim is that colour alone can hold them together without blending them. A two-thousand-year-old trio of linked nudes floats in the middle of the canvas, drawn with a continuous soft contour and then filled with light rather than shadow: violet and sage green carve the torsos where brown would normally fall, so the figures glow rather than sit heavy. The Eiffel Tower on the right is rendered as apricot and orange, transparent in both directions, less monument than coloured emblem. The one saturated dark passage — a band of ultramarine running the full height of the left edge — seals the composition and pushes every warm note forward. Structurally it was assembled rather than observed: no vantage point, no floor line beneath the floating figures, no perspective to rank the tower above the rooftops above the nudes. What joins antiquity and the machine is the same high-keyed light falling identically on stone, flesh and iron, and the argument, made at Salon scale, is that modern painting need not destroy the past — it just needs a new principle of coherence.",
+deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "portrait-of-pere-tanguy": {
