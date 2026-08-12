@@ -776,9 +776,14 @@ function familyIdxByName(name) {
 //    return -1 so the consumer falls back to the artist family (familyIdxByName). Returns a FAMILIES
 //    index or -1. Absent caches → no evidence → -1 (build works without album-genres.json).
 const _famAlbCache = new Map();
+// Hand vetoes: album keys whose album-evidence vote misfires (rule artifacts at album
+// granularity) — forces the artist-family fallback. First entry: bare hard-rock tags
+// dragging AC/DC-class albums into Prog (Fuad 2026-08-12).
+const ALBUM_FAM_VETO = new Set(["airbourne~runnin-wild"]);
 function familyIdxByAlbum(artist, title) {
   if (!hasAlbumGenres) return -1;
   const key = slug(artist) + "~" + slug(title);
+  if (ALBUM_FAM_VETO.has(key)) return -1;
   if (_famAlbCache.has(key)) return _famAlbCache.get(key);
   const at = aliasedBySlugAlbum(ALBUM_TAGS, slug(artist), slug(title));
   const as = aliasedBySlugAlbum(ALBUM_STYLES, slug(artist), slug(title));
