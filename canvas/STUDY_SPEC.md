@@ -83,6 +83,29 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
 
 ## QC lessons (accumulated — read before drafting/QC)
 
+- **Draft against the plate the SITE displays** (tours10, 2026-08-13). Box coordinates are
+  fractions of the displayed image, so a tour drafted on a different Commons reproduction of
+  the same painting is invalid — every box flies to the wrong region. Before drafting, read
+  `art_data.artworks[id].img` (and any hand-set canon `img`) and download THAT exact file.
+  Caught on Marquet's Pont Neuf: the site shows `...la nuit 02.jpg` (tight plate) while the
+  P18 download was `...01.jpg` (framed gallery shot).
+- **If the site's plate is the poor one, upgrade the site — don't bind the tour to it**
+  (Fuad's ruling, same batch). Delaunay's P18 is a framed, grey-green-white-balanced gallery
+  photograph; the Google Art Project file on Commons is flat and colour-true. Hand-set the
+  better plate on the canon row, then draft against it. Search Commons via
+  `action=query&generator=search&gsrnamespace=6` with `imageinfo` and sort by pixel area.
+- **Never hand-build an `upload.wikimedia.org/.../thumb/x/xx/` URL.** That path segment is the
+  first hex digits of the filename's MD5; a guessed one 404s silently and leaves a blank tile
+  (I wrote `e/e8` for a file whose hash starts `db`). Use
+  `commons.wikimedia.org/wiki/Special:FilePath/<urlencoded name>?width=N` — no hash needed —
+  and HEAD-check every image URL before it enters canon.
+- **Verify the drafter's flags against the text, not the flag's own claim.** A Marquet flag
+  said the address was "deliberately left vague"; the text asserted a specific flat on the
+  place du Pont-Neuf, which no source supports. Read the passage the flag refers to.
+- **A qid typed from memory is a wrong-artwork risk.** A hand-substituted qid resolved to an
+  unrelated photograph; the drafter correctly refused to write rather than invent boxes.
+  Substitutions must take their qid from the canon row, never from recall.
+
 - **Image beats web on anything visible.** Fact-verifiers work from text and are routinely
   wrong about a work's *visuals* (they've mis-called costume colour, hat shape, weapon
   count). Only apply verifier fixes to non-visual history; trust the drafter's image-read
