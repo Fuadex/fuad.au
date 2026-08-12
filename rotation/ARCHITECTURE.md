@@ -239,6 +239,15 @@ cache repointed to the real LiSA by JP-market exact-casing search).
 
 ## 6. Data model (compact formats — check before consuming)
 
+> **2026-08-13 additions:** `liked-meta.js` now also ships `ROTATION_LIKED_AUDIO_X`
+> (liked-key → TA-shaped extended audio row, parquet-derived — the Liked tuner's fallback for
+> unscrobbled saves) and `ROTATION_LIKED_VX` (liked artist slug → vocals code — liked-only
+> artists have no byId/expById record, so vx must ride here). `portraits.js` field model:
+> `gist`/`by`/`liner`/`arc` are the FRONTAL read (Fable syntheses where approved);
+> `linerPrev`/`arcPrev` hold a superseded read for the flick face; `note2` is a footnote
+> rendered under the open full read. `liner2`/`arc2` are retired. Scrobble ingest drops
+> `NON_ARTISTS` (build-data.js) — news domains / trailers / video noise — before any counting.
+
 **Core/rest split (Phase 0, 2026-07-07; artist-field split 2026-07-18):** `window.ROTATION` is
 assembled from **`music-core.js`** (loaded with `defer`, ~2.1 MB raw) + **`music-rest.js`**
 (injected by `rotation-app` after first mount). Core carries light ARTISTS records (without the 11

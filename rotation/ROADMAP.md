@@ -9,7 +9,27 @@
 
 ---
 
-## ⓪ Status snapshot — 2026-08-12 (the current open queue; phases below remain reference)
+## ⓪ Status snapshot — 2026-08-13 (the current open queue; phases below remain reference)
+
+**Shipped 2026-08-12→13 (this wave):** album-read STANDALONE-SOLID doctrine + GIST recipe
+(ALBUM_READS.md is the spec of record) — Fable syntheses frontal on 9 albums (`linerPrev`/
+`arcPrev` hold the earlier reads behind the flick; `note2` footnote slot); reads corpus
+711 fable / 176 footnotes / 696 themed (top20c sweep applied); Liked: parquet audio-DNA
+second pass (3,171/3,592 ids) + `ROTATION_LIKED_AUDIO_X` + `ROTATION_LIKED_VX` sidecars +
+vocals wave 1 (113 verified) + chips grammar fixed (UA button-fill bug) + hover polish;
+Overview catalogue stats row + seen-live share (25%) + decades→Explore deep-link; Stories
+scroll-weighted rail; search order Artists→Albums→Songs; nav no-wrap; NON_ARTISTS ingest
+drop (81 entities); ~30 live-title variant folds + Tattoo→Kagerou.
+
+**Open queue (new):**
+- Vocals wave 2 (next 400 liked-only artists by row coverage; ~1,200 rows recoverable).
+- Liked-artist GENRE enrichment (~1.7k liked-only artists lack famId — same chain as the
+  corpus: lastfm tags → vote).
+- Album-read remediation Phase 2 (the ~95 pre-doctrine gists, per the GIST recipe) +
+  Phase 1 arc backfill (68 arc-less entries). Mezzanine alternate face awaiting verdict.
+- No-sibling live-title renames (~25) + parked ambiguous entities (The Dark.FM etc.).
+
+## (superseded) Status snapshot — 2026-08-12 (phases below remain reference)
 
 **Shipped through 2026-08-12** (feature detail in ARCHITECTURE.md §8 "2026-08 wave"): fable-read
 corpus 588 reads / 161 footnotes / 573 themed with the `fvr` 2.3/2.2 revision scheme; vocals

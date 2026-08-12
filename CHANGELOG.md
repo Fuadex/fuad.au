@@ -16,6 +16,31 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
 ## 2026-08-13
 
 ### Rotation
+- **Album reads went standalone-solid.** The Fable syntheses (built from each album's
+  per-song flagship reads) are now the FRONTAL portrait read on nine albums, with the earlier
+  reads kept behind a flick ("via Opus · earlier read"); gists were redrafted to carry the
+  record's sonic identity in concrete images plus an honest listening shape. New primaries for
+  Gore, SAPPUKEI and still a Sigure virgin?; a footnote slot (✱) debuted under Around the Fur.
+- **The reads corpus crossed 700.** A 20-song sweep of the most-played unread tracks shipped
+  under the full pipeline (independent drafts, overlap gate, account-first QC, web
+  verification), with six verified footnotes — Wargasm's Pink Floyd/Van Halen title-lifts,
+  Bambie Thug's 11/11 release ritual, Celldweller's fifty-demo shelving story among them.
+- **Liked page, properly tuned.** Audio-DNA coverage jumped from 2,626 to 3,171 saved tracks
+  (full feature vectors, with a name-matching second pass for recordings under different
+  release ids); vocals filtering now covers liked-only artists via a dedicated sidecar plus a
+  first verified classification wave (113 artists); chips finally lost the native grey button
+  fill (the actual bug all along) and follow Explore's resting grammar; subtle row/search
+  hover language; tighter header rhythm; back button removed.
+- **Overview grew a catalogue row and a seen-live share.** Albums played (known-LP kind),
+  EPs & singles, and distinct songs (post-fold) sit under the hours; 25% of all plays turn out
+  to belong to artists stood in front of. Decade drill-downs now deep-link into Explore's
+  release-year filter, and the drill-in return chip rides the header row.
+- **Stories rail got scroll-aware.** The chapter rail rests centered and, on hover, slides to
+  a scroll-weighted anchor so its expansion always opens away from where you are.
+- **Scrobble hygiene.** 81 non-artist entities (news domains, trailers, dog videos,
+  full-concert channel uploads) now drop at ingest; 30+ YouTube-caption live titles folded to
+  their songs (including the mistitled BABYMETAL Tattoo → Kagerou family); search results
+  order Artists → Albums → Songs; the nav never wraps under a long now-playing title.
 - **Genre taxonomy v2 shipped.** 15 families with a weighted three-source vote replacing
   first-tag matching; new Heavy/Doom/Gothic and Score/Games & Film families; scene tags no
   longer masquerade as genres. A verified adjudication pass corrected 34 borderline artists.
