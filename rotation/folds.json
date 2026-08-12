@@ -7311,6 +7311,12 @@
     "to": "The Best of Type O Negative",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Bloody Kisses (Top-Shelf Edition)",
+    "to": "Bloody Kisses",
+    "type": "spelling",
+    "reason": "spelling: edition-title variant of the same 1993 album (Fuad 2026-08-12)"
    }
   ],
   "tracks": [
@@ -7890,6 +7896,14 @@
     "from": "Feast Is Over",
     "to": "Over The Threshold",
     "type": "absorb"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Con Corazon",
+    "to": "Con Corazón",
+    "type": "spelling",
+    "reason": "spelling: diacritic-less scrobble variant; canonical release title carries the accent (Fuad 2026-08-12)"
    }
   ]
  },
