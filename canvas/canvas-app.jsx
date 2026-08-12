@@ -2540,8 +2540,28 @@ function Portrait({ go }) {
 // works (best-per-artist, quality-sorted), with the two Leech paintings spliced in at
 // ~position 6.  The seed rotates daily so the spread shifts without random flicker.
 // No latest-skew: recency plays no role; the spread is artist-diversity + quality-gated.
+// PINNED on Home — always present, never rotated out (Fuad 2026-08-13).
 const HOME_LEAD_IDS = ["monet-woman-with-a-parasol", "podkowinski-szal-uniesien"];
 const HOME_LEECH_IDS = ["leech-the-sunshade", "leech-convent-garden"];
+// Deterministic per-day seed + PRNG. Everything not pinned rotates off this, so the wall is
+// stable for a whole day (no flicker between renders) and genuinely different tomorrow.
+// Previously the day only rotated the ARTIST ORDER of the round-robin while each artist always
+// contributed their single best work — so the same ~24 pictures came back every day, reshuffled.
+const homeDaySeed = () => {
+  const d = new Date();
+  return d.getFullYear() * 1000 + Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 86400000);
+};
+const mulberry32 = (a) => () => {
+  a |= 0; a = (a + 0x6D2B79F5) | 0;
+  let t = Math.imul(a ^ (a >>> 15), 1 | a);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+const seededShuffle = (arr, rnd) => {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+};
 const IMPRESSIONIST_RE = /impressionis/i;   // matches "Impressionism" + "Post-impressionism"
 const HOME_SPREAD_CAP = 24;   // spread cards (after lead); total wall ~28 max
 
@@ -2579,8 +2599,10 @@ function HomeView({ go }) {
       const key = w.artistId || w.id;
       if (!impByArtist[key]) impByArtist[key] = w;
     }
-    // up to 5 impressionist leads (positions 3–7ish); already sorted by quality
-    const impLeads = Object.values(impByArtist).slice(0, 5);
+    // up to 5 impressionist leads — WHICH five rotate daily (they were previously a fixed
+    // quality-sorted slice, so the same five sat there permanently)
+    const impRnd = mulberry32(homeDaySeed());
+    const impLeads = seededShuffle(Object.values(impByArtist), impRnd).slice(0, 5);
     for (const w of impLeads) placed.add(w.id);
 
     // 3. Leech works — leech has no movementQids so splice them in explicitly at ~position 6
@@ -2613,24 +2635,26 @@ function HomeView({ go }) {
       byArtist[key].sort((a, b) => weight(a) - weight(b));
     }
 
-    // 6. stable daily seed: day-of-year (resets Jan 1 — slow, non-flickery rotation)
-    const now = new Date();
-    const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
-    const artistKeys = Object.keys(byArtist).sort();
-    const offset = dayOfYear % Math.max(artistKeys.length, 1);
-    const rotated = [...artistKeys.slice(offset), ...artistKeys.slice(0, offset)];
+    // 6. daily rotation. Two things turn, not one: the artist ORDER, and WHICH work each
+    //    artist contributes — the second is what actually changes the wall's content.
+    const seed = homeDaySeed();
+    const rnd = mulberry32(seed);
+    const artistKeys = seededShuffle(Object.keys(byArtist).sort(), rnd);
 
-    // 7. round-robin fill up to HOME_SPREAD_CAP
+    // 7. round-robin fill up to HOME_SPREAD_CAP, each artist starting at a day-dependent
+    //    index into their own bucket so a prolific artist shows a different picture daily
     const picks = [];
     let round = 0;
     outer: while (picks.length < HOME_SPREAD_CAP) {
       let any = false;
-      for (const key of rotated) {
-        if (byArtist[key][round]) {
-          picks.push(byArtist[key][round]);
-          any = true;
-          if (picks.length >= HOME_SPREAD_CAP) break outer;
-        }
+      for (const key of artistKeys) {
+        const bucket = byArtist[key];
+        if (round >= bucket.length) continue;
+        const w = bucket[(seed + round) % bucket.length];
+        if (!w || picks.includes(w)) continue;
+        picks.push(w);
+        any = true;
+        if (picks.length >= HOME_SPREAD_CAP) break outer;
       }
       if (!any) break;
       round++;
