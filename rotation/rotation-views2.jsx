@@ -931,6 +931,93 @@ function linkifyTracks(text, tracks, go) {
   return out;
 }
 
+// pv-/ww- shared styles — injected ONCE at load, NOT rendered inside PortraitCard. The
+// "tracks you've played" handle (AlbumTracksHandle) and other blocks reuse .pv-toggle etc.
+// on albums with NO portrait entry; when these rules lived in PortraitCard's <style>, such
+// pages got native browser button chrome (ODDWORLD bug, Fuad 2026-08-12). No backticks in
+// the CSS comments below. Global-scope note: PV_WW_CSS is views2-only (collision-grepped).
+const PV_WW_CSS = `
+        /* Portrait overlay (pilot) — scoped pv- styles. No backticks in these comments. */
+        .pv-by { font-size: 9.5px; color: var(--ink-faint); letter-spacing: .1em; text-transform: uppercase; }
+        /* .pv-gist is plain serif lead text. Quote-mark / blockquote styling is RESERVED for a
+           future tier and is deliberately not applied to the gist today. */
+        .pv-gist { font-family: var(--serif); font-size: 15px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
+        /* mentioned-track links in album reads (Fuad 2026-07-25): invisible at rest, dotted
+           underline + accent on hover — clickable without decorating the prose. */
+        .pv-tracklink { cursor: pointer; border-bottom: 1px dotted transparent; transition: color .15s ease, border-color .15s ease; }
+        .pv-tracklink:hover { color: var(--accent); border-bottom-color: var(--accent-dim); }
+        /* flick chip — bottom-right, subtle; cycles Portrait to the old source and back. */
+        .pv-flickrow { display: flex; justify-content: flex-end; margin-top: 14px; }
+        .pv-flick { background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px;
+          cursor: pointer; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+        .pv-flick:hover { color: var(--accent); border-color: var(--accent-dim); }
+        /* old-source face reuses the parent blocks' own inline styling (the alt node is rendered
+           verbatim), so no extra rules are needed for .pv-altface / .pv-card-altonly. */
+        .pv-toggle { margin-top: 12px; background: none; border: none; padding: 0; cursor: pointer;
+          font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+        .pv-toggle:hover { color: var(--accent); }
+        /* DENSITY control row (Fuad 2026-07-18): fact chips + via-source flick on ONE line, flick
+           pinned right; wraps on narrow screens. The full-read toggle was pulled OUT to its own
+           left-aligned line below (Fuad 2026-08-12). No backticks in these comments. */
+        .pv-controlrow { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+        .pv-flick-inrow { align-self: center; }
+        /* THE FULL READ + VIA-SOURCE (Fuad 2026-08-12, revised): ONE line below the chips —
+           toggle LEFT, flick RIGHT, space-between; wraps flick right-aligned below when both
+           can't fit. No backticks in these comments. */
+        .pv-readrow { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+          gap: 7px 12px; margin-top: 12px; }
+        .pv-readrow .pv-flick-inrow { margin-left: auto; }
+        .pv-toggle-read { margin-top: 0; text-align: left; text-decoration: underline;
+          text-underline-offset: 3px; text-decoration-color: var(--rule); text-decoration-thickness: 1px; }
+        .pv-toggle-read:hover { text-decoration-color: var(--accent-dim); }
+        /* fixed-width label slot: the ▾/▴ label swap must not shift the toggle's x/y. The longest
+           label ("the full read ▾") sets the min-width; the shorter "less ▴" left-aligns into it,
+           so nothing to the right reflows and the button never resizes. */
+        .pv-toggle-lbl { display: inline-block; min-width: 8.6em; text-align: left; }
+        .pv-toggle-spacer { display: inline-block; }
+        /* STICKY UNRAVEL: one height-clamped body under the toggle. At rest it peeks a couple of
+           lines (mask-faded) on hover of the row; on click (.open) it unrolls in place to full
+           height with a quick ease-out — continuing from the peek, anchored where the peek was
+           (grows downward, no jump). */
+        .pv-readbody { max-height: 0; overflow: hidden; opacity: 0;
+          -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+          transition: max-height .22s ease-out, opacity .18s ease-out; }
+        .pv-readrow:hover + .pv-readbody:not(.open) { max-height: 46px; opacity: .85; }
+        .pv-readbody.open { max-height: 4000px; opacity: 1; pointer-events: auto;
+          -webkit-mask-image: none; mask-image: none; }
+        .pv-peek-p { margin-top: 6px; pointer-events: none; }
+        .pv-full { font-family: var(--serif); font-size: 15px; line-height: 1.62; color: var(--ink-soft); margin: 12px 0 0; }
+        .pv-facts { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+        .pv-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+        .pv-chip { max-width: 100%; background: var(--bg-3); border: 1px solid var(--rule); border-radius: 999px;
+          padding: 4px 11px; cursor: pointer; font-family: var(--mono); font-size: 10px; letter-spacing: .04em;
+          color: var(--ink-soft); white-space: normal; text-align: left; line-height: 1.35; }
+        .pv-chip b { color: var(--ink); font-weight: 600; }
+        .pv-chip .pv-sep { color: var(--ink-faint); }
+        .pv-chip:hover { border-color: var(--accent-dim); color: var(--ink); }
+        .pv-chip.on { border-color: var(--accent-dim); background: var(--accent-bg); color: var(--ink); }
+        .pv-deriv { margin-top: 9px; font-size: 12px; line-height: 1.5; color: var(--ink-soft);
+          border-left: 2px solid var(--accent-dim); padding: 2px 0 2px 11px; }
+        /* words overlay (pilot) — scoped ww- styles, shared by track + album. No backticks in comments. */
+        .ww-own { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+        .ww-own-h { font-size: 9px; color: var(--ink-faint); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 9px; }
+        .ww-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+        .ww-chip { max-width: 100%; background: var(--bg-3); border: 1px solid var(--rule); border-radius: 999px;
+          padding: 4px 11px; font-family: var(--serif); font-size: 12px; font-style: italic; line-height: 1.35;
+          color: var(--ink-soft); white-space: normal; }
+        .ww-bars { display: grid; gap: 7px; }
+        .ww-axis { display: grid; grid-template-columns: 74px minmax(0,1fr) 30px; gap: 10px; align-items: center; }
+        .ww-k { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+        .ww-bar { height: 6px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
+        .ww-bar i { display: block; height: 100%; border-radius: 4px; }
+        .ww-v { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); text-align: right; }
+`;
+if (!document.getElementById("pv-shared-styles")) {
+  const _pvst = document.createElement("style"); _pvst.id = "pv-shared-styles";
+  _pvst.textContent = PV_WW_CSS; document.head.appendChild(_pvst);
+}
+
 function PortraitCard({ id, alt, showWords = true, go }) {
   const [pReady, setPReady] = React.useState(!!window.ROTATION_PORTRAITS);
   const [fReady, setFReady] = React.useState(!!window.ROTATION_PORTRAIT_FACTS);
@@ -1141,83 +1228,6 @@ function PortraitCard({ id, alt, showWords = true, go }) {
           </button>
         </div>
       )}
-      <style>{`
-        /* Portrait overlay (pilot) — scoped pv- styles. No backticks in these comments. */
-        .pv-by { font-size: 9.5px; color: var(--ink-faint); letter-spacing: .1em; text-transform: uppercase; }
-        /* .pv-gist is plain serif lead text. Quote-mark / blockquote styling is RESERVED for a
-           future tier and is deliberately not applied to the gist today. */
-        .pv-gist { font-family: var(--serif); font-size: 15px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
-        /* mentioned-track links in album reads (Fuad 2026-07-25): invisible at rest, dotted
-           underline + accent on hover — clickable without decorating the prose. */
-        .pv-tracklink { cursor: pointer; border-bottom: 1px dotted transparent; transition: color .15s ease, border-color .15s ease; }
-        .pv-tracklink:hover { color: var(--accent); border-bottom-color: var(--accent-dim); }
-        /* flick chip — bottom-right, subtle; cycles Portrait to the old source and back. */
-        .pv-flickrow { display: flex; justify-content: flex-end; margin-top: 14px; }
-        .pv-flick { background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px;
-          cursor: pointer; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
-        .pv-flick:hover { color: var(--accent); border-color: var(--accent-dim); }
-        /* old-source face reuses the parent blocks' own inline styling (the alt node is rendered
-           verbatim), so no extra rules are needed for .pv-altface / .pv-card-altonly. */
-        .pv-toggle { margin-top: 12px; background: none; border: none; padding: 0; cursor: pointer;
-          font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
-        .pv-toggle:hover { color: var(--accent); }
-        /* DENSITY control row (Fuad 2026-07-18): fact chips + via-source flick on ONE line, flick
-           pinned right; wraps on narrow screens. The full-read toggle was pulled OUT to its own
-           left-aligned line below (Fuad 2026-08-12). No backticks in these comments. */
-        .pv-controlrow { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
-        .pv-flick-inrow { align-self: center; }
-        /* THE FULL READ + VIA-SOURCE (Fuad 2026-08-12, revised): ONE line below the chips —
-           toggle LEFT, flick RIGHT, space-between; wraps flick right-aligned below when both
-           can't fit. No backticks in these comments. */
-        .pv-readrow { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
-          gap: 7px 12px; margin-top: 12px; }
-        .pv-readrow .pv-flick-inrow { margin-left: auto; }
-        .pv-toggle-read { margin-top: 0; text-align: left; text-decoration: underline;
-          text-underline-offset: 3px; text-decoration-color: var(--rule); text-decoration-thickness: 1px; }
-        .pv-toggle-read:hover { text-decoration-color: var(--accent-dim); }
-        /* fixed-width label slot: the ▾/▴ label swap must not shift the toggle's x/y. The longest
-           label ("the full read ▾") sets the min-width; the shorter "less ▴" left-aligns into it,
-           so nothing to the right reflows and the button never resizes. */
-        .pv-toggle-lbl { display: inline-block; min-width: 8.6em; text-align: left; }
-        .pv-toggle-spacer { display: inline-block; }
-        /* STICKY UNRAVEL: one height-clamped body under the toggle. At rest it peeks a couple of
-           lines (mask-faded) on hover of the row; on click (.open) it unrolls in place to full
-           height with a quick ease-out — continuing from the peek, anchored where the peek was
-           (grows downward, no jump). */
-        .pv-readbody { max-height: 0; overflow: hidden; opacity: 0;
-          -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
-          mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
-          transition: max-height .22s ease-out, opacity .18s ease-out; }
-        .pv-readrow:hover + .pv-readbody:not(.open) { max-height: 46px; opacity: .85; }
-        .pv-readbody.open { max-height: 4000px; opacity: 1; pointer-events: auto;
-          -webkit-mask-image: none; mask-image: none; }
-        .pv-peek-p { margin-top: 6px; pointer-events: none; }
-        .pv-full { font-family: var(--serif); font-size: 15px; line-height: 1.62; color: var(--ink-soft); margin: 12px 0 0; }
-        .pv-facts { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
-        .pv-chips { display: flex; flex-wrap: wrap; gap: 7px; }
-        .pv-chip { max-width: 100%; background: var(--bg-3); border: 1px solid var(--rule); border-radius: 999px;
-          padding: 4px 11px; cursor: pointer; font-family: var(--mono); font-size: 10px; letter-spacing: .04em;
-          color: var(--ink-soft); white-space: normal; text-align: left; line-height: 1.35; }
-        .pv-chip b { color: var(--ink); font-weight: 600; }
-        .pv-chip .pv-sep { color: var(--ink-faint); }
-        .pv-chip:hover { border-color: var(--accent-dim); color: var(--ink); }
-        .pv-chip.on { border-color: var(--accent-dim); background: var(--accent-bg); color: var(--ink); }
-        .pv-deriv { margin-top: 9px; font-size: 12px; line-height: 1.5; color: var(--ink-soft);
-          border-left: 2px solid var(--accent-dim); padding: 2px 0 2px 11px; }
-        /* words overlay (pilot) — scoped ww- styles, shared by track + album. No backticks in comments. */
-        .ww-own { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
-        .ww-own-h { font-size: 9px; color: var(--ink-faint); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 9px; }
-        .ww-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
-        .ww-chip { max-width: 100%; background: var(--bg-3); border: 1px solid var(--rule); border-radius: 999px;
-          padding: 4px 11px; font-family: var(--serif); font-size: 12px; font-style: italic; line-height: 1.35;
-          color: var(--ink-soft); white-space: normal; }
-        .ww-bars { display: grid; gap: 7px; }
-        .ww-axis { display: grid; grid-template-columns: 74px minmax(0,1fr) 30px; gap: 10px; align-items: center; }
-        .ww-k { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
-        .ww-bar { height: 6px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
-        .ww-bar i { display: block; height: 100%; border-radius: 4px; }
-        .ww-v { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); text-align: right; }
-      `}</style>
     </div>
   );
 }
