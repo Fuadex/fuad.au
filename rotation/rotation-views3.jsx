@@ -3456,10 +3456,11 @@ function SearchOverlay({ open, onClose, go }) {
               );
             })}
 
-            {media.tracks.length > 0 && <div className="se-group">Songs</div>}
-            {media.tracks.map(([title, ai, plays], i) => { const name = mArt[ai] || ""; return (
-              <div key={"s-" + i} className="se-row" onClick={() => pickMedia(name, title)}>
-                <GenCover hue={hueOfName(name)} name={name} size={36} radius={3} />
+            {/* section order is Artists → Albums → Songs (Fuad 2026-08-13; songs used to sit second) */}
+            {media.albums.length > 0 && <div className="se-group">Albums</div>}
+            {media.albums.map((row, i) => { const [title, ai, plays] = row, name = mArt[ai] || "", cover = row[6] || ""; return (
+              <div key={"al-" + i} className="se-row" onClick={() => pickAlbum(name, title)}>
+                <GenCover hue={hueOfName(name)} name={title} image={cover} thumb={cover} size={36} radius={3} />
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div className="se-name">{title}</div>
                   <div className="se-sub">{name}</div>
@@ -3467,10 +3468,10 @@ function SearchOverlay({ open, onClose, go }) {
                 <span className="se-plays">{fmt(plays)}<small>plays</small></span>
               </div>); })}
 
-            {media.albums.length > 0 && <div className="se-group">Albums</div>}
-            {media.albums.map((row, i) => { const [title, ai, plays] = row, name = mArt[ai] || "", cover = row[6] || ""; return (
-              <div key={"al-" + i} className="se-row" onClick={() => pickAlbum(name, title)}>
-                <GenCover hue={hueOfName(name)} name={title} image={cover} thumb={cover} size={36} radius={3} />
+            {media.tracks.length > 0 && <div className="se-group">Songs</div>}
+            {media.tracks.map(([title, ai, plays], i) => { const name = mArt[ai] || ""; return (
+              <div key={"s-" + i} className="se-row" onClick={() => pickMedia(name, title)}>
+                <GenCover hue={hueOfName(name)} name={name} size={36} radius={3} />
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div className="se-name">{title}</div>
                   <div className="se-sub">{name}</div>

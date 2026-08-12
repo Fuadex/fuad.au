@@ -946,12 +946,17 @@ function LikedView({ go }) {
           borderless-at-rest also rejected — Explore-adjacent is the ruling.) Scoped to
           .lk-quiet; famchips keep their family-colour identity via --gc. No backticks here. */}
       <style>{`
-        .lk-quiet .r-chip.link:not(.solid) { border-color: var(--rule); color: var(--ink-soft); }
-        .lk-quiet .r-chip.link:not(.solid):hover { border-color: var(--ink-faint); color: var(--ink); background: transparent; }
-        .lk-quiet .lk-famchip { border-color: var(--rule); background: transparent; }
-        .lk-quiet .lk-famchip:hover { border-color: var(--gc); background: transparent; color: var(--gc); }
-        .lk-quiet .lk-famchip.on { border-color: var(--gc); background: var(--gc); color: #0c0a08; }
-        .lk-quiet .lk-famchip.on:hover { border-color: var(--gc); background: var(--gc); color: #0c0a08; }
+        .lk-quiet .r-chip.link:not(.solid):not(.on) { border-color: var(--rule); color: var(--ink-soft); }
+        .lk-quiet .r-chip.link:not(.solid):not(.on):hover { border-color: var(--ink-faint); color: var(--ink); background: transparent; }
+        /* ACTIVE = Explore's data-on grammar: FULL accent fill + near-black text (the washed
+           r-chip.solid accent-bg read as grey — the core of the "still grey" complaint). The
+           :not(.on) guards above stop the inactive rule outranking .lk-famchip.on (4 vs 3
+           classes — the clicked-genre-went-grey bug). */
+        .lk-quiet .r-chip.link.solid { background: var(--accent); border-color: var(--accent); color: #0c0a08; }
+        .lk-quiet .r-chip.link.solid:hover { background: var(--accent); border-color: var(--accent); color: #0c0a08; }
+        .lk-quiet .lk-famchip:not(.on) { border-color: var(--rule); background: transparent; }
+        .lk-quiet .lk-famchip:not(.on):hover { border-color: var(--gc); background: transparent; color: var(--gc); }
+        .lk-quiet .lk-famchip.on, .lk-quiet .lk-famchip.on:hover { border-color: var(--gc); background: var(--gc); color: #0c0a08; }
         .lk-quiet .lk-tunepill { border: 1px solid var(--rule); color: var(--ink-soft); transition: .15s; }
         .lk-quiet .lk-tunepill:hover { border-color: var(--ink-faint); color: var(--ink); }
         .lk-quiet .lk-tunepill.on { border-color: var(--accent); color: var(--accent); }
