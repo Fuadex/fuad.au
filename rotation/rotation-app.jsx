@@ -78,7 +78,9 @@ function RotationApp() {
     if (!R || R._restLoaded) { setRestReady(true); return; }
     window.__rotRest = () => setRestReady(true);
     const s = document.createElement("script");
-    s.src = "music-rest.js";
+    // epoch-locked: REST_V (rest content hash, stamped into core at build) versions the URL so
+    // the SW can never serve a stale rest against a fresh core (index-join corruption class)
+    s.src = "music-rest.js" + (R && R.REST_V ? "?v=" + R.REST_V : "");
     s.onerror = () => setRestReady(true);   // fail-open: mount views (deferred reads are guarded) rather than hang
     document.head.appendChild(s);
     // safety net in case onload/callback never fire
