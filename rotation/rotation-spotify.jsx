@@ -1060,7 +1060,7 @@ function LikedView({ go }) {
               <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-soft)" }}>
                 tune DNA <span style={{ color: "var(--ink-faint)" }}>· {dictating === "dna" ? "shape filter" : dictating === "sliders" ? "range bands" : "drag the shape or move a band"} · {total} match</span>
               </div>
-              {anyTuneActive && <button className="r-chip link" style={{ textTransform: "none", color: "var(--ink-faint)" }} onClick={resetTune}>reset tune ✕</button>}
+              {anyTuneActive && <button className="r-chip link" style={{ textTransform: "none", color: "var(--accent)", borderColor: "var(--accent-dim)" }} onClick={resetTune}>reset tune ✕</button>}
             </div>
             {!taReady && liveAxes.length <= 3 && (
               <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 10 }}>loading full audio DNA…</div>
