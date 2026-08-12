@@ -16,10 +16,12 @@ labels, pills, and hairlines reference these — never hardcode a grey.
 
 ### 1.2 The genre hue wheel — ONE source
 **`FAMILIES` in `build-data.js` is the single source of genre color.** Each family =
-`{ family, hue, cx, cy, kw }`. The hue is stamped onto every artist record at build time
-(family hue, else a name-hash fallback hue; "Other" renders grey via low chroma) and flows
-from there to **every surface at once**: artist-page accent, GenCover gradients, chart bars,
-map dots, MapFlow stacks, Gigs tiles, Explore cards, liked rows. There is deliberately **no
+`{ family, hue, cx, cy }`. Every classified artist's record hue = **its family's anchor hue
+± a deterministic ≤10° per-artist jitter** (`famAnchorHue`, enforced 2026-08-13 — variety
+inside the family band, still reads as the family); untagged/Other artists fall back to the
+legacy curated/name-hash hue. The record hue flows to **every surface at once**: artist-page
+accent, GenCover gradients, chart bars, map dots, MapFlow stacks, Gigs tiles, Explore cards,
+liked rows. There is deliberately **no
 per-genre CSS** — color renders inline as `oklch()`/`hsl()` from the data hue — so a family
 recolor is a data change with atomic, site-wide effect.
 
