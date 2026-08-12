@@ -222,10 +222,11 @@ cache repointed to the real LiSA by JP-market exact-casing search).
   "Home" fold (a bulk-wave entry that renamed the canonical title INTO its bonus-track variant).
   Run it after any bulk fold wave; its only standing high scorers are the two deliberate
   LP-under-song-name exceptions (Nutronic, Daedric).
-- **Colour system 1 — artist hue:** each artist inherits its genre **family** hue
-  (`build-data.js` FAMILIES: nu-metal 24 orange, thrash 4 red, metalcore 346, industrial 214 blue,
-  DnB/electronic 190 cyan, prog 282 purple, Japanese 332 pink, digital-hardcore 308, hip-hop 46,
-  punk 96, shoegaze 252, pop/indie 60), falling back to a name-hash hue. Consistent everywhere
+- **Colour system 1 — artist hue:** each artist inherits its genre **family** hue from the
+  v2 wheel (15 families, 2026-08-13 — the full hue + Sound-Map position table is DESIGN.md
+  §1.3; anchors: Thrash 4 red, Heavy/Doom 24, Hip-Hop 46, Alt/Indie 60, Jazz 40, Punk 96,
+  Classical 150, Electronic 190, Industrial 214, Shoegaze 252, Prog 282, Score 308, Pop 332,
+  Metalcore/Nu 346, Other grey), falling back to a name-hash hue. Consistent everywhere
   (bars, covers, radars).
 - ~~Colour system 2 — track mood dots~~ removed 2026-07-04 (hue-as-scale unreadable; Fuad:
   "bloated"). Track mood now lives only in tooltips + the track page's quadrant.

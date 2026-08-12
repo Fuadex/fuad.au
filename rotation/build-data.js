@@ -475,6 +475,7 @@ const GENRE_RULES = [
   ["Punk/Hardcore", /\bhardcore punk\b/, _GW.strong],
   ["Punk/Hardcore", /\bpunk\b/, _GW.strong],
   ["Punk/Hardcore", /\bhardcore\b/, _GW.strong],
+  ["Hip-Hop/Rap", /\bemo rap\b|\bcloud rap\b/, _GW.strong],   // before the emo rule: emo-rap is rap (original-god/99drowntown class)
   ["Punk/Hardcore", /\bemo\b/, _GW.strong],
   ["Punk/Hardcore", /\bska(-?punk)?\b/, _GW.strong],
   ["Punk/Hardcore", /\briot grrrl\b/, _GW.strong],
@@ -882,6 +883,41 @@ function aliasSidecarBySlugAlbum(obj) {
 // `fam` field (checked first in familyIdxByName); this legacy hand list stays for the acts already
 // verified here. Owner may migrate individual rows to pins.json over time.
 const FAMILY_OVERRIDES = {
+  // Adjudication wave 2026-08-13 (Sonnet swarm → Opus verify → Fable QC; 34 confirmed):
+  "Nevermore": "Prog Metal/Rock",
+  "Metallica": "Thrash/Death",
+  "MAN WITH A MISSION": "Alternative/Indie",
+  "Faith No More": "Alternative/Indie",
+  "Skywalker": "Punk/Hardcore",
+  "Eville": "Thrash/Death",
+  "Lowlives": "Shoegaze/Grunge",
+  "The Glitch Mob": "Electronic/DnB",
+  "Mötley Crüe": "Heavy/Doom/Gothic",
+  "The Cure": "Alternative/Indie",
+  "MY FIRST STORY": "Punk/Hardcore",
+  "Show Me the Body": "Punk/Hardcore",
+  "Hana": "Pop",
+  "And So I Watch You From Afar": "Shoegaze/Grunge",
+  "Gurren Lagann OST Disc 1": "Score/Games & Film",
+  "Tides From Nebula": "Shoegaze/Grunge",
+  "Evanescence": "Heavy/Doom/Gothic",
+  "a flood of circle": "Alternative/Indie",
+  "Sleeping With Sirens": "Punk/Hardcore",
+  "Original God": "Hip-Hop/Rap",
+  "Willow": "Alternative/Indie",
+  "THE NOVEMBERS": "Shoegaze/Grunge",
+  "Zankyou no Terror OST": "Score/Games & Film",
+  "Future Foundation": "Punk/Hardcore",
+  "Wienners": "Punk/Hardcore",
+  "Johnny Cash": "Other",
+  "Vana": "Metalcore/Nu",
+  "Ylvis": "Pop",
+  "Spec Ops: The Line": "Score/Games & Film",
+  "3nd": "Shoegaze/Grunge",
+  "99DROWNTOWN": "Hip-Hop/Rap",
+  "Nubia": "Prog Metal/Rock",
+  "The London Metropolitan Orchestra;Michael Kamen": "Score/Games & Film",
+  "Hide": "Alternative/Indie",
   "daine": "Industrial/DH/Hyperpop/Noise",   // was Digital hardcore / hyperpop → folded into Industrial bucket
   // Genre corrections round 3 (Fuad 2026-07-12, vs tag noise) + Fable's tag-audit verdicts:
   "Dream Theater": "Prog Metal/Rock",
@@ -1340,6 +1376,16 @@ function singleHostSlug(artist, single) {
 // measured Sound DNA from the Spotify audio-features dump (built by extract-audio.js); falls back to
 // inferred tag-derived DNA where an artist didn't match (~98% are measured).
 const AUDIO = (() => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, "audio-features.json"), "utf8")); } catch (e) { return {}; } })();
+// Colour contract (DESIGN.md §1.2, enforced 2026-08-13): artist hue = the assigned family's
+// anchor hue ± a deterministic ≤10° per-artist jitter (variety inside the family band, still
+// reads as the family everywhere). Untagged/Other artists keep the legacy sources (curated
+// META hue, else name-hash) — they never claimed a family colour.
+const famAnchorHue = (name, metaHue) => {
+  const fi = familyIdxByName(name);
+  if (fi >= 0 && FAMILIES[fi] && !FAMILIES[fi].grey)
+    return (FAMILIES[fi].hue + (hueOf(name) % 21) - 10 + 360) % 360;
+  return metaHue !== undefined ? metaHue : hueOf(name);
+};
 const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, plays], i) => {
   const meta = META[name] || {};
   const yc = artistYear.get(name) || new Map();
@@ -1347,7 +1393,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
   const max = Math.max(...counts, 1);
   return {
     id: slug(name), rank: i + 1, name, plays,
-    hue: meta.hue !== undefined ? meta.hue : hueOf(name),
+    hue: famAnchorHue(name, meta.hue),
     tags: meta.tags || niceTags(name),
     // similar: prefer REAL last.fm similar-artists when we have them, else fall back to curated META
     ...(() => {
@@ -1387,7 +1433,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
   };
 });
 const byName = Object.fromEntries(ARTISTS.map(a => [a.name, a]));
-const hueFor = (name) => byName[name] ? byName[name].hue : hueOf(name);
+const hueFor = (name) => byName[name] ? byName[name].hue : famAnchorHue(name, undefined);
 
 // ─────────── ALBUMS (global top + top per included artist) ───────────
 const rankedAlbums = [...albumPlays.entries()].sort((a, b) => b[1] - a[1]);
@@ -3419,58 +3465,66 @@ const GENRES_REAL = FAMILIES.map(f => ({
 })).filter(f => f.subs.length);
 
 // ─────────── GENRES_CURATED (fallback when tag-cache.json is absent) + CONCERTS ───────────
+// v2 family names + hues mirror FAMILIES exactly. Re-homing vs v1:
+//   Nu-metal(24) + Metalcore(346) subs → Metalcore/Nu(346); post-hardcore → Punk/Hardcore(96)
+//   Alt/Prog metal(282) subs → Prog Metal/Rock(282); stoner rock → Heavy/Doom/Gothic(24)
+//   Thrash/Heavy(4) → Thrash/Death(4)
+//   Industrial(214) + Digital hardcore/Hyperpop subs → Industrial/DH/Hyperpop/Noise(214)
+//   Japanese underground subs: noise rock/math rock/nu-gaze → Shoegaze/Grunge(252);
+//     kawaii metal → Metalcore/Nu(346); j-punk → Punk/Hardcore(96)
+//   Electronic/DnB(190) + Hip-hop(46) → exact name/hue match, kept as-is
 const GENRES_CURATED = [
-  { family: "Nu-metal", hue: 24, subs: [
-    { name: "nu-metal", x: .30, y: .80, w: 2890 },
-    { name: "rap metal", x: .36, y: .78, w: 1490 },
-    { name: "alternative metal", x: .32, y: .70, w: 2410 },
-    { name: "funk metal", x: .28, y: .66, w: 520 },
-  ]},
-  { family: "Metalcore", hue: 346, subs: [
-    { name: "metalcore", x: .34, y: .88, w: 1680 },
-    { name: "post-hardcore", x: .36, y: .82, w: 1490 },
-    { name: "djent", x: .44, y: .86, w: 1180 },
-    { name: "progressive metalcore", x: .46, y: .84, w: 1430 },
-    { name: "deathcore", x: .40, y: .92, w: 540 },
-  ]},
-  { family: "Industrial", hue: 214, subs: [
-    { name: "industrial rock", x: .58, y: .72, w: 3120 },
-    { name: "industrial metal", x: .55, y: .82, w: 1870 },
-    { name: "neue deutsche härte", x: .52, y: .80, w: 1870 },
-    { name: "electronicore", x: .62, y: .82, w: 640 },
-  ]},
-  { family: "Alt / Prog metal", hue: 282, subs: [
-    { name: "progressive metal", x: .30, y: .66, w: 1980 },
-    { name: "art rock", x: .34, y: .50, w: 1540 },
-    { name: "stoner rock", x: .26, y: .62, w: 1290 },
-    { name: "post-metal", x: .38, y: .60, w: 720 },
-  ]},
-  { family: "Thrash / Heavy", hue: 4, subs: [
+  { family: "Thrash/Death", hue: 4, subs: [
     { name: "thrash metal", x: .24, y: .92, w: 1450 },
     { name: "groove metal", x: .26, y: .84, w: 1610 },
     { name: "heavy metal", x: .22, y: .80, w: 1380 },
     { name: "speed metal", x: .25, y: .90, w: 540 },
   ]},
-  { family: "Japanese underground", hue: 332, subs: [
+  { family: "Heavy/Doom/Gothic", hue: 24, subs: [
+    { name: "stoner rock", x: .26, y: .62, w: 1290 },
+  ]},
+  { family: "Metalcore/Nu", hue: 346, subs: [
+    { name: "nu-metal", x: .30, y: .80, w: 2890 },
+    { name: "rap metal", x: .36, y: .78, w: 1490 },
+    { name: "alternative metal", x: .32, y: .70, w: 2410 },
+    { name: "funk metal", x: .28, y: .66, w: 520 },
+    { name: "metalcore", x: .34, y: .88, w: 1680 },
+    { name: "djent", x: .44, y: .86, w: 1180 },
+    { name: "progressive metalcore", x: .46, y: .84, w: 1430 },
+    { name: "deathcore", x: .40, y: .92, w: 540 },
+    { name: "kawaii metal", x: .56, y: .78, w: 1240 },
+  ]},
+  { family: "Punk/Hardcore", hue: 96, subs: [
+    { name: "post-hardcore", x: .36, y: .82, w: 1490 },
+    { name: "j-punk", x: .30, y: .80, w: 590 },
+  ]},
+  { family: "Prog Metal/Rock", hue: 282, subs: [
+    { name: "progressive metal", x: .30, y: .66, w: 1980 },
+    { name: "art rock", x: .34, y: .50, w: 1540 },
+    { name: "post-metal", x: .38, y: .60, w: 720 },
+  ]},
+  { family: "Shoegaze/Grunge", hue: 252, subs: [
     { name: "japanese noise rock", x: .40, y: .82, w: 1280 },
     { name: "math rock", x: .38, y: .64, w: 1180 },
-    { name: "kawaii metal", x: .56, y: .78, w: 1240 },
-    { name: "j-punk", x: .30, y: .80, w: 590 },
     { name: "nu-gaze", x: .44, y: .58, w: 1210 },
   ]},
-  { family: "Digital hardcore / Hyperpop", hue: 308, subs: [
+  { family: "Industrial/DH/Hyperpop/Noise", hue: 214, subs: [
+    { name: "industrial rock", x: .58, y: .72, w: 3120 },
+    { name: "industrial metal", x: .55, y: .82, w: 1870 },
+    { name: "neue deutsche härte", x: .52, y: .80, w: 1870 },
+    { name: "electronicore", x: .62, y: .82, w: 640 },
     { name: "digital hardcore", x: .82, y: .92, w: 1340 },
     { name: "breakcore", x: .88, y: .90, w: 760 },
     { name: "witch house", x: .80, y: .58, w: 1120 },
     { name: "hyperpop", x: .84, y: .60, w: 680 },
   ]},
-  { family: "Electronic / DnB", hue: 190, subs: [
+  { family: "Electronic/DnB", hue: 190, subs: [
     { name: "drum and bass", x: .86, y: .74, w: 980 },
     { name: "big beat", x: .80, y: .66, w: 1620 },
     { name: "breakbeat", x: .82, y: .70, w: 760 },
     { name: "progressive house", x: .90, y: .50, w: 1440 },
   ]},
-  { family: "Hip-hop", hue: 46, subs: [
+  { family: "Hip-Hop/Rap", hue: 46, subs: [
     { name: "polish hip-hop", x: .64, y: .44, w: 1630 },
     { name: "boom bap", x: .60, y: .40, w: 760 },
   ]},
