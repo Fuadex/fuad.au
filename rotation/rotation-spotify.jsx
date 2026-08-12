@@ -931,7 +931,22 @@ function LikedView({ go }) {
   const dimDna = dictating === "sliders";   // shape idle while sliders dictate
 
   return (
-    <div className="r-view">
+    <div className="r-view lk-quiet">
+      {/* QUIET CHIPS (Fuad 2026-08-12): resting grey pill borders on this page were distracting —
+          chips read as plain text at rest (transparent border keeps geometry, zero reflow) and only
+          light up on hover / when active. Scoped to .lk-quiet so Explore/other r-chip uses keep
+          their borders. Genre-family chips get the same treatment via --gc (inline styles would
+          otherwise beat the stylesheet and kill the hover). No backticks in these comments. */}
+      <style>{`
+        .lk-quiet .r-chip.link:not(.solid) { border-color: transparent; }
+        .lk-quiet .lk-famchip { border-color: transparent; background: transparent; }
+        .lk-quiet .lk-famchip:hover { border-color: var(--gc); background: transparent; color: var(--gc); }
+        .lk-quiet .lk-famchip.on { border-color: var(--gc); background: var(--gc); color: #0c0a08; }
+        .lk-quiet .lk-famchip.on:hover { border-color: var(--gc); background: var(--gc); color: #0c0a08; }
+        .lk-quiet .lk-tunepill { border: 1px solid transparent; color: var(--ink-soft); transition: .15s; }
+        .lk-quiet .lk-tunepill:hover { border-color: var(--accent-dim); color: var(--accent); }
+        .lk-quiet .lk-tunepill.on { border-color: var(--accent); color: var(--accent); }
+      `}</style>
       <button className="r-back" onClick={() => go("spotify")}>← spotify</button>
       {/* header row: title on the left, the DNA TUNE control hugging the right (stacks under the
           title on narrow screens via flex-wrap). */}
@@ -945,11 +960,10 @@ function LikedView({ go }) {
         <button onClick={() => {
             setTuneOpen(true);
             requestAnimationFrame(() => { if (tuneRef.current) tuneRef.current.scrollIntoView({ behavior: "smooth", block: "start" }); });
-          }} className="r-mono"
+          }} className={"r-mono lk-tunepill" + (anyTuneActive ? " on" : "")}
           title="jump to the audio-DNA tuner (below the songs)"
           style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase",
-            padding: "7px 13px", borderRadius: 999, border: "1px solid " + (anyTuneActive ? "var(--accent)" : "var(--rule-2)"),
-            background: "transparent", color: anyTuneActive ? "var(--accent)" : "var(--ink-soft)", cursor: "pointer" }}>
+            padding: "7px 13px", borderRadius: 999, background: "transparent", cursor: "pointer" }}>
           tune DNA {anyTuneActive ? <span style={{ opacity: .7 }}>· {dictating === "dna" ? "shape" : (activeBands.length + (keyActive ? 1 : 0) + (modeActive ? 1 : 0)) + " on"}</span> : null}
           <span onClick={e => { e.stopPropagation(); setTuneOpen(o => !o); }} title={tuneOpen ? "collapse" : "expand"} style={{ opacity: .8 }}>{tuneOpen ? "▾" : "▸"}</span>
         </button>
@@ -993,7 +1007,7 @@ function LikedView({ go }) {
             const on = fams.has(f.i);
             const c = "oklch(0.7 0.12 " + f.hue + ")";
             return (
-              <button key={f.i} className="r-chip link" style={{ textTransform: "none", borderColor: on ? c : "var(--rule-2)", color: on ? "#0c0a08" : c, background: on ? c : "transparent" }}
+              <button key={f.i} className={"r-chip link lk-famchip" + (on ? " on" : "")} style={{ textTransform: "none", "--gc": c, color: on ? undefined : c }}
                 onClick={() => setFams(s => { const n = new Set(s); n.has(f.i) ? n.delete(f.i) : n.add(f.i); return n; })}>
                 {f.family} <span style={{ opacity: .6 }}>{famCounts[f.i]}</span>
               </button>
