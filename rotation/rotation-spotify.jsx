@@ -542,7 +542,7 @@ function LikedRow({ r, legendByCode, famById, go, navable, albumCover }) {
   const canNav = navable && go;
   const hue = fam ? fam.hue : 40;
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, height: 52, padding: "0 4px", borderBottom: "1px solid var(--rule)", cursor: canNav ? "pointer" : "default" }}
+    <div className="lk-row" style={{ display: "flex", alignItems: "center", gap: 10, height: 52, padding: "0 4px", borderBottom: "1px solid var(--rule)", cursor: canNav ? "pointer" : "default" }}
       onClick={canNav ? () => go("track", r.key) : undefined}>
       {/* left miniatures: round artist thumb (auto-resolved by GenCover) + square album cover.
           GenCover paints a generated gradient underneath, so an unresolved thumb reads as a tasteful
@@ -977,6 +977,12 @@ function LikedView({ go }) {
         /* header rhythm (Fuad 2026-08-13): the gap under "Your liked songs" was deeper than the
            kicker-to-title gap above — tightened so title-to-chips reads symmetrical. */
         .lk-quiet .r-viewhead { margin-bottom: calc(var(--pad) * 0.8); }
+        /* subtle hover language (Fuad 2026-08-13): rows tint, the search field's border wakes on
+           hover and glows faintly on focus — nothing moves, nothing shouts. */
+        .lk-quiet .lk-row { transition: background .15s ease; }
+        .lk-quiet .lk-row:hover { background: var(--bg-2); }
+        .lk-quiet input:hover { border-color: var(--ink-faint); }
+        .lk-quiet input:focus { border-color: var(--accent-dim); box-shadow: 0 0 0 3px var(--accent-bg); }
       `}</style>
       {/* (the "← spotify" back button was removed on request — Fuad 2026-08-12; Liked is now a
           first-class navbar destination, so the up-navigation was noise) */}
