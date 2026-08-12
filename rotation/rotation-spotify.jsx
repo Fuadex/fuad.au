@@ -781,10 +781,14 @@ function LikedView({ go }) {
             {label} <span style={{ opacity: .6 }}>{counts[k] || 0}</span>
           </button>
         ))}
-        {dnaActive && (
-          <button className="r-chip link" style={{ marginLeft: "auto", textTransform: "none", color: "var(--ink-faint)" }}
-            onClick={resetTune}>reset tune ✕</button>
-        )}
+        {/* reset-tune (Fuad 2026-08-12): its slot is RESERVED — always rendered, pinned right via
+            marginLeft:auto, hidden (visibility) + inert when no tune is active, so the row never
+            reflows as it appears/disappears. Accent-toned (var(--accent) + accent-dim border) to
+            read clearly, matching the clear-filter pill convention (gv-tour-chip). */}
+        <button className="r-chip link" aria-hidden={!dnaActive} tabIndex={dnaActive ? 0 : -1}
+          style={{ marginLeft: "auto", textTransform: "none", color: "var(--accent)", borderColor: "var(--accent-dim)",
+            visibility: dnaActive ? "visible" : "hidden", pointerEvents: dnaActive ? "auto" : "none" }}
+          onClick={resetTune}>reset tune ✕</button>
       </div>
 
       {/* genre family chips (multi-select) + subgenre dropdown scoped to the selection */}
