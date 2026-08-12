@@ -28,8 +28,10 @@ Three hand-QC'd content overlays sit beside the script pipeline, all keyed by ca
   image → fact-checked every claim and crop-verified every anchor box before merge).
   300 works covered as of 2026-08-06.
 - **`art-about.js`** (`CANVAS_ART_ABOUT`) — shorter two-tier reads (about/deep) for
-  flagship works. A study entry must go deeper than, and never contradict, an existing
-  about read.
+  flagship works. Production and QC protocol: **[READS_SPEC.md](READS_SPEC.md)** — one
+  Opus subagent per painting, **Interpretation written first and Info distilled from it
+  with a web-verified hook** (not the reverse). A study entry must go deeper than, and
+  never contradict, an existing about read.
 - **`museum_about.js`** (`CANVAS_MUSEUM_ABOUT`) — institution reads (about = what the
   place is, deep = how it works as a visit), 32 museums. Same truth rule as studies:
   personal "you met X here" claims only for canon-`sure` works; `probably`/`unsure`
