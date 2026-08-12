@@ -44,6 +44,8 @@ a { color: inherit; }
 .cv-title { display: block; }
 .cv-artist { display: block; font: 500 10.5px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); margin-top: 3px; text-align: left; }   /* artist · year always on its own line beneath the title, same left edge */
 .cv-card[data-conf="unsure"] .cv-label { opacity: .82; }   /* the ?/?? glyphs after the title were dropped 2026-08-13 (Fuad: "just confusing") — the faded label still carries the uncertainty, and the Wall's "unsure" filter + the reader's ConfChip state it in words */
+.cv-chip-style { cursor: pointer; }
+.cv-chip-style:hover { border-color: var(--accent-soft); color: var(--ink); }
 .cv-fav { position: absolute; top: 8px; right: 9px; font-size: 12px; filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); }
 /* text-forward card (no image: copyright / TBC) */
 .cv-card.cv-text { background: var(--ink); color: var(--paper); padding: 22px 18px 18px; }
@@ -190,7 +192,7 @@ a { color: inherit; }
      wheel/trackpad. Bar hidden, drag-to-scroll wired in canvas-app.jsx, and the strip is aligned
      to the header block's width + inner padding so the thumbnails start under the museum name
      rather than floating off-axis. */
-  scrollbar-width: none; -ms-overflow-style: none; cursor: grab; scroll-behavior: auto;
+  scrollbar-width: none; -ms-overflow-style: none; cursor: grab; scroll-behavior: auto; touch-action: pan-y;
   max-width: 1200px; margin: 0 auto; padding-left: 30px; padding-right: 30px;
   overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
 .cv-mus-floored:active { cursor: grabbing; }
@@ -753,7 +755,10 @@ a { color: inherit; }
 .cv-r-inspect-lens .lbl { font: 600 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: 7px; }
 .cv-r-inspect-txt {
   font: 400 16px/1.75 var(--serif); color: var(--ink-soft);
-  max-width: 65ch; margin: 0;
+  /* was max-width: 65ch, which left the Inspection reads hugging the left ~3/4 of the reader
+     while every other block ran full width (Fuad 2026-08-13). The reader body already caps
+     line length via its own padding. */
+  max-width: none; margin: 0;
 }
 .cv-r-inspect-more {
   display: inline-block; margin-top: 4px;

@@ -887,6 +887,15 @@ function StudyView({ id, go }) {
 
   if (!work) return null;
   const a = work.artistData || {};
+  // movement labels for this work's artist (art_data.artists[].movementQids ->
+  // art_data.movements). Capped at 2 so the chip row stays readable.
+  const styleTags = useMemo(() => {
+    const ad = (AD.artists && AD.artists[w.artistId]) || null;
+    const qids = (ad && ad.movementQids) || [];
+    const seen = new Set();
+    return qids.map(q => AD.movements && AD.movements[q]).filter(l => l && !seen.has(l) && seen.add(l)).slice(0, 2);
+  }, [w.artistId]);
+
   const life = a.born ? `${a.born}–${a.died || ""}` : null;
 
   const activeKey = activeDetail !== null && tour[activeDetail] ? tour[activeDetail].key : null;
@@ -1042,6 +1051,13 @@ function Reader({ id, go }) {
           <div className="cv-r-meta"><b style={{ cursor: "pointer" }} title="artist page" onClick={() => go("artist", w.artistId)}>{w.artist.replace(/\s*\(.*\)$/, "")}</b>{life ? ` · ${life}` : ""}{w.year ? ` · ${w.year}` : ""}{a.desc ? ` · ${a.desc}` : ""}</div>
           <div className="cv-chips">
             <ConfChip conf={w.seenConfidence} />
+            {/* STYLE TAGS (Fuad 2026-08-13). Sourced from the artist's movementQids resolved
+                through art_data.movements — real data already in the overlay, not guessed per
+                work. Clicking one opens the artist page, which is where movement lives. */}
+            {styleTags.map(t => (
+              <span key={t} className="cv-chip cv-chip-style" title={"movement — " + t}
+                onClick={() => go("artist", w.artistId)}>{t}</span>
+            ))}
             {w.floored && <span className="cv-chip" data-k="floored">★ floored me</span>}
             {w.favorite && <span className="cv-chip" data-k="floored">★ favorite</span>}
             {w.liked && !w.floored && <span className="cv-chip" data-k="floored">♡ liked</span>}
@@ -1340,37 +1356,45 @@ function MuseumView({ museumId, go }) {
   const architectsLine = DATA && Array.isArray(DATA.architects) && DATA.architects.length ? DATA.architects.join(" · ") : null;
   const hasReadPane = !!(ABOUT && (ABOUT.about || ABOUT.deep));
 
-  // DRAG-SCROLL for the highlights strip (Fuad 2026-08-13: "I should be able to click and drag
-  // left or right"). Pointer events so mouse/pen/touch share one path; a small movement
-  // threshold before we claim the drag, so a plain click on a thumbnail still opens the work.
+  // DRAG-SCROLL for the highlights strip (Fuad 2026-08-13). Native listeners rather than React
+  // synthetic handlers: the synthetic version did not produce a drag in practice. Pointer is
+  // captured on DOWN so the gesture survives leaving the element, and a 4px threshold keeps a
+  // plain click opening the work — a real drag swallows the trailing click.
   const flooredRef = useRef(null);
-  const dragState = useRef({ down: false, moved: false, x: 0, left: 0 });
-  const dragScroll = {
-    onPointerDown: (e) => {
-      if (e.button !== undefined && e.button !== 0) return;
-      const el = flooredRef.current; if (!el) return;
-      dragState.current = { down: true, moved: false, x: e.clientX, left: el.scrollLeft };
-    },
-    onPointerMove: (e) => {
-      const st = dragState.current, el = flooredRef.current;
-      if (!st.down || !el) return;
-      const dx = e.clientX - st.x;
-      if (!st.moved && Math.abs(dx) < 4) return;       // below threshold: still a click
-      if (!st.moved) { st.moved = true; el.setPointerCapture?.(e.pointerId); }
-      el.scrollLeft = st.left - dx;
-    },
-    onPointerUp: (e) => {
-      const st = dragState.current, el = flooredRef.current;
-      if (st.moved && el) { el.releasePointerCapture?.(e.pointerId); }
-      // swallow the click that follows a real drag so it doesn't open a work
-      if (st.moved) { e.preventDefault(); e.stopPropagation(); }
-      dragState.current = { down: false, moved: false, x: 0, left: 0 };
-    },
-    onPointerCancel: () => { dragState.current = { down: false, moved: false, x: 0, left: 0 }; },
-    onClickCapture: (e) => {
-      if (dragState.current.moved) { e.preventDefault(); e.stopPropagation(); }
-    },
-  };
+  useEffect(() => {
+    const el = flooredRef.current;
+    if (!el) return;
+    let down = false, moved = false, x0 = 0, left0 = 0;
+    const onDown = (e) => {
+      if (e.button !== 0) return;
+      down = true; moved = false; x0 = e.clientX; left0 = el.scrollLeft;
+      try { el.setPointerCapture(e.pointerId); } catch (err) {}
+    };
+    const onMove = (e) => {
+      if (!down) return;
+      const dx = e.clientX - x0;
+      if (!moved && Math.abs(dx) < 4) return;
+      moved = true;
+      e.preventDefault();
+      el.scrollLeft = left0 - dx;
+    };
+    const onUp = (e) => {
+      if (moved) { const kill = (ev) => { ev.stopPropagation(); ev.preventDefault(); };
+        el.addEventListener("click", kill, { capture: true, once: true }); }
+      down = false;
+      try { el.releasePointerCapture(e.pointerId); } catch (err) {}
+    };
+    el.addEventListener("pointerdown", onDown);
+    el.addEventListener("pointermove", onMove);
+    el.addEventListener("pointerup", onUp);
+    el.addEventListener("pointercancel", onUp);
+    return () => {
+      el.removeEventListener("pointerdown", onDown);
+      el.removeEventListener("pointermove", onMove);
+      el.removeEventListener("pointerup", onUp);
+      el.removeEventListener("pointercancel", onUp);
+    };
+  }, []);
   // date chip eligibility
   const eligible = (dateStr, country) => dateStr < "2024-06" || dateStr > "2025-12" || country === "au";
   const visitDate = (Array.isArray(m.visits) ? m.visits : []).find(d => /^\d{4}-\d{2}/.test(d)) || null;
@@ -1414,7 +1438,7 @@ function MuseumView({ museumId, go }) {
             </div>
           )}
           {floored.length > 0 && (
-            <div className="cv-mus-floored" ref={flooredRef} {...dragScroll}>
+            <div className="cv-mus-floored" ref={flooredRef}>
               {floored.filter(w => w.imgGrid).map(w => (
                 <button className="cv-mus-floored-item" key={w.id} onClick={() => go("work", w.id)} title={w.title}>
                   <LazyImg src={w.imgGrid} alt={w.title} />
@@ -1462,12 +1486,8 @@ function MuseumView({ museumId, go }) {
       )}
 
       {/* 2b. INTERIOR STANDALONE (interior exists but no read pane to host it) */}
-      {DATA && DATA.interior && (
-        <figure className="cv-mus-interior cv-mus-interior-solo">
-          <img src={DATA.interior} alt={m.name.replace(/\s*\(.*\)$/, "") + " interior"} loading="lazy" />
-          <figcaption>inside</figcaption>
-        </figure>
-      )}
+      {/* INTERIOR PHOTO DISABLED (Fuad 2026-08-13, explicit: "completely disable them for now").
+          The data (DATA.interior) is untouched — re-enable by restoring this figure. */}
 
       {/* 3. THE ENCOUNTERS */}
       {encounters.length > 0 && (
