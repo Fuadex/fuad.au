@@ -41,26 +41,27 @@ the two freed hues (332 from the dissolved Japanese family, 308 from digital-har
 merging into Industrial). `cx/cy` = Sound-Map position (x ≈ organic→electronic,
 y ≈ light→heavy).
 
-Amendment (2026-08-12): Digital Hardcore / Hyperpop is carved back OUT of Industrial into its
-own **DH/Hyperpop** family at hue 120 (acid green), cx/cy .82/.88 — the bottom-right extreme of
-the map (past Industrial toward maximal synthetic aggression). Industrial keeps hue 214 and is
-renamed **Industrial / Noise** (noise / power-electronics / EBM / NDH stay with it).
+Correction (2026-08-12): the earlier carve-out was a misread — the owner did NOT want a split.
+There is ONE family for industrial / digital-hardcore / hyperpop / noise; only its NAME was
+shortened. The single family is **Industrial / Hyperpop / Noise** at hue 214, cx/cy .68/.80 (the
+pre-split geometry); DH/hyperpop/breakcore/witch-house stay in-family. Same pass applied three
+name-only renames (hues / positions / rules unchanged): **Score / Games & Film → Score**,
+**Prog Metal / Rock → Prog**, **Heavy / Doom / Gothic → Heavy / Doom**.
 
 | Family | hue | cx, cy |
 |---|---|---|
 | Thrash / Death | 4 | .22, .90 |
-| Heavy / Doom / Gothic | 24 | .18, .80 |
+| Heavy / Doom | 24 | .18, .80 |
 | Hip-Hop / Rap | 46 | .62, .42 |
 | Alternative / Indie | 60 | .40, .50 |
 | Jazz/Funk (+ soul/R&B/blues) | 40 | .40, .32 |
 | Punk / Hardcore | 96 | .26, .80 |
 | Classical | 150 | .18, .22 |
 | Electronic / DnB | 190 | .84, .60 |
-| DH / Hyperpop | 120 | .82, .88 |
-| Industrial / Noise | 214 | .68, .80 |
+| Industrial / Hyperpop / Noise | 214 | .68, .80 |
 | Shoegaze / Grunge | 252 | .50, .60 |
-| Prog Metal / Rock | 282 | .30, .54 |
-| Score / Games & Film | 308 | .50, .22 |
+| Prog | 282 | .30, .54 |
+| Score | 308 | .50, .22 |
 | Pop | 332 | .72, .38 |
 | Metalcore / Nu | 346 | .38, .88 |
 | Other | 72 (grey) | .50, .50 |

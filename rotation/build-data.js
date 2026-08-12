@@ -368,22 +368,19 @@ function tagAudio(tags) {
 // cx/cy/grey stay build-side. "Other" keeps its grey marker + catch-all role.
 const FAMILIES = [
   { family: "Thrash/Death",                 hue: 4,   cx: .22, cy: .90 },
-  { family: "Heavy/Doom/Gothic",            hue: 24,  cx: .18, cy: .80 },
+  { family: "Heavy/Doom",                   hue: 24,  cx: .18, cy: .80 },
   { family: "Metalcore/Nu",                 hue: 346, cx: .38, cy: .88 },
   { family: "Punk/Hardcore",                hue: 96,  cx: .26, cy: .80 },
-  { family: "Prog Metal/Rock",              hue: 282, cx: .30, cy: .54 },
+  { family: "Prog",                         hue: 282, cx: .30, cy: .54 },
   { family: "Shoegaze/Grunge",              hue: 252, cx: .50, cy: .60 },
   { family: "Alternative/Indie",            hue: 60,  cx: .40, cy: .50 },
-  { family: "Industrial/Noise",             hue: 214, cx: .68, cy: .80 },
+  { family: "Industrial/Hyperpop/Noise",    hue: 214, cx: .68, cy: .80 },
   { family: "Electronic/DnB",               hue: 190, cx: .84, cy: .60 },
   { family: "Hip-Hop/Rap",                  hue: 46,  cx: .62, cy: .42 },
   { family: "Pop",                          hue: 332, cx: .72, cy: .38 },
   { family: "Jazz/Funk",                         hue: 40,  cx: .40, cy: .32 },
   { family: "Classical",                    hue: 150, cx: .18, cy: .22 },
-  { family: "Score/Games & Film",           hue: 308, cx: .50, cy: .22 },
-  // DH/Hyperpop — carved out of Industrial (2026-08-12, owner-approved). Acid green, bottom-right
-  // extreme of the Sound Map (past Industrial toward maximal synthetic aggression).
-  { family: "DH/Hyperpop",                  hue: 120, cx: .82, cy: .88 },
+  { family: "Score",                        hue: 308, cx: .50, cy: .22 },
   // Other — catch-all so nothing gets nuked; no rule assigns it (only the explicit fallback does).
   // grey:true is a marker for the color pass (rendered with a placeholder hue until then).
   { family: "Other",                        hue: 72,  cx: .50, cy: .50, grey: true },
@@ -420,7 +417,7 @@ const GENRE_JUNK = new Set([
 const _GW = { strong: 1.0, med: 0.8, weak: 0.5, umbrella: 0.2 };
 // Ordered rule table; first matching rule claims a tag (specific guards precede broad umbrellas).
 // STEP-1 pattern fixes (owner-approved 2026-08-12) folded in: kawaii metal→Metalcore/Nu,
-// gothic rock/folk metal/drone→Heavy/Doom/Gothic, technical metal→Prog, 8-bit/chiptune/vgm→Score,
+// gothic rock/folk metal/drone→Heavy/Doom, technical metal→Prog, 8-bit/chiptune/vgm→Score,
 // blues→Jazz, electroclash→Electronic, dance→Electronic ×0.2, modern rock→Alt ×0.2.
 const GENRE_RULES = [
   // ── ORDER-SENSITIVE guards first ──
@@ -429,13 +426,13 @@ const GENRE_RULES = [
   ["Punk/Hardcore", /\bpost[- ]hardcore\b/, _GW.strong],   // v2 spec: post-hardcore lives in Punk/Hardcore (Fuad ruling 2026-08-12)
   ["Punk/Hardcore", /\bmelodic hardcore\b/, _GW.strong],
   ["Electronic/DnB", /\bprogressive (house|trance)\b/, _GW.strong],   // EDM, not prog (Fuad 2026-08-13)
-  ["Prog Metal/Rock", /\bprogressive (metal|rock)\b/, _GW.strong],
-  ["Prog Metal/Rock", /\bprog (metal|rock)\b/, _GW.strong],
-  ["Prog Metal/Rock", /\btechnical (metal|rock)\b/, _GW.strong],   // STEP1
-  ["Prog Metal/Rock", /\bmath rock\b/, _GW.strong],   // moved Alt->Prog (Fuad 2026-08-13)
-  ["Prog Metal/Rock", /\bmath metal\b/, _GW.med],
-  ["Industrial/Noise", /\bnoise rock\b/, _GW.strong],
-  ["Industrial/Noise", /\bpower electronics\b/, _GW.strong],
+  ["Prog", /\bprogressive (metal|rock)\b/, _GW.strong],
+  ["Prog", /\bprog (metal|rock)\b/, _GW.strong],
+  ["Prog", /\btechnical (metal|rock)\b/, _GW.strong],   // STEP1
+  ["Prog", /\bmath rock\b/, _GW.strong],   // moved Alt->Prog (Fuad 2026-08-13)
+  ["Prog", /\bmath metal\b/, _GW.med],
+  ["Industrial/Hyperpop/Noise", /\bnoise rock\b/, _GW.strong],
+  ["Industrial/Hyperpop/Noise", /\bpower electronics\b/, _GW.strong],
   ["Pop", /\bcity pop\b/, _GW.strong],
   ["Pop", /\bj-?pop\b/, _GW.strong],
 
@@ -449,18 +446,18 @@ const GENRE_RULES = [
   ["Thrash/Death", /\b(brutal death|technical death|tech death|melodic death|melodeath|deathgrind)\b/, _GW.strong],
   ["Thrash/Death", /\bblackened\b/, _GW.med],
 
-  // ── 2 Heavy/Doom/Gothic ──
-  ["Heavy/Doom/Gothic", /\bheavy metal\b/, _GW.strong],
-  ["Heavy/Doom/Gothic", /\bdoom\b/, _GW.strong],
-  ["Heavy/Doom/Gothic", /\bstoner\b/, _GW.strong],
-  ["Heavy/Doom/Gothic", /\bsludge\b/, _GW.strong],
-  ["Heavy/Doom/Gothic", /\bgothic (metal|rock)\b/, _GW.strong],   // STEP1: gothic rock joins gothic metal here
-  ["Heavy/Doom/Gothic", /\bfolk metal\b/, _GW.strong],            // STEP1
-  ["Heavy/Doom/Gothic", /\bdrone\b/, _GW.strong],                 // STEP1
-  ["Heavy/Doom/Gothic", /\bpower metal\b/, _GW.strong],
-  ["Heavy/Doom/Gothic", /\bsymphonic metal\b/, _GW.strong],
-  ["Heavy/Doom/Gothic", /\bnwobhm\b/, _GW.strong],
-  ["Heavy/Doom/Gothic", /\btrue metal\b/, _GW.med],
+  // ── 2 Heavy/Doom ──
+  ["Heavy/Doom", /\bheavy metal\b/, _GW.strong],
+  ["Heavy/Doom", /\bdoom\b/, _GW.strong],
+  ["Heavy/Doom", /\bstoner\b/, _GW.strong],
+  ["Heavy/Doom", /\bsludge\b/, _GW.strong],
+  ["Heavy/Doom", /\bgothic (metal|rock)\b/, _GW.strong],   // STEP1: gothic rock joins gothic metal here
+  ["Heavy/Doom", /\bfolk metal\b/, _GW.strong],            // STEP1
+  ["Heavy/Doom", /\bdrone\b/, _GW.strong],                 // STEP1
+  ["Heavy/Doom", /\bpower metal\b/, _GW.strong],
+  ["Heavy/Doom", /\bsymphonic metal\b/, _GW.strong],
+  ["Heavy/Doom", /\bnwobhm\b/, _GW.strong],
+  ["Heavy/Doom", /\btrue metal\b/, _GW.med],
 
   // ── 3 Metalcore/Nu ──
   ["Metalcore/Nu", /\bmetalcore\b/, _GW.strong],
@@ -488,14 +485,14 @@ const GENRE_RULES = [
   ["Punk/Hardcore", /\bcrust\b/, _GW.strong],
   ["Punk/Hardcore", /\bpost-punk\b/, _GW.med],
 
-  // ── 5 Prog Metal/Rock ──
-  ["Prog Metal/Rock", /\bdjent\b/, _GW.strong],
-  ["Prog Metal/Rock", /\bprogressive\b/, _GW.med],
-  ["Prog Metal/Rock", /\bpost-metal\b/, _GW.strong],
-  ["Prog Metal/Rock", /\bart rock\b/, _GW.strong],
-  ["Prog Metal/Rock", /\bpsychedelic\b/, _GW.strong],
-  ["Prog Metal/Rock", /\bclassic rock\b/, _GW.med],
-  ["Prog Metal/Rock", /\bhard rock\b/, _GW.med],
+  // ── 5 Prog ──
+  ["Prog", /\bdjent\b/, _GW.strong],
+  ["Prog", /\bprogressive\b/, _GW.med],
+  ["Prog", /\bpost-metal\b/, _GW.strong],
+  ["Prog", /\bart rock\b/, _GW.strong],
+  ["Prog", /\bpsychedelic\b/, _GW.strong],
+  ["Prog", /\bclassic rock\b/, _GW.med],
+  ["Prog", /\bhard rock\b/, _GW.med],
 
   // ── 6 Shoegaze/Grunge ──
   ["Shoegaze/Grunge", /\bshoegaze\b/, _GW.strong],
@@ -516,22 +513,20 @@ const GENRE_RULES = [
   ["Alternative/Indie", /\bmodern rock\b/, _GW.umbrella],    // STEP1: weak ×0.2
   ["Alternative/Indie", /\bindie\b/, _GW.weak],
 
-  // ── 8 Industrial/Noise ──
-  ["Industrial/Noise", /\bindustrial\b/, _GW.strong],
-  ["Industrial/Noise", /\bebm\b/, _GW.strong],
-  ["Industrial/Noise", /\bneue deutsche h(a|ä)rte\b/, _GW.strong],
-  ["Industrial/Noise", /\baggrotech\b/, _GW.strong],
-  ["Industrial/Noise", /\bcyber\b/, _GW.med],
-  ["Industrial/Noise", /\bnoise\b/, _GW.med],
-
-  // ── 8b DH/Hyperpop (carved out of Industrial 2026-08-12; maximal synthetic aggression) ──
-  ["DH/Hyperpop", /\bdigital hardcore\b/, _GW.strong],
-  ["DH/Hyperpop", /\bbreakcore\b/, _GW.strong],
-  ["DH/Hyperpop", /\bgabber\b/, _GW.strong],
-  ["DH/Hyperpop", /\bspeedcore\b/, _GW.strong],
-  ["DH/Hyperpop", /\bhyperpop\b/, _GW.strong],
-  ["DH/Hyperpop", /\bglitch\b/, _GW.med],
-  ["DH/Hyperpop", /\bwitch house\b/, _GW.strong],
+  // ── 8 Industrial/Hyperpop/Noise (single family; DH/hyperpop stay in-family, name shortened 2026-08-12) ──
+  ["Industrial/Hyperpop/Noise", /\bindustrial\b/, _GW.strong],
+  ["Industrial/Hyperpop/Noise", /\bebm\b/, _GW.strong],
+  ["Industrial/Hyperpop/Noise", /\bneue deutsche h(a|ä)rte\b/, _GW.strong],
+  ["Industrial/Hyperpop/Noise", /\baggrotech\b/, _GW.strong],
+  ["Industrial/Hyperpop/Noise", /\bcyber\b/, _GW.med],
+  ["Industrial/Hyperpop/Noise", /\bnoise\b/, _GW.med],
+  ["Industrial/Hyperpop/Noise", /\bdigital hardcore\b/, _GW.strong],
+  ["Industrial/Hyperpop/Noise", /\bbreakcore\b/, _GW.strong],
+  ["Industrial/Hyperpop/Noise", /\bgabber\b/, _GW.strong],
+  ["Industrial/Hyperpop/Noise", /\bspeedcore\b/, _GW.strong],
+  ["Industrial/Hyperpop/Noise", /\bhyperpop\b/, _GW.strong],
+  ["Industrial/Hyperpop/Noise", /\bglitch\b/, _GW.med],
+  ["Industrial/Hyperpop/Noise", /\bwitch house\b/, _GW.strong],
 
   // ── 9 Electronic/DnB ──
   ["Electronic/DnB", /\b(drum and bass|drum n bass|dnb|d&b)\b/, _GW.strong],
@@ -596,20 +591,20 @@ const GENRE_RULES = [
   ["Classical", /\bchamber\b/, _GW.strong],
   ["Classical", /\bpiano\b/, _GW.med],
 
-  // ── 14 Score/Games & Film ──
-  ["Score/Games & Film", /\b(8-?bit|chiptune|chip music)\b/, _GW.strong],   // STEP1
-  ["Score/Games & Film", /\bsoundtrack\b/, _GW.strong],
-  ["Score/Games & Film", /\bfilm score\b/, _GW.strong],
-  ["Score/Games & Film", /\bscore\b/, _GW.strong],
-  ["Score/Games & Film", /\bcinematic\b/, _GW.strong],
-  ["Score/Games & Film", /\b(video game music|vgm|game music)\b/, _GW.strong],   // STEP1: vgm
-  ["Score/Games & Film", /\bost\b/, _GW.strong],
-  ["Score/Games & Film", /\bepic orchestral\b/, _GW.strong],
+  // ── 14 Score ──
+  ["Score", /\b(8-?bit|chiptune|chip music)\b/, _GW.strong],   // STEP1
+  ["Score", /\bsoundtrack\b/, _GW.strong],
+  ["Score", /\bfilm score\b/, _GW.strong],
+  ["Score", /\bscore\b/, _GW.strong],
+  ["Score", /\bcinematic\b/, _GW.strong],
+  ["Score", /\b(video game music|vgm|game music)\b/, _GW.strong],   // STEP1: vgm
+  ["Score", /\bost\b/, _GW.strong],
+  ["Score", /\bepic orchestral\b/, _GW.strong],
 ];
 // Bare-umbrella handling (tag equals the umbrella exactly, after norm): bare metal→Heavy ×0.2,
 // bare rock/alternative→Alt ×0.2.
 const GENRE_UMBRELLA = new Map([
-  ["metal", ["Heavy/Doom/Gothic", _GW.umbrella]],
+  ["metal", ["Heavy/Doom", _GW.umbrella]],
   ["rock", ["Alternative/Indie", _GW.umbrella]],
   ["alternative", ["Alternative/Indie", _GW.umbrella]],
 ]);
@@ -933,7 +928,7 @@ function aliasSidecarBySlugAlbum(obj) {
 // verified here. Owner may migrate individual rows to pins.json over time.
 const FAMILY_OVERRIDES = {
   // Adjudication wave 2026-08-13 (Sonnet swarm → Opus verify → Fable QC; 34 confirmed):
-  "Nevermore": "Prog Metal/Rock",
+  "Nevermore": "Prog",
   "Metallica": "Thrash/Death",
   "MAN WITH A MISSION": "Alternative/Indie",
   "Faith No More": "Alternative/Indie",
@@ -941,50 +936,50 @@ const FAMILY_OVERRIDES = {
   "Eville": "Thrash/Death",
   "Lowlives": "Shoegaze/Grunge",
   "The Glitch Mob": "Electronic/DnB",
-  "Mötley Crüe": "Heavy/Doom/Gothic",
+  "Mötley Crüe": "Heavy/Doom",
   "The Cure": "Alternative/Indie",
   "MY FIRST STORY": "Punk/Hardcore",
   "Show Me the Body": "Punk/Hardcore",
   "Hana": "Pop",
   "And So I Watch You From Afar": "Shoegaze/Grunge",
-  "Gurren Lagann OST Disc 1": "Score/Games & Film",
+  "Gurren Lagann OST Disc 1": "Score",
   "Tides From Nebula": "Shoegaze/Grunge",
-  "Evanescence": "Heavy/Doom/Gothic",
+  "Evanescence": "Heavy/Doom",
   "a flood of circle": "Alternative/Indie",
   "Sleeping With Sirens": "Punk/Hardcore",
   "Original God": "Hip-Hop/Rap",
   "Willow": "Alternative/Indie",
   "THE NOVEMBERS": "Shoegaze/Grunge",
-  "Zankyou no Terror OST": "Score/Games & Film",
+  "Zankyou no Terror OST": "Score",
   "Future Foundation": "Punk/Hardcore",
   "Wienners": "Punk/Hardcore",
   "Johnny Cash": "Jazz/Funk",   // blues/roots stretch (Fuad 2026-08-13), out of Other
   "Vana": "Metalcore/Nu",
   "Ylvis": "Pop",
-  "Spec Ops: The Line": "Score/Games & Film",
+  "Spec Ops: The Line": "Score",
   "3nd": "Shoegaze/Grunge",
   "99DROWNTOWN": "Hip-Hop/Rap",
-  "Nubia": "Prog Metal/Rock",
-  "The London Metropolitan Orchestra;Michael Kamen": "Score/Games & Film",
+  "Nubia": "Prog",
+  "The London Metropolitan Orchestra;Michael Kamen": "Score",
   "Hide": "Alternative/Indie",
-  "daine": "DH/Hyperpop",   // v1 Digital hardcore / hyperpop → carved back out into its own family (2026-08-12)
+  "daine": "Industrial/Hyperpop/Noise",   // v1 Digital hardcore / hyperpop → stays in the single Industrial/Hyperpop/Noise family (2026-08-12)
   // Genre corrections round 3 (Fuad 2026-07-12, vs tag noise) + Fable's tag-audit verdicts:
-  "Dream Theater": "Prog Metal/Rock",
-  "Tool": "Prog Metal/Rock",
-  "TesseracT": "Prog Metal/Rock",
-  "Animals as Leaders": "Prog Metal/Rock",
-  "Periphery": "Prog Metal/Rock",
+  "Dream Theater": "Prog",
+  "Tool": "Prog",
+  "TesseracT": "Prog",
+  "Animals as Leaders": "Prog",
+  "Periphery": "Prog",
   "BABYMETAL": "Metalcore/Nu",               // v2: kawaii metal → Metalcore/Nu (STEP1 fix; owner-approved)
   "Melt-Banana": "Punk/Hardcore",            // Japanese noise-punk
   "ミドリ": "Punk/Hardcore",                  // Japanese noise-rock/jazz-punk
   "9mm Parabellum Bullet": "Alternative/Indie",
   "MAN WITH A MISSION": "Metalcore/Nu",      // Japanese alt-metal/rock
-  "Trent Reznor and Atticus Ross": "Score/Games & Film",
-  "Trent Reznor & Atticus Ross": "Score/Games & Film",
+  "Trent Reznor and Atticus Ross": "Score",
+  "Trent Reznor & Atticus Ross": "Score",
   "HEALTH": "Shoegaze/Grunge",
   "Grimes": "Electronic/DnB",
   "Battle Tapes": "Electronic/DnB",
-  "Airbourne": "Heavy/Doom/Gothic",          // hard-rock/heavy → Heavy bucket
+  "Airbourne": "Heavy/Doom",          // hard-rock/heavy → Heavy bucket
   "RedHook": "Metalcore/Nu",
   "Alex": "Electronic/DnB",
   "Romes": "Metalcore/Nu",
@@ -992,12 +987,12 @@ const FAMILY_OVERRIDES = {
   "Gramatik": "Electronic/DnB",
   "Metrik": "Electronic/DnB",
   "Yours Truly": "Metalcore/Nu",
-  "Jon Opstad": "Score/Games & Film",
-  "Volumes": "Prog Metal/Rock",
+  "Jon Opstad": "Score",
+  "Volumes": "Prog",
   // Other-list fold, round 2 (Fuad's verdicts + Fable's confident calls, 2026-07-12):
   "PRO8L3M, Dawid Podsiadło, Duit": "Hip-Hop/Rap",
-  "Gurren Lagann OST Disc 1": "Score/Games & Film",
-  "Morgan Thomaso": "Prog Metal/Rock",
+  "Gurren Lagann OST Disc 1": "Score",
+  "Morgan Thomaso": "Prog",
   "DHMHTHP": "Punk/Hardcore",
   "Ivy Lab, Roses Gabor": "Electronic/DnB",
   "Hensonn": "Electronic/DnB",
@@ -1008,16 +1003,16 @@ const FAMILY_OVERRIDES = {
   "Tommy Trash, i_o, Daisy Guttridge": "Electronic/DnB",
   "Kaskade x Deadmau5 feat. Skylar Grey": "Electronic/DnB",
   "SBCR & Razihel": "Electronic/DnB",
-  "Zankyou no Terror OST": "Score/Games & Film",
-  "Spec Ops: The Line": "Score/Games & Film",
-  "UnderTale OST": "Score/Games & Film",
-  "The London Metropolitan Orchestra;Michael Kamen": "Score/Games & Film",
-  "05.  Counterattack Mankind": "Score/Games & Film",
+  "Zankyou no Terror OST": "Score",
+  "Spec Ops: The Line": "Score",
+  "UnderTale OST": "Score",
+  "The London Metropolitan Orchestra;Michael Kamen": "Score",
+  "05.  Counterattack Mankind": "Score",
   "Vaporwave with Teenage Engineering OP-1 蒸気波 (feat. Blank Banshee": "Electronic/DnB",
   "Yuna Kil": "Metalcore/Nu",
   "i_o, Lights": "Electronic/DnB",           // collab credit; i_o leads → electronic
   "Mystery Kiss": "Pop",                     // Odd Taxi's fictional j-pop unit → Pop
-  "Taoubt": "Prog Metal/Rock",
+  "Taoubt": "Prog",
   "VonRyk": "Electronic/DnB",
 };
 // Non-music scrobbles (YouTube shows etc.) — excluded from Explore / the genre map.
@@ -3516,9 +3511,9 @@ const GENRES_REAL = FAMILIES.map(f => ({
 // ─────────── GENRES_CURATED (fallback when tag-cache.json is absent) + CONCERTS ───────────
 // v2 family names + hues mirror FAMILIES exactly. Re-homing vs v1:
 //   Nu-metal(24) + Metalcore(346) subs → Metalcore/Nu(346); post-hardcore → Punk/Hardcore(96)
-//   Alt/Prog metal(282) subs → Prog Metal/Rock(282); stoner rock → Heavy/Doom/Gothic(24)
+//   Alt/Prog metal(282) subs → Prog(282); stoner rock → Heavy/Doom(24)
 //   Thrash/Heavy(4) → Thrash/Death(4)
-//   Industrial(214) → Industrial/Noise(214); Digital hardcore/Hyperpop subs → DH/Hyperpop(120)
+//   Industrial + Digital hardcore/Hyperpop subs → Industrial/Hyperpop/Noise(214) (single family)
 //   Japanese underground subs: noise rock/math rock/nu-gaze → Shoegaze/Grunge(252);
 //     kawaii metal → Metalcore/Nu(346); j-punk → Punk/Hardcore(96)
 //   Electronic/DnB(190) + Hip-hop(46) → exact name/hue match, kept as-is
@@ -3529,7 +3524,7 @@ const GENRES_CURATED = [
     { name: "heavy metal", x: .22, y: .80, w: 1380 },
     { name: "speed metal", x: .25, y: .90, w: 540 },
   ]},
-  { family: "Heavy/Doom/Gothic", hue: 24, subs: [
+  { family: "Heavy/Doom", hue: 24, subs: [
     { name: "stoner rock", x: .26, y: .62, w: 1290 },
   ]},
   { family: "Metalcore/Nu", hue: 346, subs: [
@@ -3547,7 +3542,7 @@ const GENRES_CURATED = [
     { name: "post-hardcore", x: .36, y: .82, w: 1490 },
     { name: "j-punk", x: .30, y: .80, w: 590 },
   ]},
-  { family: "Prog Metal/Rock", hue: 282, subs: [
+  { family: "Prog", hue: 282, subs: [
     { name: "progressive metal", x: .30, y: .66, w: 1980 },
     { name: "art rock", x: .34, y: .50, w: 1540 },
     { name: "post-metal", x: .38, y: .60, w: 720 },
@@ -3557,13 +3552,11 @@ const GENRES_CURATED = [
     { name: "math rock", x: .38, y: .64, w: 1180 },
     { name: "nu-gaze", x: .44, y: .58, w: 1210 },
   ]},
-  { family: "Industrial/Noise", hue: 214, subs: [
+  { family: "Industrial/Hyperpop/Noise", hue: 214, subs: [
     { name: "industrial rock", x: .58, y: .72, w: 3120 },
     { name: "industrial metal", x: .55, y: .82, w: 1870 },
     { name: "neue deutsche härte", x: .52, y: .80, w: 1870 },
     { name: "electronicore", x: .62, y: .82, w: 640 },
-  ]},
-  { family: "DH/Hyperpop", hue: 120, subs: [
     { name: "digital hardcore", x: .82, y: .92, w: 1340 },
     { name: "breakcore", x: .88, y: .90, w: 760 },
     { name: "witch house", x: .80, y: .58, w: 1120 },

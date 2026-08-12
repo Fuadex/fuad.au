@@ -15,18 +15,25 @@ const _zeros = () => Array.from({ length: 7 }, () => new Array(24).fill(0));
 const _V1_FAM_BRIDGE = {
   "numetalaltmetal": "Metalcore/Nu",
   "metalcorecore": "Metalcore/Nu",
-  "industrial": "Industrial/Noise",
+  "industrial": "Industrial/Hyperpop/Noise",
   "thrashheavy": "Thrash/Death",
-  "progaltrock": "Prog Metal/Rock",
+  "progaltrock": "Prog",
   "japanese": "Pop",                        // dissolved scene family → nearest surviving bucket
   "electronicdnb": "Electronic/DnB",
-  "digitalhardcorehyperpop": "DH/Hyperpop",
+  "digitalhardcorehyperpop": "Industrial/Hyperpop/Noise",
   "hiphop": "Hip-Hop/Rap",
   "punkgarage": "Punk/Hardcore",
   "shoegazenoise": "Shoegaze/Grunge",
   "popindie": "Pop",
   "jazz": "Jazz/Funk",
   "classicalscore": "Classical",
+  // v2 long names + short-lived split names → current names (name-shorten, no split; 2026-08-12)
+  "scoregamesfilm": "Score",                          // "Score/Games & Film"
+  "progmetalrock": "Prog",                            // "Prog Metal/Rock"
+  "heavydoomgothic": "Heavy/Doom",                    // "Heavy/Doom/Gothic"
+  "industrialnoise": "Industrial/Hyperpop/Noise",     // short-lived "Industrial/Noise"
+  "dhhyperpop": "Industrial/Hyperpop/Noise",          // short-lived "DH/Hyperpop"
+  "industrialdhhyperpopnoise": "Industrial/Hyperpop/Noise",  // "Industrial/DH/Hyperpop/Noise"
 };
 // resolve a ?f= family token to a v2 FAMILIES entry: exact v2 name first, then the v1 bridge.
 const _resolveFamParam = (R, raw) => {
