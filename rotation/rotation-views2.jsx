@@ -1068,11 +1068,6 @@ function PortraitCard({ id, alt, showWords = true, go }) {
                     <b>{f.k}</b>{!badV(f.v) && <span className="pv-sep"> · {f.v}</span>}
                   </button>
                 ))}
-                {full && (
-                  <button className="pv-toggle pv-toggle-inrow" onClick={() => setOpen(o => !o)} aria-expanded={open}>
-                    {open ? "less ▴" : "the full read ▾"}
-                  </button>
-                )}
                 {(hasAlt || hasFable2) && (
                   <button className="pv-flick pv-flick-inrow r-mono" onClick={() => setFace(nextFace)}
                     title={hasFable2 ? "see the alternate Fable read" : "see the " + alt.label + " source"}>
@@ -1082,6 +1077,27 @@ function PortraitCard({ id, alt, showWords = true, go }) {
               </div>
               {chip >= 0 && facts[chip] && (
                 <div className="pv-deriv">{facts[chip].x}</div>
+              )}
+              {/* THE FULL READ (Fuad 2026-08-12): always on its OWN line, LEFT-aligned — never
+                  pushed right inside the chip/flick row (albums with plays/released stat rows kept
+                  shoving it inline). Looks like a subtle underlined button; on hover it peeks a few
+                  px of the read's first lines (mask-faded) until pressed, which expands fully. */}
+              {full && !open && (
+                <div className="pv-readtoggle">
+                  <button className="pv-toggle pv-toggle-read" onClick={() => setOpen(true)} aria-expanded={open}>
+                    the full read ▾
+                  </button>
+                  <div className="pv-peek" aria-hidden="true">
+                    {full.split(/\n+/).filter(Boolean).slice(0, 1).map((para, i) => (
+                      <p key={i} className="pv-full pv-peek-p">{para}</p>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {full && open && (
+                <button className="pv-toggle pv-toggle-read pv-toggle-less" onClick={() => setOpen(false)} aria-expanded={open}>
+                  less ▴
+                </button>
               )}
               {full && open && full.split(/\n+/).filter(Boolean).map((para, i) => (
                 <p key={i} className="pv-full">{linkifyTracks(para, albumTracks, go)}</p>
@@ -1143,11 +1159,25 @@ function PortraitCard({ id, alt, showWords = true, go }) {
         .pv-toggle { margin-top: 12px; background: none; border: none; padding: 0; cursor: pointer;
           font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
         .pv-toggle:hover { color: var(--accent); }
-        /* DENSITY control row (Fuad 2026-07-18): fact chips + full-read toggle + via-source flick on
-           ONE line, flick pinned right; wraps on narrow screens. No backticks in these comments. */
+        /* DENSITY control row (Fuad 2026-07-18): fact chips + via-source flick on ONE line, flick
+           pinned right; wraps on narrow screens. The full-read toggle was pulled OUT to its own
+           left-aligned line below (Fuad 2026-08-12). No backticks in these comments. */
         .pv-controlrow { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
-        .pv-toggle-inrow { margin-top: 0; padding: 4px 2px; align-self: center; white-space: nowrap; }
         .pv-flick-inrow { margin-left: auto; align-self: center; }
+        /* THE FULL READ (Fuad 2026-08-12): its own left-aligned line; reads like a subtle underlined
+           button. On hover the wrapper reveals a few px peek of the read's first lines, mask-faded,
+           via a max-height transition — pressing expands fully (handled in JS by the open state). */
+        .pv-readtoggle { margin-top: 12px; }
+        .pv-toggle-read { display: inline-block; margin-top: 0; text-align: left; text-decoration: underline;
+          text-underline-offset: 3px; text-decoration-color: var(--rule); text-decoration-thickness: 1px; }
+        .pv-toggle-read:hover { text-decoration-color: var(--accent-dim); }
+        .pv-toggle-less { display: inline-block; }
+        .pv-peek { max-height: 0; overflow: hidden; pointer-events: none;
+          -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
+          transition: max-height .15s ease, opacity .15s ease; opacity: 0; }
+        .pv-readtoggle:hover .pv-peek { max-height: 34px; opacity: .85; }
+        .pv-peek-p { margin-top: 6px; }
         .pv-full { font-family: var(--serif); font-size: 15px; line-height: 1.62; color: var(--ink-soft); margin: 12px 0 0; }
         .pv-facts { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
         .pv-chips { display: flex; flex-wrap: wrap; gap: 7px; }
@@ -2900,8 +2930,8 @@ function BlurbSwitcher({ id, about }) {
             register. They describe the song, not the selected tier, so they don't switch. */}
         {llm && (llm.means || llm.built) && (
           <div className="tv-craft">
-            {llm.means && <div className="tv-craft-row"><span className="tv-craft-k">Means</span><span className="tv-craft-v">{llm.means}</span></div>}
-            {llm.built && <div className="tv-craft-row"><span className="tv-craft-k">Built</span><span className="tv-craft-v">{llm.built}</span></div>}
+            {llm.means && <div className="tv-craft-row"><span className="tv-craft-k">Meaning</span><span className="tv-craft-v">{llm.means}</span></div>}
+            {llm.built && <div className="tv-craft-row"><span className="tv-craft-k">Device</span><span className="tv-craft-v">{llm.built}</span></div>}
           </div>
         )}
       </div>

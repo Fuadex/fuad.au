@@ -15,12 +15,12 @@ const _zeros = () => Array.from({ length: 7 }, () => new Array(24).fill(0));
 const _V1_FAM_BRIDGE = {
   "numetalaltmetal": "Metalcore/Nu",
   "metalcorecore": "Metalcore/Nu",
-  "industrial": "Industrial/DH/Hyperpop/Noise",
+  "industrial": "Industrial/Noise",
   "thrashheavy": "Thrash/Death",
   "progaltrock": "Prog Metal/Rock",
   "japanese": "Pop",                        // dissolved scene family → nearest surviving bucket
   "electronicdnb": "Electronic/DnB",
-  "digitalhardcorehyperpop": "Industrial/DH/Hyperpop/Noise",
+  "digitalhardcorehyperpop": "DH/Hyperpop",
   "hiphop": "Hip-Hop/Rap",
   "punkgarage": "Punk/Hardcore",
   "shoegazenoise": "Shoegaze/Grunge",
@@ -1559,7 +1559,9 @@ function ExploreView({ t, go, setPop, seed }) {
 
       {/* filter bar: Time on the left, Active filters pinned to the right of the SAME row — so
          activating a filter fills the right side instead of adding a row that shoves the page
-         down (Fuad 2026-07-09). Collapses to stacked on mobile. */}
+         down (Fuad 2026-07-09). Vocals rides the same row hugging the far right (Fuad 2026-08-12),
+         dropping below (full-width, still right-aligned) on narrow screens. Collapses to stacked
+         on mobile. */}
       <div className="xp-filters r-card">
         <div className="xp-frow xp-frow-main">
           <span className="xp-flabel">Time</span>
@@ -1577,15 +1579,16 @@ function ExploreView({ t, go, setPop, seed }) {
               </div>
             </div>
           )}
-        </div>
-        {/* Vocals dimension: filter by who's singing. Composes with every other filter above. */}
-        <div className="xp-frow" style={{ marginTop: 10 }}>
-          <span className="xp-flabel">Vocals</span>
-          <div className="xp-chiprow">
-            {[["any", "Any"], ["male", "Male"], ["female", "Female"], ["mixed", "Mixed"], ["nb", "Non-binary"], ["instrumental", "Instrumental"]].map(([k, l]) =>
-              <button key={k} className="xp-chip" data-on={vocals === k} onClick={() => setVocals(vocals === k ? "any" : k)}>{l}</button>)}
-            {vocals !== "any" && vocalsNoData > 0 &&
-              <span className="r-mono xp-note" style={{ margin: 0, alignSelf: "center" }}>{vocalsNoData} without data</span>}
+          {/* Vocals dimension: filter by who's singing. Composes with every other filter above.
+             Hugs the right of the Time row; wraps below (full-width, right-aligned) when narrow. */}
+          <div className="xp-vocals">
+            <span className="xp-flabel">Vocals</span>
+            <div className="xp-chiprow">
+              {[["any", "Any"], ["male", "Male"], ["female", "Female"], ["mixed", "Mixed"], ["nb", "Non-binary"], ["instrumental", "Instrumental"]].map(([k, l]) =>
+                <button key={k} className="xp-chip" data-on={vocals === k} onClick={() => setVocals(vocals === k ? "any" : k)}>{l}</button>)}
+              {vocals !== "any" && vocalsNoData > 0 &&
+                <span className="r-mono xp-note" style={{ margin: 0, alignSelf: "center" }}>{vocalsNoData} without data</span>}
+            </div>
           </div>
         </div>
       </div>
@@ -1745,6 +1748,10 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-chiprow-time::-webkit-scrollbar { display: none; }
         .xp-active { display: flex; align-items: center; gap: 8px; margin-left: auto; flex: 0 0 auto; }
         .xp-active .xp-flabel { padding-top: 0; }
+        /* Vocals rides the far right of the Time row (Fuad 2026-08-12). margin-left:auto pins it
+           right when Active is absent; the growing time chiprow keeps it right when Active shows. */
+        .xp-vocals { display: flex; align-items: center; gap: 8px; margin-left: auto; flex: 0 0 auto; }
+        .xp-vocals .xp-flabel { padding-top: 0; }
         .xp-flabel { font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); padding-top: 7px; }
         .xp-chiprow { display: flex; flex-wrap: wrap; gap: 6px; }
         .xp-chip { font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-soft); cursor: pointer; transition: .14s; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
@@ -1888,6 +1895,9 @@ function ExploreView({ t, go, setPop, seed }) {
           /* stack Active under Time on narrow screens */
           .xp-frow-main { flex-wrap: wrap; }
           .xp-active { margin-left: 0; width: 100%; gap: 6px; }
+          /* vocals drops below the time row, full-width but still right-aligned */
+          .xp-vocals { margin-left: 0; width: 100%; gap: 6px; justify-content: flex-end; }
+          .xp-vocals .xp-chiprow { flex: 0 1 auto; }
           .xp-flabel { padding-top: 0; }
           .xp-chiprow { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
           .xp-chiprow::-webkit-scrollbar { display: none; }
