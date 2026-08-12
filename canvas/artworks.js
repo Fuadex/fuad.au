@@ -127,7 +127,14 @@ window.CANVAS_ARTWORKS = [
   { id: "nympheas-monet-3", title: "Nymphéas", artist: "Claude Monet", artistId: "monet", qid: "Q63952029", qidTrusted: true, year: 1903, seenAt: "marmottan", seenConfidence: "sure", liked: true, note: "Deck pick — marmottan-2026-07-07." },
   { id: "the-water-lily-pond", title: "The Water-Lily Pond", artist: "Claude Monet", artistId: "monet", qid: "Q63952033", qidTrusted: true, year: 1918, seenAt: "marmottan", seenConfidence: "sure", liked: true, note: "Deck pick — marmottan-2026-07-07." },
   { id: "the-pont-neuf-and-the-samaritaine-at-night", title: "The Pont Neuf and the Samaritaine at night", artist: "Albert Marquet", artistId: "marquet", qid: "Q47157012", qidTrusted: true, year: 1937, seenAt: "pompidou", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — pompidou-2026-07-07." },
-  { id: "la-ville-de-paris", title: "La Ville de Paris", artist: "Robert Delaunay", artistId: "delaunay", qid: "Q131747322", qidTrusted: true, year: 1912, seenAt: "pompidou", seenConfidence: "unsure", liked: true, note: "Deck pick — pompidou-2026-07-07." },
+  { id: "la-ville-de-paris", title: "La Ville de Paris", artist: "Robert Delaunay", artistId: "delaunay", qid: "Q131747322", qidTrusted: true, year: 1912, seenAt: "pompidou", seenConfidence: "unsure", liked: true, note: "Deck pick — pompidou-2026-07-07.",
+    // hand-set: Wikidata P18 for this work is a GALLERY PHOTOGRAPH (frame + wall, badly
+    // white-balanced to grey-green). The Google Art Project plate is a flat, colour-true
+    // 6537x4537 repro — and study-tour box coordinates are fractions of the DISPLAYED image,
+    // so the plate the site shows and the plate a tour is drafted against must be the same one.
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Delaunay%20-%20La%20ville%20de%20Paris%20-%20Google%20Art%20Project.jpg?width=1280",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Delaunay%20-%20La%20ville%20de%20Paris%20-%20Google%20Art%20Project.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Robert%20Delaunay%20-%20La%20ville%20de%20Paris%20-%20Google%20Art%20Project.jpg?width=2400" },
   // ——— deck-folded picks (fold-deck.js) ———
   { id: "the-thinker", title: "The Thinker", artist: "Auguste Rodin", artistId: "rodin", qid: "Q18003128", qidTrusted: true, year: 1882, seenAt: "rodin", seenConfidence: "sure", floored: true, note: "Deck pick — rodin-2026-07-07." },
   { id: "portrait-of-pere-tanguy", title: "Portrait of Père Tanguy", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q13528770", qidTrusted: true, year: 1887, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
