@@ -2099,12 +2099,19 @@ function MapView({ go }) {
   const setLensThrottled = (p) => { if (lensRaf.current) return; lensRaf.current = requestAnimationFrame(() => { lensRaf.current = 0; setLens(p); }); };
   // magnifier transform for one point: returns [x, y, scale]. Position is unchanged; only scale
   // ramps 1→LENS_MAG as the point nears the cursor (t is a 0..1 nearness ramp, cosine falloff).
-  const fish = (x, y) => {
+  // `r` is the node's own radius in map units (optional). Big bubbles are already easy to hit,
+  // and magnifying them by the full LENS_MAG while zoomed out made them balloon over their
+  // neighbours and grab the cursor from far away (Fuad 2026-08-13: "too aggressive when you're
+  // zoomed out for the biggest location blobs, the small ones are ok"). So the magnification is
+  // damped by size: a small dot still gets the full effect, a large city bubble much less.
+  const fish = (x, y, r) => {
     if (!lens) return [x, y, 1];
     const dx = x - lens.x, dy = y - lens.y, d = Math.hypot(dx, dy);
     if (d >= lensR) return [x, y, 1];
     const t = 0.5 + 0.5 * Math.cos(Math.PI * d / lensR);   // 1 at centre → 0 at edge (smooth)
-    return [x, y, 1 + (LENS_MAG - 1) * t];
+    // size damping: full magnification up to ~3 map units, tapering to ~25% by ~12 units
+    const damp = r ? Math.max(0.25, Math.min(1, 3 / r)) : 1;
+    return [x, y, 1 + (LENS_MAG - 1) * t * damp];
   };
   const clientToMap = (cx, cy) => {
     const el = svgRef.current; if (!el) return null; const r = el.getBoundingClientRect(); const v = vbRef.current;
@@ -2346,7 +2353,7 @@ function MapView({ go }) {
           })}
           {!focus && cities.list.map(c => {
             const cr = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
-            const [fx, fy, fs] = fish(c.x, c.y);
+            const [fx, fy, fs] = fish(c.x, c.y, cr);
             return (
               <g key={c.city} className="cv-pin" onClick={() => focusCity(c)} style={{ cursor: "pointer" }}>
                 <circle cx={fx} cy={fy} r={cr * fs * k * dotMul}
