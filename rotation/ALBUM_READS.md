@@ -279,11 +279,16 @@ The six-pack shipped 2026-08-13 (AtF, Undertow, Fear Inoculum, FoaBP, Mezmerize,
 Opiate) + Shinsekai and the Fable primaries (Gore, SAPPUKEI, Sigure virgin) are the
 reference set. Remaining ~95 pre-doctrine gists = remediation Phase 2 scope.
 
-**Synthesis mechanics** (unchanged): thesis register sourced from the album's fable
-reads + fnotes; lore lines must be verification-grade; personal-layer lines from real
-data only. Albums WITH an existing primary liner keep it — synthesis lands as
-liner2/arc2 (the flick face). Albums WITHOUT an entry get the full register treatment as
-a new primary. Print everything for the owner's verdict before applying.
+**Synthesis mechanics**: thesis register sourced from the album's fable reads +
+fnotes; lore lines must be verification-grade; personal-layer lines from real data
+only. Print everything for the owner's verdict before applying.
+
+**FRONTAL RULE (Fuad 2026-08-13, reverses the liner2 arrangement)**: the approved Fable
+synthesis IS the primary liner/arc. A superseded Opus read moves to `linerPrev`/`arcPrev`
+and renders as the flickable "earlier read" face ("via Opus · earlier read"); the
+`liner2`/`arc2` fields are RETIRED (migration done 2026-08-13, 8 entries). `note2` is the
+frontal footnote slot (✱, fnote-styled, shows with the open full read). Gists follow the
+GIST recipe; redrafts bump `by` to Opus·Fable.
 
 **Remediation plan (marked down 2026-08-12; phases await go):**
 - Phase 1: arc backfill — 68 of 101 album entries lack any arc.

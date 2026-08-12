@@ -1103,41 +1103,36 @@ function PortraitCard({ id, alt, showWords = true, go }) {
   // the flick chip only shows when there IS an old source to cycle to
   const hasAlt = !!(alt && alt.node);
   const showAlt = face === "alt" && hasAlt;
-  // ALTERNATE FABLE READ (Fuad 2026-07-28): an album may carry a second liner (liner2/arc2)
-  // synthesized from the songs' Opus·Fable flagship reads — a flickable face, never a
-  // replacement. Cycle: portrait → fable2 → old source → portrait (absent faces skipped).
-  const hasFable2 = !!p.liner2;
-  const showFable2 = face === "fable2" && hasFable2;
-  const nextFace = (f) => f === "portrait" ? (hasFable2 ? "fable2" : (hasAlt ? "alt" : "portrait"))
-    : f === "fable2" ? (hasAlt ? "alt" : "portrait") : "portrait";
-  const flickLabel = face === "portrait" && hasFable2 ? "via Fable ⇄" : hasAlt ? "via " + alt.label + " ⇄" : "via Opus ⇄";
+  // EARLIER READ face (Fuad 2026-08-13, reversing the 07-28 arrangement): the approved Fable
+  // synthesis is now the FRONTAL liner/arc; the superseded Opus read rides linerPrev/arcPrev
+  // as the flickable secondary. Cycle: portrait → earlier read → old source → portrait
+  // (absent faces skipped). liner2/arc2 fields are retired.
+  const hasPrev = !!p.linerPrev;
+  const showPrev = face === "prev" && hasPrev;
+  const nextFace = (f) => f === "portrait" ? (hasPrev ? "prev" : (hasAlt ? "alt" : "portrait"))
+    : f === "prev" ? (hasAlt ? "alt" : "portrait") : "portrait";
+  const flickLabel = face === "portrait" && hasPrev ? "via Opus ⇄" : hasAlt ? "via " + alt.label + " ⇄" : "via Opus ⇄";
 
   return (
     <div className="r-card pv-card" style={{ padding: "18px 22px", marginBottom: "var(--gap)" }}>
       {showAlt ? (
         // OLD SOURCE face — last.fm wiki (artists) / Wikipedia (albums), verbatim, attribution intact
         <div className="pv-altface">{alt.node}</div>
-      ) : showFable2 ? (
-        // ALTERNATE READ face — the Fable-corpus synthesis, always expanded, footnoted honestly
-        <div className="pv-fable2face">
+      ) : showPrev ? (
+        // EARLIER READ face — the superseded Opus liner/arc, kept flickable, always expanded
+        <div className="pv-prevface">
           <div className="r-card-h" style={{ padding: 0, marginBottom: 10, display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
             <span className="lbl"><b>Portrait</b></span>
-            <span className="r-mono pv-by">via Fable</span>
+            <span className="r-mono pv-by">via Opus · earlier read</span>
           </div>
-          {p.liner2.split(/\n+/).filter(Boolean).map((para, i) => (
+          {p.linerPrev.split(/\n+/).filter(Boolean).map((para, i) => (
             <p key={i} className="pv-full">{linkifyTracks(para, albumTracks, go)}</p>
           ))}
-          {p.arc2 && (
-            <p className="pv-full pv-arc" style={{ fontStyle: "italic", opacity: 0.85 }}>{linkifyTracks(p.arc2, albumTracks, go)}</p>
-          )}
-          {/* footnote slot (Fuad 2026-08-12, AtF Cavalera line the first user): a small factual
-              aside that earned keeping but would overload the arc. Renders fnote-style, faint. */}
-          {p.note2 && (
-            <p style={{ fontFamily: "var(--serif)", fontSize: 12.5, lineHeight: 1.5, color: "var(--ink-faint)", marginTop: 8 }}>
-              ✱ {linkifyTracks(p.note2, albumTracks, go)}</p>
+          {p.arcPrev && (
+            <p className="pv-full pv-arc" style={{ fontStyle: "italic", opacity: 0.85 }}>{linkifyTracks(p.arcPrev, albumTracks, go)}</p>
           )}
           <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".06em", marginTop: 10 }}>
-            an alternative album read, synthesized from the songs' Opus · Fable reads</div>
+            the earlier album read — superseded by the Fable synthesis up front</div>
         </div>
       ) : (
         <>
@@ -1171,7 +1166,7 @@ function PortraitCard({ id, alt, showWords = true, go }) {
                   fixed-width toggle slot keeps the label from shifting when it swaps ▾/▴, and the
                   read below UNRAVELS in place from the hover-peek: one height-clamped body that
                   peeks on hover and expands fully on click (sticky — grows downward, never jumps). */}
-              {(full || hasAlt || hasFable2) && (
+              {(full || hasAlt || hasPrev) && (
                 <div className={"pv-readrow" + (open ? " open" : "")}>
                   {full ? (
                     <button className="pv-toggle pv-toggle-read"
@@ -1179,9 +1174,9 @@ function PortraitCard({ id, alt, showWords = true, go }) {
                       <span className="pv-toggle-lbl">{open ? "less ▴" : "the full read ▾"}</span>
                     </button>
                   ) : <span className="pv-toggle-spacer" />}
-                  {(hasAlt || hasFable2) && (
+                  {(hasAlt || hasPrev) && (
                     <button className="pv-flick pv-flick-inrow r-mono" onClick={() => setFace(nextFace)}
-                      title={hasFable2 ? "see the alternate Fable read" : "see the " + alt.label + " source"}>
+                      title={hasPrev ? "see the earlier Opus read" : "see the " + alt.label + " source"}>
                       {flickLabel}
                     </button>
                   )}
@@ -1208,6 +1203,17 @@ function PortraitCard({ id, alt, showWords = true, go }) {
               {p.note && open && (
                 <p className="pv-full pv-arc" style={{ fontStyle: "italic", opacity: 0.85 }}>{linkifyTracks(p.note, albumTracks, go)}</p>
               )}
+              {/* footnote slot (Fuad 2026-08-12, AtF Cavalera line the first user): a small factual
+                  aside that earned keeping but would overload the arc. Rides the frontal read now
+                  that the synthesis is the primary face (2026-08-13). */}
+              {p.note2 && open && (
+                <p style={{ fontFamily: "var(--serif)", fontSize: 12.5, lineHeight: 1.5, color: "var(--ink-faint)", marginTop: 8 }}>
+                  ✱ {linkifyTracks(p.note2, albumTracks, go)}</p>
+              )}
+              {hasPrev && open && (
+                <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".06em", marginTop: 10 }}>
+                  synthesized from the songs' Opus · Fable reads</div>
+              )}
             </div>
           )}
           {w && (
@@ -1226,11 +1232,11 @@ function PortraitCard({ id, alt, showWords = true, go }) {
       {/* FLICK CHIP — bottom-right; cycles the old source back to Portrait. On the PORTRAIT face the
           flick now lives inline in the compact control row above (Fuad 2026-07-18), so this bottom
           row only renders on the OLD-SOURCE face, to flip back. */}
-      {(showAlt || showFable2) && (
+      {(showAlt || showPrev) && (
         <div className="pv-flickrow">
           <button className="pv-flick r-mono" onClick={() => setFace(nextFace)}
-            title={showFable2 && hasAlt ? "see the " + alt.label + " source" : "back to the Portrait read"}>
-            {showFable2 && hasAlt ? "via " + alt.label + " ⇄" : "via Portrait ⇄"}
+            title={showPrev && hasAlt ? "see the " + alt.label + " source" : "back to the Portrait read"}>
+            {showPrev && hasAlt ? "via " + alt.label + " ⇄" : "via Portrait ⇄"}
           </button>
         </div>
       )}

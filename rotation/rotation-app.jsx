@@ -179,7 +179,8 @@ function RotationApp() {
             <b onClick={() => go("artist", live.artistId)} style={{ cursor: "pointer" }}>{live.artist}</b>
             {" — "}
             <span onClick={() => go("track", (window.ROTATION ? window.ROTATION.slug(live.artist) + "~" + window.ROTATION.slug(live.track) : ""))}
-              style={{ cursor: "pointer" }} title="open this song's page">{live.track}</span>
+              style={{ cursor: "pointer", minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+              title={live.track + " — open this song's page"}>{live.track}</span>
             {live.nowplaying && <span className="r-np-tag">live</span>}
           </div>
         </div>
@@ -253,7 +254,13 @@ function RotationApp() {
       </TweaksPanel>
 
       <style>{`
-        .r-head .right { display: flex; align-items: center; gap: 10px; }
+        /* the right cluster SHRINKS instead of wrapping the nav tabs to a second row (Fuad
+           2026-08-13): a long now-playing title truncates with an ellipsis (full name in the
+           hover title); the search button never shrinks. */
+        .r-head .right { display: flex; align-items: center; gap: 10px; flex: 1 1 0; min-width: 0; justify-content: flex-end; overflow: hidden; }
+        .r-head .right .r-search-btn { flex: 0 0 auto; }
+        .r-head .r-live { min-width: 0; overflow: hidden; }
+        .r-head .r-live b { white-space: nowrap; }
         .r-search-btn { display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px;
           background: transparent; border: 1px solid var(--rule); border-radius: 999px;
           color: var(--ink-dim); font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
