@@ -2,90 +2,136 @@
 
 # Info / Interpretation reads — writing spec (`art-about.js`)
 
-The two-tier reads that sit on the artwork page: `about` (Info) and `deep`
-(Interpretation). Tours are a different layer with its own spec —
-**[STUDY_SPEC.md](STUDY_SPEC.md)** covers `art_inspect.js`.
+The two-tier reads on the artwork page: `about` (Info) and `deep` (Interpretation). Tours
+are the layer beneath and have their own spec — **[STUDY_SPEC.md](STUDY_SPEC.md)**
+(`art_inspect.js`).
 
-This file was written 2026-08-13, **after** the methodology went undocumented for a month
-and got reconstructed wrong twice in one session. The method itself is not new: it is the
-one run in the `about21` batch and the seven hook-first Info waves (art-about 45 → 622).
-Reference set: `.dtmp/about21/ABOUT21-REVIEW.md` — read a few pairs before drafting.
+Written 2026-08-13 from the surviving evidence after this methodology went undocumented for
+a month and was reconstructed wrong twice in one session. Sources: the `about21` workshop
+(`.dtmp/about21/build.js`, `ABOUT21-REVIEW.md`), the seven hook-first Info campaign commits,
+and the A/B rulings of 2026-07-30 → 2026-08-05 (commits a67c492 → be8369a, b2d9ff3).
 
-## The cascade (this is the part that gets forgotten)
+---
 
-**Study tour -> Interpretation -> Info.** Each stage distils the one above it; the work
-flows downhill, never up.
+## 1. The cascade
 
-Verified against the corpus 2026-08-13: all 21 works in the about21 batch already had study
-tours, and the reads derive from them visibly. Hodler's tour `craft` opens "Parallelism, in
-Hodler's own use of the word, is not symmetry but repetition: like forms set beside like
-forms until the repeating itself becomes the subject. Here it runs at three scales." Its
-Interpretation compresses precisely that, and pulls its remaining detail from the tour's
-stops ("The apex, and its flaw" -> the off-centre apex; "The shoulder that pays for the
-symmetry" -> the stepped right shoulder).
+**Study tour → Interpretation → Info.** Work flows downhill; each stage distils the one
+above. Verified against the corpus: all 21 works in the about21 batch had tours first, and
+the derivation is visible — Hodler's tour `craft` opens "Parallelism, in Hodler's own use of
+the word, is not symmetry but repetition… Here it runs at three scales", and the
+Interpretation compresses exactly that, pulling its remaining detail from the stops.
 
-1. **Tour first** — `art_inspect.js`, per STUDY_SPEC.md. This is the deep, image-verified
-   layer: four lenses (see/about/craft/context) plus the anchored `deeper` stops. A work
-   with no tour is not ready for a paired read.
-2. **Interpretation** (~110-160 words), **one subagent per painting**, distilled from that
-   work's tour and everything else written for it. It is the standalone argument, not a
-   summary of the fly-through: take the tour's thesis and its most telling verifiable
-   observations, and compress. Close on a **looking instruction** tied to the actual room
-   where possible. Never "the viewer"; no flattery; no masterpiece talk. It must not
-   contradict the tour, and should not simply restate the stop list.
-3. **Info** (~40-70 words), distilled from the Interpretation. Leads with a **hook** — the
-   fact or image that pulls a reader in: who the sitter actually was, what the place is, the
-   one crowding decision — then the identifying facts. **Every fact in the hook is
-   web-verified**; this pass is where canon errors surface (the campaign caught A Burial at
-   Ornans 1841 -> 1850 and The Painter's Studio 1850 -> 1855 this way; fix the canon row in
-   the same commit).
-4. **QC** (main agent, never a subagent): check both tiers against the tour and the image,
-   verify every proper noun and date. Print both tiers for Fuad's verdict; nothing merges
-   unapproved.
+**Consequence: the Interpretation tier can never exceed the tour tier.** Tours are the
+ceiling. To grow Interpretations, tour more works first. Never write a paired read from an
+Info line alone — that error produced the discarded Orsay drafts of 2026-08-13.
 
-Consequence worth stating plainly: **the Interpretation tier can never exceed the tour
-tier.** Tours are the ceiling. To grow Interpretations, tour more works first.
+## 2. Model split (settled by direct A/B — do not re-litigate)
 
-## Two production modes (do not conflate them)
+| Stage | Model | Shape |
+|---|---|---|
+| Study tour | **Opus**, one agent per work | from the image; facts + anchored boxes |
+| Interpretation | **Sonnet**, swarm of 2–4 agents | from the tour; interpretive voice |
+| Info | distilled from the Interpretation | hook-first, facts web-verified |
 
-The order above describes **paired production** — the about21 mode, used for flagship and
-recently-toured works, where both tiers are written together.
+Fuad's verdict, 2026-08-05, same six works through both models: *"opus feels very mechanical
+compared to sonnet which I prefer."* Sonnet is the `deep` voice. Opus keeps the tour layer.
 
-There is also a **bulk Info campaign** mode, which is what built most of the corpus: the
-seven hook-first waves shipped `Info-only entries (about + by:"Opus 4.8", no deep)` to reach
-full coverage of the imaged canon (45 -> 622). Those Info reads were authored directly —
-hook first, facts web-verified — and were never distilled from an Interpretation, because
-none existed. This is why the corpus reads 623 Info against 101 Interpretations: not damage,
-just the coverage campaign running ahead of the paired production.
+**Swarm, never one agent** (Fuad 2026-07-30: *"next time when doing interpretations, do a
+swarm instead of just one subagent"*). One agent doing ~10 in a row drifts into sameness —
+repeated openers, repeated rhythm, thinner attention per work. Fan out 2–4 Sonnet agents for
+an N-work batch. **The swarm does not self-coordinate: cross-check openers across agents
+afterwards** (a Sonnet run repeated "What" and needed a seal).
 
-**Backfill rule:** the standing queue is the 210 works that HAVE a tour but no
-Interpretation — run the cascade's stage 2 on those, then decide per work whether the
-existing hook-first Info should be re-distilled from the new Interpretation (it usually
-should; the campaign Info was written without one). Works with neither a tour nor an
-Interpretation need a tour first — do not write a paired read from the Info alone, which
-is the error that produced the discarded Orsay drafts of 2026-08-13.
+## 3. The unit of decision is THE READ, not the model
 
-## Truth rules
+Triage each work before drafting:
 
-- A study tour must go deeper than, and never contradict, the Info read (PIPELINE.md). Where
-  a tour already exists, the Interpretation must not contradict it either, and should not
-  simply restate its stops: the tour is a fly-through of regions, the Interpretation is the
-  standalone argument.
-- `seenConfidence` governs person-address exactly as in STUDY_SPEC.md: "you saw/met this"
-  only for canon-`sure` works; `probably`/`unsure` get institutional phrasing.
-- Facts only where confident. Where scholarship is thin, say so and reason from the eye.
-- Redrafting an existing read: bump `by` to reflect joint authorship (e.g. Opus·Fable).
+- **Single-crux** — the models converge on one reading. Keep one tight crux-first read
+  (~150–170w). Opus won these in A/B (Seurat = frozen system, Cézanne = flicker) by leading
+  with the crux.
+- **Multi-facet** — the models diverge, which is the signal that the work supports several
+  readings. **Synthesize** them under one unifying idea, showing each as a facet. Longer is
+  fine. Sonnet won the genuinely multi-facet case (Great Wave), where breadth is earned.
 
-## Entry shape
+**⚠ Encapsulate the whole work — never cherry-pick** (Fuad 2026-08-05). The Milkmaid carries
+four readings (humble subject elevated, the ultramarine wager, arrested time with only the
+milk moving, the miraculous bare wall); the shipped read holds all four under "total
+attention as reverence" (b2d9ff3). It took three passes: draft 1 drifted by duplicating the
+Info, draft 2 over-corrected by isolating one facet, draft 3 synthesized. **This overrides
+the old don't-repeat-the-Info rule** — the Info is only a compact orienting hook, so the
+Interpretation MAY re-touch its angle as one facet. Capturing the work beats avoiding
+overlap. (Cherry-pick risk is specific to interpretively rich works; single-crux works are
+already whole with one thesis.)
 
-```js
-"<id>": { about: "<Info, hook-first>", deep: "<Interpretation>", by: "Opus 4.8" }
-```
+## 4. Drafting brief — Sonnet voice, Opus discipline
 
-`deepBy` exists on a handful of entries where the Interpretation had a different author
-than the Info; leave it off when one pass wrote both.
+Shared brief for the swarm. Distil from the tour's **about / craft / context** lenses (plus
+stops as needed): **no new facts, no re-verification — the tour is already verified.**
+
+- ~110–190w, soft (a rich synthesis runs longer; length is soft per the reads-length rule).
+- One evocative paragraph. **Lead with the unifying idea** (rich works) or **the single
+  crux** (settled works) — the best line goes FIRST.
+- BANNED openers: framing-fact ("Among roughly eighty…"), theory-first ("X had absorbed the
+  theory…"), "What…", "This painting…", the artist's name. Vary across the swarm.
+- No second-person you/your (Sonnet's recurring slip). No exclamation marks. No "the
+  viewer". No masterpiece talk.
+- Do not back-load the payoff (Sonnet's habitual failure). Hold length.
+
+**FUSE for best-of-both** where two drafts each have something: keep the winner's spine,
+graft the other's sharpest insight (Impression = Sonnet synthesis rebuilt around the prior
+read's tonal trick, be8369a). A fuller synthesis that DROPS a shorter read's killer line is
+a downgrade.
+
+## 5. Info distillation
+
+~40–70 words, distilled from the finished Interpretation, in one or two sentences doing
+three jobs at once: the **hook** (the fact or image that pulls a reader in — who the sitter
+actually was, what the place is, the one crowding decision), the identification (artist,
+year, subject), and one concrete visual fact carried down from the Interpretation.
+
+**Every fact in the hook is web-verified.** This pass is where canon errors surface — the
+campaign caught A Burial at Ornans 1841 → 1850 and The Painter's Studio 1850 → 1855. Fix the
+canon row in the same commit.
+
+## 6. QC and merge
+
+1. **Fact-check every specific against the tour — including fusions and swaps.** Grep the
+   tour blob for each named fact/date before commit (a fusion agent once introduced "Louis
+   Leroy"; it happened to be tour-grounded, but it was not verified at the time).
+2. **Cross-check openers** across the swarm's output; seal repeats.
+3. `seenConfidence` governs person-address exactly as in STUDY_SPEC.md — "you saw/met this"
+   only for canon-`sure`; `probably`/`unsure` get institutional phrasing.
+4. **Badge honestly** — see below.
+5. **Merge insertion-only** (insert `deep:` + `deepBy:` before `by:`) with a vm round-trip
+   byte-identity proof: every untouched entry identical, count delta equals batch size.
+6. **Print both tiers for Fuad's verdict — nothing merges unapproved.**
+
+## 7. Badging (there is a real mechanism, not a convention)
+
+`by` is ONE entry-level field rendered "via {by}" under BOTH tiers (canvas-app.jsx, two
+render sites), so a Sonnet `deep` under an Opus Info cannot reuse it. A per-tier **`deepBy`**
+field was added for this (commit a67c492); both sites resolve
+`(tier === "deep" && X.deepBy) ? X.deepBy : (X.by || "Fable")`.
+
+- Opus Info + Sonnet Interpretation → `by: "Opus 4.8"`, `deepBy: "Sonnet 4.6"`.
+- Both tiers Sonnet (work had no prior Info) → `by: "Sonnet 4.6"`, no `deepBy`.
+- Never launder a Sonnet read under the Opus badge.
+
+## 8. Two production modes (do not conflate)
+
+- **Paired production** (the cascade above) — flagship / recently-toured works, both tiers
+  together. 101 works.
+- **Bulk Info campaign** — seven hook-first waves shipped `Info-only entries (about +
+  by:"Opus 4.8", no deep)` to reach full coverage of the imaged canon (45 → 622). Authored
+  directly, hook first, facts verified; never distilled from an Interpretation because none
+  existed. This is why the corpus reads 623 Info against 101 Interpretations — the coverage
+  campaign simply ran ahead of the paired production.
+
+**Backfill queue:** the 210 works that HAVE a tour but no Interpretation. Run stage 2 on
+those, then decide per work whether the campaign-era Info should be re-distilled from the new
+Interpretation (usually yes — it was written without one). Works with neither tour nor
+Interpretation need a tour first.
 
 ## Coverage (2026-08-13)
 
-623 Info reads (full imaged-canon coverage) · 101 Interpretations · 308 study tours.
-The standing queue is the **210 works that have a tour but no Interpretation**.
+623 Info · 101 Interpretations (7 badged `deepBy: "Sonnet 4.6"`) · 308 study tours.
