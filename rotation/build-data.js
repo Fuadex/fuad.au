@@ -866,7 +866,59 @@ const HAND_MERGE = {
   "\"Pts.Of.Athrty\" (Official HD Video)": "Linkin Park",   // junk video-title scrobbles
   "Cyberpunk 2077 – E3 2018 Trailer Music / Hyper": "Hyper",
   "DOOM (2016) OST": "Mick Gordon",
+  "Gary Moore -Rocksijen.Com-": "Gary Moore",               // junk site-suffix scrobble
+  "Nothing's Carved In Stone「Out of Control (Live from Monthly Live at QUATTRO Vol.2": "Nothing's Carved In Stone",
 };
+// ─────────── NON-ARTISTS (Fuad 2026-08-13: "clean up artists which are not artists") ───────────
+// Scrobble noise from YouTube/browser sessions — news domains, trailers, TV episodes, how-tos,
+// dog videos, parody covers, full-concert channel uploads. Rows are DROPPED at ingest (no music
+// identity to retarget). Real acts with domain-ish or sentence-ish names are NOT here on purpose:
+// Vein.fm, Charisma.com, You Love Her Coz She's Dead, I DONT KNOW HOW BUT THEY FOUND ME,
+// BBC Scottish Symphony Orchestra. Parked as ambiguous: The Dark.FM, I Don't Know What I Can
+// Save You From, Everybody's Doing It (featuring Chris Martin, Jay.
+const NON_ARTISTS = new Set([
+  "https", "news.google.com", "www.abc.net.au", "findesign.com.au", "epicofficefurniture.com.au",
+  "drive.google.com", "store.epicgames.com", "m.imdb.com", "liveuamap.com", "instagram.com",
+  "hermanmiller.com", "decathlon.com.au", "businessinsider.com.pl", "Facebook.com",
+  "Netflix Polska", "Guardian Australia", "guardian news", "Sparrows News",
+  "How to sound smart in your TEDx Talk", "Rick and Morty Season 3 Trailer",
+  "How to count one to ten", "Antichamber Launch Trailer", "So I've Finally Played... Mirror's Edge",
+  "How to create a 3D Terrain with Google Maps and height maps in Photoshop",
+  "The Grand Tour Cast on Amazon vs the BBC, cars, and being recognized in Syria",
+  "Snoop Dogg impersonates today's rappers sound", "Ghost in the Shell Official Trailer 1 (2017)",
+  "GTA 5 Official Trailer Song/Music", "Does that mean he's not coming on then",
+  "learn how to roll a joint in 3 minutes [POV", "Yahtzee's Microsoft E3 2019 Showcase Adventure",
+  "Yahtzee Documentary Teaser", "Why So Serious? The Joker Theme The Dark Knight Soundtrack",
+  "WWW.WORKING!! OP", "Tony Hawk's Pro Skater 4 OST",
+  "This is why  GERMAN SHEPHERDS are the FUNNIEST  DOGS",
+  "This Is What Life Is Like with a Gigantic Penis", "Southpaw Official Trailer #1 (2015)",
+  "Shameless Season 10 (2019) Official Trailer",
+  "Ryan Gosling and Harrison Ford Lose It at Hilarious Interview!",
+  "Robert De Niro Explains How He De", "Rap Was a Man's Soul... Right?",
+  "Psychosocial but it's a complete shit show", "Nine Inch Nails Interview",
+  "Maynard James Keenan on how the Fibonacci Sequence inspired the lyrics",
+  "Limp Bizkit LIVE Show Me What You Got & Break Stuff",
+  "Levi vs Kenny's Squad Full Fight | Attack on Titan Season 3",
+  "Killing In The Name but it's a complete shit show", "Kill La Kill Episode 9",
+  "JoJo's Bizarre Adventure: Diamond is Unbreakable OP 1",
+  "Jeremy Clarkson Reveals What He Thinks of the New Top Gear!",
+  "It's time to complete the circle.", "It's poppin! Ah man, the building is on fire!",
+  "In The End but it's played on the piano in Half",
+  "How to curve type around a badge using Adobe Illustrator CS3",
+  "How to Remove Background from Video Footage without Greenscreen",
+  "How WES BORLAND (LIMP BIZKIT) Nearly Joined One Of the Biggest 90's",
+  "How To Animate Humans in Blender", "How Nordic Are You? with Mads Mikkelsen and Jonas Åkerlund",
+  "Game of Thrones Season 4: Episode #10", "Freak on a Leash but it's a complete shit show",
+  "Fargo Season 4 Trailer", "Extended Trailer", "Down With The Sickness but it's a complete shit show",
+  "Defending a Wild Bird Nest from the Neighbor's Cats",
+  "Coldplay's Game of Thrones: The Musical (Full 12", "Charlie Brooker's How to Report the News",
+  "Cat names that get your cat's attention", "Before I Forget but it's a complete shit show",
+  "B.Y.O.B. but it's a complete shit show", "Attack on Titan Season 3 Part 2 Trailer",
+  "Blaze Loves His Kennel (Original) Husky Says No to Kennel", "Husky Dog Sings with iPAD",
+  "Husky Dog Talking",
+  "bizkitlivechannel", "KręciołaTV", "metfan4l", "KroodKoala", "(2-Cam-Mix) Limp Bizkit",
+  "APMAs 2016 Performance",
+]);
 // 3a — artist folds (feat-credit / diacritic / spelling) seed HAND_MERGE: variant name →
 // canonical block key. Semantically identical to a hand fix; canon() (below) already applies
 // HAND_MERGE[c] || c after CANON. MUST run before the spelling-fold prescan (which calls canon()
@@ -1266,6 +1318,7 @@ const undatedArtists = [];
 for (const line of lines) {
   const [rawArtist, rawAlbum, rawTrack, ts] = parseLine(line);
   if (!rawArtist) continue;
+  if (NON_ARTISTS.has(rawArtist)) continue;   // scrobble noise, dropped at ingest (see the set)
   const artist = canon(rawArtist);   // merge scrobble-name variants (album hygiene done in the CSV)
   const track = foldTrack(artist, rawTrack);   // "Don’t stay" → "Don't Stay" (most-played spelling)
   // collapse edition variants onto the base title BEFORE any album map is keyed,
