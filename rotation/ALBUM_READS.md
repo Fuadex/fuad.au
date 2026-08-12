@@ -240,6 +240,7 @@ satisfying multi-register piece — with tightness a non-goal. The REGISTER CHEC
    it actually sounds like: Shinsekai's rawness, Gore's vaporous drift). Fuad 2026-08-12:
    a gist that gives only context/meta without the sound "doesn't reflect the album
    itself" — the GIST especially must carry the sonic identity.
+
 2. **What it's about** — the emergent thesis, from the fable reads where coverage exists.
 3. **Its shine** — where the record is best. The EXPANDED WALK IS WELCOME here when every
    station earns its stop (Downward Spiral's station-walk is the positive model; a walk
@@ -252,6 +253,31 @@ satisfying multi-register piece — with tightness a non-goal. The REGISTER CHEC
 story, its fame, or the owner's history — any register, as long as it lands (Shinsekai's
 arc = structural fact + the band's end, the fullest model; Fear Inoculum's Pneuma line =
 the pure-structural variant). A compressed multi-song walk is still not an arc.
+
+### The GIST recipe (Fuad-approved 2026-08-13 — "simply superior"; replicate on all albums)
+
+The gist is the DOORWAY: always visible, must work before the reader knows anything.
+TWO SENTENCES, em-dash construction, ~35-45 words:
+
+1. **The record in the world + in the ear.** Era/place in the catalog, then the sonic
+   identity in CONCRETE IMAGES, never genre labels alone: a mix decision ("murmur mixed
+   as loud as the drop-tuned riffs"), an instrument's character ("bass-first churn, none
+   of the cathedral architecture yet"), a register flip ("warp-speed thrash flipping into
+   giddy disco choruses mid-bar"), a production texture ("Fridmann's blown-out board").
+   One verification-grade fact may ride along (Grammy, split-double, live cuts).
+2. **The listening shape, honest.** From real play data only — dominance ("led hard by
+   SASU-YOU"), spread ("fourteen years of plays, the quiet cuts out front"), or honest
+   thinness ("barely visited here, respected more than lived-in" — unflattering is fine,
+   flattery is not). May be folded into sentence 2's back half with a semicolon.
+
+Anti-patterns: adjective-only sound ("heavy", "raw" with no image); gist that could
+describe three other albums by the same artist; inventing listening claims not in the
+data; letting the fact crowd out the ear.
+
+When a gist is REDRAFTED on an existing Opus entry, bump `by` to Opus·Fable.
+The six-pack shipped 2026-08-13 (AtF, Undertow, Fear Inoculum, FoaBP, Mezmerize,
+Opiate) + Shinsekai and the Fable primaries (Gore, SAPPUKEI, Sigure virgin) are the
+reference set. Remaining ~95 pre-doctrine gists = remediation Phase 2 scope.
 
 **Synthesis mechanics** (unchanged): thesis register sourced from the album's fable
 reads + fnotes; lore lines must be verification-grade; personal-layer lines from real
