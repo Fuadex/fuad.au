@@ -65,20 +65,30 @@ function mapWeights(R, year) {
   return R.SUBS.map((s, i) => ({ ...s, w: w[i] }));
 }
 
+// FAMILY membership: test the record's `fm` array (approved 2026-08-12 — mention ≠ membership).
+// Falls back to any-sub-in-family only for legacy records that predate `fm`.
+function recInFam(R, rec, fam) {
+  if (fam == null) return true;
+  if (rec && rec.fm) return rec.fm.indexOf(fam) >= 0;
+  return !!(rec && rec.s && rec.s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam));
+}
+// SUBGENRE membership for FILTERING: `sq` (subs whose backing tag ≥25% of the artist's top-tag
+// weight) when present, else `s` (display subs). Keeps a stray tag from making an artist filterable.
+const _filtSubs = (rec) => (rec && rec.sq) ? rec.sq : ((rec && rec.s) || []);
+
 function exploreRank(R, kind, f, limit = 40) {
   const { year, fam, subIdx, cells } = f;
   const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
   const hasCells = cells && cells.size > 0;
   const pass = f.pass && f.pass.active ? f.pass : null;   // theme/decade filter (filter-index); membership sets
-  const inFam = (s) => fam == null || s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam); // inclusive: any sub in family (guard stale sub idx)
   if (kind === "artists") {
     const AXI = { energy: 0, valence: 1, acoustic: 2, tempo: 3, dance: 4 }, snd = f.sound, dir = f.dir || 1;
     const arr = [];
     for (const a of R.EXPLORE) {
       if (year != null && !(a.yp && a.yp[year])) continue;
       if (pass && !pass.art.has(a.id)) continue;   // theme/decade: artist keeps ≥20% of matched-track plays
-      if (subIdx >= 0) { if (a.s.indexOf(subIdx) < 0) continue; }
-      else if (!inFam(a.s)) continue;
+      if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; }
+      else if (!recInFam(R, a, fam)) continue;
       if (vocals && !vocalsPass(a.vx, vocals)) continue;   // vocals dimension (hides no-data artists)
       if (f.attrSel) {  // attributes-lens brush/click: filter the FULL universe, not the top-40 slice
         if (f.attrSel.mode === "artists") { if (!f.attrSel.keys.has(a.id)) continue; }
@@ -106,8 +116,8 @@ function exploreRank(R, kind, f, limit = 40) {
     const yr = R.YEARS.find(y => y.year === year) || {};
     src = (yr[kind] || []).map((it, i) => ({ id: kind + year + i, aid: it.artistId, label: it.title, value: it.plays, hue: it.hue, sub: it.artist }));
   }
-  if (subIdx >= 0) src = src.filter(it => { const e = R.expById[it.aid]; return e && e.s.indexOf(subIdx) >= 0; });
-  else if (fam != null) src = src.filter(it => { const e = R.expById[it.aid]; return e && e.s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam); });
+  if (subIdx >= 0) src = src.filter(it => { const e = R.expById[it.aid]; return e && _filtSubs(e).indexOf(subIdx) >= 0; });
+  else if (fam != null) src = src.filter(it => { const e = R.expById[it.aid]; return recInFam(R, e, fam); });
   if (hasCells) src = src.filter(it => tsPlays(R, it.aid, cells) > 0);
   if (pass) src = src.filter(it => kind === "albums" ? pass.alb.has(it.id) : pass.trk(it.id));   // it.id = artSlug~titleSlug
   if (vocals) src = src.filter(it => { const e = R.expById[it.aid] || R.byId[it.aid]; return e && vocalsPass(e.vx, vocals); });   // vocals dimension
@@ -153,13 +163,12 @@ function sliceArtists(R, f, applyZone) {
   const hasCells = cells && cells.size > 0;
   const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
   const pass = f.pass && f.pass.active ? f.pass : null;              // theme/decade filter (filter-index)
-  const inFam = (s) => fam == null || s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam);
   const out = [];
   for (const a of R.EXPLORE) {
     const af = A[a.id]; if (!af) continue;
     if (year != null && !(a.yp && a.yp[year])) continue;
     if (pass && !pass.art.has(a.id)) continue;   // theme/decade: artist keeps ≥20% of matched-track plays
-    if (subIdx >= 0) { if (a.s.indexOf(subIdx) < 0) continue; } else if (!inFam(a.s)) continue;
+    if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; } else if (!recInFam(R, a, fam)) continue;
     if (hasCells && !tsPlays(R, a.id, cells)) continue;
     if (vocals && !vocalsPass(a.vx, vocals)) continue;   // vocals dimension (hides no-data artists)
     if (applyZone && moodZone && !inMoodZone(af, moodZone)) continue;
@@ -188,8 +197,8 @@ function mediaRank(M, R, meta, kind, f, limit) {
     const m = meta[row[1]]; if (!m) continue;   // guard: a media row whose artist idx has no meta (index desync) — skip, don't throw
     const rec = m.rec;
     if (pass) { const aname = M.artists[row[1]] || "", key = R.slug(aname) + "~" + R.slug(row[0]); if (kind === "albums" ? !pass.alb.has(key) : !pass.trk(key)) continue; }
-    if (subIdx >= 0) { if (!rec || !rec.s || rec.s.indexOf(subIdx) < 0) continue; }
-    else if (fam != null) { if (!rec || !rec.s || !rec.s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam)) continue; }
+    if (subIdx >= 0) { if (!rec || _filtSubs(rec).indexOf(subIdx) < 0) continue; }
+    else if (fam != null) { if (!recInFam(R, rec, fam)) continue; }
     if (vocals) { const vx = (rec && rec.vx !== undefined) ? rec.vx : (R.byId[m.aid] && R.byId[m.aid].vx); if (!vocalsPass(vx, vocals)) continue; }   // vocals dimension
     if (moodZone) { const af = R.AUDIO[m.aid]; if (!af || !inMoodZone(af, moodZone)) continue; }
     if (f.attrSel) {
@@ -1483,13 +1492,12 @@ function ExploreView({ t, go, setPop, seed }) {
   const vocalsNoData = React.useMemo(() => {
     if (vocals === "any") return 0;
     const pass = passAgg && passAgg.active ? passAgg : null;
-    const inFam = (s) => fam == null || s.some(si => R.SUBS[si] && R.SUBS[si].fam === fam);
     let n = 0;
     for (const a of R.EXPLORE) {
       if (a.vx !== undefined) continue;                 // has data — not a no-data drop
       if (year != null && !(a.yp && a.yp[year])) continue;
       if (pass && !pass.art.has(a.id)) continue;
-      if (subIdx >= 0) { if (a.s.indexOf(subIdx) < 0) continue; } else if (!inFam(a.s)) continue;
+      if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; } else if (!recInFam(R, a, fam)) continue;
       if (cells.size && !tsPlays(R, a.id, cells)) continue;
       n++;
     }

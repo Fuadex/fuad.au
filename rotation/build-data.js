@@ -631,12 +631,13 @@ function classifyTag(tag) {
   return f;
 }
 
-// ── classifyArtist(evidence) — the weighted vote (ported engine). Returns the winning family INDEX
-//    (or -1 for no evidence). evidence = { lastfm:[[tag,count0..100],…], spotify:[genre,…],
-//    discogs:[[style,count],…] }. Source weights: last.fm count/100, spotify flat 0.7, discogs
-//    count-scaled to 0.5 max within the artist.
+// ── _voteArtist(evidence) — the weighted vote (ported engine). Returns per-family vote TOTALS
+//    (Map<famIdx, weight>) + the ranked list, so callers can read the winner OR the full spread
+//    (family-membership ruleset, 2026-08-12). evidence = { lastfm:[[tag,count0..100],…],
+//    spotify:[genre,…], discogs:[[style,count],…] }. Source weights: last.fm count/100, spotify
+//    flat 0.7, discogs count-scaled to 0.5 max within the artist.
 const _GENRE_SRC = { spotify: 0.7, discogsBase: 0.5 };
-function classifyArtist(ev) {
+function _voteArtist(ev) {
   const totals = new Map();
   const nvote = new Map();   // family → # of tags that voted for it (for the confidence gate)
   const add = (idx, contribution) => { totals.set(idx, (totals.get(idx) || 0) + contribution); nvote.set(idx, (nvote.get(idx) || 0) + 1); };
@@ -655,8 +656,48 @@ function classifyArtist(ev) {
     add(c.i, (_GENRE_SRC.discogsBase * ((count || 0) / dmax)) * c.weight);
   }
   const ranked = [...totals.entries()].sort((a, b) => b[1] - a[1]);
-  if (!ranked.length) return -1;
-  return ranked[0][0];
+  return { totals, ranked };
+}
+// Back-compat: the winning family INDEX (or -1 for no evidence).
+function classifyArtist(ev) { const { ranked } = _voteArtist(ev); return ranked.length ? ranked[0][0] : -1; }
+
+// ── FAMILY MEMBERSHIP (approved 2026-08-12): mention ≠ membership. A family is a MEMBER of an
+//    artist only when it earns SHARE ≥ 25% of the artist's total vote AND absolute weight ≥ 0.5,
+//    from the SAME weighted 3-source vote that assigns the dominant family. The dominant family
+//    (familyIdxByName — fam pins + FAMILY_OVERRIDES + vote) is ALWAYS a member. Runner-up families
+//    that clear the gate join, capped at 3 total, ordered dominant-first then by share. Most
+//    artists end up with exactly one. `famAlso` pins (pins.json, array of family NAMES) append
+//    memberships (cap still 3). Returns a 1–3 element array of family indexes, dominant first.
+const FAM_SHARE_MIN = 0.25, FAM_ABS_MIN = 0.5, FAM_MEMBER_CAP = 3;
+const _famMembersCache = new Map();
+function familyMembersByName(name) {
+  if (_famMembersCache.has(name)) return _famMembersCache.get(name);
+  const dom = familyIdxByName(name);
+  const out = [];
+  if (dom >= 0 && !(FAMILIES[dom] && FAMILIES[dom].grey)) out.push(dom);   // dominant always a member (unless it's grey "Other")
+  // per-family vote totals from the same evidence the classifier used
+  const lastfm = (META[name] && META[name].tags)
+    ? META[name].tags.map(t => Array.isArray(t) ? t : [t, 100])
+    : cachedTags(name);
+  const spotify = aliasedByName(SPOTGEN, name) || [];
+  const discogs = stylesCountOf(name);
+  const { totals } = _voteArtist({ lastfm, spotify, discogs });
+  let sum = 0; for (const w of totals.values()) sum += w;
+  if (sum > 0) {
+    const runners = [...totals.entries()]
+      .filter(([idx]) => idx !== dom && !(FAMILIES[idx] && FAMILIES[idx].grey))
+      .filter(([, w]) => (w / sum) >= FAM_SHARE_MIN && w >= FAM_ABS_MIN)
+      .sort((a, b) => b[1] - a[1]);
+    for (const [idx] of runners) { if (out.length >= FAM_MEMBER_CAP) break; if (!out.includes(idx)) out.push(idx); }
+  }
+  // famAlso pin: append hand-curated extra memberships (still capped)
+  const pn = pinOf(name);
+  if (pn && Array.isArray(pn.famAlso)) {
+    for (const fn of pn.famAlso) { const fi = _FAM_INDEX.get(fn); if (fi != null && !out.includes(fi) && out.length < FAM_MEMBER_CAP) out.push(fi); }
+  }
+  if (!out.length && dom >= 0) out.push(dom);   // grey-dominant fallback: keep at least the dominant so fm is never empty
+  _famMembersCache.set(name, out);
+  return out;
 }
 
 // umbrella tags too broad to be interesting — kept out of the Sound Map + artist chips
@@ -1417,6 +1458,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     // raw per-year plays (sparse) + primary family index — powers the Explore ranking filter
     yp: Object.fromEntries(years.map(y => [y, yc.get(y) || 0]).filter(e => e[1] > 0)),
     fam: familyIdxByName(name),
+    fm: familyMembersByName(name),   // family MEMBERSHIP set (1–3, dominant first) — filter surfaces test fm, not sub-derived
     firstYear: new Date(firstSeen.get(name)).getUTCFullYear(),
     debut: debutOf(name),
     members: [...new Set([...membersOf(name), ...dgMembersOf(name)])].slice(0, 10), // MB + Discogs members
@@ -3601,6 +3643,32 @@ const SUBS = [];
   if (oi >= 0) SUBS.push({ name: "other", fam: oi, hue: FAMILIES[oi].hue, x: .5, y: .5, grey: true });
 }
 const subIdxByName = new Map(SUBS.map((s, i) => [s.name, i]));
+// ── qualifying-subgenre gate (2026-08-12): a sub is a FILTER-worthy membership only when its
+//    backing tag carries ≥25% of the artist's TOP-tag weight. `s` (all matched subs) stays for
+//    display; `sq` (this subset) is what the Explore subgenre filter tests. last.fm tag counts
+//    (0–100) are the weight signal; a Discogs-only sub (no last.fm count) qualifies when its style
+//    count is ≥25% of the artist's top Discogs style count. The dominant sub s[0] always qualifies.
+const SUB_SHARE_MIN = 0.25;
+function qualifyingSubs(name, s) {
+  if (!s.length) return s;
+  // per-canonical-sub best weight from last.fm tag counts + Discogs style counts (kept separate:
+  // the two count scales aren't comparable, so each is thresholded against its own source max).
+  const lfBy = new Map(), dgBy = new Map();
+  for (const [tag, count] of cachedTags(name)) { const c = canonSub(tag); if (subIdxByName.has(c)) lfBy.set(c, Math.max(lfBy.get(c) || 0, count || 0)); }
+  for (const [tag] of ((META[name] && META[name].tags) || []).map(t => Array.isArray(t) ? t : [t, 100])) { const c = canonSub(tag); if (subIdxByName.has(c)) lfBy.set(c, Math.max(lfBy.get(c) || 0, 100)); }
+  for (const st of stylesCountOf(name)) { const c = canonSub(String(st[0]).toLowerCase()); if (subIdxByName.has(c)) dgBy.set(c, Math.max(dgBy.get(c) || 0, st[1] || 0)); }
+  const lfMax = Math.max(0, ...lfBy.values()), dgMax = Math.max(0, ...dgBy.values());
+  const nameBySub = new Map(); for (const [nm, i] of subIdxByName) if (!nameBySub.has(i)) nameBySub.set(i, nm);
+  const sq = s.filter((idx, pos) => {
+    if (pos === 0) return true;   // dominant sub always qualifies
+    const nm = SUBS[idx] && SUBS[idx].name; if (nm == null) return true;
+    const lf = lfBy.get(nm), dg = dgBy.get(nm);
+    if (lf != null && lfMax > 0) return (lf / lfMax) >= SUB_SHARE_MIN;
+    if (dg != null && dgMax > 0) return (dg / dgMax) >= SUB_SHARE_MIN;
+    return false;   // sub came only from the family-fallback / no measurable weight → not filter-worthy beyond display
+  });
+  return sq.length ? sq : [s[0]];
+}
 const EXPLORE = [];
 for (const [name, plays] of rankedArtists) {
   if (plays < 5) continue;
@@ -3622,7 +3690,10 @@ for (const [name, plays] of rankedArtists) {
   }
   if (!s.length) { const oi = subIdxByName.get("other"); if (oi != null) s.push(oi); }  // last resort → Other (never nuke)
   if (!s.length) continue;            // (only if the Other sub is somehow missing)
-  const rec = { id: slug(name), name, plays, hue: hueFor(name), s, l: listenersOf(name) || 0, d: debutOf(name) || 0 };
+  const fm = familyMembersByName(name);   // 1–3 family indexes, dominant first (membership, not mention)
+  const sq = qualifyingSubs(name, s);     // filter-worthy subs (backing tag ≥25% of top-tag weight)
+  const rec = { id: slug(name), name, plays, hue: hueFor(name), s, fm, l: listenersOf(name) || 0, d: debutOf(name) || 0 };
+  if (!(sq.length === s.length && sq.every((v, i) => v === s[i]))) rec.sq = sq;   // omit when identical to s (falls back to s)
   const _o = originOf(name);            // country/city tag → lets the Journey scope to a place
   if (_o) { rec.co = _o.country; if (_o.city) rec.ci = _o.city; }
   const _g = genderOf(name); const _gc = _g === "Female" ? "f" : _g === "Male" ? "m" : (_g === "Non-binary" || _g === "Other") ? "x" : ""; if (_gc) rec.g = _gc;   // f/m/x glyph (mini); "Not applicable" → none
@@ -3635,6 +3706,40 @@ for (const [name, plays] of rankedArtists) {
   }
   EXPLORE.push(rec);
   if (EXPLORE.length >= EXPLORE_CAP) break;
+}
+
+// ─────────── AUDIT — dominant-genre membership ruleset (2026-08-12) ───────────
+// Verifies the "mention ≠ membership" fix: compares the OLD any-sub-in-family filterable population
+// against the NEW fm-based one, and surfaces the artists whose stray-tag memberships were dropped.
+{
+  const famName = (fi) => (FAMILIES[fi] || {}).family || ("#" + fi);
+  const oldFamsOf = (r) => { const set = new Set(); for (const si of r.s) { const f = SUBS[si] && SUBS[si].fam; if (f != null && !(FAMILIES[f] && FAMILIES[f].grey)) set.add(f); } return set; };
+  const dist = { 1: 0, 2: 0, 3: 0 };
+  const oldPop = new Array(FAMILIES.length).fill(0), newPop = new Array(FAMILIES.length).fill(0);
+  const lost = [];   // artists that LOST ≥1 family membership vs the old any-sub rule
+  for (const r of EXPLORE) {
+    const n = Math.min(3, Math.max(1, r.fm.length)); dist[n]++;
+    const oldSet = oldFamsOf(r), newSet = new Set(r.fm);
+    for (const f of oldSet) oldPop[f]++;
+    for (const f of newSet) newPop[f]++;
+    let dropped = 0; for (const f of oldSet) if (!newSet.has(f)) dropped++;
+    if (dropped > 0) lost.push({ name: r.name, plays: r.plays, from: [...oldSet].map(famName), to: r.fm.map(famName) });
+  }
+  console.log("\n── GENRE MEMBERSHIP AUDIT (mention ≠ membership) ──");
+  console.log(`EXPLORE artists: ${EXPLORE.length} · memberships → 1 fam: ${dist[1]} · 2 fams: ${dist[2]} · 3 fams: ${dist[3]}`);
+  console.log("per-family filterable population  old(any-sub) → new(fm)  Δ%:");
+  FAMILIES.forEach((f, i) => {
+    if (f.grey) return;
+    const o = oldPop[i], nw = newPop[i], d = o ? Math.round((nw - o) / o * 1000) / 10 : 0;
+    console.log(`  ${f.family.padEnd(34)} ${String(o).padStart(5)} → ${String(nw).padStart(5)}   ${d >= 0 ? "+" : ""}${d}%`);
+  });
+  const lostTop = lost.sort((a, b) => b.plays - a.plays).slice(0, 15);
+  console.log(`artists that LOST a family membership (top 15 by plays; of ${lost.length} total):`);
+  for (const a of lostTop) console.log(`  ${String(a.plays).padStart(6)}  ${a.name.padEnd(28)} [${a.from.join(", ")}] → [${a.to.join(", ")}]`);
+  const three = EXPLORE.filter(r => r.fm.length === 3).sort((a, b) => b.plays - a.plays).slice(0, 15);
+  console.log(`highest-play 3-membership artists (top 15):`);
+  for (const r of three) console.log(`  ${String(r.plays).padStart(6)}  ${r.name.padEnd(28)} [${r.fm.map(famName).join(", ")}]`);
+  console.log("── end audit ──\n");
 }
 
 // ─────────── THUMBS — Discogs cover thumbnail per explorable artist id (covers everywhere) ───────────
