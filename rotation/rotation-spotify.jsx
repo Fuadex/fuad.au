@@ -372,7 +372,7 @@ function LikedRange({ label, lo, hi, min, max, onChange, fmt, hist, meanPos }) {
 // row is excluded only while THIS axis's band is active — the vocals-filter convention).
 const TA_IDX = { pop: 1, loud: 10, speech: 11, live: 12, key: 13, mode: 14 };  // ROTATION_TRACKAUDIO fields
 const PITCH_CLASSES = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"];  // key idx 0..11
-const DNA_AXES = [
+const LK_DNA_AXES = [
   { k: "tempo",   label: "tempo",       min: 40,   max: 220, fmt: v => v + "♩",  get: r => r.tempo },
   { k: "energy",  label: "energy",      min: 0,    max: 100, fmt: v => v,        get: r => r.energy },
   { k: "valence", label: "positivity",  min: 0,    max: 100, fmt: v => v,        get: r => r.valence },
@@ -565,7 +565,7 @@ function LikedView({ go }) {
   const HIST_BINS = 24;
   const corpus = React.useMemo(() => {
     const out = {};
-    for (const ax of DNA_AXES) {
+    for (const ax of LK_DNA_AXES) {
       const vals = [];
       for (const r of rows) { const v = ax.get(r); if (v != null && Number.isFinite(v)) vals.push(v); }
       if (!vals.length) { out[ax.k] = null; continue; }
@@ -580,7 +580,7 @@ function LikedView({ go }) {
     return out;
   }, [rows]);
   // the axes that actually have corpus data — everything else is dropped from the panel
-  const liveAxes = React.useMemo(() => DNA_AXES.filter(ax => corpus[ax.k] && corpus[ax.k].n > 0), [corpus]);
+  const liveAxes = React.useMemo(() => LK_DNA_AXES.filter(ax => corpus[ax.k] && corpus[ax.k].n > 0), [corpus]);
   // does the liked corpus carry key/mode? (gates the pitch-chip row + major/minor toggle)
   const hasKey = React.useMemo(() => rows.some(r => r.pkey != null), [rows]);
   const hasMode = React.useMemo(() => rows.some(r => r.pmode != null), [rows]);
