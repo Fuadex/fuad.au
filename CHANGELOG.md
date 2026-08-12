@@ -21,7 +21,7 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
   reads kept behind a flick ("via Opus · earlier read"); gists were redrafted to carry the
   record's sonic identity in concrete images plus an honest listening shape. New primaries for
   Gore, SAPPUKEI and still a Sigure virgin?; a footnote slot (✱) debuted under Around the Fur.
-- **The reads corpus crossed 700.** A 20-song sweep of the most-played unread tracks shipped
+- **The reads corpus reached 731 (179 footnotes).** Three sweeps of the most-played unread tracks shipped
   under the full pipeline (independent drafts, overlap gate, account-first QC, web
   verification), with six verified footnotes — Wargasm's Pink Floyd/Van Halen title-lifts,
   Bambie Thug's 11/11 release ritual, Celldweller's fifty-demo shelving story among them.

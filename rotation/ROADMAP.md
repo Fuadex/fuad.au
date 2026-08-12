@@ -14,7 +14,7 @@
 **Shipped 2026-08-12→13 (this wave):** album-read STANDALONE-SOLID doctrine + GIST recipe
 (ALBUM_READS.md is the spec of record) — Fable syntheses frontal on 9 albums (`linerPrev`/
 `arcPrev` hold the earlier reads behind the flick; `note2` footnote slot); reads corpus
-711 fable / 176 footnotes / 696 themed (top20c sweep applied); Liked: parquet audio-DNA
+731 fable / 179 footnotes / 706 themed (top20c+top10d+top10e sweeps; top10e themes/tells DEFERRED — run batch-top10e through .dtmp/themerun next session); Liked: parquet audio-DNA
 second pass (3,171/3,592 ids) + `ROTATION_LIKED_AUDIO_X` + `ROTATION_LIKED_VX` sidecars +
 vocals wave 1 (113 verified) + chips grammar fixed (UA button-fill bug) + hover polish;
 Overview catalogue stats row + seen-live share (25%) + decades→Explore deep-link; Stories
