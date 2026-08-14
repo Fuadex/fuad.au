@@ -113,6 +113,35 @@ one compositional decision) and carries the identification.
 campaign caught A Burial at Ornans 1841 → 1850 and The Painter's Studio 1850 → 1855. Fix the
 canon row in the same commit.
 
+**The Info re-words, never re-uses** (Fuad verdict 2026-08-14; measurement: the first
+30-work distil wave lifted Interpretation sentences verbatim, up to 14 shared 4-grams).
+Before merge, check 4-gram overlap of the Info against that work's `deep`: identification
+and fixed fact-phrasings (names, dates, prices, measurements) are exempt; descriptive
+sentence reuse is a redraft.
+
+### 5b. The fused Info — CURRENT METHODOLOGY (Fuad, coined 2026-08-15)
+
+The pipeline per work: **study tour → hook-Info (background, facts web-verified) →
+Interpretation (tour-only sourcing) → distil-Info (from the Interpretation) → ONE fused
+Info** replacing both. For new works, fuse at writing time — background hook + at most one
+crux — instead of shipping two Infos and merging later.
+
+The fused Info (all rulings 2026-08-14/15, tested on a 6-work sample then 33-work rollout):
+- **Background/impact first** — the story is what a glancing reader wants ("what they'll be
+  interested in: Background"). Every hook fact survives: anecdotes, names, dates, prices;
+  quotes keep their quotation marks.
+- **No visual walkthrough** — describing what's on the painting is the Interpretation's job.
+- **No venue line, no title restatement** — the UI shows both. Identify via artist + year
+  woven in ("Courbet's 1850 canvas…").
+- **Crux line OPTIONAL** — at most one, and only a concrete, specific observation
+  ("betrayal takes the shape of tenderness"; the oranges as the only saturated colour).
+  Editorial commentary ("a century of unease") is the fluff class — end on facts instead.
+- **Length free** — whatever the facts need (shipped batch runs ~44–74 words).
+- Canon dates win over legacy hook text. No facts from outside tour/hook/Interpretation.
+
+The `web:` tier and Web button existed for one day (2026-08-14) and were retired by this
+fusion — superseded hooks live in git history, their facts inside the fused Infos.
+
 ## 6. QC and merge
 
 1. **Fact-check every specific against the tour — including fusions and swaps.** Grep the
