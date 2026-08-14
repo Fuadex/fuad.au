@@ -52,3 +52,5 @@ Random 20-tour sample, this method: Fable reads ~156k chars of tours (~40k token
 Final 200-tour sweep (actual): ~1.15M chars of stripped dumps (~290k tokens read) +
 1 Opus verifier (24.5k) for 3 flags ≈ **~1.6k tokens/tour** — flags get rarer and
 cheaper as the defect pool drains; stripped dumps (no "see"/box coords) are the big saver.
+
+| 2026-08-15 | Backfill batches 1+2 (29 works: interp + fused Info) + Milkmaid deeper chapters | §5b pipeline: per-work fact-trace vs tours (all numbers/proper nouns), formula/opener seals, fuse-gate 4-gram + hook fact-carry ×2 rounds; Milkmaid boxes crop-verified on the live plate | Fable (primary), Sonnet drafts | 3 draft seals (2 formula constructions, 1 invented descriptor "acidic"); Turner leak class found+fixed (3 shipped Infos carried "(Job year given as…)" workshop notes); Milkmaid dating moved to Rijks c. 1660 (canon+Info+context); voice rule: reads never cite the label that supplied a fact |
