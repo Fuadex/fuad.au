@@ -190,8 +190,13 @@ measurement. A rule that cannot be traced to one of those is not a rule; strike 
 (History: an unsourced second-person ban and a hardened word ceiling both reached shipped
 content in August 2026 before being caught. This section exists so that cannot recur.)
 
-## Coverage (2026-08-14)
+## Coverage (2026-08-15)
 
-623 Info · 140 Interpretations (37 badged `deepBy: "Sonnet 4.6"`) · 39 `web` hooks
-(9 tours10 recoveries + 30 superseded campaign Infos) · 309 study tours (all QC'd —
-see QC_LEDGER.md). Backfill queue: 169 works with a tour but no Interpretation.
+623 Info · 169 Interpretations (66 badged `deepBy: "Sonnet 4.6"`) · 309 study tours
+(all QC'd — see QC_LEDGER.md). The `web` tier is retired (§5b). Backfill batches 1+2
+(29 works) ran the full §5b pipeline with fused Infos `by: "Fable 5"`. Backfill queue:
+142 works with a tour but no Interpretation. The Milkmaid pilot study gained its 6
+anchored `deeper` chapters (Rijks provenance in the synthesis stop; c. 1660 dating
+adopted museum-wide — canon, Info, tour context). Voice rule reaffirmed the hard way:
+reads state facts, they never cite the label/source that supplied them (Fuad,
+2026-08-15, on "the Rijksmuseum's own label makes the point exactly").
