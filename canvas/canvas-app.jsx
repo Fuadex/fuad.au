@@ -134,7 +134,7 @@ function Card({ w, go }) {
       {img && <img src={img} alt={w.title} loading="lazy" />}
       <div className="cv-label">
         <div className="cv-title">{title}</div>
-        <div className="cv-artist">{byline}</div>
+        <div className="cv-byline">{byline}</div>
         {!img && w.note && <div className="cv-note">{w.note.split(" NOTE:")[0].split(" Attribution")[0]}</div>}
         {!img && <div className="cv-why">{/TBC/.test(w.title) ? "awaiting the recall deck" : "image withheld — in-copyright artist"}</div>}
       </div>
@@ -1773,7 +1773,7 @@ function Deck({ museumId, part, go }) {
           : <div className="cv-deck-noimg" style={{ padding: "60px 20px", color: "var(--ink-faint)", font: "400 14px/1.5 var(--serif)" }}>no image — judge from the title</div>}
         <div className="cv-deck-label">
           <div className="cv-title">{w.title}</div>
-          <div className="cv-artist">{w.artist || "—"}{w.year ? " · " + w.year : ""}</div>
+          <div className="cv-byline">{w.artist || "—"}{w.year ? " · " + w.year : ""}</div>
         </div>
       </div>
       <div className="cv-deck-love">
