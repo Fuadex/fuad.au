@@ -73,14 +73,29 @@ already whole with one thesis.)
 Shared brief for the drafters. Distil from the tour's **about / craft / context** lenses
 (plus stops as needed): **no new facts, no re-verification — the tour is already verified.**
 
-- ~110–190w, soft (a rich synthesis runs longer; length is soft per the reads-length rule).
+**TOUR-ONLY SOURCING (Fuad 2026-08-14, explicit).** The tour is the ONLY fact source for an
+Interpretation. The existing Info, the `web` field, and canon prose are NOT sources — do not
+even hand them to drafters as "context": a d2 drafter laundered an existing-Info fact (the
+Samson AI-study line) into a deep read that way. Job files for drafters should carry the
+canon row + tour and nothing else.
+
+- Length (Fuad 2026-08-14, superseding the earlier soft-only ruling): **target ~140–170**
+  in the brief — drafts inflate past their target anyway, so aim low. At QC, measured:
+  **≤200 ships as-is; 200–240 is QC's judgement call; >240 gets trimmed.** Trims must never
+  cost a concrete anchor (a date, an exhibition, a named detail) — losing one is always a
+  downgrade; cut restatement, not material.
 - One evocative paragraph. **Lead with the unifying idea** (rich works) or **the single
   crux** (settled works) — the best line goes FIRST.
 - BANNED openers: framing-fact ("Among roughly eighty…"), theory-first ("X had absorbed the
   theory…"), "What…", "This painting…", the artist's name. Vary the opener.
-- No second-person you/your (Sonnet's recurring slip). No exclamation marks. No
-  masterpiece talk.
-- Do not back-load the payoff (Sonnet's habitual failure). Hold length.
+- No exclamation marks (corpus: 0/110). No quotation marks (corpus: 0/110). No
+  masterpiece talk. Second person IS allowed — 36% of the shipped corpus uses you/your;
+  an earlier ban here was unsourced and struck 2026-08-14 per Fuad.
+- Do not back-load the payoff (Sonnet's habitual failure).
+- **De-boilerplate recurring formulas** (Fuad 2026-08-14): when a construction keeps coming
+  back across a batch ("X is the (real/whole) subject", "X is the argument"), recast those
+  instances as direct statements — same anti-convergence logic as the opener seal. This is
+  a QC fix on repeats, not a ban on any single natural use.
 
 **FUSE for best-of-both** where two drafts each have something: keep the winner's spine,
 graft the other's sharpest insight (Impression = Sonnet synthesis rebuilt around the prior
@@ -136,6 +151,15 @@ field was added for this (commit a67c492); both sites resolve
 those, then decide per work whether the campaign-era Info should be re-distilled from the new
 Interpretation (usually yes — it was written without one). Works with neither tour nor
 Interpretation need a tour first.
+
+## 9. Rule governance (Fuad 2026-08-14 — binding)
+
+**New rules are PROPOSED, never imposed.** Any addition, tightening, or hardening of this
+spec must be flagged to Fuad as a proposal and get his explicit verdict before it is applied
+to content. Every rule in this spec must cite its source — a dated Fuad ruling or a corpus
+measurement. A rule that cannot be traced to one of those is not a rule; strike it.
+(History: an unsourced second-person ban and a hardened word ceiling both reached shipped
+content in August 2026 before being caught. This section exists so that cannot recur.)
 
 ## Coverage (2026-08-13)
 

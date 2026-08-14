@@ -1084,11 +1084,13 @@ function Reader({ id, go }) {
                 <div className="cv-r-tiers">
                   <button data-on={tier === "about"} onClick={() => setTier("about")}>Info</button>
                   <button data-on={tier === "deep"} onClick={() => setTier("deep")}>Interpretation</button>
+                  {read.web && <button data-on={tier === "web"} onClick={() => setTier("web")}>Web</button>}
                 </div>
               </div>
               {/* full long-form studies live in Study mode (#/study/<id>), not as a flat tier here */}
-              <div className="cv-r-read-txt">{tier === "deep" ? read.deep : read.about}</div>
-              <div className="cv-r-read-by">via {(tier === "deep" && read.deepBy) ? read.deepBy : (read.by || "Fable")}</div>
+              {/* web = the campaign-era hook-first Info a re-distilled Info superseded (web-verified facts) */}
+              <div className="cv-r-read-txt">{tier === "web" && read.web ? read.web : tier === "deep" ? read.deep : read.about}</div>
+              <div className="cv-r-read-by">via {tier === "web" && read.web ? (read.webBy || read.by || "Fable") : (tier === "deep" && read.deepBy) ? read.deepBy : (read.by || "Fable")}</div>
             </div>
           )}
           {pal && (
