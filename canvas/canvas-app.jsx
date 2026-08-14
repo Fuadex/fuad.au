@@ -126,7 +126,6 @@ function Card({ w, go }) {
   const img = w.imgGrid;
   const title = w.label && !/^TBC/.test(w.title) ? w.title : w.title.replace(/^TBC — /, "");
   const byline = w.artist.replace(/\s*\(.*\)$/, "") + (w.year ? " · " + w.year : "");
-  const info = ((window.CANVAS_ART_ABOUT || {})[w.id] || {}).about;
   return (
     <div className={"cv-card" + (img ? "" : " cv-text")} data-conf={w.seenConfidence}
       onClick={() => go("work", w.id)} title={w.title}>
@@ -138,15 +137,9 @@ function Card({ w, go }) {
         {!img && w.note && <div className="cv-note">{w.note.split(" NOTE:")[0].split(" Attribution")[0]}</div>}
         {!img && <div className="cv-why">{/TBC/.test(w.title) ? "awaiting the recall deck" : "image withheld — in-copyright artist"}</div>}
       </div>
-      {/* hover peek (Fuad 2026-08-15): the label keeps title with artist · year right
-          beneath it; on hover the fused Info unfolds UNDER the label as an extension of
-          the block, floating over the cards below (no wall reflow), carried by the
-          unravelling shadow behind the block. */}
-      {img && info && (
-        <div className="cv-card-peek" aria-hidden="true">
-          <div className="cv-peek-info">{info}</div>
-        </div>
-      )}
+      {/* hover-peek Info was tried and DISABLED the same day (Fuad 2026-08-15: "this
+          doesn't look right") — don't re-add without asking. The fused Info lives on the
+          work page; the byline fix (.cv-byline rename) stays. */}
     </div>
   );
 }
