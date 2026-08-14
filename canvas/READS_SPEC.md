@@ -161,6 +161,8 @@ measurement. A rule that cannot be traced to one of those is not a rule; strike 
 (History: an unsourced second-person ban and a hardened word ceiling both reached shipped
 content in August 2026 before being caught. This section exists so that cannot recur.)
 
-## Coverage (2026-08-13)
+## Coverage (2026-08-14)
 
-623 Info · 101 Interpretations (7 badged `deepBy: "Sonnet 4.6"`) · 308 study tours.
+623 Info · 140 Interpretations (37 badged `deepBy: "Sonnet 4.6"`) · 39 `web` hooks
+(9 tours10 recoveries + 30 superseded campaign Infos) · 309 study tours (all QC'd —
+see QC_LEDGER.md). Backfill queue: 169 works with a tour but no Interpretation.
