@@ -1118,8 +1118,10 @@ about: "Munch painted this in 1918, two years after buying the Ekely farm outsid
 by: "Opus 4.8" },
 
 "study-for-le-bec-du-hoc-grandcamp": {
-about: "This is one of twelve pocket-sized croquetons Seurat painted on panel at Grandcamp in summer 1885 — his first marine landscapes; Seurat, then 25, used it to work out the composition before completing the finished canvas now in the Tate.",
-by: "Opus 4.8" },
+about: "One of twelve pocket-sized croquetons Seurat painted on panel at Grandcamp in the summer of 1885 — his first marine landscapes, made at 25 to work out the composition before the finished canvas now in the Tate. The dashes already come in complementary pairs, violet set against yellow-green, so the cliff glows from within; a few tiny sails, the only incident on the open Channel, set its scale.",
+deep: "A single geological gesture carries everything here — the headland surges up from the lower left like a great animal shoulder heaving out of the sea, its convex crest darkest and densest where it leans furthest over the water, then drops away sharply to release the eye onto a flat, luminous Channel. The cliff is given no narrative: no figures, no boats close enough to carry a story, only the promontory itself and the light that dissolves it into flecks. That dissolution is the method made visible — short dashes of violet against yellow-green, blue-grey against warm sand, laid in complementary pairs that vibrate rather than blend, so that rock and grass glow from within instead of sitting flat. Form here is colour-temperature, not line; the sky and the stone share the same granular touch, and the whole canvas hums as one continuous field of broken light. Two or three tiny sails on the far water quietly calibrate the scale, making clear how vast the promontory really is. Seurat worked this out at the Normandy coast in 1885, mid-transition toward systematic pointillism; the study is still gestural, still loose — and that looseness is precisely what lets the surging silhouette feel caught rather than constructed.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "woman-holding-a-balance": {
 about: "Microscopic analysis confirmed the scales are entirely empty — she is not weighing pearls or gold but holding a moment of balance, with the Last Judgment painting directly behind her; Vermeer, around 1664, built the whole picture as an allegory of spiritual temperance.",
@@ -1319,8 +1321,10 @@ about: "Montmartre still had working windmills when Van Gogh moved there in 1886
 by: "Opus 4.8" },
 
 "thonier-a-concarneau": {
-about: "The vividly coloured tuna-boat sails that fill Signac's 1925 Divisionist canvas have since vanished from Concarneau harbour entirely, replaced by motor boats, making the painting a record of a working fleet now gone.",
-by: "Opus 4.8" },
+about: "The vividly coloured tuna-boat sails Signac painted at Concarneau in 1925 have since vanished from the harbour entirely, replaced by motor boats — the canvas is now the record of a working fleet that no longer exists. A lifelong sailor who founded Divisionism with Seurat in the 1880s, he was working here in his late mosaic manner, each touch a discrete, brick-like tile; the pink of the sky passes into the sail and down into the still water, where the boat repeats as a looser echo.",
+deep: "Colour is the pretext and the argument here, not the boat. A tuna-fishing vessel at anchor in a Breton harbour gives the composition its vertical spine — a raked mast, a great flaring sail of rust and salmon — but the real work is the sensation of warm, radiant air translated into something close to decoration. The method is late Divisionism: each touch of pigment is a discrete tile, brick-like and deliberate, so the surface reads as mosaic before it reads as scene. Step back and those tiles fuse into vibrating light; move close and you can feel the hand placing them one by one. The glowing pink sky lends its colour to the sail, which lends it in turn to the water below, where the boat is repeated as a looser, more abstract echo in blue, violet and orange. A single cool blue-green panel high on the sail holds the surrounding warmth in check through contrast, the small well-placed accent that organises the whole. Nature — harbour, lighthouse, ghost sails fading to pale at the left — is kept in view just enough to anchor the scene, while the painting pursues harmony and the pleasure of pure colour.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "terrasses-a-cannes": {
 about: "By the time Renoir painted these sun-drenched Cannes terraces in 1905, rheumatoid arthritis had so damaged his hands that he had cloth bandages tied around them to hold the brush in place.",
@@ -1561,8 +1565,10 @@ about: "Called the Malerfürst — painter-prince — by contemporaries, Makart 
 by: "Opus 4.8" },
 
 "avenue-in-the-park-of-schloss-kammer": {
-about: "Klimt built the entire canopy from small distinct dabs of colour, a modified pointillism that turns observation into decoration: the tree-lined drive to the Attersee castle dissolves into interlocking patches of green and blue, 1912.",
-by: "Opus 4.8" },
+about: "Klimt built the entire canopy of this 1912 canvas from small distinct dabs of colour — a modified pointillism that turns observation into decoration, the ornamental instinct of his gilded portraits turned loose on a park. He painted it during one of his August stays on the Attersee, where the lakeside castle and its grounds became a recurring motif; the drive's hard perspective aims at one small sunlit facade that the woven green nearly swallows.",
+deep: "Two forces pull against each other across this canvas and neither wins. A double rank of trunks drives a corridor of hard recession into the picture, one of the most emphatic vanishing-points Klimt ever allowed himself, while above and to every side the canopy refuses to behave like space and becomes instead a packed tapestry of dabbed greens, cool blue-shadow against bright chartreuse, threaded with dark scribble and pressed flat to the surface. The near-square format locks you inside the trees rather than letting the eye sweep horizontally to a horizon, so the only exit is that receding path, paved in flecks of pink, lilac and pale green that read as pattern even as they pull you toward depth. At the far end, a small sunlit facade catches the only warm, concentrated light in the picture — the destination the whole geometry aims at and the decorative screen nearly swallows. The ornamental instinct behind his gilded portraits has migrated here wholesale into a park; nature is not observed so much as woven, and that shimmer of summer leaf, refusing to resolve fully into either foliage or pure design, is what keeps the eye working rather than settling.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "still-life-with-five-bottles": {
 about: "Van Gogh painted this while teaching Eindhoven friends to paint still lifes in November 1884, working in dark earth tones that show no trace of the vivid colour that would define his later work, a record of deliberate, early learning.",
@@ -1609,8 +1615,10 @@ about: "Vallayer-Coster was one of only four women admitted to the Académie roy
 by: "Opus 4.8" },
 
 "truth-time-and-history": {
-about: "Scholars have debated whether Goya painted this allegory around 1804–08 as a decorative companion piece for Godoy's palace, or later as a commentary on the 1812 Constitution — the uncertainty itself signals how charged its imagery of Truth escaping into light became.",
-by: "Opus 4.8" },
+about: "Scholars still argue over why Goya painted this allegory — as a decorative companion for Godoy's palace around 1804–08, or later as a commentary on the 1812 Constitution — and the uncertainty itself signals how charged its image of Truth escaping into light became. Winged Time pulls away the veil, Truth stands in the brightest white on the canvas, and History writes down what the moment uncovers. From the painter of sleeping reason and loosed monsters, this is the daylight face: no monsters, only the belief that time sides with what is true.",
+deep: "Revelation here is not a metaphor but an action: Time hauls back an enormous pale cloth with his whole aged, powerful body, and Truth steps forward into the light he makes. She is the tonal keystone of the picture, her white gown the brightest passage on the canvas, everything around it dimmed so the eye can find no other resting place. Her outstretched arm offers a small bright object into the shadowed air — not concealment but its opposite, a gesture of presentation held open toward whoever is looking. Below her, turned away and wholly absorbed, History bends over an open book and writes, transcribing in real time what Time discloses. A second book lies flat at her feet, the first page of a growing archive. The composition is a rising diagonal from that archive on the ground up through the writing figure to the luminous crest of the wing — from record to revelation, earth to light. The allegory was a common emblem of Enlightenment culture, but the mood here is notable: no monsters, no satirical edge, only a calm belief that time is on the side of what is true, and that the written record will hold it there.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "the-triumph-of-venus": {
 about: "Swedish diplomat Carl Gustaf Tessin bought this directly from Boucher's Paris studio in 1740, then was forced by debt to sell his entire collection to the Swedish crown in 1749 — which is how Boucher's most celebrated mythological canvas ended up in Stockholm.",
@@ -1704,8 +1712,10 @@ about: "Derived from the medieval Ars Moriendi, Bosch's c.1485–90 panel sets a
 by: "Opus 4.8" },
 
 "a-polish-nobleman": {
-about: "The title has no factual basis: Rembrandt's 1637 panel is a tronie, an invented exotic type in beaver hat, fur cloak, and gold chain, probably not a portrait of any specific individual.",
-by: "Opus 4.8" },
+about: "The title has no factual basis: Rembrandt's 1637 panel is a tronie — an invented exotic type, an anonymous model dressed from the studio's own store of finery in beaver hat, fur cloak and gold chain, painted for the open market rather than on commission. The chain is dragged in impasto thick enough to physically catch the room's light; by tradition the panel later passed through Russian imperial hands.",
+deep: "Beneath the borrowed fur and burning gold there is a real, closely watched face — and the tension between the two is what the picture is about. The man has no name. The tall fur cap, the heavy chain, the jewelled cross-clasp, the gilded baton are all studio props, assembled from an Amsterdam painter's collection of exotic finery to conjure the aura of eastern rank without belonging to any actual title-holder. The label came later, a romantic guess at an identity that was never there. Yet the gaze that meets you is level and unperformed, an observed human being carrying the costume with complete conviction. Rembrandt builds this double register into the paint itself: the gold chain is laid in thick impasto that physically reflects the light, the fur is scratched and flicked until it bristles, and the shadowed half of the face is thinned to almost nothing so it dissolves into the dark ground rather than finishing cleanly. Surface splendour and painted illusion are his declared subjects, and a plain, appraising face is the anchor that makes you believe all of it.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "early-sunday-morning": {
 about: "Hopper painted out a figure he had placed in an upper window, and the resulting 1930 Seventh Avenue row of shopfronts holds its stillness without any human presence to explain it.",
@@ -1774,8 +1784,10 @@ about: "Kandinsky painted this in revolutionary Moscow in 1920, a year before he
 by: "Opus 4.8" },
 
 "painting-with-white-border": {
-about: "Kandinsky made at least sixteen preparatory studies before finishing this 1913 canvas, working through memories of Moscow — the veiled figure of Saint George at the center and a troika buried in the turbulence of line and color.",
-by: "Opus 4.8" },
+about: "Kandinsky made at least sixteen preparatory studies over some five months for this 1913 canvas, working through the flood of impressions from a trip home to Moscow — a veiled Saint George and a galloping troika still lie buried in the turbulence. The picture refused to resolve until one late decision: a ragged white margin laid round the edges — by his own account that final move resolved everything and named the picture.",
+deep: "A picture standing at the exact moment depiction becomes music, this canvas holds the leap into abstraction without letting you arrive after the fact. Buried in the churning upper-left knot are the relics of the old apocalyptic imagery Kandinsky could not fully renounce — a galloping troika, St George, the dragon — dissolved to rhythm and arc so they flicker in and out rather than declaring themselves. Long whipping lines carry that energy across the field to the heavy blue crescent at centre-right, which anchors the whole slow rotation, and a pale spear plunges down from it into a quiet rose-green core, the calmest passage in the storm, where catastrophe discharges into stillness. Free colour floats through all of it, reds and blues kept from screaming by a muted grey-green ground, none of it attached to any object. Then the border: a rough, irregular white margin, jagged at the lower left, that frames without taming, meeting the collisions at the edge and absorbing them. Kandinsky said adding it finally resolved the picture and gave it its title. That last stroke is what transforms a cosmos mid-formation into a whole.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "the-unfortunate-land-of-tyrol": {
 about: "Franz Marc filled this 1913 Tyrolean landscape with black horses, a red hill studded with grave crosses, and a border sign — imagery that reads as a direct premonition of the war in which Marc himself would be killed in 1916.",
@@ -2051,8 +2063,10 @@ by: "Opus 4.8" },
 
 
 "a-young-woman-standing-at-a-virginal": {
-about: "Vermeer painted this and its companion piece — a woman seated at the same instrument — as pendants around 1670–72, the two hanging together as contrasting meditations on faithful versus illicit love. The Cupid on the back wall here signals fidelity; the seated version pairs its player with a painting of a client visiting a prostitute.",
-by: "Opus 4.8" },
+about: "Vermeer painted this around 1670–72 as one of a pair — its companion seats a woman at the same instrument — and the two hang as contrasting meditations on faithful and illicit love: the Cupid on the back wall holds up a single card (one card, one lover, the period emblem of faithfulness), while the seated version pairs its player with a painting of a client visiting a prostitute. Mid-note, the player's glance comes up to meet yours — as if you were the partner the vacant chair implies.",
+deep: "Her hands are on the keys, but her face has turned to meet yours, and that small pivot is the whole picture. A woman playing alone, absorbed in music, would be one kind of scene; a woman who looks up the moment you arrive is another — one where solitude becomes directed, and the viewer becomes the absent partner implied by the vacant chair pushed toward the room's edge. The large dark painting on the wall behind her clarifies what kind of fidelity this is: Cupid holds a single card aloft, an emblem from the love-imagery of the period signifying constancy to one beloved. Hung directly over her head, it turns her gaze from a social gesture into a declaration. Music in Dutch pictures of this date carries the freight of courtship and harmony between two people, but here the room holds only one figure, self-possessed and still, the emblem doing the moral speaking she will not. Cool verticals, a shadowless window light, the polished surfaces of his late manner — everything is drawn back to concentrate on that calm outward look and what it means to sustain it.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "christ-in-the-house-of-his-parents": {
 about: "When Millais first showed this 1849 canvas in 1850, Charles Dickens called the Christ child \"a hideous, wry-necked, blubbering, red-headed boy in a nightgown\" and Mary so ugly she would disgrace a gin shop. The fury was aimed at the Pre-Raphaelite choice to paint the Holy Family as real, dirty working people — and the offence is the best proof the method worked.",
@@ -2419,16 +2433,18 @@ about: "Margate was not just a sketching destination for Turner — from the lat
 by: "Opus 4.8" },
 
 "j-m-w-turner-stormy-sea-with-dolphins": {
-about: "Found in Turner's studio after his death and titled by the curators who catalogued the 1856 Bequest, this large oil was probably never intended for exhibition. The dolphins are barely readable — a few arcs of paint barely distinct from the breaking spray around them — which is either the painting's unfinished state or its point. J. M. W. Turner, c. 1835–40. (Job year given as 1837; Tate dates the work c. 1835–40.)",
+about: "Found in Turner's studio after his death and titled by the curators who catalogued the 1856 Bequest, this large oil was probably never intended for exhibition. The dolphins are barely readable — a few arcs of paint barely distinct from the breaking spray around them — which is either the painting's unfinished state or its point. J. M. W. Turner, c. 1835–40.",
 by: "Opus 4.8" },
 
 "j-m-w-turner-rough-sea": {
-about: "Because this canvas never left Turner's studio, it shows exactly how he built a seascape from scratch: broad neutral washes anchoring the horizon, then dragged and dabbed marks pulling the wave-forms upward into a still-pale sky. The finished exhibition pieces concealed this structural logic; the unfinished ones, gathered by the 1856 Turner Bequest, laid it bare. J. M. W. Turner, c. 1840–45. (Job year given as 1842; Tate dates the work c. 1840–45.)",
+about: "Because this canvas never left Turner's studio, it shows exactly how he built a seascape from scratch: broad neutral washes anchoring the horizon, then dragged and dabbed marks pulling the wave-forms upward into a still-pale sky. The finished exhibition pieces concealed this structural logic; the unfinished ones, gathered by the 1856 Turner Bequest, laid it bare. J. M. W. Turner, c. 1840–45.",
 by: "Opus 4.8" },
 
 "j-m-w-turner-a-wreck-with-fishing-boats": {
-about: "Shipwreck was a subject Turner returned to across his entire career — from the large exhibited Shipwreck of 1805 through dozens of late studio studies — and in his final decade he stripped the compositions back further still, dropping the foreground reference points that earlier works had used to orient the viewer. Here the wreck and the attending boats sit in a field of churned surf with nothing solid beneath them. J. M. W. Turner, c. 1840–45. (Job year given as 1842; Tate dates the work c. 1840–45.)",
-by: "Opus 4.8" },
+about: "Shipwreck occupied Turner across his whole career, from the large exhibited Shipwreck of 1805 through dozens of late studio studies — and this canvas of about 1840–45, almost certainly never shown in his lifetime, its title and date assigned later, strips the subject furthest of all. The foreground reference points that oriented his earlier storms are gone: the wreck and its attending boats sit in a field of churned surf with nothing solid beneath them, dissolved further than anything he ever allowed the public to see.",
+deep: "Solid form has been let go almost entirely here, and what remains is the sensation of weather — rotation, spray, the pull of water — with a handful of dark vessels as the last anchor to a subject. Turner strips a marine disaster down to its essential imbalance: a tiny blue hull and leaning masts, small enough to miss, pushed off-centre so the surrounding emptiness can carry all the human stake of the scene. The sky above refuses a drawn boundary with the sea; thin, translucent films of pale grey let the ground glow through, so cloud, mist and blown spray read as a single breathing continuum. Down in the water, long dragged ochre strokes and scumbled foam-whites are not describing waves but being them. At the lower right, where the paint thickens and a surge climbs toward the viewer, the composition loops back into itself — the storm stays perpetually in motion, never settling. Because this canvas was almost certainly painted in private and never exhibited, no title or date was ever fixed; what we have is an old man at the edge of his life pushing marine painting to the edge of abstraction, for no audience but himself, decades before anyone had a word for what he was doing.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "j-m-w-turner-venetian-festival": {
 about: "Turner visited Venice three times — 1819, 1833, and 1840 — and his last trip fed the most sustained run of Venetian oils he ever produced, shown almost annually at the Royal Academy from 1840 through 1846. This late work, now held at Tate via the 1856 Turner Bequest, gathers figures in carnival dress around a blaze of yellow at the water's edge, Venice's architecture barely suggested in the haze behind them. J. M. W. Turner, c. 1845.",
@@ -2443,8 +2459,10 @@ about: "Cross settled at Saint-Tropez in 1892, where he and Paul Signac develope
 by: "Opus 4.8" },
 
 "edgar-degas-two-dancers-2": {
-about: "Degas worked on tracing paper so he could transfer and rework the same poses repeatedly — the technique behind the seemingly effortless fluency here. This pastel from around 1893 catches two dancers in blue tutus waiting in the wings, arms akimbo, bodies still carrying the tension of a performance not yet begun.",
-by: "Opus 4.8" },
+about: "Degas drew on tracing paper so he could transfer and rework the same poses over and over — the technique behind this pastel's seeming fluency, made around 1893 as his eyesight failed and his handling grew broader and hotter. The two dancers are caught in the wings between performances, one adjusting a strap; they match so nearly that they read as one body studied twice, the same pose turned over and restated.",
+deep: "Two bodies caught in the seam between performances — one hand lifted to adjust a strap, one head bowed, neither dancer performing for anyone — and that private interval becomes the whole subject. Degas removes the stage, crops the figures hard against a flat wall of green and gold, and in doing so strips away the public glamour that ballet is built to project. What remains is labour: standing, waiting, attending to a costume, holding a body that has stopped moving. The two women rhyme each other so closely they read less as companions than as a single figure examined twice, a pose turned and restated, which is how Degas worked in his last decade — cycling through a small repertory of postures, his eyesight failing, his handling growing broader and more abstract. Surface enacts the same logic: contours are drawn twice and left doubled, the scumbled pastel layers deny any boundary between figure and background, and the whole picture hums at one temperature. Labour and method mirror each other — a body and a hand, both caught in the act of reworking the same thing.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "edgar-degas-untitled": {
 about: "By the early 1890s Degas's eyesight was failing, and he responded by working at a larger scale and with bolder, more fused colour — the warm amber ground and dissolved contours here are a direct consequence of that adaptation. These three dancers in yellow skirts, c.1891, show the late style fully formed: figures dissolving into field rather than cutting against it.",
