@@ -984,8 +984,10 @@ about: "Matejko painted this twelve-work cycle in 1889 partly to satisfy the res
 by: "Opus 4.8" },
 
 "cymon-and-iphigenia": {
-about: "Leighton spent six months searching across Europe for a model who matched his imagined ideal of Iphigenia before beginning this Boccaccio subject, which the Art Gallery of New South Wales acquired at Christie's in 1976. Frederic Leighton, 1884.",
-by: "Opus 4.8" },
+about: "Leighton spent six months searching across Europe for a model who matched his imagined ideal of Iphigenia before beginning this 1884 canvas, from Boccaccio's tale of the lout civilised by beauty: Cymon stumbles on the sleeping girl at dusk, and looking is enough to wake the soul he never knew he had. The composition drags your eye down the long sweep of gold drapery to look as Cymon looks; one small moon keeps the warm field from tipping into sweetness. Acquired for Sydney at Christie's in 1976.",
+deep: "A brute becomes a man by looking — and every formal decision in the picture is built to make you feel the weight of that instant. Iphigenia lies stretched across the foreground in a great sweep of pale gold cloth, entirely passive, lit as though she generates light rather than receives it; her drapery is painted almost more devotedly than her face, a long cascade the eye follows across the canvas before it climbs to Cymon, standing apart in scarlet on the right, arrested, not touching, only staring. The composition enacts the story: you look the way he looks, drawn along the golden diagonal and held at the edge of something about to change. Colour carries the moral weight — embered reds and gold in the foreground cool through tapestry-dark trees to violet sea and a small orange moon at the horizon, one long temperature slide from the animal world toward something colder and cleaner. Sleep spreads through the whole glade, attendants collapsed in shadow at either side, so that only Cymon and the viewer remain awake to what beauty is doing.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "on-the-wallaby-track": {
 about: "McCubbin used his own family as models for this 1896 portrait of itinerant poverty, painting close to his Melbourne home to capture a swagman's family camped roadside during the 1890s depression.",
@@ -1074,8 +1076,10 @@ about: "Ruisdael and his pupil Hobbema both sketched the same Deventer mill on t
 by: "Opus 4.8" },
 
 "two-old-men-disputing": {
-about: "The earliest record of this 1628 Rembrandt is a 1641 will in which his friend Jacques de Gheyn III described the beam of sunlight and the large book on the disputing man's lap — a rare Rembrandt documented in the artist's own lifetime.",
-by: "Opus 4.8" },
+about: "The earliest record of this panel is a will of 1641, in which Rembrandt's friend Jacques de Gheyn III described its beam of sunlight and the great book on the disputant's lap — a rare Rembrandt documented within his own lifetime. He painted it in Leiden around 1628, aged about twenty-two: two apostles, traditionally Peter and Paul, arguing scripture by a single raking light, a history painting whose only drama is thought itself.",
+deep: "Two lifetimes of study bent over the same page, and the whole weight of doctrine hangs on a raised hand above a book. Traditionally identified as Peter and Paul, the two founding apostles are caught not in miracle or martyrdom but in the grinding work of theological argument — minds in collision over what the text actually says. The pale-robed figure whose face blazes with the light is visibly pressing a point, brow lifted, hand lifted from the open pages; the ochre-cloaked listener, shown from behind, gives us his entire body as attention, shoulders turned in, expression withheld. By hiding one face and illuminating the other, the picture refuses to let you pick a side — the drama is the exchange itself, not its outcome. A globe rides the upper shadow almost invisibly, widening what two old men quarrel over into something world-sized. Painted by Rembrandt at around twenty-two, the panel is already betting everything on inwardness: one raking light, two heads inclined toward each other, and the act of reasoning as the only spectacle on offer.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "the-cicada": {
 about: "Exhibited at the 1872 Salon — the first after France's defeat in the Franco-Prussian War — Lefebvre's nude allegorises La Fontaine's improvident grasshopper as a pointed rebuke of Napoleon III's unreadiness, the fallen leaves at her feet standing in for winter's reckoning.",
@@ -1331,8 +1335,10 @@ about: "By the time Renoir painted these sun-drenched Cannes terraces in 1905, r
 by: "Opus 4.8" },
 
 "self-portrait-manet": {
-about: "Manet painted only two formal self-portraits in his entire career, both made within the same year or two around 1878; this skull-cap version at the Artizon is one of that rare pair.",
-by: "Opus 4.8" },
+about: "Manet painted only two self-portraits in his life, both around 1878, and never exhibited this one — the standing, skull-capped version, made as the illness that would kill him in 1883 advanced and standing itself grew hard. He shows himself not at the easel but as the boulevardier he was, hands in pockets, jacket dissolving into the background in dragged, unfinished-looking strokes: the scandaliser of the Salon taking his own measure while time remained.",
+deep: "Elegant Parisian gentleman and career-long disruptor of the Salon occupy the same upright body here, and that quiet doubling is what the picture turns on. Hands sunk in trouser pockets — hidden, not displayed — the figure refuses the tradesman's self-portrait and claims instead the unhurried pose of the flâneur: someone who looks at the world, not someone petitioning it. The face, painted with a handful of loaded strokes and left unsmoothed, meets you without pleading; it is the same unflinching gaze he trained on everything else, turned inward at last. Around it the paint itself tells a second story: the ochre jacket dissolves at the edges into the warm scumble of the background, contour abandoned, cloth and void sharing the same colour, the whole figure kept legible only by a few hard anchor points — dark cap, black shoes, two white cuffs flaring at the wrists. Made as illness advanced and standing grew difficult, kept back and never exhibited, the work sits between bravado and private reckoning: a man still dapper, still commanding the brush, painting himself the way he chose to be seen while he still could.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "the-beach-near-trouville": {
 about: "Boudin is the painter who first took the young Monet outside to paint in the open air, and it was on this same Trouville beach that he developed the rapid, sketchy plein-air technique he captured in this 1865 scene.",
@@ -1387,8 +1393,10 @@ about: "Lost for nearly two centuries and misattributed to Honthorst, this Carav
 by: "Opus 4.8" },
 
 "lady-writing-a-letter-with-her-maid": {
-about: "Stolen twice from Russborough House — first by an IRA gang in 1974 and again by Martin Cahill's crew in 1986 — Vermeer's c.1670 domestic scene spent years underground before its recovery and arrival at the National Gallery of Ireland.",
-by: "Opus 4.8" },
+about: "Stolen twice from Russborough House — by an IRA gang in 1974 and by Martin Cahill's crew in 1986 — Vermeer's late letter scene of about 1670 spent years underground before being recovered. On the canvas the drama is quieter: a first draft lies crumpled on the floor beside the sealing wax, so the words being written now cost something, while overhead the finding of Moses hangs as a small promise of providence over the anxious business below.",
+deep: "A crumpled letter on the marble floor — a first attempt abandoned — is the key that unlocks the calm. The letter the lady bends over now is a second try, which means the words matter and something is at stake, and the apparent serenity of the room is the surface over feeling. That pressure is registered everywhere once you know to look. The maid stands behind her, arms folded, face tipped up and away toward the window, patience shading into absence: she shares the room and the minute but not the inner life of the woman at the table. Above both of them the back-wall painting shows the finding of Moses, an infant lifted from water by providence, which Vermeer has hung there as a thought rather than a scene — a quiet suggestion that private anxieties are, somehow, watched over. Design carries the same argument: the single note of lemon yellow draws the eye to the bent, working head while the maid is kept deliberately underfinished, a silhouette, never a rival for attention. Cool greys and browns hold the room together so that the red of the carpet and the red of the dropped sealing wax — one luxurious, one discarded — rhyme across the picture's full depth.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "man-writing-a-letter": {
 about: "Painted as a deliberate pendant to Metsu's companion piece, Woman Reading a Letter, this c.1665 panel was stolen twice from Russborough House alongside the Vermeer before Sir Alfred Beit donated both to the National Gallery of Ireland in 1987.",
@@ -1467,8 +1475,10 @@ about: "The sitter lived for decades in a ménage à trois with the Duke of Devo
 by: "Opus 4.8" },
 
 "banks-of-a-canal-near-naples": {
-about: "Caillebotte's early Italy visit in 1872 produced this radically cropped, low-horizon canal view years before his famous Paris streets — the stone post's off-centre placement already signals his spatial restlessness.",
-by: "Opus 4.8" },
+about: "Caillebotte painted this on his Italian journey of 1872, in his early twenties and years before the plunging Paris streets that made his name — yet the spatial restlessness is already declared in the radically cropped, low-horizon view and the off-centre stone post. An irrigation channel crossing a flat plain near Naples, empty of people: the young painter proving that composition and plain observation can carry a scene with no story in it.",
+deep: "Emptiness here is not a lack but a method — a young painter in his early twenties on an Italian sojourn, refusing sentiment and proving that a drainage canal on a flat coastal plain can hold the eye through structure and honest observation alone. The two banks converge toward a high vanishing point, pulling the composition deep into the picture plane with the same engineered perspective that would later drive his Paris boulevards; the instinct is fully formed, only the subject is unglamorous. A small sunlit stone pier at centre — lock fitting, nothing romantic — pins the middle distance, anchors the recession and quietly declares the canal as built, worked, functional. Against the smooth, almost polished water the near towpath is painted with loose, dry, dabbing strokes, so the picture plays two handlings against each other: tactile and particular in the foreground, calm and general in the distance. Above it all a high southern sky sets an even, shadowless key that bleaches colour toward silver and carries the whole atmosphere of a hot, quiet afternoon. The restraint is the ambition: no anecdote, no figure, no picturesque alibi — only composition, light and the discipline of looking.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "children-on-the-sand-dunes-grandcamp": {
 about: "Gonzalès was Manet's only formal pupil, yet like him she refused to show with the Impressionists; this 1877 Normandy coast scene of two children and a fish basket reveals her plein-air lightness on her own terms.",
@@ -1519,8 +1529,10 @@ about: "Klimt died in 1918 before finishing this portrait, leaving the dress as 
 by: "Opus 4.8" },
 
 "bauerngarten-mit-sonnenblumen": {
-about: "A related 'Bauerngarten' canvas sold for $59.3 million at Sotheby's in 2017, making it a record for Klimt landscapes; this 1906 cottage garden, painted at Litzlberg on the Attersee, packs sunflowers and dahlias into his signature square frame.",
-by: "Opus 4.8" },
+about: "A related Bauerngarten canvas sold for $59.3 million at Sotheby's in 2017, a record for Klimt's landscapes; this one he painted in 1906 at Litzlberg on the Attersee, on the summer stays that were his private release from Vienna's portrait commissions. Sunflowers and dahlias pack the square frame with no sky, no horizon and no way in — the garden offered as pure pattern, the shimmer of his gold grounds found growing in a vegetable plot.",
+deep: "Ornament and nature turn out to be the same impulse here — that is the discovery the painting keeps pressing. By cropping away sky, horizon, and any path in, Klimt converts a working cottage garden behind a lakeside farmhouse into an all-over tapestry, a jewelled field that behaves exactly like the gold grounds of his society portraits: a flat, dense surface where pattern and living growth become indistinguishable. The square format enforces this, having no built-in axis it invites an equal weight of flowers, leaves, and stalks at every corner, with no centre commanding the rest. Warm reds and golds carry the eye across a cooler bed of blue-green leaves whose broad, flat silhouettes function as the plain dark field that throws the ornament forward. The sunflowers punctuate this with vertical dark-centred discs — the only things in the garden that behave like faces — while the foreground dissolves into stippled dabs, each bloom real only collectively, the way a flowerbed actually hits the eye in strong summer light. Abundance fills the frame, but the claim underneath is structural: shimmer was always already there, waiting in a bank of poppies, before any gold leaf was laid.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "the-plain-of-auvers": {
 about: "Van Gogh painted thirteen double-square panoramic canvases around Auvers between 17 June and 27 July 1890, almost all of them in his final weeks of life; this 1890 wheatfield plain is one of that concentrated burst.",
@@ -1625,16 +1637,20 @@ about: "Swedish diplomat Carl Gustaf Tessin bought this directly from Boucher's 
 by: "Opus 4.8" },
 
 "the-kitchen-maid": {
-about: "Gustav III bought this painting in 1779 without knowing its author, listed simply as a study of a boy; later identified as Rembrandt, 1651, it became one of the Nationalmuseum's most celebrated Dutch Golden Age works.",
-by: "Opus 4.8" },
+about: "King Gustav III of Sweden bought this in 1779 without knowing who painted it — the inventory listed a study of a boy. It is Rembrandt, dated 1651: a household servant girl leaning on a ledge, given the monumental half-length treatment he otherwise spent on biblical figures and paying sitters, her face built up in ridges of paint thick enough to catch real light. Who she was — servant, hired model, invented type — is still unknown.",
+deep: "A servant girl leans over a wooden ledge and meets your gaze with the full gravity Rembrandt reserved for biblical figures and wealthy patrons. She is not idealized — the nose broad, the cheeks heavy, the eyes small and direct — yet the picture refuses the usual distance between a low subject and the viewer who once would have looked past her. The threshold she rests on, half in the shadowed interior and half out into your space, is the hinge of the whole encounter: she belongs to the dim room behind the window, you to the light, and she has crossed halfway of her own unhurried accord. The paint makes the same argument the composition does. Late in his career Rembrandt built flesh from thick, loaded strokes that sit as physical ridges on the surface, so the light on her forehead and jaw reads as actual presence rather than polished illusion, and the reddish bodice dissolves into broad, dragged marks that only resolve into cloth when you step back. One propped hand, cheek resting into the palm, tells you she has settled here for a while — off duty, unhurried, at no one's service. The frankness is the point.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "dancing-fairies": {
 about: "Painted by August Malmström in 1866 and bequeathed to the Nationalmuseum by King Charles XV in 1872, this moonlit vision of translucent water-sprites became a defining image of Swedish National Romantic folklore painting.",
 by: "Opus 4.8" },
 
 "young-boy-peeling-a-pear": {
-about: "Anders Zorn bought this in Paris and donated it to the Nationalmuseum in 1896 as the museum's first Impressionist-circle work; the sitter is Léon Leenhoff, Manet's stepson, in a canvas of c. 1868.",
-by: "Opus 4.8" },
+about: "The painter Anders Zorn bought this in Paris and gave it to Stockholm's Nationalmuseum in 1896, its first work from the Impressionist circle. The sitter is Léon Leenhoff, the stepson who was Manet's most frequent young model, painted about 1868 in the quiet register Manet kept for family: a boy at a Chardin-like task, the peel spooling from his knife, who has looked up from the work to hold your gaze.",
+deep: "Hands still working, eyes already on you: that quiet contradiction is where the painting lives. The boy holds the pear and the knife, a thin ribbon of peel spooling from the blade in one unhurried filament, but he has lifted his gaze and holds it steady, a little guarded, the pose of a real child rather than a type absorbed in labour. The convention of genre painting asks figures to stay sealed inside their task, unaware of any watcher; here it is broken, gently and without drama, and the picture tips from domestic scene into something closer to a portrait of someone the painter knew and cared for. The face receives the most careful work on the canvas, more modelled than the swift white shirt or the summary pear, which tells you where the real interest lay. The subdued warm palette and the empty brown ground behind him recall Chardin and the older tradition that granted grave dignity to plain, unhurried acts. That dignity is here too, in how surely and how sparingly the whole figure is set down.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "bringing-home-the-body-of-king-karl-xii-of-sweden": {
 about: "Cederström delivered this canvas on 30 November 1884, the precise anniversary of Karl XII's death; the snow cortège is a deliberate fantasy — the king's body was actually transported by wagon, not carried on an open bier.",
@@ -1752,12 +1768,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "woman-with-parrot": {
-about: "Believed to be Renoir's farewell portrait of Lise Tréhot, the companion and model who left him to marry an architect shortly after, painted in 1871 amid the aftermath of the Paris Commune.",
-by: "Opus 4.8" },
+about: "Believed to be Renoir's farewell to Lise Tréhot — his companion and model through the late 1860s, who left him to marry an architect soon after — painted in 1871 in the aftermath of the Paris Commune, in the dark, carefully finished Salon manner he would abandon within a few years. She plays with the bird while its gilt cage stands empty; a caged-bird theme Courbet and Manet had painted before him leaves the parallel hanging quietly over the plush interior.",
+deep: "A woman bends her head toward a small green parrot perched on her raised fingers, absorbed in the creature, sealed off from any viewer — and everything else in the picture exists to protect that quiet exchange. The great dark mass of the dress, the enclosing foliage and drapery, the sealed interior with no window and no exit, all press inward and hold the gaze on that soft loop of attention between woman and bird. A scarlet ribbon falls down the left side of the gown, doing the work of keeping the black alive; a gilt cage — empty, its bars catching the hardest light in the painting — waits to receive the bird that is momentarily free. The association Renoir inherits from Courbet and Manet is still here: the woman and the parrot share the same gilded domestic enclosure. Yet his interest is less in that irony than in the warmth of the gesture and the richness of the room, a contemporary bourgeois scene made worthy of a carefully resolved Salon canvas, painted by a young artist who was already, in the feathery strokes of the plants and the dappled floor, beginning to break his touch open.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "several-circles": {
-about: "Kandinsky called the circle the form that \"points most clearly to the fourth dimension,\" a synthesis of the concentric and eccentric held in equilibrium, and this 1926 Bauhaus painting is his fullest demonstration of that theory.",
-by: "Opus 4.8" },
+about: "Kandinsky called the circle the form that \"points most clearly to the fourth dimension\", the synthesis of concentric and eccentric held in equilibrium, and this 1926 canvas from his Dessau Bauhaus years is the fullest demonstration he ever gave of that theory — painted the same year he published his book on point, line and plane. Discs of varied size and transparency float in a black that is not background but deep field, geometry crossing over into cosmos.",
+deep: "Pure circles on pure black, and suddenly you are not looking at geometry — you are looking at a cosmos. That shift is the whole proposition: a single repeated form, varied by size and colour and opacity across a deep dark field, is enough to conjure planets, orbits, moons, distances. The black is not background; it has atmosphere, faint tonal drifts and slow swirling movements that give the void depth, so the discs seem to float at different distances rather than sit on a flat surface. A massive haloed blue ring, hollow at the core like an eclipse, dominates the upper left and pulls everything into orbit around it, while a pale grey-lilac sphere low at the right acts as quiet counterweight across the diagonal. Where smaller circles overlap in the central cluster, their shared areas darken, each disc reading as transparent glass laid over the one behind — depth without perspective. Kandinsky was arguing, at the height of his Bauhaus years, that abstraction could be serene and lawful rather than turbulent, and this canvas is that argument made weightless.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "still-life-flowers": {
 about: "Painted during Renoir's classical \"dry period\" when he was experimenting with fresco-like technique to emulate Italian murals, a method that produced visible surface cracking in this 1885 bouquet and others from the same years.",
@@ -1874,8 +1894,10 @@ about: "The officer's head is about twice as wide as the girl's — a scale disc
 by: "Opus 4.8" },
 
 "girl-interrupted-at-her-music": {
-about: "The woman at the music stand has stopped playing and turned to look directly out of the canvas — the painting's title names you as the intruder. Vermeer, c.1658–59, deepens the scene with a barely visible Cupid on the wall behind, quietly marking the lesson as a courtship.",
-by: "Opus 4.8" },
+about: "The title casts you as the intruder: the young woman has stopped playing and turned from her music to look straight out of the canvas at whoever just entered. Vermeer painted it around 1658–59, early in his career of compartmented rooms lit from a left window, and hung his recurring emblem over the scene — a barely visible Cupid brandishing the card of constancy, fidelity to one love — turning a music lesson into a quiet argument about courtship. Centuries of overcleaning have rubbed the surface toward bluntness; the turned face still lands.",
+deep: "A private moment has just been ruptured, and the charge of it is handed to you. The young woman had been sharing a sheet of music with the man leaning close behind her — teacher and suitor folded into one figure, the standard Dutch pretext for staging desire respectably — when something made her lift her head and look out directly, catching whoever has just walked in. That single swivel is where the whole room's tension collects and releases. Everything around it is argument: on the back wall a barely legible Cupid holds up a single card, the emblem of constancy and faithful love, hanging over a scene of a man pressing his attentions on a young woman and turning the encounter into a quiet moral proposition. On the table between the light and the sitter sit a wine jug and a glass, a second temptation stacked onto the first. A birdcage hangs at the bright window, speaking of enclosure and desire penned in. A stringed instrument lies idle in the shadowed foreground, a second player's absence quietly implied. The room distributes its meanings so plainly around so ordinary an interior that it almost hides them — until that face turns and the whole arrangement snaps into focus.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "mistress-and-maid": {
 about: "Henry Clay Frick bought this in 1919, the year he died — the last work he ever acquired. Vermeer, c.1666-67, left the mistress's face and hands without final modelling, and scholars debate whether the canvas is unfinished or simply his late, looser touch.",
@@ -1894,8 +1916,10 @@ about: "One half of a pair — its pendant Wisdom and Strength also hangs at the
 by: "Opus 4.8" },
 
 "mother-and-children": {
-about: "Renoir sent this as the centrepiece of the Second Impressionist Exhibition in 1876, retitling it \"La Promenade,\" yet most critics simply ignored it; he painted a mother and two identically dressed daughters mid-stroll through a Paris park, ca. 1875.",
-by: "Opus 4.8" },
+about: "Renoir sent this as the centrepiece of the Second Impressionist Exhibition in 1876 under the title La Promenade, and most critics simply ignored it — a family stroll, painted around 1875 and given the size and finish of an ambitious Salon picture, was itself the provocation. A woman leads two identically dressed small daughters through a Paris park; the elder carries her doll the way a mother carries an infant, the picture's theme rehearsed in miniature.",
+deep: "Leisure, childhood, and expensive clothing are offered here as sufficient subjects for a large canvas — a quiet insistence that a family's walk in a public park deserves the scale once reserved for saints and history. The group stacks as a soft triangle, the woman's face calm at the apex, two small girls widening the base, and the composition's real ingenuity is in how it layers the same gesture three times: woman leading children, older girl cradling a doll exactly as a mother would hold an infant, the child already rehearsing the role that frames her. The clothing carries its own argument about comfort and class — matched blue-green coats trimmed with feathery white fur, expensive and coordinated, spelling out the family's ease in fabric before faces do. Behind the foreground group, blurred strollers and seated figures confirm that this tenderness is performed in a peopled park, watched and watching; the picture asks you to find that display charming rather than to question it. Whether that invitation feels generous or saccharine is the question the work leaves open.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "self-portrait-rembrandt": {
 about: "Two years after declaring insolvency and surrendering his goods to creditors, Rembrandt painted himself enthroned in a fur-lined robe, commanding and immovable — one of the most defiant self-images in Western art, 1658.",
@@ -1966,12 +1990,16 @@ about: "Gainsborough painted this ca. 1783 scene of fashionable London promenade
 by: "Opus 4.8" },
 
 "the-white-horse": {
-about: "The first of Constable's celebrated \"six-footers\" — monumental Stour Valley landscapes — this 1819 Royal Academy exhibit drew more attention than anything he had shown before, helping secure his election as an Associate of the Academy.",
-by: "Opus 4.8" },
+about: "The first of Constable's six-footers — the full-scale Stour Valley canvases on which he staked his reputation — this 1819 Royal Academy entry drew more notice than anything he had shown and won him election as an Associate that same year, recognition slow in coming to a painter of working English countryside. The event itself is nothing: a towing-horse ferried over the river on a flat barge because the towpath switches banks. That nothing, he insisted, deserved history painting's full scale.",
+deep: "A pale towing-horse stands on the deck of a flat lighter, being ferried across the Stour because the towpath changes banks here — and Constable insists that this unremarkable logistics of river navigation deserves six feet of canvas and the full ambition of history painting. The argument runs through everything: the horse is placed dead at the centre, the coolest and lightest solid form in the lower half, so the eye arrives there at once; beside it a bargeman leans into his pole, small and sketched but supplying the human labour that explains the scene; to the right, cattle stand in the shallows as part of the same ordinary rural economy. What holds it all together is the sky, given over to piled, restless cumulus that silvered the water below into a mirrored corridor reaching into the distance. Constable handled the water smooth and the sky rough on purpose — still surface against loaded, broken touches — to show that changeable English light falling on an unremarkable Suffolk valley was the engine of a serious picture, and that beauty and dignity live in exactly this kind of unglamorous working place.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "don-pedro-duque-de-osuna": {
-about: "The third known portrait Goya made of Spain's enormously wealthy ninth Duke of Osuna, painted ca. 1795-1800, it is strikingly informal — the duke forgoes his Golden Fleece — compared with Goya's tightly academic earlier likenesses of the same sitter.",
-by: "Opus 4.8" },
+about: "The third portrait Goya painted of Spain's enormously wealthy ninth Duke of Osuna, around 1795–1800, and by far the least official: the duke forgoes even his Golden Fleece, and the tightly academic earlier likenesses give way to a dark ground, a face, and a small folded paper — the familiarity of a patron and painter who had worked together for years. The white waistcoat goes down in fast sweeps you can still see; the buttons are single dabs that read as metal from placement alone.",
+deep: "A grandee stripped of every mark of grandeur: no sword, no sash, no coat of arms, only a face intelligent and faintly amused, and the darkness that forces the encounter to be with his character alone. The Osuna family were among the painter's most important patrons, so the ease here is the ease of a long working relationship, the refusal of pomp a shared preference rather than a diplomatic omission. What the darkness does, structurally, is the same thing the restraint does socially: it eliminates everything that does not matter so the lit passages ring. Those passages are few — face, white stock, the pale waistcoat laid in with fast horizontal sweeps, and a row of buttons struck on with single dabs of cool paint that become metal only through placement. The small folded paper in his hand is the one prop allowed, and it marks a man of correspondence rather than ceremony. Bravura disguised as restraint is the whole method: form built from the fewest possible decisions, effort concentrated on knowing what to leave out, and a late-eighteenth-century ideal of the cultivated nobleman realized not through accumulation but through confident subtraction.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "view-of-the-cannaregio-canal-in-venice": {
 about: "Guardi painted the Cannaregio Canal not as a grand tourist route but as a working neighbourhood artery, filling the foreground with gondoliers and tradespeople rather than ceremony. The loose brushwork dissolves architecture into light and atmosphere, c.1770.",
@@ -1982,7 +2010,7 @@ about: "The painter born Étienne Dinet converted to Islam, took the name Nasred
 by: "Opus 4.8" },
 
 "the-milkmaid": {
-about: "Vermeer gave a low-ranking kitchen servant the pyramidal mass and gravity of a devotional figure, treating the act of pouring milk as something worthy of the same attention as a religious subject. The Rijksmuseum's most visited work, c.1658.",
+about: "Vermeer gave a low-ranking kitchen servant the pyramidal mass and gravity of a devotional figure, treating the act of pouring milk as something worthy of the same attention as a religious subject. The Rijksmuseum's most visited work, c. 1660.",
 deep: "The governing idea is total attention as the highest form of reverence — and Vermeer enacts it simultaneously in every dimension the painter controls. In subject, a kitchen servant given no named status, doing the least prestigious task in the house, is accorded the pyramidal mass and frontal gravity of a devotional figure; the irony-free claim is that mindful labor is already sacred. In pigment, ultramarine — as costly as gold, reserved by rivals for Madonnas and skies — is spent on an apron; the bread's crust is built from actual raised dots of paint so they catch actual light, the same material insistence. In time, the thread of falling milk is the sole moving thing in the room: every other element is locked still, and that arrested half-second of pouring is held permanently, making a transient gesture inexhaustible. And then the wall: bare plaster, nail holes, a shadowed patch — a surface most painters would leave as neutral backdrop — rendered with the care other painters reserved for faces. Subject, pigment, duration, even negative space: each is a different register in which Vermeer performs the same act, and together they make the argument that the negligible, when met with complete attention, becomes sacred on its own terms.",
 deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
@@ -2040,8 +2068,10 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "madonna-of-the-pinks": {
-about: "Long dismissed as a copy and held unrecognised in the Duke of Northumberland's collection, this small devotional panel was reattributed to Raphael in the early 1990s, triggering an export battle that ended when the National Gallery bought it for £22 million in 2004. Raphael, c.1506.",
-by: "Opus 4.8" },
+about: "For generations this small panel hung unrecognised in the Duke of Northumberland's collection, dismissed as one of many copies after a lost Raphael; reattribution to Raphael's own hand in the early 1990s set off an export battle that ended with the National Gallery buying it for £22 million in 2004 after a public campaign. Painted about 1506, in his Florentine twenties under Leonardo's spell — a picture you could cover with a sheet of paper, carrying that much devotion.",
+deep: "Tenderness and foreknowledge occupy the same small space here, and the picture never lets you separate them. At the center four hands pass pink carnations back and forth — the child reaching for what looks like a bright toy, the mother offering what she knows will one day name his death, since carnations by tradition recalled the nails of the Cross. That double reading is the emotional engine, and Raphael keeps it completely natural: nothing announces itself as symbol. The flesh is rendered with a softness drawn from Leonardo's intimate Madonnas — light dissolving into shadow across the cheek and belly, no hard edge anywhere — yet the faces are warmer and more legible than Leonardo's, absorbed in each other rather than in mystery. A window at upper right cuts the dark room open onto cloud and a distant ruin, releasing both the eye and the sense of time: the wider story waits beyond this private moment. The panel is barely the span of a hand, made for one pair of eyes at a time, and the scale is part of the meaning — sacred doctrine pitched so quietly, so close, that you feel it as physical warmth before you read it as theology.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "the-lady-of-shalott": {
 about: "Sir Henry Tate donated this to the public in 1894, making it central to the collection he founded. Waterhouse, 1888, shows Tennyson's cursed weaver at the moment she looses her chain and steps into the boat that will carry her, singing, to her death.",
@@ -2271,8 +2301,10 @@ about: "Painted in 1915 when Korea was under Japanese occupation, An Jung-sik �
 by: "Opus 4.8" },
 
 "london-the-houses-of-parliament-sunlight-opening-in-fog": {
-about: "Monet painted nearly a hundred views of the Thames from a fixed terrace at St Thomas's Hospital, working the same scene across different hours and weather until fog and sunlight became the true subject; this 1904 canvas, now at the Musée d'Orsay, is one of the series' most dissolved and solar.",
-by: "Opus 4.8" },
+about: "Monet painted the Thames from a fixed terrace at St Thomas's Hospital across nearly a hundred canvases, chasing the fog he had come to London for, switching pictures as the light moved and finishing them back at Giverny long after each particular sun had gone. This 1904 canvas is among the most dissolved and solar of the series: Parliament thinned to a rumour between the sun and its burning reflection, one break of light through fog made the entire subject.",
+deep: "A monument turns to rumour while a shaft of light becomes the only solid thing. Monet arranges this canvas as a vertical current of warmth running from the sun at the top, through the ghost of Parliament in the middle, down to its reflection burning across the Thames below — and the cold violet fog between those three events is what holds them apart, making the world read as temperature rather than as stone or city. The palace, London's most legible landmark, is painted with thin, dragged strokes that let the fog come through, so its towers feel less certain than the mist pressing against them; no window, no cornice, no coursework survives. Meanwhile the one break of sun arrives as a dense, frayed knot of orange and red that eats into the haze at the edges rather than sitting above it. That opening is the trouee named in the title, and everything else — the dark mass to its right, the shimmer of stippled warm dabs below — is arranged to serve it. What makes the picture stranger still is that the particular fog it records had already lifted long before Monet finished the canvas: the series was completed at Giverny, far from London, resolved from memory and notes, so the single glimpse turns out to be a distillation of many mornings into one invented instant.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "the-musicians": {
 about: "Painted around 1595 as one of Caravaggio's first commissions for Cardinal del Monte, this staged the cardinal's music room back at him, using real companions as models — including Caravaggio himself, peering out from the second boy on the right. Four youths crowd shoulder to shoulder before a note is played, one tuning a lute while a half-hidden Cupid reaches into grapes, tying love and wine to the concert.",
@@ -2293,8 +2325,10 @@ about: "In 1959 Arthur Houghton bought this manuscript whole, then had its 258 m
 by: "Opus 4.8" },
 
 "circe-invidiosa": {
-about: "Circe pours poison into the sea not to harm a sailor, but to destroy a rival: the sea-god Glaucus wanted the nymph Scylla, so the jealous enchantress poisoned Scylla's bathing pool, transforming her into the barking-dog monster that would later devour Odysseus's crew. Waterhouse draws the moment from Ovid's Metamorphoses, casting it in a palette of deep, menacing greens.",
-by: "Opus 4.8" },
+about: "Waterhouse took the moment from Ovid's Metamorphoses: the sea-god Glaucus asked Circe for a love-charm to win the nymph Scylla, and the spurned enchantress instead poisons Scylla's bathing pool — the potion will turn the girl into the barking monster that later devours Odysseus's crew. Painted in 1892 in deep, menacing greens — envy's traditional colour — her bare feet rest on a half-submerged sea-creature, mastery of the element made literal.",
+deep: "Jealousy given a bowl and a stream — that is the image Waterhouse builds here, and the saturated green that floods gown, water, potion and the very light is the colour of invidia, envy, by old convention. The moment is from Ovid: Circe, spurned by the sea-god Glaucus who wants a love-charm for the nymph Scylla rather than for her, answers by poisoning the pool where Scylla bathes. The design makes the act feel inevitable. A tall, narrow canvas locks figure and falling liquid onto a single axis, the unbroken ribbon of potion from bowl to pool serving as the painting's spine and its narrative in one line — not splashed but poured, controlled, calculated. Her expression matches the pour: eyes lidded and downward, mouth set, a face that has fully decided. The enclosing rock abolishes sky, sealing the scene like a private chamber; the all-over green collapses figure and setting into a single poisonous field, beauty and menace fused until there is no separating them. Standing on the coiled body of a sea-creature beneath the surface, she commands the element completely, and the only movement in this still picture is the disturbance where the stream lands — consequence spreading outward in rings.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "a-holiday-at-mentone": {
 about: "Conder was twenty years old and had been in Melbourne only a few weeks when he painted this — making it his first Australian work and one of the founding canvases of the Heidelberg School. The beach at Mentone, just south of the city, gave him a subject that let him match the flat, bleaching Australian noon light against the fashionable decorum of the figures.",
@@ -2409,16 +2443,20 @@ about: "Van Gogh arrived in Arles in February 1888 to find the southern countrys
 by: "Opus 4.8" },
 
 "jean-baptiste-camille-corot-diana-bathing": {
-about: "Corot painted fewer than thirty nudes across his career, almost all of women, and this 1873 Diane au bain — with his favourite model Emma Dobigny reportedly among the figures — belongs to the late silvery woodland series that surprised contemporaries who knew him as a landscapist. Two figures rest in dappled forest light: one standing, one seated at the edge of shadow, their forms blurring softly into the foliage in the feathery manner Corot had developed by his seventies.",
-by: "Opus 4.8" },
+about: "Corot painted fewer than thirty nudes in his whole career, and this one, from 1873 — his favourite model Emma Dobigny reportedly among the figures — comes from the final years of silvery woodland reveries he called souvenirs: distilled memories of nature, not views of places. He was in his seventies, two years from death, feathering the foliage until figures and wood share one substance. The myth sits lightly — none of Diana's attributes appear, no bow, hound or crescent — and the scene could as easily be mortal women bathing in any French wood.",
+deep: "Myth is present here only as a loose permission — no bow, no hound, no crescent — and what fills the space instead is a mood held perfectly still: the sensation of a cool, half-lit forest at the hour when everything softens. The standing nude is painted as if she belongs to the light rather than inhabits it, her warm ivory flesh kept deliberately brighter than anything else in a canvas tuned to a single silvery-green key, so the eye is pulled to her before it reads the wood at all. She reaches to gather her hair, unaware, face tilted gently aside — a posture of private absorption that makes the encounter feel stolen rather than staged. Deeper into shadow a second figure sits among the roots, dimmed almost to the value of the earth; her presence gives the scene its mythological cover while keeping it just as plausibly two bathers in an ordinary glade. The foliage above is handled as haze rather than description, feathered strokes dissolving into atmosphere, so the whole wood becomes a soft element the figures breathe rather than a backdrop behind them. This late-career distillation — a souvenir of nature idealised, not observed — holds mood and form in the same silvery suspension.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "gustave-caillebotte-untitled-2": {
 about: "Chrysanthèmes dans un vase, painted in 1893, draws on flowers from Caillebotte's garden at Petit-Gennevilliers, the property outside Paris where he spent his last decade gardening and sailing rather than painting city streets. Chrysanthemums were prized in France for their East Asian associations and vivid autumn colour; Caillebotte returned to them across multiple canvases that year, including the large close-up now at the Met and a white-and-yellow version in the Marmottan.",
 by: "Opus 4.8" },
 
 "edgar-degas-woman-drying-herself": {
-about: "Degas described his bather pastels as views through a keyhole — women moving without awareness of being watched — and this late work, dated c.1906, shows the pose seen from behind and above, the figure absorbed entirely in the act of drying her hair. By this period his eyesight was failing and he worked pastel over pastel in dense, urgent hatching; the series of roughly 200 bather pastels, made from the 1880s to the end of his career, remained largely in his studio at his death.",
-by: "Opus 4.8" },
+about: "Degas likened his bather pastels to views through a keyhole — women moving as if unwatched — and this late sheet of about 1906 comes from the far end of that obsession: roughly 200 bathers made from the 1880s onward, most still in his studio when he died. By now his eyesight was failing and the pastel goes on in dense, urgent hatching, drawn and redrawn. The model is turned wholly away, absorbed in towelling herself dry; the back, not the face, carries everything.",
+deep: "The back is the whole event — torqued, reaching, caught in the private mechanics of a moment no one was meant to witness. Degas turns his model away and gives her a task, so what registers first is effort and torsion rather than allure: the long spine bending, the shoulder blades pulling apart, both arms raised to drag a towel across the back of the neck. By withholding the face and cropping the figure so tightly it seems stumbled upon, he delivers the sensation of looking through a keyhole — not at a body offered for viewing but at an ordinary human act absorbed in itself. The medium matches the method: pastel laid in bold hatched strokes that stay visibly separate, warm amber flesh answered by cool blue-green behind, contours drawn and redrawn so the figure seems still to be settling into place. Body and background are worked as a single continuous fabric of marks rather than figure on backdrop, and the only rest for the eye is the near-white bar of the towel at the top of the reach — the small bright anchor that explains everything the arms are doing.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "pierre-auguste-renoir-untitled": {
 about: "Poires et pommes, c.1890, is among Renoir's still lifes most visibly shaped by Cézanne — the draped white cloth with its considered folds, the close arrangement of fruit, the warm brick-red ground — painted at a moment when Renoir was reworking his style after the \"Ingres period\" crisis of the mid-1880s. The Musée de l'Orangerie holds a version; the FBI's National Stolen Art File also lists a Poires et Pommes by Renoir, suggesting the title was used more than once.",
@@ -2482,8 +2520,10 @@ about: "Vuillard, a founding member of the Nabis, believed that the figurative d
 by: "Opus 4.8" },
 
 "odilon-redon-fantasia": {
-about: "By 1910 Redon had left behind the monochrome charcoal works he called his \"noirs\" and entered what he described as entering colour \"as if into paradise\" — and Fantasia sits squarely in that late, chromatically liberated phase. Swirling oranges, blues, and pinks dissolve landscape and form into pure atmospheric sensation, showing the former Symbolist now using colour itself as the dreamwork. The medium appears to be oil on canvas rather than pastel.",
-by: "Opus 4.8" },
+about: "Redon spent half his career in black — the charcoals and lithographs he called his noirs — then, past sixty, entered colour by his own account \"as if into paradise\". This 1910 canvas comes from that late liberation: a ghost-pale head surfacing inside a yellow burst, worked up from a scratched dark ground so that light appears to rise from inside the picture rather than fall on it. The title points to music — an improvisation following feeling, not rule.",
+deep: "Reverie given color: that is what surfaces here, a pale head adrift in an aureole of radiating yellow, nothing beneath it but atmosphere, no horizon to fix it in space. The title claims music, not image — a fantasia being improvisation that follows feeling rather than rule — and the canvas holds to that claim, drifting between a face, a halo, an animal's glowing mane without settling on any. Redon built this openness technically: a scratched, scumbled ground of dense dark, then luminous passages coaxed out of it in blooms, reversing the usual order so the light seems to emit from within rather than sit on the surface. The yellow burst fans outward in radiating strokes, making the aureole without ever drawing one; the soft head dissolves at its edges so you cannot say where form ends and glow begins; the hot red-orange ribbons at lower left give the eye a warm anchor and pull it back from pure vapor. Against younger painters who were dismantling the object entirely, Redon kept a suggested figure — but pictures like this one show how close his reverie could drift to feeling alone, devotion without doctrine, the inward image offered as atmosphere to be entered rather than a scene to be solved.",
+deepBy: "Sonnet 4.6",
+by: "Fable 5" },
 
 "jan-ciaglinski-ganges-po-zachodzie-s-onca-z-podrozy-do-indii": {
 about: "Ciągliński (1858–1913), described by historians as one of the first Russian Impressionists despite his Polish birth, was known for energetic travel sketching across North Africa, the Middle East, and India — earning the nickname \"frenetic Jan.\" This 1907 oil from his India journey captures the Ganges at sunset in rapid, unresolved strokes, the orange sky and violet mountains reading as direct plein-air sensation rather than finished studio work.",
