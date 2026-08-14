@@ -124,17 +124,30 @@ function ConfChip({ conf }) {
 
 function Card({ w, go }) {
   const img = w.imgGrid;
+  const title = w.label && !/^TBC/.test(w.title) ? w.title : w.title.replace(/^TBC — /, "");
+  const byline = w.artist.replace(/\s*\(.*\)$/, "") + (w.year ? " · " + w.year : "");
+  const info = ((window.CANVAS_ART_ABOUT || {})[w.id] || {}).about;
   return (
     <div className={"cv-card" + (img ? "" : " cv-text")} data-conf={w.seenConfidence}
       onClick={() => go("work", w.id)} title={w.title}>
       {(w.favorite || w.floored) ? <span className="cv-fav">★</span> : w.liked ? <span className="cv-fav">♡</span> : null}
       {img && <img src={img} alt={w.title} loading="lazy" />}
       <div className="cv-label">
-        <div className="cv-title">{w.label && !/^TBC/.test(w.title) ? w.title : w.title.replace(/^TBC — /, "")}</div>
-        <div className="cv-artist">{w.artist.replace(/\s*\(.*\)$/, "")}{w.year ? " · " + w.year : ""}</div>
+        <div className="cv-title">{title}</div>
+        <div className="cv-artist">{byline}</div>
         {!img && w.note && <div className="cv-note">{w.note.split(" NOTE:")[0].split(" Attribution")[0]}</div>}
         {!img && <div className="cv-why">{/TBC/.test(w.title) ? "awaiting the recall deck" : "image withheld — in-copyright artist"}</div>}
       </div>
+      {/* hover peek (Fuad 2026-08-15): the fused Info unveils over the block — title, then
+          artist · year beneath it stuck left, then the read. The old translateY shove is
+          replaced by the unravelling shadow behind the card (see .cv-card:hover). */}
+      {img && info && (
+        <div className="cv-card-peek" aria-hidden="true">
+          <div className="cv-title">{title}</div>
+          <div className="cv-artist">{byline}</div>
+          <div className="cv-peek-info">{info}</div>
+        </div>
+      )}
     </div>
   );
 }
@@ -1084,13 +1097,11 @@ function Reader({ id, go }) {
                 <div className="cv-r-tiers">
                   <button data-on={tier === "about"} onClick={() => setTier("about")}>Info</button>
                   <button data-on={tier === "deep"} onClick={() => setTier("deep")}>Interpretation</button>
-                  {read.web && <button data-on={tier === "web"} onClick={() => setTier("web")}>Web</button>}
                 </div>
               </div>
               {/* full long-form studies live in Study mode (#/study/<id>), not as a flat tier here */}
-              {/* web = the campaign-era hook-first Info a re-distilled Info superseded (web-verified facts) */}
-              <div className="cv-r-read-txt">{tier === "web" && read.web ? read.web : tier === "deep" ? read.deep : read.about}</div>
-              <div className="cv-r-read-by">via {tier === "web" && read.web ? (read.webBy || read.by || "Fable") : (tier === "deep" && read.deepBy) ? read.deepBy : (read.by || "Fable")}</div>
+              <div className="cv-r-read-txt">{tier === "deep" ? read.deep : read.about}</div>
+              <div className="cv-r-read-by">via {(tier === "deep" && read.deepBy) ? read.deepBy : (read.by || "Fable")}</div>
             </div>
           )}
           {pal && (
