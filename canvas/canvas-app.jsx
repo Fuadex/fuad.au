@@ -138,13 +138,12 @@ function Card({ w, go }) {
         {!img && w.note && <div className="cv-note">{w.note.split(" NOTE:")[0].split(" Attribution")[0]}</div>}
         {!img && <div className="cv-why">{/TBC/.test(w.title) ? "awaiting the recall deck" : "image withheld — in-copyright artist"}</div>}
       </div>
-      {/* hover peek (Fuad 2026-08-15): the fused Info unveils over the block — title, then
-          artist · year beneath it stuck left, then the read. The old translateY shove is
-          replaced by the unravelling shadow behind the card (see .cv-card:hover). */}
+      {/* hover peek (Fuad 2026-08-15): the label keeps title with artist · year right
+          beneath it; on hover the fused Info unfolds UNDER the label as an extension of
+          the block, floating over the cards below (no wall reflow), carried by the
+          unravelling shadow behind the block. */}
       {img && info && (
         <div className="cv-card-peek" aria-hidden="true">
-          <div className="cv-title">{title}</div>
-          <div className="cv-artist">{byline}</div>
           <div className="cv-peek-info">{info}</div>
         </div>
       )}
