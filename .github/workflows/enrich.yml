@@ -46,22 +46,51 @@ jobs:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: node enrich-stats.js 6000
 
+      # 3000 -> 6000 (Fuad 2026-08-16): the 3000-cap seam is exactly where Fu Manchu
+      # (rank ~1761 in some index orderings, absent in others) fell through for months —
+      # all caps now match at 6000 so no layer has a private cutoff.
       - name: last.fm bios + similar
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-        run: node enrich-bios.js 3000
+        run: node enrich-bios.js 6000
+
+      - name: last.fm per-album tags
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+        run: node enrich-album-tags.js
 
       - name: MusicBrainz origins (gender / life-span)
         run: node enrich-origins.js 6000
 
       - name: MusicBrainz aliases
-        run: node enrich-aliases.js 3000
+        run: node enrich-aliases.js 6000
+
+      # keyless, 1 req/s, incremental — first run works off a large backlog and may take
+      # a couple of hours; every later week is new-artists-only
+      - name: MusicBrainz deep pull (release-groups + relations)
+        run: node enrich-mb.js 6000
+
+      - name: Wikidata (formation city, members, coords) — keyless SPARQL
+        run: node enrich-wikidata.js
+
+      # lights up automatically once TICKETMASTER_API secret is added to the repo;
+      # until then the script exits with a missing-key message and the step is skipped
+      - name: Ticketmaster upcoming concerts (top 200)
+        continue-on-error: true
+        env:
+          TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API }}
+        run: node enrich-concerts.js 200
+
+      - name: Coverage report (gaps by play-band, to the Actions log)
+        run: node enrich-coverage.js || true
 
       - name: Commit refreshed caches
         run: |
           git config user.name "rotation-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add tag-cache.json artist-stats.json artist-bios.json artist-origins.json artist-aliases.json
+          git add tag-cache.json artist-stats.json artist-bios.json artist-origins.json artist-aliases.json \
+                  artist-mb.json wikidata-cache.json album-genres.json
+          git add concerts-cache.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "caches already fresh"
           else
