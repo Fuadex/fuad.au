@@ -73,14 +73,9 @@ jobs:
       - name: Wikidata (formation city, members, coords) — keyless SPARQL
         run: node enrich-wikidata.js
 
-      # lights up automatically once TICKETMASTER_API secret is added to the repo;
-      # until then the script exits with a missing-key message and the step is skipped
-      - name: Ticketmaster upcoming concerts (top 200)
-        continue-on-error: true
-        env:
-          TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API }}
-        run: node enrich-concerts.js 200
-
+      # NB: Ticketmaster is NOT here on purpose — tour.yml already does the settled
+      # location-first pull (markets + radius, lineups intersected with the library)
+      # every Monday with the TICKETMASTER_API secret. Don't duplicate it.
       - name: Coverage report (gaps by play-band, to the Actions log)
         run: node enrich-coverage.js || true
 
