@@ -535,12 +535,20 @@ function LikedRadar({ rows, size, target, onTarget, dimmed }) {
   );
 }
 function LikedRow({ r, legendByCode, famById, go, navable, albumCover }) {
-  const [id, plays, firstYear, code, famId, tempo, energy] = r.meta;
+  // id (spotify track id) is no longer read — the row-level Spotify redirect was removed (owner
+  // 2026-08-17, "redundant"). Kept in the destructure only to hold the positional slot.
+  const [, plays, firstYear, code, famId, tempo, energy] = r.meta;
   const leg = legendByCode[code] || { key: "mid", label: "Mid" };
   const color = LIKED_BUCKET_COLOR[leg.key] || "oklch(0.68 0.12 320)";  // brand labels get a fixed violet
   const fam = famId != null ? famById[famId] : null;
   const canNav = navable && go;
   const hue = fam ? fam.hue : 40;
+  // genre → colour: the family hue tints the ARTIST NAME (all widths — harmless, and it's how the
+  // genre survives once its text chip is hidden on mobile). Discoverable via the title tooltip.
+  const famTint = fam ? "oklch(0.72 0.11 " + fam.hue + ")" : "var(--ink-faint)";
+  // bucket label → single leading capital (owner: "just first capital letters"), full word in title.
+  // Applied at ALL widths; the chip shell + colour stay so it still reads as the classification pip.
+  const bucketLetter = (leg.label || "?").charAt(0).toUpperCase();
   return (
     <div className="lk-row" style={{ display: "flex", alignItems: "center", gap: 10, height: 52, padding: "0 4px", borderBottom: "1px solid var(--rule)", cursor: canNav ? "pointer" : "default" }}
       onClick={canNav ? () => go("track", r.key) : undefined}>
@@ -551,21 +559,21 @@ function LikedRow({ r, legendByCode, famById, go, navable, albumCover }) {
         <GenCover hue={hue} name={r.artist} size={28} radius={999} />
         <GenCover hue={hue} name={r.album || r.artist} image={albumCover || ""} thumb={albumCover || ""} size={28} radius={5} />
       </div>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: canNav ? "var(--ink)" : "var(--ink-soft)" }}>{r.track}</div>
-        <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-          {r.artist}{fam ? <span style={{ color: "oklch(" + "0.7 0.12 " + fam.hue + ")" }}> · {fam.family}</span> : ""}
+      <div className="lk-title" style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: canNav ? "var(--ink)" : "var(--ink-soft)" }} title={r.track}>{r.track}</div>
+        <div className="r-mono" style={{ fontSize: 10, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
+          title={fam ? r.artist + " · " + fam.family : r.artist}>
+          {/* artist name carries the genre as a colour tint (fam hue). The " · genre" text stays on
+              desktop for legibility but is hidden on mobile (.lk-genre) — the tint is the mobile cue. */}
+          <span style={{ color: famTint }}>{r.artist}</span>{fam ? <span className="lk-genre" style={{ color: famTint }}> · {fam.family}</span> : ""}
         </div>
       </div>
-      <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", width: 70, textAlign: "right", whiteSpace: "nowrap" }}
+      <span className="r-mono lk-nums" style={{ fontSize: 9.5, color: "var(--ink-faint)", width: 70, textAlign: "right", whiteSpace: "nowrap" }}
         title={tempo != null ? tempo + " BPM · energy " + energy : "no audio features"}>
         {tempo != null ? tempo + "♩" : ""}{tempo != null && energy != null ? " " : ""}{energy != null ? "e" + energy : ""}</span>
-      <span className="r-chip" style={{ borderColor: color, color, textTransform: "none", cursor: "inherit" }}>{leg.label}</span>
-      <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)", width: 46, textAlign: "right" }}>{plays ? plays + "p" : "—"}</span>
-      <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 34, textAlign: "right" }}>{firstYear || "·"}</span>
-      <a href={"https://open.spotify.com/track/" + id} target="_blank" rel="noopener noreferrer" title="open on Spotify"
-        onClick={e => e.stopPropagation()}
-        style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 26, height: 26, borderRadius: 999, border: "1px solid var(--rule-2)", color: "oklch(0.72 0.17 150)", textDecoration: "none", flexShrink: 0, fontSize: 13 }}>♪</a>
+      <span className="r-chip lk-bucket" style={{ borderColor: color, color, textTransform: "none", cursor: "inherit" }} title={leg.label}>{bucketLetter}</span>
+      <span className="r-mono lk-nums" style={{ fontSize: 10.5, color: "var(--ink-soft)", width: 46, textAlign: "right" }}>{plays ? plays + "p" : "—"}</span>
+      <span className="r-mono lk-nums" style={{ fontSize: 10, color: "var(--ink-faint)", width: 34, textAlign: "right" }}>{firstYear || "·"}</span>
     </div>
   );
 }
@@ -983,6 +991,19 @@ function LikedView({ go }) {
         .lk-quiet .lk-row:hover { background: var(--bg-2); }
         .lk-quiet input:hover { border-color: var(--ink-faint); }
         .lk-quiet input:focus { border-color: var(--accent-dim); box-shadow: 0 0 0 3px var(--accent-bg); }
+        /* bucket pip (Fuad 2026-08-17): the classification chip now shows only its leading capital
+           (D/L/F/C/S/M, full word in the title). A fixed round pip keeps the column tidy now that the
+           text is one glyph — applies at every width. */
+        .lk-quiet .lk-bucket { flex-shrink: 0; width: 20px; height: 20px; padding: 0; display: inline-flex;
+          align-items: center; justify-content: center; border-radius: 999px; font-weight: 600; }
+        /* MOBILE (Fuad 2026-08-17): reclaim the row for the song name. The right-side numeric cluster
+           (tempo/energy, plays, first-year) collapses out entirely — there is simply not enough width;
+           the values stay reachable on desktop. The " · genre" text also hides (the artist-name colour
+           tint carries the genre now). The bucket pip stays as the one right-side survivor. */
+        @media (max-width: 760px) {
+          .lk-quiet .lk-nums { display: none; }
+          .lk-quiet .lk-genre { display: none; }
+        }
       `}</style>
       {/* (the "← spotify" back button was removed on request — Fuad 2026-08-12; Liked is now a
           first-class navbar destination, so the up-navigation was noise) */}
