@@ -322,7 +322,13 @@ function MiniArtistView({ a, go }) {
           /* compact dossier — a single centered column so a sparse explore artist reads as one
              composed document, not scattered cards. The inner cards keep their own r-card chrome
              but line up in one narrow stack. No backticks in this comment. */
-          .mav-dossier { max-width: 700px; margin: 0 auto; display: grid; gap: var(--gap); }
+          /* minmax(0,1fr) (Fuad 2026-08-16, the Fu Manchu "tabulated" report): without it the single
+             implicit column grows to the widest child's MIN-CONTENT — the simrow's fixed-size cover
+             tiles forced ~560px, the whole dossier overflowed the phone viewport, and justify-self
+             centering (spark card) centered inside that oversized column, i.e. shoved right and
+             clipped. A compressible column keeps the dossier at viewport width; the simrow's own
+             overflow:hidden then does its job. */
+          .mav-dossier { max-width: 700px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--gap); }
           .mav-dossier > .av-minicard { max-width: none; }
           /* Plays by year is a small centered lego block in the dossier too (Fuad 2026-07-20).
              Capping it here (higher specificity than the max-width:none above) means it is never
