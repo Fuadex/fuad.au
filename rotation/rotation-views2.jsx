@@ -533,14 +533,19 @@ function SoundSimilar({ id, go, ctl }) {
           </div>
         </div>
       )}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(80px,1fr))", gap: 10 }}>
-        {results.map(({ c }) => { const s = c.rec, name = (s && s.name) || c.id, nav = !!(R.byId[c.id] || (R.expById && R.expById[c.id])); return (
-          <div key={c.id} onClick={() => nav && go("artist", c.id)} style={{ cursor: nav ? "pointer" : "default" }}>
-            <GenCover hue={(s && s.hue) || 210} name={name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
-            <div style={{ fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{name}</div>
-            {s && s.plays != null && <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays →</div>}
-          </div>); })}
-      </div>
+      {/* artist page (ctl set) pins the 4-across, two-row-then-scroll footprint; the dossier's
+          uncontrolled use keeps the loose auto-fill wrap */}
+      {(() => {
+        const grid = <div className={ctl ? "av-simgrid" : ""} style={ctl ? undefined : { display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(80px,1fr))", gap: 10 }}>
+          {results.map(({ c }) => { const s = c.rec, name = (s && s.name) || c.id, nav = !!(R.byId[c.id] || (R.expById && R.expById[c.id])); return (
+            <div key={c.id} onClick={() => nav && go("artist", c.id)} style={{ cursor: nav ? "pointer" : "default" }}>
+              <GenCover hue={(s && s.hue) || 210} name={name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
+              <div style={{ fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{name}</div>
+              {s && s.plays != null && <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays →</div>}
+            </div>); })}
+        </div>;
+        return ctl ? <div className="av-simscroll">{grid}</div> : grid;
+      })()}
       <style>{`.ts-hit { position: relative; padding: 9px 0; margin-top: 1px; cursor: pointer; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
         .ts-track { position: relative; height: 4px; border-radius: 4px; background: var(--bg-3); }
         .ts-fill { position: absolute; top: 0; height: 100%; border-radius: 4px; background: var(--accent); }
@@ -1787,7 +1792,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               {simTab === "sound" ? <SoundSimilar id={a.id} go={go} ctl={{ count: soundCount, setCount: setSoundCount, open: soundOpen, setOpen: setSoundOpen }} /> : (() => {
                 const items = (a.similar || []).slice(0, simN).map((sid, i) => { const name = (a.similarNames || [])[i]; const rid = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[rid] || (R.expById && R.expById[rid]); return { name, navId: rec ? rid : null, hue: rec ? rec.hue : (a.hue + 40 + i * 25) % 360, plays: rec ? rec.plays : null, played: !!rec || (R.played && R.played(name)) }; });
                 if (!items.length) return <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>no last.fm matches here.</div>;
-                return <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(80px,1fr))", gap: 10 }}>
+                return <div className="av-simscroll"><div className="av-simgrid">
                   {items.map((it, i) => (
                     <div key={it.name + i} onClick={() => it.navId && go("artist", it.navId)}
                       style={{ display: "flex", flexDirection: "column", gap: 8, cursor: it.navId ? "pointer" : "default", opacity: it.played ? 1 : 0.62 }}
@@ -1803,7 +1808,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                           : <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>not yet scrobbled</div>}
                     </div>
                   ))}
-                </div>;
+                </div></div>;
               })()}
             </div>
 
@@ -2075,8 +2080,23 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         /* Sound DNA stays compact (radar-width) rather than stretching to a full third */
         .av-endrow > .av-dnacard { flex: 0 0 236px; min-width: 236px; }
         @media (max-width: 980px){ .av-endrow > .av-dnacard { flex: 1 1 100%; } }
-        /* family tree grows wider when a band's members have rotated through many other bands */
-        .av-endrow > .av-famcard.wide { flex: 1.5 1 400px; }
+        /* Sounds-like is pinned narrow to a stable 4-across footprint (18px pad + 4·tile + 3·gap);
+           it never grows past two rows — extra rows (16/24) scroll inside av-simscroll. The freed
+           width is handed to the family tree, which grows to fill the row. (Fuad 2026-08-16) */
+        .av-endrow > .av-simcard { flex: 0 1 384px; min-width: 300px; }
+        /* the tile grid — fixed 4 columns (minmax(0,1fr) so a long name can't force min-content
+           growth and re-tabulate the row), capped to two rows tall then scrolls */
+        .av-simgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+        /* two square rows (~79px tile at the pinned 384px width) + caption ≈ 240px; +peek signals
+           scroll. Only capped where the card width is fixed — on stacked mobile the tiles grow, so a
+           px cap would slice mid-row; there the page scrolls instead. */
+        .av-simscroll { max-height: 250px; overflow-y: auto; }
+        .av-simscroll > .av-simgrid { padding-right: 2px; }
+        @media (max-width: 860px){ .av-simscroll { max-height: none; overflow-y: visible; } }
+        /* family tree absorbs the width the sim card gave up */
+        .av-endrow > .av-famcard { flex: 1 1 400px; }
+        /* family tree grows wider still when a band's members have rotated through many other bands */
+        .av-endrow > .av-famcard.wide { flex: 1.6 1 440px; }
         /* on-tour date rows */
         .av-tourrow { display: flex; align-items: baseline; gap: 10px; padding: 6px 4px; border-radius: 4px;
           text-decoration: none; color: var(--ink-soft); border-bottom: 1px solid var(--rule); }

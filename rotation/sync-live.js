@@ -48,6 +48,29 @@ try {
 
 const idFor = (name) => (R && (R.idForName(name) || R.slug(name))) || slugFallback(name);
 const hueFor = (name) => { if (!R) return 210; const e = R.byId[idFor(name)] || (R.expById && R.expById[idFor(name)]); return e && e.hue != null ? e.hue : 210; };
+
+// ── live artist images: fill in photos for brand-new / long-tail names the weekly Discogs enrichers
+// never reach (they only cover the top ~6000 by plays). Cheap, best-effort, and STRICTLY grounded —
+// a name only gets a photo if the local library already has one, or Deezer returns an exact-name match
+// under the same forgiving squash the client uses (R.matchKey). A miss stays a placeholder by design.
+const mkey = (s) => (R && R.matchKey ? R.matchKey(s) : String(s).normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, ""));
+// true when the client would already resolve a photo locally (kept-artist image or explorable THUMB slug)
+const hasLocalImage = (name) => { if (!R) return false; const id = idFor(name); const a = R.byId[id]; if (a && a.image) return true; return !!(R.THUMBS && R.THUMBS[id]); };
+// Deezer public search (no auth). Resolves to a picture URL for an exact-name hit, null for a
+// confident no-match (cache it so we don't refetch daily), or undefined on a network/parse failure
+// (do NOT cache — Deezer may just be unreachable from this runner; retry next run).
+const deezer = (name) => new Promise((res) => {
+  const url = `https://api.deezer.com/search/artist?q=${encodeURIComponent(name)}&limit=1`;
+  https.get(url, { headers: { "User-Agent": "rotation-sync/1.0 (+https://fuad.au)", "Accept": "application/json" } }, (r) => {
+    let b = ""; r.on("data", c => b += c); r.on("end", () => {
+      try {
+        const j = JSON.parse(b), a = j && j.data && j.data[0];
+        if (a && a.name && mkey(a.name) === mkey(name)) return res(a.picture_medium || a.picture_big || a.picture || null);
+        return res(null); // valid response, just no exact-name hit
+      } catch (e) { return res(undefined); } // non-JSON / hiccup → unknown, leave uncached
+    });
+  }).on("error", () => res(undefined));
+});
 const isKnown = (name) => !!(R && R.played(name));
 const audioFor = (name) => (R && R.AUDIO && R.AUDIO[idFor(name)]) || null;
 
@@ -143,6 +166,43 @@ async function clock72(now) {
     console.log(`windows: 7d=${plays7} plays (avg ${lifetimeWeekAvg}) · #1 ${topArtists[0] ? topArtists[0].name : "—"} · ${new7.length} new this week · ${newArtists.length} new this month`);
   } catch (e) {
     console.error("window enrichment failed (core snapshot still written): " + e.message);
+  }
+
+  // ── live artist-image fill (best-effort; never blocks the snapshot) ──
+  // Every row that renders a cover carries an artist name; the client's GenCover already resolves
+  // locally-known artists. For the rest, ask Deezer once and stamp `img` onto the row so the tile
+  // shows a real photo instead of a placeholder. Results persist in live-artist-img.json so we only
+  // hit the network for genuinely-new names (null there = confirmed no-match, don't refetch).
+  try {
+    const imgPath = path.join(__dirname, "live-artist-img.json");
+    const cache = fs.existsSync(imgPath) ? JSON.parse(fs.readFileSync(imgPath, "utf8")) : {};
+
+    // rows keyed by artist name; deepest is a single row, now is the header
+    const rows = [
+      data.now, ...data.recent,
+      ...(data.week ? data.week.topArtists : []), ...(data.week ? data.week.topTracks : []),
+      ...(data.month ? data.month.newArtists : []), ...(data.month && data.month.deepest ? [data.month.deepest] : []),
+    ];
+    const nameOf = (row) => row.artist || row.name || "";   // now/recent/topTracks use .artist; charts use .name
+
+    // names we might need to look up (skip anything already resolvable locally)
+    const need = [...new Set(rows.map(nameOf).filter(n => n && !hasLocalImage(n)))];
+    let hits = 0, fetches = 0; const CAP = 30;
+    for (const name of need) {
+      if (Object.prototype.hasOwnProperty.call(cache, name)) continue;   // known (url or confirmed null)
+      if (fetches >= CAP) break;
+      fetches++;
+      const url = await deezer(name);
+      if (url !== undefined) { cache[name] = url; if (url) hits++; }      // undefined = network failure, leave uncached
+      await sleep(250);   // ~4 req/s
+    }
+    // stamp img onto every row from the (now-updated) cache; local-resolve rows stay untouched (client fills them)
+    for (const row of rows) { const u = cache[nameOf(row)]; if (u) row.img = u; }
+
+    fs.writeFileSync(imgPath, JSON.stringify(cache) + "\n", "utf8");
+    console.log(`artist images: ${fetches} fetched (${hits} matched), ${Object.keys(cache).length} cached, ${need.length} names needed local-miss lookup`);
+  } catch (e) {
+    console.error("artist-image fill failed (snapshot still written): " + e.message);
   }
 
   fs.writeFileSync(path.join(__dirname, "live-data.js"),
