@@ -6,7 +6,80 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
-"_doc": "Curated coherency folds. Applied at scrobble ingest in build-data.js. Grouped by canonical artist; one line per fold. type spelling|variant|feat-credit|diacritic. Source: classified-all.json + out-AR-albums-fixed.json + mojibake + tier-2 verifier corrections. See LEDGER_DESIGN.md.",
+"_doc": "Curated coherency folds. Applied at scrobble ingest in build-data.js. Grouped by canonical artist; one line per fold. type spelling|variant|feat-credit|diacritic. artist may be a single {from,type,reason} object OR an array of them. Top-level _exclude[] lists pure-noise names (tutorials/trailers/YouTube junk) dropped whole at ingest (matched by exact raw name + slug). Source: classified-all.json + out-AR-albums-fixed.json + mojibake + tier-2 verifier corrections. See LEDGER_DESIGN.md.",
+"_exclude": ["jQuery Tutorial #3", "How to create CSS Layouts", "Widzimy się w kinie", "The Gmod Idiot Box", "\"If\"", "HRejterzy", "Official Call of Duty®", "The Grand Tour", "Raycevick", "Five Nights at Freddy's"],
+"Toby Fox": {
+"artist": [
+{
+"from": "UnderTale OST",
+"type": "variant",
+"reason": "variant: soundtrack-titled artist row (Megalovania Extended etc.) for the Undertale OST composed by Toby Fox; folds to the composer"
+}
+]
+},
+"Trent Reznor and Atticus Ross": {
+"artist": [
+{
+"from": "Karen O with Trent Reznor and Atticus Ross",
+"type": "feat-credit",
+"reason": "feat-credit: one-off \"Immigrant Song\" credit (The Girl with the Dragon Tattoo OST) with guest vocalist Karen O prepended; owner-approved fold to the duo"
+}
+]
+},
+"Hiroyuki Sawano": {
+"artist": [
+{
+"from": "05.  Counterattack Mankind",
+"type": "variant",
+"reason": "variant: mangled row (rip-tag artefact) where the artist field carried a track index/title; folds to the composer"
+},
+{
+"from": "Attack on Titan: Original Soundtrack I",
+"type": "variant",
+"reason": "variant: soundtrack-titled artist row for the AoT OST (composed by Hiroyuki Sawano); folds to the composer"
+}
+],
+"tracks": [
+{
+"from": "High Quality",
+"to": "Counter Attack-Mankind",
+"type": "spelling",
+"reason": "rip-tag artefact: the \"05.  Counterattack Mankind\" row carried \"High Quality\" as the track; scoped to canonical Sawano so it cannot rename another artist's \"High Quality\""
+}
+]
+},
+"Asian Kung-Fu Generation": {
+"artist": [
+{
+"from": "RE:RE:",
+"type": "variant",
+"reason": "variant: mangled row where the artist field carried the track title \"Re:Re:\"; folds to the real artist"
+}
+],
+"tracks": [
+{
+"from": "Asian Kung-Fu Generation // ERASED // Boku Dake ga Inai Machi OP",
+"to": "Re:Re:",
+"type": "spelling",
+"reason": "YouTube-caption mistitle on the RE:RE: row: the song is \"Re:Re:\" (ERASED OP)"
+},
+{
+"from": "Asian Kung-Fu Generation (Single ver.) Boku dake ga Inai Machi OP",
+"to": "Re:Re:",
+"type": "spelling",
+"reason": "YouTube-caption mistitle on the RE:RE: row: the song is \"Re:Re:\" (ERASED OP)"
+}
+]
+},
+"TACONAFIDE": {
+"artist": [
+{
+"from": "TACONAFIDE, Quebonafide, Taco Hemingway",
+"type": "spelling",
+"reason": "spelling: credit-string collapse of the duo into its two members; real duo name is TACONAFIDE"
+}
+]
+},
 "100 gecs": {
 "tracks": [
 {
@@ -1798,6 +1871,16 @@
 },
 {
 "from": "Deadmau5 ft. Shotty Horroh"
+},
+{
+"from": "Bille Newton-Davis vs. Deadmau5",
+"type": "feat-credit",
+"reason": "feat-credit: At Play comp credit scrobbled as a vs. collab; canonical is bare artist name"
+},
+{
+"from": "Melleefresh vs. Deadmau5",
+"type": "feat-credit",
+"reason": "feat-credit: At Play / At Play 2 comp credits scrobbled as a vs. collab; canonical is bare artist name"
 }
 ],
 "albums": [
@@ -2999,6 +3082,11 @@
 "artist": [
 {
 "from": "Hyper, WARGASM (UK)"
+},
+{
+"from": "Beatman, Hyper, Ludmilla",
+"type": "feat-credit",
+"reason": "feat-credit: collaborators collapsed into the credit string; canonical is bare artist name Hyper"
 }
 ]
 },
@@ -3073,6 +3161,13 @@
 "to": "Fortuna EP",
 "type": "spelling",
 "reason": "spelling: tagging/credit variant folds to canonical"
+}
+],
+"artist": [
+{
+"from": "Ivy Lab, Roses Gabor",
+"type": "feat-credit",
+"reason": "feat-credit: guest vocalist appended to credit string; canonical is bare artist name"
 }
 ]
 },
@@ -6279,6 +6374,11 @@
 "artist": [
 {
 "from": "SBCR, Elisa Bee & His Majesty Andre"
+},
+{
+"from": "SBCR & Razihel",
+"type": "feat-credit",
+"reason": "feat-credit: collaborator appended to credit string; canonical is bare artist name"
 }
 ]
 },
@@ -8079,6 +8179,11 @@
 },
 {
 "from": "YOKO KANNO, SHinpei Ruike, Masayoshi Furukawa"
+},
+{
+"from": "Zankyou no Terror OST",
+"type": "variant",
+"reason": "variant: soundtrack-titled artist row for the Terror in Resonance OST (composed by Yoko Kanno); folds to the composer"
 }
 ]
 },
@@ -9818,6 +9923,16 @@
 },
 {
 "from": "i_o, Mike Schmid"
+},
+{
+"from": "i_o, Lights",
+"type": "feat-credit",
+"reason": "feat-credit: guest vocalist appended to credit string; canonical is bare artist name"
+},
+{
+"from": "Tommy Trash, i_o, Daisy Guttridge",
+"type": "feat-credit",
+"reason": "feat-credit: track is \"Oxygen (feat. Daisy Guttridge)\"; collaborators collapsed into the credit string, i_o chosen as fold target per owner"
 }
 ]
 },
@@ -9860,6 +9975,11 @@
 },
 {
 "from": "Kaskade, The Moth & The Flame"
+},
+{
+"from": "Kaskade x Deadmau5 feat. Skylar Grey",
+"type": "feat-credit",
+"reason": "feat-credit: \"Beneath with Me\" is a 2013 Kaskade single, predates Kx5; collaborators appended to credit string, fold to bare Kaskade"
 }
 ]
 },

@@ -173,9 +173,19 @@ const realSimilar = (name) => { const b = aliasedByName(BIOS, name); return (b &
 // Applied at four ingest slots below (artist→HAND_MERGE, album→ALBUM_FOLD, track→
 // TRACK_MERGE/TRACK_FOLD, variant→ROTATION_VARIANT_OF sidecar). Keys derive via lib-slug.
 const FOLDS = (() => {
-  try { const f = JSON.parse(fs.readFileSync(path.join(__dirname, "folds.json"), "utf8")); delete f._doc; delete f._comment; delete f.note; return f; }
+  try { const f = JSON.parse(fs.readFileSync(path.join(__dirname, "folds.json"), "utf8")); delete f._doc; delete f._comment; delete f.note; delete f._exclude; return f; }
   catch (e) { return {}; }
 })();
+// _exclude: top-level list in folds.json of pure-noise "artists" (tutorials, trailers, YouTube
+// junk) to drop entirely at ingest — never reach plays/EXPLORE/search. Read raw (before _exclude
+// is deleted from the FOLDS object above). Match on the exact raw scrobble name AND on slug
+// equality as a safety net for whitespace/case drift. Distinct from NON_ARTISTS (baked-in list).
+const EXCLUDE = new Set(), EXCLUDE_SLUGS = new Set();
+try {
+  const raw = JSON.parse(fs.readFileSync(path.join(__dirname, "folds.json"), "utf8"));
+  for (const n of (raw._exclude || [])) { EXCLUDE.add(n); EXCLUDE_SLUGS.add(slug(n)); }
+} catch (e) {}
+const isExcluded = (name) => EXCLUDE.has(name) || EXCLUDE_SLUGS.has(slug(name));
 // VARIANT_OF: "<artistSlug>~<variantSlug>" → "<artistSlug>~<canonSlug>" for track/album variants.
 // Same shape as ALBUM_ALIAS; emitted to variant-of.js. Populated at the fold-seed steps below.
 const VARIANT_OF = {};
@@ -924,6 +934,8 @@ const NON_ARTISTS = new Set([
 // HAND_MERGE[c] || c after CANON. MUST run before the spelling-fold prescan (which calls canon()
 // to bucket by artist) — it does, prescan is further down. See LEDGER_DESIGN.md §3a / risk #5.
 for (const [canonName, block] of Object.entries(FOLDS)) {
+  // `artist` may be a single {from,…} object OR an array of them ([].concat normalizes both) —
+  // one canonical key can absorb several variant credit-strings (e.g. i_o gets two feat folds).
   const arts = block && block.artist ? [].concat(block.artist) : [];
   for (const a of arts) if (a && a.from) HAND_MERGE[a.from] = canonName;
 }
@@ -1319,6 +1331,7 @@ for (const line of lines) {
   const [rawArtist, rawAlbum, rawTrack, ts] = parseLine(line);
   if (!rawArtist) continue;
   if (NON_ARTISTS.has(rawArtist)) continue;   // scrobble noise, dropped at ingest (see the set)
+  if (isExcluded(rawArtist)) continue;        // folds.json _exclude: curated noise names, dropped whole
   const artist = canon(rawArtist);   // merge scrobble-name variants (album hygiene done in the CSV)
   const track = foldTrack(artist, rawTrack);   // "Don’t stay" → "Don't Stay" (most-played spelling)
   // collapse edition variants onto the base title BEFORE any album map is keyed,
