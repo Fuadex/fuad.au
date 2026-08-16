@@ -195,14 +195,63 @@ function parseOvSeed(seed) {
   return out;
 }
 
-// Emotional-weather card. The last-90-days block (baseline vs last-90d sounds/reads; routes to
-// the story) sits on top; the RELEASE-DECADE strip treemap (formerly hidden behind a tab) sits
-// directly underneath at reduced height — both fit in one module (Fuad, 2026-07-17). The strip
-// stays drillable to per-year. (A by-year emotional-weather timeline is parked as a future
-// pairing with the map's date scrubber.)
-function OvWeatherCard({ R, go, restReady }) {
-  const [zoom, setZoom] = React.useState(null);   // clicked decade (per-year drill-down) or null
+// Emotional-weather card. The last-90-days block (baseline vs last-90d sounds/reads) routes to
+// the story on click. The RELEASE-DECADE strip treemap used to ride underneath here; it now lives
+// in its own OvDecadesCard on the Story-of-the-day row (Fuad 2026-08-17) so this module is short.
+// (A by-year emotional-weather timeline is parked as a future pairing with the map's date scrubber.)
+function OvWeatherCard({ R, go }) {
   const M = R.INSIGHTS && R.INSIGHTS.MOOD, N = M && M.now;
+
+  if (!N) return null;
+
+  // Shared bar — the filled 0–100 track with the library-average tick. (v is the metric value;
+  // avg draws the baseline tick.)
+  const Bar = ({ label, v, avg, col }) => (
+    <div style={{ display: "grid", gridTemplateColumns: "52px 1fr 26px", gap: 9, alignItems: "center" }}>
+      <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-soft)" }}>{label}</span>
+      <div style={{ position: "relative", height: 7, background: "var(--bg-3)", borderRadius: 4 }}>
+        <div style={{ position: "absolute", inset: "0 auto 0 0", width: v + "%", background: col, borderRadius: 4 }} />
+        {avg != null && <div title={"library average " + avg} style={{ position: "absolute", top: -2, bottom: -2, left: avg + "%", width: 2, background: "var(--ink-faint)", borderRadius: 1 }} />}
+      </div>
+      <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
+    </div>
+  );
+  const SND = "oklch(0.72 0.15 145)", RDS = "oklch(0.68 0.16 25)";
+
+  // ── WEATHER (last 90 days — unchanged behaviour, incl. click-through to the story) ──
+  // Now the WHOLE card body: no decades strip underneath, so the module is short and the
+  // Right-now row it shares sits leaner (Fuad 2026-08-17).
+  const d = (v, avg) => v - avg;
+  const word = (dv) => dv >= 4 ? "brighter" : dv <= -4 ? "darker" : "steady";
+
+  return (
+    <div className="r-card ov-weather" style={{ padding: 12 }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
+        <span className="lbl"><b>Emotional weather</b></span>
+      </div>
+      <div onClick={() => go("stories", "emotional-weather")} style={{ cursor: "pointer" }}>
+        <div style={{ display: "grid", gap: 8 }}>
+          <Bar label="Sounds" v={N.aud} avg={M.avgAud} col={SND} />
+          <Bar label="Reads" v={N.lyr} avg={M.avgLyr} col={RDS} />
+        </div>
+        <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13, color: "var(--ink-soft)", marginTop: 9 }}>
+          {word(d(N.aud, M.avgAud)) === "steady" && word(d(N.lyr, M.avgLyr)) === "steady"
+            ? <>Right on your baseline{N.emo ? <> — reading <b style={{ color: "var(--ink)" }}>{N.emo}</b></> : null}.</>
+            : <>Sounding {word(d(N.aud, M.avgAud))}, reading {word(d(N.lyr, M.avgLyr))}{N.emo ? <> — mostly <b style={{ color: "var(--ink)" }}>{N.emo}</b></> : null}.</>}
+        </div>
+        <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 7, letterSpacing: ".06em" }}>last {N.days} days ↗</div>
+      </div>
+    </div>
+  );
+}
+
+// RELEASE-DECADE strip treemap — a chronological strip where each decade's WIDTH = its share of
+// plays; click a decade to drill into a per-year strip (reconstructed from EXPLORE debut years,
+// so it needs the rest bundle → gated on restReady). Lifted out of OvWeatherCard into its own
+// module so it can ride the Story-of-the-day row at the Emotional-weather width (Fuad 2026-08-17).
+// The zoom state (clicked decade) lives here now, alongside the "← all decades" return chip.
+function OvDecadesCard({ R, go, restReady }) {
+  const [zoom, setZoom] = React.useState(null);   // clicked decade (per-year drill-down) or null
   const ad = R.INSIGHTS && R.INSIGHTS.ADOPTION;
   const decades = React.useMemo(() =>
     ad && ad.decades ? ad.decades.filter(d => d.plays > 0).slice().sort((a, b) => a.decade - b.decade) : [],
@@ -219,53 +268,12 @@ function OvWeatherCard({ R, go, restReady }) {
     return { rows, tot };
   }, [zoom, restReady, R]);
 
-  if (!N && !hasDec) return null;
+  if (!hasDec) return null;
 
-  // Shared bar — identical visual language for the last-90d block and every decade row: a filled
-  // 0–100 track with the library-average tick. (v is the metric value; avg draws the baseline tick.)
-  const Bar = ({ label, v, avg, col }) => (
-    <div style={{ display: "grid", gridTemplateColumns: "52px 1fr 26px", gap: 9, alignItems: "center" }}>
-      <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-soft)" }}>{label}</span>
-      <div style={{ position: "relative", height: 7, background: "var(--bg-3)", borderRadius: 4 }}>
-        <div style={{ position: "absolute", inset: "0 auto 0 0", width: v + "%", background: col, borderRadius: 4 }} />
-        {avg != null && <div title={"library average " + avg} style={{ position: "absolute", top: -2, bottom: -2, left: avg + "%", width: 2, background: "var(--ink-faint)", borderRadius: 1 }} />}
-      </div>
-      <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
-    </div>
-  );
-  const SND = "oklch(0.72 0.15 145)", RDS = "oklch(0.68 0.16 25)";
-
-  // ── WEATHER (last 90 days — unchanged behaviour, incl. click-through to the story) ──
-  const weather = () => {
-    if (!N) return <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", padding: "8px 0" }}>no mood data</div>;
-    const d = (v, avg) => v - avg;
-    const word = (dv) => dv >= 4 ? "brighter" : dv <= -4 ? "darker" : "steady";
-    return (
-      <div onClick={() => go("stories", "emotional-weather")} style={{ cursor: "pointer" }}>
-        <div style={{ display: "grid", gap: 8 }}>
-          <Bar label="Sounds" v={N.aud} avg={M.avgAud} col={SND} />
-          <Bar label="Reads" v={N.lyr} avg={M.avgLyr} col={RDS} />
-        </div>
-        <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13, color: "var(--ink-soft)", marginTop: 10 }}>
-          {word(d(N.aud, M.avgAud)) === "steady" && word(d(N.lyr, M.avgLyr)) === "steady"
-            ? <>Right on your baseline{N.emo ? <> — reading <b style={{ color: "var(--ink)" }}>{N.emo}</b></> : null}.</>
-            : <>Sounding {word(d(N.aud, M.avgAud))}, reading {word(d(N.lyr, M.avgLyr))}{N.emo ? <> — mostly <b style={{ color: "var(--ink)" }}>{N.emo}</b></> : null}.</>}
-        </div>
-        <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 8, letterSpacing: ".06em" }}>last {N.days} days ↗</div>
-      </div>
-    );
-  };
-
-  // ── DECADES (chronological strip treemap → drillable per-year; reduced height so it fits
-  //    under the weather block in one module) ──
   const H = 46;   // strip height px — HTML flex strips, not SVG: a stretched viewBox distorts label glyphs
-  const decadesStrip = () => {
-    if (!hasDec) return null;
-
+  const strip = () => {
     if (zoom != null) {
       const dec = decades.find(x => x.decade === zoom);
-      // the "← 1990s" return chip no longer renders here — it rides the Decades header row
-      // (same line as the label) so the drill-in doesn't grow the module (Fuad 2026-08-12).
       if (!yearBreak) {
         return <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", padding: "14px 0" }}>loading detail…</div>;
       }
@@ -321,29 +329,18 @@ function OvWeatherCard({ R, go, restReady }) {
   };
 
   return (
-    <div className="r-card ov-weather" style={{ padding: 12 }}>
-      <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
-        <span className="lbl"><b>Emotional weather</b></span>
+    <div className="r-card ov-decades" style={{ padding: 12 }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 8, display: "flex", alignItems: "center", gap: 10 }}>
+        <span className="lbl"><b>Decades</b></span>
+        {zoom != null && (
+          <button onClick={(e) => { e.stopPropagation(); setZoom(null); }} className="ov-wback">← all decades</button>
+        )}
       </div>
-      {weather()}
-      {hasDec && (
-        <div className="ov-wdecs">
-          <div className="ov-wdlbl" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>Decades</span>
-            {zoom != null && (
-              <button onClick={(e) => { e.stopPropagation(); setZoom(null); }} className="ov-wback" style={{ marginBottom: 0 }}>← all decades</button>
-            )}
-          </div>
-          {decadesStrip()}
-        </div>
-      )}
+      {strip()}
       <style>{`
-        /* decades strip sits under the last-90d block; left edge aligns with the paragraph above */
-        .ov-wdecs { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--rule); }
-        .ov-wdlbl { margin-bottom: 8px; }
         .ov-wback { font-family: var(--mono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase;
           background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px;
-          color: var(--ink-soft); cursor: pointer; margin-bottom: 8px; }
+          color: var(--ink-soft); cursor: pointer; }
         .ov-wback:hover { color: var(--accent); border-color: var(--accent-dim); }
       `}</style>
     </div>
@@ -680,7 +677,8 @@ function OverviewView({ t, go, restReady, seed }) {
 
         {/* Story of the day — a DEDICATED slot (was only an insight-row card, so higher-scoring
             milestone cards crowded it out of the top-4 and nothing showed — Fuad 2026-07-18). Now
-            it always features, deterministic per UTC day via window.storyOfDay(). */}
+            it always features, deterministic per UTC day via window.storyOfDay(). Shares its row
+            with the Decades card now (cols 1-8; Decades takes 9-12) — Fuad 2026-08-17. */}
         {(() => {
           const story = window.storyOfDay ? window.storyOfDay(go) : null;
           if (!story) return null;
@@ -691,12 +689,17 @@ function OverviewView({ t, go, restReady, seed }) {
               <span className="r-mono ov-story-tag">Story of the day</span>
               <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "baseline", gap: 12, flexWrap: "wrap" }}>
                 <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 18, lineHeight: 1.2, color: "var(--ink)" }}>{pick ? pick.t : ""}</span>
-                <span style={{ fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.45, minWidth: 0 }}>{pick ? pick.teaser : ""}</span>
+                <span className="ov-story-teaser" style={{ fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.45, minWidth: 0 }}>{pick ? pick.teaser : ""}</span>
               </div>
               <span className="r-mono ov-story-go">read →</span>
             </div>
           );
         })()}
+
+        {/* Decades — release-decade strip treemap, lifted out of Emotional weather so it rides the
+            Story-of-the-day row at the same width the weather card uses (cols 9-12). Drillable to
+            per-year; the drill needs the rest bundle, hence restReady (Fuad 2026-08-17). */}
+        <OvDecadesCard R={R} go={go} restReady={restReady} />
 
         {/* Right now — the live insight feed, promoted directly under the map (Fuad 2026-07-06),
             paired with emotional weather on its row (was full-width lower down). */}
@@ -708,9 +711,9 @@ function OverviewView({ t, go, restReady, seed }) {
           </div>
         </div>
 
-        {/* emotional weather now — last-90d sounds/reads on top, a per-decade row of the SAME
-            two-axis metric underneath. Card footprint unchanged (ov-weather grid rules). */}
-        <OvWeatherCard R={R} go={go} restReady={restReady} />
+        {/* emotional weather — last-90d sounds/reads only now (the decades strip moved up to the
+            Story row), so it's short and keeps the Right-now row lean. cols 9-12 (ov-weather grid rules). */}
+        <OvWeatherCard R={R} go={go} />
 
       </div>
 
@@ -759,17 +762,23 @@ function OverviewView({ t, go, restReady, seed }) {
           .ov-scrob .r-stat-n { font-size: clamp(18px, 1.7vw, 22px) !important; }
           .ov-streak .r-stat-n, .ov-week .r-stat-n { font-size: 21px !important; }
           .ov-week .spark, .ov-scrob .spark { max-height: 20px; }
-          /* cap the whole pulse row so it lands ~2/3 of its pre-tightening height: the tallest
-             card (now-playing's cover stack / recently-played's 3 rows) can't push it taller than
-             this. The recent list scrolls internally if it ever overflows (Fuad 2026-07-18). */
-          .ov-scrob, .ov-streak, .ov-week, .ov-recent, .ov-np { max-height: 102px; overflow: hidden; }
+          /* cap the whole pulse row so it lands lean: the tallest card (now-playing's cover stack /
+             recently-played's rows) can't push it taller than this. Tightened 102→92px alongside the
+             Decades move so the Right-now band above reads leaner too (Fuad 2026-08-17). The recent
+             list scrolls internally if it ever overflows. */
+          .ov-scrob, .ov-streak, .ov-week, .ov-recent, .ov-np { max-height: 92px; overflow: hidden; }
           .ov-recent .ov-rl { overflow-y: auto; }
-          /* row 3 = map band (1/-1 inline); row 4 — the four stats (left, they react to the
-             map/calendar filter) + heaviest day (right) */
           .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(5, 1fr) !important; gap: 10px !important; }
-          .ov-weather  { grid-column: 9 / -1 !important; }
           .ov-strip .r-stat-n { font-size: 21px !important; }
-          /* insights module is full-width → its four cards run in one rank */
+          /* Story-of-the-day row: Story compresses to cols 1-8, Decades takes 9-12 (the same
+             span the weather card uses on the row below) — Fuad 2026-08-17. */
+          .ov-story    { grid-column: 1 / span 8 !important; }
+          .ov-decades  { grid-column: 9 / -1 !important; }
+          /* Right-now row: insights left (8) + emotional weather right (9-12). Both are short now
+             (decades left the weather card), so the row sits lean. */
+          .ov-insights { grid-column: 1 / span 8 !important; }
+          .ov-weather  { grid-column: 9 / -1 !important; }
+          /* insights module is full-width within its 8 cols → its four cards run in one rank */
           .ov-insgrid > .r-card { grid-column: span 3 !important; }
         }
         .ov-calsel { width: 100%; background: var(--bg-3); border: 1px solid var(--rule); color: var(--ink);
@@ -793,13 +802,19 @@ function OverviewView({ t, go, restReady, seed }) {
         .hub-card:hover { border-color: color-mix(in oklch, var(--c) 50%, var(--rule-2)); }
         .hub-h { color: var(--ink); }
         .hub-lbl { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
-        /* story of the day — a slim full-width banner card leading the insight section */
+        /* story of the day — a slim banner card, now compressed to cols 1-8 to share its row with
+           the Decades card (Fuad 2026-08-17). At the narrower span the teaser clamps to two lines
+           so the card height matches Decades instead of wrapping tall. */
         .ov-story { transition: border-color .15s; }
         .ov-story:hover { border-color: var(--accent-dim); }
         .ov-story:hover .ov-story-go { color: var(--accent); }
         .ov-story-tag { flex: none; font-size: 8.5px; letter-spacing: .14em; text-transform: uppercase;
           color: var(--accent); border: 1px solid var(--accent-dim); border-radius: 999px; padding: 3px 9px; }
         .ov-story-go { flex: none; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); transition: color .15s; }
+        @media (min-width: 981px) {
+          .ov-story-teaser { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+            overflow: hidden; }
+        }
         @media (max-width: 760px) { .ov-story { flex-wrap: wrap; gap: 8px; } .ov-story-go { display: none; } }
         /* portrait + dig — twin compact fact modules, side-by-side on PC, stacked on mobile */
         .ov-pd { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
