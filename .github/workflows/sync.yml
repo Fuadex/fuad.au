@@ -85,6 +85,15 @@ jobs:
           path: rotation/fuadex.csv
           retention-days: 2
 
+      # live-artist-img.json is a persistent cache (Deezer lookups for long-tail live-feed names) —
+      # it must survive between runs so we don't refetch daily. sync-live.js updates it in place;
+      # ship it to persist the same way as the CSV (commit strictly after deploy).
+      - uses: actions/upload-artifact@v4
+        with:
+          name: live-artist-img
+          path: rotation/live-artist-img.json
+          retention-days: 2
+
       # 6) stage the whole hub (root launcher + every app in apps.json) into _site/.
       #    Babel is needed to precompile rotation's .jsx → .js in the staged copy
       #    (see stage-site.js). Installed here, in CI only — never committed.
@@ -127,13 +136,20 @@ jobs:
         with:
           name: csv-delta
           path: rotation
-      - name: Commit CSV if changed
+      # continue-on-error: if the build job died before sync-live.js wrote the cache there is no
+      # artifact — the committed copy from the checkout is still valid, so don't fail the CSV persist
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: live-artist-img
+          path: rotation
+      - name: Commit CSV + artist-image cache if changed
         run: |
           git config user.name "rotation-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add rotation/fuadex.csv
+          git add rotation/fuadex.csv rotation/live-artist-img.json
           if git diff --staged --quiet; then
-            echo "no new scrobbles"
+            echo "no new scrobbles / no new artist images"
           else
             git commit -m "chore: daily last.fm sync"
             git push || (git pull --rebase --autostash && git push)

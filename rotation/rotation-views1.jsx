@@ -502,7 +502,7 @@ function OverviewView({ t, go, restReady, seed }) {
     const MON = window.MON;
     const when = (uts) => { if (!uts) return ""; const d = new Date(uts * 1000); return d.getUTCDate() + " " + MON[d.getUTCMonth()]; };
     const hueOf = (id) => { const e = R.byId[id] || (R.expById && R.expById[id]); return e && e.hue != null ? e.hue : 210; };
-    return LV.recent.map((r, i) => ({ id: "lv" + i, artistId: r.artistId, artist: r.artist, track: r.track, when: when(r.uts), hue: hueOf(r.artistId) }));
+    return LV.recent.map((r, i) => ({ id: "lv" + i, artistId: r.artistId, artist: r.artist, track: r.track, when: when(r.uts), hue: hueOf(r.artistId), img: r.img || "" }));
   }, [R]);
   // just the last 2 played (was 3; the shallower 96px pulse row fits two cleanly — Fuad 2026-07-18)
   const recent3 = React.useMemo(() => recent.slice(0, 2), [recent]);
@@ -538,7 +538,7 @@ function OverviewView({ t, go, restReady, seed }) {
             with it; the ≥981px block pins it to cols 9-12) */}
         <div className="r-card ov-np" style={{ gridColumn: "span 4", padding: "8px 12px", display: "flex", gap: 12, alignItems: "center", minWidth: 0 }}>
           <div style={{ position: "relative", cursor: npKnown ? "pointer" : "default" }} onClick={() => npKnown && go("artist", now.artistId)}>
-            <GenCover hue={nowArtist.hue} name={now.artist} size={62} radius={4} />
+            <GenCover hue={nowArtist.hue} name={now.artist} image={now.img || undefined} size={62} radius={4} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "flex-end", justifyContent: "center",
               gap: 3, padding: "0 0 6px" }}>
               {[0, 1, 2, 3, 4].map(i => <span key={i} className="eqbar" style={{ animationDelay: i * 0.13 + "s" }} />)}
@@ -612,7 +612,7 @@ function OverviewView({ t, go, restReady, seed }) {
               {ta ? (
                 /* artist + play count INLINE on one line (Fuad 2026-07-17) — cover kept small at left */
                 <div style={{ display: "flex", alignItems: "center", gap: 7, cursor: "pointer", minWidth: 0 }} onClick={() => go("artist", ta.artistId)}>
-                  <GenCover hue={(R.byId[ta.artistId] || (R.expById && R.expById[ta.artistId]) || { hue: 210 }).hue} name={ta.name} size={20} radius={2} />
+                  <GenCover hue={(R.byId[ta.artistId] || (R.expById && R.expById[ta.artistId]) || { hue: 210 }).hue} name={ta.name} image={ta.img || undefined} size={20} radius={2} />
                   <div style={{ fontSize: 11.5, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                     <b style={{ fontWeight: 600 }}>{ta.name}</b>
                     <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}> · {ta.plays} plays</span>
@@ -638,7 +638,7 @@ function OverviewView({ t, go, restReady, seed }) {
                 padding: "3px 6px", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
                 onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
                 onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
-                <GenCover hue={r.hue} name={r.artist} size={22} radius={2} />
+                <GenCover hue={r.hue} name={r.artist} image={r.img || undefined} size={22} radius={2} />
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
                   <div style={{ fontSize: 10, color: "var(--ink-faint)", cursor: "pointer", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={`${r.artist} →`}

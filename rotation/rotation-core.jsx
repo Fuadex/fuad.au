@@ -513,7 +513,9 @@ function GenCover({ hue, name, size, radius, style, image, thumb }) {
   if (!image && name && typeof window !== "undefined" && window.ROTATION) {
     const R = window.ROTATION;
     if (R.byId && R.slug) {
-      const id = R.slug(name);
+      // resolve through the alias/matchKey fold, not just the raw slug — a live-feed name like
+      // "WARGASM (UK)" must land on the kept `wargasm` (and its photo), not the missing `wargasm-uk`
+      const id = (R.idForName && R.idForName(name)) || R.slug(name);
       const a = R.byId[id];
       if (a && a.image) { image = a.image; thumb = a.thumb; }
       // explorable (non-kept) artists carry a 150px Discogs thumbnail in R.THUMBS, and — once the
@@ -530,7 +532,9 @@ function GenCover({ hue, name, size, radius, style, image, thumb }) {
   const c1 = `oklch(${L1} 0.11 ${hue})`;
   const c2 = `oklch(${L2} 0.07 ${hue2})`;
   const accent = `oklch(0.82 0.13 ${hue})`;
-  const initials = (name || "?").split(/\s+/).slice(0, 2).map(w => w[0]).join("").toUpperCase();
+  // only take initials from tokens that start with a letter/digit (after stripping leading
+  // punctuation) so "WARGASM (UK)" → "WU" not "W(" and "paradise fell." stays clean
+  const initials = (name || "?").split(/\s+/).map(w => w.replace(/^[^\p{L}\p{N}]+/u, "")).filter(w => /^[\p{L}\p{N}]/u.test(w)).slice(0, 2).map(w => w[0]).join("").toUpperCase() || "?";
 
   let fill, extra = null;
   if (variant === 0) {

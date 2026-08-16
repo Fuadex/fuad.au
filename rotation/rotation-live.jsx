@@ -7,7 +7,7 @@ function useLiveNow() {
   const src = snap || R.NOW;
   return {
     artist: src.artist, track: src.track, album: src.album || "",
-    artistId: src.artistId, nowplaying: !!src.nowplaying, live: !!snap,
+    artistId: src.artistId, nowplaying: !!src.nowplaying, live: !!snap, img: src.img || "",
   };
 }
 
