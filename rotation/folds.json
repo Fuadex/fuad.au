@@ -6,8 +6,91 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
-"_doc": "Curated coherency folds. Applied at scrobble ingest in build-data.js. Grouped by canonical artist; one line per fold. type spelling|variant|feat-credit|diacritic. artist may be a single {from,type,reason} object OR an array of them. Top-level _exclude[] lists pure-noise names (tutorials/trailers/YouTube junk) dropped whole at ingest (matched by exact raw name + slug). Source: classified-all.json + out-AR-albums-fixed.json + mojibake + tier-2 verifier corrections. See LEDGER_DESIGN.md.",
-"_exclude": ["jQuery Tutorial #3", "How to create CSS Layouts", "Widzimy się w kinie", "The Gmod Idiot Box", "\"If\"", "HRejterzy", "Official Call of Duty®", "The Grand Tour", "Raycevick", "Five Nights at Freddy's"],
+"_doc": "Curated coherency folds. Applied at scrobble ingest in build-data.js. Grouped by canonical artist; one line per fold. type spelling|variant|feat-credit|diacritic. artist may be a single {from,type,reason} object OR an array of them. Top-level _exclude[] lists pure-noise names (tutorials/trailers/YouTube junk) dropped whole at ingest (matched by exact raw name + slug). Top-level _moves[] does per-track artist REASSIGNMENT — {fromArtist,fromTrack,toArtist,toTrack,reason}: a single (artist,track) pair is retargeted to another artist (optionally renaming the track) BEFORE any play/album/track map is keyed, so plays/media/reads all follow. Unlike artist folds (whole artist) and track folds (rename within one canonical artist), a move splits one row off an artist. Applied at ingest right after canon()+foldTrack() (build-data.js ~L1336); matched on slug(fromArtist)~slug(fromTrack). Source: classified-all.json + out-AR-albums-fixed.json + mojibake + tier-2 verifier corrections. See LEDGER_DESIGN.md.",
+"_exclude": ["jQuery Tutorial #3", "How to create CSS Layouts", "Widzimy się w kinie", "The Gmod Idiot Box", "\"If\"", "HRejterzy", "Official Call of Duty®", "The Grand Tour", "Raycevick", "Five Nights at Freddy's", "Spec Ops: The Line", "Vaporwave with Teenage Engineering OP-1 蒸気波 (feat. Blank Banshee"],
+"_moves": [
+{
+"fromArtist": "Max Payne 2",
+"fromTrack": "Late Goodbye",
+"toArtist": "Poets of the Fall",
+"toTrack": "Late Goodbye",
+"reason": "split: 'Late Goodbye' is Poets of the Fall's song (written for Max Payne 2); the 3 rows scrobbled under the game-OST artist 'Max Payne 2' move to the band and merge into their existing 'Late Goodbye' key. Remaining Max Payne 2 rows are the Hatakka/Kajasto score and stay under 'Max Payne 2'."
+}
+],
+"Nocny Kochanek": {
+"artist": [
+{
+"from": "10. Nocny Kochanek",
+"type": "variant",
+"reason": "variant: track-number-prefixed artist mangle — the '10. Nocny Kochanek' rows are a full-album YouTube stream ('Zdrajca Metalu (oficjalny odsłuch albumu)') of the band Nocny Kochanek; folds to the canonical artist"
+}
+],
+"tracks": [
+{
+"from": "Zdrajca Metalu (oficjalny odsłuch albumu)",
+"to": "Zdrajca metalu",
+"type": "spelling",
+"reason": "spelling: full-album YouTube-stream row for the title track; the band's own casing is 'Zdrajca metalu'. Scoped to canonical Nocny Kochanek"
+}
+]
+},
+"Junkie XL": {
+"artist": [
+{
+"from": "Mad Max: Fury Road OST",
+"type": "variant",
+"reason": "variant: soundtrack-titled artist row (Mad Max: Fury Road OST cues 'Storm Is Coming' / 'Brothers In Arms') composed by Junkie XL; folds to the composer"
+}
+]
+},
+"Nothing's Carved in Stone": {
+"artist": [
+{
+"from": "Psycho Pass",
+"type": "variant",
+"reason": "variant: soundtrack-titled artist row whose 41 plays are all the Psycho-Pass OP1 song Out of Control — performed by Nothing's Carved in Stone (the score composer Yugo Kanno does not own the song); introduces the band per owner-approved intro pattern"
+}
+],
+"tracks": [
+{
+"from": "opening 1",
+"to": "Out of Control",
+"type": "spelling",
+"reason": "spelling: one row titled the OP1 cue opening 1; unified with the 40 Out of Control rows under the band"
+}
+]
+},
+"Taku Iwasaki": {
+"artist": [
+{
+"from": "Gurren Lagann",
+"type": "variant",
+"reason": "variant: soundtrack-titled artist row (Gurren Lagann anime OST cues) composed by Taku Iwasaki; folds to the composer"
+},
+{
+"from": "Gurren Lagann OST Disc 1",
+"type": "variant",
+"reason": "variant: soundtrack-titled artist row (Gurren Lagann OST Disc 1 cues) composed by Taku Iwasaki; folds to the composer"
+}
+],
+"tracks": [
+{
+"from": "10 - Nikopol",
+"to": "Nikopol",
+"type": "spelling",
+"reason": "track-number-prefixed OST spelling: the 'Gurren Lagann OST Disc 1' row titled this cue '10 - Nikopol' while the 'Gurren Lagann' row titled the same cue 'Nikopol'; scoped to canonical Taku Iwasaki so it unifies the two spellings of one cue"
+}
+]
+},
+"Michael Kamen": {
+"artist": [
+{
+"from": "The London Metropolitan Orchestra;Michael Kamen",
+"type": "variant",
+"reason": "variant: Band of Brothers OST credit-string (performer;composer) folds to the composer Michael Kamen"
+}
+]
+},
 "Toby Fox": {
 "artist": [
 {
@@ -1705,6 +1788,12 @@
 "Crystal Castles": {
 "tracks": [
 {
+"from": "official",
+"to": "Char",
+"type": "spelling",
+"reason": "corrupted upload-title scrobble: the mangled 'CRYSTAL CASTLES - CHAR' rows carried 'official' as the track; the song is 'Char' (Amnesty (I)). Scoped to canonical Crystal Castles; verified no legitimate CC row has track 'official'"
+},
+{
 "from": "Celestica - Album Version",
 "to": "Celestica",
 "type": "spelling",
@@ -1750,6 +1839,11 @@
 "artist": [
 {
 "from": "Crystal Castles, Robert Smith"
+},
+{
+"from": "CRYSTAL CASTLES - CHAR",
+"type": "spelling",
+"reason": "spelling: corrupted upload-title scrobble — YouTube video title 'CRYSTAL CASTLES - CHAR' landed in the artist field and 'official' in the track field; the real artist is Crystal Castles"
 }
 ]
 },
@@ -3707,7 +3801,20 @@
 ]
 },
 "Linkin Park": {
+"artist": [
+{
+"from": "Lost [Official Music Video]",
+"type": "spelling",
+"reason": "spelling: corrupted upload-title scrobble — the YouTube video title 'Lost [Official Music Video]' landed in the artist field and 'Linkin Park' in the track field; the real artist is Linkin Park"
+}
+],
 "tracks": [
+{
+"from": "Linkin Park",
+"to": "Lost",
+"type": "spelling",
+"reason": "corrupted upload-title scrobble: the mangled 'Lost [Official Music Video]' rows carried 'Linkin Park' as the track; the song is 'Lost' (Meteora 20th Anniversary, 2023). Scoped to canonical Linkin Park; verified no legitimate Linkin Park row has track literally 'Linkin Park'"
+},
 {
 "from": "Somewhere I Belong (Live)",
 "to": "Somewhere I Belong",

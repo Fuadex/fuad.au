@@ -173,9 +173,23 @@ const realSimilar = (name) => { const b = aliasedByName(BIOS, name); return (b &
 // Applied at four ingest slots below (artist→HAND_MERGE, album→ALBUM_FOLD, track→
 // TRACK_MERGE/TRACK_FOLD, variant→ROTATION_VARIANT_OF sidecar). Keys derive via lib-slug.
 const FOLDS = (() => {
-  try { const f = JSON.parse(fs.readFileSync(path.join(__dirname, "folds.json"), "utf8")); delete f._doc; delete f._comment; delete f.note; delete f._exclude; return f; }
+  try { const f = JSON.parse(fs.readFileSync(path.join(__dirname, "folds.json"), "utf8")); delete f._doc; delete f._comment; delete f.note; delete f._exclude; delete f._moves; return f; }
   catch (e) { return {}; }
 })();
+// _moves: top-level list in folds.json of per-track ARTIST reassignments — a single (fromArtist,
+// fromTrack) pair is retargeted to (toArtist, toTrack) at ingest, BEFORE any play/album/track map
+// is keyed, so plays/media/reads all follow the move. Unlike an artist fold (whole artist) or a
+// track fold (rename within one canonical artist), this SPLITS one row off an artist (e.g. "Late
+// Goodbye" scrobbled under the game OST "Max Payne 2" → the band "Poets of the Fall"). Keyed on
+// slug(fromArtist)~slug(fromTrack); value = [toArtist, toTrack]. Read raw (FOLDS deletes _moves).
+const MOVES = new Map();
+try {
+  const raw = JSON.parse(fs.readFileSync(path.join(__dirname, "folds.json"), "utf8"));
+  for (const m of (raw._moves || [])) {
+    if (!m || !m.fromArtist || !m.fromTrack || !m.toArtist) continue;
+    MOVES.set(slug(m.fromArtist) + "~" + slug(m.fromTrack), [m.toArtist, m.toTrack || m.fromTrack]);
+  }
+} catch (e) {}
 // _exclude: top-level list in folds.json of pure-noise "artists" (tutorials, trailers, YouTube
 // junk) to drop entirely at ingest — never reach plays/EXPLORE/search. Read raw (before _exclude
 // is deleted from the FOLDS object above). Match on the exact raw scrobble name AND on slug
@@ -1154,7 +1168,8 @@ const _ALBUM_STRIP = new RegExp(
   "deluxe|expanded|remaster(?:ed)?|anniversary|special edition|extended|" +
   "bonus(?:[\\s-]track)?(?:[\\s-]edition)?(?:[\\s-]version)?|collector(?:'?s)?(?:[\\s-]edition)?|redux|" +
   "tour edition|complete edition|limited(?:[\\s-]edition)?|digipak|re-?issue|" +
-  "legacy edition|platinum edition|gold edition|(?:japanese|japan|uk|us|european) (?:edition|version)|bonus disc|" +
+  "audiophile(?:[\\s-](?:mastered|master))?(?:[\\s-]version)?|international(?:[\\s-](?:edition|version))?|" +
+  "legacy edition|platinum edition|gold edition|(?:japanese|japan|uk|u\\.?k\\.?|us|u\\.?s\\.?|european|intl|int'?l) (?:only )?(?:edition|version)|bonus disc|" +
   "\\d+(?:th|st|nd|rd)[\\s-]anniversary(?:[\\s-]edition)?|" +
   "(?:19|20)\\d{2}(?:[\\s-](?:remaster(?:ed)?|mix|master|edition|version))?" +   // "2012 Mix/Master", bare year only when in a suffix segment
   ")[^)\\]]*[)\\]]?\\s*$", "i"
@@ -1332,8 +1347,13 @@ for (const line of lines) {
   if (!rawArtist) continue;
   if (NON_ARTISTS.has(rawArtist)) continue;   // scrobble noise, dropped at ingest (see the set)
   if (isExcluded(rawArtist)) continue;        // folds.json _exclude: curated noise names, dropped whole
-  const artist = canon(rawArtist);   // merge scrobble-name variants (album hygiene done in the CSV)
-  const track = foldTrack(artist, rawTrack);   // "Don’t stay" → "Don't Stay" (most-played spelling)
+  let artist = canon(rawArtist);   // merge scrobble-name variants (album hygiene done in the CSV)
+  let track = foldTrack(artist, rawTrack);   // "Don’t stay" → "Don't Stay" (most-played spelling)
+  // _moves: per-track artist reassignment (folds.json §_moves). A single (artist,track) pair is
+  // retargeted to another artist BEFORE any map is keyed, so plays/media/reads follow the move.
+  // Re-run foldTrack under the NEW artist so any track fold scoped to the target also applies.
+  const _mv = track ? MOVES.get(slug(artist) + "~" + slug(track)) : null;
+  if (_mv) { artist = _mv[0]; track = foldTrack(artist, _mv[1]); }
   // collapse edition variants onto the base title BEFORE any album map is keyed,
   // then fold spelling variants ("Liebe Ist Fur Alle Da" → "Liebe ist für alle da")
   const albumStripped = canonAlbum(rawAlbum);

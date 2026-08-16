@@ -503,7 +503,11 @@ function SoundSimilar({ id, go, ctl }) {
       </div>}
       {open && (
         <div className="r-card" style={{ padding: "14px 16px", marginBottom: 12, background: "var(--bg-2)" }}>
-          <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "minmax(0,234px) 1fr", gap: "var(--gap)", alignItems: "center" }}>
+          {/* ctl = artist-page card (lives in the narrow .av-simcard): the two-column
+              radar|sliders grid can't fit ~318px, so restack to one column (av-tunestack)
+              — radar centred on top, sliders full-width below. The uncontrolled dossier keeps
+              the wide two-column form. m-stack still collapses both on phones. (Fuad 2026-08-16) */}
+          <div className={"m-stack" + (ctl ? " av-tunestack" : "")} style={{ display: "grid", gridTemplateColumns: ctl ? "1fr" : "minmax(0,234px) 1fr", gap: "var(--gap)", alignItems: "center" }}>
             <div>
               <WeightRadar axes={MAIN} weights={w} setWeight={(k, v) => setW(p => ({ ...p, [k]: v }))} dna={meEntry.vec.slice(0, 6)} />
               <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>drag an axis · out = matters more · dashed = this artist</div>
@@ -975,7 +979,9 @@ const PV_WW_CSS = `
            — the fact chips left this row for the bottom footer (.pv-footrow). Kept as its own row so
            .pv-readbody stays the immediate + sibling and the hover-peek fires on the whole row.
            No backticks in these comments. */
-        .pv-readrow { display: flex; align-items: flex-start; margin-top: 12px; }
+        /* symmetric breathing room below the toggle to match the 12px above (Fuad 2026-08-16,
+           album context) — the read body/footer no longer sits tight under the control */
+        .pv-readrow { display: flex; align-items: flex-start; margin-top: 12px; margin-bottom: 12px; }
         .pv-toggle-read { margin-top: 0; text-align: left; text-decoration: underline;
           text-underline-offset: 3px; text-decoration-color: var(--rule); text-decoration-thickness: 1px; }
         .pv-toggle-read:hover { text-decoration-color: var(--accent-dim); }
@@ -1812,13 +1818,16 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           <div className="r-card av-simcard" style={{ padding: 18 }}>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
                 <span className="lbl"><b>Sounds like</b></span>
-                <span style={{ display: "inline-flex", gap: 8, alignItems: "center", flexWrap: "wrap", justifyContent: "flex-end" }}>
+                {/* All controls stay on ONE row even in "by sound": the seg/tune paddings are
+                    tightened inside .av-simhead (see css) so 8·16·24 + tune + [last.fm|by sound]
+                    fit the ~354px card without wrapping to a second line. (Fuad 2026-08-16) */}
+                <span className="av-simhead" style={{ display: "inline-flex", gap: 6, alignItems: "center", justifyContent: "flex-end", marginLeft: "auto" }}>
                   {simTab === "lastfm" && (a.similar || []).length > 8 && (
                     <button className="av-more" onClick={() => setSimN(n => n === 8 ? 16 : 8)}>{simN === 8 ? "16 ▾" : "8 ▴"}</button>
                   )}
                   {simTab === "sound" && <React.Fragment>
                     <div className="r-seg r-seg-sm">{[8, 16, 24].map(n => <button key={n} data-on={soundCount === n} onClick={() => setSoundCount(n)}>{n}</button>)}</div>
-                    <button onClick={() => setSoundOpen(o => !o)} className="r-mono" style={{ fontSize: 10, padding: "4px 10px", borderRadius: 999, border: "1px solid var(--rule)", background: soundOpen ? "var(--bg-3)" : "transparent", color: "var(--ink-soft)", cursor: "pointer" }}>tune {soundOpen ? "▴" : "▾"}</button>
+                    <button onClick={() => setSoundOpen(o => !o)} className="r-mono av-tunebtn" data-on={soundOpen} style={{ fontSize: 10, borderRadius: 999, border: "1px solid var(--rule)", background: soundOpen ? "var(--bg-3)" : "transparent", color: "var(--ink-soft)", cursor: "pointer" }}>tune</button>
                   </React.Fragment>}
                   <div className="r-seg r-seg-sm">
                     {[["lastfm", "last.fm"], ["sound", "by sound"]].map(([k, l]) => <button key={k} data-on={simTab === k} onClick={() => setSimTab(k)}>{l}</button>)}
@@ -2136,6 +2145,21 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         .av-simscroll { max-height: 270px; overflow-y: auto; }
         .av-simscroll > .av-simgrid { padding-right: 2px; }
         @media (max-width: 860px){ .av-simscroll { max-height: none; overflow-y: visible; } }
+        /* Sounds-like HEADER — keep every control on ONE row even on "by sound" at the narrow
+           (~354px) matched card width. No wrap; instead tighten the seg + tune paddings so the
+           8·16·24 seg + tune + [last.fm|by sound] seg fit beside the label. Scoped to this card's
+           header span so the site-wide r-seg-sm idiom is untouched. (Fuad 2026-08-16) */
+        .av-simhead { flex-wrap: nowrap; }
+        .av-simhead .r-seg { padding: 2px; }
+        .av-simhead .r-seg-sm button { padding: 3px 4px; letter-spacing: .02em; }
+        .av-simhead .av-tunebtn { padding: 3px 7px; }
+        .av-simhead .av-tunebtn[data-on="true"] { border-color: var(--accent-dim); }
+        /* a touch more room at the widest matched width (≥1440-ish) — the labels can breathe */
+        @media (min-width: 1400px){ .av-simhead .r-seg-sm button { padding: 3px 7px; letter-spacing: .06em; } .av-simhead { gap: 8px; } }
+        /* tune panel restack inside the narrow card: single column already set inline; center the
+           radar block and let the slider block run full width. */
+        .av-tunestack { justify-items: center; }
+        .av-tunestack > * { width: 100%; min-width: 0; }
         /* family tree absorbs the width the sim card gave up */
         .av-endrow > .av-famcard { flex: 1 1 400px; }
         /* family tree grows wider still when a band's members have rotated through many other bands */
@@ -2647,6 +2671,20 @@ function AlbumView({ id, go }) {
 
   return (
     <div className="r-view tv-page">
+      {/* Album-header chip rows never wrap (Fuad 2026-08-16): when the tags overflow the row scrolls
+          sideways instead of collapsing to a second line. Label (when present) stays fixed at the
+          start; only the chips scroll. Hidden scrollbar + right-edge fade mask reads as "more →".
+          Mirrors the .r-xscroll / .r-nav mobile precedents (rotation-core.jsx). */}
+      <style>{`
+        .alb-chiprow { display: flex; align-items: center; gap: 7px; min-width: 0; }
+        .alb-chipscroll { display: flex; align-items: center; gap: 7px; flex: 1 1 auto; min-width: 0;
+          flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+          -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 22px), transparent 100%);
+                  mask-image: linear-gradient(90deg, #000 calc(100% - 22px), transparent 100%); }
+        .alb-chipscroll::-webkit-scrollbar { display: none; }
+        .alb-chiprow > .r-mono { flex-shrink: 0; }
+        .alb-chipscroll > .r-chip { flex-shrink: 0; }
+      `}</style>
       {/* an album's natural parent is its artist — go up to them, not back out to Explore */}
       <button className="r-back" onClick={() => (known ? go("artist", artistId) : go("explore"))}>← {known ? data.artist : "explore"}</button>
       <div className="tv-head" style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 26 }}>
@@ -2670,12 +2708,14 @@ function AlbumView({ id, go }) {
               into Explore (same tag vocabulary the artist chips use). Album-specific, so it sits above
               the artist-level subgenre chips. Renders nothing when the album has no tags. */}
           {genreTags && genreTags.length > 0 && (
-            <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap", alignItems: "center" }}>
+            <div className="alb-chiprow" style={{ marginTop: 12 }}>
               <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>last.fm</span>
-              {genreTags.map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
+              <div className="alb-chipscroll">
+                {genreTags.map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
+              </div>
             </div>
           )}
-          {subs.length > 0 && <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
+          {subs.length > 0 && <div className="alb-chipscroll" style={{ marginTop: 12 }}>
             {subs.map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)}>{s}</span>)}</div>}
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap", alignItems: "center" }}>
             {standout && <ShNeedle trackKey={R.slug(data.artist) + "~" + R.slug(standout.title)} artist={data.artist} album={data.title} hue={hue} />}
