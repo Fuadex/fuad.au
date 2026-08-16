@@ -151,10 +151,17 @@ const albMeta = (artist, title) => aliasedBySlugAlbum(ALBMETA, slug(artist), slu
 const trackData = (artist, title) => aliasedBySlugAlbum(TRACKDATA, slug(artist), slug(title)) || 0;
 // name-keyed → alias-aware (fall back to a pre-fold variant name).
 const spotImg = (name) => { const s = aliasedByName(SPOT, name); return (s && s.img) || aliasedByName(ARTIMG, name) || ""; };
+// Deezer photos (deezer-artist-img.json by enrich-deezer-img.js; live-artist-img.json by sync-live.js) —
+// the LAST-RESORT fallback for artists Discogs/last.fm/Spotify never covered, so long-tail acts
+// (ANIMISERY-class) show a real photo instead of a generative placeholder. Both are {name: url|null}
+// (null = confirmed Deezer no-match); merged live-first so a manual/live fill wins, then the batch cache.
+const DZIMG = { ..._readJson("deezer-artist-img.json"), ..._readJson("live-artist-img.json") };
+const deezerImg = (name) => { const u = aliasedByName(DZIMG, name); return (typeof u === "string" && u) ? u : ""; };
 // clearImage pin: the Discogs/last.fm image is a wrong entity — fall through to Spotify
 // (whose cache entry can itself be repointed by id via the spotify pin; the LiSA case).
-const imageOf = (name) => { { const _p = pinOf(name); if (_p && _p.clearImage) return spotImg(name) || ""; } const d = aliasedByName(DGA, name), i = aliasedByName(IMAGES, name); return (d && d.image) || (i && i.image) || spotImg(name) || ""; };
-const thumbOf = (name) => { { const _p = pinOf(name); if (_p && _p.clearImage) return spotImg(name) || ""; } const d = aliasedByName(DGA, name), i = aliasedByName(IMAGES, name); return (d && d.thumb) || (i && i.thumb) || spotImg(name) || ""; };
+// Deezer is appended LAST so it only fills genuine placeholder gaps; it never overrides Discogs/Spotify.
+const imageOf = (name) => { { const _p = pinOf(name); if (_p && _p.clearImage) return spotImg(name) || deezerImg(name) || ""; } const d = aliasedByName(DGA, name), i = aliasedByName(IMAGES, name); return (d && d.image) || (i && i.image) || spotImg(name) || deezerImg(name) || ""; };
+const thumbOf = (name) => { { const _p = pinOf(name); if (_p && _p.clearImage) return spotImg(name) || deezerImg(name) || ""; } const d = aliasedByName(DGA, name), i = aliasedByName(IMAGES, name); return (d && d.thumb) || (i && i.thumb) || spotImg(name) || deezerImg(name) || ""; };
 const dgProfileOf = (name) => { const d = aliasedByName(DGA, name); return (d && d.profile) || ""; };
 const dgMembersOf = (name) => { const d = aliasedByName(DGA, name); return (d && d.members) || []; };
 
@@ -1151,17 +1158,42 @@ const canon = (name) => { const c = CANON.get(name) || name; return HAND_MERGE[c
 // (album hygiene — placeholder remaps + tag stripping — now lives in sync-csv.js as data overrides,
 // so fuadex.csv already holds clean album titles by the time we read it here.)
 
-// ─────────── album canonicalisation (variant-suffix stripping) ───────────
-// Collapse edition variants onto their base release so base+variant count as ONE album
-// everywhere albums aggregate (per-artist lists, media index, flow, geo/day, obsessions):
-// "Mezzanine (Deluxe)" → "Mezzanine", "Led Zeppelin IV (Remastered)" → "Led Zeppelin IV".
-// Applied at scrobble-ingest, so every downstream Map is keyed by the canonical title.
-// A real MusicBrainz release-group pass will supersede this heuristic later.
-//   STRIP (edition markers): deluxe, expanded, remaster(ed), anniversary, special edition,
-//     extended, bonus (track) edition, collector('s), redux, tour edition, complete edition,
-//     "20xx remaster/mix/master/edition".
-//   NEVER STRIP (distinct releases): live, acoustic, unplugged, instrumental(s), demo(s),
-//     acapella, remix(es/ed), single, EP, OST/soundtrack, session(s), cover(s). When in doubt, keep.
+// ─────────── album canonicalisation (base-exists folding) ───────────
+// Collapse variant titles onto their base release so base+variant count as ONE album everywhere
+// albums aggregate (per-artist lists, media index, flow, geo/day, obsessions).
+//
+// TIGHTER POLICY (2026-08-17, owner design ask "we need a tighter system"):
+// The old approach was a marker ALLOWLIST — a title only folded if its suffix matched a curated
+// edition vocabulary (deluxe/remaster/anniversary/…). That silently missed anything the list didn't
+// name: "Herzeleid (XXV Anniversary Edition – Remastered)" (arbitrary text before the keyword),
+// "Random Album Title (Promo CD)", "Widmo (Instrumentals)", "The Burning Red" vs "Burning Red".
+// The new rule inverts it to BASE-EXISTS EVIDENCE:
+//   when the SAME artist already has a bare album "X" (with real plays), then "X (anything)",
+//   "X - anything", and the "The X"/"X" article variant ALL fold onto X BY DEFAULT — regardless of
+//   what the parenthetical says. Evidence that the base is a real release you play is what licenses
+//   the fold; we no longer need to enumerate every edition word.
+//
+// SHORT PROTECT LIST (_ALBUM_PROTECT) — the ONLY suffix classes kept separate even when the base
+// exists, because they denote a genuinely DIFFERENT PERFORMANCE/RECORDING, not a repackage of the
+// same masters:
+//   • live / "live at <venue>" / "live in <city>" / (… tour) — a concert recording is its own work.
+//   • unplugged / "MTV Unplugged" — a distinct acoustic re-performance (its own release + tracklist).
+//   • acoustic / "acoustic version(s)/sessions" — re-recorded, not the studio master.
+//   • "<X> sessions" (Peel/BBC/live sessions) — separate session recordings.
+// Deliberately NOT protected (owner: "(Instrumentals) should FOLD"): instrumental(s), demo(s),
+// remix(es/ed), and every edition/reissue/promo word — these are the SAME songs (a stem-mute, an
+// early take, a re-tooled mix, or a repackage) and belong on the base album's row.
+//
+// FALLBACK (base does NOT exist): a standalone variant with no bare counterpart — e.g. a title we
+// only ever scrobbled as "Album (Deluxe Edition)" — still normalises via the edition marker STRIP
+// below, and a standalone "X (Live)" with no studio X is LEFT AS-IS (protect list still applies).
+// Title-collision guard: we never fold onto a "base" that is itself a different real album — the
+// census tracks per-artist raw titles so a same-name-different-release collision is detectable
+// (none found in this corpus; logged if one appears).
+
+// performance/recording classes that stay a distinct row even when the base album exists
+const _ALBUM_PROTECT = /\b(live|unplugged|acoustic|a cappella|acapella|sessions?)\b/i;
+// marker vocabulary used ONLY by the fallback strip (when no bare base exists to anchor the fold)
 const _ALBUM_KEEP = /\b(live|acoustic|unplugged|instrumentals?|demos?|acapella|a cappella|remix(?:es|ed)?|single|ep|ost|soundtrack|sessions?|covers?)\b/i;
 const _ALBUM_STRIP = new RegExp(
   "^(.*?)[\\s]*[([\\-–—][\\s]*(?:" +
@@ -1176,9 +1208,59 @@ const _ALBUM_STRIP = new RegExp(
 );
 // edition suffixes that appear WITHOUT a bracket/dash delimiter: "Meteora 20th Anniversary Edition"
 const _ALBUM_STRIP_BARE = /^(.{3,}?)\s+(\d+(?:th|st|nd|rd)\s+anniversary(?:\s+edition)?|limited edition|deluxe(?:\s+(?:edition|version))?|special edition)$/i;
-function canonAlbum(name) {
+
+// ── base-exists census ──────────────────────────────────────────────────────────────────────
+// _albCensus: canonArtist → Map(_foldName(rawTitle) → { plays, disp }) built in a pre-pass over the
+// CSV (below, right before the spelling prescan). Records every RAW album title an artist has and
+// its total plays + most-played display spelling, so canonAlbum can ask "does a bare base exist?".
+// _albCensusFold: quick lookup helper filled once the census is ready.
+const _albCensus = new Map();
+const _minBasePlays = 2;   // "meaningful plays" floor — a base seen only once isn't strong evidence
+// peel ONE trailing paren/bracket/dash suffix → { base, suffix } (suffix "" if none peeled)
+function _peelSuffix(s) {
+  // trailing (…) or […]
+  let m = /^(.*\S)\s*[([]([^)\]]*)[)\]]\s*$/.exec(s);
+  if (m) return { base: m[1].trim(), suffix: m[2].trim() };
+  // trailing " - suffix" / " – suffix" / " — suffix" (dash with spaces, so hyphenated titles survive)
+  m = /^(.*\S)\s+[\-–—]\s+(\S.*)$/.exec(s);
+  if (m) return { base: m[1].trim(), suffix: m[2].trim() };
+  return { base: s, suffix: "" };
+}
+// does a bare base title exist for this artist with real plays? returns its display spelling or null.
+function _baseExists(artist, base) {
+  if (!base) return null;
+  const c = _albCensus.get(artist); if (!c) return null;
+  const e = c.get(_foldName(base));
+  return e && e.plays >= _minBasePlays ? e.disp : null;
+}
+// canonAlbum(name, artist): with an artist + a ready census, fold variant→base by evidence; else
+// fall back to the marker-strip. artist optional so the census pre-pass can call canonAlbum(raw)
+// with the OLD (marker-only) behaviour while it is still building the census.
+function canonAlbum(name, artist) {
   if (!name) return name;
   let s = name;
+  if (artist && _albCensus.size) {
+    // base-exists folding: peel one suffix / drop leading article, fold if the bare base is real
+    for (let i = 0; i < 4; i++) {
+      let folded = false;
+      // (a) trailing parenthetical / bracket / " - " suffix
+      const { base, suffix } = _peelSuffix(s);
+      if (base && base !== s && !_ALBUM_PROTECT.test(suffix)) {
+        const disp = _baseExists(artist, base);
+        if (disp && _foldName(disp) !== _foldName(s)) { s = disp; folded = true; }
+      }
+      if (folded) continue;
+      // (b) leading article: "The X" ↔ "X" when the counterpart exists (fold toward the real base)
+      const noThe = s.replace(/^the\s+/i, "");
+      if (noThe !== s) {
+        const disp = _baseExists(artist, noThe);
+        if (disp && _foldName(disp) !== _foldName(s)) { s = disp; folded = true; }
+      }
+      if (!folded) break;
+    }
+    if (s !== name) return s;   // evidence-based fold won; done
+  }
+  // ── fallback: marker-strip (no bare base to anchor on, or census not ready) ──
   // peel one trailing edition segment at a time (handles "… (Deluxe) (Remastered)")
   for (let i = 0; i < 4; i++) {
     const m = _ALBUM_STRIP.exec(s) || _ALBUM_STRIP_BARE.exec(s);
@@ -1232,6 +1314,33 @@ const _bumpEd = (key, suffix, track) => {
   byTrk.set(track, (byTrk.get(track) || 0) + 1);
 };
 
+// ─────────── base-exists census pre-pass ───────────
+// One pass over the CSV BEFORE the spelling prescan: per canon-artist, tally every RAW album title's
+// total plays + most-played display spelling. canonAlbum (above) reads this to decide whether a
+// variant's stripped base is a real release the owner plays (→ fold) or a standalone (→ keep/strip).
+// Must precede the spelling prescan because that prescan now calls canonAlbum(raw, artist) and the
+// evidence fold needs the census populated. Cheap: one Map(fold→{plays,disp}) per artist.
+{
+  const raw = new Map();   // artist → Map(fold → Map(rawTitle → plays))
+  for (const line of lines) {
+    const [ra, rAlb] = parseLine(line);
+    if (!ra || !rAlb) continue;
+    const a = canon(ra);
+    let m = raw.get(a); if (!m) { m = new Map(); raw.set(a, m); }
+    const f = _foldName(rAlb);
+    let sp = m.get(f); if (!sp) { sp = new Map(); m.set(f, sp); }
+    sp.set(rAlb, (sp.get(rAlb) || 0) + 1);
+  }
+  for (const [a, m] of raw) {
+    const c = new Map(); _albCensus.set(a, c);
+    for (const [f, sp] of m) {
+      let plays = 0, disp = "", best = -1;
+      for (const [title, n] of sp) { plays += n; if (n > best) { best = n; disp = title; } }
+      c.set(f, { plays, disp });
+    }
+  }
+}
+
 // ─────────── spelling-fold prescan (albums + tracks) ───────────
 // One extra pass over the CSV: per artist, group album titles (post-suffix-strip) and track
 // titles by folded key; every variant spelling remaps to the most-played one at ingest.
@@ -1244,7 +1353,7 @@ const TRACK_FOLD = new Map();   // artist\x00slug(track) → best spelling
     const [ra, rAlb, trk] = parseLine(line);
     if (!ra) continue;
     const a = canon(ra);
-    if (rAlb) { const al = canonAlbum(rAlb); const k = a + "\x00" + _foldName(al) + "\x00" + al;
+    if (rAlb) { const al = canonAlbum(rAlb, a); const k = a + "\x00" + _foldName(al) + "\x00" + al;
       albC.set(k, (albC.get(k) || 0) + 1); }
     if (trk) { const k = a + "\x00" + slug(trk) + "\x00" + trk; trkC.set(k, (trkC.get(k) || 0) + 1); }
   }
@@ -1356,7 +1465,7 @@ for (const line of lines) {
   if (_mv) { artist = _mv[0]; track = foldTrack(artist, _mv[1]); }
   // collapse edition variants onto the base title BEFORE any album map is keyed,
   // then fold spelling variants ("Liebe Ist Fur Alle Da" → "Liebe ist für alle da")
-  const albumStripped = canonAlbum(rawAlbum);
+  const albumStripped = canonAlbum(rawAlbum, artist);
   const album = foldAlbum(artist, albumStripped);
   if (album && rawAlbum !== album && slug(rawAlbum) !== slug(album)) {
     const aSlug = slug(artist);
@@ -1482,22 +1591,78 @@ for (const [k, plays] of albumPlays) {
 for (const m of _tBy.values()) m.sort((a, b) => b.plays - a.plays);
 for (const m of _aBy.values()) m.sort((a, b) => b.plays - a.plays);
 
-// release-type heuristic per (canonical) album: distinct-track count → single/ep/album,
-// overridden by name patterns → comp/live/ost. A MusicBrainz release-group pass corrects
-// this later; the field name stays just `kind` so that swap is transparent to the UI.
+// release-type per (canonical) album — the "tighter system" (2026-08-17):
+//   1. name-pattern overrides → comp/live/ost (unchanged)
+//   2. MusicBrainz release-group type (mb-releases.json), joined by the SAME squash key the UI uses
+//      (decEnt + lowercase-alnum), with a leading-"The " fallback so "Burning Red" hits MB's
+//      "theburningred". This is the authoritative source — but see the COLLISION guard below.
+//   3. track-count fallback when MB has nothing: 1 distinct track → single, 2–6 → ep, ≥7 → album.
+//
+// WHY THE OLD RESULT WAS WRONG (Mutter/Toxicity/Hypnotize/Black Label): the shipped mb-kinds.js was
+// generated by an exact-squash join to MB that took last-write-wins. MB carries BOTH a studio-album
+// release-group AND a same-named CD-SINGLE release-group ("Mutter" single 2002, "Toxicity" single,
+// "Hypnotize" single) whose squash keys COLLIDE (mutter/toxicity/hypnotize) — so the single clobbered
+// the album and every LP read as "single". The fix: resolve collisions by RANK (album > ep > single)
+// AND cross-check the corpus — if MB says single/ep but the tracklist we actually scrobbled has ≥7
+// distinct tracks, the corpus wins (it's the full LP, not the CD single). Black Label was mislabelled
+// "ep" the same way; its 10-track corpus tracklist promotes it to album.
 const _kNameComp = /\b(greatest hits|best of|anthology|collection|singles)\b/i;
 const _kNameLive = /\blive\b|\blive at\b|unplugged/i;
 const _kNameOst = /\b(ost|original soundtrack|soundtrack)\b/i;
+const _EMPTY_SET = new Set();
+// squash key = the UI's matchKey (decEnt not needed here — titles are already decoded): lowercase alnum
+const _kSquash = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+const _kStripThe = (s) => _kSquash(String(s || "").replace(/^the\s+/i, ""));
+const _kRank = { album: 3, ep: 2, single: 1 };
+// build artistSlug → Map(squashKey → "album"/"ep"/"single") from MB release groups, collision-aware.
+const MB_KIND = (() => {
+  const out = new Map();
+  let raw; try { raw = JSON.parse(fs.readFileSync(path.join(__dirname, "mb-releases.json"), "utf8")); }
+  catch (e) { console.log("albumKind: mb-releases.json missing — track-count fallback only"); return out; }
+  for (const [aSlug, e] of Object.entries(raw)) {
+    if (!e || !e.rg) continue;
+    const m = new Map();
+    for (const [rgKey, rg] of Object.entries(e.rg)) {
+      const k = (rg && rg.k || "").toLowerCase();
+      const kind = k === "album" ? "album" : k === "ep" ? "ep" : k === "single" ? "single" : null;
+      if (!kind) continue;   // ignore Broadcast/Compilation/Other RG types — name patterns handle those
+      // collision: keep the highest-rank type for a given squash (album beats a same-named CD single)
+      const cur = m.get(rgKey);
+      if (!cur || _kRank[kind] > _kRank[cur]) m.set(rgKey, kind);
+    }
+    out.set(aSlug, m);
+  }
+  return out;
+})();
+// MB kind for (artistSlug, title): direct squash, then leading-"The " stripped, both directions.
+function _mbKindOf(aSlug, title) {
+  const m = MB_KIND.get(aSlug); if (!m) return null;
+  const k = _kSquash(title);
+  if (m.has(k)) return m.get(k);
+  const kt = _kStripThe(title);
+  if (kt !== k && m.has(kt)) return m.get(kt);
+  // corpus title lacks "the" but MB keyed it with "the" (e.g. Burning Red ↔ theburningred)
+  const kThe = "the" + k;
+  if (m.has(kThe)) return m.get(kThe);
+  return null;
+}
 function albumKind(artist, title) {
   if (_kNameComp.test(title)) return "comp";
   if (_kNameLive.test(title)) return "live";
   if (_kNameOst.test(title)) return "ost";
   const n = (albumTracks.get(artist + "\x00" + title) || _EMPTY_SET).size;
-  if (n <= 2) return "single";
+  const mb = _mbKindOf(slug(artist), title);
+  if (mb) {
+    // trust MB, EXCEPT when it says single/ep but our own tracklist proves a full LP (collision case)
+    if ((mb === "single" || mb === "ep") && n >= 7) return "album";
+    if (mb === "single" && n >= 2 && n <= 6) return "ep";   // MB single but we have an EP's worth
+    return mb;
+  }
+  // fallback — corpus distinct-track count (owner spec: 1→single, 2–6→ep, ≥7→album)
+  if (n <= 1) return "single";
   if (n <= 6) return "ep";
   return "album";
 }
-const _EMPTY_SET = new Set();
 
 // index of the albums each artist owns, so we can resolve a single onto its host LP/EP.
 // artist → [{ title, kind, plays }] (kind album/ep only — where a real tracklist lives).
@@ -1632,6 +1797,30 @@ const ALBUMS = rankedAlbums.filter(([key]) => albumKeys.has(key)).map(([key, pla
   if (albFam >= 0) rec.afam = 1;
   return rec;
 });
+
+// ─────────── mb-kinds.js (regenerated) ───────────
+// The artist page (rotation-views2 kindOf) overrides al.kind with ROTATION_MB_KINDS[artistId][squash].
+// The old file was a STALE exact-MB join (single-vs-album collisions → Mutter/Toxicity read "single").
+// Regenerate it here from the SAME reconciled albumKind() every other view uses, keyed by the UI's
+// matchKey squash, so the artist page and the shelves taxonomy can never disagree again. We emit the
+// kind for every canonical album title each included artist owns (their full per-artist album list).
+{
+  const KINDS = {};
+  for (const [k] of albumPlays) {
+    const ix = k.indexOf("\x00"); if (ix < 0) continue;
+    const artist = k.slice(0, ix), title = k.slice(ix + 1);
+    if (!byName[artist]) continue;
+    const aid = slug(artist), sq = _kSquash(title);
+    if (!sq) continue;
+    (KINDS[aid] || (KINDS[aid] = {}))[sq] = albumKind(artist, title);
+  }
+  fs.writeFileSync(path.join(__dirname, "mb-kinds.js"),
+    "// GENERATED by build-data.js — reconciled release-group kinds (MB release-group ∪ track-count\n" +
+    "// fallback, single-vs-album collisions resolved). Keyed artistSlug → matchKey(title) → kind.\n" +
+    "// Overrides the shipped al.kind in the artist view (rotation-views2 kindOf).\n" +
+    "window.ROTATION_MB_KINDS = " + JSON.stringify(KINDS) + ";\n", "utf8");
+  console.log(`mb-kinds.js: ${Object.keys(KINDS).length} artists, reconciled kinds emitted`);
+}
 
 // ─────────── TRACKS ───────────
 const TRACKS = [...trackPlays.entries()].sort((a, b) => b[1] - a[1]).slice(0, TOP_TRACKS)
@@ -4757,6 +4946,39 @@ const SPOTIMG_OUT = {};
 for (const a of EXPLORE) { const s = aliasedByName(SPOT, a.name); if (s && s.img) SPOTIMG_OUT[a.id] = s.img; }
 for (const a of ARTISTS) { if (!SPOTIMG_OUT[a.id]) { const s = aliasedByName(SPOT, a.name); if (s && s.img) SPOTIMG_OUT[a.id] = s.img; } }
 
+// ─────────── SIMIMG — matchKey(name) → Deezer photo for SIM-ONLY similar-tile names ───────────
+// A "Sounds like" tile can name an artist with zero scrobbles (e.g. Chromera in ANIMISERY's list):
+// no byId record, no THUMB slot — so GenCover can only draw a generative placeholder. enrich-deezer-img.js
+// strict-fetches those display names into the Deezer cache; here we ship them keyed by matchKey so
+// GenCover's final fallback can light the tile. ONLY names that DON'T already resolve through
+// byId/THUMBS are shipped (no double-shipping urls a THUMB already covers). matchKey key = the same
+// case/punct squash GenCover uses via R.matchKey. Ships in REST (like THUMBS_HI — similar tiles are
+// never on the eager first paint, so the deferred bundle carries it and keeps the first paint lean).
+const _bIdForName = (name) => {                                   // node mirror of the client idForName
+  if (!name) return null;
+  const direct = slug(name);
+  if (byName[name] || THUMBS[direct]) return direct;             // kept (has record) / explorable (has THUMB)
+  return ALIAS_TO_ID[name] || CANON_MK[matchKey(name)] || CANON_MK[_mkStripThe(name)] || null;
+};
+const _resolvesToImage = (name) => {                             // true when byId/THUMBS already covers it
+  const id = _bIdForName(name);
+  if (!id) return false;
+  if (byName[name] && imageOf(name)) return true;               // kept artist with a real image
+  return !!THUMBS[id];                                          // explorable artist with a Discogs/Spotify thumb
+};
+const SIMIMG = {};
+{
+  const _simNames = new Set();
+  for (const a of ARTISTS) { const real = realSimilar(a.name); const names = (real && real.length > 0) ? real.slice(0, 8) : ((META[a.name] && META[a.name].similar) || []); for (const n of names) _simNames.add(n); }
+  for (const a of EXPLORE) { if (byName[a.name]) continue; const real = realSimilar(a.name); if (real && real.length) for (const n of real.slice(0, 6)) _simNames.add(n); }
+  for (const name of _simNames) {
+    if (!name || _resolvesToImage(name)) continue;              // covered by byId/THUMBS → don't double-ship
+    const url = deezerImg(name);                                // Deezer cache (enrich-deezer-img.js / sync-live)
+    const mk = matchKey(name);
+    if (url && mk && !SIMIMG[mk]) SIMIMG[mk] = url;
+  }
+}
+
 // ── ARTISTS field split (Phase 0.1): the heavy per-artist prose/relationship fields are only
 //    read by views that mount AFTER music-rest merges (ArtistView in rotation-views2.jsx,
 //    MapView in rotation-worldmap.jsx). Nothing on Overview's first paint — the FACT_RULES in
@@ -4803,6 +5025,7 @@ const REST = {
   EXPLORE, ALBUMS, AUDIO: AUDIO_OUT, ARTIST_CLOCK, SUB_ARTISTS, CLOCK_BY_YEAR,
   ARTIST_X,   // id → heavy per-artist fields; folded back onto the ARTISTS records (see merge below)
   THUMBS_HI,  // id → full-res Discogs image; grid cards upgrade to it once rest loads (see GenCover)
+  SIMIMG,     // matchKey(name) → Deezer photo for sim-only similar-tile names (see GenCover fallback)
 };
 const DATA = CORE;   // the core file's IIFE builds window.ROTATION from these
 const out = `// ────────────────────────────────────────────────────────────────
@@ -4863,7 +5086,7 @@ window.ROTATION = (function () {
   const D = ${JSON.stringify(DATA)};
   // deferred keys (arrive via music-rest.js) — stubbed empty so any first-paint read never
   // throws; the rest file Object.assigns the real data, rebuilds expById, flips _restLoaded.
-  D.EXPLORE = []; D.ALBUMS = []; D.AUDIO = {}; D.ARTIST_CLOCK = {}; D.SUB_ARTISTS = {}; D.CLOCK_BY_YEAR = {}; D.THUMBS_HI = {};
+  D.EXPLORE = []; D.ALBUMS = []; D.AUDIO = {}; D.ARTIST_CLOCK = {}; D.SUB_ARTISTS = {}; D.CLOCK_BY_YEAR = {}; D.THUMBS_HI = {}; D.SIMIMG = {};
   D.expById = {}; D._restLoaded = false;
   D.byId = Object.fromEntries(D.ARTISTS.map(a => [a.id, a]));
   D.slug = slug;
