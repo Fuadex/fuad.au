@@ -562,7 +562,6 @@ const GENRE_RULES = [
   ["Prog", /\bdjent\b/, _GW.strong],
   ["Prog", /\bprogressive\b/, _GW.med],
   ["Prog", /\bpost-metal\b/, _GW.strong],
-  ["Prog", /\bart rock\b/, _GW.strong],
   ["Prog", /\bpsychedelic\b/, _GW.strong],
   ["Prog", /\bclassic rock\b/, _GW.med],
   ["Prog", /\bhard rock\b/, _GW.med],
@@ -571,7 +570,6 @@ const GENRE_RULES = [
   ["Shoegaze/Grunge", /\bshoegaze\b/, _GW.strong],
   ["Shoegaze/Grunge", /\bnu-?gaze\b/, _GW.strong],
   ["Shoegaze/Grunge", /\bblackgaze\b/, _GW.strong],
-  ["Shoegaze/Grunge", /\bdream pop\b/, _GW.strong],
   ["Shoegaze/Grunge", /\bgrunge\b/, _GW.strong],
   ["Shoegaze/Grunge", /\bpost-grunge\b/, _GW.strong],
   ["Shoegaze/Grunge", /\bslowcore\b/, _GW.strong],
@@ -579,6 +577,7 @@ const GENRE_RULES = [
 
   // ── 7 Alternative/Indie ──
   ["Alternative/Indie", /\balternative rock\b/, _GW.med],
+  ["Alternative/Indie", /\bart rock\b/, _GW.med],   // moved Prog(strong)->Alt(med) (Fuad 2026-08-17)
   ["Alternative/Indie", /\bindie (rock|pop-rock|pop rock)\b/, _GW.strong],
   ["Alternative/Indie", /\bpost-punk\b/, _GW.med],
   ["Alternative/Indie", /\bbritpop\b/, _GW.strong],
@@ -637,6 +636,7 @@ const GENRE_RULES = [
   ["Pop", /\bnew wave\b/, _GW.strong],
   ["Pop", /\bart pop\b/, _GW.strong],
   ["Pop", /\bindie pop\b/, _GW.strong],
+  ["Pop", /\bdream pop\b/, _GW.strong],   // moved Shoegaze/Grunge->Pop (Fuad 2026-08-17)
   ["Pop", /\belectropop\b/, _GW.strong],
   ["Pop", /\bdance-?pop\b/, _GW.strong],
   ["Pop", /\bdark pop\b/, _GW.strong],
@@ -690,8 +690,16 @@ function _classifyToken(rawTag) {
   if (GENRE_JUNK.has(t)) return null;
   if (SCENE_ZERO.has(t)) return null;
   if (GENRE_UMBRELLA.has(t)) { const [fam, w] = GENRE_UMBRELLA.get(t); const f = _famByName(fam); return f && { ...f, i: _FAM_INDEX.get(fam), weight: w }; }
+  // B4 fix (2026-08-17): rules are written in the SPACE form ("dream pop"), but SUB_CANON hands the
+  // classifier the HYPHENATED canonical form ("dream-pop") in the SUBS/Explore path, and last.fm/
+  // Discogs deliver both spellings. _gnorm folds _ and / to spaces but leaves hyphens intact, so a
+  // hyphenated tag silently missed every space-form rule (dream-pop/new-wave/hard-rock/*-metal, …).
+  // Fix centrally by testing each rule against BOTH the raw-normalised token and a hyphen→space
+  // variant: pure-space rules match the folded form, deliberately-hyphenated rules (post-rock,
+  // trip-?hop) still match the raw form, and rules using [- ]?/-? match either. First hit wins.
+  const th = t.indexOf("-") >= 0 ? t.replace(/-/g, " ") : null;
   for (const [fam, re, w] of GENRE_RULES) {
-    if (re.test(t)) { const f = _famByName(fam); return f && { ...f, i: _FAM_INDEX.get(fam), weight: w }; }
+    if (re.test(t) || (th !== null && re.test(th))) { const f = _famByName(fam); return f && { ...f, i: _FAM_INDEX.get(fam), weight: w }; }
   }
   return null;
 }
@@ -1137,7 +1145,7 @@ const FAMILY_OVERRIDES = {
   "MAN WITH A MISSION": "Metalcore/Nu",      // Japanese alt-metal/rock
   "Trent Reznor and Atticus Ross": "Score",
   "Trent Reznor & Atticus Ross": "Score",
-  "HEALTH": "Shoegaze/Grunge",
+  // "HEALTH": "Shoegaze/Grunge" removed 2026-08-17 — evidence wins (noise rock 100 → Industrial/Hyperpop/Noise).
   "Grimes": "Electronic/DnB",
   "Battle Tapes": "Electronic/DnB",
   "Airbourne": "Heavy/Doom",          // hard-rock/heavy → Heavy bucket
