@@ -3025,6 +3025,25 @@ function GigsView({ go }) {
                           {rest > 0 ? <span className="gv-night-more"> + {rest} more</span> : null}
                         </div>
                         <div className="gv-gig-venue">{n.place}</div>
+                        {(() => {
+                          // across the day's acts, the songs you most live with (build-side precompute,
+                          // plays≥8, top 5). No setlist-level "heard the whole festival" data exists, so
+                          // this is your rotation crossed with who you stood in front of. Clicking a
+                          // song jumps to its track page (artistSlug~trackSlug, the site convention).
+                          const tl = G.topLiveByDate && G.topLiveByDate[n.date];
+                          if (!tl || !tl.length) return null;
+                          return (
+                            <div className="gv-gig-songs gv-night-live" onClick={(e) => e.stopPropagation()}>
+                              heard live, in your rotation: {tl.map(([title, artist, aid, plays], j) => (
+                                <React.Fragment key={aid + "~" + title}>
+                                  {j > 0 ? ", " : ""}
+                                  <b data-link={true} onClick={() => go("track", aid + "~" + R.slug(title))}>{title}</b>
+                                  <span className="gv-night-live-by"> · {artist}</span>
+                                </React.Fragment>
+                              ))}
+                            </div>
+                          );
+                        })()}
                       </div>
                       <div className="gv-gig-meta">
                         <span className="gv-gig-plays">{n.acts.length}<small>acts</small></span>
@@ -3102,6 +3121,12 @@ function GigsView({ go }) {
         .gv-night-acts { padding-left: 14px; margin-top: 2px; display: grid; gap: 2px; }
         .gv-night-acts .gv-gig-date { display: none; }
         .gv-night-acts .gv-gig { grid-template-columns: 10px 1fr auto; }
+        /* festival day: top cross-artist songs you play — the label hedges (no setlist-wide data),
+           each song clicks through to its track page */
+        .gv-night-live { margin-top: 6px; }
+        .gv-night-live b { cursor: pointer; border-bottom: 1px dotted var(--ink-faint); }
+        .gv-night-live b:hover { color: var(--accent); border-bottom-color: var(--accent); }
+        .gv-night-live-by { color: var(--ink-faint); font-weight: 400; }
         /* year scrub on Still to catch — same control as the Overview map's year slider */
         .gv-years { display: flex; gap: 10px; align-items: center; max-width: 340px; margin: 0 0 12px; }
         .gv-play { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; flex: none; }
