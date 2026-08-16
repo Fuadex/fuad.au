@@ -105,16 +105,16 @@ const SND_SPECS = {
   disc:    { v: (a) => (a.fd != null ? a.fd : null), disp: (v, a) => String(FDY(a)), bar: false }, // first-play day (newest first)
   span:    { v: (a) => (a.sd != null ? a.sd : null),                            // first→last spread
              // months as the concrete unit, years appended after a slash for scale once it adds info
-             // (≥2y). Under 2 months → days. e.g. 5985d → "197mo / 16y", ~1y → "12mo", 43d → "43d".
+             // (≥2y). Under 2 months → days. e.g. 5985d → "197mo/16y", ~1y → "12mo", 43d → "43d".
              disp: v => { const mo = Math.floor(v / 30.44), y = Math.floor(v / 365.25);
-                          return mo < 2 ? Math.max(1, Math.round(v)) + "d" : (y >= 2 ? mo + "mo / " + y + "y" : mo + "mo"); } },
+                          return mo < 2 ? Math.max(1, Math.round(v)) + "d" : (y >= 2 ? mo + "mo/" + y + "y" : mo + "mo"); } },
   vintage: { v: (a) => (a.d > 0 ? a.d : null), d: -1, disp: (v, a) => String(a.d), bar: false }, // est. year, oldest first
 };
 // first-play YEAR from the rec's fd — for the "discovered" label.
 // fd is days since the REAL first dated scrobble (oldestMs in build-data), so anchor on TOTALS.fdAnchor —
 // NOT `since`, which is pushed back to UNDATED_REMAP_START when undated plays exist (that ~4-yr gap made
 // 2026 read as 2022). Fall back to `since` only if fdAnchor is absent (old bundle).
-const FDY = (a) => { const R = window.ROTATION; const T = R.TOTALS || {}; const t = T.fdAnchor || T.since || "2013-01-01"; return new Date(Date.parse(t) + (a.fd || 0) * 86400e3).getUTCFullYear(); };
+const FDY = (a) => { const R = window.ROTATION; const T = R.TOTALS || {}; const t = T.fdAnchor || T.since || "2013-01-01"; const d = new Date(Date.parse(t) + (a.fd || 0) * 86400e3); return d.getUTCFullYear() + "." + String(d.getUTCMonth() + 1).padStart(2, "0"); };
 // flip-button labels per sort: [what sndDir=1 (the natural default) shows first, what the flip shows].
 const SND_FLIP = {
   mine:    ["most mine", "least mine"],   disc: ["newest", "oldest"],
@@ -1941,7 +1941,7 @@ function ExploreView({ t, go, setPop, seed }) {
           .xp-rank-win { max-height: min(78vh, 900px); overflow-y: auto; padding-right: 4px;
             scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent; }
         }
-        .xp-val { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); text-align: right; }
+        .xp-val { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); text-align: right; white-space: nowrap; }
         /* xp-sub-row was never defined → block layout, so a long nowrap subgenre name set the
            column's min-content width ("second wave of…" widened Nu-metal). Flex + min-width:0
            lets the name actually truncate; minmax(0,1fr) columns stop content-driven widening. */
