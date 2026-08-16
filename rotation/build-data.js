@@ -4702,6 +4702,26 @@ if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
       preFan: (firstPlay && g.date && g.date < firstPlay && plays >= 10) ? 1 : 0,
     };
   });
+  // FESTIVAL DAYS — the client groups gigs into "nights" by date; a date with ≥2 acts is a
+  // festival day. There's no setlist-level "which songs did you hear across the whole day", so
+  // (as the label's phrasing hedges) we surface the songs you most LIVE WITH from that day's
+  // acts: pool each act's known-in-rotation songs (already canon-matched, with your play counts),
+  // rank across artists, keep the top 5 that clear a plays≥8 floor so filler doesn't pad. Attach
+  // per-date so the view can hang it under the collapsed festival card without loading track data.
+  const _byDate = new Map();
+  for (const g of gigs) { if (!_byDate.has(g.date)) _byDate.set(g.date, []); _byDate.get(g.date).push(g); }
+  const topLiveByDate = {};
+  for (const [date, list] of _byDate) {
+    if (list.length < 2) continue;   // single-act night — the per-gig knownSongs row already covers it
+    const pool = [];
+    for (const g of list) for (const s of (g.knownSongs || [])) {
+      if (s.plays >= 8) pool.push([s.title, g.artist, g.artistId, s.plays]);
+    }
+    if (!pool.length) continue;
+    pool.sort((a, b) => b[3] - a[3]);
+    topLiveByDate[date] = pool.slice(0, 5);   // [title, artistName, artistId, plays]
+  }
+
   const seenArtists = new Map();  // artistId → best gig record (slug key: "Paranoid Void" ≡ "paranoid void")
   for (const g of gigs) { const e = seenArtists.get(g.artistId); if (!e || g.plays > e.plays) seenArtists.set(g.artistId, g); }
   const cityMap = new Map();
@@ -4719,6 +4739,7 @@ if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
     firstGig: gigs.reduce((m, g) => g.date < m ? g.date : m, gigs[0].date),
     lastGig: gigs.reduce((m, g) => g.date > m ? g.date : m, gigs[0].date),
     gigs, // already newest-first from the enricher
+    topLiveByDate,   // festival days → top cross-artist songs you play (date → [[title, artist, artistId, plays]])
     byYear,
     // acts you saw AND love — ranked by how much you play them (deep enough for the +12 pager)
     seenTop: uniqArtists.filter(a => a.inLibrary).sort((a, b) => b.plays - a.plays).slice(0, 60),
