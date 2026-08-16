@@ -4798,6 +4798,13 @@ window.ROTATION = (function () {
   //   matchKeyLoose — decEnt + strip bracketed feat./ft./with/w credit segments,
   //                   [Explicit]/(Explicit), a trailing " - Single", then squash.
   //                   For when a play row carries a credit the canonical title omits.
+  //   matchKeyMovement — strip a leading SUITE prefix ("«suite»: I. ", "«suite»: Pt. III …",
+  //                   "«suite», Pt. I: ") off a movement title, THEN squash. For the stranded-
+  //                   suite class: an MB spine names each movement "«suite»: VI. Solitary Shell"
+  //                   while the scrobble folds to the bare "Solitary Shell" (like Oddworld's
+  //                   tracks stranded on singles, a title-shape drift the strict key can't cross).
+  //                   Returns "" when there is NO suite prefix, so callers cheaply skip it and it
+  //                   can NEVER alias two unrelated plain titles to the same key.
   //   resolveAlbum  — follow the singles→LP absorb sidecar to the display key (identity
   //                   when the single isn't absorbed, or the sidecar isn't loaded yet).
   // NOTE: this whole IIFE is emitted THROUGH a template literal into music-core.js, so every
@@ -4809,6 +4816,11 @@ window.ROTATION = (function () {
     .replace(/[([]\\s*explicit\\s*[)\\]]/gi, " ")
     .replace(/\\s*-\\s*single\\s*$/i, " ")
     .toLowerCase().replace(/[^a-z0-9]+/g, "");
+  // Leading suite-prefix stripper: "«suite»: <ROMAN>. ", "«suite»: Pt. <N>[:.] ",
+  // "«suite», Pt. <N>: " (roman i–xii OR arabic 1–2 digits; case-insensitive; tolerant of the
+  // ": / , / . / stray-quote" punctuation drift seen in real exporter data). No prefix → "".
+  const _mvSuite = /^.*?(?::\\s*M{0,3}(?:ix|iv|v?i{1,3}|v)\\s*\\.\\s*|[:,]\\s*Pt\\.?\\s*(?:\\d{1,2}|M{0,3}(?:ix|iv|v?i{1,3}|v))\\s*[:.]?\\s*)["“”'\\s]*/i;
+  const matchKeyMovement = (s) => { const d = decEnt(s); return _mvSuite.test(d) ? d.replace(_mvSuite, "").toLowerCase().replace(/[^a-z0-9]+/g, "") : ""; };
   const resolveAlbum = (key) => (key && typeof window !== "undefined" && window.ROTATION_ALBUM_ABSORB && window.ROTATION_ALBUM_ABSORB[key]) || key;
   const D = ${JSON.stringify(DATA)};
   // deferred keys (arrive via music-rest.js) — stubbed empty so any first-paint read never
@@ -4821,6 +4833,7 @@ window.ROTATION = (function () {
   D.decEnt = decEnt;
   D.matchKey = matchKey;             // canonical display-time match key (see resolution layer above)
   D.matchKeyLoose = matchKeyLoose;   // credit/explicit/-single-insensitive squash
+  D.matchKeyMovement = matchKeyMovement; // bare-movement squash for stranded suite rows ("" if no suite prefix)
   D.resolveAlbum = resolveAlbum;     // singles→LP absorb resolver (identity if unlinked/sidecar absent)
   // _canonMk(name) — matchKey-based fold to a kept-artist id (CANON_MK), the fuzzy last resort for
   // idForName/played. Catches case/punctuation drift and last.fm source renames the exact ALIAS_TO_ID

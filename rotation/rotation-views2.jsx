@@ -540,8 +540,12 @@ function SoundSimilar({ id, go, ctl }) {
           {results.map(({ c }) => { const s = c.rec, name = (s && s.name) || c.id, nav = !!(R.byId[c.id] || (R.expById && R.expById[c.id])); return (
             <div key={c.id} onClick={() => nav && go("artist", c.id)} style={{ cursor: nav ? "pointer" : "default" }}>
               <GenCover hue={(s && s.hue) || 210} name={name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
-              <div style={{ fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{name}</div>
-              {s && s.plays != null && <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays →</div>}
+              {/* ctl (artist-page card) uses the Albums tile system: 10px 2-line-clamped title +
+                  8.5px "N plays" (no arrow). The uncontrolled dossier/fallback keeps the looser 12/9. */}
+              <div style={ctl
+                ? { fontSize: 10, lineHeight: 1.2, marginTop: 6, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }
+                : { fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{name}</div>
+              {s && s.plays != null && <div className="r-mono" style={{ fontSize: ctl ? 8.5 : 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays{ctl ? "" : " →"}</div>}
             </div>); })}
         </div>;
         return ctl ? <div className="av-simscroll">{grid}</div> : grid;
@@ -971,13 +975,20 @@ const PV_WW_CSS = `
            pinned right; wraps on narrow screens. The full-read toggle was pulled OUT to its own
            left-aligned line below (Fuad 2026-08-12). No backticks in these comments. */
         .pv-controlrow { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
-        .pv-flick-inrow { align-self: center; }
-        /* THE FULL READ + VIA-SOURCE (Fuad 2026-08-12, revised): ONE line below the chips —
-           toggle LEFT, flick RIGHT, space-between; wraps flick right-aligned below when both
-           can't fit. No backticks in these comments. */
-        .pv-readrow { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+        /* THE FULL READ + FACT CHIPS (Fuad 2026-08-16): ONE line — the toggle LEFT, the fact chips
+           flowing to the RIGHT (right-anchored via margin-left:auto on the chip group). The clicked
+           chip's derivation is a full-width flex item that wraps to its own line directly below the
+           row (flex-basis:100%), so it opens right under the merged row while .pv-readbody stays the
+           immediate + sibling of .pv-readrow (hover-peek intact). align-items:flex-start so a
+           multi-line chip group / toggle top-align. No backticks in these comments. */
+        .pv-readrow { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start;
           gap: 7px 12px; margin-top: 12px; }
-        .pv-readrow .pv-flick-inrow { margin-left: auto; }
+        /* chip group hugs the right edge on the toggle row, wrapping its own chips right-aligned. */
+        .pv-chips-inrow { margin-left: auto; justify-content: flex-end; }
+        /* derivation opens on its own full-width line below the merged row (wraps under the chips),
+           right-anchored but capped to a readable width with left-aligned text so the
+           right-alignment never squashes the prose. Narrow screens fall back to full-width/left. */
+        .pv-deriv-inrow { flex-basis: 100%; max-width: 420px; margin-left: auto; text-align: left; }
         .pv-toggle-read { margin-top: 0; text-align: left; text-decoration: underline;
           text-underline-offset: 3px; text-decoration-color: var(--rule); text-decoration-thickness: 1px; }
         .pv-toggle-read:hover { text-decoration-color: var(--accent-dim); }
@@ -994,22 +1005,27 @@ const PV_WW_CSS = `
           -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
           mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
           transition: max-height .22s ease-out, opacity .18s ease-out; }
-        .pv-readrow:hover + .pv-readbody:not(.open) { max-height: 46px; opacity: .85; }
+        /* hover-peek is scoped to the TOGGLE side (Fuad 2026-08-16): now that the fact chips share
+           the row, a bare .pv-readrow:hover would peek the read whenever a chip is hovered. :has()
+           narrows the trigger to hovering the full-read toggle itself; where :has isn't supported the
+           peek simply doesn't fire (click still expands) — graceful degradation. */
+        .pv-readrow:has(.pv-toggle-read:hover) + .pv-readbody:not(.open) { max-height: 46px; opacity: .85; }
         .pv-readbody.open { max-height: 4000px; opacity: 1; pointer-events: auto;
           -webkit-mask-image: none; mask-image: none; }
         .pv-peek-p { margin-top: 6px; pointer-events: none; }
         .pv-full { font-family: var(--serif); font-size: 15px; line-height: 1.62; color: var(--ink-soft); margin: 12px 0 0; }
         .pv-facts { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
-        /* FACTS block (Fuad 2026-08-16): sits at the bottom of the module, below the full read,
-           right-anchored. The chip row right-aligns (chips hug the right edge); the derivation
-           opens right-anchored but capped to a readable width with left-aligned text so the
-           right-alignment never squashes the prose. Narrow screens fall back to full-width/left. */
-        .pv-factsblock { margin-top: 16px; }
-        .pv-factsblock .pv-controlrow { justify-content: flex-end; }
-        .pv-factsblock .pv-deriv { max-width: 420px; margin-left: auto; text-align: left; }
+        /* VIA-SOURCE bottom row (Fuad 2026-08-16): the via-flick was pulled off the read row down to
+           a final bottom-right row after everything in this face — mirrors .pv-flickrow's placement
+           (bottom-right, subtle). Stays right-aligned on narrow screens too, per the file's flickrow
+           pattern. No backticks in these comments. */
+        .pv-viabottom { display: flex; justify-content: flex-end; margin-top: 14px; }
+        /* Mobile ≤560px (Fuad 2026-08-16): the chip group on the toggle row would crowd, so it wraps
+           to its own line BELOW the toggle, left-aligned (matching the mobile fallback spirit); the
+           derivation goes full-width/left as well. The via bottom-row stays right-aligned. */
         @media (max-width: 560px){
-          .pv-factsblock .pv-controlrow { justify-content: flex-start; }
-          .pv-factsblock .pv-deriv { max-width: none; margin-left: 0; }
+          .pv-readrow .pv-chips-inrow { flex-basis: 100%; margin-left: 0; justify-content: flex-start; }
+          .pv-readrow .pv-deriv-inrow { max-width: none; margin-left: 0; }
         }
         .pv-chips { display: flex; flex-wrap: wrap; gap: 7px; }
         .pv-chip { max-width: 100%; background: var(--bg-3); border: 1px solid var(--rule); border-radius: 999px;
@@ -1165,19 +1181,23 @@ function PortraitCard({ id, alt, showWords = true, go }) {
           {/* gist renders as plain serif lead text — quote-mark/blockquote styling is intentionally
               NOT applied (the class is reserved for a future tier). */}
           <p className="pv-gist">{linkifyTracks(p.gist, albumTracks, go)}</p>
-          {/* LAYOUT (Fuad 2026-08-16): the full-read toggle + via-source flick lead the module,
-              the read body unravels below them, and the fact chips now sit at the BOTTOM of the
-              module (below the read), right-anchored — see .pv-factsblock. Chips keep
-              click-to-expand; the derivation renders on its own line below the chip row. */}
+          {/* LAYOUT (Fuad 2026-08-16, revised): the full-read toggle and the fact CHIPS now share
+              ONE line at the TOP of the block — toggle LEFT, chips flowing RIGHT (right-anchored) —
+              and the clicked chip's derivation opens directly below that row (right-anchored, capped
+              width). The read body unravels below the row. The via-source flick ("via wikipedia" /
+              "VIA OPUS ⇄") was pulled OUT of this row down to a final bottom-right row after
+              everything else (see .pv-viabottom near the end of this face). */}
           {(facts.length > 0 || full || hasAlt) && (
             <div className="pv-facts pv-controlrow-wrap">
-              {/* THE FULL READ + VIA-SOURCE (Fuad 2026-08-12, revised): the toggle and the
-                  via-source flick share ONE line at the TOP of the block — toggle LEFT, flick RIGHT,
-                  space-between (wraps flick right-aligned below on narrow screens). Reserving a
-                  fixed-width toggle slot keeps the label from shifting when it swaps ▾/▴, and the
-                  read below UNRAVELS in place from the hover-peek: one height-clamped body that
-                  peeks on hover and expands fully on click (sticky — grows downward, never jumps). */}
-              {(full || hasAlt || hasPrev) && (
+              {/* THE FULL READ + FACT CHIPS (Fuad 2026-08-16): the toggle and the fact chips share
+                  ONE line — toggle LEFT, chips flowing to the RIGHT (right-anchored). Reserving a
+                  fixed-width toggle slot keeps the label from shifting when it swaps ▾/▴. The read
+                  below UNRAVELS in place from the hover-peek: one height-clamped body that peeks
+                  when the TOGGLE is hovered (scoped via :has so hovering a chip doesn't peek) and
+                  expands fully on click (sticky — grows downward, never jumps). The clicked chip's
+                  derivation opens as a full-width flex item below the row (wraps under the chips),
+                  keeping it the immediate + sibling of .pv-readbody intact for the hover-peek. */}
+              {(full || facts.length > 0) && (
                 <div className={"pv-readrow" + (open ? " open" : "")}>
                   {full ? (
                     <button className="pv-toggle pv-toggle-read"
@@ -1185,11 +1205,18 @@ function PortraitCard({ id, alt, showWords = true, go }) {
                       <span className="pv-toggle-lbl">{open ? "less ▴" : "the full read ▾"}</span>
                     </button>
                   ) : <span className="pv-toggle-spacer" />}
-                  {(hasAlt || hasPrev) && (
-                    <button className="pv-flick pv-flick-inrow r-mono" onClick={() => setFace(nextFace)}
-                      title={hasPrev ? "see the earlier Opus read" : "see the " + alt.label + " source"}>
-                      {flickLabel}
-                    </button>
+                  {facts.length > 0 && (
+                    <div className="pv-chips pv-chips-inrow">
+                      {facts.map((f, i) => (
+                        <button key={i} className={"pv-chip" + (chip === i ? " on" : "")}
+                          onClick={() => setChip(c => c === i ? -1 : i)} aria-expanded={chip === i}>
+                          <b>{f.k}</b>{!badV(f.v) && <span className="pv-sep"> · {f.v}</span>}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {chip >= 0 && facts[chip] && (
+                    <div className="pv-deriv pv-deriv-inrow">{facts[chip].x}</div>
                   )}
                 </div>
               )}
@@ -1225,26 +1252,6 @@ function PortraitCard({ id, alt, showWords = true, go }) {
                 <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".06em", marginTop: 10 }}>
                   synthesized from the songs' Opus · Fable reads</div>
               )}
-              {/* FACTS block (Fuad 2026-08-16): moved BELOW the full read, still inside this module,
-                  and right-anchored — the k·v chips hug the right edge; the clicked chip's derivation
-                  opens on its own line, right-anchored but capped to a readable width with left-aligned
-                  text so right-alignment never squashes it. Falls back to full-width/left on narrow
-                  screens (see .pv-factsblock @media). */}
-              {facts.length > 0 && (
-                <div className="pv-factsblock">
-                  <div className="pv-controlrow">
-                    {facts.map((f, i) => (
-                      <button key={i} className={"pv-chip" + (chip === i ? " on" : "")}
-                        onClick={() => setChip(c => c === i ? -1 : i)} aria-expanded={chip === i}>
-                        <b>{f.k}</b>{!badV(f.v) && <span className="pv-sep"> · {f.v}</span>}
-                      </button>
-                    ))}
-                  </div>
-                  {chip >= 0 && facts[chip] && (
-                    <div className="pv-deriv">{facts[chip].x}</div>
-                  )}
-                </div>
-              )}
             </div>
           )}
           {w && (
@@ -1256,6 +1263,19 @@ function PortraitCard({ id, alt, showWords = true, go }) {
                 </div>
               )}
               <WordsWeatherBars v={w.v} a={w.a} x={w.x} />
+            </div>
+          )}
+          {/* VIA-SOURCE flick (Fuad 2026-08-16): pulled OUT of the read row down to the FINAL
+              bottom-right row of this face — after the read body, codas, facts and the words block —
+              cycles the frontal read to the earlier Opus read / old source and back. Renders whether
+              the read is collapsed or open (it flicks the gist/read source regardless of the toggle
+              state), staying bottom-right of whatever is showing. Left/right per .pv-viabottom. */}
+          {(hasAlt || hasPrev) && (
+            <div className="pv-viabottom">
+              <button className="pv-flick r-mono" onClick={() => setFace(nextFace)}
+                title={hasPrev ? "see the earlier Opus read" : "see the " + alt.label + " source"}>
+                {flickLabel}
+              </button>
             </div>
           )}
         </>
@@ -1822,10 +1842,10 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                         <GenCover hue={it.hue} name={it.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
                         {it.played && <span className="r-mono r-inlib">in library</span>}
                       </div>
-                      <div style={{ fontSize: 12, lineHeight: 1.2 }}>{it.name}</div>
-                      {it.plays != null ? <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(it.plays)} plays →</div>
-                        : it.played ? <div className="r-mono" style={{ fontSize: 9, color: "var(--accent-dim)" }}>scrobbled · deeper cut</div>
-                          : <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>not yet scrobbled</div>}
+                      <div style={{ fontSize: 10, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{it.name}</div>
+                      {it.plays != null ? <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(it.plays)} plays</div>
+                        : it.played ? <div className="r-mono" style={{ fontSize: 8.5, color: "var(--accent-dim)" }}>scrobbled · deeper cut</div>
+                          : <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>not yet scrobbled</div>}
                     </div>
                   ))}
                 </div></div>;
@@ -2081,7 +2101,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           )}
       </div>
       <style>{`
-        .r-inlib { position: absolute; bottom: 6px; left: 6px; font-size: 7.5px; letter-spacing: .08em; text-transform: uppercase;
+        .r-inlib { position: absolute; bottom: 6px; left: 6px; font-size: 8.5px; letter-spacing: .08em; text-transform: uppercase;
           background: var(--accent); color: #0c0a08; padding: 2px 5px; border-radius: 3px; }
         .r-alert { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
           background: var(--accent-bg); border: 0; color: var(--accent-ink); padding: 8px 12px; border-radius: 5px; cursor: pointer; white-space: nowrap; }
@@ -2100,17 +2120,25 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         /* Sound DNA stays compact (radar-width) rather than stretching to a full third */
         .av-endrow > .av-dnacard { flex: 0 0 236px; min-width: 236px; }
         @media (max-width: 980px){ .av-endrow > .av-dnacard { flex: 1 1 100%; } }
-        /* Sounds-like is pinned narrow to a stable 4-across footprint (18px pad + 4·tile + 3·gap);
-           it never grows past two rows — extra rows (16/24) scroll inside av-simscroll. The freed
-           width is handed to the family tree, which grows to fill the row. (Fuad 2026-08-16) */
-        .av-endrow > .av-simcard { flex: 0 1 384px; min-width: 300px; }
+        /* Sounds-like is width-MATCHED to the Albums card in the av-row3 band above it. Both bands
+           are direct children of the same full-width page column, so each sees the same content
+           width W (100% of the band). The Albums card is av-row3's 3rd grid column
+           (template 0.85fr | 1.4fr | 0.9fr, two var(--gap) gaps), so its width is
+           (W - 2·gap) · 0.9/3.15. We express the SAME formula here as a flex-basis, so the sim card
+           tracks the Albums column width at every viewport — not just one pinned px. The family tree
+           (the sole grower) absorbs the remaining endrow width. (Fuad 2026-08-16) */
+        .av-endrow > .av-simcard { flex: 0 1 calc((100% - 2 * var(--gap)) * 0.9 / 3.15); min-width: 300px; }
         /* the tile grid — fixed 4 columns (minmax(0,1fr) so a long name can't force min-content
-           growth and re-tabulate the row), capped to two rows tall then scrolls */
+           growth and re-tabulate the row), capped to two rows tall then scrolls. At the matched
+           width the inner room is (basis - 2·18 pad), so each tile = (inner - 3·10 gap)/4 ≈ 72px at a
+           1280px content area (same square as the Albums covers grid) and grows with the viewport. */
         .av-simgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-        /* two square rows (~79px tile at the pinned 384px width) + caption ≈ 240px; +peek signals
-           scroll. Only capped where the card width is fixed — on stacked mobile the tiles grow, so a
-           px cap would slice mid-row; there the page scrolls instead. */
-        .av-simscroll { max-height: 250px; overflow-y: auto; }
+        /* Two rows fully visible + a peek of row 3 to signal scroll. Row height at the ~72px tile =
+           cover 72 + gap 8 + title(2 lines · 10px · 1.2 = 24) + plays(8.5px ≈ 12) ≈ 116px; two rows +
+           the 10px row-gap = 242px, + ~28px peek of the next row ≈ 270px. Only capped where the card
+           width is fixed — on stacked mobile the tiles grow, so a px cap would slice mid-row; there
+           the page scrolls instead. */
+        .av-simscroll { max-height: 270px; overflow-y: auto; }
         .av-simscroll > .av-simgrid { padding-right: 2px; }
         @media (max-width: 860px){ .av-simscroll { max-height: none; overflow-y: visible; } }
         /* family tree absorbs the width the sim card gave up */
@@ -2742,6 +2770,7 @@ function AlbumView({ id, go }) {
         // canonical display-time bridge, shared with every other view. Never re-inline these.
         const _f = R.matchKey;    // strict: entity-decode + lowercase-alnum squash (the join key)
         const _fx = R.matchKeyLoose;  // + strips feat./with/[Explicit]/-Single credit segments
+        const _fm = R.matchKeyMovement;  // strips a leading suite prefix → bare-movement key ("" if none)
         const aS = id.slice(0, id.indexOf("~"));
         const sp = window.ROTATION_ALBSPINE && window.ROTATION_ALBSPINE[aS] && window.ROTATION_ALBSPINE[aS][_f(data.title)];
         if (!sp) return null;
@@ -2775,6 +2804,11 @@ function AlbumView({ id, go }) {
             for (const [kx, ex] of fxAgg) put(kx, ex);
           }
         }
+        // converse suite bridge: a PLAY row that itself carries the suite prefix (e.g. a raw
+        // "Six Degrees…: Pt. III \"War Inside My Head\"" scrobble) also registers under its bare-
+        // movement key, so a bare spine row can find it. Cheap + symmetric with the row-side try
+        // below; "" (no prefix) is skipped so plain titles never collide.
+        for (const e of [...pl.values()]) { const km = _fm(e.title); if (km) put(km, e); }
         const multi = sp.discs.length > 1;
         return (
           <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
@@ -2791,7 +2825,16 @@ function AlbumView({ id, go }) {
                     // strip it UNLESS the tail is a numbered/part segment (spine "X - Part 2" must
                     // never match a scrobbled "X").
                     const _dashBase = (s) => { const m = /^(.*\S)\s+-\s+([^-]+)$/.exec(String(s)); return m && !/\b(pt|part|vol)\b|\d/i.test(m[2]) ? m[1] : null; };
-                    const hit = pl.get(_f(tt)) || pl.get(_f(String(tt).replace(/\s*\([^)]*\)\s*$/, ""))) || pl.get(_fx(tt))
+                    // paren-strip: a spine title may carry a trailing parenthetical the scrobble lacks —
+                    // strip it to match, UNLESS the paren marks a DISTINCT recording (a "(radio edit)"
+                    // is its own track, must not inherit the album version's plays — else it and the
+                    // canonical row would both claim the same count). Version markers are excluded.
+                    const _parenBase = (s) => { const m = /^(.*\S)\s*\(([^)]*)\)\s*$/.exec(String(s)); return m && !/\b(radio|single|album|edit|version|remaster(ed)?|re-?master|mix|remix|live|acoustic|demo|instrumental|reprise|mono|stereo)\b/i.test(m[2]) ? m[1] : null; };
+                    // suite bridge: a spine movement titled "«suite»: VI. Solitary Shell" strips to
+                    // its bare-movement key and finds the scrobble folded onto "Solitary Shell".
+                    const _mv = _fm(tt);
+                    const hit = pl.get(_f(tt)) || (_parenBase(tt) ? pl.get(_f(_parenBase(tt))) : undefined) || pl.get(_fx(tt))
+                      || (_mv ? pl.get(_mv) : undefined)
                       || (_dashBase(tt) ? (pl.get(_f(_dashBase(tt))) || pl.get(_fx(_dashBase(tt)))) : undefined);
                     const tid = hit ? aS + "~" + R.slug(hit.title) : null;
                     return (
