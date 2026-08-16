@@ -975,16 +975,32 @@ const PV_WW_CSS = `
         .pv-toggle { margin-top: 12px; background: none; border: none; padding: 0; cursor: pointer;
           font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
         .pv-toggle:hover { color: var(--accent); }
-        /* THE FULL READ toggle (Fuad 2026-08-16, revised): toggle-only on its own left-aligned line
-           — the fact chips left this row for the bottom footer (.pv-footrow). Kept as its own row so
-           .pv-readbody stays the immediate + sibling and the hover-peek fires on the whole row.
+        /* THE FULL READ toggle (Fuad 2026-08-17): the fact chips came BACK into this row, to the
+           RIGHT of the toggle. The row is a flex-WRAP container with two (or three) items:
+             1. the toggle — flex-shrink:0, keeps its own left column and never squeezes;
+             2. .pv-readrow-chips — a nested flex-wrap container that takes the remaining width
+                (margin-left:auto), lays its chips out justify-content:flex-end so they RIGHT-align,
+                and when they overflow they wrap into ADDITIONAL right-aligned lines WITHIN this one
+                flex item — they can never slide left under the toggle, because the toggle owns its
+                own column and the chip block is a single sibling item filling only the leftover width;
+             3. the clicked chip's derivation — flex-basis:100% so it drops onto its own full-row line
+                below, right-anchored (margin-left:auto) at a readable max-width, text-align left.
+           .pv-readbody stays the immediate + sibling of .pv-readrow so the hover-peek adjacency holds.
            No backticks in these comments. */
         /* symmetric breathing room below the toggle to match the 12px above (Fuad 2026-08-16,
            album context) — the read body/footer no longer sits tight under the control */
-        .pv-readrow { display: flex; align-items: flex-start; margin-top: 12px; margin-bottom: 12px; }
-        .pv-toggle-read { margin-top: 0; text-align: left; text-decoration: underline;
+        .pv-readrow { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 7px 12px;
+          margin-top: 12px; margin-bottom: 12px; }
+        .pv-toggle-read { margin-top: 0; flex: 0 0 auto; text-align: left; text-decoration: underline;
           text-underline-offset: 3px; text-decoration-color: var(--rule); text-decoration-thickness: 1px; }
         .pv-toggle-read:hover { text-decoration-color: var(--accent-dim); }
+        /* the chip block: takes the remaining width (margin-left:auto), right-aligns its chips, and
+           wraps overflow into further right-aligned lines within its own column. */
+        .pv-readrow-chips { flex: 1 1 auto; min-width: 0; margin-left: auto; align-self: center;
+          display: flex; flex-wrap: wrap; gap: 7px; justify-content: flex-end; }
+        /* the clicked chip's derivation: full-row-width item that drops to its own line under the row,
+           right-anchored at a readable width, text left. */
+        .pv-readrow-deriv { flex: 1 1 100%; max-width: 440px; margin-left: auto; text-align: left; }
         /* fixed-width label slot: the ▾/▴ label swap must not shift the toggle's x/y. The longest
            label ("the full read ▾") sets the min-width; the shorter "less ▴" left-aligns into it,
            so nothing to the right reflows and the button never resizes. */
@@ -997,36 +1013,31 @@ const PV_WW_CSS = `
           -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
           mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
           transition: max-height .22s ease-out, opacity .18s ease-out; }
-        /* hover-peek (Fuad 2026-08-16): the fact chips left this row for the bottom footer, so the
-           row is toggle-only again — a plain .pv-readrow:hover is safe (nothing else in the row) and
-           works everywhere without the :has() dependency. .pv-readbody is the immediate + sibling. */
-        .pv-readrow:hover + .pv-readbody:not(.open) { max-height: 46px; opacity: .85; }
+        /* hover-peek (Fuad 2026-08-17): the fact chips are back IN this row, so a plain
+           .pv-readrow:hover would fire the peek when the user hovers a CHIP too — wrong. Re-scope the
+           trigger to the TOGGLE only via :has(.pv-toggle-read:hover). .pv-readbody stays the immediate
+           + sibling of .pv-readrow so the adjacency selector holds. Graceful no-op on browsers without
+           :has() — they simply lose the hover-peek (the click-to-open path is unaffected). */
+        .pv-readrow:has(.pv-toggle-read:hover) + .pv-readbody:not(.open) { max-height: 46px; opacity: .85; }
         .pv-readbody.open { max-height: 4000px; opacity: 1; pointer-events: auto;
           -webkit-mask-image: none; mask-image: none; }
         .pv-peek-p { margin-top: 6px; pointer-events: none; }
         .pv-full { font-family: var(--serif); font-size: 15px; line-height: 1.62; color: var(--ink-soft); margin: 12px 0 0; }
         .pv-facts { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
-        /* SHARED FOOTER row (Fuad 2026-08-16): the FINAL row of the face — fact chips bottom-LEFT,
-           via-source flick bottom-RIGHT, on one line (space-between). .pv-footmain is the left column
-           (chips + the clicked chip's derivation stacked beneath them, left-aligned, capped width);
-           it flex-grows to push the via flush right. align-items:flex-end pins the via to the bottom
-           of a multi-line chip stack. Facts-less portraits: .pv-footmain is empty so the via still
-           sits bottom-right. No backticks in these comments. */
-        .pv-footrow { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end;
-          gap: 7px 12px; margin-top: 14px; }
-        .pv-footmain { flex: 1 1 auto; min-width: 0; }
-        .pv-flick-foot { flex: 0 0 auto; align-self: flex-end; }
-        /* chips wrap left inside the footer's left column. */
-        .pv-chips-foot { justify-content: flex-start; }
-        /* the clicked chip's derivation opens below the footer chips, left-aligned, capped to a
-           readable width. */
-        .pv-deriv-foot { max-width: 460px; text-align: left; }
-        /* Mobile ≤560px (Fuad 2026-08-16): the via-flick drops to its own line below the chips,
-           right-aligned, so the footer never overflows. */
+        /* FOOTER row (Fuad 2026-08-17): now FLICK-ONLY. The fact chips moved back up into the
+           readrow (to the right of the toggle), so this final row carries just the via-source flick,
+           pinned bottom-RIGHT. Renders whenever there is an old source / earlier read to cycle to;
+           facts-less and prev-only portraits both keep this behavior (the flick is independent of
+           chips). No backticks in these comments. */
+        .pv-footrow { display: flex; justify-content: flex-end; margin-top: 14px; }
+        .pv-flick-foot { flex: 0 0 auto; }
+        /* Mobile ≤560px: at tiny widths the readrow chips fall back to LEFT-wrapping BELOW the toggle
+           (see below) — a right-ragged stack reads as broken when a single chip is nearly the whole
+           frame width, so we drop the right-align here and let chips flow left under the toggle. The
+           flick footer is already right-aligned and needs no override. */
         @media (max-width: 560px){
-          .pv-footmain { flex-basis: 100%; }
-          .pv-flick-foot { margin-left: auto; }
-          .pv-deriv-foot { max-width: none; }
+          .pv-readrow-chips { flex-basis: 100%; margin-left: 0; justify-content: flex-start; }
+          .pv-readrow-deriv { max-width: none; margin-left: 0; }
         }
         .pv-chips { display: flex; flex-wrap: wrap; gap: 7px; }
         .pv-chip { max-width: 100%; background: var(--bg-3); border: 1px solid var(--rule); border-radius: 999px;
@@ -1182,24 +1193,42 @@ function PortraitCard({ id, alt, showWords = true, go }) {
           {/* gist renders as plain serif lead text — quote-mark/blockquote styling is intentionally
               NOT applied (the class is reserved for a future tier). */}
           <p className="pv-gist">{linkifyTracks(p.gist, albumTracks, go)}</p>
-          {/* LAYOUT (Fuad 2026-08-16, revised again): the full-read toggle sits alone on its own
-              left-aligned line; the read body unravels below it. The fact CHIPS and the via-source
-              flick were both pulled DOWN to a single shared FOOTER line at the bottom of the module
-              — chips bottom-LEFT, via-flick bottom-RIGHT (see .pv-footrow near the end of this
-              face). The clicked chip's derivation opens below the footer chips, left-aligned. */}
+          {/* LAYOUT (Fuad 2026-08-17): the fact CHIPS came BACK into the full-read row, to the RIGHT
+              of the toggle — right-aligned, and when there are too many they wrap into further
+              right-aligned lines rather than sliding left under the toggle (see .pv-readrow /
+              .pv-readrow-chips). The clicked chip's derivation drops to its own full-width line under
+              the row, right-anchored at a readable width. The via-source flick stays alone at the
+              module's bottom-right (.pv-footrow, flick-only now). The read body unravels below the row.
+              When there is NO read (full absent) but there ARE facts, a toggle-less chips row renders. */}
           {(facts.length > 0 || full || hasAlt || hasPrev) && (
             <div className="pv-facts pv-controlrow-wrap">
-              {/* THE FULL READ toggle (Fuad 2026-08-16): now toggle-only on its own line — the chips
-                  left it for the bottom footer. The read below UNRAVELS in place from the hover-peek:
-                  one height-clamped body that peeks when the row is hovered and expands fully on
-                  click (sticky — grows downward, never jumps). .pv-readbody stays the immediate +
-                  sibling of .pv-readrow so the plain :hover peek selector works everywhere. */}
-              {full && (
+              {/* THE FULL READ row (Fuad 2026-08-17): toggle LEFT (own column, never squeezed) + the
+                  chip block RIGHT (right-aligned, wraps right-ragged) + the clicked chip's derivation
+                  dropping full-width below. The read below UNRAVELS in place from the hover-peek: one
+                  height-clamped body that peeks when the TOGGLE is hovered (:has-scoped, chips excluded)
+                  and expands fully on click (sticky — grows downward, never jumps). .pv-readbody stays
+                  the immediate + sibling of .pv-readrow so the peek adjacency selector fires. */}
+              {(full || facts.length > 0) && (
                 <div className={"pv-readrow" + (open ? " open" : "")}>
-                  <button className="pv-toggle pv-toggle-read"
-                    onClick={() => setOpen(o => !o)} aria-expanded={open}>
-                    <span className="pv-toggle-lbl">{open ? "less ▴" : "the full read ▾"}</span>
-                  </button>
+                  {full && (
+                    <button className="pv-toggle pv-toggle-read"
+                      onClick={() => setOpen(o => !o)} aria-expanded={open}>
+                      <span className="pv-toggle-lbl">{open ? "less ▴" : "the full read ▾"}</span>
+                    </button>
+                  )}
+                  {facts.length > 0 && (
+                    <div className="pv-chips pv-readrow-chips">
+                      {facts.map((f, i) => (
+                        <button key={i} className={"pv-chip" + (chip === i ? " on" : "")}
+                          onClick={() => setChip(c => c === i ? -1 : i)} aria-expanded={chip === i}>
+                          <b>{f.k}</b>{!badV(f.v) && <span className="pv-sep"> · {f.v}</span>}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {chip >= 0 && facts[chip] && (
+                    <div className="pv-deriv pv-readrow-deriv">{facts[chip].x}</div>
+                  )}
                 </div>
               )}
               {full && (
@@ -1247,36 +1276,17 @@ function PortraitCard({ id, alt, showWords = true, go }) {
               <WordsWeatherBars v={w.v} a={w.a} x={w.x} />
             </div>
           )}
-          {/* SHARED FOOTER (Fuad 2026-08-16): the FINAL row of this face — after the read body,
-              codas and the words block. Fact CHIPS sit bottom-LEFT and the via-source flick sits
-              bottom-RIGHT on ONE line (space-between); the chips wrap left, the via pins bottom-right.
-              The clicked chip's derivation opens BELOW the footer chips, left-aligned and capped to a
-              readable width. Renders when there are chips and/or a via source to flick; a facts-less
-              portrait shows just the via right, and the footer sits under whatever is showing whether
-              the read is collapsed or open (chips never disappear). Left/right per .pv-footrow. */}
-          {(facts.length > 0 || hasAlt || hasPrev) && (
+          {/* FOOTER (Fuad 2026-08-17): flick-only now — the fact chips moved back up into the
+              read row (right of the toggle). This final row carries just the via-source flick, pinned
+              at the module's bottom-right. Renders only when there is an old source / earlier read to
+              cycle to; facts-less and prev-only portraits keep working since the flick is independent
+              of chips. Position per .pv-footrow / .pv-flick-foot. */}
+          {(hasAlt || hasPrev) && (
             <div className="pv-footrow">
-              <div className="pv-footmain">
-                {facts.length > 0 && (
-                  <div className="pv-chips pv-chips-foot">
-                    {facts.map((f, i) => (
-                      <button key={i} className={"pv-chip" + (chip === i ? " on" : "")}
-                        onClick={() => setChip(c => c === i ? -1 : i)} aria-expanded={chip === i}>
-                        <b>{f.k}</b>{!badV(f.v) && <span className="pv-sep"> · {f.v}</span>}
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {chip >= 0 && facts[chip] && (
-                  <div className="pv-deriv pv-deriv-foot">{facts[chip].x}</div>
-                )}
-              </div>
-              {(hasAlt || hasPrev) && (
-                <button className="pv-flick pv-flick-foot r-mono" onClick={() => setFace(nextFace)}
-                  title={hasPrev ? "see the earlier Opus read" : "see the " + alt.label + " source"}>
-                  {flickLabel}
-                </button>
-              )}
+              <button className="pv-flick pv-flick-foot r-mono" onClick={() => setFace(nextFace)}
+                title={hasPrev ? "see the earlier Opus read" : "see the " + alt.label + " source"}>
+                {flickLabel}
+              </button>
             </div>
           )}
         </>
@@ -1505,22 +1515,19 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
 
   return (
     <div className="r-view tv-page av-page" ref={ref}>
-      {/* Back button crumples INLINE with the artist kicker (one row: [← EXPLORE] · #01 ALL TIME ·
-          CITY · EST. YEAR) rather than sitting alone above the header — mirrors the album pass
-          (Fuad 2026-08-17). The kicker used to live inside the text column beside the cover; it's
-          been lifted OUT to pair with the back button here. Row wraps on mobile; the button keeps
-          min-width 0 so it ellipsizes rather than swallowing the row. */}
-      <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 12, marginBottom: 14, minWidth: 0 }}>
-        <button className="r-back" style={{ margin: 0, minWidth: 0, maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} onClick={() => go("explore")}>← explore</button>
-        <div className="r-kicker" style={{ margin: 0, minWidth: 0 }}>#{String(a.rank).padStart(2, "0")} all time
-          {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}
-          {a.debut ? ` · EST. ${a.debut}` : ""}</div>
-      </div>
+      {/* Back button sits on its own line above the header with its dead space collapsed: the core
+          .r-back's 22px bottom margin is overridden to a tight 6px so it hugs the header band rather
+          than shoving the cover down (Fuad 2026-08-17). The kicker stays in the text column above
+          the title, left-aligned with it — mirrors the album pass. */}
+      <button className="r-back" style={{ marginBottom: 6 }} onClick={() => go("explore")}>← explore</button>
 
       {/* header */}
       <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 30 }}>
         <GenCover hue={a.hue} name={a.name} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
+          <div className="r-kicker">#{String(a.rank).padStart(2, "0")} all time
+            {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}
+            {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
           <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} onTour={a.onTour} vx={a.vx} />
           {a.tags && a.tags.length > 0 && (
@@ -2692,18 +2699,16 @@ function AlbumView({ id, go }) {
         .alb-chiprow > .r-mono { flex-shrink: 0; }
         .alb-chipscroll > .r-chip { flex-shrink: 0; }
       `}</style>
-      {/* an album's natural parent is its artist — go up to them, not back out to Explore. The back
-          button sits INLINE with the album kicker (one row: [← ARTIST] · ALBUM · YEAR · N PLAYED)
-          instead of eating a whole row above the cover — crumples the header band upward (Fuad
-          2026-08-17). Row wraps on mobile; the button keeps min-width 0 so a long artist name
-          ellipsizes rather than swallowing the row. */}
-      <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 12, marginBottom: 14, minWidth: 0 }}>
-        <button className="r-back" style={{ margin: 0, minWidth: 0, maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} onClick={() => (known ? go("artist", artistId) : go("explore"))}>← {known ? data.artist : "explore"}</button>
-        <div className="r-kicker" style={{ margin: 0, minWidth: 0 }}>{typeName}{relYear ? ` · ${relYear}` : ""}{data.tracks.length ? ` · ${data.tracks.length} track${data.tracks.length !== 1 ? "s" : ""} played` : ""}</div>
-      </div>
+      {/* an album's natural parent is its artist — go up to them, not back out to Explore. Back
+          button sits on its own line above the header, but with its dead space collapsed: the
+          core .r-back's 22px bottom margin is overridden to a tight 6px so the button hugs the
+          header band instead of shoving the cover down (Fuad 2026-08-17). The kicker stays in the
+          content column above the title, left-aligned with it exactly as before. */}
+      <button className="r-back" style={{ marginBottom: 6, maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} onClick={() => (known ? go("artist", artistId) : go("explore"))}>← {known ? data.artist : "explore"}</button>
       <div className="tv-head" style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 26 }}>
         <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
+          <div className="r-kicker">{typeName}{relYear ? ` · ${relYear}` : ""}{data.tracks.length ? ` · ${data.tracks.length} track${data.tracks.length !== 1 ? "s" : ""} played` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(30px,4.4vw,54px)" }}>{data.title}<span className="dot">.</span></h1>
           <div style={{ color: "var(--ink-soft)", fontSize: 15, marginTop: 6 }}>
             by {known ? <b onClick={() => go("artist", artistId)} style={{ cursor: "pointer", color: "var(--ink)" }}>{data.artist}</b> : data.artist}</div>

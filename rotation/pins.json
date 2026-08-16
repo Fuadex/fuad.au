@@ -5,11 +5,22 @@
     "spotify": "5gRsPZZNgrkagQnDlyFZUC",
     "react": true,
     "tmExclude": true,
+    "fam": "Punk/Hardcore",
+    "clearStyles": true,
     "bio": "Bleach (later bleach03) are an all-female punk/rock trio from Okinawa, Japan, formed in 1998. They built a following on the Japanese underground with fast, hooky garage-punk, wound down around 2009, and have since returned to the stage. The name collides with the UK shoegaze Bleach, a German house act and an American Christian rock band.",
-    "dropTags": [
-      "anime"
+    "tags": [
+      "punk",
+      "japanese",
+      "j-rock",
+      "garage punk"
     ],
-    "note": "Japanese punk band (Okinawa, 1998–2009, performing again — owner attended a 2026 show, so react:true despite MB's 2010 end date). Name collides with German house + shoegaze Bleach. tmExclude stays: the Ticketmaster hit (\"BLEACH (It) Tribute to NIRVANA\") is an Italian Nirvana tribute act, not them. last.fm bio was multi-band disambiguation text describing the UK shoegaze Bleach; overridden here. \"anime\" tag is a franchise collision — dropped."
+    "dropTags": [
+      "anime",
+      "shoegaze",
+      "christian",
+      "dream pop"
+    ],
+    "note": "Japanese punk band (Okinawa, 1998–2009, performing again — owner attended a 2026 show, so react:true despite MB's 2010 end date). Name collides with German house + UK shoegaze + US Christian-rock Bleach. tmExclude stays: the Ticketmaster hit (\"BLEACH (It) Tribute to NIRVANA\") is an Italian Nirvana tribute act, not them. last.fm bio was multi-band disambiguation text describing the UK shoegaze Bleach; overridden here. EVIDENCE POLLUTION FIX (owner-confirmed identity): tag-cache mixed three homonyms (shoegaze 100 = UK band, christian 28 = US band, japanese 88/punk 13 = the real Okinawa band); discogs-cache id 248886 is the UK shoegaze entity. fam hard-pins Punk/Hardcore; clearStyles drops the wrong Discogs styles so no surface re-derives shoegaze; the tag-cache \"Bleach\" entry is curated to the JP band's real tags with pinned:true; tags overrides the display chips; dropTags filters the homonym tags out of any residual surface. \"anime\" tag is a franchise collision — dropped."
   },
   "Linkin Park": {
     "life": {
