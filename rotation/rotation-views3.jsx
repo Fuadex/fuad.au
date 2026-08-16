@@ -2899,25 +2899,25 @@ function GigsView({ go }) {
               ))}
             </div>
             <div className="gv-led-cols">
-              {c.chanceList.length > 0 && (
-                <div className="gv-led-col">
-                  <div className="gv-led-h" style={{ color: "oklch(0.75 0.16 45)" }}>Second chances — the door reopened</div>
-                  {c.chanceList.map(e => <Chip key={e[1]} e={e} accent="oklch(0.75 0.16 45)"
-                    sub={e[3] ? `next ${e[3]}` : backSub(e[4])} />)}
-                </div>
-              )}
               {c.goneList.length > 0 && (
-                <div className="gv-led-col">
+                <div className="gv-led-col gv-led-gone">
                   <div className="gv-led-h">The ones that got away</div>
                   {c.goneList.map(e => <Chip key={e[1]} e={e} sub={e[3] ? (e[4] ? `† ${e[3]}` : `ended ${e[3]}`) : (e[4] ? "deceased" : "ended")} />)}
                 </div>
               )}
               {c.caughtList.length > 0 && (
-                <div className="gv-led-col">
+                <div className="gv-led-col gv-led-caught">
                   <div className="gv-led-h" style={{ color: "oklch(0.72 0.15 150)" }}>Caught them in time</div>
                   {c.caughtList.map(e => e[5]
                     ? <Chip key={e[1]} e={e} accent="oklch(0.72 0.15 150)" sub={backSub(e[5])} />
                     : <Chip key={e[1]} e={e} sub={e[3] ? (e[4] ? `† ${e[3]}` : `ended ${e[3]}`) : "since ended"} />)}
+                </div>
+              )}
+              {c.chanceList.length > 0 && (
+                <div className="gv-led-col gv-led-chance">
+                  <div className="gv-led-h" style={{ color: "oklch(0.75 0.16 45)" }}>Second chances — the door reopened</div>
+                  {c.chanceList.map(e => <Chip key={e[1]} e={e} accent="oklch(0.75 0.16 45)"
+                    sub={e[3] ? `next ${e[3]}` : backSub(e[4])} />)}
                 </div>
               )}
             </div>
@@ -3221,7 +3221,11 @@ function GigsView({ go }) {
         .gv-tcal-col[data-on="true"] i { opacity: 1; outline: 1px solid var(--ink); }
         .gv-tcal-lbl { font-family: var(--mono); font-size: 7.5px; color: var(--ink-faint); white-space: nowrap; height: 12px; overflow: visible; margin-top: 2px; }
         /* the ledger */
-        .gv-led-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--gap); margin-top: 18px; }
+        .gv-led-cols { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "gone caught" "chance chance"; gap: var(--gap); margin-top: 18px; }
+        .gv-led-col.gv-led-gone { grid-area: gone; }
+        .gv-led-col.gv-led-caught { grid-area: caught; }
+        .gv-led-col.gv-led-chance { grid-area: chance; }
+        @media (max-width: 560px) { .gv-led-cols { grid-template-columns: 1fr; grid-template-areas: "gone" "caught" "chance"; } }
         .gv-led-h { font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
         .gv-led-chip { display: inline-flex; align-items: baseline; gap: 5px; margin: 0 6px 7px 0; padding: 4px 10px; border: 1px solid var(--rule); border-radius: 999px; font-size: 11.5px; color: var(--ink-soft); }
         .gv-led-chip[data-link="true"] { cursor: pointer; }
