@@ -1,5 +1,5 @@
 {
-  "_doc": "Name-ambiguity pins — the durable fix for wrong entity matches. build-data consults these at read time; enrichers should prefer a pinned id over a name search. Keys are the scrobble artist name. Fields: mbid/spotify/discogs = canonical ids; clearStyles = drop this artist's (wrong) Discogs styles; clearLife = drop its (wrong) MB life-span; origin/life/gender = hard overrides; react = force the Reactivated badge (hand-curated ledger: band killed by death/breakup then returned); tmExclude = TM name-match is a wrong entity, skip it; bio = hard-override the last.fm/Discogs bio; tags = hard-override the tag chips; dropTags = filter these (collision) tags out; clearImage = Discogs/last.fm image is a wrong entity, fall through to Spotify; fam = hard-override the Sound-Map genre family by v2 family NAME (genre-v2+; e.g. \"Metalcore/Nu\", \"Electronic/DnB\") — wins over the weighted-vote classifier and the legacy FAMILY_OVERRIDES list; famAlso = array of ADDITIONAL family NAMES to add as filter memberships beyond the dominant one (genre-v2 membership ruleset, 2026-08-12 — the artist becomes filterable under these families too; total membership still capped at 3, dominant first); note = why.",
+  "_doc": "Name-ambiguity pins — the durable fix for wrong entity matches. build-data consults these at read time; enrichers should prefer a pinned id over a name search. Keys are the scrobble artist name. Fields: mbid/spotify/discogs = canonical ids; clearStyles = drop this artist's (wrong) Discogs styles; clearLife = drop its (wrong) MB life-span; origin/life/gender = hard overrides; react = force the Reactivated badge (hand-curated ledger: band killed by death/breakup then returned) — a numeric year (react:2024) also documents the COMEBACK year so the sub-line reads \"back since '24\" instead of deriving from the split/dissolution year; died = \"<year>\" (or endedByDeath:true) marks a band whose end was caused by a member's death, so it carries the deceased † like a Person (Type O Negative/Peter Steele 2010); tmExclude = TM name-match is a wrong entity, skip it; bio = hard-override the last.fm/Discogs bio; tags = hard-override the tag chips; dropTags = filter these (collision) tags out; clearImage = Discogs/last.fm image is a wrong entity, fall through to Spotify; fam = hard-override the Sound-Map genre family by v2 family NAME (genre-v2+; e.g. \"Metalcore/Nu\", \"Electronic/DnB\") — wins over the weighted-vote classifier and the legacy FAMILY_OVERRIDES list; famAlso = array of ADDITIONAL family NAMES to add as filter memberships beyond the dominant one (genre-v2 membership ruleset, 2026-08-12 — the artist becomes filterable under these families too; total membership still capped at 3, dominant first); note = why.",
   "Bleach": {
     "mbid": "3e79249f-f1fb-4d0b-b451-0fe1086b459f",
     "spotify": "5gRsPZZNgrkagQnDlyFZUC",
@@ -76,5 +76,35 @@
     ],
     "note": "This is LiSA (Risa Oribe), the Japanese anime-tied singer (Gurenge, ADAMAS, dawn) — stylized LiSA. Enrichment collided with same-name artists: Discogs held the American Lisa, Spotify held BLACKPINK's Lisa. spotify-cache repointed to the real LiSA id (JP-market search, exact-casing match); tags overridden to j-pop/j-rock/anime.",
     "clearImage": true
+  },
+  "Ashen": {
+    "mbid": "e8268e0f-8210-4c60-adf9-2c88e21ce24c",
+    "origin": {
+      "country": "FR",
+      "area": "Île-de-France",
+      "city": "Paris"
+    },
+    "life": {
+      "type": "Group",
+      "ended": false,
+      "end": ""
+    },
+    "note": "Homonym fix. The corpus Ashen is the Parisian metalcore band ASHEN (formed 2021, MB e8268e0f-8210-4c60-adf9-2c88e21ce24c) — every played title resolves to it: Sapiens (2021), Outlier (2021), Hidden/Nowhere (2022), Chimera (2023 single + 2025 album), Sacrifice/Desire (2024), the Angel EP (2023), a synth 'Smells Like Teen Spirit' cover (2023), and the Singles Collection comp. artist-origins had matched the WRONG Ashen — the Dutch symphonic metal band from Den Helder (2004–2013, MB 80cdb135), which falsely asserted 'ended 2013' and dropped them into 'gone for good'. life override marks them active (2021, not ended); mbid + origin repoint to the real Paris act."
+  },
+  "Type O Negative": {
+    "died": "2010",
+    "note": "Band ended in 2010 when frontman/bassist Peter Steele died (14 Apr 2010). Ended by a member's death → carries the deceased † like a Person, per the uniform-cross rule."
+  },
+  "Soundgarden": {
+    "died": "2017",
+    "note": "Band ended in 2017 when vocalist Chris Cornell died (18 May 2017). Ended by a member's death → carries the deceased †."
+  },
+  "Woods of Ypres": {
+    "died": "2011",
+    "note": "Band ended in Dec 2011 when founder and sole constant member David Gold died (22 Dec 2011). Ended by a member's death → carries the deceased †."
+  },
+  "Motörhead": {
+    "died": "2015",
+    "note": "Band ended in Dec 2015 when founder/frontman Lemmy Kilmister died (28 Dec 2015). Ended by a member's death → carries the deceased †."
   }
 }

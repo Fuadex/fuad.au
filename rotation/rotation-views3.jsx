@@ -2883,9 +2883,14 @@ function GigsView({ go }) {
             {e[0]}{sub ? <small style={accent ? { color: accent } : undefined}> {sub}</small> : null}
           </span>
         );
-        // "'19" from a 4-char year; reactivated chips read "back since 'YY" (else plain "reactivated").
+        // "'19" from a 4-char year. Reactivated chips read "back since 'YY" ONLY when the real comeback
+        // year is known; otherwise the honest fallback "split 'YY · back" (the split year explicitly
+        // labelled, so it never reads as a years-long reactivation). No known year at all → "reactivated".
         const yy = (y) => (y && String(y).length >= 4) ? `'${String(y).slice(2, 4)}` : "";
-        const backSub = (y) => yy(y) ? `back since ${yy(y)}` : "reactivated";
+        const backSub = (comeback, split) => yy(comeback) ? `back since ${yy(comeback)}`
+          : (yy(split) ? `split ${yy(split)} · back` : "reactivated");
+        // † for deceased Persons (kind 1) AND bands ended by a member's death (kind 2); year labels it.
+        const crossSub = (kind, year) => kind ? (year ? `† ${year}` : (kind === 1 ? "deceased" : "†")) : null;
         return (
           <section className="gv-sec">
             <div className="gv-label">The ledger</div>
@@ -2902,22 +2907,22 @@ function GigsView({ go }) {
               {c.goneList.length > 0 && (
                 <div className="gv-led-col gv-led-gone">
                   <div className="gv-led-h">The ones that got away</div>
-                  {c.goneList.map(e => <Chip key={e[1]} e={e} sub={e[3] ? (e[4] ? `† ${e[3]}` : `ended ${e[3]}`) : (e[4] ? "deceased" : "ended")} />)}
+                  {c.goneList.map(e => <Chip key={e[1]} e={e} sub={e[4] ? crossSub(e[4], e[5] || e[3]) : (e[3] ? `ended ${e[3]}` : "ended")} />)}
                 </div>
               )}
               {c.caughtList.length > 0 && (
                 <div className="gv-led-col gv-led-caught">
                   <div className="gv-led-h" style={{ color: "oklch(0.72 0.15 150)" }}>Caught them in time</div>
-                  {c.caughtList.map(e => e[5]
-                    ? <Chip key={e[1]} e={e} accent="oklch(0.72 0.15 150)" sub={backSub(e[5])} />
-                    : <Chip key={e[1]} e={e} sub={e[3] ? (e[4] ? `† ${e[3]}` : `ended ${e[3]}`) : "since ended"} />)}
+                  {c.caughtList.map(e => (e[5] || e[6])
+                    ? <Chip key={e[1]} e={e} accent="oklch(0.72 0.15 150)" sub={backSub(e[5], e[6])} />
+                    : <Chip key={e[1]} e={e} sub={e[4] ? crossSub(e[4], e[7] || e[3]) : (e[3] ? `ended ${e[3]}` : "since ended")} />)}
                 </div>
               )}
               {c.chanceList.length > 0 && (
                 <div className="gv-led-col gv-led-chance">
                   <div className="gv-led-h" style={{ color: "oklch(0.75 0.16 45)" }}>Second chances — the door reopened</div>
                   {c.chanceList.map(e => <Chip key={e[1]} e={e} accent="oklch(0.75 0.16 45)"
-                    sub={e[3] ? `next ${e[3]}` : backSub(e[4])} />)}
+                    sub={e[3] ? `next ${e[3]}` : backSub(e[4], e[5])} />)}
                 </div>
               )}
             </div>
@@ -3034,13 +3039,25 @@ function GigsView({ go }) {
                           if (!tl || !tl.length) return null;
                           return (
                             <div className="gv-gig-songs gv-night-live" onClick={(e) => e.stopPropagation()}>
-                              heard live, in your rotation: {tl.map(([title, artist, aid, plays], j) => (
-                                <React.Fragment key={aid + "~" + title}>
-                                  {j > 0 ? ", " : ""}
-                                  <b data-link={true} onClick={() => go("track", aid + "~" + R.slug(title))}>{title}</b>
-                                  <span className="gv-night-live-by"> · {artist}</span>
-                                </React.Fragment>
-                              ))}
+                              {/* same-artist songs stack under ONE attribution ("Narcosynthesis,
+                                  Beyond Within · Nevermore") — grouped by artist in first-appearance
+                                  order, since the plays-sorted list can interleave acts (Fuad 2026-08-16) */}
+                              heard live, in your rotation: {(() => {
+                                const order = [], byAid = {};
+                                for (const row of tl) { if (!byAid[row[2]]) { byAid[row[2]] = []; order.push(row[2]); } byAid[row[2]].push(row); }
+                                return order.map((aid, gi) => (
+                                  <React.Fragment key={aid}>
+                                    {gi > 0 ? ", " : ""}
+                                    {byAid[aid].map(([title], j) => (
+                                      <React.Fragment key={title}>
+                                        {j > 0 ? ", " : ""}
+                                        <b data-link={true} onClick={() => go("track", aid + "~" + R.slug(title))}>{title}</b>
+                                      </React.Fragment>
+                                    ))}
+                                    <span className="gv-night-live-by"> · {byAid[aid][0][1]}</span>
+                                  </React.Fragment>
+                                ));
+                              })()}
                             </div>
                           );
                         })()}
