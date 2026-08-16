@@ -61,11 +61,14 @@ function tsPlays(R, id, cells) {
   return s;
 }
 
-// subgenre bubble weights for a year, summed over the EXPLORE universe (so map ↔ ranking match)
-function mapWeights(R, year) {
+// subgenre bubble weights for the selected years, summed over the EXPLORE universe (so map ↔ ranking
+// match). `years` is a Set of listening years; empty/null = all-time. Multiselect sums across the set.
+function mapWeights(R, years) {
+  const hasYears = years && years.size > 0;
   const w = new Array(R.SUBS.length).fill(0);
   for (const a of R.EXPLORE) {
-    const p = year == null ? a.plays : ((a.yp && a.yp[year]) || 0);
+    let p = a.plays;
+    if (hasYears) { p = 0; if (a.yp) for (const y of years) p += a.yp[y] || 0; }
     if (!p) continue;
     for (const si of a.s) w[si] += p;
   }
@@ -133,8 +136,12 @@ const SND_HINT = {
   vintage: "band's est. year (first release) · oldest first · flip for newest",
 };
 
+// years = Set of selected listening years (empty = all-time). yearsPlays(rec) sums a rec's plays
+// across the selection (0 if none) — the multiselect union of the old single-year `a.yp[year]`.
 function exploreRank(R, kind, f, limit = 40) {
-  const { year, fam, subIdx, cells } = f;
+  const { years, fam, subIdx, cells } = f;
+  const hasYears = years && years.size > 0;
+  const yearsPlays = (yp) => { if (!yp) return 0; let s = 0; for (const y of years) s += yp[y] || 0; return s; };
   const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
   const hasCells = cells && cells.size > 0;
   const pass = f.pass && f.pass.active ? f.pass : null;   // theme/decade filter (filter-index); membership sets
@@ -142,7 +149,7 @@ function exploreRank(R, kind, f, limit = 40) {
     const snd = f.sound, spec = snd ? SND_SPECS[snd] : null, dir = (f.dir || 1) * (spec && spec.d ? spec.d : 1);
     const arr = [];
     for (const a of R.EXPLORE) {
-      if (year != null && !(a.yp && a.yp[year])) continue;
+      if (hasYears && !yearsPlays(a.yp)) continue;
       if (pass && !pass.art.has(a.id)) continue;   // theme/decade: artist keeps ≥20% of matched-track plays
       if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; }
       else if (!recInFam(R, a, fam)) continue;
@@ -151,7 +158,7 @@ function exploreRank(R, kind, f, limit = 40) {
         if (f.attrSel.mode === "artists") { if (!f.attrSel.keys.has(a.id)) continue; }
         else if (!a.s.some(ix => f.attrSel.keys.has(ix))) continue;
       }
-      const plays = hasCells ? tsPlays(R, a.id, cells) : (year != null ? a.yp[year] : a.plays);
+      const plays = hasCells ? tsPlays(R, a.id, cells) : (hasYears ? yearsPlays(a.yp) : a.plays);
       if (hasCells && !plays) continue;
       let value = plays, disp, bar = true;
       if (spec) {                                  // sort by a measured/derived axis instead of plays
@@ -169,12 +176,23 @@ function exploreRank(R, kind, f, limit = 40) {
     return arr.sort((x, y) => (y.value - x.value) * (snd ? dir : 1)).filter(x => _seen.has(x.id) ? false : _seen.add(x.id)).slice(0, limit);
   }
   let src;
-  if (year == null) {
+  if (!hasYears) {
     const base = kind === "albums" ? R.ALBUMS : R.TRACKS;
     src = base.map(a => ({ id: a.id, aid: a.artistId, label: a.title, value: a.plays, hue: a.hue, sub: a.artist }));
   } else {
-    const yr = R.YEARS.find(y => y.year === year) || {};
-    src = (yr[kind] || []).map((it, i) => ({ id: kind + year + i, aid: it.artistId, label: it.title, value: it.plays, hue: it.hue, sub: it.artist }));
+    // multiselect: merge each selected year's per-year album/track list, summing plays for items
+    // that recur across years (keyed by artist+title). id keeps a stable per-item slug.
+    const merged = new Map();
+    for (const y of years) {
+      const yr = R.YEARS.find(yy => yy.year === y) || {};
+      (yr[kind] || []).forEach(it => {
+        const k = it.artistId + "|" + it.title;
+        const e = merged.get(k);
+        if (e) e.value += it.plays;
+        else merged.set(k, { id: kind + "-" + it.artistId + "-" + it.title, aid: it.artistId, label: it.title, value: it.plays, hue: it.hue, sub: it.artist });
+      });
+    }
+    src = [...merged.values()];
   }
   if (subIdx >= 0) src = src.filter(it => { const e = R.expById[it.aid]; return e && _filtSubs(e).indexOf(subIdx) >= 0; });
   else if (fam != null) src = src.filter(it => { const e = R.expById[it.aid]; return recInFam(R, e, fam); });
@@ -219,14 +237,16 @@ const inMoodZone = (af, z) => !z || zoneOf(af[1], af[0]) === z;
 // (vocalsPass hides no-data artists; pass.art already folds theme AND decade at artist granularity),
 // so the left-surface charts' active slice tracks the ranked results. Both fail open when inactive.
 function sliceArtists(R, f, applyZone) {
-  const A = R.AUDIO || {}, { year, fam, subIdx, cells, moodZone } = f;
+  const A = R.AUDIO || {}, { years, fam, subIdx, cells, moodZone } = f;
+  const hasYears = years && years.size > 0;
+  const inYears = (yp) => { if (!yp) return false; for (const y of years) if (yp[y]) return true; return false; };
   const hasCells = cells && cells.size > 0;
   const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
   const pass = f.pass && f.pass.active ? f.pass : null;              // theme/decade filter (filter-index)
   const out = [];
   for (const a of R.EXPLORE) {
     const af = A[a.id]; if (!af) continue;
-    if (year != null && !(a.yp && a.yp[year])) continue;
+    if (hasYears && !inYears(a.yp)) continue;
     if (pass && !pass.art.has(a.id)) continue;   // theme/decade: artist keeps ≥20% of matched-track plays
     if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; } else if (!recInFam(R, a, fam)) continue;
     if (hasCells && !tsPlays(R, a.id, cells)) continue;
@@ -247,11 +267,12 @@ const _hueHash = (s) => window.hashInt(s || "", 0) % 360;
 function mediaRank(M, R, meta, kind, f, limit) {
   const rows = kind === "albums" ? M.albums : M.tracks;
   const tailIdx = kind === "albums" ? 5 : 4;
-  const { year, fam, subIdx, cells, moodZone } = f;
+  const { years, fam, subIdx, cells, moodZone } = f;
   const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
   const pass = f.pass && f.pass.active ? f.pass : null;   // theme/decade filter (filter-index)
-  const hasCells = cells && cells.size > 0, noYear = year == null;
+  const hasCells = cells && cells.size > 0, noYear = !(years && years.size > 0);
   const playsInYear = (row, y) => { const t = row[tailIdx]; if (t == null) return 0; if (typeof t === "number") return t === y ? row[2] : 0; for (let i = 0; i < t.length; i += 2) if (t[i] === y) return t[i + 1]; return 0; };
+  const playsInYears = (row) => { let s = 0; for (const y of years) s += playsInYear(row, y); return s; };   // union of selected years
   const out = []; let more = false;
   for (const row of rows) {
     const m = meta[row[1]]; if (!m) continue;   // guard: a media row whose artist idx has no meta (index desync) — skip, don't throw
@@ -268,7 +289,7 @@ function mediaRank(M, R, meta, kind, f, limit) {
     if (hasCells && !tsPlays(R, m.aid, cells)) continue;
     // (m.aid always present once m is; label/sub read row[0]/M.artists[row[1]] which are guarded above)
     let value = row[2];
-    if (!noYear) { value = playsInYear(row, year); if (!value) continue; }
+    if (!noYear) { value = playsInYears(row); if (!value) continue; }
     out.push({ id: (kind === "albums" ? "ma" : "mt") + row[1], aid: m.aid, label: row[0], sub: M.artists[row[1]], value, hue: m.hue, kept: kind === "albums" ? true : !!rec, cover: kind === "albums" ? (row[6] || "") : "" });
     if (noYear && out.length > limit) { more = true; break; }   // pre-sorted → top `limit` already
   }
@@ -1325,7 +1346,12 @@ function ExploreSearch({ R, yearKeys, subNames, onArtist, onSub, onYear, onCells
 function ExploreView({ t, go, setPop, seed }) {
   const R = window.ROTATION;
   const [kind, setKind] = React.useState("artists");
-  const [year, setYear] = React.useState(null);
+  // Time filter is now MULTISELECT: a Set of listening years. Empty set = "All" (no year constraint).
+  // A record qualifies if it has plays in ANY selected year (union); play counts sum across the set.
+  const [years, setYears] = React.useState(() => new Set());
+  const hasYears = years.size > 0;                        // any year constraint active?
+  // toggle one year in/out of the selection; used by the Time chiprow
+  const toggleYear = (y) => setYears(prev => { const n = new Set(prev); n.has(y) ? n.delete(y) : n.add(y); return n; });
   const [fam, setFam] = React.useState(null);             // family index, or null
   const [sub, setSub] = React.useState(null);             // subgenre NAME, or null
   const [cells, setCells] = React.useState(() => new Set());
@@ -1373,7 +1399,9 @@ function ExploreView({ t, go, setPop, seed }) {
     const norm = (x) => (x || "").toLowerCase().replace(/[^a-z0-9]/g, "");
     if (seed.includes("=")) {   // restore a shared/bookmarked slice (";"-separated; parseHash already url-decoded)
       const p = {}; for (const kv of seed.split(";")) { const i = kv.indexOf("="); if (i > 0) p[kv.slice(0, i)] = kv.slice(i + 1); }
-      if (p.y && !isNaN(+p.y)) setYear(+p.y);
+      // y = selected listening years. Multiselect encodes a "."-separated list ("2015.2019");
+      // a bare single year ("y=2015") still restores (backward compat with old single-year links).
+      if (p.y) { const ys = String(p.y).split(".").map(Number).filter(n => !isNaN(n)); if (ys.length) setYears(new Set(ys)); }
       if (p.s) { const s = R.SUBS.find(x => norm(x.name) === norm(p.s)); if (s) { setFam(null); setSub(s.name); } }
       else if (p.f) { const fm = _resolveFamParam(R, p.f); if (fm) { setSub(null); setFam(fm.i); } }
       if (p.m && MOOD_ZONES.includes(p.m)) setMoodZone(p.m);
@@ -1398,7 +1426,7 @@ function ExploreView({ t, go, setPop, seed }) {
     if (!_mounted.current) { _mounted.current = true; if (seed) return; }   // don't clobber an incoming seed on first render
     if (!(window.location.hash || "").startsWith("#explore")) return;      // only while Explore owns the URL
     const parts = [];
-    if (year != null) parts.push("y=" + year);
+    if (years.size) parts.push("y=" + [...years].sort((a, b) => a - b).join("."));
     if (sub) parts.push("s=" + encodeURIComponent(sub));
     else if (fam != null) { const fm = R.FAMILIES.find(f => f.i === fam); if (fm) parts.push("f=" + encodeURIComponent(fm.family)); }
     if (moodZone) parts.push("m=" + moodZone);
@@ -1409,27 +1437,32 @@ function ExploreView({ t, go, setPop, seed }) {
     if (kind !== "artists") parts.push("k=" + kind);
     const target = "#explore" + (parts.length ? "/" + parts.join(";") : "");
     if ((window.location.hash || "") !== target) window.history.replaceState(null, "", target);
-  }, [kind, year, fam, sub, moodZone, cells, themeSel, relDec, relYear, R]);
+  }, [kind, years, fam, sub, moodZone, cells, themeSel, relDec, relYear, R]);
 
   const yearKeys = React.useMemo(() => Object.keys(R.CLOCK_BY_YEAR).map(Number).sort((a, b) => a - b), [R]);
   const subNames = React.useMemo(() => R.SUBS.map(s => s.name), [R]);
   const subIdx = sub == null ? -1 : R.SUBS.findIndex(s => s.name === sub);
 
+  // "play the decade" scrubs one year at a time — it REPLACES the multiselect with the single
+  // advancing year each tick (so the map/list animate exactly as before). curYear = the sole year
+  // when precisely one is selected, else null.
+  const curYear = years.size === 1 ? [...years][0] : null;
   React.useEffect(() => {
     if (!playing) return;
-    const tmr = setInterval(() => setYear(y => {
+    const tmr = setInterval(() => setYears(prev => {
+      const y = prev.size === 1 ? [...prev][0] : null;
       const i = y == null ? -1 : yearKeys.indexOf(y);
-      if (i >= yearKeys.length - 1) { setPlaying(false); return yearKeys[yearKeys.length - 1]; }
-      return yearKeys[i + 1];
+      if (i >= yearKeys.length - 1) { setPlaying(false); return new Set([yearKeys[yearKeys.length - 1]]); }
+      return new Set([yearKeys[i + 1]]);
     }), 1600);
     return () => clearInterval(tmr);
   }, [playing, yearKeys]);
   const togglePlay = () => {
-    if (!playing && (year == null || yearKeys.indexOf(year) >= yearKeys.length - 1)) setYear(yearKeys[0]);
+    if (!playing && (curYear == null || yearKeys.indexOf(curYear) >= yearKeys.length - 1)) setYears(new Set([yearKeys[0]]));
     setPlaying(p => !p);
   };
 
-  const weights = React.useMemo(() => mapWeights(R, year), [R, year]);
+  const weights = React.useMemo(() => mapWeights(R, years), [R, years]);
   // stable all-time grouping (families + their subgenres) so the breakdown never reflows on year-scrub
   const order = React.useMemo(() => {
     const allW = mapWeights(R, null);
@@ -1533,19 +1566,19 @@ function ExploreView({ t, go, setPop, seed }) {
   const mediaItems = React.useMemo(() => {
     if (kind === "artists" || !mediaReady || !mediaArtMeta) return null;
     // fetch a lookahead past what's visible so "load more" has rows ready and `more` is detectable
-    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { year, fam, subIdx, cells, moodZone, vocals, pass, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
-  }, [kind, mediaReady, mediaArtMeta, year, fam, subIdx, cells, moodZone, vocals, pass, visN, R, attrSel, lens]);
+    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { years, fam, subIdx, cells, moodZone, vocals, pass, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
+  }, [kind, mediaReady, mediaArtMeta, years, fam, subIdx, cells, moodZone, vocals, pass, visN, R, attrSel, lens]);
   // the attributes-lens selection now filters INSIDE the rank functions (full universe,
   // pre-slice) — the old post-filter ran on the top-40 and starved the list (Fuad 2026-07-14)
   const items = (kind !== "artists" && mediaItems) ? mediaItems.items
     // artists get the same visN+40 lookahead as mediaRank, so "load more" keeps expanding
     // past 40 instead of hitting the old hard cap (Fuad 2026-07-26)
-    : exploreRank(R, kind, { year, fam, subIdx, cells, sound, dir: sndDir, moodZone, vocals, pass, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
+    : exploreRank(R, kind, { years, fam, subIdx, cells, sound, dir: sndDir, moodZone, vocals, pass, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
   // more rows to reveal? true whenever the ranked pool has more than we're currently showing —
   // works for artists (full list) AND albums/tracks (media pool), so load-more applies to all three.
   const more = items.length > visN;
   // a new slice resets the load-more expansion (the chosen 16/32/64 base stays)
-  React.useEffect(() => { setExtra(0); }, [kind, year, fam, subIdx, cells, moodZone, vocals, attrSel, themeMask, relLo, relHi]);
+  React.useEffect(() => { setExtra(0); }, [kind, years, fam, subIdx, cells, moodZone, vocals, attrSel, themeMask, relLo, relHi]);
   // how many artists the ACTIVE vocals filter drops purely for lacking vocals data — same "N without
   // data" honesty as the Liked audio sliders. Counts artists that pass every OTHER filter but have no
   // vx (kind === "artists" only; the note is about artists either way).
@@ -1555,14 +1588,14 @@ function ExploreView({ t, go, setPop, seed }) {
     let n = 0;
     for (const a of R.EXPLORE) {
       if (a.vx !== undefined) continue;                 // has data — not a no-data drop
-      if (year != null && !(a.yp && a.yp[year])) continue;
+      if (hasYears && !(a.yp && [...years].some(y => a.yp[y]))) continue;
       if (pass && !pass.art.has(a.id)) continue;
       if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; } else if (!recInFam(R, a, fam)) continue;
       if (cells.size && !tsPlays(R, a.id, cells)) continue;
       n++;
     }
     return n;
-  }, [R, vocals, year, fam, subIdx, cells, passAgg]);
+  }, [R, vocals, years, fam, subIdx, cells, passAgg]);
   // mood-lens slices. The quadrant renders a STABLE universe of points (so dots persist across filter
   // changes and can transition opacity/size) and toggles which are "active" for the current slice;
   // facts/arc reflect the chosen zone too.
@@ -1570,8 +1603,8 @@ function ExploreView({ t, go, setPop, seed }) {
   // progressive rendering keeps mounting them cheap. af = [energy, valence, acoustic, tempo, dance, instr].
   const moodUniverse = React.useMemo(() => R.EXPLORE.filter(a => R.AUDIO[a.id])
     .map(a => { const af = R.AUDIO[a.id]; return { id: a.id, name: a.name, hue: a.hue, x: af[1], y: af[0], plays: a.plays }; }), [R]);
-  const moodActive = React.useMemo(() => new Set(sliceArtists(R, { year, fam, subIdx, cells, vocals, pass }, false).map(a => a.id)), [R, year, fam, subIdx, cells, vocals, pass]);
-  const moodSet = React.useMemo(() => sliceArtists(R, { year, fam, subIdx, cells, moodZone, vocals, pass }, true), [R, year, fam, subIdx, cells, moodZone, vocals, pass]);
+  const moodActive = React.useMemo(() => new Set(sliceArtists(R, { years, fam, subIdx, cells, vocals, pass }, false).map(a => a.id)), [R, years, fam, subIdx, cells, vocals, pass]);
+  const moodSet = React.useMemo(() => sliceArtists(R, { years, fam, subIdx, cells, moodZone, vocals, pass }, true), [R, years, fam, subIdx, cells, moodZone, vocals, pass]);
   // ── granularity data (built once from the universe; independent of the active slice) ──
   // subMood: each subgenre bubbled at its members' play-weighted mean valence × energy.
   const subMood = React.useMemo(() => {
@@ -1594,8 +1627,15 @@ function ExploreView({ t, go, setPop, seed }) {
   const clearTheme = () => setThemeSel(new Set());
   const clearRel = () => { setRelYear(null); setRelDec(null); };
 
+  // terse multi-year label for the active-filter chip: up to 3 years show inline ("'13 '15 '19");
+  // beyond that, first year + "+N more" ("'13 +2 more") — matches the site's compact chip idiom.
+  const yearsLabel = (set) => {
+    const ys = [...set].sort((a, b) => a - b), tag = (y) => "'" + String(y).slice(2);
+    return ys.length <= 3 ? ys.map(tag).join(" ") : tag(ys[0]) + " +" + (ys.length - 1) + " more";
+  };
+
   const chips = [];
-  if (year != null) chips.push(["time", year, () => { setPlaying(false); setYear(null); }]);
+  if (hasYears) chips.push(["time", yearsLabel(years), () => { setPlaying(false); setYears(new Set()); }]);
   if (sub) chips.push(["subgenre", sub, () => setSub(null)]);
   else if (fam != null) chips.push(["genre", (R.FAMILIES.find(f => f.i === fam) || {}).family, () => setFam(null)]);
   if (moodZone) chips.push(["mood", MOOD_LABELS[moodZone], () => setMoodZone(null)]);
@@ -1613,7 +1653,7 @@ function ExploreView({ t, go, setPop, seed }) {
         </div>
         <div className="xp-head-right">
           <ExploreSearch R={R} yearKeys={yearKeys} subNames={subNames} go={go}
-            onArtist={(id) => go("artist", id)} onSub={setSub} onYear={setYear} onCells={(arr) => setCells(new Set(arr))} />
+            onArtist={(id) => go("artist", id)} onSub={setSub} onYear={(y) => { setPlaying(false); setYears(new Set([y])); }} onCells={(arr) => setCells(new Set(arr))} />
         </div>
       </div>
 
@@ -1627,15 +1667,15 @@ function ExploreView({ t, go, setPop, seed }) {
           <span className="xp-flabel">Time</span>
           <div className="xp-chiprow xp-chiprow-time">
             <button className="xp-chip xp-play" data-on={playing} onClick={togglePlay} title="Play the decade">{playing ? "❚❚" : "▶"} decade</button>
-            <button className="xp-chip" data-on={year == null} onClick={() => { setPlaying(false); setYear(null); }}>All</button>
-            {yearKeys.map(y => <button key={y} className="xp-chip" data-on={year === y} onClick={() => { setPlaying(false); setYear(year === y ? null : y); }}>{"'" + String(y).slice(2)}</button>)}
+            <button className="xp-chip" data-on={!hasYears} onClick={() => { setPlaying(false); setYears(new Set()); }}>All</button>
+            {yearKeys.map(y => <button key={y} className="xp-chip" data-on={years.has(y)} onClick={() => { setPlaying(false); toggleYear(y); }}>{"'" + String(y).slice(2)}</button>)}
           </div>
           {chips.length > 0 && (
             <div className="xp-active">
               <span className="xp-flabel">Active</span>
               <div className="xp-chiprow">
                 {chips.map(([k, v, clr]) => <button key={k} className="xp-chip xp-chip-active" onClick={clr}><span className="xp-ck">{k}</span> {v} <span className="xp-x">✕</span></button>)}
-                <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYear(null); setFam(null); setSub(null); setCells(new Set()); setMoodZone(null); setVocals("any"); clearTheme(); clearRel(); }}>clear all</button>
+                <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYears(new Set()); setFam(null); setSub(null); setCells(new Set()); setMoodZone(null); setVocals("any"); clearTheme(); clearRel(); }}>clear all</button>
               </div>
             </div>
           )}
@@ -1671,7 +1711,7 @@ function ExploreView({ t, go, setPop, seed }) {
             </div>
             <div className="xp-chartwrap">
             {lens === "attributes"
-              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} filtersActive={year != null || fam != null || sub != null || cells.size > 0 || vocals !== "any" || filtActive} />
+              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} filtersActive={hasYears || fam != null || sub != null || cells.size > 0 || vocals !== "any" || filtActive} />
               : lens === "texture"
               ? (grain === "subs"
                 ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
@@ -1781,10 +1821,11 @@ function ExploreView({ t, go, setPop, seed }) {
           Stories as a lifetime section. MoodContext (above) + moodSet are kept for that follow-up. */}
 
       {/* genres grouped under families — 6 columns per row, each card scrollable (Fuad) */}
-      <FamiliesGrid order={order} weights={weights} fam={fam} sub={sub} pickFam={pickFam} pickSub={pickSub} year={year} seen={seen} expressive={t.chart === "expressive"} />
+      <FamiliesGrid order={order} weights={weights} fam={fam} sub={sub} pickFam={pickFam} pickSub={pickSub} year={curYear} seen={seen} expressive={t.chart === "expressive"} />
 
       {/* Rhythm (the 7×24 clock) moved to the Calendar page (2026-07-05) — time-of-day lives with time. */}
-      {year != null && <YearDetail R={R} go={go} year={year} />}
+      {/* per-year stat card only makes sense for a single selected year (multiselect has no single "year") */}
+      {curYear != null && <YearDetail R={R} go={go} year={curYear} />}
 
       <style>{`
         .xp-head-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
@@ -1821,7 +1862,9 @@ function ExploreView({ t, go, setPop, seed }) {
            deliberate, edge-aligned wrap, not a reflow. */
         @media (max-width: 1600px) {
           .xp-frow-main { flex-wrap: wrap; }
-          .xp-vocals { margin-left: 0; width: 100%; order: 2; justify-content: flex-end; }
+          /* once Vocals collapses to its own full-width line, align it LEFT (Fuad 2026-08-17) —
+             a stacked group reads as a fresh left-edge row, not a right-pinned tail. */
+          .xp-vocals { margin-left: 0; width: 100%; order: 2; justify-content: flex-start; }
         }
         .xp-flabel { font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); padding-top: 7px; }
         .xp-chiprow { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -1980,8 +2023,9 @@ function ExploreView({ t, go, setPop, seed }) {
           /* stack Active under Time on narrow screens */
           .xp-frow-main { flex-wrap: wrap; }
           .xp-active { margin-left: 0; width: 100%; gap: 6px; }
-          /* vocals drops below the time row, full-width but still right-aligned */
-          .xp-vocals { margin-left: 0; width: 100%; gap: 6px; justify-content: flex-end; }
+          /* vocals drops below the time row, full-width and left-aligned (Fuad 2026-08-17) —
+             same collapsed-state left alignment as the ≤1600px break */
+          .xp-vocals { margin-left: 0; width: 100%; gap: 6px; justify-content: flex-start; }
           .xp-vocals .xp-chiprow { flex: 0 1 auto; }
           .xp-flabel { padding-top: 0; }
           .xp-chiprow { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
