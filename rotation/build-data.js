@@ -319,9 +319,16 @@ const lifeOf = (name) => {
   if (pn && pn.clearLife) return null;
   // hand-curated reactivated ledger: a "react" pin forces the Reactivated badge (band killed by
   // death/breakup then returned). Rides on life.react so ArtistMeta can read it without a tour join.
+  // A numeric/string `react` (e.g. react:2024) also documents the COMEBACK year — carried through as
+  // reactYear so the sub-line can honestly say "back since '24" instead of deriving from the split year.
   const react = !!(pn && pn.react);
-  if (pn && pn.life) return { type: pn.life.type || "Group", ended: !!pn.life.ended, end: (pn.life.end || "").slice(0, 4), ...(react ? { react: true } : {}) };
-  const o = aliasedByName(ORIGINS, name); if (!o || !o.type || !("ended" in o)) return null; return { type: o.type, ended: !!o.ended, end: (o.end || "").slice(0, 4), ...(react ? { react: true } : {}) };
+  const reactYear = react && /^\d{4}$/.test(String(pn.react).slice(0, 4)) ? String(pn.react).slice(0, 4) : "";
+  // a member's death that ended the band (Type O Negative / Peter Steele 2010) — carries the † like a
+  // deceased Person. `died` (year) or endedByDeath:true; the year (if given) labels the cross.
+  const diedYear = pn && pn.died ? String(pn.died).slice(0, 4) : (pn && pn.endedByDeath ? "" : undefined);
+  const extra = { ...(react ? { react: true } : {}), ...(reactYear ? { reactYear } : {}), ...(diedYear !== undefined ? { diedByDeath: true, diedYear } : {}) };
+  if (pn && pn.life) return { type: pn.life.type || "Group", ended: !!pn.life.ended, end: (pn.life.end || "").slice(0, 4), ...extra };
+  const o = aliasedByName(ORIGINS, name); if (!o || !o.type || !("ended" in o)) return null; return { type: o.type, ended: !!o.ended, end: (o.end || "").slice(0, 4), ...extra };
 };
 
 // ─────────── Wikidata (wikidata-cache.json, by enrich-wikidata.js) ───────────
@@ -4908,30 +4915,44 @@ if (GIGS) {
   // The Doors, Joy Division, CCR… from posthumous live/comp drops. Too noisy to ship on a personal
   // site; the two signals above are precise, so (b) adds only false positives and is left out.
   // A dead solo artist can never reactivate — every path guards on !isPerson.
+  // reactInfo carries two DISTINCT years, never conflated (the "back since 'YY was wrong" bug):
+  //   comeback — the year the band actually RETURNED. Only set when we genuinely know it: a numeric
+  //              `react` pin (TDEP 2024). Never derived from the dissolution/split year.
+  //   split    — the dissolution year (MB end / WD dissolved). Used for the honest fallback sub-line
+  //              "split 'YY · back" when the comeback year is unknown — labels it as the split so it
+  //              never reads as a multi-year reactivation duration.
   const reactInfo = (a, ended, isPerson) => {
     if (isPerson) return null;                                  // deceased/solo person can't reform
     const wdDis = a.wd && a.wd.dissolved ? String(a.wd.dissolved).slice(0, 4) : null;
-    // (C) fresh tour dates on a band that's on record as ended (or WD-dissolved)
-    if (a.onTour && (ended || wdDis)) return { touring: true, next: a.onTour[1], since: wdDis || (a.life && a.life.end) || null };
-    // curated pin
-    if (a.life && a.life.react) return { touring: false, next: null, since: (a.life.end || wdDis || null) };
-    // (A) WD dissolved but MB not-ended → the sources disagree = reunited
-    if (!ended && wdDis) return { touring: false, next: null, since: wdDis };
+    const end = (a.life && a.life.end) || null;
+    const comeback = (a.life && a.life.reactYear) || null;      // ONLY the pin's explicit comeback year
+    // (C) fresh tour dates on a band that's on record as ended (or WD-dissolved) — tour keeps `next`
+    if (a.onTour && (ended || wdDis)) return { touring: true, next: a.onTour[1], comeback, split: end || wdDis || null };
+    // curated pin (react:true / react:YYYY)
+    if (a.life && a.life.react) return { touring: false, next: null, comeback, split: end || wdDis || null };
+    // (A) WD dissolved but MB not-ended → the sources disagree = reunited (comeback year unknown)
+    if (!ended && wdDis) return { touring: false, next: null, comeback: null, split: wdDis };
     return null;
   };
   for (const a of ARTISTS) {
     const ended = a.life && a.life.ended;
     const isPerson = !!(a.life && a.life.type && a.life.type[0].toLowerCase() === "p");
+    // a band whose end was caused by a member's death carries the † like a deceased Person.
+    const byDeath = !!(a.life && a.life.diedByDeath);
+    const deathYr = byDeath ? ((a.life && a.life.diedYear) || (a.life && a.life.end) || "") : "";
     const ri = reactInfo(a, ended, isPerson);
     const react = !!ri;                                          // reactivated by any supported signal
-    const reactYr = ri && ri.since ? String(ri.since).slice(0, 4) : "";
+    // comeback = real return year (or ""); split = dissolution year (or "") for the honest fallback.
+    const comebackYr = ri && ri.comeback ? String(ri.comeback).slice(0, 4) : "";
+    const splitYr = ri && ri.split ? String(ri.split).slice(0, 4) : "";
     if (a.seenLive) {
       cov.seen++;
-      // seen AND (ended or reactivated): stays in "caught them in time"; a reactivated one carries
-      // the back-since year so the chip can say "back since 'YY" instead of "ended YYYY".
-      if (ended || react) { cov.caught++; cov.caughtList.push([a.name, a.id, a.plays, (a.life && a.life.end || ""), isPerson ? 1 : 0, react ? reactYr : ""]); }
-    } else if (react) { cov.chance++; cov.chanceList.push([a.name, a.id, a.plays, (ri.touring ? ri.next : ""), reactYr]); }
-    else if (ended) { cov.gone++; cov.goneList.push([a.name, a.id, a.plays, (a.life.end || ""), isPerson ? 1 : 0]); }
+      // seen AND (ended or reactivated): stays in "caught them in time". Entry:
+      //   [name, id, plays, endYear, personOrDeath(0/1/2), comebackYr, splitYr, deathYr]
+      //   idx4: 1 = deceased Person (†), 2 = band ended by member death (†), 0 = plain group.
+      if (ended || react) { cov.caught++; cov.caughtList.push([a.name, a.id, a.plays, (a.life && a.life.end || ""), isPerson ? 1 : (byDeath ? 2 : 0), react ? comebackYr : "", react ? splitYr : "", deathYr]); }
+    } else if (react) { cov.chance++; cov.chanceList.push([a.name, a.id, a.plays, (ri.touring ? ri.next : ""), comebackYr, splitYr]); }
+    else if (ended) { cov.gone++; cov.goneList.push([a.name, a.id, a.plays, (a.life.end || ""), isPerson ? 1 : (byDeath ? 2 : 0), deathYr]); }
     else cov.open++;
   }
   for (const k of ["goneList", "caughtList", "chanceList"]) cov[k].sort((x, y) => y[2] - x[2]);
