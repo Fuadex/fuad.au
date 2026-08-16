@@ -91,6 +91,20 @@
     },
     "note": "Homonym fix. The corpus Ashen is the Parisian metalcore band ASHEN (formed 2021, MB e8268e0f-8210-4c60-adf9-2c88e21ce24c) — every played title resolves to it: Sapiens (2021), Outlier (2021), Hidden/Nowhere (2022), Chimera (2023 single + 2025 album), Sacrifice/Desire (2024), the Angel EP (2023), a synth 'Smells Like Teen Spirit' cover (2023), and the Singles Collection comp. artist-origins had matched the WRONG Ashen — the Dutch symphonic metal band from Den Helder (2004–2013, MB 80cdb135), which falsely asserted 'ended 2013' and dropped them into 'gone for good'. life override marks them active (2021, not ended); mbid + origin repoint to the real Paris act."
   },
+  "Wargasm": {
+    "mbid": "7a3fc4e1-bec5-49f4-888a-0c32fee5071f",
+    "origin": {
+      "country": "GB",
+      "area": "England",
+      "city": "London"
+    },
+    "life": {
+      "type": "Group",
+      "ended": false,
+      "end": ""
+    },
+    "note": "Homonym fix (4th layer of a known collision). The corpus Wargasm is the UK electronic-punk duo WARGASM (stylized 'WARGASM (UK)' on Spotify/last.fm) — Milkie Way and Sam Matlock, formed ~2018 in London, ACTIVE (Explicit Love mixtapes, Venom, Bang Ya Head, the Pendulum 'Inertia' collab, Live in London 2025). artist-origins.json and artist-mb.json had matched the WRONG Wargasm — the 1980s US thrash/grindcore band from Boston (1985–1995, MB record with 'Satan Stole My Lunch Money'/'Why Play Around'), which falsely asserted 'ended 1995' and dropped the duo into 'gone for good' (gigs coverage, artist-page life line). Prior fixes today corrected the same collision in images, tags, and audio DNA (the curated UK seed row in build-data.js: electronic rock / industrial / nu-metal, NIN/Poppy/Machine Girl/Pendulum neighbours). life override marks them active (not ended); mbid + origin repoint to the real London duo. Fold: last.fm serves 'Wargasm (UK)', folded to 'Wargasm'."
+  },
   "Type O Negative": {
     "died": "2010",
     "note": "Band ended in 2010 when frontman/bassist Peter Steele died (14 Apr 2010). Ended by a member's death → carries the deceased † like a Person, per the uniform-cross rule."

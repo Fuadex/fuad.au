@@ -5245,6 +5245,8 @@
 }
 ],
 "albums": [
+{ "from": "TRON Ares: Divergence", "to": "TRON: Ares (Original Motion Picture Soundtrack)", "type": "spelling", "reason": "spelling: pre-release single row of an OST track; not an LP — merges into the soundtrack it belongs to (Fuad QC 2026-08-16)" },
+{ "from": "Halo 22 - Beside You In Time", "to": "Beside You In Time", "type": "spelling", "reason": "spelling: halo-catalogue-number rip prefix; same live album (Fuad QC 2026-08-16)" },
 {
 "from": "With Teeth (UK Only Version)",
 "to": "With Teeth",
