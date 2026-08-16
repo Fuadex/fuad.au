@@ -1000,6 +1000,17 @@ const PV_WW_CSS = `
         .pv-peek-p { margin-top: 6px; pointer-events: none; }
         .pv-full { font-family: var(--serif); font-size: 15px; line-height: 1.62; color: var(--ink-soft); margin: 12px 0 0; }
         .pv-facts { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+        /* FACTS block (Fuad 2026-08-16): sits at the bottom of the module, below the full read,
+           right-anchored. The chip row right-aligns (chips hug the right edge); the derivation
+           opens right-anchored but capped to a readable width with left-aligned text so the
+           right-alignment never squashes the prose. Narrow screens fall back to full-width/left. */
+        .pv-factsblock { margin-top: 16px; }
+        .pv-factsblock .pv-controlrow { justify-content: flex-end; }
+        .pv-factsblock .pv-deriv { max-width: 420px; margin-left: auto; text-align: left; }
+        @media (max-width: 560px){
+          .pv-factsblock .pv-controlrow { justify-content: flex-start; }
+          .pv-factsblock .pv-deriv { max-width: none; margin-left: 0; }
+        }
         .pv-chips { display: flex; flex-wrap: wrap; gap: 7px; }
         .pv-chip { max-width: 100%; background: var(--bg-3); border: 1px solid var(--rule); border-radius: 999px;
           padding: 4px 11px; cursor: pointer; font-family: var(--mono); font-size: 10px; letter-spacing: .04em;
@@ -1154,25 +1165,14 @@ function PortraitCard({ id, alt, showWords = true, go }) {
           {/* gist renders as plain serif lead text — quote-mark/blockquote styling is intentionally
               NOT applied (the class is reserved for a future tier). */}
           <p className="pv-gist">{linkifyTracks(p.gist, albumTracks, go)}</p>
-          {/* DENSITY (Fuad 2026-07-18): one compact control row — the fact chips, then the full-read
-              toggle, and the via-source flick chip pinned RIGHT — instead of a vertical fact block +
-              full-read toggle + a separate flick row. Chips keep click-to-expand; the derivation
-              renders on its own line BELOW the row. Wraps gracefully on narrow screens. */}
+          {/* LAYOUT (Fuad 2026-08-16): the full-read toggle + via-source flick lead the module,
+              the read body unravels below them, and the fact chips now sit at the BOTTOM of the
+              module (below the read), right-anchored — see .pv-factsblock. Chips keep
+              click-to-expand; the derivation renders on its own line below the chip row. */}
           {(facts.length > 0 || full || hasAlt) && (
             <div className="pv-facts pv-controlrow-wrap">
-              <div className="pv-controlrow">
-                {facts.map((f, i) => (
-                  <button key={i} className={"pv-chip" + (chip === i ? " on" : "")}
-                    onClick={() => setChip(c => c === i ? -1 : i)} aria-expanded={chip === i}>
-                    <b>{f.k}</b>{!badV(f.v) && <span className="pv-sep"> · {f.v}</span>}
-                  </button>
-                ))}
-              </div>
-              {chip >= 0 && facts[chip] && (
-                <div className="pv-deriv">{facts[chip].x}</div>
-              )}
               {/* THE FULL READ + VIA-SOURCE (Fuad 2026-08-12, revised): the toggle and the
-                  via-source flick share ONE line BELOW the chips — toggle LEFT, flick RIGHT,
+                  via-source flick share ONE line at the TOP of the block — toggle LEFT, flick RIGHT,
                   space-between (wraps flick right-aligned below on narrow screens). Reserving a
                   fixed-width toggle slot keeps the label from shifting when it swaps ▾/▴, and the
                   read below UNRAVELS in place from the hover-peek: one height-clamped body that
@@ -1224,6 +1224,26 @@ function PortraitCard({ id, alt, showWords = true, go }) {
               {hasPrev && open && (
                 <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".06em", marginTop: 10 }}>
                   synthesized from the songs' Opus · Fable reads</div>
+              )}
+              {/* FACTS block (Fuad 2026-08-16): moved BELOW the full read, still inside this module,
+                  and right-anchored — the k·v chips hug the right edge; the clicked chip's derivation
+                  opens on its own line, right-anchored but capped to a readable width with left-aligned
+                  text so right-alignment never squashes it. Falls back to full-width/left on narrow
+                  screens (see .pv-factsblock @media). */}
+              {facts.length > 0 && (
+                <div className="pv-factsblock">
+                  <div className="pv-controlrow">
+                    {facts.map((f, i) => (
+                      <button key={i} className={"pv-chip" + (chip === i ? " on" : "")}
+                        onClick={() => setChip(c => c === i ? -1 : i)} aria-expanded={chip === i}>
+                        <b>{f.k}</b>{!badV(f.v) && <span className="pv-sep"> · {f.v}</span>}
+                      </button>
+                    ))}
+                  </div>
+                  {chip >= 0 && facts[chip] && (
+                    <div className="pv-deriv">{facts[chip].x}</div>
+                  )}
+                </div>
               )}
             </div>
           )}
@@ -2097,6 +2117,16 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         .av-endrow > .av-famcard { flex: 1 1 400px; }
         /* family tree grows wider still when a band's members have rotated through many other bands */
         .av-endrow > .av-famcard.wide { flex: 1.6 1 440px; }
+        /* Desktop visual order: Sound DNA | Family tree | Sounds like. The cards render in DOM
+           order (DNA, Sounds-like, family) so the mobile m-stack keeps that stack; above the
+           m-stack breakpoint we reorder with flex order so Sounds-like sits on the RIGHT and
+           the family tree (the only growing card) sits between the two pinned cards. Scoped to
+           ≥861px so the ≤860 grid stack stays in DOM order untouched. (Fuad 2026-08-16) */
+        @media (min-width: 861px){
+          .av-endrow > .av-dnacard { order: 0; }
+          .av-endrow > .av-famcard { order: 1; }
+          .av-endrow > .av-simcard { order: 2; }
+        }
         /* on-tour date rows */
         .av-tourrow { display: flex; align-items: baseline; gap: 10px; padding: 6px 4px; border-radius: 4px;
           text-decoration: none; color: var(--ink-soft); border-bottom: 1px solid var(--rule); }
@@ -2422,6 +2452,16 @@ function AlbumView({ id, go }) {
     if (window.ROTATION_TRACKTHEMES) return;
     const s = document.createElement("script"); s.src = "genius-themes-lazy.js"; s.onload = () => setThemesReady(true); document.head.appendChild(s);
   }, []);
+  // FABLE themes for the roll-up (preferred over the lexicon TRACKTHEMES). They ride in the gist
+  // shard (about/g-NN.js), keyed artistSlug~trackSlug, first = primary — same source TrackView uses.
+  // One album's tracks all share the artist's bucket, so a single loadAbout covers the whole record;
+  // the callback flips gistReady and re-renders (mirrors the themesReady pattern, no flicker beyond
+  // the same old-source→upgrade one).
+  const [gistReady, setGistReady] = React.useState(false);
+  React.useEffect(() => {
+    if (!R || !R.loadAbout || !id) return;
+    R.loadAbout(id, () => setGistReady(true));
+  }, [id]);
   // album-level covers rollup (core feature) (MB works) — same file as the track bios, lazy + optional
   const [, setBioReady] = React.useState(!!window.ROTATION_ALBBIO);
   React.useEffect(() => {
@@ -2495,9 +2535,31 @@ function AlbumView({ id, go }) {
   const avgSec = (R.TOTALS && R.TOTALS.avgTrackSec) || 216;
   const listenedMin = Math.round(avgSec * data.trackPlays / 60);
   const sr = data.series, sFirst = sr[0], sLast = sr[sr.length - 1], sPeak = sr.reduce((a, b) => b.p > (a ? a.p : 0) ? b : a, null);
-  // album theme roll-up: play-weighted primary themes across this album's tracks (≥2 themed)
-  const albThemes = (() => {
-    const TT = window.ROTATION_TRACKTHEMES; if (!TT || !TT._themes) return null;
+  // album theme roll-up: play-weighted primary themes across this album's tracks (≥2 themed).
+  // PREFER the fable reads (R.aboutGist(key).themes — reasoned, first = primary) over the stale
+  // lexicon source (ROTATION_TRACKTHEMES). Both are computed the same way; fable wins only when its
+  // themed-track count is ≥2 AND ≥ half the lexicon's themed count for THIS album (so 2/14 fabled
+  // tracks can't claim "mostly about…" over a 12-track lexicon coverage). gistReady/themesReady are
+  // referenced so the memo recomputes when either lazy source lands.
+  void gistReady; void themesReady;
+  // fable roll-up (from the gist shard) → { list:[{theme,share}], themed }
+  const albThemesFable = (() => {
+    if (!R || !R.aboutGist) return { list: null, themed: 0 };
+    const acc = new Map(); let themed = 0, tot = 0;
+    for (const t of data.tracks) {
+      const g = R.aboutGist(R.slug(data.artist) + "~" + R.slug(t.title));
+      const th = g && g.themes;
+      if (!th || !th.length) continue;
+      themed++; tot += t.plays;
+      acc.set(th[0], (acc.get(th[0]) || 0) + t.plays);
+    }
+    if (themed < 2 || !tot) return { list: null, themed };
+    return { list: [...acc.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2)
+      .map(([theme, p]) => ({ theme, share: Math.round(p / tot * 100) })), themed };
+  })();
+  // lexicon roll-up (ROTATION_TRACKTHEMES) → { list:[{theme,share}], themed }
+  const albThemesLex = (() => {
+    const TT = window.ROTATION_TRACKTHEMES; if (!TT || !TT._themes) return { list: null, themed: 0 };
     const acc = new Map(); let themed = 0, tot = 0;
     for (const t of data.tracks) {
       const th = TT[R.slug(data.artist) + "~" + R.slug(t.title)];
@@ -2505,9 +2567,17 @@ function AlbumView({ id, go }) {
       themed++; tot += t.plays;
       acc.set(th[0][0], (acc.get(th[0][0]) || 0) + t.plays);
     }
-    if (themed < 2 || !tot) return null;
-    return [...acc.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2)
-      .map(([i, p]) => ({ theme: TT._themes[i], share: Math.round(p / tot * 100) }));
+    if (themed < 2 || !tot) return { list: null, themed };
+    return { list: [...acc.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2)
+      .map(([i, p]) => ({ theme: TT._themes[i], share: Math.round(p / tot * 100) })), themed };
+  })();
+  // pick fable when it clears the coverage guard; else fall back to the lexicon unchanged.
+  const albThemes = (() => {
+    const fable = albThemesFable, lex = albThemesLex;
+    if (fable.list && fable.themed >= 2 && fable.themed >= Math.ceil(lex.themed / 2))
+      return { list: fable.list, src: "reads" };
+    if (lex.list) return { list: lex.list, src: "lyric" };
+    return null;
   })();
   // singles→LP absorb: this album row is KEPT + browsable, but if it's an absorbed single, surface
   // one subtle line linking to the LP it lives on. id is artistSlug~albumSlug (same absorb key).
@@ -2526,6 +2596,9 @@ function AlbumView({ id, go }) {
   // edition below it, disc-style. This kills track-NUMBER COLLISIONS after edition-merging: e.g. NIN's
   // "01 Mr. Self Destruct" (base) vs "01 Burn" (reissue) no longer share one flat number column — each
   // section restarts at 01. (True CD1/CD2 disc splits need MusicBrainz release data — a later pass.)
+  // per-album last.fm genre chips — top tag names, ships in the SAME lazy file as extras (setExReady
+  // covers the re-render). Same vocabulary + clickability as the artist page's last.fm tags.
+  const genreTags = (window.ROTATION_ALBUM_TAGS && window.ROTATION_ALBUM_TAGS[id]) || null;
   const extras = (window.ROTATION_ALBUM_EXTRAS && window.ROTATION_ALBUM_EXTRAS[id]) || null;
   const bonusSet = extras && extras.bonus ? new Set(extras.bonus) : null;
   const baseTracks = bonusSet ? data.tracks.filter(t => !bonusSet.has(t.title)) : data.tracks;
@@ -2565,9 +2638,18 @@ function AlbumView({ id, go }) {
           {label && <div className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-faint)", marginTop: 4 }}>{label}{heardYr ? ` · you played it ${heardYr}` : ""}</div>}
           {albThemes && (
             <div style={{ fontSize: 12.5, color: "var(--ink-soft)", marginTop: 8 }} title="Play-weighted lyric themes across the tracks you've played from this album">
-              Mostly about <b style={{ color: "var(--ink)" }}>{albThemes[0].theme}</b>
-              {albThemes[1] ? <>, with <b style={{ color: "var(--ink)" }}>{albThemes[1].theme}</b></> : null}
-              <span style={{ color: "var(--ink-faint)" }}> · lyric themes</span>
+              Mostly about <b style={{ color: "var(--ink)" }}>{albThemes.list[0].theme}</b>
+              {albThemes.list[1] ? <>, with <b style={{ color: "var(--ink)" }}>{albThemes.list[1].theme}</b></> : null}
+              <span style={{ color: "var(--ink-faint)" }}> · {albThemes.src === "reads" ? "from the reads" : "lyric themes"}</span>
+            </div>
+          )}
+          {/* album's OWN last.fm genre tags — mirrors the artist page's last.fm chip row; clickable
+              into Explore (same tag vocabulary the artist chips use). Album-specific, so it sits above
+              the artist-level subgenre chips. Renders nothing when the album has no tags. */}
+          {genreTags && genreTags.length > 0 && (
+            <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap", alignItems: "center" }}>
+              <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>last.fm</span>
+              {genreTags.map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
             </div>
           )}
           {subs.length > 0 && <div style={{ display: "flex", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
@@ -3235,37 +3317,25 @@ function TrackView({ id, go }) {
                 <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: "oklch(0.68 0.16 25)" }} /></div>
                 <span className="tv-mood-v">{lyrVal}</span>
               </div>
-              {/* THEMES (pilot 2026-08-08) supersede the old NRC emotion label where present —
-                  reasoned from the fable read, not counted off a lexicon. Means/Built live with
-                  the read below; this card keeps only the themes. */}
-              {(() => {
-                const help = (
-                  <span className="tv-mood-help" tabIndex={0}>
-                    <i>?</i>
-                    <span className="tv-mood-tip">
-                      <b>Sounds</b> — how upbeat the music itself is: Spotify&#8217;s audio positivity, 0 gloomy &#8594; 100 euphoric.<br />
-                      <b>Reads</b> — how positive the lyrics are on the page, scored word-by-word against an emotion lexicon in the song&#8217;s language.<br />
-                      A wide gap is the classic trick: music that smiles while the words don&#8217;t.
-                    </span>
+              {/* The NRC emotion caption + the Sounds/Reads axis help. THEMES used to supersede
+                  this caption here (pilot 2026-08-08) but moved into "Where it sits" (2026-08-16,
+                  Fuad) — so this card always carries its own note again. */}
+              <div className="tv-mood-note">
+                <span className="txt">
+                  {divergent
+                    ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
+                    : <>Sound and words agree.</>}
+                  {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
+                </span>
+                <span className="tv-mood-help" tabIndex={0}>
+                  <i>?</i>
+                  <span className="tv-mood-tip">
+                    <b>Sounds</b> — how upbeat the music itself is: Spotify&#8217;s audio positivity, 0 gloomy &#8594; 100 euphoric.<br />
+                    <b>Reads</b> — how positive the lyrics are on the page, scored word-by-word against an emotion lexicon in the song&#8217;s language.<br />
+                    A wide gap is the classic trick: music that smiles while the words don&#8217;t.
                   </span>
-                );
-                // With themes present the old caption has nothing to say, so the whole note row
-                // would render empty but for the "?" — fold the help into the chip row instead
-                // and drop the row, otherwise the card carries ~25px of dead space (2026-08-08).
-                return themes && themes.length > 0
-                  ? <div className="tv-themes">{themes.map(t => <span key={t} className="tv-theme">{t}</span>)}{help}</div>
-                  : (
-                    <div className="tv-mood-note">
-                      <span className="txt">
-                        {divergent
-                          ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
-                          : <>Sound and words agree.</>}
-                        {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
-                      </span>
-                      {help}
-                    </div>
-                  );
-              })()}
+                </span>
+              </div>
             </div>
           )}
         </div>
@@ -3318,6 +3388,23 @@ function TrackView({ id, go }) {
                   <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 5 }}>valence × energy vs your library</div>
                 </div>
               </div>
+              {/* THEMES (pilot 2026-08-08, relocated here 2026-08-16 per Fuad) — reasoned from the
+                  fable read, not the NRC lexicon. Stacked at the bottom of "Where it sits" behind a
+                  hairline, matching how stacked sub-sections separate elsewhere in this view. */}
+              {themes && themes.length > 0 && (
+                <div style={{ marginTop: 12, borderTop: "1px solid var(--rule)", paddingTop: 11 }}>
+                  <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 7 }}>Themes</div>
+                  <div className="tv-themes" style={{ margin: 0 }}>
+                    {themes.map(t => <span key={t} className="tv-theme">{t}</span>)}
+                    <span className="tv-mood-help" tabIndex={0}>
+                      <i>?</i>
+                      <span className="tv-mood-tip">
+                        The threads the lyrics keep returning to, reasoned from a close read of the words rather than counted off a lexicon. The first is the song&#8217;s spine; the rest are what it brushes against.
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
             {sr.length > 0 && <div>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Your history</b></span>
@@ -3334,6 +3421,15 @@ function TrackView({ id, go }) {
         <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
           <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>No Spotify audio features matched for this track.</div>
           {data.series.length > 0 && <div style={{ marginTop: 10 }}><Sparkline series={data.series} hue={hue} /></div>}
+          {/* no audio features → no "Where it sits" card, so themes land here instead (2026-08-16) */}
+          {themes && themes.length > 0 && (
+            <div style={{ marginTop: 12, borderTop: "1px solid var(--rule)", paddingTop: 11 }}>
+              <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 7 }}>Themes</div>
+              <div className="tv-themes" style={{ margin: 0 }}>
+                {themes.map(t => <span key={t} className="tv-theme">{t}</span>)}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
