@@ -83,13 +83,57 @@ function recInFam(R, rec, fam) {
 // weight) when present, else `s` (display subs). Keeps a stray tag from making an artist filterable.
 const _filtSubs = (rec) => (rec && rec.sq) ? rec.sq : ((rec && rec.s) || []);
 
+// ── artist Sort specs ──
+// One entry per Sort chip beyond plays. `v(a, af, plays)` returns the sortable number (or null to
+// DROP the artist from this sort, mirroring how audio sorts drop artists without measured audio);
+// `af` is R.AUDIO[a.id] (may be undefined), `a` the EXPLORE rec. `d` is the natural default direction
+// (+1 = high→low, -1 = low→high, before the flip button multiplies it). `disp` formats the value
+// label. `audio` marks sorts that read the measured vector (kept behind the ≥15-play floor + af gate,
+// byte-identical to the old path). `bar:false` hides the length bar where value isn't a magnitude.
+const SND_SPECS = {
+  energy:  { audio: true, v: (a, af) => af[0], disp: v => Math.round(v * 100) + "%" },
+  valence: { audio: true, v: (a, af) => af[1], disp: v => Math.round(v * 100) + "%" },
+  acoustic:{ audio: true, v: (a, af) => af[2], disp: v => Math.round(v * 100) + "%" },
+  tempo:   { audio: true, v: (a, af) => af[3], disp: v => Math.round(v * 100) + "%" },
+  dance:   { audio: true, v: (a, af) => af[4], disp: v => Math.round(v * 100) + "%" },
+  instr:   { audio: true, v: (a, af) => af[5], disp: v => Math.round(v * 100) + "%" },   // instrumentalness (idx 5)
+  loud:    { audio: true, v: (a, af) => af[9], disp: v => Math.round(v) + " dB", bar: false }, // loudness dB (idx 9), negative
+  pop:     { audio: true, v: (a, af) => af[7], disp: v => v + "/100" },
+  // non-audio sorts — read fields shipped on the EXPLORE rec (l/d/fd/sd), so they reach the whole pool
+  mine:    { v: (a) => (a.l > 0 ? a.plays / a.l : null),                       // obscurity: your plays ÷ global listeners
+             disp: v => v >= 1 ? "≥1 per listener" : ("1 in " + Math.round(1 / v).toLocaleString("en-US")) },
+  disc:    { v: (a) => (a.fd != null ? a.fd : null), disp: (v, a) => String(FDY(a)), bar: false }, // first-play day (newest first)
+  span:    { v: (a) => (a.sd != null ? a.sd : null),                            // first→last spread
+             disp: v => { const y = v / 365; return y >= 1 ? (y >= 2 ? Math.round(y) + " yrs" : y.toFixed(1) + " yrs") : Math.max(1, Math.round(v)) + " d"; } },
+  vintage: { v: (a) => (a.d > 0 ? a.d : null), d: -1, disp: (v, a) => String(a.d), bar: false }, // est. year, oldest first
+};
+// first-play YEAR from the rec's fd (days since the corpus start) — for the "discovered" label.
+const FDY = (a) => { const R = window.ROTATION; const t = (R.TOTALS && R.TOTALS.since) || "2013-01-01"; return new Date(Date.parse(t) + (a.fd || 0) * 86400e3).getUTCFullYear(); };
+// flip-button labels per sort: [what sndDir=1 (the natural default) shows first, what the flip shows].
+const SND_FLIP = {
+  mine:    ["most mine", "least mine"],   disc: ["newest", "oldest"],
+  span:    ["longest", "shortest"],       vintage: ["oldest", "newest"],
+  loud:    ["loudest", "quietest"],       instr: ["most instr.", "least instr."],
+  pop:     ["most popular", "most obscure"],
+};
+// one-line hint under the Sort row per sort (falls back to the audio-trait wording).
+const SND_HINT = {
+  pop:     "Spotify popularity 0–100 · flip for most-obscure first",
+  loud:    "average track loudness in dB (louder = closer to 0)",
+  instr:   "instrumentalness, 0–100% · flip for most-vocal first",
+  mine:    "your obscurity: your plays ÷ global last.fm listeners",
+  disc:    "when you first scrobbled them · newest first",
+  span:    "loyalty: time from your first to your last scrobble",
+  vintage: "band's est. year (first release) · oldest first · flip for newest",
+};
+
 function exploreRank(R, kind, f, limit = 40) {
   const { year, fam, subIdx, cells } = f;
   const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
   const hasCells = cells && cells.size > 0;
   const pass = f.pass && f.pass.active ? f.pass : null;   // theme/decade filter (filter-index); membership sets
   if (kind === "artists") {
-    const AXI = { energy: 0, valence: 1, acoustic: 2, tempo: 3, dance: 4 }, snd = f.sound, dir = f.dir || 1;
+    const snd = f.sound, spec = snd ? SND_SPECS[snd] : null, dir = (f.dir || 1) * (spec && spec.d ? spec.d : 1);
     const arr = [];
     for (const a of R.EXPLORE) {
       if (year != null && !(a.yp && a.yp[year])) continue;
@@ -103,13 +147,16 @@ function exploreRank(R, kind, f, limit = 40) {
       }
       const plays = hasCells ? tsPlays(R, a.id, cells) : (year != null ? a.yp[year] : a.plays);
       if (hasCells && !plays) continue;
-      let value = plays, disp;
-      if (snd) {                                   // sort by measured sound instead of plays
-        const af = R.AUDIO[a.id]; if (!af || plays < 15) continue;   // floor keeps it meaningful
-        if (snd === "pop") { value = af[7]; disp = af[7] + "/100"; }
-        else { value = af[AXI[snd]]; disp = Math.round(value * 100) + "%"; }
+      let value = plays, disp, bar = true;
+      if (spec) {                                  // sort by a measured/derived axis instead of plays
+        if (plays < 15) continue;                  // shared floor keeps every alt-sort meaningful
+        const af = spec.audio ? R.AUDIO[a.id] : null;
+        if (spec.audio && !af) continue;           // audio sorts drop artists without a measured vector
+        value = spec.v(a, af, plays);
+        if (value == null) continue;               // non-audio sorts drop artists lacking the field
+        disp = spec.disp(value, a); if (spec.bar === false) bar = false;
       }
-      arr.push({ id: a.id, label: a.name, value, disp, plays, hue: a.hue, kept: !!(R.byId[a.id] || (R.expById && R.expById[a.id])),
+      arr.push({ id: a.id, label: a.name, value, disp, bar, plays, hue: a.hue, kept: !!(R.byId[a.id] || (R.expById && R.expById[a.id])),
         sub: (R.SUBS[a.s[0]] || {}).name || "" });
     }
     const _seen = new Set();   // distinct artists can share a slug id (✝✝✝/Crosses) — keep one, avoids key collisions
@@ -1663,9 +1710,10 @@ function ExploreView({ t, go, setPop, seed }) {
             <div className="xp-frow xp-td-sort" style={{ marginBottom: 0 }}>
               <span className="xp-flabel">Sort</span>
               <div className="xp-chiprow">
-                {[["", "plays"], ["energy", "energy"], ["valence", "mood"], ["dance", "dance"], ["acoustic", "acoustic"], ["tempo", "tempo"], ["pop", "popularity"]].map(([k, l]) =>
+                {[["", "plays"], ["energy", "energy"], ["valence", "mood"], ["dance", "dance"], ["acoustic", "acoustic"], ["tempo", "tempo"], ["loud", "loud"], ["instr", "instrumental"], ["pop", "popularity"], ["mine", "most mine"], ["disc", "discovered"], ["span", "span"], ["vintage", "vintage"]].map(([k, l]) =>
                   <button key={k || "p"} className="xp-chip" data-on={(sound || "") === k} onClick={() => setSound(k || null)}>{l}</button>)}
-                {sound && <button className="xp-chip" onClick={() => setSndDir(d => -d)} title="flip direction">{sndDir === 1 ? "▼ high→low" : "▲ low→high"}</button>}
+                {sound && (() => { const [hi, lo] = SND_FLIP[sound] || ["high→low", "low→high"]; return (
+                  <button className="xp-chip" onClick={() => setSndDir(d => -d)} title="flip direction">{sndDir === 1 ? "▼ " + hi : "▲ " + lo}</button>); })()}
               </div>
             </div>
           )}
@@ -1705,7 +1753,7 @@ function ExploreView({ t, go, setPop, seed }) {
             </div>
           </div>
         </div>
-        {kind === "artists" && sound && <div className="r-mono xp-note" style={{ marginTop: 8, marginBottom: 0 }}>{sound === "pop" ? "Spotify popularity 0–100 · flip for most-obscure first" : "share of that trait, 0–100% · artists with ≥15 plays"}</div>}
+        {kind === "artists" && sound && <div className="r-mono xp-note" style={{ marginTop: 8, marginBottom: 0 }}>{SND_HINT[sound] || "share of that trait, 0–100%"} · artists with ≥15 plays</div>}
         <div className="xp-frow xp-td-themes" style={{ marginBottom: 0, marginTop: 12 }}>
           <span className="xp-flabel">Themes</span>
           <div className="xp-chiprow">
@@ -2080,7 +2128,7 @@ function RankRows({ items, go, kind, disp }) {
             <div className="xp-row-name">{it.label}</div>
             <div className="xp-row-sub">{it.sub}</div>
           </div>
-          <div className="xp-bar"><div style={{ width: (it.value / max * 100) + "%", background: `oklch(0.6 0.14 ${it.hue})` }} /></div>
+          <div className="xp-bar">{it.bar !== false && <div style={{ width: (it.value / max * 100) + "%", background: `oklch(0.6 0.14 ${it.hue})` }} />}</div>
           <span className="xp-val">{it.disp || fmt(it.value)}</span>
         </div>
       ))}

@@ -2106,6 +2106,126 @@
 "to": "Forsaken",
 "type": "variant",
 "reason": "variant: distinct live recording (YouTube-caption title), link to canonical for reads"
+},
+{
+"from": "Six Degrees Of Inner Turbulence: Pt.I \"Overture\"",
+"to": "Overture",
+"type": "spelling",
+"reason": "Six Degrees suite: exporter prefixed the movement with a garbled part-title; same studio recording, folds to canonical movement name"
+},
+{
+"from": "Six Degrees of Inner Turbulence, Pt. I: Overture",
+"to": "Overture",
+"type": "spelling",
+"reason": "Six Degrees suite: full-form movement title, future-proof for re-imports; folds to canonical movement name"
+},
+{
+"from": "Six Degrees Of Inner Turbulence: Pt.I ",
+"to": "Overture",
+"type": "spelling",
+"reason": "Six Degrees suite: truncated exporter title (movement name cut off), future-proof; folds to canonical movement name"
+},
+{
+"from": "Six Degrees Of Inner Turbulence: Pt.II \"About To Crash\"",
+"to": "About to Crash",
+"type": "spelling",
+"reason": "Six Degrees suite: exporter prefixed the movement with a garbled part-title; same studio recording, folds to canonical movement name"
+},
+{
+"from": "Six Degrees of Inner Turbulence, Pt. II: About to Crash",
+"to": "About to Crash",
+"type": "spelling",
+"reason": "Six Degrees suite: full-form movement title, future-proof for re-imports; folds to canonical movement name"
+},
+{
+"from": "Six Degrees Of Inner Turbulence: Pt.II ",
+"to": "About to Crash",
+"type": "spelling",
+"reason": "Six Degrees suite: truncated exporter title (movement name cut off), future-proof; folds to canonical movement name"
+},
+{
+"from": "Six Degrees of Inner Turbulence, Pt. III: War Inside My Head",
+"to": "War Inside My Head",
+"type": "spelling",
+"reason": "Six Degrees suite: full-form movement title, future-proof for re-imports; folds to canonical movement name"
+},
+{
+"from": "Six Degrees Of Inner Turbulence: Pt. IV: \"The Test That Stumped Them All\"",
+"to": "The Test That Stumped Them All",
+"type": "spelling",
+"reason": "Six Degrees suite: exporter prefixed the movement with a garbled part-title; same studio recording, folds to canonical movement name"
+},
+{
+"from": "Six Degrees of Inner Turbulence, Pt. IV: The Test That Stumped Them All",
+"to": "The Test That Stumped Them All",
+"type": "spelling",
+"reason": "Six Degrees suite: full-form movement title, future-proof for re-imports; folds to canonical movement name"
+},
+{
+"from": "Six Degrees Of Inner Turbulence: Pt. IV: ",
+"to": "The Test That Stumped Them All",
+"type": "spelling",
+"reason": "Six Degrees suite: truncated exporter title (movement name cut off), future-proof; folds to canonical movement name"
+},
+{
+"from": "Six Degrees Of Inner Turbulence: Pv. V \"Goodnight Kiss\"",
+"to": "Goodnight Kiss",
+"type": "spelling",
+"reason": "Six Degrees suite: exporter mislabeled part as \"Pv. V\" (Pt. typo) and prefixed the movement; same studio recording, folds to canonical movement name"
+},
+{
+"from": "Six Degrees of Inner Turbulence, Pt. V: Goodnight Kiss",
+"to": "Goodnight Kiss",
+"type": "spelling",
+"reason": "Six Degrees suite: full-form movement title, future-proof for re-imports; folds to canonical movement name"
+},
+{
+"from": "Six Degrees Of Inner Turbulence: Pv. V ",
+"to": "Goodnight Kiss",
+"type": "spelling",
+"reason": "Six Degrees suite: truncated exporter title (Pt. typo'd as Pv., movement name cut off), future-proof; folds to canonical movement name"
+},
+{
+"from": "Six Degrees Of Inner Turbulence: Pt. VI \"Solitary Shell\"",
+"to": "Solitary Shell",
+"type": "spelling",
+"reason": "Six Degrees suite: exporter prefixed the movement with a garbled part-title; same studio recording, folds to canonical movement name"
+},
+{
+"from": "Six Degrees of Inner Turbulence, Pt. VI: Solitary Shell",
+"to": "Solitary Shell",
+"type": "spelling",
+"reason": "Six Degrees suite: full-form movement title, future-proof for re-imports; folds to canonical movement name"
+},
+{
+"from": "Six Degrees Of Inner Turbulence: Pt. VI ",
+"to": "Solitary Shell",
+"type": "spelling",
+"reason": "Six Degrees suite: truncated exporter title (movement name cut off), future-proof; folds to canonical movement name"
+},
+{
+"from": "Six Degrees Of Inner Turbulence: Pt. VII \"About To Crash (Reprise)\"",
+"to": "About to Crash (Reprise)",
+"type": "spelling",
+"reason": "Six Degrees suite: exporter labeled BOTH movement VII and VIII as \"Pt. VII\"; the quoted movement name disambiguates this as the reprise, folds to canonical movement name"
+},
+{
+"from": "Six Degrees of Inner Turbulence, Pt. VII: About to Crash (Reprise)",
+"to": "About to Crash (Reprise)",
+"type": "spelling",
+"reason": "Six Degrees suite: full-form movement title, future-proof for re-imports; folds to canonical movement name"
+},
+{
+"from": "Six Degrees Of Inner Turbulence: Pt. VII \"Losing Time/Grand Finale\"",
+"to": "Losing Time/Grand Finale",
+"type": "spelling",
+"reason": "Six Degrees suite: exporter labeled BOTH movement VII and VIII as \"Pt. VII\"; the quoted movement name disambiguates this as the finale, folds to canonical movement name"
+},
+{
+"from": "Six Degrees of Inner Turbulence, Pt. VIII: Losing Time/Grand Finale",
+"to": "Losing Time/Grand Finale",
+"type": "spelling",
+"reason": "Six Degrees suite: full-form movement title, future-proof for re-imports; folds to canonical movement name"
 }
 ]
 },
