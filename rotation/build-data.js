@@ -546,6 +546,11 @@ const GENRE_RULES = [
   ["Metalcore/Nu", /\bnu[- ]?core\b/, _GW.med],
 
   // ── 4 Punk/Hardcore ──
+  // "hardcore hip-hop"/"hardcore rap" is an extension of hip-hop, NOT the hardcore-punk scene
+  // (Fuad ruling 2026-08-17: Ground Zero Mixtape/PRO8L3M). Must precede the bare \bhardcore\b rule
+  // below so this token votes Hip-Hop, not Punk. Covers corpus forms "hardcore hip hop",
+  // "hardcore hip-hop" (Discogs; hyphen→space handled by _classifyToken), "hardcore rap".
+  ["Hip-Hop/Rap", /\bhardcore (hip-?hop|rap)\b/, _GW.strong],
   ["Punk/Hardcore", /\bhardcore punk\b/, _GW.strong],
   ["Punk/Hardcore", /\bpunk\b/, _GW.strong],
   ["Punk/Hardcore", /\bhardcore\b/, _GW.strong],
@@ -573,12 +578,12 @@ const GENRE_RULES = [
   ["Shoegaze/Grunge", /\bgrunge\b/, _GW.strong],
   ["Shoegaze/Grunge", /\bpost-grunge\b/, _GW.strong],
   ["Shoegaze/Grunge", /\bslowcore\b/, _GW.strong],
-  ["Shoegaze/Grunge", /\bpost-rock\b/, _GW.strong],
 
   // ── 7 Alternative/Indie ──
   ["Alternative/Indie", /\balternative rock\b/, _GW.med],
   ["Alternative/Indie", /\bart rock\b/, _GW.med],   // moved Prog(strong)->Alt(med) (Fuad 2026-08-17)
   ["Alternative/Indie", /\bindie (rock|pop-rock|pop rock)\b/, _GW.strong],
+  ["Alternative/Indie", /\bpost-rock\b/, _GW.strong],   // moved Shoegaze/Grunge->Alt (Fuad 2026-08-17: post-rock fits Alternative)
   ["Alternative/Indie", /\bpost-punk\b/, _GW.med],
   ["Alternative/Indie", /\bbritpop\b/, _GW.strong],
   ["Alternative/Indie", /\bmadchester\b/, _GW.strong],
