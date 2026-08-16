@@ -104,11 +104,17 @@ const SND_SPECS = {
              disp: v => v >= 1 ? "≥1 per listener" : ("1 in " + Math.round(1 / v).toLocaleString("en-US")) },
   disc:    { v: (a) => (a.fd != null ? a.fd : null), disp: (v, a) => String(FDY(a)), bar: false }, // first-play day (newest first)
   span:    { v: (a) => (a.sd != null ? a.sd : null),                            // first→last spread
-             disp: v => { const y = v / 365; return y >= 1 ? (y >= 2 ? Math.round(y) + " yrs" : y.toFixed(1) + " yrs") : Math.max(1, Math.round(v)) + " d"; } },
+             // months as the concrete unit, years appended after a slash for scale once it adds info
+             // (≥2y). Under 2 months → days. e.g. 5985d → "197mo / 16y", ~1y → "12mo", 43d → "43d".
+             disp: v => { const mo = Math.floor(v / 30.44), y = Math.floor(v / 365.25);
+                          return mo < 2 ? Math.max(1, Math.round(v)) + "d" : (y >= 2 ? mo + "mo / " + y + "y" : mo + "mo"); } },
   vintage: { v: (a) => (a.d > 0 ? a.d : null), d: -1, disp: (v, a) => String(a.d), bar: false }, // est. year, oldest first
 };
-// first-play YEAR from the rec's fd (days since the corpus start) — for the "discovered" label.
-const FDY = (a) => { const R = window.ROTATION; const t = (R.TOTALS && R.TOTALS.since) || "2013-01-01"; return new Date(Date.parse(t) + (a.fd || 0) * 86400e3).getUTCFullYear(); };
+// first-play YEAR from the rec's fd — for the "discovered" label.
+// fd is days since the REAL first dated scrobble (oldestMs in build-data), so anchor on TOTALS.fdAnchor —
+// NOT `since`, which is pushed back to UNDATED_REMAP_START when undated plays exist (that ~4-yr gap made
+// 2026 read as 2022). Fall back to `since` only if fdAnchor is absent (old bundle).
+const FDY = (a) => { const R = window.ROTATION; const T = R.TOTALS || {}; const t = T.fdAnchor || T.since || "2013-01-01"; return new Date(Date.parse(t) + (a.fd || 0) * 86400e3).getUTCFullYear(); };
 // flip-button labels per sort: [what sndDir=1 (the natural default) shows first, what the flip shows].
 const SND_FLIP = {
   mine:    ["most mine", "least mine"],   disc: ["newest", "oldest"],
@@ -1807,6 +1813,16 @@ function ExploreView({ t, go, setPop, seed }) {
            right when Active is absent; the growing time chiprow keeps it right when Active shows. */
         .xp-vocals { display: flex; align-items: center; gap: 8px; margin-left: auto; flex: 0 0 auto; }
         .xp-vocals .xp-flabel { padding-top: 0; }
+        /* FIRST concession as the band tightens (Fuad 2026-08-16): before the Era bar ever
+           gives up its labels, the Vocals group (natural ≈ 474px) drops to its OWN full-width
+           line below Time — freeing the top row and giving the band a calm two-line rhythm on
+           16" laptops instead of Vocals sitting inline while year segments fold below it.
+           Time chips scroll (overflow-x:auto) so they never force the break; this is a
+           deliberate, edge-aligned wrap, not a reflow. */
+        @media (max-width: 1600px) {
+          .xp-frow-main { flex-wrap: wrap; }
+          .xp-vocals { margin-left: 0; width: 100%; order: 2; justify-content: flex-end; }
+        }
         .xp-flabel { font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); padding-top: 7px; }
         .xp-chiprow { display: flex; flex-wrap: wrap; gap: 6px; }
         .xp-chip { font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-soft); cursor: pointer; transition: .14s; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
@@ -1823,6 +1839,20 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-td-top { display: flex; align-items: flex-start; gap: 22px; flex-wrap: wrap; }
         .xp-td-sort { flex: 0 0 auto; }
         .xp-td-decs { flex: 1 1 300px; min-width: 260px; margin-left: auto; }
+        /* Control-band degradation order (Fuad 2026-08-16, ProArt P16 ~1512px CSS vw).
+           MATH: Sort chips natural ≈ 1084px, Era needs ≈ 300px+ to keep its year labels
+           (segments fold at ≤8% of bar width). On the .xp-td card inner (≈ vw − 96px):
+           1536→Era gets ~334px (ok) · 1440→~238px · 1366→~164px (labels fold). So the
+           Era bar loses its labels well before mobile purely because Sort is hogging the row.
+           FIX: at ≤1500px, Sort wraps onto its OWN full line so Era ALWAYS spans the whole
+           card (≥ ~1180px even at a 1280 vw) → an 8% segment ≈ 94px, plenty for a "'23"
+           label. After this the only remaining fold is data-driven (a year with <8% of the
+           plays), which is intentional — not a width artifact. */
+        @media (max-width: 1500px) {
+          .xp-td-top { gap: 12px 22px; }
+          .xp-td-sort { flex: 1 1 100%; }
+          .xp-td-decs { flex: 1 1 100%; min-width: 0; margin-left: 0; }
+        }
         .xp-td-themes .xp-chiprow { max-height: 132px; overflow-y: auto; }
         .xp-decbar { display: flex; height: 46px; border-radius: 4px; overflow: hidden; gap: 1px; }
         .xp-decseg { min-width: 3px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; transition: filter .14s, outline-color .14s; outline: 1.5px solid transparent; outline-offset: -1.5px; }

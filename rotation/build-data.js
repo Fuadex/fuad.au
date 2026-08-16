@@ -1785,6 +1785,11 @@ const TOTALS = {
   albumsLP: _albKinds.a, epsSingles: _albKinds.s, comps: _albKinds.c,
   tracks: trackPlays.size,
   since: new Date(undated ? UNDATED_REMAP_START : oldestMs).toISOString().slice(0, 10),
+  // TRUE dated-corpus start (the real first DATED scrobble), regardless of the undated remap that
+  // pushes `since` back to UNDATED_REMAP_START. The EXPLORE recs' `fd` is days-since-oldestMs, so the
+  // "discovered" label converter (FDY) must anchor on THIS, not `since` — else every year shifts down
+  // by the (oldestMs − UNDATED_REMAP_START) gap (~4 yrs) and 2026 reads as 2022.
+  fdAnchor: new Date(oldestMs).toISOString().slice(0, 10),
   perDay: Math.round(totalScrobbles / spanDays * 10) / 10,
   topDay: {
     date: topDayKey, count: dayCounts.get(topDayKey),
