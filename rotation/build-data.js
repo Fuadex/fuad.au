@@ -292,6 +292,28 @@ const vocalsCodeBySlug = (s) => {
   if (!(s in VOCALS)) return undefined;
   return (VOCALS[s] || []).map(g => _VOX_CH[g] || "").join("");
 };
+// ── MB member lineups (artist-members.json, by enrich-members.js) — VOCALS FALLBACK ──
+// Bands whose wikidata entry has no lineup (so no vocals.json entry) but whose MusicBrainz
+// `member of band` relations DO carry the instrument/vocal attributes + member genders. Same
+// per-member shape as mb-artists.json ({n,g,i[],f,t}), so membersVoxCode reuses the identical
+// lead-vocals-first selection _MB_VOX_GENDER runs. Consulted ONLY when vocals.json is silent —
+// verified data always wins. Keyed by band NAME (aliasedByName resolves fold variants).
+const MEMBERS = (() => { const m = _readJson("artist-members.json"); delete m._members; return m; })();
+// derive a single-vocalist code ("m"/"f") from an MB member lineup, or undefined when none of the
+// lineup carries a gendered vocals credit. Mirrors build-data's vox tiers: lead-vocals current →
+// lead-vocals any → vocals current → vocals any (recency only breaks ties within a credit tier).
+const membersVoxCode = (name) => {
+  const e = aliasedByName(MEMBERS, name);
+  if (!e || !Array.isArray(e.members) || !e.members.length) return undefined;
+  const vox = e.members.find(x => x.t === "" && (x.i || []).some(i => /lead vocals/i.test(i)))
+    || e.members.find(x => (x.i || []).some(i => /lead vocals/i.test(i)))
+    || e.members.find(x => x.t === "" && (x.i || []).some(i => /vocals/i.test(i)))
+    || e.members.find(x => (x.i || []).some(i => /vocals/i.test(i)));
+  if (!vox) return undefined;
+  if (/^f/i.test(vox.g)) return "f";
+  if (/^m/i.test(vox.g)) return "m";
+  return undefined;   // vocalist found but no usable gender → still "no data", don't fabricate a code
+};
 const lifeOf = (name) => {
   const pn = pinOf(name);
   if (pn && pn.clearLife) return null;
@@ -1769,7 +1791,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     origin: originOf(name),
     country: meta.country || (originOf(name) ? originOf(name).country.toLowerCase() : ""),
     gender: genderOf(name),     // "Male"/"Female"/"Other"/"" — solo artists only
-    ...(() => { const vx = vocalsCodeBySlug(slug(name)); return vx === undefined ? {} : { vx }; })(),  // vocals code (m/f/n, ""=instrumental); absent = no data
+    ...(() => { let vx = vocalsCodeBySlug(slug(name)); if (vx === undefined) vx = membersVoxCode(name); return vx === undefined ? {} : { vx }; })(),  // vocals code (m/f/n, ""=instrumental; MB-lineup fallback); absent = no data
     life: lifeOf(name),         // { type, ended, end } → active/disbanded/deceased badge
     wd: wdOf(name),             // Wikidata slice: formation city+coords, dissolved, lineup+gender
   };
@@ -4094,7 +4116,11 @@ for (const [name, plays] of rankedArtists) {
   const _o = originOf(name);            // country/city tag → lets the Journey scope to a place
   if (_o) { rec.co = _o.country; if (_o.city) rec.ci = _o.city; }
   const _g = genderOf(name); const _gc = _g === "Female" ? "f" : _g === "Male" ? "m" : (_g === "Non-binary" || _g === "Other") ? "x" : ""; if (_gc) rec.g = _gc;   // f/m/x glyph (mini); "Not applicable" → none
-  const _vx = vocalsCodeBySlug(rec.id); if (_vx !== undefined) rec.vx = _vx;   // vocals code (m/f/n; ""=instrumental) — powers the Explore vocals chip; absent = no data
+  // vocals code (m/f/n; ""=instrumental) — powers the Explore vocals chip; absent = no data.
+  // Primary: vocals.json (verified). Fallback: MB member lineup (artist-members.json) for bands
+  // whose wikidata carried no lineup — same lead-vocals-first selection, so ZERO classifier change.
+  let _vx = vocalsCodeBySlug(rec.id); if (_vx === undefined) _vx = membersVoxCode(name);
+  if (_vx !== undefined) rec.vx = _vx;
   const _lf = lifeOf(name); if (_lf) { rec.ty = _lf.type[0].toLowerCase(); if (_lf.ended) { rec.ed = 1; if (_lf.end) rec.en = +_lf.end || 0; } }
   // first-play day + listening span, as compact ints (days since oldestMs) — powers the Explore
   // "discovered" (newest first-play) + "span" (widest first→last) sorts. Dated scrobbles only;
@@ -4847,14 +4873,43 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
 if (GIGS) {
   const cov = { total: ARTISTS.length, seen: 0, caught: 0, gone: 0, chance: 0, open: 0,
     goneList: [], caughtList: [], chanceList: [] };
+  // ── REACTIVATION: a band on record as done but demonstrably back. Three signals, only the
+  // high-precision ones the data supports (2026-08-17):
+  //   (C) upcoming Ticketmaster dates (a.onTour) — the strongest, and already excludes deceased
+  //       Persons + wrong-entity name-matches (tmExclude pins). This is the existing signal.
+  //   (A) WD carries a historical dissolved year while MB's life is NOT ended — the two sources
+  //       disagreeing is the fingerprint of a reunion MB has since re-opened (L7, Gossip, X JAPAN,
+  //       Kalafina). Clean: 6 artists, all genuine reformations.
+  //   (pin) a curated life.react flag (the "react" pin) forces it, no tour join needed.
+  // Signal (b) — a studio release dated after the end year — was investigated and REJECTED: MB
+  // ships only the release-group PRIMARY type, so live albums / box sets / reissues / greatest-hits
+  // all arrive labelled "Album", and an end+2 year gate still resurrects Nirvana, Led Zeppelin,
+  // The Doors, Joy Division, CCR… from posthumous live/comp drops. Too noisy to ship on a personal
+  // site; the two signals above are precise, so (b) adds only false positives and is left out.
+  // A dead solo artist can never reactivate — every path guards on !isPerson.
+  const reactInfo = (a, ended, isPerson) => {
+    if (isPerson) return null;                                  // deceased/solo person can't reform
+    const wdDis = a.wd && a.wd.dissolved ? String(a.wd.dissolved).slice(0, 4) : null;
+    // (C) fresh tour dates on a band that's on record as ended (or WD-dissolved)
+    if (a.onTour && (ended || wdDis)) return { touring: true, next: a.onTour[1], since: wdDis || (a.life && a.life.end) || null };
+    // curated pin
+    if (a.life && a.life.react) return { touring: false, next: null, since: (a.life.end || wdDis || null) };
+    // (A) WD dissolved but MB not-ended → the sources disagree = reunited
+    if (!ended && wdDis) return { touring: false, next: null, since: wdDis };
+    return null;
+  };
   for (const a of ARTISTS) {
     const ended = a.life && a.life.ended;
     const isPerson = !!(a.life && a.life.type && a.life.type[0].toLowerCase() === "p");
-    const react = !!(ended && !isPerson && a.onTour);   // disbanded group, fresh dates (this bucket = upcoming-gig "second chance", so it needs real tour dates)
+    const ri = reactInfo(a, ended, isPerson);
+    const react = !!ri;                                          // reactivated by any supported signal
+    const reactYr = ri && ri.since ? String(ri.since).slice(0, 4) : "";
     if (a.seenLive) {
       cov.seen++;
-      if (ended && !react) { cov.caught++; cov.caughtList.push([a.name, a.id, a.plays, (a.life.end || ""), isPerson ? 1 : 0]); }
-    } else if (react) { cov.chance++; cov.chanceList.push([a.name, a.id, a.plays, a.onTour[1]]); }
+      // seen AND (ended or reactivated): stays in "caught them in time"; a reactivated one carries
+      // the back-since year so the chip can say "back since 'YY" instead of "ended YYYY".
+      if (ended || react) { cov.caught++; cov.caughtList.push([a.name, a.id, a.plays, (a.life && a.life.end || ""), isPerson ? 1 : 0, react ? reactYr : ""]); }
+    } else if (react) { cov.chance++; cov.chanceList.push([a.name, a.id, a.plays, (ri.touring ? ri.next : ""), reactYr]); }
     else if (ended) { cov.gone++; cov.goneList.push([a.name, a.id, a.plays, (a.life.end || ""), isPerson ? 1 : 0]); }
     else cov.open++;
   }
@@ -4966,7 +5021,18 @@ const _resolvesToImage = (name) => {                             // true when by
   if (byName[name] && imageOf(name)) return true;               // kept artist with a real image
   return !!THUMBS[id];                                          // explorable artist with a Discogs/Spotify thumb
 };
+// SIMIMG values are HASH-ONLY. Every Deezer cache url is verified-uniform:
+//   https://cdn-images.dzcdn.net/images/artist/<32-hex-hash>/250x250-000000-80-0-0.jpg
+// so we store just <hash> and GenCover reconstructs the full url (250x250 tile size). Two
+// classes are DROPPED as dead placeholders: empty hash (…/artist//250x250…) and Deezer's
+// blank-avatar hash d41d8cd98f00b204e9800998ecf8427e (both render a grey silhouette — the
+// generative placeholder GenCover already draws is strictly better). If a url ever deviates
+// from the reconstructable shape, the FULL url is stored verbatim and the client detects the
+// "http" prefix (audit-mandated safety valve — currently the corpus has zero such variants).
+const _DZ_ART_RE = /^https:\/\/cdn-images\.dzcdn\.net\/images\/artist\/([0-9a-f]*)\/250x250-000000-80-0-0\.jpg$/;
+const _DZ_BLANK = "d41d8cd98f00b204e9800998ecf8427e";
 const SIMIMG = {};
+let _simDropped = 0, _simVariant = 0;
 {
   const _simNames = new Set();
   for (const a of ARTISTS) { const real = realSimilar(a.name); const names = (real && real.length > 0) ? real.slice(0, 8) : ((META[a.name] && META[a.name].similar) || []); for (const n of names) _simNames.add(n); }
@@ -4975,8 +5041,28 @@ const SIMIMG = {};
     if (!name || _resolvesToImage(name)) continue;              // covered by byId/THUMBS → don't double-ship
     const url = deezerImg(name);                                // Deezer cache (enrich-deezer-img.js / sync-live)
     const mk = matchKey(name);
-    if (url && mk && !SIMIMG[mk]) SIMIMG[mk] = url;
+    if (!url || !mk || SIMIMG[mk]) continue;
+    const m = url.match(_DZ_ART_RE);
+    if (m) {
+      const hash = m[1];
+      if (!hash || hash === _DZ_BLANK) { _simDropped++; continue; }   // empty / blank-avatar → drop
+      SIMIMG[mk] = hash;                                        // hash-only value
+    } else {
+      SIMIMG[mk] = url; _simVariant++;                          // non-uniform url → store verbatim (client: startsWith "http")
+    }
   }
+}
+// sim-img.js — standalone LAZY file (audit 2026-08-17): SIMIMG was ~28% of the deferred
+// music-rest bundle at full backfill, yet only similar-tiles (never a first paint, rarely
+// visited) read it. Split out so GenCover fetches it on-demand the first time it would draw a
+// sim-only placeholder. Bare-filename lazy data file (no ?v= — GH Pages 10-min cache is the norm).
+const _simImgOut = "// GENERATED by build-data.js — hash-only Deezer photos for sim-only similar-tile names (lazy; GenCover on-demand)\n"
+  + "// value = <hash> of https://cdn-images.dzcdn.net/images/artist/<hash>/250x250-000000-80-0-0.jpg (or a full http url for the rare non-uniform variant)\n"
+  + "window.ROTATION_SIMIMG = " + JSON.stringify(SIMIMG) + ";\n";
+fs.writeFileSync(path.join(__dirname, "sim-img.js"), _simImgOut, "utf8");
+{
+  const _gz = require("zlib").gzipSync(_simImgOut);
+  console.log(`sim-img.js: ${Object.keys(SIMIMG).length} keys (${_simDropped} placeholder-dropped, ${_simVariant} full-url variants) · ${(_simImgOut.length / 1024).toFixed(1)} KB raw / ${(_gz.length / 1024).toFixed(1)} KB gz`);
 }
 
 // ── ARTISTS field split (Phase 0.1): the heavy per-artist prose/relationship fields are only
@@ -5025,7 +5111,8 @@ const REST = {
   EXPLORE, ALBUMS, AUDIO: AUDIO_OUT, ARTIST_CLOCK, SUB_ARTISTS, CLOCK_BY_YEAR,
   ARTIST_X,   // id → heavy per-artist fields; folded back onto the ARTISTS records (see merge below)
   THUMBS_HI,  // id → full-res Discogs image; grid cards upgrade to it once rest loads (see GenCover)
-  SIMIMG,     // matchKey(name) → Deezer photo for sim-only similar-tile names (see GenCover fallback)
+  // SIMIMG moved to its own lazy file (sim-img.js → window.ROTATION_SIMIMG); GenCover fetches
+  // it on-demand the first time it would draw a sim-only placeholder (audit 2026-08-17).
 };
 const DATA = CORE;   // the core file's IIFE builds window.ROTATION from these
 const out = `// ────────────────────────────────────────────────────────────────
@@ -5086,7 +5173,9 @@ window.ROTATION = (function () {
   const D = ${JSON.stringify(DATA)};
   // deferred keys (arrive via music-rest.js) — stubbed empty so any first-paint read never
   // throws; the rest file Object.assigns the real data, rebuilds expById, flips _restLoaded.
-  D.EXPLORE = []; D.ALBUMS = []; D.AUDIO = {}; D.ARTIST_CLOCK = {}; D.SUB_ARTISTS = {}; D.CLOCK_BY_YEAR = {}; D.THUMBS_HI = {}; D.SIMIMG = {};
+  D.EXPLORE = []; D.ALBUMS = []; D.AUDIO = {}; D.ARTIST_CLOCK = {}; D.SUB_ARTISTS = {}; D.CLOCK_BY_YEAR = {}; D.THUMBS_HI = {};
+  // (SIMIMG is no longer a ROTATION key — it lives in the lazy sim-img.js as window.ROTATION_SIMIMG,
+  //  fetched on-demand by GenCover; nothing on ROTATION reads R.SIMIMG anymore.)
   D.expById = {}; D._restLoaded = false;
   D.byId = Object.fromEntries(D.ARTISTS.map(a => [a.id, a]));
   D.slug = slug;

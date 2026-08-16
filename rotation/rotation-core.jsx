@@ -506,8 +506,44 @@ function useInView() {
   return [ref, true];
 }
 
+// ─────────── sim-img lazy loader ───────────
+// window.ROTATION_SIMIMG (sim-img.js) maps matchKey(name) → a Deezer artist-photo HASH for
+// "Sounds like" tiles naming a zero-scrobble artist (no byId record, no THUMB). Split into its
+// own lazy file (audit 2026-08-17) so it doesn't ride the deferred music-rest bundle every
+// session; GenCover fetches it on-demand the FIRST time it would otherwise draw a placeholder.
+// Value is hash-only → reconstruct the full 250×250 url; a full "http…" value is used verbatim
+// (safety valve for any non-uniform cache url).
+let _simImgReady = typeof window !== "undefined" && !!window.ROTATION_SIMIMG;
+let _simImgRequested = _simImgReady;
+const _simImgSubs = [];                                    // GenCover instances waiting on the file
+function _simImgUrl(name) {
+  if (typeof window === "undefined") return null;
+  const M = window.ROTATION_SIMIMG, R = window.ROTATION;
+  if (!M || !R || !R.matchKey) return null;
+  const v = M[R.matchKey(name)];
+  if (!v) return null;
+  return v.indexOf("http") === 0 ? v : "https://cdn-images.dzcdn.net/images/artist/" + v + "/250x250-000000-80-0-0.jpg";
+}
+function _ensureSimImg() {
+  if (_simImgRequested || typeof window === "undefined") return;
+  _simImgRequested = true;
+  window.loadScript("sim-img.js", "rotation-sim-img-js", () => {
+    _simImgReady = true;
+    const subs = _simImgSubs.splice(0);                   // one-shot: re-render every waiter, then clear
+    for (const fn of subs) { try { fn(); } catch (e) {} }
+  }, () => { _simImgReady = true; });                     // fail-open: stop asking, placeholders stand
+}
+
 // ─────────── generative cover ───────────
 function GenCover({ hue, name, size, radius, style, image, thumb }) {
+  // sim-img subscription: leaf component with no store, so a would-be placeholder triggers the
+  // one-shot lazy fetch and bumps local state on arrival — the tile upgrades from placeholder to
+  // photo in place (same UX as THUMBS_HI upgrades), no flicker, no re-fetch (id-guarded loadScript).
+  // The ref makes each instance subscribe AT MOST once (a re-render while the file is in-flight
+  // won't stack duplicate waiters).
+  const _hasReact = typeof React !== "undefined";
+  const [, _bumpSim] = _hasReact ? React.useState(0) : [0, () => {}];
+  const _simSubbed = _hasReact ? React.useRef(false) : { current: true };
   // Auto-resolve: if no image passed, try looking up the artist in window.ROTATION.
   // This lights up every existing GenCover usage automatically once artist-images.json exists.
   if (!image && name && typeof window !== "undefined" && window.ROTATION) {
@@ -524,9 +560,20 @@ function GenCover({ hue, name, size, radius, style, image, thumb }) {
       // the small ranked rows. Same photo, just the right resolution per render size.
       else if (R.THUMBS && R.THUMBS[id]) { const hi = R.THUMBS_HI && R.THUMBS_HI[id]; image = hi || R.THUMBS[id]; thumb = R.THUMBS[id]; }
       // sim-only names (a "Sounds like" tile with zero scrobbles — no byId record, no THUMB) get a
-      // last-resort Deezer photo keyed by matchKey in R.SIMIMG (deferred rest bundle; absent on older
-      // bundles, hence the guards) — otherwise the tile is stuck on a generative placeholder.
-      else if (R.SIMIMG && R.matchKey && R.SIMIMG[R.matchKey(name)]) { const u = R.SIMIMG[R.matchKey(name)]; image = u; thumb = u; }
+      // last-resort Deezer photo, keyed by matchKey in the lazy window.ROTATION_SIMIMG (sim-img.js).
+      // If the file has loaded, reconstruct the url from its hash; if not, this is a would-be
+      // placeholder → kick the one-shot on-demand fetch and subscribe for the re-render, so the
+      // tile upgrades from placeholder to photo when the file lands (same UX as THUMBS_HI).
+      else if (R.matchKey) {
+        if (_simImgReady) { const u = _simImgUrl(name); if (u) { image = u; thumb = u; } }
+        else if (typeof window !== "undefined") {
+          _ensureSimImg();
+          if (!_simImgReady && !_simSubbed.current) {                       // subscribe once per instance
+            _simSubbed.current = true;
+            _simImgSubs.push(() => _bumpSim(n => n + 1));                    // re-render this tile on arrival
+          }
+        }
+      }
     }
   }
   const h = hashInt(name || "x", 7);

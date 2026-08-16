@@ -2878,11 +2878,14 @@ function GigsView({ go }) {
       {G.coverage && (() => {
         const c = G.coverage;
         const openArt = (id) => artistHasPage(id) && go("artist", id);
-        const Chip = ({ e, sub }) => (
+        const Chip = ({ e, sub, accent }) => (
           <span className="gv-led-chip" data-link={artistHasPage(e[1])} onClick={() => openArt(e[1])} title={`${fmt(e[2])} plays`}>
-            {e[0]}{sub ? <small> {sub}</small> : null}
+            {e[0]}{sub ? <small style={accent ? { color: accent } : undefined}> {sub}</small> : null}
           </span>
         );
+        // "'19" from a 4-char year; reactivated chips read "back since 'YY" (else plain "reactivated").
+        const yy = (y) => (y && String(y).length >= 4) ? `'${String(y).slice(2, 4)}` : "";
+        const backSub = (y) => yy(y) ? `back since ${yy(y)}` : "reactivated";
         return (
           <section className="gv-sec">
             <div className="gv-label">The ledger</div>
@@ -2891,7 +2894,7 @@ function GigsView({ go }) {
               {[["seen live", c.seen, "you stood in their crowd"],
                 ["still possible", c.open, "active, or at least not on record as ended"],
                 ["gone for good", c.gone, "disbanded or deceased, no dates anywhere"],
-                ["second chances", c.chance, "on record as done — yet touring right now"]].map(([l, n, tip]) => (
+                ["second chances", c.chance, "on record as done — yet back: touring now, or reformed after a breakup"]].map(([l, n, tip]) => (
                 <div key={l} className="gv-stat" title={tip}><div className="gv-stat-n">{n}</div><div className="gv-stat-l">{l}</div></div>
               ))}
             </div>
@@ -2899,7 +2902,8 @@ function GigsView({ go }) {
               {c.chanceList.length > 0 && (
                 <div className="gv-led-col">
                   <div className="gv-led-h" style={{ color: "oklch(0.75 0.16 45)" }}>Second chances — the door reopened</div>
-                  {c.chanceList.map(e => <Chip key={e[1]} e={e} sub={`next ${e[3]}`} />)}
+                  {c.chanceList.map(e => <Chip key={e[1]} e={e} accent="oklch(0.75 0.16 45)"
+                    sub={e[3] ? `next ${e[3]}` : backSub(e[4])} />)}
                 </div>
               )}
               {c.goneList.length > 0 && (
@@ -2911,7 +2915,9 @@ function GigsView({ go }) {
               {c.caughtList.length > 0 && (
                 <div className="gv-led-col">
                   <div className="gv-led-h" style={{ color: "oklch(0.72 0.15 150)" }}>Caught them in time</div>
-                  {c.caughtList.map(e => <Chip key={e[1]} e={e} sub={e[3] ? (e[4] ? `† ${e[3]}` : `ended ${e[3]}`) : "since ended"} />)}
+                  {c.caughtList.map(e => e[5]
+                    ? <Chip key={e[1]} e={e} accent="oklch(0.72 0.15 150)" sub={backSub(e[5])} />
+                    : <Chip key={e[1]} e={e} sub={e[3] ? (e[4] ? `† ${e[3]}` : `ended ${e[3]}`) : "since ended"} />)}
                 </div>
               )}
             </div>

@@ -38,6 +38,11 @@
     "react": true,
     "note": "Disbanded 2011; Warrel Dane died 2017. Reunited 2025 with founders Jeff Loomis and Van Williams plus a new lineup (first show in 16 years). MB still lists them active — life override marks the 2011 breakup."
   },
+  "The Dillinger Escape Plan": {
+    "mbid": "1bc41dff-5397-4c53-bb50-469d2c277197",
+    "react": 2024,
+    "note": "Disbanded 2017 (final show Dec 2017) after Ben Weinman wound the band down; returned for 2024 reunion shows (owner-stated). MB/origins correctly list ended:2017-12-29 — no life override needed, just the react flag so the Reactivated badge fires. react year documents the 2024 comeback."
+  },
   "daine": {
     "clearStyles": true,
     "note": "Melbourne hyperpop artist. Discogs matched a wrong classical 'Daine' (Baroque/Organ) — was polluting the Style-Atlas Organ row."
