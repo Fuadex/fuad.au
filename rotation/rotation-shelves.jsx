@@ -457,6 +457,22 @@ function ShelvesView({ go, seed }) {
       const rec = (R.expById && R.expById[id]) || R.byId[id];
       return { name, id, rec, hue: rec ? rec.hue : 210, fam: rec && rec.fam != null ? rec.fam : (rec && rec.s && rec.s.length ? (R.SUBS[rec.s[0]] || {}).fam : null), sub: rec && rec.s && rec.s.length ? rec.s[0] : null };
     });
+    // per-album fam JOIN — R.ALBUMS carries a per-album family (own tag evidence, gated ≥50%,
+    // afam:1 when the album broke from its artist's family). The wall would otherwise shelve
+    // every album off the ARTIST meta chain (meta[].fam), which mis-files albums whose own
+    // evidence differs (Muse LPs → Prog via artist, but Alternative by album; TR&AR/Junkie XL
+    // /Massive Attack scores → Electronic via artist, but Score by album). Build the join ONCE:
+    //   key = canonical artistId + "\x00" + matchKey(title)  →  { fam, afam }
+    // keyed by idForName(row.artist) so it folds to the SAME id the wall resolves per artist.
+    // R.ALBUMS lives in the REST bundle (ShelvesView only mounts after restReady) — guard anyway.
+    const albFam = new Map();
+    if (R.ALBUMS && R.ALBUMS.length && R.matchKey) {
+      for (const al of R.ALBUMS) {
+        const aid = (R.idForName && R.idForName(al.artist)) || al.artistId;
+        if (!aid || !al.title) continue;
+        albFam.set(aid + "\x00" + R.matchKey(al.title), { fam: al.fam, afam: al.afam || 0 });
+      }
+    }
     // per-album top track (for the needle drop) + played-track count (for completeness)
     const top = new Map(), cnt = new Map();
     for (const t of M.tracks) {
@@ -471,10 +487,13 @@ function ShelvesView({ go, seed }) {
       if (a[2] < SH_MIN_PLAYS || !a[0]) continue;
       const m = meta[a[1]];
       const tt = top.get(i);
+      // prefer the album's OWN family (R.ALBUMS join) over the artist meta chain; fall back to
+      // the artist family (m.fam) when the album has no confident per-album evidence / no row.
+      const aj = (m.id && R.matchKey) ? albFam.get(m.id + "\x00" + R.matchKey(a[0])) : null;
       albums.push({
         key: "a" + i, title: a[0], artist: m.name, artistId: m.id, plays: a[2],
         firstYear: a[3], lastYear: a[4], cover: a[6] || "", meta: a[7] || 0, dna: a[8] || 0, tt: a[9] || 0,
-        played: cnt.get(i) || 0, hue: m.hue, fam: m.fam, sub: m.sub,
+        played: cnt.get(i) || 0, hue: m.hue, fam: aj && aj.fam != null ? aj.fam : m.fam, afam: aj ? aj.afam : 0, sub: m.sub,
         topTrackKey: tt ? R.slug(m.name) + "~" + R.slug(tt[0]) : null,
       });
     }
