@@ -73,6 +73,11 @@ jobs:
       - name: Wikidata (formation city, members, coords) — keyless SPARQL
         run: node enrich-wikidata.js
 
+      # keyless Deezer photos — last-resort artist images for the long tail Discogs/Spotify never
+      # reached (ANIMISERY-class). Strict name-match gate; 500/run so the cron stays fast (incremental).
+      - name: Deezer artist images (placeholder fallback)
+        run: node enrich-deezer-img.js 500
+
       # NB: Ticketmaster is NOT here on purpose — tour.yml already does the settled
       # location-first pull (markets + radius, lineups intersected with the library)
       # every Monday with the TICKETMASTER_API secret. Don't duplicate it.
@@ -84,7 +89,7 @@ jobs:
           git config user.name "rotation-bot"
           git config user.email "actions@users.noreply.github.com"
           git add tag-cache.json artist-stats.json artist-bios.json artist-origins.json artist-aliases.json \
-                  artist-mb.json wikidata-cache.json album-genres.json
+                  artist-mb.json wikidata-cache.json album-genres.json deezer-artist-img.json
           git add concerts-cache.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "caches already fresh"

@@ -523,6 +523,10 @@ function GenCover({ hue, name, size, radius, style, image, thumb }) {
       // the `image` (large) slot so grid cards render crisp on retina; keep the 150px `thumb` for
       // the small ranked rows. Same photo, just the right resolution per render size.
       else if (R.THUMBS && R.THUMBS[id]) { const hi = R.THUMBS_HI && R.THUMBS_HI[id]; image = hi || R.THUMBS[id]; thumb = R.THUMBS[id]; }
+      // sim-only names (a "Sounds like" tile with zero scrobbles — no byId record, no THUMB) get a
+      // last-resort Deezer photo keyed by matchKey in R.SIMIMG (deferred rest bundle; absent on older
+      // bundles, hence the guards) — otherwise the tile is stuck on a generative placeholder.
+      else if (R.SIMIMG && R.matchKey && R.SIMIMG[R.matchKey(name)]) { const u = R.SIMIMG[R.matchKey(name)]; image = u; thumb = u; }
     }
   }
   const h = hashInt(name || "x", 7);

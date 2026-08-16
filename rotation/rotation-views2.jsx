@@ -1505,15 +1505,22 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
 
   return (
     <div className="r-view tv-page av-page" ref={ref}>
-      <button className="r-back" onClick={() => go("explore")}>← explore</button>
+      {/* Back button crumples INLINE with the artist kicker (one row: [← EXPLORE] · #01 ALL TIME ·
+          CITY · EST. YEAR) rather than sitting alone above the header — mirrors the album pass
+          (Fuad 2026-08-17). The kicker used to live inside the text column beside the cover; it's
+          been lifted OUT to pair with the back button here. Row wraps on mobile; the button keeps
+          min-width 0 so it ellipsizes rather than swallowing the row. */}
+      <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 12, marginBottom: 14, minWidth: 0 }}>
+        <button className="r-back" style={{ margin: 0, minWidth: 0, maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} onClick={() => go("explore")}>← explore</button>
+        <div className="r-kicker" style={{ margin: 0, minWidth: 0 }}>#{String(a.rank).padStart(2, "0")} all time
+          {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}
+          {a.debut ? ` · EST. ${a.debut}` : ""}</div>
+      </div>
 
       {/* header */}
       <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 30 }}>
         <GenCover hue={a.hue} name={a.name} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
-          <div className="r-kicker">#{String(a.rank).padStart(2, "0")} all time
-            {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}
-            {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
           <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} onTour={a.onTour} vx={a.vx} />
           {a.tags && a.tags.length > 0 && (
@@ -2685,12 +2692,18 @@ function AlbumView({ id, go }) {
         .alb-chiprow > .r-mono { flex-shrink: 0; }
         .alb-chipscroll > .r-chip { flex-shrink: 0; }
       `}</style>
-      {/* an album's natural parent is its artist — go up to them, not back out to Explore */}
-      <button className="r-back" onClick={() => (known ? go("artist", artistId) : go("explore"))}>← {known ? data.artist : "explore"}</button>
+      {/* an album's natural parent is its artist — go up to them, not back out to Explore. The back
+          button sits INLINE with the album kicker (one row: [← ARTIST] · ALBUM · YEAR · N PLAYED)
+          instead of eating a whole row above the cover — crumples the header band upward (Fuad
+          2026-08-17). Row wraps on mobile; the button keeps min-width 0 so a long artist name
+          ellipsizes rather than swallowing the row. */}
+      <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 12, marginBottom: 14, minWidth: 0 }}>
+        <button className="r-back" style={{ margin: 0, minWidth: 0, maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} onClick={() => (known ? go("artist", artistId) : go("explore"))}>← {known ? data.artist : "explore"}</button>
+        <div className="r-kicker" style={{ margin: 0, minWidth: 0 }}>{typeName}{relYear ? ` · ${relYear}` : ""}{data.tracks.length ? ` · ${data.tracks.length} track${data.tracks.length !== 1 ? "s" : ""} played` : ""}</div>
+      </div>
       <div className="tv-head" style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 26 }}>
         <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
-          <div className="r-kicker">{typeName}{relYear ? ` · ${relYear}` : ""}{data.tracks.length ? ` · ${data.tracks.length} track${data.tracks.length !== 1 ? "s" : ""} played` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(30px,4.4vw,54px)" }}>{data.title}<span className="dot">.</span></h1>
           <div style={{ color: "var(--ink-soft)", fontSize: 15, marginTop: 6 }}>
             by {known ? <b onClick={() => go("artist", artistId)} style={{ cursor: "pointer", color: "var(--ink)" }}>{data.artist}</b> : data.artist}</div>
