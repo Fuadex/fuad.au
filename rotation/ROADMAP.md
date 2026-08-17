@@ -53,11 +53,12 @@ refresh (153 gigs).
    word-boundary patterns (no substring traps: Zheani via "trap metal"), no first-match order
    bugs (Polyphia via metal$), coordinated hue + id migration across liked-meta familyIds,
    filter-index, Sound Map, Culture pulse.
-2. **Vocals campaign** — DONE through wave 4 (2026-08-18): four 500-artist research waves
-   (batches of 35 with library-track disambiguation context → independent verification →
-   merge), vocals.json at 2,102 artists; Explore without-data 3,814 → 2,531 (all that's left
-   is the sub-12-play tail). Owner-verdict lane (highest authority, wins over research) now
-   exists for acts Fuad knows firsthand. Wave 5 over the tail is optional — same recipe.
+2. **Vocals campaign** — DONE through wave 5 (2026-08-18): research waves with library-track
+   disambiguation context → independent verification → merge; vocals.json at 2,204 artists;
+   Explore without-data 3,814 → 2,144 (sub-12-play tail + the MB-lineup weekly cron keeps
+   nibbling). Owner-verdict lane (highest authority) settles acts Fuad knows firsthand;
+   permanently-unclassifiable keys (rotating game-music umbrellas, cover-series, non-act
+   uploads) are excluded from future target pools. Wave 6 over the tail optional — same recipe.
 3. **Fold-ledger follow-ups** — sub-10-play singles tail (~928 candidates) unabsorbed;
    sub-5-play tracks unswept; 1,112 preview-sweep no-hits.
 4. **Parked** (Fuad-pinned): tempo/metronome (TEMPO-ROADMAP.local.md); NRC/valence accuracy
