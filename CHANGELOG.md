@@ -31,6 +31,14 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
   existing search and year filters.
 
 ### Rotation
+- **Vocalist wave five: the stubborn cases give way.** A 200-artist pass over the deep tail
+  added 102 verified entries (dataset now 2,204; artists without data down to 2,144). This
+  wave settled long-standing puzzles: a producer duo whose collab credit had twice been
+  misread as the vocal source turned out to sing his own lead; a same-named-band standoff
+  collapsed into one female-fronted act once the library's own tracks were matched; and an
+  owner correction fixed a band's live entry to its true male-and-female vocal pair.
+  Permanently unclassifiable keys (game-music umbrellas, cover-series credits, non-music
+  uploads) are now excluded from future research so no budget is wasted re-asking.
 - **Vocalist coverage pushed deep into the tail.** Two more research waves — a thousand
   further artists, every batch independently verified before merge — grew the vocalist
   dataset from 1,299 to 2,102 artists, and cut artists with no data from 3,334 to 2,531;
