@@ -1082,11 +1082,9 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
 
 // AttrExplore — the "attributes" lens wrapper: lazy-loads track-audio.js, memoises the centroid
 // pass, owns the X/Y/shade pickers + the family colour key (click a family to dim the rest).
-function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam, filtersActive }) {
+function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam, filtersActive, xKey, yKey, setXKey, setYKey }) {
   const [taReady, setTaReady] = React.useState(!!window.ROTATION_TRACKAUDIO);
   const [restReady, setRestReady] = React.useState(!!(R && R._restLoaded));
-  const [xKey, setXKey] = React.useState("energy");
-  const [yKey, setYKey] = React.useState("valence");
   const [shade, setShade] = React.useState("none");
   const [famDim, setFamDim] = React.useState(null); // family index to isolate, or null
 
@@ -1360,6 +1358,11 @@ function ExploreView({ t, go, setPop, seed }) {
   const [lens, setLens] = React.useState("attributes");   // left surface: "texture" map · "mood" quadrant · "attributes" (default — no panning, best perf; Fuad 2026-07-15)
   const [attrSel, setAttrSel] = React.useState(null);     // attributes-lens brush selection ({mode, keys}) — filters the ranked list
   React.useEffect(() => { if (lens !== "attributes") setAttrSel(null); }, [lens]);
+  // attributes-lens axis pair, lifted here so it's URL-serialisable (deep-link/refresh). Owner's
+  // requested Explore default is Energy × Popularity (energy horizontal, popularity vertical); the
+  // axis keys are validated against ATTR_AXES (unknown/absent → the default).
+  const [attrX, setAttrX] = React.useState("energy");
+  const [attrY, setAttrY] = React.useState("popularity");
   const [grain, setGrain] = React.useState("artists");    // plot granularity for either lens: "subs" or "artists" (default artists; Fuad 2026-07-15)
   const [moodZone, setMoodZone] = React.useState(null);   // active valence×energy quadrant filter, or null
   const [themeSel, setThemeSel] = React.useState(() => new Set());   // selected theme bit-indices (AND within selection)
@@ -1410,6 +1413,10 @@ function ExploreView({ t, go, setPop, seed }) {
       if (p.rd && !isNaN(+p.rd)) setRelDec(+p.rd);
       if (p.ry && !isNaN(+p.ry)) setRelYear(+p.ry);
       if (p.k === "albums" || p.k === "tracks") setKind(p.k);
+      // attributes-lens axis pair (ax=X, ay=Y). Validated against ATTR_AXES; unknown/absent keeps
+      // the Energy × Popularity default set above (backward compat with links that predate this).
+      if (p.ax && ATTR_AXES.some(a => a.key === p.ax)) setAttrX(p.ax);
+      if (p.ay && ATTR_AXES.some(a => a.key === p.ay)) setAttrY(p.ay);
       return;
     }
     const q = norm(seed);
@@ -1435,9 +1442,13 @@ function ExploreView({ t, go, setPop, seed }) {
     if (relDec != null) parts.push("rd=" + relDec);
     if (relYear != null) parts.push("ry=" + relYear);
     if (kind !== "artists") parts.push("k=" + kind);
+    // attributes-lens axis pair — only serialise when it differs from the Energy × Popularity default
+    // (absent = default), so ordinary links stay clean and old links keep working.
+    if (attrX !== "energy") parts.push("ax=" + attrX);
+    if (attrY !== "popularity") parts.push("ay=" + attrY);
     const target = "#explore" + (parts.length ? "/" + parts.join(";") : "");
     if ((window.location.hash || "") !== target) window.history.replaceState(null, "", target);
-  }, [kind, years, fam, sub, moodZone, cells, themeSel, relDec, relYear, R]);
+  }, [kind, years, fam, sub, moodZone, cells, themeSel, relDec, relYear, attrX, attrY, R]);
 
   const yearKeys = React.useMemo(() => Object.keys(R.CLOCK_BY_YEAR).map(Number).sort((a, b) => a - b), [R]);
   const subNames = React.useMemo(() => R.SUBS.map(s => s.name), [R]);
@@ -1711,7 +1722,7 @@ function ExploreView({ t, go, setPop, seed }) {
             </div>
             <div className="xp-chartwrap">
             {lens === "attributes"
-              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} filtersActive={hasYears || fam != null || sub != null || cells.size > 0 || vocals !== "any" || filtActive} />
+              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} filtersActive={hasYears || fam != null || sub != null || cells.size > 0 || vocals !== "any" || filtActive} xKey={attrX} yKey={attrY} setXKey={setAttrX} setYKey={setAttrY} />
               : lens === "texture"
               ? (grain === "subs"
                 ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />

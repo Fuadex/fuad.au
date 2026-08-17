@@ -399,6 +399,16 @@ const LK_CHIP_COLOR = { fresh: "oklch(0.72 0.15 150)", doorway: "oklch(0.7 0.15 
   lived: "oklch(0.7 0.13 45)", left: "oklch(0.66 0.09 20)", mid: "oklch(0.72 0.09 75)" };
 const LK_VOX_COLOR = { male: "oklch(0.7 0.12 230)", female: "oklch(0.72 0.14 350)", mixed: "oklch(0.7 0.12 300)",
   nb: "oklch(0.72 0.12 110)", instrumental: "oklch(0.7 0.08 60)" };
+// INVERT chip labels per active sort — [natural-direction glyph-label, inverted glyph-label]. The chip
+// shows "▼ <hi>" in natural order and "▲ <lo>" when inverted, mirroring Explore's SND_FLIP idiom.
+const LK_FLIP = {
+  plays:     ["most", "least"],
+  "first-new": ["newest", "oldest"],   // natural = newest-first; invert = oldest-first (replaces the old OLDEST chip)
+  artist:    ["a→z", "z→a"],
+  tempo:     ["slow→fast", "fast→slow"],
+  energy:    ["high→low", "low→high"],
+  closest:   ["closest", "farthest"],
+};
 function lkVocalsPass(vx, opt) {
   if (opt === "any") return true;
   if (vx === undefined || vx === null) return false;   // no data → hidden under an active filter
@@ -586,6 +596,7 @@ function LikedView({ go }) {
   const [q, setQ] = React.useState("");
   const [bucket, setBucket] = React.useState("all");
   const [sort, setSort] = React.useState("plays");
+  const [inv, setInv] = React.useState(false);   // transient invert of the active sort's direction (reset when sort changes)
   const [fams, setFams] = React.useState(() => new Set());   // selected family ids (empty = all)
   const [subFilter, setSubFilter] = React.useState("");      // subgenre label ("" = any)
   const [vocals, setVocals] = React.useState("any");         // vocals dimension — ALWAYS-ON class (any/male/female/mixed/nb/instrumental), independent of DNA/sliders arbitration
@@ -882,8 +893,17 @@ function LikedView({ go }) {
     else if (sort === "artist") s.sort((a, b) => a.artist.localeCompare(b.artist) || a.track.localeCompare(b.track));
     else if (sort === "tempo") s.sort((a, b) => (a.tempo == null) - (b.tempo == null) || (a.tempo || 0) - (b.tempo || 0));
     else if (sort === "energy") s.sort((a, b) => (a.energy == null) - (b.energy == null) || (b.energy || 0) - (a.energy || 0));
+    // INVERT flips the active sort's direction. Rows lacking the sort datum (tempo/energy null) are
+    // parked last by the comparators above via the `(x == null)` primer; reversing would float them to
+    // the top, so keep those no-data rows pinned to the tail and only reverse the rows that HAVE data.
+    if (inv) {
+      const dataless = s.filter(r => (sort === "tempo" && r.tempo == null) || (sort === "energy" && r.energy == null));
+      const dated = dataless.length ? s.filter(r => !dataless.includes(r)) : s;
+      dated.reverse();
+      s.length = 0; s.push(...dated, ...dataless);
+    }
     return { list: s, hiddenNoData: hidden };
-  }, [rows, q, bucket, sort, fams, subFilter, vocals, vocalsActive, vxBySlug, dictating, target, tol, activeBands, keyActive, modeActive, keySel, mode]);
+  }, [rows, q, bucket, sort, inv, fams, subFilter, vocals, vocalsActive, vxBySlug, dictating, target, tol, activeBands, keyActive, modeActive, keySel, mode]);
 
   // how many rows the ACTIVE vocals filter drops purely for lacking artist vx — the same "N without
   // data" honesty as the audio sliders. Counts rows passing the OTHER always-on filters (bucket/genre/
@@ -914,7 +934,7 @@ function LikedView({ go }) {
 
   // windowing: render only rows near the viewport. ROW_H must match the row height in LikedRow.
   const ROW_H = 52, PAD = 18, OVERSCAN = 12;
-  React.useEffect(() => { setWin({ start: 0, end: 60 }); if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [q, bucket, sort, fams, subFilter, vocals, dictating, activeBands, keyActive, modeActive, target, tol]);
+  React.useEffect(() => { setWin({ start: 0, end: 60 }); if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [q, bucket, sort, inv, fams, subFilter, vocals, dictating, activeBands, keyActive, modeActive, target, tol]);
   // drop a subgenre selection that the current family set no longer offers
   React.useEffect(() => { if (subFilter && !subOptions.some(([s]) => s === subFilter)) setSubFilter(""); }, [subOptions, subFilter]);
   // "closest" sort only exists while DNA dictates — fall back to plays if the shape stops dictating
@@ -1092,11 +1112,16 @@ function LikedView({ go }) {
         <input value={q} onChange={e => setQ(e.target.value)} placeholder="search artist or title…"
           style={{ flex: "1 1 200px", minWidth: 0, background: "var(--bg-2)", border: "1px solid var(--rule-2)", borderRadius: 999, padding: "8px 14px", color: "var(--ink)", fontFamily: "var(--mono)", fontSize: 12, outline: "none" }} />
         <div className="r-seg r-seg-sm" style={{ flexWrap: "wrap" }}>
-          {/* "closest" (distance ascending) is offered ONLY while the DNA shape dictates — it needs a target */}
-          {[["plays", "plays"], ["first-new", "newest"], ["first-old", "oldest"], ["artist", "a–z"], ["tempo", "tempo"], ["energy", "energy"],
+          {/* "oldest" retired 2026-08-17 — replaced by the INVERT chip at the row's end, which flips
+              whatever sort is active (owner request). "closest" is offered ONLY while the DNA dictates. */}
+          {[["plays", "plays"], ["first-new", "newest"], ["artist", "a–z"], ["tempo", "tempo"], ["energy", "energy"],
             ...(dictating === "dna" ? [["closest", "closest"]] : [])].map(([k, l]) => (
-            <button key={k} data-on={sort === k} onClick={() => setSort(k)}>{l}</button>
+            <button key={k} data-on={sort === k} onClick={() => { setSort(k); setInv(false); }}>{l}</button>
           ))}
+          {/* INVERT — matches Explore's flip idiom (rotation-explore.jsx ~1762): a ▼/▲ glyph + a short
+              label appropriate to the ACTIVE sort. Transient: switching sorts resets it (above). */}
+          {(() => { const [hi, lo] = LK_FLIP[sort] || ["▼", "▲"]; return (
+            <button data-on={inv} onClick={() => setInv(v => !v)} title="invert sort direction">{inv ? "▲ " + lo : "▼ " + hi}</button>); })()}
         </div>
       </div>
 
