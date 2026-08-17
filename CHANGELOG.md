@@ -13,6 +13,73 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
 
 ---
 
+## 2026-08-17
+
+### Rotation
+- **Genre families cleaned up end to end.** Dream pop now reads as Pop, art rock and post-rock
+  as Alternative, hardcore hip-hop as Hip-Hop; a canonicalization bug that mis-normalised
+  hyphenated tags (and had quietly orphaned eleven family rules) is fixed, and same-name
+  identity/curation slips (Bleach, HEALTH) were corrected.
+- **Six new Explore sorts landed properly.** Most-mine (your plays against the world's
+  listeners), newest-discovered, widest span, oldest vintage, loudest and most instrumental —
+  with display fixes and multiselect listening-year chips; stacked vocalist badges align left.
+- **Cover art filled in.** A catalogue sweep added 409 missing album covers.
+- **Artist images reach almost everyone.** A catalogue image fallback now backs Spotify — first
+  on the live feed, then corpus-wide (16,895 of 19,682 artists matched), then a same-name shard
+  so near-miss spellings still resolve.
+- **Gigs reactivated.** Attended-shows return with honest "back since" years, death crosses for
+  members no longer living, festival days that list the songs you actually heard live from your
+  rotation, and rolling background refresh of the origin/entity caches behind it all.
+- **Vocalist-gender coverage widened.** A research pass over ~500 artists lifted verified
+  vocalist data by 445 entries and cut artists with no data from 3,814 to 3,334.
+- **Layout passes.** Sounds-like grid squared to 4×2 and aligned to the Albums width; decades
+  strip promoted to its own card on the story row; header restored after the crumple experiment;
+  liked page made legible on mobile (titles get the room); explore band reorders responsively;
+  portrait facts refined.
+
+### Culture / Canvas
+- **Per-work medium.** Canvas works now carry their medium (painting, sculpture, print, drawing,
+  photograph, and so on); a handful of unmapped types are kept honest as raw ids rather than
+  guessed. A reader crash from a mis-placed style-tags hook is fixed.
+
+## 2026-08-16
+
+### Rotation
+- **Fable album themes.** Each album with per-song flagship reads now surfaces its shared themes
+  ("from the reads"), and album pages gained genre chips.
+- **Fold and identity repairs.** Six Degrees of Inner Turbulence's suite is stitched back
+  together with a movement-resolution bridge so its parts play as one; a most-mine noise audit
+  added fold, exclude and moves ledgers plus composer intros (Taku Iwasaki, Michael Kamen,
+  Nothing's Carved in Stone); NIN track folds and a verified Wargasm pin were fixed.
+- **Album system tightened.** Evidence-based edition folds, and the album-kind classifier's
+  root cause (a stale kinds map) fixed at the source.
+- **Enrichment reached completeness.** The top-catalogue bios backfill finished (3,035 fetched,
+  cache at 6,040 artists), and the weekly enrichment cron widened to keep tags, bios, stats and
+  audio-DNA current; a duplicate concerts step was dropped in favour of the single weekly pull.
+- **More flagship reads.** Further batches of most-played reads and footnotes shipped under the
+  full pipeline, with themes/tells extended across the backlog; Koi No Yokan gained a full album
+  read (liner plus coda) and a wall-to-wall pass.
+- **Layout.** Sounds-like and facts refinements, mobile dossier overflow fixed, discovered-year
+  anchor and span-months corrected, explore band degradation order fixed.
+
+## 2026-08-15
+
+### Rotation
+- **Flagship reads corpus grew.** Several more batches of most-played track reads plus footnotes
+  and variant-key mirrors shipped.
+
+### Canvas
+- **Close-readings expanded.** Backfill Interpretations with fused Info tiers shipped in batches
+  (interp11 onward), the Web tier was retired, and hover-peek was reworked to unfold the Info
+  under the label rather than over the image; a card-byline class collision and a Turner image
+  leak were fixed.
+
+## 2026-08-14
+
+### Canvas
+- **Full tour QC sweep** across the museum tours, 30 fresh Interpretations, and Info tiers
+  re-distilled from the new close-readings.
+
 ## 2026-08-13
 
 ### Rotation
