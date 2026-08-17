@@ -11325,10 +11325,25 @@
 ]
 },
 "Novelists": {
+"artist": {
+"from": "Novelists FR",
+"type": "spelling",
+"reason": "spelling: same French band under its rename-era credit; scrobbles split across both name forms (2026-08-18)"
+},
 "albums": [
 {
 "from": "Prisoner",
 "to": "Mourning the Dawn",
+"type": "absorb"
+},
+{
+"from": "Somebody Else",
+"to": "C'est la vie",
+"type": "absorb"
+},
+{
+"from": "Head Rush",
+"to": "C'est la vie",
 "type": "absorb"
 }
 ]
@@ -11671,20 +11686,6 @@
 {
 "from": "Isolated",
 "to": "Hellscape",
-"type": "absorb"
-}
-]
-},
-"Novelists FR": {
-"albums": [
-{
-"from": "Somebody Else",
-"to": "C'est la vie",
-"type": "absorb"
-},
-{
-"from": "Head Rush",
-"to": "C'est la vie",
 "type": "absorb"
 }
 ]
