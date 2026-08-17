@@ -15,6 +15,15 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
 
 ## 2026-08-18
 
+### Culture
+- **The wishlist now knows where each wish came from.** Every entry is branded by origin —
+  imported from the owner's own watchlists, hand-added, or recommended by Fable. The 54-item
+  mind-bender cluster that predated the convention was settled by checking the original
+  watchlist exports (under Polish and original-language titles): none were there, so all are
+  recommendations. A ✦ mark now sits on recommended items' shelf tiles, and a Source filter
+  (All / My list / ✦ Fable picks) joins the wishlist's bottom strip, composing with the
+  existing search and year filters.
+
 ### Rotation
 - **Vocalist coverage pushed deep into the tail.** Two more research waves — a thousand
   further artists, every batch independently verified before merge — grew the vocalist

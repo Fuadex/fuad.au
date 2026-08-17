@@ -1685,6 +1685,7 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
             return <span className={`spine-glyph spine-rating${isAvg ? ' is-avg' : ''}`}>{shown}</span>;
           })()}
         </div>
+        {item.source === 'fable' && <span className="fable-glyph" title="Fable pick — recommended by Claude">✦</span>}
         <span className="pick-dot"/>
       </div>
     );
@@ -2738,6 +2739,9 @@ function App() {
   const [selectedReleaseBuckets, setSelectedReleaseBuckets] = React.useState(() => new Set());
   // Standout-badge filter (highlight keys).
   const [selectedHighlights, setSelectedHighlights] = React.useState(() => new Set());
+  // Wishlist-only provenance filter: 'all' | 'mine' | 'fable'. 'mine' = my list
+  // (own adds + Filmweb imports, i.e. source !== 'fable'); 'fable' = Fable's recs.
+  const [provFilter, setProvFilter] = React.useState('all');
 
   // Scroll lock for the Reader modal and Tonight overlay. (Popup lock is owned by Popup itself.)
   React.useEffect(() => {
@@ -2760,6 +2764,7 @@ function App() {
     const lib = path === 'wishlist' ? 'wishlist' : 'library';
     if (lib === 'wishlist') { setLibrary('wishlist'); setMode('spines'); setSort('pred'); }
     const q = params.get('q'); if (q) setSearch(q);
+    const src = params.get('src'); if (lib === 'wishlist' && (src === 'mine' || src === 'fable')) setProvFilter(src);
     const openId = params.get('open');
     if (openId) {
       pendingOpenId.current = openId;
@@ -2778,11 +2783,12 @@ function App() {
     if (route === 'tonight') return;   // the #tonight route owns the hash while it's active
     const params = new URLSearchParams();
     if (search.trim()) params.set('q', search.trim());
+    if (library === 'wishlist' && provFilter !== 'all') params.set('src', provFilter);
     if (openItem) params.set('open', openItem.id);
     const qs = params.toString();
     const hash = `#/${library}${qs ? '?' + qs : ''}`;
     if (hash !== window.location.hash) history.replaceState(null, '', hash);
-  }, [library, search, openItem, route]);
+  }, [library, search, provFilter, openItem, route]);
 
   // ── Summon search ── "/" or Cmd/Ctrl-K opens the palette from anywhere.
   React.useEffect(() => {
@@ -2873,6 +2879,13 @@ function App() {
         items: s.items.filter(it => selectedReleaseBuckets.has(releaseBucketKey(it.year))),
       }));
     }
+    // Wishlist provenance: 'mine' = source !== 'fable'; 'fable' = source === 'fable'.
+    if (library === 'wishlist' && provFilter !== 'all') {
+      base = base.map(s => ({
+        ...s,
+        items: s.items.filter(it => provFilter === 'fable' ? it.source === 'fable' : it.source !== 'fable'),
+      }));
+    }
     const hasStats = selectedRatings.size || selectedDirectors.size || selectedStudios.size || selectedWeeks.size || selectedCountries.size
                    || selectedGenres.size || selectedActors.size || selectedWriters.size || selectedCinematographers.size
                    || selectedAnimDirectors.size || selectedCompanies.size || selectedComposers.size
@@ -2908,7 +2921,7 @@ function App() {
         return true;
       }),
     })).filter(s => s.items.length > 0);
-  }, [preChipShelves, selectedRatedYears, selectedReleaseBuckets, selectedRatings, selectedDirectors, selectedStudios, selectedWeeks, selectedCountries,
+  }, [preChipShelves, library, provFilter, selectedRatedYears, selectedReleaseBuckets, selectedRatings, selectedDirectors, selectedStudios, selectedWeeks, selectedCountries,
       selectedGenres, selectedActors, selectedWriters, selectedCinematographers, selectedAnimDirectors, selectedCompanies, selectedComposers, selectedHighlights]);
 
   const totalSearchResults = React.useMemo(
@@ -3031,6 +3044,7 @@ function App() {
       setMode('spines'); setSort('pred');
     } else {
       setSelectedReleaseBuckets(new Set());
+      setProvFilter('all');   // provenance is a wishlist-only concept
       setMode(sharedFilter ? 'spines' : 'covers'); setSort('curated');
     }
   };
@@ -3265,6 +3279,17 @@ function App() {
         <div className="search-results-msg" style={{ marginTop: 48 }}>
           No results for &ldquo;{search.trim()}&rdquo;.
           <button onClick={() => setSearch('')}>clear</button>
+        </div>
+      )}
+
+      {library === 'wishlist' && (
+        <div className="yr-chips-section prov-section">
+          <div className="yr-chips-label">Source</div>
+          <div className="prov-toggle">
+            <button data-active={provFilter === 'all'}   onClick={() => setProvFilter('all')}>All</button>
+            <button data-active={provFilter === 'mine'}  onClick={() => setProvFilter('mine')}>My list</button>
+            <button data-active={provFilter === 'fable'} onClick={() => setProvFilter('fable')} title="Fable picks — recommended by Claude">✦ Fable picks</button>
+          </div>
         </div>
       )}
 
