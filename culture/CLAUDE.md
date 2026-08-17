@@ -116,11 +116,15 @@ scrollable strip.
   redraft (→ `notes_en.js`, shown click-to-translate in the Reader).
 - **Wishlist provenance** (2026-08-18, fully branded): every wishlist item is exactly one of
   `source:"fable"` (a Fable/Claude recommendation — ✦ glyph on the shelf tile, chip in the
-  Reader, "✦ Fable picks" in the Source filter pill), `source:"own"` (Fuad's hand add), or
+  Reader, "✦ Fable picks" in the Source filter pill), `source:"own"` (Fuad's hand add),
+  `source:"goodreads"` (imported from the Goodreads to-read shelf — 18 items incl. the
+  full comics/graphic-novel set, added 2026-08-18; enrich covers via `update_books.py`), or
   no `source` but a filmweb `link` (watchlist import). "My list" in the filter =
   `source !== 'fable'`. The pre-convention mind-bender cluster (54 items, all carrying the
   `cognitive` highlight) was verified absent from the filmweb/Goodreads exports under
-  Polish/original titles and branded `fable`. `source` is hand-edit-preserved on re-import.
+  Polish/original titles and branded `fable`. Ground-truth rule: presence in an owner
+  export ALWAYS wins over other provenance (The Wind-Up Bird Chronicle was rebranded
+  fable→goodreads on this basis). `source` is hand-edit-preserved on re-import.
 - **Cache-busting**: every `<script>`/`<link>` in `index.html` has `?v=N`. **Bump N on any
   data/code change** or browsers serve cached files. `build_all.py` automates the bump.
 

@@ -2705,5 +2705,227 @@ window.CULTURE_BOOKS = {
   "tags": [
    "Novel"
   ]
+ },
+ "wl-b-fire-punch-3": {
+  "bookCover": "https://covers.openlibrary.org/b/id/14845869-L.jpg",
+  "summary": "In a frozen dystopia where inhabitants eat flesh to survive, can the destructive powers of fire bring salvation?\r\n\r\nIn the not-too-distant past, the Ice Witch blankets the world in snow, starvation, and madness, leading the inhabitants to seek their salvation in fire. With that, an unusual destiny unfolds for two young orphans, Agni and Luna, blessed with the ability to regenerate. But will this ability prove to be more of a curse than a blessing?\r\n\r\nAfter receiving Togata's upgrade, Agni heads to Behemdorg to exact his vengeance on Doma, unaware that Togata has flipped the script entirely. There, instead of finding Doma, Agni is to be pitted against the worst, most violent Blessed that Behemdorg has to offer. But on the way, Agni's heart fills with a new resolve, ruining Togata's much-anticipated climax!",
+  "genres": [
+   "Comics & graphic novels, horror"
+  ],
+  "tags": [
+   "Comics & graphic novels, horror"
+  ]
+ },
+ "wl-b-the-sandman-endless-nights": {
+  "summary": "The Sandman: Endless Nights is a graphic novel written by Neil Gaiman as a follow-up to his Sandman series. The book is divided into seven chapters, each devoted to one of the Endless, a family of siblings who are physical manifestations of the metaphysical concepts Dream, Death, Desire, Destruction, Delirium, Despair and Destiny. It was published by DC Comics in 2003. It won the Bram Stoker Award for Best Illustrated Narrative. It is also the first comic book to ever be on the New York Times Bestseller List. Each tale is stylistically different, and illustrated by a different artist. Most of the tales are independent of each other; however, Destruction's tale relates to and immediately follows Delirium's.",
+  "genres": [
+   "Novel"
+  ],
+  "tags": [
+   "Novel"
+  ]
+ },
+ "wl-b-swamp-thing-vol-1-saga-of-the-swamp-thin": {
+  "bookCover": "https://upload.wikimedia.org/wikipedia/commons/0/03/Rick_Veitch.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "summary": "Richard Veitch (; born May 7, 1951) is an American comics artist and writer who has worked in mainstream, underground, and alternative comics.",
+  "genres": [
+   "Comics"
+  ],
+  "tags": [
+   "Comics"
+  ]
+ },
+ "wl-b-transmetropolitan-vol-1-back-on-the-stre": {
+  "summary": "Transmetropolitan is a cyberpunk transhumanist comic book series written by Warren Ellis and drawn by Darick Robertson, and was published by the American company DC Comics in 1997–2002. The series was originally part of the short-lived DC Comics imprint Helix, but upon the end of the book's first year the series was moved to the Vertigo imprint after DC Comics shut down their Helix imprint. Transmetropolitan chronicles the battles of Spider Jerusalem, an infamous renegade gonzo journalist of the future. Spider Jerusalem dedicates himself to fighting the corruption and abuse of power of two successive United States presidents.",
+  "genres": [
+   "Comics"
+  ],
+  "tags": [
+   "Comics"
+  ]
+ },
+ "wl-b-on-a-sunbeam": {
+  "bookCover": "https://covers.openlibrary.org/b/id/9254455-L.jpg",
+  "summary": "Throughout the deepest reaches of space, a crew rebuilds beautiful and broken-down structures, painstakingly putting the past together. As Mia, the newest member, gets to know her team, the story flashes back to her pivotal year in boarding school, where she fell in love with a mysterious new student.",
+  "genres": [
+   "Comic books, strips",
+   "Juvenile fiction",
+   "Teenage girls",
+   "Boarding schools"
+  ],
+  "tags": [
+   "Comic books, strips",
+   "Juvenile fiction",
+   "Teenage girls",
+   "Boarding schools"
+  ]
+ },
+ "wl-b-les-indes-fourbes": {
+  "bookCover": "https://covers.openlibrary.org/b/id/10856741-L.jpg",
+  "summary": "Les Indes fourbes (lit. 'The Treacherous Indies') is a 2019 comic book written by Alain Ayroles and drawn by Juanjo Guarnido. It is set in the 17th century and follows the Spanish swindler Pablos de Ségovie as he travels to South America, where he searches for El Dorado and experiences a series of adventures with Spanish settlers, freed slaves and natives. The story was conceived as a sequel to the Spanish picaresque novel The Swindler, written by Francisco de Quevedo and originally published in 1626. Delcourt published Les Indes fourbes on 28 August 2019.",
+  "genres": [
+   "Novel"
+  ],
+  "tags": [
+   "Novel"
+  ]
+ },
+ "wl-b-two-generals": {
+  "bookCover": "https://covers.openlibrary.org/b/id/6745090-L.jpg",
+  "summary": "Taras Bulba is a 1962 American historical adventure drama film based on Nikolai Gogol's novel Taras Bulba, starring Tony Curtis and Yul Brynner. The film was directed by J. Lee Thompson.",
+  "genres": [
+   "Canada",
+   "Graphic novels",
+   "Biographies",
+   "Officiers"
+  ],
+  "tags": [
+   "Canada",
+   "Graphic novels",
+   "Biographies",
+   "Officiers",
+   "Officers",
+   "Comic books, strips",
+   "Canada. Armée canadienne",
+   "Histoire militaire",
+   "Military campaigns",
+   "Armed Forces",
+   "Bandes dessinées",
+   "Militära operationer",
+   "Histoire",
+   "Tecknade serier",
+   "Campaigns"
+  ]
+ },
+ "wl-b-alone": {
+  "bookCover": "https://covers.openlibrary.org/b/id/12706595-L.jpg",
+  "summary": "\"On a tiny lighthouse island far from the rest of the world, a lonely hermit lives out his existence. Every week a supply boat leaves provisions, its occupants never meeting him, never asking the obvious questions: Who are you? Why do you hide? Why do you never leave? What is it like to be so alone? Years spent on a deserted rock--a lifetime, really--with imagination his sole companion has made the lighthouse keeper something more than alone, something else entirely. For him, what lies beyond the horizon might be...nothing. And so, why not stay put? But one day, as a new boatman starts asking the questions all others have avoided, a chain of events unfolds that will irrevocably upend the hermit's solitary life\" -- provided by publisher.",
+  "genres": [
+   "Lighthouses",
+   "Solitude",
+   "Stories without words",
+   "Hermits"
+  ],
+  "tags": [
+   "Lighthouses",
+   "Solitude",
+   "Stories without words",
+   "Hermits",
+   "Islands",
+   "Translations into English",
+   "Comic books, strips",
+   "FICTION / Literary",
+   "FICTION / Psychological"
+  ]
+ },
+ "wl-b-netochka-nezvanova": {
+  "bookCover": "https://covers.openlibrary.org/b/id/9442598-L.jpg",
+  "summary": "Netochka Nezvanova (Russian: Неточка Незванова) is Fyodor Dostoyevsky's first but unfinished attempt at writing a novel. It translates to \"nameless nobody.\". The first completed section of the book was published in the end of 1849.\r\n\r\nThe story is about the sorrowful life of a young girl living in extreme poverty in Saint Petersburg, who ends up an orphan and is adopted by a wealthy upper-class family. When she meets her new stepsister, Katya, she instantly becomes infatuated with her and the two soon become inseparable. However, one day Katya is forced to leave to Moscow with her parents, and for the next eight years Netochka lives with Katya's older sister, who becomes her new mother figure. The story ends abruptly before the two girls reunite.",
+  "genres": [
+   "Russian language",
+   "Readers",
+   "Fiction, general",
+   "Women"
+  ],
+  "tags": [
+   "Russian language",
+   "Readers",
+   "Fiction, general",
+   "Women",
+   "Social life and customs",
+   "Child abuse"
+  ]
+ },
+ "wl-b-the-general-zapped-an-angel": {
+  "bookCover": "https://covers.openlibrary.org/b/id/5540866-L.jpg",
+  "summary": "\"In The General Zapped an Angel, featuring nine supremely entertaining fantasy and acience fiction tales, a Vietnam general shoots down what appears to be an angel; a man sells his soul to the devil for a copy of the next days Wall Street Journal; and a group of alien beings bestow a mouse with human thought and emotion.\"-- Jacket flap.",
+  "genres": [
+   "American Science fiction",
+   "American Fantasy fiction"
+  ],
+  "tags": [
+   "American Science fiction",
+   "American Fantasy fiction"
+  ]
+ },
+ "wl-b-they-a-sequence-of-unease": {
+  "summary": "This article contains information about the literary events and publications of 1977."
+ },
+ "wl-b-ozymandias": {
+  "bookCover": "https://covers.openlibrary.org/b/id/9446685-L.jpg",
+  "summary": "\"Ozymandias\" ( OZ-im-AN-dee-əs) is the title of a sonnet published in 1818 by Horace Smith (1779–1849). Smith wrote the poem in friendly competition with his friend and fellow poet Percy Bysshe Shelley. Shelley wrote and published \"Ozymandias\" in 1818. Smith's poem was published in The Examiner three weeks after Shelley's, on 1 February 1818. It explores the fates of history and the ravages of time.",
+  "genres": [
+   "Poetry"
+  ],
+  "tags": [
+   "Poetry"
+  ]
+ },
+ "wl-b-inne-piesni": {
+  "bookCover": "https://covers.openlibrary.org/b/id/6372667-L.jpg",
+  "summary": "How would the world look like if Empedocles and Aristotle would be right instead of Democritus? If we were surrounded by the 4 elements instead of a swarm of atoms, and everything would be shaped by its Form? What would the societies look like, wars and moon travelling? Whose corona would mould our life and what would we need to defeat Adynatos? Most unconventional novel by Jacek Dukaj, honoured with many prizes and commonly recognized as the best... until he wrote \"Ice\" which divided the readers.",
+  "genres": [
+   "science-fiction"
+  ],
+  "tags": [
+   "science-fiction"
+  ]
+ },
+ "wl-b-the-cyberiad": {
+  "bookCover": "https://covers.openlibrary.org/b/id/116079-L.jpg",
+  "summary": "OMG I can't believe there's no description for this - but then I can because this book defies description. Stanislaw Lem is a genius and your minds will be expanded to bursting when you begin this journey into a world where machines are the dominant species. It is hugely entertaining, inventive, witty, and above all, laugh out loud funny. The book concerns two \"constructors\" - Trurl and Klaupacious who build machines, and who are in fact machines themselves. Find out what happens when Trurl builds the world's stupidest computer, and Klaupacious' machine that can do \"anything in N\" nearly ends the universe.",
+  "genres": [
+   "Poland in fiction",
+   "Polish Science fiction",
+   "Polish fiction",
+   "Polish Short stories"
+  ],
+  "tags": [
+   "Poland in fiction",
+   "Polish Science fiction",
+   "Polish fiction",
+   "Polish Short stories",
+   "Translations into English",
+   "Robots",
+   "Inventors",
+   "Competition (Psychology)",
+   "Erzählung",
+   "Kurzepik",
+   "Polnisch",
+   "Fantastyka naukowa polska"
+  ]
+ },
+ "wl-b-solaris": {
+  "bookCover": "https://covers.openlibrary.org/b/id/12313764-L.jpg",
+  "summary": "The cult-classic by Stanislaw Lem that spawned the movie is now available for your Kindle! Until now the only English edition was a 1970 version, which was translated from French and which Lem himself described as a \"poor translation.\" This wonderful new English translation (by Bill Johnston) of Lem's classic Solaris is a must-have for fans of Lem's classic novel.\r\n\r\nTelling of humanity's encounter with an alien intelligence on the planet Solaris, the 1961 novel is a cult classic, exploring the ultimate futility of attempting to communicate with extra-terrestrial life.\r\n\r\nWhen Kris Kelvin arrives at the planet Solaris to study the ocean that covers its surface, he finds a painful, hitherto unconscious memory embodied in the living physical likeness of a long-dead lover. Others examining the planet, Kelvin learns, are plagued with their own repressed and newly corporeal memories. The Solaris ocean may be a massive brain that creates these incarnate memories, though its purpose in doing so is unknown, forcing the scientists to shift the focus of their quest and wonder if they can truly understand the universe without first understanding what lies within their hearts.",
+  "genres": [
+   "Translations into English",
+   "English fiction",
+   "Polish Science fiction",
+   "Polish fiction"
+  ],
+  "tags": [
+   "Translations into English",
+   "English fiction",
+   "Polish Science fiction",
+   "Polish fiction",
+   "Translations from Polish",
+   "Science fiction",
+   "Slavic philology",
+   "Life on other planets",
+   "Emotions",
+   "Memory",
+   "Psychologists"
+  ]
+ },
+ "wl-b-white-nights": {
+  "bookCover": "https://covers.openlibrary.org/b/id/14598226-L.jpg",
+  "summary": "White Nights (Russian: Белые ночи, romanized: Belye nochi) is a 1959 Soviet drama film directed by Ivan Pyryev. The film is based on the short story of the same name by Fyodor Dostoevsky.",
+  "genres": [
+   "Short Stories"
+  ],
+  "tags": [
+   "Short Stories"
+  ]
  }
 };

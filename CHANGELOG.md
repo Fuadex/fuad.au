@@ -16,6 +16,12 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
 ## 2026-08-18
 
 ### Culture
+- **The Goodreads to-read shelf finally joins the wishlist.** Eighteen books — the whole
+  comics run (Transmetropolitan, Swamp Thing, The Sandman: Endless Nights, On a Sunbeam,
+  Fire Punch…) plus the Lem/Dukaj/Dostoevsky tier — imported with their own provenance
+  brand, covers and summaries. One overlap was resolved by the ground-truth rule: a title
+  that turned out to be on the owner's shelf all along was rebranded from recommendation
+  to own-list.
 - **The wishlist now knows where each wish came from.** Every entry is branded by origin —
   imported from the owner's own watchlists, hand-added, or recommended by Fable. The 54-item
   mind-bender cluster that predated the convention was settled by checking the original
