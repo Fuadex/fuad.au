@@ -13,6 +13,25 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
 
 ---
 
+## 2026-08-18
+
+### Rotation
+- **Vocalist coverage pushed deep into the tail.** Two more research waves — a thousand
+  further artists, every batch independently verified before merge — grew the vocalist
+  dataset from 1,299 to 2,102 artists, and cut artists with no data from 3,334 to 2,531;
+  what remains is the sub-dozen-play tail. An owner-verdict lane now lets firsthand
+  knowledge settle acts that research keeps nulling (six settled this wave, including a
+  band three research passes couldn't crack). Classification policy hardened along the
+  way: a soundtrack credit with a stable recurring vocal ensemble counts as a lineup,
+  rotating game-music umbrella credits don't; cover-series scrobbles never inherit the
+  covered artist's voice; synthetic-voice acts classify by their synth's register —
+  including one human-screams-plus-synth duet.
+- **Novelists made whole.** The band's plays were split across its two name eras, leaving
+  the newer credit with no image and a bogus 0/100 popularity (its catalogue rows were
+  near-empty fragments). A fold reunifies 367 plays under one artist, restoring image,
+  listeners and popularity — and the vocalist entry was double-checked as correct for the
+  current lineup while we were in there.
+
 ## 2026-08-17
 
 ### Rotation

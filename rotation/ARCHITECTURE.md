@@ -290,6 +290,13 @@ seasonal artists), `TASTE_ERAS` (auto-segmented chapters w/ topFams + shift diff
 
 **Artist audio row** — `R.AUDIO[artistId]` =
 `[energy, valence, acoustic, tempo, dance, instr (0–1), major, popularity 0–100, followers, loudness dB, speechiness, liveness, avgTrackSec]`.
+**Two popularity signals coexist — don't conflate them (clarified 2026-08-18):** the Explore
+*attributes axis* named "popularity" plots **last.fm listeners** (`row.listeners`, log scale —
+wide dynamic range, all-time reach), while the Explore *sort chip* "popularity" and the artist
+pane read **the 0–100 index at `AUDIO[7]`** (recency-weighted, catalogue-snapshot, quantized —
+the deep tail all sits 0–20). `pop === 0` can be a source null coerced to 0, not a real score
+(26 artists affected as of 2026-08-18; the one confirmed-wrong case is a split-entity fragment,
+fixed by an artist fold — see Novelists in folds.json — not by touching the axis).
 
 **Track audio row** — `ROTATION_TRACKAUDIO["art~track"]` =
 `[durSec, popularity, explicit, trackNo]` + when features exist
@@ -492,7 +499,19 @@ D/W/M calendar cross-filters remain as shipped 2026-07-06.
   gains a vocals chip row (Any/Male/Female/Mixed/Non-binary/Instrumental; rows without data
   are excluded only while the filter is active). Vocalist selection in build prefers
   lead-vocals in ANY era over current backing credits (the ミドリ fix: departed lead
-  Mariko Goto vs. a male backing credit). Wider-tier run (≥30-play artists) in progress.
+  Mariko Goto vs. a male backing credit).
+  **Research-wave campaign (waves 2-4, 2026-08 → 2,102 artists; without-data 3,814 → 2,531).**
+  Recipe per 500-artist wave: batches of 35 carrying each artist's top library track titles
+  (the disambiguation unlock for same-named acts), parallel research agents under hard rules
+  (null over guess; no gender from first names or band context alone; producer projects with
+  guest-only vocals = instrumental; umbrella/OST/brand credits = unknown — EXCEPT stable
+  recurring soundtrack ensembles, which count as a lineup; cover-series keys never emitted
+  under the covered artist; Vocaloid acts classify by the synth's register, human+synth duets
+  get both), then an independent verification pass that resolves flagged rows with evidence
+  before anything merges. An **owner-verdicts file** (src `"owner"`) is applied last and
+  beats research — Fuad's firsthand calls for acts the pipeline keeps nulling. Arrays are
+  one entry per REGULAR vocalist in lineup order; that shape is the contract end-to-end
+  (research output → verified file → vocals.json → `vx` code).
 - **Explore filters.** 28-theme bitmask chips with AND semantics + release-decade bar with
   year drill-in (Sort module); vocals/theme/decade all ALSO drive the mood/attribute charts
   via `sliceArtists` (fail-open when inactive, exclude-no-data when active); result-count
