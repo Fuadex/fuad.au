@@ -1207,6 +1207,35 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 .yr-chip:hover:not(.unavailable) { color: var(--ink); border-color: var(--ink-faint); }
 .yr-chip.selected { background: var(--accent); border-color: var(--accent); color: #fff; }
 .yr-chip.selected:hover { filter: brightness(1.08); }
+
+/* Wishlist provenance filter — All / My list / Fable picks. A pill segmented
+   control (same shape as .mode-toggle) sitting in its own bottom-strip section,
+   just above the "Released" year buckets. The Source section abuts the Released
+   section, so it drops the section's top rule to avoid a doubled divider. */
+.prov-section { border-top: 0; margin-top: 0; padding-bottom: 0; }
+.prov-toggle {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 3px;
+  background: rgba(255,255,255,.02);
+}
+.prov-toggle button {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 0;
+  color: var(--ink-soft);
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.prov-toggle button:hover { color: var(--ink); }
+.prov-toggle button[data-active="true"] { background: var(--accent); color: #fff; }
 .yr-chip.unavailable { opacity: .2; cursor: default; pointer-events: none; }
 
 /* ───── ACTIVE FILTER PILLS ───── */
@@ -1602,6 +1631,24 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 }
 .fable-chip.sm { font-size: 8.5px; padding: 1px 6px; margin-left: 7px; }
 .fable-chip.conviction { color: var(--accent); border-color: var(--accent); }
+
+/* Subtle ✦ corner mark on a wishlist shelf tile (cover or spine) whose item is a
+   Fable pick. Mirrors .pick-dot's corner placement; unobtrusive, always visible. */
+.fable-glyph {
+  position: absolute;
+  bottom: 4px; right: 4px;
+  z-index: 3;
+  font-size: 10px; line-height: 1;
+  color: var(--ink-soft);
+  text-shadow: 0 1px 2px rgba(0,0,0,.55);
+  pointer-events: none;
+  opacity: .85;
+}
+.as-spine .fable-glyph {
+  top: 3px; bottom: auto;
+  right: 3px;
+  font-size: 8px;
+}
 
 /* ───── TONIGHT OVERLAY (backdrop + panel, mirrors reader-backdrop / reader) ───── */
 .tonight-backdrop {
