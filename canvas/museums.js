@@ -25,7 +25,7 @@ window.CANVAS_MUSEUMS = [
   { id: "agnsw",          name: "Art Gallery of New South Wales",    city: "Sydney",       country: "au", qid: "Q705551",   kind: "art", visits: ["2014-2025 (45 visits)"] },
   { id: "ngv",            name: "National Gallery of Victoria",      city: "Melbourne",    country: "au", qid: "Q1464509",  kind: "art", visits: ["2020-12-20","2021-05-01"] },
   { id: "nga-canberra",   name: "National Gallery of Australia",     city: "Canberra",     country: "au", qid: "Q795228",   kind: "art", visits: ["2020-10-22"] },
-  { id: "npg-canberra",   name: "National Portrait Gallery",         city: "Canberra",     country: "au", qid: "Q1967496",  kind: "art", visits: ["2020-10-22"],  note: "\"Canberra's two galleries\" — assumed NGA + NPG; correct if it was a different pair." },
+  { id: "npg-canberra",   name: "National Portrait Gallery",         city: "Canberra",     country: "au", qid: "Q1489633",  kind: "art", visits: ["2020-10-22"],  note: "\"Canberra's two galleries\" — assumed NGA + NPG; correct if it was a different pair." },
   // ——— The Beksiński trail (seen in person, three venues) ———
   { id: "beksinski-krakow", name: "Beksiński gallery, Kraków (venue TBC)", city: "Kraków",  country: "pl", qid: null,       kind: "art", visits: ["TBC"],  note: "Beksiński seen in Kraków — likely the permanent gallery at Nowohuckie Centrum Kultury (NCK); confirm." },
   { id: "beksinski-praga",  name: "Beksiński temporary exhibition, Warsaw-Praga (venue TBC)", city: "Warsaw", country: "pl", qid: null, kind: "art", visits: ["TBC"], note: "\"East side of the river\" = Praga — plausibly Centrum Praskie Koneser's Beksiński show; confirm." },
@@ -53,7 +53,7 @@ window.CANVAS_MUSEUMS = [
   { id: "scrovegni", name: "Scrovegni Chapel", city: "Padua", country: "it", qid: "Q963954", kind: "art", visits: ["2025-09-30"] },
   { id: "mori", name: "Mori Art Museum", city: "Tokyo", country: "jp", qid: "Q4410434", kind: "art", visits: ["TBC"] },
   { id: "yamatane", name: "Yamatane Museum of Art", city: "Tokyo", country: "jp", qid: "Q3329572", kind: "art", visits: ["TBC"] },
-  { id: "hokusai-museum", name: "Sumida Hokusai Museum", city: "Tokyo", country: "jp", qid: "Q61393839", kind: "art", visits: ["2026-03-02"] },
+  { id: "hokusai-museum", name: "Sumida Hokusai Museum", city: "Tokyo", country: "jp", qid: "Q17220332", kind: "art", visits: ["2026-03-02"] },
   { id: "agsa", name: "Art Gallery of South Australia", city: "Adelaide", country: "au", qid: "Q705557", kind: "art", visits: ["2020-11-13"] },
   { id: "kunstmuseum-stuttgart", name: "Kunstmuseum Stuttgart", city: "Stuttgart", country: "de", qid: "Q317398", kind: "art", visits: ["2026-05-05"] },
   { id: "brandhorst", name: "Museum Brandhorst", city: "Munich", country: "de", qid: "Q258597", kind: "art", visits: ["2017-06-22"] },
@@ -62,7 +62,7 @@ window.CANVAS_MUSEUMS = [
   { id: "acropolis", name: "Acropolis Museum", city: "Athens", country: "gr", qid: "Q421084", kind: "art", visits: ["2018-11-13"] },
   // Fuad 2026-07-12: never visited Islamische Kunst — the 2022-12-23 coordinate match was the
   // Pergamonmuseum (Islamische Kunst sits INSIDE the Pergamon building). Swapped.
-  { id: "pergamon", name: "Pergamonmuseum", city: "Berlin", country: "de", qid: "Q160112", kind: "art", visits: ["2022-12-23"] },
+  { id: "pergamon", name: "Pergamonmuseum", city: "Berlin", country: "de", qid: "Q157298", kind: "art", visits: ["2022-12-23"] },
   { id: "neues-museum", name: "Neues Museum", city: "Berlin", country: "de", qid: "Q157316", kind: "art", visits: ["TBC (long ago — Fuad confirmed)"] },
   { id: "altes-museum", name: "Altes Museum", city: "Berlin", country: "de", qid: "Q156722", kind: "art", visits: ["TBC (long ago — Fuad confirmed)"] },
   { id: "bode-museum", name: "Bode-Museum", city: "Berlin", country: "de", qid: "Q157825", kind: "art", visits: ["TBC"], note: "Fuad: 'I don't remember. Maybe?' — unconfirmed." },
@@ -82,5 +82,16 @@ window.CANVAS_MUSEUMS = [
   {id: "lenbachhaus",name: "Lenbachhaus",city: "Munich",country: "de",qid: "Q262234",kind: "art",visits: ["2016-10-15"],note: ""},
   {id: "museo-fortuny",name: "Museo Fortuny",city: "Venice",country: "it",qid: "Q616676",kind: "art",visits: ["TBC"],note: ""},
   {id: "new-york-historical",name: "New York Historical",city: "Manhattan",country: "us",qid: "Q1059456",kind: "art",visits: ["TBC"],note: ""},
-  {id: "royal-castle-warsaw",name: "Zamek Królewski w Warszawie (Royal Castle)",city: "Warsaw",country: "pl",qid: "Q756098",kind: "art",visits: ["TBC"],note: ""}
+  {id: "royal-castle-warsaw",name: "Zamek Królewski w Warszawie (Royal Castle)",city: "Warsaw",country: "pl",qid: "Q756098",kind: "art",visits: ["TBC"],note: ""},
+  {id: "npg-london",name: "National Portrait Gallery",city: "City of Westminster",country: "gb",qid: "Q238587",kind: "art",visits: ["2024-06-14"],note: ""},
+  {id: "louvre",name: "Louvre Museum",city: "Saint-Germain-l'Auxerrois",country: "fr",qid: "Q19675",kind: "art",visits: ["2024-12-19"],note: ""},
+  {id: "v-and-a",name: "Victoria and Albert Museum",city: "Royal Borough of Kensington and Chelsea",country: "gb",qid: "Q213322",kind: "art",visits: ["2024-06-14"],note: ""},
+  {id: "science-museum",name: "Science Museum",city: "South Kensington",country: "gb",qid: "Q674773",kind: "art",visits: ["2024-06-17"],note: ""},
+  {id: "tokyo-national",name: "Tokyo National Museum",city: "Ueno-kōen",country: "jp",qid: "Q653433",kind: "art",visits: ["2024-10-16"],note: ""},
+  {id: "momat",name: "The National Museum of Modern Art, Tokyo",city: "Kitanomaru Park",country: "jp",qid: "Q1359908",kind: "art",visits: ["2024-11-21"],note: ""},
+  {id: "nmwa-tokyo",name: "National Museum of Western Art",city: "Ueno-kōen",country: "jp",qid: "Q1362629",kind: "art",visits: ["2024-10-18"],note: ""},
+  {id: "neue-kunst-karlsruhe",name: "Museum für Neue Kunst Karlsruhe",city: "Karlsruhe",country: "de",qid: "Q1495745",kind: "art",visits: ["2026-05-07"],note: ""},
+  {id: "tubingen-antiquities",name: "Collection of antique and post-antique coins and medals of the Institute of Classical Archaeology, University of Tübingen",city: "?",country: "de",qid: "Q76632158",kind: "art",visits: ["2026-05-06"],note: ""},
+  {id: "warsaw-old-town-centre",name: "Warsaw's Old Town Heritage Interpretation Center",city: "Warsaw",country: "pl",qid: "Q11689613",kind: "art",visits: ["2023-01-04"],note: ""},
+  {id: "aus-performing-arts",name: "Australian Performing Arts Collection",city: "Victoria",country: "au",qid: "Q7168281",kind: "art",visits: ["2024-05-01"],note: ""}
 ];

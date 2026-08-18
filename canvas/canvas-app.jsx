@@ -219,8 +219,18 @@ function Wall({ go, mode = "collage", styleIds }) {
     if (filt === "floored") list = list.filter(w => w.floored || w.favorite);
     if (filt === "loved") list = list.filter(w => w.floored || w.favorite || w.liked);
     if (filt === "sure") list = list.filter(w => w.seenConfidence === "sure");
-    if (filt === "unsure") list = list.filter(w => w.seenConfidence !== "sure");
-    if (filt === "wish") list = list.filter(w => w.wish);
+    // "unsure" means a SIGHTING you're not certain of — so it needs an actual sighting to be
+    // unsure about. Before the 2026-08-19 photo import the canon was seen-works-only and a bare
+    // `!== "sure"` was harmless; that import added ~1,000 want-to-see rows which carry NO
+    // seenConfidence, and every one of them fell in here (1,472 results instead of 465).
+    // Pilgrimage rows are reachable through the "wish" chip, which is where they belong.
+    if (filt === "unsure") list = list.filter(w => w.seenConfidence != null && w.seenConfidence !== "sure");
+    // Pilgrimage = everything you'd still like to stand in front of. Two ways in (Fuad 2026-08-19):
+    //   1. wish — never seen it, want to;
+    //   2. an UNSURE sighting you liked or loved — you may or may not have been there, and you
+    //      want to see it (properly) either way. Today every unsure row carries a mark, so the
+    //      mark test selects all of them; it is kept so an unmarked unsure row never auto-joins.
+    if (filt === "wish") list = list.filter(w => w.wish || (w.seenConfidence === "unsure" && (w.liked || w.floored || w.favorite)));
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
     // styles are OR'd — picking Impressionism + Fauvism widens, it doesn't narrow to the overlap
     if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
