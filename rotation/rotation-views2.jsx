@@ -993,9 +993,10 @@ const PV_WW_CSS = `
            LEFT-aligned lines within its own column. */
         .pv-foot-chips { flex: 1 1 auto; min-width: 0; align-self: center;
           display: flex; flex-wrap: wrap; gap: 7px; justify-content: flex-start; }
-        /* the clicked chip's derivation: full-row-width item dropping to its own line under the
-           footer, LEFT-anchored at a readable width to sit under the chips that opened it. */
-        .pv-foot-deriv { flex: 1 1 100%; max-width: 440px; margin-right: auto; text-align: left; }
+        /* the clicked chip's derivation: a plain BLOCK below the footer row (not a flex child of it),
+           so nothing can push it right. Left-anchored at a readable measure, under its chip. */
+        .pv-foot-deriv { display: block; max-width: 440px; margin-left: 0; margin-right: auto;
+          text-align: left; }
         /* fixed-width label slot: the ▾/▴ label swap must not shift the toggle's x/y. The longest
            label ("the full read ▾") sets the min-width; the shorter "less ▴" left-aligns into it,
            so nothing to the right reflows and the button never resizes. */
@@ -1253,10 +1254,9 @@ function PortraitCard({ id, alt, showWords = true, go }) {
             </div>
           )}
           {/* FOOTER (Fuad 2026-08-19): the module's bottom row — fact CHIPS pinned bottom-LEFT,
-              via-source flick pinned bottom-RIGHT, the clicked chip's derivation dropping to its own
-              full-width line beneath. Either side may be absent (a portrait with facts but nothing to
-              flick to, or the reverse) and space-between still parks the survivor on its own edge,
-              because each side is rendered as its own flex child. */}
+              via-source flick pinned bottom-RIGHT. Either side may be absent (a portrait with facts
+              but nothing to flick to, or the reverse) and space-between still parks the survivor on
+              its own edge, because each side is rendered as its own flex child. */}
           {(facts.length > 0 || hasAlt || hasPrev) && (
             <div className="pv-footrow">
               {facts.length > 0 ? (
@@ -1275,10 +1275,15 @@ function PortraitCard({ id, alt, showWords = true, go }) {
                   {flickLabel}
                 </button>
               )}
-              {chip >= 0 && facts[chip] && (
-                <div className="pv-deriv pv-foot-deriv">{facts[chip].x}</div>
-              )}
             </div>
+          )}
+          {/* The clicked chip's derivation is a SIBLING of the footer row, not a flex child of it
+              (Fuad 2026-08-19): it must read as a plain block dropping straight underneath the chips.
+              As a wrapped flex item it inherited the row's justify-content and sat visually right;
+              outside the row there is no alignment context to fight — it is simply a left-aligned
+              block at a readable measure. */}
+          {chip >= 0 && facts[chip] && (
+            <div className="pv-deriv pv-foot-deriv">{facts[chip].x}</div>
           )}
         </>
       )}
