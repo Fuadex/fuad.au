@@ -26,12 +26,22 @@ try { cache = JSON.parse(fs.readFileSync(CACHE_PATH, "utf8")); } catch (e) {}
 const saveCache = () => fs.writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 1));
 
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-async function wd(params) {   // Wikidata action API, polite pace
+// Wikidata action API. Throttled with exponential backoff: past a few hundred qids the API
+// starts answering with a 429 whose body is PLAINTEXT ("You are making too many requests"),
+// which res.json() would choke on. The SPARQL helper below has always retried; this one now
+// matches it. Entity results are cached per batch, so a retry never redoes finished work.
+async function wd(params) {
   const url = "https://www.wikidata.org/w/api.php?format=json&" + new URLSearchParams(params);
-  const res = await fetch(url, { headers: { "User-Agent": UA } });
-  if (!res.ok) throw new Error("HTTP " + res.status + " for " + url.slice(0, 120));
-  await sleep(250);
-  return res.json();
+  for (let attempt = 0; attempt < 6; attempt++) {
+    const res = await fetch(url, { headers: { "User-Agent": UA } });
+    const body = await res.text();
+    await sleep(300);
+    if (res.ok && body[0] === "{") { try { return JSON.parse(body); } catch (e) {} }
+    const wait = 2000 * Math.pow(2, attempt);
+    process.stderr.write(`  ⏳ ${res.status} throttled — backing off ${wait / 1000}s\n`);
+    await sleep(wait);
+  }
+  throw new Error("Wikidata refused after 6 attempts: " + url.slice(0, 120));
 }
 
 async function search(query, limit = 6) {
