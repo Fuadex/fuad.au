@@ -4,21 +4,21 @@
 // ⚠ QIDs are drafted from memory — the Phase 1 Wikidata fetcher must RESOLVE BY NAME+CITY
 // and verify/correct every qid before anything trusts them.
 window.CANVAS_MUSEUMS = [
-  { id: "artizon",        name: "Artizon Museum",                    city: "Tokyo",        country: "jp", qid: "Q4801283",  kind: "art", visits: ["2026-03-24"],  note: "Big Monet/impressionist holdings (Ishibashi collection)." },
-  { id: "tokyo-met",      name: "Tokyo Metropolitan Art Museum",     city: "Tokyo",        country: "jp", qid: "Q1362955",  kind: "art", visits: ["2026-01-28","2026-02-15"],  note: "Swedish Masters exhibition (the Fjæstad wood-pattern painting — floored)." },
+  { id: "artizon",        name: "Artizon Museum",                    city: "Tokyo",        country: "jp", qid: "Q913808",  kind: "art", visits: ["2026-03-24"],  note: "Big Monet/impressionist holdings (Ishibashi collection)." },
+  { id: "tokyo-met",      name: "Tokyo Metropolitan Art Museum",     city: "Tokyo",        country: "jp", qid: "Q864957",  kind: "art", visits: ["2026-01-28","2026-02-15"],  note: "Swedish Masters exhibition (the Fjæstad wood-pattern painting — floored)." },
   { id: "nga-dc",         name: "National Gallery of Art",           city: "Washington DC", country: "us", qid: "Q214867",  kind: "art", visits: ["TBC"],  note: "Woman with a Parasol." },
   { id: "met-nyc",        name: "The Metropolitan Museum of Art",    city: "New York",     country: "us", qid: "Q160236",   kind: "art", visits: ["2019-02-27"] },
   { id: "amnh",           name: "American Museum of Natural History", city: "New York",    country: "us", qid: "Q217717",   kind: "natural-history", visits: ["2019-03-20"], note: "Best museum ever visited, by far — and only ~2 bottom floors seen." },
   { id: "orsay",          name: "Musée d'Orsay",                     city: "Paris",        country: "fr", qid: "Q23402",    kind: "art", visits: ["2017-01-15","2023-09-06","2023-09-22","2024-05-23"], note: "Several visits; the impressionist core." },
-  { id: "orangerie",      name: "Musée de l'Orangerie",              city: "Paris",        country: "fr", qid: "Q1235980",  kind: "art", visits: ["2023-09-06"],  note: "The Nymphéas rooms." },
-  { id: "marmottan",      name: "Musée Marmottan Monet",             city: "Paris",        country: "fr", qid: "Q1638966",  kind: "art", visits: ["2023-09-24"],  note: "\"Monet's museum\" — Water Lilies seen here too." },
-  { id: "pompidou",       name: "Centre Pompidou",                   city: "Paris",        country: "fr", qid: "Q183424",   kind: "art", visits: ["2017-01-14","2023-09-06"],  note: "\"The factory\" — some good works, TBC which." },
-  { id: "rodin",          name: "Musée Rodin",                       city: "Paris",        country: "fr", qid: "Q1237420",  kind: "art", visits: ["2023-09-22"],  note: "CONFIRMED — \"probably the best sculptures\"; Rodin best with expressions. (Bourdelle rated good too — did a Musée Bourdelle visit also happen? TBC.)" },
+  { id: "orangerie",      name: "Musée de l'Orangerie",              city: "Paris",        country: "fr", qid: "Q726781",  kind: "art", visits: ["2023-09-06"],  note: "The Nymphéas rooms." },
+  { id: "marmottan",      name: "Musée Marmottan Monet",             city: "Paris",        country: "fr", qid: "Q1327886",  kind: "art", visits: ["2023-09-24"],  note: "\"Monet's museum\" — Water Lilies seen here too." },
+  { id: "pompidou",       name: "Centre Pompidou",                   city: "Paris",        country: "fr", qid: "Q178065",   kind: "art", visits: ["2017-01-14","2023-09-06"],  note: "\"The factory\" — some good works, TBC which." },
+  { id: "rodin",          name: "Musée Rodin",                       city: "Paris",        country: "fr", qid: "Q650519",  kind: "art", visits: ["2023-09-22"],  note: "CONFIRMED — \"probably the best sculptures\"; Rodin best with expressions. (Bourdelle rated good too — did a Musée Bourdelle visit also happen? TBC.)" },
   { id: "ngi",            name: "National Gallery of Ireland",       city: "Dublin",       country: "ie", qid: "Q2018379",  kind: "art", visits: ["~2017-03 (Dublin trip on timeline; NGI below match threshold)"],  note: "Leech: The Sunshade + A Convent Garden, Brittany." },
   { id: "tate-modern",    name: "Tate Modern",                       city: "London",       country: "gb", qid: "Q193375",   kind: "art", visits: ["2024-06-13","2026-06-17"],  note: "Pollocks remembered." },
   { id: "belvedere",      name: "Upper Belvedere",            searchAs: "Österreichische Galerie Belvedere",                   city: "Vienna",       country: "at", qid: "Q303139",   kind: "art", visits: ["2017-06-20"], note: "The Kiss (probably) + more golden Klimts — venue near-confirmed by that combination." },
   { id: "mnw",            name: "Muzeum Narodowe w Warszawie",       city: "Warsaw",       country: "pl", qid: "Q153306",   kind: "art", visits: ["2014 (frequent)","2017","2019-08-01","2022-12-27","2023-09-20","2024 (4 visits)"] },
-  { id: "sukiennice",     name: "Sukiennice Gallery (MNK)",          searchAs: "Sukiennice Museum", city: "Kraków", country: "pl", qid: "Q779609", kind: "art", visits: ["2014-04-27","2015-07-07"],  note: "Gallery of 19th-C Polish Art — Szał uniesień hangs here." },
+  { id: "sukiennice",     name: "Sukiennice Gallery (MNK)",          searchAs: "Sukiennice Museum", city: "Kraków", country: "pl", qid: "Q7635861", kind: "art", visits: ["2014-04-27","2015-07-07"],  note: "Gallery of 19th-C Polish Art — Szał uniesień hangs here." },
   { id: "nationalmuseum", name: "Nationalmuseum",                    city: "Stockholm",    country: "se", qid: "Q842858",   kind: "art", visits: ["2026-04-16"],  note: "Sergel CONFIRMED — sculptures + the unbelievable drawings." },
   { id: "harvard-art",    name: "Harvard Art Museums",               city: "Cambridge, MA", country: "us", qid: "Q3783572",  kind: "art", visits: ["TBC"], note: "Deck-only for now — grading the pageview-ranked majors (API pull 2026-07-13)." },
   // ——— Australia (visited; verdict \"only ok, at times even less\" — no works recalled yet) ———
@@ -64,7 +64,7 @@ window.CANVAS_MUSEUMS = [
   // Pergamonmuseum (Islamische Kunst sits INSIDE the Pergamon building). Swapped.
   { id: "pergamon", name: "Pergamonmuseum", city: "Berlin", country: "de", qid: "Q160112", kind: "art", visits: ["2022-12-23"] },
   { id: "neues-museum", name: "Neues Museum", city: "Berlin", country: "de", qid: "Q157316", kind: "art", visits: ["TBC (long ago — Fuad confirmed)"] },
-  { id: "altes-museum", name: "Altes Museum", city: "Berlin", country: "de", qid: "Q160077", kind: "art", visits: ["TBC (long ago — Fuad confirmed)"] },
+  { id: "altes-museum", name: "Altes Museum", city: "Berlin", country: "de", qid: "Q156722", kind: "art", visits: ["TBC (long ago — Fuad confirmed)"] },
   { id: "bode-museum", name: "Bode-Museum", city: "Berlin", country: "de", qid: "Q157825", kind: "art", visits: ["TBC"], note: "Fuad: 'I don't remember. Maybe?' — unconfirmed." },
   { id: "alte-pinakothek", name: "Alte Pinakothek", city: "Munich", country: "de", qid: "Q154568", kind: "art", visits: ["TBC (Munich 2016–17 era)"] },
   { id: "neue-pinakothek", name: "Neue Pinakothek", city: "Munich", country: "de", qid: "Q170152", kind: "art", visits: ["TBC (Munich 2016–17 era)"], note: "Fuad: 'the Pinakotheks' — der Moderne possibly too, unconfirmed." },
@@ -82,5 +82,5 @@ window.CANVAS_MUSEUMS = [
   {id: "lenbachhaus",name: "Lenbachhaus",city: "Munich",country: "de",qid: "Q262234",kind: "art",visits: ["2016-10-15"],note: ""},
   {id: "museo-fortuny",name: "Museo Fortuny",city: "Venice",country: "it",qid: "Q616676",kind: "art",visits: ["TBC"],note: ""},
   {id: "new-york-historical",name: "New York Historical",city: "Manhattan",country: "us",qid: "Q1059456",kind: "art",visits: ["TBC"],note: ""},
-  {id: "royal-castle-warsaw",name: "Zamek Królewski w Warszawie (Royal Castle)",city: "Warsaw",country: "pl",qid: "Q157984",kind: "art",visits: ["TBC"],note: ""}
+  {id: "royal-castle-warsaw",name: "Zamek Królewski w Warszawie (Royal Castle)",city: "Warsaw",country: "pl",qid: "Q756098",kind: "art",visits: ["TBC"],note: ""}
 ];
