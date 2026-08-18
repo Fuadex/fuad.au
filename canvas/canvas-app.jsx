@@ -34,6 +34,12 @@ const COUNTRY = { jp: "Japan", us: "United States", fr: "France", ie: "Ireland",
 
 // merged view of one work: hand canon ⊕ overlay
 const HIRES = window.CANVAS_HIRES || {};
+// art_medium.js — [bucket, kindLabel, p31Qid] per work id. The Wall filters on the BUCKET; the
+// raw Wikidata kind ("pastel artwork", "woodblock print", "group of casts") rides along for
+// later use and is shown as the tooltip so the coarse chip never hides what the thing actually is.
+const MEDIUM = window.CANVAS_MEDIUM || {};
+const mediumOf = (w) => MEDIUM[w.id] || null;
+const MEDIA = [["painting", "paintings"], ["sculpture", "sculpture"], ["paper", "works on paper"], ["object", "objects"], ["photo", "photography"]];
 function enrich(w) {
   const d = AD.artworks[w.id] || {};
   const artist = AD.artists[w.artistId] || {};
@@ -128,7 +134,11 @@ function Card({ w, go }) {
   const byline = w.artist.replace(/\s*\(.*\)$/, "") + (w.year ? " · " + w.year : "");
   return (
     <div className={"cv-card" + (img ? "" : " cv-text")} data-conf={w.seenConfidence}
-      onClick={() => go("work", w.id)} title={w.title}>
+      onClick={() => go("work", w.id)}
+      // hover shows the RAW Wikidata kind next to the title — the medium chips are deliberately
+      // coarse, and this is where "woodblock print", "cage cup", "diorama" or "group of casts"
+      // stays visible instead of being flattened into "works on paper" / "objects".
+      title={w.title + ((mediumOf(w) && mediumOf(w)[1]) ? " · " + mediumOf(w)[1] : "")}>
       {(w.favorite || w.floored) ? <span className="cv-fav">★</span> : w.liked ? <span className="cv-fav">♡</span> : null}
       {img && <img src={img} alt={w.title} loading="lazy" />}
       <div className="cv-label">
@@ -203,7 +213,15 @@ function Wall({ go, mode = "collage", styleIds }) {
   const [sort, setSort] = useState("hang");
   const [extra, setExtra] = useState(0);
   const [allStyles, setAllStyles] = useState(false);   // "+N more" disclosure
+  const [media, setMedia] = useState([]);              // selected medium buckets, OR'd like styles
   const movs = useMemo(movIndex, []);
+  // counts per bucket, off the SAME list the chips filter, so a chip never offers an empty result
+  const mediaCounts = useMemo(() => {
+    const c = {};
+    for (const w of all) { const m = mediumOf(w); if (m && m[0]) c[m[0]] = (c[m[0]] || 0) + 1; }
+    return c;
+  }, [all]);
+  const toggleMedium = (k) => setMedia(m => m.includes(k) ? m.filter(x => x !== k) : [...m, k]);
   // Selected styles live in the URL (#/wall/impressionism+fauvism), not in state — that makes a
   // filtered wall shareable and back-button-able, and gives Portrait somewhere to link to.
   const sel = useMemo(() => {
@@ -212,7 +230,7 @@ function Wall({ go, mode = "collage", styleIds }) {
   }, [styleIds, movs]);
   const setSel = (labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null);
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [filt, mus, sort, mode, styleIds]);
+  useEffect(() => { setExtra(0); }, [filt, mus, sort, mode, styleIds, media]);
 
   const shown = useMemo(() => {
     let list = all;
@@ -234,6 +252,10 @@ function Wall({ go, mode = "collage", styleIds }) {
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
     // styles are OR'd — picking Impressionism + Fauvism widens, it doesn't narrow to the overlap
     if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
+    // medium buckets OR the same way, and AND against everything else. A work with no decided
+    // bucket (vague or missing P31) is excluded once any chip is on — it is genuinely unknown,
+    // and quietly sweeping it into "paintings" is the guess this pipeline refuses to make.
+    if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
     const arr = [...list];
     if (mode === "spectrum") arr.sort((a, b) => palHueOf(a) - palHueOf(b) || weight(a) - weight(b));
     else if (mode === "timeline") arr.sort((a, b) => (a.year || 9999) - (b.year || 9999) || weight(a) - weight(b));
@@ -303,6 +325,19 @@ function Wall({ go, mode = "collage", styleIds }) {
           </button>
         )}
         {sel.length > 0 && <button className="cv-styles-clear" onClick={() => setSel([])}>✕ clear</button>}
+      </div>
+      {/* MEDIUM — five coarse buckets folded from Wikidata P31, multi-select and OR'd, same
+          grammar as styles. Unlike movement (which Wikidata files on the ARTIST) this is a
+          property of the object itself, so no disclaimer is needed. Chips with a zero count are
+          not rendered at all rather than offered and then disappointing. */}
+      <div className="cv-styles cv-media">
+        <span className="cv-styles-lbl" title="what kind of object it is — Wikidata P31">medium</span>
+        {MEDIA.filter(([k]) => mediaCounts[k]).map(([k, label]) => (
+          <button key={k} data-on={media.includes(k)} onClick={() => toggleMedium(k)}>
+            {label}<i>{mediaCounts[k]}</i>
+          </button>
+        ))}
+        {media.length > 0 && <button className="cv-styles-clear" onClick={() => setMedia([])}>✕ clear</button>}
       </div>
       {sel.length > 0 && (
         <div className="cv-styles-note">
