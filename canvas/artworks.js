@@ -3,7 +3,7 @@
 // via: "exhibition" marks temporary-show encounters (they count; see memory-seed.md).
 // floored = the in-the-moment knockout (borrowing culture's impact vocabulary).
 window.CANVAS_ARTWORKS = [
-  { id: "monet-woman-with-a-parasol", title: "Woman with a Parasol — Madame Monet and Her Son", artist: "Claude Monet", artistId: "monet", qid: "Q3244303", year: 1875,
+  { id: "monet-woman-with-a-parasol", title: "Woman with a Parasol — Madame Monet and Her Son", artist: "Claude Monet", artistId: "monet", qid: "Q2395218", year: 1875,
     seenAt: "nga-dc", seenConfidence: "sure", favorite: true, note: "\"Beautiful.\" The DC Monet." },
 
   { id: "monet-nympheas-orangerie", title: "The Water Lilies cycle (Nymphéas)", searchAs: "Water Lilies", artist: "Claude Monet", artistId: "monet", qid: null, year: 1926,

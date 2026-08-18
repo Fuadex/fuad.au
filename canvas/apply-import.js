@@ -10,15 +10,78 @@ const D = require("./match_decisions.json");
 const proposal = require(path.join(HERE, "..", "..", ".sptmp", "import-proposal.json"));
 
 // ---- venue remaps (the noisy inferred-venue cleanup, decided with Fuad) ----
-const REMAP = { "Q4806644": "agnsw", "Q6940999": "met-nyc", "Q69545079": "kunstmuseum-basel" };
-const VENUE_NULL = new Set(["Q133867018", "Q76628637"]);   // artwork-as-venue / unresolved → no seenAt
+// Venue is GEO-inferred, so the raw qid is often a monument, a room, or a single artwork that
+// happens to carry coordinates. Each remap below is backed by SAME-DAY co-location: what else
+// the day's photos place Fuad at (see the venue-triage block in import-art.js).
+const REMAP = {
+  // rooms / wings / sub-museums → their parent institution
+  "Q4806644": "agnsw",                  // Asian Gallery, AGNSW
+  "Q69545079": "kunstmuseum-basel",     // Kunstmuseum Basel Neubau
+  "Q1895953": "pompidou",               // Musée National d'Art Moderne, inside the Centre
+  "Q129673434": "nga-dc",               // NGA West Building
+  "Q118314575": "nga-dc",               // NGA East Building
+  "Q76628637": "lenbachhaus",           // unlabelled Lenbachhaus sub-entity
+  "Q130394757": "v-and-a",              // Prince Consort Gallery, inside the V&A
+  // artwork-as-venue: the statue/object the geo latched onto, resolved to the museum whose
+  // works that same day's photos actually contain
+  "Q18156060": "louvre",                // equestrian statue of Louis XIV (Cour Napoléon)
+  "Q16959772": "v-and-a",               // V&A Rotunda Chandelier
+  "Q23593315": "marmottan",             // Fisherman Bringing back Orpheus' Head
+  "Q133867018": "agsa",                 // The Life of Stars
+  "Q6746166": "nga-dc",                 // Man Controlling Trade (DC, NGA day)
+  "Q3222981": "petit-palais",           // The Fruit
+  "Q2586256": "ngv",                    // Larry La Trobe (Melbourne)
+  "Q24089142": "alte-nationalgalerie",  // equestrian statue of Friedrich Wilhelm IV
+  // DEFUNCT (closed 1976). Corrected 2026-08-19: the July pass sent this to met-nyc on the
+  // assumption the Rockefeller primitive-art collection went to the Met — true of the COLLECTION,
+  // but all five picks here are MoMA-held works (Nadelman's Man in the Open Air, Hopper's House
+  // by the Railroad) photographed on a day spent at MoMA. The old museum's building stood next
+  // door to MoMA, which is what the geo caught.
+  "Q6940999": "moma",
+};
+// artwork-as-venue with NO same-day museum to fall back on, plus known geo errors → no seenAt
+const VENUE_NULL = new Set([
+  "Q19759191",   // Mother and Child: Block Seat (Moore) — only an unresolved neighbour that day
+  "Q31407686",   // Leo Castelli Gallery — removed as a geo error in the 2026-07-24 dedupe audit
+]);
 // clean new museums to create: qid -> id
-const NEW_MUS = { "Q194626": "kunstmuseum-basel", "Q15428775": "kunstsalon-franke-schenk", "Q31407686": "leo-castelli", "Q812285": "bavarian-state-paintings", "Q262234": "lenbachhaus", "Q616676": "museo-fortuny", "Q1059456": "new-york-historical" };
+const NEW_MUS = {
+  // carried from the July pass (already created; listed so re-runs stay idempotent)
+  "Q194626": "kunstmuseum-basel", "Q15428775": "kunstsalon-franke-schenk",
+  "Q812285": "bavarian-state-paintings", "Q262234": "lenbachhaus",
+  "Q616676": "museo-fortuny", "Q1059456": "new-york-historical",
+  // new in the 2026-08-19 pass
+  "Q238587": "npg-london",            // NOTE: distinct from the canon's npg-canberra
+  "Q19675": "louvre",
+  "Q213322": "v-and-a",
+  "Q674773": "science-museum",
+  "Q653433": "tokyo-national",
+  "Q1359908": "momat",                // National Museum of Modern Art, Tokyo
+  "Q1362629": "nmwa-tokyo",           // National Museum of Western Art
+  "Q1495745": "neue-kunst-karlsruhe",
+  "Q76632158": "tubingen-antiquities",
+  "Q11689613": "warsaw-old-town-centre",
+  "Q7168281": "aus-performing-arts",
+};
 
 const claim = (ent, p) => { const c = ent && ent.claims && ent.claims[p] && ent.claims[p][0]; const v = c && c.mainsnak && c.mainsnak.datavalue && c.mainsnak.datavalue.value; return v; };
 const labelOf = (ent) => ent && ent.labels && ent.labels.en && ent.labels.en.value;
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-async function wd(params) { const url = "https://www.wikidata.org/w/api.php?origin=*&format=json&" + Object.entries(params).map(([k, v]) => k + "=" + encodeURIComponent(v)).join("&"); const r = await fetch(url, { headers: { "User-Agent": UA } }); await sleep(120); return r.json(); }
+// throttle + exponential backoff, same as import-art.js — Wikidata answers a burst with a
+// plaintext "too many requests" body, which JSON.parse would blow up on.
+async function wd(params) {
+  const url = "https://www.wikidata.org/w/api.php?origin=*&format=json&" + Object.entries(params).map(([k, v]) => k + "=" + encodeURIComponent(v)).join("&");
+  for (let attempt = 0; attempt < 6; attempt++) {
+    const r = await fetch(url, { headers: { "User-Agent": UA } });
+    const body = await r.text();
+    await sleep(400);
+    if (r.ok && body[0] === "{") { try { return JSON.parse(body); } catch (e) {} }
+    const wait = 2000 * Math.pow(2, attempt);
+    process.stderr.write(`  ⏳ ${r.status} throttled — backing off ${wait / 1000}s\n`);
+    await sleep(wait);
+  }
+  throw new Error("Wikidata refused after 6 attempts");
+}
 async function ent(q) { if (cache["ent:" + q]) return cache["ent:" + q]; const j = await wd({ action: "wbgetentities", ids: q, props: "claims|labels", languages: "en" }); cache["ent:" + q] = (j.entities && j.entities[q]) || null; fs.writeFileSync(path.join(HERE, "wikidata_cache.json"), JSON.stringify(cache, null, 1)); return cache["ent:" + q]; }
 
 // resolve seenAt for a proposal entry through the remap/new/null rules
@@ -83,8 +146,13 @@ function finalSeenAt(sa) {
     const id = uniqId(e.id.replace(/[^a-z0-9-]/g, "").replace(/^-|-$/g, "") || "work-" + e.qid.toLowerCase());
     const mark = e.floored ? ", floored: true" : e.liked ? ", liked: true" : "";
     const yr = e.year ? `, year: ${e.year}` : "";
-    const saStr = sa ? `"${sa}"` : "null";
-    newLines.push(`  { id: "${esc(id)}", title: "${esc(e.title)}", artist: "${esc(e.artist)}", artistId: "${esc(e.artistId)}", qid: "${e.qid}", qidTrusted: true${yr},\n    seenAt: ${saStr}, seenConfidence: "${e.seenConfidence}"${mark} }`);
+    // A WISH is a want-to-see: it carries the love/like mark and nothing else. Emitting
+    // seenAt/seenConfidence on these would assert a sighting that never happened (and before
+    // 2026-08-19 would have literally written the string "undefined" into the canon).
+    const tail = e.wish
+      ? `    wish: true${mark} }`
+      : `    seenAt: ${sa ? `"${sa}"` : "null"}, seenConfidence: "${e.seenConfidence}"${mark} }`;
+    newLines.push(`  { id: "${esc(id)}", title: "${esc(e.title)}", artist: "${esc(e.artist)}", artistId: "${esc(e.artistId)}", qid: "${e.qid}", qidTrusted: true${yr},\n${tail}`);
   }
 
   // ---- report ----
@@ -93,8 +161,12 @@ function finalSeenAt(sa) {
   P(`new museums: ${newMusRecs.length}`);
   newMusRecs.forEach(m => P(`  + ${m.id}  "${m.name}"  ${m.city}, ${m.country}  visits:[${m.visits.join(",")}]`));
   P(`remaps applied: ${Object.entries(REMAP).map(([q, id]) => q + "→" + id).join(", ")}  | venue-nulled: ${[...VENUE_NULL].join(", ")}`);
-  P(`new artworks: ${newLines.length}  | merges into canon: ${merges.length}  | dup-skip: ${skippedDup.length}`);
-  merges.forEach(m => P(`  ⇄ ${m.id} (${m.qid})${m.add ? " + " + m.add : " (no new mark)"}`));
+  const wishLines = proposal.entries.filter(e => e.wish && !canonByQid[e.qid]).length;
+  P(`new artworks: ${newLines.length}  (seen: ${newLines.length - wishLines}, want-to-see: ${wishLines})`);
+  P(`merges into canon: ${merges.length}  | dup-skip: ${skippedDup.length}`);
+  P(`venues: ${Object.keys(REMAP).length} remapped, ${VENUE_NULL.size} nulled, ${newMusRecs.length} museums created`);
+  merges.slice(0, 20).forEach(m => P(`  ⇄ ${m.id} (${m.qid})${m.add ? " + " + m.add : " (no new mark)"}`));
+  if (merges.length > 20) P(`  … +${merges.length - 20} more merges`);
 
   if (!WRITE) { P(`\n(dry run — re-run with --write to apply)`); return; }
 
