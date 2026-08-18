@@ -3127,6 +3127,12 @@ function GigsView({ go }) {
         .gv-gig-venue { font-size: 12px; color: var(--ink-soft); margin-top: 1px; }
         .gv-gig-songs { font-size: 11.5px; color: var(--ink-faint); margin-top: 5px; line-height: 1.5; }
         .gv-gig-songs b { color: var(--ink-soft); font-weight: 500; }
+        /* the clickable affordance keys off data-link, NOT off the festival-night container
+           (Fuad 2026-08-19): it used to live on .gv-night-live b, so when single-act rows and
+           expanded cluster acts got their track links the titles were clickable but looked
+           completely inert — no cursor, no underline, no hover. Both paths share it now. */
+        .gv-gig-songs b[data-link] { cursor: pointer; border-bottom: 1px dotted var(--ink-faint); }
+        .gv-gig-songs b[data-link]:hover { color: var(--accent); border-bottom-color: var(--accent); }
         .gv-gig-meta { display: flex; gap: 12px; align-items: baseline; text-align: right; }
         .gv-gig-plays, .gv-gig-set { font-family: var(--serif); font-size: 16px; font-variant-numeric: tabular-nums; white-space: nowrap; }
         .gv-gig-set { color: var(--ink-soft); }
@@ -3145,9 +3151,7 @@ function GigsView({ go }) {
         .gv-night-acts .gv-gig { grid-template-columns: 10px 1fr auto; }
         /* festival day: top cross-artist songs you play — the label hedges (no setlist-wide data),
            each song clicks through to its track page */
-        .gv-night-live { margin-top: 6px; }
-        .gv-night-live b { cursor: pointer; border-bottom: 1px dotted var(--ink-faint); }
-        .gv-night-live b:hover { color: var(--accent); border-bottom-color: var(--accent); }
+        .gv-night-live { margin-top: 6px; }   /* link styling now shared, see .gv-gig-songs b[data-link] */
         .gv-night-live-by { color: var(--ink-faint); font-weight: 400; }
         /* year scrub on Still to catch — same control as the Overview map's year slider */
         .gv-years { display: flex; gap: 10px; align-items: center; max-width: 340px; margin: 0 0 12px; }
