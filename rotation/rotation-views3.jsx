@@ -2781,9 +2781,14 @@ function GigsView({ go }) {
         <div className="gv-gig-artist">{g.artist}{g.tour ? <span className="gv-gig-tour"> · {g.tour}</span> : null}</div>
         <div className="gv-gig-venue">{g.venue}{g.city ? ` · ${g.city}` : ""}</div>
         {g.knownSongs.length > 0 && (
-          <div className="gv-gig-songs">
+          // Songs link to their track page exactly as the festival-night row does. knownSongs is
+          // built from plays>0 only, so every title here HAS a page (id = artistId~trackSlug).
+          // stopPropagation keeps the click off the row's open-artist handler.
+          <div className="gv-gig-songs" onClick={(e) => e.stopPropagation()}>
             heard live, in your rotation: {g.knownSongs.map((s, j) => (
-              <React.Fragment key={s.title}>{j > 0 ? ", " : ""}<b>{s.title}</b></React.Fragment>
+              <React.Fragment key={s.title}>{j > 0 ? ", " : ""}
+                <b data-link={true} onClick={() => go("track", g.artistId + "~" + R.slug(s.title))}>{s.title}</b>
+              </React.Fragment>
             ))}{g.knownCount > g.knownSongs.length ? ` +${g.knownCount - g.knownSongs.length}` : ""}
           </div>
         )}
