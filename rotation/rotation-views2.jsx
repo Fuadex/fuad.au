@@ -148,11 +148,13 @@ function MiniArtistDetail({ id, name, go }) {
         /* Sounds like — inside the dossier this is compacted to ONE ROW (mav-simrow: cap 6, no wrap);
            the wider band page keeps the wrapping auto-fill grid (Fuad 2026-07-18). */
         <div className="mav-simrow" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(110px,1fr))", gap: 12 }}>
-          {rec.sim.slice(0, 6).map((name, i) => { const rid = (R.idForName && R.idForName(name)) || R.slug(name); const s = R.byId[rid] || (R.expById && R.expById[rid]); const played = !!s || (R.played && R.played(name)); return (
-            <div key={name + i} onClick={() => s && go("artist", rid)} style={{ cursor: s ? "pointer" : "default", opacity: played ? 1 : 0.62 }}>
+          {/* no in-library status here either — see the band-page tiles for why the name-match
+              miss is not evidence of absence. A real record still shows its play count. */}
+          {rec.sim.slice(0, 6).map((name, i) => { const rid = (R.idForName && R.idForName(name)) || R.slug(name); const s = R.byId[rid] || (R.expById && R.expById[rid]); return (
+            <div key={name + i} onClick={() => s && go("artist", rid)} style={{ cursor: s ? "pointer" : "default" }}>
               <GenCover hue={s ? s.hue : 210} name={name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
               <div style={{ fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{name}</div>
-              {s ? <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays →</div> : played ? <div className="r-mono" style={{ fontSize: 9, color: "var(--accent-dim)" }}>scrobbled</div> : <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>not yet</div>}
+              {s ? <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays →</div> : null}
             </div>); })}
         </div>)}
       </div>}
@@ -1852,18 +1854,21 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                 if (!items.length) return <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>no last.fm matches here.</div>;
                 return <div className="av-simscroll"><div className="av-simgrid">
                   {items.map((it, i) => (
+                    // In-library status is gone from these tiles (Fuad 2026-08-19: "currently
+                    // pointless"). It was inferred by name-matching a last.fm similar-artist
+                    // string against the scrobble index, so a MISS never meant "not in the
+                    // library" — only "the names didn't line up" (aliases, non-Latin scripts,
+                    // punctuation). A HIT is still trustworthy, so a real play count still shows;
+                    // the badge, the "not yet scrobbled" negative, and the dimming are dropped.
                     <div key={it.name + i} onClick={() => it.navId && go("artist", it.navId)}
-                      style={{ display: "flex", flexDirection: "column", gap: 8, cursor: it.navId ? "pointer" : "default", opacity: it.played ? 1 : 0.62 }}
+                      style={{ display: "flex", flexDirection: "column", gap: 8, cursor: it.navId ? "pointer" : "default" }}
                       onMouseEnter={(e) => { if (it.navId) e.currentTarget.style.transform = "translateY(-3px)"; }}
                       onMouseLeave={(e) => e.currentTarget.style.transform = ""}>
                       <div style={{ position: "relative", transition: "transform .2s" }}>
                         <GenCover hue={it.hue} name={it.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
-                        {it.played && <span className="r-mono r-inlib">in library</span>}
                       </div>
                       <div style={{ fontSize: 10, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{it.name}</div>
-                      {it.plays != null ? <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(it.plays)} plays</div>
-                        : it.played ? <div className="r-mono" style={{ fontSize: 8.5, color: "var(--accent-dim)" }}>scrobbled · deeper cut</div>
-                          : <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>not yet scrobbled</div>}
+                      {it.plays != null ? <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(it.plays)} plays</div> : null}
                     </div>
                   ))}
                 </div></div>;
@@ -2119,8 +2124,6 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           )}
       </div>
       <style>{`
-        .r-inlib { position: absolute; bottom: 6px; left: 6px; font-size: 8.5px; letter-spacing: .08em; text-transform: uppercase;
-          background: var(--accent); color: #0c0a08; padding: 2px 5px; border-radius: 3px; }
         .r-alert { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
           background: var(--accent-bg); border: 0; color: var(--accent-ink); padding: 8px 12px; border-radius: 5px; cursor: pointer; white-space: nowrap; }
         @media (max-width: 860px){ .r-view > div[style*="340px"]{ grid-template-columns: 1fr !important; }
