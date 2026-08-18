@@ -328,6 +328,9 @@ a { color: inherit; }
 .cv-styles button[data-on="true"] i { color: var(--paper); opacity: .6; }
 .cv-styles-more, .cv-styles-clear { border-style: dashed !important; color: var(--ink-faint) !important; }
 .cv-styles-note { padding: 8px 34px 0; font: italic 400 12px/1.5 var(--serif); color: var(--ink-soft); }
+/* the medium row sits directly under styles and reuses its chip grammar — just tighten the gap
+   so the two facet rows read as one block rather than two unrelated controls. */
+.cv-media { padding-top: 6px; }
 @media (max-width: 620px) { .cv-styles { padding: 10px 16px 0; } .cv-styles-note { padding: 8px 16px 0; } }
 /* movements are hotlinks into the filtered wall — on the portrait bars and the artist header */
 .cv-p-barlink { cursor: pointer; }
