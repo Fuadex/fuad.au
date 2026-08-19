@@ -68,7 +68,7 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
         </div>
       </div>
       {hasFlow
-        ? <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={true} markYi={markYi} fixedH={FLOW_H} />
+        ? <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={true} markYi={markYi} fixedH={FLOW_H} faint />
         : <div style={{ padding: 18, minHeight: 224, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>not enough placed artists here for a flow.</div>}
       {hasFlow && <>
         {/* fixed-height legend well (scrolls if crowded) — fewer series can't shrink the

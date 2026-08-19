@@ -1576,20 +1576,59 @@ function ExploreView({ t, go, setPop, seed }) {
   // decades bar: release-year play volume from filter-index, keyed by decade → { plays, byYear{} }.
   // Sized/tinted by plays (mirrors the Overview weather-card decade strip). Themes+genre unaffect
   // it (it's the era axis); it reflects the whole played library's release spread. Built once.
+  // Artist-level gate for the decade bar (Fuad 2026-08-20: make it react to the active filters, as
+  // Overview's now does). Deliberately NOT sliceArtists/moodActive: sliceArtists only walks artists
+  // that have audio features (~3.9k of 6,000), which is the right population for the sound charts and
+  // the wrong one for a release-year histogram, and `pass` already carries the era window — gating on
+  // it would make the bar filter itself, collapsing to the single decade you just clicked.
+  // So: everything the page filters by EXCEPT its own era, and themes handled per-track below.
+  const decGateIds = React.useMemo(() => {
+    const anyFilter = hasYears || fam != null || subIdx >= 0 || cells.size > 0 || vocals !== "any" || picks.size > 0;
+    if (!anyFilter) return null;   // null = count everything, and skip the per-track Set lookup
+    const inYears = (yp) => { if (!yp) return false; for (const y of years) if (yp[y]) return true; return false; };
+    const out = new Set();
+    for (const a of R.EXPLORE) {
+      if (picks.size && !picks.has(a.id)) continue;
+      if (hasYears && !inYears(a.yp)) continue;
+      if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; } else if (!recInFam(R, a, fam)) continue;
+      if (cells.size && !tsPlays(R, a.id, cells)) continue;
+      if (vocals !== "any" && !vocalsPass(a.vx, vocals)) continue;
+      out.add(a.id);
+    }
+    return out;
+  }, [R, years, hasYears, fam, subIdx, cells, vocals, picks]);
+
   const decadeData = React.useMemo(() => {
     const F = window.ROTATION_FILTER; if (!F) return null;
     const dec = new Map();   // decadeStart → { plays, byYear: Map(year→plays) }
+    const gate = decGateIds;
+    const add = (y, plays) => { const d = Math.floor(y / 10) * 10; let e = dec.get(d); if (!e) dec.set(d, e = { plays: 0, byYear: new Map() }); e.plays += plays; e.byYear.set(y, (e.byYear.get(y) || 0) + plays); };
     // plays per track: filter-index has no plays, so fold in media-index track plays by key.
     const M = window.ROTATION_MEDIA;
     if (M) {
-      for (const row of M.tracks) { const v = F.t[R.slug(M.artists[row[1]] || "") + "~" + R.slug(row[0])]; if (!v || !v[1]) continue; const y = v[1], d = Math.floor(y / 10) * 10; let e = dec.get(d); if (!e) dec.set(d, e = { plays: 0, byYear: new Map() }); e.plays += row[2]; e.byYear.set(y, (e.byYear.get(y) || 0) + row[2]); }
+      for (const row of M.tracks) {
+        if (gate) { const meta = mediaArtMeta && mediaArtMeta[row[1]]; if (!meta || !gate.has(meta.aid)) continue; }
+        const v = F.t[R.slug(M.artists[row[1]] || "") + "~" + R.slug(row[0])]; if (!v || !v[1]) continue;
+        if (themeMask && (v[0] & themeMask) !== themeMask) continue;   // themes narrow the bar; the era window must not
+        add(v[1], row[2]);
+      }
     } else {
-      for (const key in F.t) { const y = F.t[key][1]; if (!y) continue; const d = Math.floor(y / 10) * 10; let e = dec.get(d); if (!e) dec.set(d, e = { plays: 0, byYear: new Map() }); e.plays += 1; e.byYear.set(y, (e.byYear.get(y) || 0) + 1); }
+      // no media-index yet: unweighted track counts, and no artist gate is derivable from keys alone
+      for (const key in F.t) { const v = F.t[key]; if (!v[1]) continue; if (themeMask && (v[0] & themeMask) !== themeMask) continue; add(v[1], 1); }
     }
     const decades = [...dec.entries()].map(([d, e]) => ({ decade: d, plays: e.plays, byYear: [...e.byYear.entries()].map(([year, plays]) => ({ year, plays })).sort((a, b) => a.year - b.year) })).sort((a, b) => a.decade - b.decade);
     const tot = decades.reduce((s, d) => s + d.plays, 0);
     return { decades, tot };
-  }, [filtReady, mediaReady, R]);
+  }, [filtReady, mediaReady, R, decGateIds, themeMask, mediaArtMeta]);
+
+  // A decade selected before the filter changed can vanish from the bar entirely. Drop it rather
+  // than leave an era chip pinning the page to a window with nothing in it.
+  React.useEffect(() => {
+    if (relDec == null || !decadeData) return;
+    const d = decadeData.decades.find(x => x.decade === relDec);
+    if (!d) { setRelDec(null); setRelYear(null); }
+    else if (relYear != null && !d.byYear.some(y => y.year === relYear)) setRelYear(null);
+  }, [decadeData, relDec, relYear]);
 
   const mediaItems = React.useMemo(() => {
     if (kind === "artists" || !mediaReady || !mediaArtMeta) return null;
