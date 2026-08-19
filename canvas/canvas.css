@@ -320,6 +320,9 @@ a { color: inherit; }
 
 /* ——— wall filters + cap ——— */
 .cv-filters { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 16px 34px 0; }
+/* hairline between the two filter axes — marks on the left, encounter status on the right, so the
+   row reads as two groups rather than six equal options (2026-08-20) */
+.cv-filt-div { width: 1px; align-self: stretch; min-height: 18px; background: var(--rule); margin: 0 4px; }
 .cv-filters button { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-faint); cursor: pointer; }
 .cv-filters button:hover { color: var(--ink); }
 .cv-filters button[data-on="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
