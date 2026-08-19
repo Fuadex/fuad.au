@@ -40,8 +40,13 @@ function _segs(pts) {
 // Opt-in rather than a change to the primitive: the same StreamGraph draws the artist-page flow and
 // the Journey, where the original contrast is the point.
 const SG_BANDS = {
-  solid: { on: 0.82, hi: 0.96, off: 0.15, strokeOn: 0.5, strokeOff: 0.12, L: 0.62, C: 0.17, sL: 0.72, sC: 0.16, w: 0.5, wHi: 1.4 },
-  faint: { on: 0.16, hi: 0.38, off: 0.07, strokeOn: 0.92, strokeOff: 0.3, L: 0.66, C: 0.20, sL: 0.76, sC: 0.23, w: 0.85, wHi: 1.6 },
+  solid: { on: 0.82, hi: 0.96, off: 0.15, L: 0.62, C: 0.17, sL: 0.72, sC: 0.16,
+           strokeOn: 0.5, strokeHi: 0.5, strokeOff: 0.12, w: 0.5, wHi: 1.4, sLHi: 0.72, sCHi: 0.16 },
+  // resting strokes sit halfway between the limp originals and the neon pass; the HOVERED band keeps
+  // the full-strength version, which is where Fuad wanted that energy (2026-08-20). Splitting the two
+  // is the point: at rest the flow should read quietly, and the thing under your cursor should not.
+  faint: { on: 0.16, hi: 0.38, off: 0.07, L: 0.66, C: 0.20, sL: 0.74, sC: 0.20,
+           strokeOn: 0.74, strokeHi: 0.95, strokeOff: 0.22, w: 0.65, wHi: 1.9, sLHi: 0.80, sCHi: 0.25 },
 };
 function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixedH, faint }) {
   const BO = faint ? SG_BANDS.faint : SG_BANDS.solid;
@@ -67,12 +72,16 @@ function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixe
     <svg viewBox={`0 0 ${L.W} ${L.H}`} style={{ width: "100%", height: "auto", display: "block" }} onMouseLeave={() => setHi(-1)}>
       {L.order.map(i => {
         const on = hi < 0 || hi === i, s = series[i];
+        const lit = hi === i;
         const fill = s.mute ? "oklch(0.5 0.02 270)" : `oklch(${BO.L} ${BO.C} ${s.hue})`;
-        const strk = s.mute ? "oklch(0.62 0.02 270)" : `oklch(${BO.sL} ${BO.sC} ${s.hue})`;
+        const strk = s.mute ? "oklch(0.62 0.02 270)"
+          : `oklch(${lit ? BO.sLHi : BO.sL} ${lit ? BO.sCHi : BO.sC} ${s.hue})`;
         return (
-          <path key={s.key} d={L.area(i)} fill={fill} fillOpacity={on ? (hi === i ? BO.hi : BO.on) : BO.off}
-            stroke={strk} strokeWidth={hi === i ? BO.wHi : BO.w} strokeOpacity={on ? BO.strokeOn : BO.strokeOff}
-            style={{ cursor: clickable ? "pointer" : "default", transition: "fill-opacity .15s" }}
+          <path key={s.key} d={L.area(i)} fill={fill} fillOpacity={on ? (lit ? BO.hi : BO.on) : BO.off}
+            stroke={strk} strokeWidth={lit ? BO.wHi : BO.w}
+            strokeOpacity={on ? (lit ? BO.strokeHi : BO.strokeOn) : BO.strokeOff}
+            style={{ cursor: clickable ? "pointer" : "default",
+              transition: "fill-opacity .15s, stroke-opacity .15s, stroke-width .15s ease-out, stroke .15s" }}
             onMouseEnter={() => setHi(i)} onClick={() => onPick && onPick(s, i)}>
             <title>{s.name} · peak {L.peak[i].year} ({Math.round(L.peak[i].share * 100)}%)</title>
           </path>
@@ -86,9 +95,13 @@ function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixe
         // solid fill behind the text. The shadow stays on for the same reason: it is what keeps the
         // label legible now that a band is mostly transparent.
         return (
+          // font-size lives in `style`, not as an SVG attribute, so it can actually be transitioned —
+          // a presentation attribute swap just snaps (Fuad 2026-08-20). Same curve as the band's own
+          // stroke so the label grows with the outline rather than a beat behind it.
           <text key={"t" + s.key} x={b.x} y={(b.yTop + b.yBot) / 2} textAnchor="middle" dominantBaseline="middle"
-            fontFamily="var(--sans)" fontWeight="600" fontSize={hi === i ? 13 : 10.5}
-            fill="rgba(255,255,255,.96)" style={{ pointerEvents: "none", textShadow: "0 1px 3px rgba(0,0,0,.6)" }}>
+            fontFamily="var(--sans)" fontWeight="600" fill="rgba(255,255,255,.96)"
+            style={{ pointerEvents: "none", textShadow: "0 1px 3px rgba(0,0,0,.6)",
+              fontSize: (hi === i ? 13 : 10.5) + "px", transition: "font-size .16s cubic-bezier(.22,.68,.36,1)" }}>
             {s.name.length > 18 ? s.name.slice(0, 16) + "…" : s.name}
           </text>
         );
