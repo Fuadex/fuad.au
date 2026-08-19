@@ -1631,7 +1631,19 @@ function ExploreView({ t, go, setPop, seed }) {
   // progressive rendering keeps mounting them cheap. af = [energy, valence, acoustic, tempo, dance, instr].
   const moodUniverse = React.useMemo(() => R.EXPLORE.filter(a => R.AUDIO[a.id])
     .map(a => { const af = R.AUDIO[a.id]; return { id: a.id, name: a.name, hue: a.hue, x: af[1], y: af[0], plays: a.plays }; }), [R]);
-  const moodActive = React.useMemo(() => new Set(sliceArtists(R, { years, fam, subIdx, cells, vocals, pass }, false).map(a => a.id)), [R, years, fam, subIdx, cells, vocals, pass]);
+  // `picks` (search-box selections) narrows this too — it is the set all three chart lenses read to
+  // decide what is in the active slice, so intersecting here covers attributes, texture and mood at
+  // once. Without it the search filtered the ranked list and left the charts untouched, which is
+  // half a filter (Fuad 2026-08-20). sliceArtists takes the page's own filter object and knows
+  // nothing about picks, so the intersection happens outside it rather than by threading a new key
+  // through every caller.
+  const moodActive = React.useMemo(() => {
+    const s = new Set(sliceArtists(R, { years, fam, subIdx, cells, vocals, pass }, false).map(a => a.id));
+    if (!picks.size) return s;
+    const n = new Set();
+    for (const id of picks) if (s.has(id)) n.add(id);
+    return n;
+  }, [R, years, fam, subIdx, cells, vocals, pass, picks]);
   const moodSet = React.useMemo(() => sliceArtists(R, { years, fam, subIdx, cells, moodZone, vocals, pass }, true), [R, years, fam, subIdx, cells, moodZone, vocals, pass]);
   // ── granularity data (built once from the universe; independent of the active slice) ──
   // subMood: each subgenre bubbled at its members' play-weighted mean valence × energy.
@@ -1742,7 +1754,7 @@ function ExploreView({ t, go, setPop, seed }) {
             </div>
             <div className="xp-chartwrap">
             {lens === "attributes"
-              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} filtersActive={hasYears || fam != null || sub != null || cells.size > 0 || vocals !== "any" || filtActive} xKey={attrX} yKey={attrY} setXKey={setAttrX} setYKey={setAttrY} />
+              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} filtersActive={hasYears || fam != null || sub != null || cells.size > 0 || vocals !== "any" || filtActive || picks.size > 0} xKey={attrX} yKey={attrY} setXKey={setAttrX} setYKey={setAttrY} />
               : lens === "texture"
               ? (grain === "subs"
                 ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
