@@ -33,7 +33,67 @@
 <div class="brand">fuad<b>.au</b></div>
 
 <main class="split">
-  <!-- CANVAS (left) -->
+  <!-- ROTATION (left) -->
+  <a class="pane pane--rotation" href="/rotation/">
+    <div class="content"><div class="shot">
+      <svg viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="rGlow" cx="32%" cy="16%" r="62%">
+            <stop offset="0" stop-color="#c65aa0" stop-opacity=".55"/>
+            <stop offset="1" stop-color="#0b0a0f" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="rBar" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0" stop-color="#4a2340"/><stop offset="1" stop-color="#e07cc0"/>
+          </linearGradient>
+        </defs>
+        <rect width="800" height="1000" fill="#0b0a0f"/>
+        <rect width="800" height="1000" fill="url(#rGlow)"/>
+        <!-- radar -->
+        <g transform="translate(575,235)" stroke="#e07cc0" fill="none" stroke-width="1.6">
+          <polygon points="0,-96 83,-48 83,48 0,96 -83,48 -83,-48" stroke-opacity=".45"/>
+          <polygon points="0,-58 50,-29 50,29 0,58 -50,29 -50,-29" stroke-opacity=".28"/>
+          <polygon points="0,-74 44,-8 58,44 -22,64 -64,12 -30,-48" fill="#e07cc0" fill-opacity=".2" stroke="#e07cc0" stroke-opacity=".7"/>
+        </g>
+        <!-- scattered map dots -->
+        <g fill="#e07cc0">
+          <circle cx="150" cy="150" r="7" opacity=".9"/><circle cx="250" cy="120" r="4" opacity=".6"/>
+          <circle cx="120" cy="260" r="5" opacity=".7"/><circle cx="330" cy="220" r="9" opacity=".85"/>
+          <circle cx="230" cy="300" r="4" opacity=".5"/><circle cx="410" cy="150" r="5" opacity=".6"/>
+          <circle cx="470" cy="330" r="6" opacity=".7"/><circle cx="180" cy="360" r="3" opacity=".5"/>
+          <circle cx="360" cy="360" r="4" opacity=".55"/><circle cx="90" cy="200" r="3" opacity=".45"/>
+        </g>
+        <!-- equalizer -->
+        <g>
+          <rect x="96"  y="620" width="34" height="220" rx="6" fill="url(#rBar)"/>
+          <rect x="146" y="700" width="34" height="140" rx="6" fill="url(#rBar)"/>
+          <rect x="196" y="560" width="34" height="280" rx="6" fill="url(#rBar)"/>
+          <rect x="246" y="680" width="34" height="160" rx="6" fill="url(#rBar)"/>
+          <rect x="296" y="500" width="34" height="340" rx="6" fill="url(#rBar)"/>
+          <rect x="346" y="660" width="34" height="180" rx="6" fill="url(#rBar)"/>
+          <rect x="396" y="600" width="34" height="240" rx="6" fill="url(#rBar)"/>
+          <rect x="446" y="720" width="34" height="120" rx="6" fill="url(#rBar)"/>
+          <rect x="496" y="580" width="34" height="260" rx="6" fill="url(#rBar)"/>
+        </g>
+        <!-- faint list -->
+        <g fill="#ffffff" fill-opacity=".06">
+          <rect x="96" y="890" width="360" height="12" rx="6"/>
+          <rect x="96" y="920" width="280" height="12" rx="6"/>
+          <rect x="96" y="950" width="330" height="12" rx="6"/>
+        </g>
+      </svg>
+    </div></div>
+    <div class="glass"></div>
+    <div class="label">
+      <div class="wm">Rotation<span class="dot">.</span></div>
+      <div class="reveal">
+        <p class="desc">Twenty years of listening, mapped — obsessions, comebacks, taste geography and the sound DNA underneath.</p>
+        <div class="meta"><span data-hs="rot">320,000+ scrobbles</span></div>
+        <span class="enter">Enter Rotation &rarr;</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- CANVAS (right) -->
   <a class="pane pane--canvas" href="/canvas/">
     <div class="content"><div class="shot">
       <svg viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -139,66 +199,6 @@
         <p class="desc">A personal canon — films, TV, games, animation and books, browsable as cover stacks and shelf spines.</p>
         <div class="meta"><span data-hs="cul">3,270+ works</span> · film · games · books</div>
         <span class="enter">Enter Culture &rarr;</span>
-      </div>
-    </div>
-  </a>
-
-  <!-- ROTATION (right) -->
-  <a class="pane pane--rotation" href="/rotation/">
-    <div class="content"><div class="shot">
-      <svg viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="rGlow" cx="32%" cy="16%" r="62%">
-            <stop offset="0" stop-color="#c65aa0" stop-opacity=".55"/>
-            <stop offset="1" stop-color="#0b0a0f" stop-opacity="0"/>
-          </radialGradient>
-          <linearGradient id="rBar" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0" stop-color="#4a2340"/><stop offset="1" stop-color="#e07cc0"/>
-          </linearGradient>
-        </defs>
-        <rect width="800" height="1000" fill="#0b0a0f"/>
-        <rect width="800" height="1000" fill="url(#rGlow)"/>
-        <!-- radar -->
-        <g transform="translate(575,235)" stroke="#e07cc0" fill="none" stroke-width="1.6">
-          <polygon points="0,-96 83,-48 83,48 0,96 -83,48 -83,-48" stroke-opacity=".45"/>
-          <polygon points="0,-58 50,-29 50,29 0,58 -50,29 -50,-29" stroke-opacity=".28"/>
-          <polygon points="0,-74 44,-8 58,44 -22,64 -64,12 -30,-48" fill="#e07cc0" fill-opacity=".2" stroke="#e07cc0" stroke-opacity=".7"/>
-        </g>
-        <!-- scattered map dots -->
-        <g fill="#e07cc0">
-          <circle cx="150" cy="150" r="7" opacity=".9"/><circle cx="250" cy="120" r="4" opacity=".6"/>
-          <circle cx="120" cy="260" r="5" opacity=".7"/><circle cx="330" cy="220" r="9" opacity=".85"/>
-          <circle cx="230" cy="300" r="4" opacity=".5"/><circle cx="410" cy="150" r="5" opacity=".6"/>
-          <circle cx="470" cy="330" r="6" opacity=".7"/><circle cx="180" cy="360" r="3" opacity=".5"/>
-          <circle cx="360" cy="360" r="4" opacity=".55"/><circle cx="90" cy="200" r="3" opacity=".45"/>
-        </g>
-        <!-- equalizer -->
-        <g>
-          <rect x="96"  y="620" width="34" height="220" rx="6" fill="url(#rBar)"/>
-          <rect x="146" y="700" width="34" height="140" rx="6" fill="url(#rBar)"/>
-          <rect x="196" y="560" width="34" height="280" rx="6" fill="url(#rBar)"/>
-          <rect x="246" y="680" width="34" height="160" rx="6" fill="url(#rBar)"/>
-          <rect x="296" y="500" width="34" height="340" rx="6" fill="url(#rBar)"/>
-          <rect x="346" y="660" width="34" height="180" rx="6" fill="url(#rBar)"/>
-          <rect x="396" y="600" width="34" height="240" rx="6" fill="url(#rBar)"/>
-          <rect x="446" y="720" width="34" height="120" rx="6" fill="url(#rBar)"/>
-          <rect x="496" y="580" width="34" height="260" rx="6" fill="url(#rBar)"/>
-        </g>
-        <!-- faint list -->
-        <g fill="#ffffff" fill-opacity=".06">
-          <rect x="96" y="890" width="360" height="12" rx="6"/>
-          <rect x="96" y="920" width="280" height="12" rx="6"/>
-          <rect x="96" y="950" width="330" height="12" rx="6"/>
-        </g>
-      </svg>
-    </div></div>
-    <div class="glass"></div>
-    <div class="label">
-      <div class="wm">Rotation<span class="dot">.</span></div>
-      <div class="reveal">
-        <p class="desc">Twenty years of listening, mapped — obsessions, comebacks, taste geography and the sound DNA underneath.</p>
-        <div class="meta"><span data-hs="rot">320,000+ scrobbles</span></div>
-        <span class="enter">Enter Rotation &rarr;</span>
       </div>
     </div>
   </a>
