@@ -796,7 +796,7 @@ class Boundary extends React.Component {
   }
 }
 
-Object.assign(window, { cssRotation, fmt, fmtK, hashInt, MON, fmtDate, loadScript, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE, Boundary });
+Object.assign(window, { cssRotation, fmt, fmtK, hashInt, MON, fmtDate, FAM_SHORT, famShort, loadScript, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE, Boundary });
 
 // ─────────────────────────────────────────────────────────────────
 //  Singles→LP "absorb" resolver. album-absorb.js (window.ROTATION_ALBUM_ABSORB) maps a single's
