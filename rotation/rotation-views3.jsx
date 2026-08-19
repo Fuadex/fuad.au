@@ -3118,8 +3118,8 @@ function GigsView({ go }) {
         .gv-h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 4.4vw, 58px);
           line-height: 1.02; letter-spacing: -.025em; margin: 0; }
         .gv-h1 em { font-style: italic; }
-        /* the accent full stop is styled as `.r-title .dot` in core, so it needs restating here —
-           .gv-h1 is Gigs' own class and inherits none of that */
+        /* the accent full stop is styled as .r-title .dot in core, so it needs restating here —
+           .gv-h1 is Gigs' own class and inherits none of that. No backticks in this block. */
         .gv-h1 .dot { color: var(--accent); }
         .gv-lead { color: var(--ink-soft); font-size: 15px; line-height: 1.6; margin: 14px 0 0; max-width: 620px; }
         .gv-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 24px; max-width: 560px; }
