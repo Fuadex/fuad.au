@@ -334,6 +334,25 @@ const palDistTo = (w, target) => {
   }
   return best;
 };
+// ERA CHIPS (Fuad 2026-08-20, replacing Timeline mode). Sized off the real distribution rather
+// than round numbers: the median work is from 1888 and the middle half sits 1865-1906, so a
+// century split would have produced one enormous 1800s bucket doing no work. These seven keep
+// every band between roughly 150 and 380 works, with the thin pre-1800 tail merged into one.
+const ERAS = [
+  ["pre1800", "before 1800", -9999, 1799],
+  ["e1800", "1800–49", 1800, 1849],
+  ["e1850", "1850–74", 1850, 1874],
+  ["e1875", "1875–89", 1875, 1889],
+  ["e1890", "1890s", 1890, 1899],
+  ["e1900", "1900–19", 1900, 1919],
+  ["e1920", "1920 on", 1920, 9999],
+  ["undated", "undated", null, null],
+];
+const eraPass = (w, k) => {
+  const e = ERAS.find(x => x[0] === k); if (!e) return true;
+  if (k === "undated") return !w.year;
+  return !!w.year && w.year >= e[2] && w.year <= e[3];
+};
 const centuryOf = (w) => w.year ? Math.floor(w.year / 100) * 100 : null;
 
 // ——— MOVEMENTS ———————————————————————————————————————————————————————————————
@@ -378,7 +397,7 @@ const movIndex = () => {
 // how many style chips sit on the row before the rest fold into "+N more"
 const STYLE_CHIPS = 12;
 
-function Wall({ go, mode = "collage", styleIds }) {
+function Wall({ go, styleIds }) {
   const all = useMemo(() => WORKS.map(enrich), []);
   const [marks, setMarks] = useState(() => new Set());     // ★ floored / ♥ loved — OR within
   const [status, setStatus] = useState(() => new Set());    // seen / unsure / pilgrimage — OR within
@@ -390,7 +409,9 @@ function Wall({ go, mode = "collage", styleIds }) {
   const [extra, setExtra] = useState(0);
   const [allStyles, setAllStyles] = useState(false);   // "+N more" disclosure
   const [media, setMedia] = useState([]);              // selected medium buckets, OR'd like styles
-  const [pick, setPick] = useState("");                // spectrum target colour ("" = hue ramp)
+  const [pick, setPick] = useState("");                // colour-sort target ("" = hue ramp)
+  const [eras, setEras] = useState(() => new Set());   // era chips — OR within, AND with the rest
+  const toggleEra = (k) => setEras(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; });
   // The full style list — order and slugs are stable so a URL like #/wall/impressionism keeps
   // working whatever is filtered. Only the NUMBERS react; see `movCounts` below.
   const movs = useMemo(movIndex, []);
@@ -403,7 +424,7 @@ function Wall({ go, mode = "collage", styleIds }) {
   }, [styleIds, movs]);
   const setSel = (labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null);
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [marks, status, mus, sort, mode, styleIds, media, pick]);
+  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, pick]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -413,9 +434,11 @@ function Wall({ go, mode = "collage", styleIds }) {
     let list = all;
     if (marks.size) list = list.filter(w => [...marks].some(k => markPass(w, k)));
     if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
+    if (eras.size) list = list.filter(w => [...eras].some(k => eraPass(w, k)));
+    if (eras.size) list = list.filter(w => [...eras].some(k => eraPass(w, k)));
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
     return list;
-  }, [all, marks, status, mus]);
+  }, [all, marks, status, eras, mus]);
 
   // Live facet counts. Both rows count against `base` — every filter EXCEPT their own — and each
   // also honours the other, so with Sculpture on, the style numbers are sculpture-only. A chip that
@@ -432,6 +455,20 @@ function Wall({ go, mode = "collage", styleIds }) {
     for (const w of list) { const m = mediumOf(w); if (m && m[0]) c[m[0]] = (c[m[0]] || 0) + 1; }
     return c;
   }, [base, sel]);
+  // era counts follow every other filter but not the era selection itself — same facet rule as
+  // the style and medium rows
+  const eraCounts = useMemo(() => {
+    let list = all;
+    if (marks.size) list = list.filter(w => [...marks].some(k => markPass(w, k)));
+    if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
+    if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
+    if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
+    if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
+    const c = {};
+    for (const [k] of ERAS) c[k] = 0;
+    for (const w of list) for (const [k] of ERAS) if (eraPass(w, k)) c[k]++;
+    return c;
+  }, [all, marks, status, mus, sel, media]);
   // all-time counts, used only to decide which medium chips exist at all
   const mediaAll = useMemo(() => {
     const c = {};
@@ -453,23 +490,23 @@ function Wall({ go, mode = "collage", styleIds }) {
     // and quietly sweeping it into "paintings" is the guess this pipeline refuses to make.
     if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
     const arr = [...list];
-    if (mode === "spectrum") {
+    // ONE WALL, sorted (Fuad 2026-08-20). Spectrum, Timeline and Movements were three separate
+    // "modes" that only ever differed by sort order, so they are sort options and chips now: colour
+    // joins the dropdown, time became the era chips, and movement was always better served by the
+    // style chips, which filter rather than merely reorder.
+    if (sort === "hang") arr.sort((a, b) => (b.imgGrid ? 1 : 0) - (a.imgGrid ? 1 : 0) || weight(a) - weight(b));
+    else if (sort === "year") arr.sort((a, b) => (a.year || 9999) - (b.year || 9999));
+    else if (sort === "artist") arr.sort((a, b) => a.artist.localeCompare(b.artist) || (a.year || 0) - (b.year || 0));
+    else if (sort === "museum") arr.sort((a, b) => String(a.seenAt).localeCompare(String(b.seenAt)) || weight(a) - weight(b));
+    else if (sort === "colour") {
       const target = pick ? rgbOf(pick) : null;
       if (target) arr.sort((a, b) => palDistTo(a, target) - palDistTo(b, target) || weight(a) - weight(b));
       else arr.sort((a, b) => palHueOf(a) - palHueOf(b) || weight(a) - weight(b));
     }
-    else if (mode === "timeline") arr.sort((a, b) => (a.year || 9999) - (b.year || 9999) || weight(a) - weight(b));
-    else if (mode === "movements") arr.sort((a, b) => { const ma = movOf(a), mb = movOf(b); return (ma ? 0 : 1) - (mb ? 0 : 1) || String(ma).localeCompare(String(mb)) || (a.year || 0) - (b.year || 0); });
-    else { // collage — respect the sort dropdown
-      if (sort === "hang") arr.sort((a, b) => (b.imgGrid ? 1 : 0) - (a.imgGrid ? 1 : 0) || weight(a) - weight(b));
-      if (sort === "year") arr.sort((a, b) => (a.year || 9999) - (b.year || 9999));
-      if (sort === "artist") arr.sort((a, b) => a.artist.localeCompare(b.artist) || (a.year || 0) - (b.year || 0));
-      if (sort === "museum") arr.sort((a, b) => String(a.seenAt).localeCompare(String(b.seenAt)) || weight(a) - weight(b));
-    }
     return arr;
     // `media` belongs in here: the filter above reads it, and without it the wall kept showing the
     // previous medium's results until some other filter happened to change (found 2026-08-20).
-  }, [all, marks, status, mus, sort, mode, sel, media, pick]);
+  }, [all, marks, status, eras, mus, sort, sel, media, pick]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
@@ -477,20 +514,7 @@ function Wall({ go, mode = "collage", styleIds }) {
     return MUSEUMS.filter(m => counts[m.id]).map(m => ({ id: m.id, label: m.name.replace(/\s*\(.*\)$/, "") + " (" + counts[m.id] + ")" }));
   }, [all]);
 
-  // grouped modes (timeline/movements) break the visible slice into labelled sections; collage
-  // and spectrum are one continuous masonry.
   const vis = shown.slice(0, visN);
-  const grouped = (mode === "timeline" || mode === "movements") && vis.length > 0;
-  const sections = useMemo(() => {
-    if (!grouped) return null;
-    const keyOf = mode === "timeline" ? centuryOf : movOf;
-    const labelOf = mode === "timeline"
-      ? (k) => k == null ? "Undated" : k + "s"
-      : (k) => k || "Other movements";
-    const out = []; let cur = null;
-    for (const w of vis) { const k = keyOf(w); if (!cur || cur.k !== k) { cur = { k: k == null ? "∅" : k, label: labelOf(k), items: [] }; out.push(cur); } cur.items.push(w); }
-    return out;
-  }, [vis, mode, grouped]);
 
   return (
     <React.Fragment>
@@ -509,17 +533,16 @@ function Wall({ go, mode = "collage", styleIds }) {
           <option value="">every museum</option>
           {musOpts.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
         </select>
-        {mode === "collage" && (
-          <select value={sort} onChange={e => setSort(e.target.value)}>
-            <option value="hang">hang order</option>
-            <option value="year">by year</option>
-            <option value="artist">by artist</option>
-            <option value="museum">by museum</option>
-          </select>
-        )}
-        {/* SPECTRUM TARGET — only meaningful in spectrum mode, so it only shows there. "hue ramp" is
-            the original behaviour; picking a swatch re-sorts the wall by nearness to that colour. */}
-        {mode === "spectrum" && (
+        <select value={sort} onChange={e => setSort(e.target.value)}>
+          <option value="hang">hang order</option>
+          <option value="year">by year</option>
+          <option value="artist">by artist</option>
+          <option value="museum">by museum</option>
+          <option value="colour">by colour</option>
+        </select>
+        {/* the colour target only exists while sorting by colour — choosing any other sort is how
+            you turn it off, so there is no separate disable to find */}
+        {sort === "colour" && (
           <React.Fragment>
             <span className="cv-filt-div" aria-hidden="true" />
             <span className="cv-pick-lbl">sort toward</span>
@@ -536,6 +559,19 @@ function Wall({ go, mode = "collage", styleIds }) {
           </React.Fragment>
         )}
         <span className="cv-count">{Math.min(visN, shown.length)} of {shown.length}</span>
+      </div>
+      {/* ERA — replaces the old Timeline mode. Buckets are sized off the collection's real shape
+          rather than round centuries; see ERAS. Multi-select and OR'd, like every other chip row. */}
+      <div className="cv-styles cv-eras">
+        <span className="cv-styles-lbl" title="when the work was made">era</span>
+        {ERAS.map(([k, label]) => {
+          const n = eraCounts[k] || 0;
+          return (
+            <button key={k} data-on={eras.has(k)} data-empty={n === 0 && !eras.has(k)}
+              onClick={() => toggleEra(k)}>{label}<i>{n}</i></button>
+          );
+        })}
+        {eras.size > 0 && <button className="cv-styles-clear" onClick={() => setEras(new Set())}>✕ clear</button>}
       </div>
       {/* STYLES — multi-select, OR'd. Movement is the artist's (Wikidata P135), so the note says
           so rather than pretending each canvas carries the tag. */}
@@ -585,14 +621,7 @@ function Wall({ go, mode = "collage", styleIds }) {
           {shown.length} {shown.length === 1 ? "work" : "works"} by artists working in {sel.join(" or ")}
         </div>
       )}
-      {grouped
-        ? sections.map(g => (
-          <section className="cv-section" key={g.k}>
-            <h3 className="cv-section-h">{g.label}<span className="cv-section-n">{g.items.length}</span></h3>
-            <div className="cv-wall">{g.items.map(w => <Card key={w.id} w={w} go={go} />)}</div>
-          </section>
-        ))
-        : <div className="cv-wall">{vis.map(w => <Card key={w.id} w={w} go={go} />)}</div>}
+      <div className="cv-wall">{vis.map(w => <Card key={w.id} w={w} go={go} />)}</div>
       {shown.length > visN && (
         <div className="cv-more"><button onClick={() => setExtra(e => e + CAP)}>hang {Math.min(CAP, shown.length - visN)} more</button></div>
       )}
@@ -3592,7 +3621,6 @@ function SearchBar({ go }) {
 
 function App() {
   const route = useRoute();
-  const [mode, setMode] = useState("collage");   // wall arrangement: collage | spectrum | timeline | movements
   const go = (view, id) => { location.hash = id ? "/" + view + "/" + id : view === "home" ? "/" : "/" + view; };
   // useRoute parses "#/" as view="wall"; we treat "wall" with no id AND hash="#/" as home.
   // "#/wall" is the explicit full wall. Reader (#/work/<id>) overlays whatever is beneath.
@@ -3625,12 +3653,6 @@ function App() {
           <a href="#/deck/by-artists" data-on={bg.view === "deck" && bg.id === "by-artists"}>By Your Artists</a>
           <a href="#/map" data-on={bgView === "map" || bgView === "pilgrimage"}>Map</a>
         </nav>
-        {bgView === "wall" && (
-          <div className="cv-mode">
-            {[["collage", "Collage"], ["spectrum", "Spectrum"], ["timeline", "Timeline"], ["movements", "Movements"]].map(([m, lbl]) =>
-              <button key={m} data-on={mode === m} onClick={() => setMode(m)}>{lbl}</button>)}
-          </div>
-        )}
         <SearchBar go={go} />
       </header>
       {/* driven by `bg`, not `route`, so an open reader leaves the page beneath it intact */}
@@ -3641,7 +3663,7 @@ function App() {
         : (bgView === "map" || bgView === "pilgrimage") ? <MapView go={go} />
         : bg.view === "artist" ? <ArtistView artistId={bg.id} go={go} key={bg.id} />
         : bgView === "artists" ? <Artists go={go} />
-        : bgView === "wall" ? <Wall go={go} mode={mode} styleIds={bg.id} />
+        : bgView === "wall" ? <Wall go={go} styleIds={bg.id} />
         : <HomeView go={go} />}
       {route.view === "work" && <Reader id={route.id} go={go} />}
       {route.view === "study" && <StudyView id={route.id} go={go} key={route.id} />}
