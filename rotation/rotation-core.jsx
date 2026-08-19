@@ -387,6 +387,12 @@ a.r-link:hover { color: var(--ink); }
    So: no transform anywhere. A ring in the accent colour plus a touch of brightness on the art,
    and the label warms to full ink. Global here rather than per-view so the three surfaces cannot
    drift apart. */
+/* Grids of hover tiles need room for the ring to render into. The affordance is a 2px box-shadow
+   drawn OUTSIDE the tile's box, so the top row and the left column had nothing to spill into and
+   the ring came out clipped or crowded against whatever contains the grid (Fuad 2026-08-20, on the
+   artist page's albums and sounds-like). 3px is the 2px ring plus a hair. Only top and left: the
+   other two edges already have the card's own padding to breathe into. */
+.r-hovgrid { padding-top: 3px; padding-left: 3px; }
 .r-hovtile { cursor: pointer; }
 .r-hovtile .r-hovtile-art { border-radius: 4px; transition: box-shadow .18s ease, filter .18s ease; }
 .r-hovtile:hover .r-hovtile-art { box-shadow: 0 0 0 2px var(--accent-dim); filter: brightness(1.07); }
