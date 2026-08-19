@@ -124,7 +124,9 @@ const PROVIDERS = [
       id: "on-repeat", category: "on-repeat", score: 0.78, label: "On repeat", meta: "this week",
       render: (
         <div style={{ display: "grid", gap: 6 }}>
-          {tt.slice(0, 3).map((t, i) => (
+          {/* two rows, not three (Fuad 2026-08-20): the third made this the tallest card on its
+              row, and in a grid the tallest card sets the height for every card beside it. */}
+          {tt.slice(0, 2).map((t, i) => (
             <div key={t.name + t.artist} onClick={(e) => { e.stopPropagation(); ctx.go("track", R.slug(t.artist) + "~" + R.slug(t.name)); }}
               style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}>
               <GenCover hue={_hue(t.artist)} name={t.artist} size={i === 0 ? 30 : 22} radius={2} />
