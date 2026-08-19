@@ -394,7 +394,11 @@ a { color: inherit; }
 /* fact chips — same grammar as .cv-mus-chip so the two headers read as one family */
 /* the artist read — serif body under the chips, held to a comfortable measure so it does
    not run the full width of a wide header */
-.cv-a-read { font: 400 13.5px/1.55 var(--serif); color: var(--ink-soft); margin: 11px 0 0; max-width: 66ch; }
+/* no measure cap (Fuad 2026-08-20: the read stopped around halfway across the header). 66ch was
+   set when the header ran the full page width, where an uncapped line would have been unreadable —
+   the header is capped at 1200px now, so the column is already a sane measure and the cap only
+   wasted the right half. The text column still stops short of the portrait via the flex gap. */
+.cv-a-read { font: 400 14px/1.6 var(--serif); color: var(--ink-soft); margin: 11px 0 0; }
 .cv-a-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px; }
 .cv-a-chip { font: 500 10px/1 var(--mono); letter-spacing: .05em; color: var(--ink-soft); background: rgba(58,47,34,.05); border: 1px solid var(--rule); border-radius: 999px; padding: 6px 11px; }
 .cv-a-chip-mov { cursor: pointer; color: var(--accent); font-family: var(--serif); font-style: italic; font-size: 11.5px; letter-spacing: 0; }

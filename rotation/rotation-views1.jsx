@@ -878,9 +878,6 @@ function OverviewView({ t, go, restReady, seed }) {
           /* the slot takes Story's old eight columns; Decades keeps 9-12 beside it */
           .ov-pulseslot { grid-column: 1 / span 8 !important; }
           .ov-recent .ov-rl { max-height: none; overflow: visible; align-content: start; }
-          .ov-scrob .r-stat-n { font-size: clamp(18px, 1.7vw, 22px) !important; }
-          .ov-streak .r-stat-n, .ov-week .r-stat-n { font-size: 21px !important; }
-          .ov-week .spark, .ov-scrob .spark { max-height: 20px; }
           /* The 92px cap belonged to the OLD pulse row, where these shared a band with nothing
              taller and the cap kept it lean. They sit beside Decades now (Fuad 2026-08-20), and the
              cap was the only thing stopping them reaching that row's height — leaving their headers
@@ -889,6 +886,17 @@ function OverviewView({ t, go, restReady, seed }) {
              .ov-np keeps the cap: it is commented out of the tree, and if it comes back it returns
              to a row it has to fit. */
           .ov-pulseslot > .r-card { height: 100%; overflow: hidden; }
+          /* space-between was spending the new height on GAPS — header at the top, number stranded
+             in the middle, spark pinned to the floor (Fuad 2026-08-20: "more space didn't make it
+             look better"). Header stays put; everything after it centres as one block, so the
+             recovered height becomes even air above and below rather than two holes. The auto
+             margins do that without a wrapper element in each card. */
+          .ov-pulseslot > .r-card > .r-card-h + * { margin-top: auto; }
+          .ov-pulseslot > .r-card > *:last-child { margin-bottom: auto; }
+          /* and the objects grow into the room instead of floating in it */
+          .ov-scrob .r-stat-n { font-size: clamp(21px, 2vw, 28px) !important; }
+          .ov-streak .r-stat-n, .ov-week .r-stat-n { font-size: 27px !important; }
+          .ov-week .spark, .ov-scrob .spark { max-height: 30px; }
           .ov-np { max-height: 92px; overflow: hidden; }
           .ov-recent .ov-rl { overflow-y: auto; }
           .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(5, 1fr) !important; gap: 10px !important; }
