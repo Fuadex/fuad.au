@@ -98,6 +98,41 @@ function LazyImg({ src, alt, className, title, loading, style }) {
     src={show ? src : undefined} loading={loading || "lazy"} decoding="async" />;
 }
 
+// ——— HighlightPeek — a look at a museum highlight the canon does NOT hold.
+// Those thumbnails were links straight out to Wikidata, which is a fine place to READ about a work
+// and a poor one to LOOK at it — leaving the site to see a picture already on screen is a strange
+// trade (Fuad 2026-08-19: "I still can't click to see them"). Highlights the canon DOES hold open
+// the real Reader; this is only for the rest, so it stays small: the image at a usable size, what
+// little we know, and the Wikidata link still offered rather than forced.
+function HighlightPeek({ item, onClose }) {
+  useEffect(() => {
+    if (!item) return;
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";     // the page behind must not scroll under the overlay
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+  }, [item, onClose]);
+  if (!item) return null;
+  const big = (item.img || "").replace(/width=\d+/, "width=1400");
+  return (
+    <div className="cv-peek" onClick={onClose} role="dialog" aria-modal="true" aria-label={item.title}>
+      <div className="cv-peek-inner" onClick={e => e.stopPropagation()}>
+        <button className="cv-peek-x" onClick={onClose} aria-label="Close">✕</button>
+        {item.img && <img src={big} alt={item.title} />}
+        <div className="cv-peek-cap">
+          <div className="cv-peek-title">{item.title}</div>
+          <div className="cv-peek-sub">
+            {[item.artist, item.year].filter(Boolean).join(" · ")}
+            {item.qid && <> · <a href={`https://www.wikidata.org/wiki/${item.qid}`} target="_blank" rel="noopener noreferrer">Wikidata ↗</a></>}
+          </div>
+          <div className="cv-peek-note">A highlight of the collection you haven't met.</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ——— RevealChunks — reveal-based lazy RENDERING for long lists (Fuad 2026-07-25). Renders the first
 // `initial` items immediately, then reveals `step` more each time a sentinel near the list's end scrolls
 // into view. Keeps the initial DOM small on museum/artist/index pages (long walls used to mount every
@@ -1364,6 +1399,8 @@ function MuseumView({ museumId, go }) {
   const INSPECT = window.CANVAS_INSPECT || {};
   const [tier, setTier] = useState("about");
   const [queuedQids, setQueuedQids] = useState(() => new Set(readDeckQueue().map(w => w.qid)));
+  // the highlight currently being looked at in place (non-canon works only)
+  const [peek, setPeek] = useState(null);
   const queueMajor = (n) => { addToDeckQueue(n); setQueuedQids(prev => new Set(prev).add(n.qid)); };
 
   // every canon work whose seenAt includes this museum, enriched. Split permanent vs on-loan.
@@ -1646,7 +1683,7 @@ function MuseumView({ museumId, go }) {
                           <LazyImg src={n.img} alt={n.title} />
                           <span>{n.title}{n.artist ? ` · ${n.artist}` : ""}{n.year ? ` · ${n.year}` : ""}</span>
                         </a>
-                      : <a href={n.qid ? `https://www.wikidata.org/wiki/${n.qid}` : undefined} target="_blank" rel="noopener noreferrer" title={n.title}>
+                      : <a href="#" onClick={e => { e.preventDefault(); setPeek(n); }} title={`${n.title} — look closer`}>
                           <LazyImg src={n.img} alt={n.title} />
                           <span>{n.title}{n.artist ? ` · ${n.artist}` : ""}{n.year ? ` · ${n.year}` : ""}</span>
                         </a>}
@@ -1685,6 +1722,7 @@ function MuseumView({ museumId, go }) {
           <div className="cv-mus-palette">{palette.map((c, i) => <i key={i} style={{ background: c }} title={c} />)}</div>
         </React.Fragment>
       )}
+      <HighlightPeek item={peek} onClose={() => setPeek(null)} />
     </div>
   );
 }
@@ -1883,6 +1921,8 @@ function ArtistView({ artistId, go }) {
   // renders as "queued" immediately; adding one updates the set for instant feedback. Declared
   // before the early return below to keep the hook order stable (rules of hooks).
   const [queuedQids, setQueuedQids] = useState(() => new Set(readDeckQueue().map(w => w.qid)));
+  // the highlight currently being looked at in place (non-canon works only)
+  const [peek, setPeek] = useState(null);
   const queueMajor = (n) => { addToDeckQueue(n); setQueuedQids(prev => new Set(prev).add(n.qid)); };
   if (!works.length && !AD2.qid) return <div className="cv-mus"><p>No artist here (yet).</p></div>;
   const name = (works[0] && works[0].artist.replace(/\s*\(.*\)$/, "")) || AD2.label;
@@ -1948,10 +1988,17 @@ function ArtistView({ artistId, go }) {
                 const q = queuedQids.has(n.qid);
                 return (
                   <div className="cv-a-unmet-item" key={n.qid}>
-                    <a href={`https://www.wikidata.org/wiki/${n.qid}`} target="_blank" rel="noopener noreferrer" title={n.title}>
-                      <LazyImg src={n.img} alt={n.title} />
-                      <span>{n.title}{n.year ? ` · ${n.year}` : ""}</span>
-                    </a>
+                    {/* same rule as the museum page: open ours in the Reader, peek at the rest
+                        in place rather than shipping the visitor off to Wikidata */}
+                    {WORK_BY_QID[n.qid]
+                      ? <a href={`#/work/${WORK_BY_QID[n.qid].id}`} title={n.title}>
+                          <LazyImg src={n.img} alt={n.title} />
+                          <span>{n.title}{n.year ? ` · ${n.year}` : ""}</span>
+                        </a>
+                      : <a href="#" onClick={e => { e.preventDefault(); setPeek(n); }} title={`${n.title} — look closer`}>
+                          <LazyImg src={n.img} alt={n.title} />
+                          <span>{n.title}{n.year ? ` · ${n.year}` : ""}</span>
+                        </a>}
                     <button type="button" className="cv-a-unmet-add" data-q={q} disabled={q}
                       title={q ? "queued for the By Your Artists deck" : "add to the By Your Artists deck"}
                       onClick={() => queueMajor(n)}>{q ? "queued ✓" : "+ deck"}</button>
@@ -1978,6 +2025,7 @@ function ArtistView({ artistId, go }) {
       {AD2.qid && <div className="cv-r-links" style={{ padding: "18px 0 0" }}>
         <a href={`https://www.wikidata.org/wiki/${AD2.qid}`} target="_blank" rel="noopener noreferrer">Wikidata ↗</a>
       </div>}
+      <HighlightPeek item={peek} onClose={() => setPeek(null)} />
     </div>
   );
 }
