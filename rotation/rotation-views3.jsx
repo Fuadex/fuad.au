@@ -2654,13 +2654,16 @@ function TourSection({ go, gigDate }) {
                 <div className="gv-tour-a" data-link={known} onClick={() => known && go("artist", a.id)}>
                   <GenCover hue={a.hue} name={a.name} size={40} radius={4} />
                   <div style={{ minWidth: 0 }}>
-                    <div className="gv-tile-name">{a.name}</div>
+                    {/* the microphone rides with the NAME (Fuad 2026-08-19), not down in the
+                        stats line — "have I seen them" is a fact about the artist, and next to
+                        the name it can be read straight down the column instead of hunting for
+                        it mid-sentence. The count stays in the tooltip; the glyph says the rest. */}
+                    <div className={"gv-tile-name" + (a.seen ? " has-mic" : "")}>
+                      <span className="gv-tile-nametext">{a.name}</span>
+                      {a.seen ? <span className="gv-seen-mic" title={a.seen === 1 ? "seen live once" : `seen live ${a.seen} times`}>🎤</span> : null}
+                    </div>
                     <div className="gv-tile-sub">
                       {a.plays > 0 ? `${fmt(a.plays)} plays` : "on your radar"}
-                      {/* the microphone alone says you have been (Fuad 2026-08-19) — "seen ×2" was
-                          restating the glyph in words. The count survives in the tooltip for the
-                          rare case where the number is the interesting part. */}
-                      {a.seen ? <span title={a.seen === 1 ? "seen live once" : `seen live ${a.seen} times`}> · 🎤</span> : null}
                     </div>
                   </div>
                   {a.react ? <span className="gv-react" title="listed as disbanded on MusicBrainz/Wikidata — yet here they are with fresh dates">reactivated</span> : null}
@@ -3107,6 +3110,13 @@ function GigsView({ go }) {
         .gv-tile[data-link="true"] { cursor: pointer; }
         .gv-tile[data-link="true"]:hover { border-color: var(--rule-2); }
         .gv-tile-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* Only the row carrying a mic becomes a flex row. Three other views use .gv-tile-name with
+           bare text and rely on the truncation above, so the flex treatment is opt-in rather than
+           applied to the class: with ellipsis on the container the glyph sits inside the clipped
+           region and disappears on long names — exactly the rows worth marking. */
+        .gv-tile-name.has-mic { display: flex; align-items: baseline; gap: 6px; min-width: 0; overflow: visible; }
+        .gv-tile-name.has-mic .gv-tile-nametext { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+        .gv-seen-mic { font-size: 11px; flex: none; opacity: .9; cursor: default; }
         .gv-tile-sub { font-size: 11.5px; color: var(--ink-faint); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .gv-cities { display: grid; gap: 8px; max-width: 560px; }
         .gv-city { display: grid; grid-template-columns: 150px 1fr 34px; gap: 12px; align-items: center; }
