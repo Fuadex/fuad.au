@@ -678,7 +678,7 @@ function OverviewView({ t, go, restReady, seed }) {
             card to grid-row 1, so moving them in the DOM alone would have snapped them back up. */}
         <div className="ov-pulseslot">
         {/* scrobble counter + trend — left anchor of the pulse row */}
-        <div className="r-card ov-scrob" style={{ padding: "8px 12px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        <div className="r-card ov-scrob" style={{ padding: 12, display: "flex", flexDirection: "column" }}>
           <div className="r-card-h" style={{ padding: 0 }}>
             <span className="lbl"><b>Scrobbles</b></span>
             <span className="meta">26-wk</span>
@@ -690,7 +690,7 @@ function OverviewView({ t, go, restReady, seed }) {
         </div>
 
         {/* streak — current run + when the all-time best happened (INSIGHTS.STREAK carries the range) */}
-        <div className="r-card ov-streak" style={{ padding: "8px 12px", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div className="r-card ov-streak" style={{ padding: 12, display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Streak</b></span>
             {T.streak.current >= T.streak.best ? <span className="meta" style={{ color: "var(--accent)" }}>record!</span> : null}</div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 0 }}>
@@ -723,7 +723,7 @@ function OverviewView({ t, go, restReady, seed }) {
           const delta = w.weekAvg ? Math.round((w.plays7 - w.weekAvg) / w.weekAvg * 100) : 0, up = delta >= 0;
           const ta = w.topArtists && w.topArtists[0];
           return (
-            <div className="r-card ov-week" style={{ padding: "8px 12px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <div className="r-card ov-week" style={{ padding: 12, display: "flex", flexDirection: "column" }}>
               <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>This week</b></span>
                 <span className="meta" style={{ color: up ? "var(--accent)" : "var(--ink-faint)" }}>{up ? "▲" : "▼"} {Math.abs(delta)}%</span></div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 0 }}>
@@ -886,13 +886,13 @@ function OverviewView({ t, go, restReady, seed }) {
              .ov-np keeps the cap: it is commented out of the tree, and if it comes back it returns
              to a row it has to fit. */
           .ov-pulseslot > .r-card { height: 100%; overflow: hidden; }
-          /* space-between was spending the new height on GAPS — header at the top, number stranded
-             in the middle, spark pinned to the floor (Fuad 2026-08-20: "more space didn't make it
-             look better"). Header stays put; everything after it centres as one block, so the
-             recovered height becomes even air above and below rather than two holes. The auto
-             margins do that without a wrapper element in each card. */
-          .ov-pulseslot > .r-card > .r-card-h + * { margin-top: auto; }
-          .ov-pulseslot > .r-card > *:last-child { margin-bottom: auto; }
+          /* Third pass on this row (Fuad 2026-08-20). space-between put the slack in the MIDDLE;
+             centring with auto margins moved it above and below but left the bottom edge tight
+             against the content. What he pointed at is Decades, which does nothing clever: a plain
+             12px pad all round and content stacked from the top, so the leftover height simply sits
+             underneath and reads as padding. Same here — flow from the top with an even gap, and
+             let the slack fall to the bottom where it looks deliberate. */
+          .ov-pulseslot > .r-card { justify-content: flex-start; gap: 5px; }
           /* and the objects grow into the room instead of floating in it */
           .ov-scrob .r-stat-n { font-size: clamp(21px, 2vw, 28px) !important; }
           .ov-streak .r-stat-n, .ov-week .r-stat-n { font-size: 27px !important; }
