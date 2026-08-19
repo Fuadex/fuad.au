@@ -326,17 +326,21 @@ a { color: inherit; }
 /* SPECTRUM TARGET — lives INSIDE .cv-filters now (Fuad 2026-08-20: it read as a band bolted onto
    the collage, and sat out of line with everything else). It inherits the row's chip shape and
    baseline; all that is left here is the swatch, which no other chip has. */
-/* the colour toggle sits in the filter row and reads as a chip, but carries the ramp so it is
-   findable at a glance — it replaced a dropdown option nobody could see */
-.cv-colour-toggle { display: inline-flex; align-items: center; }
+/* COLOUR SWATCHES — permanent residents of the filter row, circles only. Ten labelled chips would
+   have doubled the row's width, and the colour IS the label. The lit one carries a ring so the
+   active sort is legible at a glance. */
+.cv-picks { display: inline-flex; align-items: center; gap: 4px; }
+.cv-pick-dot { padding: 2px !important; border: 0 !important; background: none !important; line-height: 0; cursor: pointer; border-radius: 50%; }
+.cv-pick-dot i { display: block; width: 15px; height: 15px; border-radius: 50%; margin: 0;
+  border: 1px solid rgba(58,47,34,.28); transition: transform .12s, box-shadow .12s; }
+.cv-pick-dot:hover i { transform: scale(1.18); }
+.cv-pick-dot[data-on="true"] i { box-shadow: 0 0 0 2px var(--paper), 0 0 0 3.5px var(--ink); transform: scale(1.12); }
+.cv-pick-ramp { background: conic-gradient(#b23b2e, #c8762a, #c2a53c, #4a7a45, #2f6285, #6b4b86, #b23b2e); }
 .cv-pick-lbl { font: 500 9.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase;
   color: var(--ink-faint); align-self: center; }
-.cv-filters button i { width: 12px; height: 12px; border-radius: 50%; flex: none;
-  border: 1px solid rgba(58,47,34,.25); margin-right: 5px; }
-.cv-pick-ramp { background: conic-gradient(#b23b2e, #c8762a, #c2a53c, #4a7a45, #2f6285, #6b4b86, #b23b2e); }
-.cv-pick-custom { display: inline-flex; align-items: center; gap: 5px; font: 500 11px/1 var(--sans);
-  color: var(--ink-soft); cursor: pointer; }
-.cv-pick-custom input { width: 15px; height: 15px; padding: 0; border: 0; background: none; cursor: pointer; }
+.cv-pick-custom { display: inline-flex; align-items: center; cursor: pointer; line-height: 0; margin-left: 2px; }
+.cv-pick-custom input { width: 15px; height: 15px; padding: 0; border: 1px solid rgba(58,47,34,.28);
+  border-radius: 50%; background: none; cursor: pointer; }
 .cv-filters button { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-faint); cursor: pointer; }
 .cv-filters button:hover { color: var(--ink); }
 .cv-filters button[data-on="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
