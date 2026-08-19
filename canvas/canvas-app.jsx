@@ -69,7 +69,7 @@ function enrich(w) {
 // tall masonry wall fetches its whole row/column on first paint. A viewport-rooted IntersectionObserver
 // only reveals src once a tile is actually near view, in ANY scroll direction. The container must carry
 // its own dimensions (fixed height or aspect) so withholding src never collapses layout. (Fuad 2026-07-25)
-function LazyImg({ src, alt, className, title, loading }) {
+function LazyImg({ src, alt, className, title, loading, style }) {
   const ref = useRef(null);
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -82,7 +82,7 @@ function LazyImg({ src, alt, className, title, loading }) {
     io.observe(el);
     return () => io.disconnect();
   }, [show, src]);
-  return <img ref={ref} className={className} alt={alt || ""} title={title}
+  return <img ref={ref} className={className} alt={alt || ""} title={title} style={style}
     src={show ? src : undefined} loading={loading || "lazy"} decoding="async" />;
 }
 
@@ -145,7 +145,14 @@ function Card({ w, go }) {
       // stays visible instead of being flattened into "works on paper" / "objects".
       title={w.title + ((mediumOf(w) && mediumOf(w)[1]) ? " · " + mediumOf(w)[1] : "")}>
       {(w.favorite || w.floored) ? <span className="cv-fav">★</span> : w.liked ? <span className="cv-fav">♡</span> : null}
-      {img && <img src={img} alt={w.title} loading="lazy" />}
+      {/* The wall is a CSS-column masonry, so an image with no src collapses to zero height and
+          the whole column reflows. art_imgsize gives real dimensions, so reserve the space with
+          aspect-ratio and the tile holds its shape while the src is still withheld — which also
+          kills the layout shift that used to happen as each image landed. Works with no measured
+          size (24 of them) keep the plain img, where the natural aspect is doing that job. */}
+      {img && (w.px
+        ? <LazyImg src={img} alt={w.title} style={{ aspectRatio: `${w.px[0]} / ${w.px[1]}` }} />
+        : <img src={img} alt={w.title} loading="lazy" />)}
       <div className="cv-label">
         <div className="cv-title">{title}</div>
         <div className="cv-byline">{byline}</div>
@@ -2512,18 +2519,25 @@ function MapView({ go }) {
       {wishList.length > 0 && (
         <div className="cv-map-tosee">
           <div className="cv-a-secl">To see — the pilgrimage</div>
-          {wishList.map(([key, list]) => (
-            <React.Fragment key={key}>
-              <div className="cv-mus-country">{key} <span style={{ opacity: .55, fontWeight: 400 }}>· {list.length}</span></div>
-              {list.map(w => (
-                <div className="cv-mus-row" key={w.id} style={{ cursor: "pointer" }} onClick={() => go("work", w.id)}>
-                  {w.imgGrid && <img className="cv-pil-thumb" src={w.imgGrid} alt="" loading="lazy" />}
-                  <span className="cv-mus-name">{w.floored || (w.liked && w.wish) ? "♥ " : "♡ "}{w.title}</span>
-                  <span className="cv-mus-city">{w.artist.replace(/\s*\(.*\)$/, "")}{w.year ? " · " + w.year : ""}</span>
-                </div>
-              ))}
-            </React.Fragment>
-          ))}
+          {/* This used to mount every row of every country at once. After the photo import that is
+              ~1,465 rows with a thumbnail each — flattened into one list and reveal-chunked, so the
+              page paints a screenful and grows as you scroll. Group headers ride IN the flat list so
+              they arrive with their own rows rather than all up-front. (Fuad 2026-08-19) */}
+          <RevealChunks
+            items={wishList.flatMap(([key, list]) => [{ hdr: key, n: list.length }, ...list])}
+            initial={40} step={40}
+            render={(slice) => slice.map(it => it.hdr ? (
+              <div className="cv-mus-country" key={"h:" + it.hdr}>{it.hdr} <span style={{ opacity: .55, fontWeight: 400 }}>· {it.n}</span></div>
+            ) : (
+              <div className="cv-mus-row" key={it.id} style={{ cursor: "pointer" }} onClick={() => go("work", it.id)}>
+                {it.imgGrid && <LazyImg className="cv-pil-thumb" src={it.imgGrid} alt="" />}
+                <span className="cv-mus-name">{it.floored || (it.liked && it.wish) ? "♥ " : "♡ "}{it.title}</span>
+                <span className="cv-mus-city">{it.artist.replace(/\s*\(.*\)$/, "")}{it.year ? " · " + it.year : ""}</span>
+              </div>
+            ))}
+          />
+          {/* total, so the count is not lost now that the list arrives in pieces */}
+          <div className="cv-pil-total r-mono">{wishList.reduce((n, [, l]) => n + l.length, 0)} works you're chasing</div>
           {(window.CANVAS_PILGRIMAGE || []).length > 0 && (
             <React.Fragment>
               <div className="cv-mus-country">Places</div>
