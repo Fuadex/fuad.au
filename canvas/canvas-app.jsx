@@ -539,31 +539,29 @@ function Wall({ go, styleIds }) {
           <option value="artist">by artist</option>
           <option value="museum">by museum</option>
         </select>
-        {/* Colour is a CHIP, not a dropdown option (Fuad 2026-08-20: "where did the colour sorting
-            go?"). Folding it into the sort select was too quiet for something that used to be a
-            top-level tab — a fifth line in a menu is not where you look for the best thing on the
-            page. As a chip it is visible at rest, and toggling it off returns to hang order, so it
-            still needs no separate disable. */}
-        <button className="cv-colour-toggle" data-on={sort === "colour"}
-          onClick={() => setSort(sort === "colour" ? "hang" : "colour")} title="sort the wall by colour">
-          <i className="cv-pick-ramp" />colour
-        </button>
-        {sort === "colour" && (
-          <React.Fragment>
-            <span className="cv-filt-div" aria-hidden="true" />
-            <span className="cv-pick-lbl">sort toward</span>
-            {SPECTRUM_PICKS.map(([hex, label]) => (
-              <button key={label} data-on={pick === hex} onClick={() => setPick(hex)} title={label}>
+        {/* COLOUR SWATCHES, always present (Fuad 2026-08-20). First it was a mode, then a dropdown
+            option, then a toggle that revealed them — each step still asked you to turn colour ON
+            before you could use it. Now the swatches simply sit in the row: click one and the wall
+            sorts toward it, click the lit one again and you are back to hang order. No enabling
+            step, which is what "integrated" meant. Circles only, names on hover — ten labelled
+            chips would have doubled the width of this row. */}
+        <span className="cv-filt-div" aria-hidden="true" />
+        <span className="cv-pick-lbl">colour</span>
+        <span className="cv-picks">
+          {SPECTRUM_PICKS.map(([hex, label]) => {
+            const on = sort === "colour" && pick === hex;
+            return (
+              <button key={label} className="cv-pick-dot" data-on={on} title={hex ? "sort toward " + label : "sort along the hue ramp"}
+                onClick={() => { if (on) { setSort("hang"); return; } setPick(hex); setSort("colour"); }}>
                 <i className={hex ? "" : "cv-pick-ramp"} style={hex ? { background: hex } : null} />
-                <span>{label}</span>
               </button>
-            ))}
-            <label className="cv-pick-custom" title="pick any colour">
-              <input type="color" value={pick || "#b23b2e"} onChange={e => setPick(e.target.value)} />
-              <span>custom</span>
-            </label>
-          </React.Fragment>
-        )}
+            );
+          })}
+          <label className="cv-pick-custom" title="sort toward any colour">
+            <input type="color" value={pick || "#b23b2e"}
+              onChange={e => { setPick(e.target.value); setSort("colour"); }} />
+          </label>
+        </span>
         <span className="cv-count">{Math.min(visN, shown.length)} of {shown.length}</span>
       </div>
       {/* ERA — replaces the old Timeline mode. Buckets are sized off the collection's real shape
