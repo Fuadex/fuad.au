@@ -158,6 +158,7 @@ function exploreRank(R, kind, f, limit = 40) {
         if (f.attrSel.mode === "artists") { if (!f.attrSel.keys.has(a.id)) continue; }
         else if (!a.s.some(ix => f.attrSel.keys.has(ix))) continue;
       }
+      if (f.picks && f.picks.size && !f.picks.has(a.id)) continue;   // artists chosen from the search box
       const plays = hasCells ? tsPlays(R, a.id, cells) : (hasYears ? yearsPlays(a.yp) : a.plays);
       if (hasCells && !plays) continue;
       let value = plays, disp, bar = true;
@@ -286,6 +287,7 @@ function mediaRank(M, R, meta, kind, f, limit) {
       if (f.attrSel.mode === "artists") { if (!f.attrSel.keys.has(m.aid)) continue; }
       else if (!rec || !rec.s || !rec.s.some(si => f.attrSel.keys.has(si))) continue;
     }
+    if (f.picks && f.picks.size && !f.picks.has(m.aid)) continue;   // artists chosen from the search box
     if (hasCells && !tsPlays(R, m.aid, cells)) continue;
     // (m.aid always present once m is; label/sub read row[0]/M.artists[row[1]] which are guarded above)
     let value = row[2];
@@ -1313,9 +1315,10 @@ function ExploreSearch({ R, yearKeys, subNames, onArtist, onSub, onYear, onCells
   const flat = groups.flatMap(g => g.items);
   const pick = (it) => {
     setQ(""); setOpen(false);
-    if (it.type === "track") go("track", R.slug(it.sub) + "~" + R.slug(it.label));
-    else if (it.type === "album") go("album", R.slug(it.sub) + "~" + R.slug(it.label));
-    else if (it.type === "artist") onArtist(it.id);
+    // Album and track hits narrow to their ARTIST rather than opening that album's or track's page
+    // (Fuad 2026-08-20). Explore is the narrowing surface; leaving it on a click was the one thing
+    // this box did that the rest of the page never does. Their `id` is already the artist id.
+    if (it.type === "track" || it.type === "album" || it.type === "artist") onArtist(it.id);
     else if (it.type === "sub") onSub(it.name);
     else if (it.type === "year") onYear(it.year);
     else if (it.type === "time") onCells(it.cells);
@@ -1363,6 +1366,14 @@ function ExploreView({ t, go, setPop, seed }) {
   const [playing, setPlaying] = React.useState(false);
   const [lens, setLens] = React.useState("attributes");   // left surface: "texture" map · "mood" quadrant · "attributes" (default — no panning, best perf; Fuad 2026-07-15)
   const [attrSel, setAttrSel] = React.useState(null);     // attributes-lens brush selection ({mode, keys}) — filters the ranked list
+  // Artists picked out of the search box. Choosing a result used to navigate away to that
+  // artist/album/track page, which is the opposite of what a filter bar is for (Fuad 2026-08-20):
+  // Explore is where you narrow, so a hit narrows. Album and track hits resolve to their artist,
+  // since the ranked list and both maps key on artist id — searching an album is a way of saying
+  // "this artist" without having to remember which one it was.
+  const [picks, setPicks] = React.useState(() => new Set());
+  const addPick = (id) => { if (id) setPicks(prev => new Set(prev).add(id)); };
+  const dropPick = (id) => setPicks(prev => { const n = new Set(prev); n.delete(id); return n; });
   React.useEffect(() => { if (lens !== "attributes") setAttrSel(null); }, [lens]);
   // attributes-lens axis pair, lifted here so it's URL-serialisable (deep-link/refresh). Owner's
   // requested Explore default is Energy × Popularity (energy horizontal, popularity vertical); the
@@ -1583,19 +1594,19 @@ function ExploreView({ t, go, setPop, seed }) {
   const mediaItems = React.useMemo(() => {
     if (kind === "artists" || !mediaReady || !mediaArtMeta) return null;
     // fetch a lookahead past what's visible so "load more" has rows ready and `more` is detectable
-    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { years, fam, subIdx, cells, moodZone, vocals, pass, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
-  }, [kind, mediaReady, mediaArtMeta, years, fam, subIdx, cells, moodZone, vocals, pass, visN, R, attrSel, lens]);
+    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { years, fam, subIdx, cells, moodZone, vocals, pass, picks, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
+  }, [kind, mediaReady, mediaArtMeta, years, fam, subIdx, cells, moodZone, vocals, pass, visN, R, attrSel, lens, picks]);
   // the attributes-lens selection now filters INSIDE the rank functions (full universe,
   // pre-slice) — the old post-filter ran on the top-40 and starved the list (Fuad 2026-07-14)
   const items = (kind !== "artists" && mediaItems) ? mediaItems.items
     // artists get the same visN+40 lookahead as mediaRank, so "load more" keeps expanding
     // past 40 instead of hitting the old hard cap (Fuad 2026-07-26)
-    : exploreRank(R, kind, { years, fam, subIdx, cells, sound, dir: sndDir, moodZone, vocals, pass, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
+    : exploreRank(R, kind, { years, fam, subIdx, cells, sound, dir: sndDir, moodZone, vocals, pass, picks, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
   // more rows to reveal? true whenever the ranked pool has more than we're currently showing —
   // works for artists (full list) AND albums/tracks (media pool), so load-more applies to all three.
   const more = items.length > visN;
   // a new slice resets the load-more expansion (the chosen 16/32/64 base stays)
-  React.useEffect(() => { setExtra(0); }, [kind, years, fam, subIdx, cells, moodZone, vocals, attrSel, themeMask, relLo, relHi]);
+  React.useEffect(() => { setExtra(0); }, [kind, years, fam, subIdx, cells, moodZone, vocals, attrSel, themeMask, relLo, relHi, picks]);
   // how many artists the ACTIVE vocals filter drops purely for lacking vocals data — same "N without
   // data" honesty as the Liked audio sliders. Counts artists that pass every OTHER filter but have no
   // vx (kind === "artists" only; the note is about artists either way).
@@ -1660,6 +1671,9 @@ function ExploreView({ t, go, setPop, seed }) {
   if (vocals !== "any") chips.push(["vocals", ({ male: "male", female: "female", mixed: "mixed", nb: "non-binary", instrumental: "instrumental" })[vocals] || vocals, () => setVocals("any")]);
   if (themeSel.size) chips.push(["theme", [...themeSel].map(b => themeNames[b]).filter(Boolean).join(" · "), clearTheme]);
   if (relLo != null) chips.push(["era", relYear != null ? relYear : relDec + "s", clearRel]);
+  // one chip per picked artist rather than a single "3 artists" chip — you need to be able to drop
+  // the wrong one without losing the other two.
+  for (const id of picks) chips.push(["artist", (R.byId[id] && R.byId[id].name) || (R.expById && R.expById[id] && R.expById[id].name) || id, () => dropPick(id)]);
 
   return (
     <div className="r-view xp" ref={ref}>
@@ -1670,7 +1684,7 @@ function ExploreView({ t, go, setPop, seed }) {
         </div>
         <div className="xp-head-right">
           <ExploreSearch R={R} yearKeys={yearKeys} subNames={subNames} go={go}
-            onArtist={(id) => go("artist", id)} onSub={setSub} onYear={(y) => { setPlaying(false); setYears(new Set([y])); }} onCells={(arr) => setCells(new Set(arr))} />
+            onArtist={addPick} onSub={setSub} onYear={(y) => { setPlaying(false); setYears(new Set([y])); }} onCells={(arr) => setCells(new Set(arr))} />
         </div>
       </div>
 
@@ -1692,7 +1706,7 @@ function ExploreView({ t, go, setPop, seed }) {
               <span className="xp-flabel">Active</span>
               <div className="xp-chiprow">
                 {chips.map(([k, v, clr]) => <button key={k} className="xp-chip xp-chip-active" onClick={clr}><span className="xp-ck">{k}</span> {v} <span className="xp-x">✕</span></button>)}
-                <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYears(new Set()); setFam(null); setSub(null); setCells(new Set()); setMoodZone(null); setVocals("any"); clearTheme(); clearRel(); }}>clear all</button>
+                <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYears(new Set()); setFam(null); setSub(null); setCells(new Set()); setMoodZone(null); setVocals("any"); clearTheme(); clearRel(); setPicks(new Set()); }}>clear all</button>
               </div>
             </div>
           )}
@@ -1865,6 +1879,11 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-frow-main { display: flex; align-items: center; gap: 12px; }
         .xp-chiprow-time { flex: 1 1 auto; min-width: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
         .xp-chiprow-time::-webkit-scrollbar { display: none; }
+        /* The "Time" label sat 7px low against its own chip row (Fuad 2026-08-20). .xp-flabel
+           carries padding-top:7px for the GRID form of .xp-frow, where the label sits above the
+           chips; inside the centred flex row that padding is pure offset. Active and Vocals had
+           each already zeroed it locally — Time was the one that never got the same treatment. */
+        .xp-frow-main > .xp-flabel { padding-top: 0; }
         .xp-active { display: flex; align-items: center; gap: 8px; margin-left: auto; flex: 0 0 auto; }
         .xp-active .xp-flabel { padding-top: 0; }
         /* Vocals rides the far right of the Time row (Fuad 2026-08-12). margin-left:auto pins it
