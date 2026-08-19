@@ -140,6 +140,50 @@ Wikidata's P131 gives the administrative unit a building sits in. Museum stubs a
 state), and one bare **`?`** where it did not resolve at all. Correct data, useless sentences —
 nobody says a Tate work is in the City of Westminster.
 
+## 8. Prose mentions a thing; the picture may not contain it
+
+Subject search needed a source. Two free ones were built and measured before spending anything.
+
+**Wikidata `depicts` + `genre` is precise and sparse.** 1,100 of 1,868 works (59%) carry something;
+genre is the cleaner half — 293 landscapes, 167 portraits, 117 genre scenes, 30 marine. Depicted
+objects are trustworthy where present: the dogs it finds in *A Burial at Ornans*, *The Painter's
+Studio* and *The Balcony* are all really there.
+
+**Mining the reads is broad and unreliable.** The repo already holds 623 reads, 309 studies and
+1,894 descriptions, so a controlled vocabulary of 58 tags over 369 surface forms was matched against
+them: 848 works tagged. Then it was scored — for works carrying *both* layers, how often does a
+mined tag find any support in that work's Wikidata subjects?
+
+**30%.** And the failures cluster exactly where you would fear:
+
+| tag | corroborated |
+|---|---|
+| interior | 4% |
+| field | 8% |
+| city | 13% |
+| mountain | 15% |
+| … | |
+| woman | 52% |
+| portrait | 63% |
+
+The tags that survive are the ones where the read's subject *is* the painting's subject. The rest
+are prose artefacts. Two specimens make the mechanism plain:
+
+- **Whistler's Mother** came back tagged `bigcat` — because the etching hanging on her wall is
+  titled ***Black Lion Wharf***. The word was in the text; the animal was never in the room.
+- **Klimt's The Kiss** came back tagged `sea`, from figurative language about a wave of gold.
+
+Reads describe, digress and name other artworks. Matching words in them finds what the writing
+*mentions*, not what the canvas *shows*.
+
+**And the decisive gap:** across 1,655 distinct Wikidata subject terms in this corpus there are
+**zero** time-of-day terms — no morning, dawn, dusk, sunset, twilight, night. Wikidata encodes
+objects and genres, never conditions. So the free layers answer "dogs" and "the ocean" well and
+cannot answer "morning" at all, which is precisely the half a vision pass would exist to supply.
+
+`art_keywords.js` is generated but **not loaded by the app**. It is kept because the miner is the
+cheapest way to re-measure this if the vocabulary changes — not because its output is fit to search.
+
 ---
 
 ## What the noise taught the pipeline
