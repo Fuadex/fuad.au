@@ -1040,7 +1040,13 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
             {dots}
             {/* hover emphasis lives OUTSIDE the memoized dot layer: one ring re-renders per
                 mousemove instead of the whole field (audit 2026-07-18) */}
-            {hover && <circle cx={hover.px} cy={hover.py} fill="none" stroke="#fff" strokeWidth="1.6"
+            {/* the ring carries the fisheye class AND the hovered dot's base coords, so the fisheye
+                pass writes --fk on it exactly as it does on that dot (Fuad 2026-08-20: the blob grew
+                under the cursor while its outline stayed put). It always read var(--fk) — it simply
+                never matched the selector, so it fell back to 1 forever. Ring and dots update on the
+                same mousemove, so a re-render that clears the imperative value is restored next frame. */}
+            {hover && <circle className="xp-fdot" data-cx={hover.px.toFixed(1)} data-cy={hover.py.toFixed(1)}
+              cx={hover.px} cy={hover.py} fill="none" stroke="#fff" strokeWidth="1.6"
               vectorEffect="non-scaling-stroke" pointerEvents="none"
               style={{ r: `calc(${(hover.radius + 2).toFixed(2)}px * var(--zk) * var(--fk, 1))` }} />}
             {/* printed subgenre labels removed (Fuad 2026-07-14: confusing black text) —
@@ -1187,7 +1193,9 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
             <button key={f.i} className="xp-attr-legitem" data-on={on} data-dim={famDim != null && !on}
               onClick={() => onFam && onFam(famDim === f.i ? null : f.i)} title={"filter to " + f.family}>
               <span className="xp-attr-swatch" style={{ background: `oklch(0.62 0.16 ${f.hue})` }} />
-              <span>{famShort(f.family)}</span>
+              {/* full names here on purpose (Fuad 2026-08-20) — the shortening is for Overview's
+                  flowmap legend, not this one. This key has room and reads better complete. */}
+              <span>{f.family}</span>
             </button>
           );
         })}

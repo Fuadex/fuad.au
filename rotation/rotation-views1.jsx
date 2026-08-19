@@ -262,12 +262,11 @@ function OvWeatherCard({ R, go }) {
           <Bar label="Sounds" v={N.aud} avg={M.avgAud} col={SND} />
           <Bar label="Reads" v={N.lyr} avg={M.avgLyr} col={RDS} />
         </div>
-        <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13, color: "var(--ink-soft)", marginTop: 9 }}>
-          {word(d(N.aud, M.avgAud)) === "steady" && word(d(N.lyr, M.avgLyr)) === "steady"
-            ? <>Right on your baseline{N.emo ? <> — reading <b style={{ color: "var(--ink)" }}>{N.emo}</b></> : null}.</>
-            : <>Sounding {word(d(N.aud, M.avgAud))}, reading {word(d(N.lyr, M.avgLyr))}{N.emo ? <> — mostly <b style={{ color: "var(--ink)" }}>{N.emo}</b></> : null}.</>}
-        </div>
-        <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 7, letterSpacing: ".06em" }}>last {N.days} days ↗</div>
+        {/* the prose line is gone (Fuad 2026-08-20) — it restated the two bars underneath it in
+            words and was most of this card's height. The bars carry the reading; the mood word is
+            the one thing they cannot show, so it moves into the footer line. */}
+        <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 7, letterSpacing: ".06em" }}>
+          last {N.days} days{N.emo ? <> · mostly <b style={{ color: "var(--ink-soft)", fontWeight: 600 }}>{N.emo}</b></> : null}</div>
       </div>
     </div>
   );
@@ -897,7 +896,7 @@ function OverviewView({ t, go, restReady, seed }) {
              insight was setting the height for the weather card beside it and the whole band read
              taller than it needed to. Capping the cards themselves rather than the row keeps the
              weather card free to be short. */
-          .ov-insgrid > .r-card, .ov-weather { max-height: 132px; overflow: hidden; }
+          .ov-insgrid > .r-card, .ov-weather { max-height: 104px; overflow: hidden; }
         }
         .ov-calsel { width: 100%; background: var(--bg-3); border: 1px solid var(--rule); color: var(--ink);
           border-radius: 6px; padding: 5px 7px; font-family: var(--mono); font-size: 10px; }
