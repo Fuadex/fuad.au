@@ -1086,9 +1086,20 @@ function LikedView({ go }) {
             {label} <span style={{ opacity: .6 }}>{counts[k] || 0}</span>
           </button>
         ))}
-        {/* vocals dimension — right-aligned group (marginLeft:auto pins it right; wraps below on narrow
-            screens). Toggle semantics: clicking the active option returns to "any". "N without data" note
-            (same honesty as the audio sliders) appears only under an active option. */}
+        {/* reset-tune (Fuad 2026-08-12): its slot is RESERVED — always rendered, hidden (visibility) +
+            inert when no tune is active, so the row never reflows as it appears/disappears. Accent-toned
+            (var(--accent) + accent-dim border), matching the clear-filter pill convention (gv-tour-chip).
+            No longer marginLeft:auto — it trails the right-aligned vocals group. */}
+        <button className={"r-chip link lk-resettune" + (anyTuneActive ? " lk-tuneon" : "")}
+          aria-hidden={!anyTuneActive} tabIndex={anyTuneActive ? 0 : -1}
+          style={{ textTransform: "none", color: "var(--accent)", borderColor: "var(--accent-dim)",
+            visibility: anyTuneActive ? "visible" : "hidden", pointerEvents: anyTuneActive ? "auto" : "none" }}
+          onClick={resetTune}>reset tune ✕</button>
+        {/* vocals dimension — now the LAST item in the row, so marginLeft:auto genuinely pins it to
+            the right edge. It used to sit before the reset-tune slot, which is always rendered and
+            only visibility:hidden, so on desktop an invisible button held ~90px to the right of
+            vocals and the group never reached the edge (Fuad 2026-08-20). Toggle semantics: clicking
+            the active option returns to "any"; the "N without data" note shows only under one. */}
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center", marginLeft: "auto" }}>
           <span className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".12em", textTransform: "uppercase", color: vocalsActive ? "var(--accent)" : "var(--ink-faint)", marginRight: 2 }}>vocals</span>
           {LK_VOCALS.map(([k, l]) => (
@@ -1099,15 +1110,6 @@ function LikedView({ go }) {
           {vocalsActive && vocalsNoData > 0 &&
             <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{vocalsNoData} without data</span>}
         </div>
-        {/* reset-tune (Fuad 2026-08-12): its slot is RESERVED — always rendered, hidden (visibility) +
-            inert when no tune is active, so the row never reflows as it appears/disappears. Accent-toned
-            (var(--accent) + accent-dim border), matching the clear-filter pill convention (gv-tour-chip).
-            No longer marginLeft:auto — it trails the right-aligned vocals group. */}
-        <button className={"r-chip link lk-resettune" + (anyTuneActive ? " lk-tuneon" : "")}
-          aria-hidden={!anyTuneActive} tabIndex={anyTuneActive ? 0 : -1}
-          style={{ textTransform: "none", color: "var(--accent)", borderColor: "var(--accent-dim)",
-            visibility: anyTuneActive ? "visible" : "hidden", pointerEvents: anyTuneActive ? "auto" : "none" }}
-          onClick={resetTune}>reset tune ✕</button>
       </div>
 
       {/* genre family chips (multi-select) + subgenre dropdown scoped to the selection */}

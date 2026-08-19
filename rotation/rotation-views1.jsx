@@ -153,7 +153,7 @@ function OvCalRail({ go, onYear, onPeriod, init }) {
           ))}
         </div>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: `repeat(${dim}, 1fr)`, gap: 2 }}>
+      <div className="ov-daystrip" style={{ display: "grid", gridTemplateColumns: `repeat(${dim}, 1fr)`, gap: 2 }}>
         {dayStrip.map((d) => {
           const v = counts[doy(d)] || 0;
           const iso = `${yr}-${String(mo + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
@@ -595,22 +595,24 @@ function OverviewView({ t, go, restReady, seed }) {
 
   return (
     <div className="r-view" ref={ref}>
-      {/* header restored (Fuad 2026-07-05: "it looked better back then after all"). The TITLE and the
-          LEDE are temporarily commented out (2026-08-20) to see how Overview reads without them; the
-          kicker stays, so the page still names itself. Uncomment the two lines to restore. */}
+      {/* WHOLE HEADER temporarily off (Fuad 2026-08-20) — kicker, title and lede — so the page opens
+          straight onto content. Restoring it means uncommenting this block AND deleting the
+          .ov-head-bare rule in the stylesheet below, which exists only to close the gap the missing
+          title left. See MEMORY: state_2026_08_20_overview_experiment.
       <div className="r-viewhead ov-head-bare">
         <div>
           <div className="r-kicker">Rotation · since {new Date(T.since).getFullYear()}</div>
-          {/* <h1 className="r-title">A life, <em>counted</em><span className="dot">.</span></h1> */}
+          <h1 className="r-title">A life, <em>counted</em><span className="dot">.</span></h1>
         </div>
-        {/* <p className="r-lede">Every track I've played, since the mid-2000s —
-            turned into something I can actually <b>look at</b>.</p> */}
+        <p className="r-lede">Every track I've played, since the mid-2000s —
+          turned into something I can actually <b>look at</b>.</p>
       </div>
+      */}
 
       {/* bento */}
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, minmax(0, 1fr))", gap: "var(--gap)" }}>
-        {/* now playing — top-right corner of the pulse row (DOM-first so mobile still leads
-            with it; the ≥981px block pins it to cols 9-12) */}
+        {/* NOW PLAYING temporarily off (Fuad 2026-08-20). See MEMORY:
+            state_2026_08_20_overview_experiment.
         <div className="r-card ov-np" style={{ gridColumn: "span 4", padding: "8px 12px", display: "flex", gap: 12, alignItems: "center", minWidth: 0 }}>
           <div style={{ position: "relative", cursor: npKnown ? "pointer" : "default" }} onClick={() => npKnown && go("artist", now.artistId)}>
             <GenCover hue={nowArtist.hue} name={now.artist} image={now.img || undefined} size={62} radius={4} />
@@ -630,100 +632,8 @@ function OverviewView({ t, go, restReady, seed }) {
             </div>
           </div>
         </div>
+        */}
 
-        {/* scrobble counter + trend — left anchor of the pulse row */}
-        <div className="r-card ov-scrob" style={{ gridColumn: "span 3", padding: "8px 12px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-          <div className="r-card-h" style={{ padding: 0 }}>
-            <span className="lbl"><b>Scrobbles</b></span>
-            <span className="meta">26-wk</span>
-          </div>
-          <div className="r-stat-n" style={{ fontSize: "clamp(24px,3.4vw,34px)", margin: "1px 0 0" }}>{fmt(Math.round(scrob))}</div>
-          <div style={{ marginTop: 2 }}>
-            <Spark data={trend} w={300} h={22} run={seen} fill="var(--accent-bg)" />
-          </div>
-        </div>
-
-        {/* streak — current run + when the all-time best happened (INSIGHTS.STREAK carries the range) */}
-        <div className="r-card ov-streak" style={{ gridColumn: "span 2", padding: "8px 12px", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
-          <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Streak</b></span>
-            {T.streak.current >= T.streak.best ? <span className="meta" style={{ color: "var(--accent)" }}>record!</span> : null}</div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 0 }}>
-            <div className="r-stat-n" style={{ fontSize: 28 }}>{T.streak.current}</div>
-            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>days</span>
-          </div>
-          {(() => {
-            const S = R.INSIGHTS && R.INSIGHTS.STREAK;
-            const MON = window.MON;
-            const f = (d) => { const x = new Date(d + "T00:00:00Z"); return MON[x.getUTCMonth()] + " '" + String(x.getUTCFullYear()).slice(2); };
-            return (
-              <div>
-                <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".08em" }}>
-                  best <span style={{ color: "var(--accent)" }}>{T.streak.best}</span>{S && S.start ? <> · {f(S.start)}–{f(S.end)}</> : null}
-                </div>
-                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 3 }}>
-                  {T.streak.best > T.streak.current ? (T.streak.best - T.streak.current) + " days from the record" : "longest run ever — keep going"}
-                </div>
-              </div>
-            );
-          })()}
-        </div>
-
-        {/* this week — promoted from the insight deck into the pulse row (Fuad 2026-07-05);
-            live-data dependent, so it only renders when the weekly sync is present. The
-            :has(.ov-week) CSS below re-splits the row 2+2+2+3+3 when it's here. */}
-        {(() => {
-          const w = window.ROTATION_LIVE && window.ROTATION_LIVE.week;
-          if (!w) return null;
-          const delta = w.weekAvg ? Math.round((w.plays7 - w.weekAvg) / w.weekAvg * 100) : 0, up = delta >= 0;
-          const ta = w.topArtists && w.topArtists[0];
-          return (
-            <div className="r-card ov-week" style={{ gridColumn: "span 3", padding: "8px 12px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-              <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>This week</b></span>
-                <span className="meta" style={{ color: up ? "var(--accent)" : "var(--ink-faint)" }}>{up ? "▲" : "▼"} {Math.abs(delta)}%</span></div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 0 }}>
-                <div className="r-stat-n" style={{ fontSize: 28 }}>{fmt(w.plays7)}</div>
-                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>plays</span>
-              </div>
-              {ta ? (
-                /* artist + play count INLINE on one line (Fuad 2026-07-17) — cover kept small at left */
-                <div style={{ display: "flex", alignItems: "center", gap: 7, cursor: "pointer", minWidth: 0 }} onClick={() => go("artist", ta.artistId)}>
-                  <GenCover hue={(R.byId[ta.artistId] || (R.expById && R.expById[ta.artistId]) || { hue: 210 }).hue} name={ta.name} image={ta.img || undefined} size={20} radius={2} />
-                  <div style={{ fontSize: 11.5, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                    <b style={{ fontWeight: 600 }}>{ta.name}</b>
-                    <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}> · {ta.plays} plays</span>
-                  </div>
-                </div>
-              ) : <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>vs your weekly average</div>}
-              {w.newArtistsThisWeek > 0
-                ? <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".06em", textTransform: "uppercase", marginTop: 3 }}>{w.newArtistsThisWeek} new artist{w.newArtistsThisWeek !== 1 ? "s" : ""} this week</div>
-                : <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 3 }}>no new artists yet</div>}
-            </div>
-          );
-        })()}
-
-        {/* recent ticker — squeezed centrally between streak and now-playing; the list is a
-            capped scroll well at PC widths so the pulse row stays shallow */}
-        <div className="r-card ov-recent" style={{ gridColumn: "span 3", padding: "8px 11px", display: "flex", flexDirection: "column" }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 3 }}><span className="lbl"><b>Recently played</b></span>
-            <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
-              style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
-          <div className="ov-rl" style={{ display: "grid", gap: 1, flex: 1, alignContent: "center" }}>
-            {recent3.map(r => (
-              <div key={r.id} onClick={() => { if (r.artist && r.track) go("track", R.slug(r.artist) + "~" + R.slug(r.track)); }} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 9,
-                padding: "3px 6px", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
-                onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
-                onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
-                <GenCover hue={r.hue} name={r.artist} image={r.img || undefined} size={22} radius={2} />
-                <div style={{ minWidth: 0, flex: 1 }}>
-                  <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
-                  <div style={{ fontSize: 10, color: "var(--ink-faint)", cursor: "pointer", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={`${r.artist} →`}
-                    onClick={e => { e.stopPropagation(); go("artist", r.artistId); }}>{r.artist}</div>
-                </div>
-                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", flex: "none" }}>{r.when}</span>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* THE MAP BAND — full width, right below the pulse row. The calendar rail rides along as
             a slot: it renders under the map's deepest-places column and cross-filters the results. */}
@@ -760,10 +670,112 @@ function OverviewView({ t, go, restReady, seed }) {
             } />
         </div>
 
-        {/* Story of the day — a DEDICATED slot (was only an insight-row card, so higher-scoring
+        {/* PULSE SLOT (Fuad 2026-08-20): Scrobbles, Streak, This week and Recently played move down
+            into the row Story of the day used to hold, so the map leads the page. They live in a
+            nested 4-up grid rather than being re-pinned individually — the ≥981px rules pinned each
+            card to grid-row 1, so moving them in the DOM alone would have snapped them back up. */}
+        <div className="ov-pulseslot">
+        {/* scrobble counter + trend — left anchor of the pulse row */}
+        <div className="r-card ov-scrob" style={{ padding: "8px 12px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+          <div className="r-card-h" style={{ padding: 0 }}>
+            <span className="lbl"><b>Scrobbles</b></span>
+            <span className="meta">26-wk</span>
+          </div>
+          <div className="r-stat-n" style={{ fontSize: "clamp(24px,3.4vw,34px)", margin: "1px 0 0" }}>{fmt(Math.round(scrob))}</div>
+          <div style={{ marginTop: 2 }}>
+            <Spark data={trend} w={300} h={22} run={seen} fill="var(--accent-bg)" />
+          </div>
+        </div>
+
+        {/* streak — current run + when the all-time best happened (INSIGHTS.STREAK carries the range) */}
+        <div className="r-card ov-streak" style={{ padding: "8px 12px", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Streak</b></span>
+            {T.streak.current >= T.streak.best ? <span className="meta" style={{ color: "var(--accent)" }}>record!</span> : null}</div>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 0 }}>
+            <div className="r-stat-n" style={{ fontSize: 28 }}>{T.streak.current}</div>
+            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>days</span>
+          </div>
+          {(() => {
+            const S = R.INSIGHTS && R.INSIGHTS.STREAK;
+            const MON = window.MON;
+            const f = (d) => { const x = new Date(d + "T00:00:00Z"); return MON[x.getUTCMonth()] + " '" + String(x.getUTCFullYear()).slice(2); };
+            return (
+              <div>
+                <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".08em" }}>
+                  best <span style={{ color: "var(--accent)" }}>{T.streak.best}</span>{S && S.start ? <> · {f(S.start)}–{f(S.end)}</> : null}
+                </div>
+                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 3 }}>
+                  {T.streak.best > T.streak.current ? (T.streak.best - T.streak.current) + " days from the record" : "longest run ever — keep going"}
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+
+        {/* this week — promoted from the insight deck into the pulse row (Fuad 2026-07-05);
+            live-data dependent, so it only renders when the weekly sync is present. The
+            :has(.ov-week) CSS below re-splits the row 2+2+2+3+3 when it's here. */}
+        {(() => {
+          const w = window.ROTATION_LIVE && window.ROTATION_LIVE.week;
+          if (!w) return null;
+          const delta = w.weekAvg ? Math.round((w.plays7 - w.weekAvg) / w.weekAvg * 100) : 0, up = delta >= 0;
+          const ta = w.topArtists && w.topArtists[0];
+          return (
+            <div className="r-card ov-week" style={{ padding: "8px 12px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+              <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>This week</b></span>
+                <span className="meta" style={{ color: up ? "var(--accent)" : "var(--ink-faint)" }}>{up ? "▲" : "▼"} {Math.abs(delta)}%</span></div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 0 }}>
+                <div className="r-stat-n" style={{ fontSize: 28 }}>{fmt(w.plays7)}</div>
+                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>plays</span>
+              </div>
+              {ta ? (
+                /* artist + play count INLINE on one line (Fuad 2026-07-17) — cover kept small at left */
+                <div style={{ display: "flex", alignItems: "center", gap: 7, cursor: "pointer", minWidth: 0 }} onClick={() => go("artist", ta.artistId)}>
+                  <GenCover hue={(R.byId[ta.artistId] || (R.expById && R.expById[ta.artistId]) || { hue: 210 }).hue} name={ta.name} image={ta.img || undefined} size={20} radius={2} />
+                  <div style={{ fontSize: 11.5, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <b style={{ fontWeight: 600 }}>{ta.name}</b>
+                    <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}> · {ta.plays} plays</span>
+                  </div>
+                </div>
+              ) : <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>vs your weekly average</div>}
+              {w.newArtistsThisWeek > 0
+                ? <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".06em", textTransform: "uppercase", marginTop: 3 }}>{w.newArtistsThisWeek} new artist{w.newArtistsThisWeek !== 1 ? "s" : ""} this week</div>
+                : <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 3 }}>no new artists yet</div>}
+            </div>
+          );
+        })()}
+
+        {/* recent ticker — squeezed centrally between streak and now-playing; the list is a
+            capped scroll well at PC widths so the pulse row stays shallow */}
+        <div className="r-card ov-recent" style={{ padding: "8px 11px", display: "flex", flexDirection: "column" }}>
+          <div className="r-card-h" style={{ padding: 0, marginBottom: 3 }}><span className="lbl"><b>Recently played</b></span>
+            <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
+              style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
+          <div className="ov-rl" style={{ display: "grid", gap: 1, flex: 1, alignContent: "center" }}>
+            {recent3.map(r => (
+              <div key={r.id} onClick={() => { if (r.artist && r.track) go("track", R.slug(r.artist) + "~" + R.slug(r.track)); }} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 9,
+                padding: "3px 6px", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
+                onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
+                onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                <GenCover hue={r.hue} name={r.artist} image={r.img || undefined} size={22} radius={2} />
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
+                  <div style={{ fontSize: 10, color: "var(--ink-faint)", cursor: "pointer", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={`${r.artist} →`}
+                    onClick={e => { e.stopPropagation(); go("artist", r.artistId); }}>{r.artist}</div>
+                </div>
+                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", flex: "none" }}>{r.when}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        </div>{/* /ov-pulseslot */}
+
+        {/* STORY OF THE DAY temporarily off (Fuad 2026-08-20) — the pulse modules take this
+            row instead. See MEMORY: state_2026_08_20_overview_experiment.
+            Story of the day — a DEDICATED slot (was only an insight-row card, so higher-scoring
             milestone cards crowded it out of the top-4 and nothing showed — Fuad 2026-07-18). Now
             it always features, deterministic per UTC day via window.storyOfDay(). Shares its row
-            with the Decades card now (cols 1-8; Decades takes 9-12) — Fuad 2026-08-17. */}
+            with the Decades card now (cols 1-8; Decades takes 9-12) — Fuad 2026-08-17.    
         {(() => {
           const story = window.storyOfDay ? window.storyOfDay(go) : null;
           if (!story) return null;
@@ -780,6 +792,7 @@ function OverviewView({ t, go, restReady, seed }) {
             </div>
           );
         })()}
+        */}
 
         {/* Decades — release-decade strip treemap, lifted out of Emotional weather so it rides the
             Story-of-the-day row at the same width the weather card uses (cols 9-12). Drillable to
@@ -833,22 +846,32 @@ function OverviewView({ t, go, restReady, seed }) {
            same time as uncommenting the title; the two belong together. */
         .ov-head-bare { margin-bottom: calc(var(--pad) * 0.55); }
         .ov-head-bare .r-kicker { margin-bottom: 0; }
+        /* The relocated pulse row: four cards side by side inside one grid cell. Stacks to two
+           columns on mobile, where the parent grid is single-column anyway. */
+        .ov-pulseslot { grid-column: 1 / -1; display: grid; gap: var(--gap);
+          grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        @media (min-width: 981px) { .ov-pulseslot { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
         /* ── PC bento (≥981px, Fuad's redesign 2026-07-04): ONE pulse row — scrobbles ·
            streak · recently-played squeezed centrally · now-playing top-right. The recent
            list scrolls inside a capped well so the row stays shallow. Calendar rail lives
            in the map band's left column. ── */
         @media (min-width: 981px) {
+          /* The pulse cards are no longer direct children of .m-stack — they sit inside
+             .ov-pulseslot, which takes the row Story of the day used to (Fuad 2026-08-20). Their
+             per-card column pins and grid-row:1 are commented out rather than deleted: restoring the
+             old layout means putting these back and unwrapping the slot, as one change.
           .ov-scrob   { grid-column: 1 / span 3 !important; grid-row: 1; }
           .ov-streak  { grid-column: 4 / span 2 !important; grid-row: 1; }
           .ov-recent  { grid-column: 6 / span 3 !important; grid-row: 1; }
           .ov-np      { grid-column: 9 / -1 !important; grid-row: 1; }
-          /* when the live weekly sync is present, "This week" joins the pulse row:
-             scrobbles 2 · streak 2 · week 2 · recent 3 · now-playing 3 (Fuad 2026-07-05) */
           .m-stack:has(.ov-week) .ov-scrob  { grid-column: 1 / span 2 !important; }
           .m-stack:has(.ov-week) .ov-streak { grid-column: 3 / span 2 !important; }
           .m-stack:has(.ov-week) .ov-week   { grid-column: 5 / span 2 !important; grid-row: 1; }
           .m-stack:has(.ov-week) .ov-recent { grid-column: 7 / span 3 !important; }
           .m-stack:has(.ov-week) .ov-np     { grid-column: 10 / -1 !important; }
+          */
+          /* the slot takes Story's old eight columns; Decades keeps 9-12 beside it */
+          .ov-pulseslot { grid-column: 1 / span 8 !important; }
           .ov-recent .ov-rl { max-height: none; overflow: visible; align-content: start; }
           .ov-scrob .r-stat-n { font-size: clamp(18px, 1.7vw, 22px) !important; }
           .ov-streak .r-stat-n, .ov-week .r-stat-n { font-size: 21px !important; }
@@ -876,7 +899,16 @@ function OverviewView({ t, go, restReady, seed }) {
           border-radius: 6px; padding: 5px 7px; font-family: var(--mono); font-size: 10px; }
         .ov-calweek[data-gran="week"]:hover { outline: 1px solid var(--accent-dim); outline-offset: 1px; }
         .ov-calrail i { transition: transform .1s; display: block; }
+        /* The old hover rule below never fired: it required a [data-gran="day"] ancestor that the
+           day strip does not have, so the calendar had no hover at all (Fuad 2026-08-20). Replaced
+           by .ov-daystrip. Note the choice of properties — the cells set outline INLINE for the
+           selected state, so a CSS outline on hover would lose to it; box-shadow and filter are
+           free. No backticks anywhere in this block.
         .ov-calrail [data-gran="day"] i:hover { transform: scale(1.45); outline: 1px solid var(--accent); }
+        */
+        .ov-daystrip i { transition: filter .12s ease-out, box-shadow .12s ease-out, transform .12s ease-out; }
+        .ov-daystrip i:hover { filter: brightness(1.4); box-shadow: 0 0 0 1px var(--accent-dim);
+          transform: scaleY(1.14); z-index: 1; position: relative; }
         .hub-chips { display: flex; gap: 8px; flex-wrap: wrap; }
         .hub-chip { display: inline-flex; align-items: baseline; gap: 8px; padding: 8px 14px; border-radius: 999px;
           border: 1px solid var(--rule); background: none; cursor: pointer; transition: border-color .15s, transform .15s; }
