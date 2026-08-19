@@ -16,7 +16,17 @@ function _segs(pts) {
 }
 
 // generic streamgraph over `series` ([{key,name,hue,vals:[per year]}]) and `years` ([nums])
-function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixedH }) {
+// `faint` washes the band fills right out and leans on the existing stroke to carry the shape
+// (Fuad 2026-08-20: the Overview flow read as a distracting block of solid colour). Opt-in rather
+// than a change to the primitive, because the same StreamGraph draws the artist-page flow and the
+// Journey, where a solid fill is the point. The stroke opacity goes UP as the fill goes down —
+// at 18% fill the edges are what separates one band from its neighbour.
+const SG_BANDS = {
+  solid: { on: 0.82, hi: 0.96, off: 0.15, strokeOn: 0.5, strokeOff: 0.12 },
+  faint: { on: 0.18, hi: 0.42, off: 0.06, strokeOn: 0.75, strokeOff: 0.18 },
+};
+function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixedH, faint }) {
+  const BO = faint ? SG_BANDS.faint : SG_BANDS.solid;
   const L = React.useMemo(() => {
     const com = series.map(s => { let n = 0, d = 0; s.vals.forEach((v, i) => { n += v * years[i]; d += v; }); return d ? n / d : 9999; });
     const order = series.map((s, i) => i).sort((a, b) => com[a] - com[b]);
@@ -42,8 +52,8 @@ function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixe
         const fill = s.mute ? "oklch(0.5 0.02 270)" : `oklch(0.62 0.17 ${s.hue})`;
         const strk = s.mute ? "oklch(0.62 0.02 270)" : `oklch(0.72 0.16 ${s.hue})`;
         return (
-          <path key={s.key} d={L.area(i)} fill={fill} fillOpacity={on ? (hi === i ? 0.96 : 0.82) : 0.15}
-            stroke={strk} strokeWidth={hi === i ? 1.4 : 0.5} strokeOpacity={on ? 0.5 : 0.12}
+          <path key={s.key} d={L.area(i)} fill={fill} fillOpacity={on ? (hi === i ? BO.hi : BO.on) : BO.off}
+            stroke={strk} strokeWidth={hi === i ? 1.4 : 0.5} strokeOpacity={on ? BO.strokeOn : BO.strokeOff}
             style={{ cursor: clickable ? "pointer" : "default", transition: "fill-opacity .15s" }}
             onMouseEnter={() => setHi(i)} onClick={() => onPick && onPick(s, i)}>
             <title>{s.name} · peak {L.peak[i].year} ({Math.round(L.peak[i].share * 100)}%)</title>
