@@ -626,7 +626,9 @@ function ShelvesView({ go, seed }) {
               under the genre lens; the others carry their own natural order. */}
           {(lens === "genre" || !lens) && R.GENRE_FLOW && (
             <span className="sh-labelseg-wrap">
-              <span className="r-mono sh-labelseg-cap">ranked by</span>
+              {/* "sorted by", not "ranked by" (Fuad 2026-08-20) — the control reorders the shelves, it
+                  does not score them, and "ranked" implies a judgement it never makes */}
+              <span className="r-mono sh-labelseg-cap">sorted by</span>
               <select className="sh-gwin" value={gWindow} onChange={e => { setGWindow(e.target.value === "all" || e.target.value === "r12" ? e.target.value : +e.target.value); setSplit({}); }}
                 aria-label="rank genre shelves by period">
                 <option value="r12">last 12 months</option>

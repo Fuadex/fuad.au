@@ -2765,6 +2765,7 @@ function GigsView({ go }) {
   }, [seenIds, bucketMode, bucketYear]);
 
   const [seenShown, setSeenShown] = React.useState(12);   // Seen & loved: expand by +12 per click (Fuad 2026-07-18)
+  const [strangeShown, setStrangeShown] = React.useState(12);   // Passed through: same +12 pager (Fuad 2026-08-20)
   // TIME AT CONCERTS — an honest back-of-envelope: songs heard live × ~4.2 min a song.
   const SONG_MIN = 4.2;
   const crowdHours = Math.round(G.songsSeen * SONG_MIN / 60);
@@ -2987,7 +2988,7 @@ function GigsView({ go }) {
           <div className="gv-label">Passed through</div>
           <div className="gv-title">Caught live — festival stages, support slots — but never in rotation.</div>
           <div className="gv-tiles">
-            {G.strangers.map(a => (
+            {G.strangers.slice(0, strangeShown).map(a => (
               <div key={a.artistId} className="gv-tile" style={{ cursor: "default" }}>
                 <GenCover hue={a.hue} name={a.artist} size={40} radius={4} />
                 <div style={{ minWidth: 0 }}>
@@ -2997,6 +2998,11 @@ function GigsView({ go }) {
               </div>
             ))}
           </div>
+          {G.strangers.length > 12 && (
+            <button className="gv-tour-all" onClick={() => setStrangeShown(n => n >= G.strangers.length ? 12 : n + 12)}>
+              {strangeShown >= G.strangers.length ? "show fewer" : `show 12 more · ${Math.min(strangeShown, G.strangers.length)} of ${G.strangers.length}`}
+            </button>
+          )}
         </section>
       )}
 

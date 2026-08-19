@@ -557,10 +557,20 @@ function Wall({ go, styleIds }) {
               </button>
             );
           })}
-          <label className="cv-pick-custom" title="sort toward any colour">
+          {/* the custom swatch shows its own lit state (Fuad 2026-08-20: "it doesn't show that this
+              is currently active"). It is lit when a colour sort is running on a value that is not
+              one of the presets — i.e. one you chose yourself. */}
+          <label className="cv-pick-custom" data-on={sort === "colour" && !!pick && !SPECTRUM_PICKS.some(([hex]) => hex === pick)}
+            title="sort toward any colour">
             <input type="color" value={pick || "#b23b2e"}
               onChange={e => { setPick(e.target.value); setSort("colour"); }} />
           </label>
+          {/* an explicit off. Clicking a lit preset toggles it, but a colour input cannot: clicking
+              it just reopens the picker, so a custom colour had no way out except choosing a
+              different one. Same ✕ idiom the style and era rows use. */}
+          {sort === "colour" && (
+            <button className="cv-pick-off" onClick={() => setSort("hang")} title="stop sorting by colour">✕</button>
+          )}
         </span>
         <span className="cv-count">{Math.min(visN, shown.length)} of {shown.length}</span>
       </div>

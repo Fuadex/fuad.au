@@ -340,7 +340,13 @@ a { color: inherit; }
   color: var(--ink-faint); align-self: center; }
 .cv-pick-custom { display: inline-flex; align-items: center; cursor: pointer; line-height: 0; margin-left: 2px; }
 .cv-pick-custom input { width: 15px; height: 15px; padding: 0; border: 1px solid rgba(58,47,34,.28);
-  border-radius: 50%; background: none; cursor: pointer; }
+  border-radius: 50%; background: none; cursor: pointer; transition: transform .12s, box-shadow .12s; }
+.cv-pick-custom:hover input { transform: scale(1.18); }
+/* lit exactly like a preset dot, so "active" looks the same wherever the colour came from */
+.cv-pick-custom[data-on="true"] input { box-shadow: 0 0 0 2px var(--paper), 0 0 0 3.5px var(--ink); transform: scale(1.12); }
+.cv-pick-off { font: 500 10px/1 var(--mono); color: var(--ink-faint); background: none; border: 0;
+  cursor: pointer; padding: 3px 4px; margin-left: 2px; }
+.cv-pick-off:hover { color: var(--ink); }
 .cv-filters button { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-faint); cursor: pointer; }
 .cv-filters button:hover { color: var(--ink); }
 .cv-filters button[data-on="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }

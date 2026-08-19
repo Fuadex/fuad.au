@@ -4813,8 +4813,10 @@ if (GIGS_RAW && Array.isArray(GIGS_RAW.gigs) && GIGS_RAW.gigs.length) {
     byYear,
     // acts you saw AND love — ranked by how much you play them (deep enough for the +12 pager)
     seenTop: uniqArtists.filter(a => a.inLibrary).sort((a, b) => b.plays - a.plays).slice(0, 60),
-    // saw live but (almost) never played — festival discoveries / support acts
-    strangers: uniqArtists.filter(a => !a.inLibrary).slice(0, 12),
+    // saw live but (almost) never played — festival discoveries / support acts. Shipped 60 deep to
+    // match seenTop, so the +12 pager has somewhere to go (Fuad 2026-08-20 asked for the button and
+    // the list was capped at exactly one page, which is why there was nothing to reveal).
+    strangers: uniqArtists.filter(a => !a.inLibrary).slice(0, 60),
     // artists you saw before you were a fan
     preFans: uniqArtists.filter(a => a.preFan).sort((a, b) => b.plays - a.plays).slice(0, 8),
     cityList: [...cityMap.values()].sort((a, b) => b.count - a.count),
