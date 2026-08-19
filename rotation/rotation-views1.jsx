@@ -230,17 +230,21 @@ function OvWeatherCard({ R, go }) {
     <div style={{ display: "grid", gridTemplateColumns: "52px 1fr 26px", gap: 9, alignItems: "center" }}>
       <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-soft)" }}>{label}</span>
       <div style={{ position: "relative", height: 7, background: "var(--bg-3)", borderRadius: 4 }}>
-        {/* transparent fill with a confident rim, matching the flow bands (Fuad 2026-08-20). The
-            colour carries at 30% because the bar sits on --bg-3 rather than on the page, and the
-            1px inset border in the same hue is what gives the fill an edge to end at. */}
-        <div style={{ position: "absolute", inset: "0 auto 0 0", width: v + "%", background: col, opacity: 0.3,
-          border: "1px solid " + col, boxSizing: "border-box", borderRadius: 4 }} />
+        {/* Transparent fill, vivid rim (Fuad 2026-08-20). The first pass put `opacity` on the whole
+            element, which faded the border along with the fill — the one thing that was supposed to
+            stay strong. Alpha now lives in the background colour only, so the stroke is free to be
+            brighter and more saturated than the fill it encloses. */}
+        <div style={{ position: "absolute", inset: "0 auto 0 0", width: v + "%", background: col.f,
+          border: "1px solid " + col.s, boxSizing: "border-box", borderRadius: 4 }} />
         {avg != null && <div title={"library average " + avg} style={{ position: "absolute", top: -2, bottom: -2, left: avg + "%", width: 2, background: "var(--ink-faint)", borderRadius: 1 }} />}
       </div>
       <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
     </div>
   );
-  const SND = "oklch(0.72 0.15 145)", RDS = "oklch(0.68 0.16 25)";
+  // .f = fill (translucent), .s = stroke (opaque, lifted in lightness AND chroma so the rim reads
+  // as the drawn edge rather than as a darker outline of the same wash).
+  const SND = { f: "oklch(0.72 0.15 145 / 0.28)", s: "oklch(0.80 0.19 145)" };
+  const RDS = { f: "oklch(0.68 0.16 25 / 0.28)",  s: "oklch(0.78 0.20 25)" };
 
   // ── WEATHER (last 90 days — unchanged behaviour, incl. click-through to the story) ──
   // Now the WHOLE card body: no decades strip underneath, so the module is short and the
@@ -336,9 +340,11 @@ function OvDecadesCard({ R, go, restReady, fStats }) {
               return (
                 <div key={r.year} title={`${r.year} · ${r.plays.toLocaleString("en-US")} plays · ${pct}% of the ${zoom}s — open in Explore`}
                   onClick={(e) => { e.stopPropagation(); go && go("explore", "rd=" + zoom + ";ry=" + r.year); }}
+                  className="ov-decseg"
                   style={{ width: w + "%", minWidth: 2, cursor: "pointer",
                     background: `oklch(${0.34 + (i % 5) * 0.05} 0.13 ${hue % 360} / 0.34)`,
-                    boxShadow: `inset 0 0 0 1px oklch(${0.62 + (i % 5) * 0.04} 0.16 ${hue % 360} / 0.7)`,
+                    "--sk": `oklch(${0.58 + (i % 5) * 0.04} 0.08 ${hue % 360} / 0.42)`,
+                    "--skh": `oklch(${0.66 + (i % 5) * 0.04} 0.17 ${hue % 360} / 0.78)`,
                     display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                   {w > 8 && <span className="r-mono" style={{ fontSize: 9.5, color: "rgba(255,255,255,.9)", whiteSpace: "nowrap" }}>'{String(r.year).slice(2)}</span>}
                 </div>
@@ -363,9 +369,11 @@ function OvDecadesCard({ R, go, restReady, fStats }) {
             return (
               <div key={d.decade} title={`${d.decade}s · ${d.plays.toLocaleString("en-US")} plays · ${pct}% — click to drill in`}
                 onClick={(e) => { e.stopPropagation(); setZoom(d.decade); }}
+                className="ov-decseg"
                 style={{ width: w + "%", minWidth: 2, cursor: "pointer",
                   background: `oklch(${0.32 + i * 0.055} 0.14 ${hue % 360} / 0.34)`,
-                  boxShadow: `inset 0 0 0 1px oklch(${0.60 + i * 0.04} 0.17 ${hue % 360} / 0.7)`,
+                  "--sk": `oklch(${0.56 + i * 0.04} 0.08 ${hue % 360} / 0.42)`,
+                  "--skh": `oklch(${0.64 + i * 0.04} 0.18 ${hue % 360} / 0.78)`,
                   display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                 {w > 9 && <span className="r-mono" style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,.92)", whiteSpace: "nowrap" }}>{String(d.decade).slice(2)}s</span>}
                 {w > 9 && <span className="r-mono" style={{ fontSize: 8.5, color: "rgba(255,255,255,.62)", whiteSpace: "nowrap" }}>{pct}%</span>}
@@ -395,6 +403,12 @@ function OvDecadesCard({ R, go, restReady, fStats }) {
           background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px;
           color: var(--ink-soft); cursor: pointer; }
         .ov-wback:hover { color: var(--accent); border-color: var(--accent-dim); }
+        /* Segment rims sit desaturated at rest and come up to full colour under the cursor (Fuad
+           2026-08-20). Both values are handed in per-segment as --sk / --skh, because each one's hue
+           is computed from its position; only the swap between them belongs in CSS. Same quiet-at-
+           rest, vivid-on-hover rule the flow bands ended up with. */
+        .ov-decseg { box-shadow: inset 0 0 0 1px var(--sk); transition: box-shadow .16s ease-out; }
+        .ov-decseg:hover { box-shadow: inset 0 0 0 1px var(--skh); }
       `}</style>
     </div>
   );
