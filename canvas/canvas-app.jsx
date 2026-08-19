@@ -42,6 +42,10 @@ const IMGSIZE = window.CANVAS_IMGSIZE || {};
 // qid → canon work, for places that hold a Wikidata id and need to know whether the gallery
 // already has the thing (museum highlights, deck picks).
 const WORK_BY_QID = (() => { const m = {}; for (const w of WORKS) if (w.qid) m[w.qid] = w; return m; })();
+// art_artists.js — short reads on the artist page. Absent for most artists BY DESIGN: the
+// coverage gate in READS_SPEC §10 is >=3 works, a floored work, or an existing read, and an
+// artist with nothing to say keeps the bare Wikidata descriptor rather than being padded.
+const ARTIST_READ = window.CANVAS_ARTISTS || {};
 // art_holders.js — for a work Fuad has NOT seen, where it lives. Wikidata's collection (P195),
 // which is the work's home institution rather than a promise about what is on the wall this week.
 // Kept apart from seenAt, which records where he stood.
@@ -1977,6 +1981,10 @@ function ArtistView({ artistId, go }) {
             {venues.length > 0 && <span className="cv-a-chip" title={venues.map(v => v.name).join(", ")}>
               met at {venues.length === 1 ? venues[0].name.replace(/\s*\(.*\)$/, "") : `${venues.length} museums`}</span>}
           </div>
+          {/* the read sits INSIDE the header block, under the chips: it is context for the name
+              above it, not a section of its own. Most artists have none and the header simply
+              ends at the chips. */}
+          {ARTIST_READ[artistId] && <p className="cv-a-read">{ARTIST_READ[artistId]}</p>}
         </div>
         {AD2.image && <img className="cv-a-face" src={AD2.image} alt={name} />}
       </div>

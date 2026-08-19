@@ -258,7 +258,20 @@ Not all 554 artists. Write one where there is something to say: **≥3 works, OR
 work, OR an existing read**. Everything else keeps the bare Wikidata descriptor already shown
 in the sub line.
 
-### QC — a mandatory fact-check pass (Fuad 2026-08-19, binding)
+### QC — runs by DEFAULT, as part of generating (Fuad 2026-08-19, binding)
+
+**A batch of drafts is not finished until the fact-check has run.** Do not present drafts and
+then offer to verify them — verification is a step in producing them, not a service afterwards.
+Nothing goes to Fuad with "shall I QC these?" attached.
+
+**Also disallowed: the unverifiable assertion.** Not every bad claim is a wrong fact. Chełmoński
+"went home to a village, which cost him the market and suited him" contains no checkable error —
+it contains a commercial claim nobody measured and an inner state nobody recorded. A sentence
+that cannot in principle be verified cannot survive QC either, and it slips past a fact-checker
+precisely because there is no fact to check. Motive, satisfaction, regret and "what it cost him"
+are off limits unless the artist wrote it down.
+
+
 
 These make confident factual claims about real people — attributions, dates, bequest terms,
 illnesses, causes of death — and the hook rule in step 3 actively *rewards* the striking claim,
