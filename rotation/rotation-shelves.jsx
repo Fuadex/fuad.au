@@ -773,10 +773,22 @@ function ShelvesView({ go, seed }) {
         .sh-labelseg-wrap { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; flex: none; }
         .sh-labelseg-cap { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
         /* period picker for the genre shelves — a select rather than chips because the year list
-           runs to seventeen entries and would swamp the lens row */
-        .sh-gwin { font-family: var(--mono); font-size: 10px; letter-spacing: .04em; padding: 4px 8px;
-          border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-soft); cursor: pointer; }
-        .sh-gwin:hover { border-color: var(--ink-faint); color: var(--ink); }
+           runs to seventeen entries and would swamp the lens row.
+           NO BACKTICKS in here — this whole block is a template literal.
+           The OPEN list is drawn by the OS, not by this page. A transparent background left the
+           expanded options illegible (Fuad 2026-08-19) because the native popup inherits the
+           CONTROL's colours rather than the page's dark surface — transparent resolves against a
+           system-white menu, so dark text landed on dark. The control now carries real values and
+           the options get their own literal ones: the popup sits outside this stylesheet's cascade
+           in several browsers, so a var() there cannot be relied on. */
+        .sh-gwin { font-family: var(--mono); font-size: 10px; letter-spacing: .04em; padding: 5px 24px 5px 10px;
+          border-radius: 999px; border: 1px solid var(--rule); background-color: var(--bg-3); color: var(--ink);
+          cursor: pointer; appearance: none; -webkit-appearance: none;
+          background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+          background-position: right 11px center, right 7px center; background-size: 4px 4px, 4px 4px; background-repeat: no-repeat; }
+        .sh-gwin:hover { border-color: var(--ink-faint); }
+        .sh-gwin:focus-visible { outline: 2px solid var(--accent-dim); outline-offset: 1px; }
+        .sh-gwin option { background-color: #1b1824; color: #f1eef6; }
         .sh-labelseg { flex: none; }
         @media (max-width: 560px) {
           /* claim a full row so the toggle never gets buried mid-line among the lens pills */
