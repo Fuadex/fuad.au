@@ -2657,7 +2657,10 @@ function TourSection({ go, gigDate }) {
                     <div className="gv-tile-name">{a.name}</div>
                     <div className="gv-tile-sub">
                       {a.plays > 0 ? `${fmt(a.plays)} plays` : "on your radar"}
-                      {a.seen ? ` · 🎤 seen ×${a.seen}` : ""}
+                      {/* the microphone alone says you have been (Fuad 2026-08-19) — "seen ×2" was
+                          restating the glyph in words. The count survives in the tooltip for the
+                          rare case where the number is the interesting part. */}
+                      {a.seen ? <span title={a.seen === 1 ? "seen live once" : `seen live ${a.seen} times`}> · 🎤</span> : null}
                     </div>
                   </div>
                   {a.react ? <span className="gv-react" title="listed as disbanded on MusicBrainz/Wikidata — yet here they are with fresh dates">reactivated</span> : null}
