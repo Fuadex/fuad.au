@@ -1084,11 +1084,17 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
 
 // AttrExplore — the "attributes" lens wrapper: lazy-loads track-audio.js, memoises the centroid
 // pass, owns the X/Y/shade pickers + the family colour key (click a family to dim the rest).
-function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam, filtersActive, xKey, yKey, setXKey, setYKey }) {
+function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam, onFam, filtersActive, xKey, yKey, setXKey, setYKey }) {
   const [taReady, setTaReady] = React.useState(!!window.ROTATION_TRACKAUDIO);
   const [restReady, setRestReady] = React.useState(!!(R && R._restLoaded));
   const [shade, setShade] = React.useState("none");
-  const [famDim, setFamDim] = React.useState(null); // family index to isolate, or null
+  // The family colour key under the chart drives the PAGE's genre filter rather than a private one
+  // (Fuad 2026-08-20: "it almost behaves like a separate filter" — it was one). It used to hold its
+  // own `famDim` state that dimmed dots inside this component and nothing else, so picking
+  // Thrash/Death here and picking it in the grid below did visibly different things, and the ranked
+  // list, the era band and the Active chips never heard about this one at all. Same state now, so
+  // there is one genre filter on the page instead of two that look identical.
+  const famDim = activeFam;
 
   const mode = grain === "artists" ? "artists" : "subgenres"; // reuse Explore's subs|artists seg
 
@@ -1179,13 +1185,13 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
           const on = famDim === f.i;
           return (
             <button key={f.i} className="xp-attr-legitem" data-on={on} data-dim={famDim != null && !on}
-              onClick={() => setFamDim(x => x === f.i ? null : f.i)} title={"isolate " + f.family}>
+              onClick={() => onFam && onFam(famDim === f.i ? null : f.i)} title={"filter to " + f.family}>
               <span className="xp-attr-swatch" style={{ background: `oklch(0.62 0.16 ${f.hue})` }} />
               <span>{f.family}</span>
             </button>
           );
         })}
-        {famDim != null && <button className="xp-attr-legitem xp-attr-legclear" onClick={() => setFamDim(null)}>clear</button>}
+        {famDim != null && <button className="xp-attr-legitem xp-attr-legclear" onClick={() => onFam && onFam(null)}>clear</button>}
       </div>
 
       <div className="r-mono xp-attr-foot">
@@ -1804,7 +1810,7 @@ function ExploreView({ t, go, setPop, seed }) {
             </div>
             <div className="xp-chartwrap">
             {lens === "attributes"
-              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} filtersActive={hasYears || fam != null || sub != null || cells.size > 0 || vocals !== "any" || filtActive || picks.size > 0} xKey={attrX} yKey={attrY} setXKey={setAttrX} setYKey={setAttrY} />
+              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} onFam={(f) => { setSub(null); setFam(f); }} filtersActive={hasYears || fam != null || sub != null || cells.size > 0 || vocals !== "any" || filtActive || picks.size > 0} xKey={attrX} yKey={attrY} setXKey={setAttrX} setYKey={setAttrY} />
               : lens === "texture"
               ? (grain === "subs"
                 ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />

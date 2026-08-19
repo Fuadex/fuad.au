@@ -581,18 +581,17 @@ function OverviewView({ t, go, restReady, seed }) {
 
   return (
     <div className="r-view" ref={ref}>
-      {/* header restored (Fuad 2026-07-05: "it looked better back then after all") — and TEMPORARILY
-          commented out again 2026-08-20, to see how Overview reads with the bento leading. Restore by
-          uncommenting; nothing else depends on it.
+      {/* header restored (Fuad 2026-07-05: "it looked better back then after all"). The TITLE and the
+          LEDE are temporarily commented out (2026-08-20) to see how Overview reads without them; the
+          kicker stays, so the page still names itself. Uncomment the two lines to restore. */}
       <div className="r-viewhead">
         <div>
           <div className="r-kicker">Rotation · since {new Date(T.since).getFullYear()}</div>
-          <h1 className="r-title">A life, <em>counted</em><span className="dot">.</span></h1>
+          {/* <h1 className="r-title">A life, <em>counted</em><span className="dot">.</span></h1> */}
         </div>
-        <p className="r-lede">Every track I've played, since the mid-2000s —
-          turned into something I can actually <b>look at</b>.</p>
+        {/* <p className="r-lede">Every track I've played, since the mid-2000s —
+            turned into something I can actually <b>look at</b>.</p> */}
       </div>
-      */}
 
       {/* bento */}
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, minmax(0, 1fr))", gap: "var(--gap)" }}>
