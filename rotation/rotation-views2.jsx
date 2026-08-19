@@ -147,7 +147,7 @@ function MiniArtistDetail({ id, name, go }) {
         {(simTab === "sound" || !(rec.sim && rec.sim.length)) && R.AUDIO && R.AUDIO[id] ? <SoundSimilar id={id} go={go} /> : (
         /* Sounds like — inside the dossier this is compacted to ONE ROW (mav-simrow: cap 6, no wrap);
            the wider band page keeps the wrapping auto-fill grid (Fuad 2026-07-18). */
-        <div className="mav-simrow" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(110px,1fr))", gap: 12 }}>
+        <div className="mav-simrow r-hovgrid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(110px,1fr))", gap: 12 }}>
           {/* no in-library status here either — see the band-page tiles for why the name-match
               miss is not evidence of absence. A real record still shows its play count. */}
           {rec.sim.slice(0, 6).map((name, i) => { const rid = (R.idForName && R.idForName(name)) || R.slug(name); const s = R.byId[rid] || (R.expById && R.expById[rid]); return (
@@ -550,7 +550,7 @@ function SoundSimilar({ id, go, ctl }) {
       {/* artist page (ctl set) pins the 4-across, two-row-then-scroll footprint; the dossier's
           uncontrolled use keeps the loose auto-fill wrap */}
       {(() => {
-        const grid = <div className={ctl ? "av-simgrid" : ""} style={ctl ? undefined : { display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(80px,1fr))", gap: 10 }}>
+        const grid = <div className={"r-hovgrid " + (ctl ? "av-simgrid" : "")} style={ctl ? undefined : { display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(80px,1fr))", gap: 10 }}>
           {results.map(({ c }) => { const s = c.rec, name = (s && s.name) || c.id, nav = !!(R.byId[c.id] || (R.expById && R.expById[c.id])); return (
             <div key={c.id} className={nav ? "r-hovtile" : ""} onClick={() => nav && go("artist", c.id)} style={{ cursor: nav ? "pointer" : "default" }}>
               <div className="r-hovtile-art">
@@ -1725,7 +1725,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   <span className="meta">{albums.length}</span>
                 </span></div>
               {albMode === "covers" ? (
-                <div className="av-albumcovers" style={{
+                <div className="av-albumcovers r-hovgrid" style={{
                   display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: 10 }}>
                   {albums.map((al, i) => (
                     <div key={al.title + i} className="r-hovtile" style={{ minWidth: 0 }} onClick={() => goAlbum(al.title)} title={`${al.title} →`}>
