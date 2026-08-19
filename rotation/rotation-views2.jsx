@@ -151,9 +151,11 @@ function MiniArtistDetail({ id, name, go }) {
           {/* no in-library status here either — see the band-page tiles for why the name-match
               miss is not evidence of absence. A real record still shows its play count. */}
           {rec.sim.slice(0, 6).map((name, i) => { const rid = (R.idForName && R.idForName(name)) || R.slug(name); const s = R.byId[rid] || (R.expById && R.expById[rid]); return (
-            <div key={name + i} onClick={() => s && go("artist", rid)} style={{ cursor: s ? "pointer" : "default" }}>
-              <GenCover hue={s ? s.hue : 210} name={name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
-              <div style={{ fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{name}</div>
+            <div key={name + i} className={s ? "r-hovtile" : ""} onClick={() => s && go("artist", rid)} style={{ cursor: s ? "pointer" : "default" }}>
+              <div className="r-hovtile-art">
+                <GenCover hue={s ? s.hue : 210} name={name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
+              </div>
+              <div className="r-hovtile-lbl" style={{ fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{name}</div>
               {s ? <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays →</div> : null}
             </div>); })}
         </div>)}
@@ -550,11 +552,13 @@ function SoundSimilar({ id, go, ctl }) {
       {(() => {
         const grid = <div className={ctl ? "av-simgrid" : ""} style={ctl ? undefined : { display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(80px,1fr))", gap: 10 }}>
           {results.map(({ c }) => { const s = c.rec, name = (s && s.name) || c.id, nav = !!(R.byId[c.id] || (R.expById && R.expById[c.id])); return (
-            <div key={c.id} onClick={() => nav && go("artist", c.id)} style={{ cursor: nav ? "pointer" : "default" }}>
-              <GenCover hue={(s && s.hue) || 210} name={name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
+            <div key={c.id} className={nav ? "r-hovtile" : ""} onClick={() => nav && go("artist", c.id)} style={{ cursor: nav ? "pointer" : "default" }}>
+              <div className="r-hovtile-art">
+                <GenCover hue={(s && s.hue) || 210} name={name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
+              </div>
               {/* ctl (artist-page card) uses the Albums tile system: 10px 2-line-clamped title +
                   8.5px "N plays" (no arrow). The uncontrolled dossier/fallback keeps the looser 12/9. */}
-              <div style={ctl
+              <div className="r-hovtile-lbl" style={ctl
                 ? { fontSize: 10, lineHeight: 1.2, marginTop: 6, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }
                 : { fontSize: 12, lineHeight: 1.2, marginTop: 6 }}>{name}</div>
               {s && s.plays != null && <div className="r-mono" style={{ fontSize: ctl ? 8.5 : 9, color: "var(--ink-faint)" }}>{fmt(s.plays)} plays{ctl ? "" : " →"}</div>}
@@ -1688,9 +1692,11 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                 <div className="av-albumcovers" style={{
                   display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: 10 }}>
                   {albums.map((al, i) => (
-                    <div key={al.title + i} style={{ cursor: "pointer", minWidth: 0 }} onClick={() => goAlbum(al.title)} title={`${al.title} →`}>
-                      <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
-                      <div style={{ fontSize: 10, marginTop: 5, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{al.title}</div>
+                    <div key={al.title + i} className="r-hovtile" style={{ minWidth: 0 }} onClick={() => goAlbum(al.title)} title={`${al.title} →`}>
+                      <div className="r-hovtile-art">
+                        <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
+                      </div>
+                      <div className="r-hovtile-lbl" style={{ fontSize: 10, marginTop: 5, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{al.title}</div>
                       <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(al.plays)} plays</div>
                     </div>
                   ))}
@@ -1867,14 +1873,14 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                     // library" — only "the names didn't line up" (aliases, non-Latin scripts,
                     // punctuation). A HIT is still trustworthy, so a real play count still shows;
                     // the badge, the "not yet scrobbled" negative, and the dimming are dropped.
-                    <div key={it.name + i} onClick={() => it.navId && go("artist", it.navId)}
-                      style={{ display: "flex", flexDirection: "column", gap: 8, cursor: it.navId ? "pointer" : "default" }}
-                      onMouseEnter={(e) => { if (it.navId) e.currentTarget.style.transform = "translateY(-3px)"; }}
-                      onMouseLeave={(e) => e.currentTarget.style.transform = ""}>
-                      <div style={{ position: "relative", transition: "transform .2s" }}>
+                    // the translateY(-3px) nudge is gone (Fuad 2026-08-20) — a tile that moves under
+                    // the cursor is one you have to re-aim at. Ring and brightness instead.
+                    <div key={it.name + i} className={it.navId ? "r-hovtile" : ""} onClick={() => it.navId && go("artist", it.navId)}
+                      style={{ display: "flex", flexDirection: "column", gap: 8, cursor: it.navId ? "pointer" : "default" }}>
+                      <div className="r-hovtile-art" style={{ position: "relative" }}>
                         <GenCover hue={it.hue} name={it.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
                       </div>
-                      <div style={{ fontSize: 10, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{it.name}</div>
+                      <div className="r-hovtile-lbl" style={{ fontSize: 10, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{it.name}</div>
                       {it.plays != null ? <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(it.plays)} plays</div> : null}
                     </div>
                   ))}
@@ -2022,7 +2028,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                           const oid = (R.idForName && R.idForName(o.name)) || o.artistId;
                           const openable = !!R.byId[oid] || !!(R.expById && R.expById[oid]); // kept OR explorable
                           return (
-                            <span key={o.name} onClick={() => openable && go("artist", oid)}
+                            <span key={o.name} className="r-hovchip" data-open={openable} onClick={() => openable && go("artist", oid)}
                               style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 9px", borderRadius: 999,
                                 border: "1px solid var(--rule)", fontSize: 11.5, cursor: openable ? "pointer" : "default",
                                 color: openable ? "var(--ink)" : "var(--ink-soft)" }}>
