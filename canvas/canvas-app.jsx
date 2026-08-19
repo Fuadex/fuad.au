@@ -2768,6 +2768,16 @@ function HomeView({ go }) {
 
   const wall = useMemo(() => {
     const placed = new Set();
+    // HOME IS FLOORED-ONLY (Fuad 2026-08-19: "Home should strictly be built from rotating artworks
+    // that floored me"). Two exclusions matter and neither is obvious from the flag alone:
+    //   · `liked` is out. It used to seed both the leads and the spread, and after the import it
+    //     means "liked the look of a thumbnail in a matcher" for well over a thousand rows.
+    //   · floored WISH/UNSURE works are out too. Their ★ came from loving a candidate on screen,
+    //     not from being floored in the room — 68 of the 179 ★ works are that. "Floored me" is a
+    //     claim about having been there.
+    // Leaves 110 works across 51 artists, which is deep enough that the daily rotation genuinely
+    // turns the wall over rather than reshuffling the same two dozen.
+    const flooredMet = (w) => (w.floored || w.favorite) && !isUnseen(w) && (w.imgGrid || w.img);
 
     // helper: resolve the primary movement label for a work
     const movLabel = (w) => {
@@ -2779,15 +2789,14 @@ function HomeView({ go }) {
     // 1. resolve the two explicit lead works (must have an id match in canon)
     const byId = {};
     for (const w of all) byId[w.id] = w;
-    const leadExplicit = HOME_LEAD_IDS.map(id => byId[id]).filter(Boolean);
+    // hand-picked leads are held to the same bar — leech-convent-garden is liked, not floored,
+    // so it no longer opens the page
+    const leadExplicit = HOME_LEAD_IDS.map(id => byId[id]).filter(w => w && flooredMet(w));
     for (const w of leadExplicit) placed.add(w.id);
 
-    // 2. impressionist / post-impressionist liked/floored works with images, best per artist
+    // 2. impressionist / post-impressionist FLOORED works with images, best per artist
     const impPool = all.filter(w =>
-      !placed.has(w.id) &&
-      (w.floored || w.favorite || w.liked) &&
-      (w.imgGrid || w.img) &&
-      IMPRESSIONIST_RE.test(movLabel(w))
+      !placed.has(w.id) && flooredMet(w) && IMPRESSIONIST_RE.test(movLabel(w))
     );
     // sort: floored/favorite first, then liked; within tier by year ascending
     impPool.sort((a, b) => weight(a) - weight(b) || (a.year || 9999) - (b.year || 9999));
@@ -2805,7 +2814,7 @@ function HomeView({ go }) {
 
     // 3. Leech works — leech has no movementQids so splice them in explicitly at ~position 6
     //    (after lead[0..1] + 3 impressionists, i.e. after index 4 in the assembled sequence)
-    const leechWorks = HOME_LEECH_IDS.map(id => byId[id]).filter(w => w && (w.imgGrid || w.img));
+    const leechWorks = HOME_LEECH_IDS.map(id => byId[id]).filter(w => w && flooredMet(w));
     for (const w of leechWorks) placed.add(w.id);
 
     // assemble lead: explicit[0..1] + impLeads[0..2] + leechs + impLeads[3..4]
@@ -2816,12 +2825,8 @@ function HomeView({ go }) {
       ...impLeads.slice(3),
     ];
 
-    // 4. spread pool: liked or floored/favorite, must have an image, not already placed
-    const pool = all.filter(w =>
-      !placed.has(w.id) &&
-      (w.floored || w.favorite || w.liked) &&
-      (w.imgGrid || w.img)
-    );
+    // 4. spread pool: floored works he actually met, not already placed
+    const pool = all.filter(w => !placed.has(w.id) && flooredMet(w));
 
     // 5. group by artistId, sort each bucket by quality
     const byArtist = {};
