@@ -2167,6 +2167,15 @@ function MapView({ go }) {
   const lensRaf = React.useRef(0);
   const LENS_R = 26;                                 // magnifier radius, map units (scales with zoom via vb)
   const LENS_MAG = 2.1;                              // peak size multiplier at the cursor
+  const LENS_SPREAD = 0.16;                          // how far the lens parts a cluster, as a fraction of its radius
+  // FAN SCALING (Fuad 2026-08-19: "the branches out from the big circles should decrease as I zoom
+  // in"). Marker positions are solved ONCE, in world units, by a collision relaxation far too
+  // expensive to re-run per frame for ~1,300 dots. So the solved offset from the city anchor is
+  // simply re-scaled at render: k is vb.w/880, which shrinks as you zoom, so the fan contracts
+  // toward its bubble and the halo stops sprawling across a zoomed-in view. Clamped so the dots
+  // never collapse INTO the bubble at extreme zoom, and never overreach when zoomed out.
+  const fanK = Math.max(0.28, Math.min(1.15, k));
+  const fanAt = (mk) => [mk.bx + (mk.x - mk.bx) * fanK, mk.by + (mk.y - mk.by) * fanK];
   const lensR = LENS_R * k;
   const setLensThrottled = (p) => { if (lensRaf.current) return; lensRaf.current = requestAnimationFrame(() => { lensRaf.current = 0; setLens(p); }); };
   // magnifier transform for one point: returns [x, y, scale]. Position is unchanged; only scale
@@ -2176,6 +2185,13 @@ function MapView({ go }) {
   // neighbours and grab the cursor from far away (Fuad 2026-08-13: "too aggressive when you're
   // zoomed out for the biggest location blobs, the small ones are ok"). So the magnification is
   // damped by size: a small dot still gets the full effect, a large city bubble much less.
+  // DISPLACEMENT (Fuad 2026-08-19: the branching "feels very inorganic"). Until now the lens only
+  // magnified a node's SIZE and left every position untouched, so passing the cursor over a dense
+  // cluster made the dots swell into each other instead of opening up — the map stayed rigid while
+  // things merely got fatter. A real focus+context lens also PUSHES points radially away from the
+  // cursor, so a crowd parts as you move through it and closes again behind you. The push is
+  // strongest at the centre, eases to nothing at the lens edge (so the rest of the map never
+  // moves), and is proportional to the lens radius, which itself shrinks with zoom.
   const fish = (x, y, r) => {
     if (!lens) return [x, y, 1];
     const dx = x - lens.x, dy = y - lens.y, d = Math.hypot(dx, dy);
@@ -2183,7 +2199,11 @@ function MapView({ go }) {
     const t = 0.5 + 0.5 * Math.cos(Math.PI * d / lensR);   // 1 at centre → 0 at edge (smooth)
     // size damping: full magnification up to ~3 map units, tapering to ~25% by ~12 units
     const damp = r ? Math.max(0.25, Math.min(1, 3 / r)) : 1;
-    return [x, y, 1 + (LENS_MAG - 1) * t * damp];
+    // a point exactly under the cursor has no direction to be pushed in, so it stays put and the
+    // ones around it part around it — which reads as the cluster opening rather than sliding.
+    const push = d > 0.001 ? LENS_SPREAD * lensR * t * (1 - d / lensR) : 0;
+    const ux = dx / (d || 1), uy = dy / (d || 1);
+    return [x + ux * push, y + uy * push, 1 + (LENS_MAG - 1) * t * damp];
   };
   const clientToMap = (cx, cy) => {
     const el = svgRef.current; if (!el) return null; const r = el.getBoundingClientRect(); const v = vbRef.current;
@@ -2420,8 +2440,18 @@ function MapView({ go }) {
               and never crosses over the dots. City bubbles paint next, then the ♥ dots on top. */}
           {!focus && wishMarkers.map((mk, i) => {
             if (mk.x === mk.bx && mk.y === mk.by) return null;
-            const [fx, fy] = fish(mk.x, mk.y);
-            return <line key={"wl" + mk.w.id + "-" + i} x1={mk.bx} y1={mk.by} x2={fx} y2={fy} stroke="oklch(0.55 0.19 18 / .4)" strokeWidth={0.5 * k} />;
+            const [px, py] = fanAt(mk);
+            const [fx, fy] = fish(px, py);
+            // a curve, not a spoke (Fuad 2026-08-19). The control point sits at the midpoint nudged
+            // perpendicular to the run, so every branch bows the same way around its bubble and the
+            // fan reads as growth rather than a pin-cushion. Bow scales with length, so short
+            // branches stay nearly straight and long ones arc.
+            const mx = (mk.bx + fx) / 2, my = (mk.by + fy) / 2;
+            const vx = fx - mk.bx, vy = fy - mk.by, len = Math.hypot(vx, vy) || 1;
+            const bow = Math.min(len * 0.18, 2.2 * k);
+            const qx = mx - (vy / len) * bow, qy = my + (vx / len) * bow;
+            return <path key={"wl" + mk.w.id + "-" + i} d={`M${mk.bx} ${mk.by} Q${qx} ${qy} ${fx} ${fy}`}
+              fill="none" stroke="oklch(0.55 0.19 18 / .4)" strokeWidth={0.5 * k} />;
           })}
           {!focus && cities.list.map(c => {
             const cr = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
@@ -2436,7 +2466,8 @@ function MapView({ go }) {
             );
           })}
           {!focus && wishMarkers.map((mk, i) => {
-            const [fx, fy, fs] = fish(mk.x, mk.y);
+            const [px, py] = fanAt(mk);
+            const [fx, fy, fs] = fish(px, py);
             return (
               <g key={mk.w.id + "-" + i} className="cv-wishpin" onClick={() => go("work", mk.w.id)}
                 onMouseEnter={e => setHover({ w: mk.w, mx: e.clientX, my: e.clientY, venue: mk.venue, city: mk.city })}
