@@ -394,7 +394,9 @@ function Wall({ go, mode = "collage", styleIds }) {
       if (sort === "museum") arr.sort((a, b) => String(a.seenAt).localeCompare(String(b.seenAt)) || weight(a) - weight(b));
     }
     return arr;
-  }, [all, filt, mus, sort, mode, sel]);
+    // `media` belongs in here: the filter above reads it, and without it the wall kept showing the
+    // previous medium's results until some other filter happened to change (found 2026-08-20).
+  }, [all, filt, mus, sort, mode, sel, media]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
@@ -1586,12 +1588,21 @@ function MuseumView({ museumId, go }) {
     const onDown = (e) => {
       if (e.button !== 0) return;
       down = true; moved = false; x0 = e.clientX; left0 = el.scrollLeft;
-      try { el.setPointerCapture(e.pointerId); } catch (err) {}
+      // pointer capture is deliberately NOT taken here — see onMove
     };
     const onMove = (e) => {
       if (!down) return;
       const dx = e.clientX - x0;
       if (!moved && Math.abs(dx) < 4) return;
+      if (!moved) {
+        // Capture only once a real drag begins (Fuad 2026-08-20: the works in this strip were not
+        // clickable). Capturing on pointerdown retargets the following click to the CAPTURING
+        // element, so every click landed on the container and the child button's onClick never ran.
+        // The 4px threshold was doing its job and the capture was quietly eating the result.
+        // Taking it here still keeps the gesture alive when the pointer leaves the strip, which is
+        // all it was ever for, without standing between a plain click and its target.
+        try { el.setPointerCapture(e.pointerId); } catch (err) {}
+      }
       moved = true;
       e.preventDefault();
       el.scrollLeft = left0 - dx;
