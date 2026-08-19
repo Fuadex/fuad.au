@@ -326,6 +326,9 @@ a { color: inherit; }
 /* SPECTRUM TARGET — lives INSIDE .cv-filters now (Fuad 2026-08-20: it read as a band bolted onto
    the collage, and sat out of line with everything else). It inherits the row's chip shape and
    baseline; all that is left here is the swatch, which no other chip has. */
+/* the colour toggle sits in the filter row and reads as a chip, but carries the ramp so it is
+   findable at a glance — it replaced a dropdown option nobody could see */
+.cv-colour-toggle { display: inline-flex; align-items: center; }
 .cv-pick-lbl { font: 500 9.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase;
   color: var(--ink-faint); align-self: center; }
 .cv-filters button i { width: 12px; height: 12px; border-radius: 50%; flex: none;
