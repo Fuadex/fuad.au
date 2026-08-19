@@ -4110,7 +4110,13 @@ function qualifyingSubs(name, s) {
 }
 const EXPLORE = [];
 for (const [name, plays] of rankedArtists) {
-  if (plays < 5) continue;
+  // Floor of 3, matching the search index above — NOT 5, which is what this used to be.
+  // enrich-tags.js fetches from the search index, so every artist down to 3 plays already
+  // has its last.fm tags cached; a floor of 5 was throwing away ~1,300 artists we had
+  // already paid the API calls for. Going below 3 is a different proposition: it needs the
+  // search-index floor lowered AND thousands of fresh fetches, for artists whose 1–2 plays
+  // are mostly mis-scrobbles and radio spillover.
+  if (plays < 3) continue;
   if (NONMUSIC.has(name)) continue;   // "inapplicable" — not music, keep off the genre map
   const meta = META[name];
   // subgenre membership from last.fm tags AND Discogs styles — the latter reaches the ~6000

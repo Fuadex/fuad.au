@@ -17,15 +17,15 @@ const ACCENTS = [
 ];
 
 const NAV_FULL = [
-  // order set by Fuad 2026-07-13: Overview, Explore, Calendar, Shelves, Stories, Gigs; Spotify last
+  // order set by Fuad 2026-07-13, Time moved between Stories and Gigs 2026-08-20 (Fuad).
   // relabelled 2026-08-06 (Fuad): Calendar → Time, Shelves → Records. The ROUTE ids stay
   // `calendar`/`shelves` — they're woven through hash-sync, deep links and lazy chunk names —
   // so the new names are display-only, with #time / #records aliased in LEGACY below.
   ["overview", "Overview"],
   ["explore", "Explore"],
-  ["calendar", "Time"],
   ["shelves", "Records"],
   ["stories", "Stories"],
+  ["calendar", "Time"],
   ["gigs", "Gigs"],
   ["liked", "Liked"],   // promoted to the navbar 2026-08-13 (Fuad: "this is becoming something nice")
   ["live", "Live"],

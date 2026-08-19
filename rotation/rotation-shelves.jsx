@@ -593,7 +593,7 @@ function ShelvesView({ go, seed }) {
 
   return (
     <div className="r-view">
-      <div className="r-viewhead">
+      <div className="r-viewhead sh-head">
         <div>
           <div className="r-kicker">Records · {mode === "wrap"
             ? (unData ? `${fmt(unData.albums.length)} LPs still in shrinkwrap` : "…")
@@ -608,7 +608,7 @@ function ShelvesView({ go, seed }) {
           <button className="sh-dig" onClick={dig}>🎲 crate dig</button>
         </div>
       </div>
-      <p className="r-lede" style={{ marginTop: -8, marginBottom: 22 }}>
+      <p className="r-lede" style={{ marginTop: 0, marginBottom: 22 }}>
         {mode === "wrap"
           ? <>Records by artists you love (20+ plays) that you've <b>never pressed play on</b>. The blind-spot wall.</>
           : <>Every album you've played, racked by genre. Brush a spine to fan it open{" "}
@@ -781,6 +781,11 @@ function ShelvesView({ go, seed }) {
            system-white menu, so dark text landed on dark. The control now carries real values and
            the options get their own literal ones: the popup sits outside this stylesheet's cascade
            in several browsers, so a var() there cannot be relied on. */
+        /* The lede sat too far under "The record shop." (Fuad 2026-08-20). The gap was the
+           shared .r-viewhead bottom margin — pad*1.35, ~46px — barely dented by the old
+           marginTop:-8 on the paragraph. Halving it here rather than pulling the paragraph
+           up with a bigger negative keeps it proportional under every density setting. */
+        .sh-head { margin-bottom: calc(var(--pad) * 0.65); }
         .sh-gwin { font-family: var(--mono); font-size: 10px; letter-spacing: .04em; padding: 5px 24px 5px 10px;
           border-radius: 999px; border: 1px solid var(--rule); background-color: var(--bg-3); color: var(--ink);
           cursor: pointer; appearance: none; -webkit-appearance: none;
