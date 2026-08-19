@@ -533,15 +533,21 @@ function Wall({ go, styleIds }) {
           <option value="">every museum</option>
           {musOpts.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
         </select>
-        <select value={sort} onChange={e => setSort(e.target.value)}>
+        <select value={sort === "colour" ? "hang" : sort} onChange={e => setSort(e.target.value)}>
           <option value="hang">hang order</option>
           <option value="year">by year</option>
           <option value="artist">by artist</option>
           <option value="museum">by museum</option>
-          <option value="colour">by colour</option>
         </select>
-        {/* the colour target only exists while sorting by colour — choosing any other sort is how
-            you turn it off, so there is no separate disable to find */}
+        {/* Colour is a CHIP, not a dropdown option (Fuad 2026-08-20: "where did the colour sorting
+            go?"). Folding it into the sort select was too quiet for something that used to be a
+            top-level tab — a fifth line in a menu is not where you look for the best thing on the
+            page. As a chip it is visible at rest, and toggling it off returns to hang order, so it
+            still needs no separate disable. */}
+        <button className="cv-colour-toggle" data-on={sort === "colour"}
+          onClick={() => setSort(sort === "colour" ? "hang" : "colour")} title="sort the wall by colour">
+          <i className="cv-pick-ramp" />colour
+        </button>
         {sort === "colour" && (
           <React.Fragment>
             <span className="cv-filt-div" aria-hidden="true" />
