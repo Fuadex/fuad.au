@@ -289,3 +289,17 @@ which is precisely where fluent prose invents. **No artist read merges unverifie
 
 **Resolution rule.** Cut rather than soften. A hook that has to be hedged into "is said to
 have" was not a hook worth having — hedging is how an unverified claim survives QC.
+
+**VERIFY THE CORRECTION TOO (Fuad 2026-08-19, learned the hard way).** A verifier that finds
+a real error will often hand back a replacement claim, and that replacement arrives with all
+the authority of having just caught you out — which is exactly why it gets adopted unchecked.
+It happened on the first run: the draft said cataracts explained Monet's late violets, the
+verifier corrected it to "his lens-less eye could reach into ultraviolet", and that went
+straight into the revision. Fuad queried it and it collapsed. The UV story is circular — the
+only evidence is that the post-1923 paintings turned bluer, which is then explained by
+inferring UV vision from those same paintings — and a mundane explanation covers it entirely:
+removing a yellowed cataractous lens restores cool-tone perception.
+
+A correction is a new claim. It gets the same treatment as the claim it replaces, and
+**prefer the boring explanation** — the exotic one is what makes a good story, which is
+precisely the pressure this pass exists to resist.
