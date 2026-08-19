@@ -101,8 +101,16 @@ async function api(url) {
   const inspect = {};
   try { new Function("window", fs.readFileSync(path.join(HERE, "art_inspect.js"), "utf8") + "\nreturn window;")(inspect); } catch (e) {}
   const TOURS = inspect.CANVAS_INSPECT || {};
-  const touredThin = WORKS.filter(w => TOURS[w.id] && out[w.id] && out[w.id][0] < 2000);
-  console.log(`of those, ${touredThin.length} carry a STUDY TOUR — anchored crop boxes on an image that cannot support the zoom:`);
+  const hires = {};
+  try { new Function("window", fs.readFileSync(path.join(HERE, "art_hires.js"), "utf8") + "\nreturn window;")(hires); } catch (e) {}
+  const HI = hires.CANVAS_HIRES || {};
+  // A work with a CANVAS_HIRES entry serves its zoom from the MUSEUM's IIIF tile source, not from
+  // the Commons file measured here — so a thin Commons number says nothing about its tour. Szał
+  // uniesień reads 600px here and tours off MNK's high-res scan quite happily.
+  const touredThin = WORKS.filter(w => TOURS[w.id] && out[w.id] && out[w.id][0] < 2000 && !HI[w.id]);
+  const shielded = WORKS.filter(w => TOURS[w.id] && out[w.id] && out[w.id][0] < 2000 && HI[w.id]);
+  if (shielded.length) console.log(`(${shielded.length} more are thin on Commons but serve zoom from a museum hires source — not a problem: ${shielded.map(w => w.id).join(", ")})`);
+  console.log(`of those, ${touredThin.length} carry a STUDY TOUR with no hires source — anchored crop boxes on an image that cannot support the zoom:`);
   touredThin.sort((a, b) => out[a.id][0] - out[b.id][0]).slice(0, 25)
     .forEach(w => console.log(`  ${String(out[w.id][0]).padStart(5)}px  ${w.title.slice(0, 52)} — ${w.artist}`));
 
