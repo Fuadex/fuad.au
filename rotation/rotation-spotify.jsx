@@ -1057,10 +1057,11 @@ function LikedView({ go }) {
           first-class navbar destination, so the up-navigation was noise) */}
       {/* header row: title on the left, the DNA TUNE control hugging the right (stacks under the
           title on narrow screens via flex-wrap). */}
-      <div className="r-viewhead" style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 10 }}>
+      {/* title hidden (Fuad 2026-08-20); .r-headbare closes the gap it leaves. */}
+      <div className="r-viewhead r-headbare" style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 10 }}>
         <div>
           <div className="r-kicker">Spotify · {rows.length} saved songs</div>
-          <h1 className="r-title">Your <em>liked</em> songs<span className="dot">.</span></h1>
+          {/* <h1 className="r-title">Your <em>liked</em> songs<span className="dot">.</span></h1> */}
         </div>
         {/* header "tune DNA" pill — the panel now lives UNDER the results, so this is a jump/collapse
             control: click scrolls down to the panel (opening it if collapsed); the chevron collapses it. */}

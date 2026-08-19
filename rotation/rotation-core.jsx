@@ -114,6 +114,12 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
   color: var(--accent); margin-bottom: 12px; }
 .r-title { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 4.4vw, 58px);
   letter-spacing: -.025em; line-height: 1.02; margin: 0; }
+/* Kicker-only header (Fuad 2026-08-20, several pages): with the title hidden, two margins are left
+   holding space for nothing — .r-kicker's 12px, which exists to stand it off the title, and
+   .r-viewhead's own pad*1.35 below the pair. Add this class wherever a title is commented out, and
+   remove it in the same edit that brings the title back. */
+.r-headbare { margin-bottom: calc(var(--pad) * 0.5) !important; }
+.r-headbare .r-kicker { margin-bottom: 0; }
 .r-title em { font-style: italic; }
 .r-title .dot { color: var(--accent); }
 .r-lede { font-family: var(--serif); font-style: italic; color: var(--ink-soft);
@@ -442,6 +448,23 @@ const fmtK = (n) => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 1) + "M"
 // "8 Mar 2026" formatter. Local aliases like `const MON = window.MON;` are fine.
 const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const fmtDate = (s) => { const [y, m, d] = String(s).split("-"); return `${+d} ${MON[+m - 1]} ${y}`; };
+// Short family labels for TIGHT surfaces (Fuad 2026-08-20): the Explore legend, and the filter
+// labels that get concatenated into a stat caption. Full names wrap the legend over several rows on
+// a phone, and "hrs · Industrial/Noise/Hyperpop" blows the Overview stat strip apart. Nothing is
+// renamed — the flow bands, the families grid and every title attribute keep the full name. This is
+// a truncation with a chosen break point rather than an ellipsis landing mid-word. It lives in core
+// because Explore and the world map both need it. Families not listed (Punk/Hardcore,
+// Shoegaze/Grunge, Jazz/Funk, Prog, Score, Pop, Classical, Other) are short enough and fall through.
+const FAM_SHORT = {
+  "Thrash/Death": "Thrash",
+  "Heavy/Doom": "Heavy",
+  "Metalcore/Nu": "Metalcore",
+  "Alternative/Indie": "Alternative",
+  "Industrial/Noise/Hyperpop": "Industrial",
+  "Electronic/DnB": "Electronic",
+  "Hip-Hop/Rap": "Hip-Hop",
+};
+const famShort = (name) => FAM_SHORT[name] || name;
 // the ONE lazy-script loader (audit 2026-07-18: the pattern was hand-rolled ~30× with
 // inconsistent id/onerror guarding — some scripts could inject twice, some failures hung
 // spinners forever). Guarded by element id; a second caller piggybacks on the load event.

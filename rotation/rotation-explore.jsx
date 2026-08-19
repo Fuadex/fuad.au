@@ -1187,7 +1187,7 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
             <button key={f.i} className="xp-attr-legitem" data-on={on} data-dim={famDim != null && !on}
               onClick={() => onFam && onFam(famDim === f.i ? null : f.i)} title={"filter to " + f.family}>
               <span className="xp-attr-swatch" style={{ background: `oklch(0.62 0.16 ${f.hue})` }} />
-              <span>{f.family}</span>
+              <span>{famShort(f.family)}</span>
             </button>
           );
         })}
@@ -1733,7 +1733,7 @@ function ExploreView({ t, go, setPop, seed }) {
   const chips = [];
   if (hasYears) chips.push(["time", yearsLabel(years), () => { setPlaying(false); setYears(new Set()); }]);
   if (sub) chips.push(["subgenre", sub, () => setSub(null)]);
-  else if (fam != null) chips.push(["genre", (R.FAMILIES.find(f => f.i === fam) || {}).family, () => setFam(null)]);
+  else if (fam != null) chips.push(["genre", famShort((R.FAMILIES.find(f => f.i === fam) || {}).family), () => setFam(null)]);
   if (moodZone) chips.push(["mood", MOOD_LABELS[moodZone], () => setMoodZone(null)]);
   if (cells.size) chips.push(["clock", cells.size + " slot" + (cells.size > 1 ? "s" : ""), () => setCells(new Set())]);
   if (vocals !== "any") chips.push(["vocals", ({ male: "male", female: "female", mixed: "mixed", nb: "non-binary", instrumental: "instrumental" })[vocals] || vocals, () => setVocals("any")]);
@@ -1745,10 +1745,12 @@ function ExploreView({ t, go, setPop, seed }) {
 
   return (
     <div className="r-view xp" ref={ref}>
-      <div className="r-viewhead">
+      {/* title hidden (Fuad 2026-08-20); .r-headbare closes the gap it leaves. Uncomment the h1
+          and drop the class together. */}
+      <div className="r-viewhead r-headbare">
         <div>
           <div className="r-kicker">Explore{chips.length ? "" : " · all time"}</div>
-          <h1 className="r-title">Dig <em>through</em><span className="dot">.</span></h1>
+          {/* <h1 className="r-title">Dig <em>through</em><span className="dot">.</span></h1> */}
         </div>
         <div className="xp-head-right">
           <ExploreSearch R={R} yearKeys={yearKeys} subNames={subNames} go={go}

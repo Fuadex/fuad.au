@@ -419,7 +419,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     if (periodData) { onStats({ active: true, slice: false, plays, artists, debutYears, hours: Math.round(plays * avgSec / 3600), label: periodData.label }); return; }
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
     const slice = !!(sel || focus || filt.fam != null || filt.sub != null);
-    onStats({ active: true, slice, plays, artists, debutYears, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? R.FAMILIES[filt.fam].family : null, yr].filter(Boolean).join(" · ") || "filtered" });
+    onStats({ active: true, slice, plays, artists, debutYears, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null, yr].filter(Boolean).join(" · ") || "filtered" });
   }, [resultArtists, filteredArtists, yearIdx, periodData, sel, focus, filt, onStats]);
   // calendar-period → the places its top artists come from. calendar-detail only stores the
   // top 5-6 artists per day/week, so a full dot re-weight would be dishonest — instead we
@@ -645,7 +645,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
 
       {/* results — top artists + albums + songs + DNA for the current place ∩ genre ∩ year (no place needed) */}
       {(() => {
-        const gName = filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? R.FAMILIES[filt.fam].family : null;
+        const gName = filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null;
         const parts = periodData ? ["on " + periodData.label] : [sel ? (selFlag + " " + selName) : "everywhere", gName || "all genres", yearIdx != null ? geoYears[yearIdx] : "all years"];
         const totalPlays = resultArtists.reduce((s, e) => s + e.p, 0);
         return (
