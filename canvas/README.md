@@ -122,3 +122,7 @@ see `PIPELINE.md` for the full runbook.
   recall deck, grade verdicts, and deploy.
 - **memory-seed.md** — the raw memory reconstruction log: recollections → resolved Wikidata
   entities, session by session.
+- **DATA_NOISE.md** — what the source data actually looks like underneath the tidy numbers:
+  qids pointing at footballers and asteroids, statues inferred as museums, a defunct museum
+  next door to the right one, same-title-different-cast near-misses. Every guard in the
+  pipeline exists because of something in here — read it before simplifying one away.

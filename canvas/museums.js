@@ -81,7 +81,7 @@ window.CANVAS_MUSEUMS = [
   {id: "bavarian-state-paintings",name: "Bavarian State Painting Collections",city: "Munich",country: "de",qid: "Q812285",kind: "art",visits: ["2016-10-15","2016-11-27"],note: ""},
   {id: "lenbachhaus",name: "Lenbachhaus",city: "Munich",country: "de",qid: "Q262234",kind: "art",visits: ["2016-10-15"],note: ""},
   {id: "museo-fortuny",name: "Museo Fortuny",city: "Venice",country: "it",qid: "Q616676",kind: "art",visits: ["TBC"],note: ""},
-  {id: "new-york-historical",name: "New York Historical",city: "Manhattan",country: "us",qid: "Q1059456",kind: "art",visits: ["TBC"],note: ""},
+  {id: "new-york-historical",name: "New York Historical",city: "New York",country: "us",qid: "Q1059456",kind: "art",visits: ["TBC"],note: ""},
   {id: "royal-castle-warsaw",name: "Zamek Królewski w Warszawie (Royal Castle)",city: "Warsaw",country: "pl",qid: "Q756098",kind: "art",visits: ["TBC"],note: ""},
   {id: "npg-london",name: "National Portrait Gallery",city: "London",country: "gb",qid: "Q238587",kind: "art",visits: ["2024-06-14"],note: ""},
   {id: "louvre",name: "Louvre Museum",city: "Paris",country: "fr",qid: "Q19675",kind: "art",visits: ["2024-12-19"],note: ""},

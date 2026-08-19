@@ -89,6 +89,20 @@ const labelOf = (ent) => ent && ent.labels && ent.labels.en && ent.labels.en.val
     fs.writeFileSync(CACHE, JSON.stringify(cache));
   }
 
+  // P131 returns the administrative unit a building sits in, so museums come back filed under
+  // boroughs, arrondissements and parks. Fine for a database, wrong for a sentence that reads
+  // "where this work lives" — nobody says a Tate work is in the City of Westminster.
+  const CITY_FIX = {
+    "City of Westminster": "London", "Royal Borough of Kensington and Chelsea": "London",
+    "South Kensington": "London", "Camden": "London", "Southwark": "London",
+    "City of London": "London", "Bloomsbury": "London", "Millbank": "London",
+    "Manhattan": "New York", "Brooklyn": "New York", "Upper East Side": "New York",
+    "Saint-Germain-l'Auxerrois": "Paris", "Ueno-kōen": "Tokyo", "Kitanomaru Park": "Tokyo",
+    "Taitō": "Tokyo", "Chiyoda": "Tokyo", "Minato": "Tokyo", "Sumida": "Tokyo",
+    "Victoria": "Melbourne", "Museumsinsel": "Berlin", "Mitte": "Berlin",
+    "Innere Stadt": "Vienna", "Maxvorstadt": "Munich",
+  };
+  const fixCity = (c) => (c && CITY_FIX[c]) || c;
   const places = {};
   let placed = 0, unplaced = 0, mergedIntoCanon = 0;
   for (const q of qids) {
@@ -103,7 +117,7 @@ const labelOf = (ent) => ent && ent.labels && ent.labels.en && ent.labels.en.val
     placed++;
     places[q] = {
       name: m ? m.name : h.name,
-      city: m ? m.city : (city ? city.name : null),
+      city: m ? m.city : fixCity(city ? city.name : null),
       country: m ? m.country : (country && country.iso ? String(country.iso).toLowerCase() : (country ? country.name : null)),
       lat, lon,
       ...(m ? { museumId: m.id } : {}),
