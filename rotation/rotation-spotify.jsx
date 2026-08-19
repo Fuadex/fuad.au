@@ -1043,6 +1043,14 @@ function LikedView({ go }) {
           .lk-quiet .lk-bucket-full { display: none; }
           .lk-quiet .lk-bucket-abbr { display: inline; }
           .lk-quiet .lk-bucket { width: 20px; padding: 0; }
+          /* The reserved "reset tune" slot comes OUT of the flow on mobile (Fuad 2026-08-20:
+             a gap under the vocals chips, above the genre row). It is always rendered and only
+             visibility:hidden, so it keeps its box — and on a narrow screen that box wraps onto
+             a line of its own, leaving a permanently empty row between vocals and genres.
+             Reserving the slot exists to stop the row reflowing as a tune is set and cleared,
+             which is worth it on a wide row where the button costs nothing; here it buys a
+             flicker at the price of a standing gap, so on mobile the flicker wins. */
+          .lk-quiet .lk-resettune:not(.lk-tuneon) { display: none; }
         }
       `}</style>
       {/* (the "← spotify" back button was removed on request — Fuad 2026-08-12; Liked is now a
@@ -1095,7 +1103,8 @@ function LikedView({ go }) {
             inert when no tune is active, so the row never reflows as it appears/disappears. Accent-toned
             (var(--accent) + accent-dim border), matching the clear-filter pill convention (gv-tour-chip).
             No longer marginLeft:auto — it trails the right-aligned vocals group. */}
-        <button className="r-chip link" aria-hidden={!anyTuneActive} tabIndex={anyTuneActive ? 0 : -1}
+        <button className={"r-chip link lk-resettune" + (anyTuneActive ? " lk-tuneon" : "")}
+          aria-hidden={!anyTuneActive} tabIndex={anyTuneActive ? 0 : -1}
           style={{ textTransform: "none", color: "var(--accent)", borderColor: "var(--accent-dim)",
             visibility: anyTuneActive ? "visible" : "hidden", pointerEvents: anyTuneActive ? "auto" : "none" }}
           onClick={resetTune}>reset tune ✕</button>
