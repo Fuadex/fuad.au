@@ -16,17 +16,24 @@ function _segs(pts) {
 }
 
 // generic streamgraph over `series` ([{key,name,hue,vals:[per year]}]) and `years` ([nums])
-// `faint` washes the band fills right out and leans on the existing stroke to carry the shape
-// (Fuad 2026-08-20: the Overview flow read as a distracting block of solid colour). Opt-in rather
-// than a change to the primitive, because the same StreamGraph draws the artist-page flow and the
-// Journey, where a solid fill is the point. The stroke opacity goes UP as the fill goes down —
-// at 18% fill the edges are what separates one band from its neighbour.
+// `faint` opts a caller into the MAP BUBBLE's opacities (Fuad 2026-08-20). It started as a plain
+// wash-out to 18% because the Overview flow read as a block of solid colour; that helped but was not
+// it, and the answer turned out to be matching the bubbles on the map below verbatim.
+//
+// Worth understanding, because the naive reading of "less distracting" is wrong here: .72 lit is
+// barely under the original .82. What actually changed is the DIMMED state, .15 → .34 — neighbouring
+// bands no longer drop out of the picture the moment the cursor lands somewhere, so hovering reads
+// as one band lifting rather than the rest being deleted. The hovered band matches the lit value
+// instead of exceeding it, exactly as a bubble does.
+//
+// Opt-in rather than a change to the primitive: the same StreamGraph draws the artist-page flow and
+// the Journey, where the original contrast is the point.
 const SG_BANDS = {
-  solid: { on: 0.82, hi: 0.96, off: 0.15, strokeOn: 0.5, strokeOff: 0.12 },
-  faint: { on: 0.18, hi: 0.42, off: 0.06, strokeOn: 0.75, strokeOff: 0.18 },
+  solid:  { on: 0.82, hi: 0.96, off: 0.15, strokeOn: 0.5, strokeOff: 0.12 },
+  bubble: { on: 0.72, hi: 0.72, off: 0.34, strokeOn: 0.5, strokeOff: 0.2 },
 };
 function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixedH, faint }) {
-  const BO = faint ? SG_BANDS.faint : SG_BANDS.solid;
+  const BO = faint ? SG_BANDS.bubble : SG_BANDS.solid;
   const L = React.useMemo(() => {
     const com = series.map(s => { let n = 0, d = 0; s.vals.forEach((v, i) => { n += v * years[i]; d += v; }); return d ? n / d : 9999; });
     const order = series.map((s, i) => i).sort((a, b) => com[a] - com[b]);
@@ -63,10 +70,14 @@ function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixe
       {L.order.map(i => {
         const b = L.bands[i][L.peak[i].yi], thick = b.yBot - b.yTop, s = series[i];
         if (thick < 17 && hi !== i) return null;
+        // Label stays white at every state (Fuad 2026-08-20). The hovered one used to flip to
+        // near-black, which only worked because the hovered band was painted at 96% — it assumed a
+        // solid fill behind the text. The shadow stays on for the same reason: it is what keeps the
+        // label legible now that a band is mostly transparent.
         return (
           <text key={"t" + s.key} x={b.x} y={(b.yTop + b.yBot) / 2} textAnchor="middle" dominantBaseline="middle"
             fontFamily="var(--sans)" fontWeight="600" fontSize={hi === i ? 13 : 10.5}
-            fill={hi === i ? "#0c0a08" : "rgba(255,255,255,.92)"} style={{ pointerEvents: "none", textShadow: hi === i ? "none" : "0 1px 3px rgba(0,0,0,.6)" }}>
+            fill="rgba(255,255,255,.96)" style={{ pointerEvents: "none", textShadow: "0 1px 3px rgba(0,0,0,.6)" }}>
             {s.name.length > 18 ? s.name.slice(0, 16) + "…" : s.name}
           </text>
         );
