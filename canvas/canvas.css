@@ -788,6 +788,8 @@ a { color: inherit; }
 .cv-search-hit-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .cv-search-hit-title { font: 600 13.5px/1.2 var(--serif); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cv-search-hit-sub { font: 500 10px/1.3 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* the matched subject terms, shown only on subject hits so the result explains itself */
+.cv-search-why { color: var(--accent-dim); text-transform: none; letter-spacing: .02em; }
 /* mobile: search icon wraps to its own row on narrow viewports, full-width input */
 @media (max-width: 620px) {
   .cv-head { flex-wrap: wrap; }
