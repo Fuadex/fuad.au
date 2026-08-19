@@ -39,6 +39,15 @@ const HIRES = window.CANVAS_HIRES || {};
 // later use and is shown as the tooltip so the coarse chip never hides what the thing actually is.
 const MEDIUM = window.CANVAS_MEDIUM || {};
 const IMGSIZE = window.CANVAS_IMGSIZE || {};
+// art_holders.js — for a work Fuad has NOT seen, where it lives. Wikidata's collection (P195),
+// which is the work's home institution rather than a promise about what is on the wall this week.
+// Kept apart from seenAt, which records where he stood.
+const HOLD = window.CANVAS_HOLDERS || { works: {}, places: {} };
+const homeOf = (w) => HOLD.places[HOLD.works[w.id]] || null;
+// The pilgrimage is everything still to be met: an explicit wish, or a sighting he is unsure of.
+// Loved and liked are kept distinguishable — they are different appetites, not one list.
+const isUnseen = (w) => !!w.wish || w.seenConfidence === "unsure";
+const unseenRank = (w) => (w.floored || w.favorite) ? 2 : w.liked ? 1 : 0;   // 2 = loved, 1 = liked
 const mediumOf = (w) => MEDIUM[w.id] || null;
 const MEDIA = [["painting", "paintings"], ["sculpture", "sculpture"], ["paper", "works on paper"], ["object", "objects"], ["photo", "photography"]];
 function enrich(w) {
@@ -2065,15 +2074,24 @@ function MapView({ go }) {
   // dots share the city bubble's parent and never overlap. (Only shown in the all-cities view; during
   // focus the museum work-fans take over.)
   const { wishMarkers, wishList } = useMemo(() => {
-    const wishes = WORKS.map(enrich).filter(w => w.wish);
-    // group for the branch dots BY CITY (true parent = the city bubble); keep the per-venue grouping
-    // only for the "To see" text list beneath the map.
+    const wishes = WORKS.map(enrich).filter(isUnseen);
+    // WHERE A WANTED WORK GOES ON THE MAP (2026-08-19). It used to key off seenAt — the venue Fuad
+    // stood in — which for a work he has NOT seen is empty by definition. After the photo import
+    // that meant 1,007 of 1,094 fell into one "location TBC" bucket and drew no marker at all.
+    // Now the anchor is the work's HOME (P195): the city it lives in, whether or not he has been
+    // there. seenAt is still honoured first for the handful of wishes that carry one (a work met
+    // at one venue but wanted at another), then home fills the rest in.
     const byCity = {}, byMus = {};
     for (const w of wishes) {
       const mid = (Array.isArray(w.seenAt) ? w.seenAt[0] : w.seenAt) || w.at;
-      const m = mid ? MUS_BY_ID[mid] : null;
-      (byMus[mid || "_tbc"] = byMus[mid || "_tbc"] || []).push(w);
-      if (m && cities.byCity[m.city]) (byCity[m.city] = byCity[m.city] || { c: cities.byCity[m.city], list: [] }).list.push({ w, venue: m.name.replace(/\s*\(.*\)$/, "") });
+      const home = homeOf(w);
+      const m = mid ? MUS_BY_ID[mid] : (home && home.museumId ? MUS_BY_ID[home.museumId] : null);
+      const venueName = m ? m.name.replace(/\s*\(.*\)$/, "") : (home ? home.name : null);
+      const cityName = m ? m.city : (home ? home.city : null);
+      // list key: the institution that houses it, so the text list reads as an itinerary
+      const key = venueName ? (cityName ? cityName + " — " + venueName : venueName) : "home unknown";
+      (byMus[key] = byMus[key] || []).push(w);
+      if (cityName && cities.byCity[cityName]) (byCity[cityName] = byCity[cityName] || { c: cities.byCity[cityName], list: [] }).list.push({ w, venue: venueName });
     }
     const markers = [];
     for (const { c, list } of Object.values(byCity)) {
@@ -2127,10 +2145,13 @@ function MapView({ go }) {
         }
       }
     }
-    // text list under the map keeps the finer venue grouping (incl. location-TBC works with no coords)
-    const groups = {};
-    for (const [mid, l] of Object.entries(byMus)) { const m = MUS_BY_ID[mid]; groups[m ? m.city + " — " + m.name.replace(/\s*\(.*\)$/, "") : "location TBC"] = l; }
-    return { wishMarkers: markers, wishList: Object.entries(groups).sort((a, b) => b[1].length - a[1].length) };
+    // The text list is already keyed by institution, so it reads as an itinerary: the places
+    // holding the most wanted works come first, and "home unknown" sinks to the bottom.
+    return {
+      wishMarkers: markers,
+      wishList: Object.entries(byMus).sort((a, b) =>
+        (a[0] === "home unknown") - (b[0] === "home unknown") || b[1].length - a[1].length),
+    };
   }, [cities]);
   const trips = useMemo(() => {
     const by = {};
@@ -2473,8 +2494,14 @@ function MapView({ go }) {
                 onMouseEnter={e => setHover({ w: mk.w, mx: e.clientX, my: e.clientY, venue: mk.venue, city: mk.city })}
                 onMouseMove={e => setHover(h => h && h.w === mk.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                 onMouseLeave={() => setHover(null)}>
-                {/* SIZE SCOPING: original rest size r=2 (the fisheye handles hittability on hover). */}
-                <circle cx={fx} cy={fy} r={2 * fs * k * dotMul} fill="oklch(0.55 0.19 18 / .9)" stroke="#f7efe2" strokeWidth={0.6 * k} />
+                {/* THREE REGISTERS (Fuad 2026-08-19). Seen works are the orange city bubbles above.
+                    Here, still-to-meet works split by how much he wants them: LOVED reads hot and
+                    solid, LIKED cooler and hollow, so a glance at a city says whether it holds
+                    things he is chasing or merely curious about. Size follows too — loved dots are
+                    a touch larger, which survives the fisheye because fs multiplies both. */}
+                {unseenRank(mk.w) === 2
+                  ? <circle cx={fx} cy={fy} r={2.3 * fs * k * dotMul} fill="oklch(0.55 0.19 18 / .92)" stroke="#f7efe2" strokeWidth={0.6 * k} />
+                  : <circle cx={fx} cy={fy} r={1.8 * fs * k * dotMul} fill="oklch(0.62 0.09 24 / .34)" stroke="oklch(0.55 0.15 20 / .85)" strokeWidth={0.55 * k} />}
               </g>
             );
           })}
@@ -2538,7 +2565,11 @@ function MapView({ go }) {
         )}
         {(focus || vb.w < 880) && <button className="cv-map-reset" onClick={clearFocus}>{focus ? "← all cities" : "reset view"}</button>}
       </div>
-      <div className="cv-map-legend"><span><i className="lg-seen" /> museums you've walked</span><span><i className="lg-wish" /> works you're chasing</span></div>
+      <div className="cv-map-legend">
+        <span><i className="lg-seen" /> museums you've walked</span>
+        <span><i className="lg-wish" /> loved, not yet met</span>
+        <span><i className="lg-like" /> liked, not yet met</span>
+      </div>
       <div className="cv-trips">
         {trips.map(([y, cities]) => (
           <div className="cv-trip-row" key={y}>
@@ -2550,12 +2581,17 @@ function MapView({ go }) {
       {wishList.length > 0 && (
         <div className="cv-map-tosee">
           <div className="cv-a-secl">To see — the pilgrimage</div>
+          {/* "home" is the honest word: P195 says where a work is catalogued, which is where it
+              lives, not a claim about what is hanging this week. Touring shows can come later. */}
+          <div className="cv-pil-note">Grouped by where each work lives — its home collection. Loved first, then liked.</div>
           {/* This used to mount every row of every country at once. After the photo import that is
               ~1,465 rows with a thumbnail each — flattened into one list and reveal-chunked, so the
               page paints a screenful and grows as you scroll. Group headers ride IN the flat list so
               they arrive with their own rows rather than all up-front. (Fuad 2026-08-19) */}
           <RevealChunks
-            items={wishList.flatMap(([key, list]) => [{ hdr: key, n: list.length }, ...list])}
+            items={wishList.flatMap(([key, list]) => [{ hdr: key, n: list.length },
+              // loved before liked inside each home, so the reason to go there leads
+              ...[...list].sort((a, b) => unseenRank(b) - unseenRank(a) || String(a.title).localeCompare(String(b.title)))])}
             initial={40} step={40}
             render={(slice) => slice.map(it => it.hdr ? (
               <div className="cv-mus-country" key={"h:" + it.hdr}>{it.hdr} <span style={{ opacity: .55, fontWeight: 400 }}>· {it.n}</span></div>
