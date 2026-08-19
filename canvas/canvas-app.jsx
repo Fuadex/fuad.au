@@ -313,6 +313,27 @@ const weight = (w) => (w.floored || w.favorite) ? 0 : (w.liked ? 1 : 2);
 // arrangement helpers — dominant-hue of a work (grey/no-palette sort last), primary movement,
 // and century band. All from data already loaded (CANVAS_PALETTE, AD.artists movementQids, year).
 const palHueOf = (w) => { const p = (window.CANVAS_PALETTE || {})[w.id]; if (!p || !p[0]) return 999; const h = hexHue(p[0]); return h < 0 ? 998 : h; };
+// PICK-A-COLOUR SORT (Fuad 2026-08-20: "it'd be nice if we could select our own palette and sort
+// this way"). Distance is measured against EVERY swatch a work carries, not just the dominant one —
+// a painting that is mostly sky but holds the red you asked for should still surface, and keying on
+// swatch [0] alone would bury it. Works with no palette sort LAST rather than first, so the wall
+// never opens on a block of unknowns.
+const SPECTRUM_PICKS = [
+  ["", "hue ramp"], ["#b23b2e", "red"], ["#c8762a", "amber"], ["#c2a53c", "gold"],
+  ["#4a7a45", "green"], ["#2f6285", "blue"], ["#6b4b86", "violet"], ["#6f6257", "earth"],
+  ["#20222a", "near-black"], ["#e6e0d4", "near-white"],
+];
+const rgbOf = (hex) => { const m = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex || ""); return m ? [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)] : null; };
+const palDistTo = (w, target) => {
+  const p = (window.CANVAS_PALETTE || {})[w.id]; if (!p || !p.length || !target) return 1e9;
+  let best = 1e9;
+  for (const hex of p) {
+    const c = rgbOf(hex); if (!c) continue;
+    const d = (c[0] - target[0]) ** 2 + (c[1] - target[1]) ** 2 + (c[2] - target[2]) ** 2;
+    if (d < best) best = d;
+  }
+  return best;
+};
 const centuryOf = (w) => w.year ? Math.floor(w.year / 100) * 100 : null;
 
 // ——— MOVEMENTS ———————————————————————————————————————————————————————————————
@@ -369,6 +390,7 @@ function Wall({ go, mode = "collage", styleIds }) {
   const [extra, setExtra] = useState(0);
   const [allStyles, setAllStyles] = useState(false);   // "+N more" disclosure
   const [media, setMedia] = useState([]);              // selected medium buckets, OR'd like styles
+  const [pick, setPick] = useState("");                // spectrum target colour ("" = hue ramp)
   // The full style list — order and slugs are stable so a URL like #/wall/impressionism keeps
   // working whatever is filtered. Only the NUMBERS react; see `movCounts` below.
   const movs = useMemo(movIndex, []);
@@ -381,7 +403,7 @@ function Wall({ go, mode = "collage", styleIds }) {
   }, [styleIds, movs]);
   const setSel = (labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null);
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [marks, status, mus, sort, mode, styleIds, media]);
+  useEffect(() => { setExtra(0); }, [marks, status, mus, sort, mode, styleIds, media, pick]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -431,7 +453,11 @@ function Wall({ go, mode = "collage", styleIds }) {
     // and quietly sweeping it into "paintings" is the guess this pipeline refuses to make.
     if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
     const arr = [...list];
-    if (mode === "spectrum") arr.sort((a, b) => palHueOf(a) - palHueOf(b) || weight(a) - weight(b));
+    if (mode === "spectrum") {
+      const target = pick ? rgbOf(pick) : null;
+      if (target) arr.sort((a, b) => palDistTo(a, target) - palDistTo(b, target) || weight(a) - weight(b));
+      else arr.sort((a, b) => palHueOf(a) - palHueOf(b) || weight(a) - weight(b));
+    }
     else if (mode === "timeline") arr.sort((a, b) => (a.year || 9999) - (b.year || 9999) || weight(a) - weight(b));
     else if (mode === "movements") arr.sort((a, b) => { const ma = movOf(a), mb = movOf(b); return (ma ? 0 : 1) - (mb ? 0 : 1) || String(ma).localeCompare(String(mb)) || (a.year || 0) - (b.year || 0); });
     else { // collage — respect the sort dropdown
@@ -443,7 +469,7 @@ function Wall({ go, mode = "collage", styleIds }) {
     return arr;
     // `media` belongs in here: the filter above reads it, and without it the wall kept showing the
     // previous medium's results until some other filter happened to change (found 2026-08-20).
-  }, [all, marks, status, mus, sort, mode, sel, media]);
+  }, [all, marks, status, mus, sort, mode, sel, media, pick]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
@@ -493,6 +519,23 @@ function Wall({ go, mode = "collage", styleIds }) {
         )}
         <span className="cv-count">{Math.min(visN, shown.length)} of {shown.length}</span>
       </div>
+      {/* SPECTRUM TARGET — only meaningful in spectrum mode, so it only shows there. "hue ramp" is
+          the original behaviour; picking a swatch re-sorts the wall by nearness to that colour. */}
+      {mode === "spectrum" && (
+        <div className="cv-spectrum-pick">
+          <span className="cv-styles-lbl">sort toward</span>
+          {SPECTRUM_PICKS.map(([hex, label]) => (
+            <button key={label} data-on={pick === hex} onClick={() => setPick(hex)} title={label}>
+              <i className={hex ? "" : "cv-pick-ramp"} style={hex ? { background: hex } : null} />
+              <span>{label}</span>
+            </button>
+          ))}
+          <label className="cv-pick-custom" title="pick any colour">
+            <input type="color" value={pick || "#b23b2e"} onChange={e => setPick(e.target.value)} />
+            <span>custom</span>
+          </label>
+        </div>
+      )}
       {/* STYLES — multi-select, OR'd. Movement is the artist's (Wikidata P135), so the note says
           so rather than pretending each canvas carries the tag. */}
       <div className="cv-styles">

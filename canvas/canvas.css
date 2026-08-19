@@ -323,6 +323,18 @@ a { color: inherit; }
 /* hairline between the two filter axes — marks on the left, encounter status on the right, so the
    row reads as two groups rather than six equal options (2026-08-20) */
 .cv-filt-div { width: 1px; align-self: stretch; min-height: 18px; background: var(--rule); margin: 0 4px; }
+/* SPECTRUM TARGET picker — same chip grammar as the style row, with a swatch in place of a count */
+.cv-spectrum-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 0 10px; }
+.cv-spectrum-pick button { display: inline-flex; align-items: center; gap: 6px; font: 500 11px/1 var(--sans);
+  padding: 4px 10px 4px 5px; border-radius: 999px; border: 1px solid var(--rule); background: none;
+  color: var(--ink-soft); cursor: pointer; }
+.cv-spectrum-pick button:hover { color: var(--ink); border-color: var(--ink-faint); }
+.cv-spectrum-pick button[data-on="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.cv-spectrum-pick i { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(58,47,34,.25); flex: none; }
+.cv-pick-ramp { background: conic-gradient(#b23b2e, #c8762a, #c2a53c, #4a7a45, #2f6285, #6b4b86, #b23b2e); }
+.cv-pick-custom { display: inline-flex; align-items: center; gap: 6px; font: 500 11px/1 var(--sans);
+  color: var(--ink-soft); cursor: pointer; padding: 4px 10px 4px 5px; border: 1px solid var(--rule); border-radius: 999px; }
+.cv-pick-custom input { width: 16px; height: 16px; padding: 0; border: 0; background: none; cursor: pointer; }
 .cv-filters button { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-faint); cursor: pointer; }
 .cv-filters button:hover { color: var(--ink); }
 .cv-filters button[data-on="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
