@@ -154,7 +154,11 @@ function StoriesView({ t, go, seed }) {
           <div className="r-kicker">Stories · mined from {fmt(R.TOTALS.scrobbles)} scrobbles</div>
           <h1 className="r-title">Things last.fm <em>won't tell you</em><span className="dot">.</span></h1>
         </div>
-        <p className="r-lede">Not charts — <b>patterns</b>. Obsessions, disappearances, comebacks,
+        {/* margin:0 — .r-viewhead aligns its children flex-end, so the paragraph's default
+            1em margin padded the box below the text and floated this lede a line clear of the
+            title's baseline (Fuad 2026-08-20). Every other page putting .r-lede in a viewhead
+            already overrides the margin inline; Stories was the one that never did. */}
+        <p className="r-lede" style={{ margin: 0 }}>Not charts — <b>patterns</b>. Obsessions, disappearances, comebacks,
           and the songs that own particular hours of the night.</p>
       </div>
 
@@ -3095,7 +3099,12 @@ function GigsView({ go }) {
         .gv { max-width: 900px; margin: 0 auto; padding: 0 var(--pad); }
         .gv-hero { padding: 12px 2px 26px; }
         .gv-kicker { font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
-        .gv-h1 { font-family: var(--serif); font-size: clamp(26px, 4vw, 42px); line-height: 1.1; letter-spacing: -.02em; margin: 0; }
+        /* Metrics copied from .r-title, not approximated (Fuad 2026-08-20: this line read as a
+           different font from the rest of Gigs). It was: an h1 with no font-weight declared
+           inherits bold, and the serif's bold cut is a visibly different face — .r-title sets
+           400. The size/tracking/leading were all slightly off too, so match those as well. */
+        .gv-h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 4.4vw, 58px);
+          line-height: 1.02; letter-spacing: -.025em; margin: 0; }
         .gv-h1 em { font-style: italic; }
         .gv-lead { color: var(--ink-soft); font-size: 15px; line-height: 1.6; margin: 14px 0 0; max-width: 620px; }
         .gv-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 24px; max-width: 560px; }
