@@ -36,11 +36,16 @@ a { color: inherit; }
 @media (max-width: 1200px) { .cv-wall { column-count: 4; } }
 @media (max-width: 900px)  { .cv-wall { column-count: 3; } }
 @media (max-width: 620px)  { .cv-wall { column-count: 2; } }
-.cv-card { break-inside: avoid; margin: 0 0 8px; cursor: pointer; position: relative; border-radius: 3px; overflow: hidden; background: #d8cbb8; transition: transform .15s ease; }
+.cv-card { break-inside: avoid; margin: 0 0 8px; cursor: pointer; position: relative; border-radius: 3px; overflow: hidden; background: #d8cbb8; transition: box-shadow .18s ease; }
 /* hover-peek Info (drop-down read + unravelling shadow) was tried and DISABLED the same
-   day, 2026-08-15 (Fuad: "this doesn't look right") — back to the quiet lift. Don't
-   re-add without asking. The .cv-byline rename/fix from that arc STAYS. */
-.cv-card:hover { transform: translateY(-2px); }
+   day, 2026-08-15 (Fuad: "this doesn't look right"). Don't re-add without asking. The
+   .cv-byline rename/fix from that arc STAYS.
+   2026-08-19: the quiet LIFT is gone too — Fuad found the upward tick distracting on a wall
+   where the eye is already moving. A soft shadow behind the card does the same job of picking
+   it out without displacing it, so nothing shifts under the cursor and neighbouring columns
+   stay put. Kept tight (12px blur, low alpha) because the masonry gap is only 8px and a
+   generous shadow would bleed onto the works either side. */
+.cv-card:hover { box-shadow: 0 4px 12px rgba(40, 28, 14, .28); }
 .cv-card img { width: 100%; display: block; }
 .cv-card .cv-label { padding: 9px 12px 11px; }
 .cv-title { font: 600 13.5px/1.3 var(--serif); color: var(--ink); }
@@ -116,8 +121,8 @@ a { color: inherit; }
 .cv-musidx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
 .cv-musidx-rest { margin-top: 14px; }
 
-.cv-musidx-card { display: flex; flex-direction: column; background: #d8cbb8; border-radius: 5px; overflow: hidden; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; box-shadow: 0 1px 3px rgba(40,28,14,.1); }
-.cv-musidx-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(40,28,14,.2); }
+.cv-musidx-card { display: flex; flex-direction: column; background: #d8cbb8; border-radius: 5px; overflow: hidden; cursor: pointer; transition: box-shadow .18s ease; box-shadow: 0 1px 3px rgba(40,28,14,.1); }
+.cv-musidx-card:hover { box-shadow: 0 6px 18px rgba(40,28,14,.26); }   /* shadow only — no lift */
 .cv-musidx-thumb { aspect-ratio: 16 / 10; overflow: hidden; background: #cabda8; }
 .cv-musidx-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .cv-musidx-body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 4px; }
@@ -204,8 +209,10 @@ a { color: inherit; }
 /* min-width holds the slot open while LazyImg withholds a not-yet-revealed src (width:auto would
    otherwise collapse the button to 0 and let the strip re-flow as tiles load) (Fuad 2026-07-25) */
 .cv-mus-floored-item { flex-shrink: 0; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 5px; overflow: hidden; min-width: 72px; min-height: 96px; }
-.cv-mus-floored-item img { height: 96px; width: auto; display: block; border-radius: 5px; box-shadow: 0 4px 14px rgba(0,0,0,.35); transition: transform .15s; }
-.cv-mus-floored-item:hover img { transform: translateY(-2px); }
+.cv-mus-floored-item img { height: 96px; width: auto; display: block; border-radius: 5px; box-shadow: 0 4px 14px rgba(0,0,0,.35); transition: box-shadow .18s ease; }
+/* this strip sits on the dark museum header, so the resting shadow is already strong — hover
+   just deepens and spreads it rather than lifting the thumbnail */
+.cv-mus-floored-item:hover img { box-shadow: 0 6px 20px rgba(0,0,0,.55); }
 .cv-mus-stats { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 16px; font: 500 11px/1.5 var(--mono); letter-spacing: .05em; color: rgba(232,221,204,.8); }
 .cv-mus-stats > span { white-space: nowrap; }
 .cv-mus-gradebtn { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #f2e9dc; text-decoration: none; border: 1px solid rgba(232,221,204,.4); border-radius: 999px; padding: 8px 14px; margin-left: auto; }
@@ -451,8 +458,10 @@ a { color: inherit; }
 .cv-artblob-face { position: relative; width: 108px; height: 108px; border-radius: 50%;
   background-size: cover; background-position: center top; filter: grayscale(.3);
   box-shadow: 0 4px 14px rgba(40,28,14,.22), inset 0 0 0 1px rgba(0,0,0,.08);
-  display: grid; place-items: center; transition: transform .16s, filter .16s; }
-.cv-artblob:hover .cv-artblob-face { transform: translateY(-3px); filter: grayscale(0); }
+  display: grid; place-items: center; transition: box-shadow .18s ease, filter .16s; }
+/* the grayscale reveal stays — that is the artist portrait coming to life, a different signal
+   from "this is hoverable". Only the lift goes. */
+.cv-artblob:hover .cv-artblob-face { box-shadow: 0 7px 20px rgba(40,28,14,.34), inset 0 0 0 1px rgba(0,0,0,.08); filter: grayscale(0); }
 .cv-artblob-face[data-empty="true"] i { font: 600 30px/1 var(--serif); color: rgba(255,255,255,.92); font-style: normal; }
 .cv-artblob-star { position: absolute; bottom: -2px; right: -2px; font: 600 10px/1 var(--mono);
   background: var(--accent); color: #fff; padding: 4px 6px; border-radius: 999px; box-shadow: 0 2px 6px rgba(0,0,0,.25); }
