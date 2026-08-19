@@ -16,24 +16,26 @@ function _segs(pts) {
 }
 
 // generic streamgraph over `series` ([{key,name,hue,vals:[per year]}]) and `years` ([nums])
-// `faint` opts a caller into the MAP BUBBLE's opacities (Fuad 2026-08-20). It started as a plain
-// wash-out to 18% because the Overview flow read as a block of solid colour; that helped but was not
-// it, and the answer turned out to be matching the bubbles on the map below verbatim.
+// `faint` opts a caller into transparent bands (Fuad 2026-08-20, after three passes on the Overview
+// flow). Settled at fill .26 lit, .12 dimmed — the transparent look he wanted, with two corrections
+// learned on the way:
 //
-// Worth understanding, because the naive reading of "less distracting" is wrong here: .72 lit is
-// barely under the original .82. What actually changed is the DIMMED state, .15 → .34 — neighbouring
-// bands no longer drop out of the picture the moment the cursor lands somewhere, so hovering reads
-// as one band lifting rather than the rest being deleted. The hovered band matches the lit value
-// instead of exceeding it, exactly as a bubble does.
+//   · Lowering opacity alone made it DARKER, not lighter. A band at 18% is mostly the dark card
+//     showing through, so the whole flow muddied. `faint` therefore also raises the fill's oklch
+//     LIGHTNESS, .62 → .80, and the stroke's to .86. Transparency and lightness are separate knobs
+//     and only one of them was the ask.
+//   · The stroke opacity goes UP as the fill comes down, .5 → .8, because at this fill the edges are
+//     what separate one band from its neighbour.
 //
+// A detour through the map bubbles' exact numbers (.72/.34) was tried and rejected as too solid.
 // Opt-in rather than a change to the primitive: the same StreamGraph draws the artist-page flow and
 // the Journey, where the original contrast is the point.
 const SG_BANDS = {
-  solid:  { on: 0.82, hi: 0.96, off: 0.15, strokeOn: 0.5, strokeOff: 0.12 },
-  bubble: { on: 0.72, hi: 0.72, off: 0.34, strokeOn: 0.5, strokeOff: 0.2 },
+  solid: { on: 0.82, hi: 0.96, off: 0.15, strokeOn: 0.5, strokeOff: 0.12, L: 0.62, sL: 0.72 },
+  faint: { on: 0.26, hi: 0.52, off: 0.12, strokeOn: 0.8, strokeOff: 0.22, L: 0.80, sL: 0.86 },
 };
 function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixedH, faint }) {
-  const BO = faint ? SG_BANDS.bubble : SG_BANDS.solid;
+  const BO = faint ? SG_BANDS.faint : SG_BANDS.solid;
   const L = React.useMemo(() => {
     const com = series.map(s => { let n = 0, d = 0; s.vals.forEach((v, i) => { n += v * years[i]; d += v; }); return d ? n / d : 9999; });
     const order = series.map((s, i) => i).sort((a, b) => com[a] - com[b]);
@@ -56,8 +58,8 @@ function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixe
     <svg viewBox={`0 0 ${L.W} ${L.H}`} style={{ width: "100%", height: "auto", display: "block" }} onMouseLeave={() => setHi(-1)}>
       {L.order.map(i => {
         const on = hi < 0 || hi === i, s = series[i];
-        const fill = s.mute ? "oklch(0.5 0.02 270)" : `oklch(0.62 0.17 ${s.hue})`;
-        const strk = s.mute ? "oklch(0.62 0.02 270)" : `oklch(0.72 0.16 ${s.hue})`;
+        const fill = s.mute ? "oklch(0.5 0.02 270)" : `oklch(${BO.L} 0.17 ${s.hue})`;
+        const strk = s.mute ? "oklch(0.62 0.02 270)" : `oklch(${BO.sL} 0.16 ${s.hue})`;
         return (
           <path key={s.key} d={L.area(i)} fill={fill} fillOpacity={on ? (hi === i ? BO.hi : BO.on) : BO.off}
             stroke={strk} strokeWidth={hi === i ? 1.4 : 0.5} strokeOpacity={on ? BO.strokeOn : BO.strokeOff}

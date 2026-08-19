@@ -149,7 +149,7 @@ function StoriesView({ t, go, seed }) {
 
   return (
     <div className="r-view">
-      <div className="r-viewhead">
+      <div className="r-viewhead st-head">
         <div>
           <div className="r-kicker">Stories · mined from {fmt(R.TOTALS.scrobbles)} scrobbles</div>
           <h1 className="r-title">Things last.fm <em>won't tell you</em><span className="dot">.</span></h1>
@@ -1764,6 +1764,13 @@ function StoriesView({ t, go, seed }) {
       </div>
 
       <style>{`
+        /* The header tracks the FEED's width and centring, not the viewport's (Fuad 2026-08-20:
+           the title sat hard left while the content column beneath it was centred, so the page
+           read as two different layouts stacked). Every max-width below is mirrored from .st-feed
+           at the same breakpoint — if one moves, move both. */
+        .st-head { max-width: 820px; margin-left: auto; margin-right: auto; }
+        @media (min-width: 1150px) { .st-head { max-width: 1100px; } }
+        @media (min-width: 1500px) { .st-head { max-width: 1200px; } }
         .st-feed { max-width: 820px; margin: 0 auto; display: grid; gap: var(--gap); }
         /* desktop: two-column magazine flow — chapters span both columns, cards never split.
            Feed width scales with the screen so PC/4K read comfortably (Fuad 2026-07-17): the

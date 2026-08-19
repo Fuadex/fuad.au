@@ -1583,7 +1583,13 @@ function ExploreView({ t, go, setPop, seed }) {
   // it would make the bar filter itself, collapsing to the single decade you just clicked.
   // So: everything the page filters by EXCEPT its own era, and themes handled per-track below.
   const decGateIds = React.useMemo(() => {
-    const anyFilter = hasYears || fam != null || subIdx >= 0 || cells.size > 0 || vocals !== "any" || picks.size > 0;
+    // Selections made ON a chart — the attributes brush and the mood quadrant — count as filters here
+    // just like the chips do (Fuad 2026-08-20). They were the gap: picking bands off the map left the
+    // era band unmoved, while the search box, which lands in `picks`, moved it. `sel` covers both the
+    // artists grain (keys are artist ids) and the subgenres grain (keys are sub indices).
+    const sel = (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null;
+    const anyFilter = hasYears || fam != null || subIdx >= 0 || cells.size > 0 || vocals !== "any"
+      || picks.size > 0 || !!sel || !!moodZone;
     if (!anyFilter) return null;   // null = count everything, and skip the per-track Set lookup
     const inYears = (yp) => { if (!yp) return false; for (const y of years) if (yp[y]) return true; return false; };
     const out = new Set();
@@ -1593,10 +1599,15 @@ function ExploreView({ t, go, setPop, seed }) {
       if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; } else if (!recInFam(R, a, fam)) continue;
       if (cells.size && !tsPlays(R, a.id, cells)) continue;
       if (vocals !== "any" && !vocalsPass(a.vx, vocals)) continue;
+      if (sel) {
+        if (sel.mode === "artists") { if (!sel.keys.has(a.id)) continue; }
+        else if (!(a.s || []).some(ix => sel.keys.has(ix))) continue;
+      }
+      if (moodZone) { const af = (R.AUDIO || {})[a.id]; if (!af || !inMoodZone(af, moodZone)) continue; }
       out.add(a.id);
     }
     return out;
-  }, [R, years, hasYears, fam, subIdx, cells, vocals, picks]);
+  }, [R, years, hasYears, fam, subIdx, cells, vocals, picks, attrSel, lens, moodZone]);
 
   const decadeData = React.useMemo(() => {
     const F = window.ROTATION_FILTER; if (!F) return null;
