@@ -2829,10 +2829,15 @@ function GigsView({ go }) {
     <div className="gv">
       <header className="gv-hero">
         <div className="gv-kicker">Attended · setlist.fm</div>
-        <h1 className="gv-h1">You've stood in the crowd for <em>{G.total}</em> shows.</h1>
+        {/* Short title, count moved down to the lede (Fuad 2026-08-20) — matching every other
+            Rotation page: "Dig through.", "The record shop.", "Every day.". This was the only h1 on
+            the site that was a full sentence carrying a number, which is also why its type still read
+            as wrong after .gv-h1 was matched to .r-title's metrics in bfaa719. The metrics were half
+            of it; the shape of the line was the rest. */}
+        <h1 className="gv-h1">In the <em>crowd</em><span className="dot">.</span></h1>
         <p className="gv-lead">
-          {G.artists} artists across {G.cities} cities in {G.countries} countries, {span}.
-          {" "}{fmt(G.songsSeen)} songs played to you live — <b>{G.inLibrary}</b> of these acts are in your rotation.
+          <b>{G.total}</b> shows — {G.artists} artists across {G.cities} cities in {G.countries} countries, {span}.
+          {" "}{fmt(G.songsSeen)} songs played to you live; <b>{G.inLibrary}</b> of these acts are in your rotation.
         </p>
         <div className="gv-stats">
           {[["shows", G.total], ["artists", G.artists], ["hours in crowds", crowdHours], ["songs seen", G.songsSeen]].map(([l, n]) => (
@@ -3113,6 +3118,9 @@ function GigsView({ go }) {
         .gv-h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 4.4vw, 58px);
           line-height: 1.02; letter-spacing: -.025em; margin: 0; }
         .gv-h1 em { font-style: italic; }
+        /* the accent full stop is styled as `.r-title .dot` in core, so it needs restating here —
+           .gv-h1 is Gigs' own class and inherits none of that */
+        .gv-h1 .dot { color: var(--accent); }
         .gv-lead { color: var(--ink-soft); font-size: 15px; line-height: 1.6; margin: 14px 0 0; max-width: 620px; }
         .gv-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 24px; max-width: 560px; }
         .gv-stat { border: 1px solid var(--rule); border-radius: 8px; padding: 14px 12px; }
