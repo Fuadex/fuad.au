@@ -1015,16 +1015,23 @@ const PV_WW_CSS = `
            lines (mask-faded) on hover of the row; on click (.open) it unrolls in place to full
            height with a quick ease-out — continuing from the peek, anchored where the peek was
            (grows downward, no jump). */
+        /* the duration is set inline per-open from the measured height; the CURVE lives here.
+           A gentle ease-out-quart: quick to commit, slow to settle, so the read arrives rather
+           than snapping into place. Opacity leads slightly on the way in so text is already
+           readable as the last of the height resolves. */
         .pv-readbody { max-height: 0; overflow: hidden; opacity: 0;
           -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
           mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
-          transition: max-height .22s ease-out, opacity .18s ease-out; }
+          transition: max-height .22s cubic-bezier(.22,.68,.36,1), opacity .16s ease-out; }
         /* hover-peek: scoped to the TOGGLE via :has(.pv-toggle-read:hover). The chips have since moved
            out of this row (2026-08-19) so a plain :hover would now behave too, but the scoped form is
            kept — it states the intent and survives anything else landing in the row. Graceful no-op on
            browsers without :has() — they simply lose the hover-peek (click-to-open is unaffected). */
         .pv-readrow:has(.pv-toggle-read:hover) + .pv-readbody:not(.open) { max-height: 46px; opacity: .85; }
-        .pv-readbody.open { max-height: 4000px; opacity: 1; pointer-events: auto;
+        /* no max-height here on purpose — the effect sets it to the measured height and then
+           releases the clamp entirely. A flat 4000px was the old bug: the transition spent most of
+           its time travelling through space the content never occupied. No backticks in here. */
+        .pv-readbody.open { opacity: 1; pointer-events: auto;
           -webkit-mask-image: none; mask-image: none; }
         .pv-peek-p { margin-top: 6px; pointer-events: none; }
         .pv-full { font-family: var(--serif); font-size: 15px; line-height: 1.62; color: var(--ink-soft); margin: 12px 0 0; }
@@ -1095,6 +1102,31 @@ function PortraitCard({ id, alt, showWords = true, go }) {
     return () => s.removeEventListener("load", on);
   }, []);
   const [open, setOpen] = React.useState(false);   // full read (portrait/liner) toggle
+  // The unravel animates to the read's MEASURED height. It used to transition to a flat
+  // max-height:4000px over a fixed 220ms, which is why it felt off (Fuad 2026-08-20): on a 300px
+  // read the visible motion was over in about 16ms and the remaining 200ms ran through empty space,
+  // and closing did the same in reverse — a long pause, then a slam. Duration now scales with the
+  // distance actually travelled, so a two-line liner and a ten-paragraph portrait both feel right.
+  const bodyRef = React.useRef(null);
+  React.useLayoutEffect(() => {
+    const el = bodyRef.current; if (!el) return;
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) { el.style.transitionDuration = "0ms"; el.style.maxHeight = open ? "none" : ""; return; }
+    const target = el.scrollHeight;
+    el.style.transitionDuration = Math.min(460, Math.max(170, Math.round(target * 0.5))) + "ms";
+    if (open) {
+      el.style.maxHeight = target + "px";
+      // release the clamp once it lands, so the block can still grow afterwards (a late-loading
+      // image, a font swap) instead of staying pinned to whatever height it had at open time
+      const done = (e) => { if (e.propertyName === "max-height") el.style.maxHeight = "none"; };
+      el.addEventListener("transitionend", done);
+      return () => el.removeEventListener("transitionend", done);
+    }
+    // closing from max-height:none — pin the real height, force a reflow, then fall back to the clamp
+    el.style.maxHeight = target + "px";
+    void el.offsetHeight;
+    el.style.maxHeight = "";
+  }, [open]);
   const [chip, setChip] = React.useState(-1);      // index of the one expanded fact chip, -1 = none
   const [face, setFace] = React.useState("portrait");   // "portrait" (default) | "alt" (old source), via the flick chip
   // words overlay (pilot) — album-only "In its own words" row; keyed by the same artistSlug~albumSlug id.
@@ -1219,13 +1251,17 @@ function PortraitCard({ id, alt, showWords = true, go }) {
                 </div>
               )}
               {full && (
-                <div className={"pv-readbody" + (open ? " open" : "")} aria-hidden={!open}>
-                  {(open ? full.split(/\n+/).filter(Boolean) : full.split(/\n+/).filter(Boolean).slice(0, 1))
-                    .map((para, i) => (
-                      <p key={i} className={"pv-full" + (open ? "" : " pv-peek-p")}>
-                        {open ? linkifyTracks(para, albumTracks, go) : para}
-                      </p>
-                    ))}
+                <div ref={bodyRef} className={"pv-readbody" + (open ? " open" : "")} aria-hidden={!open}>
+                  {/* every paragraph is always rendered and the clamp does the peeking. This used to
+                      swap to a one-paragraph slice when closed, which meant that on CLOSE React had
+                      already shrunk the content before the animation could measure it — so there was
+                      nothing left to collapse and the fold just vanished. Links stay inert while
+                      peeking via .pv-peek-p's pointer-events:none. */}
+                  {full.split(/\n+/).filter(Boolean).map((para, i) => (
+                    <p key={i} className={"pv-full" + (open ? "" : " pv-peek-p")}>
+                      {linkifyTracks(para, albumTracks, go)}
+                    </p>
+                  ))}
                 </div>
               )}
               {/* Fable-QC arc coda (album reads, Fuad 2026-07-25): where the tracklist order
