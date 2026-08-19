@@ -37,8 +37,10 @@ function _segs(pts) {
 // thickens at rest, .5 → .85, to match a bubble's resting rim. With a fill this transparent the
 // stroke is doing most of the drawing anyway; it should be the confident part.
 //
-// Opt-in rather than a change to the primitive: the same StreamGraph draws the artist-page flow and
-// the Journey, where the original contrast is the point.
+// It began as opt-in because the artist-page flow was meant to keep the original contrast. Fuad then
+// asked for the same treatment there (2026-08-20), so BOTH call sites now pass `faint` and `solid`
+// is currently unused. It is kept rather than folded in: the two tables are the whole record of what
+// this surface used to look like, and collapsing them would make the next revert a guess.
 const SG_BANDS = {
   solid: { on: 0.82, hi: 0.96, off: 0.15, L: 0.62, C: 0.17, sL: 0.72, sC: 0.16,
            strokeOn: 0.5, strokeHi: 0.5, strokeOff: 0.12, w: 0.5, wHi: 1.4, sLHi: 0.72, sCHi: 0.16 },

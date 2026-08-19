@@ -78,7 +78,7 @@ function ArtistFlow({ id, hue, go, drill: drillProp, setDrill: setDrillProp, onA
       )}
       {series.length < 1
         ? <div style={{ padding: 26, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>Nothing tagged over time here.</div>
-        : <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={!!onPick} />}
+        : <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={!!onPick} faint />}
       {series.length >= 1 && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 14px", marginTop: 12 }}>
           {series.map((s, i) => (
