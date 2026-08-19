@@ -380,6 +380,22 @@ a.r-link:hover { color: var(--ink); }
 .tv-switch-brand[data-m="fable"] { color: oklch(0.73 0.12 60); }
 .tv-switch-brand[data-m="web"] { color: oklch(0.62 0.05 200); }
 .tv-switch-note { font-size: 8.5px; color: var(--ink-faint); margin-top: 8px; letter-spacing: .05em; }
+/* CLICKABLE TILE AFFORDANCE (Fuad 2026-08-20). Album covers, similar-artist tiles and family-tree
+   band chips were all clickable with nothing to say so. The last.fm tiles DID have something — an
+   inline translateY(-3px) nudge — which Fuad singled out as the one he does not want: a tile that
+   moves is a tile you have to re-aim at.
+   So: no transform anywhere. A ring in the accent colour plus a touch of brightness on the art,
+   and the label warms to full ink. Global here rather than per-view so the three surfaces cannot
+   drift apart. */
+.r-hovtile { cursor: pointer; }
+.r-hovtile .r-hovtile-art { border-radius: 4px; transition: box-shadow .18s ease, filter .18s ease; }
+.r-hovtile:hover .r-hovtile-art { box-shadow: 0 0 0 2px var(--accent-dim); filter: brightness(1.07); }
+.r-hovtile .r-hovtile-lbl { transition: color .18s ease; }
+.r-hovtile:hover .r-hovtile-lbl { color: var(--ink); }
+/* band chips in the family tree: a pill, so the ring reads better as a border tint + wash */
+.r-hovchip { transition: border-color .18s ease, background .18s ease, color .18s ease; }
+.r-hovchip[data-open="true"] { cursor: pointer; }
+.r-hovchip[data-open="true"]:hover { border-color: var(--accent-dim); background: var(--bg-3); color: var(--ink); }
 /* needle-drop preview button (Shelves + Album pages) — global so it's styled off the Shelves view too */
 .sh-needle { padding: 7px 12px; border-radius: 999px; cursor: pointer; font-family: var(--mono); font-size: 10px;
   letter-spacing: .1em; text-transform: uppercase; text-align: center; border: 1px solid var(--rule-2);
