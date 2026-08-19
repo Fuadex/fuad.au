@@ -75,9 +75,15 @@ async function labelOf(qids) {
     const m = byId[id];
     if (!m) { console.log(id, ": not in museums.js, skipped"); continue; }
     if (existing[id]) { console.log(id, ": already fetched, skip (pass the id explicitly to refresh)"); continue; }
-    // search by the bare name — appending the city defeats wbsearchentities' label match
+    // THE QID IN museums.js WINS (2026-08-19). This used to resolve by name search only and never
+    // read m.qid — which is exactly how the stored qids were free to drift: nothing consumed them,
+    // so nobody noticed pergamon pointing at the Prado. Name search also fails both ways: "Science
+    // Museum" matched the GENERIC concept "science museum" rather than the London institution, and
+    // "Zamek Królewski w Warszawie (Royal Castle)" matched nothing at all. A hand-checked qid is
+    // better evidence than a label lookup, so search is now only the fallback.
     let hit;
-    if (QID_PIN[id]) hit = { id: QID_PIN[id], label: m.name, description: "(pinned)" };
+    if (m.qid) hit = { id: m.qid, label: m.name, description: "(from museums.js)" };
+    else if (QID_PIN[id]) hit = { id: QID_PIN[id], label: m.name, description: "(pinned)" };
     else {
       const q = SEARCH_HINT[id] || m.name;
       const s = await api({ action: "wbsearchentities", search: q, language: "en", type: "item", limit: 5 });
