@@ -250,7 +250,24 @@ function Card({ w, go }) {
 // ——— the Wall: filter chips × museum select × sort, capped at 48 with reversible load-more.
 // Sorts: "hang" (floored → loved → the rest, images first) · year · artist · museum.
 const CAP = 48;
-const FILTERS = [["all", "all"], ["floored", "★ floored"], ["loved", "♥ loved"], ["sure", "seen — sure"], ["unsure", "unsure"], ["wish", "pilgrimage"]];
+// TWO independent axes (Fuad 2026-08-20), each multi-select and OR'd within itself, AND'd across.
+//
+// MARKS are the feeling, and the vocabulary is counter-intuitive on purpose: what this site calls
+// FLOORED is what Fuad means by loved, and what it calls LOVED is what he means by liked. They are
+// separate tiers, not nested — "loved" used to resolve to floored ∪ liked, which is 1,833 of 1,894
+// works and therefore filtered nothing. It now means the `liked` mark alone.
+//
+// STATUS is the encounter: did you stand in front of it, are you unsure, is it still to come. All
+// six chips used to share one radio group, so "floored things I still haven't seen" — the question
+// the pilgrimage exists to answer — could not be asked.
+const MARK_FILTERS = [["floored", "★ floored"], ["loved", "♥ loved"]];
+const STATUS_FILTERS = [["sure", "seen — sure"], ["unsure", "unsure"], ["wish", "pilgrimage"]];
+const markPass = (w, k) => k === "floored" ? !!(w.floored || w.favorite) : !!w.liked;
+const statusPass = (w, k) =>
+  k === "sure" ? w.seenConfidence === "sure"
+  : k === "unsure" ? (w.seenConfidence != null && w.seenConfidence !== "sure")
+  // pilgrimage: an explicit wish, or an unsure sighting you marked — you want to see it properly
+  : !!(w.wish || (w.seenConfidence === "unsure" && (w.liked || w.floored || w.favorite)));
 const weight = (w) => (w.floored || w.favorite) ? 0 : (w.liked ? 1 : 2);
 // arrangement helpers — dominant-hue of a work (grey/no-palette sort last), primary movement,
 // and century band. All from data already loaded (CANVAS_PALETTE, AD.artists movementQids, year).
@@ -301,7 +318,11 @@ const STYLE_CHIPS = 12;
 
 function Wall({ go, mode = "collage", styleIds }) {
   const all = useMemo(() => WORKS.map(enrich), []);
-  const [filt, setFilt] = useState("all");
+  const [marks, setMarks] = useState(() => new Set());     // ★ floored / ♥ loved — OR within
+  const [status, setStatus] = useState(() => new Set());    // seen / unsure / pilgrimage — OR within
+  const toggleIn = (set, setter) => (k) => setter(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; });
+  const toggleMark = toggleIn(marks, setMarks);
+  const toggleStatus = toggleIn(status, setStatus);
   const [mus, setMus] = useState("");
   const [sort, setSort] = useState("hang");
   const [extra, setExtra] = useState(0);
@@ -319,7 +340,7 @@ function Wall({ go, mode = "collage", styleIds }) {
   }, [styleIds, movs]);
   const setSel = (labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null);
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [filt, mus, sort, mode, styleIds, media]);
+  useEffect(() => { setExtra(0); }, [marks, status, mus, sort, mode, styleIds, media]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -327,14 +348,11 @@ function Wall({ go, mode = "collage", styleIds }) {
   // (Fuad 2026-08-20). Styles and media still AND against each other in `shown` below.
   const base = useMemo(() => {
     let list = all;
-    if (filt === "floored") list = list.filter(w => w.floored || w.favorite);
-    if (filt === "loved") list = list.filter(w => w.floored || w.favorite || w.liked);
-    if (filt === "sure") list = list.filter(w => w.seenConfidence === "sure");
-    if (filt === "unsure") list = list.filter(w => w.seenConfidence != null && w.seenConfidence !== "sure");
-    if (filt === "wish") list = list.filter(w => w.wish || (w.seenConfidence === "unsure" && (w.liked || w.floored || w.favorite)));
+    if (marks.size) list = list.filter(w => [...marks].some(k => markPass(w, k)));
+    if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
     return list;
-  }, [all, filt, mus]);
+  }, [all, marks, status, mus]);
 
   // Live facet counts. Both rows count against `base` — every filter EXCEPT their own — and each
   // also honours the other, so with Sculpture on, the style numbers are sculpture-only. A chip that
@@ -360,22 +378,10 @@ function Wall({ go, mode = "collage", styleIds }) {
 
 
   const shown = useMemo(() => {
+    // marks and status are OR'd within themselves and AND'd against each other; see MARK_FILTERS.
     let list = all;
-    if (filt === "floored") list = list.filter(w => w.floored || w.favorite);
-    if (filt === "loved") list = list.filter(w => w.floored || w.favorite || w.liked);
-    if (filt === "sure") list = list.filter(w => w.seenConfidence === "sure");
-    // "unsure" means a SIGHTING you're not certain of — so it needs an actual sighting to be
-    // unsure about. Before the 2026-08-19 photo import the canon was seen-works-only and a bare
-    // `!== "sure"` was harmless; that import added ~1,000 want-to-see rows which carry NO
-    // seenConfidence, and every one of them fell in here (1,472 results instead of 465).
-    // Pilgrimage rows are reachable through the "wish" chip, which is where they belong.
-    if (filt === "unsure") list = list.filter(w => w.seenConfidence != null && w.seenConfidence !== "sure");
-    // Pilgrimage = everything you'd still like to stand in front of. Two ways in (Fuad 2026-08-19):
-    //   1. wish — never seen it, want to;
-    //   2. an UNSURE sighting you liked or loved — you may or may not have been there, and you
-    //      want to see it (properly) either way. Today every unsure row carries a mark, so the
-    //      mark test selects all of them; it is kept so an unmarked unsure row never auto-joins.
-    if (filt === "wish") list = list.filter(w => w.wish || (w.seenConfidence === "unsure" && (w.liked || w.floored || w.favorite)));
+    if (marks.size) list = list.filter(w => [...marks].some(k => markPass(w, k)));
+    if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
     // styles are OR'd — picking Impressionism + Fauvism widens, it doesn't narrow to the overlap
     if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
@@ -396,7 +402,7 @@ function Wall({ go, mode = "collage", styleIds }) {
     return arr;
     // `media` belongs in here: the filter above reads it, and without it the wall kept showing the
     // previous medium's results until some other filter happened to change (found 2026-08-20).
-  }, [all, filt, mus, sort, mode, sel, media]);
+  }, [all, marks, status, mus, sort, mode, sel, media]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
@@ -422,8 +428,15 @@ function Wall({ go, mode = "collage", styleIds }) {
   return (
     <React.Fragment>
       <div className="cv-filters">
-        {FILTERS.map(([v, label]) => (
-          <button key={v} data-on={filt === v} onClick={() => setFilt(v)}>{label}</button>
+        {/* "all" clears both axes — a reset, not a third state you can be in */}
+        <button data-on={!marks.size && !status.size}
+          onClick={() => { setMarks(new Set()); setStatus(new Set()); }}>all</button>
+        {MARK_FILTERS.map(([v, label]) => (
+          <button key={v} data-on={marks.has(v)} onClick={() => toggleMark(v)}>{label}</button>
+        ))}
+        <span className="cv-filt-div" aria-hidden="true" />
+        {STATUS_FILTERS.map(([v, label]) => (
+          <button key={v} data-on={status.has(v)} onClick={() => toggleStatus(v)}>{label}</button>
         ))}
         <select value={mus} onChange={e => setMus(e.target.value)}>
           <option value="">every museum</option>
@@ -1573,7 +1586,9 @@ function MuseumView({ museumId, go }) {
                        ["sure", "seen — sure"], ["unsure", "unsure"], ["read", "✦ has a read"]];
   const applyMusFilt = (list) => {
     if (musFilt === "floored") return list.filter(w => w.floored || w.favorite);
-    if (musFilt === "loved") return list.filter(w => w.liked || w.floored || w.favorite);
+    // the liked mark alone — same tier split as the Wall (Fuad 2026-08-20), so "loved" cannot mean
+    // one thing on one page and a superset of it on another
+    if (musFilt === "loved") return list.filter(w => w.liked);
     if (musFilt === "sure") return list.filter(w => w.seenConfidence === "sure");
     if (musFilt === "unsure") return list.filter(w => w.seenConfidence !== "sure");
     if (musFilt === "read") return list.filter(w => hasRead(w));
