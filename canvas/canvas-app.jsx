@@ -39,6 +39,9 @@ const HIRES = window.CANVAS_HIRES || {};
 // later use and is shown as the tooltip so the coarse chip never hides what the thing actually is.
 const MEDIUM = window.CANVAS_MEDIUM || {};
 const IMGSIZE = window.CANVAS_IMGSIZE || {};
+// qid → canon work, for places that hold a Wikidata id and need to know whether the gallery
+// already has the thing (museum highlights, deck picks).
+const WORK_BY_QID = (() => { const m = {}; for (const w of WORKS) if (w.qid) m[w.qid] = w; return m; })();
 // art_holders.js — for a work Fuad has NOT seen, where it lives. Wikidata's collection (P195),
 // which is the work's home institution rather than a promise about what is on the wall this week.
 // Kept apart from seenAt, which records where he stood.
@@ -1631,12 +1634,22 @@ function MuseumView({ museumId, go }) {
             <div className="cv-a-unmet">
               {slice.map(n => {
                 const q = queuedQids.has(n.qid);
+                // A highlight can already BE a canon work — met at another venue, or a multi-venue
+                // cast/impression — in which case sending you to Wikidata was throwing you off the
+                // site to read about something the gallery already holds. Open the reader instead;
+                // Wikidata stays the destination only for works genuinely not in the canon.
+                const own = n.qid && WORK_BY_QID[n.qid];
                 return (
                   <div className="cv-a-unmet-item" key={n.qid || n.title}>
-                    <a href={n.qid ? `https://www.wikidata.org/wiki/${n.qid}` : undefined} target="_blank" rel="noopener noreferrer" title={n.title}>
-                      <LazyImg src={n.img} alt={n.title} />
-                      <span>{n.title}{n.artist ? ` · ${n.artist}` : ""}{n.year ? ` · ${n.year}` : ""}</span>
-                    </a>
+                    {own
+                      ? <a href={`#/work/${own.id}`} title={n.title}>
+                          <LazyImg src={n.img} alt={n.title} />
+                          <span>{n.title}{n.artist ? ` · ${n.artist}` : ""}{n.year ? ` · ${n.year}` : ""}</span>
+                        </a>
+                      : <a href={n.qid ? `https://www.wikidata.org/wiki/${n.qid}` : undefined} target="_blank" rel="noopener noreferrer" title={n.title}>
+                          <LazyImg src={n.img} alt={n.title} />
+                          <span>{n.title}{n.artist ? ` · ${n.artist}` : ""}{n.year ? ` · ${n.year}` : ""}</span>
+                        </a>}
                     <button type="button" className="cv-a-unmet-add" data-q={q} disabled={q}
                       title={q ? "queued for the By Your Artists deck" : "add to the By Your Artists deck"}
                       onClick={() => queueMajor(n)}>{q ? "queued ✓" : "+ deck"}</button>
@@ -3226,20 +3239,33 @@ function App() {
   // "#/wall/<style+style>" is still the wall — the id carries the style filter, not a work.
   const isHome = route.view === "wall" && !route.id && (location.hash === "#/" || location.hash === "#" || location.hash === "");
   const view = route.view === "work" ? "work" : isHome ? "home" : route.view;
+  // WHAT SITS BEHIND THE READER (Fuad 2026-08-19). #/work/<id> and #/study/<id> are overlays, but
+  // neither matched a branch in the content switch below, so both fell through to the default and
+  // dropped HOME behind them — open a work from the map and the map vanished under the reader,
+  // reappearing only on close. Remember the last real page and keep rendering that instead.
+  // A ref, not state: it must already hold the previous page on the render where the overlay opens,
+  // and it must never itself trigger a re-render. Cold deep-links to #/work/<id> have no previous
+  // page, so they keep the old behaviour and land on Home.
+  const bgRoute = useRef({ view: "wall", id: null, home: true });
+  if (route.view !== "work" && route.view !== "study") bgRoute.current = { ...route, home: isHome };
+  const bg = (route.view === "work" || route.view === "study") ? bgRoute.current : { ...route, home: isHome };
+  const bgView = bg.home ? "home" : bg.view;
   return (
     <React.Fragment>
       <header className="cv-head">
         <a className="cv-brand" href="#/">Canvas<i>.</i></a>
         <nav className="cv-nav">
-          <a href="#/" data-on={view === "home"}>Home</a>
-          <a href="#/wall" data-on={view === "wall"}>The Wall</a>
-          <a href="#/portrait" data-on={view === "portrait"}>Portrait</a>
-          <a href="#/museums" data-on={view === "museums" || route.view === "museum" || (route.view === "deck" && route.id !== "by-artists")}>Museums</a>
-          <a href="#/artists" data-on={view === "artists" || route.view === "artist"}>Artists</a>
-          <a href="#/deck/by-artists" data-on={route.view === "deck" && route.id === "by-artists"}>By Your Artists</a>
-          <a href="#/map" data-on={view === "map" || view === "pilgrimage"}>Map</a>
+          {/* highlight follows the page BEHIND an open reader, so the nav does not go blank the
+              moment you open a work from the map or a museum */}
+          <a href="#/" data-on={bgView === "home"}>Home</a>
+          <a href="#/wall" data-on={bgView === "wall"}>The Wall</a>
+          <a href="#/portrait" data-on={bgView === "portrait"}>Portrait</a>
+          <a href="#/museums" data-on={bgView === "museums" || bg.view === "museum" || (bg.view === "deck" && bg.id !== "by-artists")}>Museums</a>
+          <a href="#/artists" data-on={bgView === "artists" || bg.view === "artist"}>Artists</a>
+          <a href="#/deck/by-artists" data-on={bg.view === "deck" && bg.id === "by-artists"}>By Your Artists</a>
+          <a href="#/map" data-on={bgView === "map" || bgView === "pilgrimage"}>Map</a>
         </nav>
-        {view === "wall" && (
+        {bgView === "wall" && (
           <div className="cv-mode">
             {[["collage", "Collage"], ["spectrum", "Spectrum"], ["timeline", "Timeline"], ["movements", "Movements"]].map(([m, lbl]) =>
               <button key={m} data-on={mode === m} onClick={() => setMode(m)}>{lbl}</button>)}
@@ -3247,14 +3273,15 @@ function App() {
         )}
         <SearchBar go={go} />
       </header>
-      {route.view === "deck" ? <Deck museumId={route.id} part={route.part} go={go} key={route.id + "-" + route.part} />
-        : route.view === "museum" ? <MuseumView museumId={route.id} go={go} key={route.id} />
-        : view === "museums" ? <Museums go={go} />
-        : view === "portrait" ? <Portrait go={go} />
-        : (view === "map" || view === "pilgrimage") ? <MapView go={go} />
-        : route.view === "artist" ? <ArtistView artistId={route.id} go={go} key={route.id} />
-        : view === "artists" ? <Artists go={go} />
-        : view === "wall" ? <Wall go={go} mode={mode} styleIds={route.id} />
+      {/* driven by `bg`, not `route`, so an open reader leaves the page beneath it intact */}
+      {bg.view === "deck" ? <Deck museumId={bg.id} part={bg.part} go={go} key={bg.id + "-" + bg.part} />
+        : bg.view === "museum" ? <MuseumView museumId={bg.id} go={go} key={bg.id} />
+        : bgView === "museums" ? <Museums go={go} />
+        : bgView === "portrait" ? <Portrait go={go} />
+        : (bgView === "map" || bgView === "pilgrimage") ? <MapView go={go} />
+        : bg.view === "artist" ? <ArtistView artistId={bg.id} go={go} key={bg.id} />
+        : bgView === "artists" ? <Artists go={go} />
+        : bgView === "wall" ? <Wall go={go} mode={mode} styleIds={bg.id} />
         : <HomeView go={go} />}
       {route.view === "work" && <Reader id={route.id} go={go} />}
       {route.view === "study" && <StudyView id={route.id} go={go} key={route.id} />}
