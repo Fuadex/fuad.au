@@ -396,19 +396,25 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
   // reflects whatever slice is active. period > place/genre/year > lifetime.
   React.useEffect(() => {
     if (!onStats) return;
+    // Both counts come off resultArtists — literally the array the Results list renders — rather
+    // than being re-derived from filteredArtists alongside it. They used to be computed twice,
+    // which was fine only for as long as the two derivations agreed. This also lets the strip
+    // show a share stat that is honestly "the artists you are looking at right now".
+    const plays = resultArtists.reduce((s, e) => s + e.p, 0);
+    const artists = resultArtists.length;
     const active = !!(sel || focus || filt.fam != null || filt.sub != null || yearIdx != null || periodData);
-    if (!active) { onStats(null); return; }
+    // Report even when nothing is filtered: `active:false` keeps every existing consumer on its
+    // lifetime branch (they all gate on .active), while still publishing the Results totals.
+    if (!active) { onStats({ active: false, plays, artists }); return; }
     const avgSec = (R.TOTALS && R.TOTALS.avgTrackSec) || 216;
     // `slice` = a place/genre filter is active (not just a year/period). The Overview stat strip uses
     // it to decide whether to size avg/day from this (EXPLORE-scoped) count or from the exact day-series
     // total (which is right for a pure time filter). periodData is a time filter → slice:false.
-    if (periodData) { const plays = periodData.arts.reduce((s, e) => s + e.p, 0); onStats({ active: true, slice: false, plays, artists: periodData.arts.length, hours: Math.round(plays * avgSec / 3600), label: periodData.label }); return; }
+    if (periodData) { onStats({ active: true, slice: false, plays, artists, hours: Math.round(plays * avgSec / 3600), label: periodData.label }); return; }
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
-    let plays = 0, artists = 0;
-    for (const a of filteredArtists) { const p = yr != null ? (a.yp ? (a.yp[yr] || 0) : 0) : a.plays; if (p > 0) { plays += p; artists++; } }
     const slice = !!(sel || focus || filt.fam != null || filt.sub != null);
     onStats({ active: true, slice, plays, artists, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? R.FAMILIES[filt.fam].family : null, yr].filter(Boolean).join(" · ") || "filtered" });
-  }, [filteredArtists, yearIdx, periodData, sel, focus, filt, onStats]);
+  }, [resultArtists, filteredArtists, yearIdx, periodData, sel, focus, filt, onStats]);
   // calendar-period → the places its top artists come from. calendar-detail only stores the
   // top 5-6 artists per day/week, so a full dot re-weight would be dishonest — instead we
   // RING those artists' origins and dim the rest ("where that day's music came from").
@@ -817,12 +823,20 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
         @media (max-width: 1500px) { .mp-resctl .r-seg button { font-size: 9.5px; padding: 3px 7px; letter-spacing: .02em; } .mp-resctl { gap: 6px 8px; } }
         .map-listrow { display: flex; align-items: center; gap: 10px; padding: 3px 4px; border-radius: 5px; cursor: pointer; transition: background .12s; }
         .map-listrow:hover { background: var(--bg-3); }
-        .cal-rows { display: grid; gap: 2px; }
-        .cal-row { display: flex; align-items: center; gap: 11px; padding: 6px 6px; border-radius: 6px; transition: background .12s; }
+        /* min-width:0 on the GRID and the ROW, not only on the name (Fuad 2026-08-20: a long
+           artist, album or song name pushed the play count past the edge of a phone screen).
+           This is the Overview Results panel, and it carries its OWN copy of the .cal-* rules
+           — so fixing the identical block in rotation-calendar.jsx never reached it.
+           A grid track and a flex item both refuse to shrink below their content unless told
+           they may, so however well .cal-nm clamps inside the row, the row itself could still
+           widen and carry .cal-pl off the viewport. flex:none on the rank and the count stops
+           either of them being what gives instead. */
+        .cal-rows { display: grid; gap: 2px; min-width: 0; grid-template-columns: minmax(0, 1fr); }
+        .cal-row { display: flex; align-items: center; gap: 11px; padding: 6px 6px; border-radius: 6px; transition: background .12s; min-width: 0; overflow: hidden; }
         .cal-row[data-link="true"] { cursor: pointer; } .cal-row[data-link="true"]:hover { background: var(--bg-3); }
-        .cal-rk { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); width: 18px; }
-        .cal-nm { font-size: 13.5px; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .cal-pl { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+        .cal-rk { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); width: 18px; flex: none; }
+        .cal-nm { font-size: 13.5px; flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .cal-pl { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); flex: none; }
         /* album/song cover grid in the results panel */
         .mp-medgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 10px; margin-bottom: 4px; }
         @media (min-width: 1150px) { .mp-results .mp-medgrid { grid-template-columns: repeat(auto-fill, minmax(62px, 1fr)); gap: 6px; } }
