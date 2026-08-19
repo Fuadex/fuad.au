@@ -11,6 +11,20 @@
         "venue": ""
       },
       "note": "Fuad saw Haru Nemuri on 22 Jan 2026; the June ANTIKNOCK marking was a stand-in."
+    },
+    {
+      "match": {
+        "artist": "Pendulum",
+        "date": "2010-04-23"
+      },
+      "set": {
+        "date": "2013-05-31",
+        "venue": "Ursynalia (SGGW campus)",
+        "city": "Warsaw",
+        "tour": "",
+        "url": ""
+      },
+      "note": "Fuad saw Pendulum at Ursynalia, not at Klub Stodola in 2010 — setlist.fm has no entry for the festival set, so the 2010 Warsaw show had been standing in for it. Ursynalia 2013 ran 31 May to 2 June on the SGGW campus; Pendulum played a DJ set on the Open Stage in the small hours of the 31st. The url is cleared because it pointed at the Stodola setlist; songs were already empty."
     }
   ],
   "add": [
