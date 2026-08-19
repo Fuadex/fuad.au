@@ -1887,7 +1887,8 @@ function ExploreView({ t, go, setPop, seed }) {
                             onClick={() => isYear ? setRelYear(y => y === d.year ? null : d.year) : toggleDec(d.decade)}
                             style={{ width: w + "%", minWidth: 3,
                               background: `oklch(${(+lo) + li} ${isYear ? 0.13 : 0.14} ${hue % 360} / 0.34)`,
-                              boxShadow: `inset 0 0 0 1px oklch(${(+lo) + li + 0.26} ${isYear ? 0.16 : 0.17} ${hue % 360} / 0.7)` }}>
+                              "--sk": `oklch(${(+lo) + li + 0.22} 0.08 ${hue % 360} / 0.42)`,
+                              "--skh": `oklch(${(+lo) + li + 0.28} ${isYear ? 0.17 : 0.18} ${hue % 360} / 0.8)` }}>
                             {w > (isYear ? 8 : 9) && <span className="xp-decseg-l">{isYear ? "'" + String(d.year).slice(2) : String(d.decade).slice(2) + "s"}</span>}
                           </div>
                         );
@@ -2004,8 +2005,12 @@ function ExploreView({ t, go, setPop, seed }) {
         }
         .xp-td-themes .xp-chiprow { max-height: 132px; overflow-y: auto; }
         .xp-decbar { display: flex; height: 46px; border-radius: 4px; overflow: hidden; gap: 1px; }
-        .xp-decseg { min-width: 3px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; transition: filter .14s, outline-color .14s; outline: 1.5px solid transparent; outline-offset: -1.5px; }
-        .xp-decseg:hover { filter: brightness(1.18); }
+        /* Rim desaturated at rest, full colour under the cursor (Fuad 2026-08-20). Both values come
+           in per-segment as --sk / --skh since each hue is computed from its position; only the swap
+           lives here. The outline for the SELECTED state is kept separate from the box-shadow rim on
+           purpose — they need to be able to show at the same time. */
+        .xp-decseg { min-width: 3px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; transition: filter .14s, outline-color .14s, box-shadow .16s ease-out; outline: 1.5px solid transparent; outline-offset: -1.5px; box-shadow: inset 0 0 0 1px var(--sk); }
+        .xp-decseg:hover { filter: brightness(1.18); box-shadow: inset 0 0 0 1px var(--skh); }
         .xp-decseg[data-on="true"] { outline-color: var(--accent); }
         .xp-decseg-l { font-family: var(--mono); font-size: 10px; font-weight: 600; color: rgba(255,255,255,.92); white-space: nowrap; }
         .xp-decback { font-family: var(--mono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase; background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px; color: var(--ink-soft); cursor: pointer; margin-top: 8px; }
