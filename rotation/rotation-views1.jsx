@@ -878,11 +878,15 @@ function OverviewView({ t, go, restReady, seed }) {
           .ov-scrob .r-stat-n { font-size: clamp(18px, 1.7vw, 22px) !important; }
           .ov-streak .r-stat-n, .ov-week .r-stat-n { font-size: 21px !important; }
           .ov-week .spark, .ov-scrob .spark { max-height: 20px; }
-          /* cap the whole pulse row so it lands lean: the tallest card (now-playing's cover stack /
-             recently-played's rows) can't push it taller than this. Tightened 102→92px alongside the
-             Decades move so the Right-now band above reads leaner too (Fuad 2026-08-17). The recent
-             list scrolls internally if it ever overflows. */
-          .ov-scrob, .ov-streak, .ov-week, .ov-recent, .ov-np { max-height: 92px; overflow: hidden; }
+          /* The 92px cap belonged to the OLD pulse row, where these shared a band with nothing
+             taller and the cap kept it lean. They sit beside Decades now (Fuad 2026-08-20), and the
+             cap was the only thing stopping them reaching that row's height — leaving their headers
+             jammed against the content while the Decades card ran deeper. Stretching to the row
+             instead, with each card a column that spreads its content, gives the headers air.
+             .ov-np keeps the cap: it is commented out of the tree, and if it comes back it returns
+             to a row it has to fit. */
+          .ov-pulseslot > .r-card { height: 100%; overflow: hidden; }
+          .ov-np { max-height: 92px; overflow: hidden; }
           .ov-recent .ov-rl { overflow-y: auto; }
           .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(5, 1fr) !important; gap: 10px !important; }
           .ov-strip .r-stat-n { font-size: 21px !important; }
