@@ -324,24 +324,6 @@ worth its cost; knowing that is the point of writing the limit down.
 **Resolution rule.** Cut rather than soften. A hook that has to be hedged into "is said to
 have" was not a hook worth having — hedging is how an unverified claim survives QC.
 
-**A CUT LEAVES A HOLE — GO AND FILL IT (Fuad 2026-08-20).** The resolution rule above has a
-bias that took a whole batch to notice. Hooks *are* the striking claims, so they are
-disproportionately what fails verification — which means a heavily-QC'd batch drifts towards
-safe and flat, and the drift is invisible because every surviving sentence is true. Two reads
-in batch 3 shipped with only two of the three moves: van Rysselberghe lost his 1904 break from
-pointillism and Le Sidaner lost a motive claim, and in both cases the read simply stopped after
-"how" and "why". **A read that comes out of QC with no third move is not finished.** Go and
-find a different hook and put it through the same loop, rather than shipping the gap. Both were
-fixable in one search each: van Rysselberghe is one of very few who took the dot into
-portraiture, and Le Sidaner founded a rose festival that still runs.
-
-Related, and cheaper to catch: the same batch shipped "came back with the palette he then
-kept", an unfalsifiable claim about influence that survived because it is *dull*. §10's own
-pass looks at what is load-bearing, surprising or numeric. Nothing in the procedure catches a
-claim that is quietly unverifiable and also boring — so the collection-statistic tie-back
-("all three of yours floored you") slipped through for the same reason, despite being exactly
-what killed the first pilot. **When trimming, re-read the flat sentences too.**
-
 **VERIFY THE CORRECTION TOO (Fuad 2026-08-19, learned the hard way).** A verifier that finds
 a real error will often hand back a replacement claim, and that replacement arrives with all
 the authority of having just caught you out — which is exactly why it gets adopted unchecked.
