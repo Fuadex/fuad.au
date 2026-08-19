@@ -2954,11 +2954,60 @@ function HomeView({ go }) {
 // fold: NFD + strip combining marks → case-insensitive diacritic-insensitive substring match
 const fold = (s) => (s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
 
+// SUBJECT SEARCH (art_subjects.js — Wikidata depicts P180 + genre P136). Covers 1,100 of 1,868
+// works. Only this layer is trusted: mining the reads for subjects was built, measured at ~30%
+// corroboration and left unwired — see DATA_NOISE.md §8. Note it can find dogs and the sea but
+// never "morning": Wikidata records objects and genres, never conditions.
+const SUBJ = window.CANVAS_SUBJECTS || {};
+// Query expansion, so the word you reach for finds the word Wikidata used. One-way: the typed term
+// on the left is widened into the terms on the right before matching.
+const SUBJ_SYN = {
+  ocean: ["sea", "marine", "seascape", "water"], sea: ["sea", "marine", "seascape"],
+  coast: ["coast", "beach", "shore", "cliff", "harbour", "bay"],
+  landscape: ["landscape", "countryside", "rural"], seascape: ["marine", "sea"],
+  dog: ["dog", "puppy", "hound"], dogs: ["dog", "puppy", "hound"],
+  cat: ["cat", "kitten"], horse: ["horse", "equestrian", "rider"], horses: ["horse", "equestrian"],
+  bird: ["bird", "swan", "crow", "raven", "gull", "peacock"], birds: ["bird", "swan", "crow"],
+  flower: ["flower", "blossom", "rose", "lily", "iris"], flowers: ["flower", "blossom", "rose", "lily"],
+  tree: ["tree", "forest", "wood"], trees: ["tree", "forest", "wood"],
+  mountain: ["mountain", "peak", "alp"], mountains: ["mountain", "peak", "alp"],
+  boat: ["boat", "ship", "sail"], boats: ["boat", "ship", "sail"], ship: ["ship", "boat", "sail"],
+  snow: ["snow", "winter", "ice"], sky: ["sky", "cloud"], cloud: ["cloud", "sky"], clouds: ["cloud", "sky"],
+  nude: ["nude", "nudity"], nudes: ["nude", "nudity"],
+  portrait: ["portrait"], portraits: ["portrait"],
+  selfportrait: ["self-portrait"], "self portrait": ["self-portrait"],
+  stilllife: ["still life"], "still life": ["still life"],
+  religious: ["religious art", "saint", "christ", "angel", "madonna"],
+  myth: ["mythological", "venus", "apollo", "diana", "nymph"], mythology: ["mythological", "venus", "apollo"],
+  city: ["cityscape", "city", "street", "town"], street: ["street", "cityscape"],
+  war: ["battle", "war", "soldier", "military"], battle: ["battle", "war", "soldier"],
+  river: ["river", "seine", "stream"], garden: ["garden", "park"],
+  woman: ["woman", "girl"], women: ["woman", "girl"], man: ["man", "boy"], men: ["man", "boy"],
+  child: ["child", "girl", "boy", "infant"], children: ["child", "girl", "boy"],
+};
+const expandQuery = (needle) => SUBJ_SYN[needle] || [needle];
+const subjTerms = (id) => {
+  const s = SUBJ[id]; if (!s) return "";
+  return [...(s.d || []), ...(s.g || [])].join(" ");
+};
+// TOKENS, not substrings. Matching a subject bag with `includes` is quietly wrong: "sea" hits
+// "seat" (Whistler's Mother depicts a seat), "war" hits "Black Lion Wharf", "ice" hits "office".
+// Each work gets a set of whole labels plus the whole words inside them, and a term must equal one.
+const subjTokenSet = (id) => {
+  const s = SUBJ[id]; if (!s) return null;
+  const labels = [...(s.d || []), ...(s.g || [])].map(fold);
+  if (!labels.length) return null;
+  const toks = new Set(labels);                       // keeps multi-word labels: "still life"
+  for (const l of labels) for (const word of l.split(/[^a-z0-9]+/)) if (word.length > 2) toks.add(word);
+  return toks;
+};
+
 // build the search index once at module level (enriched canon + museum name lookup)
 const SEARCH_INDEX = (() => {
   const enriched = WORKS.map(enrich);
   return enriched.map(w => {
     const musNames = w.venues.map(v => v.name.replace(/\s*\(.*\)$/, "")).join(" ");
+    const subj = subjTerms(w.id);
     return {
       id: w.id,
       title: w.title.replace(/^TBC — /, ""),
@@ -2966,8 +3015,12 @@ const SEARCH_INDEX = (() => {
       musNames,
       musIds: w.venues.map(v => v.id),
       imgGrid: w.imgGrid || null,
+      subj,
       // pre-folded haystack for fast matching
       hay: fold(w.title + " " + w.artist + " " + musNames),
+      // subjects are a TOKEN SET, kept separate so a title match still outranks a subject match —
+      // searching "venus" should lead with the painting called Venus, not everything depicting her
+      stok: subjTokenSet(w.id),
     };
   });
 })();
@@ -3004,9 +3057,11 @@ function SearchBar({ go }) {
     const needle = fold(q);
     if (!needle || needle.length < 1) return [];
     const hits = [];
-    const musHits = new Map(); // museumId → museum name (deduped)
+    const subjHits = [];                       // subject matches trail name matches, never displace them
+    const musHits = new Map();                 // museumId → museum name (deduped)
+    // the typed word widened into the vocabulary Wikidata actually uses ("ocean" → sea/marine)
+    const terms = expandQuery(needle).map(fold);
     for (const it of SEARCH_INDEX) {
-      if (!it.hay.includes(needle)) continue;
       // mark whether the match came from museum-name only
       const inTitle = fold(it.title).includes(needle) || fold(it.artist).includes(needle);
       const inMus = fold(it.musNames).includes(needle);
@@ -3019,6 +3074,9 @@ function SearchBar({ go }) {
             if (!musHits.has(mid)) musHits.set(mid, true);
           }
         }
+      } else if (it.stok && subjHits.length < 20 && terms.some(t => it.stok.has(t))) {
+        // a subject match — labelled, so it is obvious WHY a work with an unrelated title appeared
+        subjHits.push({ kind: "work", ...it, via: "subject" });
       }
       if (hits.length >= 20) break;
     }
@@ -3032,7 +3090,7 @@ function SearchBar({ go }) {
     }
     // artist hits lead (they're the broadest destination), then museums, then works
     const artistResults = ARTIST_SEARCH_INDEX.filter(a => a.hay.includes(needle)).slice(0, 3);
-    return [...artistResults, ...musResults, ...hits].slice(0, 12);
+    return [...artistResults, ...musResults, ...hits, ...subjHits].slice(0, 12);
   }, [q]);
 
   // reset selection when results change
@@ -3113,7 +3171,10 @@ function SearchBar({ go }) {
                 : <span className="cv-search-thumb cv-search-thumb-empty" />}
               <span className="cv-search-hit-text">
                 <span className="cv-search-hit-title">{r.title}</span>
-                <span className="cv-search-hit-sub">{r.kind === "museum" ? "Museum · " : r.kind === "artist" ? "Artist · " : ""}{r.artist}</span>
+                <span className="cv-search-hit-sub">{r.kind === "museum" ? "Museum · " : r.kind === "artist" ? "Artist · " : ""}{r.artist}
+                  {/* say WHY a work with an unrelated title surfaced — searching "ocean" returning
+                      "Impression, Sunrise" only makes sense once you can see it matched on subject */}
+                  {r.via === "subject" && r.subj && <span className="cv-search-why"> · {r.subj.split(" ").slice(0, 6).join(" ")}</span>}</span>
               </span>
             </div>
           ))}
