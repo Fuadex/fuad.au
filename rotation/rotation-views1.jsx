@@ -270,23 +270,47 @@ function OvWeatherCard({ R, go }) {
 // so it needs the rest bundle → gated on restReady). Lifted out of OvWeatherCard into its own
 // module so it can ride the Story-of-the-day row at the Emotional-weather width (Fuad 2026-08-17).
 // The zoom state (clicked decade) lives here now, alongside the "← all decades" return chip.
-function OvDecadesCard({ R, go, restReady }) {
+function OvDecadesCard({ R, go, restReady, fStats }) {
   const [zoom, setZoom] = React.useState(null);   // clicked decade (per-year drill-down) or null
   const ad = R.INSIGHTS && R.INSIGHTS.ADOPTION;
-  const decades = React.useMemo(() =>
-    ad && ad.decades ? ad.decades.filter(d => d.plays > 0).slice().sort((a, b) => a.decade - b.decade) : [],
-    [ad]);
+  // The map publishes a debut-year histogram over whatever is currently filtered, so the card can
+  // follow a place, genre, year or calendar pick instead of always showing lifetime (Fuad 2026-08-20).
+  // Only used when a filter is actually on: unfiltered, the precomputed ADOPTION table is the better
+  // source, because it is built server-side over the full library and additionally drops artists whose
+  // first-listen predates their debut year or trails it by 70+ years. The live histogram cannot apply
+  // that check — it has no first-listen date — so filtered and lifetime totals differ slightly by
+  // design. This is the same derivation the per-year drill-down has always used.
+  const fy = (fStats && fStats.active && fStats.debutYears) ? fStats.debutYears : null;
+  const decades = React.useMemo(() => {
+    if (fy) {
+      const b = new Map();
+      for (const y in fy) { const d = Math.floor(+y / 10) * 10; b.set(d, (b.get(d) || 0) + fy[y]); }
+      const tot = [...b.values()].reduce((s, p) => s + p, 0);
+      return [...b.entries()].filter(([, p]) => p > 0).sort((a, c) => a[0] - c[0])
+        .map(([decade, plays]) => ({ decade, plays, share: tot ? plays / tot : 0 }));
+    }
+    return ad && ad.decades ? ad.decades.filter(d => d.plays > 0).slice().sort((a, b) => a.decade - b.decade) : [];
+  }, [ad, fy]);
   const hasDec = decades.length > 0;
+  // Drop the drill-down when the filter changes: a decade that had bars under the old slice can be
+  // empty under the new one, and "loading detail…" over nothing is worse than going back to the strip.
+  React.useEffect(() => { setZoom(z => (z != null && !decades.some(d => d.decade === z)) ? null : z); }, [decades]);
 
-  // per-year plays inside a decade, reconstructed from EXPLORE debut years (needs the rest bundle)
+  // per-year plays inside a decade — from the filtered histogram when there is one, otherwise
+  // reconstructed from EXPLORE debut years (needs the rest bundle)
   const yearBreak = React.useMemo(() => {
-    if (zoom == null || !restReady || !R.EXPLORE) return null;
+    if (zoom == null) return null;
     const buckets = new Map();
-    for (const a of R.EXPLORE) { const y = a.d; if (y >= zoom && y < zoom + 10 && a.plays > 0) buckets.set(y, (buckets.get(y) || 0) + a.plays); }
+    if (fy) {
+      for (const y in fy) { const yn = +y; if (yn >= zoom && yn < zoom + 10 && fy[y] > 0) buckets.set(yn, fy[y]); }
+    } else {
+      if (!restReady || !R.EXPLORE) return null;
+      for (const a of R.EXPLORE) { const y = a.d; if (y >= zoom && y < zoom + 10 && a.plays > 0) buckets.set(y, (buckets.get(y) || 0) + a.plays); }
+    }
     const rows = [...buckets.entries()].map(([year, plays]) => ({ year, plays })).sort((a, b) => a.year - b.year);
     const tot = rows.reduce((s, r) => s + r.plays, 0);
     return { rows, tot };
-  }, [zoom, restReady, R]);
+  }, [zoom, restReady, R, fy]);
 
   if (!hasDec) return null;
 
@@ -352,6 +376,7 @@ function OvDecadesCard({ R, go, restReady }) {
     <div className="r-card ov-decades" style={{ padding: 12 }}>
       <div className="r-card-h" style={{ padding: 0, marginBottom: 8, display: "flex", alignItems: "center", gap: 10 }}>
         <span className="lbl"><b>Decades</b></span>
+        {fy && <span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent)" }}>{(fStats && fStats.label) || "filtered"}</span>}
         {zoom != null && (
           <button onClick={(e) => { e.stopPropagation(); setZoom(null); }} className="ov-wback">← all decades</button>
         )}
@@ -735,7 +760,7 @@ function OverviewView({ t, go, restReady, seed }) {
         {/* Decades — release-decade strip treemap, lifted out of Emotional weather so it rides the
             Story-of-the-day row at the same width the weather card uses (cols 9-12). Drillable to
             per-year; the drill needs the rest bundle, hence restReady (Fuad 2026-08-17). */}
-        <OvDecadesCard R={R} go={go} restReady={restReady} />
+        <OvDecadesCard R={R} go={go} restReady={restReady} fStats={fStats} />
 
         {/* Right now — the live insight feed, promoted directly under the map (Fuad 2026-07-06),
             paired with emotional weather on its row (was full-width lower down). */}
