@@ -299,6 +299,8 @@ function DraggablePanel({ storageKey, title, onClose, children }) {
 function sumHours(h, hrs) { if (!h) return 0; let s = 0; for (const x of hrs) s += h[x] || 0; return s; }
 
 // mergeBreakdowns — fold a list of period-like sub-breakdowns into ONE ranked pseudo-period.
+// No longer calendar-private: the Overview map unions day records the same way (2026-08-20), so it
+// is exported onto window at the foot of this file.
 // Each entry is { t, a, al, s, d } (t=plays, a/al/s = ranked id-rows [..ids, plays], d=6-slot DNA).
 // Ranked lists are id-joined + play-summed; d is weight-averaged by each entry's t. Used by both
 // mergeHours (month × selected-hours) and the calendar range overview (day entries across a range).
@@ -1363,3 +1365,6 @@ function CalendarView({ go, seed }) {
     </div>
   );
 }
+
+// shared with the Overview map, which unions day records the same way (see mergeBreakdowns above).
+Object.assign(window, { mergeBreakdowns });

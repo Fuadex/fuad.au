@@ -353,7 +353,29 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
   // (top artists/albums/songs for that exact period) instead of the geography slice.
   const periodData = React.useMemo(() => {
     if (!calPeriod || !window.ROTATION_CAL_DETAIL) return null;
-    const CD = window.ROTATION_CAL_DETAIL, P = CD[calPeriod.gran] && CD[calPeriod.gran][calPeriod.key];
+    const CD = window.ROTATION_CAL_DETAIL;
+    // Union the DAY records across the period instead of reading the stored week/month one
+    // (Fuad 2026-08-20). The stored records cap at 6 artists / 5 albums / 10 songs, which is why a
+    // picked month here showed six artists — but the Time page has never used them: it aggregates
+    // detail.day over the range and gets roughly ten times the depth from the same file.
+    //
+    // Worth recording, because the obvious fix was the wrong one: raising the build caps to
+    // unlimited takes calendar-detail.js from 3.5 MB to 17.5 MB, mostly because the interned name
+    // pool goes 28k -> 82k. Fuad's instinct that the infrastructure already existed was right, and
+    // it costs nothing — the per-day rows were already shipping.
+    const daysIn = () => {
+      const k = calPeriod.key, out = [];
+      const push = (iso) => { const p = CD.day && CD.day[iso]; if (p) out.push(p); };
+      if (calPeriod.gran === "day") { push(k); return out; }
+      const startMs = Date.parse(k + "T00:00:00Z");
+      if (calPeriod.gran === "week") { for (let i = 0; i < 7; i++) push(new Date(startMs + i * 86400e3).toISOString().slice(0, 10)); return out; }
+      const [y, m] = k.split("-").map(Number), dim = new Date(Date.UTC(y, m, 0)).getUTCDate();
+      for (let d = 1; d <= dim; d++) push(`${k}-${String(d).padStart(2, "0")}`);
+      return out;
+    };
+    const entries = daysIn();
+    const P = entries.length ? mergeBreakdowns(entries)
+      : (CD[calPeriod.gran] && CD[calPeriod.gran][calPeriod.key]);   // fall back to the stored record
     if (!P) return null;
     const NM = CD.names;
     const arts = (P.a || []).map(([ni, p]) => { const name = NM[ni]; const id = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[id] || (R.expById && R.expById[id]); return { a: { id, name, hue: rec ? rec.hue : 210 }, p }; });
