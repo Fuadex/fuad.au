@@ -83,15 +83,12 @@ window.CANVAS_MUSEUMS = [
   {id: "museo-fortuny",name: "Museo Fortuny",city: "Venice",country: "it",qid: "Q616676",kind: "art",visits: ["TBC"],note: ""},
   {id: "new-york-historical",name: "New York Historical",city: "Manhattan",country: "us",qid: "Q1059456",kind: "art",visits: ["TBC"],note: ""},
   {id: "royal-castle-warsaw",name: "Zamek Królewski w Warszawie (Royal Castle)",city: "Warsaw",country: "pl",qid: "Q756098",kind: "art",visits: ["TBC"],note: ""},
-  {id: "npg-london",name: "National Portrait Gallery",city: "City of Westminster",country: "gb",qid: "Q238587",kind: "art",visits: ["2024-06-14"],note: ""},
-  {id: "louvre",name: "Louvre Museum",city: "Saint-Germain-l'Auxerrois",country: "fr",qid: "Q19675",kind: "art",visits: ["2024-12-19"],note: ""},
-  {id: "v-and-a",name: "Victoria and Albert Museum",city: "Royal Borough of Kensington and Chelsea",country: "gb",qid: "Q213322",kind: "art",visits: ["2024-06-14"],note: ""},
-  {id: "science-museum",name: "Science Museum",city: "South Kensington",country: "gb",qid: "Q674773",kind: "art",visits: ["2024-06-17"],note: ""},
-  {id: "tokyo-national",name: "Tokyo National Museum",city: "Ueno-kōen",country: "jp",qid: "Q653433",kind: "art",visits: ["2024-10-16"],note: ""},
-  {id: "momat",name: "The National Museum of Modern Art, Tokyo",city: "Kitanomaru Park",country: "jp",qid: "Q1359908",kind: "art",visits: ["2024-11-21"],note: ""},
-  {id: "nmwa-tokyo",name: "National Museum of Western Art",city: "Ueno-kōen",country: "jp",qid: "Q1362629",kind: "art",visits: ["2024-10-18"],note: ""},
+  {id: "npg-london",name: "National Portrait Gallery",city: "London",country: "gb",qid: "Q238587",kind: "art",visits: ["2024-06-14"],note: ""},
+  {id: "louvre",name: "Louvre Museum",city: "Paris",country: "fr",qid: "Q19675",kind: "art",visits: ["2024-12-19"],note: ""},
+  {id: "v-and-a",name: "Victoria and Albert Museum",city: "London",country: "gb",qid: "Q213322",kind: "art",visits: ["2024-06-14"],note: ""},
+  {id: "science-museum",name: "Science Museum",city: "London",country: "gb",qid: "Q674773",kind: "art",visits: ["2024-06-17"],note: ""},
   {id: "neue-kunst-karlsruhe",name: "Museum für Neue Kunst Karlsruhe",city: "Karlsruhe",country: "de",qid: "Q1495745",kind: "art",visits: ["2026-05-07"],note: ""},
-  {id: "tubingen-antiquities",name: "Collection of antique and post-antique coins and medals of the Institute of Classical Archaeology, University of Tübingen",city: "?",country: "de",qid: "Q76632158",kind: "art",visits: ["2026-05-06"],note: ""},
+  {id: "tubingen-antiquities",name: "Collection of antique and post-antique coins and medals of the Institute of Classical Archaeology, University of Tübingen",city: "Tübingen",country: "de",qid: "Q76632158",kind: "art",visits: ["2026-05-06"],note: ""},
   {id: "warsaw-old-town-centre",name: "Warsaw's Old Town Heritage Interpretation Center",city: "Warsaw",country: "pl",qid: "Q11689613",kind: "art",visits: ["2023-01-04"],note: ""},
-  {id: "aus-performing-arts",name: "Australian Performing Arts Collection",city: "Victoria",country: "au",qid: "Q7168281",kind: "art",visits: ["2024-05-01"],note: ""}
+  {id: "aus-performing-arts",name: "Australian Performing Arts Collection",city: "Melbourne",country: "au",qid: "Q7168281",kind: "art",visits: ["2024-05-01"],note: ""}
 ];
