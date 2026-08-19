@@ -1165,8 +1165,13 @@ function CalendarView({ go, seed }) {
         .cal-art { color: var(--accent); cursor: pointer; border-bottom: 1px solid currentColor; }
         .cal-art:hover { opacity: .8; }
         .cal-ov-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
-        .cal-rows { display: grid; gap: 2px; }
-        .cal-row { display: flex; align-items: center; gap: 11px; padding: 6px 6px; border-radius: 6px; transition: background .12s; }
+        /* min-width:0 on the GRID and the ROW, not only on the name (Fuad 2026-08-20: a long
+           artist, album or song name pushed the play count past the edge of a phone screen).
+           A grid track and a flex item both refuse to shrink below their content unless told they
+           may — so however well .cal-nm clamps inside the row, the row itself could still widen
+           and carry .cal-pl off the viewport. overflow:hidden is the belt to that braces. */
+        .cal-rows { display: grid; gap: 2px; min-width: 0; grid-template-columns: minmax(0, 1fr); }
+        .cal-row { display: flex; align-items: center; gap: 11px; padding: 6px 6px; border-radius: 6px; transition: background .12s; min-width: 0; overflow: hidden; }
         .cal-row[data-link="true"] { cursor: pointer; }
         .cal-row[data-link="true"]:hover { background: var(--bg-3); }
         .cal-rk { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); width: 18px; flex-shrink: 0; }
