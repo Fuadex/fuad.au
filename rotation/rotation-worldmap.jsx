@@ -676,10 +676,14 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
         const totalPlays = resultArtists.reduce((s, e) => s + e.p, 0);
         return (
           <div className="r-card mp-results" style={{ marginTop: "var(--gap)", padding: 22 }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
-              <div style={{ minWidth: 0 }}><div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>{periodData ? "on this " + calPeriod.gran : "results"}</div>
-                <div className="mp-restitle" style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22 }}>{parts.join("  ·  ")}</div></div>
-              <div><div className="r-stat-n" style={{ fontSize: 26 }}>{fmt(totalPlays)}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>plays</div></div>
+            {/* no flex-wrap (Fuad 2026-08-20): a long genre or subgenre name used to push the play
+                count onto its own line. The title clips and fades instead — the mask in .mp-restitle
+                sits at the container's right edge, so a short title never reaches it and a long one
+                runs out rather than stopping dead on an ellipsis. */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16 }}>
+              <div style={{ minWidth: 0, flex: "1 1 auto" }}><div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>{periodData ? "on this " + calPeriod.gran : "results"}</div>
+                <div className="mp-restitle" title={parts.join("  ·  ")} style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22 }}>{parts.join("  ·  ")}</div></div>
+              <div style={{ flex: "0 0 auto" }}><div className="r-stat-n" style={{ fontSize: 26 }}>{fmt(totalPlays)}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>plays</div></div>
             </div>
             <div className="mp-resctl" style={{ display: "flex", alignItems: "center", gap: "8px 10px", flexWrap: "wrap", margin: "16px 0 14px" }}>
               <div className="r-seg">
@@ -853,6 +857,13 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
            half the panel width on a laptop; tighten further as the panel narrows (Fuad P16, 2026-07-07) */
         .mp-resctl .r-seg button { font-size: 10.5px; padding: 4px 9px; }
         @media (max-width: 1500px) { .mp-resctl .r-seg button { font-size: 9.5px; padding: 3px 7px; letter-spacing: .02em; } .mp-resctl { gap: 6px 8px; } }
+        /* one line, clipped with a soft fade rather than an ellipsis (Fuad 2026-08-20). The mask
+           is anchored to the element's RIGHT EDGE, and the element is full width, so a short title
+           ends long before the fade zone and shows no fade at all — only an overflowing one runs
+           into it. The full string stays available as the title attribute. */
+        .mp-restitle { white-space: nowrap; overflow: hidden; min-width: 0;
+          -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent 100%);
+          mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent 100%); }
         .map-listrow { display: flex; align-items: center; gap: 10px; padding: 3px 4px; border-radius: 5px; cursor: pointer; transition: background .12s; }
         .map-listrow:hover { background: var(--bg-3); }
         /* min-width:0 on the GRID and the ROW, not only on the name (Fuad 2026-08-20: a long

@@ -750,11 +750,14 @@ function OverviewView({ t, go, restReady, seed }) {
         {/* recent ticker — squeezed centrally between streak and now-playing; the list is a
             capped scroll well at PC widths so the pulse row stays shallow */}
         <div className="r-card ov-recent" style={{ padding: "8px 11px", display: "flex", flexDirection: "column" }}>
-          {/* "Recent" on narrow screens (Fuad 2026-08-20): the full label plus the last.fm link left
-              the rows so little height that both entries centred into an unreadable pair. Same
-              full-word-on-desktop, short-on-mobile idiom the Liked bucket badges use. */}
+          {/* Just "Recent", always (Fuad 2026-08-20). The first attempt swapped the full label out
+              below 980px, which was the wrong axis: this card is now one of four inside .ov-pulseslot,
+              so it is narrow on a 4K monitor too — the VIEWPORT is wide and the CARD is not. The label
+              plus the last.fm link left the rows so little width that both entries crushed together.
+              A container query would also fix it, but the short word is what was asked for and it
+              cannot fall out of sync with a layout that keeps moving. */}
           <div className="r-card-h" style={{ padding: 0, marginBottom: 3 }}>
-            <span className="lbl"><b><span className="ov-rl-full">Recently played</span><span className="ov-rl-abbr">Recent</span></b></span>
+            <span className="lbl"><b>Recent</b></span>
             <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
               style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
           <div className="ov-rl" style={{ display: "grid", gap: 1, flex: 1, alignContent: "center" }}>
@@ -917,8 +920,6 @@ function OverviewView({ t, go, restReady, seed }) {
            free. No backticks anywhere in this block.
         .ov-calrail [data-gran="day"] i:hover { transform: scale(1.45); outline: 1px solid var(--accent); }
         */
-        .ov-rl-abbr { display: none; }
-        @media (max-width: 980px) { .ov-rl-full { display: none; } .ov-rl-abbr { display: inline; } }
         .ov-daystrip i { transition: filter .12s ease-out, box-shadow .12s ease-out, transform .12s ease-out; }
         .ov-daystrip i:hover { filter: brightness(1.4); box-shadow: 0 0 0 1px var(--accent-dim);
           transform: scaleY(1.14); z-index: 1; position: relative; }
