@@ -556,8 +556,10 @@ function LikedRow({ r, legendByCode, famById, go, navable, albumCover }) {
   // genre → colour: the family hue tints the ARTIST NAME (all widths — harmless, and it's how the
   // genre survives once its text chip is hidden on mobile). Discoverable via the title tooltip.
   const famTint = fam ? "oklch(0.72 0.11 " + fam.hue + ")" : "var(--ink-faint)";
-  // bucket label → single leading capital (owner: "just first capital letters"), full word in title.
-  // Applied at ALL widths; the chip shell + colour stay so it still reads as the classification pip.
+  // bucket label: the single leading capital was only ever meant for MOBILE, where the row runs out
+  // of width — on a full screen it should still read "Doorway", not "D" (Fuad 2026-08-19; it had
+  // been applied at every width). Both forms are rendered and CSS shows one, so there is no
+  // window-width state and nothing re-renders on resize. The title holds the full word regardless.
   const bucketLetter = (leg.label || "?").charAt(0).toUpperCase();
   return (
     <div className="lk-row" style={{ display: "flex", alignItems: "center", gap: 10, height: 52, padding: "0 4px", borderBottom: "1px solid var(--rule)", cursor: canNav ? "pointer" : "default" }}
@@ -581,7 +583,9 @@ function LikedRow({ r, legendByCode, famById, go, navable, albumCover }) {
       <span className="r-mono lk-nums" style={{ fontSize: 9.5, color: "var(--ink-faint)", width: 70, textAlign: "right", whiteSpace: "nowrap" }}
         title={tempo != null ? tempo + " BPM · energy " + energy : "no audio features"}>
         {tempo != null ? tempo + "♩" : ""}{tempo != null && energy != null ? " " : ""}{energy != null ? "e" + energy : ""}</span>
-      <span className="r-chip lk-bucket" style={{ borderColor: color, color, textTransform: "none", cursor: "inherit" }} title={leg.label}>{bucketLetter}</span>
+      <span className="r-chip lk-bucket" style={{ borderColor: color, color, textTransform: "none", cursor: "inherit" }} title={leg.label}>
+        <span className="lk-bucket-full">{leg.label}</span><span className="lk-bucket-abbr">{bucketLetter}</span>
+      </span>
       <span className="r-mono lk-nums" style={{ fontSize: 10.5, color: "var(--ink-soft)", width: 46, textAlign: "right" }}>{plays ? plays + "p" : "—"}</span>
       <span className="r-mono lk-nums" style={{ fontSize: 10, color: "var(--ink-faint)", width: 34, textAlign: "right" }}>{firstYear || "·"}</span>
     </div>
@@ -1011,11 +1015,13 @@ function LikedView({ go }) {
         .lk-quiet .lk-row:hover { background: var(--bg-2); }
         .lk-quiet input:hover { border-color: var(--ink-faint); }
         .lk-quiet input:focus { border-color: var(--accent-dim); box-shadow: 0 0 0 3px var(--accent-bg); }
-        /* bucket pip (Fuad 2026-08-17): the classification chip now shows only its leading capital
-           (D/L/F/C/S/M, full word in the title). A fixed round pip keeps the column tidy now that the
-           text is one glyph — applies at every width. */
-        .lk-quiet .lk-bucket { flex-shrink: 0; width: 20px; height: 20px; padding: 0; display: inline-flex;
+        /* bucket chip: FULL WORD on a full screen, leading capital only on mobile (Fuad 2026-08-19).
+           The 2026-08-17 pass abbreviated it at every width, which was never the intent — the
+           abbreviation exists to buy row width, and on desktop there is width to spare. Both forms
+           are in the DOM and CSS picks one, so nothing depends on measuring the window. */
+        .lk-quiet .lk-bucket { flex-shrink: 0; height: 20px; padding: 0 9px; display: inline-flex;
           align-items: center; justify-content: center; border-radius: 999px; font-weight: 600; }
+        .lk-quiet .lk-bucket-abbr { display: none; }
         /* MOBILE (Fuad 2026-08-17): reclaim the row for the song name. The right-side numeric cluster
            (tempo/energy, plays, first-year) collapses out entirely — there is simply not enough width;
            the values stay reachable on desktop. The " · genre" text also hides (the artist-name colour
@@ -1023,6 +1029,11 @@ function LikedView({ go }) {
         @media (max-width: 760px) {
           .lk-quiet .lk-nums { display: none; }
           .lk-quiet .lk-genre { display: none; }
+          /* here the abbreviation earns its keep — swap to the single capital and shrink the chip
+             back to a round pip so the column costs almost nothing */
+          .lk-quiet .lk-bucket-full { display: none; }
+          .lk-quiet .lk-bucket-abbr { display: inline; }
+          .lk-quiet .lk-bucket { width: 20px; padding: 0; }
         }
       `}</style>
       {/* (the "← spotify" back button was removed on request — Fuad 2026-08-12; Liked is now a
