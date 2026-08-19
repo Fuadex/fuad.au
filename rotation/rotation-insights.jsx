@@ -397,20 +397,30 @@ function runInsights(ctx, n) {
 
 function InsightCard({ ins }) {
   return (
-    <div className={"r-card" + (ins.onClick ? " ov-stat-link" : "")} style={{ gridColumn: "span 4", padding: "9px 12px", cursor: ins.onClick ? "pointer" : "default" }}
+    /* Column layout with the body CENTRED in whatever space is left (Fuad 2026-08-20: "tons of
+       whitespace"). Grid stretches every card to the tallest in the row, and the body used to stack
+       from the top — so a card with just a number and a label left all its slack pooled in a block
+       at the bottom. Centring spreads that slack above and below instead, which reads as deliberate
+       rather than as a card that ran out of things to say. The ↗ on meta goes for the same reason it
+       went from the stat strip: every one of these cards is clickable, so it marked nothing. */
+    <div className={"r-card ov-inscard" + (ins.onClick ? " ov-stat-link" : "")}
+      style={{ gridColumn: "span 4", padding: "8px 12px", cursor: ins.onClick ? "pointer" : "default",
+        display: "flex", flexDirection: "column", minWidth: 0 }}
       onClick={ins.onClick || undefined}>
-      <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}>
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 3, flex: "none" }}>
         <span className="lbl"><b>{ins.label}</b></span>
-        {ins.meta && <span className="meta" style={{ maxWidth: 130, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{ins.meta}{ins.onClick ? " ↗" : ""}</span>}
+        {ins.meta && <span className="meta" style={{ maxWidth: 130, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{ins.meta}</span>}
       </div>
-      {ins.render ? ins.render : (<>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 7, margin: "1px 0 1px" }}>
-        <div className="r-stat-n" style={{ fontSize: 26, color: ins.accent ? "var(--accent)" : "var(--ink)" }}>{ins.big}</div>
-        {ins.bigUnit && <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{ins.bigUnit}</span>}
+      <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        {ins.render ? ins.render : (<>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 7 }}>
+          <div className="r-stat-n" style={{ fontSize: 23, lineHeight: 1.05, color: ins.accent ? "var(--accent)" : "var(--ink)" }}>{ins.big}</div>
+          {ins.bigUnit && <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{ins.bigUnit}</span>}
+        </div>
+        {ins.sub && <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-faint)", marginTop: 2 }}>{ins.sub}</div>}
+        {ins.note && <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 12, color: "var(--ink-soft)", lineHeight: 1.3, marginTop: 3 }}>{ins.note}</div>}
+        </>)}
       </div>
-      {ins.sub && <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{ins.sub}</div>}
-      {ins.note && <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 12, color: "var(--ink-soft)", lineHeight: 1.35, marginTop: 4 }}>{ins.note}</div>}
-      </>)}
     </div>
   );
 }

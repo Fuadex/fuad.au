@@ -79,7 +79,11 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
             <div key={s.key} onMouseEnter={() => setHi(i)} onMouseLeave={() => setHi(-1)} onClick={() => onPick(s)}
               style={{ display: "inline-flex", alignItems: "center", gap: 6, cursor: "pointer", opacity: hi < 0 || hi === i ? 1 : 0.4, transition: ".15s" }}>
               <span style={{ width: 9, height: 9, borderRadius: 2, background: `oklch(0.62 0.16 ${s.hue})` }} />
-              <span style={{ fontSize: 11, color: "var(--ink-soft)" }}>{s.name.length > 22 ? s.name.slice(0, 20) + "…" : s.name}</span>
+              {/* short family names in the LEGEND only (Fuad 2026-08-20) — the bands themselves keep
+                  the full name; this swatch list is the bit that wraps to several rows on a phone.
+                  famShort falls through unchanged for anything not in the map, subgenres included,
+                  so the ellipsis stays as the backstop for genuinely long names. */}
+              <span style={{ fontSize: 11, color: "var(--ink-soft)" }}>{(n => n.length > 22 ? n.slice(0, 20) + "…" : n)(famShort(s.name))}</span>
             </div>
           ))}
         </div>
