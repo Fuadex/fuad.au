@@ -176,7 +176,7 @@
 "9mm Parabellum Bullet": {
 "tracks": [
 {
-"from": "インフェル�",
+"from": "インフェルノ",
 "to": "インフェルノ",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -1311,13 +1311,13 @@
 "Bleach": {
 "tracks": [
 {
-"from": "黒ペ�美学を天使ちゃんと考えました。",
+"from": "黒ペン美学を天使ちゃんと考えました。",
 "to": "黒ペン美学を天使ちゃんと考えました。",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
 },
 {
-"from": "黒ペン�学を天使ちゃんと考えました。",
+"from": "黒ペン美学を天使ちゃんと考えました。",
 "to": "黒ペン美学を天使ちゃんと考えました。",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -1667,7 +1667,7 @@
 "chouchou merged syrups.": {
 "tracks": [
 {
-"from": "何度�",
+"from": "何度も",
 "to": "何度も",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -1901,7 +1901,7 @@
 "DAOKO": {
 "tracks": [
 {
-"from": "ぼくらのネッ�ワーク",
+"from": "ぼくらのネットワーク",
 "to": "ぼくらのネットワーク",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -2146,7 +2146,7 @@
 "DIR EN GREY": {
 "albums": [
 {
-"from": "落ちた事�ある空 (Ochita Koto no Aru Sora)",
+"from": "落ちた事のある空 (Ochita Koto no Aru Sora)",
 "to": "落ちた事のある空 (Ochita Koto no Aru Sora)",
 "type": "spelling",
 "reason": "spelling: tagging/credit variant folds to canonical"
@@ -2691,7 +2691,7 @@
 "Flow": {
 "tracks": [
 {
-"from": "ドリ�ムエクスプレス",
+"from": "ドリームエクスプレス",
 "to": "ドリームエクスプレス",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -4550,7 +4550,7 @@
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
 },
 {
-"from": "終�りのはじまり",
+"from": "終わりのはじまり",
 "to": "終わりのはじまり",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -4778,13 +4778,13 @@
 "Minor League": {
 "tracks": [
 {
-"from": "アイ キャン スピー� ジャパニーズ",
+"from": "アイ キャン スピーク ジャパニーズ",
 "to": "アイ キャン スピーク ジャパニーズ",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
 },
 {
-"from": "アイ キ�ン スピーク ジャパニーズ",
+"from": "アイ キャン スピーク ジャパニーズ",
 "to": "アイ キャン スピーク ジャパニーズ",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -5435,7 +5435,7 @@
 "NUMBER GIRL": {
 "albums": [
 {
-"from": "シブヤROCKTRANSFORMED�態",
+"from": "シブヤROCKTRANSFORMED状態",
 "to": "シブヤROCKTRANSFORMED状態",
 "type": "spelling",
 "reason": "spelling: tagging/credit variant folds to canonical"
@@ -5455,7 +5455,7 @@
 "reason": "spelling: typo/variant suffix folds to canonical"
 },
 {
-"from": "透明少女 - 1998/12/30 福岡 VIVRE HALL「DYNAMIC VIBRATO 98�",
+"from": "透明少女 - 1998/12/30 福岡 VIVRE HALL「DYNAMIC VIBRATO 98」",
 "to": "透明少女 - 1998/12/30 福岡 VIVRE HALL「DYNAMIC VIBRATO 98」",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -5733,7 +5733,7 @@
 "Paranoid void": {
 "tracks": [
 {
-"from": "ゲ�ュタルトの箱庭",
+"from": "ゲシュタルトの箱庭",
 "to": "ゲシュタルトの箱庭",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -6130,7 +6130,7 @@
 "Quebonafide x Kuban x Kuba Knap": {
 "tracks": [
 {
-"from": "�adnych Zmartwień (prod. ka-meal)",
+"from": "Żadnych Zmartwień (prod. ka-meal)",
 "to": "Żadnych Zmartwień (prod. ka-meal)",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -6287,7 +6287,7 @@
 "Rammstein": {
 "albums": [
 {
-"from": "Liebe ist f�r alle da",
+"from": "Liebe ist für alle da",
 "to": "Liebe ist für alle da",
 "type": "spelling",
 "reason": "spelling: tagging/credit variant folds to canonical"
@@ -6730,7 +6730,7 @@
 "Smorgas": {
 "tracks": [
 {
-"from": "ゴン�ワナへの旅",
+"from": "ゴンドワナへの旅",
 "to": "ゴンドワナへの旅",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -7535,7 +7535,7 @@
 "Tool": {
 "albums": [
 {
-"from": "�nima",
+"from": "Ćnima",
 "to": "Ænima",
 "type": "spelling",
 "reason": "spelling: tagging/credit variant folds to canonical"
@@ -7669,7 +7669,7 @@
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
 },
 {
-"from": "エンド�ールに間に合うように",
+"from": "エンドロールに間に合うように",
 "to": "エンドロールに間に合うように",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -7725,31 +7725,31 @@
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
 },
 {
-"from": "ファンタジックアド�ンチャーランド",
+"from": "ファンタジックアドベンチャーランド",
 "to": "ファンタジックアドベンチャーランド",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
 },
 {
-"from": "ニンゲン・コーテ�ング",
+"from": "ニンゲン・コーティング",
 "to": "ニンゲン・コーティング",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
 },
 {
-"from": "ニンゲン・コ�ティング",
+"from": "ニンゲン・コーティング",
 "to": "ニンゲン・コーティング",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
 },
 {
-"from": "ニ�ゲン・コーティング",
+"from": "ニンゲン・コーティング",
 "to": "ニンゲン・コーティング",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
 },
 {
-"from": "�ァンタジックアドベンチャーランド",
+"from": "ファンタジックアドベンチャーランド",
 "to": "ファンタジックアドベンチャーランド",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -8265,7 +8265,7 @@
 "Yoko Kanno": {
 "albums": [
 {
-"from": "攻殻�動隊 STAND ALONE COMPLEX O.S.T.2",
+"from": "攻殻機動隊 STAND ALONE COMPLEX O.S.T.2",
 "to": "攻殻機動隊 STAND ALONE COMPLEX O.S.T.2",
 "type": "spelling",
 "reason": "spelling: tagging/credit variant folds to canonical"
@@ -8299,7 +8299,7 @@
 "zavet": {
 "tracks": [
 {
-"from": "Выключили с�ет",
+"from": "Выключили свет",
 "to": "Выключили свет",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -8329,7 +8329,7 @@
 "ヌンチャク": {
 "tracks": [
 {
-"from": "や�てみよう",
+"from": "やってみよう",
 "to": "やってみよう",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
@@ -8339,19 +8339,19 @@
 "ミドリ": {
 "tracks": [
 {
-"from": "スピ�ドビート",
+"from": "スピードビート",
 "to": "スピードビート",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
 },
 {
-"from": "�夜高速",
+"from": "深夜高速",
 "to": "深夜高速",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
 },
 {
-"from": "ゆきこさ�",
+"from": "ゆきこさん",
 "to": "ゆきこさん",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
