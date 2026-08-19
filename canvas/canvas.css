@@ -354,8 +354,6 @@ a { color: inherit; }
 /* movements are hotlinks into the filtered wall — on the portrait bars and the artist header */
 .cv-p-barlink { cursor: pointer; }
 .cv-p-barlink:hover .cv-p-barlbl { color: var(--accent); }
-.cv-a-movlink { cursor: pointer; }
-.cv-a-movlink:hover { color: var(--accent); }
 
 .cv-more { text-align: center; padding: 0 0 50px; }
 .cv-more button { font: 500 11.5px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; padding: 12px 26px; border-radius: 999px; border: 1px solid var(--ink); background: none; color: var(--ink); cursor: pointer; }
@@ -371,12 +369,16 @@ a { color: inherit; }
 .cv-artist { max-width: none; padding: 26px 34px 60px; }
 /* same softening as .cv-mus-head — see the note there */
 .cv-a-head { display: flex; gap: 22px; align-items: flex-start; background: var(--plaster); color: var(--ink-soft); border: 1px solid var(--rule); box-shadow: 0 1px 3px rgba(40,28,14,.06); border-radius: 10px; padding: 26px 30px; }
-.cv-a-head > div { flex: 1 1 auto; min-width: 0; }   /* the text column takes the row's remaining width; min-width:0 lets long meta wrap */
-.cv-a-face { width: 92px; height: 92px; object-fit: cover; border-radius: 6px; filter: grayscale(.35); }
+.cv-a-head-main { flex: 1 1 auto; min-width: 0; }   /* text column takes the remaining width; min-width:0 lets long meta wrap */
+/* portrait moved to the RIGHT and bottom-aligned, mirroring the museum postcard */
+.cv-a-face { flex: 0 0 auto; align-self: flex-end; width: 92px; height: 92px; object-fit: cover; border-radius: 6px; filter: grayscale(.35); border: 1px solid var(--rule); }
+/* fact chips — same grammar as .cv-mus-chip so the two headers read as one family */
+.cv-a-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 12px; }
+.cv-a-chip { font: 500 10px/1 var(--mono); letter-spacing: .05em; color: var(--ink-soft); background: rgba(58,47,34,.05); border: 1px solid var(--rule); border-radius: 999px; padding: 6px 11px; }
+.cv-a-chip-mov { cursor: pointer; color: var(--accent); font-family: var(--serif); font-style: italic; font-size: 11.5px; letter-spacing: 0; }
+.cv-a-chip-mov:hover { border-color: var(--accent-soft); background: oklch(0.66 0.14 46 / .08); }
 .cv-a-name { font: 600 32px/1.1 var(--serif); margin: 0; color: var(--ink); }
 .cv-a-meta { font: 500 11px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin-top: 7px; }
-.cv-a-mov { font: italic 400 13.5px/1.5 var(--serif); color: var(--accent); margin-top: 6px; }
-.cv-a-stats { font: 500 11px/1.6 var(--mono); color: var(--ink-soft); margin-top: 10px; }
 .cv-a-secl { font: 600 10.5px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin: 26px 0 12px; }
 .cv-a-wall { padding: 0; column-count: 6; }
 @media (max-width: 1500px) { .cv-a-wall { column-count: 5; } }
