@@ -200,3 +200,92 @@ anchored `deeper` chapters (Rijks provenance in the synthesis stop; c. 1660 dati
 adopted museum-wide — canon, Info, tour context). Voice rule reaffirmed the hard way:
 reads state facts, they never cite the label/source that supplied them (Fuad,
 2026-08-15, on "the Rijksmuseum's own label makes the point exactly").
+
+---
+
+## 10. Artist reads (`art_artists.js`) — approved 2026-08-19
+
+A third tier, sitting on the artist page under the compressed header. Two or three
+sentences. **Not** a biography and **not** a summary of the collection.
+
+### What killed the first pilot
+
+The first eight drafts were collection statistics rewritten as prose — "152 works, 83 met,
+across eleven museums". Fuad's verdict was exact: *"The texts do not contain the style, how
+or why those artists painted and they don't contain any hook whatsoever that would make them
+interesting."* The numbers were already on screen as chips; restating them in sentences added
+nothing and displaced the only thing prose can do.
+
+### The shape that was approved
+
+Three moves, in this order:
+
+1. **How the work is made.** The physical fact — broken colour and no black; paint laid thick
+   enough to catch raking light; separate dots left for the eye to combine. Something you
+   could verify by standing in front of it.
+2. **Why it is made that way.** The intent behind the method. Monet chasing the *envelope* of
+   air rather than the haystack; Seurat putting painting on a scientific footing; Dahl
+   refusing to idealise a landscape.
+3. **A hook that reframes.** One concrete, verifiable fact that changes how the work reads —
+   the late water lilies painted half-blind with cataracts; Rembrandt bankrupt in 1656 and
+   painting better afterwards; Vermeer leaving thirty-four pictures and being forgotten for
+   two centuries.
+
+### The collection tie-back — only when it is real
+
+A closing line connecting to Fuad's canon is **optional and evidence-gated**. Use it when the
+connection explains something:
+
+- Turner's bequest condition explains why nearly every Turner he has met is at Tate Britain.
+- Dahl's cloud studies being private research explains why eight of his fifteen are drawings.
+- Knud Baade trained under Dahl in Dresden — **the two Norwegians in the collection are
+  teacher and student**, a link nothing in the metadata surfaces.
+
+Do not manufacture one. An artist with three works and no star has no tie-back worth writing,
+and padding is worse than silence.
+
+### Rules carried over
+
+- **Numbers only when they explain.** "Eight of your fifteen are drawings" earns its place
+  because it follows from the biography; "42 works, 20 met" does not.
+- Reads state facts, they never cite the label or source that supplied them (§9).
+- Second person, matching the site's existing "works you haven't met".
+- No title/venue restating — the chips above already carry both.
+
+### Coverage gate
+
+Not all 554 artists. Write one where there is something to say: **≥3 works, OR a floored
+work, OR an existing read**. Everything else keeps the bare Wikidata descriptor already shown
+in the sub line.
+
+### QC — a mandatory fact-check pass (Fuad 2026-08-19, binding)
+
+These make confident factual claims about real people — attributions, dates, bequest terms,
+illnesses, causes of death — and the hook rule in step 3 actively *rewards* the striking claim,
+which is precisely where fluent prose invents. **No artist read merges unverified.**
+
+**Procedure**
+
+1. **Atomise.** Split each draft into its individual assertions. "Sold almost nothing while
+   alive, wrote over 800 letters, and most of what you'd recognise came from the final two
+   years" is three claims, not one, and they fail independently.
+2. **Swarm.** Sonnet verifiers, batched by artist, one verdict per claim against the open web:
+   CONFIRMED / WRONG / UNVERIFIABLE, with a correction where it is wrong.
+3. **Opus adjudication.** The verifier's confidence is not the verdict — assume overconfidence
+   in both directions (`feedback_qc_print_protocol`). A verifier arguing from general knowledge
+   loses to a specific source; a verifier that found no source has not proven a negative.
+4. **Print only the genuine unsures.** Confirmations do not need Fuad's attention.
+
+**Failure modes, ranked by how plausible they look**
+
+- **Numbers that sound right.** "About eighty self-portraits", "over 800 letters", "thirty-four
+  paintings" — round, quotable, and exactly the shape of a half-remembered figure.
+- **Attractive anecdotes.** Turner lashed to a mast; Rodin accused of casting from life. Some
+  are documented, some are studio legend repeated until it hardened. Legend is usable only if
+  the read says it is legend.
+- **Causal claims.** "Cataracts explain the late colour"; "arthritis meant the brush was
+  strapped to his hand". The condition is often documented while the causal link is contested.
+- **Turning-point dates.** Bankruptcy years, first exhibitions, rejections.
+
+**Resolution rule.** Cut rather than soften. A hook that has to be hedged into "is said to
+have" was not a hook worth having — hedging is how an unverified claim survives QC.
