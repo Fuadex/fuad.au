@@ -598,7 +598,7 @@ function OverviewView({ t, go, restReady, seed }) {
       {/* header restored (Fuad 2026-07-05: "it looked better back then after all"). The TITLE and the
           LEDE are temporarily commented out (2026-08-20) to see how Overview reads without them; the
           kicker stays, so the page still names itself. Uncomment the two lines to restore. */}
-      <div className="r-viewhead">
+      <div className="r-viewhead ov-head-bare">
         <div>
           <div className="r-kicker">Rotation · since {new Date(T.since).getFullYear()}</div>
           {/* <h1 className="r-title">A life, <em>counted</em><span className="dot">.</span></h1> */}
@@ -827,6 +827,12 @@ function OverviewView({ t, go, restReady, seed }) {
       </div>
 
       <style>{`
+        /* Kicker-only header (2026-08-20). .r-kicker carries a 12px bottom margin to stand off the
+           title beneath it, and .r-viewhead adds pad*1.35 below the pair — with the title commented
+           out, both were holding open space for something that is not there. Delete this rule at the
+           same time as uncommenting the title; the two belong together. */
+        .ov-head-bare { margin-bottom: calc(var(--pad) * 0.55); }
+        .ov-head-bare .r-kicker { margin-bottom: 0; }
         /* ── PC bento (≥981px, Fuad's redesign 2026-07-04): ONE pulse row — scrobbles ·
            streak · recently-played squeezed centrally · now-playing top-right. The recent
            list scrolls inside a capped well so the row stays shallow. Calendar rail lives
