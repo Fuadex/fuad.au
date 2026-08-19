@@ -517,25 +517,26 @@ function Wall({ go, mode = "collage", styleIds }) {
             <option value="museum">by museum</option>
           </select>
         )}
+        {/* SPECTRUM TARGET — only meaningful in spectrum mode, so it only shows there. "hue ramp" is
+            the original behaviour; picking a swatch re-sorts the wall by nearness to that colour. */}
+        {mode === "spectrum" && (
+          <React.Fragment>
+            <span className="cv-filt-div" aria-hidden="true" />
+            <span className="cv-pick-lbl">sort toward</span>
+            {SPECTRUM_PICKS.map(([hex, label]) => (
+              <button key={label} data-on={pick === hex} onClick={() => setPick(hex)} title={label}>
+                <i className={hex ? "" : "cv-pick-ramp"} style={hex ? { background: hex } : null} />
+                <span>{label}</span>
+              </button>
+            ))}
+            <label className="cv-pick-custom" title="pick any colour">
+              <input type="color" value={pick || "#b23b2e"} onChange={e => setPick(e.target.value)} />
+              <span>custom</span>
+            </label>
+          </React.Fragment>
+        )}
         <span className="cv-count">{Math.min(visN, shown.length)} of {shown.length}</span>
       </div>
-      {/* SPECTRUM TARGET — only meaningful in spectrum mode, so it only shows there. "hue ramp" is
-          the original behaviour; picking a swatch re-sorts the wall by nearness to that colour. */}
-      {mode === "spectrum" && (
-        <div className="cv-spectrum-pick">
-          <span className="cv-styles-lbl">sort toward</span>
-          {SPECTRUM_PICKS.map(([hex, label]) => (
-            <button key={label} data-on={pick === hex} onClick={() => setPick(hex)} title={label}>
-              <i className={hex ? "" : "cv-pick-ramp"} style={hex ? { background: hex } : null} />
-              <span>{label}</span>
-            </button>
-          ))}
-          <label className="cv-pick-custom" title="pick any colour">
-            <input type="color" value={pick || "#b23b2e"} onChange={e => setPick(e.target.value)} />
-            <span>custom</span>
-          </label>
-        </div>
-      )}
       {/* STYLES — multi-select, OR'd. Movement is the artist's (Wikidata P135), so the note says
           so rather than pretending each canvas carries the tag. */}
       <div className="cv-styles">
@@ -2299,17 +2300,14 @@ function Artists({ go }) {
 // ——— Phase 4a: the painterly map (mockup 2b) — every museum pinned where it stands,
 // sized by canon works; the trip strip below groups dated visits by year. Land geometry
 // is rotation's simplified equirect world, copied (apps stay self-contained).
-// A city holding this many wanted works or fewer is not a trip, it is a detour — those fold into a
-// single "Elsewhere" row. 161 of the 241 cities sit at or under 2, and they were most of the scroll.
-const TAIL_MAX = 2;
-
 function MapView({ go }) {
   const world = window.CANVAS_WORLD || null;
   // pilgrimage disclosure state: which cities are open, plus the two folded tails
+  const [openCountry, setOpenCountry] = useState(() => new Set());
   const [openCity, setOpenCity] = useState(() => new Set());
-  const [showTail, setShowTail] = useState(false);
   const [showUnplaced, setShowUnplaced] = useState(false);
   const toggleCity = (k) => setOpenCity(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; });
+  const toggleCountry = (k) => setOpenCountry(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; });
   // FIX 6 (Fuad 2026-07-25): on a phone the dots are tiny and the labels illegible, so make the
   // dots bigger — a VISUAL/hit-area multiplier applied to the rendered radii only (positions are
   // already collision-relaxed in map units, so we don't touch the layout, just paint fatter dots).
@@ -2370,7 +2368,7 @@ function MapView({ go }) {
   // city-bubble anchor and run through a relaxation pass identical in spirit to relaxFan, so the ♥
   // dots share the city bubble's parent and never overlap. (Only shown in the all-cities view; during
   // focus the museum work-fans take over.)
-  const { wishMarkers, wishTotals, wishCities, wishUnplaced, wishList } = useMemo(() => {
+  const { wishMarkers, wishTotals, wishCountries, wishCities, wishUnplaced, wishList } = useMemo(() => {
     const wishes = WORKS.map(enrich).filter(isUnseen);
     // WHERE A WANTED WORK GOES ON THE MAP (2026-08-19). It used to key off seenAt — the venue Fuad
     // stood in — which for a work he has NOT seen is empty by definition. After the photo import
@@ -2398,7 +2396,7 @@ function MapView({ go }) {
       if (cityName) {
         const cKey = cityName + (cc ? ", " + String(cc).toUpperCase() : "");
         let c = cityGroups.get(cKey);
-        if (!c) { c = { key: cKey, city: cityName, n: 0, floored: 0, venues: new Map() }; cityGroups.set(cKey, c); }
+        if (!c) { c = { key: cKey, city: cityName, cc: String(cc || "").toUpperCase(), n: 0, floored: 0, venues: new Map() }; cityGroups.set(cKey, c); }
         c.n++; if (w.floored || w.favorite) c.floored++;
         const vn = venueName || "elsewhere in the city";
         if (!c.venues.has(vn)) c.venues.set(vn, []);
@@ -2486,7 +2484,20 @@ function MapView({ go }) {
         .map(([name, list]) => ({ name, list: list.slice().sort((a, b) => unseenRank(b) - unseenRank(a) || String(a.title).localeCompare(String(b.title))) }))
         .sort((a, b) => b.list.length - a.list.length || a.name.localeCompare(b.name)),
     })).sort((a, b) => b.floored - a.floored || b.n - a.n || a.city.localeCompare(b.city));
+    // COUNTRY above city (Fuad 2026-08-20). 235 cities roll up to 39 countries, which is how a trip
+    // is actually decided — pick the country, then see which of its cities earn the detour. It also
+    // retires the "Elsewhere" fold: a city holding one work is now simply near the bottom of an
+    // already-collapsed country, so nothing has to be hidden by hand.
+    const ccMap = new Map();
+    for (const c of sortedCities) {
+      let e = ccMap.get(c.cc);
+      if (!e) { e = { cc: c.cc, name: countryName(c.cc), n: 0, floored: 0, cities: [] }; ccMap.set(c.cc, e); }
+      e.n += c.n; e.floored += c.floored; e.cities.push(c);
+    }
+    const sortedCountries = [...ccMap.values()]
+      .sort((a, b) => b.floored - a.floored || b.n - a.n || a.name.localeCompare(b.name));
     return {
+      wishCountries: sortedCountries,
       wishMarkers: markers,
       wishTotals: totals,
       wishCities: sortedCities,
@@ -2978,50 +2989,43 @@ function MapView({ go }) {
           <div className="cv-pil-note">
             Where each work lives, by city — the ones worth the trip first. Museums nest inside.
           </div>
-          {wishCities.filter(c => c.n > TAIL_MAX).map(c => {
-            const open = openCity.has(c.key);
+          {wishCountries.map(co => {
+            const cOpen = openCountry.has(co.cc);
             return (
-              <div className="cv-pil-city" key={c.key}>
-                <button className="cv-pil-cityhead" data-on={open} onClick={() => toggleCity(c.key)}>
-                  <span className="cv-pil-cityname">{c.city}</span>
+              <div className="cv-pil-country" key={co.cc}>
+                <button className="cv-pil-cityhead cv-pil-cchead" data-on={cOpen} onClick={() => toggleCountry(co.cc)}>
+                  <span className="cv-pil-cityname">{co.name}</span>
                   <span className="cv-pil-citymeta">
-                    {c.floored > 0 && <b>★ {c.floored}</b>}
-                    {c.n} work{c.n === 1 ? "" : "s"} · {c.venues.length} venue{c.venues.length === 1 ? "" : "s"}
+                    {co.floored > 0 && <b>★ {co.floored}</b>}
+                    {co.n} work{co.n === 1 ? "" : "s"} · {co.cities.length} cit{co.cities.length === 1 ? "y" : "ies"}
                   </span>
-                  <span className="cv-pil-caret">{open ? "▾" : "▸"}</span>
+                  <span className="cv-pil-caret">{cOpen ? "▾" : "▸"}</span>
                 </button>
-                {open && c.venues.map(v => (
-                  <div className="cv-pil-venue" key={v.name}>
-                    <div className="cv-pil-venuename">{v.name} <span>· {v.list.length}</span></div>
-                    <PilReel works={v.list} go={go} />
-                  </div>
-                ))}
+                {cOpen && co.cities.map(c => {
+                  const open = openCity.has(c.key);
+                  return (
+                    <div className="cv-pil-city" key={c.key}>
+                      <button className="cv-pil-cityhead" data-on={open} onClick={() => toggleCity(c.key)}>
+                        <span className="cv-pil-cityname">{c.city}</span>
+                        <span className="cv-pil-citymeta">
+                          {c.floored > 0 && <b>★ {c.floored}</b>}
+                          {c.n} work{c.n === 1 ? "" : "s"} · {c.venues.length} venue{c.venues.length === 1 ? "" : "s"}
+                        </span>
+                        <span className="cv-pil-caret">{open ? "▾" : "▸"}</span>
+                      </button>
+                      {open && c.venues.map(v => (
+                        <div className="cv-pil-venue" key={v.name}>
+                          <div className="cv-pil-venuename">{v.name} <span>· {v.list.length}</span></div>
+                          <PilReel works={v.list} go={go} />
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })}
               </div>
             );
           })}
-          {/* The tail is the whole reason this scrolled forever: 161 cities holding one or two works
-              each. Folded behind one line rather than dropped — they are still places you want to
-              go, just not places you would plan a trip around. */}
-          {(() => {
-            const tail = wishCities.filter(c => c.n <= TAIL_MAX);
-            const tailN = tail.reduce((n, c) => n + c.n, 0);
-            if (!tail.length) return null;
-            return (
-              <div className="cv-pil-city">
-                <button className="cv-pil-cityhead" data-on={showTail} onClick={() => setShowTail(v => !v)}>
-                  <span className="cv-pil-cityname">Elsewhere</span>
-                  <span className="cv-pil-citymeta">{tail.length} cities · {tailN} work{tailN === 1 ? "" : "s"}</span>
-                  <span className="cv-pil-caret">{showTail ? "▾" : "▸"}</span>
-                </button>
-                {showTail && tail.map(c => (
-                  <div className="cv-pil-venue" key={c.key}>
-                    <div className="cv-pil-venuename">{c.city} <span>· {c.n}</span></div>
-                    <PilReel works={c.venues.flatMap(v => v.list)} go={go} />
-                  </div>
-                ))}
-              </div>
-            );
-          })()}
+
           {wishUnplaced.length > 0 && (
             <div className="cv-pil-city">
               <button className="cv-pil-cityhead" data-on={showUnplaced} onClick={() => setShowUnplaced(v => !v)}>
