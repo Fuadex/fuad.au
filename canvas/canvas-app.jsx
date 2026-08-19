@@ -233,7 +233,7 @@ function Card({ w, go }) {
           size (24 of them) keep the plain img, where the natural aspect is doing that job. */}
       {img && (w.px
         ? <LazyImg src={img} alt={w.title} style={{ aspectRatio: `${w.px[0]} / ${w.px[1]}` }} />
-        : <img src={img} alt={w.title} loading="lazy" />)}
+        : <LazyImg src={img} alt={w.title} />)}
       <div className="cv-label">
         <div className="cv-title">{title}</div>
         <div className="cv-byline">{byline}</div>
@@ -307,13 +307,9 @@ function Wall({ go, mode = "collage", styleIds }) {
   const [extra, setExtra] = useState(0);
   const [allStyles, setAllStyles] = useState(false);   // "+N more" disclosure
   const [media, setMedia] = useState([]);              // selected medium buckets, OR'd like styles
+  // The full style list — order and slugs are stable so a URL like #/wall/impressionism keeps
+  // working whatever is filtered. Only the NUMBERS react; see `movCounts` below.
   const movs = useMemo(movIndex, []);
-  // counts per bucket, off the SAME list the chips filter, so a chip never offers an empty result
-  const mediaCounts = useMemo(() => {
-    const c = {};
-    for (const w of all) { const m = mediumOf(w); if (m && m[0]) c[m[0]] = (c[m[0]] || 0) + 1; }
-    return c;
-  }, [all]);
   const toggleMedium = (k) => setMedia(m => m.includes(k) ? m.filter(x => x !== k) : [...m, k]);
   // Selected styles live in the URL (#/wall/impressionism+fauvism), not in state — that makes a
   // filtered wall shareable and back-button-able, and gives Portrait somewhere to link to.
@@ -324,6 +320,43 @@ function Wall({ go, mode = "collage", styleIds }) {
   const setSel = (labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null);
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
   useEffect(() => { setExtra(0); }, [filt, mus, sort, mode, styleIds, media]);
+
+  // Live facet counts. Both rows count against `base` — every filter EXCEPT their own — and each
+  // also honours the other, so with Sculpture on, the style numbers are sculpture-only. A chip that
+  // would return nothing shows 0 rather than lying with the all-time total.
+  const movCounts = useMemo(() => {
+    const c = {};
+    const list = media.length ? base.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); }) : base;
+    for (const w of list) for (const m of movsOf(w)) c[m] = (c[m] || 0) + 1;
+    return c;
+  }, [base, media]);
+  const mediaCounts = useMemo(() => {
+    const c = {};
+    const list = sel.length ? base.filter(w => movsOf(w).some(m => sel.includes(m))) : base;
+    for (const w of list) { const m = mediumOf(w); if (m && m[0]) c[m[0]] = (c[m[0]] || 0) + 1; }
+    return c;
+  }, [base, sel]);
+  // all-time counts, used only to decide which medium chips exist at all
+  const mediaAll = useMemo(() => {
+    const c = {};
+    for (const w of all) { const m = mediumOf(w); if (m && m[0]) c[m[0]] = (c[m[0]] || 0) + 1; }
+    return c;
+  }, [all]);
+
+  // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
+  // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
+  // a facet that narrows by its own selection just reads 0 everywhere except what you picked
+  // (Fuad 2026-08-20). Styles and media still AND against each other in `shown` below.
+  const base = useMemo(() => {
+    let list = all;
+    if (filt === "floored") list = list.filter(w => w.floored || w.favorite);
+    if (filt === "loved") list = list.filter(w => w.floored || w.favorite || w.liked);
+    if (filt === "sure") list = list.filter(w => w.seenConfidence === "sure");
+    if (filt === "unsure") list = list.filter(w => w.seenConfidence != null && w.seenConfidence !== "sure");
+    if (filt === "wish") list = list.filter(w => w.wish || (w.seenConfidence === "unsure" && (w.liked || w.floored || w.favorite)));
+    if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
+    return list;
+  }, [all, filt, mus]);
 
   const shown = useMemo(() => {
     let list = all;
@@ -407,11 +440,17 @@ function Wall({ go, mode = "collage", styleIds }) {
           so rather than pretending each canvas carries the tag. */}
       <div className="cv-styles">
         <span className="cv-styles-lbl" title="Wikidata files movement on the artist, not the artwork">styles</span>
-        {movs.slice(0, allStyles ? movs.length : STYLE_CHIPS).map(m => (
-          <button key={m.slug} data-on={sel.includes(m.label)} onClick={() => toggle(m.label)}>
-            {m.label}<i>{m.n}</i>
-          </button>
-        ))}
+        {/* the count is the LIVE one; a chip that would return nothing is dimmed rather than hidden,
+            so the row does not reshuffle under the cursor every time a filter changes */}
+        {movs.slice(0, allStyles ? movs.length : STYLE_CHIPS).map(m => {
+          const n = movCounts[m.label] || 0;
+          return (
+            <button key={m.slug} data-on={sel.includes(m.label)} data-empty={n === 0 && !sel.includes(m.label)}
+              onClick={() => toggle(m.label)}>
+              {m.label}<i>{n}</i>
+            </button>
+          );
+        })}
         {movs.length > STYLE_CHIPS && (
           <button className="cv-styles-more" onClick={() => setAllStyles(v => !v)}>
             {allStyles ? "fewer" : `+ ${movs.length - STYLE_CHIPS} more`}
@@ -425,11 +464,19 @@ function Wall({ go, mode = "collage", styleIds }) {
           not rendered at all rather than offered and then disappointing. */}
       <div className="cv-styles cv-media">
         <span className="cv-styles-lbl" title="what kind of object it is — Wikidata P31">medium</span>
-        {MEDIA.filter(([k]) => mediaCounts[k]).map(([k, label]) => (
-          <button key={k} data-on={media.includes(k)} onClick={() => toggleMedium(k)}>
-            {label}<i>{mediaCounts[k]}</i>
-          </button>
-        ))}
+        {/* which chips EXIST is decided against the whole collection, so the row keeps a stable
+            shape; the number on each is live, and a bucket with none left under the current filters
+            dims instead of disappearing. Before the counts moved they were static, so dropping the
+            empties was free — now it would make the row jump every time a filter changed. */}
+        {MEDIA.filter(([k]) => mediaAll[k]).map(([k, label]) => {
+          const n = mediaCounts[k] || 0;
+          return (
+            <button key={k} data-on={media.includes(k)} data-empty={n === 0 && !media.includes(k)}
+              onClick={() => toggleMedium(k)}>
+              {label}<i>{n}</i>
+            </button>
+          );
+        })}
         {media.length > 0 && <button className="cv-styles-clear" onClick={() => setMedia([])}>✕ clear</button>}
       </div>
       {sel.length > 0 && (
@@ -2892,7 +2939,7 @@ function Portrait({ go }) {
           <div className="cv-p-found">
             {data.found.map(a => (
               <div className="cv-p-foundchip" key={a.id} onClick={() => go("artist", a.id)}>
-                {AD.artists[a.id] && AD.artists[a.id].image && <img src={AD.artists[a.id].image} alt="" />}
+                {AD.artists[a.id] && AD.artists[a.id].image && <LazyImg src={AD.artists[a.id].image} alt="" />}
                 <div><b>{a.name}</b><span>{a.n} work{a.n > 1 ? "s" : ""} · {a.love} pts</span></div>
               </div>
             ))}
@@ -3305,7 +3352,7 @@ function SearchBar({ go }) {
               onMouseEnter={() => setSel(i)}
               onMouseDown={e => { e.preventDefault(); openResult(r); }}>
               {r.imgGrid
-                ? <img className="cv-search-thumb" src={r.imgGrid} alt="" />
+                ? <LazyImg className="cv-search-thumb" src={r.imgGrid} alt="" />
                 : <span className="cv-search-thumb cv-search-thumb-empty" />}
               <span className="cv-search-hit-text">
                 <span className="cv-search-hit-title">{r.title}</span>

@@ -344,6 +344,9 @@ a { color: inherit; }
 .cv-styles button:hover { color: var(--ink); border-color: var(--ink-faint); }
 .cv-styles button i { font-style: normal; font-family: var(--mono); font-size: 9px; color: var(--ink-faint); margin-left: 6px; }
 .cv-styles button[data-on="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+/* nothing left under the current filters: dimmed and inert, but still occupying its slot so
+   the chip row keeps a stable shape as counts move (2026-08-20) */
+.cv-styles button[data-empty="true"] { opacity: .32; pointer-events: none; }
 .cv-styles button[data-on="true"] i { color: var(--paper); opacity: .6; }
 .cv-styles-more, .cv-styles-clear { border-style: dashed !important; color: var(--ink-faint) !important; }
 .cv-styles-note { padding: 8px 34px 0; font: italic 400 12px/1.5 var(--serif); color: var(--ink-soft); }
