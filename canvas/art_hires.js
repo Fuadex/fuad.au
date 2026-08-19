@@ -724,5 +724,649 @@ window.CANVAS_HIRES = {
    "arDelta": 0.0002,
    "manifest": "http://nationalmuseumse.iiifhosting.com/iiif/b8408303582c56cbffc2d3cac0a39b76d79328557ca5e333e76d75bb0075fd9/manifest.json"
   }
+ },
+ "vincent-van-gogh-cypresse": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent_van_Gogh_-_Cypresses.jpg?width=2848",
+  "file": "Vincent van Gogh - Cypresses.jpg",
+  "title": "Cypresse",
+  "conf": "high",
+  "from": {
+   "was": [
+    1476,
+    1861
+   ],
+   "now": [
+    2848,
+    3616
+   ],
+   "served": [
+    2848,
+    3616
+   ],
+   "arDelta": 0.0069,
+   "cat": "Cypresses by Vincent van Gogh (Metropolitan Museum of Art)"
+  }
+ },
+ "vincent-van-gogh-blick-auf-arles": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Muenchen_Neue_Pinakothek_van_Gogh_Arles.jpg?width=2672",
+  "file": "Muenchen Neue Pinakothek van Gogh Arles.jpg",
+  "title": "Blick auf Arles",
+  "conf": "high",
+  "from": {
+   "was": [
+    900,
+    714
+   ],
+   "now": [
+    2672,
+    2108
+   ],
+   "served": [
+    2672,
+    2108
+   ],
+   "arDelta": 0.0056,
+   "cat": "Orchard in Blossom with View of Arles"
+  }
+ },
+ "landscape-with-snow": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent_Willem_van_Gogh_099.jpg?width=1576",
+  "file": "Vincent Willem van Gogh 099.jpg",
+  "title": "Landscape with Snow",
+  "conf": "high",
+  "from": {
+   "was": [
+    980,
+    797
+   ],
+   "now": [
+    1576,
+    1295
+   ],
+   "served": [
+    1576,
+    1295
+   ],
+   "arDelta": 0.0103,
+   "cat": "Landscape with Snow by Vincent van Gogh"
+  }
+ },
+ "graceful-ascent": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wassily_Kandinsky_-_Gentle_accent.jpg?width=3000",
+  "file": "Wassily Kandinsky - Gentle accent.jpg",
+  "title": "Graceful Ascent",
+  "conf": "high",
+  "from": {
+   "was": [
+    980,
+    976
+   ],
+   "now": [
+    4096,
+    4080
+   ],
+   "served": [
+    3000,
+    2988
+   ],
+   "arDelta": 0.0002,
+   "cat": "Graceful Ascent - Wassily Kandinsky"
+  }
+ },
+ "yellow-cow": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Marc_die-gelbe-kuh.jpg?width=2390",
+  "file": "Marc die-gelbe-kuh.jpg",
+  "title": "Yellow Cow",
+  "conf": "high",
+  "from": {
+   "was": [
+    1067,
+    797
+   ],
+   "now": [
+    2390,
+    1767
+   ],
+   "served": [
+    2390,
+    1767
+   ],
+   "arDelta": 0.0103,
+   "cat": "Die gelbe Kuh (Franz Marc)"
+  }
+ },
+ "black-obelisk-of-shalmaneser-iii": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Neo-Assyrian_Black_Limestone_Obelisk_of_Shalmaneser_III%2C_Nimrud%2C_825_BC.jpg?width=3000",
+  "file": "Neo-Assyrian Black Limestone Obelisk of Shalmaneser III, Nimrud, 825 BC.jpg",
+  "title": "Black Obelisk of Shalmaneser III",
+  "conf": "high",
+  "from": {
+   "was": [
+    1361,
+    2048
+   ],
+   "now": [
+    3456,
+    5184
+   ],
+   "served": [
+    3000,
+    4500
+   ],
+   "arDelta": 0.0032,
+   "cat": "Black Obelisk"
+  }
+ },
+ "shahnameh-of-shah-tahmasp": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qaran_Unhorses_Barman%2C_a_folio_from_the_Shahnameh_of_Shah_Tahmasp%2C_Tabriz%2C_about_1523_%E2%80%93_35._The_Sarikhani_Collection%2C_I.MS.4025.jpeg?width=3000",
+  "file": "Qaran Unhorses Barman, a folio from the Shahnameh of Shah Tahmasp, Tabriz, about 1523 – 35. The Sarikhani Collection, I.MS.4025.jpeg",
+  "title": "Shahnameh of Shah Tahmasp",
+  "conf": "high",
+  "from": {
+   "was": [
+    1458,
+    2200
+   ],
+   "now": [
+    3024,
+    4555
+   ],
+   "served": [
+    3000,
+    4519
+   ],
+   "arDelta": 0.0017,
+   "cat": "Shah Tahmasp's Shahnameh"
+  }
+ },
+ "paule-gobillard-peignant": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Berthe_morisot_paule_gobillard_peignant_1887.jpg?width=3000",
+  "file": "Berthe morisot paule gobillard peignant 1887.jpg",
+  "title": "Paule Gobillard peignant",
+  "conf": "high",
+  "from": {
+   "was": [
+    1500,
+    1361
+   ],
+   "now": [
+    3477,
+    3119
+   ],
+   "served": [
+    3000,
+    2691
+   ],
+   "arDelta": 0.0115,
+   "cat": "Paule Gobillard peignant"
+  }
+ },
+ "portrait-de-madame-claude-monet": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste_Renoir_-_Camille_Monet.jpg?width=3000",
+  "file": "Pierre-Auguste Renoir - Camille Monet.jpg",
+  "title": "Portrait de madame Claude Monet",
+  "conf": "high",
+  "from": {
+   "was": [
+    1500,
+    1806
+   ],
+   "now": [
+    4687,
+    5685
+   ],
+   "served": [
+    3000,
+    3639
+   ],
+   "arDelta": 0.0074,
+   "cat": "Portrait de madame Claude Monet"
+  }
+ },
+ "hellelil-and-hildebrand-the-meeting-on-the-turret-stairs": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hellelil_and_Hildebrand%2C_the_Meeting_on_the_Turret_Stairs%2C_by_Burton_1864.jpg?width=1931",
+  "file": "Hellelil and Hildebrand, the Meeting on the Turret Stairs, by Burton 1864.jpg",
+  "title": "Hellelil and Hildebrand, the meeting on the turret stairs",
+  "conf": "high",
+  "from": {
+   "was": [
+    1500,
+    2329
+   ],
+   "now": [
+    1931,
+    3000
+   ],
+   "served": [
+    1931,
+    3000
+   ],
+   "arDelta": 0.0006,
+   "cat": "Hellelil and Hildebrand or The Meeting on the Turret Stairs"
+  }
+ },
+ "the-open-window": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Matisse-Open-Window.jpg?width=2012",
+  "file": "Matisse-Open-Window.jpg",
+  "title": "The Open Window",
+  "conf": "high",
+  "from": {
+   "was": [
+    1608,
+    1927
+   ],
+   "now": [
+    2012,
+    2424
+   ],
+   "served": [
+    2012,
+    2424
+   ],
+   "arDelta": 0.0053,
+   "cat": "Fenêtre ouverte, Collioure, by Henri Matisse"
+  }
+ },
+ "paul-steck-ophelie": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/OpheliePaulAlbertSteck.JPG?width=1200",
+  "file": "OpheliePaulAlbertSteck.JPG",
+  "title": "Ophélie",
+  "conf": "high",
+  "from": {
+   "was": [
+    472,
+    800
+   ],
+   "now": [
+    1200,
+    2031
+   ],
+   "served": [
+    1200,
+    2031
+   ],
+   "arDelta": 0.0014,
+   "cat": "Ophélie (Paul Albert Steck)"
+  }
+ },
+ "claude-monet-arm-of-the-seine-near-giverny": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet_-_Seine-Arm_bei_Giverny.jpg?width=1219",
+  "file": "Monet - Seine-Arm bei Giverny.jpg",
+  "title": "Arm of the Seine near Giverny",
+  "conf": "high",
+  "from": {
+   "was": [
+    684,
+    549
+   ],
+   "now": [
+    1219,
+    992
+   ],
+   "served": [
+    1219,
+    992
+   ],
+   "arDelta": 0.0137,
+   "cat": "Bras de Seine près de Giverny by Claude Monet"
+  }
+ },
+ "vincent-van-gogh-enclosed-field-with-rising-sun": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent_Willem_van_Gogh_063.jpg?width=2536",
+  "file": "Vincent Willem van Gogh 063.jpg",
+  "title": "Enclosed Field with Rising Sun",
+  "conf": "high",
+  "from": {
+   "was": [
+    751,
+    590
+   ],
+   "now": [
+    2536,
+    1984
+   ],
+   "served": [
+    2536,
+    1984
+   ],
+   "arDelta": 0.0042,
+   "cat": "Enclosed Field with Rising Sun"
+  }
+ },
+ "jean-baptiste-camille-corot-bacchanal-at-the-spring-souvenir": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Corot_-_Bacchanal_at_the_Spring_Souvenir_of_Marly-le-Roi%2C_1872.jpg?width=1286",
+  "file": "Corot - Bacchanal at the Spring Souvenir of Marly-le-Roi, 1872.jpg",
+  "title": "Bacchanal at the Spring: Souvenir of Marly-le-Roi",
+  "conf": "high",
+  "from": {
+   "was": [
+    1000,
+    1267
+   ],
+   "now": [
+    1286,
+    1600
+   ],
+   "served": [
+    1286,
+    1600
+   ],
+   "arDelta": 0.0184,
+   "cat": "Bacchanale de printemps : Souvenir de Marly-le-Roi(R2201) by Jean-Baptiste-Camille Corot"
+  }
+ },
+ "henry-fuseli-thor-battering-the-midgard-serpent": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Johann_Heinrich_F%C3%BCssli_011.jpg?width=2024",
+  "file": "Johann Heinrich Füssli 011.jpg",
+  "title": "Thor Battering the Midgard Serpent",
+  "conf": "high",
+  "from": {
+   "was": [
+    1415,
+    2000
+   ],
+   "now": [
+    2024,
+    2855
+   ],
+   "served": [
+    2024,
+    2855
+   ],
+   "arDelta": 0.002,
+   "cat": "Thor Battering the Midgard Serpent"
+  }
+ },
+ "claude-monet-belle-ile-rocks-cote-sauvage": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Les_Rochers_de_Belle-%C3%8Ele%2C_la_C%C3%B4te_sauvage_(1886)_de_Claude_Monet_-_Mus%C3%A9e_d'Orsay_(W1000).jpg?width=850",
+  "file": "Les Rochers de Belle-Île, la Côte sauvage (1886) de Claude Monet - Musée d'Orsay (W1000).jpg",
+  "title": "Belle-Île Rocks, Côte Sauvage",
+  "conf": "high",
+  "from": {
+   "was": [
+    500,
+    409
+   ],
+   "now": [
+    850,
+    682
+   ],
+   "served": [
+    850,
+    682
+   ],
+   "arDelta": 0.0195,
+   "cat": "Les Rochers de Belle-Île, la Côte sauvage by Claude Monet"
+  }
+ },
+ "henri-edmond-cross-la-chevelure": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri-edmon_cross%2C_la_capigliatura%2C_1892_ca._02.JPG?width=2304",
+  "file": "Henri-edmon cross, la capigliatura, 1892 ca. 02.JPG",
+  "title": "La Chevelure",
+  "conf": "high",
+  "from": {
+   "was": [
+    643,
+    850
+   ],
+   "now": [
+    2304,
+    3104
+   ],
+   "served": [
+    2304,
+    3104
+   ],
+   "arDelta": 0.0188,
+   "cat": "La Chevelure de Henri-Edmond Cross"
+  }
+ },
+ "pierre-bonnard-l-amandier-en-fleurs": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Almond_Tree_3.jpg?width=866",
+  "file": "Almond Tree 3.jpg",
+  "title": "L'Amandier en fleurs",
+  "conf": "high",
+  "from": {
+   "was": [
+    662,
+    970
+   ],
+   "now": [
+    866,
+    1280
+   ],
+   "served": [
+    866,
+    1280
+   ],
+   "arDelta": 0.0087,
+   "cat": "L'Amandier en fleurs"
+  }
+ },
+ "paul-signac-setting-sun-sardine-fishing-concarneau": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Signac_-_Setting_Sun._Sardine_Fishing._Adagio._Opus_221_from_the_series_The_Sea%2C_The_Boats%2C_Concarneau%2C_1891%2C_585.1998.jpg?width=2000",
+  "file": "Signac - Setting Sun. Sardine Fishing. Adagio. Opus 221 from the series The Sea, The Boats, Concarneau, 1891, 585.1998.jpg",
+  "title": "Setting Sun, Sardine Fishing, Concarneau",
+  "conf": "high",
+  "from": {
+   "was": [
+    745,
+    590
+   ],
+   "now": [
+    2000,
+    1596
+   ],
+   "served": [
+    2000,
+    1596
+   ],
+   "arDelta": 0.0076,
+   "cat": "Soleil couchant, pêche à la sardine, Concarneau by Paul Signac"
+  }
+ },
+ "jozef-che-monski-bitwa-pod-el-teb-kawaleria-sudanska-prze-am": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/J%C3%B3zef_Che%C5%82mo%C5%84ski_Bitwa_pod_El_Teb_1884.jpg?width=3000",
+  "file": "Józef Chełmoński Bitwa pod El Teb 1884.jpg",
+  "title": "Bitwa pod El-Teb. Kawaleria sudańska przełamuje czworokąt Anglików",
+  "conf": "high",
+  "from": {
+   "was": [
+    800,
+    539
+   ],
+   "now": [
+    3000,
+    2008
+   ],
+   "served": [
+    3000,
+    2008
+   ],
+   "arDelta": 0.0066,
+   "cat": "Bitwa pod El-Teb. Kawaleria sudańska przełamuje czworokąt Anglików by Józef Chełmoński"
+  }
+ },
+ "arshile-gorky-enigmatic-combat": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Enigmatic_Combat_by_Arshile_Gorky%2C_1936-7%2C_oil_on_canvas%2C_SFMOMA_01.jpg?width=3000",
+  "file": "Enigmatic Combat by Arshile Gorky, 1936-7, oil on canvas, SFMOMA 01.jpg",
+  "title": "Enigmatic Combat",
+  "conf": "high",
+  "from": {
+   "was": [
+    1280,
+    962
+   ],
+   "now": [
+    4000,
+    3000
+   ],
+   "served": [
+    3000,
+    2250
+   ],
+   "arDelta": 0.0021,
+   "cat": "Enigmatic Combat by Arshile Gorky"
+  }
+ },
+ "paul-cezanne-une-moderne-olympia": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Cezanne_eine-moderne-olympia.jpg?width=2193",
+  "file": "Cezanne eine-moderne-olympia.jpg",
+  "title": "Une moderne Olympia",
+  "conf": "high",
+  "from": {
+   "was": [
+    1411,
+    1200
+   ],
+   "now": [
+    2193,
+    1892
+   ],
+   "served": [
+    2193,
+    1892
+   ],
+   "arDelta": 0.0142,
+   "cat": "A Modern Olympia"
+  }
+ },
+ "paul-cezanne-la-maison-du-pendu-auvers-sur-oise": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/La_Maison_du_pendu_Auvers-sur-Oise_-_Paul_C%C3%A9zanne.jpg?width=2874",
+  "file": "La Maison du pendu Auvers-sur-Oise - Paul Cézanne.jpg",
+  "title": "La Maison du pendu, Auvers-sur-Oise",
+  "conf": "high",
+  "from": {
+   "was": [
+    1460,
+    1200
+   ],
+   "now": [
+    2874,
+    2328
+   ],
+   "served": [
+    2874,
+    2328
+   ],
+   "arDelta": 0.0147,
+   "cat": "La Maison du pendu, Auvers-sur-Oise, by Paul Cézanne"
+  }
+ },
+ "john-constable-the-opening-of-waterloo-bridge-whitehall-stai": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/John_constable%2C_l'apertura_del_waterloo_bridge%2C_ante_1832%2C_03.jpg?width=3000",
+  "file": "John constable, l'apertura del waterloo bridge, ante 1832, 03.jpg",
+  "title": "The Opening of Waterloo Bridge (`Whitehall Stairs, June 18th, 1817')",
+  "conf": "high",
+  "from": {
+   "was": [
+    1536,
+    912
+   ],
+   "now": [
+    5472,
+    3246
+   ],
+   "served": [
+    3000,
+    1780
+   ],
+   "arDelta": 0.0009,
+   "cat": "The Opening of Waterloo Bridge (T04904)"
+  }
+ },
+ "georges-seurat-seascape-at-port-en-bessin-normandy": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges_Seurat%2C_Seascape_at_Port-en-Bessin%2C_Normandy%2C_1888%2C_NGA_53139.jpg?width=3000",
+  "file": "Georges Seurat, Seascape at Port-en-Bessin, Normandy, 1888, NGA 53139.jpg",
+  "title": "Seascape at Port-en-Bessin, Normandy",
+  "conf": "high",
+  "from": {
+   "was": [
+    1576,
+    1253
+   ],
+   "now": [
+    4000,
+    3221
+   ],
+   "served": [
+    3000,
+    2416
+   ],
+   "arDelta": 0.0127,
+   "cat": "Seascape at Port-en-Bessin, Normandy by Georges Seurat"
+  }
+ },
+ "wilhelm-trubner-ave-caesar-morituri-te-salutant": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Berlin%2C_Alte_Nationalgalerie%2C_Wilhelm_Tr%C3%BCbner%2C_Ave%2C_Ceasar%2C_morituri_te_salutant.JPG?width=2885",
+  "file": "Berlin, Alte Nationalgalerie, Wilhelm Trübner, Ave, Ceasar, morituri te salutant.JPG",
+  "title": "Ave, Caesar, morituri te salutant",
+  "conf": "high",
+  "from": {
+   "was": [
+    1654,
+    2042
+   ],
+   "now": [
+    2885,
+    3552
+   ],
+   "served": [
+    2885,
+    3552
+   ],
+   "arDelta": 0.0028,
+   "cat": "Ave, Caesar, morituri te salutant by Wilhelm Trübner"
+  }
+ },
+ "vincent-van-gogh-self-portrait": {
+  "src": "commons",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_(454045).jpg?width=3000",
+  "file": "Vincent van Gogh - Self-Portrait - Google Art Project (454045).jpg",
+  "title": "Self-Portrait",
+  "conf": "high",
+  "from": {
+   "was": [
+    1774,
+    2250
+   ],
+   "now": [
+    4747,
+    6000
+   ],
+   "served": [
+    3000,
+    3792
+   ],
+   "arDelta": 0.0035,
+   "cat": "Self portrait by Vincent van Gogh (F345)"
+  }
  }
 };
