@@ -2255,13 +2255,25 @@ for (const s of asc) if (bigArtists.has(s[0])) {
   if (!times.has(s[0])) times.set(s[0], []);
   times.get(s[0]).push(s[3]);
 }
+// A comeback needs you to have been there in the FIRST place. This used to gate only on the size of
+// the gap and the plays after it, which made "the largest gap between any two scrobbles" the whole
+// definition — so a single stray early play manufactured a comeback narrative out of what was really
+// a first discovery. Fuad caught it on Wargasm (2026-08-20): one play in 2011, 1,821 from 2020, sold
+// as an eight-year return. That one play is almost certainly the 1980s US thrash band rather than the
+// UK duo, who did not exist until 2018 — the artist-name collision this library has hit before.
+//
+// Five of the eight rows had the same defect (Wargasm 1 prior play, Devin Townsend 1, Lantlos 1,
+// daine 2, Eville 3). The threshold is not finely tuned and does not need to be: the distribution is
+// bimodal, jumping straight from 3 prior plays to 184, so anything in that chasm keeps the three
+// genuine returns (Kyuss, TV on the Radio, Black River) and drops all five false ones.
+const COMEBACK_MIN_BEFORE = 25;
 const COMEBACKS = [];
 for (const [artist, ts] of times) {
   let gi = 0, gap = 0;
   for (let i = 1; i < ts.length; i++) { const g = ts[i] - ts[i - 1]; if (g > gap) { gap = g; gi = i; } }
-  const gapDays = Math.round(gap / 86400e3), playsAfter = ts.length - gi;
-  if (gapDays >= 540 && playsAfter >= 50)
-    COMEBACKS.push({ artist, gapDays, left: iso(ts[gi - 1]), back: iso(ts[gi]), playsAfter, hue: hueFor(artist) });
+  const gapDays = Math.round(gap / 86400e3), playsAfter = ts.length - gi, playsBefore = gi;
+  if (gapDays >= 540 && playsAfter >= 50 && playsBefore >= COMEBACK_MIN_BEFORE)
+    COMEBACKS.push({ artist, gapDays, left: iso(ts[gi - 1]), back: iso(ts[gi]), playsBefore, playsAfter, hue: hueFor(artist) });
 }
 COMEBACKS.sort((a, b) => b.gapDays - a.gapDays).splice(8);
 
