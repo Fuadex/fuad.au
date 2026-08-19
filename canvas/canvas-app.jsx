@@ -38,6 +38,7 @@ const HIRES = window.CANVAS_HIRES || {};
 // raw Wikidata kind ("pastel artwork", "woodblock print", "group of casts") rides along for
 // later use and is shown as the tooltip so the coarse chip never hides what the thing actually is.
 const MEDIUM = window.CANVAS_MEDIUM || {};
+const IMGSIZE = window.CANVAS_IMGSIZE || {};
 const mediumOf = (w) => MEDIUM[w.id] || null;
 const MEDIA = [["painting", "paintings"], ["sculpture", "sculpture"], ["paper", "works on paper"], ["object", "objects"], ["photo", "photography"]];
 function enrich(w) {
@@ -56,7 +57,11 @@ function enrich(w) {
     // hand-set canon img doubles as the grid thumb when the machine has none (at a lighter
     // width for FilePath URLs) — a hand-fixed image should never leave a blank wall tile
     imgGrid: w.imgGrid || mGrid || (mImg ? null : hi) || (w.img ? w.img.replace(/width=\d+/, "width=440") : null),
-    imgZoom: w.imgZoom || hi || mZoom || null };
+    imgZoom: w.imgZoom || hi || mZoom || null,
+    // TRUE pixel size of the Commons source (art_imgsize.js). Commons never upscales, so a
+    // ?width=2000 url is only worth 2000px if the original is at least that wide — 844 works
+    // are not, and used to advertise "Full resolution" for an image a few hundred pixels across.
+    px: IMGSIZE[w.id] || null };
 }
 
 // ——— LazyImg — real off-screen deferral (mirrors culture's, audit 2026-07-18). Native loading="lazy"
@@ -1189,7 +1194,15 @@ function Reader({ id, go }) {
           <div className="cv-r-links">
             {hasDeepZoom && <button type="button" className="cv-r-deep" onClick={() => setDeep(true)}>⤢ Deep zoom</button>}
             {w.qid && <a href={`https://www.wikidata.org/wiki/${w.qid}`} target="_blank" rel="noopener noreferrer">Wikidata ↗</a>}
-            {w.imgZoom && <a href={w.imgZoom} target="_blank" rel="noopener noreferrer">Full resolution ↗</a>}
+            {/* say what the file ACTUALLY is. "Full resolution" was a promise the data could not
+                keep for 844 works — Commons returns the original when asked for a bigger width,
+                so the link opened a 363px Monet under a label implying otherwise. */}
+            {w.imgZoom && (
+              <a href={w.imgZoom} target="_blank" rel="noopener noreferrer"
+                title={w.px ? `Commons source is ${w.px[0]}×${w.px[1]}px` : undefined}>
+                {w.px ? `Source image ↗ ${w.px[0]}×${w.px[1]}` : "Full resolution ↗"}
+              </a>
+            )}
             {a.qid && <a href={`https://www.wikidata.org/wiki/${a.qid}`} target="_blank" rel="noopener noreferrer">{w.artist.split(" ").pop()} on Wikidata ↗</a>}
           </div>
         </div>
