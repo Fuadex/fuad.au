@@ -85,21 +85,51 @@ function enrich(w) {
 // tall masonry wall fetches its whole row/column on first paint. A viewport-rooted IntersectionObserver
 // only reveals src once a tile is actually near view, in ANY scroll direction. The container must carry
 // its own dimensions (fixed height or aspect) so withholding src never collapses layout. (Fuad 2026-07-25)
+// Admission queue in front of Commons (Fuad 2026-08-20: "Failed to load resource: 429" in bursts).
+// Deferral alone is not enough — scrolling a wall into view reveals a whole band at once and every
+// tile hits upload.wikimedia.org in the same tick. This caps how many are in flight and hands the
+// slot on as each settles, so the same images still load, in a queue rather than a stampede.
+//
+// An <img> exposes no status code, so a 429 and a 404 both arrive as the same bare onError. That is
+// why the retry is unconditional and capped at one: it recovers a rate-limited image transparently
+// and costs a genuinely missing one a single extra request.
+const IMG_MAX_INFLIGHT = 6;
+const _imgWaiting = [];
+let _imgActive = 0;
+const _imgPump = () => {
+  while (_imgActive < IMG_MAX_INFLIGHT && _imgWaiting.length) { _imgActive++; _imgWaiting.shift()(); }
+};
+const imgAcquire = (run) => { _imgWaiting.push(run); _imgPump(); };
+const imgRelease = () => { _imgActive = Math.max(0, _imgActive - 1); _imgPump(); };
+
 function LazyImg({ src, alt, className, title, loading, style }) {
   const ref = useRef(null);
   const [show, setShow] = useState(false);
+  const [bust, setBust] = useState(0);     // retry counter; also forces a fresh request
+  const held = useRef(false);              // do we hold a slot right now? (guards a double release)
+  const release = () => { if (held.current) { held.current = false; imgRelease(); } };
   useEffect(() => {
     if (show || !src) return;
     const el = ref.current; if (!el) return;
-    if (typeof IntersectionObserver === "undefined") { setShow(true); return; }
+    let queued = false;
+    const admit = () => { queued = true; imgAcquire(() => { held.current = true; setShow(true); }); };
+    if (typeof IntersectionObserver === "undefined") { admit(); return () => { if (queued) release(); }; }
     const io = new IntersectionObserver((ents) => {
-      for (const e of ents) if (e.isIntersecting) { setShow(true); io.disconnect(); return; }
+      for (const e of ents) if (e.isIntersecting) { admit(); io.disconnect(); return; }
     }, { rootMargin: "500px" });
     io.observe(el);
-    return () => io.disconnect();
+    return () => { io.disconnect(); if (queued) release(); };
   }, [show, src]);
+  // release on unmount too — a slot held by a tile that scrolls out of the tree would otherwise
+  // shrink the pool permanently, and enough of those deadlock loading altogether.
+  useEffect(() => release, []);
+  const onFail = () => {
+    release();
+    if (bust === 0) setTimeout(() => setBust(1), 400 + Math.random() * 600);   // jittered single retry
+  };
+  const url = show ? (bust ? src + (src.includes("?") ? "&" : "?") + "_r=" + bust : src) : undefined;
   return <img ref={ref} className={className} alt={alt || ""} title={title} style={style}
-    src={show ? src : undefined} loading={loading || "lazy"} decoding="async" />;
+    src={url} loading={loading || "lazy"} decoding="async" onLoad={release} onError={onFail} />
 }
 
 // ——— HighlightPeek — a look at a museum highlight the canon does NOT hold.
