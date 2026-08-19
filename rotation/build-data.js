@@ -447,7 +447,7 @@ const FAMILIES = [
   { family: "Prog",                         hue: 282, cx: .30, cy: .54 },
   { family: "Shoegaze/Grunge",              hue: 252, cx: .50, cy: .60 },
   { family: "Alternative/Indie",            hue: 60,  cx: .40, cy: .50 },
-  { family: "Industrial/Hyperpop/Noise",    hue: 214, cx: .68, cy: .80 },
+  { family: "Industrial/Noise/Hyperpop",    hue: 214, cx: .68, cy: .80 },
   { family: "Electronic/DnB",               hue: 190, cx: .84, cy: .60 },
   { family: "Hip-Hop/Rap",                  hue: 46,  cx: .62, cy: .42 },
   { family: "Pop",                          hue: 332, cx: .72, cy: .38 },
@@ -504,8 +504,8 @@ const GENRE_RULES = [
   ["Prog", /\btechnical (metal|rock)\b/, _GW.strong],   // STEP1
   ["Prog", /\bmath rock\b/, _GW.strong],   // moved Alt->Prog (Fuad 2026-08-13)
   ["Prog", /\bmath metal\b/, _GW.med],
-  ["Industrial/Hyperpop/Noise", /\bnoise rock\b/, _GW.strong],
-  ["Industrial/Hyperpop/Noise", /\bpower electronics\b/, _GW.strong],
+  ["Industrial/Noise/Hyperpop", /\bnoise rock\b/, _GW.strong],
+  ["Industrial/Noise/Hyperpop", /\bpower electronics\b/, _GW.strong],
   ["Pop", /\bcity pop\b/, _GW.strong],
   ["Pop", /\bj-?pop\b/, _GW.strong],
 
@@ -590,20 +590,20 @@ const GENRE_RULES = [
   ["Alternative/Indie", /\bmodern rock\b/, _GW.umbrella],    // STEP1: weak ×0.2
   ["Alternative/Indie", /\bindie\b/, _GW.weak],
 
-  // ── 8 Industrial/Hyperpop/Noise (single family; DH/hyperpop stay in-family, name shortened 2026-08-12) ──
-  ["Industrial/Hyperpop/Noise", /\bindustrial\b/, _GW.strong],
-  ["Industrial/Hyperpop/Noise", /\bebm\b/, _GW.strong],
-  ["Industrial/Hyperpop/Noise", /\bneue deutsche h(a|ä)rte\b/, _GW.strong],
-  ["Industrial/Hyperpop/Noise", /\baggrotech\b/, _GW.strong],
-  ["Industrial/Hyperpop/Noise", /\bcyber\b/, _GW.med],
-  ["Industrial/Hyperpop/Noise", /\bnoise\b/, _GW.med],
-  ["Industrial/Hyperpop/Noise", /\bdigital hardcore\b/, _GW.strong],
-  ["Industrial/Hyperpop/Noise", /\bbreakcore\b/, _GW.strong],
-  ["Industrial/Hyperpop/Noise", /\bgabber\b/, _GW.strong],
-  ["Industrial/Hyperpop/Noise", /\bspeedcore\b/, _GW.strong],
-  ["Industrial/Hyperpop/Noise", /\bhyperpop\b/, _GW.strong],
-  ["Industrial/Hyperpop/Noise", /\bglitch\b/, _GW.med],
-  ["Industrial/Hyperpop/Noise", /\bwitch house\b/, _GW.strong],
+  // ── 8 Industrial/Noise/Hyperpop (single family; DH/hyperpop stay in-family, name shortened 2026-08-12) ──
+  ["Industrial/Noise/Hyperpop", /\bindustrial\b/, _GW.strong],
+  ["Industrial/Noise/Hyperpop", /\bebm\b/, _GW.strong],
+  ["Industrial/Noise/Hyperpop", /\bneue deutsche h(a|ä)rte\b/, _GW.strong],
+  ["Industrial/Noise/Hyperpop", /\baggrotech\b/, _GW.strong],
+  ["Industrial/Noise/Hyperpop", /\bcyber\b/, _GW.med],
+  ["Industrial/Noise/Hyperpop", /\bnoise\b/, _GW.med],
+  ["Industrial/Noise/Hyperpop", /\bdigital hardcore\b/, _GW.strong],
+  ["Industrial/Noise/Hyperpop", /\bbreakcore\b/, _GW.strong],
+  ["Industrial/Noise/Hyperpop", /\bgabber\b/, _GW.strong],
+  ["Industrial/Noise/Hyperpop", /\bspeedcore\b/, _GW.strong],
+  ["Industrial/Noise/Hyperpop", /\bhyperpop\b/, _GW.strong],
+  ["Industrial/Noise/Hyperpop", /\bglitch\b/, _GW.med],
+  ["Industrial/Noise/Hyperpop", /\bwitch house\b/, _GW.strong],
 
   // ── 9 Electronic/DnB ──
   ["Electronic/DnB", /\b(drum and bass|drum n bass|dnb|d&b)\b/, _GW.strong],
@@ -1136,7 +1136,7 @@ const FAMILY_OVERRIDES = {
   "Nubia": "Prog",
   "The London Metropolitan Orchestra;Michael Kamen": "Score",
   "Hide": "Alternative/Indie",
-  "daine": "Industrial/Hyperpop/Noise",   // v1 Digital hardcore / hyperpop → stays in the single Industrial/Hyperpop/Noise family (2026-08-12)
+  "daine": "Industrial/Noise/Hyperpop",   // v1 Digital hardcore / hyperpop → stays in the single Industrial/Noise/Hyperpop family (2026-08-12)
   // Genre corrections round 3 (Fuad 2026-07-12, vs tag noise) + Fable's tag-audit verdicts:
   "Dream Theater": "Prog",
   "Tool": "Prog",
@@ -1150,7 +1150,7 @@ const FAMILY_OVERRIDES = {
   "MAN WITH A MISSION": "Metalcore/Nu",      // Japanese alt-metal/rock
   "Trent Reznor and Atticus Ross": "Score",
   "Trent Reznor & Atticus Ross": "Score",
-  // "HEALTH": "Shoegaze/Grunge" removed 2026-08-17 — evidence wins (noise rock 100 → Industrial/Hyperpop/Noise).
+  // "HEALTH": "Shoegaze/Grunge" removed 2026-08-17 — evidence wins (noise rock 100 → Industrial/Noise/Hyperpop).
   "Grimes": "Electronic/DnB",
   "Battle Tapes": "Electronic/DnB",
   "Airbourne": "Heavy/Doom",          // hard-rock/heavy → Heavy bucket
@@ -3950,7 +3950,7 @@ const GENRES_REAL = FAMILIES.map(f => ({
 //   Nu-metal(24) + Metalcore(346) subs → Metalcore/Nu(346); post-hardcore → Punk/Hardcore(96)
 //   Alt/Prog metal(282) subs → Prog(282); stoner rock → Heavy/Doom(24)
 //   Thrash/Heavy(4) → Thrash/Death(4)
-//   Industrial + Digital hardcore/Hyperpop subs → Industrial/Hyperpop/Noise(214) (single family)
+//   Industrial + Digital hardcore/Hyperpop subs → Industrial/Noise/Hyperpop(214) (single family)
 //   Japanese underground subs: noise rock/math rock/nu-gaze → Shoegaze/Grunge(252);
 //     kawaii metal → Metalcore/Nu(346); j-punk → Punk/Hardcore(96)
 //   Electronic/DnB(190) + Hip-hop(46) → exact name/hue match, kept as-is
@@ -3989,7 +3989,7 @@ const GENRES_CURATED = [
     { name: "math rock", x: .38, y: .64, w: 1180 },
     { name: "nu-gaze", x: .44, y: .58, w: 1210 },
   ]},
-  { family: "Industrial/Hyperpop/Noise", hue: 214, subs: [
+  { family: "Industrial/Noise/Hyperpop", hue: 214, subs: [
     { name: "industrial rock", x: .58, y: .72, w: 3120 },
     { name: "industrial metal", x: .55, y: .82, w: 1870 },
     { name: "neue deutsche härte", x: .52, y: .80, w: 1870 },
