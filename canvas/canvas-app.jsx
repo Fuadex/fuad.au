@@ -2596,14 +2596,22 @@ function MapView({ go }) {
                 {branch.nodes.map((nd, i) => {
                   const g = mProg(i), [tx, ty] = mAt(nd), mx = lerp(cx, tx, g), my = lerp(cy, ty, g);
                   const [fx, fy, fs] = fish(mx, my);
-                  const lx = fx, ly = fy - (nd.mr * fs + 3.6) * k;               // label clear above the bubble
-                  const chW = Math.max(nd.m.name.length * 3.05 + 6, 14) * k, chH = 8.4 * k;
+                  // LABEL PLACEMENT (Fuad 2026-08-19: the chip read "like a slapstick over a
+                  // button", and labels were covering work dots). Two changes:
+                  //   · the opaque pill is gone. The name is now halo-stroked text, the same
+                  //     treatment the city labels already use, so it stays readable over land and
+                  //     sea while occluding a fraction of what a filled rect did.
+                  //   · it sits on the side FACING THE CITY. The work fan is deliberately seeded
+                  //     pointing away from the city (seedAng, above), so the inward wedge is the
+                  //     one part of a museum's surroundings the works never occupy — putting the
+                  //     label anywhere else guarantees it lands on top of them.
+                  const inward = fy > cy ? -1 : 1;                 // -1 = label above, 1 = below
+                  const lx = fx, ly = fy + inward * (nd.mr * fs + 3.4) * k;
                   return (
                     <g key={"m" + nd.m.id} className="cv-mus" style={{ opacity: g }} onClick={() => go("museum", nd.m.id)}>
-                      {(ly + chH / 2) < fy - nd.mr * fs * k - 0.4 * k && <line x1={fx} y1={fy - nd.mr * fs * k} x2={fx} y2={ly + chH / 2} stroke="rgba(58,47,34,.4)" strokeWidth={0.35 * k} />}
                       <circle cx={fx} cy={fy} r={nd.mr * fs * k} fill="oklch(0.5 0.14 46 / .95)" stroke="#f4ecdf" strokeWidth={0.7 * k} />
-                      <rect className="cv-map-chip" x={lx - chW / 2} y={ly - chH / 2} width={chW} height={chH} rx={chH / 2} />
-                      <text x={lx} y={ly + 1.9 * k} textAnchor="middle" style={{ fontSize: 5 * k }}>{nd.m.name}</text>
+                      <text className="cv-map-mlabel" x={lx} y={ly + (inward > 0 ? 1.9 : 0) * k}
+                        textAnchor="middle" style={{ fontSize: 5 * k, strokeWidth: 1.6 * k }}>{nd.m.name}</text>
                     </g>
                   );
                 })}

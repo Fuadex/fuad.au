@@ -173,7 +173,11 @@ a { color: inherit; }
 .cv-museum { max-width: none; margin: 0; padding: 24px 34px 70px; overflow-x: clip; }
 .cv-mus-head { max-width: 1200px; margin: 0 auto; background: #24201a; color: #e8ddcc; border-radius: 10px; padding: 26px 30px; display: flex; align-items: flex-start; gap: 26px; }
 .cv-mus-head-main { flex: 1 1 auto; min-width: 0; }
-.cv-mus-postcard { flex: 0 0 auto; width: min(280px, 34%); margin: 4px 0 0; }
+/* the postcard used to hang from the top of the header while the highlights deck sat lower in
+   the text column, so the two read as unrelated objects with a slab of dark between them
+   (Fuad 2026-08-19). Bottom-aligning it lands its lower edge on the same line the deck and stats
+   finish on, which is what ties the picture to the works. */
+.cv-mus-postcard { flex: 0 0 auto; width: min(280px, 34%); margin: 0; align-self: flex-end; }
 .cv-mus-postcard img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid rgba(232,221,204,.22); box-shadow: 0 6px 20px rgba(0,0,0,.4), inset 0 0 0 4px #24201a, 0 0 0 5px rgba(232,221,204,.14); }
 .cv-mus-postcard figcaption { font: 500 9px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: rgba(232,221,204,.55); margin-top: 8px; text-align: center; }
 .cv-mus-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 12px; }
@@ -441,11 +445,13 @@ a { color: inherit; }
 .cv-pil-note { font: italic 400 12.5px/1.5 var(--serif); color: var(--ink-soft); margin: -2px 0 14px; }
 /* museum label chips (fix 3): a light pill behind readable text, sitting clear above the bubble
    with a thin leader line back to it — replaces the low-contrast black text jammed on the pin. */
-.cv-map-chip { fill: rgba(251,246,236,.94); stroke: rgba(58,47,34,.18); stroke-width: .3px; }
+/* .cv-map-chip (the opaque pill behind a museum name) was removed 2026-08-19 — it read as a
+   button sitting on the map and, being filled, blotted out the work dots behind it. The name
+   carries its own halo instead; stroke-width is set inline so it scales with zoom like the text. */
 .cv-mus { cursor: pointer; }
 .cv-mus text { fill: var(--ink); font-family: var(--sans); font-weight: 600; letter-spacing: -.01em;
-  paint-order: stroke; stroke: rgba(251,246,236,.9); stroke-width: .5px; }
-.cv-mus:hover .cv-map-chip { fill: #fff; stroke: var(--accent); }
+  paint-order: stroke; stroke: rgba(244,236,223,.92); }
+.cv-mus:hover text { fill: var(--accent); }
 .cv-mus:hover circle { stroke: var(--accent); }
 /* city labels in the default + focused branch view get a soft halo so they read over land + sea */
 .cv-pin text { paint-order: stroke; stroke: rgba(233,223,205,.85); stroke-width: 1px; }
