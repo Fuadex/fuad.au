@@ -171,18 +171,23 @@ a { color: inherit; }
    band, while everything BELOW the module (encounters, artists, unmet, pilgrimage…) uses the
    whole monitor width (Fuad 2026-07-18) */
 .cv-museum { max-width: none; margin: 0; padding: 24px 34px 70px; overflow-x: clip; }
-.cv-mus-head { max-width: 1200px; margin: 0 auto; background: #24201a; color: #e8ddcc; border-radius: 10px; padding: 26px 30px; display: flex; align-items: flex-start; gap: 26px; }
+/* SOFTENED 2026-08-19 (Fuad: the near-black slab "is distracting from the rest of the page").
+   The panel still groups the header, but as the salon-wall plaster tone rather than an inverted
+   block — on a parchment page a black rectangle reads as a different site, and it was pulling the
+   eye away from the works, which are the point. Text returns to normal ink; a hairline and a very
+   soft shadow do the separating that the fill used to do by force. */
+.cv-mus-head { max-width: 1200px; margin: 0 auto; background: var(--plaster); color: var(--ink-soft); border: 1px solid var(--rule); box-shadow: 0 1px 3px rgba(40,28,14,.06); border-radius: 10px; padding: 26px 30px; display: flex; align-items: flex-start; gap: 26px; }
 .cv-mus-head-main { flex: 1 1 auto; min-width: 0; }
 /* the postcard used to hang from the top of the header while the highlights deck sat lower in
    the text column, so the two read as unrelated objects with a slab of dark between them
    (Fuad 2026-08-19). Bottom-aligning it lands its lower edge on the same line the deck and stats
    finish on, which is what ties the picture to the works. */
 .cv-mus-postcard { flex: 0 0 auto; width: min(280px, 34%); margin: 0; align-self: flex-end; }
-.cv-mus-postcard img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid rgba(232,221,204,.22); box-shadow: 0 6px 20px rgba(0,0,0,.4), inset 0 0 0 4px #24201a, 0 0 0 5px rgba(232,221,204,.14); }
-.cv-mus-postcard figcaption { font: 500 9px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: rgba(232,221,204,.55); margin-top: 8px; text-align: center; }
+.cv-mus-postcard img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--rule); box-shadow: 0 4px 14px rgba(40,28,14,.16), inset 0 0 0 4px #fbf6ec, 0 0 0 5px rgba(58,47,34,.14); }
+.cv-mus-postcard figcaption { font: 500 9px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 8px; text-align: center; }
 .cv-mus-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 12px; }
-.cv-mus-chip { font: 500 10px/1 var(--mono); letter-spacing: .05em; color: rgba(232,221,204,.82); background: rgba(232,221,204,.08); border: 1px solid rgba(232,221,204,.18); border-radius: 999px; padding: 6px 11px; }
-.cv-mus-chip-link { text-decoration: none; color: #f2e9dc; }
+.cv-mus-chip { font: 500 10px/1 var(--mono); letter-spacing: .05em; color: var(--ink-soft); background: rgba(58,47,34,.05); border: 1px solid var(--rule); border-radius: 999px; padding: 6px 11px; }
+.cv-mus-chip-link { text-decoration: none; color: var(--ink); }
 .cv-mus-chip-link:hover { border-color: var(--accent-soft); color: oklch(0.82 0.14 60); }
 /* flow-root contains the floated interior INSIDE the read pane — without it a short read
    lets the float poke below the pane and steal width from the artists row underneath */
@@ -192,9 +197,9 @@ a { color: inherit; }
 .cv-mus-interior figcaption { font: 500 9px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 6px; text-align: center; }
 .cv-mus-interior-solo { float: none; width: 100%; max-width: 1200px; margin: 18px auto 0; padding: 0 30px; }
 .cv-mus-interior-solo img { max-height: 300px; width: 100%; object-fit: cover; }
-.cv-mus-h1 { font: 600 32px/1.12 var(--serif); margin: 0; color: #f2e9dc; }
+.cv-mus-h1 { font: 600 32px/1.12 var(--serif); margin: 0; color: var(--ink); }
 .cv-mus-head[data-kind="natural-history"] .cv-mus-h1::after { content: " 🦕"; font-size: 22px; }
-.cv-mus-sub { font: 500 11px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(232,221,204,.6); margin-top: 8px; }
+.cv-mus-sub { font: 500 11px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-top: 8px; }
 /* min-width:0 is load-bearing (Fuad 2026-07-25): without it this flex strip reports its
    max-content width (~11 thumbnails) up to .cv-mus-head-main, expanding the layout viewport
    past device width — after which the 620px media queries never fire. The floor lets overflow-x
@@ -213,13 +218,13 @@ a { color: inherit; }
 /* min-width holds the slot open while LazyImg withholds a not-yet-revealed src (width:auto would
    otherwise collapse the button to 0 and let the strip re-flow as tiles load) (Fuad 2026-07-25) */
 .cv-mus-floored-item { flex-shrink: 0; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 5px; overflow: hidden; min-width: 72px; min-height: 96px; }
-.cv-mus-floored-item img { height: 96px; width: auto; display: block; border-radius: 5px; box-shadow: 0 4px 14px rgba(0,0,0,.35); transition: box-shadow .18s ease; }
+.cv-mus-floored-item img { height: 96px; width: auto; display: block; border-radius: 5px; box-shadow: 0 3px 10px rgba(40,28,14,.2); transition: box-shadow .18s ease; }
 /* this strip sits on the dark museum header, so the resting shadow is already strong — hover
    just deepens and spreads it rather than lifting the thumbnail */
-.cv-mus-floored-item:hover img { box-shadow: 0 6px 20px rgba(0,0,0,.55); }
-.cv-mus-stats { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 16px; font: 500 11px/1.5 var(--mono); letter-spacing: .05em; color: rgba(232,221,204,.8); }
+.cv-mus-floored-item:hover img { box-shadow: 0 6px 18px rgba(40,28,14,.34); }
+.cv-mus-stats { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 16px; font: 500 11px/1.5 var(--mono); letter-spacing: .05em; color: var(--ink-soft); }
 .cv-mus-stats > span { white-space: nowrap; }
-.cv-mus-gradebtn { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #f2e9dc; text-decoration: none; border: 1px solid rgba(232,221,204,.4); border-radius: 999px; padding: 8px 14px; margin-left: auto; }
+.cv-mus-gradebtn { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 1px solid rgba(58,47,34,.28); border-radius: 999px; padding: 8px 14px; margin-left: auto; }
 .cv-mus-gradebtn:hover { border-color: var(--accent-soft); color: oklch(0.82 0.14 60); }
 .cv-mus-read-pane { margin: 22px auto 0; max-width: 1200px; }
 .cv-mus-read-pane .cv-r-read-head { margin-bottom: 6px; }   /* breathing room between the tier buttons and the interior photo */
@@ -361,13 +366,14 @@ a { color: inherit; }
 
 /* ——— artist pages (charcoal editorial, mockup 1c) ——— */
 .cv-artist { max-width: none; padding: 26px 34px 60px; }
-.cv-a-head { display: flex; gap: 22px; align-items: flex-start; background: #24201a; color: #e8ddcc; border-radius: 10px; padding: 26px 30px; }
+/* same softening as .cv-mus-head — see the note there */
+.cv-a-head { display: flex; gap: 22px; align-items: flex-start; background: var(--plaster); color: var(--ink-soft); border: 1px solid var(--rule); box-shadow: 0 1px 3px rgba(40,28,14,.06); border-radius: 10px; padding: 26px 30px; }
 .cv-a-head > div { flex: 1 1 auto; min-width: 0; }   /* the text column takes the row's remaining width; min-width:0 lets long meta wrap */
 .cv-a-face { width: 92px; height: 92px; object-fit: cover; border-radius: 6px; filter: grayscale(.35); }
-.cv-a-name { font: 600 32px/1.1 var(--serif); margin: 0; color: #f2e9dc; }
-.cv-a-meta { font: 500 11px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: rgba(232,221,204,.6); margin-top: 7px; }
-.cv-a-mov { font: italic 400 13.5px/1.5 var(--serif); color: oklch(0.78 0.12 60); margin-top: 6px; }
-.cv-a-stats { font: 500 11px/1.6 var(--mono); color: rgba(232,221,204,.75); margin-top: 10px; }
+.cv-a-name { font: 600 32px/1.1 var(--serif); margin: 0; color: var(--ink); }
+.cv-a-meta { font: 500 11px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin-top: 7px; }
+.cv-a-mov { font: italic 400 13.5px/1.5 var(--serif); color: var(--accent); margin-top: 6px; }
+.cv-a-stats { font: 500 11px/1.6 var(--mono); color: var(--ink-soft); margin-top: 10px; }
 .cv-a-secl { font: 600 10.5px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin: 26px 0 12px; }
 .cv-a-wall { padding: 0; column-count: 6; }
 @media (max-width: 1500px) { .cv-a-wall { column-count: 5; } }
