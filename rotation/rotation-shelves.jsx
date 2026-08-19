@@ -29,10 +29,12 @@ const shBig = (url) => !url ? "" :
 // — needle drop: plays the album's top track's 30s preview; reports state so the vinyl spins.
 // Unplayed (shrinkwrapped) records have no track in our library → fall back to the keyless
 // iTunes Search API (guarded: normalized album title must match exactly + artist must match).
-const _shItCache = new Map();   // "artist~album" → previewUrl | null
-function ShNeedle({ trackKey, artist, album, hue, onState }) {
+const _shItCache = new Map();   // "artist~album~track" → previewUrl | null
+function ShNeedle({ trackKey, artist, album, track, hue, onState }) {
   const [playing, setPlaying] = React.useState(false);
-  const ck = (artist || "") + "~" + (album || "");
+  // The cache key includes the TRACK now. It used to be artist+album only, so every track on a
+  // record shared one cached url and whichever resolved first answered for all of them.
+  const ck = (artist || "") + "~" + (album || "") + "~" + (track || "");
   const [itUrl, setItUrl] = React.useState(() => _shItCache.has(ck) ? _shItCache.get(ck) : undefined);
   const ref = React.useRef(null);
   const set = (p) => { setPlaying(p); onState && onState(p); };
@@ -43,14 +45,24 @@ function ShNeedle({ trackKey, artist, album, hue, onState }) {
   // iTunes search below (it's human-adjudicated to the right version). Only the runtime search needs
   // the album title; a keyed fallback works in album-less contexts (the artist-header needle drop).
   const vetted = trackKey && window.ROTATION_PREVIEW_FALLBACK && window.ROTATION_PREVIEW_FALLBACK[trackKey];
+  // RUNTIME iTunes search — the last resort, and until 2026-08-19 the source of a real defect.
+  // It matched on ARTIST + ALBUM only and returned whatever track came back first, while the UI
+  // attributed the needle to a specific song. Model/Actriz's Pirouette drop was labelled Poppy and
+  // played whichever Pirouette track iTunes happened to rank first; the same album+artist guard
+  // that made it feel safe was never checking the thing being named.
+  // Now the TRACK must match too. That also unlocks album-less contexts (artist header, track
+  // page): with a verified title, artist + track alone is enough to be sure what is playing.
   React.useEffect(() => {
-    if (hash || vetted || !artist || !album || _shItCache.has(ck)) return;
+    if (hash || vetted || !artist || !track || _shItCache.has(ck)) return;
     const nrm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\(.*?\)|\[.*?\]/g, "").replace(/[^a-z0-9ぁ-んァ-ヶ一-龠]/gu, "");
-    fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artist + " " + album)}&media=music&entity=song&limit=8`)
+    const term = artist + " " + (album ? album + " " : "") + track;
+    fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(term)}&media=music&entity=song&limit=12`)
       .then(r => r.json())
       .then(j => {
-        const aN = nrm(artist), cN = nrm(album);
-        const hit = (j.results || []).find(r => r.previewUrl && nrm(r.collectionName) === cN &&
+        const aN = nrm(artist), cN = nrm(album), tN = nrm(track);
+        const hit = (j.results || []).find(r => r.previewUrl &&
+          nrm(r.trackName) === tN &&                                   // the named song, not a neighbour
+          (!album || nrm(r.collectionName) === cN) &&                  // album still checked when we have one
           (nrm(r.artistName).includes(aN) || aN.includes(nrm(r.artistName))));
         const url = hit ? hit.previewUrl : null;
         _shItCache.set(ck, url); setItUrl(url);
@@ -122,7 +134,7 @@ function ShReader({ al, onClose, go }) {
             </div>
           )}
           <div className="sh-reader-actions">
-            <ShNeedle trackKey={al.topTrackKey} artist={al.artist} album={al.title} hue={al.hue} onState={setSpin} />
+            <ShNeedle trackKey={al.topTrackKey} artist={al.artist} album={al.title} track={al.topTrackTitle} hue={al.hue} onState={setSpin} />
             {!al.unplayed && <button className="sh-open" onClick={() => { onClose(); go("album", key); }}>full page →</button>}
             <a className="r-extlink r-extlink-lf" target="_blank" rel="noopener noreferrer"
               href={`https://www.last.fm/music/${encodeURIComponent(al.artist)}/${encodeURIComponent(al.title)}`}>last.fm ↗</a>
@@ -495,6 +507,9 @@ function ShelvesView({ go, seed }) {
         firstYear: a[3], lastYear: a[4], cover: a[6] || "", meta: a[7] || 0, dna: a[8] || 0, tt: a[9] || 0,
         played: cnt.get(i) || 0, hue: m.hue, fam: aj && aj.fam != null ? aj.fam : m.fam, afam: aj ? aj.afam : 0, sub: m.sub,
         topTrackKey: tt ? R.slug(m.name) + "~" + R.slug(tt[0]) : null,
+        // the top track's real TITLE, so the needle can verify it is playing that song and not
+        // merely something else off the same record
+        topTrackTitle: tt ? tt[0] : null,
       });
     }
     albums.sort((x, y) => y.plays - x.plays);
