@@ -31,11 +31,17 @@ function _segs(pts) {
 // (.16 lit, .07 dimmed). Chroma is the knob that was missing for the first four passes — it is what
 // lets a band be both dim and clearly its own hue, which is what "dimmer, more transparent" needs.
 //
+// Sixth pass, strokes only: the fill was right but the outlines were limp next to the map bubbles
+// beside them. The bubbles set no strokeOpacity at all, i.e. they draw their rim at FULL opacity in
+// the fill's own colour — that is the whole difference. So the band stroke goes .6 → .92 lit, and
+// thickens at rest, .5 → .85, to match a bubble's resting rim. With a fill this transparent the
+// stroke is doing most of the drawing anyway; it should be the confident part.
+//
 // Opt-in rather than a change to the primitive: the same StreamGraph draws the artist-page flow and
 // the Journey, where the original contrast is the point.
 const SG_BANDS = {
-  solid: { on: 0.82, hi: 0.96, off: 0.15, strokeOn: 0.5, strokeOff: 0.12, L: 0.62, C: 0.17, sL: 0.72, sC: 0.16 },
-  faint: { on: 0.16, hi: 0.38, off: 0.07, strokeOn: 0.6, strokeOff: 0.16, L: 0.66, C: 0.20, sL: 0.72, sC: 0.19 },
+  solid: { on: 0.82, hi: 0.96, off: 0.15, strokeOn: 0.5, strokeOff: 0.12, L: 0.62, C: 0.17, sL: 0.72, sC: 0.16, w: 0.5, wHi: 1.4 },
+  faint: { on: 0.16, hi: 0.38, off: 0.07, strokeOn: 0.92, strokeOff: 0.3, L: 0.66, C: 0.20, sL: 0.76, sC: 0.23, w: 0.85, wHi: 1.6 },
 };
 function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixedH, faint }) {
   const BO = faint ? SG_BANDS.faint : SG_BANDS.solid;
@@ -65,7 +71,7 @@ function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixe
         const strk = s.mute ? "oklch(0.62 0.02 270)" : `oklch(${BO.sL} ${BO.sC} ${s.hue})`;
         return (
           <path key={s.key} d={L.area(i)} fill={fill} fillOpacity={on ? (hi === i ? BO.hi : BO.on) : BO.off}
-            stroke={strk} strokeWidth={hi === i ? 1.4 : 0.5} strokeOpacity={on ? BO.strokeOn : BO.strokeOff}
+            stroke={strk} strokeWidth={hi === i ? BO.wHi : BO.w} strokeOpacity={on ? BO.strokeOn : BO.strokeOff}
             style={{ cursor: clickable ? "pointer" : "default", transition: "fill-opacity .15s" }}
             onMouseEnter={() => setHi(i)} onClick={() => onPick && onPick(s, i)}>
             <title>{s.name} · peak {L.peak[i].year} ({Math.round(L.peak[i].share * 100)}%)</title>
