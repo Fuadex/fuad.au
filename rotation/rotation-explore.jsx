@@ -2014,7 +2014,10 @@ function ExploreView({ t, go, setPop, seed }) {
           .xp-td-decs { flex: 1 1 100%; min-width: 0; margin-left: 0; }
         }
         .xp-td-themes .xp-chiprow { max-height: 132px; overflow-y: auto; }
-        .xp-decbar { display: flex; height: 46px; border-radius: 4px; overflow: hidden; gap: 1px; }
+        /* 46 -> 30 (Fuad 2026-08-20): the Era bar was the tallest thing in its row, so it set the
+           module's height and left the Sort chips beside it floating in space. At 30 it sits level
+           with a chip row. The segment labels still fit — they are 10px in a flex-centred box. */
+        .xp-decbar { display: flex; height: 30px; border-radius: 4px; overflow: hidden; gap: 1px; }
         /* Rim desaturated at rest, full colour under the cursor (Fuad 2026-08-20). Both values come
            in per-segment as --sk / --skh since each hue is computed from its position; only the swap
            lives here. The outline for the SELECTED state is kept separate from the box-shadow rim on

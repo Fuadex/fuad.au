@@ -159,7 +159,12 @@
         "pilgrimage.js",
         "canvas-world.js",
         "palette.js",
-        "art-about.js"
+        "art-about.js",
+        "art_medium.js",
+        "art_imgsize.js",
+        "art_holders.js",
+        "art_subjects.js",
+        "art_artists.js"
       ]
     },
     {
