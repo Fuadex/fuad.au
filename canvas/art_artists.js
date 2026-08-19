@@ -187,4 +187,46 @@ window.CANVAS_ARTISTS = {
 
 "ludwik-de-laveaux": "Painted Paris at night in a dark tonal key learned first in Kraków and then in Munich under Otto Seitz. He died of tuberculosis in Paris in 1894, aged twenty-five and poor. Wyspiański, who had studied alongside him, put him into Wesele as the Widmo — the ghost who comes back for Marysia, the girl from Bronowice he had really been engaged to before he left.",
 
+// ── batch 5, 2026-08-20 ─────────────────────────────────────────────────────────────────
+
+"albert-chmielowski": "Trained as a painter in Munich, and good enough that the work still hangs. He had fought in the January Uprising at eighteen and lost a leg to it; in his forties he moved into the Kraków homeless shelters, took the name Brother Albert and founded an order to run them. John Paul II canonised him in 1989. The break was not clean: your one picture is dated 1888, the year he took his final vows.",
+
+"kawabata-ryushi": "Painted nihonga at deliberately enormous scale, made for exhibition halls rather than for the alcove a scroll hangs in, and founded his own society, Seiryūsha, so there would be somewhere to show that way. The burning Golden Pavilion is not history painting: a novice at the temple set it alight in July 1950, and he had it on the wall of his own exhibition two months later.",
+
+"nils-kreuger": "Flattened Swedish landscape into broad simplified shapes under Gauguin's influence, with a preference for dawn or dusk, haze or rain — the conditions that do the flattening for you. He was one of the three of the Varberg School, with Richard Bergh and Karl Nordström, who turned that manner into a national-romantic language for Sweden.",
+
+"victor-muller": "Took Courbet's method whole — heavy direct paint off the knife and brush, the reverse of the glazing Couture had taught him — and brought it back to Frankfurt to use on German fairy tales. Courbet spent six months in Frankfurt in 1858 working alongside him. In Munich he gathered the younger painters, Leibl and Thoma among them, out of whom the Leibl circle came; he died at forty-one, before it had properly formed.",
+
+"charles-angrand": "A founding member of the Indépendants alongside Seurat and Signac, and a neo-impressionist painter who then, from the early 1890s, all but stopped painting and worked in Conté crayon instead. By varying the pressure so the paper's tooth takes more or less of the greasy black, he built darks that still hold light inside them. Signac called the drawings masterpieces.",
+
+"gustaf-ankarcrona": "Trained in Berlin and painted rural Dalarna in a precise tonal naturalism — but the pictures are the smaller half of what he was doing there. In 1904 he started the first rural handicraft association in Sweden, at Leksand; in 1908 he bought land at Tällberg and had old timber buildings taken down in the countryside and rebuilt around his studio as an open-air museum. He commissioned the women who still knew the old patterns to weave, so the craft would survive as practice rather than as exhibits.",
+
+"eugene-carriere": "Works in a near-monochrome brown with the edges dissolved, figures surfacing out of fog as though the picture were developing rather than being painted. He was a close friend of Rodin, and the same instinct for the unfinished form runs through both. His first large public commission was the decoration of the Hôtel de Ville in Paris in 1889 — which is what yours is a study for.",
+
+"antoine-chintreuil": "Painted outdoors at first light and at dusk, after atmospheric effects that hold for minutes, and did it so persistently that his doctors blamed the practice for the lung disease that killed him. Corot took him on around 1843 and eventually told him he had learned what he could be taught. He was one of the organisers of the 1863 Salon des Refusés — not simply a painter in it, but on the committee that made it exist.",
+
+"paul-steck": "Trained under Gérôme, so the drawing is academic and the surface polished, then turned that training on Symbolist subjects — literary, languid, mood standing in for narrative. He showed at the Salon de la Rose+Croix in 1896. He was also a composer and librettist, and ended up deputy director of the school of decorative arts in Paris.",
+
+"john-martin": "Painted catastrophe at spectacle scale, with tiny figures set against architecture and light. His real audience came through mezzotint, which he engraved himself and which earned him considerably more than the paintings did. His older brother Jonathan set fire to York Minster in 1829 and was confined to an asylum for it.",
+
+"francesc-pausas-i-coll": "A Catalan portraitist trained in Barcelona and then in Madrid under Sorolla, copying in the Prado — drawing built to catch a sitter's gesture directly rather than to flatter it. He moved to New York in 1906 and stayed twenty-three years, painting opera singers and society. He had no heirs and the work scattered: only a handful of his pictures are in public collections anywhere, and the portrait of his wife is in one because she gave it herself after he died.",
+
+"hendrick-van-balen-the-elder": "Small cabinet pictures, often on copper rather than panel, with the figures his own and the landscape, flowers and still life somebody else's — he collaborated constantly, most of all with Jan Brueghel the Elder, who took the setting while van Balen took the gods. Antwerp ran painting as an industry of specialists, and he was a dean of its guild. He taught van Dyck, who painted his old master's portrait more than once, decades later.",
+
+"mikhail-matyushin": "Played violin in the imperial court orchestra in St Petersburg for over thirty years while becoming a painter, and wrote the score for the futurist opera Victory over the Sun in 1913. He then built a theory of seeing he called Zorved — see-know — which held that sight reaches past the field in front of you, out to the sides and behind, and he painted to test it.",
+
+"stanis-aw-witkiewicz": "A painter and critic who ended up inventing a building style: he took Podhale highlander carpentry and worked it into the Zakopane Style, a complete architectural and decorative idiom he argued should be Poland's national manner. He was Witkacy's father — so the two Witkiewiczes in your collection are parent and child.",
+
+"lesser-ury": "Painted Berlin after dark — wet asphalt taking electric light and throwing it back up, figures cut down to silhouettes under umbrellas. Max Liebermann kept him out of the Berlin Secession for as long as he ran it. Ury got in only in 1911, once Liebermann had resigned and Corinth taken over.",
+
+"clarice-beckett": "Painted the Beaumaris foreshore at dawn and dusk in Meldrum's tonal method, wheeling her easel and paints out to the spot in a cart built for the purpose. She caught pneumonia painting through a winter storm and died in 1935. The work was left stacked in an open-sided shed for decades, where rain and possums destroyed some 1,600 of them; 369 were still salvageable when Rosalind Hollinrake reached them in 1971.",
+
+"munch": "Left canvases outside in sun and rain on purpose — he called it the horse cure — so the surfaces come scoured and thin by design rather than by neglect. He said he painted not what he saw but what he had seen, which is why the pictures are shaped like memory rather than observation. He left 1,158 paintings to the city of Oslo in his will.",
+
+"gauguin": "Flat unmodelled colour inside dark contours, often on coarse sacking instead of proper canvas because he wanted the tooth, and worked from memory rather than in front of the motif. He was a stockbroker who painted on Sundays until he was thirty-four, and then was not. Your earliest is from 1875, when he still had the job.",
+
+"whistler": "Thinned paint to a wash he called the sauce and let it run, then titled the results nocturnes, symphonies and harmonies to force you to read them as arrangements of tone rather than as views of things. Ruskin wrote that he had flung a pot of paint in the public's face; Whistler sued for libel and won a farthing. He was bankrupt within a year.",
+
+"marquet": "Gets a view down to a few flat tones and one economical silhouette, and leaves the drawing to do the rest. He was in the room when Fauvism got its name — a student with Matisse under Gustave Moreau, and in the 1905 Salon d'Automne that produced the label — but kept the restraint the others were throwing out. He painted the Seine from the windows of one apartment after another for decades; five of your six are that river.",
+
 };
