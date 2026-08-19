@@ -167,6 +167,47 @@ function HighlightPeek({ item, onClose }) {
   );
 }
 
+// ——— PilReel — a horizontal reel of miniatures; hovering one lifts a larger version above the strip
+// with its title and artist (Fuad 2026-08-20). A stack of full-width rows was the wrong shape for
+// 1,465 works you browse rather than read: the thumbnail is what you recognise a painting by, and a
+// reel puts twenty of them where one row used to sit.
+//
+// The enlarged view is a SIBLING of the scroller, not a child, absolutely positioned above it. A
+// child would be clipped by the reel's own overflow-x — that is the trap with this pattern, since
+// you cannot scale a tile up inside a horizontal scroller and expect it to escape. It overlays what
+// is above rather than reserving a slot, so nothing shifts as the pointer runs along the strip.
+function PilReel({ works, go }) {
+  const [hov, setHov] = useState(null);          // { w, x } — x anchors the pop over its tile
+  const wrapRef = useRef(null);
+  const onEnter = (w) => (e) => {
+    const wrap = wrapRef.current; if (!wrap) return;
+    const r = e.currentTarget.getBoundingClientRect(), wr = wrap.getBoundingClientRect();
+    // centre the pop on the tile, then clamp so it never hangs off either end of the strip
+    setHov({ w, x: Math.max(0, Math.min(r.left - wr.left + r.width / 2 - 110, Math.max(0, wr.width - 220))) });
+  };
+  return (
+    <div className="cv-reel-wrap" ref={wrapRef} onMouseLeave={() => setHov(null)}>
+      {hov && (
+        <div className="cv-reel-pop" style={{ left: hov.x }}>
+          {hov.w.imgGrid && <img src={hov.w.imgGrid} alt="" />}
+          <div className="cv-reel-cap">
+            <b>{hov.w.title}</b>
+            <span>{hov.w.artist.replace(/\s*\(.*\)$/, "")}{hov.w.year ? " · " + hov.w.year : ""}</span>
+          </div>
+        </div>
+      )}
+      <div className="cv-reel">
+        {works.map(w => (
+          <button key={w.id} className="cv-reel-item" data-loved={unseenRank(w) === 2 ? "true" : undefined}
+            title={w.title} onMouseEnter={onEnter(w)} onFocus={onEnter(w)} onClick={() => go("work", w.id)}>
+            {w.imgGrid ? <LazyImg src={w.imgGrid} alt={w.title} /> : <span className="cv-reel-none">{w.title.slice(0, 2)}</span>}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ——— RevealChunks — reveal-based lazy RENDERING for long lists (Fuad 2026-07-25). Renders the first
 // `initial` items immediately, then reveals `step` more each time a sentinel near the list's end scrolls
 // into view. Keeps the initial DOM small on museum/artist/index pages (long walls used to mount every
@@ -2909,13 +2950,7 @@ function MapView({ go }) {
                 {open && c.venues.map(v => (
                   <div className="cv-pil-venue" key={v.name}>
                     <div className="cv-pil-venuename">{v.name} <span>· {v.list.length}</span></div>
-                    {v.list.map(it => (
-                      <div className="cv-mus-row" key={it.id} style={{ cursor: "pointer" }} onClick={() => go("work", it.id)}>
-                        {it.imgGrid && <LazyImg className="cv-pil-thumb" src={it.imgGrid} alt="" />}
-                        <span className="cv-mus-name">{unseenRank(it) === 2 ? "★ " : "♡ "}{it.title}</span>
-                        <span className="cv-mus-city">{it.artist.replace(/s*(.*)$/, "")}{it.year ? " · " + it.year : ""}</span>
-                      </div>
-                    ))}
+                    <PilReel works={v.list} go={go} />
                   </div>
                 ))}
               </div>
@@ -2938,13 +2973,7 @@ function MapView({ go }) {
                 {showTail && tail.map(c => (
                   <div className="cv-pil-venue" key={c.key}>
                     <div className="cv-pil-venuename">{c.city} <span>· {c.n}</span></div>
-                    {c.venues.flatMap(v => v.list).map(it => (
-                      <div className="cv-mus-row" key={it.id} style={{ cursor: "pointer" }} onClick={() => go("work", it.id)}>
-                        {it.imgGrid && <LazyImg className="cv-pil-thumb" src={it.imgGrid} alt="" />}
-                        <span className="cv-mus-name">{unseenRank(it) === 2 ? "★ " : "♡ "}{it.title}</span>
-                        <span className="cv-mus-city">{it.artist.replace(/s*(.*)$/, "")}{it.year ? " · " + it.year : ""}</span>
-                      </div>
-                    ))}
+                    <PilReel works={c.venues.flatMap(v => v.list)} go={go} />
                   </div>
                 ))}
               </div>
@@ -2960,13 +2989,7 @@ function MapView({ go }) {
               {showUnplaced && (
                 <div className="cv-pil-venue">
                   <div className="cv-pil-venuename">No P195 on the record <span>· {wishUnplaced.length}</span></div>
-                  {wishUnplaced.map(it => (
-                    <div className="cv-mus-row" key={it.id} style={{ cursor: "pointer" }} onClick={() => go("work", it.id)}>
-                      {it.imgGrid && <LazyImg className="cv-pil-thumb" src={it.imgGrid} alt="" />}
-                      <span className="cv-mus-name">{unseenRank(it) === 2 ? "★ " : "♡ "}{it.title}</span>
-                      <span className="cv-mus-city">{it.artist.replace(/s*(.*)$/, "")}{it.year ? " · " + it.year : ""}</span>
-                    </div>
-                  ))}
+                  <PilReel works={wishUnplaced} go={go} />
                 </div>
               )}
             </div>
