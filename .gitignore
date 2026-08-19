@@ -20,6 +20,12 @@ package-lock.json
 # dated snapshots / moved originals — kept for reference but not tracked
 notes/
 
+# scratch space for pipeline runs — import proposals, audits, batch files, scouting reports.
+# Local-only ON PURPOSE: these routinely carry raw provenance (photo filenames, coordinates,
+# dataset internals) that must never reach a public commit. It was untracked-but-not-ignored
+# until 2026-08-19, i.e. one `git add -A` away from being published.
+.sptmp/
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db
