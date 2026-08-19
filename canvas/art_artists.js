@@ -103,4 +103,46 @@ window.CANVAS_ARTISTS = {
 
 "edouard-vuillard": "Painted small domestic interiors in which pattern eats people — wallpaper, dress fabric and upholstery given the same weight as a face, so figures half-disappear into the room. A Nabi, working on cardboard in muffled distemper. He lived with his mother, who ran a corset and dressmaking business, until her death when he was sixty; her workroom is most of the subject.",
 
+// ── batch 3, 2026-08-20 ─────────────────────────────────────────────────────────────────
+
+"bruno-liljefors": "Paints the animal into its ground rather than in front of it — scaled to the landscape instead of posed for you, with predation treated as ordinary weather rather than as drama. He hunted, climbed to eagle and osprey nests and watched from camouflaged blinds, and he kept foxes, badgers, owls and an eagle in an enclosure at home so he could study them alive. All three of yours floored you, which is the whole of him you have.",
+
+"emile-bernard": "Worked out flat unmodulated colour inside dark contours — cloisonnism, named for the metal strips in cloisonné enamel — with Louis Anquetin around 1887, when he was nineteen. He then spent the rest of his life arguing that Gauguin had taken the credit for what the two of them built at Pont-Aven; left France in 1893, turned against modern art entirely, and went back to Renaissance models. Nine of your ten are after 1900, so what you have is almost all the reactionary Bernard rather than the nineteen-year-old.",
+
+"maximilien-luce": "Took the neo-impressionist dot — the period's most advanced way of painting light — and pointed it at navvies, foundries and building sites instead of at bathers and harbours. He was an anarchist, arrested in July 1894 in the round-up after President Carnot's assassination and tried among the thirty; he was acquitted, after forty-eight days in Mazas.",
+
+"ivan-shishkin": "Painted forest interiors at species-level exactness — you can name the tree — and was a serious etcher besides, so bark and needle come out drawn rather than suggested. He was a founding Wanderer, taking Russian painting out of the academy and around the provinces, and the forest was what he thought deserved that precision. The bear cubs in his most famous picture were painted by someone else.",
+
+"henri-jean-guillaume-martin": "Uses the divided touch of neo-impressionism but stretches the dot into a long hatched filament, in a high, pale, chalky key. The method is optical and the subjects are symbolist — muses, allegories, figures in a light that belongs to no particular hour — which is the unusual pairing. The state kept handing him enormous mural commissions anyway: the Sorbonne, the Conseil d'État, the Capitole at Toulouse.",
+
+"theo-van-rysselberghe": "Converted to strict pointillism on seeing Seurat's Grande Jatte, and kept the dot cooler and more architectural than the French did with it. As a founding member of Les XX in Brussels he travelled Europe deciding who to invite — which is how Seurat, van Gogh and Cézanne came to be shown in Belgium at all.",
+
+"menzel": "Drew compulsively: one of his overcoats had eight pockets, each holding a sketchbook of a different size, and the paintings are built out of that forensic looking rather than out of studio convention. He was an empiricist among history painters. For the rolling mill he went to an ironworks in Upper Silesia in 1872 and spent weeks making hundreds of studies on the factory floor.",
+
+"millais": "Pre-Raphaelite method meant painting into a wet white ground with small brushes, so the colour stays jewelled and everything holds focus at once — foreground weed as sharp as a face. He then became a society portraitist and President of the Royal Academy, which the movement read as desertion, and your five straddle both halves. His Ophelia model lay in a bath warmed by lamps underneath; the lamps went out, she fell ill, and her father made him pay the doctor's bills.",
+
+"tissot": "Renders contemporary dress with a fashion plate's precision and then leaves the story unresolved, so the whole reading hangs on a glance or a turned shoulder. Kathleen Newton, who had been living with him in London, died in 1882 and he was back in Paris within the week. His later career went into illustrating the Bible, with long research journeys to the Holy Land — two of your five come from that second life.",
+
+"petrus-van-der-velden": "Loads paint heavily in the dark tonal key of the Hague School, so the weather is in the handling before it is in the subject. He emigrated to New Zealand in 1890 and reached the Otira Gorge that January; it became the thing he returned to. Your five straddle the crossing — Dutch canal on one side, Canterbury rock on the other.",
+
+"henri-le-sidaner": "Paints the table laid and nobody at it, in twilight or lamplight, with a touch soft enough to hold everything just short of focus; the absence is the subject. He rented a house at Gerberoy in 1901 and bought it in 1904, then built the terraced gardens up around it and painted them for the rest of his life.",
+
+"henri-fantin-latour": "Ran two practices at once: flower pieces of almost photographic sobriety, and smoky, dissolving lithographs on Wagner, Berlioz and Schumann. The flowers sold in Britain and stayed practically unknown in France in his lifetime, so his English reputation and his French one are for different work entirely. Your Schumann overture is the ambition; the pansies are the income.",
+
+"hodler": "Built pictures on what he called Parallelism — figures and forms repeated and mirrored across the canvas, symmetry used as structure rather than as ornament — and reduced the late landscapes to flat horizontal bands. He thought repetition was how nature reveals its order, and said so in a lecture in 1897. Your symmetrical reflection on Lake Thun is that theory stated about as plainly as he ever stated it.",
+
+"arshile-gorky": "Floats improvised line over thin stained washes so the drawing sits on top of the colour instead of containing it — the hinge between Surrealist automatism and what American painting did next. He was born Vosdanig Adoian and got out of the Armenian genocide as a child; his mother died of starvation in 1919. The name is invented, and he let people believe he was related to Maxim Gorky.",
+
+"ivan-aivazovsky": "Painted the sea in the studio from memory, fast, glazing thin translucent layers so a wave crest reads as lit from behind rather than on its surface. He held that a storm cannot be painted in front of you, only recalled. He was official painter to the Russian Navy from 1844, and left something like six thousand works.",
+
+"albert-lebourg": "Works light and rapid in a silvery tonal register on the Seine and the Rouen quays — an impressionist who stayed with atmosphere rather than crossing over into pure colour. He spent five years from 1872 teaching drawing in Algiers, and came back with the palette he then kept. He showed in the fourth and fifth Impressionist exhibitions, in 1879 and 1880.",
+
+"george-frederic-watts": "Works dry, muted earth colour over a canvas he keeps returning to for years, so the surface reads as fresco or as memory rather than as paint. The symbolic pictures were meant to belong to one connected scheme he called the House of Life, in which every aspiration would get its symbol. He refused a baronetcy twice, and gave the major symbolic works to the nation rather than selling them.",
+
+"cole": "Worked large studio canvases up from studies made on the spot in the Catskills, and founded the Hudson River School doing it. The serial pictures are moral arguments — empire, decline, the course of a life — landscape recruited to sermon. His patron died before the first Voyage of Life cycle was done and the heirs would not cooperate, so he painted all four again in Rome; the 1842 set is that second one, and it is the one you have.",
+
+"makart": "Worked enormous, in deep bituminous reds and browns, staging figures as theatre — and the pigments were unstable, so much of it has darkened and cracked since. He was the impresario of Ringstrasse Vienna, where painting, costume and interior decoration arrived as one commission. He designed the 1879 imperial pageant, some fourteen thousand people, and rode at the head of it dressed as Rubens.",
+
+"johan-jongkind": "Made the watercolours outdoors on the spot and built the oils up from them in the studio, keeping a broken, nervous touch that holds the weather of a particular hour. Monet met him at Le Havre in 1862 and said later that it was to him he owed the definitive education of his eye.",
+
 };
