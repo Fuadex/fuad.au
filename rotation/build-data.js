@@ -4262,7 +4262,24 @@ let GENRE_FLOW = null;
     return sw;
   });
   const famRows = subRows.map(sw => { const fw = new Array(FAMILIES.length).fill(0); sw.forEach((v, si) => { if (v) fw[SUBS[si].fam] += v; }); return fw; });
-  GENRE_FLOW = { families: FAMILIES.map((f, i) => ({ i, family: f.family, hue: f.hue })), years: flowYears.map((y, i) => ({ year: y, fams: famRows[i] })) };
+  // ROLLING LAST 365 DAYS (2026-08-19) — what the Records page ranks its genre shelves by.
+  // The per-year rows above cannot answer it: in August "this year" is eight months and "last
+  // year" is already stale, and neither is what "lately" means. The scrobbles carry real
+  // timestamps so the window is measured directly. They are newest-first, so the walk breaks at
+  // the cutoff instead of scanning two decades of history.
+  const r12 = new Array(FAMILIES.length).fill(0);
+  {
+    const cutoff = Date.now() - 365 * 864e5;
+    const famCache = new Map();                    // artist name → family index, resolved once each
+    for (const s of scrobbles) {
+      if (!s[3]) continue;                         // undated rows carry no timestamp to place
+      if (s[3] < cutoff) break;
+      let fi = famCache.get(s[0]);
+      if (fi === undefined) { fi = familyIdxByName(s[0]); famCache.set(s[0], fi); }
+      if (fi >= 0) r12[fi]++;
+    }
+  }
+  GENRE_FLOW = { families: FAMILIES.map((f, i) => ({ i, family: f.family, hue: f.hue })), years: flowYears.map((y, i) => ({ year: y, fams: famRows[i] })), r12 };
 }
 
 // ─────────── TASTE_ERAS — auto-segmented chapters of your taste (Phase 3) ───────────

@@ -182,8 +182,8 @@ function ShSpine({ al, expanded, onExpand, onOpen }) {
 
 // ── RE-SHELVING LENSES — same records, different walls ──
 const SH_LENSES = [["genre", "genre"], ["decade", "decade"], ["found", "when you found them"], ["mood", "mood"], ["done", "completeness"], ["labels", "label"]];
-function shGroupBy(lens, albums, R, labelGrouped) {
-  if (lens === "genre" || !lens) return shGroupShelves(albums, R);
+function shGroupBy(lens, albums, R, labelGrouped, gWindow) {
+  if (lens === "genre" || !lens) return shGroupShelves(albums, R, gWindow);
   if (lens === "labels") return shGroupLabels(albums, labelGrouped);
   const groups = new Map();
   const put = (k, name, hue, order, al) => {
@@ -298,7 +298,12 @@ function shGroupLabels(albums, grouped) {
 }
 
 // group album records into genre shelves (family rows), Misc last — shared by both modes
-function shGroupShelves(albums, R) {
+// `window` reorders the genre shelves by how much a family was played in a chosen period rather
+// than across all time (Fuad 2026-08-19). "r12" is the rolling last 365 days; a number is a
+// calendar year; null keeps the all-time order. Both windows come from R.GENRE_FLOW, which the
+// build fills — the shelf's own album plays cannot answer it, since an album's total says nothing
+// about WHEN it was played.
+function shGroupShelves(albums, R, window) {
   const byFam = new Map();
   for (const al of albums) {
     const f = al.fam != null ? al.fam : -1;
@@ -307,8 +312,18 @@ function shGroupShelves(albums, R) {
   }
   const famName = (f) => f === -1 ? "Misc / uncharted" : ((R.FAMILIES.find(x => x.i === f) || {}).family || "—");
   const famHue = (f) => f === -1 ? 260 : ((R.FAMILIES.find(x => x.i === f) || {}).hue || 260);
-  return [...byFam.values()].sort((a, b) => (a.fam === -1) - (b.fam === -1) || b.plays - a.plays)
-    .map(g => ({ ...g, name: famName(g.fam), hue: famHue(g.fam) }));
+  const GF = R.GENRE_FLOW;
+  let weight = null;
+  if (window && GF) {
+    if (window === "r12") weight = GF.r12 || null;
+    else { const row = (GF.years || []).find(y => y.year === window); weight = row ? row.fams : null; }
+  }
+  // a family with no plays in the window sinks below the ranked ones rather than vanishing —
+  // the shelf still exists, it just was not what you were listening to
+  const wOf = (g) => (weight && g.fam >= 0 && weight[g.fam]) || 0;
+  return [...byFam.values()]
+    .sort((a, b) => (a.fam === -1) - (b.fam === -1) || (weight ? wOf(b) - wOf(a) || b.plays - a.plays : b.plays - a.plays))
+    .map(g => ({ ...g, name: famName(g.fam), hue: famHue(g.fam), windowPlays: weight ? wOf(g) : null }));
 }
 
 // ShShelf — TOP-LEVEL component on purpose: defining it inside ShelvesView gave it a new
@@ -415,6 +430,9 @@ function ShelvesView({ go, seed }) {
   const mergeFam = (fam) => { setSplit(p => ({ ...p, [fam]: false })); setJustMerged(fam); setTimeout(() => setJustMerged(null), 450); };
   const [mode, setMode] = React.useState(_seed.mode);     // racks | wrap (the Unplayed Shelf)
   const [lens, setLens] = React.useState(_seed.lens);     // re-shelving lens (racks mode)
+  // genre-shelf ordering period: "r12" (rolling last 365 days, the default) | a calendar year |
+  // "all". Only meaningful under the genre lens; the other lenses have their own natural order.
+  const [gWindow, setGWindow] = React.useState("r12");
   const [labelsReady, setLabelsReady] = React.useState(!!(window.ROTATION_ALB_LABELS && window.ROTATION_LABEL_PARENTS));
   const [labelsExpanded, setLabelsExpanded] = React.useState(false); // clamp expand/collapse
   const [labelGrouped, setLabelGrouped] = React.useState(_seed.labelGrouped); // labels lens: cluster by parent company vs split into specific labels
@@ -515,7 +533,7 @@ function ShelvesView({ go, seed }) {
     albums.sort((x, y) => y.plays - x.plays);
     return { albums };
   }, [ready, R]);
-  const rackShelves = React.useMemo(() => data ? shGroupBy(lens, data.albums, R, labelGrouped) : null, [data, lens, labelsReady, labelGrouped, R]);
+  const rackShelves = React.useMemo(() => data ? shGroupBy(lens, data.albums, R, labelGrouped, gWindow === "all" ? null : gWindow) : null, [data, lens, labelsReady, labelGrouped, R, gWindow]);
 
   // the shrinkwrap wall — LPs by well-played artists that were never pressed play on
   const unData = React.useMemo(() => {
@@ -603,6 +621,20 @@ function ShelvesView({ go, seed }) {
           {SH_LENSES.map(([k, lbl]) => (
             <button key={k} className="sh-lens" data-on={lens === k} onClick={() => { setLens(k); setSplit({}); if (k !== "labels") setLabelsExpanded(false); }}>{lbl}</button>
           ))}
+          {/* genre shelves are ordered by a PERIOD, not by all-time plays — what you have been
+              reaching for lately says more than what you played most a decade ago. Only shown
+              under the genre lens; the others carry their own natural order. */}
+          {(lens === "genre" || !lens) && R.GENRE_FLOW && (
+            <span className="sh-labelseg-wrap">
+              <span className="r-mono sh-labelseg-cap">ranked by</span>
+              <select className="sh-gwin" value={gWindow} onChange={e => { setGWindow(e.target.value === "all" || e.target.value === "r12" ? e.target.value : +e.target.value); setSplit({}); }}
+                aria-label="rank genre shelves by period">
+                <option value="r12">last 12 months</option>
+                {(R.GENRE_FLOW.years || []).slice().reverse().map(y => <option key={y.year} value={y.year}>{y.year}</option>)}
+                <option value="all">all time</option>
+              </select>
+            </span>
+          )}
           {lens === "labels" && (
             <span className="sh-labelseg-wrap">
               <span className="r-mono sh-labelseg-cap">group</span>
@@ -740,6 +772,11 @@ function ShelvesView({ go, seed }) {
            pill; on a narrow lens bar it wraps as one unit onto its own line (~344px). */
         .sh-labelseg-wrap { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; flex: none; }
         .sh-labelseg-cap { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+        /* period picker for the genre shelves — a select rather than chips because the year list
+           runs to seventeen entries and would swamp the lens row */
+        .sh-gwin { font-family: var(--mono); font-size: 10px; letter-spacing: .04em; padding: 4px 8px;
+          border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-soft); cursor: pointer; }
+        .sh-gwin:hover { border-color: var(--ink-faint); color: var(--ink); }
         .sh-labelseg { flex: none; }
         @media (max-width: 560px) {
           /* claim a full row so the toggle never gets buried mid-line among the lens pills */
