@@ -47,5 +47,21 @@ for (const [f, min] of [["media-index.js", 3000], ["track-audio.js", 1000], ["tr
   }
 }
 
+// ─── stray backticks inside <style> template literals ───
+// This has now bitten twice, and Babel cannot catch it: a backtick in a CSS comment closes the
+// template early and everything after it still parses as valid JavaScript, so the file compiles
+// clean and throws at runtime instead. Gigs shipped broken this way (2026-08-20, "title is not
+// defined" — a comment had written .r-title .dot wrapped in backticks). Cheap to check, so check it.
+for (const f of fs.readdirSync(__dirname).filter(n => n.endsWith(".jsx"))) {
+  const lines = fs.readFileSync(here(f), "utf8").split("\n");
+  let inStyle = false; const hits = [];
+  lines.forEach((ln, i) => {
+    if (/<style>\{`/.test(ln)) { inStyle = true; return; }
+    if (inStyle && /`\}<\/style>/.test(ln)) { inStyle = false; return; }
+    if (inStyle && ln.includes("`")) hits.push(i + 1);
+  });
+  ok(hits.length === 0, f + " — no stray backticks in <style> blocks" + (hits.length ? " (lines " + hits.join(", ") + ")" : ""));
+}
+
 console.log(failed ? `\nSMOKE FAILED: ${failed} check(s)` : "\nsmoke: all green");
 process.exit(failed ? 1 : 0);
