@@ -216,15 +216,21 @@ function MiniArtistView({ a, go }) {
     load("artist-detail.js", "ROTATION_ADETAIL", "rotation-adetail-js");
     if (window.ROTATION_PREVIEWS && window.ROTATION_PREVIEW_FALLBACK && window.ROTATION_ADETAIL) setPrevReady(true);
   }, [a.id]);
+  // {key, title} — see the twin in the artist page below. Falls through to the most-played track
+  // when neither preview table has it, so ShNeedle can attempt a track-verified lookup instead of
+  // the header simply having no needle.
   const needleKey = React.useMemo(() => {
     const P = window.ROTATION_PREVIEWS, F = window.ROTATION_PREVIEW_FALLBACK, D = window.ROTATION_ADETAIL;
     const rec = D && D.d && D.d[a.id];
-    if ((!P && !F) || !rec || !rec.t || !rec.t.length) return null;
-    for (const [ti] of rec.t.slice().sort((x, y) => (y[1] || 0) - (x[1] || 0))) {
-      const k = R.slug(a.name) + "~" + R.slug(D.names[ti]);
-      if ((P && P[k]) || (F && F[k])) return k;
+    if (!rec || !rec.t || !rec.t.length) return null;
+    const ranked = rec.t.slice().sort((x, y) => (y[1] || 0) - (x[1] || 0));
+    for (const [ti] of ranked) {
+      const title = D.names[ti];
+      const k = R.slug(a.name) + "~" + R.slug(title);
+      if ((P && P[k]) || (F && F[k])) return { key: k, title };
     }
-    return null;
+    const topTitle = D.names[ranked[0][0]];
+    return topTitle ? { key: R.slug(a.name) + "~" + R.slug(topTitle), title: topTitle } : null;
   }, [a.id, prevReady]);
 
   const sparkHas = !!(spark && spark.some(v => v > 0));
@@ -246,7 +252,7 @@ function MiniArtistView({ a, go }) {
           {subs.slice(0, 6).map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)}>{s}</span>)}
         </div>
         <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap", alignItems: "center" }}>
-          {needleKey && <ShNeedle trackKey={needleKey} artist={a.name} hue={a.hue} />}
+          {needleKey && <ShNeedle trackKey={needleKey.key} track={needleKey.title} artist={a.name} hue={a.hue} />}
           {[["last.fm", `https://www.last.fm/music/${encodeURIComponent(a.name)}`], ["Spotify", `https://open.spotify.com/search/${encodeURIComponent(a.name)}`]].map(([l, h]) =>
             <a key={l} href={h} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: ".08em", textTransform: "uppercase", padding: "6px 11px", borderRadius: 999, border: "1px solid var(--rule)", color: "var(--ink-soft)", textDecoration: "none" }}>{l} ↗</a>)}
         </div>
@@ -1494,14 +1500,21 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   // keyed artistSlug~trackSlug). Lesser-known artists (e.g. Fractalize) whose only preview lives in
   // the fallback table now get a needle too. Fall through to the next track if the top one has
   // neither. prevReady re-renders on load. ShNeedle resolves whichever source the key carries.
+  // Returns {key, title}: the title lets ShNeedle verify a runtime iTunes result really is this
+  // song. If neither table has anything we now fall through to the most-played track anyway —
+  // ShNeedle will try a track-verified lookup and simply render nothing if it comes back empty.
+  // That is what closes the gap Fuad hit: Model/Actriz had a needle on its album and none on the
+  // artist, purely because the album had a source the artist page could not reach.
   const needleKey = (() => {
     const P = window.ROTATION_PREVIEWS, F = window.ROTATION_PREVIEW_FALLBACK;
-    if ((!P && !F) || !tracks.length) return null;
-    for (const tr of tracks.slice().sort((x, y) => y.plays - x.plays)) {
+    if (!tracks.length) return null;
+    const ranked = tracks.slice().sort((x, y) => y.plays - x.plays);
+    for (const tr of ranked) {
       const k = R.slug(a.name) + "~" + R.slug(tr.title);
-      if ((P && P[k]) || (F && F[k])) return k;
+      if ((P && P[k]) || (F && F[k])) return { key: k, title: tr.title };
     }
-    return null;
+    const top = ranked[0];
+    return top ? { key: R.slug(a.name) + "~" + R.slug(top.title), title: top.title } : null;
   })();
   // Search ALL real concerts (not just the chosen city) for this artist's upcoming dates.
   const upcoming = Object.values(R.CONCERTS || {}).flat().filter(g => g.artistId === a.id)
@@ -1545,7 +1558,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             </div>
           )}
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap", alignItems: "center" }}>
-            {needleKey && <ShNeedle trackKey={needleKey} artist={a.name} hue={a.hue} />}
+            {needleKey && <ShNeedle trackKey={needleKey.key} track={needleKey.title} artist={a.name} hue={a.hue} />}
             <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
@@ -2733,7 +2746,7 @@ function AlbumView({ id, go }) {
           {subs.length > 0 && <div className="alb-chipscroll" style={{ marginTop: 12 }}>
             {subs.map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)}>{s}</span>)}</div>}
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap", alignItems: "center" }}>
-            {standout && <ShNeedle trackKey={R.slug(data.artist) + "~" + R.slug(standout.title)} artist={data.artist} album={data.title} hue={hue} />}
+            {standout && <ShNeedle trackKey={R.slug(data.artist) + "~" + R.slug(standout.title)} artist={data.artist} album={data.title} track={standout.title} hue={hue} />}
             <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(data.artist)}/${encodeURIComponent(data.title)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(data.artist + " " + data.title)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
@@ -2988,12 +3001,21 @@ function AlbumView({ id, go }) {
 // param is constant across the whole dump). When the dump has no Spotify preview (e.g. much of
 // NIN's catalog), falls back to a build-time VETTED iTunes preview URL keyed by track id
 // (preview-fallback.js — window.ROTATION_PREVIEW_FALLBACK). That table was human-adjudicated so it
-// never serves the wrong version (remix/dub/live); there is NO runtime iTunes search / guessing.
-// If neither source has the track, the button hides itself. One Audio element, toggled; cleaned on nav.
+// never serves the wrong version (remix/dub/live).
+// 2026-08-19: a THIRD source was added — the same track-verified runtime iTunes lookup the album
+// and artist needles use. The old comment here said "NO runtime search / guessing", and the reason
+// was sound: an unverified search can hand you a remix or a live cut. But the album needle had been
+// doing exactly that search all along, which is why Model/Actriz's Pirouette had a needle while
+// Poppy's own page had none. Requiring the TRACK NAME to match removes the guessing, so the same
+// source can now serve all three pages instead of only one.
+// If no source has the track, the button hides itself. One Audio element, toggled; cleaned on nav.
 const PREVIEW_CID = "65b708073fc0480ea92a077233ca87bd";
 function PreviewBtn({ id, hue, artist, title }) {
   const [playing, setPlaying] = React.useState(false);
   const ref = React.useRef(null);
+  const hash = window.ROTATION_PREVIEWS && window.ROTATION_PREVIEWS[id];
+  const fallback = window.ROTATION_PREVIEW_FALLBACK && window.ROTATION_PREVIEW_FALLBACK[id];
+  const [itUrl, setItUrl] = React.useState(null);
   React.useEffect(() => {
     // On id change (navigation) or unmount: stop playback and reset UI state.
     return () => {
@@ -3001,9 +3023,24 @@ function PreviewBtn({ id, hue, artist, title }) {
       setPlaying(false);
     };
   }, [id]);
-  const hash = window.ROTATION_PREVIEWS && window.ROTATION_PREVIEWS[id];
-  const fallback = window.ROTATION_PREVIEW_FALLBACK && window.ROTATION_PREVIEW_FALLBACK[id];
-  const src = hash ? `https://p.scdn.co/mp3-preview/${hash}?cid=${PREVIEW_CID}` : (fallback || null);
+  React.useEffect(() => {
+    setItUrl(null);
+    if (hash || fallback || !artist || !title) return;
+    let dead = false;
+    const nrm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\(.*?\)|\[.*?\]/g, "").replace(/[^a-z0-9぀-ゟ゠-ヿ一-鿿]/gu, "");
+    fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artist + " " + title)}&media=music&entity=song&limit=12`)
+      .then(r => r.json())
+      .then(j => {
+        if (dead) return;
+        const aN = nrm(artist), tN = nrm(title);
+        const hit = (j.results || []).find(r => r.previewUrl && nrm(r.trackName) === tN &&
+          (nrm(r.artistName).includes(aN) || aN.includes(nrm(r.artistName))));
+        setItUrl(hit ? hit.previewUrl : null);
+      })
+      .catch(() => { if (!dead) setItUrl(null); });
+    return () => { dead = true; };
+  }, [id, hash, fallback, artist, title]);
+  const src = hash ? `https://p.scdn.co/mp3-preview/${hash}?cid=${PREVIEW_CID}` : (fallback || itUrl || null);
   if (!src) return null;
   const toggle = () => {
     if (ref.current && !ref.current.paused) { ref.current.pause(); setPlaying(false); return; }
