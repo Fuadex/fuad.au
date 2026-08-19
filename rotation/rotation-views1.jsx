@@ -802,14 +802,12 @@ function OverviewView({ t, go, restReady, seed }) {
             per-year; the drill needs the rest bundle, hence restReady (Fuad 2026-08-17). */}
         <OvDecadesCard R={R} go={go} restReady={restReady} fStats={fStats} />
 
-        {/* Right now — the live insight feed, promoted directly under the map (Fuad 2026-07-06),
-            paired with emotional weather on its row (was full-width lower down). */}
-        <div className="r-card ov-insights" style={{ gridColumn: "span 8", padding: "8px 12px" }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 5 }}><span className="lbl"><b>Right now</b></span>
-            <span className="meta">what's moving</span></div>
-          <div className="ov-insgrid" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 8 }}>
-            <InsightRow go={go} n={4} />
-          </div>
+        {/* The "Right now" wrapper card is gone (Fuad 2026-08-20) — a card whose only content was
+            four more cards, so it charged a header, a border and two lots of padding for nothing.
+            The insight cards now sit straight on the grid. .ov-insgrid keeps the class so its
+            existing column rules still apply; it is a bare grid rather than an .r-card. */}
+        <div className="ov-insgrid" style={{ gridColumn: "span 8", display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 8 }}>
+          <InsightRow go={go} n={4} />
         </div>
 
         {/* emotional weather — last-90d sounds/reads only now (the decades strip moved up to the
@@ -889,12 +887,17 @@ function OverviewView({ t, go, restReady, seed }) {
              span the weather card uses on the row below) — Fuad 2026-08-17. */
           .ov-story    { grid-column: 1 / span 8 !important; }
           .ov-decades  { grid-column: 9 / -1 !important; }
-          /* Right-now row: insights left (8) + emotional weather right (9-12). Both are short now
-             (decades left the weather card), so the row sits lean. */
-          .ov-insights { grid-column: 1 / span 8 !important; }
+          /* Insight cards left (8) + emotional weather right (9-12), one row. The .ov-insights
+             wrapper card is gone, so .ov-insgrid takes the span directly. */
+          .ov-insgrid  { grid-column: 1 / span 8 !important; }
           .ov-weather  { grid-column: 9 / -1 !important; }
-          /* insights module is full-width within its 8 cols → its four cards run in one rank */
+          /* four cards across the eight columns → one rank */
           .ov-insgrid > .r-card { grid-column: span 3 !important; }
+          /* Cap the row (Fuad 2026-08-20). Grid rows size to their tallest item, so one long
+             insight was setting the height for the weather card beside it and the whole band read
+             taller than it needed to. Capping the cards themselves rather than the row keeps the
+             weather card free to be short. */
+          .ov-insgrid > .r-card, .ov-weather { max-height: 132px; overflow: hidden; }
         }
         .ov-calsel { width: 100%; background: var(--bg-3); border: 1px solid var(--rule); color: var(--ink);
           border-radius: 6px; padding: 5px 7px; font-family: var(--mono); font-size: 10px; }
