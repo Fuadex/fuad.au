@@ -271,10 +271,31 @@ which is precisely where fluent prose invents. **No artist read merges unverifie
    years" is three claims, not one, and they fail independently.
 2. **Swarm.** Sonnet verifiers, batched by artist, one verdict per claim against the open web:
    CONFIRMED / WRONG / UNVERIFIABLE, with a correction where it is wrong.
-3. **Opus adjudication.** The verifier's confidence is not the verdict — assume overconfidence
-   in both directions (`feedback_qc_print_protocol`). A verifier arguing from general knowledge
-   loses to a specific source; a verifier that found no source has not proven a negative.
-4. **Print only the genuine unsures.** Confirmations do not need Fuad's attention.
+3. **Second pass: check the claims yourself** (Fuad 2026-08-19, binding). Not "adjudicate the
+   verifier" — go and look. Read the swarm's findings, then independently verify the ones that
+   are load-bearing, surprising, or numeric. The verifier's confidence is not evidence, in
+   either direction: one arguing from general knowledge loses to a specific source, and one
+   that found no source has not proven a negative. This pass is where the Monet UV claim would
+   have died before reaching Fuad instead of after.
+4. **Loop if the pass changed anything** (Fuad 2026-08-19). A correction is new text, and new
+   text has not been checked. So step 3 runs again over whatever step 3 just altered, and again
+   after that, until a pass produces no changes. Two rounds is normal; a claim still moving on
+   the third is telling you it is contested, and contested claims get cut rather than settled
+   by another lap.
+
+   This is not theoretical. Round one corrected Monet's cataracts to a UV story that collapsed
+   under Fuad's question. Round two — checking the corrections rather than the drafts —
+   overturned two more that the swarm had produced: Turner's bequest condition was "a gallery
+   be built to house them", not "they stay together", and attributing the Schloss Immendorf
+   fire to the SS is "believed", not established. Three of the bad facts in this batch came out
+   of the FACT-CHECKING, not the drafting.
+
+5. **Print only the genuine unsures.** Confirmations do not need Fuad's attention.
+
+**Known limit of this pass.** It is only as good as the choice of what to re-check — the
+load-bearing, the surprising and the numeric get looked at. A claim that is both wrong and
+boring can still survive. Round-tripping every sentence is the only complete answer and is not
+worth its cost; knowing that is the point of writing the limit down.
 
 **Failure modes, ranked by how plausible they look**
 
