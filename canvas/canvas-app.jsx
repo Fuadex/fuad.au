@@ -1954,25 +1954,31 @@ function ArtistView({ artistId, go }) {
   const liked = works.filter(w => w.liked).length;
   return (
     <div className="cv-artist">
+      {/* COMPRESSED to the museum header's grammar (Fuad 2026-08-19). It used to stack four
+          blocks — dates, movements, stats — each with its own margin, so the header ran deep
+          before a single work appeared. Now: title, ONE sub line, and a row of chips, with the
+          portrait moved right and bottom-aligned like the museum postcard. Movements stay
+          clickable, as chips rather than a prose run. */}
       <div className="cv-a-head">
-        {AD2.image && <img className="cv-a-face" src={AD2.image} alt={name} />}
-        <div>
+        <div className="cv-a-head-main">
           <h1 className="cv-a-name">{name}</h1>
-          <div className="cv-a-meta">{AD2.born ? `${AD2.born}–${AD2.died || ""}` : ""}{AD2.desc ? ` · ${AD2.desc.replace(/\s*\(\d{4}[–-]?\d{0,4}\)$/, "")}` : ""}</div>
-          {movements.length > 0 && (
-            <div className="cv-a-mov">
-              {movements.map((m, i) => (
-                <React.Fragment key={m}>
-                  {i > 0 ? " · " : ""}
-                  <span className="cv-a-movlink" onClick={() => go("wall", movSlug(m))}
-                    title={`see every work on the wall by artists working in ${m}`}>{m}</span>
-                </React.Fragment>
-              ))}
-            </div>
-          )}
-          <div className="cv-a-stats">{works.length} in your canon{floored ? ` · ★ ${floored} floored` : ""}{liked ? ` · ♡ ${liked} liked` : ""}
-            {venues.length ? ` · met at ${venues.map(v => v.name.replace(/\s*\(.*\)$/, "")).join(", ")}` : ""}</div>
+          <div className="cv-a-meta">{[
+            AD2.born ? `${AD2.born}–${AD2.died || ""}` : "",
+            AD2.desc ? AD2.desc.replace(/\s*\(\d{4}[–-]?\d{0,4}\)$/, "") : "",
+          ].filter(Boolean).join(" · ")}</div>
+          <div className="cv-a-chips">
+            {movements.map(m => (
+              <button key={m} className="cv-a-chip cv-a-chip-mov" onClick={() => go("wall", movSlug(m))}
+                title={`see every work on the wall by artists working in ${m}`}>{m}</button>
+            ))}
+            <span className="cv-a-chip">{works.length} in your canon</span>
+            {floored > 0 && <span className="cv-a-chip">★ {floored} floored</span>}
+            {liked > 0 && <span className="cv-a-chip">♡ {liked} liked</span>}
+            {venues.length > 0 && <span className="cv-a-chip" title={venues.map(v => v.name).join(", ")}>
+              met at {venues.length === 1 ? venues[0].name.replace(/\s*\(.*\)$/, "") : `${venues.length} museums`}</span>}
+          </div>
         </div>
+        {AD2.image && <img className="cv-a-face" src={AD2.image} alt={name} />}
       </div>
       <div className="cv-a-secl">In your canon</div>
       {/* reveal-chunked wall (Fuad 2026-07-25): prolific artists mount their whole canon on paint otherwise */}

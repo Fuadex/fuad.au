@@ -2223,22 +2223,74 @@ const TONIGHT_BUDGETS = [
 // Maps rotation's Sound-Map family names (see build-data.js FAMILIES) to culture
 // badge keys (see HIGHLIGHTS above). Only real keys on both sides — a listening week
 // nudges the deal toward titles whose badges share a "tone" with what's been spinning.
+// REKEYED 2026-08-19. Every key here had drifted out of sync with rotation's family table —
+// 'Nu-metal / alt-metal', 'Punk / garage', 'Shoegaze / noise' and the rest no longer exist — so
+// NOTHING matched and the crossover contributed exactly zero to every pick, for however long.
+// It failed silently because an unmatched family simply weights no badges: no error, no empty
+// state, just a hook quietly doing nothing. Verified against R.FAMILIES; if that table is renamed
+// again (it was, on 2026-08-12 and 2026-08-19), this map has to move with it.
 const FAMILY_TONE = {
-  'Nu-metal / alt-metal':         ['impact', 'thrilling', 'intense', 'style'],
-  'Metalcore / -core':            ['impact', 'intense', 'thrilling', 'horrifying'],
-  'Industrial':                   ['intense', 'horrifying', 'atmosphere', 'style'],
-  'Thrash / heavy':               ['impact', 'thrilling', 'intense'],
-  'Prog / alt rock':              ['mindbending', 'cerebral', 'singular', 'slowburn'],
-  'Japanese':                     ['visuals', 'style', 'singular', 'atmosphere'],
-  'Electronic / DnB':             ['ahead', 'singular', 'thrilling', 'style'],
-  'Digital hardcore / hyperpop':  ['absurdist', 'singular', 'ahead', 'intense'],
-  'Hip-hop':                      ['social-xray', 'satire', 'writing', 'style'],
-  'Punk / garage':                ['satire', 'impact', 'absurdist', 'thrilling'],
-  'Shoegaze / noise':             ['atmosphere', 'haunting', 'slowburn', 'devastating'],
-  'Pop / indie':                  ['gem', 'gentle', 'funny', 'bittersweet'],
-  'Jazz':                         ['formal-exec', 'style', 'atmosphere', 'gentle'],
-  'Classical / Score':            ['score', 'slowburn', 'formal-exec', 'cerebral'],
-  'Other':                        [],
+  'Thrash/Death':               ['impact', 'thrilling', 'intense', 'horrifying'],
+  'Heavy/Doom':                 ['impact', 'intense', 'slowburn', 'atmosphere'],
+  'Metalcore/Nu':               ['impact', 'intense', 'thrilling', 'horrifying'],
+  'Punk/Hardcore':              ['satire', 'impact', 'absurdist', 'thrilling'],
+  'Prog':                       ['mindbending', 'cerebral', 'singular', 'slowburn'],
+  'Shoegaze/Grunge':            ['atmosphere', 'haunting', 'slowburn', 'devastating'],
+  'Alternative/Indie':          ['gem', 'bittersweet', 'writing', 'singular'],
+  'Industrial/Noise/Hyperpop':  ['intense', 'horrifying', 'ahead', 'absurdist'],
+  'Electronic/DnB':             ['ahead', 'singular', 'thrilling', 'style'],
+  'Hip-Hop/Rap':                ['social-xray', 'satire', 'writing', 'style'],
+  'Pop':                        ['gem', 'gentle', 'funny', 'bittersweet'],
+  'Jazz/Funk':                  ['formal-exec', 'style', 'atmosphere', 'gentle'],
+  'Classical':                  ['formal-exec', 'slowburn', 'cerebral', 'score'],
+  'Score':                      ['score', 'atmosphere', 'slowburn', 'visuals'],
+  'Other':                      [],
+};
+
+// Subgenre tags — the finer instrument, matched by SUBSTRING so "post-punk revival" catches
+// 'post-punk' and "melodic death metal" catches 'death metal'. Keys are deliberately short.
+const TAG_TONE = {
+  'post-punk':        ['style', 'bittersweet', 'atmosphere'],
+  'no wave':          ['absurdist', 'ahead', 'singular'],
+  'noise':            ['intense', 'horrifying', 'ahead'],
+  'stoner':           ['slowburn', 'atmosphere', 'style'],
+  'desert rock':      ['slowburn', 'atmosphere'],
+  'doom':             ['slowburn', 'devastating', 'horrifying'],
+  'shoegaze':         ['atmosphere', 'haunting', 'slowburn'],
+  'dream pop':        ['atmosphere', 'gentle', 'bittersweet'],
+  'hyperpop':         ['absurdist', 'ahead', 'singular'],
+  'digital hardcore': ['intense', 'absurdist', 'ahead'],
+  'breakcore':        ['intense', 'absurdist'],
+  'industrial':       ['intense', 'horrifying', 'style'],
+  'ebm':              ['intense', 'style'],
+  'darkwave':         ['haunting', 'atmosphere', 'style'],
+  'goth':             ['haunting', 'horrifying', 'style'],
+  'ambient':          ['atmosphere', 'slowburn', 'gentle'],
+  'drone':            ['slowburn', 'atmosphere', 'devastating'],
+  'jazz':             ['formal-exec', 'style', 'gentle'],
+  'disco':            ['funny', 'style', 'gem'],
+  'house':            ['style', 'thrilling'],
+  'techno':           ['intense', 'ahead', 'style'],
+  'drum and bass':    ['thrilling', 'ahead', 'intense'],
+  'emo':              ['bittersweet', 'devastating', 'writing'],
+  'screamo':          ['intense', 'devastating'],
+  'hardcore':         ['impact', 'intense', 'thrilling'],
+  'grindcore':        ['impact', 'intense', 'horrifying'],
+  'black metal':      ['horrifying', 'atmosphere', 'intense'],
+  'death metal':      ['horrifying', 'impact', 'intense'],
+  'sludge':           ['slowburn', 'devastating', 'intense'],
+  'math rock':        ['cerebral', 'mindbending', 'singular'],
+  'progressive':      ['mindbending', 'cerebral', 'slowburn'],
+  'psychedelic':      ['mindbending', 'visuals', 'singular'],
+  'folk':             ['gentle', 'bittersweet', 'writing'],
+  'singer-songwriter':['writing', 'bittersweet', 'gentle'],
+  'soul':             ['gentle', 'bittersweet', 'style'],
+  'funk':             ['style', 'funny', 'gem'],
+  'hip hop':          ['social-xray', 'writing', 'style'],
+  'japanese':         ['visuals', 'style', 'singular'],
+  'city pop':         ['style', 'gentle', 'bittersweet'],
+  'classical':        ['formal-exec', 'cerebral', 'slowburn'],
+  'soundtrack':       ['score', 'atmosphere', 'visuals'],
 };
 
 // Reads window.ROTATION_PULSE (lazy-injected) into a tone model:
@@ -2252,8 +2304,21 @@ function buildWeekTone(pulse) {
   w.families.forEach(f => {
     (FAMILY_TONE[f.name] || []).forEach(k => { toneWeight[k] = (toneWeight[k] || 0) + f.share; });
   });
+  // SUBGENRE TAGS on top of families (Fuad 2026-08-19: "consider tags and subtags to widen the
+  // search"). Fifteen families is a blunt instrument — "Alternative/Indie" says far less about a
+  // mood than "shoegaze" or "no wave". pulse.js now carries the window's top last.fm tags, matched
+  // by substring so "post-punk revival" still catches post-punk. Weighted at half a family's
+  // share: a tag is a real signal but a narrower one, and several tags of the same family would
+  // otherwise stack up and drown the families themselves.
+  (w.tags || []).forEach(t => {
+    const name = String(t.name || "").toLowerCase();
+    for (const key in TAG_TONE) {
+      if (!name.includes(key)) continue;
+      TAG_TONE[key].forEach(k => { toneWeight[k] = (toneWeight[k] || 0) + t.share * 0.5; });
+    }
+  });
   const top = w.families.slice(0, 3);
-  return { families: w.families, top, toneWeight };
+  return { families: w.families, top, tags: w.tags || [], toneWeight };
 }
 
 // Affinity of an item to the week = summed share of families whose tone keys hit its badges.
