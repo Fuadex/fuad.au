@@ -229,6 +229,17 @@ a { color: inherit; }
 .cv-mus-read-pane { margin: 22px auto 0; max-width: 1200px; }
 .cv-mus-read-pane .cv-r-read-head { margin-bottom: 6px; }   /* breathing room between the tier buttons and the interior photo */
 .cv-mus-wall { padding: 12px 0 0; column-count: 6; }
+/* The encounters heading + filters as a centred island INSIDE the masonry (Fuad 2026-08-20).
+   column-span:all breaks the column flow, draws full width, and lets the works resume beneath —
+   which is the only way to get "works filling the space around it" out of a multi-column wall.
+   break-after:avoid keeps a card from being orphaned tight under it. */
+.cv-mus-lead { column-span: all; break-after: avoid; text-align: center;
+  margin: 0 auto 14px; padding: 14px 18px; max-width: 680px;
+  background: var(--plaster); border: 1px solid var(--rule); border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(40,28,14,.06); }
+.cv-mus-lead-l { font: 600 10.5px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 10px; }
+.cv-mus-lead .cv-mus-filters { justify-content: center; margin: 0; }
 @media (max-width: 1500px) { .cv-mus-wall { column-count: 5; } }
 @media (max-width: 1200px) { .cv-mus-wall { column-count: 4; } }
 @media (max-width: 900px)  { .cv-mus-wall { column-count: 3; } }
@@ -371,22 +382,29 @@ a { color: inherit; }
 /* ——— artist pages (charcoal editorial, mockup 1c) ——— */
 .cv-artist { max-width: none; padding: 26px 34px 60px; }
 /* same softening as .cv-mus-head — see the note there */
-.cv-a-head { display: flex; gap: 22px; align-items: flex-start; background: var(--plaster); color: var(--ink-soft); border: 1px solid var(--rule); box-shadow: 0 1px 3px rgba(40,28,14,.06); border-radius: 10px; padding: 26px 30px; }
+.cv-a-head { display: flex; gap: 22px; align-items: flex-start; background: var(--plaster); color: var(--ink-soft); border: 1px solid var(--rule); box-shadow: 0 1px 3px rgba(40,28,14,.06); border-radius: 10px; padding: 20px 24px; }
 .cv-a-head-main { flex: 1 1 auto; min-width: 0; }   /* text column takes the remaining width; min-width:0 lets long meta wrap */
 /* portrait moved to the RIGHT and bottom-aligned, mirroring the museum postcard */
-.cv-a-face { flex: 0 0 auto; align-self: flex-end; width: 92px; height: 92px; object-fit: cover; border-radius: 6px; filter: grayscale(.35); border: 1px solid var(--rule); }
+.cv-a-face { flex: 0 0 auto; align-self: flex-end; width: min(170px, 24%); height: auto; aspect-ratio: 3 / 4;
+  object-fit: cover; object-position: center top; border-radius: 6px; filter: grayscale(.35); border: 1px solid var(--rule);
+  box-shadow: 0 4px 14px rgba(40,28,14,.16), inset 0 0 0 4px #fbf6ec, 0 0 0 5px rgba(58,47,34,.14); }
 /* fact chips — same grammar as .cv-mus-chip so the two headers read as one family */
 /* the artist read — serif body under the chips, held to a comfortable measure so it does
    not run the full width of a wide header */
-.cv-a-read { font: 400 14.5px/1.62 var(--serif); color: var(--ink-soft); margin: 14px 0 0; max-width: 68ch; }
-.cv-a-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 12px; }
+.cv-a-read { font: 400 13.5px/1.55 var(--serif); color: var(--ink-soft); margin: 11px 0 0; max-width: 66ch; }
+.cv-a-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px; }
 .cv-a-chip { font: 500 10px/1 var(--mono); letter-spacing: .05em; color: var(--ink-soft); background: rgba(58,47,34,.05); border: 1px solid var(--rule); border-radius: 999px; padding: 6px 11px; }
 .cv-a-chip-mov { cursor: pointer; color: var(--accent); font-family: var(--serif); font-style: italic; font-size: 11.5px; letter-spacing: 0; }
 .cv-a-chip-mov:hover { border-color: var(--accent-soft); background: oklch(0.66 0.14 46 / .08); }
-.cv-a-name { font: 600 32px/1.1 var(--serif); margin: 0; color: var(--ink); }
-.cv-a-meta { font: 500 11px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin-top: 7px; }
+.cv-a-name { font: 600 28px/1.1 var(--serif); margin: 0; color: var(--ink); }
+.cv-a-meta { font: 500 10.5px/1.5 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin-top: 5px; }
 .cv-a-secl { font: 600 10.5px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin: 26px 0 12px; }
 .cv-a-wall { padding: 0; column-count: 6; }
+/* stack on narrow screens, exactly as .cv-mus-head does — the portrait leads, then the text */
+@media (max-width: 620px) {
+  .cv-a-head { flex-direction: column-reverse; gap: 14px; padding: 18px 16px; }
+  .cv-a-face { width: min(180px, 55vw); align-self: flex-start; }
+}
 @media (max-width: 1500px) { .cv-a-wall { column-count: 5; } }
 @media (max-width: 1200px) { .cv-a-wall { column-count: 4; } }
 @media (max-width: 900px)  { .cv-a-wall { column-count: 3; } }

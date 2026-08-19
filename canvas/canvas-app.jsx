@@ -1624,9 +1624,14 @@ function MuseumView({ museumId, go }) {
   // reusable card wall (uses the home Card so ✦ read markers + floored ★ + conf styling match).
   // Reveal-chunked (Fuad 2026-07-25): only the first ~30 cards mount up-front; the rest render as the
   // wall scrolls into view, so a 200-work venue no longer builds its whole masonry on first paint.
-  const Wall = ({ works }) => (
+  const Wall = ({ works, lead }) => (
     <RevealChunks items={works} initial={30} step={30} render={(slice) => (
       <div className="cv-wall cv-mus-wall">
+        {/* `lead` rides INSIDE the masonry as a column-span:all island, so the works flow around and
+            beneath it rather than being pushed down by a separate block above it (Fuad 2026-08-20).
+            Multi-column is what makes this possible — column-span is the one way to interrupt a
+            column flow and have it resume underneath. */}
+        {lead && <div className="cv-mus-lead">{lead}</div>}
         {slice.map(w => (
           <div className="cv-mus-cardwrap" key={w.id}>
             {hasRead(w) && <span className="cv-mus-read" title="has a read / study">✦</span>}
@@ -1711,15 +1716,35 @@ function MuseumView({ museumId, go }) {
         const shown = applyMusFilt(encounters);
         return (
           <React.Fragment>
-            <div className="cv-a-secl">The encounters — what I met here</div>
-            <div className="cv-mus-filters">
-              {MUS_FILTERS.map(([k, label]) => (
-                <button key={k} className="cv-mus-filt" data-on={musFilt === k}
-                  onClick={() => setMusFilt(k)}>{label}</button>
-              ))}
-              {musFilt !== "all" && <span className="cv-mus-filt-n">{shown.length} of {encounters.length}</span>}
-            </div>
-            {shown.length ? <Wall works={shown} /> : <p className="cv-mus-filt-none">Nothing here matches that.</p>}
+            {/* The heading and its filters are one centred island at the top of the wall now, rather
+                than a heading, then a filter row, then the works (Fuad 2026-08-20, trying it out).
+                Passed as `lead` so it lives inside the masonry and the works close around it. */}
+            {shown.length ? (
+              <Wall works={shown} lead={
+                <React.Fragment>
+                  <div className="cv-mus-lead-l">The encounters — what I met here</div>
+                  <div className="cv-mus-filters">
+                    {MUS_FILTERS.map(([k, label]) => (
+                      <button key={k} className="cv-mus-filt" data-on={musFilt === k}
+                        onClick={() => setMusFilt(k)}>{label}</button>
+                    ))}
+                    {musFilt !== "all" && <span className="cv-mus-filt-n">{shown.length} of {encounters.length}</span>}
+                  </div>
+                </React.Fragment>
+              } />
+            ) : (
+              <React.Fragment>
+                <div className="cv-a-secl">The encounters — what I met here</div>
+                <div className="cv-mus-filters">
+                  {MUS_FILTERS.map(([k, label]) => (
+                    <button key={k} className="cv-mus-filt" data-on={musFilt === k}
+                      onClick={() => setMusFilt(k)}>{label}</button>
+                  ))}
+                  <span className="cv-mus-filt-n">{shown.length} of {encounters.length}</span>
+                </div>
+                <p className="cv-mus-filt-none">Nothing here matches that.</p>
+              </React.Fragment>
+            )}
           </React.Fragment>
         );
       })()}
