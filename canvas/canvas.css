@@ -322,6 +322,9 @@ a { color: inherit; }
 .cv-filters { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 16px 34px 0; }
 /* hairline between the two filter axes — marks on the left, encounter status on the right, so the
    row reads as two groups rather than six equal options (2026-08-20) */
+/* today's hang leads the filter row and is deliberately warmer than a filter chip — it swaps the
+   wall's whole contents rather than trimming them */
+.cv-hang-chip[data-on="true"] { background: var(--accent) !important; border-color: var(--accent) !important; color: var(--paper) !important; }
 .cv-filt-div { width: 1px; align-self: stretch; min-height: 18px; background: var(--rule); margin: 0 4px; }
 /* SPECTRUM TARGET — lives INSIDE .cv-filters now (Fuad 2026-08-20: it read as a band bolted onto
    the collage, and sat out of line with everything else). It inherits the row's chip shape and

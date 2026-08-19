@@ -411,6 +411,10 @@ function Wall({ go, styleIds }) {
   const [media, setMedia] = useState([]);              // selected medium buckets, OR'd like styles
   const [pick, setPick] = useState("");                // colour-sort target ("" = hue ramp)
   const [eras, setEras] = useState(() => new Set());   // era chips — OR within, AND with the rest
+  // TODAY'S HANG (Fuad 2026-08-20): the Wall can serve what Home serves. Not a filter and not a
+  // sort — homeHang picks a set AND orders it, including works pinned to always appear, so it is
+  // applied as a whole rather than expressed in chips.
+  const [hang, setHang] = useState(false);
   const toggleEra = (k) => setEras(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; });
   // The full style list — order and slugs are stable so a URL like #/wall/impressionism keeps
   // working whatever is filtered. Only the NUMBERS react; see `movCounts` below.
@@ -424,7 +428,7 @@ function Wall({ go, styleIds }) {
   }, [styleIds, movs]);
   const setSel = (labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null);
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, pick]);
+  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, pick, hang]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -434,7 +438,6 @@ function Wall({ go, styleIds }) {
     let list = all;
     if (marks.size) list = list.filter(w => [...marks].some(k => markPass(w, k)));
     if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
-    if (eras.size) list = list.filter(w => [...eras].some(k => eraPass(w, k)));
     if (eras.size) list = list.filter(w => [...eras].some(k => eraPass(w, k)));
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
     return list;
@@ -482,6 +485,7 @@ function Wall({ go, styleIds }) {
     let list = all;
     if (marks.size) list = list.filter(w => [...marks].some(k => markPass(w, k)));
     if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
+    if (eras.size) list = list.filter(w => [...eras].some(k => eraPass(w, k)));
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
     // styles are OR'd — picking Impressionism + Fauvism widens, it doesn't narrow to the overlap
     if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
@@ -490,6 +494,13 @@ function Wall({ go, styleIds }) {
     // and quietly sweeping it into "paintings" is the guess this pipeline refuses to make.
     if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
     const arr = [...list];
+    // TODAY'S HANG short-circuits the sort: its order IS the content — pinned leads first, then the
+    // day-seeded spread. The chips still narrow it, so "today's hang, 1890s only" works, but nothing
+    // reorders it, because any reorder would throw away the thing that makes it a hang.
+    if (hang) {
+      const keep = new Set(list.map(w => w.id));
+      return homeHang(all).filter(w => keep.has(w.id));
+    }
     // ONE WALL, sorted (Fuad 2026-08-20). Spectrum, Timeline and Movements were three separate
     // "modes" that only ever differed by sort order, so they are sort options and chips now: colour
     // joins the dropdown, time became the era chips, and movement was always better served by the
@@ -506,7 +517,7 @@ function Wall({ go, styleIds }) {
     return arr;
     // `media` belongs in here: the filter above reads it, and without it the wall kept showing the
     // previous medium's results until some other filter happened to change (found 2026-08-20).
-  }, [all, marks, status, eras, mus, sort, sel, media, pick]);
+  }, [all, marks, status, eras, mus, sort, sel, media, pick, hang]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
@@ -519,6 +530,12 @@ function Wall({ go, styleIds }) {
   return (
     <React.Fragment>
       <div className="cv-filters">
+        {/* TODAY'S HANG — what Home shows, on the Wall: the day's rotating floored works with the
+            ones Fuad pins always present. It leads the row because it replaces the whole selection
+            rather than narrowing it, and it reads as a place to start rather than another filter. */}
+        <button className="cv-hang-chip" data-on={hang} onClick={() => setHang(v => !v)}
+          title="today's hang — the curated wall from Home">⌂ today's hang</button>
+        <span className="cv-filt-div" aria-hidden="true" />
         {/* "all" clears both axes — a reset, not a third state you can be in */}
         <button data-on={!marks.size && !status.size}
           onClick={() => { setMarks(new Set()); setStatus(new Set()); }}>all</button>
@@ -3245,10 +3262,12 @@ const seededShuffle = (arr, rnd) => {
 const IMPRESSIONIST_RE = /impressionis/i;   // matches "Impressionism" + "Post-impressionism"
 const HOME_SPREAD_CAP = 24;   // spread cards (after lead); total wall ~28 max
 
-function HomeView({ go }) {
-  const all = useMemo(() => WORKS.map(enrich), []);
-
-  const wall = useMemo(() => {
+// ——— homeHang — the curated daily wall: pinned leads, five impressionists that rotate each day,
+// the Leech works spliced at their fixed position, then a round-robin spread over floored works.
+// Lifted out of HomeView (Fuad 2026-08-20) so The Wall can offer the same thing without a second
+// implementation drifting away from this one. It is a SELECTION and an ORDER, which is why it is a
+// function and not a sort: no chip could reproduce the pinning or the day seed.
+function homeHang(all) {
     const placed = new Set();
     // HOME IS FLOORED-ONLY (Fuad 2026-08-19: "Home should strictly be built from rotating artworks
     // that floored me"). Two exclusions matter and neither is obvious from the flag alone:
@@ -3346,7 +3365,12 @@ function HomeView({ go }) {
     }
 
     return [...lead, ...picks];
-  }, [all]);
+}
+
+function HomeView({ go }) {
+  const all = useMemo(() => WORKS.map(enrich), []);
+
+  const wall = useMemo(() => homeHang(all), [all]);
 
   const artistCount = useMemo(() =>
     new Set(wall.map(w => w.artistId || w.id)).size, [wall]);

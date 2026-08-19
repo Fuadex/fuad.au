@@ -3591,7 +3591,7 @@ function TrackView({ id, go }) {
         </div>
       ) : (
         <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
-          <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>No Spotify audio features matched for this track.</div>
+          <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>No audio features matched for this track.</div>
           {data.series.length > 0 && <div style={{ marginTop: 10 }}><Sparkline series={data.series} hue={hue} /></div>}
           {/* no audio features → no "Where it sits" card, so themes land here instead (2026-08-16) */}
           {themes && themes.length > 0 && (
