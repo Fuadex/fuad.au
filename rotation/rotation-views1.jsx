@@ -103,13 +103,33 @@ function OvCalRail({ go, onYear, onPeriod, init }) {
   const cells = [...Array(pad).fill(null), ...Array.from({ length: dim }, (_, i) => i + 1)];
   while (cells.length % 7) cells.push(null);
   const weeks = []; for (let i = 0; i < cells.length; i += 7) weeks.push(cells.slice(i, i + 7));
+  // One rule for turning a calendar position into a period key, so clicking a cell and carrying
+  // a selection across a year/month change can't drift apart.
+  const keyFor = (Y, M, D) => {
+    if (gran === "month") return `${Y}-${String(M + 1).padStart(2, "0")}`;   // whole selected month
+    const t = Date.UTC(Y, M, D);
+    if (gran === "week") { const dow = (new Date(t).getUTCDay() + 6) % 7; return new Date(t - dow * 86400e3).toISOString().slice(0, 10); }
+    return new Date(t).toISOString().slice(0, 10);
+  };
   const pick = (d) => {
-    const iso = new Date(Date.UTC(yr, mo, d)).toISOString().slice(0, 10);
-    let key = iso;
-    if (gran === "week") { const dow = (new Date(Date.UTC(yr, mo, d)).getUTCDay() + 6) % 7; key = new Date(Date.UTC(yr, mo, d) - dow * 86400e3).toISOString().slice(0, 10); }
-    if (gran === "month") key = `${yr}-${String(mo + 1).padStart(2, "0")}`;   // whole selected month
+    const key = keyFor(yr, mo, d);
     setSelDay(key === selDay ? null : key);
     onPeriod && onPeriod(key === selDay ? null : { gran, key });   // filters the map's results (stays on page)
+  };
+  // Changing year or month carries the selection with it (Fuad 2026-08-20): pick 14 March and
+  // scrub to 2019 and you get 14 March 2019, not a rail sitting on 2019 while the map is still
+  // filtered to the March you left. The day-of-month is the anchor at every granularity — for a
+  // week it re-derives that date's Monday, for a month it's ignored — and it clamps, so the 31st
+  // carried into February lands on the 28th or 29th rather than silently rolling into March.
+  const shift = (nextYr, nextMo) => {
+    if (nextYr !== yr) { setYr(nextYr); onYear && onYear(nextYr); }
+    if (nextMo !== mo) setMo(nextMo);
+    if (!selDay) return;
+    const dom = selDay.length >= 10 ? +selDay.slice(8, 10) : 1;
+    const d = Math.min(dom, new Date(Date.UTC(nextYr, nextMo + 1, 0)).getUTCDate());
+    const key = keyFor(nextYr, nextMo, d);
+    setSelDay(key);
+    onPeriod && onPeriod({ gran, key });
   };
   // COMPACT: fits the pulse-row height — a single horizontal strip of the month's days.
   const dayStrip = Array.from({ length: dim }, (_, i) => i + 1);
@@ -120,10 +140,10 @@ function OvCalRail({ go, onYear, onPeriod, init }) {
         <span className="meta" style={{ cursor: "pointer" }} onClick={() => go("calendar")}>full ↗</span>
       </div>
       <div style={{ display: "flex", gap: 5, marginBottom: 8, alignItems: "center" }}>
-        <select className="ov-calsel" style={{ flex: "0 0 auto", width: "auto" }} value={yr} onChange={(e) => { const v = +e.target.value; setYr(v); onYear && onYear(v); }}>
+        <select className="ov-calsel" style={{ flex: "0 0 auto", width: "auto" }} value={yr} onChange={(e) => shift(+e.target.value, mo)}>
           {years.map(v => <option key={v} value={v}>{v}</option>)}
         </select>
-        <select className="ov-calsel" style={{ flex: "0 0 auto", width: "auto" }} value={mo} onChange={(e) => setMo(+e.target.value)}>
+        <select className="ov-calsel" style={{ flex: "0 0 auto", width: "auto" }} value={mo} onChange={(e) => shift(yr, +e.target.value)}>
           {MON.map((m, i) => <option key={m} value={i}>{m}</option>)}
         </select>
         <div className="r-seg r-seg-sm" style={{ display: "flex", marginLeft: "auto" }}>
