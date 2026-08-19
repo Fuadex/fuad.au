@@ -3047,20 +3047,40 @@ const ARTIST_SEARCH_INDEX = (() => {
 })();
 
 function SearchBar({ go }) {
-  const [open, setOpen] = useState(false);
+  // The bar is always present now (Fuad 2026-08-19: "an actual search bar ready to go"); `open`
+  // survives only to gate the results panel and to be the thing "/" and Cmd-K focus.
+  const [open, setOpen] = useState(true);
   const [q, setQ] = useState("");
   const [sel, setSel] = useState(0);
+  // TWO INTENTS, kept apart — the same split Rotation draws between Names and Themes. "names"
+  // searches what a thing IS CALLED (title, artist, museum); "subjects" searches what a picture
+  // CONTAINS or IS (Wikidata depicts + genre). Muddling them makes both worse: a subject query
+  // buries its hits under coincidental title matches, and a name query gets padded with works
+  // that merely depict the word.
+  const [mode, setMode] = useState("names");
   const inputRef = useRef(null);
   const wrapRef = useRef(null);
 
   const results = useMemo(() => {
     const needle = fold(q);
     if (!needle || needle.length < 1) return [];
+    // SUBJECTS mode: only what the picture contains or is. No title/artist matching at all, so the
+    // list is not padded with works that merely happen to have the word in their name, and it can
+    // run deeper than the 12 a name search wants.
+    if (mode === "subjects") {
+      const terms = expandQuery(needle).map(fold);
+      const out = [];
+      for (const it of SEARCH_INDEX) {
+        if (!it.stok || !terms.some(t => it.stok.has(t))) continue;
+        out.push({ kind: "work", ...it, via: "subject" });
+        if (out.length >= 60) break;
+      }
+      return out;
+    }
+    // NAMES mode: what a thing is called. Subjects are deliberately absent — they have their own
+    // mode now, and mixing them here was padding name searches with coincidental depictions.
     const hits = [];
-    const subjHits = [];                       // subject matches trail name matches, never displace them
     const musHits = new Map();                 // museumId → museum name (deduped)
-    // the typed word widened into the vocabulary Wikidata actually uses ("ocean" → sea/marine)
-    const terms = expandQuery(needle).map(fold);
     for (const it of SEARCH_INDEX) {
       // mark whether the match came from museum-name only
       const inTitle = fold(it.title).includes(needle) || fold(it.artist).includes(needle);
@@ -3074,9 +3094,6 @@ function SearchBar({ go }) {
             if (!musHits.has(mid)) musHits.set(mid, true);
           }
         }
-      } else if (it.stok && subjHits.length < 20 && terms.some(t => it.stok.has(t))) {
-        // a subject match — labelled, so it is obvious WHY a work with an unrelated title appeared
-        subjHits.push({ kind: "work", ...it, via: "subject" });
       }
       if (hits.length >= 20) break;
     }
@@ -3090,8 +3107,8 @@ function SearchBar({ go }) {
     }
     // artist hits lead (they're the broadest destination), then museums, then works
     const artistResults = ARTIST_SEARCH_INDEX.filter(a => a.hay.includes(needle)).slice(0, 3);
-    return [...artistResults, ...musResults, ...hits, ...subjHits].slice(0, 12);
-  }, [q]);
+    return [...artistResults, ...musResults, ...hits].slice(0, 12);
+  }, [q, mode]);
 
   // reset selection when results change
   useEffect(() => { setSel(0); }, [results]);
@@ -3140,28 +3157,44 @@ function SearchBar({ go }) {
 
   return (
     <div className="cv-search" ref={wrapRef}>
-      {!open
-        ? <button className="cv-search-icon" onClick={expand} aria-label="Search artworks">🔍</button>
-        : (
-          <div className="cv-search-box">
-            <input
-              ref={inputRef}
-              className="cv-search-input"
-              type="search"
-              placeholder="title, artist, museum…"
-              value={q}
-              onChange={e => setQ(e.target.value)}
-              onKeyDown={onKeyDown}
-              autoComplete="off"
-              autoCorrect="off"
-              spellCheck="false"
-            />
-            {q && <button className="cv-search-dismiss" onClick={() => { setQ(""); inputRef.current && inputRef.current.focus(); }} aria-label="Clear">✕</button>}
-          </div>
-        )
-      }
-      {open && results.length > 0 && (
+      <div className="cv-search-box">
+        <input
+          ref={inputRef}
+          className="cv-search-input"
+          type="search"
+          /* the placeholder is the only signpost that subject search exists, so it names what the
+             active mode will actually match rather than describing search in general */
+          placeholder={mode === "subjects" ? "sea, dogs, landscape, battle…" : "title, artist, museum…"}
+          value={q}
+          onChange={e => setQ(e.target.value)}
+          onKeyDown={onKeyDown}
+          onFocus={() => setOpen(true)}
+          autoComplete="off"
+          autoCorrect="off"
+          spellCheck="false"
+        />
+        {q && <button className="cv-search-dismiss" onClick={() => { setQ(""); inputRef.current && inputRef.current.focus(); }} aria-label="Clear">✕</button>}
+      </div>
+      {open && q.trim() && (
         <div className="cv-search-drop">
+          {/* mode toggle lives IN the panel, not in the header — the header bar stays a bar, and
+              the choice appears exactly when there is a result set to re-cast. */}
+          <div className="cv-search-modes">
+            <button data-on={mode === "names"} onMouseDown={e => { e.preventDefault(); setMode("names"); setSel(0); }}>Names</button>
+            <button data-on={mode === "subjects"} onMouseDown={e => { e.preventDefault(); setMode("subjects"); setSel(0); }}>Subjects</button>
+            <span className="cv-search-modehint">
+              {mode === "subjects" ? "what a picture shows or is" : "title · artist · museum"}
+            </span>
+          </div>
+          {results.length === 0 && (
+            <div className="cv-search-empty">
+              {mode === "subjects"
+                /* be specific about the limit rather than implying the work does not exist —
+                   time of day and mood are absent from the source, not from the collection */
+                ? <>Nothing catalogued as “{q.trim()}”. Subjects come from Wikidata, which records things and genres — not times of day, weather or mood.</>
+                : <>No title, artist or museum matches “{q.trim()}”.</>}
+            </div>
+          )}
           {results.map((r, i) => (
             <div key={r.kind + r.id} className={"cv-search-hit" + (i === sel ? " cv-search-hit-sel" : "")}
               onMouseEnter={() => setSel(i)}
