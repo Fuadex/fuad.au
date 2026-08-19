@@ -321,6 +321,21 @@ function Wall({ go, mode = "collage", styleIds }) {
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
   useEffect(() => { setExtra(0); }, [filt, mus, sort, mode, styleIds, media]);
 
+  // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
+  // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
+  // a facet that narrows by its own selection just reads 0 everywhere except what you picked
+  // (Fuad 2026-08-20). Styles and media still AND against each other in `shown` below.
+  const base = useMemo(() => {
+    let list = all;
+    if (filt === "floored") list = list.filter(w => w.floored || w.favorite);
+    if (filt === "loved") list = list.filter(w => w.floored || w.favorite || w.liked);
+    if (filt === "sure") list = list.filter(w => w.seenConfidence === "sure");
+    if (filt === "unsure") list = list.filter(w => w.seenConfidence != null && w.seenConfidence !== "sure");
+    if (filt === "wish") list = list.filter(w => w.wish || (w.seenConfidence === "unsure" && (w.liked || w.floored || w.favorite)));
+    if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
+    return list;
+  }, [all, filt, mus]);
+
   // Live facet counts. Both rows count against `base` — every filter EXCEPT their own — and each
   // also honours the other, so with Sculpture on, the style numbers are sculpture-only. A chip that
   // would return nothing shows 0 rather than lying with the all-time total.
@@ -343,20 +358,6 @@ function Wall({ go, mode = "collage", styleIds }) {
     return c;
   }, [all]);
 
-  // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
-  // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
-  // a facet that narrows by its own selection just reads 0 everywhere except what you picked
-  // (Fuad 2026-08-20). Styles and media still AND against each other in `shown` below.
-  const base = useMemo(() => {
-    let list = all;
-    if (filt === "floored") list = list.filter(w => w.floored || w.favorite);
-    if (filt === "loved") list = list.filter(w => w.floored || w.favorite || w.liked);
-    if (filt === "sure") list = list.filter(w => w.seenConfidence === "sure");
-    if (filt === "unsure") list = list.filter(w => w.seenConfidence != null && w.seenConfidence !== "sure");
-    if (filt === "wish") list = list.filter(w => w.wish || (w.seenConfidence === "unsure" && (w.liked || w.floored || w.favorite)));
-    if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
-    return list;
-  }, [all, filt, mus]);
 
   const shown = useMemo(() => {
     let list = all;
