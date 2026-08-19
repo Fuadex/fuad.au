@@ -476,6 +476,15 @@ function OverviewView({ t, go, restReady, seed }) {
       label: rawLabel.length > 18 ? rawLabel.slice(0, 17) + "…" : rawLabel,
     };
   }, [fStats, dyn, days]);
+  // Share of all-time plays held by the artists currently in the map's Results list. fStats now
+  // reports its totals whether or not a filter is on, so this one number is live from the first
+  // paint and moves with every place, genre, year and calendar pick.
+  const resShare = React.useMemo(() => {
+    if (!fStats || fStats.plays == null) return null;
+    const total = (days && days.total) || T.scrobbles || 0;
+    if (!total) return null;
+    return Math.round(fStats.plays / total * 1000) / 10;
+  }, [fStats, days, T.scrobbles]);
   const liveTotal = (window.ROTATION_LIVE && window.ROTATION_LIVE.total) || T.scrobbles;
   const scrob = useCountUp(liveTotal, 1400, seen);
   const hrs = useCountUp(T.listeningHours, 1400, seen);
@@ -671,6 +680,13 @@ function OverviewView({ t, go, restReady, seed }) {
                 <Stat n={flt ? flt.avgDay : T.perDay} sub={flt ? "avg/day · " + flt.label : "avg / day"} />
                 <Stat n={flt ? flt.sharePct + "%" : sinceYears + " yr"} sub={flt ? "of all plays" : "of history"} />
                 <Stat n={flt && flt.hi ? fmt(flt.hi.count) : R.TOTALS.topDay.count} sub={"heaviest · " + ((flt && flt.hi ? flt.hi.date : R.TOTALS.topDay.date)).slice(2)} onClick={() => go("calendar")} />
+                {/* Tenth stat (Fuad 2026-08-20): what share of everything I've ever played belongs
+                    to the artists standing in the Results list right now — the WHOLE list, not its
+                    visible top ten. Unfiltered it reads as the genre map's coverage of my listening;
+                    narrow to a city or a genre and it drops to that corner's weight. Distinct from
+                    the share stat above it, which follows the time window and reads years-of-history
+                    when nothing is filtered. */}
+                {resShare != null && <Stat n={resShare + "%"} sub="of plays · in results" onClick={() => go("explore")} />}
               </div>
             } />
         </div>
