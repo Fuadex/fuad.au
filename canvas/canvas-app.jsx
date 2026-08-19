@@ -2073,7 +2073,7 @@ function MapView({ go }) {
   // city-bubble anchor and run through a relaxation pass identical in spirit to relaxFan, so the ♥
   // dots share the city bubble's parent and never overlap. (Only shown in the all-cities view; during
   // focus the museum work-fans take over.)
-  const { wishMarkers, wishList } = useMemo(() => {
+  const { wishMarkers, wishTotals, wishList } = useMemo(() => {
     const wishes = WORKS.map(enrich).filter(isUnseen);
     // WHERE A WANTED WORK GOES ON THE MAP (2026-08-19). It used to key off seenAt — the venue Fuad
     // stood in — which for a work he has NOT seen is empty by definition. After the photo import
@@ -2094,7 +2094,21 @@ function MapView({ go }) {
       if (cityName && cities.byCity[cityName]) (byCity[cityName] = byCity[cityName] || { c: cities.byCity[cityName], list: [] }).list.push({ w, venue: venueName });
     }
     const markers = [];
-    for (const { c, list } of Object.values(byCity)) {
+    // HALO CAP (Fuad 2026-08-19: zoom and pan went "slightly weird"). Anchoring wanted works on
+    // their HOME collection took the halo from 87 markers to 1,303 — roughly 2,600 SVG nodes, each
+    // rebuilding a fresh path string on every frame of a zoom or pan. New York alone drew 175 dots,
+    // Paris 143, which is both unaffordable and unreadable: at that density no individual dot can
+    // be told apart or aimed at. Each city now shows its strongest few, LOVED first, and the true
+    // total lives on the bubble's tooltip and in the list below the map, which is where you would
+    // actually read it. The collision relaxation is O(n²) per city, so this makes mount cheaper too.
+    const HALO_CAP = 10;
+    for (const entry of Object.values(byCity)) {
+      const c = entry.c;
+      const total = entry.list.length;
+      const list = [...entry.list]
+        .sort((a, b) => unseenRank(b.w) - unseenRank(a.w))
+        .slice(0, HALO_CAP);
+      entry.total = total;
       const bx = c.x, by = c.y;                                   // branch from the city bubble anchor
       const cr = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
       // SIZE SCOPING (2026-07-17): the enlargement was only ever meant for the FOCUSED fan-out. At
@@ -2147,8 +2161,12 @@ function MapView({ go }) {
     }
     // The text list is already keyed by institution, so it reads as an itinerary: the places
     // holding the most wanted works come first, and "home unknown" sinks to the bottom.
+    // per-city totals BEFORE the halo cap, so the bubble can state what the dots no longer show
+    const totals = {};
+    for (const [city, entry] of Object.entries(byCity)) totals[city] = entry.total;
     return {
       wishMarkers: markers,
+      wishTotals: totals,
       wishList: Object.entries(byMus).sort((a, b) =>
         (a[0] === "home unknown") - (b[0] === "home unknown") || b[1].length - a[1].length),
     };
@@ -2189,6 +2207,7 @@ function MapView({ go }) {
   const LENS_R = 26;                                 // magnifier radius, map units (scales with zoom via vb)
   const LENS_MAG = 2.1;                              // peak size multiplier at the cursor
   const LENS_SPREAD = 0.16;                          // how far the lens parts a cluster, as a fraction of its radius
+  const LENS_GRAB = 1.0;                             // extra size in the innermost third — makes small dots catchable
   // FAN SCALING (Fuad 2026-08-19: "the branches out from the big circles should decrease as I zoom
   // in"). Marker positions are solved ONCE, in world units, by a collision relaxation far too
   // expensive to re-run per frame for ~1,300 dots. So the solved offset from the city anchor is
@@ -2200,6 +2219,15 @@ function MapView({ go }) {
   // pull any child toward its parent by the same zoom factor, so the opened branch contracts on
   // zoom exactly as the resting halo does
   const towards = (px, py, x, y) => [px + (x - px) * fanK, py + (y - py) * fanK];
+  // VIEWPORT CULLING. Zooming and panning felt "weird" (Fuad 2026-08-19) because every halo marker
+  // was re-solved and re-serialised into a path string on each frame, whether or not it was on
+  // screen — and anchoring works on their home collection had taken the halo from 87 markers to
+  // over a thousand. Panning at zoom is exactly the case where most of them are outside the frame.
+  // The margin is a generous half-viewport so nothing pops in at the edge mid-drag.
+  const inView = (x, y) => {
+    const mx = vb.w * 0.5, my = vb.h * 0.5;
+    return x >= vb.x - mx && x <= vb.x + vb.w + mx && y >= vb.y - my && y <= vb.y + vb.h + my;
+  };
   // a consistently-bowed quadratic between two points. Bow is a fraction of the run's own length
   // so short connectors stay near-straight and long ones arc; the perpendicular is taken in a
   // fixed rotational direction so every branch off a bubble curves the same way.
@@ -2230,6 +2258,13 @@ function MapView({ go }) {
     const dx = x - lens.x, dy = y - lens.y, d = Math.hypot(dx, dy);
     if (d >= lensR) return [x, y, 1];
     const t = 0.5 + 0.5 * Math.cos(Math.PI * d / lensR);   // 1 at centre → 0 at edge (smooth)
+    // NEAR-FIELD GRAB (Fuad 2026-08-19: the small dots are "still a bit hard to get"). The cosine
+    // ramp is deliberately gentle across the whole lens, which is right for context but means a
+    // dot is only ~2x even when you are almost on it. This second term lives in the innermost
+    // third of the lens and is SQUARED, so it stays out of the way until the cursor is genuinely
+    // close and then adds real size right where you are aiming. Damped by node size like the main
+    // ramp, so it enlarges small dots and barely touches city bubbles.
+    const near = Math.max(0, 1 - d / (lensR * 0.34));
     // size damping: full magnification up to ~3 map units, tapering to ~25% by ~12 units
     const damp = r ? Math.max(0.25, Math.min(1, 3 / r)) : 1;
     // The push profile is a SINE, not a falloff: zero at the cursor, peaking half a lens-radius
@@ -2240,7 +2275,7 @@ function MapView({ go }) {
     // still leaves the rest of the map undisturbed.
     const push = d > 0.001 ? LENS_SPREAD * lensR * Math.sin(Math.PI * d / lensR) : 0;
     const ux = dx / (d || 1), uy = dy / (d || 1);
-    return [x + ux * push, y + uy * push, 1 + (LENS_MAG - 1) * t * damp];
+    return [x + ux * push, y + uy * push, 1 + (LENS_MAG - 1) * t * damp + LENS_GRAB * near * near * damp];
   };
   const clientToMap = (cx, cy) => {
     const el = svgRef.current; if (!el) return null; const r = el.getBoundingClientRect(); const v = vbRef.current;
@@ -2477,6 +2512,7 @@ function MapView({ go }) {
               and never crosses over the dots. City bubbles paint next, then the ♥ dots on top. */}
           {!focus && wishMarkers.map((mk, i) => {
             if (mk.x === mk.bx && mk.y === mk.by) return null;
+            if (!inView(mk.bx, mk.by)) return null;
             const [px, py] = fanAt(mk);
             const [fx, fy] = fish(px, py);
             // a curve, not a spoke (Fuad 2026-08-19) — shared `bow` helper, so the resting halo and
@@ -2485,18 +2521,22 @@ function MapView({ go }) {
               fill="none" stroke="oklch(0.55 0.19 18 / .4)" strokeWidth={0.5 * k} />;
           })}
           {!focus && cities.list.map(c => {
+            if (!inView(c.x, c.y)) return null;
             const cr = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
             const [fx, fy, fs] = fish(c.x, c.y, cr);
             return (
               <g key={c.city} className="cv-pin" onClick={() => focusCity(c)} style={{ cursor: "pointer" }}>
                 <circle cx={fx} cy={fy} r={cr * fs * k * dotMul}
                   fill={c.n ? "oklch(0.55 0.13 46 / .82)" : "rgba(58,47,34,.45)"} stroke="#f4ecdf" strokeWidth={0.6 * k} />
-                <title>{c.city} — {c.n} work{c.n !== 1 ? "s" : ""} · {c.museums.length} museum{c.museums.length !== 1 ? "s" : ""}{c.n ? " · click to open" : ""}</title>
+                {/* the halo is capped, so the city's real want-to-see total is stated here rather
+                    than implied by a count of dots that is deliberately not all of them */}
+                <title>{c.city} — {c.n} work{c.n !== 1 ? "s" : ""} seen · {c.museums.length} museum{c.museums.length !== 1 ? "s" : ""}{wishTotals[c.city] ? ` · ${wishTotals[c.city]} still to see` : ""}{c.n ? " · click to open" : ""}</title>
                 {(c.n >= 8 || fs > 1.25) && <text x={fx} y={fy - (cr * fs * dotMul + 1) * k} textAnchor="middle" style={{ fontSize: 8 * k * dotMul }}>{c.city}</text>}
               </g>
             );
           })}
           {!focus && wishMarkers.map((mk, i) => {
+            if (!inView(mk.bx, mk.by)) return null;
             const [px, py] = fanAt(mk);
             const [fx, fy, fs] = fish(px, py);
             return (
@@ -2505,13 +2545,15 @@ function MapView({ go }) {
                 onMouseMove={e => setHover(h => h && h.w === mk.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                 onMouseLeave={() => setHover(null)}>
                 {/* THREE REGISTERS (Fuad 2026-08-19). Seen works are the orange city bubbles above.
-                    Here, still-to-meet works split by how much he wants them: LOVED reads hot and
-                    solid, LIKED cooler and hollow, so a glance at a city says whether it holds
-                    things he is chasing or merely curious about. Size follows too — loved dots are
-                    a touch larger, which survives the fisheye because fs multiplies both. */}
+                    Still-to-meet works split by appetite: LOVED hot red, LIKED solid amber — the
+                    two fills the OPENED branch already used, which Fuad preferred to the hollow
+                    wash tried first. Hollow was a mistake twice over: too faint to pick out of a
+                    dense halo, and being mostly transparent it read as a hole punched in the map
+                    rather than a mark placed on it. Loved stays slightly larger; fs multiplies
+                    both, so the lens keeps the relationship. */}
                 {unseenRank(mk.w) === 2
-                  ? <circle cx={fx} cy={fy} r={2.3 * fs * k * dotMul} fill="oklch(0.55 0.19 18 / .92)" stroke="#f7efe2" strokeWidth={0.6 * k} />
-                  : <circle cx={fx} cy={fy} r={1.8 * fs * k * dotMul} fill="oklch(0.62 0.09 24 / .34)" stroke="oklch(0.55 0.15 20 / .85)" strokeWidth={0.55 * k} />}
+                  ? <circle cx={fx} cy={fy} r={2.1 * fs * k * dotMul} fill="oklch(0.55 0.19 18 / .92)" stroke="#f7efe2" strokeWidth={0.5 * k} />
+                  : <circle cx={fx} cy={fy} r={1.7 * fs * k * dotMul} fill="oklch(0.62 0.12 52 / .9)" stroke="#f7efe2" strokeWidth={0.45 * k} />}
               </g>
             );
           })}
