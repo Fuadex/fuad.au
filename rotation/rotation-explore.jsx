@@ -15,12 +15,12 @@ const _zeros = () => Array.from({ length: 7 }, () => new Array(24).fill(0));
 const _V1_FAM_BRIDGE = {
   "numetalaltmetal": "Metalcore/Nu",
   "metalcorecore": "Metalcore/Nu",
-  "industrial": "Industrial/Hyperpop/Noise",
+  "industrial": "Industrial/Noise/Hyperpop",
   "thrashheavy": "Thrash/Death",
   "progaltrock": "Prog",
   "japanese": "Pop",                        // dissolved scene family → nearest surviving bucket
   "electronicdnb": "Electronic/DnB",
-  "digitalhardcorehyperpop": "Industrial/Hyperpop/Noise",
+  "digitalhardcorehyperpop": "Industrial/Noise/Hyperpop",
   "hiphop": "Hip-Hop/Rap",
   "punkgarage": "Punk/Hardcore",
   "shoegazenoise": "Shoegaze/Grunge",
@@ -31,9 +31,9 @@ const _V1_FAM_BRIDGE = {
   "scoregamesfilm": "Score",                          // "Score/Games & Film"
   "progmetalrock": "Prog",                            // "Prog Metal/Rock"
   "heavydoomgothic": "Heavy/Doom",                    // "Heavy/Doom/Gothic"
-  "industrialnoise": "Industrial/Hyperpop/Noise",     // short-lived "Industrial/Noise"
-  "dhhyperpop": "Industrial/Hyperpop/Noise",          // short-lived "DH/Hyperpop"
-  "industrialdhhyperpopnoise": "Industrial/Hyperpop/Noise",  // "Industrial/DH/Hyperpop/Noise"
+  "industrialnoise": "Industrial/Noise/Hyperpop",     // short-lived "Industrial/Noise"
+  "dhhyperpop": "Industrial/Noise/Hyperpop",          // short-lived "DH/Hyperpop"
+  "industrialdhhyperpopnoise": "Industrial/Noise/Hyperpop",  // "Industrial/DH/Hyperpop/Noise"
 };
 // resolve a ?f= family token to a v2 FAMILIES entry: exact v2 name first, then the v1 bridge.
 const _resolveFamParam = (R, raw) => {
