@@ -3109,7 +3109,11 @@ function GigsView({ go }) {
         /* GigsView renders its own root (not inside .r-view), so it carries the app gutter itself
            — otherwise the page bleeds to the screen edges on mobile (Fuad 2026-07-18). */
         .gv { max-width: 900px; margin: 0 auto; padding: 0 var(--pad); }
-        .gv-hero { padding: 12px 2px 26px; }
+        /* hero bottom padding + the first section margin were stacking to ~66px under the crowd caption
+           (Fuad 2026-08-20). 26 -> 10 here, and the adjacent-sibling rule below trims only the FIRST
+           section so the rhythm between later sections is untouched. */
+        .gv-hero { padding: 12px 2px 10px; }
+        .gv-hero + .gv-sec { margin-top: 18px; }
         .gv-kicker { font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
         /* Metrics copied from .r-title, not approximated (Fuad 2026-08-20: this line read as a
            different font from the rest of Gigs). It was: an h1 with no font-weight declared

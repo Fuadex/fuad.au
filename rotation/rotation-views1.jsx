@@ -588,18 +588,21 @@ function OverviewView({ t, go, restReady, seed }) {
   const Stat = ({ n, sub, big, onClick }) => (
     <div onClick={onClick} style={onClick ? { cursor: "pointer" } : null} className={onClick ? "ov-stat-link" : ""}>
       <div className="r-stat-n" style={{ fontSize: big ? "clamp(28px,3.4vw,40px)" : 27 }}>{n}</div>
+      {/* the ↗ is gone (Fuad 2026-08-20). It marked the stat as clickable, but every stat in the
+          strip is, so it marked nothing — and it inflated captions that are already tight once a
+          filter name is concatenated in. .ov-stat-link still carries the hover affordance. */}
       <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".14em", textTransform: "uppercase",
-        color: "var(--ink-faint)", marginTop: 4 }}>{sub}{onClick ? " ↗" : ""}</div>
+        color: "var(--ink-faint)", marginTop: 4 }}>{sub}</div>
     </div>
   );
 
   return (
     <div className="r-view" ref={ref}>
       {/* WHOLE HEADER temporarily off (Fuad 2026-08-20) — kicker, title and lede — so the page opens
-          straight onto content. Restoring it means uncommenting this block AND deleting the
-          .ov-head-bare rule in the stylesheet below, which exists only to close the gap the missing
-          title left. See MEMORY: state_2026_08_20_overview_experiment.
-      <div className="r-viewhead ov-head-bare">
+          straight onto content. Restoring it means uncommenting this block AND dropping the
+          .r-headbare class from the div, which exists only to close the gap a missing title leaves.
+          See MEMORY: state_2026_08_20_overview_experiment.
+      <div className="r-viewhead r-headbare">
         <div>
           <div className="r-kicker">Rotation · since {new Date(T.since).getFullYear()}</div>
           <h1 className="r-title">A life, <em>counted</em><span className="dot">.</span></h1>
@@ -844,8 +847,6 @@ function OverviewView({ t, go, restReady, seed }) {
            title beneath it, and .r-viewhead adds pad*1.35 below the pair — with the title commented
            out, both were holding open space for something that is not there. Delete this rule at the
            same time as uncommenting the title; the two belong together. */
-        .ov-head-bare { margin-bottom: calc(var(--pad) * 0.55); }
-        .ov-head-bare .r-kicker { margin-bottom: 0; }
         /* The relocated pulse row: four cards side by side inside one grid cell. Stacks to two
            columns on mobile, where the parent grid is single-column anyway. */
         .ov-pulseslot { grid-column: 1 / -1; display: grid; gap: var(--gap);
