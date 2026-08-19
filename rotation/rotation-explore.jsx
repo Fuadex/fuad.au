@@ -1879,7 +1879,9 @@ function ExploreView({ t, go, setPop, seed }) {
                           <div key={key} className="xp-decseg" data-on={on}
                             title={(isYear ? d.year : d.decade + "s") + " · " + d.plays.toLocaleString("en-US") + " plays · " + pct + "%" + (isYear ? " — click to filter" : " — click to drill in")}
                             onClick={() => isYear ? setRelYear(y => y === d.year ? null : d.year) : toggleDec(d.decade)}
-                            style={{ width: w + "%", minWidth: 3, background: `oklch(${(+lo) + li} ${isYear ? 0.13 : 0.14} ${hue % 360})` }}>
+                            style={{ width: w + "%", minWidth: 3,
+                              background: `oklch(${(+lo) + li} ${isYear ? 0.13 : 0.14} ${hue % 360} / 0.34)`,
+                              boxShadow: `inset 0 0 0 1px oklch(${(+lo) + li + 0.26} ${isYear ? 0.16 : 0.17} ${hue % 360} / 0.7)` }}>
                             {w > (isYear ? 8 : 9) && <span className="xp-decseg-l">{isYear ? "'" + String(d.year).slice(2) : String(d.decade).slice(2) + "s"}</span>}
                           </div>
                         );

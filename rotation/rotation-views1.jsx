@@ -230,7 +230,11 @@ function OvWeatherCard({ R, go }) {
     <div style={{ display: "grid", gridTemplateColumns: "52px 1fr 26px", gap: 9, alignItems: "center" }}>
       <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-soft)" }}>{label}</span>
       <div style={{ position: "relative", height: 7, background: "var(--bg-3)", borderRadius: 4 }}>
-        <div style={{ position: "absolute", inset: "0 auto 0 0", width: v + "%", background: col, borderRadius: 4 }} />
+        {/* transparent fill with a confident rim, matching the flow bands (Fuad 2026-08-20). The
+            colour carries at 30% because the bar sits on --bg-3 rather than on the page, and the
+            1px inset border in the same hue is what gives the fill an edge to end at. */}
+        <div style={{ position: "absolute", inset: "0 auto 0 0", width: v + "%", background: col, opacity: 0.3,
+          border: "1px solid " + col, boxSizing: "border-box", borderRadius: 4 }} />
         {avg != null && <div title={"library average " + avg} style={{ position: "absolute", top: -2, bottom: -2, left: avg + "%", width: 2, background: "var(--ink-faint)", borderRadius: 1 }} />}
       </div>
       <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
@@ -332,7 +336,9 @@ function OvDecadesCard({ R, go, restReady, fStats }) {
               return (
                 <div key={r.year} title={`${r.year} · ${r.plays.toLocaleString("en-US")} plays · ${pct}% of the ${zoom}s — open in Explore`}
                   onClick={(e) => { e.stopPropagation(); go && go("explore", "rd=" + zoom + ";ry=" + r.year); }}
-                  style={{ width: w + "%", minWidth: 2, background: `oklch(${0.34 + (i % 5) * 0.05} 0.13 ${hue % 360})`, cursor: "pointer",
+                  style={{ width: w + "%", minWidth: 2, cursor: "pointer",
+                    background: `oklch(${0.34 + (i % 5) * 0.05} 0.13 ${hue % 360} / 0.34)`,
+                    boxShadow: `inset 0 0 0 1px oklch(${0.62 + (i % 5) * 0.04} 0.16 ${hue % 360} / 0.7)`,
                     display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                   {w > 8 && <span className="r-mono" style={{ fontSize: 9.5, color: "rgba(255,255,255,.9)", whiteSpace: "nowrap" }}>'{String(r.year).slice(2)}</span>}
                 </div>
@@ -357,7 +363,9 @@ function OvDecadesCard({ R, go, restReady, fStats }) {
             return (
               <div key={d.decade} title={`${d.decade}s · ${d.plays.toLocaleString("en-US")} plays · ${pct}% — click to drill in`}
                 onClick={(e) => { e.stopPropagation(); setZoom(d.decade); }}
-                style={{ width: w + "%", minWidth: 2, background: `oklch(${0.32 + i * 0.055} 0.14 ${hue % 360})`, cursor: "pointer",
+                style={{ width: w + "%", minWidth: 2, cursor: "pointer",
+                  background: `oklch(${0.32 + i * 0.055} 0.14 ${hue % 360} / 0.34)`,
+                  boxShadow: `inset 0 0 0 1px oklch(${0.60 + i * 0.04} 0.17 ${hue % 360} / 0.7)`,
                   display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                 {w > 9 && <span className="r-mono" style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,.92)", whiteSpace: "nowrap" }}>{String(d.decade).slice(2)}s</span>}
                 {w > 9 && <span className="r-mono" style={{ fontSize: 8.5, color: "rgba(255,255,255,.62)", whiteSpace: "nowrap" }}>{pct}%</span>}
@@ -573,7 +581,9 @@ function OverviewView({ t, go, restReady, seed }) {
 
   return (
     <div className="r-view" ref={ref}>
-      {/* header restored (Fuad 2026-07-05: "it looked better back then after all") */}
+      {/* header restored (Fuad 2026-07-05: "it looked better back then after all") — and TEMPORARILY
+          commented out again 2026-08-20, to see how Overview reads with the bento leading. Restore by
+          uncommenting; nothing else depends on it.
       <div className="r-viewhead">
         <div>
           <div className="r-kicker">Rotation · since {new Date(T.since).getFullYear()}</div>
@@ -582,6 +592,7 @@ function OverviewView({ t, go, restReady, seed }) {
         <p className="r-lede">Every track I've played, since the mid-2000s —
           turned into something I can actually <b>look at</b>.</p>
       </div>
+      */}
 
       {/* bento */}
       <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(12, minmax(0, 1fr))", gap: "var(--gap)" }}>
