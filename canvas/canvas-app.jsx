@@ -2197,6 +2197,18 @@ function MapView({ go }) {
   // never collapse INTO the bubble at extreme zoom, and never overreach when zoomed out.
   const fanK = Math.max(0.28, Math.min(1.15, k));
   const fanAt = (mk) => [mk.bx + (mk.x - mk.bx) * fanK, mk.by + (mk.y - mk.by) * fanK];
+  // pull any child toward its parent by the same zoom factor, so the opened branch contracts on
+  // zoom exactly as the resting halo does
+  const towards = (px, py, x, y) => [px + (x - px) * fanK, py + (y - py) * fanK];
+  // a consistently-bowed quadratic between two points. Bow is a fraction of the run's own length
+  // so short connectors stay near-straight and long ones arc; the perpendicular is taken in a
+  // fixed rotational direction so every branch off a bubble curves the same way.
+  const bow = (x1, y1, x2, y2, amt = 0.18, cap = 2.2) => {
+    const vx = x2 - x1, vy = y2 - y1, len = Math.hypot(vx, vy) || 1;
+    const b = Math.min(len * amt, cap * k);
+    const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+    return `M${x1} ${y1} Q${mx - (vy / len) * b} ${my + (vx / len) * b} ${x2} ${y2}`;
+  };
   const lensR = LENS_R * k;
   const setLensThrottled = (p) => { if (lensRaf.current) return; lensRaf.current = requestAnimationFrame(() => { lensRaf.current = 0; setLens(p); }); };
   // magnifier transform for one point: returns [x, y, scale]. Position is unchanged; only scale
@@ -2211,8 +2223,8 @@ function MapView({ go }) {
   // cluster made the dots swell into each other instead of opening up — the map stayed rigid while
   // things merely got fatter. A real focus+context lens also PUSHES points radially away from the
   // cursor, so a crowd parts as you move through it and closes again behind you. The push is
-  // strongest at the centre, eases to nothing at the lens edge (so the rest of the map never
-  // moves), and is proportional to the lens radius, which itself shrinks with zoom.
+  // proportional to the lens radius, which itself shrinks with zoom, so the effect stays the same
+  // size on screen at every scale.
   const fish = (x, y, r) => {
     if (!lens) return [x, y, 1];
     const dx = x - lens.x, dy = y - lens.y, d = Math.hypot(dx, dy);
@@ -2220,9 +2232,13 @@ function MapView({ go }) {
     const t = 0.5 + 0.5 * Math.cos(Math.PI * d / lensR);   // 1 at centre → 0 at edge (smooth)
     // size damping: full magnification up to ~3 map units, tapering to ~25% by ~12 units
     const damp = r ? Math.max(0.25, Math.min(1, 3 / r)) : 1;
-    // a point exactly under the cursor has no direction to be pushed in, so it stays put and the
-    // ones around it part around it — which reads as the cluster opening rather than sliding.
-    const push = d > 0.001 ? LENS_SPREAD * lensR * t * (1 - d / lensR) : 0;
+    // The push profile is a SINE, not a falloff: zero at the cursor, peaking half a lens-radius
+    // out, back to zero at the rim. The first attempt peaked at the CENTRE, which meant a dot fled
+    // fastest exactly as you reached for it (Fuad 2026-08-19: "these escape the mouse cursor").
+    // Zero at the centre means whatever you are aiming at holds still while its neighbours step
+    // aside — the cluster opens AROUND the target instead of running from it — and zero at the rim
+    // still leaves the rest of the map undisturbed.
+    const push = d > 0.001 ? LENS_SPREAD * lensR * Math.sin(Math.PI * d / lensR) : 0;
     const ux = dx / (d || 1), uy = dy / (d || 1);
     return [x + ux * push, y + uy * push, 1 + (LENS_MAG - 1) * t * damp];
   };
@@ -2463,15 +2479,9 @@ function MapView({ go }) {
             if (mk.x === mk.bx && mk.y === mk.by) return null;
             const [px, py] = fanAt(mk);
             const [fx, fy] = fish(px, py);
-            // a curve, not a spoke (Fuad 2026-08-19). The control point sits at the midpoint nudged
-            // perpendicular to the run, so every branch bows the same way around its bubble and the
-            // fan reads as growth rather than a pin-cushion. Bow scales with length, so short
-            // branches stay nearly straight and long ones arc.
-            const mx = (mk.bx + fx) / 2, my = (mk.by + fy) / 2;
-            const vx = fx - mk.bx, vy = fy - mk.by, len = Math.hypot(vx, vy) || 1;
-            const bow = Math.min(len * 0.18, 2.2 * k);
-            const qx = mx - (vy / len) * bow, qy = my + (vx / len) * bow;
-            return <path key={"wl" + mk.w.id + "-" + i} d={`M${mk.bx} ${mk.by} Q${qx} ${qy} ${fx} ${fy}`}
+            // a curve, not a spoke (Fuad 2026-08-19) — shared `bow` helper, so the resting halo and
+            // the opened branch arc identically instead of drifting apart over time
+            return <path key={"wl" + mk.w.id + "-" + i} d={bow(mk.bx, mk.by, fx, fy)}
               fill="none" stroke="oklch(0.55 0.19 18 / .4)" strokeWidth={0.5 * k} />;
           })}
           {!focus && cities.list.map(c => {
@@ -2512,23 +2522,29 @@ function MapView({ go }) {
             // stagger: museum i unfurls over its slice of grow; its works trail just behind it
             const mProg = (i) => { const s = N > 1 ? 0.45 * i / (N - 1) : 0; return Math.max(0, Math.min(1, (grow - s) / (1 - s || 1))); };
             const lerp = (a, b, t) => a + (b - a) * t;
+            // The opened branch gets the same zoom contraction and bowed connectors as the resting
+            // halo — it was left out of the first pass, so clicking a city dropped you back into
+            // rigid spokes that sprawled as you zoomed (Fuad 2026-08-19). Museum nodes pull toward
+            // the city, work nodes toward their museum.
+            const mAt = (nd) => towards(cx, cy, nd.x, nd.y);
             return (
               <g className="cv-branch">
                 {branch.nodes.map((nd, i) => {
-                  const g = mProg(i), mx = lerp(cx, nd.x, g), my = lerp(cy, nd.y, g);
-                  return <line key={"cm" + nd.m.id} x1={cx} y1={cy} x2={mx} y2={my} stroke="rgba(58,47,34,.5)" strokeWidth={0.5 * k} style={{ opacity: g }} />;
+                  const g = mProg(i), [tx, ty] = mAt(nd), mx = lerp(cx, tx, g), my = lerp(cy, ty, g);
+                  return <path key={"cm" + nd.m.id} d={bow(cx, cy, mx, my)} fill="none" stroke="rgba(58,47,34,.5)" strokeWidth={0.5 * k} style={{ opacity: g }} />;
                 })}
                 {branch.nodes.map((nd, i) => {
-                  const g = mProg(i), mx = lerp(cx, nd.x, g), my = lerp(cy, nd.y, g), wg = Math.max(0, (g - 0.3) / 0.7);
+                  const g = mProg(i), [tx, ty] = mAt(nd), mx = lerp(cx, tx, g), my = lerp(cy, ty, g), wg = Math.max(0, (g - 0.3) / 0.7);
                   return nd.wnodes.map((wn, j) => {
-                    const wx0 = lerp(mx, wn.x, wg), wy0 = lerp(my, wn.y, wg);
+                    const [wtx, wty] = towards(tx, ty, wn.x, wn.y);
+                    const wx0 = lerp(mx, wtx, wg), wy0 = lerp(my, wty, wg);
                     const [fx, fy, fs] = fish(wx0, wy0);
                     return (
                       <g key={nd.m.id + "-w" + j} className="cv-wishpin" style={{ opacity: wg }} onClick={() => go("work", wn.w.id)}
                         onMouseEnter={e => setHover({ w: wn.w, mx: e.clientX, my: e.clientY, venue: nd.m.name, city: branch.c.city, seen: true })}
                         onMouseMove={e => setHover(h => h && h.w === wn.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                         onMouseLeave={() => setHover(null)}>
-                        <line x1={mx} y1={my} x2={fx} y2={fy} stroke="rgba(58,47,34,.26)" strokeWidth={0.3 * k} />
+                        <path d={bow(mx, my, fx, fy, 0.16, 1.4)} fill="none" stroke="rgba(58,47,34,.26)" strokeWidth={0.3 * k} />
                         <circle cx={fx} cy={fy} r={(wn.w.floored ? 1.8 : 1.5) * fs * k * dotMul}
                           fill={wn.w.floored ? "oklch(0.55 0.19 18 / .92)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.4 * k} />
                       </g>
@@ -2536,7 +2552,7 @@ function MapView({ go }) {
                   });
                 })}
                 {branch.nodes.map((nd, i) => {
-                  const g = mProg(i), mx = lerp(cx, nd.x, g), my = lerp(cy, nd.y, g);
+                  const g = mProg(i), [tx, ty] = mAt(nd), mx = lerp(cx, tx, g), my = lerp(cy, ty, g);
                   const [fx, fy, fs] = fish(mx, my);
                   const lx = fx, ly = fy - (nd.mr * fs + 3.6) * k;               // label clear above the bubble
                   const chW = Math.max(nd.m.name.length * 3.05 + 6, 14) * k, chH = 8.4 * k;
