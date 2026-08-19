@@ -233,13 +233,13 @@ a { color: inherit; }
    column-span:all breaks the column flow, draws full width, and lets the works resume beneath —
    which is the only way to get "works filling the space around it" out of a multi-column wall.
    break-after:avoid keeps a card from being orphaned tight under it. */
-.cv-mus-lead { column-span: all; break-after: avoid; text-align: center;
-  margin: 0 auto 14px; padding: 14px 18px; max-width: 680px;
-  background: var(--plaster); border: 1px solid var(--rule); border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(40,28,14,.06); }
+.cv-mus-lead { column-span: all; break-after: avoid; display: flex; align-items: center;
+  flex-wrap: wrap; justify-content: space-between; gap: 10px 18px;
+  margin: 0 0 14px; padding: 10px 14px;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
 .cv-mus-lead-l { font: 600 10.5px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase;
-  color: var(--ink-faint); margin-bottom: 10px; }
-.cv-mus-lead .cv-mus-filters { justify-content: center; margin: 0; }
+  color: var(--ink-faint); margin: 0; flex: 0 0 auto; }
+.cv-mus-lead .cv-mus-filters { justify-content: flex-end; margin: 0; flex: 1 1 auto; }
 @media (max-width: 1500px) { .cv-mus-wall { column-count: 5; } }
 @media (max-width: 1200px) { .cv-mus-wall { column-count: 4; } }
 @media (max-width: 900px)  { .cv-mus-wall { column-count: 3; } }
@@ -382,7 +382,10 @@ a { color: inherit; }
 /* ——— artist pages (charcoal editorial, mockup 1c) ——— */
 .cv-artist { max-width: none; padding: 26px 34px 60px; }
 /* same softening as .cv-mus-head — see the note there */
-.cv-a-head { display: flex; gap: 22px; align-items: flex-start; background: var(--plaster); color: var(--ink-soft); border: 1px solid var(--rule); box-shadow: 0 1px 3px rgba(40,28,14,.06); border-radius: 10px; padding: 20px 24px; }
+/* max-width + auto margins mirror .cv-mus-head (Fuad 2026-08-20: on a 4K monitor the artist
+   header stretched the full page, so the text sat left, the portrait sat far right and the middle
+   was empty). The museum header always had this cap; the artist one never did. */
+.cv-a-head { max-width: 1200px; margin: 0 auto; display: flex; gap: 22px; align-items: flex-start; background: var(--plaster); color: var(--ink-soft); border: 1px solid var(--rule); box-shadow: 0 1px 3px rgba(40,28,14,.06); border-radius: 10px; padding: 20px 24px; }
 .cv-a-head-main { flex: 1 1 auto; min-width: 0; }   /* text column takes the remaining width; min-width:0 lets long meta wrap */
 /* portrait moved to the RIGHT and bottom-aligned, mirroring the museum postcard */
 .cv-a-face { flex: 0 0 auto; align-self: flex-end; width: min(170px, 24%); height: auto; aspect-ratio: 3 / 4;
