@@ -2434,7 +2434,7 @@ const TONIGHT_PIN_KEY = 'culture-tonight-pin';
 // `open` is the logical open state from the parent (route === 'tonight').
 // We keep the DOM alive for 240ms after open→false so the fade-out plays.
 // Pattern mirrors Reader exactly: mount → rAF → .on; close → off → 240ms → unmount.
-function TonightOverlay({ open, items, onOpenItem, onClose }) {
+function TonightOverlay({ open, items, seenItems, onOpenItem, onClose }) {
   const [alive, setAlive] = React.useState(open);
   const [on, setOn] = React.useState(false);
   const closing = React.useRef(false);
@@ -2473,13 +2473,18 @@ function TonightOverlay({ open, items, onOpenItem, onClose }) {
             <path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" strokeLinecap="round"/>
           </svg>
         </button>
-        <TonightView items={items} onOpenItem={onOpenItem} onExit={handleClose} />
+        <TonightView items={items} seenItems={seenItems} onOpenItem={onOpenItem} onExit={handleClose} />
       </div>
     </div>
   );
 }
 
-function TonightView({ items, onOpenItem, onExit }) {
+function TonightView({ items: wishlistPool, seenItems: seenPool, onOpenItem, onExit }) {
+  // Which shelf tonight deals from. Wishlist is the default — the point of the feature is
+  // to spend an evening on something unseen — but a rewatch is a legitimate answer to
+  // "what tonight", so the seen library is one click away (Fuad 2026-08-20).
+  const [source, setSource] = React.useState('wishlist');   // 'wishlist' | 'seen'
+  const items = source === 'seen' ? (seenPool || []) : (wishlistPool || []);
   const [mediums, setMediums] = React.useState(() => new Set());  // empty = all
   const [budget, setBudget] = React.useState('any');
   const [moodSel, setMoodSel] = React.useState([]);   // [{value, op:'AND'|'OR'}]
@@ -2554,7 +2559,12 @@ function TonightView({ items, onOpenItem, onExit }) {
       if (ands.length && !ands.every(c => hasBadge(it, c.value))) return false;
       if (ors.length && !ors.some(c => hasBadge(it, c.value))) return false;
       if (hookLc) {
-        const text = ((it.note || '') + ' ' + (it.noteEn || '') + ' ' + (it.summary || '')).toLowerCase();
+        // Genres and tags join the note text (Fuad 2026-08-20: "consider tags and subtags
+        // to widen the search"). Note prose is where a hook like "grief" lives, but "samurai"
+        // or "heist" is far likelier to be a TMDB keyword than a sentence I wrote — searching
+        // only the notes meant those hooks returned nothing on items that plainly matched.
+        const text = ((it.note || '') + ' ' + (it.noteEn || '') + ' ' + (it.summary || '') + ' '
+          + (it.genres || []).join(' ') + ' ' + (it.tags || []).join(' ')).toLowerCase();
         if (!text.includes(hookLc)) return false;
       }
       return true;
@@ -2591,6 +2601,11 @@ function TonightView({ items, onOpenItem, onExit }) {
 
   const toggleMedium = (m) => setMediums(prev => { const n = new Set(prev); n.has(m) ? n.delete(m) : n.add(m); return n; });
 
+  // Flipping shelves clears the hand. The deal is dealt on demand rather than reactively,
+  // so without this the cards from the old pool would sit there looking like an answer to
+  // the new one. prevIds goes too — it's a don't-repeat memo scoped to the pool it came from.
+  const chooseSource = (s) => { if (s === source) return; setSource(s); setDeal([]); setPrevIds(new Set()); };
+
   const savePin = (item) => {
     if (pin && pin.id === item.id) {
       setPin(null); try { localStorage.removeItem(TONIGHT_PIN_KEY); } catch (e) {}
@@ -2606,7 +2621,7 @@ function TonightView({ items, onOpenItem, onExit }) {
     <div className="tonight">
       <div className="tonight-topbar">
         <h1 className="tonight-h1">Tonight's Pick<span className="dot">.</span></h1>
-        <div className="tonight-sub">Deal three from what you want next — weighted for you, still a gamble.</div>
+        <div className="tonight-sub">Deal three from {source === 'seen' ? 'what you’ve already seen' : 'what you want next'} — weighted for you, still a gamble.</div>
       </div>
 
       {pinnedItem && (
@@ -2620,6 +2635,16 @@ function TonightView({ items, onOpenItem, onExit }) {
       )}
 
       <div className="tonight-constraints">
+        <div className="tonight-row">
+          <span className="tonight-row-label">From</span>
+          <div className="tonight-chips">
+            <button className={`tonight-chip${source === 'wishlist' ? ' on' : ''}`}
+              onClick={() => chooseSource('wishlist')}>wishlist<span className="tonight-c">{(wishlistPool || []).length}</span></button>
+            <button className={`tonight-chip${source === 'seen' ? ' on' : ''}`}
+              onClick={() => chooseSource('seen')}>seen again<span className="tonight-c">{(seenPool || []).length}</span></button>
+          </div>
+        </div>
+
         <div className="tonight-row">
           <span className="tonight-row-label">Medium</span>
           <div className="tonight-chips">
@@ -2659,7 +2684,7 @@ function TonightView({ items, onOpenItem, onExit }) {
 
         <div className="tonight-row">
           <span className="tonight-row-label">Hook</span>
-          <input className="tonight-hook" type="text" placeholder="a word in the note… e.g. heist, grief, samurai"
+          <input className="tonight-hook" type="text" placeholder="a note, genre or tag… e.g. heist, grief, samurai"
             value={hook} onChange={e => setHook(e.target.value)} />
         </div>
 
@@ -3455,6 +3480,7 @@ function App() {
       <TonightOverlay
         open={route === 'tonight'}
         items={wishlistItems}
+        seenItems={seenItems}
         onOpenItem={(it) => { setOpenItem(it); exitTonight(); }}
         onClose={exitTonight}
       />
