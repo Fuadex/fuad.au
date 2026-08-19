@@ -16,23 +16,26 @@ function _segs(pts) {
 }
 
 // generic streamgraph over `series` ([{key,name,hue,vals:[per year]}]) and `years` ([nums])
-// `faint` opts a caller into transparent bands (Fuad 2026-08-20, after three passes on the Overview
-// flow). Settled at fill .26 lit, .12 dimmed — the transparent look he wanted, with two corrections
-// learned on the way:
+// `faint` opts a caller into transparent bands. Tuned over five passes on the Overview flow with
+// Fuad (2026-08-20) — the log matters, because each rejection ruled out a different knob and the
+// three are easy to confuse:
 //
-//   · Lowering opacity alone made it DARKER, not lighter. A band at 18% is mostly the dark card
-//     showing through, so the whole flow muddied. `faint` therefore also raises the fill's oklch
-//     LIGHTNESS, .62 → .80, and the stroke's to .86. Transparency and lightness are separate knobs
-//     and only one of them was the ask.
-//   · The stroke opacity goes UP as the fill comes down, .5 → .8, because at this fill the edges are
-//     what separate one band from its neighbour.
+//   · OPACITY alone. Dropping to .18 at the original lightness read as too DARK, not lighter: a
+//     mostly-transparent band is mostly the dark card showing through.
+//   · The map bubbles' exact numbers (.72 lit / .34 dimmed) — rejected as too solid.
+//   · LIGHTNESS. Lifting the fill to .80 to counter the darkness went chalky: pale and milky, high
+//     lightness against moderate chroma reads as pastel.
 //
-// A detour through the map bubbles' exact numbers (.72/.34) was tried and rejected as too solid.
+// Landed on all three moving together: dim (L .66, between the two failures), saturated (C .17 →
+// .20, so it stays coloured rather than greying out as the fill drops) and genuinely transparent
+// (.16 lit, .07 dimmed). Chroma is the knob that was missing for the first four passes — it is what
+// lets a band be both dim and clearly its own hue, which is what "dimmer, more transparent" needs.
+//
 // Opt-in rather than a change to the primitive: the same StreamGraph draws the artist-page flow and
 // the Journey, where the original contrast is the point.
 const SG_BANDS = {
-  solid: { on: 0.82, hi: 0.96, off: 0.15, strokeOn: 0.5, strokeOff: 0.12, L: 0.62, sL: 0.72 },
-  faint: { on: 0.26, hi: 0.52, off: 0.12, strokeOn: 0.8, strokeOff: 0.22, L: 0.80, sL: 0.86 },
+  solid: { on: 0.82, hi: 0.96, off: 0.15, strokeOn: 0.5, strokeOff: 0.12, L: 0.62, C: 0.17, sL: 0.72, sC: 0.16 },
+  faint: { on: 0.16, hi: 0.38, off: 0.07, strokeOn: 0.6, strokeOff: 0.16, L: 0.66, C: 0.20, sL: 0.72, sC: 0.19 },
 };
 function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixedH, faint }) {
   const BO = faint ? SG_BANDS.faint : SG_BANDS.solid;
@@ -58,8 +61,8 @@ function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixe
     <svg viewBox={`0 0 ${L.W} ${L.H}`} style={{ width: "100%", height: "auto", display: "block" }} onMouseLeave={() => setHi(-1)}>
       {L.order.map(i => {
         const on = hi < 0 || hi === i, s = series[i];
-        const fill = s.mute ? "oklch(0.5 0.02 270)" : `oklch(${BO.L} 0.17 ${s.hue})`;
-        const strk = s.mute ? "oklch(0.62 0.02 270)" : `oklch(${BO.sL} 0.16 ${s.hue})`;
+        const fill = s.mute ? "oklch(0.5 0.02 270)" : `oklch(${BO.L} ${BO.C} ${s.hue})`;
+        const strk = s.mute ? "oklch(0.62 0.02 270)" : `oklch(${BO.sL} ${BO.sC} ${s.hue})`;
         return (
           <path key={s.key} d={L.area(i)} fill={fill} fillOpacity={on ? (hi === i ? BO.hi : BO.on) : BO.off}
             stroke={strk} strokeWidth={hi === i ? 1.4 : 0.5} strokeOpacity={on ? BO.strokeOn : BO.strokeOff}
