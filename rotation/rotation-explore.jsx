@@ -1187,7 +1187,13 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
       </div>
 
       <div className="r-mono xp-attr-foot">
-        {built.artists.length} of {built.totalAudioArtists || "?"} audio-covered artists have ≥3 featured tracks · coloured by genre family
+        {/* "plotted", not "have ≥3 featured tracks" — 2,774 clear that bar but 4 of them have no
+            row in ARTISTS or EXPLORE to hang a name and a genre on, so they cannot be drawn. The
+            old wording reported the plotted count as if it were the population, which was off by
+            those 4. (Checked 2026-08-20 when Fuad expected the Explore floor change to move this
+            number: it doesn't. The binding constraint here is the ≥3-audio-track bar, not the play
+            floor — every artist the floor added has too few tracks with features to qualify.) */}
+        {built.artists.length} of {built.totalAudioArtists || "?"} audio-covered artists plotted · ≥3 featured tracks each · coloured by genre family
         {shade === "seenLive" ? " · brighter = never seen live" : shade === "recency" ? " · brighter = played more recently" : ""}
         {!restReady ? " · popularity & debut-year fill in as the long-tail universe loads" : ""}
       </div>

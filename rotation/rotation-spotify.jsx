@@ -900,9 +900,18 @@ function LikedView({ go }) {
     // INVERT flips the active sort's direction. Rows lacking the sort datum (tempo/energy null) are
     // parked last by the comparators above via the `(x == null)` primer; reversing would float them to
     // the top, so keep those no-data rows pinned to the tail and only reverse the rows that HAVE data.
+    // `dated` must be a FRESH array even when nothing is dataless (Fuad 2026-08-20: inverting newest
+    // or plays returned an empty list). The old form aliased `s` itself in that case, so `s.length = 0`
+    // emptied the very array the next line was about to spread. Only tempo and energy escaped it,
+    // because their filter happened to allocate. first-new joins them: a row with no year is parked at
+    // the tail by `|| 0` in the comparator, and should stay there rather than head the inverted list.
     if (inv) {
-      const dataless = s.filter(r => (sort === "tempo" && r.tempo == null) || (sort === "energy" && r.energy == null));
-      const dated = dataless.length ? s.filter(r => !dataless.includes(r)) : s;
+      const lacks = (r) => sort === "tempo" ? r.tempo == null
+        : sort === "energy" ? r.energy == null
+        : sort === "first-new" ? !r.meta[2]
+        : false;
+      const dataless = s.filter(lacks);
+      const dated = s.filter(r => !lacks(r));
       dated.reverse();
       s.length = 0; s.push(...dated, ...dataless);
     }
