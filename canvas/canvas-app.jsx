@@ -2215,8 +2215,17 @@ function Artists({ go }) {
 // ——— Phase 4a: the painterly map (mockup 2b) — every museum pinned where it stands,
 // sized by canon works; the trip strip below groups dated visits by year. Land geometry
 // is rotation's simplified equirect world, copied (apps stay self-contained).
+// A city holding this many wanted works or fewer is not a trip, it is a detour — those fold into a
+// single "Elsewhere" row. 161 of the 241 cities sit at or under 2, and they were most of the scroll.
+const TAIL_MAX = 2;
+
 function MapView({ go }) {
   const world = window.CANVAS_WORLD || null;
+  // pilgrimage disclosure state: which cities are open, plus the two folded tails
+  const [openCity, setOpenCity] = useState(() => new Set());
+  const [showTail, setShowTail] = useState(false);
+  const [showUnplaced, setShowUnplaced] = useState(false);
+  const toggleCity = (k) => setOpenCity(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; });
   // FIX 6 (Fuad 2026-07-25): on a phone the dots are tiny and the labels illegible, so make the
   // dots bigger — a VISUAL/hit-area multiplier applied to the rendered radii only (positions are
   // already collision-relaxed in map units, so we don't touch the layout, just paint fatter dots).
@@ -2277,7 +2286,7 @@ function MapView({ go }) {
   // city-bubble anchor and run through a relaxation pass identical in spirit to relaxFan, so the ♥
   // dots share the city bubble's parent and never overlap. (Only shown in the all-cities view; during
   // focus the museum work-fans take over.)
-  const { wishMarkers, wishTotals, wishList } = useMemo(() => {
+  const { wishMarkers, wishTotals, wishCities, wishUnplaced, wishList } = useMemo(() => {
     const wishes = WORKS.map(enrich).filter(isUnseen);
     // WHERE A WANTED WORK GOES ON THE MAP (2026-08-19). It used to key off seenAt — the venue Fuad
     // stood in — which for a work he has NOT seen is empty by definition. After the photo import
@@ -2286,6 +2295,11 @@ function MapView({ go }) {
     // there. seenAt is still honoured first for the handful of wishes that carry one (a work met
     // at one venue but wanted at another), then home fills the rest in.
     const byCity = {}, byMus = {};
+    // TRIP-PLANNER SHAPE (Fuad 2026-08-20). Keyed by institution the list ran to 323 groups, 174 of
+    // them holding a single work — a median group size of 1, which is why it read as endless scroll.
+    // You do not travel to a museum, you travel to a CITY and walk between its museums, so the city
+    // is the outer level and the institution the inner one.
+    const cityGroups = new Map(), unplacedWishes = [];
     for (const w of wishes) {
       const mid = (Array.isArray(w.seenAt) ? w.seenAt[0] : w.seenAt) || w.at;
       const home = homeOf(w);
@@ -2296,6 +2310,16 @@ function MapView({ go }) {
       const key = venueName ? (cityName ? cityName + " — " + venueName : venueName) : "home unknown";
       (byMus[key] = byMus[key] || []).push(w);
       if (cityName && cities.byCity[cityName]) (byCity[cityName] = byCity[cityName] || { c: cities.byCity[cityName], list: [] }).list.push({ w, venue: venueName });
+      const cc = (m && m.country) || (home && home.country) || "";
+      if (cityName) {
+        const cKey = cityName + (cc ? ", " + String(cc).toUpperCase() : "");
+        let c = cityGroups.get(cKey);
+        if (!c) { c = { key: cKey, city: cityName, n: 0, floored: 0, venues: new Map() }; cityGroups.set(cKey, c); }
+        c.n++; if (w.floored || w.favorite) c.floored++;
+        const vn = venueName || "elsewhere in the city";
+        if (!c.venues.has(vn)) c.venues.set(vn, []);
+        c.venues.get(vn).push(w);
+      } else unplacedWishes.push(w);
     }
     const markers = [];
     // HALO CAP (Fuad 2026-08-19: zoom and pan went "slightly weird"). Anchoring wanted works on
@@ -2368,9 +2392,21 @@ function MapView({ go }) {
     // per-city totals BEFORE the halo cap, so the bubble can state what the dots no longer show
     const totals = {};
     for (const [city, entry] of Object.entries(byCity)) totals[city] = entry.total;
+    // RANKED BY TRIP VALUE, not alphabetically and not purely by volume. Floored leads, because
+    // those are the works you would actually cross a border for — New York holds the most wanted
+    // works of anywhere (151) and exactly one of them floored him, which volume alone would have
+    // put at the top of the page. Volume breaks the tie.
+    const sortedCities = [...cityGroups.values()].map(c => ({
+      ...c,
+      venues: [...c.venues.entries()]
+        .map(([name, list]) => ({ name, list: list.slice().sort((a, b) => unseenRank(b) - unseenRank(a) || String(a.title).localeCompare(String(b.title))) }))
+        .sort((a, b) => b.list.length - a.list.length || a.name.localeCompare(b.name)),
+    })).sort((a, b) => b.floored - a.floored || b.n - a.n || a.city.localeCompare(b.city));
     return {
       wishMarkers: markers,
       wishTotals: totals,
+      wishCities: sortedCities,
+      wishUnplaced: unplacedWishes.sort((a, b) => unseenRank(b) - unseenRank(a) || String(a.title).localeCompare(String(b.title))),
       wishList: Object.entries(byMus).sort((a, b) =>
         (a[0] === "home unknown") - (b[0] === "home unknown") || b[1].length - a[1].length),
     };
@@ -2848,33 +2884,96 @@ function MapView({ go }) {
           </div>
         ))}
       </div>
-      {wishList.length > 0 && (
+      {wishCities.length > 0 && (
         <div className="cv-map-tosee">
           <div className="cv-a-secl">To see — the pilgrimage</div>
-          {/* "home" is the honest word: P195 says where a work is catalogued, which is where it
-              lives, not a claim about what is hanging this week. Touring shows can come later. */}
-          <div className="cv-pil-note">Grouped by where each work lives — its home collection. Loved first, then liked.</div>
-          {/* This used to mount every row of every country at once. After the photo import that is
-              ~1,465 rows with a thumbnail each — flattened into one list and reveal-chunked, so the
-              page paints a screenful and grows as you scroll. Group headers ride IN the flat list so
-              they arrive with their own rows rather than all up-front. (Fuad 2026-08-19) */}
-          <RevealChunks
-            items={wishList.flatMap(([key, list]) => [{ hdr: key, n: list.length },
-              // loved before liked inside each home, so the reason to go there leads
-              ...[...list].sort((a, b) => unseenRank(b) - unseenRank(a) || String(a.title).localeCompare(String(b.title)))])}
-            initial={40} step={40}
-            render={(slice) => slice.map(it => it.hdr ? (
-              <div className="cv-mus-country" key={"h:" + it.hdr}>{it.hdr} <span style={{ opacity: .55, fontWeight: 400 }}>· {it.n}</span></div>
-            ) : (
-              <div className="cv-mus-row" key={it.id} style={{ cursor: "pointer" }} onClick={() => go("work", it.id)}>
-                {it.imgGrid && <LazyImg className="cv-pil-thumb" src={it.imgGrid} alt="" />}
-                <span className="cv-mus-name">{it.floored || (it.liked && it.wish) ? "♥ " : "♡ "}{it.title}</span>
-                <span className="cv-mus-city">{it.artist.replace(/\s*\(.*\)$/, "")}{it.year ? " · " + it.year : ""}</span>
+          {/* Ranked by TRIP VALUE: floored first, then volume. New York holds more wanted works
+              than anywhere (151) and exactly one of them floored him — volume alone would have led
+              the page with it. "home" stays the honest word: P195 says where a work is catalogued,
+              not what is hanging this week. */}
+          <div className="cv-pil-note">
+            Where each work lives, by city — the ones worth the trip first. Museums nest inside.
+          </div>
+          {wishCities.filter(c => c.n > TAIL_MAX).map(c => {
+            const open = openCity.has(c.key);
+            return (
+              <div className="cv-pil-city" key={c.key}>
+                <button className="cv-pil-cityhead" data-on={open} onClick={() => toggleCity(c.key)}>
+                  <span className="cv-pil-cityname">{c.city}</span>
+                  <span className="cv-pil-citymeta">
+                    {c.floored > 0 && <b>★ {c.floored}</b>}
+                    {c.n} work{c.n === 1 ? "" : "s"} · {c.venues.length} venue{c.venues.length === 1 ? "" : "s"}
+                  </span>
+                  <span className="cv-pil-caret">{open ? "▾" : "▸"}</span>
+                </button>
+                {open && c.venues.map(v => (
+                  <div className="cv-pil-venue" key={v.name}>
+                    <div className="cv-pil-venuename">{v.name} <span>· {v.list.length}</span></div>
+                    {v.list.map(it => (
+                      <div className="cv-mus-row" key={it.id} style={{ cursor: "pointer" }} onClick={() => go("work", it.id)}>
+                        {it.imgGrid && <LazyImg className="cv-pil-thumb" src={it.imgGrid} alt="" />}
+                        <span className="cv-mus-name">{unseenRank(it) === 2 ? "★ " : "♡ "}{it.title}</span>
+                        <span className="cv-mus-city">{it.artist.replace(/s*(.*)$/, "")}{it.year ? " · " + it.year : ""}</span>
+                      </div>
+                    ))}
+                  </div>
+                ))}
               </div>
-            ))}
-          />
-          {/* total, so the count is not lost now that the list arrives in pieces */}
-          <div className="cv-pil-total r-mono">{wishList.reduce((n, [, l]) => n + l.length, 0)} works you're chasing</div>
+            );
+          })}
+          {/* The tail is the whole reason this scrolled forever: 161 cities holding one or two works
+              each. Folded behind one line rather than dropped — they are still places you want to
+              go, just not places you would plan a trip around. */}
+          {(() => {
+            const tail = wishCities.filter(c => c.n <= TAIL_MAX);
+            const tailN = tail.reduce((n, c) => n + c.n, 0);
+            if (!tail.length) return null;
+            return (
+              <div className="cv-pil-city">
+                <button className="cv-pil-cityhead" data-on={showTail} onClick={() => setShowTail(v => !v)}>
+                  <span className="cv-pil-cityname">Elsewhere</span>
+                  <span className="cv-pil-citymeta">{tail.length} cities · {tailN} work{tailN === 1 ? "" : "s"}</span>
+                  <span className="cv-pil-caret">{showTail ? "▾" : "▸"}</span>
+                </button>
+                {showTail && tail.map(c => (
+                  <div className="cv-pil-venue" key={c.key}>
+                    <div className="cv-pil-venuename">{c.city} <span>· {c.n}</span></div>
+                    {c.venues.flatMap(v => v.list).map(it => (
+                      <div className="cv-mus-row" key={it.id} style={{ cursor: "pointer" }} onClick={() => go("work", it.id)}>
+                        {it.imgGrid && <LazyImg className="cv-pil-thumb" src={it.imgGrid} alt="" />}
+                        <span className="cv-mus-name">{unseenRank(it) === 2 ? "★ " : "♡ "}{it.title}</span>
+                        <span className="cv-mus-city">{it.artist.replace(/s*(.*)$/, "")}{it.year ? " · " + it.year : ""}</span>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            );
+          })()}
+          {wishUnplaced.length > 0 && (
+            <div className="cv-pil-city">
+              <button className="cv-pil-cityhead" data-on={showUnplaced} onClick={() => setShowUnplaced(v => !v)}>
+                <span className="cv-pil-cityname">Home not known</span>
+                <span className="cv-pil-citymeta">{wishUnplaced.length} works</span>
+                <span className="cv-pil-caret">{showUnplaced ? "▾" : "▸"}</span>
+              </button>
+              {showUnplaced && (
+                <div className="cv-pil-venue">
+                  <div className="cv-pil-venuename">No P195 on the record <span>· {wishUnplaced.length}</span></div>
+                  {wishUnplaced.map(it => (
+                    <div className="cv-mus-row" key={it.id} style={{ cursor: "pointer" }} onClick={() => go("work", it.id)}>
+                      {it.imgGrid && <LazyImg className="cv-pil-thumb" src={it.imgGrid} alt="" />}
+                      <span className="cv-mus-name">{unseenRank(it) === 2 ? "★ " : "♡ "}{it.title}</span>
+                      <span className="cv-mus-city">{it.artist.replace(/s*(.*)$/, "")}{it.year ? " · " + it.year : ""}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+          <div className="cv-pil-total r-mono">
+            {wishCities.reduce((n, c) => n + c.n, 0) + wishUnplaced.length} works you're chasing, across {wishCities.length} cities
+          </div>
           {(window.CANVAS_PILGRIMAGE || []).length > 0 && (
             <React.Fragment>
               <div className="cv-mus-country">Places</div>
