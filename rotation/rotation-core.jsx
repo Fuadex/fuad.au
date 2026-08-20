@@ -147,12 +147,11 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 
 /* stat numerals */
 .r-stat-n { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; }
-/* Insight-card figures sit in the UI face, not the serif one (Fuad 2026-08-20: "unbolded… more
-   normal font"). .r-stat-n is already weight 400 — what read as bold was Source Serif at 27px in
-   accent pink, where the thick stems and the colour compound. These numbers share a card with a
-   name and a mono footnote rather than heading a stat strip, so the display face was overdressing
-   them; ×307 in particular was shouting. */
-.ov-ins-fig { font-family: var(--sans); font-weight: 400; letter-spacing: -.01em; }
+/* Insight-card figures keep the serif face and drop a size instead (Fuad 2026-08-20). Swapping them
+   to var(--sans) was tried and REVERTED the same day: it fixed the weight but made them read as a
+   different typeface from the two bespoke cards beside them, which is worse than being loud. The
+   heaviness was never the family — it was 27px of accent pink next to a 12px name and a 9px
+   footnote. Only .ov-pulseslot forces 27px, so the fix belongs there; see rotation-views1.jsx. */
 .r-mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 
 /* ───── generative cover ───── */

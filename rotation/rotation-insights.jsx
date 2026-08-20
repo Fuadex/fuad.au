@@ -95,12 +95,15 @@ const PROVIDERS = [
             <div className="r-stat-n ov-ins-fig" style={{ fontSize: 23, lineHeight: 1.05, color: "var(--accent)" }}>{_fmtN(away)}</div>
             <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>from {_fmtN(next)}</span>
           </div>
-          {/* Hollow fill, vivid rim — the emotional-weather bar idiom (Fuad 2026-08-20). Alpha lives
-              in the background colour only, never as `opacity` on the element, or the border fades
-              along with the wash it is meant to enclose. */}
+          {/* Hollow fill, quiet rim (Fuad 2026-08-20). Alpha lives in the background colour only,
+              never as `opacity` on the element, or the border fades along with the wash it is meant
+              to enclose. The rim takes the DECADES values, not the weather ones: weather strokes run
+              chroma 0.19–0.20 at full alpha because they are the loudest thing in their card, while
+              a decade segment sits at chroma 0.08 / alpha 0.42 and reads as an edge rather than as a
+              line. This bar is a footnote under a number, so it wants the decades end. */}
           <div style={{ height: 7, borderRadius: 4, background: "var(--bg-3)", margin: "8px 0 6px", position: "relative" }}>
             <div style={{ position: "absolute", inset: "0 auto 0 0", width: pct + "%",
-              background: "oklch(0.72 0.17 350 / 0.26)", border: "1px solid oklch(0.80 0.21 350)",
+              background: "oklch(0.72 0.15 350 / 0.22)", border: "1px solid oklch(0.66 0.08 350 / 0.42)",
               boxSizing: "border-box", borderRadius: 4 }} />
           </div>
           <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-faint)" }}>
@@ -212,22 +215,25 @@ const PROVIDERS = [
     const list = (mo.newArtists || []).slice(0, 2);
     if (!list.length && !mo.deepest) return null;
     return {
-      id: "new-month", category: "new-month", score: 0.7, label: "New this month", meta: "explore", onClick: () => ctx.go("explore"),
+      id: "new-month", category: "new-month", score: 0.7, label: "New this month",
+      meta: mo.deepest ? "deepest · " + mo.deepest.name : "explore",
+      onClick: () => ctx.go("explore"),
+      // TWO PLAIN ROWS (Fuad 2026-08-20: "still crazy cluttered and overflowing"). Trimming three
+      // artists to two was not enough because the height was never mostly the rows: under them sat a
+      // rule, an uppercase mono kicker and a third type size for the Deepest dive, so one card was
+      // running four text treatments inside 104px. The dive is one artist and a number — it fits in
+      // the header's meta slot, which was spending itself on the word "explore" while every card
+      // here is already clickable. What is left is the same two-row shape as On repeat, which is
+      // what makes the deck read as a row rather than as four unrelated cards.
       render: (
-        <div>
-          <div style={{ display: "grid", gap: 6 }}>
-            {list.map(a => (
-              <div key={a.name} onClick={(e) => { e.stopPropagation(); ctx.go("artist", a.artistId); }} style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}>
-                <GenCover hue={a.hue != null ? a.hue : _hue(a.name)} name={a.name} size={24} radius={2} />
-                <div style={{ flex: 1, minWidth: 0, fontSize: 12.5, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</div>
-                <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{a.plays}</span>
-              </div>
-            ))}
-          </div>
-          {mo.deepest && <div style={{ marginTop: 9, paddingTop: 8, borderTop: "1px solid var(--rule)", cursor: "pointer" }} onClick={(e) => { e.stopPropagation(); ctx.go("artist", mo.deepest.artistId); }}>
-            <div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-faint)" }}>Deepest dive</div>
-            <div style={{ fontSize: 12.5 }}>{mo.deepest.name} <span style={{ color: "var(--ink-faint)" }}>· {mo.deepest.plays} plays</span></div>
-          </div>}
+        <div style={{ display: "grid", gap: 6 }}>
+          {list.map(a => (
+            <div key={a.name} onClick={(e) => { e.stopPropagation(); ctx.go("artist", a.artistId); }} style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}>
+              <GenCover hue={a.hue != null ? a.hue : _hue(a.name)} name={a.name} size={28} radius={2} />
+              <div style={{ flex: 1, minWidth: 0, fontSize: 12.5, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</div>
+              <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", flex: "none" }}>{a.plays}×</span>
+            </div>
+          ))}
         </div>
       ),
     };

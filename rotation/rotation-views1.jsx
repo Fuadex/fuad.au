@@ -535,9 +535,17 @@ function OverviewView({ t, go, restReady, seed }) {
     if (fp == null) return null;   // no filter → lifetime static stats
     const spanDays = dyn ? dyn.spanDays : days.counts.length;   // temporal window, or the whole span
     const rawLabel = slice ? (fStats.label || "filtered") : (dyn ? dyn.label : "");
+    // DEPTH — plays per artist across whatever Results is showing (Fuad 2026-08-20). Both terms come
+    // from fStats and neither from `fp`: resultArtists is period-scoped (it reads periodData.arts on
+    // a calendar pick, and is uncapped since 2026-07-26), so the pair is internally consistent.
+    // Mixing the day-series play total with an fStats artist count would inflate the ratio, because
+    // fStats sees Explore-eligible artists only while day-series counts every scrobble.
+    const depth = (fStats && fStats.plays != null && fStats.artists)
+      ? Math.round(fStats.plays / fStats.artists * 10) / 10 : null;
     return {
       avgDay: Math.round(fp / Math.max(1, spanDays) * 10) / 10,
       sharePct: Math.round(fp / (days.total || 1) * 1000) / 10,
+      depth,
       hi: dyn ? { count: dyn.hiCount, date: dyn.hiDate } : null,   // heaviest stays time-scoped (per-slice needs a heavier export)
       label: rawLabel.length > 18 ? rawLabel.slice(0, 17) + "…" : rawLabel,
     };
@@ -659,7 +667,14 @@ function OverviewView({ t, go, restReady, seed }) {
                 {T.tracks != null && <Stat n={fmt(T.tracks)} sub="songs played" onClick={() => go("explore")} />}
                 {seenLivePct > 0 && <Stat n={seenLivePct + "%"} sub="plays · seen live" onClick={() => go("gigs")} />}
                 <Stat n={flt ? flt.avgDay : T.perDay} sub={flt ? "avg/day · " + flt.label : "avg / day"} />
-                <Stat n={flt ? flt.sharePct + "%" : sinceYears + " yr"} sub={flt ? "of all plays" : "of history"} />
+                {/* Filtered, this slot shows DEPTH, not share (Fuad 2026-08-20). It used to become
+                    "% of all plays", which is the same quantity the tenth stat spells out as "of
+                    plays · in results" — two cells apart, saying one thing. Depth answers what
+                    neither neighbour does: was this slice one obsession or a wide graze. Falls back
+                    to share on the rare filter where Results reports no artist count, rather than
+                    leaving a hole in the strip. */}
+                <Stat n={flt ? (flt.depth != null ? flt.depth : flt.sharePct + "%") : sinceYears + " yr"}
+                  sub={flt ? (flt.depth != null ? "plays / artist" : "of all plays") : "of history"} />
                 <Stat n={flt && flt.hi ? fmt(flt.hi.count) : R.TOTALS.topDay.count} sub={"heaviest · " + ((flt && flt.hi ? flt.hi.date : R.TOTALS.topDay.date)).slice(2)} onClick={() => go("calendar")} />
                 {/* Tenth stat (Fuad 2026-08-20): what share of everything I've ever played belongs
                     to the artists standing in the Results list right now — the WHOLE list, not its
@@ -760,7 +775,14 @@ function OverviewView({ t, go, restReady, seed }) {
             four more cards, so it charged a header, a border and two lots of padding for nothing.
             The insight cards now sit straight on the grid. .ov-insgrid keeps the class so its
             existing column rules still apply; it is a bare grid rather than an .r-card. */}
-        <div className="ov-insgrid" style={{ gridColumn: "span 8", display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 8 }}>
+        {/* SAME GRID AS THE PULSE ROW (Fuad 2026-08-20: "still not vertically aligned with other
+            modules above"). Both rows span the bento's first eight columns and both show four
+            cards, but they were dividing that width by different arithmetic: the pulse row is four
+            1fr tracks with a var(--gap) 20px gutter, while this was twelve tracks with an 8px
+            gutter and each card spanning three. Same outer width, different inner edges — every
+            card here landed a few px off the one above it, and the drift compounded across the row.
+            One template and one gap for both. */}
+        <div className="ov-insgrid" style={{ gridColumn: "span 8", display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: "var(--gap)" }}>
           {/* recent ticker — moved down out of the pulse row (Fuad 2026-08-20) to make room for
               Riser and Next milestone. It leads this row rather than sitting mid-deck: it is the one
               FIXED card here, and a fixed card is steadier at an edge than wedged between three that
@@ -888,6 +910,12 @@ function OverviewView({ t, go, restReady, seed }) {
           .ov-pulseslot > .r-card { padding: 12px !important; }
           .ov-pulseslot > .r-card > .r-card-h { margin-bottom: 4px !important; }
           .ov-pulseslot .r-stat-n { font-size: 27px !important; }
+          /* Insight figures sit ONE STEP DOWN from the two bespoke cards (Fuad 2026-08-20). Same
+             face, same weight, same colour — 27px was simply too much next to a 12px name and a 9px
+             footnote, where Scrobbles and Streak carry their number alone. Matching the row means
+             matching the typeface, not the point size; the earlier attempt swapped the family
+             instead and had to be reverted. */
+          .ov-pulseslot .ov-ins-fig { font-size: 21px !important; }
           .ov-scrob .spark { max-height: 30px; }
           .ov-np { max-height: 92px; overflow: hidden; }
           .ov-recent .ov-rl { overflow-y: auto; }
@@ -901,8 +929,10 @@ function OverviewView({ t, go, restReady, seed }) {
              wrapper card is gone, so .ov-insgrid takes the span directly. */
           .ov-insgrid  { grid-column: 1 / span 8 !important; }
           .ov-weather  { grid-column: 9 / -1 !important; }
-          /* four cards across the eight columns → one rank */
-          .ov-insgrid > .r-card { grid-column: span 3 !important; }
+          /* four cards across the eight columns → one rank. The grid IS four tracks now (see the
+             inline style), so auto-placement does this and a span rule would only re-introduce the
+             misalignment with the pulse row above. */
+          .ov-insgrid > .r-card { grid-column: auto !important; }
           /* Cap the row (Fuad 2026-08-20). Grid rows size to their tallest item, so one long
              insight was setting the height for the weather card beside it and the whole band read
              taller than it needed to. Capping the cards themselves rather than the row keeps the
@@ -989,10 +1019,10 @@ function OverviewView({ t, go, restReady, seed }) {
         .eqbar { width: 3px; height: 8px; background: var(--accent); border-radius: 2px;
           animation: eq .9s ease-in-out infinite alternate; box-shadow: 0 0 6px var(--accent-bg); }
         @keyframes eq { from { height: 5px; } to { height: 18px; } }
-        /* the inner insight grid is a repeat(12,1fr); bare fr tracks have an implicit auto min, so a
-           long insight can push a span-4 card past its third and overflow the card. Pin the tracks to
-           a 0 min and let the cards stack once there isn't room (Fuad 2026-07-16). */
-        .ov-insgrid { grid-template-columns: repeat(12, minmax(0, 1fr)) !important; }
+        /* bare fr tracks have an implicit auto min, so a long insight can push a card past its track
+           and overflow. Pin the tracks to a 0 min and let the cards stack once there isn't room
+           (Fuad 2026-07-16). Four tracks, matching .ov-pulseslot — see the inline style. */
+        .ov-insgrid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
         .ov-insgrid > .r-card { min-width: 0; }
         @media (max-width: 760px) {
           .ov-insgrid > .r-card { grid-column: 1 / -1 !important; }

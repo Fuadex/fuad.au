@@ -407,8 +407,21 @@ const LK_FLIP = {
   artist:    ["a→z", "z→a"],
   tempo:     ["slow→fast", "fast→slow"],
   energy:    ["high→low", "low→high"],
+  mood:      ["bright→dark", "dark→bright"],
+  neglect:   ["most faded", "least faded"],
+  obscure:   ["deep cuts", "best known"],
   closest:   ["closest", "farthest"],
 };
+// FADE RATE (Fuad 2026-08-20) — plays divided by the years you have had the track, so "liked in 2013
+// and played twice" separates from "liked in 2013 and played four hundred times". Nothing else on
+// the page tells those apart: `plays` ranks by the raw count and `newest` by the year, and a small
+// count is only damning once you know how long it has had to grow. 74 saves have never been played
+// at all; they all tie at 0, so age breaks the tie and the longest-ignored lead.
+// Recency is handled by the divisor rather than by excluding this year: a 2026 save played twice
+// scores 2.0 and sits mid-list, while a 2013 save played twice scores 0.14 and heads it — which is
+// the distinction the sort is for.
+const LK_NOW_Y = new Date().getUTCFullYear();
+const lkFade = (r) => (r.meta[1] || 0) / Math.max(1, LK_NOW_Y - (r.meta[2] || LK_NOW_Y) + 1);
 function lkVocalsPass(vx, opt) {
   if (opt === "any") return true;
   if (vx === undefined || vx === null) return false;   // no data → hidden under an active filter
@@ -897,6 +910,14 @@ function LikedView({ go }) {
     else if (sort === "artist") s.sort((a, b) => a.artist.localeCompare(b.artist) || a.track.localeCompare(b.track));
     else if (sort === "tempo") s.sort((a, b) => (a.tempo == null) - (b.tempo == null) || (a.tempo || 0) - (b.tempo || 0));
     else if (sort === "energy") s.sort((a, b) => (a.energy == null) - (b.energy == null) || (b.energy || 0) - (a.energy || 0));
+    // valence, 91% covered — the third of the three basic audio axes, and the only one the row of
+    // chips stopped short of. tempo says how fast, energy says how hard, mood says how it feels.
+    else if (sort === "mood") s.sort((a, b) => (a.valence == null) - (b.valence == null) || (b.valence || 0) - (a.valence || 0));
+    // Spotify popularity, 75% covered — the only axis here that is not about you. Everything else
+    // ranks by what YOU did with the track; this ranks by what everyone else did, so the tracks
+    // nobody streams come first. The uncovered quarter parks at the tail like tempo/energy nulls.
+    else if (sort === "obscure") s.sort((a, b) => (a.pop == null) - (b.pop == null) || (a.pop || 0) - (b.pop || 0));
+    else if (sort === "neglect") s.sort((a, b) => lkFade(a) - lkFade(b) || (a.meta[2] || 9999) - (b.meta[2] || 9999));
     // INVERT flips the active sort's direction. Rows lacking the sort datum (tempo/energy null) are
     // parked last by the comparators above via the `(x == null)` primer; reversing would float them to
     // the top, so keep those no-data rows pinned to the tail and only reverse the rows that HAVE data.
@@ -908,8 +929,10 @@ function LikedView({ go }) {
     if (inv) {
       const lacks = (r) => sort === "tempo" ? r.tempo == null
         : sort === "energy" ? r.energy == null
+        : sort === "mood" ? r.valence == null
+        : sort === "obscure" ? r.pop == null
         : sort === "first-new" ? !r.meta[2]
-        : false;
+        : false;   // `neglect` derives from plays + firstYear, both 100% populated — no tail to pin
       const dataless = s.filter(lacks);
       const dated = s.filter(r => !lacks(r));
       dated.reverse();
@@ -1147,6 +1170,7 @@ function LikedView({ go }) {
           {/* "oldest" retired 2026-08-17 — replaced by the INVERT chip at the row's end, which flips
               whatever sort is active (owner request). "closest" is offered ONLY while the DNA dictates. */}
           {[["plays", "plays"], ["first-new", "newest"], ["artist", "a–z"], ["tempo", "tempo"], ["energy", "energy"],
+            ["mood", "mood"], ["neglect", "neglect"], ["obscure", "obscure"],
             ...(dictating === "dna" ? [["closest", "closest"]] : [])].map(([k, l]) => (
             <button key={k} data-on={sort === k} onClick={() => { setSort(k); setInv(false); }}>{l}</button>
           ))}
