@@ -794,8 +794,11 @@ function OverviewView({ t, go, restReady, seed }) {
             </div>
           </div>
           {/* three scored cards beside it. riser + scrob-mile are pinned into the pulse row above and
-              `week` is retired, so all three are omitted here or the page shows them twice. */}
-          <InsightRow go={go} n={3} omit={["riser", "scrob-mile", "week"]} />
+              `week` is retired, so all three are omitted here or the page shows them twice.
+              About to tip over is pinned to the trailing cell (Fuad 2026-08-20). Score decided both
+              WHETHER a card showed and WHERE it sat, so this one drifted a cell left or right as
+              other providers came and went; `last` fixes the position without touching the pick. */}
+          <InsightRow go={go} n={3} omit={["riser", "scrob-mile", "week"]} last={["artist-mile"]} />
         </div>
 
         {/* emotional weather — last-90d sounds/reads only now (the decades strip moved up to the

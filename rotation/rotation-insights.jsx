@@ -454,6 +454,10 @@ function storyOfDayProvider(ctx) {
 //   which needs two named cards in two fixed slots rather than whatever ranks highest today.
 // opts.omit — never return these ids. A card promoted into a fixed slot must be omitted here or it
 //   renders twice on the same page.
+// opts.last — ids that render at the TRAILING edge of the row when they appear at all. Score decides
+//   WHETHER a card shows; it has no opinion about where in the row it lands, and until now the two
+//   were the same knob, so a card's position drifted a cell left or right as other providers came
+//   and went. Applied after selection so it never changes which cards were chosen.
 // A provider can return null (no riser this week, milestone too far off), so `only` backfills from
 // the ranked remainder: the pulse row is a 4-up grid and a missing child would leave a hole in it.
 function runInsights(ctx, n, opts) {
@@ -467,7 +471,9 @@ function runInsights(ctx, n, opts) {
   const take = (r) => { if (!r || seen.has(r.category)) return; seen.add(r.category); picks.push(r); };
   for (const id of (o.only || [])) take(byId[id]);
   for (const r of out) { if (picks.length >= n) break; take(r); }
-  return picks.slice(0, n);
+  const chosen = picks.slice(0, n);
+  const last = new Set(o.last || []);
+  return last.size ? chosen.filter(r => !last.has(r.id)).concat(chosen.filter(r => last.has(r.id))) : chosen;
 }
 
 function InsightCard({ ins, span }) {
@@ -502,10 +508,10 @@ function InsightCard({ ins, span }) {
 
 // Returns N insight cards as grid children (each spans 4 of the Overview's 12-col bento by default).
 // `span` overrides that for hosts on a different grid — the pulse row is a plain 4-up, not 12 cols.
-function InsightRow({ go, n = 6, only, omit, span }) {
-  const oKey = (only || []).join(",") + "|" + (omit || []).join(",");
+function InsightRow({ go, n = 6, only, omit, last, span }) {
+  const oKey = (only || []).join(",") + "|" + (omit || []).join(",") + "|" + (last || []).join(",");
   const picks = React.useMemo(
-    () => runInsights({ R: window.ROTATION, go, now: new Date() }, n, { only, omit }),
+    () => runInsights({ R: window.ROTATION, go, now: new Date() }, n, { only, omit, last }),
     [go, n, oKey]);  // eslint-disable-line react-hooks/exhaustive-deps
   return picks.map(ins => <InsightCard key={ins.id} ins={ins} span={span} />);
 }
