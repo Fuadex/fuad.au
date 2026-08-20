@@ -399,11 +399,27 @@ const STYLE_CHIPS = 12;
 
 function Wall({ go, styleIds }) {
   const all = useMemo(() => WORKS.map(enrich), []);
+  // TODAY'S HANG (Fuad 2026-08-20): the Wall serves what Home used to serve, and Home is gone. Not
+  // a filter and not a sort — homeHang picks a set AND orders it, including works pinned to always
+  // appear, so it is applied as a whole rather than expressed in chips.
+  // ON BY DEFAULT: this is the landing page now, and landing on 1,894 tiles is not a greeting.
+  // Exception: a style deep-link (#/wall/impressionism) asked for a specific slice of the FULL
+  // wall, so honouring the hang there would silently drop most of what was linked to.
+  // DECLARED FIRST, above every filter: `unhang` below is CALLED during render rather than merely
+  // closed over, so setHang has to exist by then. Move this back down and the toggles throw.
+  const [hang, setHang] = useState(() => !styleIds);
+  // ANY FILTER TURNS THE HANG OFF (Fuad 2026-08-21). The chips used to narrow the hang instead, so
+  // "today's hang, 1890s only" was expressible — but it made the chip counts lie. Those are counted
+  // against the whole wall, so a chip reading 240 could leave nine tiles on screen with nothing on
+  // the page explaining the gap. Reaching for a filter is a statement about wanting the collection
+  // rather than today's selection from it, so the hang steps aside instead of intersecting. The
+  // chip stays lit-able to put it back.
+  const unhang = (fn) => (...a) => { setHang(false); return fn(...a); };
   const [marks, setMarks] = useState(() => new Set());     // ★ floored / ♥ loved — OR within
   const [status, setStatus] = useState(() => new Set());    // seen / unsure / pilgrimage — OR within
   const toggleIn = (set, setter) => (k) => setter(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; });
-  const toggleMark = toggleIn(marks, setMarks);
-  const toggleStatus = toggleIn(status, setStatus);
+  const toggleMark = unhang(toggleIn(marks, setMarks));
+  const toggleStatus = unhang(toggleIn(status, setStatus));
   const [mus, setMus] = useState("");
   const [sort, setSort] = useState("hang");
   const [extra, setExtra] = useState(0);
@@ -411,25 +427,20 @@ function Wall({ go, styleIds }) {
   const [media, setMedia] = useState([]);              // selected medium buckets, OR'd like styles
   const [pick, setPick] = useState("");                // colour-sort target ("" = hue ramp)
   const [eras, setEras] = useState(() => new Set());   // era chips — OR within, AND with the rest
-  // TODAY'S HANG (Fuad 2026-08-20): the Wall serves what Home used to serve, and Home is gone. Not
-  // a filter and not a sort — homeHang picks a set AND orders it, including works pinned to always
-  // appear, so it is applied as a whole rather than expressed in chips.
-  // ON BY DEFAULT: this is the landing page now, and landing on 1,894 tiles is not a greeting.
-  // Exception: a style deep-link (#/wall/impressionism) asked for a specific slice of the FULL
-  // wall, so honouring the hang there would silently drop most of what was linked to.
-  const [hang, setHang] = useState(() => !styleIds);
-  const toggleEra = (k) => setEras(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; });
+  const toggleEra = unhang((k) => setEras(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; }));
   // The full style list — order and slugs are stable so a URL like #/wall/impressionism keeps
   // working whatever is filtered. Only the NUMBERS react; see `movCounts` below.
   const movs = useMemo(movIndex, []);
-  const toggleMedium = (k) => setMedia(m => m.includes(k) ? m.filter(x => x !== k) : [...m, k]);
+  const toggleMedium = unhang((k) => setMedia(m => m.includes(k) ? m.filter(x => x !== k) : [...m, k]));
   // Selected styles live in the URL (#/wall/impressionism+fauvism), not in state — that makes a
   // filtered wall shareable and back-button-able, and gives Portrait somewhere to link to.
   const sel = useMemo(() => {
     const bySlug = new Map(movs.map(m => [m.slug, m.label]));
     return (styleIds || "").split("+").map(s => bySlug.get(s)).filter(Boolean);
   }, [styleIds, movs]);
-  const setSel = (labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null);
+  // setSel routes through go(), which changes the hash but does NOT remount Wall — so `hang` state
+  // survives the navigation and has to be cleared explicitly like every other filter.
+  const setSel = unhang((labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null));
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
   useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, pick, hang]);
 
@@ -541,7 +552,7 @@ function Wall({ go, styleIds }) {
         <span className="cv-filt-div" aria-hidden="true" />
         {/* "all" clears both axes — a reset, not a third state you can be in */}
         <button data-on={!marks.size && !status.size}
-          onClick={() => { setMarks(new Set()); setStatus(new Set()); }}>all</button>
+          onClick={unhang(() => { setMarks(new Set()); setStatus(new Set()); })}>all</button>
         {MARK_FILTERS.map(([v, label]) => (
           <button key={v} data-on={marks.has(v)} onClick={() => toggleMark(v)}>{label}</button>
         ))}
@@ -549,11 +560,11 @@ function Wall({ go, styleIds }) {
         {STATUS_FILTERS.map(([v, label]) => (
           <button key={v} data-on={status.has(v)} onClick={() => toggleStatus(v)}>{label}</button>
         ))}
-        <select value={mus} onChange={e => setMus(e.target.value)}>
+        <select value={mus} onChange={unhang(e => setMus(e.target.value))}>
           <option value="">every museum</option>
           {musOpts.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
         </select>
-        <select value={sort === "colour" ? "hang" : sort} onChange={e => setSort(e.target.value)}>
+        <select value={sort === "colour" ? "hang" : sort} onChange={unhang(e => setSort(e.target.value))}>
           <option value="hang">hang order</option>
           <option value="year">by year</option>
           <option value="artist">by artist</option>
@@ -572,7 +583,7 @@ function Wall({ go, styleIds }) {
             const on = sort === "colour" && pick === hex;
             return (
               <button key={label} className="cv-pick-dot" data-on={on} title={hex ? "sort toward " + label : "sort along the hue ramp"}
-                onClick={() => { if (on) { setSort("hang"); return; } setPick(hex); setSort("colour"); }}>
+                onClick={unhang(() => { if (on) { setSort("hang"); return; } setPick(hex); setSort("colour"); })}>
                 <i className={hex ? "" : "cv-pick-ramp"} style={hex ? { background: hex } : null} />
               </button>
             );
@@ -583,13 +594,13 @@ function Wall({ go, styleIds }) {
           <label className="cv-pick-custom" data-on={sort === "colour" && !!pick && !SPECTRUM_PICKS.some(([hex]) => hex === pick)}
             title="sort toward any colour">
             <input type="color" value={pick || "#b23b2e"}
-              onChange={e => { setPick(e.target.value); setSort("colour"); }} />
+              onChange={unhang(e => { setPick(e.target.value); setSort("colour"); })} />
           </label>
           {/* an explicit off. Clicking a lit preset toggles it, but a colour input cannot: clicking
               it just reopens the picker, so a custom colour had no way out except choosing a
               different one. Same ✕ idiom the style and era rows use. */}
           {sort === "colour" && (
-            <button className="cv-pick-off" onClick={() => setSort("hang")} title="stop sorting by colour">✕</button>
+            <button className="cv-pick-off" onClick={unhang(() => setSort("hang"))} title="stop sorting by colour">✕</button>
           )}
         </span>
         <span className="cv-count">{Math.min(visN, shown.length)} of {shown.length}</span>
@@ -621,7 +632,7 @@ function Wall({ go, styleIds }) {
               </button>
             );
           })}
-          {media.length > 0 && <button className="cv-styles-clear" onClick={() => setMedia([])}>✕ clear</button>}
+          {media.length > 0 && <button className="cv-styles-clear" onClick={unhang(() => setMedia([]))}>✕ clear</button>}
         </span>
         <span className="cv-objgrp">
           <span className="cv-styles-lbl" title="when the work was made">era</span>
@@ -632,7 +643,7 @@ function Wall({ go, styleIds }) {
                 onClick={() => toggleEra(k)}>{label}<i>{n}</i></button>
             );
           })}
-          {eras.size > 0 && <button className="cv-styles-clear" onClick={() => setEras(new Set())}>✕ clear</button>}
+          {eras.size > 0 && <button className="cv-styles-clear" onClick={unhang(() => setEras(new Set()))}>✕ clear</button>}
         </span>
       </div>
       {/* STYLES — multi-select, OR'd. Movement is the artist's (Wikidata P135), so the note says
