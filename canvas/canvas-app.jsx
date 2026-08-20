@@ -594,18 +594,46 @@ function Wall({ go, styleIds }) {
         </span>
         <span className="cv-count">{Math.min(visN, shown.length)} of {shown.length}</span>
       </div>
-      {/* ERA — replaces the old Timeline mode. Buckets are sized off the collection's real shape
-          rather than round centuries; see ERAS. Multi-select and OR'd, like every other chip row. */}
-      <div className="cv-styles cv-eras">
-        <span className="cv-styles-lbl" title="when the work was made">era</span>
-        {ERAS.map(([k, label]) => {
-          const n = eraCounts[k] || 0;
-          return (
-            <button key={k} data-on={eras.has(k)} data-empty={n === 0 && !eras.has(k)}
-              onClick={() => toggleEra(k)}>{label}<i>{n}</i></button>
-          );
-        })}
-        {eras.size > 0 && <button className="cv-styles-clear" onClick={() => setEras(new Set())}>✕ clear</button>}
+      {/* MEDIUM + ERA share one row, medium leading (Fuad 2026-08-20). Both are short, closed sets
+          of chips — five buckets and eight bands — so two full-width rows spent a lot of vertical
+          space on a little over a line of content each, and pushed the wall further down the page.
+          They are the two axes that describe the OBJECT (what it is, when it was made), which is
+          why these pair and styles stays on its own row: that one is about the artist, and it grows
+          to twenty-odd chips when expanded.
+          MEDIUM — five coarse buckets folded from Wikidata P31, multi-select and OR'd. Unlike
+          movement (which Wikidata files on the ARTIST) this is a property of the object itself, so
+          no disclaimer is needed.
+          ERA — replaces the old Timeline mode. Buckets are sized off the collection's real shape
+          rather than round centuries; see ERAS. */}
+      <div className="cv-styles cv-objrow">
+        <span className="cv-objgrp">
+          <span className="cv-styles-lbl" title="what kind of object it is — Wikidata P31">medium</span>
+          {/* which chips EXIST is decided against the whole collection, so the row keeps a stable
+              shape; the number on each is live, and a bucket with none left under the current
+              filters dims instead of disappearing. Before the counts moved they were static, so
+              dropping the empties was free — now it would make the row jump on every filter. */}
+          {MEDIA.filter(([k]) => mediaAll[k]).map(([k, label]) => {
+            const n = mediaCounts[k] || 0;
+            return (
+              <button key={k} data-on={media.includes(k)} data-empty={n === 0 && !media.includes(k)}
+                onClick={() => toggleMedium(k)}>
+                {label}<i>{n}</i>
+              </button>
+            );
+          })}
+          {media.length > 0 && <button className="cv-styles-clear" onClick={() => setMedia([])}>✕ clear</button>}
+        </span>
+        <span className="cv-objgrp">
+          <span className="cv-styles-lbl" title="when the work was made">era</span>
+          {ERAS.map(([k, label]) => {
+            const n = eraCounts[k] || 0;
+            return (
+              <button key={k} data-on={eras.has(k)} data-empty={n === 0 && !eras.has(k)}
+                onClick={() => toggleEra(k)}>{label}<i>{n}</i></button>
+            );
+          })}
+          {eras.size > 0 && <button className="cv-styles-clear" onClick={() => setEras(new Set())}>✕ clear</button>}
+        </span>
       </div>
       {/* STYLES — multi-select, OR'd. Movement is the artist's (Wikidata P135), so the note says
           so rather than pretending each canvas carries the tag. */}
@@ -628,27 +656,6 @@ function Wall({ go, styleIds }) {
           </button>
         )}
         {sel.length > 0 && <button className="cv-styles-clear" onClick={() => setSel([])}>✕ clear</button>}
-      </div>
-      {/* MEDIUM — five coarse buckets folded from Wikidata P31, multi-select and OR'd, same
-          grammar as styles. Unlike movement (which Wikidata files on the ARTIST) this is a
-          property of the object itself, so no disclaimer is needed. Chips with a zero count are
-          not rendered at all rather than offered and then disappointing. */}
-      <div className="cv-styles cv-media">
-        <span className="cv-styles-lbl" title="what kind of object it is — Wikidata P31">medium</span>
-        {/* which chips EXIST is decided against the whole collection, so the row keeps a stable
-            shape; the number on each is live, and a bucket with none left under the current filters
-            dims instead of disappearing. Before the counts moved they were static, so dropping the
-            empties was free — now it would make the row jump every time a filter changed. */}
-        {MEDIA.filter(([k]) => mediaAll[k]).map(([k, label]) => {
-          const n = mediaCounts[k] || 0;
-          return (
-            <button key={k} data-on={media.includes(k)} data-empty={n === 0 && !media.includes(k)}
-              onClick={() => toggleMedium(k)}>
-              {label}<i>{n}</i>
-            </button>
-          );
-        })}
-        {media.length > 0 && <button className="cv-styles-clear" onClick={() => setMedia([])}>✕ clear</button>}
       </div>
       {sel.length > 0 && (
         <div className="cv-styles-note">
