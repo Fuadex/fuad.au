@@ -26,9 +26,6 @@ a { color: inherit; }
 .cv-nav a { font: 500 11.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--ink-faint); padding: 7px 12px; border-radius: 999px; }
 .cv-nav a:hover { color: var(--ink); }
 .cv-nav a[data-on="true"] { background: var(--ink); color: var(--paper); }
-.cv-mode { display: flex; gap: 4px; }
-.cv-mode button { font: 500 10.5px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-faint); cursor: pointer; }
-.cv-mode button[data-on="true"] { border-color: var(--ink); color: var(--ink); }
 
 /* ——— the wall (collage) — tighter 6-column packed hang (Fuad, 2026-07-08) ——— */
 .cv-wall { column-count: 6; column-gap: 8px; padding: 18px 24px 60px; }
@@ -72,8 +69,6 @@ a { color: inherit; }
 .cv-section .cv-wall { padding: 0; }
 
 /* ——— home (curated selection) ——— */
-.cv-home-intro { padding: 18px 24px 0; font: 400 13.5px/1.6 var(--serif, serif); color: var(--ink-soft); max-width: 640px; }
-.cv-home-intro a { color: var(--ink); }
 .cv-home-label { margin-left: 24px; margin-right: 24px; }
 .cv-home-featured { margin-bottom: 8px; }
 
