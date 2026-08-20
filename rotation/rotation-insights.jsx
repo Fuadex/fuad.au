@@ -22,30 +22,34 @@ const _id = (name) => { const R = window.ROTATION; return (name && R.idForName(n
 const _hue = (name) => { const R = window.ROTATION, e = R.byId[_id(name)] || (R.expById && R.expById[_id(name)]); return e && e.hue != null ? e.hue : 210; };
 
 // ── SUBJECT CARD (Fuad 2026-08-20) ──────────────────────────────────────────────────────────────
-// Every insight that is ABOUT an artist, album or track renders the same way: cover at the left,
-// the number and its unit on the first line beside it, then the name, then one quiet line of
-// context. Three things drove this:
+// Every insight that is ABOUT an artist, album or track renders the same way: the number and its
+// unit on the first line, the name under it, one quiet line of context, and the cover at the RIGHT
+// edge. Three things drove this:
 //   · "if it's relative to an artist, an album or song, there should be a thumbnail somewhere".
 //     GenCover already resolves a real photo from the name alone, so the thumbnail is free — these
 //     cards simply never asked for one.
 //   · The old shape said the name THREE times: `meta` in the header, `sub` under the number, and
 //     again inside `note`. Once, next to its own picture, is enough.
-//   · The freed vertical space is what the number and the note now spread into, instead of the
-//     card padding slack out at the bottom.
+//   · COVER RIGHT, NOT LEFT (Fuad 2026-08-20: "the blocks need to align vertically, the widths are
+//     uneven"). The first pass put the cover first, which pushed the number ~48px in from the card's
+//     padding edge — so in a row of four cards, three had their big number on the left margin and
+//     this one did not. Nothing else in the row is indented, so the card was the odd one out. Moving
+//     the cover to the trailing edge puts every number on the same vertical line and still leaves
+//     the picture beside the thing it belongs to.
 // Callers pass `name` for the cover lookup and `title` for what to print, because a track card
 // looks the artist up but shows the song.
 function SubjectStat({ name, title, big, unit, foot, size }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
-      <GenCover hue={_hue(name)} name={name} size={size || 38} radius={2} />
       <div style={{ minWidth: 0, flex: 1 }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
           <div className="r-stat-n" style={{ fontSize: 23, lineHeight: 1.05, color: "var(--accent)" }}>{big}</div>
           {unit && <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{unit}</span>}
         </div>
-        <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 2 }}>{title || name}</div>
+        <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 3 }}>{title || name}</div>
         {foot && <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{foot}</div>}
       </div>
+      <GenCover hue={_hue(name)} name={name} size={size || 38} radius={2} style={{ flex: "none" }} />
     </div>
   );
 }
