@@ -43,7 +43,7 @@ function SubjectStat({ name, title, big, unit, foot, size }) {
     <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
       <div style={{ minWidth: 0, flex: 1 }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
-          <div className="r-stat-n" style={{ fontSize: 23, lineHeight: 1.05, color: "var(--accent)" }}>{big}</div>
+          <div className="r-stat-n ov-ins-fig" style={{ fontSize: 23, lineHeight: 1.05, color: "var(--accent)" }}>{big}</div>
           {unit && <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{unit}</span>}
         </div>
         <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 3 }}>{title || name}</div>
@@ -92,11 +92,16 @@ const PROVIDERS = [
       render: (
         <div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 7 }}>
-            <div className="r-stat-n" style={{ fontSize: 23, lineHeight: 1.05, color: "var(--accent)" }}>{_fmtN(away)}</div>
+            <div className="r-stat-n ov-ins-fig" style={{ fontSize: 23, lineHeight: 1.05, color: "var(--accent)" }}>{_fmtN(away)}</div>
             <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>from {_fmtN(next)}</span>
           </div>
-          <div style={{ height: 5, borderRadius: 3, background: "var(--bg-3)", overflow: "hidden", margin: "8px 0 6px" }}>
-            <div style={{ width: pct + "%", height: "100%", background: "var(--accent)", borderRadius: 3 }} />
+          {/* Hollow fill, vivid rim — the emotional-weather bar idiom (Fuad 2026-08-20). Alpha lives
+              in the background colour only, never as `opacity` on the element, or the border fades
+              along with the wash it is meant to enclose. */}
+          <div style={{ height: 7, borderRadius: 4, background: "var(--bg-3)", margin: "8px 0 6px", position: "relative" }}>
+            <div style={{ position: "absolute", inset: "0 auto 0 0", width: pct + "%",
+              background: "oklch(0.72 0.17 350 / 0.26)", border: "1px solid oklch(0.80 0.21 350)",
+              boxSizing: "border-box", borderRadius: 4 }} />
           </div>
           <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-faint)" }}>
             {_fmtN(total)} scrobbles and counting
@@ -201,7 +206,10 @@ const PROVIDERS = [
   // ── new this month (live sync) — fresh obsessions + the deepest dive ──
   (ctx) => {
     const mo = window.ROTATION_LIVE && window.ROTATION_LIVE.month; if (!mo) return null;
-    const list = (mo.newArtists || []).slice(0, 3);
+    // TWO, not three (Fuad 2026-08-20: "currently overflowing"). Three rows plus the Deepest-dive
+    // footer overran the deck's 104px cap, and the card clips rather than growing — the cap is what
+    // stops one tall card setting the height for every card beside it. Same trade On repeat took.
+    const list = (mo.newArtists || []).slice(0, 2);
     if (!list.length && !mo.deepest) return null;
     return {
       id: "new-month", category: "new-month", score: 0.7, label: "New this month", meta: "explore", onClick: () => ctx.go("explore"),
