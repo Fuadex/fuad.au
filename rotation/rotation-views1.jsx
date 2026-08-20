@@ -875,12 +875,16 @@ function OverviewView({ t, go, restReady, seed }) {
              underneath and reads as padding. Same here — flow from the top with an even gap, and
              let the slack fall to the bottom where it looks deliberate. */
           .ov-pulseslot > .r-card { justify-content: flex-start; gap: 5px; }
-          /* and the objects grow into the room instead of floating in it */
-          .ov-scrob .r-stat-n { font-size: clamp(21px, 2vw, 28px) !important; }
-          .ov-streak .r-stat-n { font-size: 27px !important; }
-          /* the two promoted insight cards are InsightCards, not bespoke pulse cards — match the
-             number size of the two beside them so the row reads as one row */
-          .ov-pulseslot .ov-inscard .r-stat-n { font-size: 27px !important; }
+          /* ONE ROW, FOUR IDENTICAL FRAMES (Fuad 2026-08-20: "the blocks need to align vertically,
+             the widths are uneven"). Two of these four are InsightCards and two are bespoke pulse
+             cards, and they disagreed on every measurement that shows: 8px vertical padding against
+             12px, a 3px header margin against none, and three different number sizes. Nothing was
+             uneven by much, which is exactly why it read as sloppy rather than as a decision — the
+             labels sat on four different baselines and the numbers on four more. Forced to one set
+             here rather than at each call site, so a fifth card dropped into this row inherits it. */
+          .ov-pulseslot > .r-card { padding: 12px !important; }
+          .ov-pulseslot > .r-card > .r-card-h { margin-bottom: 4px !important; }
+          .ov-pulseslot .r-stat-n { font-size: 27px !important; }
           .ov-scrob .spark { max-height: 30px; }
           .ov-np { max-height: 92px; overflow: hidden; }
           .ov-recent .ov-rl { overflow-y: auto; }
