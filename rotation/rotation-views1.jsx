@@ -672,8 +672,8 @@ function OverviewView({ t, go, restReady, seed }) {
             } />
         </div>
 
-        {/* PULSE SLOT (Fuad 2026-08-20): Scrobbles, Streak, This week and Recently played move down
-            into the row Story of the day used to hold, so the map leads the page. They live in a
+        {/* PULSE SLOT (Fuad 2026-08-20): Scrobbles, Streak, Riser of the week and Next milestone,
+            in the row Story of the day used to hold, so the map leads the page. They live in a
             nested 4-up grid rather than being re-pinned individually — the ≥981px rules pinned each
             card to grid-row 1, so moving them in the DOM alone would have snapped them back up. */}
         <div className="ov-pulseslot">
@@ -714,69 +714,17 @@ function OverviewView({ t, go, restReady, seed }) {
           })()}
         </div>
 
-        {/* this week — promoted from the insight deck into the pulse row (Fuad 2026-07-05);
-            live-data dependent, so it only renders when the weekly sync is present. The
-            :has(.ov-week) CSS below re-splits the row 2+2+2+3+3 when it's here. */}
-        {(() => {
-          const w = window.ROTATION_LIVE && window.ROTATION_LIVE.week;
-          if (!w) return null;
-          const delta = w.weekAvg ? Math.round((w.plays7 - w.weekAvg) / w.weekAvg * 100) : 0, up = delta >= 0;
-          const ta = w.topArtists && w.topArtists[0];
-          return (
-            <div className="r-card ov-week" style={{ padding: 12, display: "flex", flexDirection: "column" }}>
-              <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>This week</b></span>
-                <span className="meta" style={{ color: up ? "var(--accent)" : "var(--ink-faint)" }}>{up ? "▲" : "▼"} {Math.abs(delta)}%</span></div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 0 }}>
-                <div className="r-stat-n" style={{ fontSize: 28 }}>{fmt(w.plays7)}</div>
-                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>plays</span>
-              </div>
-              {ta ? (
-                /* artist + play count INLINE on one line (Fuad 2026-07-17) — cover kept small at left */
-                <div style={{ display: "flex", alignItems: "center", gap: 7, cursor: "pointer", minWidth: 0 }} onClick={() => go("artist", ta.artistId)}>
-                  <GenCover hue={(R.byId[ta.artistId] || (R.expById && R.expById[ta.artistId]) || { hue: 210 }).hue} name={ta.name} image={ta.img || undefined} size={20} radius={2} />
-                  <div style={{ fontSize: 11.5, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                    <b style={{ fontWeight: 600 }}>{ta.name}</b>
-                    <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}> · {ta.plays} plays</span>
-                  </div>
-                </div>
-              ) : <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>vs your weekly average</div>}
-              {w.newArtistsThisWeek > 0
-                ? <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".06em", textTransform: "uppercase", marginTop: 3 }}>{w.newArtistsThisWeek} new artist{w.newArtistsThisWeek !== 1 ? "s" : ""} this week</div>
-                : <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 3 }}>no new artists yet</div>}
-            </div>
-          );
-        })()}
-
-        {/* recent ticker — squeezed centrally between streak and now-playing; the list is a
-            capped scroll well at PC widths so the pulse row stays shallow */}
-        <div className="r-card ov-recent" style={{ padding: "8px 11px", display: "flex", flexDirection: "column" }}>
-          {/* Just "Recent", always (Fuad 2026-08-20). The first attempt swapped the full label out
-              below 980px, which was the wrong axis: this card is now one of four inside .ov-pulseslot,
-              so it is narrow on a 4K monitor too — the VIEWPORT is wide and the CARD is not. The label
-              plus the last.fm link left the rows so little width that both entries crushed together.
-              A container query would also fix it, but the short word is what was asked for and it
-              cannot fall out of sync with a layout that keeps moving. */}
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 3 }}>
-            <span className="lbl"><b>Recent</b></span>
-            <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
-              style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
-          <div className="ov-rl" style={{ display: "grid", gap: 1, flex: 1, alignContent: "center" }}>
-            {recent3.map(r => (
-              <div key={r.id} onClick={() => { if (r.artist && r.track) go("track", R.slug(r.artist) + "~" + R.slug(r.track)); }} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 9,
-                padding: "3px 6px", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
-                onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
-                onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
-                <GenCover hue={r.hue} name={r.artist} image={r.img || undefined} size={22} radius={2} />
-                <div style={{ minWidth: 0, flex: 1 }}>
-                  <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
-                  <div style={{ fontSize: 10, color: "var(--ink-faint)", cursor: "pointer", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={`${r.artist} →`}
-                    onClick={e => { e.stopPropagation(); go("artist", r.artistId); }}>{r.artist}</div>
-                </div>
-                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", flex: "none" }}>{r.when}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Riser of the week + Next milestone (Fuad 2026-08-20). These two used to compete for space
+            in the scored insight deck below, where Next milestone at 0.5 essentially never won a
+            slot — it is the card that says how close the next round total is, which is exactly the
+            kind of thing you want in the row you actually look at. Pulled up here as FIXED slots via
+            `only`, so the scorer no longer decides whether they appear.
+            `span="auto"` because .ov-pulseslot is a plain 4-up grid, not the 12-col bento the deck
+            sits on — the default "span 4" would eat the whole row.
+            This week is retired rather than moved: the Riser card is already framed on the week, and
+            two week-shaped cards side by side said the same thing twice. */}
+        <InsightRow go={go} n={2} span="auto" only={["riser", "scrob-mile"]}
+          omit={["week", "story-day"]} />
         </div>{/* /ov-pulseslot */}
 
         {/* STORY OF THE DAY temporarily off (Fuad 2026-08-20) — the pulse modules take this
@@ -813,7 +761,41 @@ function OverviewView({ t, go, restReady, seed }) {
             The insight cards now sit straight on the grid. .ov-insgrid keeps the class so its
             existing column rules still apply; it is a bare grid rather than an .r-card. */}
         <div className="ov-insgrid" style={{ gridColumn: "span 8", display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 8 }}>
-          <InsightRow go={go} n={4} />
+          {/* recent ticker — moved down out of the pulse row (Fuad 2026-08-20) to make room for
+              Riser and Next milestone. It leads this row rather than sitting mid-deck: it is the one
+              FIXED card here, and a fixed card is steadier at an edge than wedged between three that
+              reshuffle by score every day. */}
+          <div className="r-card ov-recent" style={{ padding: "8px 11px", display: "flex", flexDirection: "column" }}>
+            {/* Just "Recent", always (Fuad 2026-08-20). The first attempt swapped the full label out
+                below 980px, which was the wrong axis: this card is one of four in a row, so it is
+                narrow on a 4K monitor too — the VIEWPORT is wide and the CARD is not. The label plus
+                the last.fm link left the rows so little width that both entries crushed together.
+                A container query would also fix it, but the short word is what was asked for and it
+                cannot fall out of sync with a layout that keeps moving. */}
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 3 }}>
+              <span className="lbl"><b>Recent</b></span>
+              <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
+                style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
+            <div className="ov-rl" style={{ display: "grid", gap: 1, flex: 1, alignContent: "center" }}>
+              {recent3.map(r => (
+                <div key={r.id} onClick={() => { if (r.artist && r.track) go("track", R.slug(r.artist) + "~" + R.slug(r.track)); }} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 9,
+                  padding: "3px 6px", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
+                  onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
+                  onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                  <GenCover hue={r.hue} name={r.artist} image={r.img || undefined} size={22} radius={2} />
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
+                    <div style={{ fontSize: 10, color: "var(--ink-faint)", cursor: "pointer", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={`${r.artist} →`}
+                      onClick={e => { e.stopPropagation(); go("artist", r.artistId); }}>{r.artist}</div>
+                  </div>
+                  <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", flex: "none" }}>{r.when}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* three scored cards beside it. riser + scrob-mile are pinned into the pulse row above and
+              `week` is retired, so all three are omitted here or the page shows them twice. */}
+          <InsightRow go={go} n={3} omit={["riser", "scrob-mile", "week"]} />
         </div>
 
         {/* emotional weather — last-90d sounds/reads only now (the decades strip moved up to the
@@ -895,8 +877,11 @@ function OverviewView({ t, go, restReady, seed }) {
           .ov-pulseslot > .r-card { justify-content: flex-start; gap: 5px; }
           /* and the objects grow into the room instead of floating in it */
           .ov-scrob .r-stat-n { font-size: clamp(21px, 2vw, 28px) !important; }
-          .ov-streak .r-stat-n, .ov-week .r-stat-n { font-size: 27px !important; }
-          .ov-week .spark, .ov-scrob .spark { max-height: 30px; }
+          .ov-streak .r-stat-n { font-size: 27px !important; }
+          /* the two promoted insight cards are InsightCards, not bespoke pulse cards — match the
+             number size of the two beside them so the row reads as one row */
+          .ov-pulseslot .ov-inscard .r-stat-n { font-size: 27px !important; }
+          .ov-scrob .spark { max-height: 30px; }
           .ov-np { max-height: 92px; overflow: hidden; }
           .ov-recent .ov-rl { overflow-y: auto; }
           .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(5, 1fr) !important; gap: 10px !important; }
