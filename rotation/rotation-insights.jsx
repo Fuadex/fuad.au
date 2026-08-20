@@ -21,6 +21,35 @@ const _jitter = (id, now) => (_hash(id + _dayKey(now)) % 1000) / 1000 * 0.06;
 const _id = (name) => { const R = window.ROTATION; return (name && R.idForName(name)) || R.slug(name || ""); };
 const _hue = (name) => { const R = window.ROTATION, e = R.byId[_id(name)] || (R.expById && R.expById[_id(name)]); return e && e.hue != null ? e.hue : 210; };
 
+// ── SUBJECT CARD (Fuad 2026-08-20) ──────────────────────────────────────────────────────────────
+// Every insight that is ABOUT an artist, album or track renders the same way: cover at the left,
+// the number and its unit on the first line beside it, then the name, then one quiet line of
+// context. Three things drove this:
+//   · "if it's relative to an artist, an album or song, there should be a thumbnail somewhere".
+//     GenCover already resolves a real photo from the name alone, so the thumbnail is free — these
+//     cards simply never asked for one.
+//   · The old shape said the name THREE times: `meta` in the header, `sub` under the number, and
+//     again inside `note`. Once, next to its own picture, is enough.
+//   · The freed vertical space is what the number and the note now spread into, instead of the
+//     card padding slack out at the bottom.
+// Callers pass `name` for the cover lookup and `title` for what to print, because a track card
+// looks the artist up but shows the song.
+function SubjectStat({ name, title, big, unit, foot, size }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+      <GenCover hue={_hue(name)} name={name} size={size || 38} radius={2} />
+      <div style={{ minWidth: 0, flex: 1 }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
+          <div className="r-stat-n" style={{ fontSize: 23, lineHeight: 1.05, color: "var(--accent)" }}>{big}</div>
+          {unit && <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{unit}</span>}
+        </div>
+        <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 2 }}>{title || name}</div>
+        {foot && <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{foot}</div>}
+      </div>
+    </div>
+  );
+}
+
 const PROVIDERS = [
   // ── anniversary of your first scrobble — climbs as it nears, hidden the rest of the year ──
   (ctx) => {
@@ -48,11 +77,29 @@ const PROVIDERS = [
     const total = _liveTotal();
     const next = Math.ceil((total + 1) / 5000) * 5000, away = next - total;
     if (away > 5000) return null;
+    const pct = Math.round((5000 - away) / 5000 * 100);
     return {
       id: "scrob-mile", category: "milestone", score: 0.5 + 0.46 * (1 - away / 5000), accent: true,
-      label: "Next milestone", big: _fmtN(away), bigUnit: `from ${_fmtN(next)}`,
-      sub: `${_fmtN(total)} scrobbles and counting`,
-      note: away < 200 ? "You'll cross it any day now." : null,
+      label: "Next milestone", meta: pct + "%",
+      // A bar, not a note (Fuad 2026-08-20: "kinda okay but there's heaps of white space"). This is
+      // the one card here with no artist to show, so it had a number and two lines of text to fill a
+      // full-height cell. How far through the current 5,000 you are is the whole point of the card
+      // and it was only ever implied by the number — drawing it uses the room rather than padding it.
+      render: (
+        <div>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 7 }}>
+            <div className="r-stat-n" style={{ fontSize: 23, lineHeight: 1.05, color: "var(--accent)" }}>{_fmtN(away)}</div>
+            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>from {_fmtN(next)}</span>
+          </div>
+          <div style={{ height: 5, borderRadius: 3, background: "var(--bg-3)", overflow: "hidden", margin: "8px 0 6px" }}>
+            <div style={{ width: pct + "%", height: "100%", background: "var(--accent)", borderRadius: 3 }} />
+          </div>
+          <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-faint)" }}>
+            {_fmtN(total)} scrobbles and counting
+          </div>
+          {away < 200 && <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 12, color: "var(--ink-soft)", marginTop: 4 }}>You'll cross it any day now.</div>}
+        </div>
+      ),
     };
   },
 
@@ -68,9 +115,9 @@ const PROVIDERS = [
     if (!best || best.away > 40) return null;
     return {
       id: "artist-mile", category: "artist-milestone", score: 0.5 + 0.46 * (1 - best.away / 40), accent: true,
-      label: "About to tip over", meta: best.a.name, onClick: () => ctx.go("artist", best.a.id),
-      big: _fmtN(best.away), bigUnit: `from ${_fmtN(best.thr)}`, sub: best.a.name.toLowerCase(),
-      note: `${best.a.name} is closing in on ${_fmtN(best.thr)} plays.`,
+      label: "About to tip over", onClick: () => ctx.go("artist", best.a.id),
+      render: <SubjectStat name={best.a.name} big={_fmtN(best.away)} unit={`plays to ${_fmtN(best.thr)}`}
+        foot={`${_fmtN(best.a.plays)} so far`} />,
     };
   },
 
@@ -125,14 +172,19 @@ const PROVIDERS = [
       render: (
         <div style={{ display: "grid", gap: 6 }}>
           {/* two rows, not three (Fuad 2026-08-20): the third made this the tallest card on its
-              row, and in a grid the tallest card sets the height for every card beside it. */}
+              row, and in a grid the tallest card sets the height for every card beside it.
+              ROWS ARE IDENTICAL (Fuad 2026-08-20: "need to be aligned vertically, same with the
+              text next to them"). The #1 row used to run a 30px cover against the runner-up's 22px,
+              which pushed its text 8px further right — so neither the covers nor the two text
+              columns lined up. Rank is carried by the accent on the play count instead, which costs
+              no width. */}
           {tt.slice(0, 2).map((t, i) => (
             <div key={t.name + t.artist} onClick={(e) => { e.stopPropagation(); ctx.go("track", R.slug(t.artist) + "~" + R.slug(t.name)); }}
               style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}>
-              <GenCover hue={_hue(t.artist)} name={t.artist} size={i === 0 ? 30 : 22} radius={2} />
+              <GenCover hue={_hue(t.artist)} name={t.artist} size={28} radius={2} />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: i === 0 ? 13 : 12, fontWeight: i === 0 ? 600 : 400, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.name}</div>
-                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.artist}</div>
+                <div style={{ fontSize: 12.5, fontWeight: i === 0 ? 600 : 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.name}</div>
+                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.artist}</div>
               </div>
               <span className="r-mono" style={{ fontSize: 9.5, color: i === 0 ? "var(--accent)" : "var(--ink-faint)", flex: "none" }}>{t.plays}×</span>
             </div>
@@ -339,10 +391,10 @@ const PROVIDERS = [
     if (!best) return null;
     return {
       id: "riser", category: "riser", score: 0.72, accent: true,
-      label: "Riser of the week", meta: best.name, onClick: () => ctx.go("artist", best.artistId),
-      big: "×" + (best.ratio >= 10 ? Math.round(best.ratio) : best.ratio.toFixed(1)),
-      bigUnit: "usual pace", sub: best.name.toLowerCase(),
-      note: `${best.plays} plays this week — their lifetime average is ~${Math.max(1, Math.round(best.pace))}/wk.`,
+      label: "Riser of the week", onClick: () => ctx.go("artist", best.artistId),
+      render: <SubjectStat name={best.name}
+        big={"×" + (best.ratio >= 10 ? Math.round(best.ratio) : best.ratio.toFixed(1))} unit="usual pace"
+        foot={`${best.plays} this week · ~${Math.max(1, Math.round(best.pace))}/wk lifetime`} />,
     };
   },
 
