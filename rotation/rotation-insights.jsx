@@ -386,16 +386,27 @@ function storyOfDayProvider(ctx) {
 
 // Keep the story OUT of the ranked InsightRow (it has a dedicated Overview slot now), so it never
 // competes with milestone/on-repeat/week cards for a top-N seat and never double-renders.
-function runInsights(ctx, n) {
+// opts.only — take these provider ids, in THIS order, ignoring score. Used by Overview's pulse row,
+//   which needs two named cards in two fixed slots rather than whatever ranks highest today.
+// opts.omit — never return these ids. A card promoted into a fixed slot must be omitted here or it
+//   renders twice on the same page.
+// A provider can return null (no riser this week, milestone too far off), so `only` backfills from
+// the ranked remainder: the pulse row is a 4-up grid and a missing child would leave a hole in it.
+function runInsights(ctx, n, opts) {
+  const o = opts || {};
+  const omit = new Set(o.omit || []);
   const out = [];
-  for (const p of PROVIDERS) { try { const r = p(ctx); if (r) out.push(r); } catch (e) { /* a bad provider never breaks the row */ } }
+  for (const p of PROVIDERS) { try { const r = p(ctx); if (r && !omit.has(r.id)) out.push(r); } catch (e) { /* a bad provider never breaks the row */ } }
   out.sort((a, b) => b.score - a.score);
+  const byId = {}; for (const r of out) byId[r.id] = r;
   const seen = new Set(), picks = [];
-  for (const r of out) { if (seen.has(r.category)) continue; seen.add(r.category); picks.push(r); if (picks.length >= n) break; }
-  return picks;
+  const take = (r) => { if (!r || seen.has(r.category)) return; seen.add(r.category); picks.push(r); };
+  for (const id of (o.only || [])) take(byId[id]);
+  for (const r of out) { if (picks.length >= n) break; take(r); }
+  return picks.slice(0, n);
 }
 
-function InsightCard({ ins }) {
+function InsightCard({ ins, span }) {
   return (
     /* Column layout with the body CENTRED in whatever space is left (Fuad 2026-08-20: "tons of
        whitespace"). Grid stretches every card to the tallest in the row, and the body used to stack
@@ -404,7 +415,7 @@ function InsightCard({ ins }) {
        rather than as a card that ran out of things to say. The ↗ on meta goes for the same reason it
        went from the stat strip: every one of these cards is clickable, so it marked nothing. */
     <div className={"r-card ov-inscard" + (ins.onClick ? " ov-stat-link" : "")}
-      style={{ gridColumn: "span 4", padding: "8px 12px", cursor: ins.onClick ? "pointer" : "default",
+      style={{ gridColumn: span || "span 4", padding: "8px 12px", cursor: ins.onClick ? "pointer" : "default",
         display: "flex", flexDirection: "column", minWidth: 0 }}
       onClick={ins.onClick || undefined}>
       <div className="r-card-h" style={{ padding: 0, marginBottom: 3, flex: "none" }}>
@@ -425,10 +436,14 @@ function InsightCard({ ins }) {
   );
 }
 
-// Returns N insight cards as grid children (each spans 4 of the Overview's 12-col bento).
-function InsightRow({ go, n = 6 }) {
-  const picks = React.useMemo(() => runInsights({ R: window.ROTATION, go, now: new Date() }, n), [go, n]);
-  return picks.map(ins => <InsightCard key={ins.id} ins={ins} />);
+// Returns N insight cards as grid children (each spans 4 of the Overview's 12-col bento by default).
+// `span` overrides that for hosts on a different grid — the pulse row is a plain 4-up, not 12 cols.
+function InsightRow({ go, n = 6, only, omit, span }) {
+  const oKey = (only || []).join(",") + "|" + (omit || []).join(",");
+  const picks = React.useMemo(
+    () => runInsights({ R: window.ROTATION, go, now: new Date() }, n, { only, omit }),
+    [go, n, oKey]);  // eslint-disable-line react-hooks/exhaustive-deps
+  return picks.map(ins => <InsightCard key={ins.id} ins={ins} span={span} />);
 }
 
 // storyOfDay(go) → the day's story descriptor (or null if no story data), for Overview's dedicated
