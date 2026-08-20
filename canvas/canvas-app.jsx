@@ -411,10 +411,13 @@ function Wall({ go, styleIds }) {
   const [media, setMedia] = useState([]);              // selected medium buckets, OR'd like styles
   const [pick, setPick] = useState("");                // colour-sort target ("" = hue ramp)
   const [eras, setEras] = useState(() => new Set());   // era chips — OR within, AND with the rest
-  // TODAY'S HANG (Fuad 2026-08-20): the Wall can serve what Home serves. Not a filter and not a
-  // sort — homeHang picks a set AND orders it, including works pinned to always appear, so it is
-  // applied as a whole rather than expressed in chips.
-  const [hang, setHang] = useState(false);
+  // TODAY'S HANG (Fuad 2026-08-20): the Wall serves what Home used to serve, and Home is gone. Not
+  // a filter and not a sort — homeHang picks a set AND orders it, including works pinned to always
+  // appear, so it is applied as a whole rather than expressed in chips.
+  // ON BY DEFAULT: this is the landing page now, and landing on 1,894 tiles is not a greeting.
+  // Exception: a style deep-link (#/wall/impressionism) asked for a specific slice of the FULL
+  // wall, so honouring the hang there would silently drop most of what was linked to.
+  const [hang, setHang] = useState(() => !styleIds);
   const toggleEra = (k) => setEras(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; });
   // The full style list — order and slugs are stable so a URL like #/wall/impressionism keeps
   // working whatever is filtered. Only the NUMBERS react; see `movCounts` below.
@@ -534,7 +537,7 @@ function Wall({ go, styleIds }) {
             ones Fuad pins always present. It leads the row because it replaces the whole selection
             rather than narrowing it, and it reads as a place to start rather than another filter. */}
         <button className="cv-hang-chip" data-on={hang} onClick={() => setHang(v => !v)}
-          title="today's hang — the curated wall from Home">⌂ today's hang</button>
+          title="today's hang — a curated rotation of works that floored me">⌂ today's hang</button>
         <span className="cv-filt-div" aria-hidden="true" />
         {/* "all" clears both axes — a reset, not a third state you can be in */}
         <button data-on={!marks.size && !status.size}
@@ -3367,23 +3370,9 @@ function homeHang(all) {
     return [...lead, ...picks];
 }
 
-function HomeView({ go }) {
-  const all = useMemo(() => WORKS.map(enrich), []);
-
-  const wall = useMemo(() => homeHang(all), [all]);
-
-  const artistCount = useMemo(() =>
-    new Set(wall.map(w => w.artistId || w.id)).size, [wall]);
-
-  return (
-    <React.Fragment>
-      <div className="cv-home-intro">
-        <p>Works I've stood in front of — a selection across {artistCount} artists. <a href="#/wall">See the full wall →</a></p>
-      </div>
-      <div className="cv-wall">{wall.map(w => <Card key={w.id} w={w} go={go} />)}</div>
-    </React.Fragment>
-  );
-}
+// HomeView lived here until 2026-08-20. It was an intro line over homeHang(all) — the Wall renders
+// the same set from the same function with the chip lit, so keeping a second surface for it only
+// gave the two copies somewhere to drift apart.
 
 // ——— Search: live-filter across all enriched works (title + artist + museum name).
 // Results appear as a dropdown (max 12). Clicking a work opens its Reader directly.
@@ -3660,22 +3649,22 @@ function SearchBar({ go }) {
 function App() {
   const route = useRoute();
   const go = (view, id) => { location.hash = id ? "/" + view + "/" + id : view === "home" ? "/" : "/" + view; };
-  // useRoute parses "#/" as view="wall"; we treat "wall" with no id AND hash="#/" as home.
-  // "#/wall" is the explicit full wall. Reader (#/work/<id>) overlays whatever is beneath.
-  // "#/wall/<style+style>" is still the wall — the id carries the style filter, not a work.
-  const isHome = route.view === "wall" && !route.id && (location.hash === "#/" || location.hash === "#" || location.hash === "");
-  const view = route.view === "work" ? "work" : isHome ? "home" : route.view;
+  // HOME IS FOLDED INTO THE WALL (Fuad 2026-08-20). useRoute already parses "#/" as view="wall",
+  // so the landing page IS the wall; it just opens with the today's-hang chip lit. There is no
+  // second surface and no second nav entry — the chip is the whole difference, and turning it off
+  // is how you get the full wall. "#/wall/<style+style>" still carries a style filter in the id.
+  const view = route.view === "work" ? "work" : route.view;
   // WHAT SITS BEHIND THE READER (Fuad 2026-08-19). #/work/<id> and #/study/<id> are overlays, but
   // neither matched a branch in the content switch below, so both fell through to the default and
   // dropped HOME behind them — open a work from the map and the map vanished under the reader,
   // reappearing only on close. Remember the last real page and keep rendering that instead.
   // A ref, not state: it must already hold the previous page on the render where the overlay opens,
   // and it must never itself trigger a re-render. Cold deep-links to #/work/<id> have no previous
-  // page, so they keep the old behaviour and land on Home.
-  const bgRoute = useRef({ view: "wall", id: null, home: true });
-  if (route.view !== "work" && route.view !== "study") bgRoute.current = { ...route, home: isHome };
-  const bg = (route.view === "work" || route.view === "study") ? bgRoute.current : { ...route, home: isHome };
-  const bgView = bg.home ? "home" : bg.view;
+  // page, so they keep the old behaviour and land on the wall.
+  const bgRoute = useRef({ view: "wall", id: null });
+  if (route.view !== "work" && route.view !== "study") bgRoute.current = { ...route };
+  const bg = (route.view === "work" || route.view === "study") ? bgRoute.current : { ...route };
+  const bgView = bg.view;
   return (
     <React.Fragment>
       <header className="cv-head">
@@ -3683,8 +3672,7 @@ function App() {
         <nav className="cv-nav">
           {/* highlight follows the page BEHIND an open reader, so the nav does not go blank the
               moment you open a work from the map or a museum */}
-          <a href="#/" data-on={bgView === "home"}>Home</a>
-          <a href="#/wall" data-on={bgView === "wall"}>The Wall</a>
+          <a href="#/" data-on={bgView === "wall"}>The Wall</a>
           <a href="#/portrait" data-on={bgView === "portrait"}>Portrait</a>
           <a href="#/museums" data-on={bgView === "museums" || bg.view === "museum" || (bg.view === "deck" && bg.id !== "by-artists")}>Museums</a>
           <a href="#/artists" data-on={bgView === "artists" || bg.view === "artist"}>Artists</a>
@@ -3701,8 +3689,7 @@ function App() {
         : (bgView === "map" || bgView === "pilgrimage") ? <MapView go={go} />
         : bg.view === "artist" ? <ArtistView artistId={bg.id} go={go} key={bg.id} />
         : bgView === "artists" ? <Artists go={go} />
-        : bgView === "wall" ? <Wall go={go} styleIds={bg.id} />
-        : <HomeView go={go} />}
+        : <Wall go={go} styleIds={bg.view === "wall" ? bg.id : null} />}
       {route.view === "work" && <Reader id={route.id} go={go} />}
       {route.view === "study" && <StudyView id={route.id} go={go} key={route.id} />}
       <footer className="cv-foot">
