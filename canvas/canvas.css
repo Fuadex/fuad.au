@@ -612,12 +612,14 @@ a { color: inherit; }
 .cv-map-legend { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 12px; font: 500 11px/1 var(--mono); color: var(--ink-soft); letter-spacing: .04em; }
 .cv-map-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
 .cv-map-legend .lg-seen { background: oklch(0.55 0.13 46 / .82); }
-/* the unseen register is GREEN (Fuad 2026-08-22) — cool against the warm biography. Far cities
-   (galleries holding wanted works, never walked), loved-unmet and liked-unmet are three shades
-   of one family; each swatch is the exact fill of its map mark, a literal key. */
+/* GREEN = UNDISCOVERED, warm = known ground (Fuad 2026-08-22, second pass — the first green
+   pass painted every chase dot green, and since at rest ALL dots are chase dots, "everything
+   went green"). Chase dots around walked cities keep loved-red/liked-amber; the far layer —
+   cities never walked and the works waiting there — is the green family. Each swatch is the
+   exact fill of its map mark, a literal key. */
 .cv-map-legend .lg-far { background: oklch(0.52 0.09 150 / .55); }
-.cv-map-legend .lg-wish { background: oklch(0.45 0.14 150 / .92); }
-.cv-map-legend .lg-like { background: oklch(0.6 0.11 130 / .9); }
+.cv-map-legend .lg-wish { background: oklch(0.55 0.19 18 / .9); }
+.cv-map-legend .lg-like { background: oklch(0.62 0.12 52 / .9); }
 .cv-map-tosee { margin-top: 28px; }
 .cv-pil-note { font: italic 400 12.5px/1.5 var(--serif); color: var(--ink-soft); margin: -2px 0 14px; }
 /* museum label chips (fix 3): a light pill behind readable text, sitting clear above the bubble
