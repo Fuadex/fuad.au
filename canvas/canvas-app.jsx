@@ -125,6 +125,23 @@ const unproxy = (e) => {
   if (orig && el.src !== orig) el.src = orig;
 };
 
+// ——— Fold — disclosure wrapper animated BOTH ways (Fuad 2026-08-22: closing "fewer" and the
+// pilgrimage countries/cities must ease shut, not vanish). Content mounts on open (grid-rows
+// 0fr→1fr), plays the reverse animation on close, and unmounts only when that finishes — so
+// the heavy reels/chips still stay out of the DOM whenever the fold is shut at rest.
+// onAnimationEnd is name-guarded: child mount animations (cvChipIn) bubble through here too.
+function Fold({ open, children }) {
+  const [render, setRender] = useState(open);
+  useEffect(() => { if (open) setRender(true); }, [open]);
+  if (!render) return null;
+  return (
+    <div className="cv-fold" data-closing={!open || undefined}
+      onAnimationEnd={(e) => { if (!open && /cvFoldClose/.test(e.animationName)) setRender(false); }}>
+      <div className="cv-foldin">{children}</div>
+    </div>
+  );
+}
+
 function LazyImg({ src, alt, className, title, loading, style }) {
   const ref = useRef(null);
   const [show, setShow] = useState(false);
@@ -709,15 +726,12 @@ function Wall({ go, styleIds }) {
               )}
               {sel.length > 0 && <button className="cv-styles-clear" onClick={() => setSel([])}>✕ clear</button>}
             </div>
-            {/* "+N more" EASES OPEN (Fuad 2026-08-22: "not so abrupt"). The overflow chips used to
-                splice into the same wrap row, landing all ~109 in one frame. They now live in
-                their own fold that opens with the same grid-rows animation the pilgrimage list
-                uses, and each chip fades in on mount. Mount-on-open, unmount plain — same trade. */}
-            {allStyles && movs.length > STYLE_CHIPS && (
-              <div className="cv-fold"><div className="cv-foldin">
-                <div className="cv-styles cv-styles-ext">{movs.slice(STYLE_CHIPS).map(chip)}</div>
-              </div></div>
-            )}
+            {/* "+N more" EASES OPEN — and "fewer" eases SHUT (Fuad 2026-08-22 ×2). The overflow
+                chips used to splice into the same wrap row, landing all ~109 in one frame; now
+                the Fold animates both directions and keeps them unmounted at rest. */}
+            <Fold open={allStyles && movs.length > STYLE_CHIPS}>
+              <div className="cv-styles cv-styles-ext">{movs.slice(STYLE_CHIPS).map(chip)}</div>
+            </Fold>
           </React.Fragment>
         );
       })()}
@@ -3332,14 +3346,11 @@ function MapView({ go }) {
                   </span>
                   <span className="cv-pil-caret" data-open={cOpen || undefined}>▸</span>
                 </button>
-                {/* TRANSITION ON DISCLOSURE (Fuad 2026-08-22: "enforce a transition when clicking
-                    on country / city"). Content still mounts only when opened — the reels hold
-                    ~1,500 LazyImg tiles across all venues and keeping them all in the DOM just to
-                    animate a close is the wrong trade. Instead the fold plays a one-shot
-                    grid-rows 0fr→1fr animation on mount (cv-pil-fold), which animates to the
-                    content's real height with no measuring; closing unmounts plainly. The caret
-                    rotates instead of swapping characters, so both directions still move. */}
-                {cOpen && <div className="cv-pil-fold"><div className="cv-pil-foldin">{co.cities.map(c => {
+                {/* TRANSITION ON DISCLOSURE, BOTH WAYS (Fuad 2026-08-22 ×2: open, then "an
+                    appropriate folding transition as well" on close). The shared Fold animates
+                    grid-rows in either direction and unmounts at rest — the reels hold ~1,500
+                    LazyImg tiles across all venues, so they still never sit in a closed DOM. */}
+                <Fold open={cOpen}>{co.cities.map(c => {
                   const open = openCity.has(c.key);
                   return (
                     <div className="cv-pil-city" key={c.key}>
@@ -3351,15 +3362,15 @@ function MapView({ go }) {
                         </span>
                         <span className="cv-pil-caret" data-open={open || undefined}>▸</span>
                       </button>
-                      {open && <div className="cv-pil-fold"><div className="cv-pil-foldin">{c.venues.map(v => (
+                      <Fold open={open}>{c.venues.map(v => (
                         <div className="cv-pil-venue" key={v.name}>
                           <div className="cv-pil-venuename">{v.name} <span>· {v.list.length}</span></div>
                           <PilReel works={v.list} go={go} />
                         </div>
-                      ))}</div></div>}
+                      ))}</Fold>
                     </div>
                   );
-                })}</div></div>}
+                })}</Fold>
               </div>
             );
           })}
@@ -3371,14 +3382,12 @@ function MapView({ go }) {
                 <span className="cv-pil-citymeta">{wishUnplaced.length} works</span>
                 <span className="cv-pil-caret" data-open={showUnplaced || undefined}>▸</span>
               </button>
-              {showUnplaced && (
-                <div className="cv-pil-fold"><div className="cv-pil-foldin">
-                  <div className="cv-pil-venue">
-                    <div className="cv-pil-venuename">No P195 on the record <span>· {wishUnplaced.length}</span></div>
-                    <PilReel works={wishUnplaced} go={go} />
-                  </div>
-                </div></div>
-              )}
+              <Fold open={showUnplaced}>
+                <div className="cv-pil-venue">
+                  <div className="cv-pil-venuename">No P195 on the record <span>· {wishUnplaced.length}</span></div>
+                  <PilReel works={wishUnplaced} go={go} />
+                </div>
+              </Fold>
             </div>
           )}
           <div className="cv-pil-total r-mono">
