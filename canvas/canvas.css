@@ -1122,15 +1122,18 @@ a { color: inherit; }
    clicking on country / city"). Content mounts on open only (the reels are heavy), so the
    fold is a one-shot mount animation: grid-rows 0fr -> 1fr animates to the real height with
    no JS measuring. The caret is one glyph rotated, so close still shows motion. */
-.cv-pil-fold { display: grid; animation: cvPilOpen .32s ease; }
-.cv-pil-foldin { overflow: hidden; min-height: 0; }
 @keyframes cvPilOpen { from { grid-template-rows: 0fr; opacity: .35; } to { grid-template-rows: 1fr; opacity: 1; } }
+@keyframes cvFoldClose { from { grid-template-rows: 1fr; opacity: 1; } to { grid-template-rows: 0fr; opacity: .3; } }
 .cv-pil-caret { display: inline-block; transition: transform .22s ease; }
 .cv-pil-caret[data-open] { transform: rotate(90deg); }
-/* generic aliases of the same fold, for any disclosure that mounts on open (styles "+N more").
-   minmax(0,1fr): an implicit grid column sizes to max-content (DESIGN.md §3.5), which would
-   hand the mobile rail inside a width it can never scroll. */
+/* the shared Fold (canvas-app <Fold>): opens on mount, and on close plays the reverse animation
+   BEFORE unmounting (Fuad 2026-08-22 — both directions ease; used by the pilgrimage
+   countries/cities/venues and the Wall's "+N more" styles). `both` holds the closed frame while
+   React waits for animationend to unmount. minmax(0,1fr): an implicit grid column sizes to
+   max-content (DESIGN.md §3.5), which would hand the mobile rail inside a width it can never
+   scroll. */
 .cv-fold { display: grid; grid-template-columns: minmax(0, 1fr); animation: cvPilOpen .32s ease; }
+.cv-fold[data-closing] { animation: cvFoldClose .3s ease both; }
 .cv-foldin { overflow: hidden; min-height: 0; min-width: 0; }
 /* the unfolded style chips drift in rather than popping — mount-only, so filter re-renders
    (chips stay mounted, keyed by slug) never replay it */
