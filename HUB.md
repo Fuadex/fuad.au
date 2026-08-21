@@ -73,6 +73,32 @@ layers), icons at 192 and 512 px, OG/Twitter cards with correct `fuad.au` canoni
 No Tauri or Capacitor — deliberate: PWA + Pages keeps push-to-live instant with no native
 build step.
 
+### Icons (redrawn 2026-08-22)
+
+Each app's icon is a hand-written `favicon.svg` at a 100×100 viewBox on an `rx: 18` dark rounded
+square, drawn in that app's own palette. `icon-192.png` and `icon-512.png` are rasterised FROM it,
+so the SVG is the source and the PNGs are build output — edit the SVG and re-render, never the PNGs.
+
+| app | motif | why |
+|---|---|---|
+| rotation | bar chart | already descriptive, untouched |
+| canvas | a stretched canvas, 3/4 view | flat-on it rendered as the generic "image" icon every photo viewer uses; the stretcher depth is what reads as a painting |
+| culture | an old rangefinder camera | a still camera, not a movie camera — Culture is films, games AND books, so film reels would claim one and drop the others |
+
+Two constraints learned drawing them:
+
+- **Solid shapes only.** At 16px the motif gets roughly ten legible pixels across. A brushstroke,
+  an easel or a tripod turns to mush; a frame, a sun and a hill survive.
+- **Render and look before shipping.** Sizes 512 / 96 / 48 / 24 / 16 onto a neutral strip. That is
+  how the canvas icon's photo-icon problem was caught — the geometry read fine in the source.
+
+Rasteriser: `@resvg/resvg-js`, installed OUTSIDE the repo (`node_modules` is not gitignored here —
+see rotation/ARCHITECTURE.md §10.2). All four filenames per app must appear in the `apps.json`
+deploy list or they are committed but never shipped.
+
+Installed home-screen shortcuts cache icons hard; expect to remove and re-add an app to see a
+change. Tab favicons refresh on their own.
+
 ## Roadmap notes
 - **Dynamic launcher** (wanted): replace the hardcoded cards in `index.html` with a
   `fetch('apps.json')` render — the data shape already matches, so this is a drop-in upgrade.

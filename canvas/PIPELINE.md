@@ -69,6 +69,18 @@ are all open endpoints.
 1. Edit `museums.js` if the museum is new (add an entry with `id`, `name`, `city`,
    `country`, `qid`, `visits`). QIDs can be looked up at wikidata.org.
 
+   **A venue is an institution you can go to, not an event you went to.** A temporary show is
+   recorded on the WORK — `via: "exhibition"` plus an `exhibition` name — with `seenAt` pointing
+   at whatever building hosted it. Giving a one-off show its own `museums.js` row puts a place on
+   the Museums index that nobody can visit; that is what happened to a Beksiński show in
+   Warsaw-Praga, removed 2026-08-22. If the host building is not itself worth an entry, the
+   encounter lives in the work's `note` and `seenAt` simply omits it.
+
+   **Placeholder rows are debt with a deadline.** Entries named `"… (venue TBC)"` with a
+   `confirm` note are guesses awaiting Fuad. They render on the Museums page looking exactly like
+   confirmed venues, so resolve them when he answers rather than leaving the question in the data
+   — and when removing one, re-check that no `seenAt` (which may be an ARRAY) is left dangling.
+
 2. Edit `artworks.js` directly for any works you are certain about (free-recall
    additions). Fields: `id`, `title`, `artist`, `artistId`, `qid`, `year`,
    `seenAt`, `seenConfidence` (`sure` / `probably` / `unsure`), optionally `floored`,

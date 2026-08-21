@@ -104,6 +104,43 @@ toggles reuse it; never a new control style for an existing decision shape.
 The behavior contract: a segmented **base** + an additive **more** button; changing scope
 resets the extension, never the chosen base.
 
+### 3.4 The mobile rail (`.r-rail`, rotation-core)
+
+Any row of chips that wraps on a desktop becomes **one horizontally scrolling line** below the
+phone breakpoint, with a masked trailing edge. Shipped on: Explore (time, vocals, active, themes,
+the genre families grid, the genre colour key), Shelves (shelve-by), Liked (buckets, vocals), the
+artist page (a separate rail per tag source), and Canvas (medium, era, styles, centuries).
+
+Rules that are not optional:
+
+- **The fade is the affordance.** The scrollbar is hidden, so a hard cut-off reads as the end of
+  the list — that is how a row of year pills silently loses half its years. Mask, do not clip.
+- **One rail per meaning, not per row.** Buckets and vocals get separate rails so you do not scroll
+  past every bucket to reach vocals, and each label stays attached to the chips it names. Same
+  reason last.fm / discogs / spotify tags are three rails on the artist page.
+- **Children need `flex: none`** or the row squashes them to fit and never scrolls.
+
+### 3.5 Two ways a row refuses to scroll (both cost multiple attempts, 2026-08-21/22)
+
+Setting `overflow-x: auto` is never the whole fix. When a rail still overflows, it is one of these:
+
+1. **`min-width: auto` somewhere up the chain.** A grid or flex ITEM defaults to `min-width: auto`,
+   so it will not shrink below its own content. Releasing only the scroller moves the overflow one
+   level up instead of removing it — **every ancestor between the rail and the page needs
+   `min-width: 0`**. On Explore that meant `.xp-filters` (grid), `.xp-frow` (grid) and
+   `.xp-frow-main` (flex), not just the chip row. The same bug sizes an implicit grid column to
+   `max-content`: use `grid-template-columns: minmax(0, 1fr)` on any list container.
+2. **An inline `style` prop beating the stylesheet.** `.lk-buckets` and `.lk-vocalsrow` carry
+   `flexWrap: "wrap"` inline, and an inline declaration wins over any selector, however specific.
+   Those need `flex-wrap: nowrap !important`. Rails on class-only elements (the Explore legend,
+   Canvas's chip rows) must NOT get `!important` — check the element first rather than adding it
+   defensively.
+
+**Verify, do not reason.** `.sptmp/overflow-audit.js` at 390px reports `scrollWidth` against the
+viewport and names every offending element. Two of the three failed attempts above would have been
+one attempt if it had been run first. It must be launched from PowerShell — the Bash sandbox
+blocks the browser process.
+
 ## 4. Typography accents
 `r-mono` is the metadata voice (labels, credits, badges, tooltips-made-visible). Body prose
 stays in the app serif/sans stack. Attribution lines ("via Opus · Fable", "an alternative

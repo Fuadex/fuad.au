@@ -576,6 +576,18 @@ remains dormant until a concerts cache exists (ROADMAP M2).
    scrollbar width and produces phantom right-edge clipping) and, authoritative,
    `.sptmp/overflow-audit.js` (puppeteer-core in `../../.dtmp`, real viewport emulation — lists
    every element extending past 390px). Screenshot + audit BEFORE and AFTER design changes.
+   **Run it from PowerShell** — the Bash sandbox blocks the browser process and the failure looks
+   like a puppeteer config error rather than a permissions one. Reasoning about CSS instead of
+   running this cost three attempts on one mobile row (2026-08-21/22); the two ways a horizontal
+   rail silently refuses to scroll are written up in DESIGN.md §3.5.
+10. **Phone labels are a second map, not a tighter first one.** `FAM_SHORT`/`famShort` in
+   rotation-core is a desktop truncation that still reads as the genre ("Metalcore", "Electronic");
+   `FAM_TINY`/`famTiny` is the phone form, as short as a chip can go before it stops being a word
+   ("Nu", "DnB", "Rap"). Both fall through to the full name for anything unmapped. Merging them
+   would either bloat the phone chips or shrink the desktop labels past what they need.
+11. **Both labels ship; CSS picks one.** Genre chips, the tune-DNA pill and Canvas's mark filters
+   all render the full and short forms and swap with `display` at the breakpoint. Nothing measures
+   width in JS, and the full text stays reachable via `title`.
 
 ## 11. External accounts / identities
 
