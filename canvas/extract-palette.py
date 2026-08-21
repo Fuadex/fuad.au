@@ -18,6 +18,19 @@ raw = subprocess.check_output([
 ], cwd=HERE, text=True)
 works = json.loads(raw)
 
+# Fallback: a work with no Commons imgGrid can still carry a direct `img` on its artworks.js
+# row (the Met deck picks live on images.metmuseum.org). Without this they can never get a
+# palette, which is how 21 works sat palette-less until the 2026-08-22 QC.
+raw2 = subprocess.check_output([
+    "node", "-e",
+    "const vm=require('vm'),fs=require('fs');const c={window:{}};vm.createContext(c);"
+    "vm.runInContext(fs.readFileSync('artworks.js','utf8'),c);"
+    "console.log(JSON.stringify(Object.fromEntries(c.window.CANVAS_ARTWORKS"
+    ".filter(w=>w.img).map(w=>[w.id,w.img]))))"
+], cwd=HERE, text=True)
+for wid, url in json.loads(raw2).items():
+    works.setdefault(wid, url)
+
 cache = {}
 if os.path.exists(CACHE):
     cache = json.load(open(CACHE, encoding="utf-8"))

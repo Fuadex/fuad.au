@@ -3875,12 +3875,6 @@
 "#3e2931",
 "#554a53"
 ],
-"unknown-clockmakers-museum": [
-"#615b52",
-"#292018",
-"#9f9789",
-"#c1b9aa"
-],
 "leon-bonnat-armand-fallieres": [
 "#0c0b0d",
 "#1e1618",
@@ -4601,12 +4595,6 @@
 "#414544",
 "#878d8d"
 ],
-"auguste-rodin-the-gates-of-hell": [
-"#dfd5c2",
-"#121415",
-"#a79f8f",
-"#3c3f3e"
-],
 "camille-pissarro-the-marguerite-church-knocke": [
 "#575a4d",
 "#3b3f36",
@@ -5068,12 +5056,6 @@
 "#af2438",
 "#908f8f",
 "#6b1e2a"
-],
-"unknown-renoir-et-l-amour": [
-"#111f30",
-"#3d4654",
-"#392621",
-"#7d6d5c"
 ],
 "wilhelm-trubner-ave-caesar-morituri-te-salutant": [
 "#44311e",
@@ -6424,12 +6406,6 @@
 "#36241e",
 "#8d837e",
 "#aaa6a4"
-],
-"unknown-borghese-collection": [
-"#dfc7a8",
-"#080303",
-"#2b1505",
-"#1a0b04"
 ],
 "giovanni-boldini-lady-in-brown-evening-dress": [
 "#554834",
@@ -8297,12 +8273,6 @@
 "#7f795d",
 "#9c916f"
 ],
-"auguste-rodin-the-thinker": [
-"#1c1a11",
-"#aeaea6",
-"#bbbcb6",
-"#776e5d"
-],
 "stanis-aw-ignacy-witkiewicz-rabanie-lasu-walka": [
 "#222a29",
 "#633e31",
@@ -9953,12 +9923,6 @@
 "#c4ab6a",
 "#937e52"
 ],
-"unknown-delacroix-1798-1863": [
-"#381f16",
-"#64421d",
-"#91918a",
-"#89764b"
-],
 "bartolome-esteban-murillo-the-penitent-magdalene": [
 "#120b08",
 "#1f0d09",
@@ -11254,5 +11218,131 @@
 "#281006",
 "#5e3214",
 "#734b27"
+],
+"leech-the-sunshade": [
+"#359757",
+"#506d3d",
+"#2d391c",
+"#a8a156"
+],
+"leech-convent-garden": [
+"#273124",
+"#b3b881",
+"#6c7e49",
+"#ccd098"
+],
+"the-trojan-women-setting-fire-to-their-fleet": [
+"#231b10",
+"#817b67",
+"#54452d",
+"#999583"
+],
+"the-holy-family-with-saints-anne-and-catherine-of-alexandria": [
+"#171918",
+"#2b1d18",
+"#3e312c",
+"#5f5652"
+],
+"the-dream-of-the-shepherd-der-traum-des-hirten": [
+"#989891",
+"#bab1aa",
+"#5d6a62",
+"#ceb7ac"
+],
+"the-crucifixion-with-the-virgin-and-saint-john": [
+"#3b2618",
+"#49381f",
+"#201b12",
+"#b1976c"
+],
+"wheat-fields": [
+"#30291e",
+"#74756d",
+"#5c594e",
+"#858780"
+],
+"comtesse-de-la-chatre": [
+"#c6c1af",
+"#33281c",
+"#0a0d0a",
+"#201c16"
+],
+"marie-emilie-coignet-de-courson-1716-1806-with-a-dog": [
+"#776c5a",
+"#4b3225",
+"#6e5b4a",
+"#8b7964"
+],
+"cottage-children-the-wood-gatherers": [
+"#2b261e",
+"#231b15",
+"#161310",
+"#373124"
+],
+"the-baptism-of-christ": [
+"#1b1412",
+"#110d0c",
+"#0d0a09",
+"#443127"
+],
+"piazza-san-marco": [
+"#2e2d23",
+"#8c958c",
+"#646858",
+"#aeae9d"
+],
+"a-bouquet-of-flowers": [
+"#1d0702",
+"#070201",
+"#1f0e06",
+"#422b1c"
+],
+"the-afternoon-meal-la-merienda": [
+"#484429",
+"#16150e",
+"#827c55",
+"#2d2814"
+],
+"mars-and-venus-united-by-love": [
+"#140f0b",
+"#2a1e12",
+"#413926",
+"#5e573f"
+],
+"inferno": [
+"#433e35",
+"#a79377",
+"#191a1d",
+"#0e0f11"
+],
+"young-woman-seated-on-a-sofa": [
+"#91937b",
+"#a8a894",
+"#676c58",
+"#b9b8a3"
+],
+"allegory-of-the-planets-and-continents": [
+"#3b3024",
+"#6a543a",
+"#8a7a5a",
+"#9b8e70"
+],
+"merrymakers-at-shrovetide": [
+"#151512",
+"#2e2018",
+"#453020",
+"#5d4832"
+],
+"the-penitence-of-saint-jerome": [
+"#30261a",
+"#060606",
+"#544b38",
+"#7b7353"
+],
+"the-coronation-of-the-virgin": [
+"#0c0d0d",
+"#301f14",
+"#947249",
+"#5f4930"
 ]
 }
