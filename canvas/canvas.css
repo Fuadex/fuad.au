@@ -368,8 +368,12 @@ a { color: inherit; }
 .cv-count { margin-left: auto; font: 500 10.5px/1 var(--mono); letter-spacing: .08em; color: var(--ink-faint); }
 @media (max-width: 620px) {
   .cv-filters { padding: 14px 16px 0; gap: 7px; }
-  /* the museum select must never widen the row past the phone; cap it to the row width and clip */
-  .cv-filters select { max-width: calc(100vw - 32px); min-width: 0; }
+  /* A TIGHT BUTTON, NOT A BANNER (Fuad 2026-08-21). The old cap was the row width, which let
+     "The Metropolitan Museum of Art (243)" take a whole line to itself and push everything after it
+     onto the next — the select stopped reading as one control among several and started reading as
+     a heading. Capped near the width of the chips it sits with; the label ellipses and the full
+     name is still there when the native picker opens. */
+  .cv-filters select { max-width: 130px; min-width: 0; }
 }
 /* ——— style (movement) chips ———
    Deliberately quieter than .cv-filters: lower-contrast, not uppercase, count set inside each
@@ -395,7 +399,38 @@ a { color: inherit; }
 .cv-objgrp { display: inline-flex; align-items: baseline; gap: 6px; flex-wrap: wrap; min-width: 0; }
 .cv-objrow .cv-objgrp + .cv-objgrp { border-left: 1px solid var(--rule); padding-left: 22px; }
 @media (max-width: 760px) { .cv-objrow .cv-objgrp + .cv-objgrp { border-left: 0; padding-left: 0; } }
-@media (max-width: 620px) { .cv-styles { padding: 10px 16px 0; } .cv-styles-note { padding: 8px 16px 0; } }
+@media (max-width: 620px) {
+  .cv-styles { padding: 10px 16px 0; }
+  .cv-styles-note { padding: 8px 16px 0; }
+  /* ONE HORIZONTAL RAIL PER GROUP (Fuad 2026-08-21). Wrapping put medium, era and styles on four
+     or five lines each, so the wall started somewhere below the fold on a phone. Each group now
+     scrolls sideways on its own rail instead.
+     Three rails, not one: `.cv-objrow` is allowed to wrap so medium and era stack, and each group
+     scrolls separately. Sharing a single rail would mean scrolling the whole length of medium and
+     era before reaching styles, and the labels would drift out of view from their own chips.
+     The trailing fade is a mask on the container, so it sits at the right edge whether or not
+     there is more to see — a scrollbar is hidden here and a hard cut-off reads as the end of the
+     list rather than as something scrollable. */
+  .cv-styles, .cv-objgrp {
+    flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 34px), transparent 100%);
+            mask-image: linear-gradient(to right, #000 calc(100% - 34px), transparent 100%);
+  }
+  .cv-styles::-webkit-scrollbar, .cv-objgrp::-webkit-scrollbar { display: none; }
+  /* chips must keep their natural width or flex will squeeze them to fit and defeat the scroll */
+  .cv-styles > *, .cv-objgrp > * { flex: none; }
+  /* trailing padding so the last chip clears the fade instead of dying under it */
+  .cv-styles, .cv-objgrp { padding-right: 34px; }
+  /* .cv-objrow carries BOTH classes, so it just inherited the scroller rules meant for its
+     children. It is the stack, not a rail — hand the scrolling down to the two groups inside it
+     and put this element back to a plain wrapping block. */
+  .cv-objrow {
+    flex-wrap: wrap; gap: 0; overflow: visible; padding-right: 16px;
+    -webkit-mask-image: none; mask-image: none;
+  }
+  .cv-objrow .cv-objgrp { display: flex; width: 100%; padding: 6px 34px 0 0; }
+}
 /* movements are hotlinks into the filtered wall — on the portrait bars and the artist header */
 .cv-p-barlink { cursor: pointer; }
 .cv-p-barlink:hover .cv-p-barlbl { color: var(--accent); }
