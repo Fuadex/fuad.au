@@ -2477,6 +2477,14 @@ function Artists({ go }) {
 // ——— Phase 4a: the painterly map (mockup 2b) — every museum pinned where it stands,
 // sized by canon works; the trip strip below groups dated visits by year. Land geometry
 // is rotation's simplified equirect world, copied (apps stay self-contained).
+// CITY RADIUS IS LOGARITHMIC, CAPPED (Fuad 2026-08-22, fifth pass on map busy-ness). The old
+// sqrt curve gave Paris (176 met works) a 12-unit world radius — rendered at half that is
+// still 6 units, and Paris sits ~3.5 units from the Channel: the BUBBLE itself covered
+// northern France, so its halo could only ever start "beyond the country". log2 compresses
+// the giants (176 → ~5.1, 50 → ~4.1, 10 → ~3.0) while barely touching one-work towns, and
+// the hard cap keeps every bubble smaller than a small country. ONE canonical helper — the
+// halo seeding, dot eviction, branch and render all read it; keep them agreeing.
+const cityRad = (n) => (n ? Math.min(5.2, 1.2 + Math.log2(1 + n) * 0.52) : 1.1);
 function MapView({ go }) {
   const world = window.CANVAS_WORLD || null;
   // pilgrimage disclosure state: which cities are open, plus the two folded tails
@@ -2522,7 +2530,7 @@ function MapView({ go }) {
     // light relaxation only — cities rarely collide; radii are small and drift is hard-clamped to
     // 5 units so a city can never leave its spot even where two are close (e.g. European neighbours).
     for (const c of arr) { c.ox = c.x; c.oy = c.y; }
-    const rOf = c => 1.4 + Math.sqrt(c.n) * 0.8;
+    const rOf = c => cityRad(c.n);
     for (let it = 0; it < 30; it++) {
       let moved = false;
       for (let i = 0; i < arr.length; i++) for (let j = i + 1; j < arr.length; j++) {
@@ -2621,7 +2629,7 @@ function MapView({ go }) {
     // z-order (far paints above the big visited discs, so a Fontainebleau stays visible at the
     // rim of Paris), the fisheye lens, and zoom. Do not reintroduce a relaxation here.
     const farRad = (f) => 1.1 + Math.sqrt(f.n) * 0.55;
-    const visRad = (c) => (c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1);
+    const visRad = (c) => cityRad(c.n);
     const farList = [...farMap.values()].map(f => ({
       ...f, x: f.wxs / f.n, y: f.wys / f.n, venues: [...f.venues.values()],
     }));
@@ -2982,7 +2990,7 @@ function MapView({ go }) {
     const enriched = WORKS.map(enrich);
     // museum fan: starts CLOSE to the city bubble (minR) and adapts — length/angle fall out of the
     // relaxation, so a dense city just pushes its museums a little further, never symmetric-forced.
-    const cityR = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
+    const cityR = cityRad(c.n);
     // FIX 3 (2026-07-17): museum bubbles ~1.5x (rOf base 2.4→3.6). FIX 1: pass parentR=cityR so the
     // radius-aware clamp keeps every museum's disc off the city bubble. FIX 2: seed ring hugs the
     // city (minR small) and the radial step is gentle — a dense city packs a tighter fan (relaxation
@@ -3174,7 +3182,7 @@ function MapView({ go }) {
           })}
           {!focus && cities.list.map(c => {
             if (!inView(c.x, c.y)) return null;
-            const cr = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
+            const cr = cityRad(c.n);
             const [fx, fy, fs] = fish(c.x, c.y, cr);
             return (
               <g key={c.city} className="cv-pin" onClick={() => focusCity(c)} style={{ cursor: "pointer" }}>
