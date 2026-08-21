@@ -1068,7 +1068,18 @@ a { color: inherit; }
 .cv-p-cent { display: flex; align-items: flex-end; gap: 5px; height: 130px; }
 .cv-p-centcol { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
 .cv-p-centbar { width: 100%; max-width: 34px; background: oklch(0.55 0.12 46); border-radius: 3px 3px 0 0; min-height: 2px; }
+/* the chase segment stacks above the met bar, in the map's green register */
+.cv-p-centbar-chase { background: oklch(0.52 0.09 150 / .6); border-radius: 3px 3px 0 0; }
+.cv-p-centbar-chase + .cv-p-centbar { border-radius: 0; }
+.cv-p-key { display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: oklch(0.55 0.12 46); vertical-align: middle; margin-right: 3px; }
+.cv-p-key-chase { background: oklch(0.52 0.09 150 / .6); }
 .cv-p-centlbl { font: 500 8px/1 var(--mono); color: var(--ink-faint); margin-top: 5px; }
+/* motif chips — informational, not filters; the count rides along quietly */
+.cv-p-motifs { display: flex; flex-wrap: wrap; gap: 8px; }
+.cv-p-motif { font: 400 12.5px/1.2 var(--serif); color: var(--ink); border: 1px solid var(--rule); border-radius: 999px; padding: 6px 12px; background: rgba(58,47,34,.03); }
+.cv-p-motif i { font: 500 9.5px/1 var(--mono); color: var(--ink-faint); font-style: normal; margin-left: 6px; }
+.cv-p-prose { font: 400 13.5px/1.65 var(--serif); color: var(--ink-soft); margin: 0; max-width: 52ch; }
+.cv-p-prose b { color: var(--ink); }
 .cv-p-found { display: flex; flex-wrap: wrap; gap: 10px; }
 /* Portrait page chips — transparent for the same reason (Fuad 2026-08-19: "same for the portrait's page") */
 .cv-p-foundchip { display: flex; align-items: center; gap: 10px; padding: 8px 14px 8px 8px; border: 1px solid var(--rule); border-radius: 999px; cursor: pointer; background: transparent; transition: border-color .15s, background .15s; }
