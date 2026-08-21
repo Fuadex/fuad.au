@@ -366,6 +366,8 @@ a { color: inherit; }
 .cv-filters select:focus-visible { outline: none; border-color: var(--ink); color: var(--ink); }
 .cv-filters select option { font: 400 13px/1.4 var(--sans); text-transform: none; letter-spacing: 0; color: var(--ink); background: var(--paper); }
 .cv-count { margin-left: auto; font: 500 10.5px/1 var(--mono); letter-spacing: .08em; color: var(--ink-faint); }
+/* the glyph-only forms of the mark filters exist for phones only */
+.cv-f-tiny { display: none; }
 @media (max-width: 620px) {
   .cv-filters { padding: 14px 16px 0; gap: 7px; }
   /* A TIGHT BUTTON, NOT A BANNER (Fuad 2026-08-21). The old cap was the row width, which let
@@ -374,6 +376,13 @@ a { color: inherit; }
      a heading. Capped near the width of the chips it sits with; the label ellipses and the full
      name is still there when the native picker opens. */
   .cv-filters select { max-width: 130px; min-width: 0; }
+  /* ★ and ♥ alone (Fuad 2026-08-22). The glyph is already how the cards mark these, so the word is
+     redundant on a phone in a way "seen" and "not seen" are not — those keep their words because
+     no agreed symbol exists and inventing one costs more than the space it saves. The full label
+     stays on the button's title, so the meaning is a long-press away. */
+  .cv-f-full { display: none; }
+  .cv-f-tiny { display: inline; }
+  .cv-filters button:has(.cv-f-tiny) { padding: 7px 11px; font-size: 12px; }
 }
 /* ——— style (movement) chips ———
    Deliberately quieter than .cv-filters: lower-contrast, not uppercase, count set inside each
@@ -1012,7 +1021,30 @@ a { color: inherit; }
 .cv-p-spectrum { display: flex; height: 60px; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 16px rgba(40,28,14,.2); }
 .cv-p-spectrum i { flex: 1 1 0; min-width: 0; }
 .cv-p-cols { display: grid; grid-template-columns: 1.2fr 1fr; gap: 34px; }
-@media (max-width: 760px) { .cv-p-cols { grid-template-columns: 1fr; } }
+/* A 1fr track still has min-width:auto, so it sizes to the widest thing inside — here a 130px
+   fixed label plus a long movement name — and the whole column overflows the phone rather than
+   the bars getting shorter. Releasing the track and the sections is what actually contains it. */
+@media (max-width: 760px) {
+  .cv-p-cols { grid-template-columns: minmax(0, 1fr); }
+  .cv-p-cols > *, .cv-p-sec { min-width: 0; }
+  /* the label gives up its fixed width first: it is the only part of the row that can afford to,
+     and a movement name reads fine over two lines where a squeezed bar reads as nothing */
+  .cv-p-barlbl { flex: 0 1 92px; min-width: 0; overflow-wrap: anywhere; }
+  .cv-p-bartrack { min-width: 0; }
+  /* CENTURIES SCROLL rather than squeeze (Fuad 2026-08-22). Each column is flex:1 with the default
+     min-width:auto, so it refuses to go narrower than its own "1800s" label; a dozen of them plus
+     gaps is wider than any phone. Squeezing them to fit would leave 18px bars that carry no shape,
+     so the row keeps readable columns and scrolls, with the same faded trailing edge used
+     everywhere else on the site. */
+  .cv-p-cent {
+    overflow-x: auto; overflow-y: hidden; min-width: 0; gap: 7px; padding-bottom: 4px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 26px), transparent 100%);
+            mask-image: linear-gradient(to right, #000 calc(100% - 26px), transparent 100%);
+  }
+  .cv-p-cent::-webkit-scrollbar { display: none; }
+  .cv-p-centcol { flex: 0 0 30px; min-width: 0; }
+}
 .cv-p-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
 .cv-p-barlbl { flex: 0 0 130px; font: 400 12.5px/1.3 var(--serif); color: var(--ink-soft); text-align: right; }
 .cv-p-bartrack { flex: 1; height: 10px; background: rgba(0,0,0,.06); border-radius: 999px; overflow: hidden; }
