@@ -1026,6 +1026,21 @@ function OverviewView({ t, go, restReady, seed }) {
         .ov-insgrid > .r-card { min-width: 0; }
         @media (max-width: 760px) {
           .ov-insgrid > .r-card { grid-column: 1 / -1 !important; }
+          /* STAT STRIP shrinks on a phone (Fuad 2026-08-21: "too large"). The 27px inline size was
+             set for a five-across desktop strip; at two-across on a phone the numbers dominate the
+             card and crowd their own captions. Only the strip is touched — the pulse row's figures
+             are the point of their cards and keep their size. */
+          .ov-strip .r-stat-n { font-size: 19px !important; }
+          .ov-strip { gap: 8px 12px !important; }
+          /* the milestone number and its unit stay on one line; wrapping put "from 325,000" under
+             the figure and off its baseline, which is the misalignment Fuad saw */
+          .ov-mile-line { flex-wrap: nowrap !important; }
+          .ov-pulseslot .ov-ins-fig { font-size: 19px !important; }
+          /* the fade that keeps a long song title from shoving the play count off-screen */
+          .ov-rep-txt > div {
+            -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 14px), transparent 100%);
+                    mask-image: linear-gradient(to right, #000 calc(100% - 14px), transparent 100%);
+          }
         }
         /* Only span the 12-col overview grid while it IS 12 columns (861–980px). At ≤860 the
            .m-stack utility collapses to a single minmax(0,1fr) track and forces children to

@@ -91,9 +91,9 @@ const PROVIDERS = [
       // and it was only ever implied by the number — drawing it uses the room rather than padding it.
       render: (
         <div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 7 }}>
-            <div className="r-stat-n ov-ins-fig" style={{ fontSize: 23, lineHeight: 1.05, color: "var(--accent)" }}>{_fmtN(away)}</div>
-            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>from {_fmtN(next)}</span>
+          <div className="ov-mile-line" style={{ display: "flex", alignItems: "baseline", gap: 7, flexWrap: "nowrap", minWidth: 0 }}>
+            <div className="r-stat-n ov-ins-fig" style={{ fontSize: 23, lineHeight: 1.05, color: "var(--accent)", flex: "none" }}>{_fmtN(away)}</div>
+            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)", whiteSpace: "nowrap" }}>from {_fmtN(next)}</span>
           </div>
           {/* Hollow fill, quiet rim (Fuad 2026-08-20). Alpha lives in the background colour only,
               never as `opacity` on the element, or the border fades along with the wash it is meant
@@ -193,10 +193,16 @@ const PROVIDERS = [
           {tt.slice(0, 2).map((t, i) => (
             <div key={t.name + t.artist} onClick={(e) => { e.stopPropagation(); ctx.go("track", R.slug(t.artist) + "~" + R.slug(t.name)); }}
               style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}>
-              <GenCover hue={_hue(t.artist)} name={t.artist} size={28} radius={2} />
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 12.5, fontWeight: i === 0 ? 600 : 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.name}</div>
-                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.artist}</div>
+              <GenCover hue={_hue(t.artist)} name={t.artist} size={28} radius={2} style={{ flex: "none" }} />
+              {/* FADE, DON'T PUSH (Fuad 2026-08-21). A long song name was driving the play count off
+                  the right edge of a phone: the count is flex:none, so the only thing that could give
+                  was this column, and an ellipsis alone does not help if the flex item is allowed to
+                  claim its content width. minWidth:0 lets it shrink and the mask dims the overflow
+                  rather than cutting it dead, which reads as "there is more name" instead of a
+                  truncation artefact. */}
+              <div className="ov-rep-txt" style={{ flex: "1 1 0", minWidth: 0 }}>
+                <div style={{ fontSize: 12.5, fontWeight: i === 0 ? 600 : 500, whiteSpace: "nowrap", overflow: "hidden" }}>{t.name}</div>
+                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden" }}>{t.artist}</div>
               </div>
               <span className="r-mono" style={{ fontSize: 9.5, color: i === 0 ? "var(--accent)" : "var(--ink-faint)", flex: "none" }}>{t.plays}×</span>
             </div>
