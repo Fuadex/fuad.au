@@ -27,8 +27,11 @@ window.CANVAS_MUSEUMS = [
   { id: "nga-canberra",   name: "National Gallery of Australia",     city: "Canberra",     country: "au", qid: "Q795228",   kind: "art", visits: ["2020-10-22"] },
   { id: "npg-canberra",   name: "National Portrait Gallery",         city: "Canberra",     country: "au", qid: "Q1489633",  kind: "art", visits: ["2020-10-22"],  note: "\"Canberra's two galleries\" — assumed NGA + NPG; correct if it was a different pair." },
   // ——— The Beksiński trail (seen in person, three venues) ———
-  { id: "beksinski-krakow", name: "Beksiński gallery, Kraków (venue TBC)", city: "Kraków",  country: "pl", qid: null,       kind: "art", visits: ["TBC"],  note: "Beksiński seen in Kraków — likely the permanent gallery at Nowohuckie Centrum Kultury (NCK); confirm." },
-  { id: "beksinski-praga",  name: "Beksiński temporary exhibition, Warsaw-Praga (venue TBC)", city: "Warsaw", country: "pl", qid: null, kind: "art", visits: ["TBC"], note: "\"East side of the river\" = Praga — plausibly Centrum Praskie Koneser's Beksiński show; confirm." },
+  { id: "beksinski-krakow", name: "Galeria Zdzisława Beksińskiego", city: "Kraków",  country: "pl", qid: null,       kind: "art", visits: ["TBC"],  note: "Confirmed by Fuad 2026-08-22 — the permanent gallery inside Nowohuckie Centrum Kultury, open since October 2016, showing the Dmochowski collection. The earlier TBC guess at NCK was right." },
+  // Warsaw-Praga is deliberately NOT a venue entry (Fuad 2026-08-22: "not a museum"). It was a
+  // temporary Beksiński show, and a one-off exhibition is an event rather than an institution —
+  // listing it put a place on the Museums index that you cannot go to. The encounter is kept on
+  // the work itself, which is what `via: "exhibition"` exists for.
   { id: "czestochowa-mgs",  name: "Miejska Galeria Sztuki (Beksiński collection)", city: "Częstochowa", country: "pl", qid: null, kind: "art", visits: ["TBC"], note: "Permanent Beksiński museum room." },
   // ——— Timeline-discovered fine-art museums (2026-07-08) ———
   { id: "van-gogh-museum", name: "Van Gogh Museum", city: "Amsterdam", country: "nl", qid: "Q224124", kind: "art", visits: ["2016-08-08"] },
