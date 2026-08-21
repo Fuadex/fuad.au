@@ -605,7 +605,10 @@ function ShelvesView({ go, seed }) {
             <button data-on={mode === "racks"} onClick={() => setMode("racks")}>the racks</button>
             <button data-on={mode === "wrap"} onClick={() => setMode("wrap")}>shrinkwrapped</button>
           </span>
-          <button className="sh-dig" onClick={dig}>🎲 crate dig</button>
+          {/* the words drop on a phone and the die carries it alone (Fuad 2026-08-21). The label
+              is its own span so it can be hidden without losing the button's accessible name,
+              which the title now supplies. */}
+          <button className="sh-dig" onClick={dig} title="crate dig">🎲<span className="sh-dig-lbl"> crate dig</span></button>
         </div>
       </div>
       <p className="r-lede" style={{ marginTop: 0, marginBottom: 22 }}>
@@ -938,6 +941,19 @@ function ShelvesView({ go, seed }) {
         .sh-x { position: absolute; top: 10px; right: 12px; background: none; border: none; color: var(--ink-faint);
           cursor: pointer; font-size: 14px; }
         @media (max-width: 620px) {
+          /* Shelve-by becomes a rail (Fuad 2026-08-21) — same treatment as Explore's chip rows.
+             The whole bar scrolls rather than just the buttons: the label is the first item, so
+             it is what you see at rest and it scrolls away only once you start browsing. */
+          .sh-lensbar {
+            flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; min-width: 0;
+            scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 4px;
+            -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+                    mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+          }
+          .sh-lensbar::-webkit-scrollbar { display: none; }
+          .sh-lensbar > * { flex: none; }
+          .sh-dig-lbl { display: none; }
+          .sh-dig { padding: 8px 13px; }
           .sh-reader { flex-direction: column; align-items: flex-start; gap: 14px; }
           .sh-sleeve { width: 132px; height: 132px; }
           .sh-reader-cover { width: 132px; height: 132px; }

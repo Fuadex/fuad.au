@@ -2118,7 +2118,22 @@ function ExploreView({ t, go, setPop, seed }) {
         .xp-famgrid { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; }
         @media (max-width: 1500px) { .xp-famgrid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } }
         @media (max-width: 1100px) { .xp-famgrid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; } }
-        @media (max-width: 760px) { .xp-famgrid { grid-template-columns: minmax(0, 1fr) !important; } }
+        /* GENRES SCROLL SIDEWAYS ON A PHONE (Fuad 2026-08-21). One column meant every family
+           stacked, so the genre section alone ran several screens deep and the page below it was
+           unreachable without a long scroll past genres you were not looking for. A rail of
+           family columns keeps the whole section one screen tall; each column is a shade under
+           the viewport so the next one always peeks in and the row reads as scrollable. */
+        @media (max-width: 760px) {
+          .xp-famgrid {
+            display: flex !important; grid-template-columns: none !important;
+            flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; min-width: 0;
+            scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 6px;
+            -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+                    mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+          }
+          .xp-famgrid::-webkit-scrollbar { display: none; }
+          .xp-famgrid > * { flex: 0 0 78vw; min-width: 0; }
+        }
         .xp-fam-head { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 2px; border-radius: 5px; transition: .12s; }
         .xp-fam-resize { display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 8px; padding: 6px; cursor: ns-resize; user-select: none; color: var(--ink-faint); }
         .xp-fam-resize:hover { color: var(--ink-soft); }
@@ -2150,13 +2165,24 @@ function ExploreView({ t, go, setPop, seed }) {
           /* vocals drops below the time row, full-width and left-aligned (Fuad 2026-08-17) —
              same collapsed-state left alignment as the ≤1600px break */
           .xp-vocals { margin-left: 0; width: 100%; gap: 6px; justify-content: flex-start; }
-          .xp-vocals .xp-chiprow { flex: 0 1 auto; }
           .xp-flabel { padding-top: 0; }
-          .xp-chiprow { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-          .xp-chiprow::-webkit-scrollbar { display: none; }
-          /* the year row wraps to fit the phone instead of scrolling off-screen (it was clipped
-             by .r-app's overflow-x:clip, so buttons past the edge were unreachable) — Fuad 2026-07-18 */
-          .xp-chiprow-time { flex-wrap: wrap; overflow-x: visible; }
+          /* EVERY chip row becomes a rail (Fuad 2026-08-21) — the shared .r-rail in rotation-core.
+             The 2026-07-18 fix made the year row WRAP instead, reading the symptom as scrolling
+             being broken by .r-app's overflow-x:clip. It is not: clip is not a scroll container,
+             and a child that genuinely scrolls works inside it. What was missing is min-width:0 —
+             without it a flex or grid child will not shrink below its content width and overflows
+             the phone whatever its overflow setting says. That is why the pills ran off-screen. */
+          .xp-chiprow, .xp-chiprow-time {
+            flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; min-width: 0;
+            padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+            -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+                    mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+          }
+          .xp-chiprow::-webkit-scrollbar, .xp-chiprow-time::-webkit-scrollbar { display: none; }
+          .xp-chiprow > * { flex: none; }
+          /* the label sits OUTSIDE the rail, so the rail takes the whole remaining width */
+          .xp-vocals, .xp-active { min-width: 0; }
+          .xp-vocals .xp-chiprow, .xp-active .xp-chiprow { flex: 1 1 auto; }
           .xp-head-right { width: 100%; }
           .xp-search { min-width: 0; width: 100%; }
           .clk-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
