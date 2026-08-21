@@ -17,6 +17,26 @@ the canon, and deploy. All enrichment scripts are **Node.js**, **keyless**, and
 | `import-art.js` | Photo-detection importer, step 1: turns the (gitignored, local-only) `match_decisions.json` verdicts into a review proposal — resolves picks by qid, derives `seenAt`/`seenConfidence` (committed pick ⇒ `sure`), maps love→`floored` / like→`liked`, disambiguates versioned works by capture-time + venue. Never writes the canon. | `match_decisions.json`, `artworks.js`, `museums.js`; Wikidata (no key) | `../../.sptmp/import-proposal.json` |
 | `apply-import.js` | Photo-detection importer, step 2: applies a reviewed proposal — stubs new museums (visit dates from photo EXIF), appends new artworks (`qidTrusted: true`), merges marks onto existing qids. Dry-run by default; `--write` to commit. Insert regex must absorb the trailing comma (`,?\n\];`) and target the FIRST `];` (artworks.js ends with a second `CANVAS_AFFINITY` array). ⚠ Dedupe by qid alone is not enough: Met-deck entries carry `met-XXXXXX` pseudo-qids that can never qid-match a real Wikidata entry — audit new imports by normalized title+artist too (three such dupes merged 2026-07-24; venue inference can also mis-assign a museum that sits near the real one, so cross-check odd venues against the Timeline). | `.sptmp/import-proposal.json`, `artworks.js`, `museums.js` | patches both in place |
 | `fix-labels.js` | Post-import label polish: backfills `(untitled)` titles from the best non-English Wikidata label (fr/de/…), fixes unresolved creators. Anchored by qid; `--write` to commit. | `artworks.js`; Wikidata (no key) | patches `artworks.js` in place |
+| `fetch-holders.js` | Where an UNSEEN work hangs (P195 → institution with coords), so the map/pilgrimage can place it. Carries a **DENY_HOLDERS** list with fall-through: P195 lists every collection a work ever passed through, and taking the first claim blindly once routed the Makart to the Führermuseum — a historic looting label, not an address (the pilgrimage grew a country called "German Reich"). Historic-country P17 claims are a sibling trap (Perm Art Museum arrived as `su` with a district for a city). | `artworks.js`, `art_data.js`; Wikidata (no key) | `art_holders.js` (`CANVAS_HOLDERS`) |
+| `../../.sptmp/canvas-hires.py` → `emit-art-hires.py` | Hi-res pipeline, two local workshop steps: recon queries the keyless Met/AIC/CMA APIs for every canon work (cache per work under `.sptmp/canvas-hires/`), then the emitter ships only **holder-verified** matches (work qid's P195 must contain the matching museum — same-title-different-work rejection) into `art_hires.js`. The emitter preserves hand-authored `details` zoom tours AND whole `src:"commons"` entries (hand-added Commons upgrades, 2026-08-22). **Image quality rule from that sweep: pixels do not outrank identity or framing** — candidates were rejected for being framed gallery photos, saturation-boosted repros, or a *different physical copy* of the same title (the Bristol vs Glasgow Díaz). Eyeball every candidate before adoption; the Reader's `open-failed` fallback to the Wikidata-derived image is the safety net. | `artworks.js`; Met/AIC/CMA open APIs, `collections.json` (P195 per work) | `art_hires.js` (`CANVAS_HIRES`) |
+
+### Map layer rules (hard-won, 2026-08-22)
+
+- **Geography is verbatim.** Far-city bubbles (never-walked cities holding wanted works) render at
+  their true coordinates with NO collision relaxation — no eviction, no mutual push, no spring, no
+  clamp. Two rounds of "gentler" relaxation both shipped coastal cities into the sea (Helsinki,
+  Bordeaux, then Genoa): at deep zoom even a 1.2-unit clamp is ~6px of displacement and the sea
+  starts at 0. Overlapping 3-4px bubbles are cosmetically harmless and factually true; density is
+  handled by z-order, the fisheye lens, and zoom. Do not reintroduce a relaxation.
+- **Colour register splits by DISCOVERY, not seen-state.** Warm (sienna bubbles, loved-red /
+  liked-amber dots) = ground already walked, including the chase dots orbiting a walked city.
+  Green = undiscovered: far bubbles, their venue nodes, their halo dots, their opened branches.
+  The first green pass painted every chase dot green and — since at rest ALL dots are chase dots —
+  "everything went green" (owner report). The legend swatches are the literal fills.
+- **Placement is name-match first, then a ~40 km proximity fold**: Wikidata P131 often names a
+  district ("Quartier Saint-Merri" = the Pompidou's corner of Paris), and taking it literally
+  ghosts a second bubble on top of the visited city. A small `CITY_ALIAS` map covers admin
+  entities with no nearby fold target (Khamovniki District → Moscow).
 
 ## Study tours & reads (LLM content, not script-generated)
 
