@@ -1,4 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- An old rangefinder camera in Culture's own palette: brass-gold body (#c8a24a) on the app's
+       near-black, with the accent orange (#e96846) as the glint in the glass. It replaces the bare
+       italic "C", which named the app rather than describing it.
+       A still camera rather than a movie camera on purpose: Culture covers films, games and books,
+       so a pair of film reels would have claimed only one of the three. The silhouette — wide body,
+       one big lens, a viewfinder hump — is the most recognisable "old camera" shape there is, which
+       is what carries it at favicon size. -->
   <rect width="100" height="100" rx="18" fill="#14110d"/>
-  <text x="50" y="68" text-anchor="middle" font-family="Georgia, 'Source Serif 4', serif" font-style="italic" font-weight="600" font-size="58" fill="#c8a24a">C</text>
+  <!-- top plate, offset left so the body does not read as symmetrical and dull -->
+  <rect x="30" y="24" width="26" height="9" rx="2.5" fill="#c8a24a"/>
+  <!-- shutter release, on the right shoulder -->
+  <rect x="66" y="26" width="8" height="7" rx="2" fill="#e96846"/>
+  <!-- body -->
+  <rect x="14" y="32" width="72" height="43" rx="7" fill="#c8a24a"/>
+  <!-- viewfinder window, punched out of the body -->
+  <rect x="21" y="39" width="12" height="8" rx="2" fill="#14110d"/>
+  <!-- lens: barrel punched dark, brass ring, orange glass -->
+  <circle cx="53" cy="55" r="17" fill="#14110d"/>
+  <circle cx="53" cy="55" r="13" fill="none" stroke="#c8a24a" stroke-width="4"/>
+  <circle cx="53" cy="55" r="6.5" fill="#e96846"/>
 </svg>

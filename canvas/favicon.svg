@@ -1,6 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0b0a0f"/>
-  <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle"
-        font-family="'Space Grotesk',system-ui,sans-serif" font-weight="700" font-size="34"
-        fill="#f1eef6">f<tspan fill="oklch(0.74 0.13 330)">.</tspan></text>
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- A stretched canvas carrying a small landscape, in Canvas's own palette: parchment ground
+       (#e3d8c8), burnt sienna, warm near-black surround. Replaces the old "f." wordmark, which
+       described nothing and matched the other two apps.
+       Drawn in 3/4 rather than flat-on: a flat framed rectangle renders as the generic "image"
+       icon every photo viewer already uses. The visible depth on the right and bottom is the
+       stretcher edge, and it is the one cue that says physical object — a painting — instead of a
+       picture file. Everything is a solid shape because at 16px the motif gets about ten legible
+       pixels across, where a brushstroke or an easel would turn to mush. -->
+  <rect width="100" height="100" rx="18" fill="#1a140e"/>
+  <!-- stretcher depth: the slab the canvas is wrapped around, offset down-right -->
+  <path d="M79 27 L86 34 L86 79 L27 79 L20 72 L79 72 Z" fill="#4a3320"/>
+  <!-- frame face -->
+  <rect x="15" y="20" width="64" height="52" rx="2" fill="#6b4a2a"/>
+  <!-- the canvas itself -->
+  <rect x="20" y="25" width="54" height="42" fill="#e3d8c8"/>
+  <!-- the painting: a low sun and a hill across the lower third -->
+  <circle cx="35" cy="40" r="7.5" fill="#d08a49"/>
+  <path d="M20 56 Q34 44 47 54 Q60 63 74 52 L74 67 L20 67 Z" fill="#a8622f"/>
 </svg>
