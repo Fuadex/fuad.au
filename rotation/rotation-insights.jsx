@@ -182,7 +182,9 @@ const PROVIDERS = [
     return {
       id: "on-repeat", category: "on-repeat", score: 0.78, label: "On repeat", meta: "this week",
       render: (
-        <div style={{ display: "grid", gap: 6 }}>
+        {/* gridTemplateColumns:minmax(0,1fr) is load-bearing — an implicit grid column sizes to
+            max-content, so the track grew to the longest title and took the row with it. */}
+        <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
           {/* two rows, not three (Fuad 2026-08-20): the third made this the tallest card on its
               row, and in a grid the tallest card sets the height for every card beside it.
               ROWS ARE IDENTICAL (Fuad 2026-08-20: "need to be aligned vertically, same with the
@@ -232,7 +234,7 @@ const PROVIDERS = [
       // here is already clickable. What is left is the same two-row shape as On repeat, which is
       // what makes the deck read as a row rather than as four unrelated cards.
       render: (
-        <div style={{ display: "grid", gap: 6 }}>
+        <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
           {list.map(a => (
             <div key={a.name} onClick={(e) => { e.stopPropagation(); ctx.go("artist", a.artistId); }} style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}>
               <GenCover hue={a.hue != null ? a.hue : _hue(a.name)} name={a.name} size={28} radius={2} />
@@ -504,7 +506,10 @@ function InsightCard({ ins, span }) {
         <span className="lbl"><b>{ins.label}</b></span>
         {ins.meta && <span className="meta" style={{ maxWidth: 130, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{ins.meta}</span>}
       </div>
-      <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      {/* minWidth:0 matters as much as minHeight (Fuad 2026-08-21): without it this column refuses
+          to go below the width of its widest child, so a long song title in On repeat pushed the
+          play count clean out of the card instead of being truncated. */}
+      <div style={{ flex: 1, minWidth: 0, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
         {ins.render ? ins.render : (<>
         <div style={{ display: "flex", alignItems: "baseline", gap: 7 }}>
           <div className="r-stat-n" style={{ fontSize: 23, lineHeight: 1.05, color: ins.accent ? "var(--accent)" : "var(--ink)" }}>{ins.big}</div>

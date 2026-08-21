@@ -1104,6 +1104,15 @@ function LikedView({ go }) {
           .lk-buckets::-webkit-scrollbar, .lk-vocalsrow::-webkit-scrollbar { display: none; }
           .lk-buckets > *, .lk-vocalsrow > * { flex: none; }
           .lk-vocalsrow { margin-left: 0 !important; }
+          /* RELEASE THE WHOLE CHAIN (Fuad 2026-08-21, second pass — the rails still were not
+             scrolling). The rails themselves were right; their parent was not. .lk-bucketrow is a
+             flex container AND a flex item, and a flex item defaults to min-width:auto, so it
+             refused to shrink below its widest child and the overflow moved up a level instead of
+             turning into scroll. min-width on the scroller alone never works — every ancestor
+             between it and the page has to be released too. And width:100% on a rail is measured
+             against this box, so while this box is too wide the rail is too. */
+          .lk-bucketrow { min-width: 0; width: 100%; }
+          .lk-bucketrow > * { min-width: 0; }
           /* TUNE DNA on a phone (Fuad 2026-08-21). The group is a fixed 190px column so the radar
              and its tolerance slider both sat hard against the left edge of a full-width card,
              with dead space to their right. Taking the full width does both jobs at once: the

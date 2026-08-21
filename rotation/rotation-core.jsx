@@ -491,6 +491,19 @@ const FAM_SHORT = {
   "Hip-Hop/Rap": "Hip-Hop",
 };
 const famShort = (name) => FAM_SHORT[name] || name;
+// FAM_TINY — the PHONE labels (Fuad 2026-08-21, his wording). Deliberately a SECOND map rather than
+// a tightening of FAM_SHORT above: that one is a desktop truncation that still reads as the genre
+// ("Metalcore", "Electronic", "Hip-Hop"), while these go as short as a chip can before it stops
+// being a word ("Nu", "DnB", "Rap"). Merging them would either bloat the phone chips or shrink the
+// desktop labels past what they need. Families with no entry fall through to the full name, which
+// is why Prog, Pop, Classical, Score and Other are absent — they are already short enough.
+const FAM_TINY = {
+  "Thrash/Death": "Thrash", "Heavy/Doom": "Heavy", "Metalcore/Nu": "Nu",
+  "Punk/Hardcore": "Punk/H", "Shoegaze/Grunge": "Shoe/G", "Alternative/Indie": "Alt",
+  "Industrial/Noise/Hyperpop": "Ind/Noise", "Electronic/DnB": "DnB",
+  "Hip-Hop/Rap": "Rap", "Jazz/Funk": "Jazz/F",
+};
+const famTiny = (name) => FAM_TINY[name] || name;
 // the ONE lazy-script loader (audit 2026-07-18: the pattern was hand-rolled ~30× with
 // inconsistent id/onerror guarding — some scripts could inject twice, some failures hung
 // spinners forever). Guarded by element id; a second caller piggybacks on the load event.
@@ -822,7 +835,7 @@ class Boundary extends React.Component {
   }
 }
 
-Object.assign(window, { cssRotation, fmt, fmtK, hashInt, MON, fmtDate, FAM_SHORT, famShort, loadScript, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE, Boundary });
+Object.assign(window, { cssRotation, fmt, fmtK, hashInt, MON, fmtDate, FAM_SHORT, famShort, FAM_TINY, famTiny, loadScript, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE, Boundary });
 
 // ─────────────────────────────────────────────────────────────────
 //  Singles→LP "absorb" resolver. album-absorb.js (window.ROTATION_ALBUM_ABSORB) maps a single's
