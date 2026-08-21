@@ -21,10 +21,23 @@
 //     app-side fallback: the worker erroring is indistinguishable from the proxy not existing.
 
 const UPSTREAM = {
+  // canvas
   upload: "https://upload.wikimedia.org",
   commons: "https://commons.wikimedia.org",
   met: "https://images.metmuseum.org",
   aic: "https://www.artic.edu",
+  // culture (rollout 2026-08-22)
+  tmdb: "https://image.tmdb.org",
+  amzn: "https://m.media-amazon.com",
+  igdb: "https://images.igdb.com",
+  olcovers: "https://covers.openlibrary.org",
+  // rotation (rollout 2026-08-22). i.scdn.co is deliberately ABSENT: Spotify's CDN is faster
+  // than the proxy would be, it is 35k distinct urls of quota burn, and proxying sits worse
+  // with their ToS than plain hotlinking. Audio hosts are absent too — range-request streams
+  // do not belong in an image cache.
+  discogs: "https://i.discogs.com",
+  caa: "https://coverartarchive.org",
+  dzcdn: "https://cdn-images.dzcdn.net",
 };
 
 const YEAR = 31536000;
