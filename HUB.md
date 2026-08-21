@@ -99,6 +99,22 @@ deploy list or they are committed but never shipped.
 Installed home-screen shortcuts cache icons hard; expect to remove and re-add an app to see a
 change. Tab favicons refresh on their own.
 
+## Image proxy (img.fuad.au — Cloudflare Worker)
+
+`img-proxy.worker.js` at the repo root is the canonical source of a Cloudflare Worker that
+fronts the four external image hosts the apps hotlink (Commons upload + Special:FilePath, the
+Met's CRDImages, AIC IIIF) with Cloudflare's edge cache. It is **not** deployed by stage-site —
+the file lives here for review/history; the running copy is pasted into the Cloudflare
+dashboard (Workers & Pages → the worker → edit) and bound to the custom domain `img.fuad.au`.
+The zone is already on Cloudflare DNS, so the custom-domain binding auto-creates its record.
+
+Rules baked in: allow-listed upstreams only (never an open proxy), GET only, cookies stripped,
+immutable year-long caching, `ACAO: *` (which is what OpenSeadragon deep zoom needs), upstream
+errors passed through honestly. App wiring is a proxy-first URL helper with `onerror` fallback
+to the direct URL — so worker failure or free-tier quota exhaustion degrades to exactly the
+pre-proxy behaviour, by construction. Budget: free tier = 100k invocations/day ≈ 250 maximally
+heavy first-time visitors; repeat visitors ride browser-cache immutability and never touch it.
+
 ## Roadmap notes
 - **Dynamic launcher** (wanted): replace the hardcoded cards in `index.html` with a
   `fetch('apps.json')` render — the data shape already matches, so this is a drop-in upgrade.
