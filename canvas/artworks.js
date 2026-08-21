@@ -59,8 +59,8 @@ window.CANVAS_ARTWORKS = [
 
 
   { id: "beksinski-works", title: "Beksiński paintings (three venues)", artist: "Zdzisław Beksiński", artistId: "beksinski", qid: null, year: null, noResolve: true,
-    seenAt: ["beksinski-krakow", "beksinski-praga", "czestochowa-mgs"], seenConfidence: "sure",
-    note: "Seen in person: Kraków (permanent gallery, venue TBC), a temporary show in Warsaw-Praga, and Częstochowa's collection. Possibly a fourth city, unrecalled. NOTE: in-copyright artist — text-forward cards, museum link-outs (see PLAN §3)." },
+    seenAt: ["beksinski-krakow", "czestochowa-mgs"], seenConfidence: "sure",
+    note: "Seen in person: the Galeria Zdzisława Beksińskiego at Nowohuckie Centrum Kultury in Kraków, Częstochowa's collection, and a temporary show in Warsaw-Praga. That last one is recorded here rather than as a venue — it was an exhibition, not an institution (Fuad 2026-08-22). Possibly a fourth city, unrecalled. NOTE: in-copyright artist — text-forward cards, museum link-outs (see PLAN §3)." },
   // ——— deck-folded picks (fold-deck.js) ———
   { id: "luncheon-on-the-grass", title: "Luncheon on the Grass", artist: "Édouard Manet", artistId: "manet", qid: "Q152509", qidTrusted: true, year: 1863, seenAt: "orsay", seenConfidence: "unsure", liked: true, note: "Deck pick — orsay-2026-07-07." },
   { id: "bal-du-moulin-de-la-galette", title: "Bal du moulin de la Galette", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q683274", qidTrusted: true, year: 1876, seenAt: "orsay", seenConfidence: "sure", liked: true, note: "Deck pick — orsay-2026-07-07." },

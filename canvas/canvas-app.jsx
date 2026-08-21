@@ -2274,10 +2274,6 @@ function ArtistView({ artistId, go }) {
             AD2.desc ? AD2.desc.replace(/\s*\(\d{4}[–-]?\d{0,4}\)$/, "") : "",
           ].filter(Boolean).join(" · ")}</div>
           <div className="cv-a-chips">
-            {movements.map(m => (
-              <button key={m} className="cv-a-chip cv-a-chip-mov" onClick={() => go("wall", movSlug(m))}
-                title={`see every work on the wall by artists working in ${m}`}>{m}</button>
-            ))}
             <span className="cv-a-chip">{works.length} in your canon</span>
             {floored > 0 && <span className="cv-a-chip">★ {floored} floored</span>}
             {liked > 0 && <span className="cv-a-chip">♡ {liked} liked</span>}
@@ -2288,6 +2284,19 @@ function ArtistView({ artistId, go }) {
               above it, not a section of its own. Most artists have none and the header simply
               ends at the chips. */}
           {ARTIST_READ[artistId] && <p className="cv-a-read">{ARTIST_READ[artistId]}</p>}
+          {/* MOVEMENTS LAST, BELOW THE READ (Fuad 2026-08-22). A first pass used CSS order to
+              push them to the end of the chip row, which was not far enough — that row sits above
+              the read, so they were still ahead of it. These are links OUT to the wall rather than
+              facts about this artist, so they belong after everything that describes him. Their own
+              row, because that is the only way to get below the read. */}
+          {movements.length > 0 && (
+            <div className="cv-a-chips cv-a-movrow">
+              {movements.map(m => (
+                <button key={m} className="cv-a-chip cv-a-chip-mov" onClick={() => go("wall", movSlug(m))}
+                  title={`see every work on the wall by artists working in ${m}`}>{m}</button>
+              ))}
+            </div>
+          )}
         </div>
         {AD2.image && <img className="cv-a-face" src={AD2.image} alt={name} />}
       </div>
