@@ -32,9 +32,31 @@ function hash(str, seed = 0) {
 // actually near view, in ANY scroll direction. The container carries fixed CSS dimensions (.item
 // is 144px tall, .xcover is aspect-ratio 2/3, .hall-card sized), so withholding src never
 // collapses layout — off-screen cards stay off-screen and never intersect.
+// ── img.fuad.au: Cloudflare edge proxy over the poster hosts (source: /img-proxy.worker.js +
+// HUB.md; canvas rollout proven 2026-08-22, culture follows). proxied() rewrites known hosts;
+// every user pairs it with a one-hop fallback to the ORIGINAL url, so the worker failing — or
+// its free-tier quota running dry — degrades to exactly the pre-proxy behaviour.
+const IMG_PROXY = {
+  'https://image.tmdb.org/': 'https://img.fuad.au/tmdb/',
+  'https://m.media-amazon.com/': 'https://img.fuad.au/amzn/',
+  'https://images.igdb.com/': 'https://img.fuad.au/igdb/',
+  'https://covers.openlibrary.org/': 'https://img.fuad.au/olcovers/',
+  'https://upload.wikimedia.org/': 'https://img.fuad.au/upload/',
+};
+const proxied = (u) => {
+  if (!u) return u;
+  for (const k in IMG_PROXY) if (u.startsWith(k)) return IMG_PROXY[k] + u.slice(k.length);
+  return u;
+};
+const unproxy = (e) => {
+  const el = e.currentTarget, orig = el.dataset && el.dataset.orig;
+  if (orig && el.src !== orig) el.src = orig;
+};
+
 function LazyImg({ src, alt, className, draggable }) {
   const ref = React.useRef(null);
   const [show, setShow] = React.useState(false);
+  const [direct, setDirect] = React.useState(false);   // proxy failed once → go direct
   React.useEffect(() => {
     if (show || !src) return;
     const el = ref.current;
@@ -46,8 +68,10 @@ function LazyImg({ src, alt, className, draggable }) {
     io.observe(el);
     return () => io.disconnect();
   }, [show, src]);
+  const prox = proxied(src);
   return <img ref={ref} className={className} alt={alt || ''} draggable={draggable}
-    src={show ? src : undefined} loading="lazy" decoding="async" />;
+    src={show ? (direct ? src : prox) : undefined} loading="lazy" decoding="async"
+    onError={() => { if (!direct && prox !== src) setDirect(true); }} />;
 }
 
 // If data.js ever fails to load (stale cache / partial deploy), a shape-complete stub
@@ -2012,7 +2036,8 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
         </button>
         <div className="reader-poster">
           {(item.poster || item.tmdbPoster || item.igdbCover || item.bookCover)
-            ? <img src={item.poster || item.tmdbPoster || item.igdbCover || item.bookCover} alt={item.title}/>
+            ? (() => { const p = item.poster || item.tmdbPoster || item.igdbCover || item.bookCover;
+                return <img src={proxied(p)} data-orig={p} onError={unproxy} alt={item.title}/>; })()
             : <div className="poster-fallback" style={{ '--pf-bg': spineBodyColor(item) }}>
                 <span className="pf-title">{displayTitle(item)}</span>
                 <span className="pf-meta">{MEDIA_SHORT[item.medium]} · {item.year}</span>
@@ -2142,7 +2167,8 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
               {adjacent.map(a => (
                 <a key={a.id} onClick={() => onJump(a)} title={`${displayTitle(a)} (${a.year})`}>
                   {(a.poster || a.tmdbPoster || a.igdbCover || a.bookCover)
-                    ? <img src={a.poster || a.tmdbPoster || a.igdbCover || a.bookCover} alt=""/>
+                    ? (() => { const p = a.poster || a.tmdbPoster || a.igdbCover || a.bookCover;
+                        return <img src={proxied(p)} data-orig={p} onError={unproxy} alt=""/>; })()
                     : <span className="thumb-fallback" style={{ '--pf-bg': spineBodyColor(a) }}>{MEDIA_GLYPH[a.medium]}</span>}
                 </a>
               ))}
@@ -2155,7 +2181,8 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
                 {crossover.map(a => (
                   <a key={a.id} className="crossover-thumb" onClick={() => onJump(a)} title={`${displayTitle(a)} (${a.year})`}>
                     {(a.poster || a.tmdbPoster || a.igdbCover || a.bookCover)
-                      ? <img src={a.poster || a.tmdbPoster || a.igdbCover || a.bookCover} alt=""/>
+                      ? (() => { const p = a.poster || a.tmdbPoster || a.igdbCover || a.bookCover;
+                          return <img src={proxied(p)} data-orig={p} onError={unproxy} alt=""/>; })()
                       : <span className="thumb-fallback" style={{ '--pf-bg': spineBodyColor(a) }}>{MEDIA_GLYPH[a.medium]}</span>}
                     <span className="crossover-badge" title={library === 'wishlist' ? 'Already seen' : 'On your wishlist'}>{crossoverBadge}</span>
                   </a>
