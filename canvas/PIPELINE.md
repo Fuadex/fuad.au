@@ -33,10 +33,19 @@ Three hand-QC'd content overlays sit beside the script pipeline, all keyed by ca
   with a web-verified hook** (not the reverse). A study entry must go deeper than, and
   never contradict, an existing about read.
 - **`museum_about.js`** (`CANVAS_MUSEUM_ABOUT`) — institution reads (about = what the
-  place is, deep = how it works as a visit), 32 museums. Same truth rule as studies:
+  place is, deep = how it works as a visit), **53 museums**. Same truth rule as studies:
   personal "you met X here" claims only for canon-`sure` works; `probably`/`unsure`
-  works get the institutional phrasing ("home of X"). All 32 independently fact-checked
-  2026-07-24.
+  works get the institutional phrasing ("home of X"). First 32 independently fact-checked
+  2026-07-24; +21 on 2026-08-22, which covered every museum where at least one work has
+  been met. The 28 remaining have no met works — a "how it works as a visit" tier for a
+  place you have not been is a different proposition and was deliberately deferred.
+  Two failure modes worth knowing before the next batch:
+  · **Dossier vocabulary leaks into the prose.** Three drafts shipped the phrase "the two
+    sure works", i.e. the data model showing through the page. The apply script now hard-
+    fails on that pattern rather than trusting a reader to catch it.
+  · **A visit tier goes stale.** The Neue Pinakothek has been closed since 2019 with no
+    reopening before 2029 and its collection dispersed; a read describing a walk through
+    it would have been actively wrong. Check current status before writing `deep`.
 
 These are content, not generated artifacts — edit them directly (with QC), never
 regenerate them from a script.
