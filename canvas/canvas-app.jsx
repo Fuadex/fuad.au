@@ -2230,6 +2230,9 @@ function ArtistView({ artistId, go }) {
   const [queuedQids, setQueuedQids] = useState(() => new Set(readDeckQueue().map(w => w.qid)));
   // the highlight currently being looked at in place (non-canon works only)
   const [peek, setPeek] = useState(null);
+  // canon wall page size (Fuad 2026-08-22: a hard 32 with an explicit button, not scroll-reveal).
+  // The route keys this component by artist id, so a fresh artist resets to 32 by remount.
+  const [wallN, setWallN] = useState(32);
   const queueMajor = (n) => { addToDeckQueue(n); setQueuedQids(prev => new Set(prev).add(n.qid)); };
   if (!works.length && !AD2.qid) return <div className="cv-mus"><p>No artist here (yet).</p></div>;
   const name = (works[0] && works[0].artist.replace(/\s*\(.*\)$/, "")) || AD2.label;
@@ -2301,14 +2304,20 @@ function ArtistView({ artistId, go }) {
         {AD2.image && <img className="cv-a-face" src={AD2.image} alt={name} />}
       </div>
       <div className="cv-a-secl">In your canon</div>
-      {/* reveal-chunked wall (Fuad 2026-07-25): prolific artists mount their whole canon on paint otherwise */}
-      <RevealChunks items={works} initial={30} step={30} render={(slice) => (
-        <div className="cv-wall cv-a-wall">{slice.map(w => <Card key={w.id} w={w} go={go} />)}</div>
-      )} />
+      <div className="cv-wall cv-a-wall">{works.slice(0, wallN).map(w => <Card key={w.id} w={w} go={go} />)}</div>
+      {works.length > wallN && (
+        <div className="cv-more">
+          <button type="button" onClick={() => setWallN(n => n + 32)}>
+            show 32 more · {works.length - wallN} to go
+          </button>
+        </div>
+      )}
       {unmet.length > 0 && (
         <React.Fragment>
           <div className="cv-a-secl">Their majors you haven't met</div>
-          <RevealChunks items={unmet} initial={18} step={18} render={(slice) => (
+          {/* deliberately unpaginated (Fuad 2026-08-22): the unmet list IS the destination —
+              cutting it short hides exactly what this section exists to surface */}
+          {((slice) => (
             <div className="cv-a-unmet">
               {slice.map(n => {
                 const q = queuedQids.has(n.qid);
@@ -2332,7 +2341,7 @@ function ArtistView({ artistId, go }) {
                 );
               })}
             </div>
-          )} />
+          ))(unmet)}
         </React.Fragment>
       )}
       {(AD2.similar || []).length > 0 && (

@@ -141,9 +141,13 @@ a { color: inherit; }
 .cv-musidx-text .cv-musidx-deck { color: #f2e9dc; background: rgba(232,221,204,.08); border-color: rgba(232,221,204,.2); }
 .cv-musidx-text .cv-musidx-deck:hover { color: var(--accent-soft); border-color: var(--accent-soft); }
 
-/* quiet venues: no works met yet — present but recessive */
-.cv-musidx-quiet { opacity: .78; }
-.cv-musidx-quiet:hover { opacity: 1; }
+/* quiet venues: no works met yet — present but recessive. The old treatment dimmed the whole
+   card to .78 and cleared it on hover, which put a second hover design next to the shadow-only
+   cards (Fuad 2026-08-22: Yamatane "clears up", Tokyo Metropolitan doesn't). Recessive is now a
+   STATIC state — a drier facade, a softer name — and hover is the one shadow every card gets. */
+.cv-musidx-quiet .cv-musidx-thumb img { filter: saturate(.55) contrast(.96); }
+.cv-musidx-quiet:not(.cv-musidx-text) .cv-musidx-name { color: var(--ink-soft); }
+.cv-musidx-text.cv-musidx-quiet .cv-musidx-name { color: rgba(227,216,200,.75); }
 
 .cv-musidx-more { display: inline-block; margin-top: 12px; font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 8px 14px; cursor: pointer; }
 .cv-musidx-more:hover { color: var(--ink); border-color: var(--ink-faint); }

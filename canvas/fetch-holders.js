@@ -30,9 +30,19 @@ const musByQid = {}; MUS.forEach(m => { if (m.qid) musByQid[m.qid] = m; });
 // Everything Fuad has not actually stood in front of: an explicit wish, or a sighting he is not
 // sure of. Both belong on the pilgrimage (Fuad 2026-08-19).
 const unseen = W.filter(w => w.wish || w.seenConfidence === "unsure");
+// HISTORIC HOLDERS ARE NOT DESTINATIONS (Fuad 2026-08-22: "a country called GERMAN REICH on the
+// map — but it's Linz"). P195 lists every collection a work ever passed through, and taking the
+// first claim blindly once sent the Makart to the Führermuseum — an institution that was never
+// built, in a country that no longer exists. No trip can end there. Denied qids fall through to
+// the next collection claim or to none, which honestly reads "home unknown".
+const DENY_HOLDERS = new Set([
+  "Q475667",   // Führermuseum, Linz — planned, never built; a looting label, not an address
+  "Q1053735",  // Munich Central Collecting Point — dissolved 1949, restitution way-station
+]);
 const holderOf = (w) => {
   const d = AD[w.id] || {};
-  return (d.collectionQids && d.collectionQids[0]) || d.locationQid || null;
+  const cands = [...(d.collectionQids || []), d.locationQid].filter(Boolean);
+  return cands.find(q => !DENY_HOLDERS.has(q)) || null;
 };
 const works = {};
 for (const w of unseen) { const q = holderOf(w); if (q) works[w.id] = q; }
