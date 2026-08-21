@@ -3490,15 +3490,19 @@ function Portrait({ go }) {
 
       {/* "Where love struck hardest" was tried here and cut (Fuad 2026-08-22) — the hit-rate
           framing didn't earn its place. Motifs moved to the page's END, also his call. */}
-      <div className="cv-p-sec">
-        <div className="cv-p-lbl">Breadth and depth</div>
-        <p className="cv-p-prose">
-          Your canon spans <b>{data.breadth.artists}</b> artists — <b>{data.breadth.singles}</b> of them
-          represented by a single work, one encounter that earned its place. At the other end
-          {data.breadth.deepId && <> stands <b onClick={() => go("artist", data.breadth.deepId)} style={{ cursor: "pointer", color: "var(--accent)" }}>{data.breadth.deepName}</b> with <b>{data.breadth.deepN}</b>.</>}
-          {" "}A taste that collects widely and digs where it matters.
-        </p>
-      </div>
+      {/* "Breadth and depth" DISABLED "for now" (Fuad 2026-08-22) — kept in place rather than
+          deleted because the framing may return; the data.breadth computation still runs. */}
+      {false && (
+        <div className="cv-p-sec">
+          <div className="cv-p-lbl">Breadth and depth</div>
+          <p className="cv-p-prose">
+            Your canon spans <b>{data.breadth.artists}</b> artists — <b>{data.breadth.singles}</b> of them
+            represented by a single work, one encounter that earned its place. At the other end
+            {data.breadth.deepId && <> stands <b onClick={() => go("artist", data.breadth.deepId)} style={{ cursor: "pointer", color: "var(--accent)" }}>{data.breadth.deepName}</b> with <b>{data.breadth.deepN}</b>.</>}
+            {" "}A taste that collects widely and digs where it matters.
+          </p>
+        </div>
+      )}
 
       {data.found.length > 0 && (
         <div className="cv-p-sec">
