@@ -454,6 +454,9 @@ a { color: inherit; }
 .cv-p-barlink:hover .cv-p-barlbl { color: var(--accent); }
 
 .cv-more { text-align: center; padding: 0 0 50px; }
+/* on an artist page the pager sits BETWEEN the wall and the next section, not at a page end —
+   without its own air the button lands flush on the last row of cards (Fuad 2026-08-22, Monet) */
+.cv-a-wall + .cv-more { padding: 26px 0 34px; }
 .cv-more button { font: 500 11.5px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; padding: 12px 26px; border-radius: 999px; border: 1px solid var(--ink); background: none; color: var(--ink); cursor: pointer; }
 .cv-more button:hover { background: var(--ink); color: var(--paper); }
 
