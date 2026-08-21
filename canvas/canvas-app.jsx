@@ -2600,11 +2600,11 @@ function MapView({ go }) {
     for (const entry of Object.values(byCity)) {
       const c = entry.c;
       entry.total = entry.list.length;
-      halosOf.push({ list: entry.list, cap: HALO_CAP, x: c.x, y: c.y, r: visRad(c), city: c.city });
+      halosOf.push({ list: entry.list, cap: HALO_CAP, x: c.x, y: c.y, r: visRad(c), city: c.city, far: false });
     }
     for (const f of farList) {
       const flat = f.venues.flatMap(v => v.list.map(w => ({ w, venue: v.name })));
-      halosOf.push({ list: flat, cap: FAR_HALO_CAP, x: f.x, y: f.y, r: f.r, city: f.city });
+      halosOf.push({ list: flat, cap: FAR_HALO_CAP, x: f.x, y: f.y, r: f.r, city: f.city, far: true });
     }
     for (const halo of halosOf) {
       const list = [...halo.list]
@@ -2638,7 +2638,7 @@ function MapView({ go }) {
         for (const nd of nodes) clear(nd);
       }
       for (const nd of nodes) clear(nd);                          // final hard guarantee
-      for (const nd of nodes) markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue });
+      for (const nd of nodes) markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue, far: halo.far });
     }
     // FIX 2 (2026-07-17 r4) — THE centre-dot fix. The per-city clamp above only keeps a dot off ITS
     // OWN city bubble; it never guarded against OTHER cities. A dot fanned out of city A (or shoved by
@@ -3083,7 +3083,7 @@ function MapView({ go }) {
 
   return (
     <div className="cv-map">
-      <p className="cv-deck-sum">Every city where a work entered your canon, sized by how much it gave you — <b>click a city</b> to branch out to its museums and the works you loved there (hover a work for a look). The <b style={{ color: "oklch(0.45 0.14 150)" }}>green markers</b> are works you're still chasing, and the <b style={{ color: "oklch(0.52 0.09 150)" }}>green bubbles</b> are the cities holding them that you haven't walked yet — click one to see what's waiting there. Scroll or pinch to zoom, drag to pan — hover to magnify the bubbles under your cursor (tap on touch).</p>
+      <p className="cv-deck-sum">Every city where a work entered your canon, sized by how much it gave you — <b>click a city</b> to branch out to its museums and the works you loved there (hover a work for a look). The <b style={{ color: "oklch(0.55 0.19 18)" }}>♥ markers</b> are works you're still chasing in cities you know; everything <b style={{ color: "oklch(0.45 0.12 150)" }}>green</b> is undiscovered — cities you haven't walked, holding works you haven't seen. Click one to see what's waiting there. Scroll or pinch to zoom, drag to pan — hover to magnify the bubbles under your cursor (tap on touch).</p>
       <div className="cv-map-wrap" onMouseLeave={onLeave}>
         <div className="cv-map-zoom">
           <button type="button" onClick={() => zoomCenter(1 / 1.4)} aria-label="Zoom in" title="Zoom in">+</button>
@@ -3106,7 +3106,7 @@ function MapView({ go }) {
             // a curve, not a spoke (Fuad 2026-08-19) — shared `bow` helper, so the resting halo and
             // the opened branch arc identically instead of drifting apart over time
             return <path key={"wl" + mk.w.id + "-" + i} d={bow(mk.bx, mk.by, fx, fy)}
-              fill="none" stroke="oklch(0.5 0.12 150 / .38)" strokeWidth={0.5 * k} />;
+              fill="none" stroke={mk.far ? "oklch(0.5 0.12 150 / .38)" : "oklch(0.55 0.19 18 / .4)"} strokeWidth={0.5 * k} />;
           })}
           {!focus && cities.list.map(c => {
             if (!inView(c.x, c.y)) return null;
@@ -3152,18 +3152,17 @@ function MapView({ go }) {
                 onMouseEnter={e => setHover({ w: mk.w, mx: e.clientX, my: e.clientY, venue: mk.venue, city: mk.city })}
                 onMouseMove={e => setHover(h => h && h.w === mk.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                 onMouseLeave={() => setHover(null)}>
-                {/* THE UNMET ARE GREEN (Fuad 2026-08-22: "differently colored dots for museums and
-                    art I haven't seen, maybe shades of green"). The halo dots had borrowed the
-                    opened branch's red/amber — but inside a branch those fills mean works SEEN and
-                    loved/liked, so one palette carried two opposite meanings and the map read as
-                    warm mush. The whole unseen register is now the green family, cool against the
-                    warm biography, with the loved/liked split kept as deep vs light green. Still
-                    filled, never hollow (rejected 2026-08-19: reads as a hole punched in the map).
-                    dotZoom starts them smaller at the resting view and lets them reach full size
-                    as you zoom in (also Fuad 2026-08-22). */}
+                {/* GREEN IS THE FAR LAYER, NOT EVERY WANT (Fuad 2026-08-22, second pass: "the
+                    artworks I've seen kept the old color style… but you've made everything
+                    green"). The first green pass painted every chase dot green, including the
+                    halos around cities already walked — at rest ALL dots are chase dots, so the
+                    whole map went green. The register split he actually wants is by DISCOVERY:
+                    dots orbiting a walked city keep the old loved-red/liked-amber, and only the
+                    far layer — cities never walked, works to be discovered — wears green.
+                    dotZoom starts them smaller at the resting view; full size from ~2.5x zoom. */}
                 {unseenRank(mk.w) === 2
-                  ? <circle cx={fx} cy={fy} r={2.1 * fs * k * dotMul * dotZoom} fill="oklch(0.45 0.14 150 / .92)" stroke="#f7efe2" strokeWidth={0.5 * k} />
-                  : <circle cx={fx} cy={fy} r={1.7 * fs * k * dotMul * dotZoom} fill="oklch(0.6 0.11 130 / .9)" stroke="#f7efe2" strokeWidth={0.45 * k} />}
+                  ? <circle cx={fx} cy={fy} r={2.1 * fs * k * dotMul * dotZoom} fill={mk.far ? "oklch(0.45 0.14 150 / .92)" : "oklch(0.55 0.19 18 / .92)"} stroke="#f7efe2" strokeWidth={0.5 * k} />
+                  : <circle cx={fx} cy={fy} r={1.7 * fs * k * dotMul * dotZoom} fill={mk.far ? "oklch(0.6 0.11 130 / .9)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.45 * k} />}
               </g>
             );
           })}
@@ -3384,7 +3383,7 @@ function Portrait({ go }) {
     const byArtist = {};
     for (const w of met) { if (!w.artistId) continue; const r = byArtist[w.artistId] = byArtist[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (w.floored || w.favorite) r.love += 3; if (w.liked) r.love += 1; }
     const artists = Object.values(byArtist).sort((a, b) => b.love - a.love || b.n - a.n);
-    const found = artists.filter(a => !AFFINITY.has(a.id) && a.love >= 4).slice(0, 8);
+    const found = artists.filter(a => !AFFINITY.has(a.id) && a.love >= 4).slice(0, 14);
     // movements (loved among met)
     const movCount = {};
     // via movsOf so the labels are the cleaned ones the Wall's chips use — these bars link there
@@ -3414,12 +3413,6 @@ function Portrait({ go }) {
       for (const d of (s.d || [])) { const raw = String(d); if (/^[A-ZÀ-Ż]/.test(raw)) continue; const t = raw.toLowerCase(); if (STOP.has(t)) continue; subjCount[t] = (subjCount[t] || 0) + wt; }
     }
     const motifs = Object.entries(subjCount).sort((a, b) => b[1] - a[1]).slice(0, 14);
-    // where love struck hardest — floored rate per museum, met works only, n ≥ 8
-    const musStat = {};
-    for (const w of met) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) { if (!MUS_BY_ID[id]) continue; const e = musStat[id] = musStat[id] || { id, n: 0, fl: 0 }; e.n++; if (w.floored || w.favorite) e.fl++; }
-    const strike = Object.values(musStat).filter(e => e.n >= 8 && e.fl > 0)
-      .map(e => ({ ...e, rate: e.fl / e.n, name: MUS_BY_ID[e.id].name.replace(/\s*\(.*\)$/, "") }))
-      .sort((a, b) => b.rate - a.rate).slice(0, 5);
     // breadth vs depth — the whole canon speaks here (an artist chased is still a taste)
     const perArtist = {}; for (const w of works) if (w.artistId) perArtist[w.artistId] = (perArtist[w.artistId] || 0) + 1;
     const singles = Object.values(perArtist).filter(n => n === 1).length;
@@ -3430,7 +3423,7 @@ function Portrait({ go }) {
       floored: met.filter(w => w.floored || w.favorite).length,
       museums: museums.size, countries: countries.size,
       chase: chase.length, chaseCities: chaseCities.size,
-      artists, found, movements, centuries, swatches, families, motifs, strike,
+      artists, found, movements, centuries, swatches, families, motifs,
       breadth: { artists: Object.keys(perArtist).length, singles, deepId: deepEntry ? deepEntry[0] : null, deepN: deepEntry ? deepEntry[1] : 0, deepName: deepWork ? deepWork.artist.replace(/\s*\(.*\)$/, "") : "" },
       topMovement: movements[0], favArtist: artists[0],
     };
@@ -3491,41 +3484,16 @@ function Portrait({ go }) {
         </div>
       </div>
 
-      {data.motifs.length > 0 && (
-        <div className="cv-p-sec">
-          <div className="cv-p-lbl">What you keep looking at</div>
-          <div className="cv-p-note" style={{ marginTop: 0, marginBottom: 12 }}>the things depicted in the works you love, weighted by how hard they hit</div>
-          <div className="cv-p-motifs">
-            {data.motifs.map(([t, n]) => (
-              <span className="cv-p-motif" key={t} title={`${n} love-weighted points`}>{t}<i>{n}</i></span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <div className="cv-p-cols">
-        {data.strike.length > 0 && (
-          <div className="cv-p-sec">
-            <div className="cv-p-lbl">Where love struck hardest</div>
-            <div className="cv-p-note" style={{ marginTop: 0, marginBottom: 10 }}>how often a museum stopped you cold, of what you met there</div>
-            {data.strike.map(s => (
-              <div className="cv-p-bar cv-p-barlink" key={s.id} onClick={() => go("museum", s.id)}>
-                <span className="cv-p-barlbl">{s.name}</span>
-                <span className="cv-p-bartrack"><i style={{ width: (s.rate * 100) + "%" }} /></span>
-                <span className="cv-p-barn">1 in {Math.round(1 / s.rate)}</span>
-              </div>
-            ))}
-          </div>
-        )}
-        <div className="cv-p-sec">
-          <div className="cv-p-lbl">Breadth and depth</div>
-          <p className="cv-p-prose">
-            Your canon spans <b>{data.breadth.artists}</b> artists — <b>{data.breadth.singles}</b> of them
-            represented by a single work, one encounter that earned its place. At the other end
-            {data.breadth.deepId && <> stands <b onClick={() => go("artist", data.breadth.deepId)} style={{ cursor: "pointer", color: "var(--accent)" }}>{data.breadth.deepName}</b> with <b>{data.breadth.deepN}</b>.</>}
-            {" "}A taste that collects widely and digs where it matters.
-          </p>
-        </div>
+      {/* "Where love struck hardest" was tried here and cut (Fuad 2026-08-22) — the hit-rate
+          framing didn't earn its place. Motifs moved to the page's END, also his call. */}
+      <div className="cv-p-sec">
+        <div className="cv-p-lbl">Breadth and depth</div>
+        <p className="cv-p-prose">
+          Your canon spans <b>{data.breadth.artists}</b> artists — <b>{data.breadth.singles}</b> of them
+          represented by a single work, one encounter that earned its place. At the other end
+          {data.breadth.deepId && <> stands <b onClick={() => go("artist", data.breadth.deepId)} style={{ cursor: "pointer", color: "var(--accent)" }}>{data.breadth.deepName}</b> with <b>{data.breadth.deepN}</b>.</>}
+          {" "}A taste that collects widely and digs where it matters.
+        </p>
       </div>
 
       {data.found.length > 0 && (
@@ -3538,6 +3506,17 @@ function Portrait({ go }) {
                 {AD.artists[a.id] && AD.artists[a.id].image && <LazyImg src={AD.artists[a.id].image} alt="" />}
                 <div><b>{a.name}</b><span>{a.n} work{a.n > 1 ? "s" : ""} · {a.love} pts</span></div>
               </div>
+            ))}
+          </div>
+        </div>
+      )}
+      {data.motifs.length > 0 && (
+        <div className="cv-p-sec">
+          <div className="cv-p-lbl">What you keep looking at</div>
+          <div className="cv-p-note" style={{ marginTop: 0, marginBottom: 12 }}>the things depicted in the works you love, weighted by how hard they hit</div>
+          <div className="cv-p-motifs">
+            {data.motifs.map(([t, n]) => (
+              <span className="cv-p-motif" key={t} title={`${n} love-weighted points`}>{t}<i>{n}</i></span>
             ))}
           </div>
         </div>
