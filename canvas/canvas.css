@@ -1119,6 +1119,16 @@ a { color: inherit; }
 @keyframes cvPilOpen { from { grid-template-rows: 0fr; opacity: .35; } to { grid-template-rows: 1fr; opacity: 1; } }
 .cv-pil-caret { display: inline-block; transition: transform .22s ease; }
 .cv-pil-caret[data-open] { transform: rotate(90deg); }
+/* generic aliases of the same fold, for any disclosure that mounts on open (styles "+N more").
+   minmax(0,1fr): an implicit grid column sizes to max-content (DESIGN.md §3.5), which would
+   hand the mobile rail inside a width it can never scroll. */
+.cv-fold { display: grid; grid-template-columns: minmax(0, 1fr); animation: cvPilOpen .32s ease; }
+.cv-foldin { overflow: hidden; min-height: 0; min-width: 0; }
+/* the unfolded style chips drift in rather than popping — mount-only, so filter re-renders
+   (chips stay mounted, keyed by slug) never replay it */
+.cv-styles-ext { margin-top: 2px; }
+.cv-styles-ext button { animation: cvChipIn .3s ease both; }
+@keyframes cvChipIn { from { opacity: 0; transform: scale(.94); } }
 
 /* ——— HOVER IS A TRANSITION, NOT A SNAP (Fuad 2026-08-22). Every interactive element whose
    hover restyled instantly now eases over ~.18s. Deliberately NOT included, per the same

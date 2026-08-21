@@ -656,11 +656,8 @@ function Wall({ go, styleIds }) {
       </div>
       {/* STYLES — multi-select, OR'd. Movement is the artist's (Wikidata P135), so the note says
           so rather than pretending each canvas carries the tag. */}
-      <div className="cv-styles">
-        <span className="cv-styles-lbl" title="Wikidata files movement on the artist, not the artwork">styles</span>
-        {/* the count is the LIVE one; a chip that would return nothing is dimmed rather than hidden,
-            so the row does not reshuffle under the cursor every time a filter changes */}
-        {movs.slice(0, allStyles ? movs.length : STYLE_CHIPS).map(m => {
+      {(() => {
+        const chip = (m) => {
           const n = movCounts[m.label] || 0;
           return (
             <button key={m.slug} data-on={sel.includes(m.label)} data-empty={n === 0 && !sel.includes(m.label)}
@@ -668,14 +665,33 @@ function Wall({ go, styleIds }) {
               {m.label}<i>{n}</i>
             </button>
           );
-        })}
-        {movs.length > STYLE_CHIPS && (
-          <button className="cv-styles-more" onClick={() => setAllStyles(v => !v)}>
-            {allStyles ? "fewer" : `+ ${movs.length - STYLE_CHIPS} more`}
-          </button>
-        )}
-        {sel.length > 0 && <button className="cv-styles-clear" onClick={() => setSel([])}>✕ clear</button>}
-      </div>
+        };
+        return (
+          <React.Fragment>
+            <div className="cv-styles">
+              <span className="cv-styles-lbl" title="Wikidata files movement on the artist, not the artwork">styles</span>
+              {/* the count is the LIVE one; a chip that would return nothing is dimmed rather than hidden,
+                  so the row does not reshuffle under the cursor every time a filter changes */}
+              {movs.slice(0, STYLE_CHIPS).map(chip)}
+              {movs.length > STYLE_CHIPS && (
+                <button className="cv-styles-more" onClick={() => setAllStyles(v => !v)}>
+                  {allStyles ? "fewer" : `+ ${movs.length - STYLE_CHIPS} more`}
+                </button>
+              )}
+              {sel.length > 0 && <button className="cv-styles-clear" onClick={() => setSel([])}>✕ clear</button>}
+            </div>
+            {/* "+N more" EASES OPEN (Fuad 2026-08-22: "not so abrupt"). The overflow chips used to
+                splice into the same wrap row, landing all ~109 in one frame. They now live in
+                their own fold that opens with the same grid-rows animation the pilgrimage list
+                uses, and each chip fades in on mount. Mount-on-open, unmount plain — same trade. */}
+            {allStyles && movs.length > STYLE_CHIPS && (
+              <div className="cv-fold"><div className="cv-foldin">
+                <div className="cv-styles cv-styles-ext">{movs.slice(STYLE_CHIPS).map(chip)}</div>
+              </div></div>
+            )}
+          </React.Fragment>
+        );
+      })()}
       {sel.length > 0 && (
         <div className="cv-styles-note">
           {shown.length} {shown.length === 1 ? "work" : "works"} by artists working in {sel.join(" or ")}
