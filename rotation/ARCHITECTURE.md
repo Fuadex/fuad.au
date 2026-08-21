@@ -233,6 +233,11 @@ cache repointed to the real LiSA by JP-market exact-casing search).
 - **`GenCover`:** generative cover art from name+hue, auto-upgrading to Discogs thumb (`THUMBS`)
   or Spotify image (`SPOTIMG`) when available. Real album covers exist only where the archive had
   them (`spotify-albumart.json`); otherwise generative.
+- **`imgProxied` (core export, 2026-08-22):** rewrites Discogs/coverartarchive/Deezer/Wikimedia
+  image urls through the img.fuad.au Cloudflare edge proxy (source `/img-proxy.worker.js`, rules
+  in `/HUB.md`). Always pair it with a fallback step to the DIRECT url — GenCover's chain and the
+  shelves covers do this — so proxy failure degrades to pre-proxy behaviour. `i.scdn.co` is
+  deliberately NOT proxied; don't add it.
 - **Taste percentiles:** `AUDIO_DIST` = play-weighted CDF (permille) per audio axis over the whole
   library — powers "more energetic than 87% of what you play" phrasing and the dashed
   "your average" overlay on DNA radars.

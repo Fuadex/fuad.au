@@ -590,6 +590,25 @@ function useInView() {
   return [ref, true];
 }
 
+// ─────────── img.fuad.au proxy ───────────
+// Cloudflare edge proxy over the slow/throttling image hosts (source: /img-proxy.worker.js +
+// HUB.md; canvas → culture → rotation rollout, 2026-08-22). imgProxied() rewrites a known host;
+// callers put the proxied url FIRST in an error-stepping chain with the direct url next, so a
+// worker failure (or free-tier quota exhaustion) degrades to exactly the pre-proxy behaviour.
+// Spotify's i.scdn.co is deliberately absent: their CDN outruns the proxy and it is 35k urls
+// of quota burn. Audio hosts are absent too — streams don't belong in an image cache.
+const IMG_PROXY = {
+  "https://i.discogs.com/": "https://img.fuad.au/discogs/",
+  "https://coverartarchive.org/": "https://img.fuad.au/caa/",
+  "https://cdn-images.dzcdn.net/": "https://img.fuad.au/dzcdn/",
+  "https://upload.wikimedia.org/": "https://img.fuad.au/upload/",
+};
+function imgProxied(u) {
+  if (!u) return u;
+  for (const k in IMG_PROXY) if (u.indexOf(k) === 0) return IMG_PROXY[k] + u.slice(k.length);
+  return u;
+}
+
 // ─────────── sim-img lazy loader ───────────
 // window.ROTATION_SIMIMG (sim-img.js) maps matchKey(name) → a Deezer artist-photo HASH for
 // "Sounds like" tiles naming a zero-scrobble artist (no byId record, no THUMB). Split into its
@@ -707,7 +726,11 @@ function GenCover({ hue, name, size, radius, style, image, thumb }) {
   // back to the generated cover. Lets a dead Discogs/last.fm hotlink recover automatically.
   const R0 = (typeof window !== "undefined" && window.ROTATION) || null;
   const spotAlt = (R0 && R0.SPOTIMG && name && R0.slug) ? (R0.SPOTIMG[R0.slug(name)] || "") : "";
-  const chain = [imgUrl, spotAlt].filter((u, i, a) => u && a.indexOf(u) === i);
+  // proxy-first (img.fuad.au rollout, 2026-08-22 — see /img-proxy.worker.js): the existing
+  // error-stepping chain makes the fallback free — proxied url first, the direct url next,
+  // then the Spotify alternate, then the generated cover. Spotify's own CDN is deliberately
+  // not proxied (fast already; 35k urls of quota burn).
+  const chain = [imgProxied(imgUrl), imgUrl, spotAlt].filter((u, i, a) => u && a.indexOf(u) === i);
   const [srcIdx, setSrcIdx] = React.useState(0);
   React.useEffect(() => { setSrcIdx(0); }, [imgUrl, spotAlt]);
   const cur = chain[srcIdx] || "";
@@ -835,7 +858,7 @@ class Boundary extends React.Component {
   }
 }
 
-Object.assign(window, { cssRotation, fmt, fmtK, hashInt, MON, fmtDate, FAM_SHORT, famShort, FAM_TINY, famTiny, loadScript, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE, Boundary });
+Object.assign(window, { cssRotation, fmt, fmtK, hashInt, MON, fmtDate, FAM_SHORT, famShort, FAM_TINY, famTiny, loadScript, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE, Boundary, imgProxied });
 
 // ─────────────────────────────────────────────────────────────────
 //  Singles→LP "absorb" resolver. album-absorb.js (window.ROTATION_ALBUM_ABSORB) maps a single's

@@ -84,6 +84,12 @@ wishlistItems = wishlist.js ⊕ wishlist_cast.js ⊕ enrichExtras
 when no hand/cast art) → `igdbCover` / `bookCover`. There is **no** separate omdb-poster
 field; OMDb art is folded into `tmdbPoster` at enrich time.
 
+**Posters ride the img.fuad.au edge proxy (2026-08-22)** — `proxied()` in `culture-v2.jsx`
+rewrites tmdb/amazon/igdb/openlibrary/wikimedia urls through the Cloudflare worker (source
+`/img-proxy.worker.js`, rules in `/HUB.md`); LazyImg and the plain poster `<img>`s all carry a
+one-hop `onError` fallback to the direct url, so the worker failing degrades to pre-proxy
+behaviour. Keep that pairing if you add a new poster render site.
+
 ### Stack vs spine
 An item renders as a **cover/stack** iff `favorite === true || item.poster` (see
 `coverWorthy`); otherwise it's a **spine**. So data.js favorites are stacks; imports/wishlist
