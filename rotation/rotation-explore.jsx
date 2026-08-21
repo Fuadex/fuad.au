@@ -2134,6 +2134,7 @@ function ExploreView({ t, go, setPop, seed }) {
           .xp-famgrid::-webkit-scrollbar { display: none; }
           .xp-famgrid > * { flex: 0 0 78vw; min-width: 0; }
         }
+        .xp-fam-tiny { display: none; }
         .xp-fam-head { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 2px; border-radius: 5px; transition: .12s; }
         .xp-fam-resize { display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 8px; padding: 6px; cursor: ns-resize; user-select: none; color: var(--ink-faint); }
         .xp-fam-resize:hover { color: var(--ink-soft); }
@@ -2182,7 +2183,18 @@ function ExploreView({ t, go, setPop, seed }) {
           .xp-chiprow > * { flex: none; }
           /* the label sits OUTSIDE the rail, so the rail takes the whole remaining width */
           .xp-vocals, .xp-active { min-width: 0; }
-          .xp-vocals .xp-chiprow, .xp-active .xp-chiprow { flex: 1 1 auto; }
+          .xp-vocals .xp-chiprow, .xp-active .xp-chiprow { flex: 1 1 auto; min-width: 0; }
+          /* MIN-WIDTH HAS TO GO ALL THE WAY UP (Fuad 2026-08-21, second pass — Time and Vocals
+             still were not scrolling). Releasing the scroller alone is not enough: a grid or flex
+             ITEM defaults to min-width:auto, so every ancestor between the rail and the page refuses
+             to shrink below its own content, and the overflow just moves one level up instead of
+             turning into scroll. .xp-filters is a grid, .xp-frow is a grid, .xp-frow-main is a flex
+             — the rail was fine and the rows holding it were not. Every link needs releasing. */
+          /* full genre name off, phone label on */
+          .xp-fam-full { display: none; }
+          .xp-fam-tiny { display: inline; }
+          .xp-filters, .xp-frow, .xp-frow-main { min-width: 0; }
+          .xp-filters > *, .xp-frow > *, .xp-frow-main > * { min-width: 0; }
           .xp-head-right { width: 100%; }
           .xp-search { min-width: 0; width: 100%; }
           .clk-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
@@ -2286,7 +2298,11 @@ function FamiliesGrid({ order, weights, fam, sub, pickFam, pickSub, year, seen, 
             <div key={g.fam} className="r-card" style={{ padding: 16, boxShadow: onFam ? "inset 0 0 0 1px var(--accent)" : "none", transition: ".15s" }}>
               <div className="xp-fam-head" data-on={onFam} onClick={() => pickFam(g.fam)}>
                 <span style={{ width: 12, height: 12, borderRadius: 3, background: `oklch(0.62 0.16 ${g.hue})`, flex: "none" }} />
-                <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 18, flex: 1, minWidth: 0 }}>{g.family}</span>
+                <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 18, flex: 1, minWidth: 0 }}>
+                  {/* full name on desktop, phone label on mobile — CSS picks, nothing measures */}
+                  <span className="xp-fam-full">{g.family}</span>
+                  <span className="xp-fam-tiny">{famTiny(g.family)}</span>
+                </span>
                 <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{fmtK(fw)}</span>
               </div>
               <div style={{ display: "grid", gap: 6, marginTop: 12, maxHeight: famH, overflowY: "auto", paddingRight: 4 }}>
