@@ -2466,7 +2466,7 @@ function MapView({ go }) {
   // city-bubble anchor and run through a relaxation pass identical in spirit to relaxFan, so the ♥
   // dots share the city bubble's parent and never overlap. (Only shown in the all-cities view; during
   // focus the museum work-fans take over.)
-  const { wishMarkers, wishTotals, wishCountries, wishCities, wishUnplaced, wishList } = useMemo(() => {
+  const { wishMarkers, wishFar, wishFarByKey, wishTotals, wishCountries, wishCities, wishUnplaced, wishList } = useMemo(() => {
     const wishes = WORKS.map(enrich).filter(isUnseen);
     // WHERE A WANTED WORK GOES ON THE MAP (2026-08-19). It used to key off seenAt — the venue Fuad
     // stood in — which for a work he has NOT seen is empty by definition. After the photo import
@@ -2480,6 +2480,19 @@ function MapView({ go }) {
     // You do not travel to a museum, you travel to a CITY and walk between its museums, so the city
     // is the outer level and the institution the inner one.
     const cityGroups = new Map(), unplacedWishes = [];
+    // FAR CITIES (Fuad 2026-08-22: "map out the other galleries I haven't been to"). Until now a
+    // wanted work only reached the MAP if its home city already had a visited bubble — the ~500
+    // works homed in cities never walked fell through to the text list and drew nothing. Those
+    // cities now become their own bubbles. Placement is name-match first, then a PROXIMITY FOLD:
+    // P131 often names a district rather than the city ("Quartier Saint-Merri" for the Pompidou,
+    // "Altstadt-Nord" for Museum Ludwig), and taking the name literally would ghost a second
+    // bubble on top of the visited city it belongs to. Anything anchoring within FOLD_R (~40 km)
+    // of a visited bubble joins that bubble — comfortably under any two real cities on this map.
+    const farMap = new Map(), FOLD_R = 1.0;
+    const nearVisited = (x, y) => {
+      for (const c of cities.list) if (Math.hypot(x - c.ox, y - c.oy) < FOLD_R) return c;
+      return null;
+    };
     for (const w of wishes) {
       const mid = (Array.isArray(w.seenAt) ? w.seenAt[0] : w.seenAt) || w.at;
       const home = homeOf(w);
@@ -2489,7 +2502,20 @@ function MapView({ go }) {
       // list key: the institution that houses it, so the text list reads as an itinerary
       const key = venueName ? (cityName ? cityName + " — " + venueName : venueName) : "home unknown";
       (byMus[key] = byMus[key] || []).push(w);
-      if (cityName && cities.byCity[cityName]) (byCity[cityName] = byCity[cityName] || { c: cities.byCity[cityName], list: [] }).list.push({ w, venue: venueName });
+      const hasCoords = !m && home && home.lat != null;
+      const [hx, hy] = hasCoords ? P(home.lat, home.lon) : [0, 0];
+      const fold = (cityName && cities.byCity[cityName]) || (hasCoords ? nearVisited(hx, hy) : null);
+      if (fold) {
+        (byCity[fold.city] = byCity[fold.city] || { c: fold, list: [] }).list.push({ w, venue: venueName });
+      } else if (cityName && hasCoords) {
+        const fk = cityName + "|" + (home.country || "");
+        let f = farMap.get(fk);
+        if (!f) { f = { key: fk, city: cityName, cc: String(home.country || "").toUpperCase(), n: 0, wxs: 0, wys: 0, venues: new Map() }; farMap.set(fk, f); }
+        f.n++; f.wxs += hx; f.wys += hy;
+        let v = f.venues.get(venueName);
+        if (!v) { v = { name: venueName, x: hx, y: hy, list: [] }; f.venues.set(venueName, v); }
+        v.list.push(w);
+      }
       const cc = (m && m.country) || (home && home.country) || "";
       if (cityName) {
         const cKey = cityName + (cc ? ", " + String(cc).toUpperCase() : "");
@@ -2501,6 +2527,37 @@ function MapView({ go }) {
         c.venues.get(vn).push(w);
       } else unplacedWishes.push(w);
     }
+    // Far-city finalisation: anchor on the works centroid, then one drift-clamped relaxation
+    // against the visited bubbles (which never move — they are the lived layer) and each other,
+    // so a far bubble can sit NEXT to Amsterdam without sitting ON it. The radius curve is
+    // deliberately flatter than the visited one: this layer is the horizon, not the biography,
+    // and it must never outweigh the cities actually walked.
+    const farRad = (f) => 1.1 + Math.sqrt(f.n) * 0.55;
+    const farList = [...farMap.values()].map(f => ({
+      ...f, x: f.wxs / f.n, y: f.wys / f.n, venues: [...f.venues.values()],
+    }));
+    for (const f of farList) { f.ox = f.x; f.oy = f.y; f.r = farRad(f); }
+    const visRad = (c) => (c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1);
+    for (let it = 0; it < 24; it++) {
+      let moved = false;
+      for (const f of farList) {
+        for (const c of cities.list) {
+          const min = visRad(c) + f.r + 0.6;
+          let dx = f.x - c.x, dy = f.y - c.y, d = Math.hypot(dx, dy);
+          if (d >= min) continue; if (d < 0.01) { dx = 0.5; dy = 0.3; d = Math.hypot(dx, dy); }
+          f.x = c.x + dx / d * min; f.y = c.y + dy / d * min; moved = true;
+        }
+      }
+      for (let i = 0; i < farList.length; i++) for (let j = i + 1; j < farList.length; j++) {
+        const a = farList[i], b = farList[j], min = a.r + b.r + 0.6;
+        let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy);
+        if (d >= min) continue; if (d < 0.01) { dx = 0.5; dy = 0.3; d = Math.hypot(dx, dy); }
+        const push = (min - d) / d / 2; a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push; moved = true;
+      }
+      for (const f of farList) { const ex = f.x - f.ox, ey = f.y - f.oy, e = Math.hypot(ex, ey); if (e > 4) { f.x = f.ox + ex / e * 4; f.y = f.oy + ey / e * 4; } }
+      if (!moved) break;
+    }
+    const farByKey = {}; for (const f of farList) farByKey[f.key] = f;
     const markers = [];
     // HALO CAP (Fuad 2026-08-19: zoom and pan went "slightly weird"). Anchoring wanted works on
     // their HOME collection took the halo from 87 markers to 1,303 — roughly 2,600 SVG nodes, each
@@ -2509,16 +2566,26 @@ function MapView({ go }) {
     // be told apart or aimed at. Each city now shows its strongest few, LOVED first, and the true
     // total lives on the bubble's tooltip and in the list below the map, which is where you would
     // actually read it. The collision relaxation is O(n²) per city, so this makes mount cheaper too.
-    const HALO_CAP = 10;
+    // Far cities cap lower (6): 118 of the 206 hold a single work anyway, and the far layer plus
+    // its halos must stay lighter than the lived layer both visually and per frame.
+    const HALO_CAP = 10, FAR_HALO_CAP = 6;
+    const halosOf = [];
     for (const entry of Object.values(byCity)) {
       const c = entry.c;
-      const total = entry.list.length;
-      const list = [...entry.list]
+      entry.total = entry.list.length;
+      halosOf.push({ list: entry.list, cap: HALO_CAP, x: c.x, y: c.y, r: visRad(c), city: c.city });
+    }
+    for (const f of farList) {
+      const flat = f.venues.flatMap(v => v.list.map(w => ({ w, venue: v.name })));
+      halosOf.push({ list: flat, cap: FAR_HALO_CAP, x: f.x, y: f.y, r: f.r, city: f.city });
+    }
+    for (const halo of halosOf) {
+      const list = [...halo.list]
         .sort((a, b) => unseenRank(b.w) - unseenRank(a.w))
-        .slice(0, HALO_CAP);
-      entry.total = total;
-      const bx = c.x, by = c.y;                                   // branch from the city bubble anchor
-      const cr = c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1;
+        .slice(0, halo.cap);
+      const bx = halo.x, by = halo.y;                             // branch from the bubble anchor
+      const c = { city: halo.city };
+      const cr = halo.r;
       // SIZE SCOPING (2026-07-17): the enlargement was only ever meant for the FOCUSED fan-out. At
       // rest, the ♥ markers must be their ORIGINAL small size (r=2) so nothing overlaps a neighbouring
       // city. The seed ring/clamp radius here is the marker's own radius, so it too returns to 2. FIX 2:
@@ -2554,11 +2621,27 @@ function MapView({ go }) {
     // of that bubble, push the dot radially out of the bubble to its rim. Iterate a few times because
     // pushing clear of one bubble can nudge it toward another (dense European clusters).
     const cityDot = 2, cityGap = 1.2;
-    const cRad = (c) => (c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1);
-    for (let pass = 0; pass < 4; pass++) {
+    // every bubble the dots must stay off: the visited cities AND the far ones
+    const bubbles = [...cities.list.map(c => ({ x: c.x, y: c.y, r: visRad(c) })),
+                     ...farList.map(f => ({ x: f.x, y: f.y, r: f.r }))];
+    // INTERLEAVED SEPARATION (Fuad 2026-08-22: "some dots are very close over the same line").
+    // The bubble-avoid pass used to be the LAST word: it ran after the per-city relaxation and
+    // pushed dots radially to a bubble's rim with nothing after it — so two dots evicted by the
+    // same bubble landed on the same radial, nearly touching, which is exactly the pairs-on-one-
+    // line Fuad saw. Each pass now re-separates the dots after the eviction, and the eviction
+    // runs again after that, until both constraints hold at once.
+    const sepDots = () => {
+      for (let i = 0; i < markers.length; i++) for (let j = i + 1; j < markers.length; j++) {
+        const a = markers[i], b = markers[j], min = cityDot * 2 + 0.7;
+        let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy);
+        if (d >= min) continue; if (d < 0.001) { dx = Math.cos(i) * 0.5; dy = Math.sin(i) * 0.5; d = Math.hypot(dx, dy); }
+        const push = (min - d) / d / 2; a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push;
+      }
+    };
+    for (let pass = 0; pass < 5; pass++) {
       for (const mk of markers) {
-        for (const c of cities.list) {
-          const need = cRad(c) + cityDot + cityGap;
+        for (const c of bubbles) {
+          const need = c.r + cityDot + cityGap;
           let ex = mk.x - c.x, ey = mk.y - c.y, e = Math.hypot(ex, ey);
           if (e >= need) continue;
           if (e < 0.001) { ex = mk.x - mk.bx; ey = mk.y - mk.by; e = Math.hypot(ex, ey) || 0.001; ex /= e; ey /= e; }
@@ -2566,6 +2649,7 @@ function MapView({ go }) {
           mk.x = c.x + ex * need; mk.y = c.y + ey * need;   // push the dot out to the bubble rim
         }
       }
+      sepDots();                                           // then re-part the pairs the eviction made
     }
     // The text list is already keyed by institution, so it reads as an itinerary: the places
     // holding the most wanted works come first, and "home unknown" sinks to the bottom.
@@ -2597,6 +2681,8 @@ function MapView({ go }) {
     return {
       wishCountries: sortedCountries,
       wishMarkers: markers,
+      wishFar: farList,
+      wishFarByKey: farByKey,
       wishTotals: totals,
       wishCities: sortedCities,
       wishUnplaced: unplacedWishes.sort((a, b) => unseenRank(b) - unseenRank(a) || String(a.title).localeCompare(String(b.title))),
@@ -2761,6 +2847,39 @@ function MapView({ go }) {
   };
   const branch = useMemo(() => {
     if (!focus) return null;
+    // FAR BRANCH (2026-08-22): a far city opens exactly like a visited one — venues fan out of
+    // the bubble, wanted works fan out of each venue. The fan geometry is already synthetic
+    // (relaxFan seeds a spiral; even the visited branch never used the museums' true coordinates),
+    // so the only real differences are the source lists and that a far venue has no museum page
+    // to click through to.
+    if (focus.startsWith("far:")) {
+      const f = wishFarByKey[focus.slice(4)]; if (!f) return null;
+      const cityR = f.r;
+      const musR = (m) => 3.0 + Math.min(m.n, 8) * 0.16;
+      const venues = f.venues.map(v => ({ id: null, name: v.name, n: v.list.length, list: v.list }));
+      const mFan = relaxFan(f.x, f.y, venues, {
+        minR: cityR + musR({ n: 0 }) + 0.4, step: 1.3, sep: 1.4, seedAng: -Math.PI / 2,
+        parentR: cityR, gap: 0.8, rOf: musR,
+      });
+      const nodes = mFan.map((mn) => {
+        const m = mn.it, mx = mn.x, my = mn.y;
+        const works = [...m.list].sort((a, b) => unseenRank(b) - unseenRank(a));
+        const outAng = Math.atan2(my - f.y, mx - f.x);
+        const wRof = (w) => (unseenRank(w) === 2 ? 1.8 : unseenRank(w) === 1 ? 1.5 : 1.3);
+        const wFan = relaxFan(mx, my, works, {
+          minR: mn.r + 1.8 + 0.4, step: 0.8, sep: 0.7, seedAng: outAng - Math.PI / 2,
+          parentR: mn.r, gap: 0.6, rOf: wRof,
+        });
+        const wnodes = wFan.map((wn) => ({ w: wn.it, x: wn.x, y: wn.y, r: wRof(wn.it) }));
+        return { m, x: mx, y: my, mr: mn.r, wnodes, nw: works.length, lx: mx, ly: my - (mn.r + 4.2) };
+      });
+      let reach = cityR + 4;
+      for (const nd of nodes) {
+        reach = Math.max(reach, Math.hypot(nd.x - f.x, nd.y - f.y) + nd.mr + 5.2);
+        for (const wn of nd.wnodes) reach = Math.max(reach, Math.hypot(wn.x - f.x, wn.y - f.y) + wn.r);
+      }
+      return { c: { x: f.x, y: f.y, city: f.city }, nodes, cityR, reach, far: true };
+    }
     const c = cities.byCity[focus]; if (!c) return null;
     const museums = c.museums.filter(m => m.n > 0);
     const nm = museums.length || 1;
@@ -2812,7 +2931,7 @@ function MapView({ go }) {
       for (const wn of nd.wnodes) reach = Math.max(reach, Math.hypot(wn.x - c.x, wn.y - c.y) + wn.r);
     }
     return { c, nodes, cityR, reach };
-  }, [focus]);
+  }, [focus, wishFarByKey]);
   // ——— divergence transition (fix 5). grow ramps 0→1 on focus (museums/works ease-OUT of the city
   // bubble) and 1→0 on collapse (they retract back into it). Per-node stagger is applied at render
   // time from the node index so museums unfurl in sequence, then their works. rAF drives it so the
@@ -2835,6 +2954,10 @@ function MapView({ go }) {
   const focusCity = (c) => {
     setFocus(c.city); setGrow(0); animateGrow(1, 0);
     framePending.current = true;                       // frame once `branch` (hence its reach) is ready
+  };
+  const focusFar = (f) => {
+    setFocus("far:" + f.key); setGrow(0); animateGrow(1, 0);
+    framePending.current = true;
   };
   // FIX 2 (2026-07-17): frame the focused viewBox from the fan's MEASURED reach (branch.reach), not a
   // formula, so the whole fan fits with a small pad and no dot spills off the country. Runs the frame
@@ -2928,7 +3051,7 @@ function MapView({ go }) {
 
   return (
     <div className="cv-map">
-      <p className="cv-deck-sum">Every city where a work entered your canon, sized by how much it gave you — <b>click a city</b> to branch out to its museums and the works you loved there (hover a work for a look). The <b style={{ color: "oklch(0.55 0.19 18)" }}>♥ markers</b> are works you're still chasing. Scroll or pinch to zoom, drag to pan — hover to magnify the bubbles under your cursor (tap on touch).</p>
+      <p className="cv-deck-sum">Every city where a work entered your canon, sized by how much it gave you — <b>click a city</b> to branch out to its museums and the works you loved there (hover a work for a look). The <b style={{ color: "oklch(0.55 0.19 18)" }}>♥ markers</b> are works you're still chasing, and the <b style={{ color: "oklch(0.55 0.1 18)" }}>rose bubbles</b> are the cities holding them that you haven't walked yet — click one to see what's waiting there. Scroll or pinch to zoom, drag to pan — hover to magnify the bubbles under your cursor (tap on touch).</p>
       <div className="cv-map-wrap" onMouseLeave={onLeave}>
         <div className="cv-map-zoom">
           <button type="button" onClick={() => zoomCenter(1 / 1.4)} aria-label="Zoom in" title="Zoom in">+</button>
@@ -2965,6 +3088,24 @@ function MapView({ go }) {
                     than implied by a count of dots that is deliberately not all of them */}
                 <title>{c.city} — {c.n} work{c.n !== 1 ? "s" : ""} seen · {c.museums.length} museum{c.museums.length !== 1 ? "s" : ""}{wishTotals[c.city] ? ` · ${wishTotals[c.city]} still to see` : ""}{c.n ? " · click to open" : ""}</title>
                 {(c.n >= 8 || fs > 1.25) && <text x={fx} y={fy - (cr * fs * dotMul + 1) * k} textAnchor="middle" style={{ fontSize: 8 * k * dotMul }}>{c.city}</text>}
+              </g>
+            );
+          })}
+          {/* FAR CITIES (2026-08-22): the galleries not yet walked, holding the works not yet
+              seen. Same map language as the lived layer — a bubble sized by what it holds, a halo
+              of its strongest wants, click to branch — but in the rose register the chase already
+              owns (the ♥ hue), a step quieter in chroma and alpha so the biography stays loudest.
+              Hollow was rejected for the work dots once (reads as a hole in the map); these are
+              filled for the same reason, and distinguished by hue alone. */}
+          {!focus && wishFar.map(f => {
+            if (!inView(f.x, f.y)) return null;
+            const [fx, fy, fs] = fish(f.x, f.y, f.r);
+            return (
+              <g key={"far" + f.key} className="cv-pin" onClick={() => focusFar(f)} style={{ cursor: "pointer" }}>
+                <circle cx={fx} cy={fy} r={f.r * fs * k * dotMul}
+                  fill="oklch(0.55 0.1 18 / .55)" stroke="#f4ecdf" strokeWidth={0.5 * k} />
+                <title>{f.city} — {f.n} work{f.n !== 1 ? "s" : ""} to see · {f.venues.length} venue{f.venues.length !== 1 ? "s" : ""} · not yet walked · click to open</title>
+                {(f.n >= 8 || fs > 1.25) && <text x={fx} y={fy - (f.r * fs * dotMul + 1) * k} textAnchor="middle" style={{ fontSize: 7 * k * dotMul, opacity: 0.75 }}>{f.city}</text>}
               </g>
             );
           })}
@@ -3016,7 +3157,7 @@ function MapView({ go }) {
                     const [fx, fy, fs] = fish(wx0, wy0);
                     return (
                       <g key={nd.m.id + "-w" + j} className="cv-wishpin" style={{ opacity: wg }} onClick={() => go("work", wn.w.id)}
-                        onMouseEnter={e => setHover({ w: wn.w, mx: e.clientX, my: e.clientY, venue: nd.m.name, city: branch.c.city, seen: true })}
+                        onMouseEnter={e => setHover({ w: wn.w, mx: e.clientX, my: e.clientY, venue: nd.m.name, city: branch.c.city, seen: !branch.far })}
                         onMouseMove={e => setHover(h => h && h.w === wn.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                         onMouseLeave={() => setHover(null)}>
                         <path d={bow(mx, my, fx, fy, 0.16, 1.4)} fill="none" stroke="rgba(58,47,34,.26)" strokeWidth={0.3 * k} />
@@ -3041,14 +3182,16 @@ function MapView({ go }) {
                   const inward = fy > cy ? -1 : 1;                 // -1 = label above, 1 = below
                   const lx = fx, ly = fy + inward * (nd.mr * fs + 3.4) * k;
                   return (
-                    <g key={"m" + nd.m.id} className="cv-mus" style={{ opacity: g }} onClick={() => go("museum", nd.m.id)}>
-                      <circle cx={fx} cy={fy} r={nd.mr * fs * k} fill="oklch(0.5 0.14 46 / .95)" stroke="#f4ecdf" strokeWidth={0.7 * k} />
+                    <g key={"m" + (nd.m.id || nd.m.name)} className="cv-mus" style={{ opacity: g, cursor: nd.m.id ? "pointer" : "default" }}
+                      onClick={() => nd.m.id && go("museum", nd.m.id)}>
+                      <circle cx={fx} cy={fy} r={nd.mr * fs * k}
+                        fill={branch.far ? "oklch(0.5 0.11 18 / .92)" : "oklch(0.5 0.14 46 / .95)"} stroke="#f4ecdf" strokeWidth={0.7 * k} />
                       <text className="cv-map-mlabel" x={lx} y={ly + (inward > 0 ? 1.9 : 0) * k}
                         textAnchor="middle" style={{ fontSize: 5 * k, strokeWidth: 1.6 * k }}>{nd.m.name}</text>
                     </g>
                   );
                 })}
-                <circle cx={cx} cy={cy} r={branch.cityR * 1.55 * k} fill="oklch(0.42 0.15 30 / .96)" stroke="#f4ecdf" strokeWidth={0.9 * k} />
+                <circle cx={cx} cy={cy} r={branch.cityR * 1.55 * k} fill={branch.far ? "oklch(0.42 0.13 15 / .96)" : "oklch(0.42 0.15 30 / .96)"} stroke="#f4ecdf" strokeWidth={0.9 * k} />
                 <text x={cx} y={cy + 1.5 * k} textAnchor="middle" style={{ fontSize: 5.6 * k, fontWeight: 700, fill: "#f4ecdf" }}>{branch.c.city}</text>
               </g>
             );
@@ -3066,6 +3209,7 @@ function MapView({ go }) {
       </div>
       <div className="cv-map-legend">
         <span><i className="lg-seen" /> museums you've walked</span>
+        <span><i className="lg-far" /> holding your wants, not yet walked</span>
         <span><i className="lg-wish" /> loved, not yet met</span>
         <span><i className="lg-like" /> liked, not yet met</span>
       </div>
