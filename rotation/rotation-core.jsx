@@ -56,6 +56,27 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
    scrollport instead of the viewport). clip clips identically without that side effect. */
 .r-app { min-height: 100vh; position: relative; overflow-x: clip; }
 
+/* ——— .r-rail: one horizontally scrolling row of controls, for phones (Fuad 2026-08-21) ———
+   Chip rows that wrap on a desktop turn into four- and five-line blocks on a phone and push the
+   thing you came to look at below the fold. A rail keeps them one line deep and scrollable.
+   Three details that are all load-bearing:
+   · min-width:0 — without it a rail inside a grid or flex parent refuses to shrink below its
+     content width, so it overflows the phone instead of scrolling. This is the actual cause of
+     the Explore time pills running off-screen.
+   · The children need flex:none or the row simply squashes them to fit and never scrolls.
+   · The trailing mask says there is more. A hidden scrollbar plus a hard cut-off reads as the end
+     of the list, which is how a row of year pills loses half its years silently.
+   .r-app is overflow-x:clip, not a scroll container, so a rail scrolls independently inside it —
+   the 2026-07-18 note about clipped, unreachable chips was a row that was NOT scrolling. */
+.r-rail {
+  flex-wrap: nowrap !important; overflow-x: auto; overflow-y: hidden; min-width: 0;
+  scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 3px;
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+          mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+}
+.r-rail::-webkit-scrollbar { display: none; }
+.r-rail > * { flex: none; }
+
 /* scrollbar */
 .r-app *::-webkit-scrollbar { height: 8px; width: 8px; }
 .r-app *::-webkit-scrollbar-thumb { background: var(--rule-2); border-radius: 4px; }

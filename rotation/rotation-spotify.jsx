@@ -1059,6 +1059,13 @@ function LikedView({ go }) {
            the values stay reachable on desktop. The " · genre" text also hides (the artist-name colour
            tint carries the genre now). The bucket pip stays as the one right-side survivor. */
         @media (max-width: 760px) {
+          /* TUNE DNA on a phone (Fuad 2026-08-21). The group is a fixed 190px column so the radar
+             and its tolerance slider both sat hard against the left edge of a full-width card,
+             with dead space to their right. Taking the full width does both jobs at once: the
+             group already centres its children, so the radar centres itself, and the tolerance
+             div is width:100% of the group, so it grows to the card. The radar is an SVG with its
+             own size prop and does not stretch — only its box does. */
+          .lk-dnagroup { width: 100% !important; flex: 1 1 100% !important; }
           .lk-quiet .lk-nums { display: none; }
           .lk-quiet .lk-genre { display: none; }
           /* here the abbreviation earns its keep — swap to the single capital and shrink the chip
@@ -1225,7 +1232,7 @@ function LikedView({ go }) {
             <div className="m-stack" style={{ display: "flex", flexWrap: "wrap", gap: "16px 24px", alignItems: "flex-start" }}>
               {/* DNA-SHAPE group — draggable radar + tolerance. Dims when the sliders dictate; touching
                   it (a vertex or the tolerance) flips mode→'dna' and its persisted values re-apply. */}
-              <div style={{ flex: "0 0 auto", width: 190, maxWidth: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+              <div className="lk-dnagroup" style={{ flex: "0 0 auto", width: 190, maxWidth: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
                 {target && <LikedRadar rows={filtered} size={172} target={target} onTarget={onTarget} dimmed={dimDna} />}
                 {/* tolerance — a small horizontal slider, 5%..60%, ALWAYS visible under the radar (dimmed
                     only per DNA arbitration). The .lt-range input is position:absolute + pointer-events:none
