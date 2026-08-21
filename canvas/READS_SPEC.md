@@ -190,9 +190,11 @@ measurement. A rule that cannot be traced to one of those is not a rule; strike 
 (History: an unsourced second-person ban and a hardened word ceiling both reached shipped
 content in August 2026 before being caught. This section exists so that cannot recur.)
 
-## Coverage (2026-08-15)
+## Coverage (2026-08-22)
 
 623 Info · 169 Interpretations (66 badged `deepBy: "Sonnet 4.6"`) · 309 study tours
+· **192 artist reads (§10) — the eligible gap is ZERO** · **53 museum reads** (`museum_about.js`,
+see PIPELINE.md; every museum with a met work is covered, 28 unvisited ones deferred)
 (all QC'd — see QC_LEDGER.md). The `web` tier is retired (§5b). Backfill batches 1+2
 (29 works) ran the full §5b pipeline with fused Infos `by: "Fable 5"`. Backfill queue:
 142 works with a tour but no Interpretation. The Milkmaid pilot study gained its 6
@@ -251,6 +253,27 @@ and padding is worse than silence.
 - Reads state facts, they never cite the label or source that supplied them (§9).
 - Second person, matching the site's existing "works you haven't met".
 - No title/venue restating — the chips above already carry both.
+
+### Attribution is upstream of the gate (2026-08-21)
+
+The gate counts works per `artistId`, so a broken attribution silently changes who qualifies.
+Auditing it found three faults worth re-checking after any canon import:
+
+- **The slug generator keys on the LAST TOKEN of a name.** Every "the Elder" collapsed to
+  `elder` and every "the Younger" to `younger`, merging unrelated painters onto one page —
+  Frans van Mieris sat on Bruegel's. `artists`, `lepaute` and `iii` are known surviving
+  orphans (that last one slugged from a TITLE, because the work has no artist field).
+- **The `unknown` catch-all collects named artists.** 51 works sat there; querying each work's
+  own Wikidata qid for **P170 (creator)** recovered 33 of them. Klee's page had been showing 2 of
+  his 11. Do this by query, never by reading the title.
+- **Wikidata has migrated many labels from `en` to `mul`.** A label fetch with
+  `languages=en` returns EMPTY while descriptions still resolve, which tempts you into naming
+  the artist from the dates in the description. Q164720 reads "French painter (1900–1955)" and is
+  Yves Tanguy, not who those dates suggest. Always fall back to `mul`.
+
+An artist record may legitimately carry `qid: null` — Howard Thain has no Wikidata entity at
+all. The UI guards on `a.qid` before drawing the Wikidata link, so null degrades cleanly and is
+preferable to inventing a pseudo-qid.
 
 ### Coverage gate
 
