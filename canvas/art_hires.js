@@ -2,6 +2,29 @@
 // HOLDER-VERIFIED against Wikidata P195 (only works the matching museum actually holds).
 // `details` arrays are HAND-AUTHORED zoom tours (coordinates set by eye) — preserved on regen.
 window.CANVAS_HIRES = {
+ // HAND-ADDED Commons upgrades (2026-08-22 low-res sweep) — src "commons", no IIIF. The emitter
+ // preserves only `details` on regen; re-add these two if the file is ever regenerated.
+ // Both eyeballed before adoption: full composition, no frame, no glare. Larger candidates for
+ // two other works were REJECTED as framed gallery photos — pixels do not outrank being a
+ // picture of the painting rather than of a wall.
+ "j-m-w-turner-the-parting-of-hero-and-leander": {
+  "src": "commons",
+  "img": "https://upload.wikimedia.org/wikipedia/commons/7/78/London_National_Gallery_Turner_Hero_and_Leander.jpg",
+  "title": "The Parting of Hero and Leander",
+  "conf": "high"
+ },
+ "ludwik-de-laveaux-plac-opery-w-paryzu": {
+  "src": "commons",
+  "img": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Ludwik_de_Laveaux_-_Place_de_l%27Op%C3%A9ra_in_Paris_-_MP_257_-_National_Museum_in_Warsaw.jpg",
+  "title": "Plac Opery w Paryżu",
+  "conf": "high"
+ },
+ "claude-monet-argenteuil": {
+  "src": "commons",
+  "img": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Claude_Monet%27s_%22Argenteuil%22_1875.jpg",
+  "title": "Argenteuil",
+  "conf": "high"
+ },
  "adam-and-eve": {
   "src": "aic",
   "img": "https://www.artic.edu/iiif/2/910855f0-a558-4e31-8e88-c0f2694ddbea/full/1686,/0/default.jpg",

@@ -3369,32 +3369,69 @@ function Portrait({ go }) {
   const PAL = window.CANVAS_PALETTE || {};
   const data = useMemo(() => {
     const works = WORKS.map(enrich);
-    const loved = works.filter(w => w.floored || w.favorite || w.liked);
+    // BIOGRAPHY vs HORIZON (Fuad 2026-08-22 QC). Since the photo-import ~40% of the canon is
+    // works never seen, and every figure here silently included them — "you've stood in front
+    // of 1,894 works" was false, and an imported wish-list could crown the favourite artist.
+    // Met works carry the biography; the chase is stated as its own register, like the map.
+    const met = works.filter(w => !isUnseen(w));
+    const chase = works.filter(isUnseen);
+    const loved = met.filter(w => w.floored || w.favorite || w.liked);
     const museums = new Set(), countries = new Set();
-    for (const w of works) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) { const m = MUS_BY_ID[id]; if (m) { museums.add(m.id); countries.add(m.country); } }
-    // artists ranked by impact
+    for (const w of met) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) { const m = MUS_BY_ID[id]; if (m) { museums.add(m.id); countries.add(m.country); } }
+    const chaseCities = new Set();
+    for (const w of chase) { const h = homeOf(w); if (h && h.city) chaseCities.add(h.city); }
+    // artists ranked by impact — met works only
     const byArtist = {};
-    for (const w of works) { if (!w.artistId) continue; const r = byArtist[w.artistId] = byArtist[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (w.floored || w.favorite) r.love += 3; if (w.liked) r.love += 1; }
+    for (const w of met) { if (!w.artistId) continue; const r = byArtist[w.artistId] = byArtist[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (w.floored || w.favorite) r.love += 3; if (w.liked) r.love += 1; }
     const artists = Object.values(byArtist).sort((a, b) => b.love - a.love || b.n - a.n);
     const found = artists.filter(a => !AFFINITY.has(a.id) && a.love >= 4).slice(0, 8);
-    // movements (loved)
+    // movements (loved among met)
     const movCount = {};
     // via movsOf so the labels are the cleaned ones the Wall's chips use — these bars link there
     for (const w of loved) for (const m of movsOf(w)) movCount[m] = (movCount[m] || 0) + 1;
     const movements = Object.entries(movCount).sort((a, b) => b[1] - a[1]).slice(0, 8);
-    // centuries
+    // centuries — met and chase kept apart, the same two registers the map wears
     const cent = {};
-    for (const w of works) { if (!w.year) continue; const c = Math.floor((w.year - 1) / 100) + 1; cent[c] = (cent[c] || 0) + 1; }
-    const centuries = Object.entries(cent).map(([c, n]) => ({ c: +c, n })).sort((a, b) => a.c - b.c);
+    for (const w of works) { if (!w.year) continue; const c = Math.floor((w.year - 1) / 100) + 1; const e = cent[c] = cent[c] || { met: 0, chase: 0 }; e[isUnseen(w) ? "chase" : "met"]++; }
+    const centuries = Object.entries(cent).map(([c, v]) => ({ c: +c, met: v.met, chase: v.chase, n: v.met + v.chase })).sort((a, b) => a.c - b.c);
     // palette spectrum — dominant swatch of every work that has one, sorted by hue
     const swatches = [];
-    for (const w of works) { const p = PAL[w.qid ? w.id : w.id]; if (p && p[0]) swatches.push(p[0]); }
+    for (const w of works) { const p = PAL[w.id]; if (p && p[0]) swatches.push(p[0]); }
     swatches.sort((a, b) => hexHue(a) - hexHue(b));
+    // the spectrum, named: cluster the swatches into hue families the caption can speak
+    const famDef = [["umber", 0, 50], ["ochre", 50, 78], ["olive", 78, 150], ["verdigris", 150, 200], ["slate", 200, 262], ["violet", 262, 312], ["rose", 312, 360]];
+    const famCount = { grey: 0 };
+    for (const c of swatches) { const h = hexHue(c); if (h < 0) { famCount.grey++; continue; } const f = famDef.find(([, a, b]) => h >= a && h < b); if (f) famCount[f[0]] = (famCount[f[0]] || 0) + 1; }
+    const families = Object.entries(famCount).filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1]);
+    // what you keep looking at — depicted motifs (P180), weighted by love. Proper nouns are
+    // dropped (sitters and places aren't motifs) and pure atmosphere is stoplisted, or "sky"
+    // wins every taste it is pointed at.
+    const STOP = new Set(["sky", "cloud", "clouds", "daylight", "shadow", "grass", "standing", "sitting", "strolling", "contre-jour", "landscape"]);
+    const subjCount = {};
+    for (const w of works) {
+      const s = SUBJ[w.id]; if (!s) continue;
+      const wt = (w.floored || w.favorite) ? 3 : w.liked ? 1 : 0; if (!wt) continue;
+      for (const d of (s.d || [])) { const raw = String(d); if (/^[A-ZÀ-Ż]/.test(raw)) continue; const t = raw.toLowerCase(); if (STOP.has(t)) continue; subjCount[t] = (subjCount[t] || 0) + wt; }
+    }
+    const motifs = Object.entries(subjCount).sort((a, b) => b[1] - a[1]).slice(0, 14);
+    // where love struck hardest — floored rate per museum, met works only, n ≥ 8
+    const musStat = {};
+    for (const w of met) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) { if (!MUS_BY_ID[id]) continue; const e = musStat[id] = musStat[id] || { id, n: 0, fl: 0 }; e.n++; if (w.floored || w.favorite) e.fl++; }
+    const strike = Object.values(musStat).filter(e => e.n >= 8 && e.fl > 0)
+      .map(e => ({ ...e, rate: e.fl / e.n, name: MUS_BY_ID[e.id].name.replace(/\s*\(.*\)$/, "") }))
+      .sort((a, b) => b.rate - a.rate).slice(0, 5);
+    // breadth vs depth — the whole canon speaks here (an artist chased is still a taste)
+    const perArtist = {}; for (const w of works) if (w.artistId) perArtist[w.artistId] = (perArtist[w.artistId] || 0) + 1;
+    const singles = Object.values(perArtist).filter(n => n === 1).length;
+    const deepEntry = Object.entries(perArtist).sort((a, b) => b[1] - a[1])[0];
+    const deepWork = deepEntry && works.find(w => w.artistId === deepEntry[0]);
     return {
-      total: works.length, loved: loved.length,
-      floored: works.filter(w => w.floored || w.favorite).length,
+      total: met.length, loved: loved.length,
+      floored: met.filter(w => w.floored || w.favorite).length,
       museums: museums.size, countries: countries.size,
-      artists, found, movements, centuries, swatches,
+      chase: chase.length, chaseCities: chaseCities.size,
+      artists, found, movements, centuries, swatches, families, motifs, strike,
+      breadth: { artists: Object.keys(perArtist).length, singles, deepId: deepEntry ? deepEntry[0] : null, deepN: deepEntry ? deepEntry[1] : 0, deepName: deepWork ? deepWork.artist.replace(/\s*\(.*\)$/, "") : "" },
       topMovement: movements[0], favArtist: artists[0],
     };
   }, []);
@@ -3408,6 +3445,7 @@ function Portrait({ go }) {
       <p className="cv-p-read">
         You've stood in front of <b>{data.total}</b> works across <b>{data.museums}</b> museums in <b>{data.countries}</b> countries —
         {" "}<b>{data.loved}</b> of them moved you, <b>{data.floored}</b> stopped you cold.
+        {data.chase > 0 && <> Another <b onClick={() => go("map")} style={{ cursor: "pointer", color: "oklch(0.45 0.12 150)" }}>{data.chase}</b> are waiting for you in <b>{data.chaseCities}</b> cities.</>}
         {data.favArtist && <> The artist you return to most is <b onClick={() => go("artist", data.favArtist.id)} style={{ cursor: "pointer", color: "var(--accent)" }}>{data.favArtist.name}</b>.</>}
         {data.topMovement && <> Your eye lives in <b onClick={() => go("wall", movSlug(data.topMovement[0]))} style={{ cursor: "pointer", color: "var(--accent)" }}>{data.topMovement[0]}</b> — it accounts for more of what you love than any other movement, by far.</>}
       </p>
@@ -3415,7 +3453,12 @@ function Portrait({ go }) {
       <div className="cv-p-sec">
         <div className="cv-p-lbl">The palette of your taste</div>
         <div className="cv-p-spectrum">{data.swatches.map((c, i) => <i key={i} style={{ background: c }} />)}</div>
-        <div className="cv-p-note">every work's dominant colour, {data.swatches.length} of them, sorted across the spectrum</div>
+        <div className="cv-p-note">
+          every work's dominant colour, {data.swatches.length} of them, sorted across the spectrum —
+          {" "}mostly <b>{data.families[0] && data.families[0][0]}</b> and <b>{data.families[1] && data.families[1][0]}</b>
+          {data.families[2] && <>, a seam of <b>{data.families[2][0]}</b></>}
+          {" "}({data.families.slice(0, 3).map(([, n]) => n).join(" / ")} works)
+        </div>
       </div>
 
       <div className="cv-p-cols">
@@ -3433,14 +3476,55 @@ function Portrait({ go }) {
 
         <div className="cv-p-sec">
           <div className="cv-p-lbl">Across the centuries</div>
+          {/* two registers, stacked: sienna = met, green = still chasing — the map's colour
+              grammar carried over, so the histogram stops silently mixing the two */}
           <div className="cv-p-cent">
-            {data.centuries.map(({ c, n }) => (
-              <div className="cv-p-centcol" key={c} title={`${cy(c)} century — ${n} works`}>
-                <span className="cv-p-centbar" style={{ height: (n / maxCent * 100) + "%" }} />
+            {data.centuries.map(({ c, n, met, chase }) => (
+              <div className="cv-p-centcol" key={c} title={`${cy(c)} century — ${met} met, ${chase} to see`}>
+                {chase > 0 && <span className="cv-p-centbar cv-p-centbar-chase" style={{ height: (chase / maxCent * 100) + "%" }} />}
+                {met > 0 && <span className="cv-p-centbar" style={{ height: (met / maxCent * 100) + "%" }} />}
                 <span className="cv-p-centlbl">{c}00s</span>
               </div>
             ))}
           </div>
+          <div className="cv-p-note"><i className="cv-p-key" /> met · <i className="cv-p-key cv-p-key-chase" /> still chasing</div>
+        </div>
+      </div>
+
+      {data.motifs.length > 0 && (
+        <div className="cv-p-sec">
+          <div className="cv-p-lbl">What you keep looking at</div>
+          <div className="cv-p-note" style={{ marginTop: 0, marginBottom: 12 }}>the things depicted in the works you love, weighted by how hard they hit</div>
+          <div className="cv-p-motifs">
+            {data.motifs.map(([t, n]) => (
+              <span className="cv-p-motif" key={t} title={`${n} love-weighted points`}>{t}<i>{n}</i></span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="cv-p-cols">
+        {data.strike.length > 0 && (
+          <div className="cv-p-sec">
+            <div className="cv-p-lbl">Where love struck hardest</div>
+            <div className="cv-p-note" style={{ marginTop: 0, marginBottom: 10 }}>how often a museum stopped you cold, of what you met there</div>
+            {data.strike.map(s => (
+              <div className="cv-p-bar cv-p-barlink" key={s.id} onClick={() => go("museum", s.id)}>
+                <span className="cv-p-barlbl">{s.name}</span>
+                <span className="cv-p-bartrack"><i style={{ width: (s.rate * 100) + "%" }} /></span>
+                <span className="cv-p-barn">1 in {Math.round(1 / s.rate)}</span>
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="cv-p-sec">
+          <div className="cv-p-lbl">Breadth and depth</div>
+          <p className="cv-p-prose">
+            Your canon spans <b>{data.breadth.artists}</b> artists — <b>{data.breadth.singles}</b> of them
+            represented by a single work, one encounter that earned its place. At the other end
+            {data.breadth.deepId && <> stands <b onClick={() => go("artist", data.breadth.deepId)} style={{ cursor: "pointer", color: "var(--accent)" }}>{data.breadth.deepName}</b> with <b>{data.breadth.deepN}</b>.</>}
+            {" "}A taste that collects widely and digs where it matters.
+          </p>
         </div>
       </div>
 
