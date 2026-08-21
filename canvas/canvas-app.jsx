@@ -2789,11 +2789,12 @@ function MapView({ go }) {
   // simply re-scaled at render: k is vb.w/880, which shrinks as you zoom, so the fan contracts
   // toward its bubble and the halo stops sprawling across a zoomed-in view. Clamped so the dots
   // never collapse INTO the bubble at extreme zoom, and never overreach when zoomed out.
-  // Floor 0.28 → 0.16 (Fuad 2026-08-22: "the branching needs to be shorter" once zoomed in),
-  // and the CEILING drops from 1.15 to 0.8 (same day: "the longest lines are still too long") —
-  // the resting view now shows the fan at 80% of its solved length. fanAt clamps the contracted
-  // offset at the marker's `keep` floor so no dot is ever pulled back inside its own bubble.
-  const fanK = Math.max(0.16, Math.min(0.8, k * 0.8));
+  // Floor 0.28 → 0.16 (Fuad 2026-08-22: "the branching needs to be shorter" once zoomed in);
+  // ceiling 1.15 → 0.8 ("the longest lines are still too long") → 0.4 (third pass, same day:
+  // "half the length they are now"). The fan renders at 40% of its solved length; fanAt clamps
+  // the contracted offset at the marker's `keep` floor so no dot is ever pulled back inside
+  // its own bubble — at this ceiling most dots ride near that floor, which is the point.
+  const fanK = Math.max(0.16, Math.min(0.4, k * 0.4));
   const fanAt = (mk) => {
     const ox = mk.x - mk.bx, oy = mk.y - mk.by, len = Math.hypot(ox, oy) || 0.001;
     const newLen = Math.max(mk.keep || 0, len * fanK);
