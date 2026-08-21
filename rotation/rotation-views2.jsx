@@ -1580,19 +1580,19 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
           <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} onTour={a.onTour} vx={a.vx} />
           {a.tags && a.tags.length > 0 && (
-            <div style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap", alignItems: "center" }}>
+            <div className="av-tagrow" style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap", alignItems: "center" }}>
               <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>last.fm</span>
               {a.tags.map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
             </div>
           )}
           {a.styles && a.styles.length > 0 && (
-            <div style={{ display: "flex", gap: 7, marginTop: 8, flexWrap: "wrap", alignItems: "center" }}>
+            <div className="av-tagrow" style={{ display: "flex", gap: 7, marginTop: 8, flexWrap: "wrap", alignItems: "center" }}>
               <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>discogs</span>
               {a.styles.map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)} style={{ fontSize: 10.5, padding: "3px 8px", borderColor: "var(--line)" }}>{s}</span>)}
             </div>
           )}
           {a.spotGenres && a.spotGenres.length > 0 && (
-            <div style={{ display: "flex", gap: 7, marginTop: 8, flexWrap: "wrap", alignItems: "center" }}>
+            <div className="av-tagrow" style={{ display: "flex", gap: 7, marginTop: 8, flexWrap: "wrap", alignItems: "center" }}>
               <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>spotify</span>
               {a.spotGenres.map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)} style={{ fontSize: 10.5, padding: "3px 8px", borderColor: "var(--line)" }}>{s}</span>)}
             </div>
@@ -2255,6 +2255,21 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         @media (max-width: 620px){
           .av-hstats { gap: 14px !important; }
           .av-hstats .r-stat-n { font-size: 23px !important; }
+          /* GENRE TAGS: one rail per SOURCE (Fuad 2026-08-21). last.fm, discogs and spotify each
+             keep their own scroller rather than being merged into one row — the three vocabularies
+             disagree with each other, which is the interesting part, and a combined rail would lose
+             which service said what. A well-tagged artist carries a dozen last.fm tags on its own,
+             so wrapping cost three or four lines per source before the page had started. Each
+             source label is the first item in its own rail, so it is what you see at rest and only
+             scrolls away once you move through that service's tags. */
+          .av-tagrow {
+            flex-wrap: nowrap !important; overflow-x: auto; overflow-y: hidden; min-width: 0;
+            scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 3px;
+            -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+                    mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+          }
+          .av-tagrow::-webkit-scrollbar { display: none; }
+          .av-tagrow > * { flex: none; }
         }
         /* live-set song chips that you also have in rotation link to the track page */
         .av-livesong { cursor: pointer; text-decoration: none; }
