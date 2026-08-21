@@ -376,6 +376,11 @@ a { color: inherit; }
      a heading. Capped near the width of the chips it sits with; the label ellipses and the full
      name is still there when the native picker opens. */
   .cv-filters select { max-width: 130px; min-width: 0; }
+  /* The "32 of 32" counter goes (Fuad 2026-08-22). margin-left:auto pins it right on a desktop,
+     where the filter row has slack to pin into; on a phone the row is already full, so it wrapped
+     onto a line of its own and spent a whole row restating a number the wall in front of you
+     already answers. Hidden rather than restyled — no arrangement of it is worth a line here. */
+  .cv-count { display: none; }
   /* ★ and ♥ alone (Fuad 2026-08-22). The glyph is already how the cards mark these, so the word is
      redundant on a phone in a way "seen" and "not seen" are not — those keep their words because
      no agreed symbol exists and inventing one costs more than the space it saves. The full label
