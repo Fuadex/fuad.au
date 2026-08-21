@@ -301,8 +301,14 @@ const CAP = 48;
 // STATUS is the encounter: did you stand in front of it, are you unsure, is it still to come. All
 // six chips used to share one radio group, so "floored things I still haven't seen" — the question
 // the pilgrimage exists to answer — could not be asked.
-const MARK_FILTERS = [["floored", "★ floored"], ["loved", "♥ loved"]];
-const STATUS_FILTERS = [["sure", "seen — sure"], ["unsure", "unsure"], ["wish", "pilgrimage"]];
+// Each filter carries a full label and a phone label. The glyph alone is enough on a phone for
+// the two marks — a star and a heart are already the vocabulary the cards use — while the status
+// filters keep their words, because "seen" and "not seen" have no agreed symbol and guessing one
+// would be worse than the space it saves (Fuad 2026-08-22).
+// "seen — sure" became "Seen" and "pilgrimage" became "Not seen" on BOTH sizes: the old pair named
+// the data model (a confidence value, an aspiration) rather than the thing you are asking for.
+const MARK_FILTERS = [["floored", "★ floored", "★"], ["loved", "♥ loved", "♥"]];
+const STATUS_FILTERS = [["sure", "seen", "seen"], ["unsure", "unsure", "unsure"], ["wish", "not seen", "not seen"]];
 const markPass = (w, k) => k === "floored" ? !!(w.floored || w.favorite) : !!w.liked;
 const statusPass = (w, k) =>
   k === "sure" ? w.seenConfidence === "sure"
@@ -553,8 +559,10 @@ function Wall({ go, styleIds }) {
         {/* "all" clears both axes — a reset, not a third state you can be in */}
         <button data-on={!marks.size && !status.size}
           onClick={unhang(() => { setMarks(new Set()); setStatus(new Set()); })}>all</button>
-        {MARK_FILTERS.map(([v, label]) => (
-          <button key={v} data-on={marks.has(v)} onClick={() => toggleMark(v)}>{label}</button>
+        {MARK_FILTERS.map(([v, label, tiny]) => (
+          <button key={v} data-on={marks.has(v)} onClick={() => toggleMark(v)} title={label}>
+            <span className="cv-f-full">{label}</span><span className="cv-f-tiny">{tiny}</span>
+          </button>
         ))}
         <span className="cv-filt-div" aria-hidden="true" />
         {STATUS_FILTERS.map(([v, label]) => (
