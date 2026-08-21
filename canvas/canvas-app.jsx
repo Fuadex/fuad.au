@@ -3702,7 +3702,10 @@ function App() {
           <a href="#/portrait" data-on={bgView === "portrait"}>Portrait</a>
           <a href="#/museums" data-on={bgView === "museums" || bg.view === "museum" || (bg.view === "deck" && bg.id !== "by-artists")}>Museums</a>
           <a href="#/artists" data-on={bgView === "artists" || bg.view === "artist"}>Artists</a>
-          <a href="#/deck/by-artists" data-on={bg.view === "deck" && bg.id === "by-artists"}>By Your Artists</a>
+          {/* By Your Artists removed from the nav (Fuad 2026-08-22). The route and the deck itself
+              still work — #/deck/by-artists resolves, and the "+ deck" buttons on artist pages
+              still queue into it — so nothing is orphaned; it just no longer takes a top-level
+              slot. Re-add this line to bring it back. */}
           <a href="#/map" data-on={bgView === "map" || bgView === "pilgrimage"}>Map</a>
         </nav>
         <SearchBar go={go} />
