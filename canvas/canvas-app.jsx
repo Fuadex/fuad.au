@@ -1928,7 +1928,10 @@ function MuseumView({ museumId, go }) {
             {floored.length ? <span>★ {floored.length} floored</span> : null}
             {liked ? <span>♡ {liked} loved</span> : null}
             {unmet.length ? <span>{unmet.length} unmet major{unmet.length !== 1 ? "s" : ""}</span> : null}
-            {highlights.length > 0 && <a className="cv-mus-gradebtn" href={"#/deck/" + museumId}>grade this museum's deck →</a>}
+            {/* "grade this museum's deck" HIDDEN "for now" (Fuad 2026-08-22) — the deck route
+                itself stays live (recall grading still works via url); only the affordance is
+                off. Flip `false` to bring it back. */}
+            {false && highlights.length > 0 && <a className="cv-mus-gradebtn" href={"#/deck/" + museumId}>grade this museum's deck →</a>}
           </div>
         </div>
         {DATA && DATA.img && (

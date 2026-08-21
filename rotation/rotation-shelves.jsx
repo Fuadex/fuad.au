@@ -111,7 +111,8 @@ function ShReader({ al, onClose, go }) {
           onClick={openPage || undefined} title={openPage ? "open full page" : undefined}>
           <div className="sh-vinyl" />
           {al.cover
-            ? <img className="sh-reader-cover" src={shBig(al.cover)} alt="" onError={(e) => { e.target.src = al.cover; }} />
+            ? <img className="sh-reader-cover" src={imgProxied(shBig(al.cover))} alt=""
+                onError={(e) => { const big = shBig(al.cover); if (e.target.src !== big && imgProxied(big) !== big) e.target.src = big; else if (e.target.src !== al.cover) e.target.src = al.cover; }} />
             : <GenCover hue={al.hue} name={al.title} size={168} radius={4} />}
         </div>
         <div className="sh-reader-body">
@@ -151,15 +152,20 @@ function ShReader({ al, onClose, go }) {
 // progressive fan-open cover: the 64px CDN variant paints near-instantly (blurry for a beat),
 // the 300px version swaps in as soon as it's downloaded — kills the "hover then wait" feel.
 function ShFanCover({ cover }) {
-  const [src, setSrc] = React.useState(() => shTiny(cover));
+  // proxy-first at every step (a caa/discogs cover benefits; scdn/mzstatic urls pass through
+  // imgProxied untouched). The preloader retries direct if the proxied 300px fails.
+  const [src, setSrc] = React.useState(() => imgProxied(shTiny(cover)));
   React.useEffect(() => {
     let dead = false;
     const im = new Image();
-    im.src = shSmall(cover);
+    const direct = shSmall(cover);
+    im.src = imgProxied(direct);
     im.onload = () => { if (!dead) setSrc(im.src); };
+    im.onerror = () => { if (!dead && im.src !== direct) im.src = direct; };
     return () => { dead = true; };
   }, [cover]);
-  return <img className="sh-cover" src={src} alt="" draggable={false} onError={(e) => { if (cover && e.target.src !== cover) e.target.src = cover; }} />;
+  return <img className="sh-cover" src={src} alt="" draggable={false}
+    onError={(e) => { const t = shTiny(cover); if (e.target.src !== t && imgProxied(t) !== t) e.target.src = t; else if (cover && e.target.src !== cover) e.target.src = cover; }} />;
 }
 
 // — one spine. Collapsed: a colored slab. Expanded: the cover slides out. —

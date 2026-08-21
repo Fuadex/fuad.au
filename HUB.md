@@ -115,6 +115,19 @@ to the direct URL — so worker failure or free-tier quota exhaustion degrades t
 pre-proxy behaviour, by construction. Budget: free tier = 100k invocations/day ≈ 250 maximally
 heavy first-time visitors; repeat visitors ride browser-cache immutability and never touch it.
 
+Rollout status (2026-08-22, all three apps live):
+
+| App | Helper | Hosts proxied | Wired at |
+|---|---|---|---|
+| canvas | `proxied()`/`unproxy` in canvas-app.jsx | upload, commons, met, aic | LazyImg (bulk), six plain `<img>` sites, the Reader's OSD sources (IIIF tiles stay direct — their info.json points OSD at the museum's own urls) |
+| culture | `proxied()`/`unproxy` in culture-v2.jsx | tmdb, amzn, igdb, olcovers, upload | LazyImg, Reader poster, More-like-this + crossover rails. Manual `?v` epoch applies as always |
+| rotation | `imgProxied()` exported from rotation-core.jsx | discogs, caa, dzcdn, upload | GenCover's error-stepping chain (proxied → direct → Spotify alt → generated cover), shelves Reader + fan covers |
+
+Deliberately unproxied everywhere: `i.scdn.co` (Spotify's CDN outruns the proxy; 35k urls of
+quota burn; ToS likes proxying even less than hotlinking), `is1-ssl.mzstatic.com` (fast), audio
+preview hosts (range streams don't belong in an image cache), and every host that turned out to
+be outbound links rather than images (Filmweb, Ticketmaster, Goodreads).
+
 ## Roadmap notes
 - **Dynamic launcher** (wanted): replace the hardcoded cards in `index.html` with a
   `fetch('apps.json')` render — the data shape already matches, so this is a drop-in upgrade.
