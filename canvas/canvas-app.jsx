@@ -102,6 +102,29 @@ const _imgPump = () => {
 const imgAcquire = (run) => { _imgWaiting.push(run); _imgPump(); };
 const imgRelease = () => { _imgActive = Math.max(0, _imgActive - 1); _imgPump(); };
 
+// ——— img.fuad.au: Cloudflare edge proxy over the four hotlinked image hosts (source of truth:
+// /img-proxy.worker.js + HUB.md, live 2026-08-22). proxied() rewrites a known host; every user
+// pairs it with a fallback to the ORIGINAL url, so the worker failing — or its free-tier quota
+// running dry on a big day — degrades to exactly the pre-proxy behaviour. Unknown hosts pass
+// through untouched.
+const IMG_PROXY = {
+  "https://upload.wikimedia.org/": "https://img.fuad.au/upload/",
+  "https://commons.wikimedia.org/": "https://img.fuad.au/commons/",
+  "https://images.metmuseum.org/": "https://img.fuad.au/met/",
+  "https://www.artic.edu/": "https://img.fuad.au/aic/",
+};
+const proxied = (u) => {
+  if (!u) return u;
+  for (const k in IMG_PROXY) if (u.startsWith(k)) return IMG_PROXY[k] + u.slice(k.length);
+  return u;
+};
+// shared onError for PLAIN <img> tags rendered with a proxied src: one hop back to the direct
+// url, then give up (matches LazyImg's single-retry discipline)
+const unproxy = (e) => {
+  const el = e.currentTarget, orig = el.dataset && el.dataset.orig;
+  if (orig && el.src !== orig) el.src = orig;
+};
+
 function LazyImg({ src, alt, className, title, loading, style }) {
   const ref = useRef(null);
   const [show, setShow] = useState(false);
@@ -127,7 +150,13 @@ function LazyImg({ src, alt, className, title, loading, style }) {
     release();
     if (bust === 0) setTimeout(() => setBust(1), 400 + Math.random() * 600);   // jittered single retry
   };
-  const url = show ? (bust ? src + (src.includes("?") ? "&" : "?") + "_r=" + bust : src) : undefined;
+  // proxy-first: attempt 0 goes through img.fuad.au; the existing retry slot doubles as the
+  // fallback and goes DIRECT (a different url is its own cache-bust). Hosts the proxy doesn't
+  // know keep the original bust-retry semantics.
+  const prox = proxied(src);
+  const url = show
+    ? (bust ? (prox !== src ? src : src + (src.includes("?") ? "&" : "?") + "_r=" + bust) : prox)
+    : undefined;
   return <img ref={ref} className={className} alt={alt || ""} title={title} style={style}
     src={url} loading={loading || "lazy"} decoding="async" onLoad={release} onError={onFail} />
 }
@@ -153,7 +182,7 @@ function HighlightPeek({ item, onClose }) {
     <div className="cv-peek" onClick={onClose} role="dialog" aria-modal="true" aria-label={item.title}>
       <div className="cv-peek-inner" onClick={e => e.stopPropagation()}>
         <button className="cv-peek-x" onClick={onClose} aria-label="Close">✕</button>
-        {item.img && <img src={big} alt={item.title} />}
+        {item.img && <img src={proxied(big)} data-orig={big} onError={unproxy} alt={item.title} />}
         <div className="cv-peek-cap">
           <div className="cv-peek-title">{item.title}</div>
           <div className="cv-peek-sub">
@@ -189,7 +218,7 @@ function PilReel({ works, go }) {
     <div className="cv-reel-wrap" ref={wrapRef} onMouseLeave={() => setHov(null)}>
       {hov && (
         <div className="cv-reel-pop" style={{ left: hov.x }}>
-          {hov.w.imgGrid && <img src={hov.w.imgGrid} alt="" />}
+          {hov.w.imgGrid && <img src={proxied(hov.w.imgGrid)} data-orig={hov.w.imgGrid} onError={unproxy} alt="" />}
           <div className="cv-reel-cap">
             <b>{hov.w.title}</b>
             <span>{hov.w.artist.replace(/\s*\(.*\)$/, "")}{hov.w.year ? " · " + hov.w.year : ""}</span>
@@ -864,14 +893,18 @@ function resolveOSDSource(work) {
   }
   if (work.hires && work.hires.img) {
     const src = (work.hires.src || "").toUpperCase();
-    return { tileSource: { type: "image", url: work.hires.img }, cors: "Anonymous", label: src ? `deep zoom via ${src}` : "deep zoom" };
+    // proxied: the worker adds ACAO and follows redirects; open-failed still falls back to the
+    // DIRECT canon image, so the chain is proxy → direct, never worse than before
+    return { tileSource: { type: "image", url: proxied(work.hires.img) }, cors: "Anonymous", label: src ? `deep zoom via ${src}` : "deep zoom" };
   }
   const simpleUrl = work.imgZoom || work.img;
   if (simpleUrl) {
-    // ALWAYS cors:false for canon images — Commons Special:FilePath REDIRECT hops send no
-    // ACAO header, so a crossorigin=anonymous load fails the whole chain (found 2026-07-12
-    // via the Murillo). We never need pixel access for viewing; plain loads are strictly better.
-    return { tileSource: { type: "image", url: simpleUrl }, cors: false, label: work.title.replace(/^TBC — /, "") };
+    // Proxied first: img.fuad.au follows the Special:FilePath redirect ITSELF and serves the
+    // bytes with ACAO:* — which retires the Murillo gotcha (2026-07-12: the redirect hop sends
+    // no ACAO, so crossorigin loads failed and this path was pinned to cors:false). Through the
+    // proxy, cors stays false anyway — we still never need pixel access for plain viewing —
+    // and the open-failed fallback rebuilds with the DIRECT url, unproxied, as before.
+    return { tileSource: { type: "image", url: proxied(simpleUrl) }, cors: false, label: work.title.replace(/^TBC — /, "") };
   }
   return null;
 }
@@ -933,7 +966,10 @@ function useOSDViewer(work, onOsdFail) {
         viewer.addHandler("open-failed", () => {
           if (cancelled) return;
           const simple = work && (work.imgZoom || work.img);
-          if (!fallbackUrl && work && work.hires && simple) setFallbackUrl(simple);
+          // fall back when a retry would actually differ: a hires source dying drops to the
+          // canon image, and a PROXIED canon image dying drops to the direct url (the simple
+          // path goes through img.fuad.au now too, so it needs the same escape hatch)
+          if (!fallbackUrl && simple && (work.hires || proxied(simple) !== simple)) setFallbackUrl(simple);
           else setErr(true);
         });
         viewer.addHandler("open", () => { if (!cancelled) setReady(true); });
@@ -1897,7 +1933,7 @@ function MuseumView({ museumId, go }) {
         </div>
         {DATA && DATA.img && (
           <figure className="cv-mus-postcard">
-            <img src={DATA.img} alt={m.name.replace(/\s*\(.*\)$/, "")} loading="lazy" />
+            <img src={proxied(DATA.img)} data-orig={DATA.img} onError={unproxy} alt={m.name.replace(/\s*\(.*\)$/, "")} loading="lazy" />
             <figcaption>the building</figcaption>
           </figure>
         )}
@@ -2210,7 +2246,8 @@ function Deck({ museumId, part, go }) {
       <div className="cv-deck-prog">{i + 1} / {deck.length} · 1–3 seen · 4 ♡ · 5 ♥{i > 0 ? " · Backspace = back" : ""}</div>
       <div className="cv-deck-card" key={w.qid}>{/* remount per card: stale image must not linger under the next label */}
         {w.img
-          ? <img src={w.img} alt={w.title} loading="eager" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+          ? <img src={proxied(w.img)} data-orig={w.img} alt={w.title} loading="eager"
+              onError={(e) => { const el = e.currentTarget; if (el.dataset.orig && el.src !== el.dataset.orig) el.src = el.dataset.orig; else el.style.display = "none"; }} />
           : <div className="cv-deck-noimg" style={{ padding: "60px 20px", color: "var(--ink-faint)", font: "400 14px/1.5 var(--serif)" }}>no image — judge from the title</div>}
         <div className="cv-deck-label">
           <div className="cv-title">{w.title}</div>
@@ -2317,7 +2354,7 @@ function ArtistView({ artistId, go }) {
             </div>
           )}
         </div>
-        {AD2.image && <img className="cv-a-face" src={AD2.image} alt={name} />}
+        {AD2.image && <img className="cv-a-face" src={proxied(AD2.image)} data-orig={AD2.image} onError={unproxy} alt={name} />}
       </div>
       <div className="cv-a-secl">In your canon</div>
       <div className="cv-wall cv-a-wall">{works.slice(0, wallN).map(w => <Card key={w.id} w={w} go={go} />)}</div>
@@ -3242,7 +3279,7 @@ function MapView({ go }) {
         </svg>
         {hover && (
           <div className="cv-map-preview" style={{ left: Math.min(hover.mx + 16, (window.innerWidth || 1200) - 210), top: Math.min(hover.my + 16, (window.innerHeight || 800) - 160) }}>
-            {hover.w.imgGrid && <img src={hover.w.imgGrid} alt="" />}
+            {hover.w.imgGrid && <img src={proxied(hover.w.imgGrid)} data-orig={hover.w.imgGrid} onError={unproxy} alt="" />}
             <div className="cv-map-preview-t">{hover.w.title}</div>
             <div className="cv-map-preview-s">{hover.w.artist.replace(/\s*\(.*\)$/, "")}{hover.w.year ? " · " + hover.w.year : ""}</div>
             {hover.venue && <div className="cv-map-preview-s">{hover.seen ? "seen at " : "to see at "}{hover.venue}, {hover.city}</div>}
