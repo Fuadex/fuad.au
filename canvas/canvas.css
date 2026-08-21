@@ -555,8 +555,13 @@ a { color: inherit; }
 .cv-a-unmet { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; min-width: 0; }
 .cv-a-unmet-item { position: relative; min-width: 0; }
 .cv-a-unmet a { display: block; text-decoration: none; }
-.cv-a-unmet img { width: 100%; height: 120px; object-fit: cover; border-radius: 5px; box-shadow: 0 4px 14px rgba(40,28,14,.22); }
-.cv-a-unmet span { display: block; font: 400 11px/1.4 var(--serif); color: var(--ink-soft); margin-top: 5px; }
+.cv-a-unmet img { width: 100%; height: 120px; object-fit: cover; border-radius: 5px; box-shadow: 0 4px 14px rgba(40,28,14,.22); transition: box-shadow .22s ease, filter .18s ease; }
+.cv-a-unmet span { display: block; font: 400 11px/1.4 var(--serif); color: var(--ink-soft); margin-top: 5px; transition: color .18s ease; }
+/* the tile itself answers the cursor (Fuad 2026-08-22) — before, the only hover response was
+   the +deck button appearing. Shadow deepens (the house style; lifts were rejected 2026-08-19
+   in favour of a shadow behind the work), the scan brightens a touch, the caption inks up. */
+.cv-a-unmet-item:hover img { box-shadow: 0 7px 22px rgba(40,28,14,.34); filter: brightness(1.05); }
+.cv-a-unmet-item:hover span { color: var(--ink); }
 /* corner affordance: queue an unmet major into the By Your Artists deck. Subtle by default,
    solid on hover; the queued state stays visible + disabled. */
 .cv-a-unmet-add { position: absolute; top: 6px; right: 6px; font: 500 9.5px/1 var(--mono);
@@ -952,8 +957,8 @@ a { color: inherit; }
 .cv-pal i { width: 34px; height: 22px; border-radius: 4px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
 .cv-a-kin { display: flex; flex-wrap: wrap; gap: 9px; }
 /* transparent, not #fff — same reason as .cv-mus-artchip: white blocks glare on parchment */
-.cv-a-kin-chip { text-decoration: none; border: 1px solid var(--rule); border-radius: 10px; padding: 9px 13px; background: transparent; transition: border-color .15s, background .15s; }
-.cv-a-kin-chip:hover { border-color: var(--accent-soft); background: rgba(58,47,34,.05); }
+.cv-a-kin-chip { text-decoration: none; border: 1px solid var(--rule); border-radius: 10px; padding: 9px 13px; background: transparent; transition: border-color .18s ease, background .18s ease, box-shadow .22s ease; }
+.cv-a-kin-chip:hover { border-color: var(--accent-soft); background: rgba(58,47,34,.05); box-shadow: 0 3px 10px rgba(40,28,14,.12); }
 .cv-a-kin-chip[data-in="true"] { border-color: oklch(0.66 0.14 46 / .5); background: oklch(0.66 0.14 46 / .07); }
 .cv-a-kin-chip i { display: block; font: italic 400 10.5px/1.3 var(--serif); color: var(--ink-faint); margin-top: 3px; font-style: italic; }
 
