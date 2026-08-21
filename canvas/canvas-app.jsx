@@ -2557,49 +2557,21 @@ function MapView({ go }) {
         c.venues.get(vn).push(w);
       } else unplacedWishes.push(w);
     }
-    // Far-city finalisation: anchor on the works centroid, then one drift-clamped relaxation
-    // against the visited bubbles (which never move — they are the lived layer) and each other,
-    // so a far bubble can sit NEXT to Amsterdam without sitting ON it. The radius curve is
-    // deliberately flatter than the visited one: this layer is the horizon, not the biography,
-    // and it must never outweigh the cities actually walked.
+    // FAR BUBBLES SIT AT THEIR TRUE COORDINATES, FULL STOP (Fuad 2026-08-22, third report:
+    // Genoa in the sea, after Helsinki and Bordeaux). Two rounds of "gentler" collision
+    // relaxation both lost to the same fact: at deep zoom even a 1.2-unit clamp is ~6px of
+    // displacement, and for a coastal city the sea starts at 0. These bubbles are 3-4px marks;
+    // two of them overlapping is cosmetically harmless and honestly TRUE (the cities are that
+    // close), while a bubble off its coastline is false. So: no eviction, no mutual push, no
+    // spring, no clamp — geography, verbatim. Density is handled where it can be, honestly:
+    // z-order (far paints above the big visited discs, so a Fontainebleau stays visible at the
+    // rim of Paris), the fisheye lens, and zoom. Do not reintroduce a relaxation here.
     const farRad = (f) => 1.1 + Math.sqrt(f.n) * 0.55;
+    const visRad = (c) => (c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1);
     const farList = [...farMap.values()].map(f => ({
       ...f, x: f.wxs / f.n, y: f.wys / f.n, venues: [...f.venues.values()],
     }));
-    for (const f of farList) { f.ox = f.x; f.oy = f.y; f.r = farRad(f); }
-    const visRad = (c) => (c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1);
-    // GEOGRAPHY WINS (Fuad 2026-08-22: "Helsinki is over sea, same with Bordeaux"). The first
-    // pass evicted a far bubble to a visited bubble's rim in one hard snap and allowed 4 units
-    // (~160 km) of drift with NO restoring force — so any transient collision walked a bubble to
-    // the clamp, and for a coastal city even one unit is open water. Now the eviction is a gentle
-    // half-push, every pass pulls the bubble back toward its true coordinate (the same 0.3 spring
-    // the visited relaxation always had), and the hard clamp is 1.2 units — a slight nudge apart
-    // is acceptable, a city off its coastline is not. Residual overlap at this density loses to
-    // being where the city actually is.
-    for (let it = 0; it < 24; it++) {
-      let moved = false;
-      for (const f of farList) {
-        for (const c of cities.list) {
-          const min = visRad(c) + f.r + 0.6;
-          let dx = f.x - c.x, dy = f.y - c.y, d = Math.hypot(dx, dy);
-          if (d >= min) continue; if (d < 0.01) { dx = 0.5; dy = 0.3; d = Math.hypot(dx, dy); }
-          const push = (min - d) / d / 2;
-          f.x += dx * push; f.y += dy * push; moved = true;
-        }
-      }
-      for (let i = 0; i < farList.length; i++) for (let j = i + 1; j < farList.length; j++) {
-        const a = farList[i], b = farList[j], min = a.r + b.r + 0.6;
-        let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy);
-        if (d >= min) continue; if (d < 0.01) { dx = 0.5; dy = 0.3; d = Math.hypot(dx, dy); }
-        const push = (min - d) / d / 2; a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push; moved = true;
-      }
-      for (const f of farList) {
-        f.x += (f.ox - f.x) * 0.3; f.y += (f.oy - f.y) * 0.3;
-        const ex = f.x - f.ox, ey = f.y - f.oy, e = Math.hypot(ex, ey);
-        if (e > 1.2) { f.x = f.ox + ex / e * 1.2; f.y = f.oy + ey / e * 1.2; }
-      }
-      if (!moved) break;
-    }
+    for (const f of farList) { f.r = farRad(f); }
     const farByKey = {}; for (const f of farList) farByKey[f.key] = f;
     const markers = [];
     // HALO CAP (Fuad 2026-08-19: zoom and pan went "slightly weird"). Anchoring wanted works on
@@ -2638,8 +2610,10 @@ function MapView({ go }) {
       // TIGHTER HALO (2026-07-17 r4): pull the ♥ ring hard onto the bubble (GAP 1.2 -> 0.6) and shrink
       // the radial step (1.1 -> 0.7) so a dense city grows tight concentric rings instead of long spokes.
       const R = 2, sep = 1.0, GAP = 0.6, minR = cr + R + GAP, GA = 2.399963;
+      // ring step 0.7 -> 0.55 (Fuad 2026-08-22: "the longest lines from the museum should be
+      // shorter") — the outer ring is what sets the longest leader line, so pack tighter
       const nodes = list.map((e, i) => {
-        const rr = minR + 0.7 * Math.sqrt(i), a = i * GA;
+        const rr = minR + 0.55 * Math.sqrt(i), a = i * GA;
         return { e, x: bx + rr * Math.cos(a), y: by + rr * Math.sin(a) };
       });
       const clear = (nd) => { let ex = nd.x - bx, ey = nd.y - by, e = Math.hypot(ex, ey) || 0.001; const floor = cr + R + GAP; if (e < floor) { nd.x = bx + ex / e * floor; nd.y = by + ey / e * floor; } };
@@ -2654,7 +2628,9 @@ function MapView({ go }) {
         for (const nd of nodes) clear(nd);
       }
       for (const nd of nodes) clear(nd);                          // final hard guarantee
-      for (const nd of nodes) markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue, far: halo.far });
+      // keep = the inner floor the render-time fan contraction must respect: contracting the
+      // solved offset below this would put the dot back INSIDE its own bubble
+      for (const nd of nodes) markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue, far: halo.far, keep: cr + R + GAP });
     }
     // FIX 2 (2026-07-17 r4) — THE centre-dot fix. The per-city clamp above only keeps a dot off ITS
     // OWN city bubble; it never guarded against OTHER cities. A dot fanned out of city A (or shoved by
@@ -2776,13 +2752,25 @@ function MapView({ go }) {
   // simply re-scaled at render: k is vb.w/880, which shrinks as you zoom, so the fan contracts
   // toward its bubble and the halo stops sprawling across a zoomed-in view. Clamped so the dots
   // never collapse INTO the bubble at extreme zoom, and never overreach when zoomed out.
-  // Floor 0.28 → 0.16 (Fuad 2026-08-22: "the branching needs to be shorter" once zoomed in).
-  const fanK = Math.max(0.16, Math.min(1.15, k));
-  const fanAt = (mk) => [mk.bx + (mk.x - mk.bx) * fanK, mk.by + (mk.y - mk.by) * fanK];
+  // Floor 0.28 → 0.16 (Fuad 2026-08-22: "the branching needs to be shorter" once zoomed in),
+  // and the CEILING drops from 1.15 to 0.8 (same day: "the longest lines are still too long") —
+  // the resting view now shows the fan at 80% of its solved length. fanAt clamps the contracted
+  // offset at the marker's `keep` floor so no dot is ever pulled back inside its own bubble.
+  const fanK = Math.max(0.16, Math.min(0.8, k * 0.8));
+  const fanAt = (mk) => {
+    const ox = mk.x - mk.bx, oy = mk.y - mk.by, len = Math.hypot(ox, oy) || 0.001;
+    const newLen = Math.max(mk.keep || 0, len * fanK);
+    return [mk.bx + ox / len * newLen, mk.by + oy / len * newLen];
+  };
   // DOT ZOOM (Fuad 2026-08-22: "the dots can start initially smaller — when zoomed in they can
   // be the size they are"). Halo dots render at 60% in the resting world view and ramp to full
   // size as the viewBox narrows; k = vb.w/880, full size from a 2.5x zoom (k ≤ 0.4) on down.
   const dotZoom = Math.max(0.6, Math.min(1, 0.4 / k));
+  // Same idea for the CITY BUBBLES, harder (Fuad, same day: "the large city blobs should be
+  // half the size when starting from the furthest" — the resting view was "super busy").
+  // Half size at the world view, full from the same 2.5x zoom. Render-only: the world-unit
+  // radii still drive halo seeding and dot eviction, which stay conservative.
+  const bubZoom = Math.max(0.5, Math.min(1, 0.4 / k));
   // pull any child toward its parent by the same zoom factor, so the opened branch contracts on
   // zoom exactly as the resting halo does
   const towards = (px, py, x, y) => [px + (x - px) * fanK, py + (y - py) * fanK];
@@ -3130,12 +3118,12 @@ function MapView({ go }) {
             const [fx, fy, fs] = fish(c.x, c.y, cr);
             return (
               <g key={c.city} className="cv-pin" onClick={() => focusCity(c)} style={{ cursor: "pointer" }}>
-                <circle cx={fx} cy={fy} r={cr * fs * k * dotMul}
+                <circle cx={fx} cy={fy} r={cr * fs * k * dotMul * bubZoom}
                   fill={c.n ? "oklch(0.55 0.13 46 / .82)" : "rgba(58,47,34,.45)"} stroke="#f4ecdf" strokeWidth={0.6 * k} />
                 {/* the halo is capped, so the city's real want-to-see total is stated here rather
                     than implied by a count of dots that is deliberately not all of them */}
                 <title>{c.city} — {c.n} work{c.n !== 1 ? "s" : ""} seen · {c.museums.length} museum{c.museums.length !== 1 ? "s" : ""}{wishTotals[c.city] ? ` · ${wishTotals[c.city]} still to see` : ""}{c.n ? " · click to open" : ""}</title>
-                {(c.n >= 8 || fs > 1.25) && <text x={fx} y={fy - (cr * fs * dotMul + 1) * k} textAnchor="middle" style={{ fontSize: 8 * k * dotMul }}>{c.city}</text>}
+                {(c.n >= 8 || fs > 1.25) && <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 8 * k * dotMul }}>{c.city}</text>}
               </g>
             );
           })}
@@ -3152,10 +3140,10 @@ function MapView({ go }) {
             const [fx, fy, fs] = fish(f.x, f.y, f.r);
             return (
               <g key={"far" + f.key} className="cv-pin" onClick={() => focusFar(f)} style={{ cursor: "pointer" }}>
-                <circle cx={fx} cy={fy} r={f.r * fs * k * dotMul}
+                <circle cx={fx} cy={fy} r={f.r * fs * k * dotMul * bubZoom}
                   fill="oklch(0.52 0.09 150 / .55)" stroke="#f4ecdf" strokeWidth={0.5 * k} />
                 <title>{f.city} — {f.n} work{f.n !== 1 ? "s" : ""} to see · {f.venues.length} venue{f.venues.length !== 1 ? "s" : ""} · not yet walked · click to open</title>
-                {(f.n >= 10 || fs > 1.25) && <text x={fx} y={fy - (f.r * fs * dotMul + 1) * k} textAnchor="middle" style={{ fontSize: 7 * k * dotMul, opacity: 0.75 }}>{f.city}</text>}
+                {(f.n >= 10 || fs > 1.25) && <text x={fx} y={fy - (f.r * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 7 * k * dotMul, opacity: 0.75 }}>{f.city}</text>}
               </g>
             );
           })}
