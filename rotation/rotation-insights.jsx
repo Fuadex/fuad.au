@@ -181,9 +181,11 @@ const PROVIDERS = [
     const R = ctx.R;
     return {
       id: "on-repeat", category: "on-repeat", score: 0.78, label: "On repeat", meta: "this week",
+      // gridTemplateColumns:minmax(0,1fr) is load-bearing — an implicit grid column sizes to
+      // max-content, so the track grew to the longest title and took the whole row with it.
+      // A {/* */} comment cannot sit inside `render: (` — there the braces parse as an object
+      // literal rather than a JSX comment, which is exactly what broke the precompile once.
       render: (
-        {/* gridTemplateColumns:minmax(0,1fr) is load-bearing — an implicit grid column sizes to
-            max-content, so the track grew to the longest title and took the row with it. */}
         <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
           {/* two rows, not three (Fuad 2026-08-20): the third made this the tallest card on its
               row, and in a grid the tallest card sets the height for every card beside it.
