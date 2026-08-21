@@ -815,7 +815,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: null, seenConfidence: "unsure", liked: true },
   { id: "edward-hopper-east-wind-over-weehawken", title: "East Wind Over Weehawken", artist: "Edward Hopper", artistId: "hopper", qid: "Q16992209", qidTrusted: true, year: 1934,
     seenAt: null, seenConfidence: "unsure", liked: true },
-  { id: "unknown-the-snow-storm-nyc", title: "The Snow Storm, NYC", artist: "Howard Thain", artistId: "unknown", qid: "Q108700187", qidTrusted: true, year: 1924,
+  { id: "unknown-the-snow-storm-nyc", title: "The Snow Storm, NYC", artist: "Howard Thain", artistId: "howard-thain", qid: "Q108700187", qidTrusted: true, year: 1924,
     seenAt: "new-york-historical", seenConfidence: "unsure", liked: true },
   { id: "roy-brown-wet-day-in-old-new-york", title: "Wet Day in Old New York", artist: "Roy Brown", artistId: "roy-brown", qid: "Q108700142", qidTrusted: true, year: 1931,
     seenAt: "new-york-historical", seenConfidence: "unsure", liked: true },
