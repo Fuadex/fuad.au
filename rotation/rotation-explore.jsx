@@ -1223,6 +1223,21 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
         .xp-attr-brushrow[data-link="true"] { cursor: pointer; }
         .xp-attr-brushrow[data-link="true"]:hover { background: var(--bg-3); }
         .xp-attr-legend { display: flex; flex-wrap: wrap; gap: 5px 6px; padding: 4px 14px 10px; }
+        /* One rail on a phone (Fuad 2026-08-22). Fourteen families wrap to four or five lines
+           directly under the chart, which pushes the chart itself off the top of the screen. The
+           short genre labels halved the width; scrolling the row absorbs the rest. No !important
+           needed — this legend carries no inline style, unlike the Liked rows, and that is exactly
+           the difference that made those need it. */
+        @media (max-width: 760px) {
+          .xp-attr-legend {
+            flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; min-width: 0;
+            padding-right: 34px; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+            -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+                    mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+          }
+          .xp-attr-legend::-webkit-scrollbar { display: none; }
+          .xp-attr-legend > * { flex: none; }
+        }
         .xp-attr-legitem { display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-soft); font-family: var(--mono); font-size: 10px; cursor: pointer; transition: .14s; }
         .xp-attr-legitem:hover { border-color: var(--ink-faint); color: var(--ink); }
         .xp-attr-legitem[data-on="true"] { border-color: var(--accent); color: var(--ink); box-shadow: inset 0 0 0 1px var(--accent); }
