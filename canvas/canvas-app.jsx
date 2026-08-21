@@ -2668,9 +2668,11 @@ function MapView({ go }) {
         for (const nd of nodes) clear(nd);
       }
       for (const nd of nodes) clear(nd);                          // final hard guarantee
-      // keep = the inner floor the render-time fan contraction must respect: contracting the
-      // solved offset below this would put the dot back INSIDE its own bubble
-      for (const nd of nodes) markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue, far: halo.far, keep: cr + R + GAP });
+      // keepR = the OWN bubble's raw world radius. The render-time contraction floor derives
+      // from this at the bubble's RENDERED size (× bubZoom) — flooring at the full world radius
+      // was why the longest leaders around the big cities never shortened: their dots sat at
+      // the rim of a bubble drawn at half that size (Fuad 2026-08-22, fourth line-length pass).
+      for (const nd of nodes) markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue, far: halo.far, keepR: cr });
     }
     // FIX 2 (2026-07-17 r4) — THE centre-dot fix. The per-city clamp above only keeps a dot off ITS
     // OWN city bubble; it never guarded against OTHER cities. A dot fanned out of city A (or shoved by
@@ -2797,10 +2799,13 @@ function MapView({ go }) {
   // "half the length they are now"). The fan renders at 40% of its solved length; fanAt clamps
   // the contracted offset at the marker's `keep` floor so no dot is ever pulled back inside
   // its own bubble — at this ceiling most dots ride near that floor, which is the point.
-  const fanK = Math.max(0.16, Math.min(0.4, k * 0.4));
+  const fanK = Math.max(0.14, Math.min(0.32, k * 0.32));
   const fanAt = (mk) => {
     const ox = mk.x - mk.bx, oy = mk.y - mk.by, len = Math.hypot(ox, oy) || 0.001;
-    const newLen = Math.max(mk.keep || 0, len * fanK);
+    // the floor tracks the bubble as RENDERED (bubZoom halves it at rest) plus the rendered
+    // dot and a hair of gap — not the raw world radius, which kept big-city leaders long
+    const floor = (mk.keepR || 0) * bubZoom * dotMul + 2 * dotZoom * dotMul + 0.6;
+    const newLen = Math.max(floor, len * fanK);
     return [mk.bx + ox / len * newLen, mk.by + oy / len * newLen];
   };
   // DOT ZOOM (Fuad 2026-08-22: "the dots can start initially smaller — when zoomed in they can
