@@ -392,6 +392,18 @@ const LK_DNA_AXES = [
 //   instrumental = empty list. undefined vx → hidden under any active option (the no-data convention).
 // LK_ prefix + lk-prefixed fn: top-level names share global scope across the buildless jsx files.
 const LK_VOCALS = [["any", "Any"], ["male", "Male"], ["female", "Female"], ["mixed", "Mixed"], ["nb", "Non-binary"], ["instrumental", "Instrumental"]];
+// Phone labels for the genre family chips (Fuad 2026-08-21, his wording). Fourteen families whose
+// full names run to "Industrial/Noise/Hyperpop" — at phone width that is barely two chips per line
+// and the row costs four of them. Keyed on the family STRING from liked-meta rather than the index,
+// so reordering the families cannot silently mislabel a chip; anything unmapped falls through to
+// the full name rather than rendering blank.
+const LK_FAM_ABBR = {
+  "Thrash/Death": "Thrash", "Heavy/Doom": "Heavy", "Metalcore/Nu": "Nu",
+  "Punk/Hardcore": "Punk/H", "Prog": "Prog", "Shoegaze/Grunge": "Shoe/G",
+  "Alternative/Indie": "Alt", "Industrial/Noise/Hyperpop": "Ind/Noise",
+  "Electronic/DnB": "DnB", "Hip-Hop/Rap": "Rap", "Pop": "Pop",
+  "Jazz/Funk": "Jazz/F", "Classical": "Classical", "Score": "Score",
+};
 // chip colours (Fuad 2026-08-13 — "still defaulting as grey"): bucket + vocals chips carry
 // their dimension's colour at rest (like genre-family chips), full fill when active. left/mid
 // get muted-but-real hues HERE ONLY — their row dots keep the semantic grey of LIKED_BUCKET_COLOR.
@@ -752,8 +764,15 @@ function LikedView({ go }) {
       let ta = TA ? TA[key] : null;
       if (!(ta && ta.length >= 15) && LAX && LAX[key]) ta = LAX[key];
       const taOk = ta && ta.length >= 15;   // 16-field rows carry features; 4-field rows are featureless
+      const _sub = subsByArtist[aSlug] || "";
+      const _fam = (window.ROTATION_LIKED_FAMS || []).find(f => f.i === meta[4]);
       out.push({ key, meta, artist, track, album, albumCover, aSlug, albumSlug, bucketKey: leg.key,
-        famId: meta[4], sub: subsByArtist[aSlug] || "",
+        famId: meta[4], sub: _sub,
+        // SEARCH HAYSTACK (Fuad 2026-08-21) — artist + title + subgenre + genre family, folded once
+        // here rather than rebuilt inside the three separate filters that need it. Adding the
+        // subgenre to the matcher means typing "shoegaze" finds the tracks even when no chip is set,
+        // and the family name comes along so "metalcore" works whether it is a family or a subgenre.
+        _hay: (artist + " " + track + " " + _sub + " " + (_fam ? _fam.family : "")).toLowerCase(),
         tempo: meta[5], energy: meta[6], valence: meta[7],
         dance:    taOk ? ta[TA_IDX.dance]    : null,
         acoustic: taOk ? ta[TA_IDX.acoustic] : null,   // radar axis (0..100)
@@ -826,7 +845,7 @@ function LikedView({ go }) {
   const genreBase = React.useMemo(() => {
     const needle = q.trim().toLowerCase();
     return rows.filter(r => (bucket === "all" || r.bucketKey === bucket) &&
-      (!needle || (r.artist + " " + r.track).toLowerCase().includes(needle)));
+      (!needle || r._hay.includes(needle)));
   }, [rows, q, bucket]);
   const famCounts = React.useMemo(() => {
     const c = {}; for (const r of genreBase) if (r.famId != null) c[r.famId] = (c[r.famId] || 0) + 1;
@@ -868,7 +887,7 @@ function LikedView({ go }) {
     const useDna = dictating === "dna" && target != null;
     let list = rows.filter(r => {
       if (bucket !== "all" && r.bucketKey !== bucket) return false;
-      if (needle && !(r.artist + " " + r.track).toLowerCase().includes(needle)) return false;
+      if (needle && !r._hay.includes(needle)) return false;
       if (fams.size && (r.famId == null || !fams.has(r.famId))) return false;
       if (subFilter && r.sub !== subFilter) return false;
       // vocals dimension — ALWAYS-ON (like bucket/genre/search), independent of DNA/sliders arbitration.
@@ -950,7 +969,7 @@ function LikedView({ go }) {
     let n = 0;
     for (const r of rows) {
       if (bucket !== "all" && r.bucketKey !== bucket) continue;
-      if (needle && !(r.artist + " " + r.track).toLowerCase().includes(needle)) continue;
+      if (needle && !r._hay.includes(needle)) continue;
       if (fams.size && (r.famId == null || !fams.has(r.famId))) continue;
       if (subFilter && r.sub !== subFilter) continue;
       if (vxBySlug.get(r.aSlug) === undefined) n++;
@@ -1058,7 +1077,33 @@ function LikedView({ go }) {
            (tempo/energy, plays, first-year) collapses out entirely — there is simply not enough width;
            the values stay reachable on desktop. The " · genre" text also hides (the artist-name colour
            tint carries the genre now). The bucket pip stays as the one right-side survivor. */
+        /* the abbreviated forms exist only for phones — see the media block below */
+        .lk-fam-abbr, .lk-tuneabbr { display: none; }
         @media (max-width: 760px) {
+          /* GENRE CHIPS abbreviate (Fuad 2026-08-21). Both labels ship and CSS picks one, the same
+             way the bucket pip already swaps its full word for a capital — no measuring in JS. */
+          .lk-fam-full { display: none; }
+          .lk-fam-abbr { display: inline; }
+          /* TUNE DNA holds the kicker's line and shortens to DNA. The head is flex-wrap:wrap, so the
+             pill was dropping to a second line and losing its right-hand anchor; nowrap keeps the
+             two ends of the row facing each other, which is only affordable once the label is three
+             characters long. */
+          .lk-head { flex-wrap: nowrap !important; }
+          .lk-tunelbl { display: none; }
+          .lk-tuneabbr { display: inline; }
+          /* buckets and vocals become two SEPARATE rails. One shared rail would mean scrolling past
+             every bucket to reach the vocals chips, and the vocals label would scroll away from the
+             chips it names. marginLeft:auto is what right-pins vocals on desktop; here the group is
+             a full-width row of its own, so the auto margin has to go or it fights the width. */
+          .lk-buckets, .lk-vocalsrow {
+            flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; min-width: 0; width: 100%;
+            scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 3px;
+            -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+                    mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+          }
+          .lk-buckets::-webkit-scrollbar, .lk-vocalsrow::-webkit-scrollbar { display: none; }
+          .lk-buckets > *, .lk-vocalsrow > * { flex: none; }
+          .lk-vocalsrow { margin-left: 0 !important; }
           /* TUNE DNA on a phone (Fuad 2026-08-21). The group is a fixed 190px column so the radar
              and its tolerance slider both sat hard against the left edge of a full-width card,
              with dead space to their right. Taking the full width does both jobs at once: the
@@ -1088,7 +1133,7 @@ function LikedView({ go }) {
       {/* header row: title on the left, the DNA TUNE control hugging the right (stacks under the
           title on narrow screens via flex-wrap). */}
       {/* title hidden (Fuad 2026-08-20); .r-headbare closes the gap it leaves. */}
-      <div className="r-viewhead r-headbare" style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 10 }}>
+      <div className="r-viewhead r-headbare lk-head" style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 10 }}>
         <div>
           <div className="r-kicker">Spotify · {rows.length} saved songs</div>
           {/* <h1 className="r-title">Your <em>liked</em> songs<span className="dot">.</span></h1> */}
@@ -1102,7 +1147,7 @@ function LikedView({ go }) {
           title="jump to the audio-DNA tuner (below the songs)"
           style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase",
             padding: "7px 13px", borderRadius: 999, background: "transparent", cursor: "pointer" }}>
-          tune DNA {anyTuneActive ? <span style={{ opacity: .7 }}>· {dictating === "dna" ? "shape" : (activeBands.length + (keyActive ? 1 : 0) + (modeActive ? 1 : 0)) + " on"}</span> : null}
+          <span className="lk-tunelbl">tune DNA</span><span className="lk-tuneabbr">DNA</span> {anyTuneActive ? <span style={{ opacity: .7 }}>· {dictating === "dna" ? "shape" : (activeBands.length + (keyActive ? 1 : 0) + (modeActive ? 1 : 0)) + " on"}</span> : null}
           <span onClick={e => { e.stopPropagation(); setTuneOpen(o => !o); }} title={tuneOpen ? "collapse" : "expand"} style={{ opacity: .8 }}>{tuneOpen ? "▾" : "▸"}</span>
         </button>
       </div>
@@ -1110,13 +1155,17 @@ function LikedView({ go }) {
           a band/key/mode is active), keeping the row uncluttered (the standalone handles are gone).
           Vocals chips are an ALWAYS-ON filter (like buckets/genre/search) and ride the RIGHT of this row
           (marginLeft:auto group), before the reserved reset-tune slot; the group wraps below when narrow. */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10, alignItems: "center" }}>
+      <div className="lk-bucketrow" style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10, alignItems: "center" }}>
+        {/* wrapped so the bucket chips and the vocals group can become two SEPARATE rails on a
+            phone; on desktop a nested flex with the same gap renders identically to the flat row */}
+        <div className="lk-buckets" style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
         {CHIPS.map(([k, label]) => (
           <button key={k} className={"r-chip link lk-cchip" + (bucket === k ? " on" : "")}
             style={{ textTransform: "none" }} onClick={() => setBucket(k)}>
             {label} <span style={{ opacity: .6 }}>{counts[k] || 0}</span>
           </button>
         ))}
+        </div>
         {/* reset-tune (Fuad 2026-08-12): its slot is RESERVED — always rendered, hidden (visibility) +
             inert when no tune is active, so the row never reflows as it appears/disappears. Accent-toned
             (var(--accent) + accent-dim border), matching the clear-filter pill convention (gv-tour-chip).
@@ -1131,7 +1180,7 @@ function LikedView({ go }) {
             only visibility:hidden, so on desktop an invisible button held ~90px to the right of
             vocals and the group never reached the edge (Fuad 2026-08-20). Toggle semantics: clicking
             the active option returns to "any"; the "N without data" note shows only under one. */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center", marginLeft: "auto" }}>
+        <div className="lk-vocalsrow" style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center", marginLeft: "auto" }}>
           <span className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".12em", textTransform: "uppercase", color: vocalsActive ? "var(--accent)" : "var(--ink-faint)", marginRight: 2 }}>vocals</span>
           {LK_VOCALS.map(([k, l]) => (
             <button key={k} className={"r-chip link lk-cchip" + (vocals === k ? " on" : "")}
@@ -1152,7 +1201,11 @@ function LikedView({ go }) {
             return (
               <button key={f.i} className={"r-chip link lk-famchip" + (on ? " on" : "")} style={{ textTransform: "none", "--gc": c, color: on ? undefined : c }}
                 onClick={() => setFams(s => { const n = new Set(s); n.has(f.i) ? n.delete(f.i) : n.add(f.i); return n; })}>
-                {f.family} <span style={{ opacity: .6 }}>{famCounts[f.i]}</span>
+                {/* both labels ship and CSS picks one — same idiom as the bucket pip below, and it
+                    keeps the swap a pure layout concern with no width measuring in JS */}
+                <span className="lk-fam-full">{f.family}</span>
+                <span className="lk-fam-abbr">{LK_FAM_ABBR[f.family] || f.family}</span>
+                {" "}<span style={{ opacity: .6 }}>{famCounts[f.i]}</span>
               </button>
             );
           })}
@@ -1171,7 +1224,7 @@ function LikedView({ go }) {
 
       {/* search + sort */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", marginBottom: 12 }}>
-        <input value={q} onChange={e => setQ(e.target.value)} placeholder="search artist or title…"
+        <input value={q} onChange={e => setQ(e.target.value)} placeholder="search artist, title or genre…"
           style={{ flex: "1 1 200px", minWidth: 0, background: "var(--bg-2)", border: "1px solid var(--rule-2)", borderRadius: 999, padding: "8px 14px", color: "var(--ink)", fontFamily: "var(--mono)", fontSize: 12, outline: "none" }} />
         <div className="r-seg r-seg-sm" style={{ flexWrap: "wrap" }}>
           {/* "oldest" retired 2026-08-17 — replaced by the INVERT chip at the row's end, which flips
