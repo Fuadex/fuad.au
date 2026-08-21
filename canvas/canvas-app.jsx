@@ -2498,7 +2498,12 @@ function MapView({ go }) {
       const home = homeOf(w);
       const m = mid ? MUS_BY_ID[mid] : (home && home.museumId ? MUS_BY_ID[home.museumId] : null);
       const venueName = m ? m.name.replace(/\s*\(.*\)$/, "") : (home ? home.name : null);
-      const cityName = m ? m.city : (home ? home.city : null);
+      // P131 sometimes names an administrative entity nobody would put on an envelope
+      // ("Khamovniki District" is the Tretyakov's corner of Moscow). Only the handful that
+      // actually appear in the data; everything else keeps its honest name.
+      const CITY_ALIAS = { "Khamovniki District": "Moscow", "Glasgow City": "Glasgow", "Aberdeen City": "Aberdeen", "City of Edinburgh": "Edinburgh" };
+      const rawCity = m ? m.city : (home ? home.city : null);
+      const cityName = CITY_ALIAS[rawCity] || rawCity;
       // list key: the institution that houses it, so the text list reads as an itinerary
       const key = venueName ? (cityName ? cityName + " — " + venueName : venueName) : "home unknown";
       (byMus[key] = byMus[key] || []).push(w);
@@ -2538,6 +2543,14 @@ function MapView({ go }) {
     }));
     for (const f of farList) { f.ox = f.x; f.oy = f.y; f.r = farRad(f); }
     const visRad = (c) => (c.n ? 1.4 + Math.sqrt(c.n) * 0.8 : 1.1);
+    // GEOGRAPHY WINS (Fuad 2026-08-22: "Helsinki is over sea, same with Bordeaux"). The first
+    // pass evicted a far bubble to a visited bubble's rim in one hard snap and allowed 4 units
+    // (~160 km) of drift with NO restoring force — so any transient collision walked a bubble to
+    // the clamp, and for a coastal city even one unit is open water. Now the eviction is a gentle
+    // half-push, every pass pulls the bubble back toward its true coordinate (the same 0.3 spring
+    // the visited relaxation always had), and the hard clamp is 1.2 units — a slight nudge apart
+    // is acceptable, a city off its coastline is not. Residual overlap at this density loses to
+    // being where the city actually is.
     for (let it = 0; it < 24; it++) {
       let moved = false;
       for (const f of farList) {
@@ -2545,7 +2558,8 @@ function MapView({ go }) {
           const min = visRad(c) + f.r + 0.6;
           let dx = f.x - c.x, dy = f.y - c.y, d = Math.hypot(dx, dy);
           if (d >= min) continue; if (d < 0.01) { dx = 0.5; dy = 0.3; d = Math.hypot(dx, dy); }
-          f.x = c.x + dx / d * min; f.y = c.y + dy / d * min; moved = true;
+          const push = (min - d) / d / 2;
+          f.x += dx * push; f.y += dy * push; moved = true;
         }
       }
       for (let i = 0; i < farList.length; i++) for (let j = i + 1; j < farList.length; j++) {
@@ -2554,7 +2568,11 @@ function MapView({ go }) {
         if (d >= min) continue; if (d < 0.01) { dx = 0.5; dy = 0.3; d = Math.hypot(dx, dy); }
         const push = (min - d) / d / 2; a.x -= dx * push; a.y -= dy * push; b.x += dx * push; b.y += dy * push; moved = true;
       }
-      for (const f of farList) { const ex = f.x - f.ox, ey = f.y - f.oy, e = Math.hypot(ex, ey); if (e > 4) { f.x = f.ox + ex / e * 4; f.y = f.oy + ey / e * 4; } }
+      for (const f of farList) {
+        f.x += (f.ox - f.x) * 0.3; f.y += (f.oy - f.y) * 0.3;
+        const ex = f.x - f.ox, ey = f.y - f.oy, e = Math.hypot(ex, ey);
+        if (e > 1.2) { f.x = f.ox + ex / e * 1.2; f.y = f.oy + ey / e * 1.2; }
+      }
       if (!moved) break;
     }
     const farByKey = {}; for (const f of farList) farByKey[f.key] = f;
@@ -2733,8 +2751,13 @@ function MapView({ go }) {
   // simply re-scaled at render: k is vb.w/880, which shrinks as you zoom, so the fan contracts
   // toward its bubble and the halo stops sprawling across a zoomed-in view. Clamped so the dots
   // never collapse INTO the bubble at extreme zoom, and never overreach when zoomed out.
-  const fanK = Math.max(0.28, Math.min(1.15, k));
+  // Floor 0.28 → 0.16 (Fuad 2026-08-22: "the branching needs to be shorter" once zoomed in).
+  const fanK = Math.max(0.16, Math.min(1.15, k));
   const fanAt = (mk) => [mk.bx + (mk.x - mk.bx) * fanK, mk.by + (mk.y - mk.by) * fanK];
+  // DOT ZOOM (Fuad 2026-08-22: "the dots can start initially smaller — when zoomed in they can
+  // be the size they are"). Halo dots render at 60% in the resting world view and ramp to full
+  // size as the viewBox narrows; k = vb.w/880, full size from a 2.5x zoom (k ≤ 0.4) on down.
+  const dotZoom = Math.max(0.6, Math.min(1, 0.4 / k));
   // pull any child toward its parent by the same zoom factor, so the opened branch contracts on
   // zoom exactly as the resting halo does
   const towards = (px, py, x, y) => [px + (x - px) * fanK, py + (y - py) * fanK];
@@ -3051,7 +3074,7 @@ function MapView({ go }) {
 
   return (
     <div className="cv-map">
-      <p className="cv-deck-sum">Every city where a work entered your canon, sized by how much it gave you — <b>click a city</b> to branch out to its museums and the works you loved there (hover a work for a look). The <b style={{ color: "oklch(0.55 0.19 18)" }}>♥ markers</b> are works you're still chasing, and the <b style={{ color: "oklch(0.55 0.1 18)" }}>rose bubbles</b> are the cities holding them that you haven't walked yet — click one to see what's waiting there. Scroll or pinch to zoom, drag to pan — hover to magnify the bubbles under your cursor (tap on touch).</p>
+      <p className="cv-deck-sum">Every city where a work entered your canon, sized by how much it gave you — <b>click a city</b> to branch out to its museums and the works you loved there (hover a work for a look). The <b style={{ color: "oklch(0.45 0.14 150)" }}>green markers</b> are works you're still chasing, and the <b style={{ color: "oklch(0.52 0.09 150)" }}>green bubbles</b> are the cities holding them that you haven't walked yet — click one to see what's waiting there. Scroll or pinch to zoom, drag to pan — hover to magnify the bubbles under your cursor (tap on touch).</p>
       <div className="cv-map-wrap" onMouseLeave={onLeave}>
         <div className="cv-map-zoom">
           <button type="button" onClick={() => zoomCenter(1 / 1.4)} aria-label="Zoom in" title="Zoom in">+</button>
@@ -3074,7 +3097,7 @@ function MapView({ go }) {
             // a curve, not a spoke (Fuad 2026-08-19) — shared `bow` helper, so the resting halo and
             // the opened branch arc identically instead of drifting apart over time
             return <path key={"wl" + mk.w.id + "-" + i} d={bow(mk.bx, mk.by, fx, fy)}
-              fill="none" stroke="oklch(0.55 0.19 18 / .4)" strokeWidth={0.5 * k} />;
+              fill="none" stroke="oklch(0.5 0.12 150 / .38)" strokeWidth={0.5 * k} />;
           })}
           {!focus && cities.list.map(c => {
             if (!inView(c.x, c.y)) return null;
@@ -3093,19 +3116,21 @@ function MapView({ go }) {
           })}
           {/* FAR CITIES (2026-08-22): the galleries not yet walked, holding the works not yet
               seen. Same map language as the lived layer — a bubble sized by what it holds, a halo
-              of its strongest wants, click to branch — but in the rose register the chase already
-              owns (the ♥ hue), a step quieter in chroma and alpha so the biography stays loudest.
+              of its strongest wants, click to branch — but GREEN (Fuad: the first pass used a rose
+              near the biography's warmth and the whole map read as one warm mush). Green is the
+              unseen register everywhere on this map now; cool against the warm lived layer.
               Hollow was rejected for the work dots once (reads as a hole in the map); these are
-              filled for the same reason, and distinguished by hue alone. */}
+              filled for the same reason, and distinguished by hue alone. Labels only from 10
+              works up — at 8 the resting view grew a crowd of names (also Fuad). */}
           {!focus && wishFar.map(f => {
             if (!inView(f.x, f.y)) return null;
             const [fx, fy, fs] = fish(f.x, f.y, f.r);
             return (
               <g key={"far" + f.key} className="cv-pin" onClick={() => focusFar(f)} style={{ cursor: "pointer" }}>
                 <circle cx={fx} cy={fy} r={f.r * fs * k * dotMul}
-                  fill="oklch(0.55 0.1 18 / .55)" stroke="#f4ecdf" strokeWidth={0.5 * k} />
+                  fill="oklch(0.52 0.09 150 / .55)" stroke="#f4ecdf" strokeWidth={0.5 * k} />
                 <title>{f.city} — {f.n} work{f.n !== 1 ? "s" : ""} to see · {f.venues.length} venue{f.venues.length !== 1 ? "s" : ""} · not yet walked · click to open</title>
-                {(f.n >= 8 || fs > 1.25) && <text x={fx} y={fy - (f.r * fs * dotMul + 1) * k} textAnchor="middle" style={{ fontSize: 7 * k * dotMul, opacity: 0.75 }}>{f.city}</text>}
+                {(f.n >= 10 || fs > 1.25) && <text x={fx} y={fy - (f.r * fs * dotMul + 1) * k} textAnchor="middle" style={{ fontSize: 7 * k * dotMul, opacity: 0.75 }}>{f.city}</text>}
               </g>
             );
           })}
@@ -3118,16 +3143,18 @@ function MapView({ go }) {
                 onMouseEnter={e => setHover({ w: mk.w, mx: e.clientX, my: e.clientY, venue: mk.venue, city: mk.city })}
                 onMouseMove={e => setHover(h => h && h.w === mk.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                 onMouseLeave={() => setHover(null)}>
-                {/* THREE REGISTERS (Fuad 2026-08-19). Seen works are the orange city bubbles above.
-                    Still-to-meet works split by appetite: LOVED hot red, LIKED solid amber — the
-                    two fills the OPENED branch already used, which Fuad preferred to the hollow
-                    wash tried first. Hollow was a mistake twice over: too faint to pick out of a
-                    dense halo, and being mostly transparent it read as a hole punched in the map
-                    rather than a mark placed on it. Loved stays slightly larger; fs multiplies
-                    both, so the lens keeps the relationship. */}
+                {/* THE UNMET ARE GREEN (Fuad 2026-08-22: "differently colored dots for museums and
+                    art I haven't seen, maybe shades of green"). The halo dots had borrowed the
+                    opened branch's red/amber — but inside a branch those fills mean works SEEN and
+                    loved/liked, so one palette carried two opposite meanings and the map read as
+                    warm mush. The whole unseen register is now the green family, cool against the
+                    warm biography, with the loved/liked split kept as deep vs light green. Still
+                    filled, never hollow (rejected 2026-08-19: reads as a hole punched in the map).
+                    dotZoom starts them smaller at the resting view and lets them reach full size
+                    as you zoom in (also Fuad 2026-08-22). */}
                 {unseenRank(mk.w) === 2
-                  ? <circle cx={fx} cy={fy} r={2.1 * fs * k * dotMul} fill="oklch(0.55 0.19 18 / .92)" stroke="#f7efe2" strokeWidth={0.5 * k} />
-                  : <circle cx={fx} cy={fy} r={1.7 * fs * k * dotMul} fill="oklch(0.62 0.12 52 / .9)" stroke="#f7efe2" strokeWidth={0.45 * k} />}
+                  ? <circle cx={fx} cy={fy} r={2.1 * fs * k * dotMul * dotZoom} fill="oklch(0.45 0.14 150 / .92)" stroke="#f7efe2" strokeWidth={0.5 * k} />
+                  : <circle cx={fx} cy={fy} r={1.7 * fs * k * dotMul * dotZoom} fill="oklch(0.6 0.11 130 / .9)" stroke="#f7efe2" strokeWidth={0.45 * k} />}
               </g>
             );
           })}
@@ -3161,8 +3188,12 @@ function MapView({ go }) {
                         onMouseMove={e => setHover(h => h && h.w === wn.w ? { ...h, mx: e.clientX, my: e.clientY } : h)}
                         onMouseLeave={() => setHover(null)}>
                         <path d={bow(mx, my, fx, fy, 0.16, 1.4)} fill="none" stroke="rgba(58,47,34,.26)" strokeWidth={0.3 * k} />
-                        <circle cx={fx} cy={fy} r={(wn.w.floored ? 1.8 : 1.5) * fs * k * dotMul}
-                          fill={wn.w.floored ? "oklch(0.55 0.19 18 / .92)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.4 * k} />
+                        {/* red/amber = seen-and-loved/liked; a far branch's works are UNMET, so
+                            they stay in the green register like every other unseen mark */}
+                        <circle cx={fx} cy={fy} r={wn.r * fs * k * dotMul}
+                          fill={branch.far
+                            ? (unseenRank(wn.w) === 2 ? "oklch(0.45 0.14 150 / .92)" : "oklch(0.6 0.11 130 / .9)")
+                            : (wn.w.floored ? "oklch(0.55 0.19 18 / .92)" : "oklch(0.62 0.12 52 / .9)")} stroke="#f7efe2" strokeWidth={0.4 * k} />
                       </g>
                     );
                   });
@@ -3185,13 +3216,13 @@ function MapView({ go }) {
                     <g key={"m" + (nd.m.id || nd.m.name)} className="cv-mus" style={{ opacity: g, cursor: nd.m.id ? "pointer" : "default" }}
                       onClick={() => nd.m.id && go("museum", nd.m.id)}>
                       <circle cx={fx} cy={fy} r={nd.mr * fs * k}
-                        fill={branch.far ? "oklch(0.5 0.11 18 / .92)" : "oklch(0.5 0.14 46 / .95)"} stroke="#f4ecdf" strokeWidth={0.7 * k} />
+                        fill={branch.far ? "oklch(0.45 0.1 150 / .92)" : "oklch(0.5 0.14 46 / .95)"} stroke="#f4ecdf" strokeWidth={0.7 * k} />
                       <text className="cv-map-mlabel" x={lx} y={ly + (inward > 0 ? 1.9 : 0) * k}
                         textAnchor="middle" style={{ fontSize: 5 * k, strokeWidth: 1.6 * k }}>{nd.m.name}</text>
                     </g>
                   );
                 })}
-                <circle cx={cx} cy={cy} r={branch.cityR * 1.55 * k} fill={branch.far ? "oklch(0.42 0.13 15 / .96)" : "oklch(0.42 0.15 30 / .96)"} stroke="#f4ecdf" strokeWidth={0.9 * k} />
+                <circle cx={cx} cy={cy} r={branch.cityR * 1.55 * k} fill={branch.far ? "oklch(0.36 0.1 150 / .96)" : "oklch(0.42 0.15 30 / .96)"} stroke="#f4ecdf" strokeWidth={0.9 * k} />
                 <text x={cx} y={cy + 1.5 * k} textAnchor="middle" style={{ fontSize: 5.6 * k, fontWeight: 700, fill: "#f4ecdf" }}>{branch.c.city}</text>
               </g>
             );
@@ -3241,9 +3272,16 @@ function MapView({ go }) {
                     {co.floored > 0 && <b>★ {co.floored}</b>}
                     {co.n} work{co.n === 1 ? "" : "s"} · {co.cities.length} cit{co.cities.length === 1 ? "y" : "ies"}
                   </span>
-                  <span className="cv-pil-caret">{cOpen ? "▾" : "▸"}</span>
+                  <span className="cv-pil-caret" data-open={cOpen || undefined}>▸</span>
                 </button>
-                {cOpen && co.cities.map(c => {
+                {/* TRANSITION ON DISCLOSURE (Fuad 2026-08-22: "enforce a transition when clicking
+                    on country / city"). Content still mounts only when opened — the reels hold
+                    ~1,500 LazyImg tiles across all venues and keeping them all in the DOM just to
+                    animate a close is the wrong trade. Instead the fold plays a one-shot
+                    grid-rows 0fr→1fr animation on mount (cv-pil-fold), which animates to the
+                    content's real height with no measuring; closing unmounts plainly. The caret
+                    rotates instead of swapping characters, so both directions still move. */}
+                {cOpen && <div className="cv-pil-fold"><div className="cv-pil-foldin">{co.cities.map(c => {
                   const open = openCity.has(c.key);
                   return (
                     <div className="cv-pil-city" key={c.key}>
@@ -3253,17 +3291,17 @@ function MapView({ go }) {
                           {c.floored > 0 && <b>★ {c.floored}</b>}
                           {c.n} work{c.n === 1 ? "" : "s"} · {c.venues.length} venue{c.venues.length === 1 ? "" : "s"}
                         </span>
-                        <span className="cv-pil-caret">{open ? "▾" : "▸"}</span>
+                        <span className="cv-pil-caret" data-open={open || undefined}>▸</span>
                       </button>
-                      {open && c.venues.map(v => (
+                      {open && <div className="cv-pil-fold"><div className="cv-pil-foldin">{c.venues.map(v => (
                         <div className="cv-pil-venue" key={v.name}>
                           <div className="cv-pil-venuename">{v.name} <span>· {v.list.length}</span></div>
                           <PilReel works={v.list} go={go} />
                         </div>
-                      ))}
+                      ))}</div></div>}
                     </div>
                   );
-                })}
+                })}</div></div>}
               </div>
             );
           })}
@@ -3273,13 +3311,15 @@ function MapView({ go }) {
               <button className="cv-pil-cityhead" data-on={showUnplaced} onClick={() => setShowUnplaced(v => !v)}>
                 <span className="cv-pil-cityname">Home not known</span>
                 <span className="cv-pil-citymeta">{wishUnplaced.length} works</span>
-                <span className="cv-pil-caret">{showUnplaced ? "▾" : "▸"}</span>
+                <span className="cv-pil-caret" data-open={showUnplaced || undefined}>▸</span>
               </button>
               {showUnplaced && (
-                <div className="cv-pil-venue">
-                  <div className="cv-pil-venuename">No P195 on the record <span>· {wishUnplaced.length}</span></div>
-                  <PilReel works={wishUnplaced} go={go} />
-                </div>
+                <div className="cv-pil-fold"><div className="cv-pil-foldin">
+                  <div className="cv-pil-venue">
+                    <div className="cv-pil-venuename">No P195 on the record <span>· {wishUnplaced.length}</span></div>
+                    <PilReel works={wishUnplaced} go={go} />
+                  </div>
+                </div></div>
               )}
             </div>
           )}
