@@ -1096,7 +1096,12 @@ function LikedView({ go }) {
              chips it names. marginLeft:auto is what right-pins vocals on desktop; here the group is
              a full-width row of its own, so the auto margin has to go or it fights the width. */
           .lk-buckets, .lk-vocalsrow {
-            flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; min-width: 0; width: 100%;
+            /* !important is the whole fix (Fuad 2026-08-22, third attempt). Both of these divs carry
+               an INLINE flexWrap:"wrap" from their style prop, and an inline declaration beats a
+               stylesheet rule no matter how specific the selector — so the rows kept wrapping and
+               the overflow never became scroll. Two earlier passes chased min-width up the ancestor
+               chain, which was a real bug elsewhere and simply not this one. */
+            flex-wrap: nowrap !important; overflow-x: auto; overflow-y: hidden; min-width: 0; width: 100%;
             scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 3px;
             -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
                     mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
