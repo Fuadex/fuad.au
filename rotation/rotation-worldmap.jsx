@@ -78,7 +78,11 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
           {series.map((s, i) => (
             <div key={s.key} onMouseEnter={() => setHi(i)} onMouseLeave={() => setHi(-1)} onClick={() => onPick(s)}
               style={{ display: "inline-flex", alignItems: "center", gap: 6, cursor: "pointer", opacity: hi < 0 || hi === i ? 1 : 0.4, transition: ".15s" }}>
-              <span style={{ width: 9, height: 9, borderRadius: 2, background: `oklch(0.62 0.16 ${s.hue})` }} />
+              {/* hollow at rest, filled on hover — the same register as the flow bands (Fuad
+                  2026-08-22: legend fills go hollow, hover restores the solid) */}
+              <span style={{ width: 9, height: 9, borderRadius: 2, transition: "background .15s",
+                background: hi === i ? `oklch(0.62 0.16 ${s.hue})` : `oklch(0.62 0.16 ${s.hue} / .14)`,
+                boxShadow: `inset 0 0 0 1.5px oklch(0.62 0.16 ${s.hue})` }} />
               {/* short family names in the LEGEND only (Fuad 2026-08-20) — the bands themselves keep
                   the full name; this swatch list is the bit that wraps to several rows on a phone.
                   famShort falls through unchanged for anything not in the map, subgenres included,
@@ -93,7 +97,7 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   );
 }
 
-function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot, initFilter, onFilter }) {
+function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot, initFilter, onFilter, onClearPeriod }) {
   const R = window.ROTATION;
   const G = R.INSIGHTS.GEOGRAPHY;
   const cityPts = G.cityPoints || [];
@@ -391,19 +395,47 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     const songs = (P.s || []).map(([ti, ai, p]) => { const artist = NM[ai]; const id = (R.idForName && R.idForName(artist)) || R.slug(artist); return { title: NM[ti], artist, aid: id, plays: p }; });
     return { arts, albums, songs, label: calPeriod.key + (calPeriod.gran === "week" ? " (week)" : "") };
   }, [calPeriod, R]);
+  // period rows filtered through whatever ELSE is active (Fuad 2026-08-22: "not possible to
+  // filter by both calendar and country or subgenre" — the period used to REPLACE the other
+  // filters). calendar-detail rows are just artist names, so membership is proven against the
+  // artist's EXPLORE record: genre via matchGenre, place via co/ci. An artist with no record
+  // can't prove membership and drops — honest for a filtered view.
+  const periodArtsFiltered = React.useMemo(() => {
+    if (!periodData) return null;
+    const genreOn = filt.fam != null || filt.sub != null;
+    if (!genreOn && !sel) return periodData.arts;
+    const recOf = (id) => (R.expById && R.expById[id]) || (R.byId && R.byId[id]) || (R.EXPLORE && R.EXPLORE.find(a => a.id === id));
+    return periodData.arts.filter(e => {
+      const rec = recOf(e.a.id); if (!rec) return false;
+      if (genreOn && !matchGenre(rec)) return false;
+      if (sel) {
+        if (sel.kind === "country") { if (rec.co !== sel.key) return false; }
+        else { const [iso, city] = sel.key.split("|"); if (rec.co !== iso || rec.ci !== city) return false; }
+      }
+      return true;
+    });
+  }, [periodData, filt, sel, R]);
   const resultArtists = React.useMemo(() => {
-    if (periodData) return periodData.arts;
+    if (periodData) return periodArtsFiltered;
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
     // UNCAPPED (Fuad 2026-07-26): the old .slice(0, 25) both blocked the 50-row selector and
     // made the results-card "plays" stat sum only the top 25 (81,838 mystery). The render
     // paths slice to `limit`; the reduce over the full array is the honest slice total.
     return filteredArtists.map(a => ({ a, p: yr != null ? (a.yp ? (a.yp[yr] || 0) : 0) : a.plays }))
       .filter(e => e.p > 0).sort((x, y) => y.p - x.p);
-  }, [filteredArtists, yearIdx, periodData]);
+  }, [filteredArtists, yearIdx, periodData, periodArtsFiltered]);
   // albums/songs aggregated from each filtered artist's own top lists (kept records + lazy detail) —
   // so the results work without picking a place. all-time (per-artist lists aren't year-split).
   const resultMedia = React.useMemo(() => {
-    if (periodData) return { albums: periodData.albums, songs: periodData.songs };
+    if (periodData) {
+      // albums/songs follow the same composed slice: keep only rows whose artist survived
+      const keep = new Set(periodArtsFiltered.map(e => e.a.id));
+      const same = periodArtsFiltered.length === periodData.arts.length;
+      return {
+        albums: same ? periodData.albums : periodData.albums.filter(x => keep.has(x.aid)),
+        songs: same ? periodData.songs : periodData.songs.filter(x => keep.has(x.aid)),
+      };
+    }
     const set = filteredArtists.slice().sort((a, b) => b.plays - a.plays).slice(0, 160);
     const albums = [], songs = [];
     for (const a of set) {
@@ -419,7 +451,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     }
     albums.sort((x, y) => y.plays - x.plays); songs.sort((x, y) => y.plays - x.plays);
     return { albums, songs };
-  }, [filteredArtists, adetail, periodData]);
+  }, [filteredArtists, adetail, periodData, periodArtsFiltered]);
   const resultDNA = React.useMemo(() => {
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
     const acc = [0, 0, 0, 0, 0, 0]; let w = 0;
@@ -450,7 +482,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     // `slice` = a place/genre filter is active (not just a year/period). The Overview stat strip uses
     // it to decide whether to size avg/day from this (EXPLORE-scoped) count or from the exact day-series
     // total (which is right for a pure time filter). periodData is a time filter → slice:false.
-    if (periodData) { onStats({ active: true, slice: false, plays, artists, debutYears, hours: Math.round(plays * avgSec / 3600), label: periodData.label }); return; }
+    if (periodData) { onStats({ active: true, slice: false, plays, artists, debutYears, hours: Math.round(plays * avgSec / 3600), label: [periodData.label, sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null].filter(Boolean).join(" · ") }); return; }
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
     const slice = !!(sel || focus || filt.fam != null || filt.sub != null);
     onStats({ active: true, slice, plays, artists, debutYears, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null, yr].filter(Boolean).join(" · ") || "filtered" });
@@ -569,8 +601,11 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
             : <h1 className="r-title">Where it <em>comes from</em><span className="dot">.</span></h1>}
         </div>
         <div style={{ display: "flex", gap: 10, alignItems: "flex-end", flexWrap: "wrap" }}>
-          {(sel || focus || filt.fam != null || filt.sub != null) && (
-            <button className="mp-clear" onClick={() => { reset(); setFilt({ fam: null, sub: null }); }}>✕ clear filters</button>
+          {/* clear-all clears the CALENDAR too (Fuad 2026-08-22) — the period lives upstairs in
+              Overview state, reached through onClearPeriod; the button also shows when the
+              calendar is the ONLY active filter */}
+          {(sel || focus || filt.fam != null || filt.sub != null || (calPeriod && onClearPeriod)) && (
+            <button className="mp-clear" onClick={() => { reset(); setFilt({ fam: null, sub: null }); if (onClearPeriod) onClearPeriod(); }}>✕ clear filters</button>
           )}
         </div>
       </div>
@@ -658,7 +693,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
             <div key={(t.code || t.city) + i} className="map-listrow"
               onMouseEnter={() => setHi(t.code ? t.code : "c" + cityPts.filter(c => !focus || c.country === focus).indexOf(t))} onMouseLeave={() => setHi(null)}
               onClick={() => { if (t.code) openBubble({ kind: "country", c: t }); else { setSel({ kind: "city", key: t.country + "|" + t.city }); setPane("artists"); } }}>
-              <span style={{ width: 11, height: 11, borderRadius: 3, background: placeHue(t), flex: "none" }} />
+              <span className="map-sw" style={{ width: 11, height: 11, borderRadius: 3, "--sw": placeHue(t), flex: "none" }} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.flag} {t.code ? t.name : t.city} <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>· {t.artists}a</span></div>
                 <div style={{ height: 4, background: "var(--bg-3)", borderRadius: 3, overflow: "hidden", marginTop: 3 }}><div style={{ height: "100%", width: ((filtSums ? gval(t) : t.plays) / listMax * 100) + "%", background: "var(--accent-dim)", borderRadius: 3 }} /></div>
@@ -680,7 +715,10 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
       {/* results — top artists + albums + songs + DNA for the current place ∩ genre ∩ year (no place needed) */}
       {(() => {
         const gName = filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null;
-        const parts = periodData ? ["on " + periodData.label] : [sel ? (selFlag + " " + selName) : "everywhere", gName || "all genres", yearIdx != null ? geoYears[yearIdx] : "all years"];
+        // a period now COMPOSES with place/genre, so the caption names every active axis
+        const parts = periodData
+          ? ["on " + periodData.label, sel ? (selFlag + " " + selName) : null, gName].filter(Boolean)
+          : [sel ? (selFlag + " " + selName) : "everywhere", gName || "all genres", yearIdx != null ? geoYears[yearIdx] : "all years"];
         const totalPlays = resultArtists.reduce((s, e) => s + e.p, 0);
         return (
           <div className="r-card mp-results" style={{ marginTop: "var(--gap)", padding: 22 }}>
@@ -840,6 +878,10 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
           padding: 6px 11px; border-radius: 999px; border: 1px solid var(--accent-dim); color: var(--accent);
           background: var(--accent-bg); cursor: pointer; align-self: flex-end; }
         .mp-clear:hover { background: transparent; }
+        /* deepest countries/cities swatches: hollow at rest, filled when the row is hovered —
+           the flow bands' quiet-until-cursor register (Fuad 2026-08-22) */
+        .map-sw { background: transparent; box-shadow: inset 0 0 0 1.5px var(--sw); transition: background .15s; }
+        .map-listrow:hover .map-sw { background: var(--sw); }
         /* cover grid: fixed columns so a lone last item doesn't stretch into an orphan */
         .mp-covergrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
         .mp-coveritem { cursor: pointer; min-width: 0; }

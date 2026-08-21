@@ -175,7 +175,7 @@ function OvCalRail({ go, onYear, onPeriod, init }) {
 // OvMapBand — the geography band: the FULL MapView (+ the calendar rail slotted into its left
 // column, under deepest places). Mounts once the user scrolls near, so Overview's first paint
 // doesn't pay for world-map.js.
-function OvMapBand({ go, extYear, calPeriod, onStats, calRail, statSlot, restReady, initFilter, onFilter }) {
+function OvMapBand({ go, extYear, calPeriod, onStats, calRail, statSlot, restReady, initFilter, onFilter, onClearPeriod }) {
   const [ref, seen] = useInView();
   const [on, setOn] = React.useState(false);
   React.useEffect(() => { if (seen) setOn(true); }, [seen]);
@@ -184,7 +184,7 @@ function OvMapBand({ go, extYear, calPeriod, onStats, calRail, statSlot, restRea
   const ready = on && restReady;
   return (
     <div ref={ref} style={{ minHeight: ready ? 0 : 220 }}>
-      {ready ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} onStats={onStats} calSlot={calRail} statSlot={statSlot} initFilter={initFilter} onFilter={onFilter} />
+      {ready ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} onStats={onStats} calSlot={calRail} statSlot={statSlot} initFilter={initFilter} onFilter={onFilter} onClearPeriod={onClearPeriod} />
         : <div className="r-card" style={{ padding: 40, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>the world map loads as you scroll…</div>}
     </div>
   );
@@ -649,6 +649,7 @@ function OverviewView({ t, go, restReady, seed }) {
             a slot: it renders under the map's deepest-places column and cross-filters the results. */}
         <div className="ov-mapslot" style={{ gridColumn: "1 / -1" }}>
           <OvMapBand go={go} restReady={restReady} extYear={mapYear} calPeriod={mapPeriod} onStats={setFStats}
+            onClearPeriod={() => { setMapPeriod(null); setMapYear(null); }}
             initFilter={_seed.filter} onFilter={setMapFilter}
             calRail={<OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} init={_seed} />}
             statSlot={
@@ -682,7 +683,7 @@ function OverviewView({ t, go, restReady, seed }) {
                     narrow to a city or a genre and it drops to that corner's weight. Distinct from
                     the share stat above it, which follows the time window and reads years-of-history
                     when nothing is filtered. */}
-                {resShare != null && <Stat n={resShare + "%"} sub="of plays · in results" onClick={() => go("explore")} />}
+                {resShare != null && <Stat n={resShare + "%"} sub="of plays" onClick={() => go("explore")} />}
               </div>
             } />
         </div>
