@@ -1141,7 +1141,9 @@ a { color: inherit; }
 .cv-foldin { overflow: hidden; min-height: 0; min-width: 0; }
 /* the unfolded style chips drift in rather than popping — mount-only, so filter re-renders
    (chips stay mounted, keyed by slug) never replay it */
-.cv-styles-ext { margin-top: 2px; }
+/* bottom padding so the last chip row doesn't sit flush on the fold's clipped edge — reads
+   as the buttons being cut off (Fuad 2026-08-23) */
+.cv-styles-ext { margin-top: 2px; padding-bottom: 8px; }
 .cv-styles-ext button { animation: cvChipIn .3s ease both; }
 @keyframes cvChipIn { from { opacity: 0; transform: scale(.94); } }
 
