@@ -47,7 +47,9 @@ pixel-perfectly — and Commons rounds its own way; only measured `pyr` levels r
 | **Europeana** | key (.env) | 126 matches → 0 emits | Same masquerade problem plus thin image metadata. |
 | **Paris Musées** | key (.env), GraphQL | **1 emit** (Dinet, Femmes arabes à la promenade, 6807×5319, Petit Palais, open-content) | A saga: WAF blocks non-browser UAs; `title LIKE` queries 504 their gateway *every time* (a failed sweep looked like ~850 of the 1,000-call quota, though the dashboard later showed the quota unbilled); exact-title match is indexed and fast; image fields are `publicUrl` + `fieldImageLibre` (no dims served). Policy: **never bulk-sweep; spend calls surgically with exact French catalogue titles.** Homonyms abound (twelve "Ophélie"s — all Galliera costumes, none of them Steck's painting). |
 | **Rijksmuseum** | dead | 0 | The old API is gone (HTTP 410) and the Rijksstudio key portal no longer exists; new data platform has no self-service signup. Moot anyway: their open images were donated to Commons and swept via P18. |
-| **Getty / Yale / SMK / Brooklyn** | blocked or down | 0 | Getty endpoints network-blocked; both Yale APIs dead/403; SMK returning 500s; Brooklyn 429s without a key. |
+| **Getty / Yale / Brooklyn** | blocked or down | 0 | Getty endpoints network-blocked; both Yale APIs dead/403; Brooklyn 429s without a key. |
+| **SMK Copenhagen** | open API (recovered from 500s) | 1 match → 0 emits | Swept 21 Nordic canon works. Sole hit — *Interior. Artificial Light*, 118.8 MP — was a same-title different Hammershøi: canon Q18600052 is the Stockholm Nationalmuseum *Interior* (P195 Q842858), not SMK's. Holder gate rejection #21. |
+| **Nasjonalmuseet Oslo** | no public API | 0 | All 8 plausible endpoint patterns dead (timeouts / NXDOMAIN). Their IIIF exists but has no discoverable search front door. |
 | **Wikidata P6108/P4765** | open | 0 | No IIIF manifests exist for any canon work. The sweep's value was P18 dims + conflation discovery. |
 
 ## The identity discipline (why the gates exist)

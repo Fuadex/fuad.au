@@ -760,20 +760,11 @@ function Wall({ go, styleIds }) {
         return (
           <React.Fragment>
             <div className="cv-styles">
-              <span className="cv-styles-lbl" title="Wikidata files movement on the artist, not the artwork">styles</span>
-              {/* the count is the LIVE one; a chip that would return nothing is dimmed rather than hidden,
-                  so the row does not reshuffle under the cursor every time a filter changes */}
-              {movs.slice(0, STYLE_CHIPS).map(chip)}
-              {movs.length > STYLE_CHIPS && (
-                <button className="cv-styles-more" onClick={() => setAllStyles(v => !v)}>
-                  {allStyles ? "fewer" : `+ ${movs.length - STYLE_CHIPS} more`}
-                </button>
-              )}
-              {sel.length > 0 && <button className="cv-styles-clear" onClick={() => setSel([])}>✕ clear</button>}
-              {/* QUALITY rides the styles line, after the "+N more" disclosure (Fuad 2026-08-23 —
-                  moved twice: medium+era row → own row → here). Buckets: gigapixel >=100MP ·
-                  ultra >=20MP · high >=4MP · plate below; unknown size excluded when active. */}
-              <span className="cv-styles-lbl" style={{ marginLeft: 14 }}
+              {/* QUALITY leads the shared line, styles after it (Fuad 2026-08-23 — moved three
+                  times: medium+era row → own row → after styles → before styles). Buckets:
+                  gigapixel >=100MP · ultra >=20MP · high >=4MP · plate below; unknown size
+                  excluded when active. */}
+              <span className="cv-styles-lbl"
                 title="pixel size of the best source image — gigapixel ≥100MP · ultra ≥20MP · high ≥4MP · plate below">quality</span>
               {QUALITY.map(([k, label]) => {
                 const n = qualCounts[k] || 0;
@@ -783,6 +774,17 @@ function Wall({ go, styleIds }) {
                 );
               })}
               {qual.length > 0 && <button className="cv-styles-clear" onClick={unhang(() => setQual([]))}>✕ clear</button>}
+              <span className="cv-styles-lbl" style={{ marginLeft: 14 }}
+                title="Wikidata files movement on the artist, not the artwork">styles</span>
+              {/* the count is the LIVE one; a chip that would return nothing is dimmed rather than hidden,
+                  so the row does not reshuffle under the cursor every time a filter changes */}
+              {movs.slice(0, STYLE_CHIPS).map(chip)}
+              {movs.length > STYLE_CHIPS && (
+                <button className="cv-styles-more" onClick={() => setAllStyles(v => !v)}>
+                  {allStyles ? "fewer" : `+ ${movs.length - STYLE_CHIPS} more`}
+                </button>
+              )}
+              {sel.length > 0 && <button className="cv-styles-clear" onClick={() => setSel([])}>✕ clear</button>}
             </div>
             {/* "+N more" EASES OPEN — and "fewer" eases SHUT (Fuad 2026-08-22 ×2). The overflow
                 chips used to splice into the same wrap row, landing all ~109 in one frame; now
