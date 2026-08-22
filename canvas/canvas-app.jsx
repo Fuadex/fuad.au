@@ -758,6 +758,19 @@ function Wall({ go, styleIds }) {
                 </button>
               )}
               {sel.length > 0 && <button className="cv-styles-clear" onClick={() => setSel([])}>✕ clear</button>}
+              {/* QUALITY rides the styles line, after the "+N more" disclosure (Fuad 2026-08-23 —
+                  moved twice: medium+era row → own row → here). Buckets: gigapixel >=100MP ·
+                  ultra >=20MP · high >=4MP · plate below; unknown size excluded when active. */}
+              <span className="cv-styles-lbl" style={{ marginLeft: 14 }}
+                title="pixel size of the best source image — gigapixel ≥100MP · ultra ≥20MP · high ≥4MP · plate below">quality</span>
+              {QUALITY.map(([k, label]) => {
+                const n = qualCounts[k] || 0;
+                return (
+                  <button key={k} data-on={qual.includes(k)} data-empty={n === 0 && !qual.includes(k)}
+                    onClick={() => toggleQual(k)}>{label}<i>{n}</i></button>
+                );
+              })}
+              {qual.length > 0 && <button className="cv-styles-clear" onClick={unhang(() => setQual([]))}>✕ clear</button>}
             </div>
             {/* "+N more" EASES OPEN — and "fewer" eases SHUT (Fuad 2026-08-22 ×2). The overflow
                 chips used to splice into the same wrap row, landing all ~109 in one frame; now
@@ -773,21 +786,6 @@ function Wall({ go, styleIds }) {
           {shown.length} {shown.length === 1 ? "work" : "works"} by artists working in {sel.join(" or ")}
         </div>
       )}
-      {/* QUALITY on its own row below styles (Fuad 2026-08-23, moved from the medium+era row) —
-          how much real pixel the best source holds. gigapixel >=100MP (Google-Art-class scans) ·
-          ultra >=20MP (~5k px, deep zoom rewards) · high >=4MP (~2400px, full-screen solid) ·
-          plate below. */}
-      <div className="cv-styles">
-        <span className="cv-styles-lbl" title="pixel size of the best source image — gigapixel ≥100MP · ultra ≥20MP · high ≥4MP · plate below">quality</span>
-        {QUALITY.map(([k, label]) => {
-          const n = qualCounts[k] || 0;
-          return (
-            <button key={k} data-on={qual.includes(k)} data-empty={n === 0 && !qual.includes(k)}
-              onClick={() => toggleQual(k)}>{label}<i>{n}</i></button>
-          );
-        })}
-        {qual.length > 0 && <button className="cv-styles-clear" onClick={unhang(() => setQual([]))}>✕ clear</button>}
-      </div>
       <div className="cv-wall">{vis.map(w => <Card key={w.id} w={w} go={go} />)}</div>
       {shown.length > visN && (
         <div className="cv-more"><button onClick={() => setExtra(e => e + CAP)}>hang {Math.min(CAP, shown.length - visN)} more</button></div>
