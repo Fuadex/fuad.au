@@ -66,6 +66,12 @@ Everything not identity-safe by construction goes through two gates:
    - **conflated qids** — one entity fusing two works (L'Été: Berlin labels + Copenhagen
      collection; Boccioni's mother-portrait; Turner Saint-Maurice claiming oil at the
      Musée de l'Armée for a Tate watercolour)
+   - **serial-motif false positives** — visual verification itself fails on artists who
+     painted the same motif many times in the same palette: a verifier passed NGA's
+     path-to-Château-Noir as Fuad's *Rocks near the caves above Château Noir* (caught by
+     the owner, reverted b2ec0bd). For Cézanne Sainte-Victoire/Château Noir, Sisley's
+     Loing views and kin, similarity is NOT evidence — require a positive inventory-level
+     match or the owner's eye, and default to REJECT
 
 Score to date: the gates rejected **20 wrong objects** that title/qid matching alone
 would have shipped into canon.
