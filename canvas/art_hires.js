@@ -4,6 +4,8 @@
 // P195) and commons (P18 originals + verified wiki-lead files). `orig` = untouched original
 // for the reader's Ultra HQ / save links; never put a non-browser format (TIFF) in `img`.
 window.CANVAS_HIRES = {
+// tier-4 keyed sweep, pair-verified SAME (2026-08-23) — sole survivor of 12 candidates
+"claude-monet-charing-cross-bridge-fog": {"src": "harvard", "w": 2550, "h": 2018, "img": "https://nrs.harvard.edu/urn-3:HUAM:787382", "title": "Charing Cross Bridge, Fog", "conf": "high"},
 "a-pair-of-shoes": {"src": "commons", "w": 2985, "h": 2480, "title": "A Pair of Shoes", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Schoenen_-_s0011V1962_-_Van_Gogh_Museum.jpg"},
 "allegory-of-virtue-and-vice": {"src": "commons", "w": 1526, "h": 2000, "title": "Allegory of Virtue and Vice", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/4/47/Veronese_-_The_Choice_Between_Virtue_and_Vice%2C_ca._1565%2C_1912.1.129.jpg"},
 "edwin-landseer-man-proposes-god-disposes": {"src": "commons", "w": 1600, "h": 606, "title": "Man Proposes, God Disposes", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Man_proposes_god_disposes_-_Edwin_Landseer_-_RH.jpg"},
