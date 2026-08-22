@@ -2965,6 +2965,8 @@ by: "Opus · Fable" },
 
 "victor-muller-schnewittchen-bei-den-sieben-zwergen": {
 about: "Snow White stands at the meadow's edge as the seven dwarfs come tumbling toward her — a Grimm scene painted loose and pale, closer to a vision than an illustration. Müller was Frankfurt's earliest convert to Courbet's Realism after Paris years under Couture and Delacroix, and the collision is the point: fairy-tale subjects handled with a realist's brush, for a public still expecting Düsseldorf sweetness.",
+deep: "Between Snow White and the seven lies a wedge of bare meadow, and that gap is doing everything. She anchors the left as a pale vertical — canvas ground showing through the hem so she seems to be made of the same light as the sky — while the dwarfs mass opposite as a single dark diagonal, earth-colored, surging, painted so loosely their faces surface in two or three strokes each. The broad hilltop diagonal pours through the void between them but never closes it; the leader reaches in with his small red offering, supplicant not yet arrived. Müller holds the gap open deliberately, and holds the paint thin the same way: scraped and dragged over the weave of the canvas, the scene stays at the threshold of appearing rather than hardening into an illustration. Her bowed head is grave, almost devotional, answering the strange homage with attention rather than alarm — the human party meeting the uncanny party with courtesy, and the picture staying tender rather than charmed.",
+deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "alphonse-osbert-vision-de-sainte-genevieve": {
@@ -2993,6 +2995,8 @@ by: "Opus · Fable" },
 
 "hiromitsu-nakazawa-mist-nude": {
 about: "A nude stands on wet rocks above a stream, half-wrapped in the mist the title names — Nakazawa folding the French academic nude he learned from Kuroda Seiki into something nearer an apparition. In 1907 that was still charged territory: Kuroda's own nudes had been screened at the waist by order in the 1890s, and the first state Bunten salon opened that very year to adjudicate what Western-style painting in Japan could show.",
+deep: "Nakazawa takes the academic studio nude — Kuroda-school modeling, anatomically measured — and then withholds the studio's hard light and clean contours, surrendering the figure's edges to atmosphere until she hovers between person and water-spirit. The palette is a narrow band of grey-violet with only the faintest flesh warmth, so tonal graduation carries form while color retreats; the outline of arms, hip, and hair feathers into the ground without closing. The veil across her arms is the hinge: dragged in translucent strokes, it reads as cloth on the right arm and dissolves into indistinguishable mist by the time it trails off — weather doing what state censors once demanded of nudes, folded into the picture's substance rather than imposed from outside. Her averted gaze refuses the transaction of the displayed body. At her feet, vapor, stone, and moving water all touch: the wet boulder grounds the apparition above, and the pale broken marks of the stream echo the veil strokes, quietly insisting both are made of the same dissolving stuff.",
+deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 // ——— import-canon Info wave 2, phase A (Fuad-approved 2026-08-22) — per-painting Opus research,
@@ -3033,10 +3037,14 @@ by: "Opus · Fable" },
 
 "narcisse-virgilio-diaz-forest-interior-with-wood-gatherer": {
 about: "A single figure with her bundle on a dark Fontainebleau path, the light held to a clearing beyond — the forest-tunnel staging Díaz repeated because collectors couldn't get enough of it. He knew these woods on a wooden leg, lost to a childhood snakebite; and it was in these same woods in 1863 that he pressed paint money and advice on a young Renoir. Wood-gathering itself was no picturesque invention — the rural poor held real commons rights to deadfall, and Barbizon painted them exercising it.",
+deep: "The forest withholds before it rewards: hold in the dark long enough and the light detonates, then hold longer and you find the person standing in it. Díaz builds the whole picture on that double delay, pitching nearly every tone into warm, worked black so one concentrated clearing burns with a force that reads from across the room. Light there is not a flat glow but a physical fact — dragged and scraped strokes, cool grey over dark ground, some layers lifted so the underlayer shows, the result less paint than caked illumination. From the light you trace back along the path to the figure: compact, dark, low-contrast, a wood-gatherer small enough that she never rivals the clearing she moves through. Against the vast worked darkness she is almost nothing, and that near-nothingness carries the emotional weight — labour dwarfed by the place it happens in. Above, the canopy closes like a vault, dark calligraphic limbs arcing across a sliver of sky that promises air without relieving the enclosure. Foreground litter is stippled gold and ochre — stray light at your feet, as if you stood at the path's mouth — pulling the whole vertical inward. Enclosure, light, labour, threshold: the forest is a feeling before it is a view.",
+deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "albert-lebourg-vue-de-rouen-depuis-le-mont-gargan": {
 about: "Rouen seen from the Mont-Gargan heights — cathedral spires small in the haze while a figure rests by the path, the city held at arm's length by afternoon light. Lebourg painted his native river valley this way all his life, a Rouen-School Impressionist who had shown thirty works at the movement's fourth exhibition in 1879; by 1905 the medals and retrospectives had arrived, and this hilltop was home ground rather than discovery.",
+deep: "The tree performs the whole picture's argument in a single object: rooted and physical at its base, it dissolves at the crown into separated touches of grey-violet and dull green laid over sky, so light glints through the gaps and no silhouette closes. Everything else repeats this logic at greater remove — the misted valley, the city reduced to a slim spire and pale cluster of verticals at nearly the same value as the sky around it. Lebourg deliberately withholds Rouen so the true motif becomes the luminous air between hilltop and horizon. The foreground asserts itself as counterweight: thicker directional strokes of straw-yellow and green for the grass, two small figures in blue and rust — the only saturated notes — anchoring the near ground before it gives way to haze. A pale earth path curves through, its warmth threading near, middle, and far in a single temperature of light, steadying a composition that everywhere else prefers to dissolve.",
+deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 // ——— import-canon Info wave 2, phase B (Fuad-approved 2026-08-22) — per-painting Opus research,
@@ -3077,9 +3085,57 @@ by: "Opus · Fable" },
 
 "giovanni-boldini-symphony-in-gray": {
 about: "A nude stretched across a bed, grey on grey as the title announces — a private study, not a commission. Its canon date is a catalogue fiction: Boldini died on 11 January 1931, so the year marks the estate's reckoning rather than the easel. That estate passed through Emilia Cardona, the young journalist who had first reached him by telephone for an interview in 1926 and married him at nearly eighty-eight.",
+deep: "Boldini narrows the whole panel to a single grey and asks how far a body can dissolve into its ground before it stops being one. The panel was never meant to leave the studio — the pose held for the painter's own looking, whole passages starved deliberately thin, the warm board showing through where his hand dragged the grey open. Only the face earns full attention: warm touches worked small over the grey until flesh surfaces, cheek flushed, eyes in shadow, hair in a handful of loaded dark strokes. Below it, torso and sheet merge into the same fog, parted only by a faint shift in value and a few drier ridges suggesting ribs and a turned waist. Squint and the figure nearly vanishes; hold still and it surfaces again. That oscillation — body at the edge of legibility, held there — is what the title names as a symphony. The far legs thin to smears before they are finished, but the unfinished state is not an interruption: Boldini got what he came for and stopped. What remains is process left honest, a hand that quit while the trail was still warm.",
+deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "antoine-chintreuil-apple-and-broom-flowers": {
 about: "Two and a quarter metres of orchard — flowering apple trees and yellow broom flanking a country road into a hazed sun, the panoramic format Chintreuil favoured for his effects of light. A bookseller's clerk who came to painting through Corot's circle, though never his atelier, he weathered the 1863 Refusés and real poverty before the State bought L'Espace in 1869 — this is the kind of veiled light he chased at Septeuil to the end.",
+deep: "Across more than two metres of canvas, Chintreuil pursues one problem: how light moves through moisture and how to hold that on a surface. The road is a perspective machine — its ruts converge and drag the eye straight into the haze whether you want to go or not — and the low horizon and wide format give it room to run long enough to earn the distance. Flanking trees measure the recession: near crowns carry stippled dabs of cream and pink for blossom, while far ones soften to smoke, wet-into-wet, their trunks thinned to grey threads. At the vanishing point stand two thumbnail-dark figures who supply scale without story, making the emptiness enormous and giving it a destination. The sky is the most worked passage, horizontal sweeps graduating to a warm core where gold scumbled over grey glows as suffused light rather than a source. Yellow broom at the verge echoes that warmth inward, a chromatic thread tying foreground to sky. The subject, finally, is not the orchard but the veil of spring light hanging in it — a specific hazed French morning that the whole construction exists to fix.",
+deepBy: "Sonnet 4.6",
+by: "Opus · Fable" },
+
+// ——— import-canon Info wave 2, phase C — the final 10 of the approved 30 (Fuad-approved
+// 2026-08-22) — per-painting Opus research under the tightened template, Fable QC. Ciągliński
+// shipped short-honest (subject research exhausted); Dahl verified as a sketchbook verso drawing.
+
+"johan-christian-dahl-utsikt-over-napoli-golfen-fra-monte-st": {
+about: "Dahl climbed Monte Sant'Angelo above Castellammare on 14 September 1820, during the Italian journey that shadowed the exiled Danish prince Christian Frederik; a companion leaf from the same day catches the prince, Caroline Amalie and Baron Herman Schubart resting near the summit. This sheet is a pencil-and-watercolour drawing on the verso of a leaf in that Italy-journey sketchbook, taking the Gulf of Naples from the mountaintop rather than the royal party.",
+by: "Opus · Fable" },
+
+"edouard-vuillard-avenue": {
+about: "One of three decorative panels Vuillard made for the Romanian princes Antoine and Emmanuel Bibesco, friends since a 1901 trip to Spain; this one was commissioned by Emmanuel for the dining room of his new Paris apartment and worked up between November 1907 and February 1908. The large panel sets Lucy Hessel, the painter's longtime companion, in a pale mauve dress at the end of a sunlit path, and remains the biggest portrait Vuillard ever made of her.",
+by: "Opus · Fable" },
+
+"paul-steck-ophelie": {
+about: "A pupil of Gérôme, Paul Steck sent this near-lifesize canvas to the Salon of 1895, where the catalogue entry carried Laurent Tailhade's 1891 verses \"Les Fleurs d'Ophélie.\" Where Millais and most others kept Ophelia afloat among river flowers, Steck put the drowned girl fully beneath the surface, already sinking through green water toward the bottom, a rarer and colder resolution of the fin-de-siècle Ophelia craze.",
+by: "Opus · Fable" },
+
+"john-martin-the-last-judgement": {
+about: "After Martin died in 1854 the three Judgement canvases were sent out as a paying spectacle, touring Britain, Ireland, North America and Australia into the 1870s behind an explanatory pamphlet and sixpenny admission; audiences were later claimed in the millions. This central panel is the reckoning itself, Christ enthroned among the twenty-four elders as the saved and the damned split across a chasm. Martin collaged some forty real notables among the saved, More, Newton, Shakespeare, Washington, and an 1855 engraved key named them; a railway train lettered \"London\" and \"Paris\" plunges into the pit.",
+by: "Opus · Fable" },
+
+"stanis-aw-ignacy-witkiewicz-portret-artura-schroedera": {
+about: "Artur Schroeder (1881-1934) was a Lwów writer, poet and art and theatre critic who later ran the Society of Friends of Fine Arts in Kraków. Witkacy caught him for the Portrait Firm \"S.I. Witkiewicz,\" whose 1925 price list sorted sitters into five types from the flattering, \"licked-clean\" A to the drugged caricatures of C. Schroeder drew Type B, the Firm's clause for a candid, characterful likeness \"without a shadow of caricature,\" the artist's stance held objective. Done fast in pastel, dated February 1931, the markings note no stimulants that day.",
+by: "Opus · Fable" },
+
+"vincent-van-gogh-enclosed-field-with-rising-sun": {
+about: "From his room at the Saint-Paul asylum in Saint-Rémy, Van Gogh had told Theo in May 1889 that \"through the iron-barred window I can make out a square of wheat in an enclosure, a perspective in the manner of Van Goyen, above which I see the sun rise in its glory.\" He worked that same walled field over and over through the year; this December canvas, F737, is the sunrise version he singled out to send to the Les XX exhibition in Brussels in 1890.",
+by: "Opus · Fable" },
+
+"thomas-cole-study-of-a-tree": {
+about: "In 1823, before Trumbull, Dunlap and Durand discovered him in 1825, Cole crossed Pennsylvania on foot from Pittsburgh to Philadelphia and began making, in his own account, \"small, but accurate studies of single objects\"—a tree, a leafless bough, every twig traced. This is one of those apprentice tree studies from that self-schooling, dated 1824, when the future Hudson River School founder was still a landscape painter teaching himself by copying nature one trunk at a time.",
+by: "Opus · Fable" },
+
+"jan-ciaglinski-poca-unek-s-onca": {
+about: "Warsaw-born Jan Ciągliński (1858–1913) spent his career in St. Petersburg, where he taught and earned a name as a precursor of Russian Impressionism — a colorist whose whole practice bent toward light. He painted this canvas in 1907, at the height of that pursuit, and its very title stakes everything on the sun's touch rather than on scene or story.",
+by: "Opus · Fable" },
+
+"pierre-auguste-renoir-path-leading-through-tall-grass": {
+about: "Renoir left this canvas undated, and its chronology has never settled: the Orsay files it around 1875, while other scholars push it to 1876–77, and the wider bracket runs from 1874 — the year Renoir was working beside Monet at Argenteuil — onward. That proximity is the crux. The slope of poppy-flecked grass with a parasoled stroller borrows plainly from Monet's \"Coquelicots\" of 1873, a motif the two men chased in parallel, which is exactly why fixing its date has proven so slippery.",
+by: "Opus · Fable" },
+
+"francesc-pausas-i-coll-portrait-of-maria-sampere-the-painter": {
+about: "Maria Sampere i Montseny was the woman who opened New York's musical world to Francesc Pausas, and by 1911 she was his wife and, for the next three decades until his death in 1944, his constant sitter. This full-length canvas made its debut on 11 March 1911 at the National Academy of Design's 86th annual exhibition in the city where Pausas had settled since 1906. The critic in American Art News found its \"audacity of the drawing\" and the \"life and action of the figure\" reminiscent of Robert Henri.",
 by: "Opus · Fable" },
 };
