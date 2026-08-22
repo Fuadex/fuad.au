@@ -2951,4 +2951,47 @@ by: "Opus · Fable" },
 "bruno-liljefors-curlew": {
 about: "Liljefors worked like a naturalist — he hunted, kept wild birds, and crouched camouflaged in the terrain for hours, arguing a painter had no business with nature he hadn't watched breathe. This 1907 curlew comes from the years his bird pictures were financing something grander: the next year he bought the outer-archipelago island of Bullerö as a private hunting and painting ground.",
 by: "Opus · Fable" },
+
+// ——— import-canon Info wave 2, phase 1 (Fuad-approved 2026-08-22) — one Opus research agent per
+// painting (per the same-day production rule), Fable QC (Maria Constable date corrected 1828).
+
+"john-constable-a-windmill-near-brighton": {
+about: "John Constable came to Brighton in 1824 not by choice but by prescription: his wife Maria was consumptive, and the town's sea air was thought a possible cure. He loathed the place, complaining to his friend John Fisher that its beach was merely \"Piccadilly by the sea-side,\" its everlasting sea drowned out by stagecoaches and gigs. The mills, though, interested a man whose own father had been a miller — and the sea air did not save Maria, who died of the disease in 1828.",
+by: "Opus · Fable" },
+
+"bruno-liljefors-eider-ducks": {
+about: "In the summer of 1894 Liljefors shifted his subjects from the Uppland plains he'd painted through the 1880s out to the Stockholm archipelago, where the skerries and surf gave him a new quarry in coastal birdlife — eiders foremost among them. The move came in lean years: only in 1896 did the banker Ernest Thiel begin the patronage that would rescue him financially.",
+by: "Opus · Fable" },
+
+"victor-muller-schnewittchen-bei-den-sieben-zwergen": {
+about: "Victor Müller (1830–1871) trained in Frankfurt under Steinle and then in Paris under Couture and Delacroix, but it was Gustave Courbet who marked him: he became one of the earliest German painters to adopt Courbet's Realist manner, importing it to a public still attached to Düsseldorf sentimentality. Fairy-tale and mythological subjects run through his mature work, from the Sleeping Wood-Nymph to Grimm's Snow White.",
+by: "Opus · Fable" },
+
+"alphonse-osbert-vision-de-sainte-genevieve": {
+about: "Painted the year Joséphin Péladan launched his first Salon de la Rose+Croix, with Osbert among the Symbolist elite drawn to that mystical circle. He worshipped Puvis de Chavannes, whose flat muralist calm shaped a generation — fitting, since Puvis had made Geneviève, patron saint of Paris, the subject of his own famous Panthéon cycle. Shown in Paris in 1892, Osbert's canvas won praise from Puvis himself and from Rodin.",
+by: "Opus · Fable" },
+
+"charles-angrand-man-and-woman-in-the-street": {
+about: "A founding exhibitor of the Société des Artistes Indépendants in 1884 — which he helped launch alongside Seurat, Signac and Odilon Redon — Charles Angrand painted plein air beside Seurat on the island of La Grande Jatte. 1887 marks his turn to divisionism: the same year he showed \"L'Accident,\" his first Neo-Impressionist canvas, at the Salon des Indépendants.",
+by: "Opus · Fable" },
+
+"maximilien-luce-morning-interior": {
+about: "Maximilien Luce painted his close friend Gustave Perrot, a fellow painter who died young, dressing at dawn in a Parisian garret — Luce's signature choice of working-artist life over polite subjects. A committed anarchist who illustrated Le Père Peinard, Luce was arrested in July 1894 and jailed forty-two days in Mazas Prison before his acquittal at the Trial of the Thirty.",
+by: "Opus · Fable" },
+
+"gustaf-ankarcrona-in-days-of-yore": {
+about: "The word \"Fordomtima\" is archaic Swedish for \"in olden times,\" and Ankarcrona (1869–1933) built his whole later life around that impulse: in 1915 he founded Dalarnas Hembygdsförbund at his Leksand homestead and led the movement to rescue Dalarna's timber buildings and folk crafts before they vanished. This 1897 national-romantic Viking scene comes from his early years, a decade before the preservation work that made his name.",
+by: "Opus · Fable" },
+
+"claude-monet-le-havre-bateaux-de-peche-sortant-du-port": {
+about: "The same year the word \"Impressionism\" was coined, Monet painted his boyhood harbour — 1874, when he and a breakaway group mounted their own show at Nadar's old studio on the boulevard des Capucines rather than submit to the Salon. Le Havre was where he first sketched under Eugène Boudin, who pushed him outdoors to paint the coast directly.",
+by: "Opus · Fable" },
+
+"claude-monet-water-lilies": {
+about: "A late Giverny canvas from 1918, the year an armistice-era Monet — cataract-clouded and nearing eighty — was reworking his lily pond in ever-freer colour. It belongs to the easel-scale studies, not the room-sized Grande Décoration panels he offered the French state that November through his friend Clemenceau. He painted these final ponds almost from memory of a motif he had tended for two decades.",
+by: "Opus · Fable" },
+
+"hiromitsu-nakazawa-mist-nude": {
+about: "A yōga (Western-style oil) painter, Nakazawa Hiromitsu (1874–1964) trained under Kuroda Seiki, whose Paris-schooled nudes had ignited public scandal in 1890s Japan and made the naked figure a charged emblem of imported academicism. Nakazawa carried that lineage through the Hakubakai circle into 1907 — the year Japan's government launched its first Bunten salon, the state's bid to institutionalise Western oil alongside native painting.",
+by: "Opus · Fable" },
 };
