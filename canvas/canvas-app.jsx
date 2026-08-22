@@ -923,6 +923,26 @@ function resolveOSDSource(work) {
   return null;
 }
 
+// "Full resolution" escape hatch (Fuad 2026-08-22: "include the super high res version somewhere
+// as part of the reader as an option"). Giga-scan art_hires entries cap their in-app `img` at a
+// 6000px thumb and keep the true original in `orig`; this renders an explicit opt-in link — the
+// files run to hundreds of MP, so they must never load implicitly. Direct url on purpose: a
+// user-initiated original download shouldn't ride the image proxy's cache.
+function FullResLink({ work }) {
+  const h = work && work.hires;
+  if (!h || !h.orig) return null;
+  const mp = h.w && h.h ? Math.round(h.w * h.h / 1e6) : null;
+  return (
+    <a className="cv-osd-fullres" href={h.orig} target="_blank" rel="noopener noreferrer"
+      title={"Open the untouched original scan in a new tab" + (h.w ? ` — ${h.w}×${h.h}px` : "")}
+      style={{ fontFamily: "var(--mono, monospace)", fontSize: 10, letterSpacing: ".08em",
+        color: "var(--ink-faint, #999)", textDecoration: "none", border: "1px solid rgba(255,255,255,.18)",
+        borderRadius: 100, padding: "3px 10px", whiteSpace: "nowrap" }}>
+      full resolution{mp ? ` · ${mp} MP` : ""} ↗
+    </a>
+  );
+}
+
 // Fly an OSD viewer to a normalized-image region {x,y,w,h} (all 0..1 fractions of the image).
 // immediately=false gives the gentle animated spring flight; true snaps. Shared by DeepZoom's
 // detail tour and Study mode's anchored zoom so the imageToViewportRectangle math lives once.
@@ -1114,7 +1134,8 @@ function DeepZoom({ work, onClose, onOsdFail }) {
           <span className="cv-osd-det-note">{activeDet.n}</span>
         </div>
       ) : (
-        <div className="cv-osd-cap">{capLabel}{details.length ? " · click a detail below to explore" : ""}</div>
+        <div className="cv-osd-cap">{capLabel}{details.length ? " · click a detail below to explore" : ""}
+          {" "}<FullResLink work={work} /></div>
       )}
     </div>
   );
@@ -1341,6 +1362,9 @@ function StudyView({ id, go }) {
       <div className="cv-study-viewer" style={{ flexBasis: collapsed ? "100%" : (split * 100) + "%" }}>
         <div className="cv-osd-view" ref={elRef} />
         <OSDControls viewerRef={viewerRef} />
+        {work && work.hires && work.hires.orig && (
+          <div style={{ position: "absolute", top: 10, right: 52, zIndex: 4 }}><FullResLink work={work} /></div>
+        )}
         {err && <div className="cv-osd-err">zoom unavailable — the tile source didn't load
           {" · "}<a href={"#/work/" + id} style={{ color: "inherit", textDecoration: "underline" }}>open in reader →</a></div>}
         {/* FIX 6a: the detail tour over the viewer — prev/next arrows step through the anchored
