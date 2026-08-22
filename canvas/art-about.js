@@ -2738,4 +2738,55 @@ about: "William John Leech painted this Concarneau garden around 1913, and the w
 deep: "Enclosure, here, is not a privation — it is the whole point. The walled garden carries a freight of theological symbol (the hortus conclusus, the Madonna lilies as congregation), but Leech strips that iconography down to pure sensation: blazing acid greens, three distinct whites separating without a single outline because each is built from different colour temperatures — dress in lilac-cream, lilies in green-silver, convent laundry in whatever the sun makes of cotton. The vertical lily stalks run like organ pipes against the diagonal of her walk, giving the canvas its architecture while the light, post-impressionist and French rather than anything in the Irish tradition before him, flattens and brightens everything into confident dabs. The open question the picture refuses to answer is whether the peace is hers or the painter's: Leech went to Brittany chasing calm through recurring depression, and this garden — his wife reading, too absorbed to notice — holds exactly the stillness he was looking for, painted as though holding it might make it stay.",
 by: "Sonnet 4.6" },
 
+
+// ——— import-canon Info pilot (Fuad-approved 2026-08-22) — bulk-campaign mode per READS_SPEC §5b/§8:
+// background-first fused Infos, facts verified (Wikidata anchors + established scholarship), Fable-authored.
+
+"knud-baade-the-wreck": {
+about: "Knud Baade was barely into his twenties when he painted this 1830 shipwreck, years before the Dresden apprenticeship under Johan Christian Dahl that steered him toward the moonlit coastal drama he spent a Munich career refining. Norwegian Romanticism made the sea a national protagonist, and Baade became its night-shift specialist — storm, wreck and phosphorescent surf as standing repertoire.",
+by: "Fable" },
+
+"claude-monet-arm-of-the-seine-near-giverny": {
+about: "One of the Mornings on the Seine, the 1897 series Monet made by rowing out to his studio boat in the dark so that first light would find him already at the easel. He worked the same branch of river near Giverny through some twenty canvases, changing only as the mist did, and showed the group to acclaim in 1898.",
+by: "Fable" },
+
+"anders-zorn-mrs-veronica-heiss": {
+about: "The middle of Zorn's Paris decade, 1891 — commissions arriving faster than he could cross the Atlantic for them, and his portrait manner settled into its signature economy: a likeness built from a handful of loaded, unrepented strokes rather than finish. Sitters queued for that bravura; American presidents would soon be among them.",
+by: "Fable" },
+
+"j-m-w-turner-queen-mab-s-cave": {
+about: "Exhibited in 1846, five years before Turner's death, when critics had decided the old man's pictures were fog. He answered with a fairy subject — Shakespeare's dream-midwife Queen Mab — dissolved into the same golden vapour as his late seas, myth and atmosphere finally indistinguishable.",
+by: "Fable" },
+
+"claude-monet-the-roses": {
+about: "Among the last canvases Monet painted — roses from the Giverny garden, finished in 1926, the year he died at eighty-six. The eye operations of 1923 had returned blue to his palette after the cataract browns, and the late pictures spend it freely: sky and blossom in loose ribbons, the garden less described than remembered in colour.",
+by: "Fable" },
+
+"claude-monet-twilight-venice": {
+about: "From Monet's only visit to Venice — three months in the autumn of 1908, aged sixty-eight, that yielded some thirty-seven canvases. San Giorgio Maggiore stands against the afterglow across the basin. He kept finishing the series from memory at Giverny and didn't show the Venices until 1912, when Bernheim-Jeune presented twenty-nine at once.",
+by: "Fable" },
+
+"teodor-axentowicz-ko-omyjka": {
+about: "The kołomyjka is a Hutsul whirling dance, and this 1895 canvas is the painting that fixed Axentowicz's name to the Carpathian highlanders he returned to all his career. Fresh from a decade in Paris and newly appointed professor in Kraków, he gave Polish art one of its defining folk images — motion first, ethnography second.",
+by: "Fable" },
+
+"charles-francois-daubigny-untitled-2": {
+about: "Salon-bound in 1874 — the very spring the first Impressionist exhibition opened elsewhere in Paris — from the Barbizon elder who had done most to smooth the young rebels' way, famously resigning from the 1870 jury when it refused Monet. Two metres of June field under poppies: the plein-air creed at establishment scale.",
+by: "Fable" },
+
+"edgar-degas-untitled-2": {
+about: "Four dancers in matching blue, none aware of being watched — Degas by 1890 had long stopped painting performance and painted preparation instead: straps adjusted, shoulders checked, the wings rather than the stage. The four bodies are near-repetitions of a single pose turned in space, his sculptor's trick for making a crowd from one figure studied hard.",
+by: "Fable" },
+
+"claude-monet-waterloo-bridge-in-london": {
+about: "Some forty Waterloo Bridges came out of Monet's window at the Savoy Hotel across three London winters, 1899 to 1901 — he wanted the fog, complaining on clear days that London had lost its beauty. Like most of the series, this one was worked up and dated back at Giverny, the Thames rebuilt from memory and canvas-to-canvas comparison.",
+by: "Fable" },
+
+"pierre-auguste-renoir-the-england-pear": {
+about: "An orchard at Louveciennes, painted around 1870 when the villages along this bend of the Seine — Louveciennes, Marly, Voisins — were becoming the open-air laboratory of the future Impressionists. Renoir's parents had retired there, which made the pear tree a family orchard as much as a motif; Pissarro and Sisley were painting the same lanes.",
+by: "Fable" },
+
+"henry-fuseli-thor-battering-the-midgard-serpent": {
+about: "The picture Fuseli deposited with the Royal Academy on his election in 1790 — every new Academician owed a diploma work, and he chose Norse myth when almost no one in London painted it: Thor hauling the Midgard Serpent from the deep while the giant Hymir cowers in the boat. The painter of The Nightmare moved the nightmare into daylight and gave it muscles.",
+by: "Fable" },
 };
