@@ -2789,4 +2789,139 @@ by: "Fable" },
 "henry-fuseli-thor-battering-the-midgard-serpent": {
 about: "The picture Fuseli deposited with the Royal Academy on his election in 1790 — every new Academician owed a diploma work, and he chose Norse myth when almost no one in London painted it: Thor hauling the Midgard Serpent from the deep while the giant Hymir cowers in the boat. The painter of The Nightmare moved the nightmare into daylight and gave it muscles.",
 by: "Fable" },
+
+// ——— import-canon Info wave 1 (Fuad-approved 2026-08-22) — Opus per-slice research + Fable QC;
+// provenance/ownership lines stripped per the same-day ruling; 6 redrafts and 1 parked row follow.
+
+"j-m-w-turner-sunrise-a-castle-on-a-bay-solitude": {
+about: "Turner never sent this 1842 study to exhibition — it belongs to the group found in his studio at his death in 1851 and gifted to the nation as the Turner Bequest in 1856. Its subtitle 'Solitude' is one of the poetic tags the ageing painter attached to these near-abstract experiments in light.",
+by: "Opus · Fable" },
+
+"j-m-w-turner-norham-castle-sunrise": {
+about: "Turner first drew Norham Castle on the Tweed in the 1790s and returned to the motif for decades, but this dissolving version of about 1845 he left unfinished and unexhibited. It surfaced only in the Turner Bequest after 1856, and its near-total dissolution of form into blue and gold has made it one of the most cited anticipations of modern abstraction.",
+by: "Opus · Fable" },
+
+"j-m-w-turner-snow-storm-steam-boat-off-a-harbour-s-mouth": {
+about: "Shown at the Royal Academy in 1842, this was the picture Turner claimed to have witnessed first-hand, saying he had been lashed to a steamer's mast for four hours to study the storm. Critics jeered it as \"soapsuds and whitewash,\" to which he reportedly retorted, \"I wonder what they think the sea's like? I wish they'd been in it.\" Ruskin defended it as one of the grandest statements of sea-motion ever put on canvas.",
+by: "Opus · Fable" },
+
+"j-m-w-turner-death-on-a-pale-horse": {
+about: "Long catalogued as \"A Skeleton Falling Off a Horse in Mid-Air,\" this unfinished canvas of about 1825–30 was never exhibited and reached the nation only through the Turner Bequest. Its subject is now read as Death, last of the Four Horsemen of Revelation, and scholars have tied its strange tenderness to the death of the painter's father in 1829.",
+by: "Opus · Fable" },
+
+"j-m-w-turner-shade-and-darkness-the-evening-of-the-deluge": {
+about: "Exhibited at the Royal Academy in 1843, this octagonal canvas was the darker half of a pair with \"Light and Colour (Goethe's Theory)\", Turner's twin meditations on the biblical flood. The companion engaged directly with Goethe's colour theory, then newly available in English translation, pitting the storm's cool shadow-tones against the warm glow of the morning after.",
+by: "Opus · Fable" },
+
+"john-constable-a-cornfield": {
+about: "Distinct from the famous 1826 \"Cornfield\" in the National Gallery, this smaller Suffolk study of about 1817 dates from the period when Constable worked outdoors in his native Stour valley, building the naturalistic landscapes that made his name.",
+by: "Opus · Fable" },
+
+"john-everett-millais-dew-drenched-furze": {
+about: "Millais took the title of this 1889–90 landscape from Tennyson's elegy \"In Memoriam\", painting the frosted gorse on the Murthly estate in Perthshire where he shot and fished each autumn. A founder of the Pre-Raphaelite Brotherhood four decades earlier, he had turned in old age to large, atmospheric Scottish scenes.",
+by: "Opus · Fable" },
+
+"vincent-van-gogh-korenveld-met-cipressen": {
+about: "Van Gogh painted three canvases of this Provençal motif in 1889 during his year at the Saint-Rémy asylum — a first begun in early July, the full-size September version, and a smaller repetition made for his mother and sister. The wheat field with its flame of cypresses was among the motifs he considered his most successful from the asylum window.",
+by: "Opus · Fable" },
+
+"pierre-auguste-renoir-danseuse": {
+about: "One of seven Renoirs at the inaugural Impressionist exhibition of April 1874, and one that drew unusual praise from a hostile press — singled out as graceful even by critics who called it a mere sketch. The model was almost certainly Henriette Henriot, the young actress who sat for Renoir repeatedly in the mid-1870s.",
+by: "Opus · Fable" },
+
+"claude-monet-les-coquelicots": {
+about: "Monet showed this 1873 field scene at the first Impressionist exhibition of 1874, the same landmark show that gave the movement its mocking name. The strolling woman and child are traditionally read as his wife Camille and their son Jean, doubled as two pairs on the slope.",
+by: "Opus · Fable" },
+
+"claude-monet-gare-saint-lazare-monet-series": {
+about: "Having relocated from Argenteuil to lodgings near the station, Monet trained his easel on Paris's busiest terminus through the first half of 1877, producing twelve canvases of steam, iron and glass. Roughly eight were ready for the third Impressionist exhibition that April, where they hung together as a deliberate ensemble — an early experiment in the serial method he would push to haystacks and cathedrals.",
+by: "Opus · Fable" },
+
+"claude-monet-argenteuil": {
+about: "Around 1875 Monet painted several views of sailing boats moored in the Argenteuil basin, this one built on the vermilion hulls that give it its usual English name — the reds doing exactly the work in the water that his Impression's orange sun had done in mist two years before.",
+by: "Opus · Fable" },
+
+"camille-pissarro-junimorgen-bei-pontoise": {
+about: "Rather than a heroic vista, Pissarro chose an ordinary summer morning in the countryside near Pontoise for this 1873 canvas — the plain rural subject matter that made him the movement's quiet radical.",
+by: "Opus · Fable" },
+
+"claude-monet-camille-sur-son-lit-de-mort": {
+about: "Monet painted his first wife Camille Doncieux in 1879 as she lay dying at thirty-two, and later confessed to Georges Clemenceau his horror at catching himself analysing the shifting blue and grey tints of her face even in grief.",
+by: "Opus · Fable" },
+
+"claude-monet-la-femme-a-l-ombrelle": {
+about: "Monet made a pair of these open-air figures in 1886, one turned left and one right, both modelling his stepdaughter Suzanne Hoschedé, his favourite sitter after Camille's death. He left the face featureless, converting portrait into a study of wind and light — this is the left-turned version.",
+by: "Opus · Fable" },
+
+"claude-monet-a-corner-of-the-apartment": {
+about: "This 1875 interior turns Monet's own Argenteuil home into subject matter, the small figure in the shadowed doorway usually identified as his son Jean, framed by hanging plants and filtered light.",
+by: "Opus · Fable" },
+
+"w-adys-aw-podkowinski-sza-szkic": {
+about: "The idea traced back to Podkowiński's 1889 stay in Paris, but the oil sketches multiplied through the second half of 1893, driven by an unrequited passion that friends said had turned the twenty-seven-year-old feverish. This is the small trial run toward the three-metre canvas he unveiled at Warsaw's Zachęta in March 1894 — the one he returned to slash with a knife thirty-six days later, dying of tuberculosis within the year.",
+by: "Opus · Fable" },
+
+"unknown-s-once-majowe": {
+about: "Józef Mehoffer — with Wyspiański the reigning force of Kraków's Młoda Polska, and the stained-glass master behind the Fribourg cathedral windows — painted this in 1911, at the peak of a career built on flat, decorative Art Nouveau colour. He had also taught the young Ludwik de Laveaux, another name in this collection.",
+by: "Opus · Fable" },
+
+"ludwik-de-laveaux-plac-opery-w-paryzu": {
+about: "De Laveaux was living hand-to-mouth in Paris when he painted this around 1892, a French Protestant family's descendant who had trained in Kraków under Mehoffer, then Munich. Poverty deepened the tuberculosis that killed him on 5 April 1894, aged twenty-five. The city square outlived the painter by decades.",
+by: "Opus · Fable" },
+
+"albert-chmielowski-opuszczona-plebania": {
+about: "By 1888 Adam Chmielowski had all but stopped painting. He had taken the name Albert the year before, made religious vows before Cardinal Dunajewski, and founded the Albertine Brothers that same year to live among Kraków's destitute — the man later canonized as Saint Albert. This dates to that threshold: near the end of the brush, the start of the shelters.",
+by: "Opus · Fable" },
+
+"jozef-pankiewicz-dorozka-w-deszczu": {
+about: "Back from two years in Paris carrying the news of Impressionism, Pankiewicz turned in the 1890s to a cycle of urban nocturnes — wet streets, deep darkness, lamplight smeared across achromatic greys. Dated 1896 and among his most admired works, it belongs to the group he variously titled Cab at Night, Mud, and Rain.",
+by: "Opus · Fable" },
+
+"witold-wojtkiewicz-podmuchy-wiosenne": {
+about: "Wojtkiewicz painted this in 1905, four years before tuberculosis of the heart took him at twenty-nine, cutting short a brief, singular run of macabre processions, marionettes and haunted children. Diaghilev would champion his work in Paris; here the melancholy is turned toward spring.",
+by: "Opus · Fable" },
+
+"valentin-serov-madame-lwoff": {
+about: "The sitter of this 1895 portrait is Maria Yakovlevna Simonovich — Serov's own cousin, married into the Lwoff family — whom he had painted a decade earlier in the celebrated Girl in Sunlight.",
+by: "Opus · Fable" },
+
+"pierre-isidore-bureau-untitled": {
+about: "Bureau was a core French Impressionist now nearly erased from the record — a nocturne specialist who showed four works at the first Impressionist exhibition of 1874 and died in 1876, just after the second. This moonlit view along the Oise near L'Isle-Adam, where he mostly worked, predates the movement's public birth by seven years.",
+by: "Opus · Fable" },
+
+"unknown-marine-with-rocks": {
+about: "The painter is August Strindberg — the playwright — who moved to Paris in 1894 and, between bouts of writing, produced small seascapes on cardboard for an exhibition that never happened. In his essay \"The Role of Chance in Artistic Creation\" that November he described letting chance generate the forms and assigning meaning after — a method that reads as a premonition of Surrealism.",
+by: "Opus · Fable" },
+
+"johan-jongkind-clair-de-lune-a-overschie-environs-de-rotterd": {
+about: "Jongkind painted this Dutch moonlit scene in 1855, during the Paris years when Baudelaire praised him and Monet later called him the true source of his own eye for atmosphere and water. His open-air marines and canal nocturnes made him the hinge between Barbizon and the Impressionists proper.",
+by: "Opus · Fable" },
+
+"leonardo-da-vinci-saint-jean-baptiste": {
+about: "Among the last works Leonardo painted, dated to around 1514, it stayed with him until his death in France — one of only a handful of paintings universally accepted as fully autograph. The raised finger pointing upward is the single gesture the whole panel is built around.",
+by: "Opus · Fable" },
+
+"leonardo-da-vinci-maagd-met-het-kind-en-sint-anne": {
+about: "The only surviving large-scale drawing by Leonardo, worked in charcoal and chalk on eight sheets glued together. Once dated near 1500, scholarship now places it around 1506–08. A public appeal in 1962 raised the funds to keep it in Britain after a threatened sale; in 1987 a shotgun blast shattered its protective glass, and the drawing survived.",
+by: "Opus · Fable" },
+
+"pierre-auguste-renoir-snow-covered-landscape": {
+about: "Renoir loathed the cold and called snow \"Mother Nature's leprosy,\" which makes this winter scene of about 1872 a rarity — he painted only a few in his life. The snow is broken rather than blanketing, taking blue from the sky.",
+by: "Opus · Fable" },
+
+"pierre-auguste-renoir-alphonsine-fournaise": {
+about: "The sitter, painted in 1879, was the daughter of the family that ran the Maison Fournaise, the riverside restaurant at Chatou where Renoir kept a studio and painted more than a dozen canvases. Alphonsine looked after the boaters and guests, and two years later reappeared leaning on the terrace railing in Luncheon of the Boating Party.",
+by: "Opus · Fable" },
+
+"eugene-jansson-motif-from-timmermansgatan": {
+about: "Painted in 1899, this belongs to the \"blue period\" that earned Eugène Jansson the nickname blåmålaren, the blue-painter. It shows one of the stairways climbing to Mariaberget on Södermalm in Stockholm, near the streets where he lived and kept a studio.",
+by: "Opus · Fable" },
+
+"anders-zorn-the-painter-bruno-liljefors": {
+about: "Anders Zorn, at the height of his international fame as a society portraitist, turned his brush on a fellow Swedish star in 1906: the wildlife painter Bruno Liljefors. Both had risen from modest beginnings to national prominence in the same generation.",
+by: "Opus · Fable" },
+
+"georges-lemmen-beach-at-heist": {
+about: "Georges Lemmen joined the Brussels avant-garde group Les XX in 1888, converted to pointillism after Seurat exhibited there. Painted around 1891, this small panel builds flat coloured zones from tiny dots edged with complementaries — already bending Seurat's science toward the Art Nouveau stylisation Lemmen would pursue.",
+by: "Opus · Fable" },
 };
