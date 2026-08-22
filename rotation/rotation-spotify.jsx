@@ -574,9 +574,12 @@ function LikedRow({ r, legendByCode, famById, go, navable, albumCover }) {
   // id (spotify track id) is no longer read — the row-level Spotify redirect was removed (owner
   // 2026-08-17, "redundant"). Kept in the destructure only to hold the positional slot.
   const [, plays, firstYear, code, famId, tempo, energy] = r.meta;
-  // first-heard MONTH "2010.10" (Fuad 2026-08-22) — meta slot 9, built from the first scrobble
-  // (Spotify does not export save dates). Falls back to the bare year for pre-regen caches.
+  // the "2010.10" month column (Fuad 2026-08-22) — meta slot 9. Real SAVE months once
+  // liked-added.json exists (pull-liked-added.js, one-time OAuth pull); until then the first
+  // scrobble month stands in, and the tooltip wording follows the build flag so it never
+  // claims "added" for a month that is actually first-heard.
   const firstYM = r.meta[9] || (firstYear ? String(firstYear) : "");
+  const ymWord = window.ROTATION_LIKED_ADDED_REAL ? "added" : "first heard";
   const leg = legendByCode[code] || { key: "mid", label: "Mid" };
   const color = LIKED_BUCKET_COLOR[leg.key] || "oklch(0.68 0.12 320)";  // brand labels get a fixed violet
   const fam = famId != null ? famById[famId] : null;
@@ -617,7 +620,7 @@ function LikedRow({ r, legendByCode, famById, go, navable, albumCover }) {
       </span>
       <span className="r-mono lk-nums" style={{ fontSize: 10.5, color: "var(--ink-soft)", width: 46, textAlign: "right" }}>{plays ? plays + "p" : "—"}</span>
       <span className="r-mono lk-nums" style={{ fontSize: 10, color: "var(--ink-faint)", width: 50, textAlign: "right" }}
-        title={firstYM ? "first heard " + firstYM : "never scrobbled"}>{firstYM || "·"}</span>
+        title={firstYM ? ymWord + " " + firstYM : "never scrobbled"}>{firstYM || "·"}</span>
     </div>
   );
 }

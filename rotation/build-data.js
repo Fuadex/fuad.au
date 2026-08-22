@@ -3394,6 +3394,9 @@ console.log(`album-absorb.js: ${Object.keys(ALBUM_ABSORB).length} single→LP ab
 {
   let LIKED_SRC = [];
   try { LIKED_SRC = JSON.parse(fs.readFileSync(path.join(__dirname, "spotify-liked-src.json"), "utf8")); } catch (e) {}
+  // real save months (trackId → "YYYY.MM") from the one-time OAuth pull — see pull-liked-added.js
+  let LIKED_ADDED = null;
+  try { LIKED_ADDED = JSON.parse(fs.readFileSync(path.join(__dirname, "liked-added.json"), "utf8")); } catch (e) {}
   let BRANDS = {};
   try { BRANDS = JSON.parse(fs.readFileSync(path.join(__dirname, "liked-brands.json"), "utf8")); } catch (e) {}
   // per-track audio handles (tempo BPM / energy / valence, 0..100) resolved from the local
@@ -3554,12 +3557,13 @@ console.log(`album-absorb.js: ${Object.keys(ALBUM_ABSORB).length} single→LP ab
       const absorbed = ALBUM_ABSORB[aSlug + "~" + albumSlug];
       if (absorbed) albumSlug = absorbed.slice(absorbed.indexOf("~") + 1);
     }
-    // slot 9: first-heard MONTH as "YYYY.MM" (Fuad 2026-08-22, "2010.10 convention"). The save
-    // date itself is unobtainable — Spotify's account export carries no added_at, and the API's
-    // library endpoint needs a user token we don't hold — so this is the first SCROBBLE month,
-    // which for a saved track almost always shadows the save. "" when never scrobbled.
+    // slot 9: the month for the "2010.10" column (Fuad 2026-08-22). REAL save months come from
+    // liked-added.json when it exists (one-time OAuth pull, see pull-liked-added.js — the
+    // account export carries no dates, verified). Fallback: first SCROBBLE month, which for a
+    // saved track almost always shadows the save. "" when neither exists.
     const firstYM = firstMs !== undefined ? firstYear + "." + String(new Date(firstMs).getUTCMonth() + 1).padStart(2, "0") : "";
-    META[key] = [r.id, plays, firstYear, code, famId, tempoBpm, energy, valence, albumSlug, firstYM];
+    const ym = (LIKED_ADDED && LIKED_ADDED[r.id]) || firstYM;
+    META[key] = [r.id, plays, firstYear, code, famId, tempoBpm, energy, valence, albumSlug, ym];
   }
 
   // brand codes: each distinct label in liked-brands.json gets a stable code starting at 10,
@@ -3584,6 +3588,7 @@ console.log(`album-absorb.js: ${Object.keys(ALBUM_ABSORB).length} single→LP ab
     + "//   familyId/audio are null where unknown; albumSlug is \"\" when the save carries no album (client joins it to media-index album covers).\n"
     + "//   LEGEND = bucketCode→label; FAMS = genre families (i/hue align with the Sound Map); SUBS = artistSlug→primary subgenre.\n"
     + "window.ROTATION_LIKED_META = " + JSON.stringify(META) + ";\n"
+    + "window.ROTATION_LIKED_ADDED_REAL = " + JSON.stringify(!!LIKED_ADDED) + ";\n"
     + "window.ROTATION_LIKED_LEGEND = " + JSON.stringify(LEGEND) + ";\n"
     + "window.ROTATION_LIKED_FAMS = " + JSON.stringify(LIKED_FAMS) + ";\n"
     + "window.ROTATION_LIKED_SUBS = " + JSON.stringify(LIKED_SUBS) + ";\n"
