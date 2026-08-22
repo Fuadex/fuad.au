@@ -2,6 +2,9 @@
 
 # The sharpest scans in the canon
 
+> How this store was built — and every wall it hit — is chronicled in
+> [HIRES_SOURCING.md](HIRES_SOURCING.md).
+
 Generated 2026-08-22 from `art_hires.js` (930 entries carry pixel dimensions; holder-API/IIIF
 entries don't and live outside this ranking — the Met/AIC/CMA tiles are excellent but unmeasured
 here). Regenerate with the snippet at the bottom after any art_hires emit. Work links open the
