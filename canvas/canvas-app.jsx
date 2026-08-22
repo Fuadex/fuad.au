@@ -2830,14 +2830,17 @@ function MapView({ go }) {
     // leader is a short whisker no matter how far the collision solver pushed the dot in world
     // units. Dense small cities may bead-overlap at rest; the fisheye parts them under the
     // cursor, and short-beats-separated is the owner's consistently chosen trade.
-    const lo = (mk.keepR || 0) * bubZoom * dotMul + 2 * dotZoom * dotMul + 0.3;
-    const newLen = Math.min(lo + 0.9, Math.max(lo, len * fanK));
+    // seventh pass (Fuad: "even shorter, probably by another half — way too long and
+    // overlapping"): the collar sits ON the rim (dot centre at rim + 60% of dot radius, so
+    // the dot visibly touches its bubble) and the band is 0.45 — leaders are nubs now.
+    const lo = (mk.keepR || 0) * bubZoom * dotMul + 2 * dotZoom * dotMul * 0.6;
+    const newLen = Math.min(lo + 0.45, Math.max(lo, len * fanK));
     return [mk.bx + ox / len * newLen, mk.by + oy / len * newLen];
   };
   // DOT ZOOM (Fuad 2026-08-22: "the dots can start initially smaller — when zoomed in they can
   // be the size they are"). Halo dots render at 60% in the resting world view and ramp to full
   // size as the viewBox narrows; k = vb.w/880, full size from a 2.5x zoom (k ≤ 0.4) on down.
-  const dotZoom = Math.max(0.6, Math.min(1, 0.4 / k));
+  const dotZoom = Math.max(0.5, Math.min(1, 0.4 / k));
   // Same idea for the CITY BUBBLES, harder (Fuad, same day: "the large city blobs should be
   // half the size when starting from the furthest" — the resting view was "super busy").
   // Half size at the world view, full from the same 2.5x zoom. Render-only: the world-unit
