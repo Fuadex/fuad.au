@@ -1323,7 +1323,7 @@ const SORT_DIR_LABEL = {
 const HIGHLIGHTS = {
   direction:    { emoji: '🎬', label: 'Masterful direction', desc: 'The filmmaking itself is the achievement.' },
   writing:      { emoji: '✍️', label: 'Exceptional writing', desc: 'Script, structure or prose at the highest level.' },
-  cinematography: { emoji: '📷', label: 'Masterful cinematography', desc: 'The lenswork — how it is shot — stands out.' },
+  cinematography: { emoji: '🎥', label: 'Masterful cinematography', desc: 'The lenswork — how it is shot — stands out.' },
   visuals:      { emoji: '🎨', label: 'Gorgeous visuals', desc: 'Beauty of the image itself.' },
   acting:       { emoji: '🎭', label: 'Powerhouse performances', desc: 'Carried by its performances.' },
   score:        { emoji: '🎵', label: 'Unforgettable score', desc: 'The music you keep hearing after.' },
@@ -3452,7 +3452,7 @@ function App() {
 
       <footer className="site-foot">
         <div>fuad.design &nbsp;/&nbsp; Culture &nbsp;/&nbsp; 2026</div>
-        <nav className="site-switch">part of <a href="/">fuad.au</a> · <a href="/rotation/">Rotation</a> · <a href="/canvas/">Canvas</a> · <a href="/culture/">Culture</a></nav>
+        <nav className="site-switch">part of <a href="/">fuad.au</a> · <a href="/rotation/">Rotation</a> · <a href="/culture/">Culture</a> · <a href="/canvas/">Canvas</a></nav>
         <div className="links">
           <a href="https://www.filmweb.pl/user/FuadSoudah" target="_blank" rel="noopener noreferrer">Filmweb</a>
           <a href="https://www.goodreads.com/user/show/88387351-fuad-soudah" target="_blank" rel="noopener noreferrer">Goodreads</a>
