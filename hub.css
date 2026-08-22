@@ -47,7 +47,10 @@ html,body{margin:0;height:100%;background:#050507;overflow:hidden;
 .pane:first-child .label{padding:0 5% 0 41%}
 .pane:last-child .label{padding:0 41% 0 5%}
 
-.reveal{max-width:380px;opacity:0;transform:translateY(16px);pointer-events:none;
+/* height:0 + overflow:visible — the hidden copy takes no layout space, so the title rests
+   at the true vertical center of the pane instead of riding above it (Fuad 2026-08-22);
+   max-width 500 lands the one-sentence descs on two lines instead of three + an orphan */
+.reveal{max-width:500px;height:0;overflow:visible;opacity:0;transform:translateY(16px);pointer-events:none;
   transition:opacity .55s ease .04s,transform .55s cubic-bezier(.72,0,.18,1) .04s}
 .desc{margin:0;font-family:'Source Serif 4',Georgia,serif;font-size:16px;line-height:1.55;color:#cdc7d4}
 .meta{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;
