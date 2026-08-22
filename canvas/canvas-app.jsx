@@ -923,57 +923,13 @@ function resolveOSDSource(work) {
   return null;
 }
 
-// "Full resolution" escape hatch (Fuad 2026-08-22: "include the super high res version somewhere
-// as part of the reader as an option", then "have the button literally swap the source so that it
-// can still be viewed with openseadragon"). Giga-scan art_hires entries cap their in-app `img` at
-// a 6000px thumb and keep the true original in `orig`; this button swaps the LIVE viewer.
-// GPU CEILING (found live on Ginevra + Van Gogh, same day: "WebGL: INVALID_VALUE: texImage2D") —
-// OSD renders a type:"image" source as ONE texture and WebGL's max texture size is typically
-// 16384px, so a 23k/44k original can NEVER display whole. Above a safe 12000px long side the
-// button therefore loads a Commons-rendered thumb at that cap: still 2x the standard 6000px
-// plate, ~140MP of real pixels — the practical single-image ceiling in a browser. The untouched
-// original stays linked in the tooltip semantics via `orig` for anything else we build later.
-const FULLRES_CAP = 12000;
-function fullResTarget(h) {
-  const w = h.w || 0, hh = h.h || 0, long = Math.max(w, hh);
-  if (!long || long <= FULLRES_CAP) return { url: h.orig, w, h: hh };
-  const file = decodeURIComponent(h.orig.split("/").pop());
-  const outW = w >= hh ? FULLRES_CAP : Math.round(FULLRES_CAP * w / hh);
-  return { url: "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(file) + "?width=" + outW,
-    w: outW, h: Math.round(hh * outW / w) };
-}
-function FullResLink({ work, viewerRef }) {
-  const h = work && work.hires;
-  const [on, setOn] = useState(false);
-  const [loading, setLoading] = useState(false);
-  if (!h || !h.orig) return null;
-  const t = fullResTarget(h);
-  const capped = t.url !== h.orig;
-  const mp = t.w && t.h ? Math.round(t.w * t.h / 1e6) : null;
-  const swap = () => {
-    const v = viewerRef && viewerRef.current;
-    if (!v || loading) return;
-    const url = on ? proxied(h.img) : t.url;
-    setLoading(true);
-    const done = () => { setLoading(false); v.removeHandler("open", done); v.removeHandler("open-failed", fail); };
-    const fail = () => { setLoading(false); setOn(on); v.removeHandler("open", done); v.removeHandler("open-failed", fail); };
-    v.addHandler("open", done); v.addHandler("open-failed", fail);
-    v.open({ type: "image", url });
-    setOn(!on);
-  };
-  return (
-    <button className="cv-osd-fullres" onClick={swap}
-      title={on ? "Back to the standard plate"
-        : (capped ? `Load a ${t.w}×${t.h}px render — the browser's single-image ceiling; the untouched ${h.w}×${h.h}px scan lives on Commons`
-                  : `Load the untouched original scan — ${h.w}×${h.h}px`) + " (large download)"}
-      style={{ fontFamily: "var(--mono, monospace)", fontSize: 10, letterSpacing: ".08em",
-        color: on ? "var(--ink, #ddd)" : "var(--ink-faint, #999)", background: "rgba(10,10,12,.45)",
-        border: "1px solid rgba(255,255,255,.18)", borderRadius: 100, padding: "3px 10px",
-        whiteSpace: "nowrap", cursor: "pointer" }}>
-      {loading ? "loading…" : on ? "standard plate ↙" : `max zoom${mp ? ` · ${mp} MP` : ""}`}
-    </button>
-  );
-}
+// ULTRA-HQ policy (settled with Fuad 2026-08-22 after two failed attempts — do not rebuild):
+// giga-scan art_hires entries cap their in-app `img` at a 6000px thumb and keep the untouched
+// original in `orig`. (1) An in-viewer source-SWAP button was tried and killed: OSD renders a
+// type:"image" source as one WebGL texture (max ~16384px → "INVALID_VALUE: texImage2D" on the
+// 23k/44k scans), and even the capped swap didn't substitute reliably. (2) A plain new-tab link
+// alone under-sold it. The settled shape: the READER FOOTER carries an explicit "Ultra HQ ↗"
+// link to the untouched original (see cv-r-links), and the viewers stay on the 6000px plate.
 
 // Fly an OSD viewer to a normalized-image region {x,y,w,h} (all 0..1 fractions of the image).
 // immediately=false gives the gentle animated spring flight; true snaps. Shared by DeepZoom's
@@ -1166,8 +1122,7 @@ function DeepZoom({ work, onClose, onOsdFail }) {
           <span className="cv-osd-det-note">{activeDet.n}</span>
         </div>
       ) : (
-        <div className="cv-osd-cap">{capLabel}{details.length ? " · click a detail below to explore" : ""}
-          {" "}<FullResLink work={work} viewerRef={viewerRef} /></div>
+        <div className="cv-osd-cap">{capLabel}{details.length ? " · click a detail below to explore" : ""}</div>
       )}
     </div>
   );
@@ -1394,9 +1349,6 @@ function StudyView({ id, go }) {
       <div className="cv-study-viewer" style={{ flexBasis: collapsed ? "100%" : (split * 100) + "%" }}>
         <div className="cv-osd-view" ref={elRef} />
         <OSDControls viewerRef={viewerRef} />
-        {work && work.hires && work.hires.orig && (
-          <div style={{ position: "absolute", top: 10, right: 52, zIndex: 4 }}><FullResLink work={work} viewerRef={viewerRef} /></div>
-        )}
         {err && <div className="cv-osd-err">zoom unavailable — the tile source didn't load
           {" · "}<a href={"#/work/" + id} style={{ color: "inherit", textDecoration: "underline" }}>open in reader →</a></div>}
         {/* FIX 6a: the detail tour over the viewer — prev/next arrows step through the anchored
@@ -1644,13 +1596,17 @@ function Reader({ id, go }) {
             {/* say what the file ACTUALLY is. "Full resolution" was a promise the data could not
                 keep for 844 works — Commons returns the original when asked for a bigger width,
                 so the link opened a 363px Monet under a label implying otherwise.
-                Giga-scan gotcha (Fuad 2026-08-22, Bal du moulin): for >=50MP works imgZoom is the
-                capped 6000px thumb, so the link under the original's dimensions opened the thumb —
-                point it at hires.orig instead (and note the browser downsamples giant scans). */}
-            {(w.imgZoom || (w.hires && w.hires.orig)) && (
-              <a href={(w.hires && w.hires.orig) || w.imgZoom} target="_blank" rel="noopener noreferrer"
-                title={(w.px ? `Commons source is ${w.px[0]}×${w.px[1]}px` : undefined)
-                  && `Commons source is ${w.px[0]}×${w.px[1]}px${w.hires && w.hires.orig ? " — note: browsers silently downsample giant scans in a plain tab; the in-viewer max zoom shows more real detail" : ""}`}>
+                Ultra-HQ (Fuad 2026-08-22): giga-scan works carry the untouched original in
+                hires.orig — that gets its own explicit footer link (the viewers stay on the
+                6000px plate; see the ULTRA-HQ policy note above FullRes history). */}
+            {w.hires && w.hires.orig ? (
+              <a href={w.hires.orig} target="_blank" rel="noopener noreferrer"
+                title={`The untouched original scan — ${w.hires.w}×${w.hires.h}px, a very large download; browsers display giant scans downsampled`}>
+                {`Ultra HQ ↗ ${w.hires.w}×${w.hires.h}`}
+              </a>
+            ) : w.imgZoom && (
+              <a href={w.imgZoom} target="_blank" rel="noopener noreferrer"
+                title={w.px ? `Commons source is ${w.px[0]}×${w.px[1]}px` : undefined}>
                 {w.px ? `Source image ↗ ${w.px[0]}×${w.px[1]}` : "Full resolution ↗"}
               </a>
             )}
