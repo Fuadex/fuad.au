@@ -924,22 +924,38 @@ function resolveOSDSource(work) {
 }
 
 // "Full resolution" escape hatch (Fuad 2026-08-22: "include the super high res version somewhere
-// as part of the reader as an option"). Giga-scan art_hires entries cap their in-app `img` at a
-// 6000px thumb and keep the true original in `orig`; this renders an explicit opt-in link — the
-// files run to hundreds of MP, so they must never load implicitly. Direct url on purpose: a
-// user-initiated original download shouldn't ride the image proxy's cache.
-function FullResLink({ work }) {
+// as part of the reader as an option", then "have the button literally swap the source so that it
+// can still be viewed with openseadragon"). Giga-scan art_hires entries cap their in-app `img` at
+// a 6000px thumb and keep the true original in `orig`; this button swaps the LIVE viewer between
+// the two — the original stays strictly opt-in because these files run to hundreds of MP (the
+// Starry Night original is ~1.5 GP; expect a real wait on click, which the MP label advertises).
+// Direct url on purpose: the giant one-shot fetch shouldn't ride the image proxy's cache.
+function FullResLink({ work, viewerRef }) {
   const h = work && work.hires;
+  const [on, setOn] = useState(false);
+  const [loading, setLoading] = useState(false);
   if (!h || !h.orig) return null;
   const mp = h.w && h.h ? Math.round(h.w * h.h / 1e6) : null;
+  const swap = () => {
+    const v = viewerRef && viewerRef.current;
+    if (!v || loading) return;
+    const url = on ? proxied(h.img) : h.orig;
+    setLoading(true);
+    const done = () => { setLoading(false); v.removeHandler("open", done); v.removeHandler("open-failed", fail); };
+    const fail = () => { setLoading(false); setOn(on); v.removeHandler("open", done); v.removeHandler("open-failed", fail); };
+    v.addHandler("open", done); v.addHandler("open-failed", fail);
+    v.open({ type: "image", url });
+    setOn(!on);
+  };
   return (
-    <a className="cv-osd-fullres" href={h.orig} target="_blank" rel="noopener noreferrer"
-      title={"Open the untouched original scan in a new tab" + (h.w ? ` — ${h.w}×${h.h}px` : "")}
+    <button className="cv-osd-fullres" onClick={swap}
+      title={on ? "Back to the standard plate" : "Load the untouched original scan into the viewer" + (h.w ? ` — ${h.w}×${h.h}px (large download)` : "")}
       style={{ fontFamily: "var(--mono, monospace)", fontSize: 10, letterSpacing: ".08em",
-        color: "var(--ink-faint, #999)", textDecoration: "none", border: "1px solid rgba(255,255,255,.18)",
-        borderRadius: 100, padding: "3px 10px", whiteSpace: "nowrap" }}>
-      full resolution{mp ? ` · ${mp} MP` : ""} ↗
-    </a>
+        color: on ? "var(--ink, #ddd)" : "var(--ink-faint, #999)", background: "rgba(10,10,12,.45)",
+        border: "1px solid rgba(255,255,255,.18)", borderRadius: 100, padding: "3px 10px",
+        whiteSpace: "nowrap", cursor: "pointer" }}>
+      {loading ? "loading…" : on ? "standard plate ↙" : `full resolution${mp ? ` · ${mp} MP` : ""}`}
+    </button>
   );
 }
 
@@ -1135,7 +1151,7 @@ function DeepZoom({ work, onClose, onOsdFail }) {
         </div>
       ) : (
         <div className="cv-osd-cap">{capLabel}{details.length ? " · click a detail below to explore" : ""}
-          {" "}<FullResLink work={work} /></div>
+          {" "}<FullResLink work={work} viewerRef={viewerRef} /></div>
       )}
     </div>
   );
@@ -1363,7 +1379,7 @@ function StudyView({ id, go }) {
         <div className="cv-osd-view" ref={elRef} />
         <OSDControls viewerRef={viewerRef} />
         {work && work.hires && work.hires.orig && (
-          <div style={{ position: "absolute", top: 10, right: 52, zIndex: 4 }}><FullResLink work={work} /></div>
+          <div style={{ position: "absolute", top: 10, right: 52, zIndex: 4 }}><FullResLink work={work} viewerRef={viewerRef} /></div>
         )}
         {err && <div className="cv-osd-err">zoom unavailable — the tile source didn't load
           {" · "}<a href={"#/work/" + id} style={{ color: "inherit", textDecoration: "underline" }}>open in reader →</a></div>}
