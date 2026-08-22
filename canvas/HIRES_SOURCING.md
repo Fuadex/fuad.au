@@ -78,6 +78,19 @@ Everything not identity-safe by construction goes through two gates:
 Score to date: the gates rejected **20 wrong objects** that title/qid matching alone
 would have shipped into canon.
 
+## Next target: the Tate cluster (Fuad 2026-08-23)
+
+The single richest remaining vein is **Tate**: a large block of floored Turners (Norham
+Castle Sunrise, Queen Mab's Cave, the Deluge pair, the late sunrise/seascape group…) plus
+Constables sit at 800–1,540 px — postcard resolution for exactly the works that would repay
+zoom most. Tate's public site serves ~1,600 px renders; the job is to find whether their
+IIIF (used by their own viewer) or Art UK routes expose more, and substitute wholesale.
+Overall census (2026-08-23): 172 floored works have no IIIF, ~45 of them under 1,600 px;
+worst offenders Boldini *Scena galante* 294 px, *Female Figure* 364 px, van der Velden
+*Stormcloud* 480 px, two ~500 px *Water-Lilies* studies, Renoir *On the Shore of the
+Seine* 574 px. Among liked works the Sisley Loing group and several Boldinis are 280–300 px
+thumbs. Census script: `../../.sptmp/lowres-census.py`.
+
 ## Regeneration pointers
 
 Workshops live outside the repo (`../../.sptmp/canvas-hires*/`): tier sweeps, dims
