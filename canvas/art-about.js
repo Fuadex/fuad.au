@@ -3,6 +3,98 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+"christian-rohlfs-white-beeches-in-fall": {
+about: "Rohlfs came to Expressionism absurdly late: born in 1849, he was already past fifty when Karl Ernst Osthaus installed him at the Folkwang in Hagen and, in Soest in 1905, introduced him to Emil Nolde. The friendship that followed pulled a settled landscape painter into hot color and loosened form, and by this 1910 canvas he was among the oldest men working in the new German idiom. Its German title, \"Weiße Birken im Herbst,\" names birches rather than the beeches of the English label — a slip the picture has carried ever since.",
+by: "Opus 4.8" },
+
+"claude-monet-essai-de-figure-en-plein-air": {
+about: "Monet had painted the figure only rarely since Camille's death in 1879. In the summer of 1886 he returned to it, posing Suzanne Hoschedé — Alice Hoschedé's eighteen-year-old daughter, soon his favourite model — on the île aux Orties near Giverny. Of the resulting pair, this is the canvas where she turns to the right, both echoing Camille's 1875 parasol walk. The blank face was deliberate: figures \"done like landscapes\", he told Théodore Duret the next summer, were \"an old dream\" he meant to realise \"once and for all\".",
+by: "Opus 4.8" },
+
+"claude-monet-la-rue-montorgueil": {
+about: "On 30 June 1878 Paris held a Fête de la Paix crowning that summer's Exposition Universelle — a holiday often misread as Bastille Day, which became national only in 1880. \"I loved flags,\" Monet later told the dealer René Gimpel, recalling how he asked permission to paint from a balcony above the flag-hung street, finishing this canvas and a twin view of the rue Saint-Denis the same day. Seized under the Occupation from the collector Alfred Lindon and logged into Hermann Göring's hoard, it was recovered after the war.",
+by: "Opus 4.8" },
+
+"claude-monet-le-givre": {
+about: "The winter of 1879–80 was among the coldest Europe had recorded, and Monet, newly widowed and short of money at Vétheuil, worked outdoors with hand-warmers as the Seine seized up and then broke apart in the January thaw. This 1880 canvas belongs to the roughly twenty frost-and-ice pictures he pushed through that season, chasing one motif across shifting light in a way that anticipates his later serial work. A single beached boat is the only human trace. Gustave Caillebotte owned it until his death, and left it to France in the 1894 bequest the state accepted only after long resistance.",
+by: "Opus 4.8" },
+
+"claude-monet-the-water-lilies-clear-morning-with-willows": {
+about: "On 12 November 1918, the day after the Armistice, Monet offered France two decorative panels as a monument to peace; Georges Clemenceau coaxed the gift into the full grandes décorations cycle, unveiled at the Orangerie in May 1927, months after the painter's death. This composition holds the south wall of the second oval room: three joined canvases worked up from around 1920 and spanning nearly thirteen metres, where two slender trunks of weeping willow — the mourning motif Monet embraced through the war years — rise through the pond's pale morning reflections, facing their near-twin, Le Matin aux saules.",
+by: "Opus 4.8" },
+
+"claude-monet-the-water-lilies-the-two-willows": {
+about: "The day after the 1918 Armistice, Monet offered France a cycle of monumental water-lily decorations through his friend Georges Clemenceau; this composition became the largest of the eight installed in the Orangerie's oval rooms in 1927, months after his death. Four canvases joined into a single seventeen-metre sweep of pond, its edges marked by two slender willow trunks — a panorama Monet kept reworking at Giverny until the end.",
+by: "Opus 4.8" },
+
+"claude-monet-water-lilies-2": {
+about: "In 1916 Monet built a vast new studio at Giverny for water-lily canvases more than two metres high — the Grande Décoration he would promise to France the day after the 1918 Armistice. This four-metre stretch of pond was not among the twenty-two panels that went to the Orangerie; it stayed behind in the studio for decades, until around 1950 the dealer Katia Granoff won the trust of Monet's son Michel and began showing the unwanted late canvases, just as postwar abstraction was teaching audiences to see them.",
+by: "Opus 4.8" },
+
+"claude-monet-waterloo-bridge-london-at-dusk": {
+about: "From 1899 Monet worked the Thames from a fifth-floor Savoy Hotel suite, Waterloo Bridge falling away to his left, switching canvas to canvas to chase the shifting London murk; after his 1901 campaign he abandoned plein-air work altogether and finished the whole run from memory and sketches at Giverny. This 1904 canvas belongs to that studio harvest — one dusk effect among roughly forty Waterloo Bridges, its cool low light distinct from the fog and sunset variants Monet mined from the same window. He dated it the year he chose thirty-seven of the London views for his Durand-Ruel exhibition in Paris, eighteen of them Waterloo Bridges; a later reconstruction using solar geometry and period weather records pinned down the exact balcony he had painted from.",
+by: "Opus 4.8" },
+
+"claude-monet-wind-effect-series-of-the-poplars": {
+about: "In the summer of 1891 the commune of Limetz marked the poplars along the Epte for felling while Monet was only partway through painting them; at the August auction he struck a deal with the timber merchant, paying the difference to keep the row standing until his series was done. Working from a boat moored on the river two kilometres from Giverny, he carried the campaign through some two dozen canvases between the Grainstacks and the Rouen Cathedrals. Of them all, this canvas — Wildenstein no. 1302 — is the one that lets the weather in, catching the row mid-gust.",
+by: "Opus 4.8" },
+
+"edouard-manet-bords-de-seine-a-argenteuil": {
+about: "In the summer of 1874 Manet stayed at his family's house in Gennevilliers, directly across the Seine from Argenteuil, where Claude Monet had settled the year before. Painting beside the younger man, he made this canvas one of his most vivid experiments in open-air work, Camille Monet and her son Jean posing for the figures — borrowing Monet's swift, broken touch for the water's ripples while holding on to his own thick paint and rich blacks.",
+by: "Opus 4.8" },
+
+"ferdinand-hodler-bildnis-der-tanzerin-giulia-leonardi": {
+about: "In 1910 Hodler met Giulia Leonardi — born Angela Giulia Gallo in Alessandria — in a Geneva café where the Italian singer, guitarist and dancer performed. She became one of the most-painted women of his late career: roughly seventeen portraits in 1910–11 alone, and he reportedly paid her five francs a day whether she modelled or not. Among that crowd of Leonardis, this small 1910 canvas, turned to an unusual landscape format, is the one where she smiles.",
+by: "Opus 4.8" },
+
+"georges-seurat-seascape-at-port-en-bessin-normandy": {
+about: "Seurat spent the summer of 1888 working the Normandy coast at Port-en-Bessin, recording the little fishing port almost systematically from inner harbour to outer, then out to the cliffs east and west. This near-square view of green headland dropping to the sea is one of six canvases he brought back, marines he conceived as a set meant to hang together in a deliberate order; all six were shown at Les XX in Brussels in February 1889. As in the others, he tracked the coast's signal apparatus closely, and framed the scene inside his hand-dotted painted border rather than a gilt frame.",
+by: "Opus 4.8" },
+
+"j-m-w-turner-the-new-moon-or-i-ve-lost-my-boat-you-shan-t-ha": {
+about: "The squabble in the title's second half is the picture's own script: a boy has lost his toy boat and in revenge refuses to give up his playmate's hoop, a nursery drama Turner set on the sands of Margate, where he had been schooled as a child and where, by 1840, he lodged with his landlady Sophia Booth. The small mahogany panel went to that year's Royal Academy alongside the Slave Ship, and Blackwood's Magazine jeered, asking what the moon could have to do with a hoop and a boat and rating the picture 'far below even moonshine'.",
+by: "Opus 4.8" },
+
+"paul-cezanne-la-montagne-sainte-victoire-au-dessus-de-la-rou": {
+about: "In the last decades before his death in 1906, Cézanne returned to this Provençal mountain obsessively, leaving dozens of oils and watercolours of it. This 1904 version belongs not to the frontal Les Lauves group painted near his studio but to the smaller set worked from above the road du Tholonet, southeast of Aix, where he set his easel at the roadside among umbrella pines. He painted it from life at that spot, letting a branch of one parasol pine reach across the sky so its curve answers the slope of the peak, binding the near tree to the far mountain.",
+by: "Opus 4.8" },
+
+"pierre-auguste-renoir-luncheon-of-the-boating-party": {
+about: "From Chatou in 1880 Renoir wrote to his patron Paul Bérard that he was finally painting the oarsmen he had \"been itching to do for a long time,\" adding that one must sometimes attempt things beyond one's strength. The gamble ran for months on the Maison Fournaise terrace: fourteen friends — among them his future wife Aline Charigot with her little dog, the painter Gustave Caillebotte, and the collector Charles Ephrussi — sat piecemeal, since he could never gather them all at once. To Bérard he vowed this would be his last large painting, and when Durand-Ruel entered it in the 1882 Impressionist exhibition over the convalescing Renoir's objections, critics ranked it among the best things he had done.",
+by: "Opus 4.8" },
+
+"pierre-bonnard-sleeping-woman-on-a-bed": {
+about: "The sleeper is Maria Boursin, Bonnard's companion from 1893, who lived under the invented name Marthe de Méligny — he learned her real one only when they finally married in 1925. Painted in 1899, this is one of Bonnard's very first nudes, a subject he had barely touched before, and it opened the unguarded bedroom cycle devoted to Marthe that continued the next year with L'Homme et la femme and La Sieste.",
+by: "Opus 4.8" },
+
+"unknown-bodhisattva-maitreya-the-future-buddha": {
+about: "Maitreya is the Buddha-in-waiting of Buddhist cosmology, presiding in the Tushita heaven until his turn to descend and teach. This scroll — pigments on cloth, nearly a meter and a half tall — casts him as a curious hybrid: red-bodied and stupa-crowned in Tibetan convention, yet set in the watery grotto-and-bamboo world Chinese painters reserved for Avalokiteshvara, down to the white parrot and the boy-pilgrim Sudhana. A small vignette settles his identity: the sage Kashyapa handing on the Buddha's robe, the token of transmission Maitreya waits eons to receive. Once catalogued as Ming work of about 1450, it is now thought a seventeenth- or eighteenth-century painting, its origin split between Tibet and China.",
+by: "Opus 4.8" },
+
+"unknown-mahakala-in-the-form-of-a-brahman": {
+about: "Sakya tradition holds that the protector Mahakala concealed himself as a wandering Brahman ascetic — Brahmarupa, bearded and blowing a thighbone trumpet — the guise in which he is said to have appeared to the lama Phagpa as the Sakyas converted Kublai Khan's Mongols. This Tibetan thangka of about 1650, pigments on cloth, crowns that rare form with Guhyasamaja Manjuvajra, the tantric deity whose special guardian Brahmarupa is, ranked second among the Sakya school's protectors.",
+by: "Opus 4.8" },
+
+"vincent-van-gogh-enclosed-field-with-peasant": {
+about: "Van Gogh painted this around 12 October 1889 from the asylum at Saint-Rémy, and told Theo it showed \"the same field as the one of the reaper\" — the walled plot he watched from his cell window, now turned to mounds of ploughed earth under parched background hills. He meant it as a deliberate pendant: this violet-keyed canvas, with its small stooped peasant dragging a bundle of straw across the furrows, was to answer the yellow-dominated Reaper he had made earlier that year. It is a distinct work from the sun-blazing Enclosed Field with Rising Sun (F737) he would paint in December, with no figure in it at all.",
+by: "Opus 4.8" },
+
+"vincent-van-gogh-self-portrait-2": {
+about: "Van Gogh painted this at the Saint-Rémy asylum in the late summer of 1889, in the weeks after the July breakdown that had briefly stopped him working. Facing himself with palette and brushes against a churning violet-blue ground, he was testing whether his hand and eye still held together as he came back to the studio. It belongs to a tight cluster of self-portraits he made inside the institution that season, and he sent it north to his brother Theo.",
+by: "Opus 4.8" },
+
+"vincent-van-gogh-the-red-vineyard-red-vineyard-at-arles-mont": {
+about: "Van Gogh caught the motif on a late-October 1888 walk near Arles with Gauguin, then reported it to Theo as a vineyard \"completely red like red wine,\" the setting sun reflected in the wet fields; both painters' letters suggest he finished the canvas indoors rather than before the scene. In spring 1890 the burlap-backed picture of stooped grape-pickers went to the Belgian painter Anna Boch, sister of his friend Eugène, for 400 francs at Les XX in Brussels. It survives as the one sale documented by name — the \"only painting he ever sold\" tag oversells it, since he also traded works and sold drawings.",
+by: "Opus 4.8" },
+
+"vincent-van-gogh-zelfportret-en-face": {
+about: "Van Gogh spent his two Paris years too broke to hire models, so he turned a mirror on himself — more than twenty self-portraits by the time he left for Arles. This one belongs to a burst from the summer of 1887, and to save money he painted it on the back of an earlier peasant-woman study from his Nuenen days: the canvas is still double-sided, catalogued F77v for its verso position.",
+by: "Opus 4.8" },
+
+"wassily-kandinsky-erinnerung-an-venedig-3-kanal": {
+about: "Passing through Venice in September 1903, on travels that also took him to Odessa and Moscow, Kandinsky carried a camera. In 1904 he condensed that trip into a small numbered group of tempera-on-cardboard memory pictures of the city; this canal view is the third, painted the same year as its Rialto Bridge companion. The remembering was partly mechanical: scholars have matched these panels to photographs Kandinsky himself took on the spot.",
+by: "Opus 4.8" },
+
 "impression-sunrise": {
 about: "Le Havre's harbour at sunrise, 1872 — an orange sun over grey-blue mist, cranes and masts dissolved in haze, two small rowboats. The quick harbour sketch whose title a mocking critic turned into the name of an entire movement: Impressionism.",
 deep: "Drain the colour out and the sun almost disappears — it is nearly identical in brightness to the sky around it, differing only in hue, which is why it vibrates rather than glows. That tonal trick is the key to the whole picture: Monet is not painting light but the lag before the eye has sorted light into objects. Le Havre's harbour holds its breath inside those two or three seconds, and the canvas refuses to advance past them. Three directions of brushwork do the sorting work — horizontal strokes for water, diagonal smears for sky, downward verticals for masts and stacks — while contour does none; the far shore simply thickens out of the mist and stops. Lean paint, bare priming showing through, saturated pigment covering perhaps a twentieth of the surface: the look of incompletion is the argument. Industrial Le Havre, a country restarting after a lost war, gets exactly the soft mauve a previous century gave mountains; the cranes dissolve into the same atmosphere as the shore. The title was modesty — 'impression', studio shorthand for a rapid first lay-in — and the critic Louis Leroy seized on it as mockery. The insult held because it was also accurate, and the accuracy became the name of a movement.",
