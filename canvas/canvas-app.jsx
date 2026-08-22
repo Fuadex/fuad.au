@@ -2824,10 +2824,14 @@ function MapView({ go }) {
   const fanK = Math.max(0.14, Math.min(0.32, k * 0.32));
   const fanAt = (mk) => {
     const ox = mk.x - mk.bx, oy = mk.y - mk.by, len = Math.hypot(ox, oy) || 0.001;
-    // the floor tracks the bubble as RENDERED (bubZoom halves it at rest) plus the rendered
-    // dot and a hair of gap — not the raw world radius, which kept big-city leaders long
-    const floor = (mk.keepR || 0) * bubZoom * dotMul + 2 * dotZoom * dotMul + 0.6;
-    const newLen = Math.max(floor, len * fanK);
+    // COLLAR MODEL (Fuad 2026-08-22, sixth line-length pass: "cut pretty much all of them by
+    // half again"). The dot keeps its solved ANGLE; its distance is pinned to a tight band just
+    // off the rendered rim — floor = rim + rendered dot + a hair, cap = floor + 0.9 — so every
+    // leader is a short whisker no matter how far the collision solver pushed the dot in world
+    // units. Dense small cities may bead-overlap at rest; the fisheye parts them under the
+    // cursor, and short-beats-separated is the owner's consistently chosen trade.
+    const lo = (mk.keepR || 0) * bubZoom * dotMul + 2 * dotZoom * dotMul + 0.3;
+    const newLen = Math.min(lo + 0.9, Math.max(lo, len * fanK));
     return [mk.bx + ox / len * newLen, mk.by + oy / len * newLen];
   };
   // DOT ZOOM (Fuad 2026-08-22: "the dots can start initially smaller — when zoomed in they can
