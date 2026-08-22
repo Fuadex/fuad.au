@@ -1600,10 +1600,15 @@ function Reader({ id, go }) {
                 hires.orig — that gets its own explicit footer link (the viewers stay on the
                 6000px plate; see the ULTRA-HQ policy note above FullRes history). */}
             {w.hires && w.hires.orig ? (
-              <a href={w.hires.orig} target="_blank" rel="noopener noreferrer"
-                title={`The untouched original scan — ${w.hires.w}×${w.hires.h}px, a very large download; browsers display giant scans downsampled`}>
-                {`Ultra HQ ↗ ${w.hires.w}×${w.hires.h}`}
-              </a>
+              <React.Fragment>
+                <a href={w.hires.orig} target="_blank" rel="noopener noreferrer"
+                  title={`The untouched original scan — ${w.hires.w}×${w.hires.h}px, a very large download; browsers display giant scans downsampled`}>
+                  {`Ultra HQ ↗ ${w.hires.w}×${w.hires.h}`}
+                </a>
+                {/* ?download flips Wikimedia to Content-Disposition: attachment (verified
+                    2026-08-22) — saves the file instead of rendering it downsampled in a tab */}
+                <a href={w.hires.orig + "?download"} title="Save the original file instead of opening it">⭳ save</a>
+              </React.Fragment>
             ) : w.imgZoom && (
               <a href={w.imgZoom} target="_blank" rel="noopener noreferrer"
                 title={w.px ? `Commons source is ${w.px[0]}×${w.px[1]}px` : undefined}>
