@@ -87,6 +87,7 @@ window.CANVAS_ARTWORKS = [
   { id: "dance-in-the-country", title: "Dance in the Country", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q1114718", qidTrusted: true, year: 1883, seenAt: "orsay", seenConfidence: "unsure", liked: true, note: "Deck pick — orsay-2026-07-07." },
   { id: "berthe-morisot-with-a-bouquet-of-violets", title: "Berthe Morisot with a Bouquet of Violets", artist: "Édouard Manet", artistId: "manet", qid: "Q2899286", qidTrusted: true, year: 1872, seenAt: "orsay", seenConfidence: "sure", liked: true, note: "Deck pick — orsay-2026-07-07." },
   { id: "le-dejeuner-sur-l-herbe", title: "Le Déjeuner sur l'herbe", artist: "Claude Monet", artistId: "monet", qid: "Q1167912", qidTrusted: true, year: 1865, seenAt: "orsay", seenConfidence: "sure", liked: true, note: "Deck pick — orsay-2026-07-07." },
+  { id: "claude-monet-le-dejeuner-sur-l-herbe-study", title: "Le Déjeuner sur l'herbe (study)", artist: "Claude Monet", artistId: "monet", qid: "Q50434651", qidTrusted: true, year: 1866, wish: true },
   { id: "the-wounded-man", title: "The Wounded Man", artist: "Gustave Courbet", artistId: "courbet", qid: "Q3751961", qidTrusted: true, year: 1844, seenAt: "orsay", seenConfidence: "unsure", liked: true, note: "Deck pick — orsay-2026-07-07." },
   { id: "the-age-of-bronze", title: "The Age of Bronze", artist: "Auguste Rodin", artistId: "rodin", qid: "Q526178", qidTrusted: true, year: 1877, seenAt: "orsay", seenConfidence: "unsure", liked: true, note: "Deck pick — orsay-2026-07-07." },
   { id: "regates-a-argenteuil", title: "Régates à Argenteuil", artist: "Claude Monet", artistId: "monet", qid: "Q3454959", qidTrusted: true, year: 1872, seenAt: "orsay", seenConfidence: "sure", liked: true, note: "Deck pick — orsay-2026-07-07." },
@@ -469,6 +470,7 @@ window.CANVAS_ARTWORKS = [
   { id: "an-experiment-on-a-bird-in-the-air-pump", title: "An Experiment on a Bird in the Air Pump", artist: "Joseph Wright of Derby", artistId: "derby", qid: "Q1167796", qidTrusted: true, year: 1768, seenAt: "national-gallery-london", seenConfidence: "unsure", liked: true, note: "Deck pick — deck-ngl." },
   { id: "the-fighting-temeraire", title: "The Fighting Temeraire", artist: "J. M. W. Turner", artistId: "turner", qid: "Q257580", qidTrusted: true, year: 1839, seenAt: "national-gallery-london", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — deck-ngl." },
   { id: "boy-bitten-by-a-lizard", title: "Boy Bitten by a Lizard", artist: "Caravaggio", artistId: "caravaggio", qid: "Q585437", qidTrusted: true, year: 1594, seenAt: "national-gallery-london", seenConfidence: "unsure", liked: true, note: "Deck pick — deck-ngl." },
+  { id: "caravaggio-boy-bitten-by-a-lizard-longhi", title: "Boy Bitten by a Lizard (Longhi version)", artist: "Caravaggio", artistId: "caravaggio", qid: "Q131543672", qidTrusted: true, year: 1597, wish: true },
   { id: "bathers-at-asnieres", title: "Bathers at Asnières", artist: "Georges Seurat", artistId: "seurat", qid: "Q1090837", qidTrusted: true, year: 1884, seenAt: "national-gallery-london", seenConfidence: "unsure", liked: true, note: "Deck pick — deck-ngl." },
   { id: "carnation-lily-lily-and-rose", title: "Carnation, Lily, Lily, Rose", artist: "John Singer Sargent", artistId: "sargent", qid: "Q1560719", qidTrusted: true, year: 1885, seenAt: "tate-britain", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — deck-ngl. Held at Tate Britain (legacy NG accession)." },
   { id: "allegory-of-prudence", title: "Allegory of Prudence", artist: "Titian", artistId: "titian", qid: "Q2528145", qidTrusted: true, year: 1550, seenAt: "national-gallery-london", seenConfidence: "unsure", liked: true, note: "Deck pick — deck-ngl." },
@@ -901,6 +903,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: "orsay", seenConfidence: "sure", liked: true },
   { id: "antonio-canova-amore-e-psiche", title: "Amore e Psiche", artist: "Antonio Canova", artistId: "antonio-canova", qid: "Q517408", qidTrusted: true, year: 1794,
     seenAt: "louvre", seenConfidence: "sure", liked: true },
+  { id: "antonio-canova-amore-e-psiche-hermitage", title: "Amore e Psiche (second version)", artist: "Antonio Canova", artistId: "antonio-canova", year: 1796, wish: true, img: "https://commons.wikimedia.org/wiki/Special:FilePath/Statue%20of%20Cupid%20and%20Psyche%20and%20a%20butterfly%20%28The%20Hermitage%29.jpg?width=1600" }, // Hermitage second version — no Wikidata item exists (checked 2026-08-22), hand img
   { id: "claude-monet-weeping-willow", title: "weeping willow", artist: "Claude Monet", artistId: "monet", qid: "Q105099606", qidTrusted: true, year: 1921,
     seenAt: "artizon", seenConfidence: "sure", liked: true },
   { id: "anders-zorn-mrs-veronica-heiss", title: "Mrs Veronica Heiss", artist: "Anders Zorn", artistId: "zorn", qid: "Q18599440", qidTrusted: true, year: 1891,
@@ -981,7 +984,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: "orsay", seenConfidence: "sure", liked: true },
   { id: "thomas-gainsborough-mr-and-mrs-william-hallett", title: "Mr and Mrs William Hallett (\\", artist: "Thomas Gainsborough", artistId: "gainsborough", qid: "Q12738203", qidTrusted: true, year: 1785,
     seenAt: "national-gallery-london", seenConfidence: "sure", liked: true },
-  { id: "michael-pfanner-untitled", title: "Augustusporträt aus dem Allgäu", artist: "Michael Pfanner", artistId: "michael-pfanner", qid: "Q126082981", qidTrusted: true, year: 1994,
+  { id: "michael-pfanner-untitled", title: "Augustusporträt aus dem Allgäu", artist: "Michael Pfanner", artistId: "michael-pfanner", qid: "Q126082981", qidTrusted: true, year: 1994, img: "https://upload.wikimedia.org/wikipedia/commons/a/a7/AugustusPfannerT%C3%BCb.jpg", // hand img: the qid P18 shows a different (full-statue) object; this head is the Tübingen work seen (Fuad 2026-08-22)
     seenAt: "tubingen-antiquities", seenConfidence: "sure", liked: true },
   { id: "paul-signac-femme-a-l-ombrelle", title: "Femme à l'ombrelle", artist: "Paul Signac", artistId: "signac", qid: "Q17491415", qidTrusted: true, year: 1893,
     seenAt: "orsay", seenConfidence: "sure", liked: true },
