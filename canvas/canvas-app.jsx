@@ -62,13 +62,18 @@ const MEDIA = [["painting", "paintings"], ["sculpture", "sculpture"], ["paper", 
 // Google-Art-class giga scans (~10k px+); 20MP = ~5k px, deep-zoom really rewards; 4MP = the
 // ~2400px stage-A floor, solid full-screen; below that is a plate. Unknown size = no bucket,
 // excluded when the filter is on (same no-guess rule as medium).
-const QUALITY = [["giga", "gigapixel"], ["ultra", "ultra · 20MP+"], ["high", "high · 4MP+"], ["plate", "plate"], ["iiif", "tiled · IIIF"]];
+// Six MP tiers on a ~×4 ladder (Fuad 2026-08-23, second cut: "change the names to MP
+// equivalents" — the gargantuan/yuge/meh/shoe draft renamed; band edges rebalanced from the
+// first cut so no chip is near-empty). 150MP+ ≈ beyond the in-browser render cap (12.8k
+// long side): those works always view through a pyramid/IIIF, with the full file behind
+// the Ultra HQ link.
+const QUALITY = [["q150", "150MP+"], ["q50", "50MP+"], ["q12", "12MP+"], ["q3", "3MP+"], ["q1", "1MP+"], ["q0", "<1MP"], ["iiif", "tiled · IIIF"]];
 const qualityOf = (w) => {
   const h = HIRES[w.id];
   let px = h && h.w && h.h ? h.w * h.h : null;
   if (!px) { const p = IMGSIZE[w.id]; if (p && p[0] && p[1]) px = p[0] * p[1]; }
   if (!px) return null;
-  return px >= 100e6 ? "giga" : px >= 20e6 ? "ultra" : px >= 4e6 ? "high" : "plate";
+  return px >= 150e6 ? "q150" : px >= 50e6 ? "q50" : px >= 12e6 ? "q12" : px >= 3e6 ? "q3" : px >= 1e6 ? "q1" : "q0";
 };
 // "iiif" is a cross-cutting TAG, not a size bucket (Fuad 2026-08-23) — works whose holder serves
 // a real tile pyramid (NGA/AIC/CMA/V&A…), i.e. progressive zoom with no texture ceiling. It ORs
@@ -961,26 +966,22 @@ function resolveOSDSource(work) {
   // COMMONS PYRAMID (Fuad 2026-08-23, "the middle path"): museums without IIIF (MoMA, Orsay…)
   // only exist as flat Commons giga-files, and those can NEVER load whole (WebGL ~16k texture
   // ceiling; the Starry Night original is 696MB — never plugged in as-is). A legacy image
-  // pyramid of Commons SERVER-RENDERED sizes gets progressive zoom with zero hosting: each
-  // level is one thumb (1600→3200→6400→~12.8k long-side cap), fetched only when the zoom needs
-  // it. The untouched original stays a reader-footer link. Levels must always be FilePath
-  // renders — never the raw original (which may also be TIFF).
-  if (work.hires && work.hires.src === "commons" && work.hires.orig && work.hires.w && work.hires.h
-      && Math.max(work.hires.w, work.hires.h) > 6600) {
-    const { w, h, orig } = work.hires;
-    const file = decodeURIComponent(orig.split("/").pop());
-    const capW = (h > w ? Math.round(12800 * w / h) : 12800);
-    const widths = [1600, 3200, 6400, capW].filter((x, i, a) => x < w && a.indexOf(x) === i).sort((a, b) => a - b);
-    const levels = widths.map(lw => ({
+  // pyramid of Commons SERVER-RENDERED sizes gets progressive zoom with zero hosting.
+  // EXACT DIMS ONLY (same day, second pass): the first cut computed level heights with our own
+  // rounding, but Commons' thumbnailer rounds differently, and OSD's legacy pyramid visibly
+  // wobbles when declared dims miss the file by even a pixel. `pyr` holds the MEASURED [w,h] of
+  // each ladder thumb (emit-pyramids.py, JPEG-header-parsed); no pyr = plain 6000px plate, never
+  // a guessed pyramid.
+  if (work.hires && work.hires.src === "commons" && work.hires.orig && Array.isArray(work.hires.pyr)) {
+    const file = decodeURIComponent(work.hires.orig.split("/").pop());
+    const levels = work.hires.pyr.map(([lw, lh]) => ({
       url: proxied("https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(file) + "?width=" + lw),
-      width: lw, height: Math.round(h * lw / w),
+      width: lw, height: lh,
     }));
-    if (levels.length > 1) {
-      const top = levels[levels.length - 1];
-      const mp = Math.round(top.width * top.height / 1e6);
-      return { tileSource: { type: "legacy-image-pyramid", levels }, cors: "Anonymous",
-        label: `progressive zoom · ${mp} MP` };
-    }
+    const top = levels[levels.length - 1];
+    const mp = Math.round(top.width * top.height / 1e6);
+    return { tileSource: { type: "legacy-image-pyramid", levels }, cors: "Anonymous",
+      label: `progressive zoom · ${mp} MP` };
   }
   if (work.hires && work.hires.img) {
     const src = (work.hires.src || "").toUpperCase();
