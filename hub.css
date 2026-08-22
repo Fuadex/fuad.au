@@ -15,7 +15,9 @@ html,body{margin:0;height:100%;background:#050507;overflow:hidden;
 /* accents travel with the app, not the slot (order: canvas | culture | rotation) */
 .pane--rotation{--accent:oklch(0.74 0.13 330)}
 .pane--culture{--accent:#d8a94a}
-.pane--canvas{--accent:oklch(0.66 0.14 46)}
+/* lightness raised 0.66 -> 0.80 (Fuad 2026-08-22: hover meta/enter text was hard to read
+   on the dark pane); hue/chroma keep the burnt-orange identity */
+.pane--canvas{--accent:oklch(0.80 0.14 46)}
 
 /* snapshot — counter-skewed so it sits upright, scaled to cover, blurred like frosted glass */
 .content{position:absolute;inset:-3%;transform:skewX(9deg) scale(1.16);transform-origin:center}
@@ -51,14 +53,21 @@ html,body{margin:0;height:100%;background:#050507;overflow:hidden;
    at the true vertical center of the pane instead of riding above it (Fuad 2026-08-22);
    max-width 500 lands the one-sentence descs on two lines instead of three + an orphan */
 .reveal{max-width:500px;height:0;overflow:visible;opacity:0;transform:translateY(16px);pointer-events:none;
+  /* flex column so the shrink-wrapped meta/enter pills stack instead of flowing inline */
+  display:flex;flex-direction:column;align-items:center;
   transition:opacity .55s ease .04s,transform .55s cubic-bezier(.72,0,.18,1) .04s}
 .desc{margin:0;font-family:'Source Serif 4',Georgia,serif;font-size:16px;line-height:1.55;color:#cdc7d4}
 .meta{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+  letter-spacing:.22em;text-transform:uppercase;color:var(--accent);
+  /* dark pill backing, matching .enter — lifts the accent off mid-tone snapshot regions
+     (Canvas's pink frames); near-invisible where the snapshot is already dark */
+  display:inline-block;padding:4px 12px;border-radius:100px;background:rgba(5,5,8,.28);
+  text-shadow:0 1px 6px rgba(5,5,8,.85),0 0 2px rgba(5,5,8,.7)}
 .enter{display:inline-block;margin-top:22px;font-family:'JetBrains Mono',monospace;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--accent);border:1px solid color-mix(in oklab,var(--accent) 45%,transparent);
-  padding:9px 18px;border-radius:100px;transition:color .35s ease,border-color .35s ease}
+  padding:9px 18px;border-radius:100px;transition:color .35s ease,border-color .35s ease;
+  text-shadow:0 1px 6px rgba(5,5,8,.85);background:rgba(5,5,8,.28)}
 .enter:hover{color:#fff;border-color:rgba(255,255,255,.85)}
 
 /* hover: expand hovered, shrink the other; clear its glass + snapshot; reveal copy */
