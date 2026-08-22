@@ -79,9 +79,9 @@ even hand them to drafters as "context": a d2 drafter laundered an existing-Info
 Samson AI-study line) into a deep read that way. Job files for drafters should carry the
 canon row + tour and nothing else.
 
-- Length (Fuad 2026-08-14, superseding the earlier soft-only ruling): **target ~140–170**
-  in the brief — drafts inflate past their target anyway, so aim low. At QC, measured:
-  **≤200 ships as-is; 200–240 is QC's judgement call; >240 gets trimmed.** Trims must never
+- Length (Fuad 2026-08-14; tightened 2026-08-23 — "a bit elongated... not all but many"):
+  **target ~130–150** in the brief — drafts inflate past any target, so aim low. At QC:
+  **<180 ships as-is; ≥180 gets a trim-first look; >240 always trimmed.** Trims must never
   cost a concrete anchor (a date, an exhibition, a named detail) — losing one is always a
   downgrade; cut restatement, not material.
 - One evocative paragraph. **Lead with the unifying idea** (rich works) or **the single
