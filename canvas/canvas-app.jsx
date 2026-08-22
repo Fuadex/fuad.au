@@ -614,7 +614,9 @@ function Wall({ go, styleIds }) {
     return arr;
     // `media` belongs in here: the filter above reads it, and without it the wall kept showing the
     // previous medium's results until some other filter happened to change (found 2026-08-20).
-  }, [all, marks, status, eras, mus, sort, sel, media, pick, hang]);
+  // `qual` MUST be in these deps (2026-08-23 bug: it filtered inside but wasn't a dep, so only
+  // the first quality click — which also cleared the hang — recomputed; later toggles froze)
+  }, [all, marks, status, eras, mus, sort, sel, media, qual, pick, hang]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
