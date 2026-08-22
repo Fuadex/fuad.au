@@ -4,6 +4,7 @@
 // P195) and commons (P18 originals + verified wiki-lead files). `orig` = untouched original
 // for the reader's Ultra HQ / save links; never put a non-browser format (TIFF) in `img`.
 window.CANVAS_HIRES = {
+"femmes-arabes-a-la-promenade": {"src": "parismusees", "w": 6807, "h": 5319, "img": "https://www.parismuseescollections.paris.fr/sites/default/files/atoms/images/PPA/aze_ppd00557_001.jpg", "title": "Femmes arabes à la promenade", "conf": "high"},
 // tier-4 keyed sweep, pair-verified SAME (2026-08-23) — sole survivor of 12 candidates
 "claude-monet-charing-cross-bridge-fog": {"src": "harvard", "w": 2550, "h": 2018, "img": "https://nrs.harvard.edu/urn-3:HUAM:787382", "title": "Charing Cross Bridge, Fog", "conf": "high"},
 "a-pair-of-shoes": {"src": "commons", "w": 2985, "h": 2480, "title": "A Pair of Shoes", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Schoenen_-_s0011V1962_-_Van_Gogh_Museum.jpg"},
