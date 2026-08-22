@@ -57,6 +57,19 @@ const isUnseen = (w) => !!w.wish || w.seenConfidence === "unsure";
 const unseenRank = (w) => (w.floored || w.favorite) ? 2 : w.liked ? 1 : 0;   // 2 = loved, 1 = liked
 const mediumOf = (w) => MEDIUM[w.id] || null;
 const MEDIA = [["painting", "paintings"], ["sculpture", "sculpture"], ["paper", "works on paper"], ["object", "objects"], ["photo", "photography"]];
+// QUALITY buckets (Fuad 2026-08-23) — how much real pixel the best-known source holds, from
+// art_hires w/h (the 1,019-entry emit) falling back to art_imgsize. Cut-offs: 100MP = the
+// Google-Art-class giga scans (~10k px+); 20MP = ~5k px, deep-zoom really rewards; 4MP = the
+// ~2400px stage-A floor, solid full-screen; below that is a plate. Unknown size = no bucket,
+// excluded when the filter is on (same no-guess rule as medium).
+const QUALITY = [["giga", "gigapixel"], ["ultra", "ultra · 20MP+"], ["high", "high · 4MP+"], ["plate", "plate"]];
+const qualityOf = (w) => {
+  const h = HIRES[w.id];
+  let px = h && h.w && h.h ? h.w * h.h : null;
+  if (!px) { const p = IMGSIZE[w.id]; if (p && p[0] && p[1]) px = p[0] * p[1]; }
+  if (!px) return null;
+  return px >= 100e6 ? "giga" : px >= 20e6 ? "ultra" : px >= 4e6 ? "high" : "plate";
+};
 function enrich(w) {
   const d = AD.artworks[w.id] || {};
   const artist = AD.artists[w.artistId] || {};
@@ -480,6 +493,8 @@ function Wall({ go, styleIds }) {
   const [pick, setPick] = useState("");                // colour-sort target ("" = hue ramp)
   const [eras, setEras] = useState(() => new Set());   // era chips — OR within, AND with the rest
   const toggleEra = unhang((k) => setEras(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; }));
+  const [qual, setQual] = useState([]);                // quality buckets, OR'd like media
+  const toggleQual = unhang((k) => setQual(q => q.includes(k) ? q.filter(x => x !== k) : [...q, k]));
   // The full style list — order and slugs are stable so a URL like #/wall/impressionism keeps
   // working whatever is filtered. Only the NUMBERS react; see `movCounts` below.
   const movs = useMemo(movIndex, []);
@@ -494,7 +509,7 @@ function Wall({ go, styleIds }) {
   // survives the navigation and has to be cleared explicitly like every other filter.
   const setSel = unhang((labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null));
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, pick, hang]);
+  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, qual, pick, hang]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -512,18 +527,30 @@ function Wall({ go, styleIds }) {
   // Live facet counts. Both rows count against `base` — every filter EXCEPT their own — and each
   // also honours the other, so with Sculpture on, the style numbers are sculpture-only. A chip that
   // would return nothing shows 0 rather than lying with the all-time total.
+  const qualPass = (w) => { const q = qualityOf(w); return q && qual.includes(q); };
   const movCounts = useMemo(() => {
     const c = {};
-    const list = media.length ? base.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); }) : base;
+    let list = media.length ? base.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); }) : base;
+    if (qual.length) list = list.filter(qualPass);
     for (const w of list) for (const m of movsOf(w)) c[m] = (c[m] || 0) + 1;
     return c;
-  }, [base, media]);
+  }, [base, media, qual]);
   const mediaCounts = useMemo(() => {
     const c = {};
-    const list = sel.length ? base.filter(w => movsOf(w).some(m => sel.includes(m))) : base;
+    let list = sel.length ? base.filter(w => movsOf(w).some(m => sel.includes(m))) : base;
+    if (qual.length) list = list.filter(qualPass);
     for (const w of list) { const m = mediumOf(w); if (m && m[0]) c[m[0]] = (c[m[0]] || 0) + 1; }
     return c;
-  }, [base, sel]);
+  }, [base, sel, qual]);
+  // quality counts follow every filter but not the quality selection itself — the shared facet rule
+  const qualCounts = useMemo(() => {
+    let list = base;
+    if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
+    if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
+    const c = {};
+    for (const w of list) { const q = qualityOf(w); if (q) c[q] = (c[q] || 0) + 1; }
+    return c;
+  }, [base, sel, media]);
   // era counts follow every other filter but not the era selection itself — same facet rule as
   // the style and medium rows
   const eraCounts = useMemo(() => {
@@ -533,11 +560,12 @@ function Wall({ go, styleIds }) {
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
     if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
     if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
+    if (qual.length) list = list.filter(w => { const q = qualityOf(w); return q && qual.includes(q); });
     const c = {};
     for (const [k] of ERAS) c[k] = 0;
     for (const w of list) for (const [k] of ERAS) if (eraPass(w, k)) c[k]++;
     return c;
-  }, [all, marks, status, mus, sel, media]);
+  }, [all, marks, status, mus, sel, media, qual]);
   // all-time counts, used only to decide which medium chips exist at all
   const mediaAll = useMemo(() => {
     const c = {};
@@ -559,6 +587,9 @@ function Wall({ go, styleIds }) {
     // bucket (vague or missing P31) is excluded once any chip is on — it is genuinely unknown,
     // and quietly sweeping it into "paintings" is the guess this pipeline refuses to make.
     if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
+    // quality buckets OR like media; a work with no known pixel size is excluded once a chip is
+    // on — unknown is unknown, not "plate"
+    if (qual.length) list = list.filter(w => { const q = qualityOf(w); return q && qual.includes(q); });
     const arr = [...list];
     // TODAY'S HANG short-circuits the sort: its order IS the content — pinned leads first, then the
     // day-seeded spread. The chips still narrow it, so "today's hang, 1890s only" works, but nothing
@@ -698,6 +729,20 @@ function Wall({ go, styleIds }) {
             );
           })}
           {eras.size > 0 && <button className="cv-styles-clear" onClick={unhang(() => setEras(new Set()))}>✕ clear</button>}
+        </span>
+        <span className="cv-objgrp">
+          {/* QUALITY (Fuad 2026-08-23) — how much real pixel the best source holds. gigapixel
+              >=100MP (the Google-Art-class scans) · ultra >=20MP (~5k px, deep zoom rewards) ·
+              high >=4MP (~2400px, full-screen solid) · plate below. */}
+          <span className="cv-styles-lbl" title="pixel size of the best source image — gigapixel ≥100MP · ultra ≥20MP · high ≥4MP · plate below">quality</span>
+          {QUALITY.map(([k, label]) => {
+            const n = qualCounts[k] || 0;
+            return (
+              <button key={k} data-on={qual.includes(k)} data-empty={n === 0 && !qual.includes(k)}
+                onClick={() => toggleQual(k)}>{label}<i>{n}</i></button>
+            );
+          })}
+          {qual.length > 0 && <button className="cv-styles-clear" onClick={unhang(() => setQual([]))}>✕ clear</button>}
         </span>
       </div>
       {/* STYLES — multi-select, OR'd. Movement is the artist's (Wikidata P135), so the note says
