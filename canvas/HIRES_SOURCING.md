@@ -78,7 +78,14 @@ Everything not identity-safe by construction goes through two gates:
 Score to date: the gates rejected **20 wrong objects** that title/qid matching alone
 would have shipped into canon.
 
-## Next target: the Tate cluster (Fuad 2026-08-23)
+## The Tate cluster — CLOSED, no emits (Fuad 2026-08-23)
+
+Verdict by owner's eye on a Norham Castle pair: **Tate's own render is not better** than the
+existing Commons scans, and their public ceiling is 1,536 px anyway (`_10`; no IIIF at all —
+iiif.tate.org.uk NXDOMAIN, artwork pages serve only 420–600 px wagtail thumbs, zero zoom tech).
+Do not revisit unless Tate ships a real image service. Original scoping notes kept below.
+
+## Original scoping (superseded)
 
 The single richest remaining vein is **Tate**: a large block of floored Turners (Norham
 Castle Sunrise, Queen Mab's Cave, the Deluge pair, the late sunrise/seascape group…) plus
