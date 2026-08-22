@@ -1163,7 +1163,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: "national-gallery-london", seenConfidence: "sure", liked: true },
   { id: "pierre-auguste-renoir-alphonsine-fournaise", title: "Alphonsine Fournaise", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q3937455", qidTrusted: true, year: 1879,
     seenAt: "orsay", seenConfidence: "sure", floored: true },
-  { id: "claude-monet-l-ete", title: "L'Été", artist: "Claude Monet", artistId: "monet", qid: "Q18683955", qidTrusted: true, year: 1874,
+  { id: "claude-monet-l-ete", title: "L'Été", artist: "Claude Monet", artistId: "monet", qid: "Q18683955", qidTrusted: true, year: 1874, // qid CONFLATED upstream: Berlin "Sommer" labels + Ny Carlsberg "Prairie à Bezons" P195; the seen work is the Berlin canvas (verified 2026-08-22)
     seenAt: "alte-nationalgalerie", seenConfidence: "sure", floored: true },
   { id: "anna-bilinska-bohdanowicz-portret-m-odej-kobiety-z-roza-w-re", title: "Portret młodej kobiety z różą w ręku", artist: "Anna Bilińska-Bohdanowicz", artistId: "bilinska-bohdanowicz", qid: "Q23255382", qidTrusted: true, year: 1892,
     seenAt: "mnw", seenConfidence: "sure", liked: true },
@@ -2339,7 +2339,7 @@ window.CANVAS_ARTWORKS = [
     wish: true, liked: true },
   { id: "james-tissot-untitled", title: "Jeune femme jouant aux échecs", artist: "James Tissot", artistId: "tissot", qid: "Q134893568", qidTrusted: true, year: 1877,
     wish: true, liked: true },
-  { id: "umberto-boccioni-the-mother", title: "The Mother", artist: "Umberto Boccioni", artistId: "umberto-boccioni", qid: "Q134220120", qidTrusted: true, year: 1907,
+  { id: "umberto-boccioni-the-mother", title: "The Mother", artist: "Umberto Boccioni", artistId: "umberto-boccioni", qid: "Q134220120", qidTrusted: true, year: 1907, // qid claims Brera/oil but both documented 1907 mother-portraits are GAM Milan (Lombardia cat.); possible conflation (2026-08-22)
     wish: true, floored: true },
   { id: "camille-pissarro-paysanne-assise-interieur-a-moret", title: "Paysanne assise. Intérieur à Moret", artist: "Camille Pissarro", artistId: "pissarro", qid: "Q42909009", qidTrusted: true, year: 1902,
     wish: true, liked: true },
@@ -2511,7 +2511,7 @@ window.CANVAS_ARTWORKS = [
     wish: true, liked: true },
   { id: "henri-leopold-levy-la-commune", title: "La Commune", artist: "Henri Leopold Levy", artistId: "henri-leopold-levy", qid: "Q120837035", qidTrusted: true, year: 1871,
     wish: true, liked: true },
-  { id: "hendrick-van-balen-the-elder-la-chute-des-reprouves", title: "La Chute des Réprouvés", artist: "Hendrick van Balen the Elder", artistId: "hendrick-van-balen-the-elder", qid: "Q106246144", qidTrusted: true, year: 1700,
+  { id: "hendrick-van-balen-the-elder-la-chute-des-reprouves", title: "La Chute des Réprouvés", artist: "Hendrick van Balen the Elder", artistId: "hendrick-van-balen-the-elder", qid: "Q106246144", qidTrusted: true, year: 1630, // was placeholder 1700; van Balen died 1632, sources c.1630 (2026-08-22)
     wish: true, floored: true },
   { id: "jose-clemente-orozco-head-pierced-with-arrows-from-the-los-t", title: "Head Pierced with Arrows, from the Los teules series", artist: "José Clemente Orozco", artistId: "jose-clemente-orozco", qid: "Q28806063", qidTrusted: true, year: 1947,
     wish: true, liked: true },
@@ -2905,7 +2905,7 @@ window.CANVAS_ARTWORKS = [
     wish: true, liked: true },
   { id: "anthony-van-dyck-study-of-a-horse", title: "Study of a Horse", artist: "Anthony van Dyck", artistId: "anthony-van-dyck", qid: "Q126760248", qidTrusted: true, year: 1627,
     wish: true, liked: true },
-  { id: "jan-matejko-untitled", title: "(untitled)", artist: "Jan Matejko", artistId: "matejko", qid: "Q123347662", qidTrusted: true, year: 1882,
+  { id: "jan-matejko-untitled", title: "Koń jasnogniady", artist: "Jan Matejko", artistId: "matejko", qid: "Q123347662", qidTrusted: true, year: 1882,
     wish: true, floored: true },
   { id: "jan-matejko-studium-ba-konskiego-do-dziewicy-orleanskiej", title: "Studium łba końskiego do \"Dziewicy Orleańskiej\"", artist: "Jan Matejko", artistId: "matejko", qid: "Q104596253", qidTrusted: true, year: 1886,
     wish: true, liked: true },

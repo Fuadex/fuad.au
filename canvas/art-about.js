@@ -3138,4 +3138,150 @@ by: "Opus · Fable" },
 "francesc-pausas-i-coll-portrait-of-maria-sampere-the-painter": {
 about: "Maria Sampere i Montseny was the woman who opened New York's musical world to Francesc Pausas, and by 1911 she was his wife and, for the next three decades until his death in 1944, his constant sitter. This full-length canvas made its debut on 11 March 1911 at the National Academy of Design's 86th annual exhibition in the city where Pausas had settled since 1906. The critic in American Art News found its \"audacity of the drawing\" and the \"life and action of the figure\" reminiscent of Robert Henri.",
 by: "Opus · Fable" },
+
+// ——— floored-35 Info campaign (Fuad-approved 2026-08-22) — the floored works that had neither
+// Info nor tour; per-painting Opus research (multi-language), Fable QC with 7 approved trims of
+// inferred-visual/provenance lines. Notable identity work: L'Été qid conflation resolved (Berlin),
+// Matejko untitled identified as the Sobieski horse study, Fuoco d'artificio is brushwork not
+// fireworks, Brokman(n) painter identified.
+
+"claude-monet-l-ete": {
+about: "Monet painted this in the summer of 1874 at Argenteuil, where he, Renoir and Manet were working side by side on the Seine. His wife Camille and their son Jean are both here, dissolved so completely into the sun-struck meadow that, as the Nationalgalerie puts it, they carry \"no more visual presence than the wind-blown trees\" — figures reduced to warm colored shadows on the grass. It entered the Berlin collection under Hugo von Tschudi, whose purchases from Durand-Ruel made the Nationalgalerie the first museum in the world to buy Impressionism.",
+by: "Opus · Fable" },
+
+"umberto-boccioni-the-mother": {
+about: "Years before the manifestos, Boccioni kept painting the one model who never charged him: his mother, Cecilia Forlani, who followed her son from town to town and sat for him again and again. He made this 1907 portrait after joining her and his sister in Padua, catching the aging woman turned inward, her gaze dropped and distant, gray hair pinned high. It belongs to the run of intimate domestic studies from his Divisionist years, long before Futurist speed pulled him away from the quiet interior.",
+by: "Opus · Fable" },
+
+"bruno-liljefors-autumn-landscape-with-partridges": {
+about: "A hunter before he was a painter, Bruno Liljefors built camouflaged hides and kept a private menagerie of foxes, hawks and grouse at Villa Wigwam in Ytterjärna, where he lived from 1905 to 1917. That fieldcraft is the argument of this wide 1913 oil, nearly a metre across: its partridges dropped into an autumn field and painted to almost vanish into it, prey rendered as the disappearance its survival depends on. The low, panoramic format lets the ground itself do the hiding.",
+by: "Opus · Fable" },
+
+"adolphe-joseph-thomas-monticelli-echo-in-the-wood": {
+about: "Around 1856 Monticelli fell in with Narcisse Díaz de la Peña, who dragged him on painting trips into the Forest of Fontainebleau and coaxed him toward heavier, loaded paint and small figures tucked among the trees. This 1863 woodland canvas comes out of that lesson and the Paris decade that followed, when he was reworking Watteau's fête galante into thickly crusted forest reveries; its title reaches past mere scenery to the nymph Echo, folding a mythological voice into the undergrowth. Van Gogh's famous devotion to him came only later.",
+by: "Opus · Fable" },
+
+"jean-baptiste-camille-corot-bacchanal-at-the-spring-souvenir": {
+about: "By 1872, three years before his death, Corot had traded the exact topography of his Barbizon years for what he called \"souvenirs\"—pictures that fused the memory of a real place with a timeless, imagined antiquity. Here that place is the forest of Marly-le-Roi, west of Paris, populated instead by revelers who dance and play instruments, one child riding a leopard through the clearing. The bacchic scene proved slippery even to name: in Paris it was shown as \"Nymphes jouant avec un Tigre\" in 1875 and \"Nymphes chevauchant sur des panthères\" in 1895 before settling into its present title.",
+by: "Opus · Fable" },
+
+"ivan-shishkin-2": {
+about: "A forest road was a motif Shishkin returned to again and again, and this small 1880 canvas is one of the quieter results. What sets it apart from the artist better known for uninhabited timber is the staffage: figures make their way along the path, so the wood reads as walked-through and accessible rather than overwhelming — the \"major note\" of sunlight the Russian Museum's own catalogue singles out.",
+by: "Opus · Fable" },
+
+"hendrick-van-balen-the-elder-la-chute-des-reprouves": {
+about: "This is a looted picture: catalogued as MNR 414, one of the Musées Nationaux Récupération works recovered in Germany after the war and still held on behalf of an owner never traced, it passed through the Deutsches Historisches Museum in 1946–47 before returning to France and being deposited at Pau. Hendrick van Balen the Elder, who died in 1632, painted it as a small oil after Rubens — a cabinet-scale reduction, 81 by 54 centimetres, of Rubens's monumental \"Fall of the Damned\" now in Munich, its swirling avalanche of bodies condensed onto a single panel.",
+by: "Opus · Fable" },
+
+"odilon-redon-untitled-8": {
+about: "Around 1900 Redon walked away from the black charcoal \"noirs\" that had made his name and gave the rest of his life to colour and to myth — sun-horses, Apollo's chariot, the old gods carried aloft. This small oil on canvas, barely larger than a sheet of paper, sets the abduction of Ganymede in that late phase: the Trojan youth borne off by Zeus, mythology used less as story than as a pretext for luminous, unnatural colour.",
+by: "Opus · Fable" },
+
+"mikhail-matyushin-malerisch-musikalische-konstruktion-i": {
+about: "Matyushin came to painting from music: a professional violinist in the St. Petersburg Court Orchestra before he took up the brush, he spent his life trying to make one art think like the other. This 1918 canvas opens the series of \"painterly-musical constructions\" he began in revolutionary Petrograd, where he was studying the physiology of the senses and an \"expanded vision\" that would soon crystallize into his Zorved circle. The idea was literal translation — musical overtone into color-rhythm, brushstrokes of shifting size and hue set vibrating so the pigment reads as sounding matter rather than depicted space.",
+by: "Opus · Fable" },
+
+"thomas-alexander-harrison-marine-clair-de-lune": {
+about: "By 1893 Thomas Alexander Harrison, the Philadelphia-born painter who had become the acknowledged leader of the American colony in Paris, had built his name on marines caught under poetic conditions of light, and this is one of them: an oil study of open sea and sky by moonlight, the \"clair de lune\" of its French title. Two years later, on the Brittany coast whose night effects he pursued each evening, he met Marcel Proust and Reynaldo Hahn at Beg-Meil; his figure and his sea-watching went on to feed the painter Elstir in \"A la recherche du temps perdu.\"",
+by: "Opus · Fable" },
+
+"j-m-w-turner-saint-maurice-bridge": {
+about: "Turner came back through the Valais around 1820, homeward from the first Italian tour that had kept him abroad from August 1819 into January, and this watercolour fixes on the old single-arch stone bridge at Saint-Maurice. The town sat where the Rhône squeezes through a narrow defile, its crossing long overseen by the castle above and treated for centuries as the guarded gateway into the upper Valais. It is that spanning arch over the gorge that anchors the sheet.",
+by: "Opus · Fable" },
+
+"george-frederic-watts-iris": {
+about: "Watts kept returning to Iris, the rainbow-goddess, a subject his wife Mary once described as \"a little opalescent goddess descending to earth through rainbow skies — a figure as transparent as if made with rain-drops,\" and which Julia Cartwright, in her 1896 biography, called \"the latest, and, perhaps the loveliest, of these aerial dreams.\" This version carries his 1904 date, the year of his death at eighty-seven. He worked the messenger onto a canvas barely eight inches across but more than twice as tall, a slender vertical suited to a figure meant to be seen falling.",
+by: "Opus · Fable" },
+
+"hans-makart-landschaft": {
+about: "Makart was Vienna's great decorator and history painter, the man of Cleopatra pageants and allegorical ceilings, which makes this quiet oil-on-canvas landscape from around 1865 an oddity in his hand. Its later history is the loud part: it was pulled into Hitler's \"Sonderauftrag Linz\", the hoard assembled for the never-built Führermuseum, and held in that collection from 1941. After the war the Allied Monuments Men took it into the Munich Central Collecting Point, where it sat from October 1945 until June 1949 while the looted art of Europe was sorted and traced.",
+by: "Opus · Fable" },
+
+"stanis-aw-witkiewicz-droga-w-lesie": {
+about: "This is the father, Stanisław Witkiewicz — critic, founder of the Zakopane Style, evangelist of the Tatra highlands — and not his son Witkacy. By the time of this 1910 forest study he had already left Zakopane for the Adriatic resort of Lovran, where tuberculosis kept him from 1908 until his death, so the woodland he had spent a career championing was reached from exile rather than from its floor. The oil is tiny, barely 19 by 14 centimetres, a private-scale glimpse rather than an exhibition landscape.",
+by: "Opus · Fable" },
+
+"vincent-van-gogh-still-life-with-three-birds-nests": {
+about: "In the autumn of 1885, near the end of his Nuenen years, Van Gogh painted a short run of nest still lifes fed by his own hoard of nests from some thirty different birds, kept in cupboards alongside mosses and stuffed specimens. He had gone hunting with a peasant boy and come back with six, \"from which the young had already flown, so that one could take them without too many pangs of conscience.\" Grouping three of them here, he told Theo the pictures should appeal to nature lovers \"because of the colours of the moss, dry leaves and grasses, clay &c.\"",
+by: "Opus · Fable" },
+
+"jean-baptiste-camille-corot-landscape-with-boy-sketching": {
+about: "Corot built his art on the discipline of drawing from nature, filling notebooks on foot around Rome and the Roman Campagna and treating the on-the-spot study as the foundation of every finished picture. This small oil takes that creed for its very subject: a boy set into the countryside with a sketchbook, the act of looking-and-recording folded into the landscape itself. It survives undated among the artist's nineteenth-century output, a modest canvas barely a foot across.",
+by: "Opus · Fable" },
+
+"lesser-ury-nollendorfplatz-bei-nacht": {
+about: "From 1901 until his death in 1931, Lesser Ury lived and kept his studio on the fourth floor of the house at Nollendorfplatz 1, and it was from that window that he painted this square in 1925 — his own quarter, worked from home rather than the street. The subject is the elevated Hochbahnhof looming over the platz after dark, its lit windows and the streetlamps below smeared across wet asphalt, the reflections doing the real work rather than the architecture. The building he painted from was destroyed in the Second World War.",
+by: "Opus · Fable" },
+
+"jan-ciaglinski-szkic-do-obrazu-vita-i": {
+about: "By 1906 Ciągliński had spent two decades in St. Petersburg, teaching at the Imperial Academy and running the private school that turned out Filonov, Bilibin and Annenkov; his loose, high-keyed handling earned him a reputation as an early Russian Impressionist. The oil went into a larger allegorical composition built around the Hippocratic maxim \"Vita brevis, ars longa\" — life short, art long. This is the first of the numbered oil studies he laid in for that \"Vita,\" a working sketch rather than a finished picture, and the National Museum in Warsaw holds the sequence.",
+by: "Opus · Fable" },
+
+"chaim-soutine-ente-auf-blauem-grund": {
+about: "For his mid-1920s still lifes, Soutine hauled carcasses back from the La Villette slaughterhouses north of Paris and rigged them up in his studio, dousing them with blood to keep the color from dying while he worked; the results answer to seventeenth-century Dutch market pieces and to Rembrandt's flayed ox. This 1925 duck belongs to that run of hanging fowl, its bird set alone against a blue ground rather than the usual dark interior. Painted from a real dead animal, it treats the poultry less as market fare than as a body in extremity.",
+by: "Opus · Fable" },
+
+"julian-ashton-a-solitary-ramble": {
+about: "Julian Ashton, a champion of painting Australian light \"on the spot\" who would later found Sydney's most influential art school, made this in June 1888. The parasol-carrying woman is his own wife, caught in a lane behind Griffith's Orchard at Richmond, outside Sydney. It is watercolour heightened with opaque white rather than oil, the quick medium Ashton favoured for the open spaces and clear colonial daylight he chased outdoors.",
+by: "Opus · Fable" },
+
+"jan-matejko-untitled": {
+about: "In 1882 Matejko was building toward \"Sobieski at Vienna,\" the enormous canvas he would give to Pope Leo XIII on behalf of the Polish nation. For the king's mount he wanted a specific animal, so a bay horse with an Arab head was brought from the Potocki stables at Krzeszowice to a small Potocki palace on Smoleńsk Street in Kraków, where he painted this study from life. Marked with saddle and stirrups, the horse is set in motion to match the arrangement of the king's legs in the finished picture.",
+by: "Opus · Fable" },
+
+"henri-le-sidaner-untitled-3": {
+about: "Le Sidaner painted this in 1898, the year he moved to Bruges with Camille Navarre and fell in with the Symbolist circle of Verhaeren and Rodenbach, whose \"dead city\" mood he chased. It marks the summit of his brief Symbolist turn, and he sent the near two-metre-wide canvas to the Salon that same year. The subject is a company of women robed entirely in white, gathered in a hushed garden at the failing light of a Sunday; a contemporary called them \"a white choir of indecisive dreams, of snowy figures, with naive eyes.\" He never worked at this scale or in this key again, drifting afterward toward the quiet lamplit gardens he became known for.",
+by: "Opus · Fable" },
+
+"giovanni-boldini-la-marquise-luisa-casati-avec-des-plumes-de": {
+about: "The Marchesa Luisa Casati, who declared \"I want to be a living work of art,\" kept a private menagerie and once paraded through a 1913 Rome ball with a peacock on a leash; the feathered headdress here comes from that world of her own devising. Boldini returned to this large oil across 1911 to 1913 without ever considering it finished, reworking his sitter's birdlike poise long after most of his commissioned portraits would have been signed and shipped.",
+by: "Opus · Fable" },
+
+"camille-pissarro-afternoon-break-girl-and-young-peasant-woma": {
+about: "1882 was the year Pissarro pushed peasants from the middle distance to the foreground, painting large-scale rural figures at Pontoise before he left for Osny at year's end. Critics accused him of chasing Millet, and that March he snapped back in a letter: \"they throw Millet at me, but Millet was biblical!\" — insisting his own peasants carried no such sermon. Here two of them simply stop for the goûter, a girl and a young woman set at rest rather than at labour, the canvas worked in oil and pastel together.",
+by: "Opus · Fable" },
+
+"emile-bernard-bois-de-boulogne": {
+about: "By 1915 Émile Bernard had, in his own campaign, abandoned the Cloisonnism and Synthetism he helped invent at Pont-Aven for what he called a return to tradition, turning on the avant-garde he had once fathered and toward the Old Masters and Cézanne. This 1920 canvas belongs squarely to that recanted late manner: not a Breton motif but the Bois de Boulogne, the manicured wood on Paris's western edge.",
+by: "Opus · Fable" },
+
+"petrus-van-der-velden-stormcloud": {
+about: "Petrus van der Velden was 53 and an established Hague School painter when he reached Christchurch in 1890, and the Southern Alps rewired him: after six weeks at Otira in early 1891, the gorge's rushing water and swirling weather became the subject he chased the rest of his life. A student recalled that when storms broke he would head straight into the gorge, while on cloudless days he lay in the grass by the hotel and slept. This undated oil is that obsession pared to its extreme — not a full landscape but a tall, narrow study handed over almost entirely to the cloud.",
+by: "Opus · Fable" },
+
+"theo-van-doesburg-untitled": {
+about: "Born Christian Emil Marie Küpper, Van Doesburg was self-taught, working from a few lessons and a stubborn will rather than any academy. This nocturne dates to 1904, when he was barely into his twenties and more than a decade from co-founding De Stijl in 1917 — its dark landscape sits squarely in the brownish, thickly loaded manner of the Amsterdam Impressionists he then followed, closer to Van Gogh than to any grid. It survives among the works kept back in his own estate.",
+by: "Opus · Fable" },
+
+"ivan-aivazovsky-stormy-sea": {
+about: "Ivan Aivazovsky worked almost entirely from memory, insisting that the sea's motion could be remembered and felt but never copied from life; the windows of his Feodosia studio looked onto a courtyard, not the water. This modest canvas, barely a metre wide, dates from 1850 — the same year he finished the monumental Ninth Wave, and it channels the same storm subject onto an intimate, portable scale.",
+by: "Opus · Fable" },
+
+"giovanni-boldini-fuoco-d-artificio": {
+about: "The title misleads: no night sky bursts here, only a woman Boldini never named, standing life-size in a white silk evening gown around 1890. The \"fireworks\" are his paint. Contemporaries read the slashing white strokes that dissolve her dress into a vaporous halo as sciabolate, saber strokes, and the nickname stuck to the canvas rather than the scene. The freedom edges toward abstraction at a moment when finished society portraiture was the expected currency, which is partly why an unidentified sitter carries a title about brushwork instead of a name.",
+by: "Opus · Fable" },
+
+"henri-fantin-latour-untitled-2": {
+about: "Fantin-Latour spent his last decades trying to make music visible in paint and lithograph, and he championed Robert Schumann at a time when Schumann was still coldly received in France. This canvas, from around 1880, answers Schumann's brooding overture to Byron's \"Manfred\" — the poem's guilt-haunted magus summoning spirits in the Alps. Rather than illustrate a scene, Fantin translates the sound of the score itself, the same obsession that fed his companion charcoal plates of Manfred and Astarte.",
+by: "Opus · Fable" },
+
+"jozef-che-monski-beldonek": {
+about: "The same year Chełmoński painted this, 1888, Adolf Dygasiński published his naturalist story \"Beldonek\" in Warsaw — the tale of a nine-year-old peasant boy who bolts from home after a beating by his uncle. This is that runaway given a face: the painter, just back from years in Paris and settling into rural Mazovia, fixes Dygasiński's outcast child as a portrait rather than one more figure lost in a landscape.",
+by: "Opus · Fable" },
+
+"henri-jean-guillaume-martin-beaute": {
+about: "Painted in 1900 and shown that year at the Salon des artistes français, this is Henri Martin caught mid-turn, drifting out of his symbolist manner toward something looser. The critic Achille Ségard read it as a transitional work; the curator Denis Milhau went further, hearing in its half-tones and undulating brushwork \"des formes ondulantes proches d'un certain modern style entrée de métro.\" The bare-breasted young woman rises from a bank of white lilies — Martin's old emblem of purity — but she half-hides behind her own hair and smiles, and the innocence turns knowing.",
+by: "Opus · Fable" },
+
+"henry-brokmann-la-croix-dans-la-brume-bretagne": {
+about: "Henry Brokman was a Dane, Copenhagen-born in 1868 and academy-trained there before Paris pulled him toward plein-air work and what critics called a systematic pursuit of light — a chase that later took him to Italy, Egypt and Syria, with Turner the acknowledged shadow over his weather studies. This 1905 canvas turns that instinct on Brittany: a roadside calvary, one of the region's stone crosses, met in sea-mist.",
+by: "Opus · Fable" },
+
+"giovanni-boldini-untitled-2": {
+about: "By 1920 Boldini's eyesight was failing and his manner had gone loose and dark; no longer living by commissioned portraits, he painted what he pleased. This gallant scene of amorous dalliance, a fête-galante subject in the old Watteau vein, belongs to that final self-directed phase near the close of his working life.",
+by: "Opus · Fable" },
+
+"clarice-beckett-taxi-rank": {
+about: "When Clarice Beckett died in 1935 she was all but forgotten; in 1970 the art historian Rosalind Hollinrake was led to an open-sided shed near Benalla where roughly two thousand of her canvases had been stored for decades, and rain and possums had left only some three hundred and sixty-nine salvageable. This 1931 picture is one of Beckett's Melbourne night-and-weather motorcar scenes — a rank of waiting cabs, their lamps smeared across a wet road — a subject she worked more than once, with a second version surviving in a separate collection.",
+by: "Opus · Fable" },
 };
