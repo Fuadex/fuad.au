@@ -148,6 +148,21 @@ The fused Info (all rulings 2026-08-14/15, tested on a 6-work sample then 33-wor
 - **A short honest read beats a padded one** (Fuad 2026-08-22, wave-1 QC: three Nordic reads
   shipped generic artist-bio filler because no work-specific fact had surfaced). When research
   yields no distinguishing fact, write two tight sentences — never inflate with genre boilerplate.
+- **THE WORK IS THE SUBJECT — the paste test** (Fuad 2026-08-22, wave-2 QC: a Boldini read
+  "says everything but anything about the artwork itself"). A read that could be pasted under a
+  different work by the same artist FAILS. At least one load-bearing sentence must be about THIS
+  object — its subject, scale, medium, series membership, making or cataloguing circumstances.
+  Artist biography is scaffolding around that anchor, never the building. When nothing
+  work-specific verifies beyond subject + date, the short form anchors on exactly those.
+- **The image-look economics** (Fuad 2026-08-22: "OCR is expensive — if you're looking at the
+  image, you should move onto doing the tour and deep reads; otherwise it makes no sense to
+  spend the tokens on an info paragraph. But first Opus should work extra hard to find publicly
+  existing information"). The ladder is: (1) research HARD — the per-painting agent's fetch
+  budget rises and multiple languages/museum catalogues are in scope; (2) if work-specific facts
+  surface, the Info ships on them, no image needed; (3) if research genuinely exhausts, do NOT
+  view the image for an Info alone — route the work into PAIRED PRODUCTION (§8): the one
+  image-look then feeds tour + Interpretation + fused Info together, amortised. Viewing an
+  image to write only an Info paragraph is a spec violation on cost grounds.
 - **Batch-production note** (Fuad 2026-08-22): scale waves run **one research subagent per
   painting**, not per slice — ten works per agent produced template-feel: six near-identical
   Bequest backstories and dimension-line tails on eight of ten reads. Per-work agents cannot

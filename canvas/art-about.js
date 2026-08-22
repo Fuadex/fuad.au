@@ -2964,7 +2964,7 @@ about: "In the summer of 1894 Liljefors shifted his subjects from the Uppland pl
 by: "Opus · Fable" },
 
 "victor-muller-schnewittchen-bei-den-sieben-zwergen": {
-about: "Victor Müller (1830–1871) trained in Frankfurt under Steinle and then in Paris under Couture and Delacroix, but it was Gustave Courbet who marked him: he became one of the earliest German painters to adopt Courbet's Realist manner, importing it to a public still attached to Düsseldorf sentimentality. Fairy-tale and mythological subjects run through his mature work, from the Sleeping Wood-Nymph to Grimm's Snow White.",
+about: "Snow White stands at the meadow's edge as the seven dwarfs come tumbling toward her — a Grimm scene painted loose and pale, closer to a vision than an illustration. Müller was Frankfurt's earliest convert to Courbet's Realism after Paris years under Couture and Delacroix, and the collision is the point: fairy-tale subjects handled with a realist's brush, for a public still expecting Düsseldorf sweetness.",
 by: "Opus · Fable" },
 
 "alphonse-osbert-vision-de-sainte-genevieve": {
@@ -2992,7 +2992,7 @@ about: "A late Giverny canvas from 1918, the year an armistice-era Monet — cat
 by: "Opus · Fable" },
 
 "hiromitsu-nakazawa-mist-nude": {
-about: "A yōga (Western-style oil) painter, Nakazawa Hiromitsu (1874–1964) trained under Kuroda Seiki, whose Paris-schooled nudes had ignited public scandal in 1890s Japan and made the naked figure a charged emblem of imported academicism. Nakazawa carried that lineage through the Hakubakai circle into 1907 — the year Japan's government launched its first Bunten salon, the state's bid to institutionalise Western oil alongside native painting.",
+about: "A nude stands on wet rocks above a stream, half-wrapped in the mist the title names — Nakazawa folding the French academic nude he learned from Kuroda Seiki into something nearer an apparition. In 1907 that was still charged territory: Kuroda's own nudes had been screened at the waist by order in the 1890s, and the first state Bunten salon opened that very year to adjudicate what Western-style painting in Japan could show.",
 by: "Opus · Fable" },
 
 // ——— import-canon Info wave 2, phase A (Fuad-approved 2026-08-22) — per-painting Opus research,
@@ -3032,10 +3032,54 @@ about: "Turner's first of four late summer tours to Lucerne came in 1841, workin
 by: "Opus · Fable" },
 
 "narcisse-virgilio-diaz-forest-interior-with-wood-gatherer": {
-about: "The orphan of Spanish émigrés, Díaz lost a leg to a childhood snakebite in the Meudon woods and crossed the Fontainebleau forests on a wooden stump; he began painting porcelain at Sèvres before joining the Barbizon core. In 1863, meeting a young Renoir in that forest, he told him to lighten his palette and paid for the younger man's canvases and pigments — Renoir called him his \"grand homme.\" Wood-gatherers were a Barbizon staple, rooted in real forest-commons gathering rights.",
+about: "A single figure with her bundle on a dark Fontainebleau path, the light held to a clearing beyond — the forest-tunnel staging Díaz repeated because collectors couldn't get enough of it. He knew these woods on a wooden leg, lost to a childhood snakebite; and it was in these same woods in 1863 that he pressed paint money and advice on a young Renoir. Wood-gathering itself was no picturesque invention — the rural poor held real commons rights to deadfall, and Barbizon painted them exercising it.",
 by: "Opus · Fable" },
 
 "albert-lebourg-vue-de-rouen-depuis-le-mont-gargan": {
-about: "A Rouen-trained Impressionist and central figure of the so-called Rouen School, Albert Lebourg (1849–1928) taught drawing in Algiers until 1877 before showing thirty works at the fourth Impressionist exhibition in 1879 and twenty at the fifth. By 1905 he was an established name, with a silver medal from the 1900 Exposition Universelle and a 111-work retrospective behind him.",
+about: "Rouen seen from the Mont-Gargan heights — cathedral spires small in the haze while a figure rests by the path, the city held at arm's length by afternoon light. Lebourg painted his native river valley this way all his life, a Rouen-School Impressionist who had shown thirty works at the movement's fourth exhibition in 1879; by 1905 the medals and retrospectives had arrived, and this hilltop was home ground rather than discovery.",
+by: "Opus · Fable" },
+
+// ——— import-canon Info wave 2, phase B (Fuad-approved 2026-08-22) — per-painting Opus research,
+// Fable QC; three entries rebuilt to pass the paste test (the work is the subject) after the same-day
+// ruling; the Boldini reads' subject anchors come from the P18 images (identification level only).
+
+"pierre-auguste-renoir-on-the-shore-of-the-seine": {
+about: "Renoir dashed off this palm-sized riverbank on a linen napkin at a Seine-side lunch — or so his mistress later told the story. It vanished from a Baltimore exhibition over the night of 16–17 November 1951 and stayed missing for six decades, until a woman surfaced at a Virginia auction house in 2012 claiming a seven-dollar flea-market find. The FBI identified it as the stolen work, the sale was halted, and in 2014 a federal judge sent it home.",
+by: "Opus · Fable" },
+
+"gustav-klimt-portrait-of-marie-henneberg": {
+about: "Klimt painted this at the crest of his \"golden\" turn, on commission from Hugo Henneberg — physicist, photographer of the Vienna \"Trifolium,\" Secession intimate — who wanted his wife fixed by a friend. It debuted still unfinished at the Secession's thirteenth exhibition in spring 1902, and was made to hang over the fireplace of the Josef Hoffmann villa completed in 1901 on the Hohe Warte, the artists' colony above Vienna.",
+by: "Opus · Fable" },
+
+"w-adys-aw-podkowinski-portret-wincentyny-karskiej": {
+about: "In the summer of 1891 Podkowiński came to the Mazovian estate of Chrzęsne at the invitation of his friend, the painter Julian Maszyński, and painted the manor's heiress. The result is counted the first portrait in Polish art executed en plein air, its impressionist palette carried outdoors rather than built up in the studio. Karska recalled that he worked at feverish speed, chasing a single fall of light almost within one afternoon.",
+by: "Opus · Fable" },
+
+"adolph-von-menzel-mondschein-uber-der-friedrichsgracht-im-al": {
+about: "Menzel refused to show most of his small oils of the 1840s and 50s, keeping the intimate night and interior studies out of view while his fame rested on Frederick the Great illustrations and grand history painting. Only the 1905 memorial exhibition at Berlin's Nationalgalerie unveiled them, and critics like Meier-Graefe suddenly read him as a proto-Impressionist working two decades ahead of Paris. The canal here fronted old Cölln's fishing quarter, minutes from his flat.",
+by: "Opus · Fable" },
+
+"james-tissot-the-bad-rich-man-in-hell": {
+about: "Sketching a fashionable choir singer at Saint-Sulpice in 1885, Tissot instead had a religious vision during Mass — and the society painter of chic London women became a Bible illustrator. He travelled three times to the Middle East researching sites and faces for some 350 gouache watercolours of the Gospels, a series that drew crowds in Paris, London and New York before Brooklyn bought it by public subscription in 1900. This sheet takes up the parable of Lazarus and the rich man from Luke 16.",
+by: "Opus · Fable" },
+
+"eugene-carriere-esquisse-pour-le-salon-des-sciences-de-l-hot": {
+about: "The 1889 commission that produced this came at Carrière's official breakthrough, the recognition that soon brought him the Sorbonne as well. It was one strand of the vast decorative programme for the Hôtel de Ville, rebuilt by Ballu and Deperthes after the Commune fire of 1871 gutted the medieval building — its interiors kept painters busy until 1906. Around 1890, exactly when he worked up these Sciences spandrel figures, Carrière settled into the grey-brown misty manner that made his name; his closest artistic ally was Rodin.",
+by: "Opus · Fable" },
+
+"paul-signac-rotterdam-the-steams": {
+about: "Signac sailed into Rotterdam in 1906 and was seized by the port's sheer industry — the smoke, steam and ceaseless traffic of Europe's busiest harbour. A lifelong sailor who had worked the ports of France, Holland and the Mediterranean from his own boats since 1892, he was ideally placed for such a scene; by now his Neo-Impressionism had loosened from Seurat's fine dots into broader, mosaic-like blocks. Two years later he became president of the Indépendants, a post he held until his death, championing the Fauves and Cubists.",
+by: "Opus · Fable" },
+
+"giovanni-boldini-female-figure": {
+about: "An oil sketch of a woman in a dark hat all but consumed by the brushwork — at this late stage Boldini's \"swish\" was no longer a finishing flourish but the entire picture, figure and stroke inseparable. By 1920 he was seventy-seven and wealthy enough to paint only what he chose; studies like this, made for no client, stayed in the studio and reached the catalogues only after his death.",
+by: "Opus · Fable" },
+
+"giovanni-boldini-symphony-in-gray": {
+about: "A nude stretched across a bed, grey on grey as the title announces — a private study, not a commission. Its canon date is a catalogue fiction: Boldini died on 11 January 1931, so the year marks the estate's reckoning rather than the easel. That estate passed through Emilia Cardona, the young journalist who had first reached him by telephone for an interview in 1926 and married him at nearly eighty-eight.",
+by: "Opus · Fable" },
+
+"antoine-chintreuil-apple-and-broom-flowers": {
+about: "Two and a quarter metres of orchard — flowering apple trees and yellow broom flanking a country road into a hazed sun, the panoramic format Chintreuil favoured for his effects of light. A bookseller's clerk who came to painting through Corot's circle, though never his atelier, he weathered the 1863 Refusés and real poverty before the State bought L'Espace in 1869 — this is the kind of veiled light he chased at Septeuil to the end.",
 by: "Opus · Fable" },
 };
