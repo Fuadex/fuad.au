@@ -3538,10 +3538,14 @@ function Portrait({ go }) {
           ))}
         </div>
 
-        <div className="cv-p-sec">
+        <div className="cv-p-sec cv-p-sec-cent">
           <div className="cv-p-lbl">Across the centuries</div>
           {/* two registers, stacked: sienna = met, green = still chasing — the map's colour
-              grammar carried over, so the histogram stops silently mixing the two */}
+              grammar carried over, so the histogram stops silently mixing the two.
+              The key sits ABOVE the chart so the chart can be pushed to the section's floor
+              (margin-top:auto) and its bars share a baseline with the movements bars beside
+              it (Fuad 2026-08-22: "align floor-wise"). */}
+          <div className="cv-p-note" style={{ marginTop: 2 }}><i className="cv-p-key" /> met · <i className="cv-p-key cv-p-key-chase" /> still chasing</div>
           <div className="cv-p-cent">
             {data.centuries.map(({ c, n, met, chase }) => (
               <div className="cv-p-centcol" key={c} title={`${cy(c)} century — ${met} met, ${chase} to see`}>
@@ -3551,7 +3555,6 @@ function Portrait({ go }) {
               </div>
             ))}
           </div>
-          <div className="cv-p-note"><i className="cv-p-key" /> met · <i className="cv-p-key cv-p-key-chase" /> still chasing</div>
         </div>
       </div>
 
