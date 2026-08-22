@@ -138,6 +138,20 @@ The fused Info (all rulings 2026-08-14/15, tested on a 6-work sample then 33-wor
   Editorial commentary ("a century of unease") is the fluff class — end on facts instead.
 - **Length free** — whatever the facts need (shipped batch runs ~44–74 words).
 - Canon dates win over legacy hook text. No facts from outside tour/hook/Interpretation.
+- **No home-collection, acquisition or bequest lines** (Fuad 2026-08-22 ×2: '"Its home is
+  Stockholm's Nationalmuseum" — we already include location', and '"came to France with the
+  Walter-Guillaume collection" and bequest stuff shouldn't cut through either'). The UI carries
+  the venue; ownership mechanics — who bequeathed, what fund bought, what inventory number —
+  never earn their words. Provenance survives ONLY as a genuine event-story (the Cartoon's 1962
+  public appeal and 1987 shotgun attack). The Turner Bequest register is read as the works'
+  BIOGRAPHY (unexhibited, found in the studio, given to the nation), not ownership — it stays.
+- **A short honest read beats a padded one** (Fuad 2026-08-22, wave-1 QC: three Nordic reads
+  shipped generic artist-bio filler because no work-specific fact had surfaced). When research
+  yields no distinguishing fact, write two tight sentences — never inflate with genre boilerplate.
+- **Batch-production note** (Fuad 2026-08-22): scale waves run **one research subagent per
+  painting**, not per slice — ten works per agent produced template-feel: six near-identical
+  Bequest backstories and dimension-line tails on eight of ten reads. Per-work agents cannot
+  converge on a template; the assembly QC still cross-checks openers corpus-wide.
 
 The `web:` tier and Web button existed for one day (2026-08-14) and were retired by this
 fusion — superseded hooks live in git history, their facts inside the fused Infos.
