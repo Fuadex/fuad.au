@@ -1156,7 +1156,8 @@ window.CANVAS_ARTWORKS = [
     seenAt: "orsay", seenConfidence: "sure", liked: true },
   { id: "witold-pruszkowski-w-noc-swietojanska", title: "W noc świętojańską", artist: "Witold Pruszkowski", artistId: "witold-pruszkowski", qid: "Q24090314", qidTrusted: true, year: 1875,
     seenAt: "mnw", seenConfidence: "sure", liked: true },
-  { id: "pierre-auguste-renoir-snow-covered-landscape", title: "Snow-covered Landscape", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q20643496", qidTrusted: true, year: 1872,
+  // year: holder's dating (Orangerie says c.1875) over the older 1872 catalogue figure (2026-08-23)
+  { id: "pierre-auguste-renoir-snow-covered-landscape", title: "Snow-covered Landscape", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q20643496", qidTrusted: true, year: 1875,
     seenAt: "orangerie", seenConfidence: "sure", floored: true },
   { id: "camille-pissarro-the-marguerite-church-knocke", title: "The Marguerite Church, Knocke", artist: "Camille Pissarro", artistId: "pissarro", qid: "Q17491287", qidTrusted: true, year: 1894,
     seenAt: "orsay", seenConfidence: "sure", liked: true },
@@ -1222,6 +1223,9 @@ window.CANVAS_ARTWORKS = [
     seenAt: "petit-palais", seenConfidence: "sure", liked: true },
   { id: "eugene-jansson-motif-from-timmermansgatan", title: "Motif from Timmermansgatan", artist: "Eugène Jansson", artistId: "eugene-jansson", qid: "Q18574390", qidTrusted: true, year: 1899,
     seenAt: "tokyo-met", seenConfidence: "sure", floored: true },
+  // le-givre: qid = the Orsay canvas (W1184, RF 2706); seenAt artizon is a LOAN sighting —
+  // Artizon's "Monet: A question of landscape" (Feb–May 2026, 90 Orsay works incl. Vétheuil
+  // winters). Same ruling as camille-deathbed: seenAt stays, no conflict.
   { id: "claude-monet-le-givre", title: "Le Givre", artist: "Claude Monet", artistId: "monet", qid: "Q17492954", qidTrusted: true, year: 1880,
     seenAt: "artizon", seenConfidence: "sure", liked: true },
   { id: "francis-danby-disappointed-love", title: "Disappointed Love", artist: "Francis Danby", artistId: "francis-danby", qid: "Q119034296", qidTrusted: true, year: 1821,
@@ -3242,7 +3246,8 @@ window.CANVAS_ARTWORKS = [
     wish: true, liked: true },
   { id: "vincent-van-gogh-self-portrait", title: "Self-Portrait", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q9162657", qidTrusted: true, year: 1887,
     wish: true, liked: true },
-  { id: "vincent-van-gogh-self-portrait-2", title: "Self-Portrait", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q9162658", qidTrusted: true, year: 1888,
+  // year: F626/JH1770 is the Saint-Rémy palette self-portrait, late summer 1889 (NGA), not 1888 (lk1 research)
+  { id: "vincent-van-gogh-self-portrait-2", title: "Self-Portrait", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q9162658", qidTrusted: true, year: 1889,
     wish: true, liked: true },
   { id: "otto-strutzel-lichtung-an-einem-sonnigen-fruhlingstag", title: "Lichtung an einem sonnigen Frühlingstag.", artist: "Otto Strützel", artistId: "otto-strutzel", qid: "Q69467672", qidTrusted: true, year: 1923,
     wish: true, liked: true },
