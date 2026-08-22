@@ -4071,7 +4071,7 @@ function App() {
       {route.view === "study" && <StudyView id={route.id} go={go} key={route.id} />}
       {/* Site-switch leads, credit trails — same order as Rotation's footer (Fuad 2026-08-20). */}
       <footer className="cv-foot">
-        <nav className="site-switch">part of <a href="/">fuad.au</a> · <a href="/rotation/">Rotation</a> · <a href="/canvas/">Canvas</a> · <a href="/culture/">Culture</a></nav>
+        <nav className="site-switch">part of <a href="/">fuad.au</a> · <a href="/rotation/">Rotation</a> · <a href="/culture/">Culture</a> · <a href="/canvas/">Canvas</a></nav>
         <span className="cv-foot-main">canvas · a personal gallery, reconstructed from memory · images via <a href="https://commons.wikimedia.org" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> / <a href="https://www.wikidata.org" target="_blank" rel="noopener noreferrer">Wikidata</a></span>
       </footer>
     </React.Fragment>

@@ -223,7 +223,7 @@ function RotationApp() {
       {/* Site-switch leads, credit trails (Fuad 2026-08-20). .r-foot is already space-between, so
           the swap is purely DOM order — no alignment rules to chase. */}
       <footer className="r-foot">
-        <nav className="site-switch r-foot-links">part of <a href="/">fuad.au</a> · <a href="/rotation/">Rotation</a> · <a href="/canvas/">Canvas</a> · <a href="/culture/">Culture</a></nav>
+        <nav className="site-switch r-foot-links">part of <a href="/">fuad.au</a> · <a href="/rotation/">Rotation</a> · <a href="/culture/">Culture</a> · <a href="/canvas/">Canvas</a></nav>
         <div>rotation · real scrobbles — last.fm/fuadex · fuad.design / 2026</div>
       </footer>
 
