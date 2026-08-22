@@ -1643,10 +1643,14 @@ function Reader({ id, go }) {
             {w.qid && <a href={`https://www.wikidata.org/wiki/${w.qid}`} target="_blank" rel="noopener noreferrer">Wikidata ↗</a>}
             {/* say what the file ACTUALLY is. "Full resolution" was a promise the data could not
                 keep for 844 works — Commons returns the original when asked for a bigger width,
-                so the link opened a 363px Monet under a label implying otherwise. */}
-            {w.imgZoom && (
-              <a href={w.imgZoom} target="_blank" rel="noopener noreferrer"
-                title={w.px ? `Commons source is ${w.px[0]}×${w.px[1]}px` : undefined}>
+                so the link opened a 363px Monet under a label implying otherwise.
+                Giga-scan gotcha (Fuad 2026-08-22, Bal du moulin): for >=50MP works imgZoom is the
+                capped 6000px thumb, so the link under the original's dimensions opened the thumb —
+                point it at hires.orig instead (and note the browser downsamples giant scans). */}
+            {(w.imgZoom || (w.hires && w.hires.orig)) && (
+              <a href={(w.hires && w.hires.orig) || w.imgZoom} target="_blank" rel="noopener noreferrer"
+                title={(w.px ? `Commons source is ${w.px[0]}×${w.px[1]}px` : undefined)
+                  && `Commons source is ${w.px[0]}×${w.px[1]}px${w.hires && w.hires.orig ? " — note: browsers silently downsample giant scans in a plain tab; the in-viewer max zoom shows more real detail" : ""}`}>
                 {w.px ? `Source image ↗ ${w.px[0]}×${w.px[1]}` : "Full resolution ↗"}
               </a>
             )}
