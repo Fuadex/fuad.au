@@ -219,9 +219,9 @@ measurement. A rule that cannot be traced to one of those is not a rule; strike 
 (History: an unsourced second-person ban and a hardened word ceiling both reached shipped
 content in August 2026 before being caught. This section exists so that cannot recur.)
 
-## Coverage (2026-08-22)
+## Coverage (2026-08-22, post wave-2 + imp6)
 
-623 Info · 169 Interpretations (66 badged `deepBy: "Sonnet 4.6"`) · 309 study tours
+714 Info · 175 Interpretations (81 badged `deepBy: "Sonnet 4.6"`) · 315 study tours
 · **192 artist reads (§10) — the eligible gap is ZERO** · **53 museum reads** (`museum_about.js`,
 see PIPELINE.md; every museum with a met work is covered, 28 unvisited ones deferred)
 (all QC'd — see QC_LEDGER.md). The `web` tier is retired (§5b). Backfill batches 1+2
