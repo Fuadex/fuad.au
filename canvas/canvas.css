@@ -1075,6 +1075,10 @@ a { color: inherit; }
 .cv-p-bartrack { flex: 1; height: 10px; background: rgba(0,0,0,.06); border-radius: 999px; overflow: hidden; }
 .cv-p-bartrack i { display: block; height: 100%; background: linear-gradient(90deg, oklch(0.6 0.1 46), oklch(0.62 0.14 46)); border-radius: 999px; }
 .cv-p-barn { flex: 0 0 auto; font: 500 11px/1 var(--mono); color: var(--ink-faint); min-width: 20px; }
+/* the centuries column stretches to its grid row and pins the chart to its own floor, so the
+   century bars share a baseline with the movements bars beside them (Fuad 2026-08-22) */
+.cv-p-sec-cent { display: flex; flex-direction: column; }
+.cv-p-sec-cent .cv-p-cent { margin-top: auto; }
 .cv-p-cent { display: flex; align-items: flex-end; gap: 5px; height: 130px; }
 .cv-p-centcol { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
 .cv-p-centbar { width: 100%; max-width: 34px; background: oklch(0.55 0.12 46); border-radius: 3px 3px 0 0; min-height: 2px; }
