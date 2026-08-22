@@ -35,6 +35,20 @@ are so I can also understand what got me that interested by the artwork."
 - Each stop must teach the eye something it would not have caught alone; no stop that
   merely names what is in the box.
 
+### Closing-paragraph experiments (2026-08-22 — settled, do not re-pilot)
+
+Two candidate "extra paragraph after the last stop" shapes were piloted on five marquee tours
+and REJECTED by Fuad:
+- **Synthesis coda** ("what it adds up to") — "doesn't add really to anything"; complete tours
+  leave it nothing un-said, and it drifts into recap, the outlawed padding class.
+- **Afterimage** ("what stays with you") — "creates assumptions of what impression to take from
+  each painting; it shouldn't be suggestive like this." Same boundary as the earlier ruling
+  against synthesizing "what stopped you": the viewer's interior is not ours to script.
+
+**ACCEPTED IN PRINCIPLE, DEFERRED**: a *neighbour-mapping* close — placing the work among
+related paintings on Fuad's own wall, with links. Gated on tour density ("we should have more
+tours done before executing this"); revisit when the store has grown well past the current ~300.
+
 ## Voice and truth rules
 
 - Literate, direct, concrete. No filler, no "masterpiece" talk, no exclamation marks.
