@@ -349,7 +349,17 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
           const rec = R.EXPLORE.find(a => a.id === id);
           if (rec) byIdSet.push(rec);
         }
-        if (byIdSet.length >= 2) return byIdSet;
+        if (byIdSet.length >= 2) {
+          // the period flow respects the PLACE selection too (Fuad 2026-08-22: calendar+country
+          // left the flow unfiltered while calendar+flow did narrow the countries — composition
+          // must hold in both directions). A narrowed set below 2 returns anyway: the flow's
+          // "not enough placed artists here" empty state is the honest answer, not a silent
+          // fall-through to the place's all-time journey.
+          if (!sel) return byIdSet;
+          if (sel.kind === "country") return byIdSet.filter(a => a.co === sel.key);
+          const [iso, city] = sel.key.split("|");
+          return byIdSet.filter(a => a.co === iso && a.ci === city);
+        }
       }
     }
     if (!sel) return R.EXPLORE;
