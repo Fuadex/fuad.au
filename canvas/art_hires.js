@@ -1,9 +1,9 @@
-// GENERATED locally (workshop emit-art-hires.py) from museum open-API matches,
-// HOLDER-VERIFIED against Wikidata P195 (only works the matching museum actually holds).
+// GENERATED + hand-upserted hi-res sources per work. CANONICAL FORMAT (2026-08-23): one
+// compact JSON line per entry — keep it that way; the old mixed pretty/compact forms needed
+// manual passes on every batch. Sources: met/aic/cma/nga/vam (holder-verified vs Wikidata
+// P195) and commons (P18 originals + verified wiki-lead files). `orig` = untouched original
+// for the reader's Ultra HQ / save links; never put a non-browser format (TIFF) in `img`.
 window.CANVAS_HIRES = {
-// ——— Stage-B wiki-lead files (2026-08-22): Wikipedia-article lead images that are a LARGER,
-// DIFFERENT Commons file than the P18 — every one visually verified SAME-work/SAME-version
-// by a 4-agent pair-sheet swarm (9 rejects: wrong casts/versions kept out).
 "a-pair-of-shoes": {"src": "commons", "w": 2985, "h": 2480, "title": "A Pair of Shoes", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Schoenen_-_s0011V1962_-_Van_Gogh_Museum.jpg"},
 "allegory-of-virtue-and-vice": {"src": "commons", "w": 1526, "h": 2000, "title": "Allegory of Virtue and Vice", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/4/47/Veronese_-_The_Choice_Between_Virtue_and_Vice%2C_ca._1565%2C_1912.1.129.jpg"},
 "edwin-landseer-man-proposes-god-disposes": {"src": "commons", "w": 1600, "h": 606, "title": "Man Proposes, God Disposes", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Man_proposes_god_disposes_-_Edwin_Landseer_-_RH.jpg"},
@@ -12,15 +12,12 @@ window.CANVAS_HIRES = {
 "the-baptism-of-lithuania": {"src": "commons", "w": 3790, "h": 1945, "title": "The Baptism of Lithuania", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Baptism_of_Lithuania.PNG"},
 "the-white-horse": {"src": "commons", "w": 6789, "h": 4688, "title": "The White Horse", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/1/10/The_White_Horse_by_John_Constable_-_Google_Art_Project.jpg"},
 "union-of-lublin": {"src": "commons", "w": 1911, "h": 1116, "title": "Union of Lublin", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/4/47/Lublin_Union_1569.PNG"},
-// ——— Stage-A Commons originals (2026-08-22, Fuad-approved scope): P18 originals of the
-// plates the site already shows — identity-safe; >=50MP giga scans capped to a 6000px
-// thumb with the true original kept in `orig` for the reader's full-resolution option.
 "a-burial-at-ornans": {"src": "commons", "w": 6045, "h": 2779, "title": "A Burial at Ornans", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/5/50/Gustave_Courbet_-_A_Burial_at_Ornans_-_Google_Art_Project.jpg"},
 "a-girl-asleep": {"src": "commons", "w": 3263, "h": 3759, "title": "A Girl Asleep", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Vermeer_young_women_sleeping.jpg"},
-"a-girl-with-a-watering-can": {"src": "commons", "w": 7201, "h": 9888, "title": "A Girl with a Watering Can", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Auguste_Renoir_-_A_Girl_with_a_Watering_Can_-_Google_Art_Project.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Auguste_Renoir_-_A_Girl_with_a_Watering_Can_-_Google_Art_Project.jpg"},
-"a-lady-writing-a-letter": {"src": "commons", "w": 3553, "h": 4051, "title": "A Lady Writing a Letter", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Johannes_Vermeer_-_A_Lady_Writing_-_Google_Art_Project.jpg"},
-"a-polish-nobleman": {"src": "commons", "w": 3259, "h": 4781, "title": "A Polish Nobleman", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Rembrandt_van_Rijn_-_A_Polish_nobleman.jpg"},
-"a-young-girl-reading": {"src": "commons", "w": 3182, "h": 4000, "title": "A Young Girl Reading", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/6/69/Fragonard%2C_The_Reader.jpg"},
+"a-girl-with-a-watering-can": {"src": "nga", "w": 15915, "h": 22072, "title": "A Girl with a Watering Can", "conf": "high", "img": "https://api.nga.gov/iiif/bcc517e0-84c3-4e21-8c08-c9a0181ced29/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Auguste_Renoir_-_A_Girl_with_a_Watering_Can_-_Google_Art_Project.jpg", "iiif": "https://api.nga.gov/iiif/bcc517e0-84c3-4e21-8c08-c9a0181ced29/info.json"},
+"a-lady-writing-a-letter": {"src": "nga", "w": 25813, "h": 29494, "title": "A Lady Writing a Letter", "conf": "high", "img": "https://api.nga.gov/iiif/ea55879e-57f1-494d-9043-6dedb384bdc8/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/ea55879e-57f1-494d-9043-6dedb384bdc8/info.json"},
+"a-polish-nobleman": {"src": "nga", "w": 13003, "h": 19017, "title": "A Polish Nobleman", "conf": "high", "img": "https://api.nga.gov/iiif/b29d07fb-c785-41af-8c3f-a48045e4013c/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/b29d07fb-c785-41af-8c3f-a48045e4013c/info.json"},
+"a-young-girl-reading": {"src": "nga", "w": 12451, "h": 15654, "title": "A Young Girl Reading", "conf": "high", "img": "https://api.nga.gov/iiif/2476ae10-777c-43af-b48c-a6bc141aecac/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/2476ae10-777c-43af-b48c-a6bc141aecac/info.json"},
 "a-young-woman-seated-at-a-virginal": {"src": "commons", "w": 10100, "h": 11371, "title": "A Young Woman seated at a Virginal", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan_Vermeer_van_Delft_-_Jonge_vrouw_aan_een_virginaal_%28ca._1670-72%29.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Jan_Vermeer_van_Delft_-_Jonge_vrouw_aan_een_virginaal_%28ca._1670-72%29.jpg"},
 "a-young-woman-standing-at-a-virginal": {"src": "commons", "w": 9998, "h": 11367, "title": "A Young Woman Standing at a Virginal", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan_Vermeer_van_Delft_-_Jonge_vrouw_staande_bij_een_virginaal_%28ca._1670-72%29.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Jan_Vermeer_van_Delft_-_Jonge_vrouw_staande_bij_een_virginaal_%28ca._1670-72%29.jpg"},
 "abram-arkhipov-landscape": {"src": "commons", "w": 2516, "h": 2100, "title": "Landscape", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/6/66/Abram_archipov%2C_paesaggio%2C_ante_1924.jpg"},
@@ -30,7 +27,7 @@ window.CANVAS_HIRES = {
 "adolph-von-menzel-mondschein-uber-der-friedrichsgracht-im-al": {"src": "commons", "w": 3802, "h": 4752, "title": "Mondschein über der Friedrichsgracht im alten Berlin", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/e/e6/1855_Menzel_Mondschein_%C3%BCber_der_Friedrichsgracht_anagoria.JPG"},
 "aert-van-der-neer-a-village-scene-in-winter-with-a-frozen-ri": {"src": "commons", "w": 3163, "h": 2068, "title": "A Village Scene in Winter With a Frozen River", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/e/e6/A_Village_Scene_in_Winter_with_a_Frozen_River%2C_probably_late_1640s%2C_by_Aert_van_der_Neer_%281603-1677%29_-_IMG_7355.JPG"},
 "aimitsu-landscape-with-an-eye": {"src": "commons", "w": 2500, "h": 1314, "title": "Landscape with an Eye", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Aimitsu-1936-Landscape_wtih_an_Eye.png"},
-"alba-madonna": {"src": "commons", "w": 12090, "h": 12090, "title": "Alba Madonna", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Raphael%2C_The_Alba_Madonna%2C_c._1510%2C_NGA_26.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/7/75/Raphael%2C_The_Alba_Madonna%2C_c._1510%2C_NGA_26.jpg"},
+"alba-madonna": {"src": "nga", "w": 24180, "h": 24180, "title": "Alba Madonna", "conf": "high", "img": "https://api.nga.gov/iiif/f033a552-2901-4c21-95ed-93d13e598632/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/7/75/Raphael%2C_The_Alba_Madonna%2C_c._1510%2C_NGA_26.jpg", "iiif": "https://api.nga.gov/iiif/f033a552-2901-4c21-95ed-93d13e598632/info.json"},
 "albert-bierstadt-in-the-tyrol": {"src": "commons", "w": 3542, "h": 2400, "title": "In the Tyrol", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Albert_Bierstadt_-_In_the_Tyrol.jpg"},
 "albert-edelfelt-pasteur-s-portrait-by-edelfelt": {"src": "commons", "w": 2082, "h": 2532, "title": "Pasteur's portrait by Edelfelt", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Albert_Edelfelt_-_Louis_Pasteur_-_1885.jpg"},
 "albert-ernest-carrier-belleuse-la-mort-de-sapho": {"src": "commons", "w": 4762, "h": 3725, "title": "La Mort de Sapho", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Albert-Ernest_Carrier-Belleuse_-_La_Mort_de_Sapho_01.jpg"},
@@ -90,7 +87,7 @@ window.CANVAS_HIRES = {
 "august-macke-madchen-am-brunnen": {"src": "commons", "w": 3414, "h": 4331, "title": "Mädchen am Brunnen", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/6/68/LWL_Museum_f%C3%BCr_Kunst_und_Kultur-Macke-M%C3%A4dchen_am_Brunnen_DSC5713.jpg"},
 "august-macke-spazierganger-gro-er-heller-spaziergang": {"src": "commons", "w": 4707, "h": 3865, "title": "Spaziergänger (Großer heller Spaziergang)", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/3/31/LWL_Museum_f%C3%BCr_Kunst_und_Kultur-Macke-Spazierg%C3%A4nger_DSC5738.jpg"},
 "august-macke-tunesisches-hafenbild": {"src": "commons", "w": 3098, "h": 3653, "title": "Tunesisches Hafenbild", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/LWL_Museum_f%C3%BCr_Kunst_und_Kultur-Macke-Tunesisches_Hafenbild_DSC5733.jpg"},
-"auguste-rodin-the-evil-spirits": {"src": "commons", "w": 3715, "h": 4000, "title": "The Evil Spirits", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Auguste_Rodin%2C_The_Evil_Spirits%2C_c._1899%2C_NGA_1010.jpg"},
+"auguste-rodin-the-evil-spirits": {"src": "nga", "w": 8929, "h": 7143, "title": "The Evil Spirits", "conf": "high", "img": "https://api.nga.gov/iiif/037545db-5ee3-40c4-b677-0439a54c5c4f/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/037545db-5ee3-40c4-b677-0439a54c5c4f/info.json"},
 "avenue-in-the-park-of-schloss-kammer": {"src": "commons", "w": 3504, "h": 3508, "title": "Avenue in the Park of Schloss Kammer", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Gustav_Klimt_-_Allee_zum_Schloss_Kammer_-_2892_-_%C3%96sterreichische_Galerie_Belvedere.jpg"},
 "avenue-of-plane-trees-near-arles-station": {"src": "commons", "w": 3870, "h": 3402, "title": "Avenue of Plane Trees near Arles Station", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Van_Gogh_-_Das_Viadukt_in_Arles_oder_Der_blaue_Zug.jpeg"},
 "avenue-of-poplars-in-autumn": {"src": "commons", "w": 4916, "h": 7455, "title": "Avenue of Poplars in Autumn", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Populierenlaan_in_de_herfst_-_s0141M1977_-_Van_Gogh_Museum.jpg"},
@@ -165,7 +162,7 @@ window.CANVAS_HIRES = {
 "children-on-the-sand-dunes-grandcamp": {"src": "commons", "w": 3000, "h": 2487, "title": "Children on the Sand Dunes, Grandcamp", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Children_on_the_Sand_Dunes%2C_Grandcamp_.PNG"},
 "christ-driving-the-money-changers-from-the-temple": {"src": "commons", "w": 6198, "h": 4973, "title": "Christ Driving the Money Changers from the Temple", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/b/b6/El_Greco_-_The_Purification_of_the_Temple_-_WGA10541.jpg"},
 "christ-in-the-house-of-his-parents": {"src": "commons", "w": 4500, "h": 2731, "title": "Christ in the House of His Parents", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/7/7b/John_Everett_Millais_-_Christ_in_the_House_of_His_Parents_%28%60The_Carpenter%27s_Shop%27%29_-_Google_Art_Project.jpg"},
-"christian-rohlfs-white-beeches-in-fall": {"src": "commons", "w": 3242, "h": 4096, "title": "White Beeches in Fall", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/9/92/Christian_Rohlfs_Wei%C3%9Fe_Birken_im_Herbst_1910.jpg"},
+"christian-rohlfs-white-beeches-in-fall": {"src": "nga", "w": 19714, "h": 24908, "title": "White Beeches in Fall", "conf": "high", "img": "https://api.nga.gov/iiif/91220230-cdf8-48d1-bee0-aebd25d257bc/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/91220230-cdf8-48d1-bee0-aebd25d257bc/info.json"},
 "claude-charles-bourgonnier-esquisse-pour-la-mairie-du-12eme": {"src": "commons", "w": 5341, "h": 3425, "title": "Esquisse pour la mairie du 12ème arrondissement de Paris : Revue militaire. Défilé place de la Nation", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Claude_Charles_Bourgonnier_-_Esquisse_pour_la_mairie_du_12%C3%A8me_arrondissement_de_Paris_%2C_Revue_militaire._D%C3%A9fil%C3%A9_place_de_la_Nation_-_PPP4335_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg"},
 "claude-monet-a-corner-of-the-apartment": {"src": "commons", "w": 4914, "h": 6585, "title": "A Corner of the Apartment", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Claude_Monet_-_A_Corner_of_the_Apartment_-_Google_Art_Project.jpg"},
 "claude-monet-agapanthes": {"src": "commons", "w": 3136, "h": 4244, "title": "Agapanthes", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Monet_Agapanthes_Marmottan_%28cropped%29.jpg"},
@@ -245,9 +242,9 @@ window.CANVAS_HIRES = {
 "dante-and-virgil-in-hell": {"src": "commons", "w": 2803, "h": 3515, "title": "Dante and Virgil in Hell", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/27/William_Bouguereau_-_Dante_and_Virgile_-_Google_Art_Project_2.jpg"},
 "david-johnson-mud-pond-pine-plains-new-york": {"src": "commons", "w": 3068, "h": 2012, "title": "Mud Pond, Pine Plains, New York", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/f/f9/%27Mud_Pond%2C_Pine_Plains%2C_New_York%27_by_David_Johnson%2C_Honolulu_Museum_of_Art%2C_25454.JPG"},
 "death-and-the-maiden": {"src": "commons", "w": 5880, "h": 4947, "title": "Death and the Maiden", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Egon_Schiele_-_Der_Tod_und_das_M%C3%A4dchen.jpg"},
-"death-and-the-miser": {"src": "commons", "w": 5901, "h": 17766, "title": "Death and the Miser", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jheronimus_Bosch_050.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/4/48/Jheronimus_Bosch_050.jpg"},
+"death-and-the-miser": {"src": "nga", "w": 12375, "h": 36971, "title": "Death and the Miser", "conf": "high", "img": "https://api.nga.gov/iiif/03ee67ee-dd0e-443f-84ef-ede5f62ce0cd/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/4/48/Jheronimus_Bosch_050.jpg", "iiif": "https://api.nga.gov/iiif/03ee67ee-dd0e-443f-84ef-ede5f62ce0cd/info.json"},
 "deer-running-in-the-snow": {"src": "commons", "w": 5001, "h": 3132, "title": "Deer Running in the Snow", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Gustave_Courbet_-_Deer_Running_in_the_Snow_-_Google_Art_Project.jpg"},
-"degas-grande-arabesque-third-time": {"src": "commons", "w": 2877, "h": 2430, "title": "Grande Arabesque, Third Time (First Arabesque Penchée)", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Edgar_Degas%2C_Grande_Arabesque%2C_Third_Time_%28First_Arabesque_Pench%C3%A9e%29%2C_c._1885-1890%2C_NGA_110301.jpg"},
+"degas-grande-arabesque-third-time": {"src": "nga", "w": 5864, "h": 4954, "title": "Grande Arabesque, Third Time (First Arabesque Penchée)", "conf": "high", "img": "https://api.nga.gov/iiif/0ecab294-3fee-42c2-8f37-7483e4802194/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/0ecab294-3fee-42c2-8f37-7483e4802194/info.json"},
 "dempsey-and-firpo": {"src": "commons", "w": 2400, "h": 1947, "title": "Dempsey and Firpo", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Bellows_George_Dempsey_and_Firpo_1924.jpg"},
 "denys-puech-l-aurore-by-denys-puech": {"src": "commons", "w": 3712, "h": 5568, "title": "L'Aurore by Denys Puech", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/23/Paris_-_Mus%C3%A9e_d%27Orsay_8836.jpg"},
 "diana-and-actaeon": {"src": "commons", "w": 6938, "h": 6339, "title": "Diana and Actaeon", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/7/72/Titian_-_Diana_and_Actaeon_-_1556-1559.jpg"},
@@ -289,7 +286,7 @@ window.CANVAS_HIRES = {
 "elie-nadelman-man-in-the-open-air": {"src": "commons", "w": 3060, "h": 4080, "title": "Man in the Open Air", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Elie_Nadelman_-_Man_in_the_Open_Air_-_MoMA_%282%29.jpg"},
 "elisabeth-louise-vigee-le-brun-self-portrait-in-a-straw-hat": {"src": "commons", "w": 4320, "h": 6000, "title": "Self Portrait in a Straw Hat", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/3/35/Self-portrait_in_a_Straw_Hat_by_Elisabeth-Louise_Vig%C3%A9e-Lebrun.jpg"},
 "en-premiar": {"src": "commons", "w": 3064, "h": 4132, "title": "En premiär", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Une_premi%C3%A8re_%28Anders_Zorn%29_-_Nationalmuseum_-_24314.tif?width=3064", "orig": "https://upload.wikimedia.org/wikipedia/commons/9/97/Une_premi%C3%A8re_%28Anders_Zorn%29_-_Nationalmuseum_-_24314.tif"},
-"ernst-fries-berchtesgaden-with-the-watzmann-peak-in-the-dist": {"src": "commons", "w": 4000, "h": 2779, "title": "Berchtesgaden with the Watzmann Peak in the Distance", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Ernst_Fries%2C_Berchtesgaden_with_the_Watzmann_Peak_in_the_Distance%2C_1822%2C_NGA_155534.jpg"},
+"ernst-fries-berchtesgaden-with-the-watzmann-peak-in-the-dist": {"src": "nga", "w": 5097, "h": 3541, "title": "Berchtesgaden with the Watzmann Peak in the Distance", "conf": "high", "img": "https://api.nga.gov/iiif/eec40712-b517-4c9b-bfce-c762c0546c9a/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/eec40712-b517-4c9b-bfce-c762c0546c9a/info.json"},
 "ernst-ludwig-kirchner-burg-auf-fehmarn": {"src": "commons", "w": 3316, "h": 4155, "title": "Burg auf Fehmarn", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/4/46/Burg_auf_Fehmarn_%28Ernst_Ludwig_Kirchner%29-WUS00662.jpg"},
 "eugene-carriere-esquisse-pour-le-salon-des-sciences-de-l-hot": {"src": "commons", "w": 5413, "h": 4312, "title": "Esquisse pour le salon des Sciences de l'Hôtel de Ville de Paris : femme nue de dos, figure d'écoinçon", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Eug%C3%A8ne_Carri%C3%A8re_-_Esquisse_pour_le_salon_des_Sciences_de_l%27H%C3%B4tel_de_Ville_de_Paris_%2C_femme_nue_de_dos%2C_figure_d%27%C3%A9coin%C3%A7on_-_PPP384_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg"},
 "eugene-delacroix-l-etang-le-louroux-en-touraine": {"src": "commons", "w": 3124, "h": 1563, "title": "L'Étang (le Louroux en Touraine)", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/a/a9/L%27%C3%A9tang%2C_pr%C3%A8s_du_Louroux_-_Delacroix_-_without_border.jpg"},
@@ -306,7 +303,7 @@ window.CANVAS_HIRES = {
 "eugene-louis-boudin-view-of-trouville": {"src": "commons", "w": 3816, "h": 2361, "title": "View of Trouville", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/23/Eug%C3%A8ne_Boudin_Vista_de_Trouville.jpg"},
 "eugene-manet-on-isle-of-wight": {"src": "commons", "w": 2536, "h": 2157, "title": "Eugène Manet on Isle of Wight", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Berthe_Morisot_-_Eug%C3%A8ne_Manet_%C3%A0_l%27%C3%AEle_de_Wight.jpg"},
 "eugeniusz-wrzeszcz-dwie-kobiety-w-lasku": {"src": "commons", "w": 4931, "h": 3214, "title": "Dwie kobiety w lasku", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Wrzeszcz_Two_women_in_a_wood.jpg"},
-"farmhouse-in-provence": {"src": "commons", "w": 16428, "h": 12392, "title": "Farmhouse in Provence", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Farmhouse_in_Provence%2C_1888%2C_Vincent_van_Gogh%2C_NGA.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/0/06/Farmhouse_in_Provence%2C_1888%2C_Vincent_van_Gogh%2C_NGA.jpg"},
+"farmhouse-in-provence": {"src": "nga", "w": 31183, "h": 23388, "title": "Farmhouse in Provence", "conf": "high", "img": "https://api.nga.gov/iiif/51c369a2-cc20-43f6-8262-25877c4377eb/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/0/06/Farmhouse_in_Provence%2C_1888%2C_Vincent_van_Gogh%2C_NGA.jpg", "iiif": "https://api.nga.gov/iiif/51c369a2-cc20-43f6-8262-25877c4377eb/info.json"},
 "ferdinand-hodler-bildnis-der-tanzerin-giulia-leonardi": {"src": "commons", "w": 9449, "h": 8150, "title": "Bildnis der Tänzerin Giulia Leonardi", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/1910_Hodler_Bildnis_der_T%C3%A4nzerin_Giulia_Leonardi_anagoria.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/5/52/1910_Hodler_Bildnis_der_T%C3%A4nzerin_Giulia_Leonardi_anagoria.jpg"},
 "ferdinand-hodler-lake-thun-symmetric-reflection": {"src": "commons", "w": 4650, "h": 3720, "title": "Lake Thun, Symmetric reflection", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/26/Hodler_-_Thunersee_mit_symmetrischer_Spiegelung_-_1905.jpg"},
 "ferdinand-hodler-mount-niesen-seen-from-heustrich": {"src": "commons", "w": 4680, "h": 3642, "title": "Mount Niesen seen from Heustrich", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Hodler_-_Der_Niesen_-_1910.jpg"},
@@ -341,11 +338,11 @@ window.CANVAS_HIRES = {
 "georgette-charpeitier-seated": {"src": "commons", "w": 3022, "h": 4170, "title": "Georgette Charpeitier Seated", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Pierre-AugusteRenoir-1876-Mlle_Georgette_Charpentier_Seated.png"},
 "gerda-roosval-kallstenius-astrid-setterwall-angstrom-artist": {"src": "commons", "w": 1702, "h": 3650, "title": "Astrid Setterwall Ångström, Artist", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Portr%C3%A4tt_av_konstn%C3%A4rinnan_Astrid_Setterwall_%C3%85ngstr%C3%B6m_%281895-1982%29_%28Gerda_Roosval-Kallstenius%29_-_Nationalmuseum_-_101585.tif?width=1702", "orig": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Portr%C3%A4tt_av_konstn%C3%A4rinnan_Astrid_Setterwall_%C3%85ngstr%C3%B6m_%281895-1982%29_%28Gerda_Roosval-Kallstenius%29_-_Nationalmuseum_-_101585.tif"},
 "giant-peacock-moth": {"src": "commons", "w": 5359, "h": 7316, "title": "Giant Peacock Moth", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Grote_nachtpauwoog_-_s0189V1962_-_Van_Gogh_Museum.jpg"},
-"ginevra-de-benci": {"src": "commons", "w": 23235, "h": 23968, "title": "Ginevra de' Benci", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginevra_de%27_Benci_-_National_Gallery_of_Art.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Ginevra_de%27_Benci_-_National_Gallery_of_Art.jpg"},
+"ginevra-de-benci": {"src": "nga", "w": 23235, "h": 23968, "title": "Ginevra de' Benci", "conf": "high", "img": "https://api.nga.gov/iiif/8f29e3c9-a289-4d53-abf0-31a66e9e98fa/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Ginevra_de%27_Benci_-_National_Gallery_of_Art.jpg", "iiif": "https://api.nga.gov/iiif/8f29e3c9-a289-4d53-abf0-31a66e9e98fa/info.json"},
 "giovanni-battista-tiepolo-die-verehrung-der-trinitat-durch-d": {"src": "commons", "w": 4106, "h": 6845, "title": "Die Verehrung der Trinität durch den hl. Papst Clemens", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/2f/The_Adoration_of_the_Holy_Trinity_by_Pope_St._Clement_-_Giovanni_Batista_Tiepolo.jpg"},
 "giovanni-boldini-cafe-scene": {"src": "commons", "w": 3248, "h": 2456, "title": "Café Scene", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/8/88/Caf%C3%A9_Scene_by_Giovanni_Boldini%2C_c._1887%2C_oil_on_panel%2C_California_Palace_of_the_Legion_of_Honor.JPG"},
 "giovanni-boldini-la-marquise-luisa-casati-avec-des-plumes-de": {"src": "commons", "w": 5501, "h": 4213, "title": "La Marquise Luisa Casati avec des plumes de paon", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/b/b4/%28Treviso%29_Giovanni_Boldini_-_La_marchesa_Luisa_Casati_-_Musei_civici_-_Santa_Caterina.jpg"},
-"girl-in-white": {"src": "commons", "w": 2034, "h": 3000, "title": "Girl in White", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Girl_in_White_by_Vincent_Van_Gogh_-_NGA.jpg"},
+"girl-in-white": {"src": "nga", "w": 12107, "h": 17862, "title": "Girl in White", "conf": "high", "img": "https://api.nga.gov/iiif/6d6753b3-c1ef-494c-9dc3-244e8982c867/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/6d6753b3-c1ef-494c-9dc3-244e8982c867/info.json"},
 "girl-interrupted-at-her-music": {"src": "commons", "w": 3215, "h": 2850, "title": "Girl Interrupted at her Music", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/1/14/Vermeer_Girl_Interrupted_at_Her_Music.jpg"},
 "girl-of-brehat": {"src": "commons", "w": 3286, "h": 5001, "title": "Girl of Bréhat", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Kuroda_Seiki_-_Girl_of_Br%C3%A9hat_-_Google_Art_Project.jpg"},
 "girls-at-the-piano": {"src": "commons", "w": 4005, "h": 5292, "title": "Girls at the Piano", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Auguste_Renoir_-_Young_Girls_at_the_Piano_-_Google_Art_Project.jpg"},
@@ -363,7 +360,7 @@ window.CANVAS_HIRES = {
 "gustave-courbet-the-wave": {"src": "commons", "w": 3060, "h": 2400, "title": "The Wave", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/f/f2/The_Wave_by_Gustave_Courbet%2C_California_Palace_of_the_Legion_of_Honor.JPG"},
 "gustave-courbet-untitled": {"src": "commons", "w": 4245, "h": 1955, "title": "Panorama des Alpes", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/27/Panor%C3%A1mica_de_los_Alpes_%28Gustave_Courbet%29.jpg"},
 "gustave-courbet-vue-du-parc-des-cretes-au-dessus-de-clarens": {"src": "commons", "w": 3313, "h": 2163, "title": "Vue du Parc des Crêtes au-dessus de Clarens", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/9/94/Vue_du_Parc_des_Cr%C3%AAtes_au-dessus_de_Clarens_-_Gustave_Courbet_-_Paris_1863_%E2%80%93_1874-_Revolution_in_der_Kunst-4662_%28without_frame%29.jpg"},
-"gustave-le-gray-cavalry-maneuvers-camp-de-chalons": {"src": "commons", "w": 4000, "h": 3232, "title": "Cavalry Maneuvers, Camp de Châlons", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/1/14/Gustave_Le_Gray%2C_Cavalry_Maneuvers%2C_Camp_de_Ch%C3%A2lons%2C_1857%2C_NGA_136418.jpg"},
+"gustave-le-gray-cavalry-maneuvers-camp-de-chalons": {"src": "nga", "w": 4648, "h": 3756, "title": "Cavalry Maneuvers, Camp de Châlons", "conf": "high", "img": "https://api.nga.gov/iiif/5ed2a84a-278b-445b-9fb5-6ad54a6bfb7b/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/5ed2a84a-278b-445b-9fb5-6ad54a6bfb7b/info.json"},
 "gustave-loiseau-untitled": {"src": "commons", "w": 4608, "h": 3456, "title": "Tournedos sur Seine, neige, givre et brume", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Tournedos_sur_Seine%2C_neige%2C_givre_et_brume_%28Loiseau%29.jpg"},
 "gyula-benczur-death-of-ladislaus-iv-of-hungary": {"src": "commons", "w": 3873, "h": 2893, "title": "Death of Ladislaus IV of Hungary", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Gyula_Bencz%C3%BAr_-_Death_of_Ladislaus_IV_of_Hungary.jpg"},
 "harada-naojiro-guanyin-riding-the-dragon": {"src": "commons", "w": 2027, "h": 3072, "title": "Guanyin riding the dragon", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/0/03/Kannon_Riding_a_Dragon_by_Harada_Naojiro_%28National_Museum_of_Modern_Art%2C_Tokyo%29.jpg"},
@@ -482,13 +479,13 @@ window.CANVAS_HIRES = {
 "johan-christian-jansson-untitled-2": {"src": "commons", "w": 6227, "h": 4445, "title": "(untitled)", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Scenografiskiss_av_Christian_Jansson_-_SMV_-_DTM_1939-1034.tif?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/5/54/Scenografiskiss_av_Christian_Jansson_-_SMV_-_DTM_1939-1034.tif"},
 "johan-jongkind-clair-de-lune-a-overschie-environs-de-rotterd": {"src": "commons", "w": 4831, "h": 3661, "title": "Clair de lune à Overschie (environs de Rotterdam)", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Johan_Barthold_Jongkind_-_Clair_de_lune_%C3%A0_Overschie_%28environs_de_Rotterdam%29_-_PPP481_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg"},
 "john-constable-a-cloud-study-sunset": {"src": "commons", "w": 6238, "h": 3916, "title": "A Cloud Study, Sunset", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/a/ad/John_Constable_-_A_Cloud_Study%2C_Sunset_-_Google_Art_Project.jpg"},
-"john-constable-brighton-beach": {"src": "commons", "w": 3409, "h": 2531, "title": "Brighton Beach", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Horror_und_Delight-Constable-Brighton_Beach_DSC2188.jpg_DSC2203.jpg"},
+"john-constable-brighton-beach": {"src": "vam", "w": 2500, "h": 1049, "title": "Brighton Beach", "conf": "high", "img": "https://framemark.vam.ac.uk/collections/2006BD6350/full/3000,/0/default.jpg", "iiif": "https://framemark.vam.ac.uk/collections/2006BD6350/info.json"},
 "john-constable-cloud-study": {"src": "commons", "w": 2516, "h": 2036, "title": "Cloud study", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/2f/%27Cloud_Study%27%2C_by_John_Constable%2C_1822%2C_Tate_Britain.JPG"},
 "john-constable-osmington-bay": {"src": "commons", "w": 5184, "h": 3456, "title": "Osmington Bay", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/5/56/Constable_Osmington_Bay.JPG"},
 "john-constable-salisbury-cathedral-from-the-meadows": {"src": "commons", "w": 4000, "h": 3222, "title": "Salisbury Cathedral from the Meadows", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/John_Constable_-_Salisbury_Cathedral_from_the_meadows_%2802%29.jpg"},
 "john-everett-millais-dew-drenched-furze": {"src": "commons", "w": 4344, "h": 6120, "title": "Dew-Drenched Furze", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/a/a6/John_Everett_Millais_-_Dew-Drenched_Furze_-_Google_Art_Project.jpg"},
 "john-everett-millais-hearts-are-trumps": {"src": "commons", "w": 6264, "h": 4775, "title": "Hearts are Trumps", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/9/99/John_Everett_Millais_-_Hearts_are_Trumps_-_Google_Art_Project.jpg"},
-"john-mackie-falconer-washing-morning-down-south": {"src": "commons", "w": 4000, "h": 2433, "title": "Washing Morning Down South", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/John_Mackie_Falconer%2C_Washing_Morning_Down_South%2C_1882%2C_NGA_145102.jpg"},
+"john-mackie-falconer-washing-morning-down-south": {"src": "nga", "w": 5454, "h": 3318, "title": "Washing Morning Down South", "conf": "high", "img": "https://api.nga.gov/iiif/4cfa0174-27a8-4140-9280-28db182ee03e/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/4cfa0174-27a8-4140-9280-28db182ee03e/info.json"},
 "jose-clemente-orozco-head-pierced-with-arrows-from-the-los-t": {"src": "commons", "w": 1930, "h": 2780, "title": "Head Pierced with Arrows, from the Los teules series", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Jos%C3%A9_Clemente_Orozco_-_Head_Pierced_with_Arrows%2C_from_the_Los_teules_series_-_Google_Art_Project.jpg"},
 "joseph-vernet-untitled": {"src": "commons", "w": 2651, "h": 2964, "title": "La Tempête", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/7/72/Temp%C3%AAte_Vernet_03309.jpg"},
 "jozef-pankiewicz-dorozka-w-deszczu": {"src": "commons", "w": 3454, "h": 3629, "title": "Dorożka w deszczu", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/8/89/J%C3%B3zef_Pankiewicz_-_Cab_in_the_Rain_-_MNK_II-b-162_-_National_Museum_Krak%C3%B3w.jpg"},
@@ -519,7 +516,7 @@ window.CANVAS_HIRES = {
 "lady-writing-a-letter-with-her-maid": {"src": "commons", "w": 3750, "h": 4554, "title": "Lady Writing a Letter with her Maid", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/2b/DublinVermeer.jpg"},
 "landscape-from-bretagne": {"src": "commons", "w": 3359, "h": 2668, "title": "Landscape from Bretagne", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Landscape_from_Bretagne_%28Paul_Gauguin%29_-_Nationalmuseum_-_19216.tif?width=3359", "orig": "https://upload.wikimedia.org/wikipedia/commons/5/58/Landscape_from_Bretagne_%28Paul_Gauguin%29_-_Nationalmuseum_-_19216.tif"},
 "landscape-with-the-fall-of-icarus": {"src": "commons", "w": 4506, "h": 4053, "title": "Landscape with the Fall of Icarus", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Landscape_with_the_Fall_of_Icarus_%28Joos_de_Momper_d.y.%29_-_Nationalmuseum_-_17734.tif?width=4506", "orig": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Landscape_with_the_Fall_of_Icarus_%28Joos_de_Momper_d.y.%29_-_Nationalmuseum_-_17734.tif"},
-"laocoon": {"src": "commons", "w": 14079, "h": 11215, "title": "Laocoön", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/El_Greco_%28Domenikos_Theotokopoulos%29_-_Laoco%C3%B6n_-_Google_Art_Project.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/2/23/El_Greco_%28Domenikos_Theotokopoulos%29_-_Laoco%C3%B6n_-_Google_Art_Project.jpg"},
+"laocoon": {"src": "nga", "w": 38035, "h": 30230, "title": "Laocoön", "conf": "high", "img": "https://api.nga.gov/iiif/b9047a35-7e24-45bc-bd99-ea19137bc724/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/2/23/El_Greco_%28Domenikos_Theotokopoulos%29_-_Laoco%C3%B6n_-_Google_Art_Project.jpg", "iiif": "https://api.nga.gov/iiif/b9047a35-7e24-45bc-bd99-ea19137bc724/info.json"},
 "laszlo-moholy-nagy-auf-wei-em-grund": {"src": "commons", "w": 3920, "h": 4893, "title": "Auf weißem Grund", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Auf_wei%C3%9Fem_Grund%2C_L%C3%A1szl%C3%B3_Moholy-Nagy_-_2647.jpg"},
 "laszlo-moholy-nagy-e-iv-konstruktion-vii": {"src": "commons", "w": 2835, "h": 3527, "title": "E IV (Konstruktion VII)", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/5/55/L%C3%A1szl%C3%B3_Moholy-Nagy_-_E_IV_%28Konstruktion_VII%29_-_2752_-_Staatliche_Kunsthalle_Karlsruhe.jpg"},
 "lawrence-alma-tadema-comparison": {"src": "commons", "w": 3108, "h": 2292, "title": "Comparison", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/3/3d/%27Comparison%27_by_Lawrence_Alma-Tadema%2C_Cincinnati_Art_Museum.JPG"},
@@ -573,7 +570,7 @@ window.CANVAS_HIRES = {
 "midsummer-dance": {"src": "commons", "w": 2603, "h": 3547, "title": "Midsummer Dance", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Midsummer_Dance_%28Anders_Zorn%29_-_Nationalmuseum_-_18607.tif?width=2603", "orig": "https://upload.wikimedia.org/wikipedia/commons/3/36/Midsummer_Dance_%28Anders_Zorn%29_-_Nationalmuseum_-_18607.tif"},
 "mistress-and-maid": {"src": "commons", "w": 2854, "h": 3260, "title": "Mistress and Maid", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/6/61/Vermeer_Lady_Maidservant_Holding_Letter.jpg"},
 "modest-urgell-untitled": {"src": "commons", "w": 3976, "h": 2628, "title": "(untitled)", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Paisatge_d%27hivern%2C_Modest_Urgell%2C_Museu_de_Belles_Arts_de_Val%C3%A8ncia.JPG"},
-"monet-woman-with-a-parasol": {"src": "commons", "w": 6001, "h": 7455, "title": "Woman with a Parasol — Madame Monet and Her Son", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Claude_Monet_-_Woman_with_a_Parasol_-_Madame_Monet_and_Her_Son_-_Google_Art_Project.jpg"},
+"monet-woman-with-a-parasol": {"src": "nga", "w": 12666, "h": 15698, "title": "Woman with a Parasol — Madame Monet and Her Son", "conf": "high", "img": "https://api.nga.gov/iiif/99758d9d-c10b-4d02-a198-7e49afb1f3a6/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/99758d9d-c10b-4d02-a198-7e49afb1f3a6/info.json"},
 "mont-sainte-victoire-and-chateau-noir": {"src": "commons", "w": 5001, "h": 3982, "title": "Mont Sainte-Victoire and Château Noir", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/26/Paul_Cezanne_-_Mont_Sainte-Victoire_and_Ch%C3%A2teau_Noir_-_Google_Art_Project.jpg"},
 "morning-light": {"src": "commons", "w": 5001, "h": 4455, "title": "Morning light", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Elioth_Gruner_-_Morning_light_-_Google_Art_Project.jpg"},
 "mother-and-children": {"src": "commons", "w": 4164, "h": 6581, "title": "Mother and Children", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Pierre-Auguste_Renoir_-_La_Promenade_-_Google_Art_Project.jpg"},
@@ -607,7 +604,7 @@ window.CANVAS_HIRES = {
 "paul-adolf-seehaus-bergstadt": {"src": "commons", "w": 3214, "h": 4197, "title": "Bergstadt", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Bergstadt%2C_Paul_Adolf_Seehaus_-_2621_%28cropped%29.jpg"},
 "paul-albert-besnard-esquisse-pour-l-hotel-de-ville-de-paris": {"src": "commons", "w": 3851, "h": 4082, "title": "Esquisse pour l'Hôtel de Ville de Paris : La Vérité entraînant les Sciences à sa suite répand sa lumière sur les hommes (Plafond)", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/9/96/Albert_%28Paul_Albert_Besnard_Besnard_dit%29_-_Esquisse_pour_l%27H%C3%B4tel_de_Ville_de_Paris_%2C_La_V%C3%A9rit%C3%A9_entra%C3%AEnant_les_Sciences_%C3%A0_sa_suite_r%C3%A9pand_sa_lum_-_PPP2046_-_Petit_Palais.jpg"},
 "paul-cabet-mil-huit-cent-soixante-et-onze": {"src": "commons", "w": 3573, "h": 5360, "title": "Mil huit cent soixante et onze", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Paris_-_Mus%C3%A9e_d%27Orsay_8620.jpg"},
-"paul-cezanne-arlequin": {"src": "commons", "w": 2574, "h": 4000, "title": "Arlequin", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/5/55/Arlequin%2C_par_Paul_C%C3%A9zanne%2C_NGA.jpg"},
+"paul-cezanne-arlequin": {"src": "nga", "w": 11281, "h": 17532, "title": "Arlequin", "conf": "high", "img": "https://api.nga.gov/iiif/5e204056-579e-4617-a6a4-0b26ecc0b7db/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/5e204056-579e-4617-a6a4-0b26ecc0b7db/info.json"},
 "paul-cezanne-bouquet-de-fleurs-d-apres-delacroix": {"src": "commons", "w": 2232, "h": 2680, "title": "Bouquet de fleurs, d'après Delacroix", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Cezanne_-_Blumen.jpg"},
 "paul-cezanne-chateau-noir-du-tholonet-by-paul-cezanne": {"src": "commons", "w": 2196, "h": 2480, "title": "Château Noir du Tholonet by Paul Cézanne", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Paul_c%C3%A9zanne%2C_rocce_presso_le_grotte_sotto_chateau-noir%2C_1904.JPG"},
 "paul-cezanne-groupe-de-sept-baigneurs": {"src": "commons", "w": 2609, "h": 2166, "title": "Groupe de sept baigneurs", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/27/Paul_C%C3%A9zanne_-_Seven_Bathers_-_Google_Art_Project.jpg"},
@@ -620,7 +617,7 @@ window.CANVAS_HIRES = {
 "paul-cezanne-sous-bois": {"src": "commons", "w": 3000, "h": 2377, "title": "Sous-bois", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Cezanne_-_The_Forest.jpg"},
 "paul-gauguin-ferme-en-bretagne-i": {"src": "commons", "w": 3863, "h": 3083, "title": "Ferme en Bretagne I", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/7/79/A_Farm_in_Brittany_MET_DP123847.jpg"},
 "paul-gauguin-sous-bois-viroflay-ou-paysage-de-viroflay": {"src": "commons", "w": 2433, "h": 3432, "title": "Sous-bois Viroflay, ou Paysage de Viroflay", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Landscape_from_Viroflay_by_Paul_Gauguin%2C_1875_-_Ny_Carlsberg_Glyptotek_-_Copenhagen_-_DSC09397.JPG"},
-"paul-gauguin-the-universe-is-created-l-univers-est-cree": {"src": "commons", "w": 4000, "h": 2365, "title": "The Universe is Created (L'Univers est cree)", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Paul_Gauguin%2C_The_Universe_is_Created_%28L%27Univers_est_cree%29%2C_c._1894%2C_NGA_39009.jpg"},
+"paul-gauguin-the-universe-is-created-l-univers-est-cree": {"src": "nga", "w": 4994, "h": 2975, "title": "The Universe is Created (L'Univers est cree)", "conf": "high", "img": "https://api.nga.gov/iiif/c04b5520-12f1-4f1a-92af-958cb824ac89/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/c04b5520-12f1-4f1a-92af-958cb824ac89/info.json"},
 "paul-signac-femme-a-l-ombrelle": {"src": "commons", "w": 4642, "h": 5683, "title": "Femme à l'ombrelle", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/4/48/Paul_Signac%2C_1893%2C_Femme_%C3%A0_l%27ombrelle%2C_oil_on_canvas%2C_81_x_65_cm%2C_Mus%C3%A9e_d%27Orsay.jpg"},
 "paul-signac-notre-dame-de-la-garde-la-bonne-mere": {"src": "commons", "w": 3648, "h": 2736, "title": "Notre-Dame-de-la-Garde (La Bonne-Mère), Marseille", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/8/81/1905_Signac_Notre_Dame_de_la_Garde_anagoria.JPG"},
 "paul-signac-opus-217-sur-l-email-d-un-fond-rythmique-de-mesu": {"src": "commons", "w": 6229, "h": 4973, "title": "Opus 217. Sur l'émail d'un fond rythmique de mesures et d'angles, de tons et de teintes, Portrait de M. Félix Fénéon en 1890", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Signac_-_Portrait_de_F%C3%A9lix_F%C3%A9n%C3%A9on.jpg"},
@@ -642,7 +639,7 @@ window.CANVAS_HIRES = {
 "petrus-van-der-velden-rock-study-sumner": {"src": "commons", "w": 3067, "h": 5213, "title": "Rock study, Sumner", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/1/13/Petrus_van_der_Velden_-_Rock_study%2C_Sumner_-_Google_Art_Project.jpg"},
 "phidias-parthenon-east-pediment-sculpture": {"src": "commons", "w": 3800, "h": 1900, "title": "Parthenon east pediment sculpture", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/5/55/East_pediment_KLM_Parthenon_BM.jpg"},
 "philip-james-de-loutherbourg-shipwreck-scene": {"src": "commons", "w": 2740, "h": 1936, "title": "Shipwreck Scene", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/3/34/Loutherbourg-Sc%C3%A8ne_de_naufrage.jpg"},
-"philip-james-de-loutherbourg-the-falls-of-the-rhine-at-schaf": {"src": "commons", "w": 2861, "h": 1944, "title": "The Falls of the Rhine at Schaffhausen", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Loutherbourg-Les_Chutes_du_Rhin_%C3%A0_Schaffhausen.jpg"},
+"philip-james-de-loutherbourg-the-falls-of-the-rhine-at-schaf": {"src": "vam", "w": 2500, "h": 1725, "title": "The Falls of the Rhine at Schaffhausen", "conf": "high", "img": "https://framemark.vam.ac.uk/collections/2006AG8472/full/3000,/0/default.jpg", "iiif": "https://framemark.vam.ac.uk/collections/2006AG8472/info.json"},
 "pierre-auguste-renoir-alphonsine-fournaise": {"src": "commons", "w": 4990, "h": 3988, "title": "Alphonsine Fournaise", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/20/Auguste_Renoir_-_Alphonsine_Fournaise_-_Google_Art_Project.jpg"},
 "pierre-auguste-renoir-by-the-seashore": {"src": "commons", "w": 4656, "h": 5868, "title": "By the Seashore", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/0/09/Pierre-Auguste_Renoir_-_Femme_assise_au_bord_de_la_mer.jpg"},
 "pierre-auguste-renoir-claude-monet": {"src": "commons", "w": 3882, "h": 5511, "title": "Claude Monet", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/1/11/Auguste_Renoir_-_Claude_Monet_-_Google_Art_Project.jpg"},
@@ -676,7 +673,7 @@ window.CANVAS_HIRES = {
 "portrait-of-adam-mickiewicz-on-the-ayu-dag-cliff": {"src": "commons", "w": 1969, "h": 2437, "title": "Portrait of Adam Mickiewicz on the Ayu-Dag Cliff", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/1/10/Wa%C5%84kowicz_Adam_Mickiewicz.jpg"},
 "portrait-of-amalie-zuckerkandl": {"src": "commons", "w": 3508, "h": 3500, "title": "Portrait of Amalie Zuckerkandl", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/0/07/Gustav_Klimt_-_Amalie_Zuckerkandl_-_7700_-_%C3%96sterreichische_Galerie_Belvedere.jpg"},
 "portrait-of-baldassare-castiglione": {"src": "commons", "w": 2321, "h": 3000, "title": "Portrait of Baldassare Castiglione", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Titian_-_Portrait_of_Baldassare_Castiglione%2C_c.1536-1538.jpg"},
-"portrait-of-bindo-altoviti": {"src": "commons", "w": 10504, "h": 14434, "title": "Portrait of Bindo Altoviti", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_Sanzio_-_Ritratto_di_Bindo_Altoviti.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Raffaello_Sanzio_-_Ritratto_di_Bindo_Altoviti.jpg"},
+"portrait-of-bindo-altoviti": {"src": "nga", "w": 18702, "h": 25703, "title": "Portrait of Bindo Altoviti", "conf": "high", "img": "https://api.nga.gov/iiif/b567bff1-506c-4c08-9689-c801fc55a35e/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Raffaello_Sanzio_-_Ritratto_di_Bindo_Altoviti.jpg", "iiif": "https://api.nga.gov/iiif/b567bff1-506c-4c08-9689-c801fc55a35e/info.json"},
 "portrait-of-countess-albazzi": {"src": "commons", "w": 2498, "h": 3000, "title": "Portrait of Countess Albazzi", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/e/eb/GUGG_Portrait_of_Countess_Albazzi.jpg"},
 "portrait-of-dona-antonia-zarate": {"src": "commons", "w": 2351, "h": 3000, "title": "Portrait of Doña Antonia Zárate", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/3/36/Francisco_de_Goya_y_Lucientes_-_Portrait_of_Antonia_Z%C3%A1rate_-_WGA10053.jpg"},
 "portrait-of-nicolaes-ruts": {"src": "commons", "w": 5046, "h": 6727, "title": "Portrait of Nicolaes Ruts", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Rembrandt_-_Portrait_of_Nicolaes_Ruts.jpg"},
@@ -750,7 +747,7 @@ window.CANVAS_HIRES = {
 "sunflower": {"src": "commons", "w": 3508, "h": 3574, "title": "Sunflower", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Gustav_Klimt_-_Sonnenblume_-_10500_-_%C3%96sterreichische_Galerie_Belvedere.jpg"},
 "supper-at-emmaus": {"src": "commons", "w": 3388, "h": 2410, "title": "Supper at Emmaus", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Caravaggio_-_Supper_at_Emmaus_-_National_Gallery_London.jpeg"},
 "sur-la-plage-a-trouville": {"src": "commons", "w": 4380, "h": 3586, "title": "Sur la plage à Trouville", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/5/55/Monet_paris_marmottan_strand_trouville.jpg"},
-"symphony-in-white-no-1-the-white-girl": {"src": "commons", "w": 10509, "h": 21071, "title": "Symphony in White, No. 1: The White Girl", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Whistler_James_Symphony_in_White_no_1_%28The_White_Girl%29_1862.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Whistler_James_Symphony_in_White_no_1_%28The_White_Girl%29_1862.jpg"},
+"symphony-in-white-no-1-the-white-girl": {"src": "nga", "w": 28741, "h": 57185, "title": "Symphony in White, No. 1: The White Girl", "conf": "high", "img": "https://api.nga.gov/iiif/4133ddae-6de0-4e9f-8ded-a43b2ac6c8c1/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Whistler_James_Symphony_in_White_no_1_%28The_White_Girl%29_1862.jpg", "iiif": "https://api.nga.gov/iiif/4133ddae-6de0-4e9f-8ded-a43b2ac6c8c1/info.json"},
 "tadeusz-makowski-pejzaz-z-przeswiecajacym-s-oncem": {"src": "commons", "w": 2500, "h": 1813, "title": "Pejzaż z przeświecającym słońcem", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/4/41/Tadeusz_Makowski_-_Landscape_with_the_sun_shining_through_-_MPW_2540_MNW_-_National_Museum_in_Warsaw.jpg"},
 "tadeusz-makowski-statek-w-miescie": {"src": "commons", "w": 1695, "h": 2500, "title": "Statek w mieście", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Tadeusz_Makowski_-_Ship_in_a_city_-_MPW_2524_MNW_-_National_Museum_in_Warsaw.jpg"},
 "tensho-shubun-reading-in-a-bamboo-grove": {"src": "commons", "w": 3815, "h": 4893, "title": "Reading in a Bamboo Grove", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Shubun_-_Reading_in_a_Bamboo_Grove_detail.jpg"},
@@ -774,7 +771,7 @@ window.CANVAS_HIRES = {
 "the-comtesse-daru": {"src": "commons", "w": 2606, "h": 3316, "title": "The Comtesse Daru", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Comtesse_Daru_-_David_1810.jpg"},
 "the-conspiracy-of-claudius-civilis": {"src": "commons", "w": 8528, "h": 5392, "title": "The Conspiracy of Claudius Civilis", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Rembrandt_Harmensz._van_Rijn_-_The_Conspiracy_of_the_Batavians_under_Claudius_Civilis_-_Google_Art_Project.jpg"},
 "the-embrace": {"src": "commons", "w": 3508, "h": 2035, "title": "The embrace", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/9/98/Egon_Schiele_-_Die_Umarmung_-_4438_-_%C3%96sterreichische_Galerie_Belvedere.jpg"},
-"the-emperor-napoleon-in-his-study-at-the-tuileries": {"src": "commons", "w": 16304, "h": 26731, "title": "The Emperor Napoleon in His Study at the Tuileries", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Emperor_Napoleon_in_His_Study_at_the_Tuileries%2C_by_Jacques-Louis_David_%281812%29_-_National_Gallery_of_Art_%28Samuel_H._Kress_Foundation%29.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/b/bd/The_Emperor_Napoleon_in_His_Study_at_the_Tuileries%2C_by_Jacques-Louis_David_%281812%29_-_National_Gallery_of_Art_%28Samuel_H._Kress_Foundation%29.jpg"},
+"the-emperor-napoleon-in-his-study-at-the-tuileries": {"src": "nga", "w": 16304, "h": 26731, "title": "The Emperor Napoleon in His Study at the Tuileries", "conf": "high", "img": "https://api.nga.gov/iiif/9d8f80cf-7d2c-455a-9fb9-73e5ce2012b2/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/b/bd/The_Emperor_Napoleon_in_His_Study_at_the_Tuileries%2C_by_Jacques-Louis_David_%281812%29_-_National_Gallery_of_Art_%28Samuel_H._Kress_Foundation%29.jpg", "iiif": "https://api.nga.gov/iiif/9d8f80cf-7d2c-455a-9fb9-73e5ce2012b2/info.json"},
 "the-eternal-springtime": {"src": "commons", "w": 2568, "h": 2178, "title": "The Eternal Springtime", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/5/53/Rodin_Museum_-_Eternal_Springtime_03_bewerkt.jpg"},
 "the-evil-mothers": {"src": "commons", "w": 3508, "h": 1820, "title": "The Evil Mothers", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Giovanni_Segantini_-_Die_b%C3%B6sen_M%C3%BCtter_-_485_-_%C3%96sterreichische_Galerie_Belvedere.jpg"},
 "the-execution-of-lady-jane-grey": {"src": "commons", "w": 3936, "h": 3288, "title": "The Execution of Lady Jane Grey", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/cb/PAUL_DELAROCHE_-_Ejecuci%C3%B3n_de_Lady_Jane_Grey_%28National_Gallery_de_Londres%2C_1834%29.jpg"},
@@ -795,19 +792,19 @@ window.CANVAS_HIRES = {
 "the-milkmaid": {"src": "commons", "w": 4000, "h": 4485, "title": "The Milkmaid", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/20/Johannes_Vermeer_-_Het_melkmeisje_-_Google_Art_Project.jpg"},
 "the-old-bachelor": {"src": "commons", "w": 3508, "h": 2695, "title": "The Old Bachelor", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Carl_Spitzweg_-_Der_Hagestolz_-_1830_-_%C3%96sterreichische_Galerie_Belvedere.jpg"},
 "the-old-cemetery-tower-at-nuenen": {"src": "commons", "w": 3083, "h": 2481, "title": "The Old Cemetery Tower at Nuenen", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Vincent_van_Gogh_-_The_old_church_tower_at_Nuenen_%28%60The_peasants%27_churchyard%27%29_-_Google_Art_Project.jpg"},
-"the-old-musician": {"src": "commons", "w": 19867, "h": 15029, "title": "The Old Musician", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/%C3%89douard_Manet_-_Le_Vieux_Musicien.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/4/47/%C3%89douard_Manet_-_Le_Vieux_Musicien.jpg"},
+"the-old-musician": {"src": "nga", "w": 19867, "h": 15029, "title": "The Old Musician", "conf": "high", "img": "https://api.nga.gov/iiif/8d7eff38-fff0-4f9b-9e36-9088b412864e/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/4/47/%C3%89douard_Manet_-_Le_Vieux_Musicien.jpg", "iiif": "https://api.nga.gov/iiif/8d7eff38-fff0-4f9b-9e36-9088b412864e/info.json"},
 "the-painter-s-studio": {"src": "commons", "w": 16951, "h": 9989, "title": "The Painter's Studio", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Courbet_LAtelier_du_peintre.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Courbet_LAtelier_du_peintre.jpg"},
 "the-pieta-after-delacroix": {"src": "commons", "w": 2024, "h": 2537, "title": "The Pietà (after Delacroix)", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/8/82/Vincent_Willem_van_Gogh_083.jpg"},
 "the-pioneer": {"src": "commons", "w": 8034, "h": 5741, "title": "The Pioneer", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Frederick_McCubbin_-_The_pioneer_-_Google_Art_Project.jpg"},
 "the-plain-of-auvers": {"src": "commons", "w": 5692, "h": 2775, "title": "The Plain of Auvers", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/cd/The_Plain_of_Auvers_-_Vincent_van_Gogh_-_Google_Cultural_Institute.jpg"},
-"the-plum": {"src": "commons", "w": 5418, "h": 8113, "title": "The Plum", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Edouard_Manet_-_Plum_Brandy_-_Google_Art_Project.jpg"},
+"the-plum": {"src": "nga", "w": 10983, "h": 16425, "title": "The Plum", "conf": "high", "img": "https://api.nga.gov/iiif/034ec3ed-7a47-4f14-aa8a-ce48cb6e11a5/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/034ec3ed-7a47-4f14-aa8a-ce48cb6e11a5/info.json"},
 "the-polish-rider": {"src": "commons", "w": 5832, "h": 5071, "title": "The Polish Rider", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/25/Rembrandt_-_De_Poolse_ruiter%2C_c.1655_%28Frick_Collection%29.jpg"},
 "the-pont-neuf-and-the-samaritaine-at-night": {"src": "commons", "w": 4219, "h": 3397, "title": "The Pont Neuf and the Samaritaine at night", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Albert_Marquet_-_Le_Pont_Neuf%2C_la_nuit_02.jpg"},
 "the-potato-eaters": {"src": "commons", "w": 7698, "h": 5428, "title": "The Potato Eaters", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Van-willem-vincent-gogh-die-kartoffelesser-03850.jpg"},
 "the-progress-of-love-the-meeting": {"src": "commons", "w": 5036, "h": 6501, "title": "The Progress of Love: The Meeting", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/2/26/Jean-Honor%C3%A9_Fragonard_-_Les_Progr%C3%A8s_de_l%27amour_-_Le_rendez-vous_-_Google_Art_Project.jpg"},
 "the-purple-noon-s-transparent-might": {"src": "commons", "w": 5569, "h": 5573, "title": "'The purple noon's transparent might'", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Arthur_Streeton_-_%E2%80%98The_purple_noon%27s_transparent_might%E2%80%99_-_Google_Art_Project.jpg"},
 "the-quarters-behind-alresford-hall": {"src": "commons", "w": 5782, "h": 3745, "title": "The Quarters behind Alresford Hall", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/0/00/John_Constable_-_The_Quarters_behind_Alresford_Hall_-_Google_Art_Project.jpg"},
-"the-railway": {"src": "commons", "w": 11359, "h": 9251, "title": "The Railway", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard_Manet_-_Le_Chemin_de_fer_-_Google_Art_Project.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/7/74/Edouard_Manet_-_Le_Chemin_de_fer_-_Google_Art_Project.jpg"},
+"the-railway": {"src": "nga", "w": 32954, "h": 26753, "title": "The Railway", "conf": "high", "img": "https://api.nga.gov/iiif/57b84473-f6f3-4bab-ad88-344bb4d56fb7/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/7/74/Edouard_Manet_-_Le_Chemin_de_fer_-_Google_Art_Project.jpg", "iiif": "https://api.nga.gov/iiif/57b84473-f6f3-4bab-ad88-344bb4d56fb7/info.json"},
 "the-raising-of-lazarus": {"src": "commons", "w": 2669, "h": 4000, "title": "The Raising of Lazarus", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/5/59/Carel_Fabritius_-_Raising_of_Lazarus_%28John_11-41-44%29_-_M.Ob.563_-_National_Museum_in_Warsaw.jpg"},
 "the-raising-of-lazarus-van-gogh": {"src": "commons", "w": 7336, "h": 5611, "title": "The Raising of Lazarus", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/6/6a/De_opwekking_van_Lazarus_%28naar_Rembrandt%29_-_s0169V1962_-_Van_Gogh_Museum.jpg"},
 "the-rescue": {"src": "commons", "w": 4337, "h": 6289, "title": "The Rescue", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/3/39/John_Everett_Millais_-_The_rescue_-_Google_Art_Project.jpg"},
@@ -820,7 +817,7 @@ window.CANVAS_HIRES = {
 "the-three-soldiers": {"src": "commons", "w": 5086, "h": 6024, "title": "The Three Soldiers", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Pieter_Bruegel_de_Oude_-_De_drie_soldaten.jpg"},
 "the-town": {"src": "commons", "w": 2710, "h": 4807, "title": "The Town", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Town_%28August_Strindberg%29_-_Nationalmuseum_-_21568.tif?width=2710", "orig": "https://upload.wikimedia.org/wikipedia/commons/7/7e/The_Town_%28August_Strindberg%29_-_Nationalmuseum_-_21568.tif"},
 "the-triumph-of-venus": {"src": "commons", "w": 3988, "h": 3217, "title": "The Triumph of Venus", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Fran%C3%A7ois_Boucher_-_The_Triumph_of_Venus_-_Google_Art_Project.jpg"},
-"the-voyage-of-life": {"src": "commons", "w": 5121, "h": 3459, "title": "The Voyage of Life", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/8/89/Thomas_Cole_-_The_Voyage_of_Life_Childhood%2C_1842_%28National_Gallery_of_Art%29.jpg"},
+"the-voyage-of-life": {"src": "nga", "w": 5121, "h": 3459, "title": "The Voyage of Life", "conf": "high", "img": "https://api.nga.gov/iiif/5b94c264-aaea-4f4b-bbdc-5c04bfd353b4/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/5b94c264-aaea-4f4b-bbdc-5c04bfd353b4/info.json"},
 "the-white-glove": {"src": "commons", "w": 3706, "h": 5001, "title": "The white glove", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/d/df/George_W_Lambert_-_The_white_glove_-_Google_Art_Project.jpg"},
 "the-woman-in-the-waves": {"src": "commons", "w": 3067, "h": 3720, "title": "The Woman in the Waves", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/9/9f/The_Woman_in_the_Waves_MET_DT887.jpg"},
 "the-wounded-man": {"src": "commons", "w": 4840, "h": 3882, "title": "The Wounded Man", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Portrait_of_the_Artist_called_The_Wounded_Man_%28L%27homme_bless%C3%A9%29_by_Gustave_Courbet.jpg"},
@@ -842,7 +839,7 @@ window.CANVAS_HIRES = {
 "tree-roots": {"src": "commons", "w": 3543, "h": 1740, "title": "Tree Roots", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Vincent_van_Gogh_-_Tree_Roots_and_Trunks_%28F816%29.jpg"},
 "trois-ecolieres": {"src": "commons", "w": 2800, "h": 3508, "title": "Trois écolières", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/9/97/Gustave_Courbet_-_Drei_Schulm%C3%A4dchen_-_3192_-_%C3%96sterreichische_Galerie_Belvedere.jpg"},
 "truth-time-and-history": {"src": "commons", "w": 2883, "h": 3499, "title": "Truth, Time and History", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Truth%2C_Time_and_History_%28Francisco_Goya_Y_Lucientes%29_-_Nationalmuseum_-_22643.tif?width=2883", "orig": "https://upload.wikimedia.org/wikipedia/commons/3/38/Truth%2C_Time_and_History_%28Francisco_Goya_Y_Lucientes%29_-_Nationalmuseum_-_22643.tif"},
-"two-women-at-a-window": {"src": "commons", "w": 17385, "h": 20855, "title": "Two Women at a Window", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Bartolom%C3%A9_Esteban_Perez_Murillo_014.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/2/26/Bartolom%C3%A9_Esteban_Perez_Murillo_014.jpg"},
+"two-women-at-a-window": {"src": "nga", "w": 17385, "h": 20855, "title": "Two Women at a Window", "conf": "high", "img": "https://api.nga.gov/iiif/099e8599-3242-46f4-bf5d-1a2e6032eb13/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/2/26/Bartolom%C3%A9_Esteban_Perez_Murillo_014.jpg", "iiif": "https://api.nga.gov/iiif/099e8599-3242-46f4-bf5d-1a2e6032eb13/info.json"},
 "ugolino-and-sons": {"src": "commons", "w": 4472, "h": 3232, "title": "Ugolino and sons", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/3/30/Rodin-2014-01.jpg"},
 "umberto-boccioni-cavallo-cavaliere-caseggiato": {"src": "commons", "w": 2620, "h": 2084, "title": "cavallo+cavaliere+caseggiato", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Umberto_boccioni%2C_cavallo%2Bcavaliere%2Bcaseggiato%2C_1913-14_circa.jpg"},
 "umberto-boccioni-officine-a-porta-romana": {"src": "commons", "w": 2756, "h": 1616, "title": "Officine a Porta Romana", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Umberto_boccioni%2C_officine_a_porta_romana%2C_1910%2C_01.JPG"},
@@ -882,7 +879,7 @@ window.CANVAS_HIRES = {
 "vincent-van-gogh-patch-of-grass": {"src": "commons", "w": 3864, "h": 2868, "title": "Patch of grass", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/4/43/Van_Gogh_-_Bl%C3%BChende_Wiese.jpeg"},
 "vincent-van-gogh-portrait-of-adeline-ravoux": {"src": "commons", "w": 2024, "h": 2490, "title": "Portrait of Adeline Ravoux", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/6/67/Portrait_of_Adeline_Ravoux%2C_by_Vincent_van_Gogh.jpg"},
 "vincent-van-gogh-roses": {"src": "commons", "w": 4582, "h": 5724, "title": "Roses", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Van_Gogh_-_Vase_of_Roses.jpg"},
-"vincent-van-gogh-self-portrait-2": {"src": "commons", "w": 3571, "h": 4633, "title": "Self-Portrait", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/1/18/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28719161%29.jpg"},
+"vincent-van-gogh-self-portrait-2": {"src": "nga", "w": 21687, "h": 28273, "title": "Self-Portrait", "conf": "high", "img": "https://api.nga.gov/iiif/54ee6643-e0f9-4b92-a1d2-441e5108724d/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/54ee6643-e0f9-4b92-a1d2-441e5108724d/info.json"},
 "vincent-van-gogh-self-portrait-by-vincent-van-gogh": {"src": "commons", "w": 4248, "h": 5808, "title": "Self portrait by Vincent van Gogh", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Self-portrait_-_Vincent_van_Gogh.jpg"},
 "vincent-van-gogh-sonnenblumen": {"src": "commons", "w": 5388, "h": 6828, "title": "Sonnenblumen", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Sunflowers_-_Vincent_van_Gogh_%28Munich_version%29.jpg"},
 "vincent-van-gogh-the-olive-tree": {"src": "commons", "w": 4500, "h": 3580, "title": "The Olive Trees", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Van_Gogh_The_Olive_Trees..jpg"},
@@ -904,7 +901,7 @@ window.CANVAS_HIRES = {
 "wassily-kandinsky-unequal": {"src": "commons", "w": 2416, "h": 2064, "title": "Unequal", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Vassily_Kandinsky%2C_1932_-_Unequal.jpg"},
 "wassily-kandinsky-untitled-improvisation": {"src": "commons", "w": 2322, "h": 4128, "title": "Untitled Improvisation", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Wassily_Kandinsky-Untitled_Improvisation-Tel_Aviv_museum_of_art.jpg"},
 "wassily-kandinsky-untitled-improvisation-iii": {"src": "commons", "w": 2475, "h": 3221, "title": "Untitled Improvisation III", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/b/bc/%27Untitled_Improvisation_III%27_by_Wassily_Kandinsky%2C_1914%2C_LACMA.JPG"},
-"watson-and-the-shark": {"src": "commons", "w": 9895, "h": 7847, "title": "Watson and the Shark", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Watsonandtheshark-original.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Watsonandtheshark-original.jpg"},
+"watson-and-the-shark": {"src": "nga", "w": 32121, "h": 25469, "title": "Watson and the Shark", "conf": "high", "img": "https://api.nga.gov/iiif/b38ce693-ba56-4953-9c2c-d8139fe4b059/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Watsonandtheshark-original.jpg", "iiif": "https://api.nga.gov/iiif/b38ce693-ba56-4953-9c2c-d8139fe4b059/info.json"},
 "wheat-field-with-a-lark": {"src": "commons", "w": 2526, "h": 2064, "title": "Wheat Field with a Lark", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Van_Gogh_-_Getreidefeld_mit_Mohnblumen_und_Lerche.jpeg"},
 "wheatfield-under-thunderclouds": {"src": "commons", "w": 3852, "h": 1884, "title": "Wheatfield under Thunderclouds", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/0/03/Van_Gogh_-_Weizenfeld_unter_einem_Gewitterhimmel.jpeg"},
 "wheatfield-with-crows": {"src": "commons", "w": 7762, "h": 3718, "title": "Wheatfield with Crows", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg"},
@@ -926,7 +923,7 @@ window.CANVAS_HIRES = {
 "wojciech-gerson-resting": {"src": "commons", "w": 4000, "h": 2974, "title": "Resting", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Wojciech_Gerson_-_Resting_-_MP_272_-_National_Museum_in_Warsaw.jpg"},
 "wolf-traut-schachtel-mit-urteil-des-paris": {"src": "commons", "w": 3200, "h": 3200, "title": "Schachtel mit Urteil des Paris", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/ca/1516_Traut_Urteil_des_Paris_anagoria.JPG"},
 "woman-and-child-on-a-balcony": {"src": "commons", "w": 2606, "h": 3200, "title": "Woman and child on a balcony", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Berthe_morisot_femme_et_enfant_au_balcon.jpg"},
-"woman-holding-a-balance": {"src": "commons", "w": 7201, "h": 8143, "title": "Woman Holding a Balance", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Johannes_Vermeer_-_Woman_Holding_a_Balance_-_Google_Art_Project.jpg?width=6000", "orig": "https://upload.wikimedia.org/wikipedia/commons/6/68/Johannes_Vermeer_-_Woman_Holding_a_Balance_-_Google_Art_Project.jpg"},
+"woman-holding-a-balance": {"src": "nga", "w": 23283, "h": 26343, "title": "Woman Holding a Balance", "conf": "high", "img": "https://api.nga.gov/iiif/c948cf32-e6c7-41a0-a053-0ad0562960c4/full/3000,/0/default.jpg", "orig": "https://upload.wikimedia.org/wikipedia/commons/6/68/Johannes_Vermeer_-_Woman_Holding_a_Balance_-_Google_Art_Project.jpg", "iiif": "https://api.nga.gov/iiif/c948cf32-e6c7-41a0-a053-0ad0562960c4/info.json"},
 "woman-with-a-lute": {"src": "commons", "w": 5934, "h": 6723, "title": "Woman with a Lute", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Vermeer_-_Woman_with_a_Lute_near_a_window.jpg"},
 "woman-with-animals": {"src": "commons", "w": 2385, "h": 4096, "title": "Woman with animals", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/6/61/Albert_Gleizes%2C_1914%2C_Woman_with_Animals%2C_oil_on_canvas%2C_196.4_x_114.1_cm%2C_Peggy_Guggenheim_Collection.jpg"},
 "woman-with-child-mathilde-schonberg-with-daughter-gertrud": {"src": "commons", "w": 2339, "h": 3508, "title": "Woman with Child (Mathilde Schönberg with Daughter Gertrud)", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Richard_Gerstl_-_Frau_mit_Kind_%28Mathilde_Sch%C3%B6nberg_mit_Tochter_Gertrud%29_-_5852_-_%C3%96sterreichische_Galerie_Belvedere.jpg"},
@@ -937,1333 +934,102 @@ window.CANVAS_HIRES = {
 "young-boy-with-a-lamb-the-good-shepherd": {"src": "commons", "w": 2845, "h": 3000, "title": "Young Boy with a Lamb; The Good Shepherd", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/c/c5/GUGG_Young_Boy_with_a_Lamb%3B_The_Good_Shepherd.jpg"},
 "zheng-xie-bamboo-and-rock": {"src": "commons", "w": 3129, "h": 6367, "title": "Bamboo and rock", "conf": "high", "img": "https://upload.wikimedia.org/wikipedia/commons/3/39/Zheng_Xie_-_Bamboo_and_rock_-_Google_Art_Project.jpg"},
 "zoie-ghika-moldavian-princess": {"src": "commons", "w": 2841, "h": 3436, "title": "Zoie Ghika, Moldavian Princess", "conf": "high", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Zoie_Ghika%2C_Moldavian_Princess_%28Alexander_Roslin%29_-_Nationalmuseum_-_23921.tif?width=2841", "orig": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Zoie_Ghika%2C_Moldavian_Princess_%28Alexander_Roslin%29_-_Nationalmuseum_-_23921.tif"},
-"adam-and-eve": {
-"src": "aic",
-"img": "https://www.artic.edu/iiif/2/910855f0-a558-4e31-8e88-c0f2694ddbea/full/1686,/0/default.jpg",
-"iiif": "https://www.artic.edu/iiif/2/910855f0-a558-4e31-8e88-c0f2694ddbea/info.json",
-"title": "Adam and Eve",
-"conf": "high",
-"details": [
-{
-"x": 0.4,
-"y": 0.28,
-"w": 0.24,
-"h": 0.16,
-"t": "The serpent's gift",
-"n": "The serpent passes the forbidden fruit into Eve's raised hand — the exact hinge-moment of the Fall, engraved at the dead center of the sheet."
-},
-{
-"x": 0.3,
-"y": 0.62,
-"w": 0.68,
-"h": 0.36,
-"t": "The four temperaments",
-"n": "Cat, rabbit, ox and elk stand for the four humours — choleric, sanguine, phlegmatic, melancholic — held in perfect balance only until the fruit is bitten."
-},
-{
-"x": 0.08,
-"y": 0.12,
-"w": 0.18,
-"h": 0.16,
-"t": "The plaque",
-"n": "Dürer hangs his full Latin signature from a branch — 'Albrecht Dürer of Nuremberg made this, 1504' — with a parrot perched above: a printmaker announcing engraving as high art."
-}
-]
-},
-"the-great-wave-off-kanagawa": {
-"src": "aic",
-"img": "https://www.artic.edu/iiif/2/b3974542-b9b4-7568-fc4b-966738f61d78/full/1686,/0/default.jpg",
-"iiif": "https://www.artic.edu/iiif/2/b3974542-b9b4-7568-fc4b-966738f61d78/info.json",
-"title": "Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, from the series \"Thirty-Six Views of Mount Fuji (Fugaku sanjūrokkei)\"",
-"conf": "high",
-"details": [
-{
-"x": 0.22,
-"y": 0.04,
-"w": 0.42,
-"h": 0.42,
-"t": "The claw",
-"n": "The crest shatters into claw-like fingers of foam — Hokusai renders water as a living predator, frozen the instant before it strikes."
-},
-{
-"x": 0.52,
-"y": 0.6,
-"w": 0.18,
-"h": 0.17,
-"t": "Fuji, dwarfed",
-"n": "The sacred mountain — the print series' actual subject — reduced to a small snow-capped triangle in the trough, so distant it reads as just another wave."
-},
-{
-"x": 0.28,
-"y": 0.74,
-"w": 0.38,
-"h": 0.22,
-"t": "The oshiokuri boats",
-"n": "Fast cargo boats ferrying fish to Edo, the crews bent flat over their oars — thirty men under the claw, the human stake in the drama that vanishes at thumbnail size."
-},
-{
-"x": 0.01,
-"y": 0.02,
-"w": 0.14,
-"h": 0.3,
-"t": "The signature",
-"n": "The cartouche titles the series; beside it Hokusai signs 'Hokusai aratame Iitsu hitsu' — 'from the brush of Hokusai, changing his name to Iitsu' — one of some thirty names he used across his career."
-}
-]
-},
-"melencolia-i": {
-"src": "cma",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/1926.211_full.tif?width=6000",
-"orig": "https://openaccess-cdn.clevelandart.org/1926.211/1926.211_full.tif",
-"iiif": null,
-"title": "Melencolia I",
-"conf": "high"
-},
-"the-death-of-socrates": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP-13139-001.jpg",
-"iiif": null,
-"title": "The Death of Socrates",
-"conf": "high",
-"details": [
-{
-"x": 0.38,
-"y": 0.38,
-"w": 0.17,
-"h": 0.16,
-"t": "The cup",
-"n": "Socrates reaches for the hemlock without looking at it, mid-sentence — while the executioner who must hand it over turns his face away, unable to watch."
-},
-{
-"x": 0.6,
-"y": 0.26,
-"w": 0.13,
-"h": 0.15,
-"t": "The finger",
-"n": "The other hand points straight up: he is arguing the immortality of the soul at the moment of taking the poison — David's whole composition hangs on this vertical."
-},
-{
-"x": 0.12,
-"y": 0.44,
-"w": 0.23,
-"h": 0.42,
-"t": "Plato, out of time",
-"n": "The old man at the bed's foot is Plato — painted decades older than the ~28 he was that day, scroll and ink at his feet: the scene is his memory, written years later."
-},
-{
-"x": 0.13,
-"y": 0.24,
-"w": 0.13,
-"h": 0.24,
-"t": "The family, sent away",
-"n": "Up the stairs under the arch, his wife and family are led out — Socrates had them removed for weeping. Grief is exiled to the background."
-}
-]
-},
-"madame-x-virginie-amelie-avegno-gautreau": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ad/original/DP-29006-001.jpg",
-"iiif": null,
-"title": "Madame X (Virginie Amélie Avegno Gautreau)",
-"conf": "high",
-"details": [
-{
-"x": 0.28,
-"y": 0.24,
-"w": 0.18,
-"h": 0.12,
-"t": "The strap",
-"n": "The jeweled strap that caused the scandal: at the 1884 Salon it hung fallen off her shoulder. The outrage nearly ended Sargent in Paris — he repainted it upright, and kept the picture for thirty years."
-},
-{
-"x": 0.4,
-"y": 0.12,
-"w": 0.24,
-"h": 0.16,
-"t": "The profile",
-"n": "Amélie Gautreau, American expatriate and professional beauty, powdered lavender-white — she never commissioned this; Sargent pursued HER for the portrait."
-},
-{
-"x": 0.08,
-"y": 0.4,
-"w": 0.36,
-"h": 0.2,
-"t": "The twisted arm",
-"n": "The right arm torques against the table in a deliberately strained, serpentine pose — elegance pushed right to the edge of anatomical possibility."
-},
-{
-"x": 0.52,
-"y": 0.88,
-"w": 0.36,
-"h": 0.08,
-"t": "The signature",
-"n": "When the Met bought it in 1916, Sargent wrote: 'I suppose it is the best thing I have done.'"
-}
-]
-},
-"washington-crossing-the-delaware": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ad/original/DP215410.jpg",
-"iiif": null,
-"title": "Washington Crossing the Delaware",
-"conf": "high",
-"details": [
-{
-"x": 0.32,
-"y": 0.26,
-"w": 0.19,
-"h": 0.4,
-"t": "The impossible pose",
-"n": "No one stands like this in a rowboat on ice — and Leutze knows it. Painted in Düsseldorf in 1851, the theatrical stance is the point: revolution as opera."
-},
-{
-"x": 0.5,
-"y": 0.1,
-"w": 0.19,
-"h": 0.42,
-"t": "The flag that isn't there yet",
-"n": "The Stars and Stripes wouldn't exist for another six months after the crossing. Holding it: Lieutenant James Monroe, future fifth president."
-},
-{
-"x": 0.02,
-"y": 0.52,
-"w": 0.3,
-"h": 0.44,
-"t": "The ice",
-"n": "The floes were studied from life — on the Rhine, not the Delaware. German river ice standing in for an American revolution painted by a German revolutionary."
-},
-{
-"x": 0.34,
-"y": 0.52,
-"w": 0.52,
-"h": 0.36,
-"t": "A boat of everyone",
-"n": "Leutze packs the boat with a deliberate cross-section: western riflemen, farmers, a Black sailor rowing at the bow, a figure in a Scottish bonnet — 1848 revolutionary politics smuggled into 1776."
-}
-]
-},
-"the-harvesters": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP119115.jpg",
-"iiif": null,
-"title": "The Harvesters",
-"conf": "high"
-},
-"woman-with-a-water-jug": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP353257.jpg",
-"iiif": null,
-"title": "Young Woman with a Water Pitcher",
-"conf": "med"
-},
-"aristotle-with-a-bust-of-homer": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP-30758-001.jpg",
-"iiif": null,
-"title": "Aristotle with a Bust of Homer",
-"conf": "high"
-},
-"woman-with-a-parrot": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP-17680-001.jpg",
-"iiif": null,
-"title": "Woman with a Parrot",
-"conf": "high"
-},
-"heart-of-the-andes": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ad/original/DT78.jpg",
-"iiif": null,
-"title": "Heart of the Andes",
-"conf": "high"
-},
-"portrait-of-juan-de-pareja": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP-14286-001.jpg",
-"iiif": null,
-"title": "Juan de Pareja (ca. 1608–1670)",
-"conf": "med"
-},
-"the-spanish-singer": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/dp130799.jpg",
-"iiif": null,
-"title": "The Spanish Singer",
-"conf": "high"
-},
-"don-manuel-osorio-de-zuniga": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP287624.jpg",
-"iiif": null,
-"title": "Manuel Osorio Manrique de Zuñiga (1784–1792)",
-"conf": "med"
-},
-"two-tahitian-women": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DT1342.jpg",
-"iiif": null,
-"title": "Two Tahitian Women",
-"conf": "high"
-},
-"the-rhinoceros": {
-"src": "cma",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/1993.9_full.tif?width=6000",
-"orig": "https://openaccess-cdn.clevelandart.org/1993.9/1993.9_full.tif",
-"iiif": null,
-"title": "The Rhinoceros",
-"conf": "high"
-},
-"two-sisters": {
-"src": "aic",
-"img": "https://www.artic.edu/iiif/2/3a608f55-d76e-fa96-d0b1-0789fbc48f1e/full/1686,/0/default.jpg",
-"iiif": "https://www.artic.edu/iiif/2/3a608f55-d76e-fa96-d0b1-0789fbc48f1e/info.json",
-"title": "Two Sisters (On the Terrace)",
-"conf": "high"
-},
-"the-musicians": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP-687-001.jpg",
-"iiif": null,
-"title": "The Musicians",
-"conf": "high"
-},
-"knight-death-and-the-devil": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/dp/original/DP815738.jpg",
-"iiif": null,
-"title": "Knight, Death, and the Devil",
-"conf": "high"
-},
-"nemesis": {
-"src": "cma",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/1943.178_full.tif?width=6000",
-"orig": "https://openaccess-cdn.clevelandart.org/1943.178/1943.178_full.tif",
-"iiif": null,
-"title": "Nemesis",
-"conf": "high"
-},
-"joseph-wright-virgil-s-tomb-by-moonlight-with-silius-italicu": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP322015.jpg",
-"iiif": null,
-"title": "Virgil's Tomb by Moonlight, with Silius Italicus Declaiming",
-"conf": "high"
-},
-"pierre-auguste-renoir-bouquet-of-chrysanthemums": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DT1877.jpg",
-"iiif": null,
-"title": "Bouquet of Chrysanthemums",
-"conf": "high"
-},
-"theodore-rousseau-the-forest-in-winter-at-sunset": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP-31520-001.jpg",
-"iiif": null,
-"title": "The Forest in Winter at Sunset",
-"conf": "high"
-},
-"vincent-van-gogh-cypresse": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP-42549-001.jpg",
-"iiif": null,
-"title": "Wheat Field with Cypresses",
-"conf": "high"
-},
-"odilon-redon-madame-arthur-fontaine-marie-escudier-born-1865": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/ep60.54.R.jpg",
-"iiif": null,
-"title": "Madame Arthur Fontaine (Marie Escudier, 1865–1946)",
-"conf": "high"
-},
-"vincent-van-gogh-wheat-field-with-cypresses": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP-42549-001.jpg",
-"iiif": null,
-"title": "Wheat Field with Cypresses",
-"conf": "high"
-},
-"johan-jongkind-honfleur": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DT1558.jpg",
-"iiif": null,
-"title": "Honfleur",
-"conf": "high"
-},
-"gustave-courbet-hunting-dogs-with-dead-hare": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DT1961.jpg",
-"iiif": null,
-"title": "Hunting Dogs with Dead Hare",
-"conf": "high"
-},
-"edgar-degas-dancer-with-a-fan": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DT2652.jpg",
-"iiif": null,
-"title": "Dancer",
-"conf": "high"
-},
-"gustave-courbet-marine-the-waterspout": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DT1965.jpg",
-"iiif": null,
-"title": "Marine: The Waterspout",
-"conf": "high"
-},
-"georges-seurat-gray-weather-grande-jatte": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DT1945.jpg",
-"iiif": null,
-"title": "Gray Weather, Grande Jatte",
-"conf": "high"
-},
-"anders-zorn-mrs-walter-rathbone-bacon-virginia-purdy-barker": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DT400.jpg",
-"iiif": null,
-"title": "Mrs. Walter Rathbone Bacon (Virginia Purdy Barker, 1862–1919)",
-"conf": "high"
-},
-"edgar-degas-the-artist-s-cousin-probably-mrs-william-bell-ma": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP338363.jpg",
-"iiif": null,
-"title": "The Artist's Cousin, Probably Mrs. William Bell (Mathilde Musson, 1841–1878)",
-"conf": "high"
-},
-"gustave-courbet-the-source-of-the-loue": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DT1964.jpg",
-"iiif": null,
-"title": "The Source of the Loue",
-"conf": "high"
-},
-"edouard-manet-madame-manet-suzanne-leenhoff-1830-1906-at-bel": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DT4224.jpg",
-"iiif": null,
-"title": "Madame Manet (Suzanne Leenhoff, 1829–1906) at Bellevue",
-"conf": "high"
-},
-"gustav-klimt-serena-pulitzer-lederer-1867-1943": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP-18885-001.jpg",
-"iiif": null,
-"title": "Serena Pulitzer Lederer (1867–1943)",
-"conf": "high"
-},
-"edouard-manet-the-dead-christ-with-angels": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP-17679-001.jpg",
-"iiif": null,
-"title": "The Dead Christ with Angels",
-"conf": "high"
-},
-"pierre-auguste-renoir-still-life-with-peaches-and-grapes": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DT1140.jpg",
-"iiif": null,
-"title": "Still Life with Peaches",
-"conf": "high"
-},
-"edouard-manet-young-lady-in-1866": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP273977.jpg",
-"iiif": null,
-"title": "Young Lady in 1866",
-"conf": "high"
-},
-"vincent-van-gogh-the-flowering-orchard": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP-14936-045.jpg",
-"iiif": null,
-"title": "The Flowering Orchard",
-"conf": "high"
-},
-"vincent-van-gogh-women-picking-olives": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP-17161-001.jpg",
-"iiif": null,
-"title": "Women Picking Olives",
-"conf": "high"
-},
-"johan-christian-dahl-an-eruption-of-vesuvius": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP155336.jpg",
-"iiif": null,
-"title": "An Eruption of Vesuvius",
-"conf": "high"
-},
-"pierre-auguste-renoir-acrobats-at-the-cirque-fernando-franci": {
-"src": "aic",
-"img": "https://www.artic.edu/iiif/2/321c45f5-22a3-84a2-44cc-cf66642d4cf2/full/1686,/0/default.jpg",
-"iiif": "https://www.artic.edu/iiif/2/321c45f5-22a3-84a2-44cc-cf66642d4cf2/info.json",
-"title": "Acrobats at the Cirque Fernando (Francisca and Angelina Wartenberg)",
-"conf": "high"
-},
-"georges-seurat-circus-sideshow-parade-de-cirque": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP375450_cropped.jpg",
-"iiif": null,
-"title": "Circus Sideshow (Parade de cirque)",
-"conf": "high"
-},
-"gustave-caillebotte-chrysanthemums-in-the-garden-at-petit-ge": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP341200.jpg",
-"iiif": null,
-"title": "Chrysanthemums in the Garden at Petit-Gennevilliers",
-"conf": "high"
-},
-"edgar-degas-dancer-in-green": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DT2652.jpg",
-"iiif": null,
-"title": "Dancer",
-"conf": "high"
-},
-"winslow-homer-the-lone-boat-north-woods-club-adirondacks": {
-"src": "aic",
-"img": "https://www.artic.edu/iiif/2/4f75fd95-c957-7aa2-3b21-e4fd84bb8676/full/1686,/0/default.jpg",
-"iiif": "https://www.artic.edu/iiif/2/4f75fd95-c957-7aa2-3b21-e4fd84bb8676/info.json",
-"title": "The Lone Boat, North Woods Club, Adirondacks",
-"conf": "high"
-},
-"robert-henri-herself": {
-"src": "aic",
-"img": "https://www.artic.edu/iiif/2/641c5259-1a92-4a3a-714b-62e09efa3b23/full/1686,/0/default.jpg",
-"iiif": "https://www.artic.edu/iiif/2/641c5259-1a92-4a3a-714b-62e09efa3b23/info.json",
-"title": "Herself",
-"conf": "high"
-},
-"edouard-vuillard-foliage-oak-tree-and-fruit-seller": {
-"src": "aic",
-"img": "https://www.artic.edu/iiif/2/e170725f-cc12-cb0f-841e-8b1ea918933e/full/1686,/0/default.jpg",
-"iiif": "https://www.artic.edu/iiif/2/e170725f-cc12-cb0f-841e-8b1ea918933e/info.json",
-"title": "Foliage—Oak Tree and Fruit Seller",
-"conf": "high"
-},
-"georges-seurat-study-for-a-sunday-on-la-grande-jatte": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ep/original/DP259921.jpg",
-"iiif": null,
-"title": "Study for \"A Sunday on La Grande Jatte\"",
-"conf": "high"
-},
-"elihu-vedder-lair-of-the-sea-serpent": {
-"src": "met",
-"img": "https://images.metmuseum.org/CRDImages/ad/original/ap1976.106.1.jpg",
-"iiif": null,
-"title": "Lair of the Sea Serpent",
-"conf": "high"
-},
-"vincent-van-gogh-self-portrait": {
-"src": "aic",
-"img": "https://www.artic.edu/iiif/2/47c5bcb8-62ef-e5d7-55e7-f5121f409a30/full/1686,/0/default.jpg",
-"iiif": "https://www.artic.edu/iiif/2/47c5bcb8-62ef-e5d7-55e7-f5121f409a30/info.json",
-"title": "Self-Portrait",
-"conf": "high"
-},
-"j-m-w-turner-the-parting-of-hero-and-leander": {
-"src": "commons",
-"img": "https://upload.wikimedia.org/wikipedia/commons/7/78/London_National_Gallery_Turner_Hero_and_Leander.jpg",
-"title": "The Parting of Hero and Leander",
-"conf": "high"
-},
-"ludwik-de-laveaux-plac-opery-w-paryzu": {
-"src": "commons",
-"img": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Ludwik_de_Laveaux_-_Place_de_l%27Op%C3%A9ra_in_Paris_-_MP_257_-_National_Museum_in_Warsaw.jpg",
-"title": "Plac Opery w Paryżu",
-"conf": "high"
-},
-"claude-monet-argenteuil": {
-"src": "commons",
-"img": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Claude_Monet%27s_%22Argenteuil%22_1875.jpg",
-"title": "Argenteuil",
-"conf": "high"
-},
-"the-birth-of-venus": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/William-Adolphe_Bouguereau_(1825-1905)_-_The_Birth_of_Venus_(1879).jpg?width=3000",
-"file": "William-Adolphe Bouguereau (1825-1905) - The Birth of Venus (1879).jpg",
-"title": "The Birth of Venus",
-"conf": "high",
-"from": {
-"was": [
-1239,
-1749
-],
-"now": [
-4014,
-5670
-],
-"served": [
-3000,
-4238
-],
-"arDelta": 0.0007,
-"cat": "The Birth of Venus by William-Adolphe Bouguereau"
-}
-},
-"in-the-arbour": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Aleksander_Gierymski_-_In_the_arbour_-_Google_Art_Project.jpg?width=2935",
-"file": "Aleksander Gierymski - In the arbour - Google Art Project.jpg",
-"title": "In the Arbour",
-"conf": "high",
-"from": {
-"was": [
-1948,
-1787
-],
-"now": [
-2935,
-2720
-],
-"served": [
-2935,
-2720
-],
-"arDelta": 0.0101,
-"cat": "In the arbour by Aleksander Gierymski"
-}
-},
-"the-taking-of-christ": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Taking_of_Christ-Caravaggio_(c.1602).jpg?width=3000",
-"file": "The Taking of Christ-Caravaggio (c.1602).jpg",
-"title": "The Taking of Christ",
-"conf": "high",
-"from": {
-"was": [
-1500,
-1172
-],
-"now": [
-9893,
-7666
-],
-"served": [
-3000,
-2325
-],
-"arDelta": 0.0083,
-"cat": "The Taking of Christ by Caravaggio"
-}
-},
-"the-lady-of-shalott": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/John_William_Waterhouse_-_The_Lady_of_Shalott_-_Google_Art_Project.jpg?width=3000",
-"file": "John William Waterhouse - The Lady of Shalott - Google Art Project.jpg",
-"title": "The Lady of Shalott",
-"conf": "high",
-"from": {
-"was": [
-1712,
-1314
-],
-"now": [
-4180,
-3208
-],
-"served": [
-3000,
-2302
-],
-"arDelta": 0.0001,
-"cat": "The Lady of Shalott (Waterhouse)"
-}
-},
-"mlle-irene-cahen-d-anvers": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste_Renoir%2C_1880%2C_Portrait_of_Mademoiselle_Ir%C3%A8ne_Cahen_d'Anvers%2C_Sammlung_E.G._B%C3%BChrle.jpg?width=3000",
-"file": "Pierre-Auguste Renoir, 1880, Portrait of Mademoiselle Irène Cahen d'Anvers, Sammlung E.G. Bührle.jpg",
-"title": "Mlle Irène Cahen d'Anvers",
-"conf": "high",
-"from": {
-"was": [
-990,
-1200
-],
-"now": [
-3602,
-4334
-],
-"served": [
-3000,
-3610
-],
-"arDelta": 0.0074,
-"cat": "Irene Cahens d'Anvers (1880) by Pierre-Auguste Renoir in the Sammlung E.G. Bührle"
-}
-},
-"franz-marc-tierschicksale": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Marc_-_Tierschicksale_(Die_B%C3%A4ume_zeigten_ihre_Ringe%2C_die_Tiere_ihre_Adern)%2C_1913%2C_Inv._1739.jpg?width=3000",
-"file": "Marc - Tierschicksale (Die Bäume zeigten ihre Ringe, die Tiere ihre Adern), 1913, Inv. 1739.jpg",
-"title": "Tierschicksale",
-"conf": "high",
-"from": {
-"was": [
-1150,
-838
-],
-"now": [
-6944,
-5098
-],
-"served": [
-3000,
-2202
-],
-"arDelta": 0.0074,
-"cat": "Fate of the Animals"
-}
-},
-"peter-paul-rubens-self-portrait": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-portrait_by_Peter_Paul_Rubens.jpg?width=3000",
-"file": "Self-portrait by Peter Paul Rubens.jpg",
-"title": "Self-portrait",
-"conf": "high",
-"from": {
-"was": [
-1924,
-2636
-],
-"now": [
-4408,
-6017
-],
-"served": [
-3000,
-4095
-],
-"arDelta": 0.0037,
-"cat": "Self-portrait (Rubens, 1623, National Gallery of Australia)"
-}
-},
-"arnold-bocklin-im-spiel-der-wellen": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Arnold_Boecklin_Spiel_der_Wellen_1883.jpg?width=3000",
-"file": "Arnold Boecklin Spiel der Wellen 1883.jpg",
-"title": "Im Spiel der Wellen",
-"conf": "high",
-"from": {
-"was": [
-1344,
-1018
-],
-"now": [
-3512,
-2668
-],
-"served": [
-3000,
-2279
-],
-"arDelta": 0.0029,
-"cat": "Im Spiel der Wellen (7754) by Arnold Böcklin"
-}
-},
-"vincent-van-gogh-blick-auf-arles": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Muenchen_Neue_Pinakothek_van_Gogh_Arles.jpg?width=2672",
-"file": "Muenchen Neue Pinakothek van Gogh Arles.jpg",
-"title": "Blick auf Arles",
-"conf": "high",
-"from": {
-"was": [
-900,
-714
-],
-"now": [
-2672,
-2108
-],
-"served": [
-2672,
-2108
-],
-"arDelta": 0.0056,
-"cat": "Orchard in Blossom with View of Arles"
-}
-},
-"landscape-with-snow": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent_Willem_van_Gogh_099.jpg?width=1576",
-"file": "Vincent Willem van Gogh 099.jpg",
-"title": "Landscape with Snow",
-"conf": "high",
-"from": {
-"was": [
-980,
-797
-],
-"now": [
-1576,
-1295
-],
-"served": [
-1576,
-1295
-],
-"arDelta": 0.0103,
-"cat": "Landscape with Snow by Vincent van Gogh"
-}
-},
-"graceful-ascent": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wassily_Kandinsky_-_Gentle_accent.jpg?width=3000",
-"file": "Wassily Kandinsky - Gentle accent.jpg",
-"title": "Graceful Ascent",
-"conf": "high",
-"from": {
-"was": [
-980,
-976
-],
-"now": [
-4096,
-4080
-],
-"served": [
-3000,
-2988
-],
-"arDelta": 0.0002,
-"cat": "Graceful Ascent - Wassily Kandinsky"
-}
-},
-"yellow-cow": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Marc_die-gelbe-kuh.jpg?width=2390",
-"file": "Marc die-gelbe-kuh.jpg",
-"title": "Yellow Cow",
-"conf": "high",
-"from": {
-"was": [
-1067,
-797
-],
-"now": [
-2390,
-1767
-],
-"served": [
-2390,
-1767
-],
-"arDelta": 0.0103,
-"cat": "Die gelbe Kuh (Franz Marc)"
-}
-},
-"black-obelisk-of-shalmaneser-iii": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Neo-Assyrian_Black_Limestone_Obelisk_of_Shalmaneser_III%2C_Nimrud%2C_825_BC.jpg?width=3000",
-"file": "Neo-Assyrian Black Limestone Obelisk of Shalmaneser III, Nimrud, 825 BC.jpg",
-"title": "Black Obelisk of Shalmaneser III",
-"conf": "high",
-"from": {
-"was": [
-1361,
-2048
-],
-"now": [
-3456,
-5184
-],
-"served": [
-3000,
-4500
-],
-"arDelta": 0.0032,
-"cat": "Black Obelisk"
-}
-},
-"shahnameh-of-shah-tahmasp": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qaran_Unhorses_Barman%2C_a_folio_from_the_Shahnameh_of_Shah_Tahmasp%2C_Tabriz%2C_about_1523_%E2%80%93_35._The_Sarikhani_Collection%2C_I.MS.4025.jpeg?width=3000",
-"file": "Qaran Unhorses Barman, a folio from the Shahnameh of Shah Tahmasp, Tabriz, about 1523 – 35. The Sarikhani Collection, I.MS.4025.jpeg",
-"title": "Shahnameh of Shah Tahmasp",
-"conf": "high",
-"from": {
-"was": [
-1458,
-2200
-],
-"now": [
-3024,
-4555
-],
-"served": [
-3000,
-4519
-],
-"arDelta": 0.0017,
-"cat": "Shah Tahmasp's Shahnameh"
-}
-},
-"paule-gobillard-peignant": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Berthe_morisot_paule_gobillard_peignant_1887.jpg?width=3000",
-"file": "Berthe morisot paule gobillard peignant 1887.jpg",
-"title": "Paule Gobillard peignant",
-"conf": "high",
-"from": {
-"was": [
-1500,
-1361
-],
-"now": [
-3477,
-3119
-],
-"served": [
-3000,
-2691
-],
-"arDelta": 0.0115,
-"cat": "Paule Gobillard peignant"
-}
-},
-"portrait-de-madame-claude-monet": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste_Renoir_-_Camille_Monet.jpg?width=3000",
-"file": "Pierre-Auguste Renoir - Camille Monet.jpg",
-"title": "Portrait de madame Claude Monet",
-"conf": "high",
-"from": {
-"was": [
-1500,
-1806
-],
-"now": [
-4687,
-5685
-],
-"served": [
-3000,
-3639
-],
-"arDelta": 0.0074,
-"cat": "Portrait de madame Claude Monet"
-}
-},
-"hellelil-and-hildebrand-the-meeting-on-the-turret-stairs": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hellelil_and_Hildebrand%2C_the_Meeting_on_the_Turret_Stairs%2C_by_Burton_1864.jpg?width=1931",
-"file": "Hellelil and Hildebrand, the Meeting on the Turret Stairs, by Burton 1864.jpg",
-"title": "Hellelil and Hildebrand, the meeting on the turret stairs",
-"conf": "high",
-"from": {
-"was": [
-1500,
-2329
-],
-"now": [
-1931,
-3000
-],
-"served": [
-1931,
-3000
-],
-"arDelta": 0.0006,
-"cat": "Hellelil and Hildebrand or The Meeting on the Turret Stairs"
-}
-},
-"the-open-window": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Matisse-Open-Window.jpg?width=2012",
-"file": "Matisse-Open-Window.jpg",
-"title": "The Open Window",
-"conf": "high",
-"from": {
-"was": [
-1608,
-1927
-],
-"now": [
-2012,
-2424
-],
-"served": [
-2012,
-2424
-],
-"arDelta": 0.0053,
-"cat": "Fenêtre ouverte, Collioure, by Henri Matisse"
-}
-},
-"paul-steck-ophelie": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/OpheliePaulAlbertSteck.JPG?width=1200",
-"file": "OpheliePaulAlbertSteck.JPG",
-"title": "Ophélie",
-"conf": "high",
-"from": {
-"was": [
-472,
-800
-],
-"now": [
-1200,
-2031
-],
-"served": [
-1200,
-2031
-],
-"arDelta": 0.0014,
-"cat": "Ophélie (Paul Albert Steck)"
-}
-},
-"claude-monet-arm-of-the-seine-near-giverny": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet_-_Seine-Arm_bei_Giverny.jpg?width=1219",
-"file": "Monet - Seine-Arm bei Giverny.jpg",
-"title": "Arm of the Seine near Giverny",
-"conf": "high",
-"from": {
-"was": [
-684,
-549
-],
-"now": [
-1219,
-992
-],
-"served": [
-1219,
-992
-],
-"arDelta": 0.0137,
-"cat": "Bras de Seine près de Giverny by Claude Monet"
-}
-},
-"vincent-van-gogh-enclosed-field-with-rising-sun": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent_Willem_van_Gogh_063.jpg?width=2536",
-"file": "Vincent Willem van Gogh 063.jpg",
-"title": "Enclosed Field with Rising Sun",
-"conf": "high",
-"from": {
-"was": [
-751,
-590
-],
-"now": [
-2536,
-1984
-],
-"served": [
-2536,
-1984
-],
-"arDelta": 0.0042,
-"cat": "Enclosed Field with Rising Sun"
-}
-},
-"jean-baptiste-camille-corot-bacchanal-at-the-spring-souvenir": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Corot_-_Bacchanal_at_the_Spring_Souvenir_of_Marly-le-Roi%2C_1872.jpg?width=1286",
-"file": "Corot - Bacchanal at the Spring Souvenir of Marly-le-Roi, 1872.jpg",
-"title": "Bacchanal at the Spring: Souvenir of Marly-le-Roi",
-"conf": "high",
-"from": {
-"was": [
-1000,
-1267
-],
-"now": [
-1286,
-1600
-],
-"served": [
-1286,
-1600
-],
-"arDelta": 0.0184,
-"cat": "Bacchanale de printemps : Souvenir de Marly-le-Roi(R2201) by Jean-Baptiste-Camille Corot"
-}
-},
-"henry-fuseli-thor-battering-the-midgard-serpent": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Johann_Heinrich_F%C3%BCssli_011.jpg?width=2024",
-"file": "Johann Heinrich Füssli 011.jpg",
-"title": "Thor Battering the Midgard Serpent",
-"conf": "high",
-"from": {
-"was": [
-1415,
-2000
-],
-"now": [
-2024,
-2855
-],
-"served": [
-2024,
-2855
-],
-"arDelta": 0.002,
-"cat": "Thor Battering the Midgard Serpent"
-}
-},
-"claude-monet-belle-ile-rocks-cote-sauvage": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Les_Rochers_de_Belle-%C3%8Ele%2C_la_C%C3%B4te_sauvage_(1886)_de_Claude_Monet_-_Mus%C3%A9e_d'Orsay_(W1000).jpg?width=850",
-"file": "Les Rochers de Belle-Île, la Côte sauvage (1886) de Claude Monet - Musée d'Orsay (W1000).jpg",
-"title": "Belle-Île Rocks, Côte Sauvage",
-"conf": "high",
-"from": {
-"was": [
-500,
-409
-],
-"now": [
-850,
-682
-],
-"served": [
-850,
-682
-],
-"arDelta": 0.0195,
-"cat": "Les Rochers de Belle-Île, la Côte sauvage by Claude Monet"
-}
-},
-"henri-edmond-cross-la-chevelure": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri-edmon_cross%2C_la_capigliatura%2C_1892_ca._02.JPG?width=2304",
-"file": "Henri-edmon cross, la capigliatura, 1892 ca. 02.JPG",
-"title": "La Chevelure",
-"conf": "high",
-"from": {
-"was": [
-643,
-850
-],
-"now": [
-2304,
-3104
-],
-"served": [
-2304,
-3104
-],
-"arDelta": 0.0188,
-"cat": "La Chevelure de Henri-Edmond Cross"
-}
-},
-"pierre-bonnard-l-amandier-en-fleurs": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Almond_Tree_3.jpg?width=866",
-"file": "Almond Tree 3.jpg",
-"title": "L'Amandier en fleurs",
-"conf": "high",
-"from": {
-"was": [
-662,
-970
-],
-"now": [
-866,
-1280
-],
-"served": [
-866,
-1280
-],
-"arDelta": 0.0087,
-"cat": "L'Amandier en fleurs"
-}
-},
-"paul-signac-setting-sun-sardine-fishing-concarneau": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Signac_-_Setting_Sun._Sardine_Fishing._Adagio._Opus_221_from_the_series_The_Sea%2C_The_Boats%2C_Concarneau%2C_1891%2C_585.1998.jpg?width=2000",
-"file": "Signac - Setting Sun. Sardine Fishing. Adagio. Opus 221 from the series The Sea, The Boats, Concarneau, 1891, 585.1998.jpg",
-"title": "Setting Sun, Sardine Fishing, Concarneau",
-"conf": "high",
-"from": {
-"was": [
-745,
-590
-],
-"now": [
-2000,
-1596
-],
-"served": [
-2000,
-1596
-],
-"arDelta": 0.0076,
-"cat": "Soleil couchant, pêche à la sardine, Concarneau by Paul Signac"
-}
-},
-"jozef-che-monski-bitwa-pod-el-teb-kawaleria-sudanska-prze-am": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/J%C3%B3zef_Che%C5%82mo%C5%84ski_Bitwa_pod_El_Teb_1884.jpg?width=3000",
-"file": "Józef Chełmoński Bitwa pod El Teb 1884.jpg",
-"title": "Bitwa pod El-Teb. Kawaleria sudańska przełamuje czworokąt Anglików",
-"conf": "high",
-"from": {
-"was": [
-800,
-539
-],
-"now": [
-3000,
-2008
-],
-"served": [
-3000,
-2008
-],
-"arDelta": 0.0066,
-"cat": "Bitwa pod El-Teb. Kawaleria sudańska przełamuje czworokąt Anglików by Józef Chełmoński"
-}
-},
-"arshile-gorky-enigmatic-combat": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Enigmatic_Combat_by_Arshile_Gorky%2C_1936-7%2C_oil_on_canvas%2C_SFMOMA_01.jpg?width=3000",
-"file": "Enigmatic Combat by Arshile Gorky, 1936-7, oil on canvas, SFMOMA 01.jpg",
-"title": "Enigmatic Combat",
-"conf": "high",
-"from": {
-"was": [
-1280,
-962
-],
-"now": [
-4000,
-3000
-],
-"served": [
-3000,
-2250
-],
-"arDelta": 0.0021,
-"cat": "Enigmatic Combat by Arshile Gorky"
-}
-},
-"paul-cezanne-une-moderne-olympia": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Cezanne_eine-moderne-olympia.jpg?width=2193",
-"file": "Cezanne eine-moderne-olympia.jpg",
-"title": "Une moderne Olympia",
-"conf": "high",
-"from": {
-"was": [
-1411,
-1200
-],
-"now": [
-2193,
-1892
-],
-"served": [
-2193,
-1892
-],
-"arDelta": 0.0142,
-"cat": "A Modern Olympia"
-}
-},
-"paul-cezanne-la-maison-du-pendu-auvers-sur-oise": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/La_Maison_du_pendu_Auvers-sur-Oise_-_Paul_C%C3%A9zanne.jpg?width=2874",
-"file": "La Maison du pendu Auvers-sur-Oise - Paul Cézanne.jpg",
-"title": "La Maison du pendu, Auvers-sur-Oise",
-"conf": "high",
-"from": {
-"was": [
-1460,
-1200
-],
-"now": [
-2874,
-2328
-],
-"served": [
-2874,
-2328
-],
-"arDelta": 0.0147,
-"cat": "La Maison du pendu, Auvers-sur-Oise, by Paul Cézanne"
-}
-},
-"john-constable-the-opening-of-waterloo-bridge-whitehall-stai": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/John_constable%2C_l'apertura_del_waterloo_bridge%2C_ante_1832%2C_03.jpg?width=3000",
-"file": "John constable, l'apertura del waterloo bridge, ante 1832, 03.jpg",
-"title": "The Opening of Waterloo Bridge (`Whitehall Stairs, June 18th, 1817')",
-"conf": "high",
-"from": {
-"was": [
-1536,
-912
-],
-"now": [
-5472,
-3246
-],
-"served": [
-3000,
-1780
-],
-"arDelta": 0.0009,
-"cat": "The Opening of Waterloo Bridge (T04904)"
-}
-},
-"georges-seurat-seascape-at-port-en-bessin-normandy": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Georges_Seurat%2C_Seascape_at_Port-en-Bessin%2C_Normandy%2C_1888%2C_NGA_53139.jpg?width=3000",
-"file": "Georges Seurat, Seascape at Port-en-Bessin, Normandy, 1888, NGA 53139.jpg",
-"title": "Seascape at Port-en-Bessin, Normandy",
-"conf": "high",
-"from": {
-"was": [
-1576,
-1253
-],
-"now": [
-4000,
-3221
-],
-"served": [
-3000,
-2416
-],
-"arDelta": 0.0127,
-"cat": "Seascape at Port-en-Bessin, Normandy by Georges Seurat"
-}
-},
-"wilhelm-trubner-ave-caesar-morituri-te-salutant": {
-"src": "commons",
-"img": "https://commons.wikimedia.org/wiki/Special:FilePath/Berlin%2C_Alte_Nationalgalerie%2C_Wilhelm_Tr%C3%BCbner%2C_Ave%2C_Ceasar%2C_morituri_te_salutant.JPG?width=2885",
-"file": "Berlin, Alte Nationalgalerie, Wilhelm Trübner, Ave, Ceasar, morituri te salutant.JPG",
-"title": "Ave, Caesar, morituri te salutant",
-"conf": "high",
-"from": {
-"was": [
-1654,
-2042
-],
-"now": [
-2885,
-3552
-],
-"served": [
-2885,
-3552
-],
-"arDelta": 0.0028,
-"cat": "Ave, Caesar, morituri te salutant by Wilhelm Trübner"
-}
-}
+"adam-and-eve": {"src": "nga", "img": "https://api.nga.gov/iiif/5d9fe065-f568-4c67-95f8-a1fc99e298a4/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/5d9fe065-f568-4c67-95f8-a1fc99e298a4/info.json", "title": "Adam and Eve", "conf": "high", "details": [{"x": 0.4, "y": 0.28, "w": 0.24, "h": 0.16, "t": "The serpent's gift", "n": "The serpent passes the forbidden fruit into Eve's raised hand — the exact hinge-moment of the Fall, engraved at the dead center of the sheet."}, {"x": 0.3, "y": 0.62, "w": 0.68, "h": 0.36, "t": "The four temperaments", "n": "Cat, rabbit, ox and elk stand for the four humours — choleric, sanguine, phlegmatic, melancholic — held in perfect balance only until the fruit is bitten."}, {"x": 0.08, "y": 0.12, "w": 0.18, "h": 0.16, "t": "The plaque", "n": "Dürer hangs his full Latin signature from a branch — 'Albrecht Dürer of Nuremberg made this, 1504' — with a parrot perched above: a printmaker announcing engraving as high art."}], "w": 3453, "h": 4491},
+"the-great-wave-off-kanagawa": {"src": "aic", "img": "https://www.artic.edu/iiif/2/b3974542-b9b4-7568-fc4b-966738f61d78/full/1686,/0/default.jpg", "iiif": "https://www.artic.edu/iiif/2/b3974542-b9b4-7568-fc4b-966738f61d78/info.json", "title": "Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, from the series \"Thirty-Six Views of Mount Fuji (Fugaku sanjūrokkei)\"", "conf": "high", "details": [{"x": 0.22, "y": 0.04, "w": 0.42, "h": 0.42, "t": "The claw", "n": "The crest shatters into claw-like fingers of foam — Hokusai renders water as a living predator, frozen the instant before it strikes."}, {"x": 0.52, "y": 0.6, "w": 0.18, "h": 0.17, "t": "Fuji, dwarfed", "n": "The sacred mountain — the print series' actual subject — reduced to a small snow-capped triangle in the trough, so distant it reads as just another wave."}, {"x": 0.28, "y": 0.74, "w": 0.38, "h": 0.22, "t": "The oshiokuri boats", "n": "Fast cargo boats ferrying fish to Edo, the crews bent flat over their oars — thirty men under the claw, the human stake in the drama that vanishes at thumbnail size."}, {"x": 0.01, "y": 0.02, "w": 0.14, "h": 0.3, "t": "The signature", "n": "The cartouche titles the series; beside it Hokusai signs 'Hokusai aratame Iitsu hitsu' — 'from the brush of Hokusai, changing his name to Iitsu' — one of some thirty names he used across his career."}]},
+"melencolia-i": {"src": "nga", "img": "https://api.nga.gov/iiif/637e0ba3-4acc-4ec4-b912-151c96d9dc12/full/3000,/0/default.jpg", "orig": "https://openaccess-cdn.clevelandart.org/1926.211/1926.211_full.tif", "iiif": "https://api.nga.gov/iiif/637e0ba3-4acc-4ec4-b912-151c96d9dc12/info.json", "title": "Melencolia I", "conf": "high", "w": 3501, "h": 4483},
+"the-death-of-socrates": {"src": "met", "w": 4000, "h": 2663, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP-13139-001.jpg", "iiif": null, "title": "The Death of Socrates", "conf": "high", "details": [{"x": 0.38, "y": 0.38, "w": 0.17, "h": 0.16, "t": "The cup", "n": "Socrates reaches for the hemlock without looking at it, mid-sentence — while the executioner who must hand it over turns his face away, unable to watch."}, {"x": 0.6, "y": 0.26, "w": 0.13, "h": 0.15, "t": "The finger", "n": "The other hand points straight up: he is arguing the immortality of the soul at the moment of taking the poison — David's whole composition hangs on this vertical."}, {"x": 0.12, "y": 0.44, "w": 0.23, "h": 0.42, "t": "Plato, out of time", "n": "The old man at the bed's foot is Plato — painted decades older than the ~28 he was that day, scroll and ink at his feet: the scene is his memory, written years later."}, {"x": 0.13, "y": 0.24, "w": 0.13, "h": 0.24, "t": "The family, sent away", "n": "Up the stairs under the arch, his wife and family are led out — Socrates had them removed for weeping. Grief is exiled to the background."}]},
+"madame-x-virginie-amelie-avegno-gautreau": {"src": "met", "w": 2336, "h": 4000, "img": "https://images.metmuseum.org/CRDImages/ad/original/DP-29006-001.jpg", "iiif": null, "title": "Madame X (Virginie Amélie Avegno Gautreau)", "conf": "high", "details": [{"x": 0.28, "y": 0.24, "w": 0.18, "h": 0.12, "t": "The strap", "n": "The jeweled strap that caused the scandal: at the 1884 Salon it hung fallen off her shoulder. The outrage nearly ended Sargent in Paris — he repainted it upright, and kept the picture for thirty years."}, {"x": 0.4, "y": 0.12, "w": 0.24, "h": 0.16, "t": "The profile", "n": "Amélie Gautreau, American expatriate and professional beauty, powdered lavender-white — she never commissioned this; Sargent pursued HER for the portrait."}, {"x": 0.08, "y": 0.4, "w": 0.36, "h": 0.2, "t": "The twisted arm", "n": "The right arm torques against the table in a deliberately strained, serpentine pose — elegance pushed right to the edge of anatomical possibility."}, {"x": 0.52, "y": 0.88, "w": 0.36, "h": 0.08, "t": "The signature", "n": "When the Met bought it in 1916, Sargent wrote: 'I suppose it is the best thing I have done.'"}]},
+"washington-crossing-the-delaware": {"src": "met", "w": 1937, "h": 1135, "img": "https://images.metmuseum.org/CRDImages/ad/original/DP215410.jpg", "iiif": null, "title": "Washington Crossing the Delaware", "conf": "high", "details": [{"x": 0.32, "y": 0.26, "w": 0.19, "h": 0.4, "t": "The impossible pose", "n": "No one stands like this in a rowboat on ice — and Leutze knows it. Painted in Düsseldorf in 1851, the theatrical stance is the point: revolution as opera."}, {"x": 0.5, "y": 0.1, "w": 0.19, "h": 0.42, "t": "The flag that isn't there yet", "n": "The Stars and Stripes wouldn't exist for another six months after the crossing. Holding it: Lieutenant James Monroe, future fifth president."}, {"x": 0.02, "y": 0.52, "w": 0.3, "h": 0.44, "t": "The ice", "n": "The floes were studied from life — on the Rhine, not the Delaware. German river ice standing in for an American revolution painted by a German revolutionary."}, {"x": 0.34, "y": 0.52, "w": 0.52, "h": 0.36, "t": "A boat of everyone", "n": "Leutze packs the boat with a deliberate cross-section: western riflemen, farmers, a Black sailor rowing at the bow, a figure in a Scottish bonnet — 1848 revolutionary politics smuggled into 1776."}]},
+"the-harvesters": {"src": "met", "w": 3811, "h": 2809, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP119115.jpg", "iiif": null, "title": "The Harvesters", "conf": "high"},
+"woman-with-a-water-jug": {"src": "met", "w": 3437, "h": 3866, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP353257.jpg", "iiif": null, "title": "Young Woman with a Water Pitcher", "conf": "med"},
+"aristotle-with-a-bust-of-homer": {"src": "met", "w": 3792, "h": 4000, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP-30758-001.jpg", "iiif": null, "title": "Aristotle with a Bust of Homer", "conf": "high"},
+"woman-with-a-parrot": {"src": "met", "w": 4000, "h": 2691, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP-17680-001.jpg", "iiif": null, "title": "Woman with a Parrot", "conf": "high"},
+"heart-of-the-andes": {"src": "met", "w": 3811, "h": 2099, "img": "https://images.metmuseum.org/CRDImages/ad/original/DT78.jpg", "iiif": null, "title": "Heart of the Andes", "conf": "high"},
+"portrait-of-juan-de-pareja": {"src": "met", "w": 3427, "h": 3968, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP-14286-001.jpg", "iiif": null, "title": "Juan de Pareja (ca. 1608–1670)", "conf": "med"},
+"the-spanish-singer": {"src": "met", "w": 2994, "h": 3811, "img": "https://images.metmuseum.org/CRDImages/ep/original/dp130799.jpg", "iiif": null, "title": "The Spanish Singer", "conf": "high"},
+"don-manuel-osorio-de-zuniga": {"src": "met", "w": 2855, "h": 3873, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP287624.jpg", "iiif": null, "title": "Manuel Osorio Manrique de Zuñiga (1784–1792)", "conf": "med"},
+"two-tahitian-women": {"src": "met", "w": 2884, "h": 3722, "img": "https://images.metmuseum.org/CRDImages/ep/original/DT1342.jpg", "iiif": null, "title": "Two Tahitian Women", "conf": "high"},
+"the-rhinoceros": {"src": "nga", "img": "https://api.nga.gov/iiif/a405d06a-f9b5-4ef9-9509-d27b4ac89bce/full/3000,/0/default.jpg", "orig": "https://openaccess-cdn.clevelandart.org/1993.9/1993.9_full.tif", "iiif": "https://api.nga.gov/iiif/a405d06a-f9b5-4ef9-9509-d27b4ac89bce/info.json", "title": "The Rhinoceros", "conf": "high", "w": 10851, "h": 8484},
+"two-sisters": {"src": "aic", "img": "https://www.artic.edu/iiif/2/3a608f55-d76e-fa96-d0b1-0789fbc48f1e/full/1686,/0/default.jpg", "iiif": "https://www.artic.edu/iiif/2/3a608f55-d76e-fa96-d0b1-0789fbc48f1e/info.json", "title": "Two Sisters (On the Terrace)", "conf": "high"},
+"the-musicians": {"src": "met", "w": 4000, "h": 3105, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP-687-001.jpg", "iiif": null, "title": "The Musicians", "conf": "high"},
+"knight-death-and-the-devil": {"src": "nga", "w": 3761, "h": 4878, "img": "https://api.nga.gov/iiif/e8308d3b-8495-4792-87c3-60276ef7f77e/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/e8308d3b-8495-4792-87c3-60276ef7f77e/info.json", "title": "Knight, Death, and the Devil", "conf": "high"},
+"nemesis": {"src": "nga", "img": "https://api.nga.gov/iiif/8c74b670-59a1-41ae-9ce3-7fee6a57f1db/full/3000,/0/default.jpg", "orig": "https://openaccess-cdn.clevelandart.org/1943.178/1943.178_full.tif", "iiif": "https://api.nga.gov/iiif/8c74b670-59a1-41ae-9ce3-7fee6a57f1db/info.json", "title": "Nemesis", "conf": "high", "w": 3388, "h": 4892},
+"joseph-wright-virgil-s-tomb-by-moonlight-with-silius-italicu": {"src": "met", "w": 3915, "h": 3156, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP322015.jpg", "iiif": null, "title": "Virgil's Tomb by Moonlight, with Silius Italicus Declaiming", "conf": "high"},
+"pierre-auguste-renoir-bouquet-of-chrysanthemums": {"src": "met", "w": 3135, "h": 3707, "img": "https://images.metmuseum.org/CRDImages/ep/original/DT1877.jpg", "iiif": null, "title": "Bouquet of Chrysanthemums", "conf": "high"},
+"theodore-rousseau-the-forest-in-winter-at-sunset": {"src": "met", "w": 4000, "h": 2504, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP-31520-001.jpg", "iiif": null, "title": "The Forest in Winter at Sunset", "conf": "high"},
+"vincent-van-gogh-cypresse": {"src": "met", "w": 4000, "h": 3184, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP-42549-001.jpg", "iiif": null, "title": "Wheat Field with Cypresses", "conf": "high"},
+"odilon-redon-madame-arthur-fontaine-marie-escudier-born-1865": {"src": "met", "w": 1264, "h": 1640, "img": "https://images.metmuseum.org/CRDImages/ep/original/ep60.54.R.jpg", "iiif": null, "title": "Madame Arthur Fontaine (Marie Escudier, 1865–1946)", "conf": "high"},
+"vincent-van-gogh-wheat-field-with-cypresses": {"src": "met", "w": 4000, "h": 3184, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP-42549-001.jpg", "iiif": null, "title": "Wheat Field with Cypresses", "conf": "high"},
+"johan-jongkind-honfleur": {"src": "met", "w": 3811, "h": 2452, "img": "https://images.metmuseum.org/CRDImages/ep/original/DT1558.jpg", "iiif": null, "title": "Honfleur", "conf": "high"},
+"gustave-courbet-hunting-dogs-with-dead-hare": {"src": "met", "w": 3811, "h": 2410, "img": "https://images.metmuseum.org/CRDImages/ep/original/DT1961.jpg", "iiif": null, "title": "Hunting Dogs with Dead Hare", "conf": "high"},
+"edgar-degas-dancer-with-a-fan": {"src": "met", "w": 2422, "h": 3722, "img": "https://images.metmuseum.org/CRDImages/ep/original/DT2652.jpg", "iiif": null, "title": "Dancer", "conf": "high"},
+"gustave-courbet-marine-the-waterspout": {"src": "met", "w": 3811, "h": 2641, "img": "https://images.metmuseum.org/CRDImages/ep/original/DT1965.jpg", "iiif": null, "title": "Marine: The Waterspout", "conf": "high"},
+"georges-seurat-gray-weather-grande-jatte": {"src": "met", "w": 3811, "h": 3132, "img": "https://images.metmuseum.org/CRDImages/ep/original/DT1945.jpg", "iiif": null, "title": "Gray Weather, Grande Jatte", "conf": "high"},
+"anders-zorn-mrs-walter-rathbone-bacon-virginia-purdy-barker": {"src": "met", "w": 2371, "h": 3722, "img": "https://images.metmuseum.org/CRDImages/ep/original/DT400.jpg", "iiif": null, "title": "Mrs. Walter Rathbone Bacon (Virginia Purdy Barker, 1862–1919)", "conf": "high"},
+"edgar-degas-the-artist-s-cousin-probably-mrs-william-bell-ma": {"src": "met", "w": 3166, "h": 3869, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP338363.jpg", "iiif": null, "title": "The Artist's Cousin, Probably Mrs. William Bell (Mathilde Musson, 1841–1878)", "conf": "high"},
+"gustave-courbet-the-source-of-the-loue": {"src": "met", "w": 3811, "h": 2671, "img": "https://images.metmuseum.org/CRDImages/ep/original/DT1964.jpg", "iiif": null, "title": "The Source of the Loue", "conf": "high"},
+"edouard-manet-madame-manet-suzanne-leenhoff-1830-1906-at-bel": {"src": "met", "w": 2960, "h": 3722, "img": "https://images.metmuseum.org/CRDImages/ep/original/DT4224.jpg", "iiif": null, "title": "Madame Manet (Suzanne Leenhoff, 1829–1906) at Bellevue", "conf": "high"},
+"gustav-klimt-serena-pulitzer-lederer-1867-1943": {"src": "met", "w": 1961, "h": 4000, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP-18885-001.jpg", "iiif": null, "title": "Serena Pulitzer Lederer (1867–1943)", "conf": "high"},
+"edouard-manet-the-dead-christ-with-angels": {"src": "met", "w": 3334, "h": 4000, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP-17679-001.jpg", "iiif": null, "title": "The Dead Christ with Angels", "conf": "high"},
+"pierre-auguste-renoir-still-life-with-peaches-and-grapes": {"src": "met", "w": 3803, "h": 3153, "img": "https://images.metmuseum.org/CRDImages/ep/original/DT1140.jpg", "iiif": null, "title": "Still Life with Peaches", "conf": "high"},
+"edouard-manet-young-lady-in-1866": {"src": "met", "w": 2607, "h": 3795, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP273977.jpg", "iiif": null, "title": "Young Lady in 1866", "conf": "high"},
+"vincent-van-gogh-the-flowering-orchard": {"src": "met", "w": 2985, "h": 4000, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP-14936-045.jpg", "iiif": null, "title": "The Flowering Orchard", "conf": "high"},
+"vincent-van-gogh-women-picking-olives": {"src": "met", "w": 4000, "h": 3233, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP-17161-001.jpg", "iiif": null, "title": "Women Picking Olives", "conf": "high"},
+"johan-christian-dahl-an-eruption-of-vesuvius": {"src": "met", "w": 3907, "h": 2629, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP155336.jpg", "iiif": null, "title": "An Eruption of Vesuvius", "conf": "high"},
+"pierre-auguste-renoir-acrobats-at-the-cirque-fernando-franci": {"src": "aic", "img": "https://www.artic.edu/iiif/2/321c45f5-22a3-84a2-44cc-cf66642d4cf2/full/1686,/0/default.jpg", "iiif": "https://www.artic.edu/iiif/2/321c45f5-22a3-84a2-44cc-cf66642d4cf2/info.json", "title": "Acrobats at the Cirque Fernando (Francisca and Angelina Wartenberg)", "conf": "high"},
+"georges-seurat-circus-sideshow-parade-de-cirque": {"src": "met", "w": 3920, "h": 2621, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP375450_cropped.jpg", "iiif": null, "title": "Circus Sideshow (Parade de cirque)", "conf": "high"},
+"gustave-caillebotte-chrysanthemums-in-the-garden-at-petit-ge": {"src": "met", "w": 2395, "h": 3876, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP341200.jpg", "iiif": null, "title": "Chrysanthemums in the Garden at Petit-Gennevilliers", "conf": "high"},
+"edgar-degas-dancer-in-green": {"src": "met", "w": 2422, "h": 3722, "img": "https://images.metmuseum.org/CRDImages/ep/original/DT2652.jpg", "iiif": null, "title": "Dancer", "conf": "high"},
+"winslow-homer-the-lone-boat-north-woods-club-adirondacks": {"src": "aic", "img": "https://www.artic.edu/iiif/2/4f75fd95-c957-7aa2-3b21-e4fd84bb8676/full/1686,/0/default.jpg", "iiif": "https://www.artic.edu/iiif/2/4f75fd95-c957-7aa2-3b21-e4fd84bb8676/info.json", "title": "The Lone Boat, North Woods Club, Adirondacks", "conf": "high"},
+"robert-henri-herself": {"src": "aic", "img": "https://www.artic.edu/iiif/2/641c5259-1a92-4a3a-714b-62e09efa3b23/full/1686,/0/default.jpg", "iiif": "https://www.artic.edu/iiif/2/641c5259-1a92-4a3a-714b-62e09efa3b23/info.json", "title": "Herself", "conf": "high"},
+"edouard-vuillard-foliage-oak-tree-and-fruit-seller": {"src": "aic", "img": "https://www.artic.edu/iiif/2/e170725f-cc12-cb0f-841e-8b1ea918933e/full/1686,/0/default.jpg", "iiif": "https://www.artic.edu/iiif/2/e170725f-cc12-cb0f-841e-8b1ea918933e/info.json", "title": "Foliage—Oak Tree and Fruit Seller", "conf": "high"},
+"georges-seurat-study-for-a-sunday-on-la-grande-jatte": {"src": "met", "w": 1959, "h": 1332, "img": "https://images.metmuseum.org/CRDImages/ep/original/DP259921.jpg", "iiif": null, "title": "Study for \"A Sunday on La Grande Jatte\"", "conf": "high"},
+"elihu-vedder-lair-of-the-sea-serpent": {"src": "met", "w": 2912, "h": 1120, "img": "https://images.metmuseum.org/CRDImages/ad/original/ap1976.106.1.jpg", "iiif": null, "title": "Lair of the Sea Serpent", "conf": "high"},
+"vincent-van-gogh-self-portrait": {"src": "aic", "img": "https://www.artic.edu/iiif/2/47c5bcb8-62ef-e5d7-55e7-f5121f409a30/full/1686,/0/default.jpg", "iiif": "https://www.artic.edu/iiif/2/47c5bcb8-62ef-e5d7-55e7-f5121f409a30/info.json", "title": "Self-Portrait", "conf": "high"},
+"j-m-w-turner-the-parting-of-hero-and-leander": {"src": "commons", "w": 4460, "h": 2662, "img": "https://upload.wikimedia.org/wikipedia/commons/7/78/London_National_Gallery_Turner_Hero_and_Leander.jpg", "title": "The Parting of Hero and Leander", "conf": "high"},
+"ludwik-de-laveaux-plac-opery-w-paryzu": {"src": "commons", "w": 2500, "h": 2187, "img": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Ludwik_de_Laveaux_-_Place_de_l%27Op%C3%A9ra_in_Paris_-_MP_257_-_National_Museum_in_Warsaw.jpg", "title": "Plac Opery w Paryżu", "conf": "high"},
+"claude-monet-argenteuil": {"src": "commons", "img": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Claude_Monet%27s_%22Argenteuil%22_1875.jpg", "title": "Argenteuil", "conf": "high", "w": 2781, "h": 2330},
+"the-birth-of-venus": {"src": "commons", "w": 3840, "h": 5424, "img": "https://commons.wikimedia.org/wiki/Special:FilePath/William-Adolphe_Bouguereau_(1825-1905)_-_The_Birth_of_Venus_(1879).jpg?width=3000", "file": "William-Adolphe Bouguereau (1825-1905) - The Birth of Venus (1879).jpg", "title": "The Birth of Venus", "conf": "high", "from": {"was": [1239, 1749], "now": [4014, 5670], "served": [3000, 4238], "arDelta": 0.0007, "cat": "The Birth of Venus by William-Adolphe Bouguereau"}},
+"in-the-arbour": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Aleksander_Gierymski_-_In_the_arbour_-_Google_Art_Project.jpg?width=2935", "file": "Aleksander Gierymski - In the arbour - Google Art Project.jpg", "title": "In the Arbour", "conf": "high", "from": {"was": [1948, 1787], "now": [2935, 2720], "served": [2935, 2720], "arDelta": 0.0101, "cat": "In the arbour by Aleksander Gierymski"}, "w": 2935, "h": 2720},
+"the-taking-of-christ": {"src": "commons", "w": 3840, "h": 2976, "img": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Taking_of_Christ-Caravaggio_(c.1602).jpg?width=3000", "file": "The Taking of Christ-Caravaggio (c.1602).jpg", "title": "The Taking of Christ", "conf": "high", "from": {"was": [1500, 1172], "now": [9893, 7666], "served": [3000, 2325], "arDelta": 0.0083, "cat": "The Taking of Christ by Caravaggio"}},
+"the-lady-of-shalott": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/John_William_Waterhouse_-_The_Lady_of_Shalott_-_Google_Art_Project.jpg?width=3000", "file": "John William Waterhouse - The Lady of Shalott - Google Art Project.jpg", "title": "The Lady of Shalott", "conf": "high", "from": {"was": [1712, 1314], "now": [4180, 3208], "served": [3000, 2302], "arDelta": 0.0001, "cat": "The Lady of Shalott (Waterhouse)"}, "w": 3840, "h": 2947},
+"mlle-irene-cahen-d-anvers": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste_Renoir%2C_1880%2C_Portrait_of_Mademoiselle_Ir%C3%A8ne_Cahen_d'Anvers%2C_Sammlung_E.G._B%C3%BChrle.jpg?width=3000", "file": "Pierre-Auguste Renoir, 1880, Portrait of Mademoiselle Irène Cahen d'Anvers, Sammlung E.G. Bührle.jpg", "title": "Mlle Irène Cahen d'Anvers", "conf": "high", "from": {"was": [990, 1200], "now": [3602, 4334], "served": [3000, 3610], "arDelta": 0.0074, "cat": "Irene Cahens d'Anvers (1880) by Pierre-Auguste Renoir in the Sammlung E.G. Bührle"}, "w": 3602, "h": 4334},
+"franz-marc-tierschicksale": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Marc_-_Tierschicksale_(Die_B%C3%A4ume_zeigten_ihre_Ringe%2C_die_Tiere_ihre_Adern)%2C_1913%2C_Inv._1739.jpg?width=3000", "file": "Marc - Tierschicksale (Die Bäume zeigten ihre Ringe, die Tiere ihre Adern), 1913, Inv. 1739.jpg", "title": "Tierschicksale", "conf": "high", "from": {"was": [1150, 838], "now": [6944, 5098], "served": [3000, 2202], "arDelta": 0.0074, "cat": "Fate of the Animals"}, "w": 3840, "h": 2819},
+"peter-paul-rubens-self-portrait": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Self-portrait_by_Peter_Paul_Rubens.jpg?width=3000", "file": "Self-portrait by Peter Paul Rubens.jpg", "title": "Self-portrait", "conf": "high", "from": {"was": [1924, 2636], "now": [4408, 6017], "served": [3000, 4095], "arDelta": 0.0037, "cat": "Self-portrait (Rubens, 1623, National Gallery of Australia)"}, "w": 3840, "h": 5242},
+"arnold-bocklin-im-spiel-der-wellen": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Arnold_Boecklin_Spiel_der_Wellen_1883.jpg?width=3000", "file": "Arnold Boecklin Spiel der Wellen 1883.jpg", "title": "Im Spiel der Wellen", "conf": "high", "from": {"was": [1344, 1018], "now": [3512, 2668], "served": [3000, 2279], "arDelta": 0.0029, "cat": "Im Spiel der Wellen (7754) by Arnold Böcklin"}, "w": 3512, "h": 2668},
+"vincent-van-gogh-blick-auf-arles": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Muenchen_Neue_Pinakothek_van_Gogh_Arles.jpg?width=2672", "file": "Muenchen Neue Pinakothek van Gogh Arles.jpg", "title": "Blick auf Arles", "conf": "high", "from": {"was": [900, 714], "now": [2672, 2108], "served": [2672, 2108], "arDelta": 0.0056, "cat": "Orchard in Blossom with View of Arles"}, "w": 2672, "h": 2108},
+"landscape-with-snow": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent_Willem_van_Gogh_099.jpg?width=1576", "file": "Vincent Willem van Gogh 099.jpg", "title": "Landscape with Snow", "conf": "high", "from": {"was": [980, 797], "now": [1576, 1295], "served": [1576, 1295], "arDelta": 0.0103, "cat": "Landscape with Snow by Vincent van Gogh"}, "w": 1576, "h": 1295},
+"graceful-ascent": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Wassily_Kandinsky_-_Gentle_accent.jpg?width=3000", "file": "Wassily Kandinsky - Gentle accent.jpg", "title": "Graceful Ascent", "conf": "high", "from": {"was": [980, 976], "now": [4096, 4080], "served": [3000, 2988], "arDelta": 0.0002, "cat": "Graceful Ascent - Wassily Kandinsky"}, "w": 3840, "h": 3825},
+"yellow-cow": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Marc_die-gelbe-kuh.jpg?width=2390", "file": "Marc die-gelbe-kuh.jpg", "title": "Yellow Cow", "conf": "high", "from": {"was": [1067, 797], "now": [2390, 1767], "served": [2390, 1767], "arDelta": 0.0103, "cat": "Die gelbe Kuh (Franz Marc)"}},
+"black-obelisk-of-shalmaneser-iii": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Neo-Assyrian_Black_Limestone_Obelisk_of_Shalmaneser_III%2C_Nimrud%2C_825_BC.jpg?width=3000", "file": "Neo-Assyrian Black Limestone Obelisk of Shalmaneser III, Nimrud, 825 BC.jpg", "title": "Black Obelisk of Shalmaneser III", "conf": "high", "from": {"was": [1361, 2048], "now": [3456, 5184], "served": [3000, 4500], "arDelta": 0.0032, "cat": "Black Obelisk"}},
+"shahnameh-of-shah-tahmasp": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Qaran_Unhorses_Barman%2C_a_folio_from_the_Shahnameh_of_Shah_Tahmasp%2C_Tabriz%2C_about_1523_%E2%80%93_35._The_Sarikhani_Collection%2C_I.MS.4025.jpeg?width=3000", "file": "Qaran Unhorses Barman, a folio from the Shahnameh of Shah Tahmasp, Tabriz, about 1523 – 35. The Sarikhani Collection, I.MS.4025.jpeg", "title": "Shahnameh of Shah Tahmasp", "conf": "high", "from": {"was": [1458, 2200], "now": [3024, 4555], "served": [3000, 4519], "arDelta": 0.0017, "cat": "Shah Tahmasp's Shahnameh"}},
+"paule-gobillard-peignant": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Berthe_morisot_paule_gobillard_peignant_1887.jpg?width=3000", "file": "Berthe morisot paule gobillard peignant 1887.jpg", "title": "Paule Gobillard peignant", "conf": "high", "from": {"was": [1500, 1361], "now": [3477, 3119], "served": [3000, 2691], "arDelta": 0.0115, "cat": "Paule Gobillard peignant"}},
+"portrait-de-madame-claude-monet": {"src": "commons", "w": 3840, "h": 4658, "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste_Renoir_-_Camille_Monet.jpg?width=3000", "file": "Pierre-Auguste Renoir - Camille Monet.jpg", "title": "Portrait de madame Claude Monet", "conf": "high", "from": {"was": [1500, 1806], "now": [4687, 5685], "served": [3000, 3639], "arDelta": 0.0074, "cat": "Portrait de madame Claude Monet"}},
+"hellelil-and-hildebrand-the-meeting-on-the-turret-stairs": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hellelil_and_Hildebrand%2C_the_Meeting_on_the_Turret_Stairs%2C_by_Burton_1864.jpg?width=1931", "file": "Hellelil and Hildebrand, the Meeting on the Turret Stairs, by Burton 1864.jpg", "title": "Hellelil and Hildebrand, the meeting on the turret stairs", "conf": "high", "from": {"was": [1500, 2329], "now": [1931, 3000], "served": [1931, 3000], "arDelta": 0.0006, "cat": "Hellelil and Hildebrand or The Meeting on the Turret Stairs"}},
+"the-open-window": {"src": "nga", "img": "https://api.nga.gov/iiif/a808f8b1-2567-4c5a-b227-220f5c1fd470/full/3000,/0/default.jpg", "file": "Matisse-Open-Window.jpg", "title": "The Open Window", "conf": "high", "from": {"was": [1608, 1927], "now": [2012, 2424], "served": [2012, 2424], "arDelta": 0.0053, "cat": "Fenêtre ouverte, Collioure, by Henri Matisse"}, "w": 19678, "h": 23732, "iiif": "https://api.nga.gov/iiif/a808f8b1-2567-4c5a-b227-220f5c1fd470/info.json"},
+"paul-steck-ophelie": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/OpheliePaulAlbertSteck.JPG?width=1200", "file": "OpheliePaulAlbertSteck.JPG", "title": "Ophélie", "conf": "high", "from": {"was": [472, 800], "now": [1200, 2031], "served": [1200, 2031], "arDelta": 0.0014, "cat": "Ophélie (Paul Albert Steck)"}},
+"claude-monet-arm-of-the-seine-near-giverny": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Monet_-_Seine-Arm_bei_Giverny.jpg?width=1219", "file": "Monet - Seine-Arm bei Giverny.jpg", "title": "Arm of the Seine near Giverny", "conf": "high", "from": {"was": [684, 549], "now": [1219, 992], "served": [1219, 992], "arDelta": 0.0137, "cat": "Bras de Seine près de Giverny by Claude Monet"}},
+"vincent-van-gogh-enclosed-field-with-rising-sun": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent_Willem_van_Gogh_063.jpg?width=2536", "file": "Vincent Willem van Gogh 063.jpg", "title": "Enclosed Field with Rising Sun", "conf": "high", "from": {"was": [751, 590], "now": [2536, 1984], "served": [2536, 1984], "arDelta": 0.0042, "cat": "Enclosed Field with Rising Sun"}},
+"jean-baptiste-camille-corot-bacchanal-at-the-spring-souvenir": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Corot_-_Bacchanal_at_the_Spring_Souvenir_of_Marly-le-Roi%2C_1872.jpg?width=1286", "file": "Corot - Bacchanal at the Spring Souvenir of Marly-le-Roi, 1872.jpg", "title": "Bacchanal at the Spring: Souvenir of Marly-le-Roi", "conf": "high", "from": {"was": [1000, 1267], "now": [1286, 1600], "served": [1286, 1600], "arDelta": 0.0184, "cat": "Bacchanale de printemps : Souvenir de Marly-le-Roi(R2201) by Jean-Baptiste-Camille Corot"}},
+"henry-fuseli-thor-battering-the-midgard-serpent": {"src": "commons", "w": 2024, "h": 2855, "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Johann_Heinrich_F%C3%BCssli_011.jpg?width=2024", "file": "Johann Heinrich Füssli 011.jpg", "title": "Thor Battering the Midgard Serpent", "conf": "high", "from": {"was": [1415, 2000], "now": [2024, 2855], "served": [2024, 2855], "arDelta": 0.002, "cat": "Thor Battering the Midgard Serpent"}},
+"claude-monet-belle-ile-rocks-cote-sauvage": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Les_Rochers_de_Belle-%C3%8Ele%2C_la_C%C3%B4te_sauvage_(1886)_de_Claude_Monet_-_Mus%C3%A9e_d'Orsay_(W1000).jpg?width=850", "file": "Les Rochers de Belle-Île, la Côte sauvage (1886) de Claude Monet - Musée d'Orsay (W1000).jpg", "title": "Belle-Île Rocks, Côte Sauvage", "conf": "high", "from": {"was": [500, 409], "now": [850, 682], "served": [850, 682], "arDelta": 0.0195, "cat": "Les Rochers de Belle-Île, la Côte sauvage by Claude Monet"}},
+"henri-edmond-cross-la-chevelure": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri-edmon_cross%2C_la_capigliatura%2C_1892_ca._02.JPG?width=2304", "file": "Henri-edmon cross, la capigliatura, 1892 ca. 02.JPG", "title": "La Chevelure", "conf": "high", "from": {"was": [643, 850], "now": [2304, 3104], "served": [2304, 3104], "arDelta": 0.0188, "cat": "La Chevelure de Henri-Edmond Cross"}},
+"pierre-bonnard-l-amandier-en-fleurs": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Almond_Tree_3.jpg?width=866", "file": "Almond Tree 3.jpg", "title": "L'Amandier en fleurs", "conf": "high", "from": {"was": [662, 970], "now": [866, 1280], "served": [866, 1280], "arDelta": 0.0087, "cat": "L'Amandier en fleurs"}},
+"paul-signac-setting-sun-sardine-fishing-concarneau": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Signac_-_Setting_Sun._Sardine_Fishing._Adagio._Opus_221_from_the_series_The_Sea%2C_The_Boats%2C_Concarneau%2C_1891%2C_585.1998.jpg?width=2000", "file": "Signac - Setting Sun. Sardine Fishing. Adagio. Opus 221 from the series The Sea, The Boats, Concarneau, 1891, 585.1998.jpg", "title": "Setting Sun, Sardine Fishing, Concarneau", "conf": "high", "from": {"was": [745, 590], "now": [2000, 1596], "served": [2000, 1596], "arDelta": 0.0076, "cat": "Soleil couchant, pêche à la sardine, Concarneau by Paul Signac"}},
+"jozef-che-monski-bitwa-pod-el-teb-kawaleria-sudanska-prze-am": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/J%C3%B3zef_Che%C5%82mo%C5%84ski_Bitwa_pod_El_Teb_1884.jpg?width=3000", "file": "Józef Chełmoński Bitwa pod El Teb 1884.jpg", "title": "Bitwa pod El-Teb. Kawaleria sudańska przełamuje czworokąt Anglików", "conf": "high", "from": {"was": [800, 539], "now": [3000, 2008], "served": [3000, 2008], "arDelta": 0.0066, "cat": "Bitwa pod El-Teb. Kawaleria sudańska przełamuje czworokąt Anglików by Józef Chełmoński"}},
+"arshile-gorky-enigmatic-combat": {"src": "commons", "w": 3840, "h": 2880, "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Enigmatic_Combat_by_Arshile_Gorky%2C_1936-7%2C_oil_on_canvas%2C_SFMOMA_01.jpg?width=3000", "file": "Enigmatic Combat by Arshile Gorky, 1936-7, oil on canvas, SFMOMA 01.jpg", "title": "Enigmatic Combat", "conf": "high", "from": {"was": [1280, 962], "now": [4000, 3000], "served": [3000, 2250], "arDelta": 0.0021, "cat": "Enigmatic Combat by Arshile Gorky"}},
+"paul-cezanne-une-moderne-olympia": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Cezanne_eine-moderne-olympia.jpg?width=2193", "file": "Cezanne eine-moderne-olympia.jpg", "title": "Une moderne Olympia", "conf": "high", "from": {"was": [1411, 1200], "now": [2193, 1892], "served": [2193, 1892], "arDelta": 0.0142, "cat": "A Modern Olympia"}},
+"paul-cezanne-la-maison-du-pendu-auvers-sur-oise": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/La_Maison_du_pendu_Auvers-sur-Oise_-_Paul_C%C3%A9zanne.jpg?width=2874", "file": "La Maison du pendu Auvers-sur-Oise - Paul Cézanne.jpg", "title": "La Maison du pendu, Auvers-sur-Oise", "conf": "high", "from": {"was": [1460, 1200], "now": [2874, 2328], "served": [2874, 2328], "arDelta": 0.0147, "cat": "La Maison du pendu, Auvers-sur-Oise, by Paul Cézanne"}},
+"john-constable-the-opening-of-waterloo-bridge-whitehall-stai": {"src": "commons", "w": 3840, "h": 2278, "img": "https://commons.wikimedia.org/wiki/Special:FilePath/John_constable%2C_l'apertura_del_waterloo_bridge%2C_ante_1832%2C_03.jpg?width=3000", "file": "John constable, l'apertura del waterloo bridge, ante 1832, 03.jpg", "title": "The Opening of Waterloo Bridge (`Whitehall Stairs, June 18th, 1817')", "conf": "high", "from": {"was": [1536, 912], "now": [5472, 3246], "served": [3000, 1780], "arDelta": 0.0009, "cat": "The Opening of Waterloo Bridge (T04904)"}},
+"georges-seurat-seascape-at-port-en-bessin-normandy": {"src": "nga", "w": 31546, "h": 25392, "img": "https://api.nga.gov/iiif/f395c5e5-6711-487e-8c1b-747c698d1ef9/full/3000,/0/default.jpg", "file": "Georges Seurat, Seascape at Port-en-Bessin, Normandy, 1888, NGA 53139.jpg", "title": "Seascape at Port-en-Bessin, Normandy", "conf": "high", "from": {"was": [1576, 1253], "now": [4000, 3221], "served": [3000, 2416], "arDelta": 0.0127, "cat": "Seascape at Port-en-Bessin, Normandy by Georges Seurat"}, "iiif": "https://api.nga.gov/iiif/f395c5e5-6711-487e-8c1b-747c698d1ef9/info.json"},
+"wilhelm-trubner-ave-caesar-morituri-te-salutant": {"src": "commons", "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Berlin%2C_Alte_Nationalgalerie%2C_Wilhelm_Tr%C3%BCbner%2C_Ave%2C_Ceasar%2C_morituri_te_salutant.JPG?width=2885", "file": "Berlin, Alte Nationalgalerie, Wilhelm Trübner, Ave, Ceasar, morituri te salutant.JPG", "title": "Ave, Caesar, morituri te salutant", "conf": "high", "from": {"was": [1654, 2042], "now": [2885, 3552], "served": [2885, 3552], "arDelta": 0.0028, "cat": "Ave, Caesar, morituri te salutant by Wilhelm Trübner"}},
+"lodgepole-pines-lyell-fork-of-the-merced-river": {"src": "nga", "w": 4066, "h": 3232, "img": "https://api.nga.gov/iiif/0dce6c37-661c-4f0a-9da7-bac5ee0369dc/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/0dce6c37-661c-4f0a-9da7-bac5ee0369dc/info.json", "title": "Lodgepole Pines, Lyell Fork of the Merced River", "conf": "high"},
+"claude-monet-waterloo-bridge-london-at-dusk": {"src": "nga", "w": 18814, "h": 12079, "img": "https://api.nga.gov/iiif/a7858589-5528-4273-bb1a-638c6a3caca7/full/3000,/0/default.jpg", "iiif": "https://api.nga.gov/iiif/a7858589-5528-4273-bb1a-638c6a3caca7/info.json", "title": "Waterloo Bridge, London, at Dusk", "conf": "high"},
+"knud-baade-the-wreck": {"src": "vam", "w": 2500, "h": 1831, "img": "https://framemark.vam.ac.uk/collections/2007BP0917/full/3000,/0/default.jpg", "iiif": "https://framemark.vam.ac.uk/collections/2007BP0917/info.json", "title": "The Wreck", "conf": "high"},
+"francis-danby-disappointed-love": {"src": "vam", "w": 2500, "h": 2001, "img": "https://framemark.vam.ac.uk/collections/2006AP5663/full/3000,/0/default.jpg", "iiif": "https://framemark.vam.ac.uk/collections/2006AP5663/info.json", "title": "Disappointed Love", "conf": "high"},
+"john-constable-water-meadows-near-salisbury": {"src": "vam", "w": 2500, "h": 1875, "img": "https://framemark.vam.ac.uk/collections/2010EL1115/full/3000,/0/default.jpg", "iiif": "https://framemark.vam.ac.uk/collections/2010EL1115/info.json", "title": "Water Meadows near Salisbury", "conf": "high"},
+"john-constable-hampstead-heath-branch-hill-pond": {"src": "vam", "w": 1879, "h": 2500, "img": "https://framemark.vam.ac.uk/collections/2017KC7856/full/3000,/0/default.jpg", "iiif": "https://framemark.vam.ac.uk/collections/2017KC7856/info.json", "title": "Hampstead Heath, Branch Hill Pond", "conf": "high"},
+"john-constable-study-of-clouds": {"src": "vam", "w": 2500, "h": 1875, "img": "https://framemark.vam.ac.uk/collections/2014HA9998/full/3000,/0/default.jpg", "iiif": "https://framemark.vam.ac.uk/collections/2014HA9998/info.json", "title": "Study of Clouds", "conf": "high"},
+"john-constable-the-cottage-in-a-cornfield": {"src": "vam", "w": 2096, "h": 2500, "img": "https://framemark.vam.ac.uk/collections/2016JG8154/full/3000,/0/default.jpg", "iiif": "https://framemark.vam.ac.uk/collections/2016JG8154/info.json", "title": "The Cottage in a Cornfield", "conf": "high"},
+"john-constable-study-of-sky-and-trees": {"src": "vam", "w": 2500, "h": 1946, "img": "https://framemark.vam.ac.uk/collections/2006AN8460/full/3000,/0/default.jpg", "iiif": "https://framemark.vam.ac.uk/collections/2006AN8460/info.json", "title": "Study of Sky and Trees", "conf": "high"},
 };
