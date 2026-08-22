@@ -1663,7 +1663,7 @@ window.CANVAS_ARTWORKS = [
     wish: true, liked: true },
   { id: "philip-james-de-loutherbourg-shipwreck-scene", title: "Shipwreck Scene", artist: "Philip James de Loutherbourg", artistId: "philip-james-de-loutherbourg", qid: "Q114784510", qidTrusted: true, year: 1767,
     wish: true, liked: true },
-  { id: "gustav-klimt-portrait-of-marie-henneberg", title: "Portrait of Marie Henneberg", artist: "Gustav Klimt", artistId: "klimt", qid: "Q123688448", qidTrusted: true, year: 1910,
+  { id: "gustav-klimt-portrait-of-marie-henneberg", title: "Portrait of Marie Henneberg", artist: "Gustav Klimt", artistId: "klimt", qid: "Q123688448", qidTrusted: true, year: 1901,
     wish: true, floored: true },
   { id: "w-adys-aw-podkowinski-portret-wincentyny-karskiej", title: "Portret Wincentyny Karskiej", artist: "Władysław Podkowiński", artistId: "podkowinski", qid: "Q24083820", qidTrusted: true, year: 1891,
     wish: true, floored: true },
