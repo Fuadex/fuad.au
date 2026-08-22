@@ -79,6 +79,12 @@
 "to": "Nikopol",
 "type": "spelling",
 "reason": "track-number-prefixed OST spelling: the 'Gurren Lagann OST Disc 1' row titled this cue '10 - Nikopol' while the 'Gurren Lagann' row titled the same cue 'Nikopol'; scoped to canonical Taku Iwasaki so it unifies the two spellings of one cue"
+},
+{
+"from": "23 - To Hell with Your Combi / Gattai nante Kusokurae!! / 合体なんてクソくらえ!!",
+"to": "To Hell with Your Combi / Gattai nante Kusokurae!! / 合体なんてクソくらえ!!",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
 }
 ]
 },
@@ -4252,6 +4258,60 @@
 "to": "Sabotage",
 "type": "variant",
 "reason": "variant: distinct live recording (YouTube-caption title), link to canonical for reads"
+},
+{
+"from": "01 - With You (Rock am Ring 03.06.2001)",
+"to": "With You (Rock am Ring 03.06.2001)",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "04 - By Myself (Rock am Ring 03.06.2001)",
+"to": "By Myself (Rock am Ring 03.06.2001)",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "03 - Papercut (Rock am Ring 03.06.2001)",
+"to": "Papercut (Rock am Ring 03.06.2001)",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "05 - Points Of Authority (Rock am Ring 03.06.2001)",
+"to": "Points Of Authority (Rock am Ring 03.06.2001)",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "02 - Runaway (Rock am Ring 03.06.2001)",
+"to": "Runaway (Rock am Ring 03.06.2001)",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "07 - Crawling (Rock am Ring 03.06.2001)",
+"to": "Crawling (Rock am Ring 03.06.2001)",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "01 - With You (Milan 19.09.2001)",
+"to": "With You (Milan 19.09.2001)",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "08 - Pushing Me Away (Rock am Ring 03.06.2001)",
+"to": "Pushing Me Away (Rock am Ring 03.06.2001)",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "11 - A Place For My Head (Rock am Ring 03.06.2001)",
+"to": "A Place For My Head (Rock am Ring 03.06.2001)",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
 }
 ],
 "albums": [
@@ -5623,6 +5683,72 @@
 "to": "Metal Forces",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "02 - Born For War",
+"to": "Born For War",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "03 - The Sound Of Violence",
+"to": "The Sound Of Violence",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "05 - Rest In Pieces",
+"to": "Rest In Pieces",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "08 - Antitheist",
+"to": "Antitheist",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "07 - Hatebox",
+"to": "Hatebox",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "04 - Code Black",
+"to": "Code Black",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "01 - Into The Abyss (Intro)",
+"to": "Into The Abyss (Intro)",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "06 - Godhead",
+"to": "Godhead",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "11 - Bomber (feat. Phil Campbell & Tom Angelripper)",
+"to": "Bomber (feat. Phil Campbell & Tom Angelripper)",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "10 - End Of The Storm (Outro)",
+"to": "End Of The Storm (Outro)",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "09 - Suicideology",
+"to": "Suicideology",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
 }
 ]
 },
@@ -11931,6 +12057,138 @@
 "to": "Losing My Religion",
 "type": "variant",
 "reason": "variant: distinct live recording (YouTube-caption title), link to canonical for reads"
+}
+]
+},
+"Gurren Lagann OST Disc 2": {
+"tracks": [
+{
+"from": "02 - Rap is Man's Soul!  / Rappu ha Kan no Tamashii ...",
+"to": "Rap is Man's Soul!  / Rappu ha Kan no Tamashii ...",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+}
+]
+},
+"Voivod": {
+"tracks": [
+{
+"from": "02 - Panorama",
+"to": "Panorama",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+}
+]
+},
+"Iron Angel": {
+"tracks": [
+{
+"from": "02 - metalstorm",
+"to": "metalstorm",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "01 - Winds Of War",
+"to": "Winds Of War",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+}
+]
+},
+"Dragon": {
+"tracks": [
+{
+"from": "05 - Horde Of Gog",
+"to": "Horde Of Gog",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "04 - Beliar",
+"to": "Beliar",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "03 - Eternal Rest",
+"to": "Eternal Rest",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "02 - Seven Bowls Of Wrath",
+"to": "Seven Bowls Of Wrath",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "01 - The Priest Of Betray",
+"to": "The Priest Of Betray",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+}
+]
+},
+"Bywar": {
+"tracks": [
+{
+"from": "11 - At Trance With Metal",
+"to": "At Trance With Metal",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "10 - Void (Another Dimension)",
+"to": "Void (Another Dimension)",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "09 - Cerebral Death... Almost Decreted",
+"to": "Cerebral Death... Almost Decreted",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "08 - The \"Hole\" Grail",
+"to": "The \"Hole\" Grail",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "07 - Inquisition",
+"to": "Inquisition",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "06 - The Last Life",
+"to": "The Last Life",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "03 - The Twin Of Icon",
+"to": "The Twin Of Icon",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+}
+]
+},
+"Amebix": {
+"tracks": [
+{
+"from": "02 - Control",
+"to": "Control",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "01 - Battery Humans",
+"to": "Battery Humans",
+"type": "spelling",
+"reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
 }
 ]
 }
