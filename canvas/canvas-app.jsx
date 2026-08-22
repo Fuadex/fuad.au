@@ -62,7 +62,7 @@ const MEDIA = [["painting", "paintings"], ["sculpture", "sculpture"], ["paper", 
 // Google-Art-class giga scans (~10k px+); 20MP = ~5k px, deep-zoom really rewards; 4MP = the
 // ~2400px stage-A floor, solid full-screen; below that is a plate. Unknown size = no bucket,
 // excluded when the filter is on (same no-guess rule as medium).
-const QUALITY = [["giga", "gigapixel"], ["ultra", "ultra · 20MP+"], ["high", "high · 4MP+"], ["plate", "plate"]];
+const QUALITY = [["giga", "gigapixel"], ["ultra", "ultra · 20MP+"], ["high", "high · 4MP+"], ["plate", "plate"], ["iiif", "tiled · IIIF"]];
 const qualityOf = (w) => {
   const h = HIRES[w.id];
   let px = h && h.w && h.h ? h.w * h.h : null;
@@ -70,6 +70,10 @@ const qualityOf = (w) => {
   if (!px) return null;
   return px >= 100e6 ? "giga" : px >= 20e6 ? "ultra" : px >= 4e6 ? "high" : "plate";
 };
+// "iiif" is a cross-cutting TAG, not a size bucket (Fuad 2026-08-23) — works whose holder serves
+// a real tile pyramid (NGA/AIC/CMA/V&A…), i.e. progressive zoom with no texture ceiling. It ORs
+// with the size chips like everything else in the group.
+const qualMatch = (w, ks) => ks.some(k => k === "iiif" ? !!(HIRES[w.id] && HIRES[w.id].iiif) : qualityOf(w) === k);
 function enrich(w) {
   const d = AD.artworks[w.id] || {};
   const artist = AD.artists[w.artistId] || {};
@@ -527,7 +531,7 @@ function Wall({ go, styleIds }) {
   // Live facet counts. Both rows count against `base` — every filter EXCEPT their own — and each
   // also honours the other, so with Sculpture on, the style numbers are sculpture-only. A chip that
   // would return nothing shows 0 rather than lying with the all-time total.
-  const qualPass = (w) => { const q = qualityOf(w); return q && qual.includes(q); };
+  const qualPass = (w) => qualMatch(w, qual);
   const movCounts = useMemo(() => {
     const c = {};
     let list = media.length ? base.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); }) : base;
@@ -548,7 +552,10 @@ function Wall({ go, styleIds }) {
     if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
     if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
     const c = {};
-    for (const w of list) { const q = qualityOf(w); if (q) c[q] = (c[q] || 0) + 1; }
+    for (const w of list) {
+      const q = qualityOf(w); if (q) c[q] = (c[q] || 0) + 1;
+      if (qualMatch(w, ["iiif"])) c.iiif = (c.iiif || 0) + 1;
+    }
     return c;
   }, [base, sel, media]);
   // era counts follow every other filter but not the era selection itself — same facet rule as
@@ -560,7 +567,7 @@ function Wall({ go, styleIds }) {
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
     if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
     if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
-    if (qual.length) list = list.filter(w => { const q = qualityOf(w); return q && qual.includes(q); });
+    if (qual.length) list = list.filter(w => qualMatch(w, qual));
     const c = {};
     for (const [k] of ERAS) c[k] = 0;
     for (const w of list) for (const [k] of ERAS) if (eraPass(w, k)) c[k]++;
@@ -588,8 +595,8 @@ function Wall({ go, styleIds }) {
     // and quietly sweeping it into "paintings" is the guess this pipeline refuses to make.
     if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
     // quality buckets OR like media; a work with no known pixel size is excluded once a chip is
-    // on — unknown is unknown, not "plate"
-    if (qual.length) list = list.filter(w => { const q = qualityOf(w); return q && qual.includes(q); });
+    // on — unknown is unknown, not "plate". "iiif" ORs in as a cross-cutting tag.
+    if (qual.length) list = list.filter(w => qualMatch(w, qual));
     const arr = [...list];
     // TODAY'S HANG short-circuits the sort: its order IS the content — pinned leads first, then the
     // day-seeded spread. The chips still narrow it, so "today's hang, 1890s only" works, but nothing
@@ -950,6 +957,30 @@ function resolveOSDSource(work) {
   if (work.hires && work.hires.iiif) {
     const src = (work.hires.src || "").toUpperCase();
     return { tileSource: work.hires.iiif, cors: "Anonymous", label: src ? `deep zoom via ${src}` : "deep zoom" };
+  }
+  // COMMONS PYRAMID (Fuad 2026-08-23, "the middle path"): museums without IIIF (MoMA, Orsay…)
+  // only exist as flat Commons giga-files, and those can NEVER load whole (WebGL ~16k texture
+  // ceiling; the Starry Night original is 696MB — never plugged in as-is). A legacy image
+  // pyramid of Commons SERVER-RENDERED sizes gets progressive zoom with zero hosting: each
+  // level is one thumb (1600→3200→6400→~12.8k long-side cap), fetched only when the zoom needs
+  // it. The untouched original stays a reader-footer link. Levels must always be FilePath
+  // renders — never the raw original (which may also be TIFF).
+  if (work.hires && work.hires.src === "commons" && work.hires.orig && work.hires.w && work.hires.h
+      && Math.max(work.hires.w, work.hires.h) > 6600) {
+    const { w, h, orig } = work.hires;
+    const file = decodeURIComponent(orig.split("/").pop());
+    const capW = (h > w ? Math.round(12800 * w / h) : 12800);
+    const widths = [1600, 3200, 6400, capW].filter((x, i, a) => x < w && a.indexOf(x) === i).sort((a, b) => a - b);
+    const levels = widths.map(lw => ({
+      url: proxied("https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(file) + "?width=" + lw),
+      width: lw, height: Math.round(h * lw / w),
+    }));
+    if (levels.length > 1) {
+      const top = levels[levels.length - 1];
+      const mp = Math.round(top.width * top.height / 1e6);
+      return { tileSource: { type: "legacy-image-pyramid", levels }, cors: "Anonymous",
+        label: `progressive zoom · ${mp} MP` };
+    }
   }
   if (work.hires && work.hires.img) {
     const src = (work.hires.src || "").toUpperCase();
