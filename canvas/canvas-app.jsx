@@ -2833,8 +2833,10 @@ function MapView({ go }) {
     // seventh pass (Fuad: "even shorter, probably by another half — way too long and
     // overlapping"): the collar sits ON the rim (dot centre at rim + 60% of dot radius, so
     // the dot visibly touches its bubble) and the band is 0.45 — leaders are nubs now.
+    // Eighth pass (Fuad 2026-08-22: "further reduced in length, another half"): band 0.45 →
+    // 0.22, so the leaders that still cleared the collar floor halve again.
     const lo = (mk.keepR || 0) * bubZoom * dotMul + 2 * dotZoom * dotMul * 0.6;
-    const newLen = Math.min(lo + 0.45, Math.max(lo, len * fanK));
+    const newLen = Math.min(lo + 0.22, Math.max(lo, len * fanK));
     return [mk.bx + ox / len * newLen, mk.by + oy / len * newLen];
   };
   // DOT ZOOM (Fuad 2026-08-22: "the dots can start initially smaller — when zoomed in they can
