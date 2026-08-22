@@ -2994,4 +2994,48 @@ by: "Opus · Fable" },
 "hiromitsu-nakazawa-mist-nude": {
 about: "A yōga (Western-style oil) painter, Nakazawa Hiromitsu (1874–1964) trained under Kuroda Seiki, whose Paris-schooled nudes had ignited public scandal in 1890s Japan and made the naked figure a charged emblem of imported academicism. Nakazawa carried that lineage through the Hakubakai circle into 1907 — the year Japan's government launched its first Bunten salon, the state's bid to institutionalise Western oil alongside native painting.",
 by: "Opus · Fable" },
+
+// ——— import-canon Info wave 2, phase A (Fuad-approved 2026-08-22) — per-painting Opus research,
+// Fable QC. Two agent hypothesis-kills recorded in the session log (Petworth gouache group; Rigi
+// Griffith watercolours) — prompt hints are leads to test, not facts to use.
+
+"kawabata-ryushi-kinkakuji-temple-on-fire": {
+about: "On 2 July 1950 a young acolyte set fire to Kyoto's Kinkaku-ji, the incident Mishima would fictionalise in his 1956 novel. Kawabata Ryūshi — the nihonga painter of monumental \"exhibition-hall art\" and founder of the Seiryūsha society — never witnessed the blaze; he read of it in a newspaper and worked the image up from memory, in ink, vermilion and gold. He showed it barely two months later at the Seiryūsha exhibition, so soon that some dismissed the picture as journalism rather than art.",
+by: "Opus · Fable" },
+
+"claude-monet-charing-cross-bridge-in-london": {
+about: "Between 1899 and 1904 Monet worked some thirty-seven canvases of this Thames crossing, chasing the moment steam from the railway that gave the bridge its name dissolved into London's coal haze — the industrial motif that sets the Charing Cross group apart from his Waterloo and Parliament sequences. This version was bought by the Japanese magnate Kōjirō Matsukata; France sequestered his collection as enemy property in the war, and its 1959 return to Japan was made conditional on building a dedicated museum in Tokyo.",
+by: "Opus · Fable" },
+
+"jean-baptiste-camille-corot-erinnerung-an-coubron": {
+about: "Corot invented the \"souvenir\" himself: a landscape painted not before the motif but from memory, the topography dissolved into mood and silvery atmosphere. He first came to Coubron, a hamlet east of Paris, in 1867; after the Commune he returned to a doctor friend there and worked up some five landscapes from those excursions. This one dates to 1872, three years before his death, when the late manner was in such demand that his estate sale drew buyers from across Europe and America.",
+by: "Opus · Fable" },
+
+"j-m-w-turner-sun-setting-over-a-lake": {
+about: "Scholars read the pale strokes at this canvas's right edge as snow-capped Alps — likely the mountains around Lucerne — tying it to Turner's late fixation on the Swiss lakes he toured again and again in his final travelling years. Beyond that hedged identification it keeps its secrets: no title of his own, no buyer, no showing in his lifetime.",
+by: "Opus · Fable" },
+
+"j-m-w-turner-the-long-cellar-at-petworth": {
+about: "For a decade Turner treated Petworth House almost as a second home, given the run of the place by George Wyndham, 3rd Earl of Egremont — an eccentric patron who set aside a private studio room for him along the north front. The connection deepened after Turner's father died in 1829, and closed with the Earl's death in 1837. He painted a cluster of Petworth interiors across those years; this dim oil is the largest in scale, at odds with the small blue-paper studies most associated with the house.",
+by: "Opus · Fable" },
+
+"j-m-w-turner-sunset-from-the-top-of-the-rigi": {
+about: "A rare Turner: though the Rigi obsessed him across his late Swiss tours of 1841–44, he almost always painted the mile-high Lucerne peak from across the water, not this view from its summit. The oil was worked up in the studio for the Belfast collector Francis McCracken — who rejected the commission, reportedly uneasy with the dissolving late manner. It never reached its buyer, and was never finished.",
+by: "Opus · Fable" },
+
+"edouard-manet-a-game-of-croquet": {
+about: "In 1873 Manet set up his easel in the Paris garden of the Belgian painter Alfred Stevens and worked en plein air for the first time. The players are his own circle: Stevens himself, the model Victorine Meurent — the nude of Olympia and Le Déjeuner sur l'herbe — the model Alice Lecouvé, and his friend Paul Roudier behind them. Croquet was the fashionable pastime of private gardens, and the idle scene is a calculated one: its bourgeois couples are in fact artists paired with their models.",
+by: "Opus · Fable" },
+
+"j-m-w-turner-tell-s-chapel-lake-lucerne": {
+about: "Turner's first of four late summer tours to Lucerne came in 1841, working up Swiss \"sample studies\" that his agent Thomas Griffith showed to patrons who might commission finished sheets. The chapel on the Urnersee shore marks the Tellensprung, where William Tell supposedly leapt from Gessler's boat to spark the Swiss revolt — a legend then at fever pitch through Schiller's play and Rossini's opera. The sheet itself is watercolour with gouache and scraping-out, the working medium of those tours.",
+by: "Opus · Fable" },
+
+"narcisse-virgilio-diaz-forest-interior-with-wood-gatherer": {
+about: "The orphan of Spanish émigrés, Díaz lost a leg to a childhood snakebite in the Meudon woods and crossed the Fontainebleau forests on a wooden stump; he began painting porcelain at Sèvres before joining the Barbizon core. In 1863, meeting a young Renoir in that forest, he told him to lighten his palette and paid for the younger man's canvases and pigments — Renoir called him his \"grand homme.\" Wood-gatherers were a Barbizon staple, rooted in real forest-commons gathering rights.",
+by: "Opus · Fable" },
+
+"albert-lebourg-vue-de-rouen-depuis-le-mont-gargan": {
+about: "A Rouen-trained Impressionist and central figure of the so-called Rouen School, Albert Lebourg (1849–1928) taught drawing in Algiers until 1877 before showing thirty works at the fourth Impressionist exhibition in 1879 and twenty at the fifth. By 1905 he was an established name, with a silver medal from the 1900 Exposition Universelle and a 111-work retrospective behind him.",
+by: "Opus · Fable" },
 };
