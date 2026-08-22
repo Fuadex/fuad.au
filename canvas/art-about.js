@@ -2924,4 +2924,31 @@ by: "Opus · Fable" },
 "georges-lemmen-beach-at-heist": {
 about: "Georges Lemmen joined the Brussels avant-garde group Les XX in 1888, converted to pointillism after Seurat exhibited there. Painted around 1891, this small panel builds flat coloured zones from tiny dots edged with complementaries — already bending Seurat's science toward the Art Nouveau stylisation Lemmen would pursue.",
 by: "Opus · Fable" },
+
+// ——— wave-1 redrafts (Fuad-approved 2026-08-22) — the six that failed the padding/template QC,
+// rebuilt on per-work verified hooks (1906 Tate showing, Finberg 1909, Gesunda 1906, Bullerö 1908).
+
+"j-m-w-turner-a-river-seen-from-a-hill": {
+about: "A late canvas Turner kept entirely to himself — no title of his own, no exhibition, no known buyer in mind; the descriptive name is the Bequest cataloguers' best guess at what they were looking at. Unusually for the group it is nearly square, and worked far enough to hold a full composition before he set it aside.",
+by: "Opus · Fable" },
+
+"j-m-w-turner-sunrise-with-a-boat-between-headlands": {
+about: "When the Tate first hung a group of Turner's unexhibited late canvases in 1906, half a century after his death, pictures like this 1842 sunrise startled a public that thought Impressionism had invented such light. It had spent its whole existence in storage: Turner never named it, never showed it, never sold it.",
+by: "Opus · Fable" },
+
+"j-m-w-turner-seascape-with-distant-coast": {
+about: "It took A. J. Finberg until 1909 to inventory the nineteen thousand sheets the Turner Bequest contained; the unexhibited oils, this c. 1840 seascape among them, waited even longer for individual identities. Painted with no buyer, subject-title or exhibition in mind — a private late marine from a painter done explaining himself.",
+by: "Opus · Fable" },
+
+"nils-kreuger-nightfall": {
+about: "A horse in the last of the light — the subject Kreuger returned to constantly after his Varberg years, when he, Richard Bergh and Karl Nordström had painted twilight side by side as a colony of three. By 1904 he had developed his signature manner of drawing contours in short dotted strokes over thin paint, closer to illustration than academy finish.",
+by: "Opus · Fable" },
+
+"anders-zorn-hemlandstoner": {
+about: "Zorn didn't just paint the folk world of his native Dalarna — he bankrolled it, staging Sweden's first fiddlers' competition at Gesunda in 1906 and helping set off the national folk-music revival. Painted in 1920, the last year of his life, this scene of home musicians is that campaign's quiet coda: the tunes he spent his fame protecting, played where they belonged.",
+by: "Opus · Fable" },
+
+"bruno-liljefors-curlew": {
+about: "Liljefors worked like a naturalist — he hunted, kept wild birds, and crouched camouflaged in the terrain for hours, arguing a painter had no business with nature he hadn't watched breathe. This 1907 curlew comes from the years his bird pictures were financing something grander: the next year he bought the outer-archipelago island of Bullerö as a private hunting and painting ground.",
+by: "Opus · Fable" },
 };
