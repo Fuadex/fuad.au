@@ -926,20 +926,34 @@ function resolveOSDSource(work) {
 // "Full resolution" escape hatch (Fuad 2026-08-22: "include the super high res version somewhere
 // as part of the reader as an option", then "have the button literally swap the source so that it
 // can still be viewed with openseadragon"). Giga-scan art_hires entries cap their in-app `img` at
-// a 6000px thumb and keep the true original in `orig`; this button swaps the LIVE viewer between
-// the two — the original stays strictly opt-in because these files run to hundreds of MP (the
-// Starry Night original is ~1.5 GP; expect a real wait on click, which the MP label advertises).
-// Direct url on purpose: the giant one-shot fetch shouldn't ride the image proxy's cache.
+// a 6000px thumb and keep the true original in `orig`; this button swaps the LIVE viewer.
+// GPU CEILING (found live on Ginevra + Van Gogh, same day: "WebGL: INVALID_VALUE: texImage2D") —
+// OSD renders a type:"image" source as ONE texture and WebGL's max texture size is typically
+// 16384px, so a 23k/44k original can NEVER display whole. Above a safe 12000px long side the
+// button therefore loads a Commons-rendered thumb at that cap: still 2x the standard 6000px
+// plate, ~140MP of real pixels — the practical single-image ceiling in a browser. The untouched
+// original stays linked in the tooltip semantics via `orig` for anything else we build later.
+const FULLRES_CAP = 12000;
+function fullResTarget(h) {
+  const w = h.w || 0, hh = h.h || 0, long = Math.max(w, hh);
+  if (!long || long <= FULLRES_CAP) return { url: h.orig, w, h: hh };
+  const file = decodeURIComponent(h.orig.split("/").pop());
+  const outW = w >= hh ? FULLRES_CAP : Math.round(FULLRES_CAP * w / hh);
+  return { url: "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(file) + "?width=" + outW,
+    w: outW, h: Math.round(hh * outW / w) };
+}
 function FullResLink({ work, viewerRef }) {
   const h = work && work.hires;
   const [on, setOn] = useState(false);
   const [loading, setLoading] = useState(false);
   if (!h || !h.orig) return null;
-  const mp = h.w && h.h ? Math.round(h.w * h.h / 1e6) : null;
+  const t = fullResTarget(h);
+  const capped = t.url !== h.orig;
+  const mp = t.w && t.h ? Math.round(t.w * t.h / 1e6) : null;
   const swap = () => {
     const v = viewerRef && viewerRef.current;
     if (!v || loading) return;
-    const url = on ? proxied(h.img) : h.orig;
+    const url = on ? proxied(h.img) : t.url;
     setLoading(true);
     const done = () => { setLoading(false); v.removeHandler("open", done); v.removeHandler("open-failed", fail); };
     const fail = () => { setLoading(false); setOn(on); v.removeHandler("open", done); v.removeHandler("open-failed", fail); };
@@ -949,12 +963,14 @@ function FullResLink({ work, viewerRef }) {
   };
   return (
     <button className="cv-osd-fullres" onClick={swap}
-      title={on ? "Back to the standard plate" : "Load the untouched original scan into the viewer" + (h.w ? ` — ${h.w}×${h.h}px (large download)` : "")}
+      title={on ? "Back to the standard plate"
+        : (capped ? `Load a ${t.w}×${t.h}px render — the browser's single-image ceiling; the untouched ${h.w}×${h.h}px scan lives on Commons`
+                  : `Load the untouched original scan — ${h.w}×${h.h}px`) + " (large download)"}
       style={{ fontFamily: "var(--mono, monospace)", fontSize: 10, letterSpacing: ".08em",
         color: on ? "var(--ink, #ddd)" : "var(--ink-faint, #999)", background: "rgba(10,10,12,.45)",
         border: "1px solid rgba(255,255,255,.18)", borderRadius: 100, padding: "3px 10px",
         whiteSpace: "nowrap", cursor: "pointer" }}>
-      {loading ? "loading…" : on ? "standard plate ↙" : `full resolution${mp ? ` · ${mp} MP` : ""}`}
+      {loading ? "loading…" : on ? "standard plate ↙" : `max zoom${mp ? ` · ${mp} MP` : ""}`}
     </button>
   );
 }
