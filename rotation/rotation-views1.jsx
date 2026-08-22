@@ -80,7 +80,8 @@ function OvCalRail({ go, onYear, onPeriod, init }) {
   const _ip = init && init.period, _ik = _ip && init.period.key;
   const [yr, setYr] = React.useState((_ik && +_ik.slice(0, 4)) || (init && init.year) || now.getUTCFullYear());
   const [mo, setMo] = React.useState((_ik && _ik.length >= 7 ? +_ik.slice(5, 7) - 1 : now.getUTCMonth()));   // 0-11
-  const [gran, setGran] = React.useState((_ip && init.period.gran) || "day");   // day | week | month
+  // default granularity week, not day (Fuad 2026-08-22) — a deep-linked period still wins
+  const [gran, setGran] = React.useState((_ip && init.period.gran) || "week");   // day | week | month
   React.useEffect(() => {
     if (window.ROTATION_CAL) return;
     let s = document.getElementById("rotation-cal-js");
@@ -571,6 +572,11 @@ function OverviewView({ t, go, restReady, seed }) {
     for (const a of R.ARTISTS) if (a.seenLive) live += a.plays || 0;
     return T.scrobbles ? Math.round(live / T.scrobbles * 100) : 0;
   }, [R]);
+  // Filter-scoped variant (Fuad 2026-08-22): the map band reports livePlays off the same Results
+  // rows as plays, so under any place/genre/year/calendar filter the stat becomes that slice's
+  // own seen-live share instead of freezing at the lifetime number.
+  const seenLiveShown = (fStats && fStats.active && fStats.plays > 0 && fStats.livePlays != null)
+    ? Math.round(fStats.livePlays / fStats.plays * 100) : seenLivePct;
   const now = useLiveNow(); const nowArtist = R.byId[now.artistId] || { hue: 200, tags: [] };
   const npKnown = !!(R.byId[now.artistId] || (R.expById && R.expById[now.artistId]) || (R.played && R.played(now.artist)));
 
@@ -666,7 +672,7 @@ function OverviewView({ t, go, restReady, seed }) {
                 {T.albumsLP != null && <Stat n={fmt(T.albumsLP)} sub="albums played" onClick={() => go("shelves")} />}
                 {T.epsSingles != null && <Stat n={fmt(T.epsSingles)} sub="EPs & singles" onClick={() => go("shelves")} />}
                 {T.tracks != null && <Stat n={fmt(T.tracks)} sub="songs played" onClick={() => go("explore")} />}
-                {seenLivePct > 0 && <Stat n={seenLivePct + "%"} sub="plays · seen live" onClick={() => go("gigs")} />}
+                {seenLivePct > 0 && <Stat n={seenLiveShown + "%"} sub={fStats && fStats.active ? "seen live · filtered" : "plays · seen live"} onClick={() => go("gigs")} />}
                 <Stat n={flt ? flt.avgDay : T.perDay} sub={flt ? "avg/day · " + flt.label : "avg / day"} />
                 {/* Filtered, this slot shows DEPTH, not share (Fuad 2026-08-20). It used to become
                     "% of all plays", which is the same quantity the tenth stat spells out as "of
