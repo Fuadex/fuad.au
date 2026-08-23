@@ -2701,7 +2701,7 @@ function MapView({ go }) {
   // city-bubble anchor and run through a relaxation pass identical in spirit to relaxFan, so the ♥
   // dots share the city bubble's parent and never overlap. (Only shown in the all-cities view; during
   // focus the museum work-fans take over.)
-  const { wishMarkers, wishFar, wishFarByKey, wishTotals, wishCountries, wishCities, wishUnplaced, wishList } = useMemo(() => {
+  const { wishMarkers, wishCityRings, wishFar, wishFarByKey, wishTotals, wishCountries, wishCities, wishUnplaced, wishList } = useMemo(() => {
     const wishes = WORKS.map(enrich).filter(isUnseen);
     // WHERE A WANTED WORK GOES ON THE MAP (2026-08-19). It used to key off seenAt — the venue Fuad
     // stood in — which for a work he has NOT seen is empty by definition. After the photo import
@@ -2794,6 +2794,7 @@ function MapView({ go }) {
     // Far cities cap lower (6): 118 of the 206 hold a single work anyway, and the far layer plus
     // its halos must stay lighter than the lived layer both visually and per frame.
     const HALO_CAP = 10, FAR_HALO_CAP = 6;
+    const cityRings = new Map();   // city -> outermost ring index, so labels can clear the halo
     const halosOf = [];
     for (const entry of Object.values(byCity)) {
       const c = entry.c;
@@ -2857,7 +2858,8 @@ function MapView({ go }) {
       // frame; the renderer only scales it by the rendered dot size, which is what overlap
       // actually depends on.
       {
-        const STEP = 2.6;                                       // ring pitch, world units ~ one dot
+        const STEP = 2.2;                                       // ring pitch: hex packing, the
+        // half-slot spin below interleaves neighbouring rings so this can sit under one diameter
         const ordered = nodes.slice().sort((a, b) =>
           Math.hypot(a.x - bx, a.y - by) - Math.hypot(b.x - bx, b.y - by));
         let ring = 0, placed = 0, cap = 0, ringR = 0;
@@ -2874,6 +2876,7 @@ function MapView({ go }) {
           placed++;
           markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue,
             far: halo.far, keepR: cr, ring, ringAng: ang, ringStep: STEP });
+          cityRings.set(c.city, Math.max(cityRings.get(c.city) || 0, ring));
         }
       }
     }
@@ -2945,6 +2948,7 @@ function MapView({ go }) {
     return {
       wishCountries: sortedCountries,
       wishMarkers: markers,
+      wishCityRings: cityRings,
       wishFar: farList,
       wishFarByKey: farByKey,
       wishTotals: totals,
@@ -3041,7 +3045,12 @@ function MapView({ go }) {
   // DOT ZOOM (Fuad 2026-08-22: "the dots can start initially smaller — when zoomed in they can
   // be the size they are"). Halo dots render at 60% in the resting world view and ramp to full
   // size as the viewBox narrows; k = vb.w/880, full size from a 2.5x zoom (k ≤ 0.4) on down.
-  const dotZoom = Math.max(0.5, Math.min(1, 0.4 / k));
+  // Resting floor 0.5 -> 0.34 (Fuad 2026-08-24: "further halve the line distance"). With dots
+  // ring-packed at one diameter's spacing, the halo's reach IS a multiple of the rendered dot
+  // size — so at constant dot size the reach cannot be halved without dots touching. Shrinking
+  // the resting dot is the only lever that buys distance without reintroducing overlap. Full
+  // size from a 2.5x zoom on down, unchanged.
+  const dotZoom = Math.max(0.34, Math.min(1, 0.4 / k));
   // Same idea for the CITY BUBBLES, harder (Fuad, same day: "the large city blobs should be
   // half the size when starting from the furthest" — the resting view was "super busy").
   // Half size at the world view, full from the same 2.5x zoom. Render-only: the world-unit
@@ -3414,7 +3423,14 @@ function MapView({ go }) {
                 {/* the halo is capped, so the city's real want-to-see total is stated here rather
                     than implied by a count of dots that is deliberately not all of them */}
                 <title>{c.city} — {c.n} work{c.n !== 1 ? "s" : ""} seen · {c.museums.length} museum{c.museums.length !== 1 ? "s" : ""}{wishTotals[c.city] ? ` · ${wishTotals[c.city]} still to see` : ""}{c.n ? " · click to open" : ""}</title>
-                {(c.n >= 8 || fs > 1.25) && <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 8 * k * dotMul * labelZoom }}>{c.city}</text>}
+                {/* CITY LABEL (Fuad 2026-08-24: "the name of the city always above the city blob
+                    it represents", and "make sure it doesn't obfuscate the dots"). Two changes:
+                    it is no longer gated on size or the lens — every city is named, always — and
+                    it clears the WHOLE halo rather than the bubble rim, so it can never sit on
+                    top of the work dots ringed around the blob. */}
+                <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 2.4
+                      + ((wishCityRings.get(c.city) || 0) + 1) * 2.2 * dotZoom * dotMul) * k}
+                  textAnchor="middle" style={{ fontSize: 8 * k * dotMul * labelZoom }}>{c.city}</text>
               </g>
             );
           })}
