@@ -2844,10 +2844,37 @@ function MapView({ go }) {
       // the rim of a bubble drawn at half that size (Fuad 2026-08-22, fourth line-length pass).
       // solvedMax = the furthest any of THIS city's dots was pushed. The renderer needs it to
       // rank a dot within its own halo instead of pinning every dot to one collar (see fanAt).
+      // RING PACKING (Fuad 2026-08-24, after three failed line-length passes: "the lines are
+      // still too long", "dots still are overlapping"). Every previous attempt rescaled the
+      // SOLVED offsets — and that is the bug. Contracting a fan radially keeps each dot's angle
+      // while shrinking the arc it sits on, so the tighter the leaders get the more the dots
+      // collide. Length and overlap were fighting each other and both lost.
+      //   Instead: throw the solved distance away and lay the dots out in concentric rings,
+      // each ring holding only as many as its circumference fits at one dot-diameter spacing.
+      // Non-overlap is then guaranteed by construction, and the halo is as tight as it can
+      // physically be — ring 0 sits on the rim. Solved order is preserved (nearest stays
+      // nearest) so the layout still reflects the collision solve. Computed once here, not per
+      // frame; the renderer only scales it by the rendered dot size, which is what overlap
+      // actually depends on.
       {
-        let solvedMax = 0;
-        for (const nd of nodes) solvedMax = Math.max(solvedMax, Math.hypot(nd.x - bx, nd.y - by));
-        for (const nd of nodes) markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue, far: halo.far, keepR: cr, solvedMax });
+        const STEP = 2.6;                                       // ring pitch, world units ~ one dot
+        const ordered = nodes.slice().sort((a, b) =>
+          Math.hypot(a.x - bx, a.y - by) - Math.hypot(b.x - bx, b.y - by));
+        let ring = 0, placed = 0, cap = 0, ringR = 0;
+        const nextRing = () => {
+          ringR = cr + STEP * (ring + 0.5);
+          cap = Math.max(1, Math.floor((2 * Math.PI * ringR) / STEP));
+          placed = 0;
+        };
+        nextRing();
+        for (const nd of ordered) {
+          if (placed >= cap) { ring++; nextRing(); }
+          // spin each ring by a half-slot so successive rings do not line up into spokes
+          const ang = (placed + (ring % 2) * 0.5) / cap * Math.PI * 2;
+          placed++;
+          markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue,
+            far: halo.far, keepR: cr, ring, ringAng: ang, ringStep: STEP });
+        }
       }
     }
     // FIX 2 (2026-07-17 r4) — THE centre-dot fix. The per-city clamp above only keeps a dot off ITS
@@ -2996,19 +3023,19 @@ function MapView({ go }) {
     // 0.32 → 0.24, which pulls the longest leaders in from both directions. He confirmed the
     // dot system itself reads right ("looking at Tokyo the dots properly fan out"), so the
     // angles and the collar model stay exactly as they are.
-    // TENTH PASS (Fuad 2026-08-24: "the default map needs to follow closer how the branching
-    // style is organized when clicking a city — the display of blobs when clicking Paris works
-    // very well, let's have the same look with all cities"). The collar pinned EVERY dot to one
-    // tight ring, which is why the resting halo read as a bead necklace while an opened city
-    // read as a fan: the branch contracts its layout proportionally and so keeps the solver's
-    // near/far structure. This restores that structure without restoring the reach that made
-    // Paris collide with Dijon — the dot keeps its angle, and its distance is its RANK within
-    // its own city's solved spread, mapped across a bounded band off the rim. Nearest solved
-    // dot sits on the collar, furthest at collar + band; everything else lands in proportion.
+    // ELEVENTH PASS — read the ring assignment instead of rescaling the solved offset (see the
+    // RING PACKING note where markers are built). Radius scales with the RENDERED dot size,
+    // because that is what decides whether two dots touch: at the world view dots draw at half
+    // size so the rings pull in tight, and they open out as you zoom exactly in step with the
+    // dots growing. No leader is longer than it has to be, and nothing inside a city overlaps.
+    if (mk.ring != null) {
+      const dotR = 2 * dotZoom * dotMul;
+      const rimR = (mk.keepR || 0) * bubZoom * dotMul;
+      const r = rimR + dotR * 0.6 + mk.ring * mk.ringStep * dotZoom * dotMul;
+      return [mk.bx + Math.cos(mk.ringAng) * r, mk.by + Math.sin(mk.ringAng) * r];
+    }
     const lo = (mk.keepR || 0) * bubZoom * dotMul + 2 * dotZoom * dotMul * 0.6;
-    const band = 0.11 + 0.85 * fanK;                 // widens as you zoom in, like the branch fan
-    const rank = mk.solvedMax > 0.001 ? Math.min(1, len / mk.solvedMax) : 0;
-    const newLen = Math.max(lo, lo + band * rank);
+    const newLen = Math.min(lo + 0.11, Math.max(lo, len * fanK));
     return [mk.bx + ox / len * newLen, mk.by + oy / len * newLen];
   };
   // DOT ZOOM (Fuad 2026-08-22: "the dots can start initially smaller — when zoomed in they can
