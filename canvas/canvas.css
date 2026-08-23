@@ -1186,10 +1186,13 @@ a { color: inherit; }
      against the last line of the interpretation */
   margin-top: 22px; }
 .cv-r-metarow > .cv-r-sec { margin: 0; }
-/* palette left, "Where I saw it" pushed to the right edge with its venue (Fuad 2026-08-24) */
-.cv-r-metarow > .cv-r-sec:last-child { margin-left: auto; text-align: right; }
+/* palette left, "Where I saw it" pushed to the right edge with its venue (Fuad 2026-08-24).
+   :not(:first-child) matters — an unseen work has no venue, so the palette is the only child
+   and would otherwise inherit the right-alignment meant for the pair and drift across the
+   reader on its own (Fuad, same day). */
+.cv-r-metarow > .cv-r-sec:last-child:not(:first-child) { margin-left: auto; text-align: right; }
 @media (max-width: 620px) {
   /* on a narrow reader the row wraps; a right-aligned second line reads as a stray, so it
      falls back to the left once it is no longer sharing a line with the palette */
-  .cv-r-metarow > .cv-r-sec:last-child { margin-left: 0; text-align: left; }
+  .cv-r-metarow > .cv-r-sec:last-child:not(:first-child) { margin-left: 0; text-align: left; }
 }
