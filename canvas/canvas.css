@@ -1196,3 +1196,8 @@ a { color: inherit; }
      falls back to the left once it is no longer sharing a line with the palette */
   .cv-r-metarow > .cv-r-sec:last-child:not(:first-child) { margin-left: 0; text-align: left; }
 }
+
+/* the portrait's opening line ("You've stood in front of N works…") ran at body size and
+   dominated the page it introduces (Fuad 2026-08-24). Clamped down, fluid so a wide screen
+   keeps a readable line. */
+.cv-portrait .cv-p-read { font-size: clamp(13px, 1.05vw, 16px); line-height: 1.55; }

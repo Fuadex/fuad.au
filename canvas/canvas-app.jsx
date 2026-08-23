@@ -515,7 +515,12 @@ function Wall({ go, styleIds }) {
   // these has something written about it" is a different question from grade or status. A read
   // counts as either tier of art-about OR a study tour, matching exactly what the ✦ marker on
   // the card already means, so the chip and the marker can never disagree.
+  // Split into two chips 2026-08-24 (Fuad: "introduce a button HAS A TOUR next to HAS A READ,
+  // abbreviate the names to INFO and TOUR"). They are different questions - a read is written
+  // ABOUT the work, a tour walks its surface - and the old single chip OR'd them together, so
+  // you could not ask for either one alone.
   const [readOnly, setReadOnly] = useState(false);
+  const [tourOnly, setTourOnly] = useState(false);
   const [qual, setQual] = useState([]);                // quality buckets, OR'd like media
   const toggleQual = unhang((k) => setQual(q => q.includes(k) ? q.filter(x => x !== k) : [...q, k]));
   // The full style list — order and slugs are stable so a URL like #/wall/impressionism keeps
@@ -532,7 +537,7 @@ function Wall({ go, styleIds }) {
   // survives the navigation and has to be cleared explicitly like every other filter.
   const setSel = unhang((labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null));
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, qual, pick, hang, readOnly]);
+  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, qual, pick, hang, readOnly, tourOnly]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -618,8 +623,9 @@ function Wall({ go, styleIds }) {
     if (qual.length) list = list.filter(w => qualMatch(w, qual));
     if (readOnly) list = list.filter(w => {
       const r = (window.CANVAS_ART_ABOUT || {})[w.id];
-      return !!(r && (r.about || r.deep)) || !!(window.CANVAS_INSPECT || {})[w.id];
+      return !!(r && (r.about || r.deep));
     });
+    if (tourOnly) list = list.filter(w => !!(window.CANVAS_INSPECT || {})[w.id]);
     const arr = [...list];
     // TODAY'S HANG short-circuits the sort: its order IS the content — pinned leads first, then the
     // day-seeded spread. The chips still narrow it, so "today's hang, 1890s only" works, but nothing
@@ -650,7 +656,7 @@ function Wall({ go, styleIds }) {
   // the ✦ chip). EVERY value the filter chain above reads has to appear here. If you add a
   // filter, add its state to this array in the same edit; the chip will light up either way and
   // the wall will simply not change, which looks like a broken button rather than a stale memo.
-  }, [all, marks, status, eras, mus, sort, sel, media, qual, pick, hang, readOnly]);
+  }, [all, marks, status, eras, mus, sort, sel, media, qual, pick, hang, readOnly, tourOnly]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
@@ -683,8 +689,12 @@ function Wall({ go, styleIds }) {
         ))}
         <span className="cv-filt-div" aria-hidden="true" />
         <button data-on={readOnly} onClick={unhang(() => setReadOnly(v => !v))}
-          title="only works with a read — an Info, an Interpretation or a study tour">
-          <span className="cv-f-full">✦ has a read</span><span className="cv-f-tiny">✦</span>
+          title="only works with a written read — an Info or an Interpretation">
+          <span className="cv-f-full">✦ info</span><span className="cv-f-tiny">✦</span>
+        </button>
+        <button data-on={tourOnly} onClick={unhang(() => setTourOnly(v => !v))}
+          title="only works with a study tour — a walked close reading of the surface">
+          <span className="cv-f-full">⤢ tour</span><span className="cv-f-tiny">⤢</span>
         </button>
         <select value={mus} onChange={unhang(e => setMus(e.target.value))}>
           <option value="">every museum</option>
@@ -3449,7 +3459,9 @@ function MapView({ go }) {
 
   return (
     <div className="cv-map">
-      <p className="cv-deck-sum">Every city where a work entered your canon, sized by how much it gave you — <b>click a city</b> to branch out to its museums and the works you loved there (hover a work for a look). The <b style={{ color: "oklch(0.55 0.19 18)" }}>♥ markers</b> are works you're still chasing in cities you know; everything <b style={{ color: "oklch(0.45 0.12 150)" }}>green</b> is undiscovered — cities you haven't walked, holding works you haven't seen. Click one to see what's waiting there. Scroll or pinch to zoom, drag to pan — hover to magnify the bubbles under your cursor (tap on touch).</p>
+      {/* the long map explainer was removed 2026-08-24 — it cost a block of vertical
+          space above the map itself, and the affordances it described (click a city, hover a
+          work, scroll to zoom) are all discoverable by doing them. */}
       <div className="cv-map-wrap" onMouseLeave={onLeave}>
         <div className="cv-map-zoom">
           <button type="button" onClick={() => zoomCenter(1 / 1.4)} aria-label="Zoom in" title="Zoom in">+</button>
@@ -3509,7 +3521,7 @@ function MapView({ go }) {
                     crowded city sits about a third closer and an empty one gains clearance. */}
                 {k < 0.42 && (
                   <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 2.4) * k
-                        - 2.1 * k * dotMul * dotZoom * (4 + ((wishCityRings.get(c.city) || 0) + 1))
+                        - 2.1 * k * dotMul * dotZoom * (2.7 + ((wishCityRings.get(c.city) || 0) + 1) * 0.67)
                           * (wishCityScale.get(c.city) || 1)
                         - 9 * k * dotMul * labelZoom}
                     textAnchor="middle" style={{ fontSize: 8 * k * dotMul * labelZoom }}>{c.city}</text>
