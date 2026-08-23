@@ -641,8 +641,11 @@ a { color: inherit; }
    button sitting on the map and, being filled, blotted out the work dots behind it. The name
    carries its own halo instead; stroke-width is set inline so it scales with zoom like the text. */
 .cv-mus { cursor: pointer; }
-.cv-mus text { fill: var(--ink); font-family: var(--sans); font-weight: 600; letter-spacing: -.01em;
-  paint-order: stroke; stroke: rgba(244,236,223,.92); }
+/* No halo stroke on museum names (Fuad 2026-08-24: "should not have the text contain a white
+   stroke over the font"). The stroke existed to keep names legible over land and sea, but in an
+   opened city the ground under them is the map's flat plaster and the outline only smeared the
+   letterforms. */
+.cv-mus text { fill: var(--ink); font-family: var(--sans); font-weight: 600; letter-spacing: -.01em; }
 .cv-mus:hover text { fill: var(--accent); }
 .cv-mus:hover circle { stroke: var(--accent); }
 /* City labels used to carry a plaster-coloured halo so they read over land and sea. Removed

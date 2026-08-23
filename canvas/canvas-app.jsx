@@ -3492,11 +3492,14 @@ function MapView({ go }) {
                     top of the work dots ringed around the blob. */}
                 {/* Hidden at the world view, fading in as you zoom (Fuad 2026-08-24: "city
                     names should not be visible when maximally zoomed out, only when you start
-                    to zoom in"). k is vb.w/880, so k >= 0.82 is roughly the resting frame.
+                    to zoom in"). k is vb.w/880. First set to 0.82, which was the resting frame
+                    itself and so fired almost immediately; 0.42 is about a 2.4x zoom, which is
+                    where you have actually committed to a region (Fuad: "kicks in too fast, it
+                    should kick in when you really zoom in close").
                     CLEARANCE: the label sits above the whole halo AND above the label's own
                     height plus a gap — Padua, Tübingen and Vienna were landing on their dots
                     because the offset stopped at the halo edge and ignored the glyphs. */}
-                {k < 0.82 && (
+                {k < 0.42 && (
                   <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 2.4) * k
                         - 2.1 * k * dotMul * dotZoom * (1.1 + ((wishCityRings.get(c.city) || 0) + 1) * 2.25)
                           * (wishCityScale.get(c.city) || 1)
@@ -3606,7 +3609,12 @@ function MapView({ go }) {
                   //     one part of a museum's surroundings the works never occupy — putting the
                   //     label anywhere else guarantees it lands on top of them.
                   const inward = fy > cy ? -1 : 1;                 // -1 = label above, 1 = below
-                  const lx = fx, ly = fy + inward * (nd.mr * fs + 3.4) * k;
+                  // OVERLAP (Fuad 2026-08-24: "some texts overlap when clicking Paris"). Museums
+                  // at similar bearings get labels at the same radius and collide. Stagger the
+                  // offset by index so consecutive nodes sit on different lines; the fan order is
+                  // by angle, so neighbours in the list are neighbours on the ring.
+                  const stagger = (i % 3) * 2.6;
+                  const lx = fx, ly = fy + inward * (nd.mr * fs + 3.4 + stagger) * k;
                   return (
                     <g key={"m" + (nd.m.id || nd.m.name)} className="cv-mus" style={{ opacity: g, cursor: nd.m.id ? "pointer" : "default" }}
                       onClick={() => nd.m.id && go("museum", nd.m.id)}>
@@ -3618,7 +3626,13 @@ function MapView({ go }) {
                   );
                 })}
                 <circle cx={cx} cy={cy} r={branch.cityR * 1.55 * k} fill={branch.far ? "oklch(0.36 0.1 150 / .96)" : "oklch(0.42 0.15 30 / .96)"} stroke="#f4ecdf" strokeWidth={0.9 * k} />
-                <text x={cx} y={cy + 1.5 * k} textAnchor="middle" style={{ fontSize: 8.4 * k, fontWeight: 700, fill: "#f4ecdf" }}>{branch.c.city}</text>
+                {/* the opened city's name sits ABOVE its blob in the same ink as every other label
+                    (Fuad 2026-08-24: "Paris should be also in same black font and the name
+                    should be over the blob"). It used to be pale type dropped inside the
+                    circle, which read as a different kind of thing from the museum names
+                    around it and fought the blob's own fill for contrast. */}
+                <text x={cx} y={cy - (branch.cityR * 1.55 + 3.4) * k} textAnchor="middle"
+                  style={{ fontSize: 8.4 * k, fontWeight: 700, fill: "var(--ink)" }}>{branch.c.city}</text>
               </g>
             );
           })()}
