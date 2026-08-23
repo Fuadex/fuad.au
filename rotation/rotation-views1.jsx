@@ -1093,8 +1093,8 @@ function WallGrid({ items, kind, seen, setPop, onClick }) {
            controls (Artists/Albums/Songs/Sound DNA, List/Grid, 10/25/50) are rendered in
            rotation-calendar.jsx, NOT under .ov-page, so the type rule never reached them, and
            the .wall change hit a different grid and took the row from 5 tiles to 4.5.
-           What is actually wanted: those calendar-panel controls sized like the flowmap's
-           Genres/Bands buttons. Fix belongs in rotation-calendar.jsx. */
+           DONE the right way in rotation-calendar.jsx (.cal-pseg) — at every width, not just the
+           laptop band, since the last row was clipped on 4K too. Don't re-add a rule here. */
         .wall-cell { position: relative; cursor: pointer; transition: transform .35s cubic-bezier(.2,.7,.3,1); }
         @media (prefers-reduced-motion: no-preference) {
           .wall-cell { animation: wallIn .5s cubic-bezier(.2,.7,.3,1); }

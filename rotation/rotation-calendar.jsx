@@ -966,14 +966,16 @@ function CalendarView({ go, seed }) {
                   </div>
                 </div>
 
-                {/* Tab row: pane selector + list/grid toggle (albums, songs, artists) */}
-                <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "16px 0 14px", flexWrap: "wrap" }}>
-                  <div className="r-seg" style={{ flex: 1, minWidth: 0 }}>
+                {/* Tab row: pane selector + list/grid toggle (albums, songs, artists).
+                    cal-pseg = the panel's control size — the flowmap's genres/bands segment
+                    (.r-seg-sm), not the full-size .r-seg (Fuad 2026-08-24). */}
+                <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "12px 0 10px", flexWrap: "wrap" }}>
+                  <div className="r-seg cal-pseg" style={{ flex: 1, minWidth: 0 }}>
                     {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) =>
                       <button key={k} data-on={pane === k} onClick={() => setPane(k)}>{l}</button>)}
                   </div>
                   {pane !== "dna" && (
-                    <div className="r-seg cal-view-seg" title="list / grid view">
+                    <div className="r-seg cal-pseg cal-view-seg" title="list / grid view">
                       <button data-on={panelView === "list"} onClick={() => setPanelViewPersist("list")} title="list view">
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
                           <line x1="4" y1="2" x2="12" y2="2"/><line x1="4" y1="6" x2="12" y2="6"/><line x1="4" y1="10" x2="12" y2="10"/>
@@ -1016,7 +1018,7 @@ function CalendarView({ go, seed }) {
                           <button className="cal-more" onClick={() => setRowCap(c => c + panelN)}>
                             show {Math.min(panelN, remaining)} more · {remaining} left
                           </button>
-                          <div className="cal-n-seg r-seg">
+                          <div className="cal-n-seg r-seg cal-pseg">
                             {[10, 25, 50].map(n => <button key={n} data-on={panelN === n} onClick={() => setPanelNPersist(n)}>{n}</button>)}
                           </div>
                         </div>
@@ -1038,7 +1040,7 @@ function CalendarView({ go, seed }) {
                         <button className="cal-more" onClick={() => setRowCap(c => c + panelN)}>
                           show {Math.min(panelN, remaining)} more · {remaining} left
                         </button>
-                        <div className="cal-n-seg r-seg">
+                        <div className="cal-n-seg r-seg cal-pseg">
                           {[10, 25, 50].map(n => <button key={n} data-on={panelN === n} onClick={() => setPanelNPersist(n)}>{n}</button>)}
                         </div>
                       </div>
@@ -1074,7 +1076,7 @@ function CalendarView({ go, seed }) {
                           <button className="cal-more" onClick={() => setRowCap(c => c + panelN)}>
                             show {Math.min(panelN, remaining)} more · {remaining} left
                           </button>
-                          <div className="cal-n-seg r-seg">
+                          <div className="cal-n-seg r-seg cal-pseg">
                             {[10, 25, 50].map(n => <button key={n} data-on={panelN === n} onClick={() => setPanelNPersist(n)}>{n}</button>)}
                           </div>
                         </div>
@@ -1105,7 +1107,7 @@ function CalendarView({ go, seed }) {
                         <button className="cal-more" onClick={() => setRowCap(c => c + panelN)}>
                           show {Math.min(panelN, remaining)} more · {remaining} left
                         </button>
-                        <div className="cal-n-seg r-seg">
+                        <div className="cal-n-seg r-seg cal-pseg">
                           {[10, 25, 50].map(n => <button key={n} data-on={panelN === n} onClick={() => setPanelNPersist(n)}>{n}</button>)}
                         </div>
                       </div>
@@ -1207,9 +1209,16 @@ function CalendarView({ go, seed }) {
         .cal-more:hover { color: var(--ink); border-color: var(--rule-2); }
         /* "show more" row: the button fills the left, the 10/25/50 size selector sits on the right */
         .cal-more-row { display: flex; align-items: stretch; gap: 6px; margin-top: 4px; }
-        .cal-n-seg button { font-size: 10px; padding: 2px 7px; }
-        /* list/grid toggle in the tab row */
-        .cal-view-seg button { padding: 4px 7px; line-height: 1; }
+        /* PANEL CONTROL SIZE (Fuad 2026-08-24). Every segmented control in the results panel —
+           artists/albums/songs/sound dna, list/grid, 10/25/50 — is sized like the flowmap's
+           genres/bands segment (core's .r-seg-sm), not the full-size .r-seg. The default
+           9.5px/7px-12px cost a row inside the panel's 82vh scroll viewport, so the last artist
+           was always half-cut, on 4K as well as on the laptop. Two classes on purpose: core's
+           sheet lands AFTER this one (see the .cal-clock sticky note above), so a single-class
+           rule would lose the tie to `.r-seg button`. */
+        .cal-pseg.r-seg button { font-size: 9px; padding: 3px 7px; }
+        /* list/grid toggle: same box, but the 12px svgs need the line-box collapsed */
+        .cal-pseg.cal-view-seg button { line-height: 1; }
         /* grid view — auto-fill cover tiles */
         .cal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 10px; margin-bottom: 4px; }
         .cal-gtile { min-width: 0; cursor: default; }

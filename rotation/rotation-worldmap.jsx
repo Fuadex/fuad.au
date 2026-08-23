@@ -69,9 +69,13 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
         ? <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={true} markYi={markYi} fixedH={FLOW_H} faint />
         : <div style={{ padding: 18, minHeight: 224, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>not enough placed artists here for a flow.</div>}
       {hasFlow && <>
-        {/* fixed-height legend well (scrolls if crowded) — fewer series can't shrink the
-            whole map/flow row anymore (Fuad 2026-07-05) */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 12px", marginTop: 8, height: 46, overflowY: "auto",
+        {/* Legend well. The FLOOR (46px) is the 2026-07-05 rule: fewer series must not shrink the
+            whole map/flow row. The CEILING is what was actually capping the legend — it was a flat
+            `height: 46px`, so removing the hint line below it freed space the well could never use
+            (Fuad 2026-08-24). min/max instead: it now grows into the line the hint gave back —
+            one more row of swatches, net-zero to the card's height — and scrolls past that. */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 12px", marginTop: 8,
+          minHeight: 46, maxHeight: 66, overflowY: "auto",
           alignContent: "flex-start", scrollbarWidth: "thin" }}>
           {series.map((s, i) => (
             <div key={s.key} onMouseEnter={() => setHi(i)} onMouseLeave={() => setHi(-1)} onClick={() => onPick(s)}
