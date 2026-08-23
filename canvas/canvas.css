@@ -645,8 +645,11 @@ a { color: inherit; }
   paint-order: stroke; stroke: rgba(244,236,223,.92); }
 .cv-mus:hover text { fill: var(--accent); }
 .cv-mus:hover circle { stroke: var(--accent); }
-/* city labels in the default + focused branch view get a soft halo so they read over land + sea */
-.cv-pin text { paint-order: stroke; stroke: rgba(233,223,205,.85); stroke-width: 1px; }
+/* City labels used to carry a plaster-coloured halo so they read over land and sea. Removed
+   2026-08-24 ("let's remove the background behind the city name on the map, it's distracting")
+   — with the labels now clearing the whole halo rather than sitting among the dots, they have
+   clean ground under them and the stroke was only adding a smear. */
+.cv-pin text { paint-order: stroke; }
 
 /* ——— Artists as circular photo blobs ——— */
 .cv-artists { max-width: 1200px; margin: 0 auto; padding: 20px 34px 60px; }
@@ -1175,5 +1178,8 @@ a { color: inherit; }
 /* WHERE I SAW IT + PALETTE on one line (Fuad 2026-08-24) — both are one-line facts about the
    object rather than reading, so they share a row below the read, venue first. Wraps on narrow
    screens rather than squeezing the swatches. */
-.cv-r-metarow { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 28px; }
+.cv-r-metarow { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 28px;
+  /* the read above needs air before this row (Fuad 2026-08-24) - it was butting up
+     against the last line of the interpretation */
+  margin-top: 22px; }
 .cv-r-metarow > .cv-r-sec { margin: 0; }

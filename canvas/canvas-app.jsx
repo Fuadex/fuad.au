@@ -1638,9 +1638,14 @@ function Reader({ id, go }) {
           {/* WHERE I SAW IT + PALETTE SHARE A ROW (Fuad 2026-08-24: "Where I saw it line should
               live in the same row as the palette but as the first object"). Both are one-line
               facts about the object rather than reading, so they belong together and out of the
-              way of the read above them. Venue leads. */}
+              way of the read above them. Palette leads, venue second (Fuad 2026-08-24). */}
           {(w.venues.length > 0 || pal) && (
             <div className="cv-r-metarow">
+              {pal && (
+                <div className="cv-r-sec"><span className="lbl">Palette</span>
+                  <span className="cv-pal">{pal.map(c => <i key={c} style={{ background: c }} title={c} />)}</span>
+                </div>
+              )}
               {w.venues.length > 0 && (
                 <div className="cv-r-sec"><span className="lbl">Where I saw it{w.venues.length > 1 ? " — an impression at each" : ""}</span>
                   {w.venues.map((v, vi) => (
@@ -1650,11 +1655,6 @@ function Reader({ id, go }) {
                     </React.Fragment>
                   ))}
                   {w.exhibition ? ` — ${w.exhibition}` : ""}
-                </div>
-              )}
-              {pal && (
-                <div className="cv-r-sec"><span className="lbl">Palette</span>
-                  <span className="cv-pal">{pal.map(c => <i key={c} style={{ background: c }} title={c} />)}</span>
                 </div>
               )}
             </div>
@@ -2839,10 +2839,18 @@ function MapView({ go }) {
         // half-slot spin below interleaves neighbouring rings so this can sit under one diameter
         const ordered = nodes.slice().sort((a, b) =>
           Math.hypot(a.x - bx, a.y - by) - Math.hypot(b.x - bx, b.y - by));
-        let ring = 0, placed = 0, cap = 0, ringR = 0;
+        let ring = 0, placed = 0, cap = 0;
+        // CAPACITY MUST MATCH THE RENDERED GEOMETRY (fixed 2026-08-24: "dots should never overlap
+        // each other (there are)"). This used to count slots against ring radii in WORLD units
+        // while the renderer places dots at rimR + dotR*(1.1 + 2.25*ring) — a different scale
+        // entirely — so a ring was handed more dots than its drawn circumference could hold.
+        // Work in DOT-RADIUS units, the same currency the renderer uses: the rim sits at
+        // cr/2.1 dot-radii (2.1 being the dot's base radius factor), each ring adds 2.25, and a
+        // dot needs 2 radii of arc. Capacity is then floor(pi * R), independent of zoom because
+        // bubZoom and dotZoom move together.
         const nextRing = () => {
-          ringR = cr + STEP * (ring + 0.5);
-          cap = Math.max(1, Math.floor((2 * Math.PI * ringR) / STEP));
+          const R = cr / 2.1 + 1.1 + 2.25 * ring;      // ring radius in dot-radii
+          cap = Math.max(1, Math.floor(Math.PI * R));
           placed = 0;
         };
         nextRing();
