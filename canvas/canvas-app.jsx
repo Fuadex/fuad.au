@@ -646,7 +646,11 @@ function Wall({ go, styleIds }) {
     // previous medium's results until some other filter happened to change (found 2026-08-20).
   // `qual` MUST be in these deps (2026-08-23 bug: it filtered inside but wasn't a dep, so only
   // the first quality click — which also cleared the hang — recomputed; later toggles froze)
-  }, [all, marks, status, eras, mus, sort, sel, media, qual, pick, hang]);
+  // …and `readOnly` (2026-08-24, the THIRD time this exact bug shipped — media, then qual, then
+  // the ✦ chip). EVERY value the filter chain above reads has to appear here. If you add a
+  // filter, add its state to this array in the same edit; the chip will light up either way and
+  // the wall will simply not change, which looks like a broken button rather than a stale memo.
+  }, [all, marks, status, eras, mus, sort, sel, media, qual, pick, hang, readOnly]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
