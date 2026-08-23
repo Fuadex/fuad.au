@@ -1608,10 +1608,16 @@ function Reader({ id, go }) {
             <ConfChip conf={w.seenConfidence} />
             {/* STYLE TAGS (Fuad 2026-08-13). Sourced from the artist's movementQids resolved
                 through art_data.movements — real data already in the overlay, not guessed per
-                work. Clicking one opens the artist page, which is where movement lives. */}
+                work.
+                Clicking one FILTERS THE WALL by that movement (Fuad 2026-08-24: "clicking a
+                style such as impressionism shouldn't take to the artist's page but filter by
+                impressionism"). It used to open the artist page, which answered a question
+                nobody asked of a style chip — the artist's name is right above it and already
+                links there. This matches the identical chip on the artist page, which has
+                always routed to the wall. */}
             {styleTags.map(t => (
-              <span key={t} className="cv-chip cv-chip-style" title={"movement — " + t}
-                onClick={() => go("artist", w.artistId)}>{t}</span>
+              <span key={t} className="cv-chip cv-chip-style" title={`see every work on the wall in ${t}`}
+                onClick={() => go("wall", movSlug(t))}>{t}</span>
             ))}
             {w.floored && <span className="cv-chip" data-k="floored">★ floored me</span>}
             {w.favorite && <span className="cv-chip" data-k="floored">★ favorite</span>}
