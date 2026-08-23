@@ -8391,10 +8391,16 @@
 "Yoko Kanno": {
 "albums": [
 {
-"from": "攻殻機動隊 STAND ALONE COMPLEX O.S.T.2",
+"from": "攻殻��動隊 STAND ALONE COMPLEX O.S.T.2",
 "to": "攻殻機動隊 STAND ALONE COMPLEX O.S.T.2",
 "type": "spelling",
-"reason": "spelling: tagging/credit variant folds to canonical"
+"reason": "spelling: U+FFFD mojibake (the 機 was lost in a bad decode) folds to the canonical title. The previous entry had from===to and folded nothing (found 2026-08-24)."
+},
+{
+"from": "Ghost in the Shell: Stand Alone Complex O.S.T.+",
+"to": "攻殻機動隊 Stand Alone Complex O.S.T.+",
+"type": "spelling",
+"reason": "spelling: the English release title for the same O.S.T.+ album. The split was hiding tracks from both sides (23p under the Japanese title, 13p under the English) - reported as the album not listing everything scrobbled, 2026-08-24. Typed spelling, not variant, on purpose: only spelling folds MERGE - variant folds emit a ROTATION_VARIANT_OF link and leave both rows standing, which is the opposite of what a two-language title for one release needs."
 }
 ],
 "tracks": [
@@ -8403,6 +8409,18 @@
 "to": "home stay",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Yakitori",
+"to": "ヤキトリ",
+"type": "spelling",
+"reason": "spelling: romaji of the same track, scrobbled under the English album title and splitting with it. Canonical is the kana, which carries the plays (2026-08-24)."
+},
+{
+"from": "シベリアン・ドール・ハウス",
+"to": "Siberian Doll House",
+"type": "spelling",
+"reason": "spelling: kana of the same track from the same O.S.T.+ split; canonical is the romaji, which carries the plays (2026-08-24)"
 }
 ],
 "artist": [
