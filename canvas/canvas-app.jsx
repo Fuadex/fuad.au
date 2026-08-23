@@ -3476,10 +3476,19 @@ function MapView({ go }) {
                     it is no longer gated on size or the lens — every city is named, always — and
                     it clears the WHOLE halo rather than the bubble rim, so it can never sit on
                     top of the work dots ringed around the blob. */}
-                <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 2.4
-                      ) * k + 2.1 * k * dotMul * dotZoom * (1.1 + ((wishCityRings.get(c.city) || 0) + 1) * 2.25)
-                         * (wishCityScale.get(c.city) || 1)}
-                  textAnchor="middle" style={{ fontSize: 8 * k * dotMul * labelZoom }}>{c.city}</text>
+                {/* Hidden at the world view, fading in as you zoom (Fuad 2026-08-24: "city
+                    names should not be visible when maximally zoomed out, only when you start
+                    to zoom in"). k is vb.w/880, so k >= 0.82 is roughly the resting frame.
+                    CLEARANCE: the label sits above the whole halo AND above the label's own
+                    height plus a gap — Padua, Tübingen and Vienna were landing on their dots
+                    because the offset stopped at the halo edge and ignored the glyphs. */}
+                {k < 0.82 && (
+                  <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 2.4) * k
+                        - 2.1 * k * dotMul * dotZoom * (1.1 + ((wishCityRings.get(c.city) || 0) + 1) * 2.25)
+                          * (wishCityScale.get(c.city) || 1)
+                        - 9 * k * dotMul * labelZoom}
+                    textAnchor="middle" style={{ fontSize: 8 * k * dotMul * labelZoom }}>{c.city}</text>
+                )}
               </g>
             );
           })}
@@ -3590,12 +3599,12 @@ function MapView({ go }) {
                       <circle cx={fx} cy={fy} r={nd.mr * fs * k}
                         fill={branch.far ? "oklch(0.45 0.1 150 / .92)" : "oklch(0.5 0.14 46 / .95)"} stroke="#f4ecdf" strokeWidth={0.7 * k} />
                       <text className="cv-map-mlabel" x={lx} y={ly + (inward > 0 ? 1.9 : 0) * k}
-                        textAnchor="middle" style={{ fontSize: 5 * k * labelZoom, strokeWidth: 1.6 * k }}>{nd.m.name}</text>
+                        textAnchor="middle" style={{ fontSize: 7.6 * k, strokeWidth: 1.6 * k }}>{nd.m.name}</text>
                     </g>
                   );
                 })}
                 <circle cx={cx} cy={cy} r={branch.cityR * 1.55 * k} fill={branch.far ? "oklch(0.36 0.1 150 / .96)" : "oklch(0.42 0.15 30 / .96)"} stroke="#f4ecdf" strokeWidth={0.9 * k} />
-                <text x={cx} y={cy + 1.5 * k} textAnchor="middle" style={{ fontSize: 5.6 * k * labelZoom, fontWeight: 700, fill: "#f4ecdf" }}>{branch.c.city}</text>
+                <text x={cx} y={cy + 1.5 * k} textAnchor="middle" style={{ fontSize: 8.4 * k, fontWeight: 700, fill: "#f4ecdf" }}>{branch.c.city}</text>
               </g>
             );
           })()}
