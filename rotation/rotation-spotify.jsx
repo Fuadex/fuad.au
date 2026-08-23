@@ -1254,7 +1254,12 @@ function LikedView({ go }) {
           {[["plays", "plays"], ["first-new", "newest"], ["artist", "a–z"], ["tempo", "tempo"], ["energy", "energy"],
             ["mood", "mood"], ["neglect", "neglect"], ["obscure", "obscure"],
             ...(dictating === "dna" ? [["closest", "closest"]] : [])].map(([k, l]) => (
-            <button key={k} data-on={sort === k} onClick={() => { setSort(k); setInv(false); }}>{l}</button>
+            {/* Click the ACTIVE sort again to flip it (Fuad 2026-08-24) — the column-header idiom.
+                It lights the INVERT chip at the row's end, since that chip reads the same `inv`.
+                Switching to a DIFFERENT sort still lands in its natural direction. */}
+            <button key={k} data-on={sort === k}
+              title={sort === k ? "click again to invert" : undefined}
+              onClick={() => { if (sort === k) setInv(v => !v); else { setSort(k); setInv(false); } }}>{l}</button>
           ))}
           {/* INVERT — matches Explore's flip idiom (rotation-explore.jsx ~1762): a ▼/▲ glyph + a short
               label appropriate to the ACTIVE sort. Transient: switching sorts resets it (above). */}
