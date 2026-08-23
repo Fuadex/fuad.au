@@ -1183,3 +1183,10 @@ a { color: inherit; }
      against the last line of the interpretation */
   margin-top: 22px; }
 .cv-r-metarow > .cv-r-sec { margin: 0; }
+/* palette left, "Where I saw it" pushed to the right edge with its venue (Fuad 2026-08-24) */
+.cv-r-metarow > .cv-r-sec:last-child { margin-left: auto; text-align: right; }
+@media (max-width: 620px) {
+  /* on a narrow reader the row wraps; a right-aligned second line reads as a stray, so it
+     falls back to the left once it is no longer sharing a line with the palette */
+  .cv-r-metarow > .cv-r-sec:last-child { margin-left: 0; text-align: left; }
+}
