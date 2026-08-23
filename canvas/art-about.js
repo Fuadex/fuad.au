@@ -208,7 +208,7 @@ deep: "There is no horizon anywhere — you never see the sky, only the sky refl
 
 "the-clouds": {
 about: "One of the Orangerie's Water Lilies panels: clouds crossing the pond's surface — the sky existing only as its own reflection among the lilies.",
-deep: "The inversion is the whole idea: to see the sky you look down. The clouds are under the lilies, which float on top of them — a quiet reversal of every landscape convention, near and far collapsed onto one watery plane. What floored you here is the painting teaching your eye a new default: surface as depth, reflection as reality. It is the closest the cycle comes to pure abstraction while still being, verifiably, just a pond." },
+deep: "Reading up this panel walks you down the sky. In a mirrored image the zenith lands nearest your feet and the far distance sits high, so the one passage with real bulk — piled cream and rose, low, two-thirds along — belongs to weather almost overhead: a whole hemisphere laid out in the wrong order. Find the small pink blossoms. They are the only things at a fixed location, and the instant your eye finds them the shimmer snaps into being water rather than fog. At the left end the pads are drawn as full ovals, further right as slivers. That is the entire perspective system, hidden in the corner after the horizon was taken away." },
 
 "the-thinker": {
 about: "Rodin's seated giant, mid-thought — conceived in 1880 as 'The Poet' (Dante himself) for the top of the Gates of Hell, gazing down at his own damned, then enlarged into the world's most famous statue of thinking.",
@@ -430,7 +430,7 @@ by: "Opus 4.8" },
 
 "the-magpie": {
 about: "Monet's The Magpie, 1868 — a lone bird on a gate in blue-shadowed snow. Rejected by the 1869 Salon as too pale, it holds some of his earliest coloured shadows: light painted where academics demanded black.",
-deep: "Scale and silence are set against a single dark point. The canvas is almost entirely snow and sky; the horizon rides high, and the one living thing — the magpie on the gate — is small, off to the left, easy to miss. Monet builds the picture so the eye scans the pale emptiness first, the way it would scan a real winter field, and arrives at the bird last. The daring is in the shadows: cast across the foreground in luminous blue and violet rather than grey, they model the snow as coloured light rather than an absence of it, and this is what makes the vast pale surface read as brilliance. The bird is the only true dark in the canvas, and the whole shining field exists as a setting for one creature about to leave.",
+deep: "The only saturated colour here is two or three roofs at the upper right, and every cold note depends on them: a few square centimetres of warm reddish-brown against which the whole field reads as freezing. The thickest paint is on the hedge crest, a loaded ridge glowing above a tangle of ochre, slate and green: sun made visible along one edge. The source is kept faint — no disc, only a diffuse band at the horizon, scumbled until the distance loses substance, and it aims everything cast below. The gate is a few crossed sticks that would keep nothing in or out, dragged on dry and scratched — a perch, one horizontal to break the drifts.",
 by: "Opus 4.8" },
 
 "battle-of-grunwald": {
@@ -788,7 +788,7 @@ by: "Opus 4.8" },
 
 "paul-signac-opus-217-sur-l-email-d-un-fond-rythmique-de-mesu": {
 about: "Signac's 1890 profile portrait of critic Felix Feneon, Opus 217 — the dapper subject set against a swirling kaleidoscope adapted from theorist Charles Henry's newly published color wheel.",
-deep: "Signac's joke is that the man who wrote the rules ends up exhibit A inside them. Felix Feneon — dandy, anarchist, the critic who named Neo-Impressionism — stands in strict profile, offering a cyclamen with a magician's pinch, while behind him a vortex of rays and arabesques runs on Charles Henry's program: warm rising colors keyed to pleasure, cool descending ones to their opposite. The method that applies to the swirling background applies identically to the sitter's coat and cheek, both resolved from orange, blue and violet dabs into cloth and skin only at a distance. Firm, near-enameled contours cut Feneon as a silhouette against the churning field, so he reads as a figure pasted onto pure sensation rather than standing inside a room. Portrait, manifesto, and affectionate ribbing arrive as a single woven surface — the man is the demonstration.",
+deep: "Fénéon reportedly had mixed feelings about being turned into a chart. He had grounds: the dabs stay the same size across coat, cheek and pinwheel alike, which flattens every distance and knits man and ground into one skin. Look down at the top hat held mouth-upward — its black is built from dark blue and violet dots, its lining a disc of buttery yellow, a small witty void amid the pattern. The arabesques at upper left come from a Japanese kimono print, so half the science is textile. Numbering canvases like a composer insisted paint could be as systematic as music. At the throat, a single vermilion stroke is where the cool head catches fire.",
 by: "Opus 4.8" },
 
 "umberto-boccioni-states-of-mind-i-the-farewells": {
@@ -997,7 +997,7 @@ by: "Opus 4.8" },
 
 "the-angelus": {
 about: "Two field workers stopped mid-labour at dusk, 1858 — a bell has rung from the tiny spire on the far horizon, and the pitchfork stays standing in the soil where they left it.",
-deep: "Dalí was so certain the basket held a dead child that he had the Louvre X-ray the canvas; a painted-out shape did turn up beneath it, and the coffin stayed his theory. What's actually there is smaller and stranger: no faces. Millet drops the horizon so low that two field hands loom against the sky like standing stones, then sinks them into near-silhouette, so posture does everything — his hat off and held low against his stomach, her head bowed deeper, hands at her chest. The pitchfork left upright in the soil is the third figure. Find the spire on the far right skyline: that speck is what made them stop.",
+deep: "Prints, plates and postcards carried this image until it was almost too familiar to see — an odd fate for a picture whose method is withholding. Millet gives you no faces. He drops the land so low in the canvas that a pair of peasants rise against the evening like standing stones, then sinks them into near-darkness, and posture carries everything: his hat off and held low against his stomach, her head bowed deeper than his, hands pressed at her chest. Attitude is readable; expression never is, which keeps the devotion private rather than performed. The one warm band of light lies behind them, along the land — the reason they are shapes and not people.",
 deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
@@ -1560,7 +1560,7 @@ by: "Opus 4.8" },
 
 "la-grenouillere": {
 about: "A weekend bathing resort on the Seine, 1869 — floating café, a crowd on a round gravel islet, the water hacked into dashes of light. Monet painted it with Renoir at his elbow, at the same motif.",
-deep: "He thought these were sketches. That summer Monet was broke, working up studies for a Salon canvas since lost, and the throwaways turned out to be the thing — five years before anyone had a word for it. Renoir stood beside him at the same motif, so two nearly identical pictures exist. Look at how little it takes to make a crowd: a vertical stroke, a lighter dab on top, and the top hats and pale skirts on the gravel islet — visitors called it the camembert — are unmistakable. The water isn't smoothed into a mirror but hacked into separate horizontal touches, white beside blue beside near-black, left unblended. Step back and it shivers.",
+deep: "The heaviest paint sits on empty boats. The moored hulls across the foreground are the largest, most solidly worked things present, and their diagonal thrust is what builds depth in a scene otherwise flat; the figures get a stroke apiece. Overhead he allows a sliver — heaven kept to a stripe, nothing dramatic, the canvas given to the busy human middle and its reflections. The floating café is cropped hard at the right edge, its painted lettering reduced to marks, so it reads as a glimpse of something continuing past the frame. Find the far-left shallows last: pale flecks standing in the river, the bathers who gave the place its swimming reputation and its risqué one.",
 deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
@@ -3549,7 +3549,7 @@ by: "Opus · Fable" },
 
 "narcisse-virgilio-diaz-forest-interior-with-wood-gatherer": {
 about: "A woman with her bundle of deadfall on a dark Fontainebleau path, 1860, the light held back to a clearing beyond — Díaz walked these woods on a wooden leg, the real one lost to a snakebite in childhood.",
-deep: "Find the light first, then find the person standing in it: the second search is the subject. Nearly every tone is warm black so one clearing can detonate; the bright trunks are dragged on thick and scraped back, the paint standing proud so the light reads less as glow than as something caked. The gatherer is kept small and low-contrast, almost nothing against the worked dark — labour dwarfed by the place it happens in. Not sentiment, either: the rural poor held real rights to deadfall, and Barbizon painted them exercising it. At your feet the litter is flecked gold and ochre, thrown on loose, as if you had stopped at the path's mouth.",
+deep: "Two lights, not one, and they do opposite jobs. A torn gap of pale sky at the top is cool and flat, promising air without relieving the enclosure; the burn at the centre is warm, worked, and sits at the end of a tunnel the arching limbs roof over. Look at the trunks flaring almost white beside it: pale pigment dragged over the understory, scraped, standing proud of the canvas, their lower halves let dissolve into mist so they hover rather than root. Díaz trained partly as a porcelain decorator, and the enamelled build of brightness on a black bed never left him. Jewel-dark glades outsold grand vistas; collectors were buying the density of touch.",
 deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
@@ -3769,7 +3769,7 @@ by: "Opus · Fable" },
 
 "camille-pissarro-afternoon-break-girl-and-young-peasant-woma": {
 about: "A girl at her goûter and a young woman stretched on one elbow in the grass, 1882 — the year Pissarro pulled his Pontoise peasants out of the middle distance into the foreground, large and off the clock.",
-deep: "They kept throwing Millet at him, and in March 1882 he snapped back in a letter: Millet was \"biblical\", his own peasants preach nothing. A body stretched on the earth is the oldest emblem of fatigue or fallen dignity; this young woman is propped on one elbow, torso lifted, plainly comfortable in her own field, and the girl beside her is turned away eating, performing for nobody. The blue skirt is the only large calm shape in a surface of restless small marks — oil and pastel laid side by side, the grass a weave of green over yellow over pink that never settles. Everything flickers except the two of them.",
+deep: "Remove the blue skirt and the design collapses into a carpet of green. It is the one broad cool mass — lilac and grey in the folds, not flat — laid on a diagonal that the child’s seated wedge braces against, a stretch against a knot, red bonnet and straw hat pinning the ends. Shadow arrives as cooler colour, never as dark, so nobody is modelled out of the light by contrast. That is the argument of his letter that March: Millet was “biblical”, his own peasants preach nothing. Across the top a thin rank of saplings does the dullest work and the most: without it the ground tips and the field reads as seen from above.",
 deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
