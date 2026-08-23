@@ -916,17 +916,24 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
         .map-yrlabel { font-family: var(--mono); font-size: 10px; color: var(--ink-soft); flex: none; min-width: 56px; text-align: right; }
         .map-soundsel { font-family: var(--mono); font-size: 10px; padding: 4px 6px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink-soft); background: var(--bg-2); cursor: pointer; }
         .map-soundsel[data-on="true"] { border-color: var(--accent); color: var(--accent); }
-        .map-limseg button { font-size: 10px; padding: 4px 8px; }
+        /* .map-limseg's own type/padding rule was removed 2026-08-24 — it was dead anyway
+           (.mp-resctl .r-seg button outranks it 2 classes to 1) and it read as if the 10/25/50
+           seg had a size of its own. It gets the shared results-control size below. */
         .mp-more { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 0 2px; }
         .mp-more button { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
           padding: 6px 14px; border-radius: 999px; border: 1px solid var(--rule); background: none;
           color: var(--ink-soft); cursor: pointer; transition: border-color .15s, color .15s; }
         .mp-more button:hover { border-color: var(--accent-dim); color: var(--accent); }
         .mp-more .r-mono { font-size: 9.5px; color: var(--ink-faint); }
-        /* results controls: keep pane · list/grid · counts compact and grouped so they don't eat
-           half the panel width on a laptop; tighten further as the panel narrows (Fuad P16, 2026-07-07) */
-        .mp-resctl .r-seg button { font-size: 10.5px; padding: 4px 9px; }
-        @media (max-width: 1500px) { .mp-resctl .r-seg button { font-size: 9.5px; padding: 3px 7px; letter-spacing: .02em; } .mp-resctl { gap: 6px 8px; } }
+        /* RESULTS CONTROLS — artists/albums/songs/sound dna · list/grid · 10/25/50. They are sized
+           to the genres/bands segment in the flow card directly above them (core's .r-seg-sm,
+           9px/3px-7px), so the two control rows in this band read as one family (Fuad 2026-08-24).
+           At EVERY width: they were 10.5px/4px-9px, and the laptop step below only fired under
+           1500px — Fuad's viewport is 1536 (3840 at 250%), so it never applied to the machine it
+           was written for, and on 4K the last result was clipped too. The gap tightening keeps a
+           narrow-panel breakpoint; the type no longer needs one. */
+        .mp-resctl .r-seg button { font-size: 9px; padding: 3px 7px; }
+        @media (max-width: 1560px) { .mp-resctl { gap: 6px 8px; } }
         /* one line, clipped with a soft fade rather than an ellipsis (Fuad 2026-08-20). The mask
            is anchored to the element's RIGHT EDGE, and the element is full width, so a short title
            ends long before the fade zone and shows no fade at all — only an overflowing one runs

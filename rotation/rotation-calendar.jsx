@@ -1217,8 +1217,10 @@ function CalendarView({ go, seed }) {
            sheet lands AFTER this one (see the .cal-clock sticky note above), so a single-class
            rule would lose the tie to `.r-seg button`. */
         .cal-pseg.r-seg button { font-size: 9px; padding: 3px 7px; }
-        /* list/grid toggle: same box, but the 12px svgs need the line-box collapsed */
-        .cal-pseg.cal-view-seg button { line-height: 1; }
+        /* list/grid toggle: the 12px svgs need the line-box collapsed. NOT scoped to .cal-pseg —
+           the Overview results module reuses .cal-view-seg (rotation-worldmap.jsx) and takes its
+           padding from .mp-resctl, but still needs this. */
+        .cal-view-seg button { line-height: 1; }
         /* grid view — auto-fill cover tiles */
         .cal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 10px; margin-bottom: 4px; }
         .cal-gtile { min-width: 0; cursor: default; }
