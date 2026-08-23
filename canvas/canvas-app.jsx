@@ -2701,7 +2701,7 @@ function MapView({ go }) {
   // city-bubble anchor and run through a relaxation pass identical in spirit to relaxFan, so the ♥
   // dots share the city bubble's parent and never overlap. (Only shown in the all-cities view; during
   // focus the museum work-fans take over.)
-  const { wishMarkers, wishCityRings, wishFar, wishFarByKey, wishTotals, wishCountries, wishCities, wishUnplaced, wishList } = useMemo(() => {
+  const { wishMarkers, wishCityRings, wishCityScale, wishFar, wishFarByKey, wishTotals, wishCountries, wishCities, wishUnplaced, wishList } = useMemo(() => {
     const wishes = WORKS.map(enrich).filter(isUnseen);
     // WHERE A WANTED WORK GOES ON THE MAP (2026-08-19). It used to key off seenAt — the venue Fuad
     // stood in — which for a work he has NOT seen is empty by definition. After the photo import
@@ -2943,12 +2943,42 @@ function MapView({ go }) {
       if (!e) { e = { cc: c.cc, name: countryName(c.cc), n: 0, floored: 0, cities: [] }; ccMap.set(c.cc, e); }
       e.n += c.n; e.floored += c.floored; e.cities.push(c);
     }
+    // HALO SEPARATION (Fuad 2026-08-24: "lines, even from neighbouring dot clusters, should
+    // never overlap each other — if we can enforce that rule, it will untangle our map"). Ring
+    // packing already makes overlap impossible INSIDE a city; this makes it impossible BETWEEN
+    // them. Each city needs a radius of rim + (outermost ring + 1) pitches. For every pair whose
+    // needed radii would meet, both are shrunk by the same factor until they just touch, and a
+    // city keeps the smallest factor any neighbour demands of it. The renderer applies it to the
+    // ring offset AND to the dot size, so a squeezed halo stays internally non-overlapping
+    // rather than trading one collision for another. Geography is untouched — the bubbles do not
+    // move, which is the standing rule; only their halos give way.
+    const cityScale = new Map();
+    {
+      const RING_STEP = 2.2;
+      const need = [];
+      for (const [city, maxRing] of cityRings) {
+        const any = markers.find(m => m.city === city);
+        if (!any) continue;
+        need.push({ city, x: any.bx, y: any.by, r: any.keepR + (maxRing + 1) * RING_STEP });
+        cityScale.set(city, 1);
+      }
+      for (let i = 0; i < need.length; i++) for (let j = i + 1; j < need.length; j++) {
+        const a = need[i], b = need[j];
+        const d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d <= 0.001 || d >= a.r + b.r) continue;          // already clear
+        const f = Math.max(0.25, d / (a.r + b.r));           // shrink both to just touch
+        cityScale.set(a.city, Math.min(cityScale.get(a.city), f));
+        cityScale.set(b.city, Math.min(cityScale.get(b.city), f));
+      }
+      for (const mk of markers) mk.cityScale = cityScale.get(mk.city) || 1;
+    }
     const sortedCountries = [...ccMap.values()]
       .sort((a, b) => b.floored - a.floored || b.n - a.n || a.name.localeCompare(b.name));
     return {
       wishCountries: sortedCountries,
       wishMarkers: markers,
       wishCityRings: cityRings,
+      wishCityScale: cityScale,
       wishFar: farList,
       wishFarByKey: farByKey,
       wishTotals: totals,
@@ -3033,9 +3063,10 @@ function MapView({ go }) {
     // size so the rings pull in tight, and they open out as you zoom exactly in step with the
     // dots growing. No leader is longer than it has to be, and nothing inside a city overlaps.
     if (mk.ring != null) {
-      const dotR = 2 * dotZoom * dotMul;
+      const sc = mk.cityScale || 1;                    // neighbour-driven shrink, see HALO SEPARATION
+      const dotR = 2 * dotZoom * dotMul * sc;
       const rimR = (mk.keepR || 0) * bubZoom * dotMul;
-      const r = rimR + dotR * 0.6 + mk.ring * mk.ringStep * dotZoom * dotMul;
+      const r = rimR + (dotR * 0.6 + mk.ring * mk.ringStep * dotZoom * dotMul) * sc;
       return [mk.bx + Math.cos(mk.ringAng) * r, mk.by + Math.sin(mk.ringAng) * r];
     }
     const lo = (mk.keepR || 0) * bubZoom * dotMul + 2 * dotZoom * dotMul * 0.6;
@@ -3429,7 +3460,7 @@ function MapView({ go }) {
                     it clears the WHOLE halo rather than the bubble rim, so it can never sit on
                     top of the work dots ringed around the blob. */}
                 <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 2.4
-                      + ((wishCityRings.get(c.city) || 0) + 1) * 2.2 * dotZoom * dotMul) * k}
+                      + ((wishCityRings.get(c.city) || 0) + 1) * 2.2 * dotZoom * dotMul * (wishCityScale.get(c.city) || 1)) * k}
                   textAnchor="middle" style={{ fontSize: 8 * k * dotMul * labelZoom }}>{c.city}</text>
               </g>
             );
@@ -3471,9 +3502,13 @@ function MapView({ go }) {
                     dots orbiting a walked city keep the old loved-red/liked-amber, and only the
                     far layer — cities never walked, works to be discovered — wears green.
                     dotZoom starts them smaller at the resting view; full size from ~2.5x zoom. */}
+                {/* cityScale must scale the DOT as well as the ring radius: a halo squeezed to
+                    clear its neighbour would otherwise pack the same-size dots into a smaller
+                    circumference and start overlapping internally — trading one collision for
+                    another. See HALO SEPARATION where the factor is computed. */}
                 {unseenRank(mk.w) === 2
-                  ? <circle cx={fx} cy={fy} r={2.1 * fs * k * dotMul * dotZoom} fill={mk.far ? "oklch(0.45 0.14 150 / .92)" : "oklch(0.55 0.19 18 / .92)"} stroke="#f7efe2" strokeWidth={0.5 * k} />
-                  : <circle cx={fx} cy={fy} r={1.7 * fs * k * dotMul * dotZoom} fill={mk.far ? "oklch(0.6 0.11 130 / .9)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.45 * k} />}
+                  ? <circle cx={fx} cy={fy} r={2.1 * fs * k * dotMul * dotZoom * (mk.cityScale || 1)} fill={mk.far ? "oklch(0.45 0.14 150 / .92)" : "oklch(0.55 0.19 18 / .92)"} stroke="#f7efe2" strokeWidth={0.5 * k} />
+                  : <circle cx={fx} cy={fy} r={1.7 * fs * k * dotMul * dotZoom * (mk.cityScale || 1)} fill={mk.far ? "oklch(0.6 0.11 130 / .9)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.45 * k} />}
               </g>
             );
           })}
