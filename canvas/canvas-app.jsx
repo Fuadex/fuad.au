@@ -2945,7 +2945,7 @@ function MapView({ go }) {
   // "half the length they are now"). The fan renders at 40% of its solved length; fanAt clamps
   // the contracted offset at the marker's `keep` floor so no dot is ever pulled back inside
   // its own bubble — at this ceiling most dots ride near that floor, which is the point.
-  const fanK = Math.max(0.14, Math.min(0.32, k * 0.32));
+  const fanK = Math.max(0.14, Math.min(0.24, k * 0.24));
   const fanAt = (mk) => {
     const ox = mk.x - mk.bx, oy = mk.y - mk.by, len = Math.hypot(ox, oy) || 0.001;
     // COLLAR MODEL (Fuad 2026-08-22, sixth line-length pass: "cut pretty much all of them by
@@ -2959,8 +2959,15 @@ function MapView({ go }) {
     // the dot visibly touches its bubble) and the band is 0.45 — leaders are nubs now.
     // Eighth pass (Fuad 2026-08-22: "further reduced in length, another half"): band 0.45 →
     // 0.22, so the leaders that still cleared the collar floor halve again.
+    // Ninth pass (Fuad 2026-08-24: "reduce the length of the connected lines even further, we
+    // need to avoid overlapping lines and dots — Paris begin to overlap with Dijon"). The
+    // failure is no longer inside one city but BETWEEN neighbouring ones: a big city's halo
+    // reaching far enough to touch its neighbour's. Band 0.22 → 0.11 and the fan ceiling
+    // 0.32 → 0.24, which pulls the longest leaders in from both directions. He confirmed the
+    // dot system itself reads right ("looking at Tokyo the dots properly fan out"), so the
+    // angles and the collar model stay exactly as they are.
     const lo = (mk.keepR || 0) * bubZoom * dotMul + 2 * dotZoom * dotMul * 0.6;
-    const newLen = Math.min(lo + 0.22, Math.max(lo, len * fanK));
+    const newLen = Math.min(lo + 0.11, Math.max(lo, len * fanK));
     return [mk.bx + ox / len * newLen, mk.by + oy / len * newLen];
   };
   // DOT ZOOM (Fuad 2026-08-22: "the dots can start initially smaller — when zoomed in they can
@@ -2975,6 +2982,21 @@ function MapView({ go }) {
   // pull any child toward its parent by the same zoom factor, so the opened branch contracts on
   // zoom exactly as the resting halo does
   const towards = (px, py, x, y) => [px + (x - px) * fanK, py + (y - py) * fanK];
+  // MUSEUM FAN — its own factor (Fuad 2026-08-24: "the fan out for those browsed cities should
+  // be further away from the main city: the museums sit too close and we're already looking at
+  // the map from the context of a city anyway but the artwork dots are spaced out logically").
+  // The opened branch is the opposite problem from the resting halo: there you are looking at a
+  // continent and long leaders collide with the next city, here you are already inside one city
+  // and have the room. So museums get ~2.5x the resting fan while their WORK dots keep the
+  // resting spacing, which he signed off on. The focused viewBox is framed from `branch.reach`,
+  // measured in uncontracted world units, so a longer museum fan still fits without reframing.
+  const branchK = Math.max(0.35, Math.min(0.8, k * 0.8));
+  const towardsBranch = (px, py, x, y) => [px + (x - px) * branchK, py + (y - py) * branchK];
+  // LABEL ZOOM (Fuad 2026-08-24: "reduce the text size when zoomed in so close"). Label sizes are
+  // multiplied by k, which keeps them a CONSTANT size on screen at every zoom — so as you close
+  // in and the dots grow, the names stop being annotation and start being furniture. This shrinks
+  // them the deeper you go: 1.0 out at the resting view, easing to 0.62 at extreme zoom.
+  const labelZoom = Math.max(0.62, Math.min(1, Math.pow(k / 0.4, 0.35)));
   // VIEWPORT CULLING. Zooming and panning felt "weird" (Fuad 2026-08-19) because every halo marker
   // was re-solved and re-serialised into a path string on each frame, whether or not it was on
   // screen — and anchoring works on their home collection had taken the halo from 87 markers to
@@ -3324,7 +3346,7 @@ function MapView({ go }) {
                 {/* the halo is capped, so the city's real want-to-see total is stated here rather
                     than implied by a count of dots that is deliberately not all of them */}
                 <title>{c.city} — {c.n} work{c.n !== 1 ? "s" : ""} seen · {c.museums.length} museum{c.museums.length !== 1 ? "s" : ""}{wishTotals[c.city] ? ` · ${wishTotals[c.city]} still to see` : ""}{c.n ? " · click to open" : ""}</title>
-                {(c.n >= 8 || fs > 1.25) && <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 8 * k * dotMul }}>{c.city}</text>}
+                {(c.n >= 8 || fs > 1.25) && <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 8 * k * dotMul * labelZoom }}>{c.city}</text>}
               </g>
             );
           })}
@@ -3344,7 +3366,7 @@ function MapView({ go }) {
                 <circle cx={fx} cy={fy} r={f.r * fs * k * dotMul * bubZoom}
                   fill="oklch(0.52 0.09 150 / .55)" stroke="#f4ecdf" strokeWidth={0.5 * k} />
                 <title>{f.city} — {f.n} work{f.n !== 1 ? "s" : ""} to see · {f.venues.length} venue{f.venues.length !== 1 ? "s" : ""} · not yet walked · click to open</title>
-                {(f.n >= 10 || fs > 1.25) && <text x={fx} y={fy - (f.r * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 7 * k * dotMul, opacity: 0.75 }}>{f.city}</text>}
+                {(f.n >= 10 || fs > 1.25) && <text x={fx} y={fy - (f.r * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 7 * k * dotMul * labelZoom, opacity: 0.75 }}>{f.city}</text>}
               </g>
             );
           })}
@@ -3382,7 +3404,7 @@ function MapView({ go }) {
             // halo — it was left out of the first pass, so clicking a city dropped you back into
             // rigid spokes that sprawled as you zoomed (Fuad 2026-08-19). Museum nodes pull toward
             // the city, work nodes toward their museum.
-            const mAt = (nd) => towards(cx, cy, nd.x, nd.y);
+            const mAt = (nd) => towardsBranch(cx, cy, nd.x, nd.y);
             return (
               <g className="cv-branch">
                 {branch.nodes.map((nd, i) => {
@@ -3431,12 +3453,12 @@ function MapView({ go }) {
                       <circle cx={fx} cy={fy} r={nd.mr * fs * k}
                         fill={branch.far ? "oklch(0.45 0.1 150 / .92)" : "oklch(0.5 0.14 46 / .95)"} stroke="#f4ecdf" strokeWidth={0.7 * k} />
                       <text className="cv-map-mlabel" x={lx} y={ly + (inward > 0 ? 1.9 : 0) * k}
-                        textAnchor="middle" style={{ fontSize: 5 * k, strokeWidth: 1.6 * k }}>{nd.m.name}</text>
+                        textAnchor="middle" style={{ fontSize: 5 * k * labelZoom, strokeWidth: 1.6 * k }}>{nd.m.name}</text>
                     </g>
                   );
                 })}
                 <circle cx={cx} cy={cy} r={branch.cityR * 1.55 * k} fill={branch.far ? "oklch(0.36 0.1 150 / .96)" : "oklch(0.42 0.15 30 / .96)"} stroke="#f4ecdf" strokeWidth={0.9 * k} />
-                <text x={cx} y={cy + 1.5 * k} textAnchor="middle" style={{ fontSize: 5.6 * k, fontWeight: 700, fill: "#f4ecdf" }}>{branch.c.city}</text>
+                <text x={cx} y={cy + 1.5 * k} textAnchor="middle" style={{ fontSize: 5.6 * k * labelZoom, fontWeight: 700, fill: "#f4ecdf" }}>{branch.c.city}</text>
               </g>
             );
           })()}
