@@ -73,12 +73,23 @@ already whole with one thesis.)
 Shared brief for the drafters. Distil from the tour's **about / craft / context** lenses
 (plus stops as needed): **no new facts, no re-verification — the tour is already verified.**
 
-**TOUR-ONLY SOURCING (Fuad 2026-08-14, explicit).** The tour is the ONLY fact source for an
+**~~TOUR-ONLY SOURCING~~ — SUPERSEDED 2026-08-24. THE FENCE IS DOWN.** The deep tier MAY carry
+story, biography, scandal, what happened to the picture afterwards. Tour-only sourcing is what
+starved it: the Info above had already spent the story, so the deep was left with
+thesis-and-proof prose. Job files now carry canon row + tour + the current Info + current deep.
+The 2026-08-14 laundering worry is answered by the caption-Info rule instead — a 35-word Info has
+almost nothing to launder. The superseded rule read: The tour is the ONLY fact source for an
 Interpretation. The existing Info, the `web` field, and canon prose are NOT sources — do not
 even hand them to drafters as "context": a d2 drafter laundered an existing-Info fact (the
 Samson AI-study line) into a deep read that way. Job files for drafters should carry the
 canon row + tour and nothing else.
 
+- **Length — SUPERSEDED 2026-08-24. Target 95–115 words, against an Info of 32–38: roughly 3:1.**
+  Sourced to Fuad naming *Woman with a Parasol* and *Szał Uniesień* as the bar. Measured: those
+  two run 32w/95w at 3.0×; the corpus had drifted to 90w/168w at 1.9×, at which point the tiers
+  read as two essays about one painting rather than a hook and a reading. **The count is a
+  TARGET, not a gate** — QC judges whether an overrun buys anything; cut restatement and
+  scaffolding, keep material, never pad up to it. The superseded band read:
 - Length (Fuad 2026-08-14; tightened 2026-08-23 — "a bit elongated... not all but many"):
   **target ~130–150** in the brief — drafts inflate past any target, so aim low. At QC:
   **<180 ships as-is; ≥180 gets a trim-first look; >240 always trimmed.** Trims must never
@@ -171,6 +182,72 @@ The fused Info (all rulings 2026-08-14/15, tested on a 6-work sample then 33-wor
 The `web:` tier and Web button existed for one day (2026-08-14) and were retired by this
 fusion — superseded hooks live in git history, their facts inside the fused Infos.
 
+## 5c. The caption Info and the two-tier contract — CURRENT (Fuad, 2026-08-24)
+
+Measured against the two reads Fuad names as the bar, *Woman with a Parasol* and *Szał
+Uniesień*: **Info 32w / deep 95w, a 3:1 ratio.** The corpus had drifted to 90w/168w at 1.9:1.
+223 pairs were re-cut to the proportion and 142 Interpretations written fresh from existing
+tours; the working instrument is `.dtmp/recut-sweep/BRIEF.md`, kept current.
+
+**The Info is one breath — 32–38 words.** Who or what is in front of you, the date, and the ONE
+fact that makes a stranger want to look. Everything else moves down into the deep. A fragment
+with an em-dash is the house form; both exemplars are exactly that.
+
+**Infos of 40 words or fewer are left alone — but read and fact-checked, not copied blind.** A
+pilot passed through an Info dating L'Absinthe to 1876 against a canon row saying 1875, and a
+Turner Info saying 1834 against a row saying 1837. Flag conflicts in a `note`, never pass them.
+
+**NEVER WRITE THE LOCATION**, in either tier. No venue, no "its home is", no "you saw it at X"
+— the viewer already shows where the work lives. **This beats the leave-alone rule**: a short
+Info that names a museum gets the clause struck (Arlequin, ruled 2026-08-24). A venue survives
+only when it carries an observation that is not the address — a genuine event-story (the 1914
+suffragette attack on the Rokeby Venus), where a painter studied, or the work's own subject.
+NOTE the trap: the brief once permitted "you saw it at X" for `sure` works while also banning
+locations. Opus resolved the contradiction correctly by instinct; Sonnet took it literally and
+**7 of 18 reads in one wave ended on a venue**. A known contradiction in an instruction is a
+defect with a delay on it.
+
+**THE TIERS MUST NOT COVER THE SAME GROUND — DEEPEN, NEVER RE-NAME.** If the Info owns a fact,
+the deep may return to it only by going further into it. The failure: David's *Napoleon*, whose
+Info gave "the clock past four, the candle burnt to nothing, a document lettered CODE" and whose
+deep opened by naming all three again. The pass: *Woman with a Parasol*, where both tiers carry
+the light-off-the-grass fact and the deep cashes it out — "there is almost no actual white."
+
+**The measure, and why it is NOT a gate.** Share of the Info's distinctive words reappearing in
+the deep: corpus mean 19%, healthy under 25%. But the highest score in the entire corpus, **58%,
+belongs to *Woman with a Parasol*** — the exemplar. A threshold would condemn the best pair we
+have. Treat a high score as a prompt to look, then judge the only question that matters: does
+the deep deepen the shared fact or merely repeat it? **The §5 4-gram test cannot see this at
+all** — it flagged 0 of the 8 works the word-share measure caught, because re-telling in fresh
+wording shares no 4-grams.
+
+**Model (Fuad 2026-08-24): Sonnet drafts Interpretations, Opus trims afterwards where they
+overrun.** Badge `deepBy: "Sonnet 4.6"` — the read stays substantially Sonnet's. Where Opus
+re-cut both tiers wholesale, the pair carries `by: "Opus 4.8"` and no `deepBy`.
+
+### TESTED AND REJECTED 2026-08-24 — the making quota. Do not re-run.
+
+A pass read Fuad's note that "the interpretations at times get into very descriptive motions" as
+*every read owes a technique layer*, measured the legacy reads at 52% making-content, set that as
+a bar and rewrote 15 reads to it. **All 15 rejected.** They bought technique by spending
+anecdotes — the 'degas' scratched in the marble, the Cézanne its owner had already swapped for a
+snow scene, the university shut three years later — and each grew ~15 words. Fuad: *"I don't
+think the new ones are actually better - I did like the background stories and anecdotes and I
+preferred the tighter versions."* Evidence kept at
+`.dtmp/_rejected/making-patch-REJECTED-2026-08-24/`. **Do not reintroduce a making-share target.**
+
+What the note actually meant is narrower: cut aimless description of **what is depicted** — this
+at the left, that behind it — which never says why we are being shown it. Technique earns its
+place when it IS the point (the Milkmaid's ultramarine, a pigment dearer than gold spent on a
+servant's apron), not as a quota.
+
+### A structural finding, not a rule
+
+38% of swept reads ended on the same material as their tour's LAST STOP. The tour is organised
+by region and flies the eye from area to area; the Interpretation is organised by an idea.
+Choose the last line because it is the hardest thing you have, not because it is where the tour
+stopped.
+
 ## 6. QC and merge
 
 1. **Fact-check every specific against the tour — including fusions and swaps.** Grep the
@@ -219,7 +296,19 @@ measurement. A rule that cannot be traced to one of those is not a rule; strike 
 (History: an unsourced second-person ban and a hardened word ceiling both reached shipped
 content in August 2026 before being caught. This section exists so that cannot recur.)
 
-## Coverage (2026-08-23, post floored batches fl1–fl3 + liked trial lk1)
+## Coverage (2026-08-24, post reshape + Interpretation backfill)
+
+**792 Infos · 365 Interpretations · 363 study tours**, against 1,956 canon works. Every
+Interpretation has an Info; all but two have a tour (`monet-nympheas-orangerie` and
+`leech-the-sunshade` predate the tour-first rule and are recorded exceptions). **"Tour but no
+Interpretation" is 0** — the backfill queue is empty.
+
+Info lengths after the reshape: 60% are captions (≤40w), 29% sit at 41–70w, 11% above, 3 over
+110w. Re-cut pairs average 36w/111w at 3.1×; 51 shipped Interpretations still carry the old
+shape (deeps averaging 135w) — the mild tail, jobs built at `.dtmp/recut-sweep/batch5.json`,
+never run.
+
+## Coverage (2026-08-23, post floored batches fl1–fl3 + liked trial lk1) — SUPERSEDED
 
 772 Info (23 from the lk1 liked-works trial, research-first Opus drafts `by: "Opus 4.8"` —
 approved as the template for larger liked batches) · 205 Interpretations (111 badged
