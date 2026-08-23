@@ -154,11 +154,20 @@ const unproxy = (e) => {
 // onAnimationEnd is name-guarded: child mount animations (cvChipIn) bubble through here too.
 function Fold({ open, children }) {
   const [render, setRender] = useState(open);
-  useEffect(() => { if (open) setRender(true); }, [open]);
+  // `.cv-foldin` must clip while the grid-rows animation runs — that clipping IS the fold. But
+  // leaving it clipped at rest ate the pilgrimage reel's hover pop, which deliberately overflows
+  // upward out of its row (Fuad 2026-08-24: "hovered versions of the artworks need to have the
+  // highest z-index, at the moment they're covered by the row's container"). So the fold marks
+  // itself at rest once the animation ends and CSS releases the overflow only then.
+  const [atRest, setAtRest] = useState(false);
+  useEffect(() => { if (open) setRender(true); setAtRest(false); }, [open]);
   if (!render) return null;
   return (
-    <div className="cv-fold" data-closing={!open || undefined}
-      onAnimationEnd={(e) => { if (!open && /cvFoldClose/.test(e.animationName)) setRender(false); }}>
+    <div className="cv-fold" data-closing={!open || undefined} data-rest={atRest || undefined}
+      onAnimationEnd={(e) => {
+        if (!open && /cvFoldClose/.test(e.animationName)) setRender(false);
+        else if (open && /cvPilOpen/.test(e.animationName)) setAtRest(true);
+      }}>
       <div className="cv-foldin">{children}</div>
     </div>
   );
@@ -1701,6 +1710,21 @@ function Reader({ id, go }) {
                     2026-08-22) — saves the file instead of rendering it downsampled in a tab */}
                 <a href={w.hires.orig + "?download"} title="Save the original file instead of opening it">⭳ save</a>
               </React.Fragment>
+            ) : w.hires && w.hires.iiif && w.hires.w ? (
+              /* IIIF works (Fuad 2026-08-24: "list the resolution in-line with how we've
+                 marked other artworks"). These carry no `orig` — the master lives behind the
+                 tile server — so they fell through to the Commons branch and advertised
+                 either nothing or the dimensions of a thumbnail-grade Commons file. The real
+                 number is the holder's master, which art_hires already records; the link asks
+                 the tile server for it at full size. */
+              <React.Fragment>
+                <a href={w.hires.iiif.replace(/\/info\.json$/, "/full/full/0/default.jpg")}
+                  target="_blank" rel="noopener noreferrer"
+                  title={`The holder's master scan — ${w.hires.w}×${w.hires.h}px, a very large download; browsers display giant scans downsampled`}>
+                  {`Ultra HQ ↗ ${w.hires.w}×${w.hires.h}`}
+                </a>
+                <a href={w.hires.img} title="A 3000px render, if the master is too large to open">⭳ 3000px</a>
+              </React.Fragment>
             ) : w.imgZoom && (
               <a href={w.imgZoom} target="_blank" rel="noopener noreferrer"
                 title={w.px ? `Commons source is ${w.px[0]}×${w.px[1]}px` : undefined}>
@@ -2818,7 +2842,13 @@ function MapView({ go }) {
       // from this at the bubble's RENDERED size (× bubZoom) — flooring at the full world radius
       // was why the longest leaders around the big cities never shortened: their dots sat at
       // the rim of a bubble drawn at half that size (Fuad 2026-08-22, fourth line-length pass).
-      for (const nd of nodes) markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue, far: halo.far, keepR: cr });
+      // solvedMax = the furthest any of THIS city's dots was pushed. The renderer needs it to
+      // rank a dot within its own halo instead of pinning every dot to one collar (see fanAt).
+      {
+        let solvedMax = 0;
+        for (const nd of nodes) solvedMax = Math.max(solvedMax, Math.hypot(nd.x - bx, nd.y - by));
+        for (const nd of nodes) markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue, far: halo.far, keepR: cr, solvedMax });
+      }
     }
     // FIX 2 (2026-07-17 r4) — THE centre-dot fix. The per-city clamp above only keeps a dot off ITS
     // OWN city bubble; it never guarded against OTHER cities. A dot fanned out of city A (or shoved by
@@ -2966,8 +2996,19 @@ function MapView({ go }) {
     // 0.32 → 0.24, which pulls the longest leaders in from both directions. He confirmed the
     // dot system itself reads right ("looking at Tokyo the dots properly fan out"), so the
     // angles and the collar model stay exactly as they are.
+    // TENTH PASS (Fuad 2026-08-24: "the default map needs to follow closer how the branching
+    // style is organized when clicking a city — the display of blobs when clicking Paris works
+    // very well, let's have the same look with all cities"). The collar pinned EVERY dot to one
+    // tight ring, which is why the resting halo read as a bead necklace while an opened city
+    // read as a fan: the branch contracts its layout proportionally and so keeps the solver's
+    // near/far structure. This restores that structure without restoring the reach that made
+    // Paris collide with Dijon — the dot keeps its angle, and its distance is its RANK within
+    // its own city's solved spread, mapped across a bounded band off the rim. Nearest solved
+    // dot sits on the collar, furthest at collar + band; everything else lands in proportion.
     const lo = (mk.keepR || 0) * bubZoom * dotMul + 2 * dotZoom * dotMul * 0.6;
-    const newLen = Math.min(lo + 0.11, Math.max(lo, len * fanK));
+    const band = 0.11 + 0.85 * fanK;                 // widens as you zoom in, like the branch fan
+    const rank = mk.solvedMax > 0.001 ? Math.min(1, len / mk.solvedMax) : 0;
+    const newLen = Math.max(lo, lo + band * rank);
     return [mk.bx + ox / len * newLen, mk.by + oy / len * newLen];
   };
   // DOT ZOOM (Fuad 2026-08-22: "the dots can start initially smaller — when zoomed in they can

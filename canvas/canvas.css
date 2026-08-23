@@ -490,6 +490,11 @@ a { color: inherit; }
    SIBLING of the scroller. It must not be a child: overflow-x on the reel would clip it, which is
    the whole difficulty with scale-on-hover inside a scroller. */
 .cv-reel-wrap { position: relative; }
+/* the hovered strip outranks every later row. Without this the pop is painted under the
+   venue/city blocks that follow it in source order, which is what "covered by the row's
+   container" looked like. */
+.cv-reel-wrap:hover, .cv-reel-wrap:focus-within { z-index: 60; }
+.cv-pil-venue:hover, .cv-pil-city:hover, .cv-pil-country:hover { position: relative; z-index: 50; }
 .cv-reel { display: flex; gap: 6px; overflow-x: auto; padding: 2px 0 8px; scrollbar-width: thin; }
 .cv-reel::-webkit-scrollbar { height: 6px; }
 .cv-reel::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
@@ -1139,6 +1144,10 @@ a { color: inherit; }
 .cv-fold { display: grid; grid-template-columns: minmax(0, 1fr); animation: cvPilOpen .32s ease; }
 .cv-fold[data-closing] { animation: cvFoldClose .3s ease both; }
 .cv-foldin { overflow: hidden; min-height: 0; min-width: 0; }
+/* ...but only while it is folding. At rest the row must let the reel's hover pop escape upward
+   (Fuad 2026-08-24) — a permanently clipped fold swallowed it. Fold sets data-rest on
+   animationend; closing clears it, so the fold still clips whenever it is actually animating. */
+.cv-fold[data-rest] > .cv-foldin { overflow: visible; }
 /* the unfolded style chips drift in rather than popping — mount-only, so filter re-renders
    (chips stay mounted, keyed by slug) never replay it */
 /* bottom padding so the last chip row doesn't sit flush on the fold's clipped edge — reads
