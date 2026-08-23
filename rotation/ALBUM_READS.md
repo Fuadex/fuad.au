@@ -224,10 +224,11 @@ anti-quoting gate + fact/placement verification at QC; verified extra layers rid
 (an independent account-first cross-check before each read is judged, plus a whole-batch
 final sweep after verification); `fv:2` entries without `fvr` are **v2.2** (frozen-pipeline
 era) — the natural target list for the pinned future depth pass. The Fable source button's
-tooltip surfaces the revision. Every new apply ships 2.3. Albums whose songs are fully fable-covered may
-carry an ALTERNATE album read synthesized from those flagship reads (`liner2`/`arc2`,
-flickable via Fable on the PortraitCard). Operational details live in the untracked
-workshop docs.
+tooltip surfaces the revision. Every new apply ships the current revision (`fvr:"2.4"`,
+the scaffolding-check era, since 2026-08-16; 2.3 batches predate it). Albums whose songs
+are fully fable-covered may carry an ALTERNATE album read synthesized from those flagship
+reads (`liner2`/`arc2`, flickable via Fable on the PortraitCard). Operational details live
+in the untracked workshop docs.
 
 ## Album reads — the STANDALONE-SOLID doctrine (Fuad 2026-08-12; supersedes the same-day "tight spec", which over-corrected)
 
@@ -296,6 +297,24 @@ GIST recipe; redrafts bump `by` to Opus·Fable.
   the new Gore entry is itself the type specimen of thesis-only thinness; fix it first).
 - Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
 - Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
+
+### Batch log — the album pivot (2026-08-23)
+
+Seven top-played albums that had no (or only partial) fable coverage were taken end-to-end
+in one arc — track reads first (Opus drafts, one-per-agent for famous English material,
+batched for obscure/foreign; Fable QC at fvr 2.4 with the mechanical gate run per batch),
+then a fable-synthesis portrait each (gist per the 08-13 recipe + liner + arc where
+earned): **METAL GALAXY, Sounds of Violence, Cruel Melody, Three Dollar Bill Yall$,
+This Godless Endeavor, Absolution, United Abominations** — 75 new fv:2 reads (corpus 905),
+4 fnotes, and a retro gate sweep over the batch that produced 4 approved seals on
+already-shipped reads. Rulings applied along the way: legacy fable-no-fv entries are
+REPLACED by approved new reads with `fableDeep` preserved (starlight, kagerou,
+mesopotamia); 39 rip-prefix numbered track keys folded as type spelling; sub-12-play keys
+sit below the album-run floor. Liner craft notes that stuck: the close must land as an
+album-level finding (never the last piece of evidence); the arc carries what the liner
+cannot see — an unfabled closer (Ruled by Secrecy, End of the Storm, Everything) or a
+play-leader outside the thesis (À Tout Le Monde). Absolution shipped with its fable-tier
+coverage gap (four sub-floor tracks) flagged honestly in the gist.
 
 **Variant album pages**: when a read was written on plays merged across library
 variants (edition spellings, promo pressings, mojibake titles), the finished entry
