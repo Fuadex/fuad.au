@@ -3496,12 +3496,16 @@ function MapView({ go }) {
                     itself and so fired almost immediately; 0.42 is about a 2.4x zoom, which is
                     where you have actually committed to a region (Fuad: "kicks in too fast, it
                     should kick in when you really zoom in close").
-                    CLEARANCE: the label sits above the whole halo AND above the label's own
-                    height plus a gap — Padua, Tübingen and Vienna were landing on their dots
-                    because the offset stopped at the halo edge and ignored the glyphs. */}
+                    CLEARANCE: the label sits above the halo and above its own glyph height.
+                    The gap used to be 1.1 + 2.25*(rings+1) dot-radii, which scaled straight off
+                    how many works a city holds — Paris at ~6 rings got ~17, Dijon at 0 got ~3,
+                    and the two looked like different rules (Fuad: "London, Paris, Amsterdam too
+                    far... Dijon is too close. I don't understand why there is such
+                    discrepancy"). Now 4 + (rings+1): the range compresses to roughly 5–11, so a
+                    crowded city sits about a third closer and an empty one gains clearance. */}
                 {k < 0.42 && (
                   <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 2.4) * k
-                        - 2.1 * k * dotMul * dotZoom * (1.1 + ((wishCityRings.get(c.city) || 0) + 1) * 2.25)
+                        - 2.1 * k * dotMul * dotZoom * (4 + ((wishCityRings.get(c.city) || 0) + 1))
                           * (wishCityScale.get(c.city) || 1)
                         - 9 * k * dotMul * labelZoom}
                     textAnchor="middle" style={{ fontSize: 8 * k * dotMul * labelZoom }}>{c.city}</text>
