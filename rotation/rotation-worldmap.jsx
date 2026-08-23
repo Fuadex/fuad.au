@@ -747,20 +747,28 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
                 sits at the container's right edge, so a short title never reaches it and a long one
                 runs out rather than stopping dead on an ellipsis. */}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16 }}>
+              {/* Scope line + count in the flowmap breadcrumb's register — r-mono 11, the same as
+                  "all genres" in the flow card (Fuad 2026-08-24: one voice for the two scope lines,
+                  and the serif-22 title + stat-26 count were the loudest of the Overview's mixed
+                  fonts). The count folds into one quiet line; both cuts also give the fixed-height
+                  results band its missing half row. */}
               <div style={{ minWidth: 0, flex: "1 1 auto" }}><div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>{periodData ? "on this " + calPeriod.gran : "results"}</div>
-                <div className="mp-restitle" title={parts.join("  ·  ")} style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 22 }}>{parts.join("  ·  ")}</div></div>
-              <div style={{ flex: "0 0 auto" }}><div className="r-stat-n" style={{ fontSize: 26 }}>{fmt(totalPlays)}</div><div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)" }}>plays</div></div>
+                <div className="r-mono mp-restitle" title={parts.join("  ·  ")} style={{ fontSize: 11 }}>{parts.join("  ·  ")}</div></div>
+              <div className="r-mono" style={{ flex: "0 0 auto", fontSize: 11, color: "var(--ink-soft)" }}>{fmt(totalPlays)} plays</div>
             </div>
             <div className="mp-resctl" style={{ display: "flex", alignItems: "center", gap: "8px 10px", flexWrap: "wrap", margin: "16px 0 14px" }}>
-              <div className="r-seg">
+              {/* r-seg-sm — the SAME variant class as the flowmap's genres/bands segment, not a
+                  local pixel copy of its numbers (that copy is what kept drifting; Fuad 2026-08-24:
+                  make them match by construction). */}
+              <div className="r-seg r-seg-sm">
                 {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => { setPane(k); if (k === "albums" || k === "songs") ensureADetail(); }}>{l}</button>)}
               </div>
-              {pane === "artists" && <div className="r-seg" title="list ⇄ cover grid">
+              {pane === "artists" && <div className="r-seg r-seg-sm" title="list ⇄ cover grid">
                 <button data-on={disp === "list"} onClick={() => setDisp("list")}>list</button>
                 <button data-on={disp === "grid"} onClick={() => setDisp("grid")}>grid</button>
               </div>}
               {(pane === "albums" || pane === "songs") && (
-                <div className="r-seg cal-view-seg" title="list / grid view">
+                <div className="r-seg r-seg-sm cal-view-seg" title="list / grid view">
                   <button data-on={resView === "list"} onClick={() => setResViewPersist("list")} title="list view">
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <line x1="4" y1="2" x2="12" y2="2"/><line x1="4" y1="6" x2="12" y2="6"/><line x1="4" y1="10" x2="12" y2="10"/>
@@ -775,7 +783,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
                   </button>
                 </div>
               )}
-              {pane !== "dna" && <div className="r-seg map-limseg">
+              {pane !== "dna" && <div className="r-seg r-seg-sm map-limseg">
                 {[10, 25, 50].map(n => <button key={n} data-on={limit === n} onClick={() => setLimitPersist(n)}>{n}</button>)}
               </div>}
             </div>
@@ -873,8 +881,12 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
           .mp-flow > .r-card { flex: 1; }
           .mp-results { grid-column: 3; grid-row: 1; margin-top: 0 !important; padding: 16px 16px 12px !important;
             display: flex; flex-direction: column; min-height: 0; }
-          .mp-restitle { font-size: 15px !important; line-height: 1.3; }
+          /* the old 15px title step-down is gone: the title is mono-11 at every width now, so the
+             band needs no override. Rows tightened one notch IN THE BAND ONLY (6px→4px vertical)
+             — with the header cuts this is what fits all 10 default rows inside the map/flow
+             height on 4K instead of 9.5 (Fuad 2026-08-24: PRO8L3M was the half row). */
           .mp-resbody { flex: 1 1 0; height: 0; min-height: 0; overflow-y: auto; padding-right: 4px; }
+          .mp-results .cal-row { padding: 4px 6px; }
           .mp-results .mp-covergrid { grid-template-columns: repeat(5, 1fr); gap: 6px; }
           .mp-results .mp-covergrid .mp-covernm { font-size: 8.5px; }
           /* deepest-cities + stat strip sit ~2/3 the calendar's height: stop them stretching
@@ -925,14 +937,10 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
           color: var(--ink-soft); cursor: pointer; transition: border-color .15s, color .15s; }
         .mp-more button:hover { border-color: var(--accent-dim); color: var(--accent); }
         .mp-more .r-mono { font-size: 9.5px; color: var(--ink-faint); }
-        /* RESULTS CONTROLS — artists/albums/songs/sound dna · list/grid · 10/25/50. They are sized
-           to the genres/bands segment in the flow card directly above them (core's .r-seg-sm,
-           9px/3px-7px), so the two control rows in this band read as one family (Fuad 2026-08-24).
-           At EVERY width: they were 10.5px/4px-9px, and the laptop step below only fired under
-           1500px — Fuad's viewport is 1536 (3840 at 250%), so it never applied to the machine it
-           was written for, and on 4K the last result was clipped too. The gap tightening keeps a
-           narrow-panel breakpoint; the type no longer needs one. */
-        .mp-resctl .r-seg button { font-size: 9px; padding: 3px 7px; }
+        /* RESULTS CONTROLS — artists/albums/songs/sound dna · list/grid · 10/25/50 now carry
+           r-seg-sm in the markup, the SAME variant class as the flowmap's genres/bands segment,
+           so they match by construction (Fuad 2026-08-24). The pixel-copy override that lived
+           here is gone on purpose — a local copy of core's numbers is exactly what drifts. */
         @media (max-width: 1560px) { .mp-resctl { gap: 6px 8px; } }
         /* one line, clipped with a soft fade rather than an ellipsis (Fuad 2026-08-20). The mask
            is anchored to the element's RIGHT EDGE, and the element is full width, so a short title
