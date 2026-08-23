@@ -229,7 +229,8 @@ function OvWeatherCard({ R, go }) {
   // avg draws the baseline tick.)
   const Bar = ({ label, v, avg, col }) => (
     <div style={{ display: "grid", gridTemplateColumns: "52px 1fr 26px", gap: 9, alignItems: "center" }}>
-      <span className="r-mono" style={{ fontSize: 9, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-soft)" }}>{label}</span>
+      {/* per-row axis label (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
+      <span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-soft)" }}>{label}</span>
       <div style={{ position: "relative", height: 7, background: "var(--bg-3)", borderRadius: 4 }}>
         {/* Transparent fill, vivid rim (Fuad 2026-08-20). The first pass put `opacity` on the whole
             element, which faded the border along with the fill — the one thing that was supposed to
@@ -266,7 +267,8 @@ function OvWeatherCard({ R, go }) {
         {/* the prose line is gone (Fuad 2026-08-20) — it restated the two bars underneath it in
             words and was most of this card's height. The bars carry the reading; the mood word is
             the one thing they cannot show, so it moves into the footer line. */}
-        <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 7, letterSpacing: ".06em" }}>
+        {/* footer hint (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
+        <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 7, letterSpacing: ".06em" }}>
           last {N.days} days{N.emo ? <> · mostly <b style={{ color: "var(--ink-soft)", fontWeight: 600 }}>{N.emo}</b></> : null}</div>
       </div>
     </div>
@@ -351,7 +353,8 @@ function OvDecadesCard({ R, go, restReady, fStats }) {
               );
             })}
           </div>
-          <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 7, lineHeight: 1.5 }}>
+          {/* strip caption (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
+          <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 7, lineHeight: 1.5 }}>
             {dec ? Math.round(dec.share * 100) + "% of plays are " + zoom + "s music" : ""} — by artist debut year · click a year to open it in Explore
           </div>
         </div>
@@ -381,7 +384,8 @@ function OvDecadesCard({ R, go, restReady, fStats }) {
             );
           })}
         </div>
-        <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginTop: 7 }}>
+        {/* strip caption (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
+        <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 7 }}>
           area = share of plays by release decade · click a decade to drill in
         </div>
       </div>
@@ -604,7 +608,8 @@ function OverviewView({ t, go, restReady, seed }) {
       {/* the ↗ is gone (Fuad 2026-08-20). It marked the stat as clickable, but every stat in the
           strip is, so it marked nothing — and it inflated captions that are already tight once a
           filter name is concatenated in. .ov-stat-link still carries the hover affordance. */}
-      <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".14em", textTransform: "uppercase",
+      {/* per-tile stat caption (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
+      <div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".14em", textTransform: "uppercase",
         color: "var(--ink-faint)", marginTop: 4 }}>{sub}</div>
     </div>
   );
@@ -725,7 +730,8 @@ function OverviewView({ t, go, restReady, seed }) {
             const f = (d) => { const x = new Date(d + "T00:00:00Z"); return MON[x.getUTCMonth()] + " '" + String(x.getUTCFullYear()).slice(2); };
             return (
               <div>
-                <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".08em" }}>
+                {/* per-item micro-label, pairs with the 8.5px line below (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
+                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".08em" }}>
                   best <span style={{ color: "var(--accent)" }}>{T.streak.best}</span>{S && S.start ? <> · {f(S.start)}–{f(S.end)}</> : null}
                 </div>
                 <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 3 }}>
@@ -993,8 +999,10 @@ function OverviewView({ t, go, restReady, seed }) {
         /* portrait + dig — twin compact fact modules, side-by-side on PC, stacked on mobile */
         .ov-pd { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
         @media (max-width: 760px) { .ov-pd { grid-template-columns: 1fr; } }
-        .ov-pd-lbl { font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 9px; }
-        .ov-pd-foot { font-size: 9.5px; letter-spacing: .1em; color: var(--ink-faint); margin-top: 9px; cursor: pointer; }
+        /* Fuad 2026-08-24: eyebrow collapse, two sizes only. The module title snaps to the
+           canonical 10px title-eyebrow; its footer link is an annotation, so it drops to 8.5px. */
+        .ov-pd-lbl { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 9px; }
+        .ov-pd-foot { font-size: 8.5px; letter-spacing: .1em; color: var(--ink-faint); margin-top: 9px; cursor: pointer; }
         .ov-pd-foot:hover { color: var(--accent); }
         /* tight bulleted fact list (lab2 collapsed-fact grammar): dot lead-in, terse mono-ish
            headline, minimal padding + rhythm; click expands the sentence + derivation. */
@@ -1013,7 +1021,8 @@ function OverviewView({ t, go, restReady, seed }) {
         .ov-fact-go { flex: none; font-family: var(--mono); font-size: 11px; color: var(--accent); padding: 0 2px; }
         .ov-fact-body { padding: 1px 6px 8px 18px; display: grid; gap: 5px; }
         .ov-fact-text { font-family: var(--serif); font-style: italic; font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
-        .ov-fact-det { font-family: var(--mono); font-size: 9.5px; color: var(--ink-faint); line-height: 1.45; }
+        /* derivation detail = footnote-grade (Fuad 2026-08-24: eyebrow collapse, two sizes only) */
+        .ov-fact-det { font-family: var(--mono); font-size: 8.5px; color: var(--ink-faint); line-height: 1.45; }
         .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: var(--gap); }
         .hub-card { padding: 16px 18px; cursor: pointer; transition: transform .15s, box-shadow .15s; }
         .hub-card:hover { transform: translateY(-3px); box-shadow: 0 16px 34px -16px rgba(0,0,0,.6); }

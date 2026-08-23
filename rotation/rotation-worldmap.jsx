@@ -707,7 +707,8 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
 
       {/* breakdown list */}
       <div className="mp-list" style={{ marginTop: "var(--gap)" }}>
-        <div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 10 }}>{focus ? "Cities in " + focusName : mode === "city" ? "Deepest cities" : "Deepest countries"}</div>
+        {/* section title-eyebrow → canonical 10px (Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
+        <div className="r-mono" style={{ fontSize: 10, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 10 }}>{focus ? "Cities in " + focusName : mode === "city" ? "Deepest cities" : "Deepest countries"}</div>
         <div style={{ maxHeight: 200, overflowY: "auto", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px,1fr))", gap: "5px 22px", paddingRight: 4 }}>
           {list.map((t, i) => (
             <div key={(t.code || t.city) + i} className="map-listrow"
@@ -745,15 +746,19 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
             {/* no flex-wrap (Fuad 2026-08-20): a long genre or subgenre name used to push the play
                 count onto its own line. The title clips and fades instead — the mask in .mp-restitle
                 sits at the container's right edge, so a short title never reaches it and a long one
-                runs out rather than stopping dead on an ellipsis. */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16 }}>
+                runs out rather than stopping dead on an ellipsis. Header folded to a single row
+                (Fuad 2026-08-24), buying the results band another line. */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 16 }}>
               {/* Scope line + count in the flowmap breadcrumb's register — r-mono 11, the same as
                   "all genres" in the flow card (Fuad 2026-08-24: one voice for the two scope lines,
                   and the serif-22 title + stat-26 count were the loudest of the Overview's mixed
                   fonts). The count folds into one quiet line; both cuts also give the fixed-height
                   results band its missing half row. */}
-              <div style={{ minWidth: 0, flex: "1 1 auto" }}><div className="r-mono" style={{ fontSize: 9.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 4 }}>{periodData ? "on this " + calPeriod.gran : "results"}</div>
-                <div className="r-mono mp-restitle" title={parts.join("  ·  ")} style={{ fontSize: 11 }}>{parts.join("  ·  ")}</div></div>
+              {/* Results-card title-eyebrow → canonical 10px (Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
+              <div style={{ minWidth: 0, flex: "1 1 auto", display: "flex", alignItems: "baseline", gap: 6 }}>
+                <div className="r-mono" style={{ fontSize: 10, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", flex: "0 0 auto" }}>{periodData ? "on this " + calPeriod.gran : "results"}</div>
+                <div className="r-mono mp-restitle" title={parts.join("  ·  ")} style={{ fontSize: 11, minWidth: 0, flex: "1 1 auto" }}>{parts.join("  ·  ")}</div>
+              </div>
               <div className="r-mono" style={{ flex: "0 0 auto", fontSize: 11, color: "var(--ink-soft)" }}>{fmt(totalPlays)} plays</div>
             </div>
             <div className="mp-resctl" style={{ display: "flex", alignItems: "center", gap: "8px 10px", flexWrap: "wrap", margin: "16px 0 14px" }}>
@@ -787,7 +792,8 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
                 {[10, 25, 50].map(n => <button key={n} data-on={limit === n} onClick={() => setLimitPersist(n)}>{n}</button>)}
               </div>}
             </div>
-            {!periodData && yearIdx != null && (pane === "albums" || pane === "songs") && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginBottom: 8 }}>albums &amp; songs aren't split by year — showing all-time for this slice.</div>}
+            {/* year-slice note = footnote-grade (Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
+            {!periodData && yearIdx != null && (pane === "albums" || pane === "songs") && <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginBottom: 8 }}>albums &amp; songs aren't split by year — showing all-time for this slice.</div>}
             <div className="mp-resbody">
             {pane === "artists" && (resultArtists.length
               ? (disp === "grid"
