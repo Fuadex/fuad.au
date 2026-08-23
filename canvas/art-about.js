@@ -3,6 +3,86 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+"antonio-canova-amore-e-psiche": {
+about: "Canova began the full-size model on the afternoon of 30 May 1787, lifting the pose from a Herculaneum fresco of a bacchante embraced by a faun; the commission, from Colonel John Campbell, later first Baron Cawdor, asked for \"Amore e Psiche che si abbracciano: momento di azione cavato dalla favola dell'Asino d'oro di Apuleio\" — the moment after Psyche opens Proserpina's flask and drops into Stygian sleep. He started cutting the marble in May 1788 and finished only in 1793.",
+by: "Opus 4.8" },
+
+"edgar-degas-ballet-rehearsal-on-stage": {
+about: "Degas worked this 1874 rehearsal scene in a grey camaïeu — his only known painting in grisaille — because it was meant to guide an engraver, part of his push into the English print market; he ambiguously called it a \"drawing.\" Shown that April at the first Impressionist exhibition in Nadar's studio on the boulevard des Capucines, it was widely taken for one. The painter Giuseppe De Nittis remembered muslin costumes \"so diaphanous, and the movements so true to life\" that description failed him.",
+by: "Opus 4.8" },
+
+"georges-seurat-circus-sideshow-parade-de-cirque": {
+about: "The Cirque Corvi was an itinerant show that pitched at the place de la Nation in working-class eastern Paris, and what Seurat painted in 1887–88 was its free curbside come-on, the act barkers ran outside to sell tickets inside. He wrote \"Fernand Corvi\" on his small study of the booth. It was his first nocturne and his first subject taken from popular entertainment; hung as no. 614 at the 1888 Indépendants, it was eclipsed by Les Poseuses, and Gustave Kahn found it \"so willfully pallid and sad\". Alfred Barr later called it \"the most geometric in design as well as the most mysterious in sentiment\".",
+by: "Opus 4.8" },
+
+"gustav-klimt-portrait-of-hermine-gallia": {
+about: "Moriz Gallia, a Viennese businessman and Wiener Werkstätte shareholder, commissioned Klimt in 1903 to paint his wife Hermine, née Hamburger, whom he had married a decade earlier. Klimt hung the canvas still unfinished at the Secession that winter and signed it only in 1904. After the Anschluss the three surviving Gallia children carried it with them to Sydney, \"as far away as possible\"; in the 1960s Kathe offered it to the Art Gallery of New South Wales, which declined, believing Australians \"would have little interest\".",
+by: "Opus 4.8" },
+
+"gustave-caillebotte-chrysanthemums-in-the-garden-at-petit-ge": {
+about: "Caillebotte had settled permanently at Petit-Gennevilliers in 1888, building a greenhouse for his orchids and gardening as seriously as he painted. The flowers were his own, and this is one of six chrysanthemum canvases from 1893, the year before he died at forty-five. Scholars link the upright, door-shaped format to his scheme for dining-room doors panelled with plants, orchids in the upper panels and other blooms below, a decorative project running alongside Monet's Giverny series.",
+by: "Opus 4.8" },
+
+"harada-naojiro-guanyin-riding-the-dragon": {
+about: "When Harada Naojirō sent this oil to the Third National Industrial Exposition in 1890, it drew a public attack: Toyama Masakazu, lecturing to the Meiji Art Society that April on \"The Future of Japanese Painting,\" argued that painters without religious faith had no business painting gods and buddhas. Mori Ōgai, who had befriended Harada as a student in Munich and modelled a character on him, answered in print with \"Refuting Mr. Toyama Masakazu's Theory of Painting.\" Harada afterwards gave the white-robed Kannon to Gokokuji, and the temple's painting was designated an Important Cultural Property on 8 June 2007.",
+by: "Opus 4.8" },
+
+"herbert-james-draper-the-lament-for-icarus": {
+about: "Draper worked by Leighton's method, from separate figure studies, hiring four Academy professionals — Ethel Gurden, Ethel Warwick, Florence Bird and Luigi di Luca — for the drowned boy and the nymphs who mourn him. Warwick had taken up modelling to pay her London Polytechnic fees. The picture went to the Royal Academy in 1898 and took the gold medal at the Paris Exposition Universelle of 1900. Draper left the wings intact: nothing in them says the wax ever melted.",
+by: "Opus 4.8" },
+
+"j-m-w-turner-dido-building-carthage": {
+about: "Turner sent it to the Royal Academy in 1815 alongside Crossing the Brook, staking himself against Claude Lorrain on Claude's own ground: Virgil's Aeneid, Dido overseeing the first stones of her city. Sir George Beaumont judged it \"painted in false taste, not true to nature.\" Turner never conceded — an 1829 draft of his will asked that he be buried wrapped in this canvas, and in 1817 he gave it a sequel, The Decline of the Carthaginian Empire.",
+by: "Opus 4.8" },
+
+"jean-baptiste-carpeaux-ugolin-entoure-de-ses-quatre-enfants": {
+about: "The Prix de Rome of 1854 sent Carpeaux to the Villa Médicis, and the group he built there broke every rule of the annual envoi: two figures at most, a subject from Antiquity or Scripture, one year's work. The director Victor Schnetz objected that Dante counted as modern history. Carpeaux argued his way to an extension anyway and spent 1858 to 1861 on five interlocked figures from Inferno XXXIII — the starving Pisan gnawing his hands while his children offer themselves to be eaten. The plaster left Rome in January 1862 and was shown at the École des Beaux-Arts that February; the State ordered a bronze from it, and Carpeaux patinated this cast himself to see the metal in advance.",
+by: "Opus 4.8" },
+
+"john-constable-salisbury-cathedral-from-the-meadows": {
+about: "Constable's wife Maria died in November 1828, and Archdeacon John Fisher prescribed work as the cure: \"I am quite sure that the 'church under a cloud' is the best subject you can take.\" Fisher had him to stay at Leadenhall in the cathedral close twice in 1829, and this small studio oil, worked up from a slight pencil sketch, is the closest of the preparatory versions to the six-foot canvas Constable sent to the Royal Academy in 1831.",
+by: "Opus 4.8" },
+
+"john-everett-millais-hearts-are-trumps": {
+about: "A critic had said Millais could never match Reynolds's \"The Ladies Waldegrave\"; the merchant Walter Armstrong's 1872 commission — his three daughters Elizabeth, Diana and Mary, all in their twenties — was his answer. Millais designed the grey dresses with their pink ribbons and yellow lace himself, and dealt the sisters a hand of dummy whist, Mary holding most of the trumps. It made a sensation at that year's Royal Academy.",
+by: "Opus 4.8" },
+
+"julian-fa-at-powrot-z-polowania-na-niedzwiedzia": {
+about: "In February 1886 Fałat travelled to Nieśwież on the same train as Prince Wilhelm of Prussia, carrying letters of recommendation, and covered the Radziwiłł bear hunt from inside it; the watercolours were reproduced in a Berlin album, \"Souvenir de chasse à l'ours donné à Nieśwież\". Snowbound hunting became his specialty — beaters, trumpeters, bears driven from the lair. Six years on he built the aftermath, the kill dragged home through the drifts, into this 1892 studio oil, over two metres wide. Of Nieśwież he wrote: \"I returned to Warsaw as a different artist.\"",
+by: "Opus 4.8" },
+
+"lovis-corinth-ecce-homo": {
+about: "Corinth painted it over Easter 1925 in four days — two on the Christ, one apiece for the other two figures — working up a watercolour sketch he had made twelve years earlier, and cutting the same motif in drypoint that same year. He cast it from his own circle: his pupil Leo Michelson as Christ, the painter Paul Paeschke as the armoured soldier, the writer Michael Gusemann as Pilate, who wears Corinth's studio smock, the one from his easel self-portraits. It was his last history painting; he died at Zandvoort that July, aged 66. In 1937 the Nazis pulled it from the Berlin Nationalgalerie as \"entartet\" for the Munich show, and in 1939 it was sold off at the Lucerne auction of art purged from German museums.",
+by: "Opus 4.8" },
+
+"paul-cezanne-la-maison-du-pendu-auvers-sur-oise": {
+about: "Painted at Auvers in 1873 alongside Pissarro, it sold out of the first Impressionist exhibition of 1874 to comte Armand Doria — Cézanne's first canvas bought by a collector. In June 1889 he wrote asking Doria to send it to the Exposition Universelle's Centennale, unaware Doria had already swapped it to Victor Chocquet for a Fontainebleau snow study; it hung there as no. 124. That December Cézanne asked Chocquet to lend it to Les XX in Brussels, calling it \"Une chaumière à Auvers-sur-Oise.\"",
+by: "Opus 4.8" },
+
+"pierre-auguste-renoir-claude-monet": {
+about: "Renoir painted Monet at rest in 1875 — pipe lit, newspaper open — the year both men were at their poorest; the Hôtel Drouot auction Renoir had organised that March, with Monet, Sisley and Morisot, raised almost nothing. It hung at the second Impressionist exhibition at Durand-Ruel in April 1876, where critics called it the work of an old master, and drew its longest notice from Émile Zola in Le Messager de l'Europe that June, the St Petersburg monthly he wrote his Paris letters for.",
+by: "Opus 4.8" },
+
+"salvador-dali-the-great-masturbator": {
+about: "Dalí painted it at Cadaqués in the late summer of 1929, in the weeks after Gala stayed on there while her husband Paul Éluard went back to Paris alone. It hung as catalogue number 6 in his first Paris solo show, at the Galerie Goemans from 20 November to 5 December 1929, under the French title Visage du Grand Masturbateur, the name it still carries in the family catalogue. The head is taken from a rock on Cap de Creus, which he claimed outright: \"I did nothing more than render homage to one of the promontories of my kingdom, and my painting was a hymn to one of the jewels of my crown.\"",
+by: "Opus 4.8" },
+
+"stanhope-forbes-the-munitions-girls": {
+about: "George Baker commissioned it in 1918 as a memento \"for our women workers\" at John Baker & Co.'s Kilnhurst Steel Works near Rotherham, and every woman who appears in it was given a framed copy of her own. Forbes, then sixty and the acknowledged father of the Newlyn School, took as his subject the forging of 4.5-inch shells: billets reheated in a furnace, then carried still glowing, by hand, to the steam hydraulic press. Munitions workers of those years were nicknamed \"canaries\", for the yellow that TNT left in their skin and hair.",
+by: "Opus 4.8" },
+
+"thomas-gainsborough-mr-and-mrs-william-hallett": {
+about: "William Hallett and Elizabeth Stephen were both twenty-one when he paid Gainsborough 120 guineas for this life-size double portrait in the summer of 1785, weeks before their wedding at Little Stanmore on 30 July; the pair are thought to be sitting in their wedding clothes. Hallett's will records that he lived with her \"most happily for nearly 48 years.\" In March 2017 a visitor scratched the canvas twice with a screwdriver, breaking the paint layers but not the support; it was back on the wall ten days later.",
+by: "Opus 4.8" },
+
+"vincent-van-gogh-portrait-of-adeline-ravoux": {
+about: "In June 1890 Van Gogh was lodging above the Ravoux inn at Auvers-sur-Oise, where he spent the last ten weeks of his life. The innkeeper's eldest daughter, Adeline, was thirteen and sat only once, though he worked her up three times over — one version left with the family, another went to Theo, whom he told on 24 June that he had done \"a portrait of a young girl of 16 or so, in blue against a blue background, the daughter of the people where I'm lodging.\" Adeline, who set down her recollections of him in 1956, never thought it looked like her.",
+by: "Opus 4.8" },
+
+"wincenty-kasprzycki-wystawa-sztuk-pieknych-w-warszawie-w-182": {
+about: "The show ran in the mineralogical cabinet of the Royal University of Warsaw from 24 May to 20 July 1828, and Kasprzycki worked so fast that his canvas was hung in the very exhibition it records. Among the visitors he set Marcin Zaleski, Antoni Brodowski, Jan Antoni Blank, Aleksander Kokular and Rafał Hadziewicz, and seated himself at the right. Kurier Warszawski called the result \"executed in every way interesting,\" crediting his inclusion of \"the more accomplished artists in the country.\"",
+by: "Opus 4.8" },
+
 "christian-rohlfs-white-beeches-in-fall": {
 about: "Rohlfs came to Expressionism absurdly late: born in 1849, he was already past fifty when Karl Ernst Osthaus installed him at the Folkwang in Hagen and, in Soest in 1905, introduced him to Emil Nolde. The friendship that followed pulled a settled landscape painter into hot color and loosened form, and by this 1910 canvas he was among the oldest men working in the new German idiom. Its German title, \"Weiße Birken im Herbst,\" names birches rather than the beeches of the English label — a slip the picture has carried ever since.",
 by: "Opus 4.8" },

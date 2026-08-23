@@ -901,7 +901,9 @@ window.CANVAS_ARTWORKS = [
     seenAt: "tate-britain", seenConfidence: "sure", liked: true },
   { id: "eugene-burnand-the-disciples-peter-and-john-running-to-the-t", title: "The disciples Peter and John running to the tomb on the morning of the resurrection", artist: "Eugène Burnand", artistId: "eugene-burnand", qid: "Q3232117", qidTrusted: true, year: 1898,
     seenAt: "orsay", seenConfidence: "sure", liked: true },
-  { id: "antonio-canova-amore-e-psiche", title: "Amore e Psiche", artist: "Antonio Canova", artistId: "antonio-canova", qid: "Q517408", qidTrusted: true, year: 1794,
+  // year: the Louvre marble MR 1777 is modelled 1787, cut from 1788, finished 1793; 1794
+  // bleeds in from the Yusupov/Hermitage second version below (lk2 research 2026-08-23)
+  { id: "antonio-canova-amore-e-psiche", title: "Amore e Psiche", artist: "Antonio Canova", artistId: "antonio-canova", qid: "Q517408", qidTrusted: true, year: 1793,
     seenAt: "louvre", seenConfidence: "sure", liked: true },
   { id: "antonio-canova-amore-e-psiche-hermitage", title: "Amore e Psiche (second version)", artist: "Antonio Canova", artistId: "antonio-canova", year: 1796, wish: true, img: "https://commons.wikimedia.org/wiki/Special:FilePath/Statue%20of%20Cupid%20and%20Psyche%20and%20a%20butterfly%20%28The%20Hermitage%29.jpg?width=1600" }, // Hermitage second version — no Wikidata item exists (checked 2026-08-22), hand img
   { id: "claude-monet-weeping-willow", title: "weeping willow", artist: "Claude Monet", artistId: "monet", qid: "Q105099606", qidTrusted: true, year: 1921,
@@ -982,7 +984,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: "orsay", seenConfidence: "sure", liked: true },
   { id: "henri-leopold-levy-untitled", title: "Sarpédon", artist: "Henri Leopold Levy", artistId: "henri-leopold-levy", qid: "Q64491301", qidTrusted: true, year: 1874,
     seenAt: "orsay", seenConfidence: "sure", liked: true },
-  { id: "thomas-gainsborough-mr-and-mrs-william-hallett", title: "Mr and Mrs William Hallett (\\", artist: "Thomas Gainsborough", artistId: "gainsborough", qid: "Q12738203", qidTrusted: true, year: 1785,
+  { id: "thomas-gainsborough-mr-and-mrs-william-hallett", title: "Mr and Mrs William Hallett ('The Morning Walk')", artist: "Thomas Gainsborough", artistId: "gainsborough", qid: "Q12738203", qidTrusted: true, year: 1785,
     seenAt: "national-gallery-london", seenConfidence: "sure", liked: true },
   { id: "michael-pfanner-untitled", title: "Augustusporträt aus dem Allgäu", artist: "Michael Pfanner", artistId: "michael-pfanner", qid: "Q126082981", qidTrusted: true, year: 1994, img: "https://upload.wikimedia.org/wikipedia/commons/a/a7/AugustusPfannerT%C3%BCb.jpg", // hand img: the qid P18 shows a different (full-statue) object; this head is the Tübingen work seen (Fuad 2026-08-22)
     seenAt: "tubingen-antiquities", seenConfidence: "sure", liked: true },
@@ -1114,7 +1116,9 @@ window.CANVAS_ARTWORKS = [
     seenAt: "petit-palais", seenConfidence: "sure" },
   { id: "claude-monet-effet-de-neige-a-vetheuil", title: "Effet de neige à Vétheuil", artist: "Claude Monet", artistId: "monet", qid: "Q17491280", qidTrusted: true, year: 1878,
     seenAt: "artizon", seenConfidence: "sure", liked: true },
-  { id: "paul-cezanne-la-maison-du-pendu-auvers-sur-oise", title: "La Maison du pendu, Auvers-sur-Oise", artist: "Paul Cézanne", artistId: "cezanne", qid: "Q3821663", qidTrusted: true, year: 1874,
+  // year: catalogue raisonné (R202/FWN81) dates execution "vers 1873"; 1874 is the first
+  // Impressionist exhibition year, which Wikidata carries with a circa qualifier (lk2)
+  { id: "paul-cezanne-la-maison-du-pendu-auvers-sur-oise", title: "La Maison du pendu, Auvers-sur-Oise", artist: "Paul Cézanne", artistId: "cezanne", qid: "Q3821663", qidTrusted: true, year: 1873,
     seenAt: "orsay", seenConfidence: "sure", liked: true },
   { id: "paul-cezanne-paysage-avec-des-peupliers", title: "Paysage avec des peupliers", artist: "Paul Cézanne", artistId: "cezanne", qid: "Q24939427", qidTrusted: true, year: 1886,
     seenAt: "national-gallery-london", seenConfidence: "sure", liked: true },
