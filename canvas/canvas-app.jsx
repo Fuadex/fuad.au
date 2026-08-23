@@ -511,6 +511,11 @@ function Wall({ go, styleIds }) {
   const [pick, setPick] = useState("");                // colour-sort target ("" = hue ramp)
   const [eras, setEras] = useState(() => new Set());   // era chips — OR within, AND with the rest
   const toggleEra = unhang((k) => setEras(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; }));
+  // ✦ HAS A READ (Fuad 2026-08-24) — a cross-cutting filter on the first row, since "which of
+  // these has something written about it" is a different question from grade or status. A read
+  // counts as either tier of art-about OR a study tour, matching exactly what the ✦ marker on
+  // the card already means, so the chip and the marker can never disagree.
+  const [readOnly, setReadOnly] = useState(false);
   const [qual, setQual] = useState([]);                // quality buckets, OR'd like media
   const toggleQual = unhang((k) => setQual(q => q.includes(k) ? q.filter(x => x !== k) : [...q, k]));
   // The full style list — order and slugs are stable so a URL like #/wall/impressionism keeps
@@ -527,7 +532,7 @@ function Wall({ go, styleIds }) {
   // survives the navigation and has to be cleared explicitly like every other filter.
   const setSel = unhang((labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null));
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, qual, pick, hang]);
+  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, qual, pick, hang, readOnly]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -611,6 +616,10 @@ function Wall({ go, styleIds }) {
     // quality buckets OR like media; a work with no known pixel size is excluded once a chip is
     // on — unknown is unknown, not "plate". "iiif" ORs in as a cross-cutting tag.
     if (qual.length) list = list.filter(w => qualMatch(w, qual));
+    if (readOnly) list = list.filter(w => {
+      const r = (window.CANVAS_ART_ABOUT || {})[w.id];
+      return !!(r && (r.about || r.deep)) || !!(window.CANVAS_INSPECT || {})[w.id];
+    });
     const arr = [...list];
     // TODAY'S HANG short-circuits the sort: its order IS the content — pinned leads first, then the
     // day-seeded spread. The chips still narrow it, so "today's hang, 1890s only" works, but nothing
@@ -668,6 +677,11 @@ function Wall({ go, styleIds }) {
         {STATUS_FILTERS.map(([v, label]) => (
           <button key={v} data-on={status.has(v)} onClick={() => toggleStatus(v)}>{label}</button>
         ))}
+        <span className="cv-filt-div" aria-hidden="true" />
+        <button data-on={readOnly} onClick={unhang(() => setReadOnly(v => !v))}
+          title="only works with a read — an Info, an Interpretation or a study tour">
+          <span className="cv-f-full">✦ has a read</span><span className="cv-f-tiny">✦</span>
+        </button>
         <select value={mus} onChange={unhang(e => setMus(e.target.value))}>
           <option value="">every museum</option>
           {musOpts.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
