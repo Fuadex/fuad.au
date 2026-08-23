@@ -2805,6 +2805,8 @@ function MapView({ go }) {
       const flat = f.venues.flatMap(v => v.list.map(w => ({ w, venue: v.name })));
       halosOf.push({ list: flat, cap: FAR_HALO_CAP, x: f.x, y: f.y, r: f.r, city: f.city, far: true });
     }
+    // every halo's anchor, for the open-space bearing computed per city below
+    const cityPts = halosOf.map(h => ({ x: h.x, y: h.y }));
     for (const halo of halosOf) {
       const list = [...halo.list]
         .sort((a, b) => unseenRank(b.w) - unseenRank(a.w))
@@ -2869,10 +2871,25 @@ function MapView({ go }) {
           placed = 0;
         };
         nextRing();
+        // FAN TOWARD OPEN SPACE (Fuad 2026-08-24: "the lines tend to fan out towards the right
+        // which feels a bit weird — they should rather fan out, if anywhere, towards whitespace").
+        // Rings were filled from angle 0, i.e. due east, so a city with few works threw all of
+        // them to the right. Start each city's fill at the bearing AWAY from its neighbours —
+        // the emptiest direction available — so sparse halos lean into open map instead.
+        let openAng = 0;
+        {
+          let vx = 0, vy = 0;
+          for (const other of cityPts) {
+            const dx = bx - other.x, dy = by - other.y, d2 = dx * dx + dy * dy;
+            if (d2 < 0.01 || d2 > 40000) continue;      // itself, or too far to crowd us
+            vx += dx / d2; vy += dy / d2;               // inverse-square: near neighbours dominate
+          }
+          if (vx || vy) openAng = Math.atan2(vy, vx);
+        }
         for (const nd of ordered) {
           if (placed >= cap) { ring++; nextRing(); }
           // spin each ring by a half-slot so successive rings do not line up into spokes
-          const ang = (placed + (ring % 2) * 0.5) / cap * Math.PI * 2;
+          const ang = openAng + (placed + (ring % 2) * 0.5) / cap * Math.PI * 2;
           placed++;
           markers.push({ w: nd.e.w, x: nd.x, y: nd.y, bx, by, city: c.city, venue: nd.e.venue,
             far: halo.far, keepR: cr, ring, ringAng: ang, ringStep: STEP });
@@ -3063,10 +3080,17 @@ function MapView({ go }) {
     // size so the rings pull in tight, and they open out as you zoom exactly in step with the
     // dots growing. No leader is longer than it has to be, and nothing inside a city overlaps.
     if (mk.ring != null) {
+      // UNIT BUG (Fuad 2026-08-24: "the length of the lines is good now but the dot size has
+      // decreased, which is wrong"). The previous pass bought shorter leaders by shrinking the
+      // dots, which was treating the symptom. The cause: ring pitch was expressed in MAP units
+      // (ring * 2.2) while the dot is drawn at 2.1 * k * dotMul * dotZoom, i.e. a constant SCREEN
+      // size — two different spaces, so the spacing that was supposed to be "one dot" was not.
+      // Pitch is now derived from the dot's real rendered radius, so it is exactly as tight as
+      // non-overlap allows at whatever size the dots happen to be, and dot size goes back up.
       const sc = mk.cityScale || 1;                    // neighbour-driven shrink, see HALO SEPARATION
-      const dotR = 2 * dotZoom * dotMul * sc;
+      const dotR = 2.1 * k * dotMul * dotZoom;         // the dot's radius in MAP units
       const rimR = (mk.keepR || 0) * bubZoom * dotMul;
-      const r = rimR + (dotR * 0.6 + mk.ring * mk.ringStep * dotZoom * dotMul) * sc;
+      const r = rimR + (dotR * 1.1 + mk.ring * dotR * 2.25) * sc;
       return [mk.bx + Math.cos(mk.ringAng) * r, mk.by + Math.sin(mk.ringAng) * r];
     }
     const lo = (mk.keepR || 0) * bubZoom * dotMul + 2 * dotZoom * dotMul * 0.6;
@@ -3081,7 +3105,7 @@ function MapView({ go }) {
   // size — so at constant dot size the reach cannot be halved without dots touching. Shrinking
   // the resting dot is the only lever that buys distance without reintroducing overlap. Full
   // size from a 2.5x zoom on down, unchanged.
-  const dotZoom = Math.max(0.34, Math.min(1, 0.4 / k));
+  const dotZoom = Math.max(0.5, Math.min(1, 0.4 / k));
   // Same idea for the CITY BUBBLES, harder (Fuad, same day: "the large city blobs should be
   // half the size when starting from the furthest" — the resting view was "super busy").
   // Half size at the world view, full from the same 2.5x zoom. Render-only: the world-unit
@@ -3438,9 +3462,13 @@ function MapView({ go }) {
             if (!inView(mk.bx, mk.by)) return null;
             const [px, py] = fanAt(mk);
             const [fx, fy] = fish(px, py);
-            // a curve, not a spoke (Fuad 2026-08-19) — shared `bow` helper, so the resting halo and
-            // the opened branch arc identically instead of drifting apart over time
-            return <path key={"wl" + mk.w.id + "-" + i} d={bow(mk.bx, mk.by, fx, fy)}
+            // (was: a curve, not a spoke, Fuad 2026-08-19 — superseded below)
+            // STRAIGHT, NOT BOWED (Fuad 2026-08-24: "let's make the lines straight, unless
+            // they're bending to avoid intersecting with other lines"). Ring packing already
+            // guarantees leaders inside a city cannot cross — they are radii of concentric
+            // circles from one centre — and halo separation stops them meeting a neighbour's.
+            // With crossing designed out, the bow was decoration that made the map look tangled.
+            return <path key={"wl" + mk.w.id + "-" + i} d={`M${mk.bx} ${mk.by}L${fx} ${fy}`}
               fill="none" stroke={mk.far ? "oklch(0.5 0.12 150 / .38)" : "oklch(0.55 0.19 18 / .4)"} strokeWidth={0.5 * k} />;
           })}
           {!focus && cities.list.map(c => {
@@ -3460,7 +3488,8 @@ function MapView({ go }) {
                     it clears the WHOLE halo rather than the bubble rim, so it can never sit on
                     top of the work dots ringed around the blob. */}
                 <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 2.4
-                      + ((wishCityRings.get(c.city) || 0) + 1) * 2.2 * dotZoom * dotMul * (wishCityScale.get(c.city) || 1)) * k}
+                      ) * k + 2.1 * k * dotMul * dotZoom * (1.1 + ((wishCityRings.get(c.city) || 0) + 1) * 2.25)
+                         * (wishCityScale.get(c.city) || 1)}
                   textAnchor="middle" style={{ fontSize: 8 * k * dotMul * labelZoom }}>{c.city}</text>
               </g>
             );
@@ -3507,8 +3536,8 @@ function MapView({ go }) {
                     circumference and start overlapping internally — trading one collision for
                     another. See HALO SEPARATION where the factor is computed. */}
                 {unseenRank(mk.w) === 2
-                  ? <circle cx={fx} cy={fy} r={2.1 * fs * k * dotMul * dotZoom * (mk.cityScale || 1)} fill={mk.far ? "oklch(0.45 0.14 150 / .92)" : "oklch(0.55 0.19 18 / .92)"} stroke="#f7efe2" strokeWidth={0.5 * k} />
-                  : <circle cx={fx} cy={fy} r={1.7 * fs * k * dotMul * dotZoom * (mk.cityScale || 1)} fill={mk.far ? "oklch(0.6 0.11 130 / .9)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.45 * k} />}
+                  ? <circle cx={fx} cy={fy} r={2.1 * fs * k * dotMul * dotZoom * Math.max(0.82, mk.cityScale || 1)} fill={mk.far ? "oklch(0.45 0.14 150 / .92)" : "oklch(0.55 0.19 18 / .92)"} stroke="#f7efe2" strokeWidth={0.5 * k} />
+                  : <circle cx={fx} cy={fy} r={1.7 * fs * k * dotMul * dotZoom * Math.max(0.82, mk.cityScale || 1)} fill={mk.far ? "oklch(0.6 0.11 130 / .9)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.45 * k} />}
               </g>
             );
           })}
