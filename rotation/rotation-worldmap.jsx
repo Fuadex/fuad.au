@@ -51,8 +51,6 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   };
   const famName = fam != null ? (R.FAMILIES.find(f => f.i === fam) || {}).family : null;
   const hasFlow = artists.filter(a => a.yp).length >= 2 && series.length >= 1;
-  const hint = view === "artist" ? "the bands behind this slice · click one to open"
-    : fam == null ? "click a genre to drill into its subgenres" : "click a subgenre to see its bands";
 
   return (
     <div className="r-card" style={{ padding: "13px 16px 11px", background: "var(--bg-2)" }}>
@@ -91,7 +89,9 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
             </div>
           ))}
         </div>
-        <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 7 }}>{hint}</div>
+        {/* the "click a genre to drill into its subgenres" hint used to sit here. Removed
+            2026-08-24: on a 1536px viewport it cost a line the genre bands needed, and the
+            affordance is already carried by the cursor and the breadcrumb above. */}
       </>}
     </div>
   );

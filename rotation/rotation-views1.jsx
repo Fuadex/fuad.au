@@ -1098,6 +1098,11 @@ function WallGrid({ items, kind, seen, setPop, onClick }) {
         @media (max-width: 1620px) {
           .ov-page { --gap: 14px; --pad: 30px; }
           .wall { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
+          /* Buttons take the flowmap's genre-band size, 11px mono (Fuad 2026-08-24). Smaller type
+             shrinks the control itself, not just the label, so the row squeezes and hands the
+             reclaimed width back to the results module beside it. */
+          .ov-page button, .ov-page .r-btn, .ov-page .r-seg button {
+            font-size: 11px; padding-top: 5px; padding-bottom: 5px; }
         }
         .wall-cell { position: relative; cursor: pointer; transition: transform .35s cubic-bezier(.2,.7,.3,1); }
         @media (prefers-reduced-motion: no-preference) {
