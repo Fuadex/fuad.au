@@ -1011,6 +1011,18 @@ function resolveOSDSource(work) {
 // alone under-sold it. The settled shape: the READER FOOTER carries an explicit "Ultra HQ ↗"
 // link to the untouched original (see cv-r-links), and the viewers stay on the 6000px plate.
 
+// Who serves the deep-zoom tiles, for the reader's citation link (art_hires `src` → label).
+// Only sources that publish a per-object page are listed; anything else falls back to a
+// generic label rather than claiming an institution we can't name.
+const HIRES_SOURCE_LABEL = {
+  nga: "National Gallery of Art",
+  met: "The Met",
+  cma: "Cleveland Museum of Art",
+  vam: "V&A",
+  harvard: "Harvard Art Museums",
+  parismusees: "Paris Musées",
+};
+
 // Fly an OSD viewer to a normalized-image region {x,y,w,h} (all 0..1 fractions of the image).
 // immediately=false gives the gentle animated spring flight; true snaps. Shared by DeepZoom's
 // detail tour and Study mode's anchored zoom so the imageToViewportRectangle math lives once.
@@ -1693,6 +1705,17 @@ function Reader({ id, go }) {
               <a href={w.imgZoom} target="_blank" rel="noopener noreferrer"
                 title={w.px ? `Commons source is ${w.px[0]}×${w.px[1]}px` : undefined}>
                 {w.px ? `Source image ↗ ${w.px[0]}×${w.px[1]}` : "Full resolution ↗"}
+              </a>
+            )}
+            {/* cite the museum that serves the IIIF tiles (Fuad 2026-08-23). The zoom on
+                these works is the holder's own scan, so the holder's object page is the
+                citation — and the place to read the catalogue entry we deliberately keep
+                out of the reads. hires.page is set at ingest and backfilled for older
+                entries from the NGA opendata uuid→objectid map. */}
+            {w.hires && w.hires.page && (
+              <a href={w.hires.page} target="_blank" rel="noopener noreferrer"
+                title="The holder's own catalogue entry — the source of this work's deep-zoom tiles">
+                {HIRES_SOURCE_LABEL[w.hires.src] || "Museum page"} ↗
               </a>
             )}
             {a.qid && <a href={`https://www.wikidata.org/wiki/${a.qid}`} target="_blank" rel="noopener noreferrer">{w.artist.split(" ").pop()} on Wikidata ↗</a>}
