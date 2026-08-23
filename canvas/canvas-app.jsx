@@ -3057,7 +3057,8 @@ function MapView({ go }) {
   const lensRaf = React.useRef(0);
   const LENS_R = 26;                                 // magnifier radius, map units (scales with zoom via vb)
   const LENS_MAG = 2.1;                              // peak size multiplier at the cursor
-  const LENS_SPREAD = 0.16;                          // how far the lens parts a cluster, as a fraction of its radius
+  const LENS_SPREAD = 0.16;                          // (historic) how far the lens PARTED a cluster
+  const LENS_PULL = 0.10;                            // how far it now draws one in — see `fish`
   const LENS_GRAB = 1.0;                             // extra size in the innermost third — makes small dots catchable
   // FAN SCALING (Fuad 2026-08-19: "the branches out from the big circles should decrease as I zoom
   // in"). Marker positions are solved ONCE, in world units, by a collision relaxation far too
@@ -3200,7 +3201,15 @@ function MapView({ go }) {
     // Zero at the centre means whatever you are aiming at holds still while its neighbours step
     // aside — the cluster opens AROUND the target instead of running from it — and zero at the rim
     // still leaves the rest of the map undisturbed.
-    const push = d > 0.001 ? LENS_SPREAD * lensR * Math.sin(Math.PI * d / lensR) : 0;
+    // MAGNET, NOT SPREAD (Fuad 2026-08-24: "those dots should behave as slight magnets when
+    // interacting with the map"). The sign is now NEGATIVE: neighbours drift TOWARD the cursor
+    // instead of stepping aside from it. The profile is unchanged and still earns its shape —
+    // zero at the cursor means the dot you are aiming at holds perfectly still (an earlier build
+    // peaked at the centre and dots fled the pointer, "these escape the mouse cursor"), and zero
+    // at the rim leaves the rest of the map undisturbed. The pull is deliberately weaker than the
+    // old push, 0.10 against 0.16: dots are being MAGNIFIED at the same time, so a strong inward
+    // pull would collide the very cluster the ring packing was built to keep apart.
+    const push = d > 0.001 ? -LENS_PULL * lensR * Math.sin(Math.PI * d / lensR) : 0;
     const ux = dx / (d || 1), uy = dy / (d || 1);
     return [x + ux * push, y + uy * push, 1 + (LENS_MAG - 1) * t * damp + LENS_GRAB * near * near * damp];
   };
