@@ -589,7 +589,7 @@ deep: "Fatigue is what the picture is really about — the fatigue a trained bod
 by: "Opus 4.8" },
 
 "paul-cezanne-arlequin": {
-about: "Cézanne's Arlequin, at Washington's National Gallery — the red-diamond commedia figure was posed by the painter's own son Paul in a Harlequin costume, the largest of three isolated Harlequins Cézanne made around 1888-90.",
+about: "Cézanne's Arlequin — the red-diamond commedia figure was posed by the painter's own son Paul in a Harlequin costume, the largest of three isolated Harlequins Cézanne made around 1888-90.",
 deep: "The model is his son Paul, in his teens, and what the painting records is the fatigue of a boy holding a pose, not the character. Harlequin should dance; this one stands sentinel, eyes down, the slapstick held like a soldier's rod. Then look at what will not hold still: the hat bent out of true, the vertical axis leaning, the calves outlined twice in black as if the leg kept shifting, the feet on a floor that gives them no shadow. The diamonds do the modelling: orange where light falls, maroon in the folds, the rows stretching and slipping across the joints. The small face is duller and greener than the wall behind it.",
 by: "Opus 4.8" },
 
@@ -650,7 +650,7 @@ deep: "A plain meadow, patiently looked at, holds as much as any grander motif �
 by: "Opus 4.8" },
 
 "peter-paul-rubens-der-hollensturz-der-verdammten": {
-about: "Rubens's Fall of the Damned, c.1620 — a cascade of nude bodies hurled into hell. In 1959 a would-be philosopher threw acid over it, saying the acid 'relieves one from the work of destruction'; years of restoration followed.",
+about: "Rubens's Fall of the Damned, c.1621 — a cascade of nude bodies hurled into hell. In 1959 a would-be philosopher threw acid over it, saying the acid 'relieves one from the work of destruction'; years of restoration followed.",
 deep: "Bodies have weight, weight falls, hell is simply the bottom: the most abstract of doctrines solved as a physics problem. Nobody is labelled — no medieval ledger of the proud and the greedy, just humanity in bulk going the wrong direction. Trace one falling nude and it is mid-rotation; the neighbour rotates the other way, and the two lock into an eddy, which is why the column churns instead of sliding. The colour falls in temperature order too: cool pale flesh at the top, pinks going red-brown, then ochre and black where the beasts have jaws. Cover the small armoured figure at the top with your thumb and three metres of falling humanity becomes an accident.",
 deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
