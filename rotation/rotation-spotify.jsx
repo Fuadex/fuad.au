@@ -1250,13 +1250,14 @@ function LikedView({ go }) {
           style={{ flex: "1 1 200px", minWidth: 0, background: "var(--bg-2)", border: "1px solid var(--rule-2)", borderRadius: 999, padding: "8px 14px", color: "var(--ink)", fontFamily: "var(--mono)", fontSize: 12, outline: "none" }} />
         <div className="r-seg r-seg-sm" style={{ flexWrap: "wrap" }}>
           {/* "oldest" retired 2026-08-17 — replaced by the INVERT chip at the row's end, which flips
-              whatever sort is active (owner request). "closest" is offered ONLY while the DNA dictates. */}
+              whatever sort is active (owner request). "closest" is offered ONLY while the DNA dictates.
+              Clicking the ACTIVE sort again flips it (Fuad 2026-08-24) — the column-header idiom.
+              It lights the INVERT chip at the row's end, since that chip reads the same inv state;
+              switching to a DIFFERENT sort still lands in its natural direction. (A JSX comment can't
+              sit inside the map's parenthesized return — it broke the deploy once.) */}
           {[["plays", "plays"], ["first-new", "newest"], ["artist", "a–z"], ["tempo", "tempo"], ["energy", "energy"],
             ["mood", "mood"], ["neglect", "neglect"], ["obscure", "obscure"],
             ...(dictating === "dna" ? [["closest", "closest"]] : [])].map(([k, l]) => (
-            {/* Click the ACTIVE sort again to flip it (Fuad 2026-08-24) — the column-header idiom.
-                It lights the INVERT chip at the row's end, since that chip reads the same `inv`.
-                Switching to a DIFFERENT sort still lands in its natural direction. */}
             <button key={k} data-on={sort === k}
               title={sort === k ? "click again to invert" : undefined}
               onClick={() => { if (sort === k) setInv(v => !v); else { setSort(k); setInv(false); } }}>{l}</button>
