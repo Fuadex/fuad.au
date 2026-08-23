@@ -1048,7 +1048,11 @@ window.CANVAS_ARTWORKS = [
     seenAt: "national-gallery-london", seenConfidence: "sure" },
   { id: "canaletto-venice-the-feast-day-of-saint-roch", title: "Venice: The Feast Day of Saint Roch", artist: "Canaletto", artistId: "canal", qid: "Q19660446", qidTrusted: true, year: 1735,
     seenAt: "national-gallery-london", seenConfidence: "sure" },
+  // img: Wikidata's P18 on Q28532649 is a Sotheby's photograph of the SIX-FOOT 1831 canvas,
+  // not this study (N01814, 51x36cm) — the site was showing the wrong painting. Plate
+  // hand-set to Tate's own image of N01814 (found via Commons search, 2026-08-23).
   { id: "john-constable-salisbury-cathedral-from-the-meadows", title: "Salisbury Cathedral from the Meadows", artist: "John Constable", artistId: "constable", qid: "Q28532649", qidTrusted: true, year: 1829,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Constable%20-%20Salisbury%20Cathedral%20from%20the%20Meadows%2C%201829%2C%20N01814.jpg?width=1600",
     seenAt: "tate-britain", seenConfidence: "sure", liked: true },
   { id: "pierre-auguste-renoir-the-skiff-la-yole", title: "The Skiff (La Yole)", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q3449722", qidTrusted: true, year: 1875,
     seenAt: "national-gallery-london", seenConfidence: "sure", liked: true },

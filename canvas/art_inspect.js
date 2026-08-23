@@ -49,6 +49,1386 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+"edgar-degas-ballet-rehearsal-on-stage": {
+ "see": "Everything pale is a dancer; everything dark is theatre. The canvas splits on a diagonal. The left half is jammed to the frame edge with white skirts, bare shoulders and overlapping heads; the right half opens onto a wide, almost vacant floor that a long bright curve shears off at the bottom corner. One dancer stands alone near the front, back turned, both arms bent up to her hair. She is the biggest and brightest shape in the picture and she is doing nothing balletic. Behind her, small figures hold poses in two loose knots. The whole thing is one colour: thinned to a wash for the hanging wings, scrubbed to the canvas weave in the mid-tones, loaded almost chalk-white for tulle. Faces are two strokes and a shadow. Light comes from low and in front, tipping chins and collarbones up.",
+ "about": "Count the dancers actually dancing: six or seven. Count the ones standing, bending, stretching, adjusting and waiting: nearly twice that. The subject here is not ballet but the labour that surrounds it and outlasts it — a workplace between two efforts, where the body is tired before it is beautiful. Degas puts you where a ticket cannot: on the boards, off to one side, behind the picture the paying house sees. From that angle everything reverses. The scenery is visibly cardboard, the corps is a crowd of girls in unglamorous poses, and the one man present sits in street clothes doing nothing while everyone around him works. The rehearsal is also an economy — poor girls, an institution, a watching subscriber — and the picture states this by arrangement alone, without a single anecdote or expression to tell you how to feel.",
+ "craft": "Stripping out colour forces every decision onto value and drawing, and Degas exploits it ruthlessly. The ground does the work of a mid-tone, so a skirt is made by adding a few loaded whites and letting the bare weave stay visible as shadow — you can see the canvas grain through the tulle, which is why the muslin looks thin. Composition is built on subtraction: a third of the surface is empty floor, its boundary bent into a long asymmetric curve borrowed from the cropping habits of Japanese prints and the camera. The figures are pushed left and cut by the frame; nothing sits centred and settled. Degas also keeps several degrees of finish in one field — a fully modelled foreground back, a summary pair mid-stage, a figure that is barely a smear — so depth reads as attention rather than as measured recession.",
+ "context": "1874 was not a calm year for him. His father died that February, and the family bank's debts landed on Degas, turning painting from a gentleman's pursuit into a trade he had to make pay. The stage he shows had also just vanished: the Opéra on the rue Le Peletier, the house he had been sketching, burned in October 1873, and the Palais Garnier did not open until January 1875. So this is a stage assembled from notebooks, memory and studio models rather than transcribed from life — one reason the architecture is generic palace and the wings are pure atmosphere. Around it stood the abonné system, in which male subscribers bought access to the wings and to the girls who worked there. Rehearsal, not performance, became his subject for the next twenty years and eventually took up roughly half his output.",
+ "deeper": [
+  {
+   "t": "Hands to her hair",
+   "x": 0.4,
+   "y": 0.52,
+   "w": 0.26,
+   "h": 0.45,
+   "body": "She occupies the slot a painting normally reserves for a principal — front, centre, largest, palest — and she is fixing her hair. Face withheld, back turned, no step being performed. Degas lays the tutu in as one wide pale bell and then draws through it with fine dark radial strokes, so the skirt is transparent and structural in the same gesture. The bodice stays in shadow, which splits her into two separate lights, skirt and arms, bridged by dark. Under the hem, two blunt slippers, planted flat. Then compare her to the pair rehearsing behind: he has shrunk them to a third of her height. The scale tells you which event the picture thinks is large, and it is not the dancing."
+  },
+  {
+   "t": "The yawn",
+   "x": 0.13,
+   "y": 0.29,
+   "w": 0.25,
+   "h": 0.26,
+   "body": "The most extended, most classical silhouette in the picture belongs to a girl who is not dancing. Head thrown back, throat exposed, both arms raised behind her skull — that is a yawn or a stretch out of a cramp, not a position. Degas gives it the full swan line and then lets the open mouth undo it. Note the dark ribbon at her throat: the sharpest dark in the whole left group, and it snaps the tilted head off the shoulders like a cut. Around her, arms rise at three different angles for three different reasons, none of them choreographed. This is the joke the picture keeps making — the shapes of ballet occur constantly offstage, produced by exhaustion instead of training."
+  },
+  {
+   "t": "The crush in the wings",
+   "x": 0,
+   "y": 0.36,
+   "w": 0.23,
+   "h": 0.31,
+   "body": "No complete figure exists in this corner. Bodies overlap into a single mass of light, and the frame amputates the leftmost of them, implying more girls off-canvas. Read it slowly and it resolves into shoulders, a bare back, a profile tipped up, an arm folded across a waist — faces reduced to a nose and a hollow, identity deliberately unavailable. What Degas models fully is the back: the shoulder blades and the groove of the spine get more careful modelling than any face in the painting. That is the register where these dancers touch his bathers a decade later — the body as an object of study, unposed, seen from the side that does not perform."
+  },
+  {
+   "t": "A foot on the bench",
+   "x": 0.16,
+   "y": 0.55,
+   "w": 0.26,
+   "h": 0.28,
+   "body": "A dancer folds herself in half over a low dark bench, one foot up on the seat, both hands at her slipper. It is the darkest solid object on the stage floor and, apart from a chair in the far wing, the only furniture — a piece of backstage junk that Degas needs because it forces the step that makes her back fold. Her head disappears entirely into the surrounding skirts: a second face withheld, inches from the picture's centre. The bench itself is three strokes and a shadow, barely described, yet it sits convincingly on the floor because its dark edge is the one hard horizontal in a passage otherwise made of curves."
+  },
+  {
+   "t": "The dancer who is barely painted",
+   "x": 0.38,
+   "y": 0.32,
+   "w": 0.25,
+   "h": 0.25,
+   "body": "Here is the actual rehearsal: two dancers holding a near-identical pose, arms low, weight forward, the only genuinely synchronised thing in the room. Now look at the left side of this box. A third figure is scarcely there — a thin stain with the ghost of a skirt, no face, no feet, the canvas showing straight through her. She is not an accident of an unfinished picture; the two beside her are worked up, and further right the figures degrade again into shorthand. Degas is grading finish the way an eye grades attention, so the crowd recedes not by getting smaller or bluer but by getting less looked at. It is a remarkably accurate description of what a busy stage does to vision."
+  },
+  {
+   "t": "The man in the chair",
+   "x": 0.66,
+   "y": 0.36,
+   "w": 0.18,
+   "h": 0.21,
+   "body": "In the wing, on a bentwood café chair, sits the one figure in street clothes: a black suit and a top hat, the only sustained dark in a picture otherwise built from browns. He is small, unemphatic, and completely still while everyone else is working or recovering. Degas puts nothing between him and the dancers — no barrier, no doorway, and the nearest girl's arm reaches out almost into his lap. That absence of separation is the whole point. At the Opéra, subscribers held the right to stand in the wings, and the arrangement between those men and the corps was an open, unpleasant fact of the institution. The picture neither accuses nor excuses; it simply seats him there and lets the geometry speak."
+  },
+  {
+   "t": "The only straight lines are fake",
+   "x": 0.79,
+   "y": 0.13,
+   "w": 0.21,
+   "h": 0.32,
+   "body": "Every ruled edge in the painting is scenery. A cornice, a pilaster, a parapet with a lozenge diaper and a row of blind circles — palace architecture, and it is distemper on canvas, painted by the Opéra's scene shop and then painted a second time, loosely, by Degas. He allows this fiction crisp horizontals and verticals while denying the living bodies a single hard contour, which inverts the usual hierarchy: the fake thing is the precise thing. Below it sits a slab of the palest paint on the canvas, brighter than any tutu, hauling the eye out to the empty side. In the opposite corner the same scene shop supplies an ochre crag — one theatre, one afternoon, a grotto and a palace standing four metres apart."
+  },
+  {
+   "t": "The edge, and the drop",
+   "x": 0.55,
+   "y": 0.4,
+   "w": 0.45,
+   "h": 0.5,
+   "body": "The largest passage in the picture is floor with nothing on it, and the bright band that ends it is the lip of the stage; the brown beneath is the fall into the pit and the dark house. That curve is the single most consequential mark here. It fixes your standpoint on the boards, high and off to the left, where no audience ever stands, and it converts the crowded left side into pressure by giving it nowhere to expand. It also withholds the thing you came for. The space that will hold the ballet is swept, lit and reserved — and still empty. That is the difference between a rehearsal and a performance, and Degas states it not with a figure but with an area."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"georges-seurat-circus-sideshow-parade-de-cirque": {
+ "see": "The canvas divides into horizontal layers. Across the very top, nine gas jets flare at even intervals like a stencilled border. Beneath them a wall of violet and red-brown; at the left a row of musicians in bowler hats behind a long rail, with a bare tree crossing them; dead centre a tall black cone of a figure playing a trombone held straight down; at the right a wall of green pilasters carrying five soft globes, a smaller man in profile, and a performer in pink tights half cut by the frame. The bottom quarter is a dark wave of spectators' heads. Nothing is drawn with a line. Every edge is a change of dot temperature, so the contours shimmer and the whole surface holds one even, dim, dusty light. Stand back and it settles into pattern; step close and it dissolves into confetti.",
+ "about": "This is a picture of the free sample. Nothing here is the show; it is the advertisement for the show, and Seurat paints it as work rather than as entertainment. The players stand at attention. Not one of them is enjoying anything, and not one of them has a face you could describe: the eyes are absences, the mouths implied. Facing them is a crowd rendered entirely as backs. Between the two runs a rail and a lit ledge, the exact line between having paid and not having paid. What the picture is about is that line, and the flatness of the moment before a decision. Seurat took one of the loudest things in Paris and drained the noise out of it, and the drained quality is not a failure of observation. It is the subject.",
+ "craft": "The dot suits night better than it suits day. Gaslight has no local colour to falsify; it is diffuse, grainy and slightly dirty, and a surface made of separated specks of orange, blue-violet and green is a fair mechanical model of that. Look at any dark passage: there is no black in it, only violet and blue-green with warm dots seeded through, which is why the darks stay transparent instead of going to holes. The design is a grid. Five horizontals, jets and wall and rail and stage and crowd, crossed by a small number of verticals: the tree, the pilasters, the standing figure, and the trombone that halves him. Intervals do the work that converging perspective lines usually do. Even the frame is painted, a band of darker dots running the edge, so the picture supplies its own border and refuses to open into the room.",
+ "context": "Two years after the Grande Jatte, Seurat turned from Sunday daylight to artificial light and paid amusement, and this is the first of three pictures that would take up most of the rest of his short life; Le Chahut and the unfinished Le Cirque follow. He was in his late twenties and reading the aesthetic theory of Charles Henry, who argued that directions carry fixed emotional value: rising lines cheerful, level lines calm, falling lines sad. Almost every line here is level. Whether or not you accept the theory, the picture is plainly built to test it, which is part of why it feels engineered rather than observed. The trombone, the frontal stance, the counted lamps and the ruled rail are all decisions of measurement. It now hangs at the Metropolitan Museum in New York, where you saw it: a painting of a barker that will not raise its voice.",
+ "deeper": [
+  {
+   "t": "The black cone",
+   "x": 0.44,
+   "y": 0.16,
+   "w": 0.14,
+   "h": 0.55,
+   "body": "Read the shape before you read the man: a tall isosceles triangle of hat sitting on a column of near-black. Seurat gives him no drawing at all. There is no contour anywhere; the silhouette is found only where violet dots stop and grey-pink dots begin, so the edge trembles instead of cutting. The instrument is the key. He holds the trombone vertically, bell up under his chin, slide dropping to the hem of his coat, so a thin gold line bisects him from throat to knee. It reads less as an instrument than as a plumb line, and it turns a man into an axis. His face is a pale oval with a moustache and no eyes to meet. Square to us, arms locked in, weight even, he is the most static pose in the picture, standing where a painting usually puts its most active thing."
+  },
+  {
+   "t": "Nine flames along the top",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 0.11,
+   "body": "Along the top edge, evenly spaced, nine gas jets flare into small crown shapes. Each is built identically: a hot cream centre, an orange skirt, then a ring of blue-violet dots sitting exactly where the eye's own afterimage would put it. The gap between them is the picture's unit of measure, and almost every spacing below answers to it. Two consequences. They cap the composition like a stencilled band, so the canvas registers as a decorated panel a beat before it registers as a night scene. And although they are the light source, they are painted as ornament rather than as glare; nothing underneath is dramatically lit, no figure throws a strong shadow. Seurat took the one element that could have been theatrical and made it repeat instead."
+  },
+  {
+   "t": "Four players behind the rail",
+   "x": 0,
+   "y": 0.32,
+   "w": 0.42,
+   "h": 0.32,
+   "body": "Ranged on a boarded platform behind a horizontal rail stands a row of musicians in bowler hats, their faces reduced to pale ovals. Watch what the repetition does. The hat brims make near-identical dark ellipses at near-identical height, so the eye counts them as beats rather than as individuals, and the frame slices the leftmost one clean through, which makes the row feel like a sample of something longer. Their instruments are barely stated, thin vertical accents at the chest. They are not playing to us; they are on duty. The rail below them is the longest ruled edge in this half of the canvas, broken only where the tree crosses it, and it clamps the whole left side into one horizontal that only the central figure is allowed to answer."
+  },
+  {
+   "t": "The one line nobody measured",
+   "x": 0,
+   "y": 0.11,
+   "w": 0.21,
+   "h": 0.62,
+   "body": "At the left a leafless tree climbs the full height of the picture, its trunk passing in front of the platform, the rail and the crowd alike. It is the only line here that was not ruled. Everything else is a horizontal, a vertical, or the hat's straight taper; this forks, thins and wanders. It does two jobs at once. It tells you the show is outdoors on a winter street rather than inside a tent, which changes what the whole scene means. And by standing in front of everything it acts as a scrim, which is why the left third reads colder and further off than the lit centre. Its twigs are the coolest violet-grey passage on the canvas, and they are what stops the design from being purely mechanical."
+  },
+  {
+   "t": "The wall and its five globes",
+   "x": 0.66,
+   "y": 0.13,
+   "w": 0.34,
+   "h": 0.25,
+   "body": "The right side of the booth is split by tall green-blue pilasters into bays, and across them runs a second row of light: five globes, warm and soft-edged, set about a fifth of the way down. The spacing is the thing to notice. It is not regular. Two sit close, then a wide interval where a pilaster passes, then three tighter together. That unevenness is what makes this wall recede, while the perfectly even row of jets above stays flat. Seurat is building depth out of interval rather than out of converging lines. The green of the pilasters is the strongest cool note in the painting and it has been placed directly against the warmest lights, so each drives the other harder than either could alone."
+  },
+  {
+   "t": "The man turned inward",
+   "x": 0.58,
+   "y": 0.43,
+   "w": 0.17,
+   "h": 0.42,
+   "body": "Below and right of the trombonist, a smaller figure stands in strict profile facing left: dark jacket, a pale wedge of shirt down the chest, hands brought together under the chin. He is the hinge of the design. Everyone else either faces us flat or turns away; he is the only one looking at something inside the picture, and what he looks at is the centre, so he quietly returns your attention there. He is also the scale key. He stands nearer to us and lower down, yet he is markedly smaller, which is how you learn how steeply the ground falls away toward the crowd. Fix on him for a moment and the picture stops being a frieze and becomes a shallow stage with a floor."
+  },
+  {
+   "t": "Flesh at the edge",
+   "x": 0.79,
+   "y": 0.33,
+   "w": 0.21,
+   "h": 0.48,
+   "body": "At the right edge a performer stands in profile in pink tights, bare-armed, moustached, his hair a dull copper. This is the only sustained passage of body colour in the painting, and Seurat has put it where you nearly lose it. The group behind him is sheared off by the frame, and a pale horizontal pole runs straight out of the picture at his waist. The warmth is real but it is not seductive: the tights are almost exactly the dusty rose of the boards he stands on, so the flesh sinks into the architecture instead of rising out of it. This corner is where the painting admits that the parade continues past the canvas, and that we are being shown a slice of something with no edges of its own."
+  },
+  {
+   "t": "Where you are standing",
+   "x": 0,
+   "y": 0.76,
+   "w": 1,
+   "h": 0.24,
+   "body": "The bottom quarter is a dark wave of heads and hats seen from behind, brims and crowns overlapping into one continuous silhouette. It is the least described part of the canvas: no faces, no bodies, barely any incident, and it runs uncut from edge to edge. That band is your position. Seurat has wedged the audience between you and the show so that the parade can only be seen over other people's hats, which is precisely what standing in a street crowd is like. It also closes the structure: light at the top, performers in the middle, darkness along the bottom, the whole thing stacked in layers like a length of patterned border. The show is above you, out of reach, and free."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"gustav-klimt-portrait-of-hermine-gallia": {
+ "see": "A woman stands alone, life-size, filling a tall narrow canvas. There is nothing else in the room: a grey wall, and a strip of carpet arriving at her feet from the right. She is dressed from jaw to floor in white tulle, a collar frothing up to her chin, sleeves puffed at the shoulder and then ruched into fine horizontal ridges, a skirt falling in long tiers. The wall behind her is not one grey but a mottled weave of blue, green and lilac flecks. Against that, the dress is not white either: it is lavender, cream, ash and ochre. Only three things carry any warmth in the whole picture, and they are her face, her clasped hands, and a band of coral-pink at the waist about the size of that hand. In the lower third the cloth stops describing itself and becomes broad diagonal slabs of paint. In the top right corner sits a small blue square with gold lettering.",
+ "about": "Klimt paints two things here and lets you feel the seam between them. From the neck up there is a particular, unflattered woman: faintly asymmetric, the mouth a little heavy, the eyes travelling past your shoulder rather than into them. A face reported, not improved. From the neck down there is an argument about surface, an acreage of white that is largely the painter's invention, arranged to turn her into a column of light standing in a grey room. The subject of the picture is that transaction. A newly moneyed Viennese household hires the most fashionable painter in the city, and what comes back is less a likeness than a magnificent costume with a candid head set on top of it. What stops this being cynical is her stillness. She is not performing the money. She is standing inside it, hands knotted low, patient, waiting for the sitting to be over.",
+ "craft": "The whole picture is thin. Oil dragged nearly dry over an open canvas weave, so the tooth of the cloth keeps breaking the stroke and nothing settles into a glaze. Wall and dress are built from the same small vertical marks, which is why she seems held in the air of the room rather than pasted onto it. The pleats are not modelled: each ridge of the sleeve is a single pale stroke laid on top of the grey ground, drawing rather than sculpture, and it reads as ruching only because the intervals between strokes are judged right. Contour is mostly refused; follow her left silhouette upward and it simply stops being an edge. The tonal range is narrow enough to be a real risk for a picture meant to work across a room, and Klimt buys the risk back by keeping the head the only saturated passage and the coral sash the only warm one. Everything else is permitted to stay grey.",
+ "context": "1904 is a hinge year for him. Behind Klimt lay the pale, atmospheric full-lengths of the turn of the century; ahead lay Fritza Riedler and Adele Bloch-Bauer, where the sitter is absorbed into gold, silver and mosaic and the room disappears entirely. This is close to the last portrait he could still make out of weather and grey. The calm is deceptive in another way: through exactly these years he was being attacked in the press and in parliament over the ceiling paintings commissioned for the university, a fight he ended by taking the canvases back. His patrons stayed loyal through all of it, and the Gallias later had Josef Hoffmann design the interiors of their new apartment. That household was eventually scattered across the world: the portrait was bought in the 1970s by the National Gallery in London, where you found it, while much of the furniture that once shared its rooms went to Melbourne.",
+ "deeper": [
+  {
+   "t": "The head above the water",
+   "x": 0.26,
+   "y": 0.03,
+   "w": 0.25,
+   "h": 0.15,
+   "body": "Everything else in the picture is a veil; this is the one solid thing. The hair is the darkest mass anywhere above the carpet, a red-brown pile with real weight, and it works as a lid pressing the face down and forward. Inside it the skin is not one colour but a mesh of small touches: green in the shadow beside the nose, lilac under the eye, a clean coral for the mouth, a flush laid on the cheek in one warm pass. Watch the disagreement between head and gaze. The face is turned nearly toward you, yet the eyes go past your shoulder, and the two eyes are not doing quite the same thing. That small misalignment is what makes her look caught mid-thought rather than posed. The chin has no drawn edge at all; it dissolves the instant the tulle begins."
+  },
+  {
+   "t": "One warm shaft of throat",
+   "x": 0.28,
+   "y": 0.125,
+   "w": 0.32,
+   "h": 0.17,
+   "body": "The collar is doing structural work, not decorative work. It climbs to the jawline and closes the neck off on both sides, leaving a single narrow shaft of warm skin running from chin to breastbone. That is the only warm vertical in the upper half of the canvas, and it is what keeps the head attached to the body instead of floating on the white. Notice that Klimt paints the tulle over the throat rather than around it: at the edges the flesh tone still glows up through the pale scribble, which is how transparent fabric is actually made in paint, by letting what lies underneath survive the layer on top. A pale drop at her ear gives one hard point in a soft field. The chest itself is left almost undrawn, three or four tones, and it holds."
+  },
+  {
+   "t": "The sleeve: two lessons",
+   "x": 0.09,
+   "y": 0.17,
+   "w": 0.32,
+   "h": 0.35,
+   "body": "At the top, the shoulder puff is built from looping, almost handwritten strokes of pale grey-white with no outline anywhere, so the shoulder just thins out until it has become wall. Klimt darkens the ground precisely here, to a bruised green-grey, and that shadowed patch is where the sleeve's light actually comes from: it is borrowed from the background, not painted into the cloth. Lower down the fabric is gathered into horizontal ridges, and each ridge is one stroke, laid flat on the grey underlayer, slightly curved, spaced. Nothing is shaded round, nothing is modelled. It is drawing done with a loaded brush, and it convinces purely because the intervals are right. Warm apricot notes surface between the ridges: the arm underneath, showing through the gauze."
+  },
+  {
+   "t": "Pendant, rosette, sash",
+   "x": 0.44,
+   "y": 0.29,
+   "w": 0.24,
+   "h": 0.2,
+   "body": "Three small events strung down the body's centre line, and between them they are the picture's entire colour policy. The pendant is a scatter of blue-white and dark dabs hung on a chain so fine it is one dragged hair of paint; note how little information is given and how completely it still reads as a cut stone. Below it a white silk rosette, crumpled and slightly grubby, is the only thing in the whole dress with a definite shape. Everywhere else is field; here is an object. Then the coral sash, the only warm colour in the painting apart from her skin, roughly the size of her hand, and it governs the entire grey field around it. Klimt lets a trace of the same pink bleed into the sleeve on the right, so the note is answered rather than left stranded."
+  },
+  {
+   "t": "The knot of the hands",
+   "x": 0.45,
+   "y": 0.49,
+   "w": 0.24,
+   "h": 0.11,
+   "body": "The hands get nearly as much attention as the face, and they say something the face does not. They are not resting. The right is folded down over the left, knuckles tucked in, a small closed knot held low at the waist. The fingers are painted long, soft-boned and tapering, a mannerism of his, but here it makes the grip look tentative rather than firm. Two rings sit at the join, one with a green stone, one with a pale round one: four or five touches of paint carrying the only hard sparkle below the waist. This flesh is the second warm passage in the picture and it rhymes with the face, so the eye travels head to hands and back and keeps circling the upper half. The dark shadow immediately to the right is what stops the hands drifting."
+  },
+  {
+   "t": "Where the dress stops being a dress",
+   "x": 0.05,
+   "y": 0.72,
+   "w": 0.6,
+   "h": 0.28,
+   "body": "This is the boldest passage in the painting and the one nobody reproduces. The skirt gives up. The long vertical drags of the upper dress swing over into broad diagonal slabs of buff, grey-lilac and tan, each laid down once and left alone, several of them the size of a palm. There is no hem, no shoe, no floor line beneath her; the dress simply runs out of information before it reaches the bottom edge. Read it as cloth and it is a train sweeping away to the left. Read it as paint and it is a facetted field that would look at home a decade later. Both readings hold, and he wanted both, because he stops the detail exactly where the eye would otherwise get busy and tire. A picture this large needs somewhere to be empty."
+  },
+  {
+   "t": "The carpet, tipped up",
+   "x": 0.7,
+   "y": 0.72,
+   "w": 0.3,
+   "h": 0.28,
+   "body": "The one region where colour is allowed to be strong and shape is allowed to be hard. A rug comes in from the right in rust, brick and blue-green, carrying dark lozenges, pale outlined circles and a band of hatched bars along its near edge. Klimt does not so much draw it in perspective as tip it up and lay it on: flat blocks of colour, spaced, with the canvas weave doing the work of the pile. Two consequences. It weights the bottom right corner, which is the only reason the figure does not slide off the canvas to the left. And it is the mosaic instinct arriving early. Within a few years that block-by-block patterning will climb up off the floor and cover the sitters themselves. Here it is still politely underfoot."
+  },
+  {
+   "t": "The blue tile",
+   "x": 0.86,
+   "y": 0.03,
+   "w": 0.12,
+   "h": 0.08,
+   "body": "End on the smallest thing in the picture. A square of lapis blue laid flat on the grey with a hard boundary, the only straight edge anywhere on the canvas, carrying GVSTAV KLIMT in gold Roman capitals with a classicising V standing in for the U, and 19 04 beneath. It is a maker's stamp more than a signature, and the square is chosen, not incidental: the Secession built its whole graphic identity on that shape. Everything you have just walked through is atmosphere, dissolution and lost edges. This is flat, bounded, ornamental and applied on top. It is the other Klimt, the one about to take over the entire canvas, waiting quietly in the corner of one of the last portraits he would make out of weather alone."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"gustave-caillebotte-chrysanthemums-in-the-garden-at-petit-ge": {
+ "see": "The canvas is one bank of flowers packed hard against all four edges. The upper third drifts white and cream, with yellow heads pushed in among them and a lilac cast in the shadows between. The right side runs hot: wine and crimson, and two copper blooms with yellow hearts. At the left edge, level with your eye, a single salmon flower opens like a struck match. Below the halfway line the colour drains and the picture turns green, then browner, then nearly black at the bottom, where a few vertical canes stand in the leaves. There is no sky, no path, no horizon, no ground you could stand on; only a thin wedge of dull green along the top edge where the bed ends. Because the light sits high and the weight sits low, the eye climbs instead of travelling sideways. The surface stays flat while the paint does the depth: the whites stand up in ridges, the darks lie thin enough to show the weave.",
+ "about": "None of this is wild. Every head here is an engineered thing, a florist's chrysanthemum bred for size and petal count, and the canes below say the rest: heavy blooms staked upright, side buds pinched out so one stem carries one enormous flower. The subject is that labour, and the viewpoint proves it. This is the only place a gardener ever stands, two feet in, with no room to step back and arrange a view. Nothing composes the flowers; the frame simply cuts them, top, bottom and both sides, as if the bed continued past the stretcher in every direction. And chrysanthemums are the last things to flower before the cold, which gives the picture its odd temperature: a blaze made entirely of what is about to end, set down in the final autumn of a man with months to live. He was not writing an elegy. He was recording a crop. The elegy is ours to add.",
+ "craft": "The unit of construction is a single loaded drag of the brush, and one drag equals one petal. Find any flower, find its dark knot, and every stroke in it starts there and travels outward, thinning as the bristles empty. No contour is drawn and filled; the shape exists only as the sum of the strokes, which is why the blooms look like they are still opening. Much of it is wet into wet, so pink dragged across unset green picks the green up and the petal tips go dusty. The whites are the thickest paint on the canvas, ridged high enough that gallery light does half the work of the highlights, while the lower third is thin, dry scumble over bare weave. The same radiating gesture builds the leaves as builds the petals, at a quarter of the pressure, so the whole surface moves with one motion at two speeds.",
+ "context": "Caillebotte had pulled out of Paris. He stopped showing with the Impressionists after the early 1880s, moved downriver to Petit-Gennevilliers across the water from Argenteuil, and gave his energy to two things that were not exhibiting: the garden, and racing sailboats he designed himself. He had money, so he never needed a market, and the paintings of these last years were made for his own walls and his own circle. That autonomy is the reason the flower canvases look unpoliced. It is also why his own work stayed invisible for decades: he was remembered first as the collector who willed his Impressionists to the French state, and as the scandal when the state declined to take all of them. The painter behind the bequest came back into view slowly, and pictures like this one, hanging at the Met where you saw it, were the last part of him to be looked at properly.",
+ "deeper": [
+  {
+   "t": "The white bank",
+   "x": 0.1,
+   "y": 0.03,
+   "w": 0.5,
+   "h": 0.32,
+   "body": "Almost none of this is white. Hold your eye still and count what is actually there: lilac, pale ochre, a grey-green borrowed from the leaves, a warm buff, and true chalk white only along the top ridges of the paint. That is why the mass glows rather than glares. Notice too that where two heads meet, Caillebotte refuses to separate them; the edges dissolve into each other so that at distance this reads as one snowbank and only resolves into individual flowers when you walk in. This is also the thickest paint on the canvas, standing proud in ridges that catch real light, so a good part of the sparkle is physical rather than painted. Nothing anywhere in it is outlined."
+  },
+  {
+   "t": "One flower, one hub",
+   "x": 0,
+   "y": 0.2,
+   "w": 0.21,
+   "h": 0.155,
+   "body": "The salmon bloom at the left edge is the whole method in one flower, large and isolated enough to read. Find the small dark knot just above centre. Every stroke in the flower begins there and flies outward, thinning as the brush unloads, so one brushload makes one petal and the petal's taper is simply the paint running out. He never drew a circle and filled it; the bloom has no contour at all, and its silhouette is just where the strokes happen to stop. Watch the pink strokes that cross still-wet green underneath and pick it up: those are the dusty, greyed petals at the lower left. The knot is doing all the structural work here, because without it the strokes would have nothing to point away from."
+  },
+  {
+   "t": "The hot corner",
+   "x": 0.62,
+   "y": 0.19,
+   "w": 0.23,
+   "h": 0.16,
+   "body": "Two copper heads with yellow eyes, bedded into wine red. This corner is the counterweight that keeps the white bank from floating the picture off to the left, and the yellow centres are the only pure high notes outside the whites. The real lesson is what sits between the flowers: not green, but a rose-grey haze. Those are more blooms, further back, given colour and no petals at all. That is how depth gets into a picture with no perspective and no horizon; near flowers are described stroke by stroke, far ones are reduced to a tint. Look also at how the orange is turned, the strokes curving around the yellow eye like the whorl of a fingerprint rather than radiating straight."
+  },
+  {
+   "t": "Where the flowers lean out",
+   "x": 0.34,
+   "y": 0.38,
+   "w": 0.32,
+   "h": 0.17,
+   "body": "Halfway down, three white heads swing forward on visible stalks over dark leaves, and the picture changes its mind. Everything above is mass; this is the first place it admits separate objects standing in air. The device is the dark behind them: these greens are the deepest in the upper half, so the whites are pushed physically forward without any change in handling. Notice the stems, pale green, bowed under the weight of the heads, drawn as lines rather than piled as strokes, which is rare in this canvas. The petal tips here are fringed and spiky where the brush was almost dry. From this band downward the painting stops being about display and starts being about what holds the display up."
+  },
+  {
+   "t": "The dissolve",
+   "x": 0.02,
+   "y": 0.62,
+   "w": 0.42,
+   "h": 0.26,
+   "body": "Below the last crimson head, which just clips the top right of this view, the handling changes completely. Thin, dry, greyed-green scumbles are dragged over the weave with the canvas texture showing straight through, and the drawing gives up: leaves fly out from stems that are never resolved. It is the identical radiating gesture as the petals, at a fraction of the pressure and none of the load. Nothing here is unfinished by accident. Squint and the whole zone flattens to one soft grey-green tone, and that is its job, to stop competing. A painter who could have tightened this chose to leave it out of focus so the flowers above would have a trough to rise out of."
+  },
+  {
+   "t": "The canes",
+   "x": 0.46,
+   "y": 0.7,
+   "w": 0.3,
+   "h": 0.29,
+   "body": "Down in the near-black, brown canes run straight up through the leaves, one of them forking where a stem has been tied in. These are the only straight lines in a canvas otherwise made entirely of curves, and they are the plainest statement of what kind of picture this is: show blooms this heavy cannot hold themselves upright, so every one of them is staked. A decorator would have hidden the sticks. The paint is at its thinnest here, dark laid over dark, in places barely covering, with a fine web of craquelure across it. Giving the bottom quarter of a tall canvas over to shadow and scaffolding is exactly what licenses the top quarter to blaze."
+  },
+  {
+   "t": "Struck light at the edge",
+   "x": 0.855,
+   "y": 0.42,
+   "w": 0.125,
+   "h": 0.16,
+   "body": "Against the dark right flank sit four or five short vertical slabs of yellow-green, laid on nearly unmixed with hard, unblended edges. They are the highest-key greens in the painting, and note where they have been spent: not up in the light, but in the darkest region of the canvas, as leaf blades catching a fleck of sun that has got through. This is colour management rather than description. The shadowed side of the bed never goes dead or brown because a handful of near-acid strokes keep oxygen in it. Compare their blunt, stamped shape with the feathered petals above; different tools, different speed, same wrist."
+  },
+  {
+   "t": "Step back",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Now take the whole thing. Dark and structural at the foot, blazing at the head, with the tonal gradient running vertically instead of into depth, so the eye climbs the picture the way the plants climbed the canes. There are only two conventional ways to paint flowers: cut in a vase on a table, or massed at a distance as landscape. This is the third, and it is the rarer one. A bed at arm's length, seen by the person who grew it, with the frame cutting every single bloom and no ground line, no path, no sky, no gardener, and no vessel to tell you these were ever picked. The height of the canvas is not a framing decision, it is the argument. Read it upward and it is a picture about growth; read it downward and it is a picture about what holds a flower up."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"harada-naojiro-guanyin-riding-the-dragon": {
+ "see": "A tall canvas, and roughly a third of it is nothing but dark: a wall of storm that fills the upper right and drains into the top corners. Against it stands one pale vertical figure, white-veiled and white-robed, lit as though the light source were in the room rather than in the picture. A thin ring of pale gold floats behind her head, complete and unbroken. She stands barefoot on the back of a green dragon whose head has swung out to the lower left, mouth open, whiskers trailing into vapour; the body loops back through the centre and right, showing a ladder of ivory belly-plates. To her left, at about knee height, a grey sea runs out to a real horizon. To her right, orange fire licks up through rock and scale. Everything in the frame is moving except her.",
+ "about": "The Kannon chapter of the Lotus Sutra promises that whoever calls the bodhisattva's name is pulled out of danger: out of fire, out of drowning, out of the storm at sea. Harada puts every one of those hazards into the frame at once and then makes them lose. The sea is behind her, the fire is beside her, the dragon is under her feet, and none of it reaches her hem. Compassion here is painted as poise rather than as gesture. There is no raised hand, no blessing, no visible act of rescue; she is simply the only thing not being blown around. The deeper argument is about her body. Avalokiteshvara arrived in East Asia male and softened into a female figure over centuries, and Harada carries that drift to its end, giving the deity a specific woman's throat, jaw and weight, standing in ordinary light. Holiness has to be carried by an actual person or not at all.",
+ "craft": "The picture runs on three whites and one black. The veil, the robe and the dragon's belly-plates are the only bright notes, and they hang on a diagonal from the halo down to the lower centre; everything else is smothered. That near-black mass at the upper right is the boldest decision in the painting, a third of a big canvas spent on almost nothing so the figure has no competition. Finish is graded like a lens. Face, crown and necklace are worked to a jeweller's edge, the robe is broad and wet, the dragon's head is drawn tight, and by the time you reach its claws the drawing has been let go into fog. The halo is not applied gold but a thin ring of glaze, so it reads as light in air rather than as a symbol laid on the surface. She is also the only true vertical; every other line in the frame is a curve or a lean.",
+ "context": "The grammar of this picture is Munich grammar. Harada trained there in the mid-1880s in the studio of Gabriel von Max, a painter of visionary and devotional subjects, and what he brought home was a template: a standing female saint, a veil, a halo, a body modelled in controlled darkness, the whole thing carried by tonal value rather than by line. He then applied it in a Tokyo where Western-style oil painting had just lost its institutional footing, with the new national art school opening without a Western-painting department and the reaction in favour of native media at full strength. A yoga painter of that moment had to argue that oil had any right to Japanese subjects at all, and the most contested subject available was a deity. Harada made the argument in paint first. He died young, and this remained the picture fastened to his name.",
+ "deeper": [
+  {
+   "t": "The hoop and the dark",
+   "x": 0.355,
+   "y": 0.055,
+   "w": 0.31,
+   "h": 0.175,
+   "body": "Start with the halo, because it is the first thing the eye finds and the last it lets go. It is a plain circle, no rays and no ornament, painted as a band that is brightest at the upper left and thins where it passes behind the veil, which is why it hangs in the air instead of sitting on the surface. Beneath it the crown is gold openwork scrollwork with a pale oval set at the peak, and over that gold a gauze veil falls forward and down past the shoulders. A Kannon diadem worn under a Madonna's veil, in one head. The face refuses to be a type: a particular jaw, a small dark mark centred on the brow, lids lowered rather than shut. Nothing in the picture looks back at you."
+  },
+  {
+   "t": "Bare throat, and a bound vessel",
+   "x": 0.42,
+   "y": 0.21,
+   "w": 0.16,
+   "h": 0.11,
+   "body": "This is where the painting was always going to make trouble. The robe opens to a bare sternum and the flesh is painted as flesh, warm and lit, with the veil's cool grey laid right beside it so the skin reads warmer still. A filigree collar strung with red beads follows the collarbone. The hand does not grip the small gold vessel it holds; it steadies it, fingers loose, a bangle slipping at the wrist, and the vessel is bound with red and white cloth. Note the paint itself: the gold is put on in thick opaque touches that catch light physically, while the skin and the veil around it are thin and glazed. The one place Harada lets the surface stand proud is the jewellery."
+  },
+  {
+   "t": "White on white, and no wind",
+   "x": 0.38,
+   "y": 0.28,
+   "w": 0.27,
+   "h": 0.22,
+   "body": "No white here is white. The robe is built from greys, blue-greys and warm creams, the under-garment pitched colder than the drape that crosses it, and the fire behind the right contour warms the edge of the cloth just enough to separate it from the dark. Then the thing that should stop you: the drapery falls straight. The sea is running, the smoke is tearing across, the dragon's whiskers stream sideways, and not one fold on her is disturbed. It is a physical impossibility, painted by someone who has clearly studied how cloth actually behaves, and it is the entire claim of the picture put into fabric rather than into a gesture. The storm is real and it does not touch her."
+  },
+  {
+   "t": "The willow, half hidden",
+   "x": 0.375,
+   "y": 0.435,
+   "w": 0.1,
+   "h": 0.085,
+   "body": "At hip height on the shadow side hangs a spray of narrow yellow-green leaves, drooping, most of it swallowed by the dark. It is the only saturated green-yellow in the whole canvas and it is laid in with maybe a dozen loaded strokes, set against the blackest passage so it holds a small private glow. Willow and water vessel together are the healing attributes of Kannon, the branch that sprinkles what the vase carries, and Harada keeps them both. What he does not do is display them. The attribute that would let a viewer name the deity instantly is pushed to the edge, put in shadow, and painted at the size of a leaf. The icon is admitted, quietly, then overruled by the portrait."
+  },
+  {
+   "t": "One bare foot on scales",
+   "x": 0.4,
+   "y": 0.535,
+   "w": 0.24,
+   "h": 0.105,
+   "body": "The join is the test, and Harada refuses to hide it. The hem stops just short, leaving the whole foot exposed where it meets the animal: toes splayed a little, the ball of the foot pressing into the scale-net, the arch taking real weight. She is standing, not hovering. Look at how the scales change under and around her, drawn as a regular lozenge mesh with individual highlights that follow the barrel of the body, so the surface reads as curved and firm rather than as pattern. A tan antler tine cuts in from the left. And the foot is clean, unshadowed, pale against dark green, which makes this the sharpest tonal jump in the lower half of the picture."
+  },
+  {
+   "t": "The dragon's eyes",
+   "x": 0.13,
+   "y": 0.585,
+   "w": 0.26,
+   "h": 0.14,
+   "body": "The head has every fitting for a monster and refuses to be one. Green fur over the brow, branching antlers, a pale doglike muzzle, long whiskers trailing off left, an open red mouth with the fangs plainly out. Then the eyes: brown, wet, forward-set, the lids a little lowered. They are painted with exactly the softness given to the woman's eyes, and once you have seen that you cannot unsee it. The creature is not being subdued, it is complicit. This is also where the dragon is drawn hardest in the whole picture, every whisker and scale accounted for, so the mildness cannot be dismissed as vagueness. Harada wants the beast legible and gentle at the same time."
+  },
+  {
+   "t": "Claws going out of focus",
+   "x": 0.15,
+   "y": 0.75,
+   "w": 0.16,
+   "h": 0.1,
+   "body": "Two feet with ivory talons push out of the vapour down here, and they are painted more softly than anything in the upper half: the scale is scumbled, the edges are eaten, grey drifts straight across the toes. A single whisker crosses the passage as one thin unbroken line and is the crispest mark in the box. Harada is using finish as distance, and further, as ontology. The nearer the picture gets to her, the harder the edges become; the further into the beast and the weather, the more the drawing is let go. By the bottom of the canvas the dragon and the storm are made of the same substance and you cannot say where one stops."
+  },
+  {
+   "t": "The coil, the rungs, the fire",
+   "x": 0.46,
+   "y": 0.6,
+   "w": 0.42,
+   "h": 0.28,
+   "body": "The pale belly is the second brightest thing in the painting, and it is doing structural work: the transverse plates read as rungs, and the eye climbs them up the arc of the coil and arrives at her feet. That is why the loop is placed where it is. Around it the back scales are a dark repeating net, and orange flame runs in short strokes through rock and tufted growth to the right. Now notice what the fire does not do. It has no source, and it lights nothing; the smoke a hand's width away stays cold grey. In a picture that elsewhere insists on real weather and real weight, the flame is allowed to stay emblem. Harada keeps one foot in each system."
+  },
+  {
+   "t": "The name in Roman letters",
+   "x": 0.045,
+   "y": 0.898,
+   "w": 0.15,
+   "h": 0.072,
+   "body": "Low in the mist at the left edge, faint enough that you have to go looking, is a cursive signature in Latin script, given name before family name, with a smaller line of place and year beneath it. Not a carved seal, not a column of brushed characters down the margin. This is how a picture is signed for a European salon wall. It is the whole argument compressed into one corner: the subject belongs to Buddhist iconography, the handling belongs to a Munich studio, and the maker signs himself as a Western painter, in the Western order, on a Japanese deity. And he puts it in the smoke, low and half-erased, which is a modest gesture wrapped around an immodest claim."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"herbert-james-draper-the-lament-for-icarus": {
+ "see": "A dead youth lies across his own fallen wings at the foot of a sea-gorge, the two wings opening from his shoulders in opposite directions. The left one is a dark maroon mass that climbs off the top edge of the canvas; the right one falls away pale, fawn and cream, in ranked feathers. Three women attend him: two lean in above with gold fillets in their hair, one of them holding a small lyre up against the water, and a third kneels in the shallows at lower right with her back to us. Behind them the sea is a flat dark band, and above that a wall of rock burns gold. Your eye enters on the dark wing, slides down its inner edge onto his face, is handed along his outflung arm to the left, and is then dropped by the pale wing into the water at the bottom. Nothing in the design points upward.",
+ "about": "In Ovid the fall of Icarus is a father's story: Daedalus circles, calls, finds feathers floating and buries his son. Draper deletes the father. What is left is a boy handed to the sea and grieved by three women who never knew him, and the mourners are not in the ancient account at all — Draper invents the audience. That shifts the subject from culpability to aftermath. The picture has no interest in whether he was warned. It is interested in the minute afterwards, when ambition has stopped being a moral question and become a body on a rock.\n\nThe wings, still fixed to him, carry the second half of the argument. He is not simply a boy who fell; he is a boy still wearing the reason he fell, and the mourners have to arrange it around him like drapery at a lying-in-state. The apparatus outlasts the flight, and has to be laid out with the corpse.",
+ "craft": "The governing decision is that finish is not uniform. The left wing is dissolved into long wet-into-wet sweeps, the right wing is articulated feather by feather, the rock is scumbled thin enough to let its warm ground show through, and the flesh is worked dense and opaque. Detail is aimed at the body and the faces; everywhere else Draper deliberately spends less, so the eye has nowhere to catch except where he wants it.\n\nColour is nearly monochrome — umber, ochre, fawn, gold — punctured exactly twice: the crimson at his hip and the cold slab of sea behind. One hot note low, one cold note high, and they pin the composition at both ends.\n\nThen the tonal move. Icarus is baked brown and the women are pearl, so the lightest passages in the picture sit directly against the darkest flesh, and every edge where they meet is hard. No pointing gesture is needed; the drawing of light does the pointing.",
+ "context": "Draper was thirty-four when he made this, and he was arriving late to a genre about to close. Leighton and Millais had both died in 1896; Burne-Jones died in June 1898. The British market for large classical subject pictures still existed, but the men who had defined it were gone, and within twenty years the whole category would be close to unsellable. Draper's answer was to specialise. After this he made the sea his territory — sirens, sea maidens, mist nymphs — and the vocabulary of this canvas, half-submerged bodies and cold water set against warm flesh, is where that run begins.\n\nThe picture was bought for the nation rather than by a private collector, which is why you saw it at Tate Britain and not in a country house. That purchase is also why it survived the long stretch when Victorian subject painting was treated as an embarrassment and canvases like it hung in corridors, or nowhere at all.",
+ "deeper": [
+  {
+   "t": "The wing that shuts the door",
+   "x": 0.04,
+   "y": 0,
+   "w": 0.44,
+   "h": 0.4,
+   "body": "The first thing you see is not a person. Close to a fifth of the canvas is one dark wing, maroon going to dried blood, and almost none of it is painted as feathers — it is swept in wet into wet, the strokes long enough to read as a single gesture from shoulder to top edge. Two things follow from that. It seals the left side: no sky, no distance, no exit, with only a strip of gold light surviving at the far margin. And because the frame cuts the tip off, you cannot measure the wing, so it keeps growing in your head. It also functions as a tonal trap. Everything to its right is lighter, so the eye slides down its inner edge and lands exactly where Draper wants it — on the face."
+  },
+  {
+   "t": "Where the light is coming from",
+   "x": 0.45,
+   "y": 0,
+   "w": 0.45,
+   "h": 0.22,
+   "body": "The source is above and behind, outside the frame, and this is the only place you see it working: a wall of rock going white-gold, streaked with pale vertical runs of thin paint dragged over a warm ground. Compare the handling with the bodies below. There the paint is dense and built up; here it is scumbled so thin the ground reads through, which is why the rock registers as glare rather than as stone. The narrative payoff is quiet. The picture withholds the sun but keeps its light burning at the top of the canvas, directly above the body, so the thing responsible is present as illumination and as nothing else. Every lit shoulder below is lit by it."
+  },
+  {
+   "t": "The arm that stopped arguing",
+   "x": 0.16,
+   "y": 0.31,
+   "w": 0.4,
+   "h": 0.18,
+   "body": "His head has gone back and to the side, eyes shut, and Draper resists making it a death mask — the face is unmarked, the hair still curled and damp. The teaching detail is the arm. Follow it from the shoulder and no muscle is doing anything: the upper arm rests where gravity dropped it, the forearm rolls over, the hand is out of the picture's business entirely. Painters usually signal death in the face. Draper signals it with a limb that has stopped negotiating with the ground. Note the skin as well. He is burnt brown to the collarbone while the women against him are pearl, without a single injury on him — a body that has simply been nearer the sun than anyone else in the frame. A dark strap-like band lies slack across the upper arm, its end turned over."
+  },
+  {
+   "t": "The only red in the picture",
+   "x": 0.22,
+   "y": 0.42,
+   "w": 0.28,
+   "h": 0.22,
+   "body": "Nearly the whole canvas is warm neutral — umber, ochre, fawn, gold. Here at his hip is the single saturated colour, a crimson cloth, and it sits close to the centre of the lower half, acting as the weight that stops the design sliding out of the bottom left corner. The more interesting thing is on top of it. A fine white lattice of cords crosses the red and the pale drapery in an irregular mesh, painted in raised threads of light paint, and it is the only fine drawing anywhere in this quarter of the canvas. Whatever it is meant to be — lacing, netting, the binding of the feathers — it does one job: it sets a made thing, something built by hands, hard against skin."
+  },
+  {
+   "t": "Two heads on the same axis",
+   "x": 0.43,
+   "y": 0.23,
+   "w": 0.24,
+   "h": 0.2,
+   "body": "Both mourners incline at the same angle, gold fillets in their hair, and neither of them touches him. That restraint sets the tone of the whole picture. The nearer one, chin low, is looking at his face; the further one's gaze passes over him and down, out of the group entirely. Draper keeps the expressions just short of grief — lowered lids, closed mouths, no distortion — so the emotion has to be inferred from posture rather than read off features, which is precisely why the picture never tips into melodrama. Colour is working here too. They are lit to a cool pearl against his bronze, so the contact zone where his shoulder meets them is the sharpest tonal edge on the canvas, and your eye keeps coming back to it."
+  },
+  {
+   "t": "A lyre nobody is playing",
+   "x": 0.55,
+   "y": 0.18,
+   "w": 0.25,
+   "h": 0.2,
+   "body": "The title promises a lament and this is where it is kept: a small gilt lyre raised in one hand, held out over the water. Watch how Draper makes sure you see it. He silhouettes the instrument against the one flat, dark, empty area on the canvas, the band of sea, so the strings read as fine gold lines with nothing to compete against. Then he withholds the music. Her free hand is not on the strings; she is holding the thing up rather than playing it, the way you hold something you brought and now cannot use. It is also the only object here besides the wings that a person made, and at this moment both of them are equally useless."
+  },
+  {
+   "t": "The other wing, painted the other way",
+   "x": 0.54,
+   "y": 0.33,
+   "w": 0.32,
+   "h": 0.26,
+   "body": "Set this against the dark wing on the left and you catch the decision the picture is built on. Here every covert is a separate stroke, a loaded brush laid down once, cream through fawn to grey-brown, rows of them stepping down and fanning into the long primaries at lower right. There, dissolve; here, articulation. Draper spends detail where the eye lingers — near the body and the faces — and spends almost none where he wants a mass. The amount of information in a picture does not have to be even; it can be aimed, and that aiming is most of the difference between a painting and a rendering. The colour is swapped too, dark on the left, pale on the right, so the two never read as a matched pair."
+  },
+  {
+   "t": "The one who arrives last",
+   "x": 0.55,
+   "y": 0.57,
+   "w": 0.28,
+   "h": 0.36,
+   "body": "The third figure is in the water rather than on the rock, and her back is turned. She is the coolest, palest flesh in the painting and the only strong vertical in the bottom half, which is what keeps the composition from simply running out at the base. Her red hair carries a small spiky wreath, coral or weed, put down in a few dry touches. She is also the only mourner who has to look up at him. That is a position, not just a pose: she is below the event, arriving into it, seeing the body from underneath — which is exactly where you stand in front of the canvas. Draper builds a surrogate into the lower right corner and turns her away so that nothing in her face competes with what she is looking at."
+  },
+  {
+   "t": "What the picture withholds",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Step back and the design resolves into one shape: a wide shallow V of wings with the body laid in the trough. Everything Draper wants you to feel is loaded into that shape — the wings are enormous and open, the whole posture of flight, and they are pointing down and holding nothing but a corpse. Read the canvas from bottom to top and it is a stack: water, rock, body, mourners, sea, burning cliff, and the sun still off the top edge. The sequence of the fall, reversed and held still. What holds you is not the story, which everyone already knows, but the withholding. No father, no wreckage, no sun, no wound, no music being played. Draper gives you the equipment and the aftermath, and makes you supply the fall yourself. That gap is where the picture lives."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"j-m-w-turner-dido-building-carthage": {
+ "see": "A channel of water opens at the bottom edge and runs dead ahead into a low sun. Everything else is banked along it. On the left, a colonnade sunk in deep brown shadow, its top still open to raw timber, and below it a quay crowded with small figures and pale cut stone. On the right, a white marble monument takes the full light, with cliffs and a tall dark tree standing off to its left. Between the two wings the middle distance dissolves: a bridge, a squat block mid-channel, masts, all reduced to grey-green washes. The sky is one continuous field grading from a few cool blue tears at the top left down to cream and warm ochre. The water is blue-green where it lies in shadow and pure gold down the centre. Nothing is more than a few inches tall except the buildings, and the buildings are enormous.",
+ "about": "Virgil's queen is laying out her city, and at ground level the painting agrees: masons, a hoist, boats, a court gathered in the first light. But the design runs a second argument over the top of the first. The one completed structure, marble-white and the brightest thing after the sun, is a monument to the dead; the palace still going up is the mass held in shadow. The children in the corner have turned away from the stonework to face the water. And the sun sits so low and so pale that nothing inside the picture forces it to be rising rather than setting, an ambiguity Turner never resolves. So the subject is not a founding. It is a founding set down by someone who already knows the whole arc, who lays the evidence where it can be found and declines to underline any of it.",
+ "craft": "The scheme is Renaissance-strict and then wrecked with weather. Two heavy repoussoir masses hold the sides, a corridor of water opens between them, and the receding quays supply a ladder of horizontals that carries the eye back in measured steps instead of one lunge. Onto that armature Turner does something ruled perspective cannot: he puts the light source at the vanishing point, so the deepest space and the brightest passage are the same spot, and the entire tonal system radiates outward from it rather than raking in from the side. The handling splits to match. Architecture is drawn with near-mechanical precision, down to capitals and relief panels, then half-dissolved by scumbled grey-green haze the further back it sits. The sky is thin and dragged, almost stained into the ground; the sun is opaque paint standing proud of it. Figures are single loaded touches of red and white, and their smallness is a decision: their size is what makes the buildings monstrous.",
+ "context": "1815 is the year Napoleon fell, and a British public that had spent two decades as a sea power fighting a land power had an analogy to hand: Carthage against Rome. Educated viewers supplied the rest without being told, that Carthage took its wealth from the water and was erased three wars later. The exhibited title carried the rise of the Carthaginian empire as a subtitle, a framing that only means anything if the fall is already understood. And the attachment outlived the exhibition by decades. The wall you saw it on in the National Gallery is not a curator's whim: Turner's bequest attached conditions to how this canvas should hang and beside what, and the arrangement is still honoured. He was not donating a picture. He was fixing where he stood in a line of landscape painters, permanently, in a room he would not be in.",
+ "deeper": [
+  {
+   "t": "The disc on the axis",
+   "x": 0.41,
+   "y": 0.27,
+   "w": 0.14,
+   "h": 0.14,
+   "body": "The sun here is not a glow, it is an object. A small pale oval of thick opaque paint sits proud on a sky that everywhere else is thin and dragged; you can see where the loaded brush stopped. Around it faint dry scratches radiate outward, drawn rays rather than light. Now note the placement: almost exactly on the vertical centre of the canvas, and level with the point where the two receding banks would meet. Light source and vanishing point are the same address. That is why the space reads as lit from inside itself rather than from a lamp off-stage, and why the eye cannot reach any of the architecture without passing through the sun first. Every value in the picture is set by its distance from this one spot."
+  },
+  {
+   "t": "Raw timber over a finished order",
+   "x": 0,
+   "y": 0.2,
+   "w": 0.13,
+   "h": 0.32,
+   "body": "Track the shadowed left edge upward and the building stops being a building. Above two Corinthian capitals cut and gilded to full ceremonial finish, there is bare structural wood: a heavy beam thrusting out over the water on a bracket, plainly a hoist for lifting blocks. The masonry above breaks off unfinished into open sky. This is the tense joint of the whole picture, the vocabulary of a completed empire and the plant of a building site occupying the same few feet of canvas. Turner keeps the passage in one brown chord so it registers as weight rather than as detail, the heaviest, darkest thing in the frame, and he puts it on the left so the middle can read as blinding by contrast."
+  },
+  {
+   "t": "The queen and the plan",
+   "x": 0.145,
+   "y": 0.66,
+   "w": 0.13,
+   "h": 0.13,
+   "body": "The court is barely two inches high and still legible. A woman in white and gold stands on the step with an arm out; the figure beside her is a tall column of black with its back turned, the only pure dark in a group otherwise built from touches of red, cream and blue. In front of them men crouch over something flat and pale on the ground, a drawing or a board. It reads as a working meeting, not a ceremony. The real device is scale. Turner sets these heads at a height that makes the colonnade behind them something like ten storeys tall. The architecture is not overwhelming because it is drawn large; it is overwhelming because he shrank the people to a specific and ruthless fraction of it."
+  },
+  {
+   "t": "The first stone",
+   "x": 0.14,
+   "y": 0.775,
+   "w": 0.1,
+   "h": 0.1,
+   "body": "At the near bank one cut block sits in full light, a wedge of pale grey-buff with a dark iron bar laid across it. It is the most ordinary object in the picture and among the most precisely painted, squared, shadowed on two faces, bedded in mud and rubble. Everything else is haze, gilding and distance; this is a rock and a lever. Placement does the work: it sits close to the bottom edge, so it is the first solid thing the eye lands on coming up out of the frame, and it establishes the unit, the size of one stone, against which the entire skyline behind is then measured. A city is being argued for in the distance and quarried here."
+  },
+  {
+   "t": "The boys at the water",
+   "x": 0.26,
+   "y": 0.755,
+   "w": 0.1,
+   "h": 0.11,
+   "body": "Just right of the block, naked boys crouch at the water's edge in raw red-brown, one reaching down into the shallows, another leaning in beside him. They are the only figures in the foreground whose attention is on the water rather than on the stone. Turner paints them warmer and more thickly than anything else at this scale, so they pull like an ember against the cold green of the channel. Compositionally they are the hinge: the group behind them faces inland and builds, these face out, and out is where the picture's light and its future both go. Play in the corner of a founding scene, aimed at the one element that will make this city and then unmake it."
+  },
+  {
+   "t": "The finished thing is a memorial",
+   "x": 0.845,
+   "y": 0.36,
+   "w": 0.155,
+   "h": 0.3,
+   "body": "The right bank carries the only complete structure in the painting: a marble monument in near-white, two storeys of it, with figured relief panels, statues in shallow niches, and a dark canopied recess at the centre where small figures gather. Nothing about it is under construction, and nothing about it is useful. Set it against the left wing, all shadow and scaffolding and raw wood, and the picture's argument becomes a straight opposition across the width of the canvas. Turner reserves his brightest opaque whites for this mass, making it the only thing that competes with the sun for the eye. In a scene about a beginning, the best-built and best-lit object in the frame commemorates a death."
+  },
+  {
+   "t": "Down the axis, and blocked",
+   "x": 0.41,
+   "y": 0.55,
+   "w": 0.17,
+   "h": 0.33,
+   "body": "Follow the gold band on the water back and it narrows toward a squat dark mass standing mid-channel, flat-topped, with a bridge of low arches running off it and a quay of tiny figures beyond. This is the deepest point in the picture and Turner deliberately stops the eye there: a clear road of light, then a wall. Watch what the water does on the way. Near the bottom edge it is broken into silver-green flecks; further back it resolves into an unbroken sheet of reflected sun. That inverts the usual rule, where detail falls away with distance. The far water is smoother and brighter than the near water because what he wants down the centre is a road, not a river."
+  },
+  {
+   "t": "The whole design, once more",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Step back and it is four decisions. A dead-central light. Two unequal wings, dark and building on the left, bright and finished on the right. A ladder of horizontals, quays and steps and bridges, laid across the gap so the eye climbs in stages. And a population shrunk to a scale that makes the architecture inhuman. What holds it together is that none of the asymmetry is decorative: the imbalance between the wings is the content. The morning is real, the labour is real, the sun is genuinely low and new. And the best-made object in the frame is a memorial, the completed quarter is the dead one, and the children have turned to face the sea. The ending is planted in the founding, without a word of comment."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"john-constable-salisbury-cathedral-from-the-meadows": {
+ "see": "A wide, low view across water meadows. Left of centre a needle of spire rises from a low dark ridge of roofs; it is the only thing in the picture that goes straight up. More than half the surface is weather: grey scumbled over grey, torn white cloud, and one strip of true blue jammed against the top edge. A near-black tree fills the left quarter from top almost to bottom. In front, the Avon comes forward as a pale grey sheet and shallows into green where a wagon and a knot of cattle stand in the water, marked by a cream smock, a rust flank, a white rump. The right bank carries a plank rail, a hunched fisherman, a black-and-white animal at the edge. The foreground is churned brown, ochre and dull green, more mud than grass. No sunlight lands anywhere on the ground.",
+ "about": "Constable's cathedral here is not an object of devotion but of exposure. He puts it far off, small, and half-dissolved in rain, then fills the near ground with the unglamorous business of a river crossing: mud, cattle, a cart standing axle-deep. The argument is about what holds. The spire is the most fragile-looking thing on the surface, a hairline the weather could wipe out; the tree beside it is enormous, black and immovable; the cattle go on standing in the water regardless of either. English weather is the antagonist and also the medium, since the same grey that threatens the church is the substance the whole picture is made of. Read that way the storm is less a mood than a test, and the picture withholds its verdict. Nothing is settled by light: no shaft finds the spire, and the only clear sky sits at the very top edge, out of reach.",
+ "craft": "The picture runs on value, barely on colour. Four tones carry it: the near-black of the tree, the mid-grey of the storm, the pale grey of water and cloud, the white of torn cloud edges. The whole distance is squeezed into the middle of that range, which is what makes the near-black read as close rather than merely dark. The spire stands about a third in from the left, the water's horizon just past halfway, so the sky takes slightly more than the land without swallowing it. Warmth is rationed and placed: a rust flank at the ford, red roof-tiles in the distance, ochre in the bank, rust scraped into the right-hand tree. That chain of small warm notes is all that keeps the picture from going to slate. The handling is fast and unlaboured throughout; the six-foot version answers the same storm with a rainbow, and there is none here.",
+ "context": "1829 was the year Constable finally became a full Royal Academician, at fifty-two and after a decade as an associate; he received it as overdue rather than flattering. It was also the year of the Catholic Relief Act, the opening of a decade in which the established Church came under sustained political attack over tithes, pluralism and its revenues, so a storm gathering over an English cathedral was legible to any visitor at the Academy. In the same stretch he began working with the engraver David Lucas on English Landscape Scenery, a set of mezzotints meant to demonstrate what he called the chiaroscuro of nature: light and dark as the carrier of feeling. This small oil is that programme argued in paint. Within about a year the Wiltshire country under this spire was caught up in the Swing riots. It hangs at Tate Britain, where you saw it.",
+ "deeper": [
+  {
+   "t": "The needle",
+   "x": 0.25,
+   "y": 0.15,
+   "w": 0.26,
+   "h": 0.37,
+   "body": "The spire tip lands roughly a quarter in from the left and a quarter down, nowhere near the centre. It is a single dark stroke dragged upward and tapering to nothing, under two millimetres wide on the actual picture, with a hairline of pale grey along its right edge where light catches wet stone. Now look at the sky immediately around it. Not clean paint but a hatch of grey over grey, scrubbed in short diagonals that run down to the left. That hatching is rain, and it passes in front of the spire rather than behind it, so the masonry is being seen through falling water. The brightest torn cloud in the picture hangs just above and right of the tip, so the eye arrives at the spire and is instantly pulled off it again."
+  },
+  {
+   "t": "Blue at the ceiling",
+   "x": 0.22,
+   "y": 0,
+   "w": 0.42,
+   "h": 0.08,
+   "body": "Go to the very top edge. A band of genuine blue runs along it, a centimetre deep on the real object, and the frame cuts it off. This is the only unmixed blue in the entire picture; everything else is grey, white, brown and green. Constable puts the clearing weather where you can see it but cannot reach it, behind and above the storm, arriving rather than arrived. It also does quiet structural work. That thin cold strip fixes the coolest note on the surface, and against it the cloud whites just below read creamy and warm instead of icy, which is why the storm looks like weather with light behind it rather than a flat grey wall."
+  },
+  {
+   "t": "The tree that holds the left",
+   "x": 0,
+   "y": 0,
+   "w": 0.25,
+   "h": 0.82,
+   "body": "Almost a silhouette, but not flat. The strokes curve and fall with the boughs, and buried inside the darkness are rusts and dull reds that keep it breathing. It runs off the top and left edges and nearly off the bottom, so it reads as too close to be seen whole: that is how a near field gets established in a picture with no other foreground. Without this black, the grey middle distance would flatten into a backdrop and the spire would lose its remoteness. Note also its rhyme with the cathedral: the same tonal family, the opposite scale, one near and shapeless and alive, one far and precise and threatened. At the tree's foot, a single upright white flick sits in the grass, small and unresolved."
+  },
+  {
+   "t": "The ford",
+   "x": 0.27,
+   "y": 0.62,
+   "w": 0.4,
+   "h": 0.22,
+   "body": "Nothing here is drawn. The wagon is a dark curve and an arc of wheel, the horse a pale smear, the driver a cream smock under a black hat. What organises the group is three touches of local colour spaced along one horizontal line: cream smock, rust flank, white rump. The eye reads them as a beat rather than as objects. Directly beneath each, the same colour is flicked downward in short vertical strokes into the green shallow, and it is those reflections, not the drawing, that put the animals in the water instead of on it. Look how little space this occupies, perhaps a twentieth of the surface. It is also the only work being done anywhere in the painting."
+  },
+  {
+   "t": "The far bank",
+   "x": 0.48,
+   "y": 0.4,
+   "w": 0.38,
+   "h": 0.3,
+   "body": "The distance is a stack of horizontal bands, and the stacking is what makes it recede. From the water up: a dark hedge line, then a pale strip of wet meadow catching whatever light there is, then the round dark crowns of elms, then grey. Four bands inside about two centimetres of canvas. Left of the trees sit red-tiled roofs the size of a fingernail clipping, the only warm colour in the whole distance, and they are what keep a town alive under the weather rather than an empty horizon. In front, the water is dragged sideways with a nearly dry brush, then broken by short vertical strokes. That single change of direction is the entire illusion of a wet surface."
+  },
+  {
+   "t": "The tree built from light",
+   "x": 0.855,
+   "y": 0.33,
+   "w": 0.145,
+   "h": 0.28,
+   "body": "The right corner holds a tree made almost entirely of dry white and rust, dragged and scraped so the weave shows through the paint. It is not drawn as branches with light on them; the light is the tree, laid on last and left to stand for foliage. Beside it rises a slender blue-grey cone of another tree, cool where this one is warm. Together they answer the black mass at the far left, so the picture is bracketed by two trees painted by opposite means, one built out of darkness, one out of scraped light. This is also the clearest place to study the loose white flecking scattered over the foliage across the picture, the habit contemporaries mocked as Constable's snow."
+  },
+  {
+   "t": "The man with his back to it",
+   "x": 0.745,
+   "y": 0.6,
+   "w": 0.255,
+   "h": 0.26,
+   "body": "The smallest and most human corner. A hunched figure in a dark hat leans against a plank rail at the water's edge; an ochre patch at his hip and one red dot at his collar are the only pure colours on this side of the canvas, and a thin rust line runs out to the right over the water, which reads as a rod. Below and left of him a black-and-white animal, dog-sized, lies along the bank. He is facing the river. So is the driver at the ford. Neither of them is looking at the cathedral, and that is a decision rather than an oversight: the spire is what you are given to look at, and no one inside the picture is looking at it."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"john-everett-millais-hearts-are-trumps": {
+ "see": "Three young women in identical grey silk are ranged round a green baize card table, pushed close to the picture plane, their heads almost on one level like a frieze. Behind them the room splits in half: to the left an open bank of white and yellow azalea in flower, glasshouse-bright; to the right a black lacquer screen that swallows light and gives back only gold pagodas. The sister on the left sits in near profile, eyes down on the cards she holds edge-on. The middle one faces out, chin level, an open gold fan held at her breast. The third turns her head over her shoulder, meets your eye, and tilts her cards toward you. Below the table edge the three skirts run together into one continuous mass of pearl-grey silk, so what the eye actually reads is three bands: a grey plinth, six bare forearms, three faces.",
+ "about": "Three grown daughters, painted at once and dressed alike, stop being three portraits and become a comparison — the eye is invited to sort them. A card party does the same thing socially. It seats young women at a table where people may look at them for an hour at a stretch, and it is the one drawing-room activity in which winning and losing are announced out loud. The title makes its pun and then leaves it standing: in this house hearts are the suit that beats the others. Nothing about the picture is coarse; the daughters are entirely composed, and the composure is the subject. What it is finally about is the small distance between three people raised identically — one hides her hand, one puts a fan between herself and the room, one shows you everything and lets you make of it what you like.",
+ "craft": "The design is three horizontals — skirts, arms, heads — locked by one vertical, the black stile of the screen falling behind the middle sister. Against that grid the tone runs a straight gradient, light at the left where the blossom is, black at the right, so that the face which meets your eye sits on the darkest ground in the painting and takes the full force of the contrast. The paint runs at two speeds. Flowers and lace are struck in dry and loaded, touch beside touch, edges left raw. Silk is laid in single long wet sweeps with almost no drawing, the folds found by where the grey stops. Faces are worked smooth and slow. The green baize is the only cool note in the middle of the canvas, and it exists to separate warm flesh from grey silk and to make six small white cards legible from across a gallery.",
+ "context": "1872 sits on the hinge of Millais's career. The Pre-Raphaelite years were long behind him; he was a Royal Academician with a large house and a queue of clients, and had taught himself to paint fast and broad without losing the thing that made his name, an ability to make a surface look touchable. The room dates the picture as precisely as a receipt. The lacquer screen, the blue-and-white cup and the inlaid octagonal table are the furniture of the Aesthetic taste then arriving in fashionable London houses, where East Asian objects had become the badge of a certain kind of eye, and the eighteenth-century flavour of the dresses belongs to the same revival. Where Reynolds had given his three sisters needlework to occupy them, Millais gives his a game of chance; the century's idea of what such women's afternoons were for had moved. It hangs at Tate Britain, where you saw it.",
+ "deeper": [
+  {
+   "t": "The one who looks back",
+   "x": 0.69,
+   "y": 0.175,
+   "w": 0.15,
+   "h": 0.245,
+   "body": "Two sisters ignore you; this one has turned her head over her shoulder and caught you looking. Millais loads the moment. Her hair is built up high and dressed with a rose-pink feather and a jewelled pin with a drop, the only ornament in the picture that catches light; the ground behind her cheek is the deepest brown on the canvas, laid in almost featurelessly, so the lit temple and jaw come forward hard. The mouth is closed with the faintest upward set — not a smile, more an awareness of being watched. A black velvet band cuts the pale throat and stops the neck from bleeding into the dress. This head is the reason the picture works from a distance: everything else is arrangement, and this is address."
+  },
+  {
+   "t": "Three heads, one line",
+   "x": 0.2,
+   "y": 0.155,
+   "w": 0.62,
+   "h": 0.265,
+   "body": "The heads sit at nearly the same height, which is what makes them comparable, and everything else is varied by degrees so small you have to be told to look. Each has a different ground: blossom, a plain dark panel, gold-flecked lacquer. Each has a different band at the throat — a double string of pearls, a pink ribbon, black velvet. Each has different hair — the left one's plaited and coiled tight, the middle one's loosely piled with strands escaping at the temple, the right one's dressed and ornamented. And each has a different direction of attention: down at the cards, out past your shoulder, straight into your eyes. When the uniform is total, small signals carry the whole characterisation, and Millais tunes them very finely."
+  },
+  {
+   "t": "Three ways to hold a hand",
+   "x": 0.27,
+   "y": 0.44,
+   "w": 0.49,
+   "h": 0.21,
+   "body": "The hands are characterised as carefully as the faces. On the left, a tight packet of cards held edge-on and tipped away, thumb clamped across the top: a player giving nothing. In the middle, both hands are occupied with an open gold fan held up at the breast, and no cards are visible at all — she has put a screen between herself and the table. On the right, the fan of cards is turned frankly outward, red and black pips legible, a court card among them, shown to you rather than to the players. Between them the two bare forearms lie along the baize in one long unbroken horizontal that stitches the three figures together. Note the gold bangles at two of the wrists, dragged on in three strokes."
+  },
+  {
+   "t": "The exposed row",
+   "x": 0.3,
+   "y": 0.57,
+   "w": 0.36,
+   "h": 0.11,
+   "body": "A short row of cards lies face up on the baize with one more card fallen apart from it. In three-handed whist the missing fourth hand is turned face up on the table and played out by one of the three, so this row stands for a player who is not here — and the empty fourth side of the table is exactly where you are standing. Look at how little paint each card takes: one flat pull of white, a few dabs of vermilion and black for the pips, no drawn outlines anywhere, and from a few paces they resolve into a legible deck. At the near corners of the table, two shallow gilt roundels catch the light and mark the table as purpose-built for the game."
+  },
+  {
+   "t": "The blossom bank",
+   "x": 0.02,
+   "y": 0.02,
+   "w": 0.34,
+   "h": 0.42,
+   "body": "This is the fastest paint in the picture. Each white azalea is a dozen strokes with the brush so loaded that the ridges of paint catch real gallery light; behind them a spatter of yellow and a smear of salmon stand in for further shrubs, and the leaves are scumbled dry over a dark ground so the darkness reads as shadow between them. Set the tempo of this corner against the face at the lower right of the box, worked smooth and slow — the same hand, two speeds, deliberately. The old Pre-Raphaelite botanical patience is still available to him here, but it is being spent at ten times the rate. Notice too that the blossom crowds right up to her head, a spray sitting behind her ear like an ornament she did not put there."
+  },
+  {
+   "t": "The lacquer half",
+   "x": 0.8,
+   "y": 0.05,
+   "w": 0.2,
+   "h": 0.42,
+   "body": "The whole right quarter of the canvas is essentially two colours: transparent brown, and gold touched dry on top of it. Out of that come a pagoda rising in stages, a raised terrace with figures on it, a lattice ground receding into the dark, and at the right the stile of the screen with two inset panels of gilt birds and flowers under an encrusted border. It does two jobs at once. It is the fashionable object of its moment, the kind of imported lacquer that announced a household's taste, and it is a tonal device — the dark that throws a face forward. What is unusual is how much incident Millais buries in it, detail you can only find by standing close, sacrificed at normal viewing distance to pure blackness."
+  },
+  {
+   "t": "How the silk is made",
+   "x": 0.62,
+   "y": 0.6,
+   "w": 0.32,
+   "h": 0.38,
+   "body": "Follow the length of the individual strokes here: single sweeps running most of a forearm, laid wet, the brush turning as it travels so the highlight thins away to nothing at the end. There is barely any drawing — the folds are simply where the loaded grey stopped. Over that, the tight work: a pleated frill along the flounce, the yellow lace apron above, both stippled on dry so they sit up off the smooth silk. Then look at what the grey actually is. Lilac in the deep folds, a cool green-white on the ridges, warm ochre where light bounces up into the fabric, and no black and no pure white anywhere in it. Half the picture's area is dress, and this is the passage that makes that bearable."
+  },
+  {
+   "t": "The oval at the edge",
+   "x": 0,
+   "y": 0.4,
+   "w": 0.17,
+   "h": 0.28,
+   "body": "Half hidden behind leaves and a pink sash, an oval in a plain polished wood frame leans at the extreme left edge. Its surface is a smoky blue-grey, and a few warm marks hover inside it — a pinkish blur near the top that could be a face and resolves into nothing definite. Millais has painted it as a hole: the one passage in the picture where sharpness is refused outright. Put it beside the azaleas immediately above, done petal by petal, and the contrast is a deliberate rest for the eye. The pink sash then swings out of the frame and carries you back toward the table. It is the sort of thing you find on a second visit, and it quietly makes the left edge of the composition breathe."
+  },
+  {
+   "t": "The corner where he signed",
+   "x": 0.02,
+   "y": 0.8,
+   "w": 0.28,
+   "h": 0.2,
+   "body": "The quietest square foot of the painting, and the one to end on. An octagonal Eastern table with a frieze pierced in stars and a top of geometric inlay; on it a blue-and-white cup in a deep saucer, put down in perhaps fifteen strokes with the blue drawn straight into wet white. Blue-and-white porcelain was the emblem object of aesthetic households in exactly these years, and here it sits at ankle height, cooling, out of the game and out of everybody's attention. Then look just left of the table, on the grey silk itself: a monogram and the date, the initials tied into a single mark. He put his signature on a woman's skirt rather than on wall, floor or furniture. The fabric is the performance, so the fabric gets the name."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"julian-fa-at-powrot-z-polowania-na-niedzwiedzia": {
+ "see": "A horizontal winter wood, mostly empty, with everything human crowded into the left third. A wedge of dark figures comes down out of the snow toward you and slightly left, close enough that the nearest men are cut by the frame at the knees. Across their shoulders lies a bear, the largest warm-dark mass in the picture, its head hanging at the right end of the load. Lower, at hip height, a second dark muzzle swings, a chain dropping from it into the snow. Everything else is snow: a bank of frost-loaded brush behind the men, young firs and fallen trunks filling the right half, a flat pale field across the bottom. The sky is a cold green-blue carrying two small apricot clouds. Squint, and the picture reduces to two values, a black shape moving on a white field.",
+ "about": "The kill is here, but nobody who fired is. The men in the picture are the ones who walk, beat, carry and haul: rough coats, felt and fur caps, one gun barrel among a dozen of them, a bare hand closed on a wooden pole. A hunt on a magnate's forest estate was an event staged for a few guests and serviced by a village, and Fałat paints the service while leaving the guests outside the frame. What holds the group together is not triumph but load. Every figure is bent under the same weight, and the faces that turn outward are set rather than pleased. The second subject is the wood itself, which takes half the canvas and shows no sign that anything happened in it. The event is being carried away; the place has already closed over it.",
+ "craft": "Fałat's first language is watercolour, and the oil keeps its manners. The open snow is laid thin and dragged flat so the canvas weave shows through and the field stays luminous instead of chalky. The snow sitting on branches is the opposite: loaded touch by separate touch, each clump given a blue-grey shadow beneath it so it stands off the twig. Thickness does the modelling that drawing would normally do. The value plan is blunt and effective, the group kept nearly black against a field kept nearly white, so the composition holds at any distance and the detail becomes a reward for coming closer. The design is asymmetric to the point of risk, the whole event jammed left and a large quiet given to the right, with fallen trunks running down from the upper right to steer the eye back into the figures. And the snow is never white: lilac, ultramarine grey, cream, faint pink.",
+ "context": "The hunting picture was a court genre across late nineteenth-century Europe, and Fałat spent his best-paid years inside it, working for patrons who wanted their forests and their kills recorded. This canvas takes that format and quietly reassigns it, spending the scale and finish of a trophy commission on the men who did the carrying. It also marks where Fałat stopped being a travelling watercolourist and became the painter of the Polish winter, snow as a subject in its own right rather than a setting, which is what the next generation took from him. Three years later he was running the Kraków School of Fine Arts and rebuilding its teaching around the painters who would make Young Poland. You saw this at the National Museum in Warsaw, where the sheer wall-size of it is part of the argument: a monumental picture of servants doing the heavy part of someone else's sport.",
+ "deeper": [
+  {
+   "t": "The load",
+   "x": 0.29,
+   "y": 0.285,
+   "w": 0.165,
+   "h": 0.135,
+   "body": "Start with the bear, the only thing in the picture above the line of the hats and the only large warm dark in a field of cold. Fałat gives it far less drawing than he gives the men: the body is a slab of burnt brown and dull red pulled on in wide dragging strokes, resolving into an animal only at the right end, where a muzzle, an ear and a shut eye come out of the mass. That vagueness is deliberate. Carried, the bear is no longer a creature but a weight, and it is painted as weight. Notice what it does to the silhouette too. Because it bridges four or five men, the group reads at first glance as one large body with too many legs, which is exactly what a bear-carrying party looks like from a distance."
+  },
+  {
+   "t": "Where the blood is",
+   "x": 0.375,
+   "y": 0.33,
+   "w": 0.115,
+   "h": 0.18,
+   "body": "The picture's one true crimson is a scatter of red no bigger than a thumbnail, where the bear's jaw comes down on the bearer's shoulder. Every other warm note in the painting is diluted, the brick faces, the rust of a sheepskin, the clouds; this one is not, and it is the only place the paint is allowed to look wet. Fałat then sets the two heads at the same height, the same size, on the same axis: the animal's, mouth open, and the man's, mouth open, bearded, cheek scoured red by cold. He turns the man's face away from the thing on his shoulder. The argument of the whole canvas is made here, in a few square centimetres, without a gesture or a raised trophy anywhere."
+  },
+  {
+   "t": "A rank of hats",
+   "x": 0.175,
+   "y": 0.32,
+   "w": 0.165,
+   "h": 0.15,
+   "body": "Watch how the crowd is built. Fałat draws one head fully, the bearded man in the peaked cap, and then lets every other man be a hat: astrakhan, low fur, soft cloth, each a different silhouette against the snow, so you count individuals without being given faces. The sun is low and behind them to the right, which lays a thin warm rim along the far cheek of each head and drops the near side into shadow; that is what stops a row of dark shapes collapsing into a smudge. Behind the second head a gun barrel angles up with a pale sling across it. It is the only firearm visible in a picture about a shooting, and it is stowed on a back rather than held."
+  },
+  {
+   "t": "The bare hand",
+   "x": 0.1,
+   "y": 0.44,
+   "w": 0.085,
+   "h": 0.14,
+   "body": "A fist closed on a bare wooden pole, ungloved, in weather that has frozen everything else in the picture. Fałat paints it in the most saturated flesh tone on the canvas, a dark chapped red, and gives it firmer edges than he gives most of the faces. One detail carries the class of the work: nobody who owns this forest walks it barehanded. The pole matters as well. It is the tallest unbroken vertical on the left side, planted at a slight angle against the slope, and it steadies a corner of the design that is otherwise all diagonal movement. Take it away and the left third would slide straight out of the frame."
+  },
+  {
+   "t": "The chain",
+   "x": 0.245,
+   "y": 0.61,
+   "w": 0.12,
+   "h": 0.175,
+   "body": "At hip height, at the front of the party, a dark animal head hangs with its jaws open on a fleck of red, and from its neck a chain drops in a slack S to the snow and runs off left. The chain is perhaps fifteen touches of near-black paint, and the pressure changes along its length, heavier where a link catches the light, feathered where it turns, so it reads as forged iron rather than a drawn line. It repays attention because it is almost the only true line in a picture built from masses. It also carries information: whatever hangs on the end of it has been fastened, handled and moved as cargo. Fałat sets it against the brightest, emptiest patch of foreground, where a thin dark thread becomes the loudest thing available."
+  },
+  {
+   "t": "Two kinds of snow",
+   "x": 0.24,
+   "y": 0.7,
+   "w": 0.32,
+   "h": 0.16,
+   "body": "The most instructive square in the painting, because the two ways Fałat paints snow sit side by side. At the left, where boots have just been, the snow is broken into thick lilac and white clods with real relief on the surface; you can see the ridges the brush left standing. A hand's width to the right, untouched, it goes thin and flat, long horizontal sweeps of grey-blue with the canvas weave reading through them, plus a few small lavender dashes for twigs and debris. Disturbance is painted as thickness of paint. It tells you something about the moment, too: there is no long churned track running back to the treeline, so the trail is short and fresh, and you are watching a passing rather than a route."
+  },
+  {
+   "t": "Two clouds",
+   "x": 0.29,
+   "y": 0.058,
+   "w": 0.15,
+   "h": 0.11,
+   "body": "The sky is thin, cold and nearly empty, and then two small apricot smears, no bigger than a thumb, placed off-centre. They do a great deal of work. They fix the hour, a low sun late in a short winter day, which is also why the shadows lie long and blue across the snow. And they license every warm note beneath them; without these, the brick faces and the rust-brown bear would read as arbitrary colour instead of as one light falling on everything. Look at the handling as well. This is the thinnest passage in the picture, thin enough that the weave reads through the blue, while frost-covered twigs are drawn up into it in dark hooks. Sky thinnest, snow thickest, the reverse of what you would expect."
+  },
+  {
+   "t": "The half with no story",
+   "x": 0.585,
+   "y": 0.4,
+   "w": 0.28,
+   "h": 0.45,
+   "body": "Almost half the canvas has no event in it, and Fałat spends some of his best painting there. Each load of snow on the young fir is a separate loaded touch with a blue-grey shadow set underneath, so the branch acquires a front and a back; behind it the thicket goes cool and unfocused, which is what holds the fir forward. Two fallen trunks cross the space in a shallow X and lean the right side back toward the figures. Nothing here is treated as backdrop. It competes with the men for attention, and the picture is stronger for it, because this is the wood that gave up the bear and it carries no mark of what happened. The place has already gone back to being cold and quiet."
+  },
+  {
+   "t": "Signed into the snow",
+   "x": 0.842,
+   "y": 0.828,
+   "w": 0.128,
+   "h": 0.055,
+   "body": "Bottom right, in the emptiest corner, at the far end of the diagonal from the bear: Julian Fałat, and 92, written with a fine brush in a grey-blue only a shade darker than the snow it lies in, at the same weight as the twigs a few centimetres away. It makes a useful calibration tool. Hold that grey against a true white and the whole field declares itself; nothing in this painting's snow is white, it is a family of blues, lilacs and creams. It is also placed where the eye arrives once it has finished walking the party across the canvas, which is a way of ending a picture rather than stamping it."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"lovis-corinth-ecce-homo": {
+ "see": "Three half-length figures fill the canvas edge to edge with no room left over: no floor, no crowd, no architecture, nothing to tell you where this is. Christ stands at the centre in a scarlet robe that falls as one unbroken slab of red, wrists lashed together at his waist, a thin dark reed dropping past his cheek. To the left, a heavy-faced man in pale grey-white with a gold band across his brow reaches an open hand towards him. To the right, a bald soldier in slate armour, the largest mass in the picture, his skull pressed almost into the top edge. The ground behind changes temperature as you cross it, cold grey-blue on the left, hot apricot on the right. Below the bound hands everything thins into three vertical bands of grey, red and black, and the paint gets so scarce the canvas weave reads through. Top left, in shaky dark script, the title, the name and the year.",
+ "about": "Ecce homo, behold the man, is Pilate's line to the crowd, and Corinth has removed the crowd. There is no mob, no balcony, no judgment seat; the presentation is aimed straight out of the frame, which puts you in the position of the people who will answer. What the picture then does is withhold every gaze. Christ's eyes lift above your head. The man in the gold band looks down and away. The soldier stares off past the right edge at nothing. Three men are jammed shoulder to shoulder and not one of them is in contact with another; the only touch in the painting is rope. Read it as a picture about hands and it sharpens further: one man's are bound, one man's are empty and open, and the third's are buried in metal. That is the whole trial, argued without a word of testimony.",
+ "craft": "Speed is not a limitation here, it is the method. The paint goes on wet into wet in a single pass, with no glazing and nothing corrected, so the surface keeps a record of the order in which it was made. Thickness is graded like an argument: scrubbed thin along the bottom where the weave shows, loaded to its heaviest at the bound hands and the brow. The blood is the tell. It is not smeared or bled into the skin but set down as separate scarlet commas on flesh already laid in, so you register the loaded brush a beat before you register the wound. Contours are made by leaving a channel of background colour between forms rather than by drawing them. And there is exactly one straight edge in the whole painting, the reed; everything else carries a tremor, the signature included.",
+ "context": "Corinth had a stroke at the end of 1911 and spent the rest of his life painting through its aftermath. The unsteady hand that early critics read as damage became, over the following decade, the thing the late work is prized for: by the 1920s the shake was the style, and a canvas like this is unthinkable from the polished naturalist he had been in the 1890s. That split is why he could be claimed and disowned at once, his early work admissible, his late work filed as evidence against him. The painting's route to Switzerland belongs to the same story. When the purge reached the Lucerne sale, Basel's museum used cantonal funds to acquire it from a post-auction selection sent to Basel for inspection, which is why you found it there and not in Berlin. It was a rescue that also handed the Reich hard currency, and the picture has carried that double edge ever since.",
+ "deeper": [
+  {
+   "t": "The face, and what is left out",
+   "x": 0.28,
+   "y": 0.07,
+   "w": 0.28,
+   "h": 0.2,
+   "body": "The head is the only place in the painting where the paint has been worked rather than simply laid down. Corinth pushes wet grey and cream around the eye sockets until the whole upper face sits in shadow, then cuts the features in with four or five dark strokes, two hollows, a nose line, a bar under the cheekbone, and stops. The mouth is a single warm red mark. What you will not find, if you go looking, is the crown of thorns. It is never drawn. There is a dark tangle of hair, two or three hooked strokes at the hairline, and a scatter of red dabs across the forehead, and your eye assembles a crown out of that evidence because the title has already told it to. The gaze goes up and past you. He is not appealing to anyone in the room."
+  },
+  {
+   "t": "Blood painted as brushwork",
+   "x": 0.27,
+   "y": 0.26,
+   "w": 0.32,
+   "h": 0.28,
+   "body": "Both arms come out of a deep red V, and they are the palest thing in the picture, cream and bone, cooler than either of the faces flanking them. The wounds run across them, and the way they are made is the point. Each is a discrete comma of scarlet dragged once and left, sitting on flesh paint that had set just enough to take it. Nothing bleeds, nothing runs, nothing pools; there is none of the wet gleam a Baroque scourging would insist on. You read the loaded brush first and the injury second, and that lag is deliberate. Notice too that the robe between the arms has no folds at all. It is a flat slab of red with no body under it, so the arms hang off a column of colour rather than off a torso."
+  },
+  {
+   "t": "The one straight line",
+   "x": 0.43,
+   "y": 0.1,
+   "w": 0.14,
+   "h": 0.58,
+   "body": "A thin dark line drops from the top of the canvas, passes a finger's width from his cheek, and runs the full height of the torso to end at the bound hands. It is the reed, the mock sceptre pressed on Christ by the soldiers, the joke about kingship. Corinth gives it a few seconds of paint and it does more structural work than anything else here. It is the only straight edge in the picture, and every other contour wobbles, so the eye locks onto it and uses it as a plumb line for everything that leans. It also does the composition's arithmetic: it separates Christ's head from the soldier's, marks off the right third, and points, unmissably, down at the knot. Follow it and you have been made to look at the hands."
+  },
+  {
+   "t": "The knot",
+   "x": 0.32,
+   "y": 0.47,
+   "w": 0.22,
+   "h": 0.29,
+   "body": "This is the thickest paint on the canvas and the brightest, cream and white with a few chilled blues, and it stands physically proud of everything around it. It is also the least legible passage in the picture. Corinth does not separate knuckle from cord: hands and rope are modelled as one pale lump, so the binding is not something applied to the hands but the shape the hands have become. Below it a loop of cord swings free into the red, two dry strokes and nothing more, and that loose end is what tells you someone is holding the other end just outside the frame. Set this beside the open hand on the left and the argument closes. The man with nothing in his hands is the one deciding; the man whose hands are a single knot is the one being decided about."
+  },
+  {
+   "t": "A hand with no arm",
+   "x": 0.19,
+   "y": 0.12,
+   "w": 0.16,
+   "h": 0.18,
+   "body": "Two fingers rise out of the bare grey beside the gold-banded head, a knuckled mass beneath them: the presenting gesture, the one that gives the painting its title. Look for the wrist and there is none. The hand simply begins somewhere above a white shoulder, unattached, three or four strokes of ruddy brown laid straight onto the ground. Corinth has painted the most rhetorically loaded gesture the subject has and then declined to build the body that performs it. In a picture where the hands at the centre were given every ounce of paint he had, that is not an oversight; it is the gesture reduced to a sign. Two raised fingers are the old orator's and oath-taker's sign, which makes the fragment sharper still: a speaking hand, hanging in the air, with nothing demonstrably behind it."
+  },
+  {
+   "t": "Under the gold band",
+   "x": 0.01,
+   "y": 0.11,
+   "w": 0.27,
+   "h": 0.21,
+   "body": "The band across his brow is the one clean saturated yellow in the painting, and it works as a crown, the counterweight to the thorns Corinth refused to draw. Under it the face is coming apart. The eyes are two brown pits with no whites recovered out of them, the cheeks are dragged through grey and mauve, the jaw dissolves into the collar. This is not portrait handling; the head is treated with the same disregard for structure as the armour on the opposite side. He looks down and to the left, out of the picture and away from the man he is presenting, and his mouth is shut. The figure who presides over the scene has been given the least presence in it: a decorated head, already half out of focus, painted in the coldest colour on the canvas."
+  },
+  {
+   "t": "The empty hand",
+   "x": 0.12,
+   "y": 0.46,
+   "w": 0.2,
+   "h": 0.18,
+   "body": "A ruddy hand emerges from a white cuff at waist height and extends towards the red column, fingers spread, palm turning over. It is built from about four strokes. There are no nails, no creases, no fingers separated past the first two, and yet the gesture reads instantly, well before the anatomy does, which is this painting's whole economy compressed into one small passage. Note what it does not do. It does not touch, it does not point, it holds nothing. It stops in the air a hand's width short of the robe. Every version of Pilate's gesture is folded into that hesitation: the washing, the presenting, the handing over. Corinth gets all three by painting an open empty palm and leaving it stranded in the gap between the two men."
+  },
+  {
+   "t": "The slate third",
+   "x": 0.58,
+   "y": 0,
+   "w": 0.42,
+   "h": 0.58,
+   "body": "The right-hand figure is handled as one continuous mass of slate grey from the top edge down, and two things about it repay staying with. First, his flesh is the only flesh here that matches the ground behind it: the hot apricot filling the upper right runs straight into his scalp and cheek, so his head half-dissolves backwards while Christ's stays cut out against cold grey. Second, the equipment never resolves. Follow the pale ochre and grey slashes crossing his chest and you can read them as a forearm, a hilt, a scabbard strap or a highlight on plate, and they refuse to settle into any one. Corinth stopped at the precise point where a shape is convincing but unidentifiable. The menace in this figure is that you cannot tell what he is holding."
+  },
+  {
+   "t": "Where the picture stops",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Take the bottom third first, because it is where the painting admits how it was built. Below the knot there is almost nothing: three vertical bands, grey, red and black, scrubbed on so thin the weave comes through, with no feet, no floor and no hem. The figures are not standing anywhere. Everything went into a band across the upper two thirds, and the lower third exists to carry the colour down and quit. Now take the whole, and the design is three columns and one line: cold on the left, hot in the centre, dark on the right, with the reed dropped through the middle like a plumb bob. Read along the top edge and it is three heads at three heights, not one of them turned towards another. The subject is a man shown to a crowd, and Corinth painted the crowd out and left the job to you."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"paul-cezanne-la-maison-du-pendu-auvers-sur-oise": {
+ "see": "Three roofs and a road, packed edge to edge, with almost no sky. Left of centre a chalk-pale house climbs to a steep pitch; its wall is white with green and pink worked into it, and the only marks on it are a torn black hole under the eaves and a dark rectangle of window. Further left a thatched cottage sits below a ridge of ochre-leaved trees, and two thin yellow trunks run unbroken from the top edge down to the grass. To the right an enormous olive roof pours down and off the bottom corner, taking nearly a third of the surface. Between the two masses a narrow band of valley - blue hills, a green field, specks of red tile - is the whole of the distance. Along the bottom a rutted track swings in from the right and leaves at the left edge. Nothing moves: no smoke, no figure, no open door.",
+ "about": "The title promises an event and the paint declines to supply one. There is no gallows, no crowd, none of the invented drama Cezanne had been laying on with a knife a few years earlier. What replaces it is obstruction. The buildings are turned so that you get their blank flanks and their roofs; the one wall facing you has its openings dark and shut; no chimney smokes. The road, the single thing that could carry you in, runs shallow along the foreground and exits at the left without arriving anywhere. So the real subject is the resistance of the place - a hamlet dug into a slope, weighed and pitched rather than lived in. The sliver of valley is the only concession, and it is held far back behind everything else. A picture named for a death that shows a village with the life taken out of it, and asks you to look at its structure instead.",
+ "craft": "Two long diagonals do the work: the pale house's roofline falling to the right, the great roof falling to the left, meeting near the middle where a black vertical slot drops between them. That junction, not the house, is the true centre. The horizon sits high and is crossed by the right-hand roof, so half the picture has no sky at all and the design has to read by shape rather than by light. Cezanne keeps everything in a narrow range of ochre, olive, dove-grey and chalk, close enough in value that no passage jumps forward on colour alone; the few notes of vermilion then carry enormous weight. He also makes depth physical. Distance is thin, scrubbed paint with the canvas grain showing through, while the near roofs and the track are loaded and ridged, standing off the surface. And each plane is stroked in its own direction, running with the pitch of its roof - the germ of the constructive brushwork of his later decades.",
+ "context": "Auvers-sur-Oise, on the river north-west of Paris, is where Cezanne stopped being a painter of his own imagination. He settled there in 1872 with Hortense Fiquet and their infant son, within reach of Pissarro at Pontoise, and for two years worked beside him on the same motifs - sometimes the same field, sometimes copying him outright - learning to set a canvas in front of a thing and answer only to it. The knife-laid blacks and the melodramatic subjects fall away here; the palette lifts into ochres and greens, and the drawing goes into the architecture instead of into figures. Dr Paul Gachet, later Van Gogh's doctor in the same village, had a house on the hill and a press in it, and Cezanne pulled his few etchings there. This canvas, barely two feet across, is that Auvers lesson at full strength, and you saw it at the Orsay, where it now hangs.",
+ "deeper": [
+  {
+   "t": "The pale house",
+   "x": 0.21,
+   "y": 0.15,
+   "w": 0.27,
+   "h": 0.55,
+   "body": "Start with the one lit thing. The wall is not white: it is chalk laid over green, pink and grey, so it stays cool and never glares, and the underlayers are left showing at the edges rather than trimmed off. Its left contour barely exists - the trunk standing in front of it does that drawing instead. Look at the roof above and it is not one plane but a fan of separate strokes, mauve, straw, bottle-green, each running down the pitch. The building narrows as it rises, and it is pressed on both sides by darker masses, which is why a house this pale still feels held rather than free. Every other value in the picture is measured against this wall."
+  },
+  {
+   "t": "Two dark openings",
+   "x": 0.295,
+   "y": 0.36,
+   "w": 0.11,
+   "h": 0.18,
+   "body": "Under the eaves, a hole with no frame, torn out of the wall as a single black-brown shape. Below it, a squared window drawn with a dry pale line for the jamb and a stroke of the same for lintel and sill. They are the darkest notes on the building, and they are used as weights rather than as information: no glass, no reflection, nothing implied behind them. They are also mismatched - different shapes, different sizes, off each other's axis - so the wall never resolves into the face a symmetrical pair would make. This is where the picture gets its shut feeling, without one narrative detail. An opening that shows nothing is more closed than a blank wall."
+  },
+  {
+   "t": "The left edge, and two rules",
+   "x": 0,
+   "y": 0,
+   "w": 0.3,
+   "h": 0.5,
+   "body": "The far cottage is thatched too, straw-ochre with a black-green shadow ruled in under its ridge, and it is the only roof here painted in full light. Behind it the trees are an open scaffold of brown branches with detached dabs of ochre foliage hung on them; sky comes through everywhere, and this is the one passage in the picture where the paint breathes. Then the two thin trunks cross it all, unbroken from the top edge down to the grass, each painted as a flat ribbon with a lit side and a shadowed side and no attempt at roundness. They are not there for botany. They are stops: vertical rules that tie the loose left corner down and keep the eye from sliding out of the frame."
+  },
+  {
+   "t": "The crevice",
+   "x": 0.385,
+   "y": 0.33,
+   "w": 0.13,
+   "h": 0.35,
+   "body": "The darkest passage in the painting, and the one that decides its shape. Where the pale house meets the roof beside it there is no junction given, no gutter, no logic of construction - just a near-black wedge dropping the full height of the buildings, with a few ochre twigs strung across it. Close up the black is not black: bottle-green over violet, warming at the edge where it meets the lit wall. Structurally this is the spine. It is the only strong vertical dark in a picture otherwise built of diagonals, and it splits the canvas into a bright, detailed left and a heavy, near-empty right. The two halves would not hold together without something this severe between them."
+  },
+  {
+   "t": "The distance, rationed",
+   "x": 0.43,
+   "y": 0.17,
+   "w": 0.29,
+   "h": 0.24,
+   "body": "All the depth in the picture is in this strip. Blue-grey hills laid flat, a chalky band of far houses, a slice of acid green field, then the near village roofs with their red chimneys - four bands, each essentially one value, with no modelling anywhere. The paint is at its thinnest here; the weave of the canvas shows through, and after the ridged impasto of the foreground that thinness by itself reads as far away. Distance is being made out of material as much as out of colour. The specks of vermilion tile are the only saturated colour in the upper half, and they sit exactly where the gap between the buildings is narrowest, so the eye finds them and is then walled in again."
+  },
+  {
+   "t": "The great roof",
+   "x": 0.59,
+   "y": 0.155,
+   "w": 0.41,
+   "h": 0.615,
+   "body": "The largest shape on the canvas and the boldest decision in it: a roof that fills the whole right side and runs off the bottom corner, crossing the horizon so no sky survives behind it. A mass that size should go flat and dead. Two things save it. The pale seam running down its face - a wall corner catching light - gives the slope a turn and a near edge to be measured from. And the surface is never one colour: olive, grey, violet and a dusty green are dragged in short strokes that follow the pitch, so the plane is felt as a fall rather than read as a silhouette. The ridge line is drawn once, quickly, and left alone."
+  },
+  {
+   "t": "The track that goes nowhere",
+   "x": 0,
+   "y": 0.57,
+   "w": 0.58,
+   "h": 0.43,
+   "body": "The track enters at the right, rises as it crosses, and leaves at the left edge without ever reaching a door. It is built as long parallel ridges of straw, grey-green and pink, the ruts standing up as raised welts of paint you could find with a thumb; the grass banks are single passes of green laid between them. This is the warmest and thickest paint in the picture, which is why the bottom fifth pushes forward so hard. It also tips: the ground plane rides upward to the right instead of receding, so the thing that should be the way in becomes a barrier laid across the front. The picture hands you a road and refuses you the walk."
+  },
+  {
+   "t": "The name in red",
+   "x": 0.03,
+   "y": 0.87,
+   "w": 0.17,
+   "h": 0.12,
+   "body": "The last thing, and the smallest. A vermilion signature sits in the grass at the lower left, written on top of dry paint so it rides the texture instead of sinking into it. It is the only pure red in the lower half of the canvas, and it answers the specks of red tile in the far village - two ends of one note, top and bottom of a painting that otherwise runs on earth colours. Its placement is worth a second: it lands at exactly the point where the track leaves the frame, so the eye following the road out of the picture runs into the painter's name and turns back. Whether or not that was planned, it is the last small hook in a design made almost entirely of refusals."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"pierre-auguste-renoir-claude-monet": {
+ "see": "A man stands three-quarter length and nearly fills the canvas: black cap, black beard, a coat so dark it reads as one uninterrupted plane from shoulder to bottom edge. Everything that is not him is pale. On the left, a greenish-white panel scribbled over with twiggy strokes and a few orange and green dabs; on the right, a bare wall crossed by one vertical seam and a faint horizontal edge low down. The picture is essentially two values, a black shape on a grey field. Colour appears in exactly three places: the flushed face, the smear of red and ochre along the palette lying across the bottom, and those small dabs in the painted foliage. The eye takes the head first, because it is the only warm thing in the frame, then falls the length of the coat to the palette, then out to the fist at the left where a pale shaft of brush handles runs off the picture.",
+ "about": "This is a portrait of a method rather than of a face. Renoir shows Monet interrupted rather than posed: the body still angled to the work, the tools still in the hands, the head merely turned back for a moment. What the picture claims is that this is what a painter looks like, not in a smock among casts and props but in street clothes, upright, holding the palette like something he is about to use again. Behind him the greenery is Monet's own subject matter, put down in Renoir's touch, so the sitter is framed by the thing he is known for looking at. The other layer is class. The coat, the cap and the collar belong to a man dressed to be taken seriously by a world that was not buying, and Renoir gives them the gravity of an old portrait rather than the lightness he used for women in gardens.",
+ "craft": "The whole thing runs on one decision: paint the man as a single dark silhouette and spend the paint only where the light lands. The coat is thin, dragged blue-violet and olive over a ground whose weave stays legible through it, so it remains a shape and never becomes a garment. The face is the one loaded passage, worked wet into wet until the flesh has body. Nothing is drawn with a contour line; the silhouette exists because two values meet, and where they meet Renoir leaves a narrow rim of greenish grey that keeps the dark from cutting like scissors. The composition is just as economical. A broad horizontal palette across the base stops the figure draining out of the frame, and the pale seam in the wall repeats his vertical at a distance. The unequal finish is the point: the closer you look at the working hands, the less there is to find.",
+ "context": "By 1875 these two had been in each other's company for years, from the twin easels at La Grenouillère in 1869 to Renoir's summers at Argenteuil, where he set up beside Monet and painted the same garden, the same family, sometimes the same afternoon. Monet was the more single-minded of them; Renoir was the better portraitist, and the traffic ran mostly one way, Renoir painting Monet and his wife again and again while Monet painted almost nobody. Both men were short of money that year, though Monet's version of poverty ran to a servant, a garden and a well-cut coat, which is part of what is standing here. Within a few years the paths split: Renoir found bourgeois sitters in Paris, Monet left the suburbs for Vetheuil and a much harder decade. Nothing in the picture predicts either outcome.",
+ "deeper": [
+  {
+   "t": "The one warm thing",
+   "x": 0.38,
+   "y": 0.02,
+   "w": 0.4,
+   "h": 0.3,
+   "body": "Everything above the collar is the only part of the picture with blood in it, and Renoir makes sure of that by letting cap, hair and beard sink to exactly the value of the coat. The face is therefore not so much attached to a head as cut out of a black field: a lit oval with a hard top edge where the cap sits and no bottom edge at all, since the jaw simply dissolves into beard. The light arrives high and from the front, a little to the left. Forehead and the ridge of the nose take cream and pink, the far cheek goes grey-green, and the passage between them is one soft sweep of the brush. Notice also how small the head is for a canvas this size. He has been given room to stand in rather than pushed at you."
+  },
+  {
+   "t": "Where the work went",
+   "x": 0.42,
+   "y": 0.115,
+   "w": 0.24,
+   "h": 0.08,
+   "body": "These few centimetres carry more labour than any comparable patch on the canvas. The whites are not white but grey and ochre, barely lighter than the skin around them, and each eye reads as an eye only because of one dark accent tucked under the upper lid. That accent is the crispest mark in the painting. Everywhere else Renoir keeps his edges soft, so the sharpest thing in the frame turns out to be the place where a painter's attention lives. The brows run almost unbroken from side to side, which is what gives the look its level, faintly guarded set. Nothing is being asked of you. He is not performing concentration with a raised hand or a tilted head; he looks the way a person looks who is being kept from work."
+  },
+  {
+   "t": "The painting behind the painter",
+   "x": 0,
+   "y": 0.03,
+   "w": 0.34,
+   "h": 0.45,
+   "body": "The left third is not a room. It is a painted surface: dark twiggy strokes laid in fast over a milky green-grey ground, with small dabs of orange and green scattered through them like flowers half-noted. Read it as pigment and it resolves at once, because the marks sit on the surface rather than receding, and the ground shows between them everywhere. That is landscape reduced to notation, which is to say Monet's own subject written out in Renoir's shorthand. Leaving it unresolved matters. Finished, it would turn into a window and the man would be standing outdoors; kept at this stage it stays a thing made of paint, and the portrait becomes a picture of someone at work in front of work. The branch strokes also do quiet structural duty, drifting down to the right toward his shoulder."
+  },
+  {
+   "t": "The empty side",
+   "x": 0.74,
+   "y": 0.02,
+   "w": 0.26,
+   "h": 0.6,
+   "body": "The emptiest passage in the painting is the one holding it upright. A pale wall, a single vertical seam, a faint horizontal edge low down where the tone warms toward yellow-green: that is the whole description. Its job is to hand the dark silhouette a clean field to be read against, and to answer the busy left side with almost nothing. Look closely and the flatness disappears. The wall is dozens of closely valued strokes, some warm, some cool, so the surface shifts slightly and never goes inert. The feathery sprigs spilling across the top of this area matter too: they carry the foliage over from the far side, above the head, and stitch two very different backgrounds into one continuous space rather than a split screen."
+  },
+  {
+   "t": "A coat with air in it",
+   "x": 0.2,
+   "y": 0.32,
+   "w": 0.42,
+   "h": 0.36,
+   "body": "The largest area in the picture has the least paint on it. Lean into it and the black turns blue-violet through the middle and olive along the edges, dragged thin enough that the weave of the canvas stays readable straight across his chest. There are almost no folds, just the ghost of a seam near the shoulder and a slight warming where the arm turns, because folds would make it a garment and Renoir wants a shape. Thin paint is what keeps a mass this size from going dead: the pale ground underneath glows up through it, so the darkness has air in it instead of being a hole. Set this against the loaded, reworked flesh of the face and you have the entire economy of the painting in two textures."
+  },
+  {
+   "t": "The hand that does the work",
+   "x": 0,
+   "y": 0.62,
+   "w": 0.24,
+   "h": 0.38,
+   "body": "At the very edge, half swallowed by shadow, a fist closes around a pale shaft. The fingers are three or four blunt strokes with no knuckles and no nails; there is more information in a square inch of his eyelid than in the whole hand. That is a decision, not a shortfall. A hand rendered in full would compete with the head and turn the man into an illustration of the word artist, brushes held aloft as an attribute. Left this vague, it registers simply as occupied. Follow the shaft down and it does not stop, it leaves the picture at the lower left, so the tools carry on past the frame. Pushing the working hand almost out of the composition, into the corner where the light barely reaches, is a quietly modern piece of staging."
+  },
+  {
+   "t": "The palette, tipped toward you",
+   "x": 0.32,
+   "y": 0.78,
+   "w": 0.63,
+   "h": 0.21,
+   "body": "A broad olive lozenge tips across the bottom of the picture and does three jobs at once. Colour first: the reds, oranges and creams smeared along its far edge are the only saturated notes anywhere, a sample card for a painting that otherwise refuses colour. Then structure, a strong horizontal at the base that stops the tall dark figure draining out of the frame. Then argument. It is turned toward you rather than shown edge-on, so you read it as a surface with paint on it, the means of the picture displayed openly along the bottom of a portrait about making pictures. There is a neatness in the brightest passage being raw pigment, sitting unused. The signature and date sit just past the palette's right edge, small, dark and entirely unshowy."
+  },
+  {
+   "t": "What it is made of",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Step back and the design is one long diagonal: the sketched foliage at the upper left, down through the branch strokes to the shoulder, down the length of the coat, out to the palette at the lower right. The head sits off that line, high and a little left of centre, and stays still while everything else slides. Two things carry nearly all the paint, the face and the palette, and those happen to be the two things a painter consists of: attention, and means. Everything between them is deliberately underspent. That is why this reads as neither a celebrity picture nor a manifesto. A friend has painted a man in his working clothes at the moment when the work was worth nothing, and has trusted a head and a smear of pigment to make the case."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"salvador-dali-the-great-masturbator": {
+ "see": "The plate is an installation photograph: the canvas hangs in a thin gilt frame on a white wall, four visitors in front of it, one yellow sweater blocking the lower right corner of the picture. Inside the frame, a single soft yellow mass floats between a deep blue sky and a pale green plain. Hold it a moment and it resolves into a head in profile, cheek to the ground, eyes shut, the long nose sloping away to the lower left. From its right flank a woman's head rises, hair falling in gold ribbons, her face lifted into the crotch of a grey figure cropped by the top edge at the thigh. A black insect grips the place where the head's mouth should be. A fan of red and green quills flares from the cheek. Around all of this: nothing. Sky, plain, two specks of people, a needle hanging on a thread.",
+ "about": "Nothing in this picture touches. The woman's mouth is raised to the grey figure and stops short; the figure itself has been sanded smooth, a shadow where the genitals would be; the great head has no mouth at all, only an insect where one belongs. The title names an act, and the act is nowhere in the painting. What is here instead is the apparatus of wanting, laid out like anatomy on a table. The crucial move is structural: the woman does not stand beside the dreaming head, she grows out of it. The fantasy and the skull that produces it are one continuous piece of matter, which means there is no position from which to look away. And that matter is soft. It cannot stand, cannot bite, cannot close the last inch. Desire here is not a pleasure being taken; it is a shape that keeps failing to arrive.",
+ "craft": "One contour does most of the work. Follow the yellow edge and it runs unbroken from the far left of the canvas to the woman's shoulder, a single silhouette that has to read as cliff and as face at the same time, and Dali gets it by modelling in tone rather than drawing in line: the form is built from graded shadow, and there is not one hard outline on the whole mass. The drawing inside it is old-master tight, hair and quills and insect legs all rendered with a small brush, while the substance being drawn has no bones. Colour is rationed. A huge field of one yellow, a blue sky, a dull green plain, and exactly two places allowed saturation, the fan on the cheek and a coral flick on the insect. The horizon sits very low, so the head rides against the sky like rock. Brushwork is invisible; nothing announces itself as paint.",
+ "context": "The same year produced Un Chien Andalou, the film Dali made with Bunuel that opened in Paris in June 1929, and the two works share a vocabulary: ants pouring out of a body, an eye the film opens by cutting. Through that autumn Dali was being absorbed into Breton's circle, arriving with a method he would not name in print until the following year, the deliberate cultivation of double readings, one shape made to hold two objects at once. Against that, the private cost: at the end of 1929 his father threw him out of the family house in Cadaqués, the immediate cause an inscription he had scrawled about spitting on his mother's portrait. He never sold this canvas. It stayed with him for the rest of his life, a picture of his own head that he was not willing to let out of the house.",
+ "deeper": [
+  {
+   "t": "The face that never arrives",
+   "x": 0.512,
+   "y": 0.276,
+   "w": 0.092,
+   "h": 0.115,
+   "body": "This is the corner that pulls first, and Dali has jammed it against the frame's edge so the eye arrives and is stopped. The woman's head is thrown back, eyes closed, lips parted, lifted into the groin of a figure cropped at the thigh by the top of the canvas and drained to the grey of plaster: no genitals, only a soft shadow and a dark seam running down. Look at the gap. A couple of millimetres of paint separate her lip from him, and the picture holds that gap open. Her hair is the one passage handled with real relish, combed into gold and umber ribbons; everything about her is finished, and everything about him is a blank. The most explicit thing in the painting is also the least depicted."
+  },
+  {
+   "t": "The head as a landform",
+   "x": 0.362,
+   "y": 0.323,
+   "w": 0.107,
+   "h": 0.163,
+   "body": "Take the yellow mass on its own and it stops being a body. The dome at the top, the long descending ridge, the deep vertical fold: read it cold and it is a headland with the sun low on it. Then the profile comes, brow, a heavy lidded eye, the nose sloping to the lower left where the mass settles onto the plain. Both readings stay available, which is the whole trick; the shape is never resolved in favour of one. Notice how it is made. There is no drawn outline anywhere on this mass, the edge exists only because the tone stops. Inside, the folds are graded so smoothly the surface looks poured rather than painted, and the shadow it drops is a rock's shadow, not a face's."
+  },
+  {
+   "t": "The one place colour is allowed",
+   "x": 0.405,
+   "y": 0.362,
+   "w": 0.058,
+   "h": 0.07,
+   "body": "A spray of black quills threaded with scarlet, orange and green, fanning up out of a soft pink swelling on the cheek. In a picture built from one yellow, one blue and one dull green, this is the only saturated colour on the canvas apart from a single red flick on the insect, and it sits almost exactly where the head's eye belongs. That placement does the aiming: the eye goes here before it goes anywhere, then travels down the quills into the body of the head. Note the handling too. Every quill is a separate stroke with a hard tip, drawn rather than blended, so the one violent passage is also the one crisp passage. Whether it reads as lashes, a plume, or an opened wound, the picture refuses to settle it."
+  },
+  {
+   "t": "The mouth is an insect",
+   "x": 0.508,
+   "y": 0.396,
+   "w": 0.039,
+   "h": 0.045,
+   "body": "The great head has no mouth. In its place a grasshopper clings belly out, legs splayed and rigid, a coral seam at its head, and a scatter of small dark bodies works over its abdomen. Dali wrote at length about a horror of grasshoppers going back to childhood, the one creature he could not be in a room with. So the image is exact: the head that is dreaming all of this has been gagged by the thing it fears most, at the same moment, a few inches above, a mouth is being put to use. It is also tiny. On the canvas this is about the size of a fingernail, drawn with entomological patience, and it carries more of the picture's meaning than the whole yellow acre around it."
+  },
+  {
+   "t": "Two stones and a balanced disc",
+   "x": 0.386,
+   "y": 0.281,
+   "w": 0.084,
+   "h": 0.094,
+   "body": "On the crown of the head, a pale ovoid stone, and rising from it a thin twisted stalk carrying a grey disc tipped like a hat about to slide off. A second, smaller stone sits to the right. This is the only physics in the painting. Everything else is boneless and unsupported; here a hard object is held up by a thread and you are asked to believe it. The vocabulary changes too. These are painted as still life, crisp edged, with real cast shadow, against a sky that is otherwise a flat field of blue. Their function is measurement. Put something small and precise on top of a shape and the shape becomes enormous: the head is a hill because these pebbles are sitting on it."
+  },
+  {
+   "t": "The lily and the hook",
+   "x": 0.549,
+   "y": 0.368,
+   "w": 0.047,
+   "h": 0.07,
+   "body": "Below and right of the woman, a pale hooded form curls on a stem, an arum lily read as anatomy or anatomy read as a lily, and inside its cup sits a small hook. A second bud beside it, olive green, carries the same hook. That hook is the picture's one repeated piece of hardware, rigid and metallic, dropped into a world where nothing else holds a shape; its repetition matters more than its identity. Then look at the rhyme. The lily's curve is the woman's throat and shoulder run again at half size, so the eye reads her twice without noticing. Dali builds these echoes constantly: a shape stated large, then restated small and slightly deformed a few inches away."
+  },
+  {
+   "t": "Where the flesh turns to lacquer",
+   "x": 0.53,
+   "y": 0.436,
+   "w": 0.053,
+   "h": 0.114,
+   "body": "At the bottom right the yellow gives out and the picture goes black: glossy sweeping forms, hooked, curling back on themselves, a grey wedge caught inside, a small white sphere resting on the plain below. This is the only true black mass on the canvas, and it does two jobs. Compositionally it is ballast, since the charged passage is up in the top right corner and this weight in the opposite low corner keeps the whole thing from tipping. Formally it is where the body stops being flesh. The same continuous contour that was a cheek a few inches back hardens into shell, or hair, or shadow given a body of its own. Note the finish: this black is polished and reflective, while every yellow surface is matte."
+  },
+  {
+   "t": "A needle on a thread",
+   "x": 0.366,
+   "y": 0.398,
+   "w": 0.03,
+   "h": 0.066,
+   "body": "Far out on the empty left side, a thin horizontal line runs from the head's edge to a small ring, and from that ring hangs a long tapering needle pointing straight down at the ground. It is barely there, a few strokes, no colour, sitting in open blue. But it is the one true vertical in a painting made entirely of curves, and it is doing what a plumb line does, hanging dead straight and marking gravity in a picture where nothing else obeys it. It also empties that side on purpose. Dali could have filled the left quarter of the canvas; instead he leaves it as sky and puts one small sharp object in it, so the swollen right side has something to press against."
+  },
+  {
+   "t": "The whole thing at once",
+   "x": 0.359,
+   "y": 0.278,
+   "w": 0.266,
+   "h": 0.272,
+   "body": "Step back and the argument is a single line. Start at the far left where the contour begins, run it over the dome, down the ridge, through the cheek, up into the woman's shoulder and throat and out along the black hooks to the bottom right: one unbroken edge carries the entire cast, landscape, dreamer, lover, insect, shell. Nothing here is a separate object, it is all one substance taking different jobs, which is why it does not read as a collage of symbols. And note where the weight sits. Everything happens in the upper two thirds and to the right, while the lower left is emptied to plain and sky. The picture is top heavy on purpose, a mass that looks about to slump, which is exactly what this soft head goes on to do two years later under the melting watches."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"stanhope-forbes-the-munitions-girls": {
+ "see": "Nearly the whole canvas sits inside one narrow band of colour: olive, umber, gun-metal, and the wet grey-brown of a floor swept a thousand times and never once clean. Left of centre a black hydraulic press climbs straight out through the top edge, heavy enough to look like it is holding the roof down. To its right the shed opens away in sharp perspective, glazed bays going pale with daylight and smoke, small figures in caps and long coats working the length of it. Bottom right, two women bend into the corner at almost life size, the only people near enough to have faces. Bottom left, a stack of hollow forgings lies on its side, mouths open and black. Against all that grey there are maybe half a dozen patches of real heat, and they are what the eye keeps going back to, however small they are.",
+ "about": "It looks like an industrial scene and behaves like a group portrait. Because copies were to go to the women in it, likeness had to survive at every distance, which explains the strange density of individually characterised figures in the middle ground who serve no pictorial purpose at all. Most industrial pictures reduce the back rows to marks; this one keeps giving them cheekbones. The second layer is what the picture leaves out. There is no soldier, no gun, no front, no explosion. There is heat, iron, and cold hollow tube stacked like firewood, and the thing that makes a shell a shell has not been put in yet and will be put in somewhere else. The third layer is time. This skilled work had been lent to women under agreements that required them to hand it back when the fighting stopped, and by the year of the picture the handing back was already close.",
+ "craft": "The whole picture is a bet on tonal restraint. Forbes lays down an enormous grey-olive field, then spends his saturated colour in tiny amounts and lets area lose to intensity. He also binds his two foreground women with a swap: navy smock under an olive headscarf on the left, olive smock under a navy headscarf on the right, the same two notes crossed over. They bend on one diagonal at slightly different phases, so the pair reads as a single motion caught in two frames, and the stacked shells at bottom left continue that line into a shallow V across the base of the canvas. The press is cropped by the top edge to make it exceed the frame. And nobody in the picture looks out. Every gaze goes down into work, which is what keeps a commissioned painting from tipping into a poster.",
+ "context": "Forbes had spent three decades painting Cornish beaches, fish sales and grey coastal light out of doors, in front of the thing, with a square brush and no studio flattery. This picture is that method carried indoors and pointed at a forge: same refusal of heroics, same silvery mid-tone, same insistence that working people are painted while working rather than arranged. That is why it looks so unlike the state-sponsored munitions painting being produced in the same months, which tended toward machine geometry and spectacle. This was an employer's private commission rather than a government one, and it shows in the absence of rhetoric. It also arrived in the year British women first won a partial parliamentary vote, and in a district that had been rebuilt around heavy shell forging after the 1915 shortage scandal put munitions under its own ministry. You stood in front of it in the Science Museum.",
+ "deeper": [
+  {
+   "t": "The pair in the corner",
+   "x": 0.52,
+   "y": 0.5,
+   "w": 0.46,
+   "h": 0.5,
+   "body": "These two are painted at conversational distance while everyone else is at shop-floor distance, and that single decision sets your position: you are standing on the floor with them, not watching from a gallery rail. Note that they are not a pair by proximity alone. Their clothes are colour-swapped, navy against olive and olive against navy, and their backs describe the same bent diagonal a half-beat apart, so they fuse into one continuous shape that runs from the upper right down to the shells at lower left. Note too what they are not doing. They do not stand, present, or pause for the painter. Both are mid-task with their weight forward, which is a harder thing to draw and a much harder thing to keep looking natural at this size."
+  },
+  {
+   "t": "Two faces, no eye contact",
+   "x": 0.6,
+   "y": 0.54,
+   "w": 0.22,
+   "h": 0.17,
+   "body": "Look at how differently the two heads are built. The left is rounder and younger, the jaw soft, the mouth closed and calm; the right is longer and more hollowed, the cheek pulled in, the brow heavier. That is not variety for its own sake, it is likeness, taken from particular women who would later see themselves in it. The heads almost touch, yet neither looks at the other and neither looks at us. Both sets of eyes drop to the hands. Two more things worth catching here: this is the most finished paint in the canvas, everything else drops a grade in resolution as it recedes, and the light on both faces is the cool daylight coming down from the roof, never the furnace. Lit by the fire they would have become heroes. Lit by the shed they stay workers."
+  },
+  {
+   "t": "What the hands are doing",
+   "x": 0.52,
+   "y": 0.8,
+   "w": 0.3,
+   "h": 0.2,
+   "body": "The near woman has both palms flat and fingers spread along the flank of a shell body. She is rolling it, not lifting it, which tells you the weight without a single strained muscle being drawn. The other hand, further right and lower, comes down onto one of the long iron bars lying on the floor. Those bars are everywhere in the lower half of the picture and they are the real machinery of the place: levers, rollers and rails for moving mass that no one can carry. Now compare the drawing of these hands with the drawing of the faces. They get exactly the same finish, broad, blunt, knuckled, with no tapering and no prettifying. In a picture about labour, giving hands the attention usually reserved for heads is the argument."
+  },
+  {
+   "t": "The press as spine",
+   "x": 0.27,
+   "y": 0.03,
+   "w": 0.24,
+   "h": 0.7,
+   "body": "Four columns, a massive bolted crown, a base of stacked blocks, and hardly any descriptive light on any of it. Forbes paints the press as a near-silhouette with a few rust highlights, which is a choice: he wants a shape, not an engineering drawing. That shape does three jobs. It plants a black vertical just off centre, so the composition is asymmetric and does not settle. It splits the canvas into a dark machine wall on the left and an open, lit, receding shed on the right. And it stands between you and the actual moment of forging. Watch what happens to the crowd behind it: the columns slice the standing figures into vertical strips, and you assemble them across the gaps. The machine is quite literally interrupting your view of the people who serve it."
+  },
+  {
+   "t": "The hot thing, caged",
+   "x": 0.36,
+   "y": 0.43,
+   "w": 0.13,
+   "h": 0.14,
+   "body": "Find the small upright patch of pale salmon burning between the columns, roughly at the centre of the whole canvas. That is the reheated steel standing in the die, and it is the hottest, least mixed colour anywhere in the picture. Two things about it are deliberate. It is tiny, a few square inches on a large canvas, and Forbes has parked four iron columns directly in front of it. Painted big and clear it would have become spectacle, a furnace picture in the nineteenth-century manner. Painted small and half-blocked it stays what it actually was to the people in the room: a routine event happening on the other side of a machine, several times an hour, all shift. The composition is built entirely around a thing you can barely see."
+  },
+  {
+   "t": "Where the heat comes from",
+   "x": 0.02,
+   "y": 0.35,
+   "w": 0.25,
+   "h": 0.29,
+   "body": "In the far left corner two furnace mouths burn behind a screen of black ironwork, and below them a slab of steel glows on a low carriage. A woman in dark overalls leans back on a long rod; behind her, two more in pale caps handle a bar together. Notice where Forbes has put his fire: hard against the left edge here, and hard against the right edge in the distance, with the middle of the picture kept grey. Heat is a frame, not a centre. Notice also the scale of these figures. They are already roughly half the height of the two women in the corner, and that ratio alone builds the depth of the shed. There are no ruled perspective lines on this floor doing that work for him."
+  },
+  {
+   "t": "The shed fills up behind them",
+   "x": 0.55,
+   "y": 0.33,
+   "w": 0.45,
+   "h": 0.3,
+   "body": "Count the people back here and you get past twenty before the figures dissolve into the glare of the far wall. They are individually posed, not stamped: one stoops to a bar, one carries, one in a blue cap and long khaki coat stands nearly frontal with her hands at her chest, leaning on a shaft. Even she keeps her eyes down. Behind her, a rank of vertical orange bars, more steel waiting its turn. The point of this band is that the entire cycle is present at once. Furnace at one edge, press in the middle, hot stock at the other edge, cold finished tube down at your feet. No single moment is the subject, which is why the picture reads as a shift rather than an incident."
+  },
+  {
+   "t": "Cold, hollow, stacked",
+   "x": 0.01,
+   "y": 0.75,
+   "w": 0.34,
+   "h": 0.25,
+   "body": "The finished forgings, cooled, laid on their sides in a loose pyramid with several mouths turned toward you. Look at the care in the still life. No two cylinders take the same dull sheen, and the open ends are painted as holes rather than as circles, dark voids with one lip of light riding the rim. Their hollowness is the quiet point of the whole canvas: everything you have watched in this picture, the fire, the press, the bent backs, produces an empty steel tube. Under the stack, in the corner, sits the signature and the date, laid in with the same brown as the floor. It is the only writing in the painting, and what it records is the name of the man who came to watch."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"thomas-gainsborough-mr-and-mrs-william-hallett": {
+ "see": "Two figures walk out of a wood towards you and stop. She takes the left half of the canvas and most of the light: a column of silver-grey gauze widening to a hem, a black hat tipped over a halo of frizzed auburn hair, grey-white ostrich plumes boiling out behind it into the dark leaf. He is a narrow black upright beside her, almost a silhouette, punctuated by a strip of olive-gold waistcoat, a spray of lace at the throat, a line of brass buttons, and one white stocking that fires like a struck match at the bottom right. Everything else is weather: brown-green foliage above, a bruised grey sky opening on the left, bare ochre earth below with no path in it. The white long-haired dog at her knee is the third bright thing, and it is the only creature looking at anyone.",
+ "about": "A double portrait made at a wedding is asked to do a difficult thing: prove a private feeling in public. Gainsborough's answer is not to show it. Neither sitter looks at the other; neither looks at you. Their eyes slide off towards opposite sides of the frame, and the place where their two bodies meet is deliberately unresolved, a shadowed seam with one wisp of gauze drifting across it. What binds them is not a gesture but a direction: same step, same speed, same weather. The warmth the humans withhold is handed to the dog, which throws its head back at her with its whole body. So the picture argues for partnership as forward motion rather than as touch, and it takes their youth seriously enough to leave the future behind them blank — a wood with no path, a ground with no road, an occasion invented for the day.",
+ "craft": "Look at four unrelated things at once — the ostrich plumes, the dog's ruff, the shawl over her arm, the foliage behind their heads — and they are the same stroke: a long, dry, sideways flick that never fully covers what lies under it. Gainsborough painted fur, hair, cloth and leaf with one vocabulary, which is why the couple feel woven into the wood rather than posed in front of it. The paint is astonishingly thin; the weave of the canvas shows through the sky and the skirt and does half the work of the leaves, and the only genuinely loaded passages in the whole picture are the satin band on her hat and the buckle on his shoe. Then he subtracts him: the man is a near-flat black void, legible only where buttons, lace and a strip of waistcoat break through. Her light and his darkness are not two portraits but one shape with a bite taken out of it.",
+ "context": "By 1785 Gainsborough had stopped exhibiting with the Royal Academy after a quarrel about how his pictures were hung, and was showing instead in his own rooms in Pall Mall — a painter at the top of the London market who had arranged not to be judged next to Reynolds. He had begun life wanting to paint Suffolk woods and spent his career painting the people who could afford him; in the late canvases the two ambitions stop fighting, and half of this one is landscape done with a freedom no commission required. The format is inherited rather than invented: full-length figures strolling out of doors, a device that reaches him through Van Dyck and a century of English taste. It hangs in the National Gallery in London, where you saw it. Gainsborough had three years left when he painted it.",
+ "deeper": [
+  {
+   "t": "The plumes arrive first",
+   "x": 0.32,
+   "y": 0.05,
+   "w": 0.3,
+   "h": 0.19,
+   "body": "From the door of the room, this is what registers: a black disc tipped at an angle high on the canvas with grey-white feathers erupting from the back of it into the dark. Nothing up here is drawn. The plumes are perhaps twenty dragged strokes from a brush already running out of paint, so their edges never close and the foliage shows straight through them; they read as air rather than object. Now look at the satin band on the crown. It is the thickest paint in the picture, laid on in flat slabs of cream and cold green, with a knot described by a single twist of the wrist and then left completely alone. Gainsborough set his most loaded passage and his loosest within an inch of each other, and put both above her face rather than on it."
+  },
+  {
+   "t": "Her face, and where it is looking",
+   "x": 0.355,
+   "y": 0.19,
+   "w": 0.2,
+   "h": 0.14,
+   "body": "The head is small — a hand's width on a canvas that stands taller than either sitter — and it is the most controlled thing here. Cool pearl greys through the cheek and jaw, one warm note in the lip, the eyelids shaded a faint green. Her hair is not powdered: it is auburn, frizzed into a wide halo that doubles the width of her head and softens the whole silhouette against the hat. Then the eyes. They do not meet yours; they slip past your left shoulder, and the lids sit low enough to read as composure rather than shyness. He has spent almost nothing here — no drawn lash, no arched brow, no modelled ear. The face is the one place in this painting where he lets an edge go truly crisp, and he uses it twice, on two irises."
+  },
+  {
+   "t": "His face, glancing the other way",
+   "x": 0.645,
+   "y": 0.135,
+   "w": 0.155,
+   "h": 0.145,
+   "body": "His head sits higher than hers and further back, and it is painted warmer: pink at the cheekbone and mouth against powdered hair tinted a lilac grey to stop it going chalky. The curls are laid in with a light brush, and on the right side the hair simply dissolves into the tree behind it — no contour at all on that edge, which is why the head reads as soft focus while the eyes stay sharp. And the eyes go the other way. Hers drift towards your left, his towards your right. Neither looks at the other, neither looks out at you. Two people at the beginning of a shared life, painted at the exact moment when each is seeing something the other cannot."
+  },
+  {
+   "t": "The seam between them",
+   "x": 0.43,
+   "y": 0.31,
+   "w": 0.24,
+   "h": 0.29,
+   "body": "This narrow strip is where the picture's argument is settled, and it is settled by refusing to draw it. On the left, her white gauze fichu ends in a pale green ribbon knot above a black velvet band at the waist. On the right, the flat blackness of his coat. Between them there is no arm, no hand, no locked elbow — only a soft brown-green shadow and a single thin wisp of grey where the end of her shawl drifts across the gap towards him. Gainsborough puts them close enough that you assume contact, then declines to supply the proof. Lower on the right, a small cluster of gold at his hip is the one warm spark he lets into all that black."
+  },
+  {
+   "t": "Two hands, and what they hold",
+   "x": 0.6,
+   "y": 0.36,
+   "w": 0.19,
+   "h": 0.19,
+   "body": "Two hands here, and neither of them is hers. One curls over the front of his coat level with the buttons; the other rests lower, on the crown of a black hat carried against his hip — a dark oval you only find once you know to look, because a black hat has been painted on a black coat and the difference left at one degree of warmth. The hands themselves are barely built: four pink dashes and a knuckle, framed by lace cuffs scribbled in white over grey. They read instantly as hands, and as occupied hands. Both of his are busy; hers hangs loose at her side, down by the dog. In a marriage portrait that is a decision, not an oversight."
+  },
+  {
+   "t": "The dog is the only one looking",
+   "x": 0.01,
+   "y": 0.52,
+   "w": 0.42,
+   "h": 0.42,
+   "body": "The white dog has planted its forefeet and thrown its head so far back that the muzzle points almost vertically, mouth open, a fleck of pink tongue showing. Follow that line. It runs straight up to her bare right hand, hanging at her side holding a fold of gauze with a thin gold bracelet at the wrist, and from there up the arm to her face. The animal is the picture's staircase, and its emotional case as well: in a canvas where nobody looks at anybody, this is a creature looking with everything it has. Note that its coat is painted in exactly the strokes used for her shawl, and that the plumed tail curled over its back at the far left reads as a bush until you find it."
+  },
+  {
+   "t": "The weather he actually wanted to paint",
+   "x": 0,
+   "y": 0.3,
+   "w": 0.26,
+   "h": 0.34,
+   "body": "Take the figures out of the box and this is a landscape painter working for himself. Grey sky pushed about in broad wet-looking sweeps, one low wedge of warm light near the horizon where the cloud thins, feathery trees dabbed in with the side of the brush, and a single bare sapling drawn with one nervous line. The paint is thin enough that the canvas weave comes through and does half the work of the foliage. None of it is a place — no house, no road, no distance you could walk into. It is a temperature. And this is why the couple never look pasted onto a backdrop: the touch that made these trees also made her shawl, so the air and the clothing are the same substance."
+  },
+  {
+   "t": "The ground gives it away",
+   "x": 0.42,
+   "y": 0.83,
+   "w": 0.38,
+   "h": 0.17,
+   "body": "End at their feet. One white stocking, one buckled shoe with the light caught on its silver buckle, and just behind it a second shoe that is nothing but a black smear — he stands on one lit leg and lets the other vanish. Under her hem there is a single pale triangle, the toe of a satin slipper about the size of a thumbnail, and it is the only part of her that exists below the knee. Beneath and between them the ground is a flat wash of warm ochre brushed side to side: no grass, no stones, no track. For a picture named after a walk there is nowhere to walk. The morning, the path, the whole occasion is invented; what is real is two young faces, one dog, and a great deal of moving air."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"vincent-van-gogh-portrait-of-adeline-ravoux": {
+ "see": "A girl in profile, facing right, fills the left two-thirds of a canvas that is blue everywhere else. Her head is the only lit thing: hair the yellow-green of unripe wheat, the face a flat plane of pale ochre with pink dragged across the cheek and green along the jaw. The blue behind her is not empty. It is built from short horizontal strokes of navy, ultramarine and chalky grey-blue, packed like courses of brick. Her dress runs the other way, long strokes falling from shoulder to lap, so the figure and the air behind it are made of one colour moving at right angles to itself. Warm notes are rationed: a run of small pink buttons down the bodice, a hard yellow diamond at the left edge, two ochre hands in the bottom corner, and the signature in orange. The rest is blue meeting blue.",
+ "about": "What the picture withholds is likeness, and it withholds it deliberately. A face turned fully to profile cannot meet you. You get contour instead of expression, and the one visible eye is fixed on nothing in the room. The result is less a girl than an emblem of one, upright and sealed and formal, aged upward by the pose into something nearer a struck medal than a record of a thirteen-year-old who worked her father's dining room. That is why the sitter's own verdict on it is both true and beside the point. Van Gogh was painting a state rather than a set of features: adolescence as stiffness, a body held very still inside a dress with more presence than the person wearing it. The subject is being looked at, and how little a face surrenders once it has decided not to.",
+ "craft": "Three hatchings, kept strictly apart, hold this together. The background runs horizontal, short broken strokes laid like brickwork. The dress runs vertical and diagonal, long falling strokes that pool into a dark spine down the skirt. The hair and the sleeve are combed, close parallel furrows dragged through wet paint with the tip of the brush. Because the colour range barely shifts, direction does the work colour usually does: you separate figure from ground purely by the way the paint is travelling. Over all of it he draws in near-black, an unbroken contour around head, collar and diamond, so the shapes stay flat and cut rather than modelled. Then the palette is policed hard. Blue everywhere; yellow-orange confined to head, lozenge, hands and name; pink to the buttons alone. Two colours and three directions, which is why it holds at any viewing distance.",
+ "context": "Van Gogh had settled the principle behind this blue two years earlier in Arles, when he decided that rather than paint the wall behind a sitter he would paint something closer to infinity, arbitrary colour chosen as a statement about the person instead of a report on the room. Auvers gave him almost no professional models, so his sitters were whoever the village produced: his doctor, the doctor's daughter at her piano, local children, the family that fed him. Hardly any of them sit in an interior; each gets a field of invented colour instead. It also explains why the three Adeline canvases vary so widely in size and finish. Nothing was commissioned and nobody was paying for a likeness, so each attempt could be a separate experiment rather than a revision toward accuracy. Village pictures made for no market, they scattered afterwards into different collections.",
+ "deeper": [
+  {
+   "t": "The cut of the profile",
+   "x": 0.34,
+   "y": 0.07,
+   "w": 0.36,
+   "h": 0.32,
+   "body": "The profile is drawn, not modelled. Follow the edge down from the brow: it runs into a straight nose, out to a small pursed mouth, then back to a chin that is nearly a corner, and at no point does flesh dissolve into the blue behind it. A dark contour is laid along the whole run, thin at the forehead, thickening under the nose and lip. That single line does the job a sculptor would do with volume, which is why the head reads as a stamped shape rather than a body turned away. Look also at the blue immediately behind the face: it is darker than the blue further right. He has banked a shadow against the edge so the pale head cuts forward without any modelling at all."
+  },
+  {
+   "t": "Green under the pink",
+   "x": 0.42,
+   "y": 0.14,
+   "w": 0.2,
+   "h": 0.18,
+   "body": "Close up the skin is not skin-coloured. The base is pale yellow-ochre; over it he drags pink across the cheekbone, and along the jaw, the temple and the eye socket he lays streaks of frank green, the same green that runs through the hair. The eye is a blue-black almond with one stroke of white in it, set under a brow painted as three green hooks. Nothing is blended. The colours sit side by side and let your eye do the mixing, which is why the face looks flushed and slightly feverish at a step back and like a plaid of separate marks at arm's length. The green is structural as well as optical: it is the complementary of the pink, cooling the face precisely where it turns from the light."
+  },
+  {
+   "t": "Loops on the crown",
+   "x": 0.44,
+   "y": 0.03,
+   "w": 0.16,
+   "h": 0.11,
+   "body": "On top of the head, into paint still wet, he writes three black loops and a long hook, freehand, in a single pass. Read as description they are a curl pinned up, or a comb. Read as painting they are calligraphy, closer to the contour drawing of the Japanese prints he collected than to anything in European portraiture, and this is the one place where the drawing floats clear of the form it is meant to describe. The hair around it is combed the other way, parallel dark furrows raked through yellow following the sweep back from the forehead. So the loops register as a knot of disorder in an otherwise disciplined head of hair: put up for the occasion, and misbehaving anyway."
+  },
+  {
+   "t": "The bow, built like sculpture",
+   "x": 0.1,
+   "y": 0.2,
+   "w": 0.27,
+   "h": 0.24,
+   "body": "Behind the head, where a portrait usually thins out, he builds the hair ribbon into the heaviest passage in the upper canvas. Pale grey-blue and cream, a spine of near-black threaded through the loops, and ridges of paint standing physically higher than anything in the face. The effect is odd and intentional: an accessory given more substance than the girl. It also solves a problem. The head sits well to the right, which would leave the left of the canvas slack, so the ribbon becomes a counterweight, a pale mass that stops the figure sliding out of frame. Its curl repeats the loops on the crown in reverse, tying the two ends of the head together across the whole width of the hair."
+  },
+  {
+   "t": "Throat to lap",
+   "x": 0.34,
+   "y": 0.33,
+   "w": 0.3,
+   "h": 0.42,
+   "body": "There is no neck. The jaw ends, a wedge of blue-black opens beneath it, and the collar begins: cream rather than white, warmed with yellow, shadowed in grey-blue, standing stiff around nothing. From there the bodice falls away in a long curve and the buttons follow it, about eight small discs of pale pink and orange, the only warm marks in the entire dress, spaced along a diagonal running from the throat down to her lap. That line is the picture's spine. It carries the eye from the lit head to the hands and gives the blue mass a direction it would not otherwise possess. Without those buttons the dress would read as a blue landslide rather than as clothing on a person."
+  },
+  {
+   "t": "The yellow lozenge",
+   "x": 0.07,
+   "y": 0.5,
+   "w": 0.18,
+   "h": 0.3,
+   "body": "A hard-edged diamond of chrome yellow, outlined in black, wedged between her back and the blue, with a dark triangle cutting into its right side. It is the loudest colour here and the least explained; on the evidence of the paint alone it looks like the corner of a chair back she is leaning against. Whatever it depicts, its function is chromatic. It is the direct complement of everything around it and fires at a distance in a way nothing else in the lower canvas can. It also rhymes with the hands and the head, three yellows setting up a slow triangle that keeps your eye circling the figure rather than settling on her face. Note how completely flat it is: no modelling, a shape instead of an object."
+  },
+  {
+   "t": "Combed sleeve, blunt hands",
+   "x": 0.33,
+   "y": 0.72,
+   "w": 0.66,
+   "h": 0.27,
+   "body": "The sleeve is raked with parallel strokes of pale yellow-green over blue, dozens of them, like the teeth of a comb, the same mark used in the hair and, at another scale, in the background. One vocabulary doing three jobs. The hands at the end of it get none of that attention. They are two blunt ochre slabs with green streaked through them, fingers indicated by three dark grooves, no knuckles, no nails, the drawing going soft exactly where a nineteenth-century portraitist would show off. This is not neglect. He has decided the hands are colour and weight, a warm anchor in the bottom right answering the head at the top left, and has refused to let them become anything more interesting than that."
+  },
+  {
+   "t": "Vincent, in orange",
+   "x": 0,
+   "y": 0.89,
+   "w": 0.3,
+   "h": 0.11,
+   "body": "The signature is written in thin orange-red into the dark of her skirt, low on the left, quick, slightly dragged where the brush caught wet paint. First name only, as he signed for years. What is worth noticing is the colour: orange on deep blue, the same complementary pairing as the lozenge and the hands, so even the name is a chromatic decision before it is a claim of authorship. And it is placed where the eye finally lands, at the bottom of the long fall of the dress, the last warm note in a picture that has been rationing warmth from the first stroke. He put his name in the one colour the painting could still afford."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"wincenty-kasprzycki-wystawa-sztuk-pieknych-w-warszawie-w-182": {
+ "see": "A long room seen down its length from just inside the door. The left wall is buried: gilt frames stacked six and seven tiers deep from skirting to cornice, tipped forward at the top so they can be read from below, with only splinters of green wall surviving between them. The right wall carries nothing at all. Flat bottle-green, a row of tall windows letting in even daylight, and shelved cases in mahogany surrounds standing beneath them. Between the two runs a floor of broad pale boards laid in big square panels, left empty for the whole bottom quarter of the canvas. The visitors are almost all men in black tailcoats and pale trousers, in twos and threes; two women in white stand at the left. The ceiling is plain warm ochre. Nearly everything with strong colour in this room is itself a picture.",
+ "about": "The nominal subject is an exhibition. The actual subject is attention. Almost every figure is caught in a posture of looking rather than an expression of feeling: bent double, craning up, pointing with a straight arm, murmuring sideways to a companion, or slumped in a chair having stopped looking altogether. Kasprzycki grades those postures the way another painter would grade faces. Notice how carefully he withholds eye contact, too. One man stands mid-floor, frontal, hand at his chin, and his gaze slides past your shoulder. Behind that sits a quieter argument about the city. A capital with no public gallery borrowed a university science room, nailed up battens, and produced a wall hung as densely as any in Europe. This painting is the receipt. It is an inventory of objects and a group portrait of an audience at once, and it treats the audience as the more remarkable of the two.",
+ "craft": "The engine is asymmetry. One wall does all the work and the other does none, and the tension between them holds up a picture that could easily have flattened into wallpaper. Kasprzycki sets a single vanishing point at the far opening and lets the left wall rush toward it, so the frames shrink in a controlled stampede while the right wall stays broad, flat and slow. The light comes from the right-hand windows and crosses the room to strike the gilding, which is why the loaded wall glows and the empty one stays matte. He holds the palette to ochre, gold, green and black, then spends nearly all his strong colour inside the depicted pictures: a red robe, a bank of flowers, a coral sash. The figures become black punctuation on a pale floor. And the bottom quarter is deliberately left bare, so the weight above has somewhere to fall.",
+ "context": "Warsaw in 1828 was capital of the Congress Kingdom, constitutionally a state of its own, in practice bound to the Russian throne. The Royal University, barely a decade old, was where the city's painting was taught, and its fine-arts teaching supplied both exhibitors and much of the audience standing here. A little over two years after this room emptied, the November Uprising broke out; the university was shut by the authorities in 1831 and its collections carried away. The institutional world the canvas documents outlasted the exhibition by a couple of seasons and then stopped. That gives the picture an afterlife its maker could not have planned. It became one of very few interior views of what Warsaw's art life physically looked like immediately before it was dismantled, which is part of why you meet it now in the National Museum in Warsaw rather than in a university corridor.",
+ "deeper": [
+  {
+   "t": "The loaded wall",
+   "x": 0.02,
+   "y": 0.13,
+   "w": 0.33,
+   "h": 0.6,
+   "body": "Start where the density is. Frames run from the skirting to the cornice in six or seven ragged tiers, edge to edge, with only splinters of green wall left alive between them. The order is not random. Dark bust portraits and a religious canvas take the top, where nothing can actually be examined; the middle band, roughly shoulder to eye height, holds the largest and most finished things, including two enormous flower paintings; small landscapes and genre scenes are packed into a tight low row at waist height where a body can lean in. Height is a verdict passed by the hanging committee. And the higher a picture sits the more steeply it is tilted out, so the whole wall leans over the room like a bookshelf about to give. The frames are uniformly gilt and wildly various in profile, plainly not a set."
+  },
+  {
+   "t": "Raw timber over green paint",
+   "x": 0.015,
+   "y": 0.135,
+   "w": 0.16,
+   "h": 0.22,
+   "body": "Look above the topmost frames, into the corner. Pale unplaned battens cross the green wall on the diagonal, pegged into a reddish wooden block, and at the lower right a bare hook and its wire cast a small shadow on the paint. This is the actual apparatus: a temporary lattice of rough carpentry strapped over a room built for something else. Above it the architecture is impeccable, a moulded cornice with bead-and-reel under a scrolling leaf frieze. Kasprzycki paints both with identical care, and the equality is the point. The permanent building is refined; the exhibition fixed to it is scaffolding. The same sawn timber reappears at floor level as the visitors' barrier, so the show is bracketed top and bottom by the same rough carpentry, and at no point does he tidy it out of the way."
+  },
+  {
+   "t": "The canvas that had to lean",
+   "x": 0.175,
+   "y": 0.185,
+   "w": 0.14,
+   "h": 0.21,
+   "body": "The highest picture on the wall is not hung flat. It is propped out over the cornice at close to forty degrees, and its near edge is painted as bare stretcher, a raw dark lip with no gilding, the only unframed object in the room. Inside it a bearded man in a red tunic sits on a stone well-head, one hand open in speech, while a woman with a jar raises both hands toward him. The tilt is a practical fix: angle it down or it cannot be read from the floor at all. But it also does compositional work. That leaning rectangle is the one emphatic diagonal in a picture otherwise built from horizontals and orthogonals, and it sits at the top of the loaded wall like a hinge, catching the eye before it slides off the corner into empty ceiling."
+  },
+  {
+   "t": "The stoop",
+   "x": 0.03,
+   "y": 0.66,
+   "w": 0.28,
+   "h": 0.33,
+   "body": "The two dark shapes nearest you carry the whole idea. A man in a black tailcoat has folded almost double at the waist, face down at a small landscape hung near knee height, his top hat clamped at his hip and his other hand flung out behind him with the fingers spread for balance. Beside him a fair-haired boy in a broad lace collar leans along the timber rail at his own scale, something small and red hanging from his lowered hand, working the row that happens to be at his eye level. Neither face is given to you; both are back views, read almost flat against the lit wall. They are the darkest, largest and least detailed forms on the canvas. Hanging pictures this low forces a grown man into an undignified shape, and he does it anyway. Note the small pale tabs at the frame corners behind them."
+  },
+  {
+   "t": "Two white gowns",
+   "x": 0.305,
+   "y": 0.575,
+   "w": 0.11,
+   "h": 0.2,
+   "body": "Two women stand close to the wall in high-waisted white gowns, and they are the only sustained pale note in the left half. One wears a coral shawl slung from the shoulder and gathered at the hip, the warmest patch of colour in the room that is not inside a frame. The other has a straw bonnet with a pale plume and a grey-lilac overdress, and she has turned her head to her companion rather than to the pictures. Behind them a man reaches up at full stretch toward a frame, pointing something out. Set them against the rest of the crowd, which is a field of vertical black strokes, and they do two jobs at once. They give the eye a place to rest on the busiest wall, and they record a social fact: women came, in daytime dress, and stood at the front."
+  },
+  {
+   "t": "Plaster among the paintings",
+   "x": 0.555,
+   "y": 0.515,
+   "w": 0.1,
+   "h": 0.09,
+   "body": "Standing free of the walls, toward the far end, is the sculpture, and Kasprzycki keeps it chalk-white so it registers instantly against all that ochre. An eagle with wings spread sits on a plain pedestal, modelled in a few strokes of near-pure lead white; a portrait bust turns three-quarters away on a taller plinth beside it. These are the brightest objects in the picture apart from the windows themselves, and they mark the seam where this room hands over to the room beyond. There is a logic worth noticing here too. The sculpture gets floor and air while the paintings are pinned to a wall in seven tiers. In a show with no space, whatever can be walked around is given room, and everything flat is stacked."
+  },
+  {
+   "t": "The room behind the room",
+   "x": 0.42,
+   "y": 0.4,
+   "w": 0.22,
+   "h": 0.25,
+   "body": "The exhibition does not stop at the far wall; it turns into a second, brighter space, and this is where Kasprzycki plays his one trick. Two very large gilt-framed canvases hang there. The right-hand one shows a colonnaded hall crowded with uniformed officers around a central figure in a blue coat and white breeches, and for a beat it reads not as a painting but as another opening into a further chamber, because its perspective, its scale and its light all agree with the real room. Only the frame settles the question. Its neighbour, a crowd under trees around a robed figure with a raised staff, breaks the spell by being obviously a picture. He has planted a small illusionist test inside a painting about looking at paintings, and set it at the far end of the perspective where the eye is already headed."
+  },
+  {
+   "t": "The chairs by the window",
+   "x": 0.76,
+   "y": 0.62,
+   "w": 0.23,
+   "h": 0.33,
+   "body": "Against the window wall stands a row of plain wooden chairs, and four men have taken them, backs to the art. One has dropped his head forward, one looks sideways at nothing. The fourth, in a bottle-green coat and white stock, sprawls with an arm hooked over the chair back and his legs thrown out, and his eyes come straight out of the canvas at you. Every other gaze in the room is aimed at a wall, a companion or the floor; his alone crosses the frame, and it anchors the whole right-hand third. Behind them, glazed cases show their pale empty shelves between mahogany pilasters, the room's own furniture waiting out the show. This corner also tells you what an exhibition feels like after an hour: the pictures are behind you, the light is in your eyes, and you sit down."
+  },
+  {
+   "t": "Made and given",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Step back and the canvas splits along a diagonal. Everything made, which is to say gilt, paint, timber and ambition, is banked into the upper left. Everything given, meaning daylight, green plaster and bare board, occupies the lower right. The line runs from the top corner of the tilted canvas down through the crowd to the empty planks at your feet. That emptiness is the boldest decision here. A painter wanting to flatter the exhibition would have filled the floor with visitors and closed off the far end; Kasprzycki gives you scuffed boards, a handful of pairs of shoes and their soft shadows, and lets the room's real proportions stand. The show is crammed and the building is calm, and he paints the gap between those two facts instead of picking a side. That is why the picture still holds together as a room rather than a catalogue."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
 // Wave 2026-08-23 fl3 (Opus 4.8 — image-drafted, boxes crop-QC-d [Camille closing box widened],
 // web-fact-verified all-CLEAN): first floored-tour batch — Renoir Danseuse, both London/Louvre
 // Leonardos, VG Korenveld (NGL version), Monet ombrelle/Corner/Coquelicots/Camille deathbed,
