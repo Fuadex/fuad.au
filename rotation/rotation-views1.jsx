@@ -1088,6 +1088,17 @@ function WallGrid({ items, kind, seen, setPop, onClick }) {
       ))}
       <style>{`
         .wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: calc(var(--gap)*.8); }
+        /* LAPTOP BAND (Fuad 2026-08-24). A 3840x2400 panel at 250% scaling is a 1536px CSS
+           viewport - so the Overview's breakpoints, which jumped from 981px straight to full
+           width, never fired on it. Between roughly 1000 and 1620 the right-hand column got
+           narrow while gaps, tiles and type stayed at their wide-screen values: five artists to
+           a row under buttons sized for 4K. Borrows the existing compact density rather than
+           inventing numbers, and drops the tile floor so the same column fits six or seven.
+           Nothing above 1620px changes. */
+        @media (max-width: 1620px) {
+          .ov-page { --gap: 14px; --pad: 30px; }
+          .wall { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
+        }
         .wall-cell { position: relative; cursor: pointer; transition: transform .35s cubic-bezier(.2,.7,.3,1); }
         @media (prefers-reduced-motion: no-preference) {
           .wall-cell { animation: wallIn .5s cubic-bezier(.2,.7,.3,1); }

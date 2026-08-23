@@ -167,7 +167,11 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
   letter-spacing: .1em; }
 
 /* stat numerals */
-.r-stat-n { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; }
+/* Fluid, not fixed (Fuad 2026-08-24: the plays count "overpowering" on a 1536px CSS viewport -
+   a 4K panel at 250%). The clamp CEILING is the size this already rendered at, so wide screens
+   are unchanged by construction rather than by a second rule that could drift. */
+.r-stat-n { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1;
+  font-size: clamp(26px, 2.2vw, 44px); }
 /* Insight-card figures keep the serif face and drop a size instead (Fuad 2026-08-20). Swapping them
    to var(--sans) was tried and REVERTED the same day: it fixed the weight but made them read as a
    different typeface from the two bespoke cards beside them, which is worse than being loud. The
