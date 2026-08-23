@@ -766,11 +766,22 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
                   local pixel copy of its numbers (that copy is what kept drifting; Fuad 2026-08-24:
                   make them match by construction). */}
               <div className="r-seg r-seg-sm">
-                {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "sound dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => { setPane(k); if (k === "albums" || k === "songs") ensureADetail(); }}>{l}</button>)}
+                {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => { setPane(k); if (k === "albums" || k === "songs") ensureADetail(); }}>{l}</button>)}
               </div>
-              {pane === "artists" && <div className="r-seg r-seg-sm" title="list ⇄ cover grid">
-                <button data-on={disp === "list"} onClick={() => setDisp("list")}>list</button>
-                <button data-on={disp === "grid"} onClick={() => setDisp("grid")}>grid</button>
+              {/* artists list/grid: word buttons replaced with the calendar's icon toggle (Fuad 2026-08-24) */}
+              {pane === "artists" && <div className="r-seg r-seg-sm cal-view-seg" title="list / grid view">
+                <button data-on={disp === "list"} onClick={() => setDisp("list")} title="list view">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <line x1="4" y1="2" x2="12" y2="2"/><line x1="4" y1="6" x2="12" y2="6"/><line x1="4" y1="10" x2="12" y2="10"/>
+                    <rect x="0" y="0.5" width="2.5" height="2.5" rx="0.5"/><rect x="0" y="4.5" width="2.5" height="2.5" rx="0.5"/><rect x="0" y="8.5" width="2.5" height="2.5" rx="0.5"/>
+                  </svg>
+                </button>
+                <button data-on={disp === "grid"} onClick={() => setDisp("grid")} title="grid view">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <rect x="0" y="0" width="5" height="5" rx="1"/><rect x="7" y="0" width="5" height="5" rx="1"/>
+                    <rect x="0" y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/>
+                  </svg>
+                </button>
               </div>}
               {(pane === "albums" || pane === "songs") && (
                 <div className="r-seg r-seg-sm cal-view-seg" title="list / grid view">
