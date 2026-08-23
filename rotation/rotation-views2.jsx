@@ -350,7 +350,13 @@ function MiniArtistView({ a, go }) {
           /* Sounds like (change 2): ONE row of similar-artist tiles inside the dossier — override the
              auto-fill wrap with a single non-wrapping row, tiles flow left to right and are capped in
              JS at 6 so they don't overflow. Only applies within the dossier column. */
-          .mav-dossier .mav-simrow { display: flex !important; flex-wrap: nowrap; overflow: hidden; }
+          /* overflow was hidden here and it clipped the hover ring's top and left edges — the
+             2px box-shadow is drawn OUTSIDE the tile's box, and .r-hovgrid pads 3px on those two
+             sides precisely so it has somewhere to land (2026-08-20). Clipping at the padding box
+             cancelled that. It is not needed either: the row is nowrap with flex 1 1 0 children,
+             so tiles SHRINK to fit rather than overflowing, and JS caps the list at 6.
+             (Fuad 2026-08-24: "the top left has its top and left sides' strokes cut".) */
+          .mav-dossier .mav-simrow { display: flex !important; flex-wrap: nowrap; overflow: visible; }
           .mav-dossier .mav-simrow > * { flex: 1 1 0; min-width: 0; }
           .mav-dossier .mav-simrow > * > div:not(:first-child) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
           /* Sound DNA two-column (change 3): radar LEFT, measure bars stacked row-by-row RIGHT.
