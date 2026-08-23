@@ -1621,17 +1621,6 @@ function Reader({ id, go }) {
             {/* the full study is the flagship — promoted up here (Fuad: at the bottom it hides) */}
             {inspect && <button type="button" className="cv-chip cv-chip-study" onClick={() => go("study", w.id)}>Open the full study →</button>}
           </div>
-          {w.venues.length > 0 && (
-            <div className="cv-r-sec"><span className="lbl">Where I saw it{w.venues.length > 1 ? " — an impression at each" : ""}</span>
-              {w.venues.map((v, vi) => (
-                <React.Fragment key={v.id}>
-                  {vi > 0 ? " · " : ""}
-                  <a className="cv-r-venue" href={"#/museum/" + v.id} onClick={(e) => { e.preventDefault(); go("museum", v.id); }}>{v.name.replace(/\s*\(.*\)$/, "")}, {v.city}</a>
-                </React.Fragment>
-              ))}
-              {w.exhibition ? ` — ${w.exhibition}` : ""}
-            </div>
-          )}
           {read && (
             <div className="cv-r-read">
               <div className="cv-r-read-head">
@@ -1646,51 +1635,37 @@ function Reader({ id, go }) {
               <div className="cv-r-read-by">via {(tier === "deep" && read.deepBy) ? read.deepBy : (read.by || "Fable")}</div>
             </div>
           )}
-          {pal && (
-            <div className="cv-r-sec"><span className="lbl">Palette</span>
-              <span className="cv-pal">{pal.map(c => <i key={c} style={{ background: c }} title={c} />)}</span>
+          {/* WHERE I SAW IT + PALETTE SHARE A ROW (Fuad 2026-08-24: "Where I saw it line should
+              live in the same row as the palette but as the first object"). Both are one-line
+              facts about the object rather than reading, so they belong together and out of the
+              way of the read above them. Venue leads. */}
+          {(w.venues.length > 0 || pal) && (
+            <div className="cv-r-metarow">
+              {w.venues.length > 0 && (
+                <div className="cv-r-sec"><span className="lbl">Where I saw it{w.venues.length > 1 ? " — an impression at each" : ""}</span>
+                  {w.venues.map((v, vi) => (
+                    <React.Fragment key={v.id}>
+                      {vi > 0 ? " · " : ""}
+                      <a className="cv-r-venue" href={"#/museum/" + v.id} onClick={(e) => { e.preventDefault(); go("museum", v.id); }}>{v.name.replace(/\s*\(.*\)$/, "")}, {v.city}</a>
+                    </React.Fragment>
+                  ))}
+                  {w.exhibition ? ` — ${w.exhibition}` : ""}
+                </div>
+              )}
+              {pal && (
+                <div className="cv-r-sec"><span className="lbl">Palette</span>
+                  <span className="cv-pal">{pal.map(c => <i key={c} style={{ background: c }} title={c} />)}</span>
+                </div>
+              )}
             </div>
           )}
           {w.note && <div className="cv-r-note">{w.note}</div>}
-          {inspect && (
-            <div className="cv-r-inspect">
-              <div className="cv-r-inspect-rule" />
-              <div className="cv-r-inspect-kicker">Inspection — a close reading by {inspect.by || "Fable"}</div>
-              <div className="cv-r-inspect-lens">
-                <span className="lbl">What you see</span>
-                <p className="cv-r-inspect-txt">{inspect.see}</p>
-              </div>
-              {inspOpen && (
-                <React.Fragment>
-                  <div className="cv-r-inspect-lens">
-                    <span className="lbl">What it's about</span>
-                    <p className="cv-r-inspect-txt">{inspect.about}</p>
-                  </div>
-                  <div className="cv-r-inspect-lens">
-                    <span className="lbl">Why it sings</span>
-                    <p className="cv-r-inspect-txt">{inspect.craft}</p>
-                  </div>
-                  <div className="cv-r-inspect-lens">
-                    <span className="lbl">The moment</span>
-                    <p className="cv-r-inspect-txt">{inspect.context}</p>
-                  </div>
-                  {/* FIX 6b: a detail tour now exists in deep zoom for hires details OR anchored study
-                      chapters, so surface the "walk the details" entry whenever either is present. */}
-                  {hasDetailTour && (
-                    <button type="button" className="cv-r-inspect-zoom" onClick={() => setDeep(true)}>⤢ walk the details in deep zoom</button>
-                  )}
-                  <button type="button" className="cv-r-inspect-study" onClick={() => go("study", w.id)}>Open the full study →</button>
-                </React.Fragment>
-              )}
-              {!inspOpen && (
-                <React.Fragment>
-                  <button type="button" className="cv-r-inspect-more" onClick={() => setInspOpen(true)}>continue the inspection ▾</button>
-                  {/* the study entry must be visible WITHOUT expanding (Fuad: "I don't see the button") */}
-                  <button type="button" className="cv-r-inspect-study" onClick={() => go("study", w.id)}>Open the full study →</button>
-                </React.Fragment>
-              )}
-            </div>
-          )}
+          {/* The four-lens inspection panel (see / about / craft / context) was removed
+              2026-08-24: "let's remove the inspection - a close reading by (...) element as it
+              already lives as part of the tours". It duplicated the study tour's own four
+              sections verbatim. The study is still one click away — the "Open the full study"
+              chip sits with the grade chips at the top of the reader, and deep zoom has its own
+              entry in the links row below. */}
           <div className="cv-r-links">
             {hasDeepZoom && <button type="button" className="cv-r-deep" onClick={() => setDeep(true)}>⤢ Deep zoom</button>}
             {w.qid && <a href={`https://www.wikidata.org/wiki/${w.qid}`} target="_blank" rel="noopener noreferrer">Wikidata ↗</a>}

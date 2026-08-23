@@ -1171,3 +1171,9 @@ a { color: inherit; }
 }
 /* the map's SVG marks: ease the fill only — radius is driven per-frame by the fisheye */
 .cv-pin circle, .cv-wishpin circle, .cv-mus circle, .cv-mus text { transition: fill .18s ease; }
+
+/* WHERE I SAW IT + PALETTE on one line (Fuad 2026-08-24) — both are one-line facts about the
+   object rather than reading, so they share a row below the read, venue first. Wraps on narrow
+   screens rather than squeezing the swatches. */
+.cv-r-metarow { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 28px; }
+.cv-r-metarow > .cv-r-sec { margin: 0; }
