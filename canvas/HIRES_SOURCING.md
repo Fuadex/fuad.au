@@ -2,6 +2,29 @@
 
 # The hi-res hunt — how art_hires.js got built, and everything that fought back
 
+## COMMONS IIIF IS DEAD — and one correction in our favour (round 3a, 2026-08-25)
+
+**There is no IIIF service for Wikimedia Commons in 2026.** Measured, not assumed:
+`iiif.wikimedia.org` DNS-fails; `commons.wikimedia.org/iiif/2/…` 404s; `iiif.toolforge.org` is
+a tool-down page; **`zoomviewer.toolforge.org/proxy.php?iiif=…` — the endpoint every guide and
+every current search result still points at — 404s on every shape, including the exact example
+URL Commons' own documentation gives.** Phabricator **T187872** ("Support IIIF Image API for
+thumbnailing & tiling") is open, unassigned, needs-triage, filed **2018-02-21**, and its only
+recent activity is people subscribing. **Re-open this question only if that ticket gets an
+assignee.** This was the highest-leverage unknown in the whole hunt; it is closed.
+
+**LEDGER CORRECTION, in our favour.** `Special:FilePath?width=N` **rounds UP to the next
+materialised bucket** — measured buckets are **500 / 960 / 1920 / 3840**. So `imgGrid` is
+really 500px, `img` is really 960, and **`imgZoom` (`?width=2000`) has been serving 3840 all
+along.** The Commons render ceiling is exactly 3840: 3840 → 200, **3841 → 400**. Also
+`upload.wikimedia.org/thumb/` refuses non-bucket widths outright (2777 and 3333 both 400), so
+any hand-built `pyr` level list must use real buckets.
+
+⛔ **COMMONS TIFF MASTERS ARE CLOSED, AND CARRY A FAKE-GAIN TRAP.** All 49 TIFF-backed entries
+are pixel-identical to the JPEG already in `img`. Worse: asking for a 3840 thumb of a
+3478×4649 TIFF returns 3840×**5133** — **MediaWiki UPSCALES TIFFs**, so a naive sweep logs a
+gain on all 49 that does not exist.
+
 ## ⛔ FOUR TRAPS THAT LOOK LIKE WINS (round 3, 2026-08-25)
 
 Each passes a naive check and ships a regression. Test for them by name.
