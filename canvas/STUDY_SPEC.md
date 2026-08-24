@@ -55,6 +55,52 @@ painting better at the end of the day"):
 - **Arc order**: open with the thing that pulls you in from across the room, then the
   descent region by region, then the re-ascent above.
 
+### ⛔ THE THREE DRAFTING LAWS (added 2026-08-25 after wave 2 audited 20 tours: 0 clean, 6 minor, 14 defective)
+
+Wave 2 found one cause behind almost every defect, and one control that proves it fixable.
+
+**LAW 1 — A STOP STARTS AT A MARK, NEVER AT A PARAGRAPH.** The failures cluster in
+*craft-derived* stops: a stop written to DEMONSTRATE a handling claim already made in
+`craft` ("edges dissolve", "canvas through the paint", "the bare foreground", "the scrubbed
+ground"). Written outward from the claim, such a stop restates the paragraph at closer
+range, and its box gets placed afterwards — sometimes on a region that ACTIVELY REFUTES the
+claim. Two type specimens: Monet's *Sur la plage à Trouville* stops 5 and 7 both box the
+**thickest impasto in the picture** under the heading "bare canvas showing through"; Renoir's
+*Chrysanthemums* stop 5 boxes the **crispest contours in the painting** while arguing
+everything is kept out of focus.
+**THE MODEL IS `vincent-van-gogh-portrait-of-adeline-ravoux`** — the only near-clean tour of
+the twenty. All eight boxes correct, every checkable detail confirmed, zero restates, because
+**each stop begins at a specific mark and argues outward**. Same drafting model, same era,
+opposite result. Read it before drafting.
+
+**LAW 2 — THE FOUR PARAGRAPHS STAY AT WHOLE SCALE AND LEAVE THE PASSAGE UNSPENT.** If
+`craft` has already spent the specific passage, the stop has nowhere to go; every RESTATES
+finding has this shape. The paragraphs describe the picture; the stops describe places in it.
+`craft` may name a METHOD ("he loads the lights and scrubs the darks") but must not spend the
+INSTANCE ("the chemise is the thickest paint on the canvas") — that instance is a stop's only
+possible content. This is a scope rule, not a length rule.
+
+**LAW 3 — NO INVENTED HINGE.** The most damaging class (wave 2A): a stop's EMOTIONAL payload
+resting on a detail that is not in the painting. Renoir's *Mother and Children* calls joined
+hands "the literal and emotional hinge of the painting" — the mother's hand is on the child's
+SHOULDER and the child's hands are in a MUFF, and the error propagates through `see`, `craft`
+and the whole stop. Rembrandt's *Simeon* builds on a gaze "lifted upward, past the child"
+when the eyes are FULLY CLOSED (the true reading — a blind man SINGING, mouth open — is
+better than the invented one, which is the pattern throughout: the real picture beats the
+confabulation). **Rule: any claim about feeling, relation or intent must name the visible
+thing it rests on, and that thing must be in the stop's own crop.**
+
+### Drafting-time box verification (MANDATORY, 2026-08-25)
+
+Boxes were being drawn from the prose rather than checked against it — ~25 wrong across the
+20 wave-2 tours, and Seurat's *Bathers* boxes appear mechanically ROTATED among each other
+(stop 6's box holds stop 5's subject, stop 2's holds stop 6's). Crop-checking is therefore no
+longer only a QC step: **the drafter states, per stop, that it has looked at that region**,
+and the merge is refused if a body describes an object its own box excludes. Two cheap
+structural checks worth running mechanically before merge: no two stops sharing a box (found
+duplicated in Rembrandt's *Simeon*, where stops 2 and 3 are the same crop), and no box
+clipping the subject its title names.
+
 ### Closing-paragraph experiments (2026-08-22 — settled, do not re-pilot)
 
 Two candidate "extra paragraph after the last stop" shapes were piloted on five marquee tours
@@ -168,6 +214,14 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
    for the stop rewrite or the re-ascent close, printed for Fuad's verdict like fnotes.
    Priority classes: painterly/loose handling (the Zorn class — suggestion invites
    misreading) and dense multi-object scenes (gallery interiors, still lifes).
+   ⚠ **CALIBRATE THE AUDITOR, NOT JUST THE TOUR (2026-08-25).** Wave 1 returned 10 clean of
+   20 on the HIGHER-risk tier; wave 2 returned 0 clean of 20 on the lower one, same protocol
+   and same drafting model. A five-fold gap in that direction is not a fact about the corpus
+   — it is auditor variance, and it means **wave 1's clean verdicts are not trustworthy** and
+   must be re-run. Give every auditor a WORKED EXAMPLE of a defect-grade finding (the Trouville
+   straw-hat-that-is-black, the Railway closed-book-that-is-open) so the bar is set rather
+   than discovered per-agent. Also state the plate's pixel size in the brief: a small plate
+   manufactures false negatives (see the Szał lesson below).
 5. **Box QC (mandatory — never merge un-cropped):** run `cs.py` to draw numbered overlays
    (`ov_<id>.jpg`) and crop every `deeper` box (`box_<id>_N.jpg`), then look at every crop
    WITH the whole-image account in hand — crops verify local detail (posture, garment,
