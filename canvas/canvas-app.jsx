@@ -1555,6 +1555,13 @@ function StudyView({ id, go }) {
               </section>
             </React.Fragment>
           ))}
+          {/* beside = the outward closing paragraph, optional per entry (Fuad 2026-08-24); ships on 2 pilot works */}
+          {inspect && inspect.beside && (
+            <React.Fragment>
+              <div className="cv-study-chaprule"><span>beside</span></div>
+              <p className="cv-study-sec-txt">{inspect.beside}</p>
+            </React.Fragment>
+          )}
           <div className="cv-study-foot">
             <button className="cv-study-home" onClick={goHome}>⌂ full view</button>
           </div>

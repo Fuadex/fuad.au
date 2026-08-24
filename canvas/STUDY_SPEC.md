@@ -65,9 +65,47 @@ and REJECTED by Fuad:
   each painting; it shouldn't be suggestive like this." Same boundary as the earlier ruling
   against synthesizing "what stopped you": the viewer's interior is not ours to script.
 
-**ACCEPTED IN PRINCIPLE, DEFERRED**: a *neighbour-mapping* close — placing the work among
-related paintings on Fuad's own wall, with links. Gated on tour density ("we should have more
-tours done before executing this"); revisit when the store has grown well past the current ~300.
+**SETTLED 2026-08-24 — REGISTER APPROVED, STILL GATED ON DENSITY.** Fuad confirmed the slot
+(an ending PARAGRAPH after the last stop, distinct from the re-ascent stop: "the thing I
+rejected just didn't seem right content-wise") and approved the content register on two
+specimens: the paragraph points **OUTWARD** — where the work sits on his own wall; the same
+artist solving a different problem elsewhere in the collection, a different artist solving
+the same problem, the thread through the rooms. It cannot recap (its material isn't in the
+tour) and cannot script the viewer (its claims are relations between paintings, fact-class,
+normal fact QC). Field name `beside`; named works link; deletability both ways (tour loses
+nothing without it, it loses nothing without the tour). **His ruling: "for the last paragraph
+we'll need lots more tours written first — without the last paragraph I'm afraid."** So:
+tours ship WITHOUT `beside` for now; the register below is the model for when the store is
+dense enough. Do not re-pilot the rejected shapes; do not draft `beside` before his go.
+**EXCEPTION, Fuad same day: "approved those two, though" — the two specimens SHIP** on
+heiss + wystawa-1828 (applied to art_inspect.js as the field's pilot pair). Fact-QC on the
+drafts caught two errors before apply, both instructive for future `beside` writing:
+"full length" for the seated Bacon portrait (checked against that work's OWN tour — the
+store is the first verifier), and "both now hang in the same museum" (Szał hangs in the
+Sukiennice in Kraków, only arriving there in 1901 via Jasieński; web-verified). The same
+check found the szal tour's own context misplacing the 1894 Zachęta scandal in Kraków —
+logged in QC_LEDGER as an open defect.
+
+Approved register models (as shipped):
+
+> *Heiss:* Zorn hangs twice in this collection, and the two portraits are the same wager
+> placed at opposite stakes. Six years after this, Mrs. Walter Rathbone Bacon took the
+> handful-of-strokes manner to the American market at showpiece scale — a seated grandee
+> on a very tall canvas, her collie against her side, a likeness as public performance
+> where this one stays close, a picture the sitter kept in the family for thirty-six
+> years. And the background's eruption here is a whole genre elsewhere on this wall: in
+> his sea studies the same loaded wet-into-wet speed runs edge to edge with no face to
+> anchor it — what is scaffolding in a portrait is, there, the entire picture.
+
+> *Wystawa 1828:* The room this picture documents has a descendant in this collection.
+> Sixty-six years after these tailcoats filed past the flower pieces, Warsaw's art
+> public — the very institution this canvas shows being born in a borrowed university
+> hall — mobbed a single painting at the Zachęta: Podkowiński's Szał uniesień, which its
+> own maker attacked with a knife thirty-six days into the show. The two works bracket
+> the same story from either end: here, looking at pictures is still a decorous novelty
+> being learned; there, it has become a public passion strong enough to destroy what it
+> looks at. This canvas stayed in Warsaw; Szał, restored, hangs in the Sukiennice in
+> Kraków.
 
 ## Voice and truth rules
 
