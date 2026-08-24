@@ -49,6 +49,117 @@ its pyramid reaches 11,016 — adopting the render as `img` silently downgrades 
 at 2,800–4,300px; tile source only) and **Zoomify's silent failure** (no descriptor fetch, so
 a CORS failure gives broken tiles with no `open-failed` event and therefore no fallback).
 
+## ✅ ROUND 3 ADOPTED (2026-08-25) — 36 records: Micrio ×27, Art UK ×9
+
+`art_hires.js` **1,099 → 1,108 entries**: 9 genuinely new Art UK rows, plus 27 existing Commons
+rows upgraded in place. Net **+294 MP**, and — more to the point — 27 works that were flat JPEGs
+now have a real tile pyramid.
+
+### Micrio — 27 works, three holders, ONE service, no worker change
+
+Van Gogh Museum **24**, Kröller-Müller **2**, Rijksmuseum **1** (*The Milkmaid*) all serve their
+collections through **Micrio** (`iiif.micr.io`, IIIF Image API **3.0**, `profile: level2`,
+tileSize 1024, scaleFactors 1/2/4/8, jpg+png+webp). One integration closes three holders — and it
+retires the "Rijksmuseum is dead" line in the ledger below, which was true only of their *API*.
+
+**`Access-Control-Allow-Origin: *` measured** with `Origin: https://fuad.au` on the descriptor, on
+`/full/max/` and on a real 1024 tile. **No proxy alias, no worker change, no dashboard re-paste.**
+
+**Identity is proven by the service, not by us.** For VGM and Kröller-Müller the `info.json`'s own
+`title` field carries the **holder's inventory number** — `s0030V1962_gb_z.jpg` for *Harvest at La
+Crau*, `KM 106.399` for *The Sower* — and `organisation.name` names the museum. Nothing here rests
+on title similarity; the descriptor and Wikidata P217 agree character-for-character. Two stale
+P217 values were caught this way and corrected against the object page (*Wheatfield with Crows*
+`s0149V19558` → `s0149V1962`; *View of the Sea at Scheveningen* `s0416M1990` → `s0416N1990`).
+⚠ **Rijksmuseum is the exception**: its Micrio titles are opaque GUIDs, so *The Milkmaid* is
+anchored on the object-number URL (`/nl/collectie/SK-A-2344`) plus `og:image`, and that weaker
+anchor is why only 1 of our 4 Rijksmuseum works was adoptable — see the three unanchored prints in
+`.dtmp/tourqc-pass/hires-round3-tail.json` (`unanchoredWithinLiveHolders`).
+
+**13 of the 24 VGM works are pixel-identical to the plate we already served, and were adopted
+anyway. The win is tiles, not pixels** — a pyramid fetches small tiles for the visible region
+instead of hauling one enormous file through a single WebGL texture. Five are real gains
+(+82.8, +90.9, +23.0, +22.0, +21.3 MP); four are the same capture re-cropped and lose 19–28 px on
+a single axis (≤0.1 MP, aspect ≤1.3%) — those **fail a strict per-axis `w/h ≥` test** and are
+adopted on intent, flagged in each record's `note` rather than hidden.
+
+⛔ **Two ids rejected as downgrades** and must not be re-proposed: VGM *Raising of Lazarus*
+(4000×3059 vs our 7336×5611, −28.9 MP) and the Kröller-Müller Van Gogh self-portrait
+(2800×3842 vs 4248×5808, −13.9 MP). Both keep their flat plate.
+
+**Record shape.** `iiif` = the `info.json`; `full` = `/full/max/0/default.jpg` **written
+explicitly**, because IIIF 3.0 has no `full` size and the reader footer's fallback guess
+(`…/full/full/…`) would 400; `img` = **the Commons plate, unchanged**. That last one is
+deliberate: `enrich()` feeds `hires.img` into `imgZoom`, which is what `open-failed` rebuilds on,
+so a Micrio outage lands exactly where it landed before this batch. *Café Terrace at Night* also
+keeps its `orig`/`pyr` Commons giga-file; note the reader footer labels an `orig` link with the
+record's `w/h`, which are now the larger Micrio master (the same shape as the 17 NGA entries
+already carrying `iiif` + `orig`).
+
+New `src` codes: `vgm`, `kroller-muller`, `rijksmuseum`. ⚠ They are **not** in
+`HIRES_SOURCE_LABEL` (canvas-app.jsx) yet, so the footer citation reads the generic
+"Museum page ↗" — truthful, just unnamed. Same for `artuk`.
+
+### Art UK — 9 floor-raisers, and a hard ceiling at `w1200h1200`
+
+**Floor-raiser only, never where something better exists.** 73 canvas works under 1,200 px carry a
+Wikidata **P1679**; all 73 resolved to a CloudFront asset; **53 were pixel-identical to what we
+already serve** and 10 fell under the gain threshold, leaving **9**. Best is Turner *Margate Jetty*
+at 300×424 → 835×1200 (×2.83). All 9 are aspect-safe (≤1.66%).
+
+**The ceiling is exactly `/w1200h1200/`, and it is a FIT BOX, not a width.** Measured on
+`ACNMW_ACNMW_NMWA5186-001.jpg`: `w1200h1200` → 200 (835×1200); `w1600h1600`, `w2000h2000`,
+`w4000h4000`, `w1200`, `w2400`, `full`, `original` → **404, every one**. The derivatives are
+pre-generated, not resized on demand — there is no parameter to push. Do not re-hunt for a bigger
+Art UK file; there isn't one.
+
+**Trap: never read the size off the page.** Art UK hero `<img>` tags are often `w944h944` or
+`w800h800`. A first pass that grepped for `/w1200h1200/` declared 28 of 73 works image-less; all
+28 in fact have a `w1200h1200` derivative that simply isn't linked. **Always request the size
+prefix.**
+
+**Identity is in the URL.** The path is
+`<collectionCode>/<venueCode>/<COLL>_<VENUE>_<ACCESSION>-001.jpg`, so every asset carries the
+holder's own accession; all 9 matched P217 character-for-character. ⚠ **A P1679 on a work held
+outside the UK is a red flag, not an anchor** — Art UK indexes UK collections only, so
+`leonardo-da-vinci-st-john-the-baptist`'s P1679 resolves to the *Ashmolean* WA1937.102, a
+different picture from the Louvre panel. It failed the gain threshold anyway; the pattern is what
+matters.
+
+⚠ **`d3d00swyhr67nd.cloudfront.net` sends NO ACAO** (measured on both a 200 and a 404), and
+`resolveOSDSource()` hands `hires.img` to OSD with `crossOriginPolicy: "Anonymous"` — so these need
+the proxy. `IMG_PROXY` in canvas-app.jsx now maps it to **`https://img.fuad.au/artuk/`**;
+`img-proxy.worker.js` is **not** edited here — the two lines Fuad pastes in the Cloudflare
+dashboard are in `.dtmp/tourqc-pass/WORKER_ARTUK.local.md`. Until he pastes, the alias 404s,
+`open-failed` fires and the viewer rebuilds on the **direct** url with `cors:false` (a plain image
+load needs no CORS), so the degradation is benign and never worse than the pre-adoption plate.
+
+### ⛔ Google Arts & Culture — CLOSED, and it is a downgrade engine
+
+320 canvas works carry a **P4701**; all 110 that were ≤12 MP were swept, `og:image` resolved and
+**measured**. Result: **90 of 110 are STRICTLY SMALLER than the plate we already serve**, 14 are
+pixel-identical, 2 404, and exactly **1** gains ≥×1.5. Worst case *woman-with-a-parrot*: ours
+4000×2691, theirs 1905×1264 — **×0.48**.
+
+The reachable asset is a **fixed 1,200 px derivative** on `lh3.googleusercontent.com`; `=s0`,
+`=s4000` and `=w4000` all return the *same bytes*, so there is one size and it cannot be pushed.
+The 22 works above 1,200 px are all **Met** objects where GA&C is re-serving the Met's own
+open-access file that we already hold — and the pixel-identical cases are the tell: several of our
+Commons plates simply *are* the Google Art Project scans, absorbed years ago.
+
+The gigapixel tile service is **not usable and not ours to point at**: the zoom tiles come from a
+separate per-asset endpoint behind a client-generated token, and every third-party tool that reads
+them works by reverse-engineering that token — which this project's rules forbid. Reported as
+**unusable, not unexplored.** This is the Nationalmuseum 1000-px-render trap wearing a famous
+brand: **any future GA&C look must compare against `art_imgsize` before it compares against
+anything else.**
+
+### Also declined this round
+
+**Commons TIFF masters** (all 49 pixel-identical, and MediaWiki *upscales* TIFFs so a sweep logs
+fake gains — see the trap at the top). **DDB Degas** — ×1.54 but **11.4 % aspect delta**, so it is
+NEEDS REMAP, not adopt; low priority. **SMK** — ×1.22, under the bar.
+
 Companion to [HIRES_GALLERY.md](HIRES_GALLERY.md) (the ranked results). This is the
 methodology and the incident log: two days of sourcing (2026-08-22/23) that took the store
 from **89 entries to 1,029**, and the surprisingly long list of ways a "just get the big
@@ -93,7 +204,11 @@ pixel-perfectly — and Commons rounds its own way; only measured `pyr` levels r
 | **Harvard Art Museums** | key (.env) | 74 matches → **1 emit** | The great masquerade: title matches are mostly reproductive PRINTS and engravings filed under the painting's name (Goya's Capricho etching as "El sueño", engraved Piazza San Marco, an odalisque print vs the Matisse). Pair verification rejected 11 of 12 finalists. Sole survivor: Monet, Charing Cross Bridge (fog), 2550×2018. |
 | **Europeana** | key (.env) | 126 matches → 0 emits | Same masquerade problem plus thin image metadata. |
 | **Paris Musées** | key (.env), GraphQL | **1 emit** (Dinet, Femmes arabes à la promenade, 6807×5319, Petit Palais, open-content) | A saga: WAF blocks non-browser UAs; `title LIKE` queries 504 their gateway *every time* (a failed sweep looked like ~850 of the 1,000-call quota, though the dashboard later showed the quota unbilled); exact-title match is indexed and fast; image fields are `publicUrl` + `fieldImageLibre` (no dims served). Policy: **never bulk-sweep; spend calls surgically with exact French catalogue titles.** Homonyms abound (twelve "Ophélie"s — all Galliera costumes, none of them Steck's painting). |
-| **Rijksmuseum** | dead | 0 | The old API is gone (HTTP 410) and the Rijksstudio key portal no longer exists; new data platform has no self-service signup. Moot anyway: their open images were donated to Commons and swept via P18. |
+| **Rijksmuseum** | API dead — but **Micrio IIIF is open** (2026-08-25) | **1 emit** (*The Milkmaid*, 4,000×4,485 → 4,649×5,177, +6.1 MP **and tiled**) | The old API is gone (HTTP 410) and the Rijksstudio key portal no longer exists — that closed the *API*, not the *images*. The whole collection is served through Micrio; anchor by loading `/nl/collectie/<objectNumber>` and reading `og:image`. ⚠ Unlike VGM/KMM, **Rijks Micrio `info.json` titles are opaque GUIDs** and carry no inventory number, so the descriptor cannot self-prove — 3 of our 4 Rijks works are high-impression prints (*Great Wave*, *Hundred Guilder Print*, *Claudius Civilis*) with no Rijks object number in P217 and were left unanchored rather than title-matched. |
+| **Van Gogh Museum** | open, keyless — **Micrio** (`iiif.micr.io`, IIIF Image 3.0 level2), ACAO `*` | **24 emits** (5 real gains up to +90.9 MP; 13 pixel-identical, adopted for the pyramid) | Every object page embeds a Micrio id, and the `info.json` `title` is `<inventoryNumber>_<plate>.jpg` with `organisation.name = Van Gogh Museum` — **identity is self-proving from the descriptor.** Caught two stale P217s that way. 1 id rejected as a −28.9 MP downgrade (*Raising of Lazarus*); 4 more are re-crops losing ≤28 px on one axis, adopted with a flag. |
+| **Kröller-Müller** | open, keyless — **Micrio**, same service as VGM | **2 emits** (*The Sower* +21.8 MP, *Café Terrace at Night* +20.0 MP, both tiled) | `info.json` title = the inventory number printed on the object page (KM 106.399 / KM 108.565). Their Van Gogh **self-portrait was rejected** at 2800×3842 against our 4248×5808 — a real pyramid whose master is smaller than ours. |
+| **Art UK** | open pages, CloudFront assets, **no ACAO** | **9 emits**, floor-raiser only (best ×2.83) | Ceiling is exactly **`/w1200h1200/` as a fit box** — every larger parameter 404s, derivatives are pre-generated. Identity is in the asset filename (`<COLL>_<VENUE>_<ACCESSION>-001.jpg`), all 9 matched P217 exactly. Of 73 works swept, 53 were pixel-identical to what we already serve. ⚠ Needs the `img.fuad.au/artuk/` worker alias; a P1679 on a non-UK-held work points at a *different* object. |
+| **Google Arts & Culture** | open pages, **fixed 1,200 px derivative** | 110 swept → **0 emits** | ⛔ **Closed as a downgrade engine.** 90 of 110 measured *strictly smaller* than our plate, 14 pixel-identical, 1 gain. `=s0`/`=s4000`/`=w4000` all return the same bytes — there is one size. The gigapixel tiles sit behind a client-generated token and Google's viewing-only terms: unusable, not unexplored. |
 | **Getty / Yale / Brooklyn** | blocked or down | 0 | Getty endpoints network-blocked; both Yale APIs dead/403; Brooklyn 429s without a key. |
 | **SMK Copenhagen** | open API (recovered from 500s) | 1 match → 0 emits | Swept 21 Nordic canon works. Sole hit — *Interior. Artificial Light*, 118.8 MP — was a same-title different Hammershøi: canon Q18600052 is the Stockholm Nationalmuseum *Interior* (P195 Q842858), not SMK's. Holder gate rejection #21. |
 | **Nasjonalmuseet Oslo** | no public API | 0 | All 8 plausible endpoint patterns dead (timeouts / NXDOMAIN). Their IIIF exists but has no discoverable search front door. |

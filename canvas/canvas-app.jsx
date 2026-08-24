@@ -155,6 +155,14 @@ const IMG_PROXY = {
   "https://content.ngv.vic.gov.au/": "https://img.fuad.au/ngv/",
   "https://agsa-prod.s3.amazonaws.com/": "https://img.fuad.au/agsa/",
   "https://whitneymedia.org/": "https://img.fuad.au/whitney/",
+  // Art UK (2026-08-25 round 3, 9 floor-raiser plates). d3d00swyhr67nd.cloudfront.net sends NO
+  // Access-Control-Allow-Origin — measured on both a 200 and a 404 — and resolveOSDSource hands
+  // hires.img to OSD with cors:"Anonymous", so the un-proxied url fails the crossorigin load.
+  // NOT YET IN THE WORKER: alias "artuk" must be pasted in the Cloudflare dashboard
+  // (.dtmp/tourqc-pass/WORKER_ARTUK.local.md). Until then the alias 404s → open-failed → the
+  // viewer rebuilds on the DIRECT url with cors:false, which loads fine, so the degradation is
+  // benign and never worse than the pre-adoption plate.
+  "https://d3d00swyhr67nd.cloudfront.net/": "https://img.fuad.au/artuk/",
 };
 const proxied = (u) => {
   if (!u) return u;
