@@ -3,6 +3,39 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+"thomas-gainsborough-the-painter-s-daughters-with-a-cat": {
+about: "Gainsborough's own daughters, Mary about ten and Margaret about eight, painted around 1760 at Bath — and abandoned, since nobody had commissioned it. The faces are finished; everything below the chins is still brown drawing on bare ground.",
+deep: "Finish here is a gradient. Two faces are carried all the way, the part of a portrait that gets paid for; everything outward from them gets less, down to bare ground at the foot. The oddity is the sky, which got further than the clothes: a landscape painter's work stolen into the top of a portrait by a man who wrote that he was sick of portraits. The animal in the middle was not simply left behind; its back was covered over with a second, duller yellow, the one decision you can watch being reversed. What survives is a hold that never closes: two hands from two different children, meeting at the bottom edge.",
+by: "Opus 4.8" },
+
+"theo-van-rysselberghe-denise-marechal": {
+about: "Denise Maréchal, the painter's niece, at about eleven, painted around 1894; he had already done her at six, on a canvas nearly three times as tall. Few Neo-Impressionists took the dot into portraiture; his sitters were mostly family.",
+deep: "Nothing in this panel is drawn, and the profile is still the hardest edge in the room: two populations of dot butted against each other until they stop. The same move runs everywhere, because the touch changes with the material rather than with the shape: small hatched strokes for flesh, long commas laid along the fall of the hair, blunt rectangles stacked in courses for the linen at her throat. Under all of it a warm orange ground survives in the gaps, so a picture almost entirely blue and violet turns warm as you walk away. Neo-Impressionism was built for beaches, where nobody has to be anybody in particular; pointed at one child, it keeps her particular.",
+by: "Opus 4.8" },
+
+"alphonse-de-neuville-the-flag-of-truce": {
+about: "German truce envoys led blindfolded into Belfort, which held out a hundred and three days from November 1870 and was the one piece of Alsace France kept in the peace. De Neuville painted it in 1884.",
+deep: "Everyone in this street is looking, and the three men at the centre of it have white cloth tied over their eyes. A truce party is blindfolded so that it can see nothing useful on the way in, and here the convention turns into a procession. What the blindfolds spare them stands just behind: a house with its front carried away, embers still alight in the rubble. On the far side of the road a soldier watches with his arm in a clean white sling: the same white cloth doing the opposite job. Between the two crowds runs an empty street that nothing crosses but a dog and one arm flung out, stopping in mid-air.",
+by: "Opus 4.8" },
+
+"jules-adler-la-soupe-des-pauvres": {
+about: "Le peintre des humbles, Louis Vauxcelles called him — and in 1906 Jules Adler gave a queue for free soup a canvas two and a half metres across, the scale the Salon reserved for battles and coronations.",
+deep: "Need makes a mass, and the painter refuses the simplification. The queue runs wall to wall with no beginning or end shown, and from the right distance it reads as one brown ridge — exactly the distance the empty foreground holds you at. Come closer and the ridge comes apart: a bearded man given a full portrait against lit plaster, a woman's flat pale profile holding just enough line to resemble a fresco saint, a child with both palms pressed to its mouth and, below them, an empty glass. That glass is the only thing here that says what the line is for, and it is put small, low and easy to walk past.",
+deepBy: "Sonnet 4.6",
+by: "Opus 4.8" },
+
+"wilhelm-trubner-ave-caesar-morituri-te-salutant": {
+about: "The Great Dane was Trübner's own, called Cäsar — which is the joke: in the gladiators' salute of 1877 the emperor is the dog and the morituri are the sausages, hung on him for real while he sat.",
+deep: "The sausages are painted better than the dog. The slowest, most glazed handling in the picture went into the food — each link a fat cylinder blended to a warm sheen, more solid than the animal wearing it — while the coat beside it is dry, planar and fast. The collar is the one hard geometric thing here, brass domes on near-black leather, imperial hardware spent on a working strap whose ring hangs empty. Nothing winks. The joke is not in the caption but in the arrangement: the string lies across the bridge of the nose, just above the nostril, where the animal must smell it and cannot reach it.",
+deepBy: "Sonnet 4.6",
+by: "Opus 4.8" },
+
+"claude-monet-palazzo-da-mula-venice": {
+about: "The palace is the Da Mula Morosini, and Monet arrived on 1 October 1908 for what was meant to be a holiday; he left in December with thirty-seven canvases going. Twenty-nine opened in Paris in May 1912.",
+deep: "Venice was already an anthology of views when he arrived, and he refused every one of them. No Grand Canal, no picturesque incident: a single palace face taken flat on, its roofline cut away by the top edge, its base dissolved into water with no far bank and no horizon. What is left floats, and the argument is what the wall and the canal do to each other — they trade colour until the stone runs as fluid as the water beneath it. A handful of hard blue verticals, the poles and their unwaveringly straight reflections, are all that keep the whole soft field from becoming weather.",
+deepBy: "Sonnet 4.6",
+by: "Opus 4.8" },
+
 "antonio-canova-amore-e-psiche": {
 about: "Cupid arriving over Psyche the moment after she opens Proserpina's flask and drops into a death-sleep — marble, finished 1793, her arms already lifting to a kiss that in stone never quite lands.",
 by: "Opus 4.8" },

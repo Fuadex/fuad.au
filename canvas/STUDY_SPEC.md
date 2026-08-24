@@ -466,6 +466,21 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
   also rejected a larger Commons file that is a **halftone print scan** — visible rosette dot
   screen, mustard cast, painted-on border: more pixels, less information. A gain figure means
   nothing until someone has looked at the image.
+- ⚙ **AND NEITHER DOES A FRAME OR A COLOUR TARGET** (Fuad 2026-08-25, on the Fałat and
+  Axentowicz plates, whose displayed image includes the gilt frame and a photographic
+  grey-scale calibration bar — roughly 13% not painting): *"The frames are insignificant but
+  the quality of the photos look great. If they're upgrades compared to what we hold then we
+  should use them but of course if tours exist, they'll need to adapt."* So the rule is one
+  rule, not three: **image QUALITY decides adoption; geometry is a remap job.** Frame, mount,
+  parchment surround and calibration bar are all the same class — measure the painting's rect
+  inside the plate and transform the boxes. What DOES disqualify a plate is being the wrong
+  side of the object (the Hydra verso), a halftone print scan, or fewer real pixels than we
+  already hold.
+  ⚠ Practical note: an existing tour drafted against a framed plate is INTERNALLY consistent —
+  its boxes are fractions of that composite and they work. The remap is owed only when the
+  plate CHANGES. Both named works are MNW, and round 2 cracked MNW's API on inventory number
+  (Fałat's is in its own filename, `MP 563`), so frameless masters may well exist — check
+  before re-touring either.
 - **A MARGIN DOES NOT DISQUALIFY A BETTER PLATE — REMAP THE BOXES** (Fuad 2026-08-25:
   "if you can implement an IIIF but there's a margin, I'd still try and implement that IIIF
   because it should just simply be superior"). Box coordinates are fractions of whatever the
