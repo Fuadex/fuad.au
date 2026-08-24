@@ -253,6 +253,18 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
   the plate is poor, upgrade the site (rule below) rather than "fixing" the tour to match a
   bad image. Standing gap: **71 of 363 toured works have no `art_hires` record**, so their
   Study zoom is capped at the 900px canon plate — a backfill campaign worth its own batch.
+- **A MARGIN DOES NOT DISQUALIFY A BETTER PLATE — REMAP THE BOXES** (Fuad 2026-08-25:
+  "if you can implement an IIIF but there's a margin, I'd still try and implement that IIIF
+  because it should just simply be superior"). Box coordinates are fractions of whatever the
+  deep-zoom source shows, so a candidate whose plate includes mount, parchment or frame
+  margin shifts every box — which is a REASON TO TRANSFORM THEM, not a reason to keep a
+  600px plate. Measure the painting's rect inside the new plate as fractions
+  `(mx, my, mw, mh)`, then per box: `x' = mx + x*mw`, `y' = my + y*mh`, `w' = w*mw`,
+  `h' = h*mh`. It is a clean affine remap and it is exact. Verify by re-cropping every
+  remapped box off the NEW plate and looking at it — the same crop check the drafting rules
+  require, which catches a mis-measured margin immediately. Type specimen: `the-hydra`
+  (Klimt, Belvedere, 1512×3508 vs the canon 801×2000, aspect off by 7.6% because their scan
+  keeps the parchment surround).
 - **Stop titles are NOT unique corpus-wide.** A fix script that locates a stop by
   `indexOf(title)` will silently edit a different painting ("The white collar" exists on two
   works; caught by a round-trip assert in wave 1). Always scope edits to the entry key's span.
