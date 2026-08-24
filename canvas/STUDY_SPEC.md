@@ -118,6 +118,61 @@ the brief, every one failed. Four findings that change how drafting and QC shoul
   **Fix the error, then re-read the entry end to end for its propagation and for anything the
   first audit missed.**
 
+### THE CHECKLIST — run this, in this order, before any tour merges (2026-08-25)
+
+Everything above is why. This is what to do. Each item is a specific trigger and a specific
+action; none of it requires judgement about quality.
+
+**A. Per stop, before writing a word of it**
+1. Open `box_<id>_N.jpg`. Name aloud the three most prominent things in the crop.
+2. If the thing the stop is about is not among them, the box is wrong — fix the box or
+   change the stop. Do not write the stop and hope.
+3. Write the body from those three things outward. If the body's subject arrived from the
+   `craft` paragraph rather than from the crop, delete it and start at the crop.
+
+**B. Per stop, after writing it — the four greps**
+4. **Absolute negatives.** Search the body for: `no `, `not a single`, `nothing`, `never`,
+   `only`, `barely`, `without any`, `stops being`. For EVERY hit, look at the crop and prove
+   the absence. These were refuted at a ~100% rate in the re-audit.
+5. **Superlatives.** Search for `the only`, `the brightest`, `the darkest`, `the largest`,
+   `the most`. Each asserts a corpus-of-one ranking over the whole picture — verify against
+   the PLATE, not the crop, because the counter-example is usually outside the box.
+6. **Direction and count words.** `left`, `right`, `above`, `below`, `upper`, `lower`,
+   `vertical`, `horizontal`, `diagonal`, `two`, `three`, `both`, `single`, `pair`. Check each
+   against the image. Direction errors and miscounts were the second-commonest defect class.
+7. **Finish claims.** `loose`, `dissolve`, `blurred`, `unfinished`, `smudged`, `barely
+   painted`, `no contour`, `no modelling`. THE DISSOLUTION BIAS makes these wrong in one
+   direction — assume the passage is more finished than you wrote and check.
+
+**C. Per stop, the two structural tests**
+8. **The deepen test.** Cover the four paragraphs. Does the stop still say something? If its
+   content survives only as an illustration of a paragraph's claim, it fails — give it a
+   different mark or cut it.
+9. **The hinge test.** If the stop makes ANY claim about feeling, relation, intent or
+   attention ("as if", "reads as", "the emotional centre", "she is watching"), name the
+   visible thing it rests on and confirm that thing is inside this stop's own crop. If it is
+   not, the claim goes or the box moves.
+
+**D. Per tour, before merge**
+10. **Diff the tour against itself.** Read `see`, `about`, `craft` and every stop looking only
+    for pairs that disagree — a parasol vertical in one and diagonal in another, an object
+    "dull red" in one and "the more saturated of two" in another, a tie "hot" in one and
+    "cool" in another. Every such pair has a wrong half, and this finds them with no image at
+    all. Cheapest check in the protocol.
+11. **Box hygiene, mechanical.** No two stops sharing a box; no box whose title names
+    something outside its own frame; no box clipping its named subject; no box outside
+    [0, 1.002].
+12. **Paragraph scope.** For each stop, confirm its specific instance does not already appear
+    in `craft` or `see`. If it does, the paragraph spends it — cut it from the paragraph, not
+    from the stop.
+
+**E. When repairing an existing tour**
+13. Fix the flagged error, then **re-read the entire entry end to end** and re-run A–D on it.
+    A repair that corrects one sentence and leaves its propagation elsewhere is a defect that
+    now reads as deliberate. Precedents: a bird fixed while the same tour's garment,
+    expression and signature box stayed wrong; a stop and its box corrected while the
+    identical error stood in `see`.
+
 ### Drafting-time box verification (MANDATORY, 2026-08-25)
 
 Boxes were being drawn from the prose rather than checked against it — ~25 wrong across the
