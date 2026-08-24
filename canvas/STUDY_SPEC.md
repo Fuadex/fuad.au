@@ -90,6 +90,34 @@ better than the invented one, which is the pattern throughout: the real picture 
 confabulation). **Rule: any claim about feeling, relation or intent must name the visible
 thing it rests on, and that thing must be in the stop's own crop.**
 
+### What the wave-1 RE-AUDIT added (2026-08-25) — 18 tours re-checked, ZERO clean
+
+The first pass called most of these clean. Re-run at wave-2 rigour with a worked example in
+the brief, every one failed. Four findings that change how drafting and QC should work:
+
+- **⛔ THE DISSOLUTION BIAS — a DIRECTIONAL error, not scatter.** On loose-handling pictures
+  the tours consistently describe the surface as MORE dissolved than it is, and never less.
+  Zorn's background crowd has fully drawn faces; Boldini's head is a finished society
+  portrait and his plumes are described barb by barb; Corinth's hands have separated
+  fingers; Zorn's Bacon hair has flying strands. "Everything is paint" is the easy thing to
+  say about a bravura surface, and it is usually wrong in the same direction. **When a
+  passage looks loose, check whether it is actually loose.**
+- **⛔ ABSOLUTE NEGATIVES ARE THE CHEAPEST DEFECTS TO CATCH AND WERE NEVER CHECKED.** "not a
+  single strand anywhere", "no single button, seam or crease is actually drawn", "nothing
+  here is closed into a clean contour", "they stop being hands at all" — every one refuted by
+  its own crop. Any sentence containing never/no/only/nothing/not a single is a QC target by
+  construction; grep for them.
+- **BOXES DRIFT IN A CONSISTENT DIRECTION** (down and left in several works — the Degas and
+  Zorn signature boxes independently, Corinth stops 1/3/4/6). This is mechanically detectable
+  corpus-wide and deserves a script rather than an audit.
+- **⚠ A REPAIR MUST RE-AUDIT THE WHOLE ENTRY, NOT THE FLAGGED SENTENCE.** Zorn's bird repair
+  was correct and held — while the same tour's garment (a cloth coat with a fur collar, called
+  "fur" four times), the sitter's expression (parted lips, teeth showing, described as
+  "entirely still") and a drifted signature box all survived untouched. Worse, a point-fix
+  batch corrected a Boldini stop and its box but left the identical error standing in `see`.
+  **Fix the error, then re-read the entry end to end for its propagation and for anything the
+  first audit missed.**
+
 ### Drafting-time box verification (MANDATORY, 2026-08-25)
 
 Boxes were being drawn from the prose rather than checked against it — ~25 wrong across the
