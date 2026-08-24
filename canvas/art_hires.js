@@ -1,7 +1,8 @@
 // GENERATED + hand-upserted hi-res sources per work. CANONICAL FORMAT (2026-08-23): one
 // compact JSON line per entry — keep it that way; the old mixed pretty/compact forms needed
-// manual passes on every batch. Sources: met/aic/cma/nga/vam (holder-verified vs Wikidata
-// P195) and commons (P18 originals + verified wiki-lead files). `orig` = untouched original
+// manual passes on every batch. Sources: met/aic/cma/nga/vam/ng-london/nationalmuseum-se/ngv/
+// centre-pompidou/agsa/whitney (holder-verified vs Wikidata P195) and commons (P18 originals +
+// verified wiki-lead files). `orig` = untouched original
 // for the reader's Ultra HQ / save links; never put a non-browser format (TIFF) in `img`.
 window.CANVAS_HIRES = {
 "alfred-sisley-the-banks-of-the-oise":{"src":"nga","w":6252,"h":5181,"title":"The Banks of the Oise","conf":"high","img":"https://api.nga.gov/iiif/a167f440-ad1c-481e-ada0-2f6962d54e64/full/3000,/0/default.jpg","iiif":"https://api.nga.gov/iiif/a167f440-ad1c-481e-ada0-2f6962d54e64/info.json","page":"https://www.nga.gov/artworks/46689-banks-oise"},
@@ -1094,4 +1095,27 @@ window.CANVAS_HIRES = {
 "john-constable-study-of-clouds": {"src": "vam", "w": 2500, "h": 1875, "img": "https://framemark.vam.ac.uk/collections/2014HA9998/full/3000,/0/default.jpg", "iiif": "https://framemark.vam.ac.uk/collections/2014HA9998/info.json", "title": "Study of Clouds", "conf": "high"},
 "john-constable-the-cottage-in-a-cornfield": {"src": "vam", "w": 2096, "h": 2500, "img": "https://framemark.vam.ac.uk/collections/2016JG8154/full/3000,/0/default.jpg", "iiif": "https://framemark.vam.ac.uk/collections/2016JG8154/info.json", "title": "The Cottage in a Cornfield", "conf": "high"},
 "john-constable-study-of-sky-and-trees": {"src": "vam", "w": 2500, "h": 1946, "img": "https://framemark.vam.ac.uk/collections/2006AN8460/full/3000,/0/default.jpg", "iiif": "https://framemark.vam.ac.uk/collections/2006AN8460/info.json", "title": "Study of Sky and Trees", "conf": "high"},
+// ——— 2026-08-25 holder-anchored upgrades for toured works stuck on the ~900px canon plate.
+// Every id below was resolved from the canon work's Wikidata qid to a HOLDER-ISSUED object id
+// (NG accession, NGV vernon id, Nationalmuseum object id, Centre Pompidou oeuvre id, AGSA/Whitney
+// work id) — never by title search — and the candidate's aspect ratio was checked against the
+// current plate so existing tour box coordinates stay valid. Three new field names appear here:
+//   iiifId  — the IIIF image-service BASE (no /info.json). Set only when the host sends no CORS
+//             header: OSD reads the tile base out of info.json's own `@id`, so proxying the
+//             info.json alone would still leave the tiles on the direct host. See canvas-app.jsx.
+//   full    — explicit Ultra-HQ render url, overriding the reader's `full/full` guess (invalid
+//             on IIIF 3, where the size keyword is `max`).
+//   zoomify — Zoomify pyramid base directory (…/<imgid>/, holding ImageProperties.xml + TileGroupN).
+//   dzi     — DeepZoom descriptor url; OSD derives the tile dirs from it, so proxying it proxies
+//             the tiles too.
+"theo-van-rysselberghe-coastal-scene": {"src": "ng-london", "w": 28641, "h": 23726, "img": "https://www.nationalgallery.org.uk/server.iip?IIIF=/fronts/N-6582-00-000081-XL-PYR.tif/full/!3000,3000/0/default.jpg", "iiif": "https://www.nationalgallery.org.uk/server.iip?IIIF=/fronts/N-6582-00-000081-XL-PYR.tif/info.json", "iiifId": "https://www.nationalgallery.org.uk/server.iip?IIIF=/fronts/N-6582-00-000081-XL-PYR.tif", "full": "https://www.nationalgallery.org.uk/server.iip?IIIF=/fronts/N-6582-00-000081-XL-PYR.tif/full/max/0/default.jpg", "page": "https://www.nationalgallery.org.uk/paintings/theo-van-rysselberghe-coastal-scene", "title": "Coastal Scene", "conf": "high"},
+"madonna-of-the-pinks": {"src": "ng-london", "w": 6909, "h": 8585, "img": "https://www.nationalgallery.org.uk/server.iip?IIIF=/fronts/N-6596-00-000063-FS-PYR.tif/full/!3000,3000/0/default.jpg", "iiif": "https://www.nationalgallery.org.uk/server.iip?IIIF=/fronts/N-6596-00-000063-FS-PYR.tif/info.json", "iiifId": "https://www.nationalgallery.org.uk/server.iip?IIIF=/fronts/N-6596-00-000063-FS-PYR.tif", "full": "https://www.nationalgallery.org.uk/server.iip?IIIF=/fronts/N-6596-00-000063-FS-PYR.tif/full/max/0/default.jpg", "page": "https://www.nationalgallery.org.uk/paintings/raphael-the-madonna-of-the-pinks-la-madonna-dei-garofani", "title": "The Madonna of the Pinks ('La Madonna dei Garofani')", "conf": "high"},
+"two-old-men-disputing": {"src": "ngv", "w": 4105, "h": 5000, "zoomify": "https://content.ngv.vic.gov.au/col-images/zooms/Fd104696/", "page": "https://www.ngv.vic.gov.au/explore/collection/work/4291/", "title": "Two old men disputing", "conf": "high"},
+"fjaestad-winter-moonlight": {"src": "nationalmuseum-se", "w": 3791, "h": 3070, "img": "https://nationalmuseumse.iiifhosting.com/iiif/b8408303582c56cbffc2d3cac0a39b76d79328557ca5e333e76d75bb0075fd9/full/3000,/0/default.jpg", "iiif": "https://nationalmuseumse.iiifhosting.com/iiif/b8408303582c56cbffc2d3cac0a39b76d79328557ca5e333e76d75bb0075fd9/info.json", "page": "https://api.nationalmuseum.se/api/objects/18632", "title": "Vintermånsken (Winter Moonlight), NM 1628", "conf": "high"},
+"fjaestad-wood-pattern": {"src": "nationalmuseum-se", "w": 3531, "h": 2869, "img": "https://nationalmuseumse.iiifhosting.com/iiif/a7e7b7d4d4a03b2f13dd3a7d7b4fa90f73b223955f3d528ab5568b5af58defc8/full/3000,/0/default.jpg", "iiif": "https://nationalmuseumse.iiifhosting.com/iiif/a7e7b7d4d4a03b2f13dd3a7d7b4fa90f73b223955f3d528ab5568b5af58defc8/info.json", "page": "https://api.nationalmuseum.se/api/objects/18707", "title": "Vinterafton vid en älv (Winter Evening by a River), NM 1703", "conf": "high"},
+"simeon-in-the-temple": {"src": "nationalmuseum-se", "w": 2828, "h": 3513, "img": "https://nationalmuseumse.iiifhosting.com/iiif/c6825a9f644120a9f69998822a061dc3ea666864bd7e3d44ea8dfbbc5343da6e/full/2828,/0/default.jpg", "iiif": "https://nationalmuseumse.iiifhosting.com/iiif/c6825a9f644120a9f69998822a061dc3ea666864bd7e3d44ea8dfbbc5343da6e/info.json", "page": "https://api.nationalmuseum.se/api/objects/21617", "title": "Simeon in the Temple, NM 4567", "conf": "high"},
+"henri-matisse-auguste-pellerin-ii": {"src": "centre-pompidou", "w": 2573, "h": 4000, "dzi": "https://www.centrepompidou.fr/media/picture/ef/4a/ef4aac5c0e1375f10294e5dfed8dcea3/dzi/uhd.dzi", "page": "https://www.centrepompidou.fr/en/ressources/oeuvre/cg9L7n", "title": "Auguste Pellerin II", "conf": "high"},
+"henri-matisse-tete-blanche-et-rose": {"src": "centre-pompidou", "w": 2436, "h": 4000, "dzi": "https://www.centrepompidou.fr/media/picture/fd/05/fd0589a13300d60cc04ea266ea631b78/dzi/uhd.dzi", "page": "https://www.centrepompidou.fr/en/ressources/oeuvre/d3ksoO1", "title": "Tête blanche et rose", "conf": "high"},
+"camille-pissarro-prairie-a-eragny": {"src": "agsa", "w": 3543, "h": 2849, "img": "https://agsa-prod.s3.amazonaws.com/media/dd/images/76058-HQ-20138P31.3cb2105.jpg", "page": "https://www.agsa.sa.gov.au/collection-publications/collection/works/prairie-a-eragny/27081/", "title": "Meadow at Éragny (Prairie à Éragny)", "conf": "high"},
+"florine-stettheimer-new-york-liberty": {"src": "whitney", "w": 1537, "h": 2048, "img": "https://whitneymedia.org/assets/artwork/47209/2017_190a-b_cropped.jpg", "page": "https://whitney.org/collection/works/47209", "title": "New York/Liberty", "conf": "med"},
 };

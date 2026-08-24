@@ -51,6 +51,12 @@ pixel-perfectly — and Commons rounds its own way; only measured `pyr` levels r
 | **SMK Copenhagen** | open API (recovered from 500s) | 1 match → 0 emits | Swept 21 Nordic canon works. Sole hit — *Interior. Artificial Light*, 118.8 MP — was a same-title different Hammershøi: canon Q18600052 is the Stockholm Nationalmuseum *Interior* (P195 Q842858), not SMK's. Holder gate rejection #21. |
 | **Nasjonalmuseet Oslo** | no public API | 0 | All 8 plausible endpoint patterns dead (timeouts / NXDOMAIN). Their IIIF exists but has no discoverable search front door. |
 | **Wikidata P6108/P4765** | open | 0 | No IIIF manifests exist for any canon work. The sweep's value was P18 dims + conflation discovery. |
+| **National Gallery, London** | open, keyless — **IIIF Image 3.0**, previously listed here as unchecked | **2 emits** (Rysselberghe *Coastal Scene* 28,641×23,726 = 680 MP; Raphael *Madonna of the Pinks* 6,909×8,585) | The discovery of the 2026-08-25 pass. Endpoint shape: `www.nationalgallery.org.uk/server.iip?IIIF=/fronts/<ACCESSION>-…-PYR.tif/info.json` — an IIPImage server, and the pyramid TIFF is **named by accession** (`N-6582-…` = NG6582), so identity is holder-owned, not title-matched. Two gotchas: (a) **no ACAO** — see the CORS note below; (b) it is IIIF **3**, where the Ultra-HQ size keyword is `max`, not the `full/full` the reader assumed for our IIIF-2 sources (hence the `full` override field). |
+| **Nationalmuseum Stockholm** | open, keyless (`api.nationalmuseum.se/api/objects/<id>` → `iiif` field on iiifhosting.com, IIIF 2 level1) | **3 emits** (both Fjæstads, Rembrandt *Simeon in the Temple*) | Object-id lookup is perfect; **search is broken** — every `query`/`q`/`title`/`filter` param is ignored and returns the whole 208k-row corpus. Only usable when you already hold the object id, which Wikidata's *Nationalmuseum Sweden artwork ID* supplies. Records also carry `inventory_number` (NM 1628 / NM 1703 / NM 4567 — all three matched the canon notes exactly), dating, dimensions and an explicit `iiif_license`. Worth a corpus-wide Nordic sweep later. `page` currently points at the API record, not a human catalogue page — no public object-page URL pattern found. |
+| **NGV Melbourne** | partial, keyless — **Zoomify**, not IIIF | **1 emit** (Rembrandt *Two Old Men Disputing*, 4,105×5,000 from a 498×600 plate) | No JSON API, no IIIF (`api.`/`iiif.` subdomains NXDOMAIN). The object page `/explore/collection/work/<vernonID>/` inlines `imgWidth`/`imgHeight` and a Zoomify base under `content.ngv.vic.gov.au/col-images/zooms/<imgid>/`, driven by OpenLayers; `ImageProperties.xml` confirms it. `retrieve.php?size=xl` is only 694×845, so the **pyramid is the whole prize**. Cost of adoption: a third tile flavour in the viewer (see below). |
+| **Centre Pompidou / MNAM** | partial, keyless — **DeepZoom (.dzi)** | **2 emits** (Matisse *Auguste Pellerin II*, *Tête blanche et rose*) | `api.centrepompidou.fr` does not resolve; object pages do, and inline `/media/picture/<hash>/dzi/uhd.dzi`. Hard-capped at **4,000 px long side** — a fixed "uhd" render tier, not the archival master — but still ×4 linear on works that were 1,000 px uploader-capped. **No ACAO.** Wikidata's Centre Pompidou IDs go stale (`5dq7dfI` 404s), so verify the id resolves before adopting; one candidate was dropped for exactly this. Rights: Matisse d. 1954 → French PD from 2025-01-01. |
+| **AGSA / Whitney** | partial, keyless — plain JPEG keyed by the holder's object id | **2 emits** (Pissarro *Prairie à Éragny* 3,543×2,849; Stettheimer *New York/Liberty* 1,537×2,048) | Not sweepable — one asset per object page — but identity is safe because the asset path carries the object id (`/assets/artwork/47209/`, AGSA work 27081). Whitney's ceiling is 2,048 px and its filename says `_cropped`; adopted at `conf: "med"` on the strength of a 0.07 % aspect match with the current plate, which a real crop could not produce. |
+| **Belvedere** | open, keyless (eMuseum JSON + IIIF Presentation v2 + Image v2 level2) | 1 candidate → **0 emits** | Works fine technically — object-id lookup only, and the manifest carries 8 canvases (raking light, details) so the canvas must be picked deliberately. Rejected on aspect, not access: see the ledger below. |
 
 ## The identity discipline (why the gates exist)
 
@@ -97,6 +103,141 @@ worst offenders Boldini *Scena galante* 294 px, *Female Figure* 364 px, van der 
 *Stormcloud* 480 px, two ~500 px *Water-Lilies* studies, Renoir *On the Shore of the
 Seine* 574 px. Among liked works the Sisley Loing group and several Boldinis are 280–300 px
 thumbs. Census script: `../../.sptmp/lowres-census.py`.
+
+## The toured-plates pass (2026-08-25) — 51 works, 10 adopted, 38 closed
+
+Scope: the **51 toured works whose Study deep-zoom was still falling back to the ~900 px canon
+plate** and whose native Commons file is under 1,600 px. Sheet:
+`.dtmp/tourqc-pass/iiif-candidates.json`.
+
+The method that made this pass work where the previous one failed: **never resolve by title.**
+Holder comes from `art_data.js` `collectionQids`/`locationQid` (P195) — *not* from `seenAt`, which
+records where Fuad stood and is often an exhibition loan (both Fjæstads, all three Matisses).
+Object ids then came from a single Wikidata SPARQL over every ExternalId-typed property on the 51
+qids, so each candidate hangs off a **holder-issued id** (NG accession, NGV vernon id,
+Nationalmuseum object id, Pompidou oeuvre id, AGSA/Whitney work id). Finally each candidate's
+aspect ratio was compared with the current plate: **≤2 % delta means the existing tour box
+coordinates stay valid**, which is the whole reason a work can be re-plated at all.
+
+### Two new tile flavours in the viewer
+
+The chain in `canvas-app.jsx` `resolveOSDSource()` previously branched only on `hires.iiif`. It now
+carries four tiled branches; both new ones are OSD built-ins, so this is configuration, not code:
+
+- **Zoomify** (`hires.zoomify`) — `{ type: "zoomifytileservice", tilesUrl, width, height }`. OSD
+  computes the grid itself and there is **no metadata fetch**, which also means a Zoomify tile
+  failure does *not* raise `open-failed` and therefore has **no automatic fallback** — it shows as
+  broken tiles. Eyeball NGV first if anything looks wrong.
+- **DeepZoom** (`hires.dzi`) — the `.dzi` URL passed straight through as a tileSource. OSD derives
+  `<name>_files/<level>/<x>_<y>.<fmt>` from **the URL it fetched**, so proxying the descriptor
+  proxies the tiles for free.
+
+Both get a `HIRES_SOURCE_LABEL` entry, so the reader footer still names the holder that serves
+the tiles rather than falling back to a generic "Museum page".
+
+### The IIIF-CORS trap (paid for on National Gallery London)
+
+NG London and Centre Pompidou send no `Access-Control-Allow-Origin`, and OSD reads IIIF `info.json`
+and DZI descriptors by **XHR** — which CORS blocks outright. Routing them through the img.fuad.au
+worker is the fix, but for IIIF **proxying the info.json url is not enough**:
+
+> `IIIFTileSource` sets `this._id = this["@id"] || this.id || this.identifier` — the tile base comes
+> out of the **response body**, not the URL that was fetched. Proxy only the info.json and every
+> tile still goes to the direct host, still blocked.
+
+So CORS-less IIIF sources carry `hires.iiifId` (the service base, no `/info.json`) and the viewer
+hands OSD an **inline descriptor** with that base already proxied — no round-trip, tiles proxied by
+construction. It must include `protocol: "http://iiif.io/api/image"`, because
+`IIIFTileSource.supports()` does not recognise a bare IIIF 3 `@context`. `tiles`/`sizes` are
+deliberately omitted: OSD then picks a 1024 tile and asks for arbitrary regions, which any level2
+server honours — better than guessing someone else's pyramid grid (cf. the Commons legacy-pyramid
+lesson: declared dims that miss by a pixel make OSD wobble).
+
+DZI needs none of that — proxy the descriptor and you are done.
+
+Worker aliases `nglondon` and `pompidou` must be added by hand in the Cloudflare dashboard
+(`.dtmp/tourqc-pass/WORKER_CHANGES.local.md`). Until they are, the alias 404s, `open-failed` fires
+and `useOSDViewer`'s `fallbackUrl` retry drops to the canon plate — never worse than before. Per
+the standing rule every proxied URL here is paired with that direct fallback.
+
+### Adopted — 10
+
+| Work | Source | Tech | Was → now | Linear gain |
+|---|---|---|---|---|
+| Rysselberghe, *Coastal Scene* | ng-london | IIIF 3 (proxied) | 800×665 → 28,641×23,726 | ×35.8 |
+| Raphael, *Madonna of the Pinks* | ng-london | IIIF 3 (proxied) | 870×1,080 → 6,909×8,585 | ×7.9 |
+| Rembrandt, *Two Old Men Disputing* | ngv | **Zoomify** | 498×600 → 4,105×5,000 | ×8.2 |
+| Pissarro, *Prairie à Éragny* | agsa | JPEG | 796×640 → 3,543×2,849 | ×4.5 |
+| Fjæstad, *Winter Moonlight* | nationalmuseum-se | IIIF 2 | 1,000×810 → 3,791×3,070 | ×3.8 |
+| Fjæstad, *Winter Evening by a River* | nationalmuseum-se | IIIF 2 | 1,000×813 → 3,531×2,869 | ×3.5 |
+| Matisse, *Auguste Pellerin II* | centre-pompidou | **DZI** (proxied) | 643×1,000 → 2,573×4,000 | ×4.0 |
+| Matisse, *Tête blanche et rose* | centre-pompidou | **DZI** (proxied) | 609×1,000 → 2,436×4,000 | ×4.0 |
+| Rembrandt, *Simeon in the Temple* | nationalmuseum-se | IIIF 2 | 1,000×1,228 → 2,828×3,513 | ×2.8 |
+| Stettheimer, *New York/Liberty* | whitney | JPEG | 600×800 → 1,537×2,048 | ×2.6 |
+
+### Verified but NOT adopted — 3
+
+- **Klimt, *Water Serpents I*** (`the-hydra`, Belvedere object 3828, IIIF v2 level2, 1,512×3,508).
+  The one **aspect MISMATCH in the sheet: 7.62 %** — the Belvedere plate includes the parchment
+  margin the canon plate crops away. Adopting it would silently invalidate that tour's box
+  coordinates, which is the one thing this pass exists to protect. Recorded here as a candidate,
+  not emitted. It only buys ×1.9 anyway. Re-open **only** together with a re-anchor of the tour
+  boxes against the new framing.
+- **Kandinsky, *Improvisation 28 (second version)*** (Guggenheim 1861). Accession-keyed and clean,
+  but it is a 1,280 px web-tier JPEG — **×1.4 linear**, below the threshold where a re-plate is
+  worth the churn. Skipped.
+- **Matisse, *Porte-fenêtre à Collioure*** (Centre Pompidou). The weakest identity link in the
+  sheet: Wikidata's Pompidou ID `5dq7dfI` is **stale (404)** and the candidate `cxzdLX` was
+  re-resolved by exact French catalogue title — the one title-resolved row in an otherwise
+  id-anchored set. Its two sibling Matisses both carry live Wikidata Pompidou IDs and were adopted;
+  this one is held back until the id is re-verified against the holder's own catalogue.
+
+### Closed out — 38 works, do not re-hunt
+
+Recorded so this ground is never walked again. Verdict for all: *holder has no reachable image
+service.*
+
+- **Musée Marmottan Monet — 17 (the single largest block, and the hardest closed).** No API, no
+  IIIF, no open-image programme, and Wikidata carries **no external museum ID for any of the 17**
+  (14 have no external identifier of any kind) — there is no id to anchor on even if a service
+  appeared. Works: *Diogenes* (Bastien-Lepage); Morisot *Bergère couchée*, *Au bal*, *Julie Manet
+  and her Greyhound Laertes*, *Autoportrait*, *Eugène Manet et sa fille dans le jardin de
+  Bougival*; Monet *Nymphéas effect in the evening*, *Vetheuil in the Fog*, *Nymphéas*, *Walk near
+  Argenteuil*, *Saule pleureur et bassin aux nymphéas*, *The Tuileries (Study)*, *Water-Lilies*,
+  *Water-Lilies Reflection of a Weeping Willow*, *The Water-Lily Pond*, *Train in the Snow*;
+  Caillebotte *White and yellow chrysanthemums*.
+- **MoMA — all 4.** `moma.org` returns Cloudflare 403 to non-browser clients; their open collection
+  data on GitHub is metadata only, no images; and all four are in copyright regardless. Works:
+  Hopper *New York Movie*, Klee *Mask of Fear*, Boccioni *States of Mind I: The Farewells*, Gorky
+  *Diary of a Seducer*.
+- **Tate — 2** (Turner *A Wreck, with Fishing Boats*; *Venetian Scene*). Already closed by owner
+  ruling above; listed again so the census does not resurrect them.
+- **Musée d'Orsay — 2** (Monet *Houses of Parliament, Sunlight Opening in Fog*; *Le Déjeuner sur
+  l'herbe*). Cloudflare 403 to every programmatic client. Orsay ids **are** in Wikidata (1177,
+  25651) — **parked, not dead**: a human browser could finish this in minutes.
+- **Kunstmuseum Basel — 2** (Corinth *Blumen und Tochter Wilhelmine*; Wutky *Versuv-Ausbruch*).
+  Next.js SPA serving the same 43 KB shell for every path; no `/api/`, no eMuseumPlus passthrough,
+  no IIIF string anywhere. Wikidata has the Basel id (1541 for the Corinth) — browser-only.
+- **Holder unknown — 2** (Boldini *Symphony in gray*; Caillebotte *Boulevard Haussmann, effet de
+  neige*). No collection in `art_data`/`art_holders`, no external ID — we cannot even name a museum
+  to ask.
+- **One each:** Tel Aviv Museum of Art (Degas *Two Dancers*) — no API, search 404s. Musée Rodin
+  (Sargent *Auguste Rodin*) — no API/IIIF/open-image programme. Joslyn (Redon *Fantasia*) — JSON
+  endpoint 401s. Artizon (Caillebotte *Young Man Playing the Piano*) — no public API. Glasgow
+  Museums (Díaz *Flower Piece*) — only external id is Art UK, licence-capped at ~800 px.
+  Pinakothek (Corinth *Der rote Christus*) — both URL shapes from the Wikidata id 404, images are
+  bpk-licensed.
+- **Blocked rather than absent — 3** (worth one browser visit if ever bored, but not a re-hunt):
+  National Gallery of Ireland (Goya *El Sueño*) — object page 4684 is the right object but ships
+  zero image URLs (client-rendered eMuseum) and `/json` 404s; **this one hurts, 604×350 is among
+  the worst plates in the canon.** NGA Canberra (Munch *Man with Horse*) — Angular app, every
+  `/stcapi/` path 500s. Museum Ludwig (Kirchner *Five Women on the Street*) — a proof-of-work
+  interstitial on every programmatic request; blocked by anti-bot, not by policy.
+
+**Signal worth keeping:** 19 of the 51 sit at *exactly* 1,000 or 1,500 px on one side. That is an
+uploader cap, not a small painting — those Commons files arrived already downsized — and it
+correctly predicted where an upstream master existed. Every Nationalmuseum and Pompidou win in
+this pass is one of the 19. So are 12 Marmottans, which is precisely where no upstream exists.
 
 ## Regeneration pointers
 

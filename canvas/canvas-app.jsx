@@ -124,16 +124,37 @@ const _imgPump = () => {
 const imgAcquire = (run) => { _imgWaiting.push(run); _imgPump(); };
 const imgRelease = () => { _imgActive = Math.max(0, _imgActive - 1); _imgPump(); };
 
-// ——— img.fuad.au: Cloudflare edge proxy over the four hotlinked image hosts (source of truth:
+// ——— img.fuad.au: Cloudflare edge proxy over the hotlinked image hosts (source of truth:
 // /img-proxy.worker.js + HUB.md, live 2026-08-22). proxied() rewrites a known host; every user
 // pairs it with a fallback to the ORIGINAL url, so the worker failing — or its free-tier quota
 // running dry on a big day — degrades to exactly the pre-proxy behaviour. Unknown hosts pass
 // through untouched.
+// The last two entries (added 2026-08-25) are CORS aliases, not cache aliases: the National
+// Gallery London IIIF server and the Centre Pompidou DeepZoom host send NO Access-Control-Allow-
+// Origin, so OSD's XHR for info.json / .dzi is blocked outright unless it goes through the worker.
+// The worker does not know those aliases until Fuad pastes the change in his Cloudflare dashboard
+// (.dtmp/tourqc-pass/WORKER_CHANGES.local.md); until then the alias 404s, OSD fires open-failed
+// and the viewer falls back to the canon plate — i.e. exactly today's behaviour, never worse.
 const IMG_PROXY = {
   "https://upload.wikimedia.org/": "https://img.fuad.au/upload/",
   "https://commons.wikimedia.org/": "https://img.fuad.au/commons/",
   "https://images.metmuseum.org/": "https://img.fuad.au/met/",
   "https://www.artic.edu/": "https://img.fuad.au/aic/",
+  // Aliases MUST match the deployed worker's UPSTREAM map exactly (img-proxy.worker.js is the
+  // canonical copy of what is pasted into the Cloudflare dashboard). An alias the worker does
+  // not know 404s, which here degrades silently to the 900px canon plate — so a typo costs a
+  // 679-megapixel scan and looks like nothing happened. Deployed 2026-08-25 as ngl / cpom.
+  "https://www.nationalgallery.org.uk/": "https://img.fuad.au/ngl/",
+  "https://www.centrepompidou.fr/": "https://img.fuad.au/cpom/",
+  // Added after MEASURING the headers (2026-08-25) rather than trusting the sourcing sheet,
+  // which said only NG and Pompidou lacked CORS. They don't: NGV answers with
+  // acao=https://content.ngv.vic.gov.au (its own origin, useless to us) and AGSA + Whitney
+  // send none at all. All three are fetched with crossOriginPolicy Anonymous, so all three
+  // need the proxy. NGV is the urgent one — Zoomify fetches no descriptor, so a CORS failure
+  // there shows as broken tiles with NO open-failed event and therefore no fallback.
+  "https://content.ngv.vic.gov.au/": "https://img.fuad.au/ngv/",
+  "https://agsa-prod.s3.amazonaws.com/": "https://img.fuad.au/agsa/",
+  "https://whitneymedia.org/": "https://img.fuad.au/whitney/",
 };
 const proxied = (u) => {
   if (!u) return u;
@@ -964,10 +985,14 @@ function Zoom({ src, onClose }) {
   );
 }
 
-// ——— Deep zoom: full-screen OpenSeadragon — three source tiers:
-//   1. IIIF (AIC/Met/CMA tiled): work.hires.iiif — full tile pyramid, best quality
-//   2. hires simple image: work.hires.img — OSD simple-image source, whole file fetched
-//   3. fallback simple image: work.imgZoom || work.img — same simple-image path, no hires entry
+// ——— Deep zoom: full-screen OpenSeadragon — source tiers, best first:
+//   1. IIIF behind a CORS-less host: work.hires.iiifId — inline descriptor, proxied service base
+//   2. IIIF (AIC/Met/CMA/NGA/V&A/Nationalmuseum tiled): work.hires.iiif — full tile pyramid
+//   3. Zoomify pyramid (NGV): work.hires.zoomify — OSD's built-in zoomifytileservice
+//   4. DeepZoom descriptor (Centre Pompidou): work.hires.dzi — OSD reads .dzi natively
+//   5. commons legacy pyramid: work.hires.pyr — measured Commons server renders
+//   6. hires simple image: work.hires.img — OSD simple-image source, whole file fetched
+//   7. fallback simple image: work.imgZoom || work.img — same simple-image path, no hires entry
 // The OSD script is vendored (never CDN) and lazy-loaded ONCE via a shared #osd-js tag; the
 // viewer mounts into its own dark layer above the Reader and is destroyed on close.
 // osdFailed: module-level flag set when the OSD script itself fails to load, so we can skip
@@ -998,9 +1023,49 @@ function resolveOSDSource(work) {
   if (!work) return null;
   // cors: only claim Anonymous where the host actually sends ACAO (museum APIs, wikimedia);
   // for arbitrary hosts (reddit etc.) crossOriginPolicy must be FALSE or the tile load errors.
+
+  // IIIF ON A HOST THAT SENDS NO CORS HEADER (National Gallery London, 2026-08-25). Proxying the
+  // info.json url alone is NOT enough: OSD's IIIFTileSource takes its tile base from the value of
+  // `@id`/`id` INSIDE the response body (`this._id = this["@id"] || this.id || this.identifier`),
+  // so the tiles would still be requested from the direct host and blocked. Hand OSD an inline
+  // descriptor instead, with the service base already proxied — dims come from art_hires, and no
+  // info.json round-trip happens at all. `protocol` is required: IIIFTileSource.supports() does
+  // not recognise a bare IIIF 3 @context. No `tiles`/`sizes` declared on purpose — OSD then picks
+  // a 1024 tile and asks for arbitrary regions, which any level2 server (IIPImage here) serves,
+  // rather than us guessing the pyramid's own tile grid.
+  if (work.hires && work.hires.iiifId && work.hires.w && work.hires.h) {
+    const src = (work.hires.src || "").toUpperCase();
+    return { tileSource: {
+      protocol: "http://iiif.io/api/image",
+      "@context": "http://iiif.io/api/image/3/context.json",
+      "@id": proxied(work.hires.iiifId),
+      profile: "level2",
+      width: work.hires.w, height: work.hires.h,
+    }, cors: "Anonymous", label: src ? `deep zoom via ${src}` : "deep zoom" };
+  }
   if (work.hires && work.hires.iiif) {
     const src = (work.hires.src || "").toUpperCase();
     return { tileSource: work.hires.iiif, cors: "Anonymous", label: src ? `deep zoom via ${src}` : "deep zoom" };
+  }
+  // ZOOMIFY (NGV, 2026-08-25) — the NGV object page inlines an OpenLayers ol.source.Zoomify over
+  // content.ngv.vic.gov.au/col-images/zooms/<imgid>/, with the true dims declared beside it (and
+  // in that directory's ImageProperties.xml). OSD ships a ZoomifyTileSource: it needs nothing but
+  // type + tilesUrl + width/height (tileSize defaults to 256, format to jpg, which is what NGV
+  // serves), and it computes the grid itself — there is no metadata fetch, so no CORS on open.
+  if (work.hires && work.hires.zoomify && work.hires.w && work.hires.h) {
+    const src = (work.hires.src || "").toUpperCase();
+    return { tileSource: { type: "zoomifytileservice", tilesUrl: work.hires.zoomify,
+      width: work.hires.w, height: work.hires.h },
+      cors: "Anonymous", label: src ? `deep zoom via ${src}` : "deep zoom" };
+  }
+  // DEEPZOOM / DZI (Centre Pompidou, 2026-08-25) — OSD reads a .dzi descriptor natively and, unlike
+  // IIIF, derives the tile directory from the URL IT FETCHED (`<name>_files/<level>/<x>_<y>.<fmt>`).
+  // So proxying the descriptor proxies the tiles for free, which is what centrepompidou.fr needs:
+  // it sends no ACAO and the descriptor is read by XHR. Pompidou caps these at 4000px long side
+  // ("uhd" render tier, not the archival master) — still ×4 linear on the Matisses.
+  if (work.hires && work.hires.dzi) {
+    const src = (work.hires.src || "").toUpperCase();
+    return { tileSource: proxied(work.hires.dzi), cors: "Anonymous", label: src ? `deep zoom via ${src}` : "deep zoom" };
   }
   // COMMONS PYRAMID (Fuad 2026-08-23, "the middle path"): museums without IIIF (MoMA, Orsay…)
   // only exist as flat Commons giga-files, and those can NEVER load whole (WebGL ~16k texture
@@ -1058,6 +1123,13 @@ const HIRES_SOURCE_LABEL = {
   vam: "V&A",
   harvard: "Harvard Art Museums",
   parismusees: "Paris Musées",
+  // 2026-08-25 holder-anchored batch — two IIIF, one Zoomify, one DeepZoom, two plain-JPEG
+  "ng-london": "The National Gallery, London",
+  "nationalmuseum-se": "Nationalmuseum, Stockholm",
+  ngv: "National Gallery of Victoria",
+  "centre-pompidou": "Centre Pompidou",
+  agsa: "Art Gallery of South Australia",
+  whitney: "Whitney Museum of American Art",
 };
 
 // Fly an OSD viewer to a normalized-image region {x,y,w,h} (all 0..1 fractions of the image).
@@ -1732,9 +1804,11 @@ function Reader({ id, go }) {
                  tile server — so they fell through to the Commons branch and advertised
                  either nothing or the dimensions of a thumbnail-grade Commons file. The real
                  number is the holder's master, which art_hires already records; the link asks
-                 the tile server for it at full size. */
+                 the tile server for it at full size. `full`, when present, overrides that guess:
+                 `full/full` is an IIIF 2 spelling and is INVALID on IIIF 3 (National Gallery
+                 London, 2026-08-25), where the size keyword is `max`. */
               <React.Fragment>
-                <a href={w.hires.iiif.replace(/\/info\.json$/, "/full/full/0/default.jpg")}
+                <a href={w.hires.full || w.hires.iiif.replace(/\/info\.json$/, "/full/full/0/default.jpg")}
                   target="_blank" rel="noopener noreferrer"
                   title={`The holder's master scan — ${w.hires.w}×${w.hires.h}px, a very large download; browsers display giant scans downsampled`}>
                   {`Ultra HQ ↗ ${w.hires.w}×${w.hires.h}`}

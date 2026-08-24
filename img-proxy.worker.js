@@ -33,6 +33,14 @@ const UPSTREAM = {
   // plate; a zoom session just fires many of them, which is what the edge cache absorbs.
   ngl: "https://www.nationalgallery.org.uk",    // IIIF 3.0, query-string form: /ngl/server.iip?IIIF=/fronts/<ACCESSION>-...-PYR.tif/...
   cpom: "https://www.centrepompidou.fr",        // DeepZoom .dzi + its tile pyramid
+  // second round, after MEASURING response headers instead of trusting a sourcing note that
+  // said only the two above lacked CORS. NGV replies acao=https://content.ngv.vic.gov.au (its
+  // own origin — useless cross-site); AGSA and Whitney send none. NGV matters most: Zoomify
+  // fetches no descriptor, so a CORS failure there is broken tiles with no open-failed event
+  // and therefore no automatic fallback to the canon plate.
+  ngv: "https://content.ngv.vic.gov.au",        // Zoomify pyramid: /ngv/<path>/TileGroup0/0-0-0.jpg
+  agsa: "https://agsa-prod.s3.amazonaws.com",   // plain JPEG
+  whitney: "https://whitneymedia.org",          // plain JPEG
   // culture (rollout 2026-08-22)
   tmdb: "https://image.tmdb.org",
   amzn: "https://m.media-amazon.com",
