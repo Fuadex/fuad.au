@@ -79,6 +79,13 @@ finding has this shape. The paragraphs describe the picture; the stops describe 
 `craft` may name a METHOD ("he loads the lights and scrubs the darks") but must not spend the
 INSTANCE ("the chemise is the thickest paint on the canvas") — that instance is a stop's only
 possible content. This is a scope rule, not a length rule.
+⚙ **AND THE SAME APPLIES TO `see` — RULED 2026-08-25.** The first repair batch found the
+verbatim restating sits in `see` MORE OFTEN than in `craft` (15 of 26 edits). `see` is the
+inventory, so it may **NAME** a thing; it may not **DESCRIBE** it, because then the stop has
+nothing left to reveal. Type specimen: `see` had pre-described the Zorn bird wing by wing —
+"flight feathers fanned into separate strokes, a long dark tail sweeping down the right edge"
+— so its stop could only echo. Trimmed to "the canvas erupts into a bird", the stop's
+full-wingspan reading lands. **`see` names, stops describe.**
 
 **LAW 3 — NO INVENTED HINGE.** The most damaging class (wave 2A): a stop's EMOTIONAL payload
 resting on a detail that is not in the painting. Renoir's *Mother and Children* calls joined
