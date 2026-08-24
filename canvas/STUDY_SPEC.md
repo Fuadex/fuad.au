@@ -125,6 +125,38 @@ the brief, every one failed. Four findings that change how drafting and QC shoul
   **Fix the error, then re-read the entry end to end for its propagation and for anything the
   first audit missed.**
 
+### ⚙⚙ TWO ORDERING RULES — measured on the first batch drafted under this spec (2026-08-25)
+
+Six new tours were drafted under the revised spec and self-checked. The result is precise:
+**the prose failure modes this spec names by name barely occurred** — zero craft-derived stops,
+zero invented hinges, and **zero dissolution-bias errors** (the near-check pushed the other
+way, into "Fuseli draws every rib", claims the drafter said they would previously have written
+as "everything dissolves"). Law 2's see-names/stops-describe split held. But two failures
+reproduced at full corpus rate anyway, and both are caused by the ORDER OF WORK, not by
+ignorance of the rule. Fix the order and they stop.
+
+**RULE A — BOXES ARE A SEPARATE SECOND PHASE. Draft bodies with placeholder coordinates,
+then place every box FROM ITS OWN CROP, never from the whole view.**
+17% of stops (8 of 47) had wrong boxes on the drafter's first pass — *while holding a decile
+grid, region grids and forty inspection crops*. Their own words: "the decile-grid estimates I
+drafted from were confidently wrong by 5–10 points… The drafting-time box rule tells you to
+check; it does not stop you estimating coordinates off a downscaled view and believing them."
+Typical misses: a stop titled "The head thrown back" boxed on a window; "The trunk" dominated
+by a white door jamb when the stem sits at x 0.664–0.684, not 0.56–0.70. **Only generating the
+crop and looking catches these.** Estimating from any downscaled view is not a method.
+
+**RULE B — WRITE THE STOPS FIRST, THE PARAGRAPHS AFTERWARDS.**
+`craft` pre-spent its own stops in **5 of 6 tours** — the exact corpus rate — despite Law 2
+being explicit and the drafter having read it that hour. The diagnosis: "It seems to be a
+property of writing the paragraphs first." A paragraph written before the stops exist has
+nothing to defer to, so it spends whatever it notices. Write the stops, then write the four
+paragraphs around what the stops have already taken.
+
+⚠ And one thing Law 3 does not cover, found the same day: **a drafter's own `flags` entry is
+a tell.** The one invented identification in the batch ("a bowed bass", propagated to `see`,
+a stop and `context`) had ALREADY been admitted as uncertain in the draft's own flags — the
+claim shipped anyway. **If it is in flags, it may not be asserted in the text.**
+
 ### THE CHECKLIST — run this, in this order, before any tour merges (2026-08-25)
 
 Everything above is why. This is what to do. Each item is a specific trigger and a specific
