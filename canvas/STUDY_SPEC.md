@@ -231,8 +231,12 @@ read of `craft` grepped against the stop bodies finds it in about a minute.
     calibration without opening anything. ⚙ Step 10's other real product is **the order in
     which to open crops**: in all five calibration works, the pair flagged at step 10 pointed
     at the crop that then produced the defect.
-11. **Box hygiene, mechanical** (this should be a SCRIPT, not an audit step). No two stops
-    sharing a box; no box nested inside another; no box whose title names something outside
+11. **Box hygiene, mechanical** (this should be a SCRIPT, not an audit step). ⚙ **NESTING IS
+    ONLY A DEFECT WHEN the containing box is MID-TOUR *and* the contained stop's subject is
+    one the container's own body never claims** (ruled 2026-08-25 by the first box-repair
+    batch, which declined most nesting flags as legitimate). Two legitimate shapes: every
+    detail stop sitting inside a wide OPENER, and region-to-detail zoom where the container
+    names the thing the next stop magnifies. No two stops sharing a box; no box whose title names something outside
     its own frame; no box clipping its named subject; no box outside [0, 1.002]. ⚙ Add one
     judgement check the arithmetic misses: **does the crop's dominant content support or
     contradict the body's premise?** Three calibration boxes were correctly placed and still
