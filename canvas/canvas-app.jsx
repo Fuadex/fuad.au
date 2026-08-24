@@ -3087,6 +3087,133 @@ function MapView({ go }) {
       }
       for (const mk of markers) mk.cityScale = cityScale.get(mk.city) || 1;
     }
+    // VARIED LEADER LENGTH (Fuad 2026-08-25: "the map still has lines overlapping, it's better
+    // but to be honest, the lines can be varied length when they fan out from cities, especially
+    // if they're about to overlap with other lines or dots. Currently London, Paris and Amsterdam
+    // still feel crowded."). Ring packing and halo separation both move WHOLE HALOS: every dot of
+    // a city sits on one of a few concentric circles, so a halo can only ever be shrunk as a unit
+    // — and it is already pinned at the 0.25 floor for exactly the three cities he names. The
+    // crowding that is left is BETWEEN halos and it is not uniform: a London dot pointing at open
+    // Atlantic has all the room in the world while its neighbour three slots round is buried in
+    // Rotterdam's ring. One number for the whole city cannot express that; a number per dot can.
+    //   So each dot keeps its solved ANGLE (he confirmed the fan itself reads right — "looking at
+    // Tokyo the dots properly fan out", so the angle assignment is not to be touched) and gets its
+    // own distance along it. UNEVEN LENGTHS ARE THE INTENDED OUTCOME, not a side effect: the dot
+    // that would collide gives ground, its neighbours do not, and the ring dissolves into a ragged
+    // fringe the eye can follow one leader at a time. Do not re-impose symmetry here.
+    //   THE FLOOR IS THE RIM, not rim + a dot. Since the seventh length pass the resting look has
+    // been dots sitting ON their bubble, and at cityScale 0.25 the ring radius is already inside
+    // rim + one dot radius — flooring at rim + dot would LENGTHEN every crowded halo, the exact
+    // opposite of every length pass in this file. Outward is allowed but capped (1.6 dot radii)
+    // and priced higher than inward, so escaping outward is a last resort.
+    //   SOLVED ONCE, HERE, FOR THE RESTING WORLD VIEW (vb.w = 880 → k = 1 → dotZoom = bubZoom =
+    // 0.5). That is where Fuad sees the crowding and it is also the worst case: zoom in and the
+    // dot shrinks in map units (dotZoom caps at 1 while k keeps falling) while the geography stays
+    // put, so halos only gain room. What crosses into the render is ONE SCALAR PER MARKER,
+    // `ringVary`, in RENDERED DOT RADII — the same currency ring packing counts in — so it rides
+    // the zoom with the dot it is dodging instead of freezing a map-unit offset. It has to be a
+    // scalar: fanAt runs per dot per frame, and 600 dots against a 9-rung radius ladder, four
+    // relaxation passes deep, is mount work, not frame work.
+    {
+      const K0 = 1, Z0 = 0.5;                      // the resting frame, spelled out
+      const dotR0 = 2.1 * K0 * dotMul * Z0;        // a halo dot's rendered radius there, map units
+      const OUT = 1.6, FLOOR = 0.35;               // outward cap / how close to the rim a dot may pull
+      const segD = (px, py, ax, ay, bx, by) => {
+        const dx = bx - ax, dy = by - ay, L = dx * dx + dy * dy;
+        let t = L ? ((px - ax) * dx + (py - ay) * dy) / L : 0;
+        t = t < 0 ? 0 : t > 1 ? 1 : t;
+        return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
+      };
+      const side = (ax, ay, bx, by, cx, cy) => (bx - ax) * (cy - ay) - (by - ay) * (cx - ax);
+      const crosses = (ax, ay, bx, by, cx, cy, dx2, dy2) =>
+        ((side(cx, cy, dx2, dy2, ax, ay) > 0) !== (side(cx, cy, dx2, dy2, bx, by) > 0)) &&
+        ((side(ax, ay, bx, by, cx, cy) > 0) !== (side(ax, ay, bx, by, dx2, dy2) > 0));
+      const nodes = markers.filter(mk => mk.ring != null).map(mk => {
+        const sc = mk.cityScale || 1;
+        const rim = (mk.keepR || 0) * Z0 * dotMul;
+        const base = rim + (dotR0 * 1.1 + mk.ring * dotR0 * 2.25) * sc;
+        return { mk, key: mk.bx + "|" + mk.by, ca: Math.cos(mk.ringAng), sa: Math.sin(mk.ringAng),
+          base, lo: Math.min(base, rim + dotR0 * FLOOR), r: base,
+          // the dot as DRAWN (loved dots are fatter, and cityScale shrinks them to a 0.82 floor)
+          rad: (unseenRank(mk.w) === 2 ? 2.1 : 1.7) * K0 * dotMul * Z0 * Math.max(0.82, sc),
+          x: mk.bx + Math.cos(mk.ringAng) * base, y: mk.by + Math.sin(mk.ringAng) * base };
+      });
+      // Neighbourhoods are cut per HALO, not per dot: a halo's reach is bounded, so two halos
+      // further apart than the sum of their reaches can never interact and their dots never need
+      // to be compared. That turns the inner loops from 600² into a few dozen candidates each.
+      const halo = new Map();
+      nodes.forEach((n, i) => {
+        let h = halo.get(n.key);
+        if (!h) { h = { x: n.mk.bx, y: n.mk.by, own: [], reach: 0 }; halo.set(n.key, h); }
+        h.own.push(i); h.reach = Math.max(h.reach, n.base + dotR0 * OUT + n.rad);
+      });
+      const hs = [...halo.values()];
+      const bubs = [...cities.list.map(c => ({ x: c.x, y: c.y, r: visRad(c) * Z0 * dotMul })),
+                    ...farList.map(f => ({ x: f.x, y: f.y, r: f.r * Z0 * dotMul }))];
+      for (const h of hs) {
+        h.near = []; h.bubs = [];
+        for (const g of hs) {
+          if (g === h || Math.hypot(h.x - g.x, h.y - g.y) >= h.reach + g.reach) continue;
+          for (const i of g.own) h.near.push(i);
+        }
+        for (const b of bubs) {
+          // identity by ANCHOR, not by city name: a far city and a visited one can share a name,
+          // and every marker's bx/by IS its halo's bubble centre
+          if (Math.abs(b.x - h.x) < 1e-6 && Math.abs(b.y - h.y) < 1e-6) continue;
+          if (Math.hypot(h.x - b.x, h.y - b.y) < h.reach + b.r) h.bubs.push(b);
+        }
+      }
+      for (const n of nodes) { const h = halo.get(n.key); n.near = h.near; n.bubs = h.bubs; n.own = h.own; }
+      // What a candidate distance COSTS. Foreign dot and foreign bubble are the two things Fuad
+      // points at, so they are dearest; a leader running under a foreign dot (either direction) or
+      // crossing a foreign leader is the "lines overlapping" half. Same-city overlap is priced
+      // HIGHEST because ring packing already solved that and this pass must not undo it — pulling
+      // a ring-1 dot in to ring-0's radius would be exactly that.
+      const costAt = (n, x, y) => {
+        let c = 0;
+        for (const j of n.near) {
+          const o = nodes[j];
+          const dx = x - o.x, dy = y - o.y, rr = n.rad + o.rad;
+          if (dx * dx + dy * dy < rr * rr) { c += 3; continue; }
+          if (segD(x, y, o.mk.bx, o.mk.by, o.x, o.y) < n.rad) c += 1.5;
+          if (segD(o.x, o.y, n.mk.bx, n.mk.by, x, y) < o.rad) c += 1.5;
+          if (crosses(n.mk.bx, n.mk.by, x, y, o.mk.bx, o.mk.by, o.x, o.y)) c += 1.5;
+        }
+        for (const b of n.bubs) {
+          const dx = x - b.x, dy = y - b.y, rr = b.r + n.rad;
+          if (dx * dx + dy * dy < rr * rr) c += 3;
+        }
+        for (const j of n.own) {
+          const o = nodes[j]; if (o === n) continue;
+          const dx = x - o.x, dy = y - o.y, rr = n.rad + o.rad;
+          if (dx * dx + dy * dy < rr * rr) c += 4;
+        }
+        return c;
+      };
+      // The ladder: the ring radius itself first (an unconflicted dot must not move — that is what
+      // keeps the resting halo recognisable), then four rungs in toward the rim and four out.
+      const IN = [0, 0.22, 0.45, 0.7, 1], EXTRA = [0.4, 0.8, 1.2, 1.6];
+      // four passes: the solve is order-dependent (a dot answers where its neighbours are NOW), so
+      // it needs to settle — measured on the real 600-dot set it is converged by four (six gives a
+      // bit-identical result), and the whole memo still returns in ~135ms at mount.
+      for (let pass = 0; pass < 4; pass++) {
+        for (const n of nodes) {
+          let bestR = n.base, bestC = Infinity;
+          for (let s = 0; s < IN.length + EXTRA.length; s++) {
+            const r = s < IN.length ? n.base - (n.base - n.lo) * IN[s]
+                                    : n.base + dotR0 * EXTRA[s - IN.length];
+            const x = n.mk.bx + n.ca * r, y = n.mk.by + n.sa * r;
+            // shortening is cheaper than lengthening — every length pass in this file has pulled
+            // leaders in, so an outward dodge has to earn nearly twice as much to be taken
+            const bias = (r < n.base ? 0.30 : 0.55) * Math.abs(r - n.base) / dotR0;
+            const c = costAt(n, x, y) + bias;
+            if (c < bestC - 1e-9) { bestC = c; bestR = r; }
+          }
+          n.r = bestR; n.x = n.mk.bx + n.ca * bestR; n.y = n.mk.by + n.sa * bestR;
+        }
+      }
+      for (const n of nodes) n.mk.ringVary = (n.r - n.base) / dotR0;
+    }
     const sortedCountries = [...ccMap.values()]
       .sort((a, b) => b.floored - a.floored || b.n - a.n || a.name.localeCompare(b.name));
     return {
@@ -3102,7 +3229,11 @@ function MapView({ go }) {
       wishList: Object.entries(byMus).sort((a, b) =>
         (a[0] === "home unknown") - (b[0] === "home unknown") || b[1].length - a[1].length),
     };
-  }, [cities]);
+    // dotMul joins the deps because the varied-length solve reasons about RENDERED sizes and
+    // dotMul is one of them. It is a useState with no setter — a mount-time media-query read that
+    // never changes — so this can never actually re-run the memo; it is here so the dependency is
+    // honest rather than implied.
+  }, [cities, dotMul]);
   const trips = useMemo(() => {
     const by = {};
     for (const m of MUSEUMS) for (const v of (m.visits || [])) {
@@ -3195,7 +3326,21 @@ function MapView({ go }) {
       const sc = mk.cityScale || 1;                    // neighbour-driven shrink, see HALO SEPARATION
       const dotR = 2.1 * k * dotMul * dotZoom;         // the dot's radius in MAP units
       const rimR = (mk.keepR || 0) * bubZoom * dotMul;
-      const r = rimR + (dotR * 1.1 + mk.ring * dotR * 2.25) * sc;
+      // TWELFTH PASS — VARIED LENGTH (Fuad 2026-08-25: "the lines can be varied length when they
+      // fan out from cities, especially if they're about to overlap with other lines or dots").
+      // The ring radius is still the natural resting distance; `ringVary` is a per-dot offset in
+      // RENDERED DOT RADII, solved once at mount against the actual neighbourhood (see VARIED
+      // LEADER LENGTH where the markers are built). Negative pulls the dot in toward its rim,
+      // positive pushes it out. UNEVEN LENGTHS ARE DELIBERATE — a dot that had nothing to dodge
+      // reads 0 and sits exactly where it always did, so the ring is still legible underneath.
+      // Stated in dot radii rather than map units so it scales with the dot at every zoom. The
+      // floor is the guarantee that no zoom (where the rim grows while the dot shrinks) can pull a
+      // shortened leader's dot inside its own bubble — and it is min()'d against the ring radius
+      // itself, because at a crushed cityScale the ring already sits nearer the rim than that:
+      // clamping up there would nudge every dot of a crowded halo OUTWARD, which is precisely the
+      // thing this file has spent eleven passes undoing.
+      const base = rimR + (dotR * 1.1 + mk.ring * dotR * 2.25) * sc;
+      const r = Math.max(Math.min(base, rimR + dotR * 0.35), base + dotR * (mk.ringVary || 0));
       return [mk.bx + Math.cos(mk.ringAng) * r, mk.by + Math.sin(mk.ringAng) * r];
     }
     const lo = (mk.keepR || 0) * bubZoom * dotMul + 2 * dotZoom * dotMul * 0.6;
