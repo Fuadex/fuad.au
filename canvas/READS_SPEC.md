@@ -15,6 +15,37 @@ and the A/B rulings of 2026-07-30 → 2026-08-05 (commits a67c492 → be8369a, b
 
 ## 1. The cascade
 
+### ⚙ THREE RULINGS — Fuad, 2026-08-25, after two cascade pilots
+
+**1. §5c GOVERNS THE BANDS. The Interpretation runs 95–115 words with a soft margin, ~3× the
+Info.** This settles the §5b/§5c conflict — both pilots wrote to different bands because §5b
+still asked 140–190. The RATIO is the rule (Interpretation ≈ 3× Info); the counts follow.
+
+**2. THE CHAIN IS FOUR STEPS, NOT FIVE. The distil-Info is DROPPED:**
+**study tour → hook-Info (background, facts web-verified) → Interpretation (tour-only
+sourcing) → ONE fused Info.**
+Fuad: *"we're already doing an info synthesis at the last stop anyway."* Both pilots reached
+this independently — all three distil-Infos were written, measured at zero 4-gram overlap, and
+then **discarded**, because 32–38 words cannot hold both a background hook and a distilled
+crux, and background wins under background-first. **The hook-Info stays and earns its keep:**
+researching BEFORE the Interpretation caught two facts the tour had already got wrong (a
+Trübner on panel not canvas, with a handling claim built on the weave; Monet sixty-seven not
+sixty-eight). It is a verification pass wearing an Info's clothes. The **tour-only fence** on
+the Interpretation also stays — because the drafters had nothing else, their gap logs are
+trustworthy, and that is how a hole in the TOUR is told apart from a hole in the WORLD.
+
+**3. THE TOUR MUST SETTLE THE IDENTIFICATION A STRANGER ASKS FIRST.** Where it cannot be
+verified, **FLAG it and decide per work** — the flag is the mechanism, not silence. Type
+specimen: an honest, fully crop-checked de Neuville tour from which **no usable Info could be
+written**, because it had scrupulously declined to say whose army was whose. The Info is not a
+compression of the tour, it is **the doorway**, and a doorway must answer *what am I looking
+at* to someone who knows nothing.
+
+⚠ Open, not ruled: §5b's **"every hook fact survives"** is unachievable at these bands — an
+Adler hook carried eight verified facts and the shipped Info holds two. Needs a preference
+rule for when the fusion must choose; the pilot's reading of the corpus is *the fact about the
+object beats the fact about the artist*.
+
 **Study tour → Interpretation → Info.** Work flows downhill; each stage distils the one
 above. Verified against the corpus: all 21 works in the about21 batch had tours first, and
 the derivation is visible — Hodler's tour `craft` opens "Parallelism, in Hodler's own use of
