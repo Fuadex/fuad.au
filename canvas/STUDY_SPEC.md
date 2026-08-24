@@ -166,6 +166,15 @@ action; none of it requires judgement about quality.
     in `craft` or `see`. If it does, the paragraph spends it — cut it from the paragraph, not
     from the stop.
 
+**D2. Per tour — no research note may ship as prose (2026-08-25)**
+12b. Grep the entry for `Fuad`, `sighting`, `unfixed`, `treat the`, `almost certainly`,
+    `cannot be confirmed`, `unverified`, `TBC`. A Matisse `context` shipped with *"Fuad's
+    sighting was almost certainly of it on loan… so treat the encounter as real but the venue
+    as unfixed"* — it names the owner, admits an unresolved lookup and breaks the register
+    every other tour holds. Unresolved questions belong in `flags` (stripped at merge), never
+    in the reader's text. Where `seenConfidence` is not `sure`, state the institutional fact
+    and stop. A corpus grep found this one isolated; re-run it after any batch.
+
 **E. When repairing an existing tour**
 13. Fix the flagged error, then **re-read the entire entry end to end** and re-run A–D on it.
     A repair that corrects one sentence and leaves its propagation elsewhere is a defect that
