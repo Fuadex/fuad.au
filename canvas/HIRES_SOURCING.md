@@ -2,6 +2,30 @@
 
 # The hi-res hunt — how art_hires.js got built, and everything that fought back
 
+## ⛔ FOUR TRAPS THAT LOOK LIKE WINS (round 3, 2026-08-25)
+
+Each passes a naive check and ships a regression. Test for them by name.
+
+1. **MANIFEST-WITHOUT-A-SERVICE.** Petit Palais / Paris Musées publishes *real IIIF manifests*
+   — and no image service behind them. The canvas points at a 6.97MP Drupal render against our
+   20.37MP plate. Adopting on the reputation of "they have IIIF" would have downgraded 17
+   works. **Always resolve a manifest to an actual `info.json` and measure it.**
+2. **A REAL PYRAMID WHOSE MASTER IS SMALLER THAN OURS.** Micrio is a genuine IIIF 3 level2
+   service, and two of its ids still lose: Van Gogh Museum's *Raising of Lazarus* at 4000×3059
+   against our 7336×5611 (−28.9MP), and a Kröller-Müller Van Gogh self-portrait (−13.9MP).
+   Tiling is not a licence to skip the measurement — **every id individually.** Same class as
+   Belvedere, whose clean IIIF caps at 1772px, below our plates.
+3. **HTTP 200 FROM AN SPA CATCH-ALL.** ColBase (Tokyo National) returns 200 for *every* path
+   including `/iiif/`, because the front end serves its shell to anything. Status alone scores
+   it a live IIIF holder; **only content-type exposes it.**
+4. **A MIS-TYPED WIKIDATA PROPERTY.** MNK's P6108 ("IIIF manifest") points at a plain
+   object-record JSON API. **P6108 is not self-validating** — fetch and inspect it.
+
+Also keep in mind the **flat-render downgrade** (Nationalmuseum's render caps at 1000px while
+its pyramid reaches 11,016 — adopting the render as `img` silently downgrades works currently
+at 2,800–4,300px; tile source only) and **Zoomify's silent failure** (no descriptor fetch, so
+a CORS failure gives broken tiles with no `open-failed` event and therefore no fallback).
+
 Companion to [HIRES_GALLERY.md](HIRES_GALLERY.md) (the ranked results). This is the
 methodology and the incident log: two days of sourcing (2026-08-22/23) that took the store
 from **89 entries to 1,029**, and the surprisingly long list of ways a "just get the big
