@@ -123,26 +123,78 @@ the brief, every one failed. Four findings that change how drafting and QC shoul
 Everything above is why. This is what to do. Each item is a specific trigger and a specific
 action; none of it requires judgement about quality.
 
-**A. Per stop, before writing a word of it**
+**⚙ CALIBRATED 2026-08-25 against a live run** (5 tours, ~210 grep hits adjudicated, hit rates
+measured). Changes from that run are marked ⚙. Run the cheap structural pass (group D) FIRST —
+on two of those five tours it condemned five of seven and five of six stops before a single
+image was opened.
+
+**A. Per stop, before writing a word of it — AND when auditing one**
+⚙ These are the load-bearing steps in both directions. Every one of the four largest findings
+in the calibration run came from doing exactly this and finding the stop's subject ABSENT:
+a crop with no foot under "The bare foot at the couch edge"; a crop with no bell under "The
+great bell"; a crop with no gauntlet under a stop titled for one; a crop holding a standing,
+uncrowned, dominant man under a stop describing a seated, crowned, lowly king.
+⚙ **When auditing, run step 1 with the body COVERED.** Naming the crop's contents after
+reading the body anchors you to the body — the same failure the whole-image-account ordering
+exists to prevent.
+⚙ **Write the whole-image account off the HIGHEST-RESOLUTION whole view available.** In the
+calibration run a small `img_` render produced an account that was wrong about the
+composition, and the larger overlay only corrected it after the tour had been read. That is
+the Szał false-negative lesson one level up.
 1. Open `box_<id>_N.jpg`. Name aloud the three most prominent things in the crop.
 2. If the thing the stop is about is not among them, the box is wrong — fix the box or
    change the stop. Do not write the stop and hope.
 3. Write the body from those three things outward. If the body's subject arrived from the
    `craft` paragraph rather than from the crop, delete it and start at the crop.
 
-**B. Per stop, after writing it — the four greps**
-4. **Absolute negatives.** Search the body for: `no `, `not a single`, `nothing`, `never`,
-   `only`, `barely`, `without any`, `stops being`. For EVERY hit, look at the crop and prove
-   the absence. These were refuted at a ~100% rate in the re-audit.
-5. **Superlatives.** Search for `the only`, `the brightest`, `the darkest`, `the largest`,
-   `the most`. Each asserts a corpus-of-one ranking over the whole picture — verify against
-   the PLATE, not the crop, because the counter-example is usually outside the box.
-6. **Direction and count words.** `left`, `right`, `above`, `below`, `upper`, `lower`,
-   `vertical`, `horizontal`, `diagonal`, `two`, `three`, `both`, `single`, `pair`. Check each
-   against the image. Direction errors and miscounts were the second-commonest defect class.
-7. **Finish claims.** `loose`, `dissolve`, `blurred`, `unfinished`, `smudged`, `barely
-   painted`, `no contour`, `no modelling`. THE DISSOLUTION BIAS makes these wrong in one
-   direction — assume the passage is more finished than you wrote and check.
+**B. Per stop, after writing it — the greps, in yield order** ⚙ (rates from the calibration run)
+4. **Finish claims — DO THIS ONE FIRST. ~38% hit rate, the best ratio in the protocol.**
+   `loose`, `dissolve`, `blurred`, `unfinished`, `smudged`, `barely painted`, `no contour`,
+   `no modelling`, `smeared`, `decaying`. THE DISSOLUTION BIAS is directional and reproduced
+   perfectly in calibration: **every wrong finish claim was wrong toward more-dissolved, with
+   zero counter-examples.** Assume the passage is more finished than you wrote, then check.
+5. **Absolute negatives and superlatives — ~9%.** `no `, `not a single`, `nothing`, `never`,
+   `only`, `the only`, `barely`, `without any`, `stops being`, `the brightest`, `the darkest`,
+   `the largest`, `the most`. Prove each absence or ranking against the image — and verify
+   superlatives against the PLATE, not the crop, since the counter-example usually sits
+   outside the box. ⚙ These two were separate greps and are merged: they fire on the same
+   sentences and yielded nothing separable. ⚙ **A previous draft of this file claimed these
+   are refuted at ~100%. That did not reproduce — plenty verify as sound. Check them; do not
+   convert them on sight.**
+6. **Body-side, count, and uniqueness words — ~6% rate but the highest absolute yield.**
+   ⚙ NARROWED, which cut the labour by about two thirds and lost nothing in calibration.
+   Grep ONLY: (a) possessive body-side — `his/her left|right` + `hand`, `wrist`, `arm`,
+   `shoulder`, `foot`; (b) bare numerals — `two`, `three`, `four`, `single`, `a pair`,
+   `both`; (c) articles asserting uniqueness — "**the** epaulette", "**a** shackle".
+   ⚙ Compositional direction words (`above`, `below`, `upper`, `on the left`) produced ZERO
+   findings across 32 stops — do not grep them.
+7. ⚙ **Hedges — NEW, and it fired 8 times in calibration.** Grep ` or `, `appear`, `seems`,
+   `reads as`, `almost`, `nearly`, `possibly`, `treated as uncertain`. **A hedge must survive
+   the zoom.** Calibration found: "eyes shut or nearly so" (fully shut), "appear bound"
+   (plainly bound, hinge-pin visible), "its faint smoke would drift" (smoke visible), "a heavy
+   dark band or shackle" (two unambiguous manacles), and TWO first-person doubts shipped in a
+   reader-facing body ("I read the lettering as CODE…"), both resolved by their own crops.
+   Resolve every hedge or move it to `flags`.
+7b. ⚙ **Read the TITLE against its own body and its own crop — NEW.** Three calibration
+   defects lived in titles while the bodies were sound or self-correcting: "The bare foot at
+   the couch edge" (no foot), "The boy on the frame" (a bearded man — the body says so),
+   "Mother and child, eye to eye" (no eye contact — the body says "very nearly"). Titles are
+   short, unhedged, and apparently drafted independently of the body; nothing else here
+   looks at them.
+
+7c. ⚙ **RELATION CLAIMS — verify on the PLATE, never the crop. NEW, and it is the gap that let
+   the worst defect of the calibration run through.** Any stop whose subject is a RELATION
+   rather than a mark — `cut by the frame`, `runs off the edge`, `the emptiest area`,
+   `diagonally opposite`, `answers the`, `above/behind the`, `the only X in the picture` — is
+   invisible to every mark-local step above. Type specimen: a Monet stop titled "Cut by the
+   frame" argues the boat is sliced by the canvas edge so the viewer completes it; the boat is
+   a **complete closed oval** with water beyond both ends. It passes steps 1–3 (the crop does
+   contain a boat) and passes the greps. **Three of five headline defects in the calibration
+   run were this shape.**
+7d. ⚙ **HANDEDNESS — NEW.** For any figure facing the viewer, viewer-left = the sitter's
+   RIGHT. Check every `his/her left|right` against the box's x-coordinate. Calibration found a
+   Renoir reversing it twice, and David's *Napoleon* putting the most famous hand-in-waistcoat
+   in art on the wrong hand.
 
 **C. Per stop, the two structural tests**
 8. **The deepen test.** Cover the four paragraphs. Does the stop still say something? If its
@@ -154,14 +206,31 @@ action; none of it requires judgement about quality.
    not, the claim goes or the box moves.
 
 **D. Per tour, before merge**
+⚙ **RUN GROUP D FIRST, NOT LAST.** Both calibration auditors reached this independently.
+Steps 10 + 12 + the box arithmetic produced about **30% of total yield at roughly 10% of the
+effort**, and running them last means adjudicating stops that should not exist. Step 12 failed
+in 5 of 5 tours (~17 of 37 stops); `craft` pre-spends its stops, often word for word, and one
+read of `craft` grepped against the stop bodies finds it in about a minute.
+
 10. **Diff the tour against itself.** Read `see`, `about`, `craft` and every stop looking only
     for pairs that disagree — a parasol vertical in one and diagonal in another, an object
     "dull red" in one and "the more saturated of two" in another, a tie "hot" in one and
     "cool" in another. Every such pair has a wrong half, and this finds them with no image at
     all. Cheapest check in the protocol.
-11. **Box hygiene, mechanical.** No two stops sharing a box; no box whose title names
-    something outside its own frame; no box clipping its named subject; no box outside
-    [0, 1.002].
+10b. ⚙ **BOX ARITHMETIC — free, no image needed.** Read every box's coordinates against its
+    body's stated location. A Seurat stop said "a patch of open water **just below the
+    horizon**" while its own box sat at y 0.18–0.31 and the tour's own text put the horizon "a
+    third down" — provably in the sky, from two numbers. This caught 3 of 9 box defects in
+    calibration without opening anything. ⚙ Step 10's other real product is **the order in
+    which to open crops**: in all five calibration works, the pair flagged at step 10 pointed
+    at the crop that then produced the defect.
+11. **Box hygiene, mechanical** (this should be a SCRIPT, not an audit step). No two stops
+    sharing a box; no box nested inside another; no box whose title names something outside
+    its own frame; no box clipping its named subject; no box outside [0, 1.002]. ⚙ Add one
+    judgement check the arithmetic misses: **does the crop's dominant content support or
+    contradict the body's premise?** Three calibration boxes were correctly placed and still
+    wrong — wide establishing crops whose dominant content refuted their own stop's premise
+    of emptiness.
 12. **Paragraph scope.** For each stop, confirm its specific instance does not already appear
     in `craft` or `see`. If it does, the paragraph spends it — cut it from the paragraph, not
     from the stop.
