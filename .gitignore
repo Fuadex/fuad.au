@@ -26,6 +26,17 @@ notes/
 # until 2026-08-19, i.e. one `git add -A` away from being published.
 .sptmp/
 
+# the same hole, found again 2026-08-25: .dtmp/ holds the tour-QC wave workshops (downloaded
+# museum plates, overlays, per-stop crops, batch apply scripts) and was untracked but NOT
+# ignored — one `git add -A` from committing tens of MB of plates.
+.dtmp/
+
+# local image corpus: the plates the QC waves downloaded, kept OUT of scratch so they survive
+# workshop cleanup and can be pointed at by later ML work. Large, redistributable only under
+# each source's terms, and nothing the site needs at runtime — the app fetches its own plates.
+# Contents and caveats: .plates/README.local.md
+.plates/
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db
