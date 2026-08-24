@@ -192,6 +192,16 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
   1828. The earlier zero was an artifact of method: knowledge-QC checks history; only
   the whole-first image account (pipeline step 4) checks what's on the canvas. QC_LEDGER
   coverage claims for the visual layers date from before this instrument existed.
+- **A poor plate manufactures false QC findings** (wave 1, 2026-08-24). The Szał QC agent
+  reported the horse's thrice-asserted "red eye" as unsupported — from a 600×719 plate. At
+  2505×3000 the red rim is plainly there; the tour was right and the flag was overturned.
+  So: **check the plate's pixel size BEFORE trusting a negative visual finding**, and where
+  the plate is poor, upgrade the site (rule below) rather than "fixing" the tour to match a
+  bad image. Standing gap: **71 of 363 toured works have no `art_hires` record**, so their
+  Study zoom is capped at the 900px canon plate — a backfill campaign worth its own batch.
+- **Stop titles are NOT unique corpus-wide.** A fix script that locates a stop by
+  `indexOf(title)` will silently edit a different painting ("The white collar" exists on two
+  works; caught by a round-trip assert in wave 1). Always scope edits to the entry key's span.
 - **Draft against the plate the SITE displays** (tours10, 2026-08-13). Box coordinates are
   fractions of the displayed image, so a tour drafted on a different Commons reproduction of
   the same painting is invalid — every box flies to the wrong region. Before drafting, read
