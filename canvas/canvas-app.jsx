@@ -3078,7 +3078,13 @@ function MapView({ go }) {
   // "half the length they are now"). The fan renders at 40% of its solved length; fanAt clamps
   // the contracted offset at the marker's `keep` floor so no dot is ever pulled back inside
   // its own bubble — at this ceiling most dots ride near that floor, which is the point.
-  const fanK = Math.max(0.14, Math.min(0.24, k * 0.24));
+  // Both contraction factors are LAWS OF k, hoisted into named functions because the branch
+  // declutter (see `declutterLeaders`) has to evaluate them at a k that is not this render's:
+  // it runs the instant a city is focused, while the viewBox is still the world view, and has to
+  // reason about the frame the focus effect is about to commit. One definition each, no drift.
+  const FAN_K_AT = (kk) => Math.max(0.14, Math.min(0.24, kk * 0.24));
+  const BRANCH_K_AT = (kk) => Math.max(0.35, Math.min(0.8, kk * 0.8));
+  const fanK = FAN_K_AT(k);
   const fanAt = (mk) => {
     const ox = mk.x - mk.bx, oy = mk.y - mk.by, len = Math.hypot(ox, oy) || 0.001;
     // COLLAR MODEL (Fuad 2026-08-22, sixth line-length pass: "cut pretty much all of them by
@@ -3147,7 +3153,7 @@ function MapView({ go }) {
   // and have the room. So museums get ~2.5x the resting fan while their WORK dots keep the
   // resting spacing, which he signed off on. The focused viewBox is framed from `branch.reach`,
   // measured in uncontracted world units, so a longer museum fan still fits without reframing.
-  const branchK = Math.max(0.35, Math.min(0.8, k * 0.8));
+  const branchK = BRANCH_K_AT(k);
   const towardsBranch = (px, py, x, y) => [px + (x - px) * branchK, py + (y - py) * branchK];
   // LABEL ZOOM (Fuad 2026-08-24: "reduce the text size when zoomed in so close"). Label sizes are
   // multiplied by k, which keeps them a CONSTANT size on screen at every zoom — so as you close
@@ -3269,6 +3275,194 @@ function MapView({ go }) {
     for (const nd of nodes) clearParent(nd);                   // final hard guarantee: nothing under the parent
     return nodes;
   };
+  // ——— LEADER DECLUTTER (Fuad 2026-08-24: "allow the lines to reduce their lengths if they are to
+  // overlap with other lines ... we don't need all to be symmetrical, I do like how the lines and
+  // dots branch off when clicking inside a city"). relaxFan above solves DOT versus DOT and has no
+  // concept of the segments joining them, which is why an opened city still showed leaders crossing
+  // each other and skewering other museums' dots — the dots were all legally spaced, the lines
+  // between them were not. The branching is liked and is NOT redesigned here. Every leader keeps
+  // its solved ANGLE exactly; the only thing this pass touches is how far along that angle the
+  // child sits. The lengths therefore come out DELIBERATELY UNEVEN, and that unevenness is the fix
+  // rather than a side effect — he asked for it in as many words. Where two leaders are both spent
+  // we accept the overlap instead of bending an angle: a wrong angle is a lie about the geometry,
+  // a touching line is only untidy.
+  //
+  // WHICH SPACE. Solved in RENDERED map units, not the world units relaxFan works in, because the
+  // two are not the same picture. A museum draws at city + (m - city) * branchK — a uniform scale
+  // about the city, which preserves crossings, so that tier alone could have been solved either
+  // way. A WORK does not: it draws at M + (w - M) * fanK where M is the museum's ALREADY-CONTRACTED
+  // position (see `towards` and the museum-fan note above), i.e. the vector runs from the contracted
+  // parent to the UNcontracted child. That is not a scaled copy of the world-unit fan — it carries
+  // an extra outward shove of fanK * (1 - branchK) * |m - city| — so a work leader's on-screen angle
+  // and length are genuinely different quantities from its world-unit ones, and a crossing solved in
+  // world units would be a crossing nobody can see. So: contract, solve, invert back to world units.
+  // The inversion is exact, so the renderer reproduces this layout to the pixel.
+  //
+  // WHICH k. The contraction depends on k and at the moment a city is focused the live k is still
+  // the world view's, so we use the k the focus effect is ABOUT to commit — half = max(28, reach+6),
+  // w = 2 * half — measured from the pre-declutter extent. That is an upper bound, since this pass
+  // only ever shortens, which leaves the clearances a hair conservative. In practice both laws sit
+  // pinned at their FLOOR for any frame you can reach while focused (fanK leaves its floor only
+  // above vb.w ~513 and branchK above ~385, while a focused frame is ~60-90 wide), so the solved
+  // layout survives zooming unchanged; only the dot radii, which are screen-constant, breathe.
+  //
+  // A MOVED MUSEUM CARRIES ITS WORKS, rigidly, in the rendered space: the museum's step inward is
+  // added to each of its works' raw anchors, which is exactly the amount that leaves fanK * (w - M)
+  // — the work's entire rendered leader, angle and length — unchanged, so the sub-fan translates as
+  // one body. This is not fussiness. The obvious alternative, letting each work re-derive from the
+  // moved museum, does the OPPOSITE of what it sounds like: w is fixed while M steps toward the
+  // city, so (w - M) grows and pulling a museum in FLINGS its works outward. The first build of this
+  // pass did that and traded two crossings for fifty grazes before the numbers caught it.
+  //
+  // BEST-OF, NOT LAST. Shortening to clear a CROSSING is monotone — the new segment is a subset of
+  // the old, so it cannot invent one — but shortening to clear a GRAZE moves a dot, and a moving dot
+  // can wander onto some third line. So every pass is scored (a crossing counts treble a graze) and
+  // the best state seen is what gets written back, with the untouched input as pass zero. That makes
+  // the whole pass strictly non-worsening: if it cannot beat the layout it was handed, it hands it
+  // straight back.
+  //
+  // Not modelled, on purpose: `grow` (the unfurl tween) and the cursor fisheye, both per-frame and
+  // transient, and the bow on each connector — its control offset is capped at 2.2k / 1.4k, well
+  // under a dot radius of mid-curve deviation, so the chord is a faithful stand-in and `pad` below
+  // pays a little of it back. Runs once per focus change over <15 museums and <100 works, so the
+  // O(n²) pair sweep is a few tens of thousands of cheap tests — never per frame.
+  const declutterLeaders = (cx, cy, cityR, nodes) => {
+    if (!nodes.length) return;
+    let ext = cityR + 4;                                       // mirrors the reach loop / focus framing
+    for (const nd of nodes) {
+      ext = Math.max(ext, Math.hypot(nd.x - cx, nd.y - cy) + nd.mr + 5.2);
+      for (const wn of nd.wnodes) ext = Math.max(ext, Math.hypot(wn.x - cx, wn.y - cy) + wn.r);
+    }
+    const kF = Math.max(28, ext + 6) * 2 / 880;                // the focused frame's k
+    const bK = BRANCH_K_AT(kF), fK = FAN_K_AT(kF);
+    const cityRr = cityR * 1.55 * kF;                          // the city blob as DRAWN
+    const pad = 1.6 * kF;                                      // breathing room, and the bow's slop
+    const KEEP = 0.45;                                         // never below this share of natural:
+    const PASSES = 10, SHRINK = 0.92;                          // uneven is wanted, collapsed is not
+    // One segment per leader. pid/cid are identities, not indices: two segments sharing an endpoint
+    // (siblings off one parent, or a museum leader and the works hanging off its far end) meet there
+    // by construction and must never be read as a collision. Museum ids are >= 0 and the sentinels
+    // negative, so the three identity tests in `rel` cover every such pair.
+    const segs = [], wSeg = [], wByM = nodes.map(() => []);
+    const mSeg = nodes.map((nd, i) => {
+      const dx = (nd.x - cx) * bK, dy = (nd.y - cy) * bK, L = Math.hypot(dx, dy) || 0.001;
+      const s = { pid: -1, cid: i, mi: i, work: null, nd, px: cx, py: cy,
+                  ux: dx / L, uy: dy / L, len: L, r: nd.mr * kF, x: cx + dx, y: cy + dy };
+      s.floor = Math.min(L, Math.max(cityRr + s.r + pad, L * KEEP));
+      segs.push(s); return s;
+    });
+    for (let i = 0; i < nodes.length; i++) for (const wn of nodes[i].wnodes) {
+      const s = { pid: i, cid: -2, mi: i, work: wn, r: wn.r * kF * dotMul, wx: wn.x, wy: wn.y,
+                  px: 0, py: 0, ux: 1, uy: 0, len: Infinity, floor: 0, x: 0, y: 0 };
+      wByM[i].push(s); wSeg.push(s); segs.push(s);
+    }
+    // a work hangs off its museum's CURRENT rendered spot; its stored length is capped by, and on
+    // first call set to, the full leader the renderer would draw
+    const placeW = (s) => {
+      const m = mSeg[s.mi];
+      const dx = (s.wx - m.x) * fK, dy = (s.wy - m.y) * fK, L = Math.hypot(dx, dy) || 0.001;
+      s.px = m.x; s.py = m.y; s.ux = dx / L; s.uy = dy / L;
+      s.floor = Math.min(L, Math.max(m.r + s.r + pad, L * KEEP));
+      s.len = Math.max(s.floor, Math.min(L, s.len));
+      s.x = s.px + s.ux * s.len; s.y = s.py + s.uy * s.len;
+    };
+    const placeM = (s) => {
+      const ox = s.x, oy = s.y;
+      s.x = cx + s.ux * s.len; s.y = cy + s.uy * s.len;
+      const dx = s.x - ox, dy = s.y - oy;                      // the sub-fan rides along, rigidly
+      for (const w of wByM[s.mi]) { w.wx += dx; w.wy += dy; placeW(w); }
+    };
+    for (const s of wSeg) placeW(s);
+    const side = (ax, ay, bx, by, px, py) => (bx - ax) * (py - ay) - (by - ay) * (px - ax);
+    const crosses = (a, b) => {
+      const d1 = side(a.px, a.py, a.x, a.y, b.px, b.py), d2 = side(a.px, a.py, a.x, a.y, b.x, b.y);
+      const d3 = side(b.px, b.py, b.x, b.y, a.px, a.py), d4 = side(b.px, b.py, b.x, b.y, a.x, a.y);
+      return (d1 > 0) !== (d2 > 0) && (d3 > 0) !== (d4 > 0);
+    };
+    // a line GRAZING a foreign dot reads as overlap just as loudly as a crossing does
+    const grazes = (s, px, py, rad) => {
+      const vx = s.x - s.px, vy = s.y - s.py, L2 = vx * vx + vy * vy || 1e-6;
+      const t = Math.max(0, Math.min(1, ((px - s.px) * vx + (py - s.py) * vy) / L2));
+      return Math.hypot(s.px + vx * t - px, s.py + vy * t - py) < rad;
+    };
+    const rel = (a, b) => a.pid === b.pid || a.pid === b.cid || a.cid === b.pid;
+    const cost = (a, b) => {
+      const rad = a.r + b.r + pad;
+      return (crosses(a, b) ? 3 : 0) +
+             ((grazes(a, b.x, b.y, rad) || grazes(b, a.x, a.y, rad)) ? 1 : 0);
+    };
+    const score = () => {
+      let sc = 0;
+      for (let i = 0; i < segs.length; i++) for (let j = i + 1; j < segs.length; j++)
+        if (!rel(segs[i], segs[j])) sc += cost(segs[i], segs[j]);
+      return sc;
+    };
+    // the whole solve is two numbers per leader (a length, and for a work the anchor its museum has
+    // dragged around), so snapshotting the input costs nothing worth counting
+    const capture = () => ({ m: mSeg.map(s => s.len), w: wSeg.map(s => [s.wx, s.wy, s.len]) });
+    const restore = (st) => {
+      mSeg.forEach((s, i) => { s.len = st.m[i]; s.x = cx + s.ux * s.len; s.y = cy + s.uy * s.len; });
+      wSeg.forEach((s, i) => { s.wx = st.w[i][0]; s.wy = st.w[i][1]; s.len = st.w[i][2]; });
+      for (const s of wSeg) placeW(s);
+    };
+    // every pair a move can possibly disturb. Moving a museum drags its sub-fan, so its own works
+    // count as part of it; two works of ONE museum are rigid against each other and `rel` skips
+    // them anyway, which is what makes this an exact accounting rather than a heuristic.
+    const localCost = (s) => {
+      let sc = 0;
+      const mine = s.work ? [s] : [s, ...wByM[s.mi]];
+      for (const p of mine) for (const o of segs) if (o !== p && !rel(p, o)) sc += cost(p, o);
+      return sc;
+    };
+    const move = (s, len) => {
+      s.len = len;
+      if (s.work) { s.x = s.px + s.ux * s.len; s.y = s.py + s.uy * s.len; } else placeM(s);
+    };
+    // One step inward, KEPT ONLY IF IT PAYS. placeM's delta is computed from where the museum was,
+    // so calling move() with the old length applies the exact inverse translation to the sub-fan —
+    // the undo is reversible to the bit, which is what lets us gamble a move and take it back.
+    // Accepting ties (<=, not <) is deliberate twice over: a step of 8% rarely clears a conflict on
+    // its own, so demanding immediate profit would freeze the solve before it started, and a leader
+    // whose overlap cannot be cleared at all still ends up shorter — which is the letter of the
+    // request, "reduce their lengths if they are to overlap".
+    const tryShrink = (s) => {
+      const was = s.len, next = Math.max(s.floor, s.len * SHRINK);
+      if (next >= was - 1e-6) return false;                    // already on its floor
+      const before = localCost(s);
+      move(s, next);
+      if (localCost(s) <= before) return true;
+      move(s, was); return false;
+    };
+    const start = capture(), sc0 = score();
+    for (let pass = 0; pass < PASSES && sc0 > 0; pass++) {
+      const tried = new Set();                                 // one ATTEMPT per leader per pass, so a
+      let moved = false;                                       // crowded node can't stampede the solve
+      for (let i = 0; i < segs.length; i++) for (let j = i + 1; j < segs.length; j++) {
+        const a = segs[i], b = segs[j];
+        if (rel(a, b) || !cost(a, b)) continue;
+        // spend the LONGER one's slack first, and fall through to the other if it has none left or
+        // its step didn't pay. If neither can give, the overlap stands: angles win over tidiness.
+        for (const t of a.len >= b.len ? [a, b] : [b, a]) {
+          if (tried.has(t) || t.len <= t.floor + 1e-6) continue;
+          tried.add(t);
+          if (tryShrink(t)) { moved = true; break; }
+        }
+      }
+      if (!moved) break;
+    }
+    if (score() > sc0) restore(start);                         // belt and braces: never ship a regression
+    // back to world units. The renderer re-applies exactly the contraction inverted here, so what it
+    // paints is what was solved. Museums first: the work write-back reads mSeg's RENDERED x/y, which
+    // that loop leaves untouched (it writes to nd, not to the segment).
+    for (const s of mSeg) {
+      s.nd.x = cx + (s.x - cx) / bK; s.nd.y = cy + (s.y - cy) / bK;
+      s.nd.lx = s.nd.x; s.nd.ly = s.nd.y - (s.nd.mr + 4.2);
+    }
+    for (const s of wSeg) {
+      const m = mSeg[s.mi];
+      s.work.x = m.x + (s.x - m.x) / fK; s.work.y = m.y + (s.y - m.y) / fK;
+    }
+  };
   const branch = useMemo(() => {
     if (!focus) return null;
     // FAR BRANCH (2026-08-22): a far city opens exactly like a visited one — venues fan out of
@@ -3297,6 +3491,7 @@ function MapView({ go }) {
         const wnodes = wFan.map((wn) => ({ w: wn.it, x: wn.x, y: wn.y, r: wRof(wn.it) }));
         return { m, x: mx, y: my, mr: mn.r, wnodes, nw: works.length, lx: mx, ly: my - (mn.r + 4.2) };
       });
+      declutterLeaders(f.x, f.y, cityR, nodes);   // shorten crossing leaders BEFORE measuring reach
       let reach = cityR + 4;
       for (const nd of nodes) {
         reach = Math.max(reach, Math.hypot(nd.x - f.x, nd.y - f.y) + nd.mr + 5.2);
@@ -3346,6 +3541,7 @@ function MapView({ go }) {
       // label sits clear ABOVE the bubble; leader line drawn if the offset is non-trivial
       return { m, x: mx, y: my, mr: mn.r, wnodes, nw, lx: mx, ly: my - (mn.r + 4.2) };
     });
+    declutterLeaders(c.x, c.y, cityR, nodes);     // shorten crossing leaders BEFORE measuring reach
     // FIX 2 (2026-07-17): frame from the ACTUAL fan extent (every bubble edge relative to the city
     // anchor) rather than a loose formula, so the focused viewBox always contains the whole fan with
     // a small margin and never leaves the country. reach = furthest bubble edge from the city centre.

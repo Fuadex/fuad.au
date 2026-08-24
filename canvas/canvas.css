@@ -492,9 +492,14 @@ a { color: inherit; }
 .cv-reel-wrap { position: relative; }
 /* the hovered strip outranks every later row. Without this the pop is painted under the
    venue/city blocks that follow it in source order, which is what "covered by the row's
-   container" looked like. */
-.cv-reel-wrap:hover, .cv-reel-wrap:focus-within { z-index: 60; }
-.cv-pil-venue:hover, .cv-pil-city:hover, .cv-pil-country:hover { position: relative; z-index: 50; }
+   container" looked like.
+   CAPPED at 30/25 (Fuad 2026-08-24): hover persists until the pointer leaves, so a card
+   you just clicked to open the reader keeps this elevation — it must not outrank the reader
+   layer (40/41). The reader deliberately sits below .cv-zoom(60)/.cv-osd(70)/.cv-study(80)
+   so a deep-zoom opened from inside the reader still covers it; raising the reader is not
+   the fix. 30 matches .cv-reel-pop's own z-index within its stacking context. */
+.cv-reel-wrap:hover, .cv-reel-wrap:focus-within { z-index: 30; }
+.cv-pil-venue:hover, .cv-pil-city:hover, .cv-pil-country:hover { position: relative; z-index: 25; }
 .cv-reel { display: flex; gap: 6px; overflow-x: auto; padding: 2px 0 8px; scrollbar-width: thin; }
 .cv-reel::-webkit-scrollbar { height: 6px; }
 .cv-reel::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
