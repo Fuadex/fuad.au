@@ -26,6 +26,13 @@ const UPSTREAM = {
   commons: "https://commons.wikimedia.org",
   met: "https://images.metmuseum.org",
   aic: "https://www.artic.edu",
+  // canvas deep-zoom (rollout 2026-08-25, pasted to the dashboard by Fuad). Both are
+  // CORS-LESS upstreams — they send no Access-Control-Allow-Origin, so OpenSeadragon cannot
+  // read their tiles cross-origin and the proxy is not an optimisation here, it is the only
+  // way these render at all. Tiles are 256-512px, i.e. far cheaper per request than a whole
+  // plate; a zoom session just fires many of them, which is what the edge cache absorbs.
+  ngl: "https://www.nationalgallery.org.uk",    // IIIF 3.0, query-string form: /ngl/server.iip?IIIF=/fronts/<ACCESSION>-...-PYR.tif/...
+  cpom: "https://www.centrepompidou.fr",        // DeepZoom .dzi + its tile pyramid
   // culture (rollout 2026-08-22)
   tmdb: "https://image.tmdb.org",
   amzn: "https://m.media-amazon.com",
