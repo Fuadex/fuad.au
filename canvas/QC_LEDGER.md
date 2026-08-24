@@ -25,6 +25,10 @@ whenever a QC pass runs — coverage claims that aren't recorded here don't coun
 
 | 2026-08-24 | **IMAGE-QC WAVE 1 — 20 tours** (risk-scored: loose handling + dense scenes; workshop .dtmp/tourqc-pass/w1/) | whole-first protocol per STUDY_SPEC: 5 Opus agents × 4 works, account written before opening the tour, then paragraphs diffed, then every stop judged on its own crop; Fable re-verified every load-bearing flag against the plates | **5× Opus + Fable (verify/apply)** | **10 clean · 7 minor · 3 defective.** Applied (commit ac97a3f): 20 text + 11 box fixes over 8 works. Box class (crop did not contain the described object): Balcony s6 boy past the edge, Sainte-Adresse s6 + Degas s6 both aimed at bare canvas, Boldini s5 hand, Degas s4 collar. Embellishment class: Wystawa ×3, Luncheon fingers-spread, Balcony parasol, Morisot earring colour, Boldini ocellus count. Fact class: Szał Kraków→Zachęta/Warsaw ×3, age 29→28 ×2. **1 agent flag OVERTURNED by Fable** (Szał "red eye" — real at hi-res; the agent had a 600px plate) → plate upgraded to 2505×3000, Fuad-approved. **HELD FOR VERDICT (redraft-class, thesis rests on the error): Heiss bird · Sainte-Adresse s4 couple faces each other, not seaward · Grenouillère s3 notices ARE painted words · Böcklin s2 bearded triton, not a bather.** Deepening proposals logged: Grenouillère pontoon dogs, Régates bank figure, Böcklin grotto nymphs legible. |
 
+| 2026-08-25 | **IMAGE-QC WAVE 2 — 20 tours** (next risk tier after wave 1; workshop .dtmp/tourqc-pass/w2/) | whole-first protocol, 5× Opus × 4 works; Fable spot-verified two flagship claims against the crops before trusting the batch | **5× Opus + Fable** | **0 clean · 6 minor · 14 defective.** Verified personally: The Railway's book is OPEN (tour said closed, twice) and the child's hand is open/splayed not "two hands closed"; Juan de Pareja's collar is a scalloped LACE border, not the "ragged, cheap, worn" a thesis was built on. **THE DIAGNOSIS, named independently by 3 of 4 agents: craft-derived stops are the failure locus** — a stop written to DEMONSTRATE a paragraph's handling claim restates it and gets boxed afterwards, sometimes onto a region that REFUTES it (Trouville boxes the thickest impasto in the picture under "bare canvas showing through"). Control: `vincent-van-gogh-portrait-of-adeline-ravoux`, the only near-clean tour of 20, because every stop starts at a mark and argues outward. Third failure class named: THE INVENTED HINGE (Renoir's "joined hands" — the hand is on a shoulder, the child's hands in a muff; Rembrandt's "gaze lifted past the child" — the eyes are closed). → STUDY_SPEC's three drafting laws (8093c19). |
+| 2026-08-25 | **WAVE 2 REPAIR — all 20 tours** (0e5f7a7 + 9caaf54) | Opus agents re-verifying against the crops rather than trusting the audit, repairing toward the three laws; applied via JSON-driven runner with round-trip proof | **5+2× Opus + Fable (QC/apply)** | **221 text edits + 80 box fixes.** Every batch proved: entry count unchanged, untouched entries byte-identical, no superseded phrasing surviving on any repaired work. Two agent judgements worth keeping: the Courbet lay-figure was DECLINED as unsupported at plate resolution despite being handed over as approved material, and two Velázquez retitles were SKIPPED because those stop titles occur on several works and a bare-title anchor could land on the wrong entry. Mechanical lessons now in the runner: retitle anchors must be the bare quoted title (the store mixes compact and pretty-printed JSON, so `"t": ` fragments miss on whitespace), and anchors must be checked AT THEIR POINT OF APPLICATION because specs contain sequential edits. |
+| 2026-08-25 | wave-1 RE-AUDIT (18 works) | same protocol + a WORKED EXAMPLE of a defect-grade finding in every brief, to set the bar rather than let each agent discover it | 4× Opus | **IN PROGRESS** — the measurement that decides the corpus sweep. Also re-checks the three repaired works (Zorn bird, Böcklin triton, Podkowiński city) for whether the repair holds and left the tour internally consistent. |
+
 ## Coverage
 
 - **Tours**: **309 of 309 QC'd — full coverage** (b+c 20, tours10 9, random samples
@@ -34,10 +38,14 @@ whenever a QC pass runs — coverage claims that aren't recorded here don't coun
   sweep ran 1.5%. ~~Zero defects found in the visual layers~~ **(claim retired
   2026-08-24: that QC was text-only and structurally could not see visual misreads —
   the first image-grounded audit found two visual defect classes in 3 tours; see the
-  2026-08-24 row and STUDY_SPEC's whole-first QC step. **Visual-layer coverage is now
-  23/363** — the 3-tour audit + the 20-tour wave 1; defect rate in wave 1 was 50% of
-  tours carrying at least one visual defect, ~10× the old text-QC rate, which is the
-  measure of what text-only QC could not see.)** The knowledge-QC findings stand
+  2026-08-24 row and STUDY_SPEC's whole-first QC step. **Visual-layer coverage is 43/363** —
+  the 3-tour audit, wave 1 (20) and wave 2 (20). ⚠ **THE RATE IS NOT YET KNOWN AND WAVE 1'S
+  NUMBER IS NOT USABLE.** Wave 1 returned 10 clean of 20 on the HIGHER-risk tier; wave 2
+  returned 0 clean of 20 on the lower one, same protocol and same drafting model. A five-fold
+  gap in that direction is auditor variance, not corpus quality. The wave-1 re-audit above is
+  what settles it; until then, quote no corpus-wide defect rate. Wave 3 is staged as a RANDOM
+  sample (seed 20260825) for the same reason — waves 1 and 2 were both risk-ranked, so neither
+  can be extrapolated.)** The knowledge-QC findings stand
   (incl. the Storks false-positive, the El Greco reliefs, and the Van Rysselberghe
   venue where the tour beat the QC's own recall).
 - **Interpretations**: the 30 pending (b+c+d) fully fidelity-traced; the 110 shipped are
