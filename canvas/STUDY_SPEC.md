@@ -24,16 +24,36 @@ are so I can also understand what got me that interested by the artwork."
 - `flags` — (draft only, stripped at merge) any claim the writer is not fully certain
   of. Doubts go here, never into the text.
 
-## Tour structure (settled 2026-07-24, Fuad-approved)
+## Tour structure (settled 2026-07-24; deepened 2026-08-24, Fuad-approved)
+
+The tour is three movements (Fuad 2026-08-24 — "the objective is to understand the
+painting better at the end of the day"):
+
+1. **The four paragraphs establish the painting at whole scale** — what it shows, what
+   it's about, how it's made, where it sits. All identification questions are settled
+   HERE, at picture scale, before any stop is written: an object that only resolves at
+   distance (a bird in loose handling, a gaze network, a light direction) must be named
+   at this level or it will be mis-read piecemeal in the stops.
+2. **The stops descend.** Each stop answers one question: *what does standing this
+   close teach that the paragraphs couldn't?* Close-range handling (visible decisions,
+   corrections, refusals to correct), objects that reward identification — and then what
+   the painter is DOING with them, not just that they are there — and relationships the
+   whole view compresses. **A stop that restates a paragraph's claim at closer range is
+   a failure even when it is accurate** (the Heiss type case: stop 2 re-ran the see
+   paragraph's ambiguity with more words). The old floor stands: no stop that merely
+   names what is in the box.
+3. **The close re-ascends.** Default close = a step-back synthesis STOP (full-frame box
+   allowed) — what the painting adds up to *after* the descent, which is a different
+   paragraph than one written before the walk. The smallest-telling-detail close stays
+   legitimate where it genuinely lands (a signature stop that carries the work's
+   afterlife earns its place; one that just reads the signature does not). Census
+   2026-08-24: 100/363 tours closed full-frame, 49 on a signature, the rest stopped on
+   whatever detail came last — the re-ascent is now the default, not the exception.
 
 - **Stop count is free** — as many stops as the painting earns (3–9), no padding to a
   number. A crowded Rubens carries 8; a sparse field might earn 3.
-- **Arc order**: open with the thing that pulls you in from across the room, work
-  through the painting's argument region by region, close with either the smallest
-  telling detail or a step-back synthesis — a wide box (up to full-frame) is allowed
-  for the synthesis stop.
-- Each stop must teach the eye something it would not have caught alone; no stop that
-  merely names what is in the box.
+- **Arc order**: open with the thing that pulls you in from across the room, then the
+  descent region by region, then the re-ascent above.
 
 ### Closing-paragraph experiments (2026-08-22 — settled, do not re-pilot)
 
@@ -54,6 +74,20 @@ tours done before executing this"); revisit when the store has grown well past t
 - Literate, direct, concrete. No filler, no "masterpiece" talk, no exclamation marks.
 - Facts only where confident; where scholarship on the specific work is thin, say so
   and reason from the eye (the sergel entry is the model for a thin record).
+- **⛔ UNCERTAINTY LAUNDERING (named 2026-08-24, the Heiss bird case).** Never convert a
+  failure to identify into an interpretive thesis. The Zorn background is a bird —
+  spread golden wings, long tail — and the shipped tour called it "foliage or blooms…
+  or pure paint," then claimed *"Zorn seems to want that ambiguity."* Zorn didn't want
+  it; the writer had it. The rule: **a hedge must survive the hi-res zoom.** If after a
+  real zoom the object still won't resolve, the ambiguity may be described honestly —
+  but "the artist wants this unreadable" is a claim about the artist and needs the same
+  grounding as any other fact. Unresolved identifications go to `flags`, never into the
+  text as a thesis.
+- **Embellishment drift (named 2026-08-24, the Wystawa case).** Invented detail at the
+  margin of a correct observation: "both are back views" (both faces are in profile),
+  "folded almost double" (bent ~30°), "raises both hands" (one arm). The core reading
+  was right; the novelistic finish wasn't. QC checks the finish, not just the claim —
+  every posture, garment, gaze and count in a stop is a checkable assertion.
 - "You" (addressing Fuad) is allowed only for canon-backed encounter facts — and only
   where `seenConfidence` is **sure**. For `probably`/`unsure` works, state the
   institutional fact ("home of X"), never "you met X". (QC lesson from the museum
@@ -83,20 +117,43 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
    `STUDY_BRIEF.md`, the image path, and per-work preflags **including `seenConfidence`**
    (so the drafter uses the right framing). Output: one `out_tour_<id>.json` each. Badge the
    merged entry `by:"Opus 4.8"`.
-4. **Box QC (mandatory — never merge un-cropped):** run `cs.py` to draw numbered overlays
-   (`ov_<id>.jpg`) and crop every `deeper` box (`box_<id>_N.jpg`), then look at every crop.
-   Recent batches run near-zero fixes because drafters are told upfront the boxes will be
-   crop-checked — but the format still catches real drift.
-5. **Fact QC:** batch of Sonnet web-verifiers (one per work, or grouped), each handed the
+4. **Whole-first image QC (mandatory, 2026-08-24 — THE ORDER IS THE MECHANISM, same as
+   the reads pipeline's account-first check):** the reviewer looks at the FULL image and
+   writes a short account of what it sees at picture scale — main elements, how regions
+   relate, deploying real knowledge of the artist and work — **BEFORE reading the draft**.
+   An account formed after reading is anchored to the draft and finds nothing. Then:
+   (a) diff the account against see/about/craft/context — whole-scale identification
+   errors live here and every stop downstream inherits them; (b) judge each stop against
+   the deepen bar (does this zoom teach something the paragraphs didn't?); (c) findings
+   that the draft never used (an unnamed object, a spatial rhyme, a background figure
+   doing quiet work) are DEEPENING MATERIAL, not just defects — route them as proposals
+   for the stop rewrite or the re-ascent close, printed for Fuad's verdict like fnotes.
+   Priority classes: painterly/loose handling (the Zorn class — suggestion invites
+   misreading) and dense multi-object scenes (gallery interiors, still lifes).
+5. **Box QC (mandatory — never merge un-cropped):** run `cs.py` to draw numbered overlays
+   (`ov_<id>.jpg`) and crop every `deeper` box (`box_<id>_N.jpg`), then look at every crop
+   WITH the whole-image account in hand — crops verify local detail (posture, garment,
+   count: the embellishment class); identification was settled a level up, because a
+   crop of a bird's tail is just gold streaks (cropping defeats manners built on
+   suggestion-at-distance). Recent batches run near-zero fixes because drafters are told
+   upfront the boxes will be crop-checked — but the format still catches real drift.
+6. **Fact QC:** batch of Sonnet web-verifiers (one per work, or grouped), each handed the
    work's `flags[]` and text, reporting `FIX: "<old>" => "<new>"` for confirmed errors only.
    Apply as minimal Python string patches (**use a real em-dash `—`, not `--`**).
-6. **Merge:** insertion-only into `window.CANVAS_INSPECT` after the `window.CANVAS_INSPECT = {\n`
+7. **Merge:** insertion-only into `window.CANVAS_INSPECT` after the `window.CANVAS_INSPECT = {\n`
    anchor — strip `id` + `flags`, keep `by`. Prove the round-trip: eval before/after, assert
    every existing entry is byte-identical, the count delta equals the batch size, and no box
    exceeds `[0, 1.002]`. Commit (`git commit -F -`) and push (canvas `?v=` is auto).
 
 ## QC lessons (accumulated — read before drafting/QC)
 
+- **Text-only QC cannot catch visual misreads** (2026-08-24 — the audit that reshaped
+  this spec). The 309/309 tour QC read every tour against knowledge and web sources and
+  recorded "zero defects in the visual layers." Then a three-tour image audit found the
+  Heiss bird misidentified in see + a stop, and four embellished details in Wystawa
+  1828. The earlier zero was an artifact of method: knowledge-QC checks history; only
+  the whole-first image account (pipeline step 4) checks what's on the canvas. QC_LEDGER
+  coverage claims for the visual layers date from before this instrument existed.
 - **Draft against the plate the SITE displays** (tours10, 2026-08-13). Box coordinates are
   fractions of the displayed image, so a tour drafted on a different Commons reproduction of
   the same painting is invalid — every box flies to the wrong region. Before drafting, read

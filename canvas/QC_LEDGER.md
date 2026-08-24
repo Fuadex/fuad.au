@@ -20,15 +20,21 @@ whenever a QC pass runs — coverage claims that aren't recorded here don't coun
 
 | 2026-08-14 | FULL SWEEP of remaining 200 tours, 6 batches (dumps .dtmp/interp10/qcrest_b1..6.txt, list tourqc_rest.json) | Fable read all 200; 3 uncertain flags → 1 Opus web verifier (2 confirmed, 1 overturned); 1 bedrock-date fix by Fable directly | **Fable (primary)** + Opus verify | **COMPLETE. 3 tour-fact defects / 200 tours (1.5%), all in context paragraphs, all FIXED**: night-in-saint-cloud father's death "that January" → November 1889 (Munch Museum timeline; fixed in context + stop body); Rousseau Forest in Winter "finished only in 1867 when friends persuaded him to release it" → actually still UNFINISHED at his death despite friends' urging (Met object 438816); Whistler's Mother "Two years later Ruskin's attack" → six years (attack 1877, trial 1878). 1 false flag overturned: Van Rysselberghe Coastal Scene IS at the National Gallery London (NG6582) — tour vindicated, my Met-Lehman recall was wrong. Canon seenAt conflicts (for Fuad, NOT silently fixed): christ-in-the-house-of-his-parents seenAt=national-gallery-london but painting is TATE BRITAIN; ophelia same error class (Tate Britain); edward-hopper-house-by-the-railroad seenAt=met-nyc but painting is MoMA's first acquisition; Signac Bonne-Mère canon title has stray "马赛" chars. Legacy note: the-milkmaid tour is an initial-era stub (no stops, no by) — same set-aside class as the 3 by-less tours. Batch contents: b3 Vermeers/Klimt/Courbets/Gioconda etc, b4 Ophelia/Cézannes/Rubens/Goyas etc, b5 Rembrandts/Hokusai/Bruegel/Manets/Starry Night etc, b6 Rodin/Strindberg/Monets/Boccionis/Klees/Van Goghs/Copley etc — everything else clean |
 
+| 2026-08-24 | 3 tours IMAGE-audited (heiss, wystawa-1828, parasol) after Fuad flagged misreads while reading | whole-image look + per-stop System.Drawing crops from hi-res, account-first (crops in .dtmp/tourqc/) | **Fable (primary)** | **2 visual-layer defect classes found — the first ever, because this was the first image-grounded QC.** (1) UNCERTAINTY LAUNDERING: Heiss background is a BIRD (spread golden wings, long tail); see + stop 2 call it "foliage or blooms… or pure paint" and claim Zorn wants the ambiguity; the hand's object (reads as a dark folded fan) hedged the same way. (2) EMBELLISHMENT DRIFT: Wystawa "both are back views" (both faces in profile), "folded almost double" (~30°), Samaritan woman "raises both hands" (one arm), sprawler's "arm hooked over chair back / legs thrown out" (legs crossed, arm in lap). Wystawa's stop CHOICES vindicated (tilted canvas IS unframed bare stretcher; battens hook+wire real; boy's red object real; out-of-canvas gaze real). Parasol clean on its known-good reputation, but its stop 2 has NO box coords — 4 coordinate-less stops corpus-wide (szal ×2, parasol #1, leech-convent-garden #4). **DEFECTS NOT YET FIXED — await Fuad's go.** Spec reshaped same day (STUDY_SPEC: three movements, whole-first QC, both error classes named). |
+
 ## Coverage
 
 - **Tours**: **309 of 309 QC'd — full coverage** (b+c 20, tours10 9, random samples
   20 + 30 + 30, full sweep 200). Total defect rate: **11 factual defects / 309 tours
   (~3.6%)** — every single one in the CONTEXT/history paragraph (dates, provenance,
   commission stories, venue prose). The early random samples ran ~7%; the final 200-tour
-  sweep ran 1.5%. **Zero defects found in the visual layers** (see/craft/deeper) —
-  image-grounded, held up every time (incl. the Storks false-positive, the El Greco
-  reliefs, and the Van Rysselberghe venue where the tour beat the QC's own recall).
+  sweep ran 1.5%. ~~Zero defects found in the visual layers~~ **(claim retired
+  2026-08-24: that QC was text-only and structurally could not see visual misreads —
+  the first image-grounded audit found two visual defect classes in 3 tours; see the
+  2026-08-24 row and STUDY_SPEC's whole-first QC step. Visual-layer coverage is
+  effectively 0/363 until the image pass runs.)** The knowledge-QC findings stand
+  (incl. the Storks false-positive, the El Greco reliefs, and the Van Rysselberghe
+  venue where the tour beat the QC's own recall).
 - **Interpretations**: the 30 pending (b+c+d) fully fidelity-traced; the 110 shipped are
   NOT yet systematically QC'd.
 - **Infos**: 623 shipped; bulk-campaign hooks were web-verified at write time; no
