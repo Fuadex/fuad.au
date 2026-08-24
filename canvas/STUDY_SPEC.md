@@ -425,6 +425,15 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
   the plate is poor, upgrade the site (rule below) rather than "fixing" the tour to match a
   bad image. Standing gap: **71 of 363 toured works have no `art_hires` record**, so their
   Study zoom is capped at the 900px canon plate — a backfill campaign worth its own batch.
+- ⚠ **BUT FIRST CHECK YOU ARE LOOKING AT THE FRONT OF THE OBJECT** (2026-08-25, the Hydra
+  case). The Klimt candidate costed at ×1.89 with a "7.62% aspect delta caused by the
+  parchment surround" turned out to be a photograph of the panel's **VERSO** — wooden
+  stretcher, tacked edges, staples, no painting. The aspect delta *was the aspect of the
+  object's back*. Museum IIIF manifests carry conservation shots, raking-light shots and
+  versos alongside the recto; **look at every candidate before costing it**. The same pass
+  also rejected a larger Commons file that is a **halftone print scan** — visible rosette dot
+  screen, mustard cast, painted-on border: more pixels, less information. A gain figure means
+  nothing until someone has looked at the image.
 - **A MARGIN DOES NOT DISQUALIFY A BETTER PLATE — REMAP THE BOXES** (Fuad 2026-08-25:
   "if you can implement an IIIF but there's a margin, I'd still try and implement that IIIF
   because it should just simply be superior"). Box coordinates are fractions of whatever the

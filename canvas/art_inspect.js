@@ -1059,10 +1059,10 @@ window.CANVAS_INSPECT = {
   },
   {
    "t": "The head as a landform",
-   "x": 0.362,
-   "y": 0.323,
-   "w": 0.107,
-   "h": 0.163,
+   "x": 0.384,
+   "y": 0.356,
+   "w": 0.085,
+   "h": 0.13,
    "body": "Take the yellow mass on its own and it stops being a body. The dome at the top, the long descending ridge, the deep vertical fold: read it cold and it is a headland with the sun low on it. Then the profile comes, brow, a heavy lidded eye, the nose sloping to the lower left where the mass settles onto the plain. Both readings stay available, which is the whole trick; the shape is never resolved in favour of one. Notice how it is made. There is no drawn outline anywhere on this mass, the edge exists only because the tone stops. Inside, the folds are graded so smoothly the surface looks poured rather than painted, and the shadow it drops is a rock's shadow, not a face's."
   },
   {
@@ -1083,10 +1083,10 @@ window.CANVAS_INSPECT = {
   },
   {
    "t": "Two stones and a balanced disc",
-   "x": 0.386,
-   "y": 0.281,
-   "w": 0.084,
-   "h": 0.094,
+   "x": 0.41,
+   "y": 0.283,
+   "w": 0.055,
+   "h": 0.088,
    "body": "On the crown of the head, a pale ovoid stone, and rising from it a thin twisted stalk carrying a grey disc tipped like a hat about to slide off. A second, smaller stone sits to the right. This is the only physics in the painting. Everything else is boneless and unsupported; here a hard object is held up by a thread and you are asked to believe it. The vocabulary changes too. These are painted as still life, crisp edged, with real cast shadow, against a sky that is otherwise a flat field of blue. Their function is measurement. Put something small and precise on top of a shape and the shape becomes enormous: the head is a hill because these pebbles are sitting on it."
   },
   {
@@ -1107,18 +1107,18 @@ window.CANVAS_INSPECT = {
   },
   {
    "t": "A needle on a thread",
-   "x": 0.366,
-   "y": 0.398,
-   "w": 0.03,
+   "x": 0.37,
+   "y": 0.404,
+   "w": 0.024,
    "h": 0.066,
    "body": "Far out on the empty left side, a thin horizontal line runs from the head's edge to a small ring, and from that ring hangs a long tapering needle pointing straight down at the ground. It is barely there, a few strokes, no colour, sitting in open blue. But it is the one true vertical in a painting made entirely of curves, and it is doing what a plumb line does, hanging dead straight and marking gravity in a picture where nothing else obeys it. It also empties that side on purpose. Dali could have filled the left quarter of the canvas; instead he leaves it as sky and puts one small sharp object in it, so the swollen right side has something to press against."
   },
   {
    "t": "The whole thing at once",
    "x": 0.359,
-   "y": 0.278,
+   "y": 0.283,
    "w": 0.266,
-   "h": 0.272,
+   "h": 0.248,
    "body": "Step back and the argument is a single line. Start at the far left where the contour begins, run it over the dome, down the ridge, through the cheek, up into the woman's shoulder and throat and out along the black hooks to the bottom right: one unbroken edge carries the entire cast, landscape, dreamer, lover, insect, shell. Nothing here is a separate object, it is all one substance taking different jobs, which is why it does not read as a collage of symbols. And note where the weight sits. Everything happens in the upper two thirds and to the right, while the lower left is emptied to plain and sky. The picture is top heavy on purpose, a mass that looks about to slump, which is exactly what this soft head goes on to do two years later under the melting watches."
   }
  ],
