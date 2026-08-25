@@ -154,7 +154,10 @@ the question, not the writer, is the lever.
    gallows humor turned on his own failing body"; the Midori LPs are the same register).
    Shape: year-and-frame → theme clause → listening shape. Many albums won't support a
    single running theme — then the descriptive clause does its normal work; never force
-   false unity. ⚠ The theme hook is a GIST feature: the 2026-08-26 misfire that re-opened
+   false unity. **The gist must not reuse the liner's wording (Fuad 2026-08-26): both
+   render on one card, so the theme clause is said in FRESH language or compressed
+   further — if the theme can't be reworded without losing it, compress instead. The
+   first four MH gists shipped echoing their liners and were reworded same day.** ⚠ The theme hook is a GIST feature: the 2026-08-26 misfire that re-opened
    two approved LINERS with it was reverted same hour — liners keep their own settled brief.
 5. Owner approves each batch inline before apply.
 

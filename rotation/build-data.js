@@ -3327,6 +3327,26 @@ const mediaAlbums = _albumEntries.map(([key, plays], i) => {
 // anthology/collection/singles — this widens the net for the re-home eligibility check ONLY (the album row
 // itself stays browsable). Studio LPs missing from `discs` (partial MB coverage) then simply keep the song.
 const _reHomeBlockedName = /\b(essential|original album (classics|series)|music bank|box ?set|anthology|collection|complete|deluxe box|the singles|studio album|greatest hits|best of)\b/i;
+// A disc-title marker for NON-STANDARD material — a live/unplugged/demo/instrumental/remix/etc. disc
+// carries RE-RECORDINGS of songs that mostly belong to OTHER albums, so it must NOT feed the homing
+// index: Sepultura's studio LP Quadra ships a deluxe "Live in Japan 2018" disc whose tracklist lists
+// Ratamahatta (a Roots song), which re-homed Ratamahatta onto Quadra. The `discs` studio-guard filters
+// target ALBUMS by kind but not DISCS within a studio album — this closes that gap at disc granularity.
+const _nonStandardDisc = /\b(live|unplugged|acoustic|demos?|rehearsals?|instrumentals?|karaoke|remix(?:es|ed)?|re-?recorded|b[- ]?sides?|rarities|outtakes?|commentary|interview|sessions?|soundcheck|a cappella|orchestral|symphonic|piano versions?|stripped|jam)\b/i;
+// keep = this disc is the standard studio disc (feeds homing). An EMPTY title is the LP proper; a title
+// carrying "original album" is an explicit studio-master marker (e.g. "Original Album Remastered", or
+// Beneath the Remains' "Original Album / 2004 Bonus Tracks / …Florida Sessions/Mixdown" — kept despite
+// the "sessions" token); a title equal/similar to the album title (squash equal, or one is a prefix of
+// the other, or the album key contains it — the LP-proper disc inside a box, or a remaster tag) is the
+// standard disc. Only when none of those hold AND the title reads as non-standard material do we skip it.
+const _isStandardDisc = (albSquash, discTitle) => {
+  const dt = discTitle || "";
+  if (!dt) return true;                                   // empty title = the LP proper
+  if (/original album/i.test(dt)) return true;            // explicit studio-master marker
+  const ds = _kSquash(dt);
+  if (ds && (ds === albSquash || albSquash.startsWith(ds) || ds.startsWith(albSquash) || albSquash.includes(ds))) return true; // similar to album title
+  return !_nonStandardDisc.test(dt);                      // else drop only if flagged non-standard material
+};
 const DISCS_BY_ARTIST = (() => {
   const out = new Map();
   let raw; try { raw = JSON.parse(fs.readFileSync(path.join(__dirname, "mb-releases.json"), "utf8")); }
@@ -3336,7 +3356,11 @@ const DISCS_BY_ARTIST = (() => {
     const trackHome = new Map();
     for (const [albSquash, discs] of Object.entries(e.discs)) {
       if (!Array.isArray(discs)) continue;
+      // Skip bonus/live/demo/etc. discs whose tracklists are re-recordings of other-album songs. When an
+      // album has ONLY such discs, it contributes nothing to the index (conservative — never guess a home
+      // off a live/comp disc). `di` (the true disc index) is retained so standardDisc still reflects di===0.
       discs.forEach(([discTitle, trackList], di) => {
+        if (!_isStandardDisc(albSquash, discTitle)) return;
         (trackList || []).forEach((tt, pos) => {
           const k = _kSquash(tt);
           if (!k) return;
