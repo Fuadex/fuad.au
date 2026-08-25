@@ -34,7 +34,9 @@ are so I can also understand what got me that interested by the artwork."
 - `beside` — the closing paragraph, after the last stop: this work set against ANOTHER
   WORK IN THIS COLLECTION (90–120 words, soft). **Required on every new tour**
   (Fuad 2026-08-25) — see *The `beside`* below for the form and the one legitimate
-  omission.
+  omission. ⚙ **It is drafted LAST, after the reads (Fuad 2026-08-25)** — not with the
+  tour — so a tour merges without it and receives it in a later pass. See *The `beside`*
+  and pipeline steps 3 and 8.
 - `refs` — cross-references to OTHER works in this collection named in the prose, carried
   as a sibling field so the paragraph itself is untouched. Applies to `context`, `beside`
   and each `deeper[].body`. Full rules in *Corpus cross-references* below.
@@ -129,7 +131,9 @@ painting better at the end of the day"):
    spends the room. It is not a recap and not an afterlife: its material is a RELATION
    between two paintings, and it is the only part of the entry sourced from outside the
    frame. **Every new tour ships with one.** A tour without a `beside` is incomplete, not
-   finished differently. Full form in *The `beside`* below.
+   finished differently. ⚙ **Incomplete, but not un-mergeable (2026-08-25):** the `beside` is
+   drafted LAST, after the reads, so a tour is merged before it exists and is completed
+   afterwards. Full form in *The `beside`* below.
 
 - **Every stop starts at a mark the survey names** (ruled 2026-08-25, corrected the same day) —
   the drafter crops the plate, lists the marks that reward a stop, and writes one stop per mark.
@@ -1367,6 +1371,26 @@ we don't have enough works yet I think. We can rework them in the future anyway.
 differently. There is exactly one legitimate absence and it is a recorded decision, not a
 default — the rule is at the bottom of this section.
 
+⚙ **RULED 2026-08-25 — THE `beside` IS DRAFTED LAST, AFTER THE READS.** Fuad, verbatim:
+*"The cascade should not see the beside, beside gets drafted at the end."* Two consequences,
+and they are the whole reason the ordering changed rather than a fence being added:
+
+1. ⛔ **The `beside` is STRIPPED FROM EVERY CASCADE JOB FILE — by construction, not by rule.**
+   READS_SPEC §1's question ("may the cascade draw on the tour's `beside`?") is answered (a),
+   strip it. The ordering is what makes (a) self-enforcing: when the reads are drafted the
+   `beside` **has not been written**, so there is nothing to hand over and nothing to fence.
+   The tour-only fence on the Interpretation stays clean without anyone policing it. A guard
+   that depends on a drafter noticing is not a guard — Method lesson 13.
+2. ⭐ **A `beside` written after the reads may lean on what they settled.** The Interpretation
+   is where the tour's argument is cut to its crux. Drafted afterwards, the `beside` points at
+   the relation the reads have already isolated rather than re-deriving it in parallel and
+   diverging from it. That is a gain the old simultaneous order could not produce.
+
+**The bookkeeping cost, stated rather than hidden:** a tour merges **without** its `beside`.
+"Incomplete" therefore describes a normal mid-flight state, not a defect — but only if the gap
+is TRACKED. Pipeline step 8 is the tracker; an untracked gap is how a required field quietly
+becomes optional.
+
 The form below is **derived from the six shipped specimens, not proposed**. They are the only
 approved text in existence, and a loose brief is what produced the first rejection ("the thing
 I rejected just didn't seem right content-wise"), so the form is strict and the exceptions are
@@ -1939,11 +1963,19 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
    `STUDY_BRIEF.md`, the image path, and per-work preflags **including `seenConfidence`**
    (so the drafter uses the right framing). Output: one `out_tour_<id>.json` each. Badge the
    merged entry `by:"Opus 4.8"`.
-   ⚙ **The draft must include a `beside` (2026-08-25)**, so the job file has to carry
-   candidate companions — the drafter cannot search the store. Hand it the same-artist canon
-   rows and the nearest cross-artist toured works, flagging which are toured, and require
-   either a `beside` naming one of them **with its id**, or an explicit one-line reason for
-   omitting the field. Silence is not an omission.
+   ⛔ **THE DRAFT NO LONGER CARRIES A `beside` — SUPERSEDED 2026-08-25 THE SAME DAY IT WAS
+   WRITTEN.** Fuad: *"The cascade should not see the beside, beside gets drafted at the end."*
+   The `beside` moves out of this step and into **step 8**, after the reads. The tour draft
+   returns the four lenses, the stops, `survey` and `flags`, and **no `beside` field at all** —
+   not an empty one, not an omission note. Candidate companions no longer belong in the tour
+   job file either; they belong in step 8's.
+   ~~The draft must include a `beside` (2026-08-25), so the job file has to carry candidate
+   companions — the drafter cannot search the store. Hand it the same-artist canon rows and the
+   nearest cross-artist toured works, flagging which are toured, and require either a `beside`
+   naming one of them with its id, or an explicit one-line reason for omitting the field.
+   Silence is not an omission.~~ Kept struck rather than deleted because the *substance* of it —
+   the drafter cannot search the store, so the job file must carry the candidates and their
+   toured status — survives verbatim; only the step it belongs to changed.
    ⚙ **That id is returned as a `refs` entry (2026-08-25)**, not as a note — `refs: [{ id, text }]`
    where `text` is the exact words the drafter used in the paragraph. Because the job file is
    also the only place the drafter sees canon ids, the same applies to any other in-collection
@@ -2017,6 +2049,22 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
    `node .dtmp/tourqc-pass/validate-refs.js` — it exits non-zero and the batch does not ship
    on a failure** (run it against the plan file first, before apply, to fail early). Commit
    (`git commit -F -`) and push (canvas `?v=` is auto).
+8. ⚙ **The `beside`, LAST (ruled 2026-08-25).** After the tour has merged and its reads have
+   been drafted, one pass writes the `beside` for every work in the batch. Its job file carries:
+   the merged tour, **its reads**, the same-artist canon rows and the nearest cross-artist
+   toured works with their toured status, and the two canon `year` fields for the interval
+   arithmetic (checklist 12d). It returns the paragraph **and** its `refs` entry — `refs:
+   [{ id, text }]`, `text` being the exact words used — or an explicit one-line reason for
+   omitting the field. **Silence is not an omission.** Then run checklist group D3 (run order
+   21–24) and `validate-refs.js`.
+   ⛔ **THE BATCH IS NOT DONE UNTIL THIS STEP HAS RUN.** A merged tour without a `beside` is a
+   tour mid-flight, and the only thing separating "mid-flight" from "a required field that
+   quietly went optional" is that somebody is counting. **Count it:**
+   `Object.values(CANVAS_INSPECT).filter(v => v.beside === undefined).length` — that number is
+   the outstanding queue, and it belongs in the batch's own commit message and in
+   `QC_LEDGER.md`. ⚠ Note the count must test `=== undefined`, not falsiness, and the `refs`
+   coverage check must walk **both** ref shapes (bare array and keyed object) — a scan that
+   walks only the keyed form under-reports `beside` refs by 95% (READS_SPEC §11).
 
 ## QC lessons (accumulated — read before drafting/QC)
 

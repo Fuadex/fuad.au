@@ -135,7 +135,8 @@ deep: "Nobody in the room is just standing. Every posture is a variant of lookin
 by: "Opus 4.8" },
 
 "christian-rohlfs-white-beeches-in-fall": {
-about: "Rohlfs came to Expressionism absurdly late: born in 1849, he was already past fifty when Karl Ernst Osthaus installed him at the Folkwang in Hagen and, in Soest in 1905, introduced him to Emil Nolde. The friendship that followed pulled a settled landscape painter into hot color and loosened form, and by this 1910 canvas he was among the oldest men working in the new German idiom. Its German title, \"Weiße Birken im Herbst,\" names birches rather than the beeches of the English label — a slip the picture has carried ever since.",
+about: "Rohlfs was past fifty and thirty years into a career as a landscape painter when Nolde's friendship turned him Expressionist. This 1910 wood carries the wrong tree in English: his German title says birches.",
+deep: "Three pale trunks hold a fire. Between them everything is at full strength — orange, rust, wine-red, laid on thick enough to stand off the canvas — and the trunks are the only cool verticals in it. He draws no edges: a trunk ends where the cream stops and the orange begins, so from across a room it reads as light. Where the loaded brush ran out he let it run out — in the notch where a limb quits the top edge the bare weave is just there — so the picture is finished where he stopped, not where the canvas ends. Birches are the coldest thing he could have put in a burning wood. He put in three.",
 by: "Opus 4.8" },
 
 "claude-monet-essai-de-figure-en-plein-air": {
@@ -143,11 +144,13 @@ about: "Monet had painted the figure only rarely since Camille's death in 1879. 
 by: "Opus 4.8" },
 
 "claude-monet-la-rue-montorgueil": {
-about: "On 30 June 1878 Paris held a Fête de la Paix crowning that summer's Exposition Universelle — a holiday often misread as Bastille Day, which became national only in 1880. \"I loved flags,\" Monet later told the dealer René Gimpel, recalling how he asked permission to paint from a balcony above the flag-hung street, finishing this canvas and a twin view of the rue Saint-Denis the same day. Seized under the Occupation from the collector Alfred Lindon and logged into Hermann Göring's hoard, it was recovered after the war.",
+about: "\"I loved flags,\" Monet said of the 30 June 1878 holiday for the Exposition Universelle; he got a balcony over the street and finished this and a rue Saint-Denis view the same day. Below, one stroke is one person.",
+deep: "From a balcony above the street you cannot draw a street: the horizon is gone and almost no architecture is left to build depth with. Monet does it with weight instead. At the top the reds are dry brown scumbles with the canvas weave showing through; at the near right corner the same flags are vermilion, loaded thickly enough to keep the furrows of the brush, with blue dragged wet through it. Nearness is how much paint is on the brush. And the tricolour wins without occupying much of the picture: most of the surface is the olive and ochre of ordinary housefronts, the flags a scatter of saturated marks all leaning one way.",
 by: "Opus 4.8" },
 
 "claude-monet-le-givre": {
-about: "The winter of 1879–80 was among the coldest Europe had recorded, and Monet, newly widowed and short of money at Vétheuil, worked outdoors with hand-warmers as the Seine seized up and then broke apart in the January thaw. This 1880 canvas belongs to the roughly twenty frost-and-ice pictures he pushed through that season, chasing one motif across shifting light in a way that anticipates his later serial work. A single beached boat is the only human trace. Gustave Caillebotte owned it until his death, and left it to France in the 1894 bequest the state accepted only after long resistance.",
+about: "One of some twenty frost and ice canvases Monet pushed out in the winter of 1879-80, one of the coldest on record — painted outdoors with hand-warmers, newly widowed, a decade before the series pictures began.",
+deep: "Four bands and one interruption: sky, a row of frosted trees, a pale flat, a foreground of dead scrub — and low to the right, the single dark form you eventually find. Frost is not snow. It leaves every shape where it was and changes only its colour, so the picture has to be made out of small shifts of hue at one brightness, which is what the eye reads worst. Look for the cobalt dashes lying on the flat: a few marks at full strength, doing the job black would have done in an academic winter piece. Everything around them is a tint. Put a thumb over them and a third of the canvas goes papery.",
 by: "Opus 4.8" },
 
 "claude-monet-the-water-lilies-clear-morning-with-willows": {
@@ -195,7 +198,8 @@ about: "From Chatou in 1880 Renoir wrote to his patron Paul Bérard that he was 
 by: "Opus 4.8" },
 
 "pierre-bonnard-sleeping-woman-on-a-bed": {
-about: "The sleeper is Maria Boursin, Bonnard's companion from 1893, who lived under the invented name Marthe de Méligny — he learned her real one only when they finally married in 1925. Painted in 1899, this is one of Bonnard's very first nudes, a subject he had barely touched before, and it opened the unguarded bedroom cycle devoted to Marthe that continued the next year with L'Homme et la femme and La Sieste.",
+about: "The sleeper is Maria Boursin, who had given Bonnard the invented name Marthe de Méligny; he learned her real one only at their 1925 wedding. This 1899 canvas is one of his first nudes.",
+deep: "Everything luminous here is the same warm cream: the linen, the flesh and the crumple of cloth between her thighs come out within a few points of each other, and none of them is white. The body is a flat field of yellow ochre with no pink in it, so she rises out of the bed rather than lying on it. Her head is a dark mass with no feature delivered, and a chalky blue-green touch at the crown is the one cool note near her. The single hard line in the picture runs along the underside of the raised leg. He gives the drawing to a knee and takes it away from a face, and that is the argument.",
 by: "Opus 4.8" },
 
 "unknown-bodhisattva-maitreya-the-future-buddha": {
@@ -3879,4 +3883,34 @@ by: "Opus 4.8" },
   deep: "The whole soaring machine of an altarpiece is rehearsed here in two hands' breadth. Everything rises on one diagonal — from the pope kneeling low at the left, up through the pouring light and a coffered dome, past a dove and tumbling angels, to the Father and Son leaning together at the summit. Tiepolo keeps the sky pale and dry and spends his few saturated colours on the gold cope and the blue drapery, so the climb is carried by colour alone. Because it was made only to be approved, nothing is hidden: the construction arcs still rake the sky, and the pope's crown, cross and anchor lie glinting in the dark.",
   by: "Opus 4.8"
 },
+
+"peter-paul-rubens-a-view-of-het-steen-in-the-early-morning": {
+about: "Rubens bought the manor of Het Steen near Mechelen in 1635 and painted his own land for no client, keeping it until he died. It began on three small oak planks and grew, board by board, past two metres wide.",
+deep: "Two things are happening on this panel and only one of them is a landscape. Down in a ditch at the bottom left a man kneels with a fowling piece, his spaniel flat beside him; a third of the picture away, out on lit ground, a covey of partridges sits in the grass; between them, nothing but hedgerows and a rutted track. That gap is the subject. The estate had to be this wide because a shot needs somewhere to travel, and everything else in it — the cart going out of frame, the milking in the far field, the kingfisher in the bramble — is getting on with its morning while the wait goes on.",
+by: "Opus 4.8" },
+
+"canaletto-venice-the-feast-day-of-saint-roch": {
+about: "Venice kept the feast of Saint Roch every 16 August, thanking the plague saint for ending the epidemic of 1576, and the Doge came in procession. The confraternity marked the day by hanging paintings outdoors, one of the city's rare public shows.",
+deep: "An art exhibition with no building: canvases hung above head height on a confraternity's front for one August day, some framed, some bare stretchers, one of them sliced in half by the shadow of the very awning meant to keep the sun off. Below them the campo is packed and almost nobody has looked up. The Doge passes in gold under his gilt umbrella, patricians in scarlet stand shoulder to shoulder with men in shirtsleeves, a guy rope drops through the crowd to a peg, a dog crosses the flags. Canaletto keeps every face in focus to the back of the square, so you can watch the attention going elsewhere.",
+by: "Opus 4.8" },
+
+"canaletto-london-interior-of-the-rotunda-at-ranelagh": {
+about: "Ranelagh Gardens opened at Chelsea in 1742 around a huge wooden rotunda where fashionable London paid to walk in circles to music. Canaletto, eight years into his English stay, painted it in 1754 for Thomas Hollis.",
+deep: "The ornamental pillar in the middle of the floor is a chimney. That is the whole building in one fact: an immense gilded interior, scagliola piers, tiers of arcading, chandeliers on vermilion cords, and its centrepiece is the heating. Round the wall run the boxes, taken by the evening; at one end an organ and a band, the one knot of people standing still. Everywhere else the company walks — a woman in a red, yellow and blue skirt, a child with a horn, four or five strokes apiece, their shadows single dashes on bare boards. Canaletto rules every arch of a drum built out of wood.",
+by: "Opus 4.8" },
+
+"nicholas-chevalier-the-buffalo-ranges": {
+about: "Chevalier signed this \"Dec. 1864\" for the Victorian government's landscape prize; the win made it the first painting bought for the colony's public gallery. Down in the valley, a bullock dray carries a whole family and their bedding.",
+deep: "The mountain is the credential. What Chevalier actually itemises is the valley under it: a hut roofed in bark held down by saplings, a dry-stone chimney with its smoke going straight up, a road whose edge has been cribbed with stacked log ends at the gully, and a timber water wheel in a rock cut with no mill house near it. All of it gets the same close, dry, evenly lit description as the granite - nothing in the foreground is sharper than the snow line, nothing at distance looser than the near gums. The country is not being discovered. It is being used, and the picture counts the uses.",
+by: "Opus 4.8" },
+
+"unknown-hoa-hakananai-a": {
+about: "An ancestor figure carved on Rapa Nui, standing part-buried in a stone house at Orongo until a British naval crew dug it out in 1868 and shipped it away. The island has been asking for it back.",
+deep: "Almost nothing on the body is carved. The arms are low bands laid on the flanks, the chest gets a collarbone ridge and two nipples, and between them the stone is left as plain plane. All the work went into the head, and inside the head into four cuts: the shelf of the brow, the sockets, the nostrils, the seam of the mouth. Those cuts are deep, and deep cuts hold shadow, which is how a face in hard lava reads from a long way off. The sockets were made to take an inlaid coral eye. Empty, they turn the strongest carving on the figure into a hole.",
+by: "Opus 4.8" },
+
+"paul-signac-femme-a-l-ombrelle": {
+about: "Signac painted this unnamed woman in 1893, at the height of his campaign for divided colour after Seurat's death left him leading it — the orange parasol above her governing every colour in her face.",
+deep: "The parasol is the argument. Everything under it is answering an orange it cannot escape: the blues banked into her shadows, the coral scattered through her green sleeve, the pink and violet standing in for the colour of her cheek. Her profile has no line around it at all: the edge is simply where one population of marks stops and another starts. And nothing is mixed. The neutral grey under her jaw is orange and blue alternating, resolved in the eye rather than on the palette. It is a theory of vision put on a canvas, and it is also just a woman standing in coloured shade.",
+by: "Opus 4.8" },
 };

@@ -153,16 +153,37 @@ survives" is unachievable at these bands — an Adler hook carried eight verifie
 shipped Info holds two. Needs a preference rule for when the fusion must choose; the pilot's
 reading of the corpus is the fact about the object beats the fact about the artist.*
 
-⚠ Open, not ruled (2026-08-25): **may the cascade draw on the tour's `beside`?**
-STUDY_SPEC made `beside` a REQUIRED closing movement that day, so from now on the top of the
-cascade carries a paragraph that is *about a different painting*. This is not a no-op: §4's
-job files hand drafters the whole tour entry, so drafters will see it by default and nothing
-currently tells them not to use it. Both readings are defensible — it is verified fact-class
-material and sometimes holds the crux framing; but it is sourced from OUTSIDE the frame, and a
-95–115w Interpretation that spends words on a second painting stops being a read of this one.
-**Needs Fuad's verdict**, one of: (a) strip `beside` from job files, (b) pass it as context but
-fence it out of the text, (c) let it in where it earns the space. Nothing is ruled here; the
-reversible option is (b), and no cascade batch should ship on the question until he calls it.
+⚙ **RULED by Fuad, 2026-08-25 — THE CASCADE DOES NOT SEE THE `beside`, AND THE `beside` IS
+DRAFTED LAST.** Verbatim: *"The cascade should not see the beside, beside gets drafted at the
+end."* That is option **(a)** — `beside` is **stripped from every cascade job file** — **plus an
+ordering change that makes (a) self-enforcing**: the `beside` is now drafted **after** the reads,
+so a cascade job file cannot carry it because at that point **it does not exist**. Options (b)
+(pass it fenced) and (c) (let it in where it earns the space) are closed. STUDY_SPEC's pipeline
+and its *The `beside`* section carry the ordering half.
+
+**Why the ordering matters and (b) would not have been enough.** (b) was the reversible option,
+but it is a *behavioural* fence — hand the drafter the paragraph, tell them not to use it, catch
+leaks at QC. The ordering makes it *structural*: the field is absent from the job file because it
+has not been written, so there is nothing to fence and nothing to leak. Same shape as Method
+lesson 13 — **proxy by construction, not by inspection**; a guard that depends on someone
+noticing is not a guard.
+
+**And it buys something (b) could not.** A `beside` drafted *after* the reads can lean on what
+they settled. The Interpretation is where the tour's argument gets cut down to its crux; a
+`beside` written afterwards points at the relation the reads have already isolated instead of
+re-deriving it in parallel. Written simultaneously from the same source with no contact, the two
+paragraphs drift — which is how one entry ends up asserting two different cruxes about one
+picture.
+
+**The cost, stated:** a tour now merges **without** its `beside`. *A tour without a `beside` is
+incomplete* (STUDY_SPEC) still holds — completeness moves from "at merge" to "at the end of the
+work", and the gap has to be **tracked**, not assumed. STUDY_SPEC's pipeline step 8 is the
+tracker.
+
+⚠ **Scope: this ruling settles the `beside` half; the refs half is ruled separately below**
+(both landed 2026-08-25, the refs ruling a few hours after this block was staged). The
+entanglement is dissolved from both ends: with `beside` drafted last and never in a job file,
+fencing it no longer fences a tour's refs — and the refs ruling below stands on its own terms.
 
 ⚙ **RULED by Fuad, 2026-08-25: reads carry refs — minted from their own prose, never copied
 down.** A read (either tier) that names a companion work in its own sentences gets a `refs`
