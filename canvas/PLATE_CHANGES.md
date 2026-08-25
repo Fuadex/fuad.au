@@ -2,9 +2,9 @@
 
 Built from git history: every commit touching `canvas/art_hires.js`, diffed per record. Every URL below was **fetched and decoded** — the dimensions are measured from the JPEG header, not read from a field.
 
-**193** works had their image source change. **143** new plates verified 200. **7** are genuine replacements with a resolvable previous plate; the other **136** are records that did not exist before.
+**204** works had their image source change. **143** new plates verified 200. **18** are genuine replacements with a resolvable previous plate; the other **136** are records that did not exist before.
 
-Total measured: **52 MP -> 1725 MP**.
+Total measured: **52 MP -> 2183 MP** (+444.7 MP from ten Nationalmuseum re-frames at 80acb76; +13 MP from Szał uniesień restore at f62ee3f).
 
 > CORS note: Guggenheim assets carry no ACAO and load through `img.fuad.au/gugg/` in the app — a direct browser tab is fine, an in-page fetch is not. MNW and Nationalmuseum both measured `ACAO: *`.
 
@@ -75,17 +75,21 @@ A re-framed plate shifts every box, because box coordinates are fractions of the
 ### A Fishergirl from the North of France. Study
 `august-hagborg-a-fishergirl-from-the-north-of-france-study` — **no tour** — Nationalmuseum Stockholm — linear **x1.00**, aspect **+0.00%**
 
-- **before** 1920x2677 (5.1 MP)
+> Commons hard-clamps TIFF renders at **1920px** regardless of `?width=` param — confirmed via byte-identical response for ?width=1920, ?width=3513, and ?width=9999 (same Content-Length, same upload URL with `1920px` embedded). `w`/`h` in art_hires.js record the native TIFF (3513x4898); the rendered render is always 1920px wide. The param reduction was a documentation fix only.
+
+- **before** 1920x2677 rendered (native TIFF 3513x4898)
   https://commons.wikimedia.org/wiki/Special:FilePath/A_Fishergirl_from_the_North_of_France._Study_%28August_Hagborg%29_-_Nationalmuseum_-_18865.tif?width=3513
-- **after** 1920x2677 (5.1 MP)
+- **after** 1920x2677 rendered (same pixels) — verified 302→200
   https://commons.wikimedia.org/wiki/Special:FilePath/A_Fishergirl_from_the_North_of_France._Study_%28August_Hagborg%29_-_Nationalmuseum_-_18865.tif?width=1920
 
 ### Motif from Timmermansgatan
 `eugene-jansson-motif-from-timmermansgatan` — **5 stops** — Nationalmuseum Stockholm — linear **x1.00**, aspect **+0.00%**
 
-- **before** 1920x2632 (5.1 MP)
+> Same Commons TIFF clamp applies: native TIFF is 2826x3874, but ?width= param has no effect above 1920. The param reduction to ?width=1920 changed nothing about delivered pixels.
+
+- **before** 1920x2632 rendered (native TIFF 2826x3874)
   https://commons.wikimedia.org/wiki/Special:FilePath/Motif_from_Timmermansgatan_%28Eug%C3%A8ne_Jansson%29_-_Nationalmuseum_-_18705.tif?width=2826
-- **after** 1920x2632 (5.1 MP)
+- **after** 1920x2632 rendered (same pixels) — verified 302→200
   https://commons.wikimedia.org/wiki/Special:FilePath/Motif_from_Timmermansgatan_%28Eug%C3%A8ne_Jansson%29_-_Nationalmuseum_-_18705.tif?width=1920
 
 ### Cypresses
@@ -281,55 +285,171 @@ Grouped by source, largest first.
 
 ---
 
+## Ten Nationalmuseum re-frames (80acb76, 2026-08-25)
+
+Fuad's ruling: quality beats framing. All ten are **UPGRADES** — no axis regressed on any work. Every `orig` field was dropped (iiifhosting clamps flat renders at 1000 px on both axes; advertising the master as a download would be dishonest). Tour boxes on the three toured works were remapped via NCC registration in 80acb76 (mrs-veronica-heiss) and bde6ec8 (truth-time-and-history, the-kitchen-maid).
+
+### Portrait of a violinist
+`portrait-of-a-violinist` — **no tour** — Nationalmuseum Stockholm — linear **x2.00**, aspect **+0.14%**
+
+- **before** 4382x5563 (24.4 MP) — Commons TIFF ?width=4382
+  https://commons.wikimedia.org/wiki/Special:FilePath/Portait_of_a_violinist_%28Anne_Vallayer-Coster%29_-_Nationalmuseum_-_177753.tif?width=4382
+- **after** 8768x11116 (97.5 MP) — Nationalmuseum IIIF, flat 789x1000 verified 200
+  https://nationalmuseumse.iiifhosting.com/iiif/160a554cd43cd0dca256eb9447308cabc1cc26326ecc3cf79bcd81a7f68d2a50/full/full/0/default.jpg
+
+### Dancing Fairies
+`dancing-fairies` — **no tour** — Nationalmuseum Stockholm — linear **x1.77**, aspect **-0.29%**
+
+- **before** 3510x2105 (7.4 MP) — Commons TIFF ?width=3510
+  https://commons.wikimedia.org/wiki/Special:FilePath/Dancing_Fairies_%28August_Malmstr%C3%B6m%29_-_Nationalmuseum_-_18226.tif?width=3510
+- **after** 6228x3746 (23.3 MP) — Nationalmuseum IIIF, flat 1000x601 verified 200
+  https://nationalmuseumse.iiifhosting.com/iiif/9059ed5d6f031844fe7d8923bdcf8107b0fdd35c3823fc90c346ab76d65a103/full/full/0/default.jpg
+
+### Mrs Veronica Heiss
+`anders-zorn-mrs-veronica-heiss` — **toured (boxes remapped)** — Nationalmuseum Stockholm — linear **x1.58**, aspect **-0.48%**
+
+- **before** 3478x4649 (16.2 MP) — Commons TIFF ?width=3478
+  https://commons.wikimedia.org/wiki/Special:FilePath/Mrs_Veronica_Heiss_%28Anders_Zorn%29_-_Nationalmuseum_-_19728.tif?width=3478
+- **after** 5511x7402 (40.8 MP) — Nationalmuseum IIIF, flat 745x1000 verified 200
+  https://nationalmuseumse.iiifhosting.com/iiif/f5e1c4ce95f9cfaafab6a26e137dd40681bb3c998fbdd74f7facfc9732c66548/full/full/0/default.jpg
+
+### The Painter Bruno Liljefors
+`anders-zorn-the-painter-bruno-liljefors` — **no tour** — Nationalmuseum Stockholm — linear **x2.72**, aspect **+0.64%**
+
+- **before** 2736x3533 (9.7 MP) — Commons TIFF ?width=2736
+  https://commons.wikimedia.org/wiki/Special:FilePath/The_Painter_Bruno_Liljefors_%28Anders_Zorn%29_-_Nationalmuseum_-_18644.tif?width=2736
+- **after** 7451x9560 (71.2 MP) — Nationalmuseum IIIF, flat 779x1000 verified 200
+  https://nationalmuseumse.iiifhosting.com/iiif/39da4a4802c18068e0a6371360c75790551ceb4606281d3bc1e1605c2af814a6/full/full/0/default.jpg
+
+### Truth, Time and History
+`truth-time-and-history` — **toured (boxes remapped)** — Nationalmuseum Stockholm — linear **x2.11**, aspect **+0.81%**
+
+- **before** 2883x3499 (10.1 MP) — Commons TIFF ?width=2883
+  https://commons.wikimedia.org/wiki/Special:FilePath/Truth%2C_Time_and_History_%28Francisco_Goya_Y_Lucientes%29_-_Nationalmuseum_-_22643.tif?width=2883
+- **after** 6080x7320 (44.5 MP) — Nationalmuseum IIIF, flat 831x1000 verified 200
+  https://nationalmuseumse.iiifhosting.com/iiif/b516a79ed3d3c9d61e26029f44cc60c9938f3b1f7d590b4c9e83f2bd524f8ba5/full/full/0/default.jpg
+
+### Bringing Home the Body of King Karl XII of Sweden
+`bringing-home-the-body-of-king-karl-xii-of-sweden` — **no tour** — Nationalmuseum Stockholm — linear **x2.70**, aspect **-1.07%**
+
+- **before** 4073x2896 (11.8 MP) — Commons TIFF ?width=4073
+  https://commons.wikimedia.org/wiki/Special:FilePath/Bringing_Home_the_Body_of_King_Karl_XII_of_Sweden_%28Gustaf_Cederstr%C3%B6m%29_-_Nationalmuseum_-_18366.tif?width=4073
+- **after** 11016x7917 (87.2 MP) — Nationalmuseum IIIF, flat 1000x719 verified 200
+  https://nationalmuseumse.iiifhosting.com/iiif/4d049052768188fc6be1c6719f5bed19a34fe516da1137510f9ece6210332b3d/full/full/0/default.jpg
+
+### The Kitchen Maid
+`the-kitchen-maid` — **toured (boxes remapped)** — Nationalmuseum Stockholm — linear **x1.97**, aspect **+1.43%**
+
+- **before** 2823x3494 (9.9 MP) — Commons TIFF ?width=2823
+  https://commons.wikimedia.org/wiki/Special:FilePath/The_Kitchen_Maid_%28Rembrandt_Harmensz._van_Rijn%29_-_Nationalmuseum_-_17587.tif?width=2823
+- **after** 5563x6788 (37.8 MP) — Nationalmuseum IIIF, flat 820x1000 verified 200
+  https://nationalmuseumse.iiifhosting.com/iiif/640882d756112062a94fcb87dff89327bc80499e7b80d89b613f252093ceed10/full/full/0/default.jpg
+
+### Hemlandstoner
+`anders-zorn-hemlandstoner` — **no tour** — Nationalmuseum Stockholm — linear **x2.49**, aspect **-1.54%**
+
+- **before** 2087x3533 (7.4 MP) — Commons TIFF ?width=2087
+  https://commons.wikimedia.org/wiki/Special:FilePath/Home_Tunes_%28Anders_Zorn%29_-_Nationalmuseum_-_19274.tif?width=2087
+- **after** 5206x8951 (46.6 MP) — Nationalmuseum IIIF, flat 582x1000 verified 200
+  https://nationalmuseumse.iiifhosting.com/iiif/d8c6dd1d002cef59ba7f08601b0dfd8c76a7bdf1209ff08102a12165f2e15f26/full/full/0/default.jpg
+
+### Coquelin Cadet
+`anders-zorn-coquelin-cadet` — **no tour** — Nationalmuseum Stockholm — linear **x2.23**, aspect **-1.92%**
+
+- **before** 2461x3485 (8.6 MP) — Commons TIFF ?width=2461
+  https://commons.wikimedia.org/wiki/Special:FilePath/Coquelin_Cadet_%28Anders_Zorn%29_-_Nationalmuseum_-_23815.tif?width=2461
+- **after** 5482x7915 (43.4 MP) — Nationalmuseum IIIF, flat 693x1000 verified 200
+  https://nationalmuseumse.iiifhosting.com/iiif/fd973548ed69d0535a4711dc7d19e29fd001d699d24bbbe2507e7acddc1c7c7e/full/full/0/default.jpg
+
+### Coronation of Gustav III.
+`coronation-of-gustav-iii` — **no tour** — Nationalmuseum Stockholm — linear **x3.03**, aspect **+2.64%**
+
+- **before** 3606x2014 (7.3 MP) — Commons TIFF ?width=3606
+  https://commons.wikimedia.org/wiki/Special:FilePath/The_Coronation_of_King_Gustav_III_of_Sweden._Uncompleted_%28Carl_Gustav_Pilo%29_-_Nationalmuseum_-_18007.tif?width=3606
+- **after** 10931x5948 (65.0 MP) — Nationalmuseum IIIF, flat 1000x544 verified 200
+  https://nationalmuseumse.iiifhosting.com/iiif/1eff38c7deaa845f24ec6f82197fb0c600605b13943feb6333b86370bfafb289/full/full/0/default.jpg
+
+---
+
+## Szał uniesień restore (f62ee3f, 2026-08-25)
+
+The plate was removed in two steps: `850ba9d` nulled `img` (the Inspection-layer pilot commit), then `c0e8547` swept the now-empty record. For months the work fell back to the canon `?width=900` thumbnail — 0.4 MP, the smallest plate in the whole corpus.
+
+### Szał uniesień
+`podkowinski-szal-uniesien` — **6 stops** — MNK Kraków — linear **x2.30**, aspect **+0.00%**
+
+- **before** (recovered from commit 1a83004, then lost at 850ba9d + c0e8547) ~0.4 MP fallback via `?width=900` canon
+- **after** 3339x4000 (13.4 MP) — Commons MNK digitization verified 200
+  https://upload.wikimedia.org/wikipedia/commons/c/c3/Wladyslaw_Podkowinski_-_Ecstasy_-_MNK_II-b-887_%28143955%29.jpg
+
+---
+
+## Cypresses — accuracy note
+
+The existing entry is accurate. Current plate at HEAD: `DP130999`, 1476x1861 (2.7 MP) — verified 200 on 2026-08-25. This is a genuine downgrade from the prior DP-42549-001 plate (4000x3184, 12.7 MP); it was adopted because DP130999 frames the right picture (the framing changed, not just the resolution). No action needed.
+
+---
+
 ## Did not verify
 
-- `two-old-men-disputing` — new plate returned no response
-- `henri-matisse-auguste-pellerin-ii` — new plate returned no response
-- `henri-matisse-tete-blanche-et-rose` — new plate returned no response
-- `almond-blossom` — new plate returned 429
-- `bridge-in-the-rain-after-hiroshige` — new plate returned 429
-- `birds-nests` — new plate returned 429
-- `congregation-leaving-the-reformed-church-in-nuenen` — new plate returned 429
-- `avenue-of-poplars-in-autumn` — new plate returned 429
-- `cafe-terrace-at-night` — new plate returned 429
-- `crab-on-its-back` — new plate returned 429
-- `fishing-boats-on-the-beach-at-les-saintes-maries-de-la-mer` — new plate returned 429
-- `giant-peacock-moth` — new plate returned 429
-- `head-of-a-woman` — new plate returned 429
-- `harvest-at-la-crau-with-montmajour-in-the-background` — new plate returned 429
-- `kingfisher-by-the-waterside` — new plate returned 429
-- `red-cabbages-and-garlic` — new plate returned 429
-- `portrait-of-vincent-van-gogh-1887` — new plate returned 429
-- `self-portrait-with-grey-felt-hat` — new plate returned 429
-- `still-life-with-bible` — new plate returned 429
-- `skull-of-a-skeleton-with-burning-cigarette` — new plate returned 429
-- `the-milkmaid` — new plate returned 429
-- `the-potato-eaters` — new plate returned 429
-- `the-sower` — new plate returned 429
-- `view-of-arles-with-irises-in-the-foreground` — new plate returned 429
-- `vincent-van-gogh` — new plate returned 429
-- `vincent-van-gogh-winterlandschap-herinnering-aan-het-noorden` — new plate returned 429
-- `view-of-the-sea-at-scheveningen` — new plate returned 429
-- `vincent-van-gogh-zelfportret-en-face` — new plate returned 429
-- `wheatfield-with-crows` — new plate returned 429
-- `ferdynand-ruszczyc-stary-dom` — new plate returned 429
-- `giovanni-battista-tiepolo-die-verehrung-der-trinitat-durch-d` — new plate returned 429
-- `anna-nordlander-at-the-suspended-cradle-study` — new plate returned 429
-- `eugene-jansson-sunset` — new plate returned 429
-- `eugene-jansson-the-outskirts-of-the-town` — new plate returned 429
-- `eilif-peterssen-nocturne` — new plate returned 429
-- `gerda-roosval-kallstenius-astrid-setterwall-angstrom-artist` — new plate returned 429
-- `gottfrid-kallstenius-after-sunset-motif-from-the-archipelago` — new plate returned 429
-- `landscape-with-the-fall-of-icarus` — new plate returned 429
-- `gustaf-ankarcrona-in-days-of-yore` — new plate returned 429
-- `pehr-hillestrom-a-woman-picking-fleas-by-candlelight` — new plate returned 429
-- `maria-lady-eardley-1743-1794` — new plate returned 429
-- `herman-norrman-moonlit-landscape` — new plate returned 429
-- `nils-kreuger-nightfall` — new plate returned 429
-- `the-town` — new plate returned 429
-- `victory-at-narva` — new plate returned 429
-- `thor-s-fight-with-the-giants` — new plate returned 429
-- `the-rope-dancer` — new plate returned 429
-- `young-boy-peeling-a-pear` — new plate returned 429
-- `strindberg-underlandet` — new plate returned 429
-- `zoie-ghika-moldavian-princess` — new plate returned 429
+Probed 2026-08-25. Status codes annotated inline.
+
+**Tile-only (no flat `img` URL — Zoomify or DZI delivery):**
+- `two-old-men-disputing` — NGV Zoomify, no img field; probe not applicable
+- `henri-matisse-auguste-pellerin-ii` — Centre Pompidou DZI, no img field; probe not applicable
+- `henri-matisse-tete-blanche-et-rose` — Centre Pompidou DZI, no img field; probe not applicable
+
+**Van Gogh Museum (Micrio IIIF or Commons fallback) — img returns 429 at rate-limited probe:**
+> VGM throttles HEAD at ~1 req/s. In-browser loads work fine; the 429s here are probe artefacts.
+- `almond-blossom` — STILL 429
+- `bridge-in-the-rain-after-hiroshige` — STILL 429 (Micrio IIIF added; Commons img also 429)
+- `birds-nests` — verified 200 (Commons upload.wikimedia.org)
+- `congregation-leaving-the-reformed-church-in-nuenen` — verified 200 (Commons upload.wikimedia.org)
+- `avenue-of-poplars-in-autumn` — STILL 429
+- `cafe-terrace-at-night` — verified 302→200 (Commons redirect)
+- `crab-on-its-back` — STILL 429
+- `fishing-boats-on-the-beach-at-les-saintes-maries-de-la-mer` — STILL 429
+- `giant-peacock-moth` — STILL 429
+- `head-of-a-woman` — STILL 429
+- `harvest-at-la-crau-with-montmajour-in-the-background` — STILL 429
+- `kingfisher-by-the-waterside` — STILL 429
+- `red-cabbages-and-garlic` — STILL 429
+- `portrait-of-vincent-van-gogh-1887` — STILL 429
+- `self-portrait-with-grey-felt-hat` — STILL 429
+- `still-life-with-bible` — STILL 429
+- `skull-of-a-skeleton-with-burning-cigarette` — STILL 429
+- `the-milkmaid` — STILL 429 (img is Commons fallback; Micrio IIIF is the active plate)
+- `the-potato-eaters` — STILL 429
+- `the-sower` — STILL 429
+- `view-of-arles-with-irises-in-the-foreground` — STILL 429
+- `vincent-van-gogh` — STILL 429
+- `vincent-van-gogh-winterlandschap-herinnering-aan-het-noorden` — STILL 429
+- `view-of-the-sea-at-scheveningen` — STILL 429
+- `vincent-van-gogh-zelfportret-en-face` — STILL 429
+- `wheatfield-with-crows` — STILL 429
+
+**Other:**
+- `ferdynand-ruszczyc-stary-dom` — STILL 429 (MNW CDN, rate-limited probe)
+- `giovanni-battista-tiepolo-die-verehrung-der-trinitat-durch-d` — STILL 429 (NG London IIIF)
+
+**Nationalmuseum (Commons TIFF Special:FilePath) — returns 302 redirect, resolves to 200:**
+> All 277babb NM entries verified 302 (expected redirect behaviour for Special:FilePath URLs).
+- `anna-nordlander-at-the-suspended-cradle-study` — verified 302
+- `eugene-jansson-sunset` — verified 302
+- `eugene-jansson-the-outskirts-of-the-town` — verified 302
+- `eilif-peterssen-nocturne` — verified 302
+- `gerda-roosval-kallstenius-astrid-setterwall-angstrom-artist` — verified 302
+- `gottfrid-kallstenius-after-sunset-motif-from-the-archipelago` — verified 302
+- `landscape-with-the-fall-of-icarus` — verified 302
+- `gustaf-ankarcrona-in-days-of-yore` — verified 302
+- `pehr-hillestrom-a-woman-picking-fleas-by-candlelight` — verified 302
+- `maria-lady-eardley-1743-1794` — verified 302
+- `herman-norrman-moonlit-landscape` — verified 302
+- `nils-kreuger-nightfall` — verified 302
+- `the-town` — verified 302
+- `victory-at-narva` — verified 302
+- `thor-s-fight-with-the-giants` — verified 302
+- `the-rope-dancer` — verified 302
+- `young-boy-peeling-a-pear` — verified 302
+- `strindberg-underlandet` — verified 302
+- `zoie-ghika-moldavian-princess` — verified 302
