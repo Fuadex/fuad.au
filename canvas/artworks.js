@@ -3659,7 +3659,20 @@ window.CANVAS_ARTWORKS = [
     img: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_autoritratto_a_69_anni%2C_1911.jpg?width=1600",
     imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_autoritratto_a_69_anni%2C_1911.jpg?width=440",
     imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_autoritratto_a_69_anni%2C_1911.jpg?width=2168",
-    wish: true },
+    wish: true },{"id":"j-m-w-turner-mortlake-terrace","title":"Mortlake Terrace","artist":"J. M. W. Turner","artistId":"turner","qid":"Q20185584","qidTrusted":true,"year":1827,"note":"NGA Washington IIIF ingest, 2026-08-26."},
+{"id":"j-m-w-turner-approach-to-venice","title":"Approach to Venice","artist":"J. M. W. Turner","artistId":"turner","qid":"Q20187111","qidTrusted":true,"year":1844,"note":"NGA Washington IIIF ingest, 2026-08-26."},
+{"id":"j-m-w-turner-venice-the-dogana-and-san-giorgio-maggiore","title":"Venice: The Dogana and San Giorgio Maggiore","artist":"J. M. W. Turner","artistId":"turner","qid":"Q20018614","qidTrusted":true,"year":1834,"note":"NGA Washington IIIF ingest, 2026-08-26."},
+{"id":"j-m-w-turner-keelmen-heaving-in-coals-by-moonlight","title":"Keelmen Heaving in Coals by Moonlight","artist":"J. M. W. Turner","artistId":"turner","qid":"Q20185817","qidTrusted":true,"year":1835,"note":"NGA Washington IIIF ingest, 2026-08-26."},
+{"id":"j-m-w-turner-the-junction-of-the-thames-and-the-medway","title":"The Junction of the Thames and the Medway","artist":"J. M. W. Turner","artistId":"turner","qid":"Q20182241","qidTrusted":true,"year":1807,"note":"NGA Washington IIIF ingest, 2026-08-26."},
+{"id":"j-m-w-turner-the-rape-of-proserpine","title":"The Rape of Proserpine","artist":"J. M. W. Turner","artistId":"turner","qid":null,"noResolve":true,"year":1839,"note":"NGA Washington IIIF ingest, 2026-08-26."},
+{"id":"j-m-w-turner-the-evening-of-the-deluge","title":"The Evening of the Deluge","artist":"J. M. W. Turner","artistId":"turner","qid":null,"noResolve":true,"year":1843,"note":"NGA Washington IIIF ingest, 2026-08-26."},
+{"id":"j-m-w-turner-the-dogana-and-santa-maria-della-salute-venice","title":"The Dogana and Santa Maria della Salute, Venice","artist":"J. M. W. Turner","artistId":"turner","qid":null,"noResolve":true,"year":1843,"note":"NGA Washington IIIF ingest, 2026-08-26."},
+{"id":"j-m-w-turner-rotterdam-ferry-boat","title":"Rotterdam Ferry-Boat","artist":"J. M. W. Turner","artistId":"turner","qid":null,"noResolve":true,"year":1833,"note":"NGA Washington IIIF ingest, 2026-08-26."},
+{"id":"j-m-w-turner-a-packet-boat-off-dover","title":"A Packet Boat off Dover","artist":"J. M. W. Turner","artistId":"turner","qid":null,"noResolve":true,"year":1836,"note":"NGA Washington IIIF ingest, 2026-08-26."},
+{"id":"j-m-w-turner-a-yorkshire-river","title":"A Yorkshire River","artist":"J. M. W. Turner","artistId":"turner","qid":null,"noResolve":true,"year":1827,"note":"NGA Washington IIIF ingest, 2026-08-26."},
+{"id":"j-m-w-turner-tewkesbury-abbey-no-2","title":"Tewkesbury Abbey No. 2","artist":"J. M. W. Turner","artistId":"turner","qid":null,"noResolve":true,"year":1793,"note":"NGA Washington IIIF ingest, 2026-08-26."},
+{"id":"j-m-w-turner-oberwesel","title":"Oberwesel","artist":"J. M. W. Turner","artistId":"turner","qid":null,"noResolve":true,"year":1840,"note":"NGA Washington IIIF ingest, 2026-08-26."},
+{"id":"j-m-w-turner-boats-carrying-out-anchors-to-the-dutch-men-of","title":"Boats Carrying Out Anchors to the Dutch Men of War","artist":"J. M. W. Turner","artistId":"turner","qid":null,"noResolve":true,"year":1804,"note":"NGA Washington IIIF ingest, 2026-08-26."}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
