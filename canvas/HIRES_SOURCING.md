@@ -2,6 +2,171 @@
 
 # The hi-res hunt — how art_hires.js got built, and everything that fought back
 
+## ROUND 6 (2026-08-25) — the NG London regression is FIXED, and two holders adopted
+
+`art_hires.js` **1,108 → 1,141 entries** (33 new rows, 37 rewritten in place). Working sheets,
+with every hash and every reject: `.dtmp/tourqc-pass/w17/{gugg,mnw}/RESULTS.json`,
+`.dtmp/tourqc-pass/w17/VERIFY.json`. **Nothing here was adopted on a reported number** — all 68
+candidate urls were re-fetched in full and re-decoded after the sheets were built (0 failures),
+and the anti-downgrade gate was re-run against `art_hires` as well as `art_imgsize`, which is
+where it caught one.
+
+### ✅ National Gallery London — the round-5 bug report, closed. The tile fix is the WHOLE win.
+
+Round 5's diagnosis was right and its prescription was right. Measured here end to end:
+
+| Request | Status | Decoded |
+|---|---|---|
+| `/full/max/`, `/full/full/`, `/full/3000,/`, `/full/!3000,3000/` | 200 | **800 × 662, all four byte-identical** (sha1 `772a293de82f…`) |
+| raw IIP `?FIF=…&WID=5000&CVT=jpeg` | 200 | **800 × 663** |
+| `/10240,10240,1024,1024/1024,1024/` — *what OSD asks for today* | 200 | **800 × 800** (upscaled into a 1024 tile → **78.1 % of linear detail**) |
+| `/2560,2560,256,256/256,256/` — *what OSD asks for with `tile: 256`* | 200 | **256 × 256, native** |
+| `/0,0,512,512/full/` · `/0,0,800,800/full/` | 200 | 512 × 512 · 799 × 799, native |
+
+⚙ **The distinction, stated plainly, because it is NOT the Oslo case.** Region requests here
+*do* serve native pixels off the full master — that is why the tile fix works at all. But the
+clamp is on the **output size of every single response**, including the raw IIP `CVT` route, so
+**there is no larger flat file to adopt and never was.** Oslo's regions open a bigger *file*;
+NG London's regions open a bigger *zoom* and nothing else. **The tile fix is the entire win, and
+it is a complete one:** the deep zoom now reaches 28,641 × 23,726 and 6,909 × 8,585 at 1:1.
+
+⚠ **Do not read a clamp off `sizes` either.** Both NG descriptors *already publish*
+`tiles: [{width: 256, scaleFactors: […]}]` — the server was telling us the answer the whole
+time. Our inline descriptor threw it away. **When you hand OSD an inline descriptor you are
+overriding the server's own advice; copy its `tiles`, do not omit them, unless you have read
+`maxWidth`/`maxHeight` and there is no clamp.**
+
+Also measured and worth not re-deriving: OSD's `IIIFTileSource` with no `tiles` takes the
+`canBeTiled` branch and picks `tileSize = max([256,512,1024] ≤ min(w,h))` — **1024** for any
+work over 1024 px on the short side — and, with no `scale_factors`, sets
+`maxLevel = Math.round(Math.log(max(w,h)))` (that second argument to `Math.log` is a no-op in
+JS, so it is the *natural* log — a real OSD quirk, self-consistent but not base 2).
+
+**Both records corrected**, and the correction is not the one that was expected:
+- `w`/`h` **stay** 28,641 × 23,726 / 6,909 × 8,585. Those are the true tile-source dimensions
+  and, with `tile: 256`, they are now genuinely reachable — downgrading them would break the
+  tile source and *understate* the zoom.
+- New `flat: [800, 662]` / `[643, 800]` — the measured ceiling of any single flat render. The
+  reader footer was labelling an 800 px link `Ultra HQ ↗ 28641×23726`. **That was the actual
+  dishonest field, not `w`/`h`.**
+- `img` repointed from `/full/!3000,3000/` (which delivers 800 px under a 3000 px name — a
+  filename-as-dimension trap **of our own making**) to the Commons plate, per the Micrio
+  precedent: `enrich()` feeds `hires.img` into `imgZoom`, so on *Madonna of the Pinks* our own
+  record was silently downgrading the plain Zoom overlay from the Commons **870 × 1,080** to
+  NG's **643 × 800**. A live per-axis downgrade, inside an adoption, for two days.
+- Aspect re-verified against the holder's physical dimensions (Wikidata P2048/P2049): NG6582
+  61 × 51 cm → 1.196 vs master 1.2072 (**0.94 %**); NG6596 22.4 × 27.9 cm → 0.8029 vs master
+  0.8048 (**0.24 %**). Identity is holder-owned either way — the pyramid TIFF is *named* by
+  accession (`N-6582…`, `N-6596…`) and both match P217 exactly.
+- ⚠ `physicalScale` in these descriptors is **scan DPI, not object size** (0.00846667 cm/px =
+  exactly 300 dpi; 0.00374631 = 678 dpi). It would "prove" *Coastal Scene* is 2.4 m wide.
+  **Do not use a IIIF physdim service as a physical-dimension check.**
+
+The viewer change is a two-hunk exact-match patch in `.dtmp/tourqc-pass/w17/NG_PATCH.md`
+(`canvas-app.jsx` was held by another agent); `hires.tile` and `hires.flat` are inert until it
+lands, so the data is safe to ship first.
+
+### ✅ Guggenheim — 20 adopted, and the reported rule was wrong in a way that mattered
+
+**`www.guggenheim.org` is open nginx** — no Cloudflare, no challenge. The reported trick
+("delete the trailing `-1`") is **not the rule**: `-1` is WordPress's *upload-collision counter*,
+not a size tier. The rule is **strip every WP variant suffix back to the canonical stem
+`<ACCESSION>_ph_web.jpg`, in the same `uploads/<YYYY>/<MM>/` directory** — tested on 31 anchored
+works, and **2 would have failed a literal `-1` delete** (*Woman in a Striped Dress* is served by
+the museum's own page at 246 × 512 and the canonical stem gives **1,936 × 4,096**; *Blue
+Mountain* needed a different upload directory entirely).
+
+Ceiling is a **~4,096 px fit box** and it is the ceiling: `-scaled`, `-2048x1386`, `_ph.jpg`,
+`_ph_print.jpg`, bare `<accession>.jpg` all 404, and `?w=8000` returns the **byte-identical**
+4,096 file (trap 7, caught by hash). **No ACAO on any asset** (measured on 30 with
+`Origin: https://fuad.au`, re-measured on 8 independently; no `vary` header at all). Alias in
+`.dtmp/tourqc-pass/w17/WORKER_GUGG.local.md`, **not pasted** — and it is optional, because a
+`type: "image"` source that fails CORS lands in `open-failed` and is rebuilt on the direct url
+with `cors: false`, which is a plain image load.
+
+⛔ **The one work the reported claim was verified on is one of the rejects.** "Verified
+4096 × 2852" is *Composition VIII* (37.262): **×1.02 linear** over our 3,911 × 2,849 plate with a
+**4.62 % aspect delta**. A sample of one proved the host and nothing about the corpus.
+
+✅ **The round-4 Kandinsky decline is overturned.** *Improvisation 28 (second version)* was
+closed as "a 1,280 px web-tier JPEG, ×1.4". That 1,280 file is the WP-*registered* derivative —
+`wp-json/wp/v2/media/119149` knows about nothing else — while the canonical stem serves
+**4,075 × 2,758, ×4.52, 0.55 → 11.24 MP**. ⚠ **A media API that reports a ceiling is reporting
+its own index, not the disk.**
+
+13 rejected: **8 on aspect > 2 %**, 3 anti-downgrade, 1 zero-gain, 2 unanchored (reported as
+unmeasured, not as absent).
+
+### ✅ MNW Warsaw — 48 adopted, +~620 MP, the largest single win in the arc so far
+
+The path rewrite generalises. Full shape, which the report understated —
+**`cyfrowe-cdn.mnw.art.pl/upload/cache/multimedia_big/<aa>/<bb>/<hash>.jpg` →
+`…/upload/multimedia/<aa>/<bb>/<hash>.jpg`** (the report omitted `upload/` and the CDN host).
+Tested on 16 objects, never byte-identical, 20–60× the bytes. Invented tiers
+(`multimedia_small`/`_medium`/`_xl`/`_full`, `cache/multimedia`) **404 honestly** — exactly four
+rungs exist, and `multimedia/` sits on a different backend (Hitachi HCP) from the nginx cache
+tiers. **`ACAO: *` measured on all 48** with `Origin: https://fuad.au` — no proxy, no worker.
+
+⚠ **`multimedia_big` is a 1,024 px fit box.** Trap 9 living inside the word "big".
+
+⚠ **6000 is an ingest target, not a cap and not "the original."** Of 85 masters, 15 land on
+exactly 6000, 69 fall below (down to 2,633) and **one exceeds it** (6,620). Best real gain
+**×7.74**, not the reported ×7.96.
+
+**Enumeration.** `cyfrowe.mnw.art.pl/oai-pmh` and `/oai` both return **200 with the identical
+3,416-byte Angular shell** — trap 3, twice. The real OAI lives on a separate host,
+`cyfrowe-oaipmh.mnw.art.pl`. But the door that actually worked is **`cyfrowe-api.mnw.art.pl`**,
+keyless, `ACAO: *`, 109,893 objects, keyed by **`filter[inventoryNumber]=<number>`** against
+Wikidata P217. All 85 hits returned exactly one object and `noEvidence` matched P217
+character-for-character **85/85**. ⚠ **An unrecognised filter key is silently ignored and returns
+the whole corpus with a 200** — check `totalItemsCount`.
+
+⛔ **NEW TRAP — Wikidata P9061 (MNW object id) is NOT a safe anchor**, and the holder gate
+cannot see it. `battle-of-grunwald`'s P9061 resolves to a clean MNW-owned record **for a Chinese
+bronze ritual vessel**; `stanczyk`'s P9061 404s. This is trap 10 wearing an **id** instead of a
+surname: the object is genuinely held by the right museum, so P195 passes. **Anchor on the
+inventory number (P217) and cross-check the returned record's own accession.**
+
+⚠ **15 of the 48 originals are served `content-type: application/octet-stream` with `nosniff`**
+(the cache tiers are always `image/jpeg`). Bytes are genuine JPEG and the `image` destination is
+not subject to nosniff blocking, but it is the exact shape that fails silently in a crossorigin
+fetch — **open `garden-in-kissingen` in a real browser once.** `open-failed` rebuilds with
+`cors: false` if it does fail, so the fallback is benign.
+
+### ⛔ The anti-downgrade gate caught one — and it was inside an ADOPT list
+
+`stanczyk`: candidate **5,759 × 4,277**, existing `art_hires` row **5,766 × 4,289**. Smaller on
+**both** axes, and it scored ×1.85 only because the comparison was run against `art_imgsize`
+(3,118 × 2,313) instead of the row we actually serve. **Run the gate against
+`max(art_imgsize, art_hires)` per axis, not against the plate.** Two further MNW rows were
+dropped as no-ops (`jewess-with-oranges` pixel-identical, `eugeniusz-wrzeszcz…` ×1.002): a flat
+JPEG with no gain is not the Micrio case — **there is no pyramid to buy.**
+
+### ⚠ HELD, NOT REJECTED — 35 works where OUR plate is the cropped one
+
+8 Guggenheim + 27 MNW candidates exceed the 2 % aspect gate, so they were **not adopted** (a
+re-plate would invalidate existing tour box coordinates). But both sweeps cross-checked the
+candidates against the **holder's recorded physical dimensions**, and the result inverts the
+usual reading: on **6 of the 8** Guggenheim and **21 of the 27** MNW conflicts the *candidate* is
+the truer framing and **our current plate is the crop**. Examples: `werki-pod-wilnem` (physical
+82 × 68.5 cm — our plate off **11.4 %**, MNW off **0.3 %**); `red-oval` (a 500 × 488 plate with
+×7.77 available); `nude-study-sad-young-man-on-a-train` (our plate is a visitor's gallery photo).
+These are **remap candidates needing Fuad's call plus a tour-box re-anchor**, not discards — the
+same shape as the Klimt *Water Serpents I* hold in the toured-plates pass. ⚠ `saint-anne` is the
+one to leave alone: plate landscape, candidate portrait, physical object square — neither capture
+matches, identity uncertain.
+
+15 MNW works are **UNRESOLVED, not absent**: 9 have no cyfrowe record under their P217, 3 carry
+**Royal Castle** inventory numbers (ZKW …) while their P195 says MNW — a census/Wikidata conflict
+worth its own look — and 3 have no P217 at all.
+
+### 📎 Side doors worth keeping
+
+`www.guggenheim.org/wp-json/wp/v2/artwork?slug=<objectId>`, `wp/v2/media/<id>` and
+`wp-json/guggenheim/v1/search?s=<title>` are open and keyless — but the custom search does **not**
+index accession numbers (search by title, *verify* by accession), and `wp/v2/media` only ever
+knows the 1,280 derivative.
+
 ## ROUND 5 (2026-08-25) — **corrections to already-adopted sources come first**
 
 This round's most valuable output is not the new holders. It is that **four entries in this
@@ -323,12 +488,13 @@ are pixel-identical to the JPEG already in `img`. Worse: asking for a 3840 thumb
 3478×4649 TIFF returns 3840×**5133** — **MediaWiki UPSCALES TIFFs**, so a naive sweep logs a
 gain on all 49 that does not exist.
 
-## ⛔ TEN TRAPS THAT LOOK LIKE WINS (rounds 3–5, 2026-08-25)
+## ⛔ THIRTEEN TRAPS THAT LOOK LIKE WINS (rounds 3–6, 2026-08-25)
 
 Each passes a naive check and ships a regression — or, in the round-4 four, writes a *false line
 into this ledger*, which is worse, because the next pass inherits it as fact. Test for them by
 name. **1–4 are round 3 (they cost us adoptions); 5–8 are round 4 (they cost us diagnoses);
-9–10 are round 5 (they would have shipped WRONG OBJECTS and wrong numbers).**
+9–10 are round 5 (they would have shipped WRONG OBJECTS and wrong numbers); 11–13 are round 6 —
+and 13 is the first one we did to ourselves, inside an already-adopted record.**
 
 1. **MANIFEST-WITHOUT-A-SERVICE.** Petit Palais / Paris Musées publishes *real IIIF manifests*
    — and no image service behind them. The canvas points at a 6.97MP Drupal render against our
@@ -395,6 +561,29 @@ name. **1–4 are round 3 (they cost us adoptions); 5–8 are round 4 (they cost
    back from the same query. ⚠ This is the sibling of the P195 gate's own recorded blind spot
    (163 NGA works correctly rejected as same-title-different-object) — same lesson one field
    over: **title and name are both just strings.**
+
+11. **A HOLDER-ISSUED ID THAT POINTS AT THE WRONG OBJECT — and the holder gate PASSES it.**
+   Wikidata **P9061** (MNW object id) on `battle-of-grunwald` resolves to a clean, live,
+   MNW-owned catalogue record **for a Chinese bronze ritual vessel**; `stanczyk`'s P9061 404s.
+   Trap 10 said "a surname is not an identity"; this is the same lesson wearing an **id**, and it
+   is worse, because an id *looks* like the anchor the whole discipline asks for. The holder is
+   correct, the id is live, the record is real, and the object is wrong. **Anchor on the
+   inventory/accession number and then cross-check the returned record's OWN accession against
+   it.** Any external-id property is a claim, not a key — same family as trap 4 (P6108 pointing
+   at a non-manifest).
+12. **A MEDIA API THAT REPORTS ITS OWN INDEX AS THE CEILING.** The Guggenheim's
+   `wp-json/wp/v2/media/<id>` knows only the 1,280 px derivative for
+   *Improvisation 28* — so round 4 closed it as "a 1,280 px web tier". The 4,075 px original was
+   on disk the whole time, simply **unregistered**. A CMS's media table describes what the CMS
+   was told about, not what the filesystem serves. **Probe the path, do not believe the index.**
+13. **OUR OWN RECORD LYING ABOUT WHAT IT FETCHES.** `ng-london`'s `img` was
+   `/full/!3000,3000/0/default.jpg` and delivered **800 px** — filename-as-dimension (trap 9),
+   except we wrote it ourselves, and because `enrich()` feeds `hires.img` into `imgZoom` it
+   quietly downgraded *Madonna of the Pinks*' Zoom overlay from the Commons 870 × 1,080 to
+   643 × 800 **inside an adoption that was scored as a gain**. **A url that names a size is a
+   request, never a receipt — and audit the fields an adoption REPLACES, not just the ones it
+   adds.** Corollary: run the anti-downgrade gate against `max(art_imgsize, art_hires)` per axis
+   (it caught `stanczyk` in round 6, inside an ADOPT list, for exactly this reason).
 
 Also keep in mind the **flat-render downgrade** (Nationalmuseum's render caps at 1000px while
 its pyramid reaches 11,016 — adopting the render as `img` silently downgrades works currently
@@ -568,7 +757,9 @@ pixel-perfectly — and Commons rounds its own way; only measured `pyr` levels r
 | **SMK Copenhagen** | open API (recovered from 500s) | 1 match → 0 emits | Swept 21 Nordic canon works. Sole hit — *Interior. Artificial Light*, 118.8 MP — was a same-title different Hammershøi: canon Q18600052 is the Stockholm Nationalmuseum *Interior* (P195 Q842858), not SMK's. Holder gate rejection #21. |
 | **Nasjonalmuseet Oslo** | ⚙ **corrected 2026-08-25 (round 5) — the image service IS reachable** | 0 emits yet | ~~All 8 plausible endpoint patterns dead (timeouts / NXDOMAIN). Their IIIF exists but has no discoverable search front door.~~ The *search* front door is still missing; the *images* are not. **The flat render clamps at 4000 px — but REGION requests serve native pixels**, off a master measured at **59,171 × 73,171**. ⚙ **Recorded with the wrong turn intact:** one agent measured the 4000 clamp on `/full/…`, reported Oslo as capped, and was corrected. **A clamp measured on `/full/` is not a clamp on the server** — re-measure by region before believing any ceiling in this table. |
 | **Wikidata P6108/P4765** | open | 0 | No IIIF manifests exist for any canon work. The sweep's value was P18 dims + conflation discovery. |
-| **National Gallery, London** | open, keyless — **IIIF Image 3.0**, previously listed here as unchecked. ⛔ **BUT CLAMPED — see round 5** | **2 emits** ~~(Rysselberghe *Coastal Scene* 28,641×23,726 = 680 MP; Raphael *Madonna of the Pinks* 6,909×8,585)~~ ⛔ **those are the MASTER dimensions; the server delivers 800 × 662 for both** | ⛔ **LIVE REGRESSION, round 5:** `maxWidth/maxHeight: 800`, clamped with a **200** not a 400, and `/full/max/`, `/full/full/` and `/full/3000,/` all return the **byte-identical 800 px file**. Because our inline descriptor omits `tiles`, OSD picks 1024 and every tile is served at 800 and upscaled — the deep zoom runs at **~78% of available detail** on two **toured** works. **Fix: declare `tiles: 256`.** Everything below this line is still true about the endpoint; it was never true about the delivered size. The discovery of the 2026-08-25 pass. Endpoint shape: `www.nationalgallery.org.uk/server.iip?IIIF=/fronts/<ACCESSION>-…-PYR.tif/info.json` — an IIPImage server, and the pyramid TIFF is **named by accession** (`N-6582-…` = NG6582), so identity is holder-owned, not title-matched. Two gotchas: (a) **no ACAO** — see the CORS note below; (b) it is IIIF **3**, where the Ultra-HQ size keyword is `max`, not the `full/full` the reader assumed for our IIIF-2 sources (hence the `full` override field). |
+| **Solomon R. Guggenheim** | open **nginx** (no Cloudflare), WordPress uploads, **NO ACAO** on any asset | **20 emits** (best ×4.54, 73.1 → 254.4 MP; 19 of 20 seen) | Round 6. Rule is **strip WP variant suffixes back to `<ACCESSION>_ph_web.jpg`** in the same `uploads/<YYYY>/<MM>/` — *not* "delete the trailing `-1`", which is the upload-collision counter and fails on 2 of 20. Ceiling is a **~4,096 px fit box**: `-scaled`, `-2048x1386`, `_ph.jpg`, `_ph_print.jpg`, bare accession all 404, `?w=8000` is byte-identical. Identity is the **accession in the filename**, matched to P217 (it kept Kandinsky 37.262 and Mondrian 49.1227 apart — two canon works with near-identical titles). Overturns the round-4 decline of *Improvisation 28*: the 1,280 px seen then was the WP-**registered** derivative; the disk has 4,075 × 2,758. Alias `img.fuad.au/gugg/` written to `.dtmp/tourqc-pass/w17/WORKER_GUGG.local.md`, **not pasted, and optional** (a CORS-failed `type:"image"` source is rebuilt direct with `cors:false`). 13 rejects: 8 aspect > 2 %, 3 anti-downgrade, 1 zero-gain, 2 unanchored. |
+| **MNW Warsaw** | open, keyless — CDN path rewrite + `cyfrowe-api.mnw.art.pl`, **`ACAO: *` measured on all 48** | **48 emits, ~+620 MP** (best ×7.74; 21 previously plateless, 11 of those seen) | Round 6, the biggest single win in the arc. **`…/upload/cache/multimedia_big/<aa>/<bb>/<hash>.jpg` → `…/upload/multimedia/<aa>/<bb>/<hash>.jpg`**; the `_big` tier is a **1,024 px fit box** (trap 9 inside the word "big"). Exactly four rungs exist — invented tiers 404 honestly. **6000 is an ingest target, not a cap**: 15 masters at exactly 6000, 69 below, one at 6,620. Anchor via **P217 → `filter[inventoryNumber]`**, 85/85 exact; ⛔ **P9061 is NOT a safe anchor** — `battle-of-grunwald`'s resolves to a Chinese bronze vessel that the holder gate happily passes. `oai-pmh`/`oai` on the main host are the **Angular shell with a 200** (trap 3, twice); the real OAI is `cyfrowe-oaipmh.mnw.art.pl`, and was never needed. ⚠ 15 of 48 come back `application/octet-stream` + `nosniff`. 34 rejects (27 of them aspect > 2 %, and on 21 of those our plate is the crop), 15 unresolved. |
+| **National Gallery, London** | open, keyless — **IIIF Image 3.0**, clamped at 800 on every flat render. ✅ **FIXED round 6 — the zoom now reaches the master** | **2 emits** (Rysselberghe *Coastal Scene* 28,641×23,726 = 680 MP; Raphael *Madonna of the Pinks* 6,909×8,585) — **reachable tile by tile only; any single file is 800 px** | ✅ **Round 6: `tile: 256` added to both rows, and it is the WHOLE win** — regions whose output size is ≤ 800 serve **native** pixels off the master (256-px tiles measured at 256 × 256), so the deep zoom went from **78.1 % of linear detail to 100 %**. There is **no bigger flat file at any spelling**, including the raw IIP `?FIF=…&WID=5000&CVT=jpeg` route — so this is *not* the Oslo case. New `flat` field records the measured 800-px ceiling so the footer stops labelling an 800 px link "Ultra HQ ↗ 28641×23726"; `img` repointed to the Commons plate (it was `/full/!3000,3000/`, an 800 px file under a 3000 px name, and it was downgrading *Madonna*'s Zoom overlay from 870×1,080 to 643×800). Viewer hunk: `.dtmp/tourqc-pass/w17/NG_PATCH.md`. ⚠ Both descriptors **already published `tiles: 256`** — our inline descriptor discarded the server's own advice. ⛔ **LIVE REGRESSION as diagnosed in round 5:** `maxWidth/maxHeight: 800`, clamped with a **200** not a 400, and `/full/max/`, `/full/full/` and `/full/3000,/` all return the **byte-identical 800 px file**. Because our inline descriptor omits `tiles`, OSD picks 1024 and every tile is served at 800 and upscaled — the deep zoom runs at **~78% of available detail** on two **toured** works. **Fix: declare `tiles: 256`.** Everything below this line is still true about the endpoint; it was never true about the delivered size. The discovery of the 2026-08-25 pass. Endpoint shape: `www.nationalgallery.org.uk/server.iip?IIIF=/fronts/<ACCESSION>-…-PYR.tif/info.json` — an IIPImage server, and the pyramid TIFF is **named by accession** (`N-6582-…` = NG6582), so identity is holder-owned, not title-matched. Two gotchas: (a) **no ACAO** — see the CORS note below; (b) it is IIIF **3**, where the Ultra-HQ size keyword is `max`, not the `full/full` the reader assumed for our IIIF-2 sources (hence the `full` override field). |
 | **Nationalmuseum Stockholm** | open, keyless (`api.nationalmuseum.se/api/objects/<id>` → `iiif` field on iiifhosting.com, IIIF 2 **level1**). ⚠ **level1 = capped 1000 px, and `/full/max/` 400s here** (round 5; Smithsonian is the same shape — ask for a listed `sizes` value, not `max`) | **3 emits** (both Fjæstads, Rembrandt *Simeon in the Temple*) | Object-id lookup is perfect; **search is broken** — every `query`/`q`/`title`/`filter` param is ignored and returns the whole 208k-row corpus. Only usable when you already hold the object id, which Wikidata's *Nationalmuseum Sweden artwork ID* supplies. Records also carry `inventory_number` (NM 1628 / NM 1703 / NM 4567 — all three matched the canon notes exactly), dating, dimensions and an explicit `iiif_license`. Worth a corpus-wide Nordic sweep later. `page` currently points at the API record, not a human catalogue page — no public object-page URL pattern found. |
 | **NGV Melbourne** | partial, keyless — **Zoomify**, not IIIF | **1 emit** (Rembrandt *Two Old Men Disputing*, 4,105×5,000 from a 498×600 plate) | No JSON API, no IIIF (`api.`/`iiif.` subdomains NXDOMAIN). The object page `/explore/collection/work/<vernonID>/` inlines `imgWidth`/`imgHeight` and a Zoomify base under `content.ngv.vic.gov.au/col-images/zooms/<imgid>/`, driven by OpenLayers; `ImageProperties.xml` confirms it. `retrieve.php?size=xl` is only 694×845, so the **pyramid is the whole prize**. Cost of adoption: a third tile flavour in the viewer (see below). |
 | **Centre Pompidou / MNAM** | partial, keyless — **DeepZoom (.dzi)** | **2 emits** (Matisse *Auguste Pellerin II*, *Tête blanche et rose*) | `api.centrepompidou.fr` does not resolve; object pages do, and inline `/media/picture/<hash>/dzi/uhd.dzi`. Hard-capped at **4,000 px long side** — a fixed "uhd" render tier, not the archival master — but still ×4 linear on works that were 1,000 px uploader-capped. **No ACAO.** Wikidata's Centre Pompidou IDs go stale (`5dq7dfI` 404s), so verify the id resolves before adopting; one candidate was dropped for exactly this. Rights: Matisse d. 1954 → French PD from 2025-01-01. |
@@ -689,8 +880,8 @@ the standing rule every proxied URL here is paired with that direct fallback.
 
 | Work | Source | Tech | Was → now | Linear gain |
 |---|---|---|---|---|
-| Rysselberghe, *Coastal Scene* | ng-london | IIIF 3 (proxied) | ~~800×665 → 28,641×23,726~~ **→ 800×662 as delivered** | ~~×35.8~~ **×1.0** |
-| Raphael, *Madonna of the Pinks* | ng-london | IIIF 3 (proxied) | ~~870×1,080 → 6,909×8,585~~ **→ 800 px long side as delivered** | ~~×7.9~~ **<×1** |
+| Rysselberghe, *Coastal Scene* | ng-london | IIIF 3 (proxied) | ~~800×665 → 28,641×23,726~~ ~~**→ 800×662 as delivered**~~ ✅ **28,641×23,726 in the zoom, round 6** | ~~×35.8~~ ~~**×1.0**~~ ✅ **×35.8, tile by tile** |
+| Raphael, *Madonna of the Pinks* | ng-london | IIIF 3 (proxied) | ~~870×1,080 → 6,909×8,585~~ ~~**→ 800 px long side as delivered**~~ ✅ **6,909×8,585 in the zoom, round 6** | ~~×7.9~~ ~~**<×1**~~ ✅ **×7.9, tile by tile** |
 | Rembrandt, *Two Old Men Disputing* | ngv | **Zoomify** | 498×600 → 4,105×5,000 | ×8.2 |
 | Pissarro, *Prairie à Éragny* | agsa | JPEG | 796×640 → 3,543×2,849 | ×4.5 |
 | Fjæstad, *Winter Moonlight* | nationalmuseum-se | IIIF 2 | 1,000×810 → 3,791×3,070 | ×3.8 |
