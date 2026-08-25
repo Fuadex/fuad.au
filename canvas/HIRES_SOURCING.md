@@ -40,8 +40,9 @@ else.** The class is *re-measure by region*, not *every clamp is fake*.
 
 **The prize.** ⚙ Verified from the plan's own rows: **33 rows recoverable** (`A_adopt`: NM IIIF
 ≥ master on **both** axes, unframed), taking the pixels a reader can actually reach from
-**188 MP → 829 MP**. ⚠ Note which "before" that is — the **served** total, decoded from the
-bytes the viewer receives. The **declared** total for the same 33 rows is 384 MP, and quoting
+**188 MP → 829 MP** *(this round's NM `A_adopt` scope only, 2026-08-25 — not the same
+measurement as PLATE_CHANGES' 52 → 2,183, which is declared MP across all 204 changed works)*.
+⚠ Note which "before" that is — the **served** total, decoded from the bytes the viewer receives. The **declared** total for the same 33 rows is 384 MP, and quoting
 that would understate the win by more than half, because these are the TIFF rows whose
 declared dims were never delivered (next entry).
 
@@ -200,8 +201,10 @@ existing `nationalmuseum-se` pattern would have propagated the 501 to 33 more ro
 ## ROUND 6 (2026-08-25) — the NG London regression is FIXED, and two holders adopted
 
 `art_hires.js` **1,108 → 1,141 entries** (33 new rows, 37 rewritten in place). ⚙ **The store is
-now at 1,152** — w20's tourless half added 11 more the same day (round 7); 1,141 is correct as
-this round's end state, not as a current count. Working sheets,
+now at 1,155** (re-measured pass 2, 2026-08-25; `Object.keys(CANVAS_HIRES).length`) — w20's
+tourless half added 11 (→ 1,152), and the day's NM group-B/D + Guggenheim applies (`a7d6316`,
+`0eb7787`) took it to 1,155. **1,141 is this round's end state, not a current count**; the earlier
+"now at 1,152" was itself already stale within the day. Quote the store, not a round total. Working sheets,
 with every hash and every reject: `.dtmp/tourqc-pass/w17/{gugg,mnw}/RESULTS.json`,
 `.dtmp/tourqc-pass/w17/VERIFY.json`. **Nothing here was adopted on a reported number** — all 68
 candidate urls were re-fetched in full and re-decoded after the sheets were built (0 failures),
@@ -994,7 +997,8 @@ NEEDS REMAP, not adopt; low priority. **SMK** — ×1.22, under the bar.
 
 Companion to [HIRES_GALLERY.md](HIRES_GALLERY.md) (the ranked results). This is the
 methodology and the incident log: two days of sourcing (2026-08-22/23) that took the store
-from **89 entries to 1,029**, and the surprisingly long list of ways a "just get the big
+from **89 entries to 1,019** *(1,029 was a typo, corrected pass 2 2026-08-25; the arc figure is
+89 → 1,019)*, and the surprisingly long list of ways a "just get the big
 image" task can fail. Every rule below was paid for.
 
 ## The display hierarchy (what "high quality" actually means in a browser)

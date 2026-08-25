@@ -1,10 +1,14 @@
-# Plate changes — the last two days
+> Part of the fuad.au docs — start at [/GUIDE.md](/GUIDE.md)
+
+# Plate changes — 2026-08-23 → 2026-08-25
 
 Built from git history: every commit touching `canvas/art_hires.js`, diffed per record. Every URL below was **fetched and decoded** — the dimensions are measured from the JPEG header, not read from a field.
 
 **204** works had their image source change. **143** new plates verified 200. **18** are genuine replacements with a resolvable previous plate; the other **136** are records that did not exist before.
 
 Total measured: **52 MP -> 2183 MP** (+444.7 MP from ten Nationalmuseum re-frames at 80acb76; +13 MP from Szał uniesień restore at f62ee3f).
+
+> ⚠ **SCOPE, so this does not read as a contradiction of HIRES_SOURCING's "188 MP → 829 MP".** This 52 → 2,183 figure is the **declared-MP** total across **all 204 works whose `art_hires` row changed over 2026-08-23 → 25** (git-diff scope). HIRES_SOURCING's 188 → 829 is a **different, narrower measurement**: the **served**-pixel (decoded, not declared) total for just the **33 NM `A_adopt` rows** of one round. Different populations, different baselines, both current — not two values of one number.
 
 > CORS note: Guggenheim assets carry no ACAO and load through `img.fuad.au/gugg/` in the app — a direct browser tab is fine, an in-page fetch is not. MNW and Nationalmuseum both measured `ACAO: *`.
 
@@ -603,5 +607,5 @@ Same impression/state as the NGA plate — identical engraving content (MELENCOL
 
 Same impression/state as the NGA plate — identical engraving content (plaque, parrot, serpent, cat/mouse, elk, ox, both figures identical); the GAP plate shows slightly more paper margin. This work is **toured** (3 `details` boxes in `art_hires.js`), and the framing shift is real but tiny, so the boxes were remapped through a registration of the old NGA plate inside the GAP plate: fit `ox=0.00559 oy=0.00434 sw=0.99441 sh=0.99643` (near-identity). **regNcc 0.91581** vs **0.86482** identity and **0.41057** centred-crop control. All three remapped stops were crop-checked against the new plate — the serpent passing the fruit, the four-animals lower zone, and the ALBERTVS·DVRER·1504 plaque with parrot — all confirmed.
 
-> **Write-gate note.** During this pass `art_hires.js` and `art_inspect.js` were repeatedly **modified vs the git index by a concurrent process**; writes were gated until all three target files returned to a CLEAN state, then applied through idempotent apply scripts with round-trip guards (`.dtmp/nmB-durer/apply_art_hires.js`, `apply_art_inspect.js`) rather than blind edits. Each apply re-verifies its anchors, that the JSON store still evals, that the entry count is unchanged, and that only the intended keys changed (and for `art_inspect.js`, that every stop body/title is byte-preserved).
+> **Write-gate note.** During this pass `art_hires.js` and `art_inspect.js` were repeatedly **modified vs the git index by a concurrent process**; writes were gated until all three target files returned to a CLEAN state, then applied through idempotent apply scripts with round-trip guards (`.dtmp/nmB-durer/apply_art_hires.js`, `apply_art_inspect.js` — local workshop artifacts, not deployed) rather than blind edits. Each apply re-verifies its anchors, that the JSON store still evals, that the entry count is unchanged, and that only the intended keys changed (and for `art_inspect.js`, that every stop body/title is byte-preserved).
 

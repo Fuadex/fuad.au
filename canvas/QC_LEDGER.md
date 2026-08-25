@@ -18,16 +18,29 @@ shipped, the shape of the Nationalmuseum `img` defect, and what "byte-identical"
 Redon rows. Every one is corrected below, in place. **Treat an unmarked number as suspect and
 re-measure it.**
 
-**Store state at the time of writing** (⚙ all five re-counted from the files, not reported):
-`art_inspect` **378** tours · `art-about` **800** reads · `art_hires` **1,152** rows ·
-`artworks` canon **1,977** works · **22** `beside` paragraphs.
-⛔ **The session note said 19 besides; the store says 22.** Method:
-`Object.values(CANVAS_INSPECT).filter(v => v.beside !== undefined).length`. `art-about` carries
-**zero** — `beside` is a tour field only.
+**Store state** ⚙ **re-measured 2026-08-25 (pass 2), after the day's applies landed** (all five
+re-counted from the files, not reported): `art_inspect` **389** tours · `art-about` **807** reads ·
+`art_hires` **1,155** rows · `artworks` canon **1,976** works · **33** `beside` paragraphs.
+Method: `Object.values(CANVAS_INSPECT).filter(v => v.beside !== undefined).length`. `art-about`
+carries **zero** — `beside` is a tour field only.
+⚠ The earlier snapshot in this section (378 / 800 / 1,152 / 22) was true before the w17 apply
+(`43a882e`), the NM group-B (`a7d6316`) and group-D + Guggenheim (`0eb7787`) applies, and the
+Tiepolo cascade (`09d07f2`); it is left in the struck items below with those commits attached.
 
 ---
 
-### 1. ⛔ THE w17 DEFECT LEDGER — the blocking one. Ten drafted tours, ZERO clean.
+### 1. ✅ THE w17 DEFECT LEDGER — RULED apply-with-fixes, APPLIED 2026-08-25 (`43a882e`).
+
+⚙ **CLOSED.** Fuad ruled apply-with-fixes; the recommended second-opinion pass ran first (w21,
+its own dated entry below), and the ten tours + ten reads shipped in `43a882e` with the w21
+repair plan (A 13 edits + B 17 edits; `christian-rohlfs-white-beeches-in-fall` and
+`canaletto-london-interior-of-the-rotunda-at-ranelagh` came back clean and shipped as drafted;
+**the San Rocco back-edit is in the DO-NOT-APPLY register** — see item 3). Stores moved
+`art_inspect` 379 → 389 (ten tours) and `art-about` 801 → 807 (four reads were REPLACEMENTS, six
+additions). The blocking verdict is spent; the original held-state ledger is kept below for the
+record. The `beside` ruling landed in the same commit.
+
+<details><summary>Original held-state ledger (pre-`43a882e`, kept for the record)</summary>
 
 Ten tours were drafted, image-QC'd by an independent pass, and **held**. Not one came back
 clean. ⚙ **Verified: all ten are in `.dtmp/tourqc-pass/w17-merge/merge_plan.json` (keys
@@ -94,7 +107,9 @@ deserves a check before it authorises rewriting approved prose.
 **Workshop:** `.dtmp/tourqc-pass/w17-merge/` — `merge_plan.json` (the batch),
 `cropspec.json` + `zoomjobs.json` (the crop jobs), `apply.js` / `precheck.js` / `checkplan.js`
 (the applier and its guards), and ~600 PNG crops named by question (`Q1_*` Rubens bird,
-`Q2_*` Monet boat, `Q3_*`, `C_*`, `z_*`).
+`Q2_*` Monet boat, `Q3_*`, `C_*`, `z_*`). ⚠ Local workshop artifact, not deployed.
+
+</details>
 
 ---
 
@@ -303,7 +318,20 @@ so it cannot be applied without someone reading the diff. Then re-run `validate-
 
 ---
 
-### 7. ⚠ THE TWO `READS_SPEC` QUESTIONS ARE STILL OPEN — confirmed, not assumed.
+### 7. ✅ THE TWO `READS_SPEC` QUESTIONS ARE RULED — both landed 2026-08-25, item CLOSED.
+
+⚙ **CLOSED.** Fuad ruled both, and the entanglement below dissolves with them:
+- **`beside`** — the cascade does NOT see it, and it is drafted LAST (after the reads), so a job
+  file cannot carry it because at that point it does not exist. Ruling and ordering: READS_SPEC §1
+  + STUDY_SPEC pipeline. Applied in `43a882e`.
+- **`refs`** — reads carry refs MINTED FROM THEIR OWN PROSE, never copied down from the tour;
+  mechanical inheritance and prose-rewritten-to-hang-a-link stay forbidden. Ruling: READS_SPEC §1,
+  spec commit `9fcde8d`.
+
+The two were entangled (fence `beside` out and most of a tour's refs go with it); ruled together,
+the entanglement is gone. The struck open-question text is kept below for the record.
+
+<details><summary>Original open-question text (pre-ruling, kept for the record)</summary>
 
 ⚙ **Verified both are still live in `READS_SPEC.md` §1**, and neither has been ruled:
 
@@ -333,6 +361,8 @@ a ref"* and booked a 21-row backlog. The count was wrong: it walked only the **k
 the shape 21 of the 22 actually use. **`refs` has two shapes; a scan that walks one of them
 under-reports by 95 % and reports a crisis.** It was caught only by re-deriving the number
 before writing it down — which is the whole reason this section marks its figures ⚙.
+
+</details>
 
 ---
 
@@ -367,7 +397,8 @@ before writing it down — which is the whole reason this section marks its figu
 | 2026-08-25 | **WAVE 4 — audit + repair**, plus the mandatory whole-entry re-audit (STUDY_SPEC checklist 13 / run order 26) | Opus agents auditing from crops, then **re-verifying their own findings before apply**; Fable QC + JSON-runner apply with round-trip proof | Opus + Fable | **82 text + 27 box + 1 title fix applied across 12 works.** ⭐ **The wave REJECTED 9 of its OWN findings on verification** — i.e. roughly one in ten of what an audit proposes does not survive being checked a second time against the crop, which is the strongest argument yet for the standing rule that a repair agent re-verifies rather than trusting the audit handed to it. ⛔ **AND THE MANDATORY WHOLE-ENTRY RE-AUDIT FOUND 5 BOX ERRORS THE AUDIT HAD MISSED**, including a stop titled **"The fur collar in the dark" whose box held no collar**. The re-audit is not a formality on top of a repair — on this wave it was a **better detector than the audit that triggered it**. |
 | 2026-08-25 | **PLATE PASS ROUND 6 — Guggenheim ×20 + MNW Warsaw ×48, plus the NG London viewer fix** (sheets `.dtmp/tourqc-pass/w17/`) | every candidate re-fetched in full and re-decoded after the sheets were built (0 failures); anti-downgrade gate re-run against `art_hires` as well as `art_imgsize`; CORS headers measured per-asset with an explicit `Origin`; viewer fix verified by fetching real tiles, not by reading the patch | Opus sourcing agents + Fable (QC/apply) | **68 plates adopted, +804 MP; `art_hires.js` 1,108 → 1,141** (33 new rows, 37 rewritten in place). ⛔ **The gate fired INSIDE an adopt list**: `stanczyk` scored ×1.85 only because it was compared with `art_imgsize` instead of the `art_hires` row we actually serve, against which it is smaller on **both** axes. ⛔ **A live downgrade found inside an already-shipped adoption**: `ng-london`'s `img` was a `/full/!3000,3000/` url returning 800 px — written by us — which `enrich()` feeds to `imgZoom`, so *Madonna of the Pinks*' Zoom overlay had been running at 643 × 800 against Commons' 870 × 1,080. ⚠ **35 works held, not rejected**: they fail the 2 % aspect gate, but against the holders' physical dimensions **our plate is the crop on 27 of them** — held because a re-framed plate moves every tour box. Viewer: `tiles: 256` shipped for clamped IIIF servers, restoring the NG masters from **78.1 % linear detail to 1:1**. |
 
-| 2026-08-25 | **w19a MERGE — 3 new tours + 3 reads** (Boldini *After the Bath*, Renoir *Alphonsine Fournaise*, Henner *Églogue*; workshop `.dtmp/tourqc-pass/w19a/`) | insertion-only merge under sha256 guards on both stores (another agent was writing the same tree); full round-trip proof; `validate-refs.js` bare | Opus (merge/QC) | **Shipped: `art_inspect` 375 → 378, `art-about` 798 → 800.** Boxes asserted **byte-identical to the drafts** — the w19a boxes already carry the ×1.15 breathing room and were not re-padded. Rulings applied: Boldini **keeps `year: 1889`** (canon is qid-trusted; Wikidata's 1873 traces to a flickr credit, not the NGA — `context` states the conflict openly and the `beside` interval stays 22 years); Renoir **ships the dress as measured** (two median-cut samples, mean RGB 155/153/144, **no blue component**; hat band brick/terracotta not vermilion — the literature says blue-grey, the plate a reader sees does not, and **the tour describes the plate**). ⚠ **One cross-reference lost and NOT re-minted:** the replaced 56-word Renoir Info carried `refs` → *Luncheon of the Boating Party*; the Luncheon entry's own prose **does not name Alphonsine**, so there is no honest anchor on that side and none was invented. See the Method-lessons note. ⛔ **The word-count trap ran in reverse here** — a naive whitespace recount marked all three reads over band; the drafter was right and the recount was wrong, because a spaced hyphen-as-dash counts as a word. Use `check.js`'s `[A-Za-z0-9][A-Za-z0-9'’-]*`. |
+| 2026-08-25 | **w19a MERGE — 3 new tours + 3 reads** (Boldini *After the Bath*, Renoir *Alphonsine Fournaise*, Henner *Églogue*; workshop `.dtmp/tourqc-pass/w19a/`) | insertion-only merge under sha256 guards on both stores (another agent was writing the same tree); full round-trip proof; `validate-refs.js` bare | Opus (merge/QC) | **Shipped: `art_inspect` 375 → 378, `art-about` 798 → 800.** Boxes asserted **byte-identical to the drafts** — the w19a boxes already carry the ×1.15 breathing room and were not re-padded. Rulings applied: Boldini **keeps `year: 1889`** (canon is qid-trusted; Wikidata's 1873 traces to a flickr credit, not the NGA — `context` states the conflict openly and the `beside` interval stays 22 years); Renoir **ships the dress as measured** (two median-cut samples, mean RGB 155/153/144, **no blue component**; hat band brick/terracotta not vermilion — the literature says blue-grey, the plate a reader sees does not, and **the tour describes the plate**). ⚠ **One cross-reference lost and NOT re-minted:** the replaced 56-word Renoir Info carried `refs` → *Luncheon of the Boating Party*; the Luncheon entry's own prose **does not name Alphonsine**, so there is no honest anchor on that side and none was invented. See the Method-lessons note. ⛔ **The word-count trap ran in reverse here** — a naive whitespace recount marked all three reads over band; the drafter was right and the recount was wrong, because a spaced hyphen-as-dash counts as a word. Use `check.js`'s word tokeniser. |
+| 2026-08-25 | **w21 SECOND-OPINION on the ten held w17 tours** (the pass item 1 recommended before spending the edits; workshop `.dtmp/tourqc-pass/w21-verify/`) | independent re-verification of every load-bearing claim against the crops, then a repair plan | Opus + Fable | **28 claims tested → 15 confirm / 12 overturn / 1 unresolved**, plus **14 new defects the first audit missed**. Headline overturns: the **Rubens kingfisher is REAL** (per the National Gallery's own teaching notes — the first audit's goldfinch/foliage reading was wrong); **Hoa Hakananai'a is basalt** and the draft was right; **Bonnard stop-3 surface claim is false**; **Monet *Le Givre* comparative ran the right way** (settling the two-auditors dispute). The repair split into plan A (13 edits) + plan B (17 edits); **Rohlfs and Ranelagh were clean**; the San Rocco back-edit went to the DO-NOT-APPLY register. Applied with the ten tours in `43a882e`. Verdicts: `.dtmp/tourqc-pass/w21-verify/VERDICTS.md` (⚠ local workshop artifact, not deployed). |
 
 ## The 2026-08-25 session — 5 audit waves, and what they cost to learn
 
@@ -584,9 +615,12 @@ rather than an edit. ⚙ Where a claim below was checkable against the live stor
   the first image-grounded audit found two visual defect classes in 3 tours; see the
   2026-08-24 row and STUDY_SPEC's whole-first QC step. ~~**Visual-layer coverage is 58/363**~~ —
   the 3-tour audit, wave 1 (20, re-audited), wave 2 (20) and wave 3 (20, random) ⚙ **plus wave 4
-  (12 works repaired) — five waves in all as at 2026-08-25. The denominator is also stale: the
-  store is at 375 tours, not 363.** Re-derive both before quoting; the waves overlap (wave 1 was
-  re-audited, not re-counted) so the numerator is not a sum. ✅ **THE RATE
+  (12 works repaired) — five waves in all as at 2026-08-25. ⛔ The denominator quoted here (375,
+  earlier 363) is stale and self-contradicts this ledger's own retirement of a fixed figure:
+  ⚙ the store is at **389 tours** (pass 2, 2026-08-25; `Object.keys(CANVAS_INSPECT).length`), and
+  it moved again the day this line was first written. Do NOT quote a coverage ratio — re-measure
+  the numerator against the store; the waves overlap (wave 1 was re-audited, not re-counted) so
+  the numerator is not a sum. ✅ **THE RATE
   IS NOW KNOWN: ~1 CLEAN IN 20**, established on a random sample and matching the risk-ranked
   waves — the ranking barely mattered, so the defect rate is roughly uniform. **Wave 1's
   original "10 clean" is VOID** (auditor calibration; the re-audit returned 0 clean of 18).
@@ -714,25 +748,30 @@ rather than an edit. ⚙ Where a claim below was checkable against the live stor
 
 | store | count | method |
 |---|---:|---|
-| `art_inspect` tours | **378** | `Object.keys(CANVAS_INSPECT).length` |
-| `art-about` reads | **800** | `Object.keys(CANVAS_ART_ABOUT).length` |
-| `art_hires` rows | **1,152** | `Object.keys(CANVAS_HIRES).length` |
-| canon works | **1,977** | `CANVAS_ARTWORKS.length` |
-| `beside` paragraphs | **22** | `art_inspect` entries with `beside !== undefined` |
+| `art_inspect` tours | ~~378~~ ⚙ **389** | `Object.keys(CANVAS_INSPECT).length` |
+| `art-about` reads | ~~800~~ ⚙ **807** | `Object.keys(CANVAS_ART_ABOUT).length` |
+| `art_hires` rows | ~~1,152~~ ⚙ **1,155** | `Object.keys(CANVAS_HIRES).length` |
+| canon works | ~~1,977~~ ⚙ **1,976** | `CANVAS_ARTWORKS.length` |
+| `beside` paragraphs | ~~22~~ ⚙ **33** | `art_inspect` entries with `beside !== undefined` |
 
-⛔ **The session note reported 19 besides; the store has 22.** Everything else in that note
+⚙ **RE-MEASURED PASS 2, 2026-08-25** — the 378/800/1,152/1,977/22 column was the pre-apply
+snapshot; after the day's applies (w17 `43a882e`, NM group-B `a7d6316`, NM group-D + Guggenheim
+`0eb7787`, Tiepolo `09d07f2`) the live store reads 389 / 807 / 1,155 / 1,976 / 33. This is the
+exact behaviour the note below predicts.
+
+⛔ **The session note reported 19 besides; the store has 22 (now 33).** Everything else in that note
 re-derived exactly. ⚠ **Both `art_inspect` and `art_hires` moved during the session** (hires
 1,108 → 1,141 → 1,152; inspect gained the three w19a records mid-pass and tripped a guard —
 see "Awaiting Fuad's verdict" item 6b). **Any figure quoted against these stores needs a date
 beside it**, and a count taken before a wave lands is not wrong, it is *stale* — which is the
 same failure the Coverage section below already carries.
 
-⚠ **Stale denominators elsewhere in the docs, found while re-deriving these — all four struck
-in place 2026-08-25:** `STUDY_SPEC.md` quoted **375** toured works (→ **378**);
-`READS_SPEC.md` §11 quoted **798** `art-about` entries (→ **800**), **7** `beside` paragraphs
-(→ **22**), and a corpus `refs` total of **60** (→ **75**, of which `art_inspect` is **44**,
-not the 28 recorded — that figure had already been refreshed once the same day and went stale
-again before the session ended).
+⚠ **Stale denominators elsewhere in the docs, found while re-deriving these — struck in place
+2026-08-25, then re-struck to pass-2 values:** `STUDY_SPEC.md` quoted **375** toured works
+(→ 378 → ⚙ **389**); `READS_SPEC.md` §11 quoted **798** `art-about` entries (→ 800 → ⚙ **807**),
+**7** `beside` paragraphs (→ 22 → ⚙ **33**), and a corpus `refs` total of **60** (→ **75**;
+⚠ the refs total moves with every writer and carries its own "re-derive, don't cite" warning in
+§11, so it is left to that section's method rather than pinned here).
 
 ⭐ **THE PATTERN, and it is the one to act on: every stale number in this project is a snapshot
 of a store that has more than one writer.** None of them was ever *wrong*; each was true at the

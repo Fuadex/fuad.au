@@ -813,15 +813,17 @@ the Szał false-negative lesson one level up.
      axis. Distinct top long-sides in the store: 3840, 3853, 4290, 4323, 4366, 4774, 4789, 4971,
      5021, 5283, 5373, 5667, 5671, 5733, 5812, 5841.
    - **It is FICTIONAL for the toured works on real tile pyramids**, which have no ceiling at
-     all. Measured against the live store: of ~~375~~ ⚙ **378 (re-counted 2026-08-25; the store
-     moved under this figure the same day it was written — see `QC_LEDGER.md` "Session totals")**
-     toured works, **34 sit on a true tile service**
-     (31 `iiif` + 2 `iiifId` + 2 `dzi` + 1 `zoomify`, 2 overlapping), **18 on a Commons `pyr`
-     ladder**, **263 on a flat `img` only**, and **61 have no `art_hires` row at all**. Writing
+     all. Measured against the live store: of ~~375~~ ~~378~~ ⚙ **389 (re-measured pass 2,
+     2026-08-25; `Object.keys(CANVAS_INSPECT).length` — the store keeps moving, so re-derive
+     rather than cite)** toured works, ⚙ **48 sit on a true tile service** (re-measured pass 2:
+     `iiif || iiifId || dzi || zoomify` over `art_hires` keys ∩ `art_inspect` keys), and
+     ⚙ **57 have no `art_hires` row at all**. The rest split between Commons `pyr` ladders and
+     flat `img` only. Writing
      one number across those four populations describes none of them.
-     ⚠ **A session note put the tile-pyramid figure at 70; the store returns 34.** Quote 34 with
-     its method (`iiif || iiifId || dzi || zoomify` over `art_hires` keys ∩ `art_inspect` keys),
-     or re-measure — do not quote 70.
+     ⚠ **A session note put the tile-pyramid figure at 70; ~~the store returns 34~~ ⚙ the store
+     returns 48 (re-measured pass 2, 2026-08-25 — the tile-service count grew with the day's IIIF
+     adoptions).** Quote it with its method (`iiif || iiifId || dzi || zoomify` over `art_hires`
+     keys ∩ `art_inspect` keys), or re-measure — do not quote 70, and do not treat 34 as current.
 
    ⭐ **THE RULE, RESTATED: a claim may go as fine as THAT WORK'S OWN PLATE RESOLVES, and the job
    file states the ceiling per work.** Not a constant, not a guess, not a default. Four cases:
@@ -1692,8 +1694,9 @@ the merge proof (pipeline step 7). A failing run is a blocked batch, not a warni
 
 ### Where the links go, and how they look
 
-- **To the Reader (`#/work/<id>`), not the study view.** Only 375 of 1,956 canon works have a
-  tour, so a study-view link would be dead more often than not. A plain hash anchor, like the
+- **To the Reader (`#/work/<id>`), not the study view.** Only ~~375~~ ⚙ **389 of 1,976** canon
+  works have a tour (re-measured pass 2, 2026-08-25), so a study-view link would be dead more
+  often than not. A plain hash anchor, like the
   museum/artist "open ours in the Reader" links: it re-renders in place and leaves a real
   history entry, so Back returns the reader to the paragraph they left.
 - **Subtle** — Fuad's word. No colour at rest: the text keeps the paragraph's own ink and
@@ -2080,8 +2083,8 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
   2505×3000 the red rim is plainly there; the tour was right and the flag was overturned.
   So: **check the plate's pixel size BEFORE trusting a negative visual finding**, and where
   the plate is poor, upgrade the site (rule below) rather than "fixing" the tour to match a
-  bad image. Standing gap: ~~**71 of 363 toured works have no `art_hires` record**~~ ⚙ **stale —
-  re-measured 2026-08-25: 61 of 375** (method: `art_inspect` keys with no `art_hires` key), so
+  bad image. Standing gap: ~~**71 of 363 toured works have no `art_hires` record**~~ ~~61 of 375~~ ⚙ **stale —
+  re-measured pass 2, 2026-08-25: 57 of 389** (method: `art_inspect` keys with no `art_hires` key), so
   their Study zoom is capped at the ~900px canon plate — a backfill campaign worth its own batch.
   ⚙ **The whole-corpus version of that gap is far larger and is now measured**: **848 canon works
   have no `art_hires` row**, of which **258 are works Fuad has actually seen** (`!wish`) and

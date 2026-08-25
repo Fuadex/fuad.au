@@ -208,11 +208,11 @@ ENTANGLED and should be ruled together** — fence `beside` out of the cascade a
 tour's refs go with it, so a `refs` ruling taken first would be answering a question whose
 inputs the `beside` ruling can still change.
 
-⚠ **And one measurement that bears on the `beside` question, taken 2026-08-25:** the store now
-holds **22** `beside` paragraphs, up from the **7** §11 records — so the field this ruling
-governs has **tripled** since the question was framed, and a decision to fence `beside` out of
-the cascade now costs three times what it would have. ⚙ **The field is still fully
-ref-covered: all 22 entries carry refs** (21 as a bare array, 1 keyed `beside`), so STUDY_SPEC
+⚠ **And one measurement that bears on the `beside` question** *(the ruling this note flagged as
+open has since LANDED — `beside` drafted last, outside the cascade; see §1 above)*: the store now
+holds ⚙ **33** `beside` paragraphs (re-counted pass 2, 2026-08-25), up from the **7** §11 records
+— the field this ruling governs has more than **quadrupled** since the question was framed.
+⚙ **The field is still fully ref-covered: all 33 entries carry refs**, so STUDY_SPEC
 12h's *a `beside` without a ref is incomplete* is satisfied — there is **no backlog**.
 ⛔ **A first draft of this note claimed a 21-row backlog, from a count that only looked at the
 KEYED form and missed the bare arrays. Corrected before it shipped, and left here as the
@@ -949,16 +949,17 @@ trap**: a scan that walks only the keyed form returns **1** beside-ref instead o
 whose refs live at two depths (entry-level and stop-level), so a count that walks only the top
 level under-reports it by the 2 `deeper` refs, which is exactly the blind spot `validate-refs.js`
 had before plan mode learned to walk stops.
-⚙ Note ~~**7 `beside` refs against 7 `beside` paragraphs**~~ ⚙ **22 against 22** (re-counted
-2026-08-25) in the store — the field is **still** fully ref-covered, which is what *a `beside`
-without a ref is incomplete* (STUDY_SPEC 12h) requires. ⚠ 21 of the 22 carry it as a **bare**
-array, not as `refs: { beside: [...] }`; count both shapes or the coverage looks like 1/22.
+⚙ Note ~~**7 `beside` refs against 7 `beside` paragraphs**~~ ~~22 against 22~~ ⚙ **33 against 33**
+(re-counted pass 2, 2026-08-25; `Object.values(CANVAS_INSPECT).filter(e => e.beside !== undefined)`,
+all 33 carry refs) in the store — the field is **still** fully ref-covered, which is what *a
+`beside` without a ref is incomplete* (STUDY_SPEC 12h) requires. ⚠ Most carry it as a **bare**
+array, not as `refs: { beside: [...] }`; count both shapes or the coverage looks like 1/33.
 
 Both were applied mechanically by `apply-store-refs.js` — one applier for both stores, because
 they share the `{about, deep, by}` shape and the `about` default — with the house round-trip
 proof: entry count unchanged, every untouched entry byte-identical, targets differing **only** by
-the gained `refs`, and every `about`/`deep` string across all ~~798~~ ⚙ **800 (re-counted
-2026-08-25)** + 53 entries byte-identical.
+the gained `refs`, and every `about`/`deep` string across all ~~798~~ ~~800~~ ⚙ **807 (re-counted
+pass 2, 2026-08-25; `Object.keys(CANVAS_ART_ABOUT).length`)** + 53 entries byte-identical.
 
 **How the band was chosen, and the failure class the re-read exists to catch.** `scan-refs.js`
 proposed 46 high-confidence hits; **7 were dropped on a hit-by-hit re-read**, every one for the

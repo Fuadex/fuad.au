@@ -24,8 +24,8 @@ belongs in HIRES_SOURCING.md and this file gets the one-line residue plus a roun
 ## §1 HUNTED, NO RESULT — closed out, do not re-hunt
 
 Works searched in the toured-plates pass (`HIRES_SOURCING.md` §"The toured-plates pass") or in
-a named round, with a confirmed negative result. The 51-work IIIF hunt (`.dtmp/tourqc-pass/iiif-candidates.json`)
-closed out 38 of the 51 as "holder has no reachable image service."
+a named round, with a confirmed negative result. The 51-work IIIF hunt (`.dtmp/tourqc-pass/iiif-candidates.json`
+— local workshop artifact, not deployed) closed out 38 of the 51 as "holder has no reachable image service."
 
 | slug | best MP ⚠ | where looked | when | why closed | round ref |
 |---|---|---|---|---|---|
@@ -69,6 +69,7 @@ closed out 38 of the 51 as "holder has no reachable image service."
 | `kirchner-five-women-on-the-street` ⚠ | — | Museum Ludwig | 2026-08-25 | Proof-of-work interstitial on every programmatic request; anti-bot, not policy | toured-plates pass |
 | `camille-pissarro-route-de-versailles-louveciennes-rain-effec` | ~17.8 MP ⚠ | Clark Art Institute | 2026-08-25 | `clarkart.edu` open (no CF challenge — prior note was false); no IIIF on either side; `media.clarkart.edu/hires/1955.825.tif` byte-identical to the Commons file we serve. Gain: ×1.00. **Do not re-hunt** | round 7 (WORKS_LEDGER §1) |
 | `jan-both-tradstudie` | 18.1 MP ⚠ | Nationalmuseum Stockholm | 2026-08-25 | NM IIIF measured; NM's 3,822×3,278 is smaller than our 18.1 MP plate — do not adopt. Identity settled: same painting (matching foxing + fold). | round 7 (WORKS_LEDGER §1) |
+| `anders-zorn-nude-woman-combing-her-hair` | 0.484 MP | Musée d'Orsay | 2026-08-25 | Holder is **Orsay, not NM** — the seed's NM Stockholm lead was wrong. No source beats our 569×850; Orsay's 850px IIIF cap is the ceiling. **Do not re-hunt.** | round 7 (seed rows) |
 
 ---
 
@@ -81,8 +82,8 @@ then liked/floored by MP ascending. Flags: **T**=toured, **L**=liked, **F**=floo
 
 | slug | best MP | dims | flags | any lead |
 |---|---|---|---|---|
-| `anders-zorn-nude-woman-combing-her-hair` | 0.484 MP | 569×850 (imgsize) | L | No art_hires row. qid Q133861172. NM Stockholm holds Zorn works — check Nationalmuseum IIIF for this slug via `api.nationalmuseum.se`. The 569×850 imgsize is the Commons plate. |
-| `giovanni-boldini-henri-rochefort` | ⚠ ~0.27 MP | img at 515px wide (Commons) | — (wish) | No art_hires row. img/imgGrid/imgZoom all point at the same 515px Commons file. The Boldini ingest (commit f6cbb98) added 21 NGA works; this one is **not** an NGA Boldini — it's held elsewhere (check Wikidata Q17491648 for holder). Earlier Boldini pass description mentioned finding IIIF for some Boldinis — this work was not among those adopted. |
+| ~~`anders-zorn-nude-woman-combing-her-hair`~~ | 0.484 MP | 569×850 | L | ⛔ **HUNT CLOSED 2026-08-25.** Holder is **Orsay, not NM** — the NM lead was wrong. No source beats our 569×850, and Orsay's 850px IIIF cap is the ceiling. Do not re-hunt. (Moved to §1.) |
+| ~~`giovanni-boldini-henri-rochefort`~~ | ~0.27 → 703×850 | 703×850 (Orsay) | — (wish) | ✅ **INGESTED 2026-08-25.** Held by Orsay, not the NGA Boldini batch; Orsay serves 703×850 (their 850px cap = the ceiling). Row now carries the Orsay plate. |
 | `monet-nympheas-orangerie` | 19.97 MP ⚠ | 5472×3648 (imgsize, but that's a photo of the room) | — (favorite, seenAt orangerie) | No img, no art_hires row. qid null. The Orangerie cycle is **8 panoramic canvases in 2 oval rooms** — no single image exists. This is not a standard plate hunt: the "image" is architecturally impossible. The imgsize value likely comes from a room photograph, not a painting scan. **A plate for this work would require either (a) a single-panel extract or (b) accepting a room-photo for the card view.** |
 
 **Toured works (T flag) under 1 MP — automatic includes:**
@@ -177,26 +178,25 @@ Traps confirmed in rounds 3–7. Numbered to match the trap taxonomy in `HIRES_S
 Works with a confirmed better image source not yet applied. All are blocked on Fuad's verdict
 or on a coupled operation (remap). Full details in WORKS_LEDGER.md §2.
 
+⚙ **RESOLVED 2026-08-25 (pass 2) — 15 of these rows are no longer awaiting a verdict:**
+- **5 Guggenheim ADOPTED** (`0eb7787`): `red-oval` (×7.77), `nude-study-sad-young-man-on-a-train`
+  (×3.49), `peasant-woman-seated-in-the-grass` (×1.69), `birsk` (×1.33), `blue-mountain` (×1.51,
+  7-box remap; round-6 url was a 1168px derivative, master at `uploads/1908/01/`).
+- **3 Guggenheim ⛔ RULED-REFUSED**: `yellow-cow`, `black-lines`, `composition-viii` — the
+  candidate is the crop / the gain is nil; do not adopt (WORKS_LEDGER §2). `yellow-cow`'s null
+  dims still want filling.
+- **6 NM group B ADOPTED** (`a7d6316`): `bruno-liljefors-autumn-landscape-with-partridges`,
+  `landscape-from-bretagne` (7-box remap), `vilhelm-hammersh-i-interior`,
+  `vilhelm-hammersh-i-interior-with-a-reading-lady`, `midsummer-dance` (4-box remap), `en-premiar`
+  (keeps its Commons TIFF as the flat download).
+- **4 NM group D ADOPTED** (`0eb7787`): `carl-grabow-untitled`, `jan-both-tradstudie`,
+  `johan-christian-jansson-untitled`, `johan-christian-jansson-untitled-2` — dims down to the
+  served 3,840 bucket + `pyr` ladders.
+
+Still awaiting — the 4 w20 `MODE=toured` staged remaps only:
+
 | slug | current MP | candidate MP | gain | what is blocking |
 |---|---|---|---|---|
-| `red-oval` | 0.244 MP (500×488) | ~14.7 MP (3,844×3,829) | ×7.77 | Fuad's go-ahead. Guggenheim, candidate is truer frame (our plate is the crop). Untoured — no boxes to remap. Cheapest, biggest win. |
-| `nude-study-sad-young-man-on-a-train` | 1.003 MP (869×1155) | ~12.2 MP (2,980×4,096) | ×3.49 | Fuad's go-ahead. Guggenheim visitor photo vs museum scan. Untoured. |
-| `peasant-woman-seated-in-the-grass` | 4.785 MP (2,436×1,964) | ~13.7 MP (4,077×3,367) | ×1.69 | Fuad's go-ahead. Guggenheim, our plate is the crop. Untoured. |
-| `birsk` | 6.126 MP (2,042×3,000) | ~10.9 MP (2,654×4,096) | ×1.33 | Fuad's go-ahead. Guggenheim, aspect Δ 4.807% — our plate is the crop. Untoured. |
-| `yellow-cow` | 4.223 MP (2,390×1,767) | ~7.14 MP (2,390×1,767→ Gugg) | ×1.69 | Fuad's go-ahead. Guggenheim candidate is the crop (our plate is truer). art_hires w/h are [null, null] — fill null dims regardless. Untoured. |
-| `black-lines` | 6.508 MP (2,578×2,524) | ~10.4 MP (Gugg) | ×1.60 | Fuad's go-ahead. Guggenheim candidate is the crop (our plate is truer). Untoured. |
-| `blue-mountain` | 6.671 MP (2,484×2,685) | ~15.2 MP (Gugg) | ×1.51 | Fuad's go-ahead + registration + box remap (7 boxes). Guggenheim, candidate is truer frame (×2.25% narrower per unit height). Toured — expensive. |
-| `composition-viii` | 11.137 MP (3,911×2,849) | ~11.4 MP (Gugg) | ×1.024 (nil) | Fuad's go-ahead. Fidelity-only remap (our plate 4.38% off object, candidate 0.03%). Lowest priority. |
-| `bruno-liljefors-autumn-landscape-with-partridges` | ⚠ | NM 7,860×5,902 = ~46.4 MP | ×4.1 linear | Fuad's eye — framed plate (swapping puts a picture frame in the viewer). NM group B. |
-| `landscape-from-bretagne` | ⚠ | NM 8,875×7,344 = ~65.2 MP | ⚠ | Fuad's eye — framed plate. NM group B. Aspect Δ −4.01%. |
-| `vilhelm-hammersh-i-interior` | ⚠ | NM 6,013×6,999 = ~42.1 MP | ⚠ | Fuad's eye — framed plate. NM group B. Aspect Δ +4.07%. |
-| `vilhelm-hammersh-i-interior-with-a-reading-lady` | ⚠ | NM 5,945×6,937 = ~41.2 MP | ⚠ | Fuad's eye — framed plate. NM group B. Aspect Δ +3.48%. |
-| `midsummer-dance` | ⚠ | NM 3,325×4,169 = ~13.9 MP | ⚠ | Fuad's eye — framed plate, Δ +8.68%; once frame cropped is effectively no gain. WORKS_LEDGER §2: "same as stary-dom position — truer to object, no real detail bought." NM group B. |
-| `en-premiar` | ⚠ | NM 2,619×3,534 = ~9.25 MP | ⚠ | Fuad — NM IIIF beats delivery (1,920×2,589) but is under master (3,064×4,132). Trips smaller-on-any-axis rule. NM group B. |
-| `carl-grabow-untitled` | ~6.591 MP declared / ~4.78 MP delivered ⚠ | — | — | Fuad opt-in — dims correction + pyr ladder `[1920×1242, 3840×2485]`. NM group D. |
-| `jan-both-tradstudie` | 18.1 MP (art_hires declares 4,602×3,936, url delivers 3,840×3,284) | — | — | Dims correction only (no verdict needed). Group-D pyr opt-in needs Fuad. WORKS_LEDGER §2. |
-| `johan-christian-jansson-untitled` | ⚠ | — | — | Fuad opt-in — dims correction + pyr `[1920×1505, 3840×3010]`. NM group D. |
-| `johan-christian-jansson-untitled-2` | ⚠ | — | — | Fuad opt-in — dims correction + pyr `[1920×1371, 3840×2741]`. NM group D. |
 | `julian-fa-at-powrot-z-polowania-na-niedzwiedzia` | ⚠ | MNW (staged) | ⚠ | STAGED, NOT APPLIED. New plate + 9 box remap coupled. NCC 0.956. Art_inspect has live writer guard. w20 MODE=toured. |
 | `unknown-s-once-majowe` | ⚠ | MNW (staged) | ⚠ | STAGED, NOT APPLIED. New plate + 8 box remap. NCC 0.9953. w20 MODE=toured. |
 | `at-the-seashore` | ⚠ | MNW (staged) | ⚠ | STAGED, NOT APPLIED. New plate + 8 box remap. NCC 0.9990. w20 MODE=toured. |
@@ -208,12 +208,16 @@ or on a coupled operation (remap). Full details in WORKS_LEDGER.md §2.
 
 | section | rows |
 |---|---:|
-| §1 HUNTED, NO RESULT | 41 |
+| §1 HUNTED, NO RESULT | 42 |
 | §2 STILL LOW-RES, NEVER PROPERLY HUNTED (seed rows) | 3 |
 | §2 toured under 1 MP (inc. closed) | 10 |
 | §2 other candidates | 8 |
 | §3 KNOWN MINES | 20 |
-| §4 UPGRADE FOUND, NOT YET ADOPTED | 22 |
+| §4 UPGRADE FOUND, NOT YET ADOPTED | 4 |
 
-Last updated **2026-08-25**. Sourcing anatomy and trap taxonomy: [`HIRES_SOURCING.md`](HIRES_SOURCING.md).
+⚙ **§4 fell 22 → 4 on 2026-08-25 (pass 2):** 15 rows resolved (5 Guggenheim adopted `0eb7787`,
+3 Guggenheim RULED-refused, 6 NM group B adopted `a7d6316`, 4 NM group D adopted `0eb7787`) leaving
+only the 4 w20 `MODE=toured` staged remaps. §1 gained the Zorn nude-woman close-out.
+
+Last updated **2026-08-25** (pass 2). Sourcing anatomy and trap taxonomy: [`HIRES_SOURCING.md`](HIRES_SOURCING.md).
 Per-work text + plate history: [`WORKS_LEDGER.md`](WORKS_LEDGER.md). QC narrative: [`QC_LEDGER.md`](QC_LEDGER.md).
