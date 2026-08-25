@@ -514,3 +514,94 @@ Not a plate change: these 4 rows already served the right Commons TIFF, but thei
   https://www.guggenheim.org/wp-content/uploads/1908/01/41.505_ph_web.jpg
 
 The full asset lives at `uploads/1908/01/` — the og-linked `2020/06/24/` copy the round-6 sheet measured is only a **1168x1280** derivative, so the GUGG8 `cand: [3704,4096]` was right about the file but the canonical-stem probe had to find the correct upload directory. Registration of the old plate inside the candidate: crop `x0=-0.00702 y0=-0.00305 w=1.01194 h=1.00728` (our plate extends ~1.2% wider / 0.7% taller — the candidate is the tighter, truer frame). **regNcc 0.9319** vs **0.8683** identity and **0.9227** centred-crop control; **regFeatMaxErrPct 0.72%** over 8 high-variance features (peak NCCs 0.94–0.98). All 7 boxes remapped and clamped to [0,1.002] — none hit the clamp. Every remapped crop was pulled from the candidate at native pixels and checked against its stop title; the three lowest crop-NCC boxes — *yellow tree, left* (0.64), *flaming tree, right* (0.76), *the woven, dotted touch* (0.62) — are all high-frequency stipple at the frame edge and were visually confirmed to show the described content.
+
+---
+
+## 2026-08-25 — Nationalmuseum group B (6) + two Dürer Google Art Project upgrades
+
+Fuad's ruling: adopt all six Nationalmuseum group-B candidates and the two Dürer Commons upgrades, with tour-box remaps where the framing shifts. Every dimension below was **decoded from the returned JPEG's SOF marker**, not read from a field. Nationalmuseum's `info.json` declared dims were re-fetched and confirmed; a 600×600 region probe decoded to **600×600 native** on all six, so the deep-zoom master is genuinely reachable even though the host clamps every flat render to **1000 px on the long axis** (each `flat` below is the measured `/full/full/` size). The two Dürer candidates were confirmed to be the **same impression/state** as the NGA plate they replace (identical engraving content), differing only in paper margin. `⚠` The NM "before" figure is the **Commons TIFF master** the row declared; those TIFFs were themselves only ever delivered at **≤1920 px** by Commons, so the reader-visible gain is larger than the MP ratio suggests. Dürer "before" is the NGA row master (delivered ≤4096).
+
+### Nationalmuseum re-frames — untoured
+
+#### Autumn Landscape with Partridges
+`bruno-liljefors-autumn-landscape-with-partridges` — **no tour** — Nationalmuseum — linear **x2.30**, aspect **-6.31%**
+
+- **before** 3531x2484 (8.8 MP), delivered ≤1920px
+  https://commons.wikimedia.org/wiki/Special:FilePath/Autumn_Landscape_with_Partridges_%28Bruno_Liljefors%29_-_Nationalmuseum_-_23794.tif?width=3531
+- **after** 7860x5902 (46.4 MP), flat 1000x751
+  https://nationalmuseumse.iiifhosting.com/iiif/aa4f3a426ff7032d6df11b8f85822f1f1e82ac0556ed1e5c8976a7717a13053d/full/full/0/default.jpg
+
+#### Interior
+`vilhelm-hammersh-i-interior` — **no tour** — Nationalmuseum — linear **x1.97**, aspect **+4.07%**
+
+- **before** 2999x3633 (10.9 MP), delivered ≤1920px
+  https://commons.wikimedia.org/wiki/Special:FilePath/Interior_%28Vilhelm_Hammersh%C3%B8i%29_-_Nationalmuseum_-_21409.tif?width=2999
+- **after** 6013x6999 (42.1 MP), flat 859x1000
+  https://nationalmuseumse.iiifhosting.com/iiif/8e915dbe38df86478acd01fa5ff3864c07c9df2a1c9570cc4e6c95ae4cf8462e/full/full/0/default.jpg
+
+#### Interior with a Reading Lady
+`vilhelm-hammersh-i-interior-with-a-reading-lady` — **no tour** — Nationalmuseum — linear **x2.03**, aspect **+3.48%**
+
+- **before** 2872x3468 (10.0 MP), delivered ≤1920px
+  https://commons.wikimedia.org/wiki/Special:FilePath/Interior_with_a_Reading_Lady_%28Vilhelm_Hammersh%C3%B8i%29_-_Nationalmuseum_-_18752.tif?width=2872
+- **after** 5945x6937 (41.2 MP), flat 857x1000
+  https://nationalmuseumse.iiifhosting.com/iiif/73768b411e06cbacab49eea2b9fb34f5db8a7698c3585b45f9157a5c18862ac8/full/full/0/default.jpg
+
+### Nationalmuseum — same-crop upgrade (Commons TIFF kept as download)
+
+#### En premiär
+`en-premiar` — **no tour** — Nationalmuseum — linear **x0.86** (declared px), aspect **-0.06%**
+
+- **before** 3064x4132 (12.7 MP) — Commons TIFF, delivered ≤1920px on screen; **KEPT as the Ultra HQ / save download**
+  https://upload.wikimedia.org/wikipedia/commons/9/97/Une_premi%C3%A8re_%28Anders_Zorn%29_-_Nationalmuseum_-_24314.tif
+- **after** 2619x3534 (9.3 MP), flat 741x1000 — the deep-zoom tile source, native pixels by region
+  https://nationalmuseumse.iiifhosting.com/iiif/65eff9c0255b90eb677ebed65cf92e5b1576766aef177755f3b4a8fae20803e6/full/full/0/default.jpg
+
+Re-measured aspect delta **-0.06%** (< 0.5%), so this is the **same framing**, not a re-frame. The NM tile source is smaller in declared pixels than the TIFF master, but the TIFF was only served on screen at 1920 px while the NM route delivers native pixels by region — so the deep zoom is a real gain and the TIFF stays as the honest larger flat download. `orig` retained per the en-premiar exception in the ruling.
+
+### Nationalmuseum — toured, with box remap
+
+#### Landscape from Bretagne
+`landscape-from-bretagne` — **7 stops** — Nationalmuseum — linear **x2.70**, aspect **-4.01%**
+
+- **before** 3359x2668 (9.0 MP), delivered ≤1920px
+  https://commons.wikimedia.org/wiki/Special:FilePath/Landscape_from_Bretagne_%28Paul_Gauguin%29_-_Nationalmuseum_-_19216.tif?width=3359
+- **after** 8875x7344 (65.2 MP), flat 1000x827
+  https://nationalmuseumse.iiifhosting.com/iiif/dff558e13bf09d5ed614a0178cf6a78ead21db6093c578ef9fc5f3615abf8c90/full/full/0/default.jpg
+
+The NM capture is framed slightly wider than the tight Commons crop — a sliver of the gilt frame shows at left and right. Registration of the old Commons plate inside the NM capture: fit `ox=0.12194 oy=0.14165 sw=0.76363 sh=0.7167`. **regNcc 0.9487** vs **0.21837** identity and **0.36986** centred-crop control. All 7 boxes remapped and clamped to [0,1.002] — none hit the clamp. Every remapped crop was pulled from the NM IIIF at native pixels and visually checked against its stop title (the Breton woman + cow, the "P Gauguin 89" signature, the sea-and-sky band, the wind-bent trees, the green meadow, the fallen branches, the stacked fields all confirmed).
+
+#### Midsummer Dance
+`midsummer-dance` — **4 stops** — Nationalmuseum — linear **x1.23**, aspect **+8.68%**
+
+- **before** 2603x3547 (9.2 MP), delivered ≤1920px (one of the 46 Commons TIFFs capped on screen)
+  https://commons.wikimedia.org/wiki/Special:FilePath/Midsummer_Dance_%28Anders_Zorn%29_-_Nationalmuseum_-_18607.tif?width=2603
+- **after** 3325x4169 (13.9 MP), flat 798x1000
+  https://nationalmuseumse.iiifhosting.com/iiif/4b4eef98fcf33399b7dad930d3f9bf1199c38a5abf758da579e69a1f73a1d992/full/full/0/default.jpg
+
+The NM capture shows the frame edge at right. Registration of the old Commons plate inside the NM capture: fit `ox=0.15 oy=0.11923 sw=0.71039 sh=0.76872`. **regNcc 0.97502** vs **0.16585** identity and **0.33369** centred-crop control. All 4 boxes remapped and clamped to [0,1.002] — none hit the clamp. Every remapped crop was pulled at native pixels and checked: the turning foreground couple (Zorn signature visible), the pale midsummer sky, the dance receding to the barn door, the wreathed maypole — all confirmed.
+
+### Dürer — Google Art Project over NGA
+
+#### Melencolia I
+`melencolia-i` — **no tour** — Commons (Google Art Project) — linear **x1.40**, aspect **+0.65%**
+
+- **before** 3501x4483 (15.7 MP) — NGA master, delivered ≤3199x4096
+  https://api.nga.gov/iiif/637e0ba3-4acc-4ec4-b912-151c96d9dc12/full/3000,/0/default.jpg
+- **after** 4918x6257 (30.8 MP)
+  https://upload.wikimedia.org/wikipedia/commons/0/0c/Albrecht_D%C3%BCrer_-_Melencolia_I_-_Google_Art_Project_%28427760%29.jpg
+
+Same impression/state as the NGA plate — identical engraving content (MELENCOLIA·I banner, magic square, bell, hourglass, angel, putto, sleeping dog, sphere, polyhedron all identical); the GAP plate shows slightly more paper margin. Capture-match NCC **0.835** at near-identity confirms same content. Untoured, so no boxes. Also fixes a stale `orig` that pointed at a Cleveland TIFF for a different museum.
+
+#### Adam and Eve
+`adam-and-eve` — **3 stops** — Commons (Google Art Project) — linear **x1.29**, aspect **+1.15%**
+
+- **before** 3453x4491 (15.5 MP) — NGA master, delivered ≤3149x4096
+  https://api.nga.gov/iiif/5d9fe065-f568-4c67-95f8-a1fc99e298a4/full/3000,/0/default.jpg
+- **after** 4471x5749 (25.7 MP)
+  https://upload.wikimedia.org/wikipedia/commons/1/1f/Albrecht_D%C3%BCrer_-_Adam_and_Eve_-_Google_Art_Project.jpg
+
+Same impression/state as the NGA plate — identical engraving content (plaque, parrot, serpent, cat/mouse, elk, ox, both figures identical); the GAP plate shows slightly more paper margin. This work is **toured** (3 `details` boxes in `art_hires.js`), and the framing shift is real but tiny, so the boxes were remapped through a registration of the old NGA plate inside the GAP plate: fit `ox=0.00559 oy=0.00434 sw=0.99441 sh=0.99643` (near-identity). **regNcc 0.91581** vs **0.86482** identity and **0.41057** centred-crop control. All three remapped stops were crop-checked against the new plate — the serpent passing the fruit, the four-animals lower zone, and the ALBERTVS·DVRER·1504 plaque with parrot — all confirmed.
+
+> **Write-gate note.** During this pass `art_hires.js` and `art_inspect.js` were repeatedly **modified vs the git index by a concurrent process**; writes were gated until all three target files returned to a CLEAN state, then applied through idempotent apply scripts with round-trip guards (`.dtmp/nmB-durer/apply_art_hires.js`, `apply_art_inspect.js`) rather than blind edits. Each apply re-verifies its anchors, that the JSON store still evals, that the entry count is unchanged, and that only the intended keys changed (and for `art_inspect.js`, that every stop body/title is byte-preserved).
+
