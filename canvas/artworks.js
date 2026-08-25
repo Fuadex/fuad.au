@@ -2854,8 +2854,6 @@ window.CANVAS_ARTWORKS = [
     wish: true, floored: true },
   { id: "chaim-soutine-untitled-5", title: "Le poulet plumé", artist: "Chaïm Soutine", artistId: "chaim-soutine", qid: "Q137697527", qidTrusted: true, year: 1925,
     wish: true, liked: true },
-  { id: "odilon-redon-untitled-10", title: "Conque marine", artist: "Odilon Redon", artistId: "odilon-redon", qid: "Q132195486", qidTrusted: true,
-    wish: true, liked: true },
   { id: "jan-ciaglinski-starozytne-ruiny-z-podrozy-do-egiptu", title: "Starożytne ruiny. Z podróży do Egiptu", artist: "Jan Ciągliński", artistId: "jan-ciaglinski", qid: "Q104615184", qidTrusted: true, year: 1903,
     wish: true, liked: true },
   { id: "edvard-munch-head-by-head", title: "Head by Head", artist: "Edvard Munch", artistId: "munch", qid: "Q18890002", qidTrusted: true, year: 1905,
