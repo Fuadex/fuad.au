@@ -19,7 +19,7 @@ deep: "Everyone in this street is looking, and the three men at the centre of it
 by: "Opus 4.8" },
 
 "jules-adler-la-soupe-des-pauvres": {
-about: "Le peintre des humbles, Louis Vauxcelles called him — and in 1906 Jules Adler gave a queue for free soup a canvas two and a half metres across, the scale the Salon reserved for battles and coronations.",
+about: "Le peintre des humbles, Louis Vauxcelles called him — and in 1906 Jules Adler gave a queue for free soup a canvas two and a half metres across, the scale the Salon reserved for battles and coronations. No soup appears in it — no counter, no server, nothing but the line and the waiting.",
 deep: "Need makes a mass, and the painter refuses the simplification. The queue runs wall to wall with no beginning or end shown, and from the right distance it reads as one brown ridge — exactly the distance the empty foreground holds you at. Come closer and the ridge comes apart: a bearded man given a full portrait against lit plaster, a woman's flat pale profile holding just enough line to resemble a fresco saint, a child with both palms pressed to its mouth and, below them, an empty glass. That glass is the only thing here that says what the line is for, and it is put small, low and easy to walk past.",
 deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
@@ -208,6 +208,7 @@ by: "Opus 4.8" },
 
 "vincent-van-gogh-enclosed-field-with-peasant": {
 about: "Van Gogh painted this around 12 October 1889 from the asylum at Saint-Rémy, and told Theo it showed \"the same field as the one of the reaper\" — the walled plot he watched from his cell window, now turned to mounds of ploughed earth under parched background hills. He meant it as a deliberate pendant: this violet-keyed canvas, with its small stooped peasant dragging a bundle of straw across the furrows, was to answer the yellow-dominated Reaper he had made earlier that year. It is a distinct work from the sun-blazing Enclosed Field with Rising Sun (F737) he would paint in December, with no figure in it at all.",
+refs: [{"id":"vincent-van-gogh-enclosed-field-with-rising-sun","text":"Enclosed Field with Rising Sun"}],
 by: "Opus 4.8" },
 
 "vincent-van-gogh-self-portrait-2": {
@@ -261,7 +262,8 @@ deep: "Read it right to left, as Edo did: the wave attacks against the grain of 
 
 "the-birth-of-venus": {
 about: "Bouguereau's 1879 Venus: the goddess standing full-length on the shell, ringed by tritons, nereids and putti — French academic painting at its most perfect, made at the exact moment the Impressionists were rendering it obsolete.",
-deep: "The brushwork is deliberately invisible — porcelain skin with no visible stroke anywhere, the polar opposite of everything else you've floored (Monet's open weave, Rodin's thumb-marks). Her pose is a double quotation: the antique Venus Anadyomene wringing her hair, filtered through Raphael's Galatea — Bouguereau declaring the whole lineage in one S-curve. Floored by this AND by Impression, Sunrise is not a contradiction; it's the full argument of 1870s Paris hanging in one head: what painting had perfected, next to what it was about to become." },
+deep: "The brushwork is deliberately invisible — porcelain skin with no visible stroke anywhere, the polar opposite of everything else you've floored (Monet's open weave, Rodin's thumb-marks). Her pose is a double quotation: the antique Venus Anadyomene wringing her hair, filtered through Raphael's Galatea — Bouguereau declaring the whole lineage in one S-curve. Floored by this AND by Impression, Sunrise is not a contradiction; it's the full argument of 1870s Paris hanging in one head: what painting had perfected, next to what it was about to become.",
+refs: {"deep":[{"id":"impression-sunrise","text":"Impression, Sunrise"}]} },
 
 "pont-de-l-europe-gare-saint-lazare": {
 about: "Monet inside Gare Saint-Lazare, 1877: the iron bridge and signals of the Pont de l'Europe, locomotives filling the station with steam — modernity painted as weather.",
@@ -281,7 +283,8 @@ deep: "Kraków laughed at it and gossiped about the model's identity; after five
 
 "leech-the-sunshade": {
 about: "William John Leech, c. 1913: a woman — his wife Elizabeth — under a parasol in strong Concarneau light, the Irish post-impressionist's answer to the French plein-air masters. (Image withheld: Leech is in copyright until 2039 — see it at the NGI.)",
-deep: "Leech was an Irishman painting in Brittany with French eyes: the parasol filters the light green, the same bounced-colour game Monet played with Camille's dress, and the whole picture is really about that filtered glow on white fabric. That you singled this out at the National Gallery of Ireland — and its sibling, A Convent Garden, Brittany — before knowing any of this context, is your taste being consistent: parasols, filtered sunlight, figures dissolved in it. It's the same painting-idea you floored twice under other names." },
+deep: "Leech was an Irishman painting in Brittany with French eyes: the parasol filters the light green, the same bounced-colour game Monet played with Camille's dress, and the whole picture is really about that filtered glow on white fabric. That you singled this out at the National Gallery of Ireland — and its sibling, A Convent Garden, Brittany — before knowing any of this context, is your taste being consistent: parasols, filtered sunlight, figures dissolved in it. It's the same painting-idea you floored twice under other names.",
+refs: {"deep":[{"id":"leech-convent-garden","text":"A Convent Garden, Brittany"}]} },
 
 "peasants-houses-eragny": {
 about: "Pissarro, 1887: cottages at Éragny in his pointillist period — the patriarch of Impressionism borrowing the dot from Seurat, twenty years his junior. Found floored in, of all places, Sydney.",
@@ -569,6 +572,7 @@ by: "Opus 4.8" },
 "train-in-the-snow": {
 about: "Monet's Train in the Snow, 1875: a locomotive nosing through Argenteuil's snow — he painted it from the station platform, and it foreshadowed his celebrated Gare Saint-Lazare series of 1877.",
 deep: "Monet turns the engine toward us — blunt, black, bearing down — yet the locomotive does not dominate. It condenses. Sky, snow and steam are held in one muffled grey key, and the machine sits within that key rather than against it, so the train reads less as iron cutting through weather than as iron emerging from it. Two lamps burn at the front, hot red-orange dabs that carry the only warmth in a frozen picture and make the whole dark mass suddenly alive and directed. Look at the snow on the ground and it is grey, cream, blue, touched with lilac — never simply white. That same restless coloring moves into the steam above, where machine-smoke and cloud are worked with identical loose touches until neither can be told from the other. The radical proposition is quiet: that the great modern subject and the great Impressionist subject were always the same subject.",
+refs: [{"id":"claude-monet-gare-saint-lazare-monet-series","text":"Gare Saint-Lazare"}],
 by: "Opus 4.8" },
 
 "haystacks-midday": {
@@ -879,6 +883,7 @@ by: "Opus 4.8" },
 
 "claude-monet-chrysanthemums": {
 about: "One of some twenty floral still lifes Monet made between 1878 and 1883 to bring in reliable income, this vase of chrysanthemums, dated 1882, hung beside his Bouquet of Sunflowers at Durand-Ruel in 1883 and with the avant-garde group Les XX in Brussels in 1886.",
+refs: [{"id":"claude-monet-bouquet-of-sunflowers","text":"Bouquet of Sunflowers"}],
 by: "Opus 4.8" },
 
 "claude-monet-bridge-over-a-pond-of-water-lilies": {
@@ -943,6 +948,7 @@ by: "Opus 4.8" },
 "edouard-manet-young-lady-in-1866": {
 about: "Manet's model is Victorine Meurent, the same woman who scandalized Paris as the nude in Olympia; here in 1866, buttoned into a pink peignoir with a parrot, she reads as a demure rejoinder to Courbet's sensual Woman with a Parrot.",
 deep: "Presence without access is Manet's real subject. Victorine stands at portrait scale, fully clothed and frontally composed, yet the picture systematically empties every channel through which a portrait normally delivers meaning: no setting, no occasion, no expression that inclines toward the viewer. The peignoir — private morning dress, here buttoned to the throat — is the performance: a broad column of rose, pearl and grey-green worked in wide loaded strokes that stay visibly paint, flattened against a ground of the same tonal family so the body reads as silhouette rather than volume. Three small accents — the lilac ribbon, the black neck-cord, the orange rind below — pin the whole quiet field. Everything else is held in suspension: violets almost smelled, a lens not raised, a parrot that notices more than she does. The picture is built to reach you at full human scale and then give nothing back.",
+refs: [{"id":"woman-with-a-parrot","text":"Woman with a Parrot"}],
 by: "Opus 4.8" },
 
 "vincent-van-gogh-roses": {
@@ -1114,6 +1120,7 @@ by: "Opus 4.8" },
 
 "portrait-de-mademoiselle-victorine-de-bellio": {
 about: "Victorine de Bellio later bequeathed her father Georges de Bellio's Impressionist collection — including Monet's Impression, Sunrise — to the Marmottan, making this 1892 Renoir portrait central to the museum's own founding story.",
+refs: [{"id":"impression-sunrise","text":"Impression, Sunrise"}],
 by: "Opus 4.8" },
 
 "portrait-de-julie-manet": {
@@ -1184,6 +1191,7 @@ by: "Opus 4.8" },
 
 "the-eternal-springtime": {
 about: "Rodin conceived this embrace in 1884 as part of The Gates of Hell, then pulled it out because the lovers looked too happy for a vision of damnation — leaving it to stand alone as a hymn to desire.",
+refs: [{"id":"the-gates-of-hell","text":"The Gates of Hell"}],
 by: "Opus 4.8" },
 
 "the-mature-age": {
@@ -1204,10 +1212,12 @@ by: "Opus 4.8" },
 
 "sakuntala-claudel": {
 about: "When Claudel showed this plaster at the 1888 Salon, reviewers said it bested Rodin that year; she later reworked the embracing couple in marble as Vertumnus and Pomona for a patron in 1905.",
+refs: [{"id":"vertumnus-and-pomona","text":"Vertumnus and Pomona"}],
 by: "Opus 4.8" },
 
 "torso-of-adele": {
 about: "Rodin later used this headless, armless plaster — modelled around 1882 from Italian model Adèle Abruzzesi — as a linking figure in the upper-left corner of The Gates of Hell, completed there in 1889.",
+refs: [{"id":"the-gates-of-hell","text":"The Gates of Hell"}],
 by: "Opus 4.8" },
 
 "ugolino-and-sons": {
@@ -1322,6 +1332,7 @@ by: "Opus 4.8" },
 
 "head-of-a-peasant": {
 about: "Van Gogh painted around forty peasant heads in Nuenen during 1884–85, each one a direct preparatory study for The Potato Eaters — this 1884 portrait is among the raw material from which his first major work was built.",
+refs: [{"id":"the-potato-eaters","text":"The Potato Eaters"}],
 by: "Opus 4.8" },
 
 "morning-light": {
@@ -2611,6 +2622,7 @@ by: "Opus 4.8" },
 
 "tree-roots": {
 about: "In 2020 a researcher matched the painting's tangled root mass to a specific hillside on a road 150 metres from Van Gogh's inn in Auvers-sur-Oise, using a 1905 postcard as a key — the largest trunk is still standing. This identification strengthened the argument that Tree Roots, not Wheatfield with Crows, was his final work, likely made on 27 July 1890.",
+refs: [{"id":"wheatfield-with-crows","text":"Wheatfield with Crows"}],
 by: "Opus 4.8" },
 
 "harvest-at-la-crau-with-montmajour-in-the-background": {
@@ -2725,6 +2737,7 @@ by: "Opus 4.8" },
 
 "head-of-a-woman": {
 about: "One of roughly forty peasant head studies Van Gogh made in Nuenen over the winter of 1884–85, working directly from local sitters as raw material for The Potato Eaters — he wrote that he wanted the faces to look 'like the colour of a really dusty potato, unpeeled.' Van Gogh, 1884.",
+refs: [{"id":"the-potato-eaters","text":"The Potato Eaters"}],
 by: "Opus 4.8" },
 
 "inwang-jesaekdo": {
@@ -3444,6 +3457,7 @@ by: "Opus · Fable" },
 
 "pierre-auguste-renoir-alphonsine-fournaise": {
 about: "The sitter, painted in 1879, was the daughter of the family that ran the Maison Fournaise, the riverside restaurant at Chatou where Renoir kept a studio and painted more than a dozen canvases. Alphonsine looked after the boaters and guests, and two years later reappeared leaning on the terrace railing in Luncheon of the Boating Party.",
+refs: [{"id":"pierre-auguste-renoir-luncheon-of-the-boating-party","text":"Luncheon of the Boating Party"}],
 by: "Opus · Fable" },
 
 "eugene-jansson-motif-from-timmermansgatan": {
