@@ -3305,6 +3305,79 @@ const mediaAlbums = _albumEntries.map(([key, plays], i) => {
   const sp = albumSpan.get(key);
   return [title, _ai(artist), plays, sp ? sp[0] : 0, sp ? sp[1] : 0, _tail(albumYear.get(key)), albArt(artist, title) || 0, albMeta(artist, title)];   // [6]=cover url, [7]=[releaseYear,typeChar,label]
 });
+// ─────────── RELEASED-TRACKLIST INDEX (album homing authority — mb-releases.json `discs`) ───────────
+// The single mb-releases.json (already parsed once for MB_KIND) also carries a per-artist `discs`
+// field: discs[squashAlbumKey] = [[discTitle, [trackTitle, …]], …] — the OFFICIAL tracklist of the
+// canonical release, disc boundaries and order intact (557 artists / ~3,346 albums, PARTIAL coverage:
+// many albums have no disc data and fall through to the existing heuristic untouched).
+//
+// Two lookups per artist (keyed by artistSlug):
+//   trackHome:  Map(_kSquash(trackTitle) → [{ albSquash, disc, pos, discTitle, standardDisc }, …])
+//               where albSquash is the disc's album key (= _kSquash of the album title). A track can
+//               appear on more than one release (e.g. an LP and a live album) → array, so STEP 2 can
+//               ask "does THIS home list it? does ANOTHER discs-backed home list it?".
+//   albTitle:   Map(_kSquash(corpusAlbumTitle) → corpusAlbumTitle) — bridges a disc's squash-key back
+//               to the album STRING the corpus actually uses (so homing stays on canonical album keys
+//               produced by canonAlbum, never raw scrobble strings). Built from albumPlays.
+// `standardDisc` = the FIRST disc (di===0) of a release = the LP proper; later discs (di>0) are
+// bonus/deluxe discs, so a track listed only there is flagged bonus in STEP 3/4.
+// A discs-backed release that is really a box-set / anthology / "essential" / "original album" bundle is
+// NOT a valid re-home target even though its track-count reads as an "album": homing a studio song onto a
+// compilation is never the improvement we want. albumKind's comp regex only catches greatest-hits/best-of/
+// anthology/collection/singles — this widens the net for the re-home eligibility check ONLY (the album row
+// itself stays browsable). Studio LPs missing from `discs` (partial MB coverage) then simply keep the song.
+const _reHomeBlockedName = /\b(essential|original album (classics|series)|music bank|box ?set|anthology|collection|complete|deluxe box|the singles|studio album|greatest hits|best of)\b/i;
+const DISCS_BY_ARTIST = (() => {
+  const out = new Map();
+  let raw; try { raw = JSON.parse(fs.readFileSync(path.join(__dirname, "mb-releases.json"), "utf8")); }
+  catch (e) { console.log("homing: mb-releases.json missing — released-tracklist homing OFF"); return out; }
+  for (const [aSlug, e] of Object.entries(raw)) {
+    if (!e || !e.discs) continue;
+    const trackHome = new Map();
+    for (const [albSquash, discs] of Object.entries(e.discs)) {
+      if (!Array.isArray(discs)) continue;
+      discs.forEach(([discTitle, trackList], di) => {
+        (trackList || []).forEach((tt, pos) => {
+          const k = _kSquash(tt);
+          if (!k) return;
+          let arr = trackHome.get(k); if (!arr) trackHome.set(k, arr = []);
+          arr.push({ albSquash, disc: di, pos: pos + 1, discTitle: discTitle || "", standardDisc: di === 0 });
+        });
+      });
+    }
+    out.set(aSlug, trackHome);
+  }
+  return out;
+})();
+// artistSlug → Set(albSquash) — which album keys have an official discs tracklist at all. Used to detect
+// a track homed to a discs-backed album but absent from its tracklist (a deluxe/bonus/live straggler).
+const DISCS_BACKED_ALBUMS = (() => {
+  const out = new Map();
+  let raw; try { raw = JSON.parse(fs.readFileSync(path.join(__dirname, "mb-releases.json"), "utf8")); } catch (e) { return out; }
+  for (const [aSlug, e] of Object.entries(raw)) {
+    if (!e || !e.discs) continue;
+    out.set(aSlug, new Set(Object.keys(e.discs)));
+  }
+  return out;
+})();
+// artistSlug → Map(_kSquash(corpusAlbumTitle) → corpusAlbumTitle). Lets a disc's albSquash resolve to
+// the corpus album key. Where two corpus titles squash the same, the higher-play one wins (albumPlays
+// is not sorted, so compare explicitly).
+const ALB_BY_SQUASH = (() => {
+  const out = new Map();
+  for (const [k, plays] of albumPlays) {
+    const ix = k.indexOf("\x00"); if (ix < 0) continue;
+    const artist = k.slice(0, ix), title = k.slice(ix + 1);
+    const aSlug = slug(artist), sq = _kSquash(title);
+    if (!sq) continue;
+    let m = out.get(aSlug); if (!m) out.set(aSlug, m = new Map());
+    const cur = m.get(sq);
+    if (!cur || plays > (albumPlays.get(artist + "\x00" + cur) || 0)) m.set(sq, title);
+  }
+  return out;
+})();
+// homingLog: every track whose album pointer MOVED vs the pre-reshape heuristic (owner review).
+const homingLog = [];
 const albDNA = new Map();   // albumIdx → play-weighted accumulator over 6 audio axes
 const mediaTracks = [...trackPlays.entries()].sort((a, b) => b[1] - a[1]).map(([key, plays]) => {
   const ix = key.indexOf("\x00"), artist = key.slice(0, ix), title = key.slice(ix + 1);
@@ -3322,18 +3395,132 @@ const mediaTracks = [...trackPlays.entries()].sort((a, b) => b[1] - a[1]).map(([
     }
     if (best != null && albumKeyIdx.has(best)) albumIdx = albumKeyIdx.get(best);
   }
+  // ── STEP 2/3: released-tracklist reconciliation. STRICT IMPROVEMENT — only overrides the heuristic
+  // on POSITIVE disagreement: the current best does NOT list the song but another discs-backed album of
+  // the artist's DOES. Studio bodies already homed correctly are left untouched. Also yields the disc
+  // position (STEP 3 trackNo) and a bonus/beside flag (STEP 4). `homed` = the disc entry we adopted.
+  let discNo = 0, discBonus = 0;  // [5] disc position, and bonus flag (1) for non-standard/beside rows
+  const aSlug = slug(artist);
+  const trackHome = DISCS_BY_ARTIST.get(aSlug);
+  const albMap = ALB_BY_SQUASH.get(aSlug);
+  if (trackHome && albMap) {
+    const homes = trackHome.get(_kSquash(title)) || null;
+    if (homes && homes.length) {
+      // resolve each disc-home to a corpus album key that actually exists in the media index
+      const resolved = homes.map(h => {
+        const t = albMap.get(h.albSquash);
+        const ak = t != null ? artist + "\x00" + t : null;
+        return (ak && albumKeyIdx.has(ak)) ? { ...h, ak, idx: albumKeyIdx.get(ak) } : null;
+      }).filter(Boolean);
+      if (resolved.length) {
+        const curKey = albumIdx >= 0 ? mediaAlbums[albumIdx] && (artist + "\x00" + mediaAlbums[albumIdx][0]) : null;
+        // does the CURRENT best home list this track? (any disc of it) — when it appears on more than one
+        // disc of the SAME release (standard + deluxe reissue), prefer the STANDARD disc so the position is
+        // the canonical one and two rows can't both claim a deluxe number.
+        const onCurrentAll = curKey ? resolved.filter(r => r.ak === curKey) : [];
+        const onCurrent = onCurrentAll.sort((a, b) => (b.standardDisc - a.standardDisc) || (a.pos - b.pos))[0] || null;
+        // is the current home already a STUDIO body (album/ep)? A studio home is authoritative even when
+        // mb-releases has no disc data for it (partial coverage) — we must NOT move a studio track onto a
+        // live album / box set / best-of just because THAT release's tracklist happened to be in `discs`.
+        const curStudio = albumIdx >= 0 && (albumKind(artist, mediaAlbums[albumIdx][0]) === "album" || albumKind(artist, mediaAlbums[albumIdx][0]) === "ep");
+        if (onCurrent) {
+          // studio body already correct — keep home, adopt the official position + bonus flag
+          discNo = onCurrent.pos;
+          if (!onCurrent.standardDisc) discBonus = 1;   // listed only on a bonus/deluxe disc
+        } else if (!curStudio) {
+          // current best is NOT a studio home (single/comp/live/unhomed) and does NOT list this track →
+          // re-home ONLY onto a genuine STUDIO release (album/ep) whose official tracklist lists it. This
+          // is the strict-improvement case: a track sitting on a single/comp finds its studio LP. Never
+          // targets a live/comp/ost/box-set release (albumKind filters those out).
+          const studioHomes = resolved.filter(r => {
+            const t = mediaAlbums[r.idx][0];
+            const k = albumKind(artist, t);
+            return (k === "album" || k === "ep") && !_reHomeBlockedName.test(t);
+          });
+          if (studioHomes.length) {
+            studioHomes.sort((a, b) => (b.standardDisc - a.standardDisc) || (mediaAlbums[b.idx][2] - mediaAlbums[a.idx][2]));
+            const pick = studioHomes[0];
+            if (albumIdx !== pick.idx) {
+              homingLog.push({ artist, title, from: albumIdx >= 0 ? mediaAlbums[albumIdx][0] : "(unhomed)", to: mediaAlbums[pick.idx][0], plays });
+            }
+            albumIdx = pick.idx;
+            discNo = pick.pos;
+            if (!pick.standardDisc) discBonus = 1;
+          }
+        }
+        // curStudio && !onCurrent: the studio LP is the home but has no disc data for this exact title
+        // (spelling drift, or the title lives on a bonus disc we can't see) — leave the pointer, no number.
+      }
+    }
+    // STEP 3 completeness: if the FINAL home album is itself discs-backed but this track is NOT on its
+    // official tracklist (discNo still 0 → we never matched it there), it's a deluxe/bonus/live straggler
+    // that Spotify happens to number past the standard tracklist. Flag it bonus and suppress the Spotify
+    // number so it can't collide with — or overflow past — the real tracklist. Studio bodies stay clean.
+    if (!discNo && albumIdx >= 0) {
+      const homeSq = _kSquash(mediaAlbums[albumIdx][0]);
+      const dm = DISCS_BACKED_ALBUMS.get(aSlug);
+      if (dm && dm.has(homeSq)) discBonus = 1;   // homed to a discs-backed album but unlisted → bonus
+    }
+  }
   const td = trackData(artist, title);
   const hasFeat = td && td.length >= 10;
   if (hasFeat && albumIdx >= 0) {   // accumulate album DNA: [energy, valence, dance, acoustic, instr, tempo]
     let a = albDNA.get(albumIdx); if (!a) albDNA.set(albumIdx, a = { s: [0, 0, 0, 0, 0, 0], w: 0 });
-    a.s[0] += td[4] * plays; a.s[1] += td[5] * plays; a.s[2] += td[8] * plays; a.s[3] += td[6] * plays; a.s[4] += td[9] * plays; a.s[5] += td[7] * plays; a.w += plays;
+    a.s[0] += td[4] * plays; a.s[1] += td[5] * plays; a.s[2] += td[8] * plays; a.s[3] += td[6] * plays; a.s[4] += td[9] * plays; a.w += plays;
   }
   const row = [title, _ai(artist), plays, albumIdx, _tail(trackYear.get(key))];
-  const tn = (td && td[3]) || 0;
-  if (tn || hasFeat) row.push(tn);              // [5] = Spotify track number (0 placeholder when only features present)
-  if (hasFeat) row.push(td[4], td[5]);          // [6] energy, [7] valence (0..100) — powers tracklist mood dots without the per-track file
+  // [5] = track number. The released-tracklist disc position (discNo) is AUTHORITATIVE — it fixes
+  // duplicate-position collisions, overflow numbers, and edition-scrambled Spotify numbers. Spotify's
+  // number stays only as the fallback where no discs tracklist matched.
+  // A bonus/beside row keeps a number ONLY when it is a real disc position (e.g. bonus-disc pos 1..N);
+  // an UNLISTED straggler (discNo 0) drops the Spotify number entirely so it can't collide with or
+  // overflow the standard tracklist — its own bonus section restarts numbering in the UI.
+  const tn = discBonus ? discNo : (discNo || (td && td[3]) || 0);
+  // [8] = bonus flag (STEP 3/4): the track is listed on a NON-standard disc, OR is a variant recording
+  // sitting beside its studio base — the UI drops it below the standard tracklist under a divider.
+  // Fixed index: pad [5]/[6]/[7] so [8] always lands at 8. Energy/valence stay null when absent so the
+  // UI mood dots still gate on real data (t[6] != null), not on the pad.
+  if (discBonus) {
+    row.push(tn, hasFeat ? td[4] : null, hasFeat ? td[5] : null, 1);
+  } else {
+    if (tn || hasFeat) row.push(tn);            // [5] track number (0 placeholder when only features present)
+    if (hasFeat) row.push(td[4], td[5]);        // [6] energy, [7] valence (0..100) — tracklist mood dots
+  }
   return row;
 }).filter(Boolean);
+// ─────────── STEP 4: variant-beside-base flag ───────────
+// The ~150 `variant` folds (folds.json §3d) that KEEP their own row but land on the SAME album row as
+// their studio base (acoustic/cover/live/remix sitting beside the original) must not interleave into
+// the standard tracklist. Flag them bonus ([8]=1) so the UI drops them below the divider. Variants whose
+// album is legitimately a distinct live/remix RELEASE (~300) home to a DIFFERENT albumIdx than their
+// base → left untouched (that class is correct as-is). Done as a post-pass so base albumIdx is known
+// regardless of emit order. Never re-homes — only sets the flag; the row stays where homing put it.
+{
+  const idxByKey = new Map();       // artistSlug~slug(title) → albumIdx (for base lookup)
+  for (const r of mediaTracks) idxByKey.set(slug(_mArtists[r[1]]) + "~" + slug(r[0]), r[3]);
+  let flagged = 0;
+  for (const r of mediaTracks) {
+    if (r[3] < 0) continue;                                    // unhomed — nothing to sit beside
+    if (r.length > 8 && r[8] === 1) continue;                  // already flagged in STEP 3
+    const vk = slug(_mArtists[r[1]]) + "~" + slug(r[0]);
+    const baseKey = VARIANT_OF[vk];
+    if (!baseKey) continue;                                    // not a variant recording
+    const baseIdx = idxByKey.get(baseKey);
+    if (baseIdx == null || baseIdx !== r[3]) continue;         // variant lives on its OWN release → keep
+    // variant sits on the base's album row → flag bonus (pad to fixed index 8)
+    while (r.length < 8) r.push(r.length === 5 ? (r[5] || 0) : null);
+    r[8] = 1; flagged++;
+  }
+  console.log(`homing: STEP4 flagged ${flagged} variant-beside-base rows (of ${Object.keys(VARIANT_OF).length} variant links)`);
+}
+// homing reconciliation summary (owner review) — re-homed pointers written to a sidecar for the report.
+console.log(`homing: STEP2 re-homed ${homingLog.length} track→album pointers (positive-disagreement only)`);
+try {
+  const _rd = path.join(__dirname, "..", ".dtmp", "fold-reshape");
+  fs.mkdirSync(_rd, { recursive: true });
+  fs.writeFileSync(path.join(_rd, "rehomed.json"),
+    JSON.stringify(homingLog.sort((a, b) => b.plays - a.plays), null, 1));
+} catch (e) { /* report still prints the count if the sidecar can't be written */ }
 // play-weighted mean DNA per album → media album row [8] = [energy, valence, dance, acoustic, instr, tempo] (0..100)
 for (const [ai, a] of albDNA) if (a.w) mediaAlbums[ai][8] = a.s.map(x => Math.round(x / a.w));
 // [9] = Spotify total_tracks (sparse) → per-album completeness ("played 7 of 12")
@@ -3345,7 +3532,12 @@ const mediaOut = `// GENERATED by build-data.js — lazy media index (header sea
 // albums = [title, artistIdx, plays, firstYear, lastYear, yearTail, coverUrl, meta, dna, totalTracks]
 //   dna [8] = [energy, valence, dance, acoustic, instr, tempo] play-weighted 0..100 (sparse, 0 when only [9] present)
 //   [9] = Spotify album total_tracks (sparse) — per-album completeness
-// tracks = [title, artistIdx, plays, albumIdx, yearTail, trackNo?, energy?, valence?]  ([5]/[6]/[7] sparse; from Spotify)
+// tracks = [title, artistIdx, plays, albumIdx, yearTail, trackNo?, energy?, valence?, bonus?]
+//   [5] trackNo = the released-tracklist disc POSITION (mb-releases.json discs) where matched, else the
+//       Spotify number as fallback. [6]/[7] energy/valence 0..100 (null when no audio features).
+//   [8] bonus = 1 when the track is listed only on a non-standard/deluxe disc OR is a variant recording
+//       sitting beside its studio base — the album page renders these below the standard tracklist.
+//       ([5]/[6]/[7]/[8] sparse; energy/valence are null-padded when [8] is present so mood dots gate on t[6]!=null)
 window.ROTATION_MEDIA = { artists: ${JSON.stringify(_mArtists)}, tracks: ${JSON.stringify(mediaTracks)}, albums: ${JSON.stringify(mediaAlbums)} };
 `;
 fs.writeFileSync(path.join(__dirname, "media-index.js"), mediaOut, "utf8");

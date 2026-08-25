@@ -1,4 +1,59 @@
 {
+"Helstar": {
+"tracks": [
+{
+"from": "No second chance (in the angry",
+"to": "No Second Chance",
+"type": "spelling",
+"reason": "spelling: an unverifiable truncated parenthetical is dropped to the base title; same recording"
+}
+]
+},
+
+"Bullet for My Valentine": {
+"tracks": [
+{
+"from": "All These Things I Hate (Revo",
+"to": "All These Things I Hate (Revolve Around Me)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+}
+]
+},
+
+"Pierre Boulez": {
+"tracks": [
+{
+"from": "Mahler: Symphony No.2 In C Minor - \"Resurrection\" - 4. \"O Röschen rot! Der Mensch liegt in grösster Not!\" (Sehr feierlich aber sch",
+"to": "Mahler: Symphony No.2 In C Minor - \"Resurrection\" - 4. \"O Röschen rot! Der Mensch liegt in grösster Not!\" (Sehr feierlich aber schlicht)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+}
+]
+},
+
+"Dave Matthews Band": {
+"tracks": [
+{
+"from": "When the World Ends (Oakenfold",
+"to": "When The World Ends (Oakenfold Remix)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+}
+]
+},
+
+"Decapitated": {
+"tracks": [
+{
+"from": "Blood Mantra (OFFICIAL",
+"to": "Blood Mantra",
+"type": "spelling",
+"reason": "spelling: strips a YouTube 'OFFICIAL TRACK' upload tag left dangling by the CSV truncation; same studio recording of the title track"
+}
+]
+},
+
 "385": {
 "artist": {
 "from": "３８５",
@@ -300,6 +355,12 @@
 }
 ],
 "tracks": [
+{
+"from": "When You Say To Me Fuck You (S",
+"to": "When You Say To Me Fuck You",
+"type": "spelling",
+"reason": "spelling: an unverifiable truncated parenthetical is dropped to the base title; same recording"
+},
 {
 "from": "Love Shack - Live",
 "to": "Love Shack",
@@ -624,6 +685,12 @@
 "Annihilator": {
 "tracks": [
 {
+"from": "Alison Hell (Remastered Versio",
+"to": "Alison Hell (Remastered Version)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
 "from": "Human Insecticide (live)",
 "to": "Human Insecticide",
 "type": "variant",
@@ -653,6 +720,18 @@
 }
 ],
 "tracks": [
+{
+"from": "Safe Home Acoustic (Bonustrack",
+"to": "Safe Home Acoustic (Bonustrack)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
+"from": "We're A Happy Family (Bonustra",
+"to": "We're A Happy Family (Bonustrack)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
 {
 "from": "Only (remix)",
 "to": "Only",
@@ -989,6 +1068,12 @@
 }
 ],
 "tracks": [
+{
+"from": "Elevator Girl [English ver.]  (OFFICIAL",
+"to": "Elevator Girl (English Version)",
+"type": "spelling",
+"reason": "spelling: strips a YouTube OFFICIAL tag AND folds the English-version recording onto its canonical spelling; same recording"
+},
 {
 "from": "Kagerou (with Kami Band Intro)",
 "to": "Kagerou",
@@ -2171,6 +2256,12 @@
 },
 "Dope": {
 "tracks": [
+{
+"from": "You Spin Me Round (like A Reco",
+"to": "You Spin Me Round (Like A Record)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
 {
 "from": "You Spin Me Round (like A Reco",
 "to": "You Spin Me Round (Like a Record)",
@@ -3816,6 +3907,12 @@
 ],
 "tracks": [
 {
+"from": "A6 (Meteora",
+"to": "A6 (Meteora|20 Demo)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
 "from": "Linkin Park",
 "to": "Lost",
 "type": "spelling",
@@ -4410,6 +4507,12 @@
 "Machine Head": {
 "tracks": [
 {
+"from": "Hole In The Sky (Black Sabbath",
+"to": "Hole In The Sky (Black Sabbath Cover)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
 "from": "Blood For Blood",
 "to": "Blood for Blood",
 "type": "spelling",
@@ -4962,6 +5065,24 @@
 "Motörhead": {
 "tracks": [
 {
+"from": "Please Don't Touch (performed",
+"to": "Please Don't Touch (Performed By Headgirl)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
+"from": "Motörhead (Performed by Hawkw",
+"to": "Motörhead (Performed By Hawkwind)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
+"from": "Bomber (Performed By Girlscho",
+"to": "Bomber (Performed By Girlschool)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
 "from": "Ace Öf Spades",
 "to": "Ace of Spades",
 "type": "spelling",
@@ -5132,6 +5253,30 @@
 "Nightwish": {
 "tracks": [
 {
+"from": "Bless The Child (Edit) (Bonus",
+"to": "Bless The Child (Edit) (Bonus Track)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
+"from": "End of All Hope (Live at Summe",
+"to": "End Of All Hope (Live At Summer Breeze)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
+"from": "Bye Bye Beautiful (Instrumenta",
+"to": "Bye Bye Beautiful (Instrumental)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
+"from": "Walking In The Air (Theme From",
+"to": "Walking In The Air (Theme From The Snowman)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
 "from": "7 days of the wolves",
 "to": "7 Days to the Wolves",
 "type": "spelling",
@@ -5141,6 +5286,12 @@
 },
 "Nine Inch Nails": {
 "tracks": [
+{
+"from": "March Of The Pigs (Unclean",
+"to": "March Of The Pigs (Unclean Version)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
 {
 "from": "Home (Bonus Track)",
 "to": "Home",
@@ -6730,6 +6881,12 @@
 "Slayer": {
 "tracks": [
 {
+"from": "Dissident Aggressor (Judas Pri",
+"to": "Dissident Aggressor (Judas Priest Cover)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
 "from": "Angel of Death - Live 1994",
 "to": "Angel of Death",
 "type": "variant",
@@ -7485,6 +7642,24 @@
 ],
 "tracks": [
 {
+"from": "Everybody In The Place (155 An",
+"to": "Everybody In The Place (155 And Rising)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
+"from": "Death Of The Prodigy Dancers (",
+"to": "Death Of The Prodigy Dancers",
+"type": "spelling",
+"reason": "spelling: a spurious open paren left by the CSV truncation; same recording, plain title"
+},
+{
+"from": "Charly (Trip Into Drum And Bas",
+"to": "Charly (Trip Into Drum And Bass Version)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
 "from": "Breathe (feat. RZA) - René LaVice Dark D&B Remix",
 "to": "Breathe",
 "type": "variant",
@@ -7679,6 +7854,18 @@
 }
 ],
 "tracks": [
+{
+"from": "I N V I N C I B L E",
+"to": "Invincible",
+"type": "spelling",
+"reason": "spelling: spaced-caps scrobble spelling of Fear Inoculum's 'Invincible'; same recording — collapses the duplicate tracklist row"
+},
+{
+"from": "D E S C E N D I N G",
+"to": "Descending",
+"type": "spelling",
+"reason": "spelling: spaced-caps scrobble spelling of Fear Inoculum's 'Descending'; same recording — collapses the duplicate tracklist row"
+},
 {
 "from": "Roseta Stoned",
 "to": "Rosetta Stoned",
@@ -9373,6 +9560,14 @@
 ]
 },
 "The Bloody Beetroots": {
+"tracks": [
+{
+"from": "Timbaland - Discommunication (",
+"to": "Timbaland - Discommunication",
+"type": "spelling",
+"reason": "spelling: a spurious open paren left by the CSV truncation; same recording, plain title"
+}
+],
 "albums": [
 {
 "from": "Rocksteady",
@@ -9759,6 +9954,44 @@
 ]
 },
 "I:Scintilla": {
+"tracks": [
+{
+"from": "Prey On You (Sebastian r. KoMo",
+"to": "Prey On You (Sebastian R. Komor Mix)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
+"from": "Prey On You (Studio-X Hard Dan",
+"to": "Prey On You (Studio-X Hard Dance Mix)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
+"from": "Hollower (Indigent Mix By Die",
+"to": "Hollowed (Indigent Mix By Die Warzau)",
+"type": "spelling",
+"reason": "spelling: repairs a CSV truncation; base title is 'Hollowed' (the truncated scrobble misspelled it 'Hollower'); distinct remix recording"
+},
+{
+"from": "Havestar (La Malediction Mix B",
+"to": "Havestar (La Malediction Mix)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
+"from": "Translate (Broken Reception Mi",
+"to": "Translate (Broken Reception Mix)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
+"from": "Cursive Eve (Zero Tolerance Tr",
+"to": "Cursive Eve (Zero Tolerance Treatment)",
+"type": "spelling",
+"reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+}
+],
 "albums": [
 {
 "from": "Havestar",

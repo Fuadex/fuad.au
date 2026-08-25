@@ -2640,7 +2640,7 @@ function AlbumView({ id, go }) {
     if (bestIdx < 0) return null;
     const al = M.albums[bestIdx], artist = M.artists[al[1]];
     const tracks = [];
-    for (const t of M.tracks) if (t[3] === bestIdx) tracks.push({ title: t[0], plays: t[2], no: t[5] || 0, e: t.length >= 8 ? t[6] : null, v: t.length >= 8 ? t[7] : null });
+    for (const t of M.tracks) if (t[3] === bestIdx) tracks.push({ title: t[0], plays: t[2], no: t[5] || 0, e: t[6] != null ? t[6] : null, v: t[7] != null ? t[7] : null, bonus: t[8] === 1 });
     const hasNos = tracks.some(t => t.no);
     tracks.sort((x, y) => hasNos ? ((x.no || 999) - (y.no || 999)) || (y.plays - x.plays) : y.plays - x.plays);
     return { title: al[0], artist, plays: al[2], firstY: al[3], lastY: al[4], cover: al[6] || "", meta: al[7] || null,
@@ -2735,12 +2735,17 @@ function AlbumView({ id, go }) {
   const genreTags = (window.ROTATION_ALBUM_TAGS && window.ROTATION_ALBUM_TAGS[id]) || null;
   const extras = (window.ROTATION_ALBUM_EXTRAS && window.ROTATION_ALBUM_EXTRAS[id]) || null;
   const bonusSet = extras && extras.bonus ? new Set(extras.bonus) : null;
-  const baseTracks = bonusSet ? data.tracks.filter(t => !bonusSet.has(t.title)) : data.tracks;
-  const bonusTracks = bonusSet ? data.tracks.filter(t => bonusSet.has(t.title)) : [];
+  // a track is "below the line" when the edition-extras layer names it as bonus OR the media index
+  // flagged it ([8]===1): listed only on a non-standard/deluxe disc, or a variant recording sitting
+  // beside its studio base (STEP 3/4 of the album-homing reshape). Both keep the standard tracklist clean.
+  const isBonus = (t) => (bonusSet && bonusSet.has(t.title)) || t.bonus;
+  const anyBonus = data.tracks.some(isBonus);
+  const baseTracks = anyBonus ? data.tracks.filter(t => !isBonus(t)) : data.tracks;
+  const bonusTracks = anyBonus ? data.tracks.filter(isBonus) : [];
   // build the per-edition sections from byEdition. Each section = { name, tracks[] }, tracks pulled
   // from bonusTracks (so we keep plays/mood/no); ordered by track count descending. Any bonus track
-  // not attributable to a named edition (byEdition[""], or missing byEdition) falls into a final
-  // "bonus / other editions" catch-all.
+  // not attributable to a named edition (byEdition[""], or missing byEdition, or flagged only by the
+  // media index) falls into a final "bonus & beside the album" catch-all.
   const bonusSections = (() => {
     if (!bonusTracks.length) return [];
     const byTitle = new Map(bonusTracks.map(t => [t.title, t]));
@@ -2752,7 +2757,7 @@ function AlbumView({ id, go }) {
       if (rows.length) { named.push({ name: suf, tracks: rows }); rows.forEach(r => leftover.delete(r.title)); }
     }
     named.sort((a, b) => b.tracks.length - a.tracks.length);   // biggest editions first
-    if (leftover.size) named.push({ name: "bonus / other editions", tracks: [...leftover].map(ti => byTitle.get(ti)) });
+    if (leftover.size) named.push({ name: "bonus & beside the album", tracks: [...leftover].map(ti => byTitle.get(ti)) });
     return named;
   })();
 
