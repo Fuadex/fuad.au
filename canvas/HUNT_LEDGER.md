@@ -64,7 +64,8 @@ a named round, with a confirmed negative result. The 51-work IIIF hunt (`.dtmp/t
 | `young-man-playing-the-piano` ⚠ | — | Artizon | 2026-08-25 | No public API | toured-plates pass |
 | `diaz-flower-piece` ⚠ | — | Glasgow Museums | 2026-08-25 | Only external id is Art UK, licence-capped at ~800 px | toured-plates pass |
 | `der-rote-christus` ⚠ | — | Alte Pinakothek | 2026-08-25 | Both URL shapes from Wikidata id 404; bpk-licensed | toured-plates pass |
-| `el-sueno` | 0.211 MP | National Gallery of Ireland | 2026-08-25 | NGI eMuseum: descriptor-less IIIF (info.json 400s), no ACAO, ceiling 3000 px — needs inline descriptor + proxy alias. ⛔ **Trap 10 paid here** (Leech search returned 3 wrong objects all passing holder gate). Browser visit + proxy alias could reach 3000 px. **Named worst-plate candidate** | toured-plates pass / round 5 |
+| `el-sueno` | 0.211 MP | National Gallery of Ireland | 2026-08-26 | ⚙ RESOLVED-AND-SUPERSEDED: NGI dispatcher `/full` = **1715×1000 (×8.11), decoded + sha1'd — HARD ceiling** (`/full`=`/zoom`=`/original`=`/max` byte-identical, Trap-7); there is NO IIIF (every info.json 404s) — the earlier "3000 px via inline descriptor" was wrong. No ACAO → crossorigin use needs a NEW worker alias `ngi` (Fuad dashboard paste). **Candidate STAGED at `.dtmp/el-sueno/CANDIDATE.json`** (local workshop artifact), blocked on: 5-box remap (aspect Δ 0.62% > 0.5% gate) + the alias. ⛔ Trap 10 previously paid here (Leech search) | explore-0825 |
+| `paul-signac-femme-a-l-ombrelle` (sitter name, not a plate) | — | Musée d'Orsay | 2026-08-26 | CLOSED: the "Berthe Roblès" sitter-name lead is unverifiable at museum grade (orsay.fr 403s, api NXDOMAIN, Wikidata P180 has no person, Wayback's only same-title commentary is the **Maillol** — Trap-10 title collision). The tour's unnamed-sitter claim STANDS; don't re-hunt without a new primary source | explore-0825 |
 | `munch-man-with-horse` ⚠ | — | NGA Canberra | 2026-08-25 | Angular app, every `/stcapi/` path 500s | toured-plates pass |
 | `kirchner-five-women-on-the-street` ⚠ | — | Museum Ludwig | 2026-08-25 | Proof-of-work interstitial on every programmatic request; anti-bot, not policy | toured-plates pass |
 | `camille-pissarro-route-de-versailles-louveciennes-rain-effec` | ~17.8 MP ⚠ | Clark Art Institute | 2026-08-25 | `clarkart.edu` open (no CF challenge — prior note was false); no IIIF on either side; `media.clarkart.edu/hires/1955.825.tif` byte-identical to the Commons file we serve. Gain: ×1.00. **Do not re-hunt** | round 7 (WORKS_LEDGER §1) |
@@ -91,7 +92,7 @@ then liked/floored by MP ascending. Flags: **T**=toured, **L**=liked, **F**=floo
 | slug | best MP | dims | flags | any lead |
 |---|---|---|---|---|
 | `vetheuil-in-the-fog` | 0.107 MP | 363×295 (imgsize) | T,L | CLOSED (§1): Marmottan, no API. Worst toured plate in the corpus. Re-open only if Marmottan opens an image programme. |
-| `el-sueno` | 0.211 MP | 604×350 (imgsize) | T,L | PARTIALLY-HUNTED (§1): NGI eMuseum with Frick anatomy — 3000 px ceiling reachable with inline descriptor + proxy alias. Named as "hurts" in the close-out note. Worth a browser visit. |
+| `el-sueno` | 0.211 MP | 604×350 (imgsize) | T,L | ⚙ UPGRADE FOUND 2026-08-26 (see §1): NGI `/full` 1715×1000 ×8.11, hard ceiling, staged — blocked on 5-box remap + `ngi` worker alias. |
 | `water-lilies` | 0.225 MP | 448×503 (imgsize) | T,F | CLOSED (§1): Marmottan block. |
 | `nympheas` | 0.341 MP | 676×505 (imgsize) | T,L | CLOSED (§1): Marmottan block. |
 | `london-the-houses-of-parliament-sunlight-opening-in-fog` | ⚠ low | — | T,F,L | CLOSED (§1): Orsay IIIF 850 px ceiling — downgrade. |
@@ -132,7 +133,7 @@ then liked/floored by MP ascending. Flags: **T**=toured, **L**=liked, **F**=floo
 | # | slug | best MP | flags | status |
 |---|---|---|---|---|
 | 1 | `vetheuil-in-the-fog` | 0.107 MP | T,L | CLOSED — Marmottan; record for awareness |
-| 2 | `el-sueno` | 0.211 MP | T,L | PARTIAL LEAD — NGI descriptor-less IIIF, 3000 px ceiling reachable |
+| 2 | `el-sueno` | 0.211 MP | T,L | UPGRADE STAGED — NGI 1715×1000 ×8.11 (hard ceiling), needs box remap + `ngi` alias |
 | 3 | `water-lilies` | 0.225 MP | T,F | CLOSED — Marmottan |
 | 4 | `nympheas` | 0.341 MP | T,L | CLOSED — Marmottan |
 | 5 | `anders-zorn-nude-woman-combing-her-hair` | 0.484 MP (not toured) | L | ⭐ SEED — NM Stockholm IIIF lead, never hunted |
