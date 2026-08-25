@@ -8585,5 +8585,72 @@ window.CANVAS_INSPECT = {
    }
   ],
   "by": "Opus 4.8"
- }
+ },
+"giovanni-battista-tiepolo-die-verehrung-der-trinitat-durch-d": {
+  see: "A vision breaks open the top two-thirds of a narrow upright canvas. Christ, pale and near-naked under a white shroud, sits on a silvery cloud with a tall wooden cross against his shoulder; the older, russet-robed God the Father leans in until their heads almost touch. Angels in blue and gold spill down the right on a bank of brown cloud, and a dove drops into a pocket of yellow light at the centre. Below and to the left, small against a grey coffered half-dome, an aged pope kneels in a gold cope and looks up. The paint is thin, quick and warm throughout — ochres, browns and a chalky sky — with a few saturated notes held back for the carpet, the vestment and the angels' drapery.",
+  about: "This is the moment a saint is granted a sight of heaven. The kneeling pope — identified as St Clement, an early martyr — has prayed his way into a direct vision of the Trinity: Father, Son and the descending dove, shown as bodies on a cloud rather than as symbols. Everything is arranged as a diagonal ascent, from the man on the ground at the lower left to the godhead at the upper right, so that the picture is less an event than a lifting. It is also a picture about seeing: the pope sees the vision, and we are given his sightline. The still-life of papal regalia abandoned on the step below turns the theme concrete — the office set down while the man looks up.",
+  craft: "The whole design spirals. A single sweep runs up from the pope through the pouring light and the tumbling angels to the two seated figures, and the architecture is bent to serve it: the half-dome curves the eye inward, the cross and the statue's plinth set the counter-diagonals. Tiepolo works wet and fast, loading the lights and thinning the shadows to a warm stain, and reserves his few pure colours for maximum effect against a sky kept deliberately pale and dry. Because this is a sketch made to be approved rather than a finished altar, the drawing shows: construction arcs are visible in the sky, edges are left open, and the smallest objects are set down in a shorthand that trusts the eye to finish them.",
+  context: "The picture is a modello — a small, highly finished oil sketch — for a much larger altarpiece Tiepolo painted around 1735 for the chapel at the Nymphenburg palace outside Munich, which still hangs in the Alte Pinakothek there. A modello was the version a patron saw and signed off before the full commission was begun, which is why this one carries the whole invention at a scale you can hold in two hands. It is oil on canvas, about 69 by 55 centimetres, and reached London late: the National Gallery bought it with the help of the Art Fund in 1957. You met it there among the gallery's Venetian rooms — the finished idea for a ceiling-high painting, kept at the size of a page.",
+  deeper: [
+    {
+      t: "The two heads on the cloud",
+      x: 0.425, y: 0.022, w: 0.45, h: 0.236,
+      body: "Start where the eye is pulled from across the room: the pale body of Christ and the dark, bearded head of God the Father, leaning together at the very top. Christ is almost nude, a white shroud slipping off him, and he reaches up with his right hand — on our left — to steady the long wooden cross, while his other hand comes to rest on a blue-green globe below. The Father bends down until the two profiles nearly touch, one hand thrown out into the golden sky. It is an unusually tender way to show the godhead: not two enthroned kings but a father inclining toward a son, painted in warm russet and pale flesh so they read as living weight, not as an emblem. The cloud they sit on is barely there — a few grey scumbles — which lets the two figures float free at the summit of the ascent.",
+      refs: []
+    },
+    {
+      t: "The dove in its pocket of light",
+      x: 0.409, y: 0.303, w: 0.223, h: 0.145,
+      body: "Directly below Christ's hand, the white dove of the Holy Ghost drops head-first into a small burst of yellow light on the cloud. It is tiny — no larger than a real bird would be at this distance — and Tiepolo makes it the pivot of the whole Trinity by lighting it rather than enlarging it: the one warm glow in a wide field of cool grey cloud. The wings are opened and beaten back, so the bird reads as descending, not hovering. This is the hinge the composition turns on. The Father and Son sit at the top, the pope kneels at the bottom, and the dove — the person of the Trinity that moves — is placed exactly between them, carrying the connection downward toward the man who prayed for it.",
+      refs: []
+    },
+    {
+      t: "Angels going over the edge",
+      x: 0.585, y: 0.228, w: 0.39, h: 0.325,
+      body: "On the right the vision spills downward in a knot of angels. The largest wears deep blue drapery bared at the shoulder and tips forward off a bank of brown cloud; a second, in gold, presses up beneath with an upturned face, and grey wings and further heads crowd the shadow behind. The group is caught mid-tumble, drapery streaming, as if the heavenly host were pouring out of the opening rather than posed inside it. The blue and the gold are the strongest colours in the upper half of the picture, and Tiepolo sets them side by side so the pair reads as one bright cascade against the dim cloud. This is the machinery of a ceiling painting rehearsed in miniature: bodies used as diagonal thrust, weight always about to fall toward the viewer.",
+      refs: []
+    },
+    {
+      t: "The grey statue at the window",
+      x: 0.046, y: 0.002, w: 0.307, h: 0.296,
+      body: "At the top left, painted the colour of stone, a draped standing figure stands on a projecting cornice against a fan-glazed half-round window. She is grisaille — a statue, not a person — and her cool grey is the one genuinely cold note in a warm picture, a fixed architectural counterweight to all the moving flesh on the right. Set against the pale glazing of the lunette, she anchors the left edge and keeps the vision from simply floating off the top of the canvas. Behind her, faint curved lines rake across the sky: these are Tiepolo's own construction arcs, the compass sweeps he laid in to place the architecture, left showing because a modello was never meant to hide its scaffolding.",
+      flags: "The statue is a veiled/draped female figure and reads as an allegorical personification (Faith or Religion would fit an altarpiece), but I cannot confirm the identity from the plate — described, not named.",
+      refs: []
+    },
+    {
+      t: "Into the coffered dome",
+      x: 0.205, y: 0.411, w: 0.369, h: 0.239,
+      body: "Between the kneeling pope and the vision opens a grey half-dome, its coffers set with rosettes and its cornice curving away into pale light. This is the picture's depth: a real, buildable interior that the vision then breaks through from above. Tiepolo paints it thin and cool, almost monochrome, so it recedes and the warm figures come forward off it. The pouring light the whole scene depends on enters here — a soft, sourceless glow washing down the curve of the dome and separating the earthly architecture below from the cloud above. It is also what makes the pope look small: he kneels at the foot of an interior built to dwarf him, which is the point of the diagonal — a human being at the bottom of a space that opens all the way to God.",
+      refs: []
+    },
+    {
+      t: "The pope in gold",
+      x: 0.046, y: 0.585, w: 0.348, h: 0.369,
+      body: "Here is the one who sees. An aged pope kneels in profile in a heavy gold cope figured with red, a green lining showing at the hem and a red camauro on his head, hands pressed together and lifted, eyes turned up toward the vision. He is the human anchor of the whole ascent, placed low and to the side so that his gaze does the work of the diagonal. The cope is the richest passage of colour in the lower half — gold shot with rose, the brocade suggested rather than drawn, a jewelled morse at the throat catching light. Everything about him is turned upward and outward, toward the dove and the cloud; the grand vestment stays earthbound while the man inside it reaches past it. A gold tassel from the cope cord hangs down into the dark, the last weight tying him to the ground.",
+      refs: []
+    },
+    {
+      t: "The crown set down",
+      x: 0.386, y: 0.731, w: 0.328, h: 0.219,
+      body: "On the step, a winged boy with dark plumage guards the pope's regalia. The gold papal tiara — the tall triple crown — rests on a crimson cushion, and across it lies a long cross-staff with a double bar, the emblems of the office laid aside while their owner kneels. Below them the red carpet, bordered green and embroidered with a small blue-and-green scroll, tumbles over the edge of the step toward us. The detail matters to the whole picture's argument: the marks of earthly authority are put down, cushioned and glinting, precisely as the man who holds them turns away from power toward the vision above. Tiepolo paints the gold of the crown in a few loaded touches — enough, at this scale, to make it read as worked metal without a single ornament fully described.",
+      refs: []
+    },
+    {
+      t: "Anchor and smoking silver",
+      x: 0.646, y: 0.813, w: 0.349, h: 0.174,
+      body: "In the dark lower corner, easy to miss, sits the smallest and freest passage in the picture. A silver censer built like a Gothic spire stands on the step, a thread of smoke still rising from it and a chain trailing down; just to its left lies a silver anchor. The anchor is St Clement's own attribute — he was said to have been martyred by being thrown into the sea tied to one — so this quiet still-life names the saint and points to his death in a single dim corner. It is painted almost entirely in flicked white and grey strokes, a bravura shorthand that dissolves if you stand too close and snaps into worked metal at arm's length. Tiepolo signs off the invention not with a signature but with this: a virtuoso corner, thrown away in shadow, that rewards only the viewer who looks all the way down.",
+      refs: []
+    },
+    {
+      t: "The whole spiral, stepped back",
+      x: 0.0, y: 0.0, w: 1.0, h: 1.0,
+      body: "Step back and the tour's separate marks lock into one continuous rise. The eye enters low at the pope, climbs the pouring light through the dome, catches the dove in its pocket of gold, is thrown outward by the falling angels, and lands at the two heads on the cloud — a single unbroken diagonal from earth to godhead, held between the cold grey statue on the left and the warm cascade on the right. That this whole soaring machine is worked out at the size of a sheet of paper is the thing to carry away: it is a rehearsal for a painting five metres tall, and it already has every decision in it — the spiral, the reserved colour, the reversed tenderness of Father and Son. What you met in London is the idea in full, before it was ever made large.",
+      refs: []
+    }
+  ],
+  beside: "For the opposite way to make a sacred picture small, cross to Raphael's Madonna of the Pinks, painted more than two centuries earlier and smaller still than this. Raphael shrinks the holy to a mother and child at a window, passing a flower between them in a quiet room — the divine brought all the way down into the domestic and the still. Tiepolo works small in the reverse direction: he packs a whole ceiling's worth of spiralling cloud, tumbling angels and pouring light into two hands' breadth of canvas, the sacred pitched up into pure theatre. Two little devotional pictures pulling opposite ways — one drawing heaven down into a room, the other opening a room onto heaven.",
+  refs: { beside: [{ id: "madonna-of-the-pinks", text: "Madonna of the Pinks" }] }
+,
+  by: "Opus 4.8"
+}
 };

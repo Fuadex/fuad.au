@@ -3874,4 +3874,9 @@ by: "Opus 4.8" },
 about: "Shown at the Salon of 1879 and also recorded as Effet du soir - Henner's three metres of near-black woodland and evening, a green sky, a flat pond, and two nudes who never look at each other.",
 deep: "An eclogue is a pastoral poem without a plot: figures sit in the shade at the end of a day and take turns singing, and nothing resolves because nothing was proposed. Henner painted the form itself and then made the paint agree with it. Each body's boundary is blended into the ground over a millimetre or two, so flesh does not stop at a line, it fades - which is why these two look lit from inside and attached to nothing. One plays; the other leans her weight into a block of stone and looks out at us. Read it as an event and it is empty. Read it as a poem and it is complete.",
 by: "Opus 4.8" },
+"giovanni-battista-tiepolo-die-verehrung-der-trinitat-durch-d": {
+  about: "Around 1735 Tiepolo squeezed a five-metre altarpiece into an oil sketch the size of a page — a patron's preview of Pope St Clement kneeling as the Trinity opens above him in a spiral of cloud and light.",
+  deep: "The whole soaring machine of an altarpiece is rehearsed here in two hands' breadth. Everything rises on one diagonal — from the pope kneeling low at the left, up through the pouring light and a coffered dome, past a dove and tumbling angels, to the Father and Son leaning together at the summit. Tiepolo keeps the sky pale and dry and spends his few saturated colours on the gold cope and the blue drapery, so the climb is carried by colour alone. Because it was made only to be approved, nothing is hidden: the construction arcs still rake the sky, and the pope's crown, cross and anchor lie glinting in the dark.",
+  by: "Opus 4.8"
+},
 };
