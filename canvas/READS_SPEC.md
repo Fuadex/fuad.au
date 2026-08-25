@@ -33,6 +33,8 @@ Trübner on panel not canvas, with a handling claim built on the weave; Monet si
 sixty-eight). It is a verification pass wearing an Info's clothes. The **tour-only fence** on
 the Interpretation also stays — because the drafters had nothing else, their gap logs are
 trustworthy, and that is how a hole in the TOUR is told apart from a hole in the WORLD.
+(⇄ The four content steps are unchanged, but a **back-edit of the tour** now sits between the
+hook-Info and the Interpretation — see *THE INFO SELECTS, THE TOUR KEEPS* below.)
 
 **3. THE TOUR MUST SETTLE THE IDENTIFICATION A STRANGER ASKS FIRST.** Where it cannot be
 verified, **FLAG it and decide per work** — the flag is the mechanism, not silence. Type
@@ -41,10 +43,151 @@ written**, because it had scrupulously declined to say whose army was whose. The
 compression of the tour, it is **the doorway**, and a doorway must answer *what am I looking
 at* to someone who knows nothing.
 
-⚠ Open, not ruled: §5b's **"every hook fact survives"** is unachievable at these bands — an
-Adler hook carried eight verified facts and the shipped Info holds two. Needs a preference
-rule for when the fusion must choose; the pilot's reading of the corpus is *the fact about the
-object beats the fact about the artist*.
+### ⚙ RULED 2026-08-25 — THE INFO SELECTS, THE TOUR KEEPS
+
+*(Closes the "every hook fact survives" open item; the retired wording is quoted at the foot
+of this block. Type specimen and fact-by-fact audit:
+`.dtmp/tourqc-pass/adler-backedit-STAGED-2026-08-25.json`.)*
+
+Fuad, on the Adler cascade: *"I think Adler info works, as long as we have the facts covered
+in the study or something, I think we good"*
+
+**The Info is a doorway, not an archive.** At 32–38 words it SELECTS, and §5b's *every hook
+fact survives* is **retired as a requirement on the Info** — marked superseded in place at
+§5b rather than deleted, because this project keeps the wrong turn as part of the record.
+
+**It survives as a requirement on the CASCADE AS A WHOLE.** A verified fact that hook
+research surfaced may be dropped from the Info but may not be **lost**. It has to be
+**somewhere**, and the somewhere is the **study tour**.
+
+#### ⇄ STEP 2b — THE BACK-EDIT (new, mandatory)
+
+The chain is written out of order: the **tour is drafted before the hook research runs**, so a
+fact the research surfaces has, until now, nowhere to live — the Info is free to drop it and
+the tour never knew about it. One step closes that:
+
+> **study tour → hook-Info (background, facts web-verified) → ⇄ BACK-EDIT THE TOUR →
+> Interpretation (tour-only sourcing) → ONE fused Info.**
+
+After the hook-Info is written and **before the Interpretation is briefed**, every verified
+fact in the hook is checked against the whole tour blob and dispositioned exactly once:
+
+- **RESTORE** — it belongs to this work and the tour does not hold it. It goes back into the
+  tour, normally **`context`**, which is the outward-facing lens. A whole-scale identification
+  that the tour *flagged* and the research then *answered* goes there by ruling 3 above: the
+  flag is the mechanism, and an answered flag that never reaches the text is the mechanism
+  failing silently. Stay inside `context`'s **90–170w band** (STUDY_SPEC) — the band is not
+  relaxed for a back-edit. Where it is already full the new fact competes on merit with what
+  is there, and losing that competition sends it to LOG, never to the bin.
+- **CORRECT** — it contradicts the tour. The tour is wrong until shown otherwise and gets
+  fixed. This loop already existed in practice and is only now written down: w8 caught a
+  **Trübner on panel, not canvas, with a handling claim built on the weave**, and **Monet
+  sixty-seven on arrival, not sixty-eight**. w7 ran the same loop one step later, off the
+  Interpretation drafter's gap log — de Neuville's `context` gained *"The blindfolded men are
+  German envoys, the escort is the French garrison, and the town is Belfort"*, Gainsborough's
+  `about` gained *"painted around 1760"*. Step 2b moves that loop earlier, to where the
+  research already is.
+- **LOG** — it fits nowhere: artist biography the tour has no room for, a fact that lost the
+  band competition, or one that failed re-verification. It is written into the draft's
+  **`flags` with its source**, and the workshop file keeps `flags` even though merge strips
+  them. **A fact is never silently dropped.** "No room" is a recorded decision, not an
+  omission, and a logged fact stays available to a later re-tour.
+
+**The disposition list is an artefact, not a scratchpad.** It is kept in the workshop file
+alongside the hook-Info. See the fence note below for why that is load-bearing.
+
+#### The preference rule, for when the Info must still choose
+
+Two facts are both doorway-worthy and only one fits 35 words: **the fact about the object
+beats the fact about the artist.** Sourced to the w8 pilot's reading of the shipped corpus and
+consistent with §5b's paste test — the load-bearing sentence must be about THIS object.
+**Adler is the type specimen**: the hook's March 1944 denunciation, the internment at Picpus
+and the prison portraits are by far the better story, and are correctly *not* in the Info.
+
+#### Does step 2b compromise the tour-only fence? Partly — and the trade is stated, not hidden
+
+The fence exists so a gap in the TOUR can be told apart from a gap in the WORLD (ruling 2).
+Back-editing before the Interpretation touches it in two different ways and they do not
+cancel out:
+
+- **The fence's mechanism is untouched.** The drafter still receives the tour and nothing
+  else — no Info, no hook, no web, no canon prose — and still logs every reach beyond it.
+  Nothing enters the job file except *through* the tour, and everything the tour now carries
+  is verified. Sourcing discipline is exactly as strict as before.
+- **One diagnostic is genuinely lost.** After 2b a gap log can no longer distinguish *the tour
+  never looked* from *the tour looked and the world has nothing*, because 2b has already
+  filled the first category. w8's own log is the proof: of eight logged moments three were
+  real, and they split three ways — Monet's palace name (research had it, the tour did not),
+  Monet's campaign facts (the tour had cut an unverified claim, research supplied a verified
+  replacement), and Adler's kitchen (**no institution is named in any record anywhere**). The
+  first two are exactly what 2b now absorbs; only the third would still appear.
+- **Read the other way, that is the fence working harder.** The log gets shorter and every
+  surviving entry is a world-gap, which is the entry class the fence was built to isolate.
+- **The cost is real and is a bookkeeping cost.** What stops being visible is *which facts the
+  tour lacked* — the diagnostic changes owner rather than disappearing, moving from the gap
+  log to the **2b disposition list**. Drop the disposition list and the cost becomes a genuine
+  loss, which is why it is required above rather than suggested.
+
+⚠ **Under §9:** the ruling and the preference rule are Fuad's. The RESTORE / CORRECT / LOG
+trichotomy, the `context`-by-default placement and the band-competition tie-break are the
+consequence worked out from it, not separately ruled — they are proposals until he says
+otherwise, and the honest summary of them is *the tour absorbs the research, the Info stays a
+doorway*.
+
+⚠ Superseded, kept for the record — the open item this closes: *§5b's "every hook fact
+survives" is unachievable at these bands — an Adler hook carried eight verified facts and the
+shipped Info holds two. Needs a preference rule for when the fusion must choose; the pilot's
+reading of the corpus is the fact about the object beats the fact about the artist.*
+
+⚠ Open, not ruled (2026-08-25): **may the cascade draw on the tour's `beside`?**
+STUDY_SPEC made `beside` a REQUIRED closing movement that day, so from now on the top of the
+cascade carries a paragraph that is *about a different painting*. This is not a no-op: §4's
+job files hand drafters the whole tour entry, so drafters will see it by default and nothing
+currently tells them not to use it. Both readings are defensible — it is verified fact-class
+material and sometimes holds the crux framing; but it is sourced from OUTSIDE the frame, and a
+95–115w Interpretation that spends words on a second painting stops being a read of this one.
+**Needs Fuad's verdict**, one of: (a) strip `beside` from job files, (b) pass it as context but
+fence it out of the text, (c) let it in where it earns the space. Nothing is ruled here; the
+reversible option is (b), and no cascade batch should ship on the question until he calls it.
+
+⚠ Open, not ruled (2026-08-25): **does a distilled read INHERIT its tour's `refs`, or mint its
+own?** The cross-reference field shipped that day (§11) and both tiers can carry it, but the
+cascade is a distillation: the Interpretation re-words the tour rather than quoting it, so a
+`ref.text` that matched the tour's sentence will usually NOT occur in the Interpretation, and
+where it does occur it may sit in a sentence about something else. Mechanical inheritance is
+therefore wrong — the validator would throw NOT FOUND on most of it, and the cases that *pass*
+are the dangerous ones, because a coincidental text match links a phrase the drafter never
+meant as a pointer. But the alternative, minting refs fresh per tier, means the same companion
+is looked up two or three times and the id can drift between tiers. **What actually needs
+ruling is narrower than the mechanics: should a 32–38w Info spend a link on a second painting
+at all?** The Info is one breath and a doorway (§5c); a link out of it is an invitation to
+leave before entering. The Interpretation at 95–115w plausibly can. Note this compounds with
+the `beside` question above — if `beside` is fenced out of the cascade, most of the refs a
+tour carries are fenced out with it. **Needs Fuad's verdict**, one of: (a) refs on both tiers,
+(b) Interpretation only, (c) neither — refs stay a tour-and-museum-read feature. Until he
+calls it, the safe default is to mint refs only where a read's own prose names a work, never
+to copy a tour's ref list down. Nothing is ruled here.
+
+⚠ Open, not ruled (2026-08-25): **is §5c's 32–38w Info band too tight when the work carries
+real substance?** Fuad, on the Adler: *"you can expand the info to feature more and feature
+the rest of the facts elsewhere in the study. If there's more meat to work with, we can fit
+it in."* That is an explicit authorisation to exceed the band on `jules-adler-la-soupe-des-pauvres`,
+and it was taken — the Info went **36 → 52 words**, by appending one sentence to the text he
+had already approved (*"No soup appears in it — no counter, no server, nothing but the line
+and the waiting"*): the doorway was answering *who painted this and how big is it* without
+ever answering *what am I looking at*. **THE BAND IS NOT CHANGED.** 32–38 stands for every
+other read until Fuad rules, and this is recorded as one authorised overrun, not a precedent
+to copy. What needs ruling is whether the permission generalises — *a work with real meat may
+run longer* — or stays a one-off. **Two things move with it if it generalises:** ⚙ the
+**Interpretation ≈ 3× Info ratio** (ruling 1 above) is defined against the band, so a wider
+Info either drags the Interpretation up with it or the ratio is no longer the rule — on the
+Adler the ratio fell from **3.14 to 2.17** with the `deep` untouched at 113w, and that drop is
+the whole cost of the decision; and ⚙ the "40 words or fewer are left alone" line at §5c, which
+is calibrated to the same band. **Needs Fuad's verdict**, one of: (a) the band holds and
+overruns are per-work authorisations only, (b) a second, wider band for works that carry
+substance, with the ratio recomputed, (c) the ratio is retired as a rule and the bands stand
+alone. Nothing is ruled here; the Adler is the case that prompted it and the disposition of
+its remaining facts is at `.dtmp/tourqc-pass/adler-backedit-STAGED-2026-08-25-v2.json`.
 
 **Study tour → Interpretation → Info.** Work flows downhill; each stage distils the one
 above. Verified against the corpus: all 21 works in the about21 batch had tours first, and
@@ -163,15 +306,25 @@ sentence reuse is a redraft.
 
 ### 5b. The fused Info — CURRENT METHODOLOGY (Fuad, coined 2026-08-15)
 
-The pipeline per work: **study tour → hook-Info (background, facts web-verified) →
+The pipeline per work: ~~**study tour → hook-Info (background, facts web-verified) →
 Interpretation (tour-only sourcing) → distil-Info (from the Interpretation) → ONE fused
-Info** replacing both. For new works, fuse at writing time — background hook + at most one
-crux — instead of shipping two Infos and merging later.
+Info** replacing both.~~ **SUPERSEDED — the distil-Info is dropped (§1 ruling 2) and a
+back-edit of the tour is inserted after the hook-Info (§1, 2026-08-25). Current chain:
+study tour → hook-Info → ⇄ back-edit the tour → Interpretation → ONE fused Info.** For new
+works, fuse at writing time — background hook + at most one crux — instead of shipping two
+Infos and merging later.
 
 The fused Info (all rulings 2026-08-14/15, tested on a 6-work sample then 33-work rollout):
 - **Background/impact first** — the story is what a glancing reader wants ("what they'll be
-  interested in: Background"). Every hook fact survives: anecdotes, names, dates, prices;
-  quotes keep their quotation marks.
+  interested in: Background"). Anecdotes, names, dates, prices are the material; quotes keep
+  their quotation marks.
+  **~~Every hook fact survives~~ — SUPERSEDED 2026-08-25 (Fuad, §1 *THE INFO SELECTS, THE
+  TOUR KEEPS*).** Kept here because the wrong turn is part of the record. It was written when
+  the Info ran 44–74 words; §5c's 32–38w caption made it arithmetically impossible, and the
+  w8 Adler cascade is the specimen — a hook carrying eight verified facts against a shipped
+  Info holding two. **The Info now SELECTS**, and what it drops is carried by the study tour
+  via the step-2b back-edit. Where two facts are both doorway-worthy and only one fits:
+  **the fact about the object beats the fact about the artist.**
 - **No visual walkthrough** — describing what's on the painting is the Interpretation's job.
 - **No venue line, no title restatement** — the UI shows both. Identify via artist + year
   woven in ("Courbet's 1850 canvas…").
@@ -290,6 +443,9 @@ stopped.
 4. **Badge honestly** — see below.
 5. **Merge insertion-only** (insert `deep:` + `deepBy:` before `by:`) with a vm round-trip
    byte-identity proof: every untouched entry identical, count delta equals batch size.
+5b. **If anything in the batch carries `refs`, run `node .dtmp/tourqc-pass/validate-refs.js`**
+   — before apply against the plan file, and again after merge. It exits non-zero on
+   BAD ID / NOT FOUND / AMBIGUOUS / SELF / SHAPE and **gates the batch**. See §11.
 6. **Print both tiers for Fuad's verdict — nothing merges unapproved.**
 
 ## 7. Badging (there is a real mechanism, not a convention)
@@ -362,6 +518,11 @@ reads state facts, they never cite the label/source that supplied them (Fuad,
 
 A third tier, sitting on the artist page under the compressed header. Two or three
 sentences. **Not** a biography and **not** a summary of the collection.
+
+**No cross-references here.** `art_artists.js` is `id → string`, so there is no object to hang
+a sibling `refs` field on and §11 does not reach this tier. An artist read that names a work
+names it as plain prose. (Changing that means changing the store's shape, which is a proposal
+under §9, not a drafting decision.)
 
 ### What killed the first pilot
 
@@ -531,3 +692,85 @@ removing a yellowed cataractous lens restores cool-tone perception.
 A correction is a new claim. It gets the same treatment as the claim it replaces, and
 **prefer the boring explanation** — the exotic one is what makes a good story, which is
 precisely the pressure this pass exists to resist.
+
+---
+
+## 11. Corpus cross-references (`refs`) — shipped 2026-08-25, Fuad's design
+
+When a read names another work that is also in this collection, that name is clickable. The
+full rules live in **[STUDY_SPEC.md § *Corpus cross-references*](STUDY_SPEC.md)** — one copy,
+because the renderer and the validator are shared. What matters on this side:
+
+**⛔ THE PROSE STRING IS NEVER MODIFIED.** The target lives in a sibling `refs` field, never as
+inline markup inside the sentence:
+
+```js
+about: "…",
+deep:  "The version he made outdoors is in this collection too — Wheat Field with Cypresses …",
+refs:  { deep: [{ id: "vincent-van-gogh-wheat-field-with-cypresses", text: "Wheat Field with Cypresses" }] }
+```
+
+Inline `[[id|text]]` was rejected for reasons this spec owns directly: the **word bands are
+enforced against these strings** (§5c's 32–38w Info, the 95–115w Interpretation, the 3:1 ratio),
+the **4-gram overlap test of §5 and the word-share measure of §5c both read them as prose**, and
+the tour paragraphs upstream are grepped by STUDY_SPEC's 13-step checklist. Brackets inside the
+string would corrupt every one of those counts. Concatenating the renderer's output reproduces
+the string exactly; a read with no refs renders byte-for-byte as before.
+
+**Shapes and scope.** A bare `refs: [ … ]` array attaches to the entry's DEFAULT paragraph,
+which for a read is `about`; use the keyed form `refs: { about: [ … ], deep: [ … ] }` as soon as
+both tiers refer out. Applies to `art-about.js` (`about` and `deep`) and to `museum_about.js`,
+whose read pane renders through the same helper — so a museum paragraph naming a work it holds
+links too. **Not** artist reads (§10). Links go to the Reader (`#/work/<id>`), not the study
+view, because only 375 of 1,956 canon works have a tour. Styling is deliberately subtle: no
+colour at rest, a hairline that strengthens on hover.
+
+**Three drafting rules, all enforced by the renderer, so a violation silently drops the link:**
+
+1. **`ref.id` is read from the store, never typed from a title.** A plausible id is a real
+   failure mode here: `teodor-axentowicz-kolomyjka` was written for a work whose real id is
+   `teodor-axentowicz-ko-omyjka`. Look it up in `artworks.js`.
+2. **`ref.text` occurs in that paragraph exactly once.** Zero or two-plus and the ref is
+   skipped — the renderer will not guess an occurrence. This bites hardest at Info length,
+   where a 35-word paragraph may repeat a short title fragment.
+3. **No self-reference**, and the ref must point at the work the sentence is actually about.
+
+**It gates the batch.** `node .dtmp/tourqc-pass/validate-refs.js [plan.json]` walks the shipped
+stores (and a proposed backfill before apply, reading paragraphs from the LIVE store so a
+drifted plan fails there rather than in the browser). BAD ID / NOT FOUND / AMBIGUOUS / SELF /
+SHAPE, non-zero exit. QC step 5b in §6.
+
+⚠ **Whether the cascade's tiers should carry refs at all is OPEN — see §1.** Do not copy a
+tour's ref list down into an Interpretation or Info; mint one only where the read's own prose
+names a work, and only pending Fuad's verdict.
+
+**State as at 2026-08-25:** renderer, styling and validator shipped, and **the first refs are
+live — 32 of them**, on Fuad's ruling *"we do high-confidence references for now, don't do weak
+ones for now"*:
+
+| store | refs | plan |
+|---|---|---|
+| `art-about.js` | **14** across 14 reads (12 `about`, 2 `deep`) | `.dtmp/tourqc-pass/refs-reads-2026-08-25.json` |
+| `museum_about.js` | **18** across 13 museums | `.dtmp/tourqc-pass/refs-museums-2026-08-25.json` |
+| `art_inspect.js` | 0 — the file was held by another pass that day | staged: `refs-tours-STAGED-2026-08-25.json` (21) + `refs-backfill-2026-08-25.json` (6) |
+
+Both were applied mechanically by `apply-store-refs.js` — one applier for both stores, because
+they share the `{about, deep, by}` shape and the `about` default — with the house round-trip
+proof: entry count unchanged, every untouched entry byte-identical, targets differing **only** by
+the gained `refs`, and every `about`/`deep` string across all 798 + 53 entries byte-identical.
+
+**How the band was chosen, and the failure class the re-read exists to catch.** `scan-refs.js`
+proposed 46 high-confidence hits; **7 were dropped on a hit-by-hit re-read**, every one for the
+same reason — *the phrase names the thing the painting is named after, not the painting.*
+"Gabriele Münter" is the painter, not Kandinsky's portrait of her; "La Grenouillère" is the
+bathing raft; "Gare Saint-Lazare" is the station Monet is standing inside; "A Midsummer Night's
+Dream" is Shakespeare's play. A scan cannot make this distinction — **a title is also just a
+phrase** — so the human re-read is a required step of the band, not a courtesy. A missed link
+costs nothing; a wrong one is a visible error. The 168 lower-confidence candidates were not
+touched. The verdict ledger, one reason per drop, is the `dropped` block in the head of every
+plan file.
+
+⚠ **`scan-refs.js` does not walk `museum_about.js`** — it covers `art_inspect.js` and
+`art-about.js` only, though STUDY_SPEC has always had museum reads in scope.
+`scan-refs-museums.js` closes that gap and is where the 18 museum refs came from. Re-run **both**
+scanners when the band is next widened.

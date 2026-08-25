@@ -2,6 +2,131 @@
 
 # The hi-res hunt — how art_hires.js got built, and everything that fought back
 
+## ROUND 4 (2026-08-25) — three walled holders opened, **zero adoptions**
+
+The most expensive round in the arc and the only one that emits nothing. Three holders that the
+round-3 ledger listed as "blocked rather than measured" were pushed until they either opened or
+proved themselves hard: **the Frick opened and turned out to be a downgrade engine; the British
+Museum opened by two side doors and is also a downgrade engine; New-York Historical stayed shut,
+and the prize behind it turned out to be a quarter of what we'd recorded.** The value of the round
+is entirely in the anatomy — four new named traps, two of our own earlier notes disproven, and
+three holders that never need hunting again.
+
+**Two of the corrections below are corrections to *this document*.** That is the point of writing
+them down: a wrong note in a ledger costs more than no note, because the next pass trusts it.
+
+### ⛔ The Frick — CLOSED. 17 works measured, 17 downgrades, 0 gains.
+
+**Getting in.** `collections.frick.org` answers **HTTP 418** to a default client — a bot-challenge
+code, and Fuad saw the same 418 from his own browser, which made it look like an IP block. It is
+not. The wall is **header-based**, and it takes two steps to clear:
+
+- bare UA, no `Accept` headers → **200 with a 182-byte stub** (the challenge shell)
+- UA **plus** `Accept: text/html,application/xhtml+xml` **plus** `Accept-Language` → **200,
+  86,108 bytes, the real page**
+
+~45 requests at 3–6 s spacing drew no IP block at all. Reproduced in node's own `https` module,
+where the defaults get 418 and adding the `Accept` pair fixes it — which **proves the wall reads
+headers, not a TLS fingerprint**, and therefore that curl-vs-node is not the variable. See trap 5.
+
+**❌ CORRECTION — the DeepZoom reading was wrong.** `FRICK.local.md` recorded "`dzi` appears in the
+markup — so the pyramid is most likely DeepZoom". It is not, and the sighting was **a substring
+inside human prose**: the provenance paragraphs name **Dzí**ków Castle and Z**dzi**sław Tarnowski.
+Machine-checked across all 17 fetched pages: `hasDziString = false`, `hasIiifString = false` on
+**every one**. See trap 6 — this is the cheapest possible way to invent a technology that isn't
+there.
+
+**What it actually is: IIIF Image API 2.0 with NO descriptor.** The trace, end to end:
+
+> page tail `["emuseum/MediaZoom:init", W, H, "/internal/media/zoomdispatcher/<mediaId>", 256]`
+> → `/modules.gz/emuseum/MediaZoom.js`
+> → `new ol.source.IIIF({ resolutions:[8,4,2,1], size:[w,h], tileSize:[256,256], version: VERSION2 })`
+
+OpenLayers is handed a **fully inline config** and never fetches a descriptor — and `info.json`
+returns **400** if you ask for one anyway. The tile pattern is
+`…/zoomdispatcher/<mediaId>/{x},{y},{w},{h}/{tw},/0/default.jpg`, verified live: 200, 256×256, edge
+tile 256×208, and one pixel past the edge → **500 "negative or zero width"**. So it is real IIIF,
+it just refuses to introduce itself.
+
+⚠ **This is the sharpest form of the silent-failure warning already in this doc.** With an
+inline-descriptor viewer there is **no metadata request at all**, so a CORS block or a 418 shows up
+as **blank tiles with no `open-failed` event and therefore no fallback**. Zoomify at least fails
+visibly as broken tiles; this fails as nothing.
+
+**And it was all for nothing, because of the ceiling.** **Every Frick zoom master is hard-capped at
+exactly 2000 px vertical.** All 17 measured heights = 2000; widths 1280–3246. That is **2.56–6.49
+MP against our current plates at 24.94–45.55 MP**:
+
+- worst: `general-john-burgoyne` **45.55 → 3.20 MP (−42.35)**
+- least bad: `officer-and-laughing-girl` **−21.27**
+- median: **−25.28**
+- the Frick's own best, `regatta-in-venice` at 6.49 MP, is **23 % of our plate** — not one of the
+  17 reaches a quarter
+
+**No hidden larger surface, and this is where trap 7 was paid for.** The flat derivative
+`/dispatcher/<id>/full` is 800×694. Six alternate size keys — `original`, `download`, `large`,
+`zoom`, `resize:format=full`, `resize:format=original` — all return 200 and all return the
+**byte-identical** 800×694 file. eMuseum silently falls back to its default derivative for any key
+it doesn't know. Asking for `full/6474,` clamps to native. **The declared size is the true
+ceiling.**
+
+**ACAO absent**, measured on real tiles with `Origin: https://fuad.au` — two media ids plus the
+flat derivative, all 200, none carrying ACAO. They send `vary: Accept`, **not** `vary: Origin`,
+which is itself the tell that origin was never considered.
+
+⛔ The `frick` worker alias was written out to `.dtmp/tourqc-pass/WORKER_FRICK.local.md` and is
+flagged **DO NOT PASTE**. There is nothing to adopt; the file exists so the measurement isn't lost.
+
+**The anchoring method that worked** (worth reusing on any eMuseum holder): **double-key on
+Wikidata P217 accession + eMuseum object id, then cross-check against the accession printed on the
+fetched page.** 16 of 17 agreed exactly. The one disagreement is a data point about *us*:
+`perseus-and-andromeda` — our P217 says **1918.1.114**, the Frick page says **1916.1.114**. Right
+painting either way; **our P217 is probably stale.**
+
+### ⛔ British Museum — CLOSED. 6 works, all downgrades. Two side doors, one bad diagnosis.
+
+**A different wall, and the Frick trick does not work on it.** UA + `Accept` **fails**: the response
+carries `cf-mitigated: challenge` and a Turnstile "Just a moment…" page. A full Chrome header set
+with `sec-ch-ua` and the `sec-fetch-*` family **also 403s**. **This class is not solvable by
+headers** — do not spend another hour on it.
+
+It opened by two routes that had nothing to do with the front door:
+
+1. **Wayback returns the object pages intact** — 192,807 B, with **every media URL present in the
+   markup**. An archive snapshot of a page is a perfectly good source of *URLs* even when it is a
+   poor source of *pixels*.
+2. **❌ CORRECTION — `media.britishmuseum.org` DOES resolve.** The round-3a note saying it "does not
+   resolve at all" was **wrong**. It is an open Apache. What actually failed was **TLS: a valid
+   `*.britishmuseum.org` wildcard certificate served without its intermediate**, so the chain
+   couldn't be built and the client error read like a dead host. See trap 8.
+
+**The ladder, and its ceiling.** Derivatives are `preview_` / `mid_` / `large_` / `max_`. There is
+**no bare form, no `original_`, no `full_`, no `zoom_`** — those were all tried. **`max_` caps at
+2500 px on the long side, ~4–5 MP**, verified on three separate images. Our 6 BM works hold
+**13.5–51.7 MP**, so adoption would be a **−8.5 to −46.6 MP** downgrade on every one.
+
+No ACAO either — and note that **the broken cert chain would defeat a Worker proxy anyway**, so
+even a wanted image here would have needed the cert fixed at their end first.
+
+### ⚠ New-York Historical — STILL WALLED, and we had overstated the prize
+
+**It is a Cloudflare WAF hard block, not a challenge and not UA sniffing.** "Attention Required!",
+403 to the Safari set, 403 to the full Chrome set, and — the part that kills every workaround —
+**403 on the image paths too**: `/internal/media/dispatcher/93546/full` and `/preview` both.
+
+Mapping the blast radius: `www.nyhistory.org` answers **200**, so only the *emuseum* subdomain is
+walled. `digitalcollections.nyhistory.org` sits on the **same Cloudflare IP**, so it is behind the
+same rule and is not an alternate door. `iiif.nyhistory.org` does not exist.
+
+**❌ CORRECTION — "26 works at ×4" was always optimistic.** Re-reading
+`.dtmp/tourqc-pass/r2/nyhs_dims.json`: only **10 of 26** works were ever measured, **all of them
+via Wayback** (the other 14 attempts were **Wayback 404s**), and of those 10 only **6** actually
+show the ~×4 gain. The remaining 16 have never been measured at all and need the live host. The
+honest headline is **6 confirmed ×4 upgrades and 16 unknown**, not "26 works at ×4".
+
+**Recommendation stands and is unchanged: Fuad's own browser, or a different egress IP.** There is
+no header, no archive and no sibling host that gets past this one.
+
 ## COMMONS IIIF IS DEAD — and one correction in our favour (round 3a, 2026-08-25)
 
 **There is no IIIF service for Wikimedia Commons in 2026.** Measured, not assumed:
@@ -25,9 +150,11 @@ are pixel-identical to the JPEG already in `img`. Worse: asking for a 3840 thumb
 3478×4649 TIFF returns 3840×**5133** — **MediaWiki UPSCALES TIFFs**, so a naive sweep logs a
 gain on all 49 that does not exist.
 
-## ⛔ FOUR TRAPS THAT LOOK LIKE WINS (round 3, 2026-08-25)
+## ⛔ EIGHT TRAPS THAT LOOK LIKE WINS (rounds 3–4, 2026-08-25)
 
-Each passes a naive check and ships a regression. Test for them by name.
+Each passes a naive check and ships a regression — or, in the round-4 four, writes a *false line
+into this ledger*, which is worse, because the next pass inherits it as fact. Test for them by
+name. **1–4 are round 3 (they cost us adoptions); 5–8 are round 4 (they cost us diagnoses).**
 
 1. **MANIFEST-WITHOUT-A-SERVICE.** Petit Palais / Paris Musées publishes *real IIIF manifests*
    — and no image service behind them. The canvas points at a 6.97MP Drupal render against our
@@ -43,6 +170,36 @@ Each passes a naive check and ships a regression. Test for them by name.
    it a live IIIF holder; **only content-type exposes it.**
 4. **A MIS-TYPED WIKIDATA PROPERTY.** MNK's P6108 ("IIIF manifest") points at a plain
    object-record JSON API. **P6108 is not self-validating** — fetch and inspect it.
+5. **A 200 THAT IS STILL A BLOCK — BYTE COUNT IS THE TELL, NOT STATUS.** The Frick's challenge
+   shell answers **200 with 182 bytes**; the same URL with browser `Accept` + `Accept-Language`
+   answers **200 with 86,108 bytes** and the real page. A sweep that scores on status alone marks
+   the holder live and then finds "no image URLs in the markup" — because there is no markup.
+   **Log a body size on every fetch, and treat a suspiciously round tiny body as a wall.** (Sibling
+   of trap 3: there, 200 meant an SPA shell; here, 200 means a bot challenge. Status is never
+   evidence.) Corollary in our favour: **418 does not mean IP-blocked.** It cost the Frick a whole
+   round of being listed as unreachable.
+6. **A SUBSTRING INSIDE HUMAN PROSE, READ AS A TECHNOLOGY SIGNAL.** Grepping Frick object pages for
+   `dzi` hit — and the hits were **Dzí**ków Castle and Z**dzi**sław Tarnowski in the *provenance
+   paragraphs*. That one false positive put "the Frick is DeepZoom" into a working note, where it
+   sat as fact. The real stack is IIIF 2.0 with no descriptor. **Short lowercase tech tokens
+   (`dzi`, `iiif`, `tif`, `zoom`) will collide with names, places and ordinary words in
+   catalogue prose. Match on a path or a filename shape (`/dzi/`, `.dzi`, `_files/`), never on a
+   bare substring — and confirm against the viewer's init call, not the page text.**
+7. **AN ALTERNATE SIZE KEY THAT IS JUST THE DEFAULT DERIVATIVE RENAMED.** Six eMuseum size keys —
+   `original`, `download`, `large`, `zoom`, `resize:format=full`, `resize:format=original` — all
+   returned **200 with plausible image bytes**, and all six were the **byte-identical** 800×694
+   default. eMuseum falls back silently for any key it doesn't recognise, so an "is there a bigger
+   one?" sweep reports six live endpoints and zero of them are real. **Compare hashes or decoded
+   dimensions, never statuses or content-types.** (Google Arts & Culture fails the same way with
+   `=s0`/`=s4000`/`=w4000`; Art UK is the honest opposite, where every wrong key 404s.)
+8. **A CERT-CHAIN FAILURE THAT READS AS A DEAD HOST.** `media.britishmuseum.org` was written into
+   the round-3a ledger as "does not resolve at all". It resolves fine — it is an open Apache
+   serving the whole derivative ladder. It serves a **valid `*.britishmuseum.org` wildcard without
+   its intermediate certificate**, so the chain can't be built and the client raises an error that,
+   read casually, looks like DNS or a downed host. **Before recording a host as non-existent,
+   separate the three failures: NXDOMAIN, connection refused, and TLS. Read the actual error
+   string.** ⚠ And when it *is* TLS, note the second-order consequence: **a broken chain defeats a
+   Worker proxy too**, so a discovery here is not automatically adoptable.
 
 Also keep in mind the **flat-render downgrade** (Nationalmuseum's render caps at 1000px while
 its pyramid reaches 11,016 — adopting the render as `img` silently downgrades works currently
@@ -209,6 +366,9 @@ pixel-perfectly — and Commons rounds its own way; only measured `pyr` levels r
 | **Kröller-Müller** | open, keyless — **Micrio**, same service as VGM | **2 emits** (*The Sower* +21.8 MP, *Café Terrace at Night* +20.0 MP, both tiled) | `info.json` title = the inventory number printed on the object page (KM 106.399 / KM 108.565). Their Van Gogh **self-portrait was rejected** at 2800×3842 against our 4248×5808 — a real pyramid whose master is smaller than ours. |
 | **Art UK** | open pages, CloudFront assets, **no ACAO** | **9 emits**, floor-raiser only (best ×2.83) | Ceiling is exactly **`/w1200h1200/` as a fit box** — every larger parameter 404s, derivatives are pre-generated. Identity is in the asset filename (`<COLL>_<VENUE>_<ACCESSION>-001.jpg`), all 9 matched P217 exactly. Of 73 works swept, 53 were pixel-identical to what we already serve. ⚠ Needs the `img.fuad.au/artuk/` worker alias; a P1679 on a non-UK-held work points at a *different* object. |
 | **Google Arts & Culture** | open pages, **fixed 1,200 px derivative** | 110 swept → **0 emits** | ⛔ **Closed as a downgrade engine.** 90 of 110 measured *strictly smaller* than our plate, 14 pixel-identical, 1 gain. `=s0`/`=s4000`/`=w4000` all return the same bytes — there is one size. The gigapixel tiles sit behind a client-generated token and Google's viewing-only terms: unusable, not unexplored. |
+| **The Frick Collection** | opened 2026-08-25 (UA + `Accept` + `Accept-Language`); eMuseum + **IIIF Image 2.0 with no descriptor**, **no ACAO** | 17 measured → **0 emits** | ⛔ **Closed as a downgrade engine.** **Every zoom master is hard-capped at exactly 2000 px vertical** (widths 1280–3246, so 2.56–6.49 MP) against our plates at 24.94–45.55 MP: 17 of 17 lose, median **−25.28 MP**, worst *General John Burgoyne* **−42.35**. The 418 was a header wall, not an IP block (traps 5–6 were both paid for here). No hidden surface — six alternate size keys all return the byte-identical 800×694 default (trap 7). Tile pattern `…/zoomdispatcher/<mediaId>/{x},{y},{w},{h}/{tw},/0/default.jpg`; `info.json` **400s**, and because OpenLayers is handed an inline config there is no descriptor fetch and therefore **no `open-failed` and no fallback**. `frick` worker alias written but **DO NOT PASTE**. Re-open only if the Frick lifts the 2000 px cap. |
+| **British Museum** | Cloudflare Turnstile (`cf-mitigated: challenge`) on the front door; object pages readable **via Wayback**; `media.britishmuseum.org` open but **broken cert chain**, no ACAO | 6 measured → **0 emits** | ⛔ **Closed as a downgrade engine.** Ladder is `preview_`/`mid_`/`large_`/`max_` (no bare, no `original_`/`full_`/`zoom_`); **`max_` caps at 2500 px long side, ~4–5 MP**, verified on three images, against our 13.5–51.7 MP — **−8.5 to −46.6 MP** on all six. **Headers cannot beat this wall** (full Chrome set with `sec-ch-ua`/`sec-fetch-*` still 403s) — do not retry the Frick trick. Corrects the round-3a note "`media.britishmuseum.org` does not resolve": it does; the failure was **TLS, not DNS** (trap 8), and that same broken chain would defeat a Worker proxy. |
+| **New-York Historical** | **Cloudflare WAF hard block** on `emuseum.nyhistory.org` — 403 to every header set **and on the image paths** | 10 of 26 measured (Wayback) → **0 emits**, still walled | ⚠ **Parked, browser-only.** Not a challenge and not UA sniffing: "Attention Required!", 403 to Safari and full-Chrome sets, and 403 on `/internal/media/dispatcher/<id>/full` *and* `/preview`, so there is no asset-only door. `www.nyhistory.org` is 200 (subdomain-scoped rule); `digitalcollections.nyhistory.org` shares the **same Cloudflare IP** so it is behind the same rule; `iiif.nyhistory.org` NXDOMAIN. **Ledger correction against us:** the earlier "26 works at ×4" was optimistic — `r2/nyhs_dims.json` shows only **10 of 26** were ever measured, all via Wayback (the other **14 attempts were Wayback 404s**), and only **6** show the real ~×4 gain. **6 confirmed, 16 still need the live host.** Needs Fuad's own browser or a different egress IP. |
 | **Getty / Yale / Brooklyn** | blocked or down | 0 | Getty endpoints network-blocked; both Yale APIs dead/403; Brooklyn 429s without a key. |
 | **SMK Copenhagen** | open API (recovered from 500s) | 1 match → 0 emits | Swept 21 Nordic canon works. Sole hit — *Interior. Artificial Light*, 118.8 MP — was a same-title different Hammershøi: canon Q18600052 is the Stockholm Nationalmuseum *Interior* (P195 Q842858), not SMK's. Holder gate rejection #21. |
 | **Nasjonalmuseet Oslo** | no public API | 0 | All 8 plausible endpoint patterns dead (timeouts / NXDOMAIN). Their IIIF exists but has no discoverable search front door. |
