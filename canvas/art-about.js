@@ -342,7 +342,7 @@ by: "Opus 4.8" },
 
 
 "anders-zorn-mrs-walter-rathbone-bacon-virginia-purdy-barker": {
-about: "Virginia Purdy Barker, wife of American money, painted by Anders Zorn in 1897 — a full-length in cream that fills a tall canvas, a collie pressed to her side, and a level, guarded face that gives nothing away.",
+about: "Virginia Purdy Barker, wife of a wealthy American businessman, painted by Anders Zorn in 1897 — a full-length in cream that fills a tall canvas, a collie pressed to her side, and a level, guarded face that gives nothing away.",
 deep: "The dress is enormous and the head inside it is small, so the social fact and the private one sit at different scales, and you travel between them. Zorn paints events, not surfaces: the satin is long loaded strokes laid once and never returned to, cream, grey-violet and dirty ochre that lock into fabric lit from within. The palette is starved on purpose, so two salmon pinks on the skirt carry the whole warmth budget. Her face is composed, level, worked more than anything else and still economical. The dog is the only unguarded thing in the frame, and she is holding on to it — a portrait less about status than the upkeep of it.",
 by: "Opus 4.8" },
 
