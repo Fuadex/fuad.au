@@ -373,7 +373,8 @@ per-provider.
 
 ### Stories (the long-read feed)
 On this day · How deep it goes (underground index + deepest cuts) · How old the music was
-(adoption lag by decade + deepest digs) · Connected by blood (shared-member web) · Blind spots
+(adoption lag by decade + deepest digs) · Connected by blood (shared-member web) · Who's in the
+bands (LINEUPS / Wikidata lineups) · Blind spots
 (taste-gap recommendations) · Gathering dust (revisit/decay) · **A year in review** (scrubbable
 per-year deep dive) · Top of each scene (Discogs styles) · Bridge artists · Style atlas
 (styles only this library keeps alive) · Gateways (first artist per country) · **The ones that

@@ -1172,7 +1172,7 @@ function StoriesView({ t, go, seed }) {
               <div className="st-sub">
                 Play-weighted average sound profile per year, across artists with audio data
                 ({Math.round(Y[Y.length - 1].coverage / 1000)}k plays/yr coverage).
-                The taste shifted away from pure intensity toward brighter, more danceable, more textured material.
+                The taste moved most on {labels[top.ax].toLowerCase()}, which {dir(top.delta)}, and {labels[second.ax].toLowerCase()}, which {dir(second.delta)}.
               </div>
               <div className="st-turn">
                 {order.map(({ ax }) => {
@@ -1552,8 +1552,8 @@ function StoriesView({ t, go, seed }) {
               <div className="st-label">The constants</div>
               <div className="st-title-sm">Songs that survived every era.</div>
               <div className="st-sub" style={{ marginBottom: 14 }}>
-                Tracks you've played across <em>{hero.yearSpan} different years</em>. They were there before the
-                Tokyo phase, before Ocean Grove, before any of it — and they're still in rotation.
+                Tracks you've played across <em>{hero.yearSpan} different years</em> — reaching back to <em>{hero.firstYr}</em>,
+                before most of the library existed, and still in rotation.
                 "<i>{hero.title}</i>" leads with {hero.plays} plays from {hero.firstYr} to {hero.lastYr}.
               </div>
               <div className="st-life">
@@ -1633,7 +1633,7 @@ function StoriesView({ t, go, seed }) {
               </div>
               <div className="st-sub">
                 For each top artist, the gap between the first time you played them and the week they peaked.
-                Western mainstream marinates; the deeper cuts tend to land instantly.
+                Some sat for years before catching; others peaked the week you found them.
               </div>
               <div className="st-incub">
                 <div>
