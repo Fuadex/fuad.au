@@ -19,7 +19,21 @@ and the A/B rulings of 2026-07-30 → 2026-08-05 (commits a67c492 → be8369a, b
 
 **1. §5c GOVERNS THE BANDS. The Interpretation runs 95–115 words with a soft margin, ~3× the
 Info.** This settles the §5b/§5c conflict — both pilots wrote to different bands because §5b
-still asked 140–190. The RATIO is the rule (Interpretation ≈ 3× Info); the counts follow.
+still asked 140–190. ~~The RATIO is the rule (Interpretation ≈ 3× Info); the counts follow.~~
+⚙ **NARROWED — DO NOT READ THAT FLAT.** *(Second narrowing, 2026-08-25.)* With the Info pinned at
+32–38 the ratio and the 95–115 band say the same thing, so nothing rides on it — and whether the
+*Interpretation* flexes with substance is OPEN, not ruled.
+
+⛔ **THIS RULING IS REASSESSED ~240 LINES BELOW, AND THAT REASSESSMENT WINS.** See
+**§1 *RULED 2026-08-25 — SPACE IS PROPORTIONAL TO SUBSTANCE. THE SPACE IS IN THE STUDY, NOT THE
+INFO***. Read the two together before drafting; this is the contradiction in this file most
+likely to change a draft, because *"the RATIO is the rule"* reads as **a licence to grow the
+Interpretation whenever the Info grows** — and the later ruling says the Info **does not grow at
+all**: *"I'd still prefer infos tight"*, 32–38 words is **a CONSTRAINT that substance does not
+relax**, and the room a rich work earns goes to the **STUDY**, not to either read.
+⚠ Also void by that ruling: any brief or draft carrying a **flexible-Info** rule (an intermediate
+pass mis-transmitted it as one). A ratio anchored to a fixed numerator is not a scaling law — it
+is two fixed bands stated twice.
 
 **2. THE CHAIN IS FOUR STEPS, NOT FIVE. The distil-Info is DROPPED:**
 **study tour → hook-Info (background, facts web-verified) → Interpretation (tour-only
@@ -168,26 +182,136 @@ tour carries are fenced out with it. **Needs Fuad's verdict**, one of: (a) refs 
 calls it, the safe default is to mint refs only where a read's own prose names a work, never
 to copy a tour's ref list down. Nothing is ruled here.
 
-⚠ Open, not ruled (2026-08-25): **is §5c's 32–38w Info band too tight when the work carries
-real substance?** Fuad, on the Adler: *"you can expand the info to feature more and feature
-the rest of the facts elsewhere in the study. If there's more meat to work with, we can fit
-it in."* That is an explicit authorisation to exceed the band on `jules-adler-la-soupe-des-pauvres`,
-and it was taken — the Info went **36 → 52 words**, by appending one sentence to the text he
-had already approved (*"No soup appears in it — no counter, no server, nothing but the line
-and the waiting"*): the doorway was answering *who painted this and how big is it* without
-ever answering *what am I looking at*. **THE BAND IS NOT CHANGED.** 32–38 stands for every
-other read until Fuad rules, and this is recorded as one authorised overrun, not a precedent
-to copy. What needs ruling is whether the permission generalises — *a work with real meat may
-run longer* — or stays a one-off. **Two things move with it if it generalises:** ⚙ the
-**Interpretation ≈ 3× Info ratio** (ruling 1 above) is defined against the band, so a wider
-Info either drags the Interpretation up with it or the ratio is no longer the rule — on the
-Adler the ratio fell from **3.14 to 2.17** with the `deep` untouched at 113w, and that drop is
-the whole cost of the decision; and ⚙ the "40 words or fewer are left alone" line at §5c, which
-is calibrated to the same band. **Needs Fuad's verdict**, one of: (a) the band holds and
-overruns are per-work authorisations only, (b) a second, wider band for works that carry
+### ⚙ RULED 2026-08-25 — SPACE IS PROPORTIONAL TO SUBSTANCE. THE SPACE IS IN THE STUDY, NOT THE INFO
+
+*(Closes the open item "is §5c's 32–38w Info band too tight when the work carries real
+substance?" — the retired wording is quoted at the foot of this block. ⚠ An intermediate pass
+transmitted this ruling as a licence to make the Info band FLEXIBLE. That was a
+mis-transmission, not a ruling; it is corrected here, and any brief or draft still carrying a
+flexible-Info rule is void.)*
+
+Fuad, in sequence on the same day. First, on the Adler:
+
+> *"you can expand the info to feature more and feature the rest of the facts elsewhere in the
+> study. If there's more meat to work with, we can fit it in."*
+
+Then, clarifying, when that was read as a general loosening:
+
+> **_"I'd still prefer infos tight, though but we can delve deeper in the study to explore more
+> angles etc."_**
+
+**The principle is real and it is ruled: a work carrying more that is VERIFIED and worth
+unpacking earns more room. The room is in the STUDY.** His earlier *"it can be as long as it
+gets"* was about the study, not the Info.
+
+⛔ **THE INFO STAYS TIGHT. §5c's 32–38 words is a CONSTRAINT, and substance does NOT relax it.**
+Not a target, not guidance, not a default a rich work may argue its way past. The reason, stated
+so this is not re-litigated: the Info's job is to answer *what am I looking at* to someone who
+knows nothing (§1 ruling 3), and its value comes from being **ONE BREATH**. **More facts do not
+buy more doorway.** A doorway that grows to accommodate substance stops being a doorway and
+becomes the first paragraph of the essay it was meant to open. Brevity is what the Info trades
+for being read at all — and a work with eight verified facts needs that trade MORE than a thin
+one does, not less, because it is the work most able to talk itself out of the door.
+
+✅ **PROPORTIONALITY LANDS ON THE STUDY — the tour's four lenses and its stops.** That is where a
+rich work explores more angles. STUDY_SPEC already carries the mechanism, so nothing is invented
+here: its governing test is that **every sentence in a lens must earn its place and length is an
+outcome, never a target, in either direction** — with Fuad's caveat *"sometimes more space may be
+needed"* travelling with it, and *"for more difficult paintings, more stops can be warranted and
+vice versa"*. This ruling does not change those — it names them as the destination.
+⚙ *(That test replaced STUDY_SPEC's earlier "a floor and a ceiling, never a target to fill" note
+on 2026-08-25, because the old wording was being read as "make the lenses shorter". Cite the new
+one; the two say the same thing about filling a band and the new one also refuses the reverse.)*
+
+#### The claim test — how a drafter knows the study has earned the room
+
+Proportionality is a CLAIM, and a claim needs a test, or *"lots to unpack"* becomes a mood.
+**Count the verified, non-redundant things this work gives you that a reader could not get by
+looking at it.** *Non-redundant* is the load-bearing word: three facts about one Salon showing
+are ONE thing, and anything plainly visible in the plate counts ZERO, because the reader already
+has it.
+
+**The count already exists — this is a reading of an artefact, not a new step.** The hook-Info
+research pass produces exactly that list, and ⇄ step 2b then dispositions it fact by fact: the
+RESTORE and LOG entries ARE the things that would not fit in 38 words, and their number is the
+measure of how much this work has. ⚠ Note the ordering honestly — the tour is drafted BEFORE the
+hook research runs, so on a first pass the list arrives at the back-edit and the room is claimed
+there; on a re-tour, or on a work already researched, it is in hand before drafting.
+
+Then, per unit of extra room: **name what it carries, and say which question it answers.** If the
+answer is *"there was more available"*, that is the count and not a justification, and the room
+is not earned. **Fuad's caveat is the EXPECTED outcome, not an edge case** — *"not every painting
+will"* — so most works return a short list and keep the length they already had.
+
+⇄ **THIS PROMOTES STEP 2b FROM FALLBACK TO PRIMARY MECHANISM.** *THE INFO SELECTS, THE TOUR KEEPS*
+and the back-edit above were written to answer *what happens to the facts the Info drops*. With
+the band fixed rather than negotiable, they stop being a consolation route for surplus — **they
+are the only route, and the one the ruling intends.** A verified fact that will not fit in 38
+words is never a reason to reconsider the 38 words; it is a RESTORE, a CORRECT or a LOG, every
+time. Read 2b as load-bearing, not as bookkeeping.
+
+⚠ **Do not over-read this as a general tightening.** The Info is the ONE place a hard band is
+re-affirmed. Everywhere else the governing test is **justification, not length** — Fuad on the
+stops the same day: they *"were actually pretty nice and tight"*, and §4's count is *"a TARGET,
+not a gate"*. Length elsewhere remains an output of what is being communicated.
+
+#### The Adler is an authorised EXCEPTION, not a precedent
+
+`jules-adler-la-soupe-des-pauvres` shipped at **52 words**, expanded from 36 on Fuad's explicit
+approval. **It stands — do not revert it and do not stage a revert.** It sits ABOVE the band and
+is recorded as sitting above it.
+
+Why it was allowed, so it is not generalised by analogy: the appended sentence — *"No soup
+appears in it — no counter, no server, nothing but the line and the waiting"* — is **doorway
+content**. It is the single most useful thing a stranger needs, and the Info without it was
+answering *who painted this and how big is it* while never answering *what am I looking at*. The
+overrun bought the doorway's OWN job. It did not buy a second background fact, and it is not
+exhibition bookkeeping. **An Info that runs long to fit more material is the opposite case and is
+refused by the rule above.**
+
+⚠ **Open, for Fuad only:** keep the Adler at 52 as a one-off, or trim it back into band now that
+the band is affirmed? Trimming means cutting either the added sentence or something he had
+already approved, so it is his call and is deliberately not decided here.
+
+#### ⚠ Open — does the Interpretation still ride the ratio? Reassessed, and it needs Fuad
+
+With the Info pinned at 32–38, the ratio stops being an independent constraint: **3× of 32–38 is
+96–114, which is §5c's 95–115 band.** The two rules now say the same thing, so nothing is at
+stake between them. The live question is only whether the *Interpretation* flexes with substance.
+
+- **For flexing.** The argument that pins the Info does NOT transfer. The Info is bounded by its
+  JOB — a doorway is one breath — whereas nothing about "a reading" implies 115 words; that band
+  was measured off two exemplars, not derived from function. §3 already rules that a multi-facet
+  work synthesises several readings and *"Longer is fine"* (Fuad 2026-08-05, never retired), and
+  §4 makes the count *"a TARGET, not a gate."* On that reading the Interpretation belongs to the
+  depth layer and inherits the proportionality.
+- **Against flexing.** The 3:1 was measured against the two reads Fuad NAMES as the bar, and 223
+  pairs were re-cut to it. The defect it fixed was the tiers reading as *"two essays about one
+  painting rather than a hook and a reading"* — which is precisely what substance-driven flex
+  reintroduces. And his clarification names **the study** as where we delve deeper; the
+  Interpretation renders on the artwork page, not in the tour, so a strict reading excludes it.
+- **What needs deciding is one word:** whether *"the study"* means the tour only, or the whole
+  depth layer beneath the Info. Nothing on record settles that, which is why this is not ruled.
+
+⚙ **The measured fact, correctly re-read.** On the Adler the ratio fell **3.14 → 2.17** when the
+Info grew 36 → 52 and `deep` stayed at 113w. Under the corrected rule that is **not evidence
+against the ratio** — it is the arithmetic of the exception. The Info left the band; the
+Interpretation did nothing wrong. Recompute against an in-band Info and the pair sits at 3.14,
+i.e. normal. **The Adler is the only corpus point where the ratio looks broken, and it looks
+broken for a reason that is now closed.**
+
+**Until Fuad calls it, the default is the reversible one:** hold the Interpretation at 95–115 —
+where the ratio and the band coincide anyway — and let §4's target-not-gate absorb a genuinely
+multi-facet overrun case by case. **Do not write a second, wider Interpretation band.**
+
+⚠ Superseded, kept for the record — the open item this closes: *is §5c's 32–38w Info band too
+tight when the work carries real substance? … Needs Fuad's verdict, one of: (a) the band holds
+and overruns are per-work authorisations only, (b) a second, wider band for works that carry
 substance, with the ratio recomputed, (c) the ratio is retired as a rule and the bands stand
-alone. Nothing is ruled here; the Adler is the case that prompted it and the disposition of
-its remaining facts is at `.dtmp/tourqc-pass/adler-backedit-STAGED-2026-08-25-v2.json`.
+alone.* **Answered (a).** Consequently the *"40 words or fewer are left alone"* line at §5c is
+calibrated to a band that did not move, and so it does **not** move either. The disposition of
+the Adler's remaining facts is at
+`.dtmp/tourqc-pass/adler-backedit-STAGED-2026-08-25-v2.json`.
 
 **Study tour → Interpretation → Info.** Work flows downhill; each stage distils the one
 above. Verified against the corpus: all 21 works in the about21 batch had tours first, and
@@ -289,8 +413,9 @@ a downgrade.
 
 ## 5. Info distillation
 
-Distilled from the finished Interpretation. One sentence, or two short ones — the about21
-reference batch runs **35–49 words (average 41)**; match it. It leads with a **hook** (the
+Distilled from the finished Interpretation. One sentence, or two short ones — ~~the about21
+reference batch runs **35–49 words (average 41)**; match it.~~ **⛔ The count here is SUPERSEDED
+2026-08-25 — §5c's 32–38w is the band, affirmed as a constraint.** It leads with a **hook** (the
 fact or image that pulls a reader in — who the sitter actually was, what the place is, the
 one compositional decision) and carries the identification.
 
@@ -331,7 +456,11 @@ The fused Info (all rulings 2026-08-14/15, tested on a 6-work sample then 33-wor
 - **Crux line OPTIONAL** — at most one, and only a concrete, specific observation
   ("betrayal takes the shape of tenderness"; the oranges as the only saturated colour).
   Editorial commentary ("a century of unease") is the fluff class — end on facts instead.
-- **Length free** — whatever the facts need (shipped batch runs ~44–74 words).
+- **~~Length free — whatever the facts need~~ (shipped batch runs ~44–74 words). ⛔ SUPERSEDED
+  2026-08-25 — §5c's 32–38w band governs and is a CONSTRAINT that substance does not relax**
+  (§1, *SPACE IS PROPORTIONAL TO SUBSTANCE*). Kept struck because this line is the one a drafter
+  reaches for when the facts overflow, and it says the opposite of the rule. What the facts need
+  beyond 38 words goes into the tour via ⇄ step 2b.
 - Canon dates win over legacy hook text. No facts from outside tour/hook/Interpretation.
 - **No home-collection, acquisition or bequest lines** (Fuad 2026-08-22 ×2: '"Its home is
   Stockholm's Nationalmuseum" — we already include location', and '"came to France with the
@@ -376,6 +505,18 @@ tours; the working instrument is `.dtmp/recut-sweep/BRIEF.md`, kept current.
 **The Info is one breath — 32–38 words.** Who or what is in front of you, the date, and the ONE
 fact that makes a stranger want to look. Everything else moves down into the deep. A fragment
 with an em-dash is the house form; both exemplars are exactly that.
+
+⛔ **THE BAND IS A CONSTRAINT, AND SUBSTANCE DOES NOT RELAX IT — AFFIRMED 2026-08-25** (Fuad:
+*"I'd still prefer infos tight, though but we can delve deeper in the study to explore more
+angles etc."*). A work that carries more verified, unpackable material does **not** earn a wider
+Info. The reason, recorded here so it is not re-litigated: **the Info's job is to answer *what am
+I looking at* to someone who knows nothing, and its value comes from being one breath. More facts
+do not buy more doorway.** A doorway that grows to accommodate substance stops being a doorway.
+The surplus has somewhere to go and it is not here — it goes into the study tour via the §1
+back-edit (⇄ step 2b), which that ruling makes the PRIMARY route, not a fallback. **Space is
+proportional to substance everywhere else in the system; the Info is the exception, by design.**
+Full ruling, the Adler exception and the reassessment of the 3× ratio: §1, *SPACE IS PROPORTIONAL
+TO SUBSTANCE*.
 
 **Infos of 40 words or fewer are left alone — but read and fact-checked, not copied blind.** A
 pilot passed through an Info dating L'Absinthe to 1876 against a canon row saying 1875, and a
@@ -745,14 +886,27 @@ tour's ref list down into an Interpretation or Info; mint one only where the rea
 names a work, and only pending Fuad's verdict.
 
 **State as at 2026-08-25:** renderer, styling and validator shipped, and **the first refs are
-live — 32 of them**, on Fuad's ruling *"we do high-confidence references for now, don't do weak
+live — ~~32~~ ⚙ 60 of them**, on Fuad's ruling *"we do high-confidence references for now, don't do weak
 ones for now"*:
+
+⚙ **REFRESHED 2026-08-25 — the staged plans were APPLIED and this table was stale by 28 refs.**
+It said `art_inspect.js` carried **0** because the file was held by another pass; it now carries
+**28**. Counted against the live store, not the plan files
+(`Object.values(CANVAS_INSPECT)` walking both the top-level `refs` and every `deeper[].refs`):
 
 | store | refs | plan |
 |---|---|---|
 | `art-about.js` | **14** across 14 reads (12 `about`, 2 `deep`) | `.dtmp/tourqc-pass/refs-reads-2026-08-25.json` |
 | `museum_about.js` | **18** across 13 museums | `.dtmp/tourqc-pass/refs-museums-2026-08-25.json` |
-| `art_inspect.js` | 0 — the file was held by another pass that day | staged: `refs-tours-STAGED-2026-08-25.json` (21) + `refs-backfill-2026-08-25.json` (6) |
+| `art_inspect.js` | ~~0 — the file was held by another pass that day~~ ⚙ **28 — APPLIED: 7 on `beside`, 19 on `context`, 2 on `deeper[].body`** | applied: `refs-tours-STAGED-2026-08-25.json` (21) + `refs-backfill-2026-08-25.json` (6) |
+| **corpus-wide** | ⚙ **60** | — |
+
+⚠ **The tour figure is the one to re-derive, not to cite** — it is the only store of the three
+whose refs live at two depths (entry-level and stop-level), so a count that walks only the top
+level under-reports it by the 2 `deeper` refs, which is exactly the blind spot `validate-refs.js`
+had before plan mode learned to walk stops.
+⚙ Note **7 `beside` refs against 7 `beside` paragraphs** in the store — the field is fully
+ref-covered, which is what *a `beside` without a ref is incomplete* (STUDY_SPEC 12h) requires.
 
 Both were applied mechanically by `apply-store-refs.js` — one applier for both stores, because
 they share the `{about, deep, by}` shape and the `about` default — with the house round-trip

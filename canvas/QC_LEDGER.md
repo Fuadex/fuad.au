@@ -33,6 +33,101 @@ whenever a QC pass runs — coverage claims that aren't recorded here don't coun
 | 2026-08-25 | **WAVE 3 — 20 tours, RANDOM sample** (seed 20260825), run as an A/B on the checklist: 10 on the old brief, 10 following STUDY_SPEC's checklist literally and reporting on the instrument | 4× Opus | **1 clean · 4 minor · 15 defective — the base rate is ~1 clean in 20.** Checklist half found MORE (0/1/9 vs 1/3/6). First clean tour of the programme: Caillebotte's *Chrysanthemums*, verified stop by stop. Dominant class shifted to ORIENTATION — "the *thing* is real and the object named is plausible; what fails is where it is or which way it faces" (Caravaggio's light direction reversed, Van Gogh's sky where hills are, Matisse's neck where a collar is). Both checklist agents independently proposed the same fixes → the calibrated checklist (8093c19 → 105496a). Also caught a research note shipped as reader-facing prose (Matisse `context`), fixed 87de812; a corpus grep found it isolated. |
 | 2026-08-25 | **CORPUS-WIDE MECHANICAL TRIAGE — all 363 tours** (.dtmp/tourqc-pass/triage.js, scope2.js) | scripted: every checklist step needing no image | Fable | 164 box problems in 104 tours · **354 verbatim-restating hits in 225 tours** (5-word runs shared between a paragraph and a stop) · 32 self-contradictions · 138 relation claims · **0 research-note leaks**. TWO SELF-CORRECTIONS, both the class this triage exists to catch: the first draft flagged **131 tours for OBEYING the spec** (a wide opener with everything nesting inside it is the prescribed arc order), and the 34% vocabulary threshold was a guess measured at only ~40-50% precision — replaced by phrase-matching, which is near-zero false positive. |
 | 2026-08-25 | wave-2 REPAIR (20 tours) + Law-2 batch (26 trims/15 tours) + box batch (12 fixes/7 tours) | Opus agents drafting, Fable QC + apply via a JSON runner with round-trip proof | Opus + Fable | 221+26 text edits, 80+12 box fixes, all proved: entry count unchanged, untouched entries byte-identical, no superseded phrasing surviving. **Two rulings came out of the repairs**: `see` NAMES, stops DESCRIBE (the restating sits in `see` more often than `craft` — 15 of 26 edits); and nesting is only a defect when the container is MID-TOUR *and* the contained subject is one the container's body never claims. Agents declined work rather than guessing twice (a bare-connective false positive; Dalí's needle flagged NEEDS IMAGE) — a wrong box is worse than a flagged one. |
+| 2026-08-25 | **WAVE 4 — audit + repair**, plus the mandatory whole-entry re-audit (STUDY_SPEC checklist 13 / run order 26) | Opus agents auditing from crops, then **re-verifying their own findings before apply**; Fable QC + JSON-runner apply with round-trip proof | Opus + Fable | **82 text + 27 box + 1 title fix applied across 12 works.** ⭐ **The wave REJECTED 9 of its OWN findings on verification** — i.e. roughly one in ten of what an audit proposes does not survive being checked a second time against the crop, which is the strongest argument yet for the standing rule that a repair agent re-verifies rather than trusting the audit handed to it. ⛔ **AND THE MANDATORY WHOLE-ENTRY RE-AUDIT FOUND 5 BOX ERRORS THE AUDIT HAD MISSED**, including a stop titled **"The fur collar in the dark" whose box held no collar**. The re-audit is not a formality on top of a repair — on this wave it was a **better detector than the audit that triggered it**. |
+
+## The 2026-08-25 session — 5 audit waves, and what they cost to learn
+
+**Headline: ~1 tour in 20 comes back clean.** Five image-QC waves ran in one session (waves 1–4
+plus the wave-1 re-audit), and the base rate held wherever it was measured on a random sample.
+The per-wave rows are in the table above; three findings belong to the session as a whole.
+
+**1. An audit's own findings need verifying.** Wave 4 applied **82 text + 27 box + 1 title fix
+across 12 works** and **rejected 9 of its own findings** when the repair agent went back to the
+crops rather than trusting the audit sheet. Budget for that rejection rate; an audit sheet is a
+list of candidates, not a list of defects.
+
+**2. The whole-entry re-audit out-performs the audit that triggered it.** It found **5 box errors
+the audit missed**, one of them a stop titled *"The fur collar in the dark"* over a box holding
+**no collar** — a title-versus-crop defect of exactly the class checklist step 7b exists to catch,
+which the audit had walked past. Checklist 13 is load-bearing, not ceremonial.
+
+**3. ⛔ THE PHRASE SCANNER NOW UNDERSTATES THE LAW-2 QUEUE, AND THE CAUSE IS OUR OWN REPAIRS.**
+The corpus-wide triage detects Law-2 pre-spend by **exact 5-word runs shared between a lens and a
+stop** (354 hits / 225 tours when it was built). **Factual repairs reworded the duplicated
+sentences enough to break the n-grams while leaving the pre-spend itself intact** — the lens still
+spends the stop's instance, it just no longer spends it in the same words. So the queue is
+**larger than the scanner now reports**, and the gap grows with every repair wave.
+
+> **Repairing the corpus degrades its own detector.** This is a general property of any
+> exact-match instrument pointed at a corpus that is being edited, and it is the reason a falling
+> hit count is **not** evidence of a shrinking problem. Do not read a drop in this scanner's
+> output as progress; re-derive the detector (semantic or instance-level, not n-gram) or
+> re-baseline it after each repair wave. Same family as the wave-1 "10 clean" that turned out to
+> be auditor calibration: **the measurement moved, the corpus did not.**
+
+## Canon data defects — OPEN, for Fuad (do not fix unilaterally)
+
+Found 2026-08-25. None applied — these are canon/attribution calls, and two of them need a ruling
+rather than an edit. ⚙ Where a claim below was checkable against the live store it is marked
+**verified**; the rest are recorded as reported.
+
+- **`giovanni-boldini-bust-of-francesco-i-d-este` — three separate defects in one row.** The work
+  is a genuine Boldini **after Bernini** (so it is correctly in canon, and the "wrong artist"
+  reading is not the defect). What is wrong: (a) the `img` / `imgGrid` / `imgZoom` NGA uuid ends
+  **`…bd73f` and 404s**; the correct uuid ends **`…bd730`**. (b) The `art_hires` dims were stale at
+  9052 × 13496; correct is **10652 × 14204**. (c) The `year` is wrong.
+  ⚙ **Verified in the live store: `art_hires` already carries the `…bd730` uuid AND 10652 × 14204**,
+  so (b) and the hires half of (a) appear to be fixed already — **the 404 is in `art_data.js`'s
+  own `img`/`imgGrid`/`imgZoom`, which is where it still needs checking.** The canon row reads
+  `year: 1885`; the correct year is not settled here.
+- **⚠ NEEDS FUAD'S RULING — Tiepolo `giovanni-battista-tiepolo-die-verehrung-der-trinitat-durch-d`
+  is two different paintings in one row.** The row says `seenAt: national-gallery-london`, but its
+  **qid and its plate are the Munich altarpiece** — 488 × 256 cm, **Alte Pinakothek**. The National
+  Gallery London holds a **different, smaller** work (**NG6273**). ⚙ Verified: the row carries
+  `seenAt: national-gallery-london`, `qid: Q29477853`, `seenConfidence: sure`, and an `art_hires`
+  plate titled *"Die Verehrung der Trinität durch den hl. Papst Clemens"*. **This is not a typo
+  fix** — either the encounter was with NG6273 (in which case the qid, plate, title and any tour
+  are all wrong) or the encounter was in Munich (in which case only `seenAt` is wrong). Fuad is the
+  only source for which.
+- **⚠ NEEDS FUAD'S RULING — `degas-grande-arabesque-third-time` describes the wrong object.** The
+  canon note and the Info both say *"a bronze cast"*. The plate is **NGA 1999.80.10, the original
+  pigmented-BEESWAX wax** — not a bronze. And **Fuad's encounter was with the Met's bronze**, which
+  the row records (`seenAt: met-nyc`, `seenConfidence: sure`). ⚙ Verified: the row is `met-nyc`
+  while `art_hires` is `src: "nga"`. So the text describes the wax, the encounter was the bronze,
+  and the plate is the wax — **every cast is a different photographed object** (the standing rule
+  in HIRES_SOURCING's identity discipline), so this is a real split, not a wording nit.
+- **`seenAt` conflicts, two more.** ⚙ Both verified in the store:
+  `claude-monet-la-rue-montorgueil` reads **`seenAt: artizon`** where the work points at Orsay;
+  `nicholas-chevalier-the-buffalo-ranges` reads **`seenAt: aus-performing-arts`** where the work
+  points at the NGV. Same class as the `christ-in-the-house-of-his-parents` / `ophelia` /
+  `house-by-the-railroad` conflicts already logged in the 2026-08-14 full-sweep row — **not
+  silently fixed**, because a loan is a legitimate reason for the mismatch and only Fuad knows.
+- **Duplicate and missing images.** ⚙ Re-measured against the store, and **one half of this
+  reproduces and one half does not**:
+  - **Duplicate `img` — 1 pair, not 2. VERIFIED:** `odilon-redon-untitled-4` and
+    `odilon-redon-untitled-10` share the identical *Conque marine* file.
+  - ~~two Degas both "Dancer"~~ ⚙ **does NOT reproduce as an image duplicate.**
+    `edgar-degas-two-dancers` and `edgar-degas-two-dancers-2` share a **TITLE**, not an `img`;
+    a whole-store scan returns exactly one duplicate-`img` group. Recorded corrected rather than
+    deleted — **a title collision and an image collision are different defects with different
+    fixes**, and the standing "stop titles are NOT unique corpus-wide" lesson says the title one
+    is the more dangerous of the two for any script that anchors by name.
+  - **3 records carry no `img` at all. VERIFIED:** `isson-works`, `pollock-tate`,
+    `beksinski-works`.
+- **11 canon works name their holder as qid `Q1191732` — literally "museum storage".** ⚙ Verified,
+  full id list in HIRES_SOURCING.md round 5. A holder-gated sweep cannot run on these because
+  there is no holder to gate on.
+- **⛔ 46 `art_hires` rows overstate the plate the viewer actually gets.** Commons will not render
+  a TIFF above 1920 px, so every row whose `img` is a `.tif` serves 1920 whatever it declares —
+  `anders-zorn-mrs-veronica-heiss` (declares 3478 × 4649, serves **1920 × 2566**),
+  `midsummer-dance` (2603 × 3547 → **1920 × 2616**), `the-kitchen-maid` (2823 × 3494 →
+  **1920 × 2376**). ⚙ **Swept: 46 rows have a `.tif` in `img` and ALL 46 declare a long side over
+  1920.** Full write-up in HIRES_SOURCING.md round 5; the drafting consequence is in STUDY_SPEC
+  checklist 7e. **This is a store-accuracy defect, not a sourcing one** — the TIFF really is that
+  big, we just never serve it.
+- **⛔ A live regression on already-toured works: National Gallery London serves 800 px.** Both
+  `ng-london` works are toured and their Study zoom runs at ~78% of available detail because the
+  inline descriptor omits `tiles`. Fix is `tiles: 256`. HIRES_SOURCING.md round 5.
 
 ## Coverage
 
@@ -43,8 +138,11 @@ whenever a QC pass runs — coverage claims that aren't recorded here don't coun
   sweep ran 1.5%. ~~Zero defects found in the visual layers~~ **(claim retired
   2026-08-24: that QC was text-only and structurally could not see visual misreads —
   the first image-grounded audit found two visual defect classes in 3 tours; see the
-  2026-08-24 row and STUDY_SPEC's whole-first QC step. **Visual-layer coverage is 58/363** —
-  the 3-tour audit, wave 1 (20, re-audited), wave 2 (20) and wave 3 (20, random). ✅ **THE RATE
+  2026-08-24 row and STUDY_SPEC's whole-first QC step. ~~**Visual-layer coverage is 58/363**~~ —
+  the 3-tour audit, wave 1 (20, re-audited), wave 2 (20) and wave 3 (20, random) ⚙ **plus wave 4
+  (12 works repaired) — five waves in all as at 2026-08-25. The denominator is also stale: the
+  store is at 375 tours, not 363.** Re-derive both before quoting; the waves overlap (wave 1 was
+  re-audited, not re-counted) so the numerator is not a sum. ✅ **THE RATE
   IS NOW KNOWN: ~1 CLEAN IN 20**, established on a random sample and matching the risk-ranked
   waves — the ranking barely mattered, so the defect rate is roughly uniform. **Wave 1's
   original "10 clean" is VOID** (auditor calibration; the re-audit returned 0 clean of 18).
@@ -66,6 +164,14 @@ whenever a QC pass runs — coverage claims that aren't recorded here don't coun
    sampling; visual layers can be spot-checked more lightly.
 3. **Sonnet cannot count its own words** — QC measures, always.
 4. **Web verification is bounded**: ~2 calls per flagged claim, flags stay flags if unresolved.
+5. ⛔ **AN EXACT-MATCH DETECTOR DECAYS AS THE CORPUS IS REPAIRED** (2026-08-25). The Law-2
+   phrase scanner keys on 5-word runs shared between a lens and a stop; factual repairs reworded
+   those sentences enough to break the n-grams **while leaving the pre-spend intact**, so the
+   scanner now **understates** its own queue and will understate it more after every wave.
+   **A falling hit count is not evidence of a shrinking problem.** Re-baseline or re-derive any
+   pattern-matching instrument after a repair wave, and never quote its trend as progress.
+6. **Verify an audit's findings before applying them** (2026-08-25, wave 4). Re-checking against
+   the crops **rejected 9 of the wave's own findings**. An audit sheet is a candidate list.
 
 ## Measured cost (for planning)
 

@@ -2,6 +2,179 @@
 
 # The hi-res hunt — how art_hires.js got built, and everything that fought back
 
+## ROUND 5 (2026-08-25) — **corrections to already-adopted sources come first**
+
+This round's most valuable output is not the new holders. It is that **four entries in this
+document are wrong about sources we have already acted on**, and one of them is a live
+regression on works that are already toured. Read the corrections before the wins.
+
+### ⛔ REGRESSION — National Gallery London serves 800 px and silently upscales
+
+**This is a bug report, not a note.** Our records advertise Rysselberghe *Coastal Scene* at
+**28,641 × 23,726** (the adopted table below still says ×35.8). What the server actually
+delivers is **800 × 662**.
+
+- The `info.json` carries `maxWidth: 800` / `maxHeight: 800` and **clamps with a 200, not a
+  400** — so nothing fails, it just shrinks.
+- **`/full/max/`, `/full/full/` and `/full/3000,/` all return the byte-identical 800 × 662
+  file.** (Trap 7's shape, on a source we adopted: statuses and content-types agree, bytes do
+  not lie.)
+- Worse, and this is the part that costs the reader: **the inline descriptor omits `tiles`.**
+  That was deliberate — the IIIF-CORS note below argues for omitting `tiles`/`sizes` so OSD
+  picks its own 1024 and asks for arbitrary regions. On a level2 server with no clamp that is
+  right. **Here every 1024-px tile request is answered at 800 and upscaled**, so the deep zoom
+  runs at roughly **78% of the detail the server would give** if asked correctly.
+
+⚙ **THE FIX: declare `tiles: 256` in the inline descriptor** for `ng-london`. That makes OSD
+request 256-px regions, which the server returns at native scale instead of clamping. The
+general rule the CORS note states is unchanged; **it now carries an exception: omit `tiles`
+only where the descriptor declares no `maxWidth`/`maxHeight`.** Check the clamp first.
+
+⚠ Both NG London works (`ng-london` src, 2 entries) are affected, and both are **toured**, so
+their Study stops are being read at 800 px against a store that claims 28k. This also
+interacts with the per-work reader ceiling now ruled in STUDY_SPEC — a drafter told "this work
+is on a true IIIF, go as fine as the plate resolves" would be reading detail that no reader
+can reach.
+
+### ⛔ Musée d'Orsay — CLOSED as a downgrade engine. This corrects TWO wrong notes.
+
+The ledger's closed-out list below says Orsay is *"Cloudflare 403 to every programmatic
+client… parked, not dead"*. A mid-session claim went the other way and said its IIIF opens
+**5,235 works**. **Both are wrong, and they are wrong about different machines.**
+
+- The 403 was **`www.musee-orsay.fr`** — the public site. A different host.
+- **`iiif.musee-orsay.fr` is wide open**: textbook IIIF **3, level2**, `ACAO: *`, no headers
+  needed, no proxy needed.
+- **And every master caps at 850 px.** Verified across **4 objects / 29 canvases**. Not one
+  reaches a megapixel.
+
+We hold **150–176 Orsay works**. Adopting any of them would be a downgrade on all of them.
+⛔ **Do not re-hunt Orsay.** It is not blocked, it is not unexplored, and it is not worth a
+call. This is trap 2 (a real pyramid whose master is smaller than ours) at collection scale —
+and note it took the *open* door to discover that, which is why "blocked" and "useless" must
+never be recorded as the same verdict.
+
+### ❌ CORRECTION — Getty and Yale are recorded as dead and are OPEN
+
+The per-source row below reads *"Getty / Yale / Brooklyn | blocked or down | 0 | Getty
+endpoints network-blocked; both Yale APIs dead/403"*. Two thirds of that is wrong:
+
+- **Getty is OPEN** — IIIF **3, level2**, `maxWidth 30000`. Not network-blocked.
+- **Yale YCBA is OPEN** — IIIF **2, level2**, **no clamp**, a **27.2 MP** sample measured.
+- Brooklyn is untouched by this correction (still 429s without a key).
+
+Neither was swept for canon matches this round — **they are re-opened as unexplored, not
+adopted.** The correction is that the reason they were closed never existed.
+
+### ⚠ `/full/max/` IS NOT UNIVERSALLY SAFE — record it as a trap
+
+The round-3 record treats `/full/max/` as the portable "give me everything" size keyword. It
+is not, and the failure is a **400, not a downgrade**, so it takes a whole source out:
+
+- **Nationalmuseum Stockholm** — IIIF 2 **level1**, capped 1000 px: `/full/max/` **400s**.
+- **Smithsonian** — same shape, same 400.
+- **Micrio** is the reverse case: IIIF 3, where `full` is not a legal size and **`max` is the
+  only correct keyword** (which is why the round-3 records write `full` out explicitly).
+
+**So the size keyword is a property of the level and the version, not of IIIF.** Level1
+servers advertise their `sizes` array and mean it; ask for a listed size. Read the profile
+before choosing the keyword.
+
+### ❌ CORRECTION — the Frick UA + `Accept` trick GENERALISES TO NOTHING
+
+Round 4 solved the Frick's 418 with `User-Agent` + `Accept` + `Accept-Language` and recorded
+the finding that the wall *"reads headers, not a TLS fingerprint"*. That is true of **that
+wall**. It has since been read as a general opener, and it is not one.
+
+**Cloudflare *challenge* responses are a different class and are not header-solvable.** The
+tell is `cf-mitigated: challenge` or an "Attention Required!" / "Just a moment…" body. The
+British Museum row already records a full Chrome header set with `sec-ch-ua` and the
+`sec-fetch-*` family still 403ing; NYHS the same. **Two walls, two classes:**
+
+| Wall | Tell | Header-solvable? |
+|---|---|---|
+| eMuseum bot-challenge shell | 418, or 200 with a tiny body | **Yes** — UA + `Accept` pair |
+| Cloudflare challenge / WAF | `cf-mitigated: challenge`, "Just a moment…", 403 | **No.** Stop. |
+
+Anything in this file implying otherwise is corrected here. Budget one probe, read the tell,
+and move on.
+
+### ❌ CORRECTION — NGI has NEVER worked for us, and it is the Frick anatomy
+
+Any note reading as though National Gallery of Ireland IIIF has served us is wrong. Measured:
+**descriptor-less IIIF** — `info.json` **400s**, region syntax works, **ceiling 3000**, **no
+ACAO**. That is the Frick's exact anatomy (real IIIF that refuses to introduce itself), with
+the Frick's exact consequence: an inline descriptor is mandatory, and with no ACAO it needs a
+proxy alias before anything can be adopted. The closed-out list's *"ships zero image URLs
+(client-rendered eMuseum)"* was a correct observation of the **page**; it said nothing about
+the image service, and the two must not be conflated again.
+
+### ✅ New wins, all measured
+
+- **MNW Warsaw — 85 works, 34 of them plateless.** The gain is a path swap:
+  **`cache/multimedia_big/` → `multimedia/`** returns the **6000 px original** instead of the
+  cached derivative. `ACAO: *`, so no proxy alias. Best gain measured **×7.96**.
+- **Guggenheim — 14 plateless works, 13 of them SEEN.** The gain is a filename edit:
+  **delete the trailing `-1`**. Verified at **4096 × 2852**. (Note this is the same holder
+  whose Kandinsky was declined at 1,280 px in the toured-plates pass — that was the web tier;
+  this is not.)
+- **Scottish National Gallery** — a public **DeepZoom** at **43.8 MP**. `hires.dzi`, which the
+  viewer already supports; proxy the descriptor and the tiles follow.
+- **Nasjonalmuseet Oslo — the flat render clamps at 4000, but REGION REQUESTS SERVE NATIVE
+  PIXELS.** The master measures **59,171 × 73,171**. ⚙ **Both halves of this are recorded on
+  purpose:** one agent measured the 4000-px clamp on `/full/…` and reported Oslo as capped,
+  and **was corrected** — asking for a region instead of the full frame returns native pixels.
+  This corrects the row below (*"no public API… no discoverable search front door"*): there is
+  a service, and **a clamp measured on `/full/` is not a clamp on the server.** Re-measure any
+  holder this file records as capped, by region, before believing the ceiling.
+
+### 📊 Corrected census figures — the old ones were badly out
+
+Re-measured against the live stores 2026-08-25 (method stated so it can be re-run):
+
+| Figure | Recorded | **Correct** | Method |
+|---|---:|---:|---|
+| canon works with no `art_hires` row | ~1,800 | **848** | `1,956 canon − 1,108 hires rows` |
+| **seen**-but-plateless | 105 | **258** | canon rows with `!wish` and no `art_hires` |
+| …of those under 1,600 px | — | **152** | above, joined to `art_imgsize` (20 have no size row) |
+
+⚠ **`!wish` is the load-bearing predicate** — "has a `seenAt`" gives **247**, because 11 works
+carry a venue without being marked seen. State which one you used; that difference is exactly
+the join-discipline lesson STUDY_SPEC records twice.
+
+### ⛔ Commons refuses to render a TIFF above 1920 — and it is not three rows, it is 46
+
+`Special:FilePath/…?width=N` for `N > 1920` on a `.tif` redirects to a
+`lossy-page1-1920px-…` render, and direct `upload.wikimedia.org` thumbs at the declared width
+return **400**. So the row's `w`/`h` describe the master, not the delivery:
+
+| id | `art_hires` declares | actually served |
+|---|---|---|
+| `anders-zorn-mrs-veronica-heiss` | 3478 × 4649 | **1920 × 2566** |
+| `midsummer-dance` | 2603 × 3547 | **1920 × 2616** |
+| `the-kitchen-maid` | 2823 × 3494 | **1920 × 2376** |
+
+⚙ **The sweep was run and the scope is worse than the three named rows: 46 `art_hires` rows
+have a `.tif` in `img`, and ALL 46 declare a long side over 1920.** Every one is overstated.
+The reader footer's Ultra HQ link is still honest (the TIFF really is that big); the **viewer**
+is not. This is the counterpart to the TIFF-upscale trap already recorded above — there
+MediaWiki inflates a TIFF thumb, here it refuses one.
+
+⚠ And it sharpens STUDY_SPEC's pixel-extent check: for these 46 works the reader's real
+ceiling is **1920**, so a rule written at 3840 is twice as strict in practice.
+
+### Also logged
+
+**11 canon works name their holder as qid `Q1191732`** — which is literally *"museum
+storage"*, not an institution. They are `teodor-axentowicz-ko-omyjka`,
+`jozef-szermentowski-odpoczynek-oracza`, `w-adys-aw-podkowinski-sza-szkic`, `pyotr-nilus-ulica`,
+`wincenty-kasprzycki-widok-pa-acu-w-natolinie-od-strony-parku`,
+`jozef-pankiewicz-nokturn-abedzie-w-ogrodzie-saskim-w-warszaw`,
+`konstanty-mankowski-szarytka-w-ogrodzie-szpitalnym`, `jan-ciaglinski-poca-unek-s-onca`,
+`wac-aw-szymanowski-trzy-nimfy-nad-jeziorem-koncert`, `ferdynand-ruszczyc-pejzaz-rzeczny`,
+`michael-willmann-untitled`. A holder-gated sweep (the P195 gate above) cannot work on these,
+because there is no holder to gate on. Most are MNW works — which is where the MNW win lands.
+
 ## ROUND 4 (2026-08-25) — three walled holders opened, **zero adoptions**
 
 The most expensive round in the arc and the only one that emits nothing. Three holders that the
@@ -150,11 +323,12 @@ are pixel-identical to the JPEG already in `img`. Worse: asking for a 3840 thumb
 3478×4649 TIFF returns 3840×**5133** — **MediaWiki UPSCALES TIFFs**, so a naive sweep logs a
 gain on all 49 that does not exist.
 
-## ⛔ EIGHT TRAPS THAT LOOK LIKE WINS (rounds 3–4, 2026-08-25)
+## ⛔ TEN TRAPS THAT LOOK LIKE WINS (rounds 3–5, 2026-08-25)
 
 Each passes a naive check and ships a regression — or, in the round-4 four, writes a *false line
 into this ledger*, which is worse, because the next pass inherits it as fact. Test for them by
-name. **1–4 are round 3 (they cost us adoptions); 5–8 are round 4 (they cost us diagnoses).**
+name. **1–4 are round 3 (they cost us adoptions); 5–8 are round 4 (they cost us diagnoses);
+9–10 are round 5 (they would have shipped WRONG OBJECTS and wrong numbers).**
 
 1. **MANIFEST-WITHOUT-A-SERVICE.** Petit Palais / Paris Musées publishes *real IIIF manifests*
    — and no image service behind them. The canvas points at a 6.97MP Drupal render against our
@@ -200,6 +374,27 @@ name. **1–4 are round 3 (they cost us adoptions); 5–8 are round 4 (they cost
    separate the three failures: NXDOMAIN, connection refused, and TLS. Read the actual error
    string.** ⚠ And when it *is* TLS, note the second-order consequence: **a broken chain defeats a
    Worker proxy too**, so a discovery here is not automatically adoptable.
+9. **FILENAME-AS-DIMENSION.** A filename containing `W1500` served an image measured at
+   **2405 px**. Holders name derivatives after the *request* that first generated them, after
+   the tier they belong to, or after nothing at all — and the name is never re-written when the
+   file is re-rendered. A sweep that reads a size out of a URL is reading a label, not a
+   measurement, and it fails in **both** directions: it discards real gains as too small and
+   logs fake ones as big. **Decode every candidate's actual dimensions.** (Same family as trap
+   7 — there the *key* lied, here the *name* does; in both cases only the bytes are evidence.
+   Art UK's `w1200h1200` is the honest exception, and it is honest because it 404s on every
+   other value.)
+10. **A NAME COLLISION INSIDE A HOLDER SEARCH — the holder gate does NOT catch this.** Searching
+   NGI for "Leech" returned three objects that all **pass the P195 holder check** and all
+   **measured cleanly**, and none of them is the work: a **John Leech** the *Punch* illustrator
+   (a different artist with the same surname), a **Stanley Royle** (a wrong-artist hit
+   altogether), and one work where **Leech is the SITTER, not the painter**. All three would
+   have shipped. The identity discipline below is built on the holder gate, and the holder gate
+   is exactly what this defeats — the holder is right in all three cases. **A surname is not an
+   identity.** Anchor on a holder-issued accession or object id (the round-3 method), and where
+   a search is the only door, check the *role*: artist-of, sitter-in and namesake-of all come
+   back from the same query. ⚠ This is the sibling of the P195 gate's own recorded blind spot
+   (163 NGA works correctly rejected as same-title-different-object) — same lesson one field
+   over: **title and name are both just strings.**
 
 Also keep in mind the **flat-render downgrade** (Nationalmuseum's render caps at 1000px while
 its pyramid reaches 11,016 — adopting the render as `img` silently downgrades works currently
@@ -369,12 +564,12 @@ pixel-perfectly — and Commons rounds its own way; only measured `pyr` levels r
 | **The Frick Collection** | opened 2026-08-25 (UA + `Accept` + `Accept-Language`); eMuseum + **IIIF Image 2.0 with no descriptor**, **no ACAO** | 17 measured → **0 emits** | ⛔ **Closed as a downgrade engine.** **Every zoom master is hard-capped at exactly 2000 px vertical** (widths 1280–3246, so 2.56–6.49 MP) against our plates at 24.94–45.55 MP: 17 of 17 lose, median **−25.28 MP**, worst *General John Burgoyne* **−42.35**. The 418 was a header wall, not an IP block (traps 5–6 were both paid for here). No hidden surface — six alternate size keys all return the byte-identical 800×694 default (trap 7). Tile pattern `…/zoomdispatcher/<mediaId>/{x},{y},{w},{h}/{tw},/0/default.jpg`; `info.json` **400s**, and because OpenLayers is handed an inline config there is no descriptor fetch and therefore **no `open-failed` and no fallback**. `frick` worker alias written but **DO NOT PASTE**. Re-open only if the Frick lifts the 2000 px cap. |
 | **British Museum** | Cloudflare Turnstile (`cf-mitigated: challenge`) on the front door; object pages readable **via Wayback**; `media.britishmuseum.org` open but **broken cert chain**, no ACAO | 6 measured → **0 emits** | ⛔ **Closed as a downgrade engine.** Ladder is `preview_`/`mid_`/`large_`/`max_` (no bare, no `original_`/`full_`/`zoom_`); **`max_` caps at 2500 px long side, ~4–5 MP**, verified on three images, against our 13.5–51.7 MP — **−8.5 to −46.6 MP** on all six. **Headers cannot beat this wall** (full Chrome set with `sec-ch-ua`/`sec-fetch-*` still 403s) — do not retry the Frick trick. Corrects the round-3a note "`media.britishmuseum.org` does not resolve": it does; the failure was **TLS, not DNS** (trap 8), and that same broken chain would defeat a Worker proxy. |
 | **New-York Historical** | **Cloudflare WAF hard block** on `emuseum.nyhistory.org` — 403 to every header set **and on the image paths** | 10 of 26 measured (Wayback) → **0 emits**, still walled | ⚠ **Parked, browser-only.** Not a challenge and not UA sniffing: "Attention Required!", 403 to Safari and full-Chrome sets, and 403 on `/internal/media/dispatcher/<id>/full` *and* `/preview`, so there is no asset-only door. `www.nyhistory.org` is 200 (subdomain-scoped rule); `digitalcollections.nyhistory.org` shares the **same Cloudflare IP** so it is behind the same rule; `iiif.nyhistory.org` NXDOMAIN. **Ledger correction against us:** the earlier "26 works at ×4" was optimistic — `r2/nyhs_dims.json` shows only **10 of 26** were ever measured, all via Wayback (the other **14 attempts were Wayback 404s**), and only **6** show the real ~×4 gain. **6 confirmed, 16 still need the live host.** Needs Fuad's own browser or a different egress IP. |
-| **Getty / Yale / Brooklyn** | blocked or down | 0 | Getty endpoints network-blocked; both Yale APIs dead/403; Brooklyn 429s without a key. |
+| **Getty / Yale / Brooklyn** | ❌ **this row was WRONG — corrected 2026-08-25 (round 5)** | 0 so far, **but two of the three are OPEN** | ~~Getty endpoints network-blocked; both Yale APIs dead/403~~ — **both measured open**: **Getty = IIIF 3 level2, `maxWidth 30000`**; **Yale YCBA = IIIF 2 level2, NO clamp, 27.2 MP sample.** Brooklyn stands (429s without a key). Neither Getty nor Yale has been swept for canon matches yet — they are **unexplored, not adopted**, and the reason they were ever closed did not exist. This is the ledger-cost lesson in its purest form: two of the most open image programmes in the world sat in this table as "blocked or down" for two rounds. |
 | **SMK Copenhagen** | open API (recovered from 500s) | 1 match → 0 emits | Swept 21 Nordic canon works. Sole hit — *Interior. Artificial Light*, 118.8 MP — was a same-title different Hammershøi: canon Q18600052 is the Stockholm Nationalmuseum *Interior* (P195 Q842858), not SMK's. Holder gate rejection #21. |
-| **Nasjonalmuseet Oslo** | no public API | 0 | All 8 plausible endpoint patterns dead (timeouts / NXDOMAIN). Their IIIF exists but has no discoverable search front door. |
+| **Nasjonalmuseet Oslo** | ⚙ **corrected 2026-08-25 (round 5) — the image service IS reachable** | 0 emits yet | ~~All 8 plausible endpoint patterns dead (timeouts / NXDOMAIN). Their IIIF exists but has no discoverable search front door.~~ The *search* front door is still missing; the *images* are not. **The flat render clamps at 4000 px — but REGION requests serve native pixels**, off a master measured at **59,171 × 73,171**. ⚙ **Recorded with the wrong turn intact:** one agent measured the 4000 clamp on `/full/…`, reported Oslo as capped, and was corrected. **A clamp measured on `/full/` is not a clamp on the server** — re-measure by region before believing any ceiling in this table. |
 | **Wikidata P6108/P4765** | open | 0 | No IIIF manifests exist for any canon work. The sweep's value was P18 dims + conflation discovery. |
-| **National Gallery, London** | open, keyless — **IIIF Image 3.0**, previously listed here as unchecked | **2 emits** (Rysselberghe *Coastal Scene* 28,641×23,726 = 680 MP; Raphael *Madonna of the Pinks* 6,909×8,585) | The discovery of the 2026-08-25 pass. Endpoint shape: `www.nationalgallery.org.uk/server.iip?IIIF=/fronts/<ACCESSION>-…-PYR.tif/info.json` — an IIPImage server, and the pyramid TIFF is **named by accession** (`N-6582-…` = NG6582), so identity is holder-owned, not title-matched. Two gotchas: (a) **no ACAO** — see the CORS note below; (b) it is IIIF **3**, where the Ultra-HQ size keyword is `max`, not the `full/full` the reader assumed for our IIIF-2 sources (hence the `full` override field). |
-| **Nationalmuseum Stockholm** | open, keyless (`api.nationalmuseum.se/api/objects/<id>` → `iiif` field on iiifhosting.com, IIIF 2 level1) | **3 emits** (both Fjæstads, Rembrandt *Simeon in the Temple*) | Object-id lookup is perfect; **search is broken** — every `query`/`q`/`title`/`filter` param is ignored and returns the whole 208k-row corpus. Only usable when you already hold the object id, which Wikidata's *Nationalmuseum Sweden artwork ID* supplies. Records also carry `inventory_number` (NM 1628 / NM 1703 / NM 4567 — all three matched the canon notes exactly), dating, dimensions and an explicit `iiif_license`. Worth a corpus-wide Nordic sweep later. `page` currently points at the API record, not a human catalogue page — no public object-page URL pattern found. |
+| **National Gallery, London** | open, keyless — **IIIF Image 3.0**, previously listed here as unchecked. ⛔ **BUT CLAMPED — see round 5** | **2 emits** ~~(Rysselberghe *Coastal Scene* 28,641×23,726 = 680 MP; Raphael *Madonna of the Pinks* 6,909×8,585)~~ ⛔ **those are the MASTER dimensions; the server delivers 800 × 662 for both** | ⛔ **LIVE REGRESSION, round 5:** `maxWidth/maxHeight: 800`, clamped with a **200** not a 400, and `/full/max/`, `/full/full/` and `/full/3000,/` all return the **byte-identical 800 px file**. Because our inline descriptor omits `tiles`, OSD picks 1024 and every tile is served at 800 and upscaled — the deep zoom runs at **~78% of available detail** on two **toured** works. **Fix: declare `tiles: 256`.** Everything below this line is still true about the endpoint; it was never true about the delivered size. The discovery of the 2026-08-25 pass. Endpoint shape: `www.nationalgallery.org.uk/server.iip?IIIF=/fronts/<ACCESSION>-…-PYR.tif/info.json` — an IIPImage server, and the pyramid TIFF is **named by accession** (`N-6582-…` = NG6582), so identity is holder-owned, not title-matched. Two gotchas: (a) **no ACAO** — see the CORS note below; (b) it is IIIF **3**, where the Ultra-HQ size keyword is `max`, not the `full/full` the reader assumed for our IIIF-2 sources (hence the `full` override field). |
+| **Nationalmuseum Stockholm** | open, keyless (`api.nationalmuseum.se/api/objects/<id>` → `iiif` field on iiifhosting.com, IIIF 2 **level1**). ⚠ **level1 = capped 1000 px, and `/full/max/` 400s here** (round 5; Smithsonian is the same shape — ask for a listed `sizes` value, not `max`) | **3 emits** (both Fjæstads, Rembrandt *Simeon in the Temple*) | Object-id lookup is perfect; **search is broken** — every `query`/`q`/`title`/`filter` param is ignored and returns the whole 208k-row corpus. Only usable when you already hold the object id, which Wikidata's *Nationalmuseum Sweden artwork ID* supplies. Records also carry `inventory_number` (NM 1628 / NM 1703 / NM 4567 — all three matched the canon notes exactly), dating, dimensions and an explicit `iiif_license`. Worth a corpus-wide Nordic sweep later. `page` currently points at the API record, not a human catalogue page — no public object-page URL pattern found. |
 | **NGV Melbourne** | partial, keyless — **Zoomify**, not IIIF | **1 emit** (Rembrandt *Two Old Men Disputing*, 4,105×5,000 from a 498×600 plate) | No JSON API, no IIIF (`api.`/`iiif.` subdomains NXDOMAIN). The object page `/explore/collection/work/<vernonID>/` inlines `imgWidth`/`imgHeight` and a Zoomify base under `content.ngv.vic.gov.au/col-images/zooms/<imgid>/`, driven by OpenLayers; `ImageProperties.xml` confirms it. `retrieve.php?size=xl` is only 694×845, so the **pyramid is the whole prize**. Cost of adoption: a third tile flavour in the viewer (see below). |
 | **Centre Pompidou / MNAM** | partial, keyless — **DeepZoom (.dzi)** | **2 emits** (Matisse *Auguste Pellerin II*, *Tête blanche et rose*) | `api.centrepompidou.fr` does not resolve; object pages do, and inline `/media/picture/<hash>/dzi/uhd.dzi`. Hard-capped at **4,000 px long side** — a fixed "uhd" render tier, not the archival master — but still ×4 linear on works that were 1,000 px uploader-capped. **No ACAO.** Wikidata's Centre Pompidou IDs go stale (`5dq7dfI` 404s), so verify the id resolves before adopting; one candidate was dropped for exactly this. Rights: Matisse d. 1954 → French PD from 2025-01-01. |
 | **AGSA / Whitney** | partial, keyless — plain JPEG keyed by the holder's object id | **2 emits** (Pissarro *Prairie à Éragny* 3,543×2,849; Stettheimer *New York/Liberty* 1,537×2,048) | Not sweepable — one asset per object page — but identity is safe because the asset path carries the object id (`/assets/artwork/47209/`, AGSA work 27081). Whitney's ceiling is 2,048 px and its filename says `_cropped`; adopted at `conf: "med"` on the strength of a 0.07 % aspect match with the current plate, which a real crop could not produce. |
@@ -475,6 +670,14 @@ deliberately omitted: OSD then picks a 1024 tile and asks for arbitrary regions,
 server honours — better than guessing someone else's pyramid grid (cf. the Commons legacy-pyramid
 lesson: declared dims that miss by a pixel make OSD wobble).
 
+⛔ **THE OMISSION HAS AN EXCEPTION, AND IT COST US NG LONDON (found round 5, 2026-08-25).** "Any
+level2 server honours an arbitrary region" is true only where the server declares no size clamp.
+NG London declares **`maxWidth`/`maxHeight` 800** and enforces it with a **200, not a 400** — so
+OSD's 1024-px tile requests come back at 800 and get **upscaled, silently, on two toured works**
+(~78% of available detail). **Read the descriptor's `maxWidth`/`maxHeight` BEFORE omitting
+`tiles`. Where a clamp exists, declare a tile size at or under it — `tiles: 256` for NG London.**
+Omission stays correct for the unclamped sources (Pompidou DZI needs none of this at all).
+
 DZI needs none of that — proxy the descriptor and you are done.
 
 Worker aliases `nglondon` and `pompidou` must be added by hand in the Cloudflare dashboard
@@ -486,8 +689,8 @@ the standing rule every proxied URL here is paired with that direct fallback.
 
 | Work | Source | Tech | Was → now | Linear gain |
 |---|---|---|---|---|
-| Rysselberghe, *Coastal Scene* | ng-london | IIIF 3 (proxied) | 800×665 → 28,641×23,726 | ×35.8 |
-| Raphael, *Madonna of the Pinks* | ng-london | IIIF 3 (proxied) | 870×1,080 → 6,909×8,585 | ×7.9 |
+| Rysselberghe, *Coastal Scene* | ng-london | IIIF 3 (proxied) | ~~800×665 → 28,641×23,726~~ **→ 800×662 as delivered** | ~~×35.8~~ **×1.0** |
+| Raphael, *Madonna of the Pinks* | ng-london | IIIF 3 (proxied) | ~~870×1,080 → 6,909×8,585~~ **→ 800 px long side as delivered** | ~~×7.9~~ **<×1** |
 | Rembrandt, *Two Old Men Disputing* | ngv | **Zoomify** | 498×600 → 4,105×5,000 | ×8.2 |
 | Pissarro, *Prairie à Éragny* | agsa | JPEG | 796×640 → 3,543×2,849 | ×4.5 |
 | Fjæstad, *Winter Moonlight* | nationalmuseum-se | IIIF 2 | 1,000×810 → 3,791×3,070 | ×3.8 |
@@ -496,6 +699,12 @@ the standing rule every proxied URL here is paired with that direct fallback.
 | Matisse, *Tête blanche et rose* | centre-pompidou | **DZI** (proxied) | 609×1,000 → 2,436×4,000 | ×4.0 |
 | Rembrandt, *Simeon in the Temple* | nationalmuseum-se | IIIF 2 | 1,000×1,228 → 2,828×3,513 | ×2.8 |
 | Stettheimer, *New York/Liberty* | whitney | JPEG | 600×800 → 1,537×2,048 | ×2.6 |
+
+⛔ **The two `ng-london` rows are struck above: round 5 measured what the server actually
+delivers.** The master dimensions in the store are real and the Ultra HQ footer link is honest;
+the **viewer** was getting 800 px and upscaling it. The other eight rows are unaffected — but the
+lesson generalises and is why the round-5 census was re-run: **an adopted row records what we
+asked for, not what arrives.** Re-measure delivery, not metadata.
 
 ### Verified but NOT adopted — 3
 
@@ -535,8 +744,14 @@ service.*
 - **Tate — 2** (Turner *A Wreck, with Fishing Boats*; *Venetian Scene*). Already closed by owner
   ruling above; listed again so the census does not resurrect them.
 - **Musée d'Orsay — 2** (Monet *Houses of Parliament, Sunlight Opening in Fog*; *Le Déjeuner sur
-  l'herbe*). Cloudflare 403 to every programmatic client. Orsay ids **are** in Wikidata (1177,
-  25651) — **parked, not dead**: a human browser could finish this in minutes.
+  l'herbe*). ~~Cloudflare 403 to every programmatic client. Orsay ids **are** in Wikidata (1177,
+  25651) — **parked, not dead**: a human browser could finish this in minutes.~~
+  ⛔ **BOTH HALVES OF THAT WERE WRONG — closed 2026-08-25 (round 5), and it is now DEAD, not
+  parked.** The 403 was **`www.musee-orsay.fr`**, a different machine. **`iiif.musee-orsay.fr`
+  is wide open** — IIIF 3 level2, `ACAO: *`, no headers, no proxy. And a mid-session claim that
+  it opens **5,235 works** is equally wrong in the other direction: **every master caps at
+  850 px**, verified across **4 objects / 29 canvases**. We hold **150–176 Orsay works** and it
+  would downgrade all of them. **Do not re-hunt Orsay, and do not send a browser at it.**
 - **Kunstmuseum Basel — 2** (Corinth *Blumen und Tochter Wilhelmine*; Wutky *Versuv-Ausbruch*).
   Next.js SPA serving the same 43 KB shell for every path; no `/api/`, no eMuseumPlus passthrough,
   no IIIF string anywhere. Wikidata has the Basel id (1541 for the Corinth) — browser-only.
@@ -552,7 +767,15 @@ service.*
 - **Blocked rather than absent — 3** (worth one browser visit if ever bored, but not a re-hunt):
   National Gallery of Ireland (Goya *El Sueño*) — object page 4684 is the right object but ships
   zero image URLs (client-rendered eMuseum) and `/json` 404s; **this one hurts, 604×350 is among
-  the worst plates in the canon.** NGA Canberra (Munch *Man with Horse*) — Angular app, every
+  the worst plates in the canon.** ⚙ **Anatomy added 2026-08-25 (round 5), and one thing
+  corrected: NGI IIIF HAS NEVER WORKED FOR US** — anything reading otherwise is wrong. It is
+  **the Frick anatomy exactly**: descriptor-less IIIF, `info.json` **400s**, region syntax
+  works, **ceiling 3000**, **no ACAO**. So it needs an inline descriptor *and* a proxy alias
+  before a single pixel is adoptable, and 3000 px is the most it will ever give. The "ships zero
+  image URLs" note above described the **page**; it never described the image service, and the
+  two must not be conflated again. ⚠ NGI is also where **trap 10** was paid for — a "Leech"
+  search returned three holder-verified, cleanly-measured objects and **not one of them was the
+  work**. NGA Canberra (Munch *Man with Horse*) — Angular app, every
   `/stcapi/` path 500s. Museum Ludwig (Kirchner *Five Women on the Street*) — a proof-of-work
   interstitial on every programmatic request; blocked by anti-bot, not by policy.
 

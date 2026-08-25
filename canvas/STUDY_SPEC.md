@@ -21,6 +21,16 @@ are so I can also understand what got me that interested by the artwork."
   `{ t, x, y, w, h, body }` — `t` a short title, `body` 80–160 words.
   Coordinates are FRACTIONS of the displayed image (0–1): x,y = top-left of the box,
   w,h = extent. A box must actually contain what its body describes.
+  ⚙ **And it must contain it with AIR AROUND IT — see *Boxes are drawn with breathing room*
+  (2026-08-25).** A box cropped tight to its subject is wrong even when it is accurate. Every
+  box in the store was padded ×1.15 linear, tapered to zero at `max(w,h) ≥ 0.80`.
+  **`body` is ONE paragraph.** It is a plain string, the renderer wraps it in a single `<p>`
+  (`canvas-app.jsx:1713`), and no body in the corpus contains a break. Two paragraphs on a
+  stop do not exist and would not render.
+  ⭐ **The box may be OMITTED — at most once per tour, under the four conditions at checklist
+  10c(a).** A stop with no `x`/`y`/`w`/`h` renders as a reading-pane paragraph with nothing to
+  fly to; it exists to carry an argument no crop could hold. Four in the corpus. See *THE
+  CALIBRATION SPECIMEN*.
 - `beside` — the closing paragraph, after the last stop: this work set against ANOTHER
   WORK IN THIS COLLECTION (90–120 words, soft). **Required on every new tour**
   (Fuad 2026-08-25) — see *The `beside`* below for the form and the one legitimate
@@ -34,6 +44,59 @@ are so I can also understand what got me that interested by the artwork."
   drafter found worth a stop, one per stop, in stop order. ⚙ **Revised 2026-08-25:** it is what
   makes every stop's STARTING MARK auditable — a Law-1 gate, not a count check (the count it
   produces reproduces what was already being shipped) — see **RULE C** and checklist 10c.
+
+⛔ **THE GOVERNING TEST — EVERY SENTENCE IN A LENS MUST EARN ITS PLACE. LENGTH IS AN OUTCOME,
+NEVER A TARGET, IN EITHER DIRECTION** (ruled 2026-08-25; this supersedes the earlier
+floor-and-ceiling note, which was being read as "make the lenses shorter").
+
+**It cuts both ways, and the second way is the one that gets forgotten.**
+- A band is **not a quota to fill**. A `see` that has said what it has to say in 96 words is
+  finished at 96; nothing may be added to reach 137. Fuad's caveat travels with it —
+  *"sometimes more space may be needed"* — so the ceiling is soft in the same way.
+- A band is **not a quota to empty**, and the specimen below is **not a length to shrink to**.
+  A lens whose every sentence is justified may sit at the top of its band or past it. Fuad,
+  ruling this: *"it can be tighter like the woman with the parasol, it can be as long as it
+  gets — but the content needs to be justified."*
+
+⛔ **A LONG LENS IS NOT A DEFECT. AN UNJUSTIFIED LENS IS — AT ANY LENGTH.** No repair may be
+booked on the ground that it shortens a paragraph. A word count is evidence that something may
+be worth reading for, never the finding itself, and never the remedy. See *THE CALIBRATION
+SPECIMEN*, *NEGATIONS* and checklist 10d.
+
+⚙ **AND THE SAME TEST READ FROM THE OTHER SIDE — SPACE IS PROPORTIONAL TO SUBSTANCE** (Fuad,
+2026-08-25, completing the ruling above): *"the amount of space is justified by what's
+communicated. So, by that example: the one artist you kept telling me had like 8-13 verified
+stuff, could by that law take much more space by account because there is lots to unpack there
+- not every painting will, though"*
+
+**These are ONE principle, not two rules.** Justification says every sentence must earn its
+place. Proportionality says a work with more that is verified and worth unpacking earns more
+sentences — and a work with little earns fewer. **Length is an OUTPUT of how much there is to
+say, never a target in either direction.** ⚙ **And this is where the ruling LANDS.** The Info
+band next door was affirmed as a hard constraint the same day — *"I'd still prefer infos tight,
+though but we can delve deeper in the study to explore more angles etc."* (READS_SPEC §5c) — so
+the STUDY is the "deeper" Fuad names. The four lenses and the stops are where a rich work gets
+its room; the doorway upstairs does not widen.
+
+⛔ **IT DOES NOT LICENSE EXPANSION BY DEFAULT — *"not every painting will"* IS LOAD-BEARING.**
+The expected outcome of applying this rule is that almost nothing changes length. Room is
+CLAIMED, never assumed: **a drafter who cannot NAME what the extra room is carrying does not get
+it.** The test is one line — *count the verified, non-redundant things this work gives you that
+a reader could not get from looking at it*, where three facts about one exhibition are ONE thing
+and anything plainly visible in the plate is ZERO — then, per unit of extra room, name what it
+carries and which question it answers. ***"There was more available"* is a count, not a
+justification.** Full form, and why it costs no new step, at READS_SPEC §1 *The claim test*.
+
+⚙ **The stops already have this instrument; the four lenses do not.** RULE C's `survey` is
+proportionality in mechanical form — list the marks that reward a stop, write one stop per mark,
+floor 3, ceiling 9, **the count is an output**. Read it with its measured caveat intact: blind
+surveys reproduce the shipped counts, so **do not expect the survey to move the number, and do
+not treat an unmoved number as a failed survey.** What has no such instrument is the lenses, and
+that is where the claim test does its work.
+
+⭐ **THE STOPS ARE NOT IN SCOPE.** Fuad, same ruling: *"tours were actually pretty nice and
+tight."* No stop needs shortening, and none of the material below is a licence to rebalance a
+tour by taking words off a stop.
 
 ## Tour structure (settled 2026-07-24; deepened 2026-08-24, Fuad-approved; fourth movement added 2026-08-25)
 
@@ -126,6 +189,229 @@ better than the invented one, which is the pattern throughout: the real picture 
 confabulation). **Rule: any claim about feeling, relation or intent must name the visible
 thing it rests on, and that thing must be in the stop's own crop.**
 
+### ⭐ THE CALIBRATION SPECIMEN — `monet-woman-with-a-parasol` (named by Fuad, 2026-08-25)
+
+Law 1's model (`…adeline-ravoux`) is the model for how a STOP is built. This is the model for
+what CLEAN COMMUNICATION looks like across a whole tour. Fuad: *"I think Woman with a Parasol —
+Madame Monet and Her Son is still a very good standard. At times it even allowed a second
+paragraph on a second stop to add more to the text. The stops in fact are even fatter than the
+see, about, craft and context which is interesting but they all work."* Read it before
+drafting, alongside the Ravoux.
+
+⛔ **READ THIS BEFORE THE NUMBERS. THE SPECIMEN IS A PROOF OF POSSIBILITY, NOT A TARGET.** What
+it demonstrates is that a lens *can* be this tight and still communicate completely — that the
+space can be spent well. It does not make 74 words the goal for a `context`, or 361 the goal
+for four lenses, and **nobody may trim toward these figures**. Fuad, on exactly this reading:
+*"it can be tighter like the woman with the parasol, it can be as long as it gets — but the
+content needs to be justified."* The measurements below are EVIDENCE that restraint is
+available. They are not a ruler. The governing test is the one at the top of this file: every
+sentence earns its place, and length is the outcome.
+
+⚠ **THERE ARE TWO MONET PARASOLS IN THIS STORE AND ONLY ONE OF THEM IS THE SPECIMEN.**
+The id is **`monet-woman-with-a-parasol`** — the 1875 Argenteuil canvas at the National Gallery
+of Art, Washington. `claude-monet-la-femme-a-l-ombrelle` is a DIFFERENT painting: the 1886
+Suzanne Hoschedé version at the Musée d'Orsay, which this tour's own `context` refers to.
+Reading the id off the title picks the wrong one; this was caught mid-measurement on
+2026-08-25 and is the live proof of 12c/12h(a).
+
+Measured against the corpus the same day (375 tours, 2,465 stops; working at
+`.dtmp/tourqc-pass/w10/MEASURES.md`):
+
+| | Parasol | corpus median | |
+|---|---:|---:|---|
+| `see` | 97 | 139 | −42 |
+| `about` | 90 | 138 | −48, exactly on the floor |
+| `craft` | 100 | 140 | −40 |
+| `context` | **74** | 132 | **−58, UNDER the 90-word floor** |
+| four lenses | 361 | ~549 | **−34%** |
+| stops | 5 | 6 | below median |
+| words per stop | 168, 138, 149, 142, 160 → mean **151** | 120 | **+26%** |
+| all stops | 757 | ~788 | par |
+| mean stop ÷ mean lens | **1.68** | 0.88 | **inverted** |
+| stops' share of the tour | **67.7%** | 59.4% | +8 points |
+| descent coverage Σw·h | 0.364, no full-frame closer | ~~0.53~~ **0.693** (**0.850** since the padding) | below median |
+| negations per 100 words | **1.25** | 1.73 | **−28%** |
+| `rather than` | **0** | 4.48 per tour | **zero** |
+
+**⭐ THE PILOT-VERSUS-PRODUCTION DRIFT — AND WHAT IT ACTUALLY FINDS.** Every one of the
+specimen's five stops is at least 138 words — the corpus LENS median — and only **164 of 2,465
+stops (6.7%)** reach that length. Meanwhile all four of its lenses sit at or below 100 words.
+This is not a Parasol quirk: **the whole 2026-07-12 pilot batch has this shape** —
+`leech-convent-garden` runs lenses 95/82/84/73 against stops 141/153/164/167/199,
+`podkowinski-szal-uniesien` lenses 102/96/108/82 against stops 142/125/115/120/119. Between the
+pilot and the production corpus **the lens grew about 49% and the stop shrank about 15%**.
+
+⛔ **READ THAT FINDING CORRECTLY. IT IS NOT "THE LENSES HAVE GROWN TOO LONG."** ⚙ **Reframed
+2026-08-25 — the earlier wording here was a framing error.** Growth is not the defect. The
+defect is that **the growth was not accompanied by justification**: measured against the
+specimen, the added words are disproportionately negation lists, deferred positives, and
+INSTANCES that belong to a stop — not new findings. A production lens that ran 49% longer
+because it had 49% more to say would be a better lens, and nothing here says otherwise.
+**A long lens is not a defect. An unjustified lens is, at any length.** The number is the
+symptom that sent us looking; the pre-spend and the padding are the finding.
+
+⭐ **THE STOPS ARE NOT IN SCOPE.** The stop side of that ratio ("shrank about 15%") is NOT a
+call to lengthen stops, and nothing in this section licenses shortening one. Fuad, 2026-08-25:
+*"tours were actually pretty nice and tight."* Where a lens and a stop hold the same instance,
+**the settled direction is unchanged: cut the paragraph, never the stop** — because the stop is
+the only place a reader is looking at the thing being described. That is Law 2 and checklist
+12, and it is a rule about WHERE a finding lives, not about how many words either may have.
+
+⚠ **And note what the specimen does to the bands.** Its `context` is 74 words, sixteen under the
+floor; two of its stops (168, 160) are at or over the ceiling. Fuad's verdict on the whole
+entry is *"they all work"*. **That is the clearest statement available that the bands are not
+targets and not gates** — they are a description of where most good paragraphs land. A
+paragraph that has finished may stop wherever it finishes, and a paragraph that has not
+finished may run on. Neither figure is a destination.
+
+⚙ **IT IS ALSO THE CALIBRATION SPECIMEN FOR PROPORTIONALITY — READ THE RIGHT WAY ROUND.** The
+74-word `context` is **not a failure to earn room; it is a spare work well served.** The picture
+is a wife and son on a slope on one afternoon, the record around it is thin, and the
+outward-facing lens therefore has little that is verified and non-redundant to carry — so it
+stops at 74 because it is FINISHED at 74. Fuad names this very work inside the ruling — *"it can
+be tighter like the woman with the parasol, it can be as long as it gets"* — which makes the
+specimen **the tight end of the same rule, not an exception to it.**
+⛔ **What it demonstrates is clean communication, NEVER a target length.** Nobody may cite 74 as
+licence to end a `context` early, exactly as nobody may cite the 8-to-13-verified-facts work as
+licence to run one long. And the real lesson is the proportionality INSIDE the entry: this
+work's substance is on its surface, so its weight sits in the stops (mean 151 against a corpus
+120) while its lenses sit at or under 100. **The room went where the substance was.**
+
+**⭐ THE "SECOND PARAGRAPH ON A SECOND STOP" IS A BOXLESS STOP — AND THE SPEC CURRENTLY CALLS IT
+A DEFECT.** There is no two-paragraph body anywhere and there cannot be: `deeper[].body` is a
+plain string, zero bodies contain a break, and the renderer wraps one in a single `<p>`
+(`canvas-app.jsx:1713`). What Parasol actually has is **stop 2, "Looking up at her", with no
+`x`, `y`, `w` or `h`** — an argument paragraph sitting in the stop sequence with nothing to fly
+to. It is close to unique: of 2,465 stops, **2,461 carry a box and only FOUR do not**, and all
+four are pilot-batch — Szał twice, Parasol once, Leech once. Every one is an art-historical or
+biographical argument rather than a mark on the surface.
+**Checklist 10c(a) presently lists "a stop with no box at all (Szał, twice)" as a Law-1 defect.
+Two of its four cited defects are the same device Fuad is here praising in the third.** See the
+ruling at 10c(a) — the device is **PERMITTED, once per tour, under four conditions**.
+
+Why Parasol's works, and it is the model for any other: it earns its place by carrying an
+argument the four lenses are too small to hold and no crop can show —
+
+> *(stop 2, "Looking up at her")* This is the viewpoint European painting reserved for
+> altarpieces and equestrian monuments — the hero on the ridge, the saint against heaven. Monet
+> spends it on his wife on an afternoon walk. … The Impressionists said this in manifestos;
+> this canvas says it with a slope.
+
+That claim is about a TRADITION, not about a region of canvas. Boxing it would have been a lie
+about what the reader is being asked to look at. And note the close: Parasol ends on the
+signature stop, not on a full-frame synthesis, and that stop carries the 1875 dating, the
+second Impressionist exhibition under the title *La Promenade*, the Mellon provenance and the
+NGA — which is exactly the "signature stop that carries the work's afterlife" that movement 3
+already licenses.
+
+⚠ **Two things the specimen is NOT a licence for.** It carries no `beside` and no `by` — it
+predates both, and `beside` is required on every new tour regardless (2026-08-25). And its
+prose has not been re-audited at wave-2 rigour; it is the model for WEIGHT, PROPORTION and
+RESTRAINT, and every factual claim in a new tour still goes through groups A–D.
+
+### NEGATIONS — a negation must NAME AN ABSENCE, not DEFER A STATEMENT (2026-08-25)
+
+Fuad: *"one of the remaining smaller problems is including many negations that don't add to
+the text within the see, about, craft and context — which points to the text allowing a bit of
+tightening as the agent attempts to pad the text. Sometimes more space may be needed, though."*
+
+**Measured over all 375 tours (2,465 stops); negation set and method at
+`.dtmp/tourqc-pass/w10/MEASURES.md`. The verdict is SUPPORTED — but not by the mechanism the
+diagnosis names, so read all four results before acting on it.**
+
+- **⭐ THE SPECIMEN TEST — SUPPORTED, and it is the decisive one.** The tour Fuad calls the
+  standard runs **1.25 negations per 100 words against a corpus 1.73 — 28% below**. Its LENSES
+  run **1.11 against a corpus lens 1.63 (−32%)** and its stops **1.32 against 1.79 (−26%)**;
+  its entire negation inventory is fourteen words (`no` ×10, `nothing` ×2, `refuses`,
+  `Without`). **It uses `rather than` ZERO times** against a corpus mean of 4.48 per tour, and
+  it has no serial `no X, no Y` list at all. The tour Fuad reads as un-padded is, on
+  measurement, markedly the least negated. That is the loop closing.
+- **⚠ BUT THE LENS-VERSUS-STOP PREDICTION IS REFUTED.** Corpus-wide the lenses are the LEAST
+  negated part of an entry, not the most: lenses **1.63**, stops **1.79**. If the four
+  paragraphs were being padded to a band with negation, they would be the dense ones and they
+  are not. **Do not run this as a lens-only rule** — it applies to stops at least as hard.
+- **Density tracks the JOB, not the band.** `about` 2.54, `craft` 1.86, `see` 1.24,
+  `context` 0.84 — a threefold spread across four fields whose mean lengths differ by 5%.
+  Negation is heaviest exactly where the writing is interpretive and lightest where it is
+  documentary. That is a property of the argument, not of a word count.
+- **Length moves it a little, in the lenses only.** Split at the median: long stops 1.84 vs
+  short 1.76 (+5%, noise); long lenses 1.73 vs short 1.53 (**+13%**). A real gradient, and
+  smaller than a fill-to-the-band habit would produce. The honest reading: **it is not
+  primarily padding, it is a HABIT** — and the specimen shows the habit is optional.
+
+**So the rule is NOT a quota and NOT a word cut.** ⛔ **What makes a deferring negation padding
+is that IT COMMUNICATES NOTHING — not that it costs words.** A clause that only postpones the
+positive statement has told the reader nothing they did not already have; that is the whole of
+the offence, and it would still be the offence if it were free. The remedy is **deleting an
+unearning clause**. The paragraph being shorter afterwards is a **side effect, not the goal**,
+and a shorter paragraph is not evidence that the pass was done correctly. A fully justified
+paragraph with twelve negations in it is fine; a 90-word paragraph with one deferring negation
+is not.
+
+⚠ **Corollary: this rule may never be run as a length reduction.** Fuad's caveat is part of the
+ruling — *"sometimes more space may be needed"* — and it generalises: **the bands (90–170,
+80–160, 90–120) are a floor and a ceiling, never a target in either direction.** A paragraph
+that says what it has to say in 96 words is finished at 96. The specimen's `context` finishes at
+74, and Fuad's verdict on the entry is *"they all work"* — but *"it can be as long as it gets"*
+is the same ruling, and the specimen is a proof that restraint is possible, not a length to
+converge on.
+
+⛔ **THE TEST, applied per sentence.** *Delete the negative clause. Does the sentence still
+communicate everything it did before?*
+- If **yes**, it was deferring — it delayed the positive statement without adding one, which
+  means it was carrying no content. Cut it. (Note the test is about CONTENT, not grammar: a
+  clause whose removal leaves a sentence that still parses but says less is load-bearing.)
+- If **no** — if deleting it removes the finding — it is load-bearing. **Keep it, and land on
+  it rather than passing through it.** An absence that is itself the finding is some of the
+  best writing in this corpus, and all four of these are the specimen's own:
+  *"It isn't a portrait — her face is the least finished thing in it"*;
+  *"white rendered with nearly no white, because Impressionism's core discovery is that local
+  colour is a lie"*; *"a second isn't long enough to read a face"*;
+  *"The blur isn't a failure of likeness. It's the truth of the timespan."*
+  Note the last one: the negation is the sentence the stop was built to reach, not a detour on
+  the way to one.
+
+**What the measurement DID find, and it is a different defect: a house tic and a padded list.**
+
+- **`rather than` appears 1,680 times — 4.48 per tour**, the single most repeated hinge in the
+  corpus. Sampled in context it is usually correct and load-bearing (it corrects a default
+  expectation: *"the weapon hangs below the hand rather than above it"*). The defect is
+  **monotony, not falsehood**. ⭐ **The specimen uses it ZERO times in 1,118 words** — the
+  construction is not necessary and its rate is a drafting habit.
+- ~~**The serial `no X, no Y` list runs 371 times, and 206 of those — 55% — run to THREE terms
+  or more.**~~ ⚙ **THE PAIR 371/206 DOES NOT REPRODUCE AND MATCHES NO RECORDED MEASUREMENT —
+  struck 2026-08-25.** No stated pattern in this file or its workshops returns it. **Re-measured
+  the same day, with the method stated inline as this file now requires:** over all
+  `see`/`about`/`craft`/`context`/`beside` strings and every `deeper[].body` in
+  `art_inspect.js`, matching `/\b[Nn]o\s+[^,;.]{1,40},\s*[Nn]o\s+[^,;.]{1,40}(,…)*/`, the corpus
+  returns **387 serial lists, 241 of them (62%) at three terms or more.** ⚠ **That figure is
+  pattern-dependent and must be quoted with its regex** — a stricter or looser bound moves it by
+  tens. The FINDING is unchanged and does not rest on the scalar: **most serial lists in this
+  corpus run past two terms, and that is where the padding lives.** Two terms carry the finding;
+  the third and fourth are cadence. Type specimens to shorten, not to defend: *"no counter, no
+  server, no vat, nothing to say"*, *"No father, no wreckage, no sun, no wound, no…"*.
+  ⚙ **Cap: two terms unless a third refuses a different KIND of thing.** ⭐ The specimen uses
+  the construction three times and **stops at two every time**: *"no reworking, no studio
+  finish"*, *"no perspective lines, no path winding back"*, *"no commission, no buyer
+  waiting"*. In each, the second term is a different kind of absence from the first and there
+  is no third.
+- ~~**`Nothing here…` / `Nothing in the picture…` opens 79 sentences.**~~ ⚙ **WRONG — corrected
+  2026-08-25. It is 54.** Method, stated inline: match
+  `/(^|[.!?—]\s+|“)Nothing (here|in the picture)/` across `art_inspect.js` — all five lenses plus
+  every stop body. That returns **54**, and the case-sensitive substring **anywhere** in a
+  sentence returns 54 as well, so the two readings of the claim agree. ⚠ **No pattern tried
+  returns 79.** The loosest reasonable one — case-INSENSITIVE, position-free — returns **70**,
+  and that is the nearest approach; the origin of 79 is unrecovered and it is struck rather than
+  re-derived. Same treatment either way: fine once, a verbal tic across a corpus. ⛔ **Quote 54
+  with the pattern attached, or do not quote a number** — the spread 54 / 70 / 79 across three
+  readings of one sentence is the whole argument for this file's own rule about stating what a
+  measurement structurally includes.
+
+**⚠ This is a prose rule. It does not replace checklist step 5**, which is a TRUTH check on the
+same words: an absolute negative must also be true against the plate. A negation can be
+perfectly load-bearing prose and still be factually wrong, which is the whole of the wave-1
+re-audit finding.
+
 ### What the wave-1 RE-AUDIT added (2026-08-25) — 18 tours re-checked, ZERO clean
 
 The first pass called most of these clean. Re-run at wave-2 rigour with a worked example in
@@ -213,10 +499,20 @@ Four live specimens —
 - Fałat, stop 8 *"The half with no story"* — a stop whose stated content is that **nothing is
   there**;
 - Rembrandt, stop 5 *"Faces dissolving into the dark"* — a **zone**, not a mark;
-- Szał — **two stops carrying no box at all.**
+- ~~Szał — **two stops carrying no box at all.**~~ ⛔ **STRUCK 2026-08-25 — THIS WAS A LIVE
+  CONTRADICTION INSIDE THIS FILE.** 10c(a) had already un-struck the boxless stop and
+  **PERMITTED** it under four conditions, on Fuad's reading of the calibration specimen — and the
+  specimen section praises the same device in Parasol's stop 2. So RULE C was listing as a
+  defect the exact thing the two sections either side of it hold up as a model. **A boxless stop
+  is not a RULE C finding.** It is an exemption from Law 1, granted once per tour under
+  10c(a)(i)–(iv); what remains a defect is a boxless stop that was never DECLARED as one.
 
 **That is RULE C's value: it forces every stop to name the mark it starts from (Law 1), and a
 stop that cannot name one is the defect — whatever the count is.** A filter, not a counter.
+⚠ **Read "cannot name a mark" precisely, since one of the four specimens above just moved:** a
+stop that has no mark *because its subject is a tradition or a chronology* is the permitted
+boxless stop; a stop that has no mark because nobody looked is the defect. The difference is
+whether it is declared, and 10c(a)(iv) is where it gets declared.
 
 The floor and ceiling still hold, and they hold on Law 1 rather than on any claim about counts.
 If the survey returns fewer than three marks, re-survey off a larger plate before concluding
@@ -228,19 +524,55 @@ big-plate work is not thereby over-stopped and a small-plate work is not thereby
 **THE COVERAGE GUARD — the mechanical check, free, no image needed.** Sum `w * h` across the
 stops' boxes, **subtracting the closing step-back synthesis stop when its box is full-frame.**
 That total is the fraction of the plate the DESCENT visits, counted WITH overlaps. **If it passes
-~1.0 the tour is re-covering ground rather than deepening: merge stops until it does not.** Both a
+~1.14 the tour is re-covering ground rather than deepening: merge stops until it does not.** Both a
 drafter and a QC pass run the same one line of arithmetic and get the same answer, which is the
 point — it needs no judgement and no crop. Nothing except the full-frame closer is exempt; a wide
 opener counts in full, because a wide opener is where genuine double-covering starts.
 
+⚙ **RECALIBRATED 1.0 → 1.14 ON 2026-08-25, THE DAY THE BOXES WERE PADDED.** Padding every box
+×1.15 linear grows its AREA by 32%, so every tour's `sum(w*h)` grew with it and the guard would
+have started firing on a third of the corpus — it would have stopped being what this section says
+it is. **The threshold is not a round number and never was: it is *the value that keeps the guard
+as rare as it was*.** At `1.14`, exactly the same **71 of 375** tours exceed it as exceeded `1.0`
+before the padding. (The rarity-preserving band is `[1.1373, 1.1449)`; `1.14` sits inside it.)
+The guard's MEANING is unchanged: over it, the tour is re-covering ground rather than deepening —
+merge stops.
+⛔ **Do not re-derive this from 1.0 × 1.15 or × 1.32.** The padding TAPERS with box size, so the
+growth is non-uniform and the correct threshold is empirical, not arithmetic. Re-measure it if the
+padding is ever re-tuned; the script is `.dtmp/tourqc-pass/w11/statsJ.js`.
+
 ⚙ **THE EXEMPTION IS THE WHOLE GUARD, NOT A FOOTNOTE (measured 2026-08-25).** Movement 3 of this
-spec PRESCRIBES a wide/full-frame closing box and 108 of 375 tours take it, so a sum that includes
+spec PRESCRIBES a wide/full-frame closing box and 109 of 375 tours take it, so a sum that includes
 the closer is measuring the spec, not the tour. A previous pass added the exemption on its own
 judgement, before the measurement existed — **that instinct was correct, and it is now the
 load-bearing part: the guard is only meaningful on the DESCENT.** On the descent alone the corpus
-median is **0.53**, flat across 3–10 stops, and only **70 of 375** tours exceed 1.0 at all. So the
-guard is **rare-firing by design — an outlier detector, not a sizing rule — and ~1.0 is a ceiling,
-not an elbow.** Do not read a tour approaching 1.0 as normal.
+median is ~~**0.53**~~ **0.693 pre-padding, 0.850 as the store now stands**, flat across 3–10
+stops, and only **71 of 375** tours exceed the guard at all. So the
+guard is **rare-firing by design — an outlier detector, not a sizing rule — and ~1.14 is a ceiling,
+not an elbow.** Do not read a tour approaching it as normal.
+
+⚙ **CORRECTION — THE DESCENT MEDIAN WAS NEVER 0.53. It is 0.693** (and 0.850 since the padding).
+This matters more than the digits, because **0.53 sat in the very paragraph memorialising two
+earlier errors of exactly this shape.**
+
+> **0.53 is inconsistent with this file's own table three lines below it.** The per-stop-count
+> descent medians recorded there run **0.48 / 0.64 / 0.66 / 0.71 / 0.69 / 0.71 / 0.66 / 0.75** —
+> only the 3-stop bucket (4 tours) is anywhere near 0.53, so a corpus median of 0.53 cannot be
+> produced by those buckets. 0.53 sits at the **22nd percentile** of the real distribution.
+>
+> **The definition is not in doubt; the scalar is.** Summing `w*h` per tour and subtracting the
+> last stop iff `w ≥ 0.95 ∧ h ≥ 0.95` reproduces this file's *other* published numbers exactly —
+> the struck un-exempted medians (7 → 1.11 and 8 → 1.39, both exact), the descent table above,
+> `70` tours over 1.0 (now 118 post-padding), `108` full-frame closers (now **109**), `123`
+> carrying one anywhere (now **124**). **0.53 is the only figure that does not reproduce**, and
+> its likeliest origin is the **drop-largest-box control quoted in the same bullet, which
+> measures 0.496** — a scalar copied across from a neighbouring experiment.
+>
+> ⛔ **This is a THIRD instance of this file's own standing lesson** — *state what the sum
+> structurally includes* — in its mildest form: not a wrong join, just a number that came from
+> the wrong column. The correction changes nothing about the guard's design. It makes the guard
+> **rarer relative to the median** than the file claimed, which strengthens the outlier-detector
+> reading.
 
 #### Stop counts — measurement snapshot as at 2026-08-25 (this ages; re-measure, don't cite)
 
@@ -252,12 +584,19 @@ the lesson.
 
 - **Distribution — the MEASUREMENT stands; the READING of it was wrong.** 3 stops: 4 tours ·
   4: 15 · 5: 54 · 6: 97 · **7: 116** · 8: 73 · 9: 15 · 10: 1. Mean **6.57**, a bell curve centred
-  on 7, **84% on 5–8**. ~~A judgement exercised per work does not produce a bell curve; a habit
+  on 7, ~~**84% on 5–8**~~ ⚙ **— WRONG, corrected 2026-08-25: this file's own histogram sums to
+  90.7% on 5–8** (54 + 97 + 116 + 73 = 340 of 375). Method: add the four buckets printed in this
+  same sentence and divide by 375. **The error was checkable without leaving the line it sits
+  on**, which is the cheapest class of all and the reason step 10's diff-the-entry-against-itself
+  exists. ~~A judgement exercised per work does not produce a bell curve; a habit
   does. The 3–9 range was on the page the whole time and was never actually used.~~ **WRONG —
   falsified 2026-08-25.** Twelve blind surveys — surveyors given **only an image folder**: no
   title, no artist, no tour, no shipped count, and told explicitly that *"3 is a valid answer"* —
   produced their own histogram of 5 → 1 · 6 → 2 · **7 → 7** · 8 → 2. **Mode 7, SD 0.80, against
-  the shipped SD of 1.55.** Mean absolute delta from the shipped count **1.00**, mean signed delta
+  the shipped SD of ~~1.55~~ ⚙ 1.25** *(corrected 2026-08-25; method: population SD over the
+  375-tour histogram printed above — mean 6.573, Σx² = 16,789, variance 1.563, **SD 1.250**. Like
+  the 84% it is derivable from the same sentence, and 1.55 is not producible from any weighting of
+  those buckets.)* Mean absolute delta from the shipped count **1.00**, mean signed delta
   **+0.50**, and the delta correlates with **nothing in the painting**: r = **−0.073** against
   log₁₀ plate MP, and r = **−0.856** against the shipped count itself — the delta is pure
   regression toward 7. **Seven is not a drafting habit. It appears to be what you get whenever
@@ -272,10 +611,13 @@ the lesson.
   wide/full-frame closing box**: **108 of 375 tours close full-frame** (box ≥0.95 on both axes)
   and 123 carry a full-frame box somewhere. Remove the full-frame closer and the medians by stop
   count (3→10) become **0.48 / 0.64 / 0.66 / 0.71 / 0.69 / 0.71 / 0.66 / 0.75** — **flat, and
-  never approaching 1.0.** Descent-only median coverage corpus-wide is **0.53**, with only
-  **70 of 375** tours above 1.0. The experiment reached the same conclusion by a different route
-  (dropping the single largest box per tour): 0.26 / 0.40 / 0.41 / 0.50 / 0.51 / 0.57 / 0.55 —
-  rising gently, never near 1.0. **Extra stops add new small boxes; they do not re-cover ground.**
+  never approaching 1.0.** Descent-only median coverage corpus-wide is ~~**0.53**~~ ⚙ **0.693
+  (corrected 2026-08-25 — see the guard above; 0.850 since the boxes were padded)**, with only
+  **71 of 375** tours above the guard. The experiment reached the same conclusion by a different route
+  (dropping the single largest box per tour): 0.26 / 0.40 / 0.41 / 0.50 / 0.51 / 0.57 / 0.55,
+  **median 0.496** — rising gently, never near 1.0. ⚠ **That 0.496 is where the phantom 0.53 most
+  likely came from**; the two numbers describe different experiments and only one of them was ever
+  the guard's baseline. **Extra stops add new small boxes; they do not re-cover ground.**
   Median stop length is indeed flat at ~120 words, but that no longer buys the "more words on the
   same surface" reading. ⚙ **This vindicates the full-frame-close exemption a previous pass added
   to the guard on its own judgement — that instinct was correct, and the guard is only meaningful
@@ -317,7 +659,66 @@ measured). Changes from that run are marked ⚙. Run the cheap structural pass (
 on two of those five tours it condemned five of seven and five of six stops before a single
 image was opened.
 
-**A. Per stop, before writing a word of it — AND when auditing one**
+### ⚙ RESHAPED 2026-08-25 — THE NUMBER IS NOW THE RUN ORDER
+
+**The problem this fixes.** The checklist had grown to ~24 operations numbered in the order they
+were *discovered* — `1, 2, 3, 4, 5, 6, 7, 7b, 7c, 7d, 7e, 8, 9, 10, 10b, 10c, 10d, 11, 12, 12b,
+12c…12h, 13` — and then carried a note at the top saying **run group D first**. A list whose
+numbering contradicts its own instructions gets run in list order. **The numbers below ARE the
+run order.** Lowest number first, no exceptions, and the expensive image work does not start
+until everything free has been done.
+
+⚠ **The section headings and prose below are UNCHANGED and still carry their original labels**,
+because ~50 cross-references in this file and in READS_SPEC point at them by the old number. The
+map is authoritative in both directions; **cite the new number and put the old one in brackets**
+until the cross-references are swept.
+
+| run | operation | was | cost |
+|---:|---|---|---|
+| **1** | Box hygiene — no shared boxes, no out-of-range, nesting rule | 11 | ⚙ **SCRIPT** |
+| **2** | Box arithmetic — coordinates vs the body's stated location | 10b | ⚙ **SCRIPT** |
+| **3** | The coverage guard — descent `sum(w*h)` vs ~1.14 | 10c(b) | ⚙ **SCRIPT** |
+| **4** | Diff the tour against itself — **including paragraph scope** | 10 **+ 12 folded in** | free |
+| **5** | The survey — every stop names its starting mark (Law-1 gate) | 10c(a) | free |
+| **6** | The negation pass | 10d | free |
+| **6b** | ⚙ The proportion pass — the same read the other way (NEW) | 10e | free |
+| **7** | No research note ships as prose | 12b | free |
+| **8** | Open the crop; name the three most prominent things | 1 | image |
+| **9** | Is the stop's subject among them? If not, the box is wrong | 2 | image |
+| **10** | Write/judge the body from those three outward | 3 | image |
+| **11** | Finish claims — best hit rate in the protocol | 4 | image |
+| **12** | Absolute negatives + superlatives — **including the `beside`** | 5 **+ 12g folded in** | image |
+| **13** | Body-side, count and uniqueness words | 6 | image |
+| **14** | Hedges — a hedge must survive the zoom | 7 | image |
+| **15** | The title against its own body and its own crop | 7b | image |
+| **16** | Relation claims — verify on the PLATE, never the crop | 7c | image |
+| **17** | Handedness | 7d | image |
+| **18** | The reader's resolution ceiling — **per work** | 7e | image |
+| **19** | The deepen test | 8 | free |
+| **20** | The hinge test | 9 | free |
+| **21** | The `beside`'s companion resolves to a real canon id | 12c | free |
+| **22** | Every date, museum and interval about the companion verified | 12d | web |
+| **23** | The reversal is STATED, not implied | 12e | free |
+| **24** | Recap test and scripting test | 12f | free |
+| **25** | Cross-references — every named in-collection work carries a ref | 12h | ⚙ **SCRIPT** (`validate-refs.js`) |
+| **26** | *(repairs only)* re-audit the WHOLE entry, not the flagged sentence | 13 | full re-run |
+
+⚙ **THE THREE SCRIPTABLE STEPS — 1, 2 and 3 — NEED NO IMAGE, NO CROP AND NO JUDGEMENT.** They are
+pure arithmetic over coordinates and should run as a script before a human opens anything; step 25
+already has one (`validate-refs.js`) and is the model. In the calibration run these plus step 4
+produced about **30% of total yield at roughly 10% of the effort**. Running them last means
+adjudicating stops that should not exist.
+
+⚙ **TWO FOLDS, both because the steps were doing one job in two places:**
+- **old 12 (paragraph scope) folded into 4 (diff the tour against itself).** Both are entry-internal
+  text diffs needing no image, both read `craft`/`see` against the stops, and both were being run
+  as separate reads of the same material. One read now answers both questions: *do any two
+  statements disagree*, and *does a paragraph already spend a stop's instance*.
+- **old 12g (the `beside` inherits the greps) folded into 12.** 12g said only *"steps 4, 5 and 7
+  apply to `beside` too"* — a pointer, not an operation. The `beside`'s field name now sits inside
+  the grep steps' own scope, which is where a runner will actually see it.
+
+**A. Per stop, before writing a word of it — AND when auditing one** *(run order **8–10**)*
 ⚙ These are the load-bearing steps in both directions. Every one of the four largest findings
 in the calibration run came from doing exactly this and finding the stop's subject ABSENT:
 a crop with no foot under "The bare foot at the couch edge"; a crop with no bell under "The
@@ -336,13 +737,15 @@ the Szał false-negative lesson one level up.
 3. Write the body from those three things outward. If the body's subject arrived from the
    `craft` paragraph rather than from the crop, delete it and start at the crop.
 
-**B. Per stop, after writing it — the greps, in yield order** ⚙ (rates from the calibration run)
+**B. Per stop, after writing it — the greps, in yield order** *(run order **11–18**)* ⚙ (rates from the calibration run)
 4. **Finish claims — DO THIS ONE FIRST. ~38% hit rate, the best ratio in the protocol.**
    `loose`, `dissolve`, `blurred`, `unfinished`, `smudged`, `barely painted`, `no contour`,
    `no modelling`, `smeared`, `decaying`. THE DISSOLUTION BIAS is directional and reproduced
    perfectly in calibration: **every wrong finish claim was wrong toward more-dissolved, with
    zero counter-examples.** Assume the passage is more finished than you wrote, then check.
-5. **Absolute negatives and superlatives — ~9%.** `no `, `not a single`, `nothing`, `never`,
+5. **Absolute negatives and superlatives — ~9%.** ⚙ *(run order **12**. **Old step 12g is folded
+   in here**: this grep runs over the four lenses, every stop body **and the `beside`**.)*
+   `no `, `not a single`, `nothing`, `never`,
    `only`, `the only`, `barely`, `without any`, `stops being`, `the brightest`, `the darkest`,
    `the largest`, `the most`. Prove each absence or ranking against the image — and verify
    superlatives against the PLATE, not the crop, since the counter-example usually sits
@@ -350,6 +753,11 @@ the Szał false-negative lesson one level up.
    sentences and yielded nothing separable. ⚙ **A previous draft of this file claimed these
    are refuted at ~100%. That did not reproduce — plenty verify as sound. Check them; do not
    convert them on sight.**
+   ⚙ **On a `beside`, add the collection-scope terms** — `the only`, `hangs twice`, `the whole
+   picture`, `the entire picture` — and remember that on that field *the only X in the
+   collection* fails under **12g's own prohibition** (a count with an expiry date), not merely
+   as an unproven superlative. The finish-claim grep (step 4 / run 11) and the hedge grep
+   (step 7 / run 14) apply to the `beside` on the same terms.
 6. **Body-side, count, and uniqueness words — ~6% rate but the highest absolute yield.**
    ⚙ NARROWED, which cut the labour by about two thirds and lost nothing in calibration.
    Grep ONLY: (a) possessive body-side — `his/her left|right` + `hand`, `wrist`, `arm`,
@@ -384,8 +792,77 @@ the Szał false-negative lesson one level up.
    RIGHT. Check every `his/her left|right` against the box's x-coordinate. Calibration found a
    Renoir reversing it twice, and David's *Napoleon* putting the most famous hand-in-waistcoat
    in art on the wrong hand.
+7e. ⛔ **THE READER'S RESOLUTION CEILING — NO CLAIM MAY DEPEND ON DETAIL THE READER CANNOT
+   REACH. The ceiling is PER WORK, and the job file states it.** *(Ruled 2026-08-25 at a flat
+   3840; **the constant was replaced by a per-work figure the same day, because 3840 was wrong
+   in both directions.**)*
 
-**C. Per stop, the two structural tests**
+   ~~NO CLAIM MAY DEPEND ON DETAIL FINER THAN 3840 px … the rule is written at 3840 for everyone,
+   because a tour is drafted before anyone checks which source it will get.~~ ⚙ **STRUCK. 3840
+   is the COMMONS LEGACY-PYRAMID LADDER AND NOTHING ELSE**, and as a corpus-wide constant it
+   fails twice over:
+
+   - **It is already mis-stated for the works it describes.** The old text said `art_hires.js`
+     carries `pyr` for 37 works and *"every one of them tops out at 3840 px on the long side"*.
+     Re-measured: **15 of those 37 top out at 4290–5841 on the long side.** 3840 caps the
+     **width**; a portrait-format plate reaches it at 3840 wide and keeps going down the long
+     axis. Distinct top long-sides in the store: 3840, 3853, 4290, 4323, 4366, 4774, 4789, 4971,
+     5021, 5283, 5373, 5667, 5671, 5733, 5812, 5841.
+   - **It is FICTIONAL for the toured works on real tile pyramids**, which have no ceiling at
+     all. Measured against the live store: of 375 toured works, **34 sit on a true tile service**
+     (31 `iiif` + 2 `iiifId` + 2 `dzi` + 1 `zoomify`, 2 overlapping), **18 on a Commons `pyr`
+     ladder**, **263 on a flat `img` only**, and **61 have no `art_hires` row at all**. Writing
+     one number across those four populations describes none of them.
+     ⚠ **A session note put the tile-pyramid figure at 70; the store returns 34.** Quote 34 with
+     its method (`iiif || iiifId || dzi || zoomify` over `art_hires` keys ∩ `art_inspect` keys),
+     or re-measure — do not quote 70.
+
+   ⭐ **THE RULE, RESTATED: a claim may go as fine as THAT WORK'S OWN PLATE RESOLVES, and the job
+   file states the ceiling per work.** Not a constant, not a guess, not a default. Four cases:
+
+   | source | reader's ceiling | consequence for a claim |
+   |---|---|---|
+   | true IIIF / DZI / Zoomify | **none** — full pyramid | brushstroke-level `craft` is legitimate |
+   | Commons `pyr` ladder | the ladder's **top level**, per work (3840–5841 long side) | check the box's extent at that level |
+   | flat `img` | the file's own `w`/`h` | usually the tightest ceiling in the store |
+   | **`.tif`-backed `img`** | **1920, whatever the row declares** | ⛔ see below — 46 rows |
+
+   ⛔ **THE TIFF TRAP, and it is the strictest ceiling we have.** Commons **will not render a
+   TIFF above 1920 px**: `Special:FilePath/…?width=N` for `N > 1920` redirects to a
+   `lossy-page1-1920px-…` render and direct thumb requests at the declared width **400**. So
+   `anders-zorn-mrs-veronica-heiss` declares 3478 × 4649 and serves **1920 × 2566**;
+   `midsummer-dance` declares 2603 × 3547 and serves **1920 × 2616**; `the-kitchen-maid` declares
+   2823 × 3494 and serves **1920 × 2376**. ⚙ **Swept 2026-08-25: 46 `art_hires` rows have a `.tif`
+   in `img` and ALL 46 declare a long side over 1920.** For those works the ceiling is **half**
+   what the old constant assumed, so the rule is **twice as strict in practice** — and this is
+   the concrete reason Fuad's *"considering the resolution"* complaint landed on the Zorn first.
+   Full ledger entry: HIRES_SOURCING.md, round 5.
+
+   ✅ **AND THIS IS WHAT RESOLVES FUAD'S BRUSHSTROKE-LEVEL `craft` WISH.** A flat constant made
+   his request unwritable everywhere. Per work, it is simply **legitimate on a true IIIF and
+   forbidden on a 900 px Commons plate** — the same sentence is a fine reading in one entry and
+   an invention in another, and the job file is what tells the drafter which.
+
+   **The check, unchanged in shape:** for every stop, compute the box's pixel extent **at that
+   work's stated ceiling** (`w × ceilingW` by `h × ceilingH`) and ask whether the named subject
+   survives it. Under roughly **40 px** in its long dimension, the reader sees a smudge: move the
+   box, change the subject, or cut the stop. **This applies to `see` and `craft` too.**
+   ⚙ Two things this still does NOT say. It does not forbid working at high resolution —
+   identifying a mark correctly at 21,100 px and then describing it at a scale the reader can
+   reach is exactly right, and it is how the dissolution bias gets caught. And where the job file
+   fails to state a ceiling, **assume the flat-`img` case** (the tightest), rather than assuming
+   3840. Type specimen for the ladder case remains
+   `peter-paul-rubens-a-view-of-het-steen-in-the-early-morning`: `"w": 21100, "h": 12384,
+   "pyr": [[1920, 1127], [3840, 2254]]` — the 21,100 px original is a **footer link only, never
+   the viewer**, and `maxZoomPixelRatio: 2` magnifies without adding a pixel of detail, so a
+   drafter working from `orig` is at 5.5× the reader's maximum. Verified on rendered ladder steps
+   (`.dtmp/tourqc-pass/w9verify/`): a gun lock occupying **31 × 16 px** at 3840, and a kingfisher
+   legible only ABOVE the ceiling — both had been written up as things to look at.
+   ⚠ **One live case where the stated ceiling is a lie:** the two `ng-london` works are recorded
+   as unbounded IIIF and the server clamps at **800 px** (HIRES_SOURCING round 5). Until that is
+   fixed, treat them as the flat-`img` case.
+
+**C. Per stop, the two structural tests** *(run order **19–20**)*
 8. **The deepen test.** Cover the four paragraphs. Does the stop still say something? If its
    content survives only as an illustration of a paragraph's claim, it fails — give it a
    different mark or cut it.
@@ -394,19 +871,30 @@ the Szał false-negative lesson one level up.
    visible thing it rests on and confirm that thing is inside this stop's own crop. If it is
    not, the claim goes or the box moves.
 
-**D. Per tour, before merge**
+**D. Per tour, before merge** *(run order **1–7** — this group goes FIRST, and the numbers in the
+map above now say so)*
 ⚙ **RUN GROUP D FIRST, NOT LAST.** Both calibration auditors reached this independently.
 Steps 10 + 12 + the box arithmetic produced about **30% of total yield at roughly 10% of the
 effort**, and running them last means adjudicating stops that should not exist. Step 12 failed
 in 5 of 5 tours (~17 of 37 stops); `craft` pre-spends its stops, often word for word, and one
 read of `craft` grepped against the stop bodies finds it in about a minute.
+⚙ **That instruction is now encoded in the numbering rather than asserted against it** — see the
+run-order map above. It is also why the old *"run group D first"* note kept being ignored: it sat
+under a list numbered the other way round.
 
-10. **Diff the tour against itself.** Read `see`, `about`, `craft` and every stop looking only
+10. **Diff the tour against itself.** ⚙ *(run order **4**. **Old step 12 — paragraph scope — is
+    FOLDED IN HERE**; it was a second read of the same material.)* Read `see`, `about`, `craft` and every stop looking only
     for pairs that disagree — a parasol vertical in one and diagonal in another, an object
     "dull red" in one and "the more saturated of two" in another, a tie "hot" in one and
     "cool" in another. Every such pair has a wrong half, and this finds them with no image at
     all. Cheapest check in the protocol.
-10b. ⚙ **BOX ARITHMETIC — free, no image needed.** Read every box's coordinates against its
+    ⚙ **In the same read, answer the scope question (old 12): for each stop, does its specific
+    INSTANCE already appear in `craft` or `see`?** If it does, the paragraph spends it — **cut it
+    from the paragraph, not from the stop** (Law 2; the stop is the only place the reader is
+    looking at the thing). This failed in **5 of 5** calibration tours, ~17 of 37 stops, and one
+    read of `craft` grepped against the stop bodies finds it in about a minute. Two questions,
+    one pass over the entry: *do any two statements disagree*, and *does a lens pre-spend a stop*.
+10b. ⚙ **BOX ARITHMETIC — SCRIPTABLE ARITHMETIC, no image, no judgement** *(run order **2**)*. Read every box's coordinates against its
     body's stated location. A Seurat stop said "a patch of open water **just below the
     horizon**" while its own box sat at y 0.18–0.31 and the tour's own text put the horizon "a
     third down" — provably in the sky, from two numbers. This caught 3 of 9 box defects in
@@ -414,43 +902,126 @@ read of `craft` grepped against the stop bodies finds it in about a minute.
     which to open crops**: in all five calibration works, the pair flagged at step 10 pointed
     at the crop that then produced the defect.
 10c. ⚙ **THE SURVEY AND THE COVERAGE GUARD — NEW 2026-08-25 (corrected the same day), free, no
-    image needed.** Two checks that run before anyone audits a stop.
+    image needed.** Two checks that run before anyone audits a stop. ⚙ *(run order: **(a) = 5**,
+    a judgement read; **(b) = 3**, pure arithmetic and part of the script block. They were paired
+    here because they arrived together, not because they are the same kind of work — (b) runs
+    two steps earlier than (a).)*
     (a) **Every stop names the mark it starts from.** The draft returns the survey — the list of
     distinct marks that reward a stop — one entry per stop, in stop order (RULE C). ⚙ **This is a
     LAW-1 GATE, not a count check.** What it catches is an entry that is not a mark on the painted
     surface: a **signature** (Fałat stop 9, *"Signed into the snow"*), an **absence** (Fałat stop
     8, *"The half with no story"* — the stated content is that nothing is there), a **zone rather
-    than a mark** (Rembrandt stop 5, *"Faces dissolving into the dark"*), or a stop **with no box
-    at all** (Szał, twice). Any of those is the defect whatever the count is. ~~A list that does
+    than a mark** (Rembrandt stop 5, *"Faces dissolving into the dark"*), ~~or a stop **with no box
+    at all** (Szał, twice)~~. Any of those is the defect whatever the count is. ~~A list that does
     not match the count means the number was picked.~~ ⚙ No list at all still means the number was
     taken on trust — send it back to the survey — but **do not expect the survey to change the
     count, and do not treat an unchanged count as a failed survey** (blind surveys reproduce the
     shipped counts; see RULE C). On an existing tour being repaired, reconstruct the list from the
     stops: if two entries name the same mark at different magnifications, that is the merge.
-    (b) **The coverage guard.** Sum `w * h` over the boxes, subtracting a full-frame closing
-    synthesis stop, and judge the **DESCENT**. **Over ~1.0, merge stops.** ⚙ Expect this to fire
-    rarely: descent-only corpus median is **0.53**, flat across 3–10 stops, and only 70 of 375
-    tours exceed 1.0. ⚙ ~~The corpus medians are 0.80 at six stops and 1.39 at eight, with stop
+    ⭐ **THE BOXLESS STOP IS UN-STRUCK AND NOW PERMITTED — ruled 2026-08-25 on Fuad's reading of
+    the calibration specimen** (*"it even allowed a second paragraph on a second stop to add more
+    to the text"*). The two Szał stops cited above as defects are the same device he is praising
+    in Parasol's stop 2, *"Looking up at her"*. It is genuinely rare — **2,461 of 2,465 stops
+    carry an `x`; the four that do not are all pilot-batch** (Szał ×2, Parasol, Leech) — and it
+    stays rare, because it is an exemption from Law 1, not a hole in it. **Four conditions, all
+    required:**
+    (i) **At most ONE per tour**, and never the opener or the close.
+    (ii) **Its subject must be one no crop could hold** — a tradition, a chronology, a
+    biographical arc, the picture's place in a lineage. Parasol's argues that Monet spends the
+    altarpiece viewpoint on his wife on a walk; Szał's two are the 1894 European fever and the
+    painter's death at twenty-eight. If a box COULD be drawn for it, draw one — a boxless stop
+    is not a licence to skip the crop-check, and Law 1 still governs every other stop.
+    (iii) **It must not be reachable from the four lenses.** If `context` could carry it, it
+    belongs in `context`; the boxless stop exists because the argument is longer than a lens can
+    hold, which is why the specimen's `context` is 74 words and this stop is 138.
+    (iv) **It goes in the survey as an argument, explicitly flagged as boxless**, so nobody
+    later audits it as a missing box. A boxless stop that is NOT declared is still the old
+    defect: an unmarked hole where a crop-check should have happened.
+    (b) **The coverage guard.** ⚙ **SCRIPTABLE ARITHMETIC — this is not an audit step; it needs
+    no judgement, no crop and no image, and it should run as a script alongside 10b and 11.**
+    Sum `w * h` over the boxes, subtracting a full-frame closing
+    synthesis stop, and judge the **DESCENT**. **Over ~1.14, merge stops** ⚙ *(recalibrated from
+    ~1.0 on 2026-08-25 when every box was padded — 1.14 is the value that keeps the same 71 of
+    375 tours firing; do not re-derive it from 1.15 or 1.32, the padding tapers)*. ⚙ Expect this
+    to fire rarely: descent-only corpus median is ~~**0.53**~~ **0.693 pre-padding / 0.850 as the
+    store now stands** (corrected 2026-08-25), flat across 3–10 stops, and only **71 of 375**
+    tours exceed the guard. ⚙ ~~The corpus medians are 0.80 at six stops and 1.39 at eight, with stop
     length flat at ~120 words, so the extra stops bought words, not depth.~~ **WRONG — struck
     2026-08-25**: that sum included the spec's own prescribed full-frame closer. With the closer
     removed the medians are flat at ~0.7 and extra stops add new small boxes rather than re-covering
-    ground. Treat a tour over 1.0 as an **outlier to look at**, not as a routine sizing failure.
-11. **Box hygiene, mechanical** (this should be a SCRIPT, not an audit step). ⚙ **NESTING IS
+    ground. Treat a tour over ~~1.0~~ **1.14** as an **outlier to look at**, not as a routine sizing failure.
+10d. ⚙ **THE NEGATION PASS — NEW 2026-08-25, free, no image needed** *(run order **6**)*. Runs over the four
+    lenses, every stop body and the `beside`. Full rule and the corpus measurement in
+    *NEGATIONS* above; this is the mechanical version. ⛔ **It is a CONTENT pass, not a length
+    pass.** The only thing it is allowed to remove is a clause that communicates nothing.
+    (a) Grep the entry for `rather than`, `instead of`, `not so much`, `less a`, `nothing but`,
+    `Nothing here`, `Nothing in the picture`, and the serial `no X, no Y`.
+    (b) On each hit, **delete the negative clause and re-read the sentence. Does it still
+    communicate everything it did?** Yes → the clause was deferring, it carried no content;
+    cut it. No → it is load-bearing; keep it, and check the sentence LANDS on it rather than
+    passing through it. ⚠ Judge by CONTENT, not by whether the remainder still parses — and
+    never book a cut on the ground that the paragraph gets shorter.
+    (c) **Two caps, both set by the calibration specimen.** A serial `no X, no Y` list stops at
+    TWO terms unless a third refuses a different KIND of thing — corpus-wide ~~206 of 371 lists
+    (55%)~~ ⚙ **241 of 387 (62%), re-measured 2026-08-25 with the pattern stated in *NEGATIONS*;
+    the struck pair reproduces under no method** — run to three or more; the specimen uses the
+    construction three times and stops at two
+    every time. And `rather than` more than about four times in one entry is monotony — the
+    corpus mean is 4.48 per tour and it is the most repeated hinge in the store, while the
+    specimen uses it **zero** times in 1,118 words. Vary the construction; do not just cut it.
+    ⛔ **This step NEVER produces a word cut as its goal, and a word count is never its
+    evidence.** Bands are a floor and a ceiling, never a target in either direction: a lens
+    finished at 96 words is finished, and a lens whose every sentence earns its place may run
+    to the top of the band or past it. Fuad, ruling this: *"sometimes more space may be
+    needed"* and *"it can be as long as it gets — but the content needs to be justified."*
+    If the pass shortens a paragraph below the floor, the paragraph was under-reported, not
+    over-negated — send it back to the plate, do not re-pad it. And **if a proposed cut removes
+    something the entry does not say anywhere else, it is not a negation fix — it is a trim.
+    Drop it.**
+10e. ⚙ **THE PROPORTION PASS — NEW 2026-08-25, free, no image needed** *(run order **6b**, with
+    10d — it is the same read in the other direction)*. ⚠ *Merged from `w15/STUDY_SPEC_PATCH.md`
+    pair 3, whose anchor no longer existed; **re-derived from its stated intent**, which was: a QC
+    step that adjudicates CLAIMED room, over the lenses and the `beside` only.*
+    **Scope: the four lenses and the `beside`. Stops are OUT of scope by ruling**
+    (*⭐ THE STOPS ARE NOT IN SCOPE*; the calibration specimen's stops average 151 words and are
+    the model), so this step never looks at one.
+    For any lens in the upper half of its band or above it, and any `beside` over ~115 words:
+    **name what the extra room is carrying, one clause per unit.** A verified, non-redundant
+    thing a reader could not get from looking at the picture → **it is earned; leave it, whatever
+    the count says.** *"There was more available"*, a third and fourth term of a list, a
+    restatement of another lens, or a fact about the artist where the lens is about this object
+    → it is not earned, and it comes out under the governing test — **as an unjustified sentence,
+    not as a long paragraph.**
+    ⚙ Where the draft returned a claim in `flags` (pipeline step 3), **adjudicate the stated
+    claim rather than re-deriving one** — that is the whole reason the brief asks for it.
+    ⛔ **NEVER RUN THIS IN REVERSE.** A short paragraph is not a finding and this step may not be
+    used to argue one up. A `context` at 74 words is the calibration specimen.
+11. **Box hygiene — ⚙ SCRIPTABLE ARITHMETIC. This IS a script, not an audit step** *(run order
+    **1** — the first thing that happens to a tour)*. ⚙ **NESTING IS
     ONLY A DEFECT WHEN the containing box is MID-TOUR *and* the contained stop's subject is
     one the container's own body never claims** (ruled 2026-08-25 by the first box-repair
     batch, which declined most nesting flags as legitimate). Two legitimate shapes: every
     detail stop sitting inside a wide OPENER, and region-to-detail zoom where the container
     names the thing the next stop magnifies. No two stops sharing a box; no box whose title names something outside
-    its own frame; no box clipping its named subject; no box outside [0, 1.002]. ⚙ Add one
+    its own frame; no box clipping its named subject; no box outside [0, 1.002].
+    ⚙ **And no box drawn tight to its subject** — see *Boxes are drawn with breathing room*
+    (2026-08-25): a box CONTAINS its subject with air around it. Note the two rules meet here —
+    *no box clipping its named subject* is the failure padding was introduced to repair (the Heiss
+    stop 1 head-crop), so a clipping flag and a tightness flag are the same finding twice.
+    ⚙ Add one
     judgement check the arithmetic misses: **does the crop's dominant content support or
     contradict the body's premise?** Three calibration boxes were correctly placed and still
     wrong — wide establishing crops whose dominant content refuted their own stop's premise
     of emptiness.
-12. **Paragraph scope.** For each stop, confirm its specific instance does not already appear
-    in `craft` or `see`. If it does, the paragraph spends it — cut it from the paragraph, not
-    from the stop.
+12. ⚙ **FOLDED INTO STEP 10 (run order 4) on 2026-08-25 — kept in place so the reference
+    resolves.** ~~**Paragraph scope.** For each stop, confirm its specific instance does not
+    already appear in `craft` or `see`. If it does, the paragraph spends it — cut it from the
+    paragraph, not from the stop.~~ The rule is unchanged and is **not** retired; only its
+    position moved. It was a second free, image-less read of exactly the material step 10 already
+    has open, and splitting it across two numbers is why it kept being run last — after the crops
+    had been adjudicated, which is precisely too late. **Run it inside step 10.**
 
-**D2. Per tour — no research note may ship as prose (2026-08-25)**
+**D2. Per tour — no research note may ship as prose (2026-08-25)** *(run order **7**)*
 12b. Grep the entry for `Fuad`, `sighting`, `unfixed`, `treat the`, `almost certainly`,
     `cannot be confirmed`, `unverified`, `TBC`. A Matisse `context` shipped with *"Fuad's
     sighting was almost certainly of it on loan… so treat the encounter as real but the venue
@@ -459,9 +1030,10 @@ read of `craft` grepped against the stop bodies finds it in about a minute.
     in the reader's text. Where `seenConfidence` is not `sure`, state the institutional fact
     and stop. A corpus grep found this one isolated; re-run it after any batch.
 
-**D3. Per tour — the `beside` (2026-08-25)**
+**D3. Per tour — the `beside` (2026-08-25)** *(run order **21–24**)*
 Its claims are fact-class and every one of them is about a DIFFERENT painting, so none of
-groups A–C touches it. Run these five in order; 12c and 12d are cheap and refuse the whole
+groups A–C touches it. Run these ~~five~~ **four** in order (12g folded into step 5 — see the
+run-order map); 12c and 12d are cheap and refuse the whole
 paragraph before anyone argues about its prose.
 
 12c. **The companion must resolve to a real canon id.** Look the named work up in
@@ -496,9 +1068,16 @@ paragraph before anyone argues about its prose.
     about what the viewer feels, takes away or should notice is the afterimage shape and comes
     out. Then deletability both ways: cut the `beside` and the tour loses nothing; cut the
     tour and the `beside` still stands.
-12g. **The existing greps apply to `beside` too** — step 4 (finish claims), step 5 (absolute
-    negatives and superlatives: `the only`, `hangs twice`, `the whole picture`, `the entire
-    picture`) and step 7 (hedges), plus 12b's research-note grep.
+12g. ⚙ **FOLDED INTO STEP 5 (run order 12) on 2026-08-25 — kept in place so the reference
+    resolves.** ~~**The existing greps apply to `beside` too** — step 4 (finish claims), step 5
+    (absolute negatives and superlatives: `the only`, `hangs twice`, `the whole picture`, `the
+    entire picture`) and step 7 (hedges), plus 12b's research-note grep.~~ It was a POINTER, not
+    an operation — a numbered step whose entire content was *"three other steps also apply here"*,
+    which is how the `beside` ended up outside the scope statement of the steps that govern it.
+    The field name now sits in **step 5's own scope**, and steps 4, 7 and 12b likewise run over
+    `beside` by their own terms. ⚠ **Do not confuse this 12g with the ⛔ *A `beside` NEVER COUNTS
+    THE COLLECTION* rule below**, which is also called 12g throughout this file and is a live,
+    unfolded prohibition.
 
 ⛔ **AND ONE RULE OF ITS OWN — A `beside` NEVER COUNTS THE COLLECTION.** Fuad, 2026-08-25:
 *"let's avoid naming exact amount in the besides part, as the collection may grow."* This
@@ -551,7 +1130,9 @@ Grep, mechanically: `hangs twice`, `the only`, `one of (two|three|four|\d)`, `\b
 is the shipped Heiss `beside` — recorded in full under *Open items* below with its redraft,
 because it is still unfixed.
 
-**D4. Per tour — the cross-references (2026-08-25)**
+**D4. Per tour — the cross-references (2026-08-25)** *(run order **25** — ⚙ **SCRIPTABLE**, and
+it already has its script: `validate-refs.js`. It is the model the other three scripted steps
+should follow.)*
 12h. **Every in-collection work the prose names carries a `refs` entry, and every `refs` entry
     is verified three ways.** Run it on `context`, on every `deeper[].body`, and on the
     `beside` — the `beside` names one by definition, so **a `beside` without a ref is
@@ -572,12 +1153,17 @@ because it is still unfixed.
     NOT FOUND / AMBIGUOUS / SELF / SHAPE, and **it gates the batch**: a merge does not proceed
     over a failure.
 
-**E. When repairing an existing tour**
+**E. When repairing an existing tour** *(run order **26**)*
 13. Fix the flagged error, then **re-read the entire entry end to end** and re-run A–D on it.
     A repair that corrects one sentence and leaves its propagation elsewhere is a defect that
     now reads as deliberate. Precedents: a bird fixed while the same tour's garment,
     expression and signature box stayed wrong; a stop and its box corrected while the
     identical error stood in `see`.
+    ⚙ **THIS IS NOT OPTIONAL AND IT KEEPS PAYING (measured 2026-08-25, wave 4).** The mandatory
+    whole-entry re-audit found **5 box errors the audit that triggered the repair had missed** —
+    including a stop titled *"The fur collar in the dark"* whose box held **no collar**. The
+    re-audit is not a formality on top of a repair; on that wave it was a better detector than
+    the audit.
 
 ### Drafting-time box verification (MANDATORY, 2026-08-25)
 
@@ -589,6 +1175,102 @@ and the merge is refused if a body describes an object its own box excludes. Two
 structural checks worth running mechanically before merge: no two stops sharing a box (found
 duplicated in Rembrandt's *Simeon*, where stops 2 and 3 are the same crop), and no box
 clipping the subject its title names.
+
+### Boxes are drawn with breathing room, not tight to the subject (Fuad, 2026-08-25)
+
+**Fuad, on the Zorn:** *"the zoomed stop can also use a bit of padding, ie. just me zoomed out a
+bit more by about 15%… considering the resolution, the stops would be clearer if they were a bit
+zoomed out."*
+
+**The rule: a box CONTAINS its subject with air around it. It does not frame the subject.** A box
+cropped to the edges of the thing it names is wrong even when it is accurate — and "accurate but
+unreadable" is the exact failure Fuad reported.
+
+**Why, and it is a resolution argument, not a taste one.** The viewer fits the box to the pane
+(`flyToAnchor` → `viewport.fitBounds`), so the reader's sharpness is
+`pixels-in-crop ÷ pane-pixels`. The pane is `.cv-study-viewer`, 57% of the viewport by full
+height — about **2188 × 2160 device pixels** on a 1920×1080 screen at DPR 2. Against that, the
+plate ceilings are low (checklist 7e: per work, and for the `.tif`-backed works only 1920).
+**A tight box is therefore always shown upscaled**, and the tighter it is the mushier it gets.
+Padding adds no pixels — it lowers the upscale, and it gives the mush a context the eye can
+resolve it against.
+
+Measured on `anders-zorn-mrs-veronica-heiss`, the tour Fuad was looking at (plate served at
+**1920 × 2566**, not the 3478 × 4649 the store declares — see 7e's TIFF trap): stop 1 *"The one
+lit point"* crops 576 × 642 real pixels into that pane, an upscale of **3.36×**; stop 6 *"Zorn
+1891"* crops 538 × 308, an upscale of **4.07×**. Both are soft on arrival. And stop 1's box, at
+its shipped coordinates, **cut the top of the sitter's head off and put her chin on the bottom
+edge** — already a violation of step 11's *no box clipping its named subject*. Padding it 15%
+linear contains the head with air to spare. **The padding rule repairs an existing defect class;
+it is not only a comfort change.**
+
+**The figure: 15% LINEAR — `w × 1.15` and `h × 1.15`, about the box's own centre.** Linear is the
+natural reading of "zoomed out 15%" and it is what the viewer's zoom control does; it grows AREA
+by 32%, which is why the coverage guard had to move with it (**1.0 → 1.14**). 25% was rendered and
+rejected: on `heiss` stop 3 *"The fur as a black mass"* it pulls the sitter's jaw into frame — a
+second and more prominent object under a title that names fur — and on stop 2 *"The bird in the
+black"* everything it adds is empty background, so the bird just gets smaller. **15% is the
+ceiling, not the starting point.**
+
+**It tapers with box size, because large boxes gain nothing and lose the zoom.** With
+`m = max(w, h)`:
+- `m ≤ 0.40` — a DETAIL. Full 15%. This is where the mush is and where the padding does its work.
+- `0.40 < m < 0.80` — linear ramp down.
+- `m ≥ 0.80` — a REGION. **No padding at all.** Padding an 0.8-wide box toward 0.92 costs the
+  reader the zoom, which is the whole point of the stop, and buys no sharpness — a box that big
+  is at or past native scale on any decent plate.
+
+**A full-frame closing box is untouched by construction, not by a special case. So is the wide
+opener.** Nothing the coverage guard's full-frame exemption depends on can move — measured: zero
+boxes newly reach `w ≥ 0.95 ∧ h ≥ 0.95`, and zero tours change exemption status.
+
+**A box on an edge keeps its full padded SIZE and shifts inward** rather than being clipped. This
+provably still contains the original (if `x < d` the clamped box is `[0, w+2d]` and
+`x + w ≤ w + 2d`), so the subject is never left behind; it only moves off centre.
+
+⛔ **PADDING DOES NOT RESCUE A BOX THAT IS TOO SMALL FOR ITS PLATE, AND MUST NOT BE USED TO TRY.**
+The justification above is **framing and context, plus a modest sharpness gain — it is NOT a fix
+for plate-limited crops**, and the two must not be conflated, because the boxes that most look
+like they need help are exactly the ones this cannot help. The pixel-extent rule (checklist 7e,
+now per work) is unaffected and still binds. Type specimen:
+`edouard-manet-young-lady-in-1866` stop 9 *"Shoe-toe beneath the hem"*, `w 0.10 h 0.06`, crops
+**261 × 228 px** into a 2188 px pane — an upscale of **8.4×**. 15% takes that to 7.3×. **It is
+still a smudge.** At the small end the answer is a bigger plate or a different stop, never more
+padding. The seven smallest boxes in the corpus are all in this class, and
+`salvador-dali-the-great-masturbator` owns five of them.
+
+#### Box padding — APPLIED 2026-08-25 (this ages; re-measure, don't cite)
+
+Every stop box in the store was padded outward on Fuad's instruction. Transform, applier and full
+before/after table: `.dtmp/tourqc-pass/w11/` (`pad.js`, `apply-pad.js`, `table_applied.tsv`,
+`pre_pad_snapshot.json`).
+
+- Parameters: `P = 0.15, M0 = 0.40, M1 = 0.80, CAP = 0.96`, coordinates at 4 dp.
+- **2,174 of 2,461 boxed stops changed, across 374 of 375 tours.** 287 boxes untouched (138 at or
+  above the taper's ceiling on both axes, 149 tapered to zero). 4 stops carry no box and were
+  skipped.
+- Descent coverage **0.6926 → 0.8498**; tours over 1.0 **71 → 118**; **guard moved to 1.14**,
+  which holds the firing set at the same 71 tours. *(All four figures re-verified against the live
+  store 2026-08-25: median 0.8498, over-1.0 = 118, over-1.14 = 71, full-frame closers 109.)*
+- Full-frame / exemption churn: **zero**.
+- **New neighbour collisions: 33 pairs cross a threshold that did not before** — 9 cross IoU 0.5,
+  1 crosses IoU 0.7, **0 cross IoU 0.9**, 25 cross containment 0.9. Against a baseline of 7,147
+  within-tour pairs, of which **1,048 already sat at containment ≥ 0.9**.
+  ⚙ **Most of the 25 are the shape step 11 already rules LEGITIMATE** — a detail stop sitting
+  inside a wide opener (`the-kitchen-maid` #0+#6, `the-hermitage-at-pontoise` #0+#1,
+  `study-for-le-bec-du-hoc-grandcamp` #0+#3, `white-and-yellow-chrysanthemums…` #0+#2 all have the
+  opener as the container). The ones worth a look are the **mid-tour-to-mid-tour** pairs, where
+  step 11's defect condition can actually be met:
+  **`peter-paul-rubens-self-portrait` #3 + #4** (*The living beard* / *Lace and the glint of gold*,
+  IoU .533 → .570 — the largest, and it was already over 0.5 before the padding),
+  `ophelia` #1 + #5, `the-kitchen-maid` #1 + #4, `j-m-w-turner-the-parting-of-hero-and-leander`
+  #1 + #2, `vincent-van-gogh-roses` #1 + #5, `henri-matisse-auguste-pellerin-ii` #0 + #2.
+  Full list with geometry: `w11/collisions_J.json`.
+- **Title spot-check: 12 stops across 12 works, rendered before/after and looked at. No case found
+  where padding imported a second, more prominent object** under a title naming the first. That
+  was the failure mode 25% produced and 15% does not.
+- The transform is **reversible and was proved so**: apply → revert reproduced the file byte for
+  byte, and the revert was executed against the real file and left an empty `git diff`.
 
 ### Closing-paragraph experiments (2026-08-22 — settled, do not re-pilot)
 
@@ -670,9 +1352,11 @@ all six before drafting one — and the seventh, below.
 
 ⚙ **A SEVENTH APPROVED SPECIMEN, 2026-08-25** — Fuad: *"besides on cypresses is good"*. It belongs
 to `vincent-van-gogh-korenveld-met-cipressen` and points at
-`vincent-van-gogh-wheat-field-with-cypresses` (Metropolitan Museum, toured, both 1889). It is
-prepared with its `refs` entry at `.dtmp/tourqc-pass/beside-approved-2026-08-25.json` and is
-**not yet applied** — another pass holds `art_inspect.js`. Three things it models: the pointer
+`vincent-van-gogh-wheat-field-with-cypresses` (Metropolitan Museum, toured, both 1889). It was
+prepared with its `refs` entry at `.dtmp/tourqc-pass/beside-approved-2026-08-25.json` while
+another pass held `art_inspect.js`. ⚙ ~~**not yet applied**~~ — **APPLIED, confirmed against the
+live store 2026-08-25**: the entry carries its `beside` and its ref, and the corpus is at **seven**
+`beside` paragraphs, not six. Three things it models: the pointer
 states membership WITHOUT counting (*"is in this collection too"* — 12g); the interval may be
 **zero and still be the whole point** (the outdoor version and the September studio repetition of
 one motif in one year); and the reversal is the default `here … ; there …` close turned on
@@ -734,6 +1418,13 @@ the work and its museum, which is enough. The membership is a REQUIREMENT, not a
 **Band: 90–120 words, margin soft** — same treatment as every other band in this spec. The six
 measure 92–116 words in 3–4 sentences. Overrun is judged, not gated; cut scaffolding, never
 a verified detail.
+⚙ **Referent check, 2026-08-25: "same treatment as every other band in this spec" now points at
+THE GOVERNING TEST** (*every sentence in a lens must earn its place; length is an outcome, never a
+target, in either direction*), which replaced the *"a floor and a ceiling, never a target to
+fill"* note this sentence was written against. The sentence is still true — **its referent moved,
+and the new one also refuses the reverse**, so a `beside` may not be argued UP toward 120 any more
+than it may be trimmed toward 90. A `beside` over ~115 words is where checklist **10e** asks what
+the extra room is carrying.
 
 **It carries a `refs` entry.** The companion is named, it is in this collection, and its id was
 already written down at checklist 12c — so it links. **A `beside` without a ref is incomplete.**
@@ -761,7 +1452,13 @@ anyway."*
 
 A feasibility scan of the store, run the day the gate lifted:
 
-- **6 of 375 tours carry a `beside`** (the pilot pair plus four).
+- ~~**6 of 375 tours carry a `beside`** (the pilot pair plus four).~~ ⚙ **STALE — corrected
+  2026-08-25: it is 7, and the seventh is APPLIED.** Verified against the live store, not
+  inferred. The seventh is `vincent-van-gogh-korenveld-met-cipressen` — the specimen the section
+  above described as *"prepared… not yet applied"*, which it now is, with its `refs` entry. Read
+  all **seven** before drafting one. ⚠ Two notes in this file recorded the same fact at two
+  different moments and only one of them was updated; that is what a "this ages, re-measure"
+  header is for, and it is why the count is now given with the method: `Object.values(CANVAS_INSPECT).filter(e => e.beside).length`.
 - Of the remaining 369: **~150 could carry a strong one today**; **~90 more are workable with
   effort**; realistic ceiling **240–280**. The residue is not a drafting problem, it is a
   corpus problem.
@@ -984,9 +1681,41 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
 1. **Pick the batch.** The tour-priority signal is `seenConfidence:"sure"` + a `note` in
    the canon (there is **no** `favorite` flag). That 2D-painting pool is now exhausted, so
    batches draw from the `unsure`/`probably` marquee tier. **Screen images first:**
-   sculpture / installation / gallery-room shots / b&w print repros are NOT tour-eligible —
+   ~~sculpture /~~ installation / gallery-room shots / b&w print repros are NOT tour-eligible —
    the fly-to-region format needs a painted surface. Some canon P18s are b&w heliogravures
    or framed gallery photos; catch these before drafting.
+
+   ⛔ **THE SCULPTURE BAN WAS FALSE AND IS REMOVED — 2026-08-25.** It was written as a
+   prediction about the format and the store had already refuted it: **`the-thinker` (7 stops),
+   `the-kiss` (5) and `the-gates-of-hell` (7) are toured**, plus two more drafted this session.
+   The ban survived only because nobody read it against the data it governs — the same shape as
+   every other correction in this file.
+
+   ⭐ **THE THREE RODIN TOURS ARE THE SCULPTURE MODEL, exactly as
+   `vincent-van-gogh-portrait-of-adeline-ravoux` is the model named for Law 1. Read them before
+   drafting one.** Their `craft` paragraphs are strong sculpture criticism and they show what the
+   four lenses do when there is no paint: **armature and enlargement** (the studio process, and
+   what scaling does to a form), **closed versus open silhouette**, **weighted proportion**,
+   the **finished-figure against raw-base contrast**, and **patina** — surface as a decision
+   about light rather than about colour. Those are the sculptural equivalents of handling, and
+   they are stop-sized: each is a mark on a real surface that Law 1 can start from.
+
+   ⛔ **AND THE RULE THAT WAS GENUINELY MISSING — A SCULPTURE TOUR DESCRIBES A PHOTOGRAPH OF THE
+   OBJECT, AND MUST SAY SO ONCE, IN THE CLOSING STOP.** This is the one real difference and the
+   ban was standing where it should have been.
+   **Light direction, viewing angle, and what the view excludes are the PHOTOGRAPHER's decisions.
+   No stop may attribute any of them to the maker.** A raking shadow across a shoulder, a
+   three-quarter view that hides an arm, a dark ground that silhouettes a profile — none of that
+   is Rodin. Saying it once, in the close, is what lets the rest of the tour describe the
+   photographed surface honestly without hedging every sentence.
+   ⚙ **The dissolution bias has no analogue in stone** — there is nothing to describe as more
+   dissolved than it is. **Its analogue is attributing a raking shadow or a low camera angle to
+   the carver**, and it will be directional in the same way, because the dramatic reading is the
+   easy one. Check whether a "decision" is in the bronze or in the lighting.
+   ⚠ The rest of the screen still applies, and applies harder: a **gallery-room shot** of a
+   sculpture is still not tour-eligible (it is a photograph of a room), and a cast is a different
+   photographed object from every other cast — the identity-discipline rule in HIRES_SOURCING is
+   not relaxed here.
 2. **Download each image** locally. Resolve the canon `qid`'s P18 via Wikidata
    `wbgetentities` / `Special:EntityData`, then Commons `Special:FilePath/<file>?width=1600`
    (URL-encode; Commons rate-limits — space requests). Broken qids resolve via Commons
@@ -1030,7 +1759,21 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
    descriptions, one per stop, in stop order — so **every stop's starting mark is auditable** at
    checklist 10c instead of being taken on trust. Require the coverage sum in the same breath: the
    drafter states `sum(w*h)` for its own boxes, minus a full-frame closer, and merges stops if the
-   DESCENT passes ~1.0.
+   DESCENT passes **~1.14** (was ~~1.0~~, recalibrated 2026-08-25 with the box padding).
+   ⚙ **AND IT MUST NOT NAME A LENGTH EITHER, IN EITHER DIRECTION (2026-08-25).** The bands go in
+   the brief as floor and ceiling; **space is proportional to substance** goes in beside them
+   with Fuad's caveat attached — *"not every painting will"*. A brief that says *this one is
+   rich, go long* hands the drafter a target exactly as a stop count does, and buys length before
+   anyone has counted what there is to say; a brief that says *keep it tight* buys the reverse
+   defect. Ask for the CLAIM instead: **where a lens sits in the upper half of its band or above
+   it, the draft names what the extra room carries**, one clause per unit, returned in `flags`
+   (draft-only, stripped at merge) so checklist 10e adjudicates a stated claim rather than
+   re-deriving one.
+   ⚙ **The job file also states the work's READER CEILING (checklist 7e), per work** — the plate's
+   pixel size AND which tier it is on (true tile pyramid / `pyr` ladder top level / flat `img` /
+   `.tif`-backed and therefore capped at 1920). That is a fact about the source, not a direction
+   on the count or the length, and it is what makes a brushstroke-level `craft` claim adjudicable
+   instead of guessed at.
 4. **Whole-first image QC (mandatory, 2026-08-24 — THE ORDER IS THE MECHANISM, same as
    the reads pipeline's account-first check):** the reviewer looks at the FULL image and
    writes a short account of what it sees at picture scale — main elements, how regions
@@ -1068,7 +1811,8 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
    before/after, assert every existing entry is byte-identical, the count delta equals the
    batch size, and no box exceeds `[0, 1.002]`. ⚙ **Assert the coverage guard while the boxes
    are already in hand**: `sum(w*h)` per entry, minus a full-frame closing box, must not pass
-   ~1.0 (checklist 10c). ⚙ **Then run
+   **~1.14** (was ~~1.0~~; checklist 10c(b) / run order 3, recalibrated 2026-08-25 with the padding —
+   **this assertion and the drafter's in step 3 must always carry the same number**). ⚙ **Then run
    `node .dtmp/tourqc-pass/validate-refs.js` — it exits non-zero and the batch does not ship
    on a failure** (run it against the plan file first, before apply, to fail early). Commit
    (`git commit -F -`) and push (canvas `?v=` is auto).
@@ -1087,8 +1831,13 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
   2505×3000 the red rim is plainly there; the tour was right and the flag was overturned.
   So: **check the plate's pixel size BEFORE trusting a negative visual finding**, and where
   the plate is poor, upgrade the site (rule below) rather than "fixing" the tour to match a
-  bad image. Standing gap: **71 of 363 toured works have no `art_hires` record**, so their
-  Study zoom is capped at the 900px canon plate — a backfill campaign worth its own batch.
+  bad image. Standing gap: ~~**71 of 363 toured works have no `art_hires` record**~~ ⚙ **stale —
+  re-measured 2026-08-25: 61 of 375** (method: `art_inspect` keys with no `art_hires` key), so
+  their Study zoom is capped at the ~900px canon plate — a backfill campaign worth its own batch.
+  ⚙ **The whole-corpus version of that gap is far larger and is now measured**: **848 canon works
+  have no `art_hires` row**, of which **258 are works Fuad has actually seen** (`!wish`) and
+  **152 of those are under 1,600 px**. Figures, method and the holders that would close them:
+  HIRES_SOURCING.md, round 5.
 - ⚠ **BUT FIRST CHECK YOU ARE LOOKING AT THE FRONT OF THE OBJECT** (2026-08-25, the Hydra
   case). The Klimt candidate costed at ×1.89 with a "7.62% aspect delta caused by the
   parchment surround" turned out to be a photograph of the panel's **VERSO** — wooden
