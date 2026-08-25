@@ -182,6 +182,23 @@ tour carries are fenced out with it. **Needs Fuad's verdict**, one of: (a) refs 
 calls it, the safe default is to mint refs only where a read's own prose names a work, never
 to copy a tour's ref list down. Nothing is ruled here.
 
+⚙ **BOTH OF THE ABOVE ARE ON THE HANDOFF LIST — `QC_LEDGER.md` → "Awaiting Fuad's verdict",
+item 7** (2026-08-25). Confirmed still open there, and recorded with the point this section
+already makes but which is easy to lose when the two are asked separately: ⛔ **they are
+ENTANGLED and should be ruled together** — fence `beside` out of the cascade and most of a
+tour's refs go with it, so a `refs` ruling taken first would be answering a question whose
+inputs the `beside` ruling can still change.
+
+⚠ **And one measurement that bears on the `beside` question, taken 2026-08-25:** the store now
+holds **22** `beside` paragraphs, up from the **7** §11 records — so the field this ruling
+governs has **tripled** since the question was framed, and a decision to fence `beside` out of
+the cascade now costs three times what it would have. ⚙ **The field is still fully
+ref-covered: all 22 entries carry refs** (21 as a bare array, 1 keyed `beside`), so STUDY_SPEC
+12h's *a `beside` without a ref is incomplete* is satisfied — there is **no backlog**.
+⛔ **A first draft of this note claimed a 21-row backlog, from a count that only looked at the
+KEYED form and missed the bare arrays. Corrected before it shipped, and left here as the
+warning: `refs` has two shapes, and a scan that walks one of them under-reports by 95 %.**
+
 ### ⚙ RULED 2026-08-25 — SPACE IS PROPORTIONAL TO SUBSTANCE. THE SPACE IS IN THE STUDY, NOT THE INFO
 
 *(Closes the open item "is §5c's 32–38w Info band too tight when the work carries real
@@ -896,22 +913,33 @@ It said `art_inspect.js` carried **0** because the file was held by another pass
 
 | store | refs | plan |
 |---|---|---|
-| `art-about.js` | **14** across 14 reads (12 `about`, 2 `deep`) | `.dtmp/tourqc-pass/refs-reads-2026-08-25.json` |
+| `art-about.js` | ~~**14** across 14 reads (12 `about`, 2 `deep`)~~ ⚙ **13 — 11 bare (`about`) + 2 `deep`** | `.dtmp/tourqc-pass/refs-reads-2026-08-25.json` |
 | `museum_about.js` | **18** across 13 museums | `.dtmp/tourqc-pass/refs-museums-2026-08-25.json` |
-| `art_inspect.js` | ~~0 — the file was held by another pass that day~~ ⚙ **28 — APPLIED: 7 on `beside`, 19 on `context`, 2 on `deeper[].body`** | applied: `refs-tours-STAGED-2026-08-25.json` (21) + `refs-backfill-2026-08-25.json` (6) |
-| **corpus-wide** | ⚙ **60** | — |
+| `art_inspect.js` | ~~0 — the file was held by another pass that day~~ ~~⚙ **28 — APPLIED: 7 on `beside`, 19 on `context`, 2 on `deeper[].body`**~~ ⚙ **44 — 22 bare + 19 `context` + 1 keyed `beside` + 2 `deeper[].refs`** | applied: `refs-tours-STAGED-2026-08-25.json` (21) + `refs-backfill-2026-08-25.json` (6) |
+| **corpus-wide** | ~~⚙ **60**~~ ⚙ **75** | — |
+
+⛔ **RE-DERIVED 2026-08-25 (second refresh) — THIS TABLE WENT STALE AGAIN INSIDE THE SAME DAY.**
+It has now been wrong twice, in the same direction, for the same reason: **it is a snapshot of
+a store with more than one writer.** The `art_inspect` figure moved 0 → 28 → 44 in one session.
+⭐ **Stop treating it as a fact and treat it as a worked example of the method** — the numbers
+above are `Object.values(<store>)` walking **both** ref shapes (bare array **and** keyed
+object) at **both** depths (entry-level and `deeper[]`). ⚠ **The bare/keyed split is the
+trap**: a scan that walks only the keyed form returns **1** beside-ref instead of 22.
 
 ⚠ **The tour figure is the one to re-derive, not to cite** — it is the only store of the three
 whose refs live at two depths (entry-level and stop-level), so a count that walks only the top
 level under-reports it by the 2 `deeper` refs, which is exactly the blind spot `validate-refs.js`
 had before plan mode learned to walk stops.
-⚙ Note **7 `beside` refs against 7 `beside` paragraphs** in the store — the field is fully
-ref-covered, which is what *a `beside` without a ref is incomplete* (STUDY_SPEC 12h) requires.
+⚙ Note ~~**7 `beside` refs against 7 `beside` paragraphs**~~ ⚙ **22 against 22** (re-counted
+2026-08-25) in the store — the field is **still** fully ref-covered, which is what *a `beside`
+without a ref is incomplete* (STUDY_SPEC 12h) requires. ⚠ 21 of the 22 carry it as a **bare**
+array, not as `refs: { beside: [...] }`; count both shapes or the coverage looks like 1/22.
 
 Both were applied mechanically by `apply-store-refs.js` — one applier for both stores, because
 they share the `{about, deep, by}` shape and the `about` default — with the house round-trip
 proof: entry count unchanged, every untouched entry byte-identical, targets differing **only** by
-the gained `refs`, and every `about`/`deep` string across all 798 + 53 entries byte-identical.
+the gained `refs`, and every `about`/`deep` string across all ~~798~~ ⚙ **800 (re-counted
+2026-08-25)** + 53 entries byte-identical.
 
 **How the band was chosen, and the failure class the re-read exists to catch.** `scan-refs.js`
 proposed 46 high-confidence hits; **7 were dropped on a hit-by-hit re-read**, every one for the

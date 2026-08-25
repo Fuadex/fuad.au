@@ -5,6 +5,337 @@
 What has actually been quality-controlled, by whom, and what was found. Update this file
 whenever a QC pass runs — coverage claims that aren't recorded here don't count.
 
+## ⚙ Awaiting Fuad's verdict — the open list, written to be actioned COLD
+
+**Written 2026-08-25 as a handoff.** Every item below is blocked on a ruling, not on work. Each
+carries enough context to act on without the session that produced it. ⚙ Figures marked
+**verified** were re-derived from the live stores while writing this section; figures marked
+**reported** came from an agent or a session note and could NOT be re-derived here.
+⛔ **The brief this section was written from carried EIGHT claims that the live data
+contradicted** — the `beside` count, the Redon file count, which MNW rows were adopted, how
+many refusals turned on physical dimensions, the framed-plate sub-count, whether Saint Roch had
+shipped, the shape of the Nationalmuseum `img` defect, and what "byte-identical" covered on the
+Redon rows. Every one is corrected below, in place. **Treat an unmarked number as suspect and
+re-measure it.**
+
+**Store state at the time of writing** (⚙ all five re-counted from the files, not reported):
+`art_inspect` **378** tours · `art-about` **800** reads · `art_hires` **1,152** rows ·
+`artworks` canon **1,977** works · **22** `beside` paragraphs.
+⛔ **The session note said 19 besides; the store says 22.** Method:
+`Object.values(CANVAS_INSPECT).filter(v => v.beside !== undefined).length`. `art-about` carries
+**zero** — `beside` is a tour field only.
+
+---
+
+### 1. ⛔ THE w17 DEFECT LEDGER — the blocking one. Ten drafted tours, ZERO clean.
+
+Ten tours were drafted, image-QC'd by an independent pass, and **held**. Not one came back
+clean. ⚙ **Verified: all ten are in `.dtmp/tourqc-pass/w17-merge/merge_plan.json` (keys
+`tours` / `reads` / `notes`), and NONE of the ten is in `art_inspect` — nothing has shipped.**
+The plan also carries 10 matching reads; ⚙ four of those ten works **already have** an
+`art-about` entry (`christian-rohlfs-white-beeches-in-fall`, `claude-monet-le-givre`,
+`pierre-bonnard-sleeping-woman-on-a-bed`, `claude-monet-la-rue-montorgueil`), so those are
+REPLACEMENTS, not additions, and Method lesson 11 (a `refs` link dies with the prose that
+carried it) applies to all four.
+
+| # | tour slug | stops |
+|---|---|---:|
+| 1 | `peter-paul-rubens-a-view-of-het-steen-in-the-early-morning` | 7 |
+| 2 | `canaletto-venice-the-feast-day-of-saint-roch` | 8 |
+| 3 | `canaletto-london-interior-of-the-rotunda-at-ranelagh` | 5 |
+| 4 | `christian-rohlfs-white-beeches-in-fall` | 8 |
+| 5 | `claude-monet-le-givre` | 7 |
+| 6 | `pierre-bonnard-sleeping-woman-on-a-bed` | 8 |
+| 7 | `unknown-hoa-hakananai-a` | 8 |
+| 8 | `paul-signac-femme-a-l-ombrelle` | 8 |
+| 9 | `claude-monet-la-rue-montorgueil` | 8 |
+| 10 | `nicholas-chevalier-the-buffalo-ranges` | 8 |
+
+⚙ An eleventh work — the **Tiepolo** — was drafted and then dropped by the merge itself.
+`merge_plan.json`'s own `notes` array says: *"read skipped (tour not shipping):
+`giovanni-battista-tiepolo-die-verehrung-der-trinitat-durch-d`"*. See item 2.
+
+**These are NOT style flags.** The load-bearing ones, each stated so it can be re-checked:
+
+- ⛔ **There is no kingfisher in the Rubens.** The bird is a **goldfinch** — crimson mask,
+  black-and-white head, short conical bill. The teal shape read as a kingfisher breaks at 5×
+  into **lanceolate blades, i.e. foliage**, and is about **three times the goldfinch's size**.
+  ⚙ **Verified in the drafts: `kingfisher` occurs 3×, `goldfinch` 0×** — the defect is live in
+  the held text, not already repaired. Crops are in the workshop as `Q1_goldfinch.png`,
+  `Q1_teal.png`, `Q1_teal_tight.png`, `Q1_teal_hard.png`, `Q1_gf_tight.png`, `Q1_box_full.png`;
+  the plate they were cut from is `rubens_big.jpg`, ⚙ **measured 21,256 × 12,628**.
+- ⛔ **There is no rain shaft in the Chevalier.** What the draft reads as a shaft is **low
+  cloud lying in the valleys**, with **blue sky in the same zone**.
+- ⛔ **Chevalier was born in St Petersburg**, not Switzerland. ⚙ **Verified in the drafts:
+  `Switzerland` occurs 1×, `Petersburg` 0×.** (The birthplace itself is a web fact and was
+  **not** re-verified here — treat the correction as reported, the defect in the draft as
+  verified.)
+- ⛔ **Bonnard's dimensions.** ⚙ **Verified the draft reads *"At 93 by 108 centimetres it is a
+  large canvas, wider than it is high."*** The correction on record is **96.4 × 105.2** —
+  ⚠ **reported, not re-verified here** (no local source for it). Note the correction does not
+  disturb the sentence's argument: 96.4 × 105.2 is still wider than high.
+- ⛔ **Signac stop 2's colour claim is flatly REVERSED.**
+- ⛔ **Three boxes refute their own text** — the wave-4 class (*"The fur collar in the dark"*
+  over a box holding no collar), again.
+
+**The cost of fixing: ~60 prose edits and ~20 box moves** (⚠ reported; not re-counted here)
+**over text Fuad approved.** That is why it is a verdict and not a task.
+
+⭐ **RECOMMENDATION ON RECORD: run a SECOND-OPINION pass before spending the sixty edits.**
+The reason is a live disagreement inside this very batch. The **Monet *Le Givre* boat** was
+called unresolvable by one auditor and **confirmed real by another** at the full scan:
+**bow, a constant-width sunlit strake, and two thole pins**, with a bramble control 20 % to
+the left showing only broken dabs. ⚙ **Verified: the scan is `w17-merge/monet_c2rmf.jpg`,
+measured 12,162 × 7,384** — the "12,162 px" in the session note is real. Two auditors, one
+plate, opposite verdicts: that is the wave-4 lesson (*an audit's findings need verifying*)
+pointing at **this** audit, and the ten-of-ten result is exactly the kind of number that
+deserves a check before it authorises rewriting approved prose.
+
+**Workshop:** `.dtmp/tourqc-pass/w17-merge/` — `merge_plan.json` (the batch),
+`cropspec.json` + `zoomjobs.json` (the crop jobs), `apply.js` / `precheck.js` / `checkplan.js`
+(the applier and its guards), and ~600 PNG crops named by question (`Q1_*` Rubens bird,
+`Q2_*` Monet boat, `Q3_*`, `C_*`, `z_*`).
+
+---
+
+### 2. ⚠ TIEPOLO — one row, two different paintings. Fuad is the only witness.
+
+⚙ **Verified in the store:** `giovanni-battista-tiepolo-die-verehrung-der-trinitat-durch-d`
+carries `seenAt: "national-gallery-london"`, `qid: "Q29477853"`, `seenConfidence: "sure"`,
+`year: 1737`, and an `art_hires` row titled *"Die Verehrung der Trinität durch den hl. Papst
+Clemens"* at 4,106 × 6,845. ⚙ **Verified: it has NO `art_inspect` tour and NO `art-about`
+read.** The qid and the plate are the **Munich altarpiece** (488 × 256 cm, Alte Pinakothek);
+the National Gallery London holds a **different, smaller** work, **NG6273**.
+
+**Fuad does not remember which he stood in front of.** It settles from the **Google Timeline
+export** (`Desktop/Timeline/Timeline_update_july.json`) if the visit date can be bracketed —
+Munich and London are far enough apart that a single bracketed day decides it.
+
+⛔ **The two outcomes cost very different amounts:**
+- **`seenAt` was wrong (encounter was Munich)** → change one field. **Costs nothing.**
+- **The identification was wrong (encounter was NG6273)** → the qid, the plate, the title and
+  the drafted tour are all pointed at the wrong object. ⚙ **The w17 draft is about the
+  altarpiece**, which is why the merge dropped it rather than shipping it — **repointing costs
+  a tour.**
+
+---
+
+### 3. ⚠ SAINT ROCH — back-edit two verified things from w9a into the w9b version?
+
+⛔ **Correct a wording that would send someone to the wrong file: the w9b Saint Roch is NOT
+shipped.** ⚙ **Verified: no Saint Roch tour exists in `art_inspect` at all.** The w9b text is
+the one sitting in the **held w17 batch** (item 1 above). So this is not a back-edit into
+production — it is a decision to make **before** the w17 batch ships, and it should be taken
+in the same pass.
+
+Two things the earlier **w9a** draft has and the **w9b** text does not. ⚙ Both verified by
+diffing `.dtmp/tourqc-pass/w9a/out_tour_canaletto-venice-the-feast-day-of-saint-roch.json`
+against `merge_plan.json`'s copy:
+
+1. **The church of San Rocco is named** as a distinct building. ⚙ w9a: *"At the right, the
+   flank of the church of San Rocco: bare brick to the roofline, putlog holes still in it, one
+   window bricked up."* **w9b names only the Scuola Grande di San Rocco** — the confraternity
+   next door, not the church. The detail earns its place: **the church's facade was still
+   unbuilt in 1735** (rebuilt by Scalfarotto from 1732, faced only 1765–71), which is *why*
+   the flank is bare brick. ⚠ The Scalfarotto dates are **reported** — ⚙ verified only that
+   **neither draft contains the name "Scalfarotto"**, so if the back-edit is approved the date
+   claim needs its own verification before it goes in.
+2. **The altana with washing** on the left roofline. ⚙ Verified present in w9a
+   (`altana`, `washing`), **absent from w9b**.
+
+Both are concrete, both are Law-1 material (a stop that starts at a mark), and w9b is
+otherwise the better text — which is exactly why this is a merge question and not a revert.
+
+---
+
+### 4. ⚠ REDON CANON DEDUPE — two Wikidata items, ONE physical painting.
+
+⚙ **Verified in the store.** `odilon-redon-untitled-4` (`qid: Q83507923`) and
+`odilon-redon-untitled-10` (`qid: Q132195486`) are **two duplicate Wikidata items for one
+object**: *Conque marine*, Redon, Collection Bemberg Toulouse, **inv. 2138**.
+
+⚙ **Verified, and the session note's "byte-identical **including** the palette" needs one
+correction to be usable:** the *canon* rows are identical **field for field except `id` and
+`qid`** — necessarily, since the whole point is that the qids differ. What **is** byte-identical
+is everything derived from the pixels: the two `art_hires` rows (same 4,139 × 6,582, same
+Commons file `Bemberg_Fondation_Toulouse_-_Conque_marine_-_Odilon_Redon.jpg`) and ⚙ **the
+extracted palette in `palette.js`, verified character-for-character on both ids:
+`["#536869", "#31454c", "#72857d", "#79a5a3"]`.**
+⭐ **The palette is the strongest single piece of evidence and it is worth knowing why:** it is
+computed from the image, by us, with no reference to Wikidata. Two independent extractions
+landing on four identical hex values is proof **the same pixels were processed twice** — it
+cannot be explained by a shared qid, a shared title, or a copy-paste of metadata. The evidence
+that the
+duplication is **upstream in Wikidata**, not ours (recorded in `C:/tmp/hires46/PLAN.json`
+→ `job1_redon`, which is where the full working lives):
+
+- **Q83507923** carries P217 inventory **2138**, P2048/P2049 dimensions, an RMN archive ref,
+  and P195 → Collection Bemberg. Created 2020-01-24 by QuickStatements.
+- **Q132195486** has **no inventory number, no dimensions, no date, no RMN ref** — same P18
+  file. Created **2025-02-11** by a later QuickStatements batch that minted an item from the
+  Commons template without checking for an existing one.
+- SPARQL (creator = Redon, collection = Bemberg) returns exactly these two plus two unrelated
+  works.
+- `match_decisions.json` shows both imported as `like` matches on the same venue, with
+  reference images that are downloads of the **same** P18 file.
+- The apparent aspect conflict is a Wikidata error, not ours: P2048/P2049 are **transposed**
+  (23 h × 37 w recorded; the object is ~37 cm high × 23 cm wide). **Our plate's aspect is
+  correct.**
+
+**The fix**: keep `-4` / Q83507923, remove `-10`. ⚙ **Verified: nothing is lost** — neither
+slug is toured, neither has a read, neither has a `seenAt`. ⛔ **But it REMOVES A WORK FROM
+THE CANON, so it needs Fuad's explicit verdict.**
+
+⚙ **Scope corrected: the session note said 7 files; the actual count is 9** (plus this
+ledger). Re-derived by a repo-wide grep for the id: `art_data.js`, `artworks.js`,
+`art_hires.js`, `art_holders.js`, `art_medium.js`, `art_imgsize.js`, `palette.js`,
+**`palette_cache.json`** (the one the 7-file list missed), and `HIRES_GALLERY.md`.
+
+⚠⛔ **RECORD THE WRONG FIX SO IT IS NOT RE-PROPOSED: REMOVING THE `img` WOULD HAVE BEEN
+WRONG.** The instinct — strip the duplicate image and let the work fall back to its canon
+plate — fails here, because **the canon plate is the same file**. It would have stripped
+hi-res off a real work while leaving the visible duplicate in the deck untouched. This is a
+general shape: **a fallback is only a fallback if it resolves to something different.**
+
+---
+
+### 5. ⚠ NATIONALMUSEUM GROUP B (6 rows) + GROUP D (4 rows, opt-in).
+
+Plan: **`C:/tmp/hires46/PLAN.json`** (⚙ verified present; **outside the repo — it is on the
+`C:/tmp` mount, not in `.dtmp`, and will not survive a machine wipe**). ⚠ It is **NOT
+APPLIED** and its own header says why: another agent was writing `art_hires.js` during the
+session (1,108 → 1,141 records). The binding guard is **per-record** — every record must still
+byte-match its `before` snapshot or the applier aborts; the whole-file sha256 is advisory only.
+
+⚙ Verified group shape and counts, straight out of the plan:
+
+| group | rows | what it is |
+|---|---:|---|
+| `A_adopt` | **33** | safe: unframed, NM IIIF ≥ master on **both** axes |
+| `B_needs_verdict` | **6** | real gains, but each changes something visible |
+| `C_correct_only` | **7** | no route at or above master — declared dims corrected DOWN to measured truth |
+| `D_pyr_optional` | **4** | **opt-in**, supersedes C for those ids |
+
+**Group B — why each is held** (⚙ verbatim from the plan's own `hold` field):
+
+- ⚠ **5 of the 6 are FRAMED plates** — *"swapping puts a picture frame in the viewer; visible
+  content change"*: `bruno-liljefors-autumn-landscape-with-partridges`,
+  `landscape-from-bretagne`, `midsummer-dance`, `vilhelm-hammersh-i-interior`,
+  `vilhelm-hammersh-i-interior-with-a-reading-lady`. **Adopting changes what the reader sees.**
+- The 6th, **`en-premiar`**, is a different question: the NM IIIF (2,619 × 3,534) beats
+  delivery (1,920 × 2,589) but is **under the master** (3,064 × 4,132) — it trips the
+  smaller-on-an-axis rule.
+
+**Group D is opt-in**: the same downward dim correction as C **plus** a measured Commons
+render ladder (`pyr`), upgrading 4 capped rows from a single flat fetch to **progressive
+zoom** via the existing legacy-image-pyramid path. ⚙ Verified rows: `carl-grabow-untitled`,
+`jan-both-tradstudie`, `johan-christian-jansson-untitled`,
+`johan-christian-jansson-untitled-2` — each served 3,840 wide, each with a 2-level ladder,
+every level JPEG-header-measured. 3 of the 7 capped rows already carry `pyr`; these 4 did not.
+
+⛔ **A trap the plan records and the applier depends on: do NOT omit `tiles` for this host.**
+`iiif` is passed to OSD as a URL, so OSD fetches the real `info.json` and takes its declared
+`tiles: 256`. **A 1024 request would come back silently downscaled to 1000.** Same family as
+the NG London 78.1 % regression.
+
+---
+
+### 6. ⛔ THE "TWO ALREADY-ADOPTED MNW ROWS" — THE DATA CONTRADICTS THIS. READ THIS ONE.
+
+The session note said *"two MNW rows already adopted — `unknown-s-once-majowe` and
+`ferdynand-ruszczyc-stary-dom` — gain framing but zero extra detail; revert on request."*
+⚙ **Only half of that survives measurement, and the wrong half is the dangerous half.**
+
+- ✅ **`ferdynand-ruszczyc-stary-dom` is adopted and IS the zero-extra-detail case.** ⚙
+  Verified: `src: "mnw"`, 3,222 × 3,629, and its own `note` says it — *"Gain is framing only —
+  on the shared area this file is the same linear resolution as the plate it replaces."*
+  Holder's 83 × 93 cm puts the old plate 4.2 % off and this one 0.5 % off; registered at
+  **NCC 0.9976** (identity 0.8736); **no tour boxes on this work.** Revertible at no cost.
+- ⛔ **`unknown-s-once-majowe` is NOT adopted.** ⚙ Verified: it is still `src: "commons"`,
+  3,124 × 3,973, with **no w20 note at all**. It is one of **four TOURED works in the w20
+  `MODE=toured` half, which is STAGED AND UNAPPLIED** — see item 6b. ⚙ Verified: it **has** an
+  `art_inspect` tour, with **8 boxes**. Reverting it is not the question; **applying** it is.
+- ⚙ **And "framing only, zero extra detail" describes exactly ONE row corpus-wide.** Method:
+  scan every `art_hires.note` for `same linear resolution` / `framing only` — **1 hit**,
+  `ferdynand-ruszczyc-stary-dom`. Do not generalise the phrase to the other 16 w20 adoptions;
+  most of them are genuine resolution gains (up to **×5.24** linear).
+
+#### 6b. ⛔ THE OTHER HALF OF w20 IS STAGED, COUPLED, AND UNAPPLIED — and nothing else records it
+
+⚙ **Verified from `.dtmp/tourqc-pass/w20/STAGED.local.md` + `PLAN.json` + the live store.**
+w20 ran in two halves and **only one shipped**:
+
+- ✅ **`MODE=tourless` — APPLIED.** 17 works (11 new rows + 6 upserts), `art_hires.js`
+  **1,141 → 1,152**. ⚙ Verified: the store carries exactly **17** rows whose `note` begins
+  `w20 `. None of the 17 has an `art_inspect` entry, so no box coordinate depends on them.
+- ⛔ **`MODE=toured` — STAGED, NOT APPLIED, AND THE FOUR ARE COUPLED.** Each gets a new plate
+  row in `art_hires.js` **and** its tour boxes remapped in `art_inspect.js` **in the same
+  run**. ⛔ **Swapping the plate without the remap points every stop at the wrong place, and
+  the applier refuses to do one without the other.**
+
+| work | boxes | registration NCC | crop of the new plate our old plate occupied |
+|---|---:|---:|---|
+| `julian-fa-at-powrot-z-polowania-na-niedzwiedzia` | 9 | 0.956 | x −0.00486 y −0.03473 w 1.0111 h 1.13846 |
+| `unknown-s-once-majowe` | 8 | 0.9953 | x 0.0427 y 0.02444 w 0.91758 h 0.94971 |
+| `at-the-seashore` | 8 | 0.9990 | x 0.03132 y 0.01624 w 0.93546 h 0.96205 |
+| `the-hanging-of-the-sigismund-bell-…-in-krakow` | 5 | 0.9386 | x −0.01229 y −0.02167 w 1.02986 h 1.04049 |
+
+⚙ Verified: all four are in `art_inspect` **and all four still serve the old `commons` plate**
+— the stage really is unapplied. All **30** remapped boxes were cropped out of the new plate
+and **looked at** beside the old crop; every one still holds the subject its title names
+(sheets `viz/<id>.boxes.png`, blow-ups `viz/<id>.box<n>.png`, registration proofs
+`viz/<id>.reg.png`).
+
+**Why it stopped:** `art_inspect.js` had a **live second writer**. The guard caught it
+mid-pass — the file went `2c5b222f5f42a8c1` → `286e31a359725143` at 2026-08-25T10:56Z, three
+records **added** (the w19a Boldini / Renoir / Henner), nothing modified. The four target
+records were untouched, **so the remap still holds** — but the pass declined to write into a
+store with a live writer. ⭐ **Keep that judgement: it is the right one, and it is the same
+instinct as declining a box rather than guessing it.**
+
+**To apply** (dry-run first — it prints round-trip proof and writes nothing):
+`node -e "process.env.MODE='toured';process.env.DRY='1';require('.dtmp/tourqc-pass/w20/apply.js')"`
+The guard is two-level: **hard, no override** — the 4 records must be byte-identical to
+`guards.art_inspect_targets` and each of the 30 boxes must still carry its exact ×1.15-padded
+value, or the transform is stale and the registration must be re-run, **not forced**;
+**soft** — any other change prints a record-level diff and demands `ACK_DRIFT=<sha256 prefix>`,
+so it cannot be applied without someone reading the diff. Then re-run `validate-refs.js` bare.
+
+---
+
+### 7. ⚠ THE TWO `READS_SPEC` QUESTIONS ARE STILL OPEN — confirmed, not assumed.
+
+⚙ **Verified both are still live in `READS_SPEC.md` §1**, and neither has been ruled:
+
+- **May the cascade draw on the tour's `beside`?** (§1, ~line 156.) STUDY_SPEC made `beside`
+  a REQUIRED closing movement the same day, so it now sits at the top of every tour a cascade
+  reads. Options on record: (a) strip `beside` from job files, (b) pass it as context but
+  fence it, (c) let it in.
+- **Does a distilled read INHERIT its tour's `refs`, or mint its own?** (§1, ~line 167.)
+  Options: (a) refs on both tiers, (b) Interpretation only, (c) neither — refs stay a
+  tour-and-museum-read feature.
+
+⛔ **They are ENTANGLED and must be ruled together**, which is the reason they are repeated
+here: **if `beside` is fenced out of the cascade, most of the refs a tour carries are fenced
+out with it.** Until Fuad calls it, the safe default stands — mint refs only where a read's
+own prose names a work, never write prose in order to hang a link on it (Method lesson 11).
+
+⚠ Note for whoever rules on `beside`: **the field has tripled since the question was framed.**
+⚙ **22 `beside` paragraphs in the store now, against the 7 `READS_SPEC` §11 records** — so
+fencing `beside` out of the cascade is now a three-times-larger decision than when it was
+asked. ⚙ **Coverage is fine: all 22 carry refs** (21 as a bare array, 1 keyed `beside`), so
+STUDY_SPEC 12h is satisfied and there is **no backlog**.
+
+⛔ **AND RECORD THE MISTAKE THAT ALMOST WENT INTO THIS LEDGER, because it is Method lesson 12
+firing on the person writing it.** A first draft of this bullet asserted *"only 1 of 22 carries
+a ref"* and booked a 21-row backlog. The count was wrong: it walked only the **keyed**
+`refs: { beside: [...] }` form and never looked at the **bare** `refs: [...]` array, which is
+the shape 21 of the 22 actually use. **`refs` has two shapes; a scan that walks one of them
+under-reports by 95 % and reports a crisis.** It was caught only by re-deriving the number
+before writing it down — which is the whole reason this section marks its figures ⚙.
+
+---
+
 ## QC events
 
 | Date | Scope | Method | QC'd by | Findings |
@@ -113,6 +444,22 @@ can resolve it, because he is the only witness. **60 correct rows were one pass 
 rewritten into 60 wrong ones**, and the sweep that would have done it looked rigorous the whole
 way — it had a rule, it applied the rule consistently, and the rule was about the wrong thing.
 
+⭐ **AND IT HAPPENED TWICE IN ONE DAY.** The Artizon re-flag and the sculpture ban are the same
+shape — *a rule that survived because nobody read it against the data it governs* — and both
+fired on 2026-08-25. Two in one session is no longer an anecdote; it is the failure mode of a
+project whose institutional memory is a long file that agents do not read before acting.
+⛔ **STANDING INSTRUCTION, and it is cheap: before escalating a CLASS of rows, grep this
+ledger for the venue, the artist, and one of the ids.** An escalation that walks past a written
+resolution is more expensive than the original flag, because it arrives wearing the authority
+of a systematic sweep.
+
+⭐ **FUAD'S CONVENTION, recorded because it turns this from a data problem into a writing rule:
+NAME WHERE HE MET IT AND WHERE IT LIVES.** A loan is **a fact to state on both sides**, not a
+discrepancy to reconcile away. *"Seen at the Artizon, on loan from the Orsay"* is richer than
+either half alone and is the honest sentence in every case — it is also, not incidentally, the
+sentence that makes the `seenAt`/holder disagreement **legible to the next audit** instead of
+looking like a typo. Prose that names both sides immunises the row.
+
 ⚠ **What this ruling does NOT cover.** It settles the Artizon rows and it names the method for
 all of them. It does **not** clear the individual non-Artizon mismatches still open below
 (`christ-in-the-house-of-his-parents`, `ophelia`, `house-by-the-railroad`,
@@ -153,6 +500,13 @@ rather than an edit. ⚙ Where a claim below was checkable against the live stor
     plane, the physical/illumination test). ⚠ **They cite the Puech reading as their evidence and
     that reading was not re-verified here, because there is no draft to verify it against** —
     they are recorded as ruled, not as measured.
+    ⚙ **AND THEY ARE NOW MARKED AS SUCH AT EACH OF THE FOUR SITES IN `STUDY_SPEC.md`**
+    (2026-08-25), because a drafter reads the spec, not this ledger: the **pixel-extent +
+    focal-plane** second term, the **bronze/carving split** table, the **photograph rule
+    extension** to dust/cobweb/glass/depth-of-field, and the **physical/illumination test**.
+    ⚠ Each is still worth keeping — the reasoning stands on its own — but **none of them may
+    be cited as a measured result**, and the cobweb worked example in particular describes a
+    plate nobody can now re-open. See Method lesson 14.
 
 - **`giovanni-boldini-bust-of-francesco-i-d-este` — three separate defects in one row.** The work
   is a genuine Boldini **after Bernini** (so it is correctly in canon, and the "wrong artist"
@@ -315,6 +669,77 @@ rather than an edit. ⚙ Where a claim below was checkable against the live stor
    all three reads over band and the **drafter was right**, because a spaced hyphen-as-dash is
    not a word. **A recount that disagrees with a drafter is a candidate, not a verdict** — settle
    it by naming the tokeniser. The house one is `check.js`'s `[A-Za-z0-9][A-Za-z0-9'’-]*`.
+   ⚙ **Generalised 2026-08-25:** the lesson is not "drafters are right", it is that **a
+   measurement asserted against a drafter is itself a measurement and can be the broken one.**
+   Both directions of this have now cost a wave. **Name the instrument, or the dispute is two
+   people asserting.**
+13. ⛔ **A TILE SOURCE THAT FETCHES NO DESCRIPTOR CANNOT FAIL LOUDLY — SO IT MUST BE PROXIED BY
+   CONSTRUCTION, NOT BY INSPECTION** (2026-08-25, the Zoomify bug). ⚙ **Verified in source:**
+   `resolveOSDSource()` in `canvas/canvas-app.jsx` passed `tilesUrl: work.hires.zoomify`
+   **unproxied**, while the **DZI branch immediately below it** wrapped its descriptor in
+   `proxied()`. NGV tiles carry `access-control-allow-origin: https://content.ngv.vic.gov.au`
+   — their own origin only — so every `crossOrigin="anonymous"` tile load from `fuad.au` was
+   blocked. Through the `img.fuad.au/ngv/` alias the same tile returns `ACAO: *` and
+   **byte-identical bytes (27,930 B, measured)**.
+   ⛔ **Why it survived: `ZoomifyTileSource` fetches NO descriptor.** OSD therefore **opens
+   successfully**, `open-failed` **never fires**, and **no fallback is ever set** — the reader
+   gets blank tiles with **no error strip**, on a toured Rembrandt (`two-old-men-disputing`)
+   with six anchored study chapters. ⚙ Verified fixed in source: line reads
+   `tilesUrl: proxied(work.hires.zoomify)`, with the diagnosis kept as a comment beside it.
+   ⚠ Fix commit reported as `ba6f2a5` — **reported, not confirmed** (git was unavailable in the
+   session that wrote this; the *code* was verified directly).
+   ⭐ **THE CLASS, which is the part worth keeping: our whole error-handling design assumes a
+   failure announces itself.** Every other branch (IIIF, DZI, simple-image) fetches something
+   first, so a CORS or 404 failure raises `open-failed` and the fallback chain runs. A branch
+   that fetches nothing has **no place for a failure to appear**. ⛔ **Audit such branches by
+   reading them against their siblings — a difference between two adjacent branches is the
+   defect, and "it opens fine" is not evidence.** Also note the corollary that misled an
+   earlier pass: **adding an `img` would NOT have fixed this**, because the fallback path is
+   never reached.
+14. ⛔ **AN ORCHESTRATOR'S REPORT THAT A BATCH EXISTS IS NOT EVIDENCE THAT IT EXISTS — THE MERGE
+   IS THE FIRST PLACE THAT GETS CHECKED** (2026-08-25, the w19b phantom batch; full entry under
+   "Canon data defects" below). Three tours — Monet *Essai de figure en plein air*, Prouvé
+   *Séjour de paix et de joie*, Puech *L'Aurore* — were **reported to Fuad as drafted** and
+   **were never written to disk**. ⚠ A full-text sweep of **all ~950 files under `.dtmp`**
+   found no tour draft, no read draft and no plan file for any of the three. **The merge
+   invented nothing and parked their rulings**, which is the correct behaviour and the only
+   reason the rulings survived at all.
+   ⭐ **The expensive part is downstream: the STUDY_SPEC additions those tours "earned" are
+   RULED, NOT MEASURED**, because there is no draft to verify them against. They are marked as
+   such **at each of the four sites in `STUDY_SPEC.md`** as well as here — a note in one file
+   does not travel to a drafter reading the other. **Generalises: when a batch turns out not to
+   exist, the sweep is not "delete the batch", it is "find everything the batch authorised".**
+
+## Session totals (2026-08-25) — ⚙ re-derived, not reported
+
+| store | count | method |
+|---|---:|---|
+| `art_inspect` tours | **378** | `Object.keys(CANVAS_INSPECT).length` |
+| `art-about` reads | **800** | `Object.keys(CANVAS_ART_ABOUT).length` |
+| `art_hires` rows | **1,152** | `Object.keys(CANVAS_HIRES).length` |
+| canon works | **1,977** | `CANVAS_ARTWORKS.length` |
+| `beside` paragraphs | **22** | `art_inspect` entries with `beside !== undefined` |
+
+⛔ **The session note reported 19 besides; the store has 22.** Everything else in that note
+re-derived exactly. ⚠ **Both `art_inspect` and `art_hires` moved during the session** (hires
+1,108 → 1,141 → 1,152; inspect gained the three w19a records mid-pass and tripped a guard —
+see "Awaiting Fuad's verdict" item 6b). **Any figure quoted against these stores needs a date
+beside it**, and a count taken before a wave lands is not wrong, it is *stale* — which is the
+same failure the Coverage section below already carries.
+
+⚠ **Stale denominators elsewhere in the docs, found while re-deriving these — all four struck
+in place 2026-08-25:** `STUDY_SPEC.md` quoted **375** toured works (→ **378**);
+`READS_SPEC.md` §11 quoted **798** `art-about` entries (→ **800**), **7** `beside` paragraphs
+(→ **22**), and a corpus `refs` total of **60** (→ **75**, of which `art_inspect` is **44**,
+not the 28 recorded — that figure had already been refreshed once the same day and went stale
+again before the session ended).
+
+⭐ **THE PATTERN, and it is the one to act on: every stale number in this project is a snapshot
+of a store that has more than one writer.** None of them was ever *wrong*; each was true at the
+moment it was written and false within hours. ⛔ **So a bare count in a spec is a latent defect.
+Write the METHOD beside the number** — the one-liner that re-derives it — and the next reader
+can settle it in a second instead of inheriting it. Every figure added in this section carries
+its method for that reason.
 
 ## Measured cost (for planning)
 

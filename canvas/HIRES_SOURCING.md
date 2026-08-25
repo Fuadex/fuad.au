@@ -2,9 +2,206 @@
 
 # The hi-res hunt — how art_hires.js got built, and everything that fought back
 
+## ROUND 7 (2026-08-25) — Stockholm opens, the 1920 cap was wrong, and a reusable registration method
+
+⚠ **Written as a handoff.** Two of this round's findings **correct claims made earlier in this
+same file**, and one supplies a method worth more than any single adoption. ⚙ Figures marked
+**verified** were re-derived from the live store or from the plan files named; anything else is
+**reported**.
+
+### ✅ NATIONALMUSEUM STOCKHOLM IS OPEN — the "capped 1000 px" note describes FLAT RENDERS ONLY
+
+⛔ **This corrects the `/full/max/` trap entry below** (*"Nationalmuseum Stockholm — IIIF 2
+level1, capped 1000 px"*). The 1000 px clamp is real **and it is a clamp on flat renders, not
+on the server.** **Region requests serve NATIVE PIXELS.**
+
+Measured (recorded in `C:/tmp/hires46/PLAN.json` → `method.nmRoute`): route is
+`api.nationalmuseum.se/api/objects/<obj>` → `data[0].iiif` →
+`nationalmuseumse.iiifhosting.com`, IIIF 2 level1, **`ACAO: *` measured with an explicit
+`Origin: https://fuad.au`, no proxy needed**. Verified independently at the far corner of the
+image: a **600 × 600 region request decoded to 600 × 600** — native, not downscaled.
+
+⭐ **RECORD THIS TOGETHER WITH OSLO AS ONE CLASS, BECAUSE IT HAS NOW COST US TWICE:**
+
+> ⛔ **A FLAT-RENDER CLAMP IS NOT A SERVER CEILING.** Oslo was measured at a 4000 px clamp on
+> `/full/…` and reported as capped; regions returned native pixels off a 59,171 × 73,171
+> master. Stockholm was measured at a 1000 px clamp on `/full/…` and written into this file as
+> *"capped 1000 px"* — for **two rounds** — while regions served native pixels off masters up
+> to 8,875 px wide. **Same instrument, same wrong conclusion, two different holders.**
+> **Any holder this file records as capped must be re-measured BY REGION before the ceiling is
+> believed.** `/full/` answers one question — *what is the biggest single flat file* — and it
+> is not the question a deep-zoom viewer asks.
+
+⚠ **NG London is the counter-case and belongs in the same paragraph**, or the class over-fires:
+there, regions **also** serve native pixels, but the clamp is on the **output size of every
+response including the raw IIP route**, so there is no larger flat file and never was. **Oslo
+and Stockholm's regions open a bigger *file*; NG London's open a bigger *zoom* and nothing
+else.** The class is *re-measure by region*, not *every clamp is fake*.
+
+**The prize.** ⚙ Verified from the plan's own rows: **33 rows recoverable** (`A_adopt`: NM IIIF
+≥ master on **both** axes, unframed), taking the pixels a reader can actually reach from
+**188 MP → 829 MP**. ⚠ Note which "before" that is — the **served** total, decoded from the
+bytes the viewer receives. The **declared** total for the same 33 rows is 384 MP, and quoting
+that would understate the win by more than half, because these are the TIFF rows whose
+declared dims were never delivered (next entry).
+
+⭐ **The one that explains a reader-visible complaint:** `anders-zorn-mrs-veronica-heiss` —
+declared 3,478 × 4,649, **actually served 1,920 × 2,566**, available at **5,511 × 7,402**.
+⚙ Verified. **This is the plate Fuad noticed looked mushy**, and it traced through the padding
+pass to a cause nobody was looking for: the row was not wrong about the master, it was wrong
+about the delivery. ⚠ **A complaint about image quality is worth chasing to the served bytes**
+— the record looked healthy at every level above that.
+
+⚠ **The 6 held rows and the 4 opt-in rows need Fuad's verdict** — see `QC_LEDGER.md`,
+"Awaiting Fuad's verdict" item 5. ⛔ And `PLAN.json` lives at **`C:/tmp/hires46/`, outside the
+repo and outside `.dtmp`** — it is not backed up by anything.
+
+### ⛔ CORRECTION — "COMMONS CAPS TIFF RENDERS AT 1920" IS WRONG. THEY ARE **BUCKETED**.
+
+The round-5 entry below states a flat 1920 ceiling for TIFF rows. ⛔ **Struck.** The real rule:
+
+> **Commons renders TIFFs only at BUCKETED widths — the largest of {3840, 1920, 1280, …} not
+> exceeding the master width.**
+
+⚙ Verified: the rule **fits all 46 rows with zero mismatches**, each measured by decoding the
+returned JPEG's SOF marker rather than trusting a header. **13 rows actually get 3,840** and
+**one gets only 1,280.** So the population was never uniform, and the sharpened STUDY_SPEC
+consequence — *"for these 46 works the reader's real ceiling is 1920"* — is **true for 32 of
+them, generous for 13, and too generous for 1.**
+
+⚙ **The count itself re-verifies: 46 `art_hires` rows have a `.tif`/`.tiff` in `img`.** (An
+agent report during this session put it at 51; the store says 46. The original 46 stands.)
+
+⭐ **Why the wrong rule was believable, and this is the transferable part:** 1920 is the bucket
+that *most* of these masters land in, so a sample of three rows produced a rule that was right
+about the sample and wrong about the mechanism. **A ceiling and a bucket look identical until
+you test a value on the other side of one.**
+
+### ⛔ NEW TRAP — THE COMMONS `imageinfo` API ECHOES THE WIDTH YOU ASKED FOR
+
+⚠ **`thumbwidth` is not a measurement.** The API reported **`thumbwidth: 4000`** while serving
+**1920**. It echoes the *request*, not the response.
+
+**Only the `lossy-page1-<N>px-` prefix inside `thumburl` is truthful** — and better still,
+decode the bytes. This is the same family as the `/full/!3000,3000/` url that returned 800 px
+under a 3000 px name (Method lesson 8 in `QC_LEDGER.md`): ⛔ **a name is not a measurement, and
+an API field is a name.** Every number in this round was taken from a decoded SOF marker for
+exactly this reason.
+
+### ⚙ THE w20 REGISTRATION METHOD — reusable, and the reason the "27 re-framings" number moved
+
+When a candidate plate is framed differently from ours, the question *is this the same picture,
+better framed, or a different capture* cannot be answered by aspect ratio. The w20 pass
+answered it by **image registration**, and the method is worth keeping:
+
+> **Search over offset AND scale, and allow scale > 1 — so the candidate is permitted to be
+> found to be the CROP, not only the container.**
+
+⭐ **That last clause is the whole trick.** A search restricted to scale ≤ 1 can only discover
+"our plate sits inside theirs"; it structurally cannot report the opposite, so it would have
+confirmed the framing story in every case and been wrong about most of them. ⚙ Verified from
+`.dtmp/tourqc-pass/w20/LEDGER.json`: on **15 of the 21** adopted works the fit puts **our old
+plate extending beyond the holder's** (scale > 1 on at least one axis by ≥0.5 %) — our Commons
+plate was a photograph **of the framed and plaqued object on the wall**, and the holder's was
+the bare canvas. ⚠ The session note said *"12 of 21"*; **12 is not reproducible from the
+ledger** — the count is 15 by the ledger's own fit numbers, and any narrower figure is a visual
+sub-count of *frame-and-plaque specifically* that `LEDGER.json` does not record. **Quote 15
+with the method, or re-derive.**
+
+**Validate three ways, and look at every fit.** ⚙ Verified: all 21 adopted rows carry all
+three, plus the raw fit — `regNcc`, `regIdentityNcc` (the same search run against the identity
+transform, so a high correlation that owes nothing to the fit is caught), `regCentredNcc` (a
+centred-crop shortcut, to prove the fit beat the obvious guess), and `regFeatMaxErrPct`
+(high-variance features relocated through the transform). **Then a human opened every
+registration proof** (`viz/<id>.reg.png` — our plate beside theirs with the fitted rect drawn
+on it).
+
+⛔ **AND WHERE CORRELATION HAS NOTHING TO LOCK ONTO, DO NOT GUESS A TRANSFORM.** ⚙ Verified:
+two near-featureless seascapes came back at **NCC 0.5443** (`jan-ciaglinski-ze-statku-z-podrozy-do-indii`)
+and **0.5518** (`jan-ciaglinski-morze-z-podrozy-do-konstantynopola`) — a sea and a sky give a
+correlator nothing to grip. **Both were adopted anyway, and that was legitimate for one reason
+only: neither work is toured**, so there were no boxes to remap and a wrong transform could not
+move anything. ⭐ **The rule: a low-confidence registration is adoptable on an UNTOURED work and
+never on a toured one.** The transform is only load-bearing when boxes ride on it.
+
+### ⛔ CORRECTION — "27 RE-FRAMINGS" WAS **21**. And the refusals are more interesting.
+
+The round-6 entry below claims **27 MNW works where our plate is the crop**. ⛔ **Struck: the
+w20 pass measured them and adopted 21.** ⚙ Verified from `LEDGER.json`: **29 rows, 21 ADOPT,
+8 REFUSE**, of which **27 were "in the 27"** and **2 were never in that set at all**.
+
+The 8 refusals, ⚙ verbatim from the ledger's own `why`, because each is a different lesson:
+
+| # | id | refused because |
+|---|---|---|
+| 1 | `black-woman` | **physical dims say OUR plate is truer** (plate 2.03 % off, candidate 5.45 %) |
+| 2 | `marinus-van-reymerswaele-poborcy-podatkow` | ditto (0.6 % vs 1.71 %) |
+| 3 | `unknown-studium-dziewczyny-w-kapeluszu-z-piorkiem` | ditto (2.32 % vs 2.65 %) |
+| 4 | `anna-bilinska-bohdanowicz-portret-m-odej-kobiety-z-roza-w-re` | ditto (0.54 % vs 4.45 %) |
+| 5 | `w-adys-aw-wankie-odz-zaglowa-na-brzegu-morza` | ditto (0.39 % vs 3.4 %) |
+| 6 | `saint-anne` | **excluded by Fuad** — identity uncertain (plate landscape, candidate portrait, object square) |
+| 7 | `adam-and-eve` | **anti-downgrade** vs `max(art_imgsize, art_hires)`: W 3049 < 4471 **and** H 4056 < 5749 |
+| 8 | `jan-ciaglinski-poca-unek-s-onca` | **anti-downgrade**: W 3096 < 4000 **and** H 2524 < 3184 |
+
+⚠ **Two precision corrections to the session note.** It said *"on 6 the holder's dimensions say
+our plate is closer"* — ⚙ **it is 5 refused on that ground.** (The ledger separately flags
+`closer: "PLATE"` on **7** rows; the other 2 were refused on the anti-downgrade or identity
+grounds instead, and ⚙ **zero** `closer: PLATE` rows were adopted. Both numbers are real and
+they answer different questions — state which one you mean.) And *"2 were never in the set and
+fail the anti-downgrade rule"* is ⚙ **exactly right**: rows 7 and 8 are the only two with
+`inThe27: false`, and they are the only two with `sizeReject: true`.
+
+⭐ **The refusal list is the argument for Method lesson 9** (a coordinate-stability gate is not
+a fidelity gate). Five of eight refusals only became visible because every aspect failure was
+read against **the holder's recorded physical dimensions** — a third, independent number.
+Without it, five correct plates would have been replaced by worse ones with a straight face.
+
+⚠ **Only 17 of the 21 adoptions are IN THE STORE.** The other 4 are toured, coupled to a
+30-box remap, and **staged but unapplied** — full account in `QC_LEDGER.md` item 6b. ⚙
+Verified: 17 rows in `art_hires.js` whose `note` starts `w20 `, and all 4 staged works still on
+their old `commons` plate.
+
+### ⛔ THE GUGGENHEIM 8 ARE REFUSED ON EVIDENCE QUALITY — NOT ON THE MEASUREMENT
+
+⚠ **State the reason precisely, or this gets re-opened as a win.** The 8 Guggenheim
+re-framings are not refused because the candidates are worse. They are refused because
+**neither side of the comparison is trustworthy**:
+
+1. ⛔ **The candidate's aspect ratio is scraped from an image `alt` string.** ⚙ Verified: the
+   `altRatio` field in `.dtmp/tourqc-pass/w20/GUGG8.json` is the entire basis of the "truer
+   framing" verdict. **An `alt` attribute is prose.** It is not a measurement of the file, and
+   nothing downstream can be more reliable than it.
+2. ⛔ **The BASELINE is unreliable, which is worse**, because it is ours. ⚙ Verified in that
+   same file: `red-oval` carries `art_imgsize` **[500, 488]** while the server delivers
+   **1,280 × 1,275**; `yellow-cow` carries `art_hires` **[null, null]**. A gate cannot compute
+   a ratio against a null, and a stale baseline manufactures a gain out of nothing.
+
+⭐ **THE ORDER OF WORK, and it generalises past this holder: FIX THE BASELINE FIRST.** Do not
+adjudicate 8 candidates against a record that is wrong about what we already serve — re-measure
+every Guggenheim row's true delivered size, write it in, **then** re-run the comparison with a
+real measurement on both sides. ⚠ One of the 8 (`blue-mountain`) carries **7 tour boxes**, so
+it is in the expensive half regardless of how the evidence question lands.
+
+### ⛔ THE 3 EXISTING `nationalmuseum-se` ROWS HAVE A BROKEN `img` — pre-existing, still live
+
+⚙ **Verified in the store.** `/full/3000,/0/default.jpg` returns **501 — "Requested height is
+above server limit 1000 px"**. Their `iiif` deep zoom works; the **flat `img` does not**.
+
+⚠ **Precision the session note missed: it is all 3, but not all with the same url.** ⚙
+`fjaestad-winter-moonlight` and `fjaestad-wood-pattern` request `/full/3000,/`;
+**`simeon-in-the-temple` requests `/full/2828,/`** — a different number, the same 501, because
+**anything over 1000 fails.** ⛔ **Do not grep for `3000` when sweeping for this defect**; the
+predicate is *a `nationalmuseum-se` flat render asking for more than 1000 px*.
+
+⭐ **This is why the round-7 plan KEEPS the working Commons plate as `img`** and puts the
+Nationalmuseum route in `iiif` only — the Micrio convention already in the store. Adopting the
+existing `nationalmuseum-se` pattern would have propagated the 501 to 33 more rows.
+
 ## ROUND 6 (2026-08-25) — the NG London regression is FIXED, and two holders adopted
 
-`art_hires.js` **1,108 → 1,141 entries** (33 new rows, 37 rewritten in place). Working sheets,
+`art_hires.js` **1,108 → 1,141 entries** (33 new rows, 37 rewritten in place). ⚙ **The store is
+now at 1,152** — w20's tourless half added 11 more the same day (round 7); 1,141 is correct as
+this round's end state, not as a current count. Working sheets,
 with every hash and every reject: `.dtmp/tourqc-pass/w17/{gugg,mnw}/RESULTS.json`,
 `.dtmp/tourqc-pass/w17/VERIFY.json`. **Nothing here was adopted on a reported number** — all 68
 candidate urls were re-fetched in full and re-decoded after the sheets were built (0 failures),
@@ -175,6 +372,13 @@ JPEG with no gain is not the Micrio case — **there is no pyramid to buy.**
 
 ### ⚠ HELD, NOT REJECTED — 35 works where OUR plate is the cropped one
 
+> ⛔ **SUPERSEDED FOR THE MNW HALF (round 7 / w20). ~~27~~ → the pass measured them by image
+> registration and adopted **21**, refused **8**.** Five of the eight were refused because the
+> holder's physical dimensions say **our** plate is the truer one — i.e. the "our plate is the
+> crop" reading was **wrong on those five**. The 27 below is the count of *candidates carried
+> into* w20, not a count of confirmed re-framings. Full table in the round-7 entry above.
+> The Guggenheim half is **not** superseded — those 8 are refused on evidence quality.
+
 8 Guggenheim + 27 MNW candidates exceed the 2 % aspect gate, so they were **not adopted** (a
 re-plate would invalidate existing tour box coordinates). But both sweeps cross-checked the
 candidates against the **holder's recorded physical dimensions**, and the result inverts the
@@ -197,13 +401,18 @@ re-plate, it is **a re-plate PLUS a box re-anchor for every stop**, and for a to
 they were composed against has changed. That is an owner's call and a drafting pass, not a data
 edit, which is exactly why an aspect delta over the 2 % gate is a HOLD and never an auto-adopt.
 
-The corollary is uncomfortable and worth stating: **on 27 of these the gate is protecting a
+The corollary is uncomfortable and worth stating: **on ~~27~~ ⛔ 21 of these (measured in
+round 7; 5 of the remainder turned out to be OUR plate being truer) the gate is protecting a
 crop.** `werki-pod-wilnem` is the clean example — physical object 82 × 68.5 cm, our plate off
 **11.4 %**, the MNW candidate off **0.3 %**. The gate is still right to fire, because what it
 guards is *coordinate stability*, not fidelity; it simply cannot tell "our plate is wrong" from
 "the candidate is wrong". **Read every aspect failure against the holder's recorded physical
 dimensions before calling it a reject** — that third number is the only thing that breaks the
-tie, and without it 27 corrections would have been filed as 27 bad candidates.
+tie, and without it ~~27 corrections would have been filed as 27 bad candidates~~ ⛔ **21
+corrections would have been filed as bad candidates — and, symmetrically, 5 GOOD plates of ours
+would have been replaced by worse ones.** The third number cuts both ways, which is the
+strongest version of this lesson: it is not a tool for rescuing candidates, it is the only way
+to find out which side is wrong.
 
 ⚠ Untoured works in this set are cheap (re-plate only, no boxes to move) and toured ones are
 expensive. **Split the list by toured/untoured before taking it to Fuad**, so the cheap half is
@@ -293,7 +502,10 @@ adopted.** The correction is that the reason they were closed never existed.
 The round-3 record treats `/full/max/` as the portable "give me everything" size keyword. It
 is not, and the failure is a **400, not a downgrade**, so it takes a whole source out:
 
-- **Nationalmuseum Stockholm** — IIIF 2 **level1**, capped 1000 px: `/full/max/` **400s**.
+- **Nationalmuseum Stockholm** — IIIF 2 **level1**, ~~capped 1000 px~~ ⛔ **capped 1000 px ON
+  FLAT RENDERS ONLY — REGION REQUESTS SERVE NATIVE PIXELS** (corrected round 7; 33 rows and
+  641 MP were sitting behind this sentence for two rounds). `/full/max/` **400s** — that part
+  stands, and it is still what takes the source out for *flat* fetches.
 - **Smithsonian** — same shape, same 400.
 - **Micrio** is the reverse case: IIIF 3, where `full` is not a legal size and **`max` is the
   only correct keyword** (which is why the round-3 records write `full` out explicitly).
@@ -349,6 +561,11 @@ the image service, and the two must not be conflated again.
   This corrects the row below (*"no public API… no discoverable search front door"*): there is
   a service, and **a clamp measured on `/full/` is not a clamp on the server.** Re-measure any
   holder this file records as capped, by region, before believing the ceiling.
+  ⭐ **AND IT HAPPENED AGAIN — see round 7.** Nationalmuseum Stockholm was recorded in this
+  same file as *"capped 1000 px"* on exactly this mistake and stayed that way for two rounds,
+  hiding 33 rows and 641 MP. **Oslo and Stockholm are ONE CLASS: a flat-render clamp is not a
+  server ceiling.** This paragraph was right and was not acted on as a general rule; round 7 is
+  the receipt for what that cost.
 
 ### 📊 Corrected census figures — the old ones were badly out
 
@@ -364,7 +581,13 @@ Re-measured against the live stores 2026-08-25 (method stated so it can be re-ru
 carry a venue without being marked seen. State which one you used; that difference is exactly
 the join-discipline lesson STUDY_SPEC records twice.
 
-### ⛔ Commons refuses to render a TIFF above 1920 — and it is not three rows, it is 46
+### ⛔ ~~Commons refuses to render a TIFF above 1920~~ — the SCOPE (46 rows) stands, the RULE is wrong
+
+⛔ **CORRECTED IN ROUND 7 — read that entry first.** Commons renders TIFFs at **bucketed**
+widths (the largest of {3840, 1920, 1280, …} not exceeding the master), **not at a flat 1920
+ceiling**. **13 of these 46 rows get 3,840 and one gets 1,280.** The three rows tabulated below
+happen to be 1920-bucket rows, which is exactly how the wrong rule got written. ⚙ The **46**
+re-verifies against the live store; only the ceiling claim is struck.
 
 `Special:FilePath/…?width=N` for `N > 1920` on a `.tif` redirects to a
 `lossy-page1-1920px-…` render, and direct `upload.wikimedia.org` thumbs at the declared width
@@ -383,7 +606,9 @@ is not. This is the counterpart to the TIFF-upscale trap already recorded above 
 MediaWiki inflates a TIFF thumb, here it refuses one.
 
 ⚠ And it sharpens STUDY_SPEC's pixel-extent check: for these 46 works the reader's real
-ceiling is **1920**, so a rule written at 3840 is twice as strict in practice.
+ceiling is ~~**1920**~~ ⛔ **their own bucket — 1920 for 32 of them, 3840 for 13, 1280 for 1**
+(round 7). The sharpening still holds, it is just **per-row**: a rule written at 3840 is twice
+as strict as it looks for most of these works and exactly right for thirteen of them.
 
 ### Also logged
 
@@ -931,6 +1156,13 @@ carries four tiled branches; both new ones are OSD built-ins, so this is configu
   computes the grid itself and there is **no metadata fetch**, which also means a Zoomify tile
   failure does *not* raise `open-failed` and therefore has **no automatic fallback** — it shows as
   broken tiles. Eyeball NGV first if anything looks wrong.
+  ⛔ **AND THAT IS EXACTLY THE BUG WE THEN SHIPPED.** `tilesUrl` was passed **unproxied** while
+  the DZI branch beside it used `proxied()`; NGV tiles carry ACAO for their own origin only, so
+  the toured `two-old-men-disputing` served blank tiles with **no error strip** for as long as
+  it took someone to look. Fixed — `tilesUrl: proxied(work.hires.zoomify)`. ⭐ **The warning
+  above was correct and was not enough: "there is no automatic fallback" needed to be written
+  as a CONSTRUCTION rule — a descriptor-less tile source must be proxied by construction, never
+  by inspection.** Full write-up: `QC_LEDGER.md` Method lesson 13.
 - **DeepZoom** (`hires.dzi`) — the `.dzi` URL passed straight through as a tileSource. OSD derives
   `<name>_files/<level>/<x>_<y>.<fmt>` from **the URL it fetched**, so proxying the descriptor
   proxies the tiles for free.

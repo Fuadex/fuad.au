@@ -809,7 +809,9 @@ the Szał false-negative lesson one level up.
      axis. Distinct top long-sides in the store: 3840, 3853, 4290, 4323, 4366, 4774, 4789, 4971,
      5021, 5283, 5373, 5667, 5671, 5733, 5812, 5841.
    - **It is FICTIONAL for the toured works on real tile pyramids**, which have no ceiling at
-     all. Measured against the live store: of 375 toured works, **34 sit on a true tile service**
+     all. Measured against the live store: of ~~375~~ ⚙ **378 (re-counted 2026-08-25; the store
+     moved under this figure the same day it was written — see `QC_LEDGER.md` "Session totals")**
+     toured works, **34 sit on a true tile service**
      (31 `iiif` + 2 `iiifId` + 2 `dzi` + 1 `zoomify`, 2 overlapping), **18 on a Commons `pyr`
      ladder**, **263 on a flat `img` only**, and **61 have no `art_hires` row at all**. Writing
      one number across those four populations describes none of them.
@@ -849,7 +851,14 @@ the Szał false-negative lesson one level up.
    box, change the subject, or cut the stop. **This applies to `see` and `craft` too.**
 
    ⚙ **THE CEILING NEEDS A SECOND TERM FOR PHOTOGRAPHED OBJECTS: PIXEL EXTENT *AND* FOCAL PLANE**
-   (added 2026-08-25, from the Puech `L'Aurore` reading). A painting is flat and a scan of it is
+   (added 2026-08-25, from the Puech `L'Aurore` reading).
+   ⛔ **RULED, NOT MEASURED — the Puech reading this cites DOES NOT EXIST ON DISK.** The w19b
+   batch was reported as drafted and was never written; a full-text sweep of all ~950 `.dtmp`
+   files found no draft, so **the worked example below cannot be re-opened or re-checked**.
+   The rule is kept because the reasoning stands without the example, but **do not cite it as a
+   measured result, and do not treat its numbers as observations.** See `QC_LEDGER.md`, Method
+   lesson 14 and the w19b entry under "Canon data defects".
+   A painting is flat and a scan of it is
    in focus everywhere, so pixel extent alone is a sufficient legibility test. **A photographed
    sculpture is not flat**, and a lens has one plane of sharp focus with everything in front of
    and behind it falling off. The Puech's incised signature **clears the 40 px floor comfortably
@@ -1805,7 +1814,13 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
    they are stop-sized: each is a mark on a real surface that Law 1 can start from.
 
    ⛔ **BUT THAT LIST IS BRONZE-DERIVED, AND THREE OF ITS FIVE ITEMS DO NOT APPLY TO CARVED STONE
-   — SPLIT IT (2026-08-25, from the Puech `L'Aurore` reading).** All three models are Rodin
+   — SPLIT IT (2026-08-25, from the Puech `L'Aurore` reading).**
+   ⛔ **RULED, NOT MEASURED — the Puech reading cited here was never written to disk** (the
+   w19b phantom batch; `QC_LEDGER.md` Method lesson 14). The split is a **reasoned** correction
+   to a bronze-derived list, and it survives on that reasoning alone — but **nothing in the
+   carving column was verified against a plate**, so treat every item in it as a proposal to be
+   tested on the first real carving, not as a finding.
+   All three models are Rodin
    bronzes, so the list generalised a casting process into "what sculpture criticism is". A
    carved marble **has no armature, was not put through an enlargement machine, and has no
    patina** — those three are facts about metal that was modelled, scaled and chemically
@@ -1837,7 +1852,12 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
    photographed surface honestly without hedging every sentence.
 
    ⚙ **EXTEND IT: LIGHT AND ANGLE ARE NOT THE ONLY THINGS THE PHOTOGRAPH ADDS** (2026-08-25,
-   from the Puech `L'Aurore` reading). The rule as written warns about the two decisions a
+   from the Puech `L'Aurore` reading).
+   ⛔ **RULED, NOT MEASURED — the Puech reading is a phantom** (w19b; `QC_LEDGER.md` Method
+   lesson 14). The four artefact classes below are sound as **things to look for**; the cobweb
+   worked example that follows them **cannot be re-opened**, so it is an illustration, not
+   evidence, and its resolution claim is unverified.
+   The rule as written warns about the two decisions a
    photographer makes. It says nothing about what simply **lands on the object or on the lens**,
    and those read as sculpture just as convincingly:
    - **dust** — settles in hollows and reads as a change of finish, or as age;
@@ -1864,7 +1884,14 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
    easy one. Check whether a "decision" is in the bronze or in the lighting.
 
    ⭐ **AND HERE IS THE TEST THAT MAKES THAT ADJUDICABLE — THE PHYSICAL/ILLUMINATION TEST**
-   (2026-08-25; the sculpture analogue of the dissolution check, and it worked). The check above
+   (2026-08-25; the sculpture analogue of the dissolution check). ⛔ ~~and it worked~~ **RULED,
+   NOT MEASURED — struck rather than deleted, because "it worked" is exactly the claim that
+   cannot be supported:** the Puech reading it was tested on was never written to disk (w19b;
+   `QC_LEDGER.md` Method lesson 14). The **test itself is the valuable part and stands** — it
+   converts a vague warning into a procedure — but the two worked examples below are
+   **illustrations, not results**, and the test has **not yet been run on a verified plate**.
+   Whoever drafts the first real sculpture tour should treat proving it as part of the job.
+   The check above
    asks a question with no procedure attached. This is the procedure:
 
    > **Ask which property the lighting could not have produced.**
