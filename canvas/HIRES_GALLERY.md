@@ -5,11 +5,12 @@
 > How this store was built — and every wall it hit — is chronicled in
 > [HIRES_SOURCING.md](HIRES_SOURCING.md).
 
-Generated 2026-08-22 from `art_hires.js` (930 entries carry pixel dimensions; holder-API/IIIF
-entries don't and live outside this ranking — the Met/AIC/CMA tiles are excellent but unmeasured
-here). Regenerate with the snippet at the bottom after any art_hires emit. Work links open the
-reader; **Ultra HQ ↗** in the reader footer opens the untouched file (browsers downsample giant
-scans in a plain tab — the numbers below are what the file really holds).
+Snapshot 2026-08-22 from `art_hires.js`. As of 2026-08-25 the store holds 1,155 records and
+every one carries measured pixel dimensions (the 2026-08-25 hygiene pass closed the last 17);
+the Met/AIC/CMA holder-API tiles remain excellent but sit outside this ranking. The ranked table below is a dated snapshot; regenerate with the snippet at
+the bottom after any art_hires emit. Work links open the reader; **Ultra HQ ↗** in the reader
+footer opens the untouched file (browsers downsample giant scans in a plain tab — the numbers
+below are what the file really holds).
 
 ## Gigapixel class — ≥100 MP (26 works)
 

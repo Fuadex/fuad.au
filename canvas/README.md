@@ -5,7 +5,7 @@
 **A museum wall built from memory.** Every painting, sculpture, and print I've stood in
 front of — reconstructed museum by museum, confidence-graded (sure / probably / unsure),
 and presented the way a gallery should feel: the work large, unhurried, beautifully typeset;
-the story of it one tap away. About 313 works across 52 museums, with a pilgrimage list of
+the story of it one tap away. About 2,000 works across ~55 museums, with a pilgrimage list of
 what to see next and a map of where everything lives.
 
 **Live at [fuad.au](https://fuad.au/canvas/).**

@@ -10,7 +10,7 @@ needs; apps never reach into each other.
 |---|---|---|
 | **Rotation** | `/rotation/` | 20 years of last.fm listening (~319k scrobbles), mined for derived narrative insight: obsessions, flameouts, taste geography, sound DNA, song readings, gigs. |
 | **Culture** | `/culture/` | A personal film / TV / games / books canon (~3,300 seen + 1,340 wishlist), with a Python enrichment workshop alongside. |
-| **Canvas** | `/canvas/` | A personal gallery of art seen in museums, built from memory reconstruction + photo detection + Wikidata; ~645 works, ~72 museums, recall decks, Study tours. |
+| **Canvas** | `/canvas/` | A personal gallery of art seen in museums, built from memory reconstruction + photo detection + Wikidata; about 2,000 works seen across ~55 venues, recall decks, Study tours. |
 
 ---
 
@@ -111,7 +111,16 @@ dataset sanity" (`smoke.js`). Push to `main` is the test environment.
 | **canvas/PLAN.md** | Touching Canvas — full architecture, data model, phases, open questions |
 | **canvas/PIPELINE.md** | Refreshing Canvas data — enrichment scripts, deck folding, the photo-detection import chain, LLM content overlays |
 | **canvas/STUDY_SPEC.md** | Writing or QC-ing a Study tour (`art_inspect.js`) — format, arc structure, truth rules, the Opus-draft → Fable crop-QC pipeline |
+| **canvas/READS_SPEC.md** | Writing or QC-ing Info/Interpretation reads (`art-about.js`) — fused-Info methodology, voice rules, tour→hook→interp→distil pipeline |
 | **canvas/memory-seed.md** | The memory reconstruction log (raw recollections → resolved entities) |
+| **canvas/DATA_NOISE.md** | Understanding why pipeline guards exist — qid collisions, wrong-museum traps, near-miss titles; read before removing any guard |
+| **canvas/WORKS_LEDGER.md** ★ | Per-work status tally — confidence grades, reads coverage, IIIF availability (URL-public) |
+| **canvas/QC_LEDGER.md** | Closed QC waves — what was audited, fixed, and signed off; don't re-audit closed entries |
+| **canvas/HUNT_LEDGER.md** ★ | IIIF upgrade hunt log — verified upgrades, closed-out candidates, sourcing decisions (URL-public) |
+| **canvas/HIRES_SOURCING.md** | High-res image sourcing methodology — API tiers, copyright boundary, IIIF vs static policy |
+| **canvas/HIRES_GALLERY.md** | Ranked snapshot of the sharpest scans in the canon (≥20 MP), with pixel dimensions |
+| **canvas/PLATE_CHANGES.md** ★ | Changelog of IIIF / image URL changes since last deploy (URL-public) |
+| **canvas/NGA_IIIF_CANDIDATES.md** | NGA IIIF adoption tracking — verified upgrades and remaining candidates |
 
 ### Archive (gitignored — local only)
 | Doc | What it is |
