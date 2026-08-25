@@ -41,6 +41,14 @@ const UPSTREAM = {
   ngv: "https://content.ngv.vic.gov.au",        // Zoomify pyramid: /ngv/<path>/TileGroup0/0-0-0.jpg
   agsa: "https://agsa-prod.s3.amazonaws.com",   // plain JPEG
   whitney: "https://whitneymedia.org",          // plain JPEG
+  // Guggenheim (2026-08-25 w17, pasted to the dashboard by Fuad). WordPress uploads, canonical-
+  // stem originals capped ~4096px; sends NO ACAO and no `vary` at all, measured with an explicit
+  // Origin on 30 assets. Flat JPEGs, not a pyramid — one ~5 MB request per work, which is why
+  // the edge cache matters more here than on a tile source.
+  gugg: "https://www.guggenheim.org",
+  // NOT PASTED YET: `artuk` (d3d00swyhr67nd.cloudfront.net) is in canvas-app.jsx's IMG_PROXY but
+  // is deliberately absent here — probed 2026-08-25, /artuk/ still returns "unknown upstream".
+  // Add it when Fuad pastes it, not before; this file records what is deployed.
   // culture (rollout 2026-08-22)
   tmdb: "https://image.tmdb.org",
   amzn: "https://m.media-amazon.com",

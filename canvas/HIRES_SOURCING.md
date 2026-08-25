@@ -62,9 +62,23 @@ JS, so it is the *natural* log — a real OSD quirk, self-consistent but not bas
   exactly 300 dpi; 0.00374631 = 678 dpi). It would "prove" *Coastal Scene* is 2.4 m wide.
   **Do not use a IIIF physdim service as a physical-dimension check.**
 
-The viewer change is a two-hunk exact-match patch in `.dtmp/tourqc-pass/w17/NG_PATCH.md`
+~~The viewer change is a two-hunk exact-match patch in `.dtmp/tourqc-pass/w17/NG_PATCH.md`
 (`canvas-app.jsx` was held by another agent); `hires.tile` and `hires.flat` are inert until it
-lands, so the data is safe to ship first.
+lands, so the data is safe to ship first.~~ **LANDED 2026-08-25.** All three hunks applied to
+`canvas-app.jsx` (tile fix, footer honesty, holder labels), Babel-clean, and re-measured against
+the live server after the edit — not read off the patch:
+
+| Work | `hires.tile` | scaleFactors the patched code computes | what the server publishes |
+|---|---|---|---|
+| `theo-van-rysselberghe-coastal-scene` (28,641 × 23,726) | 256 | `[1,2,4,8,16,32,64,128]` | `[1,2,4,8,16,32,64,128]` — **identical** |
+| `madonna-of-the-pinks` (6,909 × 8,585) | 256 | `[1,2,4,8,16,32,64]` | `[1,2,4,8,16,32,64]` — **identical** |
+
+and the tiles themselves, fetched through the `ngl` proxy alias: `/0,0,256,256/256,256/` →
+**256 × 256 native** on both, top-level region → 256 × 256 (215 × 256 on the Raphael, where the
+region overruns the image, which is correct). The old level-10 request
+`/10240,10240,1024,1024/1024,1024/` still answers **800 × 800** — the regression is real, it is
+measurable on demand, and it is now not what OSD asks for. `maxWidth`/`maxHeight` re-read as 800
+on both descriptors; `/full/max/` re-measured at 800 × 662, which is what the footer now says.
 
 ### ✅ Guggenheim — 20 adopted, and the reported rule was wrong in a way that mattered
 
@@ -79,10 +93,27 @@ Mountain* needed a different upload directory entirely).
 Ceiling is a **~4,096 px fit box** and it is the ceiling: `-scaled`, `-2048x1386`, `_ph.jpg`,
 `_ph_print.jpg`, bare `<accession>.jpg` all 404, and `?w=8000` returns the **byte-identical**
 4,096 file (trap 7, caught by hash). **No ACAO on any asset** (measured on 30 with
-`Origin: https://fuad.au`, re-measured on 8 independently; no `vary` header at all). Alias in
-`.dtmp/tourqc-pass/w17/WORKER_GUGG.local.md`, **not pasted** — and it is optional, because a
-`type: "image"` source that fails CORS lands in `open-failed` and is rebuilt on the direct url
-with `cors: false`, which is a plain image load.
+`Origin: https://fuad.au`, re-measured on 8 independently; no `vary` header at all). ~~Alias in
+`.dtmp/tourqc-pass/w17/WORKER_GUGG.local.md`, **not pasted**~~ — **PASTED AND LIVE 2026-08-25**;
+`IMG_PROXY` now maps `https://www.guggenheim.org/` → `https://img.fuad.au/gugg/`.
+
+⚙ **How the alias was verified, and the method to reuse.** An unknown alias does not error — the
+worker answers `unknown upstream` with a **404 of exactly 16 bytes**, and the app then degrades
+silently, which is how `/nglondon/` once shipped against a deployed `ngl` and cost a
+679-megapixel scan while looking like nothing had happened. So the check is a three-way probe,
+not a reading of the alias string: a **live row through the proxy** (`/gugg/wp-content/uploads/
+1916/01/49.1229_ph_web.jpg` → **200, `image/jpeg`, 5,364,087 bytes, `access-control-allow-origin:
+*`**), the **same file direct** (200, `image/jpeg`, same 5,364,087 bytes, **ACAO absent** — the
+no-CORS finding re-confirmed on a live row, not just on the sourcing sheet), and a **deliberately
+bogus alias** (404, 16 bytes). Identical byte counts prove the proxy is serving the same file and
+not a derivative; the ACAO delta is the whole reason the alias exists. The same probe run against
+`artuk` returns the 16-byte 404 — **`artuk` is still unpasted**, and `img-proxy.worker.js` now
+says so in place rather than silently lacking the line.
+
+The alias remains **optional for correctness**: a `type: "image"` source that fails CORS lands in
+`open-failed` and is rebuilt on the direct url with `cors: false`, which is a plain image load.
+What it buys is that the first open succeeds instead of costing a guaranteed failed request —
+never a better image, just not a wasted round-trip on all 20 works.
 
 ⛔ **The one work the reported claim was verified on is one of the rejects.** "Verified
 4096 × 2852" is *Composition VIII* (37.262): **×1.02 linear** over our 3,911 × 2,849 plate with a
@@ -156,6 +187,28 @@ same shape as the Klimt *Water Serpents I* hold in the toured-plates pass. ⚠ `
 one to leave alone: plate landscape, candidate portrait, physical object square — neither capture
 matches, identity uncertain.
 
+⚙ **Why these are HELD and not simply adopted — the rule, since "the candidate is truer" reads
+like an obvious yes.** A re-framed plate is not a swap of one image for another. **Tour box
+coordinates are fractions of the DISPLAYED plate**, so changing the framing moves every box in
+that work's tour: a box that sat over a face at `x: 0.41` on a plate cropped 11.4 % tighter than
+the object does not sit over that face on the true framing. So the unit of work here is not a
+re-plate, it is **a re-plate PLUS a box re-anchor for every stop**, and for a toured work it is a
+**re-tour question** — whether the stops still say what they were written to say once the frame
+they were composed against has changed. That is an owner's call and a drafting pass, not a data
+edit, which is exactly why an aspect delta over the 2 % gate is a HOLD and never an auto-adopt.
+
+The corollary is uncomfortable and worth stating: **on 27 of these the gate is protecting a
+crop.** `werki-pod-wilnem` is the clean example — physical object 82 × 68.5 cm, our plate off
+**11.4 %**, the MNW candidate off **0.3 %**. The gate is still right to fire, because what it
+guards is *coordinate stability*, not fidelity; it simply cannot tell "our plate is wrong" from
+"the candidate is wrong". **Read every aspect failure against the holder's recorded physical
+dimensions before calling it a reject** — that third number is the only thing that breaks the
+tie, and without it 27 corrections would have been filed as 27 bad candidates.
+
+⚠ Untoured works in this set are cheap (re-plate only, no boxes to move) and toured ones are
+expensive. **Split the list by toured/untoured before taking it to Fuad**, so the cheap half is
+not held hostage by the expensive half.
+
 15 MNW works are **UNRESOLVED, not absent**: 9 have no cyfrowe record under their P217, 3 carry
 **Royal Castle** inventory numbers (ZKW …) while their P195 says MNW — a census/Wikidata conflict
 worth its own look — and 3 have no P217 at all.
@@ -175,9 +228,13 @@ regression on works that are already toured. Read the corrections before the win
 
 ### ⛔ REGRESSION — National Gallery London serves 800 px and silently upscales
 
-**This is a bug report, not a note.** Our records advertise Rysselberghe *Coastal Scene* at
+**This is a bug report, not a note.** ✅ **CLOSED in round 6 and shipped in `canvas-app.jsx`
+2026-08-25** — kept unedited below because the diagnosis is the reusable part; only read the
+verdict lines as history. Our records advertise Rysselberghe *Coastal Scene* at
 **28,641 × 23,726** (the adopted table below still says ×35.8). What the server actually
-delivers is **800 × 662**.
+delivers ~~is **800 × 662**~~ **delivered, while `tiles` was omitted, was 800 × 662 — it now
+delivers the full master 256 px at a time, and the flat-render ceiling of 800 × 662 is recorded
+in `hires.flat` and labelled honestly in the footer.**
 
 - The `info.json` carries `maxWidth: 800` / `maxHeight: 800` and **clamps with a 200, not a
   400** — so nothing fails, it just shrinks.
@@ -584,6 +641,15 @@ and 13 is the first one we did to ourselves, inside an already-adopted record.**
    request, never a receipt — and audit the fields an adoption REPLACES, not just the ones it
    adds.** Corollary: run the anti-downgrade gate against `max(art_imgsize, art_hires)` per axis
    (it caught `stanczyk` in round 6, inside an ADOPT list, for exactly this reason).
+   **The class, stated so the next pass tests for it by name: an adoption can regress a work even
+   when the source is genuinely larger, if the url we construct is not the url we measured.** The
+   NG London master is real — 28,641 × 23,726, reachable, now reached. Nothing about the sourcing
+   was wrong. The regression lived entirely in the gap between the file that was measured and the
+   string that was written into the record, and no amount of care about the *holder* closes that
+   gap; only re-decoding the final field does. **Closed 2026-08-25**: `img` now points at the
+   Commons plate, `flat` carries the measured 800 × 662 / 643 × 800 ceiling beside the master
+   dims, and the reader footer reads `Museum render ↗ 800×662` instead of promising 28,641.
+   Rules now standing as a gate of their own — see *The anti-downgrade gate* below.
 
 Also keep in mind the **flat-render downgrade** (Nationalmuseum's render caps at 1000px while
 its pyramid reaches 11,016 — adopting the render as `img` silently downgrades works currently
@@ -766,6 +832,35 @@ pixel-perfectly — and Commons rounds its own way; only measured `pyr` levels r
 | **AGSA / Whitney** | partial, keyless — plain JPEG keyed by the holder's object id | **2 emits** (Pissarro *Prairie à Éragny* 3,543×2,849; Stettheimer *New York/Liberty* 1,537×2,048) | Not sweepable — one asset per object page — but identity is safe because the asset path carries the object id (`/assets/artwork/47209/`, AGSA work 27081). Whitney's ceiling is 2,048 px and its filename says `_cropped`; adopted at `conf: "med"` on the strength of a 0.07 % aspect match with the current plate, which a real crop could not produce. |
 | **Belvedere** | open, keyless (eMuseum JSON + IIIF Presentation v2 + Image v2 level2) | 1 candidate → **0 emits** | Works fine technically — object-id lookup only, and the manifest carries 8 canvases (raking light, details) so the canvas must be picked deliberately. Rejected on aspect, not access: see the ledger below. |
 
+## The anti-downgrade gate (binding — state of the rule, 2026-08-25)
+
+Identity is not the only thing a gate has to protect. Three rules, each written because it was
+broken inside an **ADOPT** list, not in theory:
+
+1. **Compare against `max(art_imgsize, art_hires)` PER AXIS — never against the plate alone.**
+   `art_imgsize` records the Commons plate; `art_hires` records what we actually serve. Scoring a
+   candidate against the plate answers a question nobody asked. `stanczyk` scored **×1.85** and
+   sat in an adopt list on that arithmetic: candidate 5,759 × 4,277 against `art_imgsize`
+   3,118 × 2,313. Against the `art_hires` row we serve — **5,766 × 4,289** — it is smaller on
+   **both** axes. Per-axis matters as much as which source: an area or long-edge comparison will
+   wave through a candidate that is wider and shorter, which is a downgrade on the axis a reader
+   is zoomed into.
+2. **Score the URL you will WRITE, not a URL you merely measured.** These come apart whenever the
+   adopted url is constructed rather than copied — a size-bearing IIIF path, a template, a tier
+   name. `ng-london` is the case: a genuinely larger source, correctly measured, and the `img` we
+   then wrote (`/full/!3000,3000/`) returned 800 px. **An adoption can regress a work even when
+   the source is genuinely larger, if the url we construct is not the url we measured.** Re-fetch
+   and re-decode the final string, after it is written, from the record.
+3. **Audit the fields an adoption REPLACES, not only the ones it adds.** The gate is usually
+   pointed at `w`/`h`; the damage on `ng-london` was to `img`, which `enrich()` feeds to
+   `imgZoom`, so the plain Zoom overlay lost *Madonna of the Pinks* from Commons **870 × 1,080**
+   to **643 × 800** while the row's headline numbers looked like a win. Every field an adoption
+   overwrites is its own possible downgrade.
+
+⚠ And a no-op is not a win: a flat JPEG at ×1.002 (`eugeniusz-wrzeszcz…`) or pixel-identical
+(`jewess-with-oranges`) buys nothing. **This is not the Micrio case — there is no pyramid behind
+a flat file**, so gain-in-pixels is the entire value on offer. Drop it.
+
 ## The identity discipline (why the gates exist)
 
 Everything not identity-safe by construction goes through two gates:
@@ -868,13 +963,28 @@ OSD's 1024-px tile requests come back at 800 and get **upscaled, silently, on tw
 (~78% of available detail). **Read the descriptor's `maxWidth`/`maxHeight` BEFORE omitting
 `tiles`. Where a clamp exists, declare a tile size at or under it — `tiles: 256` for NG London.**
 Omission stays correct for the unclamped sources (Pompidou DZI needs none of this at all).
+✅ **SHIPPED round 6 (2026-08-25)**: `resolveOSDSource()` now emits `ts.tiles` whenever the record
+carries `hires.tile`, deriving `scaleFactors` from `w`/`h`/`tile` — verified against both NG
+descriptors' own published lists, which it reproduces exactly. Records without `hires.tile` take
+the unchanged path, so Micrio, NGA, Pompidou and the rest cannot regress. ⚠ **Both NG descriptors
+had been publishing `tiles: [{width: 256, …}]` the whole time** — the inline descriptor discarded
+the server's own advice. When you override a server's metadata, you own every field you drop.
 
 DZI needs none of that — proxy the descriptor and you are done.
 
-Worker aliases `nglondon` and `pompidou` must be added by hand in the Cloudflare dashboard
-(`.dtmp/tourqc-pass/WORKER_CHANGES.local.md`). Until they are, the alias 404s, `open-failed` fires
-and `useOSDViewer`'s `fallbackUrl` retry drops to the canon plate — never worse than before. Per
-the standing rule every proxied URL here is paired with that direct fallback.
+~~Worker aliases `nglondon` and `pompidou` must be added by hand in the Cloudflare dashboard~~
+(`.dtmp/tourqc-pass/WORKER_CHANGES.local.md`). **WRONG NAMES, AND THAT IS THE POINT — the
+deployed aliases are `ngl` and `cpom`, and both are live.** This sentence is left struck rather
+than deleted because the mismatch it records is the whole trap: an agent wrote `/nglondon/`
+against a deployed `ngl`, the worker answered its 16-byte `unknown upstream` 404, `open-failed`
+fired, the viewer fell back to the low-res plate, and **nothing anywhere reported an error** — a
+679-megapixel scan lost to a typo that looked like normal operation. **The alias in `IMG_PROXY`
+must match the deployed `UPSTREAM` key character for character, and the only proof is a live
+probe** (200 + `access-control-allow-origin: *` through the alias, versus the 16-byte 404 a
+bogus alias returns). Never a reading of a note like this one. Until an alias is pasted the
+degradation is benign — `open-failed` fires and `useOSDViewer`'s `fallbackUrl` retry drops to the
+canon plate, never worse than before — which is exactly why it goes unnoticed. Per the standing
+rule every proxied URL here is paired with that direct fallback.
 
 ### Adopted — 10
 

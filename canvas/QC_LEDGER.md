@@ -34,6 +34,7 @@ whenever a QC pass runs — coverage claims that aren't recorded here don't coun
 | 2026-08-25 | **CORPUS-WIDE MECHANICAL TRIAGE — all 363 tours** (.dtmp/tourqc-pass/triage.js, scope2.js) | scripted: every checklist step needing no image | Fable | 164 box problems in 104 tours · **354 verbatim-restating hits in 225 tours** (5-word runs shared between a paragraph and a stop) · 32 self-contradictions · 138 relation claims · **0 research-note leaks**. TWO SELF-CORRECTIONS, both the class this triage exists to catch: the first draft flagged **131 tours for OBEYING the spec** (a wide opener with everything nesting inside it is the prescribed arc order), and the 34% vocabulary threshold was a guess measured at only ~40-50% precision — replaced by phrase-matching, which is near-zero false positive. |
 | 2026-08-25 | wave-2 REPAIR (20 tours) + Law-2 batch (26 trims/15 tours) + box batch (12 fixes/7 tours) | Opus agents drafting, Fable QC + apply via a JSON runner with round-trip proof | Opus + Fable | 221+26 text edits, 80+12 box fixes, all proved: entry count unchanged, untouched entries byte-identical, no superseded phrasing surviving. **Two rulings came out of the repairs**: `see` NAMES, stops DESCRIBE (the restating sits in `see` more often than `craft` — 15 of 26 edits); and nesting is only a defect when the container is MID-TOUR *and* the contained subject is one the container's body never claims. Agents declined work rather than guessing twice (a bare-connective false positive; Dalí's needle flagged NEEDS IMAGE) — a wrong box is worse than a flagged one. |
 | 2026-08-25 | **WAVE 4 — audit + repair**, plus the mandatory whole-entry re-audit (STUDY_SPEC checklist 13 / run order 26) | Opus agents auditing from crops, then **re-verifying their own findings before apply**; Fable QC + JSON-runner apply with round-trip proof | Opus + Fable | **82 text + 27 box + 1 title fix applied across 12 works.** ⭐ **The wave REJECTED 9 of its OWN findings on verification** — i.e. roughly one in ten of what an audit proposes does not survive being checked a second time against the crop, which is the strongest argument yet for the standing rule that a repair agent re-verifies rather than trusting the audit handed to it. ⛔ **AND THE MANDATORY WHOLE-ENTRY RE-AUDIT FOUND 5 BOX ERRORS THE AUDIT HAD MISSED**, including a stop titled **"The fur collar in the dark" whose box held no collar**. The re-audit is not a formality on top of a repair — on this wave it was a **better detector than the audit that triggered it**. |
+| 2026-08-25 | **PLATE PASS ROUND 6 — Guggenheim ×20 + MNW Warsaw ×48, plus the NG London viewer fix** (sheets `.dtmp/tourqc-pass/w17/`) | every candidate re-fetched in full and re-decoded after the sheets were built (0 failures); anti-downgrade gate re-run against `art_hires` as well as `art_imgsize`; CORS headers measured per-asset with an explicit `Origin`; viewer fix verified by fetching real tiles, not by reading the patch | Opus sourcing agents + Fable (QC/apply) | **68 plates adopted, +804 MP; `art_hires.js` 1,108 → 1,141** (33 new rows, 37 rewritten in place). ⛔ **The gate fired INSIDE an adopt list**: `stanczyk` scored ×1.85 only because it was compared with `art_imgsize` instead of the `art_hires` row we actually serve, against which it is smaller on **both** axes. ⛔ **A live downgrade found inside an already-shipped adoption**: `ng-london`'s `img` was a `/full/!3000,3000/` url returning 800 px — written by us — which `enrich()` feeds to `imgZoom`, so *Madonna of the Pinks*' Zoom overlay had been running at 643 × 800 against Commons' 870 × 1,080. ⚠ **35 works held, not rejected**: they fail the 2 % aspect gate, but against the holders' physical dimensions **our plate is the crop on 27 of them** — held because a re-framed plate moves every tour box. Viewer: `tiles: 256` shipped for clamped IIIF servers, restoring the NG masters from **78.1 % linear detail to 1:1**. |
 
 ## The 2026-08-25 session — 5 audit waves, and what they cost to learn
 
@@ -172,6 +173,34 @@ rather than an edit. ⚙ Where a claim below was checkable against the live stor
    pattern-matching instrument after a repair wave, and never quote its trend as progress.
 6. **Verify an audit's findings before applying them** (2026-08-25, wave 4). Re-checking against
    the crops **rejected 9 of the wave's own findings**. An audit sheet is a candidate list.
+7. ⛔ **A QUALITY GATE MUST RUN AGAINST WHAT WE SERVE, NOT AGAINST THE CONVENIENT FIELD**
+   (2026-08-25, plate round 6). The anti-downgrade gate compared candidates with `art_imgsize`
+   (the Commons plate) while the app serves `art_hires`. On that arithmetic `stanczyk` scored
+   **×1.85 and sat in an ADOPT list**; against the row actually served it is smaller on **both**
+   axes. **Compare against `max(art_imgsize, art_hires)` per axis** — per-axis, because an
+   area-or-long-edge test waves through a candidate that is wider and shorter, which is a
+   downgrade on whichever axis the reader is zoomed into. Generalises past images: **a gate
+   pointed at a field that is not the one in production measures nothing**, and it fails silently,
+   because everything it passes still looks measured.
+8. ⛔ **AN ADOPTION CAN REGRESS A WORK EVEN WHEN THE SOURCE IS GENUINELY LARGER** (2026-08-25,
+   `ng-london`) — **if the url we CONSTRUCT is not the url we MEASURED.** The NG master is real
+   and reachable; the `img` we wrote from it, `/full/!3000,3000/`, returned an 800 px file under a
+   3000 px name, and because `enrich()` feeds `hires.img` to `imgZoom` it downgraded *Madonna of
+   the Pinks*' zoom overlay from Commons **870 × 1,080** to **643 × 800** — inside a change scored
+   as a gain, by us, for two days. Two rules: **re-decode the final string after it is written
+   into the record**, and **audit the fields an adoption REPLACES, not only the ones it adds** (the
+   gate watched `w`/`h`; the damage was to `img`). Same family as lesson 5 — the instrument was
+   pointed slightly beside the thing it was believed to be measuring.
+9. ⚠ **A GATE THAT PROTECTS COORDINATE STABILITY IS NOT A FIDELITY GATE** (2026-08-25). 35 plate
+   candidates failed the 2 % aspect gate; checked against the holders' recorded physical
+   dimensions, **the candidate is the truer framing on 27 of them and our plate is the crop**
+   (`werki-pod-wilnem`: object 82 × 68.5 cm, our plate off **11.4 %**, the candidate off 0.3 %).
+   They are still correctly HELD — **tour box coordinates are fractions of the displayed plate**,
+   so a re-framing moves every box in that work's tour and the true unit of work is re-plate **+**
+   box re-anchor **+**, for a toured work, a re-tour question for the owner. But record what the
+   gate is doing: it cannot tell *our plate is wrong* from *the candidate is wrong*. **Read every
+   aspect failure against a third, independent number — the physical object — before filing it as
+   a reject**, or corrections get logged as bad candidates.
 
 ## Measured cost (for planning)
 

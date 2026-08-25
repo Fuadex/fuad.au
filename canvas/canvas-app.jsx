@@ -240,6 +240,16 @@ const IMG_PROXY = {
   // viewer rebuilds on the DIRECT url with cors:false, which loads fine, so the degradation is
   // benign and never worse than the pre-adoption plate.
   "https://d3d00swyhr67nd.cloudfront.net/": "https://img.fuad.au/artuk/",
+  // Guggenheim (2026-08-25 w17, 20 adopted plates). www.guggenheim.org sends NO
+  // Access-Control-Allow-Origin and no `vary` at all — measured with Origin: https://fuad.au on
+  // 30 assets by the sourcing pass and re-measured here on a live row (direct: 200 image/jpeg,
+  // ACAO absent). These are `type:"image"` sources opened with cors:"Anonymous", so without the
+  // proxy the first open ALWAYS fails and open-failed rebuilds on the direct url with cors:false
+  // — never a worse image, just a wasted round-trip. The alias earns its place by removing it.
+  // DEPLOYED: verified 2026-08-25 against the live worker — /gugg/ returns 200 image/jpeg with
+  // access-control-allow-origin: *, where an unknown alias returns the worker's "unknown
+  // upstream" 404. (`artuk` above is still unpasted: it 404s on that same probe.)
+  "https://www.guggenheim.org/": "https://img.fuad.au/gugg/",
 };
 const proxied = (u) => {
   if (!u) return u;
@@ -1109,15 +1119,33 @@ function resolveOSDSource(work) {
   // not recognise a bare IIIF 3 @context. No `tiles`/`sizes` declared on purpose — OSD then picks
   // a 1024 tile and asks for arbitrary regions, which any level2 server (IIPImage here) serves,
   // rather than us guessing the pyramid's own tile grid.
+  // Exception, paid for on NG London: read `maxWidth`/`maxHeight` first. Where the descriptor
+  // declares a clamp, omitting `tiles` silently caps the zoom at the clamp — declare `hires.tile`
+  // at or under it instead.
   if (work.hires && work.hires.iiifId && work.hires.w && work.hires.h) {
     const src = (work.hires.src || "").toUpperCase();
-    return { tileSource: {
+    const ts = {
       protocol: "http://iiif.io/api/image",
       "@context": "http://iiif.io/api/image/3/context.json",
       "@id": proxied(work.hires.iiifId),
       profile: "level2",
       width: work.hires.w, height: work.hires.h,
-    }, cors: "Anonymous", label: src ? `deep zoom via ${src}` : "deep zoom" };
+    };
+    // A CLAMPED SERVER IS THE EXCEPTION TO "OMIT tiles" (measured on ng-london, 2026-08-25).
+    // Omitting `tiles` makes OSD pick a 1024 tile and ask for arbitrary regions — correct on an
+    // unclamped level2 server, WRONG here: NG London's info.json declares maxWidth/maxHeight 800
+    // and enforces it with a 200, so every 1024 tile came back at 800 and was upscaled, running
+    // the deep zoom at ~78% of available detail on two toured works. A region whose OUTPUT size
+    // is at or under the clamp is served at NATIVE pixels off the full master, so declaring a
+    // tile at or under the clamp recovers all of it. `hires.tile` carries that number; the
+    // scaleFactors below reproduce the server's own published list exactly.
+    if (work.hires.tile) {
+      const sf = [];
+      for (let f = 1; Math.max(work.hires.w, work.hires.h) / f > work.hires.tile; f *= 2) sf.push(f);
+      sf.push(sf.length ? sf[sf.length - 1] * 2 : 1);
+      ts.tiles = [{ width: work.hires.tile, height: work.hires.tile, scaleFactors: sf }];
+    }
+    return { tileSource: ts, cors: "Anonymous", label: src ? `deep zoom via ${src}` : "deep zoom" };
   }
   if (work.hires && work.hires.iiif) {
     const src = (work.hires.src || "").toUpperCase();
@@ -1206,6 +1234,9 @@ const HIRES_SOURCE_LABEL = {
   "centre-pompidou": "Centre Pompidou",
   agsa: "Art Gallery of South Australia",
   whitney: "Whitney Museum of American Art",
+  // 2026-08-25 w17 — two flat-JPEG holders, both anchored on the holder's own accession
+  gugg: "Solomon R. Guggenheim Museum",
+  mnw: "National Museum in Warsaw",
 };
 
 // Fly an OSD viewer to a normalized-image region {x,y,w,h} (all 0..1 fractions of the image).
@@ -1887,12 +1918,22 @@ function Reader({ id, go }) {
                  `full/full` is an IIIF 2 spelling and is INVALID on IIIF 3 (National Gallery
                  London, 2026-08-25), where the size keyword is `max`. */
               <React.Fragment>
+                {/* `flat` = the MEASURED ceiling of a single flat render, where the holder's
+                    server clamps it below the master (National Gallery London: maxWidth/maxHeight
+                    800, enforced with a 200). Without this the link read "Ultra HQ ↗ 28641×23726"
+                    and delivered an 800px jpeg — the master on that host exists only tile by tile,
+                    which the Deep zoom button already offers. Records with no `flat` are unchanged. */}
                 <a href={w.hires.full || w.hires.iiif.replace(/\/info\.json$/, "/full/full/0/default.jpg")}
                   target="_blank" rel="noopener noreferrer"
-                  title={`The holder's master scan — ${w.hires.w}×${w.hires.h}px, a very large download; browsers display giant scans downsampled`}>
-                  {`Ultra HQ ↗ ${w.hires.w}×${w.hires.h}`}
+                  title={w.hires.flat
+                    ? `The largest single file this holder will serve — ${w.hires.flat[0]}×${w.hires.flat[1]}px. Its server clamps every flat render; the ${w.hires.w}×${w.hires.h} master is reachable only tile by tile, in the deep zoom.`
+                    : `The holder's master scan — ${w.hires.w}×${w.hires.h}px, a very large download; browsers display giant scans downsampled`}>
+                  {w.hires.flat
+                    ? `Museum render ↗ ${w.hires.flat[0]}×${w.hires.flat[1]}`
+                    : `Ultra HQ ↗ ${w.hires.w}×${w.hires.h}`}
                 </a>
-                <a href={w.hires.img} title="A 3000px render, if the master is too large to open">⭳ 3000px</a>
+                {!w.hires.flat &&
+                  <a href={w.hires.img} title="A 3000px render, if the master is too large to open">⭳ 3000px</a>}
               </React.Fragment>
             ) : w.imgZoom && (
               <a href={w.imgZoom} target="_blank" rel="noopener noreferrer"
