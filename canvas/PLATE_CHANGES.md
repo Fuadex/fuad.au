@@ -453,3 +453,64 @@ Probed 2026-08-25. Status codes annotated inline.
 - `young-boy-peeling-a-pear` — verified 302
 - `strindberg-underlandet` — verified 302
 - `zoie-ghika-moldavian-princess` — verified 302
+
+---
+
+## NM group D + Guggenheim five (2026-08-25, Fuad-ruled)
+
+All dimensions below were **JPEG-SOF-decoded from the returned bytes**, not read from a field. Guggenheim assets carry no ACAO and load through `img.fuad.au/gugg/` in the app; the direct `guggenheim.org` url is stored, as the existing round-6 Guggenheim rows do. Anti-downgrade gate run per-axis against `max(art_imgsize, art_hires)`: all five pass on both axes.
+
+### NM group D — 4 opt-in Commons render ladders
+
+Not a plate change: these 4 rows already served the right Commons TIFF, but their `w`/`h` declared the **master** while Commons only delivers a **bucketed 3840 render**. Each row's `w`/`h` and `img` width param are corrected down to the served 3840 bucket, and a measured `pyr` ladder is added so the viewer gets progressive zoom via the legacy-image-pyramid path instead of one flat fetch. **Every ladder level was re-decoded now (ranged GET + SOF); all 8 levels match the plan with zero disagreements.**
+
+- `carl-grabow-untitled` — declared 6591x4265, served **3840x2485**; ladder `[1920x1242, 3840x2485]` (decoded ✓)
+- `jan-both-tradstudie` — declared 4602x3936, served **3840x3284**; ladder `[1920x1642, 3840x3284]` (decoded ✓). NM IIIF 3822x3278 is smaller than Commons and titles object 95937 differently — not adopted.
+- `johan-christian-jansson-untitled` — declared 5649x4428, served **3840x3010**; ladder `[1920x1505, 3840x3010]` (decoded ✓)
+- `johan-christian-jansson-untitled-2` — declared 6227x4445, served **3840x2741**; ladder `[1920x1371, 3840x2741]` (decoded ✓)
+
+### Guggenheim — untoured, plate swap only
+
+#### Red Oval
+`red-oval` — **no tour** — Guggenheim — linear **x7.77**, aspect **-2.02%** — NEW row (there was none before; reader got the 500x488 imgGrid via imgZoom fallback)
+
+- **before** 500x488 (0.2 MP)
+  imgGrid fallback only — no art_hires row
+- **after** 3844x3829 (14.7 MP)
+  https://www.guggenheim.org/wp-content/uploads/1920/01/51.1311_ph_web.jpg
+
+#### Nude (Study), Sad Young Man on a Train
+`nude-study-sad-young-man-on-a-train` — **no tour** — Guggenheim — linear **x3.49**, aspect **-3.30%** — NEW row (previous plate was a visitor's gallery photograph)
+
+- **before** 869x1155 (1.0 MP)
+  visitor gallery photo (PNG) — no art_hires row
+- **after** 2980x4096 (12.2 MP)
+  https://www.guggenheim.org/wp-content/uploads/1911/01/76.2553.9_ph_web.jpg
+
+#### Peasant Woman Seated in the Grass
+`peasant-woman-seated-in-the-grass` — **no tour** — Guggenheim — linear **x1.69**, aspect **-2.37%**
+
+- **before** 2436x1964 (4.8 MP)
+  https://upload.wikimedia.org/wikipedia/commons/b/b5/Georges_Seurat_002.jpg
+- **after** 4077x3367 (13.7 MP)
+  https://www.guggenheim.org/wp-content/uploads/1883/01/37.714_ph_web.jpg
+
+#### Birsk
+`birsk` — **no tour** — Guggenheim — linear **x1.33**, aspect **-4.81%**
+
+- **before** 2042x3000 (6.1 MP)
+  https://upload.wikimedia.org/wikipedia/commons/0/09/GUGG_Birsk.jpg
+- **after** 2654x4096 (10.9 MP)
+  https://www.guggenheim.org/wp-content/uploads/1916/01/81.2822.R_ph_web.jpg
+
+### Guggenheim — toured, with box remap
+
+#### Blue Mountain
+`blue-mountain` — **7 stops** — Guggenheim — linear **x1.51**, aspect **-2.25%**
+
+- **before** 2484x2685 (6.7 MP)
+  https://upload.wikimedia.org/wikipedia/commons/1/16/Blue_Mountain_by_Vasily_Kandinsky%2C_1908-09.JPG
+- **after** 3704x4096 (15.2 MP)
+  https://www.guggenheim.org/wp-content/uploads/1908/01/41.505_ph_web.jpg
+
+The full asset lives at `uploads/1908/01/` — the og-linked `2020/06/24/` copy the round-6 sheet measured is only a **1168x1280** derivative, so the GUGG8 `cand: [3704,4096]` was right about the file but the canonical-stem probe had to find the correct upload directory. Registration of the old plate inside the candidate: crop `x0=-0.00702 y0=-0.00305 w=1.01194 h=1.00728` (our plate extends ~1.2% wider / 0.7% taller — the candidate is the tighter, truer frame). **regNcc 0.9319** vs **0.8683** identity and **0.9227** centred-crop control; **regFeatMaxErrPct 0.72%** over 8 high-variance features (peak NCCs 0.94–0.98). All 7 boxes remapped and clamped to [0,1.002] — none hit the clamp. Every remapped crop was pulled from the candidate at native pixels and checked against its stop title; the three lowest crop-NCC boxes — *yellow tree, left* (0.64), *flaming tree, right* (0.76), *the woven, dotted touch* (0.62) — are all high-frequency stipple at the frame edge and were visually confirmed to show the described content.
