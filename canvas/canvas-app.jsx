@@ -147,7 +147,11 @@ const MEDIA = [["painting", "paintings"], ["sculpture", "sculpture"], ["paper", 
 const QUALITY = [["q150", "150MP+"], ["q50", "50MP+"], ["q12", "12MP+"], ["q3", "3MP+"], ["q1", "1MP+"], ["q0", "<1MP"], ["iiif", "tiled · IIIF"]];
 const qualityOf = (w) => {
   const h = HIRES[w.id];
-  let px = h && h.w && h.h ? h.w * h.h : null;
+  // `flat` caps the bucket: where the holder clamps flat renders (nationalmuseum-se ~1000px),
+  // the master exists only tile by tile — advertising its MP here promised a download the
+  // server refuses. Deep zoom stays discoverable through the "iiif" tag; the footer already
+  // tells the same truth.
+  let px = h && h.w && h.h ? (h.flat ? h.flat[0] * h.flat[1] : h.w * h.h) : null;
   if (!px) { const p = IMGSIZE[w.id]; if (p && p[0] && p[1]) px = p[0] * p[1]; }
   if (!px) return null;
   return px >= 150e6 ? "q150" : px >= 50e6 ? "q50" : px >= 12e6 ? "q12" : px >= 3e6 ? "q3" : px >= 1e6 ? "q1" : "q0";
