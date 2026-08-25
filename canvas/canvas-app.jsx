@@ -1927,7 +1927,7 @@ function Reader({ id, go }) {
 //   quiet — no met works, but a read/highlights/deck give it a reason to exist (muted cards)
 //   rest — neither; folded into a "…and N more venues" row.
 // A card reads: facade thumb (CANVAS_MUSEUM_DATA.img) or a cv-text variant, name, city,
-// met + ★ floored counts, a ✦ marker when a read exists, a "deck" chip → #/deck/<id>.
+// met + ★ floored counts and a ✦ marker when a read exists.
 // Whole card → #/museum/<id>. Fallback country name for codes outside COUNTRY.
 function countryName(cc) {
   if (COUNTRY[cc]) return COUNTRY[cc];
@@ -1938,7 +1938,6 @@ function countryName(cc) {
 function MuseumCard({ m, go, quiet }) {
   const DATA = (window.CANVAS_MUSEUM_DATA || {})[m.id] || null;
   const hasRead = !!(window.CANVAS_MUSEUM_ABOUT || {})[m.id];
-  const hasDeck = !!(m.deck && m.deck.length);
   const img = DATA && DATA.img ? DATA.img : null;
   const name = m.name.replace(/\s*\(.*\)$/, "");
   return (
@@ -1953,7 +1952,12 @@ function MuseumCard({ m, go, quiet }) {
         <div className="cv-musidx-meta">
           {m.met ? <span className="cv-musidx-met">{m.met} met</span> : <span className="cv-musidx-met cv-musidx-none">no works met yet</span>}
           {m.floored ? <span className="cv-musidx-floored">★ {m.floored}</span> : null}
-          {hasDeck ? <a className="cv-musidx-deck" href={"#/deck/" + m.id} onClick={(e) => e.stopPropagation()} title="deal the recall deck">deck</a> : null}
+          {/* the DECK chip that used to sit here (linking to the per-museum #/deck/ route) is
+              GONE (Fuad 2026-08-25: "we need the DECK buttons remove"). m.deck itself STAYS —
+              Museums still uses it to decide whether a no-works-met venue is "quiet" rather
+              than "rest". The per-museum deck route still resolves; it just has no affordance
+              left anywhere, since "grade this museum's deck" in MuseumView is already gated
+              off behind `false &&`. */}
         </div>
       </div>
     </div>

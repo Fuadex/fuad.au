@@ -129,8 +129,8 @@ a { color: inherit; }
 .cv-musidx-met { color: var(--accent); }
 .cv-musidx-met.cv-musidx-none { color: var(--ink-faint); font-style: normal; text-transform: none; letter-spacing: .02em; }
 .cv-musidx-floored { color: var(--ink-soft); }
-.cv-musidx-deck { text-decoration: none; color: var(--ink); background: rgba(26,20,14,.07); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px; letter-spacing: .06em; text-transform: uppercase; font-size: 9.5px; }
-.cv-musidx-deck:hover { border-color: var(--accent-soft); color: var(--accent); }
+/* .cv-musidx-deck (the DECK chip on each museums-index card) removed 2026-08-25 — the chip is
+   gone from MuseumCard, so its rules went with it. */
 
 /* text-only variant: no facade image, ink card echoing the wall's cv-text tiles */
 .cv-musidx-text { background: var(--ink); }
@@ -138,8 +138,6 @@ a { color: inherit; }
 .cv-musidx-text .cv-musidx-city { color: rgba(227,216,200,.55); }
 .cv-musidx-text .cv-musidx-floored { color: rgba(227,216,200,.8); }
 .cv-musidx-text .cv-musidx-met.cv-musidx-none { color: rgba(227,216,200,.5); }
-.cv-musidx-text .cv-musidx-deck { color: #f2e9dc; background: rgba(232,221,204,.08); border-color: rgba(232,221,204,.2); }
-.cv-musidx-text .cv-musidx-deck:hover { color: var(--accent-soft); border-color: var(--accent-soft); }
 
 /* quiet venues: no works met yet — present but recessive. The old treatment dimmed the whole
    card to .78 and cleared it on hover, which put a second hover design next to the shadow-only
@@ -1188,7 +1186,7 @@ a { color: inherit; }
    hover restyled instantly now eases over ~.18s. Deliberately NOT included, per the same
    feedback: the colour picker dots (.cv-pick-*) and the Wall dropdowns (.cv-filters select)
    — both were called out as already right, and the picker's .12s transform is its snap. */
-.cv-nav a, .cv-chip-style, .cv-chip-study, .cv-mus-namelink, .cv-musidx-deck, .cv-musidx-quiet,
+.cv-nav a, .cv-chip-style, .cv-chip-study, .cv-mus-namelink, .cv-musidx-quiet,
 .cv-musidx-more, .cv-r-venue, .cv-deck-headlink, .cv-mus-chip-link, .cv-mus-gradebtn,
 .cv-deck-btns button, .cv-deck-part, .cv-filters button, .cv-styles button, .cv-more button,
 .cv-pil-cityhead, .cv-a-chip-mov, .cv-map-zoom button, .cv-foot .site-switch a,
