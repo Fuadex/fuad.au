@@ -148,6 +148,14 @@ the question, not the writer, is the lever.
    judgments only: relative claims ("far ahead of everything else", "the deepest-played of
    their early records"), spans/discovery years, and unplayed-cut flags. Writing the gist
    stays a Fable QC step after the Opus read. (87 legacy gists migrated 2026-07-26.)
+   **Gists CARRY THE CORE THEME (Fuad 2026-08-26): the clause right after the year/frame
+   names the record's running theme — the hook** ("the industrial concept album that traces
+   one man's self-destruction from rage to the bare, broken hush of Hurt"; "Peter Steele's
+   gallows humor turned on his own failing body"; the Midori LPs are the same register).
+   Shape: year-and-frame → theme clause → listening shape. Many albums won't support a
+   single running theme — then the descriptive clause does its normal work; never force
+   false unity. ⚠ The theme hook is a GIST feature: the 2026-08-26 misfire that re-opened
+   two approved LINERS with it was reverted same hour — liners keep their own settled brief.
 5. Owner approves each batch inline before apply.
 
 ## Rendering
