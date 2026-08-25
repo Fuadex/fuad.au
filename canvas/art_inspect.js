@@ -49,6 +49,242 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+"giovanni-boldini-after-the-bath": {
+ "see": "A woman stands bent at the waist in the right half of a small panel, drying herself with a cream cloth, her body one continuous dark shape against a wall of warm cream plaster. Behind and below her a second woman lies full length on a carpet, wrapped to the hips in teal-green and ochre-gold. A blue-and-gold macaw is down on the floor at the far left, head lowered; three oranges sit between it and the carpet. At the right a low stool with a red-brown top; at the left a pale column and a doorway with green beyond it. The floor is scrubbed thin, the carpet is loaded thick, and the wall carries pink, sage and cobalt inside its cream. It reads across a room as one dark figure in a bright box.",
+ "about": "This is a bathing room caught in the middle of a chore. Nobody performs: the standing woman's head is down and her hands are busy, the woman on the carpet has her back to us, the bird is going about its own business. What the panel is actually about is the ranking of attention. One head has been sat down with and worked; everything else has been taken at the speed of a decision. That ranking is a claim about how a picture gets made - that a face and a carpet, if they are right, will carry a room, a floor, a wall, a bird and a stool that are barely stated at all. It is a small object making a large argument about how little needs to be finished.",
+ "craft": "Boldini works here at two speeds on one surface, and the switch between them is the whole performance. The dark passages go down in long loaded strokes that carry a whole limb at once. The pale passages get gone over again and again, dragged flat, scored, and rebuilt until the plaster has more paint on it than the woman standing in front of it. Colour is placed unmixed and left: the touches along the carpet are still the colours they were when they left the palette. Against that, one head is graded, blended and closed. He signed it at the lower left, in thin red-brown, without a date.",
+ "context": "Boldini left Italy for Paris in 1871 and spent the rest of his life there, and this panel belongs to the private end of that career - not a commission, not a portrait, an object made at a size that fits in a coat pocket. It is oil on wood, 25.4 by 34.29 centimetres. The canon dates it 1889; the plate's own catalogue record says 1873, and the question is open. It came to the National Gallery of Art in Washington from the Corcoran Gallery of Art, the museum that dissolved in 2014 and sent its collection across town - which is why a small Italian bathing panel now sits under a Washington accession number beginning 2015.",
+ "deeper": [
+  {
+   "t": "One dark shape in a bright box",
+   "x": 0.5,
+   "y": 0.08,
+   "w": 0.47,
+   "h": 0.74,
+   "body": "From across a room this is a bright rectangle with one dark shape in it. She stands bent at the waist, weight forward, drying herself, and she reads as a single continuous body against a wall Boldini has beaten into a cream-white crust. Look at where the labour went. Her back and thigh are laid in with a few long loaded strokes that carry the whole form at once; the plaster behind her has been gone over again and again. He gives the wall more paint than he gives the woman. That inversion is the method of the panel: the figure is stated, the room is worked. Note also what she is doing. Her head is down, her hands are busy with cloth, and there is no glance out and no arranging of limbs for anybody watching. She has been caught mid-task, and everything decorative in the picture is somewhere else - on the floor, on the carpet, on the bird."
+  },
+  {
+   "t": "Her head, and the gold discs",
+   "x": 0.685,
+   "y": 0.18,
+   "w": 0.185,
+   "h": 0.215,
+   "body": "This is where the panel stops being a sketch. The head is finished: brow, the bridge of the nose, the upper lip and the shadowed hollow under the cheekbone are all modelled in graded browns, and the eye is drawn - a lowered lid, a dark lash line, the eye itself turned down toward her own hands. Running along the side of her head and down her neck is a string of small gold discs, each one a separate dab of thick yellow paint, one of them carrying a white highlight on its rim. Then measure the distance. The plaster a centimetre from her cheek is dragged flat and scored with the end of the brush. Her face has been sat down with; the wall beside it has been attacked. That gap between two adjacent square centimetres is the thing to carry away from this panel, because it is the decision the rest of the picture keeps repeating."
+  },
+  {
+   "t": "The cloth, which stands off the panel",
+   "x": 0.575,
+   "y": 0.33,
+   "w": 0.23,
+   "h": 0.47,
+   "body": "The linen is where the paint stands up off the wood. Boldini has loaded a warm cream - not white, there is buff and grey in it - and laid it on in short, near-vertical slabs, and at this magnification you can see the ridge at the top of each stroke and the shadow the ridge throws onto the stroke beside it. The paint is not describing the folds so much as being them. The cloth's actual shape stays roughly stated: it hangs from her hands, pools on the carpet, and spreads wider at the bottom than a towel needs to. What he wanted was a column of pale relief running from her hands to the floor, holding the right side of the panel upright. Compare the floor two centimetres away, scrubbed down to a dry film. Same object, same afternoon, opposite ends of what oil paint can be asked to do."
+  },
+  {
+   "t": "The other woman, on the carpet",
+   "x": 0.245,
+   "y": 0.45,
+   "w": 0.36,
+   "h": 0.31,
+   "body": "A second woman lies full length on the carpet, and she is easy to miss, because Boldini has painted her as textile first and body second. Her legs come out toward us at the left, bare and modelled, the toes of one foot drawn - and then the body disappears into a cloth of dark teal-green and ochre-gold laid on in slabs a few millimetres wide, with white and pink dabs flicked across the green for a flower pattern. The cloth is loaded far more heavily than the standing woman's whole body, which is stated in a handful of flat browns. Between the two of them the paint thins to almost nothing over the pale floor. So the panel has two women in it and treats them as opposite problems: one upright, dark, worked at the head; the other horizontal, brilliant and given over entirely to what cloth does to light."
+  },
+  {
+   "t": "The carpet is a palette",
+   "x": 0.4,
+   "y": 0.56,
+   "w": 0.29,
+   "h": 0.19,
+   "body": "This is where Boldini stops mixing. A field of coral-rose and brick red runs across the middle of the panel, crossed by darker bands, and along its edges the pile is given as separate touches of orange, olive, teal, cream and black, each laid down wet and then left alone. Stand back and it is a worn rug in strong light. Come this close and it is a palette with the colours still sitting where they were squeezed out. Two things stop it collapsing into mess. The dark cross-bands run the confetti into rows, so the eye reads a woven structure; and the red field sits astride the vertical centre of the panel, low, so the composition has a middle even though both figures are off to the sides. On an object twenty-five by thirty-four centimetres, this carpet is doing the work a whole foreground would do on a Salon canvas."
+  },
+  {
+   "t": "The macaw's tail, in one stroke",
+   "x": 0,
+   "y": 0.415,
+   "w": 0.195,
+   "h": 0.25,
+   "body": "A blue-and-gold macaw is down on the floor at the far left, head lowered, its long tail flung out behind it. That tail is one stroke: a single charge of dark slate-blue drawn from the bird's back out toward the edge of the panel, tapering as the brush emptied, with the bare floor showing through where it finally ran dry. The body is three or four more - a blue shoulder, a green flick where the wing coverts turn, an orange-gold scrub for the breast - and then two small exact marks for the pale cheek patch and the dark beak, which is all the drawing the bird gets and all it turns out to need. Boldini spends more decision on this tail than on either woman's hands, which are barely separated from the cloth they hold. What the bird is doing down there, the panel does not say."
+  },
+  {
+   "t": "Three oranges on bare floor",
+   "x": 0.105,
+   "y": 0.535,
+   "w": 0.18,
+   "h": 0.155,
+   "body": "Three oranges sit on the floor between the bird and the carpet, each about a centimetre and a half across, and they are painted with complete conventionality: round, modelled light to dark, a warm reflected glow along the shadow side, a small violet-grey shadow pooled underneath. They are ordinary studio still-life work dropped into a panel that is otherwise all speed. They also do a structural job. The floor here is bare - thin grey-mauve scrubbed on in long horizontal drags, with the warm ground showing through - and the three rounds are what stop the eye running straight off the left edge and out of the picture. A painter who can carry a whole figure in four strokes has still sat down and made three pieces of fruit behave like sculpture, because the composition needed weight in exactly that spot."
+  },
+  {
+   "t": "The colour hidden in the wall",
+   "x": 0.52,
+   "y": 0,
+   "w": 0.44,
+   "h": 0.15,
+   "body": "Along the top of the wall runs a band of ornament, and at normal viewing distance it is simply a busier stripe in the plaster. At this range it separates into marks: short verticals of white and pale green, hooks of orange-red, small grey-blue triangles along the upper edge, a thin line of blue running underneath them. None of it is drawn as a pattern anyone could copy. That is the finding the whole panel keeps making. The wall behind the bather looks like plain cream plaster and is built from pink, sage, cobalt and a warm buff, none of them where you would predict; the cream is what your eye assembles out of them at three metres. Boldini is not decorating the background. He is recording that a lit interior wall is not one colour, and then trusting distance to do the mixing for him."
+  },
+  {
+   "t": "A picture the size of a sheet of paper",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Step back to the whole panel. Twenty-five by thirty-four centimetres of wood, holding two women, a carpet, a bird, three oranges, a stool, a column and a doorway with a garden behind it. The tile service this plate comes from lets you stand closer to it than you could stand in the room, and that is what makes the order of Boldini's attention legible: one head modelled to the eyelash, one string of gold dabs, and then walls, floor, textiles and bird taken at speed and left where they landed. That is not carelessness spread unevenly. It is a painter working out, on an object a hand can cover, how little of a picture has to be true before the rest of it will be believed - and then betting the whole thing on a face and a carpet. He signed it at the lower left in thin red-brown, and put no date on it."
+  }
+ ],
+ "beside": "Boldini made the same bargain again on a canvas nearly thirty times the area, elsewhere in this collection. La Marquise Luisa Casati avec des plumes de paon, in the Galleria Nazionale d'Arte Moderna e Contemporanea in Rome, was begun twenty-two years after this panel: a hundred and thirty-six by a hundred and eighty-six centimetres, peacock plumes arching back over the sitter's shoulder, the ground around her churned into olive and black. In both, one head is held still while everything around it is weather. There the wager is placed at showpiece scale, on a canvas he reworked for years and kept; here it is placed on a panel a hand can cover, on a woman nobody named.",
+ "refs": [
+  {
+   "id": "giovanni-boldini-la-marquise-luisa-casati-avec-des-plumes-de",
+   "text": "La Marquise Luisa Casati avec des plumes de paon"
+  }
+ ],
+ "by": "Opus 4.8"
+},
+"pierre-auguste-renoir-alphonsine-fournaise": {
+ "see": "A young woman sits facing us on a terrace above a river, filling the middle of the canvas from the waist up. Her head tips onto her left hand; a straw hat with a brick-red band sits back off her forehead. Her right arm runs out to the left along the top rail of the terrace and the hand hangs loose over the far side of it. Behind her the water, a bridge and a wooded bank; below the rail, upright posts with the bank showing between them. A chair back stands below her and to the left, and the right third of the canvas is a broad pale sweep of cloth. Everything except her face is loosened or thinned. The whole surface is warm - olive-gold foliage, buff-grey cloth, tan flesh - with a brick-red band on the hat.",
+ "about": "It is a portrait that gives most of its surface away. Most of the canvas is river, bank, rail and chair, and the sitter is pinned into the middle of it with one hand under her cheek and the other abandoned over a railing. The subject is not her likeness alone; it is her ease in a specific place. Alphonsine Fournaise was the daughter of the family that ran the boating restaurant on the island at Chatou, and Renoir painted her the way you paint someone in the room they run - not composed for the occasion, not doing anything for the picture, simply settled in a chair on her own terrace with an afternoon of water behind her. The pose is the argument, and the pose is that of somebody at home.",
+ "craft": "There are two pressures of paint in this canvas and the gap between them is enormous. The distance is brushed on so thin that the canvas grain reads through it everywhere; the face is worked until the eye carries a pupil and a catchlight. Between those extremes Renoir gets astonishing mileage out of contour alone - objects that exist as nothing but their own outline, with the landscape left untouched inside them. Colour does something similar. The picture reads cool and grey, and the paint is warm nearly everywhere: buff, olive-gold, tan. The coolness is manufactured by contrast, not mixed. Signed and dated at the lower right in thin blue-grey: Renoir 79.",
+ "context": "Renoir was thirty-eight in 1879 and had been working at the Maison Fournaise, the boating restaurant on the island at Chatou, for several seasons; the Fournaise family gave him a room and he painted the terrace, the river and the people on it repeatedly. Alphonsine was the proprietor's daughter, and she posed for him more than once. The Orsay's own record still carries the picture's working titles alongside her name - a young woman on the terrace of the Fournaise restaurant, and, oddly, a Grenouillere title that belongs to a different stretch of the Seine. The canvas is 73 by 93 centimetres. You saw it at the Orsay and it floored you.",
+ "deeper": [
+  {
+   "t": "Her head on her hand",
+   "x": 0.44,
+   "y": 0.015,
+   "w": 0.3,
+   "h": 0.4,
+   "body": "The picture's whole weight sits here, in a head tipped onto a hand. She looks straight out, chin lifted slightly, mouth closed on the beginning of a smile, and her left hand comes up under her cheek so the cheek rests down into the fingers. This is the passage Renoir finishes. The irises are grey-blue with a dark pupil and a wet catchlight in each; the brows are drawn; the nostril is placed with one warm stroke; the lower lip is lifted with a single touch of brick red. Then look three centimetres to the right of her cheek, at the foliage, which is olive-gold scrubbing with no shape in it whatsoever. That distance - a finished eye and an unfinished leaf, adjacent - is the argument of the whole canvas. The straw hat sits back off her forehead with a brick-red band around the crown and a red tuft above it, and a string of small pale beads shows at her throat."
+  },
+  {
+   "t": "A red drop and a gold band",
+   "x": 0.6,
+   "y": 0.24,
+   "w": 0.15,
+   "h": 0.16,
+   "body": "Two hard things in a soft picture. A red earring hangs at her jaw: a stem of dark red ending in a small round bead, put on in two touches over flesh that was already dry, so it sits on the surface instead of in it. On the finger nearest us there is a gold ring, one bent stroke of yellow ochre about a centimetre long. The beads at her throat are the same order of thing. That is the whole inventory of ornament in the picture, and none of it is expensive - a red drop, a thin band, a string of small beads. Renoir is painting the daughter of a riverside restaurant, not a client who has come to be recorded, and the picture is exact about it: the hat is straw, the dress is plain, the jewellery is three touches of paint. The precision is what keeps it a portrait of a person and not of a wardrobe."
+  },
+  {
+   "t": "The hand over the rail",
+   "x": 0,
+   "y": 0.38,
+   "w": 0.365,
+   "h": 0.34,
+   "body": "Follow her arm to the left and it leaves the portrait entirely. It lies along the top rail of the terrace, the sleeve pushed back to a soft pale cuff at the wrist, and then the hand goes over the far side of the rail and hangs there, fingers loose and slightly apart, doing nothing at all. A sitter arranges her hands. This one has let one of them drop over a railing because there is a river on the other side and she has been sitting here a while, and that single piece of anatomy carries more of the picture's meaning than her expression does. The paint agrees with the pose. The forearm is a few long strokes of cream and warm pink laid wet into a grey shadow; the rail beneath it is one dark diagonal, dry-brushed, with the bank still visible underneath it. Behind the hand, a few small red-orange dabs stand in for flowers on the far bank."
+  },
+  {
+   "t": "The chair that is only its outline",
+   "x": 0.24,
+   "y": 0.55,
+   "w": 0.28,
+   "h": 0.35,
+   "body": "Beside her and slightly in front stands a chair back, and it is barely painted: two ochre-brown uprights, a curved top rail, one diagonal for a leg, all pulled with a single loaded brush. Inside the shape there is no chair at all. The grey-green of the bank and the water runs straight through the opening as though the frame were a window, and Renoir has neither tinted it nor shadowed it - the landscape behind is simply allowed to keep going. Look at what that buys him. The chair reads as a solid object instantly; it puts something between us and her, which sets her back in space; and it costs the canvas almost nothing in paint or in attention, so it never competes with the face. Knowing which few marks will do a whole job is the part of Renoir's craft that is hardest to see, precisely because when it works there is nothing there to look at."
+  },
+  {
+   "t": "The bridge, and one black bird",
+   "x": 0,
+   "y": 0.1,
+   "w": 0.3,
+   "h": 0.2,
+   "body": "The far distance is painted at an entirely different pressure. The bridge, the far bank, the trees along it and the water beneath are all laid in with paint thinned nearly to a wash - grey, lilac, a little yellow-green - brushed so lightly that the canvas grain reads through the whole passage and the piers under the span are more suggestion than statement. Into that pale haze Renoir has put one small black bird: a few flicks of dense black paint, flying left across the middle of the bridge, about a centimetre and a bit across on the actual canvas. It is the darkest touch anywhere in this quarter of the picture, and it is doing the work of a ruler. Everything behind her is far away, and it is far away because something a fingernail wide is in front of it and reads as a bird, not as a mark. One dark accent buys a distance that careful drawing could not."
+  },
+  {
+   "t": "The weave under the dress",
+   "x": 0.34,
+   "y": 0.33,
+   "w": 0.28,
+   "h": 0.3,
+   "body": "Her dress reads as pale cool cloth and there is no blue in it. Sampled here, the colour runs buff-grey through a warmer mid-grey to a greenish cream, with a few short darker strokes where the sleeve meets the body; the coolness you think you see is manufactured by the olive-gold foliage pressing against it on every side. What makes the passage worth the zoom is what sits under the colour. The paint is brushed on so thinly and so dryly that the canvas weave stands up through it everywhere, a fine grid running across the shoulder and down the bodice, and the softness of the fabric is being carried by the texture of the support instead of by any modelling. Renoir has let the canvas be the cloth. It is an effect that costs no paint at all, and it works only because he refused to load the brush."
+  },
+  {
+   "t": "What the portrait gives away",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Step back. Renoir has built a portrait that spends most of its surface on everything except the sitter - a river, a bridge, a bank, a rail, a chair, a broad sweep of pale cloth - and still leaves no doubt about where to look, because one face is drawn and nothing else in the canvas is. That is the economy the whole walk has been tracking: a wash for the distance, an outline for the chair, bare weave for the dress, and then a pupil with a catchlight in it. It is also why the picture feels like an afternoon instead of a sitting. A finished face inside an unfinished world is what looking at somebody actually feels like when you are not concentrating. He signed it at the lower right in thin blue-grey over the pale cloth, and dated it: Renoir 79."
+  }
+ ],
+ "beside": "Renoir came back to this terrace two years later, and that canvas is in this collection too. Two Sisters (On the Terrace), at the Art Institute of Chicago, is painted on the same balcony above the Seine at Chatou, with two girls posed against the same bank of foliage: a scarlet hat, a basket of red and violet wools, faces smoothed to porcelain inside a surround that will not hold still. Both do the same thing: faces brought to a finish, everything around them loosened past resolving. There the heat is spread across the whole canvas and the sitters are visitors; here it is narrowed to a hat band and an earring, and the sitter is the house.",
+ "refs": [
+  {
+   "id": "two-sisters",
+   "text": "Two Sisters (On the Terrace)"
+  }
+ ],
+ "by": "Opus 4.8"
+},
+"jean-jacques-henner-eglogue": {
+ "see": "A canvas three metres wide, almost all of it dark. A wall of trees fills the field, and in the upper middle it opens onto a pane of pale sage-green sky crossed by a few bars of lilac cloud. Low and to the left a nude woman sits on a bank with a pipe at her lips, a heavy rust-coloured mantle falling behind her to the ground. Far off to the right another stands upright against a block of stone, one hand lifted into her hair. Between them a dark meadow and a single flat band of pale water. There is no animal in it and no path. Two signatures sit on the face of the stone. The bodies are ivory and everything they are set against is within a few tones of black.",
+ "about": "This is a picture with the plot removed on purpose, and the title says so. It takes its name from a form of poem, not from an event: nobody arrives, nothing is decided, and the two women are not in the same conversation even though they are in the same evening. What the canvas actually gives its space to is the interval between them - the long stretch of unoccupied dark ground that separates a woman making music from a woman who may or may not be listening. Henner is not withholding a story. He is painting the condition that pastoral poetry was invented to describe: unhurried time, at the end of a day, in a place with nothing at stake in it.",
+ "craft": "Almost everything here is a decision about edges. Henner blends the boundary of a body into the ground behind it over a millimetre or two, so flesh does not stop at a line, it fades - which is why his figures read as lit from inside, not lit from somewhere. The rest of the surface is kept within a narrow dark band, warm brown-black at the ground and cooler in the trees, with no incident allowed to break it. The picture's whole tonal range is spent on two bodies and one pane of sky. It is a large canvas painted as though it were a small one, and it demands a dim room. Signed on the stone, twice.",
+ "context": "Henner was fifty when this went to the Salon of 1879, an established figure who had won the Prix de Rome twenty years earlier and had settled into a manner nobody else was doing - dark grounds, red-haired nudes, edges dissolved with a soft brush. The picture carries a second title, Effet du soir, and an old label recording the Salon showing, the Duneau collection, and dimensions in the French style: H.1,68 L.3,13. It went on to the Exposition Universelle of 1900. It is oil on canvas, 160 by 300 centimetres, and it hangs on the ground floor of the Petit Palais, in room 19, where you saw it.",
+ "deeper": [
+  {
+   "t": "Two people, one evening, no conversation",
+   "x": 0.15,
+   "y": 0.24,
+   "w": 0.72,
+   "h": 0.62,
+   "body": "From the far end of a room this is a black canvas three metres across with two small pale figures in it, and that turns out to be an accurate description. A wall of trees fills nearly the whole field. Low at the left a woman sits on a bank with a pipe at her lips; far off at the right another stands against a block of stone. Between them there is dark meadow and one flat band of pale water, and that emptiness is not filler - it is what Henner bought the width for. Now watch the two heads. Hers is bent to her hands; the other woman's is turned out of the picture toward us. Neither is looking at the other. A painter who wanted a duet would have angled one of them, and Henner has kept them in the same evening and out of the same conversation, at a distance you could not shout across comfortably."
+  },
+  {
+   "t": "The player, and her edges",
+   "x": 0.17,
+   "y": 0.37,
+   "w": 0.29,
+   "h": 0.31,
+   "body": "She sits on the ground with her knees up, in profile, holding a slender pipe to her lips with both hands, the upper fingers stopping it near the mouthpiece. Everything about her body is smoothed: there is almost no brushmark on it, and the light travels from her shoulder down to her hip without a single break in it. Then look at her outline against the dark. It is not a line. It is a soft transition a millimetre or two wide where ivory fades into brown-black, and that is the whole of Henner's technique in one place - flesh that does not stop, so the eye reads glow instead of contour. Her hair is a dull red-gold, and a heavy rust-coloured mantle falls behind her from the shoulders to the ground. Her eye is a single dark accent, aimed down at her own hands, not out at us and not across the picture."
+  },
+  {
+   "t": "Her foot, and the water beyond it",
+   "x": 0.285,
+   "y": 0.635,
+   "w": 0.44,
+   "h": 0.245,
+   "body": "One leg runs out from under her to full stretch and the foot comes down on the near bank. Beyond it, and slightly higher in the picture, lies the pond: one flat band of pale green-grey brushed in long horizontal drags, with a fringe of short upright strokes along its near edge standing in for grass. The foot does not reach the water. There is a stretch of dark bank between the two, and the gap is doing real work - it pushes the pond back into the middle distance and it gives the leg somewhere to be going. It also fixes the scale of everything beyond: set a foot against that band of water and the pond turns out to be a small one, and the whole clearing nearer and more domestic than three metres of black canvas prepares you for."
+  },
+  {
+   "t": "The sky is green",
+   "x": 0.255,
+   "y": 0.115,
+   "w": 0.425,
+   "h": 0.225,
+   "body": "Every decision about light in this picture is made in this one opening. The sky is a pale sage green - cool, slightly chalky, sampling out around a dull olive-white - and it lies flat, like a pane of glass let into the trees, with no depth in it at all. Across it Henner has drawn three or four horizontal bars of dull lilac-brown cloud, which are the only drawn shapes in the sky. Note what he refuses. There is no glare and no sunset colour; the picture's second title is Effet du soir, evening effect, and the effect he wants is the moment when the warmth has already gone out of a western sky and the blue has not yet come. Green is what that actually looks like. Every pale thing lower in the canvas is keyed to this one patch."
+  },
+  {
+   "t": "Leaning on the stone",
+   "x": 0.648,
+   "y": 0.228,
+   "w": 0.228,
+   "h": 0.632,
+   "body": "The second woman stands with her weight tipped into a block of masonry, one elbow resting on its top edge and that hand lifted into her hair beside her cheek; the other arm is bent away behind her with the hand out of sight. Her head tilts toward the stone and she looks out of the picture, past us and a little down. Of the two women, she is the one who acknowledges being looked at, and Henner gives her the full academic contrapposto for it - the long S through the body, the weight carried on one leg, the hip thrown. Her hair is a deep auburn falling in one mass down her shoulder and another across the stone behind her. Behind her head sits a small burst of pale mint-green foliage, and it is what keeps the dark crown of her hair from merging into the trees. Her lit flank is the brightest passage on the canvas, brighter than the sky."
+  },
+  {
+   "t": "Signed twice",
+   "x": 0.73,
+   "y": 0.42,
+   "w": 0.19,
+   "h": 0.355,
+   "body": "On the shadowed face of the block, one above the other, are two signatures. The upper is larger, in dull gold capitals, and sits deeper in the dark; the lower, about a hand's width beneath it, is smaller, crisper and rides on the surface. Both read J. J. HENNER. Why there are two, the picture does not say, and at any normal viewing distance the lower one is invisible and the upper one reads as a stain in the stone - which is the argument for coming this close in the first place. The block itself is the only architecture in the painting: a plain rectangular mass with a moulded top edge, no inscription and no carving on it. It has two jobs and it does them both. It gives a standing woman something to lean her weight into, and it gives the painter a flat pale surface to sign in a canvas that is otherwise too dark to take a name."
+  },
+  {
+   "t": "What an eclogue is",
+   "body": "The title is not a description of the scene; it is the name of a literary form. An eclogue is a short pastoral poem in which figures sit in the shade at the end of a day and take turns singing - the form Virgil used for the ten poems that opened his career, which European painting turned first into the fete champetre and then into the Salon idyll. And an eclogue has no plot. Two figures are in a landscape, one of them makes music, the other listens or does not, and nothing is resolved because nothing was ever proposed. That is exactly this canvas. A viewer trained on narrative painting waits for the story to declare itself - who they are, what has happened, what is about to - and the genre's answer is that the question does not apply. Read as an event, the picture is empty. Read as an eclogue, it is complete: two bodies, an evening, and a tune nobody in it is obliged to hear."
+  },
+  {
+   "t": "Three metres of dark",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Step back to the whole three metres. What the canvas holds is a great deal of dark and very little else: two bodies, a stone, a pond, a strip of green sky. Nearly everything Henner painted here he painted in order to be barely seen - the meadow, the far bank and the tree masses all sit within a few tones of a warm brown-black - and the picture therefore asks the room it hangs in to be dim enough to let them separate. That was a real risk for a Salon painting, which had to survive being hung high in a crowded hall against neighbours shouting for attention. He took it because the alternative loses the thing his second title names. There is no fire and no moon in this picture. The two women are lit by a pane of sky and by nothing else you can point to, and everything else in three metres of canvas has been sacrificed to keep it that way."
+  }
+ ],
+ "beside": "Corot had painted almost this cast six years earlier, and that picture is in this collection too. Diana bathing, at the Pushkin Museum in Moscow, sets a standing nude with one arm lifted to her hair in a dusky wood, with a second nude seated deeper in and lower in tone, half swallowed by shadow - the same two women, the same wood, the same hour. What the two painters do with the bodies is opposite. Corot makes his figures out of the same silvery substance as the leaves, so the nude belongs to the light around her; Henner cuts his out against a wall of near-black, so the flesh belongs to nothing and glows on its own.",
+ "refs": [
+  {
+   "id": "jean-baptiste-camille-corot-diana-bathing",
+   "text": "Diana bathing"
+  }
+ ],
+ "by": "Opus 4.8"
+},
 "henry-fuseli-thor-battering-the-midgard-serpent": {
  "see": "A nude man stands braced on the gunwale of a small boat, filling the upper half of a tall, nearly black canvas. One arm goes up at the right with the hammer in it; the other is thrust out at the left, the fist closed on a chain that drops away toward the water. What the chain is fastened to fills the whole lower half — the coiled black body of a sea serpent, loop over loop, its head thrown back below his feet. A second giant crouches in the boat behind him, and a small white-bearded figure hangs in cloud in the top left corner. Everything else is dark. Sea, sky and hull run together into one brown-black with no horizon in it, and the light in the picture falls on flesh, chain and foam and nowhere else.",
  "about": "The story is a fishing trip that is not allowed to finish. Thor rows out with the giant Hymir, baits a line with an ox's head and hooks the serpent that circles the world; at the moment the creature comes up, the giant panics and cuts the line, and the two are put off until the end of everything, when they kill each other. So the subject is an unlanded blow — the largest violence in the northern cosmos, held at the top of its arc and then cancelled by somebody else's nerve. Fuseli paints the half-second before the interruption, which means the picture's real content is potential rather than event. Nothing here has happened yet. The hammer has not come down, the serpent has not been killed, and the man who will spoil it is already in the boat.",

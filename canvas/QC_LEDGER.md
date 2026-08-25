@@ -36,6 +36,8 @@ whenever a QC pass runs — coverage claims that aren't recorded here don't coun
 | 2026-08-25 | **WAVE 4 — audit + repair**, plus the mandatory whole-entry re-audit (STUDY_SPEC checklist 13 / run order 26) | Opus agents auditing from crops, then **re-verifying their own findings before apply**; Fable QC + JSON-runner apply with round-trip proof | Opus + Fable | **82 text + 27 box + 1 title fix applied across 12 works.** ⭐ **The wave REJECTED 9 of its OWN findings on verification** — i.e. roughly one in ten of what an audit proposes does not survive being checked a second time against the crop, which is the strongest argument yet for the standing rule that a repair agent re-verifies rather than trusting the audit handed to it. ⛔ **AND THE MANDATORY WHOLE-ENTRY RE-AUDIT FOUND 5 BOX ERRORS THE AUDIT HAD MISSED**, including a stop titled **"The fur collar in the dark" whose box held no collar**. The re-audit is not a formality on top of a repair — on this wave it was a **better detector than the audit that triggered it**. |
 | 2026-08-25 | **PLATE PASS ROUND 6 — Guggenheim ×20 + MNW Warsaw ×48, plus the NG London viewer fix** (sheets `.dtmp/tourqc-pass/w17/`) | every candidate re-fetched in full and re-decoded after the sheets were built (0 failures); anti-downgrade gate re-run against `art_hires` as well as `art_imgsize`; CORS headers measured per-asset with an explicit `Origin`; viewer fix verified by fetching real tiles, not by reading the patch | Opus sourcing agents + Fable (QC/apply) | **68 plates adopted, +804 MP; `art_hires.js` 1,108 → 1,141** (33 new rows, 37 rewritten in place). ⛔ **The gate fired INSIDE an adopt list**: `stanczyk` scored ×1.85 only because it was compared with `art_imgsize` instead of the `art_hires` row we actually serve, against which it is smaller on **both** axes. ⛔ **A live downgrade found inside an already-shipped adoption**: `ng-london`'s `img` was a `/full/!3000,3000/` url returning 800 px — written by us — which `enrich()` feeds to `imgZoom`, so *Madonna of the Pinks*' Zoom overlay had been running at 643 × 800 against Commons' 870 × 1,080. ⚠ **35 works held, not rejected**: they fail the 2 % aspect gate, but against the holders' physical dimensions **our plate is the crop on 27 of them** — held because a re-framed plate moves every tour box. Viewer: `tiles: 256` shipped for clamped IIIF servers, restoring the NG masters from **78.1 % linear detail to 1:1**. |
 
+| 2026-08-25 | **w19a MERGE — 3 new tours + 3 reads** (Boldini *After the Bath*, Renoir *Alphonsine Fournaise*, Henner *Églogue*; workshop `.dtmp/tourqc-pass/w19a/`) | insertion-only merge under sha256 guards on both stores (another agent was writing the same tree); full round-trip proof; `validate-refs.js` bare | Opus (merge/QC) | **Shipped: `art_inspect` 375 → 378, `art-about` 798 → 800.** Boxes asserted **byte-identical to the drafts** — the w19a boxes already carry the ×1.15 breathing room and were not re-padded. Rulings applied: Boldini **keeps `year: 1889`** (canon is qid-trusted; Wikidata's 1873 traces to a flickr credit, not the NGA — `context` states the conflict openly and the `beside` interval stays 22 years); Renoir **ships the dress as measured** (two median-cut samples, mean RGB 155/153/144, **no blue component**; hat band brick/terracotta not vermilion — the literature says blue-grey, the plate a reader sees does not, and **the tour describes the plate**). ⚠ **One cross-reference lost and NOT re-minted:** the replaced 56-word Renoir Info carried `refs` → *Luncheon of the Boating Party*; the Luncheon entry's own prose **does not name Alphonsine**, so there is no honest anchor on that side and none was invented. See the Method-lessons note. ⛔ **The word-count trap ran in reverse here** — a naive whitespace recount marked all three reads over band; the drafter was right and the recount was wrong, because a spaced hyphen-as-dash counts as a word. Use `check.js`'s `[A-Za-z0-9][A-Za-z0-9'’-]*`. |
+
 ## The 2026-08-25 session — 5 audit waves, and what they cost to learn
 
 **Headline: ~1 tour in 20 comes back clean.** Five image-QC waves ran in one session (waves 1–4
@@ -66,11 +68,91 @@ spends the stop's instance, it just no longer spends it in the same words. So th
 > re-baseline it after each repair wave. Same family as the wave-1 "10 clean" that turned out to
 > be auditor calibration: **the measurement moved, the corpus did not.**
 
+## Resolved NON-defects — ruled by Fuad, do not re-open
+
+Things an audit flagged, escalated, and was wrong about. **They are recorded here at length
+because the cost of re-opening one is that somebody "fixes" correct data into being wrong.**
+
+### ⭐ `seenAt: "artizon"` IS CORRECT. 60 rows. RULED BY FUAD 2026-08-25. CLOSED.
+
+**The flag.** A sweep noticed that a run of canon rows carry `seenAt: artizon` while the work
+itself belongs to another museum, and booked it as a data defect of the same class as the
+Tate/MoMA mismatches below. The rows that triggered the suspicion, all Monets, all pointing
+somewhere other than the Artizon:
+
+| id | the work points at |
+|---|---|
+| `claude-monet-la-rue-montorgueil` | Orsay |
+| `claude-monet-camille-sur-son-lit-de-mort` | Orsay |
+| `claude-monet-gare-saint-lazare-monet-series` | Orsay |
+| `claude-monet-the-luncheon` | Städel, Frankfurt |
+| `claude-monet-le-givre` | Orsay |
+
+**The ruling.** Fuad, 2026-08-25: *"many of the works at The Artizon were toured there and
+borrowed from other museums."* **The rows are right.** He saw those works **on loan at the
+Artizon**, and `seenAt` records **where the encounter happened**, not who owns the object. A
+loan exhibition is precisely the case where the two must disagree.
+
+⭐ **AND THE ANSWER WAS ALREADY IN THIS FILE.** The `lk1` row (2026-08-23, near the foot of this
+ledger) records: *"Le Givre seenAt=loan resolution (Artizon **'Monet: A question of landscape'**
+2026, **Orsay collab**)"*. **A named loan exhibition, at the Artizon, of Orsay Monets, already
+logged as a resolution — and the later sweep re-flagged four of its siblings as defects anyway.**
+Nobody read the ledger against the rows it governs. That is the same failure shape as the
+sculpture ban in `STUDY_SPEC.md`, which "survived only because nobody read it against the data it
+governs", and it is now the second time it has cost a wave. ⛔ **Before escalating a class of
+rows, grep this file for the venue, the artist and one of the ids.** The resolution is often
+already written down; escalating past it is more expensive than the original flag, because it
+arrives carrying the authority of a systematic sweep.
+
+**⛔ THE GENERAL LESSON, and it is the reason this entry is written out rather than struck in a
+line: A VENUE THAT DISAGREES WITH THE HOLDER IS A LOAN, NOT AN ERROR — CHECK THE ENCOUNTER
+BEFORE CORRECTING THE RECORD.** `seenAt` is Fuad's testimony about his own life. It is not
+derivable from Wikidata, it cannot be validated against the holder, and **a mismatch is evidence
+of a loan long before it is evidence of a typo.** An audit can flag the disagreement; only Fuad
+can resolve it, because he is the only witness. **60 correct rows were one pass away from being
+rewritten into 60 wrong ones**, and the sweep that would have done it looked rigorous the whole
+way — it had a rule, it applied the rule consistently, and the rule was about the wrong thing.
+
+⚠ **What this ruling does NOT cover.** It settles the Artizon rows and it names the method for
+all of them. It does **not** clear the individual non-Artizon mismatches still open below
+(`christ-in-the-house-of-his-parents`, `ophelia`, `house-by-the-railroad`,
+`nicholas-chevalier-the-buffalo-ranges`, the Tiepolo) — those await the same kind of ruling,
+one at a time, from the same single witness. **The lesson is that they must be asked about, not
+that they are all loans.**
+
 ## Canon data defects — OPEN, for Fuad (do not fix unilaterally)
 
 Found 2026-08-25. None applied — these are canon/attribution calls, and two of them need a ruling
 rather than an edit. ⚙ Where a claim below was checkable against the live store it is marked
 **verified**; the rest are recorded as reported.
+
+- **⛔ HELD — THE w19b BATCH DOES NOT EXIST ON DISK, AND ITS RULINGS ARE PARKED HERE SO THEY ARE
+  NOT LOST.** Rulings were issued 2026-08-25 for a batch of three works — Monet *Essai de figure
+  en plein air*, Prouvé *Séjour de paix et de joie : méditation*, Puech *L'Aurore* — but
+  `.dtmp/tourqc-pass/w19b/` holds an entirely different wave (the w12r Law-2 repairs + the Hodler
+  *Mount Niesen* stop-7 rewrite + the *Woman with a Parrot* handedness fix; see its own
+  `COMMIT_MSG.txt`). ⚙ **Verified: all three works are in canon** — `claude-monet-essai-de-figure-en-plein-air`
+  (seenAt `artizon`), `victor-prouve-sejour-de-paix-et-de-joie-meditation` (`petit-palais`),
+  `denys-puech-l-aurore-by-denys-puech` (`orsay`) — **and none of the three has an `art_inspect`
+  entry.** A full-text sweep of `.dtmp` found no tour draft, no read draft and no plan file for
+  any of them. The three rulings, held verbatim for whenever the batch is actually drafted:
+  - **Puech `L'Aurore` — material conflict UNRESOLVED, and it is not a sentence fix.** Wikidata
+    says **bronze**; the plate shows **translucent white stone taking a mirror polish, with
+    bedding veins running out of the figure and into the base**. Image-beats-web was applied and
+    the drafter wrote **marble**. ⛔ **Ship as marble but carry the conflict in the entry's
+    `flags` — if it is bronze, the photographed object is a DIFFERENT VERSION and the tour needs
+    redrafting, not editing.** Same family as `degas-grande-arabesque-third-time` below: every
+    cast is a different photographed object.
+  - **Monet `Essai de figure en plein air` — restore the encounter close.** The w19b drafter
+    deliberately never named where Fuad met the picture, because it distrusted `seenAt: artizon`.
+    **That caution is now unnecessary** (see the Artizon ruling above), so where `context` would
+    naturally close on the encounter, as the corpus convention does, **restore it** — and do not
+    force it where it does not fit.
+  - **The spec additions the batch earned are ALREADY APPLIED** to `STUDY_SPEC.md` (bronze-vs-carving
+    split, the photograph rule extended to dust/cobweb/glass/DoF, pixel-extent **and** focal
+    plane, the physical/illumination test). ⚠ **They cite the Puech reading as their evidence and
+    that reading was not re-verified here, because there is no draft to verify it against** —
+    they are recorded as ruled, not as measured.
 
 - **`giovanni-boldini-bust-of-francesco-i-d-este` — three separate defects in one row.** The work
   is a genuine Boldini **after Bernini** (so it is correctly in canon, and the "wrong artist"
@@ -97,12 +179,19 @@ rather than an edit. ⚙ Where a claim below was checkable against the live stor
   while `art_hires` is `src: "nga"`. So the text describes the wax, the encounter was the bronze,
   and the plate is the wax — **every cast is a different photographed object** (the standing rule
   in HIRES_SOURCING's identity discipline), so this is a real split, not a wording nit.
-- **`seenAt` conflicts, two more.** ⚙ Both verified in the store:
-  `claude-monet-la-rue-montorgueil` reads **`seenAt: artizon`** where the work points at Orsay;
-  `nicholas-chevalier-the-buffalo-ranges` reads **`seenAt: aus-performing-arts`** where the work
-  points at the NGV. Same class as the `christ-in-the-house-of-his-parents` / `ophelia` /
-  `house-by-the-railroad` conflicts already logged in the 2026-08-14 full-sweep row — **not
-  silently fixed**, because a loan is a legitimate reason for the mismatch and only Fuad knows.
+- **`seenAt` conflicts, two more.** ⚙ Both verified in the store.
+  - ~~`claude-monet-la-rue-montorgueil` reads **`seenAt: artizon`** where the work points at
+    Orsay~~ ⛔ **NOT A DEFECT — RULED 2026-08-25, CLOSED. It was seen on loan at the Artizon,
+    along with 59 other rows. See "Resolved NON-defects" above and DO NOT RE-OPEN IT.** The
+    closing note on this bullet — *"not silently fixed, because a loan is a legitimate reason
+    for the mismatch and only Fuad knows"* — was exactly right, and it is the only reason the
+    row survived to be ruled on.
+  - `nicholas-chevalier-the-buffalo-ranges` reads **`seenAt: aus-performing-arts`** where the
+    work points at the NGV. **STILL OPEN.** Same class as the
+    `christ-in-the-house-of-his-parents` / `ophelia` / `house-by-the-railroad` conflicts already
+    logged in the 2026-08-14 full-sweep row — **not silently fixed**, because a loan is a
+    legitimate reason for the mismatch and only Fuad knows. The Artizon ruling raises the prior
+    that these are loans too; it does not settle any of them.
 - **Duplicate and missing images.** ⚙ Re-measured against the store, and **one half of this
   reproduces and one half does not**:
   - **Duplicate `img` — 1 pair, not 2. VERIFIED:** `odilon-redon-untitled-4` and
@@ -201,6 +290,31 @@ rather than an edit. ⚙ Where a claim below was checkable against the live stor
    gate is doing: it cannot tell *our plate is wrong* from *the candidate is wrong*. **Read every
    aspect failure against a third, independent number — the physical object — before filing it as
    a reject**, or corrections get logged as bad candidates.
+10. ⛔ **A RECORD ONLY FUAD CAN WITNESS IS NOT AUDITABLE AGAINST A SOURCE** (2026-08-25, the
+   Artizon ruling — full entry under "Resolved NON-defects"). `seenAt`, `seenConfidence` and the
+   canon `note` are testimony, not data. **A venue that disagrees with the holder is a loan, not
+   an error**, and 60 correct rows came within one pass of being rewritten into 60 wrong ones by
+   a sweep that was internally consistent the whole way. Flag the disagreement, **ask**, and do
+   not carry a "fix" for it into a batch. Corollary, because this one had a receipt: **grep this
+   ledger before escalating a class** — the resolution was already recorded, under the same
+   venue name, two days earlier.
+11. ⚠ **A `refs` LINK DIES WITH THE PROSE THAT CARRIED IT, AND IT CANNOT ALWAYS BE RE-MINTED**
+   (2026-08-25, w19a). `refs` names the exact words to link, so replacing a paragraph deletes
+   every cross-reference anchored in it. Replacing the Renoir *Alphonsine Fournaise* Info dropped
+   its link to *Luncheon of the Boating Party*. The obvious repair — re-mint from the other side,
+   where the relation arguably belongs better — **failed on the anchor**: the Luncheon entry's
+   prose names Bérard, Aline Charigot, Caillebotte and Ephrussi, and the *Maison Fournaise*
+   terrace, but **it never names Alphonsine**, so there is no honest span to link. ⛔ **Do not
+   write a sentence in order to hang a link on it.** That inverts the relationship the store is
+   for: prose earns the ref, the ref never commissions the prose. Record the loss and let the
+   owner decide. *(Live near-miss, for Fuad only: `Maison Fournaise` does occur in the Luncheon
+   prose and would resolve as an anchor — but it points at the restaurant, not at the woman, so
+   it is a different claim and was not applied.)*
+12. ⚠ **WORD-COUNT DISPUTES RUN BOTH WAYS** (2026-08-25, w19a). The standing lesson is that
+   agents overstate their own counts. Here the reverse fired: a naive `split(/\s+/)` recount put
+   all three reads over band and the **drafter was right**, because a spaced hyphen-as-dash is
+   not a word. **A recount that disagrees with a drafter is a candidate, not a verdict** — settle
+   it by naming the tokeniser. The house one is `check.js`'s `[A-Za-z0-9][A-Za-z0-9'’-]*`.
 
 ## Measured cost (for planning)
 

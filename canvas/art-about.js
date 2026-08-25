@@ -3456,9 +3456,9 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "pierre-auguste-renoir-alphonsine-fournaise": {
-about: "The sitter, painted in 1879, was the daughter of the family that ran the Maison Fournaise, the riverside restaurant at Chatou where Renoir kept a studio and painted more than a dozen canvases. Alphonsine looked after the boaters and guests, and two years later reappeared leaning on the terrace railing in Luncheon of the Boating Party.",
-refs: [{"id":"pierre-auguste-renoir-luncheon-of-the-boating-party","text":"Luncheon of the Boating Party"}],
-by: "Opus · Fable" },
+about: "Alphonsine Fournaise, painted in 1879 on the terrace of her family's boating restaurant on the island at Chatou - the daughter of the house, not a client, with the Seine behind her and her hand hanging over the rail.",
+deep: "Almost nothing in this canvas is finished except one face. The far bank is thinned to a wash; a chair beside her exists as an open ochre outline with the river running straight through the gap where its seat should be; the dress is so dry and thin that the canvas weave carries the softness of the cloth. Then the head - a pupil with a catchlight, a lower lip lifted in one touch of brick red, a gold ring about a centimetre long. Set a finished eye beside an unfinished leaf three centimetres away and you have the argument. A drawn face inside an undrawn world is what looking at somebody actually feels like.",
+by: "Opus 4.8" },
 
 "eugene-jansson-motif-from-timmermansgatan": {
 about: "A stone stairway climbing to Mariaberget on Stockholm's Södermalm, 1899 — his own quarter, painted at night in almost nothing but blue. One of the nocturnes that earned Eugène Jansson his nickname: blåmålaren, the blue-painter.",
@@ -3865,4 +3865,13 @@ by: "Opus · Fable" },
 "clarice-beckett-taxi-rank": {
 about: "When Clarice Beckett died in 1935 she was all but forgotten; in 1970 the art historian Rosalind Hollinrake was led to an open-sided shed near Benalla where roughly two thousand of her canvases had been stored for decades, and rain and possums had left only some three hundred and sixty-nine salvageable. This 1931 picture is one of Beckett's Melbourne night-and-weather motorcar scenes — a rank of waiting cabs, their lamps smeared across a wet road — a subject she worked more than once, with a second version surviving in a separate collection.",
 by: "Opus · Fable" },
+"giovanni-boldini-after-the-bath": {
+about: "Two women in a bathing room, one drying herself, one stretched on a carpet - and Boldini fitted all of it onto a panel twenty-five by thirty-four centimetres, with a single head modelled to the eyelash.",
+deep: "Measure the distance between two adjacent square centimetres. The eye is drawn - a lowered lid, a lash line, the pupil turned down to her own hands - and the plaster a centimetre from her cheek is dragged flat and scored. That ratio governs everything else: a body carried in a few long strokes, a cloth built until it stands off the wood, a carpet whose colours still sit where they left the palette, a bird whose whole tail is one charge of blue run dry at the edge. It is not carelessness. It is an argument about how little of a picture has to be true before a viewer will believe the rest.",
+by: "Opus 4.8" },
+
+"jean-jacques-henner-eglogue": {
+about: "Shown at the Salon of 1879 and also recorded as Effet du soir - Henner's three metres of near-black woodland and evening, a green sky, a flat pond, and two nudes who never look at each other.",
+deep: "An eclogue is a pastoral poem without a plot: figures sit in the shade at the end of a day and take turns singing, and nothing resolves because nothing was proposed. Henner painted the form itself and then made the paint agree with it. Each body's boundary is blended into the ground over a millimetre or two, so flesh does not stop at a line, it fades - which is why these two look lit from inside and attached to nothing. One plays; the other leans her weight into a block of stone and looks out at us. Read it as an event and it is empty. Read it as a poem and it is complete.",
+by: "Opus 4.8" },
 };

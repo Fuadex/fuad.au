@@ -847,6 +847,17 @@ the Szał false-negative lesson one level up.
    work's stated ceiling** (`w × ceilingW` by `h × ceilingH`) and ask whether the named subject
    survives it. Under roughly **40 px** in its long dimension, the reader sees a smudge: move the
    box, change the subject, or cut the stop. **This applies to `see` and `craft` too.**
+
+   ⚙ **THE CEILING NEEDS A SECOND TERM FOR PHOTOGRAPHED OBJECTS: PIXEL EXTENT *AND* FOCAL PLANE**
+   (added 2026-08-25, from the Puech `L'Aurore` reading). A painting is flat and a scan of it is
+   in focus everywhere, so pixel extent alone is a sufficient legibility test. **A photographed
+   sculpture is not flat**, and a lens has one plane of sharp focus with everything in front of
+   and behind it falling off. The Puech's incised signature **clears the 40 px floor comfortably
+   and is still not safely legible**, because it sits outside the focal plane — the pixels are
+   there and the edges are not. So the test becomes two questions, and a detail must pass both:
+   **is it big enough, and is it sharp where it sits?** A subject that fails the second is exactly
+   as unusable as one that fails the first, and it is more dangerous, because the extent
+   calculation returns a comfortable number and licenses the stop.
    ⚙ Two things this still does NOT say. It does not forbid working at high resolution —
    identifying a mark correctly at 21,100 px and then describing it at a scale the reader can
    reach is exactly right, and it is how the dissolution bias gets caught. And where the job file
@@ -1793,6 +1804,29 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
    about light rather than about colour. Those are the sculptural equivalents of handling, and
    they are stop-sized: each is a mark on a real surface that Law 1 can start from.
 
+   ⛔ **BUT THAT LIST IS BRONZE-DERIVED, AND THREE OF ITS FIVE ITEMS DO NOT APPLY TO CARVED STONE
+   — SPLIT IT (2026-08-25, from the Puech `L'Aurore` reading).** All three models are Rodin
+   bronzes, so the list generalised a casting process into "what sculpture criticism is". A
+   carved marble **has no armature, was not put through an enlargement machine, and has no
+   patina** — those three are facts about metal that was modelled, scaled and chemically
+   surfaced, and pointed at a block that was cut down they produce confident sentences about a
+   process that never happened. Only **silhouette** and the **finished-against-raw contrast**
+   transfer. Use the list that matches the material:
+
+   | | **BRONZE** (modelled, cast) | **CARVING** (subtractive, stone) |
+   |---|---|---|
+   | process | armature and enlargement | **where the subtraction went** — what had to be cut away, and what the block would not give |
+   | surface | patina — light as a chemical decision | **the two finishes as a light argument** — polish that admits light and lets it travel a few millimetres in, against rasp or tooth that stops it dead at the surface |
+   | edge | closed vs open silhouette | closed vs open silhouette *(transfers)* |
+   | mass | weighted proportion | **undercutting and true voids** — where the chisel got all the way behind the form, which is the risk the carver actually took |
+   | finish | finished figure against raw base | finished figure against raw base *(transfers)*, plus **the block's own bedding and veining**, which runs continuously out of the figure and into the base and is the evidence that the two are one stone and not an assembly |
+
+   ⚙ The carving column is derived in practice, not predicted: each item is a mark on a real
+   surface that Law 1 can start a stop from, which is the only test that matters here. The
+   veining item is the strongest of them, because it is the one piece of evidence in the
+   photograph that **the object cannot fake** — an assembled figure-and-base has a joint, and a
+   vein that crosses the join without deviating says there is none.
+
    ⛔ **AND THE RULE THAT WAS GENUINELY MISSING — A SCULPTURE TOUR DESCRIBES A PHOTOGRAPH OF THE
    OBJECT, AND MUST SAY SO ONCE, IN THE CLOSING STOP.** This is the one real difference and the
    ban was standing where it should have been.
@@ -1801,10 +1835,57 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
    three-quarter view that hides an arm, a dark ground that silhouettes a profile — none of that
    is Rodin. Saying it once, in the close, is what lets the rest of the tour describe the
    photographed surface honestly without hedging every sentence.
+
+   ⚙ **EXTEND IT: LIGHT AND ANGLE ARE NOT THE ONLY THINGS THE PHOTOGRAPH ADDS** (2026-08-25,
+   from the Puech `L'Aurore` reading). The rule as written warns about the two decisions a
+   photographer makes. It says nothing about what simply **lands on the object or on the lens**,
+   and those read as sculpture just as convincingly:
+   - **dust** — settles in hollows and reads as a change of finish, or as age;
+   - **cobweb** — reads as a crack, a repair seam, or a fine incised line;
+   - **glass reflection** — a vitrine or a window reads as polish, as a highlight the carver put
+     there, or as a translucency the stone does not have;
+   - **depth-of-field falloff** — reads as a softened, "unfinished" passage, i.e. it manufactures
+     the finished-against-raw contrast that the carving list asks you to look for.
+
+   ⭐ **The case that produced this, and it is worth keeping because the wrong answer was the
+   plausible one.** A fine filament crosses the Puech's face. What settles it is that **it passes
+   over the nose without deviating** — it does not follow the form, it does not dip into the
+   nostril, it does not break at the edge of the plane — **and it hangs free off the end of a
+   lock of hair.** Nothing incised or fractured in stone does either. It is a cobweb. ⚠ **And at
+   a 1920 px derivative it would have been booked as a crack or a repair seam**, because at that
+   size the two tests that identify it — the undeviating pass over a curved surface, and the free
+   end in the air — are both below resolution. The finding is not "look out for cobwebs"; it is
+   that **the artefact class is only separable from the object at the top of the plate**, so this
+   check belongs with the reader-ceiling check and not after it.
+
    ⚙ **The dissolution bias has no analogue in stone** — there is nothing to describe as more
    dissolved than it is. **Its analogue is attributing a raking shadow or a low camera angle to
    the carver**, and it will be directional in the same way, because the dramatic reading is the
    easy one. Check whether a "decision" is in the bronze or in the lighting.
+
+   ⭐ **AND HERE IS THE TEST THAT MAKES THAT ADJUDICABLE — THE PHYSICAL/ILLUMINATION TEST**
+   (2026-08-25; the sculpture analogue of the dissolution check, and it worked). The check above
+   asks a question with no procedure attached. This is the procedure:
+
+   > **Ask which property the lighting could not have produced.**
+
+   A property that survives that question belongs to the object and may be described as the
+   maker's; one that does not is the photographer's and goes in the closing stop or nowhere.
+   Worked examples, both from the Puech:
+   - **A matte surface cannot make a tight specular, however it is lit.** A hard, small, bright
+     highlight is therefore evidence of *polish* — a real fact about the finish — and not of a
+     lamp. Lighting controls where a specular falls and how bright it is; it cannot conjure one
+     out of a rasped surface.
+   - **Translucency belongs to the stone even if the glow belongs to the hall.** Light entering a
+     surface and re-emerging a few millimetres away is a property of the material. The hall
+     decides how much light there is to enter; it does not decide that the material admits it.
+
+   ⚠ It runs in the other direction too, and that is where it earns its keep: a raking shadow, a
+   dark ground behind a profile, a passage that falls off into softness — **the lighting alone is
+   a sufficient explanation for every one of those**, so none of them may be attributed to the
+   maker. The test is directional on purpose. It does not ask whether the lighting explains the
+   property; it asks whether the lighting **could** explain it, and a "could" is enough to
+   disqualify the claim.
    ⚠ The rest of the screen still applies, and applies harder: a **gallery-room shot** of a
    sculpture is still not tour-eligible (it is a photograph of a room), and a cast is a different
    photographed object from every other cast — the identity-discipline rule in HIRES_SOURCING is
