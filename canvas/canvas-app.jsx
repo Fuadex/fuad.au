@@ -1158,7 +1158,12 @@ function resolveOSDSource(work) {
   // serves), and it computes the grid itself — there is no metadata fetch, so no CORS on open.
   if (work.hires && work.hires.zoomify && work.hires.w && work.hires.h) {
     const src = (work.hires.src || "").toUpperCase();
-    return { tileSource: { type: "zoomifytileservice", tilesUrl: work.hires.zoomify,
+    // 2026-08-25: tilesUrl was UNPROXIED while the dzi branch below uses proxied(). NGV tiles carry
+    // ACAO for their own origin only, so fuad.au got blank tiles — and because Zoomify fetches no
+    // descriptor, `open-failed` never fired and no fallback was ever set. Silent, on a toured
+    // Rembrandt with six chapters. Through the ngv alias the same tile returns ACAO * and
+    // byte-identical bytes (27,930 B, measured).
+    return { tileSource: { type: "zoomifytileservice", tilesUrl: proxied(work.hires.zoomify),
       width: work.hires.w, height: work.hires.h },
       cors: "Anonymous", label: src ? `deep zoom via ${src}` : "deep zoom" };
   }
