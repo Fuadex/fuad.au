@@ -3498,9 +3498,18 @@ window.CANVAS_ARTWORKS = [
   // the Bernini bust itself (Q5002067) — the resolver did exactly that and hung Bernini's
   // photograph on it. No Wikidata item exists for the sheet, so the plate is hand-set to the
   // NGA render and the resolver is told to keep its hands off.
-  { id: "giovanni-boldini-bust-of-francesco-i-d-este", title: "Bust of Francesco I d'Este", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "nga-223221", year: 1885, noResolve: true,
-    img: "https://api.nga.gov/iiif/e030587a-5582-4a63-9913-0adc7c7bd73f/full/1600,/0/default.jpg",
-    imgGrid: "https://api.nga.gov/iiif/e030587a-5582-4a63-9913-0adc7c7bd73f/full/440,/0/default.jpg",
+  // UUID FIXED 2026-08-25: this row shipped with …0adc7c7bd73f, which 404s on api.nga.gov — one
+  // character off the real …0adc7c7bd730, so the plate had never once loaded. Both ids were put
+  // to the live service before this edit: …73f → 404, …730 → 200 (9052 × 13496). art_hires.js
+  // already held the correct uuid, which is why nothing else flagged it. Its stale w/h
+  // (10652 × 14204) were corrected in the same pass against that info.json.
+  // The year is the holder's, not Wikidata's: the NGA dates the sheet c. 1890/1900, so the 1885
+  // that shipped here was simply wrong. `year` is an integer everywhere in this file — there is
+  // no circa vocabulary — so it opens the range at 1890 and the span is recorded in this comment
+  // rather than lost. Do not "correct" it back to 1885.
+  { id: "giovanni-boldini-bust-of-francesco-i-d-este", title: "Bust of Francesco I d'Este", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "nga-223221", year: 1890, noResolve: true,
+    img: "https://api.nga.gov/iiif/e030587a-5582-4a63-9913-0adc7c7bd730/full/1600,/0/default.jpg",
+    imgGrid: "https://api.nga.gov/iiif/e030587a-5582-4a63-9913-0adc7c7bd730/full/440,/0/default.jpg",
     wish: true, liked: true },
   { id: "gustav-klimt-baby-cradle", title: "Baby (Cradle)", artist: "Gustav Klimt", artistId: "klimt", qid: "Q17635088", qidTrusted: true, year: 1917,
     wish: true, liked: true },
@@ -3539,7 +3548,119 @@ window.CANVAS_ARTWORKS = [
     wish: true, liked: true },
   // NGA batch 5 (Fuad 2026-08-23).
   { id: "alfred-sisley-the-banks-of-the-oise", title: "The Banks of the Oise", artist: "Alfred Sisley", artistId: "sisley", qid: "Q3231001", qidTrusted: true, year: 1877,
-    wish: true, floored: true }
+    wish: true, floored: true },
+  // ——— BOLDINI DISCOVERY BATCH (Fuad 2026-08-25: "I want all those Boldinis ingested and
+  // branded as not seen, I'll tell you later which ones floored and which ones I loved").
+  // 21 rows off .dtmp/tourqc-pass/w13-discover — DELIBERATELY UNGRADED: wish:true and nothing
+  // else, because the marks are Fuad's to give and a placeholder grade is a lie that sorts.
+  // Every plate below was measured against the Commons imageinfo API and every url returned
+  // 200 before it was written; imgZoom is pinned to the file's TRUE pixel width rather than a
+  // hopeful 2400, so nothing here advertises resolution it does not have. Three Orsay works
+  // (Venise, Blumenthal, Margyl) ship with NO image on purpose: no Commons file exists and the
+  // Orsay IIIF was measured to cap at 850px, so it is not a plate source. A guessed url would
+  // have been worse than a blank.
+  // Musée d'Orsay (Q23402) — 7.
+  { id: "giovanni-boldini-le-comte-robert-de-montesquiou", title: "Le Comte Robert de Montesquiou", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q17492870", qidTrusted: true, year: 1897,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Montesquiou%2C_Robert_de_-_Boldini.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Montesquiou%2C_Robert_de_-_Boldini.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Montesquiou%2C_Robert_de_-_Boldini.jpg?width=2136",
+    wish: true },
+  { id: "giovanni-boldini-scene-de-fete-au-moulin-rouge", title: "Scène de fête au Moulin-Rouge", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q17495602", qidTrusted: true, year: 1889,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_Boldini_-_Feast_Scene_-_Google_Art_Project.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_Boldini_-_Feast_Scene_-_Google_Art_Project.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_Boldini_-_Feast_Scene_-_Google_Art_Project.jpg?width=6385",
+    wish: true },
+  { id: "giovanni-boldini-henri-rochefort", title: "Henri Rochefort", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q17491648", qidTrusted: true, year: 1882,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_Boldini_-_Henri_Rochefort.jpg?width=515",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_Boldini_-_Henri_Rochefort.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_Boldini_-_Henri_Rochefort.jpg?width=515",
+    wish: true },
+  { id: "giovanni-boldini-venise", title: "Venise", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q17496068", qidTrusted: true, year: 1908,
+    wish: true },
+  { id: "giovanni-boldini-le-melon", title: "Le Melon", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q17493062", qidTrusted: true, year: 1906,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Boldini_-_the-melon.jpg?width=280",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Boldini_-_the-melon.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Boldini_-_the-melon.jpg?width=280",
+    wish: true },
+  { id: "giovanni-boldini-portrait-de-madame-g-blumenthal", title: "Portrait de Madame G. Blumenthal", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q17495255", qidTrusted: true, year: 1896,
+    wish: true },
+  { id: "giovanni-boldini-portrait-de-madame-margyl-cantatrice-a-l-op", title: "Portrait de Madame Margyl, cantatrice à l'opéra", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q126722824", qidTrusted: true, year: 1904,
+    wish: true },
+  // The Metropolitan Museum of Art (Q160236) — 5. No public IIIF; Commons carries the plates.
+  { id: "giovanni-boldini-the-dispatch-bearer", title: "The Dispatch-Bearer", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q19912511", qidTrusted: true, year: 1879,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_Boldini%2C_The_Dispatch-Bearer.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_Boldini%2C_The_Dispatch-Bearer.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_Boldini%2C_The_Dispatch-Bearer.jpg?width=3099",
+    wish: true },
+  { id: "giovanni-boldini-gossip", title: "Gossip", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q19912358", qidTrusted: true, year: 1873,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Gossip_MET_DT219388.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Gossip_MET_DT219388.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Gossip_MET_DT219388.jpg?width=3811",
+    wish: true },
+  { id: "giovanni-boldini-consuelo-vanderbilt-duchess-of-marlborough", title: "Consuelo Vanderbilt, Duchess of Marlborough, and Her Son", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q19905893", qidTrusted: true, year: 1906,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Consuelo_Vanderbilt.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Consuelo_Vanderbilt.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Consuelo_Vanderbilt.jpg?width=2868",
+    wish: true },
+  { id: "giovanni-boldini-famous-connoisseur", title: "Famous Connoisseur", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q20183969", qidTrusted: true, year: 1883,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Famous_Connoisseur_(Fameux_Connaisseur)_MET_DT353872.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Famous_Connoisseur_(Fameux_Connaisseur)_MET_DT353872.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Famous_Connoisseur_(Fameux_Connaisseur)_MET_DT353872.jpg?width=2444",
+    wish: true },
+  { id: "giovanni-boldini-mrs-charles-warren-cram", title: "Mrs. Charles Warren-Cram", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q19913399", qidTrusted: true, year: 1885,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Mrs._Charles_Warren-Cram_(Ella_Brooks_Carter%2C_1846%E2%80%931896)_MET_EP1482.jpg?width=1464",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Mrs._Charles_Warren-Cram_(Ella_Brooks_Carter%2C_1846%E2%80%931896)_MET_EP1482.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Mrs._Charles_Warren-Cram_(Ella_Brooks_Carter%2C_1846%E2%80%931896)_MET_EP1482.jpg?width=1464",
+    wish: true },
+  // Museo Giovanni Boldini, Ferrara (Q3329178) — 9. Six of these have no Wikidata item at all,
+  // so they carry qid:null + noResolve:true — the same guard the Francesco sheet needed, and
+  // for the same reason: a title search on "Marina a Venezia" or "Madame X" lands somewhere
+  // else entirely and hangs a stranger's photograph on the row.
+  { id: "giovanni-boldini-un-angolo-dell-atelier-di-boulevard-berthie", title: "Un angolo dell'atelier di Boulevard Berthier", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: null, noResolve: true, year: 1893,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_un_angolo_dell'atelier_di_boulevard_berthier%2C_1893_(ferrara%2C_museo_boldini)_01.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_un_angolo_dell'atelier_di_boulevard_berthier%2C_1893_(ferrara%2C_museo_boldini)_01.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_un_angolo_dell'atelier_di_boulevard_berthier%2C_1893_(ferrara%2C_museo_boldini)_01.jpg?width=3512",
+    wish: true },
+  { id: "giovanni-boldini-le-sorelle-lascaraky", title: "Le sorelle Lascaraky", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q113095512", qidTrusted: true, year: 1869,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_le_sorelle_lascaraky%2C_1869.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_le_sorelle_lascaraky%2C_1869.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_le_sorelle_lascaraky%2C_1869.jpg?width=2640",
+    wish: true },
+  { id: "giovanni-boldini-ritratto-di-edgar-degas", title: "Ritratto di Edgar Degas", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: null, noResolve: true, year: 1885,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_ritratto_di_edgar_degas%2C_1885-90_ca%2C_carboncino_su_tela_02.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_ritratto_di_edgar_degas%2C_1885-90_ca%2C_carboncino_su_tela_02.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_ritratto_di_edgar_degas%2C_1885-90_ca%2C_carboncino_su_tela_02.jpg?width=1920",
+    wish: true },
+  { id: "giovanni-boldini-la-signora-in-rosa", title: "La signora in rosa", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q134339685", qidTrusted: true, year: 1916,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_la_signora_in_rosa_(ritratto_di_olivia_concha_de_fontecilla)%2C_1916%2C_01.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_la_signora_in_rosa_(ritratto_di_olivia_concha_de_fontecilla)%2C_1916%2C_01.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_la_signora_in_rosa_(ritratto_di_olivia_concha_de_fontecilla)%2C_1916%2C_01.jpg?width=1972",
+    wish: true },
+  { id: "giovanni-boldini-le-mele-calville", title: "Le mele calville", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: null, noResolve: true, year: 1907,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_le_mele_calville%2C_1907_ca.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_le_mele_calville%2C_1907_ca.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_le_mele_calville%2C_1907_ca.jpg?width=2148",
+    wish: true },
+  { id: "giovanni-boldini-marina-a-venezia", title: "Marina a Venezia", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: null, noResolve: true, year: 1909,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_marina_a_venezia%2C_1909_ca.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_marina_a_venezia%2C_1909_ca.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_marina_a_venezia%2C_1909_ca.jpg?width=1856",
+    wish: true },
+  { id: "giovanni-boldini-uscita-da-un-ballo-mascherato", title: "Uscita da un ballo mascherato", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: null, noResolve: true, year: 1876,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_uscita_da_un_ballo_mascherato%2C_1876_ca.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_uscita_da_un_ballo_mascherato%2C_1876_ca.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_uscita_da_un_ballo_mascherato%2C_1876_ca.jpg?width=2492",
+    wish: true },
+  { id: "giovanni-boldini-madame-x-la-cognata-di-helleu", title: "Madame X, la cognata di Helleu", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: null, noResolve: true, year: 1885,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_madame_X%2C_la_cognata_di_helleu%2C_1885-90_ca.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_madame_X%2C_la_cognata_di_helleu%2C_1885-90_ca.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_madame_X%2C_la_cognata_di_helleu%2C_1885-90_ca.jpg?width=2468",
+    wish: true },
+  { id: "giovanni-boldini-autoritratto-a-69-anni", title: "Autoritratto a 69 anni", artist: "Giovanni Boldini", artistId: "giovanni-boldini", qid: "Q113089103", qidTrusted: true, year: 1911,
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_autoritratto_a_69_anni%2C_1911.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_autoritratto_a_69_anni%2C_1911.jpg?width=440",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_boldini%2C_autoritratto_a_69_anni%2C_1911.jpg?width=2168",
+    wish: true },
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 

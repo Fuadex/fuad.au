@@ -617,15 +617,13 @@ function Wall({ go, styleIds }) {
   const [pick, setPick] = useState("");                // colour-sort target ("" = hue ramp)
   const [eras, setEras] = useState(() => new Set());   // era chips — OR within, AND with the rest
   const toggleEra = unhang((k) => setEras(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; }));
-  // ✦ HAS A READ (Fuad 2026-08-24) — a cross-cutting filter on the first row, since "which of
-  // these has something written about it" is a different question from grade or status. A read
-  // counts as either tier of art-about OR a study tour, matching exactly what the ✦ marker on
-  // the card already means, so the chip and the marker can never disagree.
-  // Split into two chips 2026-08-24 (Fuad: "introduce a button HAS A TOUR next to HAS A READ,
-  // abbreviate the names to INFO and TOUR"). They are different questions - a read is written
-  // ABOUT the work, a tour walks its surface - and the old single chip OR'd them together, so
-  // you could not ask for either one alone.
-  const [readOnly, setReadOnly] = useState(false);
+  // ⤢ HAS A TOUR (Fuad 2026-08-24) — a cross-cutting filter on the first row, since "which of
+  // these has something written about it" is a different question from grade or status.
+  // It was briefly a PAIR of chips, INFO and TOUR (Fuad 2026-08-24: "introduce a button HAS A
+  // TOUR next to HAS A READ, abbreviate the names to INFO and TOUR"). The INFO half was removed
+  // on 2026-08-25 at Fuad's request — a read exists for nearly the whole imaged canon now, so
+  // asking for "has an Info" barely narrowed anything, while a study tour is still scarce enough
+  // to be worth a chip. Only TOUR remains; the `readOnly` state that backed INFO is gone with it.
   const [tourOnly, setTourOnly] = useState(false);
   const [qual, setQual] = useState([]);                // quality buckets, OR'd like media
   const toggleQual = unhang((k) => setQual(q => q.includes(k) ? q.filter(x => x !== k) : [...q, k]));
@@ -643,7 +641,7 @@ function Wall({ go, styleIds }) {
   // survives the navigation and has to be cleared explicitly like every other filter.
   const setSel = unhang((labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null));
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, qual, pick, hang, readOnly, tourOnly]);
+  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, qual, pick, hang, tourOnly]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -727,10 +725,6 @@ function Wall({ go, styleIds }) {
     // quality buckets OR like media; a work with no known pixel size is excluded once a chip is
     // on — unknown is unknown, not "plate". "iiif" ORs in as a cross-cutting tag.
     if (qual.length) list = list.filter(w => qualMatch(w, qual));
-    if (readOnly) list = list.filter(w => {
-      const r = (window.CANVAS_ART_ABOUT || {})[w.id];
-      return !!(r && (r.about || r.deep));
-    });
     if (tourOnly) list = list.filter(w => !!(window.CANVAS_INSPECT || {})[w.id]);
     const arr = [...list];
     // TODAY'S HANG short-circuits the sort: its order IS the content — pinned leads first, then the
@@ -758,11 +752,12 @@ function Wall({ go, styleIds }) {
     // previous medium's results until some other filter happened to change (found 2026-08-20).
   // `qual` MUST be in these deps (2026-08-23 bug: it filtered inside but wasn't a dep, so only
   // the first quality click — which also cleared the hang — recomputed; later toggles froze)
-  // …and `readOnly` (2026-08-24, the THIRD time this exact bug shipped — media, then qual, then
-  // the ✦ chip). EVERY value the filter chain above reads has to appear here. If you add a
-  // filter, add its state to this array in the same edit; the chip will light up either way and
-  // the wall will simply not change, which looks like a broken button rather than a stale memo.
-  }, [all, marks, status, eras, mus, sort, sel, media, qual, pick, hang, readOnly, tourOnly]);
+  // …and `tourOnly` (the ✦/⤢ chip — 2026-08-24 was the THIRD time this exact bug shipped: media,
+  // then qual, then the read chips). EVERY value the filter chain above reads has to appear here.
+  // If you add a filter, add its state to this array in the same edit; the chip will light up
+  // either way and the wall will simply not change, which looks like a broken button rather than
+  // a stale memo.
+  }, [all, marks, status, eras, mus, sort, sel, media, qual, pick, hang, tourOnly]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
@@ -794,10 +789,6 @@ function Wall({ go, styleIds }) {
           <button key={v} data-on={status.has(v)} onClick={() => toggleStatus(v)}>{label}</button>
         ))}
         <span className="cv-filt-div" aria-hidden="true" />
-        <button data-on={readOnly} onClick={unhang(() => setReadOnly(v => !v))}
-          title="only works with a written read — an Info or an Interpretation">
-          <span className="cv-f-full">✦ info</span><span className="cv-f-tiny">✦</span>
-        </button>
         <button data-on={tourOnly} onClick={unhang(() => setTourOnly(v => !v))}
           title="only works with a study tour — a walked close reading of the surface">
           <span className="cv-f-full">⤢ tour</span><span className="cv-f-tiny">⤢</span>
@@ -2061,10 +2052,13 @@ function MuseumView({ museumId, go }) {
   const READS = window.CANVAS_ART_ABOUT || {};
   const INSPECT = window.CANVAS_INSPECT || {};
   const [tier, setTier] = useState("about");
-  const [queuedQids, setQueuedQids] = useState(() => new Set(readDeckQueue().map(w => w.qid)));
   // the highlight currently being looked at in place (non-canon works only)
   const [peek, setPeek] = useState(null);
-  const queueMajor = (n) => { addToDeckQueue(n); setQueuedQids(prev => new Set(prev).add(n.qid)); };
+  // NO "+ deck" BUTTON HERE (Fuad 2026-08-25: "remove DECK buttons from the museum's page"). The
+  // unmet-majors tiles below used to carry one, and the `queuedQids` / `queueMajor` state that
+  // backed it lived on this line; both are gone. The affordance is NOT gone from the app — the
+  // artist pages keep their copy (see ArtistView), which is where the By Your Artists deck is
+  // actually fed from, and #/deck/by-artists still resolves. Don't reintroduce it here.
 
   // every canon work whose seenAt includes this museum, enriched. Split permanent vs on-loan.
   // (all hooks run unconditionally — the missing-museum guard sits AFTER them, below, so hook
@@ -2375,7 +2369,6 @@ function MuseumView({ museumId, go }) {
           <RevealChunks items={unmet} initial={18} step={18} render={(slice) => (
             <div className="cv-a-unmet">
               {slice.map(n => {
-                const q = queuedQids.has(n.qid);
                 // A highlight can already BE a canon work — met at another venue, or a multi-venue
                 // cast/impression — in which case sending you to Wikidata was throwing you off the
                 // site to read about something the gallery already holds. Open the reader instead;
@@ -2392,9 +2385,6 @@ function MuseumView({ museumId, go }) {
                           <LazyImg src={n.img} alt={n.title} />
                           <span>{n.title}{n.artist ? ` · ${n.artist}` : ""}{n.year ? ` · ${n.year}` : ""}</span>
                         </a>}
-                    <button type="button" className="cv-a-unmet-add" data-q={q} disabled={q}
-                      title={q ? "queued for the By Your Artists deck" : "add to the By Your Artists deck"}
-                      onClick={() => queueMajor(n)}>{q ? "queued ✓" : "+ deck"}</button>
                   </div>
                 );
               })}
