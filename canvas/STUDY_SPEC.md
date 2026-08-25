@@ -1036,6 +1036,11 @@ groups A–C touches it. Run these ~~five~~ **four** in order (12g folded into s
 run-order map); 12c and 12d are cheap and refuse the whole
 paragraph before anyone argues about its prose.
 
+⚙ **12c AND 12d RUN ONCE PER COMPANION, NOT ONCE PER PARAGRAPH** (2026-08-25, when more than one
+companion was permitted — see *More than one companion is permitted*). Where these two steps say
+"the companion", read "each companion". The verification bar does not soften for the second one;
+that softening is exactly what the Heiss second pointer was.
+
 12c. **The companion must resolve to a real canon id.** Look the named work up in
     `art_data.js` / `artworks.js` and write the id down. A plausible id typed from a title is
     a live failure mode in this project, not a hypothetical — the precedent is the
@@ -1397,7 +1402,10 @@ the work and its museum, which is enough. The membership is a REQUIREMENT, not a
    the same dissolving contour, the same reflection with and without its referent, the same
    encounter. The middle of the paragraph is spent describing the COMPANION concretely enough
    that the rhyme is visible — this is the part that carries the facts, and every one of them
-   is checkable.
+   is checkable. ⚙ **And "concretely enough that the rhyme is visible" is the WHOLE standard, not
+   "concretely enough to picture"** (2026-08-25): describe the companion through what the plate
+   answers, then stop — *Why a `beside` runs long* below. ⚙ **A second companion, where there is
+   one, lives here too** — same verification, and only where it makes the reversal two-sided.
 4. **The reversal, stated flatly, last.** Opposite stakes, opposite scale, or opposite
    vantage. Usually a `here … ; there …` construction. **The model:**
 
@@ -1426,16 +1434,99 @@ and the new one also refuses the reverse**, so a `beside` may not be argued UP t
 than it may be trimmed toward 90. A `beside` over ~115 words is where checklist **10e** asks what
 the extra room is carrying.
 
+### ⚙ WHY A `beside` RUNS LONG, AND THE TWO LEVERS — 2026-08-25
+
+Fuad, on wave 1: *"if comparing against an artwork - this gets a bit wordy and so more difficult to
+image."* The twelve measured **106–120 words** — all inside the band, eleven of them in its top
+quarter.
+
+⛔ **THE CAUSE IS STRUCTURAL, AND IT IS THE REASON FOR EVERYTHING BELOW: A `beside` DESCRIBES A
+PAINTING THE READER CANNOT SEE.** Every other paragraph in a tour is read with its plate in view,
+and a stop even flies the viewer to the region under discussion; **this one builds a picture from
+nothing.** That is why a stop does its job in ~120 words *with the image present* and a `beside`
+reaches for the same figure without one. **The description is load-bearing and it is also the
+cost.** So the answer is not to describe less — it is to spend the description differently.
+
+⛔ **NO NEW LOWER BAND, AND NOTHING HERE MAY BE RUN AS A TRIM.** The band stays **90–120**. The
+governing test at the top of this file is justification, not length, in either direction; this file
+has already been corrected once for drifting toward a length rule, and *"the content needs to be
+justified"* has been ruled twice in one day. **What changes is what the words are spent on.**
+
+**LEVER 1 — LEAN ON THE REVERSAL, NOT ON THE DESCRIPTION.** ⭐ **The model is
+`regates-a-argenteuil`** — the shortest of the seven at **92 words**, and the hardest landing. Its
+entire account of the companion is built out of what the plate HAS and the companion has not:
+
+> In Water-Lilies, Reflection of a Weeping Willow, painted at Giverny around 1917, the tree is out
+> of frame altogether: no bank, no sky, no horizon, only the willow arriving already upside down as
+> a vertical rain of blue and violet, with a few lily pads left at the margin to say it is water at
+> all. Here the reflection still has something above the line to answer to. Forty-five years on it
+> has nothing, and it is the whole picture.
+
+**Not one descriptive word there is inventory.** Every item is present because the plate answers
+it, so the description and the reversal are the same sentences — and the close lands on a
+difference the reader has already been handed. A middle that catalogues a companion feature by
+feature costs more, images worse, **and leaves the reversal to be asserted at the end from
+scratch.** ⚠ Distinguish this from the spec's other named model: `la-grenouillere-renoir` is the
+model for the reversal CLAUSE (*"Here the readable thing is a commercial notice on a café flank,
+off to one side; there it is what the painting is for"*) and stays so. This is the model for the
+paragraph's MIDDLE.
+
+**LEVER 2 — THE `refs` LINK IS ALREADY DOING WORK THE PROSE IS DUPLICATING.** Since 2026-08-25 the
+companion's title is a live link to its Reader entry: the other painting is **one click away**. So
+**a `beside` does not need to make the reader SEE the companion — only to make them WANT TO LOOK.**
+That is a genuinely different writing target, and it is stated here because it changes a drafting
+decision: describe enough that the rhyme is visible and the reversal lands, then let the link carry
+the rest. **A paragraph written as though it were the reader's only access to the companion will
+always run to the top of the band.**
+
 **It carries a `refs` entry.** The companion is named, it is in this collection, and its id was
 already written down at checklist 12c — so it links. **A `beside` without a ref is incomplete.**
 See *Corpus cross-references* below for the field's rules; step 12h is where it is checked.
 
-**One pointer, not two.** ⚙ Heiss adds a second, vaguer pointer after the reversal (*"a whole
-genre elsewhere on this wall: in his sea studies…"*) — those two Zorn marines are `wish:true`
-canon rows, neither seen nor toured, so the sentence gestures at works that are not there in the
-sense it implies — and the addition also contradicts its own opening count, which 12g now
-prohibits outright. It shipped; do not copy it, and it is logged under *Open items* with both ids
-and a full redraft, pending Fuad's verdict. **One named companion per `beside`.**
+### ⚙ MORE THAN ONE COMPANION IS PERMITTED — RELAXED 2026-08-25 (Fuad), AND THE OLD RULE WAS NOT WRONG
+
+~~**One pointer, not two.** … **One named companion per `beside`.**~~ Fuad, on reading wave 1:
+*"make them tighter or allow inclusion of multiple paintings even at that paragraph."* Both ways
+out are open; this is the second one, and the first is the section above.
+
+⚠ **READ THE STRUCK RULE'S HISTORY BEFORE USING THE LATITUDE, BECAUSE IT IS THE GUARD — this is a
+relaxation, not the overturning of a considered judgement.** *One pointer, not two* was written off
+ONE failure, and **the failure was not that there were two pointers.** The shipped Heiss `beside`
+adds a vaguer second pointer after its reversal (*"a whole genre elsewhere on this wall: in his sea
+studies…"*), pointing at `anders-zorn-b-lgeskvulp` and `anders-zorn-marin-studie-fran-atlanten` —
+both `wish: true`, **neither seen nor toured**. **The defect was that the second pointer was
+FALSE**: it gestured at works that are not there in the sense the sentence implies. (It also
+contradicted its own opening count, which is 12g's business, not this rule's.) That sentence is
+still not a model and was cut in the minimal repair; do not copy it.
+
+**THE RULE AS IT NOW STANDS.**
+
+- ⛔ **EVERY COMPANION NAMED IS VERIFIED TO THE SAME STANDARD AS THE FIRST.** Steps **21–22
+  (12c–12d) run once PER COMPANION, not once per paragraph**: the id **read from the store, never
+  typed from a title**; the museum from its canon row; the interval as the delta of two canon
+  `year` fields; and **preferably toured, because then its own entry is the first verifier**. A
+  second companion that cannot clear 12c and 12d is not a lighter kind of companion — it is the
+  Heiss defect exactly.
+- ⛔ **A SECOND COMPANION EARNS ITS PLACE BY SHARPENING THE REVERSAL, NEVER BY ADDING A SECOND
+  EXAMPLE OF THE SAME POINT.** The test is the one 12e already applies to the whole field: **if
+  the paragraph argues the same thing without it, it is padding.** Three works that make one point
+  are one companion and two decorations. Three works that make the point two-sided — a route the
+  plate had to get past, a bracket the plate sits inside, one term appearing in three different
+  roles — are a paragraph the single-companion form could not have written.
+- **It never becomes a survey.** Two is a latitude, not a target, and **one companion remains the
+  normal case** — the specimens that name one are not thereby weaker. No third slot is promised
+  here.
+- **The no-count rule is untouched and bites harder, not less.** 12g prohibits *both*, *the pair of
+  them*, *his other work here* — and a two-companion `beside` is precisely where those words want
+  to appear. **Name the companions in sequence; never total them.**
+- **Each companion carries its own `refs` entry** (12h), each `ref.text` occurring in the paragraph
+  exactly once.
+
+⚠ **THE COMPOUNDING COST, and it is the real reason the latitude is narrow.** A second companion
+doubles the verification, doubles the picture the reader must build with no plate in front of them,
+and spends the same 90–120 words. **If two companions cannot both be handled inside the band, that
+is the signal that the second is not earning its place** — not a signal that the band should give
+way. Cut the second companion before cutting the reversal.
 
 **⛔ WHEN THERE IS NO REAL RHYME, OMIT THE FIELD AND RECORD WHY.** A forced `beside` is worse
 than none — that is precisely what got rejected on content grounds. If no work in the
@@ -1575,10 +1666,12 @@ incomplete** — the same class of unfinished as a tour without a `beside`. The 
 being looked up at checklist 12c; writing it into `refs` costs nothing more than not throwing
 it away.
 
-Two notes so this is not over-read. The *one pointer, not two* rule governs the `beside`'s
-CONTENT — one named companion per `beside` — and is not a cap on refs: a `context` paragraph
-that legitimately names three in-collection works carries three. And a ref is not a licence to
-name more works; it links what the prose already earned.
+Two notes so this is not over-read. ⚙ **The *one pointer, not two* rule was RELAXED 2026-08-25** —
+a `beside` may name more than one companion where the second sharpens the reversal, and each one
+carries its own ref (see *More than one companion is permitted*). It was never a cap on refs
+anyway: a `context` paragraph that legitimately names three in-collection works carries three. And
+a ref is still not a licence to name more works; **it links what the prose already earned**, and
+the prose earns a second companion only by the 12e test.
 
 ### State as at 2026-08-25 (this ages; re-measure)
 
