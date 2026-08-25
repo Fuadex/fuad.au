@@ -164,23 +164,21 @@ material and sometimes holds the crux framing; but it is sourced from OUTSIDE th
 fence it out of the text, (c) let it in where it earns the space. Nothing is ruled here; the
 reversible option is (b), and no cascade batch should ship on the question until he calls it.
 
-⚠ Open, not ruled (2026-08-25): **does a distilled read INHERIT its tour's `refs`, or mint its
-own?** The cross-reference field shipped that day (§11) and both tiers can carry it, but the
-cascade is a distillation: the Interpretation re-words the tour rather than quoting it, so a
-`ref.text` that matched the tour's sentence will usually NOT occur in the Interpretation, and
-where it does occur it may sit in a sentence about something else. Mechanical inheritance is
-therefore wrong — the validator would throw NOT FOUND on most of it, and the cases that *pass*
-are the dangerous ones, because a coincidental text match links a phrase the drafter never
-meant as a pointer. But the alternative, minting refs fresh per tier, means the same companion
-is looked up two or three times and the id can drift between tiers. **What actually needs
-ruling is narrower than the mechanics: should a 32–38w Info spend a link on a second painting
-at all?** The Info is one breath and a doorway (§5c); a link out of it is an invitation to
-leave before entering. The Interpretation at 95–115w plausibly can. Note this compounds with
-the `beside` question above — if `beside` is fenced out of the cascade, most of the refs a
-tour carries are fenced out with it. **Needs Fuad's verdict**, one of: (a) refs on both tiers,
-(b) Interpretation only, (c) neither — refs stay a tour-and-museum-read feature. Until he
-calls it, the safe default is to mint refs only where a read's own prose names a work, never
-to copy a tour's ref list down. Nothing is ruled here.
+⚙ **RULED by Fuad, 2026-08-25: reads carry refs — minted from their own prose, never copied
+down.** A read (either tier) that names a companion work in its own sentences gets a `refs`
+entry for that phrase, under the same validator as tours (exact text, occurs once,
+case-sensitive). What stays forbidden is exactly what the open-question paragraph feared:
+**mechanical inheritance of the tour's ref list** (the Interpretation re-words the tour, so a
+tour's `ref.text` mostly won't occur in it, and a coincidental match links a phrase the
+drafter never meant as a pointer) and **rewriting a read's prose to force a link in** (the
+link follows the naming; the naming is a drafting decision the ruling does not touch). In
+practice the Info at 32–38w names a companion rarely and should keep it rare (§5c — one
+breath, one doorway); the Interpretation may do it where the sentence earns it. The
+tier-drift worry (same companion, ids resolved twice) is handled at QC: when both a tour and
+its read link the same work, the ids must match. The `beside` entanglement noted below is
+settled by the beside ruling (drafted last, outside the cascade), so this ruling stands on
+its own. Method lesson 11 still applies: a ref dies with the prose that carried it — any
+read replacement re-carries its links.
 
 ⚙ **BOTH OF THE ABOVE ARE ON THE HANDOFF LIST — `QC_LEDGER.md` → "Awaiting Fuad's verdict",
 item 7** (2026-08-25). Confirmed still open there, and recorded with the point this section
