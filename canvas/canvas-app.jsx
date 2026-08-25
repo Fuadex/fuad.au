@@ -257,10 +257,16 @@ const proxied = (u) => {
   return u;
 };
 // shared onError for PLAIN <img> tags rendered with a proxied src: one hop back to the direct
-// url, then give up (matches LazyImg's single-retry discipline)
+// url, then (if data-slug is present) one final hop to the Commons fallback for single-host
+// museum plates (cyfrowe-cdn.mnw.art.pl / api.nga.gov). Chain: proxied → direct → Commons.
+// Matches LazyImg's single-retry discipline — each distinct src is its own attempt.
 const unproxy = (e) => {
   const el = e.currentTarget, orig = el.dataset && el.dataset.orig;
-  if (orig && el.src !== orig) el.src = orig;
+  if (orig && el.src !== orig) { el.src = orig; return; }
+  // final hop: Commons fallback for single-host museum plates
+  const slug = el.dataset && el.dataset.slug;
+  const fb = slug && (window.CANVAS_FALLBACKS || {})[slug];
+  if (fb && el.src !== fb[0]) el.src = fb[0];
 };
 
 // ——— Fold — disclosure wrapper animated BOTH ways (Fuad 2026-08-22: closing "fewer" and the
@@ -346,7 +352,7 @@ function HighlightPeek({ item, onClose }) {
     <div className="cv-peek" onClick={onClose} role="dialog" aria-modal="true" aria-label={item.title}>
       <div className="cv-peek-inner" onClick={e => e.stopPropagation()}>
         <button className="cv-peek-x" onClick={onClose} aria-label="Close">✕</button>
-        {item.img && <img src={proxied(big)} data-orig={big} onError={unproxy} alt={item.title} />}
+        {item.img && <img src={proxied(big)} data-orig={big} data-slug={item.id} onError={unproxy} alt={item.title} />}
         <div className="cv-peek-cap">
           <div className="cv-peek-title">{item.title}</div>
           <div className="cv-peek-sub">
@@ -382,7 +388,7 @@ function PilReel({ works, go }) {
     <div className="cv-reel-wrap" ref={wrapRef} onMouseLeave={() => setHov(null)}>
       {hov && (
         <div className="cv-reel-pop" style={{ left: hov.x }}>
-          {hov.w.imgGrid && <img src={proxied(hov.w.imgGrid)} data-orig={hov.w.imgGrid} onError={unproxy} alt="" />}
+          {hov.w.imgGrid && <img src={proxied(hov.w.imgGrid)} data-orig={hov.w.imgGrid} data-slug={hov.w.id} onError={unproxy} alt="" />}
           <div className="cv-reel-cap">
             <b>{hov.w.title}</b>
             <span>{hov.w.artist.replace(/\s*\(.*\)$/, "")}{hov.w.year ? " · " + hov.w.year : ""}</span>
@@ -1304,8 +1310,12 @@ function useOSDViewer(work, onOsdFail) {
           // fall back when a retry would actually differ: a hires source dying drops to the
           // canon image, and a PROXIED canon image dying drops to the direct url (the simple
           // path goes through img.fuad.au now too, so it needs the same escape hatch)
-          if (!fallbackUrl && simple && (work.hires || proxied(simple) !== simple)) setFallbackUrl(simple);
-          else setErr(true);
+          if (!fallbackUrl && simple && (work.hires || proxied(simple) !== simple)) { setFallbackUrl(simple); return; }
+          // last resort: Commons fallback plate for works with no canon img (single-host museum
+          // CDNs — MNW Warsaw / NGA Washington). A low-res card beats a blank viewer.
+          const fb = !fallbackUrl && work && (window.CANVAS_FALLBACKS || {})[work.id];
+          if (fb) { setFallbackUrl(fb[0]); return; }
+          setErr(true);
         });
         viewer.addHandler("open", () => { if (!cancelled) setReady(true); });
         viewerRef.current = viewer;
@@ -4171,7 +4181,7 @@ function MapView({ go }) {
         </svg>
         {hover && (
           <div className="cv-map-preview" style={{ left: Math.min(hover.mx + 16, (window.innerWidth || 1200) - 210), top: Math.min(hover.my + 16, (window.innerHeight || 800) - 160) }}>
-            {hover.w.imgGrid && <img src={proxied(hover.w.imgGrid)} data-orig={hover.w.imgGrid} onError={unproxy} alt="" />}
+            {hover.w.imgGrid && <img src={proxied(hover.w.imgGrid)} data-orig={hover.w.imgGrid} data-slug={hover.w.id} onError={unproxy} alt="" />}
             <div className="cv-map-preview-t">{hover.w.title}</div>
             <div className="cv-map-preview-s">{hover.w.artist.replace(/\s*\(.*\)$/, "")}{hover.w.year ? " · " + hover.w.year : ""}</div>
             {hover.venue && <div className="cv-map-preview-s">{hover.seen ? "seen at " : "to see at "}{hover.venue}, {hover.city}</div>}

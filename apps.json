@@ -165,6 +165,7 @@
         "art_holders.js",
         "art_subjects.js",
         "art_artists.js",
+        "art_fallbacks.js",
         "PLATE_CHANGES.md",
         "WORKS_LEDGER.md",
         "HUNT_LEDGER.md"
