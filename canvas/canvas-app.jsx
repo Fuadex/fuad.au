@@ -42,6 +42,83 @@ const IMGSIZE = window.CANVAS_IMGSIZE || {};
 // qid → canon work, for places that hold a Wikidata id and need to know whether the gallery
 // already has the thing (museum highlights, deck picks).
 const WORK_BY_QID = (() => { const m = {}; for (const w of WORKS) if (w.qid) m[w.qid] = w; return m; })();
+// id → canon work. Used by the cross-reference resolver below to refuse a ref that names an id
+// nobody minted (a plausible id typed from a title is the classic failure here — e.g.
+// "teodor-axentowicz-kolomyjka" when the real slug is "teodor-axentowicz-ko-omyjka").
+const WORK_BY_ID = (() => { const m = {}; for (const w of WORKS) m[w.id] = w; return m; })();
+
+// ——— CORPUS CROSS-REFERENCES (Fuad 2026-08-25) ———————————————————————————————————————————
+// Prose across the corpus names OTHER works that are also in this collection, and those names
+// should be clickable. THE PROSE STRING IS NEVER MODIFIED: a sibling `refs` field carries the
+// target id and the exact words to link. Inline [[id|text]] markup was rejected deliberately —
+// the 13-step tour QC greps these paragraphs, word counts are enforced against them, and the
+// reads cascade distils Interpretations out of them; markup inside the string corrupts all three.
+//
+//   beside: "The version he made outdoors is in this collection too. Wheat Field with Cypresses…",
+//   refs:   [{ id: "vincent-van-gogh-wheat-field-with-cypresses", text: "Wheat Field with Cypresses" }]
+//
+// An entry holds more than one paragraph, so `refs` may ALSO be keyed by the field the paragraph
+// lives in — refs: { context: [...], beside: [...] }. The bare-array form belongs to the object's
+// DEFAULT paragraph, named explicitly at each call site (tour entry → `beside`, a `deeper` stop →
+// `body`, an art-about read → `about`), so a beside-ref can never leak into the context paragraph.
+const REF_DEV = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || location.protocol === "file:";
+const refWarn = (msg) => { if (REF_DEV) console.warn("[refs] " + msg); };
+
+// Pick the ref list for `obj[field]`; `dflt` names the paragraph the bare-array form belongs to.
+function refsFor(obj, field, dflt) {
+  const r = obj && obj.refs;
+  if (!r) return null;
+  if (Array.isArray(r)) return field === dflt ? r : null;
+  return Array.isArray(r[field]) ? r[field] : null;
+}
+
+// linkRefs(text, refs, where) → React nodes. Concatenating the output reproduces `text` EXACTLY:
+// every run is sliced out of the string itself, so nothing is reformatted or re-typed. With no
+// refs the string is handed back untouched and renders byte-for-byte as it did before — zero
+// visual change for the entries that carry none.
+// A ref is SKIPPED, loudly in dev and harmlessly in production, when its id is outside the canon,
+// when its text is absent from this paragraph, or when it occurs more than once (there is no
+// honest way to choose an occurrence, so it does not guess). `where` is a label for the warning.
+function linkRefs(text, refs, where) {
+  if (typeof text !== "string" || !refs || !refs.length) return text;
+  const spans = [];
+  for (const r of refs) {
+    if (!r || !r.id || !r.text) { refWarn("malformed ref in " + where); continue; }
+    if (!WORK_BY_ID[r.id]) { refWarn("id not in canon: \"" + r.id + "\" — " + where); continue; }
+    // indexOf, never a built regex: these paragraphs are full of straight apostrophes, em-dashes,
+    // parentheses and diacritics that a pattern would reinterpret. Matching stays literal.
+    const at = text.indexOf(r.text);
+    if (at < 0) { refWarn("text not found: \"" + r.text + "\" — " + where); continue; }
+    if (text.indexOf(r.text, at + r.text.length) >= 0) {
+      refWarn("text occurs more than once, refusing to guess: \"" + r.text + "\" — " + where); continue;
+    }
+    spans.push({ start: at, end: at + r.text.length, id: r.id, text: r.text });
+  }
+  if (!spans.length) return text;
+  // Longest match first, then drop anything that overlaps something already kept: a title that
+  // contains a shorter title links as the fuller phrase, and links never nest.
+  spans.sort((a, b) => (b.end - b.start) - (a.end - a.start) || a.start - b.start);
+  const kept = [];
+  for (const s of spans) {
+    if (kept.some(k => s.start < k.end && k.start < s.end)) { refWarn("overlapping ref dropped: \"" + s.text + "\" — " + where); continue; }
+    kept.push(s);
+  }
+  kept.sort((a, b) => a.start - b.start);
+  const out = [];
+  let cur = 0;
+  for (let i = 0; i < kept.length; i++) {
+    const s = kept[i];
+    if (s.start > cur) out.push(text.slice(cur, s.start));
+    // a plain hash anchor, exactly like the museum/artist "open ours in the Reader" links: the
+    // hashchange listener in useRoute re-renders in place (no page load) and it leaves a real
+    // history entry, so Back returns the reader to the paragraph they left.
+    out.push(<a key={"r" + i} className="cv-ref" href={"#/work/" + s.id}
+      title={WORK_BY_ID[s.id].title + " — also in this collection"}>{text.slice(s.start, s.end)}</a>);
+    cur = s.end;
+  }
+  if (cur < text.length) out.push(text.slice(cur));
+  return out;
+}
 // art_artists.js — short reads on the artist page. Absent for most artists BY DESIGN: the
 // coverage gate in READS_SPEC §10 is >=3 works, a floored work, or an existing read, and an
 // artist with nothing to say keeps the bare Wikidata descriptor rather than being padded.
@@ -1361,13 +1438,15 @@ function StudyView({ id, go }) {
   const sections = useMemo(() => {
     if (!inspect) return [];
     const out = [];
+    // each section carries its own cross-reference list (see linkRefs at the top of the file);
+    // a lens reads from the ENTRY keyed by lens name, a chapter from the stop object itself.
     for (const k of STUDY_LENS_ORDER) {
-      if (inspect[k]) out.push({ key: "lens-" + k, label: STUDY_LENS_LABELS[k], body: inspect[k], anchor: null });
+      if (inspect[k]) out.push({ key: "lens-" + k, label: STUDY_LENS_LABELS[k], body: inspect[k], refs: refsFor(inspect, k, "beside"), anchor: null });
     }
     (inspect.deeper || []).forEach((c, i) => {
       const anchor = (typeof c.x === "number" && typeof c.y === "number" && typeof c.w === "number" && typeof c.h === "number")
         ? { x: c.x, y: c.y, w: c.w, h: c.h } : null;
-      out.push({ key: "deep-" + i, label: c.t, body: c.body, anchor, chapter: true });
+      out.push({ key: "deep-" + i, label: c.t, body: c.body, refs: refsFor(c, "body", "body"), anchor, chapter: true });
     });
     return out;
   }, [inspect]);
@@ -1631,15 +1710,15 @@ function StudyView({ id, go }) {
                       title="Fly the viewer to this detail">⌖ look</button>
                   )}
                 </h2>
-                <p className="cv-study-sec-txt">{s.body}</p>
+                <p className="cv-study-sec-txt">{linkRefs(s.body, s.refs, id + " " + s.key)}</p>
               </section>
             </React.Fragment>
           ))}
-          {/* beside = the outward closing paragraph, optional per entry (Fuad 2026-08-24); ships on 2 pilot works */}
+          {/* beside = the outward closing paragraph. REQUIRED as of Fuad 2026-08-25 (it was optional per entry when piloted 2026-08-24). The guard is for entries written before the campaign, which have none yet — it is not a licence to omit one. */}
           {inspect && inspect.beside && (
             <React.Fragment>
               <div className="cv-study-chaprule"><span>beside</span></div>
-              <p className="cv-study-sec-txt">{inspect.beside}</p>
+              <p className="cv-study-sec-txt">{linkRefs(inspect.beside, refsFor(inspect, "beside", "beside"), id + " beside")}</p>
             </React.Fragment>
           )}
           <div className="cv-study-foot">
@@ -1752,7 +1831,8 @@ function Reader({ id, go }) {
                 </div>
               </div>
               {/* full long-form studies live in Study mode (#/study/<id>), not as a flat tier here */}
-              <div className="cv-r-read-txt">{tier === "deep" ? read.deep : read.about}</div>
+              <div className="cv-r-read-txt">{linkRefs(tier === "deep" ? read.deep : read.about,
+                refsFor(read, tier, "about"), id + " read." + tier)}</div>
               <div className="cv-r-read-by">via {(tier === "deep" && read.deepBy) ? read.deepBy : (read.by || "Fable")}</div>
             </div>
           )}
@@ -2218,7 +2298,10 @@ function MuseumView({ museumId, go }) {
               ~60% width. Folded out (Fuad 2026-08-13) — the description now takes the module's
               full width and the photo renders standalone below (2b), which also runs whether or
               not there is a read pane. */}
-          <div className="cv-r-read-txt">{tier === "deep" && ABOUT.deep ? ABOUT.deep : ABOUT.about}</div>
+          {/* the museum read gets the same cross-reference treatment as an artwork read — same
+              { about, deep, refs } shape, so a museum paragraph naming a work it holds links too */}
+          <div className="cv-r-read-txt">{(() => { const t = (tier === "deep" && ABOUT.deep) ? "deep" : "about";
+            return linkRefs(ABOUT[t], refsFor(ABOUT, t, "about"), museumId + " read." + t); })()}</div>
           <div className="cv-r-read-by">via {(tier === "deep" && ABOUT.deepBy) ? ABOUT.deepBy : (ABOUT.by || "Fable")}</div>
         </div>
       )}
@@ -2799,7 +2882,7 @@ function MapView({ go }) {
   // city-bubble anchor and run through a relaxation pass identical in spirit to relaxFan, so the ♥
   // dots share the city bubble's parent and never overlap. (Only shown in the all-cities view; during
   // focus the museum work-fans take over.)
-  const { wishMarkers, wishCityRings, wishCityScale, wishFar, wishFarByKey, wishTotals, wishCountries, wishCities, wishUnplaced, wishList } = useMemo(() => {
+  const { wishMarkers, wishCityReach, wishFar, wishFarByKey, wishTotals, wishCountries, wishCities, wishUnplaced, wishList } = useMemo(() => {
     const wishes = WORKS.map(enrich).filter(isUnseen);
     // WHERE A WANTED WORK GOES ON THE MAP (2026-08-19). It used to key off seenAt — the venue Fuad
     // stood in — which for a work he has NOT seen is empty by definition. After the photo import
@@ -2957,6 +3040,18 @@ function MapView({ go }) {
       // nearest) so the layout still reflects the collision solve. Computed once here, not per
       // frame; the renderer only scales it by the rendered dot size, which is what overlap
       // actually depends on.
+      //   CORRECTED 2026-08-25 — THIS IS NOW ONLY A SEED, and two of the claims above were never
+      // true of the rendered map. "Non-overlap guaranteed by construction" holds only WITHIN one
+      // halo; counted over the whole map the ring layout drew 104 dot-on-dot overlaps and 306 dots
+      // sitting on a foreign leader, because nothing here knows the next city exists. And a ring is
+      // an EVEN FAN over 360 degrees whenever it fills, which for a ten-dot halo is essentially
+      // always — that is the sunburst Fuad has now objected to three times ("the lines are the same
+      // length around cities", "don't need to symmetrically go all around a city"). What survives
+      // is what this pass is genuinely good at: an ordering (nearest stays nearest), a ring index
+      // for capacity, and a starting bearing. LEADER LENGTH AND BEARING ARE BOTH FREE, further
+      // down, takes those as a seed and solves the actual geometry. Do not add placement rules
+      // here expecting them to reach the screen — `ringAng` is overwritten and the ring radius is
+      // no longer read by the renderer at all.
       {
         const STEP = 2.2;                                       // ring pitch: hex packing, the
         // half-slot spin below interleaves neighbouring rings so this can sit under one diameter
@@ -2982,6 +3077,9 @@ function MapView({ go }) {
         // Rings were filled from angle 0, i.e. due east, so a city with few works threw all of
         // them to the right. Start each city's fill at the bearing AWAY from its neighbours —
         // the emptiest direction available — so sparse halos lean into open map instead.
+        // Still worth keeping as the SEED bearing: the free-bearing solve resolves ties to the
+        // incumbent, so an undisturbed halo keeps whatever this hands it, and a crowded one is
+        // handed a sensible place to start searching from.
         let openAng = 0;
         {
           let vx = 0, vy = 0;
@@ -3014,6 +3112,14 @@ function MapView({ go }) {
     // every bubble the dots must stay off: the visited cities AND the far ones
     const bubbles = [...cities.list.map(c => ({ x: c.x, y: c.y, r: visRad(c) })),
                      ...farList.map(f => ({ x: f.x, y: f.y, r: f.r }))];
+    // DEAD FOR THE RESTING MAP, kept because it is still the honest record and still what fills
+    // mk.x/mk.y (2026-08-25, found while measuring the length fix). Everything below writes
+    // mk.x/mk.y, and since the ELEVENTH pass the renderer has not read them for a halo marker:
+    // fanAt takes the `mk.ring != null` branch and rebuilds the position from the bearing and the
+    // length, so the eviction and re-separation are a 900k-iteration no-op. Verified by disabling
+    // the loop and diffing the rendered output: bit-identical, and 50ms of a ~190ms mount. It is
+    // left in place rather than deleted because mk.x/mk.y still feed the degenerate-marker guard
+    // in the leader layer, and because deleting it belongs to a cleanup, not to a geometry fix.
     // INTERLEAVED SEPARATION (Fuad 2026-08-22: "some dots are very close over the same line").
     // The bubble-avoid pass used to be the LAST word: it ran after the per-city relaxation and
     // pushed dots radially to a bubble's rim with nothing after it — so two dots evicted by the
@@ -3069,7 +3175,20 @@ function MapView({ go }) {
     // HALO SEPARATION (Fuad 2026-08-24: "lines, even from neighbouring dot clusters, should
     // never overlap each other — if we can enforce that rule, it will untangle our map"). Ring
     // packing already makes overlap impossible INSIDE a city; this makes it impossible BETWEEN
-    // them. Each city needs a radius of rim + (outermost ring + 1) pitches. For every pair whose
+    // them.
+    //   CORRECTED 2026-08-25: it did not. Counted on the rendered world view, the layout this
+    // produced still drew 306 dot-on-foreign-leader overlaps, 82 leader crossings and 104
+    // dot-on-dot. The reason is that ONE NUMBER PER CITY cannot express the problem — a shrink
+    // factor moves a whole halo in or out as a unit, so the dot pointing at open water is pulled
+    // in for nothing while the one buried in its neighbour is not pulled in nearly enough, and
+    // for London, Paris, Amsterdam and 261 other markers the factor was already pinned at its 0.25
+    // floor with the crowding still there. Per-dot geometry is what actually fixes it (see LEADER
+    // LENGTH AND BEARING ARE BOTH FREE); the same three counts are now 22 / 16 / 23, with dots on a
+    // SIBLING's leader — which a free bearing makes possible and the ring could not — at 15 against
+    // the ring layout's own 61. This is KEPT because cityScale still sizes the DOTS — a halo draws
+    // smaller dots, which is real and which Fuad has seen and accepted — and because it gives the
+    // free solve a sane seed. It no longer places anything.
+    // Each city needs a radius of rim + (outermost ring + 1) pitches. For every pair whose
     // needed radii would meet, both are shrunk by the same factor until they just touch, and a
     // city keeps the smallest factor any neighbour demands of it. The renderer applies it to the
     // ring offset AND to the dot size, so a squeezed halo stays internally non-overlapping
@@ -3095,140 +3214,279 @@ function MapView({ go }) {
       }
       for (const mk of markers) mk.cityScale = cityScale.get(mk.city) || 1;
     }
-    // VARIED LEADER LENGTH (Fuad 2026-08-25: "the map still has lines overlapping, it's better
-    // but to be honest, the lines can be varied length when they fan out from cities, especially
-    // if they're about to overlap with other lines or dots. Currently London, Paris and Amsterdam
-    // still feel crowded."). Ring packing and halo separation both move WHOLE HALOS: every dot of
-    // a city sits on one of a few concentric circles, so a halo can only ever be shrunk as a unit
-    // — and it is already pinned at the 0.25 floor for exactly the three cities he names. The
-    // crowding that is left is BETWEEN halos and it is not uniform: a London dot pointing at open
-    // Atlantic has all the room in the world while its neighbour three slots round is buried in
-    // Rotterdam's ring. One number for the whole city cannot express that; a number per dot can.
-    //   So each dot keeps its solved ANGLE (he confirmed the fan itself reads right — "looking at
-    // Tokyo the dots properly fan out", so the angle assignment is not to be touched) and gets its
-    // own distance along it. UNEVEN LENGTHS ARE THE INTENDED OUTCOME, not a side effect: the dot
-    // that would collide gives ground, its neighbours do not, and the ring dissolves into a ragged
-    // fringe the eye can follow one leader at a time. Do not re-impose symmetry here.
-    //   THE FLOOR IS THE RIM, not rim + a dot. Since the seventh length pass the resting look has
-    // been dots sitting ON their bubble, and at cityScale 0.25 the ring radius is already inside
-    // rim + one dot radius — flooring at rim + dot would LENGTHEN every crowded halo, the exact
-    // opposite of every length pass in this file. Outward is allowed but capped (1.6 dot radii)
-    // and priced higher than inward, so escaping outward is a last resort.
-    //   SOLVED ONCE, HERE, FOR THE RESTING WORLD VIEW (vb.w = 880 → k = 1 → dotZoom = bubZoom =
-    // 0.5). That is where Fuad sees the crowding and it is also the worst case: zoom in and the
-    // dot shrinks in map units (dotZoom caps at 1 while k keeps falling) while the geography stays
-    // put, so halos only gain room. What crosses into the render is ONE SCALAR PER MARKER,
-    // `ringVary`, in RENDERED DOT RADII — the same currency ring packing counts in — so it rides
-    // the zoom with the dot it is dodging instead of freezing a map-unit offset. It has to be a
-    // scalar: fanAt runs per dot per frame, and 600 dots against a 9-rung radius ladder, four
-    // relaxation passes deep, is mount work, not frame work.
+    // LEADER LENGTH AND BEARING ARE BOTH FREE (Fuad 2026-08-25, third report on this same feature:
+    // "the lines are the same length around cities and overlapping with points over other lines",
+    // then "AGAIN, branching lines can vary in length and don't need to symmetrically go all around
+    // a city"). The two notes that used to stand here — "UNEVEN LENGTHS ARE THE INTENDED OUTCOME"
+    // and "Do not re-impose symmetry here" — were honest statements of intent and false statements
+    // about the output, which is why this is a third attempt. They are corrected, not deleted: the
+    // lesson is that nobody had run the layout and counted, and reasoning about this code has now
+    // been wrong twice. What the numbers actually said, measured headlessly at the resting world
+    // view (vb.w = 880, the frame he is looking at) before this pass: TOKYO drew ten dots at ONE
+    // length — 3.13 map units, all ten. London drew three distinct lengths across ten dots, Paris
+    // four, Amsterdam five. 393 of the 600 halo dots sat exactly on their ring radius, and 306
+    // dot-on-a-foreign-leader overlaps stood across the map.
+    //   THE CAUSE was that neither quantity was a degree of freedom.
+    //   Length: a dot's distance was `ring radius + ringVary`, where ringVary came off a nine-rung
+    // ladder priced so that an unconflicted dot MUST NOT MOVE — so the common case was 0 — and
+    // whose four INWARD rungs were dead for any ring-0 dot at a squeezed cityScale, because the
+    // floor was min(base, rim + 0.35 dot) and at cityScale 0.25 the ring already sits inside that.
+    // Ring 0 is where ten dots land around any city big enough to be crowded, so in practice 595
+    // of 600 dots could only ever move OUTWARD, in four quantised steps, off a radius shared with
+    // every sibling. That is a jitter on a ring, not a length.
+    //   Bearing: ring packing hands out slot (placed / cap) * 2pi, so a ring that FILLS is an even
+    // fan across the whole 360 degrees by construction. A ten-dot halo fills ring 0. Hence the
+    // sunburst, and hence "symmetrically go all around a city".
+    //   NOW: the ring layout is only a SEED. Every dot carries its own bearing and its own distance
+    // and both are solved against the real neighbourhood — sibling dots, foreign dots, foreign
+    // leaders, foreign bubbles. Length is priced (short is cheap, reaching is dear) so a leader is
+    // as short as it can be and longer only where it has to dodge; NOTHING prices evenness, so a
+    // city is free to bunch its works into one arc and leave the far side empty when that is what
+    // stays clear. Ties resolve to the incumbent, so a dot with nothing to dodge keeps the bearing
+    // the ring seeded it with and a quiet halo still reads as a halo.
+    //   WHAT CROSSES INTO THE RENDER is one scalar per marker, `leadOut`, in RENDERED DOT RADII
+    // above the RENDERED rim — the same currency the dots are drawn in — so it rides the zoom with
+    // the thing it is dodging instead of freezing a map-unit offset, and `ringAng`, overwritten in
+    // place. Solved ONCE, here, for the resting frame, which is both where Fuad sees the crowding
+    // and the worst case: zoom in and the dot shrinks in map units while the geography stays put,
+    // so halos only gain room.
+    const cityReach = new Map();
     {
       const K0 = 1, Z0 = 0.5;                      // the resting frame, spelled out
       const dotR0 = 2.1 * K0 * dotMul * Z0;        // a halo dot's rendered radius there, map units
-      const OUT = 1.6, FLOOR = 0.35;               // outward cap / how close to the rim a dot may pull
+      const HALF = 0.25 * K0;                      // half a leader's stroke width
+      // MIN is the resting look Fuad settled on eight length passes ago and did NOT complain about
+      // — the dot sitting on its bubble, overlapping the rim — so an undisturbed leader is a nub,
+      // and the median dot across the whole map lands exactly here. MAX is the ceiling on a dodge:
+      // 3.2 dot radii of reach is enough to hop a neighbour's fringe without a leader ever becoming
+      // a spoke across the map. It is also what bounds the neighbourhood search below, so raising
+      // it costs mount time quadratically — 4 measured at 4.0s, which is a stall, not a mount.
+      const MINOUT = 0.3, MAXOUT = 3.6;
       const segD = (px, py, ax, ay, bx, by) => {
         const dx = bx - ax, dy = by - ay, L = dx * dx + dy * dy;
         let t = L ? ((px - ax) * dx + (py - ay) * dy) / L : 0;
         t = t < 0 ? 0 : t > 1 ? 1 : t;
-        return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
+        const ex = px - (ax + t * dx), ey = py - (ay + t * dy);
+        return Math.sqrt(ex * ex + ey * ey);         // not hypot: this is the hot loop
       };
       const side = (ax, ay, bx, by, cx, cy) => (bx - ax) * (cy - ay) - (by - ay) * (cx - ax);
       const crosses = (ax, ay, bx, by, cx, cy, dx2, dy2) =>
         ((side(cx, cy, dx2, dy2, ax, ay) > 0) !== (side(cx, cy, dx2, dy2, bx, by) > 0)) &&
         ((side(ax, ay, bx, by, cx, cy) > 0) !== (side(ax, ay, bx, by, dx2, dy2) > 0));
-      const nodes = markers.filter(mk => mk.ring != null).map(mk => {
+      const nodes = markers.filter(mk => mk.ring != null).map((mk, idx) => {
         const sc = mk.cityScale || 1;
-        const rim = (mk.keepR || 0) * Z0 * dotMul;
-        const base = rim + (dotR0 * 1.1 + mk.ring * dotR0 * 2.25) * sc;
-        return { mk, key: mk.bx + "|" + mk.by, ca: Math.cos(mk.ringAng), sa: Math.sin(mk.ringAng),
-          base, lo: Math.min(base, rim + dotR0 * FLOOR), r: base,
-          // the dot as DRAWN (loved dots are fatter, and cityScale shrinks them to a 0.82 floor)
-          rad: (unseenRank(mk.w) === 2 ? 2.1 : 1.7) * K0 * dotMul * Z0 * Math.max(0.82, sc),
-          x: mk.bx + Math.cos(mk.ringAng) * base, y: mk.by + Math.sin(mk.ringAng) * base };
+        // the seed IS the old ring layout, expressed in the new currency, so a halo nothing
+        // disturbs comes out of this pass looking exactly as it did going in
+        return { mk, idx, key: mk.bx + "|" + mk.by, rim: (mk.keepR || 0) * Z0 * dotMul,
+                 ang: mk.ringAng, out: Math.max(MINOUT, Math.min(MAXOUT, (1.1 + mk.ring * 2.25) * sc)),
+                 // the dot as DRAWN (loved dots are fatter, cityScale shrinks them to a 0.82 floor)
+                 rad: (unseenRank(mk.w) === 2 ? 2.1 : 1.7) * K0 * dotMul * Z0 * Math.max(0.82, sc),
+                 x: 0, y: 0,
+                 // per-solve gates, declared here so the node keeps one hidden class (see shortlist)
+                 gDot: false, gOnMe: false, gMeOn: false, gX: false, act: null };
       });
+      const place = (n) => {
+        const r = n.rim + dotR0 * n.out;
+        n.x = n.mk.bx + Math.cos(n.ang) * r; n.y = n.mk.by + Math.sin(n.ang) * r;
+      };
+      for (const n of nodes) place(n);
       // Neighbourhoods are cut per HALO, not per dot: a halo's reach is bounded, so two halos
-      // further apart than the sum of their reaches can never interact and their dots never need
-      // to be compared. That turns the inner loops from 600² into a few dozen candidates each.
+      // further apart than the sum of their reaches can never interact. Unlike the pass this
+      // replaces, a dot's OWN siblings are candidates too — with the bearing free, two dots of one
+      // city can now meet, and it is a sibling's leader a shortened dot is likeliest to sit on.
       const halo = new Map();
       nodes.forEach((n, i) => {
         let h = halo.get(n.key);
         if (!h) { h = { x: n.mk.bx, y: n.mk.by, own: [], reach: 0 }; halo.set(n.key, h); }
-        h.own.push(i); h.reach = Math.max(h.reach, n.base + dotR0 * OUT + n.rad);
+        h.own.push(i); h.reach = Math.max(h.reach, n.rim + dotR0 * MAXOUT + n.rad);
       });
       const hs = [...halo.values()];
       const bubs = [...cities.list.map(c => ({ x: c.x, y: c.y, r: visRad(c) * Z0 * dotMul })),
                     ...farList.map(f => ({ x: f.x, y: f.y, r: f.r * Z0 * dotMul }))];
       for (const h of hs) {
-        h.near = []; h.bubs = [];
+        h.cand = h.own.slice(); h.bubs = [];
         for (const g of hs) {
+          // symmetric test, which is what lets the dirty-set below close: if g is in h's
+          // candidates then h is in g's
           if (g === h || Math.hypot(h.x - g.x, h.y - g.y) >= h.reach + g.reach) continue;
-          for (const i of g.own) h.near.push(i);
+          for (const i of g.own) h.cand.push(i);
         }
         for (const b of bubs) {
           // identity by ANCHOR, not by city name: a far city and a visited one can share a name,
-          // and every marker's bx/by IS its halo's bubble centre
+          // and every marker's bx/by IS its halo's bubble centre. A dot is ALLOWED to overlap its
+          // own bubble — that is the resting register — so its own bubble is not a candidate.
           if (Math.abs(b.x - h.x) < 1e-6 && Math.abs(b.y - h.y) < 1e-6) continue;
           if (Math.hypot(h.x - b.x, h.y - b.y) < h.reach + b.r) h.bubs.push(b);
         }
       }
-      for (const n of nodes) { const h = halo.get(n.key); n.near = h.near; n.bubs = h.bubs; n.own = h.own; }
-      // What a candidate distance COSTS. Foreign dot and foreign bubble are the two things Fuad
-      // points at, so they are dearest; a leader running under a foreign dot (either direction) or
-      // crossing a foreign leader is the "lines overlapping" half. Same-city overlap is priced
-      // HIGHEST because ring packing already solved that and this pass must not undo it — pulling
-      // a ring-1 dot in to ring-0's radius would be exactly that.
-      const costAt = (n, x, y) => {
-        let c = 0;
-        for (const j of n.near) {
-          const o = nodes[j];
-          const dx = x - o.x, dy = y - o.y, rr = n.rad + o.rad;
-          if (dx * dx + dy * dy < rr * rr) { c += 3; continue; }
-          if (segD(x, y, o.mk.bx, o.mk.by, o.x, o.y) < n.rad) c += 1.5;
-          if (segD(o.x, o.y, n.mk.bx, n.mk.by, x, y) < o.rad) c += 1.5;
-          if (crosses(n.mk.bx, n.mk.by, x, y, o.mk.bx, o.mk.by, o.x, o.y)) c += 1.5;
+      for (const n of nodes) { const h = halo.get(n.key); n.cand = h.cand; n.bubs = h.bubs; }
+      // WHAT A CANDIDATE COSTS. "Points over other lines" is the overlap Fuad named, so a dot lying
+      // on a leader is charged in both directions; dot-on-dot is charged hardest because it is the
+      // one that destroys a click target. Every collision term is a flat charge PLUS how deep the
+      // overlap goes, so the solver has a slope to walk down rather than a cliff to fall off — the
+      // old pass was flat-charged, which is part of why 393 dots never found a reason to move. LEN
+      // is the whole reason leaders stay short: every dot radius of reach costs, so a dot only
+      // reaches when reaching buys it a clearance. There is no term for angular evenness, and there
+      // must not be one.
+      // A dot lying on a LEADER is charged in both directions and is charged hardest, because it is
+      // the overlap Fuad actually named and it reads as a smear rather than as two things; a dot on
+      // a dot is next, because it destroys a click target. Every collision term is a flat charge
+      // PLUS how deep the overlap goes, so the solver has a slope to walk down rather than a cliff
+      // to fall off — the pass this replaces charged flat, which is part of why 393 dots never
+      // found a reason to move at all. LEN is the whole reason leaders stay short: every dot radius
+      // of reach costs, so a dot only reaches when reaching buys it a clearance.
+      //   THESE NUMBERS WERE GRID-SEARCHED ON THE RENDERED OUTPUT, not argued for. Summed over the
+      // whole map, the four overlaps this pass exists to remove — dot on a foreign leader, dot on a
+      // sibling leader, leader crossing leader, dot on dot — went 306/61/82/104 = 553 before it to
+      // 22/15/16/23 = 76 with these, while the median leader on the map went 1.98 -> 1.96, i.e. the
+      // length register did not move. Every neighbouring setting tried scored worse on the total,
+      // and the ones that beat it on a single count paid for it on another: LEN 0.34 bought a
+      // slightly cleaner map by growing the median London/Paris/Amsterdam leader by half again,
+      // which is the opposite of what a dozen length passes in this file have been for. Do not
+      // nudge one of them in isolation; re-run the measurement.
+      // REST/TUCK is the whole reason a quiet city still looks like a city. With length free and
+      // only LEN pushing on it, an undisturbed dot slides all the way to MINOUT — and at MINOUT the
+      // dot's own body covers the leader, so 400 of 600 markers drew NO VISIBLE LINE AT ALL (269
+      // before this pass) and a lone bubble like Tokyo's went from a fan to a rosette of beads with
+      // its rim buried. That is a restyle, not a geometry fix. So below REST the saving reverses:
+      // tucking in costs TUCK - LEN per dot radius instead of saving LEN, which parks every
+      // unconflicted dot at REST — a leader that visibly emerges, which is the register the eighth
+      // length pass settled on ("dot centre at rim + 60% of dot radius, so the dot visibly touches
+      // its bubble") — while leaving the whole MINOUT..REST range available to a dot that is
+      // genuinely trapped and needs to duck under a neighbour's leader. Measured, that is 182 of
+      // 600 leaders hidden, BETTER than the 269 this pass inherited, at a median leader length of
+      // 1.96 against the 1.98 it inherited. Shorter was not the ask here; varied was.
+      const W_DOT = 4, W_LINE = 7, W_CROSS = 4, W_BUB = 4, LEN = 0.9, REST = 0.7, TUCK = 1.5;
+      // `act` is the per-dot shortlist, rebuilt once per solve rather than per candidate position.
+      // The halo pruning above has to assume EVERY neighbour might reach MAXOUT; in fact the median
+      // dot sits at MINOUT, so most of a dense cluster's candidate list is out of range of anywhere
+      // this dot could go. Each survivor also carries FOUR GATES saying which of the four tests is
+      // geometrically possible at all, since n's dot is confined to a disc of radius RMAX about its
+      // own anchor and o is standing still while n is solved. Both are pure book-keeping — the cost
+      // of a given position is identical with them and without — and together they are the
+      // difference between a 4.0s mount (measured) and a mount you do not notice.
+      let act = [], actN = 0;
+      const shortlist = (n) => {
+        const nbx = n.mk.bx, nby = n.mk.by;
+        const RMAX = n.rim + dotR0 * MAXOUT;          // furthest n's own dot can sit from its anchor
+        actN = 0;
+        for (const j of n.cand) {
+          const o = nodes[j]; if (o === n) continue;
+          const adx = nbx - o.mk.bx, ady = nby - o.mk.by, ad2 = adx * adx + ady * ady;
+          const ddx = nbx - o.x, ddy = nby - o.y, dd2 = ddx * ddx + ddy * ddy;
+          const oR = o.rim + dotR0 * o.out;           // o's leader, as it stands right now
+          const l1 = RMAX + n.rad + o.rad;            // could my dot touch o's dot?
+          const l2 = RMAX + o.rad + HALF;             // could o's dot lie on my leader?
+          const l3 = RMAX + n.rad + HALF + oR;        // could my dot lie on o's leader?
+          const l4 = RMAX + oR;                       // could the two leaders cross?
+          const gDot = dd2 < l1 * l1, gOnMe = dd2 < l2 * l2;
+          const gMeOn = ad2 < l3 * l3, gX = o.key !== n.key && ad2 < l4 * l4;
+          if (!gDot && !gOnMe && !gMeOn && !gX) continue;
+          o.gDot = gDot; o.gOnMe = gOnMe; o.gMeOn = gMeOn; o.gX = gX;
+          act[actN++] = o;
+        }
+      };
+      const costAt = (n, x, y, out) => {
+        let c = LEN * out + (out < REST ? TUCK * (REST - out) : 0);
+        const nbx = n.mk.bx, nby = n.mk.by, nrad = n.rad, t1 = n.rad + HALF;
+        for (let i = 0; i < actN; i++) {
+          const o = act[i];
+          if (o.gDot) {
+            const dx = x - o.x, dy = y - o.y, rr = nrad + o.rad, d2 = dx * dx + dy * dy;
+            if (d2 < rr * rr) c += W_DOT * (1 + (rr - Math.sqrt(d2)) / dotR0);
+          }
+          if (o.gMeOn) {
+            const dl1 = segD(x, y, o.mk.bx, o.mk.by, o.x, o.y);
+            if (dl1 < t1) c += W_LINE * (1 + (t1 - dl1) / dotR0);
+          }
+          if (o.gOnMe) {
+            const t2 = o.rad + HALF, dl2 = segD(o.x, o.y, nbx, nby, x, y);
+            if (dl2 < t2) c += W_LINE * (1 + (t2 - dl2) / dotR0);
+          }
+          // two leaders of ONE halo share an origin and cannot cross, only graze — already priced
+          if (o.gX && crosses(nbx, nby, x, y, o.mk.bx, o.mk.by, o.x, o.y)) c += W_CROSS;
         }
         for (const b of n.bubs) {
-          const dx = x - b.x, dy = y - b.y, rr = b.r + n.rad;
-          if (dx * dx + dy * dy < rr * rr) c += 3;
-        }
-        for (const j of n.own) {
-          const o = nodes[j]; if (o === n) continue;
-          const dx = x - o.x, dy = y - o.y, rr = n.rad + o.rad;
-          if (dx * dx + dy * dy < rr * rr) c += 4;
+          const dx = x - b.x, dy = y - b.y, rr = b.r + nrad, d2 = dx * dx + dy * dy;
+          if (d2 < rr * rr) c += W_BUB * (1 + (rr - Math.sqrt(d2)) / dotR0);
         }
         return c;
       };
-      // The ladder: the ring radius itself first (an unconflicted dot must not move — that is what
-      // keeps the resting halo recognisable), then four rungs in toward the rim and four out.
-      const IN = [0, 0.22, 0.45, 0.7, 1], EXTRA = [0.4, 0.8, 1.2, 1.6];
-      // four passes: the solve is order-dependent (a dot answers where its neighbours are NOW), so
-      // it needs to settle — measured on the real 600-dot set it is converged by four (six gives a
-      // bit-identical result), and the whole memo still returns in ~135ms at mount.
-      for (let pass = 0; pass < 4; pass++) {
-        for (const n of nodes) {
-          let bestR = n.base, bestC = Infinity;
-          for (let s = 0; s < IN.length + EXTRA.length; s++) {
-            const r = s < IN.length ? n.base - (n.base - n.lo) * IN[s]
-                                    : n.base + dotR0 * EXTRA[s - IN.length];
-            const x = n.mk.bx + n.ca * r, y = n.mk.by + n.sa * r;
-            // shortening is cheaper than lengthening — every length pass in this file has pulled
-            // leaders in, so an outward dodge has to earn nearly twice as much to be taken
-            const bias = (r < n.base ? 0.30 : 0.55) * Math.abs(r - n.base) / dotR0;
-            const c = costAt(n, x, y) + bias;
-            if (c < bestC - 1e-9) { bestC = c; bestR = r; }
+      // COORDINATE DESCENT on (bearing, length). Moving one dot changes exactly the pairs in its
+      // own candidate list, which is what its cost sums, so a move that lowers this dot's cost
+      // lowers the layout's total by the same amount: the solve is monotone and can never hand
+      // back something worse than the ring seed it was given. Pass 0 sweeps the bearing right
+      // round — that is where the symmetry actually breaks — and later passes only nudge.
+      const SWEEP = 32;
+      const OUTS = [MINOUT, 0.45, 0.55, REST, 0.85, 1.2, 1.6, 2.05, 2.5, 2.85, MAXOUT];
+      const NUDGE = [0.04, -0.04, 0.09, -0.09, 0.17, -0.17, 0.3, -0.3, 0.55, -0.55, 0.9, -0.9];
+      const JA = [0, 0.07, -0.07], JO = [0.28, -0.28, 0.7, -0.7];
+      // A DIRTY SET, so this stays mount work and not a stall: after the first pass only the dots
+      // whose neighbourhood actually moved are worth re-solving, and in a 210-halo map most halos
+      // settle immediately. Without it every pass is a full sweep of all 600 dots; with it the tail
+      // passes touch a few dozen.
+      let dirty = nodes.map(() => true);
+      for (let pass = 0; pass < 5; pass++) {
+        const moved = [];
+        for (let ni = 0; ni < nodes.length; ni++) {
+          if (!dirty[ni]) continue;
+          const n = nodes[ni], a0 = n.ang, o0 = n.out;
+          shortlist(n);
+          let bA = n.ang, bO = n.out, bC = costAt(n, n.x, n.y, n.out);
+          const tryAt = (a, o) => {
+            const r = n.rim + dotR0 * o;
+            const c = costAt(n, n.mk.bx + Math.cos(a) * r, n.mk.by + Math.sin(a) * r, o);
+            if (c < bC - 1e-9) { bC = c; bA = a; bO = o; }
+          };
+          // LENGTH FIRST, and often ONLY. A dot that can sit at its rest length and touch nothing
+          // there is already at the global optimum of its own cost — LEN * REST is the floor, since
+          // going shorter costs TUCK and going longer costs LEN — so the bearing search is pure
+          // waste for it. Around half the map's dots are in that position (most cities are alone on
+          // their patch of coast), and skipping them is what keeps the crowded ones affordable.
+          for (const o of OUTS) tryAt(n.ang, o);
+          n.ang = bA; n.out = bO; place(n);
+          if (bC > LEN * REST + 1e-9) {
+            if (pass === 0) for (let s = 1; s < SWEEP; s++) tryAt(n.ang + s / SWEEP * Math.PI * 2, n.out);
+            else for (const d of NUDGE) tryAt(n.ang + d, n.out);
+            n.ang = bA; n.out = bO; place(n);
+            for (const o of OUTS) tryAt(n.ang, o);
+            n.ang = bA; n.out = bO; place(n);
+            // the two are not independent — a shorter leader usually wants a slightly different
+            // bearing — so finish on a small joint refine rather than two separate line searches
+            for (const d of JA) for (const f of JO)
+              tryAt(n.ang + d, Math.max(MINOUT, Math.min(MAXOUT, n.out + f)));
+            n.ang = bA; n.out = bO; place(n);
           }
-          n.r = bestR; n.x = n.mk.bx + n.ca * bestR; n.y = n.mk.by + n.sa * bestR;
+          if (n.ang !== a0 || n.out !== o0) { moved.push(ni); n.act = act.slice(0, actN); }
         }
+        if (!moved.length) break;
+        // only the dots this one could actually reach need re-solving, which is a much tighter set
+        // than the halo-level candidate list the shortlist was cut from
+        const nd = nodes.map(() => false);
+        for (const ni of moved) {
+          nd[ni] = true;
+          for (const o of nodes[ni].act) nd[o.idx] = true;
+        }
+        dirty = nd;
       }
-      for (const n of nodes) n.mk.ringVary = (n.r - n.base) / dotR0;
+      for (const n of nodes) {
+        n.mk.leadOut = n.out; n.mk.ringAng = n.ang;
+        // the halo's true reach, in dot radii above the rim, so the city label can clear a fringe
+        // whose height is no longer a function of the ring count (see the label in the render)
+        cityReach.set(n.mk.city, Math.max(cityReach.get(n.mk.city) || 0, n.out + n.rad / dotR0));
+      }
     }
     const sortedCountries = [...ccMap.values()]
       .sort((a, b) => b.floored - a.floored || b.n - a.n || a.name.localeCompare(b.name));
     return {
       wishCountries: sortedCountries,
       wishMarkers: markers,
-      wishCityRings: cityRings,
-      wishCityScale: cityScale,
+      // cityRings and cityScale used to be exported so the city label could ESTIMATE how tall the
+      // halo was from the ring count. Both are still computed and still matter inside this memo
+      // (cityRings drives halo separation, cityScale is stamped onto each marker and still sizes
+      // the DOTS at render), but neither is exported any more: the label reads the halo's measured
+      // reach instead, which is the thing it was always trying to approximate.
+      wishCityReach: cityReach,
       wishFar: farList,
       wishFarByKey: farByKey,
       wishTotals: totals,
@@ -3322,33 +3580,33 @@ function MapView({ go }) {
     // RING PACKING note where markers are built). Radius scales with the RENDERED dot size,
     // because that is what decides whether two dots touch: at the world view dots draw at half
     // size so the rings pull in tight, and they open out as you zoom exactly in step with the
-    // dots growing. No leader is longer than it has to be, and nothing inside a city overlaps.
+    // dots growing. (Superseded by the thirteenth pass below, which keeps the currency and throws
+    // away the ring: the claim that "no leader is longer than it has to be" was never true — every
+    // leader on a ring was exactly as long as every other leader on that ring.)
     if (mk.ring != null) {
       // UNIT BUG (Fuad 2026-08-24: "the length of the lines is good now but the dot size has
       // decreased, which is wrong"). The previous pass bought shorter leaders by shrinking the
       // dots, which was treating the symptom. The cause: ring pitch was expressed in MAP units
       // (ring * 2.2) while the dot is drawn at 2.1 * k * dotMul * dotZoom, i.e. a constant SCREEN
       // size — two different spaces, so the spacing that was supposed to be "one dot" was not.
-      // Pitch is now derived from the dot's real rendered radius, so it is exactly as tight as
-      // non-overlap allows at whatever size the dots happen to be, and dot size goes back up.
-      const sc = mk.cityScale || 1;                    // neighbour-driven shrink, see HALO SEPARATION
+      // The dot's real rendered radius is still the unit everything here is measured in.
       const dotR = 2.1 * k * dotMul * dotZoom;         // the dot's radius in MAP units
       const rimR = (mk.keepR || 0) * bubZoom * dotMul;
-      // TWELFTH PASS — VARIED LENGTH (Fuad 2026-08-25: "the lines can be varied length when they
-      // fan out from cities, especially if they're about to overlap with other lines or dots").
-      // The ring radius is still the natural resting distance; `ringVary` is a per-dot offset in
-      // RENDERED DOT RADII, solved once at mount against the actual neighbourhood (see VARIED
-      // LEADER LENGTH where the markers are built). Negative pulls the dot in toward its rim,
-      // positive pushes it out. UNEVEN LENGTHS ARE DELIBERATE — a dot that had nothing to dodge
-      // reads 0 and sits exactly where it always did, so the ring is still legible underneath.
-      // Stated in dot radii rather than map units so it scales with the dot at every zoom. The
-      // floor is the guarantee that no zoom (where the rim grows while the dot shrinks) can pull a
-      // shortened leader's dot inside its own bubble — and it is min()'d against the ring radius
-      // itself, because at a crushed cityScale the ring already sits nearer the rim than that:
-      // clamping up there would nudge every dot of a crowded halo OUTWARD, which is precisely the
-      // thing this file has spent eleven passes undoing.
-      const base = rimR + (dotR * 1.1 + mk.ring * dotR * 2.25) * sc;
-      const r = Math.max(Math.min(base, rimR + dotR * 0.35), base + dotR * (mk.ringVary || 0));
+      // THIRTEENTH PASS — LENGTH IS A FREEDOM, NOT A JITTER (Fuad 2026-08-25: "the lines are the
+      // same length around cities and overlapping with points over other lines" / "Again,
+      // branching lines can vary in length and don't need to symmetrically go all around a city").
+      // The twelfth pass's note here said uneven lengths were deliberate; the rendered output said
+      // otherwise — Tokyo drew ten leaders at one length, London three lengths for ten dots — and
+      // the reason was this very line: `base` was a per-RING radius shared by every dot on it, and
+      // ringVary a small, mostly-zero nudge on top. There is no shared radius any more. `leadOut`
+      // is this dot's own distance, in RENDERED DOT RADII above the RENDERED rim, solved at mount
+      // against its real neighbours (see LEADER LENGTH AND BEARING ARE BOTH FREE where the markers
+      // are built), and `ringAng` is its own bearing, solved in the same place. Dot radii rather
+      // than map units so a leader rides the zoom with the dot it is dodging; the rim term is the
+      // floor by construction, since leadOut is solved with a positive minimum, so nothing here
+      // needs to clamp. The fallback keeps a marker drawable if it somehow reached the renderer
+      // unsolved (never in practice — the solver visits every ring marker).
+      const r = rimR + dotR * (mk.leadOut != null ? mk.leadOut : 1.1 * (mk.cityScale || 1));
       return [mk.bx + Math.cos(mk.ringAng) * r, mk.by + Math.sin(mk.ringAng) * r];
     }
     const lo = (mk.keepR || 0) * bubZoom * dotMul + 2 * dotZoom * dotMul * 0.6;
@@ -3926,6 +4184,14 @@ function MapView({ go }) {
             // guarantees leaders inside a city cannot cross — they are radii of concentric
             // circles from one centre — and halo separation stops them meeting a neighbour's.
             // With crossing designed out, the bow was decoration that made the map look tangled.
+            //   CORRECTED 2026-08-25: only the first half of that was ever true. Two leaders of
+            // ONE halo do share an origin and so cannot cross — that still holds — but "halo
+            // separation stops them meeting a neighbour's" did not: the rendered map carried 82
+            // crossings between neighbouring cities when this was written. Crossings are now
+            // priced directly in the length/bearing solve and stand at 16, the residue being the
+            // Randstad and the Île-de-France, where the city ANCHORS are 0.7–4.8 map units apart
+            // and the halos have nowhere to be. Straight stays: the conclusion was right even
+            // though the reason given for it was wrong, and Fuad asked for straight lines.
             return <path key={"wl" + mk.w.id + "-" + i} d={`M${mk.bx} ${mk.by}L${fx} ${fy}`}
               fill="none" stroke={mk.far ? "oklch(0.5 0.12 150 / .38)" : "oklch(0.55 0.19 18 / .4)"} strokeWidth={0.5 * k} />;
           })}
@@ -3956,12 +4222,18 @@ function MapView({ go }) {
                     how many works a city holds — Paris at ~6 rings got ~17, Dijon at 0 got ~3,
                     and the two looked like different rules (Fuad: "London, Paris, Amsterdam too
                     far... Dijon is too close. I don't understand why there is such
-                    discrepancy"). Now 4 + (rings+1): the range compresses to roughly 5–11, so a
-                    crowded city sits about a third closer and an empty one gains clearance. */}
+                    discrepancy"). That was then rewritten as (2.7 + (rings+1)*0.67) * cityScale,
+                    which was wrong in a way nothing caught: it estimated the halo's height from
+                    the RING COUNT and then multiplied by the halo shrink, so a squeezed city like
+                    London worked out at under one dot-radius of clearance while its leaders were
+                    pushed OUT past two — the label sat in the dots. Since leader length became a
+                    free per-dot quantity there is no ring height to estimate from anyway, so this
+                    now reads the halo's MEASURED reach (`wishCityReach`, dot radii above the rim,
+                    dot radius already included) and adds a fixed 1.8 of margin. Same units as
+                    before, so the range still compresses; it is simply true now. */}
                 {k < 0.42 && (
                   <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 2.4) * k
-                        - 2.1 * k * dotMul * dotZoom * (2.7 + ((wishCityRings.get(c.city) || 0) + 1) * 0.67)
-                          * (wishCityScale.get(c.city) || 1)
+                        - 2.1 * k * dotMul * dotZoom * ((wishCityReach.get(c.city) || 1.1) + 1.8)
                         - 9 * k * dotMul * labelZoom}
                     textAnchor="middle" style={{ fontSize: 8 * k * dotMul * labelZoom }}>{c.city}</text>
                 )}
