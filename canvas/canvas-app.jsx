@@ -2995,7 +2995,14 @@ function layoutWorldLeaders(halos, bubbles, opt) {
   // slope to walk, not a cliff. The length price alone decides between two equally-clear positions and
   // there pulls the dot to its graduated rest (pulling IN priced harder than reaching OUT, so a
   // trapped dot tucks under a neighbour's leader rather than spears past it). No term prices evenness.
-  const W_LINE = 40, W_DOT = 24, W_CROSS = 22, W_BUB = 24, LEN = 1.1, REACH = 0.55;
+  // GRAZE (Fuad 2026-08-25: "shorten lines that are about to overlap other lines"). A leader that does
+  // not overlap but passes within GRAZE of a neighbour's leader or dot is charged too, so a near-miss
+  // is a cost the solve will pay a shorter leader to avoid — not just a true crossing. The charge
+  // ramps from 0 at GRAZE clearance up to W_GRAZE at zero clearance, so it hands off smoothly to the
+  // overlap terms and never double-counts (it fires only in the gap OUTSIDE the overlap threshold).
+  const W_LINE = 40, W_DOT = 24, W_CROSS = 22, W_BUB = 24, W_GRAZE = 10, LEN = 1.1, REACH = 0.55;
+  const GRAZE = 0.9 * dotR0;                 // clearance under which a near-miss is charged
+  const graze = (clear) => clear < GRAZE ? W_GRAZE * (1 - clear / GRAZE) : 0;
   const costParts = (ni, x, y, out) => {
     const n = nodes[ni];
     const dOut = out - n.restOut;
@@ -3003,17 +3010,17 @@ function layoutWorldLeaders(halos, bubbles, opt) {
     let col = 0; const t1 = n.rad + HALF;
     for (const j of cand[ni]) {
       const o = nodes[j];
-      const dx = x - o.x, dy = y - o.y, rr = n.rad + o.rad, d2 = dx * dx + dy * dy;
-      if (d2 < rr * rr) col += W_DOT * (1 + (rr - Math.sqrt(d2)) / dotR0);
+      const dx = x - o.x, dy = y - o.y, rr = n.rad + o.rad, dd = Math.sqrt(dx * dx + dy * dy);
+      if (dd < rr) col += W_DOT * (1 + (rr - dd) / dotR0); else col += graze(dd - rr);
       const dOnO = segD(x, y, o.bx, o.by, o.x, o.y);
-      if (dOnO < t1) col += W_LINE * (1 + (t1 - dOnO) / dotR0);
+      if (dOnO < t1) col += W_LINE * (1 + (t1 - dOnO) / dotR0); else col += graze(dOnO - t1);
       const t2 = o.rad + HALF, oOnMe = segD(o.x, o.y, n.bx, n.by, x, y);
-      if (oOnMe < t2) col += W_LINE * (1 + (t2 - oOnMe) / dotR0);
+      if (oOnMe < t2) col += W_LINE * (1 + (t2 - oOnMe) / dotR0); else col += graze(oOnMe - t2);
       if (o.key !== n.key && crosses(n.bx, n.by, x, y, o.bx, o.by, o.x, o.y)) col += W_CROSS;
     }
     for (const b of bubCand[ni]) {
-      const dx = x - b.x, dy = y - b.y, rr = b.r + n.rad, d2 = dx * dx + dy * dy;
-      if (d2 < rr * rr) col += W_BUB * (1 + (rr - Math.sqrt(d2)) / dotR0);
+      const dx = x - b.x, dy = y - b.y, rr = b.r + n.rad, dd = Math.sqrt(dx * dx + dy * dy);
+      if (dd < rr) col += W_BUB * (1 + (rr - dd) / dotR0); else col += graze(dd - rr);
     }
     return [col, lenC];
   };
@@ -3024,6 +3031,12 @@ function layoutWorldLeaders(halos, bubbles, opt) {
   // dot changes only the pairs its own cost sums, so the solve is monotone and can never return worse
   // than the seed. A DIRTY SET keeps the tail passes to a few dozen dots, not a full re-sweep.
   const DOUT = [0, -0.25, 0.25, -0.4, 0.4, -0.7, 0.7, -1.1, 1.1, -1.6, 1.6, 2.2, 2.9];
+  // SHORTEN-FIRST clearing ladder (Fuad 2026-08-25: shortening should be "the first move tried" for
+  // a leader about to overlap). Pure shortenings, shallowest first, tried BEFORE the mixed line
+  // search — so a conflicted or grazing dot clears by pulling in when it can, and only reaches out
+  // or re-angles when no shortening clears. It stops at the first offset that drops the collision to
+  // zero, which is the SHORTEST clearing length by construction (the ladder deepens monotonically).
+  const SHORT = [-0.2, -0.35, -0.55, -0.8, -1.1, -1.5, -2.0, -2.6];
   const JA = [0, 0.06, -0.06], JO = [0.25, -0.25, 0.6, -0.6];
   const SWEEP = 32;
   const clampO = (o) => o < MINOUT ? MINOUT : o > MAXOUT ? MAXOUT : o;
@@ -3039,9 +3052,25 @@ function layoutWorldLeaders(halos, bubbles, opt) {
       const tryAt = (a, o) => { o = clampO(o); const r = n.rim + dotR0 * o;
         const c = costAt(ni, n.bx + Math.cos(a) * r, n.by + Math.sin(a) * r, o);
         if (c < bC - 1e-9) { bC = c; bA = a; bO = o; } };
-      for (const d of DOUT) tryAt(n.ang, n.restOut + d);   // length line-search FIRST, about rest
-      n.ang = bA; n.out = bO; place(n);
+      // SHORTEN FIRST: if the incumbent collides or grazes, walk the shorten ladder and take the
+      // first length that clears it (collision to ~0) at the same bearing. Preferring the shortest
+      // clearing length over lengthening or re-angling is exactly the city-view's opportunistic
+      // shortening — so when it succeeds we COMMIT to it and skip the reach line search + bearing
+      // sweep below, which (pricing a reach cheaper than a pull-in) would otherwise trade the short
+      // clearing leader for a longer one. If no shortening clears, the general search still runs.
+      let cleared = false;
       if (seedCol > 1e-9) {
+        for (const d of SHORT) {
+          const o = clampO(n.restOut + d), r = n.rim + dotR0 * o;
+          const cx = n.bx + Math.cos(n.ang) * r, cy = n.by + Math.sin(n.ang) * r;
+          const cp2 = costParts(ni, cx, cy, o);
+          if (cp2[0] < 1e-9) { const c = cp2[0] + cp2[1]; if (c < bC - 1e-9) { bC = c; bA = n.ang; bO = o; cleared = true; } break; }
+        }
+        n.ang = bA; n.out = bO; place(n);
+      }
+      if (!cleared) for (const d of DOUT) tryAt(n.ang, n.restOut + d);   // length line-search, about rest
+      n.ang = bA; n.out = bO; place(n);
+      if (seedCol > 1e-9 && !cleared) {
         // a conflicted dot gets the full RING SWEEP on the first two passes — that is where a boxed-in
         // dot escapes to the open side, a move a small nudge cannot make, and the wedge it needs often
         // only appears once its neighbours (still moving on pass 0) have settled on pass 1. Later
@@ -3454,8 +3483,21 @@ function MapView({ go }) {
   // LABEL ZOOM (Fuad 2026-08-24: "reduce the text size when zoomed in so close"). Label sizes are
   // multiplied by k, which keeps them a CONSTANT size on screen at every zoom — so as you close
   // in and the dots grow, the names stop being annotation and start being furniture. This shrinks
-  // them the deeper you go: 1.0 out at the resting view, easing to 0.62 at extreme zoom.
-  const labelZoom = Math.max(0.62, Math.min(1, Math.pow(k / 0.4, 0.35)));
+  // them the deeper you go. Base curve pulled gentler (Fuad 2026-08-25: "the font size is
+  // overpowering") — starts lower and eases toward its floor over more of the zoom, so a name is
+  // small when it first appears and only grows a little as you close in, never becoming furniture.
+  const labelZoom = Math.max(0.5, Math.min(0.82, Math.pow(k / 0.4, 0.5) * 0.82));
+  // LABEL LEVEL-OF-DETAIL (Fuad 2026-08-25: "let the font appear when zooming in closer to the map,
+  // as currently the cities even not in-context appear too fast when zooming in"). The old rule
+  // showed EVERY city name at one flat k<0.42, so the whole map lit up at once the moment you
+  // committed to a region. Now a city's name appears LATER the smaller the city is: the biggest
+  // cities (largest bubble) label first, at ~k 0.40; the smallest only once you are genuinely on
+  // top of them, at ~k 0.24. cityLabelK returns each city's own threshold from its bubble radius
+  // (cityRad spans ~1.1..5.2). The lens still reveals any name under the cursor regardless.
+  const cityLabelK = (cr) => 0.24 + Math.min(1, Math.max(0, (cr - 1.1) / (5.2 - 1.1))) * 0.16;
+  // FADE, don't pop: a name eases in over the last stretch of zoom before its threshold rather than
+  // appearing whole. 1 once k is a hair past the threshold, 0 at/above it, linear across a small band.
+  const labelFade = (kk, thr) => Math.max(0, Math.min(1, (thr - kk) / (thr * 0.14)));
   // VIEWPORT CULLING. Zooming and panning felt "weird" (Fuad 2026-08-19) because every halo marker
   // was re-solved and re-serialised into a path string on each frame, whether or not it was on
   // screen — and anchoring works on their home collection had taken the halo from 87 markers to
@@ -4027,7 +4069,12 @@ function MapView({ go }) {
                     to zoom in"). k is vb.w/880. First set to 0.82, which was the resting frame
                     itself and so fired almost immediately; 0.42 is about a 2.4x zoom, which is
                     where you have actually committed to a region (Fuad: "kicks in too fast, it
-                    should kick in when you really zoom in close").
+                    should kick in when you really zoom in close"). Now TIERED by city size
+                    (Fuad 2026-08-25: "the cities even not in-context appear too fast when zooming
+                    in") — cityLabelK gives the biggest cities ~0.40 and the smallest ~0.24, so
+                    small cities out of context stay unlabelled until you are close, and the whole
+                    map no longer lights up at once. The lens (fs>1.25) reveals any name under the
+                    cursor early. Each name FADES in over the last stretch before its threshold.
                     CLEARANCE: the label sits above the halo and above its own glyph height.
                     The gap used to be 1.1 + 2.25*(rings+1) dot-radii, which scaled straight off
                     how many works a city holds — Paris at ~6 rings got ~17, Dijon at 0 got ~3,
@@ -4042,12 +4089,24 @@ function MapView({ go }) {
                     now reads the halo's MEASURED reach (`wishCityReach`, dot radii above the rim,
                     dot radius already included) and adds a fixed 1.8 of margin. Same units as
                     before, so the range still compresses; it is simply true now. */}
-                {k < 0.42 && (
-                  <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 2.4) * k
-                        - 2.1 * k * dotMul * dotZoom * ((wishCityReach.get(c.city) || 1.1) + 1.8)
-                        - 9 * k * dotMul * labelZoom}
-                    textAnchor="middle" style={{ fontSize: 8 * k * dotMul * labelZoom }}>{c.city}</text>
-                )}
+                {(() => {
+                  const thr = cityLabelK(cr);
+                  if (k >= thr && fs <= 1.25) return null;
+                  const op = fs > 1.25 ? 1 : labelFade(k, thr);
+                  if (op <= 0) return null;
+                  /* Fuad 2026-08-25: big-city labels (London/Paris tier) sat too far out — pull
+                     them ~1/3 in by shedding PADDING only, scaled by the same cr tier as
+                     cityLabelK. The measured fan reach itself is never reduced: it is the
+                     collision floor that keeps the name off the dots, so small cities (t=0)
+                     are untouched and no tier can land inside its own fan. */
+                  const t = Math.min(1, Math.max(0, (cr - 1.1) / (5.2 - 1.1)));
+                  return (
+                    <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 2.4) * k
+                          - 2.1 * k * dotMul * dotZoom * ((wishCityReach.get(c.city) || 1.1) + 1.8 - 1.3 * t)
+                          - (7 - 5 * t) * k * dotMul * labelZoom}
+                      textAnchor="middle" style={{ fontSize: 6.6 * k * dotMul * labelZoom, opacity: op }}>{c.city}</text>
+                  );
+                })()}
               </g>
             );
           })}
@@ -4058,7 +4117,10 @@ function MapView({ go }) {
               unseen register everywhere on this map now; cool against the warm lived layer.
               Hollow was rejected for the work dots once (reads as a hole in the map); these are
               filled for the same reason, and distinguished by hue alone. Labels only from 10
-              works up — at 8 the resting view grew a crowd of names (also Fuad). */}
+              works up — at 8 the resting view grew a crowd of names (also Fuad). And, like the
+              lived layer, only once ZOOMED toward them (Fuad 2026-08-25: names appear too fast):
+              the far bubble's radius drives the same tiered threshold, so a big far city labels
+              at ~0.40 and a small one only up close, faded in rather than popped. */}
           {!focus && wishFar.map(f => {
             if (!inView(f.x, f.y)) return null;
             const [fx, fy, fs] = fish(f.x, f.y, f.r);
@@ -4067,7 +4129,14 @@ function MapView({ go }) {
                 <circle cx={fx} cy={fy} r={f.r * fs * k * dotMul * bubZoom}
                   fill="oklch(0.52 0.09 150 / .55)" stroke="#f4ecdf" strokeWidth={0.5 * k} />
                 <title>{f.city} — {f.n} work{f.n !== 1 ? "s" : ""} to see · {f.venues.length} venue{f.venues.length !== 1 ? "s" : ""} · not yet walked · click to open</title>
-                {(f.n >= 10 || fs > 1.25) && <text x={fx} y={fy - (f.r * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 7 * k * dotMul * labelZoom, opacity: 0.75 }}>{f.city}</text>}
+                {(() => {
+                  if (f.n < 10 && fs <= 1.25) return null;
+                  const thr = cityLabelK(f.r);
+                  if (k >= thr && fs <= 1.25) return null;
+                  const op = (fs > 1.25 ? 1 : labelFade(k, thr)) * 0.75;
+                  if (op <= 0) return null;
+                  return <text x={fx} y={fy - (f.r * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 6 * k * dotMul * labelZoom, opacity: op }}>{f.city}</text>;
+                })()}
               </g>
             );
           })}
