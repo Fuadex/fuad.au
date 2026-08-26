@@ -624,7 +624,9 @@ rather than an edit. ⚙ Where a claim below was checkable against the live stor
   so (b) and the hires half of (a) appear to be fixed already. ⚙ **Re-measured 2026-08-26: the
   `art_data.js` entry now carries NO `img`/`imgGrid`/`imgZoom` at all — the 404 no longer
   reproduces (the app falls through to the hires plate).** Still open: the canon row reads
-  `year: 1885`; the correct year is not settled here.
+  `year: 1885`; ✅ **SETTLED 2026-08-27:** the canon row already reads `year: 1890` with its
+  own do-not-revert guard, and the NGA dates it **c. 1890/1900** (verified against the NGA
+  object page). CLOSED — nothing remains open on this row.
 - ~~Tiepolo two-paintings-in-one-row~~ ✅ **RESOLVED as NG6273, cascade applied (`09d07f2`) —
   see open-list item 2's closure note. Do not re-open.**
 - **⚠ NEEDS FUAD'S RULING — `degas-grande-arabesque-third-time` describes the wrong object.** The
