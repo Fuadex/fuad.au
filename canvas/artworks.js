@@ -3857,7 +3857,25 @@ window.CANVAS_ARTWORKS = [
 {"id":"albert-bierstadt-buffalo-trail-the-impending-storm","title":"Buffalo Trail: The Impending Storm","artist":"Albert Bierstadt","artistId":"albert-bierstadt","qid":"Q20188717","qidTrusted":true,"year":1869,"wish":true},
 {"id":"albert-bierstadt-mount-corcoran","title":"Mount Corcoran","artist":"Albert Bierstadt","artistId":"albert-bierstadt","qid":"Q20188820","qidTrusted":true,"year":1876,"wish":true},
 {"id":"william-merritt-chase-an-english-cod","title":"An English Cod","artist":"William Merritt Chase","artistId":"william-merritt-chase","qid":"Q46632407","qidTrusted":true,"year":1904,"wish":true},
-{"id":"william-merritt-chase-self-portrait","title":"Self-Portrait","artist":"William Merritt Chase","artistId":"william-merritt-chase","qid":"Q46633393","qidTrusted":true,"year":1915,"wish":true,"liked":true}
+{"id":"william-merritt-chase-self-portrait","title":"Self-Portrait","artist":"William Merritt Chase","artistId":"william-merritt-chase","qid":"Q46633393","qidTrusted":true,"year":1915,"wish":true,"liked":true},
+{"id":"vermeer-the-lacemaker","title":"The Lacemaker","artist":"Imitator of Johannes Vermeer","artistId":"vermeer","qid":"Q20192556","qidTrusted":true,"year":1925,"wish":true},
+{"id":"vermeer-the-smiling-girl","title":"The Smiling Girl","artist":"Imitator of Johannes Vermeer","artistId":"vermeer","qid":"Q20192588","qidTrusted":true,"year":1925,"wish":true},
+{"id":"vermeer-girl-with-a-flute","title":"Girl with a Flute","artist":"Studio of Johannes Vermeer","artistId":"vermeer","qid":"Q3739200","qidTrusted":true,"year":1669,"wish":true},
+{"id":"boucher-the-bath-of-venus","title":"The Bath of Venus","artist":"François Boucher","artistId":"boucher","qid":"Q12860070","qidTrusted":true,"year":1751,"wish":true},
+{"id":"boucher-allegory-of-painting","title":"Allegory of Painting","artist":"François Boucher","artistId":"boucher","qid":"Q20178270","qidTrusted":true,"year":1765,"wish":true},
+{"id":"boucher-allegory-of-music","title":"Allegory of Music","artist":"François Boucher","artistId":"boucher","qid":"Q20178239","qidTrusted":true,"year":1764,"wish":true},
+{"id":"boucher-madame-bergeret","title":"Madame Bergeret","artist":"François Boucher","artistId":"boucher","qid":"Q20178351","qidTrusted":true,"year":1766,"wish":true},
+{"id":"charles-francois-daubigny-washerwomen-at-the-oise-river-near-valmondois","title":"Washerwomen at the Oise River near Valmondois","artist":"Charles-François Daubigny","artistId":"charles-francois-daubigny","qid":"Q20188672","qidTrusted":true,"year":1865,"wish":true},
+{"id":"boucher-the-love-letter","title":"The Love Letter","artist":"François Boucher","artistId":"boucher","qid":"Q20178004","qidTrusted":true,"year":1750,"wish":true},
+{"id":"charles-francois-daubigny-the-farm","title":"The Farm","artist":"Charles-François Daubigny","artistId":"charles-francois-daubigny","qid":"Q20188275","qidTrusted":true,"year":1855,"wish":true},
+{"id":"church-el-rio-de-luz-the-river-of-light","title":"El Rio de Luz (The River of Light)","artist":"Frederic Edwin Church","artistId":"church","qid":"Q5352030","qidTrusted":true,"year":1877,"wish":true},
+{"id":"church-newport-mountain-mount-desert","title":"Newport Mountain, Mount Desert","artist":"Frederic Edwin Church","artistId":"church","qid":"nga-126131","year":1851,"wish":true},
+{"id":"church-fog-off-mount-desert","title":"Fog off Mount Desert","artist":"Frederic Edwin Church","artistId":"church","qid":"nga-126132","year":1850,"wish":true},
+{"id":"church-niagara","title":"Niagara","artist":"Frederic Edwin Church","artistId":"church","qid":"Q16680559","qidTrusted":true,"year":1857,"wish":true},
+{"id":"church-tamaca-palms","title":"Tamaca Palms","artist":"Frederic Edwin Church","artistId":"church","qid":"Q20188200","qidTrusted":true,"year":1854,"wish":true},
+{"id":"charles-francois-daubigny-landscape-distant-village","title":"Landscape, Distant Village","artist":"Charles-François Daubigny","artistId":"charles-francois-daubigny","qid":"Q46629438","qidTrusted":true,"year":1870,"wish":true},
+{"id":"charles-francois-daubigny-auvers-washerwomen","title":"Auvers (Washerwomen)","artist":"Charles-François Daubigny","artistId":"charles-francois-daubigny","qid":"Q46629028","qidTrusted":true,"year":1861,"wish":true},
+{"id":"charles-francois-daubigny-sunset-on-the-river","title":"Sunset on the River","artist":"Charles-François Daubigny","artistId":"charles-francois-daubigny","qid":"Q46630144","qidTrusted":true,"year":1874,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
