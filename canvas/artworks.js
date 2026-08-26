@@ -3942,7 +3942,23 @@ window.CANVAS_ARTWORKS = [
 {"id":"sisley-marly-le-roi","title":"Marly-le-Roi","artist":"Alfred Sisley","artistId":"sisley","qid":"Q46630224","qidTrusted":true,"year":1875,"wish":true},
 {"id":"van-gogh-portrait-of-vincent-van-gogh","title":"Portrait of Vincent van Gogh","artist":"Imitator of Vincent van Gogh","artistId":"van-gogh","qid":"Q20192578","qidTrusted":true,"year":1925,"wish":true},
 {"id":"van-gogh-landscape","title":"Landscape","artist":"Imitator of Vincent van Gogh","artistId":"van-gogh","qid":"Q20192563","qidTrusted":true,"year":1925,"wish":true},
-{"id":"van-gogh-roses","title":"Roses","artist":"Vincent van Gogh","artistId":"van-gogh","qid":"Q7617071","qidTrusted":true,"year":1890,"wish":true}
+{"id":"van-gogh-roses","title":"Roses","artist":"Vincent van Gogh","artistId":"van-gogh","qid":"Q7617071","qidTrusted":true,"year":1890,"wish":true},
+{"id":"whistler-grey-and-silver-chelsea-wharf","title":"Grey and Silver: Chelsea Wharf","artist":"James McNeill Whistler","artistId":"whistler","qid":"Q20188648","qidTrusted":true,"year":1864,"wish":true},
+{"id":"whistler-mother-of-pearl-and-silver-the-andalusian","title":"Mother of Pearl and Silver: The Andalusian","artist":"James McNeill Whistler","artistId":"whistler","qid":"Q18154688","qidTrusted":true,"year":1888,"wish":true},
+{"id":"whistler-alexander-arnold-hannay","title":"Alexander Arnold Hannay","artist":"James McNeill Whistler","artistId":"whistler","qid":"Q20190535","qidTrusted":true,"year":1896,"wish":true},
+{"id":"whistler-alice-butt","title":"Alice Butt","artist":"James McNeill Whistler","artistId":"whistler","qid":"Q20190468","qidTrusted":true,"year":1895,"wish":true},
+{"id":"jean-charles-cazin-the-windmill","title":"The Windmill","artist":"Jean-Charles Cazin","artistId":"jean-charles-cazin","qid":"Q20189729","qidTrusted":true,"year":1884,"wish":true},
+{"id":"whistler-gold-and-brown-self-portrait","title":"Gold and Brown: Self-Portrait","artist":"James McNeill Whistler","artistId":"whistler","qid":"Q20190549","qidTrusted":true,"year":1896,"wish":true},
+{"id":"whistler-george-w-vanderbilt","title":"George W. Vanderbilt","artist":"James McNeill Whistler","artistId":"whistler","qid":"Q20190574","qidTrusted":true,"year":1897,"wish":true},
+{"id":"jean-charles-cazin-paris-scene-with-bridge","title":"Paris Scene with Bridge","artist":"Jean-Charles Cazin","artistId":"jean-charles-cazin","qid":"Q20186935","qidTrusted":true,"wish":true},
+{"id":"whistler-wapping","title":"Wapping","artist":"James McNeill Whistler","artistId":"whistler","qid":"Q9370959","qidTrusted":true,"year":1860,"wish":true},
+{"id":"whistler-battersea-reach","title":"Battersea Reach","artist":"James McNeill Whistler","artistId":"whistler","qid":"Q20188395","qidTrusted":true,"year":1863,"wish":true},
+{"id":"jean-charles-cazin-the-quarry-of-monsieur-pascal-near-nanterre","title":"The Quarry of Monsieur Pascal near Nanterre","artist":"Jean-Charles Cazin","artistId":"jean-charles-cazin","qid":"Q111603561","qidTrusted":true,"year":1875,"wish":true},
+{"id":"jean-charles-cazin-landscape","title":"Landscape","artist":"Jean-Charles Cazin","artistId":"jean-charles-cazin","qid":"Q46627434","qidTrusted":true,"wish":true},
+{"id":"jean-charles-cazin-the-haystack-and-the-moon","title":"The Haystack and the Moon","artist":"Jean-Charles Cazin","artistId":"jean-charles-cazin","qid":"Q46627373","qidTrusted":true,"wish":true},
+{"id":"jean-charles-cazin-the-great-windmill-and-the-rainbow","title":"The Great Windmill and the Rainbow","artist":"Jean-Charles Cazin","artistId":"jean-charles-cazin","qid":"Q46631517","qidTrusted":true,"year":1888,"wish":true},
+{"id":"jean-charles-cazin-weary-wayfarers","title":"Weary Wayfarers","artist":"Jean-Charles Cazin","artistId":"jean-charles-cazin","qid":"Q46631609","qidTrusted":true,"year":1888,"wish":true},
+{"id":"jean-charles-cazin-homestead-by-the-sea","title":"Homestead by the Sea","artist":"Jean-Charles Cazin","artistId":"jean-charles-cazin","qid":"Q46627402","qidTrusted":true,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
