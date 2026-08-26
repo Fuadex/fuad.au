@@ -64,7 +64,8 @@ window.CULTURE_BADGES = {
  "bioshock": [
   "singular",
   "worldbuilding",
-  "writing"
+  "writing",
+  "impact"
  ],
  "black-lagoon": [
   "intense"
@@ -359,8 +360,7 @@ window.CULTURE_BADGES = {
   "intense"
  ],
  "imp-f-innocence": [
-  "cinematography",
-  "impact"
+  "cinematography"
  ],
  "imp-f-j-i-uchi-hairy-tsuma-shimatsu": [
   "devastating"
