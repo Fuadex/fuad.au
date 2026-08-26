@@ -197,10 +197,10 @@ window.CULTURE_BADGES = {
   "squirm"
  ],
  "fma-brotherhood": [
-  "cerebral",
   "devastating",
   "impact",
-  "haunting"
+  "haunting",
+  "worldbuilding"
  ],
  "galactic-railroad": [
   "devastating",
@@ -289,9 +289,6 @@ window.CULTURE_BADGES = {
  ],
  "imp-f-686419": [
   "cerebral"
- ],
- "imp-f-868513": [
-  "mindbending"
  ],
  "imp-f-94612": [
   "gem"
@@ -664,7 +661,7 @@ window.CULTURE_BADGES = {
   "cerebral"
  ],
  "pitbull": [
-  "cerebral"
+  "social-xray"
  ],
  "plague-dogs": [
   "gem",
