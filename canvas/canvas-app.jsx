@@ -3080,8 +3080,16 @@ function layoutWorldLeaders(halos, bubbles, opt) {
       for (const p of pts) clearB(p);
     }
     for (const p of pts) clearB(p);
+    // FOURTEENTH PASS (Fuad 2026-08-26: "vary the branches' length distance more, they don't
+    // all have to be that long"). The graduated rest gave siblings NEAR-EQUAL reach at low
+    // ordinals — visible sameness. Each dot now owns a stable factor (hashed off its venue,
+    // so it never re-rolls between mounts) spanning 35%–100% of its earned reach: some dots
+    // hug the rim as nubs, some fan to the old rest, and the ordinal graduation survives
+    // inside the factor. Floor stays MINOUT; the descent still spends length only to dodge.
+    const h01 = (s) => { let x = 7; for (let ci = 0; ci < s.length; ci++) x = (x * 31 + s.charCodeAt(ci)) >>> 0; return (x % 1000) / 1000; };
     for (const p of pts) {
-      const restOut = Math.min(MAXOUT, baseOut + room * 0.45 * Math.sqrt(p.i));   // graduated rest
+      const vary = 0.35 + 0.65 * h01(String((p.e && p.e.venue) || p.i));
+      const restOut = Math.min(MAXOUT, MINOUT + (baseOut - MINOUT + room * 0.45 * Math.sqrt(p.i)) * vary);
       const dx = p.x - h.x, dy = p.y - h.y;
       const seedOut = Math.max(MINOUT, Math.min(restOut, (Math.hypot(dx, dy) - rimR) / dotR0));
       nodes.push({ e: p.e, city: h.city, key: h.x + "|" + h.y, bx: h.x, by: h.y, rim: rimR,
@@ -4230,10 +4238,14 @@ function MapView({ go }) {
                      are untouched and no tier can land inside its own fan. */
                   const t = Math.min(1, Math.max(0, (cr - 1.1) / (5.2 - 1.1)));
                   return (
-                    <text x={fx} y={fy - (cr * fs * dotMul * bubZoom + 2.4) * k
-                          - 2.1 * k * dotMul * dotZoom * ((wishCityReach.get(c.city) || 1.1) + 1.8 - 1.3 * t)
-                          - (7 - 5 * t) * k * dotMul * labelZoom}
-                      textAnchor="middle" style={{ fontSize: 6.6 * k * dotMul * labelZoom, opacity: op }}>{c.city}</text>
+                    {/* Fuad 2026-08-26: labels ×2 font, and HALF the old standoff — the rim
+                        clearance stays whole (a label may not enter its bubble), everything
+                        beyond it (hair + wish-fan clearance + label gap) is halved. */}
+                    <text x={fx} y={fy - (cr * fs * dotMul * bubZoom) * k
+                          - 0.5 * (2.4 * k
+                            + 2.1 * k * dotMul * dotZoom * ((wishCityReach.get(c.city) || 1.1) + 1.8 - 1.3 * t)
+                            + (7 - 5 * t) * k * dotMul * labelZoom)}
+                      textAnchor="middle" style={{ fontSize: 13.2 * k * dotMul * labelZoom, opacity: op }}>{c.city}</text>
                   );
                 })()}
               </g>
