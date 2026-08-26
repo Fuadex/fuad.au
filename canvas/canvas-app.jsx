@@ -4238,9 +4238,9 @@ function MapView({ go }) {
                      are untouched and no tier can land inside its own fan. */
                   const t = Math.min(1, Math.max(0, (cr - 1.1) / (5.2 - 1.1)));
                   return (
-                    {/* Fuad 2026-08-26: labels ×2 font, and HALF the old standoff — the rim
-                        clearance stays whole (a label may not enter its bubble), everything
-                        beyond it (hair + wish-fan clearance + label gap) is halved. */}
+                    // Fuad 2026-08-26: labels ×2 font, and HALF the old standoff — the rim
+                    // clearance stays whole (a label may not enter its bubble); everything
+                    // beyond it (hair + wish-fan clearance + label gap) is halved.
                     <text x={fx} y={fy - (cr * fs * dotMul * bubZoom) * k
                           - 0.5 * (2.4 * k
                             + 2.1 * k * dotMul * dotZoom * ((wishCityReach.get(c.city) || 1.1) + 1.8 - 1.3 * t)
