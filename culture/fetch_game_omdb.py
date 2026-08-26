@@ -36,8 +36,31 @@ for n, (gid, tt) in enumerate(todo, 1):
     time.sleep(0.15)
 
 json.dump(cache, open(CACHE, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+
+# PlotShort backfill — same second pass update_omdb.py runs for films. plot=full is the
+# fan-written multi-paragraph synopsis; the Reader prefers PlotShort (the crisp one-liner),
+# so without this step games render the wall of text (the BioShock report, 2026-08-26).
+sb = 0
+for gid in tts:
+    v = cache.get(gid)
+    if isinstance(v, dict) and v.get('Response') == 'True' and v.get('imdbID') and 'PlotShort' not in v:
+        try:
+            d = json.load(urllib.request.urlopen(
+                f'https://www.omdbapi.com/?apikey={key}&i={v["imdbID"]}&plot=short', timeout=20))
+            p = d.get('Plot') if d.get('Response') == 'True' else None
+            v['PlotShort'] = p if (p and p != 'N/A') else ''
+        except Exception:
+            continue
+        sb += 1
+        if sb % 25 == 0:
+            json.dump(cache, open(CACHE, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+            print(f'  short-plot backfill {sb}', flush=True)
+        time.sleep(0.15)
+json.dump(cache, open(CACHE, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+
 plots = sum(1 for gid in tts if isinstance(cache.get(gid), dict)
             and cache[gid].get('Response') == 'True'
             and (cache[gid].get('Plot') or 'N/A') != 'N/A')
-print(f'DONE: ok={ok} miss={miss} · games now holding a real OMDb plot: {plots}')
+shorts = sum(1 for gid in tts if isinstance(cache.get(gid), dict) and cache[gid].get('PlotShort'))
+print(f'DONE: ok={ok} miss={miss} · real plots: {plots} · short plots: {shorts}')
 print('Next: python update_omdb.py --emit-only  (then bump ?v)')

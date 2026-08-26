@@ -65564,7 +65564,7 @@ window.CULTURE_OMDB = {
     "Value": "8.7/10"
    }
   ],
-  "Plot": "Set in modern day Dubai, massive sandstorms have buried the city. As Capt. Martin Walker, you're sent in to find any survivors and learn what happened to the original rescue and evacuation team led by Lt. Colonel John Konrad."
+  "PlotShort": "Set in modern day Dubai, massive sandstorms have buried the city. As Capt. Martin Walker, you're sent in to find any survivors and learn what happened to the original rescue and evacuation team led by Lt. Colonel John Konrad."
  },
  "tlou2": {
   "imdbID": "tt6298000",
@@ -65578,7 +65578,7 @@ window.CULTURE_OMDB = {
     "Value": "8.3/10"
    }
   ],
-  "Plot": "Five years after the events of The Last of Us, Ellie embarks on another journey through a post-apocalyptic America on a mission of vengeance against a mysterious militia."
+  "PlotShort": "Five years after the events of The Last of Us, Ellie embarks on another journey through a post-apocalyptic America on a mission of vengeance against a mysterious militia."
  },
  "twd-game": {
   "imdbID": "tt2006890",
@@ -65592,7 +65592,7 @@ window.CULTURE_OMDB = {
     "Value": "9.2/10"
    }
   ],
-  "Plot": "In the wake of a zombie apocalypse, Lee, an ex university teacher convicted of murder, has a chance to redeem himself when he decides to protect an orphaned girl named Clementine. Your actions will determine who you are."
+  "PlotShort": "In a world devastated by the undead, a convicted criminal is given a second chance at life when he comes across a little girl named Clementine."
  },
  "undertale": {
   "imdbID": "tt5238848",
@@ -65605,7 +65605,7 @@ window.CULTURE_OMDB = {
     "Value": "9.3/10"
    }
   ],
-  "Plot": "An RPG game where you play as a child and fall into the underworld learning what happened to humans and monsters living in harmony. As you progress through, you must find a way out using the power of \"DETERMINATION\"."
+  "PlotShort": "An RPG game where you play as a child and fall into the underworld learning what happened to humans and monsters living in harmony. As you progress through, you must find a way out using the power of \"DETERMINATION\"."
  },
  "wic": {
   "imdbID": "tt0997283",
@@ -65619,7 +65619,7 @@ window.CULTURE_OMDB = {
     "Value": "8.5/10"
    }
   ],
-  "Plot": "World War III has been raging for months in 1989, and to shift the war in their favor, the Soviet Union launches a surprise invasion of Washington State."
+  "PlotShort": "World War III has been raging for months in 1989, and to shift the war in their favor, the Soviet Union launches a surprise invasion of Washington State."
  },
  "tlou": {
   "imdbID": "tt2140553",
@@ -65633,7 +65633,7 @@ window.CULTURE_OMDB = {
     "Value": "9.7/10"
    }
   ],
-  "Plot": "Twenty years after a fungal infection obliterated most of the U.S. population and turned the victims into infected monstrosities, Joel is tasked with escorting Ellie to the Fireflies to help reverse engineer a cure. However, this isnt easy for either of them, since Joel has been left almost permanently bitter after the death of his daughter, and Ellie is distrusting of him."
+  "PlotShort": "In a hostile, post-pandemic world, Joel and Ellie, brought together by desperate circumstances, must rely on each other to survive a brutal journey across what remains of the United States."
  },
  "edith-finch": {
   "imdbID": "tt4485128",
@@ -65647,7 +65647,7 @@ window.CULTURE_OMDB = {
     "Value": "8.8/10"
    }
   ],
-  "Plot": "Edith Finch travels back to the Finch family home in Washington to explore her ancestral history after recent family events drive her to learn more about herself and the Finches."
+  "PlotShort": "Edith Finch travels back to the Finch family home in Washington to explore her ancestral history after recent family events drive her to learn more about herself and the Finches."
  },
  "max-payne-2": {
   "imdbID": "tt0366758",
@@ -65661,13 +65661,13 @@ window.CULTURE_OMDB = {
     "Value": "9.1/10"
    }
   ],
-  "Plot": "The brooding cop has left the DEA and returned to the NYPD. When his latest case ends up involving the thought-dead femme fatale Mona Sax, he finds that his journey through the night is far from over."
+  "PlotShort": "The brooding cop has left the DEA and returned to the NYPD. When his latest case ends up involving the thought-dead femme fatale Mona Sax, he finds that his journey through the night is far from over."
  },
  "manifold-garden": {
   "imdbID": "tt7338952",
   "Poster": "https://m.media-amazon.com/images/M/MV5BOWE4OWFiNDMtN2QwZi00OTUyLTg3M2QtY2Y4Y2EwNmNlMWE2XkEyXkFqcGdeQXVyNjc5NTcwMTc@._V1_SX300.jpg",
   "Ratings": [],
-  "Plot": "Manifold Garden is a first-person exploration game. Rediscover gravity and explore an Escher-esque world of impossible architecture. Witness infinity in first-person, and master its rules ..."
+  "PlotShort": "Manifold Garden is a first-person exploration game. Rediscover gravity and explore an Escher-esque world of impossible architecture. Witness infinity in first-person, and master its rules ..."
  },
  "gta-iv": {
   "imdbID": "tt0802999",
@@ -65681,7 +65681,7 @@ window.CULTURE_OMDB = {
     "Value": "8.9/10"
    }
   ],
-  "Plot": "Niko Bellic comes to Liberty City, America to live the good life, but ends up having to assist his dangerously indebted cousin Roman with his financial troubles, by any (mostly illegal) means necessary."
+  "PlotShort": "Niko Bellic comes to Liberty City, America to live the good life, but ends up having to assist his dangerously indebted cousin Roman with his financial troubles, by any (mostly illegal) means necessary."
  },
  "mass-effect": {
   "imdbID": "tt1073668",
@@ -65695,7 +65695,7 @@ window.CULTURE_OMDB = {
     "Value": "9.2/10"
    }
   ],
-  "Plot": "In a technologically advanced future, an elite human soldier takes command of a prototype star ship and works to defend the galaxy from danger."
+  "PlotShort": "In a technologically advanced future, an elite human soldier takes command of a prototype star ship and works to defend the galaxy from danger."
  },
  "bioshock": {
   "imdbID": "tt1094581",
@@ -65709,7 +65709,7 @@ window.CULTURE_OMDB = {
     "Value": "9.3/10"
    }
   ],
-  "Plot": "The year is 1960, while flying over the Atlantic ocean, average citizen Jack blacks out and awakens to discover that he is the sole survivor of a plane crash. Amidst the wreckage of his plane Jack spots and swims to a lighthouse and boards a Bathysphere that takes him deep within the ocean and into Rapture. Originally conceived as a utopia where a man would be entitled to all that he made without the interference of \"parasites\" by idealistic billionaire mogul Andrew Ryan. Rapture has since decayed and festered from the infectious effects of civil war and anarchy, brought about by the very ideals it citizens and it's leader embrace. Aided by a sympathetic smuggler and a rogue geneticist, Jack salvages gene altering chemicals transforming himself into a superhuman, and uses his newfound powers and abilities as well as an arsenal of weapons to fend off the vicious hordes of psychotic mutants, security robots and armored supersoldiers that resulted from Rapture's unrest while given the choice to either rescue or lethally harvest the genetic material from Rapture's only citizens with a chance: the 10 year old \"Little Sisters\". As Jack wanders through the condemning atmosphere of rapture, he treads towards a secret that for could shatter all that he has known forever."
+  "PlotShort": "In 1960, a lone survivor of a plane crash named Jack discovers an abandoned underwater utopia, only to find out that the mystery behind its creation is much more sinister than he first believed."
  },
  "mirrors-edge": {
   "imdbID": "tt1578126",
@@ -65723,7 +65723,7 @@ window.CULTURE_OMDB = {
     "Value": "7.7/10"
    }
   ],
-  "Plot": "A popular politician, Robert Pope, is murdered. Faith Connors and her sister Kate are then subsequently targeted by the City Protection Force. While Kate is arrested, Faith manages to escape. Now Faith must try to unravel the circumstances of Pope's murder and to relieve her sister."
+  "PlotShort": "A popular politician is murdered and Faith's sister is arrested, whilst Faith escapes. Now she must try to unravel the circumstances of Pope's murder and to relieve her sister."
  },
  "bulletstorm": {
   "imdbID": "tt1830522",
@@ -65735,7 +65735,7 @@ window.CULTURE_OMDB = {
     "Value": "7.8/10"
    }
   ],
-  "Plot": "Bulletstorm takes place in the 26th century, where the Confederation of Planets are protected by a secret black-ops army called Dead Echo. The story follows space pirate Grayson Hunt, voiced by Steve Blum, and his cyborg partner Ishi Sato, who were both dishonorably discharged from Dead Echo after they were betrayed by their commanding officer, General Sarrano. Ten years later, after a spontaneous and liquor-induced attempt to take revenge on the General and his forces, Hunt's and Sato's ship crash-landed on the planet Stygia, a former resort planet now overrun with meat-eating plants, feral mutant tribes, criminals, and Godzilla-sized monsters. Hunt and Sato search for a way off the planet, all while doing battle with the General's forces, who also crashed on Stygia after Hunt's attack. Along the way, they're joined by Trishka Novak, a foul-mouthed woman with a dark past who also knows her way around a gun. One of the locations they travel to on Stygia is the city of Elysium, formerly a Vegas-like adult paradise."
+  "PlotShort": "Bulletstorm takes place in the 26th century, where the Confederation of Planets are protected by a secret black-ops army called Dead Echo. The story follows space pirate Grayson Hunt, ..."
  },
  "the-witcher": {
   "imdbID": "tt1135081",
@@ -65749,7 +65749,7 @@ window.CULTURE_OMDB = {
     "Value": "8.6/10"
    }
   ],
-  "Plot": "In medieval times, Geralt of Rivia, a member of a fading order of professional monster slayers known as Witchers, is on trail of Salamandra, a secretive crime syndicate that stole dangerous alchemical formulas from Witchers' fort."
+  "PlotShort": "In medieval times, Geralt of Rivia, a member of a fading order of professional monster slayers known as Witchers, is on trail of Salamandra, a secretive crime syndicate that stole dangerous alchemical formulas from Witchers' fort."
  },
  "heavy-rain": {
   "imdbID": "tt1606610",
@@ -65763,7 +65763,7 @@ window.CULTURE_OMDB = {
     "Value": "8.9/10"
    }
   ],
-  "Plot": "Architect, and Father Ethan Mars joins a Private Detective, a Journalist, and an FBI agent in a race against time to save his son for a child murderer known as the Origami Killer."
+  "PlotShort": "As a child goes missing, his father tirelessly works to rescue him, while a journalist, an FBI agent, and a private detective try to identify his kidnapper known only as the \"Origami Killer\"."
  },
  "codmw2": {
   "imdbID": "tt1450746",
@@ -65777,7 +65777,7 @@ window.CULTURE_OMDB = {
     "Value": "8.8/10"
    }
   ],
-  "Plot": "Five years after the events of Call of Duty 4: Modern Warfare (2007), Russia is in political turmoil once again. Vladimir Makarov, a brutal leader and former associate of Imran Zakhaev, has set in motion a series of events that will threaten global security. After a series of vicious terrorist attacks, the situation is deemed dangerous enough for Task Force 141, led by Captain Soap MacTavish and Co., to be deployed all around the world, attempting to track down Makarov and restore peace."
+  "PlotShort": "A massacre at a Russian airport leads to a war between Russia and the United States. Meanwhile, a Task Force is sent to find the perpetrators and bring the bloodshed to an end."
  },
  "firewatch": {
   "imdbID": "tt4785654",
@@ -65791,7 +65791,7 @@ window.CULTURE_OMDB = {
     "Value": "8.3/10"
    }
   ],
-  "Plot": "In 1989, Henry takes a volunteer fire lookout job in the Wyoming wilderness to escape from his troubled past, only to be thrown into plethora of paranoia and mystery."
+  "PlotShort": "In 1989, Henry takes a volunteer fire lookout job in the Wyoming wilderness to escape from his troubled past, only to be thrown into plethora of paranoia and mystery."
  },
  "wolf-among-us": {
   "imdbID": "tt3186880",
@@ -65805,7 +65805,7 @@ window.CULTURE_OMDB = {
     "Value": "8.9/10"
    }
   ],
-  "Plot": "As Bigby Wolf - the big bad wolf in human form - you discover that the brutal, bloody murder of a Fable is just a taste of things to come, in a game series where your every decision can have enormous consequences. Your choices matter: it's not only WHAT you choose to do that will affect how your story plays out, but WHEN you choose to do it."
+  "PlotShort": "As Bigby Wolf, the big bad wolf in human form, you will discover that the brutal, bloody murder of a Fable is just a taste of things to come when another dead Fable is found which starts the hunt for a serial killer."
  },
  "imp-g-696941": {
   "imdbID": "tt3334704",
@@ -65819,7 +65819,7 @@ window.CULTURE_OMDB = {
     "Value": "9.5/10"
    }
   ],
-  "Plot": "Several years after his last adventure, retired fortune hunter, Nathan Drake, is forced back into the world of thieves. With the stakes much more personal, Drake embarks on a globe-trotting journey in pursuit of a historical conspiracy behind a fabled pirate treasure. His greatest adventure will test his physical limits, his resolve, and ultimately what he's willing to sacrifice to save the ones he loves."
+  "PlotShort": "Thrown back into the dangerous underworld he'd tried to leave behind, Nathan Drake must decide what he's willing to sacrifice to save the ones he loves."
  },
  "imp-g-611366": {
   "imdbID": "tt0486673",
@@ -65833,7 +65833,7 @@ window.CULTURE_OMDB = {
     "Value": "9.3/10"
    }
   ],
-  "Plot": "A nameless young man brings a dead woman to a forbidden, mystical land inhabited by colossal stone creatures and is told by a being known as Dormin, that to revive the dead, he must destroy these legendary stone creatures. However, he is told that the consequences may be dire..."
+  "PlotShort": "A young man brings a deceased woman to a forbidden land inhabited by colossal beings said to house the power to revive the dead."
  },
  "imp-g-606065": {
   "imdbID": "tt1349460",
@@ -65847,13 +65847,13 @@ window.CULTURE_OMDB = {
     "Value": "9.4/10"
    }
   ],
-  "Plot": "After being tracked down by Harry Flynn, Nathan Drake goes on a quest for Marco Polo's lost fleet. However when things take an unexpected turn for the worst, Drake must rely on those closest to him in order to find the Cintomani Stone."
+  "PlotShort": "After being tracked down by Harry Flynn, Nathan Drake goes on a quest for Marco Polo's lost fleet. However when things take an unexpected turn for the worst, Drake must rely on those closest to him in order to find the Cintomani Stone."
  },
  "imp-g-754389": {
   "imdbID": "tt5337160",
   "Poster": "https://m.media-amazon.com/images/M/MV5BZjIzMGQ0ZTMtYWU0My00ZDM1LWFmOGUtM2ViNDQ4MTk1OTkwXkEyXkFqcGdeQXVyODE1OTI0Mjg@._V1_SX300.jpg",
   "Ratings": [],
-  "Plot": "The game will pick up after the conclusion of Psychonauts in the Rhombus of Ruin, following Zanotto's rescue, the team returns to Psychonaut Headquarters, where Raz discovers that the ..."
+  "PlotShort": "The game will pick up after the conclusion of Psychonauts in the Rhombus of Ruin, following Zanotto's rescue, the team returns to Psychonaut Headquarters, where Raz discovers that the ..."
  },
  "imp-g-767552": {
   "imdbID": "tt6795336",
@@ -65867,7 +65867,7 @@ window.CULTURE_OMDB = {
     "Value": "8.4/10"
    }
   ],
-  "Plot": "Two years after a devastating global pandemic, bounty hunter Deacon St. John faces a brutal struggle for survival, and a reason to live."
+  "PlotShort": "Two years after a devastating global pandemic, bounty hunter Deacon St. John faces a brutal struggle for survival, and a reason to live."
  },
  "imp-g-805468": {
   "imdbID": "tt8339682",
@@ -65881,7 +65881,7 @@ window.CULTURE_OMDB = {
     "Value": "8.0/10"
    }
   ],
-  "Plot": "As Lara Croft races to save the world from a Mayan apocalypse, she must become the Tomb Raider she is destined to be."
+  "PlotShort": "As Lara Croft races to save the world from a Mayan apocalypse, she must become the Tomb Raider she is destined to be."
  },
  "imp-g-764360": {
   "imdbID": "tt5686128",
@@ -65895,7 +65895,7 @@ window.CULTURE_OMDB = {
     "Value": "6.2/10"
    }
   ],
-  "Plot": "Infinite Warfare returns to the roots of the franchise where large-scale war and cinematic, immersive military storytelling take center stage."
+  "PlotShort": "Infinite Warfare returns to the roots of the franchise where large-scale war and cinematic, immersive military storytelling take center stage."
  },
  "imp-g-809074": {
   "imdbID": "tt8550918",
@@ -65909,7 +65909,7 @@ window.CULTURE_OMDB = {
     "Value": "8.7/10"
    }
   ],
-  "Plot": "Experience a shared world with dynamic seasons. Explore beautiful scenery, collect over 450 cars and become a Horizon Superstar in historic Britain. With highlight the super-car \"McLaren Senna\", in honor of Ayrton Senna."
+  "PlotShort": "Experience a shared world with dynamic seasons. Explore beautiful scenery, collect over 450 cars and become a Horizon Superstar in historic Britain. With highlight the super-car \"McLaren Senna\", in honor of Ayrton Senna."
  },
  "imp-g-744332": {
   "imdbID": "tt4044024",
@@ -65923,7 +65923,7 @@ window.CULTURE_OMDB = {
     "Value": "9.1/10"
    }
   ],
-  "Plot": "In a primitive tribal world where strange, monstrous, animalistic machines roam the wilderness, a brave young female warrior goes on a quest to learn the truth about her mysterious origin and the state the world is in."
+  "PlotShort": "In a primitive tribal world where strange, monstrous, animalistic machines roam the wilderness, a brave young female warrior goes on a quest to learn the truth about her mysterious origin and the state the world is in."
  },
  "imp-g-627416": {
   "imdbID": "tt1821474",
@@ -65936,7 +65936,7 @@ window.CULTURE_OMDB = {
     "Value": "9.2/10"
    }
   ],
-  "Plot": "A robed figure in a desolate world undertakes a journey towards a distant, glowing mountain."
+  "PlotShort": "A robed figure in a desolate world undertakes a journey towards a distant, glowing mountain."
  },
  "imp-g-820304": {
   "imdbID": "tt5691474",
@@ -65950,7 +65950,7 @@ window.CULTURE_OMDB = {
     "Value": "8.6/10"
    }
   ],
-  "Plot": "Set shortly after Revenge of the Sith, the player takes on the role of a Jedi padawan being hunted by the Empire after Order 66."
+  "PlotShort": "Set shortly after Revenge of the Sith, the player takes on the role of a Jedi padawan being hunted by the Empire after Order 66."
  },
  "imp-g-809079": {
   "imdbID": "tt8550890",
@@ -65964,7 +65964,7 @@ window.CULTURE_OMDB = {
     "Value": "8.8/10"
    }
   ],
-  "Plot": "In this sequel to Doom (2016), Hell has taken Earth, so it's up to the Doom Slayer, the ultimate demon-killing machine created by a mystical force, to rip and tear the forces of Hell apart. However, Hell is not alone in this fight."
+  "PlotShort": "In this sequel to Doom (2016), Hell has taken Earth, so it's up to the Doom Slayer, the ultimate demon-killing machine created by a mystical force, to rip and tear the forces of Hell apart. However, Hell is not alone in this fight."
  },
  "imp-g-809105": {
   "imdbID": "tt8585800",
@@ -65978,7 +65978,7 @@ window.CULTURE_OMDB = {
     "Value": "8.2/10"
    }
   ],
-  "Plot": "You are Jesse Faden, a young woman with a troubled past. You become the new Director of the Bureau of Control - Our frontline in researching and fighting against supernatural enemies like the Hiss threatening our very existence."
+  "PlotShort": "You are Jesse Faden, a young woman with a troubled past. You become the new Director of the Bureau of Control - Our frontline in researching and fighting against supernatural enemies like the Hiss threatening our very existence."
  },
  "imp-g-774649": {
   "imdbID": "tt9134920",
@@ -65991,7 +65991,7 @@ window.CULTURE_OMDB = {
     "Value": "8.2/10"
    }
   ],
-  "Plot": "Frostpunk is a city-survival game where heat means life and every decision comes with a cost."
+  "PlotShort": "Frostpunk is a city-survival game where heat means life and every decision comes with a cost."
  },
  "imp-g-736724": {
   "imdbID": "tt3612274",
@@ -66005,7 +66005,7 @@ window.CULTURE_OMDB = {
     "Value": "8.5/10"
    }
   ],
-  "Plot": "At the edge of the Frontier, a Titan and a common footsoldier are unexpectedly thrown together in a desperate attempt to prevent a catastrophic event."
+  "PlotShort": "At the edge of the Frontier, a Titan and a common footsoldier are unexpectedly thrown together in a desperate attempt to prevent a catastrophic event."
  },
  "imp-g-820418": {
   "imdbID": "tt9327842",
@@ -66036,7 +66036,7 @@ window.CULTURE_OMDB = {
     "Value": "9.1/10"
    }
   ],
-  "Plot": "A man is sent to the flying city of Columbia to find a missing girl. However, upon arrival he discovers that the city, its people, and his objective are all not what they seem."
+  "PlotShort": "A man is sent to the flying city of Columbia to find a missing girl. However, upon arrival he discovers that the city, its people, and his objective are all not what they seem."
  },
  "imp-g-785356": {
   "imdbID": "tt6824658",
@@ -66050,7 +66050,7 @@ window.CULTURE_OMDB = {
     "Value": "7.8/10"
    }
   ],
-  "Plot": "You play various American servicemen and their allies in World War II as the Western Allies fight their way through Europe during and after the invasion of Normandy."
+  "PlotShort": "You play various American servicemen and their allies in World War II as the Western Allies fight their way through Europe during and after the invasion of Normandy."
  },
  "imp-g-784733": {
   "imdbID": "tt7447476",
@@ -66075,7 +66075,7 @@ window.CULTURE_OMDB = {
     "Value": "7.7/10"
    }
   ],
-  "Plot": "Cities: Skylines engage the player in one of the most realistic urban planning simulation games available by controlling zoning, taxation, public services, city's budget, population, health, employment, pollution, traffic flow and many other factors."
+  "PlotShort": "Cities: Skylines engage the player in one of the most realistic urban planning simulation games available by controlling zoning, taxation, public services, city's budget, population, health..."
  },
  "imp-g-706017": {
   "imdbID": "tt4334594",
@@ -66089,12 +66089,12 @@ window.CULTURE_OMDB = {
     "Value": "8.0/10"
    }
   ],
-  "Plot": "A group of survivors tries to survive during wartime."
+  "PlotShort": "A group of survivors tries to survive during wartime."
  },
  "imp-g-725886": {
   "imdbID": "tt5724316",
   "Ratings": [],
-  "Plot": "Fifteen years after the events of Dishonored, Empress Emily Kaldwin is removed from the throne when dissidents pull off a coup d'état. Now Emily, or her father - and mentor - Corvo Attano, must do what is necessary to reclaim Dunwall Tower and the mantle of Empress."
+  "PlotShort": "Fifteen years after the events of Dishonored, Empress Emily Kaldwin is removed from the throne when dissidents pull off a coup d'état. Now Emily, or her father - and mentor - Corvo Attano, ..."
  },
  "imp-g-608442": {
   "imdbID": "tt0379311",
@@ -66110,7 +66110,7 @@ window.CULTURE_OMDB = {
  "imp-g-718884": {
   "imdbID": "tt5785978",
   "Ratings": [],
-  "Plot": "A teenage Clementine and a new survivor named, Javier, are brought together when a new threat worse than the dead arises."
+  "PlotShort": "A teenage Clementine and a new survivor named, Javier, are brought together when a new threat worse than the dead arises."
  },
  "imp-g-761862": {
   "imdbID": "tt6306554",
@@ -66124,7 +66124,7 @@ window.CULTURE_OMDB = {
     "Value": "7.6/10"
    }
   ],
-  "Plot": "Immersed in The Journey, fans live their story on and off the pitch as Premier League prospect, Alex Hunter who is looking to make his mark."
+  "PlotShort": "Immersed in The Journey, fans live their story on and off the pitch as Premier League prospect, Alex Hunter who is looking to make his mark."
  },
  "imp-g-744329": {
   "imdbID": "tt2995858",
@@ -66138,7 +66138,7 @@ window.CULTURE_OMDB = {
     "Value": "8.5/10"
    }
   ],
-  "Plot": "Agent 47 is back, and he's in his prime. In this game, 47 is back with the ICA, and is hired to take down targets globally with larger maps, more disguises, and more options to kill your target. While going after a contract, 47 gets caught up in a dangerous game of cat-and-mouse, when a fashion designer is revealed to be the head of an intricate spy syndicate known as IAGO. The designer, Viktor Novikov, threatens to release the names of several FBI, and NSA agents at a private auction to the highest bidder. 47 must pull out all the stops in order to cripple IAGO and kill Novikov."
+  "PlotShort": "When Agent 47 joins the ICA to hunt down threats to mankind, he is also pulled into a game of Cat and Mouse against a mysterious organization that is determined to stop him. All the while he is being stalked by someone from his past."
  },
  "imp-g-705298": {
   "imdbID": "tt3554580",
@@ -66152,7 +66152,7 @@ window.CULTURE_OMDB = {
     "Value": "9.2/10"
    }
   ],
-  "Plot": "In the fourth and final installment of the Arkham Series, Bruce Wayne sets out into the night once again to thwart the plans of Scarecrow, Harley Quinn and Two-Face when they're supplied with weapons from the Penguin in their attempt to hunt the Knight and take his head."
+  "PlotShort": "With his back against the wall, Batman turns to his closest allies to help him save Gotham City from the clutches of Scarecrow and the Arkham Knight's army. A familiar face also returns to give The Dark Knight a message he cannot ignore."
  },
  "imp-g-714351": {
   "imdbID": "tt3791072",
@@ -66166,7 +66166,7 @@ window.CULTURE_OMDB = {
     "Value": "8.6/10"
    }
   ],
-  "Plot": "The hot and most favored female raider's back for the next gen consoles. The story goes back to the traditional badass bold Lara Croft from the early days. It takes place after a few years later from the previous game (Tomb Raider) where now instead of hatred for tombs she'll be raiding them for money as private expensive contracts. The story takes of form lara having dreams and visions from the last game's Island and now is haunted by these visions and in her struggle she will have to raid tombs and fight her past."
+  "PlotShort": "Lara Croft continues her late father's research, trekking across Siberia in search of the answers her father couldn't find, facing off against an ancient and ruthless shadow organisation."
  },
  "imp-g-741033": {
   "imdbID": "tt5062598",
@@ -66180,7 +66180,7 @@ window.CULTURE_OMDB = {
     "Value": "7.2/10"
    }
   ],
-  "Plot": "Now introducing women's football, FIFA 16 innovates across the entire pitch to deliver a balanced, authentic, and exciting football experience that lets you play your way, and compete at a higher level. And with all new ways to play."
+  "PlotShort": "Now introducing women's football, FIFA 16 innovates across the entire pitch to deliver a balanced, authentic, and exciting football experience that lets you play your way, and compete at a higher level. And with all new ways to play."
  },
  "imp-g-628804": {
   "imdbID": "tt2777584",
@@ -66193,7 +66193,7 @@ window.CULTURE_OMDB = {
     "Value": "8.0/10"
    }
   ],
-  "Plot": "A pixel creature known as \"Gomez\" is visited in the 2nd dimension by a 3rd dimensional being called \"The Hexahedron\". The Hexahedron explodes however, and Gomez is set on a quest with a companion called \"Dot\" to retrieve The Hexahedron's parts and repair him."
+  "PlotShort": "A pixel creature known as \"Gomez\" is visited in the 2nd dimension by a 3rd dimensional being called \"The Hexahedron\". The Hexahedron explodes however, and Gomez is set on a quest with a ..."
  },
  "imp-g-647447": {
   "imdbID": "tt2740664",
@@ -66218,7 +66218,7 @@ window.CULTURE_OMDB = {
     "Value": "7.2/10"
    }
   ],
-  "Plot": "FIFA 15 returns with 35 licensed leagues, over 600 clubs, 16,000+ players and 41 licensed stadiums, and new features."
+  "PlotShort": "FIFA 15 returns with 35 licensed leagues, over 600 clubs, 16,000+ players and 41 licensed stadiums, and new features."
  },
  "imp-g-695571": {
   "imdbID": "tt3390964",
@@ -66232,7 +66232,7 @@ window.CULTURE_OMDB = {
     "Value": "8.9/10"
    }
   ],
-  "Plot": "Left to fend for herself, Clementine has been forced to learn how to survive in a world gone mad. Many months have passed and she is in search of safety. But what can an ordinary child do to stay alive when the living can be just as bad - and sometimes worse - than the dead?"
+  "PlotShort": "Left to fend for herself, Clementine has been forced to learn how to survive in a world gone mad. Many months have passed and she is in search of safety."
  },
  "imp-g-612091": {
   "imdbID": "tt0395252",
@@ -66246,7 +66246,7 @@ window.CULTURE_OMDB = {
     "Value": "8.9/10"
    }
   ],
-  "Plot": "Against his father's wishes, a young psychic prodigy named Razputin (\"Raz\" for short) leaves his life in the circus and sneaks into Whispering Rock, a summer camp where young psychics like him can learn to use their powers, and maybe someday become \"Psychonauts\", psychic secret agents who battle the forces of evil. Raz manages to impress the camp's head counselor, Morceau Oleander, as well as visiting Psychonauts Sasha Nein and Milla Vodello, who agree to let him stay... but only until his father comes to pick him up. But something's amiss at Whispering Rock: a sinister force is stealing the brains from Raz's fellow campers, leaving them mindless, TV-obsessed zombies. Raz decides to put his growing arsenal of psychic powers to good use and investigate the strange goings-on. Along the way, he'll journey into the minds of those around him, and face perils ranging from mad scientists to giant monsters to the psychotic mental constructs lurking within the deranged minds of insane asylum inmates, and thwart an evil plot for world domination."
+  "PlotShort": "Against his father's wishes, a young psychic prodigy named Razputin (\"Raz\" for short) leaves his life in the circus and sneaks into Whispering Rock, a summer camp where young psychics like ..."
  },
  "imp-g-608021": {
   "imdbID": "tt1754134",
@@ -66260,7 +66260,7 @@ window.CULTURE_OMDB = {
     "Value": "8.4/10"
    }
   ],
-  "Plot": "A boy wakes up in a forest and sets off to find his sister."
+  "PlotShort": "A boy wakes up in a forest and sets off to find his sister."
  },
  "imp-g-608733": {
   "imdbID": "tt0884044",
@@ -66273,7 +66273,7 @@ window.CULTURE_OMDB = {
     "Value": "8.9/10"
    }
   ],
-  "Plot": "This game tells the stories of the American army in WWII fighting the Germans in Normandy."
+  "PlotShort": "This game tells the stories of the American army in WWII fighting the Germans in Normandy."
  },
  "imp-g-656508": {
   "imdbID": "tt2192570",
@@ -66287,7 +66287,7 @@ window.CULTURE_OMDB = {
     "Value": "8.5/10"
    }
   ],
-  "Plot": "Live the life of Jodie Holmes, a young woman who possesses supernatural powers through her psychic link to a mysterious invisible entity."
+  "PlotShort": "Live the life of Jodie Holmes, a young woman who possesses supernatural powers through her psychic link to a mysterious invisible entity."
  },
  "imp-g-611449": {
   "imdbID": "tt1196942",
@@ -66300,7 +66300,7 @@ window.CULTURE_OMDB = {
     "Value": "7.7/10"
    }
   ],
-  "Plot": "Guitar Hero World Tour (initially referred to as Guitar Hero IV or Guitar Hero IV: World Tour) is a music rhythm game developed by Neversoft, published by Activision and distributed by RedOctane. It is the fourth main entry in the Guitar Hero series. The game was launched in North America in October 2008 for the PlayStation 2, PlayStation 3, Wii, and Xbox 360 consoles, and a month later for Europe and Australia. A version of World Tour for Microsoft Windows and Apple Macintosh was later released. While the game continues to feature the use of a guitar-shaped controller to simulate the playing of rock music, Guitar Hero World Tour is the first game in the Guitar Hero series to feature drum and microphone controllers for percussion and vocal parts, similar in manner to the competing Rock Band series of games. The game allows users to create new songs through the \"Music Studio\" mode, which can then be uploaded and shared through a service known as \"GHTunes\". World Tour received generally positive reviews with critics responding positively to the quality of the instrument controllers, the customization abilities, and improvements in the game's difficulty compared with the previous Guitar Hero III: Legends of Rock."
+  "PlotShort": "Form a band and take on the world!"
  },
  "imp-g-613045": {
   "imdbID": "tt1601876",
@@ -66326,7 +66326,7 @@ window.CULTURE_OMDB = {
     "Value": "7.1/10"
    }
   ],
-  "Plot": "In the year 2069, agent Miles Kilo of EuroCorp must help to eliminate important personnel from rival corporations."
+  "PlotShort": "In the year 2069, agent Miles Kilo of EuroCorp must help to eliminate important personnel from rival corporations."
  },
  "imp-g-684014": {
   "imdbID": "tt3124414",
@@ -66340,7 +66340,7 @@ window.CULTURE_OMDB = {
     "Value": "8.0/10"
    }
   ],
-  "Plot": "Experience the emotion of scoring great goals in Fifa 14. Fueled by EA Sports Ignite engine, Fifa 14 will feel alive with players who think, move, and behave like world-class footballers, and dynamic stadiums that come to life."
+  "PlotShort": "Experience the emotion of scoring great goals in Fifa 14. Fueled by EA Sports Ignite engine, Fifa 14 will feel alive with players who think, move, and behave like world-class footballers, and dynamic stadiums that come to life."
  },
  "imp-g-612623": {
   "imdbID": "tt1866227",
@@ -66354,7 +66354,7 @@ window.CULTURE_OMDB = {
     "Value": "7.4/10"
    }
   ],
-  "Plot": "New York has been quarantined. Those trapped are left to fend themselves against the mutated monsters. Sgt James Heller, a soldier and grieving husband, must take down everyone responsible for the murder of his family, and have his revenge."
+  "PlotShort": "Sgt James Heller, a soldier and grieving husband, must take down everyone responsible for the murder of his family, and have his revenge."
  },
  "imp-g-612896": {
   "imdbID": "tt1797530",
@@ -66368,7 +66368,7 @@ window.CULTURE_OMDB = {
     "Value": "8.8/10"
    }
   ],
-  "Plot": "On an expedition into the dragons triangle, Lara Croft, and her crew crashed on an unknown island and search for their lost crew. But while Lara falls asleep her best friend Sam is taken by a strange man Mathias. Throughout the whole game Lara learns new skills, has many different weapons, and many islanders who will stop at nothing to keep their sun queen safe. Lara must save Sam from a horrible fate. And discovers what she truly is."
+  "PlotShort": "Armed with only the raw instincts and physical ability, experience Lara Croft's intense origin story from a young woman to a hardened survivor."
  },
  "imp-g-617923": {
   "imdbID": "tt2071475",
@@ -66382,7 +66382,7 @@ window.CULTURE_OMDB = {
     "Value": "8.2/10"
    }
   ],
-  "Plot": "After assassinating his former handler, Diana, Agent 47 goes on a mission on her request to track down a young girl named Victoria. Meanwhile, his own employers hunt him and an arms manufacturer, Blake Dexter, pursues Victoria as well."
+  "PlotShort": "After assassinating his former handler, Diana, Agent 47 goes on a mission on her request to track down a young girl named Victoria. Meanwhile, his own employers hunt him and an arms manufacturer, Blake Dexter, pursues Victoria as well."
  },
  "imp-g-605868": {
   "imdbID": "tt1199781",
@@ -66396,7 +66396,7 @@ window.CULTURE_OMDB = {
     "Value": "9.1/10"
    }
   ],
-  "Plot": "Armed with his deadly double-chained blades, Kratos must take on Greek mythology's darkest creatures to destroy Olympus and the mighty Zeus himself."
+  "PlotShort": "Armed with his deadly double-chained blades, Kratos must take on Greek mythology's darkest creatures to destroy Olympus and the mighty Zeus himself."
  },
  "imp-g-633412": {
   "imdbID": "tt2266084",
@@ -66410,7 +66410,7 @@ window.CULTURE_OMDB = {
     "Value": "6.9/10"
    }
   ],
-  "Plot": "Regroup with the SEALs from Medal of Honor, as they take on an international terrorist plot."
+  "PlotShort": "Regroup with the SEALs from Medal of Honor, as they take on an international terrorist plot."
  },
  "imp-g-623759": {
   "imdbID": "tt6044070",
@@ -66423,7 +66423,7 @@ window.CULTURE_OMDB = {
     "Value": "6.7/10"
    }
   ],
-  "Plot": "The game follows a young detective who must decide the future of the human race after the android he loves is infected with a virus that gives her true sentience."
+  "PlotShort": "The game follows a young detective who must decide the future of the human race after the android he loves is infected with a virus that gives her true sentience."
  },
  "imp-g-620533": {
   "imdbID": "tt2321297",
@@ -66437,7 +66437,7 @@ window.CULTURE_OMDB = {
     "Value": "8.9/10"
    }
   ],
-  "Plot": "When Jason Brody skydives with his brothers and friends on vacation, things turn awry when they are captured by the insane warlord Vaas, and expected to be sold into slavery. But when he escapes Vaas' camp, he begins to journey into the heart of insanity on a quest for revenge and devotion to save his friends and end the war that enslaves the citizens. The only way to escape the darkness, is to embrace it, Jason will learn the definition of insanity."
+  "PlotShort": "While skydiving, Jason Brody and his friends land on an island overrun by pirates, where Jason is torn between fighting for the Rakyat resistance and rescuing his friends."
  },
  "imp-g-609642": {
   "imdbID": "tt1800763",
@@ -66451,7 +66451,7 @@ window.CULTURE_OMDB = {
     "Value": "9.1/10"
    }
   ],
-  "Plot": "Fortune hunter Nathan Drake is catapulted headlong into an adventure that takes him on a daring trek into the heart of the Arabian Desert in a search for the fabled \"Atlantis of the Sands.\" This journey pits him and his mentor Victor Sullivan against the occult treachery of a shadowy clandestine organization and its ruthless leader. When the terrible secrets of this lost city are unearthed, Drake's quest descends into a desperate bid for survival that strains the limits of his endurance and forces him to confront his deepest fears."
+  "PlotShort": "Treasure hunter Nathan Drake embarks on a quest in search of the Atlantis of the Sands while battling an ancient, sinister organization."
  },
  "imp-g-612830": {
   "imdbID": "tt1714033",
@@ -66488,7 +66488,7 @@ window.CULTURE_OMDB = {
     "Value": "6.7/10"
    }
   ],
-  "Plot": "From microbe to intergalactic life form, decide the fate of a species of your creation. Evolve through five main stages of life."
+  "PlotShort": "From microbe to intergalactic life form, decide the fate of a species of your creation. Evolve through five main stages of life."
  },
  "imp-g-608435": {
   "imdbID": "tt0314123",
@@ -66502,7 +66502,7 @@ window.CULTURE_OMDB = {
     "Value": "9.2/10"
    }
   ],
-  "Plot": "After being released from prison, Tommy Vercetti, a former mobster, is sent to the sunny and dangerous Vice City. When a deal within the city goes horribly wrong, Tommy embarks on a jorney across the city to reclaim what is rightfully his, no matter how many lives it takes."
+  "PlotShort": "After being released from jail, Tommy Vercetti left Liberty City for Vice City, a city overrun by the mob. Now, Tommy is out to make Vice City his home."
  },
  "imp-g-612424": {
   "imdbID": "tt1937113",
@@ -66516,7 +66516,7 @@ window.CULTURE_OMDB = {
     "Value": "8.0/10"
    }
   ],
-  "Plot": "Modern Warfare 3 takes place after the events of Modern Warfare 2. The Russian Federation has declared war against the United States, and also takes it's offensive into Europe, including England, France, and Germany. Missions will also take place in other countries around the world."
+  "PlotShort": "The Russian Federation continues its invasion of the U.S., as well as Europe, including England, France and Germany."
  },
  "imp-g-611665": {
   "imdbID": "tt1206886",
@@ -66529,7 +66529,7 @@ window.CULTURE_OMDB = {
     "Value": "8.7/10"
    }
   ],
-  "Plot": "TOCA Race Driver 3 (also known as DTM Race Driver 3 in mainland Europe, V8 Supercars 3 in Australia..."
+  "PlotShort": "TOCA Race Driver 3 (also known as DTM Race Driver 3 in mainland Europe, V8 Supercars 3 in Australia..."
  },
  "imp-g-611229": {
   "imdbID": "tt1230530",
@@ -66542,7 +66542,7 @@ window.CULTURE_OMDB = {
     "Value": "7.0/10"
    }
   ],
-  "Plot": "You are Hayden Tenno, covert CIA operative. You have been sent into the dark city of Lasria to perform a simple clean-up job. But you are unknowingly thrust into a deceptive world where an unknown enemy is always close... watching your every move."
+  "PlotShort": "Hayden Tenno, a covert CIA operative, has been sent into the dark city of Lasria to perform a simple clean-up job, but is unknowingly thrust into a deceptive world where an unknown enemy is always close."
  },
  "imp-g-611190": {
   "imdbID": "tt0412486",
@@ -66556,7 +66556,7 @@ window.CULTURE_OMDB = {
     "Value": "8.1/10"
    }
   ],
-  "Plot": "In Battlefield 1942, players are dropped into the middle of a World War II battlefield and forced to find a path to victory both for them and for the soldiers on their side."
+  "PlotShort": "In Battlefield 1942, players are dropped into the middle of a World War II battlefield and forced to find a path to victory both for them and for the soldiers on their side."
  },
  "imp-g-611139": {
   "imdbID": "tt0437850",
@@ -66581,7 +66581,7 @@ window.CULTURE_OMDB = {
     "Value": "7.4/10"
    }
   ],
-  "Plot": "Battle with mechs, lazer tanks, and future weaponry is the classic spin of Battlefield 1942."
+  "PlotShort": "Battle with mechs, lazer tanks, and future weaponry is the classic spin of Battlefield 1942."
  },
  "imp-g-608603": {
   "imdbID": "tt0790814",
@@ -66595,7 +66595,7 @@ window.CULTURE_OMDB = {
     "Value": "7.4/10"
    }
   ],
-  "Plot": "The only free member of the Blacklist of Rockport City must now bring down an old ally, in complete control of the street racing world in Palmont."
+  "PlotShort": "The only free member of the Blacklist of Rockport City must now bring down an old ally, in complete control of the street racing world in Palmont."
  },
  "imp-g-609736": {
   "imdbID": "tt1264900",
@@ -66609,7 +66609,7 @@ window.CULTURE_OMDB = {
     "Value": "6.9/10"
    }
   ],
-  "Plot": "Need for Speed: Undercover sends players racing through speedways, dodging cops, and chasing rivals as they go deep undercover to take down an international crime syndicate."
+  "PlotShort": "Need for Speed: Undercover sends players racing through speedways, dodging cops, and chasing rivals as they go deep undercover to take down an international crime syndicate."
  },
  "imp-g-650339": {
   "imdbID": "tt2493696",
@@ -66623,7 +66623,7 @@ window.CULTURE_OMDB = {
     "Value": "8.1/10"
    }
   ],
-  "Plot": "FIFA Soccer returns with 30 of the world's best leagues, 46 international teams, an updated Career mode, and additional features Ultimate Team and an option to use motion sensing gameplay."
+  "PlotShort": "FIFA Soccer returns with 30 of the world's best leagues, 46 international teams, an updated Career mode, and additional features Ultimate Team and an option to use motion sensing gameplay."
  },
  "imp-g-611072": {
   "imdbID": "tt1954263",
@@ -66637,7 +66637,7 @@ window.CULTURE_OMDB = {
     "Value": "8.3/10"
    }
   ],
-  "Plot": "In Battlefield 3, players step into the role of the elite U.S. Marines. They will experience heart-pounding single player missions and competitive multiplayer action ranging across diverse locations from around the globe."
+  "PlotShort": "In Battlefield 3, players step into the role of the elite U.S. Marines. They will experience heart-pounding single player missions and competitive multiplayer action ranging across diverse ..."
  },
  "imp-g-611122": {
   "imdbID": "tt1839558",
@@ -66651,7 +66651,7 @@ window.CULTURE_OMDB = {
     "Value": "9.1/10"
    }
   ],
-  "Plot": "Earth is under attack by a monstrous race of gigantic living ships known as the Reapers. Even if Commander Shepard could unite all surviving species in the galaxy, only a miracle could save them. Then again, Shepard did come back from the dead."
+  "PlotShort": "Earth is under attack by a monstrous race of gigantic living ships known as the Reapers. Even if Commander Shepard could unite all surviving species in the galaxy, only a miracle could save them. Then again, Shepard did come back from the dead."
  },
  "imp-g-608441": {
   "imdbID": "tt0853117",
@@ -66663,7 +66663,7 @@ window.CULTURE_OMDB = {
     "Value": "9.3/10"
    }
   ],
-  "Plot": "Gordon Freeman, along with the help of human and non-human allies, continues his fight against the ruthless alien force known as the Combine."
+  "PlotShort": "Gordon Freeman, along with the help of human and non-human allies, continues his fight against the ruthless alien force known as the Combine."
  },
  "imp-g-608440": {
   "imdbID": "tt0814129",
@@ -66675,7 +66675,7 @@ window.CULTURE_OMDB = {
     "Value": "8.9/10"
    }
   ],
-  "Plot": "The first of three in the episodic series that potentially make up what could be called Half-Life 3, Half-Life 2: Episode One takes place directly after the events of Half-Life 2. You play, again, as the famous Gordon Freeman, this time running away from the unstable Citadel, which is collapsing from the preceding events in Half-Life 2. With Alyx Vance at your side, you must battle through the remaining enemies left in City 17 in an attempt to escape almost certain peril."
+  "PlotShort": "Gordon Freeman and Alyx Vance must escape City 17 following the explosion of its fusion reactor."
  },
  "imp-g-608598": {
   "imdbID": "tt1210335",
@@ -66689,7 +66689,7 @@ window.CULTURE_OMDB = {
     "Value": "8.2/10"
    }
   ],
-  "Plot": "Nine mercenaries. Two teams. Guns. And hats. Welcome to Team Fortress 2, where psychopaths fight each other with shotguns, rocket launchers, pistols, baseball bats, surgical equipment, laser guns, and wear fancy hats."
+  "PlotShort": "Nine mercenaries. Two teams. Guns. And hats. Welcome to Team Fortress 2, where psychopaths fight each other with shotguns, rocket launchers, pistols, baseball bats, surgical equipment, laser guns, and wear fancy hats."
  },
  "imp-g-608444": {
   "imdbID": "tt1458918",
@@ -66702,7 +66702,7 @@ window.CULTURE_OMDB = {
     "Value": "8.9/10"
    }
   ],
-  "Plot": "Second expansion pack for Heroes of Might and Magic III: The Restoration of Erathia (1999)."
+  "PlotShort": "Second expansion pack for Heroes of Might and Magic III: The Restoration of Erathia (1999)."
  },
  "imp-g-608109": {
   "imdbID": "tt1937416",
@@ -66716,7 +66716,7 @@ window.CULTURE_OMDB = {
     "Value": "8.9/10"
    }
   ],
-  "Plot": "The player is Geralt of Rivia, a professional monster slayer, a witcher. Entangled in the political turmoil that engulfed Temeria, Geralt helped quell the rebellion of the Order of the Flaming Rose. Soon after, he saved King Foltest's life when the monarch was attacked by a witcher-like assassin. He continues to protect the king, serving as his bodyguard as Foltest strives to bring peace to his kingdom. The Order's last bastions have yielded to the royal army, yet one more task remains - the Baroness La Valette announced her secession from the realm, and her fortress must be taken. A month after the attempted assassination, Foltest's armies stand at the gates of La Valette Castle, preparing for a final assault. Still at Foltest's side, Geralt is among them, unable to begin his personal quest to discover the mysterious assassin's origin and identity..."
+  "PlotShort": "Witcher Geralt must track down a mysterious assassin known as the Kingslayer, who appears to also have the powers of a witcher. Is the Kingslayer simply working for the leaders of a non-human rebellion or is there more to this mystery?"
  },
  "imp-g-612757": {
   "imdbID": "tt0304947",
@@ -66728,7 +66728,7 @@ window.CULTURE_OMDB = {
     "Value": "8.3/10"
    }
   ],
-  "Plot": "Blasting Nazis left and right in an attempt to assassinate Hitler and escape from Castle Wolfenstein. In the game that started the 3-D shooter craze which led to the huge successes DOOM, Quake, Turok, Duke Nukem 3-D, etc, you play an American P.O.W. trying desperately to escape from the Nazi prison Wolfenstein during World War II. Locked doors must be opened, puzzles must be solved and gallons of blood must be spilled in order to complete your violent objectives: to both escape from behind enemy lines and take down the Fuehrer in the process."
+  "PlotShort": "Blasting Nazis left and right in an attempt to assassinate Hitler and escape from Castle Wolfenstein. In the game that started the 3-D shooter craze which led to the huge successes DOOM, ..."
  },
  "imp-g-611175": {
   "imdbID": "tt1543024",
@@ -66742,7 +66742,7 @@ window.CULTURE_OMDB = {
     "Value": "8.3/10"
    }
   ],
-  "Plot": "DEAD CENTER: One week after the events of Left 4 Dead begin (October 7, 2009), the four survivors \"Coach\", Ellis, Nick, and Rochelle meet on the roof of The Vannah hotel, but just barely miss the helicopter rescue. Stuck in Savannah, Georgia, they scavenge for some weapons and make their way to Whitaker's Gun Shop. Whitaker lets them take whatever guns they want from his store if they break into a nearby store and bring him a 6-pack of cola. In exchange, he clears a roadblock for them with a rocket launcher from his roof. The survivors make their way to the nearby Liberty Mall, where they fill up the gas tank of Jimmy Gibbs Jr.'s stock car on display, and drive out of the mall's front doors. THE PASSING: At night, the survivors arrive at a raised bridge in the port town of Rayford, Georgia. The survivors who are already there, Louis, Francis, and Zoey, tell them that they'll have to get to the other side of the bridge by going under the river, through a half-finished historic tour. On the other side, the new survivors collect gas cans to fill a generator that can lower the bridge, while Zoey, Francis, and Louis provide covering fire from the waves of infected. When the bridge lowers, they escape Rayford and head west. DARK CARNIVAL: The survivors must stop, however, when they encounter Interstate 16 in Griffin County completely blocked for miles by abandoned cars. They go off on foot down an exit, through a motel, and arrive at Whispering Oaks Amusement Park. There, they crawl through a drained Tunnel of Love, spot a helicopter, and run the Screaming Oak roller coaster to a safe room. Soon after, they arrive at the Peach Pit Stadium, where the Midnight Riders were scheduled to perform a rock concert. To get the attention of the helicopter pilot, they turn on the stage's lights and play a recording of the Midnight Riders' songs, and fight zombies to hard Southern Rock. The helicopter sees them and provides a rescue. SWAMP FEVER: Unfortunately, like the pilot that Zoey had to shoot earlier, this helicopter pilot also becomes infected after rescuing the survivors, and Nick shoots him. They crash land nearby Wilsons Gas Station, on the outskirts of Village En Marais, Louisiana. After trekking through Earl's Gator Village and the swamp all night, they arrive at a plantation house as the sun is rising. There, they use a radio to call for the help of Virgil, a kind Cajun man with a boat. After fighting some waves of infected, Virgil arrives and blows up the wooden fence so the survivors can run to his boat. HARD RAIN: Traveling down the Mississippi River, Virgil's boat runs low on diesel fuel. At Ducatel, Mississippi, Virgil sends the survivors ashore to find more gas for his boat. Nick - or someone - forgot the gun bag though, which also had a flare gun in it to signal Virgil with. With the closest gas station all out of gas, the survivors make their way through the town (in a light drizzle) to the Ducatel Sugar Company and sugar mill. On the other side of the sugar cane field is Ducatel Diesel, where the gas for Virgil's boat is. By this time, the rain has gotten heavier, and a storm is starting. The survivors make their way all the way back to the Burger Tank restaurant where they started, and turn on its rotating sign to signal Virgil. The bright sign in the rain storm attracts infected, but the survivors hold out until Virgil arrives. THE PARISH: In the final campaign, Virgil drops the survivors off in New Orleans, a few miles away from the Veterans Memorial Bridge. After passing through a market, a park, a bus station, an impound lot full of alarmed cars, a cemetery, and a jazz club, the survivors are finally at the bridge. They pick up a handheld radio left behind by a dead soldier, and hear from some military helicopter pilots on the other side that they must lower the bridge to get across. In a final gauntlet crescendo event, they run across the bridge and to the waiting helicopter. After Coach, Rochelle, Nick and Ellis are safely in the helicopter, the military blows the bridge up to prevent the infection from spreading. The survivors are taken to a fleet of cruise ships being used as safe havens for other survivors until the infection dies out."
+  "PlotShort": "Four new survivors must make their way across the American South while surviving a zombie apocalypse."
  },
  "imp-g-622913": {
   "imdbID": "tt0181047",
@@ -66755,7 +66755,7 @@ window.CULTURE_OMDB = {
     "Value": "8.5/10"
    }
   ],
-  "Plot": "19 years after the second King of Iron Fist Tournament, Heihachi Mishima hosts the third Tournament to attract Toshin, a God who is after the souls of the world's most powerful fighters and who killed the mother of his grandson, Jin Kazama."
+  "PlotShort": "19 years after the second King of Iron Fist Tournament, Heihachi Mishima hosts the third Tournament to attract Toshin, a God who killed the mother of his grandson, Jin Kazama."
  },
  "imp-g-611176": {
   "imdbID": "tt1648163",
@@ -66769,7 +66769,7 @@ window.CULTURE_OMDB = {
     "Value": "9.5/10"
    }
   ],
-  "Plot": "Many years after \"Portal,\" Chell reawakens at Aperture Science and tries to stop GLADoS once again with the help of Wheatley, who has his own plans for the historical facility."
+  "PlotShort": "Many years after \"Portal,\" Chell reawakens at Aperture Science and tries to stop GLADoS once again with the help of Wheatley, who has his own plans for the historical facility."
  },
  "imp-g-608591": {
   "imdbID": "tt1127708",
@@ -66783,7 +66783,7 @@ window.CULTURE_OMDB = {
     "Value": "9.1/10"
    }
   ],
-  "Plot": "You wake to find yourself in a small, square, glass room containing a futuristic-looking tube-like bed, a toilet, and a table with a radio playing a tune on it alongside a mug and a clipboard with data on it. A timer is counting down from a minute just above the closed door leading out of the small room. A voice sounds from a speaker in the ceiling of the room. After some things are said, the voice becomes distorted for a second, sparks come out of the speaker, and the voice returns to normal. It counts down from five, synchronized with the timer above the door. At zero, the door opens, and you are released from your cell...."
+  "PlotShort": "A test subject wakes up in a scientific facility controlled by a sadistic artificial intelligence and must escape with the help of the only instrument she has--a gun that makes portals."
  },
  "imp-g-611356": {
   "imdbID": "tt0363582",
@@ -66796,7 +66796,7 @@ window.CULTURE_OMDB = {
     "Value": "5.7/10"
    }
   ],
-  "Plot": "When the aliens come back for vengeance they hit Duke where it hurts, by drinking all of his beer, and abducting all the hot women. Duke, the icon is set back into action and this time it's..."
+  "PlotShort": "When the aliens come back for vengeance they hit Duke where it hurts, by drinking all of his beer, and abducting all the hot women. Duke, the icon is set back into action and this time it's..."
  },
  "imp-g-624890": {
   "imdbID": "tt1389075",
@@ -66821,7 +66821,7 @@ window.CULTURE_OMDB = {
     "Value": "9.4/10"
    }
   ],
-  "Plot": "The Empire of Tamriel is on the edge. The High King of Skyrim has been murdered. Alliances form as claims to the throne are made. In the midst of this conflict, a far more dangerous, ancient evil is awakened. Dragons, long lost to the passages of the Elder Scrolls, have returned to Tamriel. The future of Skyrim, even the Empire itself, hangs in the balance as they wait for the prophesized Dragonborn to come; a hero born with the power of The Voice, and the only one who can stand amongst the dragons."
+  "PlotShort": "After escaping execution, the last living Dragonborn must grow in strength and power to defeat the dragons that have once again begun to plague the land of Skyrim."
  },
  "imp-g-617374": {
   "imdbID": "tt1928116",
@@ -66835,7 +66835,7 @@ window.CULTURE_OMDB = {
     "Value": "8.3/10"
    }
   ],
-  "Plot": "Ezio auditore da firenze travels to constantinople on his quest to find the five keys of masyaf to unlock a library left behind by Altaír Ibn La Ahad, to find an artifact known as the Apple of Eden. To prevent it being found by the Templars. Not knowing what they might do with It Ezio leaves the apple in the library for desmond to find. Ezio then goes away with Sofia Sartor to live out the rest of his life with Her."
+  "PlotShort": "Ezio travels to Constantinople, at the peak of the Ottoman Empire to discover the truth behind his Ancestor, Altair, which will help him retrieve a powerful weapon hidden within Masyaf, the ancient assassins' fortress."
  },
  "imp-g-606063": {
   "imdbID": "tt0466662",
@@ -66849,7 +66849,7 @@ window.CULTURE_OMDB = {
     "Value": "8.5/10"
    }
   ],
-  "Plot": "While on vacation in the small town of Bright Falls, a struggling writer must investigate the mysterious disappearance of his wife while events from his latest manuscript, which he can't remember writing, begin to come true."
+  "PlotShort": "While on vacation in the small town of Bright Falls, a struggling writer must investigate the mysterious disappearance of his wife while events from his latest manuscript, which he can't remember writing, begin to come true."
  },
  "imp-g-608587": {
   "imdbID": "tt1684551",
@@ -66862,7 +66862,7 @@ window.CULTURE_OMDB = {
     "Value": "7.9/10"
    }
   ],
-  "Plot": "Set 3 years after the original game. Fight the aliens, following the protagonist in a new type of jungle; New York, the urban jungle."
+  "PlotShort": "Set 3 years after the original game. Fight the aliens, following the protagonist in a new type of jungle; New York, the urban jungle."
  },
  "imp-g-608446": {
   "imdbID": "tt0277723",
@@ -66876,7 +66876,7 @@ window.CULTURE_OMDB = {
     "Value": "8.7/10"
    }
   ],
-  "Plot": "Liberty City, USA. The worst place in America. You've been betrayed and left for dead. Now you're taking revenge, unless the city gets you first. Mob bosses need a favor, crooked copes need help and street gangs want you dead. You'll have to rob, steal and kill just to stay out of serious trouble. Anything can happen out there."
+  "PlotShort": "A young bank robber escapes from police custody and works his way up through the mafia ladder of crime-ridden Liberty City, USA."
  },
  "imp-g-605968": {
   "imdbID": "tt0932936",
@@ -66890,7 +66890,7 @@ window.CULTURE_OMDB = {
     "Value": "8.1/10"
    }
   ],
-  "Plot": "A man enters a machine called the Animus that lets him relive the memories of his ancestor, a 12th century assassin named Altair."
+  "PlotShort": "A man enters a machine called the Animus that lets him relive the memories of his ancestor, a 12th century assassin named Altair."
  },
  "imp-g-606824": {
   "imdbID": "tt1181833",
@@ -66904,7 +66904,7 @@ window.CULTURE_OMDB = {
     "Value": "8.5/10"
    }
   ],
-  "Plot": "The chronicles of Vito Scalletta, a young Italian immigrant who joins the Italian mafia, but soon gets in over his head when illegal drug dealing and deception take place."
+  "PlotShort": "The chronicles of Vito Scalletta, a young Italian immigrant who joins the Italian mafia, but soon gets in over his head when illegal drug dealing and deception take place."
  },
  "imp-g-608592": {
   "imdbID": "tt0462271",
@@ -66918,7 +66918,7 @@ window.CULTURE_OMDB = {
     "Value": "9.1/10"
    }
   ],
-  "Plot": "The Player is in the Imperial Prison when the Emperor and his bodyguards need to go through his cell to escape from the Imperial City. The Emperors sons are asassinated. The Player goes to Kvatch where he finds the last heir of the Septim Bloodline. The emperor has been killed while escaping from the City. The Player must help the heir Martin Septim to save the world from the Oblivion Crisis. And joining the Blades, Save Kvatch from Oblivion, Save Bruma, and be the Champion Of Cyrodiil."
+  "PlotShort": "After being freed by the Emperor of Tamriel, the hero must prevent the gates of Oblivion from spreading throughout the Empire."
  },
  "imp-g-608610": {
   "imdbID": "tt1394201",
@@ -66930,7 +66930,7 @@ window.CULTURE_OMDB = {
     "Value": "8.0/10"
    }
   ],
-  "Plot": "Sgt. Michael Becket is tapped to investigate mysterious happenings within a private aerospace company before a nuclear explosion rocked the Auburn industrial district in the first game."
+  "PlotShort": "Sgt. Michael Becket is tapped to investigate mysterious happenings within a private aerospace company before a nuclear explosion rocked the Auburn industrial district in the first game."
  },
  "imp-g-607376": {
   "imdbID": "tt1227830",
@@ -66944,7 +66944,7 @@ window.CULTURE_OMDB = {
     "Value": "7.7/10"
    }
   ],
-  "Plot": "Welcome to Paradise City, a huge racing battle ground with plenty of traffic to wreck and billboards to smash."
+  "PlotShort": "Welcome to Paradise City, a huge racing battle ground with plenty of traffic to wreck and billboards to smash."
  },
  "imp-g-608010": {
   "imdbID": "tt1456949",
@@ -66958,7 +66958,7 @@ window.CULTURE_OMDB = {
     "Value": "7.2/10"
    }
   ],
-  "Plot": "After a new batch of the zombie outbreak is let loose in Fortune City, Nevada, a new terrifying fight for survival begins. A new hero is requested. Enter Chuck Greene, a devoted father and motocross legend. After his daughter Katey gets bitten by her zombified mother, Chuck retreats from his hometown and makes his way to Fortune City to take part in a new brutal game-show called TIR: Terror is Reality. The game-show consists of contestants doing unspeakable things to zombies while trying to win out over the other opponents. The pure reason that Chuck decides to take part in the show is to pay for the zombrex treatment that his daughter needs to stay alive and stay human. After taking part in the show, Chuck finds himself fighting to survive this new zombie nightmare that Frank West first experienced in Dead Rising. Along the way he must help more stranded civilians escape to safety and take on the psychopaths who feel they are now the kings of the world and plan to kill any human they come across. As the game goes on it is revealed that there is a conspiracy at work at the heart of the zombie outbreak and Chuck must find a way to stop it before the rest of America succumbs to the zombie hordes."
+  "PlotShort": "In the rise of a new zombie outbreak, the new hero Chuck Greene has to help his daughter survive this zombie nightmare."
  },
  "imp-g-612872": {
   "imdbID": "tt1319708",
@@ -66972,7 +66972,7 @@ window.CULTURE_OMDB = {
     "Value": "8.6/10"
    }
   ],
-  "Plot": "After a shadowy black ops team kidnaps several scientists security manager Adam Jensen was sworn to protect, he must harness the power of his new-found cybernetic augmentations to save their lives."
+  "PlotShort": "After a shadowy black ops team kidnaps several scientists security manager Adam Jensen was sworn to protect, he must harness the power of his new-found cybernetic augmentations to save their lives."
  },
  "imp-g-611198": {
   "imdbID": "tt1764429",
@@ -66986,7 +66986,7 @@ window.CULTURE_OMDB = {
     "Value": "8.8/10"
    }
   ],
-  "Plot": "Amid the post-war boom of Hollywood's Golden Age, Cole Phelps is an LAPD detective thrown headfirst into a city drowning in its own success. Corruption is rampant, the drug trade is exploding, and murder rates are at an all-time high. In his fight to climb the ranks and do what's right, Phelps must unravel the truth behind a string of arson attacks, racketeering conspiracies and brutal murders, battling the L.A. underworld and even members of his own department to uncover a secret that could shake the city to its rotten core."
+  "PlotShort": "You play a LAPD detective in late 1940s Los Angeles as you discover dark goings on in the city."
  },
  "imp-g-606182": {
   "imdbID": "tt1282022",
@@ -67000,7 +67000,7 @@ window.CULTURE_OMDB = {
     "Value": "9.3/10"
    }
   ],
-  "Plot": "You control Batman as he fights to subdue The Joker and his fellows when they seize control of the Arkham Island."
+  "PlotShort": "You control Batman as he fights to subdue The Joker and his fellows when they seize control of the Arkham Island."
  },
  "imp-g-611120": {
   "imdbID": "tt1568322",
@@ -67014,7 +67014,7 @@ window.CULTURE_OMDB = {
     "Value": "9.4/10"
    }
   ],
-  "Plot": "Within the dark, heavily guarded walls of Arkham City some of Gotham's most twisted, diabolical and murderous minds are imprisoned. In Arkham City, the villains have control and they are patiently waiting and hoping for a chance to take down Gotham's hero: Batman."
+  "PlotShort": "When part of Gotham is turned into a private reserve for criminals known as Arkham City, all hell is sure to break loose, and the Dark Knight is the only one who can stop it."
  },
  "imp-g-623583": {
   "imdbID": "tt2058058",
@@ -67027,7 +67027,7 @@ window.CULTURE_OMDB = {
     "Value": "7.7/10"
    }
   ],
-  "Plot": "Pro Evolution Soccer 2012, introducing the new 2011/12 football season."
+  "PlotShort": "Pro Evolution Soccer 2012, introducing the new 2011/12 football season."
  },
  "imp-g-606961": {
   "imdbID": "tt0473298",
@@ -67041,7 +67041,7 @@ window.CULTURE_OMDB = {
     "Value": "8.1/10"
    }
   ],
-  "Plot": "Sent in by the BSAA, Chris Redfield has a new mission. It takes him into South Africa where he encounters a new horror and relives an old past."
+  "PlotShort": "Sent in by the BSAA, Chris Redfield has a new mission. It takes him into South Africa where he encounters a new horror and relives an old past."
  },
  "imp-g-614464": {
   "imdbID": "tt1402205",
@@ -67066,7 +67066,7 @@ window.CULTURE_OMDB = {
     "Value": "8.1/10"
    }
   ],
-  "Plot": "Following Sam Fisher's stint as a double agent, Fisher returns out of hiding having learned that his daughter's death was no accident. Betrayed by the agency he gave his life to, Fisher now finds himself on a mission to uncover the true nature of his daughter's death. He must now stand by his convictions as his investigation leads him to the discovery of a greater conspiracy."
+  "PlotShort": "Following Sam Fisher's stint as a double agent, Fisher returns out of hiding having learned that his daughter's death was no accident."
  },
  "imp-g-606348": {
   "imdbID": "tt1073664",
@@ -67080,7 +67080,7 @@ window.CULTURE_OMDB = {
     "Value": "9.3/10"
    }
   ],
-  "Plot": "In the far future where Earth has become a devastated wasteland, you are the child of the noted scientist James in the underground Vault 101 that is in the Washington DC area. Upon reaching adulthood, your father has mysteriously disappeared into the outside for some unknown purpose. Soon, you are forced to flee outside yourself from the murderous tyranny of the Vault Overseer who will not tolerate such dissent. Now, you will begin the search for your father as your adventures begin that will either bring hope to that dismal world or destroy it.."
+  "PlotShort": "Centuries following nuclear war, a teen leaves the safety of his underground vault in order to find his father, who left in hopes of creating a water purifier."
  },
  "imp-g-605870": {
   "imdbID": "tt1632479",
@@ -67094,7 +67094,7 @@ window.CULTURE_OMDB = {
     "Value": "8.3/10"
    }
   ],
-  "Plot": "When he's interrogated by unknown figures, Alex Mason has to remember the location of a broadcast station, to stop a horrifying biotic weapon attack. During the progress, he begins to suspect the true identity of his Soviet friend-Victor Reznov."
+  "PlotShort": "Former Marine Captain and CIA operative Alex Mason, upon interrogation by an unknown party, recounts his violent experiences with the Bay of Pigs, a radical Soviet conspiracy, and the Vietnam war."
  },
  "imp-g-608014": {
   "imdbID": "tt1699759",
@@ -67108,7 +67108,7 @@ window.CULTURE_OMDB = {
     "Value": "8.7/10"
    }
   ],
-  "Plot": "Desmond Miles returns to Renaissance Italy to follow the life of his ancestor Ezio Auditore. After seeing his home destroyed, Ezio travels to Rome in an effort to rebuild the Assassin Order and bring down the Borgia family, who rule the city with an iron fist. Along the way, the modern day assassins hope to discover the location of the Piece of Eden, or \"The Apple\" before the Templars find out first."
+  "PlotShort": "Desmond Miles continues to travel the memories of Ezio Auditore, bringing him to turn-of-the-century Rome with Ezio rebuilding the assassin order to bring down the tyrannical Borgia rule."
  },
  "imp-g-649547": {
   "imdbID": "tt3114160",
@@ -67120,7 +67120,7 @@ window.CULTURE_OMDB = {
     "Value": "6.3/10"
    }
   ],
-  "Plot": "The Angry Birds hunt pigs in holiday-themed levels."
+  "PlotShort": "The Angry Birds hunt pigs in holiday-themed levels."
  },
  "imp-g-611301": {
   "imdbID": "tt0268516",
@@ -67132,7 +67132,7 @@ window.CULTURE_OMDB = {
     "Value": "8.5/10"
    }
   ],
-  "Plot": "There was only one chance out of one million that such an accident could happen. As for the consequences, nobody could have foreseen them. Certainly not Lester, who finds himself lost in an unknown and utterly hostile world. However, it is in this other world that he will rediscover the genuine meaning of freedom won by fighting, the feeling that each day is a new victory..."
+  "PlotShort": "A freak laboratory accident transports scientist Lester Knight Chaykin to a brutal alien world, where he must work together with a strange ally to survive."
  },
  "imp-g-605874": {
   "imdbID": "tt1625541",
@@ -67146,7 +67146,7 @@ window.CULTURE_OMDB = {
     "Value": "8.4/10"
    }
   ],
-  "Plot": "Bravo 2 finds themselves back in the action again, this time they are after a device that was used back in WWII. They don't have any idea about the device, and are soon contacted by Special Operations Division. Things start to take a turn for the worse when the weapon falls into the wrong hands; if Bravo 2 don't find the device soon, their home will be a pile of bricks."
+  "PlotShort": "Bravo 2 are back, and are wanting to go home more than ever."
  },
  "imp-g-608251": {
   "imdbID": "tt1442497",
@@ -67185,7 +67185,7 @@ window.CULTURE_OMDB = {
     "Value": "8.3/10"
    }
   ],
-  "Plot": "DEAD CENTER: One week after the events of Left 4 Dead begin (October 7, 2009), the four survivors \"Coach\", Ellis, Nick, and Rochelle meet on the roof of The Vannah hotel, but just barely miss the helicopter rescue. Stuck in Savannah, Georgia, they scavenge for some weapons and make their way to Whitaker's Gun Shop. Whitaker lets them take whatever guns they want from his store if they break into a nearby store and bring him a 6-pack of cola. In exchange, he clears a roadblock for them with a rocket launcher from his roof. The survivors make their way to the nearby Liberty Mall, where they fill up the gas tank of Jimmy Gibbs Jr.'s stock car on display, and drive out of the mall's front doors. THE PASSING: At night, the survivors arrive at a raised bridge in the port town of Rayford, Georgia. The survivors who are already there, Louis, Francis, and Zoey, tell them that they'll have to get to the other side of the bridge by going under the river, through a half-finished historic tour. On the other side, the new survivors collect gas cans to fill a generator that can lower the bridge, while Zoey, Francis, and Louis provide covering fire from the waves of infected. When the bridge lowers, they escape Rayford and head west. DARK CARNIVAL: The survivors must stop, however, when they encounter Interstate 16 in Griffin County completely blocked for miles by abandoned cars. They go off on foot down an exit, through a motel, and arrive at Whispering Oaks Amusement Park. There, they crawl through a drained Tunnel of Love, spot a helicopter, and run the Screaming Oak roller coaster to a safe room. Soon after, they arrive at the Peach Pit Stadium, where the Midnight Riders were scheduled to perform a rock concert. To get the attention of the helicopter pilot, they turn on the stage's lights and play a recording of the Midnight Riders' songs, and fight zombies to hard Southern Rock. The helicopter sees them and provides a rescue. SWAMP FEVER: Unfortunately, like the pilot that Zoey had to shoot earlier, this helicopter pilot also becomes infected after rescuing the survivors, and Nick shoots him. They crash land nearby Wilsons Gas Station, on the outskirts of Village En Marais, Louisiana. After trekking through Earl's Gator Village and the swamp all night, they arrive at a plantation house as the sun is rising. There, they use a radio to call for the help of Virgil, a kind Cajun man with a boat. After fighting some waves of infected, Virgil arrives and blows up the wooden fence so the survivors can run to his boat. HARD RAIN: Traveling down the Mississippi River, Virgil's boat runs low on diesel fuel. At Ducatel, Mississippi, Virgil sends the survivors ashore to find more gas for his boat. Nick - or someone - forgot the gun bag though, which also had a flare gun in it to signal Virgil with. With the closest gas station all out of gas, the survivors make their way through the town (in a light drizzle) to the Ducatel Sugar Company and sugar mill. On the other side of the sugar cane field is Ducatel Diesel, where the gas for Virgil's boat is. By this time, the rain has gotten heavier, and a storm is starting. The survivors make their way all the way back to the Burger Tank restaurant where they started, and turn on its rotating sign to signal Virgil. The bright sign in the rain storm attracts infected, but the survivors hold out until Virgil arrives. THE PARISH: In the final campaign, Virgil drops the survivors off in New Orleans, a few miles away from the Veterans Memorial Bridge. After passing through a market, a park, a bus station, an impound lot full of alarmed cars, a cemetery, and a jazz club, the survivors are finally at the bridge. They pick up a handheld radio left behind by a dead soldier, and hear from some military helicopter pilots on the other side that they must lower the bridge to get across. In a final gauntlet crescendo event, they run across the bridge and to the waiting helicopter. After Coach, Rochelle, Nick and Ellis are safely in the helicopter, the military blows the bridge up to prevent the infection from spreading. The survivors are taken to a fleet of cruise ships being used as safe havens for other survivors until the infection dies out."
+  "PlotShort": "Four new survivors must make their way across the American South while surviving a zombie apocalypse."
  },
  "imp-g-608271": {
   "imdbID": "tt1529320",
@@ -67198,7 +67198,7 @@ window.CULTURE_OMDB = {
     "Value": "7.7/10"
    }
   ],
-  "Plot": "Pro Evolution Soccer 2010 is the ninth football video game in the Pro Evolution Soccer series. For the first time in the series, the UEFA Champions League and the UEFA Europa League are both fully licensed."
+  "PlotShort": "Pro Evolution Soccer 2010 is the ninth football video game in the Pro Evolution Soccer series. For the first time in the series, the UEFA Champions League and the UEFA Europa League are both fully licensed."
  },
  "imp-g-611654": {
   "imdbID": "tt0406305",
@@ -67211,7 +67211,7 @@ window.CULTURE_OMDB = {
     "Value": "7.9/10"
    }
   ],
-  "Plot": "To assist in the rebuilding of the colonies by calming down enraged colonists, the Liandri Corporation came up with the idea of staging a gladiatorial tournament for the miners."
+  "PlotShort": "To assist in the rebuilding of the colonies by calming down enraged colonists, the Liandri Corporation came up with the idea of staging a gladiatorial tournament for the miners."
  },
  "imp-g-611682": {
   "imdbID": "tt0306139",
@@ -67224,7 +67224,7 @@ window.CULTURE_OMDB = {
     "Value": "9.1/10"
    }
   ],
-  "Plot": "Unbeknownst to him, a cynical but witty master-thief Garrett will become a key player in the secret war between the cult of builders and the cult of pagans in a medieval city where certain types of magic and advanced technology exist."
+  "PlotShort": "Unbeknownst to him, a cynical but witty master-thief Garrett will become a key player in the secret war between the cult of builders and the cult of pagans in a medieval city where certain types of magic and advanced technology exist."
  },
  "imp-g-611204": {
   "imdbID": "tt1852745",
@@ -67248,7 +67248,7 @@ window.CULTURE_OMDB = {
     "Value": "8.8/10"
    }
   ],
-  "Plot": "Battle as an Ally, or an Axis force in this multiplayer Wolfenstein game"
+  "PlotShort": "Battle as an Ally, or an Axis force in this multiplayer Wolfenstein game"
  },
  "imp-g-608247": {
   "imdbID": "tt0412704",
@@ -67262,7 +67262,7 @@ window.CULTURE_OMDB = {
     "Value": "8.2/10"
    }
   ],
-  "Plot": "You play a man who finds himself trapped on a mad scientist's private tropical island with ruthless mercenaries and worse."
+  "PlotShort": "You play a man who finds himself trapped on a mad scientist's private tropical island with ruthless mercenaries and worse."
  },
  "imp-g-608724": {
   "imdbID": "tt3793100",
@@ -67274,7 +67274,7 @@ window.CULTURE_OMDB = {
     "Value": "8.2/10"
    }
   ],
-  "Plot": "In World of Goo, you must explore a 5 islands of different settings and goo species. Build your tower up too the pipe and transport all of the goo balls to World of Goo Corporation. Follow the adventure and story with the mysterious sign painter, who will follow you all the way."
+  "PlotShort": "In World of Goo, you must explore a 5 islands of different settings and goo species. Build your tower up too the pipe and transport all of the goo balls to World of Goo Corporation. Follow ..."
  },
  "imp-g-608250": {
   "imdbID": "tt1285115",
@@ -67288,7 +67288,7 @@ window.CULTURE_OMDB = {
     "Value": "7.7/10"
    }
   ],
-  "Plot": "Fifa 2009 features over 500 teams, 30 leagues, 41 national teams, as well as 48 stadiums, and introduces the Ultimate Team mode. The Windows and PlayStation 2 versions also feature a special Tournament Mode."
+  "PlotShort": "Fifa 2009 features over 500 teams, 30 leagues, 41 national teams, as well as 48 stadiums, and introduces the Ultimate Team mode. The Windows and PlayStation 2 versions also feature a special Tournament Mode."
  },
  "imp-g-607092": {
   "imdbID": "tt0276195",
@@ -67302,7 +67302,7 @@ window.CULTURE_OMDB = {
     "Value": "8.1/10"
    }
   ],
-  "Plot": "Agent 47 is a genetic super human assassin. The ICA (International Contract Agency) assigns 47 with various assignments to kill five men known as \"The Five Fathers.\" Including his own creator."
+  "PlotShort": "Agent 47 is a genetic super human assassin. The ICA (International Contract Agency) assigns 47 with various assignments to kill five men known as \"The Five Fathers.\" Including his own creator."
  },
  "imp-g-608608": {
   "imdbID": "tt1314741",
@@ -67315,7 +67315,7 @@ window.CULTURE_OMDB = {
     "Value": "7.1/10"
    }
   ],
-  "Plot": "Choosing from nine different mercenary characters, you arrive in Africa in search of a notorious weapons dealer known only as 'The Jackal'. War ravages the land as the United Front for Liberation and Labor (UFLL) and the Alliance for Popular Resistance (APR) engage in a seemingly endless war perpetuated by The Jackal's dealings. It is up to you to work for both factions, befriend other mercenaries along the way and ultimately track down The Jackal."
+  "PlotShort": "Choosing from nine different mercenary characters, you arrive in Africa in search of a notorious weapons dealer known only as 'The Jackal'. War ravages the land as the United Front for ..."
  },
  "imp-g-608622": {
   "imdbID": "tt0255202",
@@ -67328,7 +67328,7 @@ window.CULTURE_OMDB = {
     "Value": "7.7/10"
    }
   ],
-  "Plot": "A sequel to the hit video game Grand Theft Auto, this game once again puts the player in the role of an aspiring thug hoping to climb to the top of the criminal world by completing missions and terrorizing the citizenry. In this version, however, each city has been divided by rival gangs that will gain or lose respect for you based on your actions. The police have also beefed up their forces, and will call out the SWAT teams or even the National Guard should the regular beat cops prove insufficient."
+  "PlotShort": "A sequel to the hit video game Grand Theft Auto, this game once again puts the player in the role of an aspiring thug hoping to climb to the top of the criminal world by completing missions..."
  },
  "imp-g-606070": {
   "imdbID": "tt1323508",
@@ -67341,7 +67341,7 @@ window.CULTURE_OMDB = {
     "Value": "8.2/10"
    }
   ],
-  "Plot": "An epic story of an American marine and a Soviet soldier in WWII."
+  "PlotShort": "An epic story of an American marine and a Soviet soldier in WWII."
  },
  "imp-g-612481": {
   "imdbID": "tt0299682",
@@ -67388,7 +67388,7 @@ window.CULTURE_OMDB = {
     "Value": "8.4/10"
    }
   ],
-  "Plot": "It in the violent future of 2291. The New Earth Government has made violent fights legal as the New Earth Government's bid to control violence amongst deep space miners. The NEG and the Liandri Mining Corporation have set up a enterprise, where violence and conflicts are settled in violent gladiatorial death matches for outer space's most violent and skilled warriors. professional warriors. The year is now 2341, leagues of professional warriors now anticipate in a public Tournament where all professional warriors fight-to-the death in spectacles of violence and bloodshed. And one of the best professional warriors in the business enters the tournament, where as he sets out to crush his opponents and win the Tornament."
+  "PlotShort": "In a violent future, a professional warrior takes part in a legal public gladiatorial tournament where leagues of professional warriors battle to the death."
  },
  "imp-g-611076": {
   "imdbID": "tt1085850",
@@ -67402,7 +67402,7 @@ window.CULTURE_OMDB = {
     "Value": "7.3/10"
    }
   ],
-  "Plot": "Step into the boots of Boyd Travers, Private First Class of the 82nd Airborne Division and engage in battles throughout Europe. From rocky beginnings in Sicily to war- winning triumphs in Germany, each mission begins behind enemy lines, with an intense and fully interactive airdrop. View the entire operation from the air, and then control your parachute to choose your landing spot. On the ground, gather your senses and assess the terrain. A wide variety of authentic, customizable weapons are at your disposal, each with distinct characteristics. Choose your path in this free roaming FPS environment."
+  "PlotShort": "Step into the boots of Boyd Travers, Private First Class of the 82nd Airborne Division and engage in battles throughout Europe. From rocky beginnings in Sicily to war- winning triumphs in Germany."
  },
  "imp-g-608873": {
   "imdbID": "tt0488998",
@@ -67427,7 +67427,7 @@ window.CULTURE_OMDB = {
     "Value": "9.0/10"
    }
   ],
-  "Plot": "A larger more powerful agency are systematically eliminating assassins in a series of hits, who are all from Agent 47's contract killing firm, The Internatonal Contract Agency (ICA). Sensing that he may be the next target, 47 travels to the United States and other parts of the world to make a killing."
+  "PlotShort": "A larger more powerful agency are systematically eliminating assassins in a series of hits, who are all from Agent 47's contract killing firm, The Internatonal Contract Agency (ICA). ..."
  },
  "imp-g-612835": {
   "imdbID": "tt1121103",
@@ -67452,7 +67452,7 @@ window.CULTURE_OMDB = {
     "Value": "7.4/10"
    }
   ],
-  "Plot": "In 2013, Mexican, American, and Canadian governments create a new free trade treaty. A coup led by a general strikes in Mexico. The Canadian prime minister is killed. American and Mexican presidents are missing. Now, is up to the Ghosts to rescue the presidents and to end the civil war."
+  "PlotShort": "In 2013, Mexican, American, and Canadian governments pact a treaty id free trade."
  },
  "imp-g-612569": {
   "imdbID": "tt0874889",
@@ -67489,7 +67489,7 @@ window.CULTURE_OMDB = {
     "Value": "6.8/10"
    }
   ],
-  "Plot": "Wayne Holden, a soldier, attempts to overthrow NEVEC, who still vie for control over E.D.N. III, and help colonization efforts for the remainder of the human race by destroying the Akrid."
+  "PlotShort": "Wayne Holden, a soldier, attempts to overthrow NEVEC, who still vie for control over E.D.N. III, and help colonization efforts for the remainder of the human race by destroying the Akrid."
  },
  "imp-g-606062": {
   "imdbID": "tt0823463",
@@ -67503,7 +67503,7 @@ window.CULTURE_OMDB = {
     "Value": "8.7/10"
    }
   ],
-  "Plot": "Just when the humans of the planet Sera attain peace after a 79 year war amongst each other, the Locust horde comes out the planet's crust to kill every human on the planet. Billions are slaughtered. In a desperate move, humans retreat to the Jacinto Plateau, the last safe place on the planet, and use satellites and chemical weapons to destroy the other 90% of the planet, and hopefully their threat along with them. When the locusts break through the plateau's defenses, Marcus Fenix, a young soldier in the elite Gears unit of the Coalition of Organized Governments (COG), disobeys orders to hold his position at Jacinto's defenses to try and save his father trapped between the Locusts and his own men. Caught an accused of deserting, he is sentenced to 40 years in Jacinto prison. 14 years into the sentence is where the game picks up, when Marcus is rescued by his military colleague and friend, Dominic Santiago. He rejoins the army, and, with the help of Alpha squad members Augustus Cole and Damon Baird, must now destroy the Locust threat and bring peace to what is left of this Romano-Greco futuristic society."
+  "PlotShort": "Mankind's epic struggle for survival against a dominating Locust Horde, a nightmarish race of creatures that surface from the planet's vortex."
  },
  "imp-g-624411": {
   "imdbID": "tt0466736",
@@ -67516,7 +67516,7 @@ window.CULTURE_OMDB = {
     "Value": "7.2/10"
    }
   ],
-  "Plot": "Reworked version of Half-Life: Counter-Strike (2000) with the addition of all-new multiplayer maps and high-detail player and weapon models."
+  "PlotShort": "Reworked version of Half-Life: Counter-Strike (2000) with the addition of all-new multiplayer maps and high-detail player and weapon models."
  },
  "imp-g-608116": {
   "imdbID": "tt0769505",
@@ -67563,7 +67563,7 @@ window.CULTURE_OMDB = {
     "Value": "7.7/10"
    }
   ],
-  "Plot": "Players have the opportunity to race the world's most exotic sports cars on a number of tracks. They can either attempt to evade the police, or play as the law enforcement, and track down speedsters."
+  "PlotShort": "Players have the opportunity to race the world's most exotic sports cars on a number of tracks. They can either attempt to evade the police, or play as the law enforcement, and track down speedsters."
  },
  "imp-g-608589": {
   "imdbID": "tt0469287",
@@ -67591,7 +67591,7 @@ window.CULTURE_OMDB = {
     "Value": "8.2/10"
    }
   ],
-  "Plot": "You are a prisoner being transported across the galaxy, but when your transport crashes you must fight your way across dangerous alien worlds."
+  "PlotShort": "You are a prisoner being transported across the galaxy, but when your transport crashes you must fight your way across dangerous alien worlds."
  },
  "imp-g-612309": {
   "imdbID": "tt4374652",
@@ -67604,7 +67604,7 @@ window.CULTURE_OMDB = {
     "Value": "8.5/10"
    }
   ],
-  "Plot": "A defense of your castle and a siege of the enemies' during the Crusades."
+  "PlotShort": "A defense of your castle and a siege of the enemies' during the Crusades."
  },
  "imp-g-608721": {
   "imdbID": "tt0386040",
@@ -67618,7 +67618,7 @@ window.CULTURE_OMDB = {
     "Value": "8.3/10"
    }
   ],
-  "Plot": "The sequel to one of the most successful PC games of all-time: The Sims (2000). In The Sims 2, players have a wide range of new options, socials, objects and lots more. The game is more realistic than the first as in The Sims 2 you can experience different life stages and even own a car (Nightlife expansion pack). As well as having babies (and twins), inheriting family genes, going to uni (University expansion pack), creating towns, having a more close-up experience, having wants and fears and creating extreme mansions - there are hundreds more things to do."
+  "PlotShort": "The sequel to one of the most successful PC games of all-time: The Sims (2000). In The Sims 2, players have a wide range of new options, socials, objects and lots more."
  },
  "imp-g-611377": {
   "imdbID": "tt8434298",
@@ -67656,7 +67656,7 @@ window.CULTURE_OMDB = {
     "Value": "8.1/10"
    }
   ],
-  "Plot": "Head to the past as Agent 47 wanders in and out of delirium in Romania (in the year 2000, some time before the events of \"Hitman 2\"), reminiscing about his past missions as a corrupt French police inspector surrounds his apartment and prepares to eliminate him, and all the while the CIA, FBI and other international covert bodies begin to distance themselves from 47's agency. The game missions cover 47's memory of those past missions during this standoff."
+  "PlotShort": "In Paris, the wounded Agent 47 remembers the missions from his past."
  },
  "imp-g-611652": {
   "imdbID": "tt0339846",
@@ -67669,7 +67669,7 @@ window.CULTURE_OMDB = {
     "Value": "7.4/10"
    }
   ],
-  "Plot": "First-person shooter video game designed mainly for multiplayer gaming. It is the second game in the Unreal Tournament series and introduced the Adrenaline power-up and double-jumping."
+  "PlotShort": "First-person shooter video game designed mainly for multiplayer gaming. It is the second game in the Unreal Tournament series and introduced the Adrenaline power-up and double-jumping."
  },
  "imp-g-613130": {
   "imdbID": "tt0381105",
@@ -67694,7 +67694,7 @@ window.CULTURE_OMDB = {
     "Value": "7.4/10"
    }
   ],
-  "Plot": "Replacing commentators John Motson and Ally McCoist with Clive Tyldesley and Andy Gray, FIFA 2006 returns with new controls and gameplay, and over 10,000 players for the 2005-06 seasons."
+  "PlotShort": "Replacing commentators John Motson and Ally McCoist with Clive Tyldesley and Andy Gray, FIFA 2006 returns with new controls and gameplay, and over 10,000 players for the 2005-06 seasons."
  },
  "imp-g-615234": {
   "imdbID": "tt0481239",
@@ -67720,7 +67720,7 @@ window.CULTURE_OMDB = {
     "Value": "7.5/10"
    }
   ],
-  "Plot": "In this video game adaptation of J.K.Rowling's third installment of the hit book series, we follow Harry, Ron and Hermione in their adventures."
+  "PlotShort": "In this video game adaptation of J.K.Rowling's third installment of the hit book series, we follow Harry, Ron and Hermione in their adventures."
  },
  "imp-g-610058": {
   "imdbID": "tt0846079",
@@ -67744,7 +67744,7 @@ window.CULTURE_OMDB = {
     "Value": "8.4/10"
    }
   ],
-  "Plot": "After the conclusion of The King of Iron Fist Tournament 4, an intense battle between father and son, Kazuya Mishima and Jin Kazama, took place at Hon-maru, located deep within the Mishima estate. Driven by a unflinching hate and resentment to destroy the father he has never known, Jin Kazama emerged as the victor. The eldest Mishima, Heihachi, enters the Hon-maru only to immediately gaze upon the unconscious body of his estranged and now defeated son, Kazuya. \"What a pathetic wretch...You worthless coward!\" So began the fated battle between Heihachi and Jin. Utterly consumed with the memory of Heihachi's vile betrayal 2 years early, Jin begins to manifest the Devil Blood he inherited from his father, Kazuya. Jin's black wings spread, Devil markings surface on his upper body. Heihachi, completely overwhelmed by Jin's inhuman strength and now defeated, can only prepare himself for his imminent death. On the verge of taking the life of his grandfather, Heihachi, Jin manages to momentarily regain control of himself. \"Thank my mother, Jun Kazama, for your life.\" Jin said, before taking flight through the Hon-maru ceiling and into the night sky. The sounds of battle gave way to an eerie silence as Heihachi lay spread out on the ground contemplating the events that had just transpired. The silence was soon interrupted by what sounded like approaching aircraft. The roar of the aircraft increased and the sounds of something being ejected was heard in the distance. Unexpectedly, a group of \"Jack\" robots crashed through the Hon-Maru ceiling. At first, Heihachi suspected that Kazuya and his associates were responsible for the intrusion but realized that Kazuya was just as bewildered and stunned by the surprise attack. \"Who sent you?! Why are you here?!\" yells Heihachi as the first wave of Jacks approaches. With little choice left, Heihachi Mishima and Kazuya Mishima, father and son, form an unlikely alliance and together battle wave upon wave of Jacks, but reinforcements appear as fast as each Jack robot is disabled. Heihachi begins to tire and lose his breath. Kazuya, seizing the opportunity to rid himself of Heihachi once and for all, betrays him by mercilessly throwing him into the path of the oncoming army of Jack robots, and uses the opportunity to make his own escape from the now robot infested Hon-maru. A few moments after, Hon-maru is devastated by a titanic explosion. Close by, on a cliff top, the battle is watched by a man dressed in black. He raises his hand to his ear and speaks into his communication device. \"Heihachi Mishima is dead...\" At that very moment, a Jack robot attacks unexpectedly from behind but is sliced in half instantly by the mysterious man, as he disappears into the night. Hon-maru is completely destroyed, nothing but a raging inferno left in it's place. Once the aircraft disappear into the night, a pile of debris was blown apart as something emerged from the earth, unseen. The very next day, news of Heihachi Mishima's death spread rapidly across the globe. Most people believed that Heihachi's death would bring about the end of the Mishima Zaibatsu, but behind the scenes someone else had taken control, and business went on as usual. A month later, it was announced that the Mishima Zaibatsu will hold the King of Iron Fist Tournament 5."
+  "PlotShort": "After the conclusion of The King of Iron Fist Tournament 4, an intense battle between father and son, Kazuya Mishima and Jin Kazama, took place at Hon-maru, located deep within the Mishima ..."
  },
  "imp-g-608437": {
   "imdbID": "tt0314015",
@@ -67758,7 +67758,7 @@ window.CULTURE_OMDB = {
     "Value": "9.1/10"
    }
   ],
-  "Plot": "On the island of Vvardenfell, the native 'Dunmer' maintain an uneasy relationship with each other, and with the ruling Empire. The mythical Ghostgate - said to protect the island and the ..."
+  "PlotShort": "On the island of Vvardenfell, the native 'Dunmer' maintain an uneasy relationship with each other, and with the ruling Empire. The mythical Ghostgate - said to protect the island and the ..."
  },
  "imp-g-606777": {
   "imdbID": "tt0891492",
@@ -67783,7 +67783,7 @@ window.CULTURE_OMDB = {
     "Value": "7.4/10"
    }
   ],
-  "Plot": "A family of undercover superheroes, attempting to live quietly, are forced to save the world."
+  "PlotShort": "A family of undercover superheroes, attempting to live quietly, are forced to save the world."
  },
  "imp-g-611162": {
   "imdbID": "tt0386126",
@@ -67808,7 +67808,7 @@ window.CULTURE_OMDB = {
     "Value": "7.5/10"
    }
   ],
-  "Plot": "Feel the freedom of creating your own zoo like you dream it, with average graphics and a big variety of animals and a lot of different buildings and plants you will enjoy management and creation like never before"
+  "PlotShort": "Feel the freedom of creating your own zoo like you dream it, with average graphics and a big variety of animals and a lot of different buildings and plants you will enjoy management and creation like never before"
  },
  "imp-g-611223": {
   "imdbID": "tt0243567",
@@ -67820,7 +67820,7 @@ window.CULTURE_OMDB = {
     "Value": "8.1/10"
    }
   ],
-  "Plot": "When John Mullins, a soldier in U.S. based mercenary known as \"soldier of fortune\" and his partner Aaron \"Hawk\" Parsons are assigned to stop the nukes from falling in the wrong hands and prevent any terrorists from their deadly plans."
+  "PlotShort": "When John Mullins, a soldier in U.S. based mercenary known as \"soldier of fortune\" and his partner Aaron \"Hawk\" Parsons are assigned to stop the nukes from falling in the wrong hands and prevent any terrorists from their deadly plans."
  },
  "imp-g-607418": {
   "imdbID": "tt5736392",
@@ -67844,7 +67844,7 @@ window.CULTURE_OMDB = {
     "Value": "7.1/10"
    }
   ],
-  "Plot": "Duke Nukem returns to his platforming roots in this throwback to his earlier games. This time, Duke fights his way across New York city's towering skyscrapers and through its gritty subway stations on the hunt for power-hungry villain, Mech Morphix. Mutants of every kind are thrown at Duke as he chases Morphix through eight large environments and avoids the green slime called GLOPP that's the cause of all the chaos."
+  "PlotShort": "Duke Nukem returns to his platforming roots in this throwback to his earlier games. This time, Duke fights his way across New York city's towering skyscrapers and through its gritty subway ..."
  },
  "imp-g-611163": {
   "imdbID": "tt0320772",
@@ -67868,7 +67868,7 @@ window.CULTURE_OMDB = {
     "Value": "8.1/10"
    }
   ],
-  "Plot": "Teams of worms armed to the teeth with the most advanced weaponry (including banana bombs and exploding sheep) battle in a crazy tournament."
+  "PlotShort": "Teams of worms armed to the teeth with the most advanced weaponry (including banana bombs and exploding sheep) battle in a crazy tournament."
  },
  "imp-g-612146": {
   "imdbID": "tt6273446",
@@ -67893,7 +67893,7 @@ window.CULTURE_OMDB = {
     "Value": "8.0/10"
    }
   ],
-  "Plot": "An arena where robots go to kill each other."
+  "PlotShort": "An arena where robots go to kill each other."
  },
  "imp-g-616994": {
   "imdbID": "tt0829285",
@@ -67927,7 +67927,7 @@ window.CULTURE_OMDB = {
     "Value": "7.6/10"
    }
   ],
-  "Plot": "In this expansion pack for the popular PC game, you can give your Sims pets, including dogs, cats, iguanas, fish, birds, etc. You can also choose from many homes in a newly created neighborhood."
+  "PlotShort": "In this expansion pack for the popular PC game, you can give your Sims pets, including dogs, cats, iguanas, fish, birds, etc. You can also choose from many homes in a newly created neighborhood."
  },
  "imp-g-611676": {
   "imdbID": "tt0276506",
@@ -67941,7 +67941,7 @@ window.CULTURE_OMDB = {
     "Value": "7.9/10"
    }
   ],
-  "Plot": "\"The Sims\" is a close up look at a family of Will Wright's critically acclaimed \"Sim City\" series. In this game you create a family of \"Sims\" and build a house for them on the lot they are put on. As the game progresses, your Sims lives take a turn for better or worse. You get jobs and earn money, buy equipment to increase your skills, make friends with other Sims, fall in love and get married and ultimately have a bouncing baby Sim. However, disasters do strike in the Sim world; pipes can burst and start floods, fires can break out and burn up things, you can get robbed by burglars, and if not properly taken care of; your Sims can starve to death. The game includes many real-life aspects as realistically as possible. Who knows? Maybe your Sims will finally be able to buy that Plasma Vision Widescreen TV some day..."
+  "PlotShort": "\"The Sims\" is a close up look at a family of Will Wright's critically acclaimed \"Sim City\" series. In this game you create a family of \"Sims\" and build a house for them on the lot they are put on."
  },
  "imp-g-611170": {
   "imdbID": "tt0491242",
@@ -67965,7 +67965,7 @@ window.CULTURE_OMDB = {
     "Value": "8.2/10"
    }
   ],
-  "Plot": "Devan Shell returns, forcing Jazz Jackrabbit, the rabbit superhero of the first game to team up with his brother Spaz and a female rabbit named Lori, and battle him and his minions."
+  "PlotShort": "Devan Shell returns, forcing Jazz Jackrabbit, the rabbit superhero of the first game to team up with his brother Spaz and a female rabbit named Lori, and battle him and his minions."
  },
  "imp-g-610055": {
   "imdbID": "tt0228246",
@@ -67978,7 +67978,7 @@ window.CULTURE_OMDB = {
     "Value": "8.7/10"
    }
   ],
-  "Plot": "In the early 21st century, The city of Los Angeles has been taken over by murderous aliens and the LAPD (Los Angeles Police Department) has mutated. The streets of L.A. has become a infestation zone. Only one man can take out the trash and that man is the man who loves to kick ass and chew bubblegum... Returning to Earth and armed with a arsenal of weaponry, blonde action hero Duke Nukem takes on the murderous aliens and the mutant Los Angeles police officers in a spectacular ultra-violent showdown, from the red light district to the football stadium, Duke is the only man who can save the earth and stop the murderous aliens who need exterminating."
+  "PlotShort": "Blonde action hero Duke Nukem takes on murderous aliens and mutated Los Angeles police officers that have taken over Los Angeles."
  },
  "imp-g-608879": {
   "imdbID": "tt0289421",
@@ -67992,7 +67992,7 @@ window.CULTURE_OMDB = {
     "Value": "8.5/10"
    }
   ],
-  "Plot": "1945, The Nazis are planning to resurrect Heinrich I, after being imprisoned. It is up to B.J Blazkowicz, an O.S.A soldier, to foil the operation."
+  "PlotShort": "1945, The Nazis are planning to resurrect Heinrich I, after being imprisoned. It is up to B.J Blazkowicz, an O.S.A soldier, to foil the operation."
  },
  "imp-g-650107": {
   "imdbID": "tt0260264",
@@ -68005,7 +68005,7 @@ window.CULTURE_OMDB = {
     "Value": "7.8/10"
    }
   ],
-  "Plot": "Players guide a yellow, pie-shaped creature around a single maze, munching dots while avoiding four roaming ghosts. Four energizer dots are on the board, one in each corner. Eating one of these special dots will temporarily empower Pac-Man to turn the tables on the ghosts. Each time all the dots in a maze are eaten, play resumes with a fresh screen."
+  "PlotShort": "Navigate Pac-Man through a maze escaping ghosts and eating Pac-Dots."
  },
  "imp-g-618697": {
   "imdbID": "tt0242391",
@@ -68018,7 +68018,7 @@ window.CULTURE_OMDB = {
     "Value": "7.2/10"
    }
   ],
-  "Plot": "An arcade game where you first select a character of four drivers and their cabs, each of whom has slightly different attributes: Axel is the well-balanced cab choice, Gina has the best acceleration/deceleration and braking, B.D. Joe has the fastest floored speed but least controllability, and Gus has the heaviest cab, enabling him to drive well off-road and even onto most oncoming traffic. Then you drive a taxi cab through a virtual San Francisco. Your goal is to try and earn big cab fares, by picking up any customers and dropping them off at their destination spots as fast as possible before you run out of time!"
+  "PlotShort": "An arcade game where you drive a taxi cab through a virtual San Francisco. Your goal is to try and earn big cab fares, by picking up passengers and dropping them off at their destination spots before you run out of time."
  },
  "imp-g-609932": {
   "imdbID": "tt0936483",
@@ -68030,7 +68030,7 @@ window.CULTURE_OMDB = {
     "Value": "7.6/10"
    }
   ],
-  "Plot": "When the planet of Carrotus is attacked by the evil turtle Devan Shell, who kidnaps the beautiful rabbit Eva Earlong and sends his minions out to various planets, Jazz Jackrabbit takes ..."
+  "PlotShort": "When the planet of Carrotus is attacked by the evil turtle Devan Shell, who kidnaps the beautiful rabbit Eva Earlong and sends his minions out to various planets, Jazz Jackrabbit takes ..."
  },
  "imp-g-658442": {
   "imdbID": "tt0261792",
@@ -68055,7 +68055,7 @@ window.CULTURE_OMDB = {
     "Value": "7.5/10"
    }
   ],
-  "Plot": "Game players have the chance to join with Buzz and his group of toys to help rescue Woody."
+  "PlotShort": "Game players have the chance to join with Buzz and his group of toys to help rescue Woody."
  },
  "imp-g-639911": {
   "imdbID": "tt0265795",
@@ -68067,7 +68067,7 @@ window.CULTURE_OMDB = {
     "Value": "8.9/10"
    }
   ],
-  "Plot": "It's the Year of the Dragon! Every tweleve years, Dragon Kingdom has a festival where the fairies deliver a new batch of dragon eggs to the Dragon Worlds. But this year is a little different. Far away, on the opposite side of the world, an evil Sorceress plans on using the eggs for her evil magic. So all 150 eggs are stolen by her army of Rhynocs and her disciple, Bianca. It's up to Spyro, Sparx, and Hunter the Cheetah to get them back."
+  "PlotShort": "It's the Year of the Dragon! Every tweleve years, Dragon Kingdom has a festival where the fairies deliver a new batch of dragon eggs to the Dragon Worlds. But this year is a little ..."
  },
  "imp-g-608720": {
   "imdbID": "tt0286585",
@@ -68081,7 +68081,7 @@ window.CULTURE_OMDB = {
     "Value": "9.2/10"
    }
   ],
-  "Plot": "In the near future, cybernetic upgrades are becoming available, armed bots are used for peacekeeping, a new plague is spreading around the world and riots and terrorism are rampant. Special agent J.C. Denton uncovers a worldwide conspiracy."
+  "PlotShort": "In a dark cyberpunk future where poverty, disease, oppression and terrorism are widespread, J.C. Denton, a new cybernetically-enhanced special agent, finds evidence of a massive conspiracy when his brother, also an agent, goes rogue."
  },
  "imp-g-612508": {
   "imdbID": "tt0482488",
@@ -68106,7 +68106,7 @@ window.CULTURE_OMDB = {
     "Value": "8.4/10"
    }
   ],
-  "Plot": "A young cute purple dragon named Spyro has set out to free his dragon buddies, after when they had fallen victim to the villainous Gnasty Gnorc, who has turned them into crystals! It's up to Spyro to recover their treasure hoard from the invading Gnorcs, and then confront and defeat Gnasty Gnorc himself."
+  "PlotShort": "A young cute purple dragon named Spyro has set out to free his dragon buddies, after when they had fallen victim to the villainous Gnasty Gnorc, who has turned them into crystals! It's up ..."
  },
  "imp-g-703477": {
   "imdbID": "tt0852701",
@@ -68130,7 +68130,7 @@ window.CULTURE_OMDB = {
     "Value": "6.6/10"
    }
   ],
-  "Plot": "Minesweeper is a single-player puzzle game wherein the player must find and defuse hidden mines without detonating them."
+  "PlotShort": "Minesweeper is a single-player puzzle game wherein the player must find and defuse hidden mines without detonating them."
  },
  "imp-g-704985": {
   "imdbID": "tt5987646",
@@ -68143,7 +68143,7 @@ window.CULTURE_OMDB = {
     "Value": "7.5/10"
    }
   ],
-  "Plot": "The Japanese mascot for Pepsi®, Pepsiman, runs through various environments refilling a Pepsi® vending machine in San Francisco, re-hydrating some New-Yorkers on-top of a burning building ..."
+  "PlotShort": "The Japanese mascot for Pepsi®, Pepsiman, runs through various environments refilling a Pepsi® vending machine in San Francisco, re-hydrating some New-Yorkers on-top of a burning building ..."
  },
  "imp-g-642210": {
   "imdbID": "tt0291777",
@@ -68157,7 +68157,7 @@ window.CULTURE_OMDB = {
     "Value": "6.7/10"
    }
   ],
-  "Plot": "Experience Flik's journey throughout Ant Island."
+  "PlotShort": "Experience Flik's journey throughout Ant Island."
  },
  "wl-g-809098": {
   "imdbID": "tt8651604",
@@ -68171,7 +68171,7 @@ window.CULTURE_OMDB = {
     "Value": "8.6/10"
    }
   ],
-  "Plot": "Years have passed since the legions of hell have set foot in this world, but now a new demonic invasion has begun, and humanity's last hope will rest in the hands of three lone demon hunters, each offering a radically different play style."
+  "PlotShort": "Years have passed since the legions of hell have set foot in this world, but now a new demonic invasion has begun, and humanity's last hope will rest in the hands of three lone demon hunters, each offering a radically different play style."
  },
  "wl-g-681318": {
   "imdbID": "tt2739708",
@@ -68185,7 +68185,7 @@ window.CULTURE_OMDB = {
     "Value": "8.7/10"
    }
   ],
-  "Plot": "A video game where you play as sailor, privateer and assassin Edward Kenway exploring on and around the islands in the Caribbean Sea during the early 17th century."
+  "PlotShort": "A video game where you play as sailor, privateer and assassin Edward Kenway exploring on and around the islands in the Caribbean Sea during the early 17th century."
  },
  "wl-g-734810": {
   "imdbID": "tt5702630",
@@ -68199,7 +68199,7 @@ window.CULTURE_OMDB = {
     "Value": "8.2/10"
    }
   ],
-  "Plot": "Fight your way through epic battles going from tight urban combat in a besieged French city to big open spaces in the Italian Alps or frantic combats in the Arabic sand dunes. Experience large-scale battles as infantry or piloting vehicles on land, air and sea, from the tanks and bikes on the ground, to bi-planes and gigantic battleships."
+  "PlotShort": "Fight your way through battles going from urban combat in a besieged French city to open spaces in the Italian Alps or frantic combats in the Arabic sand dunes. Experience large-scale battles as infantry or piloting vehicles on land, air and sea, from the tanks and bikes on the ground, to bi-planes and gigantic battleships."
  },
  "wl-g-611222": {
   "imdbID": "tt0213117",
@@ -68213,7 +68213,7 @@ window.CULTURE_OMDB = {
     "Value": "9.2/10"
    }
   ],
-  "Plot": "Long ago, a mysterious being known as Hoborg created a world called the Neverhood, made entirely of an odd substance known as \"Klay.\" However, Hoborg was lonely and, using a mystical \"life seed\", created a \"Klay man\" that he called Klogg. Klogg was evil, however, and stole Hoborg's mystical crown,which was his secret to life; without it, he fell into a deep sleep! Luckily, Willie Trombone and his pal, Big Robot Bill, used a \"life seed\" to create Klaymen. Now, Klaymen must journey throughout the mysterious world that is the Neverhood, solve puzzles, dethrone Klogg, revive Hoborg from his long sleep, and save the Neverhood!"
+  "PlotShort": "Long ago, a mysterious being known as Hoborg created a world called the Neverhood, made entirely of an odd substance known as \"Klay.\" However, Hoborg was lonely and, using a mystical \"life ..."
  },
  "wl-g-729768": {
   "imdbID": "tt3817070",
@@ -68239,13 +68239,13 @@ window.CULTURE_OMDB = {
     "Value": "8.4/10"
    }
   ],
-  "Plot": "An emotional account of two brothers journey into the wild to bring the medicine for their father's ailment."
+  "PlotShort": "An emotional account of two brothers journey into the wild to bring the medicine for their father's ailment."
  },
  "wl-g-855790": {
   "imdbID": "tt12497176",
   "Poster": "https://m.media-amazon.com/images/M/MV5BNWViOTgzZjItNWE0OC00NDljLTlhMzItNGI0YTExYTU2MjU5XkEyXkFqcGdeQXVyNzU3Nzk4MDQ@._V1_SX300.jpg",
   "Ratings": [],
-  "Plot": "Kena: Bridge of Spirits is an adventure about a young girl who travels to an abandoned village in the hope of finding a sacred mountain shrine. To get there she must face and overcome the ..."
+  "PlotShort": "Kena: Bridge of Spirits is an adventure about a young girl who travels to an abandoned village in the hope of finding a sacred mountain shrine. To get there she must face and overcome the ..."
  },
  "wl-g-798011": {
   "imdbID": "tt7747832",
@@ -68258,7 +68258,7 @@ window.CULTURE_OMDB = {
     "Value": "8.4/10"
    }
   ],
-  "Plot": "The Character is a member of the literature club, along with four cute girls. In each chapter, the protagonist will create a poem based around twenty words selected by the player, which the..."
+  "PlotShort": "The Character is a member of the literature club, along with four cute girls. In each chapter, the protagonist will create a poem based around twenty words selected by the player, which the..."
  },
  "wl-g-784402": {
   "imdbID": "tt7791150",
@@ -68271,13 +68271,13 @@ window.CULTURE_OMDB = {
     "Value": "8.5/10"
    }
   ],
-  "Plot": "This is the story of a knight, in a quest to uncover the secrets of the long-abandoned kingdom of the Hallownest insects, whose depths attract the adventurous and brave with the promise of treasure or the answer to ancient mysteries."
+  "PlotShort": "This is the story of a knight, in a quest to uncover the secrets of the long-abandoned kingdom of the Hallownest insects, whose depths attract the adventurous and brave with the promise of treasure or the answer to ancient mysteries."
  },
  "wl-g-711070": {
   "imdbID": "tt3819090",
   "Awards": "5 wins & 1 nomination.",
   "Ratings": [],
-  "Plot": "No Man's Sky is a game about exploration and survival in an infinite procedurally generated galaxy. Whether a distant mountain or a planet hanging low on the horizon, you can go there. You can fly seamlessly from the surface of a planet to another, and every star in the sky is a sun that you can visit. Where you'll go and how fast you'll make your way through this universe is up to you. It's yours for the taking. Explore uncharted solar systems and catalogue unique new forms of life. Every planet's landscape is different from the next, and populated by species never before encountered. Find ancient artifacts that could reveal the secrets behind the universe. Choose whether to share your discoveries with other players. They're exploring the same vast universe in parallel; perhaps you'll make your mark on their worlds as well as your own. Every solar system, planet, ocean and cave is filled with danger, and you are vulnerable. Your ship and suit are fragile, and every encounter can test your skills to the limit. From dogfighting in space to firstperson combat on a planet's surface, you will face foes ready to overwhelm you. And one mistake could see you lose everything. In No Man's Sky, every victory and every defeat has lasting consequences. Whether you want to explore and see things never before discovered, or directly set course for the centre of the galaxy, how you play No Man's Sky is up to you. But you cannot take your voyage lightly. You'll need to prepare. Collect precious resources on the surfaces of planets and trade them for the ships, suits and equipment that will take you to your destiny in the stars."
+  "PlotShort": "No Man's Sky is a game about exploration and survival in an infinite procedurally generated galaxy. Whether a distant mountain or a planet hanging low on the horizon, you can go there. You ..."
  },
  "wl-g-784009": {
   "imdbID": "tt11177022",
@@ -68291,7 +68291,7 @@ window.CULTURE_OMDB = {
     "Value": "8.9/10"
    }
   ],
-  "Plot": "You're a detective tasked with solving a murder in the strange world of Elysium. Utilize a new and innovative skill system to be the detective you want to be. Become a hero or an absolute disaster of a human being."
+  "PlotShort": "You're a detective tasked with solving a murder in the strange world of Elysium. Utilize a new and innovative skill system to be the detective you want to be. Become a hero or an absolute disaster of a human being."
  },
  "wl-g-811012": {
   "imdbID": "tt9386794",
@@ -68305,7 +68305,7 @@ window.CULTURE_OMDB = {
     "Value": "8.4/10"
    }
   ],
-  "Plot": "Gris is a hopeful young girl lost in her own world, dealing with a painful experience in her life. Her journey through sorrow is manifested in her dress, which grants new abilities to better navigate her faded reality."
+  "PlotShort": "Gris is a hopeful young girl lost in her own world, dealing with a painful experience in her life. Her journey through sorrow is manifested in her dress, which grants new abilities to better navigate her faded reality."
  },
  "wl-g-791436": {
   "imdbID": "tt9616440",
@@ -68319,7 +68319,7 @@ window.CULTURE_OMDB = {
     "Value": "7.7/10"
    }
   ],
-  "Plot": "Unable to die, a mysterious being attempts to escape a magical island prison, but every death sends him back to the beginning."
+  "PlotShort": "Unable to die, a mysterious being attempts to escape a magical island prison, but every death sends him back to the beginning."
  },
  "wl-g-846846": {
   "imdbID": "tt12924108",
@@ -68332,7 +68332,7 @@ window.CULTURE_OMDB = {
     "Value": "8.2/10"
    }
   ],
-  "Plot": "As ferry master to the deceased, build a boat to explore the world, care for your spirit friends, and guide them across mystical seas to finally release them into the afterlife. What will you leave behind?"
+  "PlotShort": "As ferry master to the deceased, build a boat to explore the world, care for your spirit friends, and guide them across mystical seas to finally release them into the afterlife. What will you leave behind?"
  },
  "wl-g-686575": {
   "imdbID": "tt0323138",
@@ -68345,7 +68345,7 @@ window.CULTURE_OMDB = {
     "Value": "6.8/10"
    }
   ],
-  "Plot": "Action Adventure Video Game"
+  "PlotShort": "Action Adventure Video Game"
  },
  "wl-g-614451": {
   "imdbID": "tt0475216",
@@ -68358,7 +68358,7 @@ window.CULTURE_OMDB = {
     "Value": "8.0/10"
    }
   ],
-  "Plot": "At the dawn of interstellar reasoning, as the first intelligent races took to the stars and began to interact with each other, they discovered a common thread - the legend of an ancient race that would one day \"deliver\" the universe. This race was known as the Humans. The Seekers alone held the key to the secret of the humans. Humanity did in fact exist, and the Seekers were doing all that they could to eradicate them. Under the guise of \"benevolent explores\" they spread methodically through out the galaxy destroying all human life they came in contact with. Consequently, the Seekers did in fact discover many new races and helped introduce them into the galactic arena. This served the Seekers two fold. It allowed them to constantly spread their influence and strengthen their military and civic control of the galaxy, and it allowed them to retain and magnify their image of philanthropic nobility. The Aurelian culture was rich with tales of humanity. When they were discovered by the Seekers many of their legends rekindled long dormant ideals within the galactic senate. With the added insight, knowledge, and technology that interstellar society offered the Aurelian's, it was not long before the Seekers duplicity was discovered. Enraged, the government formed a small covert faction within the Aurelian military to gather as much information about Seeker operations as possible. It was because of this group that Edumea, a small world inhabited by humans, was first discovered and a rescue organized."
+  "PlotShort": "At the dawn of interstellar reasoning, as the first intelligent races took to the stars and began to interact with each other, they discovered a common thread - the legend of an ancient ..."
  },
  "wl-g-748790": {
   "imdbID": "tt3847112",
@@ -68371,7 +68371,7 @@ window.CULTURE_OMDB = {
     "Value": "4.7/10"
    }
   ],
-  "Plot": "What worked in other first-person shooters will get you merc'd. Legendary game designer Cliff Bleszinski and Boss Key Productions crafted a chaotic, frenetic, multiplayer FPS for skilled ..."
+  "PlotShort": "What worked in other first-person shooters will get you merc'd. Legendary game designer Cliff Bleszinski and Boss Key Productions crafted a chaotic, frenetic, multiplayer FPS for skilled ..."
  },
  "wl-g-699699": {
   "imdbID": "tt3136698",
@@ -68385,7 +68385,7 @@ window.CULTURE_OMDB = {
     "Value": "7.5/10"
    }
   ],
-  "Plot": "A young boy awakens on a mysterious island after a storm. Armed with his wits and the guidance of a fox, he must explore the enigmatic island, reach the mysterious tower beckoning to him, and unlock its closely guarded secrets."
+  "PlotShort": "A young boy awakens on a mysterious island after a storm. Armed with his wits and the guidance of a fox, he must explore the enigmatic island, reach the mysterious tower beckoning to him, and unlock its closely guarded secrets."
  },
  "wl-g-766343": {
   "imdbID": "tt6141270",
@@ -68398,7 +68398,7 @@ window.CULTURE_OMDB = {
     "Value": "9.0/10"
    }
   ],
-  "Plot": "Set in the 90's, Kathy Rain tells the story of a strong-willed journalism major who has to come to terms with her own troubled past as she investigates the mysterious death of her recently deceased grandfather. Armed with her motorcycle, a pack of smokes, and a notepad, Kathy begins to delve into a local mystery surrounding her hometown that will take her on a harrowing journey full of emotional and personal turmoil. As she follows a trail of clues he left behind, questions emerge... What was Joseph Rain really looking for that night all those years ago? What turned him into a mere shell of a man, confined to a wheelchair? What secret did a suicidal young artist take with her to the grave, and why are so many people in Conwell Springs going mad? The truth is dark and sinister..."
+  "PlotShort": "Set in the 90's, Kathy Rain tells the story of a strong-willed journalism major who has to come to terms with her own troubled past as she investigates the mysterious death of her recently ..."
  },
  "wl-g-791359": {
   "imdbID": "tt7365064",
@@ -68412,7 +68412,7 @@ window.CULTURE_OMDB = {
     "Value": "7.1/10"
    }
   ],
-  "Plot": "A deep interactive adventure about love and lost, wonderfully narrated and that offers an intense cinematic experience. What are you willing to do for the one you love?"
+  "PlotShort": "A deep interactive adventure about love and lost, wonderfully narrated and that offers an intense cinematic experience. What are you willing to do for the one you love?"
  },
  "wl-g-636047": {
   "imdbID": "tt0976231",
@@ -68437,7 +68437,7 @@ window.CULTURE_OMDB = {
     "Value": "8.7/10"
    }
   ],
-  "Plot": "Armed with a camera capable of fighting ghosts, a teenage girl searches a haunted house in search of her brother."
+  "PlotShort": "Armed with a camera capable of fighting ghosts, a teenage girl searches a haunted house in search of her brother."
  },
  "wl-g-719269": {
   "imdbID": "tt6707774",
@@ -68450,7 +68450,7 @@ window.CULTURE_OMDB = {
     "Value": "8.8/10"
    }
   ],
-  "Plot": "Walk through a beautiful world and solve puzzles through the use of perspective."
+  "PlotShort": "Walk through a beautiful world and solve puzzles through the use of perspective."
  },
  "wl-g-607736": {
   "imdbID": "tt0498128",
@@ -68476,6 +68476,6 @@ window.CULTURE_OMDB = {
     "Value": "8.0/10"
    }
   ],
-  "Plot": "Taken place ten years after the first black ops, Alex mason, Sgt.Frank Woods and Jason Hudson are back in the biggest call of duty event. Later on the creators take you to 2025 where the military technology is being hacked by a notorious villain, Raul Menendez. its up to David mason and Harper to stop Menendez before he takes over the entire world"
+  "PlotShort": "Set in 2025, new unmanned machines have been taken over by Nicaraguan terrorist, Raul Menendez, forcing the U.S.A. to take action."
  }
 };
