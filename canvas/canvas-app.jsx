@@ -3497,10 +3497,36 @@ function MapView({ go }) {
   const drag = React.useRef(null);
   const raf = React.useRef(0);
   const [vb, setVb] = useState(HOME);
-  const vbRef = React.useRef(vb); vbRef.current = vb;
+  // ——— VIEW MODEL REWRITE (Fuad 2026-08-27, after the third gesture regression). The old
+  // design kept the pending view in vbRef but ALSO reassigned vbRef from the render body, so
+  // any unrelated re-render mid-gesture (lens, hover, the grow animation) stomped the target
+  // back to the stale rendered frame — the zoom-in "jumps then corrects itself" bug. And the
+  // preview was a CSS pixel transform on the <svg> itself, a second coordinate system that
+  // had to be kept in sync with the SVG-user-unit render by hand. New contract, one system:
+  //   vbRef       = the TARGET view. Written ONLY by preview()/commit(). Never in render.
+  //   renderedRef = what React last rendered, recorded in a pre-paint layout effect.
+  //   preview(v)  = set target + express (rendered → target) as a user-unit transform on the
+  //                 inner <g> — same math the viewBox commit performs, so commit == preview
+  //                 by construction and there is nothing to "correct".
+  //   flush()     = render the target (gesture end / programmatic).
+  // The svg element itself is never transformed, so getBoundingClientRect is always clean.
+  const vbRef = React.useRef(HOME);
+  const renderedRef = React.useRef(HOME);
+  const gestG = React.useRef(null);
   const [hover, setHover] = useState(null);
   const k = vb.w / 880;
-  const commit = (next) => { vbRef.current = next; if (!raf.current) raf.current = requestAnimationFrame(() => { raf.current = 0; setVb(vbRef.current); }); };
+  const sameVb = (a, b) => a.x === b.x && a.y === b.y && a.w === b.w && a.h === b.h;
+  const applyPreview = () => {
+    const g = gestG.current; if (!g) return;
+    const r0 = renderedRef.current, t = vbRef.current;
+    if (sameVb(r0, t)) { g.removeAttribute("transform"); return; }
+    const kk = r0.w / t.w;
+    g.setAttribute("transform", `translate(${r0.x - kk * t.x} ${r0.y - kk * t.y}) scale(${kk})`);
+  };
+  const flush = () => { if (!raf.current) raf.current = requestAnimationFrame(() => { raf.current = 0; setVb(vbRef.current); }); };
+  const preview = (next) => { vbRef.current = next; applyPreview(); };
+  const commit = (next) => { vbRef.current = next; applyPreview(); flush(); };
+  React.useLayoutEffect(() => { renderedRef.current = vb; applyPreview(); }, [vb]);
   // ——— cursor magnifier (fix 4, reworked 2026-07-17). SCALE-ONLY: the pointer is tracked in MAP
   // units (lens) and every bubble within LENS_R grows with a smooth cosine falloff (up to LENS_MAG
   // at the cursor), labels fade in and the nearest raises z-order — but POSITIONS STAY STATIC. The
@@ -4079,57 +4105,37 @@ function MapView({ go }) {
     const onWheel = (e) => {
       e.preventDefault();
       setLensThrottled(null);
-      // BURST-DRIFT FIX (Fuad 2026-08-27 "map scroll is kinda broken"): the first cut read
-      // getBoundingClientRect() on EVERY tick — but from tick 2 the svg is already CSS-scaled
-      // by tick 1, so the cursor ratios were taken against a moving rect and the zoom drifted.
-      // And one scale() about a shifting transform-origin cannot represent two stacked zooms
-      // around different cursor points. Now: cache the CLEAN layout rect once per burst
-      // (layout is transform-immune, so it stays true), and derive the preview as the EXACT
-      // translate+scale that maps the committed viewBox onto the pending one, origin 0 0.
-      let g = gest.current, rect = g && g.rect;
-      if (!rect) { el.style.transform = ""; rect = el.getBoundingClientRect(); }
-      const mx = (e.clientX - rect.left) / rect.width, my = (e.clientY - rect.top) / rect.height;
+      // The svg element carries no transform (previews live on the inner <g> in user units),
+      // so the rect is always the clean layout box and the target view is always vbRef —
+      // no per-burst caching, no rendered-frame assumptions. See the view-model contract
+      // at the top of the component.
+      const r = el.getBoundingClientRect();
+      const mx = (e.clientX - r.left) / r.width, my = (e.clientY - r.top) / r.height;
       const f = e.deltaY < 0 ? 1 / 1.18 : 1.18;
-      const v = (g && g.vb) || vbRef.current;
+      const v = vbRef.current;
       const w = Math.min(880, Math.max(70, v.w * f)), h = w * AR;
-      const vb = { x: v.x + mx * v.w - mx * w, y: v.y + my * v.h - my * h, w, h };
-      gest.current = { vb, rect };
-      const v0 = vbRef.current;                          // the frame the DOM is rendered at
-      el.style.transformOrigin = "0 0";
-      el.style.transform = `translate(${rect.width * (v0.x - vb.x) / vb.w}px, ${rect.height * (v0.y - vb.y) / vb.h}px) scale(${v0.w / vb.w})`;
+      preview({ x: v.x + mx * (v.w - w), y: v.y + my * (v.h - h), w, h });
       clearTimeout(wheelIdle);
-      wheelIdle = setTimeout(endGesture, 160);
+      wheelIdle = setTimeout(flush, 160);
     };
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => { el.removeEventListener("wheel", onWheel); clearTimeout(wheelIdle); if (raf.current) cancelAnimationFrame(raf.current); if (lensRaf.current) cancelAnimationFrame(lensRaf.current); if (growRaf.current) cancelAnimationFrame(growRaf.current); };
   }, []);
-  // ——— CHOPPINESS FIX (Fuad 2026-08-27): gestures are IMPERATIVE now (the Rotation TourMap
-  // idiom). A drag frame used to commit a new viewBox → a full React re-render of ~1,300
-  // markers+labels per frame. Now the drag translates the <svg> itself via CSS (one style
-  // mutation per move, zero renders) and the real viewBox commits ONCE on release. Pan never
-  // changes k, so the committed frame is pixel-identical to the previewed one.
-  const gest = React.useRef(null);   // { vb } — the viewBox math pending commit
-  const endGesture = () => {
-    const g = gest.current;
-    if (!g) return;
-    gest.current = null;
-    if (svgRef.current) { svgRef.current.style.transform = ""; svgRef.current.style.transformOrigin = ""; }
-    commit(g.vb);
-  };
+  // Gestures preview per event (one attribute write, zero React renders — the choppiness fix
+  // survives) and flush a single render at rest.
   const onDown = (e) => { if (e.button !== 0) return; drag.current = { mx: e.clientX, my: e.clientY, v: vbRef.current, moved: false }; setLensThrottled(null); };
   const onMove = (e) => {
     if (drag.current && svgRef.current) {
       const r = svgRef.current.getBoundingClientRect(), d = drag.current;
       const dx = e.clientX - d.mx, dy = e.clientY - d.my;
       if (Math.abs(dx) + Math.abs(dy) > 3) d.moved = true;
-      svgRef.current.style.transform = `translate(${dx}px, ${dy}px)`;
-      gest.current = { vb: { ...d.v, x: d.v.x - dx / r.width * d.v.w, y: d.v.y - dy / r.height * d.v.h } };
+      preview({ ...d.v, x: d.v.x - dx / r.width * d.v.w, y: d.v.y - dy / r.height * d.v.h });
       return;
     }
     const p = clientToMap(e.clientX, e.clientY); if (p) setLensThrottled(p);   // fisheye follows the cursor
   };
-  const stop = () => { drag.current = null; endGesture(); };
-  const onLeave = () => { drag.current = null; endGesture(); setLensThrottled(null); };
+  const stop = () => { if (drag.current) { drag.current = null; flush(); } };
+  const onLeave = () => { stop(); setLensThrottled(null); };
   // touch fallback: no hover, so a single tap sets the lens under the finger AND toggles a gentle
   // semantic zoom step toward that point (tap zoomed-out -> zoom in; tap zoomed-in -> zoom back out);
   // a drag still pans. This keeps tiny bubbles reachable on touch with no hover dependency.
@@ -4153,21 +4159,21 @@ function MapView({ go }) {
       const r = svgRef.current.getBoundingClientRect();
       const fx = ((a.clientX + b.clientX) / 2 - r.left) / r.width, fy = ((a.clientY + b.clientY) / 2 - r.top) / r.height;
       const w = Math.min(880, Math.max(70, p.v.w * f)), h = w * AR;
-      commit({ x: p.v.x + fx * p.v.w - fx * w, y: p.v.y + fy * p.v.h - fy * h, w, h });
+      preview({ x: p.v.x + fx * p.v.w - fx * w, y: p.v.y + fy * p.v.h - fy * h, w, h });
       return;
     }
     const t = e.touches[0], d = touch.current; if (!t || !d || !svgRef.current) return;
     if (Math.abs(t.clientX - d.x) + Math.abs(t.clientY - d.y) > 6) {
       if (!drag.current) drag.current = { mx: d.x, my: d.y, v: vbRef.current, moved: true };
       const r = svgRef.current.getBoundingClientRect(), dr = drag.current;
-      commit({ ...dr.v, x: dr.v.x - (t.clientX - dr.mx) / r.width * dr.v.w, y: dr.v.y - (t.clientY - dr.my) / r.height * dr.v.h });
+      preview({ ...dr.v, x: dr.v.x - (t.clientX - dr.mx) / r.width * dr.v.w, y: dr.v.y - (t.clientY - dr.my) / r.height * dr.v.h });
       d.moved = true;
     }
   };
   const onTouchEnd = (e) => {
     // end / restart pinch cleanly as fingers lift
-    if (pinch.current) { if (e.touches.length >= 2) { const [a, b] = [e.touches[0], e.touches[1]]; pinch.current = { d: fingerDist(a, b) || 1, v: vbRef.current }; } else pinch.current = null; touch.current = null; drag.current = null; return; }
-    const d = touch.current; drag.current = null; touch.current = null; if (!d || d.moved) return;
+    if (pinch.current) { if (e.touches.length >= 2) { const [a, b] = [e.touches[0], e.touches[1]]; pinch.current = { d: fingerDist(a, b) || 1, v: vbRef.current }; } else { pinch.current = null; flush(); } touch.current = null; drag.current = null; return; }
+    const d = touch.current; if (drag.current) { drag.current = null; flush(); } touch.current = null; if (!d || d.moved) return;
     const p = clientToMap(d.x, d.y); if (!p) return;
     setLens(p);                                   // magnify under the tap (hover-free)
     const v = vbRef.current, out = v.w < 300, f = out ? 1.6 : 1 / 1.6;   // toggle a zoom step
@@ -4190,11 +4196,14 @@ function MapView({ go }) {
         <div className="cv-map-zoom">
           <button type="button" onClick={() => zoomCenter(1 / 1.4)} aria-label="Zoom in" title="Zoom in">+</button>
           <button type="button" onClick={() => zoomCenter(1.4)} aria-label="Zoom out" title="Zoom out">−</button>
-          <button type="button" onClick={() => setVb(HOME)} aria-label="Reset view" title="Reset view">⌂</button>
+          <button type="button" onClick={() => commit(HOME)} aria-label="Reset view" title="Reset view">⌂</button>
         </div>
         <svg ref={svgRef} viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
           onMouseDown={onDown} onMouseMove={onMove} onMouseUp={stop}
           onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+          {/* every marker lives inside this group: gesture previews are a user-unit
+              transform here (see the view-model contract), never a CSS transform on the svg */}
+          <g ref={gestG}>
           {landPath && <path d={landPath} fill="#d3c4ab" stroke="none" />}
           {/* DEFAULT: one bubble per city (click to branch) + the ♥ works you're still chasing.
               FIX 3 (2026-07-17 r4) Z-ORDER: all ♥ leader lines are drawn FIRST, in their own layer,
@@ -4428,6 +4437,7 @@ function MapView({ go }) {
               </g>
             );
           })()}
+          </g>
         </svg>
         {hover && (
           <div className="cv-map-preview" style={{ left: Math.min(hover.mx + 16, (window.innerWidth || 1200) - 210), top: Math.min(hover.my + 16, (window.innerHeight || 800) - 160) }}>
