@@ -3844,7 +3844,20 @@ window.CANVAS_ARTWORKS = [
 {"id":"frederic-bazille-edmond-maitre","title":"Edmond Maître","artist":"Frédéric Bazille","artistId":"frederic-bazille","qid":"Q20188718","qidTrusted":true,"year":1869,"wish":true},
 {"id":"guercino-amnon-and-tamar","title":"Amnon and Tamar","artist":"Guercino","artistId":"guercino","qid":"Q20177254","qidTrusted":true,"year":1649,"wish":true},
 {"id":"guercino-joseph-and-potiphar-s-wife","title":"Joseph and Potiphar's Wife","artist":"Guercino","artistId":"guercino","qid":"Q20177260","qidTrusted":true,"year":1649,"wish":true},
-{"id":"guercino-self-portrait-before-a-painting-of-amor-fedele","title":"Self-Portrait before a Painting of \"Amor Fedele\"","artist":"Guercino","artistId":"guercino","qid":"Q20177402","qidTrusted":true,"year":1655,"wish":true}
+{"id":"guercino-self-portrait-before-a-painting-of-amor-fedele","title":"Self-Portrait before a Painting of \"Amor Fedele\"","artist":"Guercino","artistId":"guercino","qid":"Q20177402","qidTrusted":true,"year":1655,"wish":true},
+{"id":"derby-portrait-of-a-gentleman","title":"Portrait of a Gentleman","artist":"Joseph Wright of Derby","artistId":"derby","qid":"Q20178491","qidTrusted":true,"year":1770,"wish":true},
+{"id":"william-merritt-chase-a-friendly-call","title":"A Friendly Call","artist":"William Merritt Chase","artistId":"william-merritt-chase","qid":"Q20190485","qidTrusted":true,"year":1895,"wish":true},
+{"id":"derby-portrait-of-a-gentleman-nga-34160","title":"Portrait of a Gentleman","artist":"Joseph Wright of Derby","artistId":"derby","qid":"Q20178197","qidTrusted":true,"year":1760,"wish":true},
+{"id":"derby-the-corinthian-maid","title":"The Corinthian Maid","artist":"Joseph Wright of Derby","artistId":"derby","qid":"Q20179105","qidTrusted":true,"year":1782,"wish":true},
+{"id":"derby-italian-landscape","title":"Italian Landscape","artist":"Joseph Wright of Derby","artistId":"derby","qid":"Q20179785","qidTrusted":true,"year":1790,"wish":true},
+{"id":"albert-bierstadt-lake-lucerne","title":"Lake Lucerne","artist":"Albert Bierstadt","artistId":"albert-bierstadt","qid":"Q20188398","qidTrusted":true,"year":1858,"wish":true},
+{"id":"william-merritt-chase-nude","title":"Nude","artist":"William Merritt Chase","artistId":"william-merritt-chase","qid":"Q20190793","qidTrusted":true,"year":1901,"wish":true},
+{"id":"albert-bierstadt-the-last-of-the-buffalo","title":"The Last of the Buffalo","artist":"Albert Bierstadt","artistId":"albert-bierstadt","qid":"Q20189937","qidTrusted":true,"year":1888,"wish":true},
+{"id":"william-merritt-chase-gathering-autumn-flowers","title":"Gathering Autumn Flowers","artist":"William Merritt Chase","artistId":"william-merritt-chase","qid":"Q20190419","qidTrusted":true,"year":1894,"wish":true,"floored":true},
+{"id":"albert-bierstadt-buffalo-trail-the-impending-storm","title":"Buffalo Trail: The Impending Storm","artist":"Albert Bierstadt","artistId":"albert-bierstadt","qid":"Q20188717","qidTrusted":true,"year":1869,"wish":true},
+{"id":"albert-bierstadt-mount-corcoran","title":"Mount Corcoran","artist":"Albert Bierstadt","artistId":"albert-bierstadt","qid":"Q20188820","qidTrusted":true,"year":1876,"wish":true},
+{"id":"william-merritt-chase-an-english-cod","title":"An English Cod","artist":"William Merritt Chase","artistId":"william-merritt-chase","qid":"Q46632407","qidTrusted":true,"year":1904,"wish":true},
+{"id":"william-merritt-chase-self-portrait","title":"Self-Portrait","artist":"William Merritt Chase","artistId":"william-merritt-chase","qid":"Q46633393","qidTrusted":true,"year":1915,"wish":true,"liked":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
