@@ -63,9 +63,13 @@ neighbours (the cerebral/mindbending/cognitive trio especially).
 
 - **💔 devastating** — *earned emotional demolition* (earned by craft — devastation without
   control doesn't qualify). e.g. Come and See, Grave of the Fireflies, Kiwi! · band ≈ 90.
-- **💥 impact** — *visceral in-the-moment force — a gut-punch or a face-punch.* Strictly the
-  moment, not the afterglow (afterglow is 🌫️ haunting). e.g. La Haine, Come and See, CoD4
-  · band ≈ 50 (tighten from current 63 — demotion shortlist in BADGE_IDEAS).
+- **💥 impact** — *it hit hard and the hit registered — any mechanism: a nuke, a twist, a
+  verdict, a death, a goodbye.* Stacks freely with the register badges (they say how, this
+  says how hard). Still distinct from 🌫️ haunting: force at the time vs uninvited returns
+  after. Test: **do you still feel where it landed?** (Settled by Fuad's case rulings,
+  2026-08-26: CoD4's nuke, BioShock's twist, 12 Angry Men's verdict, BR2049's Joi thread,
+  Gurren Lagann's death — five mechanisms, one badge.) e.g. La Haine, Come and See, CoD4,
+  12 Angry Men.
 - **🌫️ haunting** *(new, 2026-07-08)* — *it kept working on you for weeks — uninvited return
   visits, thematic residue.* **Hand-curated only, never auto-applied**, and explicitly NOT
   "it was scary" (dread-by-design is 💀). Correlated with 🪞 but not identical: a shift is
