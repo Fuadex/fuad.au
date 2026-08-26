@@ -3939,7 +3939,10 @@ window.CANVAS_ARTWORKS = [
 {"id":"sisley-meadow","title":"Meadow","artist":"Alfred Sisley","artistId":"sisley","qid":"Q20188791","qidTrusted":true,"year":1875,"wish":true},
 {"id":"sisley-first-snow-at-veneux-nadon","title":"First Snow at Veneux-Nadon","artist":"Alfred Sisley","artistId":"sisley","qid":"Q20188840","qidTrusted":true,"year":1878,"wish":true},
 {"id":"sisley-flood-at-port-marly","title":"Flood at Port-Marly","artist":"Alfred Sisley","artistId":"sisley","qid":"Q20188749","qidTrusted":true,"year":1872,"wish":true},
-{"id":"sisley-marly-le-roi","title":"Marly-le-Roi","artist":"Alfred Sisley","artistId":"sisley","qid":"Q46630224","qidTrusted":true,"year":1875,"wish":true}
+{"id":"sisley-marly-le-roi","title":"Marly-le-Roi","artist":"Alfred Sisley","artistId":"sisley","qid":"Q46630224","qidTrusted":true,"year":1875,"wish":true},
+{"id":"van-gogh-portrait-of-vincent-van-gogh","title":"Portrait of Vincent van Gogh","artist":"Imitator of Vincent van Gogh","artistId":"van-gogh","qid":"Q20192578","qidTrusted":true,"year":1925,"wish":true},
+{"id":"van-gogh-landscape","title":"Landscape","artist":"Imitator of Vincent van Gogh","artistId":"van-gogh","qid":"Q20192563","qidTrusted":true,"year":1925,"wish":true},
+{"id":"van-gogh-roses","title":"Roses","artist":"Vincent van Gogh","artistId":"van-gogh","qid":"Q7617071","qidTrusted":true,"year":1890,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
