@@ -13,6 +13,49 @@ const AD = window.CANVAS_ART_DATA || { museums: {}, artworks: {}, artists: {} };
 
 const MUS_BY_ID = {}; for (const m of MUSEUMS) MUS_BY_ID[m.id] = m;
 
+// ——— lazy data tier (2026-08-26): the three heaviest overlays no longer ride index.html.
+// art_inspect.js (Study tours), art-about.js (Reader reads) and museum_highlights.js (decks)
+// are injected here — on an idle timer after boot, or immediately when a route needs them.
+// Every consumer already reads `window.X || {}` at RENDER time (never cached at module scope
+// — keep it that way), so the only wiring needed is a re-render when a file lands: each
+// onload calls App's `__cvLazyTick`. The injected requests are unversioned; the service
+// worker's stale-while-revalidate tier + the per-deploy cache epoch keep them fresh (the
+// same contract Rotation's lazy shards use).
+const LAZY_DATA = [
+  ["art_inspect.js", "CANVAS_INSPECT"],
+  ["art-about.js", "CANVAS_ART_ABOUT"],
+  ["museum_highlights.js", "CANVAS_HIGHLIGHTS"],
+];
+function ensureLazyData() {
+  for (const [src, glob] of LAZY_DATA) {
+    if (window[glob] || document.getElementById("cv-lazy-" + glob)) continue;
+    const s = document.createElement("script");
+    s.id = "cv-lazy-" + glob;
+    s.src = src;
+    s.async = true;
+    s.onload = () => {
+      window.__cvLazyGen = (window.__cvLazyGen || 0) + 1;
+      window.dispatchEvent(new Event("cv-lazy"));
+    };
+    // no onerror handler on purpose: a failed fetch just means the affected surfaces render
+    // without that layer (same graceful degradation as before the split); SW retries next visit
+    document.head.appendChild(s);
+  }
+}
+// Subscribe a component to lazy-data arrivals. Returns a generation counter that bumps when a
+// lazy file lands — ⚠ any useMemo whose filter/build chain reads one of the lazy globals MUST
+// list this in its deps (the same stale-memo bug class as the wall's media/qual/tourOnly deps:
+// the chip lights up but the list doesn't change). Render-scope reads need nothing extra.
+function useLazyGen() {
+  const [gen, setGen] = useState(() => window.__cvLazyGen || 0);
+  useEffect(() => {
+    const on = () => setGen(window.__cvLazyGen || 0);
+    window.addEventListener("cv-lazy", on);
+    return () => window.removeEventListener("cv-lazy", on);
+  }, []);
+  return gen;
+}
+
 // ——— deck queue: unmet majors added from artist pages, held in localStorage until graded.
 // Shape: array of { qid, title, artist, year, img } (dedup by qid). The by-artists deck reads
 // this FIRST, then the shipped CANVAS_BY_ARTISTS list (dedup by qid across both).
@@ -608,6 +651,7 @@ const STYLE_CHIPS = 12;
 
 function Wall({ go, styleIds }) {
   const all = useMemo(() => WORKS.map(enrich), []);
+  const lazyGen = useLazyGen();   // the ✦/⤢ read chips filter on lazy CANVAS_INSPECT
   // TODAY'S HANG (Fuad 2026-08-20): the Wall serves what Home used to serve, and Home is gone. Not
   // a filter and not a sort — homeHang picks a set AND orders it, including works pinned to always
   // appear, so it is applied as a whole rather than expressed in chips.
@@ -777,7 +821,9 @@ function Wall({ go, styleIds }) {
   // If you add a filter, add its state to this array in the same edit; the chip will light up
   // either way and the wall will simply not change, which looks like a broken button rather than
   // a stale memo.
-  }, [all, marks, status, eras, mus, sort, sel, media, qual, pick, hang, tourOnly]);
+  // …and `lazyGen` (2026-08-26): tourOnly reads the LAZY CANVAS_INSPECT — without the gen dep,
+  // toggling the chip before the file lands cached an empty wall forever.
+  }, [all, marks, status, eras, mus, sort, sel, media, qual, pick, hang, tourOnly, lazyGen]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
@@ -1351,6 +1397,7 @@ function OSDControls({ viewerRef }) {
 
 function DeepZoom({ work, onClose, onOsdFail }) {
   const { elRef, viewerRef, err, osdSrc } = useOSDViewer(work, onOsdFail);
+  const lazyGen = useLazyGen();   // CANVAS_INSPECT is lazy now — rebuild details when it lands
   // FIX 6b (2026-07-17): prefer the work's own hires detail tour; but when it has none, fall back to
   // the anchored chapters of its study (CANVAS_INSPECT[id].deeper) — {t,x,y,w,h,body} → {t,x,y,w,h,n}
   // so every studied work gets a "walk the details" tour here too (title = chapter t, note = body).
@@ -1362,7 +1409,7 @@ function DeepZoom({ work, onClose, onOsdFail }) {
     return deeper
       .filter(c => typeof c.x === "number" && typeof c.y === "number" && typeof c.w === "number" && typeof c.h === "number")
       .map(c => ({ t: c.t, x: c.x, y: c.y, w: c.w, h: c.h, n: c.body }));
-  }, [work]);
+  }, [work, lazyGen]);
   // activeDetail: null = full view; number = index into details
   const [activeDetail, setActiveDetail] = useState(null);
 
@@ -2025,6 +2072,7 @@ function MuseumCard({ m, go, quiet }) {
 }
 
 function Museums({ go }) {
+  const lazyGen = useLazyGen();   // HL is lazy now — deck presence feeds the quiet/rest split
   const HL = window.CANVAS_HIGHLIGHTS || {};
   const sections = useMemo(() => {
     // per-museum met/floored tallies from the enriched canon (seenAt → this venue).
@@ -2051,7 +2099,7 @@ function Museums({ go }) {
       const rest = list.filter(m => m.met === 0 && !has(m)).sort((a, b) => a.name.localeCompare(b.name));
       return { cc, metWorks, count: list.length, withMet, quiet, rest };
     }).sort((a, b) => b.metWorks - a.metWorks || b.count - a.count);
-  }, []);
+  }, [lazyGen]);
   return (
     <div className="cv-musidx">
       {sections.map(sec => (
@@ -2502,6 +2550,7 @@ const LOVE_OPTS = [[0, "○ nothing special"], [1, "♡ like it"], [2, "♥ love
 const migrateVerdict = (v) => typeof v === "string"
   ? { seen: v === "floored" ? "yes" : v, love: v === "floored" ? 2 : 0 } : v;
 function Deck({ museumId, part, go }) {
+  const lazyGen = useLazyGen();   // HL is lazy now — the deck list itself depends on it
   const HL = window.CANVAS_HIGHLIGHTS || {};
   // the "by-artists" virtual deck: discovery works by artists you love, tied to no single venue
   const VIRTUAL = museumId === "by-artists";
@@ -2524,7 +2573,7 @@ function Deck({ museumId, part, go }) {
       return merged;
     }
     return (HL[museumId] || []).filter(w => !canonQids.has(w.qid));
-  }, [museumId, queued]);
+  }, [museumId, queued, lazyGen]);
   const queuedCount = VIRTUAL ? fullDeck.filter(w => queued.some(q => q.qid === w.qid)).length : 0;
   // part splitting: 40-card pages (last page = remainder); part is 1-based
   const numParts = Math.max(1, Math.ceil(fullDeck.length / DECK_PART_SIZE));
@@ -4958,6 +5007,18 @@ function SearchBar({ go }) {
 function App() {
   const route = useRoute();
   const go = (view, id) => { location.hash = id ? "/" + view + "/" + id : view === "home" ? "/" : "/" + view; };
+  // lazy data tier: re-render the tree when a lazy overlay lands (render-scope readers see it
+  // immediately), and prefetch on an idle timer so the overlays are usually resident before
+  // the first click (Culture's idle-preload idiom)
+  useLazyGen();
+  useEffect(() => {
+    const t = setTimeout(ensureLazyData, 1200);
+    return () => clearTimeout(t);
+  }, []);
+  // deep links / navigation into surfaces that read the lazy overlays skip the idle wait
+  useEffect(() => {
+    if (["study", "work", "museum", "museums", "deck", "artist"].includes(route.view)) ensureLazyData();
+  }, [route.view]);
   // HOME IS FOLDED INTO THE WALL (Fuad 2026-08-20). useRoute already parses "#/" as view="wall",
   // so the landing page IS the wall; it just opens with the today's-hang chip lit. There is no
   // second surface and no second nav entry — the chip is the whole difference, and turning it off
