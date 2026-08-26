@@ -1237,7 +1237,11 @@ function enrichExtras(item) {
   if (addBadges) out.highlights = [...new Set([...(out.highlights || []), ...addBadges])];
   // No hand-picked poster and cast_data had no TMDB art? Use OMDb's poster (already
   // downloaded) so the cover/Reader shows real art instead of the glyph fallback.
-  if (!out.poster && !out.tmdbPoster && omdb && omdb.Poster && omdb.Poster !== 'N/A') out.tmdbPoster = omdb.Poster;
+  // Never when an igdbCover exists: OMDb's game posters are amazon-hosted URLs that
+  // Amazon rots away (mass 404s observed 2026-08-27), while images.igdb.com is stable —
+  // and tmdbPoster outranks igdbCover in every pick chain, so a dead amazon URL would
+  // shadow a healthy IGDB cover.
+  if (!out.poster && !out.tmdbPoster && !out.igdbCover && omdb && omdb.Poster && omdb.Poster !== 'N/A') out.tmdbPoster = omdb.Poster;
   return out;
 }
 
