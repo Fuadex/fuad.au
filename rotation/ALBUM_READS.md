@@ -310,6 +310,20 @@ GIST recipe; redrafts bump `by` to Opus·Fable.
 - Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
 - Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
 
+### Batch log — Rammstein album refresh (2026-08-26)
+
+Six albums re-synthesized from the v2.4 rerun track reads and shipped FRONTAL
+(Herzeleid, Sehnsucht, Rosenrot, Reise Reise, LiFaD, RAMMSTEIN-2019 — prior reads
+to `linerPrev`/`arcPrev`; three had no prior arc). Mutter and Zeit untouched
+(their track-read basis wasn't in the rerun). ONE GAP FILL rode the cascade:
+Bückstabü (rammstein~b, fvr 2.4) — the E********/B******** scrobble pair merged
+37p above floor; the E-spelling row is a variant fold. GIST-ECHO ENFORCEMENT:
+four B gists shipped echoing their liners in the print and were recut distinct
+pre-apply on Fuad's catch — the gist rule needs an explicit QC diff step
+(gist-vs-liner shared-phrase scan) with the print, not after it. A-liner note:
+Herzeleid/Sehnsucht/RAMMSTEIN A liners cite unfabled sub-floor tracks
+(pre-discipline syntheses) — preserved on the flick as-is.
+
 ### Batch log — Northlane cascade (2026-08-26)
 
 Obsidian + Alien re-synthesized from the v2.4 replacement track reads and shipped
