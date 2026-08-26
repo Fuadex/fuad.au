@@ -333,6 +333,34 @@ GIST recipe; redrafts bump `by` to Opus·Fable.
 - Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
 - Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
 
+### Batch log — Nevermore album cascade + ARTIST entry (2026-08-27, 393caff + 47aa6b8)
+
+Six syntheses shipped behind the 51-read catalog close (s/t, The Politics of Ecstasy,
+Dreaming Neon Black, Dead Heart In A Dead World, Enemies of Reality, The Obsidian
+Conspiracy); This Godless Endeavor kept its album-pivot portrait. Enemies of Reality
+shipped ARC-LESS by choice — its liner close already owns the remix fact and an arc
+would have doubled the gist (the anchor-fact rule applied at the arc slot, a new
+position for it). TOC models the gesture pattern: gist says "the farewell" in one
+word, the arc owns the full final-statement fact. The `nevermore` artist entry
+followed on approval: the echo-seal fired on the first draft for the FOURTH campaign
+running (six liner-collaged fragments), the banned-fragments redo came back clean
+except two residuals hand-sealed; shipped with 4 anchor albums (spec says 2–3 —
+flagged in the print, approved as the scale-shift argument needs both poles); note =
+the rupture facts (2011 exits, Dane's 2017 death), verified.
+
+### Batch log — Slayer album cascade + ARTIST entry (2026-08-27)
+
+Nine syntheses + six sub-threshold DESCRIPTORS (gist-only: Show No Mercy, Hell
+Awaits, Divine Intervention, Undisputed Attitude, the 1994 live document, the career
+box) + the `slayer` artist entry, in one package. Christ Illusion went FRONTAL (prior
+Opus liner → linerPrev). **The ANCHOR-FACT OPENER RULE was born in this batch**
+(gist and liner both opening on 2006/Lombardo — "we need a neater segway") and then
+CALIBRATED on Fuad's pushback: the rule is positional (liner's opening vs the gist),
+not a ban on recurrence — Reign in Blood/Repentless were restored to their originals,
+South of Heaven kept its recut only where meaning survived; gist stays punchy, the
+liner opens the description up, and when there's no other way than telling the same
+thing, allow it. Rulings live in the ANCHOR-FACT section above.
+
 ### Batch log — LTS completion package (2026-08-26)
 
 The WHOLE Ling Tosite Sigure catalog closed in one package: 15 fable-tier gap fills
