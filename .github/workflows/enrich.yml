@@ -39,20 +39,20 @@ jobs:
       - name: last.fm tags (new artists only)
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-        run: node enrich-tags.js 6000
+        run: node enrich-tags.js 10000
 
       - name: last.fm global stats
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-        run: node enrich-stats.js 6000
+        run: node enrich-stats.js 10000
 
       # 3000 -> 6000 (Fuad 2026-08-16): the 3000-cap seam is exactly where Fu Manchu
       # (rank ~1761 in some index orderings, absent in others) fell through for months —
-      # all caps now match at 6000 so no layer has a private cutoff.
+      # all caps now match at 10000 (raised from 6000, Fuad 2026-08-26 - background hum toward the long tail) so no layer has a private cutoff.
       - name: last.fm bios + similar
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-        run: node enrich-bios.js 6000
+        run: node enrich-bios.js 10000
 
       - name: last.fm per-album tags
         env:
@@ -61,29 +61,29 @@ jobs:
 
       # --refresh=200: also refetch the 200 oldest-fetched entries so life-status changes
       # (reactivations, disbandments, deaths — the `ended`/`end` flags this cache OWNS) reach
-      # the frozen cache. ~5.5k entries / 200 per week ≈ full cycle ~6 months; ended + top-500
+      # the frozen cache. ~5.5k entries / 200 per week â‰ˆ full cycle ~6 months; ended + top-500
       # artists ride a priority lane so they come back around much faster than the long tail.
       - name: MusicBrainz origins (gender / life-span)
-        run: node enrich-origins.js 6000 --refresh=200
+        run: node enrich-origins.js 10000 --refresh=200
 
       - name: MusicBrainz aliases
-        run: node enrich-aliases.js 6000
+        run: node enrich-aliases.js 10000
 
       # keyless, 1 req/s, incremental — first run works off a large backlog and may take
       # a couple of hours; every later week is new-artists-only.
       # --refresh=200: also refetch the 200 oldest-fetched entries so life-status changes
       # (reactivations, disbandments, deaths, new releases) reach the frozen cache.
-      # ~4.9k entries / 200 per week ≈ full cycle ~6 months; ended + top-500 artists ride a
+      # ~4.9k entries / 200 per week â‰ˆ full cycle ~6 months; ended + top-500 artists ride a
       # priority lane so they come back around much faster than the long tail.
       - name: MusicBrainz deep pull (release-groups + relations)
-        run: node enrich-mb.js 6000 --refresh=200
+        run: node enrich-mb.js 10000 --refresh=200
 
       # --refresh=150 (~4 batches of 40): same rolling cycle for the Wikidata cache; ended/
       # top-500 first, no-entity (null) rows refreshed last.
       - name: Wikidata (formation city, members, coords) — keyless SPARQL
         run: node enrich-wikidata.js 2500 --refresh=150
 
-      # keyless, 1 req/s, incremental — band → member lineups (instrument/vocal attributes +
+      # keyless, 1 req/s, incremental — band â†’ member lineups (instrument/vocal attributes +
       # member genders) from MusicBrainz artist-rels, for the VOCALS filter's ~3,800 bands whose
       # wikidata carried no lineup. 1500-cap keeps the cron sane (bands + shared member sub-fetches
       # at 1 req/s); it chips away incrementally, most-played-first. Member genders are cached and

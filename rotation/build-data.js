@@ -4330,7 +4330,7 @@ const SUB_ARTISTS = {};
 // 205) — id, plays, hue, the subgenres it carries (membership → inclusive filtering), per-year
 // plays. Map bubbles AND the ranking are computed client-side from this ONE set, so every bubble
 // has artists behind it and a click is never empty. Cap is generous and raisable as tags grow.
-const EXPLORE_CAP = 6000;
+const EXPLORE_CAP = 10000;   // 6000 -> 10000 (Fuad 2026-08-26): grows as the weekly enrichment hums through the tail
 const EXPLORE_YP_TOP = 3000;   // only the top-by-plays carry per-year detail (file-size control)
 // merge spelling variants of the same subgenre so "hip hop"/"hip-hop" etc. are ONE row (Fuad).
 const SUB_CANON = new Map([
