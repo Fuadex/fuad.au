@@ -4113,7 +4113,7 @@ function MapView({ go }) {
       const mx = (e.clientX - r.left) / r.width, my = (e.clientY - r.top) / r.height;
       const f = e.deltaY < 0 ? 1 / 1.18 : 1.18;
       const v = vbRef.current;
-      const w = Math.min(880, Math.max(70, v.w * f)), h = w * AR;
+      const w = Math.min(880, Math.max(35, v.w * f)), h = w * AR;
       preview({ x: v.x + mx * (v.w - w), y: v.y + my * (v.h - h), w, h });
       // RE-BASELINE MID-BURST (Fuad 2026-08-27 "zooming in jumps out of the container"):
       // a fast zoom-in compounds the preview scale (880→70 is ~12x) and the group renders
@@ -4166,7 +4166,7 @@ function MapView({ go }) {
       const f = p.d / nd;   // fingers spreading → nd>d → f<1 → smaller viewBox → zoom in
       const r = svgRef.current.getBoundingClientRect();
       const fx = ((a.clientX + b.clientX) / 2 - r.left) / r.width, fy = ((a.clientY + b.clientY) / 2 - r.top) / r.height;
-      const w = Math.min(880, Math.max(70, p.v.w * f)), h = w * AR;
+      const w = Math.min(880, Math.max(35, p.v.w * f)), h = w * AR;
       preview({ x: p.v.x + fx * p.v.w - fx * w, y: p.v.y + fy * p.v.h - fy * h, w, h });
       return;
     }
@@ -4185,7 +4185,7 @@ function MapView({ go }) {
     const p = clientToMap(d.x, d.y); if (!p) return;
     setLens(p);                                   // magnify under the tap (hover-free)
     const v = vbRef.current, out = v.w < 300, f = out ? 1.6 : 1 / 1.6;   // toggle a zoom step
-    const w = Math.min(880, Math.max(70, v.w * f)), h = w * AR;
+    const w = Math.min(880, Math.max(35, v.w * f)), h = w * AR;
     const el = svgRef.current, r = el.getBoundingClientRect();
     const fx = (d.x - r.left) / r.width, fy = (d.y - r.top) / r.height;
     commit({ x: v.x + fx * v.w - fx * w, y: v.y + fy * v.h - fy * h, w, h });
@@ -4193,7 +4193,7 @@ function MapView({ go }) {
 
   // on-screen zoom around the map centre — the touch-friendly path (pinch works too, but buttons
   // are the reliable way on a phone; ⌂ recovers a lost view). Fuad 2026-07-18.
-  const zoomCenter = (f) => { const v = vbRef.current; const w = Math.min(880, Math.max(70, v.w * f)), h = w * AR; commit({ x: v.x + 0.5 * v.w - 0.5 * w, y: v.y + 0.5 * v.h - 0.5 * h, w, h }); };
+  const zoomCenter = (f) => { const v = vbRef.current; const w = Math.min(880, Math.max(35, v.w * f)), h = w * AR; commit({ x: v.x + 0.5 * v.w - 0.5 * w, y: v.y + 0.5 * v.h - 0.5 * h, w, h }); };
 
   return (
     <div className="cv-map">
@@ -4299,7 +4299,7 @@ function MapView({ go }) {
                           - 0.5 * (2.4 * k
                             + 2.1 * k * dotMul * dotZoom * ((wishCityReach.get(c.city) || 1.1) + 1.8 - 1.3 * t)
                             + (7 - 5 * t) * k * dotMul * labelZoom)}
-                      textAnchor="middle" style={{ fontSize: 9.2 * k * dotMul * labelZoom, opacity: op }}>{c.city}</text>
+                      textAnchor="middle" style={{ fontSize: 10 * k * dotMul * labelZoom, opacity: op }}>{c.city}</text>
                   );
                 })()}
               </g>
@@ -4330,10 +4330,10 @@ function MapView({ go }) {
                   if (k >= thr && fs <= 1.25) return null;
                   const op = (fs > 1.25 ? 1 : labelFade(k, thr)) * 0.75;
                   if (op <= 0) return null;
-                  // 7.8 not 6: at 65% of the lived-city size the −30% pass (Fuad 2026-08-27)
-                  // pushed these under legibility ("the smaller venue names are super tiny");
-                  // ~85% keeps the lived>wish hierarchy without the squint.
-                  return <text x={fx} y={fy - (f.r * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 7.8 * k * dotMul * labelZoom, opacity: op }}>{f.city}</text>;
+                  // 8.5 (was 7.8, was 6): Fuad 2026-08-27 ×2 — first the −30% pass pushed these
+                  // under legibility, then both tiers got a further "slightly bigger" bump
+                  // (lived cities 9.2→10). ~85% of the lived size keeps the hierarchy.
+                  return <text x={fx} y={fy - (f.r * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 8.5 * k * dotMul * labelZoom, opacity: op }}>{f.city}</text>;
                 })()}
               </g>
             );
