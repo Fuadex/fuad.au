@@ -3912,7 +3912,28 @@ window.CANVAS_ARTWORKS = [
 {"id":"alexej-von-jawlensky-red-path-st-prex","title":"Red Path, St. Prex","artist":"Alexej von Jawlensky","artistId":"alexej-von-jawlensky","qid":"Q20191938","qidTrusted":true,"year":1915,"wish":true},
 {"id":"alexej-von-jawlensky-frosty-day","title":"Frosty Day","artist":"Alexej von Jawlensky","artistId":"alexej-von-jawlensky","qid":"Q20191904","qidTrusted":true,"year":1915,"wish":true},
 {"id":"odilon-redon-village-by-the-sea-in-brittany","title":"Village by the Sea in Brittany","artist":"Odilon Redon","artistId":"odilon-redon","qid":"Q20188874","qidTrusted":true,"year":1880,"wish":true},
-{"id":"meindert-hobbema-wooded-landscape-with-figures","title":"Wooded Landscape with Figures","artist":"Meindert Hobbema","artistId":"meindert-hobbema","qid":"Q46624967","qidTrusted":true,"year":1658,"wish":true}
+{"id":"meindert-hobbema-wooded-landscape-with-figures","title":"Wooded Landscape with Figures","artist":"Meindert Hobbema","artistId":"meindert-hobbema","qid":"Q46624967","qidTrusted":true,"year":1658,"wish":true},
+{"id":"honore-daumier-advice-to-a-young-artist","title":"Advice to a Young Artist","artist":"Honoré Daumier","artistId":"honore-daumier","qid":"Q20188655","qidTrusted":true,"year":1865,"wish":true},
+{"id":"childe-hassam-allies-day-may-1917","title":"Allies Day, May 1917","artist":"Childe Hassam","artistId":"childe-hassam","qid":"Q20192059","qidTrusted":true,"year":1917,"wish":true},
+{"id":"honore-daumier-in-church","title":"In Church","artist":"Honoré Daumier","artistId":"honore-daumier","qid":"Q20188292","qidTrusted":true,"year":1855,"wish":true},
+{"id":"honore-daumier-the-beggars","title":"The Beggars","artist":"Honoré Daumier","artistId":"honore-daumier","qid":"Q20187024","qidTrusted":true,"year":1843,"wish":true},
+{"id":"honore-daumier-french-theater","title":"French Theater","artist":"Honoré Daumier","artistId":"honore-daumier","qid":"Q20188375","qidTrusted":true,"year":1856,"wish":true},
+{"id":"honore-daumier-wandering-saltimbanques","title":"Wandering Saltimbanques","artist":"Honoré Daumier","artistId":"honore-daumier","qid":"Q20187913","qidTrusted":true,"year":1847,"wish":true},
+{"id":"honore-daumier-hippolyte-lavoignat","title":"Hippolyte Lavoignat","artist":"Follower of Honoré Daumier","artistId":"honore-daumier","qid":"Q20188419","qidTrusted":true,"year":1860,"wish":true},
+{"id":"childe-hassam-nude-seated","title":"Nude Seated","artist":"Childe Hassam","artistId":"childe-hassam","qid":"Q20191667","qidTrusted":true,"year":1912,"wish":true,"floored":true},
+{"id":"maurice-utrillo-the-church-of-saint-severin","title":"The Church of Saint-Séverin","artist":"Maurice Utrillo","artistId":"maurice-utrillo","qid":"Q20191735","qidTrusted":true,"year":1913,"wish":true},
+{"id":"maurice-utrillo-marizy-sainte-genevieve","title":"Marizy-Sainte-Geneviève","artist":"Maurice Utrillo","artistId":"maurice-utrillo","qid":"Q20191396","qidTrusted":true,"year":1910,"wish":true},
+{"id":"maurice-utrillo-row-of-houses-at-pierrefitte","title":"Row of Houses at Pierrefitte","artist":"Maurice Utrillo","artistId":"maurice-utrillo","qid":"Q20190971","qidTrusted":true,"year":1905,"wish":true},
+{"id":"maurice-utrillo-landscape-pierrefitte","title":"Landscape, Pierrefitte","artist":"Maurice Utrillo","artistId":"maurice-utrillo","qid":"Q20191098","qidTrusted":true,"year":1907,"wish":true},
+{"id":"maurice-utrillo-rue-cortot-montmartre","title":"Rue Cortot, Montmartre","artist":"Maurice Utrillo","artistId":"maurice-utrillo","qid":"Q20191289","qidTrusted":true,"year":1909,"wish":true},
+{"id":"maurice-utrillo-street-at-corte-corsica","title":"Street at Corté, Corsica","artist":"Maurice Utrillo","artistId":"maurice-utrillo","qid":"Q20191788","qidTrusted":true,"year":1913,"wish":true},
+{"id":"childe-hassam-oyster-sloop-cos-cob","title":"Oyster Sloop, Cos Cob","artist":"Childe Hassam","artistId":"childe-hassam","qid":"Q20190823","qidTrusted":true,"year":1902,"wish":true},
+{"id":"maurice-utrillo-the-pont-saint-michel-paris","title":"The Pont Saint-Michel, Paris","artist":"Maurice Utrillo","artistId":"maurice-utrillo","qid":"Q20191188","qidTrusted":true,"year":1908,"wish":true},
+{"id":"childe-hassam-poppies-isles-of-shoals","title":"Poppies, Isles of Shoals","artist":"Childe Hassam","artistId":"childe-hassam","qid":"Q20190266","qidTrusted":true,"year":1891,"wish":true},
+{"id":"childe-hassam-a-north-east-headland","title":"A North East Headland","artist":"Childe Hassam","artistId":"childe-hassam","qid":"Q46632242","qidTrusted":true,"year":1901,"wish":true},
+{"id":"childe-hassam-the-new-york-window","title":"The New York Window","artist":"Childe Hassam","artistId":"childe-hassam","qid":"Q20191661","qidTrusted":true,"year":1912,"wish":true},
+{"id":"childe-hassam-old-house-at-east-hampton","title":"Old House at East Hampton","artist":"Childe Hassam","artistId":"childe-hassam","qid":"Q46633598","qidTrusted":true,"year":1916,"wish":true},
+{"id":"honore-daumier-at-the-gallery-drouot","title":"At the Gallery Drouot","artist":"Honoré Daumier","artistId":"honore-daumier","qid":"Q46629101","qidTrusted":true,"year":1863,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
