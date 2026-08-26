@@ -18,9 +18,14 @@ shipped, the shape of the Nationalmuseum `img` defect, and what "byte-identical"
 Redon rows. Every one is corrected below, in place. **Treat an unmarked number as suspect and
 re-measure it.**
 
-**Store state** ⚙ **re-measured 2026-08-25 (pass 2), after the day's applies landed** (all five
-re-counted from the files, not reported): `art_inspect` **389** tours · `art-about` **807** reads ·
-`art_hires` **1,155** rows · `artworks` canon **1,976** works · **33** `beside` paragraphs.
+**Store state** ⚙ **re-measured 2026-08-26 (grounding-audit wave 2)**: `art_inspect` **389**
+tours · `art-about` **807** reads · `art_hires` **1,228** rows · `artworks` canon **2,049**
+works · **33** `beside` paragraphs. Open-list status as of the same re-measure: **items 1–5
+CLOSED** (rulings spent and applied — see each item's closure note), **6b APPLIED**, item 7
+closed earlier; what remains open for Fuad lives in "Canon data defects" below.
+
+Earlier snapshot (2026-08-25 pass 2): `art_inspect` 389 · `art-about` 807 · `art_hires` 1,155 ·
+canon 1,976 · beside 33.
 Method: `Object.values(CANVAS_INSPECT).filter(v => v.beside !== undefined).length`. `art-about`
 carries **zero** — `beside` is a tour field only.
 ⚠ The earlier snapshot in this section (378 / 800 / 1,152 / 22) was true before the w17 apply
@@ -113,7 +118,17 @@ deserves a check before it authorises rewriting approved prose.
 
 ---
 
-### 2. ⚠ TIEPOLO — one row, two different paintings. Fuad is the only witness.
+### 2. ✅ TIEPOLO — RESOLVED as NG6273, cascade APPLIED (`09d07f2`). CLOSED.
+
+⚙ **Re-measured 2026-08-26:** the canon row now reads `qid: Q26689432` (*A Vision of the
+Trinity*, NG6273, 69.2 × 55.2 cm) with `qidTrusted: true`, `seenAt: national-gallery-london`,
+and a `note` documenting the old Munich same-title mismatch; the `art_hires` plate is
+`ng-london` 4,763 × 6,000 of the London picture; a 9-stop tour + `beside` + reads shipped in
+`09d07f2` ("apply the approved Tiepolo NG6273 cascade"). The original two-outcomes ledger is
+kept below for the record — the resolved outcome was the EXPENSIVE one (identification wrong,
+whole row repointed), and it was paid.
+
+<details><summary>Original open item (pre-`09d07f2`, kept for the record)</summary>
 
 ⚙ **Verified in the store:** `giovanni-battista-tiepolo-die-verehrung-der-trinitat-durch-d`
 carries `seenAt: "national-gallery-london"`, `qid: "Q29477853"`, `seenConfidence: "sure"`,
@@ -133,9 +148,22 @@ Munich and London are far enough apart that a single bracketed day decides it.
   altarpiece**, which is why the merge dropped it rather than shipping it — **repointing costs
   a tour.**
 
+</details>
+
 ---
 
-### 3. ⚠ SAINT ROCH — back-edit two verified things from w9a into the w9b version?
+### 3. ✅ SAINT ROCH — settled via the DO-NOT-APPLY register (`43a882e`). CLOSED unless reopened.
+
+⚙ **Status 2026-08-26:** the w9b tour SHIPPED with the w17 batch in `43a882e`, and the w21
+pass put the w9a back-edit in the **DO-NOT-APPLY register**. The two w9a details (the church
+of San Rocco named as a distinct building — its facade unbuilt in 1735, hence the bare-brick
+flank — and the altana with washing) remain harvestable if Fuad ever wants them, but the
+Scalfarotto dates would need their own verification first (neither draft names Scalfarotto).
+The original merge-question ledger is kept below.
+
+<details><summary>Original open item (pre-`43a882e`, kept for the record)</summary>
+
+#### (original) SAINT ROCH — back-edit two verified things from w9a into the w9b version?
 
 ⛔ **Correct a wording that would send someone to the wrong file: the w9b Saint Roch is NOT
 shipped.** ⚙ **Verified: no Saint Roch tour exists in `art_inspect` at all.** The w9b text is
@@ -161,9 +189,22 @@ against `merge_plan.json`'s copy:
 Both are concrete, both are Law-1 material (a stop that starts at a mark), and w9b is
 otherwise the better text — which is exactly why this is a merge question and not a revert.
 
+</details>
+
 ---
 
-### 4. ⚠ REDON CANON DEDUPE — two Wikidata items, ONE physical painting.
+### 4. ✅ REDON CANON DEDUPE — RULED AND APPLIED. CLOSED.
+
+⚙ **Re-measured 2026-08-26:** `odilon-redon-untitled-10` is GONE from the canon and
+`odilon-redon-untitled-4` (Q83507923, the inventory-carrying item) remains — the dedupe was
+ruled and applied; canon stands at 2,049 works. The original evidence dossier (the
+palette-as-proof argument and the wrong-fix warning about stripping the `img`) is kept below
+— the wrong-fix note in particular stays citable: **a fallback is only a fallback if it
+resolves to something different.**
+
+<details><summary>Original open item (kept for the record)</summary>
+
+#### (original) REDON CANON DEDUPE — two Wikidata items, ONE physical painting.
 
 ⚙ **Verified in the store.** `odilon-redon-untitled-4` (`qid: Q83507923`) and
 `odilon-redon-untitled-10` (`qid: Q132195486`) are **two duplicate Wikidata items for one
@@ -212,9 +253,22 @@ plate — fails here, because **the canon plate is the same file**. It would hav
 hi-res off a real work while leaving the visible duplicate in the deck untouched. This is a
 general shape: **a fallback is only a fallback if it resolves to something different.**
 
+</details>
+
 ---
 
-### 5. ⚠ NATIONALMUSEUM GROUP B (6 rows) + GROUP D (4 rows, opt-in).
+### 5. ✅ NATIONALMUSEUM GROUP B + GROUP D — RULED AND APPLIED (`a7d6316` + follow-ups). CLOSED.
+
+⚙ **Re-measured 2026-08-26 in the live store:** all six group-B rows are `nationalmuseum-se`
+with notes reading *"Nationalmuseum re-frame, adopted 2026-08-25 on Fuad's ruling"* (the five
+framed plates) / *"SAME-CROP upgrade"* (`en-premiar`, 2,619 × 3,534); all four group-D rows
+(`carl-grabow-untitled`, `jan-both-tradstudie`, both `johan-christian-jansson-untitled*`)
+carry their 2-level `pyr` ladders. The opt-in was taken. Original plan detail kept below —
+the `tiles: 256` trap note remains binding for this host.
+
+<details><summary>Original open item (kept for the record)</summary>
+
+#### (original) NATIONALMUSEUM GROUP B (6 rows) + GROUP D (4 rows, opt-in).
 
 Plan: **`C:/tmp/hires46/PLAN.json`** (⚙ verified present; **outside the repo — it is on the
 `C:/tmp` mount, not in `.dtmp`, and will not survive a machine wipe**). ⚠ It is **NOT
@@ -253,9 +307,13 @@ every level JPEG-header-measured. 3 of the 7 capped rows already carry `pyr`; th
 `tiles: 256`. **A 1024 request would come back silently downscaled to 1000.** Same family as
 the NG London 78.1 % regression.
 
+</details>
+
 ---
 
 ### 6. ⛔ THE "TWO ALREADY-ADOPTED MNW ROWS" — THE DATA CONTRADICTS THIS. READ THIS ONE.
+> **6b is now APPLIED — see the closure note inside.** The stary-dom half of this item stands
+> as written (adopted, framing-only, revertible at no cost, no action needed).
 
 The session note said *"two MNW rows already adopted — `unknown-s-once-majowe` and
 `ferdynand-ruszczyc-stary-dom` — gain framing but zero extra detail; revert on request."*
@@ -275,7 +333,22 @@ The session note said *"two MNW rows already adopted — `unknown-s-once-majowe`
   `ferdynand-ruszczyc-stary-dom`. Do not generalise the phrase to the other 16 w20 adoptions;
   most of them are genuine resolution gains (up to **×5.24** linear).
 
-#### 6b. ⛔ THE OTHER HALF OF w20 IS STAGED, COUPLED, AND UNAPPLIED — and nothing else records it
+#### 6b. ✅ THE w20 `MODE=toured` HALF — APPLIED 2026-08-26. CLOSED.
+
+⚙ **Applied 2026-08-26 (grounding-audit wave 2), exactly per the runbook below.** Per-record
+proof first: all 4 `prevRow` snapshots, all 4 `art_inspect` targets and all 30 padded box
+values verified byte-identical against the live stores — the transform was NOT stale, only
+unrelated records had been added around it (`art_hires` 1,152 → 1,228 with the NGA waves;
+`art_inspect` 375 → 389 with w17/w19a/Tiepolo). The plan's whole-file `art_hires_sha256` was
+then re-derived (recorded in `PLAN.json` → `guards.rederived`), the soft `ACK_DRIFT` diff was
+read (14 added records, 4 targets untouched) and acknowledged, and the applier ran with full
+round-trip proof: **art_hires 1,228 → 1,228 (+4 upserts), art_inspect record count unchanged,
+only x/y/w/h moved on 4 works / 30 boxes, all within [0,1.002]; `validate-refs.js` exits
+clean (86 refs)**. The four works now serve `mnw` plates: Fałat's Hunting Party
+2,500 × 1,645 → **6,000 × 3,507**, Śnice majowe → 3,404 × 4,184, At the Seashore →
+3,611 × 4,395, Sigismund Bell 2,500 × 1,263 → **4,700 × 2,325**.
+
+#### (original) THE OTHER HALF OF w20 IS STAGED, COUPLED, AND UNAPPLIED — and nothing else records it
 
 ⚙ **Verified from `.dtmp/tourqc-pass/w20/STAGED.local.md` + `PLAN.json` + the live store.**
 w20 ran in two halves and **only one shipped**:
@@ -398,6 +471,7 @@ before writing it down — which is the whole reason this section marks its figu
 | 2026-08-25 | **PLATE PASS ROUND 6 — Guggenheim ×20 + MNW Warsaw ×48, plus the NG London viewer fix** (sheets `.dtmp/tourqc-pass/w17/`) | every candidate re-fetched in full and re-decoded after the sheets were built (0 failures); anti-downgrade gate re-run against `art_hires` as well as `art_imgsize`; CORS headers measured per-asset with an explicit `Origin`; viewer fix verified by fetching real tiles, not by reading the patch | Opus sourcing agents + Fable (QC/apply) | **68 plates adopted, +804 MP; `art_hires.js` 1,108 → 1,141** (33 new rows, 37 rewritten in place). ⛔ **The gate fired INSIDE an adopt list**: `stanczyk` scored ×1.85 only because it was compared with `art_imgsize` instead of the `art_hires` row we actually serve, against which it is smaller on **both** axes. ⛔ **A live downgrade found inside an already-shipped adoption**: `ng-london`'s `img` was a `/full/!3000,3000/` url returning 800 px — written by us — which `enrich()` feeds to `imgZoom`, so *Madonna of the Pinks*' Zoom overlay had been running at 643 × 800 against Commons' 870 × 1,080. ⚠ **35 works held, not rejected**: they fail the 2 % aspect gate, but against the holders' physical dimensions **our plate is the crop on 27 of them** — held because a re-framed plate moves every tour box. Viewer: `tiles: 256` shipped for clamped IIIF servers, restoring the NG masters from **78.1 % linear detail to 1:1**. |
 
 | 2026-08-25 | **w19a MERGE — 3 new tours + 3 reads** (Boldini *After the Bath*, Renoir *Alphonsine Fournaise*, Henner *Églogue*; workshop `.dtmp/tourqc-pass/w19a/`) | insertion-only merge under sha256 guards on both stores (another agent was writing the same tree); full round-trip proof; `validate-refs.js` bare | Opus (merge/QC) | **Shipped: `art_inspect` 375 → 378, `art-about` 798 → 800.** Boxes asserted **byte-identical to the drafts** — the w19a boxes already carry the ×1.15 breathing room and were not re-padded. Rulings applied: Boldini **keeps `year: 1889`** (canon is qid-trusted; Wikidata's 1873 traces to a flickr credit, not the NGA — `context` states the conflict openly and the `beside` interval stays 22 years); Renoir **ships the dress as measured** (two median-cut samples, mean RGB 155/153/144, **no blue component**; hat band brick/terracotta not vermilion — the literature says blue-grey, the plate a reader sees does not, and **the tour describes the plate**). ⚠ **One cross-reference lost and NOT re-minted:** the replaced 56-word Renoir Info carried `refs` → *Luncheon of the Boating Party*; the Luncheon entry's own prose **does not name Alphonsine**, so there is no honest anchor on that side and none was invented. See the Method-lessons note. ⛔ **The word-count trap ran in reverse here** — a naive whitespace recount marked all three reads over band; the drafter was right and the recount was wrong, because a spaced hyphen-as-dash counts as a word. Use `check.js`'s word tokeniser. |
+| 2026-08-26 | **w20 `MODE=toured` APPLY — 4 MNW plates + 30 remapped boxes** (grounding-audit wave 2; workshop `.dtmp/tourqc-pass/w20/`) | per-record proof against the live stores BEFORE touching the stale whole-file guard (4 `prevRow` + 4 inspect targets + 30 padded box values, all byte-identical); guard re-derived and recorded in `PLAN.json`; soft-drift diff read and ACKed; JSON-runner apply with round-trip proof; `validate-refs.js` bare | **Fable (verify/apply)** | The coupled half that the 08-25 session declined to write into a live-writer store. Applied clean: art_hires +4 upserts (Fałat 6,000 × 3,507 · Śnice majowe 3,404 × 4,184 · At the Seashore 3,611 × 4,395 · Sigismund Bell 4,700 × 2,325), art_inspect only x/y/w/h moved (4 works / 30 boxes). ⭐ Method point: the whole-file sha was stale but the per-record guards were the binding truth — proving THOSE first is what made refreshing the file-level guard legitimate rather than a force. |
 | 2026-08-25 | **w21 SECOND-OPINION on the ten held w17 tours** (the pass item 1 recommended before spending the edits; workshop `.dtmp/tourqc-pass/w21-verify/`) | independent re-verification of every load-bearing claim against the crops, then a repair plan | Opus + Fable | **28 claims tested → 15 confirm / 12 overturn / 1 unresolved**, plus **14 new defects the first audit missed**. Headline overturns: the **Rubens kingfisher is REAL** (per the National Gallery's own teaching notes — the first audit's goldfinch/foliage reading was wrong); **Hoa Hakananai'a is basalt** and the draft was right; **Bonnard stop-3 surface claim is false**; **Monet *Le Givre* comparative ran the right way** (settling the two-auditors dispute). The repair split into plan A (13 edits) + plan B (17 edits); **Rohlfs and Ranelagh were clean**; the San Rocco back-edit went to the DO-NOT-APPLY register. Applied with the ten tours in `43a882e`. Verdicts: `.dtmp/tourqc-pass/w21-verify/VERDICTS.md` (⚠ local workshop artifact, not deployed). |
 
 ## The 2026-08-25 session — 5 audit waves, and what they cost to learn
@@ -545,18 +619,12 @@ rather than an edit. ⚙ Where a claim below was checkable against the live stor
   **`…bd73f` and 404s**; the correct uuid ends **`…bd730`**. (b) The `art_hires` dims were stale at
   9052 × 13496; correct is **10652 × 14204**. (c) The `year` is wrong.
   ⚙ **Verified in the live store: `art_hires` already carries the `…bd730` uuid AND 10652 × 14204**,
-  so (b) and the hires half of (a) appear to be fixed already — **the 404 is in `art_data.js`'s
-  own `img`/`imgGrid`/`imgZoom`, which is where it still needs checking.** The canon row reads
+  so (b) and the hires half of (a) appear to be fixed already. ⚙ **Re-measured 2026-08-26: the
+  `art_data.js` entry now carries NO `img`/`imgGrid`/`imgZoom` at all — the 404 no longer
+  reproduces (the app falls through to the hires plate).** Still open: the canon row reads
   `year: 1885`; the correct year is not settled here.
-- **⚠ NEEDS FUAD'S RULING — Tiepolo `giovanni-battista-tiepolo-die-verehrung-der-trinitat-durch-d`
-  is two different paintings in one row.** The row says `seenAt: national-gallery-london`, but its
-  **qid and its plate are the Munich altarpiece** — 488 × 256 cm, **Alte Pinakothek**. The National
-  Gallery London holds a **different, smaller** work (**NG6273**). ⚙ Verified: the row carries
-  `seenAt: national-gallery-london`, `qid: Q29477853`, `seenConfidence: sure`, and an `art_hires`
-  plate titled *"Die Verehrung der Trinität durch den hl. Papst Clemens"*. **This is not a typo
-  fix** — either the encounter was with NG6273 (in which case the qid, plate, title and any tour
-  are all wrong) or the encounter was in Munich (in which case only `seenAt` is wrong). Fuad is the
-  only source for which.
+- ~~Tiepolo two-paintings-in-one-row~~ ✅ **RESOLVED as NG6273, cascade applied (`09d07f2`) —
+  see open-list item 2's closure note. Do not re-open.**
 - **⚠ NEEDS FUAD'S RULING — `degas-grande-arabesque-third-time` describes the wrong object.** The
   canon note and the Info both say *"a bronze cast"*. The plate is **NGA 1999.80.10, the original
   pigmented-BEESWAX wax** — not a bronze. And **Fuad's encounter was with the Met's bronze**, which
@@ -579,8 +647,8 @@ rather than an edit. ⚙ Where a claim below was checkable against the live stor
     that these are loans too; it does not settle any of them.
 - **Duplicate and missing images.** ⚙ Re-measured against the store, and **one half of this
   reproduces and one half does not**:
-  - **Duplicate `img` — 1 pair, not 2. VERIFIED:** `odilon-redon-untitled-4` and
-    `odilon-redon-untitled-10` share the identical *Conque marine* file.
+  - ~~Duplicate `img` — the Redon pair~~ ✅ **RESOLVED by the canon dedupe (open-list item 4):
+    `odilon-redon-untitled-10` is removed; the one remaining *Conque marine* row is `-4`.**
   - ~~two Degas both "Dancer"~~ ⚙ **does NOT reproduce as an image duplicate.**
     `edgar-degas-two-dancers` and `edgar-degas-two-dancers-2` share a **TITLE**, not an `img`;
     a whole-store scan returns exactly one duplicate-`img` group. Recorded corrected rather than
