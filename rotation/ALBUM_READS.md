@@ -310,6 +310,19 @@ GIST recipe; redrafts bump `by` to Opus·Fable.
 - Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
 - Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
 
+### Batch log — Northlane cascade (2026-08-26)
+
+Obsidian + Alien re-synthesized from the v2.4 replacement track reads and shipped
+FRONTAL (prior Opus·Fable reads → `linerPrev`/`arcPrev`); new gists per the recipe
+(theme hook, stats-free; Alien's sub-floor closer flagged lightly). THIRD Northlane
+artist deliverable: first `northlane` artist entry (portrait + verified `note`:
+Architects-song namesake; Node #1 in Australia + ARIA best heavy album). QC shape:
+the artist writer COLLAGED album-liner phrases verbatim AGAIN (third campaign
+running — echo-seal is confirmed as a permanent artist-read step); 3 liner seals
+(a two-track repetition claim split per-read; 2 track-read collage rephrasings).
+Xen play-leader claim data-verified (274p). Open: Enemy Of The Night (9p, HSO)
+is one fable fill from Alien full coverage.
+
 ### Batch log — the album pivot (2026-08-23)
 
 Seven top-played albums that had no (or only partial) fable coverage were taken end-to-end
