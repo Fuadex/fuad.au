@@ -170,7 +170,6 @@ window.CULTURE_BADGES = {
   "horrifying"
  ],
  "fallout": [
-  "funny",
   "satire"
  ],
  "fargo": [
@@ -486,9 +485,6 @@ window.CULTURE_BADGES = {
   "absurdist",
   "funny"
  ],
- "imp-s-662876": [
-  "funny"
- ],
  "imp-s-680486": [
   "intense"
  ],
@@ -497,9 +493,6 @@ window.CULTURE_BADGES = {
  ],
  "imp-s-767241": [
   "absurdist"
- ],
- "imp-s-843529": [
-  "funny"
  ],
  "imp-s-870925": [
   "gentle"
@@ -701,7 +694,6 @@ window.CULTURE_BADGES = {
   "writing"
  ],
  "pygmalion": [
-  "funny",
   "gem",
   "satire"
  ],
@@ -1210,10 +1202,6 @@ window.CULTURE_BADGES = {
   "formal-exec",
   "singular"
  ],
- "wl-f-fbl-millennium-mambo": [
-  "atmosphere",
-  "style"
- ],
  "wl-f-fbl-night-and-fog": [
   "devastating",
   "formal-exec",
@@ -1380,11 +1368,6 @@ window.CULTURE_BADGES = {
   "devastating",
   "formal-exec"
  ],
- "wl-f-fbl2-barking-dogs": [
-  "satire",
-  "social-xray",
-  "funny"
- ],
  "wl-f-fbl2-blow-out": [
   "style",
   "devastating",
@@ -1440,7 +1423,8 @@ window.CULTURE_BADGES = {
  ],
  "wl-g-784009": [
   "cognitive",
-  "worldbuilding"
+  "worldbuilding",
+  "cerebral"
  ],
  "wl-g-fbl-1000xresist": [
   "cognitive",

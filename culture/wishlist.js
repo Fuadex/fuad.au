@@ -1233,7 +1233,7 @@ window.CULTURE_WISHLIST = [
 {"id": "wl-g-816521", "title": "Celeste", "year": 2018, "medium": "Games", "link": "https://www.filmweb.pl/videogame/Celeste-2018-816521", "fwAvg": 8.2, "voteCount": 560, "highlights": ["devastating"], "polishTitle": "Celeste" },
 {"id": "wl-g-768397", "title": "ECHO", "year": 2017, "medium": "Games", "link": "https://www.filmweb.pl/videogame/ECHO-2017-768397", "fwAvg": 6.4, "voteCount": 22, "polishTitle": "ECHO", "enTitle": "Echo" },
 {"id": "wl-g-798011", "title": "Doki Doki Literature Club!", "year": 2017, "medium": "Games", "link": "https://www.filmweb.pl/videogame/Doki+Doki+Literature+Club%21-2017-798011", "fwAvg": 7.8, "voteCount": 1189, "highlights": ["cognitive"], "polishTitle": "Doki Doki Literature Club!" },
-{"id": "wl-g-outer-wilds", "title": "Outer Wilds", "year": 2019, "medium": "Games", "highlights": ["cognitive"], "director": "Alex Beachum", "source": "fable"},
+{"id": "wl-g-outer-wilds", "title": "Outer Wilds", "year": 2019, "medium": "Games", "highlights": ["cognitive", "mindbending"], "director": "Alex Beachum", "source": "fable"},
 {"id": "wl-g-nier-automata", "title": "NieR: Automata", "year": 2017, "medium": "Games", "highlights": ["cognitive"], "director": "Yoko Taro", "source": "fable"},
 {"id": "wl-g-soma", "title": "SOMA", "year": 2015, "medium": "Games", "highlights": ["cognitive"], "director": "Thomas Grip", "source": "fable"},
 {"id": "wl-g-inscryption", "title": "Inscryption", "year": 2021, "medium": "Games", "highlights": ["cognitive"], "director": "Daniel Mullins", "source": "fable"},

@@ -2640,29 +2640,6 @@ window.CULTURE_OMDB = {
    }
   ]
  },
- "three-colors-white": {
-  "imdbID": "tt0111507",
-  "imdbRating": "7.6",
-  "imdbVotes": "85,094",
-  "Metascore": "91",
-  "Awards": "2 wins & 6 nominations total",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BMWUyMWJiYTEtNmIzYi00OTYxLTlkYjEtMGFjMjY3NDc5Mjk0XkEyXkFqcGc@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "7.6/10"
-   },
-   {
-    "Source": "Rotten Tomatoes",
-    "Value": "91%"
-   },
-   {
-    "Source": "Metacritic",
-    "Value": "91/100"
-   }
-  ],
-  "PlotShort": "After his wife divorces him, a Polish immigrant plots to get even with her."
- },
  "imp-f-child": {
   "imdbID": "tt1014763",
   "imdbRating": "6.4",
@@ -8376,20 +8353,6 @@ window.CULTURE_OMDB = {
    }
   ],
   "PlotShort": "When an unconfident young woman is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle."
- },
- "imp-s-829257": {
-  "imdbID": "tt7216636",
-  "imdbRating": "7.7",
-  "imdbVotes": "33,949",
-  "Awards": "2 wins & 5 nominations total",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BOGMxYWIwMWYtZjY4OC00MzMwLWIyNDEtYWNiZTJlMzg3ODdiXkEyXkFqcGc@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "7.7/10"
-   }
-  ],
-  "PlotShort": "In an attempt to find a non-violent alternative for reducing Hell's overpopulation, the daughter of Lucifer opens a rehabilitation hotel that offers a group of misfit demons a chance at redemption."
  },
  "imp-s-10042461": {
   "imdbID": "tt37296588",
@@ -15406,20 +15369,6 @@ window.CULTURE_OMDB = {
    }
   ],
   "PlotShort": "It's a starry night in a poor neighborhood in Latin America. Oscar is sleeping in his room when a sudden wind wakes him up. From his window he sees a little goldfish in a dirty puddle gasping for air."
- },
- "imp-f-ningen-no-joken-i": {
-  "imdbID": "tt0055233",
-  "imdbRating": "8.8",
-  "imdbVotes": "8,466",
-  "Awards": "5 wins total",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BOTk0YmJiOWItN2JlNS00NDUwLWExYjItMDhkMjYwODMwY2RlXkEyXkFqcGc@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "8.8/10"
-   }
-  ],
-  "PlotShort": "His ideals challenged by life as a conscript in war-time Japan's military, a pacifist faces ever greater tests in his fight for survival."
  },
  "imp-f-ex-e-t": {
   "imdbID": "tt2087752",
@@ -56992,29 +56941,6 @@ window.CULTURE_OMDB = {
    }
   ],
   "PlotShort": "Impoverished priest Harihar Ray, dreaming of a better life for himself and his family, leaves his rural Bengal village in search of work."
- },
- "wl-f-12075": {
-  "imdbID": "tt0050825",
-  "imdbRating": "8.4",
-  "imdbVotes": "237,303",
-  "Metascore": "90",
-  "Awards": "Nominated for 1 BAFTA Award5 wins & 3 nominations total",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BNmQ2NmI2ODYtMDQzNS00NzQyLTkzZjgtZmZlYTQ5MTc1OWU3XkEyXkFqcGc@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "8.4/10"
-   },
-   {
-    "Source": "Rotten Tomatoes",
-    "Value": "96%"
-   },
-   {
-    "Source": "Metacritic",
-    "Value": "90/100"
-   }
-  ],
-  "PlotShort": "A colonel defends three of his soldiers in a court-martial after they abandon a suicidal attack."
  },
  "wl-f-1298": {
   "imdbID": "tt0066206",

@@ -37,12 +37,19 @@ neighbours (the cerebral/mindbending/cognitive trio especially).
 - **🧠 cerebral** — *makes you think **while** watching*: ideas are on screen, the film is
   reasoning in front of you. Test: could you argue with it? · e.g. 2001, Ex Machina, Stalker,
   The Vietnam War · band ≈ 40–50.
-- **🌀 mindbending** — *disorients **during**: structure, twist, or reality-games.* The effect
-  lives inside the work; a month later the trick still belongs to the film. Test: did it bend
-  the floor while you stood on it? · e.g. The Usual Suspects, Dark, Primer, Inception · band ≈ 35.
-- **🪞 cognitive** — *a shift you **kept**.* You describe the world — or the medium — differently
-  afterward. Test: **a month later, would you narrate something differently because of it?**
-  If the reframe stays inside the plot → that's 🌀, not 🪞. · band ≈ 15–20 (keep it rare).
+- **🌀 mindbending** — *messes with your brain **perceptually or structurally** while you're
+  inside it* — reality-games, impossible spaces, sensory derangement, loop-structures you must
+  hold in your head. (REDRAWN by Fuad 2026-08-27: "mindbending is more like Las Vegas Parano,
+  Manifold Garden, Antichamber — stuff that messes with your brain but NOT by changing how you
+  view it.") A pure end-twist that reframes the work belongs to 🪞 now, not here. Test: did it
+  bend the floor while you stood on it? · e.g. Fear and Loathing in Las Vegas, Antichamber,
+  Manifold Garden, Primer, Dark, Inception.
+- **🪞 cognitive** — *a REFRAME you kept — and a reframe is a reframe* (Fuad 2026-08-27),
+  whether it changes how you see the world, the medium, **or the work itself on every future
+  viewing** (the reveal class: The Usual Suspects, The Game, Higurashi's answer-arcs — once
+  you hold the explanation, the thing can never play the same way again). Test: **would you
+  narrate something differently because of it — the world, the form, or the work?** The old
+  "stays inside the plot → 🌀" boundary is RETIRED.
 
   **Two sub-flavours of 🪞** (same badge, tracked in the charter, surfaced in the Cognitive
   Hall):

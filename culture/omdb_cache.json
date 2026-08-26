@@ -5385,47 +5385,6 @@
   "Response": "True",
   "PlotShort": ""
  },
- "three-colors-white": {
-  "Title": "Three Colors: White",
-  "Year": "1994",
-  "Rated": "R",
-  "Released": "10 Jun 1994",
-  "Runtime": "92 min",
-  "Genre": "Comedy, Drama, Romance",
-  "Director": "Krzysztof Kieslowski",
-  "Writer": "Krzysztof Kieslowski, Krzysztof Piesiewicz, Agnieszka Holland",
-  "Actors": "Zbigniew Zamachowski, Julie Delpy, Janusz Gajos",
-  "Plot": "Karol (Polish) marries Dominique (French) and moves to Paris. The marriage breaks down and Dominique divorces Karol, forcing him into the life of a metro beggar and eventually back to Poland. However, he never forgets Dominique and while building a new life for himself in Warsaw he begins to plot.",
-  "Language": "Polish, French, English",
-  "Country": "France, Switzerland, Poland",
-  "Awards": "2 wins & 6 nominations total",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BMWUyMWJiYTEtNmIzYi00OTYxLTlkYjEtMGFjMjY3NDc5Mjk0XkEyXkFqcGc@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "7.6/10"
-   },
-   {
-    "Source": "Rotten Tomatoes",
-    "Value": "91%"
-   },
-   {
-    "Source": "Metacritic",
-    "Value": "91/100"
-   }
-  ],
-  "Metascore": "91",
-  "imdbRating": "7.6",
-  "imdbVotes": "85,094",
-  "imdbID": "tt0111507",
-  "Type": "movie",
-  "DVD": "N/A",
-  "BoxOffice": "$1,237,219",
-  "Production": "N/A",
-  "Website": "N/A",
-  "Response": "True",
-  "PlotShort": "After his wife divorces him, a Polish immigrant plots to get even with her."
- },
  "imp-f-child": {
   "Title": "Child 44",
   "Year": "2015",
@@ -16738,36 +16697,6 @@
   "Website": "N/A",
   "Response": "True",
   "PlotShort": "When an unconfident young woman is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle."
- },
- "imp-s-829257": {
-  "Title": "Hazbin Hotel",
-  "Year": "2019–",
-  "Rated": "TV-MA",
-  "Released": "28 Oct 2019",
-  "Runtime": "N/A",
-  "Genre": "Animation, Comedy, Drama",
-  "Director": "N/A",
-  "Writer": "Vivienne Medrano",
-  "Actors": "Erika Henningsen, Stephanie Beatriz, Blake Roman",
-  "Plot": "Hazbin Hotel is the story of Charlie, the princess of Hell, as she pursues her seemingly impossible goal of rehabilitating demons to peacefully reduce overpopulation in her kingdom. She opens a hotel in hopes that patients will be \"checking out\" into Heaven. While most of Hell mocks her goal, her devoted partner Vaggie, and their first test subject, adult film-star Angel Dust, stick by her side. When a powerful entity known as the \"Radio Demon\" reaches out to Charlie to assist in her endeavors, her crazy dream is given a chance to become a reality.",
-  "Language": "English",
-  "Country": "Philippines, United States",
-  "Awards": "2 wins & 5 nominations total",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BOGMxYWIwMWYtZjY4OC00MzMwLWIyNDEtYWNiZTJlMzg3ODdiXkEyXkFqcGc@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "7.7/10"
-   }
-  ],
-  "Metascore": "N/A",
-  "imdbRating": "7.7",
-  "imdbVotes": "33,949",
-  "imdbID": "tt7216636",
-  "Type": "series",
-  "totalSeasons": "2",
-  "Response": "True",
-  "PlotShort": "In an attempt to find a non-violent alternative for reducing Hell's overpopulation, the daughter of Lucifer opens a rehabilitation hotel that offers a group of misfit demons a chance at redemption."
  },
  "imp-s-10042461": {
   "Title": "Hazbin Hotel Abridged",
@@ -30681,39 +30610,6 @@
   "Website": "N/A",
   "Response": "True",
   "PlotShort": "It's a starry night in a poor neighborhood in Latin America. Oscar is sleeping in his room when a sudden wind wakes him up. From his window he sees a little goldfish in a dirty puddle gasping for air."
- },
- "imp-f-ningen-no-joken-i": {
-  "Title": "The Human Condition III: A Soldier's Prayer",
-  "Year": "1961",
-  "Rated": "Not Rated",
-  "Released": "05 Aug 1970",
-  "Runtime": "190 min",
-  "Genre": "Drama, History, War",
-  "Director": "Masaki Kobayashi",
-  "Writer": "Zenzô Matsuyama, Kôichi Inagaki, Masaki Kobayashi",
-  "Actors": "Tatsuya Nakadai, Michiyo Aratama, Tamao Nakamura",
-  "Plot": "Part three of a trilogy. After the Japanese defeat to the Russians in the last episode, Kaji, the Japanese soldier and humanistic protagonist, leads the last remaining men through Manchuria. Intent on returning to his dear wife and his old life, Kaji faces great odds in a variety of different harrowing circumstances as he and his fellow men sneak behind enemy lines. Ultimately, he finds himself in the exact opposite position he held in the first episode: Then a labor manager, Kaji is now a prisoner of war, forced to work for the Russians, who do not seem to hold to the Communist ideals in which Kaji himself had put his faith.",
-  "Language": "Japanese, Mandarin, Russian",
-  "Country": "Japan",
-  "Awards": "5 wins total",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BOTk0YmJiOWItN2JlNS00NDUwLWExYjItMDhkMjYwODMwY2RlXkEyXkFqcGc@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "8.8/10"
-   }
-  ],
-  "Metascore": "N/A",
-  "imdbRating": "8.8",
-  "imdbVotes": "8,466",
-  "imdbID": "tt0055233",
-  "Type": "movie",
-  "DVD": "N/A",
-  "BoxOffice": "N/A",
-  "Production": "N/A",
-  "Website": "N/A",
-  "Response": "True",
-  "PlotShort": "His ideals challenged by life as a conscript in war-time Japan's military, a pacifist faces ever greater tests in his fight for survival."
  },
  "imp-f-ex-e-t": {
   "Title": "Ex-E.T.",
@@ -117002,47 +116898,6 @@
   "Response": "True",
   "PlotShort": "Impoverished priest Harihar Ray, dreaming of a better life for himself and his family, leaves his rural Bengal village in search of work."
  },
- "wl-f-12075": {
-  "Title": "Paths of Glory",
-  "Year": "1957",
-  "Rated": "Approved",
-  "Released": "25 Dec 1957",
-  "Runtime": "88 min",
-  "Genre": "Drama, War",
-  "Director": "Stanley Kubrick",
-  "Writer": "Stanley Kubrick, Calder Willingham, Jim Thompson",
-  "Actors": "Kirk Douglas, Ralph Meeker, Adolphe Menjou",
-  "Plot": "The futility and irony of the war in the trenches in WWI is shown as a unit commander in the French army must deal with the mutiny of his men and a glory-seeking general after part of his force falls back under fire in an impossible attack.",
-  "Language": "English, German, Latin",
-  "Country": "United States",
-  "Awards": "Nominated for 1 BAFTA Award5 wins & 3 nominations total",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BNmQ2NmI2ODYtMDQzNS00NzQyLTkzZjgtZmZlYTQ5MTc1OWU3XkEyXkFqcGc@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "8.4/10"
-   },
-   {
-    "Source": "Rotten Tomatoes",
-    "Value": "96%"
-   },
-   {
-    "Source": "Metacritic",
-    "Value": "90/100"
-   }
-  ],
-  "Metascore": "90",
-  "imdbRating": "8.4",
-  "imdbVotes": "237,303",
-  "imdbID": "tt0050825",
-  "Type": "movie",
-  "DVD": "N/A",
-  "BoxOffice": "N/A",
-  "Production": "N/A",
-  "Website": "N/A",
-  "Response": "True",
-  "PlotShort": "A colonel defends three of his soldiers in a court-martial after they abandon a suicidal attack."
- },
  "wl-f-1298": {
   "Title": "Patton",
   "Year": "1970",
@@ -133114,11 +132969,6 @@
   "Response": "False",
   "_q": "Monstersymfonie",
   "_y": 2012
- },
- "imp-f-ningen-no-joken-ii": {
-  "Response": "False",
-  "_q": "Ningen no joken II",
-  "_y": 1959
  },
  "imp-f-nowy-janko-muzykant": {
   "Response": "False",
