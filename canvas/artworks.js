@@ -4065,7 +4065,24 @@ window.CANVAS_ARTWORKS = [
 {"id":"morisot-girl-in-a-boat-with-geese","title":"Girl in a Boat with Geese","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20189994","qidTrusted":true,"year":1889,"wish":true},
 {"id":"morisot-hanging-the-laundry-out-to-dry","title":"Hanging the Laundry out to Dry","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20188790","qidTrusted":true,"year":1875,"wish":true},
 {"id":"morisot-peonies","title":"Peonies","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20188723","qidTrusted":true,"year":1869,"wish":true},
-{"id":"morisot-young-girl-with-an-apron","title":"Young Girl with an Apron","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20190290","qidTrusted":true,"year":1891,"wish":true}
+{"id":"morisot-young-girl-with-an-apron","title":"Young Girl with an Apron","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20190290","qidTrusted":true,"year":1891,"wish":true},
+{"id":"raoul-dufy-saint-jeannet","title":"Saint-Jeannet","artist":"Raoul Dufy","artistId":"raoul-dufy","qid":"Q20191464","qidTrusted":true,"year":1910,"wish":true},
+{"id":"cole-a-view-of-the-mountain-pass-called-the-notch-of-the-white-mountains-crawford-notch","title":"A View of the Mountain Pass Called the Notch of the White Mountains (Crawford Notch)","artist":"Thomas Cole","artistId":"cole","qid":"Q19900023","qidTrusted":true,"year":1839,"wish":true},
+{"id":"cole-sketch-for-ohio-state-capitol-design","title":"Sketch for Ohio State Capitol Design","artist":"Thomas Cole","artistId":"cole","qid":"Q20186393","qidTrusted":true,"year":1838,"wish":true},
+{"id":"cole-the-voyage-of-life-childhood","title":"The Voyage of Life: Childhood","artist":"Thomas Cole","artistId":"cole","qid":"Q19900097","qidTrusted":true,"year":1842,"wish":true},
+{"id":"cole-the-voyage-of-life-youth","title":"The Voyage of Life: Youth","artist":"Thomas Cole","artistId":"cole","qid":"Q19900113","qidTrusted":true,"year":1842,"wish":true},
+{"id":"cole-the-voyage-of-life-manhood","title":"The Voyage of Life: Manhood","artist":"Thomas Cole","artistId":"cole","qid":"Q19900102","qidTrusted":true,"year":1842,"wish":true},
+{"id":"cole-the-voyage-of-life-old-age","title":"The Voyage of Life: Old Age","artist":"Thomas Cole","artistId":"cole","qid":"Q19900107","qidTrusted":true,"year":1842,"wish":true},
+{"id":"raoul-dufy-july-14-in-le-havre","title":"July 14 in Le Havre","artist":"Raoul Dufy","artistId":"raoul-dufy","qid":"Q20191019","qidTrusted":true,"year":1906,"wish":true},
+{"id":"raoul-dufy-music-and-the-pink-violin","title":"Music and the Pink Violin","artist":"Raoul Dufy","artistId":"raoul-dufy","qid":"Q20194563","qidTrusted":true,"year":1952,"wish":true},
+{"id":"cole-sunrise-in-the-catskills","title":"Sunrise in the Catskills","artist":"Thomas Cole","artistId":"cole","qid":"Q19900512","qidTrusted":true,"year":1826,"wish":true},
+{"id":"cole-italian-coast-scene-with-ruined-tower","title":"Italian Coast Scene with Ruined Tower","artist":"Thomas Cole","artistId":"cole","qid":"Q19899757","qidTrusted":true,"year":1838,"wish":true},
+{"id":"raoul-dufy-the-beach-at-sainte-adresse","title":"The Beach at Sainte-Adresse","artist":"Raoul Dufy","artistId":"raoul-dufy","qid":"Q20190998","qidTrusted":true,"year":1906,"wish":true},
+{"id":"cole-study-for-catskill-creek","title":"Study for \"Catskill Creek\"","artist":"Thomas Cole","artistId":"cole","qid":"Q19900520","qidTrusted":true,"year":1844,"wish":true},
+{"id":"raoul-dufy-the-landing","title":"The Landing","artist":"Raoul Dufy","artistId":"raoul-dufy","qid":"Q20192746","qidTrusted":true,"year":1928,"wish":true},
+{"id":"cole-the-return","title":"The Return","artist":"Thomas Cole","artistId":"cole","qid":"Q19900694","qidTrusted":true,"year":1837,"wish":true},
+{"id":"cole-the-departure","title":"The Departure","artist":"Thomas Cole","artistId":"cole","qid":"Q19900688","qidTrusted":true,"year":1837,"wish":true},
+{"id":"cole-tornado-in-an-american-forest","title":"Tornado in an American Forest","artist":"Thomas Cole","artistId":"cole","qid":"Q46627014","qidTrusted":true,"year":1831,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
