@@ -666,6 +666,192 @@ function SlopeGraph() {
 // ─────────────────────────────────────────────────────────────────
 //  LAB VIEW
 // ─────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────
+//  INSIGHT PROTOTYPES (2026-08-26) — the three roadmap insights staged
+//  in the lab BEFORE any rollout (Fuad: "I need to get a good idea of
+//  what we're doing here"): taste fingerprint · lyrical diet · discovery
+//  genealogy. Placement/graduation is Fuad's call; nothing links here.
+// ─────────────────────────────────────────────────────────────────
+
+const FP_LABEL = { energy: "Energy", valence: "Positivity", dance: "Danceability", acoustic: "Acoustic", instr: "Instrumental", tempo: "Tempo" };
+// R.AUDIO artist rows are [energy, valence, acoustic, tempo, dance, instr, …] — NOT the
+// AUDIO_DIST axis order. Map by name; never by position.
+const FP_AUDIO_IDX = { energy: 0, valence: 1, acoustic: 2, tempo: 3, dance: 4, instr: 5 };
+
+function TasteFingerprint() {
+  const R = window.ROTATION;
+  const D = R && R.AUDIO_DIST;
+  const [pick, setPick] = React.useState("");
+  if (!D || !D.cdf) return <StubCard title="Taste Fingerprint" caption="Sweet-spot bands per audio axis" needs="ROTATION.AUDIO_DIST" />;
+  const q = (c, pm) => { for (let v = 0; v <= 100; v++) if (c[v] >= pm) return v; return 100; };
+  const bands = D.axes.map((name, i) => {
+    const c = D.cdf[i];
+    const dens = c.map((v, j) => (j ? v - c[j - 1] : v));
+    return { name, p25: q(c, 250), p50: q(c, 500), p75: q(c, 750), dens, max: Math.max(...dens) };
+  });
+  const tight = bands.slice().sort((a, b) => (a.p75 - a.p25) - (b.p75 - b.p25));
+  const pid = pick && R.idForName ? R.idForName(pick) : null;
+  const row = pid && R.AUDIO ? R.AUDIO[pid] : null;
+  const picked = row && { name: (R.byId[pid] || { name: pick }).name, vals: Object.fromEntries(bands.map(b => [b.name, Math.round((row[FP_AUDIO_IDX[b.name]] || 0) * 100)])) };
+  const inBand = b => picked && picked.vals[b.name] >= b.p25 && picked.vals[b.name] <= b.p75;
+  const grad = (b) => "linear-gradient(90deg," + b.dens.filter((_, j) => j % 2 === 0)
+    .map((d, j) => `oklch(0.74 0.13 330 / ${(d / b.max * 0.85).toFixed(2)}) ${j * 2}%`).join(",") + ")";
+  return labCard("Taste Fingerprint", "Where 20 years of plays actually live on each audio axis — the shaded mass is play-weighted density, the bracket is your middle-50% comfort band. Type an artist to score them against it.",
+    <div>
+      {bands.map(b => (
+        <div key={b.name} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 9 }}>
+          <div style={{ width: 86, fontFamily: "var(--mono)", fontSize: 10, color: LAB_DIM, textAlign: "right", flex: "none" }}>{FP_LABEL[b.name]}</div>
+          <div style={{ position: "relative", flex: 1, height: 20, background: LAB_BG2, borderRadius: 4, overflow: "hidden" }}>
+            <div style={{ position: "absolute", inset: 0, backgroundImage: grad(b) }} />
+            <div style={{ position: "absolute", top: 0, bottom: 0, left: b.p25 + "%", width: (b.p75 - b.p25) + "%", border: `1px solid ${LAB_INK}`, borderRadius: 3, opacity: 0.55 }} title={`comfort band ${b.p25}–${b.p75}`} />
+            <div style={{ position: "absolute", top: 2, bottom: 2, left: `calc(${b.p50}% - 1px)`, width: 2, background: LAB_INK, opacity: 0.9 }} title={`median ${b.p50}`} />
+            {picked && <div style={{ position: "absolute", top: 4, width: 10, height: 10, borderRadius: "50%", left: `calc(${picked.vals[b.name]}% - 5px)`, background: inBand(b) ? "oklch(0.8 0.16 150)" : "oklch(0.72 0.19 25)", border: `1.5px solid ${LAB_BG}` }} title={`${picked.name}: ${picked.vals[b.name]}`} />}
+          </div>
+          <div style={{ width: 62, fontFamily: "var(--mono)", fontSize: 9, color: LAB_FAINT, flex: "none" }}>{b.p25}–{b.p75}</div>
+        </div>
+      ))}
+      <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: LAB_DIM, margin: "12px 0 10px", lineHeight: 1.7 }}>
+        Tightest preference: <b style={{ color: LAB_INK }}>{FP_LABEL[tight[0].name]}</b> ({tight[0].p25}–{tight[0].p75}) ·
+        loosest: <b style={{ color: LAB_INK }}>{FP_LABEL[tight[5].name]}</b> ({tight[5].p25}–{tight[5].p75})
+      </div>
+      <input list="fp-artists" value={pick} onChange={e => setPick(e.target.value)} placeholder="score an artist against your fingerprint…"
+        style={{ background: LAB_BG2, border: `1px solid ${LAB_RULE}`, color: LAB_INK, borderRadius: 6, padding: "7px 10px", fontFamily: "var(--mono)", fontSize: 11, width: "min(320px,100%)" }} />
+      <datalist id="fp-artists">{(R.ARTISTS || []).map(a => <option key={a.id} value={a.name} />)}</datalist>
+      {picked && (() => {
+        const hits = bands.filter(inBand), miss = bands.filter(b => !inBand(b));
+        return <div style={{ fontFamily: "var(--serif)", fontSize: 13, color: LAB_DIM, marginTop: 10, lineHeight: 1.6 }}>
+          <b style={{ color: LAB_INK }}>{picked.name}</b> sits inside your comfort band on <b style={{ color: LAB_INK }}>{hits.length} of 6</b> axes{miss.length ? <> — the outliers: {miss.map(b => `${FP_LABEL[b.name].toLowerCase()} ${picked.vals[b.name]} vs your ${b.p25}–${b.p75}`).join(", ")}.</> : " — squarely your sound."}
+        </div>;
+      })()}
+      {!picked && pick && <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: LAB_FAINT, marginTop: 8 }}>no audio row for that name (top-400 artists carry one)</div>}
+    </div>
+  );
+}
+
+const DIET_HUES = [330, 46, 4, 282, 96, 214, 150, 60];
+function LyricalDiet() {
+  const T = window.ROTATION && window.ROTATION.INSIGHTS && window.ROTATION.INSIGHTS.THEMES;
+  const [sel, setSel] = React.useState(null);
+  if (!T || !T.arc) return <StubCard title="Lyrical Diet" caption="What you listen ABOUT, over time" needs="INSIGHTS.THEMES.arc" />;
+  const themes = T.arc.themes, years = T.arc.years;
+  const hueOf = th => DIET_HUES[themes.indexOf(th) >= 0 ? themes.indexOf(th) % DIET_HUES.length : 7];
+  const shift = themes.map(th => {
+    const f = years.slice(0, 3).reduce((s, y) => s + (y.byTheme[th] || 0), 0) / 3;
+    const l = years.slice(-3).reduce((s, y) => s + (y.byTheme[th] || 0), 0) / 3;
+    return { th, d: l - f };
+  }).sort((a, b) => b.d - a.d);
+  const H = 150;
+  return labCard("Lyrical Diet", `What the lyrics you play are ABOUT, year by year — play-weighted shares over ${T.covered.toLocaleString("en-US")} theme-classified tracks. Click a theme for its exemplar songs and the artists who feed it.`,
+    <div>
+      <div style={{ display: "flex", alignItems: "flex-end", gap: 3, height: H + 22, marginBottom: 10 }}>
+        {years.map(y => {
+          const shown = themes.reduce((s, th) => s + (y.byTheme[th] || 0), 0);
+          return (
+            <div key={y.year} style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }} title={`${y.year} · ${y.plays.toLocaleString("en-US")} themed plays`}>
+              <div style={{ height: Math.round((1 - shown) * H), background: LAB_BG2 }} title="other themes" />
+              {themes.slice().reverse().map(th => (
+                <div key={th} style={{ height: Math.max(1, Math.round((y.byTheme[th] || 0) * H)), background: sel && sel !== th ? labHueDim(hueOf(th)) : labHue(hueOf(th)), opacity: sel && sel !== th ? 0.35 : 1 }} title={`${th} ${(100 * (y.byTheme[th] || 0)).toFixed(1)}%`} />
+              ))}
+              <div style={{ fontFamily: "var(--mono)", fontSize: 8, color: LAB_FAINT, textAlign: "center", marginTop: 4 }}>{String(y.year).slice(2)}</div>
+            </div>
+          );
+        })}
+      </div>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
+        {T.shares.slice(0, 8).map(s => (
+          <button key={s.theme} onClick={() => setSel(sel === s.theme ? null : s.theme)}
+            style={{ background: sel === s.theme ? labHue(hueOf(s.theme)) : LAB_BG2, color: sel === s.theme ? LAB_BG : LAB_DIM, border: `1px solid ${LAB_RULE}`, borderRadius: 20, padding: "4px 11px", fontFamily: "var(--mono)", fontSize: 10, cursor: "pointer" }}>
+            {s.theme} · {Math.round(s.share * 100)}%
+          </button>
+        ))}
+      </div>
+      <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: LAB_DIM, lineHeight: 1.8 }}>
+        Rising: <b style={{ color: LAB_INK }}>{shift[0].th}</b> (+{(shift[0].d * 100).toFixed(1)} pts vs your first years) ·
+        fading: <b style={{ color: LAB_INK }}>{shift[shift.length - 1].th}</b> ({(shift[shift.length - 1].d * 100).toFixed(1)} pts)
+      </div>
+      {sel && (
+        <div style={{ marginTop: 12, borderTop: `1px solid ${LAB_RULE}`, paddingTop: 12 }}>
+          {(T.exemplars[sel] || []).map(x => (
+            <div key={x.id} style={{ fontFamily: "var(--serif)", fontSize: 13, color: LAB_DIM, marginBottom: 3 }}>
+              <a href={"#track/" + x.id} style={{ color: LAB_INK, textDecoration: "none" }}>{x.artist} — {x.title}</a>
+              <span style={{ fontFamily: "var(--mono)", fontSize: 9, color: LAB_FAINT }}> · {x.plays} plays</span>
+            </div>
+          ))}
+          <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: LAB_FAINT, marginTop: 6 }}>
+            fed by: {T.artists.filter(a => a.themes.some(t => t.theme === sel)).slice(0, 6).map(a => a.name).join(" · ") || "—"}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function GenealogyLab() {
+  const R = window.ROTATION;
+  const [ready, setReady] = React.useState(!!window.ROTATION_GENEALOGY);
+  const [pick, setPick] = React.useState("");
+  React.useEffect(() => {
+    if (!window.ROTATION_GENEALOGY) window.loadScript("genealogy.js", "rotation-genealogy-js", () => setReady(true));
+  }, []);
+  if (!ready) return labCard("Discovery Genealogy", "How did I get here? — who introduced whom, reconstructed from first plays inside listening sessions.",
+    <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: LAB_FAINT }}>loading the family tree…</div>);
+  const G = window.ROTATION_GENEALOGY || {};
+  const nameOf = s => (R.byId[s] && R.byId[s].name) || (R.expById && R.expById[s] && R.expById[s].name) || s;
+  const kids = {};
+  for (const k in G) { const p = G[k][0]; if (p) (kids[p] = kids[p] || []).push(k); }
+  const gateways = Object.entries(kids).sort((a, b) => b[1].length - a[1].length).slice(0, 15);
+  const pid = pick && R.idForName ? R.idForName(pick) : null;
+  const chain = [];
+  if (pid && G[pid]) {
+    let cur = pid, guard = 0;
+    while (cur && guard++ < 12 && !chain.some(c => c.id === cur)) { chain.unshift({ id: cur, d: G[cur] ? G[cur][1] : null }); cur = G[cur] ? G[cur][0] : null; }
+  }
+  const children = pid && kids[pid] ? kids[pid].slice().sort((a, b) => (G[a][1] < G[b][1] ? -1 : 1)) : [];
+  return labCard("Discovery Genealogy", "Every artist's first play happened inside a session — the artist heard just before it is the best mechanical guess at who introduced whom. Chains and gateways derive from that one map (dated plays, ≥5-play artists).",
+    <div>
+      <input list="gen-artists" value={pick} onChange={e => setPick(e.target.value)} placeholder="trace an artist…"
+        style={{ background: LAB_BG2, border: `1px solid ${LAB_RULE}`, color: LAB_INK, borderRadius: 6, padding: "7px 10px", fontFamily: "var(--mono)", fontSize: 11, width: "min(320px,100%)", marginBottom: 12 }} />
+      <datalist id="gen-artists">{(R.ARTISTS || []).map(a => <option key={a.id} value={a.name} />)}</datalist>
+      {chain.length > 0 && (
+        <div style={{ marginBottom: 14 }}>
+          <div style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: ".16em", textTransform: "uppercase", color: LAB_FAINT, marginBottom: 6 }}>ancestry</div>
+          <div style={{ fontFamily: "var(--serif)", fontSize: 14, lineHeight: 2, color: LAB_DIM }}>
+            {chain.map((c, i) => (
+              <span key={c.id}>
+                {i > 0 && <span style={{ color: LAB_FAINT }}> → </span>}
+                <a href={"#artist/" + c.id} style={{ color: i === chain.length - 1 ? LAB_ACC : LAB_INK, textDecoration: "none" }}>{nameOf(c.id)}</a>
+                <span style={{ fontFamily: "var(--mono)", fontSize: 9, color: LAB_FAINT }}> {c.d ? c.d.slice(0, 7) : ""}</span>
+              </span>
+            ))}
+          </div>
+          {children.length > 0 && (
+            <div style={{ marginTop: 8 }}>
+              <div style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: ".16em", textTransform: "uppercase", color: LAB_FAINT, marginBottom: 6 }}>introduced {children.length} artist{children.length === 1 ? "" : "s"}</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                {children.slice(0, 24).map(k => (
+                  <a key={k} href={"#artist/" + k} style={{ background: LAB_BG2, border: `1px solid ${LAB_RULE}`, borderRadius: 20, padding: "3px 10px", fontFamily: "var(--mono)", fontSize: 10, color: LAB_DIM, textDecoration: "none" }}>
+                    {nameOf(k)} <span style={{ color: LAB_FAINT }}>{G[k][1].slice(0, 7)}</span>
+                  </a>
+                ))}
+                {children.length > 24 && <span style={{ fontFamily: "var(--mono)", fontSize: 10, color: LAB_FAINT, alignSelf: "center" }}>+{children.length - 24} more</span>}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+      {pick && !chain.length && <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: LAB_FAINT, marginBottom: 10 }}>no genealogy entry for that name (dated era, ≥5 plays)</div>}
+      <div style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: ".16em", textTransform: "uppercase", color: LAB_FAINT, margin: "4px 0 6px" }}>your biggest gateways</div>
+      {gateways.map(([g, ks]) => (
+        <div key={g} onClick={() => setPick(nameOf(g))} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "3px 0" }}>
+          <div style={{ width: 150, fontFamily: "var(--serif)", fontSize: 13, color: LAB_INK, flex: "none", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{nameOf(g)}</div>
+          <div style={{ height: 8, borderRadius: 4, background: LAB_ACC, width: (ks.length / gateways[0][1].length * 60) + "%" }} />
+          <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: LAB_DIM }}>{ks.length}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function LabView() {
   const R = window.ROTATION;
   const totals = R && R.TOTALS;
@@ -709,6 +895,13 @@ function LabView() {
         );
       })()}
 
+      {/* ── Insight prototypes — roadmap candidates staged before rollout (2026-08-26) ── */}
+      <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: ".2em", textTransform: "uppercase", color: LAB_ACC, margin: "6px 0 14px" }}>
+        Insight prototypes · fingerprint / diet / genealogy
+      </div>
+      <TasteFingerprint />
+      <LyricalDiet />
+      <GenealogyLab />
       <BumpChart />
       <SpiralWrapper />
       <RidgeWrapper />
