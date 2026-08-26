@@ -951,9 +951,13 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 16px;
 }
 .reader-tag {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: lowercase;
-  background: var(--rule, rgba(0,0,0,.08)); color: var(--paper-ink-faint, #98908a);
-  padding: 3px 7px; border-radius: 2px;
+  /* Brightened (Fuad 2026-08-27: "brighter, aligning with the look of the rest of the
+     reader") — the badge-chip recipe (paper ink on an accent wash) one notch quieter, so
+     badges stay the louder tier. Was 9px faint grey on a near-invisible ground. */
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: lowercase;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  color: color-mix(in srgb, var(--paper-ink) 78%, transparent);
+  padding: 3px 8px; border-radius: 3px;
 }
 .meta-link { cursor: pointer; transition: opacity .15s; }
 .meta-link:hover { opacity: 0.55; }
