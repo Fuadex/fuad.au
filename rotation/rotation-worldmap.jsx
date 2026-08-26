@@ -38,7 +38,12 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
       const arr = [...m.entries()];
       return arr.map(([si, vals], idx) => ({ key: si, name: R.SUBS[si].name, hue: (fhue + (idx - (arr.length - 1) / 2) * 17 + 360) % 360, sub: si, vals })).filter(s => s.vals.some(v => v > 0));
     }
-    const m = sumBy(a => a.s.length ? (R.SUBS[a.s[0]] && R.SUBS[a.s[0]].fam) : null);
+    // GHOST-FAMILY FIX (Fuad 2026-08-27 #4: "Other" band with no artists behind it): this
+    // aggregation used to key on the FIRST sub's family (a.s[0]) while the drill filters by
+    // the canonical a.fm list — an artist whose stale first-sub mapped to Other fed plays
+    // into a band whose drill then matched nobody. Key on fm[0] when present so every band
+    // shown is drillable by construction; a.s[0] stays as the fallback for fm-less rows.
+    const m = sumBy(a => (a.fm && a.fm.length) ? a.fm[0] : (a.s.length ? (R.SUBS[a.s[0]] && R.SUBS[a.s[0]].fam) : null));
     return R.FAMILIES.map(f => ({ key: f.i, name: f.family, hue: f.hue, fam: f.i, vals: m.get(f.i) || new Array(years.length).fill(0) })).filter(s => s.vals.some(v => v > 0));
   }, [artists, fam, sub, view, years, R]);
 

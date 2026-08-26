@@ -195,8 +195,12 @@ const PROVIDERS = [
               columns lined up. Rank is carried by the accent on the play count instead, which costs
               no width. */}
           {tt.slice(0, 2).map((t, i) => (
+            // row hover MATCHES the Overview Recently-played rows (Fuad 2026-08-27 #11):
+            // same padding/radius + bg-3 swap, so the two pulse cards read as one family.
             <div key={t.name + t.artist} onClick={(e) => { e.stopPropagation(); ctx.go("track", R.slug(t.artist) + "~" + R.slug(t.name)); }}
-              style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}>
+              onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
+              onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+              style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer", padding: "3px 6px", borderRadius: 4, minWidth: 0 }}>
               <GenCover hue={_hue(t.artist)} name={t.artist} size={28} radius={2} style={{ flex: "none" }} />
               {/* FADE, DON'T PUSH (Fuad 2026-08-21). A long song name was driving the play count off
                   the right edge of a phone: the count is flex:none, so the only thing that could give

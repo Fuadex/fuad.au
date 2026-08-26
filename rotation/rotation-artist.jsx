@@ -832,24 +832,28 @@ function LineupCard({ mb }) {
           also known as: <span style={{ color: "var(--ink-soft)" }}>{aka.slice(0, 4).join(", ")}</span>
         </div>
       )}
-      {!open && members.length > 0 && (
-        <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", cursor: "pointer" }}
-          onClick={() => setOpen(true)}>
-          <span style={{ fontSize: 12, color: "var(--ink-soft)" }}>
-            <b style={{ color: "var(--ink)" }}>{current.length}</b>{" member"}{current.length !== 1 ? "s" : ""}
-            {instrSummary.length > 0 && (
-              <span style={{ color: "var(--ink-faint)" }}>{" — "}{instrSummary.join(" · ")}</span>
-            )}
-          </span>
-          <span className="av-more" style={{ pointerEvents: "none" }}>{"▾ full lineup"}</span>
+      {/* full-lineup control matches the portrait's "full read" toggle (Fuad 2026-08-27 #7):
+          underlined label, accent on hover, and the lineup PEEKS mask-faded under the row
+          on hover before click-to-open — same mechanism as .pv-readbody. */}
+      {members.length > 0 && (
+        <div className={"av-lineupwrap" + (open ? " open" : "")}>
+          {!open && (
+            <div className="av-lineuprow" onClick={() => setOpen(true)}>
+              <span style={{ fontSize: 12, color: "var(--ink-soft)" }}>
+                <b style={{ color: "var(--ink)" }}>{current.length}</b>{" member"}{current.length !== 1 ? "s" : ""}
+                {instrSummary.length > 0 && (
+                  <span style={{ color: "var(--ink-faint)" }}>{" — "}{instrSummary.join(" · ")}</span>
+                )}
+              </span>
+              <span className="av-lineup-toggle">{"▾ full lineup"}</span>
+            </div>
+          )}
+          <div className="av-lineupbody">
+            {current.length > 0 && <div style={{ display: "grid", gap: 1 }}>{current.map(Row)}</div>}
+            {former.length > 0 && <LineupFormer former={former} Row={Row} />}
+            {open && <button className="av-more" style={{ marginTop: 10 }} onClick={() => setOpen(false)}>{"▴ collapse"}</button>}
+          </div>
         </div>
-      )}
-      {open && (
-        <React.Fragment>
-          {current.length > 0 && <div style={{ display: "grid", gap: 1 }}>{current.map(Row)}</div>}
-          {former.length > 0 && <LineupFormer former={former} Row={Row} />}
-          <button className="av-more" style={{ marginTop: 10 }} onClick={() => setOpen(false)}>{"▴ collapse"}</button>
-        </React.Fragment>
       )}
     </div>
   );
@@ -1932,7 +1936,10 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               {simTab === "sound" ? <SoundSimilar id={a.id} go={go} ctl={{ count: soundCount, setCount: setSoundCount, open: soundOpen, setOpen: setSoundOpen }} /> : (() => {
                 const items = (a.similar || []).slice(0, simN).map((sid, i) => { const name = (a.similarNames || [])[i]; const rid = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[rid] || (R.expById && R.expById[rid]); return { name, navId: rec ? rid : null, hue: rec ? rec.hue : (a.hue + 40 + i * 25) % 360, plays: rec ? rec.plays : null, played: !!rec || (R.played && R.played(name)) }; });
                 if (!items.length) return <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>no last.fm matches here.</div>;
-                return <div className="av-simscroll"><div className="av-simgrid">
+                // r-hovgrid was missing HERE only (Fuad 2026-08-27 #6: hover ring clipped at
+                // top/left on the Last.fm tab, fine on By Sound) — it carries the 3px padding
+                // the outside-drawn ring needs inside the clipping scroller.
+                return <div className="av-simscroll"><div className="r-hovgrid av-simgrid">
                   {items.map((it, i) => (
                     // In-library status is gone from these tiles (Fuad 2026-08-19: "currently
                     // pointless"). It was inferred by name-matching a last.fm similar-artist
@@ -2021,24 +2028,26 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               const [open, setOpen] = React.useState(false);
               return (
                 <React.Fragment>
-                  {!open && mbMembers.length > 0 && (
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", cursor: "pointer" }}
-                      onClick={() => setOpen(true)}>
-                      <span style={{ fontSize: 12, color: "var(--ink-soft)" }}>
-                        <b style={{ color: "var(--ink)" }}>{mbCurrent.length}</b>{" member"}{mbCurrent.length !== 1 ? "s" : ""}
-                        {instrSummary.length > 0 && (
-                          <span style={{ color: "var(--ink-faint)" }}>{" — "}{instrSummary.join(" · ")}</span>
-                        )}
-                      </span>
-                      <span className="av-more" style={{ pointerEvents: "none" }}>{"▾ full lineup"}</span>
+                  {/* same full-read-style toggle + hover-peek as the primary lineup card (#7) */}
+                  {mbMembers.length > 0 && (
+                    <div className={"av-lineupwrap" + (open ? " open" : "")}>
+                      {!open && (
+                        <div className="av-lineuprow" onClick={() => setOpen(true)}>
+                          <span style={{ fontSize: 12, color: "var(--ink-soft)" }}>
+                            <b style={{ color: "var(--ink)" }}>{mbCurrent.length}</b>{" member"}{mbCurrent.length !== 1 ? "s" : ""}
+                            {instrSummary.length > 0 && (
+                              <span style={{ color: "var(--ink-faint)" }}>{" — "}{instrSummary.join(" · ")}</span>
+                            )}
+                          </span>
+                          <span className="av-lineup-toggle">{"▾ full lineup"}</span>
+                        </div>
+                      )}
+                      <div className="av-lineupbody">
+                        {mbCurrent.length > 0 && <div style={{ display: "grid", gap: 1 }}>{mbCurrent.map(MbRow)}</div>}
+                        {mbFormer.length > 0 && <LineupFormer former={mbFormer} Row={MbRow} />}
+                        {open && <button className="av-more" style={{ marginTop: 10 }} onClick={() => setOpen(false)}>{"▴ collapse"}</button>}
+                      </div>
                     </div>
-                  )}
-                  {open && (
-                    <React.Fragment>
-                      {mbCurrent.length > 0 && <div style={{ display: "grid", gap: 1 }}>{mbCurrent.map(MbRow)}</div>}
-                      {mbFormer.length > 0 && <LineupFormer former={mbFormer} Row={MbRow} />}
-                      <button className="av-more" style={{ marginTop: 10 }} onClick={() => setOpen(false)}>{"▴ collapse"}</button>
-                    </React.Fragment>
                   )}
                 </React.Fragment>
               );
@@ -2215,6 +2224,20 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         .av-more { background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px;
           color: var(--ink-faint); cursor: pointer; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; }
         .av-more:hover { color: var(--accent); border-color: var(--accent-dim); }
+        /* full-lineup control = the portrait full-read toggle idiom (Fuad 2026-08-27 #7):
+           underlined label + accent hover, and the roster PEEKS mask-faded on row hover.
+           Browsers without :has() lose only the peek; click-to-open is unaffected. */
+        .av-lineuprow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; cursor: pointer; }
+        .av-lineup-toggle { font-size: 12px; color: var(--ink-soft); text-decoration: underline;
+          text-underline-offset: 3px; text-decoration-color: var(--rule); text-decoration-thickness: 1px; }
+        .av-lineuprow:hover .av-lineup-toggle { color: var(--accent); text-decoration-color: var(--accent-dim); }
+        .av-lineupbody { max-height: 0; overflow: hidden; opacity: 0;
+          -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+          transition: max-height .22s cubic-bezier(.22,.68,.36,1), opacity .16s ease-out; }
+        .av-lineupwrap:has(.av-lineuprow:hover) .av-lineupbody { max-height: 52px; opacity: .8; }
+        .av-lineupwrap.open .av-lineupbody { max-height: 1400px; opacity: 1;
+          -webkit-mask-image: none; mask-image: none; }
         /* bottom row: each card keeps its ~⅓ width and the pair sits centered; the m-stack
            class turns this into a 1-col grid on mobile (flex props are then inert) */
         .av-endrow > * { flex: 0 1 calc((100% - 2 * var(--gap)) / 3); min-width: 300px; }
