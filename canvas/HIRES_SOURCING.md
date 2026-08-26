@@ -9,6 +9,71 @@ instead of rediscovering. "NGA-grade" = IIIF (or equivalent tiling), masters at 
 resolution, permissive license, sane CORS, stable IDs. Statuses from our own measured rounds
 where marked ⚙; the rest from documented programs — verify before adopting.
 
+## ROUND 8 (2026-08-27) — three Tier-1 holders probed under a hard 20-request cap
+
+⚙ Getty and Yale measured; Rijksmuseum documentation-only (its probe was denied network
+permission and spent 0 requests). **Reports: `.dtmp/tier1/{getty,yale,rijksmuseum}.md`.**
+
+⭐ **THE METHOD THAT WORKED, AND IT IS NOT A HOLDER HARVEST.** Both successful probes
+skipped the museum's own site entirely and ran **ONE Wikidata SPARQL scoped server-side to
+the holder's collection qid AND the canon's own 552 artist qids**, then matched locally.
+Getty: 505 paintings in a single request. Yale: 1,745 items in one. This is the NGA shape
+(bulk once, match local) reproduced without a bulk dump, and it should be the default
+opening move for any new holder. ⚠ Resolve the museum qid by `rdfs:label` rather than
+hard-coding it — the Getty run did, the Rijksmuseum run did not and flagged itself.
+
+### ✅ GETTY — 138 candidates / 74 canon artists, and the manners are better than NG London
+⚙ IIIF 3 level2, `maxWidth 30000`, and **`ACAO: *` measured against an explicit
+`Origin: https://fuad.au` — no worker alias needed.** Masters sampled 52.3 / 56.7 / 65.7 /
+73.2 / 202.6 MP. Overlap with canon is ~nil (1 of 505). Getty's public search is
+client-rendered, but ⭐ **the object page is server-rendered and carries the IIIF service
+UUID** — the cheap per-work route, previously unrecorded.
+⛔ **THE MP COLUMN IN `getty.md` IS A COMMONS PROXY AND IS WRONG IN BOTH DIRECTIONS.**
+Measured against Getty's own masters: Mantegna *Adoration* reads 2.5 MP, is **56.7 MP**
+(understated 23×); Rembrandt *Abduction of Europa* reads 1,423 MP because a gigapixel stitch
+from elsewhere sits on its Commons page, and Getty serves **73.2 MP** (overstated 19×) — and
+because the table sorts by MP, **the most misleading row is at the top of the document.**
+133 of 138 are unmeasured. Measuring them costs ~276 requests (2/work). ⚠ Tile size is NOT
+uniform: one sampled work serves 128px tiles, the rest 256 — code hard-coding 256 mis-tiles it.
+⚠ 138 is a FLOOR: it is bounded by Wikidata's Getty coverage, not by Getty.
+
+### ⚠ YALE — 904 candidates / 155 canon artists, but a coverage play, NOT a pixel play
+YCBA **540** (Turner 80, Blake 69, Constable 53, John Martin 42, Gainsborough 31, Sickert 30,
+Wright of Derby 27) · YUAG **364** (Sargent 16, Vedder 12, Homer 11, Picasso 10, Copley 10).
+Canon holds **zero** Yale works today.
+⛔ **CORRECTION TO THIS FILE: the "27.2 MP sample" recorded for YCBA is a FRAMED-class plate.**
+YCBA serves framed / unframed / cropped-to-image per object; the framed plate is the biggest
+AND the wrong picture. ⚙ Cropped to the actual painting the sample is **13.4–16.9 MP**
+(full range across plate classes 13.4–31.5). That is **below this collection's 21.9 MP
+median** and one-to-two orders under the NGA tables. One YUAG modern work served a 220×480
+stub — YUAG is not uniformly high-res.
+⚠ **The "IIIF 2 level2, no clamp" line is INHERITED, not re-verified** — no `info.json` and
+no region request was made in this round. Per this file's own re-measure-by-region rule it
+must be retested before adoption.
+⛔ **No cheap bulk door.** Wikidata carries no Yale object ID (Art UK and RKD only), YCBA's
+own catalogue is behind **Cloudflare 403**, and LUX search returns **bare IDs, 20/page, no
+titles or images** — every field needs a second call. Full harvest of the 904 ≈ **1,800
+requests**; cherry-picking the top 20 ≈ 45. Take Yale targeted, for the Turner/Constable/
+Blake mass NGA cannot supply.
+
+### ⛔ RIJKSMUSEUM — THIS FILE IS WRONG ABOUT IT, IN BOTH DIRECTIONS
+The Tier-1 row below says "free key"; a later round says "the old API is dead (HTTP 410), the
+key portal no longer exists". ⛔ **Both are struck.** Per the current Rijksmuseum Data
+Services docs the collection moved to a new stack: **OAI-PMH at `data.rijksmuseum.nl/oai`
+needs NO key**, full **data dumps** are published (Linked Art / CIDOC-CRM n-triples; historical
+DC/EDM/LIDO), 800k+ objects. **Only the Search API needs a key.** This holder is OPEN.
+⭐ **And it probably fixes the old anchoring failure.** Round 3 adopted only 1 of 4 Rijks works
+because Micrio titles are opaque GUIDs. The Linked Art docs put the image endpoint **inside the
+object record** (`D1_Digital_Object` access point) — if so the Micrio id is a FIELD, not a
+guess, and the opaque-title problem stops existing. **That is the make-or-break probe and it
+costs one request.**
+⚠ **Every claim in this section is documentation-derived and was never exercised against a live
+endpoint.** Estimated full harvest: **14–18 requests, no key, no per-object loop**; the two
+SPARQL GET urls encoding the canon's 552 artist qids are pre-built and length-validated at
+`.dtmp/tier1/q_counts.rq`. The single existing `rijksmuseum` row (`the-milkmaid`,
+4,649 × 5,177, `iiif.micr.io/QkOGy/info.json`, IIIF 3 level2, tileSize 1024, ACAO `*`) beat
+Commons by only +6.13 MP — one row, too weak to extrapolate a quality bar from.
+
 **Tier 1 — genuinely NGA-class (full IIIF · big masters · CC0/open · good manners):**
 - **NGA Washington** ⚙ — the benchmark: gigapixel-class IIIF + full open-data dump.
 - **Getty** — IIIF throughout, Open Content masters (often 10k+ px), Linked Art APIs.
