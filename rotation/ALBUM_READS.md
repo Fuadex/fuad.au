@@ -160,16 +160,17 @@ the question, not the writer, is the lever.
    paler synonym of it; if the theme can't be said harder, compress instead. The
    first four MH gists shipped echoing their liners and were reworded same day.** ⚠ The theme hook is a GIST feature: the 2026-08-26 misfire that re-opened
    two approved LINERS with it was reverted same hour — liners keep their own settled brief.
-   **ANCHOR-FACT DEDUPE (Fuad 2026-08-27, extends the echo rule from phrases to FACTS):
-   a card renders gist + liner + arc + note together, so a given anchor fact — a personnel
-   event (Lombardo's return, a member's death), a year, a production credit, a
-   catalog-position frame ("the slowdown", "the detour") — may appear in ONE of them only.
-   Default owner: the GIST carries the frame; the liner opens on the thesis instead of
-   re-establishing it. When the liner structurally needs the fact (it IS the content, e.g.
-   a tribute song), the gist gestures without naming — "one pen left writing" instead of
-   restating the death. The pre-print QC diff checks shared facts, not just shared
-   phrasing (the Slayer cascade shipped its print with Lombardo in both CI faces and
-   Mengele in both RiB faces — caught by Fuad, recut before apply).**
+   **ANCHOR-FACT OPENER RULE (Fuad 2026-08-27, calibrated same day — narrower than the
+   first cut): the offense is the LINER'S OPENING re-stating the gist's anchor fact — the
+   card reads "Lombardo-reunion record… / The comeback with Lombardo…" top to top. It is
+   NOT a blanket ban: a fact the gist names may recur DEEPER in the liner where it does
+   new work (Mengele in RiB's gist bookend AND mid-liner argument both stand; SoH's
+   "slowed down on purpose" liner opener stands because cutting it changed the meaning —
+   Fuad restored all three over-corrections). So the check is positional: diff the gist
+   against the liner's FIRST sentence; a shared frame there needs a fresh opener (CI's
+   "Nothing supernatural stalks the comeback record" is the model) or, where the liner
+   truly owns the fact, a gist that gestures without naming. Deeper recurrences pass
+   unless they are verbatim phrase echoes (the older rule still covers those).**
 5. Owner approves each batch inline before apply.
 
 ## Rendering
