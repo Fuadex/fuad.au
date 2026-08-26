@@ -680,6 +680,30 @@ const EngBar = ({ eng }) => {
 
 // Upcoming Ticketmaster dates for this artist (a.onTour is baked in; the full event list rides
 // on the lazy tm-tour-lazy.js, loaded on demand). Sits above the Seen-live card on the page.
+// ConcertRow moved here from the retired rotation-live-view.jsx (2026-08-27) — the artist
+// page upcoming-shows list is its only consumer since LiveView was retired.
+function ConcertRow({ g, onArtist }) {
+  const d = new Date(g.date);
+  const mo = d.toLocaleString("en", { month: "short" }).toUpperCase();
+  return (
+    <div className="r-gig" onClick={onArtist ? () => onArtist(g.artistId) : undefined}
+      style={{ display: "grid", gridTemplateColumns: "44px 36px 1fr auto", gap: 13, alignItems: "center",
+        padding: "11px 4px", borderBottom: "1px solid var(--rule)", cursor: onArtist ? "pointer" : "default" }}>
+      <div style={{ textAlign: "center" }}>
+        <div className="r-mono" style={{ fontSize: 9, color: "var(--accent)", letterSpacing: ".1em" }}>{mo}</div>
+        <div className="r-stat-n" style={{ fontSize: 22 }}>{d.getDate()}</div>
+      </div>
+      <GenCover hue={g.hue} name={g.artist} size={36} radius={3} />
+      <div style={{ minWidth: 0 }}>
+        <div style={{ fontSize: 13.5, fontWeight: 500, display: "flex", alignItems: "center", gap: 8 }}>
+          {g.artist}{g.inLibrary && <span className="r-mono" style={{ fontSize: 8, color: "var(--accent)", border: "1px solid var(--accent-dim)", borderRadius: 3, padding: "1px 4px", letterSpacing: ".06em" }}>YOURS</span>}</div>
+        <div style={{ fontSize: 11.5, color: "var(--ink-faint)" }}>{g.venue}</div>
+      </div>
+      <button className="r-alert">tickets ↗</button>
+    </div>
+  );
+}
+
 function ArtistTourCard({ a, go }) {
   const R = window.ROTATION;
   const [tour, setTour] = React.useState(window.ROTATION_TOUR || null);
@@ -2286,4 +2310,4 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   );
 }
 
-Object.assign(window, { ArtistView, MiniArtistView, ArtistMeta });
+Object.assign(window, { ArtistView, MiniArtistView, ArtistMeta, ConcertRow });

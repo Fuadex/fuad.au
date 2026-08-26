@@ -28,13 +28,11 @@ const NAV_FULL = [
   ["calendar", "Time"],
   ["gigs", "Gigs"],
   ["liked", "Liked"],   // promoted to the navbar 2026-08-13 (Fuad: "this is becoming something nice")
-  ["live", "Live"],
   // ["spotify", "Spotify"],   // hidden again 2026-07-18 (Fuad) — page stays routable at #spotify
 ];
 // Hide tabs with no data behind them — avoids a dead-end. "Live" needs upcoming-concert cities;
 // "Gigs" needs the attended-shows dataset (setlist.fm → gigs.json → ROTATION.GIGS).
 const NAV = NAV_FULL.filter(([k]) => {
-  if (k === "live") return ((window.ROTATION && window.ROTATION.CITIES) || []).length > 0;
   if (k === "gigs") return !!(window.ROTATION && window.ROTATION.GIGS);
   return true;
 });
@@ -200,7 +198,6 @@ function RotationApp() {
                 {v === "shelves" && <ShelvesView go={go} seed={route.id} />}
                 {v === "calendar" && <CalendarView go={go} seed={route.id} />}
                 {v === "gigs" && <GigsView go={go} />}
-                {v === "live" && <LiveView t={t} go={go} city={city} setCity={setCity} />}
                 {v === "spotify" && <SpotifyView go={go} />}
                 {v === "liked" && <LikedView go={go} />}
                 {v === "lab" && <LabView />}
@@ -209,7 +206,7 @@ function RotationApp() {
                 {v === "album" && <AlbumView id={route.id} go={go} />}
                 {v === "track" && <TrackView id={route.id} go={go} />}
                 {/* unknown hash → say so instead of a silent blank content area */}
-                {!["stories", "explore", "shelves", "calendar", "gigs", "live", "spotify", "liked", "lab", "lab2", "artist", "album", "track"].includes(v) && (
+                {!["stories", "explore", "shelves", "calendar", "gigs", "spotify", "liked", "lab", "lab2", "artist", "album", "track"].includes(v) && (
                   <div className="r-view" style={{ textAlign: "center", padding: "60px 20px" }}>
                     <div className="r-card" style={{ display: "inline-block", padding: "36px 44px", color: "var(--ink-soft)", fontFamily: "var(--serif)", fontSize: 15 }}>
                       Nothing lives at <span style={{ fontFamily: "var(--mono)", fontSize: 12 }}>#{v}</span>.

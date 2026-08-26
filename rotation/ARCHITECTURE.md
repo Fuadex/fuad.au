@@ -468,10 +468,15 @@ Positioning: **Explore is the database, Shelves is the record shop.**
 - Mobile grammar: tap=fan, tap again=Reader. Still open: deep links, tag-source filter, dust
   (REVISIT), artist-page shrinkwrap strip, comp-noise flag.
 
-### Live (dormant)
-Full UI exists (`LiveView`, `ConcertRow`, city picker, "from your library" vs "also in town")
-but the tab auto-hides — `concerts-cache.json` hasn't been generated recently (Ticketmaster
-enricher works; needs a refresh run + ideally automation. See ROADMAP M3).
+### Live — RETIRED (Fuad, 2026-08-27)
+`LiveView` is deleted. Its data source (`concerts-cache.json`, the pre-tour per-artist
+Ticketmaster keyword pull) died long ago, and the weekly location-first `tm-events` pull
+strictly supersedes the library-matched half — which the Gigs "On tour now" explorer already
+serves with map/calendar/genre. The tab's one differentiator ("also in town", non-library
+events) has no data behind it in the current design, so retirement beat repointing.
+`ConcertRow` survives inside `rotation-artist.jsx` (the artist page's upcoming-shows list is
+its only consumer). `rotation-views2.jsx`'s post-split transition copy was removed in the
+same commit (its stale-HTML window had passed).
 
 ### Search (`/`)
 Overlay over search-index (artists: name/plays/span/peak-year) + media-index (songs + albums)
