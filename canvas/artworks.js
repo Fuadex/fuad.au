@@ -3875,7 +3875,24 @@ window.CANVAS_ARTWORKS = [
 {"id":"church-tamaca-palms","title":"Tamaca Palms","artist":"Frederic Edwin Church","artistId":"church","qid":"Q20188200","qidTrusted":true,"year":1854,"wish":true},
 {"id":"charles-francois-daubigny-landscape-distant-village","title":"Landscape, Distant Village","artist":"Charles-François Daubigny","artistId":"charles-francois-daubigny","qid":"Q46629438","qidTrusted":true,"year":1870,"wish":true},
 {"id":"charles-francois-daubigny-auvers-washerwomen","title":"Auvers (Washerwomen)","artist":"Charles-François Daubigny","artistId":"charles-francois-daubigny","qid":"Q46629028","qidTrusted":true,"year":1861,"wish":true},
-{"id":"charles-francois-daubigny-sunset-on-the-river","title":"Sunset on the River","artist":"Charles-François Daubigny","artistId":"charles-francois-daubigny","qid":"Q46630144","qidTrusted":true,"year":1874,"wish":true}
+{"id":"charles-francois-daubigny-sunset-on-the-river","title":"Sunset on the River","artist":"Charles-François Daubigny","artistId":"charles-francois-daubigny","qid":"Q46630144","qidTrusted":true,"year":1874,"wish":true},
+{"id":"canal-the-square-of-saint-mark-s-venice","title":"The Square of Saint Mark's, Venice","artist":"Canaletto","artistId":"canal","qid":"Q19660464","qidTrusted":true,"year":1742,"wish":true},
+{"id":"canal-entrance-to-the-grand-canal-from-the-molo-venice","title":"Entrance to the Grand Canal from the Molo, Venice","artist":"Canaletto","artistId":"canal","qid":"Q19660462","qidTrusted":true,"year":1742,"wish":true},
+{"id":"canal-the-porta-portello-padua","title":"The Porta Portello, Padua","artist":"Canaletto","artistId":"canal","qid":"Q19660466","qidTrusted":true,"year":1741,"wish":true},
+{"id":"eugene-delacroix-christopher-columbus-and-his-son-at-la-rabida","title":"Christopher Columbus and His Son at La Rábida","artist":"Eugène Delacroix","artistId":"eugene-delacroix","qid":"Q20186329","qidTrusted":true,"year":1838,"wish":true},
+{"id":"canal-english-landscape-capriccio-with-a-column","title":"English Landscape Capriccio with a Column","artist":"Canaletto","artistId":"canal","qid":"Q19660460","qidTrusted":true,"year":1754,"wish":true},
+{"id":"canal-english-landscape-capriccio-with-a-palace","title":"English Landscape Capriccio with a Palace","artist":"Canaletto","artistId":"canal","qid":"Q19660461","qidTrusted":true,"year":1754,"wish":true},
+{"id":"eugene-delacroix-arabs-skirmishing-in-the-mountains","title":"Arabs Skirmishing in the Mountains","artist":"Eugène Delacroix","artistId":"eugene-delacroix","qid":"Q20188634","qidTrusted":true,"year":1863,"wish":true},
+{"id":"ernst-ludwig-kirchner-two-nudes-obverse","title":"Two Nudes [obverse]","artist":"Ernst Ludwig Kirchner","artistId":"ernst-ludwig-kirchner","qid":"Q20191137","qidTrusted":true,"year":1907,"wish":true},
+{"id":"ernst-ludwig-kirchner-nude-figure-reverse","title":"Nude Figure [reverse]","artist":"Ernst Ludwig Kirchner","artistId":"ernst-ludwig-kirchner","qid":"Q20191117","qidTrusted":true,"year":1907,"wish":true},
+{"id":"ernst-ludwig-kirchner-dance-hall-bellevue-obverse","title":"Dance Hall Bellevue [obverse]","artist":"Ernst Ludwig Kirchner","artistId":"ernst-ludwig-kirchner","qid":"Q20191235","qidTrusted":true,"year":1909,"wish":true},
+{"id":"ernst-ludwig-kirchner-the-visit-couple-and-newcomer","title":"The Visit - Couple and Newcomer","artist":"Ernst Ludwig Kirchner","artistId":"ernst-ludwig-kirchner","qid":"Q20192437","qidTrusted":true,"year":1922,"wish":true},
+{"id":"ernst-ludwig-kirchner-two-girls-under-an-umbrella","title":"Two Girls under an Umbrella","artist":"Ernst Ludwig Kirchner","artistId":"ernst-ludwig-kirchner","qid":"Q20191500","qidTrusted":true,"year":1910,"wish":true},
+{"id":"eugene-delacroix-a-horse-hitched-to-a-post","title":"A Horse Hitched to a Post","artist":"Eugène Delacroix","artistId":"eugene-delacroix","qid":"Q20184343","qidTrusted":true,"year":1820,"wish":true},
+{"id":"eugene-delacroix-two-studies-of-a-standing-indian-from-calcutta","title":"Two Studies of a Standing Indian from Calcutta","artist":"Eugène Delacroix","artistId":"eugene-delacroix","qid":"Q20184879","qidTrusted":true,"year":1823,"wish":true},
+{"id":"eugene-delacroix-two-studies-of-an-indian-from-calcutta-seated-and-standing","title":"Two Studies of an Indian from Calcutta, Seated and Standing","artist":"Eugène Delacroix","artistId":"eugene-delacroix","qid":"Q20184864","qidTrusted":true,"year":1823,"wish":true},
+{"id":"ernst-ludwig-kirchner-dancing-couple-in-the-snow-reverse","title":"Dancing Couple in the Snow [reverse]","artist":"Ernst Ludwig Kirchner","artistId":"ernst-ludwig-kirchner","qid":"Q20192734","qidTrusted":true,"year":1928,"wish":true},
+{"id":"eugene-delacroix-tiger-and-snake","title":"Tiger and Snake","artist":"Eugène Delacroix","artistId":"eugene-delacroix","qid":"Q46629060","qidTrusted":true,"year":1862,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
