@@ -1607,13 +1607,24 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
   // Hover only drives the <Popup>; the per-item visuals are pure CSS (:hover),
   // so these are stable callbacks and the item list (below) never re-renders on
   // hover — critical for big spine rows with hundreds of items.
+  // LINGER FIX (Fuad 2026-08-27): every shelf owns its own popup, so sweeping the cursor
+  // from one row to another left row A's popup alive through its 140ms leave-grace while
+  // row B's opened — two popups, one stale. A module-level baton: entering any shelf
+  // immediately closes the previously active shelf's popup; the grace survives WITHIN a
+  // shelf (it exists so the cursor can travel up into the popup card).
+  const closeNow = React.useCallback(() => {
+    if (popupTimer.current) clearTimeout(popupTimer.current);
+    setHoverIdx(-1); setPopupPos(null);
+  }, []);
   const handleEnter = React.useCallback((i, el) => {
     if (dragRef.current.down) return;
+    if (window.__cultureActivePopupClose && window.__cultureActivePopupClose !== closeNow) window.__cultureActivePopupClose();
+    window.__cultureActivePopupClose = closeNow;
     setHoverIdx(i);
     if (popupTimer.current) clearTimeout(popupTimer.current);
     const r = el.getBoundingClientRect();
     setPopupPos({ x: r.left + r.width / 2, y: r.top });
-  }, []);
+  }, [closeNow]);
   const handleLeave = React.useCallback(() => {
     if (popupTimer.current) clearTimeout(popupTimer.current);
     popupTimer.current = setTimeout(() => {
