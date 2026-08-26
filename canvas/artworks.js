@@ -3975,7 +3975,25 @@ window.CANVAS_ARTWORKS = [
 {"id":"robert-henri-george-cotton-smith","title":"George Cotton Smith","artist":"Robert Henri","artistId":"robert-henri","qid":"Q20191168","qidTrusted":true,"year":1908,"wish":true},
 {"id":"robert-henri-elizabeth-virginia-laning-bradner-smith-mrs-george-cotton-smith","title":"Elizabeth Virginia Laning Bradner Smith (Mrs. George Cotton Smith)","artist":"Robert Henri","artistId":"robert-henri","qid":"Q20191174","qidTrusted":true,"year":1908,"wish":true},
 {"id":"robert-henri-seated-nude","title":"Seated Nude","artist":"Robert Henri","artistId":"robert-henri","qid":"Q46633840","qidTrusted":true,"year":1918,"wish":true},
-{"id":"robert-henri-indian-girl-in-white-blanket","title":"Indian Girl in White Blanket","artist":"Robert Henri","artistId":"robert-henri","qid":"Q46633670","qidTrusted":true,"year":1917,"wish":true}
+{"id":"robert-henri-indian-girl-in-white-blanket","title":"Indian Girl in White Blanket","artist":"Robert Henri","artistId":"robert-henri","qid":"Q46633670","qidTrusted":true,"year":1917,"wish":true},
+{"id":"reynolds-lady-elizabeth-delme-and-her-children","title":"Lady Elizabeth Delmé and Her Children","artist":"Joshua Reynolds","artistId":"reynolds","qid":"Q6470123","qidTrusted":true,"year":1777,"wish":true},
+{"id":"reynolds-lady-elizabeth-compton","title":"Lady Elizabeth Compton","artist":"Joshua Reynolds","artistId":"reynolds","qid":"Q20178950","qidTrusted":true,"year":1780,"wish":true},
+{"id":"reynolds-lady-caroline-howard","title":"Lady Caroline Howard","artist":"Joshua Reynolds","artistId":"reynolds","qid":"Q6470018","qidTrusted":true,"year":1778,"wish":true},
+{"id":"reynolds-lady-cornewall","title":"Lady Cornewall","artist":"Joshua Reynolds","artistId":"reynolds","qid":"Q20179353","qidTrusted":true,"year":1785,"wish":true},
+{"id":"reynolds-lady-elizabeth-hamilton","title":"Lady Elizabeth Hamilton","artist":"Joshua Reynolds","artistId":"reynolds","qid":"Q20178165","qidTrusted":true,"year":1758,"wish":true},
+{"id":"reynolds-miss-nelly-o-brien","title":"Miss Nelly O'Brien","artist":"after Joshua Reynolds","artistId":"reynolds","qid":"Q20180875","qidTrusted":true,"wish":true},
+{"id":"courbet-the-stream-le-ruisseau-du-puits-noir-vallee-de-la-loue","title":"The Stream (Le Ruisseau du Puits-Noir; vallée de la Loue)","artist":"Gustave Courbet","artistId":"courbet","qid":"Q20188334","qidTrusted":true,"year":1855,"wish":true},
+{"id":"courbet-la-grotte-de-la-loue","title":"La Grotte de la Loue","artist":"Gustave Courbet","artistId":"courbet","qid":"Q20188650","qidTrusted":true,"year":1864,"wish":true},
+{"id":"reynolds-john-musters","title":"John Musters","artist":"Joshua Reynolds","artistId":"reynolds","qid":"Q20178848","qidTrusted":true,"year":1777,"wish":true},
+{"id":"courbet-beach-in-normandy","title":"Beach in Normandy","artist":"Gustave Courbet","artistId":"courbet","qid":"Q20188742","qidTrusted":true,"year":1872,"wish":true},
+{"id":"courbet-portrait-of-a-young-girl","title":"Portrait of a Young Girl","artist":"Gustave Courbet","artistId":"courbet","qid":"Q20188388","qidTrusted":true,"year":1857,"wish":true},
+{"id":"courbet-a-young-woman-reading","title":"A Young Woman Reading","artist":"Gustave Courbet","artistId":"courbet","qid":"Q20188692","qidTrusted":true,"year":1866,"wish":true},
+{"id":"courbet-boats-on-a-beach-etretat","title":"Boats on a Beach, Etretat","artist":"Gustave Courbet","artistId":"courbet","qid":"Q20188745","qidTrusted":true,"year":1872,"wish":true},
+{"id":"courbet-la-bretonnerie-in-the-department-of-indre","title":"La Bretonnerie in the Department of Indre","artist":"Gustave Courbet","artistId":"courbet","qid":"Q20188377","qidTrusted":true,"year":1856,"wish":true},
+{"id":"courbet-calm-sea","title":"Calm Sea","artist":"Gustave Courbet","artistId":"courbet","qid":"Q20188676","qidTrusted":true,"year":1866,"wish":true},
+{"id":"reynolds-miss-beatrix-lister","title":"Miss Beatrix Lister","artist":"Joshua Reynolds","artistId":"reynolds","qid":"Q20178307","qidTrusted":true,"year":1765,"wish":true},
+{"id":"courbet-the-black-rocks-at-trouville","title":"The Black Rocks at Trouville","artist":"Gustave Courbet","artistId":"courbet","qid":"Q20188659","qidTrusted":true,"year":1865,"wish":true},
+{"id":"reynolds-annetta-coke","title":"Annetta Coke","artist":"Joshua Reynolds","artistId":"reynolds","qid":"Q46625383","qidTrusted":true,"year":1758,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
