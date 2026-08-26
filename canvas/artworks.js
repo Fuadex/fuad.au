@@ -4054,7 +4054,18 @@ window.CANVAS_ARTWORKS = [
 {"id":"benjamin-west-mary-bethel-boude-mrs-samuel-boude","title":"Mary Bethel Boude (Mrs. Samuel Boude)","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q20178109","qidTrusted":true,"year":1755,"wish":true},
 {"id":"benjamin-west-the-expulsion-of-adam-and-eve-from-paradise","title":"The Expulsion of Adam and Eve from Paradise","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q20179891","qidTrusted":true,"year":1791,"wish":true},
 {"id":"benjamin-west-telemachus-and-calypso","title":"Telemachus and Calypso","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q46626424","qidTrusted":true,"year":1809,"wish":true},
-{"id":"benjamin-west-cupid-stung-by-a-bee-is-cherished-by-his-mother","title":"Cupid, Stung by a Bee, Is Cherished by his Mother","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q46625519","qidTrusted":true,"year":1774,"wish":true}
+{"id":"benjamin-west-cupid-stung-by-a-bee-is-cherished-by-his-mother","title":"Cupid, Stung by a Bee, Is Cherished by his Mother","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q46625519","qidTrusted":true,"year":1774,"wish":true},
+{"id":"morisot-the-sisters","title":"The Sisters","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20188724","qidTrusted":true,"year":1869,"wish":true},
+{"id":"morisot-the-artist-s-daughter-with-a-parakeet","title":"The Artist's Daughter with a Parakeet","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20190064","qidTrusted":true,"year":1890,"wish":true},
+{"id":"morisot-in-the-dining-room","title":"In the Dining Room","artist":"Berthe Morisot","artistId":"morisot","qid":"Q19973935","qidTrusted":true,"year":1886,"wish":true},
+{"id":"morisot-the-mother-and-sister-of-the-artist","title":"The Mother and Sister of the Artist","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20188721","qidTrusted":true,"year":1869,"wish":true},
+{"id":"morisot-the-artist-s-sister-at-a-window","title":"The Artist's Sister at a Window","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20188714","qidTrusted":true,"year":1869,"wish":true},
+{"id":"morisot-the-harbor-at-lorient","title":"The Harbor at Lorient","artist":"Berthe Morisot","artistId":"morisot","qid":"Q3225805","qidTrusted":true,"year":1869,"wish":true},
+{"id":"morisot-young-woman-with-a-straw-hat","title":"Young Woman with a Straw Hat","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20189735","qidTrusted":true,"year":1884,"wish":true},
+{"id":"morisot-girl-in-a-boat-with-geese","title":"Girl in a Boat with Geese","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20189994","qidTrusted":true,"year":1889,"wish":true},
+{"id":"morisot-hanging-the-laundry-out-to-dry","title":"Hanging the Laundry out to Dry","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20188790","qidTrusted":true,"year":1875,"wish":true},
+{"id":"morisot-peonies","title":"Peonies","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20188723","qidTrusted":true,"year":1869,"wish":true},
+{"id":"morisot-young-girl-with-an-apron","title":"Young Girl with an Apron","artist":"Berthe Morisot","artistId":"morisot","qid":"Q20190290","qidTrusted":true,"year":1891,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
