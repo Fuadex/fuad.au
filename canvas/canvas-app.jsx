@@ -4245,7 +4245,7 @@ function MapView({ go }) {
                           - 0.5 * (2.4 * k
                             + 2.1 * k * dotMul * dotZoom * ((wishCityReach.get(c.city) || 1.1) + 1.8 - 1.3 * t)
                             + (7 - 5 * t) * k * dotMul * labelZoom)}
-                      textAnchor="middle" style={{ fontSize: 13.2 * k * dotMul * labelZoom, opacity: op }}>{c.city}</text>
+                      textAnchor="middle" style={{ fontSize: 9.2 * k * dotMul * labelZoom, opacity: op }}>{c.city}</text>
                   );
                 })()}
               </g>
