@@ -160,6 +160,16 @@ the question, not the writer, is the lever.
    paler synonym of it; if the theme can't be said harder, compress instead. The
    first four MH gists shipped echoing their liners and were reworded same day.** ⚠ The theme hook is a GIST feature: the 2026-08-26 misfire that re-opened
    two approved LINERS with it was reverted same hour — liners keep their own settled brief.
+   **ANCHOR-FACT DEDUPE (Fuad 2026-08-27, extends the echo rule from phrases to FACTS):
+   a card renders gist + liner + arc + note together, so a given anchor fact — a personnel
+   event (Lombardo's return, a member's death), a year, a production credit, a
+   catalog-position frame ("the slowdown", "the detour") — may appear in ONE of them only.
+   Default owner: the GIST carries the frame; the liner opens on the thesis instead of
+   re-establishing it. When the liner structurally needs the fact (it IS the content, e.g.
+   a tribute song), the gist gestures without naming — "one pen left writing" instead of
+   restating the death. The pre-print QC diff checks shared facts, not just shared
+   phrasing (the Slayer cascade shipped its print with Lombardo in both CI faces and
+   Mengele in both RiB faces — caught by Fuad, recut before apply).**
 5. Owner approves each batch inline before apply.
 
 ## Rendering
