@@ -4115,6 +4115,14 @@ function MapView({ go }) {
       const v = vbRef.current;
       const w = Math.min(880, Math.max(70, v.w * f)), h = w * AR;
       preview({ x: v.x + mx * (v.w - w), y: v.y + my * (v.h - h), w, h });
+      // RE-BASELINE MID-BURST (Fuad 2026-08-27 "zooming in jumps out of the container"):
+      // a fast zoom-in compounds the preview scale (880→70 is ~12x) and the group renders
+      // giant until the idle flush — visually the map explodes past its frame. Flushing a
+      // render whenever the preview ratio passes ~two wheel steps (1.18² ≈ 1.4) caps the
+      // preview at a subtle scale while still halving renders vs commit-per-frame
+      // (flush is rAF-throttled; the transform re-expresses the remainder after each render).
+      const ratio = renderedRef.current.w / w;
+      if (ratio > 1.4 || ratio < 0.71) flush();
       clearTimeout(wheelIdle);
       wheelIdle = setTimeout(flush, 160);
     };
