@@ -35,6 +35,7 @@ dev diagnostic (`archive/`).
 | Script | Does |
 |---|---|
 | `audit_enrich.py` | per-medium coverage of every enrichment cache vs the library |
+| `validate.py` | no-network integrity gate: duplicate/malformed ids, vocab codes (errors, fails build_all before the bump) + orphaned overlay keys (warnings). filmweb notes checked via item links, not ids |
 | `audit_omdb.py` | OMDb cache health; dumps misses to `omdb_review.txt` |
 | `audit_badges.py` | badge frequency + co-occurrence on `badges_source.json` |
 | `audit_gems.py` | makes the 💎 gem badge computable: flags over-broad holders (high reach) + surfaces unbadged high-rating/low-reach candidates. Prints only; writes nothing. |

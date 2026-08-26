@@ -13,6 +13,24 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
 
 ---
 
+## 2026-08-26
+
+### Canvas
+- **The wall now loads in a third of the bytes.** The three heaviest data overlays — the
+  Study tours, the artwork reads, and the recall-deck source — no longer block first paint;
+  they arrive on an idle beat right after boot (or instantly when a deep link needs them).
+  Every surface that reads them re-renders the moment they land, including the wall's
+  read-filter chips, the deck lists and the deep-zoom detail tours.
+
+### Culture
+- **The OMDb overlay went on a diet: 5.5 → 2.2 MB.** The shipped file now carries only what
+  the app renders (ratings, votes, Metascore, awards, poster fallback, IMDb id, one synopsis
+  string); the full payloads stay in the committed cache, and a new `--emit-only` mode
+  rebuilds the overlay from that cache with zero API calls.
+- **A data-integrity gate now guards every build.** `validate.py` checks the load-bearing
+  id join key (duplicates, malformed rows, unknown medium/region codes) and reports orphaned
+  overlay keys; `build_all.py` refuses to bump the cache epoch if it fails.
+
 ## 2026-08-18
 
 ### Culture

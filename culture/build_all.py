@@ -65,6 +65,13 @@ def main():
             run(script, args)
     for script in COMPILE:
         run(script, [])
+    # Integrity gate (audit 2026-07 §4): duplicate/malformed ids or bad vocab codes
+    # must never reach the cache bump — a broken join key ships broken UI.
+    print('\n=== validate.py ===')
+    r = subprocess.run([PY, os.path.join(SD, 'validate.py')])
+    if r.returncode != 0:
+        print('\nvalidate.py FAILED — cache NOT bumped, nothing to ship. Fix the errors above.')
+        sys.exit(1)
     bump_cache()
     print('\nDone. Review `git diff`, then commit + push.')
 
