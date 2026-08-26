@@ -4070,29 +4070,57 @@ function MapView({ go }) {
   };
   React.useEffect(() => {
     const el = svgRef.current; if (!el) return;
+    // CHOPPINESS FIX (2026-08-27, same idiom as the drag): a wheel burst used to commit a
+    // re-render per rAF — every marker rebuilt each frame. Now the burst previews via one CSS
+    // scale on the <svg> (origin at the cursor) and the viewBox commits ONCE, 160ms after the
+    // last tick. During the burst labels scale with the content instead of staying constant —
+    // they settle to exact sizes at commit.
+    let wheelIdle = 0;
     const onWheel = (e) => {
       e.preventDefault();
+      setLensThrottled(null);
       const r = el.getBoundingClientRect();
       const mx = (e.clientX - r.left) / r.width, my = (e.clientY - r.top) / r.height;
-      const f = e.deltaY < 0 ? 1 / 1.18 : 1.18, v = vbRef.current;
+      const f = e.deltaY < 0 ? 1 / 1.18 : 1.18;
+      const v = (gest.current && gest.current.vb) || vbRef.current;
       const w = Math.min(880, Math.max(70, v.w * f)), h = w * AR;
-      commit({ x: v.x + mx * v.w - mx * w, y: v.y + my * v.h - my * h, w, h });
+      gest.current = { vb: { x: v.x + mx * v.w - mx * w, y: v.y + my * v.h - my * h, w, h } };
+      const s = vbRef.current.w / w;                     // visual scale vs the committed frame
+      el.style.transformOrigin = `${e.clientX - r.left}px ${e.clientY - r.top}px`;
+      el.style.transform = `scale(${s})`;
+      clearTimeout(wheelIdle);
+      wheelIdle = setTimeout(endGesture, 160);
     };
     el.addEventListener("wheel", onWheel, { passive: false });
-    return () => { el.removeEventListener("wheel", onWheel); if (raf.current) cancelAnimationFrame(raf.current); if (lensRaf.current) cancelAnimationFrame(lensRaf.current); if (growRaf.current) cancelAnimationFrame(growRaf.current); };
+    return () => { el.removeEventListener("wheel", onWheel); clearTimeout(wheelIdle); if (raf.current) cancelAnimationFrame(raf.current); if (lensRaf.current) cancelAnimationFrame(lensRaf.current); if (growRaf.current) cancelAnimationFrame(growRaf.current); };
   }, []);
-  const onDown = (e) => { if (e.button !== 0) return; drag.current = { mx: e.clientX, my: e.clientY, v: vbRef.current, moved: false }; };
+  // ——— CHOPPINESS FIX (Fuad 2026-08-27): gestures are IMPERATIVE now (the Rotation TourMap
+  // idiom). A drag frame used to commit a new viewBox → a full React re-render of ~1,300
+  // markers+labels per frame. Now the drag translates the <svg> itself via CSS (one style
+  // mutation per move, zero renders) and the real viewBox commits ONCE on release. Pan never
+  // changes k, so the committed frame is pixel-identical to the previewed one.
+  const gest = React.useRef(null);   // { vb } — the viewBox math pending commit
+  const endGesture = () => {
+    const g = gest.current;
+    if (!g) return;
+    gest.current = null;
+    if (svgRef.current) { svgRef.current.style.transform = ""; svgRef.current.style.transformOrigin = ""; }
+    commit(g.vb);
+  };
+  const onDown = (e) => { if (e.button !== 0) return; drag.current = { mx: e.clientX, my: e.clientY, v: vbRef.current, moved: false }; setLensThrottled(null); };
   const onMove = (e) => {
     if (drag.current && svgRef.current) {
       const r = svgRef.current.getBoundingClientRect(), d = drag.current;
-      if (Math.abs(e.clientX - d.mx) + Math.abs(e.clientY - d.my) > 3) d.moved = true;
-      commit({ ...d.v, x: d.v.x - (e.clientX - d.mx) / r.width * d.v.w, y: d.v.y - (e.clientY - d.my) / r.height * d.v.h });
+      const dx = e.clientX - d.mx, dy = e.clientY - d.my;
+      if (Math.abs(dx) + Math.abs(dy) > 3) d.moved = true;
+      svgRef.current.style.transform = `translate(${dx}px, ${dy}px)`;
+      gest.current = { vb: { ...d.v, x: d.v.x - dx / r.width * d.v.w, y: d.v.y - dy / r.height * d.v.h } };
       return;
     }
     const p = clientToMap(e.clientX, e.clientY); if (p) setLensThrottled(p);   // fisheye follows the cursor
   };
-  const stop = () => { drag.current = null; };
-  const onLeave = () => { drag.current = null; setLensThrottled(null); };
+  const stop = () => { drag.current = null; endGesture(); };
+  const onLeave = () => { drag.current = null; endGesture(); setLensThrottled(null); };
   // touch fallback: no hover, so a single tap sets the lens under the finger AND toggles a gentle
   // semantic zoom step toward that point (tap zoomed-out -> zoom in; tap zoomed-in -> zoom back out);
   // a drag still pans. This keeps tiny bubbles reachable on touch with no hover dependency.
