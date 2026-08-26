@@ -310,6 +310,24 @@ GIST recipe; redrafts bump `by` to Opus·Fable.
 - Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
 - Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
 
+### Batch log — LTS completion package (2026-08-26)
+
+The WHOLE Ling Tosite Sigure catalog closed in one package: 15 fable-tier gap fills
+(the below-floor tail Fuad ordered processed — #5's six, last aurorally's six,
+end roll fiction, MONSTER, Kimitooku; two brand-new keys who-s-whofo + hashed
+a-3uc60s) + 4 fnotes (Kimitooku album-name line; MONSTER↔Kimitooku mirrored
+phrase; 滅亡craft 再生 playback/resurrection; Serial Number 夕景 cross-track) +
+SIX new album entries (#4, Feeling your UFO, Inspiration is DEAD, just A moment,
+i'mperfect, es or s — gists de-echoed from liners on Fuad's catch; arcs incl.
+the fill-born i'mperfect name-hides-in-Kimitooku arc) + the first
+ling-tosite-sigure ARTIST entry (echo-sealed portrait + anime-doors note).
+saSv's shipped portrait stands (basis untouched; the audit's 2008 date was the
+error, not the gist). QC catches worth keeping: a pool LYRIC MISATTRIBUTION
+(QOTSA Monsters in the Parasol served for MONSTER on a title match — pool
+searches now require a POSITIVE artist match); the embedded-EN trap fired 4×;
+ten to ten's read carries the batch ⭐ (時と雨 = the band's name split apart).
+QUEUED: #5 + last aurorally album reads (now fully fable-covered by the fills).
+
 ### Batch log — Rammstein album refresh (2026-08-26)
 
 Six albums re-synthesized from the v2.4 rerun track reads and shipped FRONTAL
