@@ -3993,7 +3993,27 @@ window.CANVAS_ARTWORKS = [
 {"id":"courbet-calm-sea","title":"Calm Sea","artist":"Gustave Courbet","artistId":"courbet","qid":"Q20188676","qidTrusted":true,"year":1866,"wish":true},
 {"id":"reynolds-miss-beatrix-lister","title":"Miss Beatrix Lister","artist":"Joshua Reynolds","artistId":"reynolds","qid":"Q20178307","qidTrusted":true,"year":1765,"wish":true},
 {"id":"courbet-the-black-rocks-at-trouville","title":"The Black Rocks at Trouville","artist":"Gustave Courbet","artistId":"courbet","qid":"Q20188659","qidTrusted":true,"year":1865,"wish":true},
-{"id":"reynolds-annetta-coke","title":"Annetta Coke","artist":"Joshua Reynolds","artistId":"reynolds","qid":"Q46625383","qidTrusted":true,"year":1758,"wish":true}
+{"id":"reynolds-annetta-coke","title":"Annetta Coke","artist":"Joshua Reynolds","artistId":"reynolds","qid":"Q46625383","qidTrusted":true,"year":1758,"wish":true},
+{"id":"tiepolo-study-for-a-ceiling-with-the-personification-of-counsel","title":"Study for a Ceiling with the Personification of Counsel","artist":"Giovanni Battista Tiepolo","artistId":"tiepolo","qid":"Q20178221","qidTrusted":true,"year":1762,"wish":true,"floored":true},
+{"id":"tiepolo-scene-from-ancient-history","title":"Scene from Ancient History","artist":"Giovanni Battista Tiepolo","artistId":"tiepolo","qid":"Q20178035","qidTrusted":true,"year":1750,"wish":true},
+{"id":"tiepolo-wealth-and-benefits-of-the-spanish-monarchy-under-charles-iii","title":"Wealth and Benefits of the Spanish Monarchy under Charles III","artist":"Giovanni Battista Tiepolo","artistId":"tiepolo","qid":"Q20178226","qidTrusted":true,"year":1762,"wish":true,"floored":true},
+{"id":"tiepolo-madonna-of-the-goldfinch","title":"Madonna of the Goldfinch","artist":"Giovanni Battista Tiepolo","artistId":"tiepolo","qid":"Q20178371","qidTrusted":true,"year":1767,"wish":true},
+{"id":"tiepolo-young-lady-in-a-tricorn-hat","title":"Young Lady in a Tricorn Hat","artist":"Giovanni Battista Tiepolo","artistId":"tiepolo","qid":"Q20178129","qidTrusted":true,"year":1755,"wish":true},
+{"id":"tiepolo-apollo-pursuing-daphne","title":"Apollo Pursuing Daphne","artist":"Giovanni Battista Tiepolo","artistId":"tiepolo","qid":"Q20178078","qidTrusted":true,"year":1755,"wish":true},
+{"id":"tiepolo-saint-roch-carried-to-heaven-by-angels","title":"Saint Roch Carried to Heaven by Angels","artist":"Giovanni Battista Tiepolo","artistId":"tiepolo","qid":"Q20177893","qidTrusted":true,"year":1735,"wish":true},
+{"id":"rubens-decius-mus-addressing-the-legions","title":"Decius Mus Addressing the Legions","artist":"Peter Paul Rubens","artistId":"rubens","qid":"Q20176955","qidTrusted":true,"year":1616,"wish":true},
+{"id":"rubens-the-meeting-of-abraham-and-melchizedek","title":"The Meeting of Abraham and Melchizedek","artist":"Peter Paul Rubens","artistId":"rubens","qid":"Q20177063","qidTrusted":true,"year":1626,"wish":true},
+{"id":"rubens-saint-peter","title":"Saint Peter","artist":"Studio of Peter Paul Rubens","artistId":"rubens","qid":"Q20176964","qidTrusted":true,"year":1616,"wish":true},
+{"id":"rubens-peter-paul-rubens","title":"Peter Paul Rubens","artist":"Studio of Peter Paul Rubens","artistId":"rubens","qid":"Q20176994","qidTrusted":true,"year":1620,"wish":true,"floored":true},
+{"id":"tiepolo-bacchus-and-ariadne","title":"Bacchus and Ariadne","artist":"Giovanni Battista Tiepolo","artistId":"tiepolo","qid":"Q20177940","qidTrusted":true,"year":1743,"wish":true},
+{"id":"rubens-the-assumption-of-the-virgin","title":"The Assumption of the Virgin","artist":"Studio of Peter Paul Rubens","artistId":"rubens","qid":"Q20177012","qidTrusted":true,"year":1625,"wish":true},
+{"id":"tiepolo-queen-zenobia-addressing-her-soldiers","title":"Queen Zenobia Addressing Her Soldiers","artist":"Giovanni Battista Tiepolo","artistId":"tiepolo","qid":"Q20177821","qidTrusted":true,"year":1725,"wish":true},
+{"id":"rubens-marchesa-brigida-spinola-doria","title":"Marchesa Brigida Spinola Doria","artist":"Peter Paul Rubens","artistId":"rubens","qid":"Q3399422","qidTrusted":true,"year":1606,"wish":true},
+{"id":"rubens-agrippina-and-germanicus","title":"Agrippina and Germanicus","artist":"Peter Paul Rubens","artistId":"rubens","qid":"Q20176933","qidTrusted":true,"year":1614,"wish":true},
+{"id":"rubens-daniel-in-the-lions-den","title":"Daniel in the Lions' Den","artist":"Peter Paul Rubens","artistId":"rubens","qid":"Q8353711","qidTrusted":true,"year":1614,"wish":true},
+{"id":"rubens-the-fall-of-phaeton","title":"The Fall of Phaeton","artist":"Peter Paul Rubens","artistId":"rubens","qid":"Q9366873","qidTrusted":true,"year":1604,"wish":true},
+{"id":"rubens-the-meeting-of-david-and-abigail","title":"The Meeting of David and Abigail","artist":"Peter Paul Rubens","artistId":"rubens","qid":"Q9202858","qidTrusted":true,"year":1630,"wish":true},
+{"id":"tiepolo-madonna-of-the-goldfinch-nga-101678","title":"Madonna of the Goldfinch","artist":"Giovanni Battista Tiepolo","artistId":"tiepolo","qid":"Q20178383","qidTrusted":true,"year":1767,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
