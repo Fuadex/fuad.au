@@ -287,6 +287,15 @@ Anti-patterns: adjective-only sound ("heavy", "raw" with no image); gist that co
 describe three other albums by the same artist; inventing listening claims not in the
 data; letting the fact crowd out the ear.
 
+**NO BARE-YEAR OPENERS (Fuad 2026-08-26):** every album page already shows the year in
+its header, so a gist opening on "The 2015 album —" / "the band's 2010 record —" is
+dead filler. The year may appear ONLY welded to a characterizing noun that earns it
+("Linkin Park's 2000 debut", "2003 juggernaut", "2019 untitled return", "1997
+breakthrough", "the 2009 major-label debut LP"); if no character word fits, DROP the
+year-slot entirely and open on the theme hook itself. "Album"/"record"/"EP" alone do
+not count as character words. Applied retroactively 2026-08-26 to the LTS/Northlane/
+Rammstein gists that shipped with bare-year openers.
+
 When a gist is REDRAFTED on an existing Opus entry, bump `by` to Opus·Fable.
 The six-pack shipped 2026-08-13 (AtF, Undertow, Fear Inoculum, FoaBP, Mezmerize,
 Opiate) + Shinsekai and the Fable primaries (Gore, SAPPUKEI, Sigure virgin) are the
