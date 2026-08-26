@@ -3793,7 +3793,20 @@ window.CANVAS_ARTWORKS = [
 {"id":"eugene-isabey-chateau-de-pesteil-a-polminhac","title":"Château de Pesteil à Polminhac","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q75122169","qidTrusted":true,"year":1832,"wish":true},
 {"id":"eugene-isabey-radoub-d-une-barque-a-la-maree-basse-refitting-of-a-ship-at-low-tide","title":"Radoub d'une Barque à la Marée Basse (Refitting of a Ship at Low Tide)","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q76339241","qidTrusted":true,"year":1833,"wish":true},
 {"id":"eugene-isabey-fishing-boats-tossed-before-a-storm","title":"Fishing Boats Tossed before a Storm","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q64560472","qidTrusted":true,"year":1840,"wish":true},
-{"id":"eugene-isabey-sailboats-in-a-sunlit-harbor-recto","title":"Sailboats in a Sunlit Harbor  (recto)","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q64560488","qidTrusted":true,"year":1830,"wish":true}
+{"id":"eugene-isabey-sailboats-in-a-sunlit-harbor-recto","title":"Sailboats in a Sunlit Harbor  (recto)","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q64560488","qidTrusted":true,"year":1830,"wish":true},
+{"id":"velazquez-pope-innocent-x","title":"Pope Innocent X","artist":"Circle of Diego Velázquez","artistId":"velazquez","qid":"Q20177335","qidTrusted":true,"year":1650,"wish":true},
+{"id":"velazquez-the-needlewoman","title":"The Needlewoman","artist":"Diego Velázquez","artistId":"velazquez","qid":"Q3207931","qidTrusted":true,"year":1640,"wish":true},
+{"id":"velazquez-portrait-of-a-young-man","title":"Portrait of a Young Man","artist":"Follower of Diego Velázquez","artistId":"velazquez","qid":"Q20177342","qidTrusted":true,"year":1650,"wish":true},
+{"id":"elisabeth-louise-vigee-le-brun-madame-d-aguesseau-de-fresnes","title":"Madame d'Aguesseau de Fresnes","artist":"Élisabeth Louise Vigée Le Brun","artistId":"elisabeth-louise-vigee-le-brun","qid":"Q20179648","qidTrusted":true,"year":1789,"wish":true},
+{"id":"mantegna-portrait-of-a-man","title":"Portrait of a Man","artist":"Andrea Mantegna","artistId":"mantegna","qid":"Q3399399","qidTrusted":true,"year":1470,"wish":true},
+{"id":"durer-portrait-of-a-clergyman-johann-dorsch","title":"Portrait of a Clergyman (Johann Dorsch?)","artist":"Albrecht Dürer","artistId":"durer","qid":"Q20175457","qidTrusted":true,"year":1516,"wish":true},
+{"id":"mantegna-the-infant-savior","title":"The Infant Savior","artist":"Andrea Mantegna","artistId":"mantegna","qid":"Q3761425","qidTrusted":true,"year":1460,"wish":true},
+{"id":"elisabeth-louise-vigee-le-brun-marie-antoinette","title":"Marie-Antoinette","artist":"after Élisabeth Louise Vigée Le Brun","artistId":"elisabeth-louise-vigee-le-brun","qid":"Q20179240","qidTrusted":true,"year":1783,"wish":true},
+{"id":"elisabeth-louise-vigee-le-brun-the-marquise-de-pezay-and-the-marquise-de-rouge-with-her-sons-alexis-and-adrien","title":"The Marquise de Pezay, and the Marquise de Rougé with Her Sons Alexis and Adrien","artist":"Élisabeth Louise Vigée Le Brun","artistId":"elisabeth-louise-vigee-le-brun","qid":"Q9557962","qidTrusted":true,"year":1787,"wish":true},
+{"id":"arshile-gorky-the-artist-and-his-mother","title":"The Artist and His Mother","artist":"Arshile Gorky","artistId":"arshile-gorky","qid":"Q20192604","qidTrusted":true,"year":1926,"wish":true},
+{"id":"arshile-gorky-one-year-the-milkweed","title":"One Year the Milkweed","artist":"Arshile Gorky","artistId":"arshile-gorky","qid":"Q20193563","qidTrusted":true,"year":1944,"wish":true},
+{"id":"arshile-gorky-organization","title":"Organization","artist":"Arshile Gorky","artistId":"arshile-gorky","qid":"Q20192914","qidTrusted":true,"year":1933,"wish":true},
+{"id":"elisabeth-louise-vigee-le-brun-madame-du-barry","title":"Madame du Barry","artist":"Élisabeth Louise Vigée Le Brun","artistId":"elisabeth-louise-vigee-le-brun","qid":"Q46625567","qidTrusted":true,"year":1782,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
