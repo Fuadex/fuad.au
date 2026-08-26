@@ -4467,9 +4467,19 @@ function Portrait({ go }) {
     // wins every taste it is pointed at.
     const STOP = new Set(["sky", "cloud", "clouds", "daylight", "shadow", "grass", "standing", "sitting", "strolling", "contre-jour", "landscape"]);
     const subjCount = {};
+    // HUNT-FIRST (Fuad 2026-08-26): motifs now come from OUR OWN prose (art_hunt.js — mined
+    // from tours/reads, incl. the conditions Wikidata never records: morning, nocturne, mist).
+    // Wikidata P180 stays only as the fallback for works with no text yet, so coverage grows
+    // as tours complete — which is the accuracy plan.
+    const HUNT = window.CANVAS_HUNT || {};
     for (const w of works) {
-      const s = SUBJ[w.id]; if (!s) continue;
       const wt = (w.floored || w.favorite) ? 3 : w.liked ? 1 : 0; if (!wt) continue;
+      const h = HUNT[w.id];
+      if (h) {
+        for (const ft of h) { const t = ft.split(':')[1]; if (STOP.has(t)) continue; subjCount[t] = (subjCount[t] || 0) + wt; }
+        continue;
+      }
+      const s = SUBJ[w.id]; if (!s) continue;
       for (const d of (s.d || [])) { const raw = String(d); if (/^[A-ZÀ-Ż]/.test(raw)) continue; const t = raw.toLowerCase(); if (STOP.has(t)) continue; subjCount[t] = (subjCount[t] || 0) + wt; }
     }
     const motifs = Object.entries(subjCount).sort((a, b) => b[1] - a[1]).slice(0, 14);

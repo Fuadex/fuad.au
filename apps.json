@@ -168,6 +168,7 @@
         "art_imgsize.js",
         "art_holders.js",
         "art_subjects.js",
+        "art_hunt.js",
         "art_artists.js",
         "art_fallbacks.js",
         "PLATE_CHANGES.md",
