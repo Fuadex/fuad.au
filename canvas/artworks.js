@@ -3770,7 +3770,16 @@ window.CANVAS_ARTWORKS = [
 {"id":"aert-van-der-neer-winter-in-holland-skating-scene","title":"Winter in Holland: Skating Scene","artist":"Aert van der Neer","artistId":"aert-van-der-neer","qid":"Q46624778","qidTrusted":true,"year":1645,"wish":true},
 {"id":"eugene-isabey-country-tavern-feasting","title":"Country Tavern, Feasting","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q46630168","qidTrusted":true,"year":1875,"wish":true},
 {"id":"landseer-the-duke-of-devonshire-and-lady-louisa-egerton","title":"The Duke of Devonshire and Lady Louisa Egerton","artist":"Edwin Landseer","artistId":"landseer","qid":"Q46628319","qidTrusted":true,"year":1853,"wish":true},
-{"id":"landseer-alpine-mastiffs-reanimating-a-distressed-traveler","title":"Alpine Mastiffs Reanimating a Distressed Traveler","artist":"Edwin Landseer","artistId":"landseer","qid":"Q108686609","qidTrusted":true,"year":1820,"wish":true}
+{"id":"landseer-alpine-mastiffs-reanimating-a-distressed-traveler","title":"Alpine Mastiffs Reanimating a Distressed Traveler","artist":"Edwin Landseer","artistId":"landseer","qid":"Q108686609","qidTrusted":true,"year":1820,"wish":true},
+{"id":"pollock-untitled","title":"Untitled","artist":"Jackson Pollock","artistId":"pollock","qid":"Q64579338","qidTrusted":true,"year":1951,"wish":true},
+{"id":"pollock-untitled-nga-66677","title":"Untitled","artist":"Jackson Pollock","artistId":"pollock","qid":"Q64579339","qidTrusted":true,"year":1951,"wish":true},
+{"id":"pollock-untitled-nga-141770","title":"Untitled","artist":"Jackson Pollock","artistId":"pollock","qid":"Q76439221","qidTrusted":true,"year":1944,"wish":true},
+{"id":"millet-costume-studies","title":"Costume Studies","artist":"Jean-François Millet","artistId":"millet","qid":"Q64581207","qidTrusted":true,"year":1854,"wish":true},
+{"id":"pollock-untitled-silkscreen-i","title":"Untitled (Silkscreen I)","artist":"Jackson Pollock","artistId":"pollock","qid":"Q76551675","qidTrusted":true,"year":1951,"wish":true},
+{"id":"pollock-untitled-nga-152773","title":"Untitled","artist":"Jackson Pollock","artistId":"pollock","qid":"Q64579340","qidTrusted":true,"year":1951,"wish":true},
+{"id":"millet-calling-home-the-cows","title":"Calling Home the Cows","artist":"Jean-François Millet","artistId":"millet","qid":"Q64581209","qidTrusted":true,"year":1866,"wish":true},
+{"id":"millet-shepherd-returning-with-his-flock","title":"Shepherd Returning with His Flock","artist":"Jean-François Millet","artistId":"millet","qid":"Q64581210","qidTrusted":true,"year":1860,"wish":true},
+{"id":"millet-falling-leaves","title":"Falling Leaves","artist":"Jean-François Millet","artistId":"millet","qid":"Q64581212","qidTrusted":true,"year":1866,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
