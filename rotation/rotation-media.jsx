@@ -1136,6 +1136,13 @@ function TrackView({ id, go }) {
                 <span className="tv-mood-k">Reads</span>
                 <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: "oklch(0.68 0.16 25)" }} /></div>
                 <span className="tv-mood-v">{lyrVal}</span>
+                {/* PROVENANCE MARK (Fuad 2026-08-28): mood[3]===1 means this valence was
+                    re-scored by the local whole-lyric model (the surgical 2026-08 pass that
+                    caught bright-lexical masks over dark songs); unmarked = plain NRC lexicon.
+                    The tag keeps the two techniques distinguishable at a glance. */}
+                {mood && mood[3] === 1 && (
+                  <span className="tv-mood-src r-mono" title="Valence re-scored by a whole-lyric language model — the NRC word-count read was misled by bright vocabulary over dark meaning (mask class). Unmarked tracks are plain NRC lexicon scores.">calibrated</span>
+                )}
               </div>
               {/* The NRC emotion caption + the Sounds/Reads axis help. THEMES used to supersede
                   this caption here (pilot 2026-08-08) but moved into "Where it sits" (2026-08-16,
@@ -1151,7 +1158,7 @@ function TrackView({ id, go }) {
                   <i>?</i>
                   <span className="tv-mood-tip">
                     <b>Sounds</b> — how upbeat the music itself is: Spotify&#8217;s audio positivity, 0 gloomy &#8594; 100 euphoric.<br />
-                    <b>Reads</b> — how positive the lyrics are on the page, scored word-by-word against an emotion lexicon in the song&#8217;s language.<br />
+                    <b>Reads</b> — how positive the lyrics are on the page, scored word-by-word against an emotion lexicon in the song&#8217;s language. Tracks tagged <b>calibrated</b> were re-scored by a whole-lyric model that reads meaning, not just vocabulary — it catches songs wearing bright words over dark content.<br />
                     A wide gap is the classic trick: music that smiles while the words don&#8217;t.
                   </span>
                 </span>
