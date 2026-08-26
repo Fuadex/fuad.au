@@ -4,9 +4,13 @@
 
 The badges are the editorial voice of Culture. Each one is a *claim*, not a genre tag —
 it says something did a specific thing at a high level. This charter fixes what each badge
-means, how to decide if a title earns it, three exemplars, and a **size band** (roughly how
-many titles should carry it before it stops meaning "standout"). Scarcity is the feature:
-🪞 cognitive (≈19) is the most trusted badge precisely because it is rare.
+means, how to decide if a title earns it, and three exemplars.
+
+> ⛔ **SIZE BANDS RETIRED (Fuad, 2026-08-26): "bands are unnecessary — it's whether they're
+> earned, that's the question."** The bands below are kept as historical context only and
+> bind nothing. No badge is ever pruned toward a number; a holder is audited against the
+> badge's TEST, and it stays if it passes — whether the badge ends up with 8 holders or 180.
+> Scarcity is an outcome of honest testing, never a target.
 
 Format per badge: **label** — one-line meaning · *test* · e.g. exemplars · band.
 

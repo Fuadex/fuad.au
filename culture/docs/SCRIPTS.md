@@ -35,6 +35,7 @@ dev diagnostic (`archive/`).
 | Script | Does |
 |---|---|
 | `audit_enrich.py` | per-medium coverage of every enrichment cache vs the library |
+| `fetch_game_omdb.py` | OMDb payloads for GAMES via game_imdb.js tt ids → shared omdb_cache.json (update_omdb excludes the medium); Reader then defaults to the IMDb plot voice, IGDB stays the flick fallback. Follow with `update_omdb.py --emit-only` |
 | `validate.py` | no-network integrity gate: duplicate/malformed ids, vocab codes (errors, fails build_all before the bump) + orphaned overlay keys (warnings). filmweb notes checked via item links, not ids |
 | `audit_omdb.py` | OMDb cache health; dumps misses to `omdb_review.txt` |
 | `audit_badges.py` | badge frequency + co-occurrence on `badges_source.json` |
