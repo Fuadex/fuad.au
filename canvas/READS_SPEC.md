@@ -2,6 +2,11 @@
 
 # Info / Interpretation reads — writing spec (`art-about.js`)
 
+> ⛔ **RE-READ RULE (Fuad, 2026-08-26): re-read this methodology end-to-end before running
+> ANY drafting, repair or QC cascade — every batch, every wave, every session, and always
+> after a context compaction. A summary of this spec is never the spec.** (Same standing
+> law as STUDY_SPEC and the Rotation reads recipe.)
+
 The two-tier reads on the artwork page: `about` (Info) and `deep` (Interpretation). Tours
 are the layer beneath and have their own spec — **[STUDY_SPEC.md](STUDY_SPEC.md)**
 (`art_inspect.js`).

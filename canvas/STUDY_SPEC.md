@@ -2,6 +2,12 @@
 
 # Study tours — writing spec (`art_inspect.js`)
 
+> ⛔ **RE-READ RULE (Fuad, 2026-08-26): re-read this methodology end-to-end before running
+> ANY drafting, repair or QC cascade — every batch, every wave, every session, and always
+> after a context compaction. A summary of this spec is never the spec; the laws and the
+> checklist below exist because cascades run from memory drifted.** (Same standing law as
+> the reads recipe on the Rotation side.)
+
 The INSPECTION layer: per-work deep studies that power Study mode (`#/study/<id>`) — a
 reading pane beside a zoomable image, where each `deeper` stop flies the viewer to a
 region of the painting. This spec is what a drafting model (Opus subagent) receives;
