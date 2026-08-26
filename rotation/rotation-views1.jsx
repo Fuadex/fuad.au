@@ -566,7 +566,17 @@ function OverviewView({ t, go, restReady, seed }) {
   }, [fStats, days, T.scrobbles]);
   const liveTotal = (window.ROTATION_LIVE && window.ROTATION_LIVE.total) || T.scrobbles;
   const scrob = useCountUp(liveTotal, 1400, seen);
-  const hrs = useCountUp(T.listeningHours, 1400, seen);
+  // LIVE-ADJUSTED HOURS (Fuad 2026-08-27 #5): the scrobble stat ticks live off the daily
+  // snapshot while hours froze at the build-baked T.listeningHours, so the pair drifted
+  // apart between builds. Extend the baked hours by the live delta at the library's own
+  // average track length (baked hours ÷ baked plays) — the cheap approximation that adds
+  // zero data weight and converges to the exact figure at every rebuild.
+  const hrsLive = React.useMemo(() => {
+    const base = T.listeningHours || 0, baked = T.scrobbles || 0;
+    const avgSec = baked ? base * 3600 / baked : 210;
+    return Math.round(base + Math.max(0, liveTotal - baked) * avgSec / 3600);
+  }, [T, liveTotal]);
+  const hrs = useCountUp(hrsLive, 1400, seen);
   // seen-live share (Fuad 2026-08-13): % of ALL plays belonging to artists you've stood in front
   // of. seenLive ships ONLY on kept (core) artist records — expById rest rows never carry it, and
   // they OVERLAP the kept set, so summing both would be a double-count trap. Denominator is
