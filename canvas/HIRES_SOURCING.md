@@ -2,6 +2,50 @@
 
 # The hi-res hunt — how art_hires.js got built, and everything that fought back
 
+## THE PROVIDER LANDSCAPE (2026-08-26, Fuad: "keep track of who else is there") — who runs NGA-grade open infrastructure
+
+The standing ledger of institutions by infrastructure quality, so future hunts start here
+instead of rediscovering. "NGA-grade" = IIIF (or equivalent tiling), masters at high native
+resolution, permissive license, sane CORS, stable IDs. Statuses from our own measured rounds
+where marked ⚙; the rest from documented programs — verify before adopting.
+
+**Tier 1 — genuinely NGA-class (full IIIF · big masters · CC0/open · good manners):**
+- **NGA Washington** ⚙ — the benchmark: gigapixel-class IIIF + full open-data dump.
+- **Getty** — IIIF throughout, Open Content masters (often 10k+ px), Linked Art APIs.
+- **Yale** (YCBA + University Art Gallery) — CC0, excellent IIIF, huge plates; the Turner/
+  British-art goldmine beside our NGA holdings.
+- **Rijksmuseum** — Rijksstudio masters (stitched gigapixel for stars), free key, toppieces.
+- **Cleveland Museum of Art** — CC0 + IIIF, 4–8k masters, clean API.
+- **SMK Copenhagen** — SMK Open: CC0, IIIF, high-res.
+- **Nationalmuseum Stockholm** ⚙ — round-7 find: real IIIF, 6–9k plates (mind `tiles: 256`).
+- **Art Institute of Chicago** ⚙ — clean IIIF (our deep-zoom staple); masters mid-size.
+
+**Tier 2 — great content, one flaw (manners, res, or coverage):**
+- **National Gallery London** ⚙ — IIIF3 with enormous masters (28k px van Rysselberghe) but
+  no CORS header (worker required) + silent tile clamp (the 78% regression).
+- **Smithsonian Open Access** (incl. SAAM, Freer) — CC0 at scale, IIIF via ids.si.edu, res varies.
+- **Paris Musées** — 100k+ open works, free key, high-res; not IIIF proper.
+- **V&A** — IIIF, moderate-high res.
+- **The Met** ⚙ — CC0 + isHighlight + ~4k primaryImage, but no public IIIF.
+- **Barnes Foundation, Walters, Isabella Stewart Gardner, Harvard, Princeton** — IIIF/CC0
+  American mid-tier; solid, rarely spectacular resolution.
+- **Belvedere** ⚙ — IIIF present (the-hydra); framing differs from our plates.
+- **Nasjonalmuseet Oslo · Finnish National Gallery (Ateneum)** — open APIs, CC0, good res.
+- **Library of Congress / NYPL / Gallica-BnF / Wellcome / Bodleian** — first-rate IIIF infra;
+  prints, photos, manuscripts more than paintings.
+
+**Tier 3 — usable, no open tiling (static hi-res or scrape-lite):**
+- **Louvre** ⚙ (per-work JSON, 2–4k) · **LACMA** (CC0 downloads) · **MNW/MNK Poland** ⚙
+  (3–6k statics — our w20 plates) · **Munich Pinakotheken / Städel** (CC BY-SA statics) ·
+  **Mauritshuis** (star works huge, rest modest) · **ColBase Japan** + **Ritsumeikan ARC**
+  (ukiyo-e IIIF — relevant for the Hokusai/print holdings).
+
+**Measured dead ends (do not re-hunt — QC_LEDGER/round notes carry the receipts):**
+Marmottan ⚙ (no external IDs, the vetheuil wall) · MoMA ⚙ (metadata only, no images) ·
+Tate (no images) · Whitney ⚙ + AGSA ⚙ + NGV ⚙ (CORS: worker aliases required; NGV is
+Zoomify) · Orsay + NGI ⚙ (parked-not-dead: object IDs known, Cloudflare/client-render
+blocks — Fuad's browser could finish) · Prado (viewer-only) · British Museum (low res).
+
 ## ROUND 7 (2026-08-25) — Stockholm opens, the 1920 cap was wrong, and a reusable registration method
 
 ⚠ **Written as a handoff.** Two of this round's findings **correct claims made earlier in this
