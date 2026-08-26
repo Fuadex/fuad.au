@@ -82,8 +82,7 @@ window.CULTURE_BADGES = {
  ],
  "bojack": [
   "bittersweet",
-  "satire",
-  "visuals"
+  "satire"
  ],
  "breaking-bad": [
   "intense",
@@ -126,8 +125,7 @@ window.CULTURE_BADGES = {
   "writing"
  ],
  "cyberpunk-edge": [
-  "thrilling",
-  "visuals"
+  "thrilling"
  ],
  "dark": [
   "cerebral",
@@ -172,8 +170,7 @@ window.CULTURE_BADGES = {
  ],
  "fallout": [
   "funny",
-  "satire",
-  "visuals"
+  "satire"
  ],
  "fargo": [
   "acting",
@@ -190,8 +187,7 @@ window.CULTURE_BADGES = {
  "flcl": [
   "absurdist",
   "funny",
-  "singular",
-  "visuals"
+  "singular"
  ],
  "fleabag": [
   "bittersweet",
@@ -607,8 +603,7 @@ window.CULTURE_BADGES = {
  ],
  "mirrors-edge": [
   "atmosphere",
-  "style",
-  "visuals"
+  "style"
  ],
  "mononoke": [
   "horrifying"
@@ -809,7 +804,6 @@ window.CULTURE_BADGES = {
  ],
  "terror-resonance": [
   "devastating",
-  "impact",
   "thrilling"
  ],
  "the-expanse": [
