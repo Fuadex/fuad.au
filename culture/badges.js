@@ -841,7 +841,8 @@ window.CULTURE_BADGES = {
   "visuals"
  ],
  "trigun": [
-  "worldbuilding"
+  "worldbuilding",
+  "bittersweet"
  ],
  "true-detective": [
   "cerebral",
