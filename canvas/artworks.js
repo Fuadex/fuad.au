@@ -3958,7 +3958,24 @@ window.CANVAS_ARTWORKS = [
 {"id":"jean-charles-cazin-the-haystack-and-the-moon","title":"The Haystack and the Moon","artist":"Jean-Charles Cazin","artistId":"jean-charles-cazin","qid":"Q46627373","qidTrusted":true,"wish":true},
 {"id":"jean-charles-cazin-the-great-windmill-and-the-rainbow","title":"The Great Windmill and the Rainbow","artist":"Jean-Charles Cazin","artistId":"jean-charles-cazin","qid":"Q46631517","qidTrusted":true,"year":1888,"wish":true},
 {"id":"jean-charles-cazin-weary-wayfarers","title":"Weary Wayfarers","artist":"Jean-Charles Cazin","artistId":"jean-charles-cazin","qid":"Q46631609","qidTrusted":true,"year":1888,"wish":true},
-{"id":"jean-charles-cazin-homestead-by-the-sea","title":"Homestead by the Sea","artist":"Jean-Charles Cazin","artistId":"jean-charles-cazin","qid":"Q46627402","qidTrusted":true,"wish":true}
+{"id":"jean-charles-cazin-homestead-by-the-sea","title":"Homestead by the Sea","artist":"Jean-Charles Cazin","artistId":"jean-charles-cazin","qid":"Q46627402","qidTrusted":true,"wish":true},
+{"id":"hals-portrait-of-a-woman-aged-sixty","title":"Portrait of a Woman Aged Sixty","artist":"Frans Hals","artistId":"hals","qid":"Q17859670","qidTrusted":true,"year":1633,"wish":true},
+{"id":"hals-portrait-of-a-member-of-the-haarlem-civic-guard","title":"Portrait of a Member of the Haarlem Civic Guard","artist":"Frans Hals","artistId":"hals","qid":"Q17907618","qidTrusted":true,"year":1636,"wish":true},
+{"id":"hals-willem-coymans","title":"Willem Coymans","artist":"Frans Hals","artistId":"hals","qid":"Q18010001","qidTrusted":true,"year":1645,"wish":true},
+{"id":"hals-adriaen-van-ostade","title":"Adriaen van Ostade","artist":"Frans Hals","artistId":"hals","qid":"Q18030849","qidTrusted":true,"year":1646,"wish":true},
+{"id":"hals-portrait-of-a-young-man","title":"Portrait of a Young Man","artist":"Frans Hals","artistId":"hals","qid":"Q18010010","qidTrusted":true,"year":1646,"wish":true},
+{"id":"hals-a-young-man-in-a-large-hat","title":"A Young Man in a Large Hat","artist":"Frans Hals","artistId":"hals","qid":"Q17818628","qidTrusted":true,"year":1626,"wish":true},
+{"id":"hals-portrait-of-a-man","title":"Portrait of a Man","artist":"Frans Hals","artistId":"hals","qid":"Q18032401","qidTrusted":true,"year":1648,"wish":true},
+{"id":"hals-portrait-of-a-gentleman","title":"Portrait of a Gentleman","artist":"Frans Hals","artistId":"hals","qid":"Q18025591","qidTrusted":true,"year":1650,"wish":true},
+{"id":"robert-henri-catharine","title":"Catharine","artist":"Robert Henri","artistId":"robert-henri","qid":"Q20191727","qidTrusted":true,"year":1913,"wish":true},
+{"id":"robert-henri-young-woman-in-white","title":"Young Woman in White","artist":"Robert Henri","artistId":"robert-henri","qid":"Q20190914","qidTrusted":true,"year":1904,"wish":true},
+{"id":"robert-henri-snow-in-new-york","title":"Snow in New York","artist":"Robert Henri","artistId":"robert-henri","qid":"Q15705359","qidTrusted":true,"year":1902,"wish":true},
+{"id":"robert-henri-edith-reynolds","title":"Edith Reynolds","artist":"Robert Henri","artistId":"robert-henri","qid":"Q20191155","qidTrusted":true,"year":1908,"wish":true},
+{"id":"robert-henri-volendam-street-scene","title":"Volendam Street Scene","artist":"Robert Henri","artistId":"robert-henri","qid":"Q20191520","qidTrusted":true,"year":1910,"wish":true},
+{"id":"robert-henri-george-cotton-smith","title":"George Cotton Smith","artist":"Robert Henri","artistId":"robert-henri","qid":"Q20191168","qidTrusted":true,"year":1908,"wish":true},
+{"id":"robert-henri-elizabeth-virginia-laning-bradner-smith-mrs-george-cotton-smith","title":"Elizabeth Virginia Laning Bradner Smith (Mrs. George Cotton Smith)","artist":"Robert Henri","artistId":"robert-henri","qid":"Q20191174","qidTrusted":true,"year":1908,"wish":true},
+{"id":"robert-henri-seated-nude","title":"Seated Nude","artist":"Robert Henri","artistId":"robert-henri","qid":"Q46633840","qidTrusted":true,"year":1918,"wish":true},
+{"id":"robert-henri-indian-girl-in-white-blanket","title":"Indian Girl in White Blanket","artist":"Robert Henri","artistId":"robert-henri","qid":"Q46633670","qidTrusted":true,"year":1917,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
