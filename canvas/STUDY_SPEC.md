@@ -151,7 +151,7 @@ painting better at the end of the day"):
 - **Arc order**: open with the thing that pulls you in from across the room, then the
   descent region by region, then the re-ascent above.
 
-### ⛔ THE THREE DRAFTING LAWS (added 2026-08-25 after wave 2 audited 20 tours: 0 clean, 6 minor, 14 defective)
+### ⛔ THE DRAFTING LAWS (1–3 added 2026-08-25 after wave 2 audited 20 tours: 0 clean, 6 minor, 14 defective; Law 4 added 2026-08-26 — historical references to "the three laws" mean 1–3)
 
 Wave 2 found one cause behind almost every defect, and one control that proves it fixable.
 
@@ -192,6 +192,23 @@ when the eyes are FULLY CLOSED (the true reading — a blind man SINGING, mouth 
 better than the invented one, which is the pattern throughout: the real picture beats the
 confabulation). **Rule: any claim about feeling, relation or intent must name the visible
 thing it rests on, and that thing must be in the stop's own crop.**
+
+**LAW 4 — EVERY PASSAGE TEACHES SOMETHING THE EYE ALONE CANNOT GET (added 2026-08-26, Fuad's
+lens).** Reading the batch-era corpus against the benchmarks (Parasol, Leech, Szał Uniesień),
+Fuad's finding was *"quite a bit of filler that just didn't quite live up"* — prose that is
+true, describes accurately, restates nothing, and still transfers no knowledge: the reader
+finishes the sentence knowing only what a minute of unaided looking would have given them.
+The benchmarks never do this. Their sentences either NAME what the eye cannot supply — the
+device, the pigment practice, the compositional decision, the period convention, the
+biographical hinge — or show a CONSEQUENCE the eye would not connect on its own.
+**The test, per sentence: if the reader studied the crop for a minute without this text,
+would they still not know it?** If they would know it, the sentence is a caption, not
+teaching — cut it, or replace it with the thing behind it (the choice, the method, the why).
+Distinct from Law 2: Law 2 stops a lens from spending a stop's INSTANCE; Law 4 stops any
+passage from spending WORDS without transferring knowledge. Description is still permitted
+where it AIMS the eye — the survey's starting mark, `see`'s naming inventory — it fails only
+when description is the payload. This is a truth-compatible failure: a tour can pass every
+factual gate above and still be all caption; the audits QC'd truth, this law QCs nutrition.
 
 ### ⭐ THE CALIBRATION SPECIMEN — `monet-woman-with-a-parasol` (named by Fuad, 2026-08-25)
 
@@ -712,6 +729,14 @@ pure arithmetic over coordinates and should run as a script before a human opens
 already has one (`validate-refs.js`) and is the model. In the calibration run these plus step 4
 produced about **30% of total yield at roughly 10% of the effort**. Running them last means
 adjudicating stops that should not exist.
+
+⚙ **RUN 5 CARRIES A SECOND QUESTION SINCE 2026-08-26 — THE LAW-4 GATE.** While surveying each
+stop's starting mark, also mark every sentence (stops AND lenses) that only describes what the
+crop already shows. Teaching names a device / method / convention / decision / fact the eye
+cannot supply; caption is replaced by a minute of unaided looking. **Caption-only passages go
+on the repair list even when factually clean** — this is the filler class Fuad flagged against
+the Parasol / Leech / Szał standard (see Law 4), and it is the one defect the image steps
+below cannot catch, because it is true.
 
 ⚙ **TWO FOLDS, both because the steps were doing one job in two places:**
 - **old 12 (paragraph scope) folded into 4 (diff the tour against itself).** Both are entry-internal
