@@ -1915,11 +1915,25 @@ function splitNoteAttribution(note) {
   return m ? { text: m[1].trim(), by: 'Fable 5' } : { text: note, by: null };
 }
 
+// The short plot is the DEFAULT (Fuad 2026-08-27). OMDb was fully re-polled and 324
+// titles simply have no short plot on IMDb's side — for those the long fan synopsis
+// used to render whole. Cut it at sentence boundaries to a crisp lead instead; the
+// full text still exists in the data if a surface ever wants it.
+function shortPlot(t) {
+  if (!t || t.length <= 340) return t;
+  let out = '';
+  for (const m of t.matchAll(/[^.!?]+[.!?]+(?:\s+|$)/g)) {
+    if (out && (out + m[0]).trim().length > 340) break;
+    out += m[0];
+  }
+  return (out.trim() || t.slice(0, 320) + '…');
+}
+
 function ReaderSummary({ item }) {
   const sources = [];
   const o = item.omdb;
   const imdbText = o && ((o.PlotShort && o.PlotShort !== 'N/A' && o.PlotShort)
-                      || (o.Plot && o.Plot !== 'N/A' && o.Plot));
+                      || (o.Plot && o.Plot !== 'N/A' && shortPlot(o.Plot)));
   if (imdbText) sources.push({ key: 'IMDb', text: imdbText });
   if (item.summary)
     sources.push({ key: item.medium === 'Books' ? 'Synopsis' : 'TMDB', text: item.summary });
