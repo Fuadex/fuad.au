@@ -745,9 +745,10 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
     linear-gradient(160deg, color-mix(in oklab, var(--pf-bg, #2a2520) 82%, #ffffff 8%), var(--pf-bg, #2a2520));
 }
 .poster-fallback .pf-title {
-  font-family: var(--serif); font-style: italic; font-weight: 500;
-  font-size: 28px; line-height: 1.12; color: rgba(255,255,255,.94);
-  text-shadow: 0 1px 3px rgba(0,0,0,.45); overflow-wrap: break-word;
+  /* HIDDEN (Fuad 2026-08-27: "we don't need big letters over placeholders") — the big serif
+     title read as noise while lazy overlays/covers were still arriving. The tinted panel +
+     the small .pf-meta line stay; the title lives in the tile's tooltip and the Reader. */
+  display: none;
 }
 .poster-fallback .pf-meta {
   font-family: var(--mono); font-size: 10px; letter-spacing: .2em;
