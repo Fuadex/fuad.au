@@ -4082,7 +4082,19 @@ window.CANVAS_ARTWORKS = [
 {"id":"raoul-dufy-the-landing","title":"The Landing","artist":"Raoul Dufy","artistId":"raoul-dufy","qid":"Q20192746","qidTrusted":true,"year":1928,"wish":true},
 {"id":"cole-the-return","title":"The Return","artist":"Thomas Cole","artistId":"cole","qid":"Q19900694","qidTrusted":true,"year":1837,"wish":true},
 {"id":"cole-the-departure","title":"The Departure","artist":"Thomas Cole","artistId":"cole","qid":"Q19900688","qidTrusted":true,"year":1837,"wish":true},
-{"id":"cole-tornado-in-an-american-forest","title":"Tornado in an American Forest","artist":"Thomas Cole","artistId":"cole","qid":"Q46627014","qidTrusted":true,"year":1831,"wish":true}
+{"id":"cole-tornado-in-an-american-forest","title":"Tornado in an American Forest","artist":"Thomas Cole","artistId":"cole","qid":"Q46627014","qidTrusted":true,"year":1831,"wish":true},
+{"id":"toulouse-lautrec-a-corner-of-the-moulin-de-la-galette","title":"A Corner of the Moulin de la Galette","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20190306","qidTrusted":true,"year":1892,"wish":true},
+{"id":"toulouse-lautrec-rue-des-moulins-1894","title":"Rue des Moulins, 1894","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20190438","qidTrusted":true,"year":1894,"wish":true},
+{"id":"toulouse-lautrec-maxime-dethomas","title":"Maxime Dethomas","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20190555","qidTrusted":true,"year":1896,"wish":true},
+{"id":"toulouse-lautrec-alfred-la-guigne","title":"Alfred la Guigne","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20190403","qidTrusted":true,"year":1894,"wish":true},
+{"id":"toulouse-lautrec-quadrille-at-the-moulin-rouge","title":"Quadrille at the Moulin Rouge","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20190332","qidTrusted":true,"year":1892,"wish":true},
+{"id":"toulouse-lautrec-the-artist-s-dog-fleche","title":"The Artist's Dog Flèche","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20188878","qidTrusted":true,"year":1881,"wish":true},
+{"id":"toulouse-lautrec-carmen-gaudin","title":"Carmen Gaudin","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20189748","qidTrusted":true,"year":1885,"wish":true,"liked":true},
+{"id":"toulouse-lautrec-lady-with-a-dog","title":"Lady with a Dog","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20190260","qidTrusted":true,"year":1891,"wish":true},
+{"id":"toulouse-lautrec-a-la-bastille-jeanne-wenz","title":"A la Bastille (Jeanne Wenz)","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20189929","qidTrusted":true,"year":1888,"wish":true},
+{"id":"toulouse-lautrec-marcelle-lender-dancing-the-bolero-in-chilperic","title":"Marcelle Lender Dancing the Bolero in \"Chilpéric\"","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20190499","qidTrusted":true,"year":1895,"wish":true},
+{"id":"toulouse-lautrec-the-trap","title":"The Trap","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20188872","qidTrusted":true,"year":1880,"wish":true,"liked":true},
+{"id":"toulouse-lautrec-hussars","title":"Hussars","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20188841","qidTrusted":true,"year":1878,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
