@@ -4558,7 +4558,9 @@ function Portrait({ go }) {
       const s = SUBJ[w.id]; if (!s) continue;
       for (const d of (s.d || [])) { const raw = String(d); if (/^[A-ZÀ-Ż]/.test(raw)) continue; const t = raw.toLowerCase(); if (STOP.has(t)) continue; subjCount[t] = (subjCount[t] || 0) + wt; }
     }
-    const motifs = Object.entries(subjCount).sort((a, b) => b[1] - a[1]).slice(0, 14);
+    // 14 → 24 (Fuad 2026-08-26: "let 3 rows be displayed") — with the hunt terms feeding
+    // this, the chip cloud earns roughly three wrapped rows at desktop width.
+    const motifs = Object.entries(subjCount).sort((a, b) => b[1] - a[1]).slice(0, 24);
     // breadth vs depth — the whole canon speaks here (an artist chased is still a taste)
     const perArtist = {}; for (const w of works) if (w.artistId) perArtist[w.artistId] = (perArtist[w.artistId] || 0) + 1;
     const singles = Object.values(perArtist).filter(n => n === 1).length;
