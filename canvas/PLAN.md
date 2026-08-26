@@ -189,6 +189,29 @@ list** while the seen answers build the canon. A 0–100 slider was considered a
 it kills dealing rhythm and produces pseudo-precision; two axes × three levels captures
 everything actionable. Old string verdicts migrate on load.
 
+### Roadmap — TIER-1 HOLDER EXPANSION (proposed 2026-08-27, Fuad: "put this on the roadmap")
+
+The NGA adoption arc proved the pattern: pull a holder's open catalogue locally, match it
+against canon artists, emit a candidates file, let the owner pick by artist block, ingest
+with a guarded line-append. **668 works came in this way in one session.** NGA is still the
+only Tier-1 holder mined at that scale — see `HIRES_SOURCING.md` "THE PROVIDER LANDSCAPE"
+for the full ledger. Next, in value order:
+
+1. **Getty** — measured open (IIIF 3 level2, `maxWidth 30000`). The French 19th century,
+   incl. Monet. ⚠ `www.getty.edu/art/collection/search` is CLIENT-RENDERED and returns
+   nothing programmatically (probed 2026-08-27) — the machine route is `data.getty.edu`
+   (Linked Art), which is where the probe should point.
+2. **Yale** — ⚙ LUX (`lux.collections.yale.edu/api/search/item`) confirmed live 2026-08-27:
+   Linked Art JSON-LD, paginated via `next`; a free-text "Monet" query returned 830 items,
+   but that is UNFILTERED (books and mentions included) — scope by `producedBy` for a real
+   holdings count. ⚠ **YCBA is British art only — it will hold no Monet.** Its value is the
+   Turner/Constable mass, which now matters because canon holds both.
+3. **Rijksmuseum** — deeper than NGA on the Dutch names this session collected (Ruisdael,
+   Hobbema, van der Neer, Hals); Rijksstudio serves stitched gigapixel on the star works.
+
+Also open from the same ledger: **Cleveland, SMK Copenhagen, AIC** (all Tier 1, unmined).
+⛔ Do NOT re-hunt Orsay (open IIIF, 850 px ceiling — a downgrade on all ~150 of our works).
+
 ## 7. Risks & mitigations
 
 - **Memory is incomplete** → recognition decks + confidence field + the canon framing

@@ -263,7 +263,10 @@ const MEDIA = [["painting", "paintings"], ["sculpture", "sculpture"], ["paper", 
 // first cut so no chip is near-empty). 150MP+ ≈ beyond the in-browser render cap (12.8k
 // long side): those works always view through a pyramid/IIIF, with the full file behind
 // the Ultra HQ link.
-const QUALITY = [["q150", "150MP+"], ["q50", "50MP+"], ["q12", "12MP+"], ["q3", "3MP+"], ["q1", "1MP+"], ["q0", "<1MP"], ["iiif", "tiled · IIIF"]];
+// 500MP+ split off the top bucket (Fuad 2026-08-27) — after the NGA arc the old open-ended
+// "150MP+" chip held 435 works and no longer separated the merely-large from the gigapixel
+// scans. Splitting leaves 315 in 150MP+ and 120 in 500MP+; both clear the no-near-empty bar.
+const QUALITY = [["q500", "500MP+"], ["q150", "150MP+"], ["q50", "50MP+"], ["q12", "12MP+"], ["q3", "3MP+"], ["q1", "1MP+"], ["q0", "<1MP"], ["iiif", "tiled · IIIF"]];
 const qualityOf = (w) => {
   const h = HIRES[w.id];
   // `flat` caps the bucket: where the holder clamps flat renders (nationalmuseum-se ~1000px),
@@ -273,12 +276,28 @@ const qualityOf = (w) => {
   let px = h && h.w && h.h ? (h.flat ? h.flat[0] * h.flat[1] : h.w * h.h) : null;
   if (!px) { const p = IMGSIZE[w.id]; if (p && p[0] && p[1]) px = p[0] * p[1]; }
   if (!px) return null;
-  return px >= 150e6 ? "q150" : px >= 50e6 ? "q50" : px >= 12e6 ? "q12" : px >= 3e6 ? "q3" : px >= 1e6 ? "q1" : "q0";
+  return px >= 500e6 ? "q500" : px >= 150e6 ? "q150" : px >= 50e6 ? "q50" : px >= 12e6 ? "q12" : px >= 3e6 ? "q3" : px >= 1e6 ? "q1" : "q0";
 };
 // "iiif" is a cross-cutting TAG, not a size bucket (Fuad 2026-08-23) — works whose holder serves
 // a real tile pyramid (NGA/AIC/CMA/V&A…), i.e. progressive zoom with no texture ceiling. It ORs
 // with the size chips like everything else in the group.
 const qualMatch = (w, ks) => ks.some(k => k === "iiif" ? !!(HIRES[w.id] && HIRES[w.id].iiif) : qualityOf(w) === k);
+// MP FLOOR (2026-08-27) — three states on ONE chip: any → 150MP+ → 500MP+ → any. Deliberately NOT
+// the QUALITY bands above: those are exclusive buckets off the best-known source (`flat`-capped,
+// art_imgsize fallback), this is a plain floor on the raw art_hires master — w*h and nothing else.
+// 437 of the 1,909 hires rows clear 150MP, 121 clear 500MP. A cycle rather than two more chips
+// because the floors NEST (everything over 500MP is over 150MP), so both-on could never mean
+// anything, which is exactly what the OR'd bucket chips are for.
+const MPFLOORS = [["", "any quality"], ["mp150", "150MP+"], ["mp500", "500MP+"]];
+const MP_MIN = { mp150: 150, mp500: 500 };
+// read through `window` rather than the module-scope HIRES alias so the answer stays right if the
+// layer ever lands late; a work with no row, or a row missing w/h, is 0 MP — below every floor
+const mpOf = (w) => { const h = (window.CANVAS_HIRES || {})[w.id]; return h && h.w && h.h ? h.w * h.h / 1e6 : 0; };
+const mpPass = (w, k) => mpOf(w) >= (MP_MIN[k] || 0);
+// art_hires ships EAGER (index.html, above this file) so this is belt-and-braces: with the layer
+// missing or empty the floor filters NOTHING. "Below every floor" is the honest answer for one
+// unknown work and the wrong one for all of them — that would blank the wall over a failed fetch.
+const mpReady = () => { for (const k in window.CANVAS_HIRES) return true; return false; };
 function enrich(w) {
   const d = AD.artworks[w.id] || {};
   const artist = AD.artists[w.artistId] || {};
@@ -767,6 +786,9 @@ function Wall({ go, styleIds }) {
   const [tourOnly, setTourOnly] = useState(false);
   const [qual, setQual] = useState([]);                // quality buckets, OR'd like media
   const toggleQual = unhang((k) => setQual(q => q.includes(k) ? q.filter(x => x !== k) : [...q, k]));
+  const [mp, setMp] = useState("");                    // ▦ MP floor — "" | "mp150" | "mp500"; see MPFLOORS
+  const cycleMp = unhang(() => setMp(v => v === "mp150" ? "mp500" : v === "mp500" ? "" : "mp150"));
+  const mpLabel = (MPFLOORS.find(f => f[0] === mp) || MPFLOORS[0])[1];
   // The full style list — order and slugs are stable so a URL like #/wall/impressionism keeps
   // working whatever is filtered. Only the NUMBERS react; see `movCounts` below.
   const movs = useMemo(movIndex, []);
@@ -781,7 +803,7 @@ function Wall({ go, styleIds }) {
   // survives the navigation and has to be cleared explicitly like every other filter.
   const setSel = unhang((labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null));
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, qual, pick, hang, tourOnly]);
+  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, qual, mp, pick, hang, tourOnly]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -804,16 +826,18 @@ function Wall({ go, styleIds }) {
     const c = {};
     let list = media.length ? base.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); }) : base;
     if (qual.length) list = list.filter(qualPass);
+    if (mp && mpReady()) list = list.filter(w => mpPass(w, mp));
     for (const w of list) for (const m of movsOf(w)) c[m] = (c[m] || 0) + 1;
     return c;
-  }, [base, media, qual]);
+  }, [base, media, qual, mp]);
   const mediaCounts = useMemo(() => {
     const c = {};
     let list = sel.length ? base.filter(w => movsOf(w).some(m => sel.includes(m))) : base;
     if (qual.length) list = list.filter(qualPass);
+    if (mp && mpReady()) list = list.filter(w => mpPass(w, mp));
     for (const w of list) { const m = mediumOf(w); if (m && m[0]) c[m[0]] = (c[m[0]] || 0) + 1; }
     return c;
-  }, [base, sel, qual]);
+  }, [base, sel, qual, mp]);
   // quality counts follow every filter but not the quality selection itself — the shared facet rule
   const qualCounts = useMemo(() => {
     let list = base;
@@ -865,6 +889,10 @@ function Wall({ go, styleIds }) {
     // quality buckets OR like media; a work with no known pixel size is excluded once a chip is
     // on — unknown is unknown, not "plate". "iiif" ORs in as a cross-cutting tag.
     if (qual.length) list = list.filter(w => qualMatch(w, qual));
+    // MP floor ANDs against everything else. The mpReady() guard is the graceful-degradation case,
+    // not a nicety: without it a missing art_hires would put every work below the floor and hand
+    // back an empty wall with a lit chip and nothing to explain it.
+    if (mp && mpReady()) list = list.filter(w => mpPass(w, mp));
     if (tourOnly) list = list.filter(w => !!(window.CANVAS_INSPECT || {})[w.id]);
     const arr = [...list];
     // TODAY'S HANG short-circuits the sort: its order IS the content — pinned leads first, then the
@@ -899,7 +927,7 @@ function Wall({ go, styleIds }) {
   // a stale memo.
   // …and `lazyGen` (2026-08-26): tourOnly reads the LAZY CANVAS_INSPECT — without the gen dep,
   // toggling the chip before the file lands cached an empty wall forever.
-  }, [all, marks, status, eras, mus, sort, sel, media, qual, pick, hang, tourOnly, lazyGen]);
+  }, [all, marks, status, eras, mus, sort, sel, media, qual, mp, pick, hang, tourOnly, lazyGen]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
