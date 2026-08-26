@@ -3892,7 +3892,27 @@ window.CANVAS_ARTWORKS = [
 {"id":"eugene-delacroix-two-studies-of-a-standing-indian-from-calcutta","title":"Two Studies of a Standing Indian from Calcutta","artist":"Eugène Delacroix","artistId":"eugene-delacroix","qid":"Q20184879","qidTrusted":true,"year":1823,"wish":true},
 {"id":"eugene-delacroix-two-studies-of-an-indian-from-calcutta-seated-and-standing","title":"Two Studies of an Indian from Calcutta, Seated and Standing","artist":"Eugène Delacroix","artistId":"eugene-delacroix","qid":"Q20184864","qidTrusted":true,"year":1823,"wish":true},
 {"id":"ernst-ludwig-kirchner-dancing-couple-in-the-snow-reverse","title":"Dancing Couple in the Snow [reverse]","artist":"Ernst Ludwig Kirchner","artistId":"ernst-ludwig-kirchner","qid":"Q20192734","qidTrusted":true,"year":1928,"wish":true},
-{"id":"eugene-delacroix-tiger-and-snake","title":"Tiger and Snake","artist":"Eugène Delacroix","artistId":"eugene-delacroix","qid":"Q46629060","qidTrusted":true,"year":1862,"wish":true}
+{"id":"eugene-delacroix-tiger-and-snake","title":"Tiger and Snake","artist":"Eugène Delacroix","artistId":"eugene-delacroix","qid":"Q46629060","qidTrusted":true,"year":1862,"wish":true},
+{"id":"meindert-hobbema-a-farm-in-the-sunlight","title":"A Farm in the Sunlight","artist":"Meindert Hobbema","artistId":"meindert-hobbema","qid":"Q20177621","qidTrusted":true,"year":1668,"wish":true},
+{"id":"meindert-hobbema-a-wooded-landscape","title":"A Wooded Landscape","artist":"Meindert Hobbema","artistId":"meindert-hobbema","qid":"Q20177592","qidTrusted":true,"year":1663,"wish":true},
+{"id":"meindert-hobbema-a-view-on-a-high-road","title":"A View on a High Road","artist":"Meindert Hobbema","artistId":"meindert-hobbema","qid":"Q20177611","qidTrusted":true,"year":1665,"wish":true},
+{"id":"meindert-hobbema-hut-among-trees","title":"Hut among Trees","artist":"Meindert Hobbema","artistId":"meindert-hobbema","qid":"Q20177596","qidTrusted":true,"year":1664,"wish":true},
+{"id":"meindert-hobbema-the-travelers","title":"The Travelers","artist":"Meindert Hobbema","artistId":"meindert-hobbema","qid":"Q20177580","qidTrusted":true,"year":1662,"wish":true},
+{"id":"meindert-hobbema-village-near-a-pool","title":"Village near a Pool","artist":"Meindert Hobbema","artistId":"meindert-hobbema","qid":"Q20177639","qidTrusted":true,"year":1670,"wish":true},
+{"id":"odilon-redon-pandora","title":"Pandora","artist":"Odilon Redon","artistId":"odilon-redon","qid":"Q18001840","qidTrusted":true,"year":1910,"wish":true},
+{"id":"odilon-redon-saint-sebastian","title":"Saint Sebastian","artist":"Odilon Redon","artistId":"odilon-redon","qid":"Q20191474","qidTrusted":true,"year":1910,"wish":true},
+{"id":"odilon-redon-evocation-of-roussel","title":"Evocation of Roussel","artist":"Odilon Redon","artistId":"odilon-redon","qid":"Q20191637","qidTrusted":true,"year":1912,"wish":true},
+{"id":"odilon-redon-flowers-in-a-vase","title":"Flowers in a Vase","artist":"Odilon Redon","artistId":"odilon-redon","qid":"Q20191371","qidTrusted":true,"year":1910,"wish":true},
+{"id":"alexej-von-jawlensky-easter-sunday","title":"Easter Sunday","artist":"Alexej von Jawlensky","artistId":"alexej-von-jawlensky","qid":"Q20192880","qidTrusted":true,"year":1932,"wish":true},
+{"id":"alexej-von-jawlensky-murnau","title":"Murnau","artist":"Alexej von Jawlensky","artistId":"alexej-von-jawlensky","qid":"Q20191407","qidTrusted":true,"year":1910,"wish":true},
+{"id":"odilon-redon-large-vase-with-flowers","title":"Large Vase with Flowers","artist":"Odilon Redon","artistId":"odilon-redon","qid":"Q20191644","qidTrusted":true,"year":1912,"wish":true},
+{"id":"odilon-redon-breton-village","title":"Breton Village","artist":"Odilon Redon","artistId":"odilon-redon","qid":"Q20190095","qidTrusted":true,"year":1890,"wish":true},
+{"id":"alexej-von-jawlensky-portrait-of-a-woman","title":"Portrait of a Woman","artist":"Alexej von Jawlensky","artistId":"alexej-von-jawlensky","qid":"Q108686808","qidTrusted":true,"year":1911,"wish":true},
+{"id":"alexej-von-jawlensky-still-life-with-bottles-and-fruit","title":"Still Life with Bottles and Fruit","artist":"Alexej von Jawlensky","artistId":"alexej-von-jawlensky","qid":"Q20190769","qidTrusted":true,"year":1900,"wish":true},
+{"id":"alexej-von-jawlensky-red-path-st-prex","title":"Red Path, St. Prex","artist":"Alexej von Jawlensky","artistId":"alexej-von-jawlensky","qid":"Q20191938","qidTrusted":true,"year":1915,"wish":true},
+{"id":"alexej-von-jawlensky-frosty-day","title":"Frosty Day","artist":"Alexej von Jawlensky","artistId":"alexej-von-jawlensky","qid":"Q20191904","qidTrusted":true,"year":1915,"wish":true},
+{"id":"odilon-redon-village-by-the-sea-in-brittany","title":"Village by the Sea in Brittany","artist":"Odilon Redon","artistId":"odilon-redon","qid":"Q20188874","qidTrusted":true,"year":1880,"wish":true},
+{"id":"meindert-hobbema-wooded-landscape-with-figures","title":"Wooded Landscape with Figures","artist":"Meindert Hobbema","artistId":"meindert-hobbema","qid":"Q46624967","qidTrusted":true,"year":1658,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
