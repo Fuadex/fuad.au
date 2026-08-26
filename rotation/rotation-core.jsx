@@ -281,6 +281,10 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 .tv-mood { display: grid; gap: 8px; max-width: 520px; margin: 0 0 var(--gap); padding: 14px 16px;
   border: 1px solid var(--rule); border-radius: 8px; }
 .tv-mood-axis { display: grid; grid-template-columns: 58px 1fr 30px; gap: 12px; align-items: center; }
+/* the calibrated provenance chip (Reads valence re-scored by the whole-lyric model) */
+.tv-mood-src { display: inline-block; margin-left: 8px; padding: 1px 7px; border-radius: 999px;
+  font-family: var(--mono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: oklch(0.55 0.12 25); background: oklch(0.68 0.16 25 / .12); cursor: help; }
 .tv-mood-k { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
 .tv-mood-bar { height: 7px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
 .tv-mood-bar i { display: block; height: 100%; border-radius: 4px; }

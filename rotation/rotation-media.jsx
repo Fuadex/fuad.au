@@ -1136,13 +1136,6 @@ function TrackView({ id, go }) {
                 <span className="tv-mood-k">Reads</span>
                 <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: "oklch(0.68 0.16 25)" }} /></div>
                 <span className="tv-mood-v">{lyrVal}</span>
-                {/* PROVENANCE MARK (Fuad 2026-08-28): mood[3]===1 means this valence was
-                    re-scored by the local whole-lyric model (the surgical 2026-08 pass that
-                    caught bright-lexical masks over dark songs); unmarked = plain NRC lexicon.
-                    The tag keeps the two techniques distinguishable at a glance. */}
-                {mood && mood[3] === 1 && (
-                  <span className="tv-mood-src r-mono" title="Valence re-scored by a whole-lyric language model — the NRC word-count read was misled by bright vocabulary over dark meaning (mask class). Unmarked tracks are plain NRC lexicon scores.">calibrated</span>
-                )}
               </div>
               {/* The NRC emotion caption + the Sounds/Reads axis help. THEMES used to supersede
                   this caption here (pilot 2026-08-08) but moved into "Where it sits" (2026-08-16,
@@ -1153,6 +1146,13 @@ function TrackView({ id, go }) {
                     ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
                     : <>Sound and words agree.</>}
                   {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
+                  {/* PROVENANCE MARK (Fuad 2026-08-28): mood[3]===1 = valence re-scored by
+                      the local whole-lyric model (the surgical pass that caught bright-lexical
+                      masks over dark songs); unmarked rows are plain NRC lexicon. Lives in the
+                      note row — the axis grid is a fixed 3-column and must not gain children. */}
+                  {mood && mood[3] === 1 && (
+                    <span className="tv-mood-src" title="Valence re-scored by a whole-lyric language model — the word-count lexicon was misled by bright vocabulary over dark meaning. Unmarked tracks are plain NRC lexicon scores.">calibrated</span>
+                  )}
                 </span>
                 <span className="tv-mood-help" tabIndex={0}>
                   <i>?</i>
