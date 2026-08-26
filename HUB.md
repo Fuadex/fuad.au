@@ -134,4 +134,5 @@ be outbound links rather than images (Filmweb, Ticketmaster, Goodreads).
 - **Shared top nav** (deferred): an optional `shared/` module injecting a small "← all apps"
   link into each app, for hopping between apps without returning to root.
 
-See `MIGRATION.md` for the full migration record and the ordered runbook.
+The full migration record and the ordered runbook are preserved in `notes/MIGRATION.md`
+(local-only, gitignored).

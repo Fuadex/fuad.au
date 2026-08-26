@@ -2,6 +2,12 @@
 
 # Backlog & session checkpoint — 2026-07-18
 
+> **Checkpoint note (2026-08-26):** this file is the 2026-07-18 cross-app checkpoint and is
+> kept as reference. The LIVE queues now sit in each app's own docs — `rotation/ROADMAP.md`
+> (§⓪ status snapshots), `rotation/ALBUM_READS.md` (reads campaigns), `canvas/WORKS_LEDGER.md`
+> + `canvas/QC_LEDGER.md` + `canvas/HUNT_LEDGER.md` (canvas), and
+> `culture/docs/AUDIT_2026-07.md` §6–8 (culture roadmap). Cross-app snapshot: `STATUS.md`.
+
 Consolidated "what shipped recently + what's queued," written for a cold pickup after a context
 compaction. Companion to `rotation/ROADMAP.md` (the big plan), `rotation/SPOTIFY.md`,
 `rotation/ARCHITECTURE.md`. Rotation and Canvas: push `.jsx`/data to `main`; CI precompiles and
@@ -80,9 +86,8 @@ Testbed stays at `#lab`; charts graduate into real views in this order:
 8. **Arc diagram** — backburner (needs filtering ideas; Stories candidate). **Bump chart — tossed.**
 
 ### Spotify (data lives in gitignored zips in `rotation/`; IPs = PII, aggregates only)
-- **Map location-blanking — DONE (2026-07-11).** conn_country noise (VPN/region-switch, SIM
-  routing) corrected via a date-range override table in the local extraction; `spotify-insights.js`
-  re-emitted. Override details live in local notes only.
+- **Map data-cleaning pass — DONE (2026-07-11).** conn_country routing noise (VPN/region-switch,
+  SIM roaming) cleaned up in the local extraction; `spotify-insights.js` re-emitted.
 - **Account Data zip recon done (2026-07-11)** — see SPOTIFY.md "v3" section: Marquee artist
   segments, Inferences, Wrapped2025 (topArtistRace/leaderboard/clubs), Sound Capsule daily stats,
   playlists, search queries, follows, podcast/audiobook history.

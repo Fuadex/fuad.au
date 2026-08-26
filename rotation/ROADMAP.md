@@ -9,7 +9,21 @@
 
 ---
 
-## ⓪ Status snapshot — 2026-08-13 (the current open queue; phases below remain reference)
+## ⓪ Status snapshot — 2026-08-26 (grounding-audit refresh)
+
+**Shipped since 2026-08-13** (detail in ALBUM_READS.md batch logs + ARCHITECTURE.md §8):
+reads corpus grown to **15,019 entries** (~1.4k Fable-tier close reads + 351 footnotes) via
+whole-catalog campaigns (Rammstein, Slayer, Ling tosite sigure, Northlane, and others);
+album liners/arcs/gists + artist-level portraits at 155 `portraits.js` entries (frontal-read
+convention + gist rules hardened in ALBUM_READS.md); vocals at 2,205 artists; genre taxonomy
+v2 live; `img.fuad.au` edge image proxy wired (HUB.md); hi-res artist images in Explore.
+
+**Open queue:** reads campaign continuations per ALBUM_READS.md; themes/tells derivation
+backlog for recent read waves; Slayer/remaining album+artist cascades; long-tail Tier-2/3
+enrichment; Stories restructure; template extraction (Phase 5). Cross-app snapshot:
+`/STATUS.md`; scale numbers: `/STATS.md`.
+
+## (superseded) Status snapshot — 2026-08-13 (the current open queue; phases below remain reference)
 
 **Shipped 2026-08-12→13 (this wave):** album-read STANDALONE-SOLID doctrine + GIST recipe
 (ALBUM_READS.md is the spec of record) — Fable syntheses frontal on 9 albums (`linerPrev`/

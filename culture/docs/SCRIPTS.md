@@ -38,7 +38,7 @@ dev diagnostic (`archive/`).
 | `audit_omdb.py` | OMDb cache health; dumps misses to `omdb_review.txt` |
 | `audit_badges.py` | badge frequency + co-occurrence on `badges_source.json` |
 | `audit_gems.py` | makes the 💎 gem badge computable: flags over-broad holders (high reach) + surfaces unbadged high-rating/low-reach candidates. Prints only; writes nothing. |
-| `propose_badges.py` | heuristic badge re-curation proposal → `badge_proposal.md` |
+| `propose_badges.py` | heuristic badge re-curation proposal → `badge_proposal.md` (keep output under `notes/`, local-only) |
 | `propose_visuals_prune.py` | read-only audit of 🎨 visuals holders; surfaces lone/animation cases likely over-applied and suggests a re-home (style/cinematography). Prints only. |
 | `list_untranslated.py` | lists Polish notes lacking an EN redraft |
 | `build_predict.py` | **core** — fits a ridge-regression predicted-rating model on the rated library and scores the wishlist → `wishlist_pred.js` (used as the default "start here" wishlist sort). Features from existing overlays; no new API calls. |

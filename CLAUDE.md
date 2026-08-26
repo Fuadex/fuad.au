@@ -18,8 +18,9 @@ other. Current apps:
 
 The repo root is just the launcher: `index.html` (static app chooser) + `hub.css` + `apps.json`
 (the deploy manifest — also the intended data source for a future dynamic launcher). See
-`HUB.md` for the architecture and the "add a new app" contract, and `MIGRATION.md` for how the
-hub was assembled from the former standalone Rotation + Culture_2 repos.
+`HUB.md` for the architecture and the "add a new app" contract; the record of how the hub was
+assembled from the former standalone Rotation + Culture_2 repos lives in `notes/MIGRATION.md`
+(local-only, gitignored).
 
 ## Deploy
 One pipeline (`.github/workflows/sync.yml`): build Rotation's data **inside rotation/**

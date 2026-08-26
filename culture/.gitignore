@@ -33,3 +33,11 @@ www.filmweb.pl.txt
 
 # working notes and idea-file archive — not tracked
 notes/
+
+# Working-doc drafts live in notes/ (script outputs may recreate these at the root - keep untracked)
+badge_proposal.md
+badge_fishout.md
+funny_taxonomy.md
+taste_profile_plan.md
+color_sort_ideas.md
+backlog.md

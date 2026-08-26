@@ -58,7 +58,7 @@ The extended history carries more than ms_played/conn_country: `reason_start`/`r
 **Travel timeline fished (2026-07-11)**: per-day dominant conn_country → 145 episodes,
 classified trips / VPN noise / ambiguous. Details + the VPN-vs-travel classifier live in
 `TRAVEL.local.md` (local-only — date-level travel history stays out of the public repo).
-Its ambiguous list is the pending input for the map location-blanking override table.
+Its ambiguous list feeds the map data-cleaning pass in the local extraction.
 
 ## v3 — the Account Data layer (2026-07-11 recon; beyond the extended history)
 The second zip carries far more than YourLibrary. Inventory (all local-only; extract

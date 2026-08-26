@@ -2,6 +2,18 @@
 
 # Canvas — architecture & plan (draft, 2026-07-07)
 
+> **Status update (2026-08-26).** This doc remains the architecture of record, but the phase
+> table below has been overtaken by shipping: **Phase 2 recall decks are LIVE** (grading decks
+> incl. the "By Your Artists" deck — the app is its own cataloguing instrument, as designed)
+> and **Phase 5 is largely SHIPPED** — IIIF deep zoom via vendored OpenSeadragon, the hi-res
+> plate campaign (see `HIRES_SOURCING.md` methodology + `HIRES_GALLERY.md` ranked snapshot),
+> palette insights, Portrait, and the reads layer at scale: Info/Interpretation reads
+> (`READS_SPEC.md`) and Study tours (`STUDY_SPEC.md`). Live per-work state lives in the
+> ledgers: `WORKS_LEDGER.md` (status tally), `QC_LEDGER.md` (closed audit waves),
+> `HUNT_LEDGER.md` (image-upgrade hunt), `PLATE_CHANGES.md` (plate changelog). The data
+> refresh runbook is `PIPELINE.md`. Current scale: 2,049 works / 80 venues / 807 works with
+> reads / 389 Study tours / 1,228 hi-res plates (cross-app snapshot: `/STATUS.md`).
+
 > The third app of the hub: a **personal gallery** of the art Fuad loves and has stood in
 > front of — organized by the museums he's been to, presentation-first, with a learning
 > layer (the story of each work, similar artists, where things hang now). The design

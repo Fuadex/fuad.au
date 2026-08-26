@@ -79,7 +79,8 @@ dataset sanity" (`smoke.js`). Push to `main` is the test environment.
 | **BACKLOG.md** | Open items, session checkpoints, key gotchas, pathways under consideration |
 | **CHANGELOG.md** | Feature/architecture milestones (public-safe; no provenance) |
 | **README.md** | Public-facing one-pager about the site |
-| **STATUS-2026-07.md** | Cross-app status snapshot (refreshed 2026-07-18) |
+| **STATUS.md** | Cross-app status snapshot (refreshed 2026-08-26) |
+| **STATS.md** | Raw scale of all three apps — the numbers, dated |
 | `PROJECT-AUDIT-2026-07-10.local.md` | Local-only deep audit (gitignored); never tracked |
 
 ### Rotation

@@ -2,9 +2,10 @@
 
 # Badge & taste-layer ideas — open questions and roadmap
 
-Companion to `BADGE_CHARTER.md` (the settled definitions) and `taste_profile_plan.md`
-(the Explore/Palette explorer). This file holds what's **still being cracked** — mostly
-earmarked for a Fable 5 pass — plus the build roadmap for the new taste layer.
+Companion to `BADGE_CHARTER.md` (the settled definitions) and the taste-profile plan
+(`notes/taste_profile_plan.md`, local-only). This file holds what's **still being
+cracked** — mostly earmarked for a Fable 5 pass — plus the build roadmap for the new
+taste layer.
 
 ## Settled this pass (2026-07-08)
 - **Age of Success** director corrected → **Jang Sun-woo** (was wrongly Im Kwon-taek);
@@ -79,7 +80,7 @@ Add a machine-readable `BADGE_CHARTER` block (one-line test + 3 exemplars + size
 and extend `propose_badges.py` to *score* candidates against each badge's test (keyword / genre /
 mood / script-mood heuristics) so future fishing ranks candidates instead of listing them
 alphabetically. Also: clear the **Hazbin Hotel duplicate** (two entries) flagged in
-`funny_taxonomy.md`.
+`notes/funny_taxonomy.md` (local-only).
 
 ---
 

@@ -13,4 +13,5 @@ A static launcher at the root (`index.html`) picks between the three apps.
 One deploy pipeline (`.github/workflows/sync.yml`) ships all three on every push to `main`.
 
 **Start here:** [GUIDE.md](GUIDE.md) — hub overview, deploy pipeline, golden rules, and a
-map of every doc in the repo.
+map of every doc in the repo. **The scale of it:** [STATS.md](STATS.md) — raw numbers across
+all three apps. **Where things stand:** [STATUS.md](STATUS.md).

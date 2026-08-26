@@ -147,10 +147,14 @@ scrollable strip.
    See the ⚠ list in `docs/SCRIPTS.md`.
 4. OMDb/TMDB usually carry the same poster art — "IMDb poster" you see is likely TMDB via
    `cast_data.js`.
-5. Push to `master` is fine; safe to test in production.
+5. Push to `main` is fine; safe to test in production.
 
 ## Map of docs
 - `docs/DATA_PIPELINE.md` — overlay table, **update runbook** (run order), mutator warnings.
 - `docs/SCRIPTS.md` — every Python script: purpose, I/O, status.
-- `badge_proposal.md`, `badge_fishout.md`, `funny_taxonomy.md`, `taste_profile_plan.md` —
-  thematic taxonomy working docs. `backlog.md` — open data-coverage TODOs.
+- `docs/AUDIT_2026-07.md` — architecture/perf audit + the §6–8 feature roadmap (superseded
+  banner explains what already shipped).
+- `BADGE_CHARTER.md` / `BADGE_IDEAS.md` / `PREDICT_MODEL.md` — settled badge definitions,
+  open badge questions, wishlist predicted-rating model.
+- Taxonomy working drafts (badge proposals, funny taxonomy, taste-profile plan, colour-sort
+  ideas) and the absorbed backlog live in `culture/notes/` (local-only, gitignored).
