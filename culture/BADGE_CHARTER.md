@@ -63,9 +63,12 @@ neighbours (the cerebral/mindbending/cognitive trio especially).
 
 - **💔 devastating** — *earned emotional demolition* (earned by craft — devastation without
   control doesn't qualify). e.g. Come and See, Grave of the Fireflies, Kiwi! · band ≈ 90.
-- **💥 impact** — *visceral in-the-moment force — a gut-punch or a face-punch.* Strictly the
-  moment, not the afterglow (afterglow is 🌫️ haunting). e.g. La Haine, Come and See, CoD4
-  · band ≈ 50 (tighten from current 63 — demotion shortlist in BADGE_IDEAS).
+- **💥 impact** — *it hits its audience with real force — a gut-punch is the type case, but
+  the claim is MAGNITUDE of effect, not the mechanism.* (Redefined by Fuad 2026-08-26: "not
+  just a gut-punch but whether it creates a large enough impact on its audience, even if it
+  threads into other badge territories.") Overlap with 💔/🩸/🌫️ is expected and fine — impact
+  says HOW HARD, the others say in what register. Test: did it land with force you still
+  register? e.g. La Haine, Come and See, CoD4, 12 Angry Men.
 - **🌫️ haunting** *(new, 2026-07-08)* — *it kept working on you for weeks — uninvited return
   visits, thematic residue.* **Hand-curated only, never auto-applied**, and explicitly NOT
   "it was scary" (dread-by-design is 💀). Correlated with 🪞 but not identical: a shift is
