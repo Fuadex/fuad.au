@@ -3779,7 +3779,21 @@ window.CANVAS_ARTWORKS = [
 {"id":"pollock-untitled-nga-152773","title":"Untitled","artist":"Jackson Pollock","artistId":"pollock","qid":"Q64579340","qidTrusted":true,"year":1951,"wish":true},
 {"id":"millet-calling-home-the-cows","title":"Calling Home the Cows","artist":"Jean-François Millet","artistId":"millet","qid":"Q64581209","qidTrusted":true,"year":1866,"wish":true},
 {"id":"millet-shepherd-returning-with-his-flock","title":"Shepherd Returning with His Flock","artist":"Jean-François Millet","artistId":"millet","qid":"Q64581210","qidTrusted":true,"year":1860,"wish":true},
-{"id":"millet-falling-leaves","title":"Falling Leaves","artist":"Jean-François Millet","artistId":"millet","qid":"Q64581212","qidTrusted":true,"year":1866,"wish":true}
+{"id":"millet-falling-leaves","title":"Falling Leaves","artist":"Jean-François Millet","artistId":"millet","qid":"Q64581212","qidTrusted":true,"year":1866,"wish":true},
+{"id":"eugene-isabey-abside-de-l-eglise-de-saint-nectaire","title":"Abside de l'église de Saint-Nectaire","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q65019869","qidTrusted":true,"year":1831,"wish":true},
+{"id":"eugene-isabey-souvenir-de-st-valery-sur-somme","title":"Souvenir de St. Valéry sur Somme","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q65019871","qidTrusted":true,"year":1833,"wish":true},
+{"id":"eugene-isabey-environs-de-dieppe","title":"Environs de Dieppe","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q65223073","qidTrusted":true,"year":1833,"wish":true},
+{"id":"eugene-isabey-maree-basse","title":"Marée Basse","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q65223076","qidTrusted":true,"year":1833,"wish":true},
+{"id":"eugene-isabey-rue-des-gras-a-clermont","title":"Rue des Gras à Clermont","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q65223083","qidTrusted":true,"year":1830,"wish":true},
+{"id":"eugene-isabey-interieur-d-un-port","title":"Intérieur d'un port","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q65223086","qidTrusted":true,"year":1833,"wish":true},
+{"id":"eugene-isabey-radoub-d-une-barque-a-maree-basse","title":"Radoub d'une barque à Marée Basse","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q65223088","qidTrusted":true,"year":1833,"wish":true},
+{"id":"eugene-isabey-retour-au-port","title":"Retour au port","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q65223091","qidTrusted":true,"year":1833,"wish":true},
+{"id":"eugene-isabey-chaumieres-de-pecheurs","title":"Chaumières de pêcheurs","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q65223123","qidTrusted":true,"year":1844,"wish":true},
+{"id":"eugene-isabey-chateau-de-pont-gibaud","title":"Château de Pont-Gibaud","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q65568224","qidTrusted":true,"wish":true},
+{"id":"eugene-isabey-chateau-de-pesteil-a-polminhac","title":"Château de Pesteil à Polminhac","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q75122169","qidTrusted":true,"year":1832,"wish":true},
+{"id":"eugene-isabey-radoub-d-une-barque-a-la-maree-basse-refitting-of-a-ship-at-low-tide","title":"Radoub d'une Barque à la Marée Basse (Refitting of a Ship at Low Tide)","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q76339241","qidTrusted":true,"year":1833,"wish":true},
+{"id":"eugene-isabey-fishing-boats-tossed-before-a-storm","title":"Fishing Boats Tossed before a Storm","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q64560472","qidTrusted":true,"year":1840,"wish":true},
+{"id":"eugene-isabey-sailboats-in-a-sunlit-harbor-recto","title":"Sailboats in a Sunlit Harbor  (recto)","artist":"Eugène Isabey","artistId":"eugene-isabey","qid":"Q64560488","qidTrusted":true,"year":1830,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
