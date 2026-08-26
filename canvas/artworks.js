@@ -4144,7 +4144,22 @@ window.CANVAS_ARTWORKS = [
 {"id":"gauguin-self-portrait-dedicated-to-carriere","title":"Self-Portrait Dedicated to Carrière","artist":"Paul Gauguin","artistId":"gauguin","qid":"Q20189971","qidTrusted":true,"year":1888,"wish":true},
 {"id":"gauguin-still-life-with-peonies","title":"Still Life with Peonies","artist":"Paul Gauguin","artistId":"gauguin","qid":"Q20189713","qidTrusted":true,"year":1884,"wish":true},
 {"id":"gainsborough-francis-basset-lord-de-dunstanville","title":"Francis Basset, Lord de Dunstanville","artist":"Thomas Gainsborough","artistId":"gainsborough","qid":"Q20179049","qidTrusted":true,"year":1786,"wish":true},
-{"id":"gainsborough-frances-susanna-lady-de-dunstanville","title":"Frances Susanna, Lady de Dunstanville","artist":"Thomas Gainsborough","artistId":"gainsborough","qid":"Q20179038","qidTrusted":true,"year":1786,"wish":true}
+{"id":"gainsborough-frances-susanna-lady-de-dunstanville","title":"Frances Susanna, Lady de Dunstanville","artist":"Thomas Gainsborough","artistId":"gainsborough","qid":"Q20179038","qidTrusted":true,"year":1786,"wish":true},
+{"id":"winslow-homer-breezing-up-a-fair-wind","title":"Breezing Up (A Fair Wind)","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q4960357","qidTrusted":true,"year":1873,"wish":true},
+{"id":"winslow-homer-hound-and-hunter","title":"Hound and Hunter","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q20190316","qidTrusted":true,"year":1892,"wish":true},
+{"id":"winslow-homer-right-and-left","title":"Right and Left","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q7333592","qidTrusted":true,"year":1909,"wish":true},
+{"id":"winslow-homer-sunset","title":"Sunset","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q20188802","qidTrusted":true,"year":1875,"wish":true},
+{"id":"winslow-homer-the-red-school-house","title":"The Red School House","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q20188768","qidTrusted":true,"year":1873,"wish":true},
+{"id":"winslow-homer-autumn","title":"Autumn","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q20188827","qidTrusted":true,"year":1877,"wish":true},
+{"id":"winslow-homer-dad-s-coming","title":"Dad's Coming!","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q12160148","qidTrusted":true,"year":1873,"wish":true},
+{"id":"winslow-homer-home-sweet-home","title":"Home, Sweet Home","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q12102878","qidTrusted":true,"year":1863,"wish":true},
+{"id":"winslow-homer-the-dinner-horn-blowing-the-horn-at-seaside","title":"The Dinner Horn (Blowing the Horn at Seaside)","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q20188727","qidTrusted":true,"year":1870,"wish":true},
+{"id":"winslow-homer-sparrow-hall","title":"Sparrow Hall","artist":"Winslow Homer","artistId":"winslow-homer","qid":"nga-126152","year":1881,"wish":true},
+{"id":"winslow-homer-east-hampton-beach-long-island","title":"East Hampton Beach, Long Island","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q20188771","qidTrusted":true,"year":1874,"wish":true},
+{"id":"winslow-homer-the-flirt","title":"The Flirt","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q20188772","qidTrusted":true,"year":1874,"wish":true},
+{"id":"winslow-homer-school-time","title":"School Time","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q20188783","qidTrusted":true,"year":1874,"wish":true},
+{"id":"winslow-homer-sketch-of-a-cottage-yard","title":"Sketch of a Cottage Yard","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q46630446","qidTrusted":true,"year":1876,"wish":true},
+{"id":"winslow-homer-a-light-on-the-sea","title":"A Light on the Sea","artist":"Winslow Homer","artistId":"winslow-homer","qid":"Q20190580","qidTrusted":true,"year":1897,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
