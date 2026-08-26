@@ -4220,7 +4220,23 @@ window.CANVAS_ARTWORKS = [
 {"id":"sargent-margaret-stuyvesant-rutherfurd-white-mrs-henry-white","title":"Margaret Stuyvesant Rutherfurd White (Mrs. Henry White)","artist":"John Singer Sargent","artistId":"sargent","qid":"Q17578626","qidTrusted":true,"year":1883,"wish":true},
 {"id":"sargent-simplon-pass","title":"Simplon Pass","artist":"John Singer Sargent","artistId":"sargent","qid":"Q20191600","qidTrusted":true,"year":1911,"wish":true},
 {"id":"sargent-en-route-pour-la-peche-setting-out-to-fish","title":"En route pour la pêche (Setting Out to Fish)","artist":"John Singer Sargent","artistId":"sargent","qid":"Q20188839","qidTrusted":true,"year":1878,"wish":true},
-{"id":"sargent-apollo-and-daphne","title":"Apollo and Daphne","artist":"John Singer Sargent","artistId":"sargent","qid":"Q46633477","qidTrusted":true,"year":1916,"wish":true}
+{"id":"sargent-apollo-and-daphne","title":"Apollo and Daphne","artist":"John Singer Sargent","artistId":"sargent","qid":"Q46633477","qidTrusted":true,"year":1916,"wish":true},
+{"id":"bellows-both-members-of-this-club","title":"Both Members of This Club","artist":"George Bellows","artistId":"bellows","qid":"Q12857837","qidTrusted":true,"year":1909,"wish":true},
+{"id":"bellows-maud-murray-dale-mrs-chester-dale","title":"Maud Murray Dale (Mrs. Chester Dale)","artist":"George Bellows","artistId":"bellows","qid":"Q20192236","qidTrusted":true,"year":1919,"wish":true},
+{"id":"bellows-chester-dale","title":"Chester Dale","artist":"George Bellows","artistId":"bellows","qid":"Q20192376","qidTrusted":true,"year":1922,"wish":true},
+{"id":"bellows-blue-morning","title":"Blue Morning","artist":"George Bellows","artistId":"bellows","qid":"Q20191213","qidTrusted":true,"year":1909,"wish":true},
+{"id":"bellows-the-lone-tenement","title":"The Lone Tenement","artist":"George Bellows","artistId":"bellows","qid":"Q20191257","qidTrusted":true,"year":1909,"wish":true},
+{"id":"bellows-nude-with-red-hair","title":"Nude with Red Hair","artist":"George Bellows","artistId":"bellows","qid":"Q20192309","qidTrusted":true,"year":1920,"wish":true},
+{"id":"bellows-florence-sittenham-davey-mrs-randall-davey","title":"Florence Sittenham Davey (Mrs. Randall Davey)","artist":"George Bellows","artistId":"bellows","qid":"Q20191821","qidTrusted":true,"year":1914,"wish":true},
+{"id":"bellows-club-night","title":"Club Night","artist":"George Bellows","artistId":"bellows","qid":"Q20191079","qidTrusted":true,"year":1907,"wish":true},
+{"id":"bellows-anne-with-a-japanese-parasol","title":"Anne with a Japanese Parasol","artist":"George Bellows","artistId":"bellows","qid":"Q20192067","qidTrusted":true,"year":1917,"wish":true},
+{"id":"bellows-little-girl-in-white-queenie-burnett","title":"Little Girl in White (Queenie Burnett)","artist":"George Bellows","artistId":"bellows","qid":"Q20191104","qidTrusted":true,"year":1907,"wish":true},
+{"id":"bellows-my-family","title":"My Family","artist":"George Bellows","artistId":"bellows","qid":"Q20192016","qidTrusted":true,"year":1916,"wish":true},
+{"id":"bellows-nude-with-hexagonal-quilt","title":"Nude with Hexagonal Quilt","artist":"George Bellows","artistId":"bellows","qid":"Q20192508","qidTrusted":true,"year":1924,"wish":true},
+{"id":"bellows-tennis-tournament","title":"Tennis Tournament","artist":"George Bellows","artistId":"bellows","qid":"Q20192336","qidTrusted":true,"year":1920,"wish":true},
+{"id":"bellows-new-york","title":"New York","artist":"George Bellows","artistId":"bellows","qid":"Q20191569","qidTrusted":true,"year":1911,"wish":true},
+{"id":"bellows-the-germans-arrive","title":"The Germans Arrive","artist":"George Bellows","artistId":"bellows","qid":"Q111603587","qidTrusted":true,"year":1918,"wish":true},
+{"id":"bellows-forty-two-kids","title":"Forty-two Kids","artist":"George Bellows","artistId":"bellows","qid":"Q20191086","qidTrusted":true,"year":1907,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
