@@ -3933,7 +3933,13 @@ window.CANVAS_ARTWORKS = [
 {"id":"childe-hassam-a-north-east-headland","title":"A North East Headland","artist":"Childe Hassam","artistId":"childe-hassam","qid":"Q46632242","qidTrusted":true,"year":1901,"wish":true},
 {"id":"childe-hassam-the-new-york-window","title":"The New York Window","artist":"Childe Hassam","artistId":"childe-hassam","qid":"Q20191661","qidTrusted":true,"year":1912,"wish":true},
 {"id":"childe-hassam-old-house-at-east-hampton","title":"Old House at East Hampton","artist":"Childe Hassam","artistId":"childe-hassam","qid":"Q46633598","qidTrusted":true,"year":1916,"wish":true},
-{"id":"honore-daumier-at-the-gallery-drouot","title":"At the Gallery Drouot","artist":"Honoré Daumier","artistId":"honore-daumier","qid":"Q46629101","qidTrusted":true,"year":1863,"wish":true}
+{"id":"honore-daumier-at-the-gallery-drouot","title":"At the Gallery Drouot","artist":"Honoré Daumier","artistId":"honore-daumier","qid":"Q46629101","qidTrusted":true,"year":1863,"wish":true},
+{"id":"sisley-the-road-in-the-woods","title":"The Road in the Woods","artist":"Alfred Sisley","artistId":"sisley","qid":"Q20188853","qidTrusted":true,"year":1879,"wish":true},
+{"id":"sisley-boulevard-heloise-argenteuil","title":"Boulevard Héloïse, Argenteuil","artist":"Alfred Sisley","artistId":"sisley","qid":"Q19820353","qidTrusted":true,"year":1872,"wish":true},
+{"id":"sisley-meadow","title":"Meadow","artist":"Alfred Sisley","artistId":"sisley","qid":"Q20188791","qidTrusted":true,"year":1875,"wish":true},
+{"id":"sisley-first-snow-at-veneux-nadon","title":"First Snow at Veneux-Nadon","artist":"Alfred Sisley","artistId":"sisley","qid":"Q20188840","qidTrusted":true,"year":1878,"wish":true},
+{"id":"sisley-flood-at-port-marly","title":"Flood at Port-Marly","artist":"Alfred Sisley","artistId":"sisley","qid":"Q20188749","qidTrusted":true,"year":1872,"wish":true},
+{"id":"sisley-marly-le-roi","title":"Marly-le-Roi","artist":"Alfred Sisley","artistId":"sisley","qid":"Q46630224","qidTrusted":true,"year":1875,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
