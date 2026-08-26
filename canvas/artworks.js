@@ -4033,7 +4033,28 @@ window.CANVAS_ARTWORKS = [
 {"id":"guardi-carlo-and-ubaldo-resisting-the-enchantments-of-armida-s-nymphs","title":"Carlo and Ubaldo Resisting the Enchantments of Armida's Nymphs","artist":"Gian Antonio Guardi and Francesco Guardi","artistId":"guardi","qid":"Q20177997","qidTrusted":true,"year":1750,"wish":true},
 {"id":"guardi-erminia-and-the-shepherds","title":"Erminia and the Shepherds","artist":"Gian Antonio Guardi and Francesco Guardi","artistId":"guardi","qid":"Q20178001","qidTrusted":true,"year":1750,"wish":true},
 {"id":"goya-maria-teresa-de-borbon-y-vallabriga-later-condesa-de-chinchon","title":"María Teresa de Borbón y Vallabriga, later Condesa de Chinchón","artist":"Francisco Goya","artistId":"goya","qid":"Q11824923","qidTrusted":true,"year":1783,"wish":true},
-{"id":"guardi-santa-maria-della-salute","title":"Santa Maria della Salute","artist":"Francesco Guardi","artistId":"guardi","qid":"Q46625483","qidTrusted":true,"year":1770,"wish":true}
+{"id":"guardi-santa-maria-della-salute","title":"Santa Maria della Salute","artist":"Francesco Guardi","artistId":"guardi","qid":"Q46625483","qidTrusted":true,"year":1770,"wish":true},
+{"id":"titian-venus-with-a-mirror","title":"Venus with a Mirror","artist":"Titian","artistId":"titian","qid":"Q7920648","qidTrusted":true,"year":1555,"wish":true},
+{"id":"titian-andrea-de-franceschi","title":"Andrea de' Franceschi","artist":"after Titian","artistId":"titian","qid":"Q3937462","qidTrusted":true,"wish":true},
+{"id":"titian-cupid-with-the-wheel-of-time","title":"Cupid with the Wheel of Time","artist":"Titian","artistId":"titian","qid":"Q12115903","qidTrusted":true,"year":1515,"wish":true},
+{"id":"titian-allegory-of-love","title":"Allegory of Love","artist":"Workshop of Titian","artistId":"titian","qid":"Q20174456","qidTrusted":true,"year":1520,"wish":true},
+{"id":"titian-woman-holding-an-apple","title":"Woman Holding an Apple","artist":"Titian","artistId":"titian","qid":"Q20176536","qidTrusted":true,"year":1550,"wish":true},
+{"id":"benjamin-west-colonel-guy-johnson-and-karonghyontye-captain-david-hill","title":"Colonel Guy Johnson and Karonghyontye (Captain David Hill)","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q3135552","qidTrusted":true,"year":1776,"wish":true},
+{"id":"benjamin-west-benjamin-west","title":"Benjamin West","artist":"after Benjamin West","artistId":"benjamin-west","qid":"Q20178792","qidTrusted":true,"year":1776,"wish":true},
+{"id":"titian-the-feast-of-the-gods","title":"The Feast of the Gods","artist":"Giovanni Bellini and Titian","artistId":"titian","qid":"Q15008032","qidTrusted":true,"year":1514,"wish":true},
+{"id":"benjamin-west-maria-hamilton-beckford-mrs-william-beckford","title":"Maria Hamilton Beckford (Mrs. William Beckford)","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q20180401","qidTrusted":true,"year":1799,"wish":true},
+{"id":"benjamin-west-elizabeth-countess-of-effingham","title":"Elizabeth, Countess of Effingham","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q20180311","qidTrusted":true,"year":1797,"wish":true},
+{"id":"titian-ranuccio-farnese","title":"Ranuccio Farnese","artist":"Titian","artistId":"titian","qid":"Q12146958","qidTrusted":true,"year":1541,"wish":true},
+{"id":"titian-venus-blindfolding-cupid","title":"Venus Blindfolding Cupid","artist":"Workshop or Follower of Titian","artistId":"titian","qid":"Q20176693","qidTrusted":true,"year":1566,"wish":true},
+{"id":"titian-cardinal-pietro-bembo","title":"Cardinal Pietro Bembo","artist":"Titian","artistId":"titian","qid":"Q4252531","qidTrusted":true,"year":1539,"wish":true},
+{"id":"benjamin-west-the-battle-of-la-hogue","title":"The Battle of La Hogue","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q20178884","qidTrusted":true,"year":1778,"wish":true},
+{"id":"titian-giacomo-and-cardinal-marco-corner-investing-andrea-abbot-of-san-zeno-with-his-benefice","title":"Giacomo and Cardinal Marco Corner Investing Andrea, Abbot of San Zeno, with His Benefice","artist":"Follower of Titian","artistId":"titian","qid":"Q20175608","qidTrusted":true,"year":1524,"wish":true},
+{"id":"titian-doge-andrea-gritti","title":"Doge Andrea Gritti","artist":"Titian","artistId":"titian","qid":"Q20176414","qidTrusted":true,"year":1546,"wish":true},
+{"id":"benjamin-west-dr-samuel-boude","title":"Dr. Samuel Boude","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q20178089","qidTrusted":true,"year":1755,"wish":true},
+{"id":"benjamin-west-mary-bethel-boude-mrs-samuel-boude","title":"Mary Bethel Boude (Mrs. Samuel Boude)","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q20178109","qidTrusted":true,"year":1755,"wish":true},
+{"id":"benjamin-west-the-expulsion-of-adam-and-eve-from-paradise","title":"The Expulsion of Adam and Eve from Paradise","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q20179891","qidTrusted":true,"year":1791,"wish":true},
+{"id":"benjamin-west-telemachus-and-calypso","title":"Telemachus and Calypso","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q46626424","qidTrusted":true,"year":1809,"wish":true},
+{"id":"benjamin-west-cupid-stung-by-a-bee-is-cherished-by-his-mother","title":"Cupid, Stung by a Bee, Is Cherished by his Mother","artist":"Benjamin West","artistId":"benjamin-west","qid":"Q46625519","qidTrusted":true,"year":1774,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
