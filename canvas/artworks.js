@@ -3832,7 +3832,19 @@ window.CANVAS_ARTWORKS = [
 {"id":"jean-jacques-henner-levite-of-ephraim-and-his-dead-wife","title":"Levite of Ephraim and His Dead Wife","artist":"M.G. Fuchs after Jean-Jacques Henner","artistId":"jean-jacques-henner","qid":"Q76348038","qidTrusted":true,"year":1898,"wish":true},
 {"id":"john-frederick-kensett-view-on-the-genesee-near-mount-morris","title":"View on the Genesee near Mount Morris","artist":"John Frederick Kensett","artistId":"john-frederick-kensett","qid":"Q46628547","qidTrusted":true,"year":1857,"wish":true},
 {"id":"jean-jacques-henner-standing-woman","title":"Standing Woman","artist":"Jean-Jacques Henner","artistId":"jean-jacques-henner","qid":"Q46632380","qidTrusted":true,"year":1903,"wish":true,"floored":true},
-{"id":"ruisdael-dunes-by-the-sea","title":"Dunes by the Sea","artist":"Jacob van Ruisdael","artistId":"ruisdael","qid":"Q20804651","qidTrusted":true,"year":1648,"wish":true}
+{"id":"ruisdael-dunes-by-the-sea","title":"Dunes by the Sea","artist":"Jacob van Ruisdael","artistId":"ruisdael","qid":"Q20804651","qidTrusted":true,"year":1648,"wish":true},
+{"id":"guercino-cardinal-francesco-cennini","title":"Cardinal Francesco Cennini","artist":"Guercino","artistId":"guercino","qid":"Q20177040","qidTrusted":true,"year":1625,"wish":true},
+{"id":"rousseau-boy-on-the-rocks","title":"Boy on the Rocks","artist":"Henri Rousseau","artistId":"rousseau","qid":"Q4952174","qidTrusted":true,"year":1895,"wish":true},
+{"id":"frederic-bazille-edouard-blau","title":"Edouard Blau","artist":"Frédéric Bazille","artistId":"frederic-bazille","qid":"Q20188677","qidTrusted":true,"year":1869,"wish":true},
+{"id":"rousseau-the-equatorial-jungle","title":"The Equatorial Jungle","artist":"Henri Rousseau","artistId":"rousseau","qid":"Q19973313","qidTrusted":true,"year":1909,"wish":true},
+{"id":"rousseau-rendezvous-in-the-forest","title":"Rendezvous in the Forest","artist":"Henri Rousseau","artistId":"rousseau","qid":"Q20190029","qidTrusted":true,"year":1889,"wish":true},
+{"id":"rousseau-tropical-forest-with-monkeys","title":"Tropical Forest with Monkeys","artist":"Henri Rousseau","artistId":"rousseau","qid":"Q20191494","qidTrusted":true,"year":1910,"wish":true},
+{"id":"frederic-bazille-young-woman-with-peonies","title":"Young Woman with Peonies","artist":"Frédéric Bazille","artistId":"frederic-bazille","qid":"Q20188736","qidTrusted":true,"year":1870,"wish":true},
+{"id":"frederic-bazille-the-western-ramparts-at-aigues-mortes","title":"The Western Ramparts at Aigues-Mortes","artist":"Frédéric Bazille","artistId":"frederic-bazille","qid":"Q20188701","qidTrusted":true,"year":1867,"wish":true},
+{"id":"frederic-bazille-edmond-maitre","title":"Edmond Maître","artist":"Frédéric Bazille","artistId":"frederic-bazille","qid":"Q20188718","qidTrusted":true,"year":1869,"wish":true},
+{"id":"guercino-amnon-and-tamar","title":"Amnon and Tamar","artist":"Guercino","artistId":"guercino","qid":"Q20177254","qidTrusted":true,"year":1649,"wish":true},
+{"id":"guercino-joseph-and-potiphar-s-wife","title":"Joseph and Potiphar's Wife","artist":"Guercino","artistId":"guercino","qid":"Q20177260","qidTrusted":true,"year":1649,"wish":true},
+{"id":"guercino-self-portrait-before-a-painting-of-amor-fedele","title":"Self-Portrait before a Painting of \"Amor Fedele\"","artist":"Guercino","artistId":"guercino","qid":"Q20177402","qidTrusted":true,"year":1655,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
