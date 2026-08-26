@@ -1136,6 +1136,18 @@ function PortraitCard({ id, alt, showWords = true, go }) {
     s.addEventListener("load", on);
     return () => s.removeEventListener("load", on);
   }, []);
+  // EARNED BULLETS (Fuad 2026-08-27 #8): the build-emitted rule-pool chips. Loaded beside
+  // the pilot facts file; where an artist has earned bullets they REPLACE the pilot chips
+  // (album keys keep the pilot facts — the emitter only covers artists).
+  const [bReady, setBReady] = React.useState(!!window.ROTATION_BULLETS);
+  React.useEffect(() => {
+    if (window.ROTATION_BULLETS) { setBReady(true); return; }
+    let s = document.getElementById("bullets-js");
+    if (!s) { s = document.createElement("script"); s.id = "bullets-js"; s.src = "bullets.js"; s.onerror = () => {}; document.head.appendChild(s); }
+    const on = () => { if (window.ROTATION_BULLETS) setBReady(true); };
+    s.addEventListener("load", on);
+    return () => s.removeEventListener("load", on);
+  }, []);
   const [open, setOpen] = React.useState(false);   // full read (portrait/liner) toggle
   // The unravel animates to the read's MEASURED height. It used to transition to a flat
   // max-height:4000px over a fixed 220ms, which is why it felt off (Fuad 2026-08-20): on a 300px
@@ -1216,7 +1228,8 @@ function PortraitCard({ id, alt, showWords = true, go }) {
   if (!p) return alt && alt.node ? (
     <div className="r-card pv-card pv-card-altonly" style={{ padding: "18px 22px", marginBottom: "var(--gap)" }}>{alt.node}</div>
   ) : null;
-  const facts = (fReady && window.ROTATION_PORTRAIT_FACTS && window.ROTATION_PORTRAIT_FACTS[id]) || [];
+  const facts = (bReady && window.ROTATION_BULLETS && window.ROTATION_BULLETS[id])
+    || (fReady && window.ROTATION_PORTRAIT_FACTS && window.ROTATION_PORTRAIT_FACTS[id]) || [];
   const full = p.portrait || p.liner || "";           // no crossover slot: one or the other
   // the derivation values are trusted; a v of "[object Object]" is a known upstream stringify
   // artifact (e.g. seen-live), so we drop it from the chip label and lean on the derivation text.

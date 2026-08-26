@@ -220,32 +220,68 @@ const PROVIDERS = [
     };
   },
 
-  // ── new this month (live sync) — fresh obsessions + the deepest dive ──
+  // ── MOVEMENT (Fuad 2026-08-27 #10, replaces "New this month"; his floor was New This
+  // Week) — the discovery-and-return pulse in one card: this week's arrival (genealogy-
+  // tagged where the lazy file is resident), a return from dormancy, and the biggest
+  // riser vs their own usual pace. EVERY line is EARNED (bullet discipline): a line that
+  // doesn't clear its bar simply doesn't render, and a card with no lines doesn't exist.
   (ctx) => {
-    const mo = window.ROTATION_LIVE && window.ROTATION_LIVE.month; if (!mo) return null;
-    // TWO, not three (Fuad 2026-08-20: "currently overflowing"). Three rows plus the Deepest-dive
-    // footer overran the deck's 104px cap, and the card clips rather than growing — the cap is what
-    // stops one tall card setting the height for every card beside it. Same trade On repeat took.
-    const list = (mo.newArtists || []).slice(0, 2);
-    if (!list.length && !mo.deepest) return null;
+    const LV = window.ROTATION_LIVE; if (!LV) return null;
+    const R = ctx.R;
+    const wk = LV.week || {}, mo = LV.month || {};
+    const nowYear = new Date().getFullYear();
+    const lines = [];
+    // warm the lazy genealogy file (the lab's loader idiom) so the NEW line can carry its
+    // "via X" tag — first paint may show the fallback detail; the next render upgrades it.
+    if (!window.ROTATION_GENEALOGY && window.loadScript) window.loadScript("genealogy.js", "rotation-genealogy-js");
+    // NEW — the month's arrival with the most plays; "via X" when genealogy knows the door.
+    const newest = (mo.newArtists || [])[0];
+    if (newest) {
+      const gen = window.ROTATION_GENEALOGY && window.ROTATION_GENEALOGY[newest.artistId];
+      const viaId = gen && gen[0];
+      const via = viaId && R.byId[viaId] ? R.byId[viaId].name : null;
+      lines.push({ tag: "NEW", id: newest.artistId, name: newest.name,
+        detail: via ? "via " + via : "first plays this month" });
+    }
+    // BACK — a known artist in this week's top whose yearly plays go quiet for >=2 years
+    // before now (year-grain dormancy; the current year is excluded since this week is in it).
+    let back = null;
+    for (const t of (wk.topArtists || [])) {
+      const a = R.byId[t.artistId]; if (!a || !a.yp || (a.plays || 0) < 60) continue;
+      let last = 0;
+      for (const y in a.yp) { const yy = +y; if (yy < nowYear && a.yp[y] > 0 && yy > last) last = yy; }
+      const gap = last ? nowYear - last : 0;
+      if (gap >= 2 && (!back || gap > back.gap)) back = { tag: "BACK", id: t.artistId, name: t.name, gap, detail: gap + " years quiet" };
+    }
+    if (back) lines.push(back);
+    // RISING — this week's plays vs the artist's own lifetime weekly pace; bar: real
+    // history (>=60 plays), a real week (>=15), and >=6x their usual. Skip the BACK pick
+    // (a return IS a rise) and brand-new artists (no pace to rise against).
+    let rise = null;
+    for (const t of (wk.topArtists || [])) {
+      if (back && t.artistId === back.id) continue;
+      const a = R.byId[t.artistId]; if (!a || !a.yp || (a.plays || 0) < 60 || t.plays < 15) continue;
+      let first = nowYear;
+      for (const y in a.yp) if (a.yp[y] > 0 && +y < first) first = +y;
+      const weeks = Math.max(8, (nowYear - first + 1) * 52);
+      const ratio = t.plays / Math.max(0.25, (a.plays || 0) / weeks);
+      if (ratio >= 6 && (!rise || ratio > rise.ratio)) rise = { tag: "RISING", id: t.artistId, name: t.name, ratio, detail: t.plays + " plays · " + Math.round(ratio) + "× their usual" };
+    }
+    if (rise) lines.push(rise);
+    if (!lines.length) return null;
     return {
-      id: "new-month", category: "new-month", score: 0.7, label: "New this month",
-      meta: mo.deepest ? "deepest · " + mo.deepest.name : "explore",
+      id: "movement", category: "movement", score: 0.7, label: "Movement", meta: "this week",
       onClick: () => ctx.go("explore"),
-      // TWO PLAIN ROWS (Fuad 2026-08-20: "still crazy cluttered and overflowing"). Trimming three
-      // artists to two was not enough because the height was never mostly the rows: under them sat a
-      // rule, an uppercase mono kicker and a third type size for the Deepest dive, so one card was
-      // running four text treatments inside 104px. The dive is one artist and a number — it fits in
-      // the header's meta slot, which was spending itself on the word "explore" while every card
-      // here is already clickable. What is left is the same two-row shape as On repeat, which is
-      // what makes the deck read as a row rather than as four unrelated cards.
       render: (
         <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
-          {list.map(a => (
-            <div key={a.name} onClick={(e) => { e.stopPropagation(); ctx.go("artist", a.artistId); }} style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}>
-              <GenCover hue={a.hue != null ? a.hue : _hue(a.name)} name={a.name} size={28} radius={2} />
-              <div style={{ flex: 1, minWidth: 0, fontSize: 12.5, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</div>
-              <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", flex: "none" }}>{a.plays}×</span>
+          {lines.slice(0, 3).map(l => (
+            <div key={l.tag + l.id} onClick={(e) => { e.stopPropagation(); ctx.go("artist", l.id); }}
+              onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
+              onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+              style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "3px 6px", borderRadius: 4, minWidth: 0 }}>
+              <span className="r-mono" style={{ fontSize: 8, letterSpacing: ".12em", color: "var(--accent)", flex: "none", minWidth: 38 }}>{l.tag}</span>
+              <span style={{ fontSize: 12.5, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0 }}>{l.name}</span>
+              <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", flex: "none", whiteSpace: "nowrap" }}>{l.detail}</span>
             </div>
           ))}
         </div>

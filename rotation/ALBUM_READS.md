@@ -170,7 +170,10 @@ the question, not the writer, is the lever.
    against the liner's FIRST sentence; a shared frame there needs a fresh opener (CI's
    "Nothing supernatural stalks the comeback record" is the model) or, where the liner
    truly owns the fact, a gist that gestures without naming. Deeper recurrences pass
-   unless they are verbatim phrase echoes (the older rule still covers those).**
+   unless they are verbatim phrase echoes (the older rule still covers those).
+   Fuad's operating summary (2026-08-27): the GIST always stays punchy, the LINER opens
+   the description up — and when there is genuinely no other way than telling the same
+   thing, let it stand rather than distort the liner.**
 5. Owner approves each batch inline before apply.
 
 ## Rendering

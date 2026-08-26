@@ -5353,6 +5353,171 @@ if (GIGS) {
   console.log(`gig coverage: ${cov.seen} seen (${cov.caught} caught in time) · ${cov.open} open · ${cov.gone} gone · ${cov.chance} second chances — of ${cov.total}`);
 }
 
+// ─────────── EARNED BULLETS (Fuad 2026-08-27 #8) ───────────
+// Short, earned fact-chips under an artist's Full Read — the redesign of the pilot
+// portrait-facts idea. A RULE POOL over derived layers; every rule has a CLEARING BAR
+// and a distinctiveness score; an artist shows only the top ~4 it genuinely earns —
+// "short and sweet, applied suitingly, not all-everywhere". The universal pilot chips
+// (discovered / peak year / deep cuts) are deliberately absent: a chip everyone gets
+// distinguishes no one. ("Never skipped" is designed but DEFERRED — per-track skip data
+// lives in spotify-insights tooling, not in this build's inputs.)
+// Emits bullets.js → window.ROTATION_BULLETS { slug: [{k,v,x}] } (lazy, PortraitCard).
+{
+  const GAP = 30 * 60 * 1000;
+  const chron = scrobbles.slice().reverse();               // oldest → newest
+  // emit set: every artist ≥300 plays + every artist id carrying a portraits.js entry
+  const portIds = new Set();
+  try {
+    const psrc = fs.readFileSync(path.join(__dirname, "portraits.js"), "utf8");
+    const anchor = "window.ROTATION_PORTRAITS = ";
+    const at = psrc.indexOf(anchor);
+    const pjson = JSON.parse(psrc.slice(at + anchor.length).trim().replace(/;\s*$/, ""));
+    for (const k of Object.keys(pjson)) if (!k.includes("~")) portIds.add(k);
+  } catch (e) { console.log("bullets: portraits.js unread — " + e.message); }
+  const keepName = new Map();                              // name → slug, for the emit set
+  for (const [name, n] of artistPlays) { const id = slug(name); if (n >= 300 || portIds.has(id)) keepName.set(name, id); }
+  // one chronological pass: first-plays (with introducer), sessions (co-occurrence),
+  // per-artist weekly bests, recent-window plays
+  const first = new Map();                                 // name → { ms, parent }
+  const sess = new Map();                                  // name → session count (kept only)
+  const co = new Map();                                    // name → Map(otherName → n) (kept only)
+  const weekOf = (ms) => Math.floor(ms / (7 * 86400e3));
+  const weekTot = new Map();                               // weekIdx → total plays
+  const artWeek = new Map();                               // name → Map(weekIdx → n) (kept only)
+  const cutoff = newestMs - 120 * 86400e3;
+  const recent = new Map();                                // name → plays in last 120d
+  let curSet = new Set(), prevMs = 0, prevArtist = null;
+  const flushSession = () => {
+    if (curSet.size) for (const a of curSet) {
+      if (!keepName.has(a)) continue;
+      sess.set(a, (sess.get(a) || 0) + 1);
+      let m = co.get(a); if (!m) { m = new Map(); co.set(a, m); }
+      for (const b of curSet) if (b !== a) m.set(b, (m.get(b) || 0) + 1);
+    }
+    curSet = new Set();
+  };
+  for (const [artist, , , ms] of chron) {
+    if (!ms) continue;
+    if (ms - prevMs > GAP) { flushSession(); prevArtist = null; }
+    if (!first.has(artist)) first.set(artist, { ms, parent: prevArtist !== artist ? prevArtist : null });
+    curSet.add(artist);
+    if (prevArtist !== artist) prevArtist = artist;
+    prevMs = ms;
+    weekTot.set(weekOf(ms), (weekTot.get(weekOf(ms)) || 0) + 1);
+    if (keepName.has(artist)) {
+      let w = artWeek.get(artist); if (!w) { w = new Map(); artWeek.set(artist, w); }
+      w.set(weekOf(ms), (w.get(weekOf(ms)) || 0) + 1);
+      if (ms >= cutoff) recent.set(artist, (recent.get(artist) || 0) + 1);
+    }
+  }
+  flushSession();
+  // gateway counts: children per introducer (genealogy rule, ≥5-play children only)
+  const children = new Map();                              // parentName → [childName…]
+  for (const [name, o] of first) {
+    if ((artistPlays.get(name) || 0) < 5 || !o.parent) continue;
+    if (!children.has(o.parent)) children.set(o.parent, []);
+    children.get(o.parent).push(name);
+  }
+  // monthly fingerprints for the seasonal rule (recomputed — SEASONALITY's list is scoped)
+  const artMon = new Map();                                // name → { m:[12], years:Set }
+  for (const [artist, , , ms] of scrobbles) {
+    if (!keepName.has(artist) || !ms) continue;
+    let a = artMon.get(artist); if (!a) { a = { m: new Array(12).fill(0), years: new Set() }; artMon.set(artist, a); }
+    const d = new Date(ms); a.m[d.getUTCMonth()]++; a.years.add(d.getUTCFullYear());
+  }
+  // themes per artist from llm-about's reasoned layer (rank-weighted 3/2/1)
+  const themeBy = new Map();                               // slug → { Map(theme→w), tracks }
+  try {
+    const vm2 = require("vm");
+    const c2 = { window: {} }; vm2.createContext(c2);
+    vm2.runInContext(fs.readFileSync(path.join(__dirname, "llm-about.js"), "utf8").replace(/^﻿/, ""), c2, { filename: "llm-about.js" });
+    const LA = c2.window.ROTATION_LLM_ABOUT || {};
+    for (const key in LA) {
+      const e = LA[key]; if (!e || !e.themes || !e.themes.length) continue;
+      const aid = key.slice(0, key.indexOf("~")); if (!aid) continue;
+      let t = themeBy.get(aid); if (!t) { t = { w: new Map(), tracks: 0 }; themeBy.set(aid, t); }
+      t.tracks++;
+      e.themes.slice(0, 3).forEach((th, i) => t.w.set(th, (t.w.get(th) || 0) + (3 - i)));
+    }
+  } catch (e) { console.log("bullets: llm-about unread — themes rule skipped (" + e.message + ")"); }
+  // earliest gig per artistId, for caught-live-first
+  const firstGig = new Map();
+  if (GIGS) for (const g of GIGS.gigs) { const cur = firstGig.get(g.artistId); if (!cur || g.date < cur) firstGig.set(g.artistId, g.date); }
+  const MONF = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const BULLETS = {};
+  let emitted = 0;
+  for (const [name, id] of keepName) {
+    const rows = [];
+    const plays = artistPlays.get(name) || 0;
+    // burning now (score 90): ≥35 plays in the trailing 120 days
+    const rec = recent.get(name) || 0;
+    if (rec >= 35) rows.push({ s: 90, k: "burning now", v: rec + " plays · 120 days",
+      x: rec.toLocaleString() + " plays in the last four months — " + Math.round(rec / plays * 100) + "% of everything you have ever played by them, happening right now." });
+    // seasonal band (85): ≥150 plays over 2+ years with ≥50% inside one 3-month window
+    const am = artMon.get(name);
+    if (am && plays >= 150 && am.years.size >= 2) {
+      let best = 0, start = 0;
+      for (let s = 0; s < 12; s++) { const w = am.m[s] + am.m[(s + 1) % 12] + am.m[(s + 2) % 12]; if (w > best) { best = w; start = s; } }
+      if (best / plays >= 0.5) {
+        let pk = 0; for (let i = 1; i < 12; i++) if (am.m[i] > am.m[pk]) pk = i;
+        rows.push({ s: 85, k: MONF[pk] + " band", v: Math.round(best / plays * 100) + "% in season",
+          x: Math.round(best / plays * 100) + "% of all their plays land in the " + MONF[start] + "–" + MONF[(start + 2) % 12] + " window, across " + am.years.size + " separate years — you reach for them when the season comes back." });
+      }
+    }
+    // caught live first (80): stood in front of them before the first scrobble
+    const fg = firstGig.get(id), fp = first.get(name);
+    if (fg && fp && fg < iso(fp.ms).slice(0, 10)) rows.push({ s: 80, k: "caught live first", v: fg.slice(0, 4),
+      x: "You stood in front of them on " + fg + " — before the library's first scrobble (" + iso(fp.ms).slice(0, 10) + "). The gig came first; the listening followed." });
+    // via X (65): the introducer, genealogy rule (session-adjacent first play)
+    if (fp && fp.parent && (artistPlays.get(fp.parent) || 0) >= 5) rows.push({ s: 65, k: "via " + fp.parent, v: iso(fp.ms).slice(0, 4),
+      x: "Their first play arrived mid-session right after " + fp.parent + " on " + iso(fp.ms).slice(0, 10) + " — the mechanical best guess at who opened the door." });
+    // gateway (60 + up to 25): introduced ≥5 other kept artists
+    const kids = children.get(name) || [];
+    if (kids.length >= 5) {
+      const top = kids.slice().sort((a, b) => (artistPlays.get(b) || 0) - (artistPlays.get(a) || 0)).slice(0, 3);
+      rows.push({ s: 60 + Math.min(25, kids.length), k: "gateway", v: "→ " + kids.length + " artists",
+        x: "First plays of " + kids.length + " other artists arrived in-session directly after them — including " + top.join(", ") + ". A door other music walked in through." });
+    }
+    // pairs with X (55): most-shared listening sessions, ≥12 together and ≥20% of A's sessions
+    const cm = co.get(name), sn = sess.get(name) || 0;
+    if (cm && sn >= 20) {
+      let bn = null, bc = 0;
+      for (const [other, n] of cm) if (n > bc && other !== name) { bc = n; bn = other; }
+      if (bn && bc >= 12 && bc / sn >= 0.2) rows.push({ s: 55, k: "pairs with " + bn, v: bc + " sessions",
+        x: "They share a listening session with " + bn + " " + bc + " times — " + Math.round(bc / sn * 100) + "% of every sitting that includes them. The two are one habit." });
+    }
+    // sings about (50): the reasoned-theme layer's verdict, ≥5 themed tracks, top ≥30% of weight
+    const tb = themeBy.get(id);
+    if (tb && tb.tracks >= 5) {
+      let bt = null, bw = 0, tw = 0;
+      for (const [th, wgt] of tb.w) { tw += wgt; if (wgt > bw) { bw = wgt; bt = th; } }
+      if (bt && bw / tw >= 0.3) rows.push({ s: 50, k: "sings about: " + bt.split(" & ")[0], v: tb.tracks + " reads",
+        x: "Across " + tb.tracks + " close-read songs the dominant theme is " + bt + " — " + Math.round(bw / tw * 100) + "% of the rank-weighted signal." });
+    }
+    // binge week (45): one calendar week ≥80 plays holding ≥30% of everything heard that week
+    const aw = artWeek.get(name);
+    if (aw) {
+      let bwk = 0, bwn = 0;
+      for (const [wk, n] of aw) if (n > bwn) { bwn = n; bwk = wk; }
+      const tot = weekTot.get(bwk) || 1;
+      if (bwn >= 80 && bwn / tot >= 0.3) {
+        const d = new Date(bwk * 7 * 86400e3);
+        rows.push({ s: 45, k: "binge week", v: MONF[d.getUTCMonth()].slice(0, 3) + " " + d.getUTCFullYear() + " · " + bwn + " plays",
+          x: "One week in " + MONF[d.getUTCMonth()] + " " + d.getUTCFullYear() + ": " + bwn + " plays — " + Math.round(bwn / tot * 100) + "% of everything you heard that week was them." });
+      }
+    }
+    if (!rows.length) continue;
+    rows.sort((a, b) => b.s - a.s);
+    BULLETS[id] = rows.slice(0, 4).map(({ k, v, x }) => ({ k, v, x }));
+    emitted++;
+  }
+  fs.writeFileSync(path.join(__dirname, "bullets.js"),
+    "// GENERATED by build-data.js — EARNED artist bullets (lazy; PortraitCard fact chips).\n" +
+    "// Rule pool w/ clearing bars + distinctiveness scores; top ~4 per artist, none universal.\n" +
+    "window.ROTATION_BULLETS = " + JSON.stringify(BULLETS) + ";\n", "utf8");
+  console.log(`bullets.js written — ${emitted}/${keepName.size} artists earned chips`);
+}
+
 // ─────────── emit ───────────
 // PLAYED — every artist with ≥3 scrobbles + their MusicBrainz aliases (cross-script).
 // Powers the Sounds-Like "in library" check. ミドリ's aliases include "Midori" so a similar
