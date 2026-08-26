@@ -4079,15 +4079,24 @@ function MapView({ go }) {
     const onWheel = (e) => {
       e.preventDefault();
       setLensThrottled(null);
-      const r = el.getBoundingClientRect();
-      const mx = (e.clientX - r.left) / r.width, my = (e.clientY - r.top) / r.height;
+      // BURST-DRIFT FIX (Fuad 2026-08-27 "map scroll is kinda broken"): the first cut read
+      // getBoundingClientRect() on EVERY tick — but from tick 2 the svg is already CSS-scaled
+      // by tick 1, so the cursor ratios were taken against a moving rect and the zoom drifted.
+      // And one scale() about a shifting transform-origin cannot represent two stacked zooms
+      // around different cursor points. Now: cache the CLEAN layout rect once per burst
+      // (layout is transform-immune, so it stays true), and derive the preview as the EXACT
+      // translate+scale that maps the committed viewBox onto the pending one, origin 0 0.
+      let g = gest.current, rect = g && g.rect;
+      if (!rect) { el.style.transform = ""; rect = el.getBoundingClientRect(); }
+      const mx = (e.clientX - rect.left) / rect.width, my = (e.clientY - rect.top) / rect.height;
       const f = e.deltaY < 0 ? 1 / 1.18 : 1.18;
-      const v = (gest.current && gest.current.vb) || vbRef.current;
+      const v = (g && g.vb) || vbRef.current;
       const w = Math.min(880, Math.max(70, v.w * f)), h = w * AR;
-      gest.current = { vb: { x: v.x + mx * v.w - mx * w, y: v.y + my * v.h - my * h, w, h } };
-      const s = vbRef.current.w / w;                     // visual scale vs the committed frame
-      el.style.transformOrigin = `${e.clientX - r.left}px ${e.clientY - r.top}px`;
-      el.style.transform = `scale(${s})`;
+      const vb = { x: v.x + mx * v.w - mx * w, y: v.y + my * v.h - my * h, w, h };
+      gest.current = { vb, rect };
+      const v0 = vbRef.current;                          // the frame the DOM is rendered at
+      el.style.transformOrigin = "0 0";
+      el.style.transform = `translate(${rect.width * (v0.x - vb.x) / vb.w}px, ${rect.height * (v0.y - vb.y) / vb.h}px) scale(${v0.w / vb.w})`;
       clearTimeout(wheelIdle);
       wheelIdle = setTimeout(endGesture, 160);
     };
@@ -4304,7 +4313,10 @@ function MapView({ go }) {
                   if (k >= thr && fs <= 1.25) return null;
                   const op = (fs > 1.25 ? 1 : labelFade(k, thr)) * 0.75;
                   if (op <= 0) return null;
-                  return <text x={fx} y={fy - (f.r * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 6 * k * dotMul * labelZoom, opacity: op }}>{f.city}</text>;
+                  // 7.8 not 6: at 65% of the lived-city size the −30% pass (Fuad 2026-08-27)
+                  // pushed these under legibility ("the smaller venue names are super tiny");
+                  // ~85% keeps the lived>wish hierarchy without the squint.
+                  return <text x={fx} y={fy - (f.r * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 7.8 * k * dotMul * labelZoom, opacity: op }}>{f.city}</text>;
                 })()}
               </g>
             );
