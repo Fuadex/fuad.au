@@ -4094,7 +4094,31 @@ window.CANVAS_ARTWORKS = [
 {"id":"toulouse-lautrec-a-la-bastille-jeanne-wenz","title":"A la Bastille (Jeanne Wenz)","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20189929","qidTrusted":true,"year":1888,"wish":true},
 {"id":"toulouse-lautrec-marcelle-lender-dancing-the-bolero-in-chilperic","title":"Marcelle Lender Dancing the Bolero in \"Chilpéric\"","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20190499","qidTrusted":true,"year":1895,"wish":true},
 {"id":"toulouse-lautrec-the-trap","title":"The Trap","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20188872","qidTrusted":true,"year":1880,"wish":true,"liked":true},
-{"id":"toulouse-lautrec-hussars","title":"Hussars","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20188841","qidTrusted":true,"year":1878,"wish":true}
+{"id":"toulouse-lautrec-hussars","title":"Hussars","artist":"Henri de Toulouse-Lautrec","artistId":"toulouse-lautrec","qid":"Q20188841","qidTrusted":true,"year":1878,"wish":true},
+{"id":"henri-fantin-latour-duchess-de-fitz-james","title":"Duchess de Fitz-James","artist":"Henri Fantin-Latour","artistId":"henri-fantin-latour","qid":"Q20188695","qidTrusted":true,"year":1867,"wish":true},
+{"id":"henri-fantin-latour-mademoiselle-de-fitz-james","title":"Mademoiselle de Fitz-James","artist":"Henri Fantin-Latour","artistId":"henri-fantin-latour","qid":"Q20188700","qidTrusted":true,"year":1867,"wish":true},
+{"id":"henri-fantin-latour-self-portrait","title":"Self-Portrait","artist":"Henri Fantin-Latour","artistId":"henri-fantin-latour","qid":"Q20188402","qidTrusted":true,"year":1858,"wish":true},
+{"id":"amedeo-modigliani-cafe-singer","title":"Café Singer","artist":"Amedeo Modigliani","artistId":"amedeo-modigliani","qid":"Q20192088","qidTrusted":true,"year":1917,"wish":true},
+{"id":"amedeo-modigliani-girl-in-a-green-blouse","title":"Girl in a Green Blouse","artist":"Amedeo Modigliani","artistId":"amedeo-modigliani","qid":"Q20192113","qidTrusted":true,"year":1917,"wish":true},
+{"id":"amedeo-modigliani-nude-on-a-blue-cushion","title":"Nude on a Blue Cushion","artist":"Amedeo Modigliani","artistId":"amedeo-modigliani","qid":"Q20088074","qidTrusted":true,"year":1917,"wish":true},
+{"id":"amedeo-modigliani-chaim-soutine","title":"Chaim Soutine","artist":"Amedeo Modigliani","artistId":"amedeo-modigliani","qid":"Q3937496","qidTrusted":true,"year":1918,"wish":true},
+{"id":"amedeo-modigliani-monsieur-deleu","title":"Monsieur Deleu","artist":"Amedeo Modigliani","artistId":"amedeo-modigliani","qid":"Q20191996","qidTrusted":true,"year":1916,"wish":true},
+{"id":"amedeo-modigliani-nude-on-a-divan","title":"Nude on a Divan","artist":"Amedeo Modigliani","artistId":"amedeo-modigliani","qid":"Q20190344","qidTrusted":true,"year":1918,"wish":true},
+{"id":"henri-fantin-latour-portrait-of-sonia","title":"Portrait of Sonia","artist":"Henri Fantin-Latour","artistId":"henri-fantin-latour","qid":"Q20190219","qidTrusted":true,"year":1890,"wish":true},
+{"id":"henri-fantin-latour-still-life","title":"Still Life","artist":"Henri Fantin-Latour","artistId":"henri-fantin-latour","qid":"Q20188684","qidTrusted":true,"year":1866,"wish":true},
+{"id":"amedeo-modigliani-adrienne-woman-with-bangs","title":"Adrienne (Woman with Bangs)","artist":"Amedeo Modigliani","artistId":"amedeo-modigliani","qid":"Q20192051","qidTrusted":true,"year":1917,"wish":true},
+{"id":"amedeo-modigliani-madame-amedee-woman-with-cigarette","title":"Madame Amédée (Woman with Cigarette)","artist":"Amedeo Modigliani","artistId":"amedeo-modigliani","qid":"Q20192179","qidTrusted":true,"year":1918,"wish":true},
+{"id":"amedeo-modigliani-leon-bakst","title":"Léon Bakst","artist":"Amedeo Modigliani","artistId":"amedeo-modigliani","qid":"Q3937605","qidTrusted":true,"year":1917,"wish":true},
+{"id":"amedeo-modigliani-roma-woman-with-baby","title":"Roma Woman with Baby","artist":"Amedeo Modigliani","artistId":"amedeo-modigliani","qid":"Q4024484","qidTrusted":true,"year":1919,"wish":true},
+{"id":"amedeo-modigliani-madame-kisling","title":"Madame Kisling","artist":"Amedeo Modigliani","artistId":"amedeo-modigliani","qid":"Q3842242","qidTrusted":true,"year":1917,"wish":true},
+{"id":"amedeo-modigliani-woman-with-red-hair","title":"Woman with Red Hair","artist":"Amedeo Modigliani","artistId":"amedeo-modigliani","qid":"Q20192151","qidTrusted":true,"year":1917,"wish":true},
+{"id":"henri-fantin-latour-three-peaches-on-a-plate","title":"Three Peaches on a Plate","artist":"Henri Fantin-Latour","artistId":"henri-fantin-latour","qid":"Q20188711","qidTrusted":true,"year":1868,"wish":true},
+{"id":"henri-fantin-latour-self-portrait-nga-92996","title":"Self-Portrait","artist":"Henri Fantin-Latour","artistId":"henri-fantin-latour","qid":"Q20188577","qidTrusted":true,"year":1861,"wish":true},
+{"id":"henri-fantin-latour-roses-de-nice-on-a-table","title":"Roses de Nice on a Table","artist":"Henri Fantin-Latour","artistId":"henri-fantin-latour","qid":"Q20189468","qidTrusted":true,"year":1882,"wish":true},
+{"id":"henri-fantin-latour-still-life-with-grapes-and-a-carnation","title":"Still Life with Grapes and a Carnation","artist":"Henri Fantin-Latour","artistId":"henri-fantin-latour","qid":"Q20188870","qidTrusted":true,"year":1880,"wish":true},
+{"id":"henri-fantin-latour-still-life-with-mustard-pot","title":"Still Life with Mustard Pot","artist":"Henri Fantin-Latour","artistId":"henri-fantin-latour","qid":"Q20188425","qidTrusted":true,"year":1860,"wish":true},
+{"id":"henri-fantin-latour-pansies","title":"Pansies","artist":"Henri Fantin-Latour","artistId":"henri-fantin-latour","qid":"Q20188780","qidTrusted":true,"year":1874,"wish":true},
+{"id":"henri-fantin-latour-still-life-with-peaches-and-grapes","title":"Still Life with Peaches and Grapes","artist":"Henri Fantin-Latour","artistId":"henri-fantin-latour","qid":"nga-231680","year":1896,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
