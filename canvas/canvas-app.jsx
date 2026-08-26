@@ -56,6 +56,69 @@ function useLazyGen() {
   return gen;
 }
 
+// ── THE SEMANTIC HUNT (Fuad 2026-08-26: "free lexicon… let people freely search with
+// whatever words they use"). Query encoder = hunt-encoder.js (Model2Vec potion-base-8M
+// WordPiece port, parity-proven vs python at cosine ≥0.99996); assets = int8 token table
+// (6.75 MB) + per-work prose vectors (human text only — tours/reads, never machine text).
+// ⛔ Loads ONLY on search-bar focus (Fuad: "warm the prefetch only after hitting the
+// searchbar") — never idle. SW caches every asset after first use. Fail-open: if anything
+// here breaks, Subjects mode keeps its Wikidata tier exactly as before.
+let HUNT_STATE = null, HUNT_LOADING = false;
+function ensureHuntModel() {
+  if (HUNT_STATE || HUNT_LOADING) return;
+  HUNT_LOADING = true;
+  const load = async () => {
+    if (!window.HUNT_ENCODER) await new Promise((res, rej) => {
+      const s = document.createElement("script");
+      s.src = "hunt-encoder.js"; s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+    const [tokens, table, scales, works, wScales, ids] = await Promise.all([
+      fetch("hunt_tokens.json").then(r => r.json()),
+      fetch("hunt_table.bin").then(r => r.arrayBuffer()),
+      fetch("hunt_scales.bin").then(r => r.arrayBuffer()),
+      fetch("hunt_works.bin").then(r => r.arrayBuffer()),
+      fetch("hunt_works_scales.bin").then(r => r.arrayBuffer()),
+      fetch("hunt_works_ids.json").then(r => r.json()),
+    ]);
+    const DIMS = 256;
+    // pre-dequantize the work vectors once (807×256 floats ≈ 0.8 MB RAM — cheap, queries fast)
+    const wq = new Int8Array(works), ws = new Float32Array(wScales);
+    const W = new Float32Array(wq.length);
+    for (let i = 0; i < ids.length; i++) {
+      const sc = ws[i], off = i * DIMS;
+      for (let d = 0; d < DIMS; d++) W[off + d] = wq[off + d] * sc;
+    }
+    HUNT_STATE = {
+      vocab: window.HUNT_ENCODER.buildVocab(tokens),
+      table: new Int8Array(table), scales: new Float32Array(scales),
+      works: W, ids, dims: DIMS,
+    };
+    window.__cvLazyGen = (window.__cvLazyGen || 0) + 1;
+    window.dispatchEvent(new Event("cv-lazy"));
+  };
+  load().catch(() => { HUNT_LOADING = false; });
+}
+// cosine top-k over the prose vectors + a small exact-term boost from art_hunt.js — the
+// keyword index is a BOOST signal, never a gate (free-lexicon ruling).
+function huntSearch(query, k) {
+  if (!HUNT_STATE) return null;
+  const E = window.HUNT_ENCODER, H = HUNT_STATE;
+  const qv = E.encode(query, H.vocab, H.table, H.scales, H.dims);
+  const HX = window.CANVAS_HUNT || {};
+  const qWords = new Set(query.toLowerCase().split(/[^a-z-]+/).filter(Boolean));
+  const out = [];
+  for (const [s, i] of E.cosineTop(qv, H.works, H.dims, k * 2)) {
+    if (s < 0.18) break;
+    const id = H.ids[i];
+    let boost = 0;
+    for (const ft of (HX[id] || [])) if (qWords.has(ft.split(":")[1])) { boost = 0.08; break; }
+    out.push({ id, score: s + boost });
+  }
+  out.sort((a, b) => b.score - a.score);
+  return out.slice(0, k);
+}
+
 // ——— deck queue: unmet majors added from artist pages, held in localStorage until graded.
 // Shape: array of { qid, title, artist, year, img } (dedup by qid). The by-artists deck reads
 // this FIRST, then the shipped CANVAS_BY_ARTISTS list (dedup by qid across both).
@@ -4855,6 +4918,7 @@ function SearchBar({ go }) {
   // buries its hits under coincidental title matches, and a name query gets padded with works
   // that merely depict the word.
   const [mode, setMode] = useState("names");
+  const huntGen = useLazyGen();   // re-run results when the hunt model lands mid-typing
   const inputRef = useRef(null);
   const wrapRef = useRef(null);
 
@@ -4865,6 +4929,22 @@ function SearchBar({ go }) {
     // list is not padded with works that merely happen to have the word in their name, and it can
     // run deeper than the 12 a name search wants.
     if (mode === "subjects") {
+      // SEMANTIC TIER (2026-08-26): once the hunt model has loaded (search-bar focus kicks
+      // it), free-text queries rank the whole read corpus by meaning — "quiet snow at dusk"
+      // works. Until it loads (or if it failed), the Wikidata-token tier below answers
+      // exactly as before. The keyword hunt index rides inside huntSearch as a boost only.
+      if (HUNT_STATE && needle.length >= 3) {
+        const hits = huntSearch(q, 40);
+        if (hits && hits.length) {
+          const byId = new Map(SEARCH_INDEX.map(it => [it.id, it]));
+          const out = [];
+          for (const h of hits) {
+            const it = byId.get(h.id);
+            if (it) out.push({ kind: "work", ...it, via: "hunt" });
+          }
+          if (out.length) return out;
+        }
+      }
       const terms = expandQuery(needle).map(fold);
       const out = [];
       for (const it of SEARCH_INDEX) {
@@ -4905,7 +4985,7 @@ function SearchBar({ go }) {
     // artist hits lead (they're the broadest destination), then museums, then works
     const artistResults = ARTIST_SEARCH_INDEX.filter(a => a.hay.includes(needle)).slice(0, 3);
     return [...artistResults, ...musResults, ...hits].slice(0, 12);
-  }, [q, mode]);
+  }, [q, mode, huntGen]);
 
   // reset selection when results change
   useEffect(() => { setSel(0); }, [results]);
@@ -4965,7 +5045,7 @@ function SearchBar({ go }) {
           value={q}
           onChange={e => setQ(e.target.value)}
           onKeyDown={onKeyDown}
-          onFocus={() => setOpen(true)}
+          onFocus={() => { setOpen(true); ensureHuntModel(); }}
           autoComplete="off"
           autoCorrect="off"
           spellCheck="false"
