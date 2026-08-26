@@ -4013,7 +4013,27 @@ window.CANVAS_ARTWORKS = [
 {"id":"rubens-daniel-in-the-lions-den","title":"Daniel in the Lions' Den","artist":"Peter Paul Rubens","artistId":"rubens","qid":"Q8353711","qidTrusted":true,"year":1614,"wish":true},
 {"id":"rubens-the-fall-of-phaeton","title":"The Fall of Phaeton","artist":"Peter Paul Rubens","artistId":"rubens","qid":"Q9366873","qidTrusted":true,"year":1604,"wish":true},
 {"id":"rubens-the-meeting-of-david-and-abigail","title":"The Meeting of David and Abigail","artist":"Peter Paul Rubens","artistId":"rubens","qid":"Q9202858","qidTrusted":true,"year":1630,"wish":true},
-{"id":"tiepolo-madonna-of-the-goldfinch-nga-101678","title":"Madonna of the Goldfinch","artist":"Giovanni Battista Tiepolo","artistId":"tiepolo","qid":"Q20178383","qidTrusted":true,"year":1767,"wish":true}
+{"id":"tiepolo-madonna-of-the-goldfinch-nga-101678","title":"Madonna of the Goldfinch","artist":"Giovanni Battista Tiepolo","artistId":"tiepolo","qid":"Q20178383","qidTrusted":true,"year":1767,"wish":true},
+{"id":"goya-the-marquesa-de-pontejos","title":"The Marquesa de Pontejos","artist":"Francisco Goya","artistId":"goya","qid":"Q860950","qidTrusted":true,"year":1786,"wish":true},
+{"id":"goya-charles-iv-of-spain-as-huntsman","title":"Charles IV of Spain as Huntsman","artist":"Workshop of Francisco Goya","artistId":"goya","qid":"Q20180348","qidTrusted":true,"year":1799,"wish":true},
+{"id":"goya-senora-sabasa-garcia","title":"Señora Sabasa Garcia","artist":"Francisco Goya","artistId":"goya","qid":"Q17519491","qidTrusted":true,"year":1806,"wish":true},
+{"id":"guardi-view-on-the-cannaregio-canal-venice","title":"View on the Cannaregio Canal, Venice","artist":"Francesco Guardi","artistId":"guardi","qid":"Q20178778","qidTrusted":true,"year":1775,"wish":true},
+{"id":"guardi-temporary-tribune-in-the-campo-san-zanipolo-venice","title":"Temporary Tribune in the Campo San Zanipolo, Venice","artist":"Francesco Guardi","artistId":"guardi","qid":"Q20179143","qidTrusted":true,"year":1782,"wish":true},
+{"id":"goya-bartolome-sureda-y-miserol","title":"Bartolomé Sureda y Miserol","artist":"Francisco Goya","artistId":"goya","qid":"Q17519472","qidTrusted":true,"year":1803,"wish":true},
+{"id":"goya-therese-louise-de-sureda","title":"Thérèse Louise de Sureda","artist":"Francisco Goya","artistId":"goya","qid":"Q17519493","qidTrusted":true,"year":1803,"wish":true},
+{"id":"guardi-grand-canal-with-the-rialto-bridge-venice","title":"Grand Canal with the Rialto Bridge, Venice","artist":"Francesco Guardi","artistId":"guardi","qid":"Q20178939","qidTrusted":true,"year":1780,"wish":true},
+{"id":"guardi-capriccio-of-a-harbor","title":"Capriccio of a Harbor","artist":"Francesco Guardi","artistId":"guardi","qid":"Q20178180","qidTrusted":true,"year":1760,"wish":true},
+{"id":"guardi-rialto-bridge-venice","title":"Rialto Bridge, Venice","artist":"Follower of Francesco Guardi","artistId":"guardi","qid":"Q20178530","qidTrusted":true,"year":1770,"wish":true},
+{"id":"guardi-fanciful-view-of-the-castel-sant-angelo-rome","title":"Fanciful View of the Castel Sant'Angelo, Rome","artist":"Francesco Guardi","artistId":"guardi","qid":"Q20179306","qidTrusted":true,"year":1785,"wish":true},
+{"id":"goya-victor-guye","title":"Victor Guye","artist":"Francisco Goya","artistId":"goya","qid":"Q20183120","qidTrusted":true,"year":1810,"wish":true},
+{"id":"guardi-the-square-of-saint-mark-s-venice","title":"The Square of Saint Mark's, Venice","artist":"Follower of Francesco Guardi","artistId":"guardi","qid":"Q20178533","qidTrusted":true,"year":1770,"wish":true},
+{"id":"goya-don-antonio-noriega","title":"Don Antonio Noriega","artist":"Francisco Goya","artistId":"goya","qid":"Q20181309","qidTrusted":true,"year":1801,"wish":true},
+{"id":"goya-the-duke-of-wellington","title":"The Duke of Wellington","artist":"Workshop of Francisco Goya","artistId":"goya","qid":"Q20183364","qidTrusted":true,"year":1812,"wish":true},
+{"id":"goya-young-lady-wearing-a-mantilla-and-basquina","title":"Young Lady Wearing a Mantilla and Basquina","artist":"Francisco Goya","artistId":"goya","qid":"Q20181269","qidTrusted":true,"year":1800,"wish":true},
+{"id":"guardi-carlo-and-ubaldo-resisting-the-enchantments-of-armida-s-nymphs","title":"Carlo and Ubaldo Resisting the Enchantments of Armida's Nymphs","artist":"Gian Antonio Guardi and Francesco Guardi","artistId":"guardi","qid":"Q20177997","qidTrusted":true,"year":1750,"wish":true},
+{"id":"guardi-erminia-and-the-shepherds","title":"Erminia and the Shepherds","artist":"Gian Antonio Guardi and Francesco Guardi","artistId":"guardi","qid":"Q20178001","qidTrusted":true,"year":1750,"wish":true},
+{"id":"goya-maria-teresa-de-borbon-y-vallabriga-later-condesa-de-chinchon","title":"María Teresa de Borbón y Vallabriga, later Condesa de Chinchón","artist":"Francisco Goya","artistId":"goya","qid":"Q11824923","qidTrusted":true,"year":1783,"wish":true},
+{"id":"guardi-santa-maria-della-salute","title":"Santa Maria della Salute","artist":"Francesco Guardi","artistId":"guardi","qid":"Q46625483","qidTrusted":true,"year":1770,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
