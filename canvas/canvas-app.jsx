@@ -82,17 +82,21 @@ function ensureHuntModel() {
       fetch("hunt_works_ids.json").then(r => r.json()),
     ]);
     const DIMS = 256;
-    // pre-dequantize the work vectors once (807×256 floats ≈ 0.8 MB RAM — cheap, queries fast)
+    // pre-dequantize all rows once (~6.2k×256 floats ≈ 6 MB RAM — cheap, queries fast)
     const wq = new Int8Array(works), ws = new Float32Array(wScales);
     const W = new Float32Array(wq.length);
-    for (let i = 0; i < ids.length; i++) {
+    const nRows = wq.length / DIMS;
+    for (let i = 0; i < nRows; i++) {
       const sc = ws[i], off = i * DIMS;
       for (let d = 0; d < DIMS; d++) W[off + d] = wq[off + d] * sc;
     }
+    // ids file = { works: [workId], rowWork: [rowIndex → work index] } — rows are paragraph
+    // chunks PLUS one doc-mean row per work; scoring takes the max per work (2026-08-26
+    // tightening: chunk grain catches in-paragraph conjunctions, doc grain cross-paragraph).
     HUNT_STATE = {
       vocab: window.HUNT_ENCODER.buildVocab(tokens),
       table: new Int8Array(table), scales: new Float32Array(scales),
-      works: W, ids, dims: DIMS,
+      works: W, workIds: ids.works, rowWork: ids.rowWork, dims: DIMS,
     };
     window.__cvLazyGen = (window.__cvLazyGen || 0) + 1;
     window.dispatchEvent(new Event("cv-lazy"));
@@ -106,14 +110,23 @@ function huntSearch(query, k) {
   const E = window.HUNT_ENCODER, H = HUNT_STATE;
   const qv = E.encode(query, H.vocab, H.table, H.scales, H.dims);
   const HX = window.CANVAS_HUNT || {};
-  const qWords = new Set(query.toLowerCase().split(/[^a-z-]+/).filter(Boolean));
-  const out = [];
-  for (const [s, i] of E.cosineTop(qv, H.works, H.dims, k * 2)) {
+  // stem query words so "snowing" boosts snow, "mountains" boosts mountain
+  const stem = w => w.replace(/ing$/, "").replace(/([^s])s$/, "$1");
+  const qWords = new Set(query.toLowerCase().split(/[^a-z-]+/).filter(Boolean).map(stem));
+  // best row (chunk OR doc grain) per work, then boost per matched hunt term (stacking —
+  // "snow" AND "mountain" both matching outranks one)
+  const best = new Map();
+  for (const [s, i] of E.cosineTop(qv, H.works, H.dims, Math.min(400, H.rowWork.length))) {
     if (s < 0.18) break;
-    const id = H.ids[i];
+    const w = H.rowWork[i];
+    if (s > (best.get(w) || -1)) best.set(w, s);
+  }
+  const out = [];
+  for (const [w, s] of best) {
+    const id = H.workIds[w];
     let boost = 0;
-    for (const ft of (HX[id] || [])) if (qWords.has(ft.split(":")[1])) { boost = 0.08; break; }
-    out.push({ id, score: s + boost });
+    for (const ft of (HX[id] || [])) if (qWords.has(stem(ft.split(":")[1]))) boost += 0.05;
+    out.push({ id, score: s + Math.min(boost, 0.12) });
   }
   out.sort((a, b) => b.score - a.score);
   return out.slice(0, k);
