@@ -1658,7 +1658,7 @@ function ExploreView({ t, go, setPop, seed }) {
     // artists grain (keys are artist ids) and the subgenres grain (keys are sub indices).
     const sel = (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null;
     const anyFilter = hasYears || fam != null || subIdx >= 0 || cells.size > 0 || vocals !== "any"
-      || picks.size > 0 || !!sel || !!moodZone;
+      || regSel.size > 0 || picks.size > 0 || !!sel || !!moodZone;
     if (!anyFilter) return null;   // null = count everything, and skip the per-track Set lookup
     const inYears = (yp) => { if (!yp) return false; for (const y of years) if (yp[y]) return true; return false; };
     const out = new Set();
@@ -1668,6 +1668,7 @@ function ExploreView({ t, go, setPop, seed }) {
       if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; } else if (!recInFam(R, a, fam)) continue;
       if (cells.size && !tsPlays(R, a.id, cells)) continue;
       if (vocals !== "any" && !vocalsPass(a.vx, vocals)) continue;
+      if (regSel.size && !registerPass(a.rg, regSel)) continue;   // register dimension (hides no-data artists, like vocals)
       if (sel) {
         if (sel.mode === "artists") { if (!sel.keys.has(a.id)) continue; }
         else if (!(a.s || []).some(ix => sel.keys.has(ix))) continue;
@@ -1676,7 +1677,7 @@ function ExploreView({ t, go, setPop, seed }) {
       out.add(a.id);
     }
     return out;
-  }, [R, years, hasYears, fam, subIdx, cells, vocals, picks, attrSel, lens, moodZone]);
+  }, [R, years, hasYears, fam, subIdx, cells, vocals, regSel, picks, attrSel, lens, moodZone]);
 
   const decadeData = React.useMemo(() => {
     const F = window.ROTATION_FILTER; if (!F) return null;
@@ -1878,7 +1879,7 @@ function ExploreView({ t, go, setPop, seed }) {
             </div>
             <div className="xp-chartwrap">
             {lens === "attributes"
-              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} onFam={(f) => { setSub(null); setFam(f); }} filtersActive={hasYears || fam != null || sub != null || cells.size > 0 || vocals !== "any" || filtActive || picks.size > 0} xKey={attrX} yKey={attrY} setXKey={setAttrX} setYKey={setAttrY} />
+              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} onFam={(f) => { setSub(null); setFam(f); }} filtersActive={hasYears || fam != null || sub != null || cells.size > 0 || vocals !== "any" || regSel.size > 0 || filtActive || picks.size > 0} xKey={attrX} yKey={attrY} setXKey={setAttrX} setYKey={setAttrY} />
               : lens === "texture"
               ? (grain === "subs"
                 ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
