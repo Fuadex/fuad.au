@@ -409,14 +409,14 @@ function AlbumView({ id, go }) {
         .alb-chiprow > .r-mono { flex-shrink: 0; }
         .alb-chipscroll > .r-chip { flex-shrink: 0; }
       `}</style>
+      {/* an album's natural parent is its artist — go up to them, not back out to Explore.
+          The back button lives at page left ABOVE the cover — its original home; both
+          2026-08-28 experiments (same-row merge, then in-column stack) reverted on the
+          owner's call ("not over the cover" = regression). */}
+      <button className="r-back" style={{ marginBottom: 6 }} onClick={() => (known ? go("artist", artistId) : go("explore"))}>← {known ? data.artist : "explore"}</button>
       <div className="tv-head" style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 26 }}>
         <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
-          {/* an album's natural parent is its artist — go up to them, not back out to Explore.
-              The same-row merge was tried 2026-08-28 and REVERTED same day (Fuad: the button
-              inside the album·year·tracks kicker is "a regression") — the stacked arrangement
-              stands on album pages; only the ARTIST page keeps the merged row. */}
-          <button className="r-back" style={{ marginBottom: 6 }} onClick={() => (known ? go("artist", artistId) : go("explore"))}>← {known ? data.artist : "explore"}</button>
           <div className="r-kicker">{typeName}{relYear ? ` · ${relYear}` : ""}{data.tracks.length ? ` · ${data.tracks.length} track${data.tracks.length !== 1 ? "s" : ""} played` : ""}</div>
           {/* Font scales down for long album titles so they fill the row before wrapping
               (Fuad 2026-08-28): >26 chars → small clamp, >18 → mid clamp, else full size. */}
@@ -1123,13 +1123,12 @@ function TrackView({ id, go }) {
 
   return (
     <div className="r-view tv-page">
+      {/* Back button at page left ABOVE the cover — original home; both 2026-08-28 experiments
+          reverted on the owner's call ("not over the cover" = regression). */}
+      <button className="r-back" style={{ marginBottom: 6 }} onClick={() => go(data.albumId ? "album" : "explore", data.albumId || undefined)}>← {data.album || "explore"}</button>
       <div className="tv-head" style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 24 }}>
         <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={132} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
-          {/* Same-row merge tried 2026-08-28 and REVERTED same day with the album page (Fuad:
-              button inside the descriptive kicker = regression) — stacked stands here; only the
-              ARTIST page keeps the merged row. */}
-          <button className="r-back" style={{ marginBottom: 6 }} onClick={() => go(data.albumId ? "album" : "explore", data.albumId || undefined)}>← {data.album || "explore"}</button>
           <div className="r-kicker">Song{data.trackNo ? ` · track ${data.trackNo}` : ""}{data.dur ? ` · ${mmss(data.dur)}` : ""}{data.explicit ? " · explicit" : ""}</div>
           <h1 className="r-title" style={{ fontSize: data.title.length > 30 ? "clamp(22px,3vw,36px)" : data.title.length > 26 ? "clamp(26px,3.6vw,44px)" : data.title.length > 18 ? "clamp(30px,4.2vw,52px)" : "clamp(36px,5vw,64px)" }}>{data.title}<span className="dot">.</span></h1>
           <div style={{ color: "var(--ink-soft)", fontSize: 15, marginTop: 6 }}>
