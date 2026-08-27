@@ -9,6 +9,16 @@ instead of rediscovering. "NGA-grade" = IIIF (or equivalent tiling), masters at 
 resolution, permissive license, sane CORS, stable IDs. Statuses from our own measured rounds
 where marked ⚙; the rest from documented programs — verify before adopting.
 
+## ROUND 8d (2026-08-27) - census SURVEY CLOSED
+
+All reachable hosts from both census rounds measured (full tables in IIIF_CENSUS.md rounds
+1-2). Final tiering: NGA / Getty / KMSKA-showpieces / YCBA-oils on top; NEW middle tier
+worth targeted pulls: Groeninge Bruges 45.6MP level2 (dam.museabrugge.be - van Eyck
+territory), Augustiner 36, Smithsonian 27, Fitzwilliam 21, MSK Ghent 20. Albertina is a
+prints platform (sub-1MP), GNM manifests lie (1x1 canvases), Krakow P6108 rows are not
+IIIF, Wales migrated to iiif.llyfrgell.cymru. Frick new host inconclusive (400, retry
+owed); Hammer 429s. Next hunts start from the census doc, not from scratch.
+
 ## ROUND 8c (2026-08-27) — YCBA measured up, two census holders measured dead
 
 ⚙ **YCBA oils are Tier 1** — 14 Turner paintings measured: cropped plates 11–141 MP, level2,

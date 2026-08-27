@@ -285,3 +285,28 @@ global picture is now stable: **NGA · Getty · KMSKA-showpieces · YCBA oils ar
 and nothing else measured on two continents approaches them.** Remaining unmeasured: the
 nine own-path hosts from the long tail (Frick's new host the most interesting) — need one
 SPARQL for sample paths before they can be probed.
+
+### ⚙ Round 2, batch 3 measurements (2026-08-27) — the nine own-path hosts, closed out
+
+Sample paths obtained with one filtered SPARQL (CONTAINS on the manifest url per host —
+the move that unlocked hosts round 1 could only name).
+
+| holder | measured | MP | verdict |
+|---|---|---|---|
+| **Musea Brugge / Groeningemuseum** | 5,340 × 8,548 · **level2** | **45.6** | ⭐ **best find of the tail** — Flemish-primitives territory (the Groeninge holds van Eyck's *Madonna with Canon van der Paele*); route `dam.museabrugge.be/iiif/2/<id>/manifest.json`; worth a targeted canon-match |
+| Fitzwilliam | 5,336 × 4,000 · level2 | 21.3 | decent; `api.fitz.ms/data-distributor/iiif/object-<id>/manifest` |
+| Bodleian (Christ Church picture sample) | 2,892 × 3,498 · level1 | 10.1 | modest for paintings (its manuscript scans run larger) |
+| Huntington | 2,522 × 3,000 · level2 | 7.6 | modest; eMuseum pattern confirmed live |
+| Courtauld | 1,594 × 2,286 | 3.6 | low |
+| Dallas Museum of Art | 1,200 × 864 · level2 | 1.0 | low |
+| Albertina | 749 × 1,200 · level2 | 0.9 | ⛔ a PRINTS platform serving thumbnails — its census presence (row 99) is graphic-arts records, not paintings infrastructure |
+| Frick (new host) | objects-377 → **400** | — | ⚠ inconclusive — one different-object retry owed before any verdict on `collections.frick.org` |
+| Hammer | **429** (twice, hours apart) | — | rate-limits this client; deprioritised |
+
+⭐ **The census is now CLOSED as a survey.** Every reachable host from both census rounds is
+measured. Final global picture: **NGA (400–1,900 MP) · Getty (52–203) · KMSKA showpieces
+(246, non-uniform) · YCBA oils (69–141 + gigapixel x-radiographs)** form the top tier;
+**Groeninge (46) · Augustiner (36) · Smithsonian (27) · Fitzwilliam (21) · MSK Ghent (20)**
+form a middle worth targeted pulls; everything else measured is plates, not pyramids.
+Open threads: a Frick retry, a Groeninge canon-match, Stockholm's region-served masters
+(known, adopted case-by-case), and the KMSKA sampling question.
