@@ -1153,12 +1153,15 @@ function TrackView({ id, go }) {
                   {mood && mood[3] === 1 && (
                     <span className="tv-mood-src" title="Valence re-scored by a whole-lyric language model — the word-count lexicon was misled by bright vocabulary over dark meaning. Unmarked tracks are plain NRC lexicon scores.">calibrated</span>
                   )}
+                  {mood && mood[3] === 2 && (
+                    <span className="tv-mood-src" title="Reads furious, feels triumphant — the whole-lyric model rated this lyric's felt energy bright while its register stays dark, so the lexicon value was kept and the tension is named instead.">cathartic</span>
+                  )}
                 </span>
                 <span className="tv-mood-help" tabIndex={0}>
                   <i>?</i>
                   <span className="tv-mood-tip">
                     <b>Sounds</b> — how upbeat the music itself is: Spotify&#8217;s audio positivity, 0 gloomy &#8594; 100 euphoric.<br />
-                    <b>Reads</b> — how positive the lyrics are on the page, scored word-by-word against an emotion lexicon in the song&#8217;s language. Tracks tagged <b>calibrated</b> were re-scored by a whole-lyric model that reads meaning, not just vocabulary — it catches songs wearing bright words over dark content.<br />
+                    <b>Reads</b> — how positive the lyrics are on the page, scored word-by-word against an emotion lexicon in the song&#8217;s language. Tracks tagged <b>calibrated</b> were re-scored by a whole-lyric model that reads meaning, not just vocabulary — it catches songs wearing bright words over dark content. Tracks tagged <b>cathartic</b> kept their lexicon score but the register tension is named — the model read the felt energy as bright while the lyric stays dark.<br />
                     A wide gap is the classic trick: music that smiles while the words don&#8217;t.
                   </span>
                 </span>
