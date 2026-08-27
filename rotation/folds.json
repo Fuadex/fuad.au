@@ -4778,6 +4778,12 @@
 "Megadeth": {
 "tracks": [
 {
+"from": "Bodies Left Behind",
+"to": "Bodies",
+"type": "spelling",
+"reason": "mislabeled title of the same Endgame recording; the official track title is Bodies (owner-confirmed 2026-08-28)"
+},
+{
 "from": "Holy Wars...The Punishment Due (Demo)",
 "to": "Holy Wars...The Punishment Due",
 "type": "variant",
