@@ -1052,6 +1052,14 @@ function TrackView({ id, go }) {
   // fall back to the unmarked lyrEmo copy below.
   const REG_VOCAB = ['anguished', 'bittersweet', 'bleak', 'tender', 'angry', 'defiant', 'joyful', 'neutral', 'bitter'];
   const reg = (mood && mood[4] != null) ? REG_VOCAB[mood[4]] : null;
+  // A single moving value→colour ramp shared by BOTH mood bars, so divergence reads as colour
+  // contrast at a glance: a low value sits deep cool violet (hue ~290), a high value warms to gold
+  // (hue ~85). Lightness/chroma stay moderate (0.62/0.13) to keep it in the app's muted voice.
+  const moodColor = (v) => `oklch(0.62 0.13 ${290 - Math.max(0, Math.min(100, v)) / 100 * 205})`;
+  // Per-register hue for the bolded register WORD in the note (not the bar). Same muted oklch family,
+  // keys mirror REG_VOCAB. neutral is chroma 0 (grey). Anguished→deep violet, joyful→gold.
+  const REG_HUES = { anguished: 290, bleak: 250, bitter: 110, angry: 25, bittersweet: 320, tender: 350, neutral: 0, defiant: 45, joyful: 85 };
+  const regColor = reg ? `oklch(0.55 ${reg === 'neutral' ? 0 : 0.13} ${REG_HUES[reg] || 0})` : null;
   const bpm = f ? Math.round(50 + f[7] / 100 * 140) : 0;   // undo build-time 50..190 remap
   const totalMin = data.dur && data.plays ? Math.round(data.dur * data.plays / 60) : 0;
   const radar = f ? [{ label: "Energy", value: f[4] }, { label: "Tempo", value: f[7] }, { label: "Dance", value: f[8] }, { label: "Positive", value: f[5] }, { label: "Acoustic", value: f[6] }, { label: "Instr.", value: f[9] }] : null;
@@ -1154,12 +1162,12 @@ function TrackView({ id, go }) {
             <div className="tv-mood">
               <div className="tv-mood-axis">
                 <span className="tv-mood-k">Sounds</span>
-                <div className="tv-mood-bar"><i style={{ width: audVal + "%", background: "oklch(0.72 0.15 145)" }} /></div>
+                <div className="tv-mood-bar"><i style={{ width: audVal + "%", background: moodColor(audVal) }} /></div>
                 <span className="tv-mood-v">{audVal}</span>
               </div>
               <div className="tv-mood-axis">
                 <span className="tv-mood-k">Reads</span>
-                <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: "oklch(0.68 0.16 25)" }} /></div>
+                <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: moodColor(lyrVal) }} /></div>
                 <span className="tv-mood-v">{lyrVal}</span>
               </div>
               {/* The NRC emotion caption + the Sounds/Reads axis help. THEMES used to supersede
@@ -1173,13 +1181,13 @@ function TrackView({ id, go }) {
                       Rows without reg (legacy 4-element mood, or mark set but index missing) fall
                       back to the unmarked lyrEmo copy so 4-element rows still render correctly. */}
                   {(mood && mood[3] === 2 && reg)
-                    ? <>Reads <b>{reg}</b>; the sound carries it as triumph.</>
+                    ? <>Reads <b style={{ color: regColor }}>{reg}</b>; the sound carries it as triumph.</>
                     : (mood && mood[3] === 1 && reg)
                       ? (divergent
                           ? (audVal > lyrVal
-                              ? <>Sounds bright, reads <b>{reg}</b>.</>
-                              : <>Sounds heavy, reads <b>{reg}</b>.</>)
-                          : <>Sound and words agree — <b>{reg}</b>.</>)
+                              ? <>Sounds bright, reads <b style={{ color: regColor }}>{reg}</b>.</>
+                              : <>Sounds heavy, reads <b style={{ color: regColor }}>{reg}</b>.</>)
+                          : <>Sound and words agree — <b style={{ color: regColor }}>{reg}</b>.</>)
                       : <>
                           {divergent
                             ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
