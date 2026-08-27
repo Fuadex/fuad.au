@@ -4402,6 +4402,20 @@ const SUB_ARTISTS = {};
 // has artists behind it and a click is never empty. Cap is generous and raisable as tags grow.
 const EXPLORE_CAP = 10000;   // 6000 -> 10000 (Fuad 2026-08-26): grows as the weekly enrichment hums through the tail
 const EXPLORE_YP_TOP = 3000;   // only the top-by-plays carry per-year detail (file-size control)
+// per-artist dominant REGISTER (the human "register" word — REG_VOCAB / MOOD_REG). Play-weighted
+// modal regIdx over the artist's mood-scored tracks, reusing the exact MOOD-block join (trackPlays
+// key artist\x00track → GENIUS_MOOD via aliasedBySlugAlbum; col 4 = regIdx). Powers the Explore
+// Register filter row. Emitted additively as rec.rg (index into MOOD_REG); absent when no scored
+// track carries col 4. artistRegC: name → Int counts over MOOD_REG; resolved to a single mode below.
+const artistRegC = new Map();
+for (const [key, plays] of trackPlays) {
+  const ix = key.indexOf("\x00"); const aS = slug(key.slice(0, ix)), tS = slug(key.slice(ix + 1));
+  const m = aliasedBySlugAlbum(GENIUS_MOOD, aS, tS);
+  if (!m || m[4] == null) continue;
+  let c = artistRegC.get(key.slice(0, ix)); if (!c) { c = new Array(MOOD_REG.length).fill(0); artistRegC.set(key.slice(0, ix), c); }
+  c[m[4]] += plays;
+}
+const dominantReg = (name) => { const c = artistRegC.get(name); if (!c) return null; let bi = -1, bv = 0; for (let i = 0; i < c.length; i++) if (c[i] > bv) { bv = c[i]; bi = i; } return bi >= 0 ? bi : null; };
 // merge spelling variants of the same subgenre so "hip hop"/"hip-hop" etc. are ONE row (Fuad).
 const SUB_CANON = new Map([
   ["hip hop", "hip-hop"], ["hiphop", "hip-hop"],
@@ -4516,6 +4530,7 @@ for (const [name, plays] of rankedArtists) {
   // whose wikidata carried no lineup — same lead-vocals-first selection, so ZERO classifier change.
   let _vx = vocalsCodeBySlug(rec.id); if (_vx === undefined) _vx = membersVoxCode(name);
   if (_vx !== undefined) rec.vx = _vx;
+  const _rg = dominantReg(name); if (_rg != null) rec.rg = _rg;   // dominant register (REG_VOCAB idx) — powers the Explore Register filter row
   const _lf = lifeOf(name); if (_lf) { rec.ty = _lf.type[0].toLowerCase(); if (_lf.ended) { rec.ed = 1; if (_lf.end) rec.en = +_lf.end || 0; } }
   // first-play day + listening span, as compact ints (days since oldestMs) — powers the Explore
   // "discovered" (newest first-play) + "span" (widest first→last) sorts. Dated scrobbles only;

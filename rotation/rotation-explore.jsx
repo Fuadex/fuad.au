@@ -143,6 +143,7 @@ function exploreRank(R, kind, f, limit = 40) {
   const hasYears = years && years.size > 0;
   const yearsPlays = (yp) => { if (!yp) return 0; let s = 0; for (const y of years) s += yp[y] || 0; return s; };
   const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
+  const regSet = f.reg && f.reg.size ? f.reg : null;   // active register filter (Set of REG_VOCAB labels), or null
   const hasCells = cells && cells.size > 0;
   const pass = f.pass && f.pass.active ? f.pass : null;   // theme/decade filter (filter-index); membership sets
   if (kind === "artists") {
@@ -154,6 +155,7 @@ function exploreRank(R, kind, f, limit = 40) {
       if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; }
       else if (!recInFam(R, a, fam)) continue;
       if (vocals && !vocalsPass(a.vx, vocals)) continue;   // vocals dimension (hides no-data artists)
+      if (regSet && !registerPass(a.rg, regSet)) continue;   // register dimension (hides no-data artists)
       if (f.attrSel) {  // attributes-lens brush/click: filter the FULL universe, not the top-40 slice
         if (f.attrSel.mode === "artists") { if (!f.attrSel.keys.has(a.id)) continue; }
         else if (!a.s.some(ix => f.attrSel.keys.has(ix))) continue;
@@ -200,7 +202,26 @@ function exploreRank(R, kind, f, limit = 40) {
   if (hasCells) src = src.filter(it => tsPlays(R, it.aid, cells) > 0);
   if (pass) src = src.filter(it => kind === "albums" ? pass.alb.has(it.id) : pass.trk(it.id));   // it.id = artSlug~titleSlug
   if (vocals) src = src.filter(it => { const e = R.expById[it.aid] || R.byId[it.aid]; return e && vocalsPass(e.vx, vocals); });   // vocals dimension
+  if (regSet) src = src.filter(it => { const e = R.expById[it.aid] || R.byId[it.aid]; return e && registerPass(e.rg, regSet); });   // register dimension (by the track/album artist's dominant register)
   return src.map(it => ({ ...it, kept: !!(R.byId[it.aid] || (R.expById && R.expById[it.aid])) })).sort((a, b) => b.value - a.value).slice(0, limit);
+}
+
+// ── register filter (the REGISTER dimension) ──
+// Per-artist dominant lyric "register" word, from build-data's play-weighted modal regIdx
+// (rec.rg = index into REG_VOCAB). Canonical vocab + hue map live in rotation-media.jsx
+// (~L1053/L1061) — re-declared here because buildless Babel scopes each file's top-level consts
+// separately. Keep these two in sync with that copy. neutral is chroma 0 (grey).
+const REG_VOCAB = ['anguished', 'bittersweet', 'bleak', 'tender', 'angry', 'defiant', 'joyful', 'neutral', 'bitter'];
+const REG_HUES = { anguished: 290, bleak: 250, bitter: 110, angry: 25, bittersweet: 320, tender: 350, neutral: 0, defiant: 45, joyful: 85 };
+// chip tint for register `name` (muted oklch, matching the media card's swatch: 0.55L / 0.13C).
+const regColor = (name) => `oklch(0.55 ${name === "neutral" ? 0 : 0.13} ${REG_HUES[name] || 0})`;
+// registerPass — an artist's dominant register (rec.rg idx) passes when its label is in the
+// selected Set. Single value per artist, so multi-select is OR (unlike Themes' per-track AND).
+// No dominant register (rg undefined) → hidden while any register chip is active (mirrors vocals).
+function registerPass(rg, regSet) {
+  if (!regSet || !regSet.size) return true;
+  if (rg == null) return false;
+  return regSet.has(REG_VOCAB[rg]);
 }
 
 // ── vocals filter (the VOCALS dimension) ──
@@ -243,6 +264,7 @@ function sliceArtists(R, f, applyZone) {
   const inYears = (yp) => { if (!yp) return false; for (const y of years) if (yp[y]) return true; return false; };
   const hasCells = cells && cells.size > 0;
   const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
+  const regSet = f.reg && f.reg.size ? f.reg : null;                 // active register filter (Set of REG_VOCAB labels)
   const pass = f.pass && f.pass.active ? f.pass : null;              // theme/decade filter (filter-index)
   const out = [];
   for (const a of R.EXPLORE) {
@@ -252,6 +274,7 @@ function sliceArtists(R, f, applyZone) {
     if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; } else if (!recInFam(R, a, fam)) continue;
     if (hasCells && !tsPlays(R, a.id, cells)) continue;
     if (vocals && !vocalsPass(a.vx, vocals)) continue;   // vocals dimension (hides no-data artists)
+    if (regSet && !registerPass(a.rg, regSet)) continue;   // register dimension (hides no-data artists)
     if (applyZone && moodZone && !inMoodZone(af, moodZone)) continue;
     out.push(a);
   }
@@ -270,6 +293,7 @@ function mediaRank(M, R, meta, kind, f, limit) {
   const tailIdx = kind === "albums" ? 5 : 4;
   const { years, fam, subIdx, cells, moodZone } = f;
   const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
+  const regSet = f.reg && f.reg.size ? f.reg : null;   // active register filter (Set of REG_VOCAB labels)
   const pass = f.pass && f.pass.active ? f.pass : null;   // theme/decade filter (filter-index)
   const hasCells = cells && cells.size > 0, noYear = !(years && years.size > 0);
   const playsInYear = (row, y) => { const t = row[tailIdx]; if (t == null) return 0; if (typeof t === "number") return t === y ? row[2] : 0; for (let i = 0; i < t.length; i += 2) if (t[i] === y) return t[i + 1]; return 0; };
@@ -282,6 +306,7 @@ function mediaRank(M, R, meta, kind, f, limit) {
     if (subIdx >= 0) { if (!rec || _filtSubs(rec).indexOf(subIdx) < 0) continue; }
     else if (fam != null) { if (!recInFam(R, rec, fam)) continue; }
     if (vocals) { const vx = (rec && rec.vx !== undefined) ? rec.vx : (R.byId[m.aid] && R.byId[m.aid].vx); if (!vocalsPass(vx, vocals)) continue; }   // vocals dimension
+    if (regSet) { const rg = (rec && rec.rg !== undefined) ? rec.rg : (R.byId[m.aid] && R.byId[m.aid].rg); if (!registerPass(rg, regSet)) continue; }   // register dimension (by artist's dominant register)
     if (moodZone) { const af = R.AUDIO[m.aid]; if (!af || !inMoodZone(af, moodZone)) continue; }
     if (f.attrSel) {
       if (f.attrSel.mode === "artists") { if (!f.attrSel.keys.has(m.aid)) continue; }
@@ -1414,6 +1439,7 @@ function ExploreView({ t, go, setPop, seed }) {
   const [grain, setGrain] = React.useState("artists");    // plot granularity for either lens: "subs" or "artists" (default artists; Fuad 2026-07-15)
   const [moodZone, setMoodZone] = React.useState(null);   // active valence×energy quadrant filter, or null
   const [themeSel, setThemeSel] = React.useState(() => new Set());   // selected theme bit-indices (AND within selection)
+  const [regSel, setRegSel] = React.useState(() => new Set());       // selected register labels (OR — an artist's ONE dominant register matches any selected)
   const [relDec, setRelDec] = React.useState(null);       // selected release DECADE (start year e.g. 1990), or null
   const [relYear, setRelYear] = React.useState(null);     // drilled release YEAR within relDec, or null
   const [filtReady, setFiltReady] = React.useState(!!window.ROTATION_FILTER);   // filter-index (themes + release years) loaded
@@ -1458,6 +1484,7 @@ function ExploreView({ t, go, setPop, seed }) {
       if (p.m && MOOD_ZONES.includes(p.m)) setMoodZone(p.m);
       if (p.c) setCells(new Set(p.c.split(".").map(Number).filter(n => n >= 0 && n < 168)));
       if (p.t) setThemeSel(new Set(p.t.split(".").map(Number).filter(n => n >= 0 && n < 28)));
+      if (p.rg) setRegSel(new Set(p.rg.split(".").filter(w => REG_VOCAB.includes(w))));
       if (p.rd && !isNaN(+p.rd)) setRelDec(+p.rd);
       if (p.ry && !isNaN(+p.ry)) setRelYear(+p.ry);
       if (p.k === "albums" || p.k === "tracks") setKind(p.k);
@@ -1487,6 +1514,7 @@ function ExploreView({ t, go, setPop, seed }) {
     if (moodZone) parts.push("m=" + moodZone);
     if (cells.size) parts.push("c=" + [...cells].sort((a, b) => a - b).join("."));
     if (themeSel.size) parts.push("t=" + [...themeSel].sort((a, b) => a - b).join("."));
+    if (regSel.size) parts.push("rg=" + [...regSel].join("."));
     if (relDec != null) parts.push("rd=" + relDec);
     if (relYear != null) parts.push("ry=" + relYear);
     if (kind !== "artists") parts.push("k=" + kind);
@@ -1496,7 +1524,7 @@ function ExploreView({ t, go, setPop, seed }) {
     if (attrY !== "popularity") parts.push("ay=" + attrY);
     const target = "#explore" + (parts.length ? "/" + parts.join(";") : "");
     if ((window.location.hash || "") !== target) window.history.replaceState(null, "", target);
-  }, [kind, years, fam, sub, moodZone, cells, themeSel, relDec, relYear, attrX, attrY, R]);
+  }, [kind, years, fam, sub, moodZone, cells, themeSel, regSel, relDec, relYear, attrX, attrY, R]);
 
   const yearKeys = React.useMemo(() => Object.keys(R.CLOCK_BY_YEAR).map(Number).sort((a, b) => a - b), [R]);
   const subNames = React.useMemo(() => R.SUBS.map(s => s.name), [R]);
@@ -1604,6 +1632,16 @@ function ExploreView({ t, go, setPop, seed }) {
     return cnt;
   }, [filtReady, relLo, relHi, themeMask]);
 
+  // register chip counts: EXPLORE artists whose DOMINANT register (rec.rg) is each label. Register
+  // is one value per artist (not per-track), so the count is simply artists-by-dominant-register —
+  // computed once from the universe, independent of the other filters (mirrors how the register row
+  // reads a per-artist rollup rather than the per-track filter-index the Themes row uses).
+  const regCounts = React.useMemo(() => {
+    const cnt = {}; for (const name of REG_VOCAB) cnt[name] = 0;
+    for (const a of R.EXPLORE) if (a.rg != null && REG_VOCAB[a.rg]) cnt[REG_VOCAB[a.rg]]++;
+    return cnt;
+  }, [R]);
+
   // decades bar: release-year play volume from filter-index, keyed by decade → { plays, byYear{} }.
   // Sized/tinted by plays (mirrors the Overview weather-card decade strip). Themes+genre unaffect
   // it (it's the era axis); it reflects the whole played library's release spread. Built once.
@@ -1675,19 +1713,19 @@ function ExploreView({ t, go, setPop, seed }) {
   const mediaItems = React.useMemo(() => {
     if (kind === "artists" || !mediaReady || !mediaArtMeta) return null;
     // fetch a lookahead past what's visible so "load more" has rows ready and `more` is detectable
-    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { years, fam, subIdx, cells, moodZone, vocals, pass, picks, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
-  }, [kind, mediaReady, mediaArtMeta, years, fam, subIdx, cells, moodZone, vocals, pass, visN, R, attrSel, lens, picks]);
+    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { years, fam, subIdx, cells, moodZone, vocals, reg: regSel, pass, picks, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
+  }, [kind, mediaReady, mediaArtMeta, years, fam, subIdx, cells, moodZone, vocals, regSel, pass, visN, R, attrSel, lens, picks]);
   // the attributes-lens selection now filters INSIDE the rank functions (full universe,
   // pre-slice) — the old post-filter ran on the top-40 and starved the list (Fuad 2026-07-14)
   const items = (kind !== "artists" && mediaItems) ? mediaItems.items
     // artists get the same visN+40 lookahead as mediaRank, so "load more" keeps expanding
     // past 40 instead of hitting the old hard cap (Fuad 2026-07-26)
-    : exploreRank(R, kind, { years, fam, subIdx, cells, sound, dir: sndDir, moodZone, vocals, pass, picks, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
+    : exploreRank(R, kind, { years, fam, subIdx, cells, sound, dir: sndDir, moodZone, vocals, reg: regSel, pass, picks, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
   // more rows to reveal? true whenever the ranked pool has more than we're currently showing —
   // works for artists (full list) AND albums/tracks (media pool), so load-more applies to all three.
   const more = items.length > visN;
   // a new slice resets the load-more expansion (the chosen 16/32/64 base stays)
-  React.useEffect(() => { setExtra(0); }, [kind, years, fam, subIdx, cells, moodZone, vocals, attrSel, themeMask, relLo, relHi, picks]);
+  React.useEffect(() => { setExtra(0); }, [kind, years, fam, subIdx, cells, moodZone, vocals, regSel, attrSel, themeMask, relLo, relHi, picks]);
   // how many artists the ACTIVE vocals filter drops purely for lacking vocals data — same "N without
   // data" honesty as the Liked audio sliders. Counts artists that pass every OTHER filter but have no
   // vx (kind === "artists" only; the note is about artists either way).
@@ -1719,13 +1757,13 @@ function ExploreView({ t, go, setPop, seed }) {
   // nothing about picks, so the intersection happens outside it rather than by threading a new key
   // through every caller.
   const moodActive = React.useMemo(() => {
-    const s = new Set(sliceArtists(R, { years, fam, subIdx, cells, vocals, pass }, false).map(a => a.id));
+    const s = new Set(sliceArtists(R, { years, fam, subIdx, cells, vocals, reg: regSel, pass }, false).map(a => a.id));
     if (!picks.size) return s;
     const n = new Set();
     for (const id of picks) if (s.has(id)) n.add(id);
     return n;
-  }, [R, years, fam, subIdx, cells, vocals, pass, picks]);
-  const moodSet = React.useMemo(() => sliceArtists(R, { years, fam, subIdx, cells, moodZone, vocals, pass }, true), [R, years, fam, subIdx, cells, moodZone, vocals, pass]);
+  }, [R, years, fam, subIdx, cells, vocals, regSel, pass, picks]);
+  const moodSet = React.useMemo(() => sliceArtists(R, { years, fam, subIdx, cells, moodZone, vocals, reg: regSel, pass }, true), [R, years, fam, subIdx, cells, moodZone, vocals, regSel, pass]);
   // ── granularity data (built once from the universe; independent of the active slice) ──
   // subMood: each subgenre bubbled at its members' play-weighted mean valence × energy.
   const subMood = React.useMemo(() => {
@@ -1744,8 +1782,10 @@ function ExploreView({ t, go, setPop, seed }) {
   const toggleMany = (list) => setCells(prev => { const n = new Set(prev); const all = list.every(c => n.has(c)); list.forEach(c => all ? n.delete(c) : n.add(c)); return n; });
 
   const toggleTheme = (b) => setThemeSel(prev => { const n = new Set(prev); n.has(b) ? n.delete(b) : n.add(b); return n; });
+  const toggleReg = (name) => setRegSel(prev => { const n = new Set(prev); n.has(name) ? n.delete(name) : n.add(name); return n; });
   const toggleDec = (d) => { setRelYear(null); setRelDec(x => x === d ? null : d); };
   const clearTheme = () => setThemeSel(new Set());
+  const clearReg = () => setRegSel(new Set());
   const clearRel = () => { setRelYear(null); setRelDec(null); };
 
   // terse multi-year label for the active-filter chip: up to 3 years show inline ("'13 '15 '19");
@@ -1763,6 +1803,7 @@ function ExploreView({ t, go, setPop, seed }) {
   if (cells.size) chips.push(["clock", cells.size + " slot" + (cells.size > 1 ? "s" : ""), () => setCells(new Set())]);
   if (vocals !== "any") chips.push(["vocals", ({ male: "male", female: "female", mixed: "mixed", nb: "non-binary", instrumental: "instrumental" })[vocals] || vocals, () => setVocals("any")]);
   if (themeSel.size) chips.push(["theme", [...themeSel].map(b => themeNames[b]).filter(Boolean).join(" · "), clearTheme]);
+  if (regSel.size) chips.push(["register", [...regSel].join(" · "), clearReg]);
   if (relLo != null) chips.push(["era", relYear != null ? relYear : relDec + "s", clearRel]);
   // one chip per picked artist rather than a single "3 artists" chip — you need to be able to drop
   // the wrong one without losing the other two.
@@ -1801,7 +1842,7 @@ function ExploreView({ t, go, setPop, seed }) {
               <span className="xp-flabel">Active</span>
               <div className="xp-chiprow">
                 {chips.map(([k, v, clr]) => <button key={k} className="xp-chip xp-chip-active" onClick={clr}><span className="xp-ck">{k}</span> {v} <span className="xp-x">✕</span></button>)}
-                <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYears(new Set()); setFam(null); setSub(null); setCells(new Set()); setMoodZone(null); setVocals("any"); clearTheme(); clearRel(); setPicks(new Set()); }}>clear all</button>
+                <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYears(new Set()); setFam(null); setSub(null); setCells(new Set()); setMoodZone(null); setVocals("any"); clearTheme(); clearReg(); clearRel(); setPicks(new Set()); }}>clear all</button>
               </div>
             </div>
           )}
@@ -1944,6 +1985,26 @@ function ExploreView({ t, go, setPop, seed }) {
           </div>
         </div>
         {themeSel.size > 0 && <div className="r-mono xp-note" style={{ marginTop: 6, marginBottom: 0 }}>matching {themeSel.size > 1 ? "ALL selected themes" : "the selected theme"} · artists/albums shown when ≥20% of their plays fit</div>}
+        {/* Register row — mirrors the Themes row's grammar (same .xp-frow/.xp-chiprow/.xp-chip
+            classes, same hide-zero-count + multi-select semantics). Each chip carries its REG_HUES
+            tint as a small swatch dot; register is ONE dominant value per artist, so multi-select
+            is OR (an artist matches if its dominant register is any selected). Composes with every
+            other filter and drives the left-surface charts exactly as Themes does. */}
+        <div className="xp-frow xp-td-themes" style={{ marginBottom: 0, marginTop: 12 }}>
+          <span className="xp-flabel">Register</span>
+          <div className="xp-chiprow">
+            {REG_VOCAB.map(name => {
+              const on = regSel.has(name);
+              const c = regCounts ? regCounts[name] : 0;
+              if (!on && !c) return null;               // hide zero-count chips (mirrors Themes)
+              return <button key={name} className="xp-chip" data-on={on} onClick={() => toggleReg(name)}
+                title={c.toLocaleString("en-US") + " artists"}>
+                <span aria-hidden="true" style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: regColor(name), marginRight: 1 }} />
+                {name}</button>;
+            })}
+          </div>
+        </div>
+        {regSel.size > 0 && <div className="r-mono xp-note" style={{ marginTop: 6, marginBottom: 0 }}>artists whose dominant lyric register is {regSel.size > 1 ? "ANY selected" : "the selected register"} · albums/tracks follow their artist</div>}
       </div>
 
       {/* "Mood over the years" arc removed from Explore (Fuad 2026-07-07) — candidate to move into
