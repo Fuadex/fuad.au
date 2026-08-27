@@ -819,19 +819,21 @@ function StoriesView({ t, go, seed }) {
         {I.MOOD && I.MOOD.arc && I.MOOD.arc.length >= 6 && (() => {
           const A = I.MOOD.arc;
           const last = A[A.length - 1], first = A[0];
-          // most recent year the dominant emotion changed
+          // most recent year the displayed register (or fallback emotion) changed — since the
+          // 2026-08-27 recalibration the copy names the whole-lyric REGISTER, NRC emotion as fallback
+          const yrLabel = y => y.reg || y.topEmo;
           let flipYear = null;
-          for (let i = A.length - 1; i > 0; i--) if (A[i].topEmo !== A[i - 1].topEmo) { flipYear = A[i]; break; }
+          for (let i = A.length - 1; i > 0; i--) if (yrLabel(A[i]) !== yrLabel(A[i - 1])) { flipYear = A[i]; break; }
           const darkest = A.reduce((m, y) => y.aud < m.aud ? y : m, A[0]);
           return (
             <section className="st-card st-hero">
               <div className="st-label">Emotional weather</div>
               <div className="st-big">
                 {flipYear === null
-                  ? <>Every year of your listening reads <em>{last.topEmo}</em>.</>
+                  ? <>Every year of your listening reads <em>{I.MOOD.topRegister || last.topEmo}</em>.</>
                   : flipYear === last
-                    ? <>After years of <em>{A[A.length - 2].topEmo}</em>, {last.year} reads <em>{last.topEmo}</em>.</>
-                    : <>Your listening's mood, year by year — now reading <em>{last.topEmo}</em>.</>}
+                    ? <>After years of <em>{yrLabel(A[A.length - 2])}</em>, {last.year} reads <em>{yrLabel(last)}</em>.</>
+                    : <>Your listening's mood, year by year — now reading <em>{I.MOOD.topRegister || yrLabel(last)}</em>.</>}
               </div>
               <div className="st-sub">
                 Play-weighted mood of everything you heard — how it <span style={{ color: "oklch(0.72 0.15 145)" }}>sounds</span> (Spotify)
@@ -855,10 +857,10 @@ function StoriesView({ t, go, seed }) {
               </div>
               <div style={{ display: "flex", gap: 4, marginTop: 14, flexWrap: "wrap" }}>
                 {A.map(y => (
-                  <span key={y.year} className="r-mono" title={`${y.year}: ${y.topEmo} (${Math.round(y.topEmoShare * 100)}% of scored plays)`}
+                  <span key={y.year} className="r-mono" title={`${y.year}: ${yrLabel(y)} (${Math.round(y.topEmoShare * 100)}% of scored plays)`}
                     style={{ fontSize: 9, padding: "3px 7px", borderRadius: 999, border: "1px solid var(--rule)",
                       color: flipYear && y.year >= flipYear.year ? "var(--accent)" : "var(--ink-faint)" }}>
-                    '{String(y.year).slice(2)} {y.topEmo}
+                    '{String(y.year).slice(2)} {yrLabel(y)}
                   </span>
                 ))}
               </div>
