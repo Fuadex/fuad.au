@@ -1142,8 +1142,8 @@ function TrackView({ id, go }) {
 
       {/* "in your rotation" outliers LEFT · sounds/reads RIGHT (the Genius blurb moved into the
           switcher below, so this slot now carries a personal audio read — Fuad 2026-07-06). */}
-      {(tasteStandouts.length > 0 || (audVal != null && lyrVal != null)) && (
-        <div className="tv-subrow" data-both={!!(tasteStandouts.length > 0 && audVal != null && lyrVal != null)}>
+      {(tasteStandouts.length > 0 || lyrVal != null) && (
+        <div className="tv-subrow" data-both={!!(tasteStandouts.length > 0 && lyrVal != null)}>
           {tasteStandouts.length > 0 && (
             <div className="tv-taste">
               <div className="tv-taste-h">Next to everything you play, it's…</div>
@@ -1158,13 +1158,15 @@ function TrackView({ id, go }) {
               </div>
             </div>
           )}
-          {(audVal != null && lyrVal != null) && (
+          {(lyrVal != null) && (
             <div className="tv-mood">
-              <div className="tv-mood-axis">
-                <span className="tv-mood-k">Sounds</span>
-                <div className="tv-mood-bar"><i style={{ width: audVal + "%", background: moodColor(audVal) }} /></div>
-                <span className="tv-mood-v">{audVal}</span>
-              </div>
+              {audVal != null && (
+                <div className="tv-mood-axis">
+                  <span className="tv-mood-k">Sounds</span>
+                  <div className="tv-mood-bar"><i style={{ width: audVal + "%", background: moodColor(audVal) }} /></div>
+                  <span className="tv-mood-v">{audVal}</span>
+                </div>
+              )}
               <div className="tv-mood-axis">
                 <span className="tv-mood-k">Reads</span>
                 <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: moodColor(lyrVal) }} /></div>
@@ -1183,17 +1185,21 @@ function TrackView({ id, go }) {
                   {(mood && mood[3] === 2 && reg)
                     ? <>Reads <b style={{ color: regColor }}>{reg}</b>; the sound carries it as triumph.</>
                     : (mood && mood[3] === 1 && reg)
-                      ? (divergent
-                          ? (audVal > lyrVal
-                              ? <>Sounds bright, reads <b style={{ color: regColor }}>{reg}</b>.</>
-                              : <>Sounds heavy, reads <b style={{ color: regColor }}>{reg}</b>.</>)
-                          : <>Sound and words agree — <b style={{ color: regColor }}>{reg}</b>.</>)
-                      : <>
-                          {divergent
-                            ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
-                            : <>Sound and words agree.</>}
-                          {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
-                        </>}
+                      ? (audVal == null
+                          ? <>Reads <b style={{ color: regColor }}>{reg}</b>.</>
+                          : (divergent
+                              ? (audVal > lyrVal
+                                  ? <>Sounds bright, reads <b style={{ color: regColor }}>{reg}</b>.</>
+                                  : <>Sounds heavy, reads <b style={{ color: regColor }}>{reg}</b>.</>)
+                              : <>Sound and words agree — <b style={{ color: regColor }}>{reg}</b>.</>))
+                      : (audVal == null
+                          ? (lyrEmo ? <>Lyric tone reads <b>{lyrEmo}</b>.</> : null)
+                          : <>
+                              {divergent
+                                ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
+                                : <>Sound and words agree.</>}
+                              {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
+                            </>)}
                   {/* PROVENANCE MARK (Fuad 2026-08-28): mood[3]===1 = valence re-scored by
                       the local whole-lyric model (the surgical pass that caught bright-lexical
                       masks over dark songs); unmarked rows are plain NRC lexicon. Lives in the
@@ -1298,7 +1304,7 @@ function TrackView({ id, go }) {
         </div>
       ) : (
         <div className="r-card" style={{ padding: "16px 18px", marginBottom: "var(--gap)" }}>
-          <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>No audio features matched for this track.</div>
+          <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)" }}>No audio features or lyric read matched for this track.</div>
           {data.series.length > 0 && <div style={{ marginTop: 10 }}><Sparkline series={data.series} hue={hue} /></div>}
           {/* no audio features → no "Where it sits" card, so themes land here instead (2026-08-16) */}
           {themes && themes.length > 0 && (
