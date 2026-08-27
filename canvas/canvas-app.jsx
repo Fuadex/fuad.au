@@ -1091,49 +1091,6 @@ function Wall({ go, styleIds }) {
           title="only works with a study tour — a walked close reading of the surface">
           <span className="cv-f-full">⤢ tour</span><span className="cv-f-tiny">⤢</span>
         </button>
-        {/* DESIGN YOUR OWN WALL (Fuad 2026-08-27) — one search replaces the two superlong Museum
-            and Artist dropdowns. Type to get suggestions across four types (artist · museum · city ·
-            work); each pick becomes a token chip. Filters compose as you add them, "clear all" resets
-            the tokens only. Work tokens PIN — the picture always shows and leads the wall. */}
-        <span className="cv-omni" ref={searchWrapRef}>
-          {tokens.map(t => (
-            <button key={t.type + t.id} className="cv-omni-tok" data-type={t.type}
-              onClick={() => removeToken(t.type, t.id)}
-              title={"remove this " + (t.type === "work" ? "pin" : t.type)}>
-              <span className="cv-omni-tok-type">{t.type === "work" ? "pin" : t.type}</span>
-              <span className="cv-omni-tok-label">{t.label}</span>
-              <span className="cv-omni-tok-x" aria-hidden="true">×</span>
-            </button>
-          ))}
-          <input className="cv-omni-input" type="search" value={searchQ}
-            placeholder={tokens.length ? "add another…" : "design your wall — artist, museum, city, work…"}
-            onChange={e => { setSearchQ(e.target.value); setSearchSel(0); }}
-            onKeyDown={e => {
-              if (e.key === "Escape") { setSearchQ(""); return; }
-              if (e.key === "Backspace" && !searchQ && tokens.length) { const last = tokens[tokens.length - 1]; removeToken(last.type, last.id); return; }
-              if (!suggest.length) return;
-              if (e.key === "ArrowDown") { e.preventDefault(); setSearchSel(s => Math.min(s + 1, suggest.length - 1)); }
-              else if (e.key === "ArrowUp") { e.preventDefault(); setSearchSel(s => Math.max(s - 1, 0)); }
-              else if (e.key === "Enter") { e.preventDefault(); const o = suggest[searchSel]; if (o) { addToken(o); setSearchQ(""); setSearchSel(0); } }
-            }}
-            autoComplete="off" autoCorrect="off" spellCheck="false" />
-          {searchQ.trim() && suggest.length > 0 && (
-            <div className="cv-omni-drop">
-              {suggest.map((o, i) => (
-                <div key={o.type + o.id} className={"cv-omni-sugg" + (i === searchSel ? " cv-omni-sugg-sel" : "")}
-                  onMouseEnter={() => setSearchSel(i)}
-                  onMouseDown={e => { e.preventDefault(); addToken(o); setSearchQ(""); setSearchSel(0); }}>
-                  <span className="cv-omni-sugg-type" data-type={o.type}>{o.type}</span>
-                  <span className="cv-omni-sugg-label">{o.label}</span>
-                  {o.sub && <span className="cv-omni-sugg-sub">{o.sub}</span>}
-                </div>
-              ))}
-            </div>
-          )}
-          {tokens.length > 0 && (
-            <button className="cv-omni-clear" onClick={clearTokens} title="clear every search token">clear all</button>
-          )}
-        </span>
         <select value={sort === "colour" ? "hang" : sort} onChange={unhang(e => setSort(e.target.value))}>
           <option value="hang">hang order</option>
           <option value="year">by year</option>
@@ -1171,6 +1128,49 @@ function Wall({ go, styleIds }) {
               different one. Same ✕ idiom the style and era rows use. */}
           {sort === "colour" && (
             <button className="cv-pick-off" onClick={unhang(() => setSort("hang"))} title="stop sorting by colour">✕</button>
+          )}
+        </span>
+        {/* DESIGN YOUR OWN WALL (Fuad 2026-08-27) — one search replaces the two superlong Museum
+            and Artist dropdowns. Type to get suggestions across four types (artist · museum · city ·
+            work); each pick becomes a token chip. Filters compose as you add them, "clear all" resets
+            the tokens only. Work tokens PIN — the picture always shows and leads the wall. */}
+        <span className="cv-omni" ref={searchWrapRef}>
+          <input className="cv-omni-input" type="search" value={searchQ}
+            placeholder={tokens.length ? "add another…" : "design your wall — artist, museum, city, work…"}
+            onChange={e => { setSearchQ(e.target.value); setSearchSel(0); }}
+            onKeyDown={e => {
+              if (e.key === "Escape") { setSearchQ(""); return; }
+              if (e.key === "Backspace" && !searchQ && tokens.length) { const last = tokens[tokens.length - 1]; removeToken(last.type, last.id); return; }
+              if (!suggest.length) return;
+              if (e.key === "ArrowDown") { e.preventDefault(); setSearchSel(s => Math.min(s + 1, suggest.length - 1)); }
+              else if (e.key === "ArrowUp") { e.preventDefault(); setSearchSel(s => Math.max(s - 1, 0)); }
+              else if (e.key === "Enter") { e.preventDefault(); const o = suggest[searchSel]; if (o) { addToken(o); setSearchQ(""); setSearchSel(0); } }
+            }}
+            autoComplete="off" autoCorrect="off" spellCheck="false" />
+          {tokens.map(t => (
+            <button key={t.type + t.id} className="cv-omni-tok" data-type={t.type}
+              onClick={() => removeToken(t.type, t.id)}
+              title={"remove this " + (t.type === "work" ? "pin" : t.type)}>
+              <span className="cv-omni-tok-type">{t.type === "work" ? "pin" : t.type}</span>
+              <span className="cv-omni-tok-label">{t.label}</span>
+              <span className="cv-omni-tok-x" aria-hidden="true">×</span>
+            </button>
+          ))}
+          {tokens.length > 0 && (
+            <button className="cv-omni-clear" onClick={clearTokens} title="clear every search token">clear all</button>
+          )}
+          {searchQ.trim() && suggest.length > 0 && (
+            <div className="cv-omni-drop">
+              {suggest.map((o, i) => (
+                <div key={o.type + o.id} className={"cv-omni-sugg" + (i === searchSel ? " cv-omni-sugg-sel" : "")}
+                  onMouseEnter={() => setSearchSel(i)}
+                  onMouseDown={e => { e.preventDefault(); addToken(o); setSearchQ(""); setSearchSel(0); }}>
+                  <span className="cv-omni-sugg-type" data-type={o.type}>{o.type}</span>
+                  <span className="cv-omni-sugg-label">{o.label}</span>
+                  {o.sub && <span className="cv-omni-sugg-sub">{o.sub}</span>}
+                </div>
+              ))}
+            </div>
           )}
         </span>
         <span className="cv-count">{Math.min(visN, shown.length)} of {shown.length}</span>
@@ -4914,12 +4914,14 @@ function Portrait({ go }) {
       <div className="cv-p-cols">
         <div className="cv-p-sec">
           <div className="cv-p-lbl">Where your love lives — movements</div>
-          {data.movements.map(([m, n]) => (
+          {/* the first row spells "+N unseen" once, teaching the bare "+N"s below it
+              (Fuad 2026-08-27: the bare green numbers read confusing) */}
+          {data.movements.map(([m, n], mi) => (
             <div className="cv-p-bar cv-p-barlink" key={m} onClick={() => go("wall", movSlug(m))}
-              title={`see every work on the wall by artists working in ${m}`}>
+              title={`${n} loved works you've met · ${data.movChase[m] || 0} works you haven't seen yet — click for the wall`}>
               <span className="cv-p-barlbl">{m}</span>
               <span className="cv-p-bartrack"><i style={{ width: (n / maxMov * 100) + "%" }} /></span>
-              <span className="cv-p-barn">{n}{data.movChase[m] > 0 && <em className="cv-p-barchase">+{data.movChase[m]}</em>}</span>
+              <span className="cv-p-barn">{n}{data.movChase[m] > 0 && <em className="cv-p-barchase">+{data.movChase[m]}{mi === 0 ? " unseen" : ""}</em>}</span>
             </div>
           ))}
           {/* chase-only movements (Fuad 2026-08-27): big on the horizon, invisible in loved-met.

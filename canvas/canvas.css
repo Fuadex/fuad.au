@@ -433,7 +433,7 @@ a { color: inherit; }
   padding: 6px 10px; cursor: pointer; }
 .cv-omni-clear:hover { color: var(--ink) !important; border-color: var(--ink-faint); }
 /* suggestion panel — same paper/shadow/rows as the header search drop */
-.cv-omni-drop { position: absolute; top: calc(100% + 6px); left: 0; width: min(320px, 88vw);
+.cv-omni-drop { position: absolute; top: calc(100% + 6px); right: 0; width: min(320px, 88vw);
   background: #fbf6ec; border: 1px solid var(--rule); border-radius: 10px;
   box-shadow: 0 14px 40px rgba(40,28,14,.22); z-index: 200; overflow: hidden; }
 .cv-omni-sugg { display: flex; align-items: baseline; gap: 8px; padding: 8px 12px; cursor: pointer; transition: background .1s; }
@@ -1173,16 +1173,18 @@ a { color: inherit; }
 .cv-p-centbar-chase + .cv-p-centbar { border-radius: 0; }
 .cv-p-key { display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: oklch(0.55 0.12 46); vertical-align: middle; margin-right: 3px; }
 .cv-p-key-chase { background: oklch(0.52 0.09 150 / .6); }
-/* GREEN = UNDISCOVERED — chase register carried into the movements bars and the "Calling from afar"
-   list (Fuad 2026-08-27), the same oklch(0.52 0.09 150) family as the century chase bar / museums
-   "+N to see" chip. "+N" addendum after a loved-met movement's count; a full green bar + green count
-   for the chase-only movements; a green-tinted heading + chip border for the calling list. */
-.cv-p-barchase { font-style: normal; margin-left: 3px; color: oklch(0.52 0.09 150); }
-.cv-p-bartrack i.cv-p-bartrack-chase { background: oklch(0.52 0.09 150 / .55); }
-.cv-p-barn-chase { color: oklch(0.52 0.09 150); }
-.cv-p-lbl-chase { color: oklch(0.52 0.09 150); }
-.cv-p-foundchip-chase { border-color: oklch(0.52 0.09 150 / .3); }
-.cv-p-foundchip-chase:hover { border-color: oklch(0.52 0.09 150 / .6); background: oklch(0.52 0.09 150 / .06); }
+/* Chase register in Portrait — GREY with a whisper of the undiscovered-green hue (Fuad
+   2026-08-27: "the + green numbers are just confusing… maybe a greyer accent"). The map /
+   museums keep the full green; here the horizon speaks at background volume so it can't
+   compete with the biography this page is about. "+N" addendum after a loved-met movement's
+   count; a muted bar + count for chase-only movements; heading + chip border for the
+   calling list. */
+.cv-p-barchase { font-style: normal; margin-left: 3px; color: oklch(0.55 0.03 150); }
+.cv-p-bartrack i.cv-p-bartrack-chase { background: oklch(0.55 0.03 150 / .45); }
+.cv-p-barn-chase { color: oklch(0.55 0.03 150); }
+.cv-p-lbl-chase { color: oklch(0.55 0.03 150); }
+.cv-p-foundchip-chase { border-color: oklch(0.55 0.03 150 / .35); }
+.cv-p-foundchip-chase:hover { border-color: oklch(0.55 0.03 150 / .6); background: oklch(0.55 0.03 150 / .06); }
 .cv-p-centlbl { font: 500 8px/1 var(--mono); color: var(--ink-faint); margin-top: 5px; }
 /* motif chips — informational, not filters; the count rides along quietly */
 .cv-p-motifs { display: flex; flex-wrap: wrap; gap: 8px; }
