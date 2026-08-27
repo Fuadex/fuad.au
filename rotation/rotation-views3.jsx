@@ -790,7 +790,7 @@ function StoriesView({ t, go, seed }) {
               </div>
               <div className="st-sub">
                 Across {fmt(M.tracks)} tracks scored on both axes, {M.happyDarkCount} are bright melodies wrapped
-                around bleak words{M.darkHappyCount ? <>, and {M.darkHappyCount} are the reverse — heavy sound, hopeful text</> : null}.
+                around {M.happyDarkReg ? <>mostly <b style={{ color: "var(--ink)" }}>{M.happyDarkReg}</b> words</> : "bleak words"}{M.darkHappyCount ? <>, and {M.darkHappyCount} are the reverse — heavy sound, hopeful text</> : null}.
               </div>
               {M.happyDark.length >= 3 && (
                 <>

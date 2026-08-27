@@ -1022,7 +1022,9 @@ function TrackView({ id, go }) {
   const f = data.feat;
   // lyric mood (NRC) + "seen live" — both keyed by the same slug id TrackView routes by
   const EMO_NAMES = ["anger", "anticipation", "disgust", "fear", "joy", "sadness", "surprise", "trust"];
-  const mood = (window.ROTATION_MOOD && window.ROTATION_MOOD[id]) || null; // [lyrValence, emoIdx, matched]
+  // Row shape: [valence, emoIdx, words, flag?, regIdx?] — flag 1 = calibrated whole-lyric re-score,
+  // flag 2 = cathartic (dark register, NRC valence kept); regIdx = REG_VOCAB index (absent on legacy rows).
+  const mood = (window.ROTATION_MOOD && window.ROTATION_MOOD[id]) || null; // [valence, emoIdx, words, flag?, regIdx?]
   const about = (window.ROTATION_ABOUT && window.ROTATION_ABOUT[id]) || null; // [excerpt, geniusId]
   const audVal = f ? f[5] : null;    // Spotify audio valence ("sounds")
   const lyrVal = mood ? mood[0] : null;  // NRC lyric valence ("reads")

@@ -268,8 +268,10 @@ function OvWeatherCard({ R, go }) {
             words and was most of this card's height. The bars carry the reading; the mood word is
             the one thing they cannot show, so it moves into the footer line. */}
         {/* footer hint (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
+        {/* dominant REGISTER (play-weighted mode over rows carrying regIdx) — the human mood word;
+            falls back to the NRC emotion when no register data is present. */}
         <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 7, letterSpacing: ".06em" }}>
-          last {N.days} days{N.emo ? <> · mostly <b style={{ color: "var(--ink-soft)", fontWeight: 600 }}>{N.emo}</b></> : null}</div>
+          last {N.days} days{(M.topRegister || N.emo) ? <> · mostly <b style={{ color: "var(--ink-soft)", fontWeight: 600 }}>{M.topRegister || N.emo}</b></> : null}</div>
       </div>
     </div>
   );

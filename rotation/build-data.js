@@ -2787,8 +2787,15 @@ let LANGUAGE = null;
 // carrying bleak words, or a dirge with hopeful ones. Play-weighted; needs ≥3 emotive words to
 // have been scored. NRC emotion index: 0 anger 1 anticipation 2 disgust 3 fear 4 joy 5 sadness
 // 6 surprise 7 trust.
-const GENIUS_MOOD = _readJson("genius-mood.json"); // key → [lyricValence0-100, domEmotionIdx, emotiveWords]
+// Row shape: [valence 0–100, emoIdx (NRC), emotiveWords, flag?, regIdx?]
+//   flag 1 = whole-lyric "calibrated" re-score; flag 2 = "cathartic" (dark-register work whose
+//   NRC lexical valence is deliberately KEPT, so its stored valence scatters bright→dark).
+//   regIdx = index into REG_VOCAB (the human "register" word); absent on legacy 4-element rows.
+const GENIUS_MOOD = _readJson("genius-mood.json"); // key → [lyricValence0-100, domEmotionIdx, emotiveWords, flag?, regIdx?]
 const MOOD_EMO = ["anger", "anticipation", "disgust", "fear", "joy", "sadness", "surprise", "trust"];
+// Register vocabulary for calibrated/cathartic rows (row[4] = index). ORDER IS THE EMIT'S —
+// .sptmp/nrc-audit/emit_v5.js — do not reorder. (mirrors rotation-media.jsx REG_VOCAB.)
+const MOOD_REG = ['anguished', 'bittersweet', 'bleak', 'tender', 'angry', 'defiant', 'joyful', 'neutral', 'bitter'];
 let MOOD = null;
 {
   const rows = [];
@@ -2804,15 +2811,16 @@ let MOOD = null;
       const ym = trackYear.get(key);
       if (ym) for (const [y, c] of ym) {
         let a = yAcc.get(y);
-        if (!a) { a = { p: 0, lyrW: 0, lyrP: 0, audW: 0, audP: 0, emo: new Array(8).fill(0) }; yAcc.set(y, a); }
+        if (!a) { a = { p: 0, lyrW: 0, lyrP: 0, audW: 0, audP: 0, emo: new Array(8).fill(0), reg: new Array(MOOD_REG.length).fill(0) }; yAcc.set(y, a); }
         a.p += c;
-        if (hasLyr) { a.lyrW += m[0] * c; a.lyrP += c; if (m[1] >= 0) a.emo[m[1]] += c; }
+        if (hasLyr) { a.lyrW += m[0] * c; a.lyrP += c; if (m[1] >= 0) a.emo[m[1]] += c; if (m[4] != null) a.reg[m[4]] += c; }
         if (hasAud) { a.audW += td[5] * c; a.audP += c; }
       }
     }
     if (!hasLyr || !hasAud) continue;
     rows.push({ artist, title, id: sk, artistId: slug(artist), hue: hueFor(artist), plays,
-      aud: td[5], lyr: m[0], emo: m[1] >= 0 ? MOOD_EMO[m[1]] : null });
+      aud: td[5], lyr: m[0], emo: m[1] >= 0 ? MOOD_EMO[m[1]] : null,
+      flag: m[3] != null ? m[3] : null, reg: m[4] != null ? m[4] : null });
   }
   // arc rows (skip thin years)
   const MOOD_ARC = [...yAcc.entries()].sort((a, b) => a[0] - b[0])
@@ -2820,20 +2828,43 @@ let MOOD = null;
     .map(([year, a]) => {
       const mix = a.emo.map((c, i) => [c, i]).sort((x, y) => y[0] - x[0]);
       const emoTot = a.emo.reduce((s, c) => s + c, 0);
+      const regMix = a.reg.map((c, i) => [c, i]).sort((x, y) => y[0] - x[0]);
+      const regTot = a.reg.reduce((s, c) => s + c, 0);
       return { year, plays: a.p,
         lyr: Math.round(a.lyrW / a.lyrP), aud: Math.round(a.audW / a.audP),
         topEmo: emoTot ? MOOD_EMO[mix[0][1]] : null,
-        topEmoShare: emoTot ? Math.round(mix[0][0] / emoTot * 100) / 100 : 0 };
+        topEmoShare: emoTot ? Math.round(mix[0][0] / emoTot * 100) / 100 : 0,
+        reg: regTot ? MOOD_REG[regMix[0][1]] : null };
     });
   if (rows.length >= 50) {
     const totPlays = rows.reduce((s, r) => s + r.plays, 0);
     const wavg = (f) => Math.round(rows.reduce((s, r) => s + f(r) * r.plays, 0) / totPlays);
     const trim = (arr) => arr.map(r => ({ id: r.id, artist: r.artist, title: r.title, artistId: r.artistId, hue: r.hue, plays: r.plays, aud: r.aud, lyr: r.lyr, emo: r.emo }));
-    // sounds happy / reads dark = high audio valence, low lyric valence (and the inverse)
-    const happyDark = rows.filter(r => r.aud >= 58 && r.lyr <= 38 && r.plays >= 8).sort((a, b) => (b.aud - b.lyr) - (a.aud - a.lyr) || b.plays - a.plays);
-    const darkHappy = rows.filter(r => r.aud <= 38 && r.lyr >= 58 && r.plays >= 8).sort((a, b) => (b.lyr - b.aud) - (a.lyr - a.aud) || b.plays - a.plays);
+    // sounds happy / reads dark = high audio valence, low lyric valence (and the inverse).
+    // 2026-08-27 recalibration: the lyric model re-scored, collapsing the middle band (39–57:
+    // 31.7%→9.7%) and dropping the median 40→30, so the old lyr<=38 / lyr>=58 gates skewed to
+    // 64%/24% eligibility. Regated on the NEW quartiles (lyr<=22 / lyr>=45) to restore ~26%/~27%.
+    // Reads-dark classification is flag-aware: a flag-2 "cathartic" row is a dark-register work
+    // whose bright NRC value is deliberately kept, so it counts as bleak WORDS regardless of lyr,
+    // and can never sit on the hopeful-text (darkHappy) side. Classification only — stored lyr
+    // (used for avgLyr/arc means) is untouched.
+    const readsDark = (r) => r.lyr <= 22 || r.flag === 2;   // 2026-08-27 recalibration: quartile anchor (lyr<=22 ≈ p25, ~26% eligible) restores the intended tail
+    const readsBright = (r) => r.lyr >= 45 && r.flag !== 2; // 2026-08-27 recalibration: quartile anchor (lyr>=45 ≈ p75, ~27% eligible); cathartic rows excluded
+    const happyDark = rows.filter(r => r.aud >= 58 && readsDark(r) && r.plays >= 8).sort((a, b) => (b.aud - b.lyr) - (a.aud - a.lyr) || b.plays - a.plays);
+    const darkHappy = rows.filter(r => r.aud <= 38 && readsBright(r) && r.plays >= 8).sort((a, b) => (b.lyr - b.aud) - (a.lyr - a.aud) || b.plays - a.plays);
     const emoC = {};
     for (const r of rows) if (r.emo) emoC[r.emo] = (emoC[r.emo] || 0) + r.plays;
+    // play-weighted modal REGISTER over rows carrying regIdx (the human "register" word the bars
+    // can't show); null when no row carries col4, so the card falls back to the NRC emotion.
+    const regC = new Array(MOOD_REG.length).fill(0);
+    for (const r of rows) if (r.reg != null) regC[r.reg] += r.plays;
+    const regTop = regC.reduce((s, c) => s + c, 0) ? MOOD_REG[regC.indexOf(Math.max(...regC))] : null;
+    // modal register of a row set (play-weighted), for the Story sub-line; null when none carry col4.
+    const regModeOf = (set) => {
+      const c = new Array(MOOD_REG.length).fill(0);
+      for (const r of set) if (r.reg != null) c[r.reg] += r.plays;
+      return c.reduce((s, n) => s + n, 0) ? MOOD_REG[c.indexOf(Math.max(...c))] : null;
+    };
     // "emotional weather NOW" — last 90 days of scrobbles, mean sounds/reads + dominant
     // emotion, to sit against the library averages on the Overview. CI rebuilds daily.
     let NOW_MOOD = null;
@@ -2858,6 +2889,7 @@ let MOOD = null;
       happyDark: trim(happyDark.slice(0, 10)), darkHappy: trim(darkHappy.slice(0, 10)),
       happyDarkCount: happyDark.length, darkHappyCount: darkHappy.length,
       emotions: Object.entries(emoC).sort((a, b) => b[1] - a[1]).map(([emo, plays]) => ({ emo, plays })),
+      topRegister: regTop, happyDarkReg: regModeOf(happyDark),
       arc: MOOD_ARC.length >= 6 ? MOOD_ARC : null,
       now: NOW_MOOD,
     };
