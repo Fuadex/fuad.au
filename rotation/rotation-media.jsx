@@ -627,7 +627,8 @@ function AlbumView({ id, go }) {
 
       {/* WORDS block — album "In its own words", relocated OUT of PortraitCard (Fuad 2026-07-17) to
           sit directly under "The record, as released" as its own compact ww- block. */}
-      <AlbumWordsBlock id={id} />
+      {/* words-layer pilot phased out 2026-08-27 (Fuad: "the reads all come from lyrics anyway") — component + data kept for possible repurpose */}
+      {/* <AlbumWordsBlock id={id} /> */}
 
       {/* Fallback ONLY when the album has no MB spine (so "The record, as released" didn't render):
           keep "Tracks you've played" as a standalone card so the tracklist isn't lost. */}
@@ -1214,7 +1215,8 @@ function TrackView({ id, go }) {
       <BlurbSwitcher id={id} about={about} />
 
       {/* PILOT: the words-annotation overlay — sits with the reads, gated on words-layer.js carrying this id */}
-      <TrackWords id={id} />
+      {/* words-layer pilot phased out 2026-08-27 (Fuad: "the reads all come from lyrics anyway") — component + data kept for possible repurpose */}
+      {/* <TrackWords id={id} /> */}
 
       {f ? (
         <div className="tv-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: "var(--gap)", marginBottom: "var(--gap)" }}>

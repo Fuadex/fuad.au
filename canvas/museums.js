@@ -96,5 +96,12 @@ window.CANVAS_MUSEUMS = [
   {id: "neue-kunst-karlsruhe",name: "Museum für Neue Kunst Karlsruhe",city: "Karlsruhe",country: "de",qid: "Q1495745",kind: "art",visits: ["2026-05-07"],note: ""},
   {id: "tubingen-antiquities",name: "Collection of antique and post-antique coins and medals of the Institute of Classical Archaeology, University of Tübingen",city: "Tübingen",country: "de",qid: "Q76632158",kind: "art",visits: ["2026-05-06"],note: ""},
   {id: "warsaw-old-town-centre",name: "Warsaw's Old Town Heritage Interpretation Center",city: "Warsaw",country: "pl",qid: "Q11689613",kind: "art",visits: ["2023-01-04"],note: ""},
-  {id: "aus-performing-arts",name: "Australian Performing Arts Collection",city: "Melbourne",country: "au",qid: "Q7168281",kind: "art",visits: ["2024-05-01"],note: ""}
+  {id: "aus-performing-arts",name: "Australian Performing Arts Collection",city: "Melbourne",country: "au",qid: "Q7168281",kind: "art",visits: ["2024-05-01"],note: ""},
+  {id: "ycba",name: "Yale Center for British Art",city: "New Haven",country: "us",qid: "Q6352575",kind: "art",visits: [],lat: 41.307908,lng: -72.930906,note: "The Mellon Turner/Constable mass — 21 wish works resolve here."},
+  {id: "mfa-boston",name: "Museum of Fine Arts Boston",city: "Boston",country: "us",qid: "Q49133",kind: "art",visits: [],lat: 42.339444444444446,lng: -71.09416666666667,note: "Not visited — holds wish works (added 2026-08-27)."},
+  {id: "pushkin-moscow",name: "Pushkin Museum of Fine Arts",city: "Moscow",country: "ru",qid: "Q4872",kind: "art",visits: [],lat: 55.74702868,lng: 37.60602901,note: "Not visited — holds wish works (added 2026-08-27)."},
+  {id: "nasjonalmuseet-oslo",name: "Nasjonalmuseet",city: "Oslo",country: "no",qid: "Q1132918",kind: "art",visits: [],lat: 59.91166666666667,lng: 10.729166666666666,note: "Not visited — holds wish works (added 2026-08-27)."},
+  {id: "getty-center",name: "J. Paul Getty Museum",city: "Los Angeles",country: "us",qid: "Q731126",kind: "art",visits: [],lat: 34.0775,lng: -118.475,note: "Not visited — holds wish works (added 2026-08-27)."},
+  {id: "kroller-muller",name: "Kröller-Müller Museum",city: "Otterlo",country: "nl",qid: "Q1051928",kind: "art",visits: [],lat: 52.095833333333,lng: 5.8169444444444,note: "Not visited — holds wish works (added 2026-08-27)."},
+  {id: "rijksmuseum",name: "Rijksmuseum",city: "Amsterdam",country: "nl",qid: "Q190804",kind: "art",visits: [],lat: 52.36,lng: 4.885277777777778,note: "Not visited — holds wish works (added 2026-08-27)."}
 ];

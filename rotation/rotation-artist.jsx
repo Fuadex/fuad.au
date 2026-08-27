@@ -1336,7 +1336,8 @@ function PortraitCard({ id, alt, showWords = true, go }) {
               )}
             </div>
           )}
-          {w && (
+          {/* words-layer pilot phased out 2026-08-27 (Fuad: "the reads all come from lyrics anyway") — component + data kept for possible repurpose */}
+          {/* {w && (
             <div className="ww-own">
               <div className="ww-own-h r-mono">In its own words</div>
               {w.phrases && w.phrases.length > 0 && (
@@ -1346,7 +1347,7 @@ function PortraitCard({ id, alt, showWords = true, go }) {
               )}
               <WordsWeatherBars v={w.v} a={w.a} x={w.x} />
             </div>
-          )}
+          )} */}
           {/* FOOTER (Fuad 2026-08-19): the module's bottom row — fact CHIPS pinned bottom-LEFT,
               via-source flick pinned bottom-RIGHT. Either side may be absent (a portrait with facts
               but nothing to flick to, or the reverse) and space-between still parks the survivor on
