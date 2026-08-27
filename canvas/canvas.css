@@ -375,6 +375,11 @@ a { color: inherit; }
 .cv-filters select:hover { color: var(--ink); border-color: var(--ink-faint); }
 .cv-filters select:focus-visible { outline: none; border-color: var(--ink); color: var(--ink); }
 .cv-filters select option { font: 400 13px/1.4 var(--sans); text-transform: none; letter-spacing: 0; color: var(--ink); background: var(--paper); }
+/* RESHUFFLE (Fuad 2026-08-27) — a compact icon button sitting beside the sort select, only when the
+   hang order is live. Inherits the .cv-filters button pill (rule, ink-faint, hover) but drops the
+   uppercase/letter-spacing that would distort the lone ↻ glyph and squares the padding to an icon. */
+.cv-filters button.cv-reshuffle { letter-spacing: 0; text-transform: none; padding: 7px 9px; font-size: 13px; line-height: 1; }
+.cv-filters button.cv-reshuffle:hover { border-color: var(--ink-faint); }
 .cv-count { margin-left: auto; font: 500 10.5px/1 var(--mono); letter-spacing: .08em; color: var(--ink-faint); }
 /* the glyph-only forms of the mark filters exist for phones only */
 .cv-f-tiny { display: none; }

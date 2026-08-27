@@ -610,9 +610,16 @@ function RevealChunks({ items, initial = 24, step = 24, render }) {
 
 function useRoute() {
   const parse = () => {
-    const h = (location.hash || "#/").replace(/^#\/?/, "");
+    // A wall permalink hangs its filter state off the route as a `?query` (see wallStateFromHash):
+    // #/wall/impressionism?a:monet&sort=year. The router splits the PATH on "/", so the query has
+    // to come off FIRST — otherwise "impressionism?a:monet" lands in `id` and corrupts the style
+    // slug. `query` is handed back raw for the Wall to read; every other surface ignores it.
+    const raw = (location.hash || "#/").replace(/^#\/?/, "");
+    const qi = raw.indexOf("?");
+    const h = qi === -1 ? raw : raw.slice(0, qi);
+    const query = qi === -1 ? "" : raw.slice(qi + 1);
     const segs = h.split("/");
-    return { view: segs[0] || "wall", id: segs[1] || null, part: segs[2] ? (parseInt(segs[2], 10) || 1) : 1 };
+    return { view: segs[0] || "wall", id: segs[1] || null, part: segs[2] ? (parseInt(segs[2], 10) || 1) : 1, query };
   };
   const [route, setRoute] = useState(parse);
   useEffect(() => {
@@ -789,7 +796,18 @@ const STYLE_CHIPS = 12;
 // Complexity: O(n log n) for the initial hue sort of each movement bucket + O(n·anchors) greedy fill.
 // We bucket non-anchors by movement ONCE and keep each bucket hue-sorted, so segment assignment is a
 // pointer-walk over buckets, never an O(n²) scan of the full ~2.7k list.
-function salonOrder(list) {
+// PRNG: reuses the file's existing `mulberry32` (declared with the Today's-Hang helpers further
+// down — same seed → same wall; module-scope const, evaluated before any render runs). Seed 0
+// never reshuffles (every call site guards on seed), so the default hang is byte-identical.
+
+function salonOrder(list, seed = 0) {
+  // RESHUFFLE (Fuad approved seeded shuffle, 2026-08-27). `seed` deterministically varies the hang
+  // WITHOUT touching the salon logic: seed 0 takes every default-preserving branch below, so the
+  // out-of-the-box wall is unchanged. A non-zero seed (a) rotates each movement bucket's starting
+  // point and (b) shifts which segments get the leftover slack — two knobs that reshuffle the
+  // *arrangement* while keeping the same anchors, spacing target and kin logic. Anchors stay
+  // hue-sorted (a stable spine); only the passages between them re-cast.
+  const rng = seed ? mulberry32(seed >>> 0) : null;
   // image-less works never compete for anchor/affinity slots — they append at the very end, in their
   // own flat weight/hue order, so the wall opens and stays on pictures for as long as it can.
   const imgd = list.filter(w => w.imgGrid);
@@ -818,6 +836,16 @@ function salonOrder(list) {
   }
   for (const arr of buckets.values())
     arr.sort((a, b) => weight(a) - weight(b) || palHueOf(a) - palHueOf(b) || String(a.id).localeCompare(String(b.id)));
+  // SEEDED ROTATION: a non-zero seed cyclically rotates each bucket's already-sorted contents by a
+  // per-bucket amount, so the greedy pull still walks a coherent hue-ordered ring but STARTS at a
+  // different work. Seed 0 skips this entirely — the buckets keep their canonical order.
+  if (rng) {
+    for (const arr of buckets.values()) {
+      if (arr.length < 2) continue;
+      const off = Math.floor(rng() * arr.length);
+      if (off) { const head = arr.splice(0, off); for (const w of head) arr.push(w); }
+    }
+  }
   const ptr = new Map();                // bucket -> next-unused index (greedy, no splice churn)
   for (const k of buckets.keys()) ptr.set(k, 0);
   const takenLeft = new Set(buckets.keys());   // buckets that still have works to give
@@ -830,7 +858,11 @@ function salonOrder(list) {
   // segments so counts stay deterministic and nothing is dropped.
   const segLen = new Array(anchors.length).fill(N - 1);
   let leftover = rest.length - anchors.length * (N - 1);
-  for (let i = 0; leftover > 0; i = (i + 1) % anchors.length, leftover--) segLen[i]++;
+  // The leftover slack is dealt from segment 0 by default; a non-zero seed starts the deal at a
+  // seeded segment instead, so the longer passages sit under different anchors. Wrap-around keeps
+  // the total identical, so no work is dropped or duplicated. Seed 0 starts at 0 as before.
+  const dealStart = rng ? Math.floor(rng() * anchors.length) : 0;
+  for (let n = 0, i = dealStart; leftover > 0; i = (i + 1) % anchors.length, n++, leftover--) segLen[i]++;
 
   // Pull the `need` works most akin to `anchor`: same movement first (nearest hue within it), then any
   // movement by nearest hue. Greedy over the pre-sorted buckets — each pull is a pointer advance.
@@ -879,9 +911,120 @@ function salonOrder(list) {
   return [...woven, ...tail, ...noImg];
 }
 
+// ── WALL PERMALINKS (Fuad approved 2026-08-27, "should extend to other buttons currently on the
+// wall"). The whole designed wall — marks, status, eras, media, quality, MP floor, tour, sort,
+// colour pick, the omnisearch tokens and the reshuffle seed — serialises into the hash so the URL
+// IS the wall. STYLES are NOT here: they already live in the route PATH (#/wall/impressionism+fauvism)
+// and stay there, so a permalink composes onto the path as a `?query`. useRoute splits the query off
+// before it parses the path, so the two never collide.
+//
+// GRAMMAR (all `&`-joined, order below; empty facets omitted so a plain wall has no query):
+//   tok=<a|m|c|w>:<id>+…   tokens; each id encodeURIComponent'd; type prefix keeps them one param
+//   mk=floored+loved       marks     st=sure+unsure+wish   status
+//   er=e1890+e1900         eras      md=painting+paper     media buckets   ql=q500+iiif  quality
+//   mp=mp150|mp500         MP floor  tour=1                tour-only
+//   sort=year|artist|museum|colour   (hang is the default and is omitted)
+//   col=b23b2e             colour pick hex, no '#', only when sort=colour
+//   sh=<n>                 reshuffle seed, only when non-zero
+// Labels are NEVER serialised — token labels are re-resolved from the id at parse against the live
+// index, so URLs stay short and a renamed museum shows its current name. An id that no longer
+// resolves is dropped silently.
+const WALL_MARK_KEYS = new Set(MARK_FILTERS.map(f => f[0]));
+const WALL_STATUS_KEYS = new Set(STATUS_FILTERS.map(f => f[0]));
+const WALL_ERA_KEYS = new Set(ERAS.map(e => e[0]));
+const WALL_MEDIA_KEYS = new Set(MEDIA.map(m => m[0]));
+const WALL_QUAL_KEYS = new Set(QUALITY.map(q => q[0]));
+const WALL_SORTS = new Set(["year", "artist", "museum", "colour"]);
+const WALL_TOK_PREFIX = { artist: "a", museum: "m", city: "c", work: "w" };
+const WALL_TOK_TYPE = { a: "artist", m: "museum", c: "city", w: "work" };
+
+// Build the query string (no leading '?') from the current wall state. Returns "" when everything is
+// at its default — a plain wall carries no query, so #/wall/ stays clean.
+function wallStateToQuery(s) {
+  const parts = [];
+  if (s.tokens && s.tokens.length) {
+    const enc = s.tokens
+      .filter(t => WALL_TOK_PREFIX[t.type])
+      .map(t => WALL_TOK_PREFIX[t.type] + ":" + encodeURIComponent(t.id));
+    if (enc.length) parts.push("tok=" + enc.join("+"));
+  }
+  if (s.marks && s.marks.size) parts.push("mk=" + [...s.marks].join("+"));
+  if (s.status && s.status.size) parts.push("st=" + [...s.status].join("+"));
+  if (s.eras && s.eras.size) parts.push("er=" + [...s.eras].join("+"));
+  if (s.media && s.media.length) parts.push("md=" + s.media.join("+"));
+  if (s.qual && s.qual.length) parts.push("ql=" + s.qual.join("+"));
+  if (s.mp) parts.push("mp=" + s.mp);
+  if (s.tourOnly) parts.push("tour=1");
+  if (s.sort && s.sort !== "hang") parts.push("sort=" + s.sort);
+  if (s.sort === "colour" && s.pick) parts.push("col=" + s.pick.replace(/^#/, ""));
+  if (s.shuffleSeed) parts.push("sh=" + s.shuffleSeed);
+  return parts.join("&");
+}
+
+// Parse a query string back into a partial wall state. `resolveToken(type, id)` returns the token's
+// current label (or null to drop it) — passed in so this stays a pure string parser and the caller
+// owns the live index. Junk keys/ids are dropped silently; nothing here throws.
+function wallStateFromQuery(query, resolveToken) {
+  const out = {};
+  if (!query) return out;
+  const kv = {};
+  for (const pair of query.split("&")) {
+    if (!pair) continue;
+    const eq = pair.indexOf("=");
+    if (eq === -1) continue;
+    kv[pair.slice(0, eq)] = pair.slice(eq + 1);
+  }
+  if (kv.tok) {
+    const toks = [];
+    for (const seg of kv.tok.split("+")) {
+      const c = seg.indexOf(":");
+      if (c === -1) continue;
+      const type = WALL_TOK_TYPE[seg.slice(0, c)];
+      if (!type) continue;
+      let id; try { id = decodeURIComponent(seg.slice(c + 1)); } catch { continue; }
+      if (!id) continue;
+      const label = resolveToken(type, id);      // null => id no longer resolves, drop it
+      if (label == null) continue;
+      toks.push({ type, id, label });
+    }
+    out.tokens = toks;
+  }
+  const setFrom = (raw, valid) => new Set((raw || "").split("+").filter(k => valid.has(k)));
+  if (kv.mk) out.marks = setFrom(kv.mk, WALL_MARK_KEYS);
+  if (kv.st) out.status = setFrom(kv.st, WALL_STATUS_KEYS);
+  if (kv.er) out.eras = setFrom(kv.er, WALL_ERA_KEYS);
+  if (kv.md) out.media = (kv.md).split("+").filter(k => WALL_MEDIA_KEYS.has(k));
+  if (kv.ql) out.qual = (kv.ql).split("+").filter(k => WALL_QUAL_KEYS.has(k));
+  if (kv.mp === "mp150" || kv.mp === "mp500") out.mp = kv.mp;
+  if (kv.tour === "1") out.tourOnly = true;
+  if (kv.sort && WALL_SORTS.has(kv.sort)) out.sort = kv.sort;
+  if (/^[0-9a-fA-F]{6}$/.test(kv.col || "")) out.pick = "#" + kv.col.toLowerCase();
+  if (kv.sh != null) { const n = parseInt(kv.sh, 10); if (Number.isFinite(n) && n > 0) out.shuffleSeed = n; }
+  // any query at all means a designed wall was linked to — the hang steps aside so the filters show.
+  out.hadQuery = parts_nonEmpty(kv);
+  return out;
+}
+function parts_nonEmpty(kv) {
+  for (const k in kv) if (["tok", "mk", "st", "er", "md", "ql", "mp", "tour", "sort", "col", "sh"].includes(k)) return true;
+  return false;
+}
+
 function Wall({ go, styleIds }) {
   const all = useMemo(() => WORKS.map(enrich), []);
   const lazyGen = useLazyGen();   // the ✦/⤢ read chips filter on lazy CANVAS_INSPECT
+  // PERMALINK RESTORE (Fuad 2026-08-27) — parse the hash's ?query ONCE at mount so a shared/bookmarked
+  // wall comes up designed. Scalar and set facets seed their useState initialisers straight from here;
+  // TOKENS restore in a separate mount effect below, because re-resolving their labels needs the live
+  // `tokenIndex`, which is built further down. The permissive resolver here keeps token ids alive so
+  // `hadQuery` is correct; the effect does the real label lookup. Parsed once via a ref so a later
+  // hash rewrite (our own replaceState) never re-runs this and clobbers user edits.
+  const initQ = useRef(null);
+  if (initQ.current === null) {
+    const raw = location.hash || "";
+    const qi = raw.indexOf("?");
+    initQ.current = wallStateFromQuery(qi === -1 ? "" : raw.slice(qi + 1), () => "");
+  }
+  const IQ = initQ.current;
   // TODAY'S HANG (Fuad 2026-08-20): the Wall serves what Home used to serve, and Home is gone. Not
   // a filter and not a sort — homeHang picks a set AND orders it, including works pinned to always
   // appear, so it is applied as a whole rather than expressed in chips.
@@ -890,7 +1033,9 @@ function Wall({ go, styleIds }) {
   // wall, so honouring the hang there would silently drop most of what was linked to.
   // DECLARED FIRST, above every filter: `unhang` below is CALLED during render rather than merely
   // closed over, so setHang has to exist by then. Move this back down and the toggles throw.
-  const [hang, setHang] = useState(() => !styleIds);
+  // any permalink query means a designed wall was linked — the hang steps aside so its filters show
+  // (same rule as touching any chip). No query ⇒ default hang unless a style deep-link says otherwise.
+  const [hang, setHang] = useState(() => IQ.hadQuery ? false : !styleIds);
   // ANY FILTER TURNS THE HANG OFF (Fuad 2026-08-21). The chips used to narrow the hang instead, so
   // "today's hang, 1890s only" was expressible — but it made the chip counts lie. Those are counted
   // against the whole wall, so a chip reading 240 could leave nine tiles on screen with nothing on
@@ -898,8 +1043,8 @@ function Wall({ go, styleIds }) {
   // rather than today's selection from it, so the hang steps aside instead of intersecting. The
   // chip stays lit-able to put it back.
   const unhang = (fn) => (...a) => { setHang(false); return fn(...a); };
-  const [marks, setMarks] = useState(() => new Set());     // ★ floored / ♥ loved — OR within
-  const [status, setStatus] = useState(() => new Set());    // seen / unsure / pilgrimage — OR within
+  const [marks, setMarks] = useState(() => IQ.marks || new Set());     // ★ floored / ♥ loved — OR within
+  const [status, setStatus] = useState(() => IQ.status || new Set());    // seen / unsure / pilgrimage — OR within
   const toggleIn = (set, setter) => (k) => setter(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; });
   const toggleMark = unhang(toggleIn(marks, setMarks));
   const toggleStatus = unhang(toggleIn(status, setStatus));
@@ -918,12 +1063,12 @@ function Wall({ go, styleIds }) {
   const [searchQ, setSearchQ] = useState("");        // the omnisearch input text
   const [searchSel, setSearchSel] = useState(0);     // keyboard-highlighted suggestion
   const searchWrapRef = useRef(null);                // click-outside + focus target
-  const [sort, setSort] = useState("hang");
+  const [sort, setSort] = useState(IQ.sort || "hang");
   const [extra, setExtra] = useState(0);
   const [allStyles, setAllStyles] = useState(false);   // "+N more" disclosure
-  const [media, setMedia] = useState([]);              // selected medium buckets, OR'd like styles
-  const [pick, setPick] = useState("");                // colour-sort target ("" = hue ramp)
-  const [eras, setEras] = useState(() => new Set());   // era chips — OR within, AND with the rest
+  const [media, setMedia] = useState(IQ.media || []);  // selected medium buckets, OR'd like styles
+  const [pick, setPick] = useState(IQ.pick || "");     // colour-sort target ("" = hue ramp)
+  const [eras, setEras] = useState(() => IQ.eras || new Set());   // era chips — OR within, AND with the rest
   const toggleEra = unhang((k) => setEras(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; }));
   // ⤢ HAS A TOUR (Fuad 2026-08-24) — a cross-cutting filter on the first row, since "which of
   // these has something written about it" is a different question from grade or status.
@@ -932,12 +1077,15 @@ function Wall({ go, styleIds }) {
   // on 2026-08-25 at Fuad's request — a read exists for nearly the whole imaged canon now, so
   // asking for "has an Info" barely narrowed anything, while a study tour is still scarce enough
   // to be worth a chip. Only TOUR remains; the `readOnly` state that backed INFO is gone with it.
-  const [tourOnly, setTourOnly] = useState(false);
-  const [qual, setQual] = useState([]);                // quality buckets, OR'd like media
+  const [tourOnly, setTourOnly] = useState(!!IQ.tourOnly);
+  const [qual, setQual] = useState(IQ.qual || []);     // quality buckets, OR'd like media
   const toggleQual = unhang((k) => setQual(q => q.includes(k) ? q.filter(x => x !== k) : [...q, k]));
-  const [mp, setMp] = useState("");                    // ▦ MP floor — "" | "mp150" | "mp500"; see MPFLOORS
+  const [mp, setMp] = useState(IQ.mp || "");           // ▦ MP floor — "" | "mp150" | "mp500"; see MPFLOORS
   const cycleMp = unhang(() => setMp(v => v === "mp150" ? "mp500" : v === "mp500" ? "" : "mp150"));
   const mpLabel = (MPFLOORS.find(f => f[0] === mp) || MPFLOORS[0])[1];
+  // RESHUFFLE SEED (Fuad approved seeded shuffle, 2026-08-27) — 0 is the canonical hang; the ↻ next to
+  // the sort select bumps it. Restored from the permalink (?sh=<n>) and threaded into `shown`'s deps.
+  const [shuffleSeed, setShuffleSeed] = useState(IQ.shuffleSeed || 0);
   // The full style list — order and slugs are stable so a URL like #/wall/impressionism keeps
   // working whatever is filtered. Only the NUMBERS react; see `movCounts` below.
   const movs = useMemo(movIndex, []);
@@ -948,11 +1096,20 @@ function Wall({ go, styleIds }) {
     const bySlug = new Map(movs.map(m => [m.slug, m.label]));
     return (styleIds || "").split("+").map(s => bySlug.get(s)).filter(Boolean);
   }, [styleIds, movs]);
-  // setSel routes through go(), which changes the hash but does NOT remount Wall — so `hang` state
-  // survives the navigation and has to be cleared explicitly like every other filter.
-  const setSel = unhang((labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null));
+  // setSel changes the hash but does NOT remount Wall — so `hang` state survives the navigation and
+  // has to be cleared explicitly like every other filter. It writes the hash directly rather than via
+  // go() so it can PRESERVE the permalink ?query: styles live in the path, the rest of the wall lives
+  // in the query, and a style toggle must not wipe the query the other filters wrote (Fuad 2026-08-27).
+  const setSel = unhang((labels) => {
+    const id = labels.length ? labels.map(movSlug).join("+") : null;
+    const path = id ? "/wall/" + id : "/";
+    const raw = location.hash || "";
+    const qi = raw.indexOf("?");
+    const query = qi === -1 ? "" : raw.slice(qi + 1);
+    location.hash = path + (query ? "?" + query : "");
+  });
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [marks, status, eras, tokens, sort, styleIds, media, qual, mp, pick, hang, tourOnly]);
+  useEffect(() => { setExtra(0); }, [marks, status, eras, tokens, sort, styleIds, media, qual, mp, pick, hang, tourOnly, shuffleSeed]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -1072,7 +1229,7 @@ function Wall({ go, styleIds }) {
     // style chips, which filter rather than merely reorder.
     // "hang order" is now the salon-rhythm arrangement (see salonOrder). It returns a fresh array
     // rather than sorting in place, so reassign `arr`; the pin-float partition below still runs on it.
-    if (sort === "hang") arr = salonOrder(arr);
+    if (sort === "hang") arr = salonOrder(arr, shuffleSeed);
     else if (sort === "year") arr.sort((a, b) => (a.year || 9999) - (b.year || 9999));
     else if (sort === "artist") arr.sort((a, b) => a.artist.localeCompare(b.artist) || (a.year || 0) - (b.year || 0));
     else if (sort === "museum") arr.sort((a, b) => String(a.seenAt).localeCompare(String(b.seenAt)) || weight(a) - weight(b));
@@ -1098,7 +1255,9 @@ function Wall({ go, styleIds }) {
   // toggling the chip before the file lands cached an empty wall forever.
   // …and `tokens` (2026-08-27): the artist/place filters AND the work pins all read it. Same bug
   // class as media/qual/tourOnly — the token chip would appear but the wall would not move.
-  }, [all, marks, status, eras, tokens, sort, sel, media, qual, mp, pick, hang, tourOnly, lazyGen]);
+  // …and `shuffleSeed` (2026-08-27): the hang sort reads it via salonOrder(arr, shuffleSeed) — same
+  // bug class as the rest of this list, the ↻ would light and the wall would not re-cast without it.
+  }, [all, marks, status, eras, tokens, sort, sel, media, qual, mp, pick, hang, tourOnly, lazyGen, shuffleSeed]);
   const visN = CAP + extra;
   // ── TOKEN SUGGESTION INDEX (Fuad 2026-08-27) — the four suggestible types the omnisearch draws
   // from, built once against the wall. This is the SAME source data the header SearchBar's
@@ -1145,6 +1304,54 @@ function Wall({ go, styleIds }) {
       works,
     };
   }, [all]);
+  // TOKEN RESTORE (permalink) — re-resolve each id in the hash's ?tok= list against the LIVE index so
+  // labels stay current and any id that no longer resolves is dropped silently. Runs once at mount
+  // (empty deps + a ref guard): tokenIndex is stable for the wall's life, and re-running would fight
+  // the user's own edits. Nothing to do when the URL carried no tokens.
+  const tokensRestored = useRef(false);
+  useEffect(() => {
+    if (tokensRestored.current) return;
+    tokensRestored.current = true;
+    if (!IQ.tokens || !IQ.tokens.length) return;
+    const byId = {
+      artist: new Map(tokenIndex.artists.map(o => [o.id, o.label])),
+      museum: new Map(tokenIndex.museums.map(o => [o.id, o.label])),
+      city: new Map(tokenIndex.cities.map(o => [o.id, o.label])),
+      work: new Map(tokenIndex.works.map(o => [o.id, o.label])),
+    };
+    const restored = [];
+    for (const t of IQ.tokens) {
+      const label = byId[t.type] && byId[t.type].get(t.id);
+      if (label == null) continue;                       // junk id — drop it, no error
+      restored.push({ type: t.type, id: t.id, label });
+    }
+    if (restored.length) setTokens(restored);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  // WRITE THE PERMALINK (Fuad 2026-08-27). On any filter-state change, re-serialise the wall into the
+  // hash's ?query and replaceState it — NO new history entry, so the back button still leaves the
+  // wall rather than stepping through every chip. Styles stay in the PATH (they are the route id);
+  // this only rewrites the query after the '?'. Guarded until tokens have restored so the first paint
+  // of a shared URL doesn't immediately overwrite its own (not-yet-restored) tokens with an empty set.
+  // The FIRST pass is skipped outright: on load the hash already equals the state (it came FROM the
+  // hash), and a pending token restore would otherwise make this pass write an empty tok= for one
+  // frame before the restored tokens re-run it. Skipping means we only write once the user changes
+  // something — exactly when the URL needs updating.
+  const wroteOnce = useRef(false);
+  useEffect(() => {
+    if (!wroteOnce.current) { wroteOnce.current = true; return; }
+    const q = wallStateToQuery({ tokens, marks, status, eras, media, qual, mp, tourOnly, sort, pick, shuffleSeed });
+    const raw = location.hash || "#/";
+    const hi = raw.indexOf("#");
+    const afterHash = hi === -1 ? raw : raw.slice(hi + 1);      // e.g. "/wall/impressionism?old"
+    const qi = afterHash.indexOf("?");
+    const path = qi === -1 ? afterHash : afterHash.slice(0, qi);
+    const nextHash = "#" + path + (q ? "?" + q : "");
+    if (nextHash !== raw) {
+      const url = location.pathname + location.search + nextHash;
+      history.replaceState(history.state, "", url);
+    }
+  }, [tokens, marks, status, eras, media, qual, mp, tourOnly, sort, pick, shuffleSeed]);
   // The suggestion list for the typed query — max ~8, spread across the four types so no single type
   // (works, the largest pool) crowds the others out. Already-added tokens are filtered out.
   const suggest = useMemo(() => {
@@ -1202,6 +1409,16 @@ function Wall({ go, styleIds }) {
           <option value="artist">by artist</option>
           <option value="museum">by museum</option>
         </select>
+        {/* RESHUFFLE (Fuad approved seeded shuffle, 2026-08-27). Only meaningful for the salon hang —
+            the year/artist/museum/colour sorts are fully determined, so the ↻ appears solely when the
+            hang order is live (and NOT when sort is secretly "colour", which shows "hang" in the box).
+            Each click bumps the seed, re-casting the passages between anchors deterministically; the
+            seed rides along in the permalink. There is no reset button — the ↻ cycles forward and a
+            fresh wall / cleared permalink starts back at 0. */}
+        {sort === "hang" && (
+          <button className="cv-reshuffle" onClick={unhang(() => setShuffleSeed(s => s + 1))}
+            title="reshuffle the hang — a fresh salon arrangement of the same works">↻</button>
+        )}
         {/* COLOUR SWATCHES, always present (Fuad 2026-08-20). First it was a mode, then a dropdown
             option, then a toggle that revealed them — each step still asked you to turn colour ON
             before you could use it. Now the swatches simply sit in the row: click one and the wall
