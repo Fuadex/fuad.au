@@ -231,6 +231,13 @@ a { color: inherit; }
 .cv-mus-stats > span { white-space: nowrap; }
 .cv-mus-gradebtn { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 1px solid rgba(58,47,34,.28); border-radius: 999px; padding: 8px 14px; margin-left: auto; }
 .cv-mus-gradebtn:hover { border-color: var(--accent-soft); color: oklch(0.82 0.14 60); }
+/* HELD HERE — the chase register (Fuad 2026-08-28). The quiet grey-green voice the Portrait and
+   the map use for undiscovered things (cf. .cv-p-barchase). Works catalogued to a collection but
+   not yet met in person; on the 7 never-visited holder museums this is the page's whole body. */
+.cv-mus-heldstat { color: oklch(0.55 0.03 150); }
+.cv-mus-held-secl { color: oklch(0.5 0.035 150); }
+.cv-mus-held-sub { font: 400 12px/1.5 var(--serif); font-style: italic; color: oklch(0.55 0.03 150);
+  margin: -6px 0 4px; max-width: 62ch; }
 .cv-mus-read-pane { margin: 22px auto 0; max-width: 1200px; }
 .cv-mus-read-pane .cv-r-read-head { margin-bottom: 6px; }   /* breathing room between the tier buttons and the interior photo */
 .cv-mus-wall { padding: 12px 0 0; column-count: 6; }

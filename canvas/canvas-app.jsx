@@ -2953,6 +2953,20 @@ function MuseumView({ museumId, go }) {
   const met = useMemo(() => WORKS.map(enrich).filter(w =>
     (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt]).includes(museumId)), [museumId]);
 
+  // HELD HERE (Fuad 2026-08-28). The owner's report on the 7 never-visited holder museums
+  // (ycba, mfa-boston, pushkin-moscow, nasjonalmuseet-oslo, getty-center, kroller-muller,
+  // rijksmuseum): they "were not populated with data, pictures or mapped with artwork that
+  // were added". Data/pictures now ship (museum_data/highlights); this is the works mapping.
+  // Every canon work catalogued to THIS collection via art_holders.js (P195, homeOf().museumId)
+  // that is NOT already met here — a work you saw here belongs to the encounters above, never
+  // repeated below. Same enrich source as `met`, so the tiles are the identical idiom. For a
+  // walked museum this is a quiet appendix; for the 7 unwalked ones it is the page's whole body.
+  const metIds = useMemo(() => new Set(met.map(w => w.id)), [met]);
+  const held = useMemo(() => WORKS.map(enrich).filter(w => {
+    const h = homeOf(w);
+    return h && h.museumId === museumId && !metIds.has(w.id);
+  }), [museumId, metIds]);
+
   const hasRead = (w) => !!(READS[w.id] || INSPECT[w.id]);
   // ★ floored/favorite first, then liked, then the rest; images ahead of text within a tier.
   const hangSort = (a, b) => {
@@ -2961,6 +2975,7 @@ function MuseumView({ museumId, go }) {
   };
   const encounters = met.filter(w => w.via !== "exhibition").sort(hangSort);
   const onLoan = met.filter(w => w.via === "exhibition").sort(hangSort);
+  const heldSorted = held.slice().sort(hangSort);   // same floored→liked→rest, images-first order
   const floored = met.filter(w => w.floored || w.favorite);
   const liked = met.filter(w => w.liked).length;
 
@@ -2975,9 +2990,12 @@ function MuseumView({ museumId, go }) {
     return Object.values(by).sort((a, b) => b.n - a.n || a.name.localeCompare(b.name));
   }, [met]);
 
-  // still in the building: this museum's highlights minus the canon (by qid, then normalised title)
-  const canonQids = new Set(met.map(w => w.qid).filter(Boolean));
-  const canonT = met.map(w => museumNormT(w.title)).filter(Boolean);
+  // still in the building: this museum's highlights minus the canon (by qid, then normalised title).
+  // "the canon" here = met AND held (Fuad 2026-08-28): a work catalogued to this collection now
+  // has its own "Held here" section below, so it must NOT also surface as an unmet highlight — that
+  // would print the same painting twice on one page. Fold held qids/titles into both match sets.
+  const canonQids = new Set([...met, ...held].map(w => w.qid).filter(Boolean));
+  const canonT = [...met, ...held].map(w => museumNormT(w.title)).filter(Boolean);
   const isMet = (n) => {
     if (n.qid && canonQids.has(n.qid)) return true;
     const nt = museumNormT(n.title); if (nt.length < 4) return false;
@@ -2990,7 +3008,7 @@ function MuseumView({ museumId, go }) {
   const unmet = useMemo(() => {
     const seen = new Set();
     return highlights.filter(n => { if (isMet(n) || (n.qid && seen.has(n.qid))) return false; if (n.qid) seen.add(n.qid); return true; });
-  }, [museumId, met]);
+  }, [museumId, met, held]);
 
   // reasons to return: pilgrimage/wish works held by this venue. Two sources:
   //  1. artworks.js wish:true canon rows whose seenAt (holder ref) points at this museum
@@ -3148,6 +3166,10 @@ function MuseumView({ museumId, go }) {
               : <span title={`sure ${conf.sure} · probably ${conf.probably} · unsure ${conf.unsure}`}>{met.length} work{met.length !== 1 ? "s" : ""} met</span>}
             {floored.length ? <span>★ {floored.length} floored</span> : null}
             {liked ? <span>♡ {liked} loved</span> : null}
+            {/* the quiet chase tally: works catalogued to this collection but not yet met here
+                (Fuad 2026-08-28). Only shown when non-zero — for the 7 never-visited holders this
+                is the only work-count the header can offer. */}
+            {held.length ? <span className="cv-mus-heldstat">· {held.length} held here</span> : null}
             {unmet.length ? <span>{unmet.length} unmet major{unmet.length !== 1 ? "s" : ""}</span> : null}
             {/* "grade this museum's deck" HIDDEN "for now" (Fuad 2026-08-22) — the deck route
                 itself stays live (recall grading still works via url); only the affordance is
@@ -3277,6 +3299,23 @@ function MuseumView({ museumId, go }) {
               })}
             </div>
           )} />
+        </React.Fragment>
+      )}
+
+      {/* 6b. HELD HERE (Fuad 2026-08-28). The owner's report on the 7 never-visited holder museums:
+          they "were not populated with data, pictures or mapped with artwork that were added". This
+          is the artwork mapping — canon works catalogued to this collection (art_holders.js P195)
+          that were never met in person. On a walked venue it's a quiet appendix beneath the room you
+          actually stood in; on the 7 unwalked holders every section above is empty and THIS leads —
+          it is the page's body. Rendered in the chase register (the grey-green voice the Portrait and
+          map use for undiscovered things), with the standing display caveat kept honest: P195 says
+          CATALOGUED, not on-display (see fetch-holders.js header). Same Card tile + go("work") click-
+          through as the encounters grid, sorted with the shared hangSort. */}
+      {heldSorted.length > 0 && (
+        <React.Fragment>
+          <div className="cv-a-secl cv-mus-held-secl">Held here</div>
+          <p className="cv-mus-held-sub">works on your pilgrimage, catalogued to this collection — not a promise they're on display</p>
+          <Wall works={heldSorted} />
         </React.Fragment>
       )}
 
