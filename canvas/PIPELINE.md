@@ -163,6 +163,11 @@ nothing complains until someone notices colour search can't see a third of the w
    invisible to colour search and hue-aware sorts.
 4. **New artists?** They need registry entries + images (the artist enrichment pass) or
    they render as bare names.
+4b. **New museum row?** (visited OR unvisited holder) — `node fetch-museum-data.js <id>` +
+   `node fetch-highlights.js <id>`, or the page is a name with nothing behind it: no facade,
+   no facts, no "still in the building". The 7 holder museums shipped registry-only on
+   2026-08-27 and sat empty for a day. Held works render via the holders join (the
+   "Held here" section) — that part needs no per-museum step, just step 2.
 5. Commit the regenerated stores (`art_data.js`, `art_holders.js`, `palette.js` +
    `palette_cache.json`, `wikidata_cache.json`) alongside or right after the canon change.
 
