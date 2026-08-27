@@ -1297,11 +1297,30 @@ function canonAlbum(name, artist) {
         if (disp && _foldName(disp) !== _foldName(s)) { s = disp; folded = true; }
       }
       if (folded) continue;
-      // (b) leading article: "The X" ↔ "X" when the counterpart exists (fold toward the real base)
+      // (b) leading article: "The X" ↔ "X" when the counterpart exists (fold toward the real base).
+      // BOTH directions (2026-08-28, owner-reported): the strip-only version left Onslaught's
+      // stray "Force" row beside "The Force" and Ministry's "Land of Rape and Honey" beside
+      // "The Land…" — the ↔ in this comment was aspirational for two months.
       const noThe = s.replace(/^the\s+/i, "");
       if (noThe !== s) {
         const disp = _baseExists(artist, noThe);
         if (disp && _foldName(disp) !== _foldName(s)) { s = disp; folded = true; }
+      } else {
+        const disp = _baseExists(artist, "The " + s);
+        if (disp && _foldName(disp) !== _foldName(s)) { s = disp; folded = true; }
+      }
+      if (folded) continue;
+      // (c) mojibake rescue (2026-08-28, owner-reported "two Liebe ist für alle da"): a UTF-8
+      // diacritic corrupted to U+FFFD replacement chars eats the BASE letter too ("für" →
+      // "f??r"), so _foldName can never equate the rows ("f r" vs "fur"). Treat each FFFD run
+      // as a 0-2 char wildcard and look for exactly one same-artist census match.
+      if (s.includes("�")) {
+        const c = _albCensus.get(artist);
+        if (c) {
+          const rx = new RegExp("^" + s.split(/�+/).map(p => _foldName(p).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("[\\p{L}\\p{N} ]{0,2}") + "$", "u");
+          const cands = [...c.values()].filter(e => e.plays >= _minBasePlays && rx.test(_foldName(e.disp)));
+          if (cands.length === 1) { s = cands[0].disp; folded = true; }
+        }
       }
       if (!folded) break;
     }
