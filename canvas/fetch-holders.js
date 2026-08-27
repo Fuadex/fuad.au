@@ -26,6 +26,15 @@ for (const f of ["artworks.js", "art_data.js", "museums.js"])
   new Function("window", fs.readFileSync(path.join(HERE, f), "utf8") + "\nreturn window;")(g);
 const W = g.CANVAS_ARTWORKS, AD = g.CANVAS_ART_DATA.artworks, MUS = g.CANVAS_MUSEUMS;
 const musByQid = {}; MUS.forEach(m => { if (m.qid) musByQid[m.qid] = m; });
+// HOLDER QID ALIASES (2026-08-27) — a holder collection whose qid differs from the museum's
+// own row: the Louvre's Department of Paintings and the Pompidou's Musée National d'Art
+// Moderne are P195 values that must merge into the visited rows, not spawn phantom museums.
+// Tate (Q430682) is deliberately NOT aliased — the org qid can't pick Britain vs Modern.
+const HOLDER_ALIASES = { Q3044768: "louvre", Q1895953: "pompidou" };
+for (const [q, id] of Object.entries(HOLDER_ALIASES)) {
+  const m = MUS.find(x => x.id === id);
+  if (m && !musByQid[q]) musByQid[q] = m;
+}
 
 // Everything Fuad has not actually stood in front of: an explicit wish, or a sighting he is not
 // sure of. Both belong on the pilgrimage (Fuad 2026-08-19).
