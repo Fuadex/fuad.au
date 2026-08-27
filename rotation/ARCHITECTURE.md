@@ -552,6 +552,11 @@ D/W/M calendar cross-filters remain as shipped 2026-07-06.
 one entry per line). `instrumentals.js` is a deployed data file (351 keys); TrackView shows
 "Instrumental — no words to read" for entries in `window.ROTATION_INSTRUMENTALS`.
 
+**`genius-mood.json`** (~25.8k keys) is the lyric-mood store behind the Reads bars, the
+calibrated/cathartic chips, the Explore register row and the emotional weather. Its schema,
+the valence/register taxonomy, provenance flags and coherence gate are documented end-to-end
+in **`MOOD_PIPELINE.md`** — read that before touching anything mood-driven.
+
 **Opus reads are lyric-independent (invariant, enforced 2026-07-24):** every `opus` read
 must DISTIL the song, never quote or closely paraphrase its lyrics. Detector = shared
 content-word bigrams between read and lyric (STOP-filtered); the corpus is held at bigram
