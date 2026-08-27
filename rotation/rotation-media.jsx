@@ -1091,6 +1091,11 @@ function TrackView({ id, go }) {
     for (const d of DIMS) {
       const raw = f[d.i];
       const p = tastePctlMid(d.k, raw); if (p == null) continue;
+      // TEMPO SANITY (2026-08-27, ゆきこさん: energy 94 yet "slow"): the dump's beat tracker
+      // half-times songs with mixed passages, so a tempo claim must not contradict energy —
+      // a frantic track is never "slow", a dead-calm one is never "fast". Suppress, don't fix:
+      // we can't recover the true BPM, only refuse the absurd sentence.
+      if (d.k === "tempo" && ((p <= 15 && f[4] >= 80) || (p >= 85 && f[4] <= 20))) continue;
       if (p >= 85 && d.hi && (d.min == null || raw >= d.min)) out.push({ phrase: d.hi, pct: p, ex: p - 50 });        // above most of your rotation
       else if (p <= 15 && d.lo) out.push({ phrase: d.lo, pct: 100 - p, ex: 50 - p }); // below most of it
     }
