@@ -669,7 +669,10 @@ function Card({ w, go }) {
 }
 
 // ——— the Wall: filter chips × museum select × sort, capped at 48 with reversible load-more.
-// Sorts: "hang" (floored → loved → the rest, images first) · year · artist · museum.
+// Sorts: "hang" (salon rhythm, the default) · "affinity" (affinity gravity) · "tierhue" (tier +
+// hue drift). year/artist/museum were retired 2026-08-28 (Fuad: "year/artist/museum do not earn
+// their slots currently"). A hidden "colour" sort still exists — chip/pick-driven, displays as
+// "hang" in the box. Trio approved by Fuad 2026-08-27/28.
 const CAP = 48;
 // TWO independent axes (Fuad 2026-08-20), each multi-select and OR'd within itself, AND'd across.
 //
@@ -911,6 +914,143 @@ function salonOrder(list, seed = 0) {
   return [...woven, ...tail, ...noImg];
 }
 
+// ——— AFFINITY GRAVITY — the "by affinity" sort (Fuad approved the concept as "affinity gravity";
+// this replaces year/artist/museum, 2026-08-28: "year/artist/museum do not earn their slots
+// currently"). Where the salon hang arranges by RHYTHM and colour, this arranges by ATTACHMENT: the
+// wall reads as a self-portrait. It groups the whole set by artist and orders those clusters in three
+// acts, so scrolling the wall walks from the artists Fuad has declared kinship with, through the ones
+// his own marks reveal he loves, out to the ones still calling from afar.
+//
+// THREE ACTS of clusters:
+//   (a) DECLARED AFFINITIES first, in `window.CANVAS_AFFINITY` array order. The AFFINITY Set has no
+//       order, so we read the raw array for the intended sequence (a Set only answers membership).
+//   (b) then the MET artists — anyone with at least one seen work — by love score descending
+//       (floored/favorite +3, liked +1, summed over the artist's works), ties broken by work count
+//       then name. This is the biography: who the standing-in-front-of record says he loves.
+//   (c) then the DISCOVERY TAIL — artists whose works are all (or mostly) unseen, the "calling from
+//       afar" register, again by love score descending. These close the wall, so it ends looking
+//       outward at what is still to come rather than on the familiar.
+// Artist-less works (no artistId and no artist string) form a trailing pool just before the image-less
+// coda, since they can't belong to a cluster.
+//
+// WITHIN a cluster: floored/favorite works lead (the anchor of that artist's presence), then liked,
+// then the rest, with year ascending as the final tiebreak — the same weight vocabulary the rest of
+// the wall uses. IMAGE-LESS works never compete for this arrangement (same policy as salonOrder, see
+// its note ~line 811): they append at the very end in cluster order, so the wall stays on pictures.
+//
+// Fully deterministic — no seed, no randomness, no Date. Same list in, same wall out (the ↻ reshuffle
+// is hang-only and never shows here). Complexity: O(n) to bucket + O(n log n) to sort within clusters.
+function affinityOrder(list) {
+  // Split image-less out up front — they never compete for cluster placement, they only trail.
+  const imgd  = list.filter(w => w.imgGrid);
+  const noImg = list.filter(w => !w.imgGrid);
+
+  // A cluster key per work: prefer the stable artistId; fall back to a cleaned artist string (drop a
+  // trailing "(…)" the way the Portrait's artist rollup does); artist-less works share one sentinel
+  // key so they pool together at the tail rather than each forming a lonely one-work cluster.
+  const NONE = "\u0000none";   // sorts distinctly; never collides with a real id or name
+  const keyOf = (w) => w.artistId || (w.artist ? w.artist.replace(/\s*\(.*\)$/, "").trim() : "") || NONE;
+
+  // Bucket works by cluster key, and while we pass, accumulate the love score and met/unseen tallies
+  // that decide cluster ORDER. Love scoring matches the Portrait exactly: floored/favorite +3, liked +1.
+  const clusters = new Map();   // key -> { key, works:[], love, met, name }
+  for (const w of imgd) {
+    const k = keyOf(w);
+    let c = clusters.get(k);
+    if (!c) { c = { key: k, works: [], love: 0, met: 0, name: (w.artist ? w.artist.replace(/\s*\(.*\)$/, "").trim() : "") }; clusters.set(k, c); }
+    c.works.push(w);
+    if (w.floored || w.favorite) c.love += 3; else if (w.liked) c.love += 1;
+    if (!isUnseen(w)) c.met++;   // isUnseen is module-scope (~line 284); reachable here, no local copy
+  }
+
+  // Within-cluster order: floored/favorite (weight 0) → liked (1) → rest (2), then year ascending, then
+  // id so equal works never depend on incoming list order. `weight` is the same module-scope helper the
+  // wall uses everywhere, so a work's rank here matches its rank in the hang.
+  const orderWithin = (c) => c.works.sort((a, b) =>
+    weight(a) - weight(b) || (a.year || 9999) - (b.year || 9999) || String(a.id).localeCompare(String(b.id)));
+
+  // ACT (a): declared affinities, in the raw CANVAS_AFFINITY ARRAY order (the Set has no order). We walk
+  // the declared list and pull each matching cluster out once; a declared artist with no imaged works on
+  // the current (filtered) wall simply contributes nothing.
+  const affinityArr = window.CANVAS_AFFINITY || [];
+  const used = new Set();
+  const declared = [];
+  for (const id of affinityArr) {
+    const c = clusters.get(id);
+    if (c && !used.has(c.key)) { used.add(c.key); declared.push(c); }
+  }
+
+  // The remaining clusters split into MET (act b) and DISCOVERY-TAIL (act c). "Mostly unseen" = a
+  // cluster with no met works at all is the discovery register; any met work at all keeps it in the
+  // biography. Artist-less pool (NONE) is neither — it trails just before the image-less coda.
+  const met = [], tail = [];
+  let orphanCluster = null;
+  for (const c of clusters.values()) {
+    if (used.has(c.key)) continue;
+    if (c.key === NONE) { orphanCluster = c; continue; }
+    (c.met > 0 ? met : tail).push(c);
+  }
+  // Both non-declared acts rank by love descending, ties by work count then name — the same key the
+  // Portrait's artist bars use, so the wall and the self-portrait agree on who ranks where.
+  const byLove = (a, b) => b.love - a.love || b.works.length - a.works.length || String(a.name || a.key).localeCompare(String(b.name || b.key));
+  met.sort(byLove);
+  tail.sort(byLove);
+
+  // Assemble: declared → met → discovery tail → artist-less pool, each cluster internally ordered, then
+  // the image-less works append in that same cluster sequence so the coda mirrors the wall's own order.
+  const orderedClusters = [...declared, ...met, ...tail, ...(orphanCluster ? [orphanCluster] : [])];
+  const out = [];
+  for (const c of orderedClusters) for (const w of orderWithin(c)) out.push(w);
+
+  // Image-less coda: bucket the no-image works by the SAME cluster key and emit them in the cluster
+  // order we just used, so an artist's picture-less works follow their pictured ones at the wall's end.
+  if (noImg.length) {
+    const noImgByKey = new Map();
+    for (const w of noImg) { const k = keyOf(w); if (!noImgByKey.has(k)) noImgByKey.set(k, []); noImgByKey.get(k).push(w); }
+    const seenKey = new Set();
+    for (const c of orderedClusters) {
+      seenKey.add(c.key);
+      const g = noImgByKey.get(c.key);
+      if (g) for (const w of g.sort((a, b) => weight(a) - weight(b) || (a.year || 9999) - (b.year || 9999))) out.push(w);
+    }
+    // any image-less work whose cluster had no imaged works (so it never appeared above) trails last.
+    for (const [k, g] of noImgByKey) if (!seenKey.has(k)) for (const w of g.sort((a, b) => weight(a) - weight(b) || (a.year || 9999) - (b.year || 9999))) out.push(w);
+  }
+  return out;
+}
+
+// ——— TIER + HUE DRIFT — the "tier + hue" sort (Fuad approved the trio 2026-08-27/28). This is the
+// pre-salon "generic hang" resurrected with deliberate colour flow: it resurrects the simple weight-
+// then-hue instinct that salonOrder's fallback already uses (and that the noImg tail uses in every
+// sort), but promotes it to a first-class curated arrangement where every weight band flows through
+// the full colour spectrum. The result reads as three distinct movements — floored works bleeding
+// through the rainbow, then liked, then the rest — without the salon's kin-and-rhythm machinery.
+//
+// ALGORITHM (fully deterministic, no seed, no randomness, no Date):
+//   1. Split image-less out up front — they never compete for placement; they append at the very end,
+//      in their own weight/hue order, so the wall stays on pictures for as long as it can. This is
+//      the same image-less policy salonOrder and affinityOrder use (see ~line 811).
+//   2. For the imaged works: sort by weight() ascending (0 = floored/favorite, 1 = liked, 2 = rest),
+//      then within each weight tier by palHueOf() ascending (0→359 → palette-less works at 998/999
+//      → Infinity-free, so palette-unknown works close their tier rather than jumping to the top).
+//   3. id as the final tiebreak so equal-hue works never depend on incoming list order.
+//   4. Image-less works append sorted by weight then hue, matching salonOrder's noImg tail.
+//
+// Reads only: arr contents, module-scope weight(), palHueOf() (~line 701/703), w.id. No component
+// state, no window-globals beyond what palHueOf already reads (CANVAS_PALETTE). The wall memo
+// therefore needs no new dependency entry — same note as the affinityOrder branch above (~line 1347).
+// Returns a fresh array (same contract as salonOrder/affinityOrder). Complexity O(n log n).
+//
+// 2026-08-28
+function tierHueOrder(list) {
+  const imgd  = list.filter(w => w.imgGrid);
+  const noImg = list.filter(w => !w.imgGrid)
+    .sort((a, b) => weight(a) - weight(b) || palHueOf(a) - palHueOf(b) || String(a.id).localeCompare(String(b.id)));
+  const sorted = imgd.slice().sort((a, b) =>
+    weight(a) - weight(b) || palHueOf(a) - palHueOf(b) || String(a.id).localeCompare(String(b.id)));
+  return [...sorted, ...noImg];
+}
+
 // ── WALL PERMALINKS (Fuad approved 2026-08-27, "should extend to other buttons currently on the
 // wall"). The whole designed wall — marks, status, eras, media, quality, MP floor, tour, sort,
 // colour pick, the omnisearch tokens and the reshuffle seed — serialises into the hash so the URL
@@ -923,7 +1063,9 @@ function salonOrder(list, seed = 0) {
 //   mk=floored+loved       marks     st=sure+unsure+wish   status
 //   er=e1890+e1900         eras      md=painting+paper     media buckets   ql=q500+iiif  quality
 //   mp=mp150|mp500         MP floor  tour=1                tour-only
-//   sort=year|artist|museum|colour   (hang is the default and is omitted)
+//   sort=affinity|tierhue|colour   (hang is the default and is omitted; year/artist/museum were
+//                                 retired 2026-08-28 — an incoming legacy value falls back to
+//                                 hang silently)
 //   col=b23b2e             colour pick hex, no '#', only when sort=colour
 //   sh=<n>                 reshuffle seed, only when non-zero
 // Labels are NEVER serialised — token labels are re-resolved from the id at parse against the live
@@ -934,7 +1076,10 @@ const WALL_STATUS_KEYS = new Set(STATUS_FILTERS.map(f => f[0]));
 const WALL_ERA_KEYS = new Set(ERAS.map(e => e[0]));
 const WALL_MEDIA_KEYS = new Set(MEDIA.map(m => m[0]));
 const WALL_QUAL_KEYS = new Set(QUALITY.map(q => q[0]));
-const WALL_SORTS = new Set(["year", "artist", "museum", "colour"]);
+// Valid non-hang sorts for permalinks. year/artist/museum retired 2026-08-28 and are deliberately
+// absent, so a legacy shared link carrying one of them fails this membership test in the parser and
+// silently falls back to hang (the default) rather than restoring a sort that no longer exists.
+const WALL_SORTS = new Set(["affinity", "tierhue", "colour"]);
 const WALL_TOK_PREFIX = { artist: "a", museum: "m", city: "c", work: "w" };
 const WALL_TOK_TYPE = { a: "artist", m: "museum", c: "city", w: "work" };
 
@@ -1230,9 +1375,14 @@ function Wall({ go, styleIds }) {
     // "hang order" is now the salon-rhythm arrangement (see salonOrder). It returns a fresh array
     // rather than sorting in place, so reassign `arr`; the pin-float partition below still runs on it.
     if (sort === "hang") arr = salonOrder(arr, shuffleSeed);
-    else if (sort === "year") arr.sort((a, b) => (a.year || 9999) - (b.year || 9999));
-    else if (sort === "artist") arr.sort((a, b) => a.artist.localeCompare(b.artist) || (a.year || 0) - (b.year || 0));
-    else if (sort === "museum") arr.sort((a, b) => String(a.seenAt).localeCompare(String(b.seenAt)) || weight(a) - weight(b));
+    // "by affinity" (Fuad 2026-08-28) is the wall-as-self-portrait arrangement — see affinityOrder.
+    // Like salonOrder it returns a fresh array, so reassign `arr`; the pin-float partition below still
+    // runs on it. It reads only `arr`'s contents and module globals (AFFINITY/CANVAS_AFFINITY, weight,
+    // isUnseen), so it needs no new memo dep. year/artist/museum branches removed the same day.
+    else if (sort === "affinity") arr = affinityOrder(arr);
+    // "tier + hue" (Fuad 2026-08-28) — weight tier then hue drift; see tierHueOrder. Returns a fresh
+    // array. Reads only arr contents + module-scope weight/palHueOf — no new memo dep needed.
+    else if (sort === "tierhue") arr = tierHueOrder(arr);
     else if (sort === "colour") {
       const target = pick ? rgbOf(pick) : null;
       if (target) arr.sort((a, b) => palDistTo(a, target) - palDistTo(b, target) || weight(a) - weight(b));
@@ -1357,8 +1507,8 @@ function Wall({ go, styleIds }) {
   const suggest = useMemo(() => {
     const needle = fold(searchQ.trim());
     if (needle.length < 1) return [];
-    const taken = new Set(tokens.map(t => t.type + " " + t.id));
-    const free = (arr) => arr.filter(o => !taken.has(o.type + " " + o.id));
+    const taken = new Set(tokens.map(t => t.type + "\u0000" + t.id));
+    const free = (arr) => arr.filter(o => !taken.has(o.type + "\u0000" + o.id));
     const pick = (arr, n) => free(arr).filter(o => o.hay.includes(needle)).slice(0, n);
     // artists · museums · cities lead (broad scopes), works fill the remainder up to 8
     const lead = [...pick(tokenIndex.artists, 3), ...pick(tokenIndex.museums, 3), ...pick(tokenIndex.cities, 2)];
@@ -1404,14 +1554,17 @@ function Wall({ go, styleIds }) {
           <span className="cv-f-full">⤢ tour</span><span className="cv-f-tiny">⤢</span>
         </button>
         <select value={sort === "colour" ? "hang" : sort} onChange={unhang(e => setSort(e.target.value))}>
-          <option value="hang">hang order</option>
-          <option value="year">by year</option>
-          <option value="artist">by artist</option>
-          <option value="museum">by museum</option>
+          {/* value="hang" stays unchanged — the default is omitted from permalinks and old links must
+              keep working; only the display label was updated to name what the arrangement actually is
+              (Fuad approved the trio 2026-08-27/28). */}
+          <option value="hang">salon rhythm</option>
+          <option value="affinity">by affinity</option>
+          <option value="tierhue">tier + hue</option>
         </select>
         {/* RESHUFFLE (Fuad approved seeded shuffle, 2026-08-27). Only meaningful for the salon hang —
-            the year/artist/museum/colour sorts are fully determined, so the ↻ appears solely when the
-            hang order is live (and NOT when sort is secretly "colour", which shows "hang" in the box).
+            the affinity, tierhue, and (hidden) colour sorts are fully determined, so the ↻ appears
+            solely when the hang order is live (and NOT when sort is secretly "colour", which shows
+            "hang" in the box). affinity and tierhue are deterministic and seedless — neither shows ↻.
             Each click bumps the seed, re-casting the passages between anchors deterministically; the
             seed rides along in the permalink. There is no reset button — the ↻ cycles forward and a
             fresh wall / cleared permalink starts back at 0. */}
