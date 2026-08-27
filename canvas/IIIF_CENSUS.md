@@ -265,3 +265,23 @@ refused from cloud egress** — two networks, two failure modes, zero successes.
 30000` tiles 256; Nationalmuseum *View from Voorzan* 6.2 MP + *View over the Sea* 9.8 MP —
 ⚠ modest masters, adopted for coverage not pixels) and the 14 YCBA Turners. First non-NGA
 IIIF adoptions in the canon.
+
+### ⚙ Round 2, batch 2 measurements (2026-08-27) — the tail is confirmed modest
+
+| holder | measured | MP | verdict |
+|---|---|---|---|
+| Augustinermuseum (via bsz-bw) | 5,068 × 7,123 · level2 · tiles 512 · maxArea 16.3MP on flats | 36.1 | best of the batch; deep zoom unclamped |
+| Smithsonian (ids.si.edu, Freer/Sackler sample) | 3,688 × 7,200 · level2 | 26.6 | decent; Asian-art strength |
+| Vanderbilt | 3,257 × 2,667 · level2 | 8.7 | modest |
+| Pinacoteca Vaticana | 2,363 × 3,151 · level2 | 7.4 | modest |
+| Hammer | — | — | 429 rate-limited; retry later |
+| **Germanisches Nationalmuseum** | canvases declare **1 × 1 px** | — | ⛔ placeholder manifests — a NEW trap: a manifest that parses fine and lies about its canvas. Decode, don't trust |
+| **National Museum in Kraków** | object API returns an image PATH, no dims, no IIIF service | — | ⛔ not IIIF at this route (P6108 rows mislabel it); the Matejko sampled is 567 cm tall — a scan would be glorious, but none is served |
+| **National Library of Wales** | 302 → **iiif.llyfrgell.cymru** | — | ⚠ host MIGRATED — another stale-P6108 case; re-probe on the new host |
+
+⭐ **Batch-2 verdict: the census tail holds nothing NGA-class.** Best finds are 27–36 MP
+(Smithsonian, Augustiner) — respectable, far from gigapixel. Combined with batch 1, the
+global picture is now stable: **NGA · Getty · KMSKA-showpieces · YCBA oils are the top tier,
+and nothing else measured on two continents approaches them.** Remaining unmeasured: the
+nine own-path hosts from the long tail (Frick's new host the most interesting) — need one
+SPARQL for sample paths before they can be probed.
