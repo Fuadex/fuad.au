@@ -1126,6 +1126,16 @@ a { color: inherit; }
 .cv-p-centbar-chase + .cv-p-centbar { border-radius: 0; }
 .cv-p-key { display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: oklch(0.55 0.12 46); vertical-align: middle; margin-right: 3px; }
 .cv-p-key-chase { background: oklch(0.52 0.09 150 / .6); }
+/* GREEN = UNDISCOVERED — chase register carried into the movements bars and the "Calling from afar"
+   list (Fuad 2026-08-27), the same oklch(0.52 0.09 150) family as the century chase bar / museums
+   "+N to see" chip. "+N" addendum after a loved-met movement's count; a full green bar + green count
+   for the chase-only movements; a green-tinted heading + chip border for the calling list. */
+.cv-p-barchase { font-style: normal; margin-left: 3px; color: oklch(0.52 0.09 150); }
+.cv-p-bartrack i.cv-p-bartrack-chase { background: oklch(0.52 0.09 150 / .55); }
+.cv-p-barn-chase { color: oklch(0.52 0.09 150); }
+.cv-p-lbl-chase { color: oklch(0.52 0.09 150); }
+.cv-p-foundchip-chase { border-color: oklch(0.52 0.09 150 / .3); }
+.cv-p-foundchip-chase:hover { border-color: oklch(0.52 0.09 150 / .6); background: oklch(0.52 0.09 150 / .06); }
 .cv-p-centlbl { font: 500 8px/1 var(--mono); color: var(--ink-faint); margin-top: 5px; }
 /* motif chips — informational, not filters; the count rides along quietly */
 .cv-p-motifs { display: flex; flex-wrap: wrap; gap: 8px; }

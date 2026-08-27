@@ -4668,11 +4668,26 @@ function Portrait({ go }) {
     for (const w of met) { if (!w.artistId) continue; const r = byArtist[w.artistId] = byArtist[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (w.floored || w.favorite) r.love += 3; if (w.liked) r.love += 1; }
     const artists = Object.values(byArtist).sort((a, b) => b.love - a.love || b.n - a.n);
     const found = artists.filter(a => !AFFINITY.has(a.id) && a.love >= 4).slice(0, 14);
+    // "Calling from afar" (Fuad 2026-08-27): the same love scoring over CHASE works — wish works do
+    // carry floored/liked marks from deck verdicts and imports, so this is non-empty. Excludes the
+    // affinities and anyone already in `found` (a met-loved artist isn't "calling from afar").
+    const foundIds = new Set(found.map(a => a.id));
+    const byArtistChase = {};
+    for (const w of chase) { if (!w.artistId) continue; const r = byArtistChase[w.artistId] = byArtistChase[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (w.floored || w.favorite) r.love += 3; if (w.liked) r.love += 1; }
+    const calling = Object.values(byArtistChase).filter(a => !AFFINITY.has(a.id) && !foundIds.has(a.id) && a.love >= 4).sort((a, b) => b.love - a.love || b.n - a.n).slice(0, 8);
     // movements (loved among met)
     const movCount = {};
     // via movsOf so the labels are the cleaned ones the Wall's chips use — these bars link there
     for (const w of loved) for (const m of movsOf(w)) movCount[m] = (movCount[m] || 0) + 1;
     const movements = Object.entries(movCount).sort((a, b) => b[1] - a[1]).slice(0, 8);
+    // chase register over movements (Fuad 2026-08-27): the loved-met bars ABOVE are the biography and
+    // stay untouched; here every chase work adds to a parallel green count — wish works rarely carry
+    // love marks, so this is ALL chase, not loved-gated. Two things fall out: a "+N" addendum per shown
+    // movement, and the movements that are invisible in loved-met but heavy in chase (appended below).
+    const movChase = {};
+    for (const w of chase) for (const m of movsOf(w)) movChase[m] = (movChase[m] || 0) + 1;
+    const shownMov = new Set(movements.map(e => e[0]));
+    const movChaseOnly = Object.entries(movChase).filter(([m]) => !shownMov.has(m)).sort((a, b) => b[1] - a[1]).slice(0, 3);
     // centuries — met and chase kept apart, the same two registers the map wears
     const cent = {};
     for (const w of works) { if (!w.year) continue; const c = Math.floor((w.year - 1) / 100) + 1; const e = cent[c] = cent[c] || { met: 0, chase: 0 }; e[isUnseen(w) ? "chase" : "met"]++; }
@@ -4719,7 +4734,7 @@ function Portrait({ go }) {
       floored: met.filter(w => w.floored || w.favorite).length,
       museums: museums.size, countries: countries.size,
       chase: chase.length, chaseCities: chaseCities.size,
-      artists, found, movements, centuries, swatches, families, motifs,
+      artists, found, calling, movements, movChase, movChaseOnly, centuries, swatches, families, motifs,
       breadth: { artists: Object.keys(perArtist).length, singles, deepId: deepEntry ? deepEntry[0] : null, deepN: deepEntry ? deepEntry[1] : 0, deepName: deepWork ? deepWork.artist.replace(/\s*\(.*\)$/, "") : "" },
       topMovement: movements[0], favArtist: artists[0],
     };
@@ -4758,7 +4773,18 @@ function Portrait({ go }) {
               title={`see every work on the wall by artists working in ${m}`}>
               <span className="cv-p-barlbl">{m}</span>
               <span className="cv-p-bartrack"><i style={{ width: (n / maxMov * 100) + "%" }} /></span>
-              <span className="cv-p-barn">{n}</span>
+              <span className="cv-p-barn">{n}{data.movChase[m] > 0 && <em className="cv-p-barchase">+{data.movChase[m]}</em>}</span>
+            </div>
+          ))}
+          {/* chase-only movements (Fuad 2026-08-27): big on the horizon, invisible in loved-met.
+              Rendered in the green register — a green bar sized to its own chase count, so the
+              section stops hiding whole schools that are all still to be seen. */}
+          {data.movChaseOnly.map(([m, n]) => (
+            <div className="cv-p-bar cv-p-barlink" key={"chase-" + m} onClick={() => go("wall", movSlug(m))}
+              title={`${n} works still to see by artists working in ${m}`}>
+              <span className="cv-p-barlbl">{m}</span>
+              <span className="cv-p-bartrack"><i className="cv-p-bartrack-chase" style={{ width: (n / maxMov * 100) + "%" }} /></span>
+              <span className="cv-p-barn cv-p-barn-chase">+{n}</span>
             </div>
           ))}
         </div>
@@ -4811,6 +4837,20 @@ function Portrait({ go }) {
               </div>
             ))}
           </div>
+          {data.calling.length > 0 && (
+            <>
+              <div className="cv-p-lbl cv-p-lbl-chase" style={{ marginTop: 22 }}>Calling from afar</div>
+              <div className="cv-p-note" style={{ marginTop: 0, marginBottom: 12 }}>the artists your chase-list loves hardest — waiting to be met, ranked the same way</div>
+              <div className="cv-p-found">
+                {data.calling.map(a => (
+                  <div className="cv-p-foundchip cv-p-foundchip-chase" key={a.id} onClick={() => go("artist", a.id)}>
+                    {AD.artists[a.id] && AD.artists[a.id].image && <LazyImg src={AD.artists[a.id].image} alt="" />}
+                    <div><b>{a.name}</b><span>{a.n} work{a.n > 1 ? "s" : ""} · {a.love} pts</span></div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       )}
       {data.motifs.length > 0 && (
