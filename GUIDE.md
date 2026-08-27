@@ -91,6 +91,7 @@ dataset sanity" (`smoke.js`). Push to `main` is the test environment.
 | **rotation/PIPELINE.md** | Running a reads/blurb wave (llm-about, canvas art reads, etc.) |
 | **rotation/ALBUM_READS.md** | Writing album "What's it about?" reads — coverage rule, gap classes, Opus-read + Fable-coda design |
 | **rotation/MOOD_PIPELINE.md** | Touching `genius-mood.json` or anything mood-driven — the valence/register taxonomy, provenance flags, coherence gate, cathartic class |
+| **rotation/READS_STRESS_TESTS.md** | Doubting the song-read methodology — the difficult-case ledger: worst gates, both limit directions, suite rulings, what each stress proved |
 | **rotation/LIMITATIONS.md** | Understanding known approximations and deferred fixes |
 | **rotation/SPOTIFY.md** | Working with the personal Spotify export integration |
 | **rotation/CSV-OVERRIDES.md** | Manual data corrections (local-only, gitignored) |
