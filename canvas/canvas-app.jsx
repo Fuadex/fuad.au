@@ -769,6 +769,7 @@ function Wall({ go, styleIds }) {
   const toggleMark = unhang(toggleIn(marks, setMarks));
   const toggleStatus = unhang(toggleIn(status, setStatus));
   const [mus, setMus] = useState("");
+  const [artistSel, setArtistSel] = useState("");
   const [sort, setSort] = useState("hang");
   const [extra, setExtra] = useState(0);
   const [allStyles, setAllStyles] = useState(false);   // "+N more" disclosure
@@ -803,7 +804,7 @@ function Wall({ go, styleIds }) {
   // survives the navigation and has to be cleared explicitly like every other filter.
   const setSel = unhang((labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null));
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, sort, styleIds, media, qual, mp, pick, hang, tourOnly]);
+  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, artistSel, sort, styleIds, media, qual, mp, pick, hang, tourOnly]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -815,8 +816,9 @@ function Wall({ go, styleIds }) {
     if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
     if (eras.size) list = list.filter(w => [...eras].some(k => eraPass(w, k)));
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
+    if (artistSel) list = list.filter(w => w.artistId === artistSel);
     return list;
-  }, [all, marks, status, eras, mus]);
+  }, [all, marks, status, eras, mus, artistSel]);
 
   // Live facet counts. Both rows count against `base` — every filter EXCEPT their own — and each
   // also honours the other, so with Sculpture on, the style numbers are sculpture-only. A chip that
@@ -857,6 +859,7 @@ function Wall({ go, styleIds }) {
     if (marks.size) list = list.filter(w => [...marks].some(k => markPass(w, k)));
     if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
+    if (artistSel) list = list.filter(w => w.artistId === artistSel);
     if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
     if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
     if (qual.length) list = list.filter(w => qualMatch(w, qual));
@@ -864,7 +867,7 @@ function Wall({ go, styleIds }) {
     for (const [k] of ERAS) c[k] = 0;
     for (const w of list) for (const [k] of ERAS) if (eraPass(w, k)) c[k]++;
     return c;
-  }, [all, marks, status, mus, sel, media, qual]);
+  }, [all, marks, status, mus, artistSel, sel, media, qual]);
   // all-time counts, used only to decide which medium chips exist at all
   const mediaAll = useMemo(() => {
     const c = {};
@@ -880,6 +883,7 @@ function Wall({ go, styleIds }) {
     if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
     if (eras.size) list = list.filter(w => [...eras].some(k => eraPass(w, k)));
     if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
+    if (artistSel) list = list.filter(w => w.artistId === artistSel);
     // styles are OR'd — picking Impressionism + Fauvism widens, it doesn't narrow to the overlap
     if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
     // medium buckets OR the same way, and AND against everything else. A work with no decided
@@ -927,12 +931,25 @@ function Wall({ go, styleIds }) {
   // a stale memo.
   // …and `lazyGen` (2026-08-26): tourOnly reads the LAZY CANVAS_INSPECT — without the gen dep,
   // toggling the chip before the file lands cached an empty wall forever.
-  }, [all, marks, status, eras, mus, sort, sel, media, qual, mp, pick, hang, tourOnly, lazyGen]);
+  }, [all, marks, status, eras, mus, artistSel, sort, sel, media, qual, mp, pick, hang, tourOnly, lazyGen]);
   const visN = CAP + extra;
   const musOpts = useMemo(() => {
     const counts = {};
     for (const w of all) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) if (id) counts[id] = (counts[id] || 0) + 1;
-    return MUSEUMS.filter(m => counts[m.id]).map(m => ({ id: m.id, label: m.name.replace(/\s*\(.*\)$/, "") + " (" + counts[m.id] + ")" }));
+    return MUSEUMS.filter(m => counts[m.id])
+      .map(m => ({ id: m.id, label: m.name.replace(/\s*\(.*\)$/, "") }))
+      .sort((a, b) => a.label.localeCompare(b.label));
+  }, [all]);
+  // every artist with at least one work on the wall, labelled by display name (registry label,
+  // falling back to the work's own cleaned artist string), sorted alphabetically by that label.
+  const artistOpts = useMemo(() => {
+    const byId = {};
+    for (const w of all) {
+      if (!w.artistId || byId[w.artistId]) continue;
+      const reg = AD.artists[w.artistId];
+      byId[w.artistId] = { id: w.artistId, label: (reg && reg.label) || (w.artist || "").replace(/\s*\(.*\)$/, "") };
+    }
+    return Object.values(byId).sort((a, b) => a.label.localeCompare(b.label));
   }, [all]);
 
   const vis = shown.slice(0, visN);
@@ -964,8 +981,12 @@ function Wall({ go, styleIds }) {
           <span className="cv-f-full">⤢ tour</span><span className="cv-f-tiny">⤢</span>
         </button>
         <select value={mus} onChange={unhang(e => setMus(e.target.value))}>
-          <option value="">every museum</option>
+          <option value="">Museum</option>
           {musOpts.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
+        </select>
+        <select value={artistSel} onChange={unhang(e => setArtistSel(e.target.value))}>
+          <option value="">Artist</option>
+          {artistOpts.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
         </select>
         <select value={sort === "colour" ? "hang" : sort} onChange={unhang(e => setSort(e.target.value))}>
           <option value="hang">hang order</option>
