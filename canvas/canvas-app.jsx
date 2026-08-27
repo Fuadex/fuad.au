@@ -2182,8 +2182,14 @@ function MuseumCard({ m, go, quiet }) {
         <div className="cv-musidx-name">{name}{hasRead ? <span className="cv-musidx-read" title="has a read"> ✦</span> : null}</div>
         <div className="cv-musidx-city">{m.city}</div>
         <div className="cv-musidx-meta">
-          {m.met ? <span className="cv-musidx-met">{m.met} met</span> : <span className="cv-musidx-met cv-musidx-none">no works met yet</span>}
+          {m.met
+            ? <span className="cv-musidx-met">{m.met} met</span>
+            : (m.notVisited ? null : <span className="cv-musidx-met cv-musidx-none">no works met yet</span>)}
           {m.floored ? <span className="cv-musidx-floored">★ {m.floored}</span> : null}
+          {/* green = undiscovered (the map/Portrait chase register): unseen works living here,
+              resolved via art_holders.js. On a met venue it reads "+N to see"; on a never-walked
+              holder museum it is the card's only tally. */}
+          {m.notVisited ? <span className="cv-musidx-tosee">{m.met ? "+" : ""}{m.notVisited} to see</span> : null}
           {/* the DECK chip that used to sit here (linking to the per-museum #/deck/ route) is
               GONE (Fuad 2026-08-25: "we need the DECK buttons remove"). m.deck itself STAYS —
               Museums still uses it to decide whether a no-works-met venue is "quiet" rather
@@ -2201,28 +2207,43 @@ function Museums({ go }) {
   const HL = window.CANVAS_HIGHLIGHTS || {};
   const sections = useMemo(() => {
     // per-museum met/floored tallies from the enriched canon (seenAt → this venue).
-    const met = {}, floored = {};
+    const met = {}, floored = {}, notVisited = {};
     for (const w of WORKS.map(enrich)) {
-      for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt])) {
-        if (!id) continue;
+      const seen = Array.isArray(w.seenAt) ? w.seenAt.filter(Boolean) : (w.seenAt ? [w.seenAt] : []);
+      if (!seen.length) {
+        // never stood in front of it: where does it live? (art_holders.js, the P195 collection
+        // layer — the same chase/pilgrimage register as the map's green marks). Gate on absence
+        // of seenAt (matches the recon's 1,899-unseen / 330-resolving census exactly), so no work
+        // is ever counted as both met and not-visited, and met totals are unchanged from before.
+        // HOLD is loaded EAGERLY (index.html <script src="art_holders.js">, not in LAZY_DATA),
+        // so homeOf is populated at first render — no lazy-gen dep needed for it. The [lazyGen]
+        // dep this memo already carries is for HL (highlights), which IS lazy.
+        const h = homeOf(w);
+        if (h && h.museumId && MUS_BY_ID[h.museumId]) notVisited[h.museumId] = (notVisited[h.museumId] || 0) + 1;
+        continue;
+      }
+      for (const id of seen) {
         met[id] = (met[id] || 0) + 1;
         if (w.floored || w.favorite) floored[id] = (floored[id] || 0) + 1;
       }
     }
     const by = {};
     for (const m of MUSEUMS) {
-      const row = { ...m, ...(AD.museums[m.id] || {}), met: met[m.id] || 0, floored: floored[m.id] || 0, deck: HL[m.id] || null };
+      const row = { ...m, ...(AD.museums[m.id] || {}), met: met[m.id] || 0, floored: floored[m.id] || 0, notVisited: notVisited[m.id] || 0, deck: HL[m.id] || null };
       (by[m.country] = by[m.country] || []).push(row);
     }
     // section order: total works met desc, then museum count desc as tiebreak.
     return Object.entries(by).map(([cc, list]) => {
       const metWorks = list.reduce((s, m) => s + m.met, 0);
-      // within a country: met venues first (met desc, floored tiebreak), then quiet (read/deck), then rest.
+      // within a country: met venues first (met desc, floored tiebreak), then NOT-VISITED holder
+      // museums (never stood there, but they hold works still to be met — green register), then
+      // quiet (read/deck), then rest.
       const has = (m) => m.deck || (window.CANVAS_MUSEUM_ABOUT || {})[m.id] || (window.CANVAS_MUSEUM_DATA || {})[m.id];
       const withMet = list.filter(m => m.met > 0).sort((a, b) => b.met - a.met || b.floored - a.floored || a.name.localeCompare(b.name));
-      const quiet = list.filter(m => m.met === 0 && has(m)).sort((a, b) => a.name.localeCompare(b.name));
-      const rest = list.filter(m => m.met === 0 && !has(m)).sort((a, b) => a.name.localeCompare(b.name));
-      return { cc, metWorks, count: list.length, withMet, quiet, rest };
+      const notVis = list.filter(m => m.met === 0 && m.notVisited > 0).sort((a, b) => b.notVisited - a.notVisited || a.name.localeCompare(b.name));
+      const quiet = list.filter(m => m.met === 0 && m.notVisited === 0 && has(m)).sort((a, b) => a.name.localeCompare(b.name));
+      const rest = list.filter(m => m.met === 0 && m.notVisited === 0 && !has(m)).sort((a, b) => a.name.localeCompare(b.name));
+      return { cc, metWorks, count: list.length, withMet, notVis, quiet, rest };
     }).sort((a, b) => b.metWorks - a.metWorks || b.count - a.count);
   }, [lazyGen]);
   return (
@@ -2248,6 +2269,14 @@ function MuseumSection({ sec, go }) {
         <div className="cv-musidx-grid">
           {sec.withMet.map(m => <MuseumCard key={m.id} m={m} go={go} />)}
           {sec.quiet.map(m => <MuseumCard key={m.id} m={m} go={go} quiet />)}
+        </div>
+      ) : null}
+      {sec.notVis.length ? (
+        <div className="cv-musidx-tosee-group">
+          <p className="cv-musidx-subhead">Not visited · holds works still to be met</p>
+          <div className="cv-musidx-grid">
+            {sec.notVis.map(m => <MuseumCard key={m.id} m={m} go={go} quiet />)}
+          </div>
         </div>
       ) : null}
       {sec.rest.length ? (

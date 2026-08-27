@@ -129,6 +129,14 @@ a { color: inherit; }
 .cv-musidx-met { color: var(--accent); }
 .cv-musidx-met.cv-musidx-none { color: var(--ink-faint); font-style: normal; text-transform: none; letter-spacing: .02em; }
 .cv-musidx-floored { color: var(--ink-soft); }
+/* GREEN = UNDISCOVERED — the same chase register as the map legend (.lg-far) and Portrait's
+   century bar (.cv-p-key-chase): unseen works whose home museum (art_holders.js) is this venue.
+   Same oklch(0.52 0.09 150) family as those marks, opaque here so it reads as a text chip. */
+.cv-musidx-tosee { color: oklch(0.52 0.09 150); }
+.cv-musidx-text .cv-musidx-tosee { color: oklch(0.66 0.10 150); }
+/* "Not visited" group — never-walked holder museums, set below the met/quiet grid of a country. */
+.cv-musidx-tosee-group { margin-top: 14px; }
+.cv-musidx-subhead { font: 500 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 10px; }
 /* .cv-musidx-deck (the DECK chip on each museums-index card) removed 2026-08-25 — the chip is
    gone from MuseumCard, so its rules went with it. */
 
