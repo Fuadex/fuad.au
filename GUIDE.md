@@ -122,6 +122,7 @@ dataset sanity" (`smoke.js`). Push to `main` is the test environment.
 | **canvas/HIRES_GALLERY.md** | Ranked snapshot of the sharpest scans in the canon (≥20 MP), with pixel dimensions |
 | **canvas/PLATE_CHANGES.md** ★ | Changelog of IIIF / image URL changes since last deploy (URL-public) |
 | **canvas/NGA_IIIF_CANDIDATES.md** | NGA IIIF adoption tracking — verified upgrades and remaining candidates |
+| **canvas/IIIF_CENSUS.md** ★ | Which museums worldwide actually serve art at high resolution — the one-query census method, measured megapixels, and where the IIIF Monets and Turners are |
 
 ### Archive (gitignored — local only)
 | Doc | What it is |
