@@ -409,17 +409,20 @@ function AlbumView({ id, go }) {
         .alb-chiprow > .r-mono { flex-shrink: 0; }
         .alb-chipscroll > .r-chip { flex-shrink: 0; }
       `}</style>
-      {/* an album's natural parent is its artist — go up to them, not back out to Explore. Back
-          button sits on its own line above the header, but with its dead space collapsed: the
-          core .r-back's 22px bottom margin is overridden to a tight 6px so the button hugs the
-          header band instead of shoving the cover down (Fuad 2026-08-17). The kicker stays in the
-          content column above the title, left-aligned with it exactly as before. */}
-      <button className="r-back" style={{ marginBottom: 6, maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} onClick={() => (known ? go("artist", artistId) : go("explore"))}>← {known ? data.artist : "explore"}</button>
       <div className="tv-head" style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 26 }}>
         <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
-          <div className="r-kicker">{typeName}{relYear ? ` · ${relYear}` : ""}{data.tracks.length ? ` · ${data.tracks.length} track${data.tracks.length !== 1 ? "s" : ""} played` : ""}</div>
-          <h1 className="r-title" style={{ fontSize: "clamp(30px,4.4vw,54px)" }}>{data.title}<span className="dot">.</span></h1>
+          {/* an album's natural parent is its artist — go up to them, not back out to Explore. Back
+              button and kicker share one flex row above the title — button first, kicker after,
+              baseline-aligned, ~12px gap. Eliminates the dead vertical space from the old stacked
+              arrangement (Fuad 2026-08-28, replacing the 2026-08-17 tight-margin approach). */}
+          <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 2 }}>
+            <button className="r-back" style={{ margin: 0, flexShrink: 0, maxWidth: "40%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} onClick={() => (known ? go("artist", artistId) : go("explore"))}>← {known ? data.artist : "explore"}</button>
+            <div className="r-kicker" style={{ margin: 0 }}>{typeName}{relYear ? ` · ${relYear}` : ""}{data.tracks.length ? ` · ${data.tracks.length} track${data.tracks.length !== 1 ? "s" : ""} played` : ""}</div>
+          </div>
+          {/* Font scales down for long album titles so they fill the row before wrapping
+              (Fuad 2026-08-28): >26 chars → small clamp, >18 → mid clamp, else full size. */}
+          <h1 className="r-title" style={{ fontSize: data.title.length > 26 ? "clamp(26px,3.6vw,44px)" : data.title.length > 18 ? "clamp(30px,4.2vw,52px)" : "clamp(36px,5vw,64px)" }}>{data.title}<span className="dot">.</span></h1>
           <div style={{ color: "var(--ink-soft)", fontSize: 15, marginTop: 6 }}>
             by {known ? <b onClick={() => go("artist", artistId)} style={{ cursor: "pointer", color: "var(--ink)" }}>{data.artist}</b> : data.artist}</div>
           {livesOn && <div className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-faint)", marginTop: 5 }}>
@@ -487,12 +490,9 @@ function AlbumView({ id, go }) {
           <div className="r-card" style={{ padding: "16px 18px" }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Album Audio DNA</b></span>
               <span className="meta">{bpm ? `~${bpm} BPM` : ""}</span></div>
-            <div className="tv-dna-row" style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-              <div style={{ flex: "0 0 auto", width: 188, maxWidth: "100%" }}>
-                <AudioRadar axes={radar} hue={hue} avg={radarLibAvg()} />
-                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = this album · dashed = your average</div>
-              </div>
-              <div style={{ flex: 1, minWidth: 170, display: "grid", gap: 8 }}>
+            {/* 2026-08-28: flipped layout — text col left/top-aligned (sizes to content), graph takes remaining space on the right */}
+            <div className="tv-dna-row" style={{ display: "flex", gap: 14, alignItems: "flex-start", flexWrap: "wrap" }}>
+              <div style={{ flex: "0 0 auto", display: "grid", gap: 8 }}>
                 {[["Energy", dna[0]], ["Positivity", dna[1]], ["Danceability", dna[2]], ["Acousticness", dna[3]], ["Instrumental", dna[4]]].map(([label, v]) => (
                   <div key={label} style={{ display: "grid", gridTemplateColumns: "94px minmax(0,1fr) 26px", gap: 10, alignItems: "center" }}>
                     <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)" }}>{label}</span>
@@ -500,6 +500,10 @@ function AlbumView({ id, go }) {
                     <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
                   </div>
                 ))}
+              </div>
+              <div style={{ flex: 1, minWidth: 160, maxWidth: "100%" }}>
+                <AudioRadar axes={radar} hue={hue} avg={radarLibAvg()} />
+                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = this album · dashed = your average</div>
               </div>
             </div>
           </div>
@@ -1117,12 +1121,16 @@ function TrackView({ id, go }) {
 
   return (
     <div className="r-view tv-page">
-      <button className="r-back" onClick={() => go(data.albumId ? "album" : "explore", data.albumId || undefined)}>← {data.album || "explore"}</button>
       <div className="tv-head" style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 24 }}>
         <GenCover hue={hue} name={data.title} image={data.cover} thumb={data.cover} size={132} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
-          <div className="r-kicker">Song{data.trackNo ? ` · track ${data.trackNo}` : ""}{data.dur ? ` · ${mmss(data.dur)}` : ""}{data.explicit ? " · explicit" : ""}</div>
-          <h1 className="r-title" style={{ fontSize: "clamp(28px,4.2vw,50px)" }}>{data.title}<span className="dot">.</span></h1>
+          {/* Back button and kicker share one flex row above the title — button first, kicker after,
+              baseline-aligned, ~12px gap. Mirrors AlbumView/ArtistView merge (Fuad 2026-08-28). */}
+          <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 2 }}>
+            <button className="r-back" style={{ margin: 0, flexShrink: 0, maxWidth: "40%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} onClick={() => go(data.albumId ? "album" : "explore", data.albumId || undefined)}>← {data.album || "explore"}</button>
+            <div className="r-kicker" style={{ margin: 0 }}>Song{data.trackNo ? ` · track ${data.trackNo}` : ""}{data.dur ? ` · ${mmss(data.dur)}` : ""}{data.explicit ? " · explicit" : ""}</div>
+          </div>
+          <h1 className="r-title" style={{ fontSize: data.title.length > 26 ? "clamp(26px,3.6vw,44px)" : data.title.length > 18 ? "clamp(30px,4.2vw,52px)" : "clamp(36px,5vw,64px)" }}>{data.title}<span className="dot">.</span></h1>
           <div style={{ color: "var(--ink-soft)", fontSize: 15, marginTop: 6 }}>
             by {known ? <b onClick={() => go("artist", artistId)} style={{ cursor: "pointer", color: "var(--ink)" }}>{data.artist}</b> : data.artist}
             {data.album && <> · <span onClick={() => go("album", data.albumId)} style={{ cursor: "pointer", color: "var(--ink-soft)" }}>{data.album}</span></>}</div>
@@ -1242,12 +1250,9 @@ function TrackView({ id, go }) {
           <div className="r-card" style={{ padding: "16px 18px" }}>
             <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Audio DNA</b></span>
               <span className="meta">Spotify features</span></div>
-            <div className="tv-dna-row" style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-              <div style={{ flex: "0 0 auto", width: 188, maxWidth: "100%" }}>
-                <AudioRadar axes={radar} hue={hue} avg={radarLibAvg()} />
-                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = this song · dashed = your average</div>
-              </div>
-              <div style={{ flex: 1, minWidth: 180, display: "grid", gap: 8 }}>
+            {/* 2026-08-28: flipped layout — text col left/top-aligned (sizes to content), graph takes remaining space on the right */}
+            <div className="tv-dna-row" style={{ display: "flex", gap: 14, alignItems: "flex-start", flexWrap: "wrap" }}>
+              <div style={{ flex: "0 0 auto", display: "grid", gap: 8 }}>
                 {bars.map(([label, v]) => (
                   <div key={label} style={{ display: "grid", gridTemplateColumns: "96px minmax(0,1fr) 26px", gap: 10, alignItems: "center" }}>
                     <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)" }}>{label}</span>
@@ -1255,6 +1260,10 @@ function TrackView({ id, go }) {
                     <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
                   </div>
                 ))}
+              </div>
+              <div style={{ flex: 1, minWidth: 160, maxWidth: "100%" }}>
+                <AudioRadar axes={radar} hue={hue} avg={radarLibAvg()} />
+                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = this song · dashed = your average</div>
               </div>
             </div>
             {attrs.length > 0 && <div style={{ marginTop: 13, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(62px, 1fr))", gap: 9, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>

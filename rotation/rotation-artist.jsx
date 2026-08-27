@@ -1613,19 +1613,19 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
 
   return (
     <div className="r-view tv-page av-page" ref={ref}>
-      {/* Back button sits on its own line above the header with its dead space collapsed: the core
-          .r-back's 22px bottom margin is overridden to a tight 6px so it hugs the header band rather
-          than shoving the cover down (Fuad 2026-08-17). The kicker stays in the text column above
-          the title, left-aligned with it — mirrors the album pass. */}
-      <button className="r-back" style={{ marginBottom: 6 }} onClick={() => go("explore")}>← explore</button>
-
       {/* header */}
       <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 30 }}>
         <GenCover hue={a.hue} name={a.name} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
-          <div className="r-kicker">#{String(a.rank).padStart(2, "0")} all time
+          {/* Back button and kicker share one flex row above the title — button first, kicker after,
+              baseline-aligned, ~12px gap. Eliminates the dead vertical space from the old stacked
+              arrangement (Fuad 2026-08-28, replacing the 2026-08-17 tight-margin approach). */}
+          <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 2 }}>
+            <button className="r-back" style={{ margin: 0, flexShrink: 0 }} onClick={() => go("explore")}>← explore</button>
+            <div className="r-kicker" style={{ margin: 0 }}>#{String(a.rank).padStart(2, "0")} all time
             {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}
             {a.debut ? ` · EST. ${a.debut}` : ""}</div>
+          </div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
           <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} onTour={a.onTour} vx={a.vx} />
           {/* the last.fm rail quotes the SOURCE (a.tagsLf = raw cache top-4) rather than the
