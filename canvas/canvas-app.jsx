@@ -247,6 +247,38 @@ const ARTIST_READ = window.CANVAS_ARTISTS || {};
 // Kept apart from seenAt, which records where he stood.
 const HOLD = window.CANVAS_HOLDERS || { works: {}, places: {} };
 const homeOf = (w) => HOLD.places[HOLD.works[w.id]] || null;
+// ── WALL TOKEN PLACE-SCOPING (Fuad 2026-08-27, "design your own wall"). A work belongs to a museum
+// two ways: he SAW it there (seenAt), or it LIVES there (art_holders P195 collection). Both count as
+// "in this museum" for a museum token. A city token widens that to every museum in the city — again
+// both senses (walked museums via the registry city, and the holder's own city string).
+const seenAtIds = (w) => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).filter(Boolean);
+const workInMuseum = (w, mid) => {
+  if (seenAtIds(w).includes(mid)) return true;
+  const h = homeOf(w);
+  return !!(h && h.museumId === mid);
+};
+const workInCity = (w, city) => {
+  for (const id of seenAtIds(w)) { const m = MUS_BY_ID[id]; if (m && m.city === city) return true; }
+  const h = homeOf(w);
+  if (h) { if (h.city === city) return true; const hm = h.museumId && MUS_BY_ID[h.museumId]; if (hm && hm.city === city) return true; }
+  return false;
+};
+// The filter for one token by type (WORK tokens are handled as PINS, not here).
+const tokenScopePass = (w, t) =>
+  t.type === "artist" ? w.artistId === t.id
+  : t.type === "museum" ? workInMuseum(w, t.id)
+  : t.type === "city" ? workInCity(w, t.id)
+  : true;
+// OR within a type, AND across types — but museum+city are ONE "place" axis, ORed together (both
+// scope WHERE). So: (artistA OR artistB) AND (museumX OR cityY). WORK tokens skipped (pins).
+function tokensPass(w, tokens) {
+  const byType = { artist: [], museum: [], city: [] };
+  for (const t of tokens) if (byType[t.type]) byType[t.type].push(t);
+  if (byType.artist.length && !byType.artist.some(t => tokenScopePass(w, t))) return false;
+  const place = [...byType.museum, ...byType.city];
+  if (place.length && !place.some(t => tokenScopePass(w, t))) return false;
+  return true;
+}
 // The pilgrimage is everything still to be met: an explicit wish, or a sighting he is unsure of.
 // Loved and liked are kept distinguishable — they are different appetites, not one list.
 const isUnseen = (w) => !!w.wish || w.seenConfidence === "unsure";
@@ -768,8 +800,21 @@ function Wall({ go, styleIds }) {
   const toggleIn = (set, setter) => (k) => setter(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; });
   const toggleMark = unhang(toggleIn(marks, setMarks));
   const toggleStatus = unhang(toggleIn(status, setStatus));
-  const [mus, setMus] = useState("");
-  const [artistSel, setArtistSel] = useState("");
+  // ── DESIGN YOUR OWN WALL (Fuad 2026-08-27) — the Museum and Artist <select>s are gone; one
+  // search owns them. Tokens are the filter now: {type, id, label}, type ∈ artist|museum|city|work.
+  // Semantics: OR within a type, AND across types — with museum+city collapsed to ONE "place" axis
+  // (both scope WHERE, so they OR together). WORK tokens are PINS, not filters: a pinned work always
+  // renders (union with the filtered set) and jumps to the front of hang order — the actual "design
+  // your own wall" move. `tokens` threads into EVERY memo/effect that used to carry mus/artistSel;
+  // if you add a memo that reads a token, add `tokens` to its deps or the wall goes stale (this file
+  // shipped that exact bug three times for media/qual/tourOnly — see the top-of-file note & `shown`).
+  const [tokens, setTokens] = useState(() => []);
+  const addToken = unhang((t) => setTokens(prev => prev.some(x => x.type === t.type && x.id === t.id) ? prev : [...prev, { type: t.type, id: t.id, label: t.label }]));
+  const removeToken = unhang((type, id) => setTokens(prev => prev.filter(x => !(x.type === type && x.id === id))));
+  const clearTokens = unhang(() => setTokens([]));
+  const [searchQ, setSearchQ] = useState("");        // the omnisearch input text
+  const [searchSel, setSearchSel] = useState(0);     // keyboard-highlighted suggestion
+  const searchWrapRef = useRef(null);                // click-outside + focus target
   const [sort, setSort] = useState("hang");
   const [extra, setExtra] = useState(0);
   const [allStyles, setAllStyles] = useState(false);   // "+N more" disclosure
@@ -804,7 +849,7 @@ function Wall({ go, styleIds }) {
   // survives the navigation and has to be cleared explicitly like every other filter.
   const setSel = unhang((labels) => go("wall", labels.length ? labels.map(movSlug).join("+") : null));
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [marks, status, eras, mus, artistSel, sort, styleIds, media, qual, mp, pick, hang, tourOnly]);
+  useEffect(() => { setExtra(0); }, [marks, status, eras, tokens, sort, styleIds, media, qual, mp, pick, hang, tourOnly]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -815,10 +860,11 @@ function Wall({ go, styleIds }) {
     if (marks.size) list = list.filter(w => [...marks].some(k => markPass(w, k)));
     if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
     if (eras.size) list = list.filter(w => [...eras].some(k => eraPass(w, k)));
-    if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
-    if (artistSel) list = list.filter(w => w.artistId === artistSel);
+    // artist + place tokens (OR within type, AND across; museum+city collapse to one place axis).
+    // WORK tokens are pins, not filters — they union in at the `shown` stage, not here.
+    if (tokens.some(t => t.type !== "work")) list = list.filter(w => tokensPass(w, tokens));
     return list;
-  }, [all, marks, status, eras, mus, artistSel]);
+  }, [all, marks, status, eras, tokens]);
 
   // Live facet counts. Both rows count against `base` — every filter EXCEPT their own — and each
   // also honours the other, so with Sculpture on, the style numbers are sculpture-only. A chip that
@@ -858,8 +904,7 @@ function Wall({ go, styleIds }) {
     let list = all;
     if (marks.size) list = list.filter(w => [...marks].some(k => markPass(w, k)));
     if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
-    if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
-    if (artistSel) list = list.filter(w => w.artistId === artistSel);
+    if (tokens.some(t => t.type !== "work")) list = list.filter(w => tokensPass(w, tokens));
     if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
     if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
     if (qual.length) list = list.filter(w => qualMatch(w, qual));
@@ -867,7 +912,7 @@ function Wall({ go, styleIds }) {
     for (const [k] of ERAS) c[k] = 0;
     for (const w of list) for (const [k] of ERAS) if (eraPass(w, k)) c[k]++;
     return c;
-  }, [all, marks, status, mus, artistSel, sel, media, qual]);
+  }, [all, marks, status, tokens, sel, media, qual]);
   // all-time counts, used only to decide which medium chips exist at all
   const mediaAll = useMemo(() => {
     const c = {};
@@ -882,8 +927,9 @@ function Wall({ go, styleIds }) {
     if (marks.size) list = list.filter(w => [...marks].some(k => markPass(w, k)));
     if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
     if (eras.size) list = list.filter(w => [...eras].some(k => eraPass(w, k)));
-    if (mus) list = list.filter(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).includes(mus));
-    if (artistSel) list = list.filter(w => w.artistId === artistSel);
+    // artist + place tokens filter here (OR within type, AND across; museum+city are one place axis).
+    // WORK tokens do NOT filter — they PIN below: unioned in and floated to the front.
+    if (tokens.some(t => t.type !== "work")) list = list.filter(w => tokensPass(w, tokens));
     // styles are OR'd — picking Impressionism + Fauvism widens, it doesn't narrow to the overlap
     if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
     // medium buckets OR the same way, and AND against everything else. A work with no decided
@@ -898,13 +944,24 @@ function Wall({ go, styleIds }) {
     // back an empty wall with a lit chip and nothing to explain it.
     if (mp && mpReady()) list = list.filter(w => mpPass(w, mp));
     if (tourOnly) list = list.filter(w => !!(window.CANVAS_INSPECT || {})[w.id]);
-    const arr = [...list];
+    // WORK PINS (Fuad 2026-08-27, "design your own wall"). A pinned work ALWAYS renders — even if the
+    // active filters would drop it — and leads the hang. Pins are a UNION with the filtered set, not
+    // an intersection, so pinning a work you love and then narrowing to another artist keeps it on
+    // the wall. `pinIds` is the front-of-order set; `pinWorks` supplies any pin the filters excluded.
+    const pinIds = new Set(tokens.filter(t => t.type === "work").map(t => t.id));
+    const inList = new Set(list.map(w => w.id));
+    const pinWorks = pinIds.size ? all.filter(w => pinIds.has(w.id) && !inList.has(w.id)) : [];
+    const arr = [...pinWorks, ...list];
     // TODAY'S HANG short-circuits the sort: its order IS the content — pinned leads first, then the
     // day-seeded spread. The chips still narrow it, so "today's hang, 1890s only" works, but nothing
-    // reorders it, because any reorder would throw away the thing that makes it a hang.
+    // reorders it, because any reorder would throw away the thing that makes it a hang. Token pins
+    // still float to the very front — they are the "my wall" gesture and outrank even the hang lead.
     if (hang) {
-      const keep = new Set(list.map(w => w.id));
-      return homeHang(all).filter(w => keep.has(w.id));
+      const keep = new Set(arr.map(w => w.id));
+      const hung = homeHang(all).filter(w => keep.has(w.id));
+      if (!pinIds.size) return hung;
+      const pins = hung.filter(w => pinIds.has(w.id));
+      return [...pins, ...hung.filter(w => !pinIds.has(w.id))];
     }
     // ONE WALL, sorted (Fuad 2026-08-20). Spectrum, Timeline and Movements were three separate
     // "modes" that only ever differed by sort order, so they are sort options and chips now: colour
@@ -919,6 +976,9 @@ function Wall({ go, styleIds }) {
       if (target) arr.sort((a, b) => palDistTo(a, target) - palDistTo(b, target) || weight(a) - weight(b));
       else arr.sort((a, b) => palHueOf(a) - palHueOf(b) || weight(a) - weight(b));
     }
+    // pins jump to the front of the sorted order too — a stable partition, so within the pins and
+    // within the rest the chosen sort still holds.
+    if (pinIds.size) { const p = arr.filter(w => pinIds.has(w.id)); const r = arr.filter(w => !pinIds.has(w.id)); return [...p, ...r]; }
     return arr;
     // `media` belongs in here: the filter above reads it, and without it the wall kept showing the
     // previous medium's results until some other filter happened to change (found 2026-08-20).
@@ -931,26 +991,77 @@ function Wall({ go, styleIds }) {
   // a stale memo.
   // …and `lazyGen` (2026-08-26): tourOnly reads the LAZY CANVAS_INSPECT — without the gen dep,
   // toggling the chip before the file lands cached an empty wall forever.
-  }, [all, marks, status, eras, mus, artistSel, sort, sel, media, qual, mp, pick, hang, tourOnly, lazyGen]);
+  // …and `tokens` (2026-08-27): the artist/place filters AND the work pins all read it. Same bug
+  // class as media/qual/tourOnly — the token chip would appear but the wall would not move.
+  }, [all, marks, status, eras, tokens, sort, sel, media, qual, mp, pick, hang, tourOnly, lazyGen]);
   const visN = CAP + extra;
-  const musOpts = useMemo(() => {
-    const counts = {};
-    for (const w of all) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) if (id) counts[id] = (counts[id] || 0) + 1;
-    return MUSEUMS.filter(m => counts[m.id])
-      .map(m => ({ id: m.id, label: m.name.replace(/\s*\(.*\)$/, "") }))
-      .sort((a, b) => a.label.localeCompare(b.label));
-  }, [all]);
-  // every artist with at least one work on the wall, labelled by display name (registry label,
-  // falling back to the work's own cleaned artist string), sorted alphabetically by that label.
-  const artistOpts = useMemo(() => {
-    const byId = {};
+  // ── TOKEN SUGGESTION INDEX (Fuad 2026-08-27) — the four suggestible types the omnisearch draws
+  // from, built once against the wall. This is the SAME source data the header SearchBar's
+  // SEARCH_INDEX/ARTIST_SEARCH_INDEX/musOpts drew on (registry label chain, venues, holder), just
+  // reshaped into filterable tokens rather than navigation destinations.
+  const tokenIndex = useMemo(() => {
+    // ARTISTS — registry label -> work's cleaned artist string -> artistId; SKIP blank labels.
+    // (The old Artist <select> rendered blank rows for the 13 registry-less artists; not reproduced.)
+    const artistById = {};
     for (const w of all) {
-      if (!w.artistId || byId[w.artistId]) continue;
+      if (!w.artistId || artistById[w.artistId]) continue;
       const reg = AD.artists[w.artistId];
-      byId[w.artistId] = { id: w.artistId, label: (reg && reg.label) || (w.artist || "").replace(/\s*\(.*\)$/, "") };
+      const label = ((reg && reg.label) || (w.artist || "").replace(/\s*\(.*\)$/, "") || "").trim();
+      if (!label) continue;
+      artistById[w.artistId] = { type: "artist", id: w.artistId, label, hay: fold(label) };
     }
-    return Object.values(byId).sort((a, b) => a.label.localeCompare(b.label));
+    // MUSEUMS — every registry museum that actually holds works on the wall, in EITHER sense (seen
+    // there or the P195 holder resolves to it). Label = registry name, count-suffix stripped.
+    const musHas = {};
+    for (const w of all) {
+      for (const id of seenAtIds(w)) if (MUS_BY_ID[id]) musHas[id] = true;
+      const h = homeOf(w);
+      if (h && h.museumId && MUS_BY_ID[h.museumId]) musHas[h.museumId] = true;
+    }
+    const museums = Object.keys(musHas).map(id => {
+      const m = MUS_BY_ID[id]; const label = m.name.replace(/\s*\(.*\)$/, "");
+      return { type: "museum", id, label, sub: m.city || "", hay: fold(label + " " + (m.city || "")) };
+    });
+    // CITIES — registry cities of those museums, plus holder cities (both senses of "where"). Keyed
+    // by the city string itself; that IS the token id, since a city token scopes by string match.
+    const citySet = new Map();
+    for (const id of Object.keys(musHas)) { const m = MUS_BY_ID[id]; if (m && m.city) citySet.set(m.city, true); }
+    for (const w of all) { const h = homeOf(w); if (h && h.city) citySet.set(h.city, true); }
+    const cities = [...citySet.keys()].map(city => ({ type: "city", id: city, label: city, hay: fold(city) }));
+    // WORKS — title match against the whole wall (pins). Cleaned like the header index does.
+    const works = all.map(w => ({
+      type: "work", id: w.id, label: w.title.replace(/^TBC — /, ""),
+      sub: (w.artist || "").replace(/\s*\(.*\)$/, ""), hay: fold(w.title + " " + (w.artist || "")),
+    }));
+    return {
+      artists: Object.values(artistById).sort((a, b) => a.label.localeCompare(b.label)),
+      museums: museums.sort((a, b) => a.label.localeCompare(b.label)),
+      cities: cities.sort((a, b) => a.label.localeCompare(b.label)),
+      works,
+    };
   }, [all]);
+  // The suggestion list for the typed query — max ~8, spread across the four types so no single type
+  // (works, the largest pool) crowds the others out. Already-added tokens are filtered out.
+  const suggest = useMemo(() => {
+    const needle = fold(searchQ.trim());
+    if (needle.length < 1) return [];
+    const taken = new Set(tokens.map(t => t.type + " " + t.id));
+    const free = (arr) => arr.filter(o => !taken.has(o.type + " " + o.id));
+    const pick = (arr, n) => free(arr).filter(o => o.hay.includes(needle)).slice(0, n);
+    // artists · museums · cities lead (broad scopes), works fill the remainder up to 8
+    const lead = [...pick(tokenIndex.artists, 3), ...pick(tokenIndex.museums, 3), ...pick(tokenIndex.cities, 2)];
+    const out = lead.slice(0, 6);
+    const worksN = pick(tokenIndex.works, 8 - out.length);
+    return [...out, ...worksN].slice(0, 8);
+  }, [searchQ, tokenIndex, tokens]);
+  // clicking away drops the in-progress query (the tokens stay — they are the committed filter).
+  // Same click-outside idiom the header SearchBar uses.
+  useEffect(() => {
+    if (!searchQ) return;
+    const h = (e) => { if (searchWrapRef.current && !searchWrapRef.current.contains(e.target)) { setSearchQ(""); setSearchSel(0); } };
+    document.addEventListener("mousedown", h);
+    return () => document.removeEventListener("mousedown", h);
+  }, [searchQ]);
 
   const vis = shown.slice(0, visN);
 
@@ -980,14 +1091,49 @@ function Wall({ go, styleIds }) {
           title="only works with a study tour — a walked close reading of the surface">
           <span className="cv-f-full">⤢ tour</span><span className="cv-f-tiny">⤢</span>
         </button>
-        <select value={mus} onChange={unhang(e => setMus(e.target.value))}>
-          <option value="">Museum</option>
-          {musOpts.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
-        </select>
-        <select value={artistSel} onChange={unhang(e => setArtistSel(e.target.value))}>
-          <option value="">Artist</option>
-          {artistOpts.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
-        </select>
+        {/* DESIGN YOUR OWN WALL (Fuad 2026-08-27) — one search replaces the two superlong Museum
+            and Artist dropdowns. Type to get suggestions across four types (artist · museum · city ·
+            work); each pick becomes a token chip. Filters compose as you add them, "clear all" resets
+            the tokens only. Work tokens PIN — the picture always shows and leads the wall. */}
+        <span className="cv-omni" ref={searchWrapRef}>
+          {tokens.map(t => (
+            <button key={t.type + t.id} className="cv-omni-tok" data-type={t.type}
+              onClick={() => removeToken(t.type, t.id)}
+              title={"remove this " + (t.type === "work" ? "pin" : t.type)}>
+              <span className="cv-omni-tok-type">{t.type === "work" ? "pin" : t.type}</span>
+              <span className="cv-omni-tok-label">{t.label}</span>
+              <span className="cv-omni-tok-x" aria-hidden="true">×</span>
+            </button>
+          ))}
+          <input className="cv-omni-input" type="search" value={searchQ}
+            placeholder={tokens.length ? "add another…" : "design your wall — artist, museum, city, work…"}
+            onChange={e => { setSearchQ(e.target.value); setSearchSel(0); }}
+            onKeyDown={e => {
+              if (e.key === "Escape") { setSearchQ(""); return; }
+              if (e.key === "Backspace" && !searchQ && tokens.length) { const last = tokens[tokens.length - 1]; removeToken(last.type, last.id); return; }
+              if (!suggest.length) return;
+              if (e.key === "ArrowDown") { e.preventDefault(); setSearchSel(s => Math.min(s + 1, suggest.length - 1)); }
+              else if (e.key === "ArrowUp") { e.preventDefault(); setSearchSel(s => Math.max(s - 1, 0)); }
+              else if (e.key === "Enter") { e.preventDefault(); const o = suggest[searchSel]; if (o) { addToken(o); setSearchQ(""); setSearchSel(0); } }
+            }}
+            autoComplete="off" autoCorrect="off" spellCheck="false" />
+          {searchQ.trim() && suggest.length > 0 && (
+            <div className="cv-omni-drop">
+              {suggest.map((o, i) => (
+                <div key={o.type + o.id} className={"cv-omni-sugg" + (i === searchSel ? " cv-omni-sugg-sel" : "")}
+                  onMouseEnter={() => setSearchSel(i)}
+                  onMouseDown={e => { e.preventDefault(); addToken(o); setSearchQ(""); setSearchSel(0); }}>
+                  <span className="cv-omni-sugg-type" data-type={o.type}>{o.type}</span>
+                  <span className="cv-omni-sugg-label">{o.label}</span>
+                  {o.sub && <span className="cv-omni-sugg-sub">{o.sub}</span>}
+                </div>
+              ))}
+            </div>
+          )}
+          {tokens.length > 0 && (
+            <button className="cv-omni-clear" onClick={clearTokens} title="clear every search token">clear all</button>
+          )}
+        </span>
         <select value={sort === "colour" ? "hang" : sort} onChange={unhang(e => setSort(e.target.value))}>
           <option value="hang">hang order</option>
           <option value="year">by year</option>
