@@ -2353,6 +2353,18 @@
 "Dream Theater": {
 "tracks": [
 {
+"from": "In The Presence Of Enemies Pt. 1",
+"to": "In the Presence of Enemies, Part I",
+"type": "spelling",
+"reason": "spelling: abbreviated scrobble title of the same Systematic Chaos recording; canonical row rendered blank at track 01 (owner-reported 2026-08-28)"
+},
+{
+"from": "In The Presence Of Enemies Pt. 2",
+"to": "In the Presence of Enemies, Part II",
+"type": "spelling",
+"reason": "spelling: abbreviated scrobble title of the same Systematic Chaos recording; canonical row rendered blank at track 08 (owner-reported 2026-08-28)"
+},
+{
 "from": "This Dying Soul (Live)",
 "to": "This Dying Soul",
 "type": "variant",
