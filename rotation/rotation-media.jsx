@@ -1034,6 +1034,11 @@ function TrackView({ id, go }) {
   const themes = (tGist && tGist.themes) || null;
   const seenLive = !!(R.GIGS && R.GIGS.liveSongs && R.GIGS.liveSongs.indexOf(id) >= 0);
   const divergent = (audVal != null && lyrVal != null && Math.abs(audVal - lyrVal) >= 30);
+  // Register vocabulary for calibrated/cathartic rows (mood[4] = index). ORDER IS THE EMIT'S —
+  // .sptmp/nrc-audit/emit_v5.js — do not reorder. reg is null for legacy 4-element rows, which
+  // fall back to the unmarked lyrEmo copy below.
+  const REG_VOCAB = ['anguished', 'bittersweet', 'bleak', 'tender', 'angry', 'defiant', 'joyful', 'neutral', 'bitter'];
+  const reg = (mood && mood[4] != null) ? REG_VOCAB[mood[4]] : null;
   const bpm = f ? Math.round(50 + f[7] / 100 * 140) : 0;   // undo build-time 50..190 remap
   const totalMin = data.dur && data.plays ? Math.round(data.dur * data.plays / 60) : 0;
   const radar = f ? [{ label: "Energy", value: f[4] }, { label: "Tempo", value: f[7] }, { label: "Dance", value: f[8] }, { label: "Positive", value: f[5] }, { label: "Acoustic", value: f[6] }, { label: "Instr.", value: f[9] }] : null;
@@ -1142,10 +1147,25 @@ function TrackView({ id, go }) {
                   Fuad) — so this card always carries its own note again. */}
               <div className="tv-mood-note">
                 <span className="txt">
-                  {divergent
-                    ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
-                    : <>Sound and words agree.</>}
-                  {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
+                  {/* COPY MATRIX (Fuad 2026-08-27): on recalibrated rows the tone word must be
+                      the whole-lyric REGISTER (reg), never the NRC word-count emotion (lyrEmo),
+                      and the consensus sentence is recomputed from audVal vs the CURRENT lyrVal.
+                      Rows without reg (legacy 4-element mood, or mark set but index missing) fall
+                      back to the unmarked lyrEmo copy so 4-element rows still render correctly. */}
+                  {(mood && mood[3] === 2 && reg)
+                    ? <>Reads <b>{reg}</b>; the sound carries it as triumph.</>
+                    : (mood && mood[3] === 1 && reg)
+                      ? (divergent
+                          ? (audVal > lyrVal
+                              ? <>Sounds bright, reads <b>{reg}</b>.</>
+                              : <>Sounds heavy, reads <b>{reg}</b>.</>)
+                          : <>Sound and words agree — <b>{reg}</b>.</>)
+                      : <>
+                          {divergent
+                            ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
+                            : <>Sound and words agree.</>}
+                          {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
+                        </>}
                   {/* PROVENANCE MARK (Fuad 2026-08-28): mood[3]===1 = valence re-scored by
                       the local whole-lyric model (the surgical pass that caught bright-lexical
                       masks over dark songs); unmarked rows are plain NRC lexicon. Lives in the
