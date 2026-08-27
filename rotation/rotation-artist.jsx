@@ -1613,20 +1613,17 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
 
   return (
     <div className="r-view tv-page av-page" ref={ref}>
-      {/* The back button keeps its ORIGINAL page-left position ABOVE the cover, and the kicker
-          joins IT on that full-width row (Fuad 2026-08-28, second cut: the first attempt put
-          the button inside the text column — "above the song · track · time, not over the
-          cover" — a regression; the row belongs over the cover at page left). */}
-      <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 6 }}>
-        <button className="r-back" style={{ margin: 0, flexShrink: 0 }} onClick={() => go("explore")}>← explore</button>
-        <div className="r-kicker" style={{ margin: 0 }}>#{String(a.rank).padStart(2, "0")} all time
-        {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}
-        {a.debut ? ` · EST. ${a.debut}` : ""}</div>
-      </div>
+      {/* FINAL layout after three 2026-08-28 iterations, owner-settled: back button alone at
+          page left above the cover (original home, tight margin) and the kicker back in the
+          text column directly OVER the artist name — both same-row merges were regressions. */}
+      <button className="r-back" style={{ marginBottom: 6 }} onClick={() => go("explore")}>← explore</button>
       {/* header */}
       <div style={{ display: "flex", gap: 26, alignItems: "flex-end", flexWrap: "wrap", marginBottom: 30 }}>
         <GenCover hue={a.hue} name={a.name} size={150} radius={6} />
         <div style={{ flex: 1, minWidth: 240 }}>
+          <div className="r-kicker">#{String(a.rank).padStart(2, "0")} all time
+            {a.origin && a.origin.city ? ` · ${a.origin.city.toUpperCase()}, ${a.origin.country}` : a.country ? ` · ${a.country.toUpperCase()}` : ""}
+            {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
           <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} onTour={a.onTour} vx={a.vx} />
           {/* the last.fm rail quotes the SOURCE (a.tagsLf = raw cache top-4) rather than the
