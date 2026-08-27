@@ -4415,7 +4415,21 @@ window.CANVAS_ARTWORKS = [
 {"id":"anthony-van-dyck-marchesa-balbi","title":"Marchesa Balbi","artist":"Sir Anthony van Dyck","artistId":"anthony-van-dyck","qid":"Q20177021","qidTrusted":true,"year":1623,"wish":true},
 {"id":"monet-wheatstacks-snow-effect-morning","title":"Wheatstacks, Snow Effect, Morning","artist":"Claude Monet","artistId":"monet","qid":"Q20180111","qidTrusted":true,"year":1891,"wish":true},
 {"id":"monet-view-from-voorzan","title":"View from Voorzan","artist":"Claude Monet","artistId":"monet","qid":"Q18574592","qidTrusted":true,"year":1871,"wish":true},
-{"id":"monet-view-over-the-sea","title":"View over the Sea","artist":"Claude Monet","artistId":"monet","qid":"Q18599157","qidTrusted":true,"year":1882,"wish":true}
+{"id":"monet-view-over-the-sea","title":"View over the Sea","artist":"Claude Monet","artistId":"monet","qid":"Q18599157","qidTrusted":true,"year":1882,"wish":true},
+{"id":"turner-dort-or-dordrecht-the-dort-packet-boat-from-rotterdam-becalmed","title":"Dort, or Dordrecht: The Dort Packet-Boat from Rotterdam Becalmed","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q22329821","qidTrusted":true,"year":1818,"wish":true},
+{"id":"turner-port-ruysdael","title":"Port Ruysdael","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q22330064","qidTrusted":true,"year":1827,"wish":true},
+{"id":"turner-stormy-sea-breaking-on-a-shore","title":"Stormy Sea Breaking on a Shore","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23700444","qidTrusted":true,"year":1840,"wish":true},
+{"id":"turner-squally-weather","title":"Squally Weather","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23758107","qidTrusted":true,"year":1840,"wish":true},
+{"id":"turner-lake-avernus-aeneas-and-the-cumaean-sibyl","title":"Lake Avernus: Aeneas and the Cumaean Sibyl","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23758112","qidTrusted":true,"year":1814,"wish":true},
+{"id":"turner-staffa-fingal-s-cave","title":"Staffa, Fingal's Cave","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23758119","qidTrusted":true,"year":1831,"wish":true},
+{"id":"turner-tummel-bridge-perthshire","title":"Tummel Bridge, Perthshire","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23755424","qidTrusted":true,"year":1802,"wish":true},
+{"id":"turner-chateaux-de-st-michael-bonneville-savoy","title":"Chateaux de St. Michael, Bonneville, Savoy","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23757006","qidTrusted":true,"year":1802,"wish":true},
+{"id":"turner-wreckers-coast-of-northumberland-with-a-steam-boat-assisting-a-ship-off-shore","title":"Wreckers — Coast of Northumberland, with a Steam-Boat Assisting a Ship off Shore","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23758031","qidTrusted":true,"year":1833,"wish":true},
+{"id":"turner-harlech-castle-from-tygwyn-ferry-summer-s-evening-twilight","title":"Harlech Castle, from Tygwyn Ferry, Summer's Evening Twilight","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23758101","qidTrusted":true,"year":1799,"wish":true},
+{"id":"turner-newark-abbey","title":"Newark Abbey","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23700449","qidTrusted":true,"year":1807,"wish":true},
+{"id":"turner-the-victory-returning-from-trafalgar-in-three-positions","title":"The Victory Returning from Trafalgar, in Three Positions","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23700453","qidTrusted":true,"year":1806,"wish":true},
+{"id":"turner-a-limekiln-possibly-at-briton-ferry-in-south-wales","title":"A Limekiln, Possibly at Briton Ferry in South Wales","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23700473","qidTrusted":true,"year":1797,"wish":true},
+{"id":"turner-inverary-pier-loch-fyne-morning","title":"Inverary Pier, Loch Fyne: Morning","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23731011","qidTrusted":true,"year":1845,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
