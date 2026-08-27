@@ -1628,10 +1628,14 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
           <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} onTour={a.onTour} vx={a.vx} />
-          {a.tags && a.tags.length > 0 && (
+          {/* the last.fm rail quotes the SOURCE (a.tagsLf = raw cache top-4) rather than the
+              generic-filtered a.tags — the filtered residue misquoted last.fm (the Stones rail
+              read "blues" while last.fm leads with classic rock; owner-reported 2026-08-28).
+              a.tags stays the nav vocabulary everywhere else. */}
+          {((a.tagsLf && a.tagsLf.length ? a.tagsLf : a.tags) || []).length > 0 && (
             <div className="av-tagrow" style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap", alignItems: "center" }}>
               <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>last.fm</span>
-              {a.tags.map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
+              {(a.tagsLf && a.tagsLf.length ? a.tagsLf : a.tags).map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
             </div>
           )}
           {a.styles && a.styles.length > 0 && (

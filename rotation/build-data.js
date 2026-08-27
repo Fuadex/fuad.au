@@ -568,8 +568,13 @@ const GENRE_RULES = [
   ["Prog", /\bprogressive\b/, _GW.med],
   ["Prog", /\bpost-metal\b/, _GW.strong],
   ["Prog", /\bpsychedelic\b/, _GW.strong],
-  ["Prog", /\bclassic rock\b/, _GW.med],
-  ["Prog", /\bhard rock\b/, _GW.med],
+  // "classic rock" REMOVED from Prog (2026-08-28, owner-reported): it voted the entire
+  // classic-rock canon into Prog — 25 artists incl. the Stones, CCR, Zeppelin, the Beatles —
+  // and the family-fallback then DISPLAYED them as "progressive metal". Classic rock is an
+  // umbrella; real prog acts carry "progressive rock" (matched above), and umbrella-only
+  // artists now classify by their remaining tags (CCR → blues/roots per the Johnny Cash
+  // precedent) or fall honestly to Other.
+  ["Heavy/Doom", /\bhard rock\b/, _GW.weak],   // was Prog med — GN'R/AC/DC-class belongs nearer Heavy than Prog; weak so specific tags still win
 
   // ── 6 Shoegaze/Grunge ──
   ["Shoegaze/Grunge", /\bshoegaze\b/, _GW.strong],
@@ -1778,6 +1783,12 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     id: slug(name), rank: i + 1, name, plays,
     hue: famAnchorHue(name, meta.hue),
     tags: meta.tags || niceTags(name),
+    // SOURCE-FAITHFUL last.fm tags (2026-08-28, owner-reported): niceTags drops GENERIC
+    // umbrellas, so the artist page's "last.fm" rail showed the residue — the Stones rail
+    // read "blues" while last.fm itself leads with classic rock. tagsLf carries the cache's
+    // real top-4 (junk already filtered at fetch) so the rail can quote the source honestly;
+    // `tags` keeps its filtered form for nav chips and everything downstream.
+    ...(() => { const raw = cachedTags(name).map(t => t[0]).slice(0, 4); return raw.length ? { tagsLf: raw } : {}; })(),
     // similar: prefer REAL last.fm similar-artists when we have them, else fall back to curated META
     ...(() => {
       const real = realSimilar(name);
