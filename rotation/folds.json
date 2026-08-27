@@ -2353,6 +2353,12 @@
 "Dream Theater": {
 "tracks": [
 {
+"from": "Sic Degrees Of Inner Turbulence: Pt. III \"War Inside My Head\"",
+"to": "War Inside My Head",
+"type": "spelling",
+"reason": "spelling: Sic-for-Six typo row with movement framing; same SDOIT recording (2026-08-28)"
+},
+{
 "from": "In The Presence Of Enemies Pt. 1",
 "to": "In the Presence of Enemies, Part I",
 "type": "spelling",
