@@ -658,10 +658,15 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
 
       {/* fixed-height + nowrap so hover text (with its taller flag glyph) can NEVER reflow the map below */}
       <div style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink-soft)", margin: "10px 0", height: 26, lineHeight: "26px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-        {focus ? <><span style={{ cursor: "pointer", color: "var(--accent)", fontFamily: "var(--mono)", fontSize: 12 }} onClick={reset}>‹ world</span> &nbsp; cities of <b style={{ color: "var(--ink)" }}>{focusName}</b> — click one for its scene</>
+        {focus ? <><span style={{ cursor: "pointer", color: "var(--accent)", fontFamily: "var(--mono)", fontSize: 12 }} onClick={reset}>‹ world</span> &nbsp;
+            {/* 2026-08-28: show selected city after country when user drills country → city */}
+            {sel && sel.kind === "city"
+              ? <><b style={{ color: "var(--ink)" }}>{focusName}</b><span style={{ color: "var(--ink-faint)" }}> · </span>{selFlag && <><span style={{ fontSize: 18 }}>{selFlag}</span> </>}<b style={{ color: "var(--ink)" }}>{selName}</b></>
+              : <>cities of <b style={{ color: "var(--ink)" }}>{focusName}</b> — click one for its scene</>}</>
           : hb ? (hb.kind === "city"
             ? <><span style={{ fontSize: 18 }}>{hb.c.flag}</span> <b style={{ color: "var(--ink)" }}>{hb.c.city}</b>, {hb.c.country} — {fmt(yearIdx != null ? sizeOf(hb.c) : hb.c.plays)} plays{yearIdx != null ? " in " + geoYears[yearIdx] : " · " + hb.c.artists + " artists"}</>
             : <><span style={{ fontSize: 18 }}>{hb.c.flag}</span> <b style={{ color: "var(--ink)" }}>{hb.c.name}</b> — {fmt(yearIdx != null ? sizeOf(hb.c) : hb.c.plays)} plays{yearIdx != null ? " in " + geoYears[yearIdx] : " · " + hb.c.artists + " artists"} <span style={{ color: "var(--ink-faint)", fontSize: 12 }}>(click to zoom in)</span></>)
+            : sel && sel.kind === "city" ? <>{selFlag && <><span style={{ fontSize: 18 }}>{selFlag}</span> </>}<b style={{ color: "var(--ink)" }}>{selName}</b>{/* 2026-08-28: city selected in flat city mode */}</>
             : filtSums ? <>showing <b style={{ color: "var(--ink)" }}>{filt.sub != null ? R.SUBS[filt.sub].name : R.FAMILIES[filt.fam].family}</b> across {mode === "city" ? "cities" : "the world"} — bigger means it ran deeper there{list[0] ? <> · led by <b style={{ color: "var(--ink)" }}>{list[0].flag} {list[0].code ? list[0].name : list[0].city}</b></> : null}</>
             : <span style={{ color: "var(--ink-faint)" }}>{mode === "city" ? "every dot a city — hover to read, click for its scene" : "click a country to zoom into its cities · scroll to zoom, drag to pan"}</span>}
       </div>
