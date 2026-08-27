@@ -4217,10 +4217,23 @@ function MapView({ go }) {
   const sameVb = (a, b) => a.x === b.x && a.y === b.y && a.w === b.w && a.h === b.h;
   const applyPreview = () => {
     const g = gestG.current; if (!g) return;
+    const el = svgRef.current;
     const r0 = renderedRef.current, t = vbRef.current;
-    if (sameVb(r0, t)) { g.removeAttribute("transform"); return; }
+    // FLUID MARKER SIZE (Fuad 2026-08-28: "resizing map... has a delayed font size and dot
+    // size change — I'd like this to be more fluid"). The preview scales the whole gesture <g>
+    // by kk = r0.w/t.w in user units; markers/labels were multiplied by k = vb.w/880 to hold a
+    // CONSTANT screen size, but k only updates at commit — so mid-burst every dot and label rode
+    // the preview scale and SNAPPED to the right size only at settle. We now hand the markers the
+    // INVERSE of the preview scale as a CSS var (--cv-ik = t.w/r0.w = 1/kk), and their class
+    // counter-scales them around their own centres per frame (canvas.css). One preview grows the
+    // content, the same var shrinks the marks back to constant screen size — zero React renders,
+    // no snap. This is also why it's seamless across the commit: this same applyPreview runs from
+    // the post-commit layout effect (vb dep, below), so the var lands in lockstep with each flush.
+    if (sameVb(r0, t)) { g.removeAttribute("transform"); if (el) el.style.setProperty("--cv-ik", "1"); return; }
     const kk = r0.w / t.w;
     g.setAttribute("transform", `translate(${r0.x - kk * t.x} ${r0.y - kk * t.y}) scale(${kk})`);
+    // computed directly, NOT calc(1 / var(--kk)): division-by-a-var in CSS calc() has poor support.
+    if (el) el.style.setProperty("--cv-ik", String(t.w / r0.w));
   };
   const flush = () => { if (!raf.current) raf.current = requestAnimationFrame(() => { raf.current = 0; setVb(vbRef.current); }); };
   const preview = (next) => { vbRef.current = next; applyPreview(); };
@@ -4798,8 +4811,12 @@ function MapView({ go }) {
     // CHOPPINESS FIX (2026-08-27, same idiom as the drag): a wheel burst used to commit a
     // re-render per rAF — every marker rebuilt each frame. Now the burst previews via one CSS
     // scale on the <svg> (origin at the cursor) and the viewBox commits ONCE, 160ms after the
-    // last tick. During the burst labels scale with the content instead of staying constant —
-    // they settle to exact sizes at commit.
+    // last tick.
+    //   FLUID SIZES (Fuad 2026-08-28, "more fluid"): the old trade — labels/dots scaling WITH the
+    // content during the burst and only settling to exact sizes at commit — is now closed. The
+    // markers carry a counter-scale off --cv-ik (see applyPreview), so they hold constant screen
+    // size every frame of the burst instead of inflating then snapping. Nothing here changed:
+    // the 160ms idle flush and the ~1.4-ratio mid-burst re-baseline both stay.
     let wheelIdle = 0;
     const onWheel = (e) => {
       e.preventDefault();
@@ -4944,7 +4961,7 @@ function MapView({ go }) {
             const [fx, fy, fs] = fish(c.x, c.y, cr);
             return (
               <g key={c.city} className="cv-pin" onClick={() => focusCity(c)} style={{ cursor: "pointer" }}>
-                <circle cx={fx} cy={fy} r={cr * fs * k * dotMul * bubZoom}
+                <circle className="cv-cscale" cx={fx} cy={fy} r={cr * fs * k * dotMul * bubZoom}
                   fill={c.n ? "oklch(0.55 0.13 46 / .82)" : "rgba(58,47,34,.45)"} stroke="#f4ecdf" strokeWidth={0.6 * k} />
                 {/* the halo is capped, so the city's real want-to-see total is stated here rather
                     than implied by a count of dots that is deliberately not all of them */}
@@ -4994,7 +5011,7 @@ function MapView({ go }) {
                     // Fuad 2026-08-26: labels ×2 font, and HALF the old standoff — the rim
                     // clearance stays whole (a label may not enter its bubble); everything
                     // beyond it (hair + wish-fan clearance + label gap) is halved.
-                    <text x={fx} y={fy - (cr * fs * dotMul * bubZoom) * k
+                    <text className="cv-cscale" x={fx} y={fy - (cr * fs * dotMul * bubZoom) * k
                           - 0.5 * (2.4 * k
                             + 2.1 * k * dotMul * dotZoom * ((wishCityReach.get(c.city) || 1.1) + 1.8 - 1.3 * t)
                             + (7 - 5 * t) * k * dotMul * labelZoom)}
@@ -5020,7 +5037,7 @@ function MapView({ go }) {
             const [fx, fy, fs] = fish(f.x, f.y, f.r);
             return (
               <g key={"far" + f.key} className="cv-pin" onClick={() => focusFar(f)} style={{ cursor: "pointer" }}>
-                <circle cx={fx} cy={fy} r={f.r * fs * k * dotMul * bubZoom}
+                <circle className="cv-cscale" cx={fx} cy={fy} r={f.r * fs * k * dotMul * bubZoom}
                   fill="oklch(0.52 0.09 150 / .55)" stroke="#f4ecdf" strokeWidth={0.5 * k} />
                 <title>{f.city} — {f.n} work{f.n !== 1 ? "s" : ""} to see · {f.venues.length} venue{f.venues.length !== 1 ? "s" : ""} · not yet walked · click to open</title>
                 {(() => {
@@ -5032,7 +5049,7 @@ function MapView({ go }) {
                   // 8.5 (was 7.8, was 6): Fuad 2026-08-27 ×2 — first the −30% pass pushed these
                   // under legibility, then both tiers got a further "slightly bigger" bump
                   // (lived cities 9.2→10). ~85% of the lived size keeps the hierarchy.
-                  return <text x={fx} y={fy - (f.r * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 8.5 * k * dotMul * labelZoom, opacity: op }}>{f.city}</text>;
+                  return <text className="cv-cscale" x={fx} y={fy - (f.r * fs * dotMul * bubZoom + 1) * k} textAnchor="middle" style={{ fontSize: 8.5 * k * dotMul * labelZoom, opacity: op }}>{f.city}</text>;
                 })()}
               </g>
             );
@@ -5059,8 +5076,8 @@ function MapView({ go }) {
                     circumference and start overlapping internally — trading one collision for
                     another. See HALO SEPARATION where the factor is computed. */}
                 {unseenRank(mk.w) === 2
-                  ? <circle cx={fx} cy={fy} r={2.1 * fs * k * dotMul * dotZoom * Math.max(0.82, mk.cityScale || 1)} fill={mk.far ? "oklch(0.45 0.14 150 / .92)" : "oklch(0.55 0.19 18 / .92)"} stroke="#f7efe2" strokeWidth={0.5 * k} />
-                  : <circle cx={fx} cy={fy} r={1.7 * fs * k * dotMul * dotZoom * Math.max(0.82, mk.cityScale || 1)} fill={mk.far ? "oklch(0.6 0.11 130 / .9)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.45 * k} />}
+                  ? <circle className="cv-cscale" cx={fx} cy={fy} r={2.1 * fs * k * dotMul * dotZoom * Math.max(0.82, mk.cityScale || 1)} fill={mk.far ? "oklch(0.45 0.14 150 / .92)" : "oklch(0.55 0.19 18 / .92)"} stroke="#f7efe2" strokeWidth={0.5 * k} />
+                  : <circle className="cv-cscale" cx={fx} cy={fy} r={1.7 * fs * k * dotMul * dotZoom * Math.max(0.82, mk.cityScale || 1)} fill={mk.far ? "oklch(0.6 0.11 130 / .9)" : "oklch(0.62 0.12 52 / .9)"} stroke="#f7efe2" strokeWidth={0.45 * k} />}
               </g>
             );
           })}
@@ -5096,7 +5113,7 @@ function MapView({ go }) {
                         <path d={bow(mx, my, fx, fy, 0.16, 1.4)} fill="none" stroke="rgba(58,47,34,.26)" strokeWidth={0.3 * k} />
                         {/* red/amber = seen-and-loved/liked; a far branch's works are UNMET, so
                             they stay in the green register like every other unseen mark */}
-                        <circle cx={fx} cy={fy} r={wn.r * fs * k * dotMul}
+                        <circle className="cv-cscale" cx={fx} cy={fy} r={wn.r * fs * k * dotMul}
                           fill={branch.far
                             ? (unseenRank(wn.w) === 2 ? "oklch(0.45 0.14 150 / .92)" : "oklch(0.6 0.11 130 / .9)")
                             : (wn.w.floored ? "oklch(0.55 0.19 18 / .92)" : "oklch(0.62 0.12 52 / .9)")} stroke="#f7efe2" strokeWidth={0.4 * k} />
@@ -5126,20 +5143,20 @@ function MapView({ go }) {
                   return (
                     <g key={"m" + (nd.m.id || nd.m.name)} className="cv-mus" style={{ opacity: g, cursor: nd.m.id ? "pointer" : "default" }}
                       onClick={() => nd.m.id && go("museum", nd.m.id)}>
-                      <circle cx={fx} cy={fy} r={nd.mr * fs * k}
+                      <circle className="cv-cscale" cx={fx} cy={fy} r={nd.mr * fs * k}
                         fill={branch.far ? "oklch(0.45 0.1 150 / .92)" : "oklch(0.5 0.14 46 / .95)"} stroke="#f4ecdf" strokeWidth={0.7 * k} />
-                      <text className="cv-map-mlabel" x={lx} y={ly + (inward > 0 ? 1.9 : 0) * k}
+                      <text className="cv-map-mlabel cv-cscale" x={lx} y={ly + (inward > 0 ? 1.9 : 0) * k}
                         textAnchor="middle" style={{ fontSize: 7.6 * k, strokeWidth: 1.6 * k }}>{nd.m.name}</text>
                     </g>
                   );
                 })}
-                <circle cx={cx} cy={cy} r={branch.cityR * 1.55 * k} fill={branch.far ? "oklch(0.36 0.1 150 / .96)" : "oklch(0.42 0.15 30 / .96)"} stroke="#f4ecdf" strokeWidth={0.9 * k} />
+                <circle className="cv-cscale" cx={cx} cy={cy} r={branch.cityR * 1.55 * k} fill={branch.far ? "oklch(0.36 0.1 150 / .96)" : "oklch(0.42 0.15 30 / .96)"} stroke="#f4ecdf" strokeWidth={0.9 * k} />
                 {/* the opened city's name sits ABOVE its blob in the same ink as every other label
                     (Fuad 2026-08-24: "Paris should be also in same black font and the name
                     should be over the blob"). It used to be pale type dropped inside the
                     circle, which read as a different kind of thing from the museum names
                     around it and fought the blob's own fill for contrast. */}
-                <text x={cx} y={cy - (branch.cityR * 1.55 + 3.4) * k} textAnchor="middle"
+                <text className="cv-cscale" x={cx} y={cy - (branch.cityR * 1.55 + 3.4) * k} textAnchor="middle"
                   style={{ fontSize: 8.4 * k, fontWeight: 700, fill: "var(--ink)" }}>{branch.c.city}</text>
               </g>
             );

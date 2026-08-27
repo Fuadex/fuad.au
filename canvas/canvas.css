@@ -717,6 +717,27 @@ a { color: inherit; }
    clean ground under them and the stroke was only adding a smear. */
 .cv-pin text { paint-order: stroke; }
 
+/* FLUID MARKER SIZE (Fuad 2026-08-28: "resizing map on canvas has a delayed font size and dot
+   size change — I'd like this to be more fluid"). A wheel/pinch burst scales the whole gesture
+   <g> in user units and commits the viewBox only at rest (160ms idle + a ~1.4-ratio re-baseline).
+   Markers/labels were sized for a CONSTANT screen size off k = vb.w/880, but k only updates at
+   commit — so mid-burst every dot and label inflated/deflated with the preview and SNAPPED to the
+   right size at settle. applyPreview() now writes --cv-ik = t.w/r0.w (the INVERSE of the preview
+   scale) on the <svg> each frame; these marks counter-scale by it around their OWN centres, so
+   they hold constant screen size through the whole burst with zero React renders — and because
+   the same applyPreview runs from the post-commit layout effect, the var lands in lockstep with
+   each flush, seamless across the commit. transform-box:fill-box makes the scale pivot the mark's
+   own box (not the SVG user-space origin); transform-origin:center pins it to its centre.
+   TEXT CAVEAT: scaling a <text> around its fill-box centre (not its x/y anchor) drifts the
+   baseline a hair; the mid-burst flush caps the preview ratio at ~1.4, so the drift stays tiny —
+   accepted. Applied ONLY to size-critical marks (city/far/museum/opened bubbles, work dots, all
+   the map labels). NOT applied to: the leader/branch <path>s (their endpoints are user-unit, so a
+   centre-scale would distort the line, and only their stroke-width rode k — negligible), and NOT
+   the land path or fan geometry, which are meant to scale with the zoom. None of the marked marks
+   carry a transform ATTRIBUTE (they position via cx/cy or x/y), so this CSS transform doesn't
+   collide with — or get overridden by — any presentation-attribute transform. */
+.cv-cscale { transform-box: fill-box; transform-origin: center; transform: scale(var(--cv-ik, 1)); }
+
 /* ——— Artists as circular photo blobs ——— */
 .cv-artists { max-width: 1200px; margin: 0 auto; padding: 20px 34px 60px; }
 .cv-artgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 26px 16px; margin-top: 22px; }
