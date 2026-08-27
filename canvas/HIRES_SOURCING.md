@@ -9,6 +9,77 @@ instead of rediscovering. "NGA-grade" = IIIF (or equivalent tiling), masters at 
 resolution, permissive license, sane CORS, stable IDs. Statuses from our own measured rounds
 where marked ⚙; the rest from documented programs — verify before adopting.
 
+## ROUND 8b (2026-08-27) — the global IIIF census, and NGA is NOT alone
+
+⭐ **THE CHEAPEST SURVEY INSTRUMENT WE HAVE FOUND. ONE request answers "who else even has
+this", for every museum on earth:** a Wikidata SPARQL over **P6108 (IIIF manifest URL)** ×
+**P195 (collection)**, grouped and counted, with `SAMPLE(?m)` handing back a manifest url to
+probe. It turns holder-by-holder guessing into a ranked list. Query saved:
+`.dtmp/tier1/survey-world.md`.
+
+⚙ **Top holders by paintings carrying a registered IIIF manifest** (2026-08-27):
+Nationalmuseum SE **7,750** · SMK Copenhagen **6,740** · Harvard **5,490** (+Fogg 2,446
++Sackler 2,020 +Busch-Reisinger 222) · **Musée d'Orsay 4,843** · NGA **4,262** · Belvedere
+**4,114** · Princeton **3,111** · **KMSKA Antwerp 2,673** · Nelson-Atkins **1,783** · YCBA
+**1,691** · MSK Ghent **1,568** · KHM Vienna **851** · Munch Museum **739**.
+
+⛔ **TWO TRAPS IN THAT TABLE — read before trusting a row.**
+1. **Count is not quality.** Orsay ranks 4th and is a **downgrade engine** (850 px ceiling,
+   measured round 5). The census answers "who publishes IIIF", never "how big is the master".
+2. **The SAMPLE url frequently belongs to a DIFFERENT museum.** Works carry multiple P195
+   values, so provenance "collections" (Kress, Mellon, Cook, MNR, Führermuseum) are NGA works
+   counted again, and several genuine museums — Louvre, Hermitage, Shizuoka, National Museum
+   of Western Art — came back with an **nga.gov** manifest as their sample. ⚠ **Check the
+   HOST of the sample url before treating a row as that museum's route.**
+
+### ⚙ KMSKA ANTWERP IS NGA-CLASS — 246 MP MEASURED, AND IT BEATS GETTY'S BEST SAMPLE
+`iiif.kmska.be/iiif/2/34343/manifest.json` → canvas **19,924 × 12,341 = 245.9 MP**, IIIF
+Presentation 2 / **Image API level2**, service base `https://iiif.kmska.be/c/iiif/2/public@<id>.tif`.
+Getty's five-work sample topped out at 202.6 MP; NGA runs 400–1,900 MP. **KMSKA sits between
+them, with 2,673 registered painting manifests.** ⚠ n=1 and CORS UNMEASURED (WebFetch exposes
+no response headers — an `Origin:` probe needs curl). Next probe: a second KMSKA work, then
+`Access-Control-Allow-Origin`.
+⚠ **SMK Copenhagen remains the other strong lead** (a 118.8 MP work is already recorded here).
+Its manifest is IIIF **Presentation 3** and its `items` array came back empty through WebFetch —
+re-probe with a client that returns raw JSON.
+
+### ⚙ THE NORTHEAST IS A COVERAGE PLAY, NEVER A PIXEL PLAY
+Measured from the local store rather than the network: **the largest master ever decoded from
+ANY northeast institution is 11.7 MP** (Guggenheim's 4096 fit-box). Met 10.6 MP (4,000 px long
+edge) · Frick hard cap 6.49 MP (17 works measured, 17 downgrades) · Harvard 2,550 × 2,018 =
+5.1 MP · Whitney 3.1 MP. ⚙ **MFA Boston publishes NO IIIF at any canonical path** — object
+33556 resolves 200 but `apis/iiif/presentation/v2/…` and `apis/iiif/image/v2/…` both 404.
+**Zero Tier-1 holders in the northeast.** That is a 35–160× gap against NGA — the region is
+worth having for *artists*, never for pixels.
+
+### ⛔ LEDGER BUG — THIS FILE CONTRADICTS ITSELF ABOUT THE ART INSTITUTE OF CHICAGO
+The Tier-1 list calls AIC "clean IIIF (our deep-zoom staple)". A later round records its image
+server **403ing every client, with all 7 AIC works repointed to Commons (7 → 0)**. ⛔ **The
+optimistic claim is the one a reader hits first — same defect shape as getty.md's MP column.**
+AIC is hereby demoted in the Tier-1 list to *"⚠ was our staple; image server later measured
+403 — re-verify before relying on it"*. Only **18** AIC paintings carry a registered manifest
+anyway, which is itself a signal.
+
+### 🇯🇵 JAPAN — Wikidata says almost nothing, and that is a WIKIDATA fact, not a Japanese one
+⚙ A P6108 census filtered to `P17 = Japan` returns **7 collections, the largest holding 10
+manifests**: National Museum of Western Art 10 (⚠ sampled with an nga.gov url — trap 2),
+National Diet Library 8, National Archives 2, Ryukoku 1, Kyoto University 1, Shizuoka 1, Saga 1.
+⛔ **Do not read that as "Japan has no IIIF" — the opposite is true.** Japan is one of the most
+IIIF-dense countries; it simply publishes through its own portals and aggregators rather than
+registering manifests on Wikidata: **NDL (`dl.ndl.go.jp/api/iiif/…`, enormous), ColBase (the
+four national museums — Tokyo, Kyoto, Nara, Kyushu), Ritsumeikan ARC (ukiyo-e, already Tier 3
+here), Kyoto University RMDA, Waseda, Keio, Cultural Japan**. ⚠ The strength is scrolls, prints
+and manuscripts. **For WESTERN-canon paintings the one that matters is the National Museum of
+Western Art, Tokyo — the Matsukata collection (Monet, Courbet, van Gogh).** Unprobed.
+
+⚠ **Two of the three regional surveys spent ZERO requests — network permission was denied at the
+harness (`Bash`, `PowerShell` and, for some hosts, `WebFetch`).** Both agents correctly refused
+to publish search-derived megapixels rather than repeat the getty.md defect. **The west survey's
+probe is pre-built and unrun at `.dtmp/tier1/west_probe.js`** — it enforces the 18-request cap
+internally, decodes the JPEG SOF rather than trusting echoed fields, re-measures any clamp by
+far-corner region (the Oslo/Stockholm rule) and sends `Origin: https://fuad.au` on every call.
+One command delivers that table once network is allowed.
+
 ## ROUND 8 (2026-08-27) — three Tier-1 holders probed under a hard 20-request cap
 
 ⚙ Getty and Yale measured; Rijksmuseum documentation-only (its probe was denied network
@@ -83,7 +154,7 @@ Commons by only +6.13 MP — one row, too weak to extrapolate a quality bar from
 - **Cleveland Museum of Art** — CC0 + IIIF, 4–8k masters, clean API.
 - **SMK Copenhagen** — SMK Open: CC0, IIIF, high-res.
 - **Nationalmuseum Stockholm** ⚙ — round-7 find: real IIIF, 6–9k plates (mind `tiles: 256`).
-- **Art Institute of Chicago** ⚙ — clean IIIF (our deep-zoom staple); masters mid-size.
+- **Art Institute of Chicago** ⚠ — WAS our deep-zoom staple; its image server was later measured 403ing every client and all 7 works were repointed to Commons (see ROUND 8b). Re-verify before relying on it.
 
 **Tier 2 — great content, one flaw (manners, res, or coverage):**
 - **National Gallery London** ⚙ — IIIF3 with enormous masters (28k px van Rysselberghe) but
