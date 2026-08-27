@@ -62,12 +62,12 @@ Chronology, each step approved before shipping:
    collapsed to 8.9%, mass moving to both tails. Median 40→30.
 3. **Gated full replacement** — the model's valence everywhere it agrees with itself:
    24,300 rows flagged `1`. The 926 self-contradicting rows kept NRC and became flag `2`.
-4. **The Japanese gap-fill** (2026-08-28) — the lyric archive holds no Japanese repertoire at
-   all (full-scan proven), so CJK coverage was 1.5% vs 42.6% Latin. Fetched from LRCLIB **by
-   real names** (never de-slugged), exact then fuzzy-with-artist-gate: +570 rows as
-   `[v,-1,0,1,regIdx]`. Residual floor: 362 tracks absent from every held source. Also swept
-   in pure name-join misses (Smashing Pumpkins was 0/77 scored — an English-language miss,
-   not a Japanese one).
+4. **The Japanese gap-fill** (2026-08-28) — the earlier passes had almost no Japanese lyrics
+   to read (CJK coverage 1.5% vs 42.6% Latin). Fetched from LRCLIB **by real names** (never
+   de-slugged), exact then fuzzy-with-artist-gate: +570 rows as `[v,-1,0,1,regIdx]`.
+   Residual floor: 362 tracks with no obtainable lyric. The same sweep caught a few
+   English-language artists the earlier passes had missed entirely (Smashing Pumpkins was
+   0/77 scored).
 
 ## 4. The coherence gate, and why "cathartic" exists
 
