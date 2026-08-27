@@ -56,7 +56,7 @@ caught and countered: suite-position confabulation (movements claiming to be clo
 and redo-imported quotation (a register-only redo importing a lyric line the original
 never had).
 
-### The flatness batch — a full-album fresh-draw A/B (2026-08-11→12)
+### Coaltar of the Deepers — No Thank You: the flatness batch + full-album fresh-draw A/B (2026-08-11→12)
 
 The owner flagged a batch as flat, which produced the **flatness mechanism**: a read
 that doesn't KNOW the song after analysis resorts to cheaply following the lyric — thin
