@@ -48,7 +48,14 @@ const DENY_HOLDERS = new Set([
   "Q475667",   // Führermuseum, Linz — planned, never built; a looting label, not an address
   "Q1053735",  // Munich Central Collecting Point — dissolved 1949, restitution way-station
 ]);
+// PSEUDO-QID HOLDERS (2026-08-28) — works ingested straight from a museum's own catalogue
+// carry a pseudo qid (`met-<objectid>`, `nga-<objectid>`) and never enter the Wikidata P195
+// flow, so they sat holder-less even though the holder is IN THE ID. The prefix is the claim.
+// (The remaining holder-less residue is honest: P195 snaktype "somevalue" = private collection.)
+const PSEUDO_HOLDERS = { "met-": "Q160236", "nga-": "Q214867" };
 const holderOf = (w) => {
+  const pfx = w.qid && Object.keys(PSEUDO_HOLDERS).find(p => w.qid.startsWith(p));
+  if (pfx) return PSEUDO_HOLDERS[pfx];
   const d = AD[w.id] || {};
   const cands = [...(d.collectionQids || []), d.locationQid].filter(Boolean);
   return cands.find(q => !DENY_HOLDERS.has(q)) || null;

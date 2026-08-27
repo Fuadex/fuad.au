@@ -18,6 +18,7 @@ the canon, and deploy. All enrichment scripts are **Node.js**, **keyless**, and
 | `apply-import.js` | Photo-detection importer, step 2: applies a reviewed proposal — stubs new museums (visit dates from photo EXIF), appends new artworks (`qidTrusted: true`), merges marks onto existing qids. Dry-run by default; `--write` to commit. Insert regex must absorb the trailing comma (`,?\n\];`) and target the FIRST `];` (artworks.js ends with a second `CANVAS_AFFINITY` array). ⚠ Dedupe by qid alone is not enough: Met-deck entries carry `met-XXXXXX` pseudo-qids that can never qid-match a real Wikidata entry — audit new imports by normalized title+artist too (three such dupes merged 2026-07-24; venue inference can also mis-assign a museum that sits near the real one, so cross-check odd venues against the Timeline). | `.sptmp/import-proposal.json`, `artworks.js`, `museums.js` | patches both in place |
 | `fix-labels.js` | Post-import label polish: backfills `(untitled)` titles from the best non-English Wikidata label (fr/de/…), fixes unresolved creators. Anchored by qid; `--write` to commit. | `artworks.js`; Wikidata (no key) | patches `artworks.js` in place |
 | `fetch-holders.js` | Where an UNSEEN work hangs (P195 → institution with coords), so the map/pilgrimage can place it. Carries a **DENY_HOLDERS** list with fall-through: P195 lists every collection a work ever passed through, and taking the first claim blindly once routed the Makart to the Führermuseum — a historic looting label, not an address (the pilgrimage grew a country called "German Reich"). Historic-country P17 claims are a sibling trap (Perm Art Museum arrived as `su` with a district for a city). | `artworks.js`, `art_data.js`; Wikidata (no key) | `art_holders.js` (`CANVAS_HOLDERS`) |
+| `extract-palette.py` | Dominant colours per work (4 hex swatches, PIL mediancut on the 240px grid thumb) — feeds colour search, the tier + hue sort, and the salon's hue passages. Incremental via committed `palette_cache.json`; a work with no fetchable image simply never gets an entry (`palHueOf` treats that as hue-unknown). Run with a Python that has PIL (the `.sptmp/vlm-env` interpreter is the known-good). | `art_data.js` imgGrid + `artworks.js` img fallback; Commons/museum image hosts | `palette.js` (`CANVAS_PALETTE`) |
 | `../../.sptmp/canvas-hires.py` → `emit-art-hires.py` | Hi-res pipeline, two local workshop steps: recon queries the keyless Met/AIC/CMA APIs for every canon work (cache per work under `.sptmp/canvas-hires/`), then the emitter ships only **holder-verified** matches (work qid's P195 must contain the matching museum — same-title-different-work rejection) into `art_hires.js`. The emitter preserves hand-authored `details` zoom tours AND whole `src:"commons"` entries (hand-added Commons upgrades, 2026-08-22). **Image quality rule from that sweep: pixels do not outrank identity or framing** — candidates were rejected for being framed gallery photos, saturation-boosted repros, or a *different physical copy* of the same title (the Bristol vs Glasgow Díaz). Eyeball every candidate before adoption; the Reader's `open-failed` fallback to the Wikidata-derived image is the safety net. | `artworks.js`; Met/AIC/CMA open APIs, `collections.json` (P195 per work) | `art_hires.js` (`CANVAS_HIRES`) |
 
 ### Map layer rules (hard-won, 2026-08-22)
@@ -142,6 +143,28 @@ are all open endpoints.
    version bump needed.
 
 ---
+
+## Runbook — after ANY works enter the canon (the derived-store chain)
+
+Every path that adds works — free recall, deck folds, photo import, or a catalogue/IIIF
+ingest wave — MUST finish with this chain, in order. Instituted 2026-08-28 after the NGA/
+Getty/Yale ingest arc stopped at "append + gate + commit" and left 818 works palette-less
+and 24 holder-less for a day; every store below silently degrades rather than erroring, so
+nothing complains until someone notices colour search can't see a third of the wall.
+
+1. `node fetch-art.js` — enrich new qids (images, years, collections). Incremental.
+2. `node fetch-holders.js` — re-derive where unseen works hang. Reads step 1's
+   `collectionQids`, so order matters. Pseudo-qid works (`met-*`, `nga-*`) are stamped by
+   prefix rule inside the script — the holder is in the id, they never enter the P195 flow.
+   A work left holder-less after this is usually HONEST: P195 snaktype "somevalue" means a
+   private collection, and placeholder rows have no qid at all. Don't chase those.
+3. `..\..\.sptmp\vlm-env\Scripts\python.exe extract-palette.py` — palettes for the new
+   works (incremental via the committed cache). Without this the whole ingest wave is
+   invisible to colour search and hue-aware sorts.
+4. **New artists?** They need registry entries + images (the artist enrichment pass) or
+   they render as bare names.
+5. Commit the regenerated stores (`art_data.js`, `art_holders.js`, `palette.js` +
+   `palette_cache.json`, `wikidata_cache.json`) alongside or right after the canon change.
 
 ## Runbook — grade a deck and fold verdicts
 

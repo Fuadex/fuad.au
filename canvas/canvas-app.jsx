@@ -5396,7 +5396,9 @@ function Portrait({ go }) {
               title={`${n} loved works you've met · ${data.movChase[m] || 0} works you haven't seen yet — click for the wall`}>
               <span className="cv-p-barlbl">{m}</span>
               <span className="cv-p-bartrack"><i style={{ width: (n / maxMov * 100) + "%" }} /></span>
-              <span className="cv-p-barn">{n}{data.movChase[m] > 0 && <em className="cv-p-barchase">+{data.movChase[m]}{mi === 0 ? " unseen" : ""}</em>}</span>
+              {/* the "+N" reads bare on purpose (Fuad 2026-08-28: the teach-once " unseen" suffix
+                  cluttered the impressionism row) — the tooltip above carries the explanation */}
+              <span className="cv-p-barn">{n}{data.movChase[m] > 0 && <em className="cv-p-barchase">+{data.movChase[m]}</em>}</span>
             </div>
           ))}
           {/* chase-only movements (Fuad 2026-08-27): big on the horizon, invisible in loved-met.
