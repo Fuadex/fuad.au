@@ -4412,7 +4412,10 @@ window.CANVAS_ARTWORKS = [
 {"id":"anthony-van-dyck-saint-bartholomew","title":"Saint Bartholomew","artist":"after Sir Anthony van Dyck","artistId":"anthony-van-dyck","qid":"Q20177525","qidTrusted":true,"wish":true},
 {"id":"anthony-van-dyck-the-virgin-as-intercessor","title":"The Virgin as Intercessor","artist":"Sir Anthony van Dyck","artistId":"anthony-van-dyck","qid":"Q20177082","qidTrusted":true,"year":1628,"wish":true},
 {"id":"anthony-van-dyck-henri-ii-de-lorraine","title":"Henri II de Lorraine","artist":"Sir Anthony van Dyck","artistId":"anthony-van-dyck","qid":"Q20177126","qidTrusted":true,"year":1634,"wish":true},
-{"id":"anthony-van-dyck-marchesa-balbi","title":"Marchesa Balbi","artist":"Sir Anthony van Dyck","artistId":"anthony-van-dyck","qid":"Q20177021","qidTrusted":true,"year":1623,"wish":true}
+{"id":"anthony-van-dyck-marchesa-balbi","title":"Marchesa Balbi","artist":"Sir Anthony van Dyck","artistId":"anthony-van-dyck","qid":"Q20177021","qidTrusted":true,"year":1623,"wish":true},
+{"id":"monet-wheatstacks-snow-effect-morning","title":"Wheatstacks, Snow Effect, Morning","artist":"Claude Monet","artistId":"monet","qid":"Q20180111","qidTrusted":true,"year":1891,"wish":true},
+{"id":"monet-view-from-voorzan","title":"View from Voorzan","artist":"Claude Monet","artistId":"monet","qid":"Q18574592","qidTrusted":true,"year":1871,"wish":true},
+{"id":"monet-view-over-the-sea","title":"View over the Sea","artist":"Claude Monet","artistId":"monet","qid":"Q18599157","qidTrusted":true,"year":1882,"wish":true}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
