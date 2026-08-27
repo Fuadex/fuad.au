@@ -213,3 +213,55 @@ table carries a Commons-derived MP column that is wrong **23× low on one work a
 another**, and both Oslo and Stockholm were written off as capped when their *flat renders*
 were clamped and their *regions* served native pixels off enormous masters. **A clamp is not a
 ceiling, a name is not a measurement, and a manifest count is not a quality bar.**
+
+---
+
+## 7. Round 2 (2026-08-27, main-context batches — subagents remain network-denied)
+
+### ⚙ The long tail (census OFFSET 60, rows 61–200) — ten own-host leads round 1 missed
+| museum | manifests | own host |
+|---|---|---|
+| Huntington | 11 | emuseum.huntington.org (eMuseum — the 9-of-29 pattern) |
+| Hirshhorn | 12 | ids.si.edu |
+| **Frick Collection** | 4 | **collections.frick.org — a NEW host**; our 6.5 MP cap verdict was measured on the old route and needs re-testing |
+| Fitzwilliam | 5 | api.fitz.ms |
+| Courtauld | 4 | gallerycollections.courtauld.ac.uk |
+| Dallas Museum of Art | 2 | files.dma.org |
+| Bodleian | 6 | iiif.bodleian.ox.ac.uk |
+| Albertina | 2 | sammlungenonline.albertina.at |
+| National Palace Museum (Taiwan) | 3 | digitalarchive.npm.gov.tw |
+| Groeningemuseum Bruges | 2 | dam.museabrugge.be |
+Also real: Paris Musées (apicollections.parismusees.paris.fr — mind the 1,000-call key quota),
+Raclin Murphy (Notre Dame), Edinburgh University, Nakala (French research infra).
+⚠ The tail is dominated by the same artifacts as the head: dozens of French municipal
+museums sampling through **Orsay's host** (850 px — worthless), NGA provenance rows, and
+museums sampling through *other* museums' hosts (Met/NPG/IWM/Brooklyn/MFA-Boston rows all
+carried a Stockholm sample url — trap 2 again).
+
+### ⛔ KMSKA IS NOT UNIFORMLY GIGAPIXEL — the 246 MP Jordaens is a showpiece class
+⚙ A second KMSKA manifest (object 27254) measured **1,650 × 1,050 = 1.7 MP**. Same host,
+same url shape, 145× less pixel. **The "2,673 works at NGA class" reading is dead**; the
+honest statement is "an unknown fraction at NGA class". Any KMSKA candidates file must
+carry per-work measured dims (the Getty lesson) — sample first, promise second.
+
+### ⚙ Boldini — closed
+Nearly every IIIF Boldini sits at **Orsay (capped)** incl. Madame Max (seen, no upgrade path
+anywhere). The two NGA Boldinis (*After the Bath* 49 MP, *Whistler Asleep* 13.7 MP) were
+**already in this canon with NGA IIIF plates**. Nothing further to pull.
+
+### ⚙ Yale correction, second order — YCBA measured UP (see §4b): 14 Turner oils adopted
+same-day at 11–141 MP cropped plates with x-radiographs to 1,594 MP. The round-1 "13–17 MP"
+figure sampled a different object class.
+
+### ⚙ Evidence-quality note on the two dead holders
+Re-verified with a validated instrument (node fetch, after PowerShell's own web cmdlets were
+caught failing inside the sandbox): `munch.emuseum.com` = **ENOTFOUND** (DNS gone);
+`art.nelson-atkins.org` = **connect timeout from a residential network AND connection
+refused from cloud egress** — two networks, two failure modes, zero successes. ⭐ Meta-lesson:
+**a probe's failure is only evidence once the probe is validated against a known-good target.**
+
+### Adopted from this census so far
+3 Monets (Getty *Wheatstacks, Snow Effect, Morning* 76 MP ⚙ measured level2 `maxWidth
+30000` tiles 256; Nationalmuseum *View from Voorzan* 6.2 MP + *View over the Sea* 9.8 MP —
+⚠ modest masters, adopted for coverage not pixels) and the 14 YCBA Turners. First non-NGA
+IIIF adoptions in the canon.
