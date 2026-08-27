@@ -189,6 +189,15 @@ list** while the seen answers build the canon. A 0–100 slider was considered a
 it kills dealing rhythm and produces pseudo-precision; two axes × three levels captures
 everything actionable. Old string verdicts migrate on load.
 
+### Roadmap — QUALITY SLIDER (parked to consider, Fuad 2026-08-27)
+
+Replace the Wall's discrete quality chips (500MP+/150MP+/50MP+/…) with an adjustable MP
+slider for incremental filtering, keeping "tiled · IIIF" as a separate toggle beside it.
+Considerations when picked up: the chips carry counts-by-bucket which a slider loses (maybe
+a histogram behind the track); log scale (1→2000MP spans 3 orders); the chip row precedent
+says controls stay compact. Not scheduled — Fuad: "worth putting into a roadmap to consider
+instead" of building now.
+
 ### Roadmap — TIER-1 HOLDER EXPANSION (proposed 2026-08-27, Fuad: "put this on the roadmap")
 
 The NGA adoption arc proved the pattern: pull a holder's open catalogue locally, match it
