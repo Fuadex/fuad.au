@@ -776,6 +776,109 @@ const movIndex = () => {
 // how many style chips sit on the row before the rest fold into "+N more"
 const STYLE_CHIPS = 12;
 
+// ——— SALON RHYTHM — the "hang order" sort (Fuad approved: salon rhythm w/ hue smoothing, 2026-08-27)
+// The old hang was a flat tier sort: every floored/favorite up front, then the rest — a wall that
+// opened on a wall of trophies and dribbled out. This arranges the SAME set the way a salon is hung:
+// anchors are spread evenly down the wall, and the stretch after each anchor is chosen to belong with
+// it — same movement first, then nearest colour — so the eye travels in little runs rather than one
+// front-loaded clump. Plain-language rhythm: anchor, then a short passage of kin (by style, warmed to
+// its hue), then the next anchor, and so on. Liked works fill a passage before unmarked ones; works
+// with no swatch sit at the tail of their passage; image-less works sink to the very end (images-first
+// instinct preserved). Fully deterministic — same list in, same wall out, no randomness, no Date.
+//
+// Complexity: O(n log n) for the initial hue sort of each movement bucket + O(n·anchors) greedy fill.
+// We bucket non-anchors by movement ONCE and keep each bucket hue-sorted, so segment assignment is a
+// pointer-walk over buckets, never an O(n²) scan of the full ~2.7k list.
+function salonOrder(list) {
+  // image-less works never compete for anchor/affinity slots — they append at the very end, in their
+  // own flat weight/hue order, so the wall opens and stays on pictures for as long as it can.
+  const imgd = list.filter(w => w.imgGrid);
+  const noImg = list.filter(w => !w.imgGrid)
+    .sort((a, b) => weight(a) - weight(b) || palHueOf(a) - palHueOf(b));
+
+  // ANCHORS = floored/favorite (weight 0). If there are none, or effectively all works are anchors,
+  // there is no rhythm to build — fall back to the old flat instinct (weight then hue), still stable.
+  const anchors = imgd.filter(w => weight(w) === 0);
+  const rest    = imgd.filter(w => weight(w) !== 0);
+  if (!anchors.length || !rest.length) {
+    return [...imgd.sort((a, b) => weight(a) - weight(b) || palHueOf(a) - palHueOf(b)), ...noImg];
+  }
+
+  // Deterministic anchor order: hue-sorted so the spread itself has a colour progression, id as the
+  // final tiebreak so equal-hue anchors never depend on the input list's incoming order.
+  anchors.sort((a, b) => palHueOf(a) - palHueOf(b) || String(a.id).localeCompare(String(b.id)));
+
+  // Non-anchors bucketed by PRIMARY movement once, each bucket hue-sorted and liked-before-unmarked so
+  // pulling "the next kin of movement M nearest this hue" is a cheap pointer walk. "" = no movement.
+  const buckets = new Map();            // movement label -> [works], hue+weight sorted
+  for (const w of rest) {
+    const k = movOf(w) || "";
+    if (!buckets.has(k)) buckets.set(k, []);
+    buckets.get(k).push(w);
+  }
+  for (const arr of buckets.values())
+    arr.sort((a, b) => weight(a) - weight(b) || palHueOf(a) - palHueOf(b) || String(a.id).localeCompare(String(b.id)));
+  const ptr = new Map();                // bucket -> next-unused index (greedy, no splice churn)
+  for (const k of buckets.keys()) ptr.set(k, 0);
+  const takenLeft = new Set(buckets.keys());   // buckets that still have works to give
+
+  // N = even spacing target: an anchor roughly every Nth slot, clamped 4..10 so tiny walls don't put
+  // every work between anchors and huge walls don't scatter them to invisibility.
+  const total = imgd.length;
+  const N = Math.min(10, Math.max(4, Math.ceil(total / anchors.length)));
+  // Base passage length between anchors is N-1; the leftover after anchors·N is dealt to the earliest
+  // segments so counts stay deterministic and nothing is dropped.
+  const segLen = new Array(anchors.length).fill(N - 1);
+  let leftover = rest.length - anchors.length * (N - 1);
+  for (let i = 0; leftover > 0; i = (i + 1) % anchors.length, leftover--) segLen[i]++;
+
+  // Pull the `need` works most akin to `anchor`: same movement first (nearest hue within it), then any
+  // movement by nearest hue. Greedy over the pre-sorted buckets — each pull is a pointer advance.
+  const pullKin = (anchor, need) => {
+    const out = [];
+    const aHue = palHueOf(anchor);
+    const aMov = movOf(anchor) || "";
+    const nextFrom = (k) => {                     // peek/advance a bucket, skipping exhausted ones
+      let i = ptr.get(k);
+      const arr = buckets.get(k);
+      while (i < arr.length && arr[i] == null) i++;
+      return i < arr.length ? { i, w: arr[i] } : null;
+    };
+    const take = (k, i) => { const arr = buckets.get(k); const w = arr[i]; arr[i] = null; ptr.set(k, i + 1); if (nextFrom(k) == null) takenLeft.delete(k); return w; };
+    // 1) same-movement kin, in the bucket's own hue order (already sorted), up to `need`.
+    if (aMov && buckets.has(aMov)) {
+      let hit = nextFrom(aMov);
+      while (hit && out.length < need) { out.push(take(aMov, hit.i)); hit = nextFrom(aMov); }
+    }
+    // 2) fill the remainder with the globally nearest-hue available work across all live buckets.
+    while (out.length < need && takenLeft.size) {
+      let best = null, bestD = Infinity;
+      for (const k of takenLeft) {
+        const hit = nextFrom(k); if (!hit) continue;
+        const wh = palHueOf(hit.w);
+        // hue distance on the colour wheel; no-swatch works (998/999) fall out to a large constant so
+        // they land at a segment's tail rather than being chased.
+        const d = wh >= 360 ? 1e6 + wh : Math.min(Math.abs(wh - aHue), 360 - Math.abs(wh - aHue));
+        if (d < bestD || (d === bestD && String(hit.w.id).localeCompare(String(best.w.id)) < 0)) { best = { k, ...hit }; bestD = d; }
+      }
+      if (!best) break;
+      out.push(take(best.k, best.i));
+    }
+    return out;
+  };
+
+  const woven = [];
+  for (let a = 0; a < anchors.length; a++) {
+    woven.push(anchors[a]);
+    for (const w of pullKin(anchors[a], segLen[a])) woven.push(w);
+  }
+  // Any non-anchor the greedy fill didn't reach (rounding slack) appends in hue order, then no-image.
+  const placed = new Set(woven.map(w => w.id));
+  const tail = rest.filter(w => !placed.has(w.id))
+    .sort((a, b) => weight(a) - weight(b) || palHueOf(a) - palHueOf(b));
+  return [...woven, ...tail, ...noImg];
+}
+
 function Wall({ go, styleIds }) {
   const all = useMemo(() => WORKS.map(enrich), []);
   const lazyGen = useLazyGen();   // the ✦/⤢ read chips filter on lazy CANVAS_INSPECT
@@ -951,7 +1054,7 @@ function Wall({ go, styleIds }) {
     const pinIds = new Set(tokens.filter(t => t.type === "work").map(t => t.id));
     const inList = new Set(list.map(w => w.id));
     const pinWorks = pinIds.size ? all.filter(w => pinIds.has(w.id) && !inList.has(w.id)) : [];
-    const arr = [...pinWorks, ...list];
+    let arr = [...pinWorks, ...list];
     // TODAY'S HANG short-circuits the sort: its order IS the content — pinned leads first, then the
     // day-seeded spread. The chips still narrow it, so "today's hang, 1890s only" works, but nothing
     // reorders it, because any reorder would throw away the thing that makes it a hang. Token pins
@@ -967,7 +1070,9 @@ function Wall({ go, styleIds }) {
     // "modes" that only ever differed by sort order, so they are sort options and chips now: colour
     // joins the dropdown, time became the era chips, and movement was always better served by the
     // style chips, which filter rather than merely reorder.
-    if (sort === "hang") arr.sort((a, b) => (b.imgGrid ? 1 : 0) - (a.imgGrid ? 1 : 0) || weight(a) - weight(b));
+    // "hang order" is now the salon-rhythm arrangement (see salonOrder). It returns a fresh array
+    // rather than sorting in place, so reassign `arr`; the pin-float partition below still runs on it.
+    if (sort === "hang") arr = salonOrder(arr);
     else if (sort === "year") arr.sort((a, b) => (a.year || 9999) - (b.year || 9999));
     else if (sort === "artist") arr.sort((a, b) => a.artist.localeCompare(b.artist) || (a.year || 0) - (b.year || 0));
     else if (sort === "museum") arr.sort((a, b) => String(a.seenAt).localeCompare(String(b.seenAt)) || weight(a) - weight(b));
