@@ -9,6 +9,18 @@ instead of rediscovering. "NGA-grade" = IIIF (or equivalent tiling), masters at 
 resolution, permissive license, sane CORS, stable IDs. Statuses from our own measured rounds
 where marked ⚙; the rest from documented programs — verify before adopting.
 
+## ROUND 8c (2026-08-27) — YCBA measured up, two census holders measured dead
+
+⚙ **YCBA oils are Tier 1** — 14 Turner paintings measured: cropped plates 11–141 MP, level2,
+CC0, NO clamp (tiles 512), x-radiographs to 1,594 MP riding each manifest. The round-8
+"13–17 MP" figure sampled a different object class and is struck for oils. Adopted same day
+(5d2c1cf, src `ycba`). Working host `manifests.collections.yale.edu`; the britishart host
+has an expired TLS cert.
+⚙ **Nelson-Atkins collections host refuses TCP from residential AND cloud connections** —
+dead to the public, not a bot wall. Do not re-hunt without evidence it came back.
+⚙ **munch.emuseum.com is gone from DNS** (museum moved to munch.no). Stale-P6108 lesson:
+**probe the host before believing a census row.**
+
 ## ROUND 8b (2026-08-27) — the global IIIF census, and NGA is NOT alone
 
 ⭐ **THE CHEAPEST SURVEY INSTRUMENT WE HAVE FOUND. ONE request answers "who else even has

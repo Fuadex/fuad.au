@@ -170,6 +170,26 @@ cropped** variants per object — the framed plate is the largest *and the wrong
 
 ---
 
+## 4b. ⛔ CORRECTIONS (2026-08-27, round 8c — measured same day, superseding sections above)
+
+- **YCBA IS TIER 1. The "13–17 MP" figure above is WRONG for its oil paintings** — it came
+  from a sample of a different object class. ⚙ All 14 Mellon-collection Turner oils measured
+  via the live manifest host: cropped-to-image plates run **11–141 MP** (Dort 14,484 × 9,741),
+  IIIF 2 level2, CC0, and the image service declares **no clamp** (tiles 512, full-size in
+  `sizes`). Each object also carries an **x-radiograph up to 46,800 × 34,053 (1,594 MP)** —
+  conservation images, recorded as future study-layer material. Route:
+  `manifests.collections.yale.edu/ycba/obj/<id>` (the old `manifests.britishart.yale.edu`
+  has an EXPIRED TLS certificate — do not use it). The Yale verdict flips from "coverage
+  play" to **coverage AND pixels**.
+- **Nelson-Atkins is DEAD to the public internet, not firewalled against us.** ⚙ TCP to
+  `art.nelson-atkins.org:443` fails from a residential connection as well as from cloud
+  egress (ping also fails). Nothing to walk around — the collections host is down or
+  allowlist-only. Its 1,783 census manifests are unreachable.
+- **`munch.emuseum.com` NO LONGER RESOLVES IN DNS** — the museum moved to `munch.no` and
+  the eMuseum instance appears retired. The census's 739 Munch manifests are **stale Wikidata
+  urls**. ⚠ General lesson: **P6108 rows can outlive the servers they point at** — a census
+  row is a claim about Wikidata, and the host must be probed before the row is believed.
+
 ## 5. Open leads, in priority order
 
 1. **KMSKA** — run the canon-scoped Wikidata match (the Getty method) and generate a
