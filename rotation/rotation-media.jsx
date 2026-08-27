@@ -14,6 +14,16 @@ function tastePctl(axis, value) {
   const v = Math.max(0, Math.min(100, Math.round(value)));
   return D.cdf[ai][v] / 10;   // permille → percent
 }
+// mid-rank variant for tie-heavy axes: uses the midpoint of the CDF step so a track
+// with value=8 on an axis where 90% sit at 0 doesn't rank above ~90% of the library.
+// Guards v=0 by treating the lower bound as 0 (no entries below 0).
+function tastePctlMid(axis, value) {
+  const D = window.ROTATION && window.ROTATION.AUDIO_DIST; if (!D) return null;
+  const ai = D.axes.indexOf(axis); if (ai < 0 || value == null) return null;
+  const v = Math.max(0, Math.min(100, Math.round(value)));
+  const lo = v > 0 ? D.cdf[ai][v - 1] : 0;
+  return (lo + D.cdf[ai][v]) / 2 / 10;   // midrank → percent; ties split evenly
+}
 // direction-aware "sits" phrase: a BELOW-median percentile reads as the low adjective, not
 // "more <hi> than 10%" (which misleads — 10% means it's low). → { word, pct } for "More {word} than {pct}%".
 function sitsWord(p, hi, lo) {
@@ -1052,20 +1062,27 @@ function TrackView({ id, go }) {
   // ("faster than 88% of what you play"). `p` = share of your plays with a lower value on the axis.
   const tasteStandouts = (() => {
     if (!f) return [];
+    // DIMS reworked 2026-08-27: zero-heavy axes (acoustic, dance, instr) used at-or-below CDF which
+    // made a track with acoustic=8 rank above ~90% of the library — "more acoustic than 90%"
+    // was a lie. Fix: tastePctlMid splits ties, and an absolute floor must clear before the hi
+    // claim fires (acoustic >=40, instrumental >=70, danceable >=50; energy/valence/tempo omitted
+    // as their distributions are well-spread). Valence words renamed: lyric side owns bright/dark
+    // since the 2026-08-27 recalibration; these words describe the SOUND.
     const DIMS = [
       // plain adjectives only — the "more" now lives once on the right ("more than 88%"), so the
       // adjective column stays short and the bars line up in a row (Fuad 2026-07-14).
-      { k: "energy", i: 4, hi: "intense", lo: "mellow" },
-      { k: "valence", i: 5, hi: "bright", lo: "dark" },
-      { k: "tempo", i: 7, hi: "fast", lo: "slow" },
-      { k: "acoustic", i: 6, hi: "acoustic", lo: null },
-      { k: "dance", i: 8, hi: "danceable", lo: null },
-      { k: "instr", i: 9, hi: "instrumental", lo: null },
+      { k: "energy",   i: 4, hi: "intense",      lo: "mellow" },
+      { k: "valence",  i: 5, hi: "sunny",         lo: "sombre" },
+      { k: "tempo",    i: 7, hi: "fast",           lo: "slow" },
+      { k: "acoustic", i: 6, hi: "acoustic",       lo: null,  min: 40 },
+      { k: "dance",    i: 8, hi: "danceable",      lo: null,  min: 50 },
+      { k: "instr",    i: 9, hi: "instrumental",   lo: null,  min: 70 },
     ];
     const out = [];
     for (const d of DIMS) {
-      const p = tastePctl(d.k, f[d.i]); if (p == null) continue;
-      if (p >= 85 && d.hi) out.push({ phrase: d.hi, pct: p, ex: p - 50 });        // above most of your rotation
+      const raw = f[d.i];
+      const p = tastePctlMid(d.k, raw); if (p == null) continue;
+      if (p >= 85 && d.hi && (d.min == null || raw >= d.min)) out.push({ phrase: d.hi, pct: p, ex: p - 50 });        // above most of your rotation
       else if (p <= 15 && d.lo) out.push({ phrase: d.lo, pct: 100 - p, ex: 50 - p }); // below most of it
     }
     return out.sort((a, b) => b.ex - a.ex).slice(0, 3);
