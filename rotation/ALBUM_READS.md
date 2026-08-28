@@ -333,6 +333,22 @@ GIST recipe; redrafts bump `by` to Opus·Fable.
 - Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
 - Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
 
+### Batch log — tier1b micro-wave: album closes + two EP portraits (2026-08-29, dc8b6cf + 54b9d42)
+
+Eleven reads that finish what the mop-up wave left open: Head Like a Hole upgraded off its
+legacy pre-v2 text, Closer to God read as its own halo-9 piece, Dirt completed (Dam That
+River, Angry Chair, Down in a Hole), Songs for the Deaf completed (Another Love Song,
+A Song for the Dead, Gonna Leave You), and A Perfect Circle's catalog closed out (both
+eMOTIVe covers under the covers doctrine + Breña). Two fnotes (eMOTIVe's election-day
+release; Oliveri singing Gonna Leave You). Alongside, two portrait unlocks for albums whose
+track reads were already complete: the PRO8L3M Hack3d By GH05T 2.0 EP (with a case-file
+sequencing arc) and Northlane's Mirror's Edge EP (arc skipped — running order not
+confidently establishable from library trackNos; arcs don't get guessed). Craft notes:
+DV corrected an over-specified anecdote (the Dam That River fight is the attested
+coffee-table incident, not a studio fistfight) and both QOTSA vocal attributions
+(Oliveri, not Homme); the liner collage tax fired again on BOTH portrait liners —
+including a full inventory redo (all five tracks named) on Hack3d.
+
 ### Batch log — Type O Negative ARTIST entry + coverage mop-up wave (2026-08-29, 00956e7)
 
 The first roadmap-driven wave rather than an artist campaign: a 41-read sweep closed the
