@@ -333,6 +333,21 @@ GIST recipe; redrafts bump `by` to Opus·Fable.
 - Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
 - Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
 
+### Batch log — HEALTH full-catalog cascade + ARTIST entry (2026-08-29, 00e19b9)
+
+A from-zero close: the whole modern catalog read in four waves, then FOUR album entries
+(Vol. 4 :: Slaves of Fear, Death Magic, RAT WARS, CONFLICT DLC) + five descriptors (the
+noise-era s/t and GET COLOR, the Max Payne 3 score, DISCO4 parts I and II) + the first
+`health` artist entry. Craft notes that stuck: the RAT WARS gist honestly flags a standard-
+tracklist closer never scrobbled here (the unplayed-cuts rule applied at the closer slot);
+the RW arc synthesizes a sequence-level device (interlude titles completing the preceding
+songs' refrains, the climax reprising the opener) that track fnotes carry individually —
+approved as the album-scale claim; the artist read organizes era-drift by where the blame
+points rather than by chronology, after the first draft walked the catalog. The liner-wave
+collage class persisted (nine seals across four liners, including a workshop-vocab opener
+twice) — the anti-collage brief line reduces but does not remove it; the mechanical echo-scan
+now runs on artist reads as standard.
+
 ### Batch log — Dream Theater full-catalog cascade + ARTIST entry (2026-08-29, 62e6054)
 
 The largest portrait package to date, behind the three-wave read campaign that closed
