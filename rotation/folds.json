@@ -4372,6 +4372,12 @@
 "to": "Shutterspeed",
 "type": "spelling",
 "reason": "spelling: Themata tracklist uses one word; \"Shutter Speed\" folds to canonical \"Shutterspeed\""
+},
+{
+"from": "Life Like",
+"to": "L1FEL1KE",
+"type": "spelling",
+"reason": "spelling: plain-titled row of the leet-styled album track; same recording folds to the album styling"
 }
 ],
 "albums": [
