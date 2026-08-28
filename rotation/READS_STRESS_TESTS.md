@@ -141,6 +141,21 @@ mid-song). One false-positional slipped through a first-gate PASSER and was caug
 verification, confirming the placement check must never skip clean-gate drafts. The class
 is handled; its price is redo volume, not wrong reads.
 
+### Crystal Castles (II) — the sampled-vocal class (2026-08-28)
+
+Three tracks on one album whose ENTIRE text is a borrowed voice: a looped Jónsi fragment
+(Year of Silence) and a single Stina Nordenstam song carved into two different tracks
+(Violent Dreams, Vietnam). The class question — what does a read interpret when the words
+belong to someone else's song — resolved without any methodology change: all three
+drafters independently read the RECONTEXTUALIZATION (what the chopping, looping and
+truncation do to the borrowed feeling) rather than impersonating the source, exactly
+parallel to how the covers doctrine reads selection and recasting. The near-zero-text
+floor (a two-word screamed chant) was likewise answered honestly by reading what the
+repetition does. Verification matters doubly here: the sample-source facts carry the
+footnote layer, and one contested vocal attribution was neutralized rather than guessed.
+The class is closed: sampled-vocal texts are covers of found material, and the existing
+contracts already read them.
+
 ## What the ledger licenses
 
 The methodology's core has survived: the worst gate rates on record, both limit
