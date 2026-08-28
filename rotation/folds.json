@@ -2057,6 +2057,24 @@
 "to": "I Can't Wait",
 "type": "variant",
 "reason": "remix ((Metal remix by Jay Ray))"
+},
+{
+"from": "G00D Luck (Y0U'r3 833P3D)",
+"to": "Good L_ck (Yo_'re F_cked)",
+"type": "spelling",
+"reason": "spelling: leet/censor styling variant of the same recording folds to the album title"
+},
+{
+"from": "Good Luck",
+"to": "Good L_ck (Yo_'re F_cked)",
+"type": "spelling",
+"reason": "spelling: plain-titled variant row of the same recording folds to the album title"
+},
+{
+"from": "D0wn 2 34rth",
+"to": "Down to Earth",
+"type": "spelling",
+"reason": "spelling: leet styling variant of the same recording folds to the album title"
 }
 ],
 "artist": [
