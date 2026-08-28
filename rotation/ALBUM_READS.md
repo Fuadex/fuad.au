@@ -333,6 +333,34 @@ GIST recipe; redrafts bump `by` to Opus·Fable.
 - Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
 - Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
 
+### Batch log — Dream Theater full-catalog cascade + ARTIST entry (2026-08-29, 62e6054)
+
+The largest portrait package to date, behind the three-wave read campaign that closed
+every played DT album: NINE new album entries (Falling Into Infinity, Images and Words,
+Scenes From A Memory, Black Clouds & Silver Linings, Train of Thought, the 2013 s/t,
+A Dramatic Turn of Events, Distance Over Time, and the debut as a full entry on approval)
++ three descriptors (A Change of Seasons — the half-live EP class, The Astonishing,
+A View From the Top of the World) + the first `dream-theater` artist entry (portrait +
+Berklee/Portnoy-circle note). SFAM ships arc-LESS by the concept-album rule — the
+subject IS the arc; its liner's last line carries the twist. Craft notes that stuck:
+the liner wave's track-read collage rate was the worst of any campaign (18 lift-seals
+across 9 liners + 1 misattribution seal) — the artist-read echo problem has now
+migrated down a level, and a mechanical n-gram echo-scan is worth running on BOTH
+levels; the BC&SL liner opener was depersonalized to free the Portnoy anchor-fact for
+the gist (the anchor-fact rule applied in reverse). SDOIT remains the only DT portrait
+without an arc.
+
+### Batch log — Deftones remainder + Karnivool cascades (2026-08-28→29, b572544 + 031f1e1)
+
+Two catalog closes in the first parallel-batch era (multiple albums drafted and QC'd
+per arc, Fuad-directed). Karnivool: four album entries + a Persona descriptor + the
+first `karnivool` artist entry. Deftones: five album entries (Diamond Eyes, Saturday
+Night Wrist, the 2003 s/t, private music, White Pony) + Adrenaline/Ohms descriptors +
+the first `deftones` artist entry (no note — the offered one was dropped on review).
+Process addition made standing here (Fuad 2026-08-29): every cascade print ends with
+the QC/process report AND the considered-but-dropped ledger — leads are never silently
+unproposed.
+
 ### Batch log — Nevermore album cascade + ARTIST entry (2026-08-27, 393caff + 47aa6b8)
 
 Six syntheses shipped behind the 51-read catalog close (s/t, The Politics of Ecstasy,
