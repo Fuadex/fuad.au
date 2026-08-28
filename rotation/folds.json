@@ -4806,9 +4806,9 @@
    },
    {
     "from": "Points of Authority (remix)",
-    "to": "Points of Authority",
-    "type": "variant",
-    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+    "to": "Pts.Of.Athrty",
+    "type": "spelling",
+    "reason": "spelling: generic remix tag on the Reanimation rework; merged onto the official stylized title (Fuad 08-29)"
    },
    {
     "from": "Points of Authority (live)",
@@ -4962,9 +4962,9 @@
    },
    {
     "from": "By My Self (Remix)",
-    "to": "By Myself",
-    "type": "variant",
-    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+    "to": "By_Myslf",
+    "type": "spelling",
+    "reason": "spelling: plain-English mislabel of the Reanimation rework; merged onto the official stylized title (Fuad 08-29)"
    },
    {
     "from": "By Myself - LIVE IN TEXAS",
@@ -5343,6 +5343,48 @@
     "to": "Until It's Gone",
     "type": "variant",
     "reason": "remix ((Ghost in the Machine Remix))"
+   },
+   {
+    "from": "Points of Authority (Cristal Remix)",
+    "to": "Pts.Of.Athrty",
+    "type": "spelling",
+    "reason": "spelling: wild mislabel of the Reanimation rework (Cristal/Crystal Method tags circulate on the Jay Gordon version); folds to the official stylized title"
+   },
+   {
+    "from": "Pts.Of.Athrty - Jay Gordon Reanimation",
+    "to": "Pts.Of.Athrty",
+    "type": "spelling",
+    "reason": "spelling: remixer-credit suffix dropped to the official Reanimation title"
+   },
+   {
+    "from": "Pts.of.Athrty",
+    "to": "Pts.Of.Athrty",
+    "type": "spelling",
+    "reason": "spelling: case variant pinned to the official spelling"
+   },
+   {
+    "from": "By_Myslf (Josh Abraham and Mike Shinoda Reanimation)",
+    "to": "By_Myslf",
+    "type": "spelling",
+    "reason": "spelling: remixer-credit suffix dropped to the official Reanimation title"
+   },
+   {
+    "from": "P5hng Me A*wy (Mike Shinoda Reanimation) [feat. Stephen Richards]",
+    "to": "P5hng Me A*wy",
+    "type": "spelling",
+    "reason": "spelling: remixer-credit suffix dropped to the official Reanimation title"
+   },
+   {
+    "from": "02 PTS.OF.ATHRTY",
+    "to": "Pts.Of.Athrty",
+    "type": "spelling",
+    "reason": "spelling: tracknumber-prefixed rip row of the same Reanimation track"
+   },
+   {
+    "from": "06 P5HNG ME A*WY",
+    "to": "P5hng Me A*wy",
+    "type": "spelling",
+    "reason": "spelling: tracknumber-prefixed rip row of the same Reanimation track"
    }
   ],
   "albums": [
