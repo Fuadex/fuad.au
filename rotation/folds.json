@@ -2945,8 +2945,8 @@
 {
 "from": "Perfect Strangers (Live)",
 "to": "Perfect Strangers",
-"type": "variant",
-"reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+"type": "spelling",
+"reason": "the EP track is itself live; the (Live) row is a scrobble variant of the same recording"
 },
 {
 "from": "Perfect Stranger",
@@ -3096,6 +3096,18 @@
 "to": "Scarred",
 "type": "variant",
 "reason": "demo recording (- Demo 1994)"
+},
+{
+"from": "Strange Deja Vu",
+"to": "Scene Two: II. Strange Deja Vu",
+"type": "spelling",
+"reason": "stray scrobble row of the album track; same recording"
+},
+{
+"from": "A Change Of Seasons - The Crimson Sunrise / Innocence / Carpe Diem / The Darkest Of Winters / Another World / The Inevitable Summer / The Crimson Sunset",
+"to": "A Change of Seasons",
+"type": "spelling",
+"reason": "full-movement-list scrobble row of the title suite; same recording"
 }
 ]
 },
