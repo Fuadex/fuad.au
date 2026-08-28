@@ -333,6 +333,23 @@ GIST recipe; redrafts bump `by` to Opus·Fable.
 - Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
 - Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
 
+### Batch log — d1 wave: six-album close + first Dragged Under artist entry (2026-08-29, f5c3faa..96dd39b)
+
+Twenty-eight reads across six albums in one parallel arc — The World Is In Your Way
+completed (five album tracks plus the Mad Punks single, which together close Dragged
+Under entirely), The Serenity of Suffering, Facelift, Art Angels, and Bad Vibrations all
+finished above the play floor, and Soul Kiss brought to four of its five tracks (Get Well
+Soon is a genuine lyric gap). Three fnotes: Chelsea's real addressee, Corey Taylor
+writing his own bridge, and Real Thing's Coming to America outro gag. The cascade shipped
+five album portraits (Facelift and Bad Vibrations with position-verified arcs) plus the
+first dragged-under artist entry, organized around the blame-boomerang argument rather
+than a chronology. Craft notes: verification corrected a lyric-credit blur (Confusion is
+Staley's lyric), de-named a loose Steinbeck attribution, and re-dated Soul Kiss to its
+real 2024 Frost Children collaboration; the liner collage tax fired on every liner in the
+wave plus the artist read, and a second pass enforced the two-to-three anchor rule.
+Soul Kiss's album portrait was held at apply — a pilot-era entry already covers it, and
+replacement is an owner ruling.
+
 ### Batch log — tier1b micro-wave: album closes + two EP portraits (2026-08-29, dc8b6cf + 54b9d42)
 
 Eleven reads that finish what the mop-up wave left open: Head Like a Hole upgraded off its
