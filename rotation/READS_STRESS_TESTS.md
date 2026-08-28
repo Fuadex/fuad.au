@@ -111,6 +111,36 @@ Results:
   pressure). Verdict: medley keys are HANDLED by existing contracts; the class is
   closed unless a medley arrives whose segments argue with each other.
 
+### Pezet — the Polish-noir generalization test (2026-08-28)
+
+Eleven songs asked whether the PRO8L3M-class refusal (plotless slang noir gets no read)
+generalizes across Polish rap. Verdict: **it does not** — all eleven produced committed
+theses, including the one genuine refusal-risk (a literal slang dictionary, answered with
+language-as-inheritance). New findings: register inflation tracks material FAME in any
+language, not English specifically (a wave-wide 47-59 words-per-sentence first draft,
+fixed in one redo round); and builder-supplied metadata is an error source of its own —
+wrong years in the workshop briefs survived to verification twice and were caught there,
+never reaching the reads.
+
+### QOTSA — Feel Good Hit of the Summer (the citation ceiling, 2026-08-28)
+
+The extreme of the sparse-plus-famous class: a lyric of six drug names and one chorus
+word. Predicted to squeeze the gate hardest; instead the first draft passed both gates
+untouched with zero shared pairs, arguing that the repetition itself is the meaning — the
+mask of celebration over the closed loop of supply-counting. The ceiling produced honesty
+rather than confabulation, exactly as the limit model claims: at the boundary the system
+retreats into reading the refusal, and here the refusal WAS the song.
+
+### Death Grips — Exmilitary (the cut-up class at album scale, 2026-08-28)
+
+The resists-reading stress: fragmented, deliberately shattered writing across a whole
+mixtape. Cost was real — the worst gate rates of the campaign day (11 shared pairs on one
+draft) — but one redo wave absorbed everything, and the material rewarded structure-level
+theses (a getaway that is really an overdose; a boast that names its own cut-up method
+mid-song). One false-positional slipped through a first-gate PASSER and was caught at
+verification, confirming the placement check must never skip clean-gate drafts. The class
+is handled; its price is redo volume, not wrong reads.
+
 ## What the ledger licenses
 
 The methodology's core has survived: the worst gate rates on record, both limit
