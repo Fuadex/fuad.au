@@ -92,6 +92,25 @@ songs. Results:
   drafter (the second such catch). A voice/POV question now rides the QC pass
   permanently: whose voice is this — gender, persona, narrator versus subject.
 
+### Dream Theater — The Big Medley (the multi-artist medley key, 2026-08-28)
+
+A genuinely novel key class encountered in the A Change of Seasons campaign: ONE library
+key holding a live medley of SIX different artists' songs (Pink Floyd, Kansas, Queen,
+Journey, Dixie Dregs, Genesis), where song = key = lyric breaks in a new direction —
+there is no single author, no single text, and two of the six segments are instrumental.
+Results:
+
+- **First-gate clean on the first draft** — the composite text diluted citation pressure
+  instead of multiplying it.
+- **No new tier or brief needed**: the covers doctrine (meaning lives in the SELECTION
+  and the recasting) ported down from album level to song level intact. The read treats
+  the medley as one performance — a band naming its parents by playing them — and the
+  component identification rides a verified footnote, exactly parallel to how suite
+  tissue rides footnotes in the Class-A ruling.
+- The companion three-song Zeppelin medley behaved identically (one redo, register-only
+  pressure). Verdict: medley keys are HANDLED by existing contracts; the class is
+  closed unless a medley arrives whose segments argue with each other.
+
 ## What the ledger licenses
 
 The methodology's core has survived: the worst gate rates on record, both limit
