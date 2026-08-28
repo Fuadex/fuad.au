@@ -333,6 +333,21 @@ GIST recipe; redrafts bump `by` to Opus·Fable.
 - Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
 - Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
 
+### Batch log — Type O Negative ARTIST entry + coverage mop-up wave (2026-08-29, 00956e7)
+
+The first roadmap-driven wave rather than an artist campaign: a 41-read sweep closed the
+residual gaps on a dozen already-covered artists (NIN's halo B-sides and covers, the Origin
+of the Feces cluster, Through the Ashes of Empires' deep cuts, top-500 strays) and replaced
+fifteen legacy pre-v2 reads. It ends with the first `type-o-negative` artist entry — the
+catalog's five album reads plus new Origin of the Feces and Slow Deep and Hard descriptors
+feeding a portrait organized around where Steele's verdict points (outward at lovers and
+churches early, inward at his own body and mirror later) — with the death-and-Drab-Four
+note. Craft notes: the artist-read echo-seal fired for the seventh consecutive campaign
+(now paired with a chronology-walk catch); cover reads locate meaning in the act of
+selection; and two new QC classes entered the ledger — structural claims built on
+lyric-file truncation artifacts, and personnel claims sourced only from lyric-file
+annotations.
+
 ### Batch log — HEALTH full-catalog cascade + ARTIST entry (2026-08-29, 00e19b9)
 
 A from-zero close: the whole modern catalog read in four waves, then FOUR album entries
