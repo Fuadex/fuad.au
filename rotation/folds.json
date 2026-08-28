@@ -1,4 +1,12 @@
 {
+"385": {
+"artist": {
+"from": "３８５",
+"type": "diacritic",
+"reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
+}
+},
+
 "Helstar": {
 "tracks": [
 {
@@ -54,15 +62,21 @@
 ]
 },
 
-"385": {
-"artist": {
-"from": "３８５",
-"type": "diacritic",
-"reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
-}
-},
 "_doc": "Curated coherency folds. Applied at scrobble ingest in build-data.js. Grouped by canonical artist; one line per fold. type spelling|variant|feat-credit|diacritic. artist may be a single {from,type,reason} object OR an array of them. Top-level _exclude[] lists pure-noise names (tutorials/trailers/YouTube junk) dropped whole at ingest (matched by exact raw name + slug). Top-level _moves[] does per-track artist REASSIGNMENT — {fromArtist,fromTrack,toArtist,toTrack,reason}: a single (artist,track) pair is retargeted to another artist (optionally renaming the track) BEFORE any play/album/track map is keyed, so plays/media/reads all follow. Unlike artist folds (whole artist) and track folds (rename within one canonical artist), a move splits one row off an artist. Applied at ingest right after canon()+foldTrack() (build-data.js ~L1336); matched on slug(fromArtist)~slug(fromTrack). Source: classified-all.json + out-AR-albums-fixed.json + mojibake + tier-2 verifier corrections. See LEDGER_DESIGN.md.",
-"_exclude": ["jQuery Tutorial #3", "How to create CSS Layouts", "Widzimy się w kinie", "The Gmod Idiot Box", "\"If\"", "HRejterzy", "Official Call of Duty®", "The Grand Tour", "Raycevick", "Five Nights at Freddy's", "Spec Ops: The Line", "Vaporwave with Teenage Engineering OP-1 蒸気波 (feat. Blank Banshee"],
+"_exclude": [
+"jQuery Tutorial #3",
+"How to create CSS Layouts",
+"Widzimy się w kinie",
+"The Gmod Idiot Box",
+"\"If\"",
+"HRejterzy",
+"Official Call of Duty®",
+"The Grand Tour",
+"Raycevick",
+"Five Nights at Freddy's",
+"Spec Ops: The Line",
+"Vaporwave with Teenage Engineering OP-1 蒸気波 (feat. Blank Banshee"
+],
 "_moves": [
 {
 "fromArtist": "Max Payne 2",
@@ -89,6 +103,7 @@
 }
 ]
 },
+
 "Junkie XL": {
 "artist": [
 {
@@ -98,6 +113,7 @@
 }
 ]
 },
+
 "Nothing's Carved in Stone": {
 "artist": [
 {
@@ -115,6 +131,7 @@
 }
 ]
 },
+
 "Taku Iwasaki": {
 "artist": [
 {
@@ -143,6 +160,7 @@
 }
 ]
 },
+
 "Michael Kamen": {
 "artist": [
 {
@@ -152,6 +170,7 @@
 }
 ]
 },
+
 "Toby Fox": {
 "artist": [
 {
@@ -161,6 +180,7 @@
 }
 ]
 },
+
 "Trent Reznor and Atticus Ross": {
 "artist": [
 {
@@ -168,8 +188,23 @@
 "type": "feat-credit",
 "reason": "feat-credit: one-off \"Immigrant Song\" credit (The Girl with the Dragon Tattoo OST) with guest vocalist Karen O prepended; owner-approved fold to the duo"
 }
+],
+"tracks": [
+{
+"from": "Sugar Storm (Reprise)",
+"to": "Sugar Storm",
+"type": "variant",
+"reason": "alternate recording ((Reprise))"
+},
+{
+"from": "Empty Places (Reprise)",
+"to": "Empty Places",
+"type": "variant",
+"reason": "alternate recording ((Reprise))"
+}
 ]
 },
+
 "Hiroyuki Sawano": {
 "artist": [
 {
@@ -192,6 +227,7 @@
 }
 ]
 },
+
 "Asian Kung-Fu Generation": {
 "artist": [
 {
@@ -215,6 +251,7 @@
 }
 ]
 },
+
 "TACONAFIDE": {
 "artist": [
 {
@@ -224,6 +261,7 @@
 }
 ]
 },
+
 "100 gecs": {
 "tracks": [
 {
@@ -234,6 +272,7 @@
 }
 ]
 },
+
 "9mm Parabellum Bullet": {
 "tracks": [
 {
@@ -244,6 +283,7 @@
 }
 ]
 },
+
 "A Day to Remember": {
 "tracks": [
 {
@@ -267,6 +307,7 @@
 }
 ]
 },
+
 "A Perfect Circle": {
 "albums": [
 {
@@ -335,9 +376,16 @@
 "to": "Breña",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "A Stranger (Acoustic)",
+"to": "A Stranger",
+"type": "variant",
+"reason": "alternate arrangement ((Acoustic))"
 }
 ]
 },
+
 "Accept": {
 "artist": {
 "from": "ACCEPT (H)",
@@ -345,6 +393,7 @@
 "reason": "spelling: variant name form folds to canonical artist name"
 }
 },
+
 "Acid Drinkers": {
 "albums": [
 {
@@ -386,6 +435,7 @@
 }
 ]
 },
+
 "Acme": {
 "tracks": [
 {
@@ -396,6 +446,7 @@
 }
 ]
 },
+
 "Acres": {
 "tracks": [
 {
@@ -406,6 +457,7 @@
 }
 ]
 },
+
 "Agnieszka Chylińska": {
 "artist": {
 "from": "Agnieszka Chylinska",
@@ -413,6 +465,7 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
+
 "Alex": {
 "albums": [
 {
@@ -436,6 +489,7 @@
 }
 ]
 },
+
 "Alex Klingle": {
 "tracks": [
 {
@@ -446,6 +500,7 @@
 }
 ]
 },
+
 "Alex Yarmak": {
 "albums": [
 {
@@ -489,6 +544,7 @@
 }
 ]
 },
+
 "Alice in Chains": {
 "albums": [
 {
@@ -593,9 +649,46 @@
 "to": "Swing on This",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Sea Of Sorrow (1988 Demo)",
+"to": "Sea of Sorrow",
+"type": "variant",
+"reason": "demo recording ((1988 Demo))"
+},
+{
+"from": "Got Me Wrong (Album Version)",
+"to": "Got Me Wrong",
+"type": "variant",
+"reason": "alternate version ((Album Version))"
+},
+{
+"from": "Rotten Apple (Album Version)",
+"to": "Rotten Apple",
+"type": "variant",
+"reason": "alternate version ((Album Version))"
+},
+{
+"from": "Man In The Box - live",
+"to": "Man in the Box",
+"type": "variant",
+"reason": "live recording (- live)"
+},
+{
+"from": "Angry Chair - Live",
+"to": "Angry Chair",
+"type": "variant",
+"reason": "live recording (- Live)"
+},
+{
+"from": "No Excuses (Album Version)",
+"to": "No Excuses",
+"type": "variant",
+"reason": "alternate version ((Album Version))"
 }
 ]
 },
+
 "Alien Weaponry": {
 "tracks": [
 {
@@ -618,6 +711,7 @@
 }
 ]
 },
+
 "Amalee": {
 "tracks": [
 {
@@ -628,6 +722,7 @@
 }
 ]
 },
+
 "American Authors": {
 "tracks": [
 {
@@ -638,6 +733,7 @@
 }
 ]
 },
+
 "Animals as Leaders": {
 "tracks": [
 {
@@ -675,6 +771,7 @@
 }
 ]
 },
+
 "Annie": {
 "artist": {
 "from": "Anniê",
@@ -682,6 +779,7 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
+
 "Annihilator": {
 "tracks": [
 {
@@ -707,9 +805,22 @@
 "to": "Shallow Grave",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "The Fun Palace (extended mix)",
+"to": "The Fun Palace",
+"type": "variant",
+"reason": "remix ((extended mix))"
+},
+{
+"from": "Phantasmagoria (Demo Version)",
+"to": "Phantasmagoria",
+"type": "variant",
+"reason": "demo recording ((Demo Version))"
 }
 ]
 },
+
 "Anthrax": {
 "albums": [
 {
@@ -761,9 +872,22 @@
 "to": "Efilnikufesin (N.F.L.)",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Fueled (remix)",
+"to": "Fueled",
+"type": "variant",
+"reason": "remix ((remix))"
+},
+{
+"from": "Belly Of The Beast [Live]",
+"to": "Belly of the Beast",
+"type": "variant",
+"reason": "live recording ([Live])"
 }
 ]
 },
+
 "Apocalyptica": {
 "albums": [
 {
@@ -848,6 +972,7 @@
 }
 ]
 },
+
 "Arch Enemy": {
 "tracks": [
 {
@@ -936,6 +1061,7 @@
 }
 ]
 },
+
 "Art Vs Science": {
 "tracks": [
 {
@@ -946,6 +1072,7 @@
 }
 ]
 },
+
 "Artillery": {
 "tracks": [
 {
@@ -963,6 +1090,7 @@
 }
 ]
 },
+
 "Arukara": {
 "tracks": [
 {
@@ -973,6 +1101,7 @@
 }
 ]
 },
+
 "Ascension of the Watchers": {
 "albums": [
 {
@@ -983,6 +1112,7 @@
 }
 ]
 },
+
 "Asking Alexandria": {
 "albums": [
 {
@@ -1010,9 +1140,16 @@
 "to": "Faded Out",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Into The Fire (Radio Edit)",
+"to": "Into The Fire",
+"type": "variant",
+"reason": "edit ((Radio Edit))"
 }
 ]
 },
+
 "Awake the Dreamer": {
 "albums": [
 {
@@ -1023,6 +1160,7 @@
 }
 ]
 },
+
 "BABYMETAL": {
 "albums": [
 {
@@ -1211,6 +1349,24 @@
 "to": "Kagerou",
 "type": "variant",
 "reason": "variant: live recording under the YouTube mistitle; the song is Kagerou (Fuad ruling 2026-08-13)"
+},
+{
+"from": "Akatsuki - live",
+"to": "Akatsuki",
+"type": "variant",
+"reason": "live recording (- live)"
+},
+{
+"from": "Ijime、Dame、Zettai - live",
+"to": "Ijime Dame Zettai",
+"type": "variant",
+"reason": "live recording (- live)"
+},
+{
+"from": "Onedari Daisakusen - Live",
+"to": "Onedari Daisakusen",
+"type": "variant",
+"reason": "live recording (- Live)"
 }
 ],
 "artist": [
@@ -1234,6 +1390,7 @@
 }
 ]
 },
+
 "Bad Nerves": {
 "albums": [
 {
@@ -1258,6 +1415,7 @@
 }
 ]
 },
+
 "Bad Omens": {
 "albums": [
 {
@@ -1307,6 +1465,12 @@
 "to": "Careful What You Wish For",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "NOWHERE TO GO [LIVE 2024]",
+"to": "Nowhere to Go",
+"type": "variant",
+"reason": "live recording ([LIVE 2024])"
 }
 ],
 "artist": [
@@ -1315,6 +1479,7 @@
 }
 ]
 },
+
 "Battle Tapes": {
 "tracks": [
 {
@@ -1322,6 +1487,30 @@
 "to": "Last Resort & Spa",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "If Only (The Anix Remix)",
+"to": "If Only",
+"type": "variant",
+"reason": "remix ((The Anix Remix))"
+},
+{
+"from": "If Only (Snakes of Russia Remix)",
+"to": "If Only",
+"type": "variant",
+"reason": "remix ((Snakes of Russia Remix))"
+},
+{
+"from": "Sleepwalker (Slighter's Wide Awake Remix)",
+"to": "Sleepwalker",
+"type": "variant",
+"reason": "remix ((Slighter's Wide Awake Remix))"
+},
+{
+"from": "Sleepwalker (Abstracted Camouflage Remix)",
+"to": "Sleepwalker",
+"type": "variant",
+"reason": "remix ((Abstracted Camouflage Remix))"
 }
 ],
 "albums": [
@@ -1342,6 +1531,7 @@
 }
 ]
 },
+
 "Behemoth": {
 "albums": [
 {
@@ -1352,6 +1542,7 @@
 }
 ]
 },
+
 "Björk": {
 "artist": {
 "from": "Bjork",
@@ -1359,6 +1550,7 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
+
 "Black River": {
 "tracks": [
 {
@@ -1399,6 +1591,7 @@
 }
 ]
 },
+
 "Bleach": {
 "tracks": [
 {
@@ -1415,6 +1608,7 @@
 }
 ]
 },
+
 "Blue Öyster Cult": {
 "artist": {
 "from": "Blue Oyster Cult",
@@ -1422,6 +1616,7 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
+
 "bôa": {
 "tracks": [
 {
@@ -1432,6 +1627,7 @@
 }
 ]
 },
+
 "Bonobo": {
 "tracks": [
 {
@@ -1442,6 +1638,7 @@
 }
 ]
 },
+
 "Boris Brejcha": {
 "albums": [
 {
@@ -1460,6 +1657,7 @@
 }
 ]
 },
+
 "Boston Manor": {
 "albums": [
 {
@@ -1509,6 +1707,7 @@
 }
 ]
 },
+
 "Brand of Sacrifice": {
 "tracks": [
 {
@@ -1519,6 +1718,7 @@
 }
 ]
 },
+
 "Bring Me the Horizon": {
 "albums": [
 {
@@ -1613,6 +1813,24 @@
 "from": "Obey [Explicit]",
 "to": "Obey (with YUNGBLUD)",
 "type": "spelling"
+},
+{
+"from": "Chelsea Smile (KC Blitz Remix)",
+"to": "Chelsea Smile",
+"type": "variant",
+"reason": "remix ((KC Blitz Remix))"
+},
+{
+"from": "The Comedown (Robotsonics Remix)",
+"to": "The Comedown",
+"type": "variant",
+"reason": "remix ((Robotsonics Remix))"
+},
+{
+"from": "One Day The Only Butterflies Left Will Be In Your Chest As You March Towards Your Death [Explicit]",
+"to": "One Day the Only Butterflies Left Will Be In Your Chest As You March Towards Your Death (feat. Amy Lee)",
+"type": "spelling",
+"reason": "edition tag ([Explicit]); same recording"
 }
 ],
 "artist": [
@@ -1633,6 +1851,7 @@
 }
 ]
 },
+
 "Cab Calloway": {
 "tracks": [
 {
@@ -1643,6 +1862,7 @@
 }
 ]
 },
+
 "Cabal": {
 "albums": [
 {
@@ -1653,6 +1873,7 @@
 }
 ]
 },
+
 "Calvin Harris": {
 "tracks": [
 {
@@ -1674,6 +1895,7 @@
 }
 ]
 },
+
 "Carcass": {
 "tracks": [
 {
@@ -1693,9 +1915,16 @@
 "to": "Edge of Darkness",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Buried Dreams (Live)",
+"to": "Buried Dreams",
+"type": "variant",
+"reason": "live recording ((Live))"
 }
 ]
 },
+
 "Celldweller": {
 "albums": [
 {
@@ -1738,6 +1967,96 @@
 "to": "The End of the World",
 "type": "spelling",
 "reason": "spelling fold within variant group: same recording as canonical"
+},
+{
+"from": "Switchback (Dead by Dawn remix by no i'm not)",
+"to": "Switchback",
+"type": "variant",
+"reason": "remix ((Dead by Dawn remix by no i'm not))"
+},
+{
+"from": "Switchback (Remixed by Klayton)",
+"to": "Switchback",
+"type": "variant",
+"reason": "remix ((Remixed by Klayton))"
+},
+{
+"from": "Own Little World (Remixed by Blue Stahli)",
+"to": "Own Little World",
+"type": "variant",
+"reason": "remix ((Remixed by Blue Stahli))"
+},
+{
+"from": "Own Little World (Drop remix)",
+"to": "Own Little World",
+"type": "variant",
+"reason": "remix ((Drop remix))"
+},
+{
+"from": "Own Little World (Growling Machines Remix)",
+"to": "Own Little World",
+"type": "variant",
+"reason": "remix ((Growling Machines Remix))"
+},
+{
+"from": "Own Little World (Remixed by Blue Stahli Instrumental)",
+"to": "Own Little World",
+"type": "variant",
+"reason": "remix ((Remixed by Blue Stahli Instrumental))"
+},
+{
+"from": "The Last Firstborn (Remixed by Klayton)",
+"to": "The Last Firstborn",
+"type": "variant",
+"reason": "remix ((Remixed by Klayton))"
+},
+{
+"from": "Frozen (CPR Remix by Copy Paste Repeat)",
+"to": "Frozen",
+"type": "variant",
+"reason": "remix ((CPR Remix by Copy Paste Repeat))"
+},
+{
+"from": "Frozen (Growling Machines Remix)",
+"to": "Frozen",
+"type": "variant",
+"reason": "remix ((Growling Machines Remix))"
+},
+{
+"from": "Jericho (Circle of Dust Remix)",
+"to": "Jericho",
+"type": "variant",
+"reason": "remix ((Circle of Dust Remix))"
+},
+{
+"from": "Down to Earth (Celldweller Remix)",
+"to": "Down to Earth",
+"type": "variant",
+"reason": "remix ((Celldweller Remix))"
+},
+{
+"from": "Shapeshifter (feat. Styles of Beyond)",
+"to": "Shapeshifter",
+"type": "spelling",
+"reason": "feat-credit tag ((feat. Styles of Beyond)); same recording"
+},
+{
+"from": "Shapeshifter (Remixed By Klayton)",
+"to": "Shapeshifter",
+"type": "variant",
+"reason": "remix ((Remixed By Klayton))"
+},
+{
+"from": "The Seven Sisters (Instrumental)",
+"to": "The Seven Sisters",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+},
+{
+"from": "I Can't Wait (Metal remix by Jay Ray)",
+"to": "I Can't Wait",
+"type": "variant",
+"reason": "remix ((Metal remix by Jay Ray))"
 }
 ],
 "artist": [
@@ -1755,6 +2074,7 @@
 }
 ]
 },
+
 "chouchou merged syrups.": {
 "tracks": [
 {
@@ -1765,6 +2085,7 @@
 }
 ]
 },
+
 "Combichrist": {
 "albums": [
 {
@@ -1785,6 +2106,7 @@
 }
 ]
 },
+
 "Conquer Divide": {
 "albums": [
 {
@@ -1808,6 +2130,7 @@
 }
 ]
 },
+
 "Coolio": {
 "tracks": [
 {
@@ -1818,6 +2141,7 @@
 }
 ]
 },
+
 "Coping Method": {
 "albums": [
 {
@@ -1833,6 +2157,7 @@
 }
 ]
 },
+
 "Coroner": {
 "tracks": [
 {
@@ -1858,6 +2183,12 @@
 "to": "Status: Still Thinking",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Serpent Moves [Shortened Version]",
+"to": "Serpent Moves",
+"type": "variant",
+"reason": "alternate version ([Shortened Version])"
 }
 ],
 "artist": [
@@ -1866,6 +2197,7 @@
 }
 ]
 },
+
 "Creedence Clearwater Revival": {
 "tracks": [
 {
@@ -1873,9 +2205,16 @@
 "to": "It Came Out of the Sky",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Fortunate Son [live]",
+"to": "Fortunate Son",
+"type": "variant",
+"reason": "live recording ([live])"
 }
 ]
 },
+
 "Crystal Castles": {
 "tracks": [
 {
@@ -1913,6 +2252,12 @@
 "to": "Not In Love (Radio Version) (Feat. Robert Smith)",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Affection (hugsnotdrugs edit)",
+"to": "Affection",
+"type": "variant",
+"reason": "edit ((hugsnotdrugs edit))"
 }
 ],
 "albums": [
@@ -1938,6 +2283,7 @@
 }
 ]
 },
+
 "Dada Life": {
 "tracks": [
 {
@@ -1948,6 +2294,7 @@
 }
 ]
 },
+
 "Daedric": {
 "tracks": [
 {
@@ -1971,6 +2318,7 @@
 }
 ]
 },
+
 "Daft Punk": {
 "albums": [
 {
@@ -1986,9 +2334,16 @@
 "to": "Harder, Better, Faster, Stronger",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Around the World (LP version)",
+"to": "Around the World",
+"type": "variant",
+"reason": "alternate version ((LP version))"
 }
 ]
 },
+
 "DAOKO": {
 "tracks": [
 {
@@ -1999,6 +2354,7 @@
 }
 ]
 },
+
 "Dayseeker": {
 "tracks": [
 {
@@ -2009,6 +2365,7 @@
 }
 ]
 },
+
 "deadmau5": {
 "artist": [
 {
@@ -2117,9 +2474,202 @@
 "to": "Dr. Funkenstein",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Maths (Original Mix)",
+"to": "Maths",
+"type": "variant",
+"reason": "remix ((Original Mix))"
+},
+{
+"from": "Maths (Botnek Remix)",
+"to": "Maths",
+"type": "variant",
+"reason": "remix ((Botnek Remix))"
+},
+{
+"from": "Maths (Cobra Effect Remix)",
+"to": "Maths",
+"type": "variant",
+"reason": "remix ((Cobra Effect Remix))"
+},
+{
+"from": "Ghosts N Stuff (Nero Remix)",
+"to": "Ghosts 'n Stuff (feat. Rob Swire)",
+"type": "variant",
+"reason": "remix ((Nero Remix))"
+},
+{
+"from": "Ghosts 'n' Stuff (Original Instrumental Mix)",
+"to": "Ghosts 'n Stuff (feat. Rob Swire)",
+"type": "variant",
+"reason": "remix ((Original Instrumental Mix))"
+},
+{
+"from": "Ghosts N Stuff (Original Mix)",
+"to": "Ghosts 'n Stuff (feat. Rob Swire)",
+"type": "variant",
+"reason": "remix ((Original Mix))"
+},
+{
+"from": "I Remember (Vocal Mix)",
+"to": "I Remember",
+"type": "variant",
+"reason": "remix ((Vocal Mix))"
+},
+{
+"from": "I Remember (Shiba San remix)",
+"to": "I Remember",
+"type": "variant",
+"reason": "remix ((Shiba San remix))"
+},
+{
+"from": "Strobe (Club Edit)",
+"to": "Strobe",
+"type": "variant",
+"reason": "edit ((Club Edit))"
+},
+{
+"from": "Strobe (Michael Woods 2014 Remix)",
+"to": "Strobe",
+"type": "variant",
+"reason": "remix ((Michael Woods 2014 Remix))"
+},
+{
+"from": "Channel 42 (GTA Remix)",
+"to": "Channel 42",
+"type": "variant",
+"reason": "remix ((GTA Remix))"
+},
+{
+"from": "Raise Your Weapon (Madeon Extended Remix)",
+"to": "Raise Your Weapon (Ft. Greta Svabo Bech)",
+"type": "variant",
+"reason": "remix ((Madeon Extended Remix))"
+},
+{
+"from": "Raise Your Weapon (Wax Motif Remix)",
+"to": "Raise Your Weapon (Ft. Greta Svabo Bech)",
+"type": "variant",
+"reason": "remix ((Wax Motif Remix))"
+},
+{
+"from": "Raise Your Weapon (Original Mix)",
+"to": "Raise Your Weapon (Ft. Greta Svabo Bech)",
+"type": "variant",
+"reason": "remix ((Original Mix))"
+},
+{
+"from": "Faxing Berlin (Instrumental)",
+"to": "Faxing Berlin",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+},
+{
+"from": "When The Summer Dies [Explicit]",
+"to": "When The Summer Dies",
+"type": "spelling",
+"reason": "edition tag ([Explicit]); same recording"
+},
+{
+"from": "Aural Psynapse (Attlas Remix)",
+"to": "aural psynapse",
+"type": "variant",
+"reason": "remix ((Attlas Remix))"
+},
+{
+"from": "Hi Friend (feat. Mc Flipside) (Vocal Mix)",
+"to": "Hi Friend!",
+"type": "variant",
+"reason": "remix ((Vocal Mix)  (feat. Mc Flipside))"
+},
+{
+"from": "Hi Friend (feat. Mc Flipside) (Instrumental Mix)",
+"to": "Hi Friend!",
+"type": "variant",
+"reason": "remix ((Instrumental Mix)  (feat. Mc Flipside))"
+},
+{
+"from": "Outta My Life (deadmau5 Touch Remix)",
+"to": "Outta My Life (Touch Mix)",
+"type": "variant",
+"reason": "remix ((deadmau5 Touch Remix))"
+},
+{
+"from": "Not Exactly (Original Mix)",
+"to": "Not Exactly",
+"type": "variant",
+"reason": "remix ((Original Mix))"
+},
+{
+"from": "Let Go (Extended Edit) (feat. Grabbitz)",
+"to": "Let Go (Extended Edit)",
+"type": "variant",
+"reason": "edit ((feat. Grabbitz)  (Extended Edit))"
+},
+{
+"from": "Let Go (NemesiZ Remix)",
+"to": "Let Go (Extended Edit)",
+"type": "variant",
+"reason": "remix ((NemesiZ Remix))"
+},
+{
+"from": "Turning Point (Original Mix)",
+"to": "Turning Point",
+"type": "variant",
+"reason": "remix ((Original Mix))"
+},
+{
+"from": "Channel 43 (Extended Mix)",
+"to": "Channel 43 (Radio Edit)",
+"type": "variant",
+"reason": "remix ((Extended Mix))"
+},
+{
+"from": "Channel 43 (Go Freek Remix)",
+"to": "Channel 43 (Radio Edit)",
+"type": "variant",
+"reason": "remix ((Go Freek Remix))"
+},
+{
+"from": "Channel 43 (NIGHT / MOVES Remix)",
+"to": "Channel 43 (Radio Edit)",
+"type": "variant",
+"reason": "remix ((NIGHT / MOVES Remix))"
+},
+{
+"from": "Arguru (Edxs 5un5hine Remix)",
+"to": "Arguru",
+"type": "variant",
+"reason": "remix ((Edxs 5un5hine Remix))"
+},
+{
+"from": "Mr. G (Original Mix)",
+"to": "Mr. G",
+"type": "variant",
+"reason": "remix ((Original Mix))"
+},
+{
+"from": "Alone with You (Original Mix)",
+"to": "Alone with You",
+"type": "variant",
+"reason": "remix ((Original Mix))"
+},
+{
+"from": "1981 (Adam K Remix)",
+"to": "1981",
+"type": "variant",
+"reason": "remix ((Adam K Remix))"
+},
+{
+"from": "1981 (Miminal Remix)",
+"to": "1981",
+"type": "variant",
+"reason": "remix ((Miminal Remix))"
 }
 ]
 },
+
 "Dean Lewis": {
 "albums": [
 {
@@ -2130,6 +2680,7 @@
 }
 ]
 },
+
 "Death Grips": {
 "tracks": [
 {
@@ -2147,6 +2698,7 @@
 }
 ]
 },
+
 "Deftones": {
 "albums": [
 {
@@ -2204,6 +2756,7 @@
 }
 ]
 },
+
 "Depeche Mode": {
 "tracks": [
 {
@@ -2214,6 +2767,7 @@
 }
 ]
 },
+
 "Destiny Potato": {
 "tracks": [
 {
@@ -2224,6 +2778,7 @@
 }
 ]
 },
+
 "Dillon Francis & Dj Snake": {
 "tracks": [
 {
@@ -2234,6 +2789,7 @@
 }
 ]
 },
+
 "DIR EN GREY": {
 "albums": [
 {
@@ -2244,6 +2800,7 @@
 }
 ]
 },
+
 "Don Broco": {
 "tracks": [
 {
@@ -2254,6 +2811,7 @@
 }
 ]
 },
+
 "Dope": {
 "tracks": [
 {
@@ -2270,6 +2828,7 @@
 }
 ]
 },
+
 "Dragged Under": {
 "albums": [
 {
@@ -2347,9 +2906,16 @@
 "to": "Just Like Me",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "The Real You - Live",
+"to": "The Real You",
+"type": "variant",
+"reason": "live recording (- Live)"
 }
 ]
 },
+
 "Dream Theater": {
 "tracks": [
 {
@@ -2518,9 +3084,22 @@
 "to": "Losing Time/Grand Finale",
 "type": "spelling",
 "reason": "Six Degrees suite: full-form movement title, future-proof for re-imports; folds to canonical movement name"
+},
+{
+"from": "Peruvian Skies - demo version 1996 - 1997",
+"to": "Peruvian Skies",
+"type": "variant",
+"reason": "demo recording (- demo version 1996 - 1997)"
+},
+{
+"from": "Scarred - Demo 1994",
+"to": "Scarred",
+"type": "variant",
+"reason": "demo recording (- Demo 1994)"
 }
 ]
 },
+
 "Dreamer Isioma": {
 "albums": [
 {
@@ -2531,6 +3110,7 @@
 }
 ]
 },
+
 "Duke Ellington": {
 "tracks": [
 {
@@ -2541,6 +3121,7 @@
 }
 ]
 },
+
 "Dying Wish": {
 "tracks": [
 {
@@ -2551,6 +3132,7 @@
 }
 ]
 },
+
 "Eminem": {
 "albums": [
 {
@@ -2566,6 +3148,7 @@
 }
 ]
 },
+
 "Enter Shikari": {
 "tracks": [
 {
@@ -2582,6 +3165,7 @@
 }
 ]
 },
+
 "Eric Prydz": {
 "tracks": [
 {
@@ -2603,6 +3187,7 @@
 }
 ]
 },
+
 "Ernest Gonzales": {
 "albums": [
 {
@@ -2613,6 +3198,7 @@
 }
 ]
 },
+
 "Étienne de Crécy": {
 "artist": {
 "from": "Etienne de Crécy",
@@ -2620,6 +3206,7 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
+
 "Evergrey": {
 "tracks": [
 {
@@ -2630,6 +3217,7 @@
 }
 ]
 },
+
 "Exodus": {
 "tracks": [
 {
@@ -2669,6 +3257,7 @@
 }
 ]
 },
+
 "Faith No More": {
 "tracks": [
 {
@@ -2676,9 +3265,46 @@
 "to": "The Gentle Art of Making Enemies",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Evidence (2016 Remaster)",
+"to": "Evidence",
+"type": "spelling",
+"reason": "remaster row ((2016 Remaster)); same recording per house rule"
+},
+{
+"from": "Ricochet (2016 Remaster)",
+"to": "Ricochet",
+"type": "spelling",
+"reason": "remaster row ((2016 Remaster)); same recording per house rule"
+},
+{
+"from": "Get Out (2016 Remaster)",
+"to": "Get Out",
+"type": "spelling",
+"reason": "remaster row ((2016 Remaster)); same recording per house rule"
+},
+{
+"from": "Cuckoo for Caca (2016 Remaster)",
+"to": "Cuckoo for Caca",
+"type": "spelling",
+"reason": "remaster row ((2016 Remaster)); same recording per house rule"
+},
+{
+"from": "Ugly in the Morning (2016 Remaster)",
+"to": "Ugly in the Morning",
+"type": "spelling",
+"reason": "remaster row ((2016 Remaster)); same recording per house rule"
+},
+{
+"from": "Star A.D. (2016 Remaster)",
+"to": "Star A.D.",
+"type": "spelling",
+"reason": "remaster row ((2016 Remaster)); same recording per house rule"
 }
 ]
 },
+
 "Fall Out Boy": {
 "tracks": [
 {
@@ -2689,6 +3315,7 @@
 }
 ]
 },
+
 "False Heads": {
 "tracks": [
 {
@@ -2699,6 +3326,7 @@
 }
 ]
 },
+
 "Fatboy Slim": {
 "tracks": [
 {
@@ -2709,6 +3337,7 @@
 }
 ]
 },
+
 "Filter": {
 "tracks": [
 {
@@ -2758,9 +3387,16 @@
 "to": "My Long Walk to Jail",
 "type": "spelling",
 "reason": "tier-2: typo confirmed, Vail is Jail"
+},
+{
+"from": "The Best Things (2009 Remastered Version)",
+"to": "The Best Things",
+"type": "variant",
+"reason": "alternate version ((2009 Remastered Version))"
 }
 ]
 },
+
 "FKA Rayne": {
 "tracks": [
 {
@@ -2771,6 +3407,7 @@
 }
 ]
 },
+
 "FKA twigs": {
 "tracks": [
 {
@@ -2793,6 +3430,7 @@
 }
 ]
 },
+
 "Flo Rida": {
 "tracks": [
 {
@@ -2803,6 +3441,7 @@
 }
 ]
 },
+
 "Flow": {
 "tracks": [
 {
@@ -2813,6 +3452,7 @@
 }
 ]
 },
+
 "Foo Fighters": {
 "artist": [
 {
@@ -2830,9 +3470,16 @@
 "to": "Breakout",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Everlong (Acoustic)",
+"to": "Everlong",
+"type": "variant",
+"reason": "alternate arrangement ((Acoustic))"
 }
 ]
 },
+
 "Fort Minor": {
 "albums": [
 {
@@ -2843,6 +3490,7 @@
 }
 ]
 },
+
 "Frank Carter & The Rattlesnakes": {
 "artist": {
 "from": "Frank Carter & The Rattlesnakes [feat. Cassyette]",
@@ -2850,6 +3498,7 @@
 "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
 }
 },
+
 "Franz Ferdinand": {
 "tracks": [
 {
@@ -2860,6 +3509,7 @@
 }
 ]
 },
+
 "Free": {
 "tracks": [
 {
@@ -2870,6 +3520,7 @@
 }
 ]
 },
+
 "From Ashes to New": {
 "artist": {
 "from": "From Ashes to New [feat. Trevor McNevan]",
@@ -2877,6 +3528,7 @@
 "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
 }
 },
+
 "From First to Last": {
 "albums": [
 {
@@ -2895,6 +3547,7 @@
 }
 ]
 },
+
 "Frost*": {
 "tracks": [
 {
@@ -2914,9 +3567,28 @@
 "to": "Hyperventilate",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Pocket Sun (Remix/Remaster 2020)",
+"to": "Pocket Sun",
+"type": "variant",
+"reason": "remix ((Remix/Remaster 2020))"
+},
+{
+"from": "Heartstrings - Demo",
+"to": "Heartstrings",
+"type": "variant",
+"reason": "demo recording (- Demo)"
+},
+{
+"from": "Toys (Remix/Remaster 2020)",
+"to": "Toys",
+"type": "variant",
+"reason": "remix ((Remix/Remaster 2020))"
 }
 ]
 },
+
 "Gary Numan": {
 "albums": [
 {
@@ -2946,6 +3618,7 @@
 }
 ]
 },
+
 "Ghøstkid": {
 "artist": [
 {
@@ -2966,6 +3639,7 @@
 }
 ]
 },
+
 "girugamesh": {
 "albums": [
 {
@@ -2976,6 +3650,7 @@
 }
 ]
 },
+
 "Glacerate": {
 "tracks": [
 {
@@ -2986,6 +3661,7 @@
 }
 ]
 },
+
 "Glenn Miller": {
 "tracks": [
 {
@@ -2996,6 +3672,7 @@
 }
 ]
 },
+
 "God Is an Astronaut": {
 "tracks": [
 {
@@ -3015,9 +3692,28 @@
 "to": "Postmortem",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "The End of the Beginning - Live 20 Year Anniversary Release",
+"to": "The End of the Beginning",
+"type": "variant",
+"reason": "live recording (- Live 20 Year Anniversary Release)"
+},
+{
+"from": "Fragile (Live)",
+"to": "Fragile",
+"type": "variant",
+"reason": "live recording ((Live))"
+},
+{
+"from": "Forever Lost (Reprise)",
+"to": "Forever Lost",
+"type": "variant",
+"reason": "alternate recording ((Reprise))"
 }
 ]
 },
+
 "Gorillaz": {
 "tracks": [
 {
@@ -3051,6 +3747,7 @@
 }
 ]
 },
+
 "Greg Puciato": {
 "albums": [
 {
@@ -3061,6 +3758,7 @@
 }
 ]
 },
+
 "Grimes": {
 "albums": [
 {
@@ -3112,6 +3810,48 @@
 "to": "My Name is Dark (Art Mix)",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Kill V. Maim (Little Jimmy Urine Remix)",
+"to": "Kill V. Maim",
+"type": "variant",
+"reason": "remix ((Little Jimmy Urine Remix))"
+},
+{
+"from": "Violence (Original Mix) (feat. i_o)",
+"to": "Violence",
+"type": "variant",
+"reason": "remix ((feat. i_o)  (Original Mix))"
+},
+{
+"from": "Violence (Club Mix)",
+"to": "Violence",
+"type": "variant",
+"reason": "remix ((Club Mix))"
+},
+{
+"from": "Violence (Club Mix) (feat. i_o)",
+"to": "Violence",
+"type": "variant",
+"reason": "remix ((feat. i_o)  (Club Mix))"
+},
+{
+"from": "So Heavy I Fell Through the Earth (Art Mix)",
+"to": "So Heavy I Fell Through the Earth",
+"type": "variant",
+"reason": "remix ((Art Mix))"
+},
+{
+"from": "So Heavy I Fell Through the Earth (Algorithm Mix)",
+"to": "So Heavy I Fell Through the Earth",
+"type": "variant",
+"reason": "remix ((Algorithm Mix))"
+},
+{
+"from": "IDORU (Algorithm mix)",
+"to": "IDORU",
+"type": "variant",
+"reason": "remix ((Algorithm mix))"
 }
 ],
 "artist": [
@@ -3126,6 +3866,7 @@
 }
 ]
 },
+
 "Groove Armada": {
 "tracks": [
 {
@@ -3136,6 +3877,7 @@
 }
 ]
 },
+
 "Gunship": {
 "albums": [
 {
@@ -3160,6 +3902,7 @@
 }
 ]
 },
+
 "Haken": {
 "albums": [
 {
@@ -3195,9 +3938,16 @@
 "to": "Canary Yellow",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Premonition (instrumental version)",
+"to": "Premonition (remastered 2017)",
+"type": "variant",
+"reason": "instrumental version ((instrumental version))"
 }
 ]
 },
+
 "Hayden James": {
 "tracks": [
 {
@@ -3213,6 +3963,7 @@
 }
 ]
 },
+
 "Hilltop Hoods": {
 "tracks": [
 {
@@ -3235,6 +3986,7 @@
 }
 ]
 },
+
 "HIM": {
 "albums": [
 {
@@ -3245,6 +3997,7 @@
 }
 ]
 },
+
 "Hundredth": {
 "albums": [
 {
@@ -3263,6 +4016,7 @@
 }
 ]
 },
+
 "Hybrid": {
 "tracks": [
 {
@@ -3279,6 +4033,7 @@
 }
 ]
 },
+
 "Hyper": {
 "tracks": [
 {
@@ -3286,6 +4041,66 @@
 "to": "The End - Beatman & Ludmilla Remix",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Say Goodnight (Original Mix)",
+"to": "Say Goodnight",
+"type": "variant",
+"reason": "remix ((Original Mix))"
+},
+{
+"from": "It's a Trap (Original Mix)",
+"to": "It's A Trap",
+"type": "variant",
+"reason": "remix ((Original Mix))"
+},
+{
+"from": "Spoiler (Recoil) feat. WARGASM (UK) (Davip x Mewone Instrumental Mix)",
+"to": "Spoiler (Recoil) feat. WARGASM (UK) (Evan Gamble Lewis Instrumental Mix)",
+"type": "variant",
+"reason": "remix ((Davip x Mewone Instrumental Mix))"
+},
+{
+"from": "Spoiler (Recoil) feat. WARGASM (UK) (Davip x Mewone Remix)",
+"to": "Spoiler (Recoil) feat. WARGASM (UK) (Evan Gamble Lewis Instrumental Mix)",
+"type": "variant",
+"reason": "remix ((Davip x Mewone Remix))"
+},
+{
+"from": "Spoiler (Recoil) feat. WARGASM (UK) (I Think I Broke Something Remix)",
+"to": "Spoiler (Recoil) feat. WARGASM (UK) (Evan Gamble Lewis Instrumental Mix)",
+"type": "variant",
+"reason": "remix ((I Think I Broke Something Remix))"
+},
+{
+"from": "Spoiler (Recoil) feat. WARGASM (UK) (Apex Jones Remix)",
+"to": "Spoiler (Recoil) feat. WARGASM (UK) (Evan Gamble Lewis Instrumental Mix)",
+"type": "variant",
+"reason": "remix ((Apex Jones Remix))"
+},
+{
+"from": "Spoiler (Recoil) feat. WARGASM (UK) (John Dopping Remix)",
+"to": "Spoiler (Recoil) feat. WARGASM (UK) (Evan Gamble Lewis Instrumental Mix)",
+"type": "variant",
+"reason": "remix ((John Dopping Remix))"
+},
+{
+"from": "Spoiler (Recoil) feat. WARGASM (UK) (Gigantor Remix)",
+"to": "Spoiler (Recoil) feat. WARGASM (UK) (Evan Gamble Lewis Instrumental Mix)",
+"type": "variant",
+"reason": "remix ((Gigantor Remix))"
+},
+{
+"from": "Spoiler (Recoil) feat. WARGASM (UK) (Cyberpunkers Remix)",
+"to": "Spoiler (Recoil) feat. WARGASM (UK) (Evan Gamble Lewis Instrumental Mix)",
+"type": "variant",
+"reason": "remix ((Cyberpunkers Remix))"
+},
+{
+"from": "Spoiler (Recoil) feat. WARGASM (UK) (Zardonic Remix)",
+"to": "Spoiler (Recoil) feat. WARGASM (UK) (Evan Gamble Lewis Instrumental Mix)",
+"type": "variant",
+"reason": "remix ((Zardonic Remix))"
 }
 ],
 "artist": [
@@ -3299,6 +4114,7 @@
 }
 ]
 },
+
 "I am Ritto": {
 "tracks": [
 {
@@ -3309,6 +4125,7 @@
 }
 ]
 },
+
 "Ice Nine Kills": {
 "tracks": [
 {
@@ -3319,6 +4136,7 @@
 }
 ]
 },
+
 "Ihlo": {
 "albums": [
 {
@@ -3329,6 +4147,7 @@
 }
 ]
 },
+
 "In Flames": {
 "albums": [
 {
@@ -3353,6 +4172,7 @@
 }
 ]
 },
+
 "Iron Butterfly": {
 "tracks": [
 {
@@ -3363,6 +4183,7 @@
 }
 ]
 },
+
 "Ivy Lab": {
 "albums": [
 {
@@ -3380,6 +4201,7 @@
 }
 ]
 },
+
 "Jamal": {
 "albums": [
 {
@@ -3395,6 +4217,7 @@
 }
 ]
 },
+
 "Jason Derulo": {
 "artist": [
 {
@@ -3407,6 +4230,7 @@
 }
 ]
 },
+
 "Jenő Jandó": {
 "artist": {
 "from": "Jeno Jando",
@@ -3414,6 +4238,7 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
+
 "Jinjer": {
 "tracks": [
 {
@@ -3430,6 +4255,7 @@
 }
 ]
 },
+
 "Joey Negro": {
 "tracks": [
 {
@@ -3440,6 +4266,7 @@
 }
 ]
 },
+
 "John Coltrane": {
 "albums": [
 {
@@ -3455,6 +4282,7 @@
 }
 ]
 },
+
 "John Summit": {
 "tracks": [
 {
@@ -3465,6 +4293,7 @@
 }
 ]
 },
+
 "Judas Priest": {
 "tracks": [
 {
@@ -3475,6 +4304,7 @@
 }
 ]
 },
+
 "Kabanos": {
 "albums": [
 {
@@ -3493,6 +4323,7 @@
 }
 ]
 },
+
 "Kamelot": {
 "tracks": [
 {
@@ -3503,6 +4334,7 @@
 }
 ]
 },
+
 "Karnivool": {
 "tracks": [
 {
@@ -3540,6 +4372,7 @@
 }
 ]
 },
+
 "Kero Kero Bonito": {
 "tracks": [
 {
@@ -3550,6 +4383,7 @@
 }
 ]
 },
+
 "KID BRUNSWICK": {
 "albums": [
 {
@@ -3568,6 +4402,7 @@
 }
 ]
 },
+
 "Kodeseven": {
 "albums": [
 {
@@ -3578,6 +4413,7 @@
 }
 ]
 },
+
 "Kool & the Gang": {
 "tracks": [
 {
@@ -3588,6 +4424,7 @@
 }
 ]
 },
+
 "Korn": {
 "albums": [
 {
@@ -3696,9 +4533,16 @@
 "to": "Love & Meth",
 "type": "variant",
 "reason": "variant: distinct live recording (YouTube-caption title), link to canonical for reads"
+},
+{
+"from": "Somebody Someone (AC3 Stereo)",
+"to": "Somebody Someone",
+"type": "spelling",
+"reason": "packaging tag ((AC3 Stereo)); same recording"
 }
 ]
 },
+
 "Korpiklaani": {
 "tracks": [
 {
@@ -3712,9 +4556,16 @@
 "to": "Väkirauta",
 "type": "spelling",
 "reason": "diacritic: no-accent form folds to canonical accented form"
+},
+{
+"from": "Louhen yhdeksas poika",
+"to": "Louhen Yhdeksäs Poika",
+"type": "spelling",
+"reason": "case/diacritic/punctuation variant of the base title; same recording"
 }
 ]
 },
+
 "Kreator": {
 "tracks": [
 {
@@ -3755,6 +4606,7 @@
 }
 ]
 },
+
 "Lääz Rockit": {
 "artist": {
 "from": "Laaz Rockit",
@@ -3762,6 +4614,7 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
+
 "LANDMVRKS": {
 "tracks": [
 {
@@ -3799,6 +4652,12 @@
 "to": "Winter (feat. Mattéo Gelsomino)",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Visage (Live)",
+"to": "Visage",
+"type": "variant",
+"reason": "live recording ((Live))"
 }
 ],
 "albums": [
@@ -3834,6 +4693,7 @@
 }
 ]
 },
+
 "Lifespark.": {
 "albums": [
 {
@@ -3852,6 +4712,7 @@
 }
 ]
 },
+
 "Limp Bizkit": {
 "albums": [
 {
@@ -3912,9 +4773,46 @@
 "to": "Crack Addict",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Counterfeit (Album Version Explicit)",
+"to": "Counterfeit",
+"type": "spelling",
+"reason": "edition tag ((Album Version Explicit)); same recording"
+},
+{
+"from": "Nobody Loves Me (Album Version Explicit)",
+"to": "Nobody Loves Me",
+"type": "spelling",
+"reason": "edition tag ((Album Version Explicit)); same recording"
+},
+{
+"from": "Break Stuff (Album Version Explicit)",
+"to": "Break Stuff",
+"type": "spelling",
+"reason": "edition tag ((Album Version Explicit)); same recording"
+},
+{
+"from": "Stink Finger (Album Version Explicit)",
+"to": "Stink Finger",
+"type": "spelling",
+"reason": "edition tag ((Album Version Explicit)); same recording"
+},
+{
+"from": "Just Drop Dead (Non-LP Version)",
+"to": "Just Drop Dead",
+"type": "variant",
+"reason": "alternate version ((Non-LP Version))"
+},
+{
+"from": "Shot (Bonus Track)",
+"to": "Shot (Non-LP Version)",
+"type": "spelling",
+"reason": "packaging tag ((Bonus Track)); same recording"
 }
 ]
 },
+
 "Linkin Park": {
 "artist": [
 {
@@ -4427,6 +5325,72 @@
 "to": "A Place For My Head (Rock am Ring 03.06.2001)",
 "type": "spelling",
 "reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+},
+{
+"from": "Papercut (Ghost in the Machine Remix)",
+"to": "Papercut",
+"type": "variant",
+"reason": "remix ((Ghost in the Machine Remix))"
+},
+{
+"from": "Papercut (Instrumental)",
+"to": "Papercut",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+},
+{
+"from": "Faint (Instrumental)",
+"to": "Faint",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+},
+{
+"from": "Faint - Demo 2002",
+"to": "Faint",
+"type": "variant",
+"reason": "demo recording (- Demo 2002)"
+},
+{
+"from": "Breaking the Habit (Piano Version) (Live)",
+"to": "Breaking the Habit",
+"type": "variant",
+"reason": "live recording ((Live)  (Piano Version))"
+},
+{
+"from": "Breaking the Habit (Ghost in the Machine Remix)",
+"to": "Breaking the Habit",
+"type": "variant",
+"reason": "remix ((Ghost in the Machine Remix))"
+},
+{
+"from": "Guilty All The Same (Acoustic Remix)",
+"to": "Guilty All the Same (feat. Rakim)",
+"type": "variant",
+"reason": "remix ((Acoustic Remix))"
+},
+{
+"from": "Guilty All The Same (Ghost in the Machine Remix)",
+"to": "Guilty All the Same (feat. Rakim)",
+"type": "variant",
+"reason": "remix ((Ghost in the Machine Remix))"
+},
+{
+"from": "New Divide (Live)",
+"to": "New Divide",
+"type": "variant",
+"reason": "live recording ((Live))"
+},
+{
+"from": "All For Nothing (zwieR.Z. Remix)",
+"to": "All For Nothing (feat. Page Hamilton)",
+"type": "variant",
+"reason": "remix ((zwieR.Z. Remix))"
+},
+{
+"from": "Until It's Gone (Ghost in the Machine Remix)",
+"to": "Until It's Gone",
+"type": "variant",
+"reason": "remix ((Ghost in the Machine Remix))"
 }
 ],
 "albums": [
@@ -4447,6 +5411,7 @@
 }
 ]
 },
+
 "Lisa": {
 "albums": [
 {
@@ -4462,9 +5427,22 @@
 "to": "play the world!",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Gurenge (TV Version)",
+"to": "Gurenge",
+"type": "variant",
+"reason": "alternate version ((TV Version))"
+},
+{
+"from": "Gurenge (Instrumental)",
+"to": "Gurenge",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
 }
 ]
 },
+
 "Little Dragon": {
 "tracks": [
 {
@@ -4475,6 +5453,7 @@
 }
 ]
 },
+
 "Lô Borges": {
 "albums": [
 {
@@ -4485,6 +5464,7 @@
 }
 ]
 },
+
 "Lorde": {
 "tracks": [
 {
@@ -4495,6 +5475,7 @@
 }
 ]
 },
+
 "Lotus Eater": {
 "artist": {
 "from": "Lotus Eater [feat. Oli Sykes]",
@@ -4502,6 +5483,7 @@
 "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
 }
 },
+
 "LULU Suicide": {
 "tracks": [
 {
@@ -4512,6 +5494,7 @@
 }
 ]
 },
+
 "M83": {
 "tracks": [
 {
@@ -4522,6 +5505,7 @@
 }
 ]
 },
+
 "Machine Head": {
 "tracks": [
 {
@@ -4589,6 +5573,30 @@
 "to": "A Nation On Fire",
 "type": "variant",
 "reason": "variant: distinct live recording (YouTube-caption title), link to canonical for reads"
+},
+{
+"from": "Beautiful Mourning (Explicit Album Version) (Explicit)",
+"to": "Beautiful Mourning",
+"type": "variant",
+"reason": "alternate version ((Explicit)  (Explicit Album Version))"
+},
+{
+"from": "Darkness within (acoustic version)",
+"to": "Darkness Within",
+"type": "variant",
+"reason": "alternate arrangement ((acoustic version))"
+},
+{
+"from": "Darkness Within (Acoustic Bonus Track)",
+"to": "Darkness Within",
+"type": "variant",
+"reason": "alternate arrangement ((Acoustic Bonus Track))"
+},
+{
+"from": "Killers & Kings (DEMO TRACK)",
+"to": "Killers & Kings",
+"type": "variant",
+"reason": "demo recording ((DEMO TRACK))"
 }
 ],
 "albums": [
@@ -4604,6 +5612,7 @@
 }
 ]
 },
+
 "Mad Season": {
 "tracks": [
 {
@@ -4614,6 +5623,7 @@
 }
 ]
 },
+
 "Madeon": {
 "tracks": [
 {
@@ -4627,6 +5637,36 @@
 "to": "Pop Culture",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "You're On (Alex Metric Remix)",
+"to": "You're On (ft. Kyan)",
+"type": "variant",
+"reason": "remix ((Alex Metric Remix))"
+},
+{
+"from": "You're On (Gramatik Remix)",
+"to": "You're On (ft. Kyan)",
+"type": "variant",
+"reason": "remix ((Gramatik Remix))"
+},
+{
+"from": "You're On (Oliver Remix)",
+"to": "You're On (ft. Kyan)",
+"type": "variant",
+"reason": "remix ((Oliver Remix))"
+},
+{
+"from": "Pay No Mind (Live Version)",
+"to": "Pay No Mind (ft. Passion Pit)",
+"type": "variant",
+"reason": "live recording ((Live Version))"
+},
+{
+"from": "Pay No Mind (Lemaitre Remix)",
+"to": "Pay No Mind (ft. Passion Pit)",
+"type": "variant",
+"reason": "remix ((Lemaitre Remix))"
 }
 ],
 "albums": [
@@ -4652,6 +5692,7 @@
 }
 ]
 },
+
 "MAN WITH A MISSION": {
 "tracks": [
 {
@@ -4662,6 +5703,7 @@
 }
 ]
 },
+
 "Marilyn Manson": {
 "tracks": [
 {
@@ -4687,6 +5729,18 @@
 "to": "Para-noir",
 "type": "spelling",
 "reason": "tier-2: \"Paranoic\" (trailing junk) folds to \"Para-noir\""
+},
+{
+"from": "Use Your Fist And Not Your Mouth (Album Version Explicit)",
+"to": "Use Your Fist and Not Your Mouth",
+"type": "spelling",
+"reason": "edition tag ((Album Version Explicit)); same recording"
+},
+{
+"from": "No Reflection (radio edit)",
+"to": "No Reflection",
+"type": "variant",
+"reason": "edit ((radio edit))"
 }
 ],
 "artist": [
@@ -4695,6 +5749,7 @@
 }
 ]
 },
+
 "Martin Garrix": {
 "tracks": [
 {
@@ -4710,6 +5765,7 @@
 }
 ]
 },
+
 "MASS OF THE FERMENTING DREGS": {
 "tracks": [
 {
@@ -4744,6 +5800,7 @@
 }
 ]
 },
+
 "Massive Attack": {
 "tracks": [
 {
@@ -4786,6 +5843,7 @@
 }
 ]
 },
+
 "Matthew K. Heafy": {
 "artist": {
 "from": "Matthew K. Heafy [feat. Richard Marx]",
@@ -4793,6 +5851,7 @@
 "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
 }
 },
+
 "Megadeth": {
 "tracks": [
 {
@@ -4830,9 +5889,124 @@
 "to": "New World Order",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Hangar 18 - 2004 Remix",
+"to": "Hangar 18",
+"type": "variant",
+"reason": "remix (- 2004 Remix)"
+},
+{
+"from": "Hangar 18 (2004 Digital Remaster)",
+"to": "Hangar 18",
+"type": "spelling",
+"reason": "remaster row ((2004 Digital Remaster)); same recording per house rule"
+},
+{
+"from": "Take No Prisoners - 2004 Remix",
+"to": "Take No Prisoners",
+"type": "variant",
+"reason": "remix (- 2004 Remix)"
+},
+{
+"from": "Take no prisoners [#][*][Demo Version]",
+"to": "Take No Prisoners",
+"type": "variant",
+"reason": "demo recording ([Demo Version])"
+},
+{
+"from": "Trust (2004 Digital Remaster)",
+"to": "Trust",
+"type": "spelling",
+"reason": "remaster row ((2004 Digital Remaster)); same recording per house rule"
+},
+{
+"from": "Trust (Spanish version)",
+"to": "Trust",
+"type": "variant",
+"reason": "alternate version ((Spanish version))"
+},
+{
+"from": "Trust (Remastered 2004 / Remixed)",
+"to": "Trust",
+"type": "variant",
+"reason": "remix ((Remastered 2004 / Remixed))"
+},
+{
+"from": "Peace Sells - 2004 Remaster",
+"to": "Peace Sells",
+"type": "spelling",
+"reason": "remaster row (- 2004 Remaster); same recording per house rule"
+},
+{
+"from": "Peace Sells [#][*][Randy Burns Mix]",
+"to": "Peace Sells",
+"type": "variant",
+"reason": "remix ([Randy Burns Mix])"
+},
+{
+"from": "A Tout Le Monde (Radio Edit)",
+"to": "A Tout le Monde",
+"type": "variant",
+"reason": "edit ((Radio Edit))"
+},
+{
+"from": "A Tout Le Monde (Demo)",
+"to": "A Tout le Monde",
+"type": "variant",
+"reason": "demo recording ((Demo))"
+},
+{
+"from": "Good Mourning / Black Friday (Randy Burns Mix)",
+"to": "Good Mourning / Black Friday",
+"type": "variant",
+"reason": "remix ((Randy Burns Mix))"
+},
+{
+"from": "Symphony Of Destruction (2004 Digital Remaster)",
+"to": "Symphony of Destruction",
+"type": "spelling",
+"reason": "remaster row ((2004 Digital Remaster)); same recording per house rule"
+},
+{
+"from": "Into the Lungs of Hell (Paul Lani mix)",
+"to": "Into the Lungs of Hell",
+"type": "variant",
+"reason": "remix ((Paul Lani mix))"
+},
+{
+"from": "In My Darkest Hour (Paul Lani Mix)",
+"to": "In My Darkest Hour",
+"type": "variant",
+"reason": "remix ((Paul Lani Mix))"
+},
+{
+"from": "Wake Up Dead [#][*][Randy Burns Mix]",
+"to": "Wake Up Dead",
+"type": "variant",
+"reason": "remix ([Randy Burns Mix])"
+},
+{
+"from": "Set the World Afire (Paul Lani mix)",
+"to": "Set the World Afire",
+"type": "variant",
+"reason": "remix ((Paul Lani mix))"
+},
+{
+"from": "The Conjuring [#][*][Randy Burns Mix]",
+"to": "The Conjuring",
+"type": "variant",
+"reason": "remix ([Randy Burns Mix])"
+},
+{
+"from": "Mary Jane (Paul Lani mix)",
+"to": "Mary Jane",
+"type": "variant",
+"reason": "remix ((Paul Lani mix))"
 }
 ]
 },
+
 "Memphis May Fire": {
 "tracks": [
 {
@@ -4843,6 +6017,7 @@
 }
 ]
 },
+
 "Merzhin": {
 "tracks": [
 {
@@ -4853,6 +6028,7 @@
 }
 ]
 },
+
 "Meshuggah": {
 "tracks": [
 {
@@ -4863,6 +6039,7 @@
 }
 ]
 },
+
 "Mestís": {
 "artist": {
 "from": "Mestis",
@@ -4870,6 +6047,7 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
+
 "Metallica": {
 "tracks": [
 {
@@ -4940,6 +6118,7 @@
 }
 ]
 },
+
 "Ministry": {
 "tracks": [
 {
@@ -4959,9 +6138,16 @@
 "to": "Psalm 69",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "N.W.O. (Update Mix)",
+"to": "N.W.O.",
+"type": "variant",
+"reason": "remix ((Update Mix))"
 }
 ]
 },
+
 "Minor League": {
 "tracks": [
 {
@@ -4978,6 +6164,7 @@
 }
 ]
 },
+
 "Missile Girl Scoot": {
 "tracks": [
 {
@@ -4988,6 +6175,7 @@
 }
 ]
 },
+
 "Modwheelmood": {
 "tracks": [
 {
@@ -4998,6 +6186,7 @@
 }
 ]
 },
+
 "Monuments": {
 "tracks": [
 {
@@ -5005,6 +6194,12 @@
 "to": "Lavos",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "No One Will Teach You (feat. Neema Askari)",
+"to": "No One Will Teach You",
+"type": "spelling",
+"reason": "feat-credit tag ((feat. Neema Askari)); same recording"
 }
 ],
 "artist": [
@@ -5013,6 +6208,7 @@
 }
 ]
 },
+
 "Mortal Sin": {
 "tracks": [
 {
@@ -5059,6 +6255,7 @@
 }
 ]
 },
+
 "Motionless in White": {
 "albums": [
 {
@@ -5069,6 +6266,7 @@
 }
 ]
 },
+
 "Motive Black": {
 "tracks": [
 {
@@ -5086,6 +6284,7 @@
 }
 ]
 },
+
 "Motörhead": {
 "tracks": [
 {
@@ -5174,6 +6373,7 @@
 }
 ]
 },
+
 "MUCC": {
 "albums": [
 {
@@ -5184,6 +6384,7 @@
 }
 ]
 },
+
 "Muse": {
 "tracks": [
 {
@@ -5203,6 +6404,12 @@
 "to": "Ghosts (How Can I Move On) [feat. Mylène Farmer]",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Citizen Erased (XX Anniversary RemiXX)",
+"to": "Citizen Erased",
+"type": "variant",
+"reason": "remix ((XX Anniversary RemiXX))"
 }
 ],
 "albums": [
@@ -5213,6 +6420,7 @@
 }
 ]
 },
+
 "MY FIRST STORY": {
 "tracks": [
 {
@@ -5223,6 +6431,7 @@
 }
 ]
 },
+
 "My Riot": {
 "tracks": [
 {
@@ -5233,6 +6442,7 @@
 }
 ]
 },
+
 "N.E.R.D": {
 "tracks": [
 {
@@ -5248,6 +6458,7 @@
 }
 ]
 },
+
 "N.W.A": {
 "tracks": [
 {
@@ -5264,6 +6475,7 @@
 }
 ]
 },
+
 "Nightmares on Wax": {
 "tracks": [
 {
@@ -5274,6 +6486,7 @@
 }
 ]
 },
+
 "Nightwish": {
 "tracks": [
 {
@@ -5308,6 +6521,7 @@
 }
 ]
 },
+
 "Nine Inch Nails": {
 "tracks": [
 {
@@ -5477,11 +6691,111 @@
 "to": "Metal",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Only (Album Version Explicit)",
+"to": "Only",
+"type": "spelling",
+"reason": "edition tag ((Album Version Explicit)); same recording"
+},
+{
+"from": "Only (Richard X Mix)",
+"to": "Only",
+"type": "variant",
+"reason": "remix ((Richard X Mix))"
+},
+{
+"from": "Survivalism (deadmau5 Remix)",
+"to": "Survivalism",
+"type": "variant",
+"reason": "remix ((deadmau5 Remix))"
+},
+{
+"from": "Survivalism (deadmau5 remix thing)",
+"to": "Survivalism",
+"type": "variant",
+"reason": "remix ((deadmau5 remix thing))"
+},
+{
+"from": "Right Where It Belongs - Version 2",
+"to": "Right Where It Belongs",
+"type": "variant",
+"reason": "alternate version (- Version 2)"
+},
+{
+"from": "Right Where It Belongs (Alternate Version 2)",
+"to": "Right Where It Belongs",
+"type": "variant",
+"reason": "alternate version ((Alternate Version 2))"
+},
+{
+"from": "Hurt (Live: Beside You In Time) (Explicit)",
+"to": "Hurt",
+"type": "variant",
+"reason": "live recording ((Explicit)  (Live: Beside You In Time))"
+},
+{
+"from": "Hurt (version2)",
+"to": "Hurt",
+"type": "variant",
+"reason": "alternate version ((version2))"
+},
+{
+"from": "While I'm Still Here (Breyer P-Orridge 'Howler' Remix)",
+"to": "While I'm Still Here",
+"type": "variant",
+"reason": "remix ((Breyer P-Orridge 'Howler' Remix))"
+},
+{
+"from": "Find My Way (Oneohtrix Point Never Remix)",
+"to": "Find My Way",
+"type": "variant",
+"reason": "remix ((Oneohtrix Point Never Remix))"
+},
+{
+"from": "Complication (Alternate Version)",
+"to": "Complication",
+"type": "variant",
+"reason": "alternate version ((Alternate Version))"
+},
+{
+"from": "All Time Low (Todd Rundgren Remix)",
+"to": "All Time Low",
+"type": "variant",
+"reason": "remix ((Todd Rundgren Remix))"
+},
+{
+"from": "The perfect drug (Pro-shot Live HD)",
+"to": "The Perfect Drug",
+"type": "variant",
+"reason": "live recording ((Pro-shot Live HD))"
+},
+{
+"from": "Where is everybody? - remix",
+"to": "Where Is Everybody?",
+"type": "variant",
+"reason": "remix (- remix)"
+},
+{
+"from": "Not What It Seems Like (Instrumental)",
+"to": "Not What It Seems Like",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
 }
 ],
 "albums": [
-{ "from": "TRON Ares: Divergence", "to": "TRON: Ares (Original Motion Picture Soundtrack)", "type": "spelling", "reason": "spelling: pre-release single row of an OST track; not an LP — merges into the soundtrack it belongs to (Fuad QC 2026-08-16)" },
-{ "from": "Halo 22 - Beside You In Time", "to": "Beside You In Time", "type": "spelling", "reason": "spelling: halo-catalogue-number rip prefix; same live album (Fuad QC 2026-08-16)" },
+{
+"from": "TRON Ares: Divergence",
+"to": "TRON: Ares (Original Motion Picture Soundtrack)",
+"type": "spelling",
+"reason": "spelling: pre-release single row of an OST track; not an LP — merges into the soundtrack it belongs to (Fuad QC 2026-08-16)"
+},
+{
+"from": "Halo 22 - Beside You In Time",
+"to": "Beside You In Time",
+"type": "spelling",
+"reason": "spelling: halo-catalogue-number rip prefix; same live album (Fuad QC 2026-08-16)"
+},
 {
 "from": "With Teeth (UK Only Version)",
 "to": "With Teeth",
@@ -5504,6 +6818,7 @@
 }
 ]
 },
+
 "Nirvana": {
 "tracks": [
 {
@@ -5523,9 +6838,22 @@
 "to": "Aneurysm",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Smells Like Teen Spirit ( Zardonic Remix )",
+"to": "Smells Like Teen Spirit",
+"type": "variant",
+"reason": "remix (( Zardonic Remix ))"
+},
+{
+"from": "Smells Like Teen Spirit - Live 1991 The Best Version",
+"to": "Smells Like Teen Spirit",
+"type": "variant",
+"reason": "live recording (- Live 1991 The Best Version)"
 }
 ]
 },
+
 "Northlane": {
 "albums": [
 {
@@ -5630,6 +6958,7 @@
 }
 ]
 },
+
 "Nothing More": {
 "tracks": [
 {
@@ -5647,6 +6976,7 @@
 }
 ]
 },
+
 "Nothing's Carved In Stone": {
 "albums": [
 {
@@ -5657,6 +6987,7 @@
 }
 ]
 },
+
 "Novembre": {
 "tracks": [
 {
@@ -5667,6 +6998,7 @@
 }
 ]
 },
+
 "NUMBER GIRL": {
 "albums": [
 {
@@ -5707,6 +7039,7 @@
 }
 ]
 },
+
 "Ocean Grove": {
 "tracks": [
 {
@@ -5824,6 +7157,7 @@
 }
 ]
 },
+
 "Oddko": {
 "albums": [
 {
@@ -5832,8 +7166,29 @@
 "type": "variant",
 "reason": "variant: distinct edition/version, link to canonical for completeness"
 }
+],
+"tracks": [
+{
+"from": "Censorship (Processor Remix)",
+"to": "Censorship",
+"type": "variant",
+"reason": "remix ((Processor Remix))"
+},
+{
+"from": "Censorship (Processor Remix) [Instrumental]",
+"to": "Censorship",
+"type": "variant",
+"reason": "remix ([Instrumental]  (Processor Remix))"
+},
+{
+"from": "Censorship (Rabbit Junk Remix)",
+"to": "Censorship",
+"type": "variant",
+"reason": "remix ((Rabbit Junk Remix))"
+}
 ]
 },
+
 "Of Mice & Men": {
 "albums": [
 {
@@ -5844,6 +7199,7 @@
 }
 ]
 },
+
 "Ólafur Arnalds": {
 "artist": {
 "from": "Olafur Arnalds",
@@ -5851,6 +7207,7 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
+
 "Onslaught": {
 "tracks": [
 {
@@ -5927,6 +7284,7 @@
 }
 ]
 },
+
 "Opeth": {
 "tracks": [
 {
@@ -5943,6 +7301,7 @@
 }
 ]
 },
+
 "Otoboke Beaver": {
 "albums": [
 {
@@ -5953,6 +7312,7 @@
 }
 ]
 },
+
 "Ozzy Osbourne": {
 "tracks": [
 {
@@ -5969,6 +7329,7 @@
 }
 ]
 },
+
 "Palm Reader": {
 "tracks": [
 {
@@ -5979,6 +7340,7 @@
 }
 ]
 },
+
 "Pantera": {
 "tracks": [
 {
@@ -5989,6 +7351,7 @@
 }
 ]
 },
+
 "Paradise Lost": {
 "albums": [
 {
@@ -6031,6 +7394,7 @@
 }
 ]
 },
+
 "Paranoid void": {
 "tracks": [
 {
@@ -6041,6 +7405,7 @@
 }
 ]
 },
+
 "Pearl Jam": {
 "tracks": [
 {
@@ -6105,6 +7470,7 @@
 }
 ]
 },
+
 "Pendulum": {
 "albums": [
 {
@@ -6160,6 +7526,48 @@
 "to": "Showdown",
 "type": "variant",
 "reason": "variant: distinct live recording (YouTube-caption title), link to canonical for reads"
+},
+{
+"from": "Witchcraft (Pegboard Nerds Remix)",
+"to": "Witchcraft",
+"type": "variant",
+"reason": "remix ((Pegboard Nerds Remix))"
+},
+{
+"from": "Granite [Live At Brixton Academy]",
+"to": "Granite",
+"type": "variant",
+"reason": "live recording ([Live At Brixton Academy])"
+},
+{
+"from": "Propane Nightmares (Grabbitz Remix)",
+"to": "Propane Nightmares",
+"type": "variant",
+"reason": "remix ((Grabbitz Remix))"
+},
+{
+"from": "Propane Nightmares [Live At Brixton Academy]",
+"to": "Propane Nightmares",
+"type": "variant",
+"reason": "live recording ([Live At Brixton Academy])"
+},
+{
+"from": "Watercolour (Matrix & Futurebound Remix)",
+"to": "Watercolour",
+"type": "variant",
+"reason": "remix ((Matrix & Futurebound Remix))"
+},
+{
+"from": "Streamline (Attlas remix)",
+"to": "Streamline",
+"type": "variant",
+"reason": "remix ((Attlas remix))"
+},
+{
+"from": "9,000 Miles (Eelke Kleijn Remix)",
+"to": "9,000 Miles",
+"type": "variant",
+"reason": "remix ((Eelke Kleijn Remix))"
 }
 ],
 "artist": [
@@ -6174,6 +7582,7 @@
 }
 ]
 },
+
 "Pezet": {
 "tracks": [
 {
@@ -6193,9 +7602,16 @@
 "to": "Tamtego Lata (radiowy)",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Co mam powiedzieć",
+"to": "Co Mam Powiedziec",
+"type": "spelling",
+"reason": "case/diacritic/punctuation variant of the base title; same recording"
 }
 ]
 },
+
 "Pierce the Veil": {
 "tracks": [
 {
@@ -6212,6 +7628,7 @@
 }
 ]
 },
+
 "Pink Floyd": {
 "tracks": [
 {
@@ -6222,6 +7639,7 @@
 }
 ]
 },
+
 "Pixies": {
 "albums": [
 {
@@ -6230,8 +7648,17 @@
 "type": "variant",
 "reason": "variant: distinct edition/version, link to canonical for completeness"
 }
+],
+"tracks": [
+{
+"from": "Where Is My Mind? - 2007 Remaster",
+"to": "Where Is My Mind?",
+"type": "spelling",
+"reason": "remaster row (- 2007 Remaster); same recording per house rule"
+}
 ]
 },
+
 "Polyphia": {
 "albums": [
 {
@@ -6253,6 +7680,7 @@
 }
 ]
 },
+
 "Porcupine Tree": {
 "tracks": [
 {
@@ -6266,6 +7694,12 @@
 "to": "Open Car",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Blackest Eyes (studio version, with lyrics)",
+"to": "Blackest Eyes",
+"type": "variant",
+"reason": "alternate version ((studio version, with lyrics))"
 }
 ],
 "albums": [
@@ -6286,6 +7720,7 @@
 }
 ]
 },
+
 "Power Glove": {
 "tracks": [
 {
@@ -6296,6 +7731,7 @@
 }
 ]
 },
+
 "Primus": {
 "tracks": [
 {
@@ -6317,6 +7753,7 @@
 }
 ]
 },
+
 "PRO8L3M": {
 "tracks": [
 {
@@ -6336,6 +7773,36 @@
 "to": "Teoria Bezwzględności",
 "type": "spelling",
 "reason": "diacritic: no-accent form folds to canonical accented form"
+},
+{
+"from": "Freon [Explicit]",
+"to": "Freon",
+"type": "spelling",
+"reason": "edition tag ([Explicit]); same recording"
+},
+{
+"from": "Dwa Trzynaście",
+"to": "Dwa Trzynascie",
+"type": "spelling",
+"reason": "case/diacritic/punctuation variant of the base title; same recording"
+},
+{
+"from": "Dwa Trzynascie (Instrumental)",
+"to": "Dwa Trzynascie",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+},
+{
+"from": "Strumień",
+"to": "Strumien",
+"type": "spelling",
+"reason": "case/diacritic/punctuation variant of the base title; same recording"
+},
+{
+"from": "Makijaz",
+"to": "Makijaż",
+"type": "spelling",
+"reason": "case/diacritic/punctuation variant of the base title; same recording"
 }
 ],
 "albums": [
@@ -6411,6 +7878,7 @@
 }
 ]
 },
+
 "Psy": {
 "artist": {
 "from": "PSY (prod. SUGA)",
@@ -6418,6 +7886,7 @@
 "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
 }
 },
+
 "Puscifer": {
 "tracks": [
 {
@@ -6425,9 +7894,16 @@
 "to": "Momma Sed",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Conditions of My Parole (Sir Mix-a-Lot F.U.B.A.R. Remix)",
+"to": "Conditions of My Parole",
+"type": "variant",
+"reason": "remix ((Sir Mix-a-Lot F.U.B.A.R. Remix))"
 }
 ]
 },
+
 "Quebonafide x Kuban x Kuba Knap": {
 "tracks": [
 {
@@ -6438,6 +7914,7 @@
 }
 ]
 },
+
 "Queens of the Stone Age": {
 "tracks": [
 {
@@ -6469,9 +7946,22 @@
 "to": "Monsters in the Parasol",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Feel Good Hit of the Summer (Reprise)",
+"to": "Feel Good Hit of the Summer",
+"type": "variant",
+"reason": "alternate recording ((Reprise))"
+},
+{
+"from": "I'm Designer (UNKLE Remix)",
+"to": "I'm Designer",
+"type": "variant",
+"reason": "remix ((UNKLE Remix))"
 }
 ]
 },
+
 "Queensrÿche": {
 "artist": {
 "from": "Queensryche",
@@ -6479,6 +7969,7 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
+
 "Rabbit Junk": {
 "albums": [
 {
@@ -6521,6 +8012,7 @@
 }
 ]
 },
+
 "Rage Against the Machine": {
 "tracks": [
 {
@@ -6585,6 +8077,7 @@
 }
 ]
 },
+
 "Rammstein": {
 "albums": [
 {
@@ -6640,9 +8133,58 @@
 "to": "Weisses Fleisch",
 "type": "variant",
 "reason": "variant: distinct live recording (YouTube-caption title), link to canonical for reads"
+},
+{
+"from": "Mein Teil (You Are What You Eat Edit Remix By The Pet Shop Boys)",
+"to": "Mein Teil",
+"type": "variant",
+"reason": "remix ((You Are What You Eat Edit Remix By The Pet Shop Boys))"
+},
+{
+"from": "Du Hast [Single Version]",
+"to": "Du hast",
+"type": "variant",
+"reason": "edit ([Single Version])"
+},
+{
+"from": "Buck Dich [Album Version]",
+"to": "Bück Dich",
+"type": "variant",
+"reason": "alternate version ([Album Version])"
+},
+{
+"from": "Links 2 3 4 [Clawfinger Geradeaus Remix]",
+"to": "Links 2-3-4",
+"type": "variant",
+"reason": "remix ([Clawfinger Geradeaus Remix])"
+},
+{
+"from": "Links 2 3 4 [Westbam Hard Rock Cafe Bonus Mix]",
+"to": "Links 2-3-4",
+"type": "variant",
+"reason": "remix ([Westbam Hard Rock Cafe Bonus Mix])"
+},
+{
+"from": "Links 2 3 4 [Westbam Technoelectro Mix]",
+"to": "Links 2-3-4",
+"type": "variant",
+"reason": "remix ([Westbam Technoelectro Mix])"
+},
+{
+"from": "Roter Sand [Orchester Version]",
+"to": "Roter Sand",
+"type": "variant",
+"reason": "alternate version ([Orchester Version])"
+},
+{
+"from": "Alter Mann [Special version]",
+"to": "Alter Mann",
+"type": "variant",
+"reason": "alternate version ([Special version])"
 }
 ]
 },
+
 "Ready to Die": {
 "tracks": [
 {
@@ -6653,6 +8195,7 @@
 }
 ]
 },
+
 "RedHook": {
 "albums": [
 {
@@ -6676,6 +8219,7 @@
 }
 ]
 },
+
 "Refused": {
 "tracks": [
 {
@@ -6692,6 +8236,7 @@
 }
 ]
 },
+
 "Rêve": {
 "artist": {
 "from": "Reve",
@@ -6699,6 +8244,7 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
+
 "Rezz": {
 "albums": [
 {
@@ -6720,6 +8266,7 @@
 }
 ]
 },
+
 "RJD2": {
 "tracks": [
 {
@@ -6730,6 +8277,7 @@
 }
 ]
 },
+
 "Rob Zombie": {
 "albums": [
 {
@@ -6740,6 +8288,7 @@
 }
 ]
 },
+
 "Röyksopp": {
 "artist": {
 "from": "royksopp",
@@ -6747,6 +8296,7 @@
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 }
 },
+
 "Rush": {
 "tracks": [
 {
@@ -6762,6 +8312,7 @@
 }
 ]
 },
+
 "Sarah Vaughan": {
 "tracks": [
 {
@@ -6772,6 +8323,7 @@
 }
 ]
 },
+
 "SBCR": {
 "tracks": [
 {
@@ -6792,6 +8344,7 @@
 }
 ]
 },
+
 "Serj Tankian": {
 "tracks": [
 {
@@ -6820,6 +8373,7 @@
 }
 ]
 },
+
 "SETYØURSAILS": {
 "artist": {
 "from": "SETYØURSAILS [feat. Rudi Schwarzer]",
@@ -6827,6 +8381,7 @@
 "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
 }
 },
+
 "Sevdaliza": {
 "tracks": [
 {
@@ -6837,6 +8392,7 @@
 }
 ]
 },
+
 "Shaka Ponk": {
 "tracks": [
 {
@@ -6853,6 +8409,7 @@
 }
 ]
 },
+
 "Shinedown": {
 "tracks": [
 {
@@ -6863,6 +8420,7 @@
 }
 ]
 },
+
 "Sigrid": {
 "albums": [
 {
@@ -6881,6 +8439,7 @@
 }
 ]
 },
+
 "Skrillex": {
 "tracks": [
 {
@@ -6902,6 +8461,7 @@
 }
 ]
 },
+
 "Slayer": {
 "tracks": [
 {
@@ -6927,9 +8487,22 @@
 "to": "Mandatory Suicide",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Criminally Insane (Remix)",
+"to": "Criminally Insane",
+"type": "variant",
+"reason": "remix ((Remix))"
+},
+{
+"from": "Spirit in Black - Live 1994",
+"to": "Spirit In Black",
+"type": "variant",
+"reason": "live recording (- Live 1994)"
 }
 ]
 },
+
 "Slipknot": {
 "tracks": [
 {
@@ -7021,9 +8594,22 @@
 "to": "New Abortion",
 "type": "variant",
 "reason": "variant: distinct live recording (YouTube-caption title), link to canonical for reads"
+},
+{
+"from": "Psychosocial [Live]",
+"to": "Psychosocial",
+"type": "variant",
+"reason": "live recording ([Live])"
+},
+{
+"from": "Purity (live)",
+"to": "Purity",
+"type": "variant",
+"reason": "live recording ((live))"
 }
 ]
 },
+
 "Smashing Pumpkins": {
 "tracks": [
 {
@@ -7031,9 +8617,16 @@
 "to": "1979",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Age Of Innocence - 2025 Remix",
+"to": "Age of Innocence",
+"type": "variant",
+"reason": "remix (- 2025 Remix)"
 }
 ]
 },
+
 "Smorgas": {
 "tracks": [
 {
@@ -7044,6 +8637,7 @@
 }
 ]
 },
+
 "Sodom": {
 "tracks": [
 {
@@ -7102,6 +8696,7 @@
 }
 ]
 },
+
 "Sokoninaru": {
 "tracks": [
 {
@@ -7112,6 +8707,7 @@
 }
 ]
 },
+
 "Solence": {
 "tracks": [
 {
@@ -7128,6 +8724,7 @@
 }
 ]
 },
+
 "Spiderbait": {
 "tracks": [
 {
@@ -7138,6 +8735,7 @@
 }
 ]
 },
+
 "Spiritbox": {
 "albums": [
 {
@@ -7197,6 +8795,7 @@
 }
 ]
 },
+
 "Stain The Canvas": {
 "tracks": [
 {
@@ -7221,6 +8820,7 @@
 }
 ]
 },
+
 "Stellar Circuits": {
 "tracks": [
 {
@@ -7231,6 +8831,7 @@
 }
 ]
 },
+
 "Steve Vai": {
 "artist": [
 {
@@ -7240,6 +8841,7 @@
 }
 ]
 },
+
 "Steven Wilson": {
 "tracks": [
 {
@@ -7250,6 +8852,7 @@
 }
 ]
 },
+
 "Stone Temple Pilots": {
 "tracks": [
 {
@@ -7263,9 +8866,16 @@
 "to": "Dead and Bloated",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Sex Type Thing - 2017 Remaster",
+"to": "Sex Type Thing",
+"type": "spelling",
+"reason": "remaster row (- 2017 Remaster); same recording per house rule"
 }
 ]
 },
+
 "Strapping Young Lad": {
 "tracks": [
 {
@@ -7276,6 +8886,7 @@
 }
 ]
 },
+
 "Stray From the Path": {
 "tracks": [
 {
@@ -7286,6 +8897,7 @@
 }
 ]
 },
+
 "Stu Brooks": {
 "albums": [
 {
@@ -7304,6 +8916,7 @@
 }
 ]
 },
+
 "Subtronics": {
 "albums": [
 {
@@ -7314,6 +8927,7 @@
 }
 ]
 },
+
 "Sullivan King": {
 "albums": [
 {
@@ -7324,6 +8938,7 @@
 }
 ]
 },
+
 "System of a Down": {
 "tracks": [
 {
@@ -7370,6 +8985,7 @@
 }
 ]
 },
+
 "Taska Black": {
 "tracks": [
 {
@@ -7380,6 +8996,7 @@
 }
 ]
 },
+
 "TesseracT": {
 "artist": [
 {
@@ -7400,6 +9017,18 @@
 "to": "April",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Of Matter - Proxy (Instrumental)",
+"to": "Of Matter - Proxy",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+},
+{
+"from": "Of Matter - Retrospect (Instrumental)",
+"to": "Of Matter - Retrospect",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
 }
 ],
 "albums": [
@@ -7425,6 +9054,7 @@
 }
 ]
 },
+
 "Testament": {
 "tracks": [
 {
@@ -7441,6 +9071,7 @@
 }
 ]
 },
+
 "The Amsterdam Red Light District": {
 "artist": {
 "from": "The Amsterdam Red Light District [feat. Drew York & Stray From The Path]",
@@ -7448,6 +9079,7 @@
 "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
 }
 },
+
 "The Anix": {
 "tracks": [
 {
@@ -7487,6 +9119,7 @@
 }
 ]
 },
+
 "the band apart": {
 "artist": {
 "from": "the band apart (naked)",
@@ -7494,6 +9127,7 @@
 "reason": "spelling: variant name form folds to canonical artist name"
 }
 },
+
 "The Butterfly Effect": {
 "tracks": [
 {
@@ -7511,6 +9145,7 @@
 }
 ]
 },
+
 "The Crystal Method": {
 "albums": [
 {
@@ -7526,6 +9161,18 @@
 "to": "Comin' Back",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Post Punk (feat. Iggy Pop)",
+"to": "Post Punk",
+"type": "spelling",
+"reason": "feat-credit tag ((feat. Iggy Pop)); same recording"
+},
+{
+"from": "Name of the Game (Hybrid's LA Blackout remix)",
+"to": "Name of the Game",
+"type": "variant",
+"reason": "remix ((Hybrid's LA Blackout remix))"
 }
 ],
 "artist": [
@@ -7540,6 +9187,7 @@
 }
 ]
 },
+
 "The Cure": {
 "tracks": [
 {
@@ -7550,6 +9198,7 @@
 }
 ]
 },
+
 "The Dali Thundering Concept": {
 "tracks": [
 {
@@ -7560,6 +9209,7 @@
 }
 ]
 },
+
 "The Devil Wears Prada": {
 "albums": [
 {
@@ -7578,6 +9228,7 @@
 }
 ]
 },
+
 "The Glitch Mob": {
 "tracks": [
 {
@@ -7585,6 +9236,12 @@
 "to": "Becoming Harmonious (feat. Metal Mother)",
 "type": "spelling",
 "reason": "spelling: typo/variant suffix folds to canonical"
+},
+{
+"from": "Carry the Sun (Mord Fustang Remix)",
+"to": "Carry The Sun",
+"type": "variant",
+"reason": "remix ((Mord Fustang Remix))"
 }
 ],
 "artist": [
@@ -7606,6 +9263,7 @@
 }
 ]
 },
+
 "The Killers": {
 "tracks": [
 {
@@ -7616,6 +9274,7 @@
 }
 ]
 },
+
 "The Misfits": {
 "albums": [
 {
@@ -7626,6 +9285,7 @@
 }
 ]
 },
+
 "The Ocean": {
 "albums": [
 {
@@ -7650,6 +9310,7 @@
 }
 ]
 },
+
 "The Prodigy": {
 "albums": [
 {
@@ -7730,9 +9391,64 @@
 "to": "Voodoo People (Pendulum Remix)",
 "type": "spelling",
 "reason": "tier-2: \"Mix\" -> \"Remix\", same Pendulum version, official title"
+},
+{
+"from": "Omen (Reprise)",
+"to": "Omen",
+"type": "variant",
+"reason": "alternate recording ((Reprise))"
+},
+{
+"from": "Omen (Noisia Remix)",
+"to": "Omen",
+"type": "variant",
+"reason": "remix ((Noisia Remix))"
+},
+{
+"from": "Omen (Instrumental)",
+"to": "Omen",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+},
+{
+"from": "Smack My Bitch Up (Noisia remix)",
+"to": "Smack My Bitch Up",
+"type": "variant",
+"reason": "remix ((Noisia remix))"
+},
+{
+"from": "Smack My Bitch Up (Major Lazer Remix)",
+"to": "Smack My Bitch Up",
+"type": "variant",
+"reason": "remix ((Major Lazer Remix))"
+},
+{
+"from": "Spitfire (Future Funk Squad's 'Dogfight' Remix)",
+"to": "Spitfire",
+"type": "variant",
+"reason": "remix ((Future Funk Squad's 'Dogfight' Remix))"
+},
+{
+"from": "Spitfire (05 Version)",
+"to": "Spitfire",
+"type": "variant",
+"reason": "alternate version ((05 Version))"
+},
+{
+"from": "Breathe (Zeds Dead Remix)",
+"to": "Breathe",
+"type": "variant",
+"reason": "remix ((Zeds Dead Remix))"
+},
+{
+"from": "Breathe (The Glitch Mob Remix)",
+"to": "Breathe",
+"type": "variant",
+"reason": "remix ((The Glitch Mob Remix))"
 }
 ]
 },
+
 "The Smith Street Band": {
 "tracks": [
 {
@@ -7743,6 +9459,7 @@
 }
 ]
 },
+
 "The Sword": {
 "tracks": [
 {
@@ -7753,6 +9470,7 @@
 }
 ]
 },
+
 "This Will Destroy You": {
 "tracks": [
 {
@@ -7781,6 +9499,7 @@
 }
 ]
 },
+
 "Thousand Thoughts": {
 "albums": [
 {
@@ -7791,6 +9510,7 @@
 }
 ]
 },
+
 "Thrice": {
 "tracks": [
 {
@@ -7801,6 +9521,7 @@
 }
 ]
 },
+
 "Tides From Nebula": {
 "tracks": [
 {
@@ -7811,12 +9532,14 @@
 }
 ]
 },
+
 "Tiësto": {
 "artist": {
 "from": "Tiesto",
 "type": "diacritic",
 "reason": "diacritic: ASCII/no-accent scrobble name folds to canonical accented artist name"
 },
+
 "tracks": [
 {
 "from": "The Only Way Is Up (Radio Edit)",
@@ -7826,6 +9549,7 @@
 }
 ]
 },
+
 "Time Zone": {
 "artist": {
 "from": "Time Zone (J. Lydon, Afrika Bambaataa & B. Laswell)",
@@ -7833,6 +9557,7 @@
 "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
 }
 },
+
 "toe": {
 "tracks": [
 {
@@ -7843,6 +9568,7 @@
 }
 ]
 },
+
 "Tom Morello": {
 "artist": [
 {
@@ -7857,6 +9583,7 @@
 }
 ]
 },
+
 "Tool": {
 "albums": [
 {
@@ -7907,15 +9634,23 @@
 "to": "Jerk-Off",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Cold and Ugly [live]",
+"to": "Cold and Ugly",
+"type": "variant",
+"reason": "live recording ([live])"
 }
 ]
 },
+
 "Trash Boat": {
 "artist": {
 "from": "Trash Boat [feat. Milkie Way]",
 "type": "feat-credit",
 "reason": "feat-credit: scrobbled with guest artist appended; canonical is bare artist name"
 },
+
 "tracks": [
 {
 "from": "Alpha Omega (feat. Kamiyada+) [Strange Bones Remix]",
@@ -7987,6 +9722,7 @@
 }
 ]
 },
+
 "Trevor Morris": {
 "tracks": [
 {
@@ -7997,6 +9733,7 @@
 }
 ]
 },
+
 "tricot": {
 "tracks": [
 {
@@ -8020,6 +9757,7 @@
 }
 ]
 },
+
 "Trivium": {
 "albums": [
 {
@@ -8043,6 +9781,7 @@
 }
 ]
 },
+
 "TSS": {
 "tracks": [
 {
@@ -8053,6 +9792,7 @@
 }
 ]
 },
+
 "TsuShiMaMiRe": {
 "tracks": [
 {
@@ -8096,9 +9836,16 @@
 "to": "昨日のこの空の下で",
 "type": "spelling",
 "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+},
+{
+"from": "SHOW YOU MY SOY SAUCE - Live",
+"to": "Show You My Soy Sauce",
+"type": "variant",
+"reason": "live recording (- Live)"
 }
 ]
 },
+
 "TV on the Radio": {
 "albums": [
 {
@@ -8124,6 +9871,7 @@
 }
 ]
 },
+
 "Tycho": {
 "albums": [
 {
@@ -8134,6 +9882,7 @@
 }
 ]
 },
+
 "Type O Negative": {
 "albums": [
 {
@@ -8221,9 +9970,28 @@
 "to": "Anesthesia",
 "type": "variant",
 "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+},
+{
+"from": "Black No. 1 (Edit)",
+"to": "Black No. 1",
+"type": "variant",
+"reason": "edit ((Edit))"
+},
+{
+"from": "Black No. 1 (Little Miss Scare All) - Live",
+"to": "Black No. 1 (Little Miss Scare-All)",
+"type": "variant",
+"reason": "live recording (- Live)"
+},
+{
+"from": "Kill You Tonight (Reprise)",
+"to": "Kill You Tonight",
+"type": "variant",
+"reason": "alternate recording ((Reprise))"
 }
 ]
 },
+
 "Tyrkouaz": {
 "tracks": [
 {
@@ -8234,6 +10002,7 @@
 }
 ]
 },
+
 "U2": {
 "tracks": [
 {
@@ -8250,6 +10019,7 @@
 }
 ]
 },
+
 "Ulrich Schnauss": {
 "tracks": [
 {
@@ -8260,6 +10030,7 @@
 }
 ]
 },
+
 "Underoath": {
 "albums": [
 {
@@ -8308,6 +10079,7 @@
 }
 ]
 },
+
 "Vader": {
 "tracks": [
 {
@@ -8318,6 +10090,7 @@
 }
 ]
 },
+
 "Van Halen": {
 "tracks": [
 {
@@ -8328,6 +10101,7 @@
 }
 ]
 },
+
 "Vladimir Horowitz": {
 "tracks": [
 {
@@ -8338,6 +10112,7 @@
 }
 ]
 },
+
 "Void Chapter": {
 "albums": [
 {
@@ -8380,6 +10155,7 @@
 }
 ]
 },
+
 "VOLA": {
 "albums": [
 {
@@ -8443,6 +10219,7 @@
 }
 ]
 },
+
 "Vortek's": {
 "tracks": [
 {
@@ -8453,6 +10230,7 @@
 }
 ]
 },
+
 "Voyager": {
 "tracks": [
 {
@@ -8501,12 +10279,14 @@
 }
 ]
 },
+
 "Wargasm": {
 "artist": {
 "from": "WARGASM (UK)",
 "type": "spelling",
 "reason": "spelling: variant name form folds to canonical artist name"
 },
+
 "albums": [
 {
 "from": "Do It So Good",
@@ -8533,8 +10313,23 @@
 "to": "EXPLICIT: THE MIXXXTAPE",
 "type": "absorb"
 }
+],
+"tracks": [
+{
+"from": "Spit. (Hyper's Deconstruction Remix)",
+"to": "Spit.",
+"type": "variant",
+"reason": "remix ((Hyper's Deconstruction Remix))"
+},
+{
+"from": "Scratchcard Feeling [Explicit]",
+"to": "Scratchcard Feeling",
+"type": "spelling",
+"reason": "edition tag ([Explicit]); same recording"
+}
 ]
 },
+
 "Weather Report": {
 "tracks": [
 {
@@ -8545,6 +10340,7 @@
 }
 ]
 },
+
 "Weezer": {
 "tracks": [
 {
@@ -8555,6 +10351,7 @@
 }
 ]
 },
+
 "While She Sleeps": {
 "tracks": [
 {
@@ -8582,6 +10379,7 @@
 }
 ]
 },
+
 "Wilderun": {
 "tracks": [
 {
@@ -8599,6 +10397,7 @@
 }
 ]
 },
+
 "Yoko Kanno": {
 "albums": [
 {
@@ -8651,6 +10450,7 @@
 }
 ]
 },
+
 "zavet": {
 "tracks": [
 {
@@ -8661,6 +10461,7 @@
 }
 ]
 },
+
 "ZAZEN BOYS": {
 "tracks": [
 {
@@ -8671,6 +10472,7 @@
 }
 ]
 },
+
 "Zigmund Afraid": {
 "tracks": [
 {
@@ -8681,6 +10483,7 @@
 }
 ]
 },
+
 "ヌンチャク": {
 "tracks": [
 {
@@ -8691,6 +10494,7 @@
 }
 ]
 },
+
 "ミドリ": {
 "tracks": [
 {
@@ -8719,6 +10523,7 @@
 }
 ]
 },
+
 "Calva Louise": {
 "albums": [
 {
@@ -8766,6 +10571,7 @@
 }
 ]
 },
+
 "Emma Aibara": {
 "albums": [
 {
@@ -8800,6 +10606,7 @@
 }
 ]
 },
+
 "AVOID": {
 "albums": [
 {
@@ -8814,6 +10621,7 @@
 }
 ]
 },
+
 "Siiickbrain": {
 "albums": [
 {
@@ -8833,6 +10641,7 @@
 }
 ]
 },
+
 "House of Protection": {
 "albums": [
 {
@@ -8872,6 +10681,7 @@
 }
 ]
 },
+
 "Romes": {
 "albums": [
 {
@@ -8901,6 +10711,7 @@
 }
 ]
 },
+
 "Ecca Vandal": {
 "albums": [
 {
@@ -8940,6 +10751,7 @@
 }
 ]
 },
+
 "Saint Agnes": {
 "albums": [
 {
@@ -8959,6 +10771,7 @@
 }
 ]
 },
+
 "Magdalena Bay": {
 "albums": [
 {
@@ -8966,8 +10779,17 @@
 "to": "Mercurial World",
 "type": "absorb"
 }
+],
+"tracks": [
+{
+"from": "Slug Song (Reprise)",
+"to": "Slug Song",
+"type": "variant",
+"reason": "alternate recording ((Reprise))"
+}
 ]
 },
+
 "Resolve": {
 "albums": [
 {
@@ -8997,6 +10819,7 @@
 }
 ]
 },
+
 "HEALTH": {
 "albums": [
 {
@@ -9046,6 +10869,7 @@
 }
 ]
 },
+
 "Nutronic": {
 "albums": [
 {
@@ -9071,6 +10895,7 @@
 }
 ]
 },
+
 "Lantlôs": {
 "albums": [
 {
@@ -9100,6 +10925,7 @@
 }
 ]
 },
+
 "Triptykon": {
 "albums": [
 {
@@ -9109,6 +10935,7 @@
 }
 ]
 },
+
 "James And The Cold Gun": {
 "albums": [
 {
@@ -9158,6 +10985,7 @@
 }
 ]
 },
+
 "Thornhill": {
 "albums": [
 {
@@ -9222,6 +11050,7 @@
 }
 ]
 },
+
 "Poppy": {
 "albums": [
 {
@@ -9261,6 +11090,7 @@
 }
 ]
 },
+
 "Karen Dió": {
 "albums": [
 {
@@ -9280,6 +11110,7 @@
 }
 ]
 },
+
 "Skywalker": {
 "albums": [
 {
@@ -9319,6 +11150,7 @@
 }
 ]
 },
+
 "ALT BLK ERA": {
 "albums": [
 {
@@ -9348,6 +11180,7 @@
 }
 ]
 },
+
 "Toronto Is Broken": {
 "albums": [
 {
@@ -9402,6 +11235,7 @@
 }
 ]
 },
+
 "We Came as Romans": {
 "albums": [
 {
@@ -9419,6 +11253,7 @@
 }
 ]
 },
+
 "The Offering": {
 "albums": [
 {
@@ -9433,6 +11268,7 @@
 }
 ]
 },
+
 "Nushi": {
 "albums": [
 {
@@ -9442,6 +11278,7 @@
 }
 ]
 },
+
 "Nova Twins": {
 "albums": [
 {
@@ -9456,6 +11293,7 @@
 }
 ]
 },
+
 "Ling Tosite Sigure": {
 "albums": [
 {
@@ -9478,8 +11316,77 @@
 "to": "last aurorally",
 "type": "absorb"
 }
+],
+"tracks": [
+{
+"from": "abnormalize (10th anniversary mix)",
+"to": "abnormalize",
+"type": "variant",
+"reason": "remix ((10th anniversary mix))"
+},
+{
+"from": "Abnormalize (Best Of Tornado Remastering)",
+"to": "abnormalize",
+"type": "spelling",
+"reason": "remaster row ((Best Of Tornado Remastering)); same recording per house rule"
+},
+{
+"from": "Abnormalize - Remixed by Masayuki Nakano(BOOM BOOM SATELLITES)",
+"to": "abnormalize",
+"type": "variant",
+"reason": "remix (- Remixed by Masayuki Nakano(BOOM BOOM SATELLITES))"
+},
+{
+"from": "Abnormalize - Remixed by Masayuki Nakano(BOOM BOOM SATELLITES) - PSYCHO-PASS SS OP Version",
+"to": "abnormalize",
+"type": "variant",
+"reason": "remix (- Remixed by Masayuki Nakano(BOOM BOOM SATELLITES) - PSYCHO-PASS SS OP Version)"
+},
+{
+"from": "Die Meets Hard (Koji Nakamura Remix)",
+"to": "Die Meets Hard",
+"type": "variant",
+"reason": "remix ((Koji Nakamura Remix))"
+},
+{
+"from": "I was music (remastered at METROPOLIS)",
+"to": "I was music",
+"type": "spelling",
+"reason": "remaster row ((remastered at METROPOLIS)); same recording per house rule"
+},
+{
+"from": "Beautiful Circus (remastered at METROPOLIS)",
+"to": "Beautiful Circus",
+"type": "spelling",
+"reason": "remaster row ((remastered at METROPOLIS)); same recording per house rule"
+},
+{
+"from": "Enigmatic Feeling (2015 mix)",
+"to": "Enigmatic Feeling",
+"type": "variant",
+"reason": "remix ((2015 mix))"
+},
+{
+"from": "Who What Who What (Movie Edit)",
+"to": "Who What Who What",
+"type": "variant",
+"reason": "edit ((Movie Edit))"
+},
+{
+"from": "Missing ling (remastered at METROPOLIS)",
+"to": "Missing ling",
+"type": "spelling",
+"reason": "remaster row ((remastered at METROPOLIS)); same recording per house rule"
+},
+{
+"from": "Make up syndrome (album mix)",
+"to": "make up syndrome",
+"type": "variant",
+"reason": "remix ((album mix))"
+}
 ]
 },
+
 "Matt Lange": {
 "albums": [
 {
@@ -9497,6 +11404,7 @@
 }
 ]
 },
+
 "Good Tiger": {
 "albums": [
 {
@@ -9546,6 +11454,7 @@
 }
 ]
 },
+
 "Machine Girl": {
 "albums": [
 {
@@ -9560,6 +11469,7 @@
 }
 ]
 },
+
 "Avi": {
 "albums": [
 {
@@ -9574,6 +11484,7 @@
 }
 ]
 },
+
 "Danny Blu": {
 "albums": [
 {
@@ -9583,6 +11494,7 @@
 }
 ]
 },
+
 "The Bloody Beetroots": {
 "tracks": [
 {
@@ -9590,6 +11502,12 @@
 "to": "Timbaland - Discommunication",
 "type": "spelling",
 "reason": "spelling: a spurious open paren left by the CSV truncation; same recording, plain title"
+},
+{
+"from": "Cornelius (Inside Out Boy's Biblical Mix)",
+"to": "Cornelius",
+"type": "variant",
+"reason": "remix ((Inside Out Boy's Biblical Mix))"
 }
 ],
 "albums": [
@@ -9605,6 +11523,7 @@
 }
 ]
 },
+
 "Uneven Structure": {
 "albums": [
 {
@@ -9629,6 +11548,7 @@
 }
 ]
 },
+
 "Heartlay": {
 "albums": [
 {
@@ -9648,6 +11568,7 @@
 }
 ]
 },
+
 "Windwaker": {
 "albums": [
 {
@@ -9662,6 +11583,7 @@
 }
 ]
 },
+
 "Luna Kills": {
 "albums": [
 {
@@ -9671,6 +11593,7 @@
 }
 ]
 },
+
 "Haru Nemuri": {
 "albums": [
 {
@@ -9685,6 +11608,7 @@
 }
 ]
 },
+
 "Architects": {
 "albums": [
 {
@@ -9720,6 +11644,7 @@
 }
 ]
 },
+
 "Quebonafide": {
 "albums": [
 {
@@ -9795,6 +11720,7 @@
 }
 ]
 },
+
 "Sepultura": {
 "albums": [
 {
@@ -9807,8 +11733,47 @@
 "to": "Machine Messiah",
 "type": "absorb"
 }
+],
+"tracks": [
+{
+"from": "Ratamahatta - 2017 Remaster",
+"to": "Ratamahatta",
+"type": "spelling",
+"reason": "remaster row (- 2017 Remaster); same recording per house rule"
+},
+{
+"from": "Roots Bloody Roots - 2017 Remaster",
+"to": "Roots Bloody Roots",
+"type": "spelling",
+"reason": "remaster row (- 2017 Remaster); same recording per house rule"
+},
+{
+"from": "Spit - 2017 Remaster",
+"to": "Spit",
+"type": "spelling",
+"reason": "remaster row (- 2017 Remaster); same recording per house rule"
+},
+{
+"from": "Attitude - 2017 Remaster",
+"to": "Attitude",
+"type": "spelling",
+"reason": "remaster row (- 2017 Remaster); same recording per house rule"
+},
+{
+"from": "Lookaway - 2017 Remaster",
+"to": "Lookaway",
+"type": "spelling",
+"reason": "remaster row (- 2017 Remaster); same recording per house rule"
+},
+{
+"from": "Born Stubborn - 2017 Remaster",
+"to": "Born Stubborn",
+"type": "spelling",
+"reason": "remaster row (- 2017 Remaster); same recording per house rule"
+}
 ]
 },
+
 "Fontaines D.C.": {
 "albums": [
 {
@@ -9828,6 +11793,7 @@
 }
 ]
 },
+
 "Zheani": {
 "albums": [
 {
@@ -9852,6 +11818,7 @@
 }
 ]
 },
+
 "Polaris": {
 "albums": [
 {
@@ -9881,6 +11848,7 @@
 }
 ]
 },
+
 "Levels": {
 "albums": [
 {
@@ -9895,6 +11863,7 @@
 }
 ]
 },
+
 "Unprocessed": {
 "albums": [
 {
@@ -9949,6 +11918,7 @@
 }
 ]
 },
+
 "Lambrini Girls": {
 "albums": [
 {
@@ -9958,6 +11928,7 @@
 }
 ]
 },
+
 "Future Palace": {
 "albums": [
 {
@@ -9977,6 +11948,7 @@
 }
 ]
 },
+
 "I:Scintilla": {
 "tracks": [
 {
@@ -10014,6 +11986,24 @@
 "to": "Cursive Eve (Zero Tolerance Treatment)",
 "type": "spelling",
 "reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+},
+{
+"from": "Taken (En Take Mix By En Esch)",
+"to": "Taken",
+"type": "variant",
+"reason": "remix ((En Take Mix By En Esch))"
+},
+{
+"from": "Taken (Shaken Mix By En Esch)",
+"to": "Taken",
+"type": "variant",
+"reason": "remix ((Shaken Mix By En Esch))"
+},
+{
+"from": "Ammunition (C/A/T Mix)",
+"to": "Ammunition",
+"type": "variant",
+"reason": "remix ((C/A/T Mix))"
 }
 ],
 "albums": [
@@ -10024,6 +12014,7 @@
 }
 ]
 },
+
 "OUR OCEANS": {
 "albums": [
 {
@@ -10033,6 +12024,7 @@
 }
 ]
 },
+
 "Till Lindemann": {
 "albums": [
 {
@@ -10042,6 +12034,7 @@
 }
 ]
 },
+
 "Blue Stahli": {
 "albums": [
 {
@@ -10049,8 +12042,23 @@
 "to": "Obsidian",
 "type": "absorb"
 }
+],
+"tracks": [
+{
+"from": "Not Over Til We Say So (Instrumental) (feat. Emma Anzai)",
+"to": "Not over Til We Say So (feat. Emma Anzai of Sick Puppies)",
+"type": "variant",
+"reason": "instrumental version ((feat. Emma Anzai)  (Instrumental))"
+},
+{
+"from": "Ready Aim Fire (Instrumental)",
+"to": "Ready Aim Fire",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+}
 ]
 },
+
 "Alt.": {
 "albums": [
 {
@@ -10065,6 +12073,7 @@
 }
 ]
 },
+
 "Between the Buried and Me": {
 "albums": [
 {
@@ -10074,6 +12083,7 @@
 }
 ]
 },
+
 "grandson": {
 "albums": [
 {
@@ -10083,6 +12093,7 @@
 }
 ]
 },
+
 "Void of Vision": {
 "albums": [
 {
@@ -10102,6 +12113,7 @@
 }
 ]
 },
+
 "Profiler": {
 "albums": [
 {
@@ -10111,6 +12123,7 @@
 }
 ]
 },
+
 "The Word Alive": {
 "albums": [
 {
@@ -10120,6 +12133,7 @@
 }
 ]
 },
+
 "N3b": {
 "albums": [
 {
@@ -10129,6 +12143,7 @@
 }
 ]
 },
+
 "Cassyette": {
 "albums": [
 {
@@ -10143,6 +12158,7 @@
 }
 ]
 },
+
 "Holy Wars": {
 "albums": [
 {
@@ -10157,6 +12173,7 @@
 }
 ]
 },
+
 "Dead Pony": {
 "albums": [
 {
@@ -10176,6 +12193,7 @@
 }
 ]
 },
+
 "Caligula's Horse": {
 "albums": [
 {
@@ -10195,6 +12213,7 @@
 }
 ]
 },
+
 "kx5": {
 "albums": [
 {
@@ -10209,6 +12228,7 @@
 }
 ]
 },
+
 "Make Them Suffer": {
 "albums": [
 {
@@ -10233,6 +12253,7 @@
 }
 ]
 },
+
 "Bloodywood": {
 "albums": [
 {
@@ -10247,6 +12268,7 @@
 }
 ]
 },
+
 "Ok Goodnight": {
 "albums": [
 {
@@ -10256,6 +12278,7 @@
 }
 ]
 },
+
 "Skyharbor": {
 "albums": [
 {
@@ -10280,6 +12303,7 @@
 }
 ]
 },
+
 "Devin Townsend": {
 "albums": [
 {
@@ -10302,6 +12326,7 @@
 }
 ]
 },
+
 "Nothing’s Carved In Stone": {
 "albums": [
 {
@@ -10316,6 +12341,7 @@
 }
 ]
 },
+
 "Dirtyphonics": {
 "albums": [
 {
@@ -10325,6 +12351,7 @@
 }
 ]
 },
+
 "Stone Sour": {
 "albums": [
 {
@@ -10334,6 +12361,7 @@
 }
 ]
 },
+
 "Lil Uzi Vert": {
 "artist": [
 {
@@ -10368,6 +12396,7 @@
 }
 ]
 },
+
 "Muzz": {
 "artist": [
 {
@@ -10375,6 +12404,7 @@
 }
 ]
 },
+
 "Anup Sastry": {
 "artist": [
 {
@@ -10391,6 +12421,7 @@
 }
 ]
 },
+
 "Becko": {
 "artist": [
 {
@@ -10424,8 +12455,17 @@
 "to": "Present Day // Present Time",
 "type": "absorb"
 }
+],
+"tracks": [
+{
+"from": "HYPNOTIZED (feat. A.I.KA00)",
+"to": "HYPNOTIZED",
+"type": "spelling",
+"reason": "feat-credit tag ((feat. A.I.KA00)); same recording"
+}
 ]
 },
+
 "i_o": {
 "artist": [
 {
@@ -10446,6 +12486,7 @@
 }
 ]
 },
+
 "Perturbator": {
 "artist": [
 {
@@ -10454,8 +12495,17 @@
 {
 "from": "Perturbator, Dead Astronauts"
 }
+],
+"tracks": [
+{
+"from": "Venger (Instrumental)",
+"to": "Venger (feat. Greta Link)",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+}
 ]
 },
+
 "Kendrick Lamar": {
 "artist": [
 {
@@ -10475,6 +12525,7 @@
 }
 ]
 },
+
 "Kaskade": {
 "artist": [
 {
@@ -10493,6 +12544,7 @@
 }
 ]
 },
+
 "Kx5": {
 "artist": [
 {
@@ -10500,6 +12552,7 @@
 }
 ]
 },
+
 "Sokół": {
 "artist": [
 {
@@ -10510,6 +12563,7 @@
 }
 ]
 },
+
 "Death Tour": {
 "artist": [
 {
@@ -10517,6 +12571,7 @@
 }
 ]
 },
+
 "Armin van Buuren": {
 "artist": [
 {
@@ -10530,6 +12585,7 @@
 }
 ]
 },
+
 "Cartoon Theory": {
 "artist": [
 {
@@ -10537,6 +12593,7 @@
 }
 ]
 },
+
 "slowthai": {
 "artist": [
 {
@@ -10544,6 +12601,7 @@
 }
 ]
 },
+
 "The Acacia Strain": {
 "artist": [
 {
@@ -10551,6 +12609,7 @@
 }
 ]
 },
+
 "Moneybagg Yo": {
 "artist": [
 {
@@ -10558,6 +12617,7 @@
 }
 ]
 },
+
 "Young Thug": {
 "artist": [
 {
@@ -10580,6 +12640,7 @@
 }
 ]
 },
+
 "Quavo": {
 "artist": [
 {
@@ -10590,6 +12651,7 @@
 }
 ]
 },
+
 "Travis Scott": {
 "artist": [
 {
@@ -10606,6 +12668,7 @@
 }
 ]
 },
+
 "Morgan Page": {
 "artist": [
 {
@@ -10632,6 +12695,7 @@
 }
 ]
 },
+
 "James Francies": {
 "artist": [
 {
@@ -10639,6 +12703,7 @@
 }
 ]
 },
+
 "Khruangbin": {
 "artist": [
 {
@@ -10646,6 +12711,7 @@
 }
 ]
 },
+
 "Alesso": {
 "artist": [
 {
@@ -10653,6 +12719,7 @@
 }
 ]
 },
+
 "ZHU": {
 "artist": [
 {
@@ -10663,6 +12730,7 @@
 }
 ]
 },
+
 "In Hearts Wake": {
 "artist": [
 {
@@ -10673,6 +12741,7 @@
 }
 ]
 },
+
 "DJ Shadow": {
 "artist": [
 {
@@ -10680,6 +12749,7 @@
 }
 ]
 },
+
 "Popek": {
 "artist": [
 {
@@ -10687,6 +12757,7 @@
 }
 ]
 },
+
 "Juno Reactor": {
 "artist": [
 {
@@ -10694,6 +12765,7 @@
 }
 ]
 },
+
 "Melleefresh": {
 "artist": [
 {
@@ -10704,6 +12776,7 @@
 }
 ]
 },
+
 "Machine Gun Kelly": {
 "artist": [
 {
@@ -10714,6 +12787,7 @@
 }
 ]
 },
+
 "Getter": {
 "artist": [
 {
@@ -10721,6 +12795,7 @@
 }
 ]
 },
+
 "Anderson .Paak": {
 "artist": [
 {
@@ -10728,6 +12803,7 @@
 }
 ]
 },
+
 "sophie meiers": {
 "artist": [
 {
@@ -10735,6 +12811,7 @@
 }
 ]
 },
+
 "Seven Lions": {
 "artist": [
 {
@@ -10742,6 +12819,7 @@
 }
 ]
 },
+
 "Rylo Rodriguez": {
 "artist": [
 {
@@ -10755,6 +12833,7 @@
 }
 ]
 },
+
 "Sexyy Red": {
 "artist": [
 {
@@ -10765,6 +12844,7 @@
 }
 ]
 },
+
 "Mick Jenkins": {
 "artist": [
 {
@@ -10775,6 +12855,7 @@
 }
 ]
 },
+
 "EST Gee": {
 "artist": [
 {
@@ -10788,6 +12869,7 @@
 }
 ]
 },
+
 "DJ Khaled": {
 "artist": [
 {
@@ -10795,6 +12877,7 @@
 }
 ]
 },
+
 "Gucci Mane": {
 "artist": [
 {
@@ -10802,6 +12885,7 @@
 }
 ]
 },
+
 "Metro Boomin": {
 "artist": [
 {
@@ -10812,6 +12896,7 @@
 }
 ]
 },
+
 "Lil Tjay": {
 "artist": [
 {
@@ -10822,6 +12907,7 @@
 }
 ]
 },
+
 "Ken Carson": {
 "artist": [
 {
@@ -10829,6 +12915,7 @@
 }
 ]
 },
+
 "Destroy Lonely": {
 "artist": [
 {
@@ -10836,6 +12923,7 @@
 }
 ]
 },
+
 "Yeat": {
 "artist": [
 {
@@ -10843,6 +12931,7 @@
 }
 ]
 },
+
 "DJ Drama": {
 "artist": [
 {
@@ -10850,6 +12939,7 @@
 }
 ]
 },
+
 "Diplo": {
 "artist": [
 {
@@ -10860,6 +12950,7 @@
 }
 ]
 },
+
 "Benny Benassi": {
 "artist": [
 {
@@ -10876,6 +12967,7 @@
 }
 ]
 },
+
 "Meduza": {
 "artist": [
 {
@@ -10883,6 +12975,7 @@
 }
 ]
 },
+
 "Chris Lake": {
 "artist": [
 {
@@ -10893,6 +12986,7 @@
 }
 ]
 },
+
 "Patient Sixty-Seven": {
 "artist": [
 {
@@ -10903,6 +12997,7 @@
 }
 ]
 },
+
 "Julien-K": {
 "artist": [
 {
@@ -10910,6 +13005,7 @@
 }
 ]
 },
+
 "Original God": {
 "artist": [
 {
@@ -10917,6 +13013,7 @@
 }
 ]
 },
+
 "Turbowolf": {
 "artist": [
 {
@@ -10924,6 +13021,7 @@
 }
 ]
 },
+
 "Jaws the Shark": {
 "artist": [
 {
@@ -10931,6 +13029,7 @@
 }
 ]
 },
+
 "deadmau5 & Kaskade": {
 "artist": [
 {
@@ -10938,6 +13037,7 @@
 }
 ]
 },
+
 "Seatbelts": {
 "artist": [
 {
@@ -10954,6 +13054,7 @@
 }
 ]
 },
+
 "Pegboard Nerds": {
 "artist": [
 {
@@ -10961,6 +13062,7 @@
 }
 ]
 },
+
 "Nicholas Payton": {
 "artist": [
 {
@@ -10968,6 +13070,7 @@
 }
 ]
 },
+
 "K/DA": {
 "artist": [
 {
@@ -10975,6 +13078,7 @@
 }
 ]
 },
+
 "Herbie Hancock": {
 "artist": [
 {
@@ -10982,6 +13086,7 @@
 }
 ]
 },
+
 "Don Diablo": {
 "artist": [
 {
@@ -10989,6 +13094,7 @@
 }
 ]
 },
+
 "Zeds Dead": {
 "artist": [
 {
@@ -10996,6 +13102,7 @@
 }
 ]
 },
+
 "Matthew Whitaker": {
 "artist": [
 {
@@ -11003,6 +13110,7 @@
 }
 ]
 },
+
 "Sonny Rollins": {
 "artist": [
 {
@@ -11010,6 +13118,7 @@
 }
 ]
 },
+
 "Eddie": {
 "artist": [
 {
@@ -11017,6 +13126,7 @@
 }
 ]
 },
+
 "The Qemists": {
 "artist": [
 {
@@ -11024,6 +13134,7 @@
 }
 ]
 },
+
 "Nubya Garcia": {
 "artist": [
 {
@@ -11031,6 +13142,7 @@
 }
 ]
 },
+
 "Floating Points": {
 "artist": [
 {
@@ -11038,6 +13150,7 @@
 }
 ]
 },
+
 "Sons of Kemet": {
 "artist": [
 {
@@ -11045,6 +13158,7 @@
 }
 ]
 },
+
 "Steve Aoki": {
 "artist": [
 {
@@ -11055,6 +13169,7 @@
 }
 ]
 },
+
 "DJ Snake": {
 "artist": [
 {
@@ -11062,6 +13177,7 @@
 }
 ]
 },
+
 "Swedish House Mafia": {
 "artist": [
 {
@@ -11069,6 +13185,7 @@
 }
 ]
 },
+
 "The Knocks": {
 "artist": [
 {
@@ -11076,6 +13193,7 @@
 }
 ]
 },
+
 "Clean Bandit": {
 "artist": [
 {
@@ -11083,6 +13201,7 @@
 }
 ]
 },
+
 "Papa Roach": {
 "artist": [
 {
@@ -11090,6 +13209,7 @@
 }
 ]
 },
+
 "Tommy Trash": {
 "artist": [
 {
@@ -11100,6 +13220,7 @@
 }
 ]
 },
+
 "Theo Croker": {
 "artist": [
 {
@@ -11107,6 +13228,7 @@
 }
 ]
 },
+
 "No Mana": {
 "artist": [
 {
@@ -11120,6 +13242,7 @@
 }
 ]
 },
+
 "Bas": {
 "artist": [
 {
@@ -11127,6 +13250,7 @@
 }
 ]
 },
+
 "Miles Davis": {
 "artist": [
 {
@@ -11134,6 +13258,7 @@
 }
 ]
 },
+
 "Lane 8": {
 "artist": [
 {
@@ -11141,6 +13266,7 @@
 }
 ]
 },
+
 "Faithless": {
 "artist": [
 {
@@ -11151,6 +13277,7 @@
 }
 ]
 },
+
 "Curbi": {
 "artist": [
 {
@@ -11158,6 +13285,7 @@
 }
 ]
 },
+
 "Modeselektor": {
 "artist": [
 {
@@ -11165,6 +13293,7 @@
 }
 ]
 },
+
 "Jauz": {
 "artist": [
 {
@@ -11172,6 +13301,7 @@
 }
 ]
 },
+
 "Whethan": {
 "artist": [
 {
@@ -11179,6 +13309,7 @@
 }
 ]
 },
+
 "Yellow Claw": {
 "artist": [
 {
@@ -11189,6 +13320,7 @@
 }
 ]
 },
+
 "Habstrakt": {
 "artist": [
 {
@@ -11196,6 +13328,7 @@
 }
 ]
 },
+
 "Clozee": {
 "artist": [
 {
@@ -11203,6 +13336,7 @@
 }
 ]
 },
+
 "Porter Robinson": {
 "artist": [
 {
@@ -11210,6 +13344,7 @@
 }
 ]
 },
+
 "Gorgon City": {
 "artist": [
 {
@@ -11217,6 +13352,7 @@
 }
 ]
 },
+
 "Oliver Heldens": {
 "artist": [
 {
@@ -11224,6 +13360,7 @@
 }
 ]
 },
+
 "Yosvany Terry": {
 "artist": [
 {
@@ -11231,6 +13368,7 @@
 }
 ]
 },
+
 "Alison Wonderland": {
 "artist": [
 {
@@ -11238,6 +13376,7 @@
 }
 ]
 },
+
 "50 Cent": {
 "artist": [
 {
@@ -11245,6 +13384,7 @@
 }
 ]
 },
+
 "Sia": {
 "artist": [
 {
@@ -11252,6 +13392,7 @@
 }
 ]
 },
+
 "Alix Perez": {
 "artist": [
 {
@@ -11262,6 +13403,7 @@
 }
 ]
 },
+
 "Dreamers": {
 "artist": [
 {
@@ -11269,6 +13411,7 @@
 }
 ]
 },
+
 "Nubiyan Twist": {
 "artist": [
 {
@@ -11276,6 +13419,7 @@
 }
 ]
 },
+
 "Siamese": {
 "artist": [
 {
@@ -11283,6 +13427,7 @@
 }
 ]
 },
+
 "TOKiMONSTA": {
 "artist": [
 {
@@ -11290,6 +13435,7 @@
 }
 ]
 },
+
 "Shlohmo": {
 "artist": [
 {
@@ -11297,6 +13443,7 @@
 }
 ]
 },
+
 "Hybrid Minds": {
 "artist": [
 {
@@ -11304,6 +13451,7 @@
 }
 ]
 },
+
 "Glass Beach": {
 "artist": [
 {
@@ -11311,6 +13459,7 @@
 }
 ]
 },
+
 "Loathe": {
 "artist": [
 {
@@ -11338,6 +13487,7 @@
 }
 ]
 },
+
 "Love and Death": {
 "artist": [
 {
@@ -11345,6 +13495,7 @@
 }
 ]
 },
+
 "O.R.k.": {
 "artist": [
 {
@@ -11352,6 +13503,7 @@
 }
 ]
 },
+
 "Squid": {
 "artist": [
 {
@@ -11359,6 +13511,7 @@
 }
 ]
 },
+
 "Pupil Slicer": {
 "artist": [
 {
@@ -11366,6 +13519,7 @@
 }
 ]
 },
+
 "Harakiri for the Sky": {
 "artist": [
 {
@@ -11373,6 +13527,7 @@
 }
 ]
 },
+
 "Mal": {
 "artist": [
 {
@@ -11380,6 +13535,7 @@
 }
 ]
 },
+
 "Dance Gavin Dance": {
 "artist": [
 {
@@ -11390,6 +13546,7 @@
 }
 ]
 },
+
 "Kiko King & creativemaze": {
 "artist": [
 {
@@ -11397,6 +13554,7 @@
 }
 ]
 },
+
 "Zedd": {
 "artist": [
 {
@@ -11404,6 +13562,7 @@
 }
 ]
 },
+
 "Dillon Francis": {
 "artist": [
 {
@@ -11411,6 +13570,7 @@
 }
 ]
 },
+
 "Bassnectar": {
 "artist": [
 {
@@ -11418,6 +13578,7 @@
 }
 ]
 },
+
 "The Avalanches": {
 "artist": [
 {
@@ -11425,6 +13586,7 @@
 }
 ]
 },
+
 "Sigur Rós": {
 "artist": [
 {
@@ -11432,6 +13594,7 @@
 }
 ]
 },
+
 "Circle of Dust": {
 "artist": [
 {
@@ -11439,6 +13602,7 @@
 }
 ]
 },
+
 "Emigrate": {
 "artist": [
 {
@@ -11464,6 +13628,7 @@
 }
 ]
 },
+
 "Theory of a Deadman": {
 "artist": [
 {
@@ -11471,6 +13636,7 @@
 }
 ]
 },
+
 "Tede": {
 "artist": [
 {
@@ -11478,6 +13644,7 @@
 }
 ]
 },
+
 "Carpenter Brut": {
 "artist": [
 {
@@ -11497,6 +13664,7 @@
 }
 ]
 },
+
 "Fit For A King": {
 "artist": [
 {
@@ -11504,6 +13672,7 @@
 }
 ]
 },
+
 "Brodinski": {
 "artist": [
 {
@@ -11511,6 +13680,7 @@
 }
 ]
 },
+
 "Laidback Luke": {
 "artist": [
 {
@@ -11518,6 +13688,7 @@
 }
 ]
 },
+
 "OVERWERK": {
 "artist": [
 {
@@ -11525,6 +13696,7 @@
 }
 ]
 },
+
 "Yppah": {
 "artist": [
 {
@@ -11532,6 +13704,7 @@
 }
 ]
 },
+
 "Taylor McFerrin": {
 "artist": [
 {
@@ -11539,6 +13712,7 @@
 }
 ]
 },
+
 "Korzus": {
 "artist": [
 {
@@ -11549,6 +13723,7 @@
 }
 ]
 },
+
 "Venjent": {
 "artist": [
 {
@@ -11563,6 +13738,7 @@
 }
 ]
 },
+
 "Guzior": {
 "artist": [
 {
@@ -11570,6 +13746,7 @@
 }
 ]
 },
+
 "Jetlagz": {
 "artist": [
 {
@@ -11577,6 +13754,7 @@
 }
 ]
 },
+
 "DJ Cam": {
 "artist": [
 {
@@ -11584,6 +13762,7 @@
 }
 ]
 },
+
 "Booba": {
 "artist": [
 {
@@ -11591,6 +13770,7 @@
 }
 ]
 },
+
 "JAY Z": {
 "artist": [
 {
@@ -11598,6 +13778,7 @@
 }
 ]
 },
+
 "Robin Thicke": {
 "artist": [
 {
@@ -11605,6 +13786,7 @@
 }
 ]
 },
+
 "David Guetta": {
 "artist": [
 {
@@ -11615,6 +13797,7 @@
 }
 ]
 },
+
 "A$AP Rocky": {
 "artist": [
 {
@@ -11622,6 +13805,7 @@
 }
 ]
 },
+
 "Maroon 5": {
 "artist": [
 {
@@ -11629,6 +13813,7 @@
 }
 ]
 },
+
 "DJ Vadim": {
 "artist": [
 {
@@ -11636,6 +13821,7 @@
 }
 ]
 },
+
 "Avicii": {
 "artist": [
 {
@@ -11643,6 +13829,7 @@
 }
 ]
 },
+
 "Kanye West": {
 "artist": [
 {
@@ -11650,6 +13837,7 @@
 }
 ]
 },
+
 "Pang!": {
 "artist": [
 {
@@ -11657,6 +13845,7 @@
 }
 ]
 },
+
 "Twin Shadow": {
 "artist": [
 {
@@ -11664,6 +13853,7 @@
 }
 ]
 },
+
 "WWO": {
 "artist": [
 {
@@ -11674,6 +13864,7 @@
 }
 ]
 },
+
 "Casper": {
 "artist": [
 {
@@ -11681,6 +13872,7 @@
 }
 ]
 },
+
 "Żabson": {
 "artist": [
 {
@@ -11688,6 +13880,7 @@
 }
 ]
 },
+
 "The Returners": {
 "artist": [
 {
@@ -11695,6 +13888,7 @@
 }
 ]
 },
+
 "Seether": {
 "artist": [
 {
@@ -11702,6 +13896,7 @@
 }
 ]
 },
+
 "Lia Lia": {
 "albums": [
 {
@@ -11716,6 +13911,7 @@
 }
 ]
 },
+
 "Hirax": {
 "albums": [
 {
@@ -11725,12 +13921,14 @@
 }
 ]
 },
+
 "Novelists": {
 "artist": {
 "from": "Novelists FR",
 "type": "spelling",
 "reason": "spelling: same French band under its rename-era credit; scrobbles split across both name forms (2026-08-18)"
 },
+
 "albums": [
 {
 "from": "Prisoner",
@@ -11749,6 +13947,7 @@
 }
 ]
 },
+
 "Introvert": {
 "albums": [
 {
@@ -11768,6 +13967,7 @@
 }
 ]
 },
+
 "Jakub Zytecki": {
 "albums": [
 {
@@ -11777,6 +13977,7 @@
 }
 ]
 },
+
 "Annisokay": {
 "albums": [
 {
@@ -11801,6 +14002,7 @@
 }
 ]
 },
+
 "VUKOVI": {
 "albums": [
 {
@@ -11840,6 +14042,7 @@
 }
 ]
 },
+
 "Lowlives": {
 "albums": [
 {
@@ -11849,6 +14052,7 @@
 }
 ]
 },
+
 "Kneecap": {
 "albums": [
 {
@@ -11863,6 +14067,7 @@
 }
 ]
 },
+
 "Dream State": {
 "albums": [
 {
@@ -11887,6 +14092,7 @@
 }
 ]
 },
+
 "Bad/Love": {
 "albums": [
 {
@@ -11896,6 +14102,7 @@
 }
 ]
 },
+
 "Stand Atlantic": {
 "albums": [
 {
@@ -11920,6 +14127,7 @@
 }
 ]
 },
+
 "Enmy": {
 "albums": [
 {
@@ -11929,6 +14137,7 @@
 }
 ]
 },
+
 "Lindemann": {
 "albums": [
 {
@@ -11948,6 +14157,7 @@
 }
 ]
 },
+
 "Sleep Token": {
 "albums": [
 {
@@ -11987,6 +14197,7 @@
 }
 ]
 },
+
 "Bury Tomorrow": {
 "albums": [
 {
@@ -12006,6 +14217,7 @@
 }
 ]
 },
+
 "Time, The Valuator": {
 "albums": [
 {
@@ -12015,6 +14227,7 @@
 }
 ]
 },
+
 "Figures": {
 "albums": [
 {
@@ -12029,6 +14242,7 @@
 }
 ]
 },
+
 "3TEETH": {
 "albums": [
 {
@@ -12058,6 +14272,7 @@
 }
 ]
 },
+
 "Sick Joy": {
 "albums": [
 {
@@ -12067,6 +14282,7 @@
 }
 ]
 },
+
 "Andromida": {
 "albums": [
 {
@@ -12091,6 +14307,7 @@
 }
 ]
 },
+
 "Processor": {
 "albums": [
 {
@@ -12105,6 +14322,7 @@
 }
 ]
 },
+
 "Ninajirachi": {
 "albums": [
 {
@@ -12114,6 +14332,7 @@
 }
 ]
 },
+
 "Gojira": {
 "albums": [
 {
@@ -12123,6 +14342,7 @@
 }
 ]
 },
+
 "Blood Red Shoes": {
 "albums": [
 {
@@ -12137,6 +14357,7 @@
 }
 ]
 },
+
 "Viagra Boys": {
 "albums": [
 {
@@ -12146,6 +14367,7 @@
 }
 ]
 },
+
 "Thank You Scientist": {
 "albums": [
 {
@@ -12160,6 +14382,7 @@
 }
 ]
 },
+
 "Crossfaith": {
 "albums": [
 {
@@ -12167,8 +14390,17 @@
 "to": "AЯK",
 "type": "absorb"
 }
+],
+"tracks": [
+{
+"from": "Wipeout (album mix)",
+"to": "Wipeout",
+"type": "variant",
+"reason": "remix ((album mix))"
+}
 ]
 },
+
 "Static Dress": {
 "albums": [
 {
@@ -12178,6 +14410,7 @@
 }
 ]
 },
+
 "coldrain": {
 "albums": [
 {
@@ -12192,6 +14425,7 @@
 }
 ]
 },
+
 "Kyuss": {
 "albums": [
 {
@@ -12201,6 +14435,7 @@
 }
 ]
 },
+
 "Aimer": {
 "albums": [
 {
@@ -12210,6 +14445,7 @@
 }
 ]
 },
+
 "Clams Casino": {
 "albums": [
 {
@@ -12217,8 +14453,23 @@
 "to": "32 Levels",
 "type": "absorb"
 }
+],
+"tracks": [
+{
+"from": "Skull (Instrumental)",
+"to": "Skull",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+},
+{
+"from": "Ghost In A Kiss (feat. Samuel T. Herring)",
+"to": "Ghost in a Kiss (Instrumental)",
+"type": "variant",
+"reason": "feat-credit tag ((feat. Samuel T. Herring)); same recording"
+}
 ]
 },
+
 "Alice Glass": {
 "albums": [
 {
@@ -12228,6 +14479,7 @@
 }
 ]
 },
+
 "Jane's Addiction": {
 "albums": [
 {
@@ -12237,6 +14489,7 @@
 }
 ]
 },
+
 "Seething Akira": {
 "albums": [
 {
@@ -12246,6 +14499,7 @@
 }
 ]
 },
+
 "Snow Strippers": {
 "albums": [
 {
@@ -12255,6 +14509,7 @@
 }
 ]
 },
+
 "Paledusk": {
 "albums": [
 {
@@ -12264,6 +14519,7 @@
 }
 ]
 },
+
 "Eat Your Heart Out": {
 "albums": [
 {
@@ -12273,6 +14529,7 @@
 }
 ]
 },
+
 "iRis.EXE": {
 "albums": [
 {
@@ -12292,6 +14549,7 @@
 }
 ]
 },
+
 "The Hellp": {
 "albums": [
 {
@@ -12306,6 +14564,7 @@
 }
 ]
 },
+
 "COALTAR OF THE DEEPERS": {
 "tracks": [
 {
@@ -12315,6 +14574,7 @@
 }
 ]
 },
+
 "Periphery": {
 "tracks": [
 {
@@ -12322,9 +14582,64 @@
 "to": "Marigold",
 "type": "variant",
 "reason": "variant: distinct live recording (YouTube-caption title), link to canonical for reads"
+},
+{
+"from": "Insomnia (instrumental)",
+"to": "Insomnia",
+"type": "variant",
+"reason": "instrumental version ((instrumental))"
+},
+{
+"from": "All New Materials (instrumental)",
+"to": "All New Materials",
+"type": "variant",
+"reason": "instrumental version ((instrumental))"
+},
+{
+"from": "Totla Mad (Instrumental)",
+"to": "Totla Mad",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+},
+{
+"from": "Letter Experiment (Instrumental)",
+"to": "Letter Experiment",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+},
+{
+"from": "Ow My Feelings (instrumental)",
+"to": "Ow My Feelings",
+"type": "variant",
+"reason": "instrumental version ((instrumental))"
+},
+{
+"from": "Buttersnips (instrumental)",
+"to": "Buttersnips",
+"type": "variant",
+"reason": "instrumental version ((instrumental))"
+},
+{
+"from": "Icarus Lives (Instrumental)",
+"to": "Icarus Lives",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+},
+{
+"from": "Jetpacks Was Yes (Instrumental)",
+"to": "Jetpacks Was Yes",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+},
+{
+"from": "Zyglrox (instrumental)",
+"to": "Zyglrox",
+"type": "variant",
+"reason": "instrumental version ((instrumental))"
 }
 ]
 },
+
 "R.E.M.": {
 "tracks": [
 {
@@ -12335,6 +14650,7 @@
 }
 ]
 },
+
 "Gurren Lagann OST Disc 2": {
 "tracks": [
 {
@@ -12345,6 +14661,7 @@
 }
 ]
 },
+
 "Voivod": {
 "tracks": [
 {
@@ -12355,6 +14672,7 @@
 }
 ]
 },
+
 "Iron Angel": {
 "tracks": [
 {
@@ -12371,6 +14689,7 @@
 }
 ]
 },
+
 "Dragon": {
 "tracks": [
 {
@@ -12405,6 +14724,7 @@
 }
 ]
 },
+
 "Bywar": {
 "tracks": [
 {
@@ -12451,6 +14771,7 @@
 }
 ]
 },
+
 "Amebix": {
 "tracks": [
 {
@@ -12464,6 +14785,488 @@
 "to": "Battery Humans",
 "type": "spelling",
 "reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+}
+]
+},
+
+"Puddle of Mudd": {
+"tracks": [
+{
+"from": "Livin' On Borrowed Time (Album Version Explicit)",
+"to": "Livin' On Borrowed Time",
+"type": "spelling",
+"reason": "edition tag ((Album Version Explicit)); same recording"
+}
+]
+},
+
+"Aphex Twin": {
+"tracks": [
+{
+"from": "minipops 67 [120.2][source field mix]",
+"to": "minipops 67 [120.2]",
+"type": "variant",
+"reason": "remix ([source field mix])"
+}
+]
+},
+
+"Nevermore": {
+"tracks": [
+{
+"from": "Precognition (instrumental)",
+"to": "Precognition",
+"type": "variant",
+"reason": "instrumental version ((instrumental))"
+}
+]
+},
+
+"Tokio Hotel": {
+"tracks": [
+{
+"from": "Mädchen aus dem All (2003 Bonustrack)",
+"to": "Mädchen aus dem All",
+"type": "spelling",
+"reason": "packaging tag ((2003 Bonustrack)); same recording"
+}
+]
+},
+
+"Placebo": {
+"tracks": [
+{
+"from": "Pure Morning (Les Rythmes Digitales remix)",
+"to": "Pure Morning",
+"type": "variant",
+"reason": "remix ((Les Rythmes Digitales remix))"
+},
+{
+"from": "Without You I'm Nothing (Brothers In Rhythm Club Mix) (Feat. David Bowie)",
+"to": "Without You I'm Nothing",
+"type": "variant",
+"reason": "remix ((Feat. David Bowie)  (Brothers In Rhythm Club Mix))"
+},
+{
+"from": "Without You I'm Nothing (Unkle remix) (feat. David Bowie)",
+"to": "Without You I'm Nothing",
+"type": "variant",
+"reason": "remix ((feat. David Bowie)  (Unkle remix))"
+}
+]
+},
+
+"Joel Nielsen": {
+"tracks": [
+{
+"from": "Office Complex (Mesa remix)",
+"to": "Office Complex",
+"type": "variant",
+"reason": "remix ((Mesa remix))"
+},
+{
+"from": "Apprehension (Mesa remix)",
+"to": "Apprehension",
+"type": "variant",
+"reason": "remix ((Mesa remix))"
+},
+{
+"from": "Black Mesa Theme (Mesa Mix)",
+"to": "Black Mesa Theme",
+"type": "variant",
+"reason": "remix ((Mesa Mix))"
+},
+{
+"from": "Blast Pit 2 (Mesa remix)",
+"to": "Blast Pit 2",
+"type": "variant",
+"reason": "remix ((Mesa remix))"
+}
+]
+},
+
+"Idiot Pilot": {
+"tracks": [
+{
+"from": "Retina and the Sky (Boom Bip Remix)",
+"to": "Retina and the Sky",
+"type": "variant",
+"reason": "remix ((Boom Bip Remix))"
+}
+]
+},
+
+"How to Destroy Angels": {
+"tracks": [
+{
+"from": "Ice Age (deadmau5 Remix)",
+"to": "Ice Age",
+"type": "variant",
+"reason": "remix ((deadmau5 Remix))"
+}
+]
+},
+
+"Knife Party": {
+"tracks": [
+{
+"from": "Destroy Them With Lazers (Original Mix)",
+"to": "Destroy Them With Lazers",
+"type": "variant",
+"reason": "remix ((Original Mix))"
+},
+{
+"from": "Internet Friends (Original Mix)",
+"to": "Internet Friends",
+"type": "variant",
+"reason": "remix ((Original Mix))"
+}
+]
+},
+
+"ASHES dIVIDE": {
+"tracks": [
+{
+"from": "Denial Waits (Danny Lohner Remix)",
+"to": "Denial Waits",
+"type": "variant",
+"reason": "remix ((Danny Lohner Remix))"
+}
+]
+},
+
+"Nero": {
+"tracks": [
+{
+"from": "Promises (Skrillex & Nero Remix)",
+"to": "Promises",
+"type": "variant",
+"reason": "remix ((Skrillex & Nero Remix))"
+}
+]
+},
+
+"Blur": {
+"tracks": [
+{
+"from": "Song 2 - 2012 Remaster",
+"to": "Song 2",
+"type": "spelling",
+"reason": "remaster row (- 2012 Remaster); same recording per house rule"
+}
+]
+},
+
+"GVLLOW": {
+"tracks": [
+{
+"from": "Fell In Love With A Ghost (OG Gvllow Mix)",
+"to": "Fell In Love With A Ghost",
+"type": "variant",
+"reason": "remix ((OG Gvllow Mix))"
+}
+]
+},
+
+"Fear Factory": {
+"tracks": [
+{
+"from": "New Breed (Revolutionary Designed mix)",
+"to": "New Breed",
+"type": "variant",
+"reason": "remix ((Revolutionary Designed mix))"
+}
+]
+},
+
+"Urban Heat": {
+"tracks": [
+{
+"from": "Have You Ever (Battle Tapes Remix)",
+"to": "Have You Ever?",
+"type": "variant",
+"reason": "remix ((Battle Tapes Remix))"
+}
+]
+},
+
+"Sabaton": {
+"tracks": [
+{
+"from": "Carolus Rex (English Version)",
+"to": "Carolus Rex",
+"type": "variant",
+"reason": "alternate version ((English Version))"
+}
+]
+},
+
+"David Bowie": {
+"tracks": [
+{
+"from": "I'm Afraid Of Americans (NIN V1 Mix)",
+"to": "I'm Afraid of Americans",
+"type": "variant",
+"reason": "remix ((NIN V1 Mix))"
+},
+{
+"from": "I'm Afraid of Americans (Nine Inch Nails V1 mix)",
+"to": "I'm Afraid of Americans",
+"type": "variant",
+"reason": "remix ((Nine Inch Nails V1 mix))"
+},
+{
+"from": "I'm Afraid Of Americans (Nine Inch nails V1 MIx) (NIN V.1 Mix)",
+"to": "I'm Afraid of Americans",
+"type": "variant",
+"reason": "remix ((NIN V.1 Mix)  (Nine Inch nails V1 MIx))"
+},
+{
+"from": "Little Wonder (Danny Saber Dance Mix)",
+"to": "Little Wonder",
+"type": "variant",
+"reason": "remix ((Danny Saber Dance Mix))"
+},
+{
+"from": "Heroes - 2017 Remaster",
+"to": "\"Heroes\"",
+"type": "spelling",
+"reason": "remaster row (- 2017 Remaster); same recording per house rule"
+},
+{
+"from": "Life on Mars (2016 MIX)",
+"to": "Life on Mars?",
+"type": "variant",
+"reason": "remix ((2016 MIX))"
+}
+]
+},
+
+"OOMPH!": {
+"tracks": [
+{
+"from": "Augen auf (Radio Edit)",
+"to": "Augen auf",
+"type": "variant",
+"reason": "edit ((Radio Edit))"
+}
+]
+},
+
+"Scandroid": {
+"tracks": [
+{
+"from": "Neo Tokyo (Dance With the Dead remix)",
+"to": "Neo-Tokyo",
+"type": "variant",
+"reason": "remix ((Dance With the Dead remix))"
+}
+]
+},
+
+"P.O.D.": {
+"tracks": [
+{
+"from": "Southtown (2006 Remastered Version)",
+"to": "Southtown",
+"type": "variant",
+"reason": "alternate version ((2006 Remastered Version))"
+},
+{
+"from": "Youth Of The Nation (2006 Remastered Version)",
+"to": "Youth of the Nation",
+"type": "variant",
+"reason": "alternate version ((2006 Remastered Version))"
+},
+{
+"from": "Youth Of The Nation (Acoustic Version/)",
+"to": "Youth of the Nation",
+"type": "variant",
+"reason": "alternate arrangement ((Acoustic Version/))"
+},
+{
+"from": "Alive (New Album/Chris Lord-Alge Mix Version)",
+"to": "Alive",
+"type": "variant",
+"reason": "remix ((New Album/Chris Lord-Alge Mix Version))"
+},
+{
+"from": "Alive (2006 Remastered Version)",
+"to": "Alive",
+"type": "variant",
+"reason": "alternate version ((2006 Remastered Version))"
+},
+{
+"from": "Alive (Acoustic Version /)",
+"to": "Alive",
+"type": "variant",
+"reason": "alternate arrangement ((Acoustic Version /))"
+}
+]
+},
+
+"Corelia": {
+"tracks": [
+{
+"from": "Mute Swan (Instrumental)",
+"to": "Mute Swan",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+}
+]
+},
+
+"Bloc Party": {
+"tracks": [
+{
+"from": "Banquet (Phones Disco Edit)",
+"to": "Banquet",
+"type": "variant",
+"reason": "edit ((Phones Disco Edit))"
+}
+]
+},
+
+"Deep Purple": {
+"tracks": [
+{
+"from": "Smoke On The Water (US Edit)",
+"to": "Smoke on the Water",
+"type": "variant",
+"reason": "edit ((US Edit))"
+}
+]
+},
+
+"Evanescence": {
+"tracks": [
+{
+"from": "Bring Me To Life (Ghost in the Machine Remix)",
+"to": "Bring Me to Life",
+"type": "variant",
+"reason": "remix ((Ghost in the Machine Remix))"
+}
+]
+},
+
+"Semargl": {
+"tracks": [
+{
+"from": "Credo Revolution (Zardonic Remix)",
+"to": "Credo Revolution",
+"type": "variant",
+"reason": "remix ((Zardonic Remix))"
+}
+]
+},
+
+"W.A.S.P.": {
+"tracks": [
+{
+"from": "Animal (Fuck Like A Beast) (bonus track 7-12\" A-side)",
+"to": "Animal (Fuck Like A Beast)",
+"type": "spelling",
+"reason": "packaging tag ((bonus track 7-12\" A-side)); same recording"
+}
+]
+},
+
+"Chevelle": {
+"tracks": [
+{
+"from": "Send the Pain Below (2012 Remastered Version)",
+"to": "Send the Pain Below",
+"type": "variant",
+"reason": "alternate version ((2012 Remastered Version))"
+}
+]
+},
+
+"Tallah": {
+"tracks": [
+{
+"from": "Overconfidence - Remixed by Teru from Crossfaith",
+"to": "Overconfidence",
+"type": "variant",
+"reason": "remix (- Remixed by Teru from Crossfaith)"
+}
+]
+},
+
+"Velvetine": {
+"tracks": [
+{
+"from": "The Great Divide (Seven Lions Dub Mix)",
+"to": "The Great Divide (Seven Lions Remix)",
+"type": "variant",
+"reason": "remix ((Seven Lions Dub Mix))"
+}
+]
+},
+
+"The Bloody Beetroots & Jet": {
+"tracks": [
+{
+"from": "My Name Is Thunder (Electronic Version)",
+"to": "My Name Is Thunder",
+"type": "variant",
+"reason": "alternate version ((Electronic Version))"
+}
+]
+},
+
+"Drop your weapon": {
+"tracks": [
+{
+"from": "Turn Off Your Radio (Instrumental)",
+"to": "Turn Off Your Radio",
+"type": "variant",
+"reason": "instrumental version ((Instrumental))"
+}
+]
+},
+
+"Iron Maiden": {
+"tracks": [
+{
+"from": "The Number Of The Beast (1998 Remastered Version)",
+"to": "The Number of the Beast",
+"type": "variant",
+"reason": "alternate version ((1998 Remastered Version))"
+},
+{
+"from": "Phantom Of The Opera (1998 Remastered Version)",
+"to": "Phantom of the Opera",
+"type": "variant",
+"reason": "alternate version ((1998 Remastered Version))"
+}
+]
+},
+
+"Whitesnake": {
+"tracks": [
+{
+"from": "Here I Go Again '87 (2008 Digital Remaster)",
+"to": "Here I Go Again '87",
+"type": "spelling",
+"reason": "remaster row ((2008 Digital Remaster)); same recording per house rule"
+},
+{
+"from": "Here I Go Again '87 (2003 Remastered Version)",
+"to": "Here I Go Again '87",
+"type": "variant",
+"reason": "alternate version ((2003 Remastered Version))"
+}
+]
+},
+
+"Talking Heads": {
+"tracks": [
+{
+"from": "Psycho Killer (2005 Remastered Version)",
+"to": "Psycho Killer",
+"type": "variant",
+"reason": "alternate version ((2005 Remastered Version))"
 }
 ]
 }
