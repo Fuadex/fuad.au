@@ -3913,4 +3913,64 @@ by: "Opus 4.8" },
 about: "Signac painted this unnamed woman in 1893, at the height of his campaign for divided colour after Seurat's death left him leading it — the orange parasol above her governing every colour in her face.",
 deep: "The parasol is the argument. Everything under it is answering an orange it cannot escape: the blues banked into her shadows, the coral scattered through her green sleeve, the pink and violet standing in for the colour of her cheek. Her profile has no line around it at all: the edge is simply where one population of marks stops and another starts. And nothing is mixed. The neutral grey under her jaw is orange and blue alternating, resolved in the eye rather than on the palette. It is a theory of vision put on a canvas, and it is also just a woman standing in coloured shade.",
 by: "Opus 4.8" },
+"joachim-patinir-the-flight-into-egypt": {
+ "about": "Made around 1550 to 1575 by an anonymous follower carrying on Joachim Patinir's world-landscape formula a generation after his death — a tall panel shrinking the fleeing Holy Family to a speck against crags dissolving into blue distance.",
+ "deep": "Faith, here, is felt as scale. The holy family is a handful of warm pigment wedged at the balance point between a sheer, invented pinnacle of grey-cream rock and a wide river valley dissolving into haze — too small for drama, just right for the reminder that even a sacred passage happens inside a world that does not stop to watch. The painter builds depth by color: warm browns up close, cooler greens through the middle, a milky-blue atmosphere where the last ridges bleed into sky. The eye crosses the span to Mary, still on the donkey, and Joseph pacing beside her, the worry of flight in every stride. Wilderness on the left, ordered farmland and a walled town on the right: the landscape does the theological work, danger and promised arrival set against each other, salvation a quiet thread crossing between.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"hendrick-ter-brugghen-bagpipe-player": {
+ "about": "Seized in a 1938 forced sale from the von Klemperer collection and restituted to its heirs in 2008, this 1624 canvas is Utrecht Caravaggist ter Brugghen at full power, breath and bag swelling into one circuit of air.",
+ "deep": "Breath is the whole subject: lips pursed at the blowpipe, the bag swelling against the chest, fingers closing over the chanter below — the figure is a single circuit of air made visible. The tight crop eliminates any setting, forcing every ounce of attention onto the physical labour of making sound, an encounter rather than a scene. Against the round mass of cap and inflated bag, two drone pipes climb the diagonal to the upper-left, keeping the compressed image taut. Light falls from one side onto a bared shoulder, the lit ridge of the nose, the white shirt sliding loose. The bagpipe's coarse associations are neither hidden nor mocked; they are simply inhabited, given full sensuous close-up, and left without a verdict.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"bartolome-esteban-murillo-the-return-of-the-prodigal-son": {
+ "about": "One of eight canvases Murillo painted around 1667 for Seville's Caridad brotherhood on the corporal works of mercy, this one clothing the naked; Napoleon's troops looted it in 1810. Pardon arrives as an embrace, in receiving hands.",
+ "deep": "Forgiveness here happens before a word is spoken — it is entirely in the father's hands, which receive rather than grip, drawing the kneeling son in. The boy arrives with nothing: bare skin, torn cloth, dirty feet on cold stone, the posture of a beggar. Yet the composition refuses to dwell in ruin; a diagonal of pale light walks the eye rightward across his back, past the rose cloak stooping over him, toward a procession of clean colour — lemon-gold tunic, folded robe, the ring — that arrives brighter than the wreck it answers. Murillo stages the whole parable as a horizontal drift from bare back to fresh robe, mercy made legible as light crossing a room.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"henry-fuseli-oedipus-cursing-his-son-polynices": {
+ "about": "Drawn from Sophocles' Oedipus at Colonus and shown at the Royal Academy in 1786, Zurich-born Henry Fuseli's terror-piece: the blind exiled king dooming both sons to slaughter, a rigid pointing arm splitting the family against a warm-black void.",
+ "deep": "A single extended finger splits the canvas and delivers the sentence before the son can move — everything else is the family absorbing what has already happened. The old blind king lunges from the dark, arm rigid as a spear levelled at the kneeling youth, who has folded away and pressed both hands to his skull as if shutting out words that cannot be unspoken. A daughter throws her palm flat in resistance, but the father's line runs straight through it; she is the moral centre because she alone still tries to change an outcome the composition has already fixed. The fourth figure kneels and sinks, head down. Fuseli refuses a setting — no floor, no sky, only a warm-black void that returns every glance to the finger, making darkness itself the pressure holding the family inside the curse.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"caspar-david-friedrich-northern-landscape-spring": {
+ "about": "Around 1825 Caspar David Friedrich staged spring as a thaw, ice gripping a far-northern heath where two hunters, barely a brushstroke tall, stand as proof that human life persists at the habitable world's freezing margin.",
+ "deep": "Spring arrives here not as warmth but as a loosening — ice still locked across the pale central flat, snow retreating into the hollows of the heath, thin green threading through the white. The whole composition is built from horizontal bands stacked into stillness, and within that stillness light behaves strangely: the sky runs cold, the foreground dunes glow ochre, so radiance pools at your feet rather than overhead. Two hunters stand at the edge of the frozen flat, barely taller than a brushstroke, and their miniature presence is what converts vast emptiness into something tender — proof that human life persists even here, at the far margin of the habitable world, turning again toward the season that returns.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"claude-monet-rouen-cathedral-west-facade-sunlight": {
+ "about": "Renting rooms across the street, Monet worked this Gothic front over thirty times across 1892 and 1893, reworking it at Giverny and dating it 1894; twenty went to Durand-Ruel in 1895. Shadow reads as violet, never black.",
+ "deep": "Stone that has lasted eight centuries is offered here as something as transient as weather. Sunlight rakes across the front from the right, so colour does the whole structural argument: warm ivory and apricot where the sun lands, violet and slate-blue where it doesn't — no black anywhere, shadow rendered as a cool complement rather than an absence. The facade fills nearly the whole field, cropped tight with almost no sky, flattening the building into a wall of pigment the eye has to decode from a distance. Every detail you expect — the rose window's tracery, the carved jambs of the portal — dissolves into a smudge of broken colour, refusing to be described. The paint itself is thick and ridged, crust matching stone, light made physical by the very weight of the impasto.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"claude-monet-the-houses-of-parliament-sunset": {
+ "about": "Painted from a terrace at St Thomas's Hospital across the Thames, this belongs to Monet's nineteen-canvas Parliament set, worked over winter campaigns from 1899 and finished at Giverny, dated 1903. He was chasing London's fog, not the stone.",
+ "deep": "A monument is only ever the light falling on it, and here the light has all but won. The Palace of Westminster — every pinnacle, every ton of stone — is reduced to a flat blue-violet cutout pressed between two fires: a sky of coral and lemon above, a river broken into shimmering dashes of the same warm tones below. The building offers no detail to hold — no windows, no carved surface, nothing that reads as solid. Warm sky bleeds right up to the silhouette, so every edge shivers rather than cuts. A small dark boat anchors the lower center, the single thread tying the light-show back to a real river. The serial logic matters: this was one of nineteen views worked from the same hospital window across autumn campaigns, finished later in the studio — chasing fog and threshold-hour dissolution, not the site.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"james-tissot-hide-and-seek": {
+ "about": "By c. 1877 Tissot shared his St John's Wood studio with Kathleen Newton, his companion and constant model, shown reading while her nieces and small daughter hide in the object-dense gloom; a dropped ball marks play abandoned mid-game.",
+ "deep": "Childhood is set loose inside a shrine of adult acquisition, and the painting dares you to find what the room is hiding. Nearly the entire canvas is given over to warm, object-dense shadow — Persian carpet, animal skins, blue-and-white porcelain — so that light becomes an event wherever it lands: the white dress of a small girl mid-crawl, the pale head of a reading woman, a lamp's glow, a doorway onto open green. The hidden children surface only on the second or third look, which is exactly the game; the viewer and the seeker are put in the same position, scanning the gloom. The calm woman at centre, absorbed in her paper, is the still hub the scrambling revolves around and ignores. A red ball abandoned on the bare floor says everything: play dropped the instant the hiding began.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"jean-beraud-paris-rue-du-havre": {
+ "about": "After fire gutted Au Printemps in March 1881, Béraud painted its scaffolded reconstruction around 1882 from a curtained cab at the kerb, catching Parisians unposed. One woman walks against the crowd's sideways drift, unescorted and self-possessed.",
+ "deep": "She alone walks toward you — everyone else streams sideways or dissolves into depth — and that single reversal is the whole picture's argument. Unescorted, parcels in hand, moving through a commercial street as if she owns it, she is a quietly radical figure: the self-possessed Parisienne the era found both fascinating and faintly unsettling. Behind her a wall of advertising blazes in the only saturated colour the otherwise silver-grey canvas permits, announcing a department store rebuilding from ruin. Scaffolding hangs above it all. The top hats of the crowd dissolve into smears; the porter with his basket disappears at the edge. The city is simply going about its business, and she is going about hers.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"august-macke-people-by-the-blue-lake": {
+ "about": "Painted on Macke’s 1913 lakeside stay at Hilterfingen, one of two near-twin versions he set down — bourgeois leisure turned into warring planes of color. He was killed in the war at 27 a year later.",
+ "deep": "Ordinary afternoon, extraordinary surface: three figures in a garden become pretexts for tuned color at war with itself — orange ground against blue lake, red branch against green canopy, dark jacket against white dress, every boundary left vibrating rather than blended. The figures are types, not portraits — faceless, sealed inside their own silence, all three gazing at something outside the frame you never see. A child dissolves into the warm earth it stands on; the man holds himself stiff and separate; between them, flat blue patches name the water without opening any depth. The whole canvas reads sideways, not inward. What draws you is not the scene but the sensation it has become: leisure held briefly inside an intensified world, its warmth already tipping toward an end.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
 };

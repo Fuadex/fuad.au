@@ -49,6 +49,658 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+"joachim-patinir-the-flight-into-egypt": {
+ "see": "A tall vertical panel in which the story is tiny and the world is enormous. Pale, splintered rock pinnacles rear up left of center like a broken tooth, catching a chalky light against a green-blue sky streaked with cloud and a scatter of birds. Down at the pivot of the picture, the Holy Family crosses a scrubby track: Mary in white and blue rides a grey donkey with the infant at her breast, bearded Joseph pacing beside with a staff. From there the land tips open to the right into a vast river valley, hamlets and a walled town dropped into the greens, mountains fading to pale blue on the far horizon. The eye is pulled first to the bright rock, then down to the little travelers, then out across the receding distance, so that you read the whole earth before you notice the people moving through it.",
+ "about": "The subject is flight and refuge: Joseph leading Mary and the newborn Christ out of Herod's reach into Egypt, the sacred family reduced to two anxious figures on a donkey. But the picture is really about the world they pass through. The painter makes the human drama a small event inside a created cosmos, so that faith is felt less as story than as scale, the traveler dwarfed by mountains, water and sky the way a soul is dwarfed by providence. The wild, gnawed rock and the ordered farmland in the distance set wilderness against settlement, danger against the promise of a place to arrive. It is a devotional image that asks you to meditate not on a face but on the whole span of the earth God made, with salvation a quiet thread crossing it.",
+ "craft": "The panel builds depth in the color bands that were Patinir's own formula: warm browns and greens in the foreground, cooler greens through the middle, and a wash of pale blue where mountains dissolve into sky. That layering does the work of distance without any hard perspective lines. The painter sets the high vantage point above the travelers so the land unrolls beneath you like a map, and counterweights the composition, heavy pale rock on the left, empty airy valley on the right, with the figures wedged exactly at the balance point. The rock is painted in flat, geological facets, almost abstract, while the far towns are laid in with a jeweller's fine touch, tiny strokes for roofs and walls. The contrast of blunt near-form and delicate far-detail keeps the eye traveling.",
+ "context": "This little panel is the work of an anonymous follower of Joachim Patinir, made around 1550 to 1575, roughly a generation after Patinir's death in 1524. Joachim Patinir, working in Antwerp early in the century, is often called the first Western painter to treat landscape as the true subject rather than a backdrop, and effectively invented the panoramic world-landscape; this picture is a follower's continuation of that formula, not its origin. Antwerp fed a demand for small, portable devotional panels that let a viewer wander imaginatively through scenery, and the Flight into Egypt was a favorite pretext. The wildly eroded rock formations are Patinir's signature invention, a fantasy geology the follower borrows wholesale. For centuries the little panel passed as good enough for imperial company: it hung in the Habsburg imperial collection at Vienna's Belvedere by the 1780s, before later scholarship reassigned it to a follower's hand, a reminder of how convincingly Patinir's formula could be carried on by his imitators.",
+ "deeper": [
+  {
+   "t": "The broken pinnacle",
+   "x": 0.2,
+   "y": 0.1,
+   "w": 0.34,
+   "h": 0.42,
+   "body": "This pale, jagged spire is the thing that seizes the eye from the far side of the room, and it is pure invention. No cliff erodes into these sheer, fluted stacks; the painter has built a fantasy geology out of flat, faceted planes of grey and cream, lit as if from the open sky. Notice how little real texture there is, close up it is almost abstract, slabs and wedges rather than observed stone. Its job is structural: a tall bright mass on the left to hold the whole vertical panel together and to make the small figures below it read as fragile. This weird rock is Patinir's trademark, and the follower who made this panel repeats it faithfully, one of the clues that it belongs to Patinir's circle rather than his own hand."
+  },
+  {
+   "t": "Mary and the child",
+   "x": 0.44,
+   "y": 0.46,
+   "w": 0.18,
+   "h": 0.19,
+   "body": "At the exact balance point of the composition, where the heavy rock on the left meets the open valley on the right, sits the reason for the whole picture: Mary in a white head-cloth and blue mantle, cradling the infant Christ against her as the donkey carries them along the track. The scale is startling once you find it, the sacred family is barely taller than the shrubs beside the path. The painter gives them just enough color, the warm reds and blues of the drapery, to catch the eye against the greens, but no more. He wants you to feel that the holiest event in the story is a small, quiet passage through an immense and indifferent world, the drama carried by placement rather than size."
+  },
+  {
+   "t": "Joseph on foot",
+   "x": 0.33,
+   "y": 0.48,
+   "w": 0.15,
+   "h": 0.19,
+   "body": "Beside the donkey walks Joseph, bearded and stooped, a staff in his hand and a bundle at his side, the human labor of the flight given to him. Where Mary rides and is still, he is caught mid-stride, leading, doing the anxious work of getting the family out of danger. His duller earth-toned cloak sets off the brighter blue of Mary above him, so the pair reads as a small unit of motion crossing left to right, the same direction the whole landscape flows. He is the note of effort and worry in the scene: the picture's calm belongs to the land, not to the travelers, who are hurrying through it under threat."
+  },
+  {
+   "t": "The valley opens",
+   "x": 0.6,
+   "y": 0.38,
+   "w": 0.35,
+   "h": 0.2,
+   "body": "Turn right and the earth simply falls away into distance. The painter drops a whole populated valley below the horizon line, a walled town and scattered hamlets set among fields and stands of trees, threaded by water that catches the light. Look how small and fine the touch becomes here, single strokes standing in for a roof, a tower, a wall. This is the ordered, settled world, safety and arrival, held out against the wild rock the family is leaving. The high viewpoint turns the land into something you look down on and across at once, a map you could walk into, which is exactly the imaginative journey these panels were made to invite."
+  },
+  {
+   "t": "Mountains into sky",
+   "x": 0.62,
+   "y": 0.28,
+   "w": 0.34,
+   "h": 0.12,
+   "body": "At the far edge the last ridges bleed from green to a cool, milky blue and finally vanish into the haze of the sky. This is the top of Patinir's color recipe: warm and dark up close, cooler in the middle, and this pale wash of atmosphere at the limit of sight. The painter is faking the way air thickens over distance, and doing it purely by the choice of a bluer, lighter color. It is a small band of paint but it is where the picture's depth actually lives, the thing that makes the whole valley feel like miles rather than inches."
+  },
+  {
+   "t": "The framing crags",
+   "x": 0.02,
+   "y": 0.72,
+   "w": 0.96,
+   "h": 0.27,
+   "body": "The very bottom of the panel is walled in by dark, weathered rock, a stony threshold that runs across the foreground and climbs the right edge in shadow. This near ground is painted warm and heavy, all browns and deep greens, the opposite of the pale distance above. It works like a curtain drawn across the lower stage: it hems the travelers onto their narrow track, hides where they came from, and pushes your eye up and back into the lit valley beyond. Standing back, you see the whole design as a set of screens, dark rock in front, bright fantasy pinnacle behind, open world beyond that, with the human story threaded through the single gap between them."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"hendrick-ter-brugghen-bagpipe-player": {
+ "see": "A single half-length man fills the frame, turned in strict profile to the right, caught mid-breath with the mouthpiece of a bagpipe clamped in his lips. He crowds the picture: shoulder, cheek and the swelling tan bag press almost to the edges, so the figure reads as near and warm rather than posed at a distance. Light falls from the left and rakes across a bare shoulder, the soft brown cap and the ridge of the nose, then drops the far side of the body into a low amber gloom. Two long pipes rise on a diagonal from behind, cutting up toward the top-left corner and countering the round mass of bag and head. The palette is a narrow band of browns, ochres and grey, relieved only by the loose white shirt sliding off the shoulder. Nothing frames him; the background is a bare, warm wall.",
+ "about": "This is one of a group of single half-length musicians and drinkers that Utrecht painters brought home from the appetite for Caravaggio in Rome. The bagpiper is not a portrait of a named man but a type: the low-life entertainer, the rustic piper, a figure the period read with a mix of amusement and unease. The instrument itself carried meaning. The droning bagpipe was proverbially coarse, associated with peasant festivity, with drink, and in older imagery with foolishness and appetite; here it is given a big, sensuous, unembarrassed close-up. What the picture is really about is presence and immediacy over story. There is no scene, no anecdote, no moral label, only a body absorbed in the physical labour of making sound. The subject is the encounter itself: you are placed close enough to hear him.",
+ "craft": "The whole design turns on two shapes in tension. A round cluster, the domed cap, the cheek, the ballooning bag, gathers at the centre, and against it the pipes are laid as long straight diagonals shooting to the upper left. That single crossing keeps a very compressed image alive. Ter Brugghen tunes his light to a restricted range: a few illuminated planes, the shoulder, the shirt, the lit side of the face, ride on a warm mid-tone, and he lets the shadows stay transparent rather than black, so the far cheek and the underside of the bag glow instead of dying. The brushwork shifts by material, dry and crisp on the turned wood of the pipes, broad and fluid in the drapery, softly blended in the flesh. The tight cropping is the boldest decision: by denying us any setting he forces all attention onto texture, breath and the act of playing.",
+ "context": "Hendrick ter Brugghen (1588-1629) worked in Utrecht and had spent years in Italy, having left Holland in 1607 to absorb Caravaggio's dark-ground realism and half-length figures at first hand. Back north he became a leading Utrecht Caravaggist, and this canvas is signed and dated 1624, at the height of his powers, a few years before his early death. The inscription, HTBrugghen fecit. 1624 with the initials tangled into a monogram, sits openly in the upper right of the field. Single musicians like this were made in pairs and series for the open market rather than on commission, meant to hang as lively, half-comic companions. Ter Brugghen's particular contribution was to cool and refine the Italian formula: softer, greyer light and a more tender handling of flesh than the harsher Roman manner. This particular canvas, prized ever since, was later restituted to the heirs it had been wrongfully taken from and now belongs to a major public collection.",
+ "deeper": [
+  {
+   "t": "The mouthpiece and the breath",
+   "x": 0.5,
+   "y": 0.19,
+   "w": 0.18,
+   "h": 0.16,
+   "body": "Start where the picture starts: the lips closed around the short blowpipe. The mouth is pursed and working, the cheek slightly tensed, and a thin moustache and soft beard catch the light along the jaw. This is the hinge of the entire image, the one point where the man and his instrument physically join. Ter Brugghen paints it without caricature; the effort is real but dignified, a person mid-note rather than a clown puffing. Notice how the profile is kept crisp against the plain ground so the act of blowing reads instantly, before you have taken in anything else. Everything downstream, the filling bag, the sounding pipes, depends on this small dark aperture where air goes in."
+  },
+  {
+   "t": "Two drones on the diagonal",
+   "x": 0,
+   "y": 0.04,
+   "w": 0.45,
+   "h": 0.44,
+   "body": "Follow the pair of long pipes as they climb from behind the shoulder to the top-left corner. These are the drones, the fixed-note pipes that give a bagpipe its continuous hum, and here they are turned wood banded with paler ferrules that flare open at the ends. Compositionally they do the heavy lifting: two rigid parallel lines set against the soft round mass of head and bag, pulling the eye up and out of the tight huddle at the centre. Ter Brugghen paints them dry and exact, each collar of the wood catching a small hard highlight, so they feel like real machined objects sitting in the same air as the yielding flesh below. Without them the design would collapse inward."
+  },
+  {
+   "t": "The turned wood, up close",
+   "x": 0.26,
+   "y": 0.28,
+   "w": 0.2,
+   "h": 0.2,
+   "body": "Where the pipes cross the shoulder the painter slows down and describes the joinery: swelling bulbs, incised rings and metal-collared joints of lathe-turned wood, each segment given its own small run of highlight and shadow. This is the passage that proves the instrument is observed, not invented. The precision here is deliberately set beside the loose, wet handling of the white shirt just below it, and the contrast is the point: hard craft against soft cloth, made thing against living body. It is a quiet demonstration of range, a reminder that the same brush can be a tool of exact drawing or of pure feel depending on what the surface asks for."
+  },
+  {
+   "t": "Shoulder bared, shirt slipping",
+   "x": 0.1,
+   "y": 0.32,
+   "w": 0.32,
+   "h": 0.28,
+   "body": "The brightest note in the picture is the white shirt sliding off the near shoulder to leave the flesh bare and fully lit. It is the lightest value on the canvas and it anchors the whole tonal scheme, the pale peak against which every brown is measured. The undress is not accidental. It signals the low, informal world of the tavern entertainer rather than the buttoned respectability of a burgher portrait, and it gives the raking light a broad expanse of skin to model. Look at how few strokes carry the shoulder: a lit ridge, a soft turn into half-shadow, and the round of the joint reads as solid form. The linen beside it is painted wetter and looser, folds suggested rather than drawn."
+  },
+  {
+   "t": "The filling bag",
+   "x": 0.48,
+   "y": 0.44,
+   "w": 0.24,
+   "h": 0.24,
+   "body": "At the centre swells the bag itself, a smooth tan reservoir of air pressed against the chest and cradled by the arm. Its rounded, almost featureless mass is the visual bass note of the painting, a big warm sphere that answers the dome of the cap above. Ter Brugghen models it with the barest gradients, a slow slide from lit crest to shadowed underside, so it feels taut and inflated, genuinely full of breath. Because it is so plain it lets the busier passages, the pipes, the fingering hand, the face, register as incident against it. This is the engine of the instrument, the thing the man is constantly feeding, and its calm surface is what makes the surrounding activity legible."
+  },
+  {
+   "t": "Fingers on the chanter",
+   "x": 0.7,
+   "y": 0.6,
+   "w": 0.24,
+   "h": 0.3,
+   "body": "The right hand closes over the chanter, the fingering pipe that hangs down from the bag and actually plays the tune. The knuckles and tendons are lit and specific, the fingers curled to the holes, a real working hand rather than a decorative one. This is the second point of physical contact with the instrument, balancing the mouth above, and together they bracket the figure between breath and touch. The pipe drops out of the bottom of the frame, its dark bore and pale wood just catching the light. Ter Brugghen lets the hand carry the lower half of the picture the way the face carries the upper, so the eye travels a full diagonal from lips to fingertips and back."
+  },
+  {
+   "t": "Signed and dated in the open",
+   "x": 0.72,
+   "y": 0.18,
+   "w": 0.22,
+   "h": 0.12,
+   "body": "Up in the bare upper-right field, floating on the plain ground beside the player's head, is the painter's inscription: HTBrugghen fecit. 1624, the initials knotted into a monogram. He places it in clear space rather than hiding it in a shadow, an assertion of authorship on a picture made for open sale rather than a private commission. Sitting in the emptiest part of the canvas, it also does a small compositional job, weighting the top-right so the figure, who leans and looks to the right, is not left tilting into a void. It is the one piece of writing in an image otherwise built entirely from breath, wood, cloth and flesh, and it fixes the whole to a single confident moment in 1624."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"bartolome-esteban-murillo-the-return-of-the-prodigal-son": {
+ "see": "Two bodies lock in the centre and everything else bends toward them. The son kneels in shadow, stripped to the waist, his skin a warm brown against the rags slipping off his hips; the father stoops over him in a rose cloak that is the loudest colour in the picture. Their hands do the storytelling — the old man's palms settle on the ragged shoulder and back, the son's arm folds against his father's chest. To the left a servant, a small boy and a calf press in from a darker, cooler zone. To the right a bright cluster of attendants carries a robe, a bowl and shoes. A small white dog rears on its hind legs at the join between the two halves, its pale coat catching the same light as the son's back. Overhead the sky curdles grey and silver above a run of cool stone architecture.",
+ "about": "This is the moment of forgiveness before a word is spoken. Luke's parable turns on a father who runs to meet a son who wasted his inheritance, and Murillo paints the instant of contact — not the confession, not the feast, but the embrace that pardons in advance. The son arrives with nothing: bare skin, torn cloth, bare feet, the posture of a beggar. The father answers not with judgement but with the trappings of restored sonship, and Murillo makes those trappings literal in the gifts moving in from the right — the fresh robe, the ring, the shoes that a servant will put on the returned son's feet. The story is really about the gap between what the son deserves and what he is given, and the picture stages that gap as a physical space being closed by an old man's arms.",
+ "craft": "Murillo builds the scene as two weighted groups hinged on a diagonal of light. A pale beam falls from upper left across the son's back and the father's face, then hands off to the bright servants on the right, so the eye is walked from ruin to restoration in a single sweep. The ragged son is the tonal low point — earth browns, a dropped grey rag — while the rose cloak above him and the lemon-gold tunic to the right are the two chords that pull the composition open. He softens every edge; contours melt into shadow so the embrace reads as merging rather than meeting. The architecture is kept plain and cool, a neutral stage that throws all saturation onto the figures. Even the dog is a compositional tool: its white body plugs the empty foreground and its upward leap rhymes with the father's downward stoop.",
+ "context": "Murillo painted this around 1667 in Seville, at the height of his reputation as the city's great religious painter. The vast canvas is one of eight he made for the Hospital de la Caridad, the charitable brotherhood to which he himself belonged, a cycle that pairs the corporal works of mercy with scenes of divine compassion; this one embodies clothing the naked, the ragged son about to be robed. Its warm, tender handling is the quality that made his devotional pictures beloved and, later, endlessly copied. He worked in a Seville shaped by Counter-Reformation piety and by the confraternities and charitable hospitals that commissioned art meant to move ordinary worshippers — images built to make mercy feel immediate rather than doctrinal. That aim explains the register here: no theatrical martyrdom, just a family reunion staged so the viewer feels the relief in their own chest. The softness that reads as sweetness was, in his own century, taken as devout sincerity.",
+ "deeper": [
+  {
+   "t": "The hands that pardon",
+   "x": 0.28,
+   "y": 0.4,
+   "w": 0.26,
+   "h": 0.2,
+   "body": "Start where the whole picture is decided: the father's two hands. One settles flat on the son's bare shoulder, the other curls around his back, and neither grips — they receive. Murillo keeps the fingers soft and slightly parted, the gesture of someone drawing a body in rather than holding it still. The son's own arm answers, folded up against the old man's breast, so that the two figures interlock like a single form. No face is doing the work here; the forgiveness is entirely in the touch, and the painter has thrown his warmest light exactly on this seam so the eye reads it first and lingers."
+  },
+  {
+   "t": "A face turned up",
+   "x": 0.28,
+   "y": 0.24,
+   "w": 0.22,
+   "h": 0.24,
+   "body": "The son's face tilts up into his father's, mouth slightly open, eyes lifted — the look of someone braced for a verdict that never comes. His dark hair falls unkempt and his jaw carries a traveller's stubble, small truths that keep him human rather than symbolic. Above him the father's head bows in profile, bearded and grave, cheek almost touching the younger man's brow. Murillo stacks the two heads on a near-vertical so the reunion reads as one continuous gesture from crown to crown. The tenderness is unshowy: no tears painted in, just the geometry of one head bending to meet another."
+  },
+  {
+   "t": "Rags and bare feet",
+   "x": 0.22,
+   "y": 0.5,
+   "w": 0.28,
+   "h": 0.46,
+   "body": "Follow the son down and the story of his absence is written on his body. A grey cloth has slipped to the waist, a coarse animal-skin garment hangs from his hip, and his feet are bare, dirty and splayed on the cold step. This is the visual argument for why the gifts matter: he owns nothing, not even shoes. Murillo paints the ruined cloth with real relish — the dropped drapery is some of the loosest, most tactile brushwork in the canvas — and lets the foot on the stone catch a raking light so you register its bruised, road-worn state. Poverty here is not abstract; it is a specific dirty heel on a specific cold step."
+  },
+  {
+   "t": "The leaping dog",
+   "x": 0.37,
+   "y": 0.72,
+   "w": 0.18,
+   "h": 0.26,
+   "body": "A small white dog rears up on its hind legs at the very centre of the foreground, front paws pawing the air toward the returning son. It is the one figure that has no doubt at all: the household animal recognises its master before any human ritual confirms him. Compositionally the dog is doing heavy lifting — its bright coat fills what would otherwise be a dead patch of floor, and its upward lunge mirrors, in miniature, the father's downward stoop, so the two acts of welcome rhyme across the picture. Murillo uses it to carry warmth into the lower frame and to soften a sacred scene with a domestic, almost comic note of pure recognition."
+  },
+  {
+   "t": "The gifts of restoration",
+   "x": 0.62,
+   "y": 0.3,
+   "w": 0.26,
+   "h": 0.36,
+   "body": "The right side is a small procession of restored status. A young servant in a lemon-gold tunic carries the fresh folded robe, and a companion beside him holds up the ring — the two tokens that in the parable turn a beggar back into a son and heir. Nearby hands reach with a shallow bowl and a boy stoops with the shoes that will go on those bare feet. Murillo saves his cleanest, most jewel-like colour for this group — the gold, the blue drapery, the pale linen — so that restoration literally arrives brighter than the ruin it answers. Read left to right, the picture moves from a naked back to a fresh robe: the whole parable compressed into a horizontal drift of light."
+  },
+  {
+   "t": "The fatted calf enters",
+   "x": 0,
+   "y": 0.3,
+   "w": 0.24,
+   "h": 0.55,
+   "body": "In the shadowed left margin a figure shoulders a raised axe, a small boy tugs at a rope, and a pale calf is led in from the edge of the frame. This is the fatted calf of the parable, the one to be killed for the celebration feast — the axe is the instrument that will do it — and Murillo plants the group at the very moment of the embrace so the promise of the feast is already visible while the reunion is still happening. He keeps this corner cool and dim, a muted counterweight to the bright gifts opposite, and the calf's white flank quietly echoes the son's bare back and the dog's coat. It is the future of the story creeping in at the corner: mercy will not stop at forgiveness, it ends in a party."
+  },
+  {
+   "t": "Cool stone, curdled sky",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 0.3,
+   "body": "Step back and notice how little the setting competes. Behind the figures a plain classical column and blocks of grey stone give the scene a stage without decoration, and above them the sky is worked into a bank of silver-grey cloud with a break of light over the son. Murillo drains this whole upper zone of saturation on purpose: with the architecture and sky held to neutrals, every warm note — the rose cloak, the gold tunic, the flesh, the dog — burns brighter by contrast. The single shaft of pale sky opening above the embrace does the quiet theological work, letting a wash of light fall precisely where father meets son without a single visible source."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"henry-fuseli-oedipus-cursing-his-son-polynices": {
+ "see": "Four figures fill a shallow, near-black space, and almost every limb is a diagonal that drives across the picture. From the deep right an old man lunges: white hair flying, one bare arm shot straight across the canvas, a single finger dropped like a blade toward the huddled youth at the lower left. That youth, wrapped in a hot ochre tunic banded with white, has folded away from him, hands clamped over his face. Between them a woman rises pale and vertical, one hand thrown up flat as a barrier. On the right a second woman collapses into herself, face pressed to her knee. The lit flesh and drapery burn out of a brown-black ground that has almost no floor and no sky; the eye is thrown from the accusing finger, up the arm, to the furious face, then dropped to the cowering son.",
+ "about": "This is the moment a curse is spoken. In the Theban story Oedipus, blind and exiled, is begged by his son Polynices to bless the war he means to wage on his own brother for the throne; instead the father condemns both sons to die by each other's hand. Fuseli freezes the sentence at the instant of utterance, so the painting is really about the terrible authority of a word. Everything hangs on the pointing hand and nobody can arrest it. The two daughters carry the reaction the son cannot: one tries physically to stop the mouth of fate, the other has already surrendered to it. It is less an illustration of a play than a study of a family destroying itself, the father's rage and the children's helplessness locked in the same airless room, with no exit painted anywhere behind them.",
+ "craft": "Fuseli builds the whole design on one unbroken line: the old man's shoulder, arm and finger form a rigid horizontal spear that splits the canvas and lands on the son. Against it he sets counter-diagonals, the son's curved recoil, the standing woman's raised arm, so the composition reads as force meeting resistance. The bodies are Michelangelesque, over-muscled and torqued beyond life, learned in Rome from the Sistine and the antique. Colour is starved on purpose: he lets a few zones of warm light, the ochre tunic, the old man's flank, the women's white, do all the work, then drowns everything else in bituminous shadow so the figures seem lit by the drama itself rather than any lamp. The near-total absence of setting is the boldest decision; he refuses landscape or architecture so nothing dilutes the human charge.",
+ "context": "Fuseli, a Zurich-born painter working in London, made this in 1786, at the height of a taste for the sublime and terrible that he did more than anyone to feed. He is the man of The Nightmare, and the same appetite for extreme passion and strained anatomy runs here. The subject comes from Sophocles' Oedipus at Colonus, but the treatment owes as much to his years copying Michelangelo in Rome in the 1770s. Theatrical, literary history-painting like this was his bid for serious standing in the London art world, where he would become a Royal Academician and eventually its Professor of Painting; he showed this canvas at the Royal Academy in 1786. The picture belongs to a generation reaching past pretty subjects toward Greek tragedy and Milton for material equal to their ambition.",
+ "deeper": [
+  {
+   "t": "The finger that damns",
+   "x": 0.37,
+   "y": 0.4,
+   "w": 0.16,
+   "h": 0.13,
+   "body": "Start where the eye is forced to start. The old man's hand hangs at the exact centre of the canvas, index finger extended and dropped downward at the son, the rest of the fist curled hard. It is the target of every line in the picture and the thing the whole design exists to deliver. Note how little it does and how much it carries: no gesture of striking, just a point, and yet it functions as the curse made visible. Fuseli isolates it against the mid-brown of the drapery so nothing softens its edge. This is the pivot on which father and children hang, the sentence in mid-air before it lands."
+  },
+  {
+   "t": "Oedipus in fury",
+   "x": 0.57,
+   "y": 0.16,
+   "w": 0.22,
+   "h": 0.21,
+   "body": "Follow the arm up to the head. White hair and beard blow back as if in a wind that touches nothing else, the brows knot down, the mouth sets. This is the blind, exiled king, and Fuseli gives him the massive frame and swollen musculature he brought home from Michelangelo, aged but not weakened. The lighting rakes across the face so the scowl reads instantly from a distance. He leans his whole body into the curse from the darkness on the right, more emerging force than seated man. The eyes are the one place the picture asks for tragedy rather than rage; look for the grief pooled under the anger, the sense that he knows what the word will cost."
+  },
+  {
+   "t": "Polynices recoiling",
+   "x": 0,
+   "y": 0.4,
+   "w": 0.37,
+   "h": 0.56,
+   "body": "The son takes up the lower left in a knot of ochre and bare limb. He does not argue or plead; he has already folded, kneeling, twisting his torso away and jamming both hands against his face and skull as if to shut the words out physically. The pose is pure recoil, a body absorbing a blow it cannot dodge. Fuseli dresses him in the one hot colour in the room, a saffron tunic sashed in white with a fall of dull red beneath, so the condemned man is also the brightest thing in the picture. The muscular back and straining arms turn private despair into something monumental, grief given the scale of the anatomy that carries it."
+  },
+  {
+   "t": "The hand that would stop it",
+   "x": 0.41,
+   "y": 0.27,
+   "w": 0.13,
+   "h": 0.11,
+   "body": "Between the two men a pale palm is thrown up flat, fingers spread, pushing back against the father's arm. It belongs to the standing daughter and it is the picture's one act of resistance, an attempt to physically block a curse that words cannot recall. Set it beside the old man's pointing hand just below and to the right: two hands, inches apart, one condemning and one forbidding, and the whole tragedy is the gap between them. Fuseli lights the palm brightly and turns it fully to us so its meaning is unmistakable. It is a barrier that will not hold, and the composition already knows it, the father's line runs straight through."
+  },
+  {
+   "t": "Antigone between them",
+   "x": 0.27,
+   "y": 0.15,
+   "w": 0.16,
+   "h": 0.22,
+   "body": "The daughter who raises that hand, Antigone, rises vertically at the centre, the still axis around which the horizontal fury turns. Her brown curls and grave profile turn toward her father, and she works with both arms at once, one reaching to shield her brother, the other thrown up to restrain the old king, the loyal child who followed the blind man into exile now standing in the one place she should not, between his mouth and her brother. Fuseli makes her the coolest passage in the painting, pale drapery, level gaze, so her steadiness reads against the old man's storm. She is the moral centre precisely because she is the only figure still trying to change the outcome while everyone else acts it out."
+  },
+  {
+   "t": "Ismene surrendered",
+   "x": 0.6,
+   "y": 0.42,
+   "w": 0.38,
+   "h": 0.52,
+   "body": "The fourth figure, the fair-haired daughter Ismene, closes the right side and answers the son across the canvas. Where he recoils in bright ochre, she sinks inward in shadow, kneeling weak and despairing with her head dropped against her father's knee. She has stopped resisting; grief has become a posture of total withdrawal. Fuseli half-swallows her in the dark so she reads as a weight sinking rather than a body sitting, the future already mourned. Balancing the composition, she gives the design its second heavy corner and completes the family's spread of responses: rage, resistance, recoil, and here, surrender. Read her last and the picture resolves into a single spectrum of helplessness under one man's word."
+  },
+  {
+   "t": "A room with no way out",
+   "x": 0,
+   "y": 0.06,
+   "w": 0.24,
+   "h": 0.4,
+   "body": "Step back to the edges and notice what is missing. Apart from a smear of dim foliage at the upper left, there is no setting at all, no floor to speak of, no wall, no sky, only a warm-black void that the figures loom out of. This is Fuseli's most radical choice and the reason the scene grips: he strips away everything that might place or console the eye, leaving the drama nowhere to escape to. The darkness is not empty background but active pressure, closing the family into the moment of the curse. Let your eye try to leave the figures here and it simply falls into brown shadow and is sent back to the finger. The picture is a trap, by design."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"caspar-david-friedrich-northern-landscape-spring": {
+ "see": "More than half the panel is sky, a cold slate blue that darkens toward the upper corners and thins to a milky pallor along the horizon, as if the light were being poured in from below rather than above. Under it the land lies in flat horizontal bands: a low chain of snow-streaked hills, then a broad pale sheet of frozen water, then a heath foreground of hummocks in warm ochre and brown, snow still caught in their hollows and thin green pushing through. The whole thing is built out of stacked horizontals, calm to the point of stillness. The only vertical incident is minute, two dark specks near the center where the pale sheet meets the near bank. The eye travels the width slowly and keeps returning to that gap.",
+ "about": "Friedrich almost never paints a place for its own sake, and the title tells you what to look for: spring, but a northern one, arriving as a thaw rather than a bloom. The picture is about a threshold, the exact moment winter loosens its grip. Snow lingers in the hollows while the first green edges in; the ice on the flat still holds but the air has gone soft and luminous. Two tiny hunters stand out on that hinge, dwarfed by a world that predates and outlasts them, and their presence is the point: even this inhospitable far-northern waste is inhabited, human life persisting where almost nothing else does. The subject is really the human scale against geological and seasonal time, and the quiet consolation that the season, and by implication the person, turns again toward light.",
+ "craft": "The composition is almost brutally simple, a stack of near-horizontal registers, and Friedrich makes that simplicity carry weight by controlling one thing above all: the light. He drains warmth from the sky and hoards it in the foreground, so the ochre dunes glow against the cold blue and the pale central sheet becomes the brightest note in the picture, an anchor for the eye. Distance is handled by pure atmospheric recession, each hill-range a fainter, bluer wash than the one before, no hard edges to arrest the retreat. Then the whole vast field is pinned by two hunters painted a few millimetres tall, a deliberate mismatch of scale that lets emptiness read as sublime rather than merely empty, and that plants a sign of habitation where the eye expects none. Nothing is dramatic; everything is placed.",
+ "context": "Friedrich (1774-1840) was the central figure of German Romantic landscape, a Baltic-born painter whose snow, sea, and lone figures made nature a vehicle for feeling and faith. This spring scene comes from around 1825, when his reputation had begun to slip against a younger taste for brighter, more naturalistic painting, though the disabling strokes and death that would end his career still lay more than a decade off. Its restraint, and its theme of a hard season turning back toward light, sit naturally against that mood. The far-northern setting is imagined rather than recorded: the distant range derives from a Dresden-area sketchbook, and the heath and frozen water flats belong to no single observed place.",
+ "deeper": [
+  {
+   "t": "The two hunters",
+   "x": 0.52,
+   "y": 0.62,
+   "w": 0.13,
+   "h": 0.12,
+   "body": "Everything in the picture is arranged to deliver you here, and the payoff is two silhouettes barely taller than a brushstroke, standing at the near lip of the pale flat. They are hunters, one carrying a bow, the other what reads as a spear, and that detail changes what they mean: not idle contemplatives but working figures, proof that human life reaches even into this frozen waste. Placed almost dead center on the horizontal axis, they are the one vertical accident in a world of stacked bands, and the eye snags on them precisely because they are so small against so much. Without them the vastness has no measure; with them the whole expanse suddenly acquires human scale and a faint tenderness."
+  },
+  {
+   "t": "The luminous flat",
+   "x": 0.3,
+   "y": 0.66,
+   "w": 0.55,
+   "h": 0.12,
+   "body": "The brightest thing in the painting is not the sky but this broad pale sheet running across the middle distance, a frozen, snow-covered water surface catching the thaw-light. Friedrich uses it as the picture's optical anchor: warmth and light are concentrated here and in the heath, while the sky stays cold, an inversion of the usual landscape logic where brightness lives overhead. Note the low brown bank and reed-line that hem it, and how its glow leaks toward the horizon. This is where spring is actually happening, the ice thinning toward release, and it is also the stage the two hunters stand at the edge of."
+  },
+  {
+   "t": "Receding hill-ranges",
+   "x": 0.14,
+   "y": 0.45,
+   "w": 0.72,
+   "h": 0.17,
+   "body": "Distance here is built entirely from air, not line. The nearer ridge carries some modeling and streaks of snow across its flank; the range behind it is fainter and bluer; the farthest melts almost into the sky. There is no crisp contour anywhere to stop the eye, which is exactly the point, the land dissolves gradually into atmosphere so the recession feels endless. Friedrich learned this cool, layered blue from long study of northern light, and he uses it to make a shallow band of hills feel like the edge of a continent. The snow caught along the slopes also fixes the season precisely: winter retreating up the heights while the lowland thaws."
+  },
+  {
+   "t": "The warm heath",
+   "x": 0,
+   "y": 0.72,
+   "w": 0.42,
+   "h": 0.24,
+   "body": "The foreground is a cluster of heath hummocks in ochre and russet, the warmest passage in an otherwise frozen palette, and it is doing quiet, precise work. This warmth is what makes the sky read as cold by contrast, and it plants the viewer on solid, tangible ground at the near edge before the eye is sent off across the flat. Look at the modeling of the mounds, the way light rakes their crests and pools shadow in the troughs; it is unshowy but exact. Friedrich is grounding the whole airy composition in something you could stand on, the near end of the human world."
+  },
+  {
+   "t": "Snow and first green",
+   "x": 0.18,
+   "y": 0.86,
+   "w": 0.5,
+   "h": 0.13,
+   "body": "Down in the hollows of the near heath the season is spelled out in small marks: white snow still lying in the shaded pockets, and threaded through it the first thin green of new grass and moss. This is the literal argument of the title, spring as a contested edge rather than a triumph, winter not yet gone and growth not yet sure. The brushwork loosens here into flecks and dabbles, warmer and more tactile than anything in the distance. It is the smallest telling detail in the picture and the one that dates the exact week of the year: the thaw caught in the act, cold and renewal sharing the same square foot of ground."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"claude-monet-rouen-cathedral-west-facade-sunlight": {
+ "see": "The whole surface is stone dissolved into light. There is barely any drawing here: the facade is built from thousands of short, loaded strokes of cream, apricot, lilac and pale blue, dabbed and dragged until the paint stands up in physical ridges. Read it as a wall of pigment first and the cathedral assembles itself only as you step back. Sunlight rakes across the front from the right, so the sculptured jambs and buttresses catch a warm ivory-gold while the recesses fall to cool violet and slate-blue shadow. The upper gable and towers burn brightest; the great portal at center sinks into a bruised warmth. Small touches of sky-blue break through at the top corners. Nothing is sharp. The eye is asked to do the masonry itself, and the trembling, crusted texture keeps the surface alive even where the forms nearly vanish.",
+ "about": "The subject is not really the cathedral. It is light landing on the cathedral at one hour of one kind of day, and the way a permanent thing becomes momentary under it. Monet painted the same west front over and over, at dawn, in fog, at noon, in the burn of afternoon, so that the building becomes a fixed instrument for measuring the impermanence of the atmosphere in front of it. This canvas is the full-sun key: warmth flooding the stone, shadows shortened and coloured rather than dark. The Gothic facade, centuries old and built to outlast everyone, is offered here as something as transient as weather, held only for the minutes the sun sat at this angle. What the picture is about, finally, is time and perception, the fact that we never see stone, only stone-in-light.",
+ "craft": "The decisions are radical for a building portrait. Monet crops the facade tight, cutting the towers and pushing the front almost flat against the picture plane, so there is no picturesque setting, no sky to speak of, only stone filling nearly the whole field. That flatness forces attention onto surface and colour. He refuses black: every shadow is mixed from blue, violet and green, so recesses read as cool rather than dark, and the contrast becomes a warm-cool dialogue instead of a light-dark one. The paint is applied in a dense impasto crust that mimics eroded, encrusted stone, the touch itself doing the carving that outline would normally do. Colours are broken and juxtaposed rather than blended, letting them vibrate optically. The result is a facade that feels both monumental and about to melt, structure and dissolution held in the same strokes.",
+ "context": "Monet worked on the Rouen series in the springs of 1892 and 1893, renting rooms across the street, at one point painting from the upper floor of a ladies' clothing shop with a fitting room screened off behind him. He worked several canvases at once, switching between them as the light shifted, then reworked them in his studio at Giverny into 1894, the date he inscribed. The series ran to over thirty canvases, most of them this same west front. When Paul Durand-Ruel showed twenty of the best at his Paris gallery in May 1895, priced between twelve and fifteen thousand francs, they were understood as something new: not twenty paintings of a cathedral but one prolonged study of light, a building used as a screen. Eight sold before the show closed. The series became a touchstone for how modern painting could take a single motif and turn it into a meditation on time and seeing.",
+ "deeper": [
+  {
+   "t": "The gable in full sun",
+   "x": 0.3,
+   "y": 0.1,
+   "w": 0.45,
+   "h": 0.22,
+   "body": "Start where the picture is brightest. The upper gable and the pinnacles above the central window take the sun almost head-on, so the stone here is worked in the palest cream and buttery gold, the thickest and lightest paint on the canvas. Look at how little actual architecture is described: the crockets, finials and tracery are not drawn but implied by clustered dabs, each catching a slightly different warmth. Monet lets the highest, sunniest zone carry the most physical impasto, so the paint literally stands proud of the surface where the light is strongest. It is a small trick of matching substance to sensation, the crust of pigment doing the work of glare."
+  },
+  {
+   "t": "Shadow that is blue, not black",
+   "x": 0.36,
+   "y": 0.24,
+   "w": 0.17,
+   "h": 0.16,
+   "body": "Move into the deep recess above the central portal, the pointed arch that should be the darkest passage in any ordinary painting of a church. Monet fills it not with brown or black but with violet, slate and cool blue, the complementary answer to all the surrounding warmth. This is the engine of the whole picture. Because the shadow is coloured rather than dark, it advances and vibrates instead of simply receding, and the facade reads as saturated in light everywhere, even in its hollows. Hold your eye here and the recess almost glows from within. It is the single decision that separates this from every grey academic cathedral study."
+  },
+  {
+   "t": "The rose window",
+   "x": 0.34,
+   "y": 0.4,
+   "w": 0.18,
+   "h": 0.15,
+   "body": "At the center sits the great rose window, and notice what Monet does not do: he does not draw its spokes, its tracery, its stained glass. The whole intricate wheel is reduced to a soft disc of broken pinks, lilacs and pale greens, a bloom of colour where the most detailed stonework in the real building actually is. This is the clearest proof of his method. Where a topographical painter would lavish precision, Monet gives an impression of a form catching light, trusting your eye to complete the circle. The window becomes a warm smudge that anchors the facade without ever resolving, the picture's quiet refusal to describe."
+  },
+  {
+   "t": "Into the portal",
+   "x": 0.44,
+   "y": 0.58,
+   "w": 0.26,
+   "h": 0.24,
+   "body": "The main portal opens as a bruised, layered warmth of ochre, rose and murky violet, the strokes here more churned and muddied than anywhere else. This is the mouth of the cathedral, and Monet paints it as depth rather than as a doorway, no figures entering, no carving legible, just a well of mixed pigment that reads as recessed space. The touch is looser and dirtier here on purpose: shadowed depth needs broken, dulled colour, not the clean brights of the sunlit stone above. Stand back and it becomes an entrance; up close it is a knot of paint. That double reading is the whole pleasure of the surface."
+  },
+  {
+   "t": "The cooler left tower",
+   "x": 0.03,
+   "y": 0.16,
+   "w": 0.24,
+   "h": 0.38,
+   "body": "The left side of the facade turns away from the incoming sun and cools noticeably: more blue, more green, more grey slipping into the stone. This gradient across the front, warm on the sunstruck right, cooling to the shaded left, is what tells you the exact hour and angle without any cast shadow being drawn on the ground. Monet lets the temperature of the colour do the whole job of describing where the sun sits. Trace the transition slowly from the golden center leftward into this bay and you are watching sunlight travel across a wall, translated entirely into a shift of hue rather than of tone."
+  },
+  {
+   "t": "Tiny figures at the base",
+   "x": 0.1,
+   "y": 0.86,
+   "w": 0.14,
+   "h": 0.1,
+   "body": "At the very foot of the facade, easy to miss, sit a few small dabs of deep blue and violet that read as figures on the pavement below the cathedral. They are barely more than flecks, but they do enormous work: they give the wall of stone its true scale, so that the towering front above suddenly registers as immense. Monet keeps them cool and dark, the only clearly human note in a picture otherwise given entirely to stone and light. Their smallness is the measure. Without them the facade could be any size; with them it becomes overwhelming, and the human standing beneath it becomes a passing shadow."
+  },
+  {
+   "t": "The signature and date",
+   "x": 0.72,
+   "y": 0.9,
+   "w": 0.26,
+   "h": 0.08,
+   "body": "Lower right, Monet signs in a warm reddish-brown and inscribes the date. The year matters: it sits later than the days he actually stood before the cathedral, because these canvases were begun on the spot but finished, harmonized and pushed toward their final colour keys back in the studio. The signature is a small honesty about the method. The picture is not a single sitting but a constructed memory of light, worked and reworked until the whole series could hang together as variations. Read the inscription as the seam between the motif seen and the painting made, the moment the fleeting effect was fixed for good."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"claude-monet-the-houses-of-parliament-sunset": {
+ "see": "A silhouette of towers sits between two zones of pure color: a sky burning orange, coral and lemon above, and a river below broken into a thousand short dashes of the same warm light laid over cold blue. The building itself is barely described. It is a flat blue-violet cutout, its Gothic pinnacles read only as edges against the glow, no windows, no stone, no detail you could name. Your eye is not held by the architecture at all; it is pulled up into the sky and dropped down into the water, and the black-blue mass between them functions as a bar that separates and joins the two fires. A single small boat, dark and almost lost, floats in the lower center. The longer you look, the more the solid building feels like the least real thing in the picture.",
+ "about": "The nominal subject is the Palace of Westminster, but the painting is not about Parliament. It is about London air. Monet came to paint the fog and the specific way the low sun burned through it, dissolving one of the most recognizable buildings in Europe into a vapor of colored light. The government seat, a symbol of solidity and permanence, is here the most insubstantial thing on the canvas, less real than the water or the sky. What the picture argues is that a monument is only ever the light that happens to be falling on it, and that on this evening the light has all but eaten it. It is a study of a threshold hour, the moment when a hard-edged city surrenders its edges and becomes atmosphere.",
+ "craft": "The whole thing runs on a single decision: warm against cool, and nothing else. The building and the deep water are blue-violet; the sky and every reflection are orange, coral and yellow. Because those are complements, the color pushes against itself and vibrates without any strong drawing to hold it. Monet refuses to model the building at all; it is a flat wash of small vertical strokes, so the eye reads it as distance and haze rather than mass. The water is the opposite method, built from short broken horizontal touches of unmixed color laid side by side, so it shimmers as an optical mix rather than a painted surface. The sun is never shown, only its effect, which is why the light feels like it is coming toward you rather than sitting on the canvas.",
+ "context": "This is one of nineteen canvases of Parliament that Monet worked from his window and terrace at St Thomas's Hospital, across the Thames, during London campaigns in the autumn of 1899 and the early months of 1900 and 1901, all finished later in the studio at Giverny and dated 1903. He painted the same view over and over at different hours, chasing the effect of light and fog rather than the site, the same serial method he had used on haystacks and Rouen Cathedral. Parliament was only one of three Thames motifs he pursued at once; the whole London project ran to around a hundred canvases. He famously prized the city for its fog, saying it would be nothing without it, that the fog gave it its magnificent breadth. By this date he was the grand old man of Impressionism, wealthy and celebrated, yet still pushing the movement's founding idea to its edge: that the true subject of a painting is not the thing but the light.",
+ "deeper": [
+  {
+   "t": "The sky on fire",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 0.42,
+   "body": "Start where the eye goes first. The upper third is a field of loose, scumbled strokes moving from lemon-yellow through peach and coral to a bruised rose at the top edges. There is no drawn cloud; the color itself does the work, thin dry paint dragged over paint so the weave shows through and the whole band feels like glowing gas rather than a painted surface. Notice that the warmest, palest light gathers just above the towers, roughly behind where the sun sits unseen, and cools outward toward the corners. That gradient is the only thing telling you where the light source is. Monet builds the drama entirely out of temperature and touch, never once drawing an edge in the sky."
+  },
+  {
+   "t": "Victoria Tower dissolving",
+   "x": 0.24,
+   "y": 0.1,
+   "w": 0.22,
+   "h": 0.42,
+   "body": "The broad square tower at left is Victoria Tower, the tallest part of the real palace and the most massive form here. Yet look how little Monet gives it. It is a single flat plane of blue-violet, its top notched into a few blunt pinnacles, with no windows, no stonework, no shading to tell you it is solid. He lets the warm sky bleed right up to its silhouette so the edge shivers rather than cuts. The tower reads as heavy only because it is dark and large, not because anything is described. This is the picture's core move made local: the most permanent object in London rendered as the least defined thing on the canvas."
+  },
+  {
+   "t": "The spiked central skyline",
+   "x": 0.44,
+   "y": 0.36,
+   "w": 0.16,
+   "h": 0.12,
+   "body": "The middle of the roofline breaks into a comb of thin spires and finials, sharper and more restless than the blunt tower to its left. Monet paints these as quick dark verticals stabbed up into the glow, some barely more than a flick of the brush. Because the sky behind them is at its brightest here, the contrast is hardest and the silhouette reads most crisply, which pulls the eye along the ridge like teeth against light. This is where the building is most legibly Gothic, and it is no accident that it sits directly under the hottest patch of sky; the strongest drawing and the strongest light are stacked in the same column."
+  },
+  {
+   "t": "The far right pinnacles",
+   "x": 0.64,
+   "y": 0.16,
+   "w": 0.2,
+   "h": 0.34,
+   "body": "At the right end a cluster of taller, more slender towers rises, the pinnacles and turrets of the palace's central river frontage. This is not the clock-tower end: from Monet's vantage across the river the great Elizabeth Tower is out of frame, and Victoria Tower at the left holds the eye instead. Here the blue-violet deepens almost to black and the forms grow faint, half-swallowed by a haze that the crisper center escaped. Monet is grading atmosphere across the width of the canvas: the middle is sharp, the edges soften into fog. Follow the roofline from the spiked center out to here and you watch the city lose its edges as it recedes, the paint thinning and the color drifting toward the sky's warmth until building and air are hard to tell apart."
+  },
+  {
+   "t": "The lone boat",
+   "x": 0.48,
+   "y": 0.7,
+   "w": 0.16,
+   "h": 0.12,
+   "body": "Almost at dead center, low, sits a small dark rowboat with a faint figure, the only sign of human presence and the only true incident on the water. It is tiny, easily missed, and Monet keeps it that way on purpose. Its darkness anchors the shimmering surface and gives the eye one solid point to rest against after the dissolving towers above. Scale hides here too: measure the boat against the palace and you feel how vast the building is and how far off, how much cold water lies between you and it. Take the boat away and the lower half drifts into pure abstraction; it is the single thread tying the light-show back to a real river."
+  },
+  {
+   "t": "Water as broken color",
+   "x": 0,
+   "y": 0.66,
+   "w": 1,
+   "h": 0.3,
+   "body": "The bottom third is the technical heart of the painting. It is built from short horizontal dashes of unmixed color set side by side: cold blue and violet for the water's body, then streaks of the same orange, coral and yellow from the sky dropped straight on top as reflection. Monet does not blend these; he lets your eye do the mixing, so the surface flickers and never settles, exactly like light on moving water. The reflections do not sit under the towers as a mirror would; they scatter across the whole width, because the point is the trembling of light, not accurate optics. This is Impressionism's founding method, broken tone, pushed about as far as it goes."
+  },
+  {
+   "t": "Signature and date",
+   "x": 0.72,
+   "y": 0.9,
+   "w": 0.26,
+   "h": 0.09,
+   "body": "In the lower right, in dark blue-violet paint drawn straight from the water's shadows, Monet signs and dates the canvas. The signature is worked into the wet reflection rather than sitting on top of it, so it belongs to the water's fabric instead of floating above it as a label. The date matters: though the view was studied in London years earlier, the canvas was completed and dated in the Giverny studio, evidence that these atmospheric pictures were not spontaneous window sketches but deliberately reworked from memory and from other canvases in the series until the effect was exactly what he wanted."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"james-tissot-hide-and-seek": {
+ "see": "A cavernous, brown-dark drawing room swallows almost everything, and then one clear note rings out of it: a small girl in white crawling across the carpet at the lower left, red ribbons at her shoulder and in her hair. She is the only fully lit figure. Track back into the gloom and the room starts to give up its secrets — a woman in black reading by a lamp, and, once your eye adjusts, other small faces tucked into the shadows: one over a cabinet at the top left, one peering along the back of the sofa, one hidden near the lamp. The far right opens onto a bright glazed doorway and greenery. The whole surface is a study in reading light: a picture that makes you hunt.",
+ "about": "It is a game of hide-and-seek, but the real subject is looking itself — the room withholds its children and dares you to find them the way the seeker must. Tissot builds the painting around the gap between a mother's calm, self-absorbed reading and the covert activity swarming around her. The clutter is not incidental: this is the connoisseur's interior, dense with skins, brass, porcelain, a framed picture propped as if just acquired. Childhood is set loose inside a shrine of adult acquisition. The bright doorway to the conservatory promises the outside world the children have been kept from; the lit girl in white, mid-scramble toward us, is the one about to break the room's stillness.",
+ "craft": "The composition is a single controlled ambush of tone. Tissot pitches nearly the entire canvas into warm shadow, then spends his light with a miser's precision — the white dress, the pale reading woman, the flare of the lamp, the doorway. Because the eye is starved, every lit patch reads as an event, and the hidden children emerge only on the second and third look, which is exactly the game. The diagonal of the carpet drives from lower right up into the depth of the room, and the propped picture and easel-dark furniture stack the space into receding planes. It is bravura low-key painting: control of a huge dark mass so it stays legible, with a jeweller's attention to the few things allowed to shine.",
+ "context": "Tissot painted this in London around 1877, the year Kathleen Newton moved into his St John's Wood house; she is the reading woman, his companion and recurring model, and the children scrambling in the gloom are her nieces and her young daughter. The crowded, aesthetic-movement interior — Persian carpet, animal skins, blue-and-white porcelain, dark bronzes — is his own taste on display, the sensibility of a fashionable painter-collector of the 1870s. Works like this were sometimes faulted in their day for being more about fabric and things than sentiment, the very density that now reads as the point.",
+ "deeper": [
+  {
+   "t": "The lit girl",
+   "x": 0.17,
+   "y": 0.66,
+   "w": 0.28,
+   "h": 0.3,
+   "body": "Everything in the picture is arranged so you find her first. She is the one figure in near-full light, on hands and knees mid-crawl, caught at the instant of coming out of hiding rather than staying in it. Note how the red — bow in the hair, ribbons falling from the shoulder — is the warmest, most saturated colour anywhere on the canvas, a deliberate spark against all that white. Her direct scramble toward the viewer breaks the fourth wall of the game: she is the seeker's reward, or the one about to be found. Tissot spends his sharpest drawing and cleanest edges here and lets everything behind her go soft and dim."
+  },
+  {
+   "t": "The reading mother",
+   "x": 0.54,
+   "y": 0.4,
+   "w": 0.26,
+   "h": 0.26,
+   "body": "Deep in the room a woman in black sits reading by the lamp, utterly still and self-contained. She is the calm hub the whole game revolves around and ignores: the children hide, scramble, and peer while she stays sunk in her paper. Tissot models her face in a soft, pale light that echoes the lit girl's dress, quietly linking the two poles of the picture — absorbed adult, active child. Her dark dress dissolves into the dark chair and dark room, so it is the pale head and hands that hold her in place. This is Kathleen Newton, Tissot's companion and model, and the reading sets the emotional temperature of the whole interior: privacy, quiet, a domesticity the painter knew from his own household."
+  },
+  {
+   "t": "Child over the cabinet",
+   "x": 0.12,
+   "y": 0.17,
+   "w": 0.13,
+   "h": 0.14,
+   "body": "High on the left, a small face and a pair of hands crest the top of a dark cabinet or screen — the hardest of the hidden children to spot, and the best test of how the painting works. You almost certainly walked past this figure on the first look. That is the design: Tissot rations the light so that the seeker in the game and the viewer of the picture are put in the same position, scanning the gloom for the shape that resolves into a child. Once you have found this one, the room feels populated in a way it did not a moment before, and the joke of the title lands."
+  },
+  {
+   "t": "Child behind the sofa",
+   "x": 0.09,
+   "y": 0.42,
+   "w": 0.16,
+   "h": 0.16,
+   "body": "Along the back of the sofa on the left, a second child leans out, half-swallowed by shadow and the piled fur, face turned toward the room. Set her against the girl over the cabinet and you can read Tissot's method: he seeds the hiding figures at different depths and heights so the eye keeps having to re-focus, never settling. The warm rust tone of her clothing is pitched just bright enough to separate her from the dark upholstery and no brighter. It is precise tonal engineering — a figure kept exactly at the threshold of visibility, so finding her feels like your own small victory rather than the painter's gift."
+  },
+  {
+   "t": "The lamp and table",
+   "x": 0.44,
+   "y": 0.3,
+   "w": 0.2,
+   "h": 0.22,
+   "body": "At the centre stands an ornate lamp with a pale shade, its glow one of the few sources that justify the light falling across the room. Below and around it the table carries the collector's still life — a bulbous blue-and-white vessel, a gleam of metal — the aesthetic-movement bric-a-brac that dates and places the interior precisely to 1870s taste. Tissot lavishes real attention on these objects; part of the picture's original argument, and part of what critics grumbled about, is that the things are painted with as much love as the people. Here the material world of the connoisseur is laid out as carefully as any portrait."
+  },
+  {
+   "t": "Doorway to the garden",
+   "x": 0.82,
+   "y": 0.06,
+   "w": 0.18,
+   "h": 0.62,
+   "body": "The right edge opens through a glazed door onto bright foliage — a conservatory or garden, the one passage of clean daylight and green in a canvas otherwise sealed in brown shadow. It functions as the picture's release valve: the outside the children have been kept from, the light the dark room withholds. Compositionally it anchors the right side and keeps the heavy dark mass from tipping the balance, a cool counterweight to the lamp's warm glow at centre. Tissot uses the contrast to make the interior feel more enclosed still — you feel the weight of the shut, crowded room precisely because you can see the open air just beyond it."
+  },
+  {
+   "t": "The red ball",
+   "x": 0.79,
+   "y": 0.82,
+   "w": 0.12,
+   "h": 0.12,
+   "body": "Alone on the bare floor at the lower right sits a small red ball, abandoned mid-play. It is the smallest telling detail in the picture and the one that tells the whole story: the toy dropped the instant the game of hiding began. Its red rhymes with the ribbons on the lit girl, threading a line of warm colour from one corner of the action to the other. Set against the vast, cluttered, adult room, this single child's object insists on what the painting is really about — a game loose inside a grown-up world of things, a scrap of play left where a child let it fall."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"jean-beraud-paris-rue-du-havre": {
+ "see": "A wet-grey Paris pavement fills the lower half, so pale and reflective it reads almost as water, and it throws the eye up to a young woman in slate grey striding straight toward you. She is the one sharp accent in a field of muted stone and haze: black feathered hat, dark bodice, a striped bandbox swinging from one hand. Behind her the street opens into depth — a double file of top-hatted men, a mauve-dressed woman, a carriage nosing in from the right. The right wall is a riot of coloured posters under the words PRINTEMPS, and above them green tarpaulins hang off raw scaffolding. Left, ornate gaslamps and the flat cream fronts of Haussmann apartment blocks recede toward a bright, empty distance. The whole thing is keyed low and cool, then spiked with those poster colours and the one moving figure.",
+ "about": "This is modern Paris caught mid-stride — not a monument or a view but the ordinary churn of a commercial street near the Gare Saint-Lazare, where the department store Au Printemps was rebuilding behind scaffolding after a fire. The picture is about the city as spectacle of movement and money: shoppers, clerks, a delivery porter, all of them anonymous and purposeful, threaded past a wall of advertising. The lone woman walking toward the viewer is the real subject. She is unescorted, well-dressed, self-possessed, carrying her own parcels through public space — a small portrait of the independent Parisienne who was the era's fascination and slight anxiety. Béraud makes her legible against the crowd on purpose. The street is not decorated for us; it is simply going about its business, and we are one more figure in the flow.",
+ "craft": "The composition runs on a hard diagonal — the pavement's edge and the building line drive back to a single vanishing bright at left — and Béraud parks his heroine dead against that pull, walking forward while everything else streams sideways and away. That counter-motion is what fixes her. His tonal control is the quiet miracle: he lets the ground go silvery and near-empty so a few dark figures and one saturated poster wall carry all the weight. Note the economy of the far crowd — a top hat, a smudge of coat, a pale collar, and the eye completes a whole man. Up close the woman's dress is built in decisive grey strokes with the underskirt flicked in white; at distance the paint dissolves into atmospheric blur. It is photographic in framing, painterly in touch — a snapshot composed with a classicist's spine.",
+ "context": "Jean Béraud (1849–1935) was the great chronicler of Belle Époque Paris, and this corner of the rue du Havre near the Saint-Lazare terminus was his home ground. Painted around 1882, it belongs to a specific moment: Au Printemps, the grand magasin named on the hoarding, had burned in a catastrophic fire in March 1881 and was being rebuilt, and the scaffolding and tarpaulined wall are that reconstruction underway. The billboard advertises the store rising again, at a time when advertising posters were becoming the visual noise of modern life. Béraud kept a tighter, more finished hand than the Impressionists and a reporter's eye for costume and class. His method was as literal as it sounds: he worked from a converted carriage parked at the kerb, curtain drawn to hide himself, painting Parisians unposed as they passed. Figures like his solitary walking woman recur across his work as emblems of a city in flux.",
+ "deeper": [
+  {
+   "t": "The woman who walks at you",
+   "x": 0.28,
+   "y": 0.6,
+   "w": 0.26,
+   "h": 0.4,
+   "body": "Everyone else in the picture moves across the frame or away into it; she alone comes toward you, and that single reversal is why your eye locks on her before anything else. Béraud dresses her for legibility — the black hat with its feather, the dark bodice, the trim grey skirt with a white underskirt flicked out at the hem as she steps. She carries her own parcels: a hatbox in one hand, a wrapped cylindrical package cradled in the other arm. No companion, no escort. Read her against the era: the unaccompanied, purposeful, well-turned-out Parisienne moving through public space was a genuinely modern figure, and Béraud makes her the whole point of a crowded street. Her face is barely modelled, almost a mask, so she stays a type as much as a person."
+  },
+  {
+   "t": "PRINTEMPS on the wall",
+   "x": 0.44,
+   "y": 0.42,
+   "w": 0.56,
+   "h": 0.2,
+   "body": "The right wall is a slab of commerce: bold letters spelling GRANDS MAGASINS DU PRINTEMPS run across a band of colour, with a chaos of smaller posters stacked beneath. This is the picture's date-stamp and its argument. Au Printemps, the pioneering department store, had burned in a fire in March 1881 and was being rebuilt behind this very hoarding, and its name here tells you exactly what kind of street this is — a shopping artery near the railway station, thick with advertising, its great store rising again from the ashes. Béraud paints the posters as pure blocks of red, blue and yellow, the only truly saturated colour in an otherwise cool grey canvas, so the wall reads as visual noise even before you decode a word. That is the point: modern advertising as a new texture of the city, loud, cheap, everywhere. The woman with her parcels is the wall's customer, walking away from it."
+  },
+  {
+   "t": "Scaffold and green tarps",
+   "x": 0.42,
+   "y": 0.02,
+   "w": 0.58,
+   "h": 0.4,
+   "body": "Above the poster wall the building climbs into a cage of timber scaffolding hung with sagging green tarpaulins. It is easy to skip as background, but Béraud put it at the top of his frame on purpose. This is Au Printemps rebuilding after the fire that gutted it in 1881 — the hoarding and scaffolding are the store rising again, the real event fixing the picture in time. The tarps also do compositional work: their dull olive-green cools the top corner and keeps the eye from escaping upward, folding the whole scene back down onto the pavement and the figures. Note how loosely they are painted — a few dragged strokes for each cloth, the wooden struts just dark lines. Detail sharpens as you come down toward the street; up here, everything is atmosphere and suggestion."
+  },
+  {
+   "t": "The ornate gaslamp",
+   "x": 0.19,
+   "y": 0.33,
+   "w": 0.15,
+   "h": 0.35,
+   "body": "A tall cast-iron lamp standard rises on the left, its cluster of gas lanterns and scrolled brackets silhouetted against the pale building fronts. This is street furniture as period marker: the ornamental multi-globe gas lamp was a signature of the modernised boulevard, a small piece of civic pride bolted into the pavement. Béraud uses it structurally too. Its dark vertical anchors the left third of the canvas and balances the heavy poster wall opposite, so the composition doesn't tip to the right. Around its base a knot of small figures gathers, giving you the street's scale — the lamp towers over them. Painted in crisp dark strokes against the light, it is one of the few sharply drawn things in the middle distance, a fixed point in a scene otherwise built from blur and movement."
+  },
+  {
+   "t": "The far file of top hats",
+   "x": 0.44,
+   "y": 0.57,
+   "w": 0.3,
+   "h": 0.15,
+   "body": "Look at how little Béraud spends on the crowd behind the woman. A row of men in dark coats and top hats recedes toward the middle distance, and each one is almost nothing — a black hat, a smear of coat, a pale slice of collar or face — yet you read them instantly as a specific class of Parisian: the bourgeois men of business moving between office, exchange and station. This is the reporter's shorthand at work. The uniform of the top hat and dark frock coat lets him signal a whole social type with three strokes, and their sideways, away-facing motion makes the one woman walking toward you stand out all the more. Crop to this strip alone and it becomes near-abstract, dabs of dark on grey; step back and it snaps into a bustling sidewalk."
+  },
+  {
+   "t": "The laundry carrier",
+   "x": 0.09,
+   "y": 0.61,
+   "w": 0.19,
+   "h": 0.26,
+   "body": "Off to the lower left, a man in a dark overcoat and black hat carries a wicker basket heaped with pale linen on one arm, a furled umbrella planted like a cane in the other hand. He is easy to miss, and that is telling. Béraud fills his fashionable street with the labour that keeps it running — the people who carry things so shoppers don't have to. His muddy boots and load are a deliberate counterweight to the upright, well-dressed woman at centre: the same street, two very different lives crossing without contact. It is the kind of quiet social observation that runs through Béraud's Paris. He never sermonises about it; he just includes it, at the edge, in passing, the way you'd actually glimpse it walking the boulevard."
+  },
+  {
+   "t": "Mauve dress and the carriage",
+   "x": 0.76,
+   "y": 0.58,
+   "w": 0.24,
+   "h": 0.28,
+   "body": "At the right edge a second woman in a mauve-pink dress with a bustle stands near a horse-drawn carriage that noses in from off-frame. She is the central woman's foil — turned away, static, tied to the carriage and the shop wall, where the heroine is mobile and coming toward us. The carriage itself is barely more than a dark mass and the suggestion of a horse and driver, painted with the same economy as the far crowd. Together they seal the right side of the street and give the scene its depth: the eye travels from the sharp foreground woman, back past the top hats, out to this softer cluster and the vehicle waiting at the curb. It is the far bank of the river of pavement running through the picture's middle."
+  },
+  {
+   "t": "Béraud's signature",
+   "x": 0.68,
+   "y": 0.9,
+   "w": 0.22,
+   "h": 0.08,
+   "body": "Down in the empty lower-right pavement Béraud signs his name in a dark cursive, dropped into the one large blank passage of the canvas where nothing competes with it. The placement is deliberate: that expanse of pale, near-featureless ground is what gives the whole picture its air and lets the figures breathe, and the signature sits in it like a small dark footnote. Worth pausing on because it shows how much of this painting is calculated emptiness — Béraud understood that a crowded street reads as crowded only if you also give the eye somewhere to rest. The signature marks the quietest square foot of a busy image, and closes the tour where the artist chose to close it himself."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
+"august-macke-people-by-the-blue-lake": {
+ "see": "Three figures stand in a garden that has been set alight by color. A woman in a long white dress fills the left of center, her dark blue jacket cutting a hard diagonal across the pale cloth; beside her a small child glows yellow-orange, barely more than a silhouette. To the right, a man in a dark suit and a round hat holds himself upright and separate. Around them the picture refuses to stay still: a black tree trunk on the far left, a spray of red-orange leaves curling in from the right, blades of green foliage overhead, and between the bodies a few slabs of pure blue that read as the lake. The ground is a wash of hot orange. Every shape is flat, edged, and frontal, so the eye moves not into depth but sideways across a wall of adjacent color.",
+ "about": "The subject is almost nothing and that is the point: people paused in a park by water, looking at something outside the frame, not at each other. Macke's real subject is the pleasure of looking itself, and the way ordinary bourgeois leisure, a stroll, a fine coat, a hat, can be dissolved into pure sensation. The figures are types rather than portraits, faceless enough to become carriers of color and mood. Their stillness and the small distances between them carry a quiet loneliness that runs under the brightness, a sense of people together yet each sealed inside a private silence. Nature crowds them, warm and slightly overwhelming, so the picture becomes less a scene than a state: the modern human figure held for a moment inside an intensified, almost paradisal world.",
+ "craft": "Macke builds the whole painting from flat, keyed-up planes laid edge to edge, closer to stained glass than to modeling. There is no shading to speak of; volume is implied only by the collision of one color against its neighbor, the blue jacket against the white dress, the orange ground against the blue water. He anchors the composition with two verticals, the dark trunk and the upright man, and lets the woman's curved back and the arcing red branch play against them. Complementaries are set deliberately at war: orange ground under blue lake, red leaves against green foliage, so the surface vibrates without a single loud gesture. The brushwork stays open and visible, patches left slightly unblended, which keeps the paint breathing and the light diffuse rather than pinned to a source.",
+ "context": "The painting comes from 1913, Macke's last full year of work and the peak of his short career; painted during a holiday at Hilterfingen on Lake Thun that began that autumn and ran into the following spring. He was killed in the first weeks of the war in 1914, not yet twenty-eight. He belonged to the Blue Rider circle around Kandinsky and Marc but stayed the group's clearest, most sensuous colorist, less interested in mysticism than in the joy of the visible world. The year before, a friendship with Robert Delaunay in Paris opened up Orphic color for him, and a famous trip to Tunisia with Paul Klee in April 1914 would push it further; this lakeside scene sits just short of that, holiday leisure reimagined through French color theory. The park-and-promenade subject was his signature: elegant strollers, shop windows, hats and coats, treated as pretexts for chromatic music.",
+ "deeper": [
+  {
+   "t": "The blue jacket's cut",
+   "x": 0.3,
+   "y": 0.22,
+   "w": 0.2,
+   "h": 0.38,
+   "body": "Start here, because this is the stroke the whole picture is built around. The woman's dark blue jacket is not painted as cloth over a body; it is a single flat wedge of near-black blue slicing down across the white dress at a hard diagonal. That one dark shape does all the structural work: it gives the pale figure a spine, it echoes the vertical of the tree trunk, and it sets up the blue-versus-white contrast that the rest of the canvas answers. Notice there is no shoulder seam, no fold, no shading, just the edge where blue meets white. Macke trusts the boundary between two colors to describe a whole garment. Seen without the white beside it, the blue would read almost as a second small tree."
+  },
+  {
+   "t": "A face left blank",
+   "x": 0.31,
+   "y": 0.12,
+   "w": 0.18,
+   "h": 0.16,
+   "body": "Look at the woman's head under its dark hat. There are no eyes, no mouth, barely a nose, just a warm reddish oval turned into profile. Macke does this on purpose. A described face would pull you into an individual story and break the spell of pure looking; a blank face keeps her a type, a shape of color among shapes. It also tells you where she is looking, out past the frame to the left, at the same unseen thing the others seem to watch. That shared outward gaze, none of the three meeting, is what gives the group its faint melancholy. The blankness is not laziness; it is the mechanism by which the painting turns people into mood."
+  },
+  {
+   "t": "The child made of light",
+   "x": 0.04,
+   "y": 0.44,
+   "w": 0.2,
+   "h": 0.28,
+   "body": "Half-hidden at the woman's side is a small figure in yellow and orange, so dissolved into the warm ground that it almost disappears. Macke gives it the least definition of anyone: a glowing column with a hint of a head. Children recur through his late work as the purest carriers of color, and here the child is literally made of the same hot light as the earth it stands on, as if less separated from the world than the adults are. Squint and it reads as a flame beside the cooler, more buttoned figures. It also solves a compositional problem, filling the gap between the trunk and the woman so the left side does not empty out."
+  },
+  {
+   "t": "The man's round hat",
+   "x": 0.56,
+   "y": 0.09,
+   "w": 0.18,
+   "h": 0.18,
+   "body": "The man is the picture's other vertical, and his hat is the punctuation at the top of it. It is a simple dark dome with a reddish crown, drawn as one clean rounded shape, and it does two jobs. It rhymes with the curve of the woman's hat across the canvas, tying the two heads together as a pair. And it caps him as a figure of modern bourgeois life, the coat, the hat, the correct stiff posture, all the props of respectable leisure that Macke loved to reduce to color. He stands slightly apart from the woman and child, upright and self-contained, which is why the group feels less like a family than three separate presences sharing one bright afternoon."
+  },
+  {
+   "t": "Slabs of lake",
+   "x": 0.7,
+   "y": 0.26,
+   "w": 0.22,
+   "h": 0.22,
+   "body": "The blue lake of the title is not a horizon or a receding sheet of water; it is a handful of flat blue patches wedged between the man and the branch. Macke gives you just enough, cool blue set hard against the surrounding warm oranges and reds, to name the place and to cool the eye. Because the blue sits at the same flatness as everything else, the water does not open a hole of depth behind the figures; it stays a color-event on the surface, part of the mosaic. This is the Delaunay lesson at work: space built from the contrast of hues rather than from perspective. The lake is present as sensation, not as distance."
+  },
+  {
+   "t": "The red branch's arc",
+   "x": 0.77,
+   "y": 0.05,
+   "w": 0.23,
+   "h": 0.6,
+   "body": "On the right the picture is closed by a plant of flame-red and orange leaves that curls inward on a dark stem. It is the loudest color in the canvas and the freest drawn, a swinging arc that answers the rigid verticals of trunk and man with a curve. Compositionally it acts as a bracket, sealing the right edge and pushing all the human incident back toward the center. Chromatically it is the hot pole of the design; its reds and oranges rhyme with the ground and set the whole warm field against which the few blues can sing. Its color is recognizably autumn foliage, fixing the scene in the autumn of 1913, a warmth already tipping toward its end."
+  },
+  {
+   "t": "The trunk that frames",
+   "x": 0,
+   "y": 0,
+   "w": 0.16,
+   "h": 0.85,
+   "body": "The dark tree trunk down the left edge is the quietest element and one of the most important. It is nearly black, the coolest dark in a painting otherwise built of heat, and it runs almost the full height of the canvas as a firm vertical. Paired with the man on the right, it turns the composition into something like a shallow stage: two dark uprights holding the bright, crowded middle in place. Without it the left side would spill open and the figures would drift. Macke keeps its surface flat and unfussy, a plane rather than a rendered tree, so it reads first as structure and only second as bark. It is the frame the color needs to stay taut."
+  },
+  {
+   "t": "Warring complementaries",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Step back and watch the whole surface work. Macke has organized the painting as a set of deliberate complementary clashes: the blue lake against the orange ground, the red branch against the green foliage overhead, the dark blue jacket against the white dress. None of it is shaded or blended into calm; each color is left to vibrate against its opposite so the flat surface seems to pulse with light. This is the core of what makes the picture what it is, and likely what drew you to it: not a scene you look into but a wall of tuned color you look across, with three still figures held inside it. The subject is slight; the sensation is everything. That is Macke's whole argument in one small garden."
+  }
+ ],
+ "by": "Opus 4.8"
+},
+
 "giovanni-boldini-after-the-bath": {
  "see": "A woman stands bent at the waist in the right half of a small panel, drying herself with a cream cloth, her body one continuous dark shape against a wall of warm cream plaster. Behind and below her a second woman lies full length on a carpet, wrapped to the hips in teal-green and ochre-gold. A blue-and-gold macaw is down on the floor at the far left, head lowered; three oranges sit between it and the carpet. At the right a low stool with a red-brown top; at the left a pale column and a doorway with green beyond it. The floor is scrubbed thin, the carpet is loaded thick, and the wall carries pink, sage and cobalt inside its cream. It reads across a room as one dark figure in a bright box.",
  "about": "This is a bathing room caught in the middle of a chore. Nobody performs: the standing woman's head is down and her hands are busy, the woman on the carpet has her back to us, the bird is going about its own business. What the panel is actually about is the ranking of attention. One head has been sat down with and worked; everything else has been taken at the speed of a decision. That ranking is a claim about how a picture gets made - that a face and a carpet, if they are right, will carry a room, a floor, a wall, a bird and a stool that are barely stated at all. It is a small object making a large argument about how little needs to be finished.",
