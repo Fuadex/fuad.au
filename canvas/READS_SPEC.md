@@ -431,6 +431,68 @@ verify-the-correction applies (two wave-2 "errors" — the Bernard title, the Ma
 pendant — were correct on checking; fix nothing without a source). Whole-batch reading
 uses stripped dumps (prose only, no coords) — the proven token shape.
 
+#### ⚙ DEVIATIONS LEDGER — what production actually did that the rules above do not say
+*(Fuad, 2026-08-30: "make sure that any deviations from methodology are documented." Every
+item here is a real departure taken during the pilot/wave-1/2/3 runs. Anything listed as
+ADOPTED is now part of the method; anything listed as EXCEPTION must be re-justified each
+time it recurs.)*
+
+1. **Agent continuation is unavailable — fused Infos use fresh agents. ADOPTED.** Ruling 7
+   permits continuing the hook agent via SendMessage; that tool does not exist in this
+   harness (agent outputs advertise it; it cannot be called). Every wave has instead used a
+   fresh one-Opus-per-work fuse agent fed the hook + interp files. Same cost shape, same
+   one-per-artwork law, but the fuse agent does NOT carry the hook agent's reasoning — which
+   is why the fuse prompt must restate the hook's binding verdicts explicitly.
+2. **The seal was delegated in part (wave 3). EXCEPTION, and the shape that worked.** The
+   rule says the orchestrator seals. At 20 works × ~8 stops the tour layer exceeded what the
+   orchestrator could read whole in one context. Wave 3 therefore split it: the orchestrator
+   read the whole Info/Interpretation/beside layer itself and adjudicated everything, while
+   TWO fresh **seal assistants** — non-drafters, read-only, forbidden to edit — read ten
+   tours each against the six named classes and reported findings for the orchestrator to
+   rule on. This is allowed only under those conditions (non-drafter, read-only, reports
+   never auto-applied, "checked, none found" still required per class). It found ~55 items
+   the mechanical gates could not. It also produced FALSE positives that the bundled verifier
+   overturned, which is why nothing a seal assistant reports may be fixed without the
+   orchestrator's ruling.
+3. **Image adjudication mini-stage. ADOPTED.** Fable never opens plates (token law), but
+   twice a load-bearing dispute could only be settled by looking: Gauguin's field colour
+   (tour said sulphur yellow, museum said lemon-lime; 6 dependent passages) and Pollock's
+   line geometry (tour said converging wedge, museum said parallel/three zones). Both were
+   settled by a single-purpose subagent that reads ONLY the plate and answers ONLY the
+   disputed question in 2–3 sentences. Cheap, decisive, and it keeps the orchestrator out of
+   the images. Use it whenever a hook and a tour disagree about what is visibly there.
+4. **QC agents are batched; drafting agents are not. ADOPTED (clarification).** "One Opus per
+   artwork" governs DRAFTING (tour, hook, fuse, beside). Crop QC, back-edits, de-gram passes,
+   trims and seal assistants are review labour and are batched 4–5 works per agent. Wave 3
+   ran crop QC 4×5 and back-edits 4×5 with no loss.
+5. **Works that already ship an Info are AUGMENTED, never overwritten. ADOPTED.** Wave 3's
+   Streeton (and wave 4's Seurat) already carry an approved `about`. The merge must add
+   `deep` + `deepBy` while proving the shipped `about` byte-identical; `merge-reads-w*.js`
+   does this by brace-matching the entry. A naive `\n}` anchor silently inserted at the
+   store's closing brace instead — art-about.js was corrupted, the byte-identity proof caught
+   it, and the file was reverted and re-merged. The alternative Info drafted for such a work
+   is retained but NOT applied without a separate explicit verdict.
+6. **Instrument fixes made mid-flight. ADOPTED.** (a) `logecho.js` accepts a `tour:` prefix
+   scoping a dropped term to the tour artifact only — needed because artist names dropped
+   from a tour (Whistler, as an unsupported influence claim) are legitimately reintroduced by
+   a beside naming an actual canvas by that artist. (b) `check-besides.js`'s COLLECTION-COUNT
+   regex was tightened: the old `/the only/` flagged "the only adult present" inside a
+   picture, which is legal; it now matches only counting of the CANVAS collection.
+   (c) `prep.js` falls back to the hi-res record's `img` when the canon row has none (NGA
+   IIIF-only works). The wave-3 workshop is the canonical instrument set to copy forward.
+7. **Cross-tour scan timing. CHANGED for wave 4.** It was introduced as a seal-stage check.
+   Wave 3 proved that too late: four rhetorical moves reached 20/20 tours and needed two
+   whole de-convergence agents to unwind. From wave 4 it runs immediately after the first
+   qc2, while the tours are still cheap to vary.
+8. **Batch size grew past the pilot's shape. NOTED.** The pilot ruled waves of 10; production
+   has run 15 and then 20 twice. The gates scale, but seal load scales worse than linearly —
+   wave 3 needed 7 fix agents post-seal. 20 is the current practical ceiling for one
+   orchestrator context.
+9. **Interpretations are drafted by Sonnet, not Opus. ADOPTED (standing).** §5b does not name
+   models. Sonnet drafts interps in-band reliably; it reuses tour phrasing systematically
+   (wave 2: 17/20, wave 3: 18/20 over cap) and an Opus de-gram pass is now an expected stage,
+   not an exception.
+
 #### ⚠ Open — does the Interpretation still ride the ratio? ⚙ ANSWERED ABOVE (2026-08-30) — kept for the record
 
 With the Info pinned at 32–38, the ratio stops being an independent constraint: **3× of 32–38 is
