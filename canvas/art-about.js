@@ -4063,4 +4063,124 @@ by: "Opus 4.8" },
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
+"courbet-la-grotte-de-la-loue": {
+ "about": "Scrupulously faithful to a real cave near Ornans, Courbet studied the site as geology, not scenery, dragging a palette knife to raise the limestone in stony ridges — then brushing one tiny spear-fisherman conventionally beside black water.",
+ "deep": "The painting insists that landscape can be fact before it is feeling. Courbet presents the Loue source not as scenic discovery but as geological body: rock stratified in horizontal bands, a black pool that absorbs rather than reflects, an interior that resists reading. The palette knife builds the lit face into actual strata — pigment dragged into ridges simultaneously paint and stone — while the pool is wiped near-transparent, honest void rather than invented depth. A spear-fisherman, brushed rather than knifed so he stays legible at diminutive scale, measures the cave against his own height and makes the hollow enormous. The darkness withholds what cannot be seen, and that withholding is the argument.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"degas-scene-from-the-steeplechase-the-fallen-jockey": {
+ "about": "Reworking it years later to sell to Alexander Cassatt, then refusing to let the canvas go, Degas returned to this Salon gamble on modern life for three decades — a thrown rider laid flat below the surging horses.",
+ "deep": "Everything here turns on the distance between speed and what speed costs. The animals get their glamour — a leftward charge along one long diagonal, blurred colors of the jockeys, two mounts running with nobody aboard to price the fall — and beneath that charge lies the toll: a rider stretched supine, his warm rose the single hot note marooned in dull green. Those still mounted look only ahead; nothing halts for him. Scraped, searched, deliberately unfinished paint holds the animals perpetually leaping, denying the closed lacquer a prize canvas would show, and the vacant top corner reads that charge as motion stopped dead. He is what the onrushing engine of the sport leaves behind.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"anthony-van-dyck-filippo-cattaneo": {
+ "about": "Painted as one of three 1623 likenesses of a Genoese banking dynasty — a boy, his sister, and their mother — this four-year-old heir tethers a wistful mastiff puppy by the iron chain looped through his small hand.",
+ "deep": "Here status precedes the small frame obliged to bear it. Devices normally saved for grown authority — the head-to-toe scale, the elevated step, an elbow cocked with the palm at the waist — descend on a boy from a Genoese banking house, his bloodline announced as the picture's true weight. Van Dyck rescues the almost-black dress from deadness by threading gold through it, each strand snagging a raking glint, so the shadow rounds with his torso. In his tenderest passage childhood endures: full cheeks and a look that hesitates rather than commands. Yellow stockings pin the foot of the tall dark column, and the leashed mastiff stands for fidelity — a household in its heir.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"rousseau-tropical-forest-with-monkeys": {
+ "about": "A retired customs clerk who stayed inside France, self-taught late in life, Henri Rousseau conjured this last-year jungle from Paris greenhouse plants and caged zoo animals — down to the five monkeys resting in flat, overlapping green.",
+ "deep": "No such rainforest was ever stood before; a painter who never left France dreamed it from potted greenhouse specimens, printed plates, and caged city animals. What it argues is plenty held motionless. Nothing recedes into mist, every frond sharpened equally, so the green rises flat like a barrier admitting no entry. The hot accents are metered almost mathematically — red flowering torches below, a rust-toned climber flinging its arms up, ripe fruit swinging beside it — each pulling the gaze back through the cool field. Seated dead center, a grey primate as composed as any painted noble presides over this walled-off Eden, an escape from the crowded town with no depth at all.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"ruisdael-forest-scene": {
+ "about": "Ruisdael treats this woodland as a study in transience: he lends the snapped, gnarled tree a brighter gleam than any living trunk, its roots ripped half-loose and clenched onto bare rock beside a glade of grazing sheep.",
+ "deep": "Ruisdael stages the wood as a place where time works, not a refuge. Rising and rotting happen at once, and neither wins. The snapped trunk on the right takes the strongest highlight of any timber here, its bared wood registering first as carved form and then as death, its roots ripped part-way loose from stone while the trees beside it climb toward the cloud. Water spills white across a rock shelf, the one sustained bright note, and that same current grinds the stones down and eventually topples the standing wood. The two people crossing the slope shrink to almost nothing, less figures than a measure of how vast and unconcerned the forest around them is.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"amedeo-modigliani-roma-woman-with-baby": {
+ "about": "Working through his final full year, dust and illness having driven him from sculpture back to paint, Modigliani gives this near life-scale mother a mask carved as if from stone, one hot red collar squared over her heart.",
+ "deep": "What this canvas studies is the labor of carrying rather than any easy warmth — the depletion a body shows once the face has surrendered its expression. Modigliani quotes the upright, devotional arrangement of a Virgin enthroned, then drains away all comfort: her head leans slightly, the long oval sits closed and inward, those washed eyes settling on nothing. Across a chilled range of greys, the lone hot mark is that blunt red square, set where a heartbeat would be. He builds the infant as a dense slab of navy, mass ahead of sweetness, while the two overlapped hands above it become the one gesture of care, saying what the vacant features will not.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"matisse-still-life-with-sleeping-woman": {
+ "about": "Stranded on the Mediterranean coast in 1940, months after Paris fell, Matisse wrote his son he needed a model more than ever — then made a hired brunette dozing among studio fruit an angel on flat violet.",
+ "deep": "At its core this is a study in dropped attention: fruit, cloth, and treasured ceramics show off their fullest color while the one person who might savor them has gone under, head on crossed arms. With her eyes shut, the arrangement belongs to the painter alone to compose and to us to slip into unnoticed. Everything turns on the violet cloth, a color no real tablecloth would wear, which shifts the interior out of description and into atmosphere — warm, faintly drugged. A rising line of foliage and loose fruit climbs from the bottom corner toward her darkened hair, so the design points straight at a sleeper no longer taking any of it in.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"childe-hassam-allies-day-may-1917": {
+ "about": "Weeks after America entered the war, British and French commissioners reached New York that May, the avenue itself freshly rededicated to the allies — its nearest banner a British ensign flying a Union Jack canton on red.",
+ "deep": "The subject is a metropolis costumed for wartime — British, American and French banners strung above the thoroughfare in May 1917, which Hassam fuses into one radiant harmony instead of three rival declarations. Because each ensign draws on the identical red, white and blue, the hues knit at eye level into a single unbroken ribbon; the concord is a genuine trick of the seeing, not mere feeling. Far down the paving, minute smudges of dark pedestrians register the canvas's understated claim: the shared insignia loom while the individual dwindles almost to nothing. Off at the left a spired church softens into flecked pale cream, granting the bannered corridor the hush of a sanctuary.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"gauguin-the-invocation": {
+ "about": "Dying, in debt and at war with the colonial mission, Gauguin made this at Atuona in 1903, his final Marquesas year — a nude flings her arms skyward below a pale grave-cross set on the slope.",
+ "deep": "What is being asked can be voiced only through the flesh. Tucked almost out of sight on the green slope stands a pale cross, and spotting it rewrites the scene: those lifted arms are no all-purpose prayer but a plea sent over the line dividing the quick from the interred. Around the nude sit and stand her four robed neighbors, and they sharpen rather than ease her solitude — onlookers who never take part, so a lone person makes the gesture while ringed by others. Laid flat and woven like tapestry, Gauguin's color stops the moment: her skin's burning gold set on chilly pink, all creation stilled to a caught breath while she reaches across.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"elisabeth-louise-vigee-le-brun-the-marquise-de-pezay-and-the-marquise-de-rouge-with-her-sons-alexis-and-adrien": {
+ "about": "Acclaimed at the Salon of 1787 as a tribute to friendship and motherhood, this pairing of two marquises belonged to a family soon classed as émigrés and fleeing the Revolution — one drowsing boy sprawled across her lap.",
+ "deep": "The claim being pressed is that tenderness, rather than title, measures what these women are worth. It gets proved where one arm crosses a whole torso to close on the hand of her seated companion — that grip lands dead at the middle of the surface, at once the design's pivot and what the portrait is really about. Under the two faces a boy has sunk into his mother's lap, gone boneless the way the very young slacken as sleep takes them, and such surrender is the tenderest proof. The parkland is laid in thin and dark so this bracket of overlapping bodies burns warm before it, its glow drawn out by the cool beneath.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"titian-ranuccio-farnese": {
+ "about": "Barely twelve, and grandson to the sitting pope, the boy was made prior over a rich Maltese-order estate, wearing an adult office his still-round face cannot fill — a white Malta cross pinned above the heart.",
+ "deep": "What Titian paints is the distance between a rank and the child made to wear it — every adult trapping loaded onto a twelve-year-old whose features keep giving him away. The freshly granted Malta badge sits sharp and flat against a soft brown atmosphere, an emblem standing for vows the sitter is decades from having earned. The rose satin is the canvas's showpiece: each fold pulled in one loaded stroke of wet pigment, a lit diagonal that carries the eye up to a face whose cheek still holds its baby fullness and whose look slides off before fixing on you. The office keeps its dignity; the young person carrying it is never disguised.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"rubens-the-fall-of-phaeton": {
+ "about": "Starting the canvas in Italy about 1604 and returning to it a decade later in Antwerp, Rubens added a rearing white horse over an older grey one, clipping its foreleg to fit beside the blaze.",
+ "deep": "This is not a story about a reckless boy but about what happens to cosmic order when its mechanism breaks. The horses at the center have ceased to be a team — overlapped and foreshortened until their number is impossible to read, each animal driving on its own axis, visual confusion as narrative argument. The zodiac, the sun's measured path, tilts off its rail and half-dissolves into cloud; the Horae scatter, time's keepers flung from their stations alongside the boy. Below, Rubens withholds the ground entirely, letting the lower margin bleed into storm-dark so the fall has no floor — the frame interrupts without ending it.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"j-m-w-turner-mortlake-terrace": {
+ "about": "While Turner lunched on a Royal Academy varnishing day in 1827, fellow painter Edwin Landseer snipped a small dog from paper and stuck it to the parapet of this backlit evening view, which Turner then varnished into place.",
+ "deep": "A gentleman's stretch of Thames-side leisure — walkers, craft, an ordered avenue of trees — is handed to backlight and half-consumed. Dropping the sun low near the middle fixes a maximum value nothing else may exceed, forcing trunks, hulls, and the small animal atop the wall into flat shadow. Those vertical trees give the design its backbone, a diminishing arcade that pens the water and steers looking toward the glaring source. The pasted dog, added late to fix the tone, delivers the one crisp dark accent a slack pale run of parapet lacked — a single stop before all softens into haze, the property undone by the very radiance meant to show it off.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"vincent-van-gogh-flower-beds-in-holland": {
+ "about": "Long before Provence brought its sunflowers, a Dutchman in his second Hague spring of April 1883 made his first flower painting from a bulb merchant's export crop — hyacinths ruled into blazing strips, one dark shape among them.",
+ "deep": "What van Gogh records is Dutch trade rather than charm: the planted strips are ruled like accounts in a grower's book, every variety a harvest bound for lifting and sale. He drives the recession harder than the eye would register, so the colored rows pinch tightly running back, hot hues beside cool ones to keep the beds shimmering to the skyline. Off center a lone dark laborer breaks the field, the single upright thing amid those flat courses, his shape turning a color study into an image of work. Overhead the weather is emptied of nearly all pigment — dry grey dragged thin to hold back saturation, so the blossom below looks so charged.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"rembrandt-self-portrait-1659": {
+ "about": "Three years after a face-saving bankruptcy cost him his house and auctioned collection, an aging painter recorded his own decline without flattery — nearly all the light spent on a forehead built in thick ridges of paint.",
+ "deep": "Rembrandt presents no status here, only an unsparing tally of the years, made in the season of his bankruptcy and shown to us plainly. Where the paint gathers tells the story: it thickens across the brow, the creases raised as ridges so the angled light registers each as shadow rather than drawn line. Below, the clasped fingers melt into a ruddy dark, left unresolved so every scrap of illumination is saved for the head. His torso pivots to one side while the eyes stay steady and dead-ahead, a poise lifted from Renaissance sitters yet used for endurance rather than boast — a man setting down what has altered in him, meeting our look throughout.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"copley-the-copley-family": {
+ "about": "A reunion set down in paint: the Bostonian who sailed to London alone in 1774 gathered his household afresh here, casting himself as the shadowed figure standing behind everyone, a roll of drawings in one hand.",
+ "deep": "Copley's case is that his household came through the ocean move whole, each knot of clasping limbs pressing the group's coherence. His eldest girl in the pale gown pivots the design, set on its center line and struck with more light than any neighbor, turning her eyes outward while the rest stay wrapped in one another. The painter himself hangs back, shaded, sheets in hand, his gaze drifting past his kin — earner and maker, not one of the embrace, his detachment quietly qualifying the affection below. Behind the seated wife the room yields to a cool green vale and faded hills: less ornament than a promise of the later place this uprooted family faces.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"goya-don-antonio-noriega": {
+ "about": "Seven years after sitting for this likeness, Spain's General Treasurer was arrested as a French collaborator and killed at Badajoz during the Peninsular War — Goya, then First Court Painter, signed the folded sheet gripped in his hand.",
+ "deep": "This portrait insists that a post and the person occupying it stay two separate things. Noriega crowds the canvas in the regalia of office — a chest thick with embroidery, a crimson sash, and, sunk into that gold, the knight's badge of Charles III's order — yet the finery looks put on rather than lived in. Goya lays the ornament in fractured strokes that cohere into leaves once you step back, then gives the head a tighter treatment: less paint, sharper looking. A folded sheet held in the corner pins the split — files beneath, pomp above, the plain appraising face weighing both. Ordinary man, splendid position; that gap is what the picture is after.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"church-el-rio-de-luz-the-river-of-light": {
+ "about": "Frederic Edwin Church, the only pupil Thomas Cole ever took, built this late canvas — his final South American subject — from sketches made two decades earlier, funnelling the eye down a river toward a small veiled sun.",
+ "deep": "Church's argument is that wilderness is felt through atmosphere rather than read as geography. The subject is light made into a substance — humid air rendered translucent by a veiled sun — and the river is the vehicle, not the scene. Two dark masses of jungle press in from the sides; the radiance at the centre is earned by pushing the eye through shadow first. What holds the composition is the sun's reflection, a wavering vertical on the water that pins the horizontal sweep and keeps the eye returning. A scarlet bird at the near bank and a canoeist up the channel seed the stillness with life, certifying the vastness as a place.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"titian-the-feast-of-the-gods": {
+ "about": "Two years before he died Bellini signed this on a wooden tub in 1514, only for Dosso Dossi and then a young Titian to repaint its wooded backdrop into a bright, rock-strewn slope opening at upper left.",
+ "deep": "Two moods run through one canvas. Across the clearing the deities lounge, drowsy and overfed, their drooping bodies set in a long low band that echoes the stupor. Yet the point sharpens at the right edge: a dozing nymph, a hand stealing toward her slipped cloth — the ease that sweetens the meal is what leaves her open to it. The seated crowd is Bellini's, dated 1514; some fifteen years on, Titian reworked the setting, breaking the treeline to admit a rocky rise at top left, the sole place the crush eases. Three hands over fifteen years, and the meaning always travels sideways: supplied at one end, indulged in the middle, undone at the edge.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"guercino-amnon-and-tamar": {
+ "about": "One of the Bible's starkest rape aftermaths and an almost unheard-of subject for a painter, made 1649-1650 for Reggio patron Aurelio Zanoletti and hung as a pair, its two averted nudes split by a blackish wedge of curtain.",
+ "deep": "What we see is aftermath, not assault: Amnon has already pivoted away, and disgust is displacing want while his victim remains beside him. His bent limb falls edge-on toward her, a dropped bolt rather than an embrace, set where shadow splits the pair. She answers with contradictory hands — one turned inward at her chest, one lifted flat against him — her forearms sealing her body closed. Temperature settles the rest: a chilly blue drapes the man while heated rose and gold gather round the woman, two ranges that refuse to mix. That black shaft dividing the canvas is the whole point, a strip of dark keeping them severed on one shared bed of fur.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
 };
