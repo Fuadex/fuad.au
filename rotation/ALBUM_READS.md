@@ -333,6 +333,16 @@ GIST recipe; redrafts bump `by` to Opus·Fable.
 - Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
 - Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
 
+### Batch log — d3fin: ROMES catalog + Chalk (2026-08-29, 47bb9e7)
+
+Twelve reads finishing the follow-up closes: the whole ROMES singles-and-EPs run above
+the play floor (DISSOLVER recovered from the artist’s own Bandcamp page — a new source
+class — plus Fever., SKI MASK, CHOKER, Care Less and the rest) and Chalk’s Pain. The
+catalog reads as one sustained fight between swagger and collapse, which is the future
+artist entry’s thesis. Four rows remain lyric-blocked at every source (DISTORTED
+FEELINGS, EYES SHUT, AIRPLANE MODE, Pool Scene); their albums’ closes, the promised
+gist/liner regenerations, and the three artist entries wait on those lyrics surfacing.
+
 ### Batch log — d3 wave: seventeen-album sweep + full portrait cascade (2026-08-29, db81885..479d0bb)
 
 The largest single wave to date: sixty-seven reads across seventeen albums — MIXXXTAPE,
