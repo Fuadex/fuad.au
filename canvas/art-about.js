@@ -1314,7 +1314,10 @@ by: "Opus 4.8" },
 
 "fire-s-on": {
 about: "Streeton witnessed a worker named Edward Brown killed by a premature tunnel blast at Lapstone and wrote to Tom Roberts about it; the tiny procession carrying Brown's body is painted into this 1891 landscape.",
-by: "Opus 4.8" },
+by: "Opus 4.8" ,
+ "deep": "Scale is the whole case: vast and slow against small and quick. Sandstone takes the surface like a figure; all the labour amounts to bleached spoil, a leaning grey plume, and one shadowed portal no bigger than a thumbnail. A spur dropping in from above left and a bank rising from the bottom right meet precisely there, and nothing else on the canvas goes so dark. Handling carries the same case: warm opaque stone, short marks tracking each facet, while the plume is dragged so thinly it never firms into an edge and passes for air. Specks of men up the path fix the true size, and the country beneath goes on undisturbed.",
+ "deepBy": "Sonnet 4.6"
+},
 
 "nasturtiums": {
 about: "The model was fellow artist Edith Anderson, who married Fox's close friend Penleigh Boyd months after sitting; the painting stayed with the Boyd family until 2011, when the Art Gallery of NSW acquired it as a memorial to Margaret Olley.",
@@ -4180,6 +4183,120 @@ by: "Opus 4.8" },
 "guercino-amnon-and-tamar": {
  "about": "One of the Bible's starkest rape aftermaths and an almost unheard-of subject for a painter, made 1649-1650 for Reggio patron Aurelio Zanoletti and hung as a pair, its two averted nudes split by a blackish wedge of curtain.",
  "deep": "What we see is aftermath, not assault: Amnon has already pivoted away, and disgust is displacing want while his victim remains beside him. His bent limb falls edge-on toward her, a dropped bolt rather than an embrace, set where shadow splits the pair. She answers with contradictory hands — one turned inward at her chest, one lifted flat against him — her forearms sealing her body closed. Temperature settles the rest: a chilly blue drapes the man while heated rose and gold gather round the woman, two ranges that refuse to mix. That black shaft dividing the canvas is the whole point, a strip of dark keeping them severed on one shared bed of fur.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"anthony-van-dyck-maddalena-cattaneo": {
+ "about": "Genoa's banking families ordered portraits like architecture, and van Dyck sized this two-year-old to hang beside a maternal full-length twice this tall — a state grammar scaled down to hands closing on a single apple.",
+ "deep": "Dynasty comes first, the child second: pilaster, curtain, the tapering silhouette of a state likeness are imposed on a two-year-old whose canvas runs half as tall as her mother's, so grown authority arrives shrunken. Nothing in the face bids for affection — the gaze sits level, the lips stay shut, and she carries herself like someone told to stay put. The real difficulty sits lower, one white struggling against another: wool skirt under linen apron, distinct in warmth and in opacity, so the two cloths quarrel down her lower half. An apple rests in her joined hands, the palette's single warm spot and, by tradition, an emblem of purity handed to an infant.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"guercino-joseph-and-potiphar-s-wife": {
+ "about": "For twenty years his brother kept the studio ledger, pricing work by the body; the brother died in 1649, the year this canvas was booked and settled as two half-lengths, one open hand spread on a collar.",
+ "deep": "The subject is a fabrication mid-assembly: the moment chosen is not the struggle itself but the preceding calm, when the arm extended across the bed is both the act and the structural beam holding the composition upright — its ease, not its force, is the argument. Cool flesh and blue shadow hold her; ochre warmth and disorder mark him; the temperature gap never closes even at the single contact point, a hand at his collar resting as though no resistance is expected. At the bottom, the blue cloak bands the full width as a stabilising base and doubles as evidence — the garment that will leave with her and become the accusation.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"courbet-the-stream-le-ruisseau-du-puits-noir-vallee-de-la-loue": {
+ "about": "His manifesto canvases went to a shed he paid for himself, but this gorge near his birthplace passed the 1855 jury and made his name in landscape — a shallow stream carrying the ravine's only real light.",
+ "deep": "What has been removed is as much the subject as what remains: no prospect, no horizon, no weather — a foliage lid sealed across the upper third and a single stream carrying the only brightness down to the floor. Excluding the view is a polemic; scenic landscape required distance and incident, and this replies with wet rock, leaf litter, and the argument that intimate familiarity with a place outranks scenery composed for admiration. Courbet holds his tonal range to one deep key, reserves brightness for two or three cuts only, and uses a palette knife on the cliff faces so stone arrives as flat slabs with a weight that brushwork tends to dissolve.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"sargent-ellen-peabody-endicott-mrs-william-crowninshield-endicott": {
+ "about": "A year after burying the Secretary of War she had married in 1859, this Salem-born hostess of the Cleveland cabinet circle sat at sixty-eight in unbroken black, a single fall of pale lace at her throat.",
+ "deep": "Status here is claimed by subtraction. No insignia, no papers, no house behind her — a black dress admitting almost nothing, a single lace knot, a ring on each hand, and an old face whose every wrinkle and reddened lid is counted as evidence of rank rather than damage to it. Because the dress carries no internal modelling, the outline alone has to describe how she sits, in one unhurried curve down the arm to the seat. Warmth from the crimson hanging keeps that darkness behaving like cloth and not like absence. The lace is not painted but withheld: pale strokes over black, the dark left showing, and the eye supplies the net.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"gauguin-breton-girls-dancing-pont-aven": {
+ "about": "Gauguin reported this canvas in progress by mid-June 1888, calling its dance a gavotte, months ahead of the famous Brittany summer it usually gets credited to; the sole pure red is a flower on each outward-facing apron.",
+ "deep": "Brittany drew Gauguin as a place where an older order might still be running, and he casts that belief as a gavotte chain pulled apart at the front, leaving the viewer in the gap a fourth dancer would fill. Flatness argues the case: blue outlines pen each patch of colour like inlay, and the meadow declines to travel back, its distances piled up as a print piles them. Six clogs, thick and pigeon-toed, sit planted where grace would be expected, and that clumsiness is the honest passage. Ruby blooms mark both girls who turn outward, set on a slant that spans the group — the least paint carrying the most freight.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"lawrence-lady-mary-templetown-and-her-eldest-son": {
+ "about": "Since 1783 the child's grandmother had designed tender mother-and-child groups for Wedgwood jasperware, and nineteen years on Lawrence paints the family's own emblem back into oil, cooling it until only coral-red beads burn at her throat.",
+ "deep": "Two directions of looking carry the argument. The son meets you from the vertical middle; his mother's attention leaves the picture altogether, fixed on something it never shows. Their interlocked fingers, sitting where the diagonals cross, hold what the portrait is actually about. Absorption of this kind arrives on borrowed scaffolding: a sacred niche with the theology taken out and replanted among English trees, the heir given the upright position, his mother spread beneath as a wide pale field. Leaves already turning shut the group in overhead, and finish thins outward from polished heads to frank slabs of pigment, rationed by where attention refuses to settle.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"tiepolo-madonna-of-the-goldfinch-nga-101678": {
+ "about": "Summoned to Madrid at sixty-six and dead there before his last altarpieces were installed, Tiepolo gave his final years to canvases two hand-spans high, where the hottest colour is a crimson mask on a bird's face.",
+ "deep": "Two knowledges occupy the same small pair of hands. The bird in the boy's grip is at once a toy on a tether, of the kind Italian children flew out and reeled back, and an announcement of the killing that waits for him; he extends it, unblinking, to whoever is watching. His mother refuses the exchange, closed inside her cloth, lids down, her sightline dropping somewhere the painting never supplies. Centuries of the emblem's freight concentrate in a single red mark across the creature's face, small enough to hide under a thumbnail and still the first thing anyone sees. The paint takes sides too: her veil thin and provisional, his body dense.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"pierre-bonnard-the-white-tablecloth": {
+ "about": "Bonnard rarely worked in front of his subject, assembling these late rooms months afterwards from tiny diary sketches, and he carried this one from 1938 into 1940, down to the halved orange calibrating every fruit behind it.",
+ "deep": "Everything is set out for a person who fails to turn up. A vacant seat looks across at the table, the pitcher holds nothing, the plates have not been taken down, and the fruit, blooms, crockery and abandoned blade add up to traces of living rather than to any meal. Bonnard assembled such late rooms out of recollection, so the daylight answers to no clock and each item feels retrieved instead of witnessed. His actual subject is the cloth: a pale expanse swallowing orange, violet and cold blue from every direction and still refusing to turn grey, mixed in the eye from buttermilk, lilac and celadon.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"matisse-la-coiffure": {
+ "about": "Broke at thirty-one, a year after taking wage work on Exposition friezes and still paying off the note he signed for a Cezanne bathers canvas, Matisse painted his wife from behind, hands lost in dark hair.",
+ "deep": "A nude here can shut out whoever is watching. Her face goes missing between the arms she has raised, and the mirror that by rights would return the face holds only weather, dark and unreadable, so both routes to her are closed. That leaves the back as an engineering question. Matisse assembles it from unblended facets: warm pink riding a shoulder blade, grey-green in the spinal trough, mauve at the turn of the ribs, none of it smoothed toward salon skin. Down the right flank a chalky cool stripe serves as boundary and shade, temperature standing in for drawn contour. Blossoms and hot cloth are shoved outward, leaving the broad pallor as the light.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"winslow-homer-autumn": {
+ "about": "Two years after quitting the magazine trade and its 250 wood engravings to live on picture sales alone, Homer gave this city-dressed woman an errand, and she holds your gaze above an armful of gathered orange leaves.",
+ "deep": "The wood is coming apart; the woman standing in it is not. A hot field of scarlet and rust takes most of the surface; against it Homer sets a single black upright, jacket over hat, which arrests the eye before the colour carries it off. She returns your look, chin lifted, one white glove lifting her skirt off the path, the other closed on a basket handle. Her armful of leaves holds the cleanest orange anywhere on this canvas, while the canopy behind her has gone dull and half-glazed. The season peaks in her hands rather than overhead, and she is carrying that peak away from a wood already fading.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"benjamin-west-colonel-guy-johnson-and-karonghyontye-captain-david-hill": {
+ "about": "Seeking crown confirmation of his superintendency, Johnson sat in London in 1776 to a painter sixteen years gone from America, who lifted Cohoes Falls off a print to stand behind Mohawk leader Karonghyontye and his quill-wrapped calumet.",
+ "deep": "Dress carries the case here, and the two wardrobes have been switched. Everything Indigenous accumulates on the seated officer — soft-soled shoes, bound legs, fur at the shoulder, a beaded cap he holds out like a stand — and the figure at his back shows scarcely a European stitch. Diplomacy's tools run the opposite way: a firearm for the sitter, a burning calumet for the other, both tilted to matching angles so nobody mistakes the rhyme. Rank of height aside, the canvas spends its advantages on the seated man: illumination, saturation, the near plane. His companion keeps to shadow, features almost lost, watching in a direction that is never returned.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"titian-venus-with-a-mirror": {
+ "about": "Titian abandoned a double portrait on this canvas, turned it a quarter circle, started again, and kept the result beside him until he died in 1576 — the man's jacket surviving as the crimson across her knees.",
+ "deep": "Everything luxurious here is angled outward. She never checks her reflection: the lids sit low and the sightline slips wide of the frame the cupid strains to keep upright, and that tilted glass returns a second, fainter blonde to us instead of to her. So the labour in the picture is service, and we are the ones served. The materials repeat the argument by contrast. Skin is the single passage carried through with continuous modelling; beside it the red is glaze over white, lit from within the fold, and the fur is a split, starved brush leaving hair where no paint went. Softness is manufactured by everything coarse around it.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"degas-edmondo-and-therese-morbilli": {
+ "about": "Degas painted his younger sister and the first cousin she had married, then scraped the paint back, left dark lines for changes he never made, and carried nothing to finish except her small level face.",
+ "deep": "Degas puts the marriage into a floor plan. Thérèse owns the foreground and most of the canvas, her crinoline swelling out to graze three of the four edges, and hers is the sole head carried through to finish. Edmondo is small in his corner, his coat pitched barely apart from the wallpaper, his torso aimed off to the right with the head rotated back at us, as though stopped partway out. Dividing them lies a wide untouched run of scarlet plush; the settee's back, arriving at her shoulder and ending beneath his arm, supplies the only link the two of them get. Their eyes never meet. Upholstery states what the couple will not.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"rembrandt-portrait-of-a-man-in-a-tall-hat": {
+ "about": "The date inscribed here has faded past reading — 1662 to nineteenth-century eyes, 1663 by 1935 — so this nameless burgher, probably a merchant of Amsterdam, is placed near 1663 by the tasselled collar he wears.",
+ "deep": "Refusal is how this sitter displays himself. Costly black wool in quantity and plain good linen were the wealth a Reformed republic permitted, so Rembrandt gives most of the canvas over to one colour and lets rank be argued by omission. Against that composed uniform the head is reported without correction: slack lids, broken capillaries, a flush no flatterer would have kept. The tasselled knot beneath the linen is all the ornament the costume permits, and it marks where the eye descends toward the hands, one closed on a form the paint never resolves, the other slung lower over furniture that was never painted, their difference in height turning a squared body into depth.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"van-gogh-roses": {
+ "about": "Painted at the asylum during his last days there in May 1890, then left to dry because the paint was too thick to travel — a brazilwood red has since drained out of petals that were pink.",
+ "deep": "An argument for the ordinary, made by someone who needed to believe in it. These roses were painted in the days before a self-arranged discharge from an asylum, and the picture reads like a proof of capacity: the bouquet exceeds the vase, presses against the frame on three sides, gets cut off rather than contained. Chemistry deepens the claim: the blooms and the table beneath them were originally pink, the warm half of a pink-against-green pairing that has since faded out, leaving a near-monochrome that now looks like restraint but began as a colour argument. Shed roses lie on the tabletop without symbolic apparatus, marking honestly where the abundance stops.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"morisot-the-mother-and-sister-of-the-artist": {
+ "about": "Asked only for advice on the final day for Salon entries in March 1870, Manet seized the brushes and repainted the artist's mother throughout, sparing her sister Edma, who gave up painting on marrying, and that white gown.",
+ "deep": "What the canvas measures is two ways of occupying one room. The younger sitter faces us squarely, put together, aware that she is being painted. Her mother stoops into a book, both thumbs bent across the boards the way an actual reader holds one, gone from the room entirely. Everything follows from that imbalance. Manet's intervention on the last submission day matters here, since a second hand left two procedures on one surface: the sister's features cool, thin and barely shadowed, the older face driven into real darkness. Each procedure describes a different degree of self-awareness. Down in her lap, the daughter's slack and unemployed fingers finish the case.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"velazquez-the-needlewoman": {
+ "about": "Nothing obliged him to finish it — the canvas had never left his own lodgings when he died in 1660, listed in the death inventory as a woman at her sewing, the hands stopped at pale hooks.",
+ "deep": "Absorption, not likeness, is the subject. The head bows until hair, not features, meets you, the eyes lost in brow shadow, so the exchange a sitter normally offers never arrives; what stands in its place is where she is looking, down into the cloth on her knees. A single saturated touch rides on the crown and fires the sequence, tipping the eye along the parting and under the darkened forehead. The linen at her shoulders is lit harder than her face, so the head cannot rule. Her hands dissolve into hooked pale marks that refuse to resolve, and that refusal is the point: an unfinished passage holds her inside the act itself.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"picasso-lady-with-a-fan": {
+ "about": "At twenty-three, still poor in Montmartre and easing out of his blue years, Picasso was pacing the Egyptian and Phoenician antiquities rooms downstairs at the Louvre — and that looking hardens here into a flat, upheld palm.",
+ "deep": "A gesture arrives with no occasion attached. A head seen edge-on, a palm held open and high, a shut fan dangling: three items borrowed from particular social settings and stranded outside all of them, left to signify on their own. The upheld hand carries the picture's brightest value and its one unbroken contour, the palm pressed flat toward you, poised between a greeting and an offering the canvas declines to settle. Below, fingers hang round the fan without attention, and that downward slant tugs the design leftward while hair and head hold the right. Blue owns the middle; heat is doled out twice only, at a ribboned crown and a truncated red hem.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"pollock-ritual": {
+ "about": "In 1953, three years before the crash that killed him, Pollock set the poured enamel aside for a loaded brush and stretched canvas, then signed his name and the year across the lower edge.",
+ "deep": "Everything rests on two black strokes falling the full height of a tall ochre field, and what they do is partition. To their left, thick clusters of cream and pink sit lassoed in loops of black, forms that gather until a head or a shoulder seems imminent and then give the promise up; the picture keeps stopping a beat short of a body. The wide ochre run between the strokes is the reserve of calm, thin and open, interrupted midway by a scatter of little closed rings that read as remarks added to a passage already settled. Both strokes fatten and starve with the load the bristles still carried, leaving the arm's pressure legible.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
