@@ -104,7 +104,9 @@ window.CANVAS_INSPECT = {
    "body": "The very bottom of the panel is walled in by dark, weathered rock, a stony threshold that runs across the foreground and climbs the right edge in shadow. This near ground is painted warm and heavy, all browns and deep greens, the opposite of the pale distance above. It works like a curtain drawn across the lower stage: it hems the travelers onto their narrow track, hides where they came from, and pushes your eye up and back into the lit valley beyond. Standing back, you see the whole design as a set of screens, dark rock in front, bright fantasy pinnacle behind, open world beyond that, with the human story threaded through the single gap between them."
   }
  ],
- "by": "Opus 4.8"
+ "by": "Opus 4.8",
+ "beside": "The same fantasy geology, the same bargain of faith felt as scale, turns up in The Penitence of Saint Jerome — but there it is the master's own hand rather than a borrowed formula. Set the two side by side and the invention is identical: eroded pinnacles reared like broken teeth, a lone devotional figure shrunk to a thread crossing an enormous world. What differs is the stakes of authorship. One picture originates the device and signs for it; the other repeats it so convincingly that it kept imperial company for generations before scholarship caught the copyist. The world-landscape is the same wager made twice, once at its source and once in faithful echo.",
+ "refs": [{"id":"the-penitence-of-saint-jerome","text":"The Penitence of Saint Jerome"}]
 },
 
 "hendrick-ter-brugghen-bagpipe-player": {
@@ -170,7 +172,9 @@ window.CANVAS_INSPECT = {
    "body": "Up in the bare upper-right field, floating on the plain ground beside the player's head, is the painter's inscription: HTBrugghen fecit. 1624, the initials knotted into a monogram. He places it in clear space rather than hiding it in a shadow, an assertion of authorship on a picture made for open sale rather than a private commission. Sitting in the emptiest part of the canvas, it also does a small compositional job, weighting the top-right so the figure, who leans and looks to the right, is not left tilting into a void. It is the one piece of writing in an image otherwise built entirely from breath, wood, cloth and flesh, and it fixes the whole to a single confident moment in 1624."
   }
  ],
- "by": "Opus 4.8"
+ "by": "Opus 4.8",
+ "beside": "The half-length musician pressed close, all appetite and no anecdote, is a formula the young painter carried north out of Rome. Set him beside The Musicians, where Caravaggio crowds soft-lipped youths and their instruments to the front of the picture in the same warm huddle, and the debt is plain. But so is the revision. The Roman version leans into languor and sweetness, boys posed to be looked at; the piper is turned in strict profile and left to his labour, breath and wood over allure. What was there a scene arranged for the eye becomes here a single body caught working, the borrowed device cooled, greyed, and stripped down to the act of making sound.",
+ "refs": [{"id":"the-musicians","text":"The Musicians"}]
 },
 
 "bartolome-esteban-murillo-the-return-of-the-prodigal-son": {
@@ -236,7 +240,9 @@ window.CANVAS_INSPECT = {
    "body": "Step back and notice how little the setting competes. Behind the figures a plain classical column and blocks of grey stone give the scene a stage without decoration, and above them the sky is worked into a bank of silver-grey cloud with a break of light over the son. Murillo drains this whole upper zone of saturation on purpose: with the architecture and sky held to neutrals, every warm note — the rose cloak, the gold tunic, the flesh, the dog — burns brighter by contrast. The single shaft of pale sky opening above the embrace does the quiet theological work, letting a wash of light fall precisely where father meets son without a single visible source."
   }
  ],
- "by": "Opus 4.8"
+ "by": "Opus 4.8",
+ "beside": "The whole of this picture is settled in hands that receive rather than grip, drawing a surrendered body in. Rubens builds Samson and Delilah on the same locked pose and turns it inside out: there too a man lies given over, his weight collapsed against another, but the hands closing over him are there to strip and betray, not to restore. Set the two together and the device is identical while the bargain reverses at full stakes — a body yielded in exhaustion becomes, in one canvas, the moment of pardon and, in the other, the moment of ruin. Murillo lets touch mean mercy; the same closeness, elsewhere, means the trap has shut.",
+ "refs": [{"id":"samson-and-delilah","text":"Samson and Delilah"}]
 },
 
 "henry-fuseli-oedipus-cursing-his-son-polynices": {
@@ -302,7 +308,9 @@ window.CANVAS_INSPECT = {
    "body": "Step back to the edges and notice what is missing. Apart from a smear of dim foliage at the upper left, there is no setting at all, no floor to speak of, no wall, no sky, only a warm-black void that the figures loom out of. This is Fuseli's most radical choice and the reason the scene grips: he strips away everything that might place or console the eye, leaving the drama nowhere to escape to. The darkness is not empty background but active pressure, closing the family into the moment of the curse. Let your eye try to leave the figures here and it simply falls into brown shadow and is sent back to the finger. The picture is a trap, by design."
   }
  ],
- "by": "Opus 4.8"
+ "by": "Opus 4.8",
+ "beside": "The same painter, the same body learned from Michelangelo and torqued past life, turns up again in Thor Battering the Midgard Serpent, and setting the two together shows Fuseli working one idea at opposite poles. Here the force is a stillness: an old arm held rigid, the whole tragedy delivered by one dropped finger that never strikes. There it is pure swung violence, a hero hurling his hammer down into the churning coils, muscle spent in the blow rather than held back from it. Same strained anatomy, same airless dark that refuses any place to stand, but one canvas freezes a word in mid-air and the other detonates. The quiet picture, it turns out, is the more frightening.",
+ "refs": [{"id":"henry-fuseli-thor-battering-the-midgard-serpent","text":"Thor Battering the Midgard Serpent"}]
 },
 
 "caspar-david-friedrich-northern-landscape-spring": {
@@ -352,7 +360,9 @@ window.CANVAS_INSPECT = {
    "body": "Down in the hollows of the near heath the season is spelled out in small marks: white snow still lying in the shaded pockets, and threaded through it the first thin green of new grass and moss. This is the literal argument of the title, spring as a contested edge rather than a triumph, winter not yet gone and growth not yet sure. The brushwork loosens here into flecks and dabbles, warmer and more tactile than anything in the distance. It is the smallest telling detail in the picture and the one that dates the exact week of the year: the thaw caught in the act, cold and renewal sharing the same square foot of ground."
   }
  ],
- "by": "Opus 4.8"
+ "by": "Opus 4.8",
+ "beside": "The same painter runs this bargain the other way in Sea beach in the fog, where the drained sky and pale flat return but the measure is taken away rather than given. Here two hunters, small as they are, pin the emptiness and make it inhabited; there the fog swallows depth and horizon until a lone figure at the water's edge has almost nothing to stand against, and the vastness turns from tender to annihilating. Same device in both — a body planted at the margin of an emptied world — but staked at opposite ends: one thaws toward habitation and returning light, the other dissolves toward a whiteout that refuses to resolve.",
+ "refs": [{"id":"sea-beach-in-the-fog","text":"Sea beach in the fog"}]
 },
 
 "claude-monet-rouen-cathedral-west-facade-sunlight": {
@@ -418,7 +428,9 @@ window.CANVAS_INSPECT = {
    "body": "Lower right, Monet signs in a warm reddish-brown and inscribes the date. The year matters: it sits later than the days he actually stood before the cathedral, because these canvases were begun on the spot but finished, harmonized and pushed toward their final colour keys back in the studio. The signature is a small honesty about the method. The picture is not a single sitting but a constructed memory of light, worked and reworked until the whole series could hang together as variations. Read the inscription as the seam between the motif seen and the painting made, the moment the fleeting effect was fixed for good."
   }
  ],
- "by": "Opus 4.8"
+ "by": "Opus 4.8",
+ "beside": "The bargain struck here — take one fixed structure, hold it still, and let it become a screen for a passing effect of light — is the same one Monet drives to the opposite hour in The Houses of Parliament, Sunset. There a modern seat of government, no older than the painter, is dissolved just as the eight-century cathedral is, but into the smoke and burnt orange of dusk over water rather than the flooding warmth of noon on stone. The cathedral is worked in crusted impasto that mimics carved masonry; the Parliament silhouette thins to a flat cutout drowning in coloured air. Same method, inverted architecture and inverted hour: a wall of sunlit stone and a shape sinking into its own reflected sunset.",
+ "refs": [{"id":"claude-monet-the-houses-of-parliament-sunset","text":"The Houses of Parliament, Sunset"}]
 },
 
 "claude-monet-the-houses-of-parliament-sunset": {
@@ -484,7 +496,9 @@ window.CANVAS_INSPECT = {
    "body": "In the lower right, in dark blue-violet paint drawn straight from the water's shadows, Monet signs and dates the canvas. The signature is worked into the wet reflection rather than sitting on top of it, so it belongs to the water's fabric instead of floating above it as a label. The date matters: though the view was studied in London years earlier, the canvas was completed and dated in the Giverny studio, evidence that these atmospheric pictures were not spontaneous window sketches but deliberately reworked from memory and from other canvases in the series until the effect was exactly what he wanted."
   }
  ],
- "by": "Opus 4.8"
+ "by": "Opus 4.8",
+ "beside": "Monet had stood at this same water before, thirty years younger, and painted the palace as a thing you could trust. In The Thames below Westminster the towers are drawn, their edges cut clean, the architecture solid enough to lean on while a grey river runs beneath it. Set that early canvas against this one and you are watching the same building at opposite ends of a conviction. Then the stone was the fact and the light was weather passing over it; now the light is the fact and the stone is barely permitted to exist, allowed only as a shadow the fire has not yet finished eating. The motif never changed. What changed was which of the two Monet decided was real.",
+ "refs": [{"id":"claude-monet-the-thames-below-westminster","text":"The Thames below Westminster"}]
 },
 
 "james-tissot-hide-and-seek": {
@@ -550,7 +564,9 @@ window.CANVAS_INSPECT = {
    "body": "Alone on the bare floor at the lower right sits a small red ball, abandoned mid-play. It is the smallest telling detail in the picture and the one that tells the whole story: the toy dropped the instant the game of hiding began. Its red rhymes with the ribbons on the lit girl, threading a line of warm colour from one corner of the action to the other. Set against the vast, cluttered, adult room, this single child's object insists on what the painting is really about — a game loose inside a grown-up world of things, a scrap of play left where a child let it fall."
   }
  ],
- "by": "Opus 4.8"
+ "by": "Opus 4.8",
+ "beside": "The same game is played on the far side of the collection, out of doors and in full light. Morisot's Cache-cache sets a mother and child in a bright meadow, the hiding a soft, open-air ritual with nowhere really to disappear to; the air is the medium and the eye moves freely. Here the game is turned inside out. Tissot seals it in a brown, over-furnished room and rations the light so tightly that finding a hidden child becomes real work, the seeker's task handed to the viewer. Two painters take one nursery pastime and pitch it at opposite poles — open and bright against closed and dark, play as fresh air against play smuggled into a shrine of adult things.",
+ "refs": [{"id":"berthe-morisot-untitled","text":"Cache-cache"}]
 },
 
 "jean-beraud-paris-rue-du-havre": {
@@ -624,7 +640,9 @@ window.CANVAS_INSPECT = {
    "body": "Down in the empty lower-right pavement Béraud signs his name in a dark cursive, dropped into the one large blank passage of the canvas where nothing competes with it. The placement is deliberate: that expanse of pale, near-featureless ground is what gives the whole picture its air and lets the figures breathe, and the signature sits in it like a small dark footnote. Worth pausing on because it shows how much of this painting is calculated emptiness — Béraud understood that a crowded street reads as crowded only if you also give the eye somewhere to rest. The signature marks the quietest square foot of a busy image, and closes the tour where the artist chose to close it himself."
   }
  ],
- "by": "Opus 4.8"
+ "by": "Opus 4.8",
+ "beside": "Set her against the woman in The Plum, and you have the same modern figure caught at opposite settings. Both are alone in public, well-dressed, unescorted, and entirely self-possessed — the very type the age watched with fascination and unease. But Béraud's owns the street through motion: she strides at you, parcels in hand, all forward will. Manet's is stilled at a café table, her self-possession turned inward to reverie, hemmed by marble and glass rather than the open pavement. One takes the city as passage, the other as pause. The walker and the sitter frame the same freedom from its two ends, and each looks more pointed once you have seen the other.",
+ "refs": [{"id":"the-plum","text":"The Plum"}]
 },
 
 "august-macke-people-by-the-blue-lake": {
@@ -698,7 +716,9 @@ window.CANVAS_INSPECT = {
    "body": "Step back and watch the whole surface work. Macke has organized the painting as a set of deliberate complementary clashes: the blue lake against the orange ground, the red branch against the green foliage overhead, the dark blue jacket against the white dress. None of it is shaded or blended into calm; each color is left to vibrate against its opposite so the flat surface seems to pulse with light. This is the core of what makes the picture what it is, and likely what drew you to it: not a scene you look into but a wall of tuned color you look across, with three still figures held inside it. The subject is slight; the sensation is everything. That is Macke's whole argument in one small garden."
   }
  ],
- "by": "Opus 4.8"
+ "by": "Opus 4.8",
+ "beside": "The lesson that lets a lake become a few flat blue slabs rather than a distance was learned in Paris, and the collection keeps the source. Robert Delaunay's La Ville de Paris turns a whole modern metropolis into the same argument at the loudest possible pitch: overlapping planes of tuned color, space built from the contrast of hues instead of perspective, everything held on the vibrating surface. Set the two side by side and the bargain is identical, the stakes reversed. Delaunay pours the method into a city, monuments and towers and the machinery of a capital. Macke folds the same method down to three still strollers in a garden, and proves it can carry a whisper as well as a shout.",
+ "refs": [{"id":"la-ville-de-paris","text":"La Ville de Paris"}]
 },
 
 "giovanni-boldini-after-the-bath": {

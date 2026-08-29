@@ -314,7 +314,48 @@ refused by the rule above.**
 the band is affirmed? Trimming means cutting either the added sentence or something he had
 already approved, so it is his call and is deliberately not decided here.
 
-#### ⚠ Open — does the Interpretation still ride the ratio? Reassessed, and it needs Fuad
+#### ⚙ RULED 2026-08-30 — THE INTERPRETATION FLEXES WITH SUBSTANCE; THE DRAFTER JUDGES THE BLOAT
+
+Fuad, on the hi-res pilot (whose ten Interpretations ran 116–145 against the 95–115 target and
+would not trim into band without losing anchors): *"the interpretation flexes with substance —
+the idea behind this was that the subagent was to judge whether the bloat is justified."*
+**The open item below is ANSWERED: the Interpretation belongs to the depth layer and inherits
+proportionality.** 95–115 stays the TARGET; an overrun is legitimate exactly when the drafting/
+trimming subagent can name what the extra words carry — restatement and scaffolding still get
+cut, anchors are never spent to hit a number. The Info band is untouched by this (32–38 remains
+a constraint).
+
+#### ⚙ SEVEN PILOT RULINGS — Fuad, 2026-08-30 (hi-res tour pilot, `.dtmp/tourpilot-hires/`)
+
+1. **MECHANICAL COUNT GATE on reads waves.** All ten pilot Interpretation drafters reported
+   109–113 while writing 116–161, and the trim agent then misreported its own output. Drafter
+   self-counts are VOID; every drafting/trim wave is followed by a count script, and
+   redo-until-verified replaces self-report.
+2. **Tic families are DISCOURAGED, not banned — and must not repeat across a batch.** The pilot
+   shipped four soft variants of the banned "cover X and it dies" ("cover them in your mind /
+   mentally / cover the boat / the white") and five "Start where/here…" stop-one openers in ten
+   tours. Verbatim: *"you can discourage, it's allowed but don't ban and it just shouldn't keep
+   repeating."* QC scans for the FAMILY (variant regex), allows a single natural use, seals
+   repeats — same logic as the opener cross-check.
+3. **IDENTITY FIRST.** Two of ten pilot hooks researched the wrong object (Patinir's Antwerp
+   autograph for the NGA follower panel; Macke's Karlsruhe twin for the NGA Saltzman canvas).
+   The site's own data already carries the answer — prep passes the plate SOURCE and, where
+   known, accession/IIIF id into the pre file, and the tour's identification duty (§1 ruling 3)
+   starts from it.
+4. **TWO-VERSION PIN.** Where near-twin versions of a composition exist, every exhibition/
+   provenance claim must attach to THIS object; sister-version facts do not transfer (the
+   Herbstsalon case — asserted for Karlsruhe's version, unprovable for ours, de-asserted).
+5. **Box fixes are made against the FULL plate, never the overview thumbnail.** The Rouen
+   blue-shadow box failed three overview-estimated fixes and passed the one full-image fix.
+   Diffuse-colour features (shadow zones, haze) are the known hard class.
+6. **The you-gate matches shipped practice: PERSON-ADDRESS only.** 152 of 389 shipped tours use
+   generic instructional you on non-sure works; the mechanical gate flags "you saw/met/stood/
+   visited" forms against seenConfidence, not every \bformyou\b.
+7. **Wave shape: one Opus per artwork holds; the hook agent MAY be continued** (SendMessage)
+   to write the fused Info once the Interpretation lands — same cascade, fewer launches. No
+   cross-work batching of drafting agents.
+
+#### ⚠ Open — does the Interpretation still ride the ratio? ⚙ ANSWERED ABOVE (2026-08-30) — kept for the record
 
 With the Info pinned at 32–38, the ratio stops being an independent constraint: **3× of 32–38 is
 96–114, which is §5c's 95–115 band.** The two rules now say the same thing, so nothing is at
