@@ -383,6 +383,54 @@ tied to that canvas") and dangling references (a "polished copper" never establi
 seal-stage deletions. Seal fixes are verdict-fixes — minimal, mechanical, re-gated after
 application. Only a sealed batch is printed for Fuad's merge verdict.
 
+#### ⚙ RULED 2026-08-30 — WAVE-2 HARDENING (after the 20-work wave, `.dtmp/tourwave2-hires/`)
+
+Gate verdict after three batches (pilot 10 / wave-1 15 / wave-2 20): **form-level gates are
+solved** — counts, bands, boxes, opener repeats, beside metadata, 4-gram independence all
+catch reliably when actually run. **Factual accuracy is carried by two stages only**: the
+hook verification (wave 2: ~65 corrections on deep-canon works — sitter maps, inverted
+readings, wrong media, wrong attributions of anecdotes) and the FINAL SEAL (wave 2: 5 more
+catches AFTER all green gates). The hardening below mechanizes the seal's most repeatable
+catches so the seal can concentrate on knowledge checks:
+
+1. **LOG-ECHO SWEEP (new mandatory stage, mechanical).** Both waves shipped prose that
+   contradicted its own correction LOG ("around thirty" vs the LOG's ~20; "the fallen
+   birch" after the birch was corrected away). Fix: every back-edit agent must ALSO write
+   `dropped_<id>.txt` — one line per term/number its corrections removed ("birch",
+   "thirty", "photograph", "carved", "mahlstick"). `logecho.js` then greps every artifact
+   of that work for its dropped terms; any hit fails the gate. Runs after back-edits and
+   again after every later text-touching stage.
+2. **CROSS-TOUR PHRASE SCAN (qc2 addition, mechanical).** Tics morph past family regexes
+   (wave 1: "Cover the X and…" ×8; wave 2: three removal-proofs, two tours independently
+   coining "human yardstick"). qc2 now lists every content-bearing 4-gram that appears in
+   2+ tours of the batch; the sealer reviews the (short) list. Regexes chase wording — the
+   cross-tour scan catches the MOVE.
+3. **COMPANION GROUNDING for besides.** The riskiest surviving claim class is a beside
+   describing its COMPANION from model memory (a "mahlstick" that is a cane; figs that are
+   not in the Merienda). Fix: `build-beside-candidates.js` now appends the companion's own
+   shipped Info text to each candidate row where one exists — drafters ground companion
+   claims in shipped text, and the seal verifier bundle MUST include every concrete
+   companion-content claim that has no shipped-text support.
+4. **DIFFUSE-DARK BOX RULE.** Low-contrast features (shadow zones, dark fur, haze) are the
+   proven hard crop class (Rouen shadow ×4 rounds, Rembrandt lapel ×3). After TWO failed
+   fix rounds: widen the box to safely contain the region AND re-truth the stop body so it
+   does not over-promise what the crop shows. No third precision round.
+5. **INFO HOOK CLASS.** Provenance/dealer-chain/collection-gift openings are the weakest
+   hook class and brush the no-venue rule (3 rewritten at wave-2 seal). The fuse prompt
+   bans them: hooks come from making-circumstance, biography, technique, reception.
+6. **INTERP REUSE GATE is standing.** Sonnet now drafts in-band first pass but copies tour
+   phrasing (wave 2: 17/20 over the ≤2 shared-4-gram cap). The interp gate (count + 4-gram
+   vs tour) is as mandatory as the count gate; expect an Opus de-gram pass.
+
+**THE SEAL IS A ROLE, NOT A MODEL.** Any strong model (Opus included) runs it, with two
+constraints: the sealer is the orchestrator, never one of the wave's own drafters; and the
+seal produces a written ledger — per class (tic repetition / LOG contradiction / sister-
+version bleed / medium-attribution error / companion claims / polish), either the catches
+or an explicit "checked, none found". Doubts go to ONE bundled web verifier per wave;
+verify-the-correction applies (two wave-2 "errors" — the Bernard title, the Maddalena
+pendant — were correct on checking; fix nothing without a source). Whole-batch reading
+uses stripped dumps (prose only, no coords) — the proven token shape.
+
 #### ⚠ Open — does the Interpretation still ride the ratio? ⚙ ANSWERED ABOVE (2026-08-30) — kept for the record
 
 With the Info pinned at 32–38, the ratio stops being an independent constraint: **3× of 32–38 is
