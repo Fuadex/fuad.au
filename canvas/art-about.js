@@ -3973,4 +3973,94 @@ by: "Opus 4.8" },
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
+"luis-melendez-still-life-with-figs-and-bread": {
+ "about": "Painting choir-book miniatures after a court snub, Luis Meléndez turned around 1770 to still life — supplying a cabinet of Spanish foodstuffs for the Prince of Asturias, then dying owning his brushes; figs at the hour they split.",
+ "deep": "Everything here is at the hour before it turns — figs splitting at the crown, bread torn open, a knife laid down mid-meal. The painter finds dignity in that exact threshold: not what food means symbolically, but what it weighs and costs and loses. Attention does the whole moral work. Light rakes across the shallow ledge and finds the wet interior of a single burst fig, the dry porous crumb, the greasy shoulder of a dark bottle — each surface given the scrutiny another painter would spend on a face. No emblems, no moralising geometry, just a day's provisions at their peak and the knowledge that peak lasts an hour.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"eva-gonzales-nanny-and-child": {
+ "about": "Manet's only formal pupil — painting at Dieppe around 1877-78, exhibited at the 1878 Salon as Miss et bébé, an homage to his Railway — Gonzalès died at thirty-six, in childbirth, five days after her teacher.",
+ "deep": "A servant is placed at the canvas's centre, and she looks back at you — not at the child she is meant to be minding, who has turned away to finger a garden gate. That reversal is the whole subject: domestic hierarchy dissolved by a compositional choice. The nanny holds the painting's gravity the way a formal portrait sitter would. Around her the props of a paused afternoon — a posy, an umbrella fallen on the path — read as a still life of waiting rather than duty. The boldest note is the umbrella's blue diagonal shoved into the foreground, its handle pointed at you, tying the painted moment to the room you stand in.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"claude-monet-the-artist-s-garden-at-vetheuil": {
+ "about": "Painting through the hardest years after Camille's death, when the rented Vétheuil house held his family alongside the bankrupt Hoschedés — Monet turned the river garden into an open-air studio in 1881, his son Michel with a wagon.",
+ "deep": "Everything here is arranged around a single movement: the garden climbs, and so does the eye. A warm wedge of path tapers up through walls of sunflower, meets a flight of steps, and releases into a pale house against open sky — every vertical conspires to push you there. The sunflowers are not decoration but the corridor's engine, massing height and colour to make the alley feel like a threshold you must pass through. Set into that climb is a small child, domestic enough that you understand this as somebody's paradise — planted by hand, held against difficulty. The feeling is not serenity but intoxication: high-summer wildness seen from inside the life that made it.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"claude-monet-rouen-cathedral-west-facade": {
+ "about": "Obsessed with a subject under shifting light, Monet loaded this façade with thick broken paint in 1894 — ridges casting shadows that read as weathered stone before pigment, warm masonry over cool violet recesses, signed Claude Monet 94.",
+ "deep": "Stone dissolves here — not metaphorically but as a physical fact of the paint itself, ridges and pits of pigment that cast their own real shadows, mimicking the eroded limestone they depict. The building fills the canvas edge to edge, towers cropped, ground gone, everything pressed to the surface with no escape into depth or sky. Warm pink-gold settles on the right-hand pinnacles while violet-blue pools in the portals and the great round window, a split that reads the sun's position without a single cast shadow. Detail is withheld everywhere: the rose window a soft blot, the tracery a scatter of pale flecks. Six centuries of carved permanence, made temporary — existing only as long as this particular light lasts.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"arnold-bocklin-the-sanctuary-of-hercules": {
+ "about": "Böcklin's 1884 oil-on-wood panel out of an imagined antiquity — a sun-warmed shrine wall holding the light while dense ilex seals the rite from ordinary time, a blackened bronze Hercules presiding over the small offering below.",
+ "deep": "Devotion lives in the gap between a glowing wall and the dark trees pressing against it — the warm arc of stone holds the light, the dense ilex holds everything else out, and in the shadow between them two small figures enact the rite. The god above is bronze gone black, more shadow than statue, a presence aimed at rather than seen. His inertness is the point: divinity here is weight and silhouette, and reverence runs upward from the crouching figure, along the scattered red on the paving, to the dark shape on the cornice. The enclosure feels sealed from ordinary time, nature leaning back in while the men keep the sacred order alight.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"willem-van-de-velde-the-younger-and-studio-after-the-storm": {
+ "about": "Willem van de Velde the Younger, the Dutch marine master who followed his draughtsman father to serve Charles II in London — his workshop shares this small saleable canvas by around 1700, a sailor's bargain at trader's scale.",
+ "deep": "The worst has passed, and that is the precarious moment. Nothing is sinking; the boats are working home. Yet the weather has not forgiven anyone — the sea still heaps and darkens, the clouds still press, and the light breaking through is thin and provisional, more reprieve than rescue. The bright mainsail reads as nerve and skill carrying a line through danger; the darkness crowding it is the cost of the trade made visible. Small human craft against an indifferent scale of water and air, the whole national economy riding on hulls like these — this is not a single event but a condition, the sailor's ordinary bargain with a sea that punishes misjudgement.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"hubert-robert-the-ponte-salario": {
+ "about": "Wedded to ruins across eleven Roman years, Hubert Robert earned from Paris the name Robert des Ruines — this Aniene span, painted around 1775, a monument built to outlast empires worn to laundry-stone, the real bridge later lost.",
+ "deep": "Ruins are not endings but long, slow afterlives, and this one is still being used. The arch, built to last, has outlived whatever it was built for and been quietly repurposed — laundry is done at the waterline, cattle are driven across the ancient span, a settlement has grown parasitically onto the bridge. Grandeur becomes backdrop for ordinary morning chores, and there is no lament in it, only a calm acceptance that the enormous and the everyday share the same frame. The picture is about continuity as much as decay. Human life simply keeps threading through wreckage, indifferent and warm.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"jan-both-an-italianate-evening-landscape": {
+ "about": "In Rome from 1638, working alongside Claude on the Buen Retiro commission, then home to Utrecht as its leading Italianate landscapist — dead by 1652, this c. 1650 canvas distils the Campagna into borrowed golden light.",
+ "deep": "Golden light arrives from outside the frame — its source hidden, its argument everywhere: every lit tree-rim, every honeyed cloud-edge pointing back toward a sun you must imagine rather than see. That displacement turns the whole canvas into longing, a scene organised around an absence. The road threads it together, curving from the resting pair in warm foreground shadow up toward a group with a laden animal, and on into a valley so veiled in blue haze it reads as pure idea of elsewhere. Atmosphere does the measuring: the closer the detail, the crisper the brown; the farther it goes, the more colour drains to silence. The pleasure here is distance itself.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"paul-serusier-farmhouse-at-le-pouldu": {
+ "about": "Painting beside Gauguin at Le Pouldu in 1890—two years on from the Pont-Aven lesson that made him paint The Talisman—Sérusier presses a Breton farmyard into interlocking planes of hot ochre and cool blue, pattern standing in for depth.",
+ "deep": "A whole farmyard becomes a screen of interlocking colour zones, and the argument is visible from the first glance: depth is refused, flatness is the truth. The enormous ochre wall presses against the canvas surface rather than receding into it, and a walking Breton woman — rendered as a small blue silhouette, type rather than person — anchors the left edge while rhyming across the hot field with the cool blue recess set into the wall. The tilted path draws the eye around in a loop: stones to woman to oven to haystack and back, a circuit that never settles. Sérusier makes pattern do what illusion once did.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"robert-delaunay-political-drama": {
+ "about": "March 1914, and Henriette Caillaux walks into Le Figaro to shoot its editor dead — Delaunay forces the press illustration into Orphic discs, oil and collage on cardboard, the pasted heads refusing the light that spins around them.",
+ "deep": "Colour claims the centre before the eye finds the figures — concentric rings build to a gun-sight core of red, orange, white and blue that burns hotter than anything, pulling the gaze back no matter where the two silhouettes try to anchor it. One flat black shape fires from the left, one rust-red shape falls to the right, their heads collaged in as printed discs that refuse the depth the spinning rings propose. That refusal is structural: pasted on, the figures cannot live inside the wheel's luminous space, and the tension never resolves. A killing lifted from a newspaper is forced into pure spectral light, and neither the human event nor the colour machine yields.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"jervis-mcentee-mount-desert-island-maine": {
+ "about": "Church's pupil and second-generation Hudson River School painter, McEntee sketched Maine's coastal granite in 1864 beside Sanford Gifford — three summer weeks near Cadillac Mountain, mid-Civil-War — favoring exposed rock and hazed distance over triumphant wilderness spectacle.",
+ "deep": "Bare granite under your feet, dissolving haze at the horizon — the whole picture runs on that contrast, and the single seated figure at the seam between the two turns it from a rock study into an argument about attention. McEntee loads the foreground stone thick and warm, heavy with pink and ochre, fissured and studded with loose stone, then lets everything beyond thin to nothing: scumbled washes, trees barely resolved, sea and sky bleeding into a single hazy band. Paint handling does the work of recession — nearness is more pigment, distance is its absence. The figure sits exactly where the solid world gives out, modeling the act the painting asks: stillness, and looking.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"anne-vallayer-coster-still-life-with-flowers-in-an-alabaster": {
+ "about": "The finest French still-life since Chardin, and Marie-Antoinette's own painter — one of four women in the Académie — Vallayer-Coster kept this 1783 Salon piece until her death in 1818, then it vanished until a 2022 rediscovery.",
+ "deep": "Flowers from different seasons share one vase, a pineapple sits beside grapes and peaches, and nothing here was gathered in a single morning — the picture is a fiction of plenty, and it knows it. The vanitas whisper barely registers: one rose is overblown, its petals loosening, but the eye moves on to the scarlet poppy and answering blue iris ricocheting at the top of the mass. Below, the pineapple's spiky crown breaks the picture plane and leans toward you — the most aggressive move, staking a claim on real space the way the arrangement stakes a claim on every season at once. Abundance this controlled is a performance of what wealth can command.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"johan-christian-dahl-view-from-vaekero-near-christiania": {
+ "about": "Painted from memory in his Dresden studio in January 1827 — months after a summer home in Norway — Dahl working up this moonlit inlet in the nocturnal key he shared with housemate Caspar David Friedrich.",
+ "deep": "Parallelism is the picture's argument: two figures stand at the near shore watching the moon come up, and the composition arranges your gaze so it runs exactly beside theirs. Nothing in the scene asks you to act — the ship sleeps at anchor, the nets hang idle, the shed leans in silence — and yet the accumulated stillness presses forward. Cold governs everything except one red skirt, the single warm signal in a blue-grey field, which marks where to land before the eye travels the silver reflection out to the horizon. Dahl paints the Norwegian coast as a place you reach and then stop at, held by water that goes further than you can follow.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"gustav-klimt-baby-cradle": {
+ "about": "Klimt's final working year, 1917 and 1918, left unfinished at his death that February — an infant asleep at the apex of a heaped pyramid of clashing patterned cloth, dwarfed by more life than one child could hold.",
+ "deep": "The pile outweighs the child by every measure — that is the whole argument. A sleeping face, no bigger than any fabric patch beneath it, sits at the pyramid's tip while an accumulated mass of cloth descends in every direction, clashing in colour and pattern, too heavy and various to belong to any single life. The mound does not describe a bed; it describes an inheritance, stacked and waiting before the child has done anything to earn it. Disproportion is the subject: a life begins small and unremarkable at the summit of everything it must eventually move through. The fabrics stay restless, the outer shape holds firm, and the baby sleeps on, unaware.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"giovanni-boldini-whistler-asleep": {
+ "about": "Boldini needling a copperplate in his Paris studio around 1897 — his friend Whistler caught in the habitual after-breakfast doze, the famous etcher etched off-guard — plates the artist never published, so lifetime proofs stay rare.",
+ "deep": "Control abandoned is the only subject here — a man who composed his own public image as carefully as his paintings, caught with his head thrown back and his mouth slack, asleep in someone else's studio. The vain become helpless; the self-curated face empties out. Boldini could only have made this drawing from inside the friendship: you are shown it because he was in the room. The needle-and-plate medium doubles the intimacy — the great etcher, etched, without permission or preparation. Nothing is posed. Affection is the whole instrument, and what it records is the strange relief of watching a performer finally, briefly, stop.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
 };

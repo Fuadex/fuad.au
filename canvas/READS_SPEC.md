@@ -353,7 +353,35 @@ a constraint).
    visited" forms against seenConfidence, not every \bformyou\b.
 7. **Wave shape: one Opus per artwork holds; the hook agent MAY be continued** (SendMessage)
    to write the fused Info once the Interpretation lands — same cascade, fewer launches. No
-   cross-work batching of drafting agents.
+   cross-work batching of drafting agents. *(Wave-1 practice note: agent continuation is NOT
+   available in the current harness — the fused Info is written by a fresh one-Opus-per-work
+   agent fed the hook + interp files. Same cost shape, same one-per-artwork law.)*
+
+#### ⚙ RULED 2026-08-30 — THE FINAL SEAL (Fuad, after wave 1, `.dtmp/tourwave1-hires/`)
+
+Every tour/read wave ends with a mandatory **Fable seal** before anything is presented for
+merge — a whole-batch human-style read of every artifact, distinct from (and after) the
+mechanical gates. It exists because wave 1 proved two failure classes survive every regex:
+
+1. **Tic migration.** The cover-family regex was evaded by the softened form "Cover the X
+   and…", which reached EIGHT of fifteen tours before a batch-as-one-text read caught it.
+   Regexes chase wording; the seal reads the batch whole and hunts any repeated *rhetorical
+   move* (the batch is allowed one natural use; repeats get varied by a corrective agent,
+   each replacement a distinct construction).
+2. **Factual noise.** Old works carry noisy research, and drafters produce errors no gate
+   sees: a wrong exhibition count that contradicted the tour's OWN research LOG (Durand-Ruel
+   "thirty"→twenty), a painting "carved" (The Talisman), a press illustration called a
+   photograph, an oil called a sheet, an invented detail in a companion work (figs in the
+   Met Merienda). The seal cross-checks every load-bearing number/title/medium/date in the
+   final text against the artifact's own flags/LOGs and the sealer's knowledge; genuine
+   doubts go to ONE bundled Opus web verifier per wave (wave 1: 3 doubts → 2 fixes, 1
+   confirmed). Sister-version bleed, medium mislabels, and drafter-contradicts-own-LOG are
+   the known classes.
+
+Plus **polish**: reviewer-speak leaking into reader-facing prose ("the reading should be
+tied to that canvas") and dangling references (a "polished copper" never established) are
+seal-stage deletions. Seal fixes are verdict-fixes — minimal, mechanical, re-gated after
+application. Only a sealed batch is printed for Fuad's merge verdict.
 
 #### ⚠ Open — does the Interpretation still ride the ratio? ⚙ ANSWERED ABOVE (2026-08-30) — kept for the record
 

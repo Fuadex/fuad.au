@@ -49,6 +49,978 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+"luis-melendez-still-life-with-figs-and-bread": {
+ "see": "A low stone ledge holds a handful of kitchen things pushed close to you: a heaped plate of figs, two loaves of coarse bread, a dark bottle, a wooden cask, and a knife whose blade juts out over the front edge. The light rakes in from the left, hard and cool, so everything catches a lit face and drags a shadow to the right. The figs are the loud note — greens going to bruised violet, split skins, a scatter of seeds — set against the deep near-black of the bottle behind them. Nothing sits deep in space; the objects crowd the shallow shelf and press toward the picture plane. The background is a plain unlit brown, empty on purpose, so that not one edge, crumb, or bead of moisture on the fruit has anywhere to hide.",
+ "about": "This is the food of an ordinary Spanish household, not a banquet — figs at the peak of ripeness, day bread, cheap wine, the humble gear that stores and serves them. Meléndez gives that plain fare the gravity of a portrait. The subject behind the subject is abundance measured against its own decay: figs are the most perishable fruit imaginable, already splitting, and he paints them at the exact hour before they turn. The bread is broken, the bottle stoppered, the knife laid ready — a meal caught mid-preparation, human presence implied but absent. It is a picture about touch and appetite and the passing of a single day's provisions, made without moralising emblems. The dignity comes entirely from attention: he looks at a fig the way another painter looks at a face.",
+ "craft": "The engine is tonal control. Meléndez builds the whole thing on a narrow warm-brown scale, then spends his brightest paint and sharpest focus only where it counts — the lit crust, the plate rim, the fig skins — letting everything else sink toward the dark. Textures are differentiated with almost tactile precision: the sugary open crumb of torn bread, the matte bloom on a fig, the wet gleam of a burst one, the greasy sheen of glass, the dry banded staves of the cask. Composition is a study in weighted asymmetry — the tall bottle and cask mass on one side, the low horizontal sweep of bread and fruit answering across the base, the knife handle thrust forward to break the ledge and pull you in. He works close and from slightly above, a viewpoint that lets each object keep its full volume.",
+ "context": "Meléndez painted this around 1770 in Madrid, near the end of a career that never got the standing his gifts deserved. Trained for grand figure painting and once employed illuminating royal choir books, he was frozen out of the court's academic hierarchy and turned to still life — the genre ranked lowest — where he became the greatest Spanish practitioner of the century. Between 1759 and 1772 he made forty-four or more of these kitchen pieces for the Prince of Asturias, the future Charles IV, intended for a natural-history museum to catalogue the produce of Spain almost like specimens; he himself described them as a cabinet of the foodstuffs the Spanish climate yields. He died indigent in Madrid in 1780, having told the king he owned nothing but his brushes. The unglamorous subjects here are exactly the point: an artist shut out of prestige turning the contents of a pantry into some of the most concentrated looking in European painting.",
+ "deeper": [
+  {
+   "t": "The split fig",
+   "x": 0.36,
+   "y": 0.6,
+   "w": 0.16,
+   "h": 0.15,
+   "body": "Find this fruit first, the one he wants your eye to catch — a single fig turned face-up and burst open at the crown, its interior a wet knot of pale flesh and red seed. Everywhere else the figs show their skins; here alone the picture opens the fruit and shows the inside, ripe to the point of rupture. That single break does the emotional work: it tells you these are not decorative props but food at its most fleeting, an hour from spoiling. Notice how the highlight sits wetter and sharper here than on the intact fruit around it, so your eye is steered to the one that has already given way."
+  },
+  {
+   "t": "Green against bruise",
+   "x": 0.36,
+   "y": 0.62,
+   "w": 0.6,
+   "h": 0.26,
+   "body": "Read the plate as a colour argument. Meléndez sorts the figs into two families — luminous yellow-greens and deep bruised purples — and lets them jostle without blending. The greens carry the light and sit forward; the violets fall back into shadow and knit the pile to the darkness behind. Each fruit keeps a taut, slightly matte skin with a powdery bloom, and he varies the stem scars and dimples so no two repeat. The heaping is deliberately unstable — figs perched, leaning, one nearly rolling off the rim — which reads as a pile just set down, not an arrangement composed. That casualness is the hardest thing here to fake."
+  },
+  {
+   "t": "Torn crust and crumb",
+   "x": 0.03,
+   "y": 0.48,
+   "w": 0.4,
+   "h": 0.22,
+   "body": "The bread is a second masterclass in surface. One loaf is broken open, and the difference between its two states is the whole point: the outer crust is a hard, glazed, cracked brown that catches the raking light in a bright ridge, while the exposed crumb is pale, dry, and porously open, painted with a crumbling touch you can almost feel on the tongue. He drags thicker, drier paint for the interior and smooths it for the shell. Set beside the wet figs, the bread reads as the composition's dry note — the same warm palette, opposite texture — so the two together give your eye the full range from moist to parched."
+  },
+  {
+   "t": "The dark bottle",
+   "x": 0.18,
+   "y": 0.11,
+   "w": 0.25,
+   "h": 0.38,
+   "body": "The bottle is almost pure shadow, a near-black glass mass that could have been a dead hole in the picture. Meléndez saves it with two things: the cool grey-white glint sliding down its shoulder and belly, which tells you it is smooth wet glass and not just darkness, and the cork jammed loosely in the neck, casually off-centre. That single reflected highlight is doing structural work — without it the shape flattens into the brown ground. The bottle also functions as the dark backdrop the figs are thrown against, its blackness making the fruit's greens ring louder. It is the still life's anchor: tallest, quietest, heaviest thing on the shelf."
+  },
+  {
+   "t": "Staves and hoops of the cask",
+   "x": 0.52,
+   "y": 0.28,
+   "w": 0.44,
+   "h": 0.28,
+   "body": "The wooden cask on the right is where Meléndez shows off dry craft over wet fruit. Look at the banding: pale bent-wood hoops binding vertical staves, each plank given its own grain, split, and worn edge, the whole barrel curving away into shadow on its right side. Above it sits a broader wooden tub and a cylindrical wooden element standing upright. This corner is all made things — cooperage, joinery, tools — answering the natural produce on the other side of the shelf. The palette stays inside the same narrow browns, so the passage never competes with the figs for colour; it competes only in texture, and wins on sheer descriptive patience."
+  },
+  {
+   "t": "The knife over the edge",
+   "x": 0.02,
+   "y": 0.76,
+   "w": 0.34,
+   "h": 0.16,
+   "body": "The knife is the quietest and most cunning device in the picture. Its pale bone handle sits at the near corner of the ledge and its blade points inward toward the fruit, but the handle itself pushes out beyond the stone lip, breaking the front plane. That small overhang is what pulls the whole shallow scene into your space and puts the food within reach — a standard trick of Spanish still life, used here with total economy. It also carries the human trace: a knife laid down means someone will pick it up, that the meal is paused rather than staged."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "The same eye works at a wholly different scale in The Afternoon Meal (La Merienda), where Meléndez spreads food across an open hillside with figures gathered round it, air and distance to spare. Here the bargain reverses: no room, no people, no sky. The provisions are shoved to a shallow ledge and pressed almost against your face, the background sealed off in unlit brown. What the larger picture states through setting and company, this one wins by pure crowding — the same bread, the same patient looking, but with everywhere to expand traded for nowhere to hide.",
+ "refs": [{"id":"the-afternoon-meal-la-merienda","text":"The Afternoon Meal (La Merienda)"}]
+},
+
+"eva-gonzales-nanny-and-child": {
+ "see": "A woman sits alone at the centre, filling most of the canvas in a pale pink dress whose tiered skirt spreads to a broad triangular base. A short cape covers her shoulders, tied with a dark bow at the throat, and a white bonnet crowned by a small dark bird-ornament frames her face, which turns to meet you directly. In her lap she holds a loose posy of coloured flowers. To the left a child in blue-grey, back turned, stands close against a green lattice gate. The lower right corner is taken by a blue umbrella fallen open on the pale path, its curved handle thrown toward us. Behind, a park opens: a low horizon, a swept path, dark massed trees at the right, a thin bright band of sky. The pink of the dress and the blue of the umbrella are the two poles the eye swings between.",
+ "about": "The title makes the seated woman a servant, yet she owns the picture — placed dead centre, life-size, facing out with the composure of a formal portrait. The child, whose care is nominally the point, is turned away and pushed to the margin, engaged with the gate rather than with her. That reversal is the subject: a domestic role photographed at the moment its hierarchy dissolves, the paid guardian rendered with all the dignity a bourgeois sitter would command. Around her the ordinary props of an afternoon outing — the posy, the abandoned umbrella, the garden gate — read as a quiet still life of leisure and waiting. The painting is about attention: who looks at whom, who is watched, and the odd stillness of a woman caught between duty and her own private thought while the child she minds drifts off on its own errand.",
+ "craft": "Gonzalès builds the whole design on a single pale triangle — the dress — and lets everything else orbit it. The skirt's tiers are laid in with broad, thinned strokes that keep the pink luminous rather than solid, so the fabric reads as light more than cloth. Against that softness she sets three darker anchors that lock the composition: the child and gate at left, the trees at right, the black boots and the umbrella below, each weighting a corner so the seated figure never floats. The umbrella is the boldest move — a saturated blue diagonal shoved into the foreground, crossing the frame's calm and pulling depth forward. Brushwork loosens as it leaves the face: the sitter's features are the most finished passage, the path and foliage handled in quick open touches. The restrained palette — pinks, greys, one blue — is what gives the canvas its cool, even air.",
+ "context": "Eva Gonzalès was Manet's only formal pupil, and this canvas, painted at Dieppe around 1877-78 and shown at the Salon of 1878, sits in the Impressionist decade, though she never exhibited with the group. The debt to Manet is visible in the frank frontal pose, the tonal economy and the flattened light — and in the design itself, read as an homage to his Railway of 1873, which pairs a seated woman gazing out with a child turned to grip a fence. But the choice of subject is her own: a nanny given the compositional gravity usually reserved for a lady. Painting outdoor leisure and the women of the household was terrain the Impressionist women — Morisot, Cassatt, Gonzalès — made their field, barred as they were from the cafés and studios their male colleagues roamed. Gonzalès died in 1883 in childbirth, aged thirty-six and only five days after Manet himself, which cut short a career just beginning to be seen on its own terms rather than through his shadow.",
+ "deeper": [
+  {
+   "t": "The look back at you",
+   "x": 0.36,
+   "y": 0.13,
+   "w": 0.22,
+   "h": 0.24,
+   "body": "Here is where the picture holds you. The face is the most worked passage on the canvas — everything else is loosened, but here the modelling firms into a real gaze, turned out and level, meeting yours. Note that she is not looking at the child she is meant to be minding; her attention has left her task entirely and settled on us, or on nothing. The dark bird-ornament perched on the white bonnet gives the head a small startling weight, a note of fashion and of the outdoors both. It is this direct, self-possessed look — a servant regarding you as an equal would — that quietly overturns the title and makes the painting more than a genre scene."
+  },
+  {
+   "t": "The turned-away child",
+   "x": 0.03,
+   "y": 0.2,
+   "w": 0.26,
+   "h": 0.55,
+   "body": "The child is the reason the woman is here, and yet is given almost nothing: back to us, face hidden, absorbed in the green lattice of the gate. Gonzalès keeps the small figure in cool blue-grey so it recedes against the warm pink beside it, and lets the pose do the storytelling — the independence of a child who has stopped needing to be watched. The gate the child fingers is a boundary, the edge of the garden, and the whole left flank of the canvas becomes about departure and distraction. Read the two figures together and you see the real drama: proximity without contact, two people side by side and each somewhere else."
+  },
+  {
+   "t": "Flowers in the lap",
+   "x": 0.42,
+   "y": 0.47,
+   "w": 0.17,
+   "h": 0.15,
+   "body": "In her lap, almost lost in the pale skirt, sits a loose bunch of cut flowers — a few strokes of red, yellow and green that carry the only warm saturated colour high in the picture. It is a small anchor for the hands and a soft echo, in miniature, of the vivid umbrella below: two spots of intensity that pin the quiet dress between them. The posy also dates and places her — an afternoon in a park, flowers gathered or given — and it lends the folded, waiting pose a trace of tenderness the composed face withholds. Remove everything but this handful of colour and it is still enough to tell you the day is fine and the errand gentle."
+  },
+  {
+   "t": "The abandoned umbrella",
+   "x": 0.55,
+   "y": 0.62,
+   "w": 0.44,
+   "h": 0.36,
+   "body": "The single most daring stroke in the picture. Gonzalès drops a fully open blue umbrella flat across the foreground, its saturated colour and hard diagonal crashing into the canvas's calm register. It is the one true dark-and-vivid note down low, balancing the trees at right and stopping the eye before it drifts off the bottom edge. But it also carries meaning: an umbrella lies open and useless on the ground, the day clearly bright — a prop set down, a moment of waiting stretched out, the outing paused. Its curved handle, thrown toward you, is a small piece of visual aggression pointing back into the viewer's space, tying the painted scene to the room you stand in."
+  },
+  {
+   "t": "The path and the far light",
+   "x": 0.5,
+   "y": 0.28,
+   "w": 0.4,
+   "h": 0.22,
+   "body": "Behind the figure the garden opens onto a swept pale path and a thin luminous band of sky at a low horizon. Here the brush goes fast and open — a few dragged tones for ground and distance, no detail — and the contrast tells you how deliberate the finish on the face was. This bright corridor of light does the spatial work: it pushes depth back and sets the near, dark figures and umbrella forward by opposition. It is also the most purely Impressionist passage on the canvas, plein-air handling of light and air, and it keeps the whole scene out of doors, an afternoon rather than a studio pose."
+  },
+  {
+   "t": "The green trellis gate",
+   "x": 0,
+   "y": 0.22,
+   "w": 0.16,
+   "h": 0.4,
+   "body": "The lattice at the far left is easy to pass over, but it does real structural work. Its cool green verticals and crossings give the left edge a firm, cool wall that stops the composition and answers the mass of trees on the right, so the seated figure is held between two darker uprights. It is also the child's whole world for the moment — the thing being touched and studied — which turns a simple garden fixture into the object of the picture's only real action. Look at how loosely it is painted up close, then how solidly it reads as a barrier from a step back: the economy is the point."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "The gambit here is a borrowed gravity: a servant handed the centred, life-size frontal pose the age reserved for people who paid to be painted. Set it against Renoir's A Girl with a Watering Can, where a child stands dead centre in the same portrait format, met head-on, at ease. There the honour is straightforward — a loved subject given her due, nothing turned over. Here the identical staging carries a charge, because the sitter is hired and the child she minds is shoved to the margin, turned away. Same compositional bargain, opposite stakes: one grants dignity as a matter of course, the other steals it and dares you to notice.",
+ "refs": [{"id":"a-girl-with-a-watering-can","text":"A Girl with a Watering Can"}]
+},
+
+"claude-monet-the-artist-s-garden-at-vetheuil": {
+ "see": "A garden path drives straight up the centre of the canvas, a warm sunlit ribbon of ochre and rose that your eye climbs almost without choosing to. Flanking it, two banks of sunflowers rise higher than the figures, their heavy gold disks turned outward on tall green stalks, so the alley reads as a corridor of light walled by leaf. Blue-glazed pots anchor the near corners like gateposts. Halfway up, the path meets a flight of steps that lifts toward a pale house under a high blue sky streaked with cloud. A small child in blue stands in the foreground, a toy cart before him; two more figures wait on the stairs. The whole surface is broken into short, loaded strokes, so nothing sits still: the flowers shimmer, the ground flickers, and the eye is pulled up the receding steps to the bright gap at the top.",
+ "about": "This is Monet's own garden at Vétheuil, the house he rented on the Seine in his poorest, most grief-shadowed years, and the picture is less a record of a place than of a threshold. Everything is arranged around ascent — the path, then the steps, then the house lifted against sky — a movement from the near, planted, human ground toward light. The children set into that climb make it a picture about a family occupying a small paradise it could barely afford, staking beauty against hardship. The sunflowers, then a fashionable and slightly bohemian flower, are not incidental decoration but the subject's engine: mass, colour, and vertical energy all at once. What the painting is finally about is the intoxication of a cultivated wild place at high summer, seen by a man who made that garden with his own hands.",
+ "craft": "The design is almost brazenly simple — a central axis, near-symmetry, a vanishing point parked on the distant house — and Monet dares it because the brushwork keeps the symmetry from going stiff. He works the whole canvas at one pitch of broken colour: no flower is a single yellow but a shuffle of gold, orange, and green, and the path is laid in warm strokes crossed with lilac shadow so it vibrates rather than lies flat. Complementaries do the heavy lifting; the violet-blues of pots and sky snap against the orange path and flowers. Scale is managed by diminution alone — big loose strokes near, tighter touches far — pulling depth from a shallow, tapestry-like surface. The figures are barely drawn, dabbed in, kept subordinate so the garden stays the protagonist.",
+ "context": "Monet began this canvas at Vétheuil in the autumn of 1881, near the end of a brutal stretch: the rented pink house shared since 1878 with the bankrupt Hoschedé family, his wife Camille dead there in 1879, money constantly short. He so loved the motif of these blue pots and sunflowers on his garden steps that he worked it as a group of four closely related canvases that summer; this is the largest, with a sister sketch now at the Norton Simon. When he reworked the foreground he signed it with a date a year too early, which is why the museum's label reads 1880 though the campaign runs through 1881. Sunflowers carried a charge in this circle — Van Gogh would make them his own only in 1888 — and Monet's massed stands read as a distinctly modern, almost defiant choice of subject. Soon after, he left the river towns for Giverny, where the garden became his life's great work; this Vétheuil alley is the seed of that obsession.",
+ "deeper": [
+  {
+   "t": "The path as engine",
+   "x": 0.3,
+   "y": 0.62,
+   "w": 0.4,
+   "h": 0.36,
+   "body": "Notice how little the path actually is and how much work it does. It is a wedge of warm ground — ochre, cream, pink — narrowing as it climbs, and Monet never lets it settle into a flat plane. Cool lilac and blue-grey strokes cross the warm ones, reading as dappled shade and giving the surface a low shimmer. That warm-against-cool flicker is what makes the path feel sunlit rather than merely pale. Its taper is also the picture's entire perspective system: no drawn lines, just a shape that shrinks. Your eye enters here and is committed to the climb before it has decided to look at anything else."
+  },
+  {
+   "t": "Sunflowers as wall",
+   "x": 0,
+   "y": 0.14,
+   "w": 0.3,
+   "h": 0.52,
+   "body": "The left bank shows how Monet builds mass out of touches. No single sunflower is drawn whole; each disk is a knot of orange and brown circled by short gold strokes, and the foliage beneath is a dense weave of greens laid every direction. Step back and it resolves into a towering hedge of flowers; step in and it dissolves into pure paint. Red accents — small blooms threaded through the green — keep the bank from reading as one flat colour and make it breathe. These stands are taller than the figures on purpose: they wall the alley, turning a plain garden path into a corridor, and their verticals brace the picture's insistent upward pull."
+  },
+  {
+   "t": "The child and the cart",
+   "x": 0.44,
+   "y": 0.56,
+   "w": 0.22,
+   "h": 0.28,
+   "body": "The one figure that stops you is Monet's young son Michel, planted mid-path in pale blue with his wagon set down in front of him. He is barely modelled — a few strokes for the smock, a pale blur for the face, a touch of blond — yet he governs the whole foreground because he sits on the central axis at the point where the path begins to climb. He gives the sunflowers their scale: they tower because he is small. And he turns the scene domestic, a lived garden rather than a landscape, the human note that lets the flowers read as somebody's paradise rather than a wild field."
+  },
+  {
+   "t": "Blue pots as gateposts",
+   "x": 0,
+   "y": 0.74,
+   "w": 0.24,
+   "h": 0.26,
+   "body": "In the lower corners sit large glazed ceramic pots, their cool blue-violet the sharpest colour note in the picture. Monet places them like gateposts at the mouth of the alley, and their cool mass does two jobs. It weights the near corners so the composition does not float, and it throws the warm path between them forward by pure complementary contrast — blue holding orange. Notice how loosely the glaze is described: a few curved strokes of light on dark suggest the round, wet shine of fired earthenware without a single hard edge. These pots recur across the related versions of this motif; they were clearly a fixture of the real garden and of Monet's affection for it."
+  },
+  {
+   "t": "Steps and the waiting figures",
+   "x": 0.4,
+   "y": 0.3,
+   "w": 0.22,
+   "h": 0.24,
+   "body": "Where the path meets the stairs, two small figures stand at the foot of the flight, even more summarily brushed than the child — pale verticals against the shadowed steps. Their smallness is the picture's depth cue made human: set beside the near child, they measure how far back the house is. The steps themselves are almost abstract, a stacked run of short horizontal strokes that read as risers only because the eye insists on it. This is the hinge of the composition, where the horizontal ground yields to the vertical climb, and Monet keeps it deliberately loose so the transition feels like distance dissolving into light rather than a drawn architectural join."
+  },
+  {
+   "t": "House, chimney and sky",
+   "x": 0.3,
+   "y": 0,
+   "w": 0.44,
+   "h": 0.28,
+   "body": "At the top the path finally releases into a pale house with a tall chimney, set against a genuinely blue summer sky broken by fast, dry cloud strokes. This bright gap is the destination the whole design has been driving toward; every line of taper and every vertical of flower points here. The sky is not a backdrop but an active colour, its blue answering the pots below and cooling the top of a picture that is warm through its middle. Note too the small ornamental vases set along the terrace by the house — a rhyme with the great pots at the bottom, quietly binding foreground and distance, near garden and far, into one continuous cultivated world."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "The same instrument runs through The Great Alley in Giverny: a central path walled by planting, tapering up to a house held against sky, the eye committed to the climb before it chooses. But the stakes have flipped. Here the corridor is staked in a rented garden the family could barely keep, beauty wagered against grief and a short purse. There it is a settled estate, the paradise finally owned outright, the same ascent made from safety rather than need. The device is identical; the fortune underneath it has changed completely. Read them together and the later alley is this one's wish granted.",
+ "refs": [{"id":"claude-monet-the-great-alley-in-giverny","text":"The Great Alley in Giverny"}]
+},
+
+"claude-monet-rouen-cathedral-west-facade": {
+ "see": "A cathedral front fills the whole canvas edge to edge, cropped so the towers run off the top and the ground is gone. There is almost no sky, only two pale wedges of cream and rose in the upper corners. The stone is not painted as stone but as a crust of thick, broken touches, so the surface reads first as texture and only second as architecture. A cool violet-blue pools through the recessed portals and the great round window, while the projecting mouldings and the right-hand pinnacles catch a warmer pink-gold. Your eye is pulled up the central axis: the deep brown mouth of the main doorway, the tall gabled arch above it, the dark disc of the window, then the lace of the upper gallery dissolving into light. Nothing is drawn with a line; everything is felt through weight of paint.",
+ "about": "The subject is not really the cathedral. Monet stood at the same window across the square through the winter and spring of 1892 and 1893 and painted the façade again and again, chasing not the building but the light that fell on it hour by hour. What the picture is about is the moment stone stops being solid and becomes a screen for weather and sun. The Gothic front, six centuries of carved permanence, is here made temporary: it exists only as long as this particular light lasts. So the true subject is time and perception itself, the way a fixed thing keeps changing under a moving sun. It is a meditation dressed as a monument, an argument that what we see is never the object but the light that touches it.",
+ "craft": "The whole effect rests on paint handled like relief. Monet loads the pigment so thickly that the picture has a physical crust, ridges and pits that cast tiny real shadows and mimic the eroded, encrusted look of weathered limestone. Nothing is described by outline; form is built entirely from adjacent patches of warm and cool colour, so a moulding turns simply because pink meets violet. He drains almost all true detail from the tracery and lets the eye reassemble it, which is why the façade seems to shimmer rather than sit still. The composition is deliberately airless, pressed flat and frontal against the picture plane with the crop cutting the towers, so there is no perspective escape and no sky to rest in. Everything is held at the surface, forcing you to read the light and not the scene.",
+ "context": "Monet worked the Rouen series in intense campaigns in 1892 and 1893, renting rooms overlooking the west front and moving between several canvases at once as the light shifted, then reworking them for months in his Giverny studio. He dated many of them 1894, the year he finished and signed the group. When around twenty were shown at Durand-Ruel in Paris in 1895 they caused a stir: critics and fellow artists saw at once that these were less pictures of a church than a systematic study of light and duration, a whole subject painted as a set of variations. The series became a landmark of his late serial method. This canvas is one version among that group; the sunlit warmth across its upper stonework marks it as a daytime state rather than the grey or blue mornings.",
+ "deeper": [
+  {
+   "t": "The great round window",
+   "x": 0.49,
+   "y": 0.32,
+   "w": 0.24,
+   "h": 0.18,
+   "body": "The dark disc at the centre is the rose window, and it is the coolest, deepest note in the whole picture. Monet fills it with muffled blues and violets that read as shadowed void, the one place where the recessed depth of the façade is allowed to swallow the light rather than throw it back. Notice he gives you none of the window's actual tracery, no spokes or petals; it is a soft blot, a hole punched in the shimmer. That withholding is deliberate. By refusing to draw the detail we all know is there, he makes the eye supply it, and keeps the disc reading as pure shadowed depth against the sunlit crust around it."
+  },
+  {
+   "t": "The mouth of the central portal",
+   "x": 0.4,
+   "y": 0.72,
+   "w": 0.3,
+   "h": 0.2,
+   "body": "At the base of the axis the main doorway opens as a warm brown cavern, the most saturated earth-tone on the canvas. Where the upper façade is cool lilac and pink, here the colour drops into ochre and russet, telling you this recess is in deep shade yet lit from within by reflected warmth. The pointed arch is built from stacked orders of moulding, and Monet suggests their receding rings purely by darkening each band, no edges drawn. This is where the paint is heaviest and most churned, a thick knot of impasto that anchors the bottom of the composition and gives the floating, dissolving stone above it something solid to stand on."
+  },
+  {
+   "t": "The gabled arch and its peak",
+   "x": 0.44,
+   "y": 0.1,
+   "w": 0.22,
+   "h": 0.2,
+   "body": "Above the rose window a steep triangular gable rises, its point pushing toward the top edge. This is the sharpest large shape in the picture and it drives the whole vertical thrust upward. Along its two sloping sides Monet catches the light differently on each face, one edge warmer, one cooler, so the gable seems to turn a real corner into the sun. The little crockets and finials that line a real Gothic gable are here reduced to a rhythm of pale flecks against shadow. Look how the peak is left slightly unresolved, thinning into the sky, so the solid stone seems to burn off at the top rather than end."
+  },
+  {
+   "t": "Sunlit pinnacles on the right",
+   "x": 0.66,
+   "y": 0.08,
+   "w": 0.3,
+   "h": 0.3,
+   "body": "The upper right is where the sun most plainly lands. Here the stone is painted in creamy pink and pale gold, warm against the cooler tower on the left, and this warm-cool split across the façade is the engine of the whole picture. Monet builds the openwork gallery and its pinnacles as a broken screen of light touches, letting the bright sky-tone bleed through the gaps so the masonry seems to dissolve into glare. Compare this corner with the shadowed blue of the left tower and you can read the direction of the light without a single cast shadow being drawn. The whole architecture becomes a gauge for where the sun sits."
+  },
+  {
+   "t": "The pale disc mid-façade",
+   "x": 0.51,
+   "y": 0.525,
+   "w": 0.13,
+   "h": 0.1,
+   "body": "Between the rose window and the portals a small light-coloured disc sits on the axis, a pale round accent set into the darker stone. It marks a feature on the real front, but Monet treats it as a note of colour more than a described object, a soft creamy circle that catches the eye halfway down the central spine. Its function on the canvas is rhythmic: it steps the descent from the deep blue rose above to the warm brown mouth below, a bright pause between the two darkest zones. Small as it is, mask the surrounding stone and you feel how it steadies the middle of the composition."
+  },
+  {
+   "t": "The signature",
+   "x": 0.02,
+   "y": 0.93,
+   "w": 0.3,
+   "h": 0.06,
+   "body": "Along the bottom-left edge Monet signs and dates the canvas in a dark reddish script. It is easy to miss because he keeps it small and lets it sit low in the shadowed stone rather than announcing itself. The date he gives is the year he finished and signed the series, not the year he stood before the building, which was the winter and spring before. That gap matters: it is the visible trace of his method, the long studio reworking that turned rapid observations made at the window into these dense, built-up surfaces. The modest placement suits a picture that wants you looking at light, not at the painter."
+  },
+  {
+   "t": "The crust of paint itself",
+   "x": 0.28,
+   "y": 0.4,
+   "w": 0.24,
+   "h": 0.22,
+   "body": "Move in close on any patch of the middle façade and the architecture disappears entirely into a rough terrain of paint. Ridges of pigment sit up off the canvas and throw their own faint real shadows, so that the picture of weathered stone is made of a surface that is itself pitted and encrusted like weathered stone. This is the secret of the shimmer: the light in the image is partly the actual light falling across the physical relief of the paint. Step back and it snaps into a cathedral; lean in and it is pure matter. That double reading, object and substance at once, is the whole point of the series."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "The same carved front stands in Rouen Cathedral, West Façade, Sunlight, painted from the same window, and setting the two side by side is the whole argument made visible. There the stone burns bright and golden; here it holds back into a quieter daytime, cooler in the portals, the warmth thinned to the upper right. Nothing moved between them but the hour. Neither is the true version, because there is no true version — only this light, then that light, the identical masonry rebuilt each time it is touched. What each picture withholds, the other supplies, and the building itself turns out to be the one thing that never quite arrives.",
+ "refs": [{"id":"claude-monet-rouen-cathedral-west-facade-sunlight","text":"Rouen Cathedral, West Façade, Sunlight"}]
+},
+
+"arnold-bocklin-the-sanctuary-of-hercules": {
+ "see": "A curved wall of dressed golden stone fills the middle of the picture, catching a warm raking light so that every course of masonry glows against the black-green shade of the trees behind it. It is a sacred enclosure, and the eye reads it first as pure fabric: joint, block, and the low semicircular step that skirts its foot. On that step and the paving before it lie scattered flecks of red. To the left, in shadow under a broad ilex, two small figures approach — one standing in a red cloak with a long spear, one crouched low in blue and ochre. High on the right, dark against the sky, a bronze figure stands on the wall's cornice. Beyond the tree at far left a strip of grey sea and pale sky opens, the only cool air in an otherwise hot, close scene.",
+ "about": "This is a picture about worship and its scale — the smallness of the supplicant before the god. The subject is a rustic shrine to Hercules, marked by his blackened bronze image on the parapet, and the act taking place is an offering: the red on the paving reads as spilled libation or scattered petals, the residue of rite. Böcklin is less interested in a narrative episode than in a mood of antique piety, the sense of a holy place half-reclaimed by nature. The god looms yet is inert metal; the living men are dwarfed and hesitant. The trees press in, the sea is shut out, and the whole enclosure feels sealed away from ordinary time. It is the classical past imagined not as marble clarity but as something shadowed, cultic, and faintly ominous.",
+ "craft": "The composition is built on a collision of geometry and growth. The great curved wall is a near-perfect arc of man-made order, and Böcklin lets its warm ochre carry the light while everything organic — the ilex canopy, the shaded ground — is pushed into a dense, almost opaque dark. That tonal split does the dramatic work: the shrine advances, the figures recede. He weights the design off-centre, giving the wall the largest share of the surface and tucking the human incident into the shadowed left, so the architecture, not the men, is the protagonist. The paint on the masonry is dry and built up block by block, each stone a discrete touch of colour, while the foliage is massed and flat. The bronze on the cornice is a hard silhouette that pins the top-right corner and answers the diagonal of the tree.",
+ "context": "Böcklin, a Swiss painter working largely in Italy, spent his maturity conjuring an antiquity of the imagination — tritons, nymphs, and lonely sacred sites rather than documented history. He painted this panel in 1884, when his brooding classicism was drawing a devoted following in the German-speaking lands and would later be prized by the Symbolists and, uneasily, by others after him. The picture's temper — a shrine swallowed by shade, a god of bronze presiding over a hushed offering — is characteristic of his gift for making the ancient world feel haunted rather than heroic. Worked in oil on a wooden panel, its dry, matt masonry is the product of handling rather than medium: he builds the stone in granular, opaque touches to chase a weathered, almost fresco-like surface without leaving the oil that carries it.",
+ "deeper": [
+  {
+   "t": "The bronze on the wall",
+   "x": 0.58,
+   "y": 0.02,
+   "w": 0.24,
+   "h": 0.34,
+   "body": "The whole shrine exists for this dark figure on the parapet — the image of Hercules himself, cast in bronze gone black with age and weather. Set against the pale sky, it is nearly a silhouette: you read the stance and the hang of the club or lion-skin more than any modelled detail. That is deliberate. Böcklin makes the god a shadow, a presence rather than a portrait, so that reverence is aimed at something half-legible. Notice how little the metal reflects; it absorbs light where the stone beneath it throws it back. The figure is small in the frame yet governs everything below, the top of a vertical the two mortals answer from the ground."
+  },
+  {
+   "t": "The masonry, block by block",
+   "x": 0.44,
+   "y": 0.3,
+   "w": 0.42,
+   "h": 0.44,
+   "body": "Come in close on the curved wall and the picture's real labour shows. Böcklin lays the stone as a mosaic of separate touches — no two courses the same width, each block a distinct note of ochre, tan, grey-green, and warm rose. The mortar lines are drawn but not ruled, so the arc breathes rather than reads as a diagram. This dry, granular surface is what makes the wall feel sun-warmed and old. It also carries almost all the light in the painting; the warmth you feel from across the room is emitted here, from paint handled to imitate weathered rock. The eye can rest on this passage as pure texture before it asks what the wall is for."
+  },
+  {
+   "t": "The two supplicants",
+   "x": 0.02,
+   "y": 0.3,
+   "w": 0.3,
+   "h": 0.55,
+   "body": "In the tree's shade the human drama plays out small and quiet. One man stands in a red cloak, upright, holding a long spear or staff; his companion crouches low in blue and yellow, bent toward the ground before the shrine. The postures divide the labour of the scene: one keeps watch or attends, the other performs the act — laying an offering, tending the spilled red at the step. Their colours are saturated but held in half-light, so they never compete with the glowing wall. Their scale is the point: dwarfed by architecture and god alike, they carry the whole weight of reverence in the picture while occupying a corner of it."
+  },
+  {
+   "t": "The red on the paving",
+   "x": 0.3,
+   "y": 0.76,
+   "w": 0.34,
+   "h": 0.18,
+   "body": "Track the scattered flecks of red across the pale stone floor and low step. They are the evidence of rite — read them as spilled libation, blood of sacrifice, or strewn petals and flowers left for the god. Whatever their exact nature, they are the freshest, most immediate marks in the painting, a jolt of warm colour laid over cool paving. Böcklin scatters them with apparent casualness, but they trace the path of the crouching figure and tie the human act at left to the shrine at centre. Without them the scene would be a still architecture study; with them it becomes a moment, something just done or being done."
+  },
+  {
+   "t": "The shut-out sea",
+   "x": 0.17,
+   "y": 0.29,
+   "w": 0.15,
+   "h": 0.13,
+   "body": "At the far left, past the trunk and low branches of the ilex, a thin band of grey sea meets a bleached sky. It is the only opening in an otherwise sealed, shaded enclosure, and Böcklin cuts it deliberately small. That sliver of cool distance measures everything else: it tells you this shrine sits on a coast, and it lets the shut-in warmth of the sanctuary register by contrast. The tree crowds the view almost closed, as if nature were slowly walling the holy place off from the open world. Isolated, this fragment would read as a calm marine; in place, it is the breath of air the enclosure refuses."
+  },
+  {
+   "t": "Order against growth",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Step back and the argument is a contest between two kinds of form. The man-made — the arc of the wall, the squared pillar behind the figures, the bronze on the cornice — holds the centre and the light. The organic — the massed ilex, the dense dark ground, the crowding branches — surrounds and shades it, pressing the human incident into a corner and threatening to close off even the sea. Böcklin sets the shrine's warm geometry burning against that cool, opaque shade, and in the gap between them puts the whole meaning: a sacred order kept alight by small acts of devotion while the wild slowly leans back in. The god presides, the men attend, the trees wait."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "Böcklin worked the same bargain elsewhere on a shadowed coast, and setting the two together shows the stakes flip. Here the wall glows because small acts keep it sacred; the men crouch, the red is fresh, and the order holds against the leaning trees. In Ruin of a Villa near the Sea the contest is already lost — the masonry stands, but no one tends it, and nature has finished the encroachment this shrine merely fears. What separates them is not the stone or the sea but the presence of the rite. Take the supplicants away and the sanctuary would slide, course by course, into that other, abandoned picture.",
+ "refs": [{"id":"arnold-bocklin-ruin-of-a-villa-near-the-sea","text":"Ruin of a Villa near the Sea"}]
+},
+
+"willem-van-de-velde-the-younger-and-studio-after-the-storm": {
+ "see": "A single small trading craft dominates the centre, heeled hard to the left with its great mainsail bellied out, the pale tan canvas the one bright shape in a dim marine world. A thread of pennant snaps from the masthead. To the left, a bigger three-masted ship rides half-swallowed in grey; behind and right of the little boat another vessel dissolves into a slanting curtain of light and rain. Far right, an open boat carries a knot of figures and a low red sail. Above all this the sky takes two-thirds of the picture: a warm apricot rip torn open at upper left, a bruised bank of cloud crowding down from the right. Below, the sea runs dark olive and brown, ridged with waves whose crests catch a cold pale foam. The eye lands on the bright sail, then is pulled outward to the darkness pressing in on every side.",
+ "about": "The title says the worst is over, and the picture is really about the interval after violence rather than the storm itself. Nothing is sinking; the boats are working their way home. Yet the weather has not forgiven anyone. The sea is still heaped and dangerous, the clouds still tower, and the light that breaks through is thin and provisional, more reprieve than rescue. This is a Dutch subject at heart: small human craft set against an indifferent scale of water and air, the whole national economy riding on hulls like these. The drama is not a single event but a condition, the sailor's ordinary bargain with a sea that will kill him if he misjudges it. The bright mainsail reads as nerve and skill holding a line through danger; the darkness around it is the cost of the trade made visible.",
+ "craft": "The composition is built on a single luminous wedge, the near sail, planted just off centre and leaning into the wind so the whole design tilts and strains. Everything else is tonal management. The painter keeps his colour almost monochrome, a grey-brown continuum from cloud to wave, and spends his one warm note twice: the apricot break in the sky and the small red sail at right, which quietly answer each other across the width. Scale is set by staggering the other ships back into haze, aerial perspective doing the work of distance. The brush loosens as it moves down into the water, waves laid in with quick loaded strokes and dragged foam, so the sea looks worked rather than described. Light is directional and low, raking the near sail and glancing off wave-tops, and the diagonal shaft of rain at right is left deliberately soft, weather rendered as atmosphere rather than edge.",
+ "context": "Willem van de Velde the Younger was the defining marine painter of the Dutch Golden Age, trained by his draughtsman father and later working for the English crown. By 1700 the workshop was a production operation, and this canvas is given to the Younger and studio, meaning hands beyond the master likely shared the labour on a proven, saleable formula. Marine painting in this milieu was not decoration but a mirror of a seafaring state whose wealth, war and identity all rode on shipping, so a storm subject carried real weight for the people who bought it. The type here, a small inshore trading vessel among larger ships, is exactly the working scene the van de Veldes made their reputation on. The painting is held by the National Gallery of Art in Washington.",
+ "deeper": [
+  {
+   "t": "The one bright sail",
+   "x": 0.35,
+   "y": 0.29,
+   "w": 0.22,
+   "h": 0.42,
+   "body": "One shape carries the whole picture. The mainsail is the single large area of light in a dark field, and it is not painted flat: the canvas swells with wind, curving away from you, and the painter models it with soft gradations from a lit outer face to a shadowed belly so it reads as a taut, load-bearing surface rather than a pale patch. Its lean sets the diagonal that the whole composition leans with. Notice how the sail is dirtied and warmed, never pure white, which keeps it inside the storm's grey world instead of cutting a hole in it. Cover the darkness and the sail is ordinary; it is bright only because everything around it is starved of light."
+  },
+  {
+   "t": "Hull and crew at the waterline",
+   "x": 0.27,
+   "y": 0.63,
+   "w": 0.2,
+   "h": 0.16,
+   "body": "Follow the sail down to where the boat meets the sea and the drama becomes physical. The hull is heeled well over, its lee side driven low toward the water while a wave shoulders up under the bow, and small figures work the deck near the mast, painted as a few decisive touches rather than portraits. This is the pressure point of the image: the exact place where wind, sail and water are being balanced by human hands. The painter spends real care on the churned water breaking against the boards, so you feel the boat is being sailed hard, not drifting. It is the difference between a picture of weather and a picture of seamanship."
+  },
+  {
+   "t": "The ship swallowed in grey",
+   "x": 0.16,
+   "y": 0.42,
+   "w": 0.17,
+   "h": 0.22,
+   "body": "Off to the left a much larger three-masted ship rides with its sails reduced, and the painter deliberately drains it of contrast so it sits back in the air. Its masts and rigging are drawn as pale threads against the cloud, thinning almost to nothing. This is aerial perspective doing structural work: by muting the bigger vessel he makes the small near boat, which is objectively less grand, read as the closer and more urgent thing. The larger ship also sets the true scale of the sea, reminding you that even a serious hull is a small object out here. Its dimness is not neglect; it is the mechanism that gives the picture depth."
+  },
+  {
+   "t": "The rain-shaft and the far vessel",
+   "x": 0.55,
+   "y": 0.3,
+   "w": 0.24,
+   "h": 0.28,
+   "body": "Between the near boat and the right edge, a pale diagonal curtain slants down from the clouds to the horizon, and another ship is half-dissolved inside it. This is the storm still working somewhere else in the picture: a squall or shaft of rain rendered as a soft, edgeless veil of light, no hard line anywhere. The far ship is barely more than a bruise of tone, which is exactly the point, it is being seen through weather. Look at how the painter lets the horizon go uncertain here, sea and sky meeting in a smear rather than a line. Everything in this passage is about atmosphere as a substance you look through, not a backdrop you look at."
+  },
+  {
+   "t": "The red sail answers the sky",
+   "x": 0.68,
+   "y": 0.44,
+   "w": 0.2,
+   "h": 0.2,
+   "body": "At the right an open boat carries several figures low to the water, one of them touched with warm colour, and above them a small reddish-orange sail. This is the picture's second warm note, and it is placed with intent. Trace a line from the apricot rip in the upper-left sky to this red sail and you have the two spots of heat in an otherwise cold canvas holding the width of the composition together. The little boat is also the most exposed thing here, sitting almost in the trough, and its passengers are painted as vulnerable smudges. The warmth makes them tender rather than triumphant, a spark of human colour that the surrounding dark keeps threatening to put out."
+  },
+  {
+   "t": "The rip of warm sky",
+   "x": 0,
+   "y": 0,
+   "w": 0.4,
+   "h": 0.28,
+   "body": "Upper left, the cloud tears open to a warm apricot glow, the only patch of clear light in the sky. It reads as the storm passing, weather clearing from that quarter, and it is the source that justifies the raking light on the near sail. The painter builds it with soft, blended transitions, dark cloud rolling and thinning into pale gold, no hard boundary, so it looks like real moving air. This is where the title lives: not in the boats but in the sky's admission that the worst has moved on. Yet notice how small the opening is against the mass of dark cloud crowding it from the right. The reprieve is real but thin, and the picture makes you feel exactly how thin."
+  },
+  {
+   "t": "The worked sea",
+   "x": 0.02,
+   "y": 0.72,
+   "w": 0.45,
+   "h": 0.26,
+   "body": "Down in the foreground water the handling changes character. Where the sky is blended and smooth, the sea is built from quick, loaded strokes, dark olive and brown troughs shouldered up into ridges, with foam dragged along the crests in cooler, thicker paint. A pale gull or spray-burst sits low at the left as the one crisp accent. The brush is visibly fast here, the marks left legible, so the surface looks physically churned rather than carefully described. This contrast between a soft sky and a scrubbed, energetic sea is a deliberate division of labour: calm above, turmoil below, with the boats caught on the seam between them. It is the passage where you can actually watch the painter's hand deciding how much finish a wave needs."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "The same workshop, the same class of small inshore trader, painted forty years earlier in A wijdschip and a kaag in an inlet close to a sea-wall — and there the bargain is at rest. Sheltered water, sails easing: the identical hull that here is heeled hard and driven, its crew balancing wind against water at the edge of misjudgement. Set the two together and the storm picture reads as the same working life at its far extreme, the ordinary Dutch craft that the studio sold in calm and in crisis alike. The device is one hull; the stakes are the whole distance between an inlet and an open, punishing sea.",
+ "refs": [{"id":"a-wijdschip-and-a-kaag-in-an-inlet-close-to-a-sea-wall","text":"A wijdschip and a kaag in an inlet close to a sea-wall"}]
+},
+
+"hubert-robert-the-ponte-salario": {
+ "see": "A single enormous stone arch swings across almost the whole width of the canvas, its underside caught in warm light so the voussoirs glow like a half-lit tunnel of gold. On the near bank, at the left, a fortified medieval tower crowds up against it, crenellated, weed-grown, its dark bulk set against a bleached morning sky. The eye enters low at the waterline, where washerwomen bend over a white sheet, then is carried up the curve of the arch, out through the opening to a pale river vista, and back. Everything is built on that contrast: the massive shadowed masonry on the left, the luminous emptiness on the right. Small figures scattered along the bank and on the bridge give the ruin its scale, and a single soldier at the right stands watching the whole scene like a hinge between us and the distance.",
+ "about": "The subject is time working on stone, and people living inside the wreckage of it. Robert paints a Roman bridge not as an archaeological record but as a place still in use: laundry is done, cattle are driven across, a traveler pauses, a settlement has grown parasitically onto the ancient span. The picture is about continuity as much as decay. Grandeur has been reduced to a backdrop for ordinary morning chores, and there is no lament in it, only a kind of calm acceptance that the enormous and the everyday share the same frame. The arch, built to last, has outlived whatever it was built for and been quietly repurposed. That is the argument: ruins are not endings but long, slow afterlives, and human life simply keeps threading through them, indifferent and warm.",
+ "craft": "The whole design rests on one gamble — letting a single arch dominate almost everything and trusting the light inside it to carry the picture. Robert weights the left with a dense, vertical, shadowed tower and answers it with open sky and low water on the right, so the composition tips but never falls. The strongest light is not on the sky but on the concave underside of the arch, a counter-intuitive move that turns a shadow into the brightest passage and pulls the eye through. Figures are handled as quick flecks of pigment, loose and abbreviated, yet each one lands its pose. Warm ochres and stone-golds are set against cool grey-blues in the distance, and the drawing of the masonry is confident rather than fussy — enough weathered detail to convince, never so much that the mass is broken up.",
+ "context": "Hubert Robert spent his formative years in Rome from 1754 to 1765, eleven years at the French Academy, and returned to France as a specialist in painted ruins, so thoroughly identified with the genre that he was nicknamed 'Robert des Ruines.' The Ponte Salario, a bridge over the Aniene north of Rome with medieval fortifications grafted onto Roman foundations, was exactly the kind of hybrid ancient-and-inhabited site he loved, and he treated the subject more than once. This taste for the ruin fed a wider eighteenth-century appetite for the picturesque and for meditations on the fall of empires. Robert later became a keeper of the royal collection and helped shape the early Louvre; he was imprisoned during the Terror and narrowly escaped the guillotine, painting throughout his confinement.",
+ "deeper": [
+  {
+   "t": "The lit underside",
+   "x": 0.28,
+   "y": 0.4,
+   "w": 0.44,
+   "h": 0.35,
+   "body": "This is the passage that does the pulling. Notice that the brightest stone in the painting is not up in the sky-struck battlements but here, on the concave belly of the arch, where reflected morning light bounces off the water and washes the voussoirs gold. Robert has inverted the natural order — a shadowed hollow made luminous — and it acts like a lamp set inside the picture. The curved courses of dressed stone are drawn just enough to read as a real span under real load, then dissolved into pure warm tone toward the crown. Follow the glow and it delivers you, without your quite deciding to go, straight through to the distance beyond the far bank."
+  },
+  {
+   "t": "The grafted tower",
+   "x": 0.1,
+   "y": 0.05,
+   "w": 0.34,
+   "h": 0.52,
+   "body": "The medieval fortification is the picture's dead weight, deliberately so — a dark, vertical mass that anchors the whole left side against the airy right. Look at how much life Robert lets grow out of it: shrubs and grass sprout from the crenellations, a plant leans off the very top, ivy creeps down the arched recess. The battlements are broken and irregular, the wall face pocked and patched with different stone, and a scrap of red cloth hangs out over the middle like washing or an awning. Nothing here is museum-clean. This is fortification as long-abandoned scaffolding for weeds and daily use, its military purpose gone centuries deep."
+  },
+  {
+   "t": "Cattle on the crossing",
+   "x": 0.62,
+   "y": 0.4,
+   "w": 0.22,
+   "h": 0.14,
+   "body": "Easy to miss, and the whole point of the picture once you find it. Out on the far shoulder of the bridge, past a rough wooden railing, a pale ox is being driven across the ancient span. A wisp of smoke or dust rises just to its left. This tiny incident is Robert's argument made literal: a monument built by an empire is now simply the road the livestock take to market. The animal is painted in a few loaded strokes, unheroic, mid-stride. Set it beside the grandeur of the arch beneath it and the gap between what the structure was and what it now serves becomes the quiet joke and the quiet elegy of the scene at once."
+  },
+  {
+   "t": "Washerwomen and the sheet",
+   "x": 0.26,
+   "y": 0.74,
+   "w": 0.26,
+   "h": 0.22,
+   "body": "At the waterline the picture comes down to earth. A cluster of women works at the river's edge, one bent low over a great white sheet spread to dry or rinse, a pale jug set on the bank beside them. That sheet is the brightest small note in the lower zone, a deliberate spark of near-white that stops the eye at the base of the composition before it climbs. The figures are barely a handful of brushmarks each, yet the stoop of the back and the fall of the cloth are exactly observed. They give the vast arch overhead its true scale, and they root the whole meditation on empire in something as small and unending as the morning wash."
+  },
+  {
+   "t": "The watching soldier",
+   "x": 0.66,
+   "y": 0.74,
+   "w": 0.16,
+   "h": 0.24,
+   "body": "On the right bank a lone figure stands with a sword at his hip and a hat, turned to face back into the scene rather than out at us. He is the picture's hinge. Placed on the sunlit side, against the open distance, he balances the crowd of washerwomen across the water and gives your eye a human stand-in — someone inside the painting looking at the same span you are. A smaller stooping figure sits just to his right, half in the reeds. Robert often plants a still, watching staffage like this to slow the reading down and let the ruin be contemplated rather than merely toured through."
+  },
+  {
+   "t": "The river opening out",
+   "x": 0.55,
+   "y": 0.7,
+   "w": 0.3,
+   "h": 0.14,
+   "body": "Through the arch, and beyond the near bank, the land drops away into a low, cool, silvered distance. A small boat with figures sits out on the calm water, and faint hills and trees dissolve into the haze at the horizon. This is the release valve for all the massed stone on the left — after the density of the tower and the weight of the span, the eye is let out into pure air and reflected light. The palette here shifts to grey-blue and pearl, the exact cool answer to the warm golds of the arch. Robert uses this stretch of emptiness to make the ruin feel like something you have arrived at, mid-journey, on a wide and ongoing river."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "Robert works the same bargain twice, and it is worth setting this bridge beside his Ruines antiques. Jeune fille devant une statue de l'abondance. There the ancient stone shrinks to an intimate stage: a single girl pauses before a toppled figure of plenty, and the meditation on fallen empire turns private, hushed, almost a daydream. Here the stakes are civic and unsentimental instead. The wreckage is a working thoroughfare, laundry and livestock and morning traffic threading through it, no reverie at all. The device is identical, the temperature reversed, one ruin turned inward to a solitary pause, the other flung open to an ongoing, indifferent day.",
+ "refs": [{"id":"hubert-robert-ruines-antiques-jeune-fille-devant-une-statue","text":"Ruines antiques. Jeune fille devant une statue de l'abondance."}]
+},
+
+"jan-both-an-italianate-evening-landscape": {
+ "see": "A wall of feathery trees rises up the right two-thirds of the canvas, their crowns catching the last warm light while their trunks fall into brown shadow. To the left the land drops away into a pale blue valley that opens toward distant peaks and a sheet of water, everything there dissolving into haze. The sky is the real event: a low sun off the picture, its glow spread up from the horizon through cream, apricot and lilac, with soft grey cloud drifting across the top. Two knots of small figures animate the road — one party with a laden animal near the trees at left, another pair resting lower right where the track curves toward you. The eye is pulled from the bright cool distance across the shaded foreground and up the tallest trunk into the light.",
+ "about": "This is not a real place but an ideal one: the Roman Campagna as a Dutch painter remembered and improved it, warm and spacious in a way the flat, grey Netherlands never was. The subject is really the hour — evening, the golden slackening of the day when travellers are still on the road and the heat has gone out of the light. Both is selling a mood of arcadian ease, a south imagined as endless mild afternoons. The tiny figures are staffage, there to give scale and human warmth rather than to tell a story; the landscape and the light are the protagonists. What the picture is about, underneath the pastoral, is the pleasure of distance itself — the way the eye travels from cool blue depth to warm near shadow.",
+ "craft": "Both builds the whole design on a single contrast: a dark, closed screen of trees on the right against a luminous, open recession on the left. That asymmetry keeps the picture from going flat and gives the golden distance somewhere to breathe. The light is handled as pure atmospheric perspective — foreground foliage in crisp brown detail, middle ground softening, far mountains reduced to flat blue silhouettes with no edges at all. The tree crowns are painted in small, dabbed, feathery touches that let the sky glow through them, a signature Both texture. Warm and cool are carefully rationed: the sun-side of every trunk and cloud is honeyed, the shadow-side and the whole left valley cooled to blue-grey. The curving road is the compositional spine, threading the figures and leading the eye back into depth.",
+ "context": "Jan Both trained under Abraham Bloemaert, went to Rome from 1638 and came home to Utrecht to become the leading Dutch Italianate landscapist. Painters like him never renounced the south; they made a career of it, feeding a home market hungry for warm imaginary Italy long after they had left it. The golden evening light he specialised in owes an obvious debt to Claude Lorrain, whom he worked alongside — the two, with Herman van Swanevelt, shared the Buen Retiro Palace commission in 1639 — though Both's handling is looser and his foregrounds more densely wooded. This work is held by the National Gallery of Art in Washington. Both died relatively young in 1652, so mature works of around 1650 like this one come from the last stretch of a short but influential career.",
+ "deeper": [
+  {
+   "t": "The sun off-canvas",
+   "x": 0,
+   "y": 0.18,
+   "w": 0.42,
+   "h": 0.4,
+   "body": "The light source is never shown — it sits low and to the left, just beyond the frame. Both makes you feel it rather than see it: the glow is strongest at the horizon and fades upward through apricot into cool grey cloud. Because the sun is outside the picture, every lit edge inside — the rims of the clouds, the sunny flanks of the trees — points back toward that hidden source, and the whole canvas becomes an argument about a light you have to imagine. This is the Claudean trick he learned in Rome: put the sun where the eye cannot rest on it, and the entire landscape turns into its reflection."
+  },
+  {
+   "t": "Distance dissolved to blue",
+   "x": 0.02,
+   "y": 0.4,
+   "w": 0.3,
+   "h": 0.25,
+   "body": "Look how little is actually drawn out here. The far mountains are flat blue shapes with no interior detail, sitting behind a band of water and pale ground. Both is exploiting atmospheric perspective at full strength: the more distant a thing, the cooler and softer it becomes, until edges vanish entirely. Set this against the crisp brown foreground and you can read the depth of the whole picture in a single glance across the left side. The valley reads as miles deep not because of any drawn recession but because the colour drains and cools as it goes back."
+  },
+  {
+   "t": "The tallest trunk",
+   "x": 0.5,
+   "y": 0.08,
+   "w": 0.25,
+   "h": 0.72,
+   "body": "One trunk runs almost the full height of the canvas, dividing the closed wooded right from the open valley left. It is the hinge of the composition. Follow it up and the eye is delivered from the shaded road into the glowing crown; follow it down and you arrive at the resting figures below. Both keeps its lit side warm and its shadowed side cool, so the trunk itself models the picture's whole light logic in miniature. Without this vertical the design would slump; with it, the sprawling scene is pinned to a spine."
+  },
+  {
+   "t": "Feathered crowns, glowing sky",
+   "x": 0.55,
+   "y": 0.02,
+   "w": 0.42,
+   "h": 0.3,
+   "body": "The foliage is not painted as solid mass but as thousands of small dabbed touches, deliberately loose at the edges so the sky shows through between the leaves. This is the texture that makes a Both recognisable. The crowns catch the low sun on their upper-left surfaces and go translucent against the cream sky, so the tree line never reads as a hard silhouette but as something porous and lit from within. Compare it with the flat blue distance: here the brush is busy and broken, there it is smooth and empty, and the difference in handling is doing the work of depth."
+  },
+  {
+   "t": "Travellers with the laden animal",
+   "x": 0.24,
+   "y": 0.62,
+   "w": 0.2,
+   "h": 0.22,
+   "body": "By the foot of the left trees, a small party gathers around a pack animal on the road. These figures are staffage — not a narrative, just enough human presence to set the scale of the trees and warm the scene with the sense of a journey. Both keeps them low and unemphatic, painted in muted earth tones so they sit into the landscape rather than commanding it. Their real job is measurement: they tell you how tall those trees are and how far the road runs, and they place a moment of ordinary travel inside the idealised hour."
+  },
+  {
+   "t": "The pair on the path",
+   "x": 0.66,
+   "y": 0.72,
+   "w": 0.24,
+   "h": 0.22,
+   "body": "Lower right, where the track curves toward the viewer, two figures rest against the slope — a second, closer human note answering the group on the left. They anchor the near end of the road and complete the eye's circuit: distance at upper left, foreground here. Placed in the warm brown shadow beneath the great trees, they are the point where the imagined Italy becomes something you could step into. Both scatters his people at the two ends of the path so the road, and the eye, has somewhere to go and somewhere to arrive."
+  },
+  {
+   "t": "The road as spine",
+   "x": 0.3,
+   "y": 0.68,
+   "w": 0.5,
+   "h": 0.28,
+   "body": "The pale track is the one continuous line that stitches the picture together. It enters lower right by the resting pair, curves back past the trunks and carries the eye toward the left group and on into the luminous valley beyond. Every choice of figure placement hangs off it. This is how Both, and Claude before him, controlled a viewer: not with dramatic incident but with a path the eye is coaxed to walk, from warm near shadow into cool far light, so that looking at the painting becomes a kind of slow evening travel of its own."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "The hidden low sun is a Claudean inheritance, learned from the very painter who shares the collection with Both. In The Trojan Women Setting Fire to Their Fleet, Claude Lorrain puts the golden hour to work under mythic duress — the same warm horizon glow, the same eye coaxed back across water into haze, but staked on catastrophe and legend rather than an evening road. Both keeps the recipe and drops the stakes: no fleet, no burning, only travellers resting at the hour when the heat goes out of the light. Set the two together and you see one atmospheric machine tuned to opposite ends, epic ruin and pastoral ease.",
+ "refs": [{"id":"the-trojan-women-setting-fire-to-their-fleet","text":"The Trojan Women Setting Fire to Their Fleet"}]
+},
+
+"paul-serusier-farmhouse-at-le-pouldu": {
+ "see": "A big ochre farmhouse wall fills most of the canvas, tilted so it reads almost as a flat plane of warm colour rather than a building in space. In front of it a golden path curves down and toward you, dotted with pale yellow patches like stepping stones. At the left a Breton woman in a dark blue dress and white coif walks the path, small against the architecture. Blue-green pines rise along the top, breaking into a strip of sky with round clouds. The palette is deliberately narrow and hot: ochre, mustard, blue-black, olive, with the blue of the woman answered by the blue oven on the wall. Light is even and shadowless, so the picture works as pattern first. Your eye slides along the path, up the wall, and back down to the woman.",
+ "about": "This is Sérusier translating a working Breton hamlet into a screen of colour. The subject is ordinary rural labour — a peasant walking home past a farmhouse, what looks like a bread oven set in its wall, its stacked hay — but the picture is really about flatness and design as a way of seeing. Painted at Le Pouldu, the fishing village where Gauguin and his circle gathered, it belongs to the moment when a younger generation decided a painting should honour the flat surface it lives on. The woman is a type, not a portrait: she stands for a Brittany the Paris avant-garde read as archaic, devout, close to the soil. So the picture is at once a plain record of a place and a manifesto, arguing that the truth of a scene lives in its arrangement of colour zones rather than in illusion or depth.",
+ "craft": "The whole composition is built from large interlocking areas of near-flat colour, each held by a firm contour — the Cloisonnist habit Sérusier learned in Gauguin's orbit. He tilts the ground plane up so the path becomes a decorative band, and lets the farmhouse wall read as a single ochre shape rather than a modelled volume. Complementaries do the work: the blue recess set in the wall and the blue-black woman charge the surrounding warm yellows, and the small red-orange notes on the path keep it alive. Brushwork is dry and directional, dragged so the weave shows and the colour stays matte, refusing gloss and shadow. Scale is his sharpest decision: by making the woman tiny and the wall enormous he turns a modest farmyard into something monumental, and keeps the eye circulating instead of settling.",
+ "context": "Sérusier came to Brittany in 1888 and met Gauguin at Pont-Aven, where a small painted panel Gauguin talked him through — later called The Talisman — became the founding object of the Nabis, the brotherhood of young painters who took Gauguin's lessons back to Paris. By 1890, when this was made, the group had shifted its base to Le Pouldu, painting the coast, the farms and the Breton people in the new flat manner. The date reads clearly in the signature. Brittany itself was the draw: cheap, remote, and to these Parisians seemingly untouched by modern life, its Catholic peasant culture offered subjects that felt authentic and outside the machine age. This canvas is a direct product of that Le Pouldu season and the theories the Nabis were forging there.",
+ "deeper": [
+  {
+   "t": "The tilted wall",
+   "x": 0.42,
+   "y": 0.1,
+   "w": 0.58,
+   "h": 0.45,
+   "body": "The farmhouse is the picture's engine, and its power is that it barely behaves like a building. Sérusier gives it one huge ochre face and tips it forward, so instead of receding into space it presses up against the surface as a flat, faintly luminous shape. The top edge is a ragged line of thatch, painted in loose mustard strokes that dissolve into the trees rather than drawing a clean roofline. There is almost no modelling: light does not fall across this wall so much as soak it. That refusal of depth is the point. He wants you to read the wall as colour and area first, architecture second, which is exactly the flat-surface argument the Nabis were making in these years."
+  },
+  {
+   "t": "The blue recess",
+   "x": 0.58,
+   "y": 0.26,
+   "w": 0.34,
+   "h": 0.3,
+   "body": "Set into the wall is a hooded, projecting form — most likely an external Breton bread oven, though the picture never quite confirms it — and Sérusier paints it in cool grey-blues and lilacs, the one patch of cold colour inside the vast warm field, which is why the eye keeps returning to it. A stepped or ribbed form climbs its right side, drawn with short parallel strokes that read as masonry or a small ladder against the render. The shape is boxy and slightly abstracted, its contours firmed with darker line in the Cloisonnist way, so it sits on the wall like an inlaid panel rather than a hollow. Crucially, its blue rhymes with the blue-black of the walking woman far to the left; the two cold notes anchor opposite ends of the canvas and pull the composition taut across all that ochre."
+  },
+  {
+   "t": "The Breton woman",
+   "x": 0.06,
+   "y": 0.48,
+   "w": 0.24,
+   "h": 0.44,
+   "body": "She is deliberately small and generalised — a dark blue dress, an olive apron, a white coif and collar, wooden clogs — more a Breton type than a person, her face left almost blank. That is by design: the Nabis prized the Breton peasant as an emblem of an older, devout, rooted world, and Sérusier renders her as a silhouette of flat blue rather than a rounded figure. Notice how her contour is crisp against the pale path, giving her the same cut-out clarity as everything else. Her scale is the composition's lever: because she is tiny against the enormous wall, the whole farmyard reads as monumental, and her slow walk sets the tempo at which your eye travels the path."
+  },
+  {
+   "t": "The stepping-stone path",
+   "x": 0.1,
+   "y": 0.72,
+   "w": 0.7,
+   "h": 0.26,
+   "body": "The foreground path is not just ground; it is a designed band of colour sweeping across the picture's base. Sérusier tilts it up toward you and studs it with pale yellow blocks that read as stones or sunlit patches, laid down as flat lozenges rather than modelled rocks. Warmer red-orange and pink flecks are dragged through the ochre, keeping the surface vibrating so it never goes dead. These marks also do compositional work: they form a broken diagonal that leads the eye from the woman at lower left back toward the buildings, completing the circular path your gaze follows. It is a good place to see how dry and matte the paint is, the brush leaving the weave visible."
+  },
+  {
+   "t": "The haystack",
+   "x": 0.6,
+   "y": 0.58,
+   "w": 0.4,
+   "h": 0.3,
+   "body": "At lower right a stack of hay swells up as a rounded mound of gold, its surface built from short curved strokes that follow the bulge like contour lines. It is the warmest, most saturated passage in the canvas, and Sérusier uses it to weight the composition's bottom-right corner and balance the mass of the woman at the left. Read against the flat wall above, the stack is one of the few forms he allows to feel genuinely volumetric — a soft, breathing curve amid all the hard-edged planes. It also grounds the picture in labour: this is a working farm, and the hay tells you the season and the economy of the place without a single anecdotal detail."
+  },
+  {
+   "t": "The wooden gate",
+   "x": 0.2,
+   "y": 0.47,
+   "w": 0.22,
+   "h": 0.16,
+   "body": "Behind the woman a low wooden gate or fence crosses the middle distance, painted in a few dry olive and grey strokes over a pale stone wall. It is small but structurally useful: its horizontal rails give the one clear note of measured, man-made geometry in a painting otherwise built of soft slopes and tilted planes, and it marks the shift from foreground path to the greener land beyond. Sérusier does not fuss over it — the boards are barely more than lines — but that economy is the lesson. He states just enough for you to read a boundary, then lets the colour zones do the rest, trusting pattern over description."
+  },
+  {
+   "t": "Pines and sky",
+   "x": 0,
+   "y": 0,
+   "w": 0.62,
+   "h": 0.3,
+   "body": "Along the top, dark blue-green pines rise on bare trunks and open into a band of sky pricked with round, simplified clouds. The foliage is laid in as flat clumps of deep viridian, their edges kept hard so they read as shapes cut against the blue rather than atmospheric masses. This strip is the picture's only breathing room; it cools and lightens the top so the hot ochres below feel anchored rather than airless. The clouds are stylised into soft ovals, a small sign of how thoroughly Sérusier reduces nature to legible units. Even here, where a lesser painter would loosen into pretty sky, he keeps the same flat, patterned discipline that governs the wall and the path."
+  },
+  {
+   "t": "Signature and date",
+   "x": 0.8,
+   "y": 0.88,
+   "w": 0.2,
+   "h": 0.12,
+   "body": "In the lower right corner sits the painter's mark, ‘P. Sérusier’ above the year, scratched in over the warm ground in a dark line. Small as it is, it is worth stopping on: the date places the canvas firmly in the Le Pouldu period, the season when the Nabis were consolidating the flat, colour-first method you have been looking at all through the picture. The mark also sits deliberately low and unobtrusive, tucked into a corner so it never competes with the design — a painter confident enough to sign quietly. Reading it, you can tie every formal choice above back to a specific year and a specific circle of artists working out a new way to paint."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "The same year, in the same Breton country, Gauguin painted Haystacks in Brittany, and the two make a useful pair on the question of what a stack of hay is for. Sérusier keeps his mound tucked in a corner, a single soft volume balancing the tiny figure across the ochre field, one warm note conceded inside an argument otherwise all flatness. Gauguin lets the stacks carry the whole picture, swelling them into the governing shapes. Where the older painter builds the composition on the hay, the younger uses it to weight and steady his — the same rural fact set to opposite jobs, the mentor's motif shrunk to a servant of the design.",
+ "refs": [{"id":"gauguin-haystacks-in-brittany","text":"Haystacks in Brittany"}]
+},
+
+"robert-delaunay-political-drama": {
+ "see": "A great spun disc of colour fills the picture, ring inside ring, each band a different hue, tightening toward a small dark eye at the centre where a knot of red, white and blue sits like a target under a rifle sight. Over that spinning ground two figures are laid in flat, opaque paint, their heads collaged in as small printed discs: on the left a man in a black coat with a pale round head, one arm flung out; on the right a figure in a rust-red coat, head bowed, long blue legs thrust down toward the lower corner. The disc is not a background you look past; its concentric pull keeps dragging the eye back to the middle even as the figures try to hold the edges. The painted disc reads as a rounded shape against a cream margin on the cardboard support, and the name reads plainly across the bottom. Colour does the shouting; the two men are almost silhouettes caught inside the noise.",
+ "about": "The title names a real event: a murder that had gripped France that spring. On 16 March 1914 Henriette Caillaux, wife of the finance minister, walked into the offices of Le Figaro and shot dead its editor Gaston Calmette to stop his campaign against her husband. Delaunay works from a press illustration of the killing — the black figure entering with an arm flung out is Mme Caillaux firing, the red figure pitching backward is Calmette falling. But he presses that anecdote into the abstract world he had built for years, reducing painting to pure coloured circles in the belief that colour set beside colour, without shading, could carry form, depth and movement. The collision is the point: flat cut-out silhouettes, their heads literally collaged in, dropped against a machine of spectral light. A news shooting is forced into non-objective colour, and the picture holds the human anecdote and the pure hue in the same taut frame. The figures cling to the corners; the colour owns the centre.",
+ "craft": "The whole thing works by opposition, and the medium enacts it. The rings are built up in oil, worked in thin translucent bands so the colour seems to breathe and rotate, warm arcs against cool arcs producing that turning sensation Delaunay chased. Against them the two figures are dense, matte, unmodelled blacks, reds and blues, and their heads are not painted at all but collaged — small printed discs pasted onto the cardboard — so they refuse the disc's depth and sit hard on the surface. That is the trick, and it is literal: some of the figures really are stuck on, so the eye cannot fit the men into the spinning space and the tension never resolves. Note how he sets complementaries adjacent, orange beside blue, violet beside yellow, to make each ring vibrate at its neighbour. The composition is nearly symmetrical, disc centred, a figure to each side, yet he tilts and lowers the right figure to break the balance and keep the wheel from settling.",
+ "context": "Delaunay made this in 1914, at the end of the run of disc and circular-form pictures that he and Sonia Delaunay pursued under the banner the poet Apollinaire nicknamed Orphism, an art of pure colour and light. But the trigger here is a specific news event, the Caillaux affair, that had scandalised France that March. That same summer the world both belonged to was about to end: within months Europe was at war, and the couple left France for Spain and Portugal. So a work built from a murder and a colour theory sits pointedly on that fault line, an abstract vocabulary of light suddenly readmitting a headline. The National Gallery of Art in Washington catalogues the work under this title and records its medium as oil and collage on cardboard; the mixed technique places it at the experimental, small-scale end of his production rather than among the large exhibition canvases.",
+ "deeper": [
+  {
+   "t": "The gun-sight core",
+   "x": 0.4,
+   "y": 0.34,
+   "w": 0.2,
+   "h": 0.2,
+   "body": "Everything is aimed here, and given the subject that is not a figure of speech. The rings tighten to a small bullseye where Delaunay drops in the sharpest, most saturated notes of the whole work: a dark surround, then a hit of red-orange, a sliver of white, a core of blue. It reads as a target under a rifle sight, the point of the shot, and it is the only place he lets pure primaries sit at full strength and small scale, so the spot burns hotter and nearer than anything around it. Because the eye is drawn to the highest contrast, this centre acts as the hub the whole wheel turns on, and it is set just above the true middle so the disc feels lifted, spinning rather than resting. Take the figures away and this core alone would still organise the picture."
+  },
+  {
+   "t": "Rings as an engine",
+   "x": 0.08,
+   "y": 0.1,
+   "w": 0.4,
+   "h": 0.4,
+   "body": "Look at the bands out here, away from the centre, and you can see how the turning effect is built. Delaunay alternates warm and cool arcs, red against green, yellow against violet, so each ring pushes against its neighbour and the boundaries seem to shimmer and rotate. The paint is thin and streaked, the brush following the curve, which leaves the colour looking lit from within rather than laid on flat. No line describes a circle; the edges are made purely by one colour meeting another. This is the whole Orphist wager in one patch: that colour alone, with no drawing and no shading, can generate depth and movement. The rings do not sit still, and that unease is the point."
+  },
+  {
+   "t": "The shooter, arm flung out",
+   "x": 0.14,
+   "y": 0.27,
+   "w": 0.28,
+   "h": 0.42,
+   "body": "The figure at the left is the shooter, Henriette Caillaux, built almost entirely from a flat black coat with no interior modelling, so it reads as a silhouette punched into the colour. The head is a pale round disc, collaged in as a printed element that also happens to echo the geometry of the rings behind it, and one arm shoots out to the left — the gesture of firing. Below, a wedge of blue for the legs and a small green shoe anchor the figure to the lower band. Notice how little depth Delaunay allows: the black is opaque and even and the head is literally pasted on, both refusing the luminous space of the disc, which forces the figure to sit on the surface like a cut-out. That refusal is what makes her look trapped in the wheel rather than standing before it."
+  },
+  {
+   "t": "Calmette, bent and falling",
+   "x": 0.55,
+   "y": 0.28,
+   "w": 0.35,
+   "h": 0.4,
+   "body": "Opposite her is the victim, Gaston Calmette, answering in rust-red rather than black, his collaged head bowed low so the face is lost and the whole body pitches forward under the shots. Delaunay lowers and tilts this figure well below the shooter, breaking the near-symmetry of the design and giving the killing its momentum, the instant of collapse. The red coat is the largest warm mass outside the disc and it ties the figure into the wheel's hot colours, so he half-belongs to the spinning field while the black shooter resists it. Setting a red silhouette falling against a black silhouette firing, across the target at the centre, turns a colour contrast into the drama the title names."
+  },
+  {
+   "t": "Blue legs to the corner",
+   "x": 0.62,
+   "y": 0.62,
+   "w": 0.3,
+   "h": 0.3,
+   "body": "Follow the right figure down and the body resolves into long, flat legs of pure ultramarine that drive toward the lower-right corner, with a rounded black form beside them. This blue is the coldest, densest note in the lower half, and it does structural work: it pulls the composition off-centre and down, countering the upward lift of the bright core so the whole sheet feels torqued rather than balanced. The leg pointing into the corner also breaks the disc's containing curve, letting a figure escape the wheel at exactly the point where the rings would otherwise close. It is the one place the human forms win a little space back from the colour."
+  },
+  {
+   "t": "The signed lower band",
+   "x": 0.2,
+   "y": 0.8,
+   "w": 0.6,
+   "h": 0.18,
+   "body": "At the base the rings fade into pale, cool arcs and a broad cream margin, and across it the artist's name is written plainly by hand. The shift matters: after the fierce saturation above, Delaunay lets the colour drain out toward the bottom edge, so the eye is released downward and the disc reads as hovering over emptier ground. The rounded lower edge of the painted disc is clearest here, where the curve meets the plain surround left on the cardboard, marking this out as a small worked panel rather than a stretched exhibition canvas. Ending the tour on the quiet band, name and all, shows how far the picture travels from silence at the foot to the target core above."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "Set the spinning disc here against Kandinsky's Several Circles, where the same instrument runs at the opposite stake. Both trust concentric colour to carry the whole picture without drawn line or modelled shadow, rings pushing warm against cool until the surface seems to turn. But Kandinsky lets his circles drift weightless in a dark field, answerable to nothing outside themselves, pure and silent. Delaunay drives a newspaper murder into his wheel and pastes two collaged figures onto it, so the same luminous machine is made to hold a killing it will not absorb. One disc means only colour; the other is forced to mean a shooting, and neither concedes.",
+ "refs": [{"id":"several-circles","text":"Several Circles"}]
+},
+
+"jervis-mcentee-mount-desert-island-maine": {
+ "see": "The lower half is bare granite — a warm salmon-and-buff shelf that fills the foreground and tips down toward you, fissured, scraped, and studded with a few loose boulders. Above and beyond it the land falls away into a soft blue-green valley that dissolves into pale haze, and behind that a flat band of sea meets a sky that grades from warm peach at the horizon to a cool grey-blue overhead. One small figure in a light shirt sits on the rock at the right edge, back turned, looking out. Almost nothing happens in terms of incident; the picture is a study of a single slab of stone catching low light, and the eye keeps sliding down the near rock and then leaping across the empty air to the distance.",
+ "about": "This is a picture about being high up and small. The whole design pits the massive, tactile immediacy of the granite you seem to stand on against a distance so soft it barely holds together — and the lone seated figure is the hinge between the two, a stand-in for the viewer taking in the view rather than a subject in his own right. Mount Desert Island had by the 1860s become the emblematic American wilderness for painters, the place where the continent met the Atlantic. McEntee reaches for its quiet rather than its drama: no storm, no waterfall, no grand peak, just the honest weight of exposed rock and a hazy summer distance. The mood is contemplative, almost melancholy — the register of a man more interested in atmosphere and mineral fact than in spectacle.",
+ "craft": "The composition is built on a single bold decision: give the foreground rock more than half the canvas and paint it thick, opaque, and warm, then let everything beyond it thin out into scumbled, transparent washes. That contrast of paint handling — loaded strokes near, dry veils far — does the work of aerial perspective almost by itself, so the distance recedes because it is literally thinner and lighter. The diagonal spine of the granite runs from lower left up to the right, carrying the eye to the seated figure, who is placed exactly where the near rock and the far valley meet. Color is disciplined: salmon and ochre for the stone, a narrow band of blue-green for the trees, and a warm-to-cool sky gradient that reads as haze rather than clear air. The figure, tiny but sharp-edged, anchors the scale of the whole.",
+ "context": "McEntee (1828-1891) was a second-generation Hudson River School painter, a pupil of Frederic Church and a fixture of the Tenth Street Studio Building in New York, better known in his day for melancholy autumn and winter scenes than for coastal grandeur. He came to Mount Desert in the summer of 1864 in the company of Sanford Gifford — the two shared a three-week stay near Cadillac Mountain, and Gifford in turn painted McEntee at his easel there. Mount Desert Island, off the Maine coast, had been opened to the art world by Thomas Cole and Church in the 1840s and 50s and drew a steady procession of painters through the Civil War years. This canvas is dated 1864 — wartime — and its subdued, unheroic mood sits at some distance from the triumphant wilderness pictures of the era. It belongs to the National Gallery of Art in Washington. The inscription reading \"Mt. Desert\" and a date at lower center appears to be the artist's own.",
+ "deeper": [
+  {
+   "t": "The near shelf tips toward you",
+   "x": 0,
+   "y": 0.55,
+   "w": 0.7,
+   "h": 0.45,
+   "body": "Look at how the granite is painted where it is closest. The strokes are thick and opaque, the pinks and buffs laid on in broad planes broken by dark fissures and a scatter of pebbles and loose stones. The surface tips forward and down, so you read it as ground under your own feet rather than a wall seen head-on. This is the picture's whole gambit: the more solidly and warmly the rock is painted, the more weightless and far the distance beyond it will seem by contrast. Everything the eye trusts as real and touchable is concentrated here, in the bottom third."
+  },
+  {
+   "t": "The figure at the meeting point",
+   "x": 0.66,
+   "y": 0.32,
+   "w": 0.16,
+   "h": 0.14,
+   "body": "A single small figure in a pale shirt sits on the rock, knees up, back to us, gazing out over the valley. He is placed with care exactly where the near granite gives way to the far distance — the seam of the whole composition. He is not a character so much as a measure: he tells you how enormous the slab beneath him is, and he models the act the painting asks of you, sitting still and looking out rather than doing anything. Erase him and he is almost nothing missed; leave him in and he is the quiet human note that turns a rock study into a picture about contemplation."
+  },
+  {
+   "t": "Distance made of thin paint",
+   "x": 0.18,
+   "y": 0.33,
+   "w": 0.5,
+   "h": 0.14,
+   "body": "The valley and the water beyond are handled in the opposite way to the foreground: thin, scumbled, semi-transparent washes of blue-green and grey, with the individual trees barely resolved into a soft mat of color. There is almost no drawing out here, only tone. That thinness is doing the recession — the far land reads as distant partly because the paint itself is starved and pale next to the loaded rock. Where the land meets the sea, the two blur into a single hazy band, so you can't quite say where the shore ends. It is atmosphere rendered as a deliberate scarcity of pigment."
+  },
+  {
+   "t": "The wooded left slope",
+   "x": 0,
+   "y": 0.3,
+   "w": 0.34,
+   "h": 0.35,
+   "body": "The left side answers the bare right-hand rock with a darker, greener descent: forested hillside broken by grey rock outcrops, dropping into shadow. This flank keeps the composition from tipping entirely into the void on the right; it gives the eye a wall to come back to and a second, cooler color key against the warm foreground. Notice the rhythm of light and dark ledges stepping down into the valley — the painter is describing real geology, the striated granite of the island, but also building a slow visual staircase that leads the gaze inward toward the hazy center."
+  },
+  {
+   "t": "The detached boulder",
+   "x": 0.72,
+   "y": 0.68,
+   "w": 0.28,
+   "h": 0.32,
+   "body": "At the lower right sits a rounded, isolated boulder, more fully modeled in light and shadow than anything else in the foreground — a small mass with a clear lit crown and a shaded underside. It is the one object near you that is fully three-dimensional rather than a tipping plane, and it does two jobs: it weights the bottom-right corner so the design doesn't slide off toward the open valley, and it rhymes in the small with the great slab it rests on. Left on bare rock, it is exactly the kind of honest mineral fact McEntee preferred to grand incident."
+  },
+  {
+   "t": "The sky's warm-to-cool climb",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 0.32,
+   "body": "Read the sky from the horizon upward. At the bottom it is a warm peach-pink, exactly the temperature of the sunlit rock, so the far edge of the land almost melts into it. As your eye climbs, the color cools steadily to a soft grey-blue with no hard division — a single continuous gradient with no clouds to interrupt it. That warm base is what makes the whole distance feel hazed and summery rather than crisp, and it ties the emptiest part of the canvas back to its most solid part through shared color. The blankness is not laziness; it is the subject."
+  },
+  {
+   "t": "The inscription",
+   "x": 0.48,
+   "y": 0.87,
+   "w": 0.23,
+   "h": 0.11,
+   "body": "Low and centered on the rock, in dark script, is the inscription reading \"Mt. Desert\" with a date ending 64. It sits directly on the painted granite as if scratched into the stone itself rather than added afterward, which suits a picture so committed to the fact of rock. Small as it is, it fixes the two things a study like this most wants recorded: where the painter stood and when. It reads as the artist's own marking of place and year rather than a later hand."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "The same island drew Church, and his Fog off Mount Desert takes the opposite bargain with the same tools. McEntee stakes everything on tactile granite in the foreground and lets the distance thin to nothing; Church starts from the thinning and pushes it over the whole canvas, dissolving rock, water, and shore alike into a single wall of weather. One painter trusts you to your feet on solid stone and asks you to leap across the void; the other takes the floor away entirely and leaves you inside the haze. Set side by side, they mark the two ends of a single question about how little paint the eye will still read as land.",
+ "refs": [{"id":"church-fog-off-mount-desert","text":"Fog off Mount Desert"}]
+},
+
+"anne-vallayer-coster-still-life-with-flowers-in-an-alabaster": {
+ "see": "A bouquet nearly a metre of blooms rises out of a pale alabaster urn and fills the top two-thirds of the canvas against a warm brown-black nothing. Read the color first: a single scarlet poppy detonates high on the left, a big powder-blue iris answers it on the right, and between them a mass of pink and white roses, lilac and hydrangea cools everything down. The tones drop as they descend into shadow toward the urn's rim, so the flowers seem lit from the front and left. Below, the eye lands on a marble tabletop crowded with fruit staged for touch — pale grapes spilling left, a cut pineapple with a fan of blue-green leaves thrown forward, warm downy peaches to the right. The whole thing is built as a bright pyramid on a shadowed plinth, and it holds the eye by sheer density of incident before you sort any single thing.",
+ "about": "This is abundance made portable — a French court taste for the hothouse and the greenhouse, gathered into one impossible vase. The flowers do not bloom in one season; roses, iris, lilac, poppy and hyacinth belong to different months, so the arrangement is a fiction of plenty rather than a thing anyone cut in a morning. The exotic fruit makes the same claim at the register of empire and wealth: a pineapple was a costly rarity in eighteenth-century France, grown under glass at enormous expense, and to set one open beside grapes and peaches is to display command over distance and season alike. Under the older still-life tradition such a picture would whisper vanitas, that beauty and ripeness pass. Here that moral is barely audible; the painting is closer to a celebration of taste, luxury and the painter's own power to make luxury look real.",
+ "craft": "The engine is contrast held in balance. Vallayer-Coster sets the two hottest notes — the scarlet poppy and the answering blue iris — at the top corners of the mass so the eye ricochets between them, then lets the cooler roses and whites pool in the calm center. Textures are differentiated by paint handling as much as by drawing: petals are laid in soft, blended strokes with wet highlights dragged across them, while the urn's carved stone is built in drier, tighter touches and the grapes get thin glazes over pale underpaint to read as translucent skin. Nothing is outlined; edges dissolve into the dark ground so the bouquet feels three-dimensional and air moves around it. The composition is a stable pyramid, but she breaks its base deliberately — the pineapple's spiky leaves shoot down and forward past the table edge, puncturing the frontal plane and pulling the still arrangement into your space.",
+ "context": "By 1783 Vallayer-Coster was one of the most accomplished still-life painters in France, rated by Diderot-era critics the best in the genre since Chardin, and among the very few women admitted to the Royal Academy — received in 1770, when the institution effectively capped female members at four. Named Painter to Marie-Antoinette in 1780, she was the only woman granted lodgings in the Louvre, and her reputation rested precisely on flower and fruit pieces of this ambition, made when the genre sat low in the academic hierarchy yet commanded serious buyers. This canvas was shown at the 1783 Paris Salon, and she kept it until her death in 1818; it then dropped from sight for two centuries, resurfaced in 2022, and entered the National Gallery of Art in Washington as its first Vallayer-Coster. It predates the Revolution by only a few years, and her royal connections would make the coming decade dangerous. That such untroubled pleasure could be painted this close to 1789 makes it a document of its moment.",
+ "deeper": [
+  {
+   "t": "The scarlet trigger",
+   "x": 0.33,
+   "y": 0.13,
+   "w": 0.19,
+   "h": 0.16,
+   "body": "The full double poppy is the loudest note in the picture and it is placed near the top, off-center left, where it does the most work. Vallayer-Coster piles its crumpled red petals into a near-spherical mass and hits the near edges with pure light, so it reads as the closest, most saturated object even though it sits high in the bouquet. Notice how little else in the arrangement is allowed this heat — a couple of small red accents lower down, and nothing more. The restraint is the point: one dominant red pulls the eye up and starts the diagonal journey down through the cooler flowers. Behind it a spent seed-pod and a bud on a bare stem trail into the dark, quietly reminding you the same bloom will collapse."
+  },
+  {
+   "t": "The blue answer",
+   "x": 0.5,
+   "y": 0.13,
+   "w": 0.19,
+   "h": 0.19,
+   "body": "Opposite the poppy, a large iris opens in cool powder-blue and violet, its falls and standards built from soft overlapping veils of paint. This is the poppy's counterweight: hot against cold, dense red mass against a flower that is mostly translucent membrane. She lets its edges go feathery and lets the lower petals slide into shadow, which makes the bloom feel like it is turning in air rather than pressed flat. The blue also seeds the rest of the bouquet — smaller blue hyacinths and cornflower notes are scattered down through the whites and pinks, tying the whole cool half of the arrangement back to this one governing flower. Screen off the poppy and the iris is left stranded; the picture is engineered so the two poles need each other."
+  },
+  {
+   "t": "Roses at the still center",
+   "x": 0.34,
+   "y": 0.36,
+   "w": 0.22,
+   "h": 0.18,
+   "body": "At the heart of the mass the cabbage roses do the opposite job to the poppy and iris — they hold still. Their pale pink is the picture's resting tone, and Vallayer-Coster models them with the most patient blending in the canvas, turning each cupped petal with a gradient rather than a line so the flower reads as heavy, many-layered, almost sculptural. One bloom is fully open and slightly overblown, its outer petals loosening; another is tighter and paler. That small drama of a rose just past its peak beside one still gathering is the closest the picture comes to the old vanitas whisper, but it is folded so gently into pure description that it registers as beauty first and mortality only on reflection."
+  },
+  {
+   "t": "The broken tulip",
+   "x": 0.12,
+   "y": 0.34,
+   "w": 0.16,
+   "h": 0.14,
+   "body": "On the left flank a single flamed tulip leans out of the mass, its petals streaked red on white in the feathered pattern prized in the previous century. That striping was actually caused by a virus, and blooms like it once drove speculative fortunes; by the 1780s it survives here as a connoisseur's flourish, a nod to the great Dutch and Flemish flower painters this whole picture descends from. Look at how she paints it: the streaks are drawn with a fine, confident stroke that contrasts with the soft blended petals everywhere else, so the tulip almost reads as a different kind of mark. Placing it at the edge, half-turned and reaching into the shadow, keeps it from competing with the central roses while still rewarding the eye that wanders out to the margins."
+  },
+  {
+   "t": "Stone that isn't stone",
+   "x": 0.31,
+   "y": 0.5,
+   "w": 0.24,
+   "h": 0.22,
+   "body": "The urn is where the painter shows off her range against the flowers. Its pale alabaster body is rendered in dry, tight touches that catch a hard front light, and around its shoulder run gilt-bronze mounts worked in warm metallic ochres and shadowed browns — a child satyr, half-boy and half-goat, set on the left, a heavy swagged garland across the middle, and a goat's head at the right. The bronze is painted to feel cast and cold where the petals above feel warm and soft, a deliberate collision of textures within inches of each other. This is the hinge of the whole composition: the bright pyramid of flowers sits on this shadowed, ornamented base, and the contrast of living bloom against worked metal and stone is a large part of why the bouquet reads as so vividly alive."
+  },
+  {
+   "t": "The pineapple breaks the frame",
+   "x": 0.34,
+   "y": 0.71,
+   "w": 0.28,
+   "h": 0.27,
+   "body": "This is the boldest formal decision in the picture. Rather than sit the exotic pineapple neatly on the table, Vallayer-Coster splays its stiff blue-green crown of leaves down and forward so the lowest fronds cross the marble edge and hang into the viewer's space. The spikes puncture the otherwise calm frontal plane and drag the eye — and the sense of real depth — out toward you. Color-wise the cool grey-green is unlike anything in the bouquet, a third temperature between the hot poppy and the cold iris, and it anchors the base with something angular against all that softness above. The fruit itself, a costly hothouse rarity, quietly restates the picture's theme of luxury and reach; but formally its job is to stop the composition from ever settling into a flat, well-behaved triangle."
+  },
+  {
+   "t": "Grapes as glazing lesson",
+   "x": 0.04,
+   "y": 0.67,
+   "w": 0.26,
+   "h": 0.17,
+   "body": "The pale grapes spilling down the left of the table are a small treatise on translucency. Each is built from a light opaque underpaint with thin glazes floated over it, so the skin reads as if you could see a millimetre into the fruit; the front berries carry a single crisp highlight, the ones behind lose their light and sink toward the shadow. A withered leaf and a dry curling tendril hang above them, drawn with a brittle, scratchy line that plays against the fat roundness of the fruit. The bunch also balances the composition, weighting the left side against the peaches on the right and keeping the tabletop from tipping toward the exotic fruit that crowds the center and right."
+  },
+  {
+   "t": "The goat's head on the urn",
+   "x": 0.52,
+   "y": 0.52,
+   "w": 0.15,
+   "h": 0.14,
+   "body": "On the right shoulder of the urn, easy to miss, the gilt-bronze mount resolves into a small goat's head — the answer to the child satyr set opposite on the left. It is one of the darker, more easily overlooked passages in the picture, and finding it changes how you read the vessel: this is no plain container but an ornate mounted urn, worked with the same care as everything catching more light. The detail completes a quiet chain of made objects worked across the stone — the satyr, the swagged garland, then this horned head — as if the manufactured world is answering the natural abundance stacked above it. Look for it after the flowers; it is the reward for reading all the way into the shadows."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "Set this beside Meléndez's The Afternoon Meal (La Merienda) and the same genre splits at the wealth. He arranges the everyday — earthenware, a loaf, plain fare a household actually owned, on a rough ledge under raking Spanish light. Here the bargain runs the other way: nothing was gathered in one morning. Flowers from a dozen months share an alabaster urn, a hothouse pineapple leans past grapes and peaches, and the whole pyramid performs a plenty no season or purse could really assemble. Both still lifes ask what a table can hold. One counts what is at hand; this one counts what money and empire can command.",
+ "refs": [{"id":"the-afternoon-meal-la-merienda","text":"The Afternoon Meal (La Merienda)"}]
+},
+
+"johan-christian-dahl-view-from-vaekero-near-christiania": {
+ "see": "A cold blue evening over a Norwegian inlet, held down at the corners by dark and lifted at the centre by light. A broad grey sky, banked with heavy cloud, opens just above the horizon where the moon burns through and lays a hard silver stripe straight down the still water toward you. On that water a three-masted ship sits at anchor right of centre, its rigging drawn as a fine grey web against the pale sky. Between you and the ship a long line of fishing nets hangs slack from thin poles, sagging in shallow curves across the whole middle of the picture. Rocks pile up at the left, a plank-built shed leans in at the right, and on the near shore two small figures — a woman in a red skirt, a man in dark coat — stand with their backs to you, looking out at exactly the thing you are looking at.",
+ "about": "The picture is about being a spectator at the edge of the northern world. Dahl paints his own country — the fjord near Christiania, today's Oslo — but he paints it as a place you arrive at and stop, held at the shoreline by water you cannot cross on foot. The two figures are the hinge: they do not work the nets or board the ship, they simply watch the moon come up, and the whole composition is arranged so that your looking runs parallel to theirs. Everything human here is provisional and small — a shed, an anchored hull, nets hung out to dry — set against a sky and a distance that dwarf it. It is a homeland seen with the ache of distance, painted by a Norwegian who had made his life abroad and returned to the coast as both native and visitor.",
+ "craft": "The design is built on one long horizontal — the sagging chain of nets — crossed by two verticals: the ship's masts and, quieter, the standing couple. Dahl keys the entire canvas to a single light source, the moon, and lets it do the composing: it silhouettes the rigging, silvers the wet stones, and drops a bright ribbon of reflection down the centre that pulls the eye from foreground to horizon in one move. The palette is severely limited — slate blue, grey, a bruised violet in the cloud — so that the woman's red skirt and the warm brown of the near path register as the only heat in a cold scene. The near rocks and shed are painted thickly and dark to seal the wings; the far hills dissolve into flat, thin, atmospheric bands. The precision falls on the rigging and net-poles, drawn with a topographer's patience against soft everything-else.",
+ "context": "Johan Christian Dahl (1788–1857) was the founder of Norwegian landscape painting and, for most of his life, an expatriate: he trained in Copenhagen, settled in Dresden, and shared a house with Caspar David Friedrich — he even owned Friedrich's Two Men Contemplating the Moon, and the back-turned couple here is a direct borrowing of that painter's device. This view was not made on the spot: Dahl visited Christiania in the summer of 1826 and worked the picture up from memory in his Dresden studio the following January 1827, so its cold light is reconstruction, not record. Vaekerø, on the west side of the Christiania (Oslo) fjord near Bygdøy, was a real, identifiable spot, and Dahl's project was to give Norway its image — its light, its rock, its sea — not the classical scenery of the south. The moonlit shore and watching figures are Friedrich's, but Dahl grounds them in observed weather and geography, so the result sits between German Romantic contemplation and a plainer realism about the working coast.",
+ "deeper": [
+  {
+   "t": "Moon through the cloud",
+   "x": 0.52,
+   "y": 0.28,
+   "w": 0.22,
+   "h": 0.22,
+   "body": "The engine of the whole picture is the one thing Dahl half-hides. The moon does not sit in open sky; it burns behind a bank of heavy grey cloud that has torn just enough to let the light spill through. Look at how the edges of that cloud are lit from behind and how the pale opening below it is the single brightest passage in the upper canvas. Everything else — the silvered water, the silhouetted masts, the cold on the rocks — is downstream of this one source. Dahl commits to a single light and lets it organise the scene, which is why the sky feels weather-observed rather than decorative: the moon is not a lamp hung in a clear night but a real thing struggling out of real cloud."
+  },
+  {
+   "t": "The silver reflection",
+   "x": 0.5,
+   "y": 0.44,
+   "w": 0.14,
+   "h": 0.28,
+   "body": "Directly under the moon a hard, bright stripe of reflected light runs down the water toward the shore. It is the compositional spine: your eye enters at the near shore and is pulled straight up this ribbon to the horizon and the moon in a single unbroken move. Notice it is not smooth — Dahl breaks it into short horizontal flecks that read as a barely moving surface, and the light cools and dims as it recedes. Where the reflection meets the darker far water and the low skerries, the whole middle distance flattens into thin, quiet bands. This central column of light is what keeps a scene of mostly cold darks from feeling closed; take the path your eye travels here and the picture's depth is doing exactly what Dahl wants."
+  },
+  {
+   "t": "Two figures, backs turned",
+   "x": 0.44,
+   "y": 0.72,
+   "w": 0.16,
+   "h": 0.24,
+   "body": "On the near shore stand a woman in a red skirt and dark bodice and a man in a long dark coat, both facing away, out toward the water. They are small and they do nothing — no gesture, no work — they simply watch. This is the Friedrich device Dahl learned in Dresden: the figure seen from behind who stands in for you, so that your looking and theirs run the same line out to the moonlit distance. The red skirt matters practically as well as poetically — it is nearly the only warm colour in a blue-grey field, and Dahl uses it to hold the exact centre of the foreground and mark where the eye should land before it travels out. Without the couple the sea is only scenery; with them it becomes something being looked at."
+  },
+  {
+   "t": "Nets on the poles",
+   "x": 0.29,
+   "y": 0.62,
+   "w": 0.44,
+   "h": 0.16,
+   "body": "A line of fishing nets hangs from thin poles driven into the shallows, sagging in shallow scallops right across the middle of the picture. This is the long horizontal that the masts and figures cross, and it is drawn with real patience — each pole a fine dark vertical, each swag of net a translucent grey curve you can half see the water through. It fixes the scale of everything: the poles tell you how far off the far shore is, and how small the ship really is. It is also the picture's one clear sign of daily work, hung out and abandoned for the evening. Dahl gives the nets the same careful, near-topographic drawing he gives the rigging, so that the man-made lattice reads as observed fact against the softened land behind it."
+  },
+  {
+   "t": "The anchored ship",
+   "x": 0.62,
+   "y": 0.19,
+   "w": 0.2,
+   "h": 0.56,
+   "body": "Right of centre a three-masted ship lies at anchor, its dark hull low on the water and its bare rigging climbing into the pale sky. The masts are the picture's main verticals, answering the horizontal of the nets, and Dahl draws the whole web of shrouds and yards as fine grey lines against the light — precise where almost everything around it is soft. Because the sail is furled and the ship sits still and silhouetted, it reads as at rest, part of the evening's stillness rather than an event in it. Its size is deliberately hard to pin down: set against the tiny net-poles it could be large, but the moonlight flattens it, and it becomes less a vessel than a dark shape holding the right half of the sky in place."
+  },
+  {
+   "t": "Rocks sealing the left",
+   "x": 0,
+   "y": 0.42,
+   "w": 0.22,
+   "h": 0.42,
+   "body": "The left edge is closed by a mass of pale grey boulders, painted thickly and catching a cold sheen of moonlight along their upper faces. They are one of the two dark wings — the shed being the other — that frame the luminous centre and stop the eye escaping sideways. Note how differently they are handled from the distance: heavy, tactile, worked with visible substance, where the far hills are thin washes. This is Dahl the Norwegian insisting on his own country's material — bare northern rock, close and hard, is a subject he returns to again and again. Placed at the mouth of the composition, the stones also give the near shore its weight and make the far water feel genuinely far."
+  },
+  {
+   "t": "The leaning shed",
+   "x": 0.83,
+   "y": 0.2,
+   "w": 0.17,
+   "h": 0.62,
+   "body": "At the far right a plank-built wooden shed leans in from the edge, its roofline and a long spar or pole slanting toward the centre of the picture. It is the counterweight to the rocks on the left: the second dark wing that closes the frame and keeps the composition from spilling out on that side. Its diagonal is doing quiet work — the leaning lines point the eye back inward, toward the ship and the moonlit water, rather than letting it drift off the canvas. As a motif it belongs to the same modest, working world as the nets: not a grand ruin but ordinary coastal building, dark and near, its plainness measured against the vast cold sky it is set beneath."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "The back-turned watcher is a device Dahl carried from the house he shared in Dresden, and its purest form hangs nearby in Friedrich's Seashore with fisherman — a lone figure on an almost empty shore, the sea and sky doing everything, the human reduced to a point of attention. Friedrich strips the coast to metaphysics: bare beach, vast air, no work, no place. Dahl takes the same standing witness and weights the other side of the bargain. His couple watch the same distance, but around them he hangs real nets, anchors a real hull, names a real fjord. The contemplation is identical; only Dahl insists it happen on an observed, working coast.",
+ "refs": [{"id":"seashore-with-fisherman","text":"Seashore with fisherman"}]
+},
+
+"gustav-klimt-baby-cradle": {
+ "see": "A pyramid of tumbled cloth fills almost the whole square, rising from the two bottom corners to a point near the top edge. It reads first as pure pattern: a heap of blankets and quilts in orange, cobalt, emerald and violet, each patch worked with its own small motif of dots, spirals, diamonds and rosettes. Only when your eye reaches the apex does the subject resolve — a tiny sleeping face, cheeks flushed, cushioned in a burst of loose white bedding. The face is the smallest painted incident in the picture and the last thing you find. Around it the fabrics are shoved and folded with almost no straight edge anywhere, so the surface stays restless while the overall shape holds firm. The ground behind is thinly brushed, sage-green at left cooling to warm tan at right, letting the mound sit isolated with nothing else to compete for the eye.",
+ "about": "The picture is a whole life compressed into a mound of cloth. Klimt buries an infant at the top of a swelling pile of patterned fabric, and the pile does the arguing: it is far larger than the child, an accumulation the baby has not yet lived through. The scale is deliberately wrong — a newborn made small beneath a heaped inheritance of textiles, as if the years and their ornament were already stacked up waiting. Many readings take the fabrics as the future the child will grow into, and the tapering triangle carries an old association with the fragility and brevity of a single life. What holds the two ideas together is that the baby is asleep, unaware, at the very tip of something vast. The subject is not really a portrait; it is the disproportion between a beginning and everything that beginning implies.",
+ "craft": "The engine of the picture is a mismatch Klimt controls carefully: riotous local pattern held inside a stable geometric silhouette. Every patch competes — clashing hues, incompatible motifs, no shared direction — yet the outer contour is a clean triangle that keeps the chaos from spilling. He denies you any straight fold or clear seam, so nothing in the pile can be read as a real bed; it stays a painted abstraction of cloth rather than a described object. The one passage of calm is the loose white bedding at the summit, and he saves the only naturalistic drawing in the picture for the face nested there, so the eye is pulled up the slope to the single soft, quiet thing. Color does the rest of the work: warm oranges and whites cluster at the top near the child, cool blues and darks weigh down the base.",
+ "context": "The canvas dates from Klimt's last working year, 1917/1918; he died in early 1918 with several pictures, this among them, left unfinished. That late date matters to how it looks — it comes after the gold of his famous decorative phase, into a looser, more openly painterly manner where pattern is brushed rather than inlaid and the ground is left thin and sketchy. The canvas is held by the National Gallery of Art in Washington. Klimt was an avid collector of textiles and costume, a fixation that runs all through his late work, and that appetite for cloth feeds directly into the invented pyramid here. The subject of infancy and the compressed-life triangle sits inside a lifelong preoccupation of his with the arc from birth to death, treated elsewhere in more crowded allegories and here distilled to a single sleeping child on a mountain of stuff.",
+ "deeper": [
+  {
+   "t": "The hidden face",
+   "x": 0.4,
+   "y": 0,
+   "w": 0.22,
+   "h": 0.16,
+   "body": "Find the whole picture's meaning in its smallest, most easily missed passage. At the very apex a baby's face lies tipped back and asleep, no bigger than one of the fabric patches below it and painted with the only soft, rounded, naturalistic modelling in the work. Cheeks and brow are flushed pink against the white bedding; the eyes are closed. Klimt makes you climb the entire mound before you reach it, and the delay is the point — the living subject is dwarfed by, and nearly lost inside, the mass of cloth beneath. Note how little he describes: a few strokes settle the features, and the surrounding white is left loose and unfinished, which only heightens the sense of something small and unguarded at the summit."
+  },
+  {
+   "t": "White bedding at the summit",
+   "x": 0.33,
+   "y": 0,
+   "w": 0.42,
+   "h": 0.19,
+   "body": "This ring of loose white is the one place the surface exhales. Everywhere else the picture is packed with competing pattern; here Klimt lets the paint go pale, open and almost undrawn, so the child sits in a pocket of quiet at the top of the noise. The brushwork is deliberately unresolved — smears and scumbles rather than described pillows — which reads both as soft cushioning and as the picture's unfinished state showing through. It works compositionally as a halo: the eye, tired from reading the busy fabrics, lands here and settles, and only then registers the face. Without this calm interval the summit would have no focus and the whole triangle would read as ornament with nothing at its peak."
+  },
+  {
+   "t": "The orange diagonal",
+   "x": 0.26,
+   "y": 0.28,
+   "w": 0.26,
+   "h": 0.35,
+   "body": "A slab of warm orange cuts down through the center, the single most aggressive color move in the picture. It behaves like a chute or a fold sliding toward the lower left, and its heat pulls it forward off the cooler blues and greens around it, so it sits closer to you than its neighbours. Klimt uses it as a hinge: it links the warm top, where the child and white bedding gather warmth, down into the darker base, keeping the eye traveling along the slope rather than getting stuck in any one patch. Look at how little pattern it carries compared to the quilts beside it — it is nearly a flat plane, and that plainness is exactly what lets it read as a movement rather than another decorated square."
+  },
+  {
+   "t": "Blue wedge, upper left",
+   "x": 0.08,
+   "y": 0.2,
+   "w": 0.24,
+   "h": 0.18,
+   "body": "On the left flank a wedge of deep cobalt, flecked with small pale motifs, drives inward like a folded corner of blanket. It is one of the coolest, densest colors in the pile, and Klimt sets it hard against the thin sage ground so the contour of the mound stays legible on that side. Track its edge: it helps define the left slope of the triangle, one of the few places where the silhouette against the background is crisp rather than dissolved. The dotting on its surface keeps it inside the picture's overall language of ornament, yet its weight and darkness let it function structurally, anchoring the left and balancing the warmer orange that dominates the middle."
+  },
+  {
+   "t": "The patterned quilt, right flank",
+   "x": 0.62,
+   "y": 0.42,
+   "w": 0.36,
+   "h": 0.42,
+   "body": "The right side is the picture's densest field of invention: a quilt worked in emerald, teal, red and white, packed with rosettes, diamonds, chevrons and tiny geometric cells that never quite line up into a repeat. This is Klimt the pattern-maker at full stretch, but note that it is brushed and loose, not the crisp inlaid ornament of his gold period — the motifs are approximate, alive, slightly out of register. It gives the right flank its bulk and keeps the triangle from tipping toward the heavier left. Spend a moment on how many distinct motifs he crowds in without letting any single one organize the rest; the incoherence is intentional, a heap of many cloths rather than one designed textile."
+  },
+  {
+   "t": "Faces in the base",
+   "x": 0.02,
+   "y": 0.74,
+   "w": 0.34,
+   "h": 0.25,
+   "body": "Down in the dark violet-and-blue foot of the pyramid, forms surface that read almost as small faces or figures folded into the cloth. In the deep shadow at lower left the paint gathers into rounded, features-like shapes among the yellow and blue — whether Klimt intended figures or the eye is simply completing the pattern is genuinely open. Either way this is where the picture is heaviest and least resolved, the ballast that lets the bright warm summit float. The base is painted in the coldest, most clotted color, so the whole mound feels bottom-weighted and stable even though not a single edge inside it is straight."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "Set this cradle beside Egon Schiele's Death and the Maiden, painted a few years earlier, and the same bargain runs at the opposite pole. There too a fragile human thing is half-lost inside a churned mound of cloth, the drapery heaped larger and more agitated than the bodies it holds. But Schiele pitches the fabric toward the end of the arc, two figures clenched in a tumbling white shroud, where Klimt pitches it toward the beginning, a sleeping face at the summit of everything still ahead. One pile is a life about to be spent, the other a life not yet started. The device is one; the stake is birth against death.",
+ "refs": [{"id":"death-and-the-maiden","text":"Death and the Maiden"}]
+},
+
+"giovanni-boldini-whistler-asleep": {
+ "see": "A man lies collapsed into sleep, head fallen back against a pale wedge at upper left, seen almost in profile facing right. The face is the one fully finished thing here: closed eye, arched brow, a straight nose, the moustache and short beard bitten in with dense, nervous line. Everything below dissolves. His head sits inside a storm of dark vertical hatching that reads as shadow rather than any described room. The shoulder and arm sweep down to the right as one broad diagonal of blackened, furred line, and then the drawing simply stops giving you information — the far hand, the chest, the lower body thin out into a few bare contours on cream paper. Your eye is pulled to the one lit passage, the sleeping head, and made to supply the rest.",
+ "about": "This is a portrait of a friend caught off guard, and it is about the difference between the public man and the unwatched one. The sitter is James McNeill Whistler, the most self-curated figure of his generation, a dandy who composed his own image as carefully as his paintings. Here that control is gone: mouth slack, head thrown back — Boldini drew him in the studio during one of the after-breakfast dozes he habitually fell into, an intimate, repeated moment between the two of them rather than a formal sitting. The picture trades entirely on intimacy — you are only shown this because the man drawing it was close enough to be in the room. What it is about, finally, is looking at another artist with affection rather than rivalry, and the strange tenderness of watching a vain man stop performing.",
+ "craft": "The whole thing is an argument for economy. Boldini finishes only the head and lets the rest fall off into blankness, so the eye does the work of completing the figure — a decision, not a shortcut. The medium is drypoint: the needle throws up a burr of metal along each furrow, and that burr holds extra ink, which is why the shadow around the head and the sweep of the arm print so velvety and dark against the raw paper. Look at how the marks change speed. Around the face they are tight and deliberate; down the arm they turn into long, raking strokes; at the edges they become single searching lines. The composition is a diagonal collapse from upper left to lower right, the pale pillow and the dark ground framing the one thing worth resolving.",
+ "context": "Boldini and Whistler moved in the same expatriate art world of 1890s Paris, where Boldini had made himself the portraitist of choice for society women, all swagger and swish. This is a private register from the same hand. The two were friends, and this sheet belongs to that friendship rather than to any commission — Boldini caught Whistler in one of the after-breakfast dozes he habitually slipped into at the studio. Whistler, then in his sixties and near the end of his life, was famous for the etchings he made of the Thames and Venice, so a portrait of him done in the same needle-and-plate craft carries a quiet in-joke: the great etcher, etched. The sheet is a drypoint, not a painting — worked directly on the copperplate and printed on pale green-gray paper. Boldini took up etching only in middle life, never published his plates, and pulled just a few proofs, so lifetime impressions of a sheet like this are genuinely rare.",
+ "deeper": [
+  {
+   "t": "The sleeping face",
+   "x": 0.33,
+   "y": 0.14,
+   "w": 0.21,
+   "h": 0.28,
+   "body": "Only this region does Boldini fully resolve, and everything else in the sheet exists to send you here. The eye is shut, the brow lifted, the nose drawn as a clean straight ridge in near-profile. Notice the density: the beard and moustache are built from short, overlaid strokes bitten dark, while the cheek is left almost bare so the light seems to pool on it. The mouth sits slightly open, the small helpless detail that tells you this is real sleep and not a pose. A vain, self-composed man has, for once, lost the thread of his own image, and the drawing catches him in exactly that unguarded second."
+  },
+  {
+   "t": "Hair and the pale wedge",
+   "x": 0.16,
+   "y": 0.22,
+   "w": 0.28,
+   "h": 0.22,
+   "body": "The head does not float; it is dropped, with real weight, into the pale angled shape at the upper left that reads as a pillow or the wing of a chair. Follow the hair from the crown down past the ear: curls tightened into loops of line, then a lighter patch at the temple that seems to answer Whistler's own famous streak of white hair. Boldini leaves the wedge nearly blank, just a few edge strokes, so it works as a bright rest for the eye and as the surface taking the sitter's whole weight. The contrast is the point — the hardest-worked passage of hair sits right against the emptiest passage of paper."
+  },
+  {
+   "t": "The dark ground behind",
+   "x": 0.29,
+   "y": 0.03,
+   "w": 0.34,
+   "h": 0.33,
+   "body": "Above and behind the head, the paper is filled with a curtain of near-vertical hatching. It describes no wall or object — it is pure shadow, there to throw the lit face forward. This is where the drypoint burr does its work: the ridge of metal thrown up beside each scored line catches extra ink, and the strokes print soft-edged and velvety rather than crisp. Read the direction of the marks and you feel the speed of the hand, raking down fast and close. Take this dark ground away and the head would sit flat on the page; it is doing the job a background of furniture would do in a finished painting, with a fraction of the means."
+  },
+  {
+   "t": "The furred arm",
+   "x": 0.46,
+   "y": 0.33,
+   "w": 0.3,
+   "h": 0.25,
+   "body": "From the shoulder, one broad diagonal of blackened line sweeps down to the right — the arm and side of the sleeping body, rendered as a single dark mass rather than as described anatomy. These are the longest, fastest strokes in the sheet, and again heavy with drypoint burr, so the passage reads as the deepest shadow of the figure. Boldini refuses to model it; he gives you weight and slump and direction and nothing else. It is the counterweight to the face: one pole fully finished and lit, the other pole collapsed into dark. Between them the whole mood of exhausted, unguarded rest is carried."
+  },
+  {
+   "t": "Where the drawing stops",
+   "x": 0.62,
+   "y": 0.46,
+   "w": 0.24,
+   "h": 0.26,
+   "body": "Toward the lower right the image thins to almost nothing: a few searching contour lines suggest a hand and the far edge of the body, then the paper is simply left bare. This is the boldest decision in the print. A lesser hand would have carried the finish evenly across the whole figure; Boldini stops the instant the head has been made, trusting your eye to complete the rest from a handful of marks. The unfinished edge is not laziness but tempo — it makes the sheet feel caught on the wing, drawn quickly from life while the sitter slept, and it keeps all the pressure on the one passage that matters."
+  },
+  {
+   "t": "The signature",
+   "x": 0.76,
+   "y": 0.88,
+   "w": 0.21,
+   "h": 0.11,
+   "body": "Down in the lower right, clear of the figure, is the looping 'Boldini.' On a sheet this sparse the signature is not an afterthought but part of the balance — a small dark accent set into the largest empty quarter of the paper, answering the weight of the head at the opposite corner. It also quietly signs off on the informality of the whole thing: no title, no setting, no ceremony, just a name and a friend asleep. In a print, the artist works the plate directly and pulls the impression, so this mark is the last thing the eye reaches and the seal on a private, off-duty portrait."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "The same man sits for himself in Gold and Brown: Self-Portrait, and the two portraits make opposite bargains with the same face. There Whistler builds the image he wanted the world to keep — the eye level and returning yours, every mark placed by the man being looked at. Here another hand does the looking, and does it while he cannot compose a thing: head dropped back, mouth loose, the finish thrown onto the one passage he would never have chosen to show. One is a man authoring himself; the other is a friend catching him with the authorship switched off, and only the second could have been made in the room.",
+ "refs": [{"id":"whistler-gold-and-brown-self-portrait","text":"Gold and Brown: Self-Portrait"}]
+},
+
 "joachim-patinir-the-flight-into-egypt": {
  "see": "A tall vertical panel in which the story is tiny and the world is enormous. Pale, splintered rock pinnacles rear up left of center like a broken tooth, catching a chalky light against a green-blue sky streaked with cloud and a scatter of birds. Down at the pivot of the picture, the Holy Family crosses a scrubby track: Mary in white and blue rides a grey donkey with the infant at her breast, bearded Joseph pacing beside with a staff. From there the land tips open to the right into a vast river valley, hamlets and a walled town dropped into the greens, mountains fading to pale blue on the far horizon. The eye is pulled first to the bright rock, then down to the little travelers, then out across the receding distance, so that you read the whole earth before you notice the people moving through it.",
  "about": "The subject is flight and refuge: Joseph leading Mary and the newborn Christ out of Herod's reach into Egypt, the sacred family reduced to two anxious figures on a donkey. But the picture is really about the world they pass through. The painter makes the human drama a small event inside a created cosmos, so that faith is felt less as story than as scale, the traveler dwarfed by mountains, water and sky the way a soul is dwarfed by providence. The wild, gnawed rock and the ordered farmland in the distance set wilderness against settlement, danger against the promise of a place to arrive. It is a devotional image that asks you to meditate not on a face but on the whole span of the earth God made, with salvation a quiet thread crossing it.",
