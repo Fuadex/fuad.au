@@ -333,6 +333,24 @@ GIST recipe; redrafts bump `by` to Opus·Fable.
 - Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
 - Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
 
+### Batch log — d3 wave: seventeen-album sweep + full portrait cascade (2026-08-29, db81885..479d0bb)
+
+The largest single wave to date: sixty-seven reads across seventeen albums — MIXXXTAPE,
+City, GALORE, Don't You Feel Amazing?, SONIC TRASH, In War and Pieces, Symbol of Life,
+Desperate Youth, LOOKING FOR PEOPLE TO UNFOLLOW, Yield, Over The Threshold, Optics,
+La Partition, unReal, 上出来, Ire Works, and MACHINA — plus one fnote (Vedder's
+Mini Fast Car decode) and seventeen album portraits, all applied in one arc. Verification
+earned its keep: Room 429 surfaced as a Cop Shoot Cop cover mid-QC and was recast under
+the covers doctrine, Heavy Metal Machine's closer claim died against the real tracklist,
+an unattested skin-etymology was sealed away, and La Partition's eight sisters were
+restored from a mistaken Pleiades gloss to the album's own voiceless-mermaid myth. The
+meta-leak class hit its worst recorded density (fifteen in one batch) and the liner
+collage tax its worst rate (thirty-eight seals across seventeen liners). Owner caveat,
+standing: SONIC TRASH and LOOKING FOR PEOPLE TO UNFOLLOW shipped on incomplete above-floor
+coverage (entry-less lyric-gap rows), and Yield rests on ruling the hidden Red Dot piece a
+non-song — when those albums truly finish, their gists and liners get regenerated and
+A/B-judged against these.
+
 ### Batch log — d1 wave: six-album close + first Dragged Under artist entry (2026-08-29, f5c3faa..96dd39b)
 
 Twenty-eight reads across six albums in one parallel arc — The World Is In Your Way
