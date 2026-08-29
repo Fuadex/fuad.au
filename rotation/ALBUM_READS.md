@@ -333,6 +333,22 @@ GIST recipe; redrafts bump `by` to Opus·Fable.
 - Phase 3: the 3 gist-only stubs + the one liner2-without-arc2 entry.
 - Phase 4: replication — the 12 fully-fable-covered albums lacking syntheses.
 
+### Batch log — fill1: the portrait-prerequisite fill, both units (2026-08-29, 20f6365..bc945e3)
+
+The largest batch to date: 126 reads pushing 26 albums to maximum processable coverage
+under the new standing rule (an album's gist/liner ships only once every findable-lyric
+track is read, regardless of play count). Unit A filled the fourteen albums whose
+portraits had shipped on above-floor coverage (City, GALORE, Don't You Feel Amazing?, In
+War and Pieces, Symbol of Life, Desperate Youth, Yield, Over The Threshold, Optics, La
+Partition, unReal, 上出来, Ire Works, MACHINA — 79 reads); unit B filled the twelve
+floor-complete albums still awaiting first portraits (daydream, Fight Club, C30-C39,
+Blues for the Red Sun, ZAZEN BOYS II, Mesmer, the three ROMES albums, Muzyka Komercyjna —
+47 reads). Seven fnotes shipped with it, including the He's So Good borrowed-voice
+testimony, Paragon's Tom Searle tribute, and Mdambf.'s mirror-written link to
+Chillthefuckout. Corpus after: 2,221 fable reads, all themed; 539 fnotes. Owed next: A/B
+gist+liner regenerations for the fourteen (fresh drafts judged blind against the shipped
+versions) and first-time portraits for the twelve (two Ling Tosite Sigure albums held).
+
 ### Batch log — d3fin: ROMES catalog + Chalk (2026-08-29, 47bb9e7)
 
 Twelve reads finishing the follow-up closes: the whole ROMES singles-and-EPs run above
