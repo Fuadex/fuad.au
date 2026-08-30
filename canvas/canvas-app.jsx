@@ -692,6 +692,29 @@ const CAP = 48;
 // the data model (a confidence value, an aspiration) rather than the thing you are asking for.
 const MARK_FILTERS = [["floored", "★ floored", "★"], ["loved", "♥ loved", "♥"]];
 const STATUS_FILTERS = [["sure", "seen", "seen"], ["unsure", "unsure", "unsure"], ["wish", "not seen", "not seen"]];
+// EYE ICONS for the seen axis on phones (Fuad 2026-08-30). The three states are one idea at three
+// degrees, so they get one glyph at three degrees rather than three unrelated marks: open eye,
+// half-lidded eye, closed lid. Drawn rather than typed — the unicode eyes render as colour emoji on
+// most phones and would not sit in a mono filter row. Each keeps its word in the button title.
+const EyeIcon = ({ state }) => (
+  <svg className="cv-eye" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"
+    fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+    {state === "closed" ? (
+      <React.Fragment>
+        <path d="M2.5 11.5c3 3.6 6.2 5.4 9.5 5.4s6.5-1.8 9.5-5.4" />
+        <path d="M4.6 15.1 3.1 17.2M12 16.9v2.4M19.4 15.1l1.5 2.1" />
+      </React.Fragment>
+    ) : (
+      <React.Fragment>
+        <path d="M2 12s4-6.4 10-6.4S22 12 22 12s-4 6.4-10 6.4S2 12 2 12z" />
+        <circle cx="12" cy="12" r="2.6" />
+        {/* half-lidded: a lid drawn down over the top of the same eye */}
+        {state === "half" && <path d="M2.6 10.4c3.4-1.5 6.5-2.2 9.4-2.2s6 .7 9.4 2.2" strokeWidth="2.4" />}
+      </React.Fragment>
+    )}
+  </svg>
+);
+const STATUS_ICON = { sure: "open", unsure: "half", wish: "closed" };
 const markPass = (w, k) => k === "floored" ? !!(w.floored || w.favorite) : !!w.liked;
 const statusPass = (w, k) =>
   k === "sure" ? w.seenConfidence === "sure"
@@ -1533,8 +1556,12 @@ function Wall({ go, styleIds }) {
         {/* TODAY'S HANG — what Home shows, on the Wall: the day's rotating floored works with the
             ones Fuad pins always present. It leads the row because it replaces the whole selection
             rather than narrowing it, and it reads as a place to start rather than another filter. */}
+        {/* On a phone the house glyph carries it alone (Fuad 2026-08-30) — it leads the row, it is
+            the only ⌂ on the page, and the words cost a third of the row's width. */}
         <button className="cv-hang-chip" data-on={hang} onClick={() => setHang(v => !v)}
-          title="today's hang — a curated rotation of works that floored me">⌂ today's hang</button>
+          title="today's hang — a curated rotation of works that floored me">
+          <span className="cv-f-full">⌂ today's hang</span><span className="cv-f-tiny">⌂</span>
+        </button>
         <span className="cv-filt-div" aria-hidden="true" />
         {/* "all" clears both axes — a reset, not a third state you can be in */}
         <button data-on={!marks.size && !status.size}
@@ -1546,7 +1573,10 @@ function Wall({ go, styleIds }) {
         ))}
         <span className="cv-filt-div" aria-hidden="true" />
         {STATUS_FILTERS.map(([v, label]) => (
-          <button key={v} data-on={status.has(v)} onClick={() => toggleStatus(v)}>{label}</button>
+          <button key={v} data-on={status.has(v)} onClick={() => toggleStatus(v)} title={label}>
+            <span className="cv-f-full">{label}</span>
+            <span className="cv-f-tiny"><EyeIcon state={STATUS_ICON[v]} /></span>
+          </button>
         ))}
         <span className="cv-filt-div" aria-hidden="true" />
         <button data-on={tourOnly} onClick={unhang(() => setTourOnly(v => !v))}

@@ -404,12 +404,18 @@ a { color: inherit; }
      already answers. Hidden rather than restyled — no arrangement of it is worth a line here. */
   .cv-count { display: none; }
   /* ★ and ♥ alone (Fuad 2026-08-22). The glyph is already how the cards mark these, so the word is
-     redundant on a phone in a way "seen" and "not seen" are not — those keep their words because
-     no agreed symbol exists and inventing one costs more than the space it saves. The full label
-     stays on the button's title, so the meaning is a long-press away. */
+     redundant on a phone. The full label stays on the button's title, so the meaning is a long-press
+     away.
+     The seen axis and today's hang joined them 2026-08-30. The 2026-08-22 note here used to say the
+     seen words had to stay because no agreed symbol existed — an eye at three degrees of open is
+     that symbol, and it says the thing the words were spending a third of the row to say. */
   .cv-f-full { display: none; }
   .cv-f-tiny { display: inline; }
   .cv-filters button:has(.cv-f-tiny) { padding: 7px 11px; font-size: 12px; }
+  /* the eye sits on the text baseline like the other glyphs rather than riding above it, and the
+     button loses the text-side padding it no longer needs */
+  .cv-filters button:has(.cv-eye) { padding: 5px 9px; }
+  .cv-eye { display: block; }
 }
 /* ——— OMNISEARCH — "design your own wall" (Fuad 2026-08-27) ———
    One search where the Museum and Artist dropdowns used to sit; it owns them now. Committed picks
