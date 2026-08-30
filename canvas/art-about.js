@@ -183,7 +183,10 @@ by: "Opus 4.8" },
 
 "georges-seurat-seascape-at-port-en-bessin-normandy": {
 about: "Seurat spent the summer of 1888 working the Normandy coast at Port-en-Bessin, recording the little fishing port almost systematically from inner harbour to outer, then out to the cliffs east and west. This near-square view of green headland dropping to the sea is one of six canvases he brought back, marines he conceived as a set meant to hang together in a deliberate order; all six were shown at Les XX in Brussels in February 1889. As in the others, he tracked the coast's signal apparatus closely, and framed the scene inside his hand-dotted painted border rather than a gilt frame.",
-by: "Opus 4.8" },
+by: "Opus 4.8" ,
+ "deep": "No element here is casual; each is placed to measure the next, and distance is what gets engineered. A headland arcs down from upper left as the sole diagonal in a canvas otherwise built from layered horizontals: banded sky, pale sea, the answering shelf of land at lower right. That shelf, blazing with sunlit ochre where everything else stays cool, catches the eye where the composition needs a turn. Two sails, barely fingernail-sized, fix the scale of the cliff they float beside and open a recession across featureless water. The hillside dissolves close up into unmixed strokes of orange, violet and blue — colour held apart on the surface, averaged only in the eye.",
+ "deepBy": "Sonnet 4.6"
+},
 
 "j-m-w-turner-the-new-moon-or-i-ve-lost-my-boat-you-shan-t-ha": {
 about: "The squabble in the title's second half is the picture's own script: a boy has lost his toy boat and in revenge refuses to give up his playmate's hoop, a nursery drama Turner set on the sands of Margate, where he had been schooled as a child and where, by 1840, he lodged with his landlady Sophia Booth. The small mahogany panel went to that year's Royal Academy alongside the Slave Ship, and Blackwood's Magazine jeered, asking what the moon could have to do with a hoop and a boat and rating the picture 'far below even moonshine'.",
@@ -4297,6 +4300,120 @@ by: "Opus 4.8" },
 "pollock-ritual": {
  "about": "In 1953, three years before the crash that killed him, Pollock set the poured enamel aside for a loaded brush and stretched canvas, then signed his name and the year across the lower edge.",
  "deep": "Everything rests on two black strokes falling the full height of a tall ochre field, and what they do is partition. To their left, thick clusters of cream and pink sit lassoed in loops of black, forms that gather until a head or a shoulder seems imminent and then give the promise up; the picture keeps stopping a beat short of a body. The wide ochre run between the strokes is the reserve of calm, thin and open, interrupted midway by a scatter of little closed rings that read as remarks added to a passage already settled. Both strokes fatten and starve with the load the bristles still carried, leaving the arm's pressure legible.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"circle-of-jacques-louis-david-portrait-of-a-young-woman-in-white": {
+ "about": "Published for decades under a sitter's name, Madame Hamelin, and as recently as 1931 given outright to Jacques-Louis David, the canvas is now credited to an anonymous hand — beneath gauze so thin the shoulders show pink.",
+ "deep": "Costume does the arguing in this canvas. Muslin cut high and hanging free, no boning and no woven silver, translated the ancient world into republican plainness — dress as a declaration of allegiance. That declaration lasts; the sitter does not, a name pinned on, then peeled off across a century of relabelling. She survives as a body wound against itself, shoulders bearing right while the head returns. Three passages of paint carry what the record cannot: cool white floated over warm skin until flesh shows through the veil, a hot pink-red banked into the corner her seated pose leaves vacant, and two hands, one closed on nothing, one dropped slack across that colour.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"landseer-the-duke-of-devonshire-and-lady-louisa-egerton": {
+ "about": "Sixty-three, childless, known all his life as the Bachelor Duke, he stands beside a great-niece who would not carry the surname she is catalogued under for twelve more years — heads tipped toward a dead deer.",
+ "deep": "No face here is permitted to show anything. Scarlet coat, black column, grey dress, pony head: each inclines toward the single thing incapable of looking back, and that agreement of angles is the whole design, settled long before finish. Bare ochre priming stands in for every middle tone across wall and pavement; Landseer set down shadows and a scatter of highlights, nothing else. Thicker, creamier handling goes to the dead animal alone, which pushes forward because it is the protagonist and holds what no human face may show. The girl's lowered head, chin sunk toward her collar, is the one flicker of feeling, delivered by carriage instead of features.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"john-frederick-kensett-beach-at-beverly": {
+ "about": "Over thirty canvases of one stretch of Massachusetts coast in thirteen years, more than twenty of Beverly alone — a motif worked to exhaustion, pared until the only vertical left is a boulder breaking the sea-sky line.",
+ "deep": "Description quits about two-fifths of the way across: timbered bluff, ochre and salmon banding, a pair of hulls on the sand, one small person, everything halting at one boulder in the shallows, past which nothing but water. That proportion is the argument. The boulder nicks the sea-sky seam at exactly one place, and the light on its side is the strongest note anywhere. Wet dark rock at the near corner seals the way out that the beach's sweep would otherwise offer. The lone figure narrates nothing; it fixes a scale for the bluff, which relays that measure offshore. Kensett worked by removal until absence became the subject, legible only against the little he kept.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"jules-breton-the-cliff-la-falaise": {
+ "about": "A canvas eight feet and more across, the format the Salon kept for battle pieces and history, shown there in 1874 and given wholly to one spinner lying down, her distaff laid aside by her hip.",
+ "deep": "The provocation is structural. A figure stretched flat along the lower edge, head turned from us, hands empty of any task — nothing gathered, nothing hauled. Watching is all she does, and the design opens her thoughts only through the sea, which is also what you watch. Her cap of white linen outranks every value beneath the skyline and catches the eye before a body has even resolved. The face goes into a shut fist and stays unavailable. Wool bound on a staff, laid down at her hip, dates the interruption: spinning abandoned mid-task. And birds tilting through vacancy past the ledge measure a height the painting declines to show falling away.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"tiepolo-apollo-pursuing-daphne": {
+ "about": "Europe's most in-demand ceiling decorator brought fresco habits onto a canvas under three feet wide around 1755-60, then signed it lower left, in the crowded corner, beneath the oar that identifies the river god.",
+ "deep": "Tiepolo builds the myth around a structural gap rather than a collision: desire arrives precisely when its object has already withdrawn, so the composition encodes failure as an architectural fact. Apollo wears the laurel wreath before Daphne finishes becoming a tree — crowned with her, in the only form left to a woman escaping him. That paradox runs through the pointing arm: a single unbroken line aimed across bare sky at a body it cannot reach, with a hand's width of emptiness between fingertip and skin. Meanwhile the river god who carries her still cranes toward the pursuer to argue — father mid-dispute while the daughter has already passed beyond both of them.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"amedeo-modigliani-woman-with-red-hair": {
+ "about": "In 1917, under a contract that paid him by the day and supplied models and materials, Modigliani set an unnamed sitter on the commercially prepared canvas he generally used and gave her eyes no pupil, no white.",
+ "deep": "Presence here is granted but access is refused. Modigliani seals each eye under an unbroken film of dark pigment, leaving no iris and no highlight, so nobody can establish where she looks; her inner life turns into something the viewer must infer instead of receive. Structure takes over the job psychology usually does. One drawn edge travels unbroken from cheek into shoulder, the throat lengthens past anatomy into a supporting shaft, and a small dark mouth, nudged off the vertical axis, holds the one warm accent under her hairline. Hair above and turned chair-wood at the flank share a single warm register, strung on a diagonal whose midpoint is her closed face.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"reynolds-annetta-coke": {
+ "about": "The sitter was still Miss Coke when she sat for it; Lewis Cage married her in January 1759. The gold capitals overhead, probably brushed on long afterwards, give her a surname she had not yet taken.",
+ "deep": "What Reynolds puts forward as the subject of a paid likeness is temperament rather than rank — a claim that her inner weather outranks her lineage. Her head sinks into an open palm, the profile withholds itself, and the entire body slopes on one diagonal down to a corner of dull green. No prop argues for the mood: nothing to read, nothing to pet, no estate behind her. That posture carries everything, and can, because finish is rationed. Cheek and knuckles are worked to a pitch nothing near them reaches, fused into a single mass, while cloth goes down in quick drags and the bank is thinned until the weave shows.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"gauguin-the-bathers": {
+ "about": "In Tahiti in 1897, composing Tahitian women for a Paris audience, Gauguin kept the bathing subject small — that year's mural ran four times its width — and drove one blue-green trunk through its full height.",
+ "deep": "Gauguin keeps the genre's title and discards its premise: these women share a rectangle without forming a group, and any paradise is nowhere in the pigment; it must arrive from outside. Nobody looks out, nobody acknowledges anyone else, nothing resolves. What the picture does is levelling: bodies, foliage, water, blossom handled with one flat contour and matte surface, so flesh and leaf carry equal weight, though it is a French painter deciding that Tahitian flesh weighs what a leaf weighs. The equivalence is structural: a trunk bisects the canvas top to bottom, preventing the figures from cohering, while a canopy sealed across the full width removes the sky and closes off depth.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"marquet-posters-at-trouville": {
+ "about": "Two painters carried easels to a Normandy seafront in 1906 and turned their backs on the water to paint the advertising hoarding facing it, keeping nothing of the posters but a scrubbed slab of lemon yellow.",
+ "deep": "Advertising usurps the view entirely — the canvas argues that commerce had already flattened the coastline into geometry before any painter arrived. A wall of saturated yellow, opposing blue wedges, and a hot red rectangle holds the structural centre while the sea remains absent, erased by the painters' own backs turned toward it. Figures crossing the ochre sand register only as blue-shadow pairs too small to absorb the hoarding's insistence. Bathing tents, curved and volumetric, serve as surrogates for the water they stand before; and the lettering across every placard — painted at the right rhythm but never resolving into language — is the canvas's declaration: advertising addressed at no one, received as colour alone.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"claude-monet-the-cradle-camille-with-the-artist-s-son-jean": {
+ "about": "Monet stayed at his father's coast house in 1867 to seem to have ended the relationship and keep an aunt's monthly cheque arriving; the son born that August in Paris lies here, eyes open, four months on.",
+ "deep": "Proximity carries the whole picture — sustained, undramatic, with emotion never declared. A length of patterned cotton drops from beyond the top edge in a long arc, giving a plain bassinet the vertical scale of something consecrated; but the woman drawn toward the child from the right edge neither touches him nor shows her face, held as attendant, not protagonist. The bedding reads as white and holds little white paint — grey, lilac and warm cream, with white paint confined to the ridges where light falls. Down at the bottom edge a yellow pinwheel and a red-stemmed toy, handled most loosely of all, insist on a lived-in corner, not an altar.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"derby-the-corinthian-maid": {
+ "about": "The potter Josiah Wedgwood had been discussing this origin-of-painting myth with his business partner since 1778, and on the canvas Wright painted for him in 1782-1784 the one visible flame is a kiln burning behind an arch.",
+ "deep": "A woman follows the shadow her sleeping lover throws on plaster, and what her hand leaves behind will stand in for him once he has gone. Impending separation, not artistic appetite, is what puts the first line on a wall. The weapon laid across the couple plus the dog stretched below both announce his departure. Wright hides the lamp, letting illumination arrive as consequence alone, and grants full heat to a single furnace deep in the right-hand recess, the device that will fire her line into something that lasts. Because her features are withheld, feeling migrates into her braced back and lifted arm, so the inventor of images is herself shaped into one.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"winslow-homer-right-and-left": {
+ "about": "Painting through a Maine winter in 1908 and 1909, deep into a quarter-century of near-solitude on that coast, Homer placed whoever looks downrange of a hunter's barrels, with one loose feather adrift in the grey.",
+ "deep": "The painting holds its position on the question it raises — whether the gun hit anything at all. Two goldeneyes hang airborne against a near-featureless grey field, one upright, one overturned, and neither posture settles the matter; the inverted bird could be struck or could be folding into a dive. Homer places the implied viewer along the trajectory of the shot rather than at the gunner's shoulder, which reverses the customary allegiance. Ornithological precision — the cheek patch, the orange webs, the hard-ringed eye — sits alongside a flatness borrowed from printmaking, and the grey field between sky and water never quite admits a line.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"cole-tornado-in-an-american-forest": {
+ "about": "Two years into a European stay, months short of Italy, Cole showed Londoners in spring 1831 an American storm he had never witnessed, its invented woods lit only where a sour yellow opening breaks the dark.",
+ "deep": "Three moments of one storm share a single frame. Standing dead trunks on the left register a prior violence; bent crowns on the right are still dissolving into cloud; between them a sour-lit opening holds whatever the aftermath looks like. Arranged that way, the canvas works as a timeline collapsed into a view — past event, ongoing event and what follows, lit only at their shared seam. The moral weight is deliberate: wilderness runs on its own terms, indifferent to any national claim of abundance. Cole built the composition in a London studio working from memory and sketchbooks, which converts the canvas from field record to structured argument.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"anthony-van-dyck-giovanni-vincenzo-imperiale": {
+ "about": "Imperiale entered the Genoese senate in 1626, the year of this portrait; no precise date is claimed. He wears the office's black with a flat four-cornered cap, and his shield sits pale high in the shadow.",
+ "deep": "Authority here is conducted through restraint, and the portrait stakes everything on two objects — a rigid linen collar and a rolled document — against black. The millstone ruff is not decorative; it is architecture, a starched disc that cuts the head free from the body and makes posture non-negotiable. The hand holding the paper is not gripping; the fingers are resting along the roll as though the reading is done. Van Dyck builds the composition as a ladder of white passages ascending through near-total darkness — two cuffs, paper, collar, lit forehead — and that narrow economy is itself the social claim: rank declared through what has been withheld.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"whistler-battersea-reach": {
+ "about": "Painted in 1862 or 1863, as Whistler took Chelsea rooms above the Thames, this stretch of working river appears on a bright autumn evening, years ahead of any Nocturne, steadied by one vermilion sail.",
+ "deep": "The real subject is balance under constraint. Whistler divides the canvas so that nearly all mass and incident pile into one edge — masts, hulls, furled sails, the only figures — while the opposite half runs almost empty, held by a single vermilion sail set just far enough from centre to keep the whole thing from tipping. That arrangement is not a composition about the Thames so much as a proposition about interval and tone: how much quiet a loaded edge can sponsor, how far one warm accent reaches across grey. The palette is deliberately narrow, values compressed to near-uniformity, so modest darks carry structural weight and warm notes register as events.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"sargent-wild-olive-tree-roots-valldemosa-majorca": {
+ "about": "Fifty-one years old, Sargent shut down a portrait practice that had made him rich, and the following autumn walked out from a village house on Majorca, his sister for company, to paint old roots gripping bare limestone.",
+ "deep": "Sargent locates the charge of a landscape in contact rather than prospect: an aged trunk has clamped its roots across bare limestone, and that grip replaces every expected vista. He crops the trunks at the upper margin so the tree is refused a profile, which forces attention down onto the swollen ochre junction where wood and stone are told apart by warmth alone, never by an outline. Pale dry strokes flicked over the shadowed band keep it breathing instead of going flat, while a few orange dashes bedded in the deepest green counterweight the heavy warm ramp opposite. Nothing opens outward; with sky and escape route both withheld, the eye simply keeps circling.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"carracci-venus-adorned-by-the-graces": {
+ "about": "Annibale helped found a Bologna academy in 1582 to drag painting back toward the living body, then set this mythology on a wooden panel whose paint was later lifted onto canvas, a child straining beneath the mirror.",
+ "deep": "Divinity waits while the work gets done. Three attendants divide the labour of making a goddess presentable — one binds and parts her hair, one raises jewels out of a casket at floor level, and a straining child holds a mirror aloft that is plainly heavier than he is. She sits at the junction of two claims. Her body remains under construction, while past the right-hand opening a statue on its pedestal is finished, whiter and more durable than anything sheltered indoors. Cool drapery meeting warm gilding wedges her into place and slides the gaze outward, tying the work in progress to the thing already complete.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"toulouse-lautrec-a-la-bastille-jeanne-wenz": {
+ "about": "Mislabelled as a painter friend's sister because Lautrec loosely called her one, Jeanne Wenz was Frederic Wenz's companion and a waitress in the bar a Bruant chanson made famous, so the white apron is uniform, not costume.",
+ "deep": "Jeanne Wenz arrives as her working clothes: black bodice, cream foulard, and above all the apron, the picture's largest light, carrying brightness from chin to bottom edge across the black between. Three flat silhouettes — dark dress, white apron, tilted ochre table — go down before any detail of cloth or wood is described. The table's steep tilt pins her to the surface and kills depth; the hatching behind offers no recession. Naming a sitter and granting her a face turn out to be separable, and the picture will not say which it did. That pressure leaves her close and inescapable, legible as a type while remaining private as a person.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"degas-four-dancers": {
+ "about": "Degas owned three solarized negatives of one model, hair piled up, face indistinct, and two of these four women repeat her poses, so the raised open hand reads as one frame from a sequence.",
+ "deep": "Four bodies handle the maintenance work that brackets performance — adjusting a strap, tipping a head, tugging a costume straight in the gap before an entrance. Two dancers here, not all four, repeat poses drawn from one model's solarized negatives, so the cluster behaves like one body's motion distributed across frames: components, not a gathering of distinct people. No figure looks at another. The canvas gives its rightmost two-fifths over to a fictive landscape — horizontal brushmarks and schematic trees that will not read as sky — and the dancers are stationed precisely where that manufactured backdrop meets the work required to enter it.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
